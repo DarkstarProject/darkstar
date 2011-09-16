@@ -1,0 +1,80 @@
+﻿/*
+===========================================================================
+
+  Copyright (c) 2010-2011 Darkstar Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+  This file is part of DarkStar-server source code.
+
+===========================================================================
+*/
+
+#ifndef _CITEMCONTAINER_H
+#define _CITEMCONTAINER_H
+
+#include "../common/cbasetypes.h"
+
+enum CONTAINER_ID
+{
+	LOC_INVENTORY		= 0,
+	LOC_MOGSAFE			= 1,
+	LOC_STORAGE			= 2,
+	LOC_TEMPITEMS		= 3,
+	LOC_MOGLOCKER		= 4,
+	LOC_MOGSATCHEL		= 5,
+	LOC_MOGSACK			= 6
+};
+
+#define MAX_CONTAINER_ID	  7
+#define MAX_CONTAINER_SIZE	 80
+#define ERROR_SLOTID		255
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+class CItem;
+
+class CItemContainer
+{
+public:
+
+	CItemContainer(uint16 LocationID, bool ReservedSlot = true);
+   ~CItemContainer();
+
+	uint16	GetID();
+	uint8	GetSize();
+	uint8	GetFreeSlotsCount();					// количество свободных ячеек в хранилище
+	uint8	SetSize(uint8 size);
+	uint8	SearchItem(uint16 ItemID);				// поиск предмета в хранилище
+
+	uint8	InsertItem(CItem* PItem);				// добавляем заранее созданный предмет в свободную ячейку
+	uint8	InsertItem(CItem* PItem, uint8 slotID);	// добавляем заранее созданный предмет в выбранную ячейку
+
+	CItem*	GetItem(uint8 slotID);					// получаем указатель на предмет, находящийся в указанной ячейка. 
+
+private:
+
+	uint16	m_id;
+	uint8	m_size;
+
+	uint8	m_ReservedSlot;
+
+	CItem*	m_ItemList[MAX_CONTAINER_SIZE+1];
+};
+
+#endif

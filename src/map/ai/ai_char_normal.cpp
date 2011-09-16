@@ -1,0 +1,1278 @@
+﻿/*
+===========================================================================
+
+  Copyright (c) 2010-2011 Darkstar Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+  This file is part of DarkStar-server source code.
+
+===========================================================================
+*/
+
+#include "../../common/utils.h"
+
+#include "../battleutils.h"
+#include "../charutils.h"
+#include "../map.h"
+#include "../mobutils.h"
+#include "../petutils.h"
+#include "../spell.h"
+#include "../vana_time.h"
+#include "../zone.h"
+
+#include "../lua/luautils.h"
+
+#include "../packets/action.h"
+#include "../packets/char.h"
+#include "../packets/char_health.h"
+#include "../packets/char_update.h"
+#include "../packets/inventory_assign.h"
+#include "../packets/inventory_finish.h"
+#include "../packets/inventory_item.h"
+#include "../packets/lock_on.h"
+#include "../packets/message_basic.h"
+
+#include "ai_char_normal.h"
+
+/************************************************************************
+*																		*
+*  Инициализируем владельца интеллекта (может добавить проверку на		*
+*  пустой указатель с выводом FatalError ?)								*
+*																		*
+************************************************************************/
+
+CAICharNormal::CAICharNormal(CCharEntity* PChar)
+{
+	m_PChar = PChar;
+	m_AttackMessageTime = 0;
+}
+
+/************************************************************************
+*																		*
+*  Основная часть интеллекта - главный цикл								*
+*																		*
+************************************************************************/
+
+void CAICharNormal::CheckCurrentAction(uint32 tick)
+{
+	m_Tick = tick;
+
+	switch (m_ActionType)
+	{
+		case ACTION_NONE:			  									break;
+		case ACTION_ATTACK:					ActionAttack();				break;
+		case ACTION_MAGIC_START:			ActionMagicStart();			break;
+		case ACTION_MAGIC_CASTING:			ActionMagicCasting();		break;
+		case ACTION_MAGIC_FINISH:			ActionMagicFinish();		break;
+		case ACTION_MAGIC_INTERRUPT:		ActionMagicInterrupt();		break;
+		case ACTION_ENGAGE:					ActionEngage();				break;
+		case ACTION_DISENGAGE:				ActionDisengage();	 		break;
+		case ACTION_FALL:					ActionFall();				break;
+		case ACTION_DEATH:					ActionDeath();				break;
+		case ACTION_RANGED_START:			ActionRangedStart();		break;
+		case ACTION_RANGED_FINISH:			ActionRangedFinish();		break;
+		case ACTION_RANGED_INTERRUPT:		ActionRangedInterrupt();	break;
+		case ACTION_ITEM_START:				ActionItemStart();			break;
+		case ACTION_ITEM_USING:				ActionItemUsing();			break;
+		case ACTION_ITEM_FINISH:			ActionItemFinish();			break;
+		case ACTION_ITEM_INTERRUPT:			ActionItemInterrupt();		break;
+		case ACTION_CHANGE_BATTLE_TARGET:	ActionChangeBattleTarget(); break;
+
+		default : DSP_DEBUG_BREAK_IF(true);
+	}
+
+	// слишком частая проверка, достаточно одного раза в секунду
+
+	for (int32 i = (int32)m_PChar->RecastList.size() - 1; i >= 0; --i)
+	{
+		if (m_Tick >= (m_PChar->RecastList.at(i).TimeStamp + m_PChar->RecastList.at(i).RecastTime))
+		{
+			m_PChar->RecastList.erase(m_PChar->RecastList.begin() + i);
+		}
+	}
+}
+
+/************************************************************************
+*																		*
+*  Устанавливаем любую найденную цель по ее TargID						*
+*  Возвращаемое значение: подходит ли найденная цель под ValidTarget	*
+*																		*
+************************************************************************/
+
+bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget)
+{
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || *PBattleTarget != NULL);
+
+	// невозможно написать правильные условия, пока не будет решена задача с PvP
+	// в нынешних условиях PvP исключено
+
+	// питомцы пока исключены из поиска
+
+	*PBattleTarget = (CBattleEntity*)m_PZone->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC);
+	m_ActionTargetID = 0;
+
+	if (*PBattleTarget == NULL)
+		return false;
+
+	if (ValidTarget == TARGET_SELF)
+	{
+		if ((*PBattleTarget)->targid == m_PChar->targid)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	if (ValidTarget & TARGET_PLAYER)
+	{
+		if ((*PBattleTarget)->objtype == TYPE_PC)
+		{
+			if (ValidTarget & TARGET_PLAYER_PARTY)
+			{
+				/*
+				if (((CCharEntity*)*PBattleTarget)->Party->GetPartyID() != m_PChar->Party->GetPartyID())
+				{
+					return false;
+				}
+				*/
+			}
+			if (ValidTarget & TARGET_PLAYER_DEAD)
+			{
+				if ((*PBattleTarget)->isDead())
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+	}
+	if (ValidTarget & TARGET_ENEMY)
+	{
+		if ((*PBattleTarget)->objtype == TYPE_MOB)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+/************************************************************************
+*																		*
+*  Персонаж переходит в боевую стойку, включается прежим атаки			*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionEngage() 
+{
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget != NULL);
+
+	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY))
+	{
+		if (m_PBattleTarget->m_OwnerID == 0 || 
+			m_PBattleTarget->m_OwnerID == m_PChar->id)
+		{
+			if (distance(m_PChar->loc.p, m_PBattleTarget->loc.p) <= 30)
+			{
+				if ((m_Tick - m_LastActionTime) > m_PChar->m_Weapons[SLOT_MAIN]->getDelay())
+				{
+					m_ActionType = ACTION_ATTACK;
+					m_LastActionTime = m_Tick - m_PChar->m_Weapons[SLOT_MAIN]->getDelay() + 1500;
+
+					m_PChar->status = STATUS_UPDATE;
+					m_PChar->animation = ANIMATION_ATTACK;
+					m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+					m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+					return;
+				}else{
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,94));
+				}
+			}else{
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
+			}
+		}else{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
+		}
+	}
+	else if (m_PBattleTarget != NULL)
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,446));
+	}
+
+	m_PBattleTarget = NULL;
+	m_ActionType = ACTION_NONE;
+}
+
+
+/************************************************************************
+*																		*
+*  Персонаж меняет основную цель атаки									*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionChangeBattleTarget()
+{
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget == NULL);
+
+	if (m_PBattleTarget->targid != m_ActionTargetID)
+	{
+		CBattleEntity* PBattleTarget = NULL;
+
+		if (GetValidTarget(&PBattleTarget, TARGET_ENEMY))
+		{
+			if (PBattleTarget->m_OwnerID == 0 ||
+				PBattleTarget->m_OwnerID == m_PChar->id)
+			{
+				if (distance(m_PChar->loc.p, PBattleTarget->loc.p) <= 30)
+				{
+					m_LastActionTime = m_Tick;
+					m_PBattleTarget = PBattleTarget;
+						
+					m_PChar->pushPacket(new CLockOnPacket(m_PChar,PBattleTarget));
+				}else{
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,PBattleTarget,0,0,78));
+				}
+			}else{
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,12));
+			}
+		}
+	}
+
+	m_ActionType = ACTION_ATTACK;
+}
+
+/************************************************************************
+*																		*
+*  Персонаж выходит из режима атаки по каким-либо причинам				*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionDisengage() 
+{
+	m_ActionType = ACTION_NONE;
+	m_LastActionTime = m_Tick;
+	m_PBattleTarget = NULL;
+
+	m_PChar->status = STATUS_UPDATE;
+	m_PChar->animation = ANIMATION_NONE;
+	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+}
+
+/************************************************************************
+*																		*
+*  Смерть персонажа еще не реализована									*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionFall() 
+{
+	if (m_PSpell != NULL)
+	{
+		ActionMagicInterrupt();
+	}
+
+	m_ActionType = ACTION_DEATH;
+	m_ActionTargetID = 0;
+	m_LastActionTime = m_Tick;
+
+	m_PSpell = NULL;
+	m_PBattleTarget = NULL;
+	m_PBattleSubTarget = NULL;
+
+	m_PChar->StatusEffectContainer->EraseStatusEffect(true);
+	m_PChar->StatusEffectContainer->DispelStatusEffect(true);
+
+	m_PChar->animation = ANIMATION_DEATH;
+	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionDeath()
+{
+
+}
+
+/************************************************************************
+*																		*
+*  316 - That action cannot be used in this area (costume)				*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionItemStart() 
+{
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
+	DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetType() != UCONTAINER_USEITEM);
+	DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetItem(0) == NULL);
+
+	m_PItemUsable = (CItemUsable*)m_PChar->UContainer->GetItem(0);
+	m_PChar->UContainer->Clean();
+
+	if (GetValidTarget(&m_PBattleSubTarget, m_PItemUsable->getValidTarget()))
+	{
+		int32 ErrorID = luautils::OnItemCheck(m_PBattleSubTarget,m_PItemUsable);
+
+		if (ErrorID == 0)
+		{
+			m_PChar->m_StartActionPos = m_PChar->loc.p;
+			
+			m_PItemUsable->setSubType(ITEM_LOCKED);
+
+			m_PChar->pushPacket(new CInventoryAssignPacket(
+				m_PItemUsable->getID(), 
+				m_PItemUsable->getQuantity(), 
+				m_PItemUsable->getLocationID(), 
+				m_PItemUsable->getSlotID(), 
+				INV_NOSELECT));
+			m_PChar->pushPacket(new CInventoryFinishPacket());
+		}
+		else
+		{
+			m_ActionType = ACTION_ITEM_INTERRUPT;
+
+			uint16 param = (m_PItemUsable->getFlag() & ITEM_FLAG_SCROLL ? m_PItemUsable->getSubID() : m_PItemUsable->getID());
+
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, param, 0, ErrorID));
+			ActionItemInterrupt();
+			return;
+		}
+	}
+	else if (m_PBattleSubTarget != NULL)
+	{
+		m_ActionType = ACTION_ITEM_INTERRUPT;
+		
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PItemUsable->getID(),0,92));
+		ActionItemInterrupt();
+		return;
+	}
+	else
+	{
+		m_ActionType = ACTION_ITEM_INTERRUPT;
+		ActionItemInterrupt();
+		return;
+	}
+
+	m_LastActionTime = m_Tick;
+
+	apAction_t Action;
+
+	Action.ActionTarget = m_PChar;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = 0;
+	Action.param	  = m_PItemUsable->getID();
+	Action.messageID  = 28;
+	Action.flag		  = 0;
+
+	m_PChar->m_ActionList.push_back(Action);
+
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->m_ActionList.clear();
+
+	m_ActionType = ACTION_ITEM_USING;
+}
+
+/************************************************************************
+*																		*
+*  Процесс использовани предмета										*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionItemUsing()
+{
+	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x ||
+		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
+	{
+		m_ActionType = ACTION_ITEM_INTERRUPT;
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, m_PItemUsable->getID(), 0, 62));
+		ActionItemInterrupt();
+		return;
+	}
+
+	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getActivationTime())
+	{
+		m_ActionType = ACTION_ITEM_FINISH;
+		m_LastActionTime = m_Tick;
+
+		m_PItemUsable->setSubType(ITEM_UNLOCKED);
+
+		if (m_PItemUsable->getType() & ITEM_ARMOR)
+		{
+			if (m_PItemUsable->getMaxCharges() > 1)
+			{
+				m_PItemUsable->setCurrentCharges(m_PItemUsable->getCurrentCharges() - 1);
+			}
+			m_PItemUsable->setLastUseTime(CVanaTime::getInstance()->getSysTime() - 1009810800);
+			m_PChar->pushPacket(new CInventoryItemPacket(m_PItemUsable, m_PItemUsable->getLocationID(), m_PItemUsable->getSlotID()));
+						
+			const int8* fmtQuery = "UPDATE char_inventory \
+									SET currCharges = %u, lastUseTime = %u \
+									WHERE charid = %u AND location = %u AND slot = %u;";
+
+			Sql_Query(
+				SqlHandle,
+				fmtQuery,
+				m_PItemUsable->getCurrentCharges(),
+				m_PItemUsable->getLastUseTime(),
+				m_PChar->id,
+				m_PItemUsable->getLocationID(),
+				m_PItemUsable->getSlotID());
+
+			m_PItemUsable = new CItemUsable(*m_PItemUsable);
+		}
+		else
+		{
+			m_PItemUsable = new CItemUsable(*m_PItemUsable);
+
+			charutils::UpdateItem(m_PChar, m_PItemUsable->getLocationID(), m_PItemUsable->getSlotID(), -1);
+		}
+		m_PChar->pushPacket(new CInventoryFinishPacket());
+
+		apAction_t Action;
+
+		Action.ActionTarget = m_PBattleSubTarget;
+		Action.reaction   = REACTION_NONE;
+		Action.speceffect = SPECEFFECT_NONE;
+		Action.animation  = m_PItemUsable->getAnimationID();
+		Action.param	  = 0;
+		Action.messageID  = 0;
+		Action.flag		  = 0;
+
+		m_PChar->m_ActionList.push_back(Action);
+
+		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+		m_PChar->m_ActionList.clear();
+
+		ActionItemFinish();
+	}
+}
+
+/************************************************************************
+*																		*
+*  Окончание использования предмета.									*
+*  Сюда попадает копия предмета, которую нужно удалить.					*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionItemFinish() 
+{
+	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getAnimationTime())
+	{
+		m_LastActionTime = m_Tick;
+
+		luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
+
+		delete m_PItemUsable;
+
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PItemUsable = NULL;
+		m_PBattleSubTarget = NULL;
+	}
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionItemInterrupt()
+{
+	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
+
+	m_PItemUsable->setSubType(ITEM_UNLOCKED);
+
+	m_PChar->pushPacket(new CInventoryAssignPacket(
+		m_PItemUsable->getID(), 
+		m_PItemUsable->getQuantity(), 
+		m_PItemUsable->getLocationID(), 
+		m_PItemUsable->getSlotID(), 
+		INV_NORMAL));
+	m_PChar->pushPacket(new CInventoryFinishPacket());
+
+	apAction_t Action;
+
+	Action.ActionTarget = m_PChar;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = 54;
+	Action.param	  = 0;
+	Action.messageID  = 0;
+	Action.flag		  = 0;
+		
+	m_PChar->m_ActionList.push_back(Action);
+
+	m_PChar->pushPacket(new CActionPacket(m_PChar));
+	m_PChar->m_ActionList.clear();
+
+	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	m_PItemUsable = NULL;
+	m_PBattleSubTarget = NULL;
+}
+
+/************************************************************************
+*																		*
+*  Начало дальней атаки. Логика:										*
+*  - если цель мертва, то атака не начинается. никаких сообщений 		*
+*  - проверяем видимость цели (если не видим, то не можем определить 	*
+*    дистанцию до цели или узнать, в бою ли цель)						*
+*  - определяем в бою ли цель (нет смысла определять дистанцию, если 	*
+*    цель атакует другой персонаж)										*
+*  - и наконец определяем дистанцию до цели								*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionRangedStart()
+{
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL); 
+
+	CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+
+	if (PItem != NULL && 
+	   (PItem->getType() & ITEM_WEAPON))
+	{
+		uint8 SkillType = PItem->getSkillType();
+
+		switch (SkillType)
+		{
+			case SKILL_THR: break;
+			case SKILL_ARC:
+			case SKILL_MRK:
+			{
+				PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+				
+				if (PItem != NULL && 
+				   (PItem->getType() & ITEM_WEAPON))
+				{
+					break;
+				}
+			}
+			default:
+			{
+				m_ActionTargetID = 0;
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,216));
+				return;
+			}
+		}
+	}else{
+		PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+
+		if (PItem == NULL || 
+		  !(PItem->getType() & ITEM_WEAPON) ||
+		   (PItem->getSkillType() != SKILL_THR))
+		{
+			m_ActionTargetID = 0;
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,216));
+			return;
+		}
+	}
+
+	if (GetValidTarget(&m_PBattleSubTarget, TARGET_ENEMY))
+	{
+		if (m_PBattleSubTarget->isDead())
+		{
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+		if (!isFaceing(m_PChar->loc.p, m_PBattleSubTarget->loc.p, 40))
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,217));
+
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+		if (m_PBattleSubTarget->m_OwnerID != 0 && 
+			m_PBattleSubTarget->m_OwnerID != m_PChar->id)
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
+
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+		if (distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p) > 25)
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,78));
+
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+	}
+	else
+	{
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PBattleSubTarget = NULL;
+		return;
+	}
+
+	// TODO: скорее всего m_LastActionTime нужно выставлять лишь при ANIMATION_ATTACK, иначе использовать LastRangedTime для 
+
+	m_LastActionTime = m_Tick;
+	m_PChar->m_StartActionPos = m_PChar->loc.p;
+
+	apAction_t Action;
+
+	Action.ActionTarget = m_PChar;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = 48;
+	Action.param	  = 0;
+	Action.messageID  = 0;
+	Action.flag		  = 0;
+
+	m_PChar->m_ActionList.push_back(Action);
+
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->m_ActionList.clear();
+
+	m_ActionType = ACTION_RANGED_FINISH;
+}
+
+/************************************************************************
+*																		*
+*  Окончание дальней атаки												*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionRangedFinish()
+{
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	if (m_PBattleSubTarget->isDead())
+	{
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PBattleSubTarget = NULL;
+		return;
+	}
+	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x ||
+		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 218));
+
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PBattleSubTarget = NULL;
+		return;
+	}
+
+	if ((m_Tick - m_LastActionTime) > 4000)		//m_PChar->m_RangedDelay
+	{
+		m_LastActionTime = m_Tick;
+
+		uint16 damage = 0;
+
+		apAction_t Action;
+
+		Action.ActionTarget = m_PBattleSubTarget;
+		Action.reaction   = REACTION_HIT;		//0x10
+		Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
+		Action.animation  = 0;
+		Action.messageID  = 352;
+
+		Action.param = battleutils::TakePhysicalDamage(m_PChar,m_PBattleSubTarget, damage);
+		//charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PChar->m_Weapons[SLOT_RANGED]->getSkillType(), m_PBattleTarget->GetMLevel());
+		Action.flag = 3;
+		Action.subeffect = SUBEFFECT_FIRE_DAMAGE;
+		Action.subparam  = 0;
+		Action.submessageID = 163;
+
+		m_PChar->m_ActionList.push_back(Action);
+
+		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+		m_PChar->m_ActionList.clear();
+
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PBattleSubTarget = NULL;
+	}
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionRangedInterrupt()
+{
+	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 216));
+
+	apAction_t Action;
+
+	Action.ActionTarget = m_PChar;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = 48;
+	Action.param	  = 0;
+	Action.messageID  = 0;
+	Action.flag		  = 0;
+		
+	m_PChar->m_ActionList.push_back(Action);
+
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->m_ActionList.clear();
+
+	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	m_PBattleSubTarget = NULL;
+}
+
+/************************************************************************
+*																		*
+*  Inoshishinofuda														*
+*  Shikanofuda															*
+*  Chonofuda															*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionMagicStart()
+{
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
+
+	if (m_PSpell == NULL ||
+	   !charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
+	   !battleutils::CanUseSpell(m_PChar, m_PSpell->getID()))
+	{
+		m_ActionTargetID = 0;
+
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,49));
+
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PSpell = NULL;
+		m_PBattleSubTarget = NULL;
+		return;
+	}
+
+	if ( m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING &&
+		!m_PZone->CanUseMisc(MISC_FELLOW))
+	{
+		m_ActionTargetID = 0;
+
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,40));
+
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PSpell = NULL;
+		m_PBattleSubTarget = NULL;
+		return;
+	}
+
+	for (uint32 i = 0; i < m_PChar->RecastList.size(); ++i)
+	{
+		if (m_PChar->RecastList.at(i).ID == m_PSpell->getID())
+		{
+			m_ActionTargetID = 0;
+
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,18));
+
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PSpell = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+	}
+
+	if (GetValidTarget(&m_PBattleSubTarget, m_PSpell->getValidTarget()))
+	{
+		if (m_PBattleSubTarget->isDead() &&
+		  !(m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD))
+		{
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PSpell = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+		if (m_PBattleSubTarget->objtype == TYPE_MOB &&
+			m_PBattleSubTarget->m_OwnerID != 0 && 
+			m_PBattleSubTarget->m_OwnerID != m_PChar->id)
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
+
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PSpell = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+		if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
+		{
+			if (m_PChar->getStorage(LOC_INVENTORY)->SearchItem(m_PSpell->getMPCost()) == ERROR_SLOTID)
+			{
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,35));
+
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PSpell = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+		} 
+		else 
+		{
+			if (m_PSpell->getMPCost() > m_PChar->health.mp)
+			{
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,34));
+
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PSpell = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+		}
+	}
+	else if (m_PBattleSubTarget != NULL)
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PSpell->getID(),0,48));
+
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PSpell = NULL;
+		m_PBattleSubTarget = NULL;
+		return;
+	}
+	else
+	{
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PSpell = NULL;
+		return;
+	}
+
+	if (m_PBattleSubTarget != m_PChar)
+	{
+		float Distance = distance(m_PChar->loc.p,m_PBattleSubTarget->loc.p);
+
+		if (Distance > 25)
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,78));
+
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PSpell = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+		if (Distance > 21.5)
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PSpell->getID(),0,313));
+
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PSpell = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+	}
+
+	m_PChar->m_StartActionPos = m_PChar->loc.p;
+
+	m_LastActionTime = m_Tick;
+
+	apAction_t Action;
+
+	Action.ActionTarget = m_PBattleSubTarget;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = 0;
+	Action.param	  = m_PSpell->getID();
+	Action.messageID  = 327;
+	Action.flag		  = 0;
+
+	m_PChar->m_ActionList.push_back(Action);
+
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->m_ActionList.clear();
+
+	m_ActionType = ACTION_MAGIC_CASTING;
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionMagicCasting()
+{
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	if (m_PBattleSubTarget->isDead())
+	{
+		m_ActionType = ACTION_MAGIC_INTERRUPT;
+		ActionMagicInterrupt();
+		return;
+	}
+	if (m_PBattleSubTarget->objtype == TYPE_MOB &&
+		m_PBattleSubTarget->m_OwnerID != 0 && 
+		m_PBattleSubTarget->m_OwnerID != m_PChar->id)
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
+
+		m_ActionType = ACTION_MAGIC_INTERRUPT;
+		ActionMagicInterrupt();
+		return;
+	}
+	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x ||
+		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 16)); 
+
+		m_ActionType = ACTION_MAGIC_INTERRUPT;
+		ActionMagicInterrupt();
+		return;
+	}
+
+	if ((m_Tick - m_LastActionTime) >= m_PSpell->getCastTime())		
+	{
+		m_LastActionTime = m_Tick;
+
+		if (!charutils::hasSpell(m_PChar, m_PSpell->getID()))
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,49));
+
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
+
+		if ((m_PBattleSubTarget != m_PChar) &&
+			(distance(m_PChar->loc.p,m_PBattleSubTarget->loc.p) > 21.5))
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,78));
+
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
+
+		if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
+		{
+			uint8 SlotID = m_PChar->getStorage(LOC_INVENTORY)->SearchItem(m_PSpell->getMPCost());
+
+			if (SlotID != ERROR_SLOTID)
+			{
+				if (rand()%100 < m_PChar->getMod(MOD_NINJA_TOOL))
+				{
+					charutils::UpdateItem(m_PChar, LOC_INVENTORY, SlotID, -1);
+					m_PChar->pushPacket(new CInventoryFinishPacket());
+				}
+			} else {
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,35));
+
+				m_ActionType = ACTION_MAGIC_INTERRUPT;
+				ActionMagicInterrupt();
+				return;
+			}
+		} else {
+			if (m_PSpell->getMPCost() > m_PChar->health.mp)
+			{
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,34));
+
+				m_ActionType = ACTION_MAGIC_INTERRUPT;
+				ActionMagicInterrupt();
+				return;
+			} else {
+				m_PChar->addMP(-(int16)m_PSpell->getMPCost());
+				m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+			}
+		}
+
+		m_ActionType = ACTION_MAGIC_FINISH;
+		ActionMagicFinish();
+	}
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionMagicFinish()
+{
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	Recast_t Recast;
+
+	Recast.ID = m_PSpell->getID();
+	Recast.TimeStamp = m_Tick;
+	Recast.RecastTime = m_PSpell->getRecastTime() * 1000;
+
+	m_PChar->RecastList.push_back(Recast);
+
+	apAction_t Action;
+	
+	luautils::OnSpellCast(m_PChar, m_PBattleSubTarget);
+
+	if (m_PBattleSubTarget->objtype == TYPE_MOB)
+	{
+		// это временная функция для активации ненависти монстров. 
+		// при чтении магии нельзя вызывать метод получения физического урона
+
+		battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, 0); 
+	}
+
+	Action.ActionTarget = m_PBattleSubTarget;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = m_PSpell->getAnimationID();
+	Action.param	  = 0;
+	Action.messageID  = 0;
+	Action.flag		  = 0;
+
+	m_PChar->m_ActionList.push_back(Action);
+
+	if (m_PSpell->isAOE() && m_PBattleSubTarget->objtype == TYPE_MOB)
+	{
+		for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); 
+			 it != m_PChar->SpawnMOBList.end() && 
+			 m_PChar->m_ActionList.size() < 16;
+			 ++it)
+		{
+			CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+
+			if (m_PBattleSubTarget != PCurrentMob &&
+				PCurrentMob->status == STATUS_UPDATE &&
+				distance(m_PBattleSubTarget->loc.p, PCurrentMob->loc.p) <= 10)
+			{
+				luautils::OnSpellCast(m_PChar, PCurrentMob);
+		
+				// это временная функция для активации ненависти монстров. 
+				// при чтении магии нельзя вызывать метод получения физического урона
+
+				battleutils::TakePhysicalDamage(m_PChar, PCurrentMob, 0);
+
+				Action.ActionTarget = PCurrentMob;
+				Action.reaction   = REACTION_NONE;
+				Action.speceffect = SPECEFFECT_NONE;
+				Action.animation  = m_PSpell->getAnimationID();
+				Action.param	  = 0;
+				Action.messageID  = 0;
+				Action.flag		  = 0;
+
+				m_PChar->m_ActionList.push_back(Action);	
+			}
+		}
+	}
+
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->m_ActionList.clear();
+
+	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	m_PSpell = NULL;
+	m_PBattleSubTarget = NULL;
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionMagicInterrupt()
+{
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	apAction_t Action;
+
+	Action.ActionTarget = m_PChar;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = m_PSpell->getAnimationID();
+	Action.param	  = 0;
+	Action.messageID  = 0;
+	Action.flag		  = 0;
+
+	m_PChar->m_ActionList.push_back(Action);
+
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->m_ActionList.clear();
+
+	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	m_PSpell = NULL;
+	m_PBattleSubTarget = NULL;
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionWeaponSkillStart()
+{
+	//m_PBattleSubTarget
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionWeaponSkillFinish()
+{
+	//m_PBattleSubTarget
+}
+
+/************************************************************************
+*																		*
+*  Стандартная атака оружием											*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionAttack() 
+{
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+
+	if (m_PBattleTarget->isDead())
+	{
+		m_ActionType = ACTION_DISENGAGE;
+		ActionDisengage();
+		return;
+	}
+	if (m_PBattleTarget->m_OwnerID != 0 && 
+		m_PBattleTarget->m_OwnerID != m_PChar->id)
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
+
+		m_ActionType = ACTION_DISENGAGE;
+		ActionDisengage();
+		return;
+	}
+
+	float Distance = distance(m_PChar->loc.p,m_PBattleTarget->loc.p);
+
+	if (Distance > 30)
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,36));
+
+		m_ActionType = ACTION_DISENGAGE;
+		ActionDisengage();
+		return;
+	}
+
+	uint16 WeaponDelay = m_PChar->m_Weapons[SLOT_MAIN]->getDelay();
+
+	if ((m_Tick - m_LastActionTime) > WeaponDelay)
+	{
+		if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
+		{
+			if ((m_Tick - m_AttackMessageTime) > WeaponDelay)
+			{
+				m_AttackMessageTime = m_Tick;
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,5));
+			}
+			return;
+		}
+		if (Distance > m_PBattleTarget->m_ModelSize)
+		{
+			if ((m_Tick - m_AttackMessageTime) > WeaponDelay)
+			{
+				m_AttackMessageTime = m_Tick;
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,4));
+			}
+			return;
+		}
+
+		m_LastActionTime = m_Tick - (m_Tick - m_LastActionTime) % WeaponDelay;
+
+		if (battleutils::IsParalised(m_PChar)) 
+		{
+			m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,29));
+		}
+		else if (battleutils::IsIntimidated(m_PChar, m_PBattleTarget)) 
+		{
+			m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,106));
+		}
+		else
+		{
+			apAction_t Action;
+
+			Action.ActionTarget = m_PBattleTarget;
+
+			// условие неверное. любоя профессия с отсутсвием h2h skill rank,
+			// даже с экипированным h2h оружием будет махать одной рукой
+
+			uint32 numattacks = (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? 2 : 1);
+
+			for (uint32 i = 0; i < numattacks; ++i) 
+			{
+				if (i != 0)
+				{
+					if (m_PBattleTarget->isDead())
+					{
+						break;
+					}
+					Action.ActionTarget = NULL;
+				}
+
+				uint16 damage = 0;
+
+				// во время физической атаки:
+				//	0 - правая рука 
+				//	1 - левая рука 
+				//	2 - правая нога (только H2H) 
+				//	3 - левая нога  (только H2H)
+
+				Action.animation  = i;
+				Action.flag	= 0;
+
+				// сначала вычисляем вероятность попадания по монстру
+				// затем нужно вычислить вероятность нанесения критического удара
+
+				if ( rand()%100 < battleutils::GetHitRate(m_PChar,m_PBattleTarget) )
+				{
+					float DamageRatio = battleutils::GetDamageRatio(m_PChar,m_PBattleTarget); 
+
+					if ( rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleTarget) )
+					{
+						DamageRatio += 1;
+						DamageRatio = (DamageRatio > 3 ? 3 : DamageRatio);
+
+						Action.reaction   = REACTION_HIT;
+						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+						Action.messageID  = 67;
+						Action.flag = 0;
+					}else{
+						Action.reaction   = REACTION_HIT;
+						Action.speceffect = SPECEFFECT_HIT;
+						Action.messageID  = 1;
+					}
+
+					charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PChar->m_Weapons[SLOT_MAIN]->getSkillType(), m_PBattleTarget->GetMLevel());
+
+					damage = (uint16)((m_PChar->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio);
+				}else{
+					Action.reaction   = REACTION_EVADE;
+					Action.speceffect = SPECEFFECT_NONE;
+					Action.messageID  = 15;
+				}
+
+				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
+
+				m_PChar->m_ActionList.push_back(Action);
+			}
+
+			m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+			m_PChar->m_ActionList.clear();
+		}
+	}
+}

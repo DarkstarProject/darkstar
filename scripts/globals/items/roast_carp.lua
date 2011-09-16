@@ -1,0 +1,51 @@
+-----------------------------------------
+-- ID: 4537
+-- Item: roast_carp
+-- Food Effect: 30Min, All Races
+-----------------------------------------
+-- Dexterity 1
+-- Mind -1
+-- Ranged ATT % 14
+-----------------------------------------
+
+require("scripts/globals/status");
+
+-----------------------------------------
+-- OnItemCheck
+-----------------------------------------
+
+function onItemCheck(target)
+result = 0
+	if (target:hasStatusEffect(EFFECT_FOOD) == true) then
+		result = 246;
+	end
+return result;
+end;
+
+-----------------------------------------
+-- OnItemUse
+-----------------------------------------
+
+function onItemUse(target)
+	target:addStatusEffect(EFFECT_FOOD,0,0,1800,0,4537);
+end;
+
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
+
+function onEffectGain(target,effect)
+	target:addMod(MOD_DEX, 1);
+	target:addMod(MOD_MND, -1);
+	target:addMod(MOD_RATTP, 14);
+end;
+
+-----------------------------------------
+-- onEffectLose Action
+-----------------------------------------
+
+function onEffectLose(target,effect)
+	target:delMod(MOD_DEX, 1);
+	target:delMod(MOD_MND, -1);
+	target:delMod(MOD_RATTP, 14);
+end;

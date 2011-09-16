@@ -1,0 +1,93 @@
+/*
+===========================================================================
+
+  Copyright (c) 2010-2011 Darkstar Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+  This file is part of DarkStar-server source code.
+
+===========================================================================
+*/
+
+#include "../common/showmsg.h"
+#include "../common/utils.h"
+#include "../common/timer.h"
+#include "../common/taskmgr.h"
+
+CTaskMgr* CTaskMgr::_instance = NULL;
+
+CTaskMgr* CTaskMgr::getInstance()
+{
+	if( _instance == NULL )
+	{
+		_instance = new CTaskMgr();
+	}
+	return _instance;
+}
+
+CTaskMgr::CTask *CTaskMgr::AddTask(std::string InitName, size_t InitTick, void *InitData,TASKTYPE InitType,TaskFunc_t InitFunc,size_t InitInterval)
+{
+	return AddTask( new CTask(InitName,InitTick,InitData,InitType,InitFunc,InitInterval) );
+}
+
+CTaskMgr::CTask *CTaskMgr::AddTask(CTask *PTask)
+{
+	m_TaskList.push(PTask);
+	return PTask;
+}
+
+void CTaskMgr::RemoveTask(std::string TaskName)
+{
+	//empty method
+}
+
+uint32 CTaskMgr::DoTimer(uint32 tick)
+{
+	int32 diff = 1000; 
+
+	while( m_TaskList.size() )
+	{
+		CTask * PTask = m_TaskList.top();
+		diff = PTask->m_tick - tick;
+
+		if( diff > 0 ) break; // no more expired timers to process
+
+		m_TaskList.pop();
+
+		if( PTask->m_func )
+		{
+			PTask->m_func(( diff < -1000 ? tick : PTask->m_tick),PTask);
+		}
+
+		switch( PTask->m_type )
+		{
+			case TASK_INTERVAL:
+			{
+				PTask->m_tick = PTask->m_interval + (diff < - 1000 ? tick : PTask->m_tick);
+				m_TaskList.push(PTask);
+			}
+				break;
+			case TASK_ONCE:
+			case TASK_REMOVE:
+			default:
+			{
+				delete PTask; // suppose that all tasks were allocated by new
+			}
+				break;
+		}
+		diff = cap_value(diff, 50, 1000);
+	}
+	return diff;
+}

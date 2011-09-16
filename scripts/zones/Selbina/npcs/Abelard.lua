@@ -1,0 +1,185 @@
+-----------------------------------
+--  Area: Selbina
+--  NPC: Abelard
+--  An Explorer's Footsteps
+--
+--  This quest was changed to require a minimum amount of fame to combat RMTs POS-Hacking around to
+--  quickly earn gil. However, as this is not a legitimate concern on private servers players may
+--  complete this quest even with no fame.
+-----------------------------------
+
+require("scripts/globals/quests");
+require("scripts/globals/keyitems");
+require("scripts/globals/settings");
+require("scripts/zones/Selbina/TextIDs");
+
+-----------------------------------
+
+ZoneID = 
+{
+	0x00001,800,   -- West Ronfaure
+	0x00002,800,   -- East Ronfaure
+	0x00004,1000,  -- La Theine Plateau
+	0x00008,1000,  -- Valkurm Dunes
+	0x00010,1000,  -- Jugner Forest
+	0x00020,3000,  -- North Gustaberg
+	0x00040,800,   -- South Gustaberg
+	0x00080,1000,  -- Konschtat Highlands
+	0x00100,1000,  -- Pashhow Marshlands
+	0x00200,3000,  -- Rolanberry Fields
+	0x00400,800,   -- West Sarutabaruta
+	0x00800,800,   -- East Sarutabaruta
+	0x01000,1000,  -- Tahrongi Canyon
+	0x02000,1000,  -- Buburimu Peninsula
+	0x04000,1000,  -- Meriphataud Mountains
+	0x08000,10000, -- Sauromugue Champaign
+	0x10000,10000  -- Batallia Downs
+};
+
+-----------------------------------
+-- onTrade
+-----------------------------------
+
+function onTrade(player,npc,trade)
+
+explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
+
+if (explorer == QUEST_ACCEPTED) then
+	clay = trade:hasItemQty(570,1);
+	count = trade:getItemCount();
+	if (count == 1 and clay) then
+		tablets = player:getVar("anExplorer-ClayTablets");
+		currtab = player:getVar("anExplorer-CurrentTablet");
+		if (currtab ~= 0 and (tablets % (2*currtab)) < currtab) then -- new tablet
+			for zone = 1, #ZoneID, 2 do
+				if (tablets % (2*ZoneID[zone]) < ZoneID[zone]) then
+					if ((tablets + currtab) == 0x1ffff) then
+						player:startEvent(0x002f);  -- end
+						break;
+					end
+					if (ZoneID[zone] == currtab) then
+						player:startEvent(0x0029);  -- the tablet he asked for
+					else
+						player:startEvent(0x002e);  -- not the one he asked for
+					end
+					player:setVar("anExplorer-ClayTablets", tablets + currtab);
+					break;
+				end
+			end
+		else
+			player:startEvent(0x002d);  -- i'm sorry, but i've already got this one
+		end
+	end
+end
+end;
+
+-----------------------------------
+-- onTrigger
+-----------------------------------
+
+function onTrigger(player,npc)
+
+explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
+
+if (explorer == QUEST_AVAILABLE) then
+	player:startEvent(0x0028);
+elseif (explorer == QUEST_ACCEPTED) then
+	tab = player:hasItem(570);
+	clay = player:hasItem(571);
+	if (clay == false and tab == false) then
+		currtab = player:getVar("anExplorer-CurrentTablet");
+		if (currtab == -1) then
+			player:startEvent(0x002a);	
+		else
+			player:startEvent(0x002c);
+			player:setVar("anExplorer-CurrentTablet",0);
+		end
+	else
+		tablets = player:getVar("anExplorer-ClayTablets");
+		for zone = 1, #ZoneID, 2 do
+			if (tablets % (2*ZoneID[zone]) < ZoneID[zone]) then 
+				if (zone < 20) then
+					player:startEvent(0x002b,math.floor(zone/2));
+				else 
+					player:startEvent(0x0031,math.floor(zone/2)-10);
+				end
+				break; 
+			end
+		end
+	end
+elseif (explorer == QUEST_COMPLETED) then
+	player:startEvent(0x046a);
+end
+end;
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+end;
+
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
+function onEventFinish(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+
+	if (csid == 0x0028 and option ~= 0) then
+		if (player:getFreeSlotsCount() > 0) then
+			player:addQuest(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
+			player:addItem(571);
+			player:messageSpecial(ITEM_OBTAINED,571);
+			player:setVar("anExplorer-ClayTablets",0);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,571);
+		end
+	elseif (csid == 0x002a and option == 100) then	
+		if (player:getFreeSlotsCount() > 0) then
+			player:addItem(571);
+			player:messageSpecial(ITEM_OBTAINED,571);
+			player:setVar("anExplorer-CurrentTablet",0);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,571);
+		end
+	elseif (csid == 0x002c) then
+		if (player:getFreeSlotsCount() > 0) then
+			player:addItem(571);
+			player:messageSpecial(ITEM_OBTAINED,571);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,571);
+		end
+	elseif (csid == 0x0029 or csid == 0x002e or csid == 0x002f) then 
+		currtab = player:getVar("anExplorer-CurrentTablet");
+		tablets = player:getVar("anExplorer-ClayTablets");
+		keyitem = player:hasKeyItem(MAP_OF_THE_CRAWLERS_NEST);
+		for zone = 1, #ZoneID, 2 do
+			if (ZoneID[zone] == currtab) then
+				player:tradeComplete();
+				player:addGil(GIL_RATE*ZoneID[zone+1]);
+				player:messageSpecial(GIL_OBTAINED,ZoneID[zone+1]);
+				player:setVar("anExplorer-CurrentTablet",0);
+				break;
+			end
+		end
+		if (csid == 0x002f) then
+			player:completeQuest(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
+			player:setVar("anExplorer-ClayTablets",0);
+		end
+		if (option == 100) then
+			player:addItem(571);
+			player:messageSpecial(ITEM_OBTAINED,571);
+		end
+		if (option == 110) then
+			player:setVar("anExplorer-CurrentTablet",-1);
+		end
+		if ((tablets % (2*0x7fff)) >= 0x7fff and keyitem == false) then
+			player:addKeyItem(MAP_OF_THE_CRAWLERS_NEST);
+			player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_CRAWLERS_NEST);
+		end
+	end
+end;

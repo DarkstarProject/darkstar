@@ -1,0 +1,177 @@
+﻿/*
+===========================================================================
+
+  Copyright (c) 2010-2011 Darkstar Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+  This file is part of DarkStar-server source code.
+
+===========================================================================
+*/
+
+#include "../common/malloc.h"
+#include "../common/showmsg.h"
+
+#include "item_container.h"
+#include "itemutils.h"
+
+
+CItemContainer::CItemContainer(uint16 LocationID, bool ReservedSlot)
+{
+	m_id = LocationID;
+	m_size = 0;
+
+	m_ReservedSlot = (ReservedSlot ? 1 : 0);
+
+	memset(m_ItemList, 0, sizeof(m_ItemList));
+}
+
+CItemContainer::~CItemContainer()
+{
+	for (uint8 SlotID = 0; SlotID < m_size; ++SlotID)
+	{
+		if (m_ItemList[SlotID] != NULL)
+		{
+			delete m_ItemList[SlotID];
+		}
+	}
+}
+
+uint16 CItemContainer::GetID()
+{
+	return m_id;
+}
+
+uint8 CItemContainer::GetSize()
+{
+	return m_size;
+}
+
+uint8 CItemContainer::GetFreeSlotsCount()
+{
+	uint8 count = 0;
+
+	for (uint8 SlotID = m_ReservedSlot; SlotID < m_size; ++SlotID) 
+	{
+		if (m_ItemList[SlotID] == NULL) 
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
+// функция не доработана, советую ей не пользоваться для уменьшения размера хранилища
+
+uint8 CItemContainer::SetSize(uint8 size) 
+{
+	if (size < MAX_CONTAINER_SIZE) 
+	{
+		size += m_ReservedSlot;
+
+		// здесь мы проверяем, чтобы новый размер контейнера не оказался меньше текущего количества предметов
+		// TODO: хорошо бы придумать способ по оригинальнее, чем перебор всего контейнера
+
+		uint8 count = 0;
+
+		for (uint8 SlotID = 0; SlotID < m_size; ++SlotID) 
+		{
+			if (m_ItemList[SlotID] != NULL)
+			{
+				count++;
+			}
+		}
+
+		// TODO: при уменьшении размера контейнера необходимо производить перемещение предметов, оказавшихся за пределами нового размера
+
+		if (size >= count)
+		{
+			m_size = size;
+			return m_size;	
+		}
+	}
+	ShowDebug(CL_CYAN"ItemContainer <%u>: Bad new container size %u\n"CL_RESET, m_id, size);
+	return -1;
+}
+
+uint8 CItemContainer::InsertItem(CItem* PItem)
+{
+	DSP_DEBUG_BREAK_IF(PItem == NULL);
+
+	for (uint8 SlotID = m_ReservedSlot; SlotID < m_size; ++SlotID) 
+	{
+		if (m_ItemList[SlotID] == NULL) 
+		{
+			PItem->setSlotID(SlotID);
+			PItem->setLocationID(m_id);
+
+			m_ItemList[SlotID] = PItem;
+			return SlotID;
+		}
+	}
+	
+	ShowDebug("ItemContainer: Container is full\n");
+
+	if (PItem) delete PItem;
+	return ERROR_SLOTID;
+}
+
+/************************************************************************
+*																		*
+*  Добавляем предмет в указанную ячейку. NULL удаляет предмет			*
+*																		*
+************************************************************************/
+
+uint8 CItemContainer::InsertItem(CItem* PItem, uint8 SlotID)
+{
+	if (SlotID < m_size)
+	{
+		if (PItem != NULL)
+		{
+			PItem->setSlotID(SlotID);
+			PItem->setLocationID(m_id);
+		}
+		
+		m_ItemList[SlotID] = PItem;
+		return SlotID;
+	}
+
+	ShowDebug("ItemContainer: SlotID %i is out of range\n", SlotID);
+
+	if (PItem) delete PItem;
+	return ERROR_SLOTID;
+}
+
+CItem* CItemContainer::GetItem(uint8 SlotID)
+{
+	if (SlotID < m_size)
+	{
+		return m_ItemList[SlotID];
+	}
+	return NULL;
+}
+
+uint8 CItemContainer::SearchItem(uint16 ItemID)
+{
+	for (uint8 SlotID = 0; SlotID < m_size; ++SlotID) 
+	{
+		if ((m_ItemList[SlotID] != NULL) && 
+			(m_ItemList[SlotID]->getID() == ItemID)) 
+		{
+			return SlotID;
+		}
+	}
+	return ERROR_SLOTID;
+}

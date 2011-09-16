@@ -1,0 +1,75 @@
+@SET_MAKE@
+
+HAVE_MYSQL=@HAVE_MYSQL@
+
+ifeq ($(HAVE_MYSQL),yes)
+	ALL_DEPENDS = common login map
+else
+	ALL_DEPENDS = needs_mysql
+endif
+
+##########################################################
+.PHONY: common conf \
+       login \
+       map   \
+       clean help
+
+all: $(ALL_DEPENDS)
+
+common:
+	@$(MAKE) -C src/common all
+
+login: common
+	@$(MAKE) -C src/login  all
+
+map:   common
+	@$(MAKE) -C src/map    all
+
+clean:
+	@$(MAKE) -C src/common $@
+	@$(MAKE) -C src/login  $@
+	@$(MAKE) -C src/map    $@
+
+help:
+	@echo "most common targets are 'all' 'common' 'help' 'clean'"
+	@echo "possible targets are:"
+	@echo "'common' - builds object files used in SQL servers"
+	@echo "'login'  - ";
+	@echo "'map'    - ";
+	@echo "'conf'   - ";
+	@echo "'clean'  - cleans builds and object"
+	@echo "'help'   - output thid message"
+
+##############################################################
+
+needs_mysql:
+	@echo "MySQL not found or disabled by the configure script"
+	@exit 1
+
+##############################################################
+#
+
+install:
+	$(shell read -p "WARNING: Those target does not work properly yet. Press Ctrl+C to cancel or Enter to continue")
+	$(shell mkdir -p /opt/dsproject/bin/)
+	$(shell mkdir -p /opt/dsproject/etc/dsproject/)
+	$(shell mkdir -p /opt/dsproject/var/log/dsproject/)
+	$(shell mv conf /opt/dsproject/etc/dsproject/conf)
+	$(shell mv log /opt/dsproject/var/log/dsproject/)
+	$(shell cp *-server* /opt/dsproject/bin/)
+	$(shell ln -s /opt/dsproject/var/log/dsproject/ /opt/dsproject/bin/log)
+	$(shell ln -s /opt/dsproject/etc/dsproject/conf /opt/dsproject/bin)
+
+bin-clean:
+	$(shell rm /opt/dsproject/bin/login-server*)
+	$(shell rm /opt/dsproject/bin/map-server*)
+
+unistall: bin-clean
+	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+c to cancel or Enter to continue.")
+	$(shell rm /opt/dsproject/bin/log)
+	$(shell rm /opt/dsproject/bin/conf)
+	$(shell rm -rf /opt/dsproject/etc/dsproject)
+	$(shell rm -rf /opt/dsproject/var/log/dsproject)
+	$(shell rm -rf /opt/dsproject)
+	
+

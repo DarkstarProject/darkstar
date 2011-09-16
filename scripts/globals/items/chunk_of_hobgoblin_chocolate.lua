@@ -1,0 +1,51 @@
+-----------------------------------------
+-- ID: 4324
+-- Item: chunk_of_hobgoblin_chocolate
+-- Food Effect: 5Min, All Races
+-----------------------------------------
+-- Health Regen While Healing 7
+-- Lizard Killer 5
+-- Petrify Resist 5
+-----------------------------------------
+
+require("scripts/globals/status");
+
+-----------------------------------------
+-- OnItemCheck
+-----------------------------------------
+
+function onItemCheck(target)
+result = 0;
+	if (target:hasStatusEffect(EFFECT_FOOD) == true) then
+		result = 246;
+	end
+return result;
+end;
+
+-----------------------------------------
+-- OnItemUse
+-----------------------------------------
+
+function onItemUse(target)
+	target:addStatusEffect(EFFECT_FOOD,0,0,300,0,4324);
+end;
+
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
+
+function onEffectGain(target,effect)
+	target:addMod(MOD_HPHEAL, 7);
+	target:addMod(MOD_LIZARD_KILLER, 5);
+	target:addMod(MOD_PETRIFYRES, 5);
+end;
+
+-----------------------------------------
+-- onEffectLose Action
+-----------------------------------------
+
+function onEffectLose(target,effect)
+	target:delMod(MOD_HPHEAL, 7);
+	target:delMod(MOD_LIZARD_KILLER, 5);
+	target:delMod(MOD_PETRIFYRES, 5);
+end;

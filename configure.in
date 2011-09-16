@@ -1,0 +1,444 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+
+AC_INIT(dsproject)
+AC_PREREQ([2.65])
+
+AC_CONFIG_SRCDIR([src/common/cbasetypes.h])
+AC_CONFIG_FILES([Makefile src/common/Makefile])
+AC_CONFIG_FILES([src/map/Makefile src/login/Makefile])
+
+
+#
+# Memory managers
+#
+AC_ARG_ENABLE(
+   [manager],
+   AC_HELP_STRING(
+	[--enable-manager=ARG],
+	[memory managers: no, builtin, memwatch, dmalloc, gcollect, bcheck ( default to builtin) ]
+   ),
+   [
+	enable_manager="$enableval"
+	case $enableval in
+		"no");;
+		"builtin");;
+		"memwatch");;
+		"dmalloc");;
+		"gcollect");;
+		"bcheck");;
+		*) AC_MSG_ERROR([[unknown memory manager '$enableval' ... stopping]]);;
+	esac
+   ],
+   [enable_manager="builtin"]
+)
+
+
+#
+# debug
+#
+AC_ARG_ENABLE(
+   [debug],
+   AC_HELP_STRING(
+	[--enable-debug@<:@=ARG@:>@],
+	[
+		Compiles extra debug code. (disabled by default)
+		(abailable options: yes, no, gdb)
+	]
+   ),
+   [
+	enable_debug="$enableval"
+	case $enableval in
+		"no");;
+		"yes");;
+		"gdb");;
+		*) AC_MSG_ERROR([[invalid argument --enable-debug=$enableval... stopping]]);;
+	esac
+   ],
+   [enable_debug="no"]
+)
+
+#
+# RDTSC as Tick Source
+#
+AC_ARG_ENABLE(
+   [rdtsc],
+   AC_HELP_STRING(
+	[ --enable-rdtsc ],
+	[
+		Uses rdtsc as timing source (disabled by default)
+		Enable it when you have timing issues.
+
+		(For example: in conjunction with XEN or Other Virtualization mechanisms)
+
+		Note:
+			Please ensure that you've disabled dynamic CPU-Frequencys, such as power saving options.
+			(On the most modern Dedicated Servers cpufreq is preconfigured, see your distribution's manual
+			 how to disable it)
+	]
+  ),
+  [
+	enable_rdtsc=1
+  ],
+  [ enable_rdtsc=0 ]
+)
+
+#
+# 64bit
+#
+AC_ARG_ENABLE(
+	[64bit],
+	AC_HELP_STRING(
+		[--enable-64bit],
+		[
+			Don't force 32bit. (disable by default)
+			64bit support is still being tested, not recommended for production servers.
+		]
+	),
+	[
+		enable_64bit="$enableval"
+		case $enableval in
+			"no");;
+			"yes");;
+			*) AC_MSG_ERROR([[ invalid argumen --enable-64bit = $enableval ... stopping]]);;
+		esac
+	],
+	[ enable_64bit="no" ]
+)
+
+#
+# Enable/disable MySQL and optionally specify the path to mysql_config ( optional library )
+#
+AC_ARG_WITH(
+	[mysql],
+	AC_HELP_STRING(
+		[--with-mysql@<:=ARG@:>@],
+		[use MySQL client library, optionally specify the path to the mysql_configexecutable (by default mysql is used if found) ]
+	),
+	[
+		if test "$withval" = "no" ; then
+			want_mysql="no"
+		else
+			want_mysql="yes"
+			require_mysql="yes"
+			if test "$withval" != "yes" ; then
+				if test ! -x "$withval" ; then
+					AC_MSG_ERROR([$withval is not an executable file])
+				fi
+				MYSQL_CONFIG_HOME="$withval"
+			fi
+		fi
+	],
+	[want_mysql="yes" require_mysql="no"]
+)
+
+#
+# Manual MYSQL_CFLAGS ( optional )
+#
+AC_ARG_WITH(
+	[MYSQL_CFLAGS],
+	AC_HELP_STRING(
+		[--with-MYSQL_CFLAGS=ARG],
+		[specify MYSQL_CFLAGS manually ( instead of using "mysql_config --include") ]
+	),
+	[
+		manual_MYSQL_CFLAGS="yes"
+		MYSQL_CFLAGS="$withval"
+	],
+	[manual_MYSQL_CFLAGS="no"]
+)
+
+#
+# Manual MYSQL_LIBS ( optional )
+#
+AC_ARG_WITH(
+	[MYSQL_LIBS],
+	AC_HELP_STRING(
+		[--with-MYSQL_LIBS=ARG],
+		[specify MYSQL_LIBS manually ( instead of using "mysql_config --libs")]
+	),
+	[
+		manual_MYSQL_LIBS="yes"
+		MYSQL_LIBS="$withval"
+	],
+	[manual_MYSQL_LIBS="no"]
+)
+
+################################################################################################################
+# Checks for programs.
+
+AC_PROG_MAKE_SET
+AC_PROG_CXX
+AC_PROG_CXXCPP
+AC_LANG([C++])
+
+CXXFLAGS="$CXXFLAGS -pipe -ffast-math -Wall -Wno-sign-compare"
+CPPFLAGS="$CPPFLAGS -I../common"
+
+AC_C_BIGENDIAN(
+	[AC_MSG_ERROR([[bigendian is not supported... stopping]])],
+	,
+	[AC_MSG_WARN([[unable to determine endianess, only little endian is supported]])]
+)
+
+if test "$enable_64bit" = "no" ; then
+	AC_MSG_CHECKING([whether pointers can be stored in ints (old code)])
+	pointers_fit_in_ints="no"
+	AC_COMPILE_IFELSE(
+		[AC_LANG_PROGRAM([[static int test_array[((long int)sizeof(int)) == ((long int)sizeof(void*))? 1 : -1];]])],
+		[pointers_fit_in_ints="yes"],
+		[]
+	)
+	if test "$pointers_fit_in_ints" = "no" ; then
+		CXXFLAGS="$CXXFLAGS -m32"
+		LDFLAGS="$LDFLAGS -m32"
+		AC_COMPILE_IFELSE(
+			[AC_LANG_PROGRAM([[static int test_array[((long int)sizeof(int)) == ((long int)sizeof(void*))? 1: -1];]])],
+			[pointers_fit_in_ints="yes (with -m32)"],
+			[]
+		)
+	fi
+	AC_MSG_RESULT($pointers_fit_in_ints)
+	if test "$pointers_fit_in_ints" = "no" ; then
+		AC_MSG_ERROR([pointers cannot be stored in ints, required for old code... stopping])
+	fi
+fi
+
+
+AC_MSG_CHECKING([whether $CXX supports -Wno-unused-parameter])
+OLD_CXXFLAGS="$CXXFLAGS"
+CXXFLAGS="$CXXFLAGS -Wno-unused-parameter"
+AC_COMPILE_IFELSE(
+	[int foo;],
+	[AC_MSG_RESULT([yes])],
+	[
+		AC_MSG_RESULT([no])
+		CXXFLAGS="$OLD_CXXFLAGS"
+	]
+)
+
+AC_MSG_CHECKING([whether $CXX supports -Wno-pointer-sign])
+OLD_CXXFLAGS="$CXXFLAGS"
+CXXFLAGS="$CXXFLAGS -Wno-pointer-sign"
+AC_COMPILE_IFELSE(
+	[int foo;],
+	[AC_MSG_RESULT([yes])],
+	[
+	    AC_MSG_RESULT([no])
+	    CXXFLAGS="$OLD_CXXFLAGS"
+	]
+)
+
+
+
+AC_MSG_CHECKING([whether $CXX supports -Wno-switch])
+OLD_CXXFLAGS="$CXXFLAGS"
+CXXFLAGS="$CXXFLAGS -Wno-switch"
+AC_COMPILE_IFELSE(
+	[int foo;],
+	[AC_MSG_RESULT([yes])],
+	[
+		AC_MSG_RESULT([no])
+		CXXFLAGS="$OLD_CXXFLAGS"
+	]
+)
+
+
+######################################################################################################
+# Checks for libraries and header files
+
+
+AC_CHECK_FUNC([setrlimit],[CXXFLAGS="$CXXFLAFGS -DHAVE_SETRLIMIT"])
+
+#
+# Memory manager
+#
+
+case $enable_manager in
+	"no")
+	     CXXFLAGS="$CXXFLAGS -DNO_MEMGR"
+	     ;;
+	"builtin")
+	     #enabled by default
+	     ;;
+	"memwatch")
+	    CXXFLAGS="$CXXFLAGS -DMEMWATCH"
+	    AC_CHECK_HEADER([memwatch.h], , [AC_MSG_ERROR([memwatch header not found...stopping])])
+	    ;;
+	"dmalloc")
+	    CXXFLAGS "$CXXFLAGS -DDMALLOC -DDMALLOC_FUNC_CHECK"
+	    LIBS="$LIBS -ldmalloc"
+	    AC_CHECK_HEADER([dmalloc.h], , AC_MSG_ERROR([dmalloc header not found...stopping]))
+	    ;;
+	"gcollect")
+	    CXXFLAGS="$CXXFLAGS -DGCOLLECT"
+	    LIBS="$LIBS -lgc"
+	    AC_CHECK_HEADER([gc.h], , [AC_MSG_ERROR([gcollect header not found... stopping])])
+	    ;;
+	"bcheck")
+	    CXXFLAGS="$CXXFLAGS -DBCHECK"
+	    ;;
+esac
+
+
+
+#
+# Debug
+#
+
+case $enable_debug in
+	"no")
+	     #default value
+	     CXXFLAGS="$CXXFLAGS -Wno-unused -Wno-parentheses"
+	     ;;
+	"yes")
+	     CXXFLAGS="$CXXFLAGS -g -DDEBUG"
+	     ;;
+	"gdb")
+	     CXXFLAGS="$CXXFLAGS -ggdb -DDEBUG"
+	     ;;
+esac
+
+
+#
+# RDTSC
+#
+
+case $enable_rdtsc in
+	0)
+	   #default value
+	   ;;
+	1)
+	   CXXFLAGS="$CXXFLAGS -DENABLE_RDTSC"
+	   ;;
+esac
+
+
+#
+# math library
+#
+
+AC_CHECK_LIB([m], [sqrt], [], [AC_MSG_ERROR([math library not found... stopping])])
+
+
+#
+# clock_gettime
+#
+AC_CHECK_LIB([rt], [clock_gettime])
+
+#
+# MySql library (optional)
+#
+if test "$want_mysql" = "no" ; then
+	MYSQL_VERSION=""
+	MYSQL_CFLAGS=""
+	MYSQL_LIBS=""
+	AC_MSG_NOTICE([ignoring MySQL (optional)])
+else
+	if test -z "$MYSQL_CONFIG_HOME" ; then
+		AC_PATH_PROG([MYSQL_CONFIG_HOME], [mysql_config], [no])
+	fi
+	
+	if test "$MYSQL_CONFIG_HOME" != "no" ; then
+		MYSQL_VERSION="`$MYSQL_CONFIG_HOME --version`"
+		if test "$manual_MYSQL_FLAGS" = "no" ; then
+			MYSQL_CFLAGS="`$MYSQL_CONFIG_HOME --include`"
+		fi
+		if test "$manual_MYSQL_LIBS" = "no" ; then
+			MYSQL_LIBS="`$MYSQL_CONFIG_HOME --libs`"
+		fi
+	else
+		MYSQL_VERSION="unknown"
+	fi
+	
+	MYSQL_OLD_LDFLAGS="$LDFLAGS" ; LDFLAGS="$LDFLAGS $MYSQL_LIBS"
+	MYSQL_OLD_CPPFLAGS="$CPPFLAGS" ; CPPFLAGS="$CPPFLAGS $MYSQL_CFLAGS"
+	LIBS="$LIBS -L/usr/lib/mysql -L/usr/lib"
+	AC_CHECK_LIB([mysqlclient], [mysql_init], [HAVE_MYSQL="yes"], [])
+	AC_CHECK_HEADER([mysql/mysql.h],[], [HAVE_MYSQL=""])
+	CPPFLAGS="$MYSQL_OLD_CPPFLAGS"
+	LDFLAGS="$MYSQL_OLD_LDFLAGS"
+
+	AC_MSG_CHECKING([MySQL library (optional)])
+	if test "$HAVE_MYSQL"="yes" ; then
+		AC_MSG_RESULT([yes ($MYSQL_VERSION)])
+	else
+		AC_MSG_RESULT([no])
+		if test "$require_mysql" = "yes" ; then
+			AC_MSG_ERROR([MySQL not found or incompatible (requested)])
+		else
+			AC_MSG_ERROR([disabling MySQL (optional)])
+			MYSQL_VERSION=""
+			MYSQL_CFLAGS=""
+			MYSQL_LIBS=""
+		fi
+	fi
+fi
+
+
+AC_SUBST([HAVE_MYSQL])
+AC_SUBST([MYSQL_VERSION])
+AC_SUBST([MYSQL_CFLAGS])
+AC_SUBST([MYSQL_LIBS])
+
+
+
+#
+# lua check
+#
+
+AC_CHECK_LIB(lua-5.1, lua_newstate, [HAVE_LUA="yes"])
+AC_MSG_RESULT($LUA_LIBS)
+
+#AC_CHECK_HEADER([lua/lua.h],[], [HAVE_LUA=""])
+#AC_CHECK_HEADER([lua/lualib.h],[],[HAVE_LUA=""])
+#AC_CHECK_HEADER([lua/luaxlib.h],[],[HAVE_LUA=""])
+#AC_CHECK_HEADER([lua/lunar.h],[],[HAVE_LUA=""])
+
+AC_MSG_CHECKING([Lua library (optional)])
+
+if test "$HAVE_LUA" = "yes" ; then
+	LUA_LIBS="-llua-5.1"
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
+	AC_MSG_ERROR([Lua not found or incompatible (requested)])
+fi
+
+
+AC_SUBST([HAVE_LUA])
+#AC_SUBST([LUA_CFLAGS])
+AC_SUBST([LUA_LIBS])
+
+#
+# Host specific stuff
+#
+AC_MSG_CHECKING([host OS])
+host_os="`uname`"
+AC_MSG_RESULT([$host_os])
+fd_setsize=""
+
+case $host_os in
+	Solaris* )
+		LIBS="$LIBS -lsocket -lnsl -ldl"
+	;;
+	Linux* )
+		LIBS="$LIBS -ldl"
+	;;
+	FreeBSD* )
+		CPPFLAGS="$CPPFLAGS -D__FREEBSD__"
+	;;
+	NetBSD* )
+		CPPFLAGS="$CPPFLAGS -D__NETBSD__"
+	;;
+	CYGWIN* )
+		CPPFLAGS="$CPPFLAGS -DFD_SETSIZE=4096 -DCYGWIN"
+		fd_setsize="done"
+		DLLEXT=".dll"
+	;;
+esac
+AC_SUBST([DLLEXT])
+
+#######################################################################
+AC_OUTPUT

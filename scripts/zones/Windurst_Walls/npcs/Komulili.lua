@@ -1,0 +1,44 @@
+-----------------------------------
+-- Area: Port Windurst
+-- Komulili
+-- Warps players to Port Windurst
+-- Working 100%
+-----------------------------------
+
+require("scripts/zones/Windurst_Walls/TextIDs");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
+
+function onTrade(player,npc,trade)
+end; 
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+	player:startEvent(0x152);
+end;
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+end;
+
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
+function onEventFinish(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+	if (option == 1) then
+		player:setPos(-112,-9,99,0xc0,240);
+	end
+end;
