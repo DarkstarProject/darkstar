@@ -52,9 +52,6 @@ CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skil
 std::list<CAbility*> g_PAbilitiesList[MAX_JOBTYPE];				// глобальный массив списков способностей, разбитый по профессиям (для быстрой инициализации) 
 std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
 
-CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];   //Holds all Weapon skills 
-std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE]; //Holds Weapon skills by type
-
 /************************************************************************
 *																		*
 *  namespace battleutils												*
