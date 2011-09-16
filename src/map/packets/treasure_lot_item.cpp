@@ -35,6 +35,7 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(uint8 slotID, ITEMLOTTYPE Message
 	
 	WBUFB(data,(0x14)-4) = slotID;	
 	WBUFB(data,(0x15)-4) = MessageType;
+	
 }
 
 CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 slotID, uint16 Lot, ITEMLOTTYPE MessageType)
@@ -50,4 +51,19 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 slotI
 	WBUFB(data,(0x15)-4) = MessageType;
 
 	memcpy(data+(0x16)-4, PWinner->GetName(), PWinner->name.size());
+}
+
+CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, uint8 slotID, uint16 Lot) 
+{
+	
+	this->type = 0xD3;
+	this->size = 0x1E;
+	
+	WBUFL(data,(0x08)-4) = PChar->id;
+	WBUFW(data,(0x10)-4) = PChar->targid;	
+	WBUFB(data,(0x12)-4) = Lot;
+	WBUFB(data,(0x14)-4) = slotID; 
+	
+	memcpy(data+0x26-0x04, PChar->GetName(), 16);
+	
 }

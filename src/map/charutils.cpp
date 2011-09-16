@@ -1710,7 +1710,7 @@ uint32 GetExpNEXTLevel(uint8 charlvl)
 *																		*
 ************************************************************************/
 
-void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
+uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 {
 	uint32 exp = GetRealExp(PChar->GetMLevel(),PMob->GetMLevel());
 
@@ -1719,7 +1719,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 		if (distance(PChar->loc.p, PMob->loc.p) > 100)
 		{
 			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,37));
-			return;
+			return 0;
 		}
 
 		if (PChar->GetMLevel() <= 50) 
@@ -1786,6 +1786,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 		}
 		PChar->pushPacket(new CCharStatsPacket(PChar));
 	}
+	return exp; 
 }
 
 /************************************************************************

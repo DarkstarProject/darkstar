@@ -46,7 +46,7 @@ class CBaseEntity;
 class CTreasureLotItemPacket : public CBasicPacket
 {
 public:
-
+	CTreasureLotItemPacket(CBaseEntity*, uint8 SlotID, uint16 Lot);
 	CTreasureLotItemPacket(uint8 slotID, ITEMLOTTYPE MessageType);
 	CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 SlotID, uint16 Lot, ITEMLOTTYPE MessageType);
 };

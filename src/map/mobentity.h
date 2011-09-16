@@ -84,7 +84,7 @@ public:
 	uint8		m_CallForHelp;	// в перспективе желательно объединить эту переменную с CNpc->unknown 
 
 	position_t	m_SpawnPoint;	// точка возрождения монстра
-
+	uint8       m_Element;  
 	CEnmityContainer* PEnmityContainer;	// система ненависти монстров
 
 	 CMobEntity();				// конструктор

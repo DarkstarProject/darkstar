@@ -50,7 +50,7 @@ namespace charutils
 
 	void	AddExperiencePoints(CCharEntity* PChar, uint16 exp);
 	void	DelExperiencePoints(CCharEntity* PChar, uint16 exp);
-	void	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
+	uint32	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
 
 	void	TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl);
 	void	BuildingCharSkillsTable(CCharEntity* PChar);

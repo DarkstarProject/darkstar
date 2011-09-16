@@ -122,9 +122,9 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-uint8 CTreasurePool::AddItem(uint16 ItemID)
+uint8 CTreasurePool::AddItem(uint16 ItemID, CMobEntity* PMob)
 {	
-	/*
+
 	uint8  SlotID;
 	uint8  FreeSlotID;
 	uint32 oldest = -1;
@@ -151,20 +151,25 @@ uint8 CTreasurePool::AddItem(uint16 ItemID)
 		m_PoolItems[FreeSlotID].timestamp = 0;
 		CheckItem(FreeSlotID);
 	}
-
-	//m_Owner->pushPacket(new CTreasureFindItemPacket(ItemID, FreeSlotID, PMob)); // лучше вынести это сообщение за пределы контейнера. возвращать SlotID
-
-	if (FreeSlotID == 0 &&
-		charutils::AddItem(m_Owner, LOC_INVENTORY, ItemID) != 0xFF)
+	
+	for (int i = 0; i < members.size(); i++)
 	{
-		//m_Owner->pushPacket(new CTreasureLotItemPacket(m_Owner, SlotID, -1, ITEMLOT_WIN));
-		//m_Owner->pushPacket(new CInventoryFinishPacket());
-		return -1;
+		members[i]->pushPacket( new CTreasureFindItemPacket(ItemID, FreeSlotID, PMob)); // лучше вынести это сообщение за пределы контейнера. возвращать SlotID
 	}
 
+    if (members.size() == 1) //Attempt to award for solo play
+	{
+		if (charutils::AddItem(members[0], LOC_INVENTORY, ItemID) != 0xFF)
+		{
+		members[0]->pushPacket(new CTreasureLotItemPacket(members[0], SlotID, -1, ITEMLOT_WIN));
+		members[0]->pushPacket(new CInventoryFinishPacket());
+		return -1;
+		}
+	 }
+	
 	m_PoolItems[FreeSlotID].ItemID = ItemID;
 	m_PoolItems[FreeSlotID].timestamp = gettick();
-	*/
+	
 	return 0;
 }
 
@@ -195,9 +200,34 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void CTreasurePool::LotItem(uint8 SlotID, uint16 Lot)
+void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 {
 
+	ShowDebug(CL_RED"Loot Item: Lot Pool Members: %u  Members in Party: %u \n"CL_RESET, m_PoolItems[SlotID].ItemLotters.size(), members.size());	
+	
+	if (m_PoolItems[SlotID].ItemLotters.size() == 0)
+	{
+		m_PoolItems[SlotID].ItemLotters.resize(members.size());
+	}
+	for (int i = 0; i < members.size(); i++) 
+	{
+		if(members[i]->id == PChar->id)
+		{
+			ShowDebug(CL_RED"Member: %u \n"CL_RESET, i); 
+			m_PoolItems[SlotID].ItemLotters[i] = Lot;
+		}
+	}
+	
+	for (int i = 0; i < members.size(); i++) 
+	{
+		members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,Lot)); 
+	}
+
+	if (m_PoolItems[SlotID].ItemLotters.size() >= members.size())
+	{
+		m_PoolItems[SlotID].timestamp = 0; 
+		CheckItem(SlotID);
+	}
 }
 
 /************************************************************************
@@ -226,5 +256,81 @@ void CTreasurePool::CheckItems(uint32 tick)
 
 void CTreasurePool::CheckItem(uint8 SlotID) 
 {
-	//m_Owner->pushPacket(new CTreasureLotItemPacket(SlotID, ITEMLOT_WINERROR));
+	CTreasurePool::TeasurePoolItem poolItem = m_PoolItems[SlotID]; 
+		
+	if (poolItem.ItemID == 0)
+	{
+		return;
+	}
+	
+	if (poolItem.timestamp == 0 || (abs((double)(gettick() - poolItem.timestamp)) > TREASURE_LIVETIME)) //Treasure beyond livetime
+	{
+		
+		if (m_PoolItems[SlotID].ItemLotters.size() > 0)
+		{
+			int WinningLot = 0; 
+			int WinningLotter = 0; 
+			for (int i = 0; i < m_PoolItems[SlotID].ItemLotters.size(); i++)
+			{
+			if (poolItem.ItemLotters[i] > WinningLot)
+				{
+					WinningLot = poolItem.ItemLotters[i];
+					WinningLotter = i; 
+				}
+			}
+			
+			if (WinningLot == 0)
+			{
+				for (int i = 0; i < members.size(); i++)
+				{
+					members[i]->pushPacket(new CTreasureLotItemPacket(members[i],SlotID, -1, ITEMLOT_LOST)); 
+					members[i]->pushPacket(new CInventoryFinishPacket());
+				}
+			}
+			else if(charutils::AddItem(members[WinningLotter], LOC_INVENTORY, poolItem.ItemID) != 0xFF) 
+			{
+				for (int i = 0; i < members.size(); i++)
+				{
+					members[i]->pushPacket(new CTreasureLotItemPacket(members[WinningLotter], SlotID, -1, ITEMLOT_WIN));
+					members[i]->pushPacket(new CInventoryFinishPacket());
+				}
+			}
+			else
+			{
+				for (int i = 0; i < members.size(); i++)
+				{
+					members[i]->pushPacket(new CTreasureLotItemPacket(SlotID, ITEMLOT_WINERROR)); 
+					members[i]->pushPacket(new CInventoryFinishPacket());
+				}
+
+			}
+		}
+		else
+		{
+			TreasureLost(poolItem.ItemID);
+		}
+	
+		m_PoolItems[SlotID].timestamp = 0; 
+		m_PoolItems[SlotID].ItemID = 0;
+	}	
+}
+
+
+
+void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID) 
+{
+	for (int i = 0; i < members.size(); i++)
+	{
+		members[i]->pushPacket(new CTreasureLotItemPacket(winner, SlotID, -1, ITEMLOT_WIN));
+		members[i]->pushPacket(new CInventoryFinishPacket());
+	}
+}
+
+void CTreasurePool::TreasureLost(uint8 SlotID) 
+{
+	for (int i = 0; i < members.size(); i++)
+	{
+		members[i]->pushPacket(new CTreasureLotItemPacket(members[i],SlotID, -1, ITEMLOT_WINERROR)); 
+		members[i]->pushPacket(new CInventoryFinishPacket());
+	}
 }

@@ -41,7 +41,7 @@ CMobEntity::CMobEntity()
 	m_Behaviour = BEHAVIOUR_NONE;
 	m_SpawnType = SPAWNTYPE_NORMAL;
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
-
+	m_Element = 0;  
 	PEnmityContainer = new CEnmityContainer();
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));

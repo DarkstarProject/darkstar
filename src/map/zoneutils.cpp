@@ -151,7 +151,7 @@ void LoadZoneList()
 					systemid, mobsize, speed, \
 					STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 					Slash, Pierce, H2H, Impact, \
-					Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark \
+					Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element \
 					FROM mob_groups, mob_pools, mob_spawn_points, mob_family_system \
 					WHERE mob_groups.poolid = mob_pools.poolid \
 					AND mob_groups.groupid = mob_spawn_points.groupid \
@@ -196,7 +196,7 @@ void LoadZoneList()
 				PMob->m_Type       = (uint8)Sql_GetIntData(SqlHandle,18);
 				PMob->m_EcoSystem  = (ECOSYSTEM)Sql_GetIntData(SqlHandle,19);
 				PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlHandle,20);
-
+				
 				PMob->speed    = (uint8)Sql_GetIntData(SqlHandle,21);
 				PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle,21);
 
@@ -204,6 +204,8 @@ void LoadZoneList()
 				PMob->setModifier(MOD_PIERCERES,(uint16)(Sql_GetFloatData(SqlHandle,32) * 1000));
 				PMob->setModifier(MOD_HTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,33) * 1000));
 				PMob->setModifier(MOD_IMPACTRES,(uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
+
+				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,43);
 
 				PMob->PBattleAI = new CAIMobDummy(PMob);
 				PMob->PBattleAI->SetCurrentZone(PZone);

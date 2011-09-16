@@ -56,14 +56,17 @@ public:
 
 	TREASUREPOOLTYPE GetPoolType();
 
-	uint8 AddItem(uint16 ItemID);
+	uint8 AddItem(uint16 ItemID, CMobEntity*);
 	void LotItem(uint8 SlotID, uint16 Lot);
-
+	void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);
 	void AddMember(CCharEntity* PChar);
 	void DelMember(CCharEntity* PChar);
 	void UpdatePool(CCharEntity* PChar);
 
 	void CheckItems(uint32 tick);
+
+	void TreasureWon(CCharEntity* winner, uint8 SlotID); 
+	void TreasureLost(uint8 SlotID);
 
 private:
 

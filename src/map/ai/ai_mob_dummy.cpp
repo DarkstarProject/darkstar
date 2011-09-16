@@ -194,21 +194,29 @@ void CAIMobDummy::ActionDropItems()
 			m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0,6));
 			
 			// еще должно быть сообщение "No experience points gained", но пока не известно, видит ли его один персонаж или вся группа
-
+			uint32 exp = 0;
 			if (m_PMob->m_CallForHelp == 0)
 			{
-				charutils::DistributeExperiencePoints(PChar, m_PMob);
+				exp = charutils::DistributeExperiencePoints(PChar, m_PMob);
+			}
+			// If player has signet, a crystal may drop depending on mob element
+			if (exp > 0 && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET,0))
+			{
+					if(m_PMob->m_Element > 0 && rand()%100 < 19) // Need to move to SIGNET_CHANCE constant
+					{
+						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
+					}		
 			}
 
 			DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
-
+		
 			if (DropList && DropList->size())
 			{
 				for(DropList_t::const_iterator it = DropList->begin(); it != DropList->end(); ++it)
 				{
 					if(rand()%100 < it->DropRate) 
 					{
-						//PChar->Party->TreasurePool->AddItem(it->ItemID, m_PMob);
+						PChar->PTreasurePool->AddItem(it->ItemID, m_PMob); 
 					}		
 				}
 			}

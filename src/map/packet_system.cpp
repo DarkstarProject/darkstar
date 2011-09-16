@@ -866,8 +866,9 @@ int32 SmallPacket0x041(CCharEntity* PChar, int8* data)
 	PrintPacket(data);
 
 	uint8 SlotID  = RBUFB(data,(0x04));
-
-	//PChar->Party->TreasurePool->LotItem(SlotID,0);
+	uint16 lot = 1+(rand()%1000);
+	PChar->PTreasurePool->LotItem(PChar,SlotID,lot);
+	
 	return 0;
 }
 
@@ -883,7 +884,7 @@ int32 SmallPacket0x042(CCharEntity* PChar, int8* data)
 
 	uint8 SlotID  = RBUFB(data,(0x04));
 
-	//PChar->Party->TreasurePool->LotItem(SlotID,0);
+	PChar->PTreasurePool->LotItem(PChar, SlotID,0);
 	return 0;
 }
 
