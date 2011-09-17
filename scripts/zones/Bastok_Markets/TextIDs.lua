@@ -13,8 +13,8 @@ CONQUEST = 7470 -- "You've earned conquest points!"
 
 -- Quest Items
 
-STEAM_CLOCK = 550;
-
+   STEAM_CLOCK = 550;
+LEATHER_GORGET = 13081;
 -- Shop Texts
 	  BALTHILDA_SHOP_DIALOG = 7375; -- Feeling defenseless of late? Brunhilde's Armory has got you covered!
 	  BRUNHILDE_SHOP_DIALOG = 7373; -- Welcome to my store! You want armor, you want shields? I've got them all!
