@@ -11,6 +11,10 @@ FULL_INVENTORY_AFTER_TRADE = 6377;    -- You cannot obtain the <item>. Try tradi
 
 CONQUEST = 7470 -- "You've earned conquest points!"
 
+-- Quest Items
+
+STEAM_CLOCK = 550;
+
 -- Shop Texts
 	  BALTHILDA_SHOP_DIALOG = 7375; -- Feeling defenseless of late? Brunhilde's Armory has got you covered!
 	  BRUNHILDE_SHOP_DIALOG = 7373; -- Welcome to my store! You want armor, you want shields? I've got them all!
