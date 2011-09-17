@@ -2,6 +2,7 @@
 -- Area: Bastok Markets
 -- NPC: Gwill
 -- Starts & Ends Quest: The Return of the Adventurer (100%)
+-- Optional Involvement in Quest: The Cold Light of Day
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -28,7 +29,7 @@ function onTrade(player,npc,trade)
 			player:startEvent(0x00f3);
 		end	
 	end
-		
+
 end; 
 
 -----------------------------------
@@ -40,14 +41,16 @@ function onTrigger(player,npc)
 pFame = player:getFameLevel(BASTOK);
 FatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
 TheReturn = player:getQuestStatus(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
+TheColdLightofDay = player:getQuestStatus(BASTOK,THE_COLD_LIGHT_OF_DAY);
 
 	if (FatherFigure == 2 and TheReturn == 0 and pFame >= 3) then
 		player:startEvent(0x00f2);
+	elseif (TheColdLightofDay == 1) then
+		player:startEvent(0x0067);
 	else
 		player:startEvent(0x0071);
 	end
-	
-end;
+end; 
 
 -----------------------------------
 -- onEventUpdate
