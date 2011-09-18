@@ -10,5 +10,5 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 
 -- Quest Dialog
 
-SIGNPOST_DIALOG_1 == 920; --
-SIGNPOST_DIALOG_2 == 921; -- You see something stuck behind the signpost
+SIGNPOST_DIALOG_1 = 920; --
+SIGNPOST_DIALOG_2 = 921; -- You see something stuck behind the signpost
