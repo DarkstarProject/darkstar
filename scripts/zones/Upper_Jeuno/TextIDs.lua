@@ -6,10 +6,12 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6538; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>.
 		  HOMEPOINT_SET = 6598; -- Home point set!
-	   
+
 -- Conquest system
 CONQUEST = 7570; -- You've earned conquest points!
 
+-- Quest Items
+GAUSEBIT_GRASS = 534;
 -- NPC Texts
 KIRISOMANRISO_DIALOG = 7902; -- Delivering goods to residences everywhere!
 

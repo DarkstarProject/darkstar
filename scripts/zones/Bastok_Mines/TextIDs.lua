@@ -7,8 +7,12 @@ FULL_INVENTORY_AFTER_TRADE = 6377;	-- You cannot obtain the <item>. Try trading 
               GIL_OBTAINED = 6379;	-- Obtained <number> gil.
           KEYITEM_OBTAINED = 6381;	-- Obtained key item: <keyitem>.
 			 HOMEPOINT_SET = 6424;	-- Home point set!
-		  
+
 CONQUEST = 10800; -- You've earned conquest points!
+
+-- Quest Items
+COPPER_RING = 13454;
+ LINEN_ROBE = 12601;
 
 -- Dialog Texts
 VIRNAGE_DIALOG_1 = 10699;  -- They stayed in a citadel on the Sauromugue Champaign. The paint may be there still! I have heard people here say you are a great adventurer. Please, help the Goddess in Her hour of need!
@@ -22,7 +26,7 @@ VIRNAGE_DIALOG_2 = 10705;  -- Hand my letter to Eperdur in the San d'Oria Cathed
 NEIGEPANCE_SHOP_DIALOG = 10622;  -- Hello there. A well-fed chocobo is a happy chocobo!
 PROUDBEARD_SHOP_DIALOG = 11352;  -- Would you be interested in a nice suit of adventurer-issue armor? Be careful when you buy, though. We offer no refunds.
   ZEMEDARS_SHOP_DIALOG = 10618;  -- Everything in our store is top-grade and Galka-made! What're you lookin' for?
-	
+
 		   FAUSTIN_OPEN_DIALOG = 10623;  -- Hello there! Might I interest you specialty goods from Ronfaure?
 		 FAUSTIN_CLOSED_DIALOG = 10504;  -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Ronfaure, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
@@ -37,10 +41,10 @@ PROUDBEARD_SHOP_DIALOG = 11352;  -- Would you be interested in a nice suit of ad
 
 			GALDEO_OPEN_DIALOG = 11181;  -- Come! Take a look at all the wonderful goods from Li'Telor.
 		  GALDEO_CLOSED_DIALOG = 10508;  -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Li'Telor, but it's not easy getting stuff from areas that aren't under Bastokan control.
-	
+
 		   AULAVIA_OPEN_DIALOG = 11182;  -- May I interest you in some specialty goods from Vollbow?
 		 AULAVIA_CLOSED_DIALOG = 11183;  -- I'm trying to start a business selling goods from Vollbow, but it's not easy getting stuff from areas that aren't under Bastokan control.
-	
+
 	  EMALIVEULAUX_OPEN_DIALOG = 11947;  -- Rare Tavnazian imports! Get them before they're gone!
 	EMALIVEULAUX_CLOSED_DIALOG = 11948;  -- I'd love to sell you goods imported from the island of Tavnazia, but with the area under foreign control, I can't secure my trade routes...
 EMALIVEULAUX_COP_NOT_COMPLETED = 11946;  -- I'd like to start my own business someday, but I just haven't found anything that truly interests me.
