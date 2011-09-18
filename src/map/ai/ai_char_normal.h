@@ -71,6 +71,8 @@ protected:
 	void ActionAttack();
 	void ActionChangeBattleTarget();
 
+	bool IsMobOwner();
+	bool IsMobSubOwner();
 	bool GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget);
 };
 

@@ -168,6 +168,61 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 	return false;
 }
 
+
+
+
+bool CAICharNormal::IsMobSubOwner()
+{
+
+	if	(m_PBattleSubTarget->m_OwnerID == 0 || 
+		 m_PBattleSubTarget->m_OwnerID == m_PChar->id)
+	{
+		return true;
+	}
+	
+	if (m_PChar->PParty != NULL) 
+	{
+		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
+		{
+			//ShowDebug(CL_CYAN"Member ID:: %u || Mob Owner ID:: %u \n"CL_RESET, m_PChar->PParty->members[i]->id, m_PBattleTarget->m_OwnerID);
+			if (m_PChar->PParty->members[i]->id == m_PBattleSubTarget->m_OwnerID)
+				{
+					return true;
+				}
+		}
+	}
+	return false;
+}
+
+
+
+
+
+bool CAICharNormal::IsMobOwner()
+{
+
+	if (m_PBattleTarget->m_OwnerID == 0 || 
+		m_PBattleTarget->m_OwnerID == m_PChar->id) 
+	{
+		return true;
+	}
+	
+	if (m_PChar->PParty != NULL) 
+	{
+		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
+		{
+			//ShowDebug(CL_CYAN"Member ID:: %u || Mob Owner ID:: %u \n"CL_RESET, m_PChar->PParty->members[i]->id, m_PBattleTarget->m_OwnerID);
+			if (m_PChar->PParty->members[i]->id == m_PBattleTarget->m_OwnerID)
+				{
+					return true;
+				}
+		}
+	}
+	
+
+	return false;
+}
+
 /************************************************************************
 *																		*
 *  Персонаж переходит в боевую стойку, включается прежим атаки			*
@@ -180,8 +235,7 @@ void CAICharNormal::ActionEngage()
 
 	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY))
 	{
-		if (m_PBattleTarget->m_OwnerID == 0 || 
-			m_PBattleTarget->m_OwnerID == m_PChar->id)
+		if(IsMobOwner())
 		{
 			if (distance(m_PChar->loc.p, m_PBattleTarget->loc.p) <= 30)
 			{
@@ -231,8 +285,7 @@ void CAICharNormal::ActionChangeBattleTarget()
 
 		if (GetValidTarget(&PBattleTarget, TARGET_ENEMY))
 		{
-			if (PBattleTarget->m_OwnerID == 0 ||
-				PBattleTarget->m_OwnerID == m_PChar->id)
+			if (IsMobOwner())
 			{
 				if (distance(m_PChar->loc.p, PBattleTarget->loc.p) <= 30)
 				{
@@ -607,8 +660,7 @@ void CAICharNormal::ActionRangedStart()
 			m_PBattleSubTarget = NULL;
 			return;
 		}
-		if (m_PBattleSubTarget->m_OwnerID != 0 && 
-			m_PBattleSubTarget->m_OwnerID != m_PChar->id)
+		if (!IsMobSubOwner())
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
 
@@ -806,8 +858,7 @@ void CAICharNormal::ActionMagicStart()
 			return;
 		}
 		if (m_PBattleSubTarget->objtype == TYPE_MOB &&
-			m_PBattleSubTarget->m_OwnerID != 0 && 
-			m_PBattleSubTarget->m_OwnerID != m_PChar->id)
+			!IsMobSubOwner())
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
 
@@ -920,8 +971,7 @@ void CAICharNormal::ActionMagicCasting()
 		return;
 	}
 	if (m_PBattleSubTarget->objtype == TYPE_MOB &&
-		m_PBattleSubTarget->m_OwnerID != 0 && 
-		m_PBattleSubTarget->m_OwnerID != m_PChar->id)
+		!IsMobSubOwner())
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
 
@@ -1118,6 +1168,7 @@ void CAICharNormal::ActionMagicInterrupt()
 
 void CAICharNormal::ActionWeaponSkillStart()
 {
+	ShowDebug(CL_CYAN"Using Weaponskill.... \n"CL_RESET);	
 	//m_PBattleSubTarget
 }
 
@@ -1148,8 +1199,7 @@ void CAICharNormal::ActionAttack()
 		ActionDisengage();
 		return;
 	}
-	if (m_PBattleTarget->m_OwnerID != 0 && 
-		m_PBattleTarget->m_OwnerID != m_PChar->id)
+	if (!IsMobOwner())
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
 
