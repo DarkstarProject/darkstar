@@ -82,6 +82,8 @@ namespace luautils
 	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget);			// выполняем скрипт при чтении заклинаний (проверки, расчет урона)
 
 	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// выполняем скрипт после смерти монстра
+
+	
 };
 
 #endif //- _LUAUTILS_H -

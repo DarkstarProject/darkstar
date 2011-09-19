@@ -72,7 +72,10 @@ int32 init()
 	lua_register(LuaHandle,"VanadielHour",luautils::VanadielHour);
 	lua_register(LuaHandle,"VanadielMinute",luautils::VanadielMinute);
 	lua_register(LuaHandle,"VanadielTimeOffset",luautils::VanadielTimeOffset);
-	lua_register(LuaHandle,"VanadielDayOfYear",luautils::VanadielTimeOffset);
+	lua_register(LuaHandle,"VanadielDayOfTheMonth",luautils::VanadielDayOfTheMonth);
+	lua_register(LuaHandle,"VanadielDayOfTheYear",luautils::VanadielDayOfTheYear);
+	lua_register(LuaHandle,"VanadielYear",luautils::VanadielYear);
+	lua_register(LuaHandle,"VanadielMonth",luautils::VanadielMonth);
 
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
 	Lunar<CLuaSpell>::Register(LuaHandle);
