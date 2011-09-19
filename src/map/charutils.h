@@ -85,9 +85,11 @@ namespace charutils
 	void	SaveCharExp(CCharEntity* PChar, JOBTYPE job);		// сохраняем опыт для выбранной профессии персонажа
 	void	SaveCharEquip(CCharEntity* PChar);					// сохраняем экипировку и внешний вид персонажа
 	void	SaveCharPosition(CCharEntity* PChar);				// сохраняем позицию персонажа
+	void	SaveMissionsList(CCharEntity* PChar);               // Save the missions list 
 	void	SaveQuestsList(CCharEntity* PChar);					// сохраняем список ксевтов
 	void	SaveZonesVisited(CCharEntity* PChar);				// сохраняем посещенные зоны
 	void	SaveKeyItems(CCharEntity* PChar);					// сохраняем ключевые предметы
+	void	SaveCharInventoryCapacity(CCharEntity* PChar);      // Save Character inventory capacity
 	void	SaveSpells(CCharEntity* PChar);						// сохраняем выученные заклинания
 	void	SaveCharStats(CCharEntity* PChar);					// сохраняем флаги, текущие значения жихней, маны и профессий
 	void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	// сохраняем указанный skill персонажа

@@ -284,17 +284,19 @@ void CalculateStats(CCharEntity* PChar)
 
 void LoadChar(CCharEntity* PChar)
 {
-	PChar->getStorage(LOC_INVENTORY)->SetSize(30);
+	/*PChar->getStorage(LOC_INVENTORY)->SetSize(30);
 	PChar->getStorage(LOC_MOGSAFE)->SetSize(30);
 	PChar->getStorage(LOC_STORAGE)->SetSize(0);
 	PChar->getStorage(LOC_TEMPITEMS)->SetSize(18);
 	PChar->getStorage(LOC_MOGLOCKER)->SetSize(0);
 	PChar->getStorage(LOC_MOGSATCHEL)->SetSize(30);
 	PChar->getStorage(LOC_MOGSACK)->SetSize(30);
+	*/
 
 	const int8* fmtQuery = "SELECT charname, pos_zone, pos_prevzone, pos_rot, pos_x, pos_y, pos_z, boundary, \
 								   home_zone, home_rot, home_x, home_y, home_z, \
-								   nation, quests, keyitems, spells, zones \
+								   nation, quests, keyitems, spells, zones, inventory, safe, storage, locker, \
+								   satchel, sack \
 							FROM chars \
 							WHERE charid = %u;";
 
@@ -343,6 +345,21 @@ void LoadChar(CCharEntity* PChar)
 		int8* zones = NULL;
 		Sql_GetData(SqlHandle,17,&zones,&length);
 		memcpy(PChar->m_ZonesList, zones, (length > sizeof(PChar->m_ZonesList) ? sizeof(PChar->m_ZonesList) : length));
+
+		length = Sql_GetIntData(SqlHandle,18); 
+		PChar->getStorage(LOC_INVENTORY)->SetSize(length > 30 ? length : 30);
+		length = Sql_GetIntData(SqlHandle,19); 
+		PChar->getStorage(LOC_MOGSAFE)->SetSize(length > 50 ? length : 50);
+		length = Sql_GetIntData(SqlHandle,20); 
+		PChar->getStorage(LOC_STORAGE)->SetSize(length > 0 ? length : 0);
+		PChar->getStorage(LOC_TEMPITEMS)->SetSize(18);
+		length = Sql_GetIntData(SqlHandle,21); 
+		PChar->getStorage(LOC_MOGLOCKER)->SetSize(length > 0 ? length : 0);
+		length = Sql_GetIntData(SqlHandle,22); 
+		PChar->getStorage(LOC_MOGSATCHEL)->SetSize(length > 30 ? length : 30);
+		length = Sql_GetIntData(SqlHandle,23); 
+		PChar->getStorage(LOC_MOGSACK)->SetSize(length > 30 ? length : 30);
+		
 
 		PChar->profile.rank[PChar->profile.nation] = 1;
 		PChar->profile.rankpoints[PChar->profile.nation] = 0;
@@ -1609,7 +1626,6 @@ int32 hasWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID)
 
 int32 addWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID)
 {
-	ShowDebug(CL_CYAN"Adding Weapon Skill with Id: %i \n"CL_RESET, WeaponSkillID);
 	return addBit(WeaponSkillID, PChar->m_WeaponSkills, sizeof(PChar->m_WeaponSkills));
 }
 
@@ -1712,7 +1728,21 @@ uint32 GetExpNEXTLevel(uint8 charlvl)
 
 uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 {
-	uint32 exp = GetRealExp(PChar->GetMLevel(),PMob->GetMLevel());
+
+	uint8 lvl = PChar->GetMLevel(); 
+
+	if (PChar->PParty != NULL) 
+	{
+		for (int i = 0; i < PChar->PParty->members.size(); i++)
+		{
+			if (PChar->PParty->members[i]->GetMLevel() > lvl) 
+				{
+					lvl = PChar->PParty->members[i]->GetMLevel();
+				}
+		}
+	}
+
+	uint32 exp = GetRealExp(lvl,PMob->GetMLevel());
 
 	if (exp != 0)
 	{
@@ -1830,6 +1860,43 @@ void SaveQuestsList(CCharEntity* PChar)
 
 	Sql_Query(SqlHandle,fmtQuery,questslist,PChar->id);
 }
+
+/************************************************************************
+*																		*
+*  Save Character Missions												*
+*																		*
+************************************************************************/
+
+void SaveMissionsList(CCharEntity* PChar)
+{
+	const int8* fmtQuery = "UPDATE chars SET missions = '%s' WHERE charid = %u;";
+
+	int8 missionslist[sizeof(PChar->m_missionLog)*2+1];
+	Sql_EscapeStringLen(SqlHandle,missionslist,(const int8*)PChar->m_questLog,sizeof(PChar->m_missionLog));
+
+	Sql_Query(SqlHandle,fmtQuery,missionslist,PChar->id);
+}
+
+/************************************************************************
+*																		*
+*  Cохраняем список колючевых предметов									*
+*																		*
+************************************************************************/
+
+void SaveCharInventoryCapacity(CCharEntity* PChar)
+{
+	const int8* fmtQuery = "UPDATE chars SET inventory = '%u', safe = '%u', \
+						   storage = '%u', locker = '%u', satchel = '%u', \
+						   sack = '%u' WHERE charid = %u;";
+	
+	int8 keyitems[sizeof(PChar->keys)*2+1];
+	
+	Sql_Query(SqlHandle,fmtQuery,PChar->getStorage(LOC_INVENTORY)->GetSize()-1,PChar->getStorage(LOC_MOGSAFE)->GetSize()-1, \
+		PChar->getStorage(LOC_STORAGE)->GetSize()-1,PChar->getStorage(LOC_MOGLOCKER)->GetSize()-1,PChar->getStorage(LOC_MOGSATCHEL)->GetSize()-1, \
+		PChar->getStorage(LOC_MOGSACK)->GetSize()-1,PChar->id);
+}
+
+
 
 /************************************************************************
 *																		*

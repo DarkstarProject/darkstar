@@ -1,32 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 3.3.8
--- http://www.phpmyadmin.net
---
--- Serveur: localhost
--- Généré le : Dim 29 Mai 2011 à 22:54
--- Version du serveur: 6.0.0
--- Version de PHP: 5.2.9-2
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données: `dspdb`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `chars`
---
 
 DROP TABLE IF EXISTS `chars`;
-CREATE TABLE IF NOT EXISTS `chars` (
+CREATE TABLE `chars` (
   `charid` int(10) unsigned NOT NULL,
   `accid` int(10) unsigned NOT NULL,
   `charname` varchar(15) NOT NULL,
@@ -43,10 +17,18 @@ CREATE TABLE IF NOT EXISTS `chars` (
   `home_y` float(7,3) NOT NULL DEFAULT '0.000',
   `home_z` float(7,3) NOT NULL DEFAULT '0.000',
   `nation` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `missions` blob,
   `quests` blob,
   `keyitems` blob,
   `spells` blob,
   `zones` blob,
+  `inventory` tinyint(3) DEFAULT NULL,
+  `safe` tinyint(3) DEFAULT NULL,
+  `storage` tinyint(3) DEFAULT NULL,
+  `locker` tinyint(3) DEFAULT NULL,
+  `satchel` tinyint(3) DEFAULT NULL,
+  `sack` tinyint(3) DEFAULT NULL,
   PRIMARY KEY (`charid`),
   FULLTEXT KEY `charname` (`charname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+

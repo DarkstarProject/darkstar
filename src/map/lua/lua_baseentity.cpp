@@ -43,6 +43,7 @@
 #include "../packets/guild_menu.h"
 #include "../packets/inventory_finish.h"
 #include "../packets/inventory_modify.h"
+#include "../packets/inventory_size.h"
 #include "../packets/key_items.h"
 #include "../packets/menu_mog.h"
 #include "../packets/menu_merit.h"
@@ -218,7 +219,7 @@ inline int32 CLuaBaseEntity::addMP(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-
+	
 	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addMP(lua_tointeger(L,-1));
 
 	if( result != 0 &&
@@ -689,6 +690,35 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
 	}
 	
 	lua_pushnil(L);
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addMission(lua_State *L)
+{
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delMission(lua_State *L)
+{
+	
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::completeMission(lua_State *L)
+{
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getMissionStatus(lua_State *L)
+{
 	return 1;
 }
 
@@ -2348,6 +2378,61 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 	return 1;
 }
 
+
+/************************************************************************
+*																		*
+*	Increase Container Size												*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::increaseContainerSize(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	
+	if( m_PBaseEntity != NULL )
+	{
+		if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
+				!lua_isnil(L,2) && lua_isnumber(L,2))
+			{
+				CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+				uint8 size = PChar->getStorage(lua_tointeger(L,1))->GetSize();
+				ShowDebug(CL_CYAN"Container Size:: %u || Size to increase:: %u \n"CL_RESET, PChar->getStorage(lua_tointeger(L,1))->GetSize(),lua_tointeger(L,2));
+				PChar->getStorage(lua_tointeger(L,1))->SetSize(size - 1 + lua_tointeger(L,2));
+				PChar->pushPacket(new CInventorySizePacket(PChar));
+				charutils::SaveCharInventoryCapacity(PChar);
+				return 0;
+			}
+	}
+	lua_pushnil(L);
+}
+	
+/************************************************************************
+*																		*
+*	Decrease Container Size												*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::decreaseContainerSize(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	
+		if( m_PBaseEntity != NULL )
+	{
+		if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
+				!lua_isnil(L,2) && lua_isnumber(L,2))
+			{
+				CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+				uint8 size = PChar->getStorage(lua_tointeger(L,1))->GetSize();
+				PChar->getStorage(lua_tointeger(L,1))->SetSize(size - 1 - lua_tointeger(L,2));
+				//CInventorySizePacket::CInventorySizePacket
+				PChar->pushPacket(new CInventorySizePacket(PChar));
+				charutils::SaveCharInventoryCapacity(PChar);
+				return 0;
+			}
+	}
+	lua_pushnil(L);
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -2383,6 +2468,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delQuest),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getQuestStatus),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeQuest),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMission),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMission),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMissionStatus),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,seenKeyItem),
@@ -2441,5 +2530,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,increaseContainerSize),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,decreaseContainerSize),
 	{NULL,NULL}
 };

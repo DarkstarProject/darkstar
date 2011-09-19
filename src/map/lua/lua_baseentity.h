@@ -84,6 +84,11 @@ public:
 	int32 getQuestStatus(lua_State*);		// получение текущего состояния квеста
 	int32 completeQuest(lua_State*);		// установка квеста в соостояние "завершен"
 
+	int32 addMission(lua_State*);			// Add Mission
+	int32 delMission(lua_State*);			// Delete Mission from Mission Log
+	int32 getMissionStatus(lua_State*);		// Get Mission status (current/complete)
+	int32 completeMission(lua_State*);		// Complete Mission
+
 	int32 addKeyItem(lua_State*);			// добавляем ключевой предмет
 	int32 seenKeyItem(lua_State*);			// проверяем, было ли описание ключевого предмета прочитано
 	int32 hasKeyItem(lua_State*);			// проверяем наличие ключевого предмета
@@ -161,6 +166,9 @@ public:
 
 	int32 showPosition(lua_State*);			// отображаем местоположение персонажа
 	int32 injectPacket(lua_State*);			// отправляем персонажу пакет, сохраненный в файле (функция необходима на этапе разработки)
+
+	int32 increaseContainerSize(lua_State*);// Increase container size
+	int32 decreaseContainerSize(lua_State*);// Decreases a containers size -- Should be used for testing only
 };
 
 #endif
