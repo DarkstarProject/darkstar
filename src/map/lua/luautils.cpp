@@ -72,6 +72,7 @@ int32 init()
 	lua_register(LuaHandle,"VanadielHour",luautils::VanadielHour);
 	lua_register(LuaHandle,"VanadielMinute",luautils::VanadielMinute);
 	lua_register(LuaHandle,"VanadielTimeOffset",luautils::VanadielTimeOffset);
+	lua_register(LuaHandle,"VanadielDayOfYear",luautils::VanadielTimeOffset);
 
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
 	Lunar<CLuaSpell>::Register(LuaHandle);
@@ -151,7 +152,62 @@ int32 VanadielTOTD(lua_State* L)
 
 /************************************************************************
 *																		*
+*	Return Vanadiel Year												*
 *																		*
+************************************************************************/
+
+int32 VanadielYear(lua_State* L)
+{
+	lua_pushinteger(L, CVanaTime::getInstance()->getYear());
+	return 1;
+}
+
+
+/************************************************************************
+*																		*
+*	Return Vanadiel Month												*
+*																		*
+************************************************************************/
+
+int32 VanadielMonth(lua_State* L)
+{
+	lua_pushinteger(L, CVanaTime::getInstance()->getMonth());
+	return 1;
+}
+
+/************************************************************************
+*																		*
+*	Return Vanadiel Day of Year											*
+*																		*
+************************************************************************/
+
+int32 VanadielDayOfTheYear(lua_State* L)
+{
+	int32 day;
+	int32 month;
+	
+	day = CVanaTime::getInstance()->getDayOfTheMonth();
+	month = CVanaTime::getInstance()->getMonth();
+	
+	lua_pushinteger(L, (month * 30 - 30) + day);
+	return 1;
+}
+
+/************************************************************************
+*																		*
+*	Return Vanadiel Day	of the Month									*
+*																		*
+************************************************************************/
+
+int32 VanadielDayOfTheMonth(lua_State* L)
+{
+	lua_pushinteger(L, CVanaTime::getInstance()->getDayOfTheMonth());
+	return 1;
+}
+
+/************************************************************************
+*																		*
+*	Return Vanadiel Hour												*
 *																		*
 ************************************************************************/
 
@@ -163,7 +219,7 @@ int32 VanadielHour(lua_State* L)
 
 /************************************************************************
 *																		*
-*																		*
+*	Return Vanadiel Minute												*
 *																		*
 ************************************************************************/
 

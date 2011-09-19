@@ -53,7 +53,11 @@ namespace luautils
 	int32 VanadielHour(lua_State*);												// текущие Vanadiel часы
 	int32 VanadielMinute(lua_State*);											// текущие Vanadiel минуты
 	int32 VanadielTimeOffset(lua_State*);										// смещение игрового времени (в целях отладки)
- 
+	int32 VanadielDayOfTheYear(lua_State*);
+	int32 VanadielDayOfTheMonth(lua_State*);
+	int32 VanadielYear(lua_State*);
+	int32 VanadielMonth(lua_State*);
+
 	int32 GetGlobalConstant(const int8* name, uint8 ZoneID);					// получаем значение константы из соответствующего TextIDs
 
 	int32 OnServerStart();														// need to comments this declaration
