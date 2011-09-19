@@ -10,8 +10,10 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
 -- Conquest system
 CONQUEST = 7570; -- You've earned conquest points!
 
+
 -- Quest Items
 GAUSEBIT_GRASS = 534;
+
 -- NPC Texts
 KIRISOMANRISO_DIALOG = 7902; -- Delivering goods to residences everywhere!
 
