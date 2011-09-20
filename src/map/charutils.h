@@ -66,6 +66,7 @@ namespace charutils
 
 	int32	hasKeyItem(CCharEntity* PChar, uint16 KeyItemID);	// проверяем наличие ключевого предмета
 	int32	seenKeyItem(CCharEntity* PChar, uint16 KeyItemID);	// проверяем, было ли описание ключевого предмета прочитано
+	int32	unseenKeyItem(CCharEntity* PChar, uint16 KeyItemID);//Attempt to remove keyitem from seen list
 	int32	addKeyItem(CCharEntity* PChar, uint16 KeyItemID);	// добавляем ключевой предмет
 	int32	delKeyItem(CCharEntity* PChar, uint16 KeyItemID);	// улаляем ключевой предмет
 

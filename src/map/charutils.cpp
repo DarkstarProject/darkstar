@@ -296,7 +296,7 @@ void LoadChar(CCharEntity* PChar)
 	const int8* fmtQuery = "SELECT charname, pos_zone, pos_prevzone, pos_rot, pos_x, pos_y, pos_z, boundary, \
 								   home_zone, home_rot, home_x, home_y, home_z, \
 								   nation, quests, keyitems, spells, zones, inventory, safe, storage, locker, \
-								   satchel, sack \
+								   satchel, sack, missions \
 							FROM chars \
 							WHERE charid = %u;";
 
@@ -330,6 +330,11 @@ void LoadChar(CCharEntity* PChar)
 		int8* quests = NULL;
 		Sql_GetData(SqlHandle,14,&quests,&length);
 		memcpy(PChar->m_questLog, quests, (length > sizeof(PChar->m_questLog) ? sizeof(PChar->m_questLog) : length));
+
+		length = 0;
+		int8* missions = NULL;
+		Sql_GetData(SqlHandle,24,&missions,&length);
+		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
 		length = 0;
 		int8* keyitems = NULL;
@@ -1560,6 +1565,12 @@ int32 seenKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 	return hasBit(KeyItemID, PChar->keys.seenList, sizeof(PChar->keys.seenList));
 }
 
+int32 unseenKeyItem(CCharEntity* PChar, uint16 KeyItemID)
+{
+	return delBit(KeyItemID, PChar->keys.seenList, sizeof(PChar->keys.seenList));
+}
+
+
 int32 addKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 {
 	return addBit(KeyItemID, PChar->keys.keysList, sizeof(PChar->keys.keysList));
@@ -1567,7 +1578,7 @@ int32 addKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 
 int32 delKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 {
-	       delBit(KeyItemID, PChar->keys.seenList, sizeof(PChar->keys.seenList));
+			//delBit(KeyItemID, PChar->keys.seenList, sizeof(PChar->keys.seenList));
 	return delBit(KeyItemID, PChar->keys.keysList, sizeof(PChar->keys.keysList));
 }
 
@@ -1872,7 +1883,7 @@ void SaveMissionsList(CCharEntity* PChar)
 	const int8* fmtQuery = "UPDATE chars SET missions = '%s' WHERE charid = %u;";
 
 	int8 missionslist[sizeof(PChar->m_missionLog)*2+1];
-	Sql_EscapeStringLen(SqlHandle,missionslist,(const int8*)PChar->m_questLog,sizeof(PChar->m_missionLog));
+	Sql_EscapeStringLen(SqlHandle,missionslist,(const int8*)PChar->m_missionLog,sizeof(PChar->m_missionLog));
 
 	Sql_Query(SqlHandle,fmtQuery,missionslist,PChar->id);
 }

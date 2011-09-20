@@ -130,15 +130,64 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 				break;
 			}
 		case MISSION_SANDORIA:
+			if(status == 0x01) {
+				generateCurrentMissionPacket(PChar);
+				logType = MISS_CURRENT;	
+				break;
+			}		
+			if(status == 0x02) {
+				generateCompleteMissionPacket(PChar);
+				logType = MISS_COMPLETE;
+				break;
+			}
+
 		case MISSION_BASTOK:
+			if(status == 0x01) {
+				generateCurrentMissionPacket(PChar);
+				logType = MISS_CURRENT;	
+				break;
+			}		
+			if(status == 0x02) {
+				generateCompleteMissionPacket(PChar);
+				logType = MISS_COMPLETE;
+				break;
+			}
+
 		case MISSION_WINDURST:
+						if(status == 0x01) {
+				generateCurrentMissionPacket(PChar);
+				logType = MISS_CURRENT;	
+				break;
+			}		
+			if(status == 0x02) {
+				generateCompleteMissionPacket(PChar);
+				logType = MISS_COMPLETE;
+				break;
+			}
+
 		case MISSION_ZILART:
+			if(status == 0x01) {
+				generateCurrentMissionPacket(PChar);
+				logType = MISS_CURRENT;	
+				break;
+			}		
 			if(status == 0x02) {
 				generateCompleteMissionPacket(PChar);
 				logType = MISS_COMPLETE;
 				break;
 			}
 		case MISSION_COP:
+			if(status == 0x01) {
+				generateCurrentMissionPacket(PChar);
+				logType = MISS_CURRENT;	
+				break;
+			}		
+			if(status == 0x02) {
+				generateCompleteMissionPacket(PChar);
+				logType = MISS_COMPLETE;
+				break;
+			}
+
 		case MISSION_CRISTALLINE_PROPHECY:
 		case MISSION_MOOGLE_KUPO_DETAT:	
 		case MISSION_SHANTOTTO_ASCENSION:		

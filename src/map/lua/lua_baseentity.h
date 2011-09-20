@@ -86,11 +86,14 @@ public:
 
 	int32 addMission(lua_State*);			// Add Mission
 	int32 delMission(lua_State*);			// Delete Mission from Mission Log
-	int32 getMissionStatus(lua_State*);		// Get Mission status (current/complete)
+	int32 hasCurrentMission(lua_State*);	// Checks to see if the user has accepted a mission
+	int32 hasCompletedMission(lua_State*);	// Checks if mission has been completed
+	int32 getCurrentMission(lua_State*);	// Gets the current mission
 	int32 completeMission(lua_State*);		// Complete Mission
 
 	int32 addKeyItem(lua_State*);			// добавляем ключевой предмет
 	int32 seenKeyItem(lua_State*);			// проверяем, было ли описание ключевого предмета прочитано
+	int32 unseenKeyItem(lua_State*);		// Attempt to remove the keyitem from the seen list
 	int32 hasKeyItem(lua_State*);			// проверяем наличие ключевого предмета
 	int32 delKeyItem(lua_State*);			// удаляем ключевой предмет
 

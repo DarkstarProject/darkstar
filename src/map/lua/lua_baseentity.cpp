@@ -697,6 +697,31 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
 
 inline int32 CLuaBaseEntity::addMission(lua_State *L)
 {
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	uint8 missionID = (uint8)lua_tointeger(L,-1);
+	uint8 logID   = (uint8)lua_tointeger(L,-2);
+
+	if (logID < 6)
+	{
+		//uint8 current  = PChar->m_missionLog[logID].current = missionID;
+
+		PChar->m_missionLog[logID].current = missionID;
+		PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID + 10,1));
+		charutils::SaveMissionsList(PChar);
+	}
+	else
+	{
+		ShowError(CL_RED"Lua::addMission: LogID %i is invalid\n"CL_RESET, logID);
+	}	
+	
+	lua_pushnil(L);
 	return 1;
 }
 
@@ -704,7 +729,98 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
 
 inline int32 CLuaBaseEntity::delMission(lua_State *L)
 {
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	uint8 missionID = (uint8)lua_tointeger(L,-1);
+	uint8 logID   = (uint8)lua_tointeger(L,-2);
+
+	if (logID < 6)
+	{
+		uint8 current  = PChar->m_missionLog[logID].current;
+		uint8 complete = PChar->m_missionLog[logID].complete[missionID];
+
+		if (current == missionID)
+		{
+			PChar->m_missionLog[logID].current = -1; 
+			PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID+10, 1));
+		}
+		
 	
+
+		if (complete != 0) 
+		{
+			PChar->m_missionLog[logID].complete[missionID/8] &= ~(1 << (missionID % 8)); 
+			PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID+10, 2));
+		}
+			
+			charutils::SaveMissionsList(PChar);
+	}
+	else
+	{
+		ShowError(CL_RED"Lua::delMission: LogID %i is invalid\n"CL_RESET, logID);
+	}
+	
+	lua_pushnil(L);
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::hasCurrentMission(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	uint8 logID   = (uint8)lua_tointeger(L,-1);
+	uint8 current = PChar->m_missionLog[logID].current;
+	if (current < 255) 
+	{
+		lua_pushboolean(L, true); 
+		return 1;
+	}
+	
+	lua_pushboolean( L, false );
+	return 1;
+} 
+
+inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	uint8 missionID = (uint8)lua_tointeger(L,-1);
+	uint8 logID   = (uint8)lua_tointeger(L,-2);
+	uint8 complete = PChar->m_missionLog[logID].complete[missionID];
+	lua_pushinteger( L, (complete != 0 ? 1 : 0) );
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getCurrentMission(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	uint8 logID   = (uint8)lua_tointeger(L,-1);
+	uint8 current = (PChar->m_missionLog[logID].current > -1 ? PChar->m_missionLog[logID].current : -1);
+
+	lua_pushinteger( L, current );
 	return 1;
 }
 
@@ -712,13 +828,21 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
 
 inline int32 CLuaBaseEntity::completeMission(lua_State *L)
 {
-	return 1;
-}
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-//==========================================================//
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	uint8 logID   = (uint8)lua_tointeger(L,-1);
 
-inline int32 CLuaBaseEntity::getMissionStatus(lua_State *L)
-{
+	uint8 current = PChar->m_missionLog[logID].current;
+	PChar->m_missionLog[logID].current = -1;
+	PChar->m_missionLog[logID].complete[current] = true; 
+	PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID+10, 1));
+	PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID+10, 2));
+	
+	charutils::SaveMissionsList(PChar);
+	lua_pushnil(L);
 	return 1;
 }
 
@@ -809,6 +933,36 @@ inline int32 CLuaBaseEntity::seenKeyItem(lua_State *L)
 	lua_pushboolean( L, (charutils::seenKeyItem((CCharEntity*)m_PBaseEntity,KeyItemID) != 0));
 	return 1;		
 }
+
+/************************************************************************
+*																		*
+*  Should remove the key item from the seen list						*
+*																		*
+************************************************************************/
+
+
+inline int32 CLuaBaseEntity::unseenKeyItem(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	uint16 KeyItemID = (uint16)lua_tointeger(L, -1);
+
+	if( charutils::unseenKeyItem(PChar,KeyItemID) ) 
+	{
+		PChar->pushPacket(new CKeyItemsPacket(PChar,(KEYS_TABLE)(KeyItemID >> 9)));
+
+		charutils::SaveKeyItems(PChar);
+	}
+
+	lua_pushnil(L);
+	return 1;
+}
+
 
 //==========================================================//
 
@@ -2470,11 +2624,14 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeQuest),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMission),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMissionStatus),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentMission),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCurrentMission),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompletedMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,seenKeyItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unseenKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnSpell),
