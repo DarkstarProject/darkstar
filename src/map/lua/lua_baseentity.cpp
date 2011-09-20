@@ -2532,6 +2532,29 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*																		*
+*	Get Container Size												*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	
+	if( m_PBaseEntity != NULL )
+	{
+		if( !lua_isnil(L,1) && lua_isnumber(L,1))
+			{
+				CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+				uint8 size = PChar->getStorage(lua_tointeger(L,1))->GetSize() -1;
+				lua_pushinteger(L,size);
+				return 1;
+			}
+	}
+	
+}
+	
 
 /************************************************************************
 *																		*
@@ -2550,7 +2573,6 @@ inline int32 CLuaBaseEntity::increaseContainerSize(lua_State *L)
 			{
 				CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
 				uint8 size = PChar->getStorage(lua_tointeger(L,1))->GetSize();
-				ShowDebug(CL_CYAN"Container Size:: %u || Size to increase:: %u \n"CL_RESET, PChar->getStorage(lua_tointeger(L,1))->GetSize(),lua_tointeger(L,2));
 				PChar->getStorage(lua_tointeger(L,1))->SetSize(size - 1 + lua_tointeger(L,2));
 				PChar->pushPacket(new CInventorySizePacket(PChar));
 				charutils::SaveCharInventoryCapacity(PChar);
@@ -2687,6 +2709,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,increaseContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,decreaseContainerSize),
 	{NULL,NULL}
