@@ -83,6 +83,7 @@ namespace luautils
 
 	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// выполняем скрипт после смерти монстра
 
+	int32 OnSpecialWeaponKill(CCharEntity* PChar);			// Testing for special weapons (Blade Of Darkness quest)
 	
 };
 

@@ -190,7 +190,7 @@ void CAIMobDummy::ActionDropItems()
 		if (PChar != NULL)
 		{
 			luautils::OnMobDeath(m_PMob,PChar);
-
+			luautils::OnSpecialWeaponKill(PChar); 
 			m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0,6));
 			
 			// еще должно быть сообщение "No experience points gained", но пока не известно, видит ли его один персонаж или вся группа

@@ -945,4 +945,50 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }
 
+/************************************************************************
+*																		*
+*		Runs LUA for special weapons on Kill							*
+*																		*
+************************************************************************/
+
+int32 OnSpecialWeaponKill(CCharEntity* PChar) 
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+  	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
+	
+	snprintf(File,sizeof(File),"%s/globals/specialweapons/%s.lua",LuaScriptDir, PItem->getName());
+
+	PChar->m_event.reset();
+	PChar->m_event.Script.insert(0,File);
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnSpecialWeaponKill: %s\n",lua_tostring(LuaHandle,-1));
+		return -1;
+	}
+   
+	lua_pushstring(LuaHandle,"onSpecialWeaponKill");
+	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnSpecialWeaponKill: undefined procedure onSpecialWeaponKill\n");
+		return -1;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+  
+	lua_pushinteger(LuaHandle,0);
+  
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnSpecialWeaponKill: %s\n",lua_tostring(LuaHandle,-1));
+		return -1;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	
+}
+
 }; // namespace luautils
