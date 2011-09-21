@@ -19,9 +19,10 @@ function onTrade(player,npc,trade)
 	gil = trade:getGil();
 	inventorySize = player:getContainerSize(0);
 	gobbieBag = (inventorySize/5) - 5;	
-	tradeItem = gobItems(player,gobbieBag);
 
 	if (count == 4 and gil == 0 and player:getQuestStatus(JEUNO,(gobquest(player,gobbieBag))) == 1) then
+		tradeItem = gobItems(player,gobbieBag);
+		
 		if (trade:hasItemQty(tradeItem[1],1) and trade:hasItemQty(tradeItem[2],1) and trade:hasItemQty(tradeItem[3],1) and trade:hasItemQty(tradeItem[4],1)) then
 			player:startEvent(0x0049, inventorySize+1);
 		end
@@ -52,7 +53,7 @@ end;
 -- Current Gob Quest Items
 -----------------------------------
 function gobItems(player,questItems)
-	items = {}
+	items = {};
 	switch (questItems) : caseof {
 		[1] = function (x) items = {0848,0652,0826,0788}; end, -- Dhalmel Leather, Steel Ingot, Linen Cloth, Peridot
 		[2] = function (x) items = {0851,0653,0827,0789}; end, -- Ram Leather, Mythril Ingot, Wool Cloth, Turquoise
@@ -78,7 +79,7 @@ function onTrigger(player,npc)
 	inventorySize = player:getContainerSize(0);
 	gobbieBag = (inventorySize/5) - 5;
 	TheGobbieBag = player:getQuestStatus(JEUNO,(gobquest(player,gobbieBag)));
-	offer = 0
+	offer = 0;
 	offerLevel = 2 + gobbieBag;
 	
 	if (offerLevel > 9) then offerLevel = 9; end
