@@ -19,48 +19,11 @@ function onTrade(player,npc,trade)
 	gil = trade:getGil();
 	inventorySize = player:getContainerSize(0);
 	gobbieBag = (inventorySize/5) - 5;	
-	
+	tradeItem = gobItems(player,gobbieBag);
+
 	if (count == 4 and gil == 0 and player:getQuestStatus(JEUNO,(gobquest(player,gobbieBag))) == 1) then
-		if (inventorySize == 30) then
-			if (trade:hasItemQty(0848,1) and trade:hasItemQty(0652,1) and trade:hasItemQty(0826,1) and trade:hasItemQty(0788,1)) then
-				player:startEvent(0x0049, inventorySize+1); -- Dhalmel Leather, Steel Ingot, Linen Cloth, Peridot
-			end
-		elseif (inventorySize == 35) then
-			if (trade:hasItemQty(0851,1) and trade:hasItemQty(0653,1) and trade:hasItemQty(0827,1) and trade:hasItemQty(0798,1)) then
-				player:startEvent(0x0049, inventorySize+1); -- Ram Leather, Mythril Ingot, Wool Cloth, Turquoise
-			end
-		elseif (inventorySize == 40) then
-			if (trade:hasItemQty(0855,1) and trade:hasItemQty(0745,1) and trade:hasItemQty(0828,1) and trade:hasItemQty(0797,1)) then
-				player:startEvent(0x0049, inventorySize+1); -- Tiger Leather, Gold Ingot, Velvet Cloth, Painite
-			end
-		elseif (inventorySize == 45) then
-			if (trade:hasItemQty(0931,1) and trade:hasItemQty(0654,1) and trade:hasItemQty(0829,1) and trade:hasItemQty(0808,1)) then
-				player:startEvent(0x0049, inventorySize+1); -- Cermet Chunk, Darksteel Ingot, Silk Cloth, Goshenite
-			end
-		elseif (inventorySize == 50) then
-			if (trade:hasItemQty(1637,1) and trade:hasItemQty(1635,1) and trade:hasItemQty(1636,1) and trade:hasItemQty(1634,1)) then
-				player:startEvent(0x0049, inventorySize+1); -- Bugard Leather, Paktong Ingot, Moblinweave, Rhodonite
-			end
-		elseif (inventorySize == 55) then
-			if (trade:hasItemQty(1741,1) and trade:hasItemQty(1738,1) and trade:hasItemQty(1739,1) and trade:hasItemQty(1740,1)) then
-				player:startEvent(0x0049, inventorySize+1); -- HQ Eft Skin, Shakudo Ingot, Balloon Cloth, Iolite
-			end
-		elseif (inventorySize == 60) then
-			if (trade:hasItemQty(2530,1) and trade:hasItemQty(0655,1) and trade:hasItemQty(0830,1) and trade:hasItemQty(0812,1)) then
-				player:startEvent(0x0049, inventorySize+1); -- Lynx Leather, Adaman Ingot, Rainbow Cloth, Deathstone
-			end
-		elseif (inventorySize == 65) then
-			if (trade:hasItemQty(2529,1) and trade:hasItemQty(2536,1) and trade:hasItemQty(2537,1) and trade:hasItemQty(0813,1)) then
-				player:startEvent(0x0049, inventorySize+1); -- Smilodon Leather, Electrum Ingot, Square of Cilice, Angelstone
-			end
-		elseif (inventorySize == 70) then
-			if (trade:hasItemQty(2538,1) and trade:hasItemQty(0747,1) and trade:hasItemQty(2704,1) and trade:hasItemQty(2743,1)) then
-				player:startEvent(0x0049, inventorySize+1); -- Peiste Leather, Orichalcum Ingot, Oil-Soaked Cloth, Oxblood Orb
-			end
-		elseif (inventorySize == 75) then
-			if (trade:hasItemQty(1459,1) and trade:hasItemQty(1711,1) and trade:hasItemQty(2705,1) and trade:hasItemQty(2744,1)) then
-				player:startEvent(0x0049, inventorySize+1); -- Griffon Leather, Molybdenum Ingot, Foulard, Angelskin Orb
-			end
+		if (trade:hasItemQty(tradeItem[1],1) and trade:hasItemQty(tradeItem[2],1) and trade:hasItemQty(tradeItem[3],1) and trade:hasItemQty(tradeItem[4],1)) then
+			player:startEvent(0x0049, inventorySize+1);
 		end
 	end
 end; 
@@ -85,6 +48,25 @@ function gobquest(player,gobbiebag)
 	return currentQuest;
 end;
 
+----------------------------------
+-- Current Gob Quest Items
+-----------------------------------
+function gobItems(player,questItems)
+	items = {}
+	switch (questItems) : caseof {
+		[1] = function (x) items = {0848,0652,0826,0788}; end, -- Dhalmel Leather, Steel Ingot, Linen Cloth, Peridot
+		[2] = function (x) items = {0851,0653,0827,0789}; end, -- Ram Leather, Mythril Ingot, Wool Cloth, Turquoise
+		[3] = function (x) items = {0855,0745,0828,0797}; end, -- Tiger Leather, Gold Ingot, Velvet Cloth, Painite
+		[4] = function (x) items = {0931,0654,0829,0808}; end, -- Cermet Chunk, Darksteel Ingot, Silk Cloth, Goshenite
+		[5] = function (x) items = {1637,1635,1636,1634}; end, -- Bugard Leather, Paktong Ingot, Moblinweave, Rhodonite
+		[6] = function (x) items = {1741,1738,1739,1740}; end, -- HQ Eft Skin, Shakudo Ingot, Balloon Cloth, Iolite
+		[7] = function (x) items = {2530,0655,0830,0812}; end, -- Lynx Leather, Adaman Ingot, Rainbow Cloth, Deathstone
+		[8] = function (x) items = {2529,2536,2537,0813}; end, -- Smilodon Leather, Electrum Ingot, Square of Cilice, Angelstone
+		[9] = function (x) items = {2538,0747,2704,2743}; end, -- Peiste Leather, Orichalcum Ingot, Oil-Soaked Cloth, Oxblood Orb
+		[10] = function (x) items = {1459,1711,2705,2744}; end, -- Griffon Leather, Molybdenum Ingot, Foulard, Angelskin Orb
+	default = function (x) end,	}
+	return items;
+end;	
 ----------------------------------
 -- onTrigger Action
 -----------------------------------
