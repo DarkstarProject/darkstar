@@ -15,6 +15,7 @@ CONQUEST = 7470 -- "You've earned conquest points!"
 
  STEAM_CLOCK = 550;
 FIRE_CRYSTAL = 4096;
+LEATHER_GORGET = 13081;
 
 -- Shop Texts
 	  BALTHILDA_SHOP_DIALOG = 7375; -- Feeling defenseless of late? Brunhilde's Armory has got you covered!

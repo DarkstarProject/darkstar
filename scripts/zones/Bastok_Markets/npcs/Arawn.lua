@@ -24,10 +24,10 @@ end;
 function onTrigger(player,npc)
 
     StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
-player:startEvent(0x00e2);
+
     if (StampHunt ~= 2) then
         if (StampHunt == 0) then
-            --player:startEvent(0x00e1);
+            player:startEvent(0x00e1);
         elseif (StampHunt == 1) then
             pavel = player:getVar("Stamp_Pavel");
             elayne = player:getVar("Stamp_Elayne");
@@ -38,13 +38,13 @@ player:startEvent(0x00e2);
             latifah = player:getVar("Stamp_Latifah");
 
             if (pavel == 1  and elayne == 1 and deadlySpider == 1 and tallMountain == 1 and romualdo == 1 and ehrhard == 1 and latifah == 1) then
-                --player:startEvent(0x00e2);
+                player:startEvent(0x00e2);
             else
-                --player:startEvent(0x0072);
+                player:startEvent(0x0072);
             end
         end
     else
-       -- player:startEvent(0x0072);
+        player:startEvent(0x0072);
     end
 end;
 
@@ -76,8 +76,8 @@ function onEventFinish(player,csid,option)
             player:completeQuest(BASTOK,STAMP_HUNT);
             player:addFame(BASTOK,BAS_FAME*50);
             player:setTitle(STAMPEDER);
-            player:addItem(LEATHER_GORGET);
-            player:messageSpecial(ITEM_OBTAINED, LEATHER_GORGET);
+            player:addItem(13081); --Leather Gorget
+            player:messageSpecial(ITEM_OBTAINED, 13081);
             player:delKeyItem(STAMP_SHEET);
             player:setVar("Stamp_Pavel",0);
             player:setVar("Stamp_Elayne",0);
