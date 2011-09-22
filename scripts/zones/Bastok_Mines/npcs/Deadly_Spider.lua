@@ -4,8 +4,9 @@
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
 
-
+require("scripts/globals/quests");
 require("scripts/zones/Bastok_Mines/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -18,15 +19,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	function testflag(set,flag)
+		return (set % (2*flag) >= flag)
+	end
 
-     StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
-     questStatus = player:getVar("StampHunt_Event");
-     stamp = player:getVar("Stamp_DeadlySpider");
+    StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
+    stampCount = player:getVar("StampHunt_Event");
+	checkStamp = testflag(tonumber(stampCount),0x2);
 
-     if (StampHunt == 1 and stamp == 0) then
-         player:startEvent(0x0056);
-         player:setVar("Stamp_DeadlySpider",1);
-     else
+    if (StampHunt == 1 and checkStamp == false) then
+        player:setVar("StampHunt_Event",stampCount+0x2);
+        player:startEvent(0x0056);
+    else
         player:startEvent(0x0011);
     end
 end;

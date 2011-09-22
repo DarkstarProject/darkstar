@@ -6,6 +6,7 @@
 
 require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -18,14 +19,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	function testflag(set,flag)
+		return (set % (2*flag) >= flag)
+	end
 
-     StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
-     stamp = player:getVar("Stamp_Latifah");
+    StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
+    stampCount = player:getVar("StampHunt_Event");
+	checkStamp = testflag(tonumber(stampCount),0x40);
 
-     if (StampHunt == 1 and stamp == 0) then
-         player:startEvent(0x0078);
-         player:setVar("Stamp_Latifah",1);
-     else
+    if (StampHunt == 1 and checkStamp == false) then
+        player:setVar("StampHunt_Event",stampCount+0x40);
+        player:startEvent(0x0078);
+    else
         player:startEvent(0x000d);
     end
 end;
