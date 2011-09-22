@@ -248,6 +248,7 @@
     <ClInclude Include="..\..\src\map\synthutils.h" />
     <ClInclude Include="..\..\src\map\time_server.h" />
     <ClInclude Include="..\..\src\map\trade_container.h" />
+    <ClInclude Include="..\..\src\map\trait.h" />
     <ClInclude Include="..\..\src\map\transport.h" />
     <ClInclude Include="..\..\src\map\treasure_pool.h" />
     <ClInclude Include="..\..\src\map\universal_container.h" />
@@ -404,6 +405,7 @@
     <ClCompile Include="..\..\src\map\synthutils.cpp" />
     <ClCompile Include="..\..\src\map\time_server.cpp" />
     <ClCompile Include="..\..\src\map\trade_container.cpp" />
+    <ClCompile Include="..\..\src\map\trait.cpp" />
     <ClCompile Include="..\..\src\map\transport.cpp" />
     <ClCompile Include="..\..\src\map\treasure_pool.cpp" />
     <ClCompile Include="..\..\src\map\universal_container.cpp" />

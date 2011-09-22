@@ -25,7 +25,7 @@
 #define _CHARUTILS_H
 
 #include "../common/cbasetypes.h"
-
+#include "trait.h"
 #include "charentity.h"
 
 class CMobEntity;
@@ -56,6 +56,8 @@ namespace charutils
 	void	BuildingCharSkillsTable(CCharEntity* PChar);
 	void    BuildingCharWeaponSkills(CCharEntity* PChar);
 	void	BuildingCharAbilityTable(CCharEntity* PChar);
+	void	BuildingCharTraitsTable(CCharEntity* PChar); 
+
 	void	CheckWeaponSkill(CCharEntity* PChar, uint8 skill);
 	uint8	AddItem(CCharEntity* PChar, uint8 LocationID, uint16 itemID, uint32 quantity = 1);
 	uint32	UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity);
@@ -77,6 +79,10 @@ namespace charutils
 	int32	hasAbility(CCharEntity* PChar, uint16 AbilityID);	// проверяем наличие ключевого предмета
 	int32	addAbility(CCharEntity* PChar, uint16 AbilityID);	// добавляем ключевой предмет
 	int32	delAbility(CCharEntity* PChar, uint16 AbilityID);	// улаляем ключевой предмет
+
+	int32	hasTrait(CCharEntity* PChar, uint16 TraitID);	// check if pchar has trait by traitid and jobid
+	int32	addTrait(CCharEntity* PChar, uint16 TraitID);	// add trait by traitid and jobid
+	int32	delTrait(CCharEntity* PChar, uint16 TraitID);	// delete trait by traitid and jobid
 	
 	int32	addWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);  //declaration of function to add weapon skill
 	int32	hasWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);  //declaration of function to check for weapon skill

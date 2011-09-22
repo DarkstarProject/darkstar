@@ -1254,7 +1254,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 void CAICharNormal::ActionAttack() 
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
-	ShowDebug(CL_BLUE"%s attacking... "CL_RESET,m_PChar->GetName());
 	if (m_PBattleTarget->isDead())
 	{
 		m_ActionType = ACTION_DISENGAGE;

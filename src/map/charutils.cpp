@@ -61,6 +61,7 @@
 #include "itemutils.h"
 #include "map.h"
 #include "mobentity.h"
+#include "trait.h"
 #include "weapon_skill.h"
 #include "zoneutils.h"
 
@@ -521,7 +522,7 @@ void LoadChar(CCharEntity* PChar)
 
 	BuildingCharSkillsTable(PChar);
 	BuildingCharAbilityTable(PChar);
-
+	BuildingCharTraitsTable(PChar);
 	CalculateStats(PChar);
 
 	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
@@ -1369,6 +1370,45 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
 	}
 }
 
+
+void BuildingCharTraitsTable(CCharEntity* PChar)
+{
+	std::list<CTrait*> TraitsList;
+	ShowDebug(CL_CYAN"Building Traits List \n" CL_RESET);
+	memset(& PChar->m_TraitList, 0, sizeof(PChar->m_TraitList));
+
+	TraitsList = battleutils::GetTraits(PChar->GetMJob());
+	ShowDebug(CL_GREEN"Traitslist size: %u \n"CL_RESET, TraitsList.size());
+	for (std::list<CTrait*>::iterator it = TraitsList.begin(); it != TraitsList.end(); ++it)
+	{
+		CTrait* PTrait = *it;
+		ShowDebug(CL_YELLOW"Trait: %s Job: %u TraitID: %u \n"CL_RESET, PTrait->getName(), PTrait->getJob(), PTrait->getID());
+		if (PChar->GetMLevel() >= PTrait->getLevel() && PChar->GetMJob() == (JOBTYPE)PTrait->getJob())
+		{
+			ShowDebug(CL_CYAN"Adding Trait %s \n" CL_RESET, PTrait ->getName());
+			addTrait(PChar,  PTrait->getID());
+		}
+	}
+
+	TraitsList = battleutils::GetTraits(PChar->GetSJob());
+	ShowDebug(CL_GREEN"Traitslist size: %u \n"CL_RESET, TraitsList.size());
+	for (std::list<CTrait*>::iterator it = TraitsList.begin(); it != TraitsList.end(); ++it)
+	{
+		CTrait* PTrait = *it;
+		ShowDebug(CL_YELLOW"Trait: %s Job: %u TraitID: %u \n"CL_RESET, PTrait->getName(), PTrait->getJob(), PTrait->getID());
+		if (PChar->GetSLevel() >= PTrait->getLevel() && PChar->GetSJob() == (JOBTYPE)PTrait->getJob())
+		{
+			ShowDebug(CL_CYAN"Adding Trait %s \n" CL_RESET, PTrait ->getName());
+			addTrait(PChar, PTrait->getID());
+		}
+	}
+
+	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+}
+
+
+
+
 /************************************************************************
 *																		*
 *  Пытаемся увеличить значение умения									*
@@ -1645,6 +1685,28 @@ int32 delWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID)
 	return delBit(WeaponSkillID, PChar->m_WeaponSkills, sizeof(PChar->m_WeaponSkills));
 }
 
+/************************************************************************
+*																		*
+*  Trait Functions														*
+*																		*
+************************************************************************/
+
+int32 hasTrait(CCharEntity* PChar, uint16 TraitID)
+{
+	return hasBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
+}
+
+int32 addTrait(CCharEntity* PChar, uint16 TraitID)
+{
+
+	return addBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
+}
+
+int32 delTrait(CCharEntity* PChar, uint16 TraitID)
+{
+	return delBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
+}
+
 
 /************************************************************************
 *																		*
@@ -1767,19 +1829,19 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 		{
 			if (exp > 200) 
 			{
-				exp = 200;
+				exp = exp;
 			}
 		} 
 		else if (PChar->GetMLevel() <= 60) 
 		{
 			if (exp > 250) 
 			{
-				exp = 250;
+				exp = exp;
 			}
 		} 
 		else if (exp > 300) 
 		{
-			exp = 300;
+			exp = exp;
 		}
 
 		PChar->pushPacket(new CMessageDebugPacket(PChar, PMob, exp, 0, 8));
@@ -1804,6 +1866,7 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 					CalculateStats(PChar);
 					BuildingCharSkillsTable(PChar);
 					BuildingCharAbilityTable(PChar);
+					BuildingCharTraitsTable(PChar);
 				}
 
 				PChar->health.hp = PChar->health.maxhp;

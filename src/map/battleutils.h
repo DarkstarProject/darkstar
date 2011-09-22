@@ -32,6 +32,7 @@
 
 class CSpell;
 class CAbility;
+class CTrait;
 class CWeaponSkill; 
 
 namespace battleutils
@@ -40,14 +41,18 @@ namespace battleutils
 	void	LoadSpellList();
 	void	LoadAbilitiesList();
 	void	LoadWeaponSkillsList(); 
+	void	LoadTraitsList();
 
 	uint8	GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16	GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
 
 	CSpell*	GetSpell(uint16 SpellID);
 	CAbility* GetAbility(uint16 AbilityID);
+	CTrait* GetTrait(uint16 TraitID);
 	CWeaponSkill* GetWeaponSkill(uint16 WSkillID);
+	
 	std::list<CAbility*> GetAbilities(JOBTYPE JobID);
+	std::list<CTrait*> GetTraits(JOBTYPE JobID);
 	std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
 
 	bool	CanUseSpell(CBattleEntity* PAttacker, uint16 SpellID);
@@ -55,6 +60,7 @@ namespace battleutils
 
 	void	FreeSpellList();
 	void	FreeAbilitiesList();
+	void	FreeTraitsList();
 	void    FreeWeaponSkillsList();
 	
 	bool	IsParalised(CBattleEntity* PAttacker);

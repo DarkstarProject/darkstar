@@ -34,6 +34,7 @@
 #include "battleutils.h"
 #include "map.h"
 #include "spell.h"
+#include "trait.h" 
 #include "weapon_skill.h"
 
 /************************************************************************
@@ -48,7 +49,9 @@ uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// таблица ранго
 CSpell*		  g_PSpellList[MAX_SPELL_ID];						// глобальный массив указателей на заклинания
 CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// глобальный массив указателей на способности
 CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skills
+CTrait*		  g_PTraitList[MAX_TRAIT_ID]; 
 
+std::list<CTrait*> g_PTraitsList[23];
 std::list<CAbility*> g_PAbilitiesList[MAX_JOBTYPE];				// глобальный массив списков способностей, разбитый по профессиям (для быстрой инициализации) 
 std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
 
@@ -218,6 +221,35 @@ void LoadWeaponSkillsList()
 	}
 }
 
+void LoadTraitsList()
+{
+	//memset(g_PTraitList,0,sizeof(g_PTraitList));
+
+	const int8* fmtQuery = "SELECT TraitId, name, job, level \
+							FROM traits \
+							WHERE job > 0 \
+							ORDER BY job, traitID, level ASC";
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_TRAIT_ID);
+
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		{
+			
+			CTrait* PTrait = new CTrait(Sql_GetIntData(SqlHandle,0));
+			
+			PTrait->setName(Sql_GetData(SqlHandle,1));
+			PTrait->setJob(Sql_GetIntData(SqlHandle,2));
+			PTrait->setLevel(Sql_GetIntData(SqlHandle,3));
+			
+			g_PTraitList[PTrait->getID()] = PTrait;
+			g_PTraitsList[PTrait->getJob()].push_back(PTrait);
+		}
+	}
+}
+
+
 /************************************************************************
 *																		*
 *  Освобождаем глобальный массив заклинаний								*
@@ -260,6 +292,20 @@ void FreeWeaponSkillsList()
 	for(int32 SkillId= 0; SkillId < MAX_WEAPONSKILL_ID; ++SkillId)
 	{
 		delete g_PWeaponSkillList[SkillId];
+	}
+}
+
+
+/************************************************************************
+*																		*
+*  Clear Traits List													*
+*																		*
+************************************************************************/
+void FreeTraitsList()
+{
+	for(int32 TraitID= 0; TraitID < MAX_TRAIT_ID; ++TraitID)
+	{
+		delete g_PTraitList[TraitID];
 	}
 }
 
@@ -387,7 +433,24 @@ CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
 
 std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill)
 {
+	
 	return g_PWeaponSkillsList[skill];
+}
+
+CTrait* GetTrait(uint16 TraitID)
+{
+	return g_PTraitList[TraitID];
+}
+
+/************************************************************************
+*																		*
+* Get List of Traits by Main Job and Sub Job							*
+*																		*
+************************************************************************/
+
+std::list<CTrait*> GetTraits(JOBTYPE JobID)
+{
+	return g_PTraitsList[JobID];
 }
 
 /************************************************************************

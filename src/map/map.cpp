@@ -167,6 +167,7 @@ int32 do_init(int32 argc, int8** argv)
 	battleutils::LoadSkillTable();
 	battleutils::LoadAbilitiesList();
 	battleutils::LoadWeaponSkillsList();
+	battleutils::LoadTraitsList();
 	
 	petutils::LoadPetList();
 
@@ -209,6 +210,7 @@ void do_final(void)
 	battleutils::FreeSpellList();
 	battleutils::FreeAbilitiesList();
 	battleutils::FreeWeaponSkillsList();
+	battleutils::FreeTraitsList();
 
 	petutils::FreePetList();
 	zoneutils::FreeZoneList();
