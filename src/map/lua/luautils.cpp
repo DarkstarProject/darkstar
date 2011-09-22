@@ -40,6 +40,7 @@
 #include "../charentity.h"
 #include "../mobentity.h"
 #include "../spell.h"
+#include "../weapon_skill.h"
 #include "../vana_time.h"
 #include "../zoneutils.h"
 
@@ -965,7 +966,7 @@ int32 OnSpecialWeaponKill(CCharEntity* PChar)
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
-		ShowError("luautils::OnSpecialWeaponKill: %s\n",lua_tostring(LuaHandle,-1));
+		//ShowError("luautils::OnSpecialWeaponKill: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
    
@@ -989,6 +990,49 @@ int32 OnSpecialWeaponKill(CCharEntity* PChar)
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 	
+}
+
+int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob) 
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+   //CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
+	CWeaponSkill* wskill = PChar->PBattleAI->GetCurrentWeaponSkill();
+	snprintf(File,sizeof(File),"%s/globals/weaponskills/%s.lua",LuaScriptDir, wskill->getName());
+
+	PChar->m_event.reset();
+	PChar->m_event.Script.insert(0,File);
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnUseWeaponSkill: %s\n",lua_tostring(LuaHandle,-1));
+		return -1;
+	}
+   
+	lua_pushstring(LuaHandle,"OnUseWeaponSkill");
+	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnUseWeaponSkill: undefined procedure OnUseWeaponSkill\n");
+		return -1;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+	
+	CLuaBaseEntity LuaMobEntity(PMob);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+	
+	//lua_pushinteger(LuaHandle,0);
+  
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnUseWeaponSkill: %s\n",lua_tostring(LuaHandle,-1));
+		return -1;
+	}
+	//return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (int32)lua_tonumber(LuaHandle,-1);
 }
 
 }; // namespace luautils

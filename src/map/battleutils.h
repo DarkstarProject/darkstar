@@ -46,6 +46,7 @@ namespace battleutils
 
 	CSpell*	GetSpell(uint16 SpellID);
 	CAbility* GetAbility(uint16 AbilityID);
+	CWeaponSkill* GetWeaponSkill(uint16 WSkillID);
 	std::list<CAbility*> GetAbilities(JOBTYPE JobID);
 	std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
 

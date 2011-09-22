@@ -61,9 +61,14 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			WBUFB(data,(0x0E)-4) = 0x0C;
 		}
 			break;
+		case ACTION_WEAPONSKILL_START:
+			break;
+		case ACTION_WEAPONSKILL_FINISH:
+			break;
 		case ACTION_ITEM_START:
 		{
 			WBUFB(data,(0x0A)-4) = 0xE4;
+
 			WBUFB(data,(0x0B)-4) = 0x58;
 			WBUFB(data,(0x0C)-4) = 0x58;
 			WBUFB(data,(0x0D)-4) = 0x1A;

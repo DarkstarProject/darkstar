@@ -164,7 +164,6 @@ void CAIMobDummy::ActionFall()
 {
 	m_ActionType = ACTION_DROPITEMS;
 	m_LastActionTime = m_Tick;
-
 	m_PMob->animation = ANIMATION_DEATH;
 
 	m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));

@@ -32,7 +32,6 @@
 
 #define MAX_WEAPONSKILL_ID	218
 
-
 class CWeaponSkill
 {
 public:
@@ -40,7 +39,7 @@ public:
 	CWeaponSkill(uint16 id);
     
 	uint16		getID();
-	uint8		getJob(JOBTYPE JobType);
+	uint8		getJob(JOBTYPE JobID);
 	uint8		getSkillLevel();
 	uint8		getRange();
 	uint32      getSkillChain();
@@ -48,17 +47,15 @@ public:
 	uint8		getAnimationId();
 	uint8       getSkillType();
 
-	void        setAnimationId(int8 id); 
-	void		setAoe(uint8 aoe);
-	void		setSkillChain(uint32 skillChain);
-	void		setRange(uint8 range);
 	void		setID(uint16 id);
-	void		setSkillType(uint8 id);
 	void		setJob(int8* jobs);
 	void		setSkillLevel(uint8 level);
+	void		setRange(uint8 range);
+	void		setSkillChain(uint32 skillChain);
+	void		setAoe(uint8 aoe);
+	void        setAnimationId(int8 id); 
+	void		setSkillType(uint8 id);
 	
-
-
 	const int8* getName();
 	void		setName(int8* name);
 	
@@ -66,11 +63,11 @@ private:
 
 	uint16		m_ID;
 	uint8       m_SkillTypeID;
-	uint8		m_JobSkills[MAX_JOBTYPE]; 
+	uint8		m_Job[MAX_JOBTYPE]; 
 	uint8		m_Skilllevel;
 	uint8       m_AnimationId;
 	uint32      m_SkillChain;
-	uint8		m_Rande;
+	uint8		m_Range;
 	uint8       m_AOE;
 
 	string_t	m_name;

@@ -493,7 +493,18 @@ int32 SmallPacket0x01A(CCharEntity* PChar, int8* data)
 			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,22));
 		}
 		break;
-		case 0x07: break;	// weaponskill
+		case 0x07: 
+		{
+			uint16 WSkillID = RBUFW(data,(0x0C));
+			PChar->PBattleAI->SetCurrentWeaponSkill(WSkillID);
+			PChar->PBattleAI->SetCurrentAction(ACTION_WEAPONSKILL_START, TargID);
+			PChar->PBattleAI->CheckCurrentAction(gettick());
+		}	
+			
+			
+			break;	// weaponskill
+
+
 		case 0x09: // jobability
 		{
 			PrintPacket(data);
@@ -596,7 +607,7 @@ int32 SmallPacket0x01A(CCharEntity* PChar, int8* data)
 		break;
 	}
 
-	ShowDebug(CL_CYAN"CLIENT PERFORMING ACTION %02hX\n"CL_RESET, action);
+	//ShowDebug(CL_CYAN"CLIENT PERFORMING ACTION %02hX\n"CL_RESET, action);
 	return 0;
 } 
 

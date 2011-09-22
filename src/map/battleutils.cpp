@@ -202,7 +202,7 @@ void LoadWeaponSkillsList()
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 		{
 			CWeaponSkill* PWeaponSkill = new CWeaponSkill(Sql_GetIntData(SqlHandle,0));
-
+			
 			PWeaponSkill->setName(Sql_GetData(SqlHandle,1));
 			PWeaponSkill->setJob(Sql_GetData(SqlHandle,2));
 			PWeaponSkill->setSkillType(Sql_GetIntData(SqlHandle,3));
@@ -361,6 +361,23 @@ bool CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID)
 	}
 	return false;
 }
+
+/************************************************************************
+*																		*
+*  Get Weapon Skill by Id												*
+*																		*
+************************************************************************/
+
+CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
+{
+	if (WSkillID < MAX_WEAPONSKILL_ID)
+	{
+		return g_PWeaponSkillList[WSkillID];
+	}
+	ShowFatalError(CL_RED"WeaponSkillID <%u> out of range\n", WSkillID);
+	return NULL;
+}
+
 
 /************************************************************************
 *																		*

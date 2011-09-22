@@ -22,6 +22,7 @@
 */
 
 #include "../spell.h"
+#include "../weapon_skill.h"
 #include "../battleutils.h"
 
 #include "ai_general.h"
@@ -42,6 +43,7 @@ CAIGeneral::CAIGeneral()
 
 	m_PZone = NULL;
 	m_PSpell = NULL;
+	m_PWeaponSkill = NULL;
 	m_PItemUsable = NULL;
 	m_PBattleTarget = NULL;
 	m_PBattleSubTarget = NULL;
@@ -66,11 +68,14 @@ ACTIONTYPE CAIGeneral::GetCurrentAction()
 	
 void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 {
-	DSP_DEBUG_BREAK_IF(m_ActionTargetID != 0);
+	//DSP_DEBUG_BREAK_IF(m_ActionTargetID != 0);
 
+	if (m_ActionTargetID != 0)
+	{
+		m_ActionTargetID = 0;
+	}
 	switch (Action)
 	{
-		case ACTION_MAGIC_START:
 		case ACTION_RANGED_START:
 		case ACTION_ITEM_START:
 		case ACTION_DISENGAGE:
@@ -87,6 +92,16 @@ void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 		case ACTION_WEAPONSKILL_START:
 		{
 			if (m_ActionType == ACTION_ATTACK)
+			{
+				m_ActionType = Action;
+				m_ActionTargetID = TargetID;
+				return;
+			}
+		}
+			break;
+		case ACTION_WEAPONSKILL_FINISH:
+		{
+			if (m_ActionType == ACTION_WEAPONSKILL_START)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
@@ -208,7 +223,7 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 
 /************************************************************************
 *																		*
-*																		*
+*	Gets Current Spell													*
 *																		*
 ************************************************************************/
 
@@ -218,6 +233,40 @@ CSpell* CAIGeneral::GetCurrentSpell()
 
 	return m_PSpell;
 }
+
+
+/************************************************************************
+*																		*
+*	Set Weapon Skill													*
+*																		*
+************************************************************************/
+
+void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
+{
+	if (m_ActionType != ACTION_WEAPONSKILL_START   &&
+		m_ActionType != ACTION_WEAPONSKILL_FINISH)
+	{
+		//DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
+
+		m_PWeaponSkill = battleutils::GetWeaponSkill(WSkillID);
+		
+
+	}
+}
+
+/************************************************************************
+*																		*
+*	Gets Current Weapon Skill											*
+*																		*
+************************************************************************/
+
+CWeaponSkill* CAIGeneral::GetCurrentWeaponSkill()
+{
+	DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
+	
+	return m_PWeaponSkill;
+}
+
 
 /************************************************************************
 *																		*

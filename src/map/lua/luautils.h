@@ -85,6 +85,7 @@ namespace luautils
 
 	int32 OnSpecialWeaponKill(CCharEntity* PChar);			// Testing for special weapons (Blade Of Darkness quest)
 	
+	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob);
 };
 
 #endif //- _LUAUTILS_H -

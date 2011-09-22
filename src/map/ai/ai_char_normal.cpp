@@ -29,6 +29,7 @@
 #include "../mobutils.h"
 #include "../petutils.h"
 #include "../spell.h"
+#include "../weapon_skill.h"
 #include "../vana_time.h"
 #include "../zone.h"
 
@@ -89,6 +90,8 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 		case ACTION_ITEM_FINISH:			ActionItemFinish();			break;
 		case ACTION_ITEM_INTERRUPT:			ActionItemInterrupt();		break;
 		case ACTION_CHANGE_BATTLE_TARGET:	ActionChangeBattleTarget(); break;
+		case ACTION_WEAPONSKILL_START:		ActionWeaponSkillStart();	break; 
+		case ACTION_WEAPONSKILL_FINISH:		ActionWeaponSkillFinish();	break; 
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
@@ -1162,25 +1165,84 @@ void CAICharNormal::ActionMagicInterrupt()
 
 /************************************************************************
 *																		*
-*																		*
+*		Start the weapon skill											*
 *																		*
 ************************************************************************/
 
 void CAICharNormal::ActionWeaponSkillStart()
 {
-	ShowDebug(CL_CYAN"Using Weaponskill.... \n"CL_RESET);	
-	//m_PBattleSubTarget
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+
+	if (m_PBattleTarget->isDead())
+	{
+		m_ActionType = ACTION_DISENGAGE;
+		ActionDisengage();
+		return;
+	}
+	if (!IsMobOwner())
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
+
+		m_ActionType = ACTION_DISENGAGE;
+		ActionDisengage();
+		return;
+	}
+	
+	float Distance = distance(m_PChar->loc.p,m_PBattleTarget->loc.p);
+
+	if (Distance > m_PWeaponSkill->getRange())
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,36));
+
+		m_ActionType = ACTION_ATTACK;
+		ActionAttack();
+		return;
+	}
+
+	if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,5));
+			m_ActionType = ACTION_ATTACK;
+			ActionAttack();
+			return;
+		}
+	
+	uint16 damage = luautils::OnUseWeaponSkill(m_PChar,m_PBattleTarget);
+	
+	apAction_t Action;
+
+	Action.ActionTarget = m_PBattleTarget;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_RECOIL;
+	Action.animation  = m_PWeaponSkill->getAnimationId();
+	Action.param	  = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
+	Action.subparam   = m_PWeaponSkill->getID();
+	Action.messageID  = 185;
+	Action.flag		  = 0;
+	
+	m_PChar->m_ActionList.push_back(Action);
+	m_ActionType = ACTION_WEAPONSKILL_FINISH; 
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+		
 }
 
 /************************************************************************
 *																		*
-*																		*
+*			End the weapon skill										*
 *																		*
 ************************************************************************/
 
 void CAICharNormal::ActionWeaponSkillFinish()
 {
-	//m_PBattleSubTarget
+	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	m_PChar->health.tp = 8;
+	m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+	m_ActionTargetID = 0; 
+	m_PWeaponSkill = NULL;
+	m_ActionType = ACTION_ATTACK; 
+	m_PChar->m_ActionList.clear();
+
 }
 
 /************************************************************************
@@ -1192,7 +1254,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 void CAICharNormal::ActionAttack() 
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
-
+	ShowDebug(CL_BLUE"%s attacking... "CL_RESET,m_PChar->GetName());
 	if (m_PBattleTarget->isDead())
 	{
 		m_ActionType = ACTION_DISENGAGE;
@@ -1308,7 +1370,8 @@ void CAICharNormal::ActionAttack()
 					}
 
 					charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PChar->m_Weapons[SLOT_MAIN]->getSkillType(), m_PBattleTarget->GetMLevel());
-
+					m_PChar->addTP(12);
+					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
 					damage = (uint16)((m_PChar->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio);
 				}else{
 					Action.reaction   = REACTION_EVADE;
@@ -1325,4 +1388,6 @@ void CAICharNormal::ActionAttack()
 			m_PChar->m_ActionList.clear();
 		}
 	}
+
+	
 }
