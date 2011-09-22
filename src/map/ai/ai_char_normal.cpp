@@ -1321,11 +1321,11 @@ void CAICharNormal::ActionAttack()
 
 			// условие неверное. любоя профессия с отсутсвием h2h skill rank,
 			// даже с экипированным h2h оружием будет махать одной рукой
-
-			uint32 numattacks = (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? 2 : 1);
-
+			uint32 numattacks = (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? 2 : 1) + (m_PChar->m_Weapons[SLOT_SUB]->getType() == 26 ? 1 : 0);
+			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			for (uint32 i = 0; i < numattacks; ++i) 
 			{
+			
 				if (i != 0)
 				{
 					if (m_PBattleTarget->isDead())
@@ -1333,6 +1333,10 @@ void CAICharNormal::ActionAttack()
 						break;
 					}
 					Action.ActionTarget = NULL;
+					if (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() != DAMAGE_HTH)
+					{
+						PWeapon = m_PChar->m_Weapons[SLOT_SUB];
+					}
 				}
 
 				uint16 damage = 0;
@@ -1368,10 +1372,10 @@ void CAICharNormal::ActionAttack()
 						Action.messageID  = 1;
 					}
 
-					charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PChar->m_Weapons[SLOT_MAIN]->getSkillType(), m_PBattleTarget->GetMLevel());
+					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
 					m_PChar->addTP(12);
 					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
-					damage = (uint16)((m_PChar->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio);
+					damage = (uint16)((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio);
 				}else{
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;

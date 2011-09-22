@@ -927,11 +927,18 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						case SKILL_KAT:
 						case SKILL_CLB:
 						{
-							if (PItem->getType() & ITEM_WEAPON)
+							if (PItem->getType() & ITEM_WEAPON && !charutils::hasTrait(PChar,18))
 							{
 								PChar->pushPacket(new CCharAppearancePacket(PChar));
 								return false;
 							}
+							
+							PChar->m_Weapons[SLOT_SUB]->setType(ITEM_WEAPON);											
+							PChar->m_Weapons[SLOT_SUB]->setDelay(((CItemWeapon*)PItem)->getDelay());
+							PChar->m_Weapons[SLOT_SUB]->setDamage(((CItemWeapon*)PItem)->getDamage());
+							PChar->m_Weapons[SLOT_SUB]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
+							PChar->m_Weapons[SLOT_SUB]->setSkillType(((CItemWeapon*)PItem)->getSkillType());
+
 						}
 							break;
 						default:
