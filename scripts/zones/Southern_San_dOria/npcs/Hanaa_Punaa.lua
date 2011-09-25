@@ -34,6 +34,7 @@ function onTrade(player,npc,trade)
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:setTitle(CAT_SKINNER);
 			player:completeQuest(SANDORIA,BLACK_TIGER_SKINS);
+			player:setVar("blkTigerSkin",0);
 			player:startEvent(0x0241);
 		elseif (freeSlots < 1) then
 			player:messageSpecial(6402, 13119);
@@ -51,6 +52,7 @@ function onTrade(player,npc,trade)
 				player:addFame(SANDORIA,SAN_FAME*30);
 				player:setTitle(LIZARD_SKINNER);
 				player:completeQuest(SANDORIA,LIZARD_SKINS);
+				player:setVar("lzdSkins",0);
 			elseif (lizardSkins == QUEST_COMPLETED) then
 				player:addFame(SANDORIA,SAN_FAME*5);
 			end;
@@ -71,6 +73,7 @@ function onTrade(player,npc,trade)
 				player:addFame(SANDORIA,SAN_FAME*30);
 				player:setTitle(SILENCER_OF_THE_LAMBS);
 				player:completeQuest(SANDORIA,THE_SEAMSTRESS);
+				player:setVar("theSeamStress",0);
 			elseif (theSteamStress == QUEST_COMPLETED) then
 				player:addFame(SANDORIA,SAN_FAME*5);
 			end;

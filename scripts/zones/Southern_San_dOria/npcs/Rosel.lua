@@ -50,6 +50,7 @@ function onTrigger(player,npc)
 		player:setTitle(ENTRANCE_DENIED);
 		player:completeQuest(SANDORIA,ROSEL_THE_ARMORER);
 		player:startEvent(0x020f);
+		player:setVar("RefuseRoselTheArmorerQuest",0);
 	end;
 end; 
 
