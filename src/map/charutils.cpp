@@ -603,7 +603,7 @@ void LoadInventory(CCharEntity* PChar)
 					luautils::OnItemCheck(PChar, PItem);
 					PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
 				}
-
+				ShowDebug(CL_YELLOW"Item Type == %u"CL_RESET, PItem->getType());
 				if ((i == SLOT_MAIN) && (PItem->getType() & ITEM_WEAPON))
 				{
 					PChar->m_Weapons[SLOT_MAIN]->setDelay(((CItemWeapon*)PItem)->getDelay());
@@ -1576,6 +1576,10 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 
 void CheckWeaponSkill(CCharEntity* PChar, uint8 skill) 
 {
+	if (PChar->m_Weapons[SLOT_MAIN]->getSkillType() != skill)
+	{
+		return;
+	}
 	std::list<CWeaponSkill*> WeaponSkillList; 		
 	WeaponSkillList = battleutils::GetWeaponSkills(skill); 
 	uint8 curSkill = PChar->RealSkills.skill[skill]/10; 

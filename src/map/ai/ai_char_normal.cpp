@@ -1216,14 +1216,50 @@ void CAICharNormal::ActionWeaponSkillStart()
 	Action.speceffect = SPECEFFECT_RECOIL;
 	Action.animation  = m_PWeaponSkill->getAnimationId();
 	Action.param	  = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
-	Action.subparam   = m_PWeaponSkill->getID();
+	Action.subparam   = 0;
 	Action.messageID  = 185;
 	Action.flag		  = 0;
+	
+	SUBEFFECT effect =  CAICharNormal::GetSkillChainEffect(m_PBattleTarget,m_PWeaponSkill);
+	if (effect != SUBEFFECT_NONE) 
+	{	
+		Action.subeffect = effect;
+		switch(effect)
+		{
+			case SUBEFFECT_DARKNESS:
+			case SUBEFFECT_FRAGMENTATION:
+			case SUBEFFECT_FUSION:
+			case SUBEFFECT_LIQUEFACATION:
+			case SUBEFFECT_REVERBERATION:
+			case SUBEFFECT_SCISSION:
+			case SUBEFFECT_IMPACTION:
+			{
+				Action.flag = 1;
+			}
+			break;
+		}
+		if (Action.flag == 0)
+		{
+			switch(effect)
+			{
+				case SUBEFFECT_LIGHT:
+				case SUBEFFECT_GRAVITATION:
+				case SUBEFFECT_DISTORTION:
+				case SUBEFFECT_COMPRESSION:
+				case SUBEFFECT_INDURATION:
+				case SUBEFFECT_TRANSFIXION:
+				case SUBEFFECT_DETONATION:
+				{
+					Action.flag = 3;
+				}
+				break;
+			};
+		}
+	}
 	
 	m_PChar->m_ActionList.push_back(Action);
 	m_ActionType = ACTION_WEAPONSKILL_FINISH; 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-		
 }
 
 /************************************************************************
@@ -1235,9 +1271,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 void CAICharNormal::ActionWeaponSkillFinish()
 {
 	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
-
-	m_PChar->health.tp = 8;
-	m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+	
 	m_ActionTargetID = 0; 
 	m_PWeaponSkill = NULL;
 	m_ActionType = ACTION_ATTACK; 
@@ -1280,7 +1314,7 @@ void CAICharNormal::ActionAttack()
 		return;
 	}
 
-	uint16 WeaponDelay = m_PChar->m_Weapons[SLOT_MAIN]->getDelay();
+	uint16 WeaponDelay = m_PChar->m_Weapons[SLOT_MAIN] ->getDelay();
 
 	if ((m_Tick - m_LastActionTime) > WeaponDelay)
 	{
@@ -1321,6 +1355,7 @@ void CAICharNormal::ActionAttack()
 
 			// условие неверное. любоя профессия с отсутсвием h2h skill rank,
 			// даже с экипированным h2h оружием будет махать одной рукой
+		//	ShowDebug(CL_CYAN"WeaponType Sub: %u \n"CL_RESET,m_PChar->m_Weapons[SLOT_SUB]->getType());
 			uint32 numattacks = (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? 2 : 1) + (m_PChar->m_Weapons[SLOT_SUB]->getType() == 26 ? 1 : 0);
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			for (uint32 i = 0; i < numattacks; ++i) 
@@ -1391,6 +1426,163 @@ void CAICharNormal::ActionAttack()
 			m_PChar->m_ActionList.clear();
 		}
 	}
+}
 
+/************************************************************************
+*																		*
+*  Gets SkillChain Effect												*
+*																		*
+************************************************************************/
+SUBEFFECT CAICharNormal::GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill)
+{
+	if (!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET, 1))
+	{
+		CStatusEffect* NewEffect = new CStatusEffect(EFFECT_SIGNET, PWeaponSkill->getID(),1,9999,0,1);
+		PDefender->StatusEffectContainer->AddStatusEffect(NewEffect);
+		
+		return SUBEFFECT_NONE;
+	}
+
+	CStatusEffect* PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SIGNET, 1);
 	
+
+	if (PEffect->modList.size() == 2) 
+	{	
+		if  (PEffect->modList[0]->getModID() == MOD_LIGHTRES && PEffect->modList[1]->getModID() == MOD_FIRERES)
+		{
+		
+				return SUBEFFECT_FUSION;			  
+		}
+		else if (PEffect->modList[0]->getModID() == MOD_DARKRES && PEffect->modList[1]->getModID() == MOD_EARTHRES)
+		{
+				//gravitation	  
+				return SUBEFFECT_GRAVITATION;
+		}
+		else if (PEffect->modList[0]->getModID() == MOD_THUNDERRES && PEffect->modList[1]->getModID() == MOD_WINDRES)
+		{
+				//fragmentation
+				return SUBEFFECT_FRAGMENTATION;
+		}
+		else if (PEffect->modList[0]->getModID() == MOD_WATERRES && PEffect->modList[1]->getModID() == MOD_ICERES)
+		{
+				//distortion
+				return SUBEFFECT_DISTORTION;
+		}
+	}
+	CWeaponSkill* LastWeaponSkill = battleutils::GetWeaponSkill(PEffect->GetPower());
+	CStatusEffect* NewEffect = new CStatusEffect(EFFECT_SIGNET, PWeaponSkill->getID(),0,5);
+	SUBEFFECT effect = SUBEFFECT_NONE; 
+	
+	if (LastWeaponSkill->hasElement(LIGHT))
+	{
+		if (PWeaponSkill->hasElement(EARTH)) 
+		{
+			NewEffect->addMod(MOD_WATERRES,0);
+			NewEffect->addMod(MOD_ICERES,0);
+			effect = SUBEFFECT_DISTORTION;
+		}
+		else if (PWeaponSkill->hasElement(DARK)) 
+		{
+			effect = SUBEFFECT_COMPRESSION;
+		}
+		else if	(PWeaponSkill->hasElement(WATER)) 
+		{
+			effect = SUBEFFECT_REVERBERATION;
+		}
+	}
+	else if (LastWeaponSkill->hasElement(DARK))
+	{
+		if (PWeaponSkill->hasElement(WIND)) 
+		{
+			effect = SUBEFFECT_DETONATION;
+		}
+		else if	(PWeaponSkill->hasElement(LIGHT)) 
+		{
+			effect = SUBEFFECT_TRANSFIXION;
+		}
+	}
+	else if (LastWeaponSkill->hasElement(FIRE))
+	{
+		if (PWeaponSkill->hasElement(THUNDER)) 
+		{
+			NewEffect->addMod(MOD_LIGHTRES,0);
+			NewEffect->addMod(MOD_FIRERES,0);
+			effect = SUBEFFECT_FUSION;
+		}
+		else if (PWeaponSkill->hasElement(EARTH)) 
+		{
+			effect = SUBEFFECT_SCISSION;
+		}
+	}
+	else if (LastWeaponSkill->hasElement(EARTH))
+	{
+		if (PWeaponSkill->hasElement(WIND)) 
+		{
+			effect = SUBEFFECT_DETONATION;
+		}
+		else if	(PWeaponSkill->hasElement(WATER)) 
+		{
+			effect = SUBEFFECT_REVERBERATION;
+		}
+		else if	(PWeaponSkill->hasElement(FIRE)) 
+		{
+			effect = SUBEFFECT_LIQUEFACATION;
+		}
+	}
+	else if (LastWeaponSkill->hasElement(THUNDER))
+	{
+		if (PWeaponSkill->hasElement(WIND)) 
+		{
+			effect = SUBEFFECT_DETONATION;
+		}
+		else if	(PWeaponSkill->hasElement(FIRE)) 
+		{
+			effect = SUBEFFECT_LIQUEFACATION;
+		}
+	}
+	else if (LastWeaponSkill->hasElement(WATER))
+	{
+		if (PWeaponSkill->hasElement(ICE)) 
+		{
+			effect = SUBEFFECT_INDURATION;
+		}
+		else if	(PWeaponSkill->hasElement(THUNDER)) 
+		{
+			effect = SUBEFFECT_IMPACTION;
+		}
+	}
+	else if (LastWeaponSkill->hasElement(WIND))
+	{
+
+		if (PWeaponSkill->hasElement(DARK) & 1) 
+		{
+			NewEffect->addMod(MOD_DARKRES,0);
+			NewEffect->addMod(MOD_EARTHRES,0);
+			effect = SUBEFFECT_GRAVITATION;
+		}
+		else if (PWeaponSkill->hasElement(EARTH)) 
+		{
+			effect = SUBEFFECT_SCISSION;
+		}
+	}
+	else if (LastWeaponSkill->hasElement(ICE))
+	{
+		if (PWeaponSkill->hasElement(WATER)) 
+		{
+			NewEffect->addMod(MOD_WATERRES,0);
+			NewEffect->addMod(MOD_ICERES,0);
+			effect = SUBEFFECT_DISTORTION;
+		}
+		else if (PWeaponSkill->hasElement(DARK)) 
+		{
+			effect = SUBEFFECT_COMPRESSION;
+		}
+		else if (PWeaponSkill->hasElement(THUNDER)) 
+		{
+			effect = SUBEFFECT_IMPACTION;
+		}
+	}
+	PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SIGNET,1);
+	PDefender->StatusEffectContainer->AddStatusEffect(NewEffect);
+	return effect;
 }

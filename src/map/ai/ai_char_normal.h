@@ -28,6 +28,7 @@
 
 #include "ai_general.h"
 
+
 /************************************************************************
 *																		*
 *  AI поведения обычного персонажа										*
@@ -74,6 +75,7 @@ protected:
 	bool IsMobOwner();
 	bool IsMobSubOwner();
 	bool GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget);
+	SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill);
 };
 
 #endif

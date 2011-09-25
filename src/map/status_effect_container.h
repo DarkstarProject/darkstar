@@ -41,7 +41,7 @@ public:
 	void AddStatusEffect(CStatusEffect* StatusEffect);			
 	bool DelStatusEffect(EFFECT StatusID, uint16 SubID = 0);
 	bool HasStatusEffect(EFFECT StatusID, uint16 SubID = 0);	// проверяем наличие стату-эффекта
-
+	CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);
 	bool EraseStatusEffect (bool RemoveAll = false);			// удаляем первый/все отрицательный эффект
 	bool DispelStatusEffect(bool RemoveAll = false);			// удаляем первый/все положительный эффект
 

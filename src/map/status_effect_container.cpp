@@ -685,6 +685,21 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID, uint16 SubID)
 	return false;
 }
 
+CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint16 SubID)
+{
+	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+	{
+		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
+		   (m_StatusEffectList.at(i)->GetSubID() == SubID))
+		{
+			return m_StatusEffectList[i];
+		}
+	}
+	
+	return 0;
+		    
+
+}
 /************************************************************************
 *																		*
 *  Эффекты во всех методах удаляются одинаково, вынес этот код в		*

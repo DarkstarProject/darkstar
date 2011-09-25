@@ -24,19 +24,17 @@
 #include <string.h>
 #include "weapon_skill.h"
 
-
 CWeaponSkill::CWeaponSkill(uint16 id)
 {
 	m_ID = id;
 	m_AnimationId = 0;
 	m_AOE = 0;
 	//m_JobSkills[0] = 0;
-	m_SkillChain = 0;
 	m_Skilllevel =0; 
 	m_SkillTypeID = 0;
 	m_name = "";
 	m_Range = 0;
-
+	m_SkillChain = 0;
 	memset(m_Job, 0, sizeof(m_Job));
 }
 	
@@ -65,7 +63,7 @@ const int8* CWeaponSkill::getName()
 	return m_name.c_str();
 }
 
-void CWeaponSkill::setSkillChain(uint32 skillChain)
+void CWeaponSkill::setSkillChain(uint8 skillChain)
 {
 	m_SkillChain = skillChain;
 }
@@ -111,7 +109,7 @@ uint8 CWeaponSkill::getSkillLevel()
 	return m_Skilllevel;
 }
 
-uint32 CWeaponSkill::getSkillChain()
+uint8 CWeaponSkill::getSkillChain()
 {
 	return m_SkillChain;
 }
@@ -129,6 +127,11 @@ uint8 CWeaponSkill::getAoe()
 uint8 CWeaponSkill::getRange()
 {
 	return m_Range;
+}
+
+int32 CWeaponSkill::hasElement(ELEMENTS element)
+{
+	return (m_SkillChain & element);
 }
 
 

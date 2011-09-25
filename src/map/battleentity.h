@@ -222,6 +222,27 @@ enum SUBEFFECT
 	SUBEFFECT_SLEEP				= 4,	// 110010	19
 	SUBEFFECT_HP_DRAIN			= 10,	// 110101	43
 
+
+	//SKILLCHAINS
+	//flag 1                            
+	SUBEFFECT_DARKNESS          = 1,   
+	SUBEFFECT_FRAGMENTATION     = 2,	  
+	SUBEFFECT_FUSION            = 3,     
+	SUBEFFECT_LIQUEFACATION     = 4,       
+	SUBEFFECT_REVERBERATION     = 5,		
+	SUBEFFECT_SCISSION			= 6,	   
+	SUBEFFECT_IMPACTION			= 7,	   
+
+	//flag 3
+	SUBEFFECT_LIGHT				= 0,
+	SUBEFFECT_GRAVITATION		= 1,
+	SUBEFFECT_DISTORTION		= 2,
+	SUBEFFECT_COMPRESSION		= 3,
+	SUBEFFECT_INDURATION		= 4,
+	SUBEFFECT_TRANSFIXION		= 5,
+	SUBEFFECT_DETONATION		= 6,
+	
+	SUBEFFECT_NONE				= 99,
 	//unknown
 	SUBEFFECT_MP_DRAIN,
 	SUBEFFECT_TP_DRAIN,
@@ -245,6 +266,18 @@ enum TARGETTYPE
 	TARGET_PLAYER			= 0x10,
 	TARGET_PLAYER_DEAD		= 0x20,
 	TARGET_NPC				= 0x40		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
+};
+
+enum ELEMENTS
+{
+	LIGHT		= 1,
+	DARK		= 2,
+	FIRE		= 4,
+	EARTH		= 8,
+	THUNDER		= 16,
+	WATER		= 32,
+	WIND		= 64,
+	ICE			= 128
 };
 
 struct apAction_t

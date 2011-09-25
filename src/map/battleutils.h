@@ -68,6 +68,7 @@ namespace battleutils
 	int32	GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint8	GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint8	GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+	SUBEFFECT	GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill);
 	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender); 
 	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage);
 

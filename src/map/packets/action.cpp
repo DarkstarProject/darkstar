@@ -31,6 +31,7 @@
 
 #include "../battleentity.h"
 #include "../spell.h"
+#include "../weapon_skill.h"
 
 /************************************************************************
 *																		*
@@ -62,8 +63,15 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		}
 			break;
 		case ACTION_WEAPONSKILL_START:
+			{
+				packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
+			}
 			break;
 		case ACTION_WEAPONSKILL_FINISH:
+
+			{
+				packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
+			}
 			break;
 		case ACTION_ITEM_START:
 		{

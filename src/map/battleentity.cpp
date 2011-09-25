@@ -30,7 +30,6 @@
 #include "battleentity.h"
 #include "battleutils.h"
 
-
 CBattleEntity::CBattleEntity() 
 {
 	m_OwnerID	= 0;
