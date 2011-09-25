@@ -40,10 +40,20 @@ public:
 	uint16		getID();
 	JOBTYPE		getJob();
 	uint8		getLevel();
+	uint8		getAnimationID();
+	uint8		getRange();
+	uint8		getAOE();
+	uint8		getValidTarget();
+	uint16		getRecastTime();
 
 	void		setID(uint16 id);
 	void		setJob(JOBTYPE Job);
 	void		setLevel(uint8 level);
+	void		setAnimationID(uint8 animationID);
+	void		setRange(uint8 range);
+	void		setAOE(uint8 aoe);
+	void		setValidTarget(uint8 validTarget);
+	void		setRecastTime(uint16 recastTime);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -53,8 +63,13 @@ private:
 	uint16		m_ID;
 	JOBTYPE		m_Job;
 	uint8		m_level;
-
+	uint8		m_animationID;
+	uint8		m_range;
+	uint8		m_aoe;
+	uint8		m_validTarget;
+	uint16		m_recastTime;
 	string_t	m_name;
+
 };
 
 #endif

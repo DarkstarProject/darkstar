@@ -160,9 +160,8 @@ void LoadAbilitiesList()
 {
 	memset(g_PAbilityList,0,sizeof(g_PAbilityList));
 
-	const int8* fmtQuery = "SELECT abilityId, name, job, level \
-							FROM abilities \
-							WHERE job > 0 AND job < %u AND abilityId < %u \
+	const int8* fmtQuery = "SELECT abilityId, name, job, level, validTarget, recastTime, animation, `range`, isAOE \
+							FROM abilities WHERE job > 0 AND job < %u AND abilityId < %u \
 							ORDER BY job, level ASC";
 
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_JOBTYPE, MAX_ABILITY_ID);
@@ -172,11 +171,16 @@ void LoadAbilitiesList()
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 		{
 			CAbility* PAbility = new CAbility(Sql_GetIntData(SqlHandle,0));
-
+		
 			PAbility->setName(Sql_GetData(SqlHandle,1));
 			PAbility->setJob((JOBTYPE)Sql_GetIntData(SqlHandle,2));
 			PAbility->setLevel(Sql_GetIntData(SqlHandle,3));
-
+			PAbility->setValidTarget(Sql_GetIntData(SqlHandle,4));
+			PAbility->setRecastTime(Sql_GetIntData(SqlHandle,5));
+			PAbility->setAnimationID(Sql_GetIntData(SqlHandle,6));
+			PAbility->setRange(Sql_GetIntData(SqlHandle,7));
+			PAbility->setAOE(Sql_GetIntData(SqlHandle,8));
+			
 			g_PAbilityList[PAbility->getID()] = PAbility;
 			g_PAbilitiesList[PAbility->getJob()].push_back(PAbility);
 		}
@@ -376,6 +380,7 @@ CAbility* GetAbility(uint16 AbilityID)
 {
 	if (AbilityID < MAX_ABILITY_ID)
 	{
+		ShowDebug(CL_GREEN"Getting CurrentAbility %u \n"CL_RESET, g_PAbilityList[AbilityID]->getID());
 		return g_PAbilityList[AbilityID];
 	}
 	ShowFatalError(CL_RED"AbilityID <%u> is out of range\n", AbilityID);

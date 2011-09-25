@@ -32,6 +32,7 @@
 #include "../battleentity.h"
 #include "../spell.h"
 #include "../weapon_skill.h"
+#include "../ability.h"
 
 /************************************************************************
 *																		*
@@ -71,6 +72,17 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 
 			{
 				packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
+			}
+			break;
+		case ACTION_JOBABILITY_START:
+			{
+
+			}
+			break;
+		case ACTION_JOBABILITY_FINISH:
+			{	
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getID()+16, 54, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getRecastTime(), 86, 10);
 			}
 			break;
 		case ACTION_ITEM_START:

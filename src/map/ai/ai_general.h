@@ -72,6 +72,7 @@ class CZone;
 class CSpell;
 class CItemUsable;
 class CBattleEntity;
+class CAbility;
 class CWeaponSkill;
 
 class CAIGeneral
@@ -81,11 +82,13 @@ public:
 	ACTIONTYPE		GetCurrentAction();
 	CSpell*			GetCurrentSpell();
 	CBattleEntity*	GetBattleTarget();
+	CAbility*		GetCurrentJobAbility();
 	CWeaponSkill*	GetCurrentWeaponSkill();
 
 
 	void			SetCurrentSpell(uint16 SpellID);
 	void			SetCurrentWeaponSkill(uint16 WSkillID);
+	void			SetCurrentJobAbility(uint16 JobAbilityID);
 	void			SetCurrentZone(CZone* Zone);
 	void			SetLastActionTime(uint32 time);
 	void			SetCurrentAction(ACTIONTYPE Action, uint16 TargetID = 0);
@@ -108,6 +111,7 @@ protected:
 	CBattleEntity*	m_PBattleTarget;		// боевая цель - основная
 	CBattleEntity*	m_PBattleSubTarget;		// боевая цель - дополнительная
 	CWeaponSkill*   m_PWeaponSkill;
+	CAbility*		m_PJobAbility;
 };
 
 #endif

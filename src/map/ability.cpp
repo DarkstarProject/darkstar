@@ -59,6 +59,58 @@ uint8 CAbility::getLevel()
 	return m_level;
 }
 
+void CAbility::setRange(uint8 range)
+{
+	m_range = range;
+}
+	
+uint8 CAbility::getRange()
+{
+	return m_range;
+}
+
+void CAbility::setAOE(uint8 aoe)
+{
+	m_aoe = aoe;
+}
+	
+uint8 CAbility::getAOE()
+{
+	return m_aoe;
+}
+
+void CAbility::setAnimationID(uint8 animationID)
+{
+	m_animationID = animationID;
+}
+	
+uint8 CAbility::getAnimationID()
+{
+	return m_animationID;
+}
+
+void CAbility::setRecastTime(uint16 recastTime)
+{
+	m_recastTime =  recastTime;
+}
+	
+uint16 CAbility::getRecastTime()
+{
+	return m_recastTime;
+}
+
+void CAbility::setValidTarget(uint8 validTarget)
+{
+	m_validTarget = validTarget;
+}
+	
+uint8 CAbility::getValidTarget()
+{
+	return m_validTarget;
+}
+
+
+
 const int8* CAbility::getName()
 {
 	return m_name.c_str();

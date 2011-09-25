@@ -508,6 +508,10 @@ int32 SmallPacket0x01A(CCharEntity* PChar, int8* data)
 		case 0x09: // jobability
 		{
 			PrintPacket(data);
+			uint16 JobAbilityID = RBUFW(data,(0x0C));
+			PChar->PBattleAI->SetCurrentJobAbility(JobAbilityID-16);
+			PChar->PBattleAI->SetCurrentAction(ACTION_JOBABILITY_START, TargID);
+			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x0B: // homepoint

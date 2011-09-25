@@ -23,6 +23,7 @@
 
 #include "../spell.h"
 #include "../weapon_skill.h"
+#include "../ability.h" 
 #include "../battleutils.h"
 
 #include "ai_general.h"
@@ -47,6 +48,7 @@ CAIGeneral::CAIGeneral()
 	m_PItemUsable = NULL;
 	m_PBattleTarget = NULL;
 	m_PBattleSubTarget = NULL;
+	m_PJobAbility = NULL;
 }
 
 /************************************************************************
@@ -267,6 +269,39 @@ CWeaponSkill* CAIGeneral::GetCurrentWeaponSkill()
 	return m_PWeaponSkill;
 }
 
+
+/************************************************************************
+*																		*
+*	Set Job Ability														*
+*																		*
+************************************************************************/
+
+void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
+{
+	if (m_ActionType != ACTION_JOBABILITY_START   &&
+		m_ActionType != ACTION_JOBABILITY_FINISH)
+	{
+		//DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
+
+		m_PJobAbility = battleutils::GetAbility(JobAbilityID);
+		
+
+	}
+}
+
+
+/************************************************************************
+*																		*
+*	Gets Current Job Ability											*
+*																		*
+************************************************************************/
+
+CAbility* CAIGeneral::GetCurrentJobAbility()
+{
+	DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
+	
+	return m_PJobAbility;
+}
 
 /************************************************************************
 *																		*

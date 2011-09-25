@@ -30,6 +30,7 @@
 #include "../petutils.h"
 #include "../spell.h"
 #include "../weapon_skill.h"
+#include "../ability.h"
 #include "../vana_time.h"
 #include "../zone.h"
 
@@ -92,6 +93,8 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 		case ACTION_CHANGE_BATTLE_TARGET:	ActionChangeBattleTarget(); break;
 		case ACTION_WEAPONSKILL_START:		ActionWeaponSkillStart();	break; 
 		case ACTION_WEAPONSKILL_FINISH:		ActionWeaponSkillFinish();	break; 
+		case ACTION_JOBABILITY_START:		ActionJobAbilityStart();	break;
+		case ACTION_JOBABILITY_FINISH:		ActionJobAbilityFinish();	break;
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
@@ -116,7 +119,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
 bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget)
 {
-	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || *PBattleTarget != NULL);
+	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || *PBattleTarget != NULL);
 
 	// невозможно написать правильные условия, пока не будет решена задача с PvP
 	// в нынешних условиях PvP исключено
@@ -203,9 +206,16 @@ bool CAICharNormal::IsMobSubOwner()
 
 bool CAICharNormal::IsMobOwner()
 {
-
-	if (m_PBattleTarget->m_OwnerID == 0 || 
-		m_PBattleTarget->m_OwnerID == m_PChar->id) 
+	if (m_PBattleTarget == NULL)
+	{
+		return true;
+	}
+	if (m_PBattleTarget->m_OwnerID == 0)
+	{
+			return true;
+	}
+		
+	if (m_PBattleTarget->m_OwnerID == m_PChar->id) 
 	{
 		return true;
 	}
@@ -234,7 +244,7 @@ bool CAICharNormal::IsMobOwner()
 
 void CAICharNormal::ActionEngage() 
 {
-	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget != NULL);
+	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget != NULL);
 
 	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY))
 	{
@@ -1163,6 +1173,90 @@ void CAICharNormal::ActionMagicInterrupt()
 	m_PBattleSubTarget = NULL;
 }
 
+
+/************************************************************************
+*																		*
+*		Start the Job Ability											*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionJobAbilityStart()
+{
+	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
+	
+	if (m_PJobAbility->getValidTarget() == 4)
+	{
+		CBattleEntity* PBattleTarget = NULL;
+		if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
+		{
+			m_PBattleTarget = PBattleTarget;
+			if (!IsMobOwner())
+			{
+				return;
+			}
+		}
+					
+		if (m_PBattleTarget != m_PChar)
+		{
+			float Distance = distance(m_PChar->loc.p,m_PBattleTarget->loc.p);
+
+			if (Distance > 25)
+			{
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
+
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleTarget = NULL;
+				return;
+			}
+		}
+	}
+		
+	
+
+	apAction_t Action;
+
+	if (m_PJobAbility->getValidTarget() == 4) 
+	{
+		Action.ActionTarget = m_PBattleTarget;
+		m_PBattleTarget->m_OwnerID = m_PChar->id; 
+	}
+	else
+	{
+		Action.ActionTarget = m_PChar;
+	}
+	
+	Action.reaction   = REACTION_NONE ;
+	Action.speceffect = SPECEFFECT_RECOIL;
+	Action.animation  = m_PJobAbility->getAnimationID();
+	//Action.param	  = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
+	Action.messageID  = 100;
+	//Action.flag		  = 0;
+	uint16 test = luautils::OnUseAbility(m_PChar,m_PBattleTarget);
+	m_PChar->m_ActionList.push_back(Action);
+	m_ActionType = ACTION_JOBABILITY_FINISH; 
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+}
+
+
+/************************************************************************
+*																		*
+*			End the Job Ability											*
+*																		*
+************************************************************************/
+
+void CAICharNormal::ActionJobAbilityFinish()
+{
+	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	
+	m_ActionTargetID = 0; 
+	m_PJobAbility = NULL;
+	m_ActionType = ACTION_NONE; 
+	m_PChar->m_ActionList.clear();
+
+}
+
+
 /************************************************************************
 *																		*
 *		Start the weapon skill											*
@@ -1216,7 +1310,6 @@ void CAICharNormal::ActionWeaponSkillStart()
 	Action.speceffect = SPECEFFECT_RECOIL;
 	Action.animation  = m_PWeaponSkill->getAnimationId();
 	Action.param	  = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
-	Action.subparam   = 0;
 	Action.messageID  = 185;
 	Action.flag		  = 0;
 	
@@ -1356,7 +1449,7 @@ void CAICharNormal::ActionAttack()
 			// условие неверное. любоя профессия с отсутсвием h2h skill rank,
 			// даже с экипированным h2h оружием будет махать одной рукой
 		//	ShowDebug(CL_CYAN"WeaponType Sub: %u \n"CL_RESET,m_PChar->m_Weapons[SLOT_SUB]->getType());
-			uint32 numattacks = (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? 2 : 1) + (m_PChar->m_Weapons[SLOT_SUB]->getType() == 26 ? 1 : 0);
+			uint32 numattacks = (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? 2 : 1) + (m_PChar->m_Weapons[SLOT_SUB]->getType() & ITEM_WEAPON ? 1 : 0);
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			for (uint32 i = 0; i < numattacks; ++i) 
 			{

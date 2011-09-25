@@ -67,6 +67,8 @@ protected:
 	void ActionMagicCasting();
 	void ActionMagicFinish();
 	void ActionMagicInterrupt();
+	void ActionJobAbilityStart();
+	void ActionJobAbilityFinish();
 	void ActionWeaponSkillStart();
 	void ActionWeaponSkillFinish();
 	void ActionAttack();

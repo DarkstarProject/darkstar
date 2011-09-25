@@ -1381,35 +1381,27 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
 void BuildingCharTraitsTable(CCharEntity* PChar)
 {
 	std::list<CTrait*> TraitsList;
-	ShowDebug(CL_CYAN"Building Traits List \n" CL_RESET);
 	memset(& PChar->m_TraitList, 0, sizeof(PChar->m_TraitList));
 
 	TraitsList = battleutils::GetTraits(PChar->GetMJob());
-	ShowDebug(CL_GREEN"Traitslist size: %u \n"CL_RESET, TraitsList.size());
 	for (std::list<CTrait*>::iterator it = TraitsList.begin(); it != TraitsList.end(); ++it)
 	{
 		CTrait* PTrait = *it;
-		ShowDebug(CL_YELLOW"Trait: %s Job: %u TraitID: %u \n"CL_RESET, PTrait->getName(), PTrait->getJob(), PTrait->getID());
 		if (PChar->GetMLevel() >= PTrait->getLevel() && PChar->GetMJob() == (JOBTYPE)PTrait->getJob())
 		{
-			ShowDebug(CL_CYAN"Adding Trait %s \n" CL_RESET, PTrait ->getName());
 			addTrait(PChar,  PTrait->getID());
 		}
 	}
 
 	TraitsList = battleutils::GetTraits(PChar->GetSJob());
-	ShowDebug(CL_GREEN"Traitslist size: %u \n"CL_RESET, TraitsList.size());
 	for (std::list<CTrait*>::iterator it = TraitsList.begin(); it != TraitsList.end(); ++it)
 	{
 		CTrait* PTrait = *it;
-		ShowDebug(CL_YELLOW"Trait: %s Job: %u TraitID: %u \n"CL_RESET, PTrait->getName(), PTrait->getJob(), PTrait->getID());
 		if (PChar->GetSLevel() >= PTrait->getLevel() && PChar->GetSJob() == (JOBTYPE)PTrait->getJob())
 		{
-			ShowDebug(CL_CYAN"Adding Trait %s \n" CL_RESET, PTrait ->getName());
 			addTrait(PChar, PTrait->getID());
 		}
 	}
-
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 
