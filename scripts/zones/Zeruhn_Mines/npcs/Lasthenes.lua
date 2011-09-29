@@ -19,9 +19,9 @@ end;
 
 function onTrigger(player,npc)
 	if (player:getXPos() > -79.5 ) then
-		player:startEvent(0xB4);
+		player:startEvent(0x00B4);
 	else
-		player:startEvent(0xB5);
+		player:startEvent(0x00B5);
 	end
 end;
 
@@ -41,4 +41,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+
+	if (csid == 0x00B4) then
+		player:setPos(-84, 0, 20, 129);
+	elseif (csid == 0x00B5) then
+		player:setPos(-74, 0, 20, 0);
+	end
 end;
