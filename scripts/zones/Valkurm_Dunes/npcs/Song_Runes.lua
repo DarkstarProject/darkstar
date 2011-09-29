@@ -52,5 +52,6 @@ function onEventFinish(player,csid,option)
 		player:addFame(WINDURST,WIN_FAME*10);
 		player:setVar("PathOfTheBard_Event",0);
 		player:unlockJob(10); -- Bard
+		player:messageSpecial(7269);  --You can now become a bard!
 	end
 end;
