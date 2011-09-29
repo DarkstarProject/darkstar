@@ -33,10 +33,8 @@ function onTrade(player,npc,trade)
 
         if (feedDay < VanadielDayOfTheYear()) then
             feedReady = 1;
-        elseif (feedDay > VanadielDayOfTheYear()) then
-            if (feedYear < VanadielYear()) then
-                feedReady = 1;
-            end
+        elseif (feedDay > VanadielDayOfTheYear() and feedYear < VanadielYear()) then
+			feedReady = 1;
         end
 
         if (GausebitGrass and gil == 0 and count == 1) then
@@ -55,7 +53,9 @@ function onTrade(player,npc,trade)
                     player:startEvent(0x0040);
                 end
             else
-                player:startEvent(0x0049);
+            	if (feed > 2) then
+                	player:startEvent(0x0049);
+                end
             end
         end
     elseif (ChocoboWounds == 2) then
@@ -74,7 +74,7 @@ function onTrigger(player,npc)
     ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
 
     if (ChocobosWounds == 0) then
-        player:startEvent(Event(0x3e));
+        player:startEvent(0x003e);
     elseif (ChocobosWounds == 1) then
         feed = player:getVar("ChocobosWounds_Event");
 
@@ -128,6 +128,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
         player:setVar("ChocobosWounds_Year",VanadielYear());
         player:tradeComplete();
+		player:startEvent(0x0063); 
     elseif (csid == 0x003c) then
         player:setVar("ChocobosWounds_Event", 5);
         player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
@@ -137,7 +138,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ChocobosWounds_Event", 6);
         player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
         player:setVar("ChocobosWounds_Year",VanadielYear());
-        player:tradeComplete();
+        player:tradeComplete();            
     elseif (csid == 0x0040) then
         player:completeQuest(JEUNO,CHOCOBO_S_WOUNDS);
         player:addKeyItem(CHOCOBO_LICENSE);
@@ -147,8 +148,7 @@ function onEventFinish(player,csid,option)
         player:addFame(SAN_D_ORIA,SAN_FAME*40);
         player:addFame(WINDURST,WIN_FAME*40);
         player:setVar("ChocobosWounds_Event", 0);
-        player:setVar("ChocobosWounds_Time", 0);
+        player:setVar("ChocobosWounds_Day", 0);
         player:setVar("ChocobosWounds_Year",0);
         player:tradeComplete();
-    end
 end;

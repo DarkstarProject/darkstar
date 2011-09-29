@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Upper Jeuno
 -- NPC: Shalott
--- Standard Info NPC
------------------------------------
+-- Optional Involvement in Quest: Save My Son
+--------------------------------
 
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
@@ -18,7 +18,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0064);
+
+	if (player:getQuestStatus(JEUNO, SAVE_MY_SON) == 1) then
+		player:startEvent(0x0065);
+	else
+		player:startEvent(0x0068);
+	end
 end; 
 
 -----------------------------------
