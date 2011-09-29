@@ -4,6 +4,8 @@
 --  Finishes Quest: The Old Monument
 -----------------------------------
 
+require("scripts/globals/settings");
+require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
@@ -23,6 +25,10 @@ function onTrade(player,npc,trade)
 				player:messageSpecial(ITEM_OBTAINED, 634);
 				player:completeQuest(JEUNO,THE_OLD_MONUMENT);
 				player:setVar("TheOldMonument_Event",0);
+				player:setTitle(RESEARCHER_OF_CLASSICS);
+				player:addFame(BASTOK,BAS_FAME*10);
+				player:addFame(SAN_D_ORIA,SAN_FAME*10);
+				player:addFame(WINDURST,WIN_FAME*10);
 				player:tradeComplete();
 			end
 		end		
