@@ -1,9 +1,10 @@
 -----------------------------------
 -- Area: Lower Jeuno
 -- NPC: Mertaire
--- Standard Info NPC
+-- Starts Quest: The Old Monument
 -----------------------------------
 
+require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------

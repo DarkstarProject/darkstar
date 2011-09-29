@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Lower Jeuno
 -- NPC: Bki Tbujhja
--- Standard Info NPC
+-- Involved in Quest: The Old Monument
 -----------------------------------
 
 require("scripts/globals/quests");
