@@ -18,7 +18,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x66);
+--player:startEvent(0x66);
+
+	TheOldMonument = player:getVar("TheOldMonument_Event");
+
+	if (player:getMainLvl() >= 30) then
+		if (TheOldMonument == 0) then
+			player:startEvent(0x0066);
+		end
+	end
 end; 
 
 -----------------------------------
@@ -37,4 +45,8 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+
+	if (csid == 0x0066) then
+		player:setVar("TheOldMonument_Event",1)
+	end
 end;
