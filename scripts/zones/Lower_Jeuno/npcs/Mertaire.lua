@@ -4,6 +4,7 @@
 -- Starts Quest: The Old Monument
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
@@ -12,6 +13,16 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+
+	if (player:getQuestStatus(JEUNO, THE_OLD_MONUMENT) == 2) then
+		count = trade:getItemCount();
+		gil = trade:getGil();
+		PoeticParchment = trade:hasItemQty(634,1);
+		
+		if (PoeticParchment == true and count == 1 and gil == 0) then
+			player:startEvent(0x0065);
+		end
+	end
 end; 
 
 -----------------------------------
@@ -24,7 +35,7 @@ function onTrigger(player,npc)
 	TheOldMonument = player:getVar("TheOldMonument_Event");
 
 	if (player:getMainLvl() >= 30) then
-		if (TheOldMonument == 0) then
+		if (TheOldMonument == 0 and player:getQuestStatus(JEUNO,THE_OLD_MONUMENT) == 0) then
 			player:startEvent(0x0066);
 		end
 	end
@@ -47,7 +58,14 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x0066) then
+	if (csid == 0x0066 and option == 0) then
 		player:setVar("TheOldMonument_Event",1)
+	elseif (csid == 0x0065) then
+		player:completeQuest(JEUNO,A_MINSTREL_IN_DESPAIR);
+		player:addGil(GIL_RATE*2100);
+		player:addFame(BASTOK,BAS_FAME*10);
+		player:addFame(SAN_D_ORIA,SAN_FAME*10);
+		player:addFame(WINDURST,WIN_FAME*10);
+		player:tradeComplete();
 	end
 end;
