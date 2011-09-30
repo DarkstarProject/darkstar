@@ -295,9 +295,9 @@ void LoadChar(CCharEntity* PChar)
 	*/
 
 	const int8* fmtQuery = "SELECT charname, pos_zone, pos_prevzone, pos_rot, pos_x, pos_y, pos_z, boundary, \
-								   home_zone, home_rot, home_x, home_y, home_z, \
-								   nation, quests, keyitems, spells, zones, inventory, safe, storage, locker, \
-								   satchel, sack, missions \
+								   home_zone, home_rot, home_x, home_y, home_z, nation, quests, keyitems, \
+								   spells, zones, inventory, safe, storage, locker, satchel, sack, \
+								   missions, rankSandoria, rankBastok, rankWindurst, rankPoints \
 							FROM chars \
 							WHERE charid = %u;";
 
@@ -366,9 +366,11 @@ void LoadChar(CCharEntity* PChar)
 		length = Sql_GetIntData(SqlHandle,23); 
 		PChar->getStorage(LOC_MOGSACK)->SetSize(length > 30 ? length : 30);
 		
-
-		PChar->profile.rank[PChar->profile.nation] = 1;
-		PChar->profile.rankpoints[PChar->profile.nation] = 0;
+		PChar->profile.rank[0] = (uint16)Sql_GetIntData(SqlHandle,25);
+		PChar->profile.rank[1] = (uint16)Sql_GetIntData(SqlHandle,26);
+		PChar->profile.rank[2] = (uint16)Sql_GetIntData(SqlHandle,27);
+		
+		PChar->profile.rankpoints[PChar->profile.nation] = (uint16)Sql_GetIntData(SqlHandle,28);
 	}
 
 	fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged \
@@ -1946,12 +1948,14 @@ void SaveQuestsList(CCharEntity* PChar)
 
 void SaveMissionsList(CCharEntity* PChar)
 {
-	const int8* fmtQuery = "UPDATE chars SET missions = '%s' WHERE charid = %u;";
+	const int8* fmtQuery = "UPDATE chars SET missions = '%s', rankPoints = %u, rankSandoria = %u, \
+						   rankBastok = %u, rankWindurst = %u WHERE charid = %u;";
 
 	int8 missionslist[sizeof(PChar->m_missionLog)*2+1];
 	Sql_EscapeStringLen(SqlHandle,missionslist,(const int8*)PChar->m_missionLog,sizeof(PChar->m_missionLog));
 
-	Sql_Query(SqlHandle,fmtQuery,missionslist,PChar->id);
+	Sql_Query(SqlHandle,fmtQuery,missionslist,PChar->profile.rankpoints[PChar->profile.nation], \
+		PChar->profile.rank[0],PChar->profile.rank[1], PChar->profile.rank[2], PChar->id);
 }
 
 /************************************************************************

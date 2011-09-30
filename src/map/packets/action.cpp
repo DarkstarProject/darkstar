@@ -85,8 +85,14 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getRecastTime(), 86, 10);
 			}
 			break;
+
+		case ACTION_MOBABILITY_FINISH:
+			{	
+				packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getID()+256,54 , 10);
+			}
+			break;
 		case ACTION_ITEM_START:
-		{
+		{	
 			WBUFB(data,(0x0A)-4) = 0xE4;
 
 			WBUFB(data,(0x0B)-4) = 0x58;

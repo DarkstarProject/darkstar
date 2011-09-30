@@ -87,6 +87,7 @@ namespace luautils
 	
 	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob);
 	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget);
+	int32 OpenAuctionHouse(CCharEntity* PChar); 
 };
 
 #endif //- _LUAUTILS_H -

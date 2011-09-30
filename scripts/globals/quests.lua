@@ -507,7 +507,7 @@ THE_FIREBLOOM_TREE              = 1;
 GREETINGS_TO_THE_GUARDIAN       = 2;
 A_QUESTION_OF_TASTE             = 3;
 EVERYONES_GRUDGING              = 4;
-
+FORGE_YOUR_DESTINY		= 129;
 YOU_CALL_THAT_A_KNIFE           = 6;
 MISSIONARY_MAN                  = 7;
 GULLIBLES_TRAVELS               = 8;

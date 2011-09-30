@@ -1,4 +1,5 @@
-﻿/*
+
+/*
 ===========================================================================
 
   Copyright (c) 2010-2011 Darkstar Dev Teams
@@ -21,45 +22,40 @@
 ===========================================================================
 */
 
-#ifndef _CAIMOBDUMMY_H
-#define _CAIMOBDUMMY_H
+#ifndef _CAUCTIONHOUSEPACKET_H_
+#define _CAUCTIONHOUSEPACKET_H_
 
 #include "../../common/cbasetypes.h"
 
-#include "ai_general.h"
+#include "basic.h"
 
 /************************************************************************
 *																		*
-*  Первая версия поведения монстров, базовая. Монстры наносят только	*
-*  физический урон														*
+*																		*
 *																		*
 ************************************************************************/
 
-class CMobEntity;
+class CCharEntity;
 
-class CAIMobDummy : public CAIGeneral
+class CAuctionHousePacket : public CBasicPacket
 {
 public:
 
-	virtual void CheckCurrentAction(uint32 tick);
-	CAIMobDummy(CMobEntity* PMob);
-	virtual ~CAIMobDummy() {};
-
-protected:
-
-	CMobEntity* m_PMob;	
-
-	void ActionRoaming();
-	void ActionEngage();
-	void ActionDisengage();
-	void ActionFall();
-	void ActionDropItems();
-	void ActionDeath();
-	void ActionFadeOut();
-	void ActionSpawn();
-	void ActionAbilityStart();
-	void ActionAbilityFinish();
-	void ActionAttack();
+	CAuctionHousePacket(CCharEntity* PChar);
 };
 
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+

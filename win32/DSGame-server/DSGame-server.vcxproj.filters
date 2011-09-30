@@ -539,6 +539,9 @@
     <ClInclude Include="..\..\src\map\trait.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\auction_house.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -638,9 +641,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_char_gm.cpp">
-      <Filter>Source Files\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_char_normal.cpp">
       <Filter>Source Files\ai</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_general.cpp">
@@ -1002,6 +1002,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\trait.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\auction_house.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\ai_char_normal.cpp">
+      <Filter>Source Files\ai</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

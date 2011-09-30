@@ -48,6 +48,7 @@
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/message_basic.h"
+#include "../packets/auction_house.h"
 
 namespace luautils
 {
@@ -78,6 +79,7 @@ int32 init()
 	lua_register(LuaHandle,"VanadielDayOfTheYear",luautils::VanadielDayOfTheYear);
 	lua_register(LuaHandle,"VanadielYear",luautils::VanadielYear);
 	lua_register(LuaHandle,"VanadielMonth",luautils::VanadielMonth);
+	
 
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
 	Lunar<CLuaSpell>::Register(LuaHandle);
@@ -483,6 +485,10 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
+		
+	//ShowDebug(CL_YELLOW"Sending AH Packet \n"CL_RESET, PNpc->GetName()); 
+	//PChar->pushPacket(new CAuctionHousePacket(PChar));
+	//return 0;
 	
 	snprintf(File,sizeof(File),"%s/zones/%s/npcs/%s.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName(),PNpc->GetName());
 	
@@ -915,6 +921,7 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 
 int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller) 
 {	
+	//DSP_DEBUG_BREAK(if PKiller == NULL || PMob == NULL);
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
@@ -925,24 +932,28 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		return -1;
 	}
 
-	lua_pushstring(LuaHandle,"onMobDeath");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
-	if( lua_isnil(LuaHandle,-1) )
+	CCharEntity* PChar = (CCharEntity*)PKiller;
+	for (int i = 0; i < PChar->PParty->members.size(); ++i)
 	{
-		ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
-		return -1;
-	}
+		lua_pushstring(LuaHandle,"onMobDeath");
+		lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+		if( lua_isnil(LuaHandle,-1) )
+		{
+			ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
+			return -1;
+		}
 
-	CLuaBaseEntity LuaMobEntity(PMob);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+		CLuaBaseEntity LuaMobEntity(PMob);
+		Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 	
-	CLuaBaseEntity LuaKillerEntity(PKiller);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+		CLuaBaseEntity LuaKillerEntity(PChar->PParty->members[i]);
+		Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
 
-	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
-	{
-		ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
-		return -1;
+		if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+		{
+			ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
+			return -1;
+		}
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }

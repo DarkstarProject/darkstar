@@ -466,6 +466,11 @@ std::list<CTrait*> GetTraits(JOBTYPE JobID)
 
 uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage)
 {
+	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE))
+	{
+		damage = 0;
+	}
+
 	damage = (damage * (100 + PDefender->getMod(MOD_DMG)))/100;
 
 	switch(PAttacker->m_Weapons[SLOT_MAIN]->getDmgType())
@@ -517,6 +522,8 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			}
 			break;
 		}
+	
+		(CCharEntity*)PDefender->addTP(3);
 		((CCharEntity*)PDefender)->pushPacket(new CCharHealthPacket((CCharEntity*)PDefender));
 	}
 
