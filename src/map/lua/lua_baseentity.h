@@ -96,7 +96,7 @@ public:
 	
 	int32 getRankPoints(lua_State*);		// Get Current Rank points
 	int32 setRankPoints(lua_State*);		// Set Current Rank points
-	
+	int32 addRankPoints(lua_State*);		// Add rank points to existing rank point total
 
 	int32 addKeyItem(lua_State*);			// добавляем ключевой предмет
 	int32 seenKeyItem(lua_State*);			// проверяем, было ли описание ключевого предмета прочитано
