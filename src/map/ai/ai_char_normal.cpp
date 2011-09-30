@@ -894,7 +894,7 @@ void CAICharNormal::ActionMagicStart()
 		} 
 		else 
 		{
-			if (m_PSpell->getMPCost() > m_PChar->health.mp)
+			if (m_PSpell->getMPCost() > m_PChar->health.mp && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
 			{
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,34));
 
@@ -1044,7 +1044,7 @@ void CAICharNormal::ActionMagicCasting()
 				return;
 			}
 		} else {
-			if (m_PSpell->getMPCost() > m_PChar->health.mp)
+			if (m_PSpell->getMPCost() > m_PChar->health.mp && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
 			{
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,34));
 
@@ -1052,8 +1052,11 @@ void CAICharNormal::ActionMagicCasting()
 				ActionMagicInterrupt();
 				return;
 			} else {
-				m_PChar->addMP(-(int16)m_PSpell->getMPCost());
-				m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+				if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
+				{
+					m_PChar->addMP(-(int16)m_PSpell->getMPCost());
+					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+				}
 			}
 		}
 
