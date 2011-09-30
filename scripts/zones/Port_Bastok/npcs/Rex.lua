@@ -75,7 +75,7 @@ gil = 0;
 		gil = 200;
 	elseif option == MAP_OF_THE_JEUNO_AREA then
 		gil = 600;
-	elseif option == MAP_OF_ZERUHN_MINES then
+	elseif option == MAP_OF_THE_ZERUHN_MINES then
      		gil = 200;
 	elseif option == MAP_OF_THE_PALBOROUGH_MINES then
     		gil = 600;
@@ -87,6 +87,8 @@ gil = 0;
 	   player:setGil(player:getGil() - gil);
 	   player:addKeyItem(option);
 	   player:messageSpecial(KEYITEM_OBTAINED,keyItem); 
+	else
+	   player:messageSpecial(6383);
     	end
   end
 end;

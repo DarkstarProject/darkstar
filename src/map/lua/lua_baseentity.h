@@ -94,7 +94,7 @@ public:
 	int32 getRank(lua_State*);				// Get Current Rank
 	int32 setRank(lua_State*);				// Set Rank
 	
-	int32 getRankPoints(lua_State*);		// Get Current Rank points
+	int32 getRankPoints(lua_State*);		// Get Current Rank points	
 	int32 setRankPoints(lua_State*);		// Set Current Rank points
 	int32 addRankPoints(lua_State*);		// Add rank points to existing rank point total
 

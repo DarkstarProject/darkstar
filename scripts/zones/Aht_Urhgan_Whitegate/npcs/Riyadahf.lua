@@ -1,12 +1,12 @@
 -----------------------------------
--- Area: Rabao
--- NPC: Ashu Bolkhomo
+-- Area: Aht'Urhgan Whitegate
+-- NPC: Riyadahf
 -- Map Seller NPC
 -----------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Rabao/textids");
+require("scripts/zones/Aht_Urhgan_Whitegate/textids");
 require("scripts/globals/keyitems");
 -----------------------------------
 -- onTrade Action
@@ -24,16 +24,19 @@ function onTrigger(player,npc)
 
 mapVar = 0;
 
-	if player:hasKeyItem(MAP_OF_THE_KUZOTZ_REGION) then
+	if player:hasKeyItem(MAP_OF_AL_ZAHBI) then
 		   mapVar = mapVar + 4;
 	end
-	if player:hasKeyItem(MAP_OF_THE_VOLLBOW_REGION) then
+	if player:hasKeyItem(MAP_OF_NASHMAU) then
 		   mapVar = mapVar + 8;
 	end
-	if player:hasKeyItem(MAP_OF_THE_KORROLOKA_TUNNEL) then
+	if player:hasKeyItem(MAP_OF_WAJAOM_WOODLANDS) then
 		   mapVar = mapVar + 16;
 	end
-    player:startEvent(0x03ee, mapVar);
+	if player:hasKeyItem(MAP_OF_BHAFLAU_THICKETS) then
+		   mapVar = mapVar + 32;
+	end
+    player:startEvent(0x0233, mapVar);
 end;
 
 -----------------------------------
@@ -53,12 +56,14 @@ function onEventFinish(player,csid,option)
 keyItem = option;
 gil = 0;
 
-  if (csid==0x03ee and option ~= 1073741824) then
-	if option == MAP_OF_THE_KUZOTZ_REGION then
+  if (csid==0x0233 and option ~= 1073741824) then
+	if option == MAP_OF_AL_ZAHBI then
+		gil = 600;
+ 	elseif option == MAP_OF_NASHMAU then
 		gil = 3000;
- 	elseif option == MAP_OF_THE_VOLLBOW_REGION then
+	elseif option == MAP_OF_WAJAOM_WOODLANDS then
 		gil = 3000;
-	elseif option == MAP_OF_THE_KORROLOKA_TUNNEL then
+	elseif option == MAP_OF_BHAFLAU_THICKETS then
 		gil = 3000;
 	end
 
@@ -67,7 +72,7 @@ gil = 0;
 	   player:addKeyItem(option);
 	   player:messageSpecial(KEYITEM_OBTAINED,keyItem); 
 	else
-	   player:messageSpecial(6386);    
-	end
+	   player:messageSpecial(0220);
+    	end
   end
 end;

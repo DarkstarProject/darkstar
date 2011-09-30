@@ -1,15 +1,15 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6375;	-- You cannot obtain the item <item> come back again after sorting your inventory
-FULL_INVENTORY_AFTER_TRADE = 6377;	-- You cannot obtain the <item>. Try trading again after sorting your inventory.
-             ITEM_OBTAINED = 6378;	-- Obtained: <item>.
-              GIL_OBTAINED = 6379;	-- Obtained <number> gil.
-          KEYITEM_OBTAINED = 6381;	-- Obtained key item: <keyitem>.
-			 HOMEPOINT_SET = 6451;	-- Home point set!
-
-	 CONQUEST = 7742;  -- You've earned conquest points!
-MOGHOUSE_EXIT = 7686;  -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
+ITEM_CANNOT_BE_OBTAINED 	= 6375;	-- You cannot obtain the item <item> come back again after sorting your inventory
+FULL_INVENTORY_AFTER_TRADE 	= 6377;	-- You cannot obtain the <item>. Try trading again after sorting your inventory.
+ITEM_OBTAINED 			= 6378;	-- Obtained: <item>.
+GIL_OBTAINED 			= 6379;	-- Obtained <number> gil.
+KEYITEM_OBTAINED		= 6381;	-- Obtained key item: <keyitem>.
+HOMEPOINT_SET 			= 6451;	-- Home point set!
+NOT_ENOUGH_GIL			= 6383; -- You do not have enough gil.
+CONQUEST 			= 7742;  -- You've earned conquest points!
+MOGHOUSE_EXIT 			= 7686;  -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 
 -- Quest Items
     BRASS_HAIRPIN = 12497;

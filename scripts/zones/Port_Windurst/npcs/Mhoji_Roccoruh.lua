@@ -87,6 +87,8 @@ gil = 0;
 	   player:setGil(player:getGil() - gil);
 	   player:addKeyItem(option);
 	   player:messageSpecial(KEYITEM_OBTAINED,keyItem); 
+	else
+	   player:messageSpecial(10950);
     	end
   end
 end;

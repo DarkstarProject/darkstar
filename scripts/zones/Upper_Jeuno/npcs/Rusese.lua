@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
 					player:delGil(Maps[i+1]);
 					player:messageSpecial(KEYITEM_OBTAINED,option);
 				else
-					--player:showText(npc,message);
+					player:messageSpecial(6542);
 				end
 				break;
 			end
