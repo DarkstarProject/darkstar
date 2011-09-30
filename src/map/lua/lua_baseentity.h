@@ -91,9 +91,13 @@ public:
 	int32 getCurrentMission(lua_State*);	// Gets the current mission
 	int32 completeMission(lua_State*);		// Complete Mission
 
-	int32 getRank(lua_State*);				// Get Current Rank by nation
-	int32 setRank(lua_State*);				// Set Rank by nation
+	int32 getRank(lua_State*);				// Get Current Rank
+	int32 setRank(lua_State*);				// Set Rank
 	
+	int32 getRankPoints(lua_State*);		// Get Current Rank points
+	int32 setRankPoints(lua_State*);		// Set Current Rank points
+	
+
 	int32 addKeyItem(lua_State*);			// добавляем ключевой предмет
 	int32 seenKeyItem(lua_State*);			// проверяем, было ли описание ключевого предмета прочитано
 	int32 unseenKeyItem(lua_State*);		// Attempt to remove the keyitem from the seen list

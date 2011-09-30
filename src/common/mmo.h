@@ -160,7 +160,7 @@ struct profile_t
 	uint16	   title;			// звание
 	uint16     fame[4];			// известность
 	uint8 	   rank[3];			// рагн в трех государствах
-	uint32	   rankpoints[3];	// очки ранга в трех государствах
+	uint32	   rankpoints;	// очки ранга в трех государствах
 	location_t home_point;		// точка возрождения персонажа
 };
 

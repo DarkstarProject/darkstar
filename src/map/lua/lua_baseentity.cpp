@@ -556,6 +556,49 @@ inline int32 CLuaBaseEntity::getNation(lua_State *L)
 	return 1;
 }
 
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getRankPoints(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype == TYPE_PC )
+		{
+			CCharEntity * PChar = (CCharEntity*)m_PBaseEntity;
+			uint16 rankPoints = 0;
+
+				rankPoints = PChar->profile.rankpoints;
+				lua_pushinteger( L, rankPoints);
+				return 1;
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::setRankPoints(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype == TYPE_PC ) 
+		{
+			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+			{
+				int32 rankPoints = (int32)lua_tointeger(L, -1);
+				CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+				PChar->profile.rankpoints = rankPoints;  
+				charutils::SaveMissionsList(PChar);
+				return 0;
+			}
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+
 inline int32 CLuaBaseEntity::getRank(lua_State *L)
 {
 	if( m_PBaseEntity != NULL )
@@ -2693,6 +2736,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRank),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRank),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRankPoints),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRankPoints),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,seenKeyItem),

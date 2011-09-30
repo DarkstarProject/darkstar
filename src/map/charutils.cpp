@@ -370,7 +370,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->profile.rank[1] = (uint16)Sql_GetIntData(SqlHandle,26);
 		PChar->profile.rank[2] = (uint16)Sql_GetIntData(SqlHandle,27);
 		
-		PChar->profile.rankpoints[PChar->profile.nation] = (uint16)Sql_GetIntData(SqlHandle,28);
+		PChar->profile.rankpoints = (uint16)Sql_GetIntData(SqlHandle,28);
 	}
 
 	fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged \
@@ -1954,7 +1954,7 @@ void SaveMissionsList(CCharEntity* PChar)
 	int8 missionslist[sizeof(PChar->m_missionLog)*2+1];
 	Sql_EscapeStringLen(SqlHandle,missionslist,(const int8*)PChar->m_missionLog,sizeof(PChar->m_missionLog));
 
-	Sql_Query(SqlHandle,fmtQuery,missionslist,PChar->profile.rankpoints[PChar->profile.nation], \
+	Sql_Query(SqlHandle,fmtQuery,missionslist,PChar->profile.rankpoints, \
 		PChar->profile.rank[0],PChar->profile.rank[1], PChar->profile.rank[2], PChar->id);
 }
 

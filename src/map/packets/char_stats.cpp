@@ -73,7 +73,7 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 
 	WBUFW(data,(0x44)-4) = PChar->profile.title;
 	WBUFB(data,(0x46)-4) = PChar->profile.rank[PChar->profile.nation];
-	WBUFW(data,(0x48)-4) = PChar->profile.rankpoints[PChar->profile.nation];
+	WBUFW(data,(0x48)-4) = PChar->profile.rankpoints;
 	WBUFB(data,(0x4A)-4) = PChar->profile.home_point.zone;
 	WBUFB(data,(0x50)-4) = PChar->profile.nation; 
 }
