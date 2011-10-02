@@ -38,8 +38,8 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	this->type = 0x61;	
 	this->size = 0x2a;	
 	
-	WBUFL(data,(0x04)-4) = PChar->health.maxhp;
-	WBUFL(data,(0x08)-4) = PChar->health.maxmp;
+	WBUFL(data,(0x04)-4) = PChar->health.maxhp + PChar->getMod(MOD_HP) + PChar->getMod(MOD_CONVMPTOHP) - PChar->getMod(MOD_CONVHPTOMP);
+	WBUFL(data,(0x08)-4) = PChar->health.maxmp + PChar->getMod(MOD_MP) - PChar->getMod(MOD_CONVMPTOHP) +  PChar->getMod(MOD_CONVHPTOMP);
 
 	WBUFB(data,(0x0C)-4) = PChar->GetMJob();
 	WBUFB(data,(0x0D)-4) = PChar->GetMLevel();
@@ -58,9 +58,21 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	WBUFW(data,(0x2A)-4) = PChar->getMod(MOD_INT);
 	WBUFW(data,(0x2C)-4) = PChar->getMod(MOD_MND);
 	WBUFW(data,(0x2E)-4) = PChar->getMod(MOD_CHR);
+	
+	int16 attStat = PChar->getMod(MOD_ATT) + (PChar->stats.STR + PChar->getMod(MOD_STR))/2;
+	if (PChar->getMod(MOD_ATTP) != 0)
+	{
+		attStat += attStat * (PChar->getMod(MOD_ATTP)*.01);
+	}
+	
+	int16 defStat = PChar->getMod(MOD_DEF) + (PChar->stats.VIT + PChar->getMod(MOD_VIT))/2; //172
+	if (PChar->getMod(MOD_DEFP) != 0)   // -1500
+	{
+		defStat += PChar->getMod(MOD_DEFP)*.01 * defStat;  
+	}
 
-	WBUFW(data,(0x30)-4) = PChar->getMod(MOD_ATT) + (PChar->stats.STR + PChar->getMod(MOD_STR))/2;
-	WBUFW(data,(0x32)-4) = PChar->getMod(MOD_DEF) + (PChar->stats.VIT + PChar->getMod(MOD_VIT))/2;
+	WBUFW(data,(0x30)-4) = attStat;
+	WBUFW(data,(0x32)-4) = defStat;
 
 	WBUFW(data,(0x34)-4) = PChar->getMod(MOD_FIREDEF);
 	WBUFW(data,(0x36)-4) = PChar->getMod(MOD_ICEDEF);

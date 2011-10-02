@@ -1254,7 +1254,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 	
 	m_ActionTargetID = 0; 
 	m_PJobAbility = NULL;
-	m_ActionType = ACTION_ATTACK; 
+	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PChar->m_ActionList.clear();
 
 }

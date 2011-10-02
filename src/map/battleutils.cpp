@@ -584,9 +584,13 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender)  
 {
+	
 	float attackeratt = PAttacker->getMod(MOD_ATT) + (PAttacker->stats.STR + PAttacker->getMod(MOD_STR))/2;
+	attackeratt = (PAttacker->getMod(MOD_ATTP) != 0 ? attackeratt + (attackeratt * (PAttacker->getMod(MOD_ATTP)*.01)) : attackeratt);
+		
 	float defenderdef = PDefender->getMod(MOD_DEF) + (PDefender->stats.VIT + PDefender->getMod(MOD_VIT))/2;
-
+	defenderdef = (PDefender->getMod(MOD_DEFP) != 0 ? defenderdef + (defenderdef * (PDefender->getMod(MOD_DEFP)*.01)) : defenderdef);
+	
 	float cRatio = attackeratt / defenderdef;
 
 	float cRatioMax = 0;
@@ -633,7 +637,7 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
 	int32 rank = PAttacker->m_Weapons[SLOT_MAIN]->getDamage() / 9; 
 
-	float dif = (PAttacker->stats.STR + PAttacker->getMod(MOD_STR)) - (PDefender->stats.VIT + PDefender->getMod(MOD_VIT));
+	float dif = ((PAttacker->stats.STR * 2) + PAttacker->getMod(MOD_STR)) - ((PDefender->stats.VIT * 2) + PDefender->getMod(MOD_VIT));
 
 	int32 fstr = 1.95 + 0.195 * dif;
 
