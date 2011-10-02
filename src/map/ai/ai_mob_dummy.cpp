@@ -392,7 +392,11 @@ void CAIMobDummy::ActionAttack()
 
 				uint16 damage = 0;
 
-				if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
+				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
+				{
+					Action.messageID = 32; 
+				}
+				else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
 				{
 					Action.reaction   = REACTION_HIT;
 					Action.speceffect = SPECEFFECT_HIT;

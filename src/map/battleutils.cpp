@@ -540,18 +540,13 @@ uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
 	int32 hitrate = 75;
 
-	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE)) 
-	{
-		hitrate = 0;
-	}else{
 		int32 defendereva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + (PAttacker->stats.AGI + PAttacker->getMod(MOD_AGI))/2;
 		int32 attackeracc = (PAttacker->getMod(MOD_ACC) * (100 + PAttacker->getMod(MOD_ACCP)))/100 + (PAttacker->stats.DEX + PAttacker->getMod(MOD_DEX))/2; 
 	
 		hitrate = hitrate + (attackeracc - defendereva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
 		hitrate = cap_value(hitrate, 20, 95);
-	}
-
+	
 	return (uint8)hitrate;
 }
 

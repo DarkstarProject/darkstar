@@ -285,14 +285,6 @@ void CalculateStats(CCharEntity* PChar)
 
 void LoadChar(CCharEntity* PChar)
 {
-	/*PChar->getStorage(LOC_INVENTORY)->SetSize(30);
-	PChar->getStorage(LOC_MOGSAFE)->SetSize(30);
-	PChar->getStorage(LOC_STORAGE)->SetSize(0);
-	PChar->getStorage(LOC_TEMPITEMS)->SetSize(18);
-	PChar->getStorage(LOC_MOGLOCKER)->SetSize(0);
-	PChar->getStorage(LOC_MOGSATCHEL)->SetSize(30);
-	PChar->getStorage(LOC_MOGSACK)->SetSize(30);
-	*/
 
 	const int8* fmtQuery = "SELECT charname, pos_zone, pos_prevzone, pos_rot, pos_x, pos_y, pos_z, boundary, \
 								   home_zone, home_rot, home_x, home_y, home_z, nation, quests, keyitems, \

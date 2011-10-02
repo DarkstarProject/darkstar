@@ -1254,7 +1254,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 	
 	m_ActionTargetID = 0; 
 	m_PJobAbility = NULL;
-	m_ActionType = ACTION_NONE; 
+	m_ActionType = ACTION_ATTACK; 
 	m_PChar->m_ActionList.clear();
 
 }
@@ -1410,7 +1410,8 @@ void CAICharNormal::ActionAttack()
 		return;
 	}
 
-	uint16 WeaponDelay = m_PChar->m_Weapons[SLOT_MAIN] ->getDelay();
+	uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN] ->getDelay());
+		//uint16 WeaponDelay = m_PChar->m_Weapons[SLOT_MAIN] ->getDelay();
 
 	if ((m_Tick - m_LastActionTime) > WeaponDelay)
 	{
@@ -1452,7 +1453,7 @@ void CAICharNormal::ActionAttack()
 			// условие неверное. любоя профессия с отсутсвием h2h skill rank,
 			// даже с экипированным h2h оружием будет махать одной рукой
 		//	ShowDebug(CL_CYAN"WeaponType Sub: %u \n"CL_RESET,m_PChar->m_Weapons[SLOT_SUB]->getType());
-			uint32 numattacks = (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? 2 : 1) + (m_PChar->m_Weapons[SLOT_SUB]->getType() & ITEM_WEAPON ? 1 : 0);
+			uint32 numattacks = (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? 2 : 1);
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			for (uint32 i = 0; i < numattacks; ++i) 
 			{
