@@ -25,11 +25,11 @@ function onTrigger(player,npc)
 	Painting = player:hasKeyItem(PAINTING_OF_A_WINDMILL);
 
 	if (SignPost == 1 and Painting == false) then
-        player:specialMessage(SIGNPOST_DIALOG_2);
+        player:messageSpecial(921);
 		player:addKeyItem(PAINTING_OF_A_WINDMILL);
 		player:messageSpecial(KEYITEM_OBTAINED, PAINTING_OF_A_WINDMILL);
     else
-        player:specialMessage(SIGNPOST_DIALOG_1);
+        player:messageSpecial(920);
 	end
 end;
 

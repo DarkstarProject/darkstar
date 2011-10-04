@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 		questStatus = player:getVar("MomTheAdventurer_Event");
 		zoneStatus = player:needToZone();
 
-		if (MomTheAdventurer ~= 2 and questStatus ~= 2) then
+		if (MomTheAdventurer ~= 2 and questStatus == 0) then
 			player:startEvent(0x00e6);
 		elseif (MomTheAdventurer >= 1 and questStatus == 2) then
 			if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH)) then
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
 			else
 				player:startEvent(0x00e9);
 			end
-		elseif (MomTheAdventurer == 2 and questStatus == 3) then
+		elseif (MomTheAdventurer == 2) then
 			if (zoneStatus) then
 				player:startEvent(0x007f);
 			else
@@ -75,10 +75,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 0x00e6) and (option == 0) then
-		freeInventory = player:getFreeSlotsCount();
-		MomTheAdventurer = player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER);
-		
-		if (freeInventory > 0 and MomTheAdventurer == 0) then
+		if (player:getFreeSlotsCount() > 0) then
 			player:addQuest(BASTOK,MOM_THE_ADVENTURER);
 			player:setVar("MomTheAdventurer_Event",1);
 			player:addItem(FIRE_CRYSTAL);
@@ -87,9 +84,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,FIRE_CRYSTAL);
 		end
 	elseif (csid == 0x00e9 or csid == 0x00ea) then
-		MomTheAdventurer = player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER);
-
-		if (MomTheAdventurer == 1) then
+		if (player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER) == 1) then
 			player:completeQuest(BASTOK,MOM_THE_ADVENTURER);
 			player:addFame(BASTOK,BAS_FAME*50);
 		else
@@ -106,7 +101,7 @@ function onEventFinish(player,csid,option)
 		player:setTitle(RINGBEARER);
 		player:addGil(GIL_RATE*gilReward);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*gilReward);
-		player:setVar("MomTheAdventurer_Event",3)
+		player:setVar("MomTheAdventurer_Event",0)
 	elseif (csid == 0x00eb and option == 0) then
 		player:addQuest(BASTOK,BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
    end
