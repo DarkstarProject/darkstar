@@ -5,6 +5,7 @@
 -- Starts & Ends Quest: Guest of Hauteur
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -25,28 +26,30 @@ function onTrigger(player,npc)
  WelcometoBastok = player:getQuestStatus(BASTOK,WELCOME_TO_BASTOK);
  GuestofHauteur = player:getQuestStatus(BASTOK,GUEST_OF_HAUTEUR);
 
-	if (WelcometoBastok ~= 2 or GuestofHauteur ~= 2) then
-
+	if (WelcometoBastok ~= 2) then
 		wtbStatus = player:getVar("WelcometoBastok_Event");
- 		gohStatus = player:getVar("GuestofHauteur_Event");
-		questKeyItem = player:hasKeyItem(LETTERS_FROM_DOMIEN);
-		pFame = player:getFameLevel(BASTOK);		
-		
+
 		if (WelcometoBastok == 0) then
 			player:startEvent(0x32);
-		elseif (WelcometoBastok == 1 and wtbStatus == 0) then
-			player:startEvent(0x33);
-		elseif (WelcometoBastok == 1 and wtbStatus == 1) then
-			player:startEvent(0x35);
-		elseif (pFame >= 3 and GuestofHauteur == 0 and WelcometoBastok == 2) then
-			player:startEvent(0x37);
-		elseif (GuestofHauteur == 1 and gohStatus == 0) then
-			player:startEvent(0x38);
-		elseif (GuestofHauteur == 1 and gohStatus == 1 and questKeyItem == true) then
-			player:startEvent(0x3a);
+        else
+		    if (wtbStatus == 0) then
+			    player:startEvent(0x33);
+		    elseif (wtbStatus == 1) then
+			    player:startEvent(0x35);
+            end
+	    end
+    elseif (GuestofHauteur ~=2 and WelcometoBastok == 2 and player:getFameLevel(BASTOK) >= 3 and player:getMainLvl() >= 31) then
+ 		gohStatus = player:getVar("GuestofHauteur_Event");
+
+        if (GuestofHauteur == 0 ) then
+            player:startEvent(0x37);
 		else
-			player:messageSpecial(POWHATAN_DIALOG_1);		
-		end
+            if (gohStatus == 0) then
+			    player:startEvent(0x38);
+		    elseif (gohStatus == 1) then
+			    player:startEvent(0x3a);
+            end
+        end
 	else
 		player:messageSpecial(POWHATAN_DIALOG_1);
 	end
