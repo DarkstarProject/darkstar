@@ -2301,6 +2301,44 @@ inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::addPartyEffect(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype != TYPE_NPC )
+		{
+			if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
+				!lua_isnil(L,2) && lua_isnumber(L,2) &&
+				!lua_isnil(L,3) && lua_isnumber(L,3) && 
+				!lua_isnil(L,4) && lua_isnumber(L,4) )
+			{
+				int32 n = lua_gettop(L);
+
+				CStatusEffect * PEffect = new CStatusEffect(
+					(EFFECT)lua_tointeger(L,1),
+					(uint16)lua_tointeger(L,2),
+					(uint16)lua_tointeger(L,3),
+					(uint16)lua_tointeger(L,4),
+					(n >= 5 ? (uint16)lua_tointeger(L,5) : 0),
+					(n >= 6 ? (uint16)lua_tointeger(L,6) : 0));
+
+				CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+				
+				for (int i=0; i< PChar->PParty->members.size(); ++i)
+				{
+					if (PChar->PParty->members[i]->loc.zone == PChar->loc.zone) 
+					{
+						PChar->PParty->members[i]->StatusEffectContainer->AddStatusEffect(PEffect);
+					}
+				}
+				return 0;
+			}
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::hasStatusEffect(lua_State *L)
@@ -2349,6 +2387,38 @@ inline int32 CLuaBaseEntity::delStatusEffect(lua_State *L)
 	lua_pushnil(L);
 	return 1;
 }
+
+
+inline int32 CLuaBaseEntity::removePartyEffect(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype != TYPE_NPC )
+		{
+			if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+			{
+				int32 n = lua_gettop(L);
+
+
+					CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+				
+				for (int i=0; i< PChar->PParty->members.size(); ++i)
+				{
+					if (PChar->PParty->members[i]->loc.zone == PChar->loc.zone) 
+					{
+						PChar->PParty->members[i]->StatusEffectContainer->DelStatusEffect(
+					(EFFECT)lua_tointeger(L,1), (n >= 2 ? (uint16)lua_tointeger(L,2) : 0));
+					}
+				}
+				
+				return 0;
+			}
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
 
 //==========================================================//
 
@@ -2611,7 +2681,7 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 {
 	if ( m_PBaseEntity != NULL )
 	{
-	
+		
 	}
 	return 0;
 }
@@ -2822,5 +2892,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,increaseContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,decreaseContainerSize),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
 	{NULL,NULL}
 };

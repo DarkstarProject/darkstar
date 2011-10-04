@@ -71,6 +71,7 @@ int32 init()
 	lua_register(LuaHandle,"print",luautils::print);
 	lua_register(LuaHandle,"GetNPCByID",luautils::GetNPCByID);
 	lua_register(LuaHandle,"SpawnMOBByID",luautils::SpawnMOBByID);
+	lua_register(LuaHandle,"DeSpawnMOBByID",luautils::DeSpawnMOBByID);
 	lua_register(LuaHandle,"VanadielTOTD",luautils::VanadielTOTD);
 	lua_register(LuaHandle,"VanadielHour",luautils::VanadielHour);
 	lua_register(LuaHandle,"VanadielMinute",luautils::VanadielMinute);
@@ -256,9 +257,7 @@ int32 VanadielTimeOffset(lua_State* L)
 }
 
 /************************************************************************
-*																		*
-*  Возрождение монстра по его ID.										*
-*																		*
+*  Spawn a mob using mob ID.											*
 ************************************************************************/
 
 int32 SpawnMOBByID(lua_State* L)
@@ -280,6 +279,30 @@ int32 SpawnMOBByID(lua_State* L)
 	lua_pushnil(L);
 	return 1;
 }
+
+/************************************************************************
+*  DeSpawn mob using mob ID.											*
+************************************************************************/
+
+int32 DeSpawnMOBByID(lua_State* L)
+{
+	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+	{
+		uint32 mobid = (uint32)lua_tointeger(L, -1);
+		uint8  zone  = (mobid >> 12)-4096;
+
+		CMobEntity* PMob = (CMobEntity*)zoneutils::GetZone(zone)->GetEntity((uint16)mobid & 0x0FFF, TYPE_MOB);
+		if (PMob != NULL)
+		{
+			PMob->PBattleAI->SetLastActionTime(0);
+			PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+		}
+		return 0;
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
 
 /************************************************************************
 *																		*
@@ -689,8 +712,13 @@ int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 
 	if (PEntity->objtype == TYPE_PC)
 	{
-		((CCharEntity*)PEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity));
-		((CCharEntity*)PEntity)->pushPacket(new CCharSyncPacket((CCharEntity*)PEntity));
+		CCharEntity* PChar = (CCharEntity*)PEntity;
+		PChar->pushPacket(new CCharUpdatePacket(PChar));
+		PChar->pushPacket(new CCharSyncPacket(PChar));
+		if (PStatusEffect->GetStatusID() <512)
+		{
+			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,PStatusEffect->GetStatusID(),0,205));
+		}
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
@@ -775,13 +803,18 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		ShowError("luautils::OnEffectLose: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-
+	 
 	PEntity->delModifiers(&PStatusEffect->modList);
 
 	if (PEntity->objtype == TYPE_PC)
 	{
-		((CCharEntity*)PEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity));
-		((CCharEntity*)PEntity)->pushPacket(new CCharSyncPacket((CCharEntity*)PEntity));
+		CCharEntity* PChar = (CCharEntity*)PEntity;
+		if (PStatusEffect->GetStatusID() < 512)
+		{
+			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,PStatusEffect->GetStatusID(),0,206));
+		}
+		PChar->pushPacket(new CCharUpdatePacket(PChar));
+		PChar->pushPacket(new CCharSyncPacket(PChar));
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }

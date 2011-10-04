@@ -162,6 +162,10 @@ public:
 	int32 delStatusEffect(lua_State*);		// удаляем статус эффект
 	int32 eraseStatusEffect(lua_State*);	// удаляем первый отрицательный эффект
 	int32 dispelStatusEffect(lua_State*);	// удаляем первый положительный эффект
+	int32 addPartyEffect(lua_State*);		// Adds Effect to all party members
+	int32 removePartyEffect(lua_State*);	// Removes Effect from all party members
+
+
 
 	int32 addMod(lua_State*);				// дабавляем модификатор
 	int32 getMod(lua_State*);				// получаем значение модификатора

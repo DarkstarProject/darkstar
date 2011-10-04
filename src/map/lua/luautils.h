@@ -47,8 +47,9 @@ namespace luautils
 	int32 free();
 	int32 print(lua_State*);
 
-	int32 GetNPCByID(lua_State*);												// получаем в скрипте указатель на NPC по его ID
-	int32 SpawnMOBByID(lua_State*);												// возрождаем монстра. назначение - NMs, BCNM, квестовые и т.д.
+	int32 GetNPCByID(lua_State*);												// Returns NPC By Id
+	int32 SpawnMOBByID(lua_State*);												// Spawn Mob By Mob Id - NMs, BCNM...
+	int32 DeSpawnMOBByID(lua_State*);											// Despawn (Fade Out) Mob By Id
 	int32 VanadielTOTD(lua_State*);												// текущее игровое время суток
 	int32 VanadielHour(lua_State*);												// текущие Vanadiel часы
 	int32 VanadielMinute(lua_State*);											// текущие Vanadiel минуты
