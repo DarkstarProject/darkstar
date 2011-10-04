@@ -1,7 +1,7 @@
 -----------------------------------
 --	Area: Southern San d'Oria
 --	NPC: Chanpau
---  General Info NPC
+--  Optional Involvement in Quest: A Squire's Test II
 -------------------------------------
 
 require("scripts/globals/settings");
@@ -30,7 +30,13 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-	player:startEvent(0x265);
+	
+	if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == 1) then
+		player:startEvent(0x275);
+	else
+		player:startEvent(0x0236);
+	end
+	
 end; 
 
 -----------------------------------

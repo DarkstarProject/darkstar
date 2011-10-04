@@ -1,10 +1,11 @@
 -----------------------------------
 --	Area: Southern San d'Oria
---	NPC: Ephauge
---  General Info NPC
+--	NPC: Balasiel
+--  Starts and Finishes: A Squire's Test, A Squire's Test II
 -------------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/keyItems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
@@ -28,10 +29,25 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc)
+	currentLevel = player:getMainLvl();
+	SquiresTest = player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST);
 
-	if (player:getMainLvl() >= 7) then
-		if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST) == 0) then 
+	if (currentLevel >= 7 and SquiresTest ~= 2) then
+		SquiresTest = player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST);
+		
+		if (SquiresTest == 0) then 
 			player:startEvent(0x0268);
+		elseif (SquiresTest == 1) then
+			player:startEvent(0x029d);
+		end
+		
+	elseif (currentLevel >= 15 and SquiresTest == 2) then
+		if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == 0) then
+			player:startEvent(0x0271);
+		elseif (player:hasKeyItem(STALACTITE_DEW)) then
+			player:startEvent(0x029f);
+		else
+			player:startEvent(0x0273);
 		end
 	else
 		player:startEvent(0x029c);
@@ -53,7 +69,7 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
-printf("RESULT: %u",option);
+--printf("RESULT: %u",option);
 
 	if (csid == 0x0268 and option == 0) then
 		player:addQuest(SANDORIA,A_SQUIRE_S_TEST);
@@ -68,5 +84,15 @@ printf("RESULT: %u",option);
         else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16565);
         end
+    elseif (csid == 0x0271) then
+    	player:addQuest(SANDORIA,A_SQUIRE_S_TEST_II);
+	elseif (csid == 0x0272) then
+        	player:completeQuest(SANDORIA,A_SQUIRE_S_TEST_II);
+			player:addKeyItem(SQUIRE_CERTIFICATE);
+			player:messageSpecial(KEYITEM_OBTAINED, SQUIRE_CERTIFICATE);
+			player:delKeyItem(STALACTITE_DEW);
+			player:setTitle(SPELUNKER);
+			player:addFame(SANDORIA, SAN_FAME*20);
+			player:tradeComplete();
     end
 end;
