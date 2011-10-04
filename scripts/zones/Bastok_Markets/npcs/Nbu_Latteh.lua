@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 0x00e6) and (option == 0) then
-		if (player:getFreeSlotsCount() > 0) then
+		if (player:getFreeSlotsCount(0) > 0) then
 			player:addQuest(BASTOK,MOM_THE_ADVENTURER);
 			player:setVar("MomTheAdventurer_Event",1);
 			player:addItem(FIRE_CRYSTAL);
