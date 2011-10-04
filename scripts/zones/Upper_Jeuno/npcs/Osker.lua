@@ -23,7 +23,7 @@ function onTrigger(player,npc)
     ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
 
     if (ChocobosWounds == 0) then
-        player:startEvent(Event(0x3e));
+        player:startEvent(0x003e);
     elseif (ChocobosWounds == 1) then
         feed = player:getVar("ChocobosWounds_Event");
 
