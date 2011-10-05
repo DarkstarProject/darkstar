@@ -22,7 +22,7 @@ end;
  
 function onTrigger(player,npc) 
 
-	if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == 2 and player:hasKeyItem(STALACTITE_DEW) == false and player:getVar("SquiresTestII") == 0) then
+	if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == 1 and player:hasKeyItem(STALACTITE_DEW) == false and player:getVar("SquiresTestII") == 0) then
 		player:setVar("SquiresTestII",os.time());
 		player:messageSpecial(7293);
 	else
