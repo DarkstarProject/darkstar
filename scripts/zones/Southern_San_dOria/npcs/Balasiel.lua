@@ -8,6 +8,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyItems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
@@ -17,9 +18,8 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 	count = trade:getItemCount();
 	gil = trade:getGil();
-	RevivalTreeRoot = trade:hasItemQty(940,1);
 	
-	if (RevivalTreeRoot == true and gil == 0 and count == 1 and player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST) == 1) then
+	if (trade:hasItemQty(REVIVAL_TREE_ROOT,1) == true and gil == 0 and count == 1 and player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST) == 1) then
 		player:startEvent(0x0269);
 	end
 end;
@@ -30,29 +30,50 @@ end;
  
 function onTrigger(player,npc)
 	currentLevel = player:getMainLvl();
+				player:startEvent(0x0273);
 
-	if (currentLevel >= 7 and player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST) ~= 2) then
-		if (player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST) == 0) then 
-			player:startEvent(0x0268);
+	if (currentLevel < 7) then
+		player:startEvent(0x029c);
+	elseif (currentLevel >= 7 and player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST) ~= 2) then
+		if (player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST) == 0) then
+			if (player:getRace() == 3) then			
+				player:startEvent(0x0268);
+			else
+				player:startEvent(0x0277);
+			end
 		elseif (player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST) == 1) then
-			player:startEvent(0x029d);
+			player:startEvent(0x029b);
 		end
+	elseif (currentLevel >= 7 and currentLevel < 15) then
+		player:startEvent(0x029f);
 	elseif (currentLevel >= 15 and player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) ~= 2) then
 		if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == 0) then
-			player:startEvent(0x0271);
+			if (player:getRace() == 3) then			
+				player:startEvent(0x0271);
+			else
+				player:startEvent(0x0276);
+			end
 		elseif (player:hasKeyItem(STALACTITE_DEW)) then
 			player:startEvent(0x0272);
+		else
+			player:startEvent(0x029b);
 		end
-	elseif (currentLevel >= 30 and player:hasKeyItem(SQUIRE_CERTIFICATE)) then
+	elseif (currentLevel >= 15 and currentLevel < 30) then
+		player:startEvent(0x029e);
+	elseif (currentLevel >= 30 and player:getQuestStatus(SANDORIA, A_KNIGHT_S_TEST) ~= 2) then
 		if (player:getQuestStatus(SANDORIA,A_KNIGHT_S_TEST) == 0) then
-			player:startEvent(0x0273);
-		elseif (player:getQuestStatus(SANDORIA,A_KNIGHT_S_TEST) == 1 and player:hasKeyItem(KNIGHTS_SOUL)) then
+			if (player:getRace() == 3) then			
+				player:startEvent(0x0273);
+			else
+				player:startEvent(0x027b);
+			end
+		elseif (player:hasKeyItem(KNIGHTS_SOUL)) then
 			player:startEvent(0x0274);
 		else
-			player:startEvent(0x029c);
+			player:startEvent(0x029d);
 		end
 	else
-		player:startEvent(0x029c);
+		player:startEvent(0x029b);
 	end
 end; 
 
@@ -78,13 +99,13 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x0269) then
         if (player:getFreeSlotsCount(0) >= 1) then
         	player:completeQuest(SANDORIA,A_SQUIRE_S_TEST);
-			player:addItem(16565) -- Spatha
-			player:messageSpecial(ITEM_OBTAINED, 16565);
+			player:addItem(SPATHA);
+			player:messageSpecial(ITEM_OBTAINED, SPATHA);
 			player:setTitle(KNIGHT_IN_TRAINING);
 			player:addFame(SANDORIA, SAN_FAME*20);
 			player:tradeComplete();
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16565);
+           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, SPATHA);
         end
     elseif (csid == 0x0271) then
     	player:addQuest(SANDORIA,A_SQUIRE_S_TEST_II);
@@ -103,8 +124,8 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x0274) then
 		if (player:getFreeSlotsCount(0) >= 1) then
 			player:completeQuest(SANDORIA,A_KNIGHT_S_TEST);
-			player:addItem(12306) -- Kite Shield
-			player:messageSpecial(ITEM_OBTAINED, 12306);
+			player:addItem(KITE_SHIELD);
+			player:messageSpecial(ITEM_OBTAINED, KITE_SHIELD);
 			player:setTitle(TRIED_AND_TESTED_KNIGHT);
 			player:addFame(SANDORIA, SAN_FAME*20);
 			player:delKeyItem(KNIGHTS_SOUL);
@@ -112,9 +133,9 @@ function onEventFinish(player,csid,option)
 			player:delKeyItem(BOOK_OF_THE_WEST);
 			player:delKeyItem(BOOK_OF_THE_EAST);
 			player:unlockJob(7); --Paladin
-			player:messageSpecial(7791);
+			player:messageSpecial(UNLOCK_PALADIN);
 		else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 12306);
+           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, KITE_SHIELD);
 	    end
 	end
 end;

@@ -7,6 +7,7 @@
 require("scripts/globals/keyItems");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 require("scripts/zones/Ordelles_Caves/TextIDs");
 
 ----------------------------------- 
@@ -24,9 +25,9 @@ function onTrigger(player,npc)
 
 	if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == 1 and player:hasKeyItem(STALACTITE_DEW) == false and player:getVar("SquiresTestII") == 0) then
 		player:setVar("SquiresTestII",os.time());
-		player:messageSpecial(7293);
+		player:messageSpecial(A_SQUIRE_S_TEST_II_DIALOG_I);
 	else
-		player:messageSpecial(7295);
+		player:messageSpecial(NOTHING_FOUND);
 	end
 end; 
 

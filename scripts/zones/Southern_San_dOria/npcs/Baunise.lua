@@ -5,6 +5,7 @@
 -------------------------------------
 
 require("scripts/globals/keyItems");
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 

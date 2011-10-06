@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/keyitems");
+package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
@@ -24,7 +25,7 @@ function onTrigger(player,npc)
 		player:addKeyItem(KNIGHTS_SOUL);
 		player:messageSpecial(KEYITEM_OBTAINED, KNIGHTS_SOUL);
 	else
-		player:messageSpecial(7344);
+		player:messageSpecial(YOU_SEE_NOTHING);
 	end
 end; 
 

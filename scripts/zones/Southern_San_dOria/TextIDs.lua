@@ -36,6 +36,14 @@ CONQUEST = 8266; -- You've earned conquest points!
 
 PAUNELIE_DIALOG = 0;    -- 1997; -- Like <item> ? -- (linkshell)
 
+-- Quest Items
+REVIVAL_TREE_ROOT = 940;
+	  KITE_SHIELD = 12306;
+		   SPATHA = 16565;
+
+-- Quest Dialogs
+UNLOCK_PALADIN = 7791; --You can now become a paladin
+
 -- Shop Texts
 	   ASHENE_SHOP_DIALOG = 0;
 	  AVELINE_SHOP_DIALOG = 0;
