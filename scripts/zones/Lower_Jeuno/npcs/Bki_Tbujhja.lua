@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -22,7 +23,7 @@ function onTrigger(player,npc)
 
 	if (player:getVar("TheOldMonument_Event") == 1) then
 		player:startEvent(0x00b5);
-	elseif (player:getVar("PathOfTheBard") == 0 and player:getQuestStatus(JEUNO,A_MINSTREL_IN_DESPAIR) == 2 and player:getQuestStatus(JEUNO,PATH_OF_THE_BARD) == 0) then
+	elseif (player:getVar("PathOfTheBard_Event") == 0 and player:getQuestStatus(JEUNO,A_MINSTREL_IN_DESPAIR) == 2) then
 		player:startEvent(0x00b6);
 	end
 end; 
@@ -47,6 +48,6 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x00b5) then
 	   	player:setVar("TheOldMonument_Event",2);
 	elseif (csid == 0x00b6 and option == 0) then
-		player:setVar("PathOfTheBard_Event",1)
+		player:setVar("PathOfTheBard_Event",1);
 	end
 end;

@@ -12,6 +12,11 @@ ITEM_CANNOT_BE_OBTAINED = 6375;  -- You cannot obtain the <item>.
 INVENTORU_INCREASED = 7604;  -- Your inventory capacity has increased.
 	 DOOR_IS_LOCKED = 7412;  -- It's locked
 
+-- Quest Items
+
+POETIC_PARCHMENT = 634;
+   BEAST_WHISTLE = 13110;
+
 -- Shop Texts
 CREEPSTIX_SHOP_DIALOG = 6956;  -- Hey, how ya doin'? We got the best junk in town.
   PAWKRIX_SHOP_DIALOG = 7457;  -- Hey, we're fixin' up some stew. Gobbie food's good food!

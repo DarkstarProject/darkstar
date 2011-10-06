@@ -7,6 +7,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 -----------------------------------
@@ -15,23 +16,22 @@ require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 function onTrade(player,npc,trade)
 			
-		if (player:getVar("TheOldMonument_Event") == 3) then
-			count = trade:getItemCount();
-			gil = trade:getGil();
-			Parchment = trade:hasItemQty(917,1);
+	if (player:getVar("TheOldMonument_Event") == 3) then
+		count = trade:getItemCount();
+		gil = trade:getGil();
 
-			if (count == 1 and gil == 0 and Parchment == true) then
-				player:addItem(634,1); -- Poetic Parchment
-				player:messageSpecial(ITEM_OBTAINED, 634);
-				player:completeQuest(JEUNO,THE_OLD_MONUMENT);
-				player:setVar("TheOldMonument_Event",0);
-				player:setTitle(RESEARCHER_OF_CLASSICS);
-				player:addFame(BASTOK,BAS_FAME*10);
-				player:addFame(SAN_D_ORIA,SAN_FAME*10);
-				player:addFame(WINDURST,WIN_FAME*10);
-				player:tradeComplete();
-			end
-		end		
+		if (trade:hasItemQty(PARCHMENT,1) == true and count == 1 and gil == 0) then
+			player:tradeComplete();
+			player:completeQuest(JEUNO,THE_OLD_MONUMENT);
+			player:addItem(POETIC_PARCHMENT,1);
+			player:messageSpecial(ITEM_OBTAINED, POETIC_PARCHMENT);
+			player:setTitle(RESEARCHER_OF_CLASSICS);
+			player:addFame(BASTOK,BAS_FAME*10);
+			player:addFame(SAN_D_ORIA,SAN_FAME*10);
+			player:addFame(WINDURST,WIN_FAME*10);
+			player:setVar("TheOldMonument_Event",0);
+		end
+	end		
 end;
 
 -----------------------------------

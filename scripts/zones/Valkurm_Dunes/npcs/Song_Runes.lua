@@ -7,6 +7,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 require("scripts/zones/Valkurm_Dunes/TextIDs");
 
 -----------------------------------
@@ -47,11 +48,13 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x0002) then
 		player:completeQuest(JEUNO,PATH_OF_THE_BARD);
 		player:addGil(GIL_RATE*3000);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+		player:setTitle(WANDERING_MINSTREL);
 		player:addFame(BASTOK,BAS_FAME*10);
 		player:addFame(SAN_D_ORIA,SAN_FAME*10);
 		player:addFame(WINDURST,WIN_FAME*10);
-		player:setVar("PathOfTheBard_Event",0);
 		player:unlockJob(10); -- Bard
-		player:messageSpecial(7269);  --You can now become a bard!
+		player:messageSpecial(UNLOCK_BARD);  --You can now become a bard!
+		player:setVar("PathOfTheBard_Event",0);
 	end
 end;
