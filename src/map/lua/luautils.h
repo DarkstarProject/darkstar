@@ -48,47 +48,47 @@ namespace luautils
 	int32 print(lua_State*);
 
 	int32 GetNPCByID(lua_State*);												// Returns NPC By Id
-	int32 SpawnMOBByID(lua_State*);												// Spawn Mob By Mob Id - NMs, BCNM...
-	int32 DeSpawnMOBByID(lua_State*);											// Despawn (Fade Out) Mob By Id
+	int32 SpawnMob(lua_State*);													// Spawn Mob By Mob Id - NMs, BCNM...
+	int32 DespawnMob(lua_State*);												// Despawn (Fade Out) Mob By Id
+	int32 GetMobAction(lua_State*);												// Get Mobs current action
 	int32 VanadielTOTD(lua_State*);												// текущее игровое время суток
 	int32 VanadielHour(lua_State*);												// текущие Vanadiel часы
 	int32 VanadielMinute(lua_State*);											// текущие Vanadiel минуты
 	int32 VanadielTimeOffset(lua_State*);										// смещение игрового времени (в целях отладки)
-	int32 VanadielDayOfTheYear(lua_State*);
-	int32 VanadielDayOfTheMonth(lua_State*);
-	int32 VanadielYear(lua_State*);
-	int32 VanadielMonth(lua_State*);
-
-	int32 GetGlobalConstant(const int8* name, uint8 ZoneID);					// получаем значение константы из соответствующего TextIDs
-
-	int32 OnServerStart();														// need to comments this declaration
-
-	int32 OnZoneIn(CCharEntity* PChar);											// персонаж входит в зону
-	int32 OnZoneInitialise(uint8 ZoneID);										// запускаем скрипт инициализации зоны
-	int32 OnRegionEnter(CCharEntity* PChar, uint32 RegionID);					// персонаж входит в активный регион
-	int32 OnRegionLeave(CCharEntity* PChar, uint32 RegionID);					// персонаж покидает активный регион
-
-	int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);						// need to comments this declaration
-	int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);		// need to comments this declaration
-	int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result);		// need to comments this declaration
-	int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc);						// need to comments this declaration
-
-	int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// need to comments this declaration
-	int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// need to comments this declaration
-	int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// need to comments this declaration
-
-	int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem);						// используем предмет
-	int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param = 0);	// проверяем возможность использования предмета
-
-	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget);			// выполняем скрипт при чтении заклинаний (проверки, расчет урона)
-
-	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// выполняем скрипт после смерти монстра
-
-	int32 OnSpecialWeaponKill(CCharEntity* PChar);			// Testing for special weapons (Blade Of Darkness quest)
+	int32 VanadielDayOfTheYear(lua_State*);										// Gets Integer Value for Day of the Year (Jan 01 = Day 1) 
+	int32 VanadielDayOfTheMonth(lua_State*);									// Gets day of the month (Feb 6 = Day 6)
+	int32 VanadielYear(lua_State*);												// Gets the current Vanadiel Year
+	int32 VanadielMonth(lua_State*);											// Gets the current Vanadiel Month 
 	
-	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob);
-	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget);
-	int32 OpenAuctionHouse(CCharEntity* PChar); 
+	int32 GetGlobalConstant(const int8* name, uint8 ZoneID);					// Get Constant Values using TextID's
+	int32 OnServerStart();														// triggers when game server starts up
+		
+	int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone
+	int32 OnZoneInitialise(uint8 ZoneID);										// triggers when zone is loaded
+	int32 OnRegionEnter(CCharEntity* PChar, uint32 RegionID);					// when player enters a region of a zone
+	int32 OnRegionLeave(CCharEntity* PChar, uint32 RegionID);					// not implemented
+
+	int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);						// triggered when user targets npc and clicks action button
+	int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when game triggers event update during cutscene
+	int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when cutscene/event is completed
+	int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc);						// triggers when a trade completes with an npc
+
+	int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when an effect is applied to pc/npc
+	int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect tick timer has been reached
+	int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect has been lost
+
+	int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem);						// triggers when item is used
+	int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param = 0);	// check to see if item can be used
+
+	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget);			// triggered when casting a spell
+
+	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// triggers on mob death
+
+	int32 OnSpecialWeaponKill(CCharEntity* PChar);								// triggers for special weapons lua on mob death (Blade Of Darkness quest)
+	
+	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob);				// triggers when weapon skill is used
+	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget);				// triggers when job ability is used
+	int32 OpenAuctionHouse(CCharEntity* PChar);									// not implemented
 };
 
 #endif //- _LUAUTILS_H -

@@ -70,8 +70,9 @@ int32 init()
 
 	lua_register(LuaHandle,"print",luautils::print);
 	lua_register(LuaHandle,"GetNPCByID",luautils::GetNPCByID);
-	lua_register(LuaHandle,"SpawnMOBByID",luautils::SpawnMOBByID);
-	lua_register(LuaHandle,"DeSpawnMOBByID",luautils::DeSpawnMOBByID);
+	lua_register(LuaHandle,"SpawnMob",luautils::SpawnMob);
+	lua_register(LuaHandle,"DespawnMob",luautils::DespawnMob);
+	lua_register(LuaHandle,"GetMobAction",luautils::GetMobAction);
 	lua_register(LuaHandle,"VanadielTOTD",luautils::VanadielTOTD);
 	lua_register(LuaHandle,"VanadielHour",luautils::VanadielHour);
 	lua_register(LuaHandle,"VanadielMinute",luautils::VanadielMinute);
@@ -260,7 +261,7 @@ int32 VanadielTimeOffset(lua_State* L)
 *  Spawn a mob using mob ID.											*
 ************************************************************************/
 
-int32 SpawnMOBByID(lua_State* L)
+int32 SpawnMob(lua_State* L)
 {
 	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
 	{
@@ -284,7 +285,7 @@ int32 SpawnMOBByID(lua_State* L)
 *  DeSpawn mob using mob ID.											*
 ************************************************************************/
 
-int32 DeSpawnMOBByID(lua_State* L)
+int32 DespawnMob(lua_State* L)
 {
 	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
 	{
@@ -296,6 +297,28 @@ int32 DeSpawnMOBByID(lua_State* L)
 		{
 			PMob->PBattleAI->SetLastActionTime(0);
 			PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+		}
+		return 0;
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+/************************************************************************
+*  Get Current Mob Action by Mob ID.									*
+************************************************************************/
+
+int32 GetMobAction(lua_State* L)
+{
+	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+	{
+		uint32 mobid = (uint32)lua_tointeger(L, -1);
+		uint8  zone  = (mobid >> 12)-4096;
+
+		CMobEntity* PMob = (CMobEntity*)zoneutils::GetZone(zone)->GetEntity((uint16)mobid & 0x0FFF, TYPE_MOB);
+		if (PMob != NULL)
+		{
+			PMob->PBattleAI->GetCurrentAction(); 
 		}
 		return 0;
 	}
