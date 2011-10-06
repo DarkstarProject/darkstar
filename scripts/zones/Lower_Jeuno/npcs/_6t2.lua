@@ -7,6 +7,7 @@
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -21,23 +22,32 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-ChoobosWounds = player:getQuestStatus(JEUNO, CHOCOBO_S_WOUNDS);
-SaveMySon = player:getQuestStatus(JEUNO, SAVE_MY_SON);
-PathOfTheBeastmaster = player:getQuestStatus(JEUNO, PATH_OF_THE_BEASTMASTER)
-questStatus = player:getVar("SaveMySon_Event")
-
-	if (player:getVar("ChocobosWounds_Event") > 3) then
+	ChocobosWounds = player:getQuestStatus(JEUNO, CHOCOBO_S_WOUNDS)
+	
+	if (ChocobosWounds == 0) then
+		player:startEvent(0x0040);
+	elseif (player:getVar("ChocobosWounds_Event") > 3) then
 		player:startEvent(0x003f);
-	elseif (SaveMySon == 0 and ChoobosWounds == 2) then
+	elseif (player:getQuestStatus(JEUNO, SAVE_MY_SON) == 0 and ChocobosWounds == 2) then
 		player:startEvent(0x00a4);
-	elseif (SaveMySon == 1 and questStatus == 2) then
-		player:startEvent(0x00a3);
-	elseif (PathOfTheBeastmaster == 2) then
+	elseif (player:getQuestStatus(JEUNO, SAVE_MY_SON) == 1) then
+		SaveMySon = player:getVar("SaveMySon_Event");
+		
+		if (SaveMySon == 0) then
+			player:startEvent(0x00e5);
+		elseif (SaveMySon == 1) then
+			player:startEvent(0x0084);
+		elseif (SaveMySon == 3) then
+			player:startEvent(0x00a3);
+		else
+			return 1;
+		end
+	elseif (player:needToZone() == false and player:getQuestStatus(JEUNO, PATH_OF_THE_BEASTMASTER) == 2) then
 		player:startEvent(0x003c);
 	else	
-		player:startEvent(0x0040);
+		return 1;	
 	end	
+
 end;
 
 -----------------------------------
@@ -59,13 +69,16 @@ function onEventFinish(player,csid,option)
 
 	if (csid == 0x00a4 and option == 0) then
 		player:addQuest(JEUNO, SAVE_MY_SON);
-		player:setVar("SaveMySon_Event",1);
+	elseif (csid == 0x0084) then
+		player:setVar("SaveMySon_Event",2);
 	elseif (csid == 0x00a3) then
 		player:completeQuest(JEUNO, SAVE_MY_SON);
 		player:setTitle(LIFE_SAVER);
-		player:addItem(13110); --Beast Whistle
-		player:messageSpecial(ITEM_OBTAINED, 13110);
+		player:addItem(BEAST_WHISTLE);
+		player:messageSpecial(ITEM_OBTAINED, BEAST_WHISTLE);
 		player:addGil(2100);
-		player:setVar("SaveMySon_Event",0);	
+		player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100);
+		player:setVar("SaveMySon_Event",0);
+		player:needToZone(true);
 	end
 end;

@@ -4,6 +4,7 @@
 -- Optional Involvement in Quest: Save My Son
 --------------------------------
 
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------

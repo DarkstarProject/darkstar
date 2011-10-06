@@ -7,6 +7,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -22,10 +23,9 @@ end;
 
 function onTrigger(player,npc)
     ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
-	SaveMySon = player:getQuestStatus(JEUNO, SAVE_MY_SON)
 	
 	if (player:getMainLvl() >= 20 and ChocobosWounds ~= 2) then
-        chocoFeed = player:getVar("ChocobosWounds")
+        chocoFeed = player:getVar("ChocobosWounds_Event");
        	
        	if (ChocobosWounds == 0) then
             player:startEvent(0x0047);
@@ -36,9 +36,9 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x0066);
         end
-    elseif (ChocobosWounds == 2 and SaveMySon == 0) then
+    elseif (ChocobosWounds == 2 and player:getQuestStatus(JEUNO, SAVE_MY_SON) == 0) then
 		player:startEvent(0x0016); 
-    elseif (SaveMySon == 2 ) then
+    elseif (player:getVar("SaveMySon_Event") == 2) then
     	player:startEvent(0x0046);
     end
 end;
@@ -72,5 +72,6 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,WIN_FAME*40);
 		player:unlockJob(9); --Beastmaster
 		player:messageSpecial(7018); --You can now become a beastmaster
+		player:setVar("SaveMySon_Event",3);
     end
 end;

@@ -13,6 +13,7 @@ CONQUEST = 7570; -- You've earned conquest points!
 
 -- Quest Items
 GAUSEBIT_GRASS = 534;
+ GYSAHL_GREENS = 4545;
 
 -- NPC Texts
 KIRISOMANRISO_DIALOG = 7902; -- Delivering goods to residences everywhere!

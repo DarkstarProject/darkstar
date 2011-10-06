@@ -19,9 +19,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	if (VanadielHour() >= 18 or VanadielHour() < 6) then
-		if (player:getQuestStatus(JEUNO,SAVE_MY_SON) == 1 and player:getVar("SaveMySon_Event") ~= 2) then
+	currentTime = VanadielHour();
+	
+	if (currentTime >= 22 or currentTime < 6) then
+		if (player:getQuestStatus(JEUNO,SAVE_MY_SON) == 1 and player:getVar("SaveMySon_Event") == 0) then
 			player:startEvent(0x0000);
 		else
 			player:messageSpecial(7265);
@@ -49,6 +50,6 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if (csid == 0x0000) then
-		player:setVar("SaveMySon_Event",2);
+		player:setVar("SaveMySon_Event",1);
 	end
 end;

@@ -8,6 +8,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -15,32 +16,27 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
     ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
 
     if (ChocobosWounds == 0) then
         player:startEvent(0x003e);
     elseif (ChocobosWounds == 1) then
-        count = trade:getItemCount();
-        gil = trade:getGil();
-        GausebitGrass = trade:hasItemQty(534,1);
+		count = trade:getItemCount();
+		gil = trade:getGil();
 
-        --Check feeding status.
-        feed = player:getVar("ChocobosWounds_Event");
-        feedDay = player:getVar("ChocobosWounds_Day");
-        feedYear = player:getVar("ChocobosWounds_Year");
-        feedReady = 0;
+        if (trade:hasItemQty(GYSAHL_GREENS,1)) then
+        	player:startEvent(0x004c);
+        elseif (trade:hasItemQty(GAUSEBIT_GRASS,1) and gil == 0 and count == 1) then
+			--Check feeding status.
+			feed = player:getVar("ChocobosWounds_Event");
+			feedDay = player:getVar("ChocobosWounds_Day");
+			feedYear = player:getVar("ChocobosWounds_Year");
+			currentDay = VanadielDayOfTheYear();
+			feedReady = ((feedDay < currentDay) or (feedDay > currentDay and feedYear < VanadielYear()))
 
-        if (feedDay < VanadielDayOfTheYear()) then
-            feedReady = 1;
-        elseif (feedDay > VanadielDayOfTheYear() and feedYear < VanadielYear()) then
-			feedReady = 1;
-        end
-
-        if (GausebitGrass and gil == 0 and count == 1) then
             if (feed == 1) then
                 player:startEvent(0x0039);
-            elseif (feedReady == 1) then
+            elseif (feedReady == true) then
                 if (feed == 2) then
                     player:startEvent(0x003a);
                 elseif (feed == 3) then
@@ -58,10 +54,10 @@ function onTrade(player,npc,trade)
                 end
             end
         end
-    elseif (ChocoboWounds == 2) then
-        player:startEvent(0x0037);
     else
-        player:startEvent(0x0036);
+        if (trade:hasItemQty(GYSAHL_GREENS,1)) then
+     	   player:startEvent(0x0026);
+     	end
     end
 end;
 
@@ -151,4 +147,5 @@ function onEventFinish(player,csid,option)
         player:setVar("ChocobosWounds_Day", 0);
         player:setVar("ChocobosWounds_Year",0);
         player:tradeComplete();
+    end
 end;
