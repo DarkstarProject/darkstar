@@ -11,32 +11,31 @@ require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 	count = trade:getItemCount();
 	gil = trade:getGil();
-	
+
 	if (trade:hasItemQty(REVIVAL_TREE_ROOT,1) == true and gil == 0 and count == 1 and player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST) == 1) then
 		player:startEvent(0x0269);
 	end
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
+-- onTrigger Action
+-----------------------------------
+
 function onTrigger(player,npc)
 	currentLevel = player:getMainLvl();
-				player:startEvent(0x0273);
 
 	if (currentLevel < 7) then
 		player:startEvent(0x029c);
 	elseif (currentLevel >= 7 and player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST) ~= 2) then
 		if (player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST) == 0) then
-			if (player:getRace() == 3) then			
+			if (player:getRace() == 3) then
 				player:startEvent(0x0268);
 			else
 				player:startEvent(0x0277);
@@ -48,7 +47,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x029f);
 	elseif (currentLevel >= 15 and player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) ~= 2) then
 		if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == 0) then
-			if (player:getRace() == 3) then			
+			if (player:getRace() == 3) then
 				player:startEvent(0x0271);
 			else
 				player:startEvent(0x0276);
@@ -62,7 +61,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x029e);
 	elseif (currentLevel >= 30 and player:getQuestStatus(SANDORIA, A_KNIGHT_S_TEST) ~= 2) then
 		if (player:getQuestStatus(SANDORIA,A_KNIGHT_S_TEST) == 0) then
-			if (player:getRace() == 3) then			
+			if (player:getRace() == 3) then
 				player:startEvent(0x0273);
 			else
 				player:startEvent(0x027b);
@@ -75,7 +74,7 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x029b);
 	end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
