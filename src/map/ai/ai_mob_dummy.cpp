@@ -118,7 +118,8 @@ void CAIMobDummy::ActionRoaming()
 
 	if (m_PMob->getDespawnTimer() > 0 && m_PMob->getDespawnTimer() < m_Tick)
 	{
-		m_PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+		m_LastActionTime = m_Tick; 
+		m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
 		m_PMob->setDespawnTimer(0); 
 	}
 	
