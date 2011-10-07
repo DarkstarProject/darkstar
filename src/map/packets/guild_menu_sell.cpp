@@ -37,8 +37,8 @@ CGuildMenuSellPacket::CGuildMenuSellPacket(CCharEntity* PChar, CItemContainer* P
 	this->type = 0x85;
 	this->size = 0x7C;
 
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PGuild == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PGuild == NULL);
 
 	uint8 ItemCount = 0;
 	uint8 PacketCount = 0;

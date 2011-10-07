@@ -191,7 +191,7 @@ int32 SmallPacket0x00A(CCharEntity* PChar, int8* data, map_session_data_t* sessi
 	}
 	else
 	{
-		DSP_DEBUG_BREAK_IF(PChar->status != STATUS_NORMAL);	 // статус персонажа должен быть STATUS_NORMAL
+		//DSP_DEBUG_BREAK_IF(PChar->status != STATUS_NORMAL);	 // статус персонажа должен быть STATUS_NORMAL
 	}
 
 	int16 EventID = luautils::OnZoneIn(PChar);

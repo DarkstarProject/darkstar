@@ -91,8 +91,8 @@ CLuaBaseEntity::CLuaBaseEntity(CBaseEntity* PEntity)
 
 inline int32 CLuaBaseEntity::leavegame(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	((CCharEntity*)m_PBaseEntity)->status = STATUS_SHUTDOWN;
 	((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,1));
@@ -105,8 +105,8 @@ inline int32 CLuaBaseEntity::leavegame(lua_State *L)
 
 inline int32 CLuaBaseEntity::warp(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	((CCharEntity*)m_PBaseEntity)->loc.boundary = 0;
 	((CCharEntity*)m_PBaseEntity)->loc.prevzone = ((CCharEntity*)m_PBaseEntity)->loc.zone;
@@ -127,8 +127,8 @@ inline int32 CLuaBaseEntity::warp(lua_State *L)
 
 inline int32 CLuaBaseEntity::getHP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
 	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->health.hp );
 	return 1;
@@ -138,10 +138,10 @@ inline int32 CLuaBaseEntity::getHP(lua_State *L)
 
 inline int32 CLuaBaseEntity::addHP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addHP(lua_tointeger(L,-1));
 
@@ -160,10 +160,10 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
 
 inline int32 CLuaBaseEntity::delHP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addHP(-lua_tointeger(L,-1));
 
@@ -182,10 +182,10 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 
 inline int32 CLuaBaseEntity::setHP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	((CBattleEntity*)m_PBaseEntity)->health.hp = 0;
 	((CBattleEntity*)m_PBaseEntity)->addHP(lua_tointeger(L,-1));
@@ -204,8 +204,8 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
 
 inline int32 CLuaBaseEntity::getMP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
 	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->health.mp );
 	return 1;
@@ -215,10 +215,10 @@ inline int32 CLuaBaseEntity::getMP(lua_State *L)
 
 inline int32 CLuaBaseEntity::addMP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 	
 	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addMP(lua_tointeger(L,-1));
 
@@ -237,10 +237,10 @@ inline int32 CLuaBaseEntity::addMP(lua_State *L)
 
 inline int32 CLuaBaseEntity::delMP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addMP(-lua_tointeger(L,-1));
 
@@ -259,10 +259,10 @@ inline int32 CLuaBaseEntity::delMP(lua_State *L)
 
 inline int32 CLuaBaseEntity::setMP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	((CBattleEntity*)m_PBaseEntity)->health.mp = 0;
 	((CBattleEntity*)m_PBaseEntity)->addMP(lua_tointeger(L,-1));
@@ -281,8 +281,8 @@ inline int32 CLuaBaseEntity::setMP(lua_State *L)
 
 inline int32 CLuaBaseEntity::getTP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
 	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->health.tp );
 	return 1;
@@ -292,10 +292,10 @@ inline int32 CLuaBaseEntity::getTP(lua_State *L)
 
 inline int32 CLuaBaseEntity::addTP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addTP(lua_tointeger(L,-1));
 
@@ -314,10 +314,10 @@ inline int32 CLuaBaseEntity::addTP(lua_State *L)
 
 inline int32 CLuaBaseEntity::delTP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addTP(-lua_tointeger(L,-1));
 
@@ -336,10 +336,10 @@ inline int32 CLuaBaseEntity::delTP(lua_State *L)
 
 inline int32 CLuaBaseEntity::setTP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	((CBattleEntity*)m_PBaseEntity)->health.tp = 0;
 	((CBattleEntity*)m_PBaseEntity)->addTP(lua_tointeger(L,-1));
@@ -358,8 +358,8 @@ inline int32 CLuaBaseEntity::setTP(lua_State *L)
 
 inline int32 CLuaBaseEntity::getMaxHP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
 	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->health.maxhp );
 	return 1;
@@ -369,8 +369,8 @@ inline int32 CLuaBaseEntity::getMaxHP(lua_State *L)
 
 inline int32 CLuaBaseEntity::getMaxMP(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
 	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->health.maxmp );
 	return 1;
@@ -380,7 +380,7 @@ inline int32 CLuaBaseEntity::getMaxMP(lua_State *L)
 
 inline int32 CLuaBaseEntity::getXPos(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	lua_pushnumber(L, m_PBaseEntity->GetXPos());
 	return 1;
@@ -390,7 +390,7 @@ inline int32 CLuaBaseEntity::getXPos(lua_State *L)
 
 inline int32 CLuaBaseEntity::getYPos(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	lua_pushnumber( L,  m_PBaseEntity->GetYPos());
 	return 1;
@@ -400,7 +400,7 @@ inline int32 CLuaBaseEntity::getYPos(lua_State *L)
 
 inline int32 CLuaBaseEntity::getZPos(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	lua_pushnumber(L, m_PBaseEntity->GetZPos());
 	return 1;
@@ -410,8 +410,8 @@ inline int32 CLuaBaseEntity::getZPos(lua_State *L)
 
 inline int32 CLuaBaseEntity::getRace(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	lua_pushinteger( L, ((CCharEntity*)m_PBaseEntity)->look.race );
 	return 1;
@@ -421,7 +421,7 @@ inline int32 CLuaBaseEntity::getRace(lua_State *L)
 
 inline int32 CLuaBaseEntity::setPos(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 		m_PBaseEntity->loc.p.x = (float) lua_tonumber(L,1);
@@ -460,10 +460,10 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 
 inline int32 CLuaBaseEntity::addItem(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	uint16 itemID = (uint16)lua_tointeger(L,1);
 	uint32 quantity = 1;
@@ -481,10 +481,10 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 
 inline int32 CLuaBaseEntity::hasItem(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	uint16 itemID = (uint16)lua_tointeger(L,1);
 		
@@ -518,8 +518,8 @@ inline int32 CLuaBaseEntity::hasItem(lua_State *L)
 
 inline int32 CLuaBaseEntity::getFreeSlotsCount(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	uint8  locationID = LOC_INVENTORY;
 		
@@ -539,7 +539,7 @@ inline int32 CLuaBaseEntity::getFreeSlotsCount(lua_State *L)
 
 inline int32 CLuaBaseEntity::getZone(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	lua_pushinteger( L, m_PBaseEntity->getZone() );
 	return 1;
@@ -549,8 +549,8 @@ inline int32 CLuaBaseEntity::getZone(lua_State *L)
 
 inline int32 CLuaBaseEntity::getNation(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	lua_pushinteger( L, ((CCharEntity*)m_PBaseEntity)->profile.nation );
 	return 1;
@@ -665,11 +665,11 @@ inline int32 CLuaBaseEntity::setRank(lua_State *L)
 
 inline int32 CLuaBaseEntity::addQuest(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -699,11 +699,11 @@ inline int32 CLuaBaseEntity::addQuest(lua_State *L)
 
 inline int32 CLuaBaseEntity::delQuest(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -737,11 +737,11 @@ inline int32 CLuaBaseEntity::delQuest(lua_State *L)
 
 inline int32 CLuaBaseEntity::getQuestStatus(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
 	uint8 questID = (uint8)lua_tointeger(L,-1);
 	uint8 logID   = (uint8)lua_tointeger(L,-2);
@@ -765,11 +765,11 @@ inline int32 CLuaBaseEntity::getQuestStatus(lua_State *L)
 
 inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -802,11 +802,11 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
 
 inline int32 CLuaBaseEntity::addMission(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -834,11 +834,11 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
 
 inline int32 CLuaBaseEntity::delMission(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -879,9 +879,9 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
 
 inline int32 CLuaBaseEntity::hasCurrentMission(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 	uint8 logID   = (uint8)lua_tointeger(L,-1);
@@ -898,11 +898,11 @@ inline int32 CLuaBaseEntity::hasCurrentMission(lua_State *L)
 
 inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -917,9 +917,9 @@ inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
 
 inline int32 CLuaBaseEntity::getCurrentMission(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 	uint8 logID   = (uint8)lua_tointeger(L,-1);
@@ -933,9 +933,9 @@ inline int32 CLuaBaseEntity::getCurrentMission(lua_State *L)
 
 inline int32 CLuaBaseEntity::completeMission(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 	uint8 logID   = (uint8)lua_tointeger(L,-1);
@@ -955,10 +955,10 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
 
 inline int32 CLuaBaseEntity::addKeyItem(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -979,10 +979,10 @@ inline int32 CLuaBaseEntity::addKeyItem(lua_State *L)
 
 inline int32 CLuaBaseEntity::delKeyItem(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -1028,10 +1028,10 @@ inline int32 CLuaBaseEntity::hasKeyItem(lua_State *L)
 
 inline int32 CLuaBaseEntity::seenKeyItem(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 			
 	uint16 KeyItemID = (uint16)lua_tointeger(L, -1);
 
@@ -1048,10 +1048,10 @@ inline int32 CLuaBaseEntity::seenKeyItem(lua_State *L)
 
 inline int32 CLuaBaseEntity::unseenKeyItem(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -1479,11 +1479,11 @@ inline int32 CLuaBaseEntity::updateEvent(lua_State *L)
 
 inline int32 CLuaBaseEntity::showText(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 			
 	uint16 messageID = (uint16)lua_tointeger(L,2);
 
@@ -1555,20 +1555,20 @@ inline int32 CLuaBaseEntity::sendMenu(lua_State *L)
 
 inline int32 CLuaBaseEntity::sendGuild(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,3) || !lua_isnumber(L,3));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,4) || !lua_isnumber(L,4));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,3) || !lua_isnumber(L,3));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,4) || !lua_isnumber(L,4));
 
 	uint16 GuildID = (uint16)lua_tonumber(L,1);
 	uint8  open    = (uint8) lua_tonumber(L,2);
 	uint8  close   = (uint8) lua_tonumber(L,3);
 	uint8  holiday = (uint8) lua_tonumber(L,4);
 
-	DSP_DEBUG_BREAK_IF(open > close);
+	//DSP_DEBUG_BREAK_IF(open > close);
 
 	uint8 VanadielHour = (uint8)CVanaTime::getInstance()->getHour();
 	uint8 VanadielDay  = (uint8)CVanaTime::getInstance()->getWeekday();
@@ -1599,10 +1599,10 @@ inline int32 CLuaBaseEntity::sendGuild(lua_State* L)
 
 inline int32 CLuaBaseEntity::getVar(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isstring(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isstring(L,-1));
 
 	int32 value = 0;
 
@@ -1630,11 +1630,11 @@ inline int32 CLuaBaseEntity::getVar(lua_State *L)
 
 inline int32 CLuaBaseEntity::setVar(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
 
 	const int8* varname =  lua_tostring(L,-2); 
 	int32 value = (int32)lua_tointeger(L,-1); 
@@ -2612,7 +2612,7 @@ inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 			{
 				uint8 SLOT = (uint8)lua_tointeger(L,1);
 
-				DSP_DEBUG_BREAK_IF(SLOT > 15);
+				//DSP_DEBUG_BREAK_IF(SLOT > 15);
 
 				CItem* PItem = ((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PBaseEntity)->equip[SLOT]);
 
@@ -2696,7 +2696,7 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 
 inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	if (!lua_isnil(L,-1) && lua_isboolean(L,-1))
 	{
@@ -2715,7 +2715,7 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 
 inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	
 	if( m_PBaseEntity != NULL )
 	{
@@ -2739,7 +2739,7 @@ inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
 
 inline int32 CLuaBaseEntity::increaseContainerSize(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	
 	if( m_PBaseEntity != NULL )
 	{
@@ -2765,7 +2765,7 @@ inline int32 CLuaBaseEntity::increaseContainerSize(lua_State *L)
 
 inline int32 CLuaBaseEntity::decreaseContainerSize(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	
 		if( m_PBaseEntity != NULL )
 	{

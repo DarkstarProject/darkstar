@@ -33,12 +33,14 @@
 #include "../ability.h"
 #include "../vana_time.h"
 #include "../zone.h"
-
+#include "../charentity.h"
 #include "../lua/luautils.h"
 
 #include "../packets/action.h"
 #include "../packets/char.h"
+#include "../packets/char_abilities.h"
 #include "../packets/char_health.h"
+#include "../packets/char_skills.h"
 #include "../packets/char_update.h"
 #include "../packets/inventory_assign.h"
 #include "../packets/inventory_finish.h"
@@ -96,7 +98,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 		case ACTION_JOBABILITY_START:		ActionJobAbilityStart();	break;
 		case ACTION_JOBABILITY_FINISH:		ActionJobAbilityFinish();	break;
 
-		default : DSP_DEBUG_BREAK_IF(true);
+		default :; //DSP_DEBUG_BREAK_IF(true);
 	}
 
 	// слишком частая проверка, достаточно одного раза в секунду
@@ -106,6 +108,17 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 		if (m_Tick >= (m_PChar->RecastList.at(i).TimeStamp + m_PChar->RecastList.at(i).RecastTime))
 		{
 			m_PChar->RecastList.erase(m_PChar->RecastList.begin() + i);
+		}
+	}
+
+	for (int32 i = (int32)m_PChar->RecastAbilityList.size() - 1; i >= 0; --i)
+	{
+		if (m_Tick >= (m_PChar->RecastAbilityList.at(i).TimeStamp + m_PChar->RecastAbilityList.at(i).RecastTime))
+		{
+			
+		uint32 ttg = (m_PChar->RecastAbilityList.at(i).RecastTime  + m_PChar->RecastAbilityList.at(i).TimeStamp) - m_Tick; 
+		ShowDebug(CL_YELLOW"RecastTime: %u TimeStamp: %u TickCount: %u \n"CL_RESET,ttg, m_PChar->RecastAbilityList.at(i).TimeStamp, m_Tick); 
+			m_PChar->RecastAbilityList.erase(m_PChar->RecastAbilityList.begin() + i);
 		}
 	}
 }
@@ -119,7 +132,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
 bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget)
 {
-	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || *PBattleTarget != NULL);
+	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || *PBattleTarget != NULL);
 
 	// невозможно написать правильные условия, пока не будет решена задача с PvP
 	// в нынешних условиях PvP исключено
@@ -190,7 +203,7 @@ bool CAICharNormal::IsMobSubOwner()
 	{
 		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
 		{
-			//ShowDebug(CL_CYAN"Member ID:: %u || Mob Owner ID:: %u \n"CL_RESET, m_PChar->PParty->members[i]->id, m_PBattleTarget->m_OwnerID);
+			ShowDebug(CL_CYAN"Member ID:: %u || Mob Owner ID:: %u \n"CL_RESET, m_PChar->PParty->members[i]->id, m_PBattleTarget->m_OwnerID);
 			if (m_PChar->PParty->members[i]->id == m_PBattleSubTarget->m_OwnerID)
 				{
 					return true;
@@ -244,7 +257,7 @@ bool CAICharNormal::IsMobOwner()
 
 void CAICharNormal::ActionEngage() 
 {
-	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget != NULL);
+	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget != NULL);
 
 	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY))
 	{
@@ -290,7 +303,7 @@ void CAICharNormal::ActionEngage()
 
 void CAICharNormal::ActionChangeBattleTarget()
 {
-	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget == NULL);
 
 	if (m_PBattleTarget->targid != m_ActionTargetID)
 	{
@@ -383,9 +396,9 @@ void CAICharNormal::ActionDeath()
 
 void CAICharNormal::ActionItemStart() 
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
-	DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetType() != UCONTAINER_USEITEM);
-	DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetItem(0) == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
+	//DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetType() != UCONTAINER_USEITEM);
+	//DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetItem(0) == NULL);
 
 	m_PItemUsable = (CItemUsable*)m_PChar->UContainer->GetItem(0);
 	m_PChar->UContainer->Clean();
@@ -462,8 +475,8 @@ void CAICharNormal::ActionItemStart()
 
 void CAICharNormal::ActionItemUsing()
 {
-	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x ||
 		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
@@ -541,8 +554,8 @@ void CAICharNormal::ActionItemUsing()
 
 void CAICharNormal::ActionItemFinish() 
 {
-	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getAnimationTime())
 	{
@@ -566,7 +579,7 @@ void CAICharNormal::ActionItemFinish()
 
 void CAICharNormal::ActionItemInterrupt()
 {
-	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
 
 	m_PItemUsable->setSubType(ITEM_UNLOCKED);
 
@@ -612,7 +625,7 @@ void CAICharNormal::ActionItemInterrupt()
 
 void CAICharNormal::ActionRangedStart()
 {
-	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL); 
+	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL); 
 
 	CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
 
@@ -728,7 +741,7 @@ void CAICharNormal::ActionRangedStart()
 
 void CAICharNormal::ActionRangedFinish()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	if (m_PBattleSubTarget->isDead())
 	{
@@ -816,7 +829,7 @@ void CAICharNormal::ActionRangedInterrupt()
 
 void CAICharNormal::ActionMagicStart()
 {
-	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
+	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
 
 	if (m_PSpell == NULL ||
 	   !charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
@@ -975,7 +988,7 @@ void CAICharNormal::ActionMagicStart()
 
 void CAICharNormal::ActionMagicCasting()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	if (m_PBattleSubTarget->isDead())
 	{
@@ -1073,7 +1086,7 @@ void CAICharNormal::ActionMagicCasting()
 
 void CAICharNormal::ActionMagicFinish()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	Recast_t Recast;
 
@@ -1154,7 +1167,7 @@ void CAICharNormal::ActionMagicFinish()
 
 void CAICharNormal::ActionMagicInterrupt()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	apAction_t Action;
 
@@ -1185,38 +1198,52 @@ void CAICharNormal::ActionMagicInterrupt()
 
 void CAICharNormal::ActionJobAbilityStart()
 {
-	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
-	
-	if (m_PJobAbility->getValidTarget() == 4)
+	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
+
+	for (uint32 i = 0; i < m_PChar->RecastAbilityList.size(); i++)
 	{
-		CBattleEntity* PBattleTarget = NULL;
-		if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
+		if (m_PChar->RecastAbilityList.at(i).ID == m_PJobAbility->getID())
 		{
-			m_PBattleTarget = PBattleTarget;
-			if (!IsMobOwner())
-			{
-				return;
-			}
-		}
-					
-		if (m_PBattleTarget != m_PChar)
-		{
-			float Distance = distance(m_PChar->loc.p,m_PBattleTarget->loc.p);
+			m_ActionTargetID = 0;
 
-			if (Distance > 25)
-			{
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,87));
 
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleTarget = NULL;
-				return;
-			}
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PSpell = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
 		}
 	}
-		
-	
 
+	//if (m_PJobAbility->getValidTarget() == 4)
+	//{
+	//	CBattleEntity* PBattleTarget = NULL;
+	//	if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
+	//	{
+	//		m_PBattleTarget = PBattleTarget;
+	//		if (!IsMobOwner())
+	//		{
+	//			return;
+	//		}
+	//	}
+	//				
+	//	if (m_PBattleTarget != m_PChar)
+	//	{
+	//		float Distance = distance(m_PChar->loc.p,m_PBattleTarget->loc.p);
+
+	//		if (Distance > 25)
+	//		{
+	//			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
+
+	//			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	//			m_PJobAbility = NULL;
+	//			m_PBattleTarget = NULL;
+	//			return;
+	//		}
+	//	}
+	//}
+	//	
+	
 	apAction_t Action;
 
 	if (m_PJobAbility->getValidTarget() == 4) 
@@ -1227,18 +1254,24 @@ void CAICharNormal::ActionJobAbilityStart()
 	else
 	{
 		Action.ActionTarget = m_PChar;
+		Action.reaction   = REACTION_NONE ;
+		Action.speceffect = SPECEFFECT_RECOIL;
+		Action.animation  = m_PJobAbility->getAnimationID();
+		Action.messageID  = 100;
 	}
+
 	
-	Action.reaction   = REACTION_NONE ;
-	Action.speceffect = SPECEFFECT_RECOIL;
-	Action.animation  = m_PJobAbility->getAnimationID();
-	//Action.param	  = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
-	Action.messageID  = 100;
-	//Action.flag		  = 0;
-	uint16 test = luautils::OnUseAbility(m_PChar,m_PBattleTarget);
+	RecastAbility_t Recast;
+	Recast.ID = m_PJobAbility->getID();
+	Recast.TimeStamp = m_Tick;
+	Recast.RecastTime = m_PJobAbility->getRecastTime();
+	Recast.RecastId = m_PJobAbility->getRecastId(); 
+	m_PChar->RecastAbilityList.push_back(Recast);
+		
 	m_PChar->m_ActionList.push_back(Action);
 	m_ActionType = ACTION_JOBABILITY_FINISH; 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 }
 
 
@@ -1250,7 +1283,51 @@ void CAICharNormal::ActionJobAbilityStart()
 
 void CAICharNormal::ActionJobAbilityFinish()
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	////DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	m_PChar->pushPacket(new CCharAbilitiesPacket(m_PChar));
+
+	apAction_t Action;
+	//	
+
+	//ShowDebug(CL_YELLOW" AOE = %u \n"CL_RESET);
+	//if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
+	//{
+	//	ShowDebug(CL_GREEN"CASTING ON PARTY!!!!!! \n"CL_RESET);
+	//	for (int i = 0; i < m_PChar->PParty->members.size(); i++)
+	//	{
+	//		CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+	//		//PTarget->status == STATUS_UPDATE &&
+	//		if (distance(m_PChar->loc.p, PTarget->loc.p) <= 20)
+	//		{
+	//			luautils::OnUseAbility(PTarget, PTarget);
+	//	
+	//			Action.ActionTarget = PTarget;
+	//			Action.reaction   = REACTION_NONE;
+	//			Action.speceffect = SPECEFFECT_NONE;
+	//			Action.animation  = m_PJobAbility->getAnimationID();
+	//			Action.param	  = 0;
+	//			Action.messageID  = 0;
+	//			Action.flag		  = 0;
+
+	//			PTarget->m_ActionList.push_back(Action);	
+	//		}
+	//	}
+	//}
+	//else
+	//{
+		luautils::OnUseAbility(m_PChar,m_PChar);
+		Action.ActionTarget = m_PChar;
+		Action.reaction   = REACTION_NONE;
+		Action.speceffect = SPECEFFECT_NONE;
+		Action.animation  = m_PJobAbility->getAnimationID();
+		Action.param	  = 0;
+		Action.messageID  = 0;
+		Action.flag		  = 0;
+		m_PChar->m_ActionList.push_back(Action);	
+	//}
+	
+	
 	
 	m_ActionTargetID = 0; 
 	m_PJobAbility = NULL;
@@ -1268,7 +1345,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 void CAICharNormal::ActionWeaponSkillStart()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
 	if (m_PBattleTarget->isDead())
 	{
@@ -1366,8 +1443,9 @@ void CAICharNormal::ActionWeaponSkillStart()
 
 void CAICharNormal::ActionWeaponSkillFinish()
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	////DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 	
+	m_PChar->health.tp = 8; 
 	m_ActionTargetID = 0; 
 	m_PWeaponSkill = NULL;
 	m_ActionType = ACTION_ATTACK; 
@@ -1383,7 +1461,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 void CAICharNormal::ActionAttack() 
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 	if (m_PBattleTarget->isDead())
 	{
 		m_ActionType = ACTION_DISENGAGE;

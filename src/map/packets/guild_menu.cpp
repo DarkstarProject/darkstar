@@ -32,7 +32,7 @@ CGuildMenuPacket::CGuildMenuPacket(GUILDSTATUS status, uint8 open, uint8 close, 
 	this->type = 0x86;
 	this->size = 0x06;
 
-	DSP_DEBUG_BREAK_IF(open > close);
+	//DSP_DEBUG_BREAK_IF(open > close);
 
 	WBUFB(data,(0x04)-4) = status;
 

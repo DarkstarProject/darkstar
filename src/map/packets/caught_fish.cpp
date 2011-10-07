@@ -35,7 +35,7 @@ CCaughtFishPacket::CCaughtFishPacket(CCharEntity * PChar, uint16 param0, uint16 
 	this->type = 0x27;
 	this->size = 0x38;
 
-	DSP_DEBUG_BREAK_IF(PChar->name.size() > 15);
+	//DSP_DEBUG_BREAK_IF(PChar->name.size() > 15);
 
 	WBUFL(data,(0x04)-4) = PChar->id;
 	WBUFL(data,(0x08)-4) = PChar->targid;

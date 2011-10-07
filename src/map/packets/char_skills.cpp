@@ -22,6 +22,8 @@
 */
 
 #include "../../common/socket.h"
+#include "../../common/utils.h"
+
 
 #include <string.h>
 
@@ -29,6 +31,20 @@
 
 #include "../charentity.h"
 #include "../battleutils.h"
+#include "../packets/message_basic.h"
+#include "../../common/timer.h"
+#include "message_debug.h"
+
+#include "../charutils.h"
+#include "../map.h"
+#include "../mobutils.h"
+#include "../petutils.h"
+#include "../spell.h"
+#include "../weapon_skill.h"
+#include "../ability.h"
+#include "../vana_time.h"
+#include "../zone.h"
+#include "../lua/luautils.h"
 
 
 CCharSkillsPacket::CCharSkillsPacket(CCharEntity * PChar) 
@@ -36,24 +52,27 @@ CCharSkillsPacket::CCharSkillsPacket(CCharEntity * PChar)
 	this->type = 0x62;
 	this->size = 0x80;
 
-	/*
+	
 	int realcount = 0;
 
-	for(unsigned int i = 0; i < schar->recastAbilityList.size(); i++) {
-		
-		int ttg = (int)(((int)schar->recastAbilityList.at(i).recast + schar->recastAbilityList.at(i).timeStamp) - (int)time(NULL));
-
-		if(schar->recastAbilityList.at(i).recastID != 0) {
+	for (int32 i = (int32)PChar->RecastAbilityList.size() - 1; i >= 0;i--)
+	{
+	
+		int32 ttg = (PChar->RecastAbilityList.at(i).RecastTime  + PChar->RecastAbilityList.at(i).TimeStamp) - gettick(); 
+		ShowDebug(CL_YELLOW"RecastTime: %u TimeStamp: %u TickCount: %u \n"CL_RESET,ttg, PChar->RecastAbilityList.at(i).TimeStamp, gettick()); 
+		if(PChar->RecastAbilityList.at(i).RecastId != 0) {
 			memcpy(this->data+4+((realcount)*4), &ttg, 3);
-			memcpy(this->data+7+((realcount)*4), &schar->recastAbilityList.at(i).recastID, 1);
+			memcpy(this->data+7+((realcount)*4), &PChar->RecastAbilityList.at(i).RecastId , 1);
 			realcount++;
-		} else {
+	
+		} 
+		else {
 			
 			memcpy(this->data, &ttg, 3);
 		}
 
 	}
-	*/
+	
 
 	memcpy(data+(0x80)-4, &PChar->WorkingSkills, 128);
 }

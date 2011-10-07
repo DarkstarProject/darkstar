@@ -33,7 +33,7 @@ CPartyMapPacket::CPartyMapPacket(CCharEntity* PChar)
 	this->type = 0xA0;
 	this->size = 0x0C;
 
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
 
 	WBUFL(data,(0x04)-4) = PChar->id;
 	WBUFB(data,(0x08)-4) = PChar->getZone();

@@ -411,8 +411,8 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 
 void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
 
 	PChar->loc.NeedToZone = false;
 

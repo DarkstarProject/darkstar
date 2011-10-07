@@ -70,7 +70,7 @@ UCONTAINERTYPE CUContainer::GetType()
 
 void CUContainer::SetType(UCONTAINERTYPE Type)
 {
-	DSP_DEBUG_BREAK_IF(m_ContainerType != UCONTAINER_EMPTY);
+	//DSP_DEBUG_BREAK_IF(m_ContainerType != UCONTAINER_EMPTY);
 
 	m_ContainerType = Type;
 }

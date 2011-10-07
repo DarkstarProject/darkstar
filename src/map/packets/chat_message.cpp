@@ -35,8 +35,8 @@ CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE Mes
 	this->type = 0x17;
 	this->size = ((24 + (strlen(buff) + 3) >> 1) + 1) & 0xFE;
 
-	DSP_DEBUG_BREAK_IF(strlen(buff) > 256);
-	DSP_DEBUG_BREAK_IF(PChar->name.size() > 15);
+	//DSP_DEBUG_BREAK_IF(strlen(buff) > 256);
+	//DSP_DEBUG_BREAK_IF(PChar->name.size() > 15);
 
 	if (PChar->nameflags.flags & FLAG_GM)
 	{

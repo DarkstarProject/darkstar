@@ -116,7 +116,7 @@ void FreePetList()
 
 void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 {
-	DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
+	//DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
 
 	CPetEntity* PPet = new CPetEntity();
 
@@ -161,7 +161,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 
 void DespawnPet(CBattleEntity* PMaster)
 {
-	DSP_DEBUG_BREAK_IF(PMaster->PPet == NULL);
+	//DSP_DEBUG_BREAK_IF(PMaster->PPet == NULL);
 
 	CBattleEntity* PPet = PMaster->PPet;
 

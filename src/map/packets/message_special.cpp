@@ -42,7 +42,7 @@ CMessageSpecialPacket::CMessageSpecialPacket(
 	this->type = 0x2A;
 	this->size = 0x10;
 
-	DSP_DEBUG_BREAK_IF(PEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(PEntity == NULL);
 
 	WBUFL(data,(0x04)-4) = PEntity->id;
 

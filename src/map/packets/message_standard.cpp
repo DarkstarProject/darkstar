@@ -80,7 +80,7 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0
 	this->type = 0x09;
 	this->size = 0x18;
 
-	DSP_DEBUG_BREAK_IF(MessageID != 0x58);
+	//DSP_DEBUG_BREAK_IF(MessageID != 0x58);
 
 	WBUFW(data,(0x0A)-4) = MessageID;
 

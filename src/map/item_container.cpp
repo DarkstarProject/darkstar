@@ -108,7 +108,7 @@ uint8 CItemContainer::SetSize(uint8 size)
 
 uint8 CItemContainer::InsertItem(CItem* PItem)
 {
-	DSP_DEBUG_BREAK_IF(PItem == NULL);
+	//DSP_DEBUG_BREAK_IF(PItem == NULL);
 
 	for (uint8 SlotID = m_ReservedSlot; SlotID < m_size; ++SlotID) 
 	{

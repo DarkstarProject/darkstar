@@ -400,17 +400,17 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);	
 
-	DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
-	DSP_DEBUG_BREAK_IF(!(WeaponItem->getType() & ITEM_WEAPON));
-	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FSH);
+	//DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
+	//DSP_DEBUG_BREAK_IF(!(WeaponItem->getType() & ITEM_WEAPON));
+	//DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FSH);
 
 	uint16 RodID = WeaponItem->getID();
 
 	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);	
 							
-	DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
-	DSP_DEBUG_BREAK_IF(!(WeaponItem->getType() & ITEM_WEAPON));
-	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FSH);
+	//DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
+	//DSP_DEBUG_BREAK_IF(!(WeaponItem->getType() & ITEM_WEAPON));
+	//DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FSH);
 
 	uint16 LureID = WeaponItem->getID();
 
@@ -478,9 +478,9 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 {	
 	CItemWeapon* PLure = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
 
-	DSP_DEBUG_BREAK_IF(PLure == NULL);
-	DSP_DEBUG_BREAK_IF(!(PLure->getType() & ITEM_WEAPON));
-	DSP_DEBUG_BREAK_IF(PLure->getSkillType() != SKILL_FSH);
+	//DSP_DEBUG_BREAK_IF(PLure == NULL);
+	//DSP_DEBUG_BREAK_IF(!(PLure->getType() & ITEM_WEAPON));
+	//DSP_DEBUG_BREAK_IF(PLure->getSkillType() != SKILL_FSH);
 
 	if (!RemoveFly &&
 	   ( PLure->getStackSize() == 1))
@@ -508,7 +508,7 @@ void RodBreaks(CCharEntity* PChar)
 	uint8  SlotID = PChar->equip[SLOT_RANGED];
 	CItem* PRod   = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-	DSP_DEBUG_BREAK_IF(PRod == NULL);
+	//DSP_DEBUG_BREAK_IF(PRod == NULL);
 
 	uint16 BrokenRodID = 0;
 
@@ -530,7 +530,7 @@ void RodBreaks(CCharEntity* PChar)
 		case 0x43EF:  BrokenRodID = 0x01E5; break;
 	}
 
-	DSP_DEBUG_BREAK_IF(BrokenRodID == 0);
+	//DSP_DEBUG_BREAK_IF(BrokenRodID == 0);
 
 	charutils::EquipItem(PChar, 0, SLOT_RANGED);
 	charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1); 
@@ -574,8 +574,8 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 			{
 				// сообщение: "You caught fish!"
 
-				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
-				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == NULL);
+				//DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
+				//DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == NULL);
 
 				PChar->animation = ANIMATION_FISHING_CAUGHT;
 

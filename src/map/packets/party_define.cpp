@@ -36,7 +36,7 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 
 	if (PParty != NULL)
 	{
-		DSP_DEBUG_BREAK_IF(PParty->members.size() > 6);
+		//DSP_DEBUG_BREAK_IF(PParty->members.size() > 6);
 
 		for (int32 i = 0; i < PParty->members.size(); ++i) 
 		{
@@ -44,7 +44,7 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 
 			CCharEntity* PChar = PParty->members.at(i);
 
-			DSP_DEBUG_BREAK_IF(PChar == NULL);
+			//DSP_DEBUG_BREAK_IF(PChar == NULL);
 					
 			if (PParty->GetLeader() == PChar)
 			{

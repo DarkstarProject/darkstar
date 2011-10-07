@@ -60,8 +60,8 @@ class CEnmityContainer
 {
 public:
 
-	void	Clear(uint32 EntityID = 0);			// отчищаем список ненависти
-	void	UpdaeteEnmity(EnmityObject_t*);		// добавление или обновление ненависти
+	void	Clear(uint32 EntityID = 0);			// Removes Entries from list
+	void	UpdateEnmity(EnmityObject_t*);		// Updates hate in list
 
 	CBattleEntity*	GetHighestEnmity();			// пересчет VE и возвращение сущности с максимальной TE
 

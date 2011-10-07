@@ -165,7 +165,7 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 		case LOC_MOGSACK:	 return m_Mogsack;
 	}
 
-	DSP_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID);	// неразрешенный ID хранилища
+	//DSP_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID);	// неразрешенный ID хранилища
 	return 0;
 }
 

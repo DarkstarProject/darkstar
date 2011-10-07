@@ -35,7 +35,7 @@ CPartyInvitePacket::CPartyInvitePacket(CCharEntity* PChar, CCharEntity* PInviter
 	this->type = 0xDC;
 	this->size = 0x10; 
 
-	DSP_DEBUG_BREAK_IF(PInviter->name.size() > 15);
+	//DSP_DEBUG_BREAK_IF(PInviter->name.size() > 15);
 	
 	WBUFL(data,(0x04)-4) = PChar->id;
 	WBUFW(data,(0x08)-4) = PChar->targid;

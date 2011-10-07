@@ -70,7 +70,7 @@ ACTIONTYPE CAIGeneral::GetCurrentAction()
 	
 void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 {
-	//DSP_DEBUG_BREAK_IF(m_ActionTargetID != 0);
+	////DSP_DEBUG_BREAK_IF(m_ActionTargetID != 0);
 
 	if (m_ActionTargetID != 0)
 	{
@@ -217,7 +217,7 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 		m_ActionType != ACTION_MAGIC_FINISH  &&
 		m_ActionType != ACTION_MAGIC_INTERRUPT)
 	{
-		DSP_DEBUG_BREAK_IF(m_PSpell != NULL);
+		//DSP_DEBUG_BREAK_IF(m_PSpell != NULL);
 
 		m_PSpell = battleutils::GetSpell(SpellID);
 	}
@@ -231,7 +231,7 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 
 CSpell* CAIGeneral::GetCurrentSpell()
 {
-	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 
 	return m_PSpell;
 }
@@ -248,7 +248,7 @@ void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
 	if (m_ActionType != ACTION_WEAPONSKILL_START   &&
 		m_ActionType != ACTION_WEAPONSKILL_FINISH)
 	{
-		//DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
+		////DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
 
 		m_PWeaponSkill = battleutils::GetWeaponSkill(WSkillID);
 		
@@ -264,7 +264,7 @@ void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
 
 CWeaponSkill* CAIGeneral::GetCurrentWeaponSkill()
 {
-	DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
 	
 	return m_PWeaponSkill;
 }
@@ -281,7 +281,7 @@ void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
 	if (m_ActionType != ACTION_JOBABILITY_START   &&
 		m_ActionType != ACTION_JOBABILITY_FINISH)
 	{
-		//DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
+		////DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
 
 		m_PJobAbility = battleutils::GetAbility(JobAbilityID);
 		
@@ -298,7 +298,7 @@ void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
 
 CAbility* CAIGeneral::GetCurrentJobAbility()
 {
-	DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
 	
 	return m_PJobAbility;
 }
@@ -311,7 +311,7 @@ CAbility* CAIGeneral::GetCurrentJobAbility()
 
 CBattleEntity* CAIGeneral::GetBattleTarget()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
 	return m_PBattleTarget;
 }

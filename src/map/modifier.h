@@ -57,27 +57,27 @@ enum MODIFIER
 
 // Сопротивление стихиям
 
-	MOD_FIREDEF				= 0x0F,
-	MOD_ICEDEF				= 0x10,
-	MOD_WINDDEF				= 0x11,
-	MOD_EARTHDEF			= 0x12,
-	MOD_THUNDERDEF			= 0x13,
-	MOD_WATERDEF			= 0x14,
-	MOD_LIGHTDEF			= 0x15,
-	MOD_DARKDEF				= 0x16,
+	MOD_FIREDEF				= 0x0F,		// Fire Defense
+	MOD_ICEDEF				= 0x10,		// Ice Defense
+	MOD_WINDDEF				= 0x11,		// Wind Defense
+	MOD_EARTHDEF			= 0x12,		// Earth Defense
+	MOD_THUNDERDEF			= 0x13,		// Thunder Defense
+	MOD_WATERDEF			= 0x14,		// Water Defense
+	MOD_LIGHTDEF			= 0x15,		// Light Defense
+	MOD_DARKDEF				= 0x16,		// Dark Defense
 
-	MOD_ATT					= 0x17,		// атака
-	MOD_RATT				= 0x18,		// дальняя атака
+	MOD_ATT					= 0x17,		// Attack
+	MOD_RATT				= 0x18,		// Ranged Attack
 
-	MOD_ACC					= 0x19,		// точность атаки
-	MOD_RACC				= 0x1A,		// точность дальных атак
+	MOD_ACC					= 0x19,		// Accuracy
+	MOD_RACC				= 0x1A,		// Ranged Accuracy
 
-	MOD_ENMITY				= 0x1B,		// ненависть монстров
+	MOD_ENMITY				= 0x1B,		// Enmity
 
-	MOD_MATT				= 0x1C,		// магическая атака
-	MOD_MDEF				= 0x1D,		// магическая защита
-	MOD_MACC				= 0x1E,		// точность магических атак
-	MOD_MEVA				= 0x1F,		// уклоняемость от магических атак
+	MOD_MATT				= 0x1C,		// Magic Attack
+	MOD_MDEF				= 0x1D,		// Magic Defense
+	MOD_MACC				= 0x1E,		// Magic Accuracy
+	MOD_MEVA				= 0x1F,		// Magic Evasion
 
 // Магические точность и атака стихий
 
@@ -113,21 +113,21 @@ enum MODIFIER
 // значение хранится в процентах получаемого урона (с точностью до тысячных) 
 // пример: 1000 = 100%, 875 = 87,5%
 
-	MOD_FIRERES				= 0x36,
-	MOD_ICERES				= 0x37,
-	MOD_WINDRES				= 0x38,
-	MOD_EARTHRES			= 0x39,
-	MOD_THUNDERRES			= 0x3A,
-	MOD_WATERRES			= 0x3B,
-	MOD_LIGHTRES			= 0x3C,
-	MOD_DARKRES				= 0x3D,
+	MOD_FIRERES				= 0x36,		// % Fire Resistance
+	MOD_ICERES				= 0x37,		// % Ice Resistance
+	MOD_WINDRES				= 0x38,		// % Wind Resistance
+	MOD_EARTHRES			= 0x39,		// % Earth Resistance
+	MOD_THUNDERRES			= 0x3A,		// % Thunder Resistance
+	MOD_WATERRES			= 0x3B,		// % Water Resistance
+	MOD_LIGHTRES			= 0x3C,		// % Light Resistance
+	MOD_DARKRES				= 0x3D,		// % Dark Resistance
 
-	MOD_ATTP				= 0x3E,		// % атака
-	MOD_DEFP				= 0x3F,		// % защита
-	MOD_ACCP				= 0x40,		// % точность
-	MOD_EVAP				= 0x41,		// % уклонение
-	MOD_RATTP				= 0x42,		// % дальная атака
-	MOD_RACCP				= 0x43,		// % точность дальней атаки
+	MOD_ATTP				= 0x3E,		// % Attack
+	MOD_DEFP				= 0x3F,		// % Defense
+	MOD_ACCP				= 0x40,		// % Accuracy
+	MOD_EVAP				= 0x41,		// % Evasion
+	MOD_RATTP				= 0x42,		// % Ranged Attack
+	MOD_RACCP				= 0x43,		// % Ranged Attack Accuracy
 
 	MOD_EVA					= 0x44,
 	MOD_RDEF				= 0x45,		// Ranged Defense
@@ -136,7 +136,7 @@ enum MODIFIER
 	MOD_HPHEAL				= 0x48,		// HP Recovered while healing
 	MOD_STORETP				= 0x49,		// Increases the rate at which TP is gained
 
-// Умение владеть оружием
+// Working Skills
 
 	MOD_HTH					= 0x50,
 	MOD_DAGGER				= 0x51,
@@ -158,7 +158,7 @@ enum MODIFIER
 	MOD_SHIELD				= 0x6D,
 	MOD_PARRY				= 0x6E,
 
-// Умение читать заклинания
+// Magic Skills
 
 	MOD_DIVINE				= 0x6F,
 	MOD_HEALING				= 0x70,
@@ -173,7 +173,7 @@ enum MODIFIER
 	MOD_WIND				= 0x79,
 	MOD_BLUE				= 0x7A,
 
-// Умение создавать предметы
+// Synthesis Skills
 
 	MOD_FISH				= 0x7F,
 	MOD_WOOD				= 0x80,
@@ -200,11 +200,11 @@ enum MODIFIER
 
 // Получаемый урон в процентах
 
-	MOD_DMG					= 0xA0, 
-	MOD_DMGPHYS				= 0xA1,
-	MOD_DMGBREATH			= 0xA2,
-	MOD_DMGMAGIC			= 0xA3,
-	MOD_DMGRANGE			= 0xA4,
+	MOD_DMG					= 0xA0,	// Damage Multiplier 
+	MOD_DMGPHYS				= 0xA1,	// Physical Damage Multiplier
+	MOD_DMGBREATH			= 0xA2,	// Breath Damage Multiplier
+	MOD_DMGMAGIC			= 0xA3, // Magic Damage Multiplier
+	MOD_DMGRANGE			= 0xA4,	// Range Damage Multiplier
 
 // Вероятность критического удара
 
@@ -213,7 +213,7 @@ enum MODIFIER
 
 	MOD_HASTE				= 0xA7,		// % Percent Haste (and Slow)
 	MOD_SPELLINTERRUPT		= 0xA8,		// % Spell Interruption Rate
-	MOD_MOVE				= 0xA9,		// % изменения скорости
+	MOD_MOVE				= 0xA9,		// % Movement Speed
 	MOD_FASTCAST			= 0xAA,
 	MOD_DELAY				= 0xAB,
 	MOD_RANGED_DELAY		= 0xAC,

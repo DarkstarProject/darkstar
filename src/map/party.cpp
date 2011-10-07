@@ -48,8 +48,8 @@
 
 CParty::CParty(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != NULL);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PParty != NULL);
 
 	m_PSyncTarget 	= NULL;
 	m_PQuaterMaster = NULL;
@@ -106,8 +106,8 @@ void CParty::DisbandParty()
 
 void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 {		
-	DSP_DEBUG_BREAK_IF(m_PLeader == NULL);
-	DSP_DEBUG_BREAK_IF(MemberName == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PLeader == NULL);
+	//DSP_DEBUG_BREAK_IF(MemberName == NULL);
 
 	for (int32 i = 0; i < members.size(); ++i) 
 	{
@@ -134,7 +134,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 			return;
 		} 
 	}
-	DSP_DEBUG_BREAK_IF(true);
+	//DSP_DEBUG_BREAK_IF(true);
 	ShowError(CL_RED"The character with name <%s> isn't found in party\n"CL_RESET, MemberName);
 }
 
@@ -166,7 +166,7 @@ uint8 CParty::MemberCount(uint8 ZoneID)
 
 void CParty::RemoveMemberByName(int8* MemberName)
 {
-	DSP_DEBUG_BREAK_IF(MemberName == NULL);
+	//DSP_DEBUG_BREAK_IF(MemberName == NULL);
 
 	for (int32 i = 0; i < members.size(); ++i) 
 	{
@@ -176,7 +176,7 @@ void CParty::RemoveMemberByName(int8* MemberName)
 			return;
 		} 
 	}
-	DSP_DEBUG_BREAK_IF(true);
+	//DSP_DEBUG_BREAK_IF(true);
 	ShowError(CL_RED"The character with name <%s> isn't found in party\n"CL_RESET, MemberName);
 }
 
@@ -188,8 +188,8 @@ void CParty::RemoveMemberByName(int8* MemberName)
 
 void CParty::RemoveMember(CCharEntity* PChar) 
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
 	if (m_PLeader == PChar) 
 	{
@@ -242,8 +242,8 @@ void CParty::RemoveMember(CCharEntity* PChar)
 
 void CParty::RemovePartyLeader(CCharEntity* PChar) 
 {
-	DSP_DEBUG_BREAK_IF(members.empty());
-	DSP_DEBUG_BREAK_IF(m_PLeader != PChar);
+	//DSP_DEBUG_BREAK_IF(members.empty());
+	//DSP_DEBUG_BREAK_IF(m_PLeader != PChar);
 
 	if (members.size() == 1) 
 	{
@@ -274,8 +274,8 @@ void CParty::RemovePartyLeader(CCharEntity* PChar)
 
 void CParty::AddMember(CCharEntity* PChar) 
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != NULL);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PParty != NULL);
 
 	// TODO: количество членов группы не должно быть больше шести, но при этом можно приглашать лидера другой группы вступить в альянс
 
@@ -317,7 +317,7 @@ uint32 CParty::GetPartyID()
 
 CCharEntity* CParty::GetLeader() 
 {
-	DSP_DEBUG_BREAK_IF(m_PLeader == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PLeader == NULL);
 
 	return m_PLeader;
 }
@@ -366,8 +366,8 @@ CAlliance* CParty::getAlliance()
 
 void CParty::ReloadParty(CCharEntity* PChar) 
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
 	PushPacket(NULL, 0, new CPartyDefinePacket(this));
 	PushPacket(PChar, PChar->getZone(), new CPartyMemberUpdatePacket(PChar, ReloadPartyMembers(PChar), PChar->getZone()));
@@ -382,8 +382,8 @@ void CParty::ReloadParty(CCharEntity* PChar)
 
 int8 CParty::ReloadPartyMembers(CCharEntity* PChar) 
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
 	int8 MemberNumber = -1;
 
@@ -406,8 +406,8 @@ int8 CParty::ReloadPartyMembers(CCharEntity* PChar)
 
 void CParty::ReloadTreasurePool(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
 	if (PChar->PTreasurePool != NULL &&
 		PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE)
@@ -442,8 +442,8 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 
 void CParty::SetLeader(CCharEntity* PChar) 
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
 	m_PLeader = PChar;
 	m_PartyID = PChar->id;
@@ -462,7 +462,7 @@ void CParty::SetLeader(CCharEntity* PChar)
 
 void CParty::SetSyncTarget(CCharEntity* PChar) 
 {
-	DSP_DEBUG_BREAK_IF(m_PLeader == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PLeader == NULL);
 
 	/*
 	// TODO: установка LevelSync невозможна, если на персонажах уже есть ограничение уровня

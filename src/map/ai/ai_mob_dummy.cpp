@@ -77,7 +77,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		//case ACTION_MOBABILITY_START:	ActionAbilityStart();	break;
 		case ACTION_MOBABILITY_FINISH:	ActionAbilityFinish();	break;
 
-		default : DSP_DEBUG_BREAK_IF(true);
+		default : ;//DSP_DEBUG_BREAK_IF(true);
 	}
 }
 
@@ -125,7 +125,7 @@ void CAIMobDummy::ActionRoaming()
 
 void CAIMobDummy::ActionEngage() 
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 	m_PMob->animation = ANIMATION_ATTACK;
 
 	m_ActionType = ACTION_ATTACK;
@@ -299,7 +299,7 @@ void CAIMobDummy::ActionSpawn()
 
 void CAIMobDummy::ActionAbilityStart()
 {
-	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
+	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
 	//m_PMob->health.tp = 10; 
 	m_ActionType = ACTION_MOBABILITY_FINISH; 
 	//apAction_t Action;
@@ -325,7 +325,7 @@ void CAIMobDummy::ActionAbilityStart()
 
 void CAIMobDummy::ActionAbilityFinish()
 {
-	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
+	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
 
 //apAction_t Action;
 
@@ -353,7 +353,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 void CAIMobDummy::ActionAttack() 
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 	
 	m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
 

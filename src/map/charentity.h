@@ -92,11 +92,21 @@ struct Recast_t
 	uint16 RecastTime;
 };
 
+
+struct RecastAbility_t 
+{
+	uint16 ID;
+	uint32 TimeStamp;
+	uint16 RecastTime;
+	uint8 RecastId;
+};
+
 class CBasicPacket;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32,CBaseEntity*> SpawnIDList_t;
 typedef std::vector<Recast_t> RecastList_t;
+typedef std::vector<RecastAbility_t> RecastAbilityList_t;
 
 
 class CCharEntity : public CBattleEntity 
@@ -156,7 +166,8 @@ public:
 	SpawnIDList_t	 SpawnPETList;					// список видимых питомцев
 	SpawnIDList_t	 SpawnNPCList;					// список видимых npc
 
-	RecastList_t	 RecastList;					 
+	RecastList_t	 RecastList;					// Recast List for Spells
+	RecastAbilityList_t	 RecastAbilityList;				// Recast List for Abilities	 
 
 	void			 SetName(int8* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
 

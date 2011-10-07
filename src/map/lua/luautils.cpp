@@ -989,7 +989,30 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	}
 
 	CCharEntity* PChar = (CCharEntity*)PKiller;
-	for (int i = 0; i < PChar->PParty->members.size(); ++i)
+
+	lua_pushstring(LuaHandle,"onMobDeath");
+	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
+		return -1;
+	}
+
+	CLuaBaseEntity LuaMobEntity(PMob);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+	
+	CLuaBaseEntity LuaKillerEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
+		return -1;
+	}
+
+	if (PChar->PParty != NULL)
+	{
+	for (int i = 1; i < PChar->PParty->members.size(); i++)
 	{
 		lua_pushstring(LuaHandle,"onMobDeath");
 		lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
@@ -1010,6 +1033,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 			ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
 			return -1;
 		}
+	}
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }

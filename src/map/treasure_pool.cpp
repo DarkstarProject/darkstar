@@ -75,8 +75,8 @@ TREASUREPOOLTYPE CTreasurePool::GetPoolType()
 
 void CTreasurePool::AddMember(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
 	members.push_back(PChar);
 
@@ -95,8 +95,8 @@ void CTreasurePool::AddMember(CCharEntity* PChar)
 
 void CTreasurePool::DelMember(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
 	for (int32 i = 0; i < members.size(); ++i) 
 	{
@@ -181,8 +181,8 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CMobEntity* PMob)
 
 void CTreasurePool::UpdatePool(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	//DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
 	if (PChar->status != STATUS_DISAPPEAR)
 	{

@@ -23,7 +23,7 @@
 
 #include <string.h>
 #include "trait.h"
-
+#include "modifier.h"
 
 CTrait::CTrait(uint16 id)
 {
@@ -71,3 +71,8 @@ int8 CTrait::getLevel()
 	return m_Level;
 }
 
+// 
+//MODIFIER getModifier() 
+//{
+//	return m_Mod; 
+//}

@@ -160,7 +160,7 @@ void LoadAbilitiesList()
 {
 	memset(g_PAbilityList,0,sizeof(g_PAbilityList));
 
-	const int8* fmtQuery = "SELECT abilityId, name, job, level, validTarget, recastTime, animation, `range`, isAOE \
+	const int8* fmtQuery = "SELECT abilityId, name, job, level, validTarget, recastTime, animation, `range`, isAOE, recastId \
 							FROM abilities WHERE job > 0 AND job < %u AND abilityId < %u \
 							ORDER BY job, level ASC";
 
@@ -180,7 +180,7 @@ void LoadAbilitiesList()
 			PAbility->setAnimationID(Sql_GetIntData(SqlHandle,6));
 			PAbility->setRange(Sql_GetIntData(SqlHandle,7));
 			PAbility->setAOE(Sql_GetIntData(SqlHandle,8));
-			
+			PAbility->setRecastId(Sql_GetIntData(SqlHandle,9));
 			g_PAbilityList[PAbility->getID()] = PAbility;
 			g_PAbilitiesList[PAbility->getJob()].push_back(PAbility);
 		}
@@ -702,7 +702,7 @@ bool IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 void MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode)
 {
-	DSP_DEBUG_BREAK_IF(mode < 1 || mode > 2);
+	//DSP_DEBUG_BREAK_IF(mode < 1 || mode > 2);
 
 	if (PEntity->speed != 0)
 	{

@@ -58,7 +58,7 @@ namespace guildutils
 
 void Initialize()
 {
-	DSP_DEBUG_BREAK_IF(g_PGuildList.size() != 0);
+	//DSP_DEBUG_BREAK_IF(g_PGuildList.size() != 0);
 
 	const int8* fmtQuery = "SELECT DISTINCT guildid FROM guild_shops ORDER BY guildid ASC";
 

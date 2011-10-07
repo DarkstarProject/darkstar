@@ -1191,7 +1191,11 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 			}
 				break;
 		}
+		
 	}
+
+	BuildingCharWeaponSkills(PChar);
+	SaveCharEquip(PChar);
 }
 
 /************************************************************************
@@ -1411,12 +1415,12 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 //TESTING PURPOSES ONLY
 void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 {
-	DSP_DEBUG_BREAK_IF(SkillID > SKILL_BLU);	// выход за пределы допустимых умений 
+	//DSP_DEBUG_BREAK_IF(SkillID > SKILL_BLU);	// выход за пределы допустимых умений 
 
 	if ( (PChar->WorkingSkills.rank[SkillID] != 0) && !(PChar->WorkingSkills.skill[SkillID] & 0x8000)) 
 	{
-		uint8 curSkill = PChar->RealSkills.skill[SkillID];
-		uint8 maxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), lvl);
+		uint16 curSkill = PChar->RealSkills.skill[SkillID];
+		uint16 maxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), lvl);
 
 		uint8 Diff = maxSkill - (curSkill/10);
 
@@ -1466,7 +1470,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 /* OLD SKILL UP ROUTINE
 void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 {
-	DSP_DEBUG_BREAK_IF(SkillID > SKILL_BLU);	// выход за пределы допустимых умений 
+	//DSP_DEBUG_BREAK_IF(SkillID > SKILL_BLU);	// выход за пределы допустимых умений 
 
 	if ( (PChar->WorkingSkills.rank[SkillID] != 0) &&
 		!(PChar->WorkingSkills.skill[SkillID] & 0x8000))
@@ -2091,7 +2095,7 @@ void SaveCharJobs(CCharEntity* PChar)
 
 void SaveCharExp(CCharEntity* PChar, JOBTYPE job)
 {
-	DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
+	//DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
 
 	const int8* fmtQuery;
 	
@@ -2130,7 +2134,7 @@ void SaveCharExp(CCharEntity* PChar, JOBTYPE job)
 
 void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
 {
-	DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
+	//DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
 
 	const int8* fmtQuery = "INSERT INTO char_skills \
 							SET charid = %u, skillid = %u, value = %u, rank = %u \

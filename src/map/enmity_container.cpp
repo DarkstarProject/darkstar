@@ -63,7 +63,7 @@ void CEnmityContainer::Clear(uint32 EntityID)
 *																		*
 ************************************************************************/
 
-void CEnmityContainer::UpdaeteEnmity(EnmityObject_t* PEnmityObject)
+void CEnmityContainer::UpdateEnmity(EnmityObject_t* PEnmityObject)
 {
 	// получилось не очень удачно с передачей указателя на объект
 	// может лучше хранить структуру, а не указатель ?

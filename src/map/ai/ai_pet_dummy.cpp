@@ -59,7 +59,7 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_DEATH:		ActionDeath();		break;
 		case ACTION_SPAWN:		ActionSpawn();		break;
 
-		default : DSP_DEBUG_BREAK_IF(true);
+		default :; //DSP_DEBUG_BREAK_IF(true);
 	}
 }
 
