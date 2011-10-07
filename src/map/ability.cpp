@@ -122,12 +122,12 @@ void CAbility::setName(int8* name)
 	m_name.insert(0,name);
 }
 
-uint8 CAbility::getRecastId()
+uint16 CAbility::getRecastId()
 {
 	return m_recastId;
 }
 
-void CAbility::setRecastId(uint8 recastId)
+void CAbility::setRecastId(uint16 recastId)
 {
 	m_recastId = recastId;
 }

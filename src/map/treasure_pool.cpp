@@ -238,6 +238,11 @@ void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 
 void CTreasurePool::CheckItems(uint32 tick) 
 {	
+	
+	if (TREASUREPOOL_SIZE != NULL)
+	{
+		return;
+	}
 	if (tick - m_Tick < TREASURE_CHECKTIME)
 		return;
 

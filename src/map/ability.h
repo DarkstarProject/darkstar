@@ -45,7 +45,7 @@ public:
 	uint8		getAOE();
 	uint8		getValidTarget();
 	uint16		getRecastTime();
-	uint8		getRecastId();
+	uint16		getRecastId();
 
 	void		setID(uint16 id);
 	void		setJob(JOBTYPE Job);
@@ -55,7 +55,7 @@ public:
 	void		setAOE(uint8 aoe);
 	void		setValidTarget(uint8 validTarget);
 	void		setRecastTime(uint16 recastTime);
-	void		setRecastId(uint8 recastId); 
+	void		setRecastId(uint16 recastId); 
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -70,7 +70,7 @@ private:
 	uint8		m_aoe;
 	uint8		m_validTarget;
 	uint16		m_recastTime;
-	uint8		m_recastId;
+	uint16		m_recastId;
 	string_t	m_name;
 
 };

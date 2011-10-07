@@ -74,7 +74,6 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_FADE_OUT:			ActionFadeOut();		break;
 		case ACTION_SPAWN:				ActionSpawn();			break;
 		case ACTION_ATTACK:				ActionAttack();			break;
-		//case ACTION_MOBABILITY_START:	ActionAbilityStart();	break;
 		case ACTION_MOBABILITY_FINISH:	ActionAbilityFinish();	break;
 
 		default : ;//DSP_DEBUG_BREAK_IF(true);
@@ -120,7 +119,7 @@ void CAIMobDummy::ActionRoaming()
 	{
 		m_LastActionTime = m_Tick; 
 		m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
-		m_PMob->setDespawnTimer(0); 
+		//m_PMob->setDespawnTimer(0); 
 	}
 	
 	

@@ -113,11 +113,8 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
 	for (int32 i = (int32)m_PChar->RecastAbilityList.size() - 1; i >= 0; --i)
 	{
-		if (m_Tick >= (m_PChar->RecastAbilityList.at(i).TimeStamp + m_PChar->RecastAbilityList.at(i).RecastTime))
+		if ((m_Tick - m_PChar->RecastAbilityList.at(i).TimeStamp) / 1000 >= (m_PChar->RecastAbilityList.at(i).RecastTime))
 		{
-			
-		uint32 ttg = (m_PChar->RecastAbilityList.at(i).RecastTime  + m_PChar->RecastAbilityList.at(i).TimeStamp) - m_Tick; 
-		ShowDebug(CL_YELLOW"RecastTime: %u TimeStamp: %u TickCount: %u \n"CL_RESET,ttg, m_PChar->RecastAbilityList.at(i).TimeStamp, m_Tick); 
 			m_PChar->RecastAbilityList.erase(m_PChar->RecastAbilityList.begin() + i);
 		}
 	}
@@ -1215,34 +1212,34 @@ void CAICharNormal::ActionJobAbilityStart()
 		}
 	}
 
-	//if (m_PJobAbility->getValidTarget() == 4)
-	//{
-	//	CBattleEntity* PBattleTarget = NULL;
-	//	if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
-	//	{
-	//		m_PBattleTarget = PBattleTarget;
-	//		if (!IsMobOwner())
-	//		{
-	//			return;
-	//		}
-	//	}
-	//				
-	//	if (m_PBattleTarget != m_PChar)
-	//	{
-	//		float Distance = distance(m_PChar->loc.p,m_PBattleTarget->loc.p);
+	if (m_PJobAbility->getValidTarget() == 4)
+	{
+		CBattleEntity* PBattleTarget = NULL;
+		if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
+		{
+			m_PBattleTarget = PBattleTarget;
+			if (!IsMobOwner())
+			{
+				return;
+			}
+		}
+					
+		if (m_PBattleTarget != m_PChar)
+		{
+			float Distance = distance(m_PChar->loc.p,m_PBattleTarget->loc.p);
 
-	//		if (Distance > 25)
-	//		{
-	//			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
+			if (Distance > 25)
+			{
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
 
-	//			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	//			m_PJobAbility = NULL;
-	//			m_PBattleTarget = NULL;
-	//			return;
-	//		}
-	//	}
-	//}
-	//	
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleTarget = NULL;
+				return;
+			}
+		}
+	}
+		
 	
 	apAction_t Action;
 
@@ -1254,17 +1251,18 @@ void CAICharNormal::ActionJobAbilityStart()
 	else
 	{
 		Action.ActionTarget = m_PChar;
-		Action.reaction   = REACTION_NONE ;
-		Action.speceffect = SPECEFFECT_RECOIL;
-		Action.animation  = m_PJobAbility->getAnimationID();
-		Action.messageID  = 100;
+	
 	}
 
+	Action.reaction   = REACTION_NONE ;
+	Action.speceffect = SPECEFFECT_RECOIL;
+	Action.animation  = m_PJobAbility->getAnimationID();
+	Action.messageID  = 100;
 	
 	RecastAbility_t Recast;
 	Recast.ID = m_PJobAbility->getID();
 	Recast.TimeStamp = m_Tick;
-	Recast.RecastTime = m_PJobAbility->getRecastTime();
+	Recast.RecastTime = m_PJobAbility->getRecastTime(); //+ m_Tick;
 	Recast.RecastId = m_PJobAbility->getRecastId(); 
 	m_PChar->RecastAbilityList.push_back(Recast);
 		

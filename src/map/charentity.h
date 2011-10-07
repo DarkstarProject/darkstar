@@ -98,7 +98,7 @@ struct RecastAbility_t
 	uint16 ID;
 	uint32 TimeStamp;
 	uint16 RecastTime;
-	uint8 RecastId;
+	uint32 RecastId;
 };
 
 class CBasicPacket;
@@ -167,7 +167,7 @@ public:
 	SpawnIDList_t	 SpawnNPCList;					// список видимых npc
 
 	RecastList_t	 RecastList;					// Recast List for Spells
-	RecastAbilityList_t	 RecastAbilityList;				// Recast List for Abilities	 
+	RecastAbilityList_t	 RecastAbilityList;			// Recast List for Abilities	 
 
 	void			 SetName(int8* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
 
