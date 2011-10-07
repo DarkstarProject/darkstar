@@ -328,12 +328,16 @@ public:
 
 	int16		getMod(uint16 modID);		// величина модификатора
 
+	int32		getDespawnTimer();			// Despawn Timer to Despawn a Mob after duration has been reached
+	
 	void		addModifier(uint16 type, int16 amount);
 	void		setModifier(uint16 type, int16 amount);
 	void		delModifier(uint16 type, int16 amount);
 	void		addModifiers(std::vector<CModifier*> *modList);
 	void		setModifiers(std::vector<CModifier*> *modList);
 	void		delModifiers(std::vector<CModifier*> *modList);
+	void		setDespawnTimer(int32 duration);
+	void		setSpawnTime();
 
 	uint8			m_ModelSize;			// размер модели сущности, для расчета дальности физической атаки
 	ECOSYSTEM		m_EcoSystem;			// эко-система сущности
@@ -342,7 +346,7 @@ public:
 	uint32			m_OwnerID;				// ID атакующей сущности (после смерти будет хранить ID сущности, нанесщей последний удар)
 	
 	uint16			m_RangedDelay;			// задержка дельнего оружия
-
+	int32			m_DespawnTimer;			// Despawn Timer to despawn mob after set duration
 	ActionList_t	m_ActionList;			// список совершенных действий за одну атаку (нужно будет написать структуру, включающую ActionList в которой будут категории анимации и т.д.)
 
 	CAIGeneral*		PBattleAI;				// интеллект боевой сущности

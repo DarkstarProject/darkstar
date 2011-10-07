@@ -263,18 +263,25 @@ int32 VanadielTimeOffset(lua_State* L)
 
 int32 SpawnMob(lua_State* L)
 {
-	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 	{
-		uint32 mobid = (uint32)lua_tointeger(L, -1);
+		uint32 mobid = (uint32)lua_tointeger(L, 1);
 		uint8  zone  = (mobid >> 12)-4096;
-
+		
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetZone(zone)->GetEntity((uint16)mobid & 0x0FFF, TYPE_MOB);
-
+		
 		if (PMob != NULL)
 		{
 			PMob->PBattleAI->SetLastActionTime(0);
 			PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+			if( !lua_isnil(L,2) && lua_isnumber(L,2))
+			{
+				int32 duration = (int32)lua_tointeger(L, 2); 
+				PMob->setDespawnTimer(duration); 
+			}
 		}
+		
+		
 		return 0;
 	}
 	lua_pushnil(L);

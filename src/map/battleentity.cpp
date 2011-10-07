@@ -29,6 +29,7 @@
 
 #include "battleentity.h"
 #include "battleutils.h"
+#include "../common/timer.h"
 
 CBattleEntity::CBattleEntity() 
 {
@@ -36,7 +37,9 @@ CBattleEntity::CBattleEntity()
 	m_ModelSize	= 3; // неправильная инициализация, она приведет к тому, что заклинания станут читаться на 3 дальше
 	m_mlvl = 0;
 	m_slvl = 0;
-
+	
+	m_DespawnTimer = 0;
+	
 	m_mjob = JOB_WAR;
 	m_sjob = JOB_WAR;
 
@@ -290,3 +293,12 @@ uint16 CBattleEntity::GetSkill(uint16 SkillID)
 	return 0;
 }
 
+int32 CBattleEntity::getDespawnTimer()
+{
+	return m_DespawnTimer;
+}
+
+void CBattleEntity::setDespawnTimer(int32 duration)
+{
+	m_DespawnTimer = (duration > 0 ? (duration * 1000) + gettick() : duration);
+}

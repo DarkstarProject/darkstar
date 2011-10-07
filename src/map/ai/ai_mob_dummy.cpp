@@ -115,6 +115,14 @@ void CAIMobDummy::ActionRoaming()
 
 		m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 	}
+
+	if (m_PMob->getDespawnTimer() > 0 && m_PMob->getDespawnTimer() < m_Tick)
+	{
+		m_PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+		m_PMob->setDespawnTimer(0); 
+	}
+	
+	
 }
 
 /************************************************************************
