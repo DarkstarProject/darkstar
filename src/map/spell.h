@@ -58,6 +58,8 @@ public:
 	uint16		getAnimationID();
 	SPELLGROUP	getSpellGroup();
 	bool		isAOE();
+	uint16		getBaseDamage();
+	uint8		getEffect();
 	
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);						// мне не нравится название метода
@@ -68,6 +70,8 @@ public:
 	void		setAnimationID(uint16 AnimationID);
 	void		setSpellGroup(SPELLGROUP SpellGropu);
 	void		setAOE(uint8 AOE);
+	void		setBaseDamage(uint16 BaseDamage);
+	void		setEffect(uint8 Effect);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -83,6 +87,8 @@ private:
 	uint8		m_ValidTarget;							// тип цели заклинания
 	SPELLGROUP  m_SpellGroup;							// группа/тип заклинания
 	bool		m_isAOE;								// глобальный эффект
+	uint16		m_BaseDamage;
+	uint8		m_Effect;
 
 	string_t	m_name;
 };

@@ -144,6 +144,29 @@ void CSpell::setAOE(uint8 AOE)
 	m_isAOE = (AOE != 0);
 }
 
+// Added base damage and effect to spell.
+
+uint16 CSpell::getBaseDamage()
+{
+	return m_BaseDamage;
+}
+
+void CSpell::setBaseDamage(uint16 BaseDamage)
+{
+	m_BaseDamage = BaseDamage;
+}
+
+uint8 CSpell::getEffect()
+{
+	return m_Effect;
+}
+
+void CSpell::setEffect(uint8 Effect)
+{
+	m_Effect = Effect;
+}
+
+
 /************************************************************************
 *																		*
 *  Сейчас ValidTarget устроен так, что неполучится прочитать заклинание	*
