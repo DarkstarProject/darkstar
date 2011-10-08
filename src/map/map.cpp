@@ -162,7 +162,6 @@ int32 do_init(int32 argc, int8** argv)
 	ShowMessage("\t\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
 
 	guildutils::Initialize();
-
 	charutils::LoadExpTable();
 	battleutils::LoadSkillTable();
 	battleutils::LoadAbilitiesList();
@@ -817,8 +816,6 @@ void map_versionscreen(int32 flag)
 {
 	ShowInfo(CL_WHITE "Darkstar version %d.%02d.%02d" CL_RESET"\n",
 		DARKSTAR_MAJOR_VERSION, DARKSTAR_MINOR_VERSION, DARKSTAR_REVISION);
-	ShowInfo(CL_GREEN "Website/Forum:" CL_RESET "\thttp://darkstarproject.ru/\n");
-	ShowInfo("\nOpen " CL_WHITE "readme.html" CL_RESET " for more information.");
 	if (flag) exit(EXIT_FAILURE);
 }
 

@@ -53,4 +53,5 @@ CCharSkillsPacket::CCharSkillsPacket(CCharEntity * PChar)
 			memcpy(this->data, &ttg, 3);
 		}
 	}
+	memcpy(data+(0x80)-4, &PChar->WorkingSkills, 128);
 }

@@ -325,12 +325,13 @@ int32 GetMobAction(lua_State* L)
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetZone(zone)->GetEntity((uint16)mobid & 0x0FFF, TYPE_MOB);
 		if (PMob != NULL)
 		{
-			PMob->PBattleAI->GetCurrentAction(); 
+			int32 currentAction = (int32)PMob->PBattleAI->GetCurrentAction(); 
+			lua_pushinteger(L,currentAction);
+		return 1;
 		}
-		return 0;
+		
 	}
-	lua_pushnil(L);
-	return 1;
+	return -1;
 }
 
 

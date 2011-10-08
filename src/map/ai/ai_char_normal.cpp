@@ -1380,7 +1380,8 @@ void CAICharNormal::ActionWeaponSkillStart()
 		}
 	
 	uint16 damage = luautils::OnUseWeaponSkill(m_PChar,m_PBattleTarget);
-	
+	m_PChar->health.tp = 8; 
+	m_LastActionTime = m_Tick; 
 	apAction_t Action;
 
 	Action.ActionTarget = m_PBattleTarget;
@@ -1442,8 +1443,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 void CAICharNormal::ActionWeaponSkillFinish()
 {
 	////DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
-	
-	m_PChar->health.tp = 8; 
+	m_LastActionTime = m_Tick;
 	m_ActionTargetID = 0; 
 	m_PWeaponSkill = NULL;
 	m_ActionType = ACTION_ATTACK; 
