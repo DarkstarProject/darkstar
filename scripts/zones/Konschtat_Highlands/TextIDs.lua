@@ -7,8 +7,13 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
   ALREADY_OBTAINED_TELE = 7153; -- You already possess the gate crystal for this telepoint
 
+-- Quest Items
+ORIENTAL_STEEL = 1151;
 
 -- Quest Dialog
-
 SIGNPOST_DIALOG_1 = 920; --
 SIGNPOST_DIALOG_2 = 921; -- You see something stuck behind the signpost
+	FORGER_DIALOG = 6392; -- There is nothing out of the ordinary here
+
+-- Quest Related Mob Ids
+FORGER = 17219999;
