@@ -104,7 +104,7 @@ uint8 CBattleEntity::GetMPP()
 
 uint16 CBattleEntity::addTP(int16 tp)
 {	
-	int16 cap = cap_value(health.tp + tp,0,3000);
+	int16 cap = cap_value(health.tp + tp,0,300);
 	tp = health.tp - cap;
 	health.tp = cap;
 	return abs(tp);

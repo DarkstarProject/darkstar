@@ -1584,14 +1584,25 @@ void CAICharNormal::ActionAttack()
 					m_PChar->addTP(12);
 					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
 					damage = (uint16)((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio);
-				}else{
+				}
+				else{
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
 				}
+				
+				if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BLOOD_WEAPON))
+				{
+					Action.flag = 1;
+					Action.subeffect = SUBEFFECT_BLOOD_WEAPON;
+					Action.submessageID = 167;
+					Action.subparam = damage;
+					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
+					m_PChar->addHP(damage);
+					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+				}
 
 				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
-
 				m_PChar->m_ActionList.push_back(Action);
 			}
 
