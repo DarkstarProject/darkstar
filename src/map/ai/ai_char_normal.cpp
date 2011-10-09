@@ -1011,8 +1011,9 @@ void CAICharNormal::ActionMagicCasting()
 		ActionMagicInterrupt();
 		return;
 	}
-
-	if ((m_Tick - m_LastActionTime) >= m_PSpell->getCastTime())		
+	
+	//Need to factor MOD_FASTCAST     |-----------------------|
+	if ((m_Tick - m_LastActionTime) >= m_PSpell->getCastTime() && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))		
 	{
 		m_LastActionTime = m_Tick;
 
@@ -1286,7 +1287,24 @@ void CAICharNormal::ActionJobAbilityFinish()
 	m_PChar->pushPacket(new CCharAbilitiesPacket(m_PChar));
 
 	apAction_t Action;
-	//	
+	
+	switch(m_PJobAbility->getID())
+	{
+	case 1:
+		//Benediction
+			
+		break;
+	case 2:
+		//Eagle Eye Shot
+
+		break;
+	case 3:
+
+		break;
+	case 4:
+		
+		break;
+	};
 
 	//ShowDebug(CL_YELLOW" AOE = %u \n"CL_RESET);
 	//if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
@@ -1380,7 +1398,14 @@ void CAICharNormal::ActionWeaponSkillStart()
 		}
 	
 	uint16 damage = luautils::OnUseWeaponSkill(m_PChar,m_PBattleTarget);
-	m_PChar->health.tp = 8; 
+	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+	{
+		m_PChar->health.tp -= 100;
+	}
+	else
+	{
+		m_PChar->health.tp = 8; 
+	}
 	m_LastActionTime = m_Tick; 
 	apAction_t Action;
 
