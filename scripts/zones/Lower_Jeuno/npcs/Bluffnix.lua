@@ -34,7 +34,7 @@ function gobQuest(player,bagSize)
 	currentQuest = {};
 	switch (bagSize) : caseof {
 		[30] = function (x) currentQuest = {27,3,0848,0652,0826,0788}; end, --Gobbiebag I, Dhalmel Leather, Steel Ingot, Linen Cloth, Peridot
-		[35] = function (x) currentQuest = {28,4,0851,0653,0827,0789}; end, --Gobbiebag II, Ram Leather, Mythril Ingot, Wool Cloth, Turquoise
+		[35] = function (x) currentQuest = {28,4,0851,0653,0827,0798}; end, --Gobbiebag II, Ram Leather, Mythril Ingot, Wool Cloth, Turquoise
 		[40] = function (x) currentQuest = {29,5,0855,0745,0828,0797}; end, --Gobbiebag III, Tiger Leather, Gold Ingot, Velvet Cloth, Painite
 		[45] = function (x) currentQuest = {30,5,0931,0654,0829,0808}; end, --Gobbiebag IV, Cermet Chunk, Darksteel Ingot, Silk Cloth, Goshenite
 		[50] = function (x) currentQuest = {74,6,1637,1635,1636,1634}; end, --Gobbiebag V, Bugard Leather, Paktong Ingot, Moblinweave, Rhodonite
