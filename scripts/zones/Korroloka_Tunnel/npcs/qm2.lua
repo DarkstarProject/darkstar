@@ -15,7 +15,7 @@ require("scripts/zones/Korroloka_Tunnel/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -23,12 +23,12 @@ end;
 
 function onTrigger(player,npc)
 	if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == 1) then
-		if (player:getVar("AyameAndKaede_Event") == 1 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
+		if (player:getVar("AyameAndKaede_Event") == 2 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
 			leechesDespawned = (GetMobAction(KORROLOKA_LEECH_1) == 0 and GetMobAction(KORROLOKA_LEECH_2) == 0 and GetMobAction(KORROLOKA_LEECH_3) == 0);
 			spawnTime = player:getVar("KorrolokaLeeches_Spawned");
 			canSpawn = (leechesDespawned and (os.time() - spawnTime) > 30);
 			killedLeeches = player:getVar("KorrolokaLeeches");
-			
+
 			if (killedLeeches >= 1) then
 				if ((killedLeeches == 3 and (os.time() - player:getVar("KorrolokaLeeches_Timer") < 30)) or (killedLeeches < 3 and leechesDespawned and (os.time() - spawnTime) < 30)) then
 					player:addKeyItem(STRANGELY_SHAPED_CORAL);
@@ -43,8 +43,8 @@ function onTrigger(player,npc)
 					player:setVar("KorrolokaLeeches",0);
 					player:setVar("KorrolokaLeeches_Spawned",os.time()+180);
 				else
-					player:messageSpecial(6392);			
-				end			
+					player:messageSpecial(6392);
+				end
 			elseif (canSpawn) then
 				SpawnMob(KORROLOKA_LEECH_1,168); -- Despawn after 3 minutes (-12 seconds for despawn delay).
 				SpawnMob(KORROLOKA_LEECH_2,168);

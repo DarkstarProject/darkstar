@@ -14,7 +14,7 @@ require("scripts/zones/Norg/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -23,7 +23,7 @@ end;
 function onTrigger(player,npc)
 
 	if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == 1) then
-		if (player:getVar("AyameAndKaede_Event") == 2) then
+		if (player:getVar("AyameAndKaede_Event") == 3) then
 			player:startEvent(0x005f);
 		else
 			player:startEvent(0x005e);
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x005e);
 	end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -54,6 +54,6 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(SEALED_DAGGER);
 		player:messageSpecial(KEYITEM_OBTAINED, SEALED_DAGGER);
 		player:delKeyItem(STRANGLEY_SHAPED_CORAL);
-		player:setVar("AyameAndKaede_Event", 3);
+		player:setVar("AyameAndKaede_Event", 4);
 	end
 end;

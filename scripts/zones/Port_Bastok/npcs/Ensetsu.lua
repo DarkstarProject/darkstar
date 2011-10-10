@@ -14,7 +14,7 @@ require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -23,11 +23,11 @@ end;
 function onTrigger(player,npc)
 	if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == 1) then
 		questStatus = player:getVar("AyameAndKaede_Event")
-		if (questStatus == 1 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
+		if ((questStatus == 1 or questStatus == 2) and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
 			player:startEvent(0x00f2);
-		elseif (questStatus == 1 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == true) then
+		elseif (questStatus == 2 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == true) then
 			player:startEvent(0x00f5);
-		elseif (questStatus == 2) then
+		elseif (questStatus == 3) then
 			player:startEvent(0x00f3);
 		elseif (player:hasKeyItem(SEALED_DAGGER)) then
 			player:startEvent(0x00f6,SEALED_DAGGER);
@@ -35,9 +35,9 @@ function onTrigger(player,npc)
 	elseif (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == 2) then
 		player:startEvent(0x00f7);
 	else
-	
+
 	end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -56,8 +56,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x00f5) then
+	if (csid == 0x00f2) then
 		player:setVar("AyameAndKaede_Event", 2);
+	elseif (csid == 0x00f5) then
+		player:setVar("AyameAndKaede_Event", 3);
 	elseif (csid == 0x00f6) then
 		player:completeQuest(BASTOK,AYAME_AND_KAEDE);
 		player:delKeyItem(SEALED_DAGGER);
