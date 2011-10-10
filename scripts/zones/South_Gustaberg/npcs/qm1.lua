@@ -4,7 +4,7 @@
 -- Involved in Quest: The Cold Light of Day
 -----------------------------------
 
-require("scripts/globals/quests");
+package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
 require("scripts/zones/South_Gustaberg/TextIDs");
 
 -----------------------------------
@@ -14,11 +14,14 @@ require("scripts/zones/South_Gustaberg/TextIDs");
 function onTrade(player,npc,trade)
   	count = trade:getItemCount();
   	gil = trade:getGil();
-  	quusTraded = trade:hasItemQty(QUUS,1)
 
-  	if (quusTraded == true and count == 1 and gil == 0) then
-		SpawnMOBByID(BUBBLY_BERNIE);
-		player:tradeComplete();
+  	if (trade:hasItemQty(QUUS,1) and count == 1 and gil == 0) then
+		if(GetMobAction(BUBBLY_BERNIE) == 0) then
+			SpawnMob(BUBBLY_BERNIE);
+			player:tradeComplete();
+		else
+			player:messageSpecial(NOTHING_FOUND);
+		end
 	end
 end;
 
