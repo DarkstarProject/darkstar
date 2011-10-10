@@ -1290,18 +1290,34 @@ void CAICharNormal::ActionJobAbilityFinish()
 	
 	switch(m_PJobAbility->getID())
 	{
-	case 1:
-		//Benediction
-			
-		break;
 	case 2:
-		//Eagle Eye Shot
+		//Benediction
+		if (m_PChar->PParty == NULL) 
+		{
+			battleutils::AbilityBenediction(m_PChar,m_PChar);
+		}
+		else
+		{
+			for (int i = 0; i < m_PChar->PParty->members.size(); i++)
+			{
+				CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+				if (distance(m_PChar->loc.p, PTarget->loc.p) <= 10)
+				{
+					battleutils::AbilityBenediction(m_PChar,PTarget);
+				}
+			}
+		}
 
 		break;
 	case 3:
+		//Eagle Eye Shot
 
 		break;
 	case 4:
+		//MIJIN GAKURE
+
+		break;
+	case 5:
 		
 		break;
 	};

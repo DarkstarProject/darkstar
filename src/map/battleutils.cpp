@@ -721,4 +721,62 @@ void MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode)
 	}
 }
 
+void battleutils::AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTarget)
+{
+	
+	PTarget->addHP(PTarget->health.maxhp * PCaster->GetMLevel() / PTarget->GetMLevel());
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_POISON) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_POISON) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_PARALYSIS) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BLINDNESS) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINDNESS) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_SILENCE) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_PETRIFICATION) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DISEASE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DISEASE) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_CURSE) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_STUN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BIND) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_WEIGHT) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_WEIGHT) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SLOW) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_SLOW) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_GRADUAL_PETRIFICATION) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_GRADUAL_PETRIFICATION) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MUTE) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BANE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BANE) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PLAGUE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_PLAGUE) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BURN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BURN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_FROST) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_FROST) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_RASP) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_RASP) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_CHOKE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_CHOKE) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SHOCK) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_SHOCK) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DROWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DROWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DIA) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BIO) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STR_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_STR_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEX_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DEX_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_VIT_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_VIT_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_AGI_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_AGI_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MND_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MND_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INT_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_INT_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_CHR_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_CHR_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ACCURACY_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_ACCURACY_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ATTACK_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_ATTACK_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_EVASION_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_EVASION_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEFENSE_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DEFENSE_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MAGIC_DEF_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MAGIC_DEF_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INHIBIT_TP) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_INHIBIT_TP) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MAGIC_ACC_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MAGIC_ACC_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MAGIC_ATK_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MAGIC_ATK_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ENCUMBRANCE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_ENCUMBRANCE) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HELIX) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_HELIX) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MAX_TP_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MAX_TP_DOWN) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_REQUIEM) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_REQUIEM) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_LULLABY) : NULL);
+	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ELEGY) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_ELEGY) : NULL);
+
+	if (rand() > 0.5)
+	{
+		(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DOOM) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DOOM) : NULL);
+	}
+}
+
+
+
 }; // namespase battleutils

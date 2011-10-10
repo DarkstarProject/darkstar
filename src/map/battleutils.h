@@ -73,6 +73,8 @@ namespace battleutils
 	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage);
 
 	void	MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode);
+
+	void	AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTarget);
 };
 
 #endif
