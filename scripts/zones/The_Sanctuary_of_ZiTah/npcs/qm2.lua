@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 	
 	if (trade:hasItemQty(HATCHET,1) and count == 1 and gil == 0 and player:hasItem(SACRED_BRANCH) == false) then
 		if (GetMobAction(GUARDIAN_TREANT) == 0) then
-			SpawnMob(GUARDIAN_TREANT, 10);
+			SpawnMob(GUARDIAN_TREANT, 288);
 			player:tradeComplete();
 		end
 	elseif (player:getVar("ForgeYourDestiny_killed") == 1) then
