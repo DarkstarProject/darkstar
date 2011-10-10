@@ -25,6 +25,7 @@ MOGHOUSE_EXIT 			= 7686;  -- You have learned your way through the back alleys o
  PAUJEAN_DIALOG_1 = 7388; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea. Just don't do anything I wouldn't...heh heh.
    RONAN_DIALOG_1 = 7197; -- Do something! Isn't there anything you can do to make him come out of his shell?
 POWHATAN_DIALOG_1 = 7011; -- I'm sick and tired of entertaining guests.
+	 UNLOCK_NINJA = 8168; -- You can now become a Ninja.
 
 -- Shop Texts
   DENVIHR_SHOP_DIALOG = 7377; -- Ah, interested in my wares, are you? You can only buy these in Bastok, my friend.
