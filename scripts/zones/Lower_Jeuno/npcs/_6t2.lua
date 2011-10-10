@@ -72,13 +72,17 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x0084) then
 		player:setVar("SaveMySon_Event",2);
 	elseif (csid == 0x00a3) then
-		player:completeQuest(JEUNO, SAVE_MY_SON);
-		player:setTitle(LIFE_SAVER);
-		player:addItem(BEAST_WHISTLE);
-		player:messageSpecial(ITEM_OBTAINED, BEAST_WHISTLE);
-		player:addGil(2100);
-		player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100);
-		player:setVar("SaveMySon_Event",0);
-		player:needToZone(true);
+		if (player:getFreeSlotsCount(0) >= 1) then
+			player:completeQuest(JEUNO, SAVE_MY_SON);
+			player:setTitle(LIFE_SAVER);
+			player:addItem(BEAST_WHISTLE);
+			player:messageSpecial(ITEM_OBTAINED, BEAST_WHISTLE);
+			player:addGil(2100);
+			player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100);
+			player:setVar("SaveMySon_Event",0);
+			player:needToZone(true);
+		else
+		   player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, BEAST_WHISTLE);
+		end
 	end
 end;

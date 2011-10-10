@@ -78,6 +78,6 @@ function onEventFinish(player,csid,option)
 		player:addFame(OUTLANDS, NORG_FAME*20);
 		player:unlockJob(12);
 		player:setVar("ForgeYourDestiny_timer",0);
-		plaery:setVar("ForgeYourDestiny_Event",0);
+		player:setVar("ForgeYourDestiny_Event",0);
 	end
 end;

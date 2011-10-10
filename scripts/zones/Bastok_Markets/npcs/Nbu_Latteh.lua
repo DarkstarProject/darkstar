@@ -9,6 +9,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
