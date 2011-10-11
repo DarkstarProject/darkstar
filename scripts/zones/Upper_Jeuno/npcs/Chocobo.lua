@@ -81,7 +81,7 @@ function onTrigger(player,npc)
         elseif (feed == 3) then
             player:startEvent(0x0034);
         elseif (feed == 4) then
-            player:startEvent(0x003b);
+            player:startEvent(0x003d);
         elseif (feed == 5) then
             player:startEvent(0x002e);
         elseif (feed == 6) then
@@ -124,7 +124,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
         player:setVar("ChocobosWounds_Year",VanadielYear());
         player:tradeComplete();
-		player:startEvent(0x0063); 
+		player:startEvent(0x0063);
     elseif (csid == 0x003c) then
         player:setVar("ChocobosWounds_Event", 5);
         player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
@@ -134,7 +134,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ChocobosWounds_Event", 6);
         player:setVar("ChocobosWounds_Day",VanadielDayOfTheYear());
         player:setVar("ChocobosWounds_Year",VanadielYear());
-        player:tradeComplete();            
+        player:tradeComplete();
     elseif (csid == 0x0040) then
         player:completeQuest(JEUNO,CHOCOBO_S_WOUNDS);
         player:addKeyItem(CHOCOBO_LICENSE);
