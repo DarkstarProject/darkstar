@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- 	EFFECT_WARCRY
+-- 	EFFECT_ELEMENTAL_SEAL
 --
 -----------------------------------
 
@@ -12,8 +12,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-target:addMod(MOD_ATT,14 + (target:getMainLvl() - 37) /2);
-target:updateEnmity(target,1,300);
+   target:addMod(MOD_MACC,150);
 end;
 
 -----------------------------------
@@ -28,5 +27,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-target:delMod(MOD_ATT,14 + (target:getMainLvl() - 37) /2);
+	target:delMod(MOD_MACC,150);
 end;
+
+
