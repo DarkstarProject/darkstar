@@ -123,7 +123,8 @@ void LoadSpellList()
 {
 	memset(g_PSpellList,0,sizeof(g_PSpellList));
 
-	const int8* fmtQuery = "SELECT spellid, name, jobs, `group`, validTargets, castTime, recastTime, animation, mpCost, isAOE \
+	const int8* fmtQuery = "SELECT spellid, name, jobs, `group`, validTargets, castTime, recastTime, animation, mpCost, \
+							isAOE, base, effect, element, multiplier \
 							FROM spell_list \
 							WHERE spellid < %u;";
 
@@ -144,6 +145,10 @@ void LoadSpellList()
 			PSpell->setAnimationID(Sql_GetIntData(SqlHandle,7));
 			PSpell->setMPCost(Sql_GetIntData(SqlHandle,8));
 			PSpell->setAOE(Sql_GetIntData(SqlHandle,9));
+			PSpell->setBase(Sql_GetIntData(SqlHandle,10)); 
+			PSpell->setEffect(Sql_GetIntData(SqlHandle,11)); 
+			PSpell->setElement(Sql_GetIntData(SqlHandle,12)); 
+			PSpell->setMultiplier(Sql_GetIntData(SqlHandle,13)); 
 
 			g_PSpellList[PSpell->getID()] = PSpell;
 		}
@@ -464,7 +469,7 @@ std::list<CTrait*> GetTraits(JOBTYPE JobID)
 *																		*
 ************************************************************************/
 
-uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage)
+uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, CZone* PZone)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE))
 	{
@@ -526,8 +531,75 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		(CCharEntity*)PDefender->addTP(3);
 		((CCharEntity*)PDefender)->pushPacket(new CCharHealthPacket((CCharEntity*)PDefender));
 	}
-
+	//PDefender->getZone();
+	//PZone->PushPacket(PDefender,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PDefender)); 
 	return damage;
+}
+
+uint32 CalculateMagicDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber) 
+{
+	int32 dINT = PCaster->stats.INT - PTarget->stats.INT; 
+	int32 base = PSpell->getBase(); 
+	float M = PSpell->getMultiplier(); 
+
+	int32 D = (dINT < 0 ? base + dINT : base + (dINT * M)); 
+
+	if (PSpell->isAOE() && targetNumber > 1)
+	{
+		if (targetNumber > 1 && targetNumber < 10) 
+			D = (D * 0.9); // Need to correct this later, every +2 targets, reduce by 0.1
+		else if (targetNumber >= 10)
+		{
+			D = (D * 0.4);
+		}
+	}
+
+	switch(PSpell->getElement())
+	{
+	case 1: // Fire
+	{
+		D = (D * (PTarget->getMod(MOD_FIRERES))) / 1000;
+	}
+			break;
+	case 2: // Earth
+	{
+		D = (D * (PTarget->getMod(MOD_EARTHRES))) / 1000;
+	}
+		break;
+	case 3: // water
+	{
+		D = (D * (PTarget->getMod(MOD_WATERRES))) / 1000;
+	}
+		break;
+	case 4: // air
+	{
+		D = (D * (PTarget->getMod(MOD_WINDRES))) / 1000;
+	}
+		break;
+	case 5: // ice 
+	{
+		D = (D * (PTarget->getMod(MOD_ICERES))) / 1000;
+	}
+		break;
+	case 6: // thunder
+	{
+		D = (D * (PTarget->getMod(MOD_THUNDERRES))) / 1000;
+	}
+		break;
+	case 7: // light
+	{
+		D = (D * (PTarget->getMod(MOD_LIGHTRES))) / 1000;
+	}
+		break;
+	case 8: // dark
+	{
+		D = (D * (PTarget->getMod(MOD_DARKRES))) / 1000;
+	}
+		break;
+	};
+
+	return D;
+
 }
 
 /************************************************************************

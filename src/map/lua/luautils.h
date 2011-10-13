@@ -83,6 +83,7 @@ namespace luautils
 	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget);			// triggered when casting a spell
 
 	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// triggers on mob death
+	int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
 
 	int32 OnSpecialWeaponKill(CCharEntity* PChar);								// triggers for special weapons lua on mob death (Blade Of Darkness quest)
 	

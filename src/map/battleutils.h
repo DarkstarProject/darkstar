@@ -70,7 +70,7 @@ namespace battleutils
 	uint8	GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	SUBEFFECT	GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill);
 	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender); 
-	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage);
+	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, CZone* PZone);
 
 	void	MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode);
 

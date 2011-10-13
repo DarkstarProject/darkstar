@@ -407,7 +407,7 @@ int32 OnZoneInitialise(uint8 ZoneID)
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
-		ShowError("luautils::OnZoneInitialise: %s\n",lua_tostring(LuaHandle,-1));
+		//ShowError("luautils::OnZoneInitialise: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
    
@@ -1044,6 +1044,39 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	}
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+}
+
+int32 OnMobSpawn(CBaseEntity* PMob) 
+{       
+        //DSP_DEBUG_BREAK(if PKiller == NULL || PMob == NULL);
+        int8 File[255];
+        memset(File,0,sizeof(File));
+
+        snprintf(File,sizeof(File),"%s/zones/%s/mobs/%s.lua",LuaScriptDir,zoneutils::GetZone(PMob->getZone())->GetName(), PMob->GetName());
+
+        if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+        {
+                return -1;
+        }
+
+        lua_pushstring(LuaHandle,"onMobSpawn");
+        lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+        if( lua_isnil(LuaHandle,-1) )
+        {
+                //ShowError("luautils::OnMobSpawn: undefined procedure onMobSpawn\n");
+                return -1;
+        }
+
+        CLuaBaseEntity LuaMobEntity(PMob);
+        Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+
+
+        if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+        {
+                ShowError("luautils::OnMobSpawn: %s\n",lua_tostring(LuaHandle,-1));
+                return -1;
+        }
+        return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }
 
 /************************************************************************

@@ -256,7 +256,7 @@ void CZone::LoadZoneSettings()
 		Sql_NumRows(SqlHandle) == 0 ||
 		Sql_NextRow(SqlHandle) != SQL_SUCCESS) 
 	{
-		ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot loading zone settings (%u)\n"CL_RESET, m_zoneID);
+		//ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot loading zone settings (%u)\n"CL_RESET, m_zoneID);
 	} 
 	else 
 	{

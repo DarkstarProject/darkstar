@@ -63,6 +63,7 @@
 #include "../charutils.h"
 #include "../guildutils.h"
 #include "../map.h"
+#include "../mobentity.h"
 #include "../petutils.h"
 #include "../spell.h"
 #include "../trade_container.h"
@@ -2598,7 +2599,7 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
 
 /************************************************************************
 *																		*
-*  Получаем ID экипированного предмета в указанной ячейке				*
+*  Returns the ItemId of the equipped item in the associated slot		*
 *																		*
 ************************************************************************/
 
@@ -2612,7 +2613,11 @@ inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 			{
 				uint8 SLOT = (uint8)lua_tointeger(L,1);
 
-				//DSP_DEBUG_BREAK_IF(SLOT > 15);
+				if (SLOT > 15) 
+				{
+					lua_pushinteger(L,0);
+					return 1;
+				}
 
 				CItem* PItem = ((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PBaseEntity)->equip[SLOT]);
 
@@ -2681,7 +2686,7 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 {
 	if ( m_PBaseEntity != NULL )
 	{
-		
+	   //CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
 	}
 	return 0;
 }
@@ -2709,7 +2714,7 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 
 /************************************************************************
 *																		*
-*	Get Container Size												*
+*	Get Container Size													*
 *																		*
 ************************************************************************/
 

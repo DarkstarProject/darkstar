@@ -770,7 +770,7 @@ void CAICharNormal::ActionRangedFinish()
 		Action.animation  = 0;
 		Action.messageID  = 352;
 
-		Action.param = battleutils::TakePhysicalDamage(m_PChar,m_PBattleSubTarget, damage);
+		Action.param = battleutils::TakePhysicalDamage(m_PChar,m_PBattleSubTarget, damage,m_PZone);
 		//charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PChar->m_Weapons[SLOT_RANGED]->getSkillType(), m_PBattleTarget->GetMLevel());
 		Action.flag = 3;
 		Action.subeffect = SUBEFFECT_FIRE_DAMAGE;
@@ -1103,7 +1103,7 @@ void CAICharNormal::ActionMagicFinish()
 		// это временная функция для активации ненависти монстров. 
 		// при чтении магии нельзя вызывать метод получения физического урона
 
-		battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, 0); 
+		battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, 0, m_PZone); 
 	}
 
 	Action.ActionTarget = m_PBattleSubTarget;
@@ -1134,7 +1134,7 @@ void CAICharNormal::ActionMagicFinish()
 				// это временная функция для активации ненависти монстров. 
 				// при чтении магии нельзя вызывать метод получения физического урона
 
-				battleutils::TakePhysicalDamage(m_PChar, PCurrentMob, 0);
+				battleutils::TakePhysicalDamage(m_PChar, PCurrentMob, 0, m_PZone);
 
 				Action.ActionTarget = PCurrentMob;
 				Action.reaction   = REACTION_NONE;
@@ -1429,7 +1429,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 	Action.reaction   = REACTION_NONE;
 	Action.speceffect = SPECEFFECT_RECOIL;
 	Action.animation  = m_PWeaponSkill->getAnimationId();
-	Action.param	  = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
+	Action.param	  = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
 	Action.messageID  = 185;
 	Action.flag		  = 0;
 	
@@ -1624,26 +1624,28 @@ void CAICharNormal::ActionAttack()
 					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
 					m_PChar->addTP(12);
 					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
-					damage = (uint16)((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio);
+
+					damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio) + m_PChar->RealSkills.skill[PWeapon->getSkillType()]);
 				}
 				else{
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
 				}
-				
+
+					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
+
 				if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BLOOD_WEAPON))
 				{
 					Action.flag = 1;
 					Action.subeffect = SUBEFFECT_BLOOD_WEAPON;
 					Action.submessageID = 167;
 					Action.subparam = damage;
-					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
 					m_PChar->addHP(damage);
 					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
 				}
 
-				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
+
 				m_PChar->m_ActionList.push_back(Action);
 			}
 

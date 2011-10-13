@@ -38,7 +38,7 @@
 #include "../packets/entity_update.h"
 #include "../packets/fade_out.h"
 #include "../packets/message_basic.h"
-
+#include "../status_effect.h"
 
 /************************************************************************
 *																		*
@@ -300,7 +300,7 @@ void CAIMobDummy::ActionSpawn()
 		mobutils::CalculateStats(m_PMob);
 
 		m_PMob->loc.p = m_PMob->m_SpawnPoint;
-
+		//luautils::OnMobSpawn(m_PMob); 
 		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_SPAWN));
 	}
 }
@@ -333,6 +333,8 @@ void CAIMobDummy::ActionAbilityStart()
 
 void CAIMobDummy::ActionAbilityFinish()
 {
+
+	
 	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
 
 //apAction_t Action;
@@ -423,13 +425,62 @@ void CAIMobDummy::ActionAttack()
 					
 					damage = (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ? 0 : (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob,m_PBattleTarget)) * DamageRatio));
 					m_PMob->addTP(10); 
+
+					/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BLAZE_SPIKES))
+					{
+						uint32 spikeDamage = 6; //Calculate Spike Damage
+						m_PMob->addhp(-spikeDamage);
+						m_PBattleTarget->addHP(damage);
+						Action.subeffect = SUBEFFECT_BLAZE_SPIKES;
+						Action.flag = 2; 
+						Action.submessageID = ??; 
+					} */
+
+					/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ICE_SPIKES))
+					{
+						uint32 spikeDamage = 6; //Calculate Spike Damage
+						m_PMob->addhp(-spikeDamage);
+						m_PBattleTarget->addHP(damage);
+
+						if (rand() > 0.5) 
+						{
+							//m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS,1,0,60));
+						}
+						Action.subeffect = SUBEFFECT_ICE_SPIKES;
+						Action.flag = 2; 
+						Action.submessageID = ??; 
+					} */
+
+
+					/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SHOCK_SPIKES))
+					{
+						uint32 spikeDamage = 6; //Calculate Spike Damage
+						m_PMob->addhp(-spikeDamage);
+						m_PBattleTarget->addHP(damage);
+
+						if (rand() > 0.5) 
+						{
+							//m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS,1,0,3));
+						}
+						Action.subeffect = SUBEFFECT_ICE_SPIKES;
+						Action.flag = 2; 
+						Action.submessageID = ??; 
+					} */
+
+					/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DREAD_SPIKES))
+					{
+						m_PBattleTarget->addHP(damage);
+						Action.subeffect = SUBEFFECT_DREAD_SPIKES;
+						Action.flag = 2; 
+						Action.submessageID = 132; 
+					} */
 				}
 				else
 				{
 					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_EVA,m_PMob->GetMLevel());
 					m_PMob->addTP(10); 
 				}
-				Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage);
+				Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, m_PZone);
 
 				m_PMob->m_ActionList.push_back(Action);
 

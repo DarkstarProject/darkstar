@@ -50,7 +50,7 @@ public:
 	CSpell(uint16 id);
 
 	uint16		getID();
-	uint8		getJob(JOBTYPE JobID);					// мне не нравится название метода
+	uint8		getJob(JOBTYPE JobID);					
 	uint16		getMPCost();
 	uint16		getCastTime();
 	uint8		getRecastTime();
@@ -58,39 +58,44 @@ public:
 	uint16		getAnimationID();
 	SPELLGROUP	getSpellGroup();
 	bool		isAOE();
-	uint16		getBaseDamage();
+	uint16		getBase();
 	uint8		getEffect();
-	
+	uint16		getElement();
+	float		getMultiplier();
+
 	void		setID(uint16 id);
-	void		setJob(int8* jobs);						// мне не нравится название метода
+	void		setJob(int8* jobs);						
 	void		setMPCost(uint16 MP);
 	void		setCastTime(uint16 CastTime);
 	void		setRecastTime(uint8 RecastTime);
 	void		setValidTarget(uint8 ValidTarget);
 	void		setAnimationID(uint16 AnimationID);
-	void		setSpellGroup(SPELLGROUP SpellGropu);
+	void		setSpellGroup(SPELLGROUP SpellGroup);
 	void		setAOE(uint8 AOE);
-	void		setBaseDamage(uint16 BaseDamage);
-	void		setEffect(uint8 Effect);
+	void		setBase(uint16 base);
+	void		setEffect(uint8 effect);
+	void		setElement(uint16 element); 
+	void		setMultiplier(float multiplier);
 
 	const int8* getName();
 	void		setName(int8* name);
 	
 private:
 
-	uint16		m_ID;									// уникальный номер заклинания
-	uint16		m_CastTime;								// время чтения заклинания
-	uint8		m_RecastTime;							// (секунды)
-	uint16		m_AnimationID;							// номер анимации заклинания
-	uint16		m_MPCost;								// необходимое количество MP для чтения заклинания или NinToolID
-	uint8		m_job[MAX_JOBTYPE];						// минимальные уровни профессий для чтения заклинания
-	uint8		m_ValidTarget;							// тип цели заклинания
-	SPELLGROUP  m_SpellGroup;							// группа/тип заклинания
-	bool		m_isAOE;								// глобальный эффект
-	uint16		m_BaseDamage;
-	uint8		m_Effect;
-
-	string_t	m_name;
+	uint16		m_ID;									// SpellId
+	uint16		m_CastTime;								// Time to cast spell
+	uint8		m_RecastTime;							// recast time
+	uint16		m_AnimationID;							// animation for spell
+	uint16		m_MPCost;								// mpCost/ItemId for ninjitsu tool
+	uint8		m_job[MAX_JOBTYPE];						// job
+	uint8		m_ValidTarget;							// target pc/npc/both
+	SPELLGROUP  m_SpellGroup;							// spellgroup 
+	bool		m_isAOE;								// aoe or single target spell
+	uint16		m_base;									// spell base damage
+	uint8		m_effect;								// additional or added effect
+	float		m_multiplier;							// Multiplier for upper tier spells
+	uint16		m_element;								// Element of spell
+	string_t	m_name;									// spell name
 };
 
 #endif

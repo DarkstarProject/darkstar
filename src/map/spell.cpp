@@ -25,7 +25,6 @@
 
 #include "spell.h"
 
-
 CSpell::CSpell(uint16 id)
 {
 	m_ID = id;
@@ -49,24 +48,10 @@ uint16 CSpell::getID()
 	return m_ID;
 }
 
-/************************************************************************
-*																		*
-*  Узнаем минимальный уровень чтения заклинания для указанной профессии	*
-*																		*
-************************************************************************/
-
 uint8 CSpell::getJob(JOBTYPE JobID)
 {
 	return (m_job[JobID] == CANNOT_USE_SPELL ? 255 : m_job[JobID]);
 }
-
-/************************************************************************
-*																		*
-*  Устанавливаем минимальные уровени чтения заклинания для профессий	*
-*																		*
-*  (отступ на зарезервированный элемент)								*
-*																		*
-************************************************************************/
 
 void CSpell::setJob(int8* jobs)
 {
@@ -146,33 +131,25 @@ void CSpell::setAOE(uint8 AOE)
 
 // Added base damage and effect to spell.
 
-uint16 CSpell::getBaseDamage()
+uint16 CSpell::getBase()
 {
-	return m_BaseDamage;
+	return m_base;
 }
 
-void CSpell::setBaseDamage(uint16 BaseDamage)
+void CSpell::setBase(uint16 base)
 {
-	m_BaseDamage = BaseDamage;
+	m_base = base;
 }
 
 uint8 CSpell::getEffect()
 {
-	return m_Effect;
+	return m_effect;
 }
 
-void CSpell::setEffect(uint8 Effect)
+void CSpell::setEffect(uint8 effect)
 {
-	m_Effect = Effect;
+	m_effect = effect;
 }
-
-
-/************************************************************************
-*																		*
-*  Сейчас ValidTarget устроен так, что неполучится прочитать заклинание	*
-*  на персонажей во время PvP											*
-*																		*
-************************************************************************/
 
 uint8 CSpell::getValidTarget()
 {
@@ -182,4 +159,24 @@ uint8 CSpell::getValidTarget()
 void CSpell::setValidTarget(uint8 ValidTarget)
 {
 	m_ValidTarget = ValidTarget;
+}
+
+float CSpell::getMultiplier()
+{
+	return m_multiplier;
+}
+
+void CSpell::setMultiplier(float multiplier)
+{
+	m_multiplier = multiplier;
+}
+
+uint16 CSpell::getElement()
+{
+	return m_element;
+}
+
+void CSpell::setElement(uint16 element)
+{
+	m_element = element;
 }

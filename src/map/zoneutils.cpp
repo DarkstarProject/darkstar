@@ -192,7 +192,7 @@ void LoadZoneList()
 				PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle,14));
 				PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle,15) * 1000)/60);
 
-				PMob->m_Behaviour  = BEHAVIOUR_NONE; //(uint16)Sql_GetIntData(SqlHandle,16);
+				PMob->m_Behaviour  = (uint16)Sql_GetIntData(SqlHandle,16);
 				PMob->m_Type       = (uint8)Sql_GetIntData(SqlHandle,18);
 				PMob->m_EcoSystem  = (ECOSYSTEM)Sql_GetIntData(SqlHandle,19);
 				PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlHandle,20);
@@ -204,6 +204,8 @@ void LoadZoneList()
 				PMob->setModifier(MOD_PIERCERES,(uint16)(Sql_GetFloatData(SqlHandle,32) * 1000));
 				PMob->setModifier(MOD_HTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,33) * 1000));
 				PMob->setModifier(MOD_IMPACTRES,(uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
+
+
 
 				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,43);
 
