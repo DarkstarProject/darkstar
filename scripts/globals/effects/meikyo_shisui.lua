@@ -9,7 +9,6 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addtp(300);
 end;
 
 -----------------------------------
