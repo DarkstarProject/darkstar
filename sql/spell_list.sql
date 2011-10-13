@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2011-10-08 11:53:26
+Date: 2011-10-10 18:44:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,8 +33,8 @@ CREATE TABLE `spell_list` (
   `defaultMsgType` smallint(6) NOT NULL DEFAULT '0',
   `animation` smallint(3) unsigned NOT NULL DEFAULT '0',
   `isAOE` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `baseDamage` smallint(4) NOT NULL,
-  `effect` smallint(3) NOT NULL,
+  `baseDamage` smallint(4) DEFAULT NULL,
+  `effect` smallint(3) DEFAULT NULL,
   PRIMARY KEY (`spellid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=68;
 
