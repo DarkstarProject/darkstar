@@ -28,6 +28,7 @@
 
 #include "lua_baseentity.h"
 #include "lua_trade_container.h"
+#include "luautils.h"
 
 #include "../packets/char_abilities.h"
 #include "../packets/char_jobs.h"
@@ -686,12 +687,13 @@ inline int32 CLuaBaseEntity::addQuest(lua_State *L)
 		{
 			PChar->m_questLog[logID].current [questID/8] |= (1 << (questID % 8));
 			PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID, 1));
-			charutils::SaveQuestsList(PChar);
+		
 		}
 	}else{
 		ShowError(CL_RED"Lua::addQuest: LogID %i is invalid\n"CL_RESET, logID);
+		return -1;
 	}
-
+		charutils::SaveQuestsList(PChar);
 	lua_pushnil(L);
 	return 1;
 }
@@ -2789,6 +2791,34 @@ inline int32 CLuaBaseEntity::decreaseContainerSize(lua_State *L)
 	lua_pushnil(L);
 }
 
+
+int32 CLuaBaseEntity::sendToJail(lua_State* L)
+{
+	const int8* fmtQuery = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charid = '%u' LIMIT 1";
+
+	if(!lua_isnil(L,1) && lua_isnumber(L,1))
+	{
+		int32 charid = lua_tointeger(L,1);
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, charid);
+
+		if (ret != SQL_ERROR && 
+			Sql_NumRows(SqlHandle) != 0 &&
+			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			uint32 CharID = (uint32)Sql_GetUIntData(SqlHandle,0);
+			uint16 TargID = (uint16)Sql_GetUIntData(SqlHandle,1);
+			uint8  ZoneID = (uint8) Sql_GetUIntData(SqlHandle,2);
+
+			CCharEntity* POffender = (CCharEntity*)zoneutils::GetZone(ZoneID)->GetEntity(TargID, TYPE_PC);
+			
+			luautils::SendToJail(POffender);
+	
+				return 0;
+			}
+	}
+	lua_pushnil(L);
+
+}
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -2899,5 +2929,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,decreaseContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendToJail),
 	{NULL,NULL}
 };

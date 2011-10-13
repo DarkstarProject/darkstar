@@ -1365,6 +1365,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 	m_PJobAbility = NULL;
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PChar->m_ActionList.clear();
+	m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); 
 
 }
 
@@ -1422,6 +1423,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 	{
 		m_PChar->health.tp = 8; 
 	}
+
 	m_LastActionTime = m_Tick; 
 	apAction_t Action;
 
@@ -1473,6 +1475,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 	m_PChar->m_ActionList.push_back(Action);
 	m_ActionType = ACTION_WEAPONSKILL_FINISH; 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
 }
 
 /************************************************************************
@@ -1625,7 +1628,7 @@ void CAICharNormal::ActionAttack()
 					m_PChar->addTP(12);
 					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
 
-					damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio) + m_PChar->RealSkills.skill[PWeapon->getSkillType()]);
+					damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio));
 				}
 				else{
 					Action.reaction   = REACTION_EVADE;

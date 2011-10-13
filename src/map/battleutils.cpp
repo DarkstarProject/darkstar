@@ -489,7 +489,6 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	}
 
 	PDefender->addHP(-damage);
-
 	PDefender->m_OwnerID = PAttacker->id;
 
 	// прерывание магических атак
@@ -531,8 +530,9 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		(CCharEntity*)PDefender->addTP(3);
 		((CCharEntity*)PDefender)->pushPacket(new CCharHealthPacket((CCharEntity*)PDefender));
 	}
-	//PDefender->getZone();
-	//PZone->PushPacket(PDefender,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PDefender)); 
+	
+	PZone->PushPacket(PDefender,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PDefender)); 
+	
 	return damage;
 }
 

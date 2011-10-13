@@ -90,6 +90,8 @@ namespace luautils
 	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob);				// triggers when weapon skill is used
 	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget);				// triggers when job ability is used
 	int32 OpenAuctionHouse(CCharEntity* PChar);									// not implemented
+
+	int32 SendToJail(CCharEntity* PChar);
 };
 
 #endif //- _LUAUTILS_H -

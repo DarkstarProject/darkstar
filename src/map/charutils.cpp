@@ -73,6 +73,7 @@
 
 uint16 g_ExpTable[50][20];
 uint16 g_ExpPerLevel[100];
+float  g_expRate = 1.00;
 
 /************************************************************************
 *																		*
@@ -272,6 +273,9 @@ void CalculateStats(CCharEntity* PChar)
 		counter += 2;
 	}
 
+	SKILLTYPE weapType = (SKILLTYPE)PChar->m_Weapons[SLOT_MAIN]->getSkillType();   //Still working on this
+	PChar->addModifier(MOD_ATT,(PChar->RealSkills.skill[weapType] / 100));    //Still working on this
+	PChar->addModifier(MOD_ACC,(PChar->RealSkills.skill[weapType] / 600));   //Still working on this
 	PChar->health.hp = (PChar->loc.prevzone == 0 || PChar->loc.zone == 0 ? PChar->health.maxhp : cap_value(PChar->health.hp, 0, PChar->health.maxhp));
 	PChar->health.mp = (PChar->loc.prevzone == 0 || PChar->loc.zone == 0 ? PChar->health.maxmp : cap_value(PChar->health.mp, 0, PChar->health.maxmp));
 }
@@ -1086,11 +1090,12 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
 				PChar->pushPacket(new CCharAppearancePacket(PChar));
 				PChar->pushPacket(new CInventoryAssignPacket(PItem->getID(), PItem->getQuantity(), LOC_INVENTORY, slotID, INV_NODROP));
-
+				charutils::CalculateStats(PChar);
 				PChar->pushPacket(new CCharUpdatePacket(PChar));
 			} 
 		}
 	}
+	
 	BuildingCharWeaponSkills(PChar);
 	SaveCharEquip(PChar);
 }
@@ -1188,6 +1193,9 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				PChar->m_Weapons[SLOT_MAIN]->setDelay(8000);
 				PChar->m_Weapons[SLOT_MAIN]->setDamage(0);
 				PChar->m_Weapons[SLOT_MAIN]->setDmgType(DAMAGE_NONE);
+				(PChar->GetMJob() == JOB_MNK ? PChar->m_Weapons[SLOT_MAIN]->setSkillType(SKILL_H2H) : PChar->m_Weapons[SLOT_MAIN]->setSkillType(0));
+				//charutils::CalculateStats(PChar);
+					
 			}
 				break;
 		}
@@ -1271,6 +1279,8 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 	uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
 	
 	WeaponSkillList = battleutils::GetWeaponSkills(skill); 
+
+
 
 	for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
 	{
@@ -1752,6 +1762,20 @@ void LoadExpTable()
 			}
 		}
 	}
+
+	ret = Sql_Query(SqlHandle,"SELECT value FROM settings WHERE name = 'xprate'"); 
+	
+	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		{
+			g_expRate = (float)Sql_GetFloatData(SqlHandle,0);
+		}
+	}
+		
+	
+	
+
 }
 
 /************************************************************************
@@ -1844,6 +1868,8 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 		{
 			exp = exp;
 		}
+
+		exp = (exp * g_expRate);
 
 		PChar->pushPacket(new CMessageDebugPacket(PChar, PMob, exp, 0, 8));
 
