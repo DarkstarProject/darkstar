@@ -1,10 +1,13 @@
 -----------------------------------
--- 
+--
 -- Zone: Metalworks
--- 
+--
 -----------------------------------
 
+require("scripts/globals/quests");
+require("scripts/globals/server");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -25,7 +28,7 @@ return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,regionID)

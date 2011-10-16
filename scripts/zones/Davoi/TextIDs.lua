@@ -9,3 +9,8 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 
 -- General Text
 YOU_SEE_NOTHING = 7344;
+
+-- Quest Related Items
+
+		GAVOTVUT		  = 17387965;
+		BARAKBOK		  = 17387966;
