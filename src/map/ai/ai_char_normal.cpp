@@ -1104,7 +1104,7 @@ void CAICharNormal::ActionMagicFinish()
 		// это временная функция для активации ненависти монстров. 
 		// при чтении магии нельзя вызывать метод получения физического урона
 
-		damage = battleutils::CalculateMagicDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 1, m_PZone); 
+		//damage = battleutils::CalculateMagicDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 1, m_PZone); 
 	}
 
 	Action.ActionTarget = m_PBattleSubTarget;
@@ -1112,7 +1112,7 @@ void CAICharNormal::ActionMagicFinish()
 	Action.speceffect = SPECEFFECT_NONE;
 	Action.animation  = m_PSpell->getAnimationID();
 	Action.param	  = battleutils::CalculateMagicDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 1, m_PZone);
-	Action.messageID  = 0;
+	Action.messageID  = 2;
 	Action.flag		  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
@@ -1142,7 +1142,7 @@ void CAICharNormal::ActionMagicFinish()
 				Action.speceffect = SPECEFFECT_NONE;
 				Action.animation  = m_PSpell->getAnimationID();
 				Action.param	  = battleutils::CalculateMagicDamage(m_PChar, PCurrentMob, m_PSpell, targetNumber, m_PZone);
-				Action.messageID  = 0;
+				Action.messageID  = 2;
 				Action.flag		  = 0;
 
 				m_PChar->m_ActionList.push_back(Action);	

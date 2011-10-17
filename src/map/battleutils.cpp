@@ -612,52 +612,53 @@ uint32 CalculateMagicDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpe
 		}
 	}
 
-	switch(PSpell->getElement())
-	{
-	case 1: // Fire
-	{
-		D = (D * (PTarget->getMod(MOD_FIRERES))) / 1000;
-	}
-			break;
-	case 2: // Earth
-	{
-		D = (D * (PTarget->getMod(MOD_EARTHRES))) / 1000;
-	}
-		break;
-	case 3: // water
-	{
-		D = (D * (PTarget->getMod(MOD_WATERRES))) / 1000;
-	}
-		break;
-	case 4: // air
-	{
-		D = (D * (PTarget->getMod(MOD_WINDRES))) / 1000;
-	}
-		break;
-	case 5: // ice 
-	{
-		D = (D * (PTarget->getMod(MOD_ICERES))) / 1000;
-	}
-		break;
-	case 6: // thunder
-	{
-		D = (D * (PTarget->getMod(MOD_THUNDERRES))) / 1000;
-	}
-		break;
-	case 7: // light
-	{
-		D = (D * (PTarget->getMod(MOD_LIGHTRES))) / 1000;
-	}
-		break;
-	case 8: // dark
-	{
-		D = (D * (PTarget->getMod(MOD_DARKRES))) / 1000;
-	}
-		break;
-	};
+	//switch(PSpell->getElement())
+	//{
+	//case 1: // Fire
+	//{
+	//	D = (D * (PTarget->getMod(MOD_FIRERES))) / 1000;
+	//}
+	//		break;
+	//case 2: // Earth
+	//{
+	//	//D = (D * (PTarget->getMod(MOD_EARTHRES))) / 1000;
+	//}
+	//	break;
+	//case 3: // water
+	//{
+	//	D = (D * (PTarget->getMod(MOD_WATERRES))) / 1000;
+	//}
+	//	break;
+	//case 4: // air
+	//{
+	//	D = (D * (PTarget->getMod(MOD_WINDRES))) / 1000;
+	//}
+	//	break;
+	//case 5: // ice 
+	//{
+	//	D = (D * (PTarget->getMod(MOD_ICERES))) / 1000;
+	//}
+	//	break;
+	//case 6: // thunder
+	//{
+	//	D = (D * (PTarget->getMod(MOD_THUNDERRES))) / 1000;
+	//}
+	//	break;
+	//case 7: // light
+	//{
+	//	D = (D * (PTarget->getMod(MOD_LIGHTRES))) / 1000;
+	//}
+	//	break;
+	//case 8: // dark
+	//{
+	//	D = (D * (PTarget->getMod(MOD_DARKRES))) / 1000;
+	//}
+	//	break;
+	//};
 	
 	PTarget->addHP(-D);
 	PTarget->m_OwnerID = PCaster->id;
+	
 	PZone->PushPacket(PTarget,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PTarget)); 
 	return D;
 
