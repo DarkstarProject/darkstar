@@ -6,6 +6,7 @@
 -------------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 require("scripts/zones/Windurst_Walls/TextIDs");
 
 ----------------------------------- 
@@ -45,3 +46,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

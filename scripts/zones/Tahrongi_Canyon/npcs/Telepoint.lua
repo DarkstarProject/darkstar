@@ -4,6 +4,7 @@
 -- 
 -----------------------------------
 
+package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 require("scripts/zones/Tahrongi_Canyon/TextIDs");
 
 -----------------------------------
@@ -55,3 +56,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

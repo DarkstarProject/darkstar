@@ -5,6 +5,7 @@
 --	Working 100%
 -----------------------------------
 
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
@@ -42,3 +43,6 @@ function onEventFinish(player,csid,option)
 		player:setPos(0,-2,100,128,238);
 	end
 end;
+
+
+

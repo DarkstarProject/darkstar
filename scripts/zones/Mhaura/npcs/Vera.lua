@@ -6,6 +6,7 @@
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
@@ -91,3 +92,6 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(OTHER_AREAS,THE_OLD_LADY);
 	end
 end;
+
+
+

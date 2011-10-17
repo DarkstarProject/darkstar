@@ -74,3 +74,6 @@ gil = 0;
     	end
   end
 end;
+
+
+

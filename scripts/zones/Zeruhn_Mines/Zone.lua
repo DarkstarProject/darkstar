@@ -6,6 +6,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 require("scripts/zones/Zeruhn_Mines/TextIDs");
 
 -----------------------------------
@@ -72,3 +73,6 @@ function onEventFinish(player,csid,menuchoice)
       
    end
 end;
+
+
+

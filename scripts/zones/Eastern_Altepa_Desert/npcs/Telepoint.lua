@@ -4,6 +4,7 @@
 -- 
 -----------------------------------
 
+package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
 -----------------------------------
@@ -55,3 +56,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

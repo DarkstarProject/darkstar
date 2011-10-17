@@ -4,6 +4,7 @@
 --  Involved in quest "An Explorer's Footsteps"
 -----------------------------------
 
+package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 require("scripts/zones/East_Ronfaure/TextIDs");
 
 -----------------------------------
@@ -48,3 +49,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

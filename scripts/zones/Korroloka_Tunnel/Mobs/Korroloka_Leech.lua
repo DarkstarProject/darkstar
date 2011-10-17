@@ -15,3 +15,6 @@ function onMobDeath(mob, killer)
 	end
 
 end;
+
+
+

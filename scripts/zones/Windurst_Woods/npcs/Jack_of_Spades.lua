@@ -6,6 +6,7 @@
 -------------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 ----------------------------------- 
@@ -51,3 +52,6 @@ function onEventFinish(player,csid,option)
 		player:addGil(GIL_RATE*50);
 	end 
 end;
+
+
+

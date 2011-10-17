@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
@@ -46,3 +47,6 @@ if (option == 0) then
 	player:messageSpecial(HOMEPOINT_SET);
 end
 end;
+
+
+

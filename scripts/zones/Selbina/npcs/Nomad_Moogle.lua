@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
@@ -42,3 +43,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

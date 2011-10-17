@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 -----------------------------------
@@ -42,3 +43,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

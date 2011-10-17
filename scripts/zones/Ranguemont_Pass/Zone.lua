@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 require("scripts/zones/Ranguemont_Pass/TextIDs");
 
 -----------------------------------
@@ -48,3 +49,6 @@ function onEventFinish(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
 end;
+
+
+

@@ -6,6 +6,7 @@
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 require("scripts/zones/North_Gustaberg/TextIDs");
 
 -----------------------------------
@@ -52,3 +53,6 @@ function onEventFinish(player,csid,option)
 	end
 	
 end;
+
+
+

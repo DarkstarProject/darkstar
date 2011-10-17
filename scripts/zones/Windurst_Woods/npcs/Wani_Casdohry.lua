@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
@@ -49,3 +50,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);	
 end;
+
+
+

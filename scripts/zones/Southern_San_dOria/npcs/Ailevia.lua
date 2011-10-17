@@ -8,6 +8,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
@@ -60,3 +61,6 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
 	end
 end;
+
+
+

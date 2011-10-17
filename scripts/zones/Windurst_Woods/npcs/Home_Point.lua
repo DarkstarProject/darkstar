@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
@@ -46,3 +47,6 @@ if (option == 0) then
 	player:messageSpecial(HOMEPOINT_SET);
 end
 end;
+
+
+

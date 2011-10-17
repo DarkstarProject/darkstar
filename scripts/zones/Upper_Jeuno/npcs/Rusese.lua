@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/keyitems");
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -81,3 +82,6 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
+
+
+

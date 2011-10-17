@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/shop");
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -49,3 +50,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

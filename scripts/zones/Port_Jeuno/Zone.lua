@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
@@ -54,3 +55,6 @@ function onEventFinish(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
 end;
+
+
+

@@ -4,6 +4,7 @@
 -- 
 -----------------------------------
 
+package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 require("scripts/zones/Bhaflau_Thickets/TextIDs");
 
 -----------------------------------
@@ -65,3 +66,6 @@ function onEventFinish(player,csid,option)
 		player:specialMessage(KEYITEM_OBTAINED,1865);
 	end
 end;
+
+
+

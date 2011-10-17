@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 -----------------------------------
@@ -49,3 +50,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

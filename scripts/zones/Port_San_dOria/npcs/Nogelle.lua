@@ -6,6 +6,7 @@
 
 require("scripts/globals/quests");
 require("scripts/globals/titles");
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
@@ -77,3 +78,6 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*600);
 	end
 end;
+
+
+

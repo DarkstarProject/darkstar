@@ -6,6 +6,7 @@
 -------------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
 
 ----------------------------------- 
@@ -48,3 +49,6 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
 	end
 end;
+
+
+

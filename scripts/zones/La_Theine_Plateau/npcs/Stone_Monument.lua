@@ -4,6 +4,7 @@
 --  Involved in quest "An Explorer's Footsteps"
 -----------------------------------
 
+package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------
@@ -48,3 +49,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

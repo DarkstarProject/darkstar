@@ -6,6 +6,7 @@
 -----------------------------------
 
 require("scripts/globals/shop");
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
@@ -59,3 +60,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

@@ -15,3 +15,6 @@ end;
 function onMobDeath(mob, killer)
 	killer:setVar("GKILLER",1);
 end;
+
+
+

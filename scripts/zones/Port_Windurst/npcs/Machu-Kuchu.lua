@@ -4,6 +4,7 @@
 -- Warps players to Windurst Walls
 -----------------------------------
 
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
@@ -41,3 +42,6 @@ function onEventFinish(player,csid,option)
 		player:setPos(67,-7,-47,0x80,239);
 	end
 end;
+
+
+

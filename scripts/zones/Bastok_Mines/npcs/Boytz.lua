@@ -6,6 +6,7 @@
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
@@ -69,3 +70,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

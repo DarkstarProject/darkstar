@@ -15,3 +15,6 @@ end;
 function onMobDeath(mob, killer)
 	killer:setVar("BKILLER",1);
 end;
+
+
+

@@ -6,6 +6,7 @@
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -51,3 +52,6 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 end;
+
+
+

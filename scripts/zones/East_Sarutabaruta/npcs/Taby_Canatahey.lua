@@ -4,6 +4,7 @@
 --	Working 100%
 -----------------------------------
 
+package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 require("scripts/zones/East_Sarutabaruta/TextIDs");
 
 -----------------------------------
@@ -38,3 +39,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

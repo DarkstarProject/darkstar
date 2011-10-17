@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
@@ -46,3 +47,6 @@ if (option == 0) then
 	player:messageSpecial(HOMEPOINT_SET);
 end
 end;
+
+
+

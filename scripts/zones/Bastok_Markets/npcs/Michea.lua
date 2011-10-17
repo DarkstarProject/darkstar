@@ -8,6 +8,7 @@
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
@@ -90,3 +91,6 @@ function onEventFinish(player,csid,option)
 	end
 	
 end;
+
+
+

@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/shop");
+package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
 require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
 
 -----------------------------------
@@ -46,3 +47,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+

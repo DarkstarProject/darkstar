@@ -15,3 +15,6 @@ end;
 function onMobDeath(mob, killer)	
 	killer:setVar("ForgeYourDestiny_killed",1);
 end;
+
+
+

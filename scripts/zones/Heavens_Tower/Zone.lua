@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 require("scripts/zones/Heavens_Tower/TextIDs");
 
 -----------------------------------
@@ -61,3 +62,6 @@ function onEventFinish(player,csid,option)
 		player:setPos(0,-17,135,60,239);
 	end
 end;
+
+
+

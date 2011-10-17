@@ -11,6 +11,7 @@
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
@@ -183,3 +184,6 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
+
+
+

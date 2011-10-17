@@ -7,6 +7,7 @@
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -56,4 +57,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,LETTERS_FROM_DOMIEN);        
     end
 end;
+
+
+
 

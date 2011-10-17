@@ -6,6 +6,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
@@ -52,3 +53,6 @@ function onEventFinish(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
 end;
+
+
+

@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Residential_Area/TextIDs"] = nil;
 require("scripts/zones/Residential_Area/TextIDs");
 
 -----------------------------------
@@ -54,3 +55,6 @@ function onEventFinish(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
 end;
+
+
+

@@ -7,6 +7,7 @@
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------
@@ -127,3 +128,6 @@ function onEventFinish(player,csid,option)
 		player:addFame(WINDURST,WIN_FAME*50);
 	end
 end;
+
+
+

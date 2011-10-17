@@ -6,6 +6,7 @@
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -86,3 +87,6 @@ function onEventFinish(player,csid,option)
 	end
 
 end;
+
+
+

@@ -6,6 +6,7 @@
 
 require("scripts/globals/server");
 require("scripts/globals/settings");
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -84,3 +85,6 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(HOMEPOINT_SET);
 	end
 end;
+
+
+

@@ -5,7 +5,9 @@
 -----------------------------------
 
 require("scripts/globals/shop");
+package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil;
 require("scripts/zones/Ship_bound_for_Mhaura/TextIDs");
+package.loaded["scripts/zones/Ship_bound_for_Mhaura_Pirate/TextIDs"] = nil;
 --require("scripts/zones/Ship_bound_for_Mhaura_Pirate/TextIDs");
 
 -----------------------------------
@@ -49,3 +51,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+
