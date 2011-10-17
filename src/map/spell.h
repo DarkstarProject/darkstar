@@ -56,6 +56,7 @@ public:
 	uint8		getRecastTime();
 	uint8		getValidTarget();
 	uint16		getAnimationID();
+	uint16		getSpellType();
 	SPELLGROUP	getSpellGroup();
 	bool		isAOE();
 	uint16		getBase();
@@ -76,22 +77,23 @@ public:
 	void		setEffect(uint8 effect);
 	void		setElement(uint16 element); 
 	void		setMultiplier(float multiplier);
-
+	void		setSpellType(uint16 spellType);
 	const int8* getName();
 	void		setName(int8* name);
 	
 private:
 
 	uint16		m_ID;									// SpellId
-	uint16		m_CastTime;								// Time to cast spell
-	uint8		m_RecastTime;							// recast time
-	uint16		m_AnimationID;							// animation for spell
-	uint16		m_MPCost;								// mpCost/ItemId for ninjitsu tool
+	uint16		m_castTime;								// Time to cast spell
+	uint8		m_recastTime;							// recast time
+	uint16		m_animationID;							// animation for spell
+	uint16		m_mpCost;								// mpCost/ItemId for ninjitsu tool
 	uint8		m_job[MAX_JOBTYPE];						// job
 	uint8		m_ValidTarget;							// target pc/npc/both
-	SPELLGROUP  m_SpellGroup;							// spellgroup 
+	SPELLGROUP  m_spellGroup;							// spellgroup 
 	bool		m_isAOE;								// aoe or single target spell
 	uint16		m_base;									// spell base damage
+	uint16		m_spellType;
 	uint8		m_effect;								// additional or added effect
 	float		m_multiplier;							// Multiplier for upper tier spells
 	uint16		m_element;								// Element of spell

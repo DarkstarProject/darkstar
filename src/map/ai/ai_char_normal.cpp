@@ -1097,58 +1097,105 @@ void CAICharNormal::ActionMagicFinish()
 
 	apAction_t Action;
 	
-	luautils::OnSpellCast(m_PChar, m_PBattleSubTarget);
-	int32 damage;
-	if (m_PBattleSubTarget->objtype == TYPE_MOB)
+	
+	switch(m_PSpell->getSpellType())
 	{
-		// это временная функция для активации ненависти монстров. 
-		// при чтении магии нельзя вызывать метод получения физического урона
+		case 2: // magic Damage
+		{	
+			int32 damage;
+			
+			Action.ActionTarget = m_PBattleSubTarget;
+			Action.reaction   = REACTION_NONE;
+			Action.speceffect = SPECEFFECT_NONE;
+			Action.animation  = m_PSpell->getAnimationID();
+			Action.param	  = battleutils::MagicCalculateDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 1, m_PZone);
+			Action.messageID  = m_PSpell->getSpellType();
+			Action.flag		  = 0;
 
-		//damage = battleutils::CalculateMagicDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 1, m_PZone); 
-	}
+			m_PChar->m_ActionList.push_back(Action);
 
-	Action.ActionTarget = m_PBattleSubTarget;
-	Action.reaction   = REACTION_NONE;
-	Action.speceffect = SPECEFFECT_NONE;
-	Action.animation  = m_PSpell->getAnimationID();
-	Action.param	  = battleutils::CalculateMagicDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 1, m_PZone);
-	Action.messageID  = 2;
-	Action.flag		  = 0;
-
-	m_PChar->m_ActionList.push_back(Action);
-
-	if (m_PSpell->isAOE() && m_PBattleSubTarget->objtype == TYPE_MOB)
-	{
-		int16 targetNumber = 1; 
-		for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); 
-			 it != m_PChar->SpawnMOBList.end() && 
-			 m_PChar->m_ActionList.size() < 16;
-			 ++it)
-		{
-			targetNumber +=1; 
-			CMobEntity* PCurrentMob = (CMobEntity*)it->second;
-
-			if (m_PBattleSubTarget != PCurrentMob &&
-				PCurrentMob->status == STATUS_UPDATE &&
-				distance(m_PBattleSubTarget->loc.p, PCurrentMob->loc.p) <= 10)
+			if (m_PSpell->isAOE() && m_PBattleSubTarget->objtype == TYPE_MOB)
 			{
-				luautils::OnSpellCast(m_PChar, PCurrentMob);
-		
-				// это временная функция для активации ненависти монстров. 
-				// при чтении магии нельзя вызывать метод получения физического урона
+				int16 targetNumber = 1; 
+				for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); 
+					 it != m_PChar->SpawnMOBList.end() && 
+					 m_PChar->m_ActionList.size() < 16;
+					 ++it)
+				{
+					targetNumber +=1; 
+					CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
-				Action.ActionTarget = PCurrentMob;
-				Action.reaction   = REACTION_NONE;
-				Action.speceffect = SPECEFFECT_NONE;
-				Action.animation  = m_PSpell->getAnimationID();
-				Action.param	  = battleutils::CalculateMagicDamage(m_PChar, PCurrentMob, m_PSpell, targetNumber, m_PZone);
-				Action.messageID  = 2;
-				Action.flag		  = 0;
+					if (m_PBattleSubTarget != PCurrentMob &&
+						PCurrentMob->status == STATUS_UPDATE &&
+						distance(m_PBattleSubTarget->loc.p, PCurrentMob->loc.p) <= 10)
+					{
+						Action.ActionTarget = PCurrentMob;
+						Action.reaction   = REACTION_NONE;
+						Action.speceffect = SPECEFFECT_NONE;
+						Action.animation  = m_PSpell->getAnimationID();
+						Action.param	  = battleutils::MagicCalculateDamage(m_PChar, PCurrentMob, m_PSpell, targetNumber, m_PZone);
+						Action.messageID  = m_PSpell->getSpellType();
+						Action.flag		  = 0;
 
-				m_PChar->m_ActionList.push_back(Action);	
+						m_PChar->m_ActionList.push_back(Action);	
+					}
+				}
 			}
 		}
-	}
+			break;
+		case 7: // cure
+		{		
+			Action.ActionTarget = m_PBattleSubTarget;
+			Action.reaction   = REACTION_NONE;
+			Action.speceffect = SPECEFFECT_NONE;
+			Action.animation  = m_PSpell->getAnimationID();
+			Action.param	  = battleutils::MagicCalculateCure(m_PChar, m_PBattleSubTarget, m_PSpell, 0, m_PZone);
+			Action.messageID  = m_PSpell->getSpellType();
+			Action.flag		  = 0;
+
+			m_PChar->m_ActionList.push_back(Action);
+
+			if (m_PSpell->isAOE())
+			{
+				for (int i = 0; i < m_PChar->PParty->members.size(); i++)
+				{
+					CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+					if (m_PChar != PTarget && distance(m_PChar->loc.p, PTarget->loc.p) <= 10)
+					{
+			
+						Action.ActionTarget = m_PChar->PParty->members[i];
+						Action.reaction   = REACTION_NONE;
+						Action.speceffect = SPECEFFECT_NONE;
+						Action.animation  = m_PSpell->getAnimationID();
+						Action.param	  = battleutils::MagicCalculateCure(m_PChar, PTarget, m_PSpell, 0, m_PZone);
+						Action.messageID  = m_PSpell->getSpellType();
+						Action.flag		  = 0;
+
+						m_PChar->m_ActionList.push_back(Action);	
+					}
+				}
+			}
+		}
+
+		case 93: //warp
+			
+			break;
+		case 227: // drain
+			
+			break;
+		case 228: // aspir
+			
+			break;
+		case 230: // buff
+		
+			break;
+		case 237: //enfeeble
+			
+			break;
+	};
+	
+
+	
 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 	m_PChar->m_ActionList.clear();

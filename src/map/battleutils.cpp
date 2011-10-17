@@ -130,7 +130,7 @@ void LoadSpellList()
 	memset(g_PSpellList,0,sizeof(g_PSpellList));
 
 	const int8* fmtQuery = "SELECT spellid, name, jobs, `group`, validTargets, castTime, recastTime, animation, mpCost, \
-							isAOE, base, effect, element, multiplier \
+							isAOE, base, effect, element, multiplier, defaultMsgType \
 							FROM spell_list \
 							WHERE spellid < %u;";
 
@@ -155,7 +155,7 @@ void LoadSpellList()
 			PSpell->setEffect(Sql_GetIntData(SqlHandle,11)); 
 			PSpell->setElement(Sql_GetIntData(SqlHandle,12)); 
 			PSpell->setMultiplier(Sql_GetIntData(SqlHandle,13)); 
-
+			PSpell->setSpellType(Sql_GetIntData(SqlHandle,14));
 			g_PSpellList[PSpell->getID()] = PSpell;
 		}
 	}
@@ -594,7 +594,13 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	return damage;
 }
 
-uint32 CalculateMagicDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone) 
+/************************************************************************
+*																		*
+*  Calculate Power of Damage Spell										*
+*																		*
+************************************************************************/
+
+uint32 MagicCalculateDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone) 
 {
 	int32 dINT = PCaster->stats.INT - PTarget->stats.INT; 
 	int32 base = PSpell->getBase(); 
@@ -612,49 +618,49 @@ uint32 CalculateMagicDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpe
 		}
 	}
 
-	//switch(PSpell->getElement())
-	//{
-	//case 1: // Fire
-	//{
-	//	D = (D * (PTarget->getMod(MOD_FIRERES))) / 1000;
-	//}
-	//		break;
-	//case 2: // Earth
-	//{
-	//	//D = (D * (PTarget->getMod(MOD_EARTHRES))) / 1000;
-	//}
-	//	break;
-	//case 3: // water
-	//{
-	//	D = (D * (PTarget->getMod(MOD_WATERRES))) / 1000;
-	//}
-	//	break;
-	//case 4: // air
-	//{
-	//	D = (D * (PTarget->getMod(MOD_WINDRES))) / 1000;
-	//}
-	//	break;
-	//case 5: // ice 
-	//{
-	//	D = (D * (PTarget->getMod(MOD_ICERES))) / 1000;
-	//}
-	//	break;
-	//case 6: // thunder
-	//{
-	//	D = (D * (PTarget->getMod(MOD_THUNDERRES))) / 1000;
-	//}
-	//	break;
-	//case 7: // light
-	//{
-	//	D = (D * (PTarget->getMod(MOD_LIGHTRES))) / 1000;
-	//}
-	//	break;
-	//case 8: // dark
-	//{
-	//	D = (D * (PTarget->getMod(MOD_DARKRES))) / 1000;
-	//}
-	//	break;
-	//};
+	switch(PSpell->getElement())
+	{
+	case 1: // Fire
+	{
+		D = (PTarget->getMod(MOD_FIRERES) > 0 ? (D * (PTarget->getMod(MOD_FIRERES))) / 1000 : D);
+	}
+		break;
+	case 2: // Earth
+	{
+		D = (PTarget->getMod(MOD_EARTHRES) > 0 ? (D * (PTarget->getMod(MOD_EARTHRES))) / 1000 : D);
+	}
+		break;
+	case 3: // water
+	{
+		D = (PTarget->getMod(MOD_WATERRES) > 0 ? (D * (PTarget->getMod(MOD_WATERRES))) / 1000 : D);
+	}
+		break;
+	case 4: // air
+	{
+		D = (PTarget->getMod(MOD_WINDRES) > 0 ? (D * (PTarget->getMod(MOD_WINDRES))) / 1000 : D);
+	}
+		break;
+	case 5: // ice 
+	{
+		D = (PTarget->getMod(MOD_ICERES) > 0 ? (D * (PTarget->getMod(MOD_ICERES))) / 1000 : D);
+	}
+		break;
+	case 6: // thunder
+	{
+		D = (PTarget->getMod(MOD_THUNDERRES) > 0 ? (D * (PTarget->getMod(MOD_THUNDERRES))) / 1000 : D);
+	}
+		break;
+	case 7: // light
+	{
+		D = (PTarget->getMod(MOD_LIGHTRES) > 0 ? (D * (PTarget->getMod(MOD_LIGHTRES))) / 1000 : D);
+	}
+		break;
+	case 8: // dark
+	{
+		D = (PTarget->getMod(MOD_DARKRES) > 0 ? (D * (PTarget->getMod(MOD_DARKRES))) / 1000 : D);
+	}
+		break;
+	};
 	
 	PTarget->addHP(-D);
 	PTarget->m_OwnerID = PCaster->id;
@@ -663,6 +669,142 @@ uint32 CalculateMagicDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpe
 	return D;
 
 }
+
+/************************************************************************
+*																		*
+*  Calculate Power of Cure Spell										*
+*																		*
+************************************************************************/
+
+uint32 MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone) 
+{
+
+	int32 h; 
+	float x;
+	float x2;
+	float x3;
+
+	float y;
+	float y2;
+	float y3;
+
+	int32 minCap;
+	int32 midCap;
+	int32 maxCap;
+
+	switch (PSpell->getID())
+	{
+	case 1: 
+		x = 2;
+		x2 = 4;
+		x3 = 114;
+		y = -10;
+		y2 = 5;
+		y3 = 29.125;
+
+		minCap = 10;
+		midCap = 20;
+		maxCap = 30;
+		
+		break;
+	case 2: case 7:
+		x = 2;
+		x2 = 4;
+		x3 = 214/3;
+		y = 20;
+		y2 = 47.5;
+		y3 = 87.62;
+
+		minCap = 60;
+		midCap = 75;
+		maxCap = 90;
+		break;
+	case 3: case 8:
+		x = 2;
+		x2 = 4;
+		x3 = 94/3;
+		y = 70;
+		y2 = 115;
+		y3 = 180.43;
+
+		minCap = 130;
+		midCap = 160;
+		maxCap = 190;
+		break;
+	case 4: case 9:
+		x = 4/3;
+		x2 = 4;
+		x3 = 13;
+		y = 165;
+		y2 = 275;
+		y3 = 1064/3;
+
+		minCap = 270;
+		midCap = 330;
+		maxCap = 390;
+		break;
+	case 5: case 10:
+		x = 4/3;
+		x2 = 1;
+		x3 = 17/6;
+		y = 330;
+		y2 = 410;
+		y3 = 591.2;
+
+		minCap = 450;
+		midCap = 570;
+		maxCap = 690;
+		break;
+	case 6: case 11: //not implemented
+		x = 2;
+		x2 = 4;
+		x3 = 114;
+		y = -10;
+		y2 = 5;
+		y3 = 29.125;
+
+		minCap = 10;
+		midCap = 20;
+		maxCap = 30;
+		break;
+	};
+	
+
+	h = (((3*(PCaster->stats.MND + PCaster->GetSkill(SKILL_HEA)/5) + PCaster->stats.VIT) / x) + y) + MOD_HEALING; //+ Day bonus + Weather bonus) 
+
+	if (h < minCap)
+	{
+		h = minCap;
+	}
+	else if (minCap < h < maxCap) 
+	{
+		h = (((3*(PCaster->stats.MND + PCaster->GetSkill(SKILL_HEA)/5) + PCaster->stats.VIT) / x2) + y2) + MOD_HEALING; //+ Day bonus + Weather bonus) 
+	}
+	else if (maxCap < h)
+	{
+		h = (((3*(PCaster->stats.MND + PCaster->GetSkill(SKILL_HEA)/5) + PCaster->stats.VIT) / x3) + y3) + MOD_HEALING; //+ Day bonus + Weather bonus) 
+	}
+
+	h = (h > maxCap ? maxCap : h);
+
+	if  (PTarget->objtype == TYPE_MOB)
+	{
+		if (PTarget->m_EcoSystem == SYSTEM_UNDEAD) 
+		{
+			PTarget->addHP(-h);
+			PZone->PushPacket(PTarget,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PTarget)); 
+			return -h; 
+		}
+	}
+	else 
+	{
+		PTarget->addHP(h);
+		((CCharEntity*)PTarget)->pushPacket(new CCharHealthPacket((CCharEntity*)PTarget));
+		PZone->PushPacket(PTarget,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PTarget)); 
+	}
+	return h;
+}
+
 
 /************************************************************************
 *																		*

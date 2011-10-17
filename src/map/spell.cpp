@@ -29,12 +29,13 @@ CSpell::CSpell(uint16 id)
 {
 	m_ID = id;
 
-	m_MPCost = 0;
-	m_CastTime = 0;
-	m_RecastTime = 0;
-	m_AnimationID = 0;
-	m_SpellGroup = SPELLGROUP_NONE;	
-
+	m_mpCost = 0;
+	m_castTime = 0;
+	m_recastTime = 0;
+	m_animationID = 0;
+	m_spellGroup = SPELLGROUP_NONE;	
+	m_spellType = 0;
+	
 	memset(m_job, 0, sizeof(m_job));
 }
 	
@@ -60,22 +61,22 @@ void CSpell::setJob(int8* jobs)
 
 uint16 CSpell::getCastTime()
 {
-	return m_CastTime;
+	return m_castTime;
 }
 
 void CSpell::setCastTime(uint16 CastTime)
 {
-	m_CastTime = CastTime;
+	m_castTime = CastTime;
 }
 
 uint8 CSpell::getRecastTime()
 {
-	return m_RecastTime;
+	return m_recastTime;
 }
 
 void CSpell::setRecastTime(uint8 RecastTime)
 {
-	m_RecastTime = RecastTime;
+	m_recastTime = RecastTime;
 }
 
 const int8* CSpell::getName()
@@ -91,32 +92,32 @@ void CSpell::setName(int8* name)
 
 SPELLGROUP CSpell::getSpellGroup()
 {
-	return m_SpellGroup;
+	return m_spellGroup;
 }
 
 void CSpell::setSpellGroup(SPELLGROUP SpellGroup)
 {
-	m_SpellGroup = SpellGroup;
+	m_spellGroup = SpellGroup;
 }
 
 uint16 CSpell::getAnimationID()
 {
-	return m_AnimationID;
+	return m_animationID;
 }
 
 void CSpell::setAnimationID(uint16 AnimationID)
 {
-	m_AnimationID = AnimationID;
+	m_animationID = AnimationID;
 }
 
 uint16 CSpell::getMPCost()
 {
-	return m_MPCost;
+	return m_mpCost;
 }
 
 void CSpell::setMPCost(uint16 MP)
 {
-	m_MPCost = MP;
+	m_mpCost = MP;
 }
 
 bool CSpell::isAOE()
@@ -179,4 +180,14 @@ uint16 CSpell::getElement()
 void CSpell::setElement(uint16 element)
 {
 	m_element = element;
+}
+
+uint16 CSpell::getSpellType()
+{
+	return m_spellType;
+}
+
+void CSpell::setSpellType(uint16 spellType)
+{
+	m_spellType = spellType;
 }

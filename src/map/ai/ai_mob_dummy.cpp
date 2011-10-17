@@ -315,6 +315,8 @@ void CAIMobDummy::ActionAbilityStart()
 	int16 skill = battleutils::PerformMobSkill(m_PMob, m_PBattleTarget);
 	if (skill == 0)
 	{
+		m_ActionType = ACTION_ATTACK;
+		m_PMob->health.tp = 0; 
 		return; 
 	}
 	 
@@ -445,7 +447,7 @@ void CAIMobDummy::ActionAttack()
 					}
 					
 					damage = (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ? 0 : (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob,m_PBattleTarget)) * DamageRatio));
-					m_PMob->addTP(20); 
+					m_PMob->addTP(12); 
 
 					/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BLAZE_SPIKES))
 					{
