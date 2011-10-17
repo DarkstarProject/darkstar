@@ -115,7 +115,7 @@ void CalculateStats(CCharEntity* PChar)
 	JOBTYPE sjob = PChar->GetSJob();
 
 	uint8 race = 0;					//Human
-
+	
 	switch (PChar->look.race)
 	{
 		case 3:
@@ -273,9 +273,8 @@ void CalculateStats(CCharEntity* PChar)
 		counter += 2;
 	}
 
-	SKILLTYPE weapType = (SKILLTYPE)PChar->m_Weapons[SLOT_MAIN]->getSkillType();   //Still working on this
-	PChar->addModifier(MOD_ATT,(PChar->RealSkills.skill[weapType] / 100));    //Still working on this
-	PChar->addModifier(MOD_ACC,(PChar->RealSkills.skill[weapType] / 600));   //Still working on this
+
+
 	PChar->health.hp = (PChar->loc.prevzone == 0 || PChar->loc.zone == 0 ? PChar->health.maxhp : cap_value(PChar->health.hp, 0, PChar->health.maxhp));
 	PChar->health.mp = (PChar->loc.prevzone == 0 || PChar->loc.zone == 0 ? PChar->health.maxmp : cap_value(PChar->health.mp, 0, PChar->health.maxmp));
 }
@@ -601,7 +600,7 @@ void LoadInventory(CCharEntity* PChar)
 					luautils::OnItemCheck(PChar, PItem);
 					PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
 				}
-				ShowDebug(CL_YELLOW"Item Type == %u"CL_RESET, PItem->getType());
+				//ShowDebug(CL_YELLOW"Item Type == %u"CL_RESET, PItem->getType());
 				if ((i == SLOT_MAIN) && (PItem->getType() & ITEM_WEAPON))
 				{
 					PChar->m_Weapons[SLOT_MAIN]->setDelay(((CItemWeapon*)PItem)->getDelay());
@@ -1081,6 +1080,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 					luautils::OnItemCheck(PChar, PItem);
 					PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
 				}
+				//gibbs
 
 				PItem->setSubType(ITEM_LOCKED);
 
@@ -1093,6 +1093,11 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				charutils::CalculateStats(PChar);
 				PChar->pushPacket(new CCharUpdatePacket(PChar));
 			} 
+		}
+		else if ((PItem != NULL) && (PItem->getType() & ITEM_WEAPON))
+		{
+			PChar->addModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
+			PChar->addModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 		}
 	}
 	
@@ -1468,6 +1473,19 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 					PChar->pushPacket(new CCharSkillsPacket(PChar));
 					PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, (curSkill + skillAmount)/10, 53));	
 					CheckWeaponSkill(PChar, SkillID);
+					if (SkillID >= 1 && SkillID <= 12)
+					{
+						PChar->delModifier(MOD_ATT, PChar->GetSkill(SkillID)-1);
+						PChar->delModifier(MOD_ACC, PChar->GetSkill(SkillID)-1);
+						PChar->addModifier(MOD_ATT, PChar->GetSkill(SkillID));
+						PChar->addModifier(MOD_ACC, PChar->GetSkill(SkillID));
+					}
+
+					if (SkillID == SKILL_EVA)
+					{
+						PChar->delModifier(MOD_EVA, PChar->GetSkill(SkillID)-1);
+						PChar->addModifier(MOD_EVA, PChar->GetSkill(SkillID));
+					}
 				}
 					SaveCharSkills(PChar, SkillID);
 			}

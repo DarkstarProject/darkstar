@@ -24,6 +24,7 @@
 #include "../spell.h"
 #include "../weapon_skill.h"
 #include "../ability.h" 
+#include "../mobskill.h"
 #include "../battleutils.h"
 
 #include "ai_general.h"
@@ -49,6 +50,7 @@ CAIGeneral::CAIGeneral()
 	m_PBattleTarget = NULL;
 	m_PBattleSubTarget = NULL;
 	m_PJobAbility = NULL;
+	m_PMobSkill = NULL;
 }
 
 /************************************************************************
@@ -314,4 +316,30 @@ CBattleEntity* CAIGeneral::GetBattleTarget()
 	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
 	return m_PBattleTarget;
+}
+
+/************************************************************************
+*																		*
+*	Set Mob Skill														*
+*																		*
+************************************************************************/
+
+void CAIGeneral::SetCurrentMobSkill(uint16 SkillID)
+{
+	
+		////DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
+		m_PMobSkill = battleutils::GetMobSkill(SkillID);
+	
+}
+
+
+/************************************************************************
+*	Gets Mob Skill														*
+************************************************************************/
+
+CMobSkill* CAIGeneral::GetCurrentMobSkill()
+{
+	//DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
+	
+	return m_PMobSkill;
 }

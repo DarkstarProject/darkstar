@@ -36,7 +36,7 @@ CMobEntity::CMobEntity()
 	m_maxLevel = 1;
 
 	m_CallForHelp = 0;
-
+	m_Family = 0;
 	m_Type      = MOBTYPE_NORMAL;
 	m_Behaviour = BEHAVIOUR_NONE;
 	m_SpawnType = SPAWNTYPE_NORMAL;

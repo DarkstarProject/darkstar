@@ -269,6 +269,7 @@ void CAICharNormal::ActionEngage()
 
 					m_PChar->status = STATUS_UPDATE;
 					m_PChar->animation = ANIMATION_ATTACK;
+					m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
 					m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
 					m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 					return;
@@ -1097,20 +1098,20 @@ void CAICharNormal::ActionMagicFinish()
 	apAction_t Action;
 	
 	luautils::OnSpellCast(m_PChar, m_PBattleSubTarget);
-
+	int32 damage;
 	if (m_PBattleSubTarget->objtype == TYPE_MOB)
 	{
 		// это временная функция для активации ненависти монстров. 
 		// при чтении магии нельзя вызывать метод получения физического урона
 
-		battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, 0, m_PZone); 
+		damage = battleutils::CalculateMagicDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 1, m_PZone); 
 	}
 
 	Action.ActionTarget = m_PBattleSubTarget;
 	Action.reaction   = REACTION_NONE;
 	Action.speceffect = SPECEFFECT_NONE;
 	Action.animation  = m_PSpell->getAnimationID();
-	Action.param	  = 0;
+	Action.param	  = battleutils::CalculateMagicDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 1, m_PZone);
 	Action.messageID  = 0;
 	Action.flag		  = 0;
 
@@ -1118,11 +1119,13 @@ void CAICharNormal::ActionMagicFinish()
 
 	if (m_PSpell->isAOE() && m_PBattleSubTarget->objtype == TYPE_MOB)
 	{
+		int16 targetNumber = 1; 
 		for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); 
 			 it != m_PChar->SpawnMOBList.end() && 
 			 m_PChar->m_ActionList.size() < 16;
 			 ++it)
 		{
+			targetNumber +=1; 
 			CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
 			if (m_PBattleSubTarget != PCurrentMob &&
@@ -1134,13 +1137,11 @@ void CAICharNormal::ActionMagicFinish()
 				// это временная функция для активации ненависти монстров. 
 				// при чтении магии нельзя вызывать метод получения физического урона
 
-				battleutils::TakePhysicalDamage(m_PChar, PCurrentMob, 0, m_PZone);
-
 				Action.ActionTarget = PCurrentMob;
 				Action.reaction   = REACTION_NONE;
 				Action.speceffect = SPECEFFECT_NONE;
 				Action.animation  = m_PSpell->getAnimationID();
-				Action.param	  = 0;
+				Action.param	  = battleutils::CalculateMagicDamage(m_PChar, PCurrentMob, m_PSpell, targetNumber, m_PZone);
 				Action.messageID  = 0;
 				Action.flag		  = 0;
 
@@ -1269,6 +1270,9 @@ void CAICharNormal::ActionJobAbilityStart()
 		
 	m_PChar->m_ActionList.push_back(Action);
 	m_ActionType = ACTION_JOBABILITY_FINISH; 
+	
+	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,m_PJobAbility->getID(),0,100));
+	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,87));
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 	m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 }
@@ -1323,31 +1327,32 @@ void CAICharNormal::ActionJobAbilityFinish()
 	};
 
 	//ShowDebug(CL_YELLOW" AOE = %u \n"CL_RESET);
-	//if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
-	//{
-	//	ShowDebug(CL_GREEN"CASTING ON PARTY!!!!!! \n"CL_RESET);
-	//	for (int i = 0; i < m_PChar->PParty->members.size(); i++)
-	//	{
-	//		CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-	//		//PTarget->status == STATUS_UPDATE &&
-	//		if (distance(m_PChar->loc.p, PTarget->loc.p) <= 20)
-	//		{
-	//			luautils::OnUseAbility(PTarget, PTarget);
-	//	
-	//			Action.ActionTarget = PTarget;
-	//			Action.reaction   = REACTION_NONE;
-	//			Action.speceffect = SPECEFFECT_NONE;
-	//			Action.animation  = m_PJobAbility->getAnimationID();
-	//			Action.param	  = 0;
-	//			Action.messageID  = 0;
-	//			Action.flag		  = 0;
+	if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
+	{
+		ShowDebug(CL_GREEN"CASTING ON PARTY!!!!!! \n"CL_RESET);
+		for (int i = 1; i < m_PChar->PParty->members.size(); i++)
+		{
+			CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+			//PTarget->status == STATUS_UPDATE &&
+			if (distance(m_PChar->loc.p, PTarget->loc.p) <= 20)
+			{
+				luautils::OnUseAbility(m_PChar, PTarget);
+		
+				Action.ActionTarget = PTarget;
+				Action.reaction   = REACTION_NONE;
+				Action.speceffect = SPECEFFECT_NONE;
+				Action.animation  = m_PJobAbility->getAnimationID();
+				Action.param	  = 0;
+				Action.messageID  = 0;
+				Action.flag		  = 0;
 
-	//			PTarget->m_ActionList.push_back(Action);	
-	//		}
-	//	}
-	//}
-	//else
-	//{
+				m_PChar->m_ActionList.push_back(Action);	
+				
+			}
+		}
+	}
+	else
+	{
 		luautils::OnUseAbility(m_PChar,m_PChar);
 		Action.ActionTarget = m_PChar;
 		Action.reaction   = REACTION_NONE;
@@ -1357,8 +1362,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 		Action.messageID  = 0;
 		Action.flag		  = 0;
 		m_PChar->m_ActionList.push_back(Action);	
-	//}
-	
+	}	
 	
 	
 	m_ActionTargetID = 0; 

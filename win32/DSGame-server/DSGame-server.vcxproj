@@ -154,6 +154,7 @@
     <ClInclude Include="..\..\src\map\lua\lua_zone.h" />
     <ClInclude Include="..\..\src\map\map.h" />
     <ClInclude Include="..\..\src\map\mobentity.h" />
+    <ClInclude Include="..\..\src\map\mobskill.h" />
     <ClInclude Include="..\..\src\map\mobutils.h" />
     <ClInclude Include="..\..\src\map\modifier.h" />
     <ClInclude Include="..\..\src\map\npcentity.h" />
@@ -312,6 +313,7 @@
     <ClCompile Include="..\..\src\map\lua\lua_zone.cpp" />
     <ClCompile Include="..\..\src\map\map.cpp" />
     <ClCompile Include="..\..\src\map\mobentity.cpp" />
+    <ClCompile Include="..\..\src\map\mobskill.cpp" />
     <ClCompile Include="..\..\src\map\mobutils.cpp" />
     <ClCompile Include="..\..\src\map\modifier.cpp" />
     <ClCompile Include="..\..\src\map\npcentity.cpp" />

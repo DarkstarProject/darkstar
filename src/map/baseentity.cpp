@@ -28,8 +28,8 @@ CBaseEntity::CBaseEntity()
 {
 	m_TargID = 0;
 
-	speed    = 40;
-	speedsub = 40;
+	speed    = 60;
+	speedsub = 60;
 	
 	animationsub = 0;
 	animation    = ANIMATION_NONE;

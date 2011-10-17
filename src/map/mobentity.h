@@ -37,13 +37,14 @@ enum SPAWNTYPE
 	SPAWNTYPE_FOG			= 0x08,
 	SPAWNTYPE_MOONPHASE		= 0x10,
 	SPAWNTYPE_LOTTERY		= 0x20,
-	SPAWNTYPE_WINDOWED		= 0x40,	// неизвестное для меня значение, взял из pxi
+	SPAWNTYPE_WINDOWED		= 0x40,	
 	SPAWNTYPE_SCRIPTED		= 0x80
 };
 
 enum MOBTYPE
 {
 	MOBTYPE_NORMAL			= 0x00,		
+	MOBTYPE_PCSPAWNED		= 0x01,
 	MOBTYPE_NOTORIOUS		= 0x02,
 	MOBTYPE_FISHED			= 0x04,
 	MOBTYPE_CALLED			= 0x08,
@@ -76,7 +77,7 @@ public:
 
 	uint8		m_minLevel;		// минимально-возможный  уровень монстра
 	uint8		m_maxLevel;		// максимально-возможный уровень монстра
-
+	
 	uint8		m_Type;			// тип монстра
 	uint16		m_Behaviour;	// поведение монстра в различных ситуациях
 	SPAWNTYPE	m_SpawnType;	// условие появления монстра 
@@ -85,6 +86,7 @@ public:
 
 	position_t	m_SpawnPoint;	// точка возрождения монстра
 	uint8       m_Element;  
+	uint16		m_Family;
 	CEnmityContainer* PEnmityContainer;	// система ненависти монстров
 
 	 CMobEntity();				// конструктор

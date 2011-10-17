@@ -27,6 +27,7 @@
 #include "../../common/cbasetypes.h"
 
 #include "ai_general.h"
+#include "../mobskill.h"
 
 /************************************************************************
 *																		*
@@ -44,10 +45,11 @@ public:
 	virtual void CheckCurrentAction(uint32 tick);
 	CAIMobDummy(CMobEntity* PMob);
 	virtual ~CAIMobDummy() {};
-
+	
 protected:
 
 	CMobEntity* m_PMob;	
+	
 
 	void ActionRoaming();
 	void ActionEngage();

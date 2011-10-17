@@ -612,6 +612,19 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect * PStatusEffect)
 *																		*
 ************************************************************************/
 
+bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID) 
+{
+	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+	{
+		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
+		{
+			RemoveStatusEffect(i);
+			return true;
+		}
+	}
+	return false;
+}
+
 bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID, uint16 SubID) 
 {
 	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
@@ -898,6 +911,7 @@ void CStatusEffectContainer::SaveStatusEffects()
 
 void CStatusEffectContainer::CheckEffects(uint32 tick)
 {
+	//DSP_DEBUG_BREAK_IF(m_pOwner == NULL);
 	if (!m_pOwner->isDead()) 
 	{
 		if ((tick - m_EffectCheckTime) < 1000 )

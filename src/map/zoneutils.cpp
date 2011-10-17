@@ -151,7 +151,8 @@ void LoadZoneList()
 					systemid, mobsize, speed, \
 					STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 					Slash, Pierce, H2H, Impact, \
-					Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element \
+					Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
+					mob_pools.familyid \
 					FROM mob_groups, mob_pools, mob_spawn_points, mob_family_system \
 					WHERE mob_groups.poolid = mob_pools.poolid \
 					AND mob_groups.groupid = mob_spawn_points.groupid \
@@ -205,10 +206,10 @@ void LoadZoneList()
 				PMob->setModifier(MOD_HTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,33) * 1000));
 				PMob->setModifier(MOD_IMPACTRES,(uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
 
-
+				
 
 				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,43);
-
+				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,44); 
 				PMob->PBattleAI = new CAIMobDummy(PMob);
 				PMob->PBattleAI->SetCurrentZone(PZone);
 				PMob->PBattleAI->SetCurrentAction(PMob->m_RespawnTime != 0 ? ACTION_SPAWN : ACTION_NONE);

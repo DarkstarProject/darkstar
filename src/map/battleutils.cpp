@@ -36,6 +36,9 @@
 #include "spell.h"
 #include "trait.h" 
 #include "weapon_skill.h"
+#include "mobskill.h"
+#include "mobentity.h"
+
 
 /************************************************************************
 *																		*
@@ -51,9 +54,12 @@ CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// глобальный масс
 CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skills
 CTrait*		  g_PTraitList[MAX_TRAIT_ID]; 
 
+CMobSkill* g_PMobSkillList[MAX_MOBSKILL_ID];			// List of mob skills
+
 std::list<CTrait*> g_PTraitsList[23];
 std::list<CAbility*> g_PAbilitiesList[MAX_JOBTYPE];				// глобальный массив списков способностей, разбитый по профессиям (для быстрой инициализации) 
 std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
+std::list<CMobSkill*> g_PMobFamilySkills[270];					// Mob Skills By Family
 
 /************************************************************************
 *																		*
@@ -230,6 +236,48 @@ void LoadWeaponSkillsList()
 	}
 }
 
+
+/************************************************************************
+*  Load Mob Skills from database										*
+************************************************************************/
+
+void LoadMobSkillsList()
+{
+	memset(g_PMobSkillList,0,sizeof(g_PMobSkillList));
+
+	const int8* fmtQuery = "SELECT mob_skill_id, mob_skill_name, family_id, mob_skill_type, \
+						   mob_skill_element, mob_skill_critical, mob_skill_num_hit, mob_skill_aoe, \
+						   mob_skill_distance, mob_skill_flag, mob_skill_effect \
+						   FROM mob_skill \
+						   WHERE mob_skill_id < %u \
+						   ORDER BY family_Id, mob_skill_id ASC";
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_MOBSKILL_ID);
+
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		{
+			CMobSkill* PMobSkill = new CMobSkill(Sql_GetIntData(SqlHandle,0));
+			
+			PMobSkill->setName(Sql_GetData(SqlHandle,1));
+			PMobSkill->setfamilyID(Sql_GetIntData(SqlHandle,2));
+			PMobSkill->setSkillType(Sql_GetIntData(SqlHandle,3));
+			PMobSkill->setElement(Sql_GetIntData(SqlHandle,4));
+			PMobSkill->setCritical(Sql_GetIntData(SqlHandle,5));
+			PMobSkill->setNumHits(Sql_GetIntData(SqlHandle,6));
+			PMobSkill->setAoe(Sql_GetIntData(SqlHandle,7));
+			PMobSkill->setDistance(Sql_GetFloatData(SqlHandle,8));
+			PMobSkill->setFlag(Sql_GetIntData(SqlHandle,9));
+			PMobSkill->setEffect(Sql_GetIntData(SqlHandle,10));
+			
+			g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
+			g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
+		}
+	}
+}
+
+
 void LoadTraitsList()
 {
 	//memset(g_PTraitList,0,sizeof(g_PTraitList));
@@ -274,11 +322,7 @@ void FreeSpellList()
 }
 
 /************************************************************************
-*																		*
-*  Освобождаем массив способностей. Освобождать сортированные списки	*
-*  способностей не нужно, т.к. мы удалили объекты, то всю работу за		*
-*  нас сделает система													*
-*																		*
+*	Clear Abilities List												*
 ************************************************************************/
 
 void FreeAbilitiesList()
@@ -291,9 +335,7 @@ void FreeAbilitiesList()
 
 
 /************************************************************************
-*																		*
 *  Clear Weapon Skills List												*
-*																		*
 ************************************************************************/
 
 void FreeWeaponSkillsList()
@@ -306,9 +348,7 @@ void FreeWeaponSkillsList()
 
 
 /************************************************************************
-*																		*
 *  Clear Traits List													*
-*																		*
 ************************************************************************/
 void FreeTraitsList()
 {
@@ -319,9 +359,18 @@ void FreeTraitsList()
 }
 
 /************************************************************************
-*																		*
-*  Получаем ранг умения для выбранной профессии							*
-*																		*
+*  Clear Mob Skills List												*
+************************************************************************/
+void FreeMobSkillList()
+{
+	for(int32 SkillID= 0; SkillID < MAX_MOBSKILL_ID; ++SkillID)
+	{
+		delete g_PMobSkillList[SkillID];
+	}
+}
+
+/************************************************************************
+*	Get Skill Rank By SkillId and JobId									*
 ************************************************************************/
 
 uint8 GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID)
@@ -330,10 +379,7 @@ uint8 GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID)
 }
 
 /************************************************************************
-*																		*
-*  Получаем максимальное значение умения для выбранной профессии c		*
-*  заданным уровнем														*
-*																		*
+*	Return Max Skill by SkillType, JobType, and level					*
 ************************************************************************/
 
 uint16 GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level)
@@ -342,9 +388,7 @@ uint16 GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level)
 }
 
 /************************************************************************
-*																		*
-*  Получаем указатель на заклинание										*
-*																		*
+*	Get Spell By Id														*
 ************************************************************************/
 
 CSpell* GetSpell(uint16 SpellID)
@@ -358,9 +402,7 @@ CSpell* GetSpell(uint16 SpellID)
 }
 
 /************************************************************************
-*																		*
-*  Проверяем, может ли персонаж использовать заклинание					*
-*																		*
+*	Check If user can cast spell										*
 ************************************************************************/
 
 bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
@@ -376,9 +418,7 @@ bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
 }
 
 /************************************************************************
-*																		*
-*  Получаем указатель на способность									*
-*																		*
+*	Get Ability By ID													*
 ************************************************************************/
 
 CAbility* GetAbility(uint16 AbilityID)
@@ -393,9 +433,7 @@ CAbility* GetAbility(uint16 AbilityID)
 }
 
 /************************************************************************
-*																		*
-*  Получаем список способностей для указанной профессии					*
-*																		*
+*	Get Abilities By JobID												*
 ************************************************************************/
 
 std::list<CAbility*> GetAbilities(JOBTYPE JobID)
@@ -404,9 +442,7 @@ std::list<CAbility*> GetAbilities(JOBTYPE JobID)
 }
 
 /************************************************************************
-*																		*
-*  Проверяем, может ли персонаж использовать способность				*
-*																		*
+*	Function may not be needed											*
 ************************************************************************/
 
 bool CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID)
@@ -419,9 +455,7 @@ bool CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID)
 }
 
 /************************************************************************
-*																		*
 *  Get Weapon Skill by Id												*
-*																		*
 ************************************************************************/
 
 CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
@@ -436,9 +470,7 @@ CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
 
 
 /************************************************************************
-*																		*
 * Get List of Weapon Skills from skill type								*
-*																		*
 ************************************************************************/
 
 std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill)
@@ -447,15 +479,41 @@ std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill)
 	return g_PWeaponSkillsList[skill];
 }
 
+/************************************************************************
+*  Get Mob Skill by Id												*
+************************************************************************/
+
+CMobSkill* GetMobSkill(uint16 SkillID)
+{
+	if (SkillID < MAX_MOBSKILL_ID)
+	{
+		return g_PMobSkillList[SkillID];
+	}
+	ShowFatalError(CL_RED"MobSkillID <%u> out of range\n", SkillID);
+	return NULL;
+}
+
+
+/************************************************************************
+* Get Mob Skills by family id											*
+************************************************************************/
+
+std::list<CMobSkill*> GetMobSkillsByFamily(uint16 familyID)
+{
+	return g_PMobFamilySkills[familyID];
+}
+
+/************************************************************************
+* Get Trait By Id														*
+************************************************************************/
+
 CTrait* GetTrait(uint16 TraitID)
 {
 	return g_PTraitList[TraitID];
 }
 
 /************************************************************************
-*																		*
 * Get List of Traits by Main Job and Sub Job							*
-*																		*
 ************************************************************************/
 
 std::list<CTrait*> GetTraits(JOBTYPE JobID)
@@ -536,7 +594,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	return damage;
 }
 
-uint32 CalculateMagicDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber) 
+uint32 CalculateMagicDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone) 
 {
 	int32 dINT = PCaster->stats.INT - PTarget->stats.INT; 
 	int32 base = PSpell->getBase(); 
@@ -597,7 +655,10 @@ uint32 CalculateMagicDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpe
 	}
 		break;
 	};
-
+	
+	PTarget->addHP(-D);
+	PTarget->m_OwnerID = PCaster->id;
+	PZone->PushPacket(PTarget,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PTarget)); 
 	return D;
 
 }
@@ -793,9 +854,13 @@ void MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode)
 	}
 }
 
+
+/************************************************************************
+*	White Mage Benediction Ability										*
+************************************************************************/
+
 void battleutils::AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTarget)
 {
-	
 	PTarget->addHP(PTarget->health.maxhp * PCaster->GetMLevel() / PTarget->GetMLevel());
 	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP) : NULL);
 	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_POISON) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_POISON) : NULL);
@@ -843,12 +908,163 @@ void battleutils::AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTar
 	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_LULLABY) : NULL);
 	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ELEGY) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_ELEGY) : NULL);
 
-	if (rand() > 0.5)
+	if (rand()%100 > 50)
 	{
 		(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DOOM) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DOOM) : NULL);
 	}
 }
 
+/************************************************************************
+*	Use Mob Skill Ability												*
+************************************************************************/
+
+uint32 PerformMobSkill(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+{
+	 std::list<CMobSkill*> MobSkills = GetMobSkillsByFamily(((CMobEntity*)PAttacker)->m_Family);
+	 CMobEntity* PMob = (CMobEntity*)PAttacker;
+
+	 //int8 hp = PAttacker->GetHPP();
+	 
+	 //int8 tilt1; 
+	 //int8 tilt2; 
+
+	//1  PHYSICAL
+	//2  RANGED
+	//3  MAGICAL
+	//4  HEALING
+	//5  ENHANCING
+	//6  ENFEEBLING	
+	//7  DISPEL
+	//8  SPECIAL
+
+	 for (std::list<CMobSkill*>::iterator it = MobSkills.begin(); it != MobSkills.end(); ++it)
+	{
+		CMobSkill* PMobSkill = *it;
+		if (rand()%100 < 30) 
+		{
+			return PMobSkill->getID(); 
+		}
+	}
+	//	int8 skillType = PMobSkill->getSkillType(); 
+	//	switch (skillType)
+	//	{
+	//	case 1: 
+
+	//	case 2:
+
+	//	case 3:
+
+	//	case 4:
+
+	//	case 5:
+
+	//	case 6:
+
+	//	case 7:
+
+	//	case 8:
+
+	//		break;
+	//	};
+	//}
 
 
-}; // namespase battleutils
+	// if (hp >= 80)
+	// {
+	//	 //favor enfeebling / enhancing
+	//	 if (rand()%100 < 50)
+	//	 {
+	//		
+
+
+	//	 }
+	//	 else 
+	//	{
+	//		if (rand()%100 < 60)
+	//		{
+
+	//		}
+	//	 }
+	// }
+	// else if (hp >= 60)
+	// {
+	//	//favor damaging / enfeebling
+	// }
+	// else if (hp >= 40)
+	// {
+	//	//favor damaging / healing 
+	// }
+	// else if (hp >= 20)
+	// {
+	//	 //favor healing / 2 hour ability
+	// }
+	// else 
+	// {
+	//	 //favor healing
+	// }
+
+
+
+	 return 0;
+}
+
+
+bool Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect)
+{
+
+	int16 dlvl = (PCaster->GetMLevel() - PDefender->GetMLevel());
+	int16 maxCap = 90;
+	int16 minCap = 10; 
+	int16 chance = 40 + (dlvl*5);
+
+	chance = (chance > maxCap ? maxCap : chance);
+	chance = (chance < minCap ? minCap : chance);
+	if (Effect > 1 && Effect < 15)
+	{
+		chance + (PDefender->getMod((MODIFIER)(Effect + 238)) / 10);
+	}
+
+	if (rand()%100 < chance)
+	{
+		return true;
+	}
+
+	return false;
+	//switch(Effect)
+	//{	
+	//case EFFECT_SLEEP:
+	//	chance + (PDefender->getMod((MODIFIER)(Effect + 238)) / 10);
+	//case EFFECT_POISON:
+	//	chance + (PDefender->getMod(MOD_POISONRES) / 10);
+	//case EFFECT_PARALYSIS:
+	//	chance + (PDefender->getMod(MOD_PARALYZERES) / 10);
+	//case EFFECT_BLINDNESS:
+	//	chance + (PDefender->getMod(MOD_BLINDRES) / 10);
+	//case EFFECT_CURSE:
+	//	chance + (PDefender->getMod(MOD_CURSERES) / 10);
+
+	//case EFFECT_SLOW: 
+	//	chance + (PDefender->getMod(MOD_SLOWRES) / 10);
+	//case EFFECT_CHARM:
+	//	chance + (PDefender->getMod(MOD_CHARMRES) / 10);
+
+
+	//MOD_SLEEPRES			= 0xF0,
+	//MOD_POISONRES			= 0xF1,
+	//MOD_PARALYZERES			= 0xF2,
+	//MOD_BLINDRES			= 0xF3,
+	//MOD_SILENCERES			= 0xF4,
+	//MOD_VIRUSRES			= 0xF5,
+	//MOD_PETRIFYRES			= 0xF6,
+	//MOD_BINDRES				= 0xF7,
+	//MOD_CURSERES			= 0xF8,
+	//MOD_GRAVITYRES			= 0xF9,
+	//MOD_SLOWRES				= 0xFA,
+	//MOD_STUNRES				= 0xFB,
+	//MOD_CHARMRES			= 0xFC,
+
+}
+
+
+
+}; // namespace battleutils

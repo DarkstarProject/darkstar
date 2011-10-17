@@ -493,7 +493,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 				   (PChar->animation == ANIMATION_HEALING ||
 				   (PChar->GetMLevel() - PCurrentMob->GetMLevel() < 10)))
 				{
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT)
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE))
 					{
 						// отсутствие эффекта invisible
 
@@ -504,7 +504,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 							continue;
 						}
 					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING)
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
 					{
 						// отсутствие эффекта sneak
 
@@ -514,7 +514,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 							continue;
 						}
 					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_LOWHP)
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_LOWHP && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
 					{
 						if (PChar->GetHPP() < 66)
 						{
@@ -1033,8 +1033,8 @@ void CZone::ZoneServerRegion(uint32 tick)
 	for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
 	{
 		CCharEntity* PChar = (CCharEntity*)it->second;
-
-		PChar->StatusEffectContainer->CheckEffects(tick);
+		if (PChar->status != STATUS_SHUTDOWN)
+		{PChar->StatusEffectContainer->CheckEffects(tick);
 		PChar->PBattleAI->CheckCurrentAction(tick);
 		PChar->PTreasurePool->CheckItems(tick);
 
@@ -1054,6 +1054,7 @@ void CZone::ZoneServerRegion(uint32 tick)
 			}
 		}
 		PChar->m_InsideRegionID = RegionID;
+		}
 	}
 }
 

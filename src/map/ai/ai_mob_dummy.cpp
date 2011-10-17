@@ -74,7 +74,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_FADE_OUT:			ActionFadeOut();		break;
 		case ACTION_SPAWN:				ActionSpawn();			break;
 		case ACTION_ATTACK:				ActionAttack();			break;
-		case ACTION_MOBABILITY_FINISH:	ActionAbilityFinish();	break;
+		case ACTION_MOBABILITY_FINISH:	ActionAbilityStart();	break;
 
 		default : ;//DSP_DEBUG_BREAK_IF(true);
 	}
@@ -309,44 +309,58 @@ void CAIMobDummy::ActionAbilityStart()
 {
 	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
 	//m_PMob->health.tp = 10; 
-	m_ActionType = ACTION_MOBABILITY_FINISH; 
-	//apAction_t Action;
-	
-	//m_PMob->PBattleAI->GetRandomMobAbility()
-	//m_PZone->PushPacket(m_PMob, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PMob,m_PMob,currentanimationid,mob_ability_id,43));
-	//m_PMob->PBattleAI->SetCurrentMobAbility(mob_ability_id); 
 
-	//Action.ActionTarget = m_PMob;
-	//Action.reaction   = REACTION_HIT;
-	//Action.speceffect = SPECEFFECT_RECOIL;
-	//Action.animation  = mob_ability_anim_id;
-	//Action.param	  = mob_ability_id;
-	//Action.messageID  = 135;
+	apAction_t Action;
 	
-	//m_PMob->m_ActionList.push_back(Action);
-	//m_PZone->PushPacket(m_PMob, CHAR_INRANGE_SELF, new CActionPacket(m_PMob));
+	int16 skill = battleutils::PerformMobSkill(m_PMob, m_PBattleTarget);
+	if (skill == 0)
+	{
+		return; 
+	}
+	 
+	CAIGeneral::SetCurrentMobSkill(skill);
+	m_PZone->PushPacket(m_PMob, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PMob,m_PMob,m_PMobSkill->getID()+256,m_PMobSkill->getID()+256,43));
+	
+	if (m_PMobSkill->getEffect() > 0) 
+	{
+		switch(m_PMobSkill->getEffect())
+		{
+		case 5: //blind
+			break;
 
-	//m_PMob->m_ActionList.clear(); 
-//	m_PMob->health.tp = 0; 
+		};
+
+	}
+	Action.ActionTarget = m_PBattleTarget;
+	Action.reaction   = REACTION_HIT;
+	Action.speceffect = SPECEFFECT_RECOIL;
+	Action.animation  = m_PMobSkill->getID();
+	Action.param	  = 10;
+	Action.subparam   = m_PMobSkill->getID()+256;
+	Action.messageID  = 185;
+	
+	m_PBattleTarget->addHP(-10); 
+	m_PMob->m_ActionList.push_back(Action);
+	m_PZone->PushPacket(m_PMob, CHAR_INRANGE_SELF, new CActionPacket(m_PMob));
+	m_ActionType = ACTION_ATTACK; 
+	m_PMob->m_ActionList.clear(); 
+	m_PMob->health.tp = 0; 
 }
 
 
 void CAIMobDummy::ActionAbilityFinish()
 {
 
-	
-	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
-
-//apAction_t Action;
+	//apAction_t Action;
 
 	//Action.ActionTarget = m_PMob;
 	//Action.reaction   = REACTION_NONE ;
 	//Action.speceffect = SPECEFFECT_RECOIL;
 	//Action.animation  = 20;
-	////Action.param	  = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
-	//Action.messageID  = 100;
-	////Action.flag		  = 0;
-	////uint16 test = luautils::OnUseAbility(m_PChar,m_PBattleTarget);
+	//Action.param	  = 20;
+	//Action.messageID  = 102;
+	//Action.flag		  = 0;
+	//uint16 test = luautils::OnUseAbility(m_PChar,m_PBattleTarget);
 	
 	//ShowDebug(CL_WHITE"Mob Ability Animation used: %u \n"CL_RESET,currentanimationid); 
 	//m_PZone->PushPacket(m_PMob, CHAR_INRANGE_SELF, new CActionPacket(m_PMob));
@@ -390,6 +404,13 @@ void CAIMobDummy::ActionAttack()
 			}
 			else
 			{
+
+				if (m_PMob->health.tp > 100 && rand()%100 > 55) 
+				{
+					m_ActionType = ACTION_MOBABILITY_FINISH;
+					return;
+				}
+
 				apAction_t Action;
 
 				Action.ActionTarget = m_PBattleTarget;
@@ -424,7 +445,7 @@ void CAIMobDummy::ActionAttack()
 					}
 					
 					damage = (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ? 0 : (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob,m_PBattleTarget)) * DamageRatio));
-					m_PMob->addTP(10); 
+					m_PMob->addTP(20); 
 
 					/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BLAZE_SPIKES))
 					{
@@ -496,3 +517,4 @@ void CAIMobDummy::ActionAttack()
 			
 	m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 }
+

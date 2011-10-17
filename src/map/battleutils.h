@@ -34,6 +34,8 @@ class CSpell;
 class CAbility;
 class CTrait;
 class CWeaponSkill; 
+class CMobSkill;
+
 
 namespace battleutils
 {
@@ -41,6 +43,7 @@ namespace battleutils
 	void	LoadSpellList();
 	void	LoadAbilitiesList();
 	void	LoadWeaponSkillsList(); 
+	void	LoadMobSkillsList();
 	void	LoadTraitsList();
 
 	uint8	GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
@@ -50,10 +53,12 @@ namespace battleutils
 	CAbility* GetAbility(uint16 AbilityID);
 	CTrait* GetTrait(uint16 TraitID);
 	CWeaponSkill* GetWeaponSkill(uint16 WSkillID);
-	
+	CMobSkill* GetMobSkill(uint16 SkillID);
+
 	std::list<CAbility*> GetAbilities(JOBTYPE JobID);
 	std::list<CTrait*> GetTraits(JOBTYPE JobID);
 	std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
+	std::list<CMobSkill*> GetMobSkillsByFamily(uint8 skill);
 
 	bool	CanUseSpell(CBattleEntity* PAttacker, uint16 SpellID);
 	bool	CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID);
@@ -62,7 +67,8 @@ namespace battleutils
 	void	FreeAbilitiesList();
 	void	FreeTraitsList();
 	void    FreeWeaponSkillsList();
-	
+	void	FreeMobSkillsList();
+
 	bool	IsParalised(CBattleEntity* PAttacker);
 	bool	IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	int32	GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender);
@@ -71,9 +77,12 @@ namespace battleutils
 	SUBEFFECT	GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill);
 	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender); 
 	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, CZone* PZone);
-
+	uint32  CalculateMagicDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
+	
+	
+	bool	Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	void	MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode);
-
+	uint32	PerformMobSkill(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void	AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTarget);
 };
 
