@@ -425,7 +425,7 @@ CAbility* GetAbility(uint16 AbilityID)
 {
 	if (AbilityID < MAX_ABILITY_ID)
 	{
-		ShowDebug(CL_GREEN"Getting CurrentAbility %u \n"CL_RESET, g_PAbilityList[AbilityID]->getID());
+		//ShowDebug(CL_GREEN"Getting CurrentAbility %u \n"CL_RESET, g_PAbilityList[AbilityID]->getID());
 		return g_PAbilityList[AbilityID];
 	}
 	ShowFatalError(CL_RED"AbilityID <%u> is out of range\n", AbilityID);
@@ -555,7 +555,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	{
 		uint32 MagicInterruptRate = 50; // должен вычисляться на основании skill, разници уровней сущностей и модификаторе прерывания чтения заклинаний MOD_SPELLINTRATE
 
-		if (MagicInterruptRate  < rand()*100)
+		if (damage > 0 && MagicInterruptRate  < rand()*100)
 		{
 			PDefender->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);
 		}

@@ -200,19 +200,14 @@ bool CAICharNormal::IsMobSubOwner()
 	{
 		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
 		{
-			ShowDebug(CL_CYAN"Member ID:: %u || Mob Owner ID:: %u \n"CL_RESET, m_PChar->PParty->members[i]->id, m_PBattleTarget->m_OwnerID);
 			if (m_PChar->PParty->members[i]->id == m_PBattleSubTarget->m_OwnerID)
-				{
-					return true;
-				}
+			{
+				return true;
+			}
 		}
 	}
 	return false;
 }
-
-
-
-
 
 bool CAICharNormal::IsMobOwner()
 {
@@ -234,11 +229,10 @@ bool CAICharNormal::IsMobOwner()
 	{
 		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
 		{
-			//ShowDebug(CL_CYAN"Member ID:: %u || Mob Owner ID:: %u \n"CL_RESET, m_PChar->PParty->members[i]->id, m_PBattleTarget->m_OwnerID);
 			if (m_PChar->PParty->members[i]->id == m_PBattleTarget->m_OwnerID)
-				{
-					return true;
-				}
+			{
+				return true;
+			}
 		}
 	}
 	
@@ -256,7 +250,7 @@ void CAICharNormal::ActionEngage()
 {
 	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget != NULL);
 
-	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY))
+	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY) && m_PChar->animation != ANIMATION_HEALING)
 	{
 		if(IsMobOwner())
 		{
@@ -1067,7 +1061,8 @@ void CAICharNormal::ActionMagicCasting()
 				if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
 				{
 					m_PChar->addMP(-(int16)m_PSpell->getMPCost());
-					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+					//m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+					m_PZone->PushPacket(m_PChar,CHAR_INRANGE,new CCharHealthPacket(m_PChar));
 				}
 			}
 		}
@@ -1155,14 +1150,13 @@ void CAICharNormal::ActionMagicFinish()
 
 			m_PChar->m_ActionList.push_back(Action);
 
-			if (m_PSpell->isAOE())
+			if (m_PSpell->isAOE() && m_PChar->PParty != NULL)
 			{
 				for (int i = 0; i < m_PChar->PParty->members.size(); i++)
 				{
 					CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-					if (m_PChar != PTarget && distance(m_PChar->loc.p, PTarget->loc.p) <= 10)
+					if (PTarget != m_PBattleSubTarget && distance(m_PChar->loc.p, PTarget->loc.p) <= 10)
 					{
-			
 						Action.ActionTarget = m_PChar->PParty->members[i];
 						Action.reaction   = REACTION_NONE;
 						Action.speceffect = SPECEFFECT_NONE;
@@ -1194,9 +1188,6 @@ void CAICharNormal::ActionMagicFinish()
 			break;
 	};
 	
-
-	
-
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 	m_PChar->m_ActionList.clear();
 
@@ -1316,12 +1307,13 @@ void CAICharNormal::ActionJobAbilityStart()
 	m_PChar->RecastAbilityList.push_back(Recast);
 		
 	m_PChar->m_ActionList.push_back(Action);
+	m_LastActionTime = m_Tick;
 	m_ActionType = ACTION_JOBABILITY_FINISH; 
-	
-	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,m_PJobAbility->getID(),0,100));
-	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,87));
+	//m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PJobAbility->getID(),0,100));
+	//m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,87));
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 	m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
+	
 }
 
 
@@ -1334,6 +1326,10 @@ void CAICharNormal::ActionJobAbilityStart()
 void CAICharNormal::ActionJobAbilityFinish()
 {
 	////DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	if (m_Tick - m_LastActionTime < 100)
+	{
+		return;
+	}
 
 	m_PChar->pushPacket(new CCharAbilitiesPacket(m_PChar));
 
@@ -1373,18 +1369,13 @@ void CAICharNormal::ActionJobAbilityFinish()
 		break;
 	};
 
-	//ShowDebug(CL_YELLOW" AOE = %u \n"CL_RESET);
 	if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
 	{
-		ShowDebug(CL_GREEN"CASTING ON PARTY!!!!!! \n"CL_RESET);
-		for (int i = 1; i < m_PChar->PParty->members.size(); i++)
+		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
 		{
 			CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-			//PTarget->status == STATUS_UPDATE &&
-			if (distance(m_PChar->loc.p, PTarget->loc.p) <= 20)
+			if (PTarget != m_PChar && distance(m_PChar->loc.p, PTarget->loc.p) <= 20)
 			{
-				luautils::OnUseAbility(m_PChar, PTarget);
-		
 				Action.ActionTarget = PTarget;
 				Action.reaction   = REACTION_NONE;
 				Action.speceffect = SPECEFFECT_NONE;
@@ -1394,13 +1385,13 @@ void CAICharNormal::ActionJobAbilityFinish()
 				Action.flag		  = 0;
 
 				m_PChar->m_ActionList.push_back(Action);	
-				
+				m_PChar->m_ActionList.clear();
+				luautils::OnUseAbility(m_PChar, PTarget);	
 			}
 		}
 	}
 	else
 	{
-		luautils::OnUseAbility(m_PChar,m_PChar);
 		Action.ActionTarget = m_PChar;
 		Action.reaction   = REACTION_NONE;
 		Action.speceffect = SPECEFFECT_NONE;
@@ -1409,13 +1400,14 @@ void CAICharNormal::ActionJobAbilityFinish()
 		Action.messageID  = 0;
 		Action.flag		  = 0;
 		m_PChar->m_ActionList.push_back(Action);	
+		luautils::OnUseAbility(m_PChar,m_PChar);
 	}	
 	
 	
 	m_ActionTargetID = 0; 
 	m_PJobAbility = NULL;
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	m_PChar->m_ActionList.clear();
+	
 	m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); 
 
 }
@@ -1621,9 +1613,6 @@ void CAICharNormal::ActionAttack()
 
 			Action.ActionTarget = m_PBattleTarget;
 
-			// условие неверное. любоя профессия с отсутсвием h2h skill rank,
-			// даже с экипированным h2h оружием будет махать одной рукой
-		//	ShowDebug(CL_CYAN"WeaponType Sub: %u \n"CL_RESET,m_PChar->m_Weapons[SLOT_SUB]->getType());
 			uint32 numattacks = (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? 2 : 1);
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			for (uint32 i = 0; i < numattacks; ++i) 

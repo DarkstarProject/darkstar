@@ -205,7 +205,17 @@ void CAIMobDummy::ActionDropItems()
 			uint32 exp = 0;
 			if (m_PMob->m_CallForHelp == 0)
 			{
-				exp = charutils::DistributeExperiencePoints(PChar, m_PMob);
+				if (PChar->PParty != NULL)
+				{
+					for (int i = 0; i < PChar->PParty->members.size(); i++)
+					{
+						exp = charutils::DistributeExperiencePoints(PChar, m_PMob);
+					}
+				}
+				else
+				{
+					exp = charutils::DistributeExperiencePoints(PChar, m_PMob);
+				}
 			}
 			// If player has signet, a crystal may drop depending on mob element
 			if (exp > 0 && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET,0))
