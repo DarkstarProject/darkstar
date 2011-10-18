@@ -47,7 +47,7 @@
 #include "../packets/inventory_item.h"
 #include "../packets/lock_on.h"
 #include "../packets/message_basic.h"
-
+#include "../packets/menu_raisetractor.h"
 #include "ai_char_normal.h"
 
 /************************************************************************
@@ -1149,20 +1149,20 @@ void CAICharNormal::ActionMagicFinish()
 			Action.flag		  = 0;
 
 			m_PChar->m_ActionList.push_back(Action);
-
-			if (m_PSpell->isAOE() && m_PChar->PParty != NULL)
+			CCharEntity* Target = (CCharEntity*)m_PBattleSubTarget;
+			if (m_PSpell->isAOE() && Target->PParty != NULL)
 			{
-				for (int i = 0; i < m_PChar->PParty->members.size(); i++)
+				for (int i = 0; i < Target->PParty->members.size(); i++)
 				{
 					CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-					if (PTarget != m_PBattleSubTarget && distance(m_PChar->loc.p, PTarget->loc.p) <= 10)
+					if (!PTarget->isDead() && PTarget != Target && distance(Target->loc.p, PTarget->loc.p) <= 10)
 					{
 						Action.ActionTarget = m_PChar->PParty->members[i];
 						Action.reaction   = REACTION_NONE;
 						Action.speceffect = SPECEFFECT_NONE;
 						Action.animation  = m_PSpell->getAnimationID();
 						Action.param	  = battleutils::MagicCalculateCure(m_PChar, PTarget, m_PSpell, 0, m_PZone);
-						Action.messageID  = m_PSpell->getSpellType();
+						Action.messageID  = 24;
 						Action.flag		  = 0;
 
 						m_PChar->m_ActionList.push_back(Action);	
@@ -1186,6 +1186,20 @@ void CAICharNormal::ActionMagicFinish()
 		case 237: //enfeeble
 			
 			break;
+
+		case 42:
+		{
+			Action.ActionTarget = m_PBattleSubTarget;
+			Action.reaction   = REACTION_NONE;
+			Action.speceffect = SPECEFFECT_NONE;
+			Action.animation  = m_PSpell->getAnimationID();
+			Action.param = m_PSpell->getID();
+			Action.messageID  = 42;
+			Action.flag		  = 0;
+
+			m_PChar->m_ActionList.push_back(Action);
+			((CCharEntity*)m_PBattleSubTarget)->pushPacket(new CRaiseTractorMenuPacket((CCharEntity*)m_PBattleSubTarget, TYPE_RAISE));
+		}
 	};
 	
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
@@ -1408,8 +1422,8 @@ void CAICharNormal::ActionJobAbilityFinish()
 	m_PJobAbility = NULL;
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PChar->m_ActionList.clear();
-	m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); 
-
+	//m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); 
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 }
 
 
