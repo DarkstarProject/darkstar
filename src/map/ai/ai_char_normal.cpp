@@ -1385,7 +1385,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 				Action.flag		  = 0;
 
 				m_PChar->m_ActionList.push_back(Action);	
-				m_PChar->m_ActionList.clear();
+				
 				luautils::OnUseAbility(m_PChar, PTarget);	
 			}
 		}
@@ -1407,7 +1407,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 	m_ActionTargetID = 0; 
 	m_PJobAbility = NULL;
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	
+	m_PChar->m_ActionList.clear();
 	m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); 
 
 }

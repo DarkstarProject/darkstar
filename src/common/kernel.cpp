@@ -217,33 +217,7 @@ const char* get_svn_revision(void)
 
 static void display_title(void)
 {
-	//ClearScreen(); // clear screen and go up/left (0, 0 position in text)
-	/*
-	ShowMessage("\n");
-    ShowMessage(""CL_WTBL"         (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n"); 
-	ShowMessage(""CL_XXBL"         (""      "CL_BT_YELLOW"        darkstar Development Team presents       "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"||||||||||                        ||    || ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"||        ||                      ||   ||  ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"||         ||                     ||  ||   ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"||          ||  |||||||   ||||    ||||     ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"||          || ||     ||  ||  ||  ||||     ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"||          ||  ||   ||   ||  ||  || ||    ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"||          || || ___ ||  || ||   ||   ||  ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"||         ||   ||   ||   ||  ||  ||    || ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"|||||||||||    ||     ||  ||   || ||     ||""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(CL_WTBL""CL_CLL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"||||||||                   |||||||||       ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"||    ||                   ||      ||      ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD" ||                        ||       ||     ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"  ||                       ||       ||     ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"   ||     ||               ||      ||      ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"    ||    ||      |||||    ||||||||        ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD"     ||   ||||   ||   ||   ||     ||       ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD" ||   ||  ||      ||_||    ||       ||     ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"         (""      "CL_BOLD" |||||||  |||||| ||   ||   ||        ||    ""      "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_WTBL"         (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n");
-	*/
-	ShowInfo("SVN Revision: "CL_WHITE"%s"CL_RESET".\n", get_svn_revision());
+	ShowInfo("DarkStar - onetimexi - SVN Revision: "CL_WHITE"%s"CL_RESET".\n", get_svn_revision());
 }
 
 /************************************************************************
@@ -258,7 +232,7 @@ void usercheck(void)
     if ((getuid() == 0) && (getgid() == 0)) 
 	{
 		ShowWarning ("You are running DSP as the root superuser.\n");
-		ShowWarning ("It is unnecessary and unsafe to run eAthena with root privileges.\n");
+		ShowWarning ("It is unnecessary and unsafe to run with root privileges.\n");
 		sleep(3);
     }
 #endif
