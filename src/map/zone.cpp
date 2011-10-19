@@ -995,11 +995,18 @@ void CZone::ZoneServer(uint32 tick)
 
 	for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
 	{
-		CCharEntity* PChar = (CCharEntity*)it->second;
+		try
+		{
+			CCharEntity* PChar = (CCharEntity*)it->second;
 
-		PChar->StatusEffectContainer->CheckEffects(tick);
-		PChar->PBattleAI->CheckCurrentAction(tick);
-		PChar->PTreasurePool->CheckItems(tick);
+			PChar->StatusEffectContainer->CheckEffects(tick);
+			PChar->PBattleAI->CheckCurrentAction(tick);
+			PChar->PTreasurePool->CheckItems(tick);
+		}
+		catch (int ex)
+		{
+			//eat this error... could be due to a player logging out.
+		}
 	}
 }
 
@@ -1032,28 +1039,37 @@ void CZone::ZoneServerRegion(uint32 tick)
 
 	for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
 	{
-		CCharEntity* PChar = (CCharEntity*)it->second;
-		if (PChar->status != STATUS_SHUTDOWN)
-		{PChar->StatusEffectContainer->CheckEffects(tick);
-		PChar->PBattleAI->CheckCurrentAction(tick);
-		PChar->PTreasurePool->CheckItems(tick);
 
-		uint32 RegionID = 0;
-
-		for (regionList_t::const_iterator region = m_regionList.begin(); region != m_regionList.end(); ++region)
+		try
 		{
-			if ((*region)->isPointInside(PChar->loc.p))
+			CCharEntity* PChar = (CCharEntity*)it->second;
+			if (PChar->status != STATUS_SHUTDOWN)
 			{
-				RegionID = (*region)->GetRegionID();
+				PChar->StatusEffectContainer->CheckEffects(tick);
+				PChar->PBattleAI->CheckCurrentAction(tick);
+				PChar->PTreasurePool->CheckItems(tick);
 
-				if ((*region)->GetRegionID() != PChar->m_InsideRegionID)
+				uint32 RegionID = 0;
+
+				for (regionList_t::const_iterator region = m_regionList.begin(); region != m_regionList.end(); ++region)
 				{
-					luautils::OnRegionEnter(PChar, RegionID);
+					if ((*region)->isPointInside(PChar->loc.p))
+					{
+						RegionID = (*region)->GetRegionID();
+
+						if ((*region)->GetRegionID() != PChar->m_InsideRegionID)
+						{
+							luautils::OnRegionEnter(PChar, RegionID);
+						}
+						break;
+					}
 				}
-				break;
+				PChar->m_InsideRegionID = RegionID;
 			}
 		}
-		PChar->m_InsideRegionID = RegionID;
+		catch (int ex)
+		{
+			//eat it
 		}
 	}
 }

@@ -73,6 +73,7 @@ protected:
 	void ActionWeaponSkillFinish();
 	void ActionAttack();
 	void ActionChangeBattleTarget();
+	void ActionRaiseMenuSelection();
 
 	bool IsMobOwner();
 	bool IsMobSubOwner();

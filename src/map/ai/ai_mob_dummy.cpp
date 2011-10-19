@@ -209,7 +209,8 @@ void CAIMobDummy::ActionDropItems()
 				{
 					for (int i = 0; i < PChar->PParty->members.size(); i++)
 					{
-						exp = charutils::DistributeExperiencePoints(PChar, m_PMob);
+						CCharEntity * PMember = PChar->PParty->members[i];
+						exp = charutils::DistributeExperiencePoints(PMember, m_PMob);
 					}
 				}
 				else

@@ -97,6 +97,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 		case ACTION_WEAPONSKILL_FINISH:		ActionWeaponSkillFinish();	break; 
 		case ACTION_JOBABILITY_START:		ActionJobAbilityStart();	break;
 		case ACTION_JOBABILITY_FINISH:		ActionJobAbilityFinish();	break;
+		case ACTION_RAISE_MENU_SELECTION:	ActionRaiseMenuSelection(); break;
 
 		default :; //DSP_DEBUG_BREAK_IF(true);
 	}
@@ -157,14 +158,14 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 		{
 			if (ValidTarget & TARGET_PLAYER_PARTY)
 			{
-				/*
-				if (((CCharEntity*)*PBattleTarget)->Party->GetPartyID() != m_PChar->Party->GetPartyID())
+				
+				if (((CCharEntity*)*PBattleTarget)->PParty == NULL || ((CCharEntity*)*PBattleTarget)->PParty->GetPartyID() != m_PChar->PParty->GetPartyID())
 				{
 					return false;
 				}
-				*/
+				
 			}
-			if (ValidTarget & TARGET_PLAYER_DEAD)
+			if (!ValidTarget & TARGET_PLAYER_DEAD)
 			{
 				if ((*PBattleTarget)->isDead())
 				{
@@ -176,7 +177,7 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 	}
 	if (ValidTarget & TARGET_ENEMY)
 	{
-		if ((*PBattleTarget)->objtype == TYPE_MOB)
+		if ((*PBattleTarget)->objtype == TYPE_MOB && !(*PBattleTarget)->isDead())
 		{
 			return true;
 		}
@@ -367,6 +368,7 @@ void CAICharNormal::ActionFall()
 	m_PChar->animation = ANIMATION_DEATH;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
+	m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_RAISE));
 }
 
 /************************************************************************
@@ -982,7 +984,7 @@ void CAICharNormal::ActionMagicCasting()
 {
 	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-	if (m_PBattleSubTarget->isDead())
+	if (!GetValidTarget(&m_PBattleSubTarget,m_PSpell->getValidTarget()))
 	{
 		m_ActionType = ACTION_MAGIC_INTERRUPT;
 		ActionMagicInterrupt();
@@ -1388,7 +1390,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
 		{
 			CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-			if (PTarget != m_PChar && distance(m_PChar->loc.p, PTarget->loc.p) <= 20)
+			if (distance(m_PChar->loc.p, PTarget->loc.p) <= 20)
 			{
 				Action.ActionTarget = PTarget;
 				Action.reaction   = REACTION_NONE;
@@ -1421,9 +1423,9 @@ void CAICharNormal::ActionJobAbilityFinish()
 	m_ActionTargetID = 0; 
 	m_PJobAbility = NULL;
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	m_PChar->m_ActionList.clear();
 	//m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->m_ActionList.clear();
 }
 
 
@@ -1554,7 +1556,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 /************************************************************************
 *																		*
-*  Стандартная атака оружием											*
+*  Auto Attack															*
 *																		*
 ************************************************************************/
 
@@ -1869,4 +1871,35 @@ SUBEFFECT CAICharNormal::GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSk
 	PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SIGNET,1);
 	PDefender->StatusEffectContainer->AddStatusEffect(NewEffect);
 	return effect;
+}
+
+void CAICharNormal::ActionRaiseMenuSelection() 
+{
+					
+				m_PChar->animation = ANIMATION_NONE; 
+			
+				m_PChar->addHP(500); 
+				
+				
+				
+				
+				m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+				m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+				
+				
+				apAction_t Action;
+				Action.ActionTarget = m_PChar;
+				//Action.subeffect = 511;
+				Action.animation = 511;
+				Action.reaction = REACTION_NONE;
+				Action.speceffect = SPECEFFECT_RAISE;
+				//Action.subeffect = SUBEFFECT_NONE;
+				
+				//Action.subparam = 4; 
+			
+				m_PChar->m_ActionList.push_back(Action);
+				m_PChar->m_ActionList.clear();
+				m_PChar->pushPacket(new CActionPacket(m_PChar));
+				m_ActionType = ACTION_NONE; 												
+
 }

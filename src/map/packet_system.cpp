@@ -532,7 +532,12 @@ int32 SmallPacket0x01A(CCharEntity* PChar, int8* data)
 		}		
 		break;
 		case 0x0C: break;	// assist
-		case 0x0D: break;	// raise menu
+		case 0x0D: 	// raise menu
+	   {
+			PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
+			PChar->PBattleAI->CheckCurrentAction(gettick());
+
+	   } break;
 		case 0x0E: // рыбалка
 		{
 			fishingutils::StartFishing(PChar);
@@ -570,6 +575,11 @@ int32 SmallPacket0x01A(CCharEntity* PChar, int8* data)
 		case 0x12: break;	// dismount
 		case 0x13: // tractor menu
 		{
+			
+			PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
+			PChar->PBattleAI->CheckCurrentAction(gettick());
+			
+
 			/*
 			if(RBUFB(data,(0x0C)) == 0)
 			{   
