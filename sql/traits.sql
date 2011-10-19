@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : DarkStar
-Source Server Version : 50515
+Source Server         : localhost_3306
+Source Server Version : 50045
 Source Host           : localhost:3306
 Source Database       : dspdb
 
 Target Server Type    : MYSQL
-Target Server Version : 50515
+Target Server Version : 50045
 File Encoding         : 65001
 
-Date: 2011-09-22 02:07:29
+Date: 2011-10-19 16:58:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,10 +20,10 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `traits`;
 CREATE TABLE `traits` (
-  `TraitID` int(11) DEFAULT NULL,
+  `TraitID` int(11) default NULL,
   `name` text,
-  `job` int(11) DEFAULT NULL,
-  `level` int(11) DEFAULT NULL
+  `job` int(11) default NULL,
+  `level` int(11) default NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- ----------------------------
@@ -54,17 +54,17 @@ INSERT INTO `traits` VALUES ('2', 'Evasion Bonus', '19', '15');
 INSERT INTO `traits` VALUES ('59', 'Resist Slow', '19', '20');
 INSERT INTO `traits` VALUES ('67', 'Subtle Blow', '19', '25');
 INSERT INTO `traits` VALUES ('96', 'Closed Position', '19', '75');
-INSERT INTO `traits` VALUES ('1', 'Accuracy Bonus', '14', '10');
+INSERT INTO `traits` VALUES ('1', 'Accuracy Bonus', '14', '30');
 INSERT INTO `traits` VALUES ('3', 'Attack Bonus', '14', '10');
 INSERT INTO `traits` VALUES ('43', 'Dragon Killer', '14', '25');
 INSERT INTO `traits` VALUES ('88', 'Empathy', '14', '75');
 INSERT INTO `traits` VALUES ('89', 'Strafe', '14', '75');
 INSERT INTO `traits` VALUES ('3', 'Attack Bonus', '8', '10');
 INSERT INTO `traits` VALUES ('41', 'Arcana Killer', '8', '25');
-INSERT INTO `traits` VALUES ('50', 'Resist Paralyze', '8', '5');
+INSERT INTO `traits` VALUES ('50', 'Resist Paralyze', '8', '20');
 INSERT INTO `traits` VALUES ('79', 'Muted Soul', '8', '75');
 INSERT INTO `traits` VALUES ('80', 'Desperate Blows', '8', '75');
-INSERT INTO `traits` VALUES ('7', 'Max HP Boost', '2', '15');
+INSERT INTO `traits` VALUES ('7', 'Max HP Boost', '2', '35');
 INSERT INTO `traits` VALUES ('17', 'Counter', '2', '10');
 INSERT INTO `traits` VALUES ('23', 'Martial Arts', '2', '1');
 INSERT INTO `traits` VALUES ('66', 'Kick Attacks', '2', '51');
@@ -133,7 +133,92 @@ INSERT INTO `traits` VALUES ('15', 'Double Attack', '1', '25');
 INSERT INTO `traits` VALUES ('54', 'Resist Virus', '1', '15');
 INSERT INTO `traits` VALUES ('71', 'Savagery', '1', '75');
 INSERT INTO `traits` VALUES ('72', 'Aggressive Aim', '1', '75');
-INSERT INTO `traits` VALUES ('6', 'Magic Def. Bonus', '3', '10');
+INSERT INTO `traits` VALUES ('6', 'Magic Def. Bonus', '3', '30');
 INSERT INTO `traits` VALUES ('9', 'Auto Regen', '3', '25');
 INSERT INTO `traits` VALUES ('24', 'Clear Mind', '3', '20');
 INSERT INTO `traits` VALUES ('69', 'Divine Veil', '3', '50');
+INSERT INTO `traits` VALUES ('52', 'Resist Silence', '10', '45');
+INSERT INTO `traits` VALUES ('52', 'Resist Silence', '10', '25');
+INSERT INTO `traits` VALUES ('59', 'Resist Slow', '9', '35');
+INSERT INTO `traits` VALUES ('59', 'Resist Slow', '9', '55');
+INSERT INTO `traits` VALUES ('59', 'Resist Slow', '9', '75');
+INSERT INTO `traits` VALUES ('52', 'Resist Silence', '10', '65');
+INSERT INTO `traits` VALUES ('5', 'Magic Atk. Bonus', '4', '30');
+INSERT INTO `traits` VALUES ('5', 'Magic Atk. Bonus', '4', '50');
+INSERT INTO `traits` VALUES ('5', 'Magic Atk. Bonus', '4', '70');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '4', '30');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '4', '45');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '4', '60');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '4', '75');
+INSERT INTO `traits` VALUES ('53', 'Resist Petrify', '5', '50');
+INSERT INTO `traits` VALUES ('53', 'Resist Petrify', '5', '30');
+INSERT INTO `traits` VALUES ('12', 'Fast Cast', '5', '35');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '5', '53');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '5', '75');
+INSERT INTO `traits` VALUES ('12', 'Fast Cast', '5', '55');
+INSERT INTO `traits` VALUES ('53', 'Resist Petrify', '5', '70');
+INSERT INTO `traits` VALUES ('5', 'Magic Atk. Bonus', '5', '40');
+INSERT INTO `traits` VALUES ('6', 'Magic Def. Bonus', '5', '45');
+INSERT INTO `traits` VALUES ('2', 'Evasion Bonus', '6', '30');
+INSERT INTO `traits` VALUES ('58', 'Resist Gravity', '6', '40');
+INSERT INTO `traits` VALUES ('2', 'Evasion Bonus', '6', '50');
+INSERT INTO `traits` VALUES ('58', 'Resist Gravity', '6', '60');
+INSERT INTO `traits` VALUES ('2', 'Evasion Bonus', '6', '70');
+INSERT INTO `traits` VALUES ('58', 'Resist Gravity', '6', '75');
+INSERT INTO `traits` VALUES ('54', 'Resist Virus', '1', '35');
+INSERT INTO `traits` VALUES ('54', 'Resist Virus', '1', '55');
+INSERT INTO `traits` VALUES ('54', 'Resist Virus', '1', '70');
+INSERT INTO `traits` VALUES ('23', 'Martial Arts', '2', '16');
+INSERT INTO `traits` VALUES ('23', 'Martial Arts', '2', '31');
+INSERT INTO `traits` VALUES ('7', 'Max HP Boost', '2', '15');
+INSERT INTO `traits` VALUES ('23', 'Martial Arts', '2', '46');
+INSERT INTO `traits` VALUES ('7', 'Max HP Boost', '2', '55');
+INSERT INTO `traits` VALUES ('23', 'Martial Arts', '2', '61');
+INSERT INTO `traits` VALUES ('7', 'Max HP Boost', '2', '70');
+INSERT INTO `traits` VALUES ('66', 'Kick Attacks', '2', '71');
+INSERT INTO `traits` VALUES ('23', 'Martial Arts', '2', '75');
+INSERT INTO `traits` VALUES ('6', 'Magic Def. Bonus', '3', '10');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '3', '35');
+INSERT INTO `traits` VALUES ('6', 'Magic Def. Bonus', '3', '50');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '3', '50');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '3', '60');
+INSERT INTO `traits` VALUES ('6', 'Magic Def. Bonus', '3', '70');
+INSERT INTO `traits` VALUES ('4', 'Defense Bonus', '7', '30');
+INSERT INTO `traits` VALUES ('48', 'Resist Sleep', '7', '40');
+INSERT INTO `traits` VALUES ('4', 'Defense Bonus', '7', '50');
+INSERT INTO `traits` VALUES ('48', 'Resist Sleep', '7', '60');
+INSERT INTO `traits` VALUES ('4', 'Defense Bonus', '7', '70');
+INSERT INTO `traits` VALUES ('48', 'Resist Sleep', '7', '75');
+INSERT INTO `traits` VALUES ('3', 'Attack Bonus', '8', '30');
+INSERT INTO `traits` VALUES ('50', 'Resist Paralyze', '8', '40');
+INSERT INTO `traits` VALUES ('3', 'Attack Bonus', '8', '50');
+INSERT INTO `traits` VALUES ('50', 'Resist Paralyze', '8', '60');
+INSERT INTO `traits` VALUES ('3', 'Attack Bonus', '8', '70');
+INSERT INTO `traits` VALUES ('50', 'Resist Paralyze', '8', '75');
+INSERT INTO `traits` VALUES ('8', 'Max MP Boost', '15', '30');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '15', '30');
+INSERT INTO `traits` VALUES ('59', 'Resist Slow', '15', '40');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '15', '45');
+INSERT INTO `traits` VALUES ('8', 'Max MP Boost', '15', '50');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '15', '60');
+INSERT INTO `traits` VALUES ('8', 'Max MP Boost', '15', '70');
+INSERT INTO `traits` VALUES ('59', 'Resist Slow', '15', '60');
+INSERT INTO `traits` VALUES ('24', 'Clear Mind', '15', '70');
+INSERT INTO `traits` VALUES ('1', 'Accuracy Bonus', '11', '30');
+INSERT INTO `traits` VALUES ('1', 'Accuracy Bonus', '11', '50');
+INSERT INTO `traits` VALUES ('1', 'Accuracy Bonus', '11', '70');
+INSERT INTO `traits` VALUES ('49', 'Resist Poison', '11', '40');
+INSERT INTO `traits` VALUES ('49', 'Resist Poison', '11', '60');
+INSERT INTO `traits` VALUES ('14', 'Store TP', '12', '30');
+INSERT INTO `traits` VALUES ('14', 'Store TP', '12', '50');
+INSERT INTO `traits` VALUES ('14', 'Store TP', '12', '70');
+INSERT INTO `traits` VALUES ('51', 'Resist Blind', '12', '25');
+INSERT INTO `traits` VALUES ('51', 'Resist Blind', '12', '45');
+INSERT INTO `traits` VALUES ('51', 'Resist Blind', '12', '65');
+INSERT INTO `traits` VALUES ('70', 'Zanshin', '12', '60');
+INSERT INTO `traits` VALUES ('18', 'Dual Wield', '13', '25');
+INSERT INTO `traits` VALUES ('18', 'Dual Wield', '13', '45');
+INSERT INTO `traits` VALUES ('18', 'Dual Wield', '13', '65');
+INSERT INTO `traits` VALUES ('57', 'Resist Bind', '13', '30');
+INSERT INTO `traits` VALUES ('57', 'Resist Bind', '13', '50');
+INSERT INTO `traits` VALUES ('57', 'Resist Bind', '13', '70');
