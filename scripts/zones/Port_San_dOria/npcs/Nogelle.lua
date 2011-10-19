@@ -4,6 +4,7 @@
 -- Starts Lufet's Lake Salt
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -78,6 +79,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*600);
 	end
 end;
+
 
 
 

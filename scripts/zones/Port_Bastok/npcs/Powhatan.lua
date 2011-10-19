@@ -7,6 +7,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -94,6 +95,7 @@ function onEventFinish(player,csid,option)
         player:setVar("GuestofHauteur_Event",0);
 	end
 end;
+
 
 
 

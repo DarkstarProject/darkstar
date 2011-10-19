@@ -4,6 +4,7 @@
 -- Finishes Quest: Elder Memories
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
@@ -92,6 +93,7 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(OTHER_AREAS, ELDER_MEMORIES);
 	end
 end;
+
 
 
 

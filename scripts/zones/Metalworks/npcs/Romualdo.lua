@@ -4,6 +4,7 @@
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
@@ -53,6 +54,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
 
 
 

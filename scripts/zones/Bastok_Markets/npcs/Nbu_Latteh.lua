@@ -8,6 +8,7 @@
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
@@ -107,3 +108,4 @@ function onEventFinish(player,csid,option)
 		player:addQuest(BASTOK,BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
    end
 end;
+

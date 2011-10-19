@@ -4,6 +4,7 @@
 -- Involved In Quest: Drachenfall
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
@@ -53,6 +54,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
 
 
 

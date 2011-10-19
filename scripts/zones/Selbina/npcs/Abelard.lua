@@ -8,6 +8,7 @@
 --  complete this quest even with no fame.
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
@@ -184,6 +185,7 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
+
 
 
 

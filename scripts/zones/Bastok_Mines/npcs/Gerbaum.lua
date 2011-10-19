@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -86,6 +87,7 @@ MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
 	end
 
 end;
+
 
 
 

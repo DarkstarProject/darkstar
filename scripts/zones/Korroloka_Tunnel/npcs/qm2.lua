@@ -6,6 +6,7 @@
 
 require("scripts/globals/keyItems");
 require("scripts/globals/settings");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
 require("scripts/zones/Korroloka_Tunnel/TextIDs");
@@ -78,3 +79,4 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 end;
+

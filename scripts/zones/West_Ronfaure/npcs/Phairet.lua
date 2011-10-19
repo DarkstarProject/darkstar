@@ -6,6 +6,7 @@
 
 require("scripts/globals/titles");
 require("scripts/globals/settings");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 require("scripts/zones/West_Ronfaure/TextIDs");
@@ -70,6 +71,7 @@ function onEventFinish(player,csid,option)
 		
 	
 end;
+
 
 
 

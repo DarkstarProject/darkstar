@@ -6,6 +6,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
@@ -66,3 +67,4 @@ function onEventFinish(player,csid,option)
 		player:setVar("TheOldMonument_Event",3);
 	end
 end;
+

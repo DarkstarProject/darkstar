@@ -4,6 +4,7 @@
 -- Start & Finishes Quest: Out of One's Shell
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
@@ -98,6 +99,7 @@ function onEventFinish(player,csid,option)
 	end
 
 end;
+
 
 
 

@@ -4,6 +4,7 @@
 -- Involved In Quest: Inspector's Gadget
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
@@ -110,6 +111,7 @@ function onEventFinish(player,csid,option)
 	end
 
 end;
+
 
 
 

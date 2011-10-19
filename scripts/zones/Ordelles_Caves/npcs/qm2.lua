@@ -5,6 +5,7 @@
 -------------------------------------
 
 require("scripts/globals/keyItems");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
@@ -48,3 +49,4 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+

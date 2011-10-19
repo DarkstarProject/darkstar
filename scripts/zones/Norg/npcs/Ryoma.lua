@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/keyitems");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 require("scripts/zones/Norg/TextIDs");
@@ -57,3 +58,4 @@ function onEventFinish(player,csid,option)
 		player:setVar("AyameAndKaede_Event", 4);
 	end
 end;
+

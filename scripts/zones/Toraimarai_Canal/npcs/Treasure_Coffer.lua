@@ -4,6 +4,7 @@
 -- Involved In Quest: Wild Card
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
@@ -60,6 +61,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 end;
+
 
 
 

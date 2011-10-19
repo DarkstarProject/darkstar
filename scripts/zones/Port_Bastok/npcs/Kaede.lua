@@ -4,6 +4,7 @@
 -- Starts Quest: Ayame and Kaede (Ninja Flag Quest)
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
@@ -55,3 +56,4 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
+

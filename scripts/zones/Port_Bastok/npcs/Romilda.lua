@@ -5,6 +5,7 @@
 -- Starts & Ends Quest: Till Death Do Us Part
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -85,6 +86,7 @@ function onEventFinish(player,csid,option)
 	end
 			
 end;
+
 
 
 

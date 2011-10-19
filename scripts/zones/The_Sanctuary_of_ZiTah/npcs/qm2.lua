@@ -4,6 +4,7 @@
 -- Involved in Quest: Forge Your Destiny
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
@@ -57,3 +58,4 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 end;
+

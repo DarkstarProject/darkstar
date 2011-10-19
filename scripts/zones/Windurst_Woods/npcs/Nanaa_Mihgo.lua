@@ -5,6 +5,7 @@
 -- Involved In Quest: Crying Over Onions
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
@@ -95,6 +96,7 @@ function onEventFinish(player,csid,option)
 	end
 
 end;
+
 
 
 

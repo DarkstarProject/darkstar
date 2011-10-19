@@ -4,6 +4,7 @@
 -- Map Seller NPC
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Aht_Urhgan_Whitegate/textids");
@@ -76,6 +77,7 @@ gil = 0;
     	end
   end
 end;
+
 
 
 

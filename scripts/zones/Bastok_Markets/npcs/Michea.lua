@@ -6,6 +6,7 @@
 -- Involed in: Fetichism | Where Two Paths Converge
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -91,6 +92,7 @@ function onEventFinish(player,csid,option)
 	end
 	
 end;
+
 
 
 

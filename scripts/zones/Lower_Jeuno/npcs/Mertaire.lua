@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
@@ -67,3 +68,4 @@ function onEventFinish(player,csid,option)
 		player:addFame(WINDURST,WIN_FAME*10);
 	end
 end;
+

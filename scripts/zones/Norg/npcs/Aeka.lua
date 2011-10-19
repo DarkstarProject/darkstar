@@ -4,6 +4,7 @@
 -- Involved in Quest: Forge Your Destiny
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 require("scripts/zones/Norg/TextIDs");
@@ -97,3 +98,4 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
+

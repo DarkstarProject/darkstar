@@ -4,6 +4,7 @@
 -- Starts & Finishes Repeatable Quest: Something Fishy
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
@@ -90,6 +91,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("TokakaSpokenTo",1);
 	end
 end;
+
 
 
 

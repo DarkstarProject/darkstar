@@ -4,6 +4,7 @@
 -- Involved in Quest: Save My Son (Beastmaster Flag #1)
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 require("scripts/zones/Qufim_Island/TextIDs");
@@ -54,6 +55,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("SaveMySon_Event",1);
 	end
 end;
+
 
 
 

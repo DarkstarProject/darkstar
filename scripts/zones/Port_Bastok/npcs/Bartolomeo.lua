@@ -6,6 +6,7 @@
 -----------------------------------
 
 require("scripts/globals/keyitems");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
@@ -56,6 +57,7 @@ function onEventFinish(player,csid,option)
         player:setVar("WelcometoBastok_Event",1)
     end
 end;
+
 
 
 

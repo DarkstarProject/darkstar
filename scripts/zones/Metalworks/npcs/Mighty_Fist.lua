@@ -4,6 +4,7 @@
 -- Starts & Finishes Repeatable Quest: The Darksmith
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
@@ -87,6 +88,7 @@ function onEventFinish(player,csid,option)
 	end
 
 end;
+
 
 
 

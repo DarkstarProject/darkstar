@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
@@ -81,3 +82,4 @@ function onEventFinish(player,csid,option)
 		player:setVar("ForgeYourDestiny_Event",0);
 	end
 end;
+

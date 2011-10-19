@@ -4,6 +4,7 @@
 -- Finishes Quest: The Old Lady
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
@@ -92,6 +93,7 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(OTHER_AREAS,THE_OLD_LADY);
 	end
 end;
+
 
 
 

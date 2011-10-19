@@ -4,6 +4,7 @@
 -- Map Seller NPC
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/port_windurst/textids");
@@ -92,6 +93,7 @@ gil = 0;
     	end
   end
 end;
+
 
 
 

@@ -5,6 +5,7 @@
 --	Working 100% 
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
@@ -77,6 +78,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(WINDURST,CREEPY_CRAWLIES);
 	end
 end;
+
 
 
 

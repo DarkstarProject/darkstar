@@ -4,6 +4,7 @@
 -- Involved In Quest: Crying Over Onions
 -----------------------------------
 
+package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
@@ -115,6 +116,7 @@ function onEventFinish(player,csid,option)
 	end
 
 end;
+
 
 
 
