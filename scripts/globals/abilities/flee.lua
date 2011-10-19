@@ -1,9 +1,19 @@
 -----------------------------------
---	     WARDING CIRCLE		 --
+
+--	Flee		
+
 -----------------------------------
+ 
+
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
+
+
 function OnUseAbility(player, target, ability)
-	target:addStatusEffect(EFFECT_WARDING_CIRCLE,1,0,60);
+buff = 30;
+if (player:getEquipID(8) == 14094) or (player:getEquipID(8) == 15357) then
+buff = (buff + 15);
+end
+player:addStatusEffect(EFFECT_FLEE,1,0,buff);
 end;
