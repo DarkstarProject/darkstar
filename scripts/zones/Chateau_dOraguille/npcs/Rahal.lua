@@ -1,29 +1,18 @@
 -----------------------------------
--- Area: Port San d'Oria
--- NPC: Arminibit
+-- Area: Chateau d'Oraguille
+-- NPC: Milchupain
 -- Standard Info NPC
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Port_San_dOria/TextIDs");
+require("scripts/globals/keyitems");
+package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
+require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	end
 end;
 
 -----------------------------------
@@ -32,10 +21,8 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getMainLvl() >= 30 and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == 0) then
-		player:startEvent(0x0018);
-	else
-		player:startEvent(0x024b);
+	if (player:getVar("TheHolyCrest_Event") == 5 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == false) then
+		player:startEvent(0x003c);
 	end
 end;
 
@@ -55,5 +42,12 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+
+	if (csid == 0x003c) then
+		player:addKeyItem(DRAGON_CURSE_REMEDY);
+		player:messageSpecial(KEYITEM_OBTAINED, DRAGON_CURSE_REMEDY);
+	end
 end;
+
+
 

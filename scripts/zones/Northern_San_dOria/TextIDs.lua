@@ -20,7 +20,8 @@ CONQUEST = 4515; -- "You've earned conquest points!"
 -- Quest Items
         MagicmartFlyer = 532; -- item: Magicmart_flyer
 SCROLL_OF_TELEPORT_DEM = 4731;
-   
+			WYVERN_EGG = 1159;
+
  FLYER_REFUSED = 11289;  -- Your flyer is refused
  FLYER_ALREADY = 11828;  -- This person already has a flyer.
 FLYER_ACCEPTED = 11827;  -- Your flyer is accepted!
@@ -29,17 +30,17 @@ FLYER_ACCEPTED = 11827;  -- Your flyer is accepted!
 GUILBERDRIER_DIALOG = 10917;  -- A magic shop, you say? A bit of magic would come in handy... I know! I'll have my daughter study it for me!
 	 VILLION_DIALOG = 11825;  -- Opening a shop of magic, without consulting me first? I must pay this Regine a visit!
 	 CAPIRIA_DIALOG = 11824;  -- A flyer? For me? Some reading material would be a welcome change of pace, indeed!
-	 BONCORT_DIALOG = 11823;  -- Hmm... With magic, I could get hold of materials a mite easier. I'll have to check this “mart” out.  
+	 BONCORT_DIALOG = 11823;  -- Hmm... With magic, I could get hold of materials a mite easier. I'll have to check this “mart” out.
 	COULLENE_DIALOG = 11826;  -- Magic could be of use on my journey to Paradise. Thank you so much!
-	
+
 	COULLENE_MESSAGE = 13126; -- Coullene looks over curiously for a moment.
 GUILBERDRIER_MESSAGE = 13127; -- Guilberdrier looks over curiously for a moment.
 	 BONCORT_MESSAGE = 13128; -- Boncort looks over curiously for a moment.
 	 CAPIRIA_MESSAGE = 13129; -- Capiria looks over curiously for a moment.
 	 VILLION_MESSAGE = 13130; -- Villion looks over curiously for a moment.
-	 
+
  ABIOLEGET_DIALOG = 10993; -- All of Altana's children are welcome here.
-   MALFINE_DIALOG = 10998 -- Truly fortunate are we that words of sacrament are read every day!  
+   MALFINE_DIALOG = 10998 -- Truly fortunate are we that words of sacrament are read every day!
 FITTESEGAT_DIALOG = 10995; -- Paradise is a place without fear, without death!
    MAURINE_DIALOG = 10996; -- Papsque Shamonde sometimes addresses the city from the balcony, you know. I long for his blessing, if but once!
   PELLIMIE_DIALOG = 10994; -- Is this your first time here? Join us in prayer!
@@ -77,7 +78,7 @@ PIRVIDIAUCE_SHOP_DIALOG = 11396;  -- Care to see what I have?
   ANTONIAN_CLOSED_DIALOG = 11404; -- The Kingdom's influence is waning in Aragoneu. I cannot import goods from that region, though I long to.
 
   PALGUEVION_OPEN_DIALOG = 11397;  -- I've got a shipment straight from Valdeaunia!
-PALGUEVION_CLOSED_DIALOG = 11405;  -- Would that Valdeaunia came again under San d'Orian dominion, I could then import its goods! 
+PALGUEVION_CLOSED_DIALOG = 11405;  -- Would that Valdeaunia came again under San d'Orian dominion, I could then import its goods!
 
 	 VICHUEL_OPEN_DIALOG = 11398;  -- Fauregandi produce for sale!
    VICHUEL_CLOSED_DIALOG = 11406;  -- I'd make a killing selling Fauregandi produce here, but that region's not under San d'Orian control!

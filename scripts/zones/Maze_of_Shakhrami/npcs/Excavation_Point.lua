@@ -1,27 +1,29 @@
 -----------------------------------
--- Area: Port San d'Oria
--- NPC: Arminibit
--- Standard Info NPC
+-- Area: Maze of Shakhrami
+-- NPC: Excavation Point
+-- Starts Quest: The Holy Crest
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Port_San_dOria/TextIDs");
+package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
+require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+	count = trade:getItemCount();
+	gil = trade:getGil();
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
+	if (trade:hasItemQty(PICKAXE,1) == true and count == 1 and gil == 0) then
+		if (player:getVar("TheHolyCrest_Event") == 3 and player:hasItem(WYVERN_EGG) == false) then
+			if (player:getFreeSlotsCount(0) >= 1) then
+				player:tradeComplete();
+				player:addItem(WYVERN_EGG);
+				player:messageSpecial(ITEM_OBTAINED, WYVERN_EGG);
+			else
+			   player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, WYVERN_EGG);
+			end
 		end
 	end
 end;
@@ -31,12 +33,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	if (player:getMainLvl() >= 30 and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == 0) then
-		player:startEvent(0x0018);
-	else
-		player:startEvent(0x024b);
-	end
 end;
 
 -----------------------------------
@@ -56,4 +52,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-

@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Ghelsba_Outpost
--- 
+--
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -26,7 +26,7 @@ return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,regionID)
