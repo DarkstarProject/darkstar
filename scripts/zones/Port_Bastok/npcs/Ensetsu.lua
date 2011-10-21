@@ -36,7 +36,7 @@ function onTrigger(player,npc)
 	elseif (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == 2) then
 		player:startEvent(0x00f7);
 	else
-
+		player:startEvent(0x001b);
 	end
 end;
 
@@ -71,4 +71,3 @@ function onEventFinish(player,csid,option)
 		player:setVar("AyameAndKaede_Event", 0);
 	end
 end;
-
