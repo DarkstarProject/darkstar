@@ -47,8 +47,8 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	WBUFB(data,(0x2B)-4) = (PChar->nameflags.byte4 << 5) + PChar->nameflags.byte3;
 	WBUFB(data,(0x2F)-4) = (PChar->nameflags.byte4 >> 2);
 
-	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)
-		|| PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE)); 
+	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) 
+		|| PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE))
 	{
 		data[0x2D-0x04] = 0x80;
 	}
