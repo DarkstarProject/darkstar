@@ -122,55 +122,45 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 }
 
 /************************************************************************
-*																		*
-*  Устанавливаем любую найденную цель по ее TargID						*
-*  Возвращаемое значение: подходит ли найденная цель под ValidTarget	*
-*																		*
+* Checks to see if the action can be cast on self/player/party/dead		*
+* or mobs.																*
 ************************************************************************/
 
 bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget)
 {
 	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || *PBattleTarget != NULL);
 
-	// невозможно написать правильные условия, пока не будет решена задача с PvP
-	// в нынешних условиях PvP исключено
-
-	// питомцы пока исключены из поиска
-
 	*PBattleTarget = (CBattleEntity*)m_PZone->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC);
 	//m_ActionTargetID = 0;
 
 	if (*PBattleTarget == NULL)
+	{
 		return false;
-
-	if ((*PBattleTarget)->targid == m_PChar->targid && ValidTarget & TARGET_SELF)
-	{
-		return true;
 	}
-	
-	if (ValidTarget & TARGET_PLAYER)
+	if ((*PBattleTarget)->objtype == TYPE_PC)
 	{
-		if ((*PBattleTarget)->objtype == TYPE_PC)
+		if ((*PBattleTarget)->targid == m_PChar->targid && ValidTarget & TARGET_SELF)
 		{
-			if (ValidTarget & TARGET_PLAYER_PARTY)
-			{
-				
-				if (((CCharEntity*)*PBattleTarget)->PParty == NULL || ((CCharEntity*)*PBattleTarget)->PParty->GetPartyID() != m_PChar->PParty->GetPartyID())
-				{
-					return false;
-				}
-				
-			}
-			if (!ValidTarget & TARGET_PLAYER_DEAD)
-			{
-				if ((*PBattleTarget)->isDead())
-				{
-					return false;
-				}
-			}
 			return true;
 		}
+
+		if (ValidTarget & TARGET_PLAYER)
+		{
+			return true;
+		}
+
+		if (ValidTarget & TARGET_PLAYER_PARTY && (((CCharEntity*)*PBattleTarget)->PParty != NULL && ((CCharEntity*)*PBattleTarget)->PParty->GetPartyID() == m_PChar->PParty->GetPartyID()))
+		{
+			return true;
+		}
+
+		if (ValidTarget & TARGET_PLAYER_DEAD && (*PBattleTarget)->isDead())
+		{
+			return true;
+		}
+		return false;
 	}
+
 	if (ValidTarget & TARGET_ENEMY)
 	{
 		if ((*PBattleTarget)->objtype == TYPE_MOB && !(*PBattleTarget)->isDead())
@@ -180,7 +170,6 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 	}
 	return false;
 }
-
 
 
 
@@ -210,14 +199,10 @@ bool CAICharNormal::IsMobOwner()
 {
 	if (m_PBattleTarget == NULL)
 	{
-		return true;
+		return false;
 	}
-	if (m_PBattleTarget->m_OwnerID == 0)
-	{
-			return true;
-	}
-		
-	if (m_PBattleTarget->m_OwnerID == m_PChar->id) 
+
+	if (m_PBattleTarget->m_OwnerID == 0 || m_PBattleTarget->m_OwnerID == m_PChar->id) 
 	{
 		return true;
 	}
@@ -232,7 +217,6 @@ bool CAICharNormal::IsMobOwner()
 			}
 		}
 	}
-	
 
 	return false;
 }
@@ -515,7 +499,9 @@ void CAICharNormal::ActionItemUsing()
 			charutils::UpdateItem(m_PChar, m_PItemUsable->getLocationID(), m_PItemUsable->getSlotID(), -1);
 		}
 		m_PChar->pushPacket(new CInventoryFinishPacket());
-
+	
+		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	
 		apAction_t Action;
 
 		Action.ActionTarget = m_PBattleSubTarget;
@@ -1079,6 +1065,8 @@ void CAICharNormal::ActionMagicFinish()
 {
 	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+
 	Recast_t Recast;
 
 	Recast.ID = m_PSpell->getID();
@@ -1263,13 +1251,16 @@ void CAICharNormal::ActionJobAbilityStart()
 		}
 	}
 
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+	
 	if (m_PJobAbility->getValidTarget() == 4)
 	{
 		CBattleEntity* PBattleTarget = NULL;
 		if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
 		{
 			m_PBattleTarget = PBattleTarget;
-			if (!IsMobOwner())
+			if (!IsMobOwner() || !IsMobSubOwner())
 			{
 				return;
 			}
@@ -1481,6 +1472,9 @@ void CAICharNormal::ActionWeaponSkillStart()
 			return;
 		}
 	
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+	
 	uint16 damage = luautils::OnUseWeaponSkill(m_PChar,m_PBattleTarget);
 	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 	{
@@ -1596,6 +1590,9 @@ void CAICharNormal::ActionAttack()
 		ActionDisengage();
 		return;
 	}
+
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 
 	uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN] ->getDelay());
 		//uint16 WeaponDelay = m_PChar->m_Weapons[SLOT_MAIN] ->getDelay();

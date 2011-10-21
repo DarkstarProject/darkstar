@@ -493,7 +493,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 				   (PChar->animation == ANIMATION_HEALING ||
 				   (PChar->GetMLevel() - PCurrentMob->GetMLevel() < 10)))
 				{
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE))
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
 					{
 						// отсутствие эффекта invisible
 
@@ -512,7 +512,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 						{
 							PCurrentMob->m_OwnerID = PChar->id;
 							continue;
-						}
+						} 
 					}
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_LOWHP && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
 					{

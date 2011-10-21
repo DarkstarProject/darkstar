@@ -1862,6 +1862,11 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 
 	if (exp != 0)
 	{
+		if (PChar->getZone() != PMob->getZone())
+		{
+			return 0;
+		}
+
 		if (distance(PChar->loc.p, PMob->loc.p) > 100)
 		{
 			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,37));

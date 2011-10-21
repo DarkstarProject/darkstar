@@ -210,21 +210,24 @@ void CAIMobDummy::ActionDropItems()
 					for (int i = 0; i < PChar->PParty->members.size(); i++)
 					{
 						CCharEntity * PMember = PChar->PParty->members[i];
-						exp = charutils::DistributeExperiencePoints(PMember, m_PMob);
+						if (PMember->getZone() == PChar->getZone())
+						{
+							exp = charutils::DistributeExperiencePoints(PMember, m_PMob);
+							if (exp > 0 && PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET,0) && m_PMob->m_Element > 0 && rand()%100 < 19) // Need to move to SIGNET_CHANCE constant
+							{
+								PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
+							}		
+						}
 					}
 				}
 				else
 				{
 					exp = charutils::DistributeExperiencePoints(PChar, m_PMob);
-				}
-			}
-			// If player has signet, a crystal may drop depending on mob element
-			if (exp > 0 && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET,0))
-			{
-					if(m_PMob->m_Element > 0 && rand()%100 < 19) // Need to move to SIGNET_CHANCE constant
+					if (exp > 0 && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET,0) && m_PMob->m_Element > 0 && rand()%100 < 19) // Need to move to SIGNET_CHANCE constant
 					{
 						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
 					}		
+				}
 			}
 
 			DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
@@ -363,21 +366,6 @@ void CAIMobDummy::ActionAbilityStart()
 
 void CAIMobDummy::ActionAbilityFinish()
 {
-
-	//apAction_t Action;
-
-	//Action.ActionTarget = m_PMob;
-	//Action.reaction   = REACTION_NONE ;
-	//Action.speceffect = SPECEFFECT_RECOIL;
-	//Action.animation  = 20;
-	//Action.param	  = 20;
-	//Action.messageID  = 102;
-	//Action.flag		  = 0;
-	//uint16 test = luautils::OnUseAbility(m_PChar,m_PBattleTarget);
-	
-	//ShowDebug(CL_WHITE"Mob Ability Animation used: %u \n"CL_RESET,currentanimationid); 
-	//m_PZone->PushPacket(m_PMob, CHAR_INRANGE_SELF, new CActionPacket(m_PMob));
-	//m_PMob->m_ActionList.clear(); 
 	m_ActionType = ACTION_ATTACK; 
 }
 
@@ -512,7 +500,6 @@ void CAIMobDummy::ActionAttack()
 				else
 				{
 					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_EVA,m_PMob->GetMLevel());
-					m_PMob->addTP(10); 
 				}
 				Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, m_PZone);
 

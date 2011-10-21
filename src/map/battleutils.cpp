@@ -566,6 +566,8 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 	if (PDefender->objtype == TYPE_PC)
 	{
+		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 		switch (PDefender->animation)
 		{
 			case ANIMATION_SIT:
@@ -584,8 +586,11 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			}
 			break;
 		};
-	
-		(CCharEntity*)PDefender->addTP(3);
+		
+		if (damage > 0)
+		{
+			(CCharEntity*)PDefender->addTP(3);
+		}
 	}
 	
 	PZone->PushPacket(PDefender,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PDefender)); 
