@@ -143,15 +143,11 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 	if (*PBattleTarget == NULL)
 		return false;
 
-	if (ValidTarget & TARGET_SELF)
+	if ((*PBattleTarget)->targid == m_PChar->targid && ValidTarget & TARGET_SELF)
 	{
-		if ((*PBattleTarget)->targid == m_PChar->targid)
-		{
-			return true;
-		}
-		return false;
-	} 
-
+		return true;
+	}
+	
 	if (ValidTarget & TARGET_PLAYER)
 	{
 		if ((*PBattleTarget)->objtype == TYPE_PC)
