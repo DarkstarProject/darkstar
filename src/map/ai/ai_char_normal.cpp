@@ -138,19 +138,19 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 	// питомцы пока исключены из поиска
 
 	*PBattleTarget = (CBattleEntity*)m_PZone->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC);
-	m_ActionTargetID = 0;
+	//m_ActionTargetID = 0;
 
 	if (*PBattleTarget == NULL)
 		return false;
 
-	if (ValidTarget == TARGET_SELF)
+	if (ValidTarget & TARGET_SELF)
 	{
 		if ((*PBattleTarget)->targid == m_PChar->targid)
 		{
 			return true;
 		}
 		return false;
-	}
+	} 
 
 	if (ValidTarget & TARGET_PLAYER)
 	{
@@ -1063,8 +1063,7 @@ void CAICharNormal::ActionMagicCasting()
 				if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
 				{
 					m_PChar->addMP(-(int16)m_PSpell->getMPCost());
-					//m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
-					m_PZone->PushPacket(m_PChar,CHAR_INRANGE,new CCharHealthPacket(m_PChar));
+					m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF,new CCharHealthPacket(m_PChar));
 				}
 			}
 		}
@@ -1108,7 +1107,7 @@ void CAICharNormal::ActionMagicFinish()
 			Action.param	  = battleutils::MagicCalculateDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 1, m_PZone);
 			Action.messageID  = m_PSpell->getSpellType();
 			Action.flag		  = 0;
-
+		
 			m_PChar->m_ActionList.push_back(Action);
 
 			if (m_PSpell->isAOE() && m_PBattleSubTarget->objtype == TYPE_MOB)
@@ -1295,40 +1294,51 @@ void CAICharNormal::ActionJobAbilityStart()
 			}
 		}
 	}
-		
-	
+
 	apAction_t Action;
-
-	if (m_PJobAbility->getValidTarget() == 4) 
-	{
-		Action.ActionTarget = m_PBattleTarget;
-		m_PBattleTarget->m_OwnerID = m_PChar->id; 
-	}
-	else
-	{
-		Action.ActionTarget = m_PChar;
-	
-	}
-
-	Action.reaction   = REACTION_NONE ;
-	Action.speceffect = SPECEFFECT_RECOIL;
-	Action.animation  = m_PJobAbility->getAnimationID();
-	Action.messageID  = 100;
 	
 	RecastAbility_t Recast;
 	Recast.ID = m_PJobAbility->getID();
-	Recast.TimeStamp = m_Tick;
 	Recast.RecastTime = m_PJobAbility->getRecastTime(); //+ m_Tick;
 	Recast.RecastId = m_PJobAbility->getRecastId(); 
-	m_PChar->RecastAbilityList.push_back(Recast);
+
+	if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
+	{
+		m_ActionType = ACTION_JOBABILITY_FINISH;
+		Action.ActionTarget = m_PBattleTarget;
+		m_PBattleTarget->m_OwnerID = m_PChar->id; 
+		Action.reaction   = REACTION_NONE;
+		Action.speceffect = SPECEFFECT_RECOIL;
+		Action.animation  = m_PJobAbility->getAnimationID();
+		Action.param = 0;
+		Action.flag = 0; 
+		Action.messageID = 0;
+
+		m_PChar->m_ActionList.push_back(Action);
+		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF,new CActionPacket(m_PChar));
+		m_PChar->m_ActionList.clear();
+		m_ActionTargetID = 0; 
 		
-	m_PChar->m_ActionList.push_back(Action);
-	m_LastActionTime = m_Tick;
-	m_ActionType = ACTION_JOBABILITY_FINISH; 
-	//m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PJobAbility->getID(),0,100));
-	//m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,87));
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+
+		Recast.TimeStamp = m_Tick;
+		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PChar,m_PJobAbility->getID()+16,0,100));
+		m_PChar->RecastAbilityList.push_back(Recast);
+		m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
+		m_PJobAbility = NULL;
+		return;
+	}
+	else
+	{
+		m_ActionType = ACTION_JOBABILITY_FINISH;
+		m_LastActionTime = m_Tick;
+	}
+
+	Recast.TimeStamp = m_Tick;
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PChar,m_PJobAbility->getID()+16,0,100));
+	m_PChar->RecastAbilityList.push_back(Recast);
 	m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
+	
 	
 }
 
@@ -1420,13 +1430,15 @@ void CAICharNormal::ActionJobAbilityFinish()
 	}	
 	
 	
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CCharHealthPacket(m_PChar));
+	m_PChar->m_ActionList.clear();
 	m_ActionTargetID = 0; 
 	m_PJobAbility = NULL;
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	//m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); 
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	m_PChar->m_ActionList.clear();
+	
 }
+
 
 
 /************************************************************************
@@ -1534,7 +1546,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 	m_PChar->m_ActionList.push_back(Action);
 	m_ActionType = ACTION_WEAPONSKILL_FINISH; 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+	m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); //TP Update... 
 }
 
 /************************************************************************
@@ -1682,7 +1694,7 @@ void CAICharNormal::ActionAttack()
 
 					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
 					m_PChar->addTP(12);
-					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+					m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); //TP Update
 
 					damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio));
 				}
@@ -1694,14 +1706,14 @@ void CAICharNormal::ActionAttack()
 
 					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
 
-				if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BLOOD_WEAPON))
+				if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BLOOD_WEAPON) && Action.reaction != REACTION_EVADE && damage > 0 && m_PBattleTarget->m_EcoSystem != SYSTEM_UNDEAD)
 				{
 					Action.flag = 1;
 					Action.subeffect = SUBEFFECT_BLOOD_WEAPON;
 					Action.submessageID = 167;
 					Action.subparam = damage;
 					m_PChar->addHP(damage);
-					m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+					m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CCharHealthPacket(m_PChar));
 				}
 
 
@@ -1883,7 +1895,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
 				
 				
 				
-				m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+				m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CCharHealthPacket(m_PChar));
 				m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 				
 				
@@ -1899,7 +1911,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
 			
 				m_PChar->m_ActionList.push_back(Action);
 				m_PChar->m_ActionList.clear();
-				m_PChar->pushPacket(new CActionPacket(m_PChar));
+				m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 				m_ActionType = ACTION_NONE; 												
 
 }

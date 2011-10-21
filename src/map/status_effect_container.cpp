@@ -29,10 +29,11 @@
 #include "lua/luautils.h"
 
 #include "battleentity.h"
+#include "packets/char_update.h" 
 #include "itemutils.h"
 #include "map.h"
 #include "status_effect_container.h"
-
+#include "zoneutils.h"
 
 const int8* GetStatusEffectName(uint16 EffectID) 
 {
@@ -722,15 +723,24 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint16 S
 
 void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
 {
+	bool refresh = false; 
 	if (m_StatusEffectList.at(id)->GetStatusID() < 512 && m_pOwner->objtype == TYPE_PC)
 	{
 		DelStatusIcon(m_StatusEffectList.at(id)->GetStatusID());
+		refresh = true; 
 	}
 
 	luautils::OnEffectLose(m_pOwner, m_StatusEffectList.at(id));
 
 	delete m_StatusEffectList.at(id);
 	m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
+	
+	if (refresh) 
+	{
+		CZone* PZone = zoneutils::GetZone(m_pOwner->getZone());
+		PZone->PushPacket(m_pOwner, CHAR_INRANGE_SELF,new CCharUpdatePacket((CCharEntity*)m_pOwner)); 
+	}
+
 }
 
 /************************************************************************

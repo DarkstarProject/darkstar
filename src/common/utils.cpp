@@ -92,6 +92,7 @@ uint8 getangle(position_t A, position_t B)
 bool isFaceing(position_t A, position_t B, uint8 coneAngle) 
 {	
 	int32 angle = getangle(A,B);
+	ShowDebug(CL_GREEN"Angle: %u Cone Angle %u \n"CL_RESET,abs(angle - A.rotation), (coneAngle >> 1));
 	return ( abs(angle - A.rotation) < (coneAngle >> 1) );
 }
 

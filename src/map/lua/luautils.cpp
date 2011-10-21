@@ -748,7 +748,8 @@ int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		PChar->pushPacket(new CCharSyncPacket(PChar));
 		if (PStatusEffect->GetStatusID() <512)
 		{
-			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,PStatusEffect->GetStatusID(),0,205));
+			CZone* PZone = zoneutils::GetZone(PChar->getZone());
+			PZone->PushPacket(PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar,PChar,PStatusEffect->GetStatusID(),0,205));
 		}
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
@@ -844,7 +845,8 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		{
 			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,PStatusEffect->GetStatusID(),0,206));
 		}
-		PChar->pushPacket(new CCharUpdatePacket(PChar));
+		CZone* PZone = zoneutils::GetZone(PChar->getZone());
+		PZone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharUpdatePacket(PChar));
 		PChar->pushPacket(new CCharSyncPacket(PChar));
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);

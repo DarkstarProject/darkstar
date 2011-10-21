@@ -151,7 +151,8 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
 		m_PBaseEntity->objtype == TYPE_PC &&
 		m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
+		CZone* PZone = zoneutils::GetZone(m_PBaseEntity->getZone());
+		PZone->PushPacket(m_PBaseEntity,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
 	}
 	
 	lua_pushnil(L);
@@ -173,7 +174,8 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 		m_PBaseEntity->objtype == TYPE_PC &&
 		m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
+		CZone* PZone = zoneutils::GetZone(m_PBaseEntity->getZone());
+		PZone->PushPacket(m_PBaseEntity,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
 	}
 		
 	lua_pushnil(L);
@@ -195,7 +197,8 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
 	if( m_PBaseEntity->objtype == TYPE_PC &&
 		m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
+		CZone* PZone = zoneutils::GetZone(m_PBaseEntity->getZone());
+		PZone->PushPacket(m_PBaseEntity,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
 	}
 	
 	lua_pushnil(L);
@@ -228,7 +231,8 @@ inline int32 CLuaBaseEntity::addMP(lua_State *L)
 		m_PBaseEntity->objtype == TYPE_PC &&
 		m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
+		CZone* PZone = zoneutils::GetZone(m_PBaseEntity->getZone());
+		PZone->PushPacket(m_PBaseEntity,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
 	}
 	
 	lua_pushnil(L);
@@ -250,7 +254,8 @@ inline int32 CLuaBaseEntity::delMP(lua_State *L)
 		m_PBaseEntity->objtype == TYPE_PC &&
 		m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
+		CZone* PZone = zoneutils::GetZone(m_PBaseEntity->getZone());
+		PZone->PushPacket(m_PBaseEntity,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
 	}
 	
 	lua_pushnil(L);
@@ -272,7 +277,8 @@ inline int32 CLuaBaseEntity::setMP(lua_State *L)
 	if( m_PBaseEntity->objtype == TYPE_PC &&
 		m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
+		CZone* PZone = zoneutils::GetZone(m_PBaseEntity->getZone());
+		PZone->PushPacket(m_PBaseEntity,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)m_PBaseEntity));
 	}
 	
 	lua_pushnil(L);

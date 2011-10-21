@@ -1917,7 +1917,8 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 				PChar->health.hp = PChar->health.maxhp;
 				PChar->health.mp = PChar->health.maxmp;
 
-				zoneutils::GetZone(PChar->getZone())->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar,PMob,PChar->jobs.job[PChar->GetMJob()],0,9));
+				CZone* PZone = zoneutils::GetZone(PChar->getZone());
+				PZone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar,PMob,PChar->jobs.job[PChar->GetMJob()],0,9));
 
 				SaveCharJobs(PChar);
 				SaveCharStats(PChar);
@@ -1925,7 +1926,7 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 
 				PChar->pushPacket(new CCharJobsPacket(PChar));
 				PChar->pushPacket(new CCharUpdatePacket(PChar));
-				PChar->pushPacket(new CCharHealthPacket(PChar));
+				PZone->PushPacket(PChar,CHAR_INRANGE_SELF, new CCharHealthPacket(PChar));		
 				PChar->pushPacket(new CCharSkillsPacket(PChar));
 				PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 				PChar->pushPacket(new CMenuMeritPacket(PChar));

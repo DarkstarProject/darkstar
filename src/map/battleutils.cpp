@@ -583,13 +583,12 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 				PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_LEAVEGAME);
 			}
 			break;
-		}
+		};
 	
 		(CCharEntity*)PDefender->addTP(3);
-		((CCharEntity*)PDefender)->pushPacket(new CCharHealthPacket((CCharEntity*)PDefender));
 	}
 	
-	PZone->PushPacket(PDefender,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PDefender)); 
+	PZone->PushPacket(PDefender,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PDefender)); 
 	
 	return damage;
 }
@@ -665,7 +664,7 @@ uint32 MagicCalculateDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpe
 	PTarget->addHP(-D);
 	PTarget->m_OwnerID = PCaster->id;
 	
-	PZone->PushPacket(PTarget,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PTarget)); 
+	PZone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget)); 
 	return D;
 
 }
@@ -770,7 +769,7 @@ uint32 MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell
 	};
 	
 
-	h = (((3*(PCaster->stats.MND + PCaster->GetSkill(SKILL_HEA)/5) + PCaster->stats.VIT) / x) + y) + MOD_HEALING; //+ Day bonus + Weather bonus) 
+	h = (((3*(PCaster->stats.MND + (PCaster->GetSkill(SKILL_HEA)/10)/5) + PCaster->stats.VIT) / x) + y) + MOD_HEALING; //+ Day bonus + Weather bonus) 
 
 	if (h < minCap)
 	{
@@ -778,11 +777,11 @@ uint32 MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell
 	}
 	else if (minCap < h < maxCap) 
 	{
-		h = (((3*(PCaster->stats.MND + PCaster->GetSkill(SKILL_HEA)/5) + PCaster->stats.VIT) / x2) + y2) + MOD_HEALING; //+ Day bonus + Weather bonus) 
+		h = (((3*(PCaster->stats.MND + (PCaster->GetSkill(SKILL_HEA)/10)/5) + PCaster->stats.VIT) / x2) + y2) + MOD_HEALING; //+ Day bonus + Weather bonus) 
 	}
 	else if (maxCap < h)
 	{
-		h = (((3*(PCaster->stats.MND + PCaster->GetSkill(SKILL_HEA)/5) + PCaster->stats.VIT) / x3) + y3) + MOD_HEALING; //+ Day bonus + Weather bonus) 
+		h = (((3*(PCaster->stats.MND + (PCaster->GetSkill(SKILL_HEA)/10)/5) + PCaster->stats.VIT) / x3) + y3) + MOD_HEALING; //+ Day bonus + Weather bonus) 
 	}
 
 	h = (h > maxCap ? maxCap : h);
@@ -792,15 +791,14 @@ uint32 MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell
 		if (PTarget->m_EcoSystem == SYSTEM_UNDEAD) 
 		{
 			PTarget->addHP(-h);
-			PZone->PushPacket(PTarget,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PTarget)); 
+			PZone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget)); 
 			return -h; 
 		}
 	}
 	else 
 	{
 		PTarget->addHP(h);
-		((CCharEntity*)PTarget)->pushPacket(new CCharHealthPacket((CCharEntity*)PTarget));
-		PZone->PushPacket(PTarget,CHAR_INRANGE, new CCharHealthPacket((CCharEntity*)PTarget)); 
+		PZone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget)); 
 	}
 	return h;
 }
@@ -828,7 +826,7 @@ uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 /************************************************************************
 *																		*
-*  Расчет вероятности нанесения критического удара						*
+*  Crit Rate															*
 *																		*
 ************************************************************************/
 
@@ -836,10 +834,14 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
 	int32 crithitrate = 5;
 
-	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
-	{
+	if (isFaceing(PAttacker->loc.p, PDefender->loc.p, 40) && !isFaceing(PDefender->loc.p,PAttacker->loc.p,600))
+	{//PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) && 
+		ShowDebug(CL_BLUE"SneakAttack!  \n"CL_RESET); 
 		crithitrate = 100;
-	}else{
+		PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK_ATTACK);
+	}
+	else
+	{
 		int32 attackerdex = PAttacker->stats.DEX + PAttacker->getMod(MOD_DEX);
 		int32 defenderagi = PDefender->stats.AGI + PDefender->getMod(MOD_AGI);
 
@@ -854,7 +856,7 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 /************************************************************************
 *																		*
-*  																		*
+*	Formula for calculating damage ratio								*
 *																		*
 ************************************************************************/
 
@@ -904,9 +906,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 }
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*  	Formula for Strength												*
 ************************************************************************/
 
 int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender) 
@@ -928,9 +928,7 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 }
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*	Chance paralysis will cause you to be paralyzed  					*
 ************************************************************************/
 
 bool IsParalised(CBattleEntity* PAttacker)
@@ -940,7 +938,7 @@ bool IsParalised(CBattleEntity* PAttacker)
 
 /************************************************************************
 *																		*
-*  Расчет вероятности запугивания атакуущего							*
+*  Intimidation from Killer Effects (chance to intimidate)				*
 *																		*
 ************************************************************************/
 
@@ -969,11 +967,7 @@ bool IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 }
 
 /************************************************************************
-*																		*
-*  Перемещаем сущности в указанную точку. Перемещение осуществляется	*
-*  "своим ходом". При вызове метода сущность уже должена смотреть в		*
-*  точку назначения. Mode - режим: 1 - пешком; 2 - бегом.				*
-*																		*
+* Moves mob  - mode 1 = walk / 2 = run									*
 ************************************************************************/
 
 void MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode)
@@ -1002,9 +996,10 @@ void MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode)
 *	White Mage Benediction Ability										*
 ************************************************************************/
 
-void battleutils::AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTarget)
+int32 battleutils::AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTarget)
 {
-	PTarget->addHP(PTarget->health.maxhp * PCaster->GetMLevel() / PTarget->GetMLevel());
+	int32 hpHealed = PTarget->health.maxhp * PCaster->GetMLevel() / PTarget->GetMLevel();
+		PTarget->addHP(hpHealed);
 	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP) : NULL);
 	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_POISON) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_POISON) : NULL);
 	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_PARALYSIS) : NULL);
@@ -1055,6 +1050,8 @@ void battleutils::AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTar
 	{
 		(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DOOM) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DOOM) : NULL);
 	}
+
+	return hpHealed;
 }
 
 /************************************************************************

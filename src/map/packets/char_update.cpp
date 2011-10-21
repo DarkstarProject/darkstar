@@ -47,6 +47,18 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	WBUFB(data,(0x2B)-4) = (PChar->nameflags.byte4 << 5) + PChar->nameflags.byte3;
 	WBUFB(data,(0x2F)-4) = (PChar->nameflags.byte4 >> 2);
 
+	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE)) 
+	{
+		data[0x2D-0x04] = 0x80;
+	}
+
+	
+	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK)) 
+	{
+		data[0x38-0x04] ^= 0x04;
+	}
+
+
 	WBUFB(data,(0x29)-4) = (PChar->look.race)%2 ^ (PChar->look.race > 6);
 
 	WBUFB(data,(0x2C)-4) = PChar->speed * (100 + PChar->getMod(MOD_MOVE)) / 100;	
@@ -85,12 +97,12 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 }
 
 /*
-	//Try to be invisible
+	Try to be invisible
 	if(schar->hasStatusEffect(EFFECT_INVISIBLE)) {
 		data[0x2D-0x04] = 0x80;
 	}
 
-	//Try to sneak
+	Try to sneak
 	if(schar->hasStatusEffect(EFFECT_SNEAK)) {
 		data[0x38-0x04] ^= 0x04;
 	}

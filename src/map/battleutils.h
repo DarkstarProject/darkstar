@@ -84,7 +84,7 @@ namespace battleutils
 	bool	Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	void	MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode);
 	uint32	PerformMobSkill(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	void	AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTarget);
+	int32	AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTarget);
 };
 
 #endif
