@@ -70,7 +70,8 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 				WBUFB(data,(0x22)-4) = 0x020;
 			}
 
-			if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
+			if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)
+				|| PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE))
 			{
 				WBUFB(data,(0x23)-4) = 0x020;
 			}

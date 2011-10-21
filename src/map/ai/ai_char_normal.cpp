@@ -501,6 +501,8 @@ void CAICharNormal::ActionItemUsing()
 		m_PChar->pushPacket(new CInventoryFinishPacket());
 	
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 	
 		apAction_t Action;
 
@@ -1066,6 +1068,8 @@ void CAICharNormal::ActionMagicFinish()
 	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 
 	Recast_t Recast;
 
@@ -1252,6 +1256,8 @@ void CAICharNormal::ActionJobAbilityStart()
 	}
 
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 	
 	if (m_PJobAbility->getValidTarget() == 4)
@@ -1473,6 +1479,8 @@ void CAICharNormal::ActionWeaponSkillStart()
 		}
 	
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 	
 	uint16 damage = luautils::OnUseWeaponSkill(m_PChar,m_PBattleTarget);
@@ -1592,6 +1600,8 @@ void CAICharNormal::ActionAttack()
 	}
 
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 
 	uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN] ->getDelay());

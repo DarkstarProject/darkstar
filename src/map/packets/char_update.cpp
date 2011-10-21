@@ -47,7 +47,8 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	WBUFB(data,(0x2B)-4) = (PChar->nameflags.byte4 << 5) + PChar->nameflags.byte3;
 	WBUFB(data,(0x2F)-4) = (PChar->nameflags.byte4 >> 2);
 
-	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)) 
+	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)
+		|| PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE)); 
 	{
 		data[0x2D-0x04] = 0x80;
 	}
@@ -91,21 +92,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 
 	if (PChar->animation == ANIMATION_FISHING_START)
 	{
-		WBUFB(data,(0x4A)-4) = 0x10;		// время ожидания поклевки
+		WBUFB(data,(0x4A)-4) = 0x10;		
 	}
 	WBUFL(data,(0x4C)-4) = PChar->StatusEffectContainer->m_Flags;
 }
-
-/*
-	Try to be invisible
-	if(schar->hasStatusEffect(EFFECT_INVISIBLE)) {
-		data[0x2D-0x04] = 0x80;
-	}
-
-	Try to sneak
-	if(schar->hasStatusEffect(EFFECT_SNEAK)) {
-		data[0x38-0x04] ^= 0x04;
-	}
-
-	memcpy(data+0x44-0x04,&(schar->m_costume),sizeof(schar->m_costume));
-*/

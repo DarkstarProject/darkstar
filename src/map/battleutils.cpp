@@ -567,6 +567,8 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	if (PDefender->objtype == TYPE_PC)
 	{
 		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 		switch (PDefender->animation)
 		{
