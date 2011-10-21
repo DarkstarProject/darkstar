@@ -955,7 +955,14 @@ void CAICharNormal::ActionMagicStart()
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 	m_PChar->m_ActionList.clear();
 
-	m_ActionType = ACTION_MAGIC_CASTING;
+	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+	{
+		m_ActionType = ACTION_MAGIC_FINISH;
+	}
+	else
+	{
+		m_ActionType = ACTION_MAGIC_CASTING;
+	}
 }
 
 /************************************************************************
@@ -1118,7 +1125,7 @@ void CAICharNormal::ActionMagicFinish()
 						Action.speceffect = SPECEFFECT_NONE;
 						Action.animation  = m_PSpell->getAnimationID();
 						Action.param	  = battleutils::MagicCalculateDamage(m_PChar, PCurrentMob, m_PSpell, targetNumber, m_PZone);
-						Action.messageID  = m_PSpell->getSpellType();
+						Action.messageID  = 264;
 						Action.flag		  = 0;
 
 						m_PChar->m_ActionList.push_back(Action);	
