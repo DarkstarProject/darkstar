@@ -49,8 +49,7 @@ function onEventFinish(player,csid,option)
 
 	if (csid == 0x0038) then
 		player:tradeComplete();
-		player:startEvent(0x0021)
-	elseif (csid == 0x0021) then
 		player:setVar("TheHolyCrest_Event",5);
+		player:startEvent(0x0021)
 	end
 end;
