@@ -12,6 +12,8 @@ CONQUEST 			= 7742;  -- You've earned conquest points!
 MOGHOUSE_EXIT 			= 7686;  -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 
 -- Quest Items
+	 KING_TRUFFLE = 4386;
+	   ROLANBERRY = 4530;
     BRASS_HAIRPIN = 12497;
     COTTON_GLOVES = 12721;
      SHELL_SHIELD = 12415;
