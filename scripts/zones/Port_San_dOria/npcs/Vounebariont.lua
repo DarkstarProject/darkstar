@@ -14,16 +14,26 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+-- "Think_Shells"
+Thick = player:getQuestStatus(SANDORIA, THICK_SHELLS);
 
-	if (FlyerForRegine == 1) then
+	if (Thick == 0 or Thick == 1 or Thick == 2) then
 		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
+		beetle = trade:hasItemQty(889, 5);
+		if (count == 5 and beetle) then
+		player:tradeComplete();
+		if (Thick == 0) then
+		player:addFame(SANDORIA,SAN_FAME*30);
+		player:completeQuest(THICK_SHELLS);
+		player:setTitle(BUG_CATCHER);
+		player:startEvent(0x0202);
+        elseif (Thick == 1 or Thick == 2) then
+		player:addFame(SANDORIA,SAN_FAME*5);
+		player:startEvent(0x0202);
 		end
-	end
+end		
+		
+		end
 end; 
 
 -----------------------------------
@@ -31,7 +41,21 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x204);
+	sanFame = player:getFameLevel(SANDORIA);
+	print(player:getFameLevel(SANDORIA));
+Thick = player:getQuestStatus(SANDORIA, THICK_SHELLS);
+if (Thick == 0 and sanFame >= 2) then
+player:startEvent(0x0204);
+player:addQuest(SANDORIA, THICK_SHELLS);
+elseif (Thick == 1 and sanFame >= 2) then
+player:startEvent(0x0204);
+player:addQuest(SANDORIA, THICK_SHELLS);
+elseif (Thick == 2 and sanFame >= 2) then
+player:startEvent(0x0204);
+player:addQuest(SANDORIA, THICK_SHELLS);
+elseif (Thick == 0 and sanFame < 2) then
+player:startEvent(0x0238);
+end
 end;
 
 -----------------------------------
@@ -50,8 +74,8 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+if (csid == 0x0202) then
+player:addGil(750);
+player:messageSpecial(GIL_OBTAINED,750)
+end
 end;
-
-
-
-
