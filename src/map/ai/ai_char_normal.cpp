@@ -1087,10 +1087,13 @@ void CAICharNormal::ActionMagicFinish()
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 
 	Recast_t Recast;
-
+	
 	Recast.ID = m_PSpell->getID();
 	Recast.TimeStamp = m_Tick;
-	Recast.RecastTime = m_PSpell->getRecastTime() * 1000;
+	int16 timeToRecast = (m_PSpell->getRecastTime() * 1000);
+ 	int16 hasteTime = ((float)m_PChar->getMod(MOD_HASTE)/100 * timeToRecast);
+	timeToRecast = timeToRecast - hasteTime; 
+	Recast.RecastTime = (timeToRecast > 0 ? timeToRecast : 0);
 
 	m_PChar->RecastList.push_back(Recast);
 
@@ -1099,6 +1102,7 @@ void CAICharNormal::ActionMagicFinish()
 	Action.reaction   = REACTION_NONE;
 	Action.speceffect = SPECEFFECT_NONE;
 	Action.animation  = m_PSpell->getAnimationID();
+	Action.messageID  = 0;
 	Action.flag		  = 0;
 
 	bool callMagicDamage = false;
@@ -1113,7 +1117,8 @@ void CAICharNormal::ActionMagicFinish()
 			callMagicDamage = true; 
 			sendInitSpellMsg = true;
 			Action.messageID  = 264;
-		}
+			charutils::TrySkillUP(m_PChar,SKILL_ELE,m_PChar->GetMLevel());
+		} break;
 		/*	
 		{	
 			int32 damage;
@@ -1162,8 +1167,9 @@ void CAICharNormal::ActionMagicFinish()
 			callCure = true;
 			sendInitSpellMsg = true;
 			Action.messageID = 24;
+			charutils::TrySkillUP(m_PChar,SKILL_DIV,m_PChar->GetMLevel());
 		}
-			
+			break;
 		/*{		
 			Action.ActionTarget = m_PBattleSubTarget;
 			Action.reaction   = REACTION_NONE;
@@ -1218,29 +1224,69 @@ void CAICharNormal::ActionMagicFinish()
 		{
 			callLUA = true;
 			sendInitSpellMsg = true;
+			charutils::TrySkillUP(m_PChar,SKILL_DRK,m_PChar->GetMLevel());
 		}
 			break;
 		case 227: // drain
-			
+		{
+			Action.messageID = 227;
+			int16 drain = (rand()%100 < 50 ? m_PChar->GetSkill(SKILL_DRK) : m_PChar->GetSkill(SKILL_DRK) / 2);
+			m_PBattleSubTarget->addHP((drain > m_PBattleSubTarget->health.hp ? drain : m_PBattleSubTarget->health.hp)); 
+			m_PChar->addHP(drain);
+			charutils::TrySkillUP(m_PChar,SKILL_DRK,m_PChar->GetMLevel());
+			Action.param = drain;
+			m_PBattleSubTarget->m_OwnerID = m_PChar->id;
+		} 
+			break;
 		case 228: // aspir
-			
+		{
+			int16 aspir = (m_PChar->GetSkill(SKILL_DRK) / 3.2);
+			aspir = (m_PBattleSubTarget->health.mp > aspir ? aspir : m_PBattleSubTarget->health.mp);
+			Action.messageID = 228;
+			charutils::TrySkillUP(m_PChar,SKILL_DRK,m_PChar->GetMLevel());
+			m_PBattleSubTarget->addMP(-aspir);
+			m_PChar->addMP(aspir);
+			Action.param = aspir;
+			m_PBattleSubTarget->m_OwnerID = m_PChar->id;
+		} 
+			break;
 		case 230: // buff
 		{
 			callLUA = true;
 			sendInitSpellMsg = true;
-			Action.messageID = 266;
+			Action.messageID = 0;
 			Action.param = m_PSpell->getID();
+			charutils::TrySkillUP(m_PChar,SKILL_ENH,m_PChar->GetMLevel());
 		}
-			//Action.ActionTarget = m_PChar;
-			//luautils::OnSpellCast(m_PChar,m_PBattleSubTarget);
 			break;
 		case 237: //enfeeble
+		{
+			callLUA = true;
+			sendInitSpellMsg = true;
+			//Action.messageID = 266; 
+			Action.param = m_PSpell->getID(); 
+			if (m_PSpell->getElement() == 7)
+			{
+				charutils::TrySkillUP(m_PChar,SKILL_DIV,m_PChar->GetMLevel());
+			}
+			else if (m_PSpell->getElement() == 8)
+			{
+				charutils::TrySkillUP(m_PChar,SKILL_DRK,m_PChar->GetMLevel());
+			}
+			else
+			{
+				charutils::TrySkillUP(m_PChar,SKILL_ENF,m_PChar->GetMLevel());
+			}
 			
+			m_PBattleSubTarget->m_OwnerID = m_PChar->id;
+		} 
 			break;
-
 		case 42:
+			{
 			sendInitSpellMsg = true;
 			Action.messageID = 0; 
+			} break;
+			charutils::TrySkillUP(m_PChar,SKILL_DIV,m_PChar->GetMLevel());
 	};
 
 	/******************************************************************************************/
@@ -1784,19 +1830,17 @@ void CAICharNormal::ActionAttack()
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 
 
-	uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN] ->getDelay());
+
+	uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN]->getDelay());
+	WeaponDelay -= (m_PChar->getMod(MOD_HASTE)/100 * WeaponDelay);
 
 	if (m_PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0)
 	{
 		WeaponDelay += (m_PChar->m_Weapons[SLOT_SUB]->getDelay());
-		
-
-
+		WeaponDelay -= (m_PChar->getMod(MOD_DUAL_WIELD)/100 * WeaponDelay);
 	}
-
 
 	//uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN] ->getDelay());
 	if 	(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
@@ -1933,7 +1977,7 @@ void CAICharNormal::ActionAttack()
 
 				m_PChar->m_ActionList.push_back(Action);
 			}
-
+			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 			m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 			m_PChar->m_ActionList.clear();
 		}
