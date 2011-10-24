@@ -4,6 +4,8 @@
 -- Standard Info NPC
 -----------------------------------
 
+require("scripts/globals/settings");
+require("scripts/globals/titles");
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -14,27 +16,16 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Think_Shells"
-Thick = player:getQuestStatus(SANDORIA, THICK_SHELLS);
-
-	if (Thick == 0 or Thick == 1 or Thick == 2) then
+-- "Thick_Shells"
+	if (player:getQuestStatus(SANDORIA,THICK_SHELLS) >= 1) then
 		count = trade:getItemCount();
-		beetle = trade:hasItemQty(889, 5);
-		if (count == 5 and beetle) then
-		player:tradeComplete();
-		if (Thick == 0) then
-		player:addFame(SANDORIA,SAN_FAME*30);
-		player:completeQuest(THICK_SHELLS);
-		player:setTitle(BUG_CATCHER);
-		player:startEvent(0x0202);
-        elseif (Thick == 1 or Thick == 2) then
-		player:addFame(SANDORIA,SAN_FAME*5);
-		player:startEvent(0x0202);
-		end
-end		
-		
-		end
-end; 
+		gil = trade:getGil();
+
+		if (trade:hasItemQty(BEETLE_SHELL, 5) and count == 5 and gil == 0) then
+			player:startEvent(0x0202);
+    	end
+	end
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -42,20 +33,12 @@ end;
 
 function onTrigger(player,npc)
 	sanFame = player:getFameLevel(SANDORIA);
-	print(player:getFameLevel(SANDORIA));
-Thick = player:getQuestStatus(SANDORIA, THICK_SHELLS);
-if (Thick == 0 and sanFame >= 2) then
-player:startEvent(0x0204);
-player:addQuest(SANDORIA, THICK_SHELLS);
-elseif (Thick == 1 and sanFame >= 2) then
-player:startEvent(0x0204);
-player:addQuest(SANDORIA, THICK_SHELLS);
-elseif (Thick == 2 and sanFame >= 2) then
-player:startEvent(0x0204);
-player:addQuest(SANDORIA, THICK_SHELLS);
-elseif (Thick == 0 and sanFame < 2) then
-player:startEvent(0x0238);
-end
+
+	if (sanFame >= 2) then
+		player:startEvent(0x0204);
+	else
+		player:startEvent(0x0238);
+	end
 end;
 
 -----------------------------------
@@ -74,8 +57,22 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-if (csid == 0x0202) then
-player:addGil(750);
-player:messageSpecial(GIL_OBTAINED,750)
-end
+
+	if (csid == 0x0204) then
+		if (player:getQuestStatus(SANDORIA,THICK_SHELLS) == 0) then
+			player:addQuest(SANDORIA,THICK_SHELLS);
+		end
+	elseif (csid == 0x0202) then
+		if (player:getQuestStatus(SANDORIA,THICK_SHELLS) == 1) then
+			player:completeQuest(SANDORIA,THICK_SHELLS);
+			player:addFame(SANDORIA,SAN_FAME*30);
+		else
+			player:addFame(SANDORIA,SAN_FAME*5);
+		end
+
+		player:tradeComplete();
+		player:setTitle(BUG_CATCHER);
+		player:addGil(GIL_RATE*750);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*750)
+	end
 end;

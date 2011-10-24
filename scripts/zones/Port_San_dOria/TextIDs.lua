@@ -10,21 +10,24 @@ FULL_INVENTORY_AFTER_TRADE = 6402;  -- You cannot obtain the <item>. Try trading
           KEYITEM_OBTAINED = 6406;  -- Obtained key item: <keyitem>.
 			 HOMEPOINT_SET =   24;  -- Home point set!
 
-	   
-MagicmartFlyer	= 532; -- item: Magicmart_flyer  
-	   
+
+MagicmartFlyer	= 532; -- item: Magicmart_flyer
+
+-- Quest Items
+BEETLE_SHELL = 889;
+
  FLYER_REFUSED = 7068; -- This person isn't interested.
  FLYER_ALREADY = 7069; -- This person already has a flyer.
 FLYER_ACCEPTED = 7070; -- Your flyer is accepted!
  FLYERS_HANDED = 7071; -- You've handed out <number> flyer(s).
- 
- 
-PORTAURE_DIALOG = 7333; -- What's this? A magic shop? Hmm...I could use a new line of work, and magic just might be the ticket! 
+
+
+PORTAURE_DIALOG = 7333; -- What's this? A magic shop? Hmm...I could use a new line of work, and magic just might be the ticket!
  ANSWALD_DIALOG = 7353; -- A magic shop? Oh, it's right near here. I'll go check it out sometime.
  PRIETTA_DIALOG = 7377; -- This is the first I've heard of a magic shop here in San d'Oria. Such arts have never been popular in the Kingdom.
   AUVARE_DIALOG = 7384; -- What have I got here? Look, I can't read, but I takes what I gets, and you ain't getting it back!
    MIENE_DIALOG = 7437; -- Oh, a magic shop... Here in San d'Oria? I'd take a look if I got more allowance.
-   
+
  ANSWALD_MESSAGE = 7927; -- Answald looks over curiously for a moment.
  PRIETTA_MESSAGE = 7928; -- Prietta looks over curiously for a moment.
    MIENE_MESSAGE = 7929; -- Miene looks over curiously for a moment.
@@ -44,7 +47,7 @@ CROUMANGUE_SHOP_DIALOG = 7444; -- Can't fight on an empty stomach. How about som
 
              MILVA_OPEN_DIALOG = 7446;  -- How about some produce from Sarutabaruta?
            MILVA_CLOSED_DIALOG = 7448;  -- I want to import produce from Sarutabaruta... But I can't do anything until we control that region!
-	  
+
 		      FIVA_OPEN_DIALOG = 7445;  -- I've got imports from Kolshushu!
 		    FIVA_CLOSED_DIALOG = 7447;  -- I'm trying to sell goods from Kolshushu. But I can't because we don't have enough influence there.
 
@@ -54,14 +57,14 @@ DEGUERENDARS_COP_NOT_COMPLETED = 7455;  -- <Sigh> Why must I wait for the Kingdo
 
 
 	       PATOLLE_OPEN_DIALOG = 7789;  -- Hey, ?Multiple Choice (Player Gender)?[mister/miss]! How about some specialty goods from Kuzotz?
-	     PATOLLE_CLOSED_DIALOG = 7450;  -- I'm trying to find goods from Kuzotz. But how can I when it's under foreign control?  
-	 
+	     PATOLLE_CLOSED_DIALOG = 7450;  -- I'm trying to find goods from Kuzotz. But how can I when it's under foreign control?
+
 		     NIMIA_OPEN_DIALOG = 7788;  -- Hello, friend! Can I interest you in specialty goods from the Elshimo Lowlands?
 	       NIMIA_CLOSED_DIALOG = 7449;  -- I can't sell goods from the lowlands of Elshimo because it's under foreign control.
 
 
 -- perdiouvilet - Lure of the Wildcat (San d'Oria)
 -- event 22e Vous ne pouvez pas transporter plus de gil
-  
 
-    
+
+
