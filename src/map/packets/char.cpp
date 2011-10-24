@@ -65,10 +65,10 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 			WBUFL(data,(0x20)-4) = PChar->nameflags.flags;
 			WBUFB(data,(0x21)-4) |= 1 << PChar->look.size;
 
-			if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
-			{
-				WBUFB(data,(0x22)-4) = 0x020;
-			}
+			//if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+			//{
+			//	WBUFB(data,(0x22)-4) = 0x020;
+			//}
 
 			if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)
 				|| PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE))

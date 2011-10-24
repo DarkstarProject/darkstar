@@ -801,6 +801,7 @@ uint32 MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell
 			PZone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget)); 
 			return -h; 
 		}
+		return 0; 
 	}
 	else 
 	{
@@ -841,8 +842,8 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
 	int32 crithitrate = 5;
 
-	if (isFaceing(PAttacker->loc.p, PDefender->loc.p, 40) && !isFaceing(PDefender->loc.p,PAttacker->loc.p,600))
-	{//PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) && 
+	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) && (abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23))
+	{// && 
 		ShowDebug(CL_BLUE"SneakAttack!  \n"CL_RESET); 
 		crithitrate = 100;
 		PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK_ATTACK);

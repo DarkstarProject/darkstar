@@ -176,12 +176,20 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 bool CAICharNormal::IsMobSubOwner()
 {
 
-	if	(m_PBattleSubTarget->m_OwnerID == 0 || 
-		 m_PBattleSubTarget->m_OwnerID == m_PChar->id)
+	if (m_PBattleSubTarget == NULL)
+	{
+		return false;
+	}
+	
+	if	(m_PBattleSubTarget->m_OwnerID == 0 || m_PBattleSubTarget->m_OwnerID == m_PChar->id)
 	{
 		return true;
 	}
 	
+	if (m_PBattleSubTarget->m_OwnerID == m_PChar->id) 
+	{
+		return true;
+	}
 	if (m_PChar->PParty != NULL) 
 	{
 		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
@@ -1087,11 +1095,26 @@ void CAICharNormal::ActionMagicFinish()
 	m_PChar->RecastList.push_back(Recast);
 
 	apAction_t Action;
-	
-	
+	Action.ActionTarget = m_PBattleSubTarget;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = m_PSpell->getAnimationID();
+	Action.flag		  = 0;
+
+	bool callMagicDamage = false;
+	bool callCure = false;
+	bool callLUA = false;
+	bool sendInitSpellMsg = false;
+
 	switch(m_PSpell->getSpellType())
 	{
 		case 2: // magic Damage
+		{
+			callMagicDamage = true; 
+			sendInitSpellMsg = true;
+			Action.messageID  = 264;
+		}
+		/*	
 		{	
 			int32 damage;
 			
@@ -1132,10 +1155,16 @@ void CAICharNormal::ActionMagicFinish()
 					}
 				}
 			}
-		}
+		}*/
 			break;
 		case 7: // cure
-		{		
+		{
+			callCure = true;
+			sendInitSpellMsg = true;
+			Action.messageID = 24;
+		}
+			
+		/*{		
 			Action.ActionTarget = m_PBattleSubTarget;
 			Action.reaction   = REACTION_NONE;
 			Action.speceffect = SPECEFFECT_NONE;
@@ -1157,7 +1186,25 @@ void CAICharNormal::ActionMagicFinish()
 						Action.reaction   = REACTION_NONE;
 						Action.speceffect = SPECEFFECT_NONE;
 						Action.animation  = m_PSpell->getAnimationID();
-						Action.param	  = battleutils::MagicCalculateCure(m_PChar, PTarget, m_PSpell, 0, m_PZone);
+						
+						
+						if (callMagicDamage) 
+						{
+							Action.param = battleutils::MagicCalculateCure(m_PChar, PTarget, m_PSpell, 0, m_PZone);
+						}
+						
+						if (callCure) 
+						{
+							Action.param = battleutils::MagicCalculateCure(m_PChar, PTarget, m_PSpell, 0, m_PZone);
+						}
+						
+						if (callLUA)
+						{
+							luautils::OnSpellCast(m_PChar,m_PBattleSubTarget);
+						}
+
+
+						
 						Action.messageID  = 24;
 						Action.flag		  = 0;
 
@@ -1165,39 +1212,165 @@ void CAICharNormal::ActionMagicFinish()
 					}
 				}
 			}
-		}
+		}*/
 
 		case 93: //warp
-			
+		{
+			callLUA = true;
+			sendInitSpellMsg = true;
+		}
 			break;
 		case 227: // drain
 			
-			break;
 		case 228: // aspir
 			
-			break;
 		case 230: // buff
-		
+		{
+			callLUA = true;
+			sendInitSpellMsg = true;
+			Action.messageID = 266;
+			Action.param = m_PSpell->getID();
+		}
+			//Action.ActionTarget = m_PChar;
+			//luautils::OnSpellCast(m_PChar,m_PBattleSubTarget);
 			break;
 		case 237: //enfeeble
 			
 			break;
 
 		case 42:
-		{
-			Action.ActionTarget = m_PBattleSubTarget;
-			Action.reaction   = REACTION_NONE;
-			Action.speceffect = SPECEFFECT_NONE;
-			Action.animation  = m_PSpell->getAnimationID();
-			Action.param = m_PSpell->getID();
-			Action.messageID  = 42;
-			Action.flag		  = 0;
-
-			m_PChar->m_ActionList.push_back(Action);
-			((CCharEntity*)m_PBattleSubTarget)->pushPacket(new CRaiseTractorMenuPacket((CCharEntity*)m_PBattleSubTarget, TYPE_RAISE));
-		}
+			sendInitSpellMsg = true;
+			Action.messageID = 0; 
 	};
+
+	/******************************************************************************************/
+
+	if (!m_PSpell->isAOE())
+	{
+		Action.ActionTarget = m_PBattleSubTarget;
+		if (sendInitSpellMsg)
+		{
+			m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PSpell->getID(),0,42));
+		}
+						
+		if (callMagicDamage) 
+		{
+			Action.param = battleutils::MagicCalculateDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 0, m_PZone);
+		}
+						
+		if (callCure) 
+		{
+			Action.param = battleutils::MagicCalculateCure(m_PChar, m_PBattleSubTarget, m_PSpell, 0, m_PZone);
+		}
+						
+		if (callLUA)
+		{
+
+		EFFECT statEffect = (EFFECT)m_PSpell->getEffect();
+
+		if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(statEffect))
+		{
+			m_PBattleSubTarget->StatusEffectContainer->DelStatusEffect(statEffect);
+		}
+			luautils::OnSpellCast(m_PChar,m_PBattleSubTarget);
+			Action.param = m_PSpell->getEffect();
+			
+		}
+
+		m_PChar->m_ActionList.push_back(Action);
+	}
+	else if (m_PBattleSubTarget->objtype = TYPE_PC) 
+	{
+		CCharEntity* Target = (CCharEntity*)m_PBattleSubTarget;
+		if (m_PSpell->isAOE() && Target->PParty != NULL)
+		{
+			for (int i = 0; i < Target->PParty->members.size(); i++)
+			{
+				CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+				if (!PTarget->isDead() && distance(Target->loc.p, PTarget->loc.p) <= 10)
+				{
+					Action.ActionTarget = m_PChar->PParty->members[i];
 	
+					if (sendInitSpellMsg)
+					{
+						m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PSpell->getID(),0,42));
+						sendInitSpellMsg = false;
+					}
+						
+					if (callCure) 
+					{
+						Action.param = battleutils::MagicCalculateCure(m_PChar, PTarget, m_PSpell, 0, m_PZone);
+					}
+						
+					if (callLUA)
+					{
+						EFFECT statEffect = (EFFECT)m_PSpell->getEffect();
+
+						if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(statEffect))
+						{
+							m_PBattleSubTarget->StatusEffectContainer->DelStatusEffect(statEffect);
+						}
+
+						//CStatusEffect * PEffect = new CStatusEffect(statEffect,	m_PSpell->getBase,
+						//	0, //m_PSpell->effecttick
+						//	300, //m_PSpell->effectduration
+						//	1,0);
+						//	m_PBattleSubTarget->StatusEffectContainer->AddStatusEffect(PEffect)
+						luautils::OnSpellCast(m_PChar,m_PBattleSubTarget);
+					}
+					
+					m_PChar->m_ActionList.push_back(Action);	
+				}
+			}
+		}
+	}
+	else if (m_PBattleSubTarget->objtype = TYPE_MOB)
+	{
+		int16 targetNumber = 1; 
+		for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); 
+				it != m_PChar->SpawnMOBList.end() && 
+				m_PChar->m_ActionList.size() < 16;
+				++it)
+		{
+			targetNumber +=1; 
+			CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+
+			if (m_PBattleSubTarget != PCurrentMob &&
+				PCurrentMob->status == STATUS_UPDATE &&
+				distance(m_PBattleSubTarget->loc.p, PCurrentMob->loc.p) <= 10)
+			{
+				Action.ActionTarget = PCurrentMob;
+
+				if (sendInitSpellMsg)
+				{
+					m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,PCurrentMob,m_PSpell->getID(),0,42));
+					sendInitSpellMsg = false;
+				}
+						
+				if (callMagicDamage) 
+				{
+					Action.param = battleutils::MagicCalculateCure(m_PChar, PCurrentMob, m_PSpell, 0, m_PZone);
+				}
+						
+				if (callCure) 
+				{
+					Action.param = battleutils::MagicCalculateCure(m_PChar, PCurrentMob, m_PSpell, 0, m_PZone);
+					Action.messageID = 264;
+				}
+						
+				if (callLUA)
+				{
+					luautils::OnSpellCast(m_PChar,PCurrentMob);
+				}
+
+				m_PChar->m_ActionList.push_back(Action);	
+			}
+		}
+	}
+
+	/*******************************************************************************************/
+
+	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 	m_PChar->m_ActionList.clear();
 
@@ -1205,6 +1378,8 @@ void CAICharNormal::ActionMagicFinish()
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
 }
+
+
 
 /************************************************************************
 *																		*
@@ -1273,7 +1448,7 @@ void CAICharNormal::ActionJobAbilityStart()
 		if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
 		{
 			m_PBattleTarget = PBattleTarget;
-			if (!IsMobOwner() || !IsMobSubOwner())
+			if (!IsMobOwner())
 			{
 				return;
 			}
@@ -1611,8 +1786,24 @@ void CAICharNormal::ActionAttack()
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 
+
 	uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN] ->getDelay());
-		//uint16 WeaponDelay = m_PChar->m_Weapons[SLOT_MAIN] ->getDelay();
+
+	if (m_PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0)
+	{
+		WeaponDelay += (m_PChar->m_Weapons[SLOT_SUB]->getDelay());
+		
+
+
+	}
+
+
+	//uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN] ->getDelay());
+	if 	(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
+	{
+		WeaponDelay = 1700;
+	}
+	//uint16 WeaponDelay = m_PChar->m_Weapons[SLOT_MAIN] ->getDelay();
 
 	if ((m_Tick - m_LastActionTime) > WeaponDelay)
 	{
@@ -1650,10 +1841,23 @@ void CAICharNormal::ActionAttack()
 			apAction_t Action;
 
 			Action.ActionTarget = m_PBattleTarget;
+			uint32 numattacksRightHand = ((rand()%100 < m_PChar->getMod(MOD_DOUBLE_ATTACK) / 10) ? 2 : 1);
+			uint32 numattacksLeftHand = 0;
+			uint32 numKickAttacks = 0;
 
-			uint32 numattacks = (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH ? 2 : 1);
+			uint16 subType = m_PChar->m_Weapons[SLOT_SUB]->getDmgType();
+			
+			
+			//keep until tested without dual wield
+			//if ((hasBit(DUAL_WIELD,m_PChar->m_TraitList, sizeof(m_PChar->m_TraitList)) == 4 && subType > 0 && subType < 8) || (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH))
+			
+			if ((subType > 0 && subType < 4) || (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH))
+			{ 
+				numattacksLeftHand = ((rand()%100 < m_PChar->getMod(MOD_DOUBLE_ATTACK) / 10) ? 2 : 1);
+			}
+	
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
-			for (uint32 i = 0; i < numattacks; ++i) 
+			for (uint32 i = 0; i < (numattacksLeftHand + numattacksRightHand); ++i) 
 			{
 			
 				if (i != 0)
@@ -1677,7 +1881,7 @@ void CAICharNormal::ActionAttack()
 				//	2 - правая нога (только H2H) 
 				//	3 - левая нога  (только H2H)
 
-				Action.animation  = i;
+				Action.animation  = (i < numattacksRightHand ? 0 : 1);
 				Action.flag	= 0;
 
 				// сначала вычисляем вероятность попадания по монстру

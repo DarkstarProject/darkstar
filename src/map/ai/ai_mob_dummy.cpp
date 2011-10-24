@@ -201,7 +201,6 @@ void CAIMobDummy::ActionDropItems()
 			luautils::OnSpecialWeaponKill(PChar); 
 			m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0,6));
 			
-			// еще должно быть сообщение "No experience points gained", но пока не известно, видит ли его один персонаж или вся группа
 			uint32 exp = 0;
 			if (m_PMob->m_CallForHelp == 0)
 			{
@@ -430,72 +429,95 @@ void CAIMobDummy::ActionAttack()
 				}
 				else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
 				{
-					Action.reaction   = REACTION_HIT;
-					Action.speceffect = SPECEFFECT_HIT;
-					Action.messageID  = 1;
-
-					float DamageRatio = battleutils::GetDamageRatio(m_PMob,m_PBattleTarget); 
-
-					if ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) )
+					int16 utsu = m_PBattleTarget->getMod(MOD_UTSUSEMI);
+					if (utsu > 0) 
 					{
-						DamageRatio += 1;
-						DamageRatio = (DamageRatio > 3 ? 3 : DamageRatio);
+						utsu -= 1;
+						m_PBattleTarget->setModifier(MOD_UTSUSEMI, utsu);
+						if (utsu == 0)
+						{
+						m_PZone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,1,1,31));
+						m_PBattleTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE_1);
+						}
 
-						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-						Action.messageID  = 67;
+						
+						Action.ActionTarget = m_PBattleTarget;
+						Action.reaction   = REACTION_EVADE;
+						Action.speceffect = SPECEFFECT_NONE;
+						Action.animation  = 0;
+						Action.param	  = 0;
+						Action.messageID  = 0;
+						Action.flag = 0; 
 					}
+					else
+					{
+						Action.reaction   = REACTION_HIT;
+						Action.speceffect = SPECEFFECT_HIT;
+						Action.messageID  = 1;
+
+						float DamageRatio = battleutils::GetDamageRatio(m_PMob,m_PBattleTarget); 
+
+						if ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) )
+						{
+							DamageRatio += 1;
+							DamageRatio = (DamageRatio > 3 ? 3 : DamageRatio);
+
+							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+							Action.messageID  = 67;
+						}
 					
-					damage = (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ? 0 : (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob,m_PBattleTarget)) * DamageRatio));
-					m_PMob->addTP(12); 
+						damage = (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ? 0 : (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob,m_PBattleTarget)) * DamageRatio));
+						m_PMob->addTP(12); 
 
-					/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BLAZE_SPIKES))
-					{
-						uint32 spikeDamage = 6; //Calculate Spike Damage
-						m_PMob->addhp(-spikeDamage);
-						m_PBattleTarget->addHP(damage);
-						Action.subeffect = SUBEFFECT_BLAZE_SPIKES;
-						Action.flag = 2; 
-						Action.submessageID = ??; 
-					} */
-
-					/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ICE_SPIKES))
-					{
-						uint32 spikeDamage = 6; //Calculate Spike Damage
-						m_PMob->addhp(-spikeDamage);
-						m_PBattleTarget->addHP(damage);
-
-						if (rand() > 0.5) 
+						/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BLAZE_SPIKES))
 						{
-							//m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS,1,0,60));
-						}
-						Action.subeffect = SUBEFFECT_ICE_SPIKES;
-						Action.flag = 2; 
-						Action.submessageID = ??; 
-					} */
+							uint32 spikeDamage = 6; //Calculate Spike Damage
+							m_PMob->addhp(-spikeDamage);
+							m_PBattleTarget->addHP(damage);
+							Action.subeffect = SUBEFFECT_BLAZE_SPIKES;
+							Action.flag = 2; 
+							Action.submessageID = ??; 
+						} */
 
-
-					/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SHOCK_SPIKES))
-					{
-						uint32 spikeDamage = 6; //Calculate Spike Damage
-						m_PMob->addhp(-spikeDamage);
-						m_PBattleTarget->addHP(damage);
-
-						if (rand() > 0.5) 
+						/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ICE_SPIKES))
 						{
-							//m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS,1,0,3));
-						}
-						Action.subeffect = SUBEFFECT_ICE_SPIKES;
-						Action.flag = 2; 
-						Action.submessageID = ??; 
-					} */
+							uint32 spikeDamage = 6; //Calculate Spike Damage
+							m_PMob->addhp(-spikeDamage);
+							m_PBattleTarget->addHP(damage);
 
-					/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DREAD_SPIKES))
-					{
-						m_PBattleTarget->addHP(damage);
-						Action.subeffect = SUBEFFECT_DREAD_SPIKES;
-						Action.flag = 2; 
-						Action.submessageID = 132; 
-					} */
+							if (rand() > 0.5) 
+							{
+								//m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS,1,0,60));
+							}
+							Action.subeffect = SUBEFFECT_ICE_SPIKES;
+							Action.flag = 2; 
+							Action.submessageID = ??; 
+						} */
+
+
+						/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SHOCK_SPIKES))
+						{
+							uint32 spikeDamage = 6; //Calculate Spike Damage
+							m_PMob->addhp(-spikeDamage);
+							m_PBattleTarget->addHP(damage);
+
+							if (rand() > 0.5) 
+							{
+								//m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS,1,0,3));
+							}
+							Action.subeffect = SUBEFFECT_ICE_SPIKES;
+							Action.flag = 2; 
+							Action.submessageID = ??; 
+						} */
+
+						/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DREAD_SPIKES))
+						{
+							m_PBattleTarget->addHP(damage);
+							Action.subeffect = SUBEFFECT_DREAD_SPIKES;
+							Action.flag = 2; 
+							Action.submessageID = 132; 
+						} */
+					}
 				}
 				else
 				{
