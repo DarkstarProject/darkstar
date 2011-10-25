@@ -15,6 +15,7 @@ RANK_POINTS_DIALOG = 8309; -- "You do not need to donate any more crystals at yo
 
 MagicmartFlyer	= 532; -- item: Magicmart_flyer
 
+
  FLYER_REFUSED = 7962; -- Your flyer is refused.
  FLYER_ALREADY = 8608; -- This person already has a flyer.
 FLYER_ACCEPTED = 8607; -- Your flyer is accepted!
@@ -40,6 +41,7 @@ PAUNELIE_DIALOG = 0;    -- 1997; -- Like <item> ? -- (linkshell)
 REVIVAL_TREE_ROOT = 940;
 	  KITE_SHIELD = 12306;
 		   SPATHA = 16565;
+		   LADY_BUG_WING   = 2506; -- item Atelloune's Lament
 
 -- Quest Dialogs
 UNLOCK_PALADIN = 7791; --You can now become a paladin
