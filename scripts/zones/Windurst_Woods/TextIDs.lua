@@ -14,6 +14,9 @@ ACCEPTED_MISSION = 6657;	-- You have accepted the mission.
 -- Quest Items
 RANGERS_NECKLACE = 13117;
 
+-- Quest Dialogs
+UNLOCK_RNG = 7936;
+
 -- Shop Texts
    MANYNY_SHOP_DIALOG = 8192; -- Are you in urgent needy-weedy of anything? I have a variety of thingy-wingies you may be interested in.
 MONONCHAA_SHOP_DIALOG = 8191; -- Huh...? If you be wanting anything therrre, [mister/missy], then hurry up and decide, then get the heck out of herrre!

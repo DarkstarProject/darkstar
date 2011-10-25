@@ -67,6 +67,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED, RANGERS_NECKLACE);
 			player:setTitle(211);  --The Fanged One
 			player:unlockJob(11);
+			player:messageSpecial(UNLOCK_RNG);
 			player:addFame(WINDURST, WIN_FAME* 10);
 			player:delKeyItem(OLD_TIGERS_FANG);
 			player:setVar("TheFangedOne_Event",0);
