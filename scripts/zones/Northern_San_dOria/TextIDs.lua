@@ -21,6 +21,7 @@ CONQUEST = 4515; -- "You've earned conquest points!"
         MagicmartFlyer = 532; -- item: Magicmart_flyer
 SCROLL_OF_TELEPORT_DEM = 4731;
 			WYVERN_EGG = 1159;
+CASTLE_FLOOR_PLANS     = 530;
 
  FLYER_REFUSED = 11289;  -- Your flyer is refused
  FLYER_ALREADY = 11828;  -- This person already has a flyer.
