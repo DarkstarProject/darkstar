@@ -58,6 +58,8 @@ function onTrigger(player,npc)
 	-- Waters of the Cheval event selection
 	if (waterOfTheCheval == 1) then
 		player:startEvent(0x023f);
+		else
+		player:startEvent(0x023c);
 	end;
 end; 
 
