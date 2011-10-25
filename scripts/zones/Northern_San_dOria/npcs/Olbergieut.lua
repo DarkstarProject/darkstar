@@ -26,7 +26,7 @@ function onTrigger(player,npc)
 	sanFame = player:getFame(SANDORIA);
 	gates = player:getQuestStatus(SANDORIA,GATES_TO_PARADISE)
 	Key = player:hasKeyItem(150);
-	if (gates == 0 and Key == false) then
+	if (sanFame >= 2 and gates == 0 and Key == false) then
 	player:startEvent(0x026b);
 	end;
 if (gates == 1 and Key == true) then 
