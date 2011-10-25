@@ -26,36 +26,27 @@
 
 #include "../common/cbasetypes.h"
 
-/************************************************************************
-*																		*
-*  необходимые модификаторы:											*
-*  bst,rng модификатор радиуса сканера									*
-*																		*
-************************************************************************/
-
 enum MODIFIER
 {
 	MOD_NONE				= 0x00,
 
-// Базовые
+	MOD_DEF					= 0x01,		// Target's Defense
+	MOD_HP					= 0x02,		// Taget's HP 
+	MOD_HPP					= 0x03,		// HP Percentage
+	MOD_CONVMPTOHP			= 0x04,		// MP -> HP (Cassie Earring)
+	MOD_MP					= 0x05,		// MP +/-
+	MOD_MPP					= 0x06,		// MP Percentage
+	MOD_CONVHPTOMP			= 0x07,		// HP -> MP 
 
-	MOD_DEF					= 0x01,
-	MOD_HP					= 0x02,
-	MOD_HPP					= 0x03,
-	MOD_CONVMPTOHP			= 0x04,		// переход маны в жизни
-	MOD_MP					= 0x05,
-	MOD_MPP					= 0x06,
-	MOD_CONVHPTOMP			= 0x07,		// переход жизней в ману
+	MOD_STR					= 0x08,		// Strength
+	MOD_DEX					= 0x09,		// Dexterity
+	MOD_VIT					= 0x0A,		// Vitality	
+	MOD_AGI					= 0x0B,		// Agility
+	MOD_INT					= 0x0C,		// Intelligence
+	MOD_MND					= 0x0D,		// Mind
+	MOD_CHR					= 0x0E,		// Charisma
 
-	MOD_STR					= 0x08,
-	MOD_DEX					= 0x09,
-	MOD_VIT					= 0x0A,
-	MOD_AGI					= 0x0B,
-	MOD_INT					= 0x0C,
-	MOD_MND					= 0x0D,
-	MOD_CHR					= 0x0E,
-
-// Сопротивление стихиям
+// Elemental Defenses
 
 	MOD_FIREDEF				= 0x0F,		// Fire Defense
 	MOD_ICEDEF				= 0x10,		// Ice Defense
@@ -79,39 +70,40 @@ enum MODIFIER
 	MOD_MACC				= 0x1E,		// Magic Accuracy
 	MOD_MEVA				= 0x1F,		// Magic Evasion
 
-// Магические точность и атака стихий
+// Magic Accuracy and Elemental Attacks
 
-	MOD_FIREATT				= 0x20,
-	MOD_ICEATT				= 0x21,
-	MOD_WINDATT				= 0x22,
-	MOD_EARTHATT			= 0x23,
-	MOD_THUNDERATT			= 0x24,
-	MOD_WATERATT			= 0x25,
-	MOD_LIGHTATT			= 0x26,
-	MOD_DARKATT				= 0x27,
-	MOD_FIREACC				= 0x28,
-	MOD_ICEACC				= 0x29,
-	MOD_WINDACC				= 0x2A,
-	MOD_EARTHACC			= 0x2B,
-	MOD_THUNDERACC			= 0x2C,
-	MOD_WATERACC			= 0x2D,
-	MOD_LIGHTACC			= 0x2E,
-	MOD_DARKACC				= 0x2F,
+	MOD_FIREATT				= 0x20,		// Fire Damage
+	MOD_ICEATT				= 0x21,		// Ice Damage
+	MOD_WINDATT				= 0x22,		// Wind Damage
+	MOD_EARTHATT			= 0x23,		// Earth Damage
+	MOD_THUNDERATT			= 0x24,		// Thunder Damage
+	MOD_WATERATT			= 0x25,		// Water Damage
+	MOD_LIGHTATT			= 0x26,		// Light Damage
+	MOD_DARKATT				= 0x27,		// Dark Damage
+	MOD_FIREACC				= 0x28,		// Fire Accuracy
+	MOD_ICEACC				= 0x29,		// Ice Accuracy
+	MOD_WINDACC				= 0x2A,		// Wind Accuracy
+	MOD_EARTHACC			= 0x2B,		// Earth Accuracy
+	MOD_THUNDERACC			= 0x2C,		// Thunder Accuracy
+	MOD_WATERACC			= 0x2D,		// Water Accuracy
+	MOD_LIGHTACC			= 0x2E,		// Light Accuracy
+	MOD_DARKACC				= 0x2F,		// Dark Accuracy
 
-	MOD_WSACC				= 0x30,		// точность Weaponskill
+	MOD_WSACC				= 0x30,		// Weaponskill Accuracy 
 
-// Защита от физических атак
-// значение хранится в процентах получаемого урона (с точностью до тысячных)
-// пример: 1000 = 100%, 875 = 87,5%
+// Resistance to damage type 
+// Value is stored as a percentage of damage reduction (to within 1000)
+// Example: 1000 = 100%, 875 = 87.5%
 
-	MOD_SLASHRES			= 0x31,
-	MOD_PIERCERES			= 0x32,	
-	MOD_IMPACTRES			= 0x33,
-	MOD_HTHRES				= 0x34,
+	MOD_SLASHRES			= 0x31,  // Slash Resistance
+	MOD_PIERCERES			= 0x32,	 // Piercing Resistance
+	MOD_IMPACTRES			= 0x33,	 // Impact Resistance
+	MOD_HTHRES				= 0x34,  // Hand-To-Hand Resistance
 
-// Защита от стихий 
-// значение хранится в процентах получаемого урона (с точностью до тысячных) 
-// пример: 1000 = 100%, 875 = 87,5%
+
+// Damage Reduction to Elements
+// Value is stored as a percentage of damage reduction (to within 1000)
+// Example: 1000 = 100%, 875 = 87.5%
 
 	MOD_FIRERES				= 0x36,		// % Fire Resistance
 	MOD_ICERES				= 0x37,		// % Ice Resistance
@@ -129,34 +121,34 @@ enum MODIFIER
 	MOD_RATTP				= 0x42,		// % Ranged Attack
 	MOD_RACCP				= 0x43,		// % Ranged Attack Accuracy
 
-	MOD_EVA					= 0x44,
+	MOD_EVA					= 0x44,		// Evasion
 	MOD_RDEF				= 0x45,		// Ranged Defense
 	MOD_REVA				= 0x46,		// Ranged Evasion
 	MOD_MPHEAL				= 0x47,		// MP Recovered while healing
 	MOD_HPHEAL				= 0x48,		// HP Recovered while healing
 	MOD_STORETP				= 0x49,		// Increases the rate at which TP is gained
 
-// Working Skills
+// Working Skills (weapon combat skills)
 
-	MOD_HTH					= 0x50,
-	MOD_DAGGER				= 0x51,
-	MOD_SWORD				= 0x52,
-	MOD_GSWORD				= 0x53,
-	MOD_AXE					= 0x54,
-	MOD_GAXE				= 0x55,
-	MOD_SCYTHE				= 0x56,
-	MOD_POLEARM				= 0x57,
-	MOD_KATANA				= 0x58,
-	MOD_GKATANA				= 0x59,
-	MOD_CLUB				= 0x5A,
-	MOD_STAFF				= 0x5B,
-	MOD_ARCHERY				= 0x68,
-	MOD_MARKSMAN			= 0x69,
-	MOD_THROW				= 0x6A,
-	MOD_GUARD				= 0x6B,
-	MOD_EVASION				= 0x6C,
-	MOD_SHIELD				= 0x6D,
-	MOD_PARRY				= 0x6E,
+	MOD_HTH					= 0x50,		// Hand To Hand
+	MOD_DAGGER				= 0x51,		// Dagger
+	MOD_SWORD				= 0x52,		// Sword
+	MOD_GSWORD				= 0x53,		// Great Sword
+	MOD_AXE					= 0x54,		// Axe
+	MOD_GAXE				= 0x55,		// Great Axe
+	MOD_SCYTHE				= 0x56,		// Scythe
+	MOD_POLEARM				= 0x57,		// Polearm
+	MOD_KATANA				= 0x58,		// Katana
+	MOD_GKATANA				= 0x59,		// Great Katana
+	MOD_CLUB				= 0x5A,		// Club
+	MOD_STAFF				= 0x5B,		// Staff
+	MOD_ARCHERY				= 0x68,		// Archery
+	MOD_MARKSMAN			= 0x69,		// Marksman
+	MOD_THROW				= 0x6A,		// Throw
+	MOD_GUARD				= 0x6B,		// Guard
+	MOD_EVASION				= 0x6C,		// Evasion
+	MOD_SHIELD				= 0x6D,		// Shield
+	MOD_PARRY				= 0x6E,		// Parry
 
 // Magic Skills
 
@@ -187,7 +179,7 @@ enum MODIFIER
 	MOD_SYNERGY				= 0x88,
 	MOD_RIDING				= 0x89,
 
-// Невозможность создания предметов высокого качества
+// Chance you will not make an hq synth (Impossibility of HQ synth)	
 
 	MOD_ANTIHQ_WOOD			= 0x90,
 	MOD_ANTIHQ_SMITH		= 0x91,
@@ -198,7 +190,7 @@ enum MODIFIER
 	MOD_ANTIHQ_ALCHEMY		= 0x96,
 	MOD_ANTIHQ_COOK			= 0x97,
 
-// Получаемый урон в процентах
+// Damage / Crit Damage / Delay
 
 	MOD_DMG					= 0xA0,	// Damage Multiplier 
 	MOD_DMGPHYS				= 0xA1,	// Physical Damage Multiplier
@@ -206,20 +198,18 @@ enum MODIFIER
 	MOD_DMGMAGIC			= 0xA3, // Magic Damage Multiplier
 	MOD_DMGRANGE			= 0xA4,	// Range Damage Multiplier
 
-// Вероятность критического удара
-
-	MOD_CRITHITRATE			= 0xA5,
-	MOD_ENEMYCRITRATE		= 0xA6,
+	MOD_CRITHITRATE			= 0xA5, // Raises chance to crit
+	MOD_ENEMYCRITRATE		= 0xA6, // Raises chance enemy will crit
 
 	MOD_HASTE				= 0xA7,		// % Percent Haste (and Slow)
 	MOD_SPELLINTERRUPT		= 0xA8,		// % Spell Interruption Rate
 	MOD_MOVE				= 0xA9,		// % Movement Speed
-	MOD_FASTCAST			= 0xAA,
-	MOD_DELAY				= 0xAB,
-	MOD_RANGED_DELAY		= 0xAC,
-	MOD_MARTIAL_ARTS		= 0xAD,		// The integer amount of delay to reduce from H2H weapons' base delay.
+	MOD_FASTCAST			= 0xAA,		// Increases Spell Cast Time (TRAIT) 
+	MOD_DELAY				= 0xAB,		// Increase/Decrease Delay (unused... )
+	MOD_RANGED_DELAY		= 0xAC,		// (unused... )
+	MOD_MARTIAL_ARTS		= 0xAD,		// The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT)
 
-// Модификаторы еды
+// FOOD!
 
 	MOD_FOOD_HPP			= 0xB0,
 	MOD_FOOD_HP_CAP			= 0xB1,
@@ -236,7 +226,7 @@ enum MODIFIER
 	MOD_FOOD_RACCP			= 0xBC,
 	MOD_FOOD_RACC_CAP		= 0xBD,
 
-// Killer-эффекты -- вероятность устрашения
+// Killer-Effects - (Most by Traits/JobAbility)
 
 	MOD_VERMIN_KILLER		= 0xE0,
 	MOD_BIRD_KILLER			= 0xE1,
@@ -251,6 +241,8 @@ enum MODIFIER
 	MOD_DEMON_KILLER		= 0xEA,
 	MOD_EMPTY_KILLER		= 0xEB,
 	MOD_HUMANOID_KILLER		= 0xEC,
+
+// Resistances to enfeebles - Traits/Job Ability
 
 	MOD_SLEEPRES			= 0xF0,
 	MOD_POISONRES			= 0xF1,
@@ -375,11 +367,8 @@ enum MODIFIER
 
 
 /************************************************************************
-*																		*
-*  Класс модификатора (в нем защищается поле id от выхода за пределы)	*
-*																		*
+*  Modifier Class														*
 ************************************************************************/
-
 
 class CModifier 
 {

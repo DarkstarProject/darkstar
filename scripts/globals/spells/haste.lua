@@ -7,5 +7,5 @@
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-   target:addStatusEffect(EFFECT_HASTE,40,0,300);
+   target:addStatusEffect(EFFECT_HASTE,15,0,180);
 end;
