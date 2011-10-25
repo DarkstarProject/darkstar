@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- 	EFFECT_HASTE
+-- 	EFFECT_PROTECT
 -- 	
 -----------------------------------
 
@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_HASTE,effect:getPower());
+   target:addMod(MOD_DEF,effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_HASTE,effect:getPower());
+   target:delMod(MOD_DEF,effect:getPower());
 end;
