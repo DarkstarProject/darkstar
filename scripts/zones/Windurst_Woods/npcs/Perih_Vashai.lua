@@ -4,7 +4,6 @@
 --	Starts and Finishes Quest: The Fanged One
 -----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 package.loaded["scripts/globals/quests"] = nil;
@@ -66,7 +65,8 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(WINDURST,THE_FANGED_ONE);
 			player:addItem(RANGERS_NECKLACE);
 			player:messageSpecial(ITEM_OBTAINED, RANGERS_NECKLACE);
-			player:setTitle(THE_FANGED_ONE);
+			player:setTitle(211);  --The Fanged One
+			player:unlockJob(11);
 			player:addFame(WINDURST, WIN_FAME* 10);
 			player:delKeyItem(OLD_TIGERS_FANG);
 			player:setVar("TheFangedOne_Event",0);

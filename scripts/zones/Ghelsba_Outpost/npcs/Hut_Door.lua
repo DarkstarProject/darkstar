@@ -4,10 +4,11 @@
 -- Involved in Quest: The Holy Crest
 -----------------------------------
 
-require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
+package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/quests");
 package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
@@ -23,10 +24,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
---player:delQuest(SANDORIA,THE_HOLY_CREST);
---player:addQuest(SANDORIA,THE_HOLY_CREST);
 
-	if (player:hasKeyItem(DRAGON_CURSE_REMEDY) == true or player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == 2) then
+	if (player:hasKeyItem(DRAGON_CURSE_REMEDY) == false or player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == 2) then
 		player:startEvent(0x7D00,0,0,0,2);
 	else
 		player:startEvent(0x0002);
@@ -38,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+printf("onUpdate CSID: %u",csid);
+printf("onUpdate RESULT: %u",option);
 
 	if (csid == 0x7D00 and option == 0) then
 		if (player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == 2) then
@@ -65,13 +64,13 @@ function onEventFinish(player,csid,option)
 		if (option == 17 or option == 101) then
 			player:addStatusEffect(EFFECT_BATTLEFIELD,1,0,900,1);
 			player:setVar("TheHolyCrest_Timer", os.time());
-			player:setVar("TheHolyCrest_Killed",0)
+			player:setVar("TheHolyCrest_Killed",0);
 			SpawnMob(17350928,900);
 		end
 	elseif (csid == 0x7D01) then
 		TheHolyCrestComplete = player:getVar("TheHolyCrest_Complete");
 
-		if ((option >= -(2147483617) and optiion <= -(2147483647)) or option == -(2147483648)) then
+		if ((TheHolyCrestComplete >= 2147483617 and TheHolyCrestComplete <= 2147483647) or TheHolyCrestComplete == -(2147483648)) then
 			player:completeQuest(SANDORIA,THE_HOLY_CREST);
 			player:setTitle(HEIR_TO_THE_HOLY_CREST);
 			player:unlockJob(14);
