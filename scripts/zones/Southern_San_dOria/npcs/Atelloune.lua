@@ -47,7 +47,7 @@ sanFame = player:getFameLevel(SANDORIA);
 	player:startEvent(0x037a);
 	elseif (Bug == 1) then
 	player:startEvent(0x037c);
-	elseif (Bug == 2 and sanFame == 1) then
+	elseif (Bug == 2 and sanFame <=2 and sanFame == 1) then
 	player:startEvent(0x0374);
 	end
 end; 
