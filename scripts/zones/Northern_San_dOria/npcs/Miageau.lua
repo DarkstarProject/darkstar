@@ -36,7 +36,7 @@ function onTrade(player,npc,trade)
 		freeSlot = player:getFreeSlotsCount();
 		chevalWater = trade:hasItemQty(603, 1);
 		hasWingPendant = player:hasItem(13183);
-		if (count == 1 and freeSlot >= 1 and chevalWater and hasChevalWater == false) then
+		if (count == 1 and freeSlot >= 1 and chevalWater and hasWingPendant == false) then
 			player:tradeComplete();
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:setTitle(THE_PURE_ONE);

@@ -35,8 +35,9 @@ function onTrade(player,npc,trade)
 		gil = trade:getGil();
 		freeSlot = player:getFreeSlotsCount();
 		hasWaterskin = player:hasItem(602);
-		if (gil == 10 and freeSlot >= 1 and hasWaterskin == false) then
+		if (gil >= 10 and freeSlot >= 1 and hasWaterskin == false) then
 			player:tradeComplete();
+			player:delGil(10);
 			player:startEvent(0x023b);
 		else
 			player:messageSpecial(6564, 602); -- CANNOT_OBTAIN_ITEM, inv full or already has item
@@ -59,7 +60,7 @@ function onTrigger(player,npc)
 	if (waterOfTheCheval == 1) then
 		player:startEvent(0x023f);
 		else
-		player:startEvent(0x023c);
+		player:startEvent(0x023e);
 	end;
 end; 
 
