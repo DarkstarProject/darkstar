@@ -10,7 +10,8 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
 -- Quest Related Items
 
           BUBBLY_BERNIE = 17215494; -- ID for Bubbly Bernie
-                   QUUS = 5793;
+                   QUUS1 = 4514;
+                   QUUS2 = 5793;
 
 -- Standard Text
 			FIRE_GOOD	= 7321; -- The fire seems to be good enough for cooking.

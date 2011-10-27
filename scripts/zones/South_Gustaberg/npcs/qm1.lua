@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
   	count = trade:getItemCount();
   	gil = trade:getGil();
 
-  	if (trade:hasItemQty(QUUS,1) and count == 1 and gil == 0) then
+  	if ((trade:hasItemQty(QUUS1,1) or trade:hasItemQty(QUUS2,1)) and count == 1 and gil == 0) then
 		if(GetMobAction(BUBBLY_BERNIE) == 0) then
 			SpawnMob(BUBBLY_BERNIE,288);
 			player:tradeComplete();
