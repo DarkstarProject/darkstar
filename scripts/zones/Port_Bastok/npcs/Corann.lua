@@ -38,7 +38,7 @@ function onTrigger(player,npc)
 TheQuadav = player:getQuestStatus(BASTOK,THE_QUADAV_S_CURSE);
 OutOfOneShell = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
 
-	if (OutOfOneShell == QUEST_ACCEPTED) then
+	if (OutOfOneShell == QUEST_COMPLETED) then
 		player:startEvent(0x0058);
 	elseif (TheQuadav == QUEST_COMPLETED) then
 		player:startEvent(0x0057);
