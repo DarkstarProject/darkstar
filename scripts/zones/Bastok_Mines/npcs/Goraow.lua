@@ -24,7 +24,7 @@ QuadavHelm = trade:hasItemQty(501,1);
 		Vengeful = player:getQuestStatus(BASTOK,VENGEFUL_WRATH);
 		if (Vengeful >= 1) then
 			player:tradeComplete();
-			player:startEvent(0x006d);
+			player:startEvent(0x006b);
 		end
 	end
 end; 
@@ -36,11 +36,12 @@ end;
 function onTrigger(player,npc)
 
 Vengeful = player:getQuestStatus(BASTOK,VENGEFUL_WRAITH);
-
-	if (Vengeful == 0) then
+Fame = player:getFameLevel(BASTOK);
+	
+	if (Vengeful == QUEST_AVAILABLE and Fame >= 3) then
 		player:startEvent(0x006a);
 	else
-		plyaer:startEvent(0x0069);
+		player:startEvent(0x0069);
 	end
 
 end;
@@ -64,9 +65,9 @@ function onEventFinish(player,csid,option)
 	
 	if (csid == 0x006a) then
 		player:addQuest(BASTOK,VENGEFUL_WRATH);
-	elseif (csid == 0x006d) then
+	elseif (csid == 0x006b) then
 		Vengeful = player:getQuestStatus(BASTOK,VENGEFUL_WRATH);
-		if (Vengeful == 1) then
+		if (Vengeful == QUEST_ACCEPTED) then
 			player:completeQuest(BASTOK,VENGEFUL_WRATH);
 			player:addFame(BASTOK,BAS_FAME*120);
 			player:setTitle(95);
