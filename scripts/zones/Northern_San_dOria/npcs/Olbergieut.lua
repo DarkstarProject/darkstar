@@ -37,6 +37,9 @@ end;
 if (gates == 2) then
 player:startEvent(0x0264);
 end;
+if (sanFame < 2) then 
+player:startEvent(0x0264);
+end;
 end; 
 
 -----------------------------------
