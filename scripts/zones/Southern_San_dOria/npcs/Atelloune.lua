@@ -78,6 +78,7 @@ end
 if (csid == 0x037b) then
 player:completeQuest(0,114);
 player:addFame(SANDORIA,SAN_FAME*30);
+player:delItem(2506, 1);
 player:addItem(15008,1);
 player:messageSpecial(6403,15008);
 end
