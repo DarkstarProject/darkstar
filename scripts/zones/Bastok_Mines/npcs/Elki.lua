@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok Mines
 -- NPC: Elki
--- Starts Quests: Hearts of Mythril (100%) || The Eleventh's Hour (100%)
+-- Starts Quests: Hearts of Mythril, The Eleventh's Hour
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
@@ -24,20 +24,20 @@ end;
 
 function onTrigger(player,npc)
 
+Fame = player:getFameLevel(BASTOK);
 Hearts = player:getQuestStatus(BASTOK,HEARTS_OF_MYTHRIL);
 HeartsVar = player:getVar("HeartsOfMythril");
 Elevenths = player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR);
 EleventhsVar = player:getVar("EleventhsHour");
-pFame = player:getFameLevel(BASTOK);
+HasToolbox = player:hasKeyItem(0x18);
 
-	
-	if (Hearts == 0) then
+	if (Hearts == QUEST_AVAILABLE) then
 		player:startEvent(0x0029);
-	elseif (Hearts == 1 and HeartsVar == 2) then
+	elseif (Hearts == QUEST_ACCEPTED and HeartsVar == 1) then
 		player:startEvent(0x002a);
-	elseif (Hearts == 2 and Elevenths == 0 and pFame >=2) then
+	elseif (Hearts == QUEST_COMPLETED and Elevenths == QUEST_AVAILABLE and Fame >=2) then
 		player:startEvent(0x002b);
-	elseif (Elevenths == 1 and EleventhsVar == 2) then
+	elseif (Elevenths == QUEST_ACCEPTED and HasToolbox) then
 		player:startEvent(0x002c);
 	else
 		player:startEvent(0x001f);
@@ -64,7 +64,6 @@ function onEventFinish(player,csid,option)
 
 	if (csid == 0x0029 and option == 0) then
 		player:addQuest(BASTOK,HEARTS_OF_MYTHRIL);
-		player:setVar("HeartsOfMythril",1);
 		player:addKeyItem(0x17);
 		player:messageSpecial(KEYITEM_OBTAINED,0x17);
 	elseif (csid == 0x002a) then
@@ -73,11 +72,11 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(ITEM_OBTAINED,12840);
 		player:completeQuest(BASTOK,HEARTS_OF_MYTHRIL);
 		player:addFame(BASTOK,BAS_FAME*80);
-	elseif (csid == 0x002b) then
+		player:setVar("HeartsOfMythril",0);
+	elseif (csid == 0x002b and option == 1) then
 		player:addQuest(BASTOK,THE_ELEVENTH_S_HOUR);
-		player:setVar("EleventhsHour",1);
 	elseif (csid == 0x002c) then
-		player:setVar("EleventhsHour",3);
+		player:setVar("EleventhsHour",1);
 	end
 	
 end;

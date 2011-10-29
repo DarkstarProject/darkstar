@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: North Gustaberg
 -- NPC: Monument
--- Continues Quest: Hearts of Mythril (100%)
+-- Continues Quest: Hearts of Mythril
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
@@ -23,9 +23,9 @@ end;
 
 function onTrigger(player,npc)
 
-HeartsVar = player:getVar("HeartsOfMythril");
+Hearts = player:getQuestStatus(BASTOK,HEARTS_OF_MYTHRIL);
 
-	if (HeartsVar == 1) then
+	if (Hearts == QUEST_ACCEPTED) then
 		player:startEvent(0x000b);
 	end
 
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if (csid == 0x000b and option == 0) then
-		player:setVar("HeartsOfMythril",2);
+		player:setVar("HeartsOfMythril",1);
 		player:delKeyItem(0x17);
 	end
 	

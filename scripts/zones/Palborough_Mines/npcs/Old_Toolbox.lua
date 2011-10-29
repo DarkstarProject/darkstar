@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Palborough Mines
 -- NPC: Old Toolbox
--- Continues Quest: The Eleventh's Hour (100%)
+-- Continues Quest: The Eleventh's Hour
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
@@ -23,9 +23,10 @@ end;
 
 function onTrigger(player,npc)
 
-EleventhsVar = player:getVar("EleventhsHour");
+Elevenths = player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR);
+HasToolbox = player:hasKeyItem(0x18);
 
-	if (EleventhsVar == 1) then
+	if (Elevenths == QUEST_ACCEPTED and not HasToolbox) then
 		player:startEvent(0x0017);
 	else
 		player:startEvent(0x0016);
@@ -43,7 +44,6 @@ function onEventUpdate(player,csid,option)
 
 	if (csid == 0x0017 and option == 0) then
 		player:addKeyItem(0x18);
-		player:setVar("EleventhsHour",2);
 	end
 
 end;

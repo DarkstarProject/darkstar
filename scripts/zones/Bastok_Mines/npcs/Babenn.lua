@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok Mines
 -- NPC: Babenn
--- Finishes Quest: The Eleventh's Hour (100%)
+-- Finishes Quest: The Eleventh's Hour
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 Elevenths = player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR);
 EleventhsVar = player:getVar("EleventhsHour");
 
-	if (Elevenths == 1 and EleventhsVar == 3) then
+	if (Elevenths == QUEST_ACCEPTED and EleventhsVar == 1) then
 		player:startEvent(0x002d);
 	else
 		player:startEvent(0x0028);
@@ -59,6 +59,7 @@ function onEventFinish(player,csid,option)
 		player:addItem(16629);
 		player:messageSpecial(ITEM_OBTAINED,16629);
 		player:addFame(BASTOK,BAS_FAME*100);
+		player:setVar("EleventhsHour",0);
 	end
 	
 end;
