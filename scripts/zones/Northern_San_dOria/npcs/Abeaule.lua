@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 -- NPC: Abeaule
--- NPC for Quest "The Trader in the Forest"
+-- NPC QUEST
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -20,6 +20,7 @@ function onTrade(player,npc,trade)
 	FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 	-- "The Trader in the Forest" Quest status
 	theTraderInTheForest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
+	MedicineWoman = player:getQuestStatus(0,30);
 	
 	if (theTraderInTheForest == QUEST_ACCEPTED) then
 		count = trade:getItemCount();
@@ -37,13 +38,8 @@ function onTrade(player,npc,trade)
 		end;
 	end;
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	end
+	
+	
 end;
 
 -----------------------------------
@@ -52,8 +48,9 @@ end;
 
 function onTrigger(player,npc)
 
-	-- "The Trader in the Forest" Quest status
 	theTraderInTheForest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
+	MedicineWoman = player:getQuestStatus(0,30);
+	sanFame = player:getFameLevel(SANDORIA);
 	
 	
 	if (theTraderInTheForest == QUEST_AVAILABLE and player:getVar("theTraderInTheForestCS") == 1) then
@@ -63,9 +60,18 @@ function onTrigger(player,npc)
 		player:setVar("theTraderInTheForestCS",1);
 	elseif (theTraderInTheForest == QUEST_ACCEPTED) then
 		player:startEvent(0x0251);
-	end;
+		elseif (theTraderInTheForest == 2 and MedicineWoman == 0 and sanFame <= 2) then
+		player:startEvent(0x0267);
+	elseif (theTraderInTheForest == 2 and MedicineWoman == 0 and sanFame >= 3) then
+		player:startEvent(0x0265);
+		elseif (theTraderInTheForest == 2 and MedicineWoman == 1 and player:hasKeyItem(147) == true) then
+		player:startEvent(0x0266);
+	elseif (theTraderInTheForest == 2 and MedicineWoman == 1) then
+		player:startEvent(0x0267);
+		elseif (theTraderInTheForest == 2 and MedicineWoman == 2) then
+		player:startEvent(0x0267);
 	
-
+   end
 end; 
 
 -----------------------------------
@@ -113,8 +119,14 @@ function onEventFinish(player,csid,option)
 		player:addItem(12600);
 		player:messageSpecial(6567, 12600);
 	end;
+	if (csid == 0x0265 and option == 0) then
+		player:addQuest(0,30)
+	elseif (csid == 0x0266) then
+		player:delKeyItem(147)
+		player:addGil(2100)
+		player:messageSpecial(GIL_OBTAINED,2100);
+		player:setTitle(74); 		
+		player:completeQuest(0,30);
+		player:addFame(0,SAN_FAME*30);
 end;
-
-
-
-
+		end;

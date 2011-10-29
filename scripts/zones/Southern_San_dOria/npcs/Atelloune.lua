@@ -31,6 +31,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 		carta = trade:hasItemQty(2506, 1);
 		gil = trade:getGil();
 		if (carta and count == 1 and gil == 0) then
+			player:tradeComplete();
 			player:startEvent(0x037b);
 			end
 			end
@@ -78,7 +79,6 @@ end
 if (csid == 0x037b) then
 player:completeQuest(0,114);
 player:addFame(SANDORIA,SAN_FAME*30);
-player:delItem(2506, 1);
 player:addItem(15008,1);
 player:messageSpecial(6403,15008);
 end
