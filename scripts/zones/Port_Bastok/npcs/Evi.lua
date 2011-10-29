@@ -4,6 +4,7 @@
 -- Starts Quests: Past Perfect (100%)
 -----------------------------------
 
+require("scripts/globals/keyitems");
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -25,11 +26,15 @@ function onTrigger(player,npc)
 
 PastPerfect = player:getQuestStatus(BASTOK,PAST_PERFECT);
 PastPerfectVar = player:getVar("PastPerfectVar");
+Fame = player:getFameLevel(BASTOK);
+HasKeyItem = player:hasKeyItem(TATTERED_MISSION_ORDERS);
 
-	if (PastPerfect == 0) then
-		player:startEvent(0x0082);
-	elseif (PastPerfect == 1 and PastPerfectVar == 2) then
+	if (PastPerfect == QUEST_ACCEPTED and HasKeyItem) then
 		player:startEvent(0x0083);
+	elseif (PastPerfectVar == 2 and Fame >= 2) then
+		player:startEvent(0x0082);
+	elseif (PastPerfect == QUEST_AVAILABLE) then
+		player:startEvent(0x0068);
 	else
 		player:startEvent(0x0015);
 	end
@@ -53,11 +58,15 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x0082) then
-		player:addQuest(BASTOK,PAST_PERFECT);
+	PastPerfectVar = player:getVar("PastPerfectVar");
+
+	if (csid == 0x0068 and PastPerfectVar == 0) then
 		player:setVar("PastPerfectVar",1);
+	elseif (csid == 0x0082) then
+		player:addQuest(BASTOK,PAST_PERFECT);
 	elseif (csid == 0x0083) then
 		player:delKeyItem(0x6d);
+		player:setVar("PastPerfectVar",0);
 		player:completeQuest(BASTOK,PAST_PERFECT);
 		player:addFame(BASTOK,BAS_FAME*110);
 		player:addItem(12560);

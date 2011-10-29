@@ -24,9 +24,8 @@ end;
 function onTrigger(player,npc)
 
 PastPerfect = player:getQuestStatus(BASTOK,PAST_PERFECT);
-PastPerfectVar = player:getVar("PastPerfectVar")
-	if (PastPerfect == 1 and PastPerfectvar == 1) then
-		player:setVar("PastPerfectVar",2);
+
+	if (PastPerfect == QUEST_ACCEPTED) then
 		player:addKeyItem(0x6d);
 		player:messageSpecial(KEYITEM_OBTAINED,0x6d);
 	end
