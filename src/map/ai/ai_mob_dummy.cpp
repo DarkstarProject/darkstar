@@ -89,16 +89,17 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 
 void CAIMobDummy::ActionRoaming() 
 {
-	if (m_PMob->m_OwnerID != 0)
+	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL ||   m_PMob->m_OwnerID != 0)
 	{
-		uint16 TargID = m_PMob->m_OwnerID & 0x0FFF;
-
+		//uint16 TargID = m_PMob->m_OwnerID & 0x0FFF;
+		uint16 TargID = ((CBattleEntity*)m_PMob->PEnmityContainer->GetHighestEnmity())->id;
+		
 		m_PBattleTarget = (CBattleEntity*)m_PZone->GetEntity(TargID, TYPE_PC | TYPE_MOB | TYPE_PET);
 
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
 	}
-	else if ((m_Tick - m_LastActionTime) > 45000) 
+	else if ((m_Tick - m_LastActionTime) > 45000 && m_PMob->m_Type != MOBTYPE_EVENT) 
 	{	
 		m_LastActionTime = m_Tick - rand()%30000;
 
@@ -253,10 +254,11 @@ void CAIMobDummy::ActionDropItems()
 
 void CAIMobDummy::ActionDeath() 
 {
+	m_PMob->PEnmityContainer->Clear();	
 	if ((m_Tick - m_LastActionTime) > 12000 )
 	{
 		m_ActionType = ACTION_FADE_OUT;
-
+		m_PMob->PEnmityContainer->Clear();
 		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
 	}
 }
@@ -274,6 +276,7 @@ void CAIMobDummy::ActionFadeOut()
 {
 	if ((m_Tick - m_LastActionTime) > 15000 )
 	{
+		m_PMob->PEnmityContainer->Clear();
 		m_PMob->status = STATUS_DISAPPEAR;
 		m_ActionType = (m_PMob->m_RespawnTime != 0 ? ACTION_SPAWN : ACTION_NONE);
 
@@ -323,6 +326,7 @@ void CAIMobDummy::ActionAbilityStart()
 	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
 	//m_PMob->health.tp = 10; 
 
+	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 	apAction_t Action;
 	
 	int16 skill = battleutils::PerformMobSkill(m_PMob, m_PBattleTarget);
@@ -378,11 +382,12 @@ void CAIMobDummy::ActionAbilityFinish()
 void CAIMobDummy::ActionAttack() 
 {
 	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
-	
+	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 	m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	if (m_PBattleTarget->isDead())
 	{
+		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		m_ActionType = ACTION_DISENGAGE;
 		m_PBattleTarget = NULL;
 		return;
@@ -467,6 +472,7 @@ void CAIMobDummy::ActionAttack()
 						}
 					
 						damage = (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ? 0 : (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob,m_PBattleTarget)) * DamageRatio));
+						m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget,damage);
 						m_PMob->addTP(12); 
 
 						/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BLAZE_SPIKES))

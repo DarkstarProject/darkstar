@@ -48,7 +48,7 @@
 struct EnmityObject_t
 {
 	CBattleEntity* PEnmityOwner;	// объект ненависти
-	uint16 CE;						// Cumulative Enmity
+	int16 CE;						// Cumulative Enmity
 	uint16 VE;						// Volatile Enmity
 };
 
@@ -62,9 +62,14 @@ public:
 
 	void	Clear(uint32 EntityID = 0);			// Removes Entries from list
 	void	UpdateEnmity(EnmityObject_t*);		// Updates hate in list
+	void	UpdateEnmity(CBattleEntity* PChar,uint16 CE, uint16 VE);
+	void	AddBaseEnmity(CBattleEntity*);
+	void	UpdateEnmityFromDamage(CBattleEntity* PChar,uint16 Damage);
+	void	UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, uint16 CureAmount);
+	void	UpdateEnmityFromAttack(CBattleEntity* PChar,uint16 Damage);
 
 	CBattleEntity*	GetHighestEnmity();			// пересчет VE и возвращение сущности с максимальной TE
-
+	
 	CEnmityContainer();
    ~CEnmityContainer();
 	

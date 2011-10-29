@@ -38,7 +38,7 @@
 #include "weapon_skill.h"
 #include "mobskill.h"
 #include "mobentity.h"
-
+#include "enmity_container.h"
 
 /************************************************************************
 *																		*
@@ -48,6 +48,8 @@
 
 uint16 g_SkillTable[100][12];									// таблица максимальных значений умений по уровням и рангам
 uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// таблица рангов для профессий
+uint16 g_EnmityTable[95][2];									// Holds Enmity Modifier Values
+
 
 CSpell*		  g_PSpellList[MAX_SPELL_ID];						// глобальный массив указателей на заклинания
 CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// глобальный массив указателей на способности
@@ -75,6 +77,28 @@ namespace battleutils
 *  Загружаем таблицу Skill_Cap											*
 *																		*
 ************************************************************************/
+void LoadEnmityTable()
+{
+	memset(g_EnmityTable,0, sizeof(g_EnmityTable));
+
+	const int8* fmtQuery = "SELECT level, cmod, dmod \
+						    FROM enmity \
+							ORDER BY level \
+							LIMIT 95";
+
+	int32 ret = Sql_Query(SqlHandle,fmtQuery);
+	
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		for (uint32 x = 0; x < 95 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
+		{
+			for (uint32 y = 1; y < 3; ++y) 
+			{
+				g_EnmityTable[x][y] = (uint16)Sql_GetIntData(SqlHandle,y);
+			}
+		}
+	}
+}
 
 void LoadSkillTable()
 {
@@ -171,7 +195,8 @@ void LoadAbilitiesList()
 {
 	memset(g_PAbilityList,0,sizeof(g_PAbilityList));
 
-	const int8* fmtQuery = "SELECT abilityId, name, job, level, validTarget, recastTime, animation, `range`, isAOE, recastId \
+	const int8* fmtQuery = "SELECT abilityId, name, job, level, validTarget, recastTime, animation, `range`, isAOE, recastId, \
+						    CE, VE \
 							FROM abilities WHERE job > 0 AND job < %u AND abilityId < %u \
 							ORDER BY job, level ASC";
 
@@ -192,6 +217,8 @@ void LoadAbilitiesList()
 			PAbility->setRange(Sql_GetIntData(SqlHandle,7));
 			PAbility->setAOE(Sql_GetIntData(SqlHandle,8));
 			PAbility->setRecastId(Sql_GetIntData(SqlHandle,9));
+			PAbility->setCE(Sql_GetIntData(SqlHandle,10));
+			PAbility->setVE(Sql_GetIntData(SqlHandle,11));
 			g_PAbilityList[PAbility->getID()] = PAbility;
 			g_PAbilitiesList[PAbility->getJob()].push_back(PAbility);
 		}
@@ -454,6 +481,17 @@ bool CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID)
 	return false;
 }
 
+
+/************************************************************************
+*	Get Enmity Modifier													*
+************************************************************************/
+
+uint16 GetEnmityMod(uint8 level, uint16 modType)
+{
+	return g_EnmityTable[level][modType];
+}
+
+
 /************************************************************************
 *  Get Weapon Skill by Id												*
 ************************************************************************/
@@ -669,6 +707,7 @@ uint32 MagicCalculateDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpe
 	};
 	
 	PTarget->addHP(-D);
+	((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(PCaster,D); 
 	PTarget->m_OwnerID = PCaster->id;
 	
 	PZone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget)); 
@@ -805,6 +844,12 @@ uint32 MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell
 	}
 	else 
 	{
+		if (PTarget->health.maxhp - PTarget->health.hp < h)
+		{
+			h = (PTarget->health.maxhp - PTarget->health.hp); 
+		}
+		if (PTarget->PBattleAI->GetBattleTarget() != NULL)
+			((CMobEntity*)PTarget->PBattleAI->GetBattleTarget())->PEnmityContainer->UpdateEnmityFromCure(PCaster,PTarget->GetMLevel(),h);
 		PTarget->addHP(h);
 		PZone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget)); 
 	}

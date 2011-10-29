@@ -1062,13 +1062,28 @@ void CAICharNormal::ActionMagicCasting()
 				if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
 				{
 					m_PChar->addMP(-(int16)m_PSpell->getMPCost());
-					m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF,new CCharHealthPacket(m_PChar));
 				}
 			}
 		}
 
 		m_ActionType = ACTION_MAGIC_FINISH;
 		ActionMagicFinish();
+	}
+}
+
+void CAICharNormal::UpdateHealth() 
+{
+	m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF,new CCharHealthPacket(m_PChar));
+	if (m_PChar->PParty != NULL)
+	{	
+		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
+		{
+			CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+			if (PTarget->getZone() == m_PChar->getZone() && distance(m_PChar->loc.p, PTarget->loc.p) >= 50)
+			{
+				PTarget->pushPacket(new CCharHealthPacket(m_PChar));
+			}
+		}
 	}
 }
 
@@ -1231,8 +1246,9 @@ void CAICharNormal::ActionMagicFinish()
 		{
 			Action.messageID = 227;
 			int16 drain = (rand()%100 < 50 ? m_PChar->GetSkill(SKILL_DRK) : m_PChar->GetSkill(SKILL_DRK) / 2);
-			m_PBattleSubTarget->addHP((drain > m_PBattleSubTarget->health.hp ? drain : m_PBattleSubTarget->health.hp)); 
+			m_PBattleSubTarget->addHP(-(drain > m_PBattleSubTarget->health.hp ? drain : m_PBattleSubTarget->health.hp)); 
 			m_PChar->addHP(drain);
+			
 			charutils::TrySkillUP(m_PChar,SKILL_DRK,m_PChar->GetMLevel());
 			Action.param = drain;
 			m_PBattleSubTarget->m_OwnerID = m_PChar->id;
@@ -1285,8 +1301,9 @@ void CAICharNormal::ActionMagicFinish()
 			{
 			sendInitSpellMsg = true;
 			Action.messageID = 0; 
-			} break;
 			charutils::TrySkillUP(m_PChar,SKILL_DIV,m_PChar->GetMLevel());
+			} break;
+			
 	};
 
 	/******************************************************************************************/
@@ -1312,15 +1329,15 @@ void CAICharNormal::ActionMagicFinish()
 		if (callLUA)
 		{
 
-		EFFECT statEffect = (EFFECT)m_PSpell->getEffect();
+			EFFECT statEffect = (EFFECT)m_PSpell->getEffect();
 
-		if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(statEffect))
-		{
-			m_PBattleSubTarget->StatusEffectContainer->DelStatusEffect(statEffect);
-		}
+			if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(statEffect))
+			{
+				m_PBattleSubTarget->StatusEffectContainer->DelStatusEffect(statEffect);
+			}
+		
 			luautils::OnSpellCast(m_PChar,m_PBattleSubTarget);
 			Action.param = m_PSpell->getEffect();
-			
 		}
 
 		m_PChar->m_ActionList.push_back(Action);
@@ -1357,11 +1374,6 @@ void CAICharNormal::ActionMagicFinish()
 							m_PBattleSubTarget->StatusEffectContainer->DelStatusEffect(statEffect);
 						}
 
-						//CStatusEffect * PEffect = new CStatusEffect(statEffect,	m_PSpell->getBase,
-						//	0, //m_PSpell->effecttick
-						//	300, //m_PSpell->effectduration
-						//	1,0);
-						//	m_PBattleSubTarget->StatusEffectContainer->AddStatusEffect(PEffect)
 						luautils::OnSpellCast(m_PChar,m_PBattleSubTarget);
 					}
 					
@@ -1419,7 +1431,7 @@ void CAICharNormal::ActionMagicFinish()
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 	m_PChar->m_ActionList.clear();
-
+	UpdateHealth();
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
@@ -1468,6 +1480,9 @@ void CAICharNormal::ActionJobAbilityStart()
 {
 	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
 
+	
+
+
 	for (uint32 i = 0; i < m_PChar->RecastAbilityList.size(); i++)
 	{
 		if (m_PChar->RecastAbilityList.at(i).ID == m_PJobAbility->getID())
@@ -1490,6 +1505,8 @@ void CAICharNormal::ActionJobAbilityStart()
 	
 	if (m_PJobAbility->getValidTarget() == 4)
 	{
+		
+
 		CBattleEntity* PBattleTarget = NULL;
 		if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
 		{
@@ -1499,7 +1516,16 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
-					
+				
+		if (!IsMobOwner() && !IsMobSubOwner())
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,12));
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PJobAbility = NULL;
+			ActionDisengage();
+			return;
+		}
+
 		if (m_PBattleTarget != m_PChar)
 		{
 			float Distance = distance(m_PChar->loc.p,m_PBattleTarget->loc.p);
@@ -1527,6 +1553,7 @@ void CAICharNormal::ActionJobAbilityStart()
 	{
 		m_ActionType = ACTION_JOBABILITY_FINISH;
 		Action.ActionTarget = m_PBattleTarget;
+		((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmity(m_PChar,m_PJobAbility->getCE(),m_PJobAbility->getVE());
 		m_PBattleTarget->m_OwnerID = m_PChar->id; 
 		Action.reaction   = REACTION_NONE;
 		Action.speceffect = SPECEFFECT_RECOIL;
@@ -1650,14 +1677,12 @@ void CAICharNormal::ActionJobAbilityFinish()
 		luautils::OnUseAbility(m_PChar,m_PChar);
 	}	
 	
-	
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CCharHealthPacket(m_PChar));
+	UpdateHealth();
 	m_PChar->m_ActionList.clear();
 	m_ActionTargetID = 0; 
 	m_PJobAbility = NULL;
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	
 }
 
 
@@ -1723,15 +1748,16 @@ void CAICharNormal::ActionWeaponSkillStart()
 
 	m_LastActionTime = m_Tick; 
 	apAction_t Action;
-
+	damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
 	Action.ActionTarget = m_PBattleTarget;
 	Action.reaction   = REACTION_NONE;
 	Action.speceffect = SPECEFFECT_RECOIL;
 	Action.animation  = m_PWeaponSkill->getAnimationId();
-	Action.param	  = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
+	Action.param	  = damage;
 	Action.messageID  = 185;
 	Action.flag		  = 0;
-	
+	((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar,damage);
+
 	SUBEFFECT effect =  CAICharNormal::GetSkillChainEffect(m_PBattleTarget,m_PWeaponSkill);
 	if (effect != SUBEFFECT_NONE) 
 	{	
@@ -1772,7 +1798,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 	m_PChar->m_ActionList.push_back(Action);
 	m_ActionType = ACTION_WEAPONSKILL_FINISH; 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); //TP Update... 
+	UpdateHealth();
 }
 
 /************************************************************************
@@ -1952,7 +1978,7 @@ void CAICharNormal::ActionAttack()
 
 					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
 					m_PChar->addTP(12);
-					m_PChar->pushPacket(new CCharHealthPacket(m_PChar)); //TP Update
+					UpdateHealth();
 
 					damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio));
 				}
@@ -1962,6 +1988,7 @@ void CAICharNormal::ActionAttack()
 					Action.messageID  = 15;
 				}
 
+					((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar,damage);
 					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
 
 				if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BLOOD_WEAPON) && Action.reaction != REACTION_EVADE && damage > 0 && m_PBattleTarget->m_EcoSystem != SYSTEM_UNDEAD)
@@ -1971,7 +1998,7 @@ void CAICharNormal::ActionAttack()
 					Action.submessageID = 167;
 					Action.subparam = damage;
 					m_PChar->addHP(damage);
-					m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CCharHealthPacket(m_PChar));
+					UpdateHealth();
 				}
 
 
@@ -2149,11 +2176,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
 				m_PChar->animation = ANIMATION_NONE; 
 			
 				m_PChar->addHP(500); 
-				
-				
-				
-				
-				m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CCharHealthPacket(m_PChar));
+				UpdateHealth();
 				m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 				
 				

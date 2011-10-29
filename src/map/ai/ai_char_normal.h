@@ -74,6 +74,7 @@ protected:
 	void ActionAttack();
 	void ActionChangeBattleTarget();
 	void ActionRaiseMenuSelection();
+	void UpdateHealth();
 
 	bool IsMobOwner();
 	bool IsMobSubOwner();

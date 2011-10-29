@@ -168,7 +168,7 @@ int32 do_init(int32 argc, int8** argv)
 	battleutils::LoadWeaponSkillsList();
 	battleutils::LoadTraitsList();
 	battleutils::LoadMobSkillsList();
-	
+	battleutils::LoadEnmityTable();
 	petutils::LoadPetList();
 
 	ShowStatus("do_init: loading zones");

@@ -105,6 +105,7 @@ protected:
 	uint16			m_ActionTargetID;		// дополнительная цель, участвующая в действии
 	uint32			m_LastActionTime;		// время начала любого действия
 	uint32			m_Tick;					// текущее значение времени
+	uint32			m_LastEnmityCheck;
 
 	CZone*			m_PZone;				// указатель на зону, в которой находится сущность
 	CSpell*			m_PSpell;				// читаемое заклинание

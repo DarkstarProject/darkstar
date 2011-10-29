@@ -26,6 +26,7 @@
 
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
+#include "../charentity.h"
 
 class CBaseEntity;
 
@@ -186,6 +187,8 @@ public:
 	int32 decreaseContainerSize(lua_State*);// Decreases a containers size -- Should be used for testing only
 
 	int32 sendToJail(lua_State*); 
+
+	void UpdateHealth(CCharEntity* PChar, CZone* PZone);
 };
 
 #endif

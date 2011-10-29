@@ -29,6 +29,7 @@
 
 #include "battleutils.h"
 #include "charutils.h"
+#include "enmity_container.h"
 #include "itemutils.h"
 #include "map.h"
 #include "mobutils.h"
@@ -501,7 +502,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 						if (CurrentDistance < 15 &&
 							isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
 						{
-							PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
+							//PCurrentMob->m_OwnerID = PChar->id;
 							continue;
 						}
 					}
@@ -511,7 +513,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 
 						if (distance(PChar->loc.p, PCurrentMob->loc.p) < 8)
 						{
-							PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
+							//PCurrentMob->m_OwnerID = PChar->id;
 							continue;
 						} 
 					}
@@ -519,7 +522,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->GetHPP() < 66)
 						{
-							PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
+							//PCurrentMob->m_OwnerID = PChar->id;
 							continue;
 						}
 					}
@@ -527,7 +531,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (CurrentDistance < 15)
 						{
-							PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
+							//PCurrentMob->m_OwnerID = PChar->id;
 							continue;
 						}
 					}
@@ -535,7 +540,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (CurrentDistance < 8)
 						{
-							PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
+							//PCurrentMob->m_OwnerID = PChar->id;
 							continue;
 						}
 					}
@@ -543,7 +549,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
 						{
-							PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
+							//PCurrentMob->m_OwnerID = PChar->id;
 							continue;
 						}
 					}
@@ -551,7 +558,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_START)
 						{
-							PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
+							//PCurrentMob->m_OwnerID = PChar->id;
 							continue;
 						}
 					}
@@ -559,7 +567,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_START)
 						{
-							PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
+							//PCurrentMob->m_OwnerID = PChar->id;
 							continue;
 						}
 					}

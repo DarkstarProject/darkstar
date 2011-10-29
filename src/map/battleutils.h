@@ -45,6 +45,7 @@ namespace battleutils
 	void	LoadWeaponSkillsList(); 
 	void	LoadMobSkillsList();
 	void	LoadTraitsList();
+	void	LoadEnmityTable();
 
 	uint8	GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16	GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
@@ -80,7 +81,7 @@ namespace battleutils
 	uint32  MagicCalculateDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	uint32  MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	
-	
+	uint16	GetEnmityMod(uint8 level, uint16 modType);
 	bool	Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	void	MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode);
 	uint32	PerformMobSkill(CBattleEntity* PAttacker, CBattleEntity* PDefender);

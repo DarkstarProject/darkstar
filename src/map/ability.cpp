@@ -131,3 +131,23 @@ void CAbility::setRecastId(uint16 recastId)
 {
 	m_recastId = recastId;
 }
+
+void CAbility::setCE(uint16 CE)
+{
+	m_CE = CE;
+}
+
+uint16 CAbility::getCE()
+{
+	return m_CE;
+}
+
+void CAbility::setVE(uint16 VE)
+{
+	m_VE = VE;
+}
+
+uint16 CAbility::getVE()
+{
+	return m_VE;
+}
