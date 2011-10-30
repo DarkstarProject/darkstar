@@ -15,16 +15,15 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 ----------------------------------- 
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	end
+Flint = player:getQuestStatus(0,77);
+if (Flint == 1 or Flint == 2) then
+	count = trade:getItemCount();
+		carta = trade:hasItemQty(768, 4);
+		gil = trade:getGil();
+		if (carta and count == 4 and gil == 0) then
+			player:startEvent(0x0024);
+			end
+			end
 end;
 
 ----------------------------------- 
@@ -32,7 +31,14 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
+Flint = player:getQuestStatus(0,77);
+if (Flint == 0) then
 	player:startEvent(0x0025);
+	elseif (Flint == 1) then
+	player:startEvent(0x0023);
+	elseif (Flint == 2) then
+	player:startEvent(0x0023);
+	end
 end; 
 
 -----------------------------------
@@ -51,7 +57,27 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+Flint = player:getQuestStatus(0,77);
+if (csid == 0x0025) then
+player:addQuest(0,77);
+elseif (csid == 0x0024) then
+if (Flint == 1) then
+player:completeQuest(0,77);
+player:addFame(SANDORIA,SAN_FAME*30);
+player:tradeComplete();
+player:addGil(GIL_RATE*100);
+player:messageSpecial(6404,GIL_RATE*100)
+elseif (csid == 0x0024) then
+if (Flint == 2) then
+player:addFame(SANDORIA,SAN_FAME*5);
+player:tradeComplete();
+player:addGil(GIL_RATE*100);
+player:messageSpecial(6404,GIL_RATE*100)
+end
+end
+end
 end;
+
 
 
 

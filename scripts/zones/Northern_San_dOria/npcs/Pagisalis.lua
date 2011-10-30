@@ -1,0 +1,74 @@
+-----------------------------------
+-- Area: Northern San d'Oria
+-- NPC: Pagisalis
+-- Quest NPC
+-----------------------------------
+
+require("scripts/globals/titles");
+require("scripts/globals/settings");
+package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/quests");
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+require("scripts/zones/Northern_San_dOria/TextIDs");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
+
+function onTrade(player,npc,trade)
+Abeja = player:getQuestStatus(0,26);
+if (Abeja == 1) then
+	count = trade:getItemCount();
+		carta = trade:hasItemQty(913, 2);
+		gil = trade:getGil();
+		if (carta and count == 2 and gil == 0) then
+			player:startEvent(0x0233);
+			end
+			end
+end;
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+sanFame = player:getFameLevel(SANDORIA);
+Abeja = player:getQuestStatus(0,26);
+if (sanFame < 2) then
+	player:startEvent(0x0234);
+elseif (sanFame >= 2 and Abeja == 0) then
+	player:startEvent(0x0232);
+	elseif (Abeja == 1) then
+	player:startEvent(0x0235);
+	elseif (Abeja == 2) then
+	player:startEvent(0x0236);
+end
+	end; 
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+end;
+
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
+function onEventFinish(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+if (csid == 0x0232 and option == 0) then
+player:addQuest(0,26);
+elseif (csid == 0x0233) then
+player:completeQuest(0,26);
+player:addFame(SANDORIA,SAN_FAME*30);
+player:tradeComplete();
+player:setTitle(62);
+player:addItem(13211);
+player:messageSpecial(6567,13211);
+end
+end;
