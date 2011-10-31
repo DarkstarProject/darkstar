@@ -1857,8 +1857,6 @@ void CAICharNormal::ActionAttack()
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 
-
-
 	uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN]->getDelay());
 	WeaponDelay -= (m_PChar->getMod(MOD_HASTE)/100 * WeaponDelay);
 
@@ -1982,13 +1980,13 @@ void CAICharNormal::ActionAttack()
 
 					damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio));
 				}
-				else{
+				else
+				{
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
+					
 				}
-
-					((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar,damage);
 					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
 
 				if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BLOOD_WEAPON) && Action.reaction != REACTION_EVADE && damage > 0 && m_PBattleTarget->m_EcoSystem != SYSTEM_UNDEAD)
@@ -2000,8 +1998,8 @@ void CAICharNormal::ActionAttack()
 					m_PChar->addHP(damage);
 					UpdateHealth();
 				}
-
-
+				
+				((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar,damage);
 				m_PChar->m_ActionList.push_back(Action);
 			}
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
@@ -2052,6 +2050,7 @@ SUBEFFECT CAICharNormal::GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSk
 				return SUBEFFECT_DISTORTION;
 		}
 	}
+	
 	CWeaponSkill* LastWeaponSkill = battleutils::GetWeaponSkill(PEffect->GetPower());
 	CStatusEffect* NewEffect = new CStatusEffect(EFFECT_SIGNET, PWeaponSkill->getID(),0,5);
 	SUBEFFECT effect = SUBEFFECT_NONE; 

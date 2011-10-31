@@ -1781,16 +1781,16 @@ void LoadExpTable()
 		}
 	}
 
-	ret = Sql_Query(SqlHandle,"SELECT value FROM settings WHERE name = 'xprate'"); 
-	
-	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		{
-			g_expRate = (float)Sql_GetFloatData(SqlHandle,0);
-		}
-	}
-		
+	//ret = Sql_Query(SqlHandle,"SELECT value FROM settings WHERE name = 'xprate'"); 
+	//
+	//if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	//{
+	//	while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+	//	{
+	//		g_expRate = (float)Sql_GetFloatData(SqlHandle,0);
+	//	}
+	//}
+	//	
 	
 	
 
