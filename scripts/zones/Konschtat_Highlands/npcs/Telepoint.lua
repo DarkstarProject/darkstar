@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Konschtat Highlands
 -- NPC: Telepoint
--- 
+--
 -----------------------------------
 
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
@@ -13,18 +13,23 @@ require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 function onTrade(player,npc,trade)
 
-item = trade:getItem();
 
-if (trade:getItemCount() == 1 and item > 4095 and item < 4104) then	
-	if (player:getFreeSlotsCount() > 0 and not(player:hasItem(613))) then
-		player:tradeComplete();
-		player:addItem(613);
-		player:messageSpecial(ITEM_OBTAINED,613);
-	else
-		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,613);
+	if (player:getCurrentMission(1) == 3) then
+		count = trade:getItemCount();
+		gil = trade:getGil();
+		crystal = trade:getItem();
+
+		if (trade:getItemQty(crystal, 1) and crystal > 4095 and crystal < 4104 and count == 1 and gil == 0) then
+			if (player:getFreeSlotsCount(0) >= 1 and player:hasItem(FADED_CRYSTAL) == false) then
+				player:tradeComplete();
+				player:addItem(FADED_CRYSTAL);
+				player:messageSpecial(ITEM_OBTAINED,FADED_CRYSTAL);
+			else
+				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,FADED_CRYSTAL);
+			end
+		end
 	end
-end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Balgas_Dais
--- 
+--
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -26,10 +26,12 @@ return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,regionID)
+print("Player: ",player);
+print("RESULT: ",regionID);
 end;
 
 -----------------------------------
@@ -37,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
+print("zone CSID: ",csid);
+print("zone RESULT: ",menuchoice);
 end;
 
 -----------------------------------

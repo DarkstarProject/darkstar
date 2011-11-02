@@ -35,16 +35,20 @@ end;
 function onTrigger(player,npc)
 	CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
 
-	if (CidsSecret == 1) then
-		player:startEvent(0x0084);
-		if (player:getVar("CidsSecret_Event") ~= 1) then
-			player:setVar("CidsSecret_Event",1);
-		end
-	elseif (player:getFameLevel(BASTOK) >= 5 and player:getQuestStatus(BASTOK,THE_USUAL) ~= 2 and CidsSecret == 2) then
-		if (player:getVar("TheUsual_Event") == 1) then
-			player:startEvent(0x0088);
+	if (player:getQuestStatus(BASTOK,THE_USUAL) ~= 2) then
+		if (CidsSecret == 1) then
+			player:startEvent(0x0084);
+			if (player:getVar("CidsSecret_Event") ~= 1) then
+				player:setVar("CidsSecret_Event",1);
+			end
+		elseif (player:getFameLevel(BASTOK) >= 5 and CidsSecret == 2) then
+			if (player:getVar("TheUsual_Event") == 1) then
+				player:startEvent(0x0088);
+			else
+				player:startEvent(0x0086);
+			end
 		else
-			player:startEvent(0x0086);
+			player:startEvent(0x0030);
 		end
 	else
 		player:startEvent(0x0030);

@@ -1,7 +1,7 @@
 ------------------------
---    Hard Slash      -- 
+--    Hard Slash      --
 ------------------------
 
 function OnUseWeaponSkill(attacker, target, wsID)
-	return 65;
+	return 6500;
 end

@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Northern_San_dOria
--- 
+--
 -----------------------------------
 
 require("scripts/globals/server");
@@ -33,7 +33,7 @@ cs = -1;
 		player:setPos(0,0,-11,191);
 		player:setHomePoint();
 	end
-	
+
 	-- MOG HOUSE EXIT
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
 		player:setPos(130,-0.2,-3,160);
@@ -47,16 +47,22 @@ return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,regionID)
-switch (regionID): caseof 
+switch (regionID): caseof
 {
 	---------------------------------
 	[1] = function (x)  -- Chateau d'Oraguille access
 	---------------------------------
-		player:startEvent(0x0238);
+		pNation = player:getNation();
+		currentMission = player:getCurrentMission(pNation)
+		if ((pNation == 0 and player:getRank() >= 2) or (pNation > 0 and player:hasCompletedMission(pNation,5) == 1 or (currentMission >= 5 and currentMission <= 9))) then
+			player:startEvent(0x0239);
+		else
+			player:startEvent(0x0238);
+		end
 	end,
 	---------------------------------
 }
@@ -83,6 +89,8 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x7534 and option == 0) then
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
+	elseif (csid == 0x0239) then
+		player:setPos(0,0,-13,192,0xe9);
 	end
 end;
 

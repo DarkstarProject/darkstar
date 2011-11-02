@@ -8,6 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
   ALREADY_OBTAINED_TELE = 7153; -- You already possess the gate crystal for this telepoint
 
 -- Quest Items
+ FADED_CRYSTAL = 613;
 ORIENTAL_STEEL = 1151;
 
 -- Quest Dialog

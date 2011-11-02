@@ -1,0 +1,158 @@
+-----------------------------------
+--  Area: Balga's Dais
+--  NPC: Burning Circle
+--	Balga's Dais Burning Circle
+-------------------------------------
+
+package.loaded["scripts/globals/bcnm"] = nil;
+require("scripts/globals/bcnm");
+require("scripts/globals/keyitems");
+require("scripts/globals/settings");
+package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
+require("scripts/zones/Balgas_Dais/TextIDs");
+
+
+	-- events:
+	-- 7D00 : BC menu
+	-- Param 4 is a bitmask for the choice of battlefields in the menu:
+
+	---- 0: Rank 2 Final Mission for Bastok "The Emissary" and Sandy "Journey Abroad"
+	---- 1: Steamed Sprouts (BCNM 40, Star Orb)
+	---- 2: Divine Punishers (BCNM 60, Moon Orb)
+	---- 3: Saintly Invitation (Windurst mission 6-2)
+	---- 4: Treasure and Tribulations (BCNM 50, Comet Orb)
+	---- 5: Shattering Stars (MNK)
+	---- 6: Shattering Stars (WHM)
+	---- 7: Shattering Stars (SMN)
+	---- 8: Creeping Doom (BCNM 30, Sky Orb)
+	---- 9: Charming Trio (BCNM 20, Cloudy Orb)
+	---- 10: Harem Scarem (BCNM 30, Sky Orb)
+	---- 11: Early Bird Catches the Wyrm (KSNM 99, Themis Orb)
+	---- 12: Royal Succession (BCNM 40, Star Orb)
+	---- 13: Rapid Raptors (BCNM 50, Comet Orb)
+	---- 14: Wild Wild Whiskers (BCNM 60, Moon Orb)
+	---- 15: Season's Greetings (KSNM 30, Clotho Orb)
+	---- 16: Royale Ramble (KSNM 30, Lachesis Orb)
+	---- 17: Moa Constrictors (KSNM 30, Atropos Orb
+
+	-- Param 8 is a flag: 0 : menu, >0 : automatically enter and exit
+
+	-- 7D01 : final BC event.
+	-- param 2: #time record for this mission
+	-- param 3: #clear time in seconds
+	-- param 6: #which mission (linear numbering as above)
+	-- 7D03 : stay/run away
+
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
+function onTrade(player,npc,trade)
+
+end;
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+function onTrigger(player,npc)
+	pZone = player:getZone();
+	player:setVar(tostring(pZone) .. "_Ready",0);
+	player:setVar(tostring(pZone) .. "_Field",0);
+
+	if (player:getXPos() >= 280 and player:getXPos() <= 320 and player:getZPos() >= 315 and player:getZPos() <= 348) then
+		if (getAvailableBattlefield(pZone) ~= 255) then
+			local bcnmFight = 0;
+
+			if (player:hasKeyItem(DARK_KEY)) then
+				bcnmFight = bcnmFight + 1;
+			end
+
+			if (bcnmFight >= 0) then
+				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
+			end
+		else
+			player:messageSpecial(7155);
+		end
+	else
+		player:startEvent(0x7d03);
+	end
+end;
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+function onEventUpdate(player,csid,option)
+--printf("onUpdate CSID: %u",csid);
+--printf("onUpdate RESULT: %u",option);
+
+	if (csid == 0x7D00) then
+		pZone = player:getZone();
+		zoneReady = tostring(pZone) .. "_Ready";
+		readyField = getAvailableBattlefield(pZone);
+
+		if (option == 0) then
+			local bcnmFight = 0;
+			player:setVar(zoneReady,player:getVar(zoneReady)+1);
+
+			if (player:getVar(zoneReady) == readyField and readyField ~= 255) then
+				if (player:hasKeyItem(DARK_KEY)) then
+					player:updateEvent(2,bcnmFight,0,500,6,0);
+				elseif (player:hasCompletedMission(player:getNation(),5) == 1) then
+					player:updateEvent(2,bcnmFight,0,500,6,1);
+				end
+			else
+				player:updateEvent(0,0,0,0,0,0);
+			end
+		elseif (option == 255) then
+			player:setVar(tostring(pZone) .. "_Field",readyField);
+		end
+	elseif (csid == 0x7D01) then
+		player:delStatusEffect(EFFECT_BATTLEFIELD);
+	end
+end;
+
+-----------------------------------
+-- onEventFinish Action
+-----------------------------------
+function onEventFinish(player,csid,option)
+--printf("onFinish CSID: %u",csid);
+--printf("onFinish RESULT: %u",option);
+
+	pZone = player:getZone();
+
+	if (csid == 0x7d00 and option ~= 1073741824 and option ~= 0) then
+		if (option == 3) then
+			player:startEvent(0x7d02);
+		else
+			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
+			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,900,1);
+			player:setVar("Mission_2_3_Timer", os.time());
+			player:setVar(tostring(pZone) .. "_Fight",option);
+		end
+	elseif (csid == 0x7d01) then
+		if (player:getVar(tostring(pZone) .. "_Fight") == 100) then
+			if (player:hasKeyItem(DARK_KEY)) then
+				player:addKeyItem(KINDRED_CREST);
+				player:messageSpecial(KEYITEM_OBTAINED,KINDRED_CREST);
+				player:setVar("MissionStatus",9);
+				player:delKeyItem(DARK_KEY);
+			end
+			player:setVar("Mission_2_3_Timer",0);
+			player:setVar("Mission_2_3_Killed",0);
+			player:setVar(tostring(pZone) .. "_Ready",0);
+			player:setVar(tostring(pZone) .. "_Field",0);
+			player:setVar(tostring(pZone) .. "_Fight",0);
+		end
+	elseif (csid == 0x7d03 and option == 4) then
+		if (player:getVar(tostring(pZone) .. "_Fight") == 100) then
+			player:setVar("Mission_2_3_Killed",0);
+			player:setVar("Mission_2_3_Timer",0);
+		end
+		player:setVar(tostring(pZone) .. "_Runaway",1);
+		player:delStatusEffect(EFFECT_BATTLEFIELD);
+		player:setVar(tostring(pZone) .. "_Runaway",0)
+		player:setVar(tostring(pZone) .. "_Ready",0);
+		player:setVar(tostring(pZone) .. "_Field",0);
+		player:setVar(tostring(pZone) .. "_Fight",0);
+	end
+end;

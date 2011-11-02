@@ -1,9 +1,10 @@
 -----------------------------------
--- 
+--
 -- Zone: Dangruf_Wadi
--- 
+--
 -----------------------------------
 
+require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 require("scripts/zones/Dangruf_Wadi/TextIDs");
@@ -22,11 +23,16 @@ end;
 function onZoneIn(player,prevZone)
 cs = -1;
 
+	if (player:hasKeyItem(BLUE_ACIDITY_TESTER)) then
+		player:delKeyItem(BLUE_ACIDITY_TESTER);
+		player:addKeyItem(RED_ACIDITY_TESTER);
+	end
+
 return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,regionID)

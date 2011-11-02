@@ -13,8 +13,12 @@ CONQUEST = 7470 -- "You've earned conquest points!"
 
 -- Quest Items
 
- STEAM_CLOCK = 550;
-FIRE_CRYSTAL = 4096;
+   STEAM_CLOCK = 550;
+   FETICH_HEAD = 606;
+  FETICH_TORSO = 607;
+   FETICH_ARMS = 608;
+   FETICH_LEGS = 609;
+  FIRE_CRYSTAL = 4096;
 LEATHER_GORGET = 13081;
 
 -- Shop Texts
@@ -43,3 +47,10 @@ CHARGINGCHOKOBO_SHOP_DIALOG = 7374; -- Hello. What piece of armor are you missin
 
   SOMNPAEMN_OPEN_DIALOG = 7385;  -- Welcome! I have goods straight from Sarutabaruta! What say you?
 SOMNPAEMN_CLOSED_DIALOG = 7265;  -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Sarutabaruta, but it's not easy getting stuff out of areas that aren't under Bastokan control.
+
+
+-- Missions Dialogs
+
+	 RANK_POINTS_DIALOG = 7514; -- You do not need to donate any more crystals ..
+ORIGINAL_MISSION_OFFSET = 6439; -- You can consult the ..
+  ZILART_MISSION_OFFSET = 7862; -- Go to Ore Street ..

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Metalworks
 -- NPC: Naji
--- Standard Info NPC
+-- Involved in Missions
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -24,13 +24,32 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
---The Doorman
-	if (player:hasKeyItem(YASINS_SWORD)) then
+
+	if (player:hasCurrentMission(1)) then
+		currentMission = player:getCurrentMission(1);
+
+		if (currentMission == 0 and player:hasKeyItem(ZERUHN_REPORT)) then
+			if (player:seenKeyItem(ZERUHN_REPORT)) then
+				player:startEvent(0x02C6,0);
+			else
+				player:startEvent(0x02C6,1);
+			end
+		elseif (currentMission == 3 and player:hasKeyItem(C_L_REPORTS)) then
+			player:startEvent(0x02c7);
+		elseif (player:hasKeyItem(KINDRED_REPORT)) then
+			player:startEvent(0x02ca);
+		elseif (currentMission == 5) then
+			if (player:getVar("MissionStatus") == 0 and player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false) then
+				player:startEvent(0x02c9);
+			else
+				player:showText(npc,GOOD_LUCK);
+			end
+		end
+	elseif (player:hasKeyItem(YASINS_SWORD)) then	--The Doorman
 		player:startEvent(0x02ee);
 	else
-	player:startEvent(0x02bc);
-	end;
-
+		player:startEvent(0x02bc);
+	end
 end;
 
 
@@ -67,17 +86,33 @@ end;
 -----------------------------------
 -- onEventFinish
 -----------------------------------
-
 function onEventFinish(player,csid,option)
-	if (csid == 0x02ee) then
-		player:delKeyItem(YASINS_SWORD);
-		player:addItem(16678,1);
-		player:messageSpecial(ITEM_OBTAINED, 16678);
-		player:completeQuest(BASTOK,THE_DOORMAN);
-	else
-	end;
-
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+
+	if (csid == 0x02ee) then
+		player:completeQuest(BASTOK,THE_DOORMAN);
+		player:addItem(RAZOR_AXE,1);
+		player:messageSpecial(ITEM_OBTAINED, RAZOR_AXE);
+		player:delKeyItem(YASINS_SWORD);
+	elseif (csid == 0x02C6) then
+		player:completeMission(BASTOK);
+		player:delKeyItem(ZERUHN_REPORT);
+	elseif (csid == 0x02c9) then
+		player:addKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
+		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_BASTOK);
+		player:setVar("MissionStatus",1);
+	elseif (csid == 0x02ca) then
+		player:completeMission(1);
+		player:addKeyItem(ADVENTURERS_CERTIFICATE);
+		player:setTitle(CERTIFIED_ADVENTURER);
+		player:messageSpecial(KEYITEM_OBTAINED,ADVENTURERS_CERTIFICATE);
+		player:addGil(GIL_RATE*3000);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+		player:setRank(3);
+		player:delKeyItem(KINDRED_REPORT);
+		player:setVar("MissionStatus",0);
+		player:setVar("Mission_2_3_Started",0);
+	end
 end;
 

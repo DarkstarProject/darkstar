@@ -27,6 +27,7 @@ CASTLE_FLOOR_PLANS     = 530;
  FLYER_ALREADY = 11828;  -- This person already has a flyer.
 FLYER_ACCEPTED = 11827;  -- Your flyer is accepted!
 
+HELAKU_DIALOG = 11165; -- Leave this building, and you'll see a great fortress to the right.
 
 GUILBERDRIER_DIALOG = 10917;  -- A magic shop, you say? A bit of magic would come in handy... I know! I'll have my daughter study it for me!
 	 VILLION_DIALOG = 11825;  -- Opening a shop of magic, without consulting me first? I must pay this Regine a visit!

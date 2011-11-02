@@ -7,9 +7,15 @@
                  GIL_OBTAINED = 6434;    -- Obtained <number> gil.
              KEYITEM_OBTAINED = 6436;    -- Obtained key item: <keyitem>.
 -- Quest Items
-RAM_MANTLE = 13750;
- RAZOR_AXE = 16678;
-	
+FADED_CRYSTAL = 613;
+ FIRE_CRYSTAL = 4096;
+   LIZARD_EGG = 4362;
+   RAM_MANTLE = 13750;
+    RAZOR_AXE = 16678;
+
+-- General Text
+GOOD_LUCK = 7249;
+
 -- Shop Texts
     NOGGA_SHOP_DIALOG = 0;
      OLAF_SHOP_DIALOG = 0;

@@ -23,8 +23,12 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getQuestStatus(BASTOK,THE_USUAL) == 1 and player:hasKeyItem(STEAMING_SHEEP_INVITATION) and player:getVar("TheUsual_Event") ~= 1) then
-		player:startEvent(0x01fe);
+	if (player:getQuestStatus(BASTOK,THE_USUAL) == 1) then
+		if (player:hasKeyItem(STEAMING_SHEEP_INVITATION) and player:getVar("TheUsual_Event") ~= 1) then
+			player:startEvent(0x01fe);
+		else
+			player:startEvent(0x01f5);
+		end
 	else
 		player:startEvent(0x01f5);
 	end
