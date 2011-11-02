@@ -1,17 +1,17 @@
 -----------------------------------
--- Area: Tavnazian Safehold
--- NPC: Ratonne
+-- Area: Lower Jeuno
+-- NPC: Caruvinda
 -- Armor Storage NPC
 -----------------------------------
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/globals/armorstorage"] = nil;
 require("scripts/globals/armorstorage");
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+require("scripts/zones/Lower_Jeuno/TextIDs");
 
-Deposit = 0x01fe;
-Withdrawl = 0x01ff;
+Deposit = 0x273e;
+Withdrawl = 0x273d;
 ArraySize = table.getn(StorageArray);
 G1 = 0;
 G2 = 0;

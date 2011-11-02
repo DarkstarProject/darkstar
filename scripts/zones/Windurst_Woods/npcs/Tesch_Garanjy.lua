@@ -1,17 +1,17 @@
 -----------------------------------
--- Area: Tavnazian Safehold
--- NPC: Ratonne
+-- Area: Windurst Woods
+-- NPC: Tesch_Garanjy
 -- Armor Storage NPC
 -----------------------------------
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/globals/armorstorage"] = nil;
 require("scripts/globals/armorstorage");
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+require("scripts/zones/Windurst_Woods/TextIDs");
 
-Deposit = 0x01fe;
-Withdrawl = 0x01ff;
+Deposit = 0x272b;
+Withdrawl = 0x272c;
 ArraySize = table.getn(StorageArray);
 G1 = 0;
 G2 = 0;

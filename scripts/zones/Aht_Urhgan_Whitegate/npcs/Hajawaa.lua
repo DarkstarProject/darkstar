@@ -1,17 +1,17 @@
 -----------------------------------
--- Area: Tavnazian Safehold
--- NPC: Ratonne
+-- Area: Aht Urhgan Whitegate
+-- NPC: Hajawaa
 -- Armor Storage NPC
 -----------------------------------
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/globals/armorstorage"] = nil;
 require("scripts/globals/armorstorage");
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
-Deposit = 0x01fe;
-Withdrawl = 0x01ff;
+Deposit = 0x02bf;
+Withdrawl = 0x02c0;
 ArraySize = table.getn(StorageArray);
 G1 = 0;
 G2 = 0;

@@ -1,17 +1,17 @@
 -----------------------------------
--- Area: Tavnazian Safehold
--- NPC: Ratonne
+-- Area: Northern San d'Oria
+-- NPC: Taulenne
 -- Armor Storage NPC
 -----------------------------------
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/globals/armorstorage"] = nil;
 require("scripts/globals/armorstorage");
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+require("scripts/zones/Northern_San_dOria/TextIDs");
 
-Deposit = 0x01fe;
-Withdrawl = 0x01ff;
+Deposit = 0x0304;
+Withdrawl = 0x0305;
 ArraySize = table.getn(StorageArray);
 G1 = 0;
 G2 = 0;
@@ -23,6 +23,14 @@ G5 = 0;
 -- onTrade Action
 -----------------------------------
 function onTrade(player,npc,trade)
+   FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+   if (FlyerForRegine == 1) then
+      count = trade:getItemCount();
+      MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
+      if (MagicFlyer == true and count == 1) then
+         player:messageSpecial(FLYER_REFUSED);
+      end;
+   end;
    for SetId = 1,ArraySize,11 do
       TradeCount = trade:getItemCount();
       T1 = trade:hasItemQty(StorageArray[SetId + 5],1);

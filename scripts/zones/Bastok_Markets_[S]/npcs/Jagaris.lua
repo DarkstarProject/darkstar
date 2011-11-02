@@ -1,17 +1,17 @@
 -----------------------------------
--- Area: Tavnazian Safehold
--- NPC: Ratonne
+-- Area: Bastok Markets [S]
+-- NPC: Jagaris
 -- Armor Storage NPC
 -----------------------------------
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/globals/armorstorage"] = nil;
 require("scripts/globals/armorstorage");
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
+require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 
-Deposit = 0x01fe;
-Withdrawl = 0x01ff;
+Deposit = 0x0148;
+Withdrawl = 0x0149;
 ArraySize = table.getn(StorageArray);
 G1 = 0;
 G2 = 0;
