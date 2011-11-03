@@ -39,10 +39,7 @@ CEnmityContainer::~CEnmityContainer()
 }
 
 /************************************************************************
-*																		*
-*  Если параметр функции не равен нулю, то пытаемся удалить из списка	*
-*  сущность с этим ID, иначе отчищаем весь список ненависти				*
-*																		*
+*	Clear Enmity List													*
 ************************************************************************/
 
 void CEnmityContainer::Clear(uint32 EntityID)
@@ -72,39 +69,30 @@ void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 }
 
 /************************************************************************
-*																		*
-*  Обновление или добавление ненависти к сущности						*
-*																		*
+*  Add entity to hate list												*
 ************************************************************************/
 
 void CEnmityContainer::UpdateEnmity(EnmityObject_t* PEnmityObject)
 {
-	// получилось не очень удачно с передачей указателя на объект
-	// может лучше хранить структуру, а не указатель ?
 
 	EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEnmityObject->PEnmityOwner->id);
 
 	if( PEnmity != m_EnmityList.end() &&
 	   !m_EnmityList.key_comp()(PEnmityObject->PEnmityOwner->id, PEnmity->first))
 	{
-		// не забыть про ограничение в 10.000 единиц
-		
-		if (0 > (int16)(PEnmity->second->CE + PEnmityObject->CE))
-		{
-			PEnmity->second->CE = 1;
-		}
-		else
-		{
-			PEnmity->second->CE += PEnmityObject->CE;
-		}
-		
+		int16 newEnmity = PEnmity->second->CE + PEnmityObject->CE; 
+
+		PEnmity->second->CE = (newEnmity < 1 ? 1 : newEnmity);
 		PEnmity->second->VE += PEnmityObject->VE;
 
+		//Check for cap limit 
 		PEnmity->second->CE = (PEnmity->second->CE > 10000 ? 10000 : PEnmity->second->CE);
 		PEnmity->second->VE = (PEnmity->second->VE > 10000 ? 10000 : PEnmity->second->VE);
 				
 		delete PEnmityObject;
-	}else {
+	}
+	else 
+	{
 		m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEnmityObject->PEnmityOwner->id, PEnmityObject));
 	}
 }
@@ -121,6 +109,7 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PChar,uint16 CE, uint16 VE)
 
 void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, uint16 CureAmount)
 {
+	CureAmount = (CureAmount < 1 ? 1 : CureAmount);
 	uint16 mod = battleutils::GetEnmityMod(level - 1, 1);
 	uint16 ce = 40 / mod * CureAmount;
 	uint16 ve = 240 / mod * CureAmount;
@@ -130,6 +119,7 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, 
 
 void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PChar, uint16 Damage)
 {
+	Damage = (Damage < 1 ? 1 : Damage);
 	uint16 mod = battleutils::GetEnmityMod(PChar->GetMLevel() - 1, 2);
 	uint16 ce = 80 / mod * Damage;
 	uint16 ve = 240 / mod * Damage;
@@ -143,19 +133,14 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PChar, uint16 Damag
 }
 
 /************************************************************************
-*																		*
-*  Здесь мы обновляем VE всех сущностей и находим самую опасную цель	*
-*																		*
+*  Decay Enmity, Get Entity with the highest enmity						*
 ************************************************************************/
 
 CBattleEntity* CEnmityContainer::GetHighestEnmity()
 {
 	uint32 HighestEnmity = 0;
-	//uint32 CE = 0;
-	//uint32 VE = 0;
-
+	
 	CBattleEntity* PEntity = NULL;
-	//ShowDebug(CL_BLUE"Getting highest enmity \n"CL_RESET);
 	for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
 	{
 		EnmityObject_t* PEnmityObject = it->second;
@@ -168,13 +153,12 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 		{
 			HighestEnmity = Enmity;
 			PEntity = PEnmityObject->PEnmityOwner;
-			//CE = PEnmityObject->CE; 
-			//VE = PEnmityObject->VE; 
 		}
 	}
-	//if (PEntity != NULL)
-	//{
-	//	ShowDebug(CL_GREEN"Highest Enmity: %s, CE: %u, VE: %u \n"CL_RESET,PEntity->GetName(),CE,VE);
-	//}
-	return PEntity;
+	if (HighestEnmity > 0 && HighestEnmity < 20000)
+	{
+		return PEntity;
+	}
+
+	return NULL;
 }

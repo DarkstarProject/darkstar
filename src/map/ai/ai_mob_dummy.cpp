@@ -89,13 +89,19 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 
 void CAIMobDummy::ActionRoaming() 
 {
-	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL ||   m_PMob->m_OwnerID != 0)
+	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL)
 	{
-		//uint16 TargID = m_PMob->m_OwnerID & 0x0FFF;
 		uint16 TargID = ((CBattleEntity*)m_PMob->PEnmityContainer->GetHighestEnmity())->id;
 		
 		m_PBattleTarget = (CBattleEntity*)m_PZone->GetEntity(TargID, TYPE_PC | TYPE_MOB | TYPE_PET);
 
+		m_ActionType = ACTION_ENGAGE;
+		ActionEngage();
+	}
+	else if (m_PMob->m_OwnerID != 0)
+	{
+		uint16 TargID = m_PMob->m_OwnerID & 0x0FFF;
+		m_PBattleTarget = (CBattleEntity*)m_PZone->GetEntity(TargID, TYPE_PC | TYPE_MOB | TYPE_PET);
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
 	}
