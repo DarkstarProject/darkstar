@@ -63,6 +63,9 @@ public:
 	uint8		getEffect();
 	uint16		getElement();
 	float		getMultiplier();
+	uint16		getCE();
+	uint16		getVE();
+
 
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);						
@@ -78,6 +81,9 @@ public:
 	void		setElement(uint16 element); 
 	void		setMultiplier(float multiplier);
 	void		setSpellType(uint16 spellType);
+	void		setCE(uint16 ce);
+	void		setVE(uint16 ve);
+
 	const int8* getName();
 	void		setName(int8* name);
 	
@@ -97,6 +103,8 @@ private:
 	uint8		m_effect;								// additional or added effect
 	float		m_multiplier;							// Multiplier for upper tier spells
 	uint16		m_element;								// Element of spell
+	uint16		m_CE;									// Cumulative Enmity of spell
+	uint16		m_VE;									// Volatile Enmity of spell
 	string_t	m_name;									// spell name
 };
 

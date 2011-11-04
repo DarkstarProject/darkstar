@@ -80,14 +80,13 @@ void CEnmityContainer::UpdateEnmity(EnmityObject_t* PEnmityObject)
 	if( PEnmity != m_EnmityList.end() &&
 	   !m_EnmityList.key_comp()(PEnmityObject->PEnmityOwner->id, PEnmity->first))
 	{
-		int16 newEnmity = PEnmity->second->CE + PEnmityObject->CE; 
-
-		PEnmity->second->CE = (newEnmity < 1 ? 1 : newEnmity);
+		PEnmity->second->CE + PEnmityObject->CE; 
 		PEnmity->second->VE += PEnmityObject->VE;
 
 		//Check for cap limit 
-		PEnmity->second->CE = (PEnmity->second->CE > 10000 ? 10000 : PEnmity->second->CE);
-		PEnmity->second->VE = (PEnmity->second->VE > 10000 ? 10000 : PEnmity->second->VE);
+		PEnmity->second->CE = cap_value(PEnmity->second->CE,1,10000);
+		PEnmity->second->VE = cap_value(PEnmity->second->VE,1,10000);
+		
 				
 		delete PEnmityObject;
 	}
@@ -109,8 +108,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PChar,uint16 CE, uint16 VE)
 
 void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, uint16 CureAmount)
 {
-	CureAmount = (CureAmount < 1 ? 1 : CureAmount);
-	uint16 mod = battleutils::GetEnmityMod(level - 1, 1);
+	//CureAmount = (CureAmount < 1 ? 1 : CureAmount);
+	uint16 mod = battleutils::GetEnmityMod(level - 1, 0);
 	uint16 ce = 40 / mod * CureAmount;
 	uint16 ve = 240 / mod * CureAmount;
 	UpdateEnmity(PChar,ce,ve); 
@@ -120,7 +119,7 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, 
 void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PChar, uint16 Damage)
 {
 	Damage = (Damage < 1 ? 1 : Damage);
-	uint16 mod = battleutils::GetEnmityMod(PChar->GetMLevel() - 1,1);
+	uint16 mod = battleutils::GetEnmityMod(PChar->GetMLevel() - 1, 1);
 	if (mod < 1) 
 	{mod = 1;}
 	uint16 ce = 80 / mod * Damage;
@@ -157,6 +156,7 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 			PEntity = PEnmityObject->PEnmityOwner;
 		}
 	}
+
 	if (HighestEnmity > 0 && HighestEnmity < 20000)
 	{
 		return PEntity;

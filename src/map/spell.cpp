@@ -191,3 +191,23 @@ void CSpell::setSpellType(uint16 spellType)
 {
 	m_spellType = spellType;
 }
+
+void CSpell::setCE(uint16 ce)
+{
+	m_CE = ce;
+}
+
+uint16 CSpell::getCE()
+{
+	return m_CE;
+}
+
+void CSpell::setVE(uint16 ve)
+{
+	m_VE = ve;
+}
+
+uint16 CSpell::getVE()
+{
+	return m_VE;
+}
