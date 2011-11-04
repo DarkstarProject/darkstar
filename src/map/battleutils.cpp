@@ -41,47 +41,41 @@
 #include "enmity_container.h"
 
 /************************************************************************
-*																		*
-*  Таблицы предварительно загружаемых данных							*
-*																		*
+*	lists used in battleutils											*
 ************************************************************************/
 
-uint16 g_SkillTable[100][12];									// таблица максимальных значений умений по уровням и рангам
-uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// таблица рангов для профессий
-uint16 g_EnmityTable[95][2];									// Holds Enmity Modifier Values
+uint16 g_SkillTable[100][12];									// All Skills by level/skilltype
+uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
+uint16 g_EnmityTable[MAX_ENMITY_LEVEL][MAX_ENMITY_TYPE];			// Holds Enmity Modifier Values
 
 
-CSpell*		  g_PSpellList[MAX_SPELL_ID];						// глобальный массив указателей на заклинания
-CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// глобальный массив указателей на способности
+CSpell*		  g_PSpellList[MAX_SPELL_ID];						// Complete Spells List
+CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// Complete Abilities List
 CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skills
 CTrait*		  g_PTraitList[MAX_TRAIT_ID]; 
 
-CMobSkill* g_PMobSkillList[MAX_MOBSKILL_ID];			// List of mob skills
+CMobSkill* g_PMobSkillList[MAX_MOBSKILL_ID];					// List of mob skills
 
 std::list<CTrait*> g_PTraitsList[23];
-std::list<CAbility*> g_PAbilitiesList[MAX_JOBTYPE];				// глобальный массив списков способностей, разбитый по профессиям (для быстрой инициализации) 
+std::list<CAbility*> g_PAbilitiesList[MAX_JOBTYPE];				// Abilities List By Job Type
 std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
-std::list<CMobSkill*> g_PMobFamilySkills[270];					// Mob Skills By Family
+std::list<CMobSkill*> g_PMobFamilySkills[MAX_MOB_FAMILY];		// Mob Skills By Family
 
 /************************************************************************
-*																		*
-*  namespace battleutils												*
-*																		*
+*  battleutils															*
 ************************************************************************/
 
 namespace battleutils
 {
 
 /************************************************************************
-*																		*
-*  Загружаем таблицу Skill_Cap											*
-*																		*
+*  Load Enmity From Database											*
 ************************************************************************/
 void LoadEnmityTable()
 {
 	memset(g_EnmityTable,0, sizeof(g_EnmityTable));
 
-	const int8* fmtQuery = "SELECT level, cmod, dmod \
+	const int8* fmtQuery = "SELECT level,cmod,dmod \
 						    FROM enmity \
 							ORDER BY level \
 							LIMIT 95";
@@ -90,11 +84,11 @@ void LoadEnmityTable()
 	
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
-		for (uint32 x = 0; x < 95 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
+		for (uint32 x = 0; x < 99 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
 		{
-			for (uint32 y = 1; y < 3; ++y) 
+			for (uint32 y = 0; y < 2; ++y) 
 			{
-				g_EnmityTable[x][y] = (uint16)Sql_GetIntData(SqlHandle,y);
+				g_EnmityTable[x][y] = (uint16)Sql_GetIntData(SqlHandle,y+1);
 			}
 		}
 	}
@@ -144,9 +138,7 @@ void LoadSkillTable()
 }
 
 /************************************************************************
-*																		*
-*  Инициализируем глобальный массив заклинаний							*
-*																		*
+*  Load Spells from Database											*
 ************************************************************************/
 
 void LoadSpellList()
@@ -154,7 +146,7 @@ void LoadSpellList()
 	memset(g_PSpellList,0,sizeof(g_PSpellList));
 
 	const int8* fmtQuery = "SELECT spellid, name, jobs, `group`, validTargets, castTime, recastTime, animation, mpCost, \
-							isAOE, base, effect, element, multiplier, defaultMsgType \
+							isAOE, base, effect, element, multiplier, defaultMsgType, CE, VE \
 							FROM spell_list \
 							WHERE spellid < %u;";
 
@@ -180,15 +172,15 @@ void LoadSpellList()
 			PSpell->setElement(Sql_GetIntData(SqlHandle,12)); 
 			PSpell->setMultiplier(Sql_GetIntData(SqlHandle,13)); 
 			PSpell->setSpellType(Sql_GetIntData(SqlHandle,14));
+			PSpell->setCE(Sql_GetIntData(SqlHandle,15));
+			PSpell->setVE(Sql_GetIntData(SqlHandle,16));
 			g_PSpellList[PSpell->getID()] = PSpell;
 		}
 	}
 }
 
 /************************************************************************
-*																		*
-*  Инициализируем глобальный массив способностей						*
-*																		*
+*  Load Abilities from Database											*
 ************************************************************************/
 
 void LoadAbilitiesList()
@@ -226,9 +218,7 @@ void LoadAbilitiesList()
 }
 
 /************************************************************************
-*																		*
 *  Load Weapon Skills from database										*
-*																		*
 ************************************************************************/
 
 void LoadWeaponSkillsList()
@@ -335,9 +325,7 @@ void LoadTraitsList()
 
 
 /************************************************************************
-*																		*
-*  Освобождаем глобальный массив заклинаний								*
-*																		*
+*	Clear Spell List													*
 ************************************************************************/
 
 void FreeSpellList()
@@ -518,7 +506,7 @@ std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill)
 }
 
 /************************************************************************
-*  Get Mob Skill by Id												*
+*  Get Mob Skill by Id													*
 ************************************************************************/
 
 CMobSkill* GetMobSkill(uint16 SkillID)
@@ -561,7 +549,7 @@ std::list<CTrait*> GetTraits(JOBTYPE JobID)
 
 /************************************************************************
 *																		*
-*  Пересчет нанесенного урона с учетом врожденной сопротивляемости		*
+*  Calculates damage based on damage and resistance to damage type		*
 *																		*
 ************************************************************************/
 
@@ -587,8 +575,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	PDefender->addHP(-damage);
 	PDefender->m_OwnerID = PAttacker->id;
 
-	// прерывание магических атак
-
+	// Chance to interrupt caster
 	if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
 	{
 		uint32 MagicInterruptRate = 50; // должен вычисляться на основании skill, разници уровней сущностей и модификаторе прерывания чтения заклинаний MOD_SPELLINTRATE
@@ -598,9 +585,6 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			PDefender->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);
 		}
 	}
-
-	// неправильно, при промахе персонаж не должен прерывать отдых
-	// так же нужно прерывать и другие действия: рыбалку, синтез, сидение, заставки
 
 	if (PDefender->objtype == TYPE_PC)
 	{
@@ -859,7 +843,7 @@ uint32 MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell
 
 /************************************************************************
 *																		*
-*  Расчет вероятности попадания. Минимальная 20%, максимальная 95%		*
+*  Calculate Probability attack will hit (20% min cap - 95% max cap)	*
 *																		*
 ************************************************************************/
 
@@ -1201,8 +1185,11 @@ uint32 PerformMobSkill(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	 return 0;
 }
 
+/****************************************************************
+*	Determine if an enfeeble spell will land - untested			*
+****************************************************************/
 
-bool Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect)
+bool EnfeebleHit(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect)
 {
 
 	int16 dlvl = (PCaster->GetMLevel() - PDefender->GetMLevel());
@@ -1214,7 +1201,7 @@ bool Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect)
 	chance = (chance < minCap ? minCap : chance);
 	if (Effect > 1 && Effect < 15)
 	{
-		chance + (PDefender->getMod((MODIFIER)(Effect + 238)) / 10);
+		chance = chance + (PDefender->getMod((MODIFIER)(Effect + 238)) / 10);
 	}
 
 	if (rand()%100 < chance)
@@ -1223,41 +1210,8 @@ bool Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect)
 	}
 
 	return false;
-	//switch(Effect)
-	//{	
-	//case EFFECT_SLEEP:
-	//	chance + (PDefender->getMod((MODIFIER)(Effect + 238)) / 10);
-	//case EFFECT_POISON:
-	//	chance + (PDefender->getMod(MOD_POISONRES) / 10);
-	//case EFFECT_PARALYSIS:
-	//	chance + (PDefender->getMod(MOD_PARALYZERES) / 10);
-	//case EFFECT_BLINDNESS:
-	//	chance + (PDefender->getMod(MOD_BLINDRES) / 10);
-	//case EFFECT_CURSE:
-	//	chance + (PDefender->getMod(MOD_CURSERES) / 10);
-
-	//case EFFECT_SLOW: 
-	//	chance + (PDefender->getMod(MOD_SLOWRES) / 10);
-	//case EFFECT_CHARM:
-	//	chance + (PDefender->getMod(MOD_CHARMRES) / 10);
-
-
-	//MOD_SLEEPRES			= 0xF0,
-	//MOD_POISONRES			= 0xF1,
-	//MOD_PARALYZERES			= 0xF2,
-	//MOD_BLINDRES			= 0xF3,
-	//MOD_SILENCERES			= 0xF4,
-	//MOD_VIRUSRES			= 0xF5,
-	//MOD_PETRIFYRES			= 0xF6,
-	//MOD_BINDRES				= 0xF7,
-	//MOD_CURSERES			= 0xF8,
-	//MOD_GRAVITYRES			= 0xF9,
-	//MOD_SLOWRES				= 0xFA,
-	//MOD_STUNRES				= 0xFB,
-	//MOD_CHARMRES			= 0xFC,
-
 }
 
 
 
-}; // namespace battleutils
+}; 

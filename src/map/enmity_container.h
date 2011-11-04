@@ -24,6 +24,9 @@
 #ifndef _CENMITYCONTAINER_H
 #define _CENMITYCONTAINER_H
 
+
+
+
 #include "../common/cbasetypes.h"
 
 #include <map>
@@ -36,7 +39,7 @@
 // Max CE = 10000
 // Max VE = 10000
 
-// VE теряется со скоростью -60VE/сек
+// VE Decays -60VE/second
 
 // сортировать список ненависти безсмысленно,
 // достаточно два раза в секунду пробегаться по списку, уменьшая VE,
@@ -47,12 +50,16 @@
 
 struct EnmityObject_t
 {
-	CBattleEntity* PEnmityOwner;	// объект ненависти
+	CBattleEntity* PEnmityOwner;	// Enmity Target
 	int16 CE;						// Cumulative Enmity
 	uint16 VE;						// Volatile Enmity
 };
 
 typedef std::map<uint32,EnmityObject_t*> EnmityList_t;
+
+#define MAX_ENMITY_LEVEL 95
+
+#define MAX_ENMITY_TYPE 2
 
 class CBattleEntity;
 
@@ -68,7 +75,7 @@ public:
 	void	UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, uint16 CureAmount);
 	void	UpdateEnmityFromAttack(CBattleEntity* PChar,uint16 Damage);
 
-	CBattleEntity*	GetHighestEnmity();			// пересчет VE и возвращение сущности с максимальной TE
+	CBattleEntity*	GetHighestEnmity();			// Decays VE and gets target with highest enmity
 	
 	CEnmityContainer();
    ~CEnmityContainer();

@@ -120,7 +120,9 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, 
 void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PChar, uint16 Damage)
 {
 	Damage = (Damage < 1 ? 1 : Damage);
-	uint16 mod = battleutils::GetEnmityMod(PChar->GetMLevel() - 1, 2);
+	uint16 mod = battleutils::GetEnmityMod(PChar->GetMLevel() - 1,1);
+	if (mod < 1) 
+	{mod = 1;}
 	uint16 ce = 80 / mod * Damage;
 	uint16 ve = 240 / mod * Damage;
 	UpdateEnmity(PChar,ce,ve); 

@@ -61,6 +61,8 @@ enum ECOSYSTEM
 	SYSTEM_VORAGEAN			= 21,
 };
 
+#define MAX_MOB_FAMILY	270
+
 enum JOBTYPE
 {
 	JOB_NON				= 0,
