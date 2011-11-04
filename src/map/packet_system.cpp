@@ -1811,7 +1811,10 @@ int32 SmallPacket0x0DD(CCharEntity* PChar, int8* data)
 	uint16 targid = RBUFW(data,(0x08));
 
 	CBaseEntity* PEntity = zoneutils::GetZone(PChar->getZone())->GetEntity(targid, TYPE_MOB | TYPE_PC);
-
+	if (PEntity == NULL) 
+	{
+		return 0;
+	}
 	switch (PEntity->objtype)
 	{
 		case TYPE_MOB:

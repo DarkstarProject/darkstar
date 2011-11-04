@@ -922,7 +922,12 @@ void CStatusEffectContainer::SaveStatusEffects()
 void CStatusEffectContainer::CheckEffects(uint32 tick)
 {
 	//DSP_DEBUG_BREAK_IF(m_pOwner == NULL);
-	if (!m_pOwner->isDead()) 
+	if (this == NULL)
+	{
+		return;
+	}
+try
+{	if (!m_pOwner->isDead()) 
 	{
 		if ((tick - m_EffectCheckTime) < 1000 )
 		{
@@ -948,5 +953,10 @@ void CStatusEffectContainer::CheckEffects(uint32 tick)
 				RemoveStatusEffect(i);
 			}
 		}
-	}
+	}	
+}
+catch (int ex){
+
+}
+
 }

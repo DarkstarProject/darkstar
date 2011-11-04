@@ -141,6 +141,10 @@ void CAIMobDummy::ActionRoaming()
 void CAIMobDummy::ActionEngage() 
 {
 	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	if (m_PBattleTarget == NULL )
+	{
+		return;
+	}
 	m_PMob->animation = ANIMATION_ATTACK;
 
 	m_ActionType = ACTION_ATTACK;
@@ -389,6 +393,10 @@ void CAIMobDummy::ActionAttack()
 {
 	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+	if (m_PBattleTarget == NULL)
+	{
+		return;
+	}
 	m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	if (m_PBattleTarget->isDead())

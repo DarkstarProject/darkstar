@@ -79,12 +79,16 @@ void CTreasurePool::AddMember(CCharEntity* PChar)
 	//DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
 	members.push_back(PChar);
-
+	try{
 	if (m_TreasurePoolType == TREASUREPOOL_SOLO && members.size() > 1)
 	{
 		m_TreasurePoolType = TREASUREPOOL_PARTY;
 	}
 	ShowDebug(CL_CYAN"TreasurePool::AddMember <%s>\n"CL_RESET, PChar->GetName());
+	}
+	catch (int ie)
+	{
+	}
 }
 
 /************************************************************************
