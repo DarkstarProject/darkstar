@@ -572,7 +572,11 @@ int32 SmallPacket0x01A(CCharEntity* PChar, int8* data)
 			}
 		}
 		break;	
-		case 0x12: break;	// dismount
+		case 0x12: 	// dismount
+			PChar->animation == ANIMATION_NONE;
+			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
+			PChar->pushPacket(new CCharUpdatePacket(PChar));
+			break;
 		case 0x13: // tractor menu
 		{
 			

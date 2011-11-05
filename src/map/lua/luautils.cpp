@@ -1091,13 +1091,18 @@ int32 OnMobSpawn(CBaseEntity* PMob)
 
 int32 OnSpecialWeaponKill(CCharEntity* PChar) 
 {
+	if (PChar->m_event.EventID > -1)
+	{
+		return 0;
+	}
+	
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
   	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
 	
 	snprintf(File,sizeof(File),"%s/globals/specialweapons/%s.lua",LuaScriptDir, PItem->getName());
-
+	
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);
 

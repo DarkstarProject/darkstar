@@ -392,6 +392,10 @@ void CAIMobDummy::ActionAbilityFinish()
 void CAIMobDummy::ActionAttack() 
 {
 	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	if (m_PBattleTarget == NULL)
+	{
+		return ;
+	}
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 	if (m_PBattleTarget == NULL)
 	{

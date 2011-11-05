@@ -2273,7 +2273,10 @@ inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
 					(n >= 6 ? (uint16)lua_tointeger(L,6) : 0));
 
 				((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
-
+				if (m_PBaseEntity->objtype == TYPE_PC)
+				{
+					CCharUpdatePacket((CCharEntity*)m_PBaseEntity);
+				}
 				return 0;
 			}
 		}

@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:setAnimaton(5);
+	target:setAnimation(5);
 end;
 
 -----------------------------------
