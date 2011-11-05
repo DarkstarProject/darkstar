@@ -168,9 +168,10 @@ public:
 
 
 
-	int32 addMod(lua_State*);				// дабавляем модификатор
-	int32 getMod(lua_State*);				// получаем значение модификатора
-	int32 delMod(lua_State*);				// удаляем модификатор
+	int32 addMod(lua_State*);				// Adds Modifier Value
+	int32 getMod(lua_State*);				// Retrieves Modifier Value
+	int32 delMod(lua_State*);				// Subtracts Modifier Value
+	int32 setMod(lua_State*);				// Sets Modifier Value
 
 	int32 addExp(lua_State*);				// добавляем персонажу опыт (других функций для работы с опытом не будет)
 

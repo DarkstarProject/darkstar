@@ -141,6 +141,8 @@ void CAIMobDummy::ActionRoaming()
 void CAIMobDummy::ActionEngage() 
 {
 	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+	
 	if (m_PBattleTarget == NULL )
 	{
 		return;
@@ -148,7 +150,7 @@ void CAIMobDummy::ActionEngage()
 	m_PMob->animation = ANIMATION_ATTACK;
 
 	m_ActionType = ACTION_ATTACK;
-	m_LastActionTime = m_Tick;
+	m_LastActionTime = m_Tick - 10000;
 
 	ActionAttack();
 }
@@ -392,10 +394,6 @@ void CAIMobDummy::ActionAbilityFinish()
 void CAIMobDummy::ActionAttack() 
 {
 	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
-	if (m_PBattleTarget == NULL)
-	{
-		return ;
-	}
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 	if (m_PBattleTarget == NULL)
 	{
@@ -450,27 +448,20 @@ void CAIMobDummy::ActionAttack()
 				{
 					Action.messageID = 32; 
 				}
-				else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
+				else if ( rand()%90 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
 				{
-					int16 utsu = m_PBattleTarget->getMod(MOD_UTSUSEMI);
+					uint16 utsu = m_PBattleTarget->getMod(MOD_UTSUSEMI);
 					if (utsu > 0) 
 					{
 						utsu -= 1;
 						m_PBattleTarget->setModifier(MOD_UTSUSEMI, utsu);
+						Action.messageID  = 0;
+
+						m_PZone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,1,1,31));
 						if (utsu == 0)
 						{
-						m_PZone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,1,1,31));
-						m_PBattleTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE_1);
+							m_PBattleTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE_1);
 						}
-
-						
-						Action.ActionTarget = m_PBattleTarget;
-						Action.reaction   = REACTION_EVADE;
-						Action.speceffect = SPECEFFECT_NONE;
-						Action.animation  = 0;
-						Action.param	  = 0;
-						Action.messageID  = 0;
-						Action.flag = 0; 
 					}
 					else
 					{

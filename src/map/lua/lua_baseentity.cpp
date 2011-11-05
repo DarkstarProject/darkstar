@@ -2390,8 +2390,7 @@ inline int32 CLuaBaseEntity::removePartyEffect(lua_State *L)
 				{
 					if (PChar->PParty->members[i]->loc.zone == PChar->loc.zone) 
 					{
-						PChar->PParty->members[i]->StatusEffectContainer->DelStatusEffect(
-					(EFFECT)lua_tointeger(L,1), (n >= 2 ? (uint16)lua_tointeger(L,2) : 0));
+						PChar->PParty->members[i]->StatusEffectContainer->DelStatusEffect((EFFECT)lua_tointeger(L,1));
 					}
 				}
 				
@@ -2491,6 +2490,27 @@ inline int32 CLuaBaseEntity::delMod(lua_State *L)
 				!lua_isnil(L,2) && lua_isnumber(L,2))
 			{
 				((CBattleEntity*)m_PBaseEntity)->delModifier(
+					lua_tointeger(L,1),
+					lua_tointeger(L,2));
+				return 0;
+			}
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}	
+
+
+inline int32 CLuaBaseEntity::setMod(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype != TYPE_NPC )
+		{
+			if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
+				!lua_isnil(L,2) && lua_isnumber(L,2))
+			{
+				((CBattleEntity*)m_PBaseEntity)->setModifier(
 					lua_tointeger(L,1),
 					lua_tointeger(L,2));
 				return 0;
@@ -2915,6 +2935,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMod),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectPacket),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showPosition),

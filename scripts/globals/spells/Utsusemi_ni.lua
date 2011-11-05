@@ -1,7 +1,5 @@
 -----------------------------------------
---	
---	Spell: Titan
---	Summons Titan to fight by your side
+--	Spell: Utsusemi: Ni
 -----------------------------------------
 
 -----------------------------------------
@@ -9,5 +7,5 @@
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	caster:addStatusEffect(EFFECT_COPY_IMAGE_1,4,0,300);
+	target:addStatusEffect(EFFECT_COPY_IMAGE,4,0,300);
 end;

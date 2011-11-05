@@ -1103,9 +1103,6 @@ int32 OnSpecialWeaponKill(CCharEntity* PChar)
 	
 	snprintf(File,sizeof(File),"%s/globals/specialweapons/%s.lua",LuaScriptDir, PItem->getName());
 	
-	PChar->m_event.reset();
-	PChar->m_event.Script.insert(0,File);
-
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
 		//ShowError("luautils::OnSpecialWeaponKill: %s\n",lua_tostring(LuaHandle,-1));
@@ -1185,8 +1182,8 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget)
 	CAbility* ability = PChar->PBattleAI->GetCurrentJobAbility();
 	snprintf(File,sizeof(File),"%s/globals/abilities/%s.lua",LuaScriptDir, ability->getName());
 
-	PChar->m_event.reset();
-	PChar->m_event.Script.insert(0,File);
+	//PChar->m_event.reset();
+	//PChar->m_event.Script.insert(0,File);
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
