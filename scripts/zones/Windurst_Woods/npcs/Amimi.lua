@@ -13,7 +13,7 @@ function onTrigger(player,npc)
 --level = player:getMainLvl();
 
 --if (license == 1 and level >= 15) then
-	player:startEvent(0x0x2714);
+	player:startEvent(0x2714);
 --end
 end; 
  
