@@ -1125,6 +1125,8 @@ void CAICharNormal::ActionMagicFinish()
 	bool callLUA = false;
 	bool sendInitSpellMsg = false;
 
+	
+
 	switch(m_PSpell->getSpellType())
 	{
 		case 2: // magic Damage
@@ -1246,12 +1248,13 @@ void CAICharNormal::ActionMagicFinish()
 		{
 			Action.messageID = 227;
 			int16 drain = (rand()%100 < 50 ? m_PChar->GetSkill(SKILL_DRK) : m_PChar->GetSkill(SKILL_DRK) / 2);
-			m_PBattleSubTarget->addHP(-(drain > m_PBattleSubTarget->health.hp ? drain : m_PBattleSubTarget->health.hp)); 
+			m_PBattleSubTarget->addHP(-(drain > m_PBattleSubTarget->health.hp ? m_PBattleSubTarget->health.hp : drain)); 
 			m_PChar->addHP(drain);
 			
 			charutils::TrySkillUP(m_PChar,SKILL_DRK,m_PChar->GetMLevel());
 			Action.param = drain;
 			m_PBattleSubTarget->m_OwnerID = m_PChar->id;
+			((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar,m_PSpell->getCE(),m_PSpell->getVE()); 
 		} 
 			break;
 		case 228: // aspir
@@ -1264,6 +1267,7 @@ void CAICharNormal::ActionMagicFinish()
 			m_PChar->addMP(aspir);
 			Action.param = aspir;
 			m_PBattleSubTarget->m_OwnerID = m_PChar->id;
+			((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar,m_PSpell->getCE(),m_PSpell->getVE()); 
 		} 
 			break;
 		case 230: // buff
@@ -1295,6 +1299,7 @@ void CAICharNormal::ActionMagicFinish()
 			}
 			
 			m_PBattleSubTarget->m_OwnerID = m_PChar->id;
+			((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar,m_PSpell->getCE(),m_PSpell->getVE()); 
 		} 
 			break;
 		case 42:
@@ -1420,8 +1425,9 @@ void CAICharNormal::ActionMagicFinish()
 				{
 					luautils::OnSpellCast(m_PChar,PCurrentMob);
 				}
-
+				
 				m_PChar->m_ActionList.push_back(Action);	
+				
 			}
 		}
 	}
@@ -1584,7 +1590,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 	Recast.TimeStamp = m_Tick;
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PChar,m_PJobAbility->getID()+16,0,100));
-	m_PChar->RecastAbilityList.push_back(Recast);
+	//m_PChar->RecastAbilityList.push_back(Recast);
 	m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 	
 	
