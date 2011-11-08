@@ -16,8 +16,8 @@ require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-   
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -25,21 +25,24 @@ end;
 
 function onTrigger(player,npc)
 
-KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
-OnionRingsVar      = player:getVar("OnionRings");
-WildCardVar        = player:getVar("WildCard");
-JokerCard          = player:hasKeyItem(264);
-
-	if (JokerCard == true) then
+	if (player:hasKeyItem(264) == true) then
 		player:startEvent(0x0183,0,264);
-	elseif (WildCardVar == 1) then
+	elseif (player:getVar("WildCard") == 1) then
 		player:startEvent(0x0182);
-	elseif (OnionRingsVar == 1) then
+	elseif (player:getVar("OnionRings") == 1) then
 		player:startEvent(0x0121);
-	elseif (KnowOnesOnionsVar == 1) then
+	elseif (player:getVar("KnowOnesOnions") == 1) then
 		player:startEvent(0x0120,0,4387);
+	elseif (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 0) then
+		if (player:getMainLvl() >= 30 and player:hasItem(1125)) then
+			player:startEvent(0x0180,1125,1125,1125,1125,1125,1125,1125,1125);
+		end
+	elseif (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1) then
+		player:startEvent(0x0181,1125,1125,1125,1125,1125,1125,1125,1125);
 	end
-   
+
+return 1;
+
 end;
 
 -----------------------------------
@@ -69,6 +72,9 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(130);
 		player:setVar("OnionRingsTime",0);
 		player:setVar("OnionRings",2);
+	elseif (csid == 0x0180) then
+		player:addQuest(WINDURST, I_CAN_HEAR_A_RAINBOW);
+		player:setVar("ICanHearARainbow",1);
 	elseif (csid == 0x0182) then
 		player:setVar("WildCard",2);
 	elseif (csid == 0x0183) then
