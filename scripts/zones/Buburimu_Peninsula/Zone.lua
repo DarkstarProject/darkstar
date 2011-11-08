@@ -35,10 +35,10 @@ cs = -1;
 			player:setVar("ICanHearARainbow_Weather",1);
 			player:setVar("ICanHearARainbow",colors+2);
 		elseif (g == false) then
-			player:setVar("ICanHearARainbow_Weather",8);
+			player:setVar("ICanHearARainbow_Weather",10);
 			player:setVar("ICanHearARainbow",colors+8);
 		elseif (b == false) then
-			player:setVar("ICanHearARainbow_Weather",10);
+			player:setVar("ICanHearARainbow_Weather",6);
 			player:setVar("ICanHearARainbow",colors+16);
 		else
 			cs = -1;

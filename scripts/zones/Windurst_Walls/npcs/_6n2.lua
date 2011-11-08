@@ -74,7 +74,6 @@ function onEventFinish(player,csid,option)
 		player:setVar("OnionRings",2);
 	elseif (csid == 0x0180) then
 		player:addQuest(WINDURST, I_CAN_HEAR_A_RAINBOW);
-		player:setVar("ICanHearARainbow",1);
 	elseif (csid == 0x0182) then
 		player:setVar("WildCard",2);
 	elseif (csid == 0x0183) then
