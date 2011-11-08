@@ -66,8 +66,8 @@ function onEventUpdate(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
 	if (csid == 0x000d) then
+		weather = player:getVar("ICanHearARainbow_Weather");
 		if (player:getVar("ICanHearARainbow") < 127) then
-			weather = player:getVar("ICanHearARainbow_Weather");
 			player:updateEvent(0,0,weather);
 		else
 			player:updateEvent(0,0,weather,6);

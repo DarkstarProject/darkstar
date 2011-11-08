@@ -38,8 +38,7 @@ cs = -1;
 			player:setVar("ICanHearARainbow_Weather",14);
 			player:setVar("ICanHearARainbow",colors+64);
 		else
-			--cs = -1;
-		cs = 0x0068;
+			cs = -1;
 		end
 	end
 
@@ -62,8 +61,8 @@ function onEventUpdate(player,csid,menuchoice)
 --print("RESULT: ",menuchoice);
 
 	if (csid == 0x0068) then
+		weather = player:getVar("ICanHearARainbow_Weather");
 		if (player:getVar("ICanHearARainbow") < 127) then
-			weather = player:getVar("ICanHearARainbow_Weather");
 			player:updateEvent(0,0,weather);
 		else
 			player:updateEvent(0,0,weather,6);

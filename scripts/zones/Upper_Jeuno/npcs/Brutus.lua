@@ -24,21 +24,21 @@ end;
 
 function onTrigger(player,npc)
     ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
-	
+
 	if (player:getMainLvl() >= 20 and ChocobosWounds ~= 2) then
         chocoFeed = player:getVar("ChocobosWounds_Event");
-       	
+
        	if (ChocobosWounds == 0) then
             player:startEvent(0x0047);
         elseif (chocoFeed == 1) then
         	player:startEvent(0x0041);
         elseif (chocoFeed == 2) then
-        	player:startEvent(0x0042);	
+        	player:startEvent(0x0042);
         else
             player:startEvent(0x0066);
         end
     elseif (ChocobosWounds == 2 and player:getQuestStatus(JEUNO, SAVE_MY_SON) == 0) then
-		player:startEvent(0x0016); 
+		player:startEvent(0x0016);
     elseif (player:getVar("SaveMySon_Event") == 2) then
     	player:startEvent(0x0046);
     end
@@ -73,7 +73,6 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,WIN_FAME*40);
 		player:unlockJob(9); --Beastmaster
 		player:messageSpecial(7018); --You can now become a beastmaster
-		player:setVar("SaveMySon_Event",3);
     end
 end;
 
