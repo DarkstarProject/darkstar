@@ -96,8 +96,8 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x01f9 and option == 0) then
 		if (player:getVar("MissionStatus") == 0) then
 			if (player:getFreeSlotsCount(0) >= 1) then
-				crystal = math.random(4096,4104)
-				player:addItem(FIRE_CRYSTAL);
+				crystal = math.random(4096,4104);
+				player:addItem(crystal);
 				player:messageSpecial(ITEM_OBTAINED, crystal);
 				player:setVar("MissionStatus",1);
 			else

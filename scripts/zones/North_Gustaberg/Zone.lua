@@ -27,7 +27,7 @@ cs = -1;
 		colors = player:getVar("ICanHearARainbow");
 		o = (tonumber(colors) % 4 >= 2);
 
-		cs = 0x0385;
+		cs = 0x00f4;
 
 		if (o == false) then
 			player:setVar("ICanHearARainbow_Weather",1);
@@ -54,7 +54,7 @@ end;
 function onEventUpdate(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
-	if (csid == 0x0385) then
+	if (csid == 0x00f4) then
 		weather = player:getVar("ICanHearARainbow_Weather");
 
 		if (weather == 1) then
@@ -76,7 +76,7 @@ end;
 function onEventFinish(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
-	if (csid == 0x0385) then
+	if (csid == 0x00f4) then
 		player:setVar("ICanHearARainbow_Weather",0);
 	end
 end;
