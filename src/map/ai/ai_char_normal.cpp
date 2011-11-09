@@ -1184,7 +1184,7 @@ void CAICharNormal::ActionMagicFinish()
 			callCure = true;
 			sendInitSpellMsg = true;
 			Action.messageID = 24;
-			charutils::TrySkillUP(m_PChar,SKILL_DIV,m_PChar->GetMLevel());
+			charutils::TrySkillUP(m_PChar,SKILL_HEA,m_PChar->GetMLevel());
 		}
 			break;
 		/*{		
