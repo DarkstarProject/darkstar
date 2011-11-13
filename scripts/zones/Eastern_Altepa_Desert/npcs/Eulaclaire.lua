@@ -1,47 +1,58 @@
 -----------------------------------
---	CHOCOBO VENDOR
+-- Area: Eastern Altepa Desert
+-- NPC: Eulaclaire
+-- Chocobo Vendor
 -----------------------------------
 
------------------------------------
--- onTrigger Action
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 
-function onTrigger(player,npc)
---license = player:hasKeyItem(CHOCOBO_LICENSE);
---level = player:getMainLvl();
-
---if (license == 1 and level >= 15) then
-	player:startEvent(0x06);
---end
-end; 
- 
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
-function onTrade(player,npc,trade)
 
-end;  
+function onTrade(player,npc,trade)
+end;
+
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+
+price = 100;
+gil = player:getGil();
+hasLicense = player:hasKeyItem(CHOCOBO_LICENSE);
+level = player:getMainLvl();
+
+	if (hasLicense and level >= 15) then
+		player:startEvent(0x0006,price,gil);
+	else
+		player:startEvent(0x0007,price,gil);
+	end
+
+end;
+
   
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
 function onEventFinish(player,csid,option)
 --print("CSID:",csid);
-print("OPTION:",option);
+--print("OPTION:",option);
 
+price = 100;
+level = player:getMainLvl();
 
-if (csid == 0x06 and option == 0) then
-   if (player:getMainLvl() >= 20) then
-		
-      player:addStatusEffect(EFFECT_CHOCOBO,1,0,1800);
-	
-   else
+	if (csid == 0x0006 and option == 0) then
+		if (level >= 20) then
+			player:addStatusEffect(EFFECT_CHOCOBO,1,0,1800);
+		else
+			player:addStatusEffect(EFFECT_CHOCOBO,1,0,900);
+		end
+		player:delGil(price);
+	end
 
-      player:addStatusEffect(EFFECT_CHOCOBO,1,0,900);
-	
-   end
-end
 end;

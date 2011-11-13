@@ -1,51 +1,59 @@
 -----------------------------------
---	CHOCOBO VENDOR
+-- Area: Lower Jeuno
+-- NPC: Audee
+-- Chocobo Vendor
 -----------------------------------
 
------------------------------------
--- onTrigger Action
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 
-function onTrigger(player,npc)
---license = player:hasKeyItem(CHOCOBO_LICENSE);
---level = player:getMainLvl();
-
---if (license == 1 and level >= 15) then
-	player:startEvent(0x2712);
---end
-end; 
- 
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
-function onTrade(player,npc,trade)
 
-end;  
+function onTrade(player,npc,trade)
+end;
+
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+
+price = 100;
+gil = player:getGil();
+hasLicense = player:hasKeyItem(CHOCOBO_LICENSE);
+level = player:getMainLvl();
+
+	if (hasLicense and level >= 15) then
+		player:startEvent(0x2712,price,gil);
+	else
+		player:startEvent(0x2715,price,gil);
+	end
+
+end;
+
   
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
 function onEventFinish(player,csid,option)
 --print("CSID:",csid);
-print("OPTION:",option);
+--print("OPTION:",option);
 
+price = 100;
+level = player:getMainLvl();
 
-if (csid == 0x2712 and option == 0) then
-   if (player:getMainLvl() >= 20) then
-		
-      player:addStatusEffect(EFFECT_CHOCOBO,1,0,1800);
-	
-   else
+	if (csid == 0x2712 and option == 0) then
+		if (level >= 20) then
+			player:addStatusEffect(EFFECT_CHOCOBO,1,0,1800);
+		else
+			player:addStatusEffect(EFFECT_CHOCOBO,1,0,900);
+		end
+		player:delGil(price);
+		player:setPos(340,24,608,0x70,0x6e);
+	end
 
-      player:addStatusEffect(EFFECT_CHOCOBO,1,0,900);
-	
-   end
-   player:setPos(340,24,608,0x70,0x6e);
-end
 end;
-
-
-
