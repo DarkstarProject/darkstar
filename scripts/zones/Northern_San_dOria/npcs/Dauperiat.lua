@@ -17,17 +17,17 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 -- "Blackmail" quest status
-	Black = player:getQuestStatus(SANDORIA,BLACKMAIL);
-	--TRADE BLACKMAIL
-	if (player:getQuestStatus(SANDORIA,BLACKMAIL) >= 1) then
-	count = trade:getItemCount();
-		carta = trade:hasItemQty(530, 1);
-		gil = trade:getGil();
-		if (carta and count == 1 and gil == 0) then
-			player:startEvent(0x0288);
-			end
-			end
-			end;
+   Black = player:getQuestStatus(SANDORIA,BLACKMAIL);
+   --TRADE BLACKMAIL
+   if (player:getQuestStatus(SANDORIA,BLACKMAIL) >= 1) then
+      count = trade:getItemCount();
+      carta = trade:hasItemQty(530, 1);
+      gil = trade:getGil();
+      if (carta == 1 and count == 1 and gil == 0) then
+	player:startEvent(0x0288);
+      end
+   end
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -40,28 +40,23 @@ Key1 = player:hasKeyItem(161);
 word = player:hasKeyItem(318);
 sanFame = player:getFameLevel(SANDORIA);
 sanRank = player:getRank(SANDORIA);
-    if (sanFame >= 3 and sanRank >= 3) then
-    if (Black == 0 and Key1 == false and word == false) then
-           player:startEvent(0x0283);
-		   
-		  elseif (Key1) then  
-           player:startEvent(0x0285);
-		
-	      elseif (Black == 0 and word) then
-	       player:startEvent(0x0286);
-	       player:delKeyItem(295);
-	      
-	      elseif (Black == 1) then
-	       player:startEvent(0x0281);
-		 
-		  elseif (Black == 2) then
-		   player:startEvent(0x0287);
-          end
-          end	
-        if (sanFame < 3 and sanRank < 3) then
-		   player:startEvent(0x0282);
-		   end
-		   end; 
+   if (sanFame >= 3 and sanRank >= 3) then
+      if (Black == 0 and Key1 == false and word == false) then
+         player:startEvent(0x0283);
+      elseif (Key1) then  
+         player:startEvent(0x0285);
+      elseif (Black == 0 and word) then
+         player:startEvent(0x0286);
+	 player:delKeyItem(295);
+      elseif (Black == 1) then
+	 player:startEvent(0x0281);
+      elseif (Black == 2) then
+         player:startEvent(0x0287);
+      end
+   else
+      player:startEvent(0x0282);
+   end	
+end; 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
