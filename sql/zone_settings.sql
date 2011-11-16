@@ -145,7 +145,7 @@ INSERT INTO `zone_settings` VALUES ('105', '0221762314', '54230', 'Batallia_Down
 INSERT INTO `zone_settings` VALUES ('106', '0221762314', '54230', 'North_Gustaberg', '116', '101', '103', '0', '0.00', '28');
 INSERT INTO `zone_settings` VALUES ('107', '0221762314', '54230', 'South_Gustaberg', '116', '101', '103', '0', '0.00', '28');
 INSERT INTO `zone_settings` VALUES ('108', '0221762314', '54230', 'Konschtat_Highlands', '0', '101', '103', '0', '0.00', '28');
-INSERT INTO `zone_settings` VALUES ('109', '0221762314', '54230', 'Pashhow_Marshlands', '118', '101', '103', '0', '0.00', '28');
+INSERT INTO `zone_settings` VALUES ('109', '0221762314', '54230', 'Pashhow_Marshlands', '0', '101', '103', '0', '0.00', '28');
 INSERT INTO `zone_settings` VALUES ('110', '0221762314', '54230', 'Rolanberry_Fields', '118', '101', '103', '0', '0.00', '28');
 INSERT INTO `zone_settings` VALUES ('111', '0221762314', '54230', 'Beaucedine_Glacier', '0', '101', '103', '0', '0.00', '24');
 INSERT INTO `zone_settings` VALUES ('112', '0221762314', '54230', 'Xarcabard', '164', '101', '103', '0', '0.00', '24');
