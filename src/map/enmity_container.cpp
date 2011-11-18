@@ -27,6 +27,7 @@
 #include "battleentity.h"
 #include "enmity_container.h"
 #include "battleutils.h" 
+#include "charentity.h"
 
 CEnmityContainer::CEnmityContainer()
 {
@@ -95,6 +96,25 @@ void CEnmityContainer::UpdateEnmity(EnmityObject_t* PEnmityObject)
 		m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEnmityObject->PEnmityOwner->id, PEnmityObject));
 	}
 }
+
+
+void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
+{
+	if (PChar->PParty != NULL)
+	{
+		for (int i = 0; i < PChar->PParty->members.size(); i++)
+			{
+				CBattleEntity* PTarget = (CBattleEntity*)PChar->PParty->members[i];
+				if (distance(PChar->loc.p, PTarget->loc.p) <= 40)
+				{
+					UpdateEnmity(PTarget,1,1); 
+				}
+			}
+	}
+
+
+}
+
 
 void CEnmityContainer::UpdateEnmity(CBattleEntity* PChar,uint16 CE, uint16 VE)
 {

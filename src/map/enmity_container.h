@@ -28,7 +28,7 @@
 
 
 #include "../common/cbasetypes.h"
-
+#include "charentity.h"
 #include <map>
 
 
@@ -57,6 +57,7 @@ struct EnmityObject_t
 
 typedef std::map<uint32,EnmityObject_t*> EnmityList_t;
 
+
 #define MAX_ENMITY_LEVEL 95
 
 #define MAX_ENMITY_TYPE 2
@@ -74,16 +75,16 @@ public:
 	void	UpdateEnmityFromDamage(CBattleEntity* PChar,uint16 Damage);
 	void	UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, uint16 CureAmount);
 	void	UpdateEnmityFromAttack(CBattleEntity* PChar,uint16 Damage);
+	void	AddPartyEnmity(CCharEntity* PChar);
+
+	EnmityList_t	m_EnmityList;
 
 	CBattleEntity*	GetHighestEnmity();			// Decays VE and gets target with highest enmity
 	
 	CEnmityContainer();
    ~CEnmityContainer();
 	
-private:
-
-	EnmityList_t	m_EnmityList;
-
+	
 };
 
 #endif
