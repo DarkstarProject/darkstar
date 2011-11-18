@@ -469,7 +469,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 		if ((basDiff <= 0) || ((basDiff > 5) && (PChar->Container->getQuantity(0) == SYNTHESIS_FAIL)))		// результат синтеза хранится в quantity нулевой ячейки
 		{
-			continue;
+			return 0;
 		}
 
 		if (charSkill < maxSkill)
