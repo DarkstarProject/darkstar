@@ -49,41 +49,41 @@ public:
 	int32 warp(lua_State*);					// отправляет персонажа к его точке возрождения
 	int32 leavegame(lua_State*);			// персонаж покидает игру
 
-	int32 getHP(lua_State*);				// получаем текущее количество очков жизней
-	int32 addHP(lua_State*);				// добавляем очки жизней
-	int32 delHP(lua_State*);				// удаляем очки жизней
-	int32 setHP(lua_State*);				// устанавливаем количество очков жизней
-	int32 getMP(lua_State*);				// получаем текущее количество очков маны
-	int32 addMP(lua_State*);				// добавляем очки маны
-	int32 delMP(lua_State*);				// удаляем очки маны
-	int32 setMP(lua_State*);				// устанавливаем количество очков маны
-	int32 getTP(lua_State*);				// получаем текущее количество тактических очков
-	int32 addTP(lua_State*);				// добавляем тактические очки
-	int32 delTP(lua_State*);				// удаляем тактические очки
-	int32 setTP(lua_State*);				// устанавливаем текущее количество тактических очков
+	int32 getHP(lua_State*);				// Returns Entity Health
+	int32 addHP(lua_State*);				// Modify hp of Entity +/-
+	int32 delHP(lua_State*);				// Subtract hp of Entity
+	int32 setHP(lua_State*);				// Set hp of Entity to value
+	int32 getMP(lua_State*);				// Gets MP of Entity
+	int32 addMP(lua_State*);				// Modify mp of Entity +/-
+	int32 delMP(lua_State*);				// Subtract mp of Entity
+	int32 setMP(lua_State*);				// Set mp of Entity to value
+	int32 getTP(lua_State*);				// Get tp of Entity
+	int32 addTP(lua_State*);				// Modify tp of Entity +/-
+	int32 delTP(lua_State*);				// Subtract tp of Entity
+	int32 setTP(lua_State*);				// Set tp of Entity to value
 
-	int32 getMaxHP(lua_State*);				// получаем максимальное количество очков жизней
-	int32 getMaxMP(lua_State*);				// получаем максимальное количесвто очнов маны
+	int32 getMaxHP(lua_State*);				// Get max hp of entity
+	int32 getMaxMP(lua_State*);				// Get max mp of entity
 	
-	int32 getXPos(lua_State*);				// получение позиции по X координате
+	int32 getXPos(lua_State*);				// Get Entity X position
 	int32 getYPos(lua_State*);				// получение позиции по Y координате ("высота над уровнем моря")
-	int32 getZPos(lua_State*);				// получение позиции по Z координате
-	int32 getZone(lua_State*);				// получение значения текущей зоны
-	int32 setPos(lua_State*);				// устанавка позиции
+	int32 getZPos(lua_State*);				// Get Entity Z position
+	int32 getZone(lua_State*);				// Get Entity zone
+	int32 setPos(lua_State*);				// Set Entity position (zone,x,y,z)
 
-	int32 getAnimation(lua_State*);			// получаем анимацию сущности
-	int32 setAnimation(lua_State*);			// устанавливаем анимацию сущности
+	int32 getAnimation(lua_State*);			// Get Entity Animation
+	int32 setAnimation(lua_State*);			// Set Entity Animation
 
-	int32 addItem(lua_State*);				// добавляем предмет в инвентарь персонажа
-	int32 hasItem(lua_State*);				// проверяем наличие предмета в выбранном хранилище
-	int32 getFreeSlotsCount(lua_State*);	// получаем количество свободных ячеек в хранилище
-	int32 getRace(lua_State*);				// получение расы персонажа
-	int32 getNation(lua_State*);			// получение нации персонажа
+	int32 addItem(lua_State*);				// Add item to Entity inventory (additem(itemNumber,quantity))
+	int32 hasItem(lua_State*);				// Check to see if Entity has item in inventory (hasItem(itemNumber))
+	int32 getFreeSlotsCount(lua_State*);	// Gets value of free slots in Entity inventory
+	int32 getRace(lua_State*);				// Gets Race of Entity
+	int32 getNation(lua_State*);			// Gets Nation of Entity
 
-	int32 addQuest(lua_State*);				// добавление квеста
+	int32 addQuest(lua_State*);				// Add Quest to Entity Quest Log
 	int32 delQuest(lua_State*);				// удаляем квест (метод, необходимый для отладки скриптов)
-	int32 getQuestStatus(lua_State*);		// получение текущего состояния квеста
-	int32 completeQuest(lua_State*);		// установка квеста в соостояние "завершен"
+	int32 getQuestStatus(lua_State*);		// Get Quest Status
+	int32 completeQuest(lua_State*);		// Set a quest status to complete
 
 	int32 addMission(lua_State*);			// Add Mission
 	int32 delMission(lua_State*);			// Delete Mission from Mission Log
@@ -99,21 +99,21 @@ public:
 	int32 setRankPoints(lua_State*);		// Set Current Rank points
 	int32 addRankPoints(lua_State*);		// Add rank points to existing rank point total
 
-	int32 addKeyItem(lua_State*);			// добавляем ключевой предмет
-	int32 seenKeyItem(lua_State*);			// проверяем, было ли описание ключевого предмета прочитано
-	int32 unseenKeyItem(lua_State*);		// Attempt to remove the keyitem from the seen list
-	int32 hasKeyItem(lua_State*);			// проверяем наличие ключевого предмета
-	int32 delKeyItem(lua_State*);			// удаляем ключевой предмет
+	int32 addKeyItem(lua_State*);			// Add key item to Entity Key Item collection 
+	int32 seenKeyItem(lua_State*);			// If Key Item is viewed, add it to the seen key item collection
+	int32 unseenKeyItem(lua_State*);		// Attempt to remove the keyitem from the seen key item collection, only works on logout
+	int32 hasKeyItem(lua_State*);			// Checks Entity key item collection to see if Entity has the key item
+	int32 delKeyItem(lua_State*);			// Removes key item from Entity key item collection
 
-	int32 addSpell(lua_State*);				// добавляем заклинание в список выученых
+	int32 addSpell(lua_State*);				// Add spell to Entity spell list
 	int32 canLearnSpell(lua_State*);		// проверяем, может ли персонаж выучить заклинание (0 - может, остальные - код сообщения об ошибке)
-	int32 delSpell(lua_State*);				// удаляем заклинание из списка выученых
+	int32 delSpell(lua_State*);				// Remove spell from Entity spell list (debug purposes only?)
 
-	int32 getMainJob(lua_State*);			// получение основной профессии
-	int32 getMainLvl(lua_State*);			// получение уровня основной профессии
-	int32 getSubJob(lua_State*);			// получение дополнительной профессии
-	int32 getSubLvl(lua_State*);			// получение уровня дополнительной профессии
-	int32 unlockJob(lua_State*);			// разблокирование профессий и использования дополнительной профессии
+	int32 getMainJob(lua_State*);			// Returns Entity Main Job
+	int32 getMainLvl(lua_State*);			// Gets Entity Main Job Level
+	int32 getSubJob(lua_State*);			// Get Entity Sub Job 
+	int32 getSubLvl(lua_State*);			// Get Entity Sub Job Level
+	int32 unlockJob(lua_State*);			// Unlocks a job for the entity, sets job level to 1
 	int32 levelRestriction(lua_State*);		// устанавливаем/узнаем временное ограничение уровня
 
 	int32 showText(lua_State*);				// отображение текстовых диалогов без старта события

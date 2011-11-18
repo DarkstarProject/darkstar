@@ -23,7 +23,7 @@
 
 #include "../../common/lua/lunar.h"
 #include "../../common/showmsg.h"
-
+#include "../../common/utils.h"
 #include <string.h>
 
 #include <string>
@@ -39,12 +39,13 @@
 #include "../baseentity.h"
 #include "../battleentity.h"
 #include "../charentity.h"
+#include "../map.h"
 #include "../mobentity.h"
 #include "../spell.h"
 #include "../weapon_skill.h"
 #include "../vana_time.h"
 #include "../zoneutils.h"
-
+#include "../transport.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/message_basic.h"
@@ -81,6 +82,9 @@ int32 init()
 	lua_register(LuaHandle,"VanadielDayOfTheYear",luautils::VanadielDayOfTheYear);
 	lua_register(LuaHandle,"VanadielYear",luautils::VanadielYear);
 	lua_register(LuaHandle,"VanadielMonth",luautils::VanadielMonth);
+	lua_register(LuaHandle,"RunElevator",luautils::StartElevator);
+	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
+	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
 //	lua_register(LuaHandle,"SendToJail",luautils::SendToJail);
 
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
@@ -346,7 +350,7 @@ int32 OnServerStart()
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-  	snprintf(File,sizeof(File),"%s/globals/server.lua",LuaScriptDir);
+	snprintf(File,sizeof(File),"%s/globals/server.lua",LuaScriptDir);
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -383,7 +387,7 @@ int32 GetGlobalConstant(const int8* name, uint8 ZoneID)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-  	snprintf(File,sizeof(File),"%s/zones/%s/TextIDs.lua",LuaScriptDir,PZone->GetName());
+	snprintf(File,sizeof(File),"%s/zones/%s/TextIDs.lua",LuaScriptDir,PZone->GetName());
 
 	return 0;
 }
@@ -403,7 +407,7 @@ int32 OnZoneInitialise(uint8 ZoneID)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-  	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,PZone->GetName());
+	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,PZone->GetName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -442,7 +446,7 @@ int32 OnZoneIn(CCharEntity* PChar)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-  	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName());
+	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName());
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);
@@ -485,7 +489,7 @@ int32 OnRegionEnter(CCharEntity* PChar, uint32 RegionID)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-  	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName());
+	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName());
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);
@@ -551,10 +555,10 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
-		if (PNpc->name[0] != '_')
-		{
+	//	if (PNpc->name[0] != '_')
+		//{
 			ShowError("luautils::OnTrigger: %s\n",lua_tostring(LuaHandle,-1));
-		}
+		//}
 		return -1;
 	}
 
@@ -1052,35 +1056,35 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 
 int32 OnMobSpawn(CBaseEntity* PMob) 
 {       
-        //DSP_DEBUG_BREAK(if PKiller == NULL || PMob == NULL);
-        int8 File[255];
-        memset(File,0,sizeof(File));
+		//DSP_DEBUG_BREAK(if PKiller == NULL || PMob == NULL);
+		int8 File[255];
+		memset(File,0,sizeof(File));
 
-        snprintf(File,sizeof(File),"%s/zones/%s/mobs/%s.lua",LuaScriptDir,zoneutils::GetZone(PMob->getZone())->GetName(), PMob->GetName());
+		snprintf(File,sizeof(File),"%s/zones/%s/mobs/%s.lua",LuaScriptDir,zoneutils::GetZone(PMob->getZone())->GetName(), PMob->GetName());
 
-        if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-        {
-                return -1;
-        }
+		if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+		{
+				return -1;
+		}
 
-        lua_pushstring(LuaHandle,"onMobSpawn");
-        lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
-        if( lua_isnil(LuaHandle,-1) )
-        {
-                //ShowError("luautils::OnMobSpawn: undefined procedure onMobSpawn\n");
-                return -1;
-        }
+		lua_pushstring(LuaHandle,"onMobSpawn");
+		lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+		if( lua_isnil(LuaHandle,-1) )
+		{
+				//ShowError("luautils::OnMobSpawn: undefined procedure onMobSpawn\n");
+				return -1;
+		}
 
-        CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+		CLuaBaseEntity LuaMobEntity(PMob);
+		Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
 
-        if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
-        {
-                ShowError("luautils::OnMobSpawn: %s\n",lua_tostring(LuaHandle,-1));
-                return -1;
-        }
-        return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+		if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+		{
+				ShowError("luautils::OnMobSpawn: %s\n",lua_tostring(LuaHandle,-1));
+				return -1;
+		}
+		return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }
 
 /************************************************************************
@@ -1099,7 +1103,7 @@ int32 OnSpecialWeaponKill(CCharEntity* PChar)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-  	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
+	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
 	
 	snprintf(File,sizeof(File),"%s/globals/specialweapons/%s.lua",LuaScriptDir, PItem->getName());
 	
@@ -1221,7 +1225,7 @@ int32 SendToJail(CCharEntity* PChar)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-  	snprintf(File,sizeof(File),"%s/globals/gotojail.lua",LuaScriptDir);
+	snprintf(File,sizeof(File),"%s/globals/gotojail.lua",LuaScriptDir);
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);
@@ -1249,6 +1253,67 @@ int32 SendToJail(CCharEntity* PChar)
 		return -1;
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+}
+
+int32 StartElevator(lua_State* L)
+{
+	
+	uint32 elevatorID = (uint32)lua_tointeger(L, -1);
+	CTransportHandler* transport = CTransportHandler::getInstance();
+	transport->startElevator(elevatorID);
+	//CTransportHandler::startElevator(elevatorID);
+	return 0;
+
+}
+
+int32 luautils::GetServerVariable(lua_State *L)
+{
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isstring(L,-1));
+
+	int32 value = 0;
+
+	const int8* varname  = lua_tostring(L, -1); 
+	const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = 21000 AND varname = '%s' LIMIT 1;";
+
+	int32 ret = Sql_Query(SqlHandle,fmtQuery, varname);
+
+	if (ret != SQL_ERROR && 
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		value = (int32)Sql_GetIntData(SqlHandle,0); 
+	}
+
+	lua_pushinteger(L, value);
+	return 1;
+}
+
+int32 luautils::SetServerVariable(lua_State *L)
+{
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
+
+	const int8* varname =  lua_tostring(L,-2); 
+	int32 value = (int32)lua_tointeger(L,-1); 
+			
+	if (value == 0)
+	{
+		Sql_Query(SqlHandle,"DELETE FROM char_vars WHERE charid = 21000 AND varname = '%s' LIMIT 1;", varname);
+		return 0;
+	}
+
+	const int8* fmtQuery = "INSERT INTO char_vars SET charid = 21000, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
+	
+	Sql_Query(SqlHandle,fmtQuery,varname, value, value);
+		
+	lua_pushnil(L);
+	return 1;
 }
 
 

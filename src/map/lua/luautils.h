@@ -59,8 +59,10 @@ namespace luautils
 	int32 VanadielDayOfTheMonth(lua_State*);									// Gets day of the month (Feb 6 = Day 6)
 	int32 VanadielYear(lua_State*);												// Gets the current Vanadiel Year
 	int32 VanadielMonth(lua_State*);											// Gets the current Vanadiel Month 
-	
+	int32 StartElevator(lua_State*); 
 	int32 GetGlobalConstant(const int8* name, uint8 ZoneID);					// Get Constant Values using TextID's
+	int32 GetServerVariable(lua_State*);
+	int32 SetServerVariable(lua_State *);
 	int32 OnServerStart();														// triggers when game server starts up
 		
 	int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone
