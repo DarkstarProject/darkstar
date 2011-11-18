@@ -71,7 +71,7 @@ void CTransportHandler::InitializeElevators()
 			elevator.isPermanent = (Sql_GetUIntData(SqlHandle,5) != 0);
 
 			elevator.movetime = ((elevator.UpperDoor == NULL)||(elevator.LowerDoor == NULL) ? 0 : 3);
-			elevator.interval = ((elevator.UpperDoor == NULL)||(elevator.LowerDoor == NULL)||(!elevator.isPermanent) ? 4 : 8);
+			elevator.interval = ((elevator.UpperDoor == NULL)||(elevator.LowerDoor == NULL)||(!elevator.isPermanent) ? 8 : 8);
 
 			if (elevator.Elevator != NULL)
 			{
@@ -112,25 +112,51 @@ void CTransportHandler::TransportTimer()
 	}
 }
 
+
+void CTransportHandler::startElevator(int32 elevatorID)
+{
+		for(uint32 i = 0; i < ElevatorList.size(); ++i) 
+		{
+			
+			Elevator_t * elevator = &ElevatorList.at(i);
+
+			if (elevator->id == elevatorID)
+			{
+				CTransportHandler::startElevator(elevator);
+				return;
+			}
+		}
+}
+
 void CTransportHandler::startElevator(Elevator_t * elevator)
 {
 	uint32 timestamp = CVanaTime::getInstance()->getSysTime() - 1009810800;
 
 	elevator->Elevator->animation ^= 1; 
-
+	
 	elevator->Elevator->name[8] = 8;
 	WBUFL(&elevator->Elevator->name[0],4) = timestamp;
 	//elevator->Elevator->name.replace(4,4,(const char*)&(timestamp),0,4); // 
-
+  
 	if ((elevator->LowerDoor != NULL) && (elevator->UpperDoor != NULL)) 
 	{
-		if (elevator->Elevator->animation == 11) 
+		if (elevator->Elevator->animation == ANIMATION_ELEVATOR_DOWN) 
 		{
 			elevator->LowerDoor->animation = ANIMATION_CLOSE_DOOR;
 			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));
+	        if (!elevator->isPermanent) 
+			{
+				elevator->UpperDoor->animation = ANIMATION_OPEN_DOOR;
+				zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN));
+			}
 		} else {
 			elevator->UpperDoor->animation = ANIMATION_CLOSE_DOOR;
 			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN));
+			if (!elevator->isPermanent) 
+			{
+				elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
+				zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));
+			}
 		}
 	}
 	zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->Elevator,ENTITY_SPAWN));
@@ -138,7 +164,13 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
 
 void CTransportHandler::arrivElevator(Elevator_t * elevator)
 {
-	if (elevator->Elevator->animation == 10)
+	
+	
+	if (elevator->id == 17)
+	{
+		elevator->interval = elevator->interval;
+	}
+	if (elevator->Elevator->animation == ANIMATION_ELEVATOR_DOWN)
 	{
 		elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
 		zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));

@@ -53,7 +53,7 @@ class CTransportHandler
 public:
 
 	static	CTransportHandler * getInstance();
-
+	void startElevator(int32 elevatorID);
 	void TransportTimer();
 
 private:
@@ -64,6 +64,7 @@ private:
 
 	void InitializeElevators();
 
+	
 	void startElevator(Elevator_t *);
 	void arrivElevator(Elevator_t *);
 
