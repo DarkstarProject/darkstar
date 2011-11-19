@@ -25,6 +25,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	function testflag(set,flag)
+		return (set % (2*flag) >= flag)
+	end
 	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
 	if (MakingHeadlines == 0) then
 		player:startEvent(0x0299); -- Quest Start

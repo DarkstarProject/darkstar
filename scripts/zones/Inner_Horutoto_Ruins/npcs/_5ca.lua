@@ -2,7 +2,7 @@
 --	Area: Inner Horutoto Ruins
 --	NPC:  Mahogany Door
 --  Involved In Quest: Making Headlines
---	Working 90%
+--	Working 100%
 --  Unable to find EventID for Making Headlines quest. Used dialog ID instead.
 -----------------------------------
 
@@ -25,6 +25,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	function testflag(set,flag)
+		return (set % (2*flag) >= flag)
+	end
 	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
 	if (MakingHeadlines == 1) then
 		prog = player:getVar("QuestMakingHeadlines_var");
@@ -36,7 +39,7 @@ function onTrigger(player,npc)
 		--	16 = Mahogany Door
 		if (testflag(tonumber(prog),16) == false and testflag(tonumber(prog),8) == true) then
 			player:messageSpecial(7208,1); -- Confirm Story
-			player:setVar("QuestMakingHeadlines_var",prog+door);
+			player:setVar("QuestMakingHeadlines_var",prog+16);
 		else
 			player:startEvent(0x002c); -- "The door is firmly shut"
 		end
