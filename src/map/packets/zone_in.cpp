@@ -79,6 +79,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	WBUFB(data,(0x1E)-4) = PChar->GetHPP();
 	WBUFB(data,(0x1F)-4) = PChar->animation;
 
+	WBUFL(data,(0x21)-4) = PChar->look.size;
 	uint32 time  = CVanaTime::getInstance()->getSysTime(); 
 
 	WBUFL(data,(0x38)-4) = time;
