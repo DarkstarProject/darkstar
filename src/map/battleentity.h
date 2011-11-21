@@ -61,7 +61,7 @@ enum ECOSYSTEM
 	SYSTEM_VORAGEAN			= 21,
 };
 
-#define MAX_MOB_FAMILY	270
+#define MAX_MOB_FAMILY	300
 
 enum JOBTYPE
 {
@@ -343,6 +343,7 @@ public:
 	void		setDespawnTimer(int32 duration);
 	void		setSpawnTime();
 
+	bool		IsMageJob();					// Determines if job is mage job or not
 	uint8			m_ModelSize;			// размер модели сущности, для расчета дальности физической атаки
 	ECOSYSTEM		m_EcoSystem;			// эко-система сущности
 	CItemWeapon*	m_Weapons[4];			// четыре основных ячейки, используемыж для хранения оружия (только оружия)

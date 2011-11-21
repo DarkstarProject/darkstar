@@ -302,3 +302,21 @@ void CBattleEntity::setDespawnTimer(int32 duration)
 {
 	m_DespawnTimer = (duration > 0 ? (duration * 1000) + gettick() : duration);
 }
+
+bool CBattleEntity::IsMageJob()
+{
+	switch(m_mjob)
+	{
+		case JOB_WHM:
+		case JOB_BLM:
+		case JOB_RDM:
+		case JOB_PLD:
+		case JOB_DRK:
+		case JOB_SMN:
+		case JOB_BLU:
+		case JOB_SCH:
+			return true;
+			break;
+	};
+	return false;
+}
