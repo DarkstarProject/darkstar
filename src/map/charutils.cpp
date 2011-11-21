@@ -292,7 +292,8 @@ void LoadChar(CCharEntity* PChar)
 	const int8* fmtQuery = "SELECT charname, pos_zone, pos_prevzone, pos_rot, pos_x, pos_y, pos_z, boundary, \
 								   home_zone, home_rot, home_x, home_y, home_z, nation, quests, keyitems, \
 								   spells, zones, inventory, safe, storage, locker, satchel, sack, \
-								   missions, rankSandoria, rankBastok, rankWindurst, rankPoints \
+								   missions, rankSandoria, rankBastok, rankWindurst, rankPoints, \
+								   fameSandoria, fameBastok, fameWindurst, fameNorg \
 							FROM chars \
 							WHERE charid = %u;";
 
@@ -366,6 +367,11 @@ void LoadChar(CCharEntity* PChar)
 		PChar->profile.rank[2] = (uint16)Sql_GetIntData(SqlHandle,27);
 		
 		PChar->profile.rankpoints = (uint16)Sql_GetIntData(SqlHandle,28);
+
+		PChar->profile.fame[0] =  (uint16)Sql_GetIntData(SqlHandle,28);  //Sandoria
+		PChar->profile.fame[1] =  (uint16)Sql_GetIntData(SqlHandle,29);  //Bastok
+		PChar->profile.fame[2] =  (uint16)Sql_GetIntData(SqlHandle,30);  //Windurst
+		PChar->profile.fame[3] =  (uint16)Sql_GetIntData(SqlHandle,31);  //Norg
 	}
 
 	fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged \
@@ -1978,12 +1984,12 @@ void SaveCharPosition(CCharEntity* PChar)
 
 void SaveQuestsList(CCharEntity* PChar)
 {
-	const int8* fmtQuery = "UPDATE chars SET quests = '%s' WHERE charid = %u;";
+	const int8* fmtQuery = "UPDATE chars SET quests = '%s',fameSandoria = %u, fameBastok = %u, fameWindurst = %u, fameNorg = %u WHERE charid = %u;";
 
 	int8 questslist[sizeof(PChar->m_questLog)*2+1];
 	Sql_EscapeStringLen(SqlHandle,questslist,(const int8*)PChar->m_questLog,sizeof(PChar->m_questLog));
 
-	Sql_Query(SqlHandle,fmtQuery,questslist,PChar->id);
+	Sql_Query(SqlHandle,fmtQuery,questslist,PChar->id, PChar->profile.fame[0],PChar->profile.fame[1],PChar->profile.fame[2],PChar->profile.fame[3]);
 }
 
 /************************************************************************

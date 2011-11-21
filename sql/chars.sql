@@ -1,3 +1,17 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : DarkStar
+Source Server Version : 50515
+Source Host           : localhost:3306
+Source Database       : dspdb
+
+Target Server Type    : MYSQL
+Target Server Version : 50515
+File Encoding         : 65001
+
+Date: 2011-11-21 09:36:29
+*/
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -22,10 +36,14 @@ CREATE TABLE `chars` (
   `home_y` float(7,3) NOT NULL DEFAULT '0.000',
   `home_z` float(7,3) NOT NULL DEFAULT '0.000',
   `nation` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `rankPoints` int(11) DEFAULT '0',
-  `rankSandoria` tinyint(1) DEFAULT '1',
-  `rankBastok` tinyint(1) DEFAULT '1',
-  `rankWindurst` tinyint(1) DEFAULT '1',
+  `rankPoints` int(11) NOT NULL DEFAULT '0',
+  `rankSandoria` tinyint(1) NOT NULL DEFAULT '1',
+  `rankBastok` tinyint(1) NOT NULL DEFAULT '1',
+  `rankWindurst` tinyint(1) NOT NULL DEFAULT '1',
+  `fameSandoria` int(11) NOT NULL DEFAULT '0',
+  `fameBastok` int(11) NOT NULL DEFAULT '0',
+  `fameWindurst` int(11) NOT NULL DEFAULT '0',
+  `fameNorg` int(11) NOT NULL DEFAULT '0',
   `missions` blob,
   `quests` blob,
   `keyitems` blob,
