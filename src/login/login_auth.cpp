@@ -120,17 +120,17 @@ int32 login_parse(int32 fd)
 
 				if( status & ACCST_NORMAL )
 				{
-					fmtQuery = "SELECT * FROM accounts_sessions WHERE accid = %d AND client_port <> 0";
+					//fmtQuery = "SELECT * FROM accounts_sessions WHERE accid = %d AND client_port <> 0";
 
-					int32 ret = Sql_Query(SqlHandle,fmtQuery,sd->accid);
+					//int32 ret = Sql_Query(SqlHandle,fmtQuery,sd->accid);
 
-					if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 )
-					{
-						WBUFB(session[fd]->wdata,0) = 0x05; // SESSION has already activated
-						WFIFOSET(fd,33);
-						do_close_login(sd,fd);
-						return 0;
-					}
+					//if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 )
+					//{
+					//	WBUFB(session[fd]->wdata,0) = 0x05; // SESSION has already activated
+					//	WFIFOSET(fd,33);
+					//	do_close_login(sd,fd);
+					//	return 0;
+					//}
 					fmtQuery = "UPDATE accounts SET accounts.timelastmodify = NULL WHERE accounts.id = %d";
 					Sql_Query(SqlHandle,fmtQuery,sd->accid);
 

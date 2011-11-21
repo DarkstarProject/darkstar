@@ -275,7 +275,7 @@ int32 lobbydata_parse(int32 fd)
 				
 				/////////////////////////////////////////////////////////////////////////////////////////
 				// if client got error "no responce from map-server" we need to delete old session record
-				fmtQuery = "DELETE FROM accounts_sessions WHERE accid = %u and client_port = 0";
+				fmtQuery = "DELETE FROM accounts_sessions WHERE accid = %u";
 				Sql_Query(SqlHandle,fmtQuery,sd->accid);
 				////////////////////////////////////////////////////////////////////////////////////////
 				int8 session_key[sizeof(key3)*2+1];
