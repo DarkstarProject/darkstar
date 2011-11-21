@@ -31,7 +31,6 @@
 #include <ws2tcpip.h>
 #include <stdlib.h>
 #include <stdio.h>
-
 #include "search.h"
 #include "tcp_request.h"
 
@@ -68,6 +67,8 @@ enum SEARCHTYPE
 	SEARCH_FLAGS2		 = 0x14,	// 10100
 	SEARCH_LANGUAGE		 = 0x15,	// 10101
 };
+
+ppuint32 __stdcall TCPComm(void* lpParam);
 
 extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest);
