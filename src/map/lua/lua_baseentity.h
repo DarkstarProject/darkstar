@@ -46,8 +46,10 @@ public:
 		return m_PBaseEntity;
 	}
 
-	int32 warp(lua_State*);					// отправляет персонажа к его точке возрождения
-	int32 leavegame(lua_State*);			// персонаж покидает игру
+	int32 warp(lua_State*);					// Returns Character to home point
+	int32 leavegame(lua_State*);			// Character leaving game
+
+	int32 getID(lua_State *L);				// Gets Entity Id
 
 	int32 getHP(lua_State*);				// Returns Entity Health
 	int32 addHP(lua_State*);				// Modify hp of Entity +/-
@@ -66,7 +68,7 @@ public:
 	int32 getMaxMP(lua_State*);				// Get max mp of entity
 	
 	int32 getXPos(lua_State*);				// Get Entity X position
-	int32 getYPos(lua_State*);				// получение позиции по Y координате ("высота над уровнем моря")
+	int32 getYPos(lua_State*);				// Get Entity Y position
 	int32 getZPos(lua_State*);				// Get Entity Z position
 	int32 getZone(lua_State*);				// Get Entity zone
 	int32 setPos(lua_State*);				// Set Entity position (zone,x,y,z)
@@ -81,7 +83,7 @@ public:
 	int32 getNation(lua_State*);			// Gets Nation of Entity
 
 	int32 addQuest(lua_State*);				// Add Quest to Entity Quest Log
-	int32 delQuest(lua_State*);				// удаляем квест (метод, необходимый для отладки скриптов)
+	int32 delQuest(lua_State*);				// Remove quest from quest log (should be used for debugging only)
 	int32 getQuestStatus(lua_State*);		// Get Quest Status
 	int32 completeQuest(lua_State*);		// Set a quest status to complete
 
@@ -106,7 +108,7 @@ public:
 	int32 delKeyItem(lua_State*);			// Removes key item from Entity key item collection
 
 	int32 addSpell(lua_State*);				// Add spell to Entity spell list
-	int32 canLearnSpell(lua_State*);		// проверяем, может ли персонаж выучить заклинание (0 - может, остальные - код сообщения об ошибке)
+	int32 canLearnSpell(lua_State*);		// Check to see if character can learn spell, 0 if so
 	int32 delSpell(lua_State*);				// Remove spell from Entity spell list (debug purposes only?)
 
 	int32 getMainJob(lua_State*);			// Returns Entity Main Job
@@ -114,82 +116,80 @@ public:
 	int32 getSubJob(lua_State*);			// Get Entity Sub Job 
 	int32 getSubLvl(lua_State*);			// Get Entity Sub Job Level
 	int32 unlockJob(lua_State*);			// Unlocks a job for the entity, sets job level to 1
-	int32 levelRestriction(lua_State*);		// устанавливаем/узнаем временное ограничение уровня
+	int32 levelRestriction(lua_State*);		// Establish/return current level restriction
 
-	int32 showText(lua_State*);				// отображение текстовых диалогов без старта события
-	int32 messageSpecial(lua_State*);		// отправляем персонажу специальное сообщение
-	int32 messageSystem(lua_State*);		// отправляем персонажу системное сообщение
+	int32 showText(lua_State*);				// Displays Dialog for npc
+	int32 messageSpecial(lua_State*);		// Sends Special Message Dialog
+	int32 messageSystem(lua_State*);		// Sends System Message Dialog
 
-	int32 release(lua_State*);				// прерывание события
-	int32 startEvent(lua_State*);			// запуск созданного события
-	int32 updateEvent(lua_State*);			// обновление параметров события
+	int32 release(lua_State*);				// Stops event
+	int32 startEvent(lua_State*);			// Begins Event
+	int32 updateEvent(lua_State*);			// Updates event 
 
-	int32 sendMenu(lua_State*);				// отправляем персонажу меню (AH,Raise,Tractor,MH etc)
-	int32 sendGuild(lua_State*);			// отправляем персонажу меню магазина гильдии
+	int32 sendMenu(lua_State*);				// Displays a menu (AH,Raise,Tractor,MH etc)
+	int32 sendGuild(lua_State*);			// Sends guild shop menu
 
-	int32 getVar(lua_State*);				// сохраняем временные переменные  
-	int32 setVar(lua_State*);				// получаем значения временных переменных
+	int32 getVar(lua_State*);				// Returns a character variable
+	int32 setVar(lua_State*);				// Sets a character variable
 
-	int32 setHomePoint(lua_State*);			// устанавливаем точку возрождения (home point) 
-	int32 tradeComplete(lua_State*);		// завершаем обмен с npc
+	int32 setHomePoint(lua_State*);			// Sets character's homepoint  
+	int32 tradeComplete(lua_State*);		// Complete trade with an npc
 
-	int32 getTitle(lua_State*);				// получаем текущий титул пероснажа (title)
-	int32 setTitle(lua_State*);				// устанавливаем текущий титул персонажа (title)
+	int32 getTitle(lua_State*);				// Gets character's title
+	int32 setTitle(lua_State*);				// Sets character's title
 
-	int32 getGil(lua_State*);				// получаем текущее количество gil
-	int32 addGil(lua_State*);				// добавляем количество gil
-	int32 delGil(lua_State*);				// удаляем количество gil
-	int32 setGil(lua_State*);				// устанавливаем количество gil
+	int32 getGil(lua_State*);				// Gets character's gil amount
+	int32 addGil(lua_State*);				// adds gil to character
+	int32 delGil(lua_State*);				// removes gil from character
+	int32 setGil(lua_State*);				// sets gil to value
 
-	int32 getEquipID(lua_State*);			// получаем ID экипированного предмета в указанной ячейке
+	int32 getEquipID(lua_State*);			// Gets the Item Id of the item in specified slot
 
-	int32 createShop(lua_State*);			// подготавливаем контейнер для работы магазина
-	int32 addShopItem(lua_State*);			// добавляем предмет в контейнер (на прилавок магазина ^^) максимум 16 предметов
+	int32 createShop(lua_State*);			// Prepare the container for work of shop ??
+	int32 addShopItem(lua_State*);			// Adds item to shop container (16 max)
 
-	int32 getFame(lua_State*);				// получаем известность персонажа
-	int32 setFame(lua_State*);				// устанавливаем известность персонажа
-	int32 addFame(lua_State*);				// увеличиваем известность персонажа
-	int32 getFameLevel(lua_State*);			// получаем уровень известности персонажа
+	int32 getFame(lua_State*);				// Gets Fame
+	int32 setFame(lua_State*);				// Sets Fame
+	int32 addFame(lua_State*);				// Adds Fame
+	int32 getFameLevel(lua_State*);			// Gets Fame Level for specified nation
 
-	int32 setStatus(lua_State*);			// устанавливаем статус сущности (с ним нужно быть аккурантее, изменения могут привести к неожиданным результатам)
+	int32 setStatus(lua_State*);			// Sets Character's Status
 
 	int32 sendRaise(lua_State*);			// send raise request to char
 	int32 sendTractor(lua_State*);			// send tractor request to char
 
-	int32 updateEnmity(lua_State*);			// обновляем ненависть монстров к указанной цели
+	int32 updateEnmity(lua_State*);			// Adds Enmity to player for specified mob
 
-	int32 addStatusEffect(lua_State*);		// добавляем статус эффект
-	int32 hasStatusEffect(lua_State*);		// проверяем наличие статус эффекта
-	int32 delStatusEffect(lua_State*);		// удаляем статус эффект
-	int32 eraseStatusEffect(lua_State*);	// удаляем первый отрицательный эффект
-	int32 dispelStatusEffect(lua_State*);	// удаляем первый положительный эффект
+	int32 addStatusEffect(lua_State*);		// Adds status effect to character
+	int32 hasStatusEffect(lua_State*);		// Checks to see if character has specified effect
+	int32 delStatusEffect(lua_State*);		// Removes Status Effect 
+	int32 eraseStatusEffect(lua_State*);	// Used with "Erase" spell 
+	int32 dispelStatusEffect(lua_State*);	// Used with "Dispel" spell
 	int32 addPartyEffect(lua_State*);		// Adds Effect to all party members
 	int32 removePartyEffect(lua_State*);	// Removes Effect from all party members
-
-
 
 	int32 addMod(lua_State*);				// Adds Modifier Value
 	int32 getMod(lua_State*);				// Retrieves Modifier Value
 	int32 delMod(lua_State*);				// Subtracts Modifier Value
 	int32 setMod(lua_State*);				// Sets Modifier Value
 
-	int32 addExp(lua_State*);				// добавляем персонажу опыт (других функций для работы с опытом не будет)
+	int32 addExp(lua_State*);				// Add to Character Experience
 
-	int32 spawnPet(lua_State*);				// призыв питомца
-	int32 despawnPet(lua_State*);			// освобождение питомца
+	int32 spawnPet(lua_State*);				// Calls Pet
+	int32 despawnPet(lua_State*);			// Despawns Pet
 
-	int32 needToZone(lua_State*);			// проверяем, покидал ли персонаж зону после поднятия флага необходимости ее покинуть
+	int32 needToZone(lua_State*);			// Check if player has zoned since the flag has been raised
 
-	int32 showPosition(lua_State*);			// отображаем местоположение персонажа
-	int32 injectPacket(lua_State*);			// отправляем персонажу пакет, сохраненный в файле (функция необходима на этапе разработки)
+	int32 showPosition(lua_State*);			// Display current position of character
+	int32 injectPacket(lua_State*);			// Send the character a packet kept in a file 
 	
-	int32 getContainerSize(lua_State*);     // Gets the current capacity of a container
-	int32 increaseContainerSize(lua_State*);// Increase container size
-	int32 decreaseContainerSize(lua_State*);// Decreases a containers size -- Should be used for testing only
+	int32 getContainerSize(lua_State*);			// Gets the current capacity of a container
+	int32 increaseContainerSize(lua_State*);	// Increase container size
+	int32 decreaseContainerSize(lua_State*);	// Decreases a containers size -- Should be used for testing only
 
-	int32 sendToJail(lua_State*); 
+	int32 sendToJail(lua_State*);			// Transports naughty player to Mordion Gaol
 
-	void UpdateHealth(CCharEntity* PChar, CZone* PZone);
+	void UpdateHealth(CCharEntity* PChar, CZone* PZone); // Sends health packet update to character 
 };
 
 #endif

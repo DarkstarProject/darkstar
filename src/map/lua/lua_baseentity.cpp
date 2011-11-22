@@ -2837,6 +2837,13 @@ void CLuaBaseEntity::UpdateHealth(CCharEntity* PChar, CZone* PZone)
 	}
 }
 
+inline int32 CLuaBaseEntity::getID(lua_State *L)
+{
+	lua_pushinteger( L, m_PBaseEntity->id );
+	return 1;
+}
+
+
 
 //==========================================================//
 
@@ -2845,6 +2852,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 {
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,warp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),				
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),				
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delHP),
