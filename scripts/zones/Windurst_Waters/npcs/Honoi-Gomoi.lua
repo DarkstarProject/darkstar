@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Waters
 -- NPC: Honoi-Gumoi
--- Involved In Quest: Crying Over Onions
+-- Involved In Quest: Crying Over Onions, Hat in Hand
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
@@ -15,18 +15,14 @@ require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-CryingOverOnionsVar = player:getVar("CryingOverOnions");
-
+	CryingOverOnionsVar = player:getVar("CryingOverOnions");
 	if (CryingOverOnions == 1) then
 		count = trade:getItemCount();
 		StarSpinel = trade:hasItemQty(1149,1);
-
 		if (StarSpinel == true and count == 1) then
 			player:startEvent(0x0307,0,1149);
 		end	
-	end
-	
+	end	
 end; 
 
 -----------------------------------
@@ -34,18 +30,21 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-CryingOverOnions = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
-WildCard   = player:getQuestStatus(WINDURST,WILD_CARD);
-NeedToZone = player:needToZone();
-Fame       = player:getFameLevel(WINDURST);
-
-	if (WildCard == QUEST_COMPLETED) then
+	function testflag(set,flag)
+		return (set % (2*flag) >= flag)
+	end
+	CryingOverOnions = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
+	WildCard   = player:getQuestStatus(WINDURST,WILD_CARD);
+	NeedToZone = player:needToZone();
+	Fame       = player:getFameLevel(WINDURST);
+	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
+	if (hatstatus == 1 and testflag(tonumber(player:getVar("QuestHatInHand_var")),2) == false) then
+		player:startEvent(0x003b); -- Show Off Hat
+	elseif (WildCard == QUEST_COMPLETED) then
 		player:startEvent(0x030f);
 	elseif (WildCard == QUEST_ACCEPTED) then
 		WildCardVar = player:getVar("WildCard");
 		JokerCard   = player:hasKeyItem(264);
-		
 		if (WildCardVar == 3 and JokerCard == false) then
 			player:startEvent(0x030e);
 		else
@@ -59,7 +58,6 @@ Fame       = player:getFameLevel(WINDURST);
 		end
 	elseif (CryingOverOnions == QUEST_ACCEPTED) then
 		CryingOverOnionsVar = player:getVar("CryingOverOnions");
-		
 		if (CryingOverOnionsVar == 3) then
 			player:startEvent(0x0308);
 		elseif (CryingOverOnionsVar == 2) then
@@ -70,9 +68,8 @@ Fame       = player:getFameLevel(WINDURST);
 			player:startEvent(0x0306,0,1149);
 		end
 	else
-		--player:startEvent(0x028a);
+		player:startEvent(0x028a);
 	end
-	
 end;
 
 -----------------------------------
@@ -92,7 +89,6 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
 	if (csid == 0x0306) then
 		player:setVar("CryingOverOnions",1);
 	elseif (csid == 0x0307) then
@@ -113,8 +109,10 @@ function onEventFinish(player,csid,option)
 		player:setTitle(DREAM_DWELLER);
 		player:setVar("WildCard",0);
 		player:needToZone(true);
+	elseif (csid == (0x003b) then  -- Show Off Hat
+		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+2);
+		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
 	end
-
 end;
 
 

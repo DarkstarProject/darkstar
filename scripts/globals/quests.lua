@@ -217,6 +217,7 @@ THE_WONDROUS_WHATCHAMACALLIT    = 90;
 --  Windurst
 -----------------------------------
 
+HAT_IN_HAND						= 0; -- + --
 A_FEATHER_IN_ONE_S_CAP          = 1;
 A_CRISIS_IN_THE_MAKING          = 2;
 MAKING_AMENDS                   = 3;
@@ -230,14 +231,14 @@ STAR_STRUCK                     = 10;
 BLAST_FROM_THE_PAST             = 11;
 A_SMUDGE_ON_ONE_S_RECORD        = 12;
 CHASING_TALES                   = 13;
-FOOD_FOR_THOUGHT                = 14;
+FOOD_FOR_THOUGHT                = 14; -- + --
 OVERNIGHT_DELIVERY              = 15;
 WATER_WAY_TO_GO                 = 16;
 BLUE_RIBBON_BLUES               = 17;
 THE_ALL_NEW_C_3000              = 18;
 THE_POSTMAN_ALWAYS_KO_S_TWICE   = 19; -- + --
 EARLY_BIRD_CATCHES_THE_BOOKWORM = 20;
-CATCH_IT_IF_YOU_CAN             = 21;
+CATCH_IT_IF_YOU_CAN             = 21; -- + --
 
 ALL_AT_SEA                      = 23;
 THE_ALL_NEW_C_2000              = 24;
@@ -253,8 +254,8 @@ CURSES_FOILED_AGAIN_2           = 33;
 MANDRAGORA_MAD                  = 34;
 TO_BEE_OR_NOT_TO_BEE            = 35;
 TRUTH_JUSTICE_AND_THE_ONION_WAY = 36; -- + --
-MAKING_HEADLINES                = 37;
-SCOOPED                         = 38;
+MAKING_HEADLINES                = 37; -- + --
+SCOOPED                         = 38; 
 CREEPY_CRAWLIES                 = 39; -- + --
 KNOW_ONE_S_ONIONS               = 40; -- + --
 INSPECTOR_S_GADGET              = 41; -- + --

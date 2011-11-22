@@ -1,9 +1,8 @@
 -----------------------------------
 --	Area: Windurst Waters
 --	NPC:  Kyume-Romeh
---  Involved In Quest: Making Headlines
+--  Involved In Quest: Making Headlines, Hat in Hand
 --	Working 100%
---  Note: "Hat in Hand" quests should override active "Making Headlines" quest.
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
@@ -28,8 +27,11 @@ function onTrigger(player,npc)
 	function testflag(set,flag)
 		return (set % (2*flag) >= flag)
 	end
+	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
 	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
-	if (MakingHeadlines == 1) then
+	if (hatstatus == 1 and testflag(tonumber(player:getVar("QuestHatInHand_var")),16) == false) then
+		player:startEvent(0x003c); -- Show Off Hat
+	elseif (MakingHeadlines == 1) then
 		prog = player:getVar("QuestMakingHeadlines_var");
 		-- 	Variable to track if player has talked to 4 NPCs and a door
 		-- 	1 = Kyume
@@ -73,6 +75,9 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(WINDURST_WATERS_SCOOP);
 		player:messageSpecial(KEYITEM_OBTAINED,WINDURST_WATERS_SCOOP);	
 		player:setVar("QuestMakingHeadlines_var",prog+1); 
+	elseif (csid == 0x003c) then  -- Show Off Hat
+		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+16);
+		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
 	end
 end;
 

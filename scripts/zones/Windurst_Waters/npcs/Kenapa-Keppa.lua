@@ -1,7 +1,7 @@
 -----------------------------------
 --	Area: Windurst Waters
 --	NPC:  Kenapa Keppa
---	Part of Quest Food For Thought
+--	Involved in Quest: Food For Thought, Hat in Hand
 --	Working 100%
 -----------------------------------
 
@@ -43,20 +43,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	function testflag(set,flag)
+		return (set % (2*flag) >= flag)
+	end
 	foodstatus = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
-	if (foodstatus == 0) then
+	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
+	if (hatstatus == 1 and testflag(tonumber(player:getVar("QuestHatInHand_var")),4) == false) then
+		player:startEvent(0x0038); -- Show Off Hat
+	elseif (foodstatus == 0) then
 		prog = player:getVar("QuestFoodForThought_var"); 
-		-- 	Variable to track quest progress
-		-- 	1 = Ohbiru: Hungry
-		--	2 = Kenapa: Hungry
-		--  4 = Kerutoto: Quest Refused 
-		-- 	8 = Ohbiru: Order		
-		--	16 = Kenapa: Stammer 1/3
-		--	32 = Kenapa: Stammer 2/3
-		--	64 = Kenapa: Order 3/3
-		--  128 = Ohbiru: Gave Food
-		--  256 = Kenapa: Gave Food
-		--  512 = Kerutoto: Gave Food
 		if (testflag(tonumber(prog),2) == false) then 
 			player:startEvent(0x0136); -- Hungry script
 			player:setVar("QuestFoodForThought_var",prog+2);
@@ -116,6 +111,9 @@ function onEventFinish(player,csid,option)
 		prog = player:getVar("QuestFoodForThought_var");
 		player:setVar("QuestFoodForThought_var",prog+128);
 		player:tradeComplete(trade);
+	elseif  (csid == 0x0038) then  -- Show Off Hat
+		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+4);
+		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);		
 	end
 end;
 
