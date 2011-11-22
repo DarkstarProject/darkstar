@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50515
 File Encoding         : 65001
 
-Date: 2011-11-21 10:39:40
+Date: 2011-11-21 19:42:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,7 +48,7 @@ INSERT INTO `elevators` VALUES ('12', 'Pso\'Xja - Disappearing tiles - 4', '1681
 INSERT INTO `elevators` VALUES ('13', 'Pso\'Xja - Disappearing tiles - 1', '16814513', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('14', 'Pso\'Xja - Disappearing tiles - 2', '16814514', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('15', 'Fort Ghelsba - Elevator', '17354988', '17354990', '17354989', '0', '0');
-INSERT INTO `elevators` VALUES ('16', 'Palborough Mines - Elevator', '17363338', '17363332', '17363331', '0', '0');
+INSERT INTO `elevators` VALUES ('16', 'Palborough Mines - Elevator', '17363339', '17363333', '17363332', '0', '0');
 INSERT INTO `elevators` VALUES ('17', 'Davoi - Elevator', '17387992', '17387995', '17387993', '0', '0');
 INSERT INTO `elevators` VALUES ('18', 'Metalworks - Elevator', '17748035', '17748036', '17748037', '1', '1');
 INSERT INTO `elevators` VALUES ('19', 'Metalworks - Elevator', '17748038', '17748039', '17748040', '1', '1');
