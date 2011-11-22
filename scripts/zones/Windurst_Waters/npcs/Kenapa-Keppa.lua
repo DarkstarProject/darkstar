@@ -58,7 +58,20 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x0136); -- Hungry script
 		end
-	elseif (foodstatus == 1) then
+	elseif (foodstatus == 1 and testflag(tonumber(player:getVar("QuestFoodForThought_var")),64) == false and testflag(tonumber(player:getVar("QuestFoodForThought_var")),256) == false) then
+		-- 	Variable to track quest progress
+		-- 	1 = Ohbiru: Hungry
+		--	2 = Kenapa: Hungry
+		--  4 = Kerutoto: Quest Refused 
+		-- 	8 = Ohbiru: Order		
+		--	16 = Kenapa: Stammer 1/3
+		--	32 = Kenapa: Stammer 2/3
+		--	64 = Kenapa: Order 3/3
+		--  128 = Ohbiru: Gave Food
+		--  256 = Kenapa: Gave Food
+		--  512 = Kerutoto: Gave Food
+		--  1024 = Kerutoto: Initial Chat
+
 		prog = player:getVar("QuestFoodForThought_var"); 
 		if (testflag(tonumber(prog),16) == false) then 
 			player:startEvent(0x013e); -- Stammer 1/3
@@ -69,18 +82,23 @@ function onTrigger(player,npc)
 		elseif (testflag(tonumber(prog),64) == false) then 
 			player:startEvent(0x0140,0,4409); -- Gives Order
 			player:setVar("QuestFoodForThought_var",prog+64);
+		end
+	elseif (foodstatus == 1 and testflag(tonumber(player:getVar("QuestFoodForThought_var")),64) == true and testflag(tonumber(player:getVar("QuestFoodForThought_var")),256) == false) then
+		rand = math.random(1,3);
+		if (rand == 1) then
+			player:startEvent(0x0140,0,4409); -- Repeats Order
+		elseif (rand == 2) then
+			player:startEvent(0x0141); -- "Or Whatever"
 		else
-			rand = math.random(1,3);
-			if (rand == 1) then
-				player:startEvent(0x0140,0,4409); -- Repeats Order
-			elseif (rand == 2) then
-				player:startEvent(0x0141); -- "Or Whatever"
-			else
-				player:startEvent(0x0148); -- "..<Grin>.."
-			end
+			player:startEvent(0x0148); -- "..<Grin>.."
 		end
 	else
-		player:startEvent(0x0136); -- Standard converstation
+		rand = math.random(1,2);
+		if (rand == 1) then
+			player:startEvent(0x012e); -- Standard converstation
+		else
+			player:startEvent(0x012f); -- Standard converstation
+		end
 	end	
 end; 
 
@@ -103,13 +121,13 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x0147 or csid == 0x014a) then
 		player:addGil(GIL_RATE*120);
 		prog = player:getVar("QuestFoodForThought_var");
-		player:setVar("QuestFoodForThought_var",prog+128);
+		player:setVar("QuestFoodForThought_var",prog+256);
 		player:tradeComplete(trade);
 	elseif  (csid == 0x014b) then
 		player:addGil(GIL_RATE*120);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*120);		
 		prog = player:getVar("QuestFoodForThought_var");
-		player:setVar("QuestFoodForThought_var",prog+128);
+		player:setVar("QuestFoodForThought_var",prog+256);
 		player:tradeComplete(trade);
 	elseif  (csid == 0x0038) then  -- Show Off Hat
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+4);

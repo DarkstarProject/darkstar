@@ -77,10 +77,10 @@ function onTrigger(player,npc)
 		if (testflag(tonumber(prog),1) == false) then 
 			player:setVar("QuestFoodForThought_var",prog+1);
 		end
-	elseif (foodstatus == 1 and testflag(tonumber(prog),8) == false) then
+	elseif (foodstatus == 1 and testflag(tonumber(prog),8) == false and testflag(tonumber(prog),128) == false) then
 		player:startEvent(0x013c,0,4493,624,4408); -- Gives Order
 		player:setVar("QuestFoodForThought_var",prog+8);
-	elseif (foodstatus == 1 and testflag(tonumber(prog),8) == true) then
+	elseif (foodstatus == 1 and testflag(tonumber(prog),8) == true and testflag(tonumber(prog),128) == false) then
 		rand = math.random(1,2)
 		if (rand == 1) then
 			player:startEvent(0x013d,0,4493,624,4408); -- Repeats Order

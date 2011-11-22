@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 		count = trade:getItemCount();
 		gil = trade:getGil();
 		if (trade:hasItemQty(4371,1) == true and count == 1 and gil == 0) then -- Traded Correctly (Grilled Hare)
-			player:startEvent(0x014c,120);	
+			player:startEvent(0x014c,440);	
 		elseif (trade:hasItemQty(4358,1) == true and count == 1 and gil == 0) then -- Traded Wrong Item (Hare Meat)
 			player:startEvent(0x014e);
 		end
@@ -71,7 +71,6 @@ function onTrigger(player,npc)
 			player:startEvent(0x014f); -- Finishes Quest (Quest TurnIn)
 		end
 	else
---		player:delQuest(WINDURST,FOOD_FOR_THOUGHT);  ---- FOR TESTINT!!!  -------------------=============+++++++++++++
 		rand = math.random(1,2);
 		if (rand == 1) then
 			player:startEvent(0x0130); -- Standard Conversation 1
@@ -103,13 +102,13 @@ function onEventFinish(player,csid,option)
 		prog = player:getVar("QuestFoodForThought_var");
 		player:setVar("QuestFoodForThought_var",prog+4);
 	elseif (csid == 0x014c) then
-		player:addGil(GIL_RATE*120);
+		player:addGil(GIL_RATE*440);
 		prog = player:getVar("QuestFoodForThought_var");
 		player:setVar("QuestFoodForThought_var",prog+512);
 		player:tradeComplete(trade);
 	elseif (csid == 0x014e) then
-		player:addGil(GIL_RATE*40);
-		player:messageSpecial(GIL_OBTAINED,GIL_RATE*40);
+		player:addGil(GIL_RATE*220);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*220);
 		prog = player:getVar("QuestFoodForThought_var");
 		player:setVar("QuestFoodForThought_var",prog+512);
 		player:tradeComplete(trade);
