@@ -18,6 +18,10 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	featherstatus = player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP);
+	if (featherstatus >= 1 and trade:hasItemQty(842,3) == true and trade:getGil() == 0 and trade:getItemCount() == 3) then
+		player:startEvent(0x004f,1500); -- Quest Turn In
+	end
 end;      
 
 -----------------------------------
@@ -29,6 +33,8 @@ function onTrigger(player,npc)
 		return (set % (2*flag) >= flag)
 	end
 	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
+	featherstatus = player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP);
+	pfame = player:getFameLevel(WINDURST);
 	if (hatstatus == 0) then
 		player:startEvent(0x0030); -- Quest Offered
 	elseif (hatstatus == 1) then
@@ -56,23 +62,37 @@ function onTrigger(player,npc)
 		else								-- Quest Objective Reminder
 			player:startEvent(0x0033); 
 		end
+	elseif (hatstatus == 2 and featherstatus == 0 and pfame >= 3) then
+		rand = math.random(1,2);
+		if (rand == 1) then
+			player:startEvent(0x004b,0,842); -- Quest "Feather In One's Cap" offered
+		else
+			player:startEvent(0x0031); -- Repeatable Quest "Hat In Hand" offered
+		end
+	elseif (featherstatus == 1) then
+		player:startEvent(0x004e,0,842); -- Quest Objective Reminder
+	elseif 	(featherstatus == 2) then
+		rand = math.random(1,2);
+		if (rand == 1) then
+			player:startEvent(0x0031); -- Repeatable Quest "Hat In Hand" offered
+		else
+			player:startEvent(0x004e,0,842); -- Repeatable Quest "A Feather In One's Cap" offered
+		end
 	else
-		rand = math.random(1,12);
-		if (rand <= 3 ) then
-			player:startEvent(0x0030); -- Repeatable Quest "Hat In Hand" offered
-		elseif (rand >= 4 and rand <= 6) then
-			player:startEvent(0x0223); -- Quest "Feather In One's Cap" offered
-		elseif (rand == 7) then
+		rand = math.random(1,9);
+		if (rand <= 3) then
+			player:startEvent(0x0031); -- Repeatable Quest "Hat In Hand" offered
+		elseif (rand == 4) then
 			player:startEvent(0x002a); -- Standard Conversation 1
-		elseif (rand == 8) then
+		elseif (rand == 5) then
 			player:startEvent(0x002c); -- Standard Conversation 2
-		elseif (rand == 9) then
+		elseif (rand == 6) then
 			player:startEvent(0x002d); -- Standard Conversation 3		
-		elseif (rand == 10) then
+		elseif (rand == 7) then
 			player:startEvent(0x002e); -- Standard Conversation 4			
-		elseif (rand == 11) then
+		elseif (rand == 8) then
 			player:startEvent(0x002f); -- Standard Conversation 5		
-		elseif (rand == 12) then
+		elseif (rand == 9) then
 			player:startEvent(0x03fe); -- Standard Conversation 6				
 		end
 	end
@@ -122,8 +142,19 @@ printf("RESULT: %u",option);
 			player:addFame(WINDURST,WIN_FAME*10);
 		end
 		player:completeQuest(WINDURST,HAT_IN_HAND);
-		count = player:setVar("QuestHatInHand_count",0);
-		prog = player:setVar("QuestHatInHand_var",0);
+		player:setVar("QuestHatInHand_count",0);
+		player:setVar("QuestHatInHand_var",0);
+	elseif (csid == 0x004b and option == 1) then
+		player:addQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);
+	elseif (csid == 0x004f) then
+		if (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == 1) then
+			player:completeQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);	
+			player:addFame(WINDURST,WIN_FAME*75);
+		else
+			player:addFame(WINDURST,WIN_FAME*8);
+		end
+		player:addGil(GIL_RATE*1500);
+		player:tradeComplete(trade);
 	end
 end;
 

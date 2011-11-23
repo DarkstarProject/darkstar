@@ -218,7 +218,7 @@ THE_WONDROUS_WHATCHAMACALLIT    = 90;
 -----------------------------------
 
 HAT_IN_HAND						= 0; -- + --
-A_FEATHER_IN_ONE_S_CAP          = 1;
+A_FEATHER_IN_ONE_S_CAP          = 1; -- + --
 A_CRISIS_IN_THE_MAKING          = 2;
 MAKING_AMENDS                   = 3;
 MAKING_THE_GRADE                = 4;
