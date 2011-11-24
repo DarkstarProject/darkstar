@@ -1989,7 +1989,7 @@ void SaveQuestsList(CCharEntity* PChar)
 	int8 questslist[sizeof(PChar->m_questLog)*2+1];
 	Sql_EscapeStringLen(SqlHandle,questslist,(const int8*)PChar->m_questLog,sizeof(PChar->m_questLog));
 
-	Sql_Query(SqlHandle,fmtQuery,questslist,PChar->id, PChar->profile.fame[0],PChar->profile.fame[1],PChar->profile.fame[2],PChar->profile.fame[3]);
+	Sql_Query(SqlHandle,fmtQuery,questslist,PChar->profile.fame[0],PChar->profile.fame[1],PChar->profile.fame[2],PChar->profile.fame[3],PChar->id);
 }
 
 /************************************************************************
