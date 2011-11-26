@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Panana
--- Involved in Quest: Out of One's Shell
+-- NPC: Dehlner
+-- Standard Info NPC
+-- Invlolved in Quest: A Foreman's Best Friend
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
 
@@ -25,15 +24,13 @@ end;
 
 function onTrigger(player,npc)
 
-OutOfOneShell     = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
-OutOfOneShellZone = player:getVar("OutOfTheShellZone");
+ForemansBestFriend = player:getQuestStatus(BASTOK,A_FOREMAN_S_BEST_FRIEND);
 
-	if (OutOfOneShell == QUEST_ACCEPTED and OutOfOneShellZone == 0) then
-		player:startEvent(0x0053);
-	else
-		player:startEvent(0x002b);	
+	if (ForemansBestFriend == QUEST_ACCEPTED) then
+		player:startEvent(0x006f);
+	else 
+		player:startEvent(0x002e);
 	end
-
 end; 
 
 

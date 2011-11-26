@@ -1,14 +1,13 @@
 -----------------------------------
--- Area: Port Bastok
--- NPC: Panana
--- Involved in Quest: Out of One's Shell
+-- Area: Bastok Mines
+-- NPC: Davyad
+-- Standard Info NPC
+-- Involved in Mission: Bastok 3-2
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
+require("scripts/globals/missions");
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+require("scripts/zones/Bastok_Mines/TextIDs");
 
 
 -----------------------------------
@@ -16,7 +15,7 @@ require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 
 -----------------------------------
@@ -25,15 +24,13 @@ end;
 
 function onTrigger(player,npc)
 
-OutOfOneShell     = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
-OutOfOneShellZone = player:getVar("OutOfTheShellZone");
+activeMission = player:hasCurrentMission(BASTOK,TO_THE_FORSAKEN_MINES);
 
-	if (OutOfOneShell == QUEST_ACCEPTED and OutOfOneShellZone == 0) then
-		player:startEvent(0x0053);
+	if (activeMission == false) then
+		player:startEvent(0x0036);
 	else
-		player:startEvent(0x002b);	
+		player:startEvent(0x0035);
 	end
-
 end; 
 
 

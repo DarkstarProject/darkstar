@@ -1,14 +1,13 @@
 -----------------------------------
--- Area: Port Bastok
--- NPC: Panana
--- Involved in Quest: Out of One's Shell
+-- Area: Bastok Markets
+-- NPC: Biggorf
+-- Standard Info NPC
+-- Involved in Quest: The Bare Bones
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+require("scripts/zones/Bastok_Markets/TextIDs");
 
 
 -----------------------------------
@@ -25,15 +24,13 @@ end;
 
 function onTrigger(player,npc)
 
-OutOfOneShell     = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
-OutOfOneShellZone = player:getVar("OutOfTheShellZone");
+BareBones = player:getQuestStatus(BASTOK,THE_BARE_BONES);
 
-	if (OutOfOneShell == QUEST_ACCEPTED and OutOfOneShellZone == 0) then
-		player:startEvent(0x0053);
+	if (BareBones == QUEST_ACCEPTED) then
+		player:startEvent(0x0101);
 	else
-		player:startEvent(0x002b);	
+		player:startEvent(0x007e); 
 	end
-
 end; 
 
 

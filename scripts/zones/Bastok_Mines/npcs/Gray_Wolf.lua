@@ -1,14 +1,11 @@
 -----------------------------------
--- Area: Port Bastok
--- NPC: Panana
--- Involved in Quest: Out of One's Shell
+-- Area: Bastok Mines
+-- NPC: Gray Wolf
+-- Standard Info NPC
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+require("scripts/zones/Bastok_Mines/TextIDs");
 
 
 -----------------------------------
@@ -16,7 +13,7 @@ require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 
 -----------------------------------
@@ -25,14 +22,9 @@ end;
 
 function onTrigger(player,npc)
 
-OutOfOneShell     = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
-OutOfOneShellZone = player:getVar("OutOfTheShellZone");
+currentMission = player:hasCurrentMission();
 
-	if (OutOfOneShell == QUEST_ACCEPTED and OutOfOneShellZone == 0) then
-		player:startEvent(0x0053);
-	else
-		player:startEvent(0x002b);	
-	end
+player:startEvent(0x0013);
 
 end; 
 

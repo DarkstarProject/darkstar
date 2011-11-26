@@ -1,14 +1,13 @@
 -----------------------------------
--- Area: Port Bastok
--- NPC: Panana
--- Involved in Quest: Out of One's Shell
+-- Area: Bastok Mines
+-- NPC: Medicine Eagle
+-- Standard Info NPC
+-- Involved in Mission: Bastok 8-1
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+require("scripts/zones/Bastok_Markets/TextIDs");
 
 
 -----------------------------------
@@ -25,14 +24,11 @@ end;
 
 function onTrigger(player,npc)
 
-OutOfOneShell     = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
-OutOfOneShellZone = player:getVar("OutOfTheShellZone");
+player:startEvent(0x0019);
 
-	if (OutOfOneShell == QUEST_ACCEPTED and OutOfOneShellZone == 0) then
-		player:startEvent(0x0053);
-	else
-		player:startEvent(0x002b);	
-	end
+-- if Bastok Mission 8-1
+-- player:startEvent(0x00b4);
+-- player:startEvent(0x00b5);
 
 end; 
 

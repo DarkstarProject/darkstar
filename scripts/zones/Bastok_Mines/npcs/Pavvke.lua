@@ -42,6 +42,8 @@ pFame = player:getFameLevel(BASTOK);
 	
 	if (Fallen == 0	and pLevel >= 12 and pFame >= 2) then
 		player:startEvent(0x005a);
+	else 
+		player:startEvent(0x004b);
 	end
 
 end;
