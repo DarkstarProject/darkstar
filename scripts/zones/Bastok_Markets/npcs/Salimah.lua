@@ -5,8 +5,9 @@
 -----------------------------------
 
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+require("scripts/globals/titles");
 require("scripts/zones/Bastok_Markets/TextIDs");
+require("scripts/globals/settings");
 
 
 -----------------------------------
@@ -54,7 +55,13 @@ end;
 
 function onTrigger(player,npc)
 
-player:startEvent(0x00c8);
+Gourmet = player:getQuestStatus(BASTOK,GOURMET);
+
+	if (Gourmet ~= QUEST_AVAILABLE and player:needToZone()) then
+		player:startEvent(0x0079);
+	else
+		player:startEvent(0x00c8);
+	end
 
 end; 
 
@@ -77,15 +84,18 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x00c8) then
-		Gourmet = player:getQuestStatus(BASTOK,GOURMET);
+Gourmet = player:getQuestStatus(BASTOK,GOURMET);
 
+	if (csid == 0x00c8) then
 		if (Gourmet == QUEST_AVAILABLE) then
 			player:addQuest(BASTOK,GOURMET);
 		end
-	else
+	elseif (csid ~= 0x0079) then
 		player:tradeComplete();
-		
+		if (Gourmet == QUEST_ACCEPTED) then
+			player:completeQuest(BASTOK,GOURMET);
+		end
+
 		gil=350;
 		fame=120;
 		if (csid == 0x00ca) then
@@ -95,10 +105,10 @@ function onEventFinish(player,csid,option)
 			fame=60;
 		end
 		
-		player:addFame(BASTOK,BAS_FAME*fame);
 		player:addGil(gil);
 		player:messageSpecial(GIL_OBTAINED,gil);
-		player:completeQuest(BASTOK,GOURMET);
+		player:addFame(BASTOK,BAS_FAME*fame);
+		player:setTitle(MOMMYS_HELPER);
 		player:needToZone(true);
 	end
 

@@ -4,10 +4,6 @@
 -- Involved in Quest: Gourmet
 -----------------------------------
 
-require("scripts/globals/quests");
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action
