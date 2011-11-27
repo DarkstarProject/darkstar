@@ -87,9 +87,13 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x01cf and option == 3) then  					-- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED
+	if (((csid == 0x01cf and option == 3) or (csid == 0x01df and option == 3)) and player:getFreeSlotsCount() == 0) then  -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED - INVENTORY FULL
+		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,572);
+	elseif (csid == 0x01cf and option == 3) then  					-- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED
 		player:addQuest(WINDURST,REAP_WHAT_YOU_SOW);
-	elseif ((csid == 0x01db or csid == 0x01dd) and player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_ACCEPTED and player:getFreeSlotsCount() == 0) then
+		player:addItem(572);
+		player:messageSpecial(ITEM_OBTAINED,572);
+	elseif ((csid == 0x01db or csid == 0x01dd) and player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_ACCEPTED and player:getFreeSlotsCount() == 0) then -- inventory full on quest turn in
 		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,131);
 	elseif (csid == 0x01db) then								-- REAP WHAT YOU SOW + 500 GIL: Quest Turn In: Sobbing Fungus turned in
 		player:addGil(GIL_RATE*500);
@@ -119,5 +123,7 @@ function onEventFinish(player,csid,option)
 		end
 	elseif (csid == 0x01df and option == 3) then 				-- REAP WHAT YOU SOW + HERB SEEDS: REPEATABLE QUEST START - ACCEPTED
 		player:setVar("QuestReapSow_var",1);
+		player:addItem(572);
+		player:messageSpecial(ITEM_OBTAINED,572);
 	end
 end;
