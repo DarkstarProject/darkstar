@@ -2,6 +2,8 @@
 -- Area: Windurst Waters
 -- NPC: Honoi-Gumoi
 -- Involved In Quest: Crying Over Onions, Hat in Hand
+--  @zone = 238
+--  @pos = -195 -11 -120
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
@@ -109,7 +111,7 @@ function onEventFinish(player,csid,option)
 		player:setTitle(DREAM_DWELLER);
 		player:setVar("WildCard",0);
 		player:needToZone(true);
-	elseif (csid == (0x003b) then  -- Show Off Hat
+	elseif (csid == 0x003b) then  -- Show Off Hat
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+2);
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
 	end

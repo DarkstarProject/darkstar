@@ -3,6 +3,8 @@
 --	NPC: Bondada
 --	Involved in Quests: Hat in Hand
 --	Working 100%
+--  @zone = 238
+--  @pos = -66 -3 -148
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;

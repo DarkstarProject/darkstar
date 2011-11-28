@@ -3,6 +3,8 @@
 --	NPC:  Baren-Moren
 --	Starts and Finishes Quest: Hat in Hand
 --	Working 100%
+--  @zone = 238
+--  @pos = -66 -3 -148
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
@@ -37,7 +39,9 @@ function onTrigger(player,npc)
 	pfame = player:getFameLevel(WINDURST);
 	if (hatstatus == 0) then
 		player:startEvent(0x0030); -- Quest Offered
-	elseif (hatstatus == 1) then
+	elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and player:getVar("QuestHatInHand_count") == 0) then
+		player:startEvent(0x0033,80); -- Hat in Hand: During Quest - Objective Reminder
+	elseif (hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) then
 		prog = player:getVar("QuestHatInHand_var");
 		-- 	Variable to track quest progress
 		-- 	1 = Machitata
@@ -62,7 +66,7 @@ function onTrigger(player,npc)
 		else								-- Quest Objective Reminder
 			player:startEvent(0x0033); 
 		end
-	elseif (hatstatus == 2 and featherstatus == 0 and pfame >= 3) then
+	elseif (hatstatus == 2 and featherstatus == 0 and pfame >= 3 and player:needToZone() == false and player:getVar("QuestHatInHand_var2") == 0) then
 		rand = math.random(1,2);
 		if (rand == 1) then
 			player:startEvent(0x004b,0,842); -- Quest "Feather In One's Cap" offered
@@ -71,28 +75,28 @@ function onTrigger(player,npc)
 		end
 	elseif (featherstatus == 1) then
 		player:startEvent(0x004e,0,842); -- Quest Objective Reminder
-	elseif 	(featherstatus == 2) then
+	elseif 	(featherstatus == 2 and player:needToZone() == false) then
 		rand = math.random(1,2);
 		if (rand == 1) then
 			player:startEvent(0x0031); -- Repeatable Quest "Hat In Hand" offered
 		else
 			player:startEvent(0x004e,0,842); -- Repeatable Quest "A Feather In One's Cap" offered
 		end
-	else
-		rand = math.random(1,9);
-		if (rand <= 3) then
-			player:startEvent(0x0031); -- Repeatable Quest "Hat In Hand" offered
-		elseif (rand == 4) then
+	elseif (player:needToZone() == false) then 	
+		player:startEvent(0x0031); -- Repeatable Quest "Hat In Hand" offered
+	else   --  Will run through these if fame is not high enough for other quests
+		rand = math.random(1,6);
+		if (rand == 1) then
 			player:startEvent(0x002a); -- Standard Conversation 1
-		elseif (rand == 5) then
+		elseif (rand == 2) then
 			player:startEvent(0x002c); -- Standard Conversation 2
-		elseif (rand == 6) then
+		elseif (rand == 3) then
 			player:startEvent(0x002d); -- Standard Conversation 3		
-		elseif (rand == 7) then
+		elseif (rand == 4) then
 			player:startEvent(0x002e); -- Standard Conversation 4			
-		elseif (rand == 8) then
+		elseif (rand == 5) then
 			player:startEvent(0x002f); -- Standard Conversation 5		
-		elseif (rand == 9) then
+		elseif (rand == 6) then
 			player:startEvent(0x03fe); -- Standard Conversation 6				
 		end
 	end
@@ -112,13 +116,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("CSID: %u",csid);
-printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 	if (csid == 0x0030 and option == 1) then
 		player:addQuest(WINDURST,HAT_IN_HAND);
+	elseif (csid == 0x0031 and option == 1) then
+		player:setVar("QuestHatInHand_var2",1);
 	elseif (csid == 0x0034 and option >= 4 and player:getFreeSlotsCount(0) == 0) then
 		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12543);
-	elseif (csid == 0x0034 and option >= 2) then		
+	elseif (csid == 0x0034 and option >= 2) then
 		if (option == 5) then -- Finishes Quest - HAT + FULL REWARD
 			player:addGil(GIL_RATE*500);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*500);
@@ -137,13 +143,17 @@ printf("RESULT: %u",option);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*150);
 		end
 		if (hatstatus == 1) then
-			player:addFame(WINDURST,WIN_FAME*100);	
+			player:addFame(WINDURST,WIN_FAME*75);	
 		else
-			player:addFame(WINDURST,WIN_FAME*10);
+			player:addFame(WINDURST,WIN_FAME*8);
+			player:setVar("QuestHatInHand_var2",0);
 		end
 		player:completeQuest(WINDURST,HAT_IN_HAND);
 		player:setVar("QuestHatInHand_count",0);
 		player:setVar("QuestHatInHand_var",0);
+		player:needToZone(true);
+		
+		
 	elseif (csid == 0x004b and option == 1) then
 		player:addQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);
 	elseif (csid == 0x004f) then
@@ -155,8 +165,6 @@ printf("RESULT: %u",option);
 		end
 		player:addGil(GIL_RATE*1500);
 		player:tradeComplete(trade);
+		player:needToZone(true);
 	end
 end;
-
-
-

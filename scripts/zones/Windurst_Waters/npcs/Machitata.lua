@@ -3,6 +3,8 @@
 --	NPC:  Machitata
 --	Involved in Quest: Hat in Hand
 --	Working 100%
+--  @zone = 238
+--  @pos = 163 0 -22
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;

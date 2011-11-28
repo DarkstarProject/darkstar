@@ -3,6 +3,8 @@
 --	NPC:  Kyume-Romeh
 --  Involved In Quest: Making Headlines, Hat in Hand
 --	Working 100%
+--  @zone = 238
+--  @pos = -58 -4 23
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;

@@ -3,6 +3,8 @@
 --	NPC: Tosuka-Porika
 --	Involved in Quests: Hat in Hand
 --	Working 100%
+--  @zone = 238
+--  @pos = -26 -6 103
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;

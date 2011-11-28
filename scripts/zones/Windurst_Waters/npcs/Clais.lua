@@ -2,6 +2,8 @@
 -- Area: Windurst Waters
 -- NPC: Clais
 -- Involved In Quest: Hat in Hand
+--  @zone = 238
+--  @pos = -31 -3 11
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;

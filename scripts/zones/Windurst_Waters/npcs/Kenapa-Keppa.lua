@@ -3,6 +3,8 @@
 --	NPC:  Kenapa Keppa
 --	Involved in Quest: Food For Thought, Hat in Hand
 --	Working 100%
+--  @zone = 238
+--  @pos = 27 -6 -199
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;

@@ -3,6 +3,8 @@
 --	NPC: Pechiru-Mashiru
 --	Involved in Quests: Hat in Hand
 --	Working 100%
+--  @zone = 238
+--  @pos = 162 -2 159
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
