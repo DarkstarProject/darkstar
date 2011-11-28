@@ -29,18 +29,19 @@ end;
 
 function onTrigger(player,npc)
 --	player:delQuest(WINDURST,CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
-	
-	if (player:getVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(EFFECT_MUTE) == false and player:hasStatusEffect(EFFECT_BANE) == false and player:hasStatusEffect(EFFECT_PLAGUE) == false) then
-		rand = math.random(1,3);
-		if (rand == 1) then
-			player:addStatusEffect(EFFECT_MUTE,0,0,100);
-		elseif (rand == 2) then
-			player:addStatusEffect(EFFECT_BANE,0,0,100);
-		elseif (rand == 3) then
-			player:addStatusEffect(EFFECT_PLAGUE,0,0,100);
-		end
-	end
-	
+-- ======== FOR TESTING ONLY ==========-----	
+--	if (player:getVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(EFFECT_MUTE) == false and player:hasStatusEffect(EFFECT_BANE) == false and player:hasStatusEffect(EFFECT_PLAGUE) == false) then
+--		rand = math.random(1,3);
+--		if (rand == 1) then
+--			player:addStatusEffect(EFFECT_MUTE,0,0,100);
+--		elseif (rand == 2) then
+--			player:addStatusEffect(EFFECT_BANE,0,0,100);
+--		elseif (rand == 3) then
+--			player:addStatusEffect(EFFECT_PLAGUE,0,0,100);
+--		end
+--	end
+-- ======== FOR TESTING ONLY ==========-----
+
 	Catch = player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN);		
 	if (Catch == 0) then
 		prog = player:getVar("QuestCatchItIfYouCan_var");
