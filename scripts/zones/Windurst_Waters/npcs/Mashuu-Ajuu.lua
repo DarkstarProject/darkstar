@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 		if (trade:hasItemQty(4565,1) == true) then
 			player:startEvent(0x01db,500,131); 					-- REAP WHAT YOU SOW + GIL: Quest Turn In: Sobbing Fungus turned in
 		elseif (trade:hasItemQty(4566,1) == true) then
-			player:startEvent(0x01dd,700,131); 					-- REAP WHAT YOU SOW + GIL + Stationary Set: Deathball turned in	
+			player:startEvent(0x01dd,700); 					-- REAP WHAT YOU SOW + GIL + Stationary Set: Deathball turned in	
 		end
 	end	
 end;      
@@ -98,12 +98,12 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x01db) then								-- REAP WHAT YOU SOW + 500 GIL: Quest Turn In: Sobbing Fungus turned in
 		player:addGil(GIL_RATE*500);
 		player:tradeComplete(trade);
-		player:addItem(131);
-		player:messageSpecial(ITEM_OBTAINED,131);
 		player:needToZone(true);
 		if (player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_ACCEPTED) then
 			player:completeQuest(WINDURST,REAP_WHAT_YOU_SOW);
 			player:addFame(WINDURST,WIN_FAME*75);
+			player:addItem(131);
+			player:messageSpecial(ITEM_OBTAINED,131);
 		elseif (player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_COMPLETED) then
 			player:addFame(WINDURST,WIN_FAME*8);
 			player:setVar("QuestReapSow_var",0);
@@ -117,6 +117,8 @@ function onEventFinish(player,csid,option)
 		if (player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_ACCEPTED) then
 			player:completeQuest(WINDURST,REAP_WHAT_YOU_SOW);
 			player:addFame(WINDURST,WIN_FAME*75);
+			player:addItem(131);
+			player:messageSpecial(ITEM_OBTAINED,131);
 		elseif (player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_COMPLETED) then
 			player:addFame(WINDURST,WIN_FAME*8);
 			player:setVar("QuestReapSow_var",0);
