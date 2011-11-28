@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 	end
 	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
 	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
-	if (hatstatus == 1 and testflag(tonumber(player:getVar("QuestHatInHand_var")),16) == false) then
+	if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),16) == false) then
 		player:startEvent(0x003c); -- Show Off Hat
 	elseif (MakingHeadlines == 1) then
 		prog = player:getVar("QuestMakingHeadlines_var");

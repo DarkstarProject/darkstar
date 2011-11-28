@@ -31,6 +31,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	
+--	player:delQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);  -- ================== FOR TESTING ONLY =====================
+--	player:addFame(WINDURST,WIN_FAME*200);   -- ================== FOR TESTING ONLY =====================
+	
 	function testflag(set,flag)
 		return (set % (2*flag) >= flag)
 	end
@@ -39,33 +43,32 @@ function onTrigger(player,npc)
 	pfame = player:getFameLevel(WINDURST);
 	if (hatstatus == 0) then
 		player:startEvent(0x0030); -- Quest Offered
-	elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and player:getVar("QuestHatInHand_count") == 0) then
-		player:startEvent(0x0033,80); -- Hat in Hand: During Quest - Objective Reminder
+--	elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and player:getVar("QuestHatInHand_count") == 0) then
+--		player:startEvent(0x0033,80); -- Hat in Hand: During Quest - Objective Reminder
 	elseif (hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) then
-		prog = player:getVar("QuestHatInHand_var");
 		-- 	Variable to track quest progress
-		-- 	1 = Machitata
-		--	2 = Honoi-Gomoi
-		--	4 = Kenapa-Keppa
-		--	8 = Clais
-		--	16 = Kyume-Romeh
-		--  32 = Tosuka-Porika
-		--  64 = Pechiru-Mashiru 
-		--  128 = Bondada
+		-- 	1 = Machitata   	@pos 163 0 -22
+		--	2 = Honoi-Gomoi   	@pos -195 -11 -120
+		--	4 = Kenapa-Keppa	@pos 27 -6 -199
+		--	8 = Clais			@pos -31 -3 11
+		--	16 = Kyume-Romeh	@pos -58 -4 23
+		--  32 = Tosuka-Porika	@pos -26 -6 103
+		--  64 = Pechiru-Mashiru @pos = 162 -2 159
+		--  128 = Bondada		@pos = -66 -3 -148
 		count = player:getVar("QuestHatInHand_count");
-		if (count == 8) then 				-- Finishes Quest - HAT + FULL REWARD
+		if (count == 8) then 				-- 80 = HAT + FULL REWARD  =  8 NPCS - Option 5
 			player:startEvent(0x0034,80); 
-		elseif (count >= 5) then			-- Finishes Quest - HAT + GOOD REWARD
+		elseif (count >= 6) then			-- 50 = HAT + GOOD REWARD  >= 6-7 NPCS - Option 4
 			player:startEvent(0x0034,50); 
-		elseif (count >= 3) then			-- Finishes Quest - PARTIAL REWARD
+		elseif (count >= 4) then			-- 30 = PARTIAL REWARD -   >= 4-5 NPCS - Option 3
 			player:startEvent(0x0034,30); 
-		elseif (count >= 2) then			-- Finishes Quest - POOR REWARD
+		elseif (count >= 2) then			-- 20 = POOR REWARD  	   >= 2-3 NPCS - Option 2
 			player:startEvent(0x0034,20); 
-		elseif (count == 1) then			-- Finishes Quest - NO REWARD
+		else								-- 0/nill = NO REWARD  	   >= 0-1 NPCS - Option 1
 			player:startEvent(0x0034); 
-		else								-- Quest Objective Reminder
-			player:startEvent(0x0033); 
 		end
+	elseif (featherstatus == 1 or player:getVar("QuestFeatherInOnesCap_var") == 1) then
+		player:startEvent(0x004e,0,842); -- Quest Objective Reminder
 	elseif (hatstatus == 2 and featherstatus == 0 and pfame >= 3 and player:needToZone() == false and player:getVar("QuestHatInHand_var2") == 0) then
 		rand = math.random(1,2);
 		if (rand == 1) then
@@ -73,14 +76,13 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x0031); -- Repeatable Quest "Hat In Hand" offered
 		end
-	elseif (featherstatus == 1) then
-		player:startEvent(0x004e,0,842); -- Quest Objective Reminder
+
 	elseif 	(featherstatus == 2 and player:needToZone() == false) then
 		rand = math.random(1,2);
 		if (rand == 1) then
 			player:startEvent(0x0031); -- Repeatable Quest "Hat In Hand" offered
 		else
-			player:startEvent(0x004e,0,842); -- Repeatable Quest "A Feather In One's Cap" offered
+			player:startEvent(0x004b,0,842); -- Repeatable Quest "A Feather In One's Cap" offered
 		end
 	elseif (player:needToZone() == false) then 	
 		player:startEvent(0x0031); -- Repeatable Quest "Hat In Hand" offered
@@ -117,51 +119,66 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+printf("RESULT: %u",option);
 	if (csid == 0x0030 and option == 1) then
 		player:addQuest(WINDURST,HAT_IN_HAND);
+		player:addKeyItem(NEW_MODEL_HAT);
+		player:messageSpecial(KEYITEM_OBTAINED,NEW_MODEL_HAT);
 	elseif (csid == 0x0031 and option == 1) then
 		player:setVar("QuestHatInHand_var2",1);
+		player:addKeyItem(NEW_MODEL_HAT);
+		player:messageSpecial(KEYITEM_OBTAINED,NEW_MODEL_HAT);
 	elseif (csid == 0x0034 and option >= 4 and player:getFreeSlotsCount(0) == 0) then
 		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12543);
-	elseif (csid == 0x0034 and option >= 2) then
-		if (option == 5) then -- Finishes Quest - HAT + FULL REWARD
+	elseif (csid == 0x0034 and option >= 1) then
+		if (option == 5) then  		--	80 = HAT + FULL REWARD  =  8 NPCS - Option 5
 			player:addGil(GIL_RATE*500);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*500);
-			player:addItem(12543,1);
-			player:messageSpecial(ITEM_OBTAINED,12543);
-		elseif (option == 4) then -- Finishes Quest - HAT + GOOD REWARD	
+			if (player:hasItem(12543) == false) then
+				player:addItem(12543,1);
+				player:messageSpecial(ITEM_OBTAINED,12543);
+			end
+		elseif (option == 4) then 	-- 50 = HAT + GOOD REWARD  >= 6 NPCS - Option 4
 			player:addGil(GIL_RATE*400);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
-			player:addItem(12543,1);
-			player:messageSpecial(ITEM_OBTAINED,12543);
-		elseif (option == 3) then -- Finishes Quest - PARTIAL REWARD	
+			if (player:hasItem(12543) == false) then
+				player:addItem(12543,1);
+				player:messageSpecial(ITEM_OBTAINED,12543);
+			end
+		elseif (option == 3) then 	-- 30 = PARTIAL REWARD -   >= 4 NPCS - Option 3	
 			player:addGil(GIL_RATE*300);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
-		elseif (option == 2) then -- Finishes Quest - POOR REWARD
+		elseif (option == 2) then 	-- 20 = POOR REWARD  	   >= 2 NPCS - Option 2	
 			player:addGil(GIL_RATE*150);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*150);
+--		else (option == 1) then 	-- 0/nill = NO REWARD  	>= 0 NPCS - Option 1
 		end
 		if (hatstatus == 1) then
 			player:addFame(WINDURST,WIN_FAME*75);	
 		else
 			player:addFame(WINDURST,WIN_FAME*8);
-			player:setVar("QuestHatInHand_var2",0);
 		end
 		player:completeQuest(WINDURST,HAT_IN_HAND);
 		player:setVar("QuestHatInHand_count",0);
 		player:setVar("QuestHatInHand_var",0);
 		player:needToZone(true);
+		player:delKeyItem(NEW_MODEL_HAT);
+		player:setVar("QuestHatInHand_var2",0);
 		
 		
 	elseif (csid == 0x004b and option == 1) then
-		player:addQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);
+		if (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == 0) then
+			player:addQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);
+		elseif (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == 2) then
+			player:setVar("QuestFeatherInOnesCap_var",1);
+		end
 	elseif (csid == 0x004f) then
 		if (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == 1) then
 			player:completeQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);	
 			player:addFame(WINDURST,WIN_FAME*75);
 		else
 			player:addFame(WINDURST,WIN_FAME*8);
+			player:setVar("QuestFeatherInOnesCap_var",0);
 		end
 		player:addGil(GIL_RATE*1500);
 		player:tradeComplete(trade);

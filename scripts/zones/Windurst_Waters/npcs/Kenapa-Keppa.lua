@@ -50,7 +50,7 @@ function onTrigger(player,npc)
 	end
 	foodstatus = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
 	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
-	if (hatstatus == 1 and testflag(tonumber(player:getVar("QuestHatInHand_var")),4) == false) then
+	if ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),4) == false) then
 		player:startEvent(0x0038); -- Show Off Hat
 	elseif (foodstatus == 0) then
 		prog = player:getVar("QuestFoodForThought_var"); 

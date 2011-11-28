@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 		return (set % (2*flag) >= flag)
 	end
 	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
-	if (hatstatus == 1 and testflag(tonumber(player:getVar("QuestHatInHand_var")),8) == false) then
+	if ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),8) == false) then
 		player:startEvent(0x0039); -- Show Off Hat
 	else
 		player:startEvent(0x025a); -- Standard Conversation

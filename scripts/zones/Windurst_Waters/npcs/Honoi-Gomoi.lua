@@ -40,7 +40,7 @@ function onTrigger(player,npc)
 	NeedToZone = player:needToZone();
 	Fame       = player:getFameLevel(WINDURST);
 	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
-	if (hatstatus == 1 and testflag(tonumber(player:getVar("QuestHatInHand_var")),2) == false) then
+	if ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),2) == false) then
 		player:startEvent(0x003b); -- Show Off Hat
 	elseif (WildCard == QUEST_COMPLETED) then
 		player:startEvent(0x030f);
