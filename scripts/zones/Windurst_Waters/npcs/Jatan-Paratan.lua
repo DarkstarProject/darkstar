@@ -21,7 +21,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onTrade(player,npc,trade)
 	wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
-	if (wonderingstatus == 1 and trade:hasItemQty(718,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
+	if (wonderingstatus == 1 and trade:hasItemQty(718,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1 and player:getVar("QuestWonderingMin_var") == 1) then
 		player:startEvent(0x027e); 				-- WONDERING_MINSTREL: Quest Finish
 	end
 end;      
@@ -30,7 +30,11 @@ end;
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)			
+function onTrigger(player,npc)	
+
+			--		player:delQuest(WINDURST,WONDERING_MINSTREL);
+
+		
 	wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
 	fame = player:getFameLevel(WINDURST)
 	if (wonderingstatus == QUEST_AVAILABLE and fame >= 5) then 
@@ -88,6 +92,7 @@ function onEventFinish(player,csid,option)
 			player:addFame(WINDURST,WIN_FAME*75);
 			player:setTitle(DOWN_PIPER_PIPEUPPERER);
 			player:needToZone(true);
+			player:setVar("QuestWonderingMin_var",0);
 		end
 	end
 end;
