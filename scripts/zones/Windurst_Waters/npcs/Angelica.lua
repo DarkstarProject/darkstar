@@ -52,7 +52,7 @@ function onTrigger(player,npc)
 		end
 	elseif (posestatus == QUEST_ACCEPTED) then
 		starttime = player:getVar("QuestAPoseByOtherName_time");
-		if ((starttime + 60) >= os.time()) then
+		if ((starttime + 600) >= os.time()) then
 			if (player:getEquipID(5) == player:getVar("QuestAPoseByOtherName_equip")) then
 				player:startEvent(0x0060); 	------------------------------------------  QUEST FINISH 
 			else
