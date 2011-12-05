@@ -1,7 +1,10 @@
 -----------------------------------
 --	Area: Windurst Waters
 --	NPC:  Fuepepe
+--	Starts and Finishes Quest: Teacher's Pet
 --	Working 100%
+--  @zone = 238
+--  @pos = 161 -2 161
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -11,6 +14,9 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED and player:getVar("QuestMakingTheGrade_prog") == 0 and trade:hasItemQty(544,1) == true and trade:getItemCount() == 1 and trade:getGil() == 0) then
+		player:startEvent(0x01c7); -- Quest Progress: Test Papers Shown and told to deliver them to principal
+	end
 end;
 
 -----------------------------------
@@ -18,7 +24,28 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x1a7);
+	teacherstatus = player:getQuestStatus(WINDURST,TEACHER_S_PET);
+	gradestatus = player:getQuestStatus(WINDURST,MAKING_THE_GRADE);
+	if (teacherstatus == QUEST_COMPLETED and gradestatus == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >=3) then
+		player:startEvent(0x01ba); -- Quest Start
+	elseif (gradestatus == QUEST_ACCEPTED) then
+		prog = player:getVar("QuestMakingTheGrade_prog");
+		-- 1 = answers found
+		-- 2 = gave test answers to principle
+		-- 3 = spoke to chomoro
+		if (prog == 0) then
+				player:startEvent(0x01bb); -- Get Test Sheets Reminder
+		elseif (prog == 1 or prog == 2) then
+			player:startEvent(0x01c8); -- Deliver Test Sheets Reminder
+		elseif (prog == 3) then
+			player:startEvent(0x01ca); -- Quest Finish	
+		end
+	elseif (gradestatus == QUEST_COMPLETED and player:getVar("QuestMakingTheGrade_prog") > 0) then
+		player:startEvent(0x01cb); -- After Quest
+		player:setVar("QuestMakingTheGrade_prog",0);
+	else
+		player:startEvent(0x1a7); -- Standard Conversation
+	end
 end; 
 
 -----------------------------------
@@ -37,7 +64,21 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if (csid == 0x01ba and option == 1) then -- Quest Start
+		player:addQuest(WINDURST,MAKING_THE_GRADE);
+	elseif (csid == 0x01c7) then -- Quest Progress: Test Papers Shown and told to deliver them to principal
+		player:tradeComplete(trade);
+		player:setVar("QuestMakingTheGrade_prog",1);
+	elseif (csid == 0x01ca) then -- Quest Finish
+		if (player:getFreeSlotsCount() == 0) then
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4855);
+		else
+			player:completeQuest(WINDURST,MAKING_THE_GRADE);
+			player:addFame(WINDURST,WIN_FAME*75);
+			player:addItem(4855);
+			player:messageSpecial(ITEM_OBTAINED,4855);
+			player:setVar("QuestMakingTheGrade_prog",3);
+		end
+	end	
 end;
-
-
 

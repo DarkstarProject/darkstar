@@ -2,7 +2,8 @@
 --	Area: Windurst Waters
 --	NPC:  Mashuu-Ajuu
 --	Starts and Finished Quest: Reap What You Sow
---	Working 100%
+--  Involved in Quest: Making the Grade
+--	Working 100% 
 --  @zone = 238
 --  @pos = 129 -6 167
 -----------------------------------
@@ -36,7 +37,9 @@ end;
 
 function onTrigger(player,npc)
 	reapstatus = player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW);
-	if (reapstatus == QUEST_AVAILABLE) then 
+	if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
+		player:startEvent(0x01c0); -- During Making the GRADE
+	elseif (reapstatus == QUEST_AVAILABLE) then 
 		rand = math.random(1,2);
 		if (rand == 1) then
 			player:startEvent(0x01cf,0,4565,572); 				-- REAP WHAT YOU SOW + HERB SEEDS: QUEST START
@@ -111,8 +114,6 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x01dd) then								-- REAP WHAT YOU SOW + GIL + Stationary Set: Quest Turn In: Deathball turned in
 		player:addGil(GIL_RATE*700);
 		player:tradeComplete(trade);
-		player:addItem(131);
-		player:messageSpecial(ITEM_OBTAINED,131);
 		player:needToZone(true);
 		if (player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_ACCEPTED) then
 			player:completeQuest(WINDURST,REAP_WHAT_YOU_SOW);

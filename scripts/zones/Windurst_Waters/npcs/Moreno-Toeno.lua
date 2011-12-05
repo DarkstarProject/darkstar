@@ -38,10 +38,11 @@ function onTrigger(player,npc)
 			player:setVar("QuestTeachersPet_prog",1);
 		elseif (prog == 1) then 
 			player:startEvent(0x01b6,0,847,4368); -- Quest Start
-			
 		end
 	elseif (teacherstatus == QUEST_ACCEPTED) then
 		player:startEvent(0x01b7,0,847,4368); -- Quest Reminder
+	elseif (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
+		player:startEvent(0x01bc); -- During Making the GRADE
 	else   --  Will run through these if fame is not high enough for other quests
 		rand = math.random(1,2);
 		if (rand == 1) then
