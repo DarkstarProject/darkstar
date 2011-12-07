@@ -1,7 +1,9 @@
 -----------------------------------
--- Area: Southern San d'Oria
--- NPC: Exoroche
--- NPC for "Father and Son" Quest
+--  Area: Southern San d'Oria
+--  NPC: Exoroche
+--  NPC for "Father and Son" Quest
+--  @zone 230
+--  @pos  72 -1 60
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -35,12 +37,12 @@ end;
 function onTrigger(player,npc)
 
 	-- "Father and Son" quest status
-	fatherAndSon = player:getQuestStatus(SANDORIA, FATHER_AND_SON);
+	fatherAndSon = player:getQuestStatus(SANDORIA,FATHER_AND_SON);
 	
 	-- "Father and Son" Event Dialogs
 	if (fatherAndSon == 1) then
 		player:startEvent(0x021e);
-		player:setVar("fatherAndSonCS1",1);
+		player:setVar("QuestfatherAndSon_CS",1);
 	else
 		player:startEvent(0x004c);
 	end;

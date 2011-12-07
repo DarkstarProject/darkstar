@@ -1,7 +1,9 @@
 -----------------------------------
--- Area: Northern San d'Oria
--- NPC: Ailbeche
--- NPC for "Father and Son" Quest
+--  Area: Northern San d'Oria
+--  NPC: Ailbeche
+--  Starts and Finishes Quest: "Father and Son"
+--  @zone 231
+--  @pos  4 -1 24
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -59,11 +61,11 @@ function onTrigger(player,npc)
 	hasOrdelleWhetstone = player:hasKeyItem(233)
 	
 	--"Father and Son" Event Dialogs
-	if (fatherAndSon == QUEST_AVAILABLE and player:getVar("fatherAndSonCS") == 0) then
+	if (fatherAndSon == QUEST_AVAILABLE) then
 		player:startEvent(0x01fc);
 		player:setVar("fatherAndSonCS",1);
-		player:addQuest(SANDORIA, FATHER_AND_SON);
-	elseif (fatherAndSon == QUEST_ACCEPTED and player:getVar("fatherAndSonCS1") == 1) then
+		player:addQuest(SANDORIA,FATHER_AND_SON);
+	elseif (fatherAndSon == QUEST_ACCEPTED and player:getVar("QuestfatherAndSon_CS") == 1) then
 		player:startEvent(0x01fd);
 	
 	--[[ "Sharpening the Sword" Quest Dialogs	
@@ -112,6 +114,7 @@ function onEventFinish(player,csid,option)
 		player:addFame(SANDORIA, SAN_FAME*30);
 		player:setTitle(LOST_CHILD_OFFICER);
 		player:completeQuest(SANDORIA, FATHER_AND_SON);
+		player:setVar("QuestfatherAndSon_CS",0);
 	elseif (csid == 0x01fd and player:getFreeSlotsCount() < 1) then
 		player:messageSpecial(6564, 17391); -- CANNOT_OBTAIN_ITEM
 	end;

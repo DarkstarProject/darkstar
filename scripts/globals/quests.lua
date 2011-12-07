@@ -30,7 +30,7 @@ A_SENTRY_S_PERIL                = 0;  -- ± --
 WATER_OF_THE_CHEVAL             = 1;
 ROSEL_THE_ARMORER               = 2;
 THE_PICKPOCKET                  = 3;
-FATHER_AND_SON                  = 4;
+FATHER_AND_SON                  = 4;  -- + --
 THE_SEAMSTRESS                  = 5;
 THE_DISMAYED_CUSTOMER           = 6;
 THE_TRADER_IN_THE_FOREST        = 7;
@@ -50,7 +50,7 @@ TO_CURE_A_COUGH                 = 20;
 TIGER_S_TEETH                   = 23;
 
 UNDYING_FLAMES                  = 26;
-A_PURCHASE_OF_ARMS              = 27;
+A_PURCHASE_OF_ARMS              = 27; -- + --
 
 A_KNIGHT_S_TEST                 = 29;
 THE_MEDICINE_WOMAN              = 30;
