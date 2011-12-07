@@ -31,6 +31,7 @@ function onTrade(player,npc,trade)
 			player:tradeComplete();
 			player:startEvent(0x003d);
 			player:setVar("returnedAilbecheRod",1);
+			player:setTitle(FAMILY_COUNSELOR); --title : FAMILY COUNSELOR
 		end;
 	end;
 		
