@@ -28,6 +28,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc) 
+
+		--	player:delQuest(JEUNO,CANDLE_MAKING);
+
+
 	CandleMaking = player:getQuestStatus(JEUNO,CANDLE_MAKING);
 	if(CandleMaking == QUEST_ACCEPTED or (CandleMaking == QUEST_AVAILABLE and(player:getFameLevel(WINDURST) + player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK))/3 >= 4)) then 	
 		player:startEvent(0x0024);  -- Start Quest Candle-making
@@ -63,6 +67,7 @@ function onEventFinish(player,csid,option)
 		player:addFame(WINDURST, WIN_FAME*10);
 		player:addFame(SANORIA, SAN_FAME*10);
 		player:addFame(BASTOK, BAS_FAME*10);
+		player:tradeComplete(trade);
 	end
 end;
 
