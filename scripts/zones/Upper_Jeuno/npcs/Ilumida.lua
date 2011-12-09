@@ -2,8 +2,8 @@
 -- Area: Upper Jeuno
 -- NPC: Ilumida
 -- Starts and Finishes Quest: A Candlelight Vigil
--- Zone : 244
--- Pos : -75 -1 58
+-- @zone : 244
+-- @pos : -75 -1 58
 -----------------------------------
 
 require("scripts/globals/settings");
