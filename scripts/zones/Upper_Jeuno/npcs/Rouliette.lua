@@ -28,12 +28,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc) 
-
-		--	player:delQuest(JEUNO,CANDLE_MAKING);
-
-
-	CandleMaking = player:getQuestStatus(JEUNO,CANDLE_MAKING);
-	if(CandleMaking == QUEST_ACCEPTED or (CandleMaking == QUEST_AVAILABLE and(player:getFameLevel(WINDURST) + player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK))/3 >= 4)) then 	
+	--Prerequisites for this quest : A_CANDLELIGHT_VIGIL ACCEPTED
+	
+	if(player:getQuestStatus(JEUNO,CANDLE_MAKING) ~= QUEST_COMPLETED and 
+	   player:getQuestStatus(JEUNO,A_CANDLELIGHT_VIGIL) == QUEST_ACCEPTED) then 	
 		player:startEvent(0x0024);  -- Start Quest Candle-making
 	else
 		player:startEvent(0x001e);  --Standard dialog
@@ -63,10 +61,7 @@ function onEventFinish(player,csid,option)
 		player:setTitle(BELIEVER_OF_ALTANA);
 		player:addKeyItem(HOLY_CANDLE);
 		player:messageSpecial(KEYITEM_OBTAINED,HOLY_CANDLE);
-		player:needToZone(true);
-		player:addFame(WINDURST, WIN_FAME*10);
-		player:addFame(SANORIA, SAN_FAME*10);
-		player:addFame(BASTOK, BAS_FAME*10);
+		player:addFame(JEUNO,30);
 		player:tradeComplete(trade);
 	end
 end;
