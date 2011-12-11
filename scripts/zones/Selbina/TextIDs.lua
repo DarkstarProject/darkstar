@@ -20,4 +20,4 @@ CLOTHCRAFT_SHOP_DIALOG = 6923; -- Welcome to the Weavers' Guild salesroom.
    QUELPIA_SHOP_DIALOG = 6925; -- In need of otherworldly protection?
 CHUTARMIRE_SHOP_DIALOG = 6926; -- I have items for those who delve in the black arts!
   DOHDJUMA_SHOP_DIALOG = 6922; -- I'm Dohdjuma, and I sell all kinds of things.
-  HERMINIA_SHOP_DIALOG = 7625; -- 
+  HERMINIA_SHOP_DIALOG = 0; -- 

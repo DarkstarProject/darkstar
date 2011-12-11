@@ -18,9 +18,9 @@ MISSION_SMASH_THE_ORCISH_SCOUTS = 16; -- Bring me one of those axes, and your mi
 CONQUEST = 11508; -- You've earned conquest points!
 
 -- Quest Items
-SCROLL_OF_TELEPORT_DEM = 17747; -- 
-			WYVERN_EGG = 17747; -- 
-    CASTLE_FLOOR_PLANS = 17747; -- 
+SCROLL_OF_TELEPORT_DEM = 4731; -- 
+			WYVERN_EGG = 1159; -- 
+    CASTLE_FLOOR_PLANS = 530; -- 
 
 	    MagicmartFlyer = 532; -- item: Magicmart_flyer
          FLYER_REFUSED = 11321; -- Your flyer is refused.

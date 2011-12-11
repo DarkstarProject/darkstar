@@ -11,7 +11,7 @@ FULL_INVENTORY_AFTER_TRADE = 6402; -- You cannot obtain the <item>. Try trading 
 			 HOMEPOINT_SET = 24; -- Home point set!
 
 -- Quest Items
-    BEETLE_SHELL = 10998; -- 
+    BEETLE_SHELL = 889; -- 
 
   MagicmartFlyer = 532; -- item: Magicmart_flyer
    FLYER_REFUSED = 7100; -- This person isn't interested.

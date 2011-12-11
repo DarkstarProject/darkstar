@@ -7,5 +7,5 @@ ITEM_CANNOT_BE_OBTAINED = 11106; -- You cannot obtain the item <item> come back 
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
 -- Shop Texts
-BLINGBRIX_SHOP_DIALOG = 14571; -- 
-	SILKE_SHOP_DIALOG = 14571; -- 
+BLINGBRIX_SHOP_DIALOG = 0; -- 
+	SILKE_SHOP_DIALOG = 0; -- 

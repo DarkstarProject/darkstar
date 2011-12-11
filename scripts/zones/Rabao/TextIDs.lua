@@ -11,7 +11,7 @@ ITEM_CANNOT_BE_OBTAINED = 10096; -- You cannot obtain the item <item> come back 
 NOMAD_MOOGLE_DIALOG = 10067; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
 
 -- Shop Texts
-  BRAVEOX_SHOP_DIALOG = 10671; -- 
-BRAVEWOLF_SHOP_DIALOG = 10671; -- 
- GENEROIT_SHOP_DIALOG = 10671; -- 
- SCAMPLIX_SHOP_DIALOG = 10671; -- 
+  BRAVEOX_SHOP_DIALOG = 0; -- 
+BRAVEWOLF_SHOP_DIALOG = 0; -- 
+ GENEROIT_SHOP_DIALOG = 0; -- 
+ SCAMPLIX_SHOP_DIALOG = 0; -- 

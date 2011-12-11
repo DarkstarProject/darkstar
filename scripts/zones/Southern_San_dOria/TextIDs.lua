@@ -36,26 +36,26 @@ CONQUEST = 8298; -- You've earned conquest points!
 PAUNELIE_DIALOG = 0; -- 1997; -- Like <item> ? -- (linkshell)
 
 -- Quest Items
-REVIVAL_TREE_ROOT = 14917; -- 
-	  KITE_SHIELD = 14917; -- 
-		   SPATHA = 14917; -- 
+REVIVAL_TREE_ROOT = 940; -- 
+	  KITE_SHIELD = 12306; -- 
+		   SPATHA = 16565; -- 
     LADY_BUG_WING = 2506; -- item Atelloune's Lament
 
 -- Quest Dialogs
 UNLOCK_PALADIN = 7823; -- You can now become a paladin!
 
 -- Shop Texts
-	   ASHENE_SHOP_DIALOG = 14917; -- 
-	  AVELINE_SHOP_DIALOG = 14917; -- 
-	  BENAIGE_SHOP_DIALOG = 14917; -- 
-	 CARAUTIA_SHOP_DIALOG = 14917; -- 
+	   ASHENE_SHOP_DIALOG = 0; -- 
+	  AVELINE_SHOP_DIALOG = 0; -- 
+	  BENAIGE_SHOP_DIALOG = 0; -- 
+	 CARAUTIA_SHOP_DIALOG = 0; -- 
 FERDOULEMIONT_SHOP_DIALOG = 8227; -- Hello!
-	  LUSIANE_SHOP_DIALOG = 14917; -- 
-	 MIOGIQUE_SHOP_DIALOG = 14917; -- 
-	  OSTALIE_SHOP_DIALOG = 14917; -- 
-	   SHILAH_SHOP_DIALOG = 14917; -- 
-	 THADIENE_SHOP_DIALOG = 14917; -- 
-	VALERIANO_SHOP_DIALOG = 14917; -- 
+	  LUSIANE_SHOP_DIALOG = 0; -- 
+	 MIOGIQUE_SHOP_DIALOG = 0; -- 
+	  OSTALIE_SHOP_DIALOG = 0; -- 
+	   SHILAH_SHOP_DIALOG = 0; -- 
+	 THADIENE_SHOP_DIALOG = 0; -- 
+	VALERIANO_SHOP_DIALOG = 0; -- 
 
     MACHIELLE_OPEN_DIALOG = 8229; -- Might I interest you in produce from Norvallen?
   MACHIELLE_CLOSED_DIALOG = 8236; -- We want to sell produce from Norvallen, but the entire region is under foreign control!

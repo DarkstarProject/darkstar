@@ -1,7 +1,7 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6610; -- You cannot obtain the item <item> come back again after sorting your inventory
+ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back again after sorting your inventory
 		  ITEM_OBTAINED = 6378; -- Obtained: <item>
 		   GIL_OBTAINED = 6379; -- Obtained <number> gil
 	   KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
@@ -12,8 +12,8 @@ INVENTORU_INCREASED = 7636; -- Your inventory capacity has increased.
 	 DOOR_IS_LOCKED = 7444; -- It's locked.
 
 -- Quest Items
-POETIC_PARCHMENT = 10052; -- 
-   BEAST_WHISTLE = 10052; -- 
+POETIC_PARCHMENT = 634; -- 
+   BEAST_WHISTLE = 13110; -- 
 
 -- Shop Texts
 CREEPSTIX_SHOP_DIALOG = 6988; -- Hey, how ya doin'? We got the best junk in town.

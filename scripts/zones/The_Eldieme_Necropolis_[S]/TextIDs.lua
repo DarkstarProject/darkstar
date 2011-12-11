@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
 -- Shop Texts
-	LAYTON_SHOP_DIALOG = 7660; -- 
+	LAYTON_SHOP_DIALOG = 0; -- 

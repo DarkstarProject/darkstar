@@ -8,5 +8,5 @@ ITEM_CANNOT_BE_OBTAINED = 12765; -- You cannot obtain the item <item> come back 
 		  HOMEPOINT_SET = 10765; -- Home point set!
 
 -- Shop Texts
-EZURAROMAZURA_SHOP_DIALOG = 14831; -- 
-     PELFTRIX_SHOP_DIALOG = 14831; -- 
+EZURAROMAZURA_SHOP_DIALOG = 0; -- 
+     PELFTRIX_SHOP_DIALOG = 0; -- 

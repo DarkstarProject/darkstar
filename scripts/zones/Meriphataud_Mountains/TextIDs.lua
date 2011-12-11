@@ -7,7 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
 
 -- Quest Items
-WYVERN_EGG = 11586; -- 
+WYVERN_EGG = 1159; -- 
 
 -- General Dialogs
-NOTHING_FOUND = 11586; -- 
+NOTHING_FOUND = 7406; -- You find nothing.

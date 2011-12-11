@@ -11,10 +11,10 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 NOMAD_MOOGLE_DIALOG = 10824; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
 
 -- Shop Text
-CAIPHIMONRIDE_SHOP_DIALOG = 12134; -- 
-   MELLEUPAUX_SHOP_DIALOG = 12134; -- 
-     KOMALATA_SHOP_DIALOG = 12134; -- 
- MAZUROOOZURO_SHOP_DIALOG = 12134; -- 
-       MIGRAN_SHOP_DIALOG = 12134; -- 
-   NILEROUCHE_SHOP_DIALOG = 12134; -- 
-   MISSEULIEU_SHOP_DIALOG = 12134; -- 
+CAIPHIMONRIDE_SHOP_DIALOG = 0; -- 
+   MELLEUPAUX_SHOP_DIALOG = 0; -- 
+     KOMALATA_SHOP_DIALOG = 0; -- 
+ MAZUROOOZURO_SHOP_DIALOG = 0; -- 
+       MIGRAN_SHOP_DIALOG = 0; -- 
+   NILEROUCHE_SHOP_DIALOG = 0; -- 
+   MISSEULIEU_SHOP_DIALOG = 0; -- 

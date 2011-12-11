@@ -11,8 +11,8 @@ ITEM_CANNOT_BE_OBTAINED = 6605; -- You cannot obtain the item <item> come back a
 CONQUEST = 7602; -- You've earned conquest points!
 
 -- Quest Items
-GAUSEBIT_GRASS = 13014; -- 
- GYSAHL_GREENS = 13014; -- 
+GAUSEBIT_GRASS = 534; -- 
+ GYSAHL_GREENS = 4545; -- 
 
 -- NPC Texts
 KIRISOMANRISO_DIALOG = 7934; -- Delivering goods to residences everywhere!

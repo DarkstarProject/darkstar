@@ -11,8 +11,8 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
                   CONQUEST = 10854; -- You've earned conquest points!
 
 -- Quest Items
-COPPER_RING = 15529; -- 
- LINEN_ROBE = 15529; -- 
+COPPER_RING = 13454; -- 
+ LINEN_ROBE = 12601; -- 
 
 -- Dialog Texts
 VIRNAGE_DIALOG_1 = 10731; -- They stayed in a citadel on the Sauromugue Champaign. The paint may be there still! I have heard people here say you are a great adventurer. Please, help the Goddess in Her hour of need!

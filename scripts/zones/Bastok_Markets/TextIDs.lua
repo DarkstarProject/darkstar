@@ -12,14 +12,13 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
                   CONQUEST = 7503; -- You've earned conquest points!
 
 -- Quest Items
-
-   STEAM_CLOCK = 13586; -- 
-   FETICH_HEAD = 13586; -- 
-  FETICH_TORSO = 13586; -- 
-   FETICH_ARMS = 13586; -- 
-   FETICH_LEGS = 13586; -- 
-  FIRE_CRYSTAL = 13586; -- 
-LEATHER_GORGET = 13586; -- 
+   STEAM_CLOCK = 550; -- 
+   FETICH_HEAD = 606; -- 
+  FETICH_TORSO = 607; -- 
+   FETICH_ARMS = 608; -- 
+   FETICH_LEGS = 609; -- 
+  FIRE_CRYSTAL = 4096; -- 
+LEATHER_GORGET = 13081; -- 
 
 -- Shop Texts
 	  BALTHILDA_SHOP_DIALOG = 7407; -- Feeling defenseless of late? Brunhilde's Armory has got you covered!

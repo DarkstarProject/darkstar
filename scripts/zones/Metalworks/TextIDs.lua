@@ -8,19 +8,19 @@
              KEYITEM_OBTAINED = 6436; -- Obtained key item: <keyitem>
 			 
 -- Quest Items
-FADED_CRYSTAL = 8333; -- 
- FIRE_CRYSTAL = 8333; -- 
-   LIZARD_EGG = 8333; -- 
-   RAM_MANTLE = 8333; -- 
-    RAZOR_AXE = 8333; -- 
+FADED_CRYSTAL = 613; -- 
+ FIRE_CRYSTAL = 4096; -- 
+   LIZARD_EGG = 4362; -- 
+   RAM_MANTLE = 13450; -- 
+    RAZOR_AXE = 16678; -- 
 
 -- General Text
-GOOD_LUCK = 8333; -- 
+GOOD_LUCK = 7249; -- Good luck on your mission. Bastokers like to do things by the book, so stay out of trouble and follow their rules.
 
 -- Shop Texts
-    NOGGA_SHOP_DIALOG = 8333; -- 
-     OLAF_SHOP_DIALOG = 8333; -- 
-   TOMASA_SHOP_DIALOG = 8333; -- 
+    NOGGA_SHOP_DIALOG = 0; -- 
+     OLAF_SHOP_DIALOG = 0; -- 
+   TOMASA_SHOP_DIALOG = 0; -- 
   TAKIYAH_OPEN_DIALOG = 9760; -- Hey, it's your lucky day! I've got a fresh batch of goods straight from the island of Qufim!
 TAKIYAH_CLOSED_DIALOG = 9759; -- Maybe someday I'll be able to sell goods from Qufim Island... Someday...
 

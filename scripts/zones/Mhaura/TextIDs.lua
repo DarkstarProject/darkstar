@@ -15,8 +15,8 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
       SMITHING_GUILD = 7047; -- Welcome to the Blacksmiths' Guild salesroom!
  NOMAD_MOOGLE_DIALOG = 6705; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
        GRAINE_DIALOG = 7043; -- Hello there, I'm Graine the armorer. I've got just what you need!
-                                
+
 -- Shop Texts
       GRAINE_SHOP_DIALOG = 7043; -- Hello there, I'm Graine the armorer. I've got just what you need!
-PIKINIMIKINI_SHOP_DIALOG = 7655; -- 
+PIKINIMIKINI_SHOP_DIALOG = 0; -- 
 RUNITOMONITO_SHOP_DIALOG = 7044; -- Hi! Welcome! I'm Runito-Monito, and weapons is my middle name!

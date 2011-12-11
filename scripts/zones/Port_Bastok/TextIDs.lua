@@ -12,16 +12,16 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
              MOGHOUSE_EXIT = 7645; -- You have learned your way through the back alleys of Jeuno! Now you can exit to any area from your residence.
 
 -- Quest Items
-	 KING_TRUFFLE = 12820; -- 
-	   ROLANBERRY = 12820; -- 
-    BRASS_HAIRPIN = 12820; -- 
-    COTTON_GLOVES = 12820; -- 
-     SHELL_SHIELD = 12820; -- 
-     	   SPATHA = 12820; -- 
-    		 MAUL = 12820; -- 
-     REPLICA_MAUL = 12820; -- 
-            TARGE = 12820; -- 
-        SPEED_BOW = 12820; -- 
+	 KING_TRUFFLE = 4386; -- 
+	   ROLANBERRY = 4530; -- 
+    BRASS_HAIRPIN = 12497; -- 
+    COTTON_GLOVES = 12721; -- 
+     SHELL_SHIELD = 12415; -- 
+     	   SPATHA = 16565; -- 
+    		 MAUL = 17045; -- 
+     REPLICA_MAUL = 17426; -- 
+            TARGE = 12300; -- 
+        SPEED_BOW = 17170; -- 
 
 -- Dialog Texts
  PAUJEAN_DIALOG_1 = 7420; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea. Just don't do anything I wouldn't...heh heh.

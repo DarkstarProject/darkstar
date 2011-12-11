@@ -1,7 +1,7 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 10498; -- You cannot obtain the item <item> come back again after sorting your inventory
+ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back again after sorting your inventory
           ITEM_OBTAINED = 6381; -- Obtained: <item>
            GIL_OBTAINED = 6382; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
@@ -9,14 +9,14 @@ ITEM_CANNOT_BE_OBTAINED = 10498; -- You cannot obtain the item <item> come back 
 		 DOOR_IS_LOCKED = 10271; -- The door is locked tight.
 
 -- Quest Items	
- DARKSTEEL_ORE = 11320; -- 
-	  GOLD_ORE = 11320; -- 
-  PLATINUM_ORE = 11320; -- 
- SACRED_BRANCH = 11320; -- 
-   	BOMB_STEEL = 11320; -- 
-ORIENTAL_STEEL = 11320; -- 
-  SACRED_SPRIG = 11320; -- 
-  	   MUMEITO = 11320; -- 
+ DARKSTEEL_ORE = 645; -- 
+	  GOLD_ORE = 737; -- 
+  PLATINUM_ORE = 738; -- 
+ SACRED_BRANCH = 1153; -- 
+   	BOMB_STEEL = 1152; -- 
+ORIENTAL_STEEL = 1151; -- 
+  SACRED_SPRIG = 1198; -- 
+  	   MUMEITO = 17809; -- 
 
 -- Quest Dialog
 NOMAD_MOOGLE_DIALOG = 10453; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.

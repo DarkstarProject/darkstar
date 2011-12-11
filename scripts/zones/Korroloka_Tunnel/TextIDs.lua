@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 		  NOTHING_FOUND = 7323; -- There is nothing out of the ordinary here.
 
 -- Quest Mob IDs
-KORROLOKA_LEECH_1 = 10477; -- 
-KORROLOKA_LEECH_2 = 10477; -- 
-KORROLOKA_LEECH_3 = 10477; -- 
+KORROLOKA_LEECH_1 = 17486187; -- 
+KORROLOKA_LEECH_2 = 17486188; -- 
+KORROLOKA_LEECH_3 = 17486189; -- 
 
