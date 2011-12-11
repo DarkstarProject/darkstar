@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
 
 -- Quest Dialog
-UNLOCK_BARD = 7269;
+UNLOCK_BARD = 11284; -- 

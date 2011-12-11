@@ -8,4 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
 
 
 -- Mission Texts
-MAKARIM_DIALOG_I = 7252; -- Be careful on your wait out...
+MAKARIM_DIALOG_I = 7252; -- Be careful on your way out. Remember, you should give my report to Naji, one of the Mythril Musketeers on post at the President's Office.

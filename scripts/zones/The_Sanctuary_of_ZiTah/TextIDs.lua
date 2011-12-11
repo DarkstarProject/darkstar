@@ -8,13 +8,13 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 
 
 -- Quest Items
-	  HATCHET = 1021;
-SACRED_BRANCH = 1153;
- SACRED_SPRIG = 1198;
+	  HATCHET = 11286; -- 
+SACRED_BRANCH = 11286; -- 
+ SACRED_SPRIG = 11286; -- 
  
 -- Quest Related Mob IDs
-GUARDIAN_TREANT = 17272838;
+GUARDIAN_TREANT = 11286; -- 
 
 -- Quest Dialogs
 
-STURDY_BRANCH = 7699;
+STURDY_BRANCH = 11286; -- 

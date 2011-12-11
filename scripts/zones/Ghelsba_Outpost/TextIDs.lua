@@ -8,4 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6893; -- You cannot obtain the item <item> come back a
 
 
 -- Quest Dialogs
-UNLOCK_DRG = 7705;
+UNLOCK_DRG = 7888; -- 

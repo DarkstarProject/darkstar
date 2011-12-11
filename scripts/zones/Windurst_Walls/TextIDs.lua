@@ -6,6 +6,5 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6538; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
 
-
 -- Shop Texts
-SCAVNIX_SHOP_DIALOG = 0;
+SCAVNIX_SHOP_DIALOG = 9796; -- 

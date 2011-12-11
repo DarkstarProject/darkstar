@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
 
 -- Dialog Texts
-YOU_FIND_NOTHING = 7237; -- You find nothing special
+YOU_FIND_NOTHING = 7237; -- You find nothing special.
