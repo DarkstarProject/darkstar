@@ -48,3 +48,13 @@ VIRNAGE_DIALOG_2 = 10737; -- Hand my letter to Eperdur in the San d'Oria Cathedr
 	  EMALIVEULAUX_OPEN_DIALOG = 11979; -- Rare Tavnazian imports! Get them before they're gone!
 	EMALIVEULAUX_CLOSED_DIALOG = 11980; -- I'd love to sell you goods imported from the island of Tavnazia, but with the area under foreign control, I can't secure my trade routes...
 EMALIVEULAUX_COP_NOT_COMPLETED = 11978; -- I'd like to start my own business someday, but I just haven't found anything that truly interests me.
+
+             ODOBA_SHOP_DIALOG = 10659; -- Welcome to the Alchemists' Guild! Looking for something specific?
+          MAYMUNAH_SHOP_DIALOG = 10660; -- Welcome to the Alchemists' Guild. How may I help you?
+
+-- Weather Dialog
+MARIADOK_DIALOG = 6666; -- Your fate rides on the changing winds of Vana'diel. I can give you insight on the local weather.
+
+-- Standard NPC Dialog
+ITEM_DELIVERY_DIALOG = 10192; -- Need something sent to a friend's house? Sending items to your own house? You've come to the right place!
+     HEMEWMEW_DIALOG = 6864; -- Hello, <Multiple Choice (Player Gender)>[sir/ma'am]. I have been appointed by the Guildworkers' Union to manage the trading of manufactured crafts and the exchange of guild points.
