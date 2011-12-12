@@ -19,8 +19,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x00CF);
+player:startEvent(0x00a8);
 end; 
+
+-- 
+-- Start quest 
+-- Ending quest 
+-- Standard dialog 0x00CF
 
 -----------------------------------
 -- onEventUpdate
