@@ -314,7 +314,7 @@ BABBAN_NY_MHEILLEA              = 95;
 -----------------------------------
 
 SAVE_MY_SISTER                  = 1;
-A_CLOCK_MOST_DELICATE           = 2;
+A_CLOCK_MOST_DELICATE           = 2;  -- + --
 ATOP_THE_HIGHEST_MOUNTAINS      = 3;
 CHOCOBO_S_WOUNDS                = 4;
 SAVE_MY_SON                     = 5;
@@ -337,14 +337,14 @@ THE_CLOCKMASTER                 = 21;
 CANDLE_MAKING                   = 22; -- + --
 CHILD_S_PLAY                    = 23; -- + --
 NORTHWARD                       = 24;
-THE_ANTIQUE_COLLECTOR           = 25;
-DEAL_WITH_TENSHODO              = 26;
+THE_ANTIQUE_COLLECTOR           = 25; -- + --
+DEAL_WITH_TENSHODO              = 26; -- + --
 THE_GOBBIEBAG_PART_I            = 27;
 THE_GOBBIEBAG_PART_II           = 28;
 THE_GOBBIEBAG_PART_III          = 29;
 THE_GOBBIEBAG_PART_IV           = 30;
-MYSTERIES_OF_BEADEAUX_I         = 31;
-MYSTERIES_OF_BEADEAUX_II        = 32;
+MYSTERIES_OF_BEADEAUX_I         = 31; -- + --
+MYSTERIES_OF_BEADEAUX_II        = 32; -- + --
 MYSTERY_OF_FIRE                 = 33;
 MYSTERY_OF_WATER                = 34;
 MYSTERY_OF_EARTH                = 35;

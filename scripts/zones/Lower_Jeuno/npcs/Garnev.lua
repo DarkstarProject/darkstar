@@ -1,9 +1,15 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Gamev
--- Standard Info NPC
+-- NPC: Garnev
+-- Starts and Finishes Quest: Deal with Tenshodo
+-- @zone 245
+-- @pos 30 4 -36
 -----------------------------------
 
+require("scripts/globals/titles");
+require("scripts/globals/settings");
+package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/quests");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
@@ -12,6 +18,9 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	if(player:getQuestStatus(JEUNO,DEAL_WITH_TENSHODO) == QUEST_ACCEPTED and trade:hasItemQty(554,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+		player:startEvent(0x00a6); -- Ending quest
+	end
 end; 
 
 -----------------------------------
@@ -19,13 +28,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x00a8);
-end; 
-
--- 
--- Start quest 
--- Ending quest 
--- Standard dialog 0x00CF
+	if(player:getQuestStatus(JEUNO,A_CLOCK_MOST_DELICATE) == QUEST_ACCEPTED and player:getQuestStatus(JEUNO,DEAL_WITH_TENSHODO) == QUEST_AVAILABLE) then 
+		if(player:getFameLevel(NORG) >= 2) then 
+			player:startEvent(0x00a7); -- Start quest
+		else 
+			player:startEvent(0x00a8); -- dialog without correct tenshodo/norg fame
+		end
+	else
+		player:startEvent(0x00CF); -- Standard dialog
+	end
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -43,6 +55,16 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if(csid == 0x00a7) then 
+		player:addQuest(JEUNO,DEAL_WITH_TENSHODO);
+	elseif(csid == 0x00a6) then 
+		player:completeQuest(JEUNO,DEAL_WITH_TENSHODO);
+		player:setTitle(TRADER_OF_RENOWN);
+		player:addKeyItem(CLOCK_TOWER_OIL);
+		player:messageSpecial(KEYITEM_OBTAINED,CLOCK_TOWER_OIL);
+		player:addFame(JEUNO,30);
+		player:tradeComplete(trade);
+	end
 end;
 
 
