@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 -- NPC: Abeaule
--- NPC QUEST
+-- Involved in Quest: The Trader in the Forest
+-- @zone 231
+-- @pos -136 -2 56
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,8 +18,6 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	-- "Flyers for Regine" conditional script
-	FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 	-- "The Trader in the Forest" Quest status
 	theTraderInTheForest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
 	MedicineWoman = player:getQuestStatus(0,30);
@@ -60,15 +60,11 @@ function onTrigger(player,npc)
 		player:setVar("theTraderInTheForestCS",1);
 	elseif (theTraderInTheForest == QUEST_ACCEPTED) then
 		player:startEvent(0x0251);
-		elseif (theTraderInTheForest == 2 and MedicineWoman == 0 and sanFame <= 2) then
-		player:startEvent(0x0267);
 	elseif (theTraderInTheForest == 2 and MedicineWoman == 0 and sanFame >= 3) then
 		player:startEvent(0x0265);
 		elseif (theTraderInTheForest == 2 and MedicineWoman == 1 and player:hasKeyItem(147) == true) then
 		player:startEvent(0x0266);
-	elseif (theTraderInTheForest == 2 and MedicineWoman == 1) then
-		player:startEvent(0x0267);
-		elseif (theTraderInTheForest == 2 and MedicineWoman == 2) then
+		else
 		player:startEvent(0x0267);
 	
    end

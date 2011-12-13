@@ -27,12 +27,12 @@ function onTrigger(player,npc)
 	Cura = player:getQuestStatus(0,20);
 	sanFame = player:getFameLevel(SANDORIA);
 	MedicineWoman = player:getQuestStatus(0,30);
-    if (Cura == 0 and sanFame >= 3 and MedicineWoman == 2) then
+    if (Cura == 0 and MedicineWoman == 2 and sanFame >= 3) then
 		player:startEvent(0x21A);
-		elseif (Cura == 1 and player:hasKeyItem(154) == false) then
-		player:startEvent(0x248);
 		elseif (player:hasKeyItem(154) == true) then
 		player:startEvent(0x287);
+		else
+			player:startEvent(0x248);
 		end
 end; 
 

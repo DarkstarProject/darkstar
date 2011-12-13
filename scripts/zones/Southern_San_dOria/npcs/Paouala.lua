@@ -1,7 +1,9 @@
 -----------------------------------
 --	Area: Southern San d'Oria
 --	NPC: Paouala
---  General Info NPC
+--  Quest: Sleepless Nights
+--  @zone 231
+--  @pos 157 -6 18
 -------------------------------------
 
 require("scripts/globals/settings");
@@ -15,14 +17,13 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 ----------------------------------- 
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-	if (FlyerForRegine == 1) then
+Leche = player:getQuestStatus(0,80);
+	if (Leche == 1) then
 		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
+		Milk = trade:hasItemQty(4527,1);
+		gil = trade:getGil();
+		if (Milk == true and count == 1 and gil == 0) then
+			player:startEvent(0x0054);
 		end
 	end
 end;
@@ -32,7 +33,16 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-	player:startEvent(0x052);
+Leche = player:getQuestStatus(0,80);
+if (Leche == 0) then
+	player:startEvent(0x0055);
+	elseif (Leche == 1) then
+	player:startEvent(0x0053);
+	elseif (Leche == 2) then
+	player:startEvent(0x0051);
+	else
+	player:startEvent(0x0052);
+	end
 end; 
 
 -----------------------------------
@@ -51,6 +61,16 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+if (csid == 0x0055 and option == 1) then
+player:addQuest(0,80);
+elseif (csid == 0x0054) then
+player:completeQuest(0,80);
+player:addFame(SANDORIA,SAN_FAME*30);
+player:tradeComplete();
+player:setTitle(44);
+player:addGil(GIL_RATE*5000);
+player:messageSpecial(6404,GIL_RATE*5000)
+end
 end;
 
 
