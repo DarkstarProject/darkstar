@@ -35,7 +35,7 @@ elseif (FlorVar == 1) then
 player:startEvent(0x0037)
 NewFlorVar = FlorVar + 1;
               player:setVar("QuestFlorVar",NewFlorVar)
-elseif (FlorVar == 4) then
+elseif (FlorVar == 3) then
 player:startEvent(0x0038)
 else
 player:startEvent(0x0249);
