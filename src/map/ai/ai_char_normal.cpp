@@ -356,7 +356,7 @@ void CAICharNormal::ActionFall()
 	m_PChar->animation = ANIMATION_DEATH;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
-	m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_RAISE));
+	m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
 }
 
 /************************************************************************
