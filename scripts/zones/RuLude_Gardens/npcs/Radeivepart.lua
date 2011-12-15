@@ -1,16 +1,29 @@
 -----------------------------------
---	Area: Ru'Lud Gardens
---	NPC:  Radeivepart
---	Standard Info NPC
+-- Area: Ru'Lude Gardens
+-- NPC:  Radeivepart
+-- Involved in Quests: Save the Clock Tower
+-- @zone 243
+-- @pos 5 9 -39
 -----------------------------------
 
 require("scripts/globals/settings");
+package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/quests");
+package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
+require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	if(trade:hasItemQty(555,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+		a = player:getVar("saveTheClockTowerNPCz1"); -- NPC Zone1
+		if(a == 0 or (a ~= 1 and a ~= 3 and a ~= 5 and a ~= 9 and a ~= 17 and a ~= 7 and a ~= 25 and a ~= 11 and 
+		   a ~= 13 and a ~= 19 and a ~= 21 and a ~= 15 and a ~= 23 and a ~= 27 and a ~= 29 and a ~= 31)) then 
+			player:startEvent(0x00a0,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
+		end
+	end
 end; 
 
 -----------------------------------
@@ -37,6 +50,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if(csid == 0x00a0) then 
+		player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
+		player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 1);
+	end
 end;
 
 

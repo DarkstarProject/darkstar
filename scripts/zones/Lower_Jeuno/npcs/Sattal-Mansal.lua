@@ -6,6 +6,7 @@
 -- @pos 40 3 -53
 -----------------------------------
 
+require("scripts/globals/titles");
 require("scripts/globals/settings");
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
