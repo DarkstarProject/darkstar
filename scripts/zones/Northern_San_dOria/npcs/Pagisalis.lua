@@ -3,7 +3,9 @@
 -- NPC: Pagisalis
 -- Quest NPC
 -----------------------------------
-
+OldPocketWatch = 197;
+      OldBoots = 198;
+   VelvetCloth = 828;
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 package.loaded["scripts/globals/quests"] = nil;
@@ -24,8 +26,15 @@ if (Abeja == 1) then
 		if (carta and count == 2 and gil == 0) then
 			player:startEvent(0x0233);
 			end
+			end;
+			
+	if (player:hasKeyItem(197) == true) and (player:hasKeyItem(198) == false) then 
+	if (trade:hasItemQty(828,1)) and (trade:getItemCount() == 1) then
+		player:startEvent(0x25);
+		player:delKeyItem(197);
 			end
-end;
+			end;
+			end;
 
 -----------------------------------
 -- onTrigger Action
@@ -34,14 +43,18 @@ end;
 function onTrigger(player,npc)
 sanFame = player:getFameLevel(SANDORIA);
 Abeja = player:getQuestStatus(0,26);
-if (sanFame < 2) then
-	player:startEvent(0x0234);
-elseif (sanFame >= 2 and Abeja == 0) then
+if (sanFame >= 2 and Abeja == 0 and player:hasKeyItem(198) == false and player:hasKeyItem(197) == false) then
 	player:startEvent(0x0232);
 	elseif (Abeja == 1) then
 	player:startEvent(0x0235);
-	elseif (Abeja == 2) then
+	elseif (Abeja == 2 and player:hasKeyItem(198) == false and player:hasKeyItem(197) == false) then
 	player:startEvent(0x0236);
+	elseif (player:hasKeyItem(198) == true) then
+  player:startEvent(0x3A);
+elseif (player:hasKeyItem(197) == true) then
+  player:startEvent(0x30);
+	else
+  player:startEvent(0x234)
 end
 	end; 
 
@@ -70,5 +83,10 @@ player:tradeComplete();
 player:setTitle(62);
 player:addItem(13211);
 player:messageSpecial(6567,13211);
+elseif (csid == 0x25) then
+	player:addKeyItem(198);
+	player:messagerSpecial(KEYITEM_OBTAINED,198);
+	player:delKeyItem(197);
+	player:tradeComplete();
 end
 end;
