@@ -10,11 +10,11 @@ package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
-MalboroVine = 1013;
+MalboroVine = 920;
 ZincOre = 642;
 InsectWing = 846;
-AmurasFormula = 0x0094;
-ColdMedicine = 0x0093;
+AmurasFormula = 148;
+ColdMedicine = 147;
 -----------------------------------
 -- onTrade Action
 -----------------------------------
