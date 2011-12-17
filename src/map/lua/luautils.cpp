@@ -553,10 +553,7 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
-	//	if (PNpc->name[0] != '_')
-		//{
-			ShowError("luautils::OnTrigger: %s\n",lua_tostring(LuaHandle,-1));
-		//}
+		ShowError("luautils::OnTrigger: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
 

@@ -30,31 +30,13 @@
 #include "../charentity.h"
 
 
-CAuctionHousePacket::CAuctionHousePacket(CCharEntity * PChar)
+CAuctionHousePacket::CAuctionHousePacket()
 {
 	this->type = 0x4c;
 	this->size = 0x1e;
 
-	memset(this->data,0,(0x1e-2)*2);
-	// Dummy data, just to open the AH menu
-	*(unsigned char*) this->data = 0x02;
-	*(unsigned char*) (this->data+1) = 0xFF;
-	*(unsigned char*) (this->data+2) = 0x01;
-
-	*(unsigned char*) (this->data+32) = 0x98;
+	WBUFB(data,(0x04)-4) = 0x02;
+    WBUFB(data,(0x05)-4) = 0xFF;
+    WBUFB(data,(0x06)-4) = 0x01;
+    WBUFB(data,(0x24)-4) = 0x98;
 }
-
-
-//
-//CAHMenuPacket::CAHMenuPacket(CBaseEntity * pChar) {
-//
-//	this->type			= 0x4c;
-//	this->size			= 0x1e;
-//	
-//	memset(this->data,0,(0x1e-2)*2);
-//	// Dummy data, just to open the AH menu
-//	*(unsigned char*) this->data = 0x02;
-//	*(unsigned char*) (this->data+1) = 0xFF;
-//	*(unsigned char*) (this->data+2) = 0x01;
-//
-//	*(unsigned char*) (this->data+32) = 0x98;

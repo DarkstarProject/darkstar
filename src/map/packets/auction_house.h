@@ -1,4 +1,4 @@
-
+﻿
 /*
 ===========================================================================
 
@@ -41,7 +41,7 @@ class CAuctionHousePacket : public CBasicPacket
 {
 public:
 
-	CAuctionHousePacket(CCharEntity* PChar);
+    CAuctionHousePacket();  // отправляем персонажу меню аукциона
 };
 
 #endif

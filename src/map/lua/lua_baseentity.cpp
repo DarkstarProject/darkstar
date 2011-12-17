@@ -30,6 +30,7 @@
 #include "lua_trade_container.h"
 #include "luautils.h"
 
+#include "../packets/auction_house.h"
 #include "../packets/char_abilities.h"
 #include "../packets/char_jobs.h"
 #include "../packets/char_health.h"
@@ -1503,6 +1504,8 @@ inline int32 CLuaBaseEntity::sendMenu(lua_State *L)
 	{
 		if( m_PBaseEntity->objtype == TYPE_PC )
 		{
+            CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
 			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
 			{
 				uint32 menu = (uint32)lua_tointeger(L, -1);
@@ -1510,14 +1513,16 @@ inline int32 CLuaBaseEntity::sendMenu(lua_State *L)
 				switch(menu) 
 				{
 					case 1:
-						((CCharEntity*)m_PBaseEntity)->pushPacket(new CMenuMogPacket());
+						PChar->pushPacket(new CMenuMogPacket());
 						break;
 					case 2:
-						((CCharEntity*)m_PBaseEntity)->pushPacket(new CShopMenuPacket((CCharEntity*)m_PBaseEntity));
-						((CCharEntity*)m_PBaseEntity)->pushPacket(new CShopItemsPacket((CCharEntity*)m_PBaseEntity));
+						PChar->pushPacket(new CShopMenuPacket(PChar));
+						PChar->pushPacket(new CShopItemsPacket(PChar));
 						break;
+                    case 3:
+                        PChar->pushPacket(new CAuctionHousePacket());
 					default:
-						ShowDebug("Menu %i not implemented, yet.\n",menu);
+						ShowDebug("Menu %i not implemented, yet.\n", menu);
 					break;
 				}
 				return 0;
