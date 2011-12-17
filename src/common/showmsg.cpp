@@ -54,11 +54,6 @@ int msg_silent = 0; //Specifies how silent the console is.
 
 #define SBUF_SIZE 2048 // never put less that what's required for the debug message
 
-///////////////////////////////////////////////////////////////////////////////
-/// static/dynamic buffer for the messages
-
-#define SBUF_SIZE 2048 // never put less that what's required for the debug message
-
 #define NEWBUF(buf)				\
 	struct {					\
 		char s_[SBUF_SIZE];		\
@@ -266,24 +261,23 @@ int VFPRINTF(HANDLE handle,const char *fmt,va_list argptr)
 				}
 				else if( *q == 'm' )
 				{	// \033[#;...;#m - Set Graphics Rendition (SGR)
-					uint8 i;
-					for(i=0; i<= numpoint; ++i)
+					for(uint8 i = 0; i <= numpoint; ++i)
 					{
 						if( 0x00 == (0xF0 & numbers[i]) )
 						{	// upper nibble 0
-							if( 0 == numbers[i] )
+							if( numbers[i] == 0 )
 							{	// reset
 								info.wAttributes = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
 							}
-							else if( 1==numbers[i] )
+							else if( numbers[i] == 1 )
 							{	// set foreground intensity
 								info.wAttributes |= FOREGROUND_INTENSITY;
 							}
-							else if( 5==numbers[i] )
+							else if( numbers[i] == 5 )
 							{	// set background intensity
 								info.wAttributes |= BACKGROUND_INTENSITY;
 							}
-							else if( 7==numbers[i] )
+							else if( numbers[i] == 7 )
 							{	// reverse colors (just xor them)
 								info.wAttributes ^= FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE |
 													BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
@@ -667,29 +661,24 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 #if defined(DEBUGLOGMAP) || defined(DEBUGLOGLOGIN)
 	FILE *fp;
 #endif
-	if( !string || !*string ){
+	if( !string || !*string )
+    {
 		ShowError("Empty string passed to _vShowMessage().\n");
 		return 1;
 	}
-	if(
-	    (flag == MSG_INFORMATION && msg_silent&1) ||
-	    (flag == MSG_STATUS && msg_silent&2) ||
-	    (flag == MSG_NOTICE && msg_silent&4) ||
-	    (flag == MSG_WARNING && msg_silent&8) ||
-	    (flag == MSG_ERROR && msg_silent&16) ||
-	    (flag == MSG_SQL && msg_silent&16) ||
-	    (flag == MSG_DEBUG && msg_silent&32) ||
-		(flag == MSG_LUASCRIPT && msg_silent&64)
-	)
+	if( flag & msg_silent )
+    {
 		return 0; //Do not print it.
-
+    }
 	if (timestamp_format[0] && flag != MSG_NONE)
 	{	//Display time format. [Skotlex]
 		time_t t = time(NULL);
 		strftime(prefix, 80, timestamp_format, localtime(&t));
-	} else 
+    } else  
 		prefix[0]='\0';
-	switch (flag) {
+
+	switch (flag) 
+    {
 		case MSG_NONE: // direct printf replacement
 			break;
 		case MSG_STATUS: //Bright Green (To inform about good things)

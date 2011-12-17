@@ -26,7 +26,6 @@ This file is part of DarkStar-server source code.
 *																		*
 ************************************************************************/
 
-
 #define CL_RESET		"\033[0m"
 #define CL_CLS			"\033[2J"
 #define CL_CLL			"\033[K"
@@ -94,16 +93,16 @@ extern int8  timestamp_format[20];			// For displaying Timestamps [Skotlex]
 
 enum MSGTYPE 
 {
-	MSG_NONE,
-	MSG_STATUS,
-	MSG_SQL,
-	MSG_INFORMATION,
-	MSG_NOTICE,
-	MSG_WARNING,
-	MSG_DEBUG,
-	MSG_ERROR,
-	MSG_FATALERROR,
-	MSG_LUASCRIPT
+    MSG_NONE            = 0x0001,
+    MSG_STATUS          = 0x0002,
+    MSG_INFORMATION     = 0x0004,
+    MSG_NOTICE          = 0x0008,
+    MSG_WARNING         = 0x0010,
+    MSG_DEBUG           = 0x0020,
+    MSG_ERROR           = 0x0040,
+    MSG_FATALERROR      = 0x0080,
+    MSG_SQL             = 0x0100,
+    MSG_LUASCRIPT       = 0x0200,
 };
 
 extern void ClearScreen(void);
