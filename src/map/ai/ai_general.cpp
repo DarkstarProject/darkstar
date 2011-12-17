@@ -72,12 +72,13 @@ ACTIONTYPE CAIGeneral::GetCurrentAction()
 	
 void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 {
-	////DSP_DEBUG_BREAK_IF(m_ActionTargetID != 0);
+	//DSP_DEBUG_BREAK_IF(m_ActionTargetID != 0);
 
 	if (m_ActionTargetID != 0)
 	{
 		m_ActionTargetID = 0;
 	}
+
 	switch (Action)
 	{
 		case ACTION_RANGED_START:
@@ -233,11 +234,10 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 
 CSpell* CAIGeneral::GetCurrentSpell()
 {
-	//DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 
 	return m_PSpell;
 }
-
 
 /************************************************************************
 *																		*
@@ -250,11 +250,9 @@ void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
 	if (m_ActionType != ACTION_WEAPONSKILL_START   &&
 		m_ActionType != ACTION_WEAPONSKILL_FINISH)
 	{
-		////DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
+		//DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
 
 		m_PWeaponSkill = battleutils::GetWeaponSkill(WSkillID);
-		
-
 	}
 }
 
@@ -271,7 +269,6 @@ CWeaponSkill* CAIGeneral::GetCurrentWeaponSkill()
 	return m_PWeaponSkill;
 }
 
-
 /************************************************************************
 *																		*
 *	Set Job Ability														*
@@ -283,14 +280,11 @@ void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
 	if (m_ActionType != ACTION_JOBABILITY_START   &&
 		m_ActionType != ACTION_JOBABILITY_FINISH)
 	{
-		////DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
+		//DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
 
 		m_PJobAbility = battleutils::GetAbility(JobAbilityID);
-		
-
 	}
 }
-
 
 /************************************************************************
 *																		*
@@ -326,20 +320,16 @@ CBattleEntity* CAIGeneral::GetBattleTarget()
 
 void CAIGeneral::SetCurrentMobSkill(uint16 SkillID)
 {
-	
-		////DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
-		m_PMobSkill = battleutils::GetMobSkill(SkillID);
-	
+    m_PMobSkill = battleutils::GetMobSkill(SkillID);
 }
 
-
 /************************************************************************
+*                                                                       *
 *	Gets Mob Skill														*
+*                                                                       *
 ************************************************************************/
 
 CMobSkill* CAIGeneral::GetCurrentMobSkill()
 {
-	//DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
-	
 	return m_PMobSkill;
 }

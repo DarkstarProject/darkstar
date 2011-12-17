@@ -50,16 +50,16 @@ namespace battleutils
 	uint8	GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16	GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
 
-	CSpell*	GetSpell(uint16 SpellID);
-	CAbility* GetAbility(uint16 AbilityID);
-	CTrait* GetTrait(uint16 TraitID);
+	CSpell*	      GetSpell(uint16 SpellID);
+	CAbility*     GetAbility(uint16 AbilityID);
+	CTrait*       GetTrait(uint16 TraitID);
 	CWeaponSkill* GetWeaponSkill(uint16 WSkillID);
-	CMobSkill* GetMobSkill(uint16 SkillID);
+	CMobSkill*    GetMobSkill(uint16 SkillID);
 
-	std::list<CAbility*> GetAbilities(JOBTYPE JobID);
-	std::list<CTrait*> GetTraits(JOBTYPE JobID);
+	std::list<CAbility*>     GetAbilities(JOBTYPE JobID);
+	std::list<CTrait*>       GetTraits(JOBTYPE JobID);
 	std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
-	std::list<CMobSkill*> GetMobSkillsByFamily(uint8 skill);
+	std::vector<CMobSkill*>  GetMobSkillsByFamily(uint16 FamilyID);
 
 	bool	CanUseSpell(CBattleEntity* PAttacker, uint16 SpellID);
 	bool	CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID);
@@ -84,8 +84,6 @@ namespace battleutils
 	uint16	GetEnmityMod(uint8 level, uint16 modType);
 	bool	Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	void	MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode);
-	uint32	PerformMobSkill(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	int32	AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTarget);
 };
 
 #endif

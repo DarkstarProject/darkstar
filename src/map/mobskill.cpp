@@ -30,12 +30,12 @@ CMobSkill::CMobSkill(uint16 id)
 	m_FamilyID= 0;
 	m_Aoe = 0;
 	m_SkillType = 0;
-	m_Critical  = 0;
-	m_name = "";
 	m_Distance = 0;
 	m_Flag = 0;
-	m_Effect = 0;
 	m_Element = 0;
+    m_ValidTarget = 0;
+    m_AnimationTime = 0;
+    m_ActivationTime = 0;
 }
 	
 void CMobSkill::setID(uint16 id)
@@ -61,11 +61,6 @@ void CMobSkill::setElement(uint8 element)
 const int8* CMobSkill::getName()
 {
 	return m_name.c_str();
-}
-
-void CMobSkill::setCritical(uint8 critical)
-{
-	m_Critical = critical;
 }
 
 void CMobSkill::setName(int8* name)
@@ -94,9 +89,14 @@ void CMobSkill::setFlag(uint8 flag)
 	m_Flag = flag;
 }
 
-void CMobSkill::setEffect(uint16 effect)
+void CMobSkill::setAnimationTime(uint16 AnimationTime)
 {
-	m_Effect = effect;
+    m_AnimationTime = AnimationTime;
+}
+
+void CMobSkill::setActivationTime(uint16 ActivationTime)
+{
+    m_ActivationTime = ActivationTime;
 }
 
 uint16 CMobSkill::getID()
@@ -112,16 +112,6 @@ uint16 CMobSkill::getfamilyID()
 uint8 CMobSkill::getSkillType()
 {
 	return m_SkillType;
-}
-
-uint8 CMobSkill::getCritical()
-{
-	return m_Critical;
-}
-
-uint16 CMobSkill::getEffect()
-{
-	return m_Effect;
 }
 
 uint8 CMobSkill::getNumHits()
@@ -149,4 +139,12 @@ uint8 CMobSkill::getElement()
 	return m_Element;
 }
 
+uint16 CMobSkill::getAnimationTime()
+{
+    return m_AnimationTime;
+}
 
+uint16 CMobSkill::getActivationTime()
+{
+    return m_ActivationTime;
+}

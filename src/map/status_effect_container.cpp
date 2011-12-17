@@ -709,11 +709,9 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint16 S
 			return m_StatusEffectList[i];
 		}
 	}
-	
 	return 0;
-		    
-
 }
+
 /************************************************************************
 *																		*
 *  Эффекты во всех методах удаляются одинаково, вынес этот код в		*

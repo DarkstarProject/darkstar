@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2011 Darkstar Dev Teams
@@ -27,11 +27,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
-#include "battleentity.h"
-
-
 #define MAX_MOBSKILL_ID	2048
-
 
 //skilltype flag
 //1	physical
@@ -56,24 +52,23 @@ public:
 	uint16		getfamilyID();
 	uint8		getSkillType();
 	uint8		getElement();
-	uint8       getCritical();
-	
 	uint8		getAoe();
 	uint8       getNumHits();
 	float		getDistance();
 	uint8		getFlag();
-	uint16		getEffect();
+    uint16      getAnimationTime();
+    uint16      getActivationTime();
 
 	void		setID(uint16 id);
 	void		setfamilyID(uint16 familyID);
 	void		setSkillType(uint8 skillType);
 	void		setElement(uint8 element);
-	void		setCritical(uint8 critical);
 	void		setAoe(uint8 aoe);
 	void        setNumHits(uint8 numhits); 
 	void		setDistance(float distance);
 	void		setFlag(uint8 flag);
-	void		setEffect(uint16 Effect);
+    void        setAnimationTime(uint16 AnimationTime);
+    void        setActivationTime(uint16 ActivationTime);
 	
 	const int8* getName();
 	void		setName(int8* name);
@@ -82,17 +77,17 @@ private:
 
 	uint16		m_ID;
 	uint16      m_FamilyID;
-	uint8		m_SkillType; 
-	uint8		m_Element;
-	uint8       m_Critical;
-	uint8       m_Aoe;
-	float		m_Distance;
-	uint8       m_NumHits;
-	uint8		m_Flag;
-	uint16		m_Effect;
+	uint8		m_SkillType;        // не используется
+	uint8		m_Element;          // не используется
+	uint8       m_Aoe;              // не используется
+	float		m_Distance;         // не используется
+	uint8       m_NumHits;          // не используется
+	uint8		m_Flag;             // не используется
+    uint8       m_ValidTarget;
+    uint16      m_AnimationTime;
+    uint16      m_ActivationTime;
 
 	string_t	m_name;
-
 };
 
 #endif;

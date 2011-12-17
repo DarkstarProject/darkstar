@@ -27,7 +27,6 @@
 #include "../../common/cbasetypes.h"
 
 #include "ai_general.h"
-#include "../mobskill.h"
 
 /************************************************************************
 *																		*
@@ -50,7 +49,6 @@ protected:
 
 	CMobEntity* m_PMob;	
 	
-
 	void ActionRoaming();
 	void ActionEngage();
 	void ActionDisengage();
@@ -61,6 +59,7 @@ protected:
 	void ActionSpawn();
 	void ActionAbilityStart();
 	void ActionAbilityFinish();
+    void ActionAbilityInterrupt();
 	void ActionAttack();
 };
 

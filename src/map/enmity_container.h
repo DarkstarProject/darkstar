@@ -24,9 +24,6 @@
 #ifndef _CENMITYCONTAINER_H
 #define _CENMITYCONTAINER_H
 
-
-
-
 #include "../common/cbasetypes.h"
 #include "charentity.h"
 #include <map>
@@ -83,8 +80,6 @@ public:
 	
 	CEnmityContainer();
    ~CEnmityContainer();
-	
-	
 };
 
 #endif

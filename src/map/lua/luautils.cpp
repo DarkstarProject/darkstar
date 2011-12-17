@@ -284,8 +284,6 @@ int32 SpawnMob(lua_State* L)
 				PMob->setDespawnTimer(duration); 
 			}
 		}
-		
-		
 		return 0;
 	}
 	lua_pushnil(L);
@@ -331,7 +329,7 @@ int32 GetMobAction(lua_State* L)
 		{
 			int32 currentAction = (int32)PMob->PBattleAI->GetCurrentAction(); 
 			lua_pushinteger(L,currentAction);
-		return 1;
+		    return 1;
 		}
 		
 	}

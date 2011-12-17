@@ -432,6 +432,7 @@ void CAICharNormal::ActionItemStart()
 	m_LastActionTime = m_Tick;
 
 	apAction_t Action;
+    m_PChar->m_ActionList.clear();
 
 	Action.ActionTarget = m_PChar;
 	Action.reaction   = REACTION_NONE;
@@ -442,9 +443,7 @@ void CAICharNormal::ActionItemStart()
 	Action.flag		  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
-
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	m_PChar->m_ActionList.clear();
 
 	m_ActionType = ACTION_ITEM_USING;
 }
@@ -513,6 +512,7 @@ void CAICharNormal::ActionItemUsing()
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 	
 		apAction_t Action;
+        m_PChar->m_ActionList.clear();
 
 		Action.ActionTarget = m_PBattleSubTarget;
 		Action.reaction   = REACTION_NONE;
@@ -525,7 +525,6 @@ void CAICharNormal::ActionItemUsing()
 		m_PChar->m_ActionList.push_back(Action);
 
 		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-		m_PChar->m_ActionList.clear();
 
 		ActionItemFinish();
 	}
@@ -578,6 +577,7 @@ void CAICharNormal::ActionItemInterrupt()
 	m_PChar->pushPacket(new CInventoryFinishPacket());
 
 	apAction_t Action;
+    m_PChar->m_ActionList.clear();
 
 	Action.ActionTarget = m_PChar;
 	Action.reaction   = REACTION_NONE;
@@ -590,7 +590,6 @@ void CAICharNormal::ActionItemInterrupt()
 	m_PChar->m_ActionList.push_back(Action);
 
 	m_PChar->pushPacket(new CActionPacket(m_PChar));
-	m_PChar->m_ActionList.clear();
 
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PItemUsable = NULL;
@@ -702,6 +701,7 @@ void CAICharNormal::ActionRangedStart()
 	m_PChar->m_StartActionPos = m_PChar->loc.p;
 
 	apAction_t Action;
+    m_PChar->m_ActionList.clear();
 
 	Action.ActionTarget = m_PChar;
 	Action.reaction   = REACTION_NONE;
@@ -714,7 +714,6 @@ void CAICharNormal::ActionRangedStart()
 	m_PChar->m_ActionList.push_back(Action);
 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	m_PChar->m_ActionList.clear();
 
 	m_ActionType = ACTION_RANGED_FINISH;
 }
@@ -752,6 +751,7 @@ void CAICharNormal::ActionRangedFinish()
 		uint16 damage = 0;
 
 		apAction_t Action;
+        m_PChar->m_ActionList.clear();
 
 		Action.ActionTarget = m_PBattleSubTarget;
 		Action.reaction   = REACTION_HIT;		//0x10
@@ -769,7 +769,6 @@ void CAICharNormal::ActionRangedFinish()
 		m_PChar->m_ActionList.push_back(Action);
 
 		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-		m_PChar->m_ActionList.clear();
 
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PBattleSubTarget = NULL;
@@ -787,6 +786,7 @@ void CAICharNormal::ActionRangedInterrupt()
 	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 216));
 
 	apAction_t Action;
+    m_PChar->m_ActionList.clear();
 
 	Action.ActionTarget = m_PChar;
 	Action.reaction   = REACTION_NONE;
@@ -799,7 +799,6 @@ void CAICharNormal::ActionRangedInterrupt()
 	m_PChar->m_ActionList.push_back(Action);
 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	m_PChar->m_ActionList.clear();
 
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PBattleSubTarget = NULL;
@@ -949,6 +948,7 @@ void CAICharNormal::ActionMagicStart()
 	m_LastActionTime = m_Tick;
 
 	apAction_t Action;
+    m_PChar->m_ActionList.clear();
 
 	Action.ActionTarget = m_PBattleSubTarget;
 	Action.reaction   = REACTION_NONE;
@@ -961,7 +961,6 @@ void CAICharNormal::ActionMagicStart()
 	m_PChar->m_ActionList.push_back(Action);
 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	m_PChar->m_ActionList.clear();
 
 	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
@@ -1113,6 +1112,8 @@ void CAICharNormal::ActionMagicFinish()
 	m_PChar->RecastList.push_back(Recast);
 
 	apAction_t Action;
+    m_PChar->m_ActionList.clear();
+
 	Action.ActionTarget = m_PBattleSubTarget;
 	Action.reaction   = REACTION_NONE;
 	Action.speceffect = SPECEFFECT_NONE;
@@ -1436,14 +1437,13 @@ void CAICharNormal::ActionMagicFinish()
 
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	m_PChar->m_ActionList.clear();
+	
 	UpdateHealth();
+
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
 }
-
-
 
 /************************************************************************
 *																		*
@@ -1456,6 +1456,7 @@ void CAICharNormal::ActionMagicInterrupt()
 	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	apAction_t Action;
+    m_PChar->m_ActionList.clear();
 
 	Action.ActionTarget = m_PChar;
 	Action.reaction   = REACTION_NONE;
@@ -1468,7 +1469,6 @@ void CAICharNormal::ActionMagicInterrupt()
 	m_PChar->m_ActionList.push_back(Action);
 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	m_PChar->m_ActionList.clear();
 
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
@@ -1485,9 +1485,6 @@ void CAICharNormal::ActionMagicInterrupt()
 void CAICharNormal::ActionJobAbilityStart()
 {
 	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
-
-	
-
 
 	for (uint32 i = 0; i < m_PChar->RecastAbilityList.size(); i++)
 	{
@@ -1549,7 +1546,8 @@ void CAICharNormal::ActionJobAbilityStart()
 	}
 
 	apAction_t Action;
-	
+	m_PChar->m_ActionList.clear();
+
 	RecastAbility_t Recast;
 	Recast.ID = m_PJobAbility->getID();
 	Recast.RecastTime = m_PJobAbility->getRecastTime(); //+ m_Tick;
@@ -1570,7 +1568,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 		m_PChar->m_ActionList.push_back(Action);
 		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF,new CActionPacket(m_PChar));
-		m_PChar->m_ActionList.clear();
+		
 		m_ActionTargetID = 0; 
 		
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1606,6 +1604,7 @@ void CAICharNormal::ActionJobAbilityStart()
 void CAICharNormal::ActionJobAbilityFinish()
 {
 	////DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
 	if (m_Tick - m_LastActionTime < 100)
 	{
 		return;
@@ -1614,47 +1613,15 @@ void CAICharNormal::ActionJobAbilityFinish()
 	m_PChar->pushPacket(new CCharAbilitiesPacket(m_PChar));
 
 	apAction_t Action;
-	
-	switch(m_PJobAbility->getID())
-	{
-	case 2:
-		//Benediction
-		if (m_PChar->PParty == NULL) 
-		{
-			battleutils::AbilityBenediction(m_PChar,m_PChar);
-		}
-		else
-		{
-			for (int i = 0; i < m_PChar->PParty->members.size(); i++)
-			{
-				CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-				if (distance(m_PChar->loc.p, PTarget->loc.p) <= 10)
-				{
-					battleutils::AbilityBenediction(m_PChar,PTarget);
-				}
-			}
-		}
-
-		break;
-	case 3:
-		//Eagle Eye Shot
-
-		break;
-	case 4:
-		//MIJIN GAKURE
-
-		break;
-	case 5:
-		
-		break;
-	};
+	m_PChar->m_ActionList.clear();
 
 	if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
 	{
 		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
 		{
-			CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-			if (distance(m_PChar->loc.p, PTarget->loc.p) <= 20)
+			CCharEntity* PTarget = m_PChar->PParty->members[i];
+
+			if (distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange()) 
 			{
 				Action.ActionTarget = PTarget;
 				Action.reaction   = REACTION_NONE;
@@ -1680,12 +1647,13 @@ void CAICharNormal::ActionJobAbilityFinish()
 		Action.messageID  = 0;
 		Action.flag		  = 0;
 		m_PChar->m_ActionList.push_back(Action);	
+
 		luautils::OnUseAbility(m_PChar,m_PChar);
 	}	
 	
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 	UpdateHealth();
-	m_PChar->m_ActionList.clear();
+	
 	m_ActionTargetID = 0; 
 	m_PJobAbility = NULL;
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1815,13 +1783,10 @@ void CAICharNormal::ActionWeaponSkillStart()
 
 void CAICharNormal::ActionWeaponSkillFinish()
 {
-	////DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 	m_LastActionTime = m_Tick;
 	m_ActionTargetID = 0; 
 	m_PWeaponSkill = NULL;
 	m_ActionType = ACTION_ATTACK; 
-	m_PChar->m_ActionList.clear();
-
 }
 
 /************************************************************************
@@ -1913,6 +1878,7 @@ void CAICharNormal::ActionAttack()
 		else
 		{
 			apAction_t Action;
+            m_PChar->m_ActionList.clear();
 
 			Action.ActionTarget = m_PBattleTarget;
 			uint32 numattacksRightHand = ((rand()%100 < m_PChar->getMod(MOD_DOUBLE_ATTACK) / 10) ? 2 : 1);
@@ -2010,7 +1976,6 @@ void CAICharNormal::ActionAttack()
 			}
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 			m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-			m_PChar->m_ActionList.clear();
 		}
 	}
 }
@@ -2176,28 +2141,27 @@ SUBEFFECT CAICharNormal::GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSk
 }
 
 void CAICharNormal::ActionRaiseMenuSelection() 
-{
-					
-				m_PChar->animation = ANIMATION_NONE; 
+{	
+    m_PChar->animation = ANIMATION_NONE; 
 			
-				m_PChar->addHP(500); 
-				UpdateHealth();
-				m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+    m_PChar->addHP(500); 
+    UpdateHealth();
+    m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));			
 				
-				
-				apAction_t Action;
-				Action.ActionTarget = m_PChar;
-				//Action.subeffect = 511;
-				Action.animation = 511;
-				Action.reaction = REACTION_NONE;
-				Action.speceffect = SPECEFFECT_RAISE;
-				//Action.subeffect = SUBEFFECT_NONE;
-				
-				//Action.subparam = 4; 
-			
-				m_PChar->m_ActionList.push_back(Action);
-				m_PChar->m_ActionList.clear();
-				m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-				m_ActionType = ACTION_NONE; 												
+    apAction_t Action;
+    m_PChar->m_ActionList.clear();
 
+    Action.ActionTarget = m_PChar;
+    //Action.subeffect = 511;
+    Action.animation = 511;
+    Action.reaction = REACTION_NONE;
+    Action.speceffect = SPECEFFECT_RAISE;
+    //Action.subeffect = SUBEFFECT_NONE;
+				
+    //Action.subparam = 4; 
+			
+    m_PChar->m_ActionList.push_back(Action);
+
+    m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+    m_ActionType = ACTION_NONE; 												
 }

@@ -257,7 +257,7 @@ void CZone::LoadZoneSettings()
 		Sql_NumRows(SqlHandle) == 0 ||
 		Sql_NextRow(SqlHandle) != SQL_SUCCESS) 
 	{
-		//ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot loading zone settings (%u)\n"CL_RESET, m_zoneID);
+		ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot loading zone settings (%u)\n"CL_RESET, m_zoneID);
 	} 
 	else 
 	{
@@ -412,8 +412,8 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 
 void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 {
-	//DSP_DEBUG_BREAK_IF(PChar == NULL);
-	//DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
 
 	PChar->loc.NeedToZone = false;
 
@@ -494,16 +494,17 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 				   (PChar->animation == ANIMATION_HEALING ||
 				   (PChar->GetMLevel() - PCurrentMob->GetMLevel() < 10)))
 				{
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)
-						|| !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE)))
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && 
+                       (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
+                        !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
+                        !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE)))
 					{
 						// отсутствие эффекта invisible
 
 						if (CurrentDistance < 15 &&
 							isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
 						{
-							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
-							//PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						}
 					}
@@ -511,10 +512,9 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						// отсутствие эффекта sneak
 
-						if (distance(PChar->loc.p, PCurrentMob->loc.p) < 8)
+						if (CurrentDistance < 8)
 						{
-							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
-							//PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						} 
 					}
@@ -522,8 +522,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->GetHPP() < 66)
 						{
-							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
-							//PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						}
 					}
@@ -531,8 +530,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (CurrentDistance < 15)
 						{
-							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
-							//PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						}
 					}
@@ -540,8 +538,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (CurrentDistance < 8)
 						{
-							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
-							//PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						}
 					}
@@ -549,8 +546,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
 						{
-							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
-							//PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						}
 					}
@@ -558,8 +554,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_START)
 						{
-							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
-							//PCurrentMob->m_OwnerID = PChar->id;
+							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						}
 					}
@@ -567,14 +562,15 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_START)
 						{
-							PCurrentMob->PEnmityContainer->UpdateEnmity(PChar,1,1);
-							//PCurrentMob->m_OwnerID = PChar->id;
+                            PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						}
 					}
 				}
 			}
-		}else{
+		}
+        else
+        {
 			if( MOB != PChar->SpawnMOBList.end() &&
 			  !(PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first)))
 			{

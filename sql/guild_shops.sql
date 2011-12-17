@@ -25,6 +25,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Structure de la table `guild_shops`
 --
 
+DROP TABLE IF EXISTS `guild_shops`;
 CREATE TABLE IF NOT EXISTS `guild_shops` (
   `guildid` smallint(5) unsigned NOT NULL,
   `itemid` smallint(5) unsigned NOT NULL,

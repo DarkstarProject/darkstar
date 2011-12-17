@@ -47,18 +47,17 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	WBUFB(data,(0x2B)-4) = (PChar->nameflags.byte4 << 5) + PChar->nameflags.byte3;
 	WBUFB(data,(0x2F)-4) = (PChar->nameflags.byte4 >> 2);
 
-	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) 
-		|| PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE))
+	if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
+        PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
+        PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE))
 	{
-		data[0x2D-0x04] = 0x80;
+		WBUFB(data,(0x2D)-4) = 0x80;
 	}
-
 	
-	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK)) 
+	if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK)) 
 	{
-		data[0x38-0x04] ^= 0x04;
+		WBUFB(data,(0x38)-4) = 0x04;
 	}
-
 
 	WBUFB(data,(0x29)-4) = (PChar->look.race)%2 ^ (PChar->look.race > 6);
 

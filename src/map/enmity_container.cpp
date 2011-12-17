@@ -75,7 +75,6 @@ void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 
 void CEnmityContainer::UpdateEnmity(EnmityObject_t* PEnmityObject)
 {
-
 	EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEnmityObject->PEnmityOwner->id);
 
 	if( PEnmity != m_EnmityList.end() &&
@@ -88,7 +87,6 @@ void CEnmityContainer::UpdateEnmity(EnmityObject_t* PEnmityObject)
 		PEnmity->second->CE = cap_value(PEnmity->second->CE,1,10000);
 		PEnmity->second->VE = cap_value(PEnmity->second->VE,1,10000);
 		
-				
 		delete PEnmityObject;
 	}
 	else 
@@ -103,16 +101,14 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 	if (PChar->PParty != NULL)
 	{
 		for (int i = 0; i < PChar->PParty->members.size(); i++)
-			{
-				CBattleEntity* PTarget = (CBattleEntity*)PChar->PParty->members[i];
-				if (distance(PChar->loc.p, PTarget->loc.p) <= 40)
-				{
-					UpdateEnmity(PTarget,1,1); 
-				}
-			}
+        {
+            CBattleEntity* PTarget = (CBattleEntity*)PChar->PParty->members[i];
+            if (distance(PChar->loc.p, PTarget->loc.p) <= 40)
+            {
+                UpdateEnmity(PTarget,1,1);
+            }
+        }
 	}
-
-
 }
 
 

@@ -27,6 +27,7 @@
 #include "../battleutils.h"
 #include "../charutils.h"
 #include "../itemutils.h"
+#include "../mobskill.h"
 #include "../mobutils.h"
 #include "../zone.h"
 
@@ -64,19 +65,21 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 
 	switch(m_ActionType)
 	{
-		case ACTION_NONE:										break;
-		case ACTION_ROAMING:			ActionRoaming();		break;
-		case ACTION_ENGAGE:				ActionEngage();			break;
-		case ACTION_DISENGAGE:			ActionDisengage();		break;
-		case ACTION_FALL:				ActionFall();			break;
-		case ACTION_DROPITEMS:			ActionDropItems();		break;
-		case ACTION_DEATH:				ActionDeath();			break;
-		case ACTION_FADE_OUT:			ActionFadeOut();		break;
-		case ACTION_SPAWN:				ActionSpawn();			break;
-		case ACTION_ATTACK:				ActionAttack();			break;
-		case ACTION_MOBABILITY_FINISH:	ActionAbilityStart();	break;
+		case ACTION_NONE:                                           break;
+		case ACTION_ROAMING:			  ActionRoaming();          break;
+		case ACTION_ENGAGE:				  ActionEngage();           break;
+		case ACTION_DISENGAGE:			  ActionDisengage();        break;
+		case ACTION_FALL:				  ActionFall();             break;
+		case ACTION_DROPITEMS:			  ActionDropItems();        break;
+		case ACTION_DEATH:				  ActionDeath();            break;
+		case ACTION_FADE_OUT:			  ActionFadeOut();          break;
+		case ACTION_SPAWN:				  ActionSpawn();            break;
+		case ACTION_ATTACK:				  ActionAttack();           break;
+		case ACTION_MOBABILITY_START:     ActionAbilityStart();     break;
+		case ACTION_MOBABILITY_FINISH:	  ActionAbilityFinish();    break;
+        case ACTION_MOBABILITY_INTERRUPT: ActionAbilityInterrupt(); break;
 
-		default : ;//DSP_DEBUG_BREAK_IF(true);
+		default : DSP_DEBUG_BREAK_IF(true);
 	}
 }
 
@@ -126,10 +129,7 @@ void CAIMobDummy::ActionRoaming()
 	{
 		m_LastActionTime = m_Tick; 
 		m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
-		//m_PMob->setDespawnTimer(0); 
 	}
-	
-	
 }
 
 /************************************************************************
@@ -140,11 +140,12 @@ void CAIMobDummy::ActionRoaming()
 
 void CAIMobDummy::ActionEngage() 
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 	
-	if (m_PBattleTarget == NULL )
+    // возвращаемся в исходное состояние, если цель не была найдена
+	if (m_PBattleTarget == NULL)
 	{
+        //m_ActionType = ACTION_DISENGAGE;
 		return;
 	}
 	m_PMob->animation = ANIMATION_ATTACK;
@@ -204,19 +205,23 @@ void CAIMobDummy::ActionDropItems()
 	{
 		m_ActionType = ACTION_DEATH;
 		
-		// условие не дописано. питомец персонажа тоже может убить монстра
+		// TODO: условие не дописано. питомец персонажа тоже может убить монстра
 
 		CCharEntity* PChar = (CCharEntity*)m_PZone->GetEntity(m_PMob->m_OwnerID & 0x0FFF, TYPE_PC);
 
 		if (PChar != NULL)
 		{
-			luautils::OnMobDeath(m_PMob,PChar);
+            // TODO: blu может выучить последнюю использованную монстром специальную атаку m_PMobSkill
+
+			luautils::OnMobDeath(m_PMob, PChar);
 			luautils::OnSpecialWeaponKill(PChar); 
+
 			m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0,6));
 			
-			uint32 exp = 0;
 			if (m_PMob->m_CallForHelp == 0)
 			{
+                uint32 exp = 0;
+
 				if (PChar->PParty != NULL)
 				{
 					for (int i = 0; i < PChar->PParty->members.size(); i++)
@@ -328,62 +333,110 @@ void CAIMobDummy::ActionSpawn()
 		mobutils::CalculateStats(m_PMob);
 
 		m_PMob->loc.p = m_PMob->m_SpawnPoint;
-		//luautils::OnMobSpawn(m_PMob); 
 		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_SPAWN));
+
+        //luautils::OnMobSpawn(m_PMob); 
 	}
 }
+
+/************************************************************************
+*                                                                       *
+*  Начало специальной атаки монстра (эффект начала)                     *
+*                                                                       *
+************************************************************************/
 
 void CAIMobDummy::ActionAbilityStart()
 {
-	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
-	//m_PMob->health.tp = 10; 
+    m_LastActionTime = m_Tick;
 
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
-	apAction_t Action;
 	
-	int16 skill = battleutils::PerformMobSkill(m_PMob, m_PBattleTarget);
-	if (skill == 0)
-	{
+    // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
+
+    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->m_Family);
+
+    if (MobSkills.size() == 0)
+    {
+        m_PMob->health.tp = 0; 
 		m_ActionType = ACTION_ATTACK;
-		m_PMob->health.tp = 0; 
 		return; 
-	}
-	 
-	CAIGeneral::SetCurrentMobSkill(skill);
-	m_PZone->PushPacket(m_PMob, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PMob,m_PMob,m_PMobSkill->getID()+256,m_PMobSkill->getID()+256,43));
+    }
+	m_PMobSkill = MobSkills.at(rand() % MobSkills.size());
+
+    apAction_t Action;
+    m_PMob->m_ActionList.clear();
 	
-	if (m_PMobSkill->getEffect() > 0) 
-	{
-		switch(m_PMobSkill->getEffect())
-		{
-		case 5: //blind
-			break;
-
-		};
-
-	}
 	Action.ActionTarget = m_PBattleTarget;
 	Action.reaction   = REACTION_HIT;
-	Action.speceffect = SPECEFFECT_RECOIL;
-	Action.animation  = m_PMobSkill->getID();
-	Action.param	  = 10;
-	Action.subparam   = m_PMobSkill->getID()+256;
-	Action.messageID  = 185;
-	
-	m_PBattleTarget->addHP(-10); 
+	Action.speceffect = SPECEFFECT_HIT;
+	Action.animation  = 0;
+    Action.param	  = m_PMobSkill->getID() + 256;
+	Action.messageID  = 43;
+	Action.flag		  = 0;
+
 	m_PMob->m_ActionList.push_back(Action);
-	m_PZone->PushPacket(m_PMob, CHAR_INRANGE_SELF, new CActionPacket(m_PMob));
-	m_ActionType = ACTION_ATTACK; 
-	m_PMob->m_ActionList.clear(); 
-	m_PMob->health.tp = 0; 
+	m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
+	m_ActionType = ACTION_MOBABILITY_FINISH;
 }
 
+/************************************************************************
+*                                                                       *
+*  Окончание специальной атаки монстра (анимация эффекта).              *
+*  После выполения специальной атаки не обнуляем m_PMobSkill, позднее   *
+*  по этому значению blu будет учить заклинания.                        *
+*                                                                       *
+************************************************************************/
 
 void CAIMobDummy::ActionAbilityFinish()
 {
-	m_ActionType = ACTION_ATTACK; 
+    DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+
+    if ((m_Tick - m_LastActionTime) > m_PMobSkill->getActivationTime())
+    {
+        m_LastActionTime = m_Tick;
+
+        // TODO: для реализации эффектов и расчета урона должен использоваться script
+        // TODO: необходимо проверить расстояние до персонажа, возможно он успел убежать, тогда следует прервать способность
+        // TODO: монстр может промахнуться
+        // TODO: необходима ValidTarget, т.к. монстр может использовать специальные атаки на себе, группе монстров, персонаже, группе персонажей
+
+        uint16 damage = 0;
+
+        apAction_t Action;
+        m_PMob->m_ActionList.clear();
+
+	    Action.ActionTarget = m_PBattleTarget;
+	    Action.reaction   = REACTION_HIT;
+	    Action.speceffect = SPECEFFECT_HIT;
+	    Action.animation  = m_PMobSkill->getID();
+	    Action.param	  = damage;
+	    Action.subparam   = m_PMobSkill->getID() + 256;
+	    Action.messageID  = 185;
+        Action.flag       = 0;
+	
+	    m_PMob->m_ActionList.push_back(Action);
+	    m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
+	    m_PMob->health.tp = 0; 
+
+        m_ActionType = ACTION_ATTACK;
+    }
 }
 
+/************************************************************************
+*																		*
+*  Прерывание специальной атаки монстра                 				*
+*																		*
+************************************************************************/
+
+void CAIMobDummy::ActionAbilityInterrupt()
+{
+    m_LastActionTime = m_Tick;
+
+    m_PMobSkill = NULL;
+    m_ActionType = ACTION_ATTACK;
+}
 
 /************************************************************************
 *																		*
@@ -393,21 +446,21 @@ void CAIMobDummy::ActionAbilityFinish()
 
 void CAIMobDummy::ActionAttack() 
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+
 	if (m_PBattleTarget == NULL)
 	{
-		return;
+        m_ActionType = ACTION_DISENGAGE;
+		return; 
 	}
-	m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
-
 	if (m_PBattleTarget->isDead())
 	{
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
-		m_ActionType = ACTION_DISENGAGE;
-		m_PBattleTarget = NULL;
+		ActionAttack();
 		return;
 	}
+
+    m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	if (distance(m_PMob->loc.p, m_PBattleTarget->loc.p) <= m_PMob->m_ModelSize)
 	{
@@ -425,14 +478,15 @@ void CAIMobDummy::ActionAttack()
 			}
 			else
 			{
-
 				if (m_PMob->health.tp > 100 && rand()%100 > 55) 
 				{
-					m_ActionType = ACTION_MOBABILITY_FINISH;
+					m_ActionType = ACTION_MOBABILITY_START;
+                    ActionAbilityStart();
 					return;
 				}
 
 				apAction_t Action;
+                m_PMob->m_ActionList.clear();
 
 				Action.ActionTarget = m_PBattleTarget;
 				Action.reaction   = REACTION_EVADE;
@@ -450,6 +504,8 @@ void CAIMobDummy::ActionAttack()
 				}
 				else if ( rand()%90 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
 				{
+					// TODO: иконки у utsusemi изменяются в зависимости от количества оставшихся теней
+
 					uint16 utsu = m_PBattleTarget->getMod(MOD_UTSUSEMI);
 					if (utsu > 0) 
 					{
@@ -543,12 +599,11 @@ void CAIMobDummy::ActionAttack()
 				m_PMob->m_ActionList.push_back(Action);
 
 				m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CActionPacket(m_PMob));
-				m_PMob->m_ActionList.clear();
 			}
 		}
 	}
 	else
-	{
+    {
 		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
 	}
 			

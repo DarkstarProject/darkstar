@@ -65,37 +65,45 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		}
 			break;
 		case ACTION_WEAPONSKILL_START:
-			{
-				packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
-			}
+		{
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
+		}
 			break;
 		case ACTION_WEAPONSKILL_FINISH:
-
-			{
-				packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
-			}
+		{
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentWeaponSkill()->getID(), 54, 10);
+		}
 			break;
 		case ACTION_JOBABILITY_START:
-			{
+		{
 
-			}
+		}
 			break;
 		case ACTION_JOBABILITY_FINISH:
-			{	
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getID()+16, 54, 10);
+		{	
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getID() + 16, 54, 10);
 			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getRecastTime(), 86, 10);
-			}
+		}
 			break;
+        case ACTION_MOBABILITY_START:
+        {
+            WBUFB(data,(0x0A)-4) = 0xDC;
+			WBUFB(data,(0x0B)-4) = 0x58;
+			WBUFB(data,(0x0C)-4) = 0x18;
+			WBUFB(data,(0x0D)-4) = 0x5D;
+			WBUFB(data,(0x0E)-4) = 0x19;
 
+            ActionType = ACTION_WEAPONSKILL_START;
+        }
+            break;
 		case ACTION_MOBABILITY_FINISH:
-			{	
-				packBitsBE(data, PEntity->PBattleAI->GetCurrentMobSkill()->getID() + 256,54 , 10);
-			}
+		{	
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentMobSkill()->getID() + 256, 54, 10);
+		}
 			break;
 		case ACTION_ITEM_START:
 		{	
 			WBUFB(data,(0x0A)-4) = 0xE4;
-
 			WBUFB(data,(0x0B)-4) = 0x58;
 			WBUFB(data,(0x0C)-4) = 0x58;
 			WBUFB(data,(0x0D)-4) = 0x1A;

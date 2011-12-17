@@ -46,20 +46,18 @@
 
 uint16 g_SkillTable[100][12];									// All Skills by level/skilltype
 uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
-uint16 g_EnmityTable[MAX_ENMITY_LEVEL][MAX_ENMITY_TYPE];			// Holds Enmity Modifier Values
-
+uint16 g_EnmityTable[MAX_ENMITY_LEVEL][MAX_ENMITY_TYPE];		// Holds Enmity Modifier Values
 
 CSpell*		  g_PSpellList[MAX_SPELL_ID];						// Complete Spells List
 CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// Complete Abilities List
 CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skills
 CTrait*		  g_PTraitList[MAX_TRAIT_ID]; 
+CMobSkill*    g_PMobSkillList[MAX_MOBSKILL_ID];					// List of mob skills
 
-CMobSkill* g_PMobSkillList[MAX_MOBSKILL_ID];					// List of mob skills
-
-std::list<CTrait*> g_PTraitsList[23];
-std::list<CAbility*> g_PAbilitiesList[MAX_JOBTYPE];				// Abilities List By Job Type
+std::list<CTrait*>       g_PTraitsList[23];
+std::list<CAbility*>     g_PAbilitiesList[MAX_JOBTYPE];			// Abilities List By Job Type
 std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
-std::list<CMobSkill*> g_PMobFamilySkills[MAX_MOB_FAMILY];		// Mob Skills By Family
+std::vector<CMobSkill*>  g_PMobFamilySkills[MAX_MOB_FAMILY];	// Mob Skills By Family
 
 /************************************************************************
 *  battleutils															*
@@ -255,16 +253,18 @@ void LoadWeaponSkillsList()
 
 
 /************************************************************************
-*  Load Mob Skills from database										*
+*                                                                       *
+*  Load Mob Skills from database                                        *
+*                                                                       *
 ************************************************************************/
 
 void LoadMobSkillsList()
 {
-	memset(g_PMobSkillList,0,sizeof(g_PMobSkillList));
+	memset(g_PMobSkillList, 0, sizeof(g_PMobSkillList));
 
 	const int8* fmtQuery = "SELECT mob_skill_id, mob_skill_name, family_id, mob_skill_type, \
 						   mob_skill_element, mob_skill_critical, mob_skill_num_hit, mob_skill_aoe, \
-						   mob_skill_distance, mob_skill_flag, mob_skill_effect \
+						   mob_skill_distance, mob_skill_flag \
 						   FROM mob_skill \
 						   WHERE mob_skill_id < %u \
 						   ORDER BY family_Id, mob_skill_id ASC";
@@ -281,12 +281,13 @@ void LoadMobSkillsList()
 			PMobSkill->setfamilyID(Sql_GetIntData(SqlHandle,2));
 			PMobSkill->setSkillType(Sql_GetIntData(SqlHandle,3));
 			PMobSkill->setElement(Sql_GetIntData(SqlHandle,4));
-			PMobSkill->setCritical(Sql_GetIntData(SqlHandle,5));
 			PMobSkill->setNumHits(Sql_GetIntData(SqlHandle,6));
 			PMobSkill->setAoe(Sql_GetIntData(SqlHandle,7));
 			PMobSkill->setDistance(Sql_GetFloatData(SqlHandle,8));
 			PMobSkill->setFlag(Sql_GetIntData(SqlHandle,9));
-			PMobSkill->setEffect(Sql_GetIntData(SqlHandle,10));
+
+            PMobSkill->setAnimationTime(2000);
+            PMobSkill->setActivationTime(1000);
 			
 			g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
 			g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
@@ -469,7 +470,6 @@ bool CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID)
 	return false;
 }
 
-
 /************************************************************************
 *	Get Enmity Modifier													*
 ************************************************************************/
@@ -478,7 +478,6 @@ uint16 GetEnmityMod(uint8 level, uint16 modType)
 {
 	return g_EnmityTable[level][modType];
 }
-
 
 /************************************************************************
 *  Get Weapon Skill by Id												*
@@ -494,14 +493,12 @@ CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
 	return NULL;
 }
 
-
 /************************************************************************
 * Get List of Weapon Skills from skill type								*
 ************************************************************************/
 
 std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill)
 {
-	
 	return g_PWeaponSkillsList[skill];
 }
 
@@ -519,31 +516,42 @@ CMobSkill* GetMobSkill(uint16 SkillID)
 	return NULL;
 }
 
-
 /************************************************************************
-* Get Mob Skills by family id											*
+*                                                                       *
+*  Get Mob Skills by family id                                          *
+*                                                                       *
 ************************************************************************/
 
-std::list<CMobSkill*> GetMobSkillsByFamily(uint16 familyID)
+std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 {
-	return g_PMobFamilySkills[familyID];
+    DSP_DEBUG_BREAK_IF(FamilyID > sizeof(g_PMobFamilySkills));
+
+	return g_PMobFamilySkills[FamilyID];
 }
 
 /************************************************************************
-* Get Trait By Id														*
+*                                                                       *
+*  Get Trait By Id                                                      *
+*                                                                       *
 ************************************************************************/
 
 CTrait* GetTrait(uint16 TraitID)
 {
+    DSP_DEBUG_BREAK_IF(TraitID > sizeof(g_PTraitList));
+
 	return g_PTraitList[TraitID];
 }
 
 /************************************************************************
-* Get List of Traits by Main Job and Sub Job							*
+*                                                                       *
+*  Get List of Traits by Main Job and Sub Job                           *
+*                                                                       *
 ************************************************************************/
 
 std::list<CTrait*> GetTraits(JOBTYPE JobID)
 {
+    DSP_DEBUG_BREAK_IF(JobID > sizeof(g_PTraitsList));
+
 	return g_PTraitsList[JobID];
 }
 
@@ -592,6 +600,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
 		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+
 		switch (PDefender->animation)
 		{
 			case ANIMATION_SIT:
@@ -1004,12 +1013,16 @@ bool IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 }
 
 /************************************************************************
-* Moves mob  - mode 1 = walk / 2 = run									*
+*                                                                       *
+*  Moves mob  - mode 1 = walk / 2 = run                                 *
+*                                                                       *
 ************************************************************************/
 
 void MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode)
 {
-	//DSP_DEBUG_BREAK_IF(mode < 1 || mode > 2);
+	DSP_DEBUG_BREAK_IF(mode < 1 || mode > 2);
+
+    // TODO: не учитывается модификатор передвижения PEntity->getMod(MOD_MOVE)
 
 	if (PEntity->speed != 0)
 	{
@@ -1026,163 +1039,6 @@ void MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode)
 			PEntity->loc.p.moving = 0;
 		}
 	}
-}
-
-
-/************************************************************************
-*	White Mage Benediction Ability										*
-************************************************************************/
-
-int32 battleutils::AbilityBenediction(CBattleEntity* PCaster, CBattleEntity* PTarget)
-{
-	int32 hpHealed = PTarget->health.maxhp * PCaster->GetMLevel() / PTarget->GetMLevel();
-		PTarget->addHP(hpHealed);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_POISON) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_POISON) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_PARALYSIS) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BLINDNESS) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINDNESS) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_SILENCE) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_PETRIFICATION) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DISEASE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DISEASE) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_CURSE) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_STUN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BIND) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_WEIGHT) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_WEIGHT) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SLOW) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_SLOW) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_GRADUAL_PETRIFICATION) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_GRADUAL_PETRIFICATION) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MUTE) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BANE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BANE) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PLAGUE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_PLAGUE) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BURN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BURN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_FROST) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_FROST) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_RASP) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_RASP) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_CHOKE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_CHOKE) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SHOCK) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_SHOCK) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DROWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DROWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DIA) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BIO) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STR_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_STR_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEX_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DEX_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_VIT_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_VIT_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_AGI_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_AGI_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MND_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MND_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INT_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_INT_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_CHR_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_CHR_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ACCURACY_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_ACCURACY_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ATTACK_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_ATTACK_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_EVASION_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_EVASION_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEFENSE_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DEFENSE_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MAGIC_DEF_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MAGIC_DEF_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INHIBIT_TP) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_INHIBIT_TP) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MAGIC_ACC_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MAGIC_ACC_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MAGIC_ATK_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MAGIC_ATK_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ENCUMBRANCE) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_ENCUMBRANCE) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HELIX) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_HELIX) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MAX_TP_DOWN) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_MAX_TP_DOWN) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_REQUIEM) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_REQUIEM) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_LULLABY) : NULL);
-	(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ELEGY) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_ELEGY) : NULL);
-
-	if (rand()%100 > 50)
-	{
-		(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DOOM) ? PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_DOOM) : NULL);
-	}
-
-	return hpHealed;
-}
-
-/************************************************************************
-*	Use Mob Skill Ability												*
-************************************************************************/
-
-uint32 PerformMobSkill(CBattleEntity* PAttacker, CBattleEntity* PDefender)
-{
-	 std::list<CMobSkill*> MobSkills = GetMobSkillsByFamily(((CMobEntity*)PAttacker)->m_Family);
-	 CMobEntity* PMob = (CMobEntity*)PAttacker;
-
-	 //int8 hp = PAttacker->GetHPP();
-	 
-	 //int8 tilt1; 
-	 //int8 tilt2; 
-
-	//1  PHYSICAL
-	//2  RANGED
-	//3  MAGICAL
-	//4  HEALING
-	//5  ENHANCING
-	//6  ENFEEBLING	
-	//7  DISPEL
-	//8  SPECIAL
-
-	 for (std::list<CMobSkill*>::iterator it = MobSkills.begin(); it != MobSkills.end(); ++it)
-	{
-		CMobSkill* PMobSkill = *it;
-		if (rand()%100 < 30) 
-		{
-			return PMobSkill->getID(); 
-		}
-	}
-	//	int8 skillType = PMobSkill->getSkillType(); 
-	//	switch (skillType)
-	//	{
-	//	case 1: 
-
-	//	case 2:
-
-	//	case 3:
-
-	//	case 4:
-
-	//	case 5:
-
-	//	case 6:
-
-	//	case 7:
-
-	//	case 8:
-
-	//		break;
-	//	};
-	//}
-
-
-	// if (hp >= 80)
-	// {
-	//	 //favor enfeebling / enhancing
-	//	 if (rand()%100 < 50)
-	//	 {
-	//		
-
-
-	//	 }
-	//	 else 
-	//	{
-	//		if (rand()%100 < 60)
-	//		{
-
-	//		}
-	//	 }
-	// }
-	// else if (hp >= 60)
-	// {
-	//	//favor damaging / enfeebling
-	// }
-	// else if (hp >= 40)
-	// {
-	//	//favor damaging / healing 
-	// }
-	// else if (hp >= 20)
-	// {
-	//	 //favor healing / 2 hour ability
-	// }
-	// else 
-	// {
-	//	 //favor healing
-	// }
-
-
-
-	 return 0;
 }
 
 /****************************************************************
