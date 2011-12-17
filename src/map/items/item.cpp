@@ -28,20 +28,20 @@
 
 CItem::CItem(uint16 id)
 {
-	m_id = id;
+    m_id = id;
 	
-	m_subid		  = 0;
-	m_type 		  = 0;
-	m_subtype	  = 0;
-	m_quantity    = 0;
-	m_stackSize   = 0;
-	m_sellPrice   = 0;
-	m_bazaarPrice = 0;
-	m_ahCat 	  = 0;
-	m_flag 		  = 0;
+    m_subid      = 0;
+    m_type       = 0;
+    m_subtype    = 0;
+    m_quantity   = 0;
+    m_stackSize  = 0;
+    m_BasePrice  = 0;
+    m_CharPrice  = 0;
+    m_ahCat      = 0;
+    m_flag       = 0;
 
-	m_slotID	  = -1;
-	m_locationID  = -1;
+    m_slotID     = -1;
+    m_locationID = -1;
 }
 
 CItem::~CItem()
@@ -128,24 +128,24 @@ uint32 CItem::getStackSize()
 	return m_stackSize;
 }
 
-void CItem::setSellPrice(uint32 sellPrice)
+void CItem::setBasePrice(uint32 BasePrice)
 {
-	m_sellPrice = sellPrice;
+	m_BasePrice = BasePrice;
 }
 
-uint32 CItem::getSellPrice()
+uint32 CItem::getBasePrice()
 {
-	return m_sellPrice;
+	return m_BasePrice;
 }
 
-void CItem::setBazaarPrice(uint32 bazaarPrice)
+void CItem::setCharPrice(uint32 CharPrice)
 {
-	m_bazaarPrice = bazaarPrice;
+	m_CharPrice = CharPrice;
 }
 
-uint32 CItem::getBazaarPrice()
+uint32 CItem::getCharPrice()
 {
-	return m_bazaarPrice;
+	return m_CharPrice;
 }
 
 const int8* CItem::getName()

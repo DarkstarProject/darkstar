@@ -160,7 +160,7 @@ void LoadItemList()
 				PItem->setStackSize(Sql_GetUIntData(SqlHandle,2));
 				PItem->setFlag(Sql_GetUIntData(SqlHandle,3));
 				PItem->setAHCat(Sql_GetUIntData(SqlHandle,4));
-				PItem->setSellPrice(Sql_GetUIntData(SqlHandle,5));
+				PItem->setBasePrice(Sql_GetUIntData(SqlHandle,5));
 				
 				if (PItem->getType() & ITEM_GENERAL)
 				{

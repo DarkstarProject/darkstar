@@ -87,8 +87,8 @@ public:
 	uint8		getAHCat();
 	uint32		getQuantity();
 	uint32		getStackSize();
-	uint32		getSellPrice();
-	uint32		getBazaarPrice();
+	uint32		getBasePrice();
+	uint32		getCharPrice();
 	uint8		getLocationID();
 	uint8		getSlotID();
 
@@ -100,8 +100,8 @@ public:
 	void		setAHCat(uint8);
 	void		setQuantity(uint32);
 	void		setStackSize(uint32);
-	void		setSellPrice(uint32);
-	void		setBazaarPrice(uint32);
+	void		setBasePrice(uint32);
+	void		setCharPrice(uint32);
 	void		setLocationID(uint8 LocationID);
 	void		setSlotID(uint8 SlotID);
 
@@ -120,8 +120,8 @@ private:
 	uint8		m_subtype;
 	uint32		m_quantity;
 	uint32		m_stackSize;
-	uint32		m_sellPrice;
-	uint32		m_bazaarPrice;
+	uint32		m_BasePrice;
+	uint32		m_CharPrice;
 	uint8		m_ahCat;
 	uint16		m_flag;
 

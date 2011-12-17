@@ -556,9 +556,9 @@ void LoadInventory(CCharEntity* PChar)
 				PItem->setLocationID(Sql_GetUIntData(SqlHandle,1));
 				PItem->setSlotID(Sql_GetUIntData(SqlHandle,2));
 				PItem->setQuantity(Sql_GetUIntData(SqlHandle,3));
-				PItem->setBazaarPrice(Sql_GetUIntData(SqlHandle,4));
+				PItem->setCharPrice(Sql_GetUIntData(SqlHandle,4));
 
-				if (PItem->getBazaarPrice() != 0)
+				if (PItem->getCharPrice() != 0)
 				{
 					PItem->setSubType(ITEM_LOCKED);
 				}

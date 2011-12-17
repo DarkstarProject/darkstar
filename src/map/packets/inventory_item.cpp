@@ -43,10 +43,10 @@ CInventoryItemPacket::CInventoryItemPacket(CItem * item, uint8 LocationID, uint8
 	if (item != NULL)
 	{
 		WBUFL(data,(0x04)-4) = item->getQuantity();
-		WBUFL(data,(0x08)-4) = item->getBazaarPrice();
+		WBUFL(data,(0x08)-4) = item->getCharPrice();
 		WBUFW(data,(0x0C)-4) = item->getID();
 
-		if (item->getBazaarPrice() != 0)
+		if (item->getCharPrice() != 0)
 		{
 			WBUFB(data,(0x10)-4) = 0x19;
 		}

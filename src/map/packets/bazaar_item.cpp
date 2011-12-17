@@ -37,7 +37,7 @@ CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 slotID, uint8 tax)
 	this->type = 0x05;	// 0x105
 	this->size = 0x17;
 
-	WBUFL(data,(0x04)-4) = PItem->getBazaarPrice();
+	WBUFL(data,(0x04)-4) = PItem->getCharPrice();
 	WBUFL(data,(0x08)-4) = PItem->getQuantity();
 	WBUFW(data,(0x0C)-4) = tax;
 	WBUFW(data,(0x0E)-4) = PItem->getID();
