@@ -494,18 +494,14 @@ int32 SmallPacket0x01A(CCharEntity* PChar, int8* data)
 			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,22));
 		}
 		break;
-		case 0x07: 
+		case 0x07: // weaponskill
 		{
 			uint16 WSkillID = RBUFW(data,(0x0C));
 			PChar->PBattleAI->SetCurrentWeaponSkill(WSkillID);
 			PChar->PBattleAI->SetCurrentAction(ACTION_WEAPONSKILL_START, TargID);
 			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}	
-			
-			
-			break;	// weaponskill
-
-
+		break;	
 		case 0x09: // jobability
 		{
 			PrintPacket(data);
@@ -534,11 +530,11 @@ int32 SmallPacket0x01A(CCharEntity* PChar, int8* data)
 		break;
 		case 0x0C: break;	// assist
 		case 0x0D: 	// raise menu
-	   {
-			PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
-
-	   } break;
+	    {
+            PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
+            PChar->PBattleAI->CheckCurrentAction(gettick());
+	    } 
+        break;
 		case 0x0E: // рыбалка
 		{
 			fishingutils::StartFishing(PChar);
@@ -574,17 +570,20 @@ int32 SmallPacket0x01A(CCharEntity* PChar, int8* data)
 		}
 		break;	
 		case 0x12: 	// dismount
-			PChar->animation == ANIMATION_NONE;
+        {
+            PChar->status = STATUS_UPDATE;
+			PChar->animation = ANIMATION_NONE;
 			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
 			PChar->pushPacket(new CCharUpdatePacket(PChar));
-			break;
+        }
+        break;
 		case 0x13: // tractor menu
 		{
-			
-			PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
-			
+                // по любому, это работает неправильно. проблемный код в комментарии
 
+			    //PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
+			    //PChar->PBattleAI->CheckCurrentAction(gettick());
+			
 			/*
 			if(RBUFB(data,(0x0C)) == 0)
 			{   

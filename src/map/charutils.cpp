@@ -1204,13 +1204,10 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				PChar->m_Weapons[SLOT_MAIN]->setDelay(8000);
 				PChar->m_Weapons[SLOT_MAIN]->setDamage(0);
 				PChar->m_Weapons[SLOT_MAIN]->setDmgType(DAMAGE_NONE);
-				(PChar->GetMJob() == JOB_MNK ? PChar->m_Weapons[SLOT_MAIN]->setSkillType(SKILL_H2H) : PChar->m_Weapons[SLOT_MAIN]->setSkillType(0));
-				//charutils::CalculateStats(PChar);
-					
+                PChar->m_Weapons[SLOT_MAIN]->setSkillType((PChar->GetMJob() == JOB_MNK ? SKILL_H2H : 0));
 			}
 				break;
 		}
-		
 	}
 
 	BuildingCharWeaponSkills(PChar);
@@ -1290,8 +1287,6 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 	uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
 	
 	WeaponSkillList = battleutils::GetWeaponSkills(skill); 
-
-
 
 	for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
 	{
