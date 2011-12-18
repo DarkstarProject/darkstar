@@ -43,6 +43,11 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action)
 	WBUFB(data,(0x04)-4) = action;
     WBUFB(data,(0x05)-4) = 0xFF;       
     WBUFB(data,(0x06)-4) = IsAuctionOpen;
+
+    if (action == 2)
+    {
+        WBUFB(data,(0x0A)-4) = AUCTION_ID;
+    }
 }
 
 CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem)
@@ -50,19 +55,17 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem)
     this->type = 0x4C;
     this->size = 0x1E;
 
-    uint32 taks = 1 + PItem->getCharPrice() / 100;
-
     WBUFB(data,(0x04)-4) = action;
     WBUFB(data,(0x05)-4) = 0xFF;
     WBUFB(data,(0x06)-4) = IsAuctionOpen;
     WBUFB(data,(0x07)-4) = 0x02;
-    WBUFL(data,(0x08)-4) = taks;
+    WBUFL(data,(0x08)-4) = AUCTION_FEE(PItem->getCharPrice());
 
     WBUFL(data,(0x0E)-4) = PItem->getID();
     WBUFB(data,(0x0C)-4) = PItem->getSlotID();
 	
     WBUFB(data,(0x10)-4) = PItem->getStackSize() != PItem->getQuantity();   // продается один предмет, а не вся пачка
-	WBUFB(data,(0x30)-4) = 0x00;                                            // аукцион
+	WBUFB(data,(0x30)-4) = AUCTION_ID;                                      
 }
 
 CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot) 
@@ -78,18 +81,12 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot)
     {
         WBUFB(data,(0x14)-4) = 0x03;
         WBUFB(data,(0x16)-4) = 0x01;	            // значение меняется, назначение неизвестно
-        
 
         WBUFW(data,(0x28)-4) = 877;             // id продаваемого предмета
         WBUFB(data,(0x2A)-4) = 1;               // количество предметов
         WBUFB(data,(0x2B)-4) = 0x02;            // количество предметов            
         WBUFL(data,(0x2C)-4) = 1000;            // цена продажи
 
-        WBUFB(data,(0x30)-4) = 0xFE;            // id аукциона
+        WBUFB(data,(0x30)-4) = AUCTION_ID;
     }
-
-    WBUFL(data,(0x38)-4) = CVanaTime::getInstance()->getSysTime(); 
-
-	// дата продажи
-    // memcpy(data+(0x18)-4, "AH-Windurst", 11); 
 }
