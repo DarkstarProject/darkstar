@@ -1496,7 +1496,11 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
 	return 0;
 }
 
-//==========================================================//
+/************************************************************************
+*																		*
+*                                                           			*
+*																		*
+************************************************************************/
 
 inline int32 CLuaBaseEntity::sendMenu(lua_State *L)
 {
@@ -1520,7 +1524,8 @@ inline int32 CLuaBaseEntity::sendMenu(lua_State *L)
 						PChar->pushPacket(new CShopItemsPacket(PChar));
 						break;
                     case 3:
-                        PChar->pushPacket(new CAuctionHousePacket());
+                        PChar->pushPacket(new CAuctionHousePacket(2));
+                        break;
 					default:
 						ShowDebug("Menu %i not implemented, yet.\n", menu);
 					break;
