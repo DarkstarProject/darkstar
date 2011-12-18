@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Upper Jeuno
 -- NPC: Collet
--- Involved in Quests: Save the Clock Tower
+-- Involved in Quests: A Clock Most Delicate, Save the Clock Tower
 -- @zone 244
--- @pos 
+-- @pos -44 0 107
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -31,16 +31,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getVar("saveTheClockTowerVar") >= 1) then 
+	if(player:getFameLevel(JEUNO) >= 5 and aClockMostdelicate == QUEST_AVAILABLE and player:getVar("aClockMostdelicateVar") == 0) then 
+		player:startEvent(0x0070);
+	elseif(player:getVar("saveTheClockTowerVar") >= 1) then 
 		player:startEvent(0x00a4);
 	elseif(player:getQuestStatus(JEUNO,THE_CLOCKMASTER) == QUEST_COMPLETED) then 
 		player:startEvent(0x00a3);
 	else
-		player:startEvent(0x00BA);
+		player:startEvent(0x0072);
 	end
 end; 
 
------------------------------------0x0070  0x0072  0x00ba  0x00a4  0x00a2  0x0073  0x0071  0x00a3  0x00a5  0x2776
+-----------------------------------
 -- onEventUpdate
 -----------------------------------
 
@@ -56,7 +58,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x0073) then 
+	if (csid == 0x0070) then
+		player:setVar("aClockMostdelicateVar", 1);
+	elseif(csid == 0x0073) then 
 		player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
 		player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 2);
 	end

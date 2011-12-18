@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Upper Jeuno
 -- NPC: Galmut's door
--- Starts and Finishes Quest: A Clock Most Delicate, Save the Clock Tower (just start), The Clockmaster
+-- Starts and Finishes Quest: A Clock Most Delicate, Save the Clock Tower, The Clockmaster
 -- @zone 244
 -- @pos -80 0 104
 -----------------------------------
@@ -27,12 +27,10 @@ end;
 function onTrigger(player,npc)
 	aClockMostdelicate = player:getQuestStatus(JEUNO,A_CLOCK_MOST_DELICATE);
 	
-	if(player:getFameLevel(JEUNO) >= 5 and aClockMostdelicate == QUEST_AVAILABLE) then 
-		if(player:getVar("aClockMostdelicateVar") == 0) then 
-			player:startEvent(0x0077); -- Start long cs quest with option "a clock most delicate"
-		else
-			player:startEvent(0x0076); -- Start short cs quest with option "a clock most delicate"
-		end
+	if(aClockMostdelicate == QUEST_AVAILABLE and player:getVar("aClockMostdelicateVar") == 1) then 
+		player:startEvent(0x0077); -- Start long cs quest with option "a clock most delicate"
+	elseif(aClockMostdelicate == QUEST_AVAILABLE and player:getVar("aClockMostdelicateVar") == 2) then 
+		player:startEvent(0x0076); -- Start short cs quest with option "a clock most delicate"
 	elseif(aClockMostdelicate == QUEST_ACCEPTED) then 
 		if(player:hasKeyItem(CLOCK_TOWER_OIL) == true) then 
 			player:startEvent(0x00ca); -- Ending quest "a clock most delicate"
@@ -67,7 +65,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0077 and option == 1) then 
 		player:addQuest(JEUNO,A_CLOCK_MOST_DELICATE);
 	elseif(csid == 0x0077 and option == 0) then 
-		player:setVar("aClockMostdelicateVar",1);
+		player:setVar("aClockMostdelicateVar",2);
 	elseif(csid == 0x0076 and option == 1) then 
 		player:addQuest(JEUNO,A_CLOCK_MOST_DELICATE);
 		player:setVar("aClockMostdelicateVar",0);
