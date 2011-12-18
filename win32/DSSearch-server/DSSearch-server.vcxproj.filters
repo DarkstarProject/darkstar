@@ -47,6 +47,12 @@
     <ClCompile Include="..\..\src\common\malloc.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\search\packets\ah_items_list.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\search\auction_house.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\common\cbasetypes.h">
@@ -67,9 +73,6 @@
     <ClInclude Include="..\..\src\search\tcp_request.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\search\search.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\common\utils.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
@@ -84,6 +87,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\common\socket.h">
       <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\search\packets\ah_items_list.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\search\auction_house.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

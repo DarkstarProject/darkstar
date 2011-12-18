@@ -49,6 +49,7 @@
 
 #include "lua/luautils.h"
 
+#include "packets/auction_house.h"
 #include "packets/automaton_update.h"
 #include "packets/bazaar_check.h"
 #include "packets/bazaar_item.h"
@@ -1020,6 +1021,91 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
 
 /************************************************************************
 *																		*
+*  Все действия с Auction House                                         *
+*																		*
+************************************************************************/					
+
+int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
+{
+	uint8 action  = RBUFB(data,(0x04));
+    uint8 slotid  = RBUFB(data,(0x05));
+
+    ShowDebug(CL_CYAN"AH Action (%02hx)\n"CL_RESET, RBUFB(data,(0x04)));
+    PrintPacket(data);
+
+    // 0x04 - продажа предмета
+    // 0x05 - похоже, что в ответ на этот пакет мы можем открыть список продаж или предложить персонажу подождать немного
+    // 0x0A - получение списка продаваемых персонажем предметов
+    // 0x0B - подтверждение покупки
+    // 0x0E - покупка предмета
+    // 0x0С - отмена продажи
+    // 0x0D - обновление списка продаваемых персонажем предметов
+
+    switch(action) 
+    {	
+        case 0x04:
+        { 
+            uint32 price  = RBUFL(data,(0x08));
+            uint8  slot   = RBUFB(data,(0x0C));
+            uint32 itemid = RBUFW(data,(0x0E));
+
+            CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
+
+            if ((PItem != NULL) && 
+                (PItem->getID() == itemid) &&
+               !(PItem->getSubType() & ITEM_LOCKED) &&
+               !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
+            {
+                PItem->setCharPrice(price);
+                PChar->pushPacket(new CAuctionHousePacket(action, PItem));
+            }
+		} 
+            break;
+        case 0x05: 
+        { 
+            // TODO: необходим таймер последного запроса статуса продаж; открывать список не чаще раза в 5 секунд
+
+            PChar->pushPacket(new CAuctionHousePacket(action));
+		} 
+            break;
+        case 0x0A: 
+        { 
+            // TODO: в идеале, хорошо было бы загружать продаваемые предметы в универсальный контейнер персонажа
+            
+            // ограничение клиента игры на 7 одновременно продаваемых предмета
+
+            for (int8 slot = 0; slot < 5; ++slot)
+            {
+                PChar->pushPacket(new CAuctionHousePacket(0x0C, slot));
+            }
+		}
+            break;
+		case 0x0B: 
+        {
+
+		} 
+            break;
+		case 0x0E: 
+        {
+			
+        } 
+            break;
+        case 0x0C: 
+        {
+		
+		}
+            break;
+		case 0x0D: 
+        {
+            PChar->pushPacket(new CAuctionHousePacket(action, slotid));
+		} 
+            break;
+	}
+    return 0;
+}
+
+/************************************************************************
+*																		*
 *  Смена экипировки														*
 *																		*
 ************************************************************************/					
@@ -1505,7 +1591,7 @@ int32 SmallPacket0x084(CCharEntity* PChar, int8* data)
 	{
 		// подготавливаем предмет для продажи
 		PChar->Container->setItem(16, itemID, slotID, quantity);
-		PChar->pushPacket(new CShopAppraisePacket(slotID, PItem->getSellPrice()));
+		PChar->pushPacket(new CShopAppraisePacket(slotID, PItem->getBasePrice()));
 	}
 	return 0;
 }
@@ -1529,7 +1615,7 @@ int32 SmallPacket0x085(CCharEntity* PChar, int8* data)
 
 	if ( (PItem != NULL) && (gil != NULL) && (gil->getType() & ITEM_CURRENCY) )
 	{
-		charutils::UpdateItem(PChar, LOC_INVENTORY, 0, quantity * PItem->getSellPrice());
+		charutils::UpdateItem(PChar, LOC_INVENTORY, 0, quantity * PItem->getBasePrice());
 		charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -(int32)quantity);
 
 		PChar->pushPacket(new CMessageStandardPacket(0, itemID, quantity, 232));
@@ -2282,7 +2368,7 @@ int32 SmallPacket0x105(CCharEntity* PChar, int8* data)
 			CItem* PItem = Bazaar->GetItem(slotID);
 
 			if ((PItem != NULL) &&
-				(PItem->getBazaarPrice() != 0) &&
+				(PItem->getCharPrice() != 0) &&
 			   !(PItem->getFlag() & ITEM_FLAG_EX)) 
 			{
 				PChar->pushPacket(new CBazaarItemPacket(PItem, slotID, tax));
@@ -2308,7 +2394,7 @@ int32 SmallPacket0x109(CCharEntity* PChar, int8* data)
 	{
 		CItem* PItem = PStorage->GetItem(slotID);
 
-		if ((PItem != NULL) && (PItem->getBazaarPrice() != 0)) 
+		if ((PItem != NULL) && (PItem->getCharPrice() != 0)) 
 		{
 			PChar->nameflags.flags |= FLAG_BAZAAR;
 			PChar->pushPacket(new CCharUpdatePacket(PChar));
@@ -2335,7 +2421,7 @@ int32 SmallPacket0x10A(CCharEntity* PChar, int8* data)
 	{
 		Sql_Query(SqlHandle,"UPDATE char_inventory SET bazaar = %u WHERE charid = %u AND location = 0 AND slot = %u;",price,PChar->id,slotID);		
 
-		PItem->setBazaarPrice(price);
+		PItem->setCharPrice(price);
 		PItem->setSubType((price == 0 ? ITEM_UNLOCKED : ITEM_LOCKED));
 
 		PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, slotID));

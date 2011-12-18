@@ -17,6 +17,8 @@
     <ClCompile Include="..\..\src\common\showmsg.cpp" />
     <ClCompile Include="..\..\src\common\strlib.cpp" />
     <ClCompile Include="..\..\src\common\utils.cpp" />
+    <ClCompile Include="..\..\src\search\auction_house.cpp" />
+    <ClCompile Include="..\..\src\search\packets\ah_items_list.cpp" />
     <ClCompile Include="..\..\src\search\search.cpp" />
     <ClCompile Include="..\..\src\search\tcp_request.cpp" />
   </ItemGroup>
@@ -30,8 +32,9 @@
     <ClInclude Include="..\..\src\common\socket.h" />
     <ClInclude Include="..\..\src\common\strlib.h" />
     <ClInclude Include="..\..\src\common\utils.h" />
+    <ClInclude Include="..\..\src\search\auction_house.h" />
+    <ClInclude Include="..\..\src\search\packets\ah_items_list.h" />
     <ClInclude Include="..\..\src\search\packets\search_list.h" />
-    <ClInclude Include="..\..\src\search\search.h" />
     <ClInclude Include="..\..\src\search\tcp_request.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

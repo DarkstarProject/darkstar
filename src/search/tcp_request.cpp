@@ -46,8 +46,27 @@ CTCPRequestPacket::CTCPRequestPacket()
 {
 	data = NULL;
 
+    blowfish.key[0] = 0x6D3D7330; // { 0x30, 0x73, 0x3D, 0x6D }
+    blowfish.key[1] = 0x5A49313C; // { 0x3C, 0x31, 0x49, 0x5A }
+    blowfish.key[2] = 0x43427A32; // { 0x32, 0x7A, 0x42, 0x43 }
+    blowfish.key[3] = 0x7E7B3863; // { 0x63, 0x38, 0x7B, 0x7E }
+    blowfish.key[4] = 0x00000000; // { 0x00, 0x00, 0x00, 0x00 }
+
 	char keys[24] = {0x30, 0x73, 0x3D, 0x6D, 0x3C, 0x31, 0x49, 0x5A, 0x32, 0x7A, 0x42, 0x43, 0x63, 0x38, 0x7B, 0x7E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-	memcpy(&key[0],&keys[0],24);
+	memcpy(&blowfish.key[0],&keys[0], 20);
+
+    memcpy(&key[0],&keys[0], 24);
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+int8* CTCPRequestPacket::GetKey()
+{
+	return &key[0];
 }
 
 /************************************************************************
@@ -80,7 +99,7 @@ uint32 CTCPRequestPacket::GetSize()
 
 void CTCPRequestPacket::ReceiveFromSocket(SOCKET* s)
 {
-	DSP_DEBUG_BREAK_IF(data != NULL);
+	//DSP_DEBUG_BREAK_IF(data != NULL);
 
 	char recvbuf[DEFAULT_BUFLEN];
 
@@ -172,6 +191,5 @@ void CTCPRequestPacket::decipher()
 	}
 
 	CheckHash();
-
 	memcpy(key+20,data+(size-0x18),4);
 }

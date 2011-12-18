@@ -24,7 +24,7 @@
 #ifndef _CSEARCHRESPONCEPACKET_H
 #define _CSEARCHRESPONCEPACKET_H
 
-#include "../common/cbasetypes.h"
+#include "../../common/cbasetypes.h"
 
 struct SearchEntity
 {

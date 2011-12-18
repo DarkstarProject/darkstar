@@ -24,6 +24,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/blowfish.h"
 #include "../common/mmo.h"
+#include "../common/showmsg.h"
 #include "../common/socket.h"
 #include "../common/utils.h"
 
@@ -31,9 +32,12 @@
 #include <ws2tcpip.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "auction_house.h"
 #include "search.h"
 #include "tcp_request.h"
 
+#include "packets/ah_items_list.h"
 #include "packets/search_list.h"
 
 #define DEFAULT_PORT "54002"
@@ -72,7 +76,7 @@ ppuint32 __stdcall TCPComm(void* lpParam);
 
 extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest);
-extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest);
+extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket);
 
 /************************************************************************
 *																		*
@@ -249,7 +253,7 @@ ppuint32 __stdcall TCPComm(void* lpParam)
         case TCP_AH_REQUEST_MORE:
 		case TCP_AH_HISTORY_REQUEST: 
 		{
-			HandleAuctionHouseRequest(PTCPRequest);
+            HandleAuctionHouseRequest(PTCPRequest, CommInfo.socket);
 		}
 		break;
 	}
@@ -281,7 +285,6 @@ void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest)
 
 void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 {
-
 	// суть в том, чтобы заполнить некоторую структуру, на основании которой будет создан запрос к базе
 	// результат поиска в базе отправляется клиенту
 
@@ -498,6 +501,7 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 		}
 	}
 	printf("\n");
+
 	// не обрабатываем последние биты, что мешает в одну кучу например "/blacklist delete Name" и "/sea all Name"
 }
 
@@ -507,7 +511,34 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 *																		*
 ************************************************************************/
 
-void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
+void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 {
+    uint8* data    = (uint8*)PTCPRequest->GetData();                            // Original request data
+	uint8  AHCatID = RBUFB(data,(0x16));                                        // Requested AH category
 
+	CAuctionHouse* PAuctionHouse = new CAuctionHouse(0);                        
+    std::vector<ahItem*> ItemList = PAuctionHouse->GetItemsToCategry(AHCatID);  // Get items to category
+
+    for(uint8 i = 0; i < 2; ++i) 
+    {
+        CAHItemsListPacket* PAHPacket = new CAHItemsListPacket(20*i);
+
+        PAHPacket->SetKey(PTCPRequest->GetKey());
+        PAHPacket->SetItemCount(ItemList.size());  
+
+        // не более 20 предметов
+
+        ShowDebug(CL_CYAN"count %u\n"CL_RESET, ItemList.size());
+
+        for (uint8 y = 20*i; (y != 20*(i+1)) && (y < ItemList.size()); ++y)
+        {
+            PAHPacket->AddItem(ItemList.at(y));
+        }
+
+        send(socket, (const int8*)PAHPacket->GetData(), PAHPacket->GetSize(), 0);
+        PTCPRequest->ReceiveFromSocket(&socket);
+
+        delete PAHPacket;
+    }
+    delete PAuctionHouse;
 }

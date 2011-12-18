@@ -35,13 +35,16 @@
 *																		*
 ************************************************************************/
 
+class CItem;
 class CCharEntity;
 
 class CAuctionHousePacket : public CBasicPacket
 {
 public:
 
-    CAuctionHousePacket();  // отправляем персонажу меню аукциона
+    CAuctionHousePacket(uint8 action);                  // отправляем персонажу меню аукциона
+    CAuctionHousePacket(uint8 action, uint8 slot);      // отправляем список продаваемых персонажем предметов
+    CAuctionHousePacket(uint8 action, CItem* PItem);
 };
 
 #endif

@@ -31,12 +31,12 @@
 
 enum TCPREQUESTTYPE
 {
-	TCP_SEARCHALL_REQUEST	= 0,
-	TCP_PARTY_LIST			= 2,
-	TCP_SEARCH_REQUEST		= 3,
-	TCP_AH_REQUEST,
-	TCP_AH_REQUEST_MORE,
-	TCP_AH_HISTORY_REQUEST 
+	TCP_SEARCHALL_REQUEST	= 0x00,
+	TCP_PARTY_LIST			= 0x02,
+	TCP_SEARCH_REQUEST		= 0x03,
+    TCP_AH_HISTORY_REQUEST  = 0x05,
+    TCP_AH_REQUEST_MORE     = 0x10,
+	TCP_AH_REQUEST          = 0x15,
 };
 
 /************************************************************************
@@ -51,20 +51,21 @@ public:
 
 	CTCPRequestPacket();
 
-	int8*	GetData();
-	uint32	GetSize();
-	uint8	GetPacketType();
+    int8*  GetKey();
+	int8*  GetData();
+	uint32 GetSize();
+	uint8  GetPacketType();
 	
 	void ReceiveFromSocket(SOCKET* s);
 
 private:
 
 	int8* data;
+    int32 size;
 
 	blowfish_t blowfish;
 
 	int8 key[24];
-	int32 size;
 
 	void decipher();
 	void CheckHash();
