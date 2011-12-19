@@ -38,7 +38,7 @@
 *                                                                       *
 ************************************************************************/
 
-CAHItemsListPacket::CAHItemsListPacket(uint8 offset)
+CAHItemsListPacket::CAHItemsListPacket(uint16 offset)
 {
     m_count  = 0;
     m_offset = offset;
@@ -78,9 +78,9 @@ void CAHItemsListPacket::AddItem(ahItem* item)
 *                                                                       *
 ************************************************************************/
 
-void CAHItemsListPacket::SetItemCount(uint8 count)
+void CAHItemsListPacket::SetItemCount(uint16 count)
 {
-	WBUFB(m_PData,(0x0E)) = count;
+	WBUFW(m_PData,(0x0E)) = count;
 
     if ((count - m_offset) < 20)
     {
@@ -112,30 +112,21 @@ void CAHItemsListPacket::SetKey(int8* key)
 
 uint8* CAHItemsListPacket::GetData()
 {
-    // нужно условие на проверку сборки
-    // если пакет не собран, то сначала собираем его
+	md5((uint8*)(m_key), blowfish.hash, 24);
 
-    uint8  hash[16];
-	uint8  tmp;
-	uint32 P[18];
-	uint32 S[4][256];
+	blowfish_init((int8*)blowfish.hash,16, blowfish.P, blowfish.S[0]);
 
-	md5((uint8*)(m_key), hash, 24);
+	md5((uint8*)(m_PData+8), (uint8*)m_PData+PACKET_DATA_SIZE-0x18+0x04, PACKET_DATA_SIZE-0x18-0x04);
 
-	blowfish_init((char *)hash,16, P, S[0]);
-
-	md5((uint8*)(m_PData+8), (uint8*)m_PData+PACKET_DATA_SIZE-0x18+4, PACKET_DATA_SIZE-0x18-0x04);
-
-	tmp = (PACKET_DATA_SIZE-12)/4;
+	uint8 tmp = (PACKET_DATA_SIZE-12)/4;
 	tmp -= tmp%2;
 
-	for(unsigned char i = 0; i < tmp; i += 2) 
+	for(uint8 i = 0; i < tmp; i += 2) 
     {
-		blowfish_encipher((uint32*)m_PData+i+2, (uint32*)m_PData+i+3,P,S[0]);
+		blowfish_encipher((uint32*)m_PData+i+2, (uint32*)m_PData+i+3, blowfish.P, blowfish.S[0]);
 	}
 
-	memcpy(&m_PData[PACKET_DATA_SIZE]-0x04,m_key+16,4);
-
+	memcpy(&m_PData[PACKET_DATA_SIZE]-0x04, m_key+16, 4);
     return m_PData;
 }
 

@@ -54,9 +54,13 @@ CTCPRequestPacket::CTCPRequestPacket()
     blowfish.key[4] = 0x00000000; // { 0x00, 0x00, 0x00, 0x00 }
 
 	char keys[24] = {0x30, 0x73, 0x3D, 0x6D, 0x3C, 0x31, 0x49, 0x5A, 0x32, 0x7A, 0x42, 0x43, 0x63, 0x38, 0x7B, 0x7E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-	memcpy(&blowfish.key[0],&keys[0], 20);
-
+    
     memcpy(&key[0],&keys[0], 24);
+}
+
+CTCPRequestPacket::~CTCPRequestPacket()
+{
+    delete[] data;
 }
 
 /************************************************************************
@@ -100,8 +104,6 @@ uint32 CTCPRequestPacket::GetSize()
 
 void CTCPRequestPacket::ReceiveFromSocket(SOCKET* s)
 {
-    delete[] data;
-
 	int8 recvbuf[DEFAULT_BUFLEN];
 
 	size = recv(*s, recvbuf, DEFAULT_BUFLEN, 0);
@@ -122,8 +124,8 @@ void CTCPRequestPacket::ReceiveFromSocket(SOCKET* s)
 		ShowError(CL_RED"Search packetsize wrong. Size %d should be %d.\n"CL_RESET, size, RBUFW(recvbuf,(0x00)));
 		return;
 	}
-
-	data = new int8[size];
+    delete[] data; 
+    data = new int8[size];
 
 	memcpy(&data[0], &recvbuf[0], size);
 	memcpy(key+16, data+size-4, 4);

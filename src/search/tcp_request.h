@@ -50,6 +50,7 @@ class CTCPRequestPacket
 public:
 
 	CTCPRequestPacket();
+   ~CTCPRequestPacket();
 
     int8*  GetKey();
 	int8*  GetData();

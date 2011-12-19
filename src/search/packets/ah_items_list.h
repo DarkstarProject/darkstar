@@ -25,6 +25,7 @@
 #define _CAHITEMSLISTPACKET_H_
 
 #include "../../common/cbasetypes.h"
+#include "../../common/mmo.h"
 
 #define PACKET_DATA_SIZE    268
 
@@ -32,20 +33,22 @@ class CAHItemsListPacket
 {
 public:
 
-    CAHItemsListPacket(uint8 offset);
+    CAHItemsListPacket(uint16 offset);
    ~CAHItemsListPacket();
     
     void SetKey(int8* key);
     void AddItem(ahItem* item);
-    void SetItemCount(uint8 count);
+    void SetItemCount(uint16 count);
 
     uint8* GetData();
     uint16 GetSize();
 
 private:
 
-    uint8 m_count;
-    uint8 m_offset;
+    uint8  m_count;
+    uint16 m_offset;
+
+    blowfish_t blowfish;
 
     int8  m_key[24];
 

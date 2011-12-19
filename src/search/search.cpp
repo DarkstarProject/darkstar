@@ -513,6 +513,8 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 
 void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 {
+    int iResult;
+
     uint8* data    = (uint8*)PTCPRequest->GetData();                            
 	uint8  AHCatID = RBUFB(data,(0x16));                                        
 
@@ -528,12 +530,18 @@ void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
         PAHPacket->SetKey(PTCPRequest->GetKey());
         PAHPacket->SetItemCount(ItemList.size());  
 
-        for (uint8 y = 20*i; (y != 20*(i+1)) && (y < ItemList.size()); ++y)
+        for (uint16 y = 20*i; (y != 20*(i+1)) && (y < ItemList.size()); ++y)
         {
             PAHPacket->AddItem(ItemList.at(y));
         }
 
-        send(socket, (const int8*)PAHPacket->GetData(), PAHPacket->GetSize(), 0);
+        iResult = send(socket, (const int8*)PAHPacket->GetData(), PAHPacket->GetSize(), 0);
+        if (iResult == SOCKET_ERROR) 
+        {
+            ShowError("send failed with error: %d\n", WSAGetLastError());
+            delete PAHPacket;
+            break;
+        }
         PTCPRequest->ReceiveFromSocket(&socket);
 
         delete PAHPacket;
