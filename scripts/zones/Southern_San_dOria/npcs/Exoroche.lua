@@ -35,17 +35,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	-- "Father and Son" quest status
-	fatherAndSon = player:getQuestStatus(SANDORIA,FATHER_AND_SON);
 	
 	-- "Father and Son" Event Dialogs
-	if (fatherAndSon == 1) then
+	if (player:getQuestStatus(SANDORIA,FATHER_AND_SON) == QUEST_ACCEPTED) then
 		player:startEvent(0x021e);
-		player:setVar("QuestfatherAndSon_CS",1);
 	else
 		player:startEvent(0x004c);
 	end;
+
 end; 
 
 -----------------------------------
@@ -64,6 +61,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if(csid == 0x021e) then
+		player:setVar("QuestfatherAndSonVar",1);
+	end
 end;
 
 

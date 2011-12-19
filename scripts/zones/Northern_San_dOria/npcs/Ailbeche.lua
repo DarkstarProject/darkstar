@@ -21,19 +21,12 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 	-- "Flyers for Regine" conditional script
 	FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-	-- "Father and Son" quest status
-	fatherAndSon = player:getQuestStatus(SANDORIA, FATHER_AND_SON);
 	
-	if (fatherAndSon == QUEST_COMPLETED) then
-		count = trade:getItemCount();
-		hasWillowFishingRod = trade:hasItemQty(17391,1);
-		if (hasWillowFishingRod and count == 1) then
-			player:tradeComplete();
-			player:startEvent(0x003d);
-			player:setVar("returnedAilbecheRod",1);
-			player:setTitle(FAMILY_COUNSELOR); --title : FAMILY COUNSELOR
-		end;
-	end;
+	if(player:getQuestStatus(SANDORIA, FATHER_AND_SON) == QUEST_COMPLETED and player:getVar("returnedAilbecheRod") ~= 1) then 
+		if(trade:hasItemQty(17391,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+			player:startEvent(0x003d); -- Finish Quest "Father and Son" (part2) (trading fishing rod)
+		end	
+	end
 		
 	
 	if (FlyerForRegine == 1) then
@@ -50,25 +43,23 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
 	-- "Father and Son" quest status
 	fatherAndSon = player:getQuestStatus(SANDORIA, FATHER_AND_SON);
-	-- "Sharpening the Sword) Quest Status
+	-- "Sharpening the Sword" Quest Status
 	sharpeningTheSword = player:getQuestStatus(SANDORIA, SHARPENING_THE_SWORD);
 	-- Checking levels and jobs for af quest
 	mLvl = player:getMainLvl();
 	mJob = player:getMainJob();
 	-- Check if they have key item "Ordelle whetstone"
-	hasOrdelleWhetstone = player:hasKeyItem(233)
+	hasOrdelleWhetstone = player:hasKeyItem(233);
 	
-	--"Father and Son" Event Dialogs
+	-- "Father and Son" Event Dialogs
 	if (fatherAndSon == QUEST_AVAILABLE) then
-		player:startEvent(0x01fc);
-		player:setVar("fatherAndSonCS",1);
-		player:addQuest(SANDORIA,FATHER_AND_SON);
-	elseif (fatherAndSon == QUEST_ACCEPTED and player:getVar("QuestfatherAndSon_CS") == 1) then
-		player:startEvent(0x01fd);
-	
+		player:startEvent(0x01fc); -- Start Quest "Father and Son"
+	elseif (fatherAndSon == QUEST_ACCEPTED and player:getVar("QuestfatherAndSonVar") == 1) then
+		player:startEvent(0x01fd); -- Finish Quest "Father and Son" (part1)
+	elseif (fatherAndSon == QUEST_COMPLETED and player:getVar("returnedAilbecheRod") == 1) then
+		player:startEvent(0x000c);  -- Dialog after "Father and Son" part 2
 	--[[ "Sharpening the Sword" Quest Dialogs	
 	elseif (player:getVar("sharpeningTheSwordCS") == 1 and sharpeningTheSword == QUEST_AVAILABLE and mJob == 7 and mLvl >= 40) then
 		player:startEvent(0x002b);
@@ -81,14 +72,14 @@ function onTrigger(player,npc)
 	elseif (hasOrdelleWhetstone == true) then
 		player:startEvent(0x002c);
 	--]]
-		
-	-- "Father and Son" Completed Event Dialogs
-	elseif (fatherAndSon == QUEST_COMPLETED and player:getVar("returnedAilbecheRod") == 1) then
-		player:startEvent(0x000c);
 	else
 		player:startEvent(0x0364);
-	end;
+	end
 end; 
+
+--player:startEvent(0x002b); -- Start Quest "Sharpening the Sword"
+--player:startEvent(0x002a); -- During Quest "Sharpening the Sword"
+--player:startEvent(0x002c); -- Ending Quest "Sharpening the Sword"
 
 -----------------------------------
 -- onEventUpdate
@@ -107,18 +98,24 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
-	-- "Faher and Son" recieve willow fishing rod
-	if (csid == 0x01fd and player:getFreeSlotsCount() > 0) then
-		player:addItem(17391);
-		player:messageSpecial(6567, 17391);
-		player:addFame(SANDORIA, SAN_FAME*30);
-		player:setTitle(LOST_CHILD_OFFICER);
-		player:completeQuest(SANDORIA, FATHER_AND_SON);
-		player:setVar("QuestfatherAndSon_CS",0);
-	elseif (csid == 0x01fd and player:getFreeSlotsCount() < 1) then
-		player:messageSpecial(6564, 17391); -- CANNOT_OBTAIN_ITEM
-	end;
+	if(csid == 0x01fc) then 
+		player:addQuest(SANDORIA,FATHER_AND_SON);
+	elseif(csid == 0x01fd) then 
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17391);
+		else
+			player:completeQuest(SANDORIA,FATHER_AND_SON);
+			player:addItem(17391);
+			player:messageSpecial(ITEM_OBTAINED, 17391);
+			player:setTitle(LOST_CHILD_OFFICER);
+			player:addFame(SANDORIA,30);
+			player:setVar("QuestfatherAndSonVar",0);
+		end
+	elseif(csid == 0x003d) then
+		player:tradeComplete();
+		player:setVar("returnedAilbecheRod",1);
+		player:setTitle(FAMILY_COUNSELOR);
+	end
 	
 	--[[ "Sharpening the Sword" Start Quest
 	if (csid == 0x002d and option == 0) then
@@ -138,8 +135,6 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(6564, 17643); -- CANNOT_OBTAIN_ITEM
 	end;
 	--]]
-	
-	
 end;
 
 
