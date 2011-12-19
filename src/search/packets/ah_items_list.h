@@ -51,47 +51,5 @@ private:
 
     uint8 m_PData[PACKET_DATA_SIZE];
 };
+
 #endif
-
-/*
-struct tcpHeader {
-	unsigned short size;
-	unsigned short unknown1;
-	char ffxiident[4];
-};
-
-class CAHItemListPacket //: public CBasicPacket
-{
-private:
-	char* m_pData;
-
-	char m_key[24];
-
-	tcpHeader m_packetHead;
-
-	unsigned char m_type;
-
-	unsigned char m_currItemNum;
-	unsigned short m_itemOffset;
-	
-
-public:
-	CAHItemListPacket(unsigned short itemOffset = 0);
-	~CAHItemListPacket(void);
-
-	void setItemCount(unsigned char itemCount);
-	unsigned char getItemCount();
-	void setKeyOne(char * keyOne);
-	void setKeyTwo(char * keyTwo);
-	void setKey(char * key);
-
-	void addItem(ahItem* itemEntry); 
-
-	void buildPacket();
-	char* getData(void);
-	unsigned short getSize();
-
-	void hasFollowUpPacket(bool hfu);
-
-};
-*/

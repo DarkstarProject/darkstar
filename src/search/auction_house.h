@@ -30,12 +30,9 @@
 
 typedef struct  
 {
-    uint16  itemId;
-    uint8   amount;
-    uint8   stacked;
-    uint8   amountStack;
-    uint32	sellDate;
-    uint32  price;
+    uint16  ItemID;
+    uint32  SinglAmount;
+    uint32  StackAmount;
 } ahItem;
 
 class CAuctionHouse

@@ -21,16 +21,34 @@
 ===========================================================================
 */
 
+#include "../common/showmsg.h"
+#include "../common/sql.h"
+
 #include "auction_house.h"
+
+
+Sql_t* SqlHandle = NULL;
 
 CAuctionHouse::CAuctionHouse(uint8 AuctionHouseID)
 {
     m_AHID = AuctionHouseID;
+
+    SqlHandle = Sql_Malloc();
+
+	ShowStatus("sqlhandle is allocating\n");
+	if( Sql_Connect(SqlHandle,"root",
+							  "root",
+							  "127.0.0.1",
+							  3306,
+							  "dspdb") == SQL_ERROR )
+	{
+		ShowError("cant connect\n");
+	}
 }
 
 CAuctionHouse::~CAuctionHouse()
 {
-
+    Sql_Free(SqlHandle);
 }
 
 /************************************************************************
@@ -41,19 +59,32 @@ CAuctionHouse::~CAuctionHouse()
 
 std::vector<ahItem*> CAuctionHouse::GetItemsToCategry(uint8 AHCategoryID)
 {
+    ShowDebug("try find category %u\n", AHCategoryID);
+
     std::vector<ahItem*> ItemList;
-	
-    for (uint8 i = 0; i < 25; ++i)
-    {
-	    ahItem* PAHItem	= new ahItem;
 
-        PAHItem->itemId	  = 1000 + i;
-        PAHItem->price	  = 1000 + i;
-        PAHItem->stacked	  = 1;
-        PAHItem->amount   = 1;
-        PAHItem->sellDate = 1277536043;
+    const int8* fmtQuery = "SELECT itemId, stackSize FROM item_basic WHERE aH = %u";
 
-        ItemList.push_back(PAHItem);
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, AHCategoryID);
+
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		{
+			ahItem* PAHItem   = new ahItem;
+
+            PAHItem->ItemID	= Sql_GetIntData(SqlHandle,0);
+
+            PAHItem->SinglAmount	 = 0;
+            PAHItem->StackAmount = 0;
+
+            if (Sql_GetIntData(SqlHandle,1) == 1)
+            {
+                PAHItem->StackAmount = -1;
+            }
+
+            ItemList.push_back(PAHItem);
+        }
     }
 	return ItemList;
 }

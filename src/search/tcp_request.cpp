@@ -25,6 +25,7 @@
 #include "../common/md52.h"
 #include "../common/mmo.h"
 #include "../common/showmsg.h"
+#include "../common/socket.h"
 #include "../common/utils.h"
 
 #include <winsock2.h>
@@ -99,26 +100,26 @@ uint32 CTCPRequestPacket::GetSize()
 
 void CTCPRequestPacket::ReceiveFromSocket(SOCKET* s)
 {
-	//DSP_DEBUG_BREAK_IF(data != NULL);
+    delete[] data;
 
-	char recvbuf[DEFAULT_BUFLEN];
+	int8 recvbuf[DEFAULT_BUFLEN];
 
 	size = recv(*s, recvbuf, DEFAULT_BUFLEN, 0);
 	if (size == -1) 
 	{
-		printf("ERROR: recv failed with error: %d\n", WSAGetLastError());
+		ShowError(CL_RED"recv failed with error: %d\n"CL_RESET, WSAGetLastError());
 		closesocket(*s);
 		WSACleanup();
 		return;
 	}
     if (size == 0) 
 	{
-		printf("ERROR: TCP Connection closing...\n");
+		ShowError("TCP Connection closing...\n");
 		return;
 	}
-	if (size != *((uint32*)&recvbuf[0])) 
+	if (size != RBUFW(recvbuf,(0x00))) 
 	{
-		printf("ERROR: Search packetsize wrong. Size %d should be %d.\n", size, *((uint32*)recvbuf[0]));
+		ShowError(CL_RED"Search packetsize wrong. Size %d should be %d.\n"CL_RESET, size, RBUFW(recvbuf,(0x00)));
 		return;
 	}
 
@@ -138,7 +139,7 @@ void CTCPRequestPacket::ReceiveFromSocket(SOCKET* s)
 
 void CTCPRequestPacket::CheckHash()
 {
-	uint8 packetHash[16];
+	uint8 PacketHash[16];
 
 	int32 toHash = size;	// whole packet
 
@@ -146,13 +147,13 @@ void CTCPRequestPacket::CheckHash()
 	toHash -= 0x10;			// -hashsize
 	toHash -= 0x04;			// -keysize
 
-	md5((uint8*)(&data[8]), packetHash, toHash);
+	md5((uint8*)(&data[8]), PacketHash, toHash);
 
-	for(int32 i = 0; i < 16; ++i)
+	for(uint8 i = 0; i < 16; ++i)
 	{
-		if((uint8)data[size-0x14+i] != (uint8)packetHash[i])
+		if((uint8)data[size-0x14+i] != PacketHash[i])
 		{
-			printf("ERROR: Search hash wrong byte %d: 0x%.2X should be 0x%.2x\n", i, packetHash[i], (uint8)data[size-0x14+i]);
+			ShowError("Search hash wrong byte %d: 0x%.2X should be 0x%.2x\n", i, PacketHash[i], (uint8)data[size-0x14+i]);
 		}
 	}
 }

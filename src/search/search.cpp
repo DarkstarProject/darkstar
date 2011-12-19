@@ -131,7 +131,7 @@ int32 main (int32 argc, int8 **argv)
     iResult = WSAStartup(MAKEWORD(2,2), &wsaData);
     if (iResult != 0) 
 	{
-        printf("WSAStartup failed with error: %d\n", iResult);
+        ShowError("WSAStartup failed with error: %d\n", iResult);
         return 1;
     }
 
@@ -145,7 +145,7 @@ int32 main (int32 argc, int8 **argv)
     iResult = getaddrinfo(NULL, DEFAULT_PORT, &hints, &result);
     if (iResult != 0)
 	{
-        printf("getaddrinfo failed with error: %d\n", iResult);
+        ShowError("getaddrinfo failed with error: %d\n", iResult);
         WSACleanup();
         return 1;
     }
@@ -154,7 +154,7 @@ int32 main (int32 argc, int8 **argv)
     ListenSocket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
     if (ListenSocket == INVALID_SOCKET) 
 	{
-        printf("socket failed with error: %ld\n", WSAGetLastError());
+        ShowError("socket failed with error: %ld\n", WSAGetLastError());
         freeaddrinfo(result);
         WSACleanup();
         return 1;
@@ -164,7 +164,7 @@ int32 main (int32 argc, int8 **argv)
     iResult = bind( ListenSocket, result->ai_addr, (int)result->ai_addrlen);
     if (iResult == SOCKET_ERROR) 
 	{
-        printf("bind failed with error: %d\n", WSAGetLastError());
+        ShowError("bind failed with error: %d\n", WSAGetLastError());
         freeaddrinfo(result);
         closesocket(ListenSocket);
         WSACleanup();
@@ -176,7 +176,7 @@ int32 main (int32 argc, int8 **argv)
 	iResult = listen(ListenSocket, SOMAXCONN);
 	if (iResult == SOCKET_ERROR) 
 	{
-		printf("listen failed with error: %d\n", WSAGetLastError());
+		ShowError("listen failed with error: %d\n", WSAGetLastError());
 		closesocket(ListenSocket);
 		WSACleanup();
 		return 1;
@@ -188,7 +188,7 @@ int32 main (int32 argc, int8 **argv)
 		ClientSocket = accept(ListenSocket, NULL, NULL);
 		if (ClientSocket == INVALID_SOCKET) 
 		{
-			printf("accept failed with error: %d\n", WSAGetLastError());
+			ShowError("accept failed with error: %d\n", WSAGetLastError());
 			continue;
 		}
 		SearchCommInfo CommInfo;
@@ -204,7 +204,7 @@ int32 main (int32 argc, int8 **argv)
     iResult = shutdown(ClientSocket, SD_SEND);
     if (iResult == SOCKET_ERROR) 
 	{
-        printf("shutdown failed with error: %d\n", WSAGetLastError());
+        ShowError("shutdown failed with error: %d\n", WSAGetLastError());
         closesocket(ClientSocket);
         WSACleanup();
         return 1;
@@ -226,7 +226,7 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 {
 	SearchCommInfo CommInfo = *((SearchCommInfo*)lpParam);
 
-	printf("TCP connection from client with port: %u\n", htons(CommInfo.port));
+	ShowMessage("TCP connection from client with port: %u\n", htons(CommInfo.port));
 	SOCKET s = CommInfo.socket;
 
 	CTCPRequestPacket* PTCPRequest = new CTCPRequestPacket();
@@ -234,7 +234,7 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 
 	PrintPacket(PTCPRequest->GetData(), PTCPRequest->GetSize());
 
-	printf("PacketType %u\n", PTCPRequest->GetPacketType());
+	ShowMessage("PacketType %u\n", PTCPRequest->GetPacketType());
 
 	switch(PTCPRequest->GetPacketType()) 
 	{
@@ -274,7 +274,7 @@ void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest)
 {
 	uint8* data = (uint8*)PTCPRequest->GetData();
 
-	printf("SEARCH::PartyID = %u\n", RBUFL(data,(0x10)));
+	ShowMessage("SEARCH::PartyID = %u\n", RBUFL(data,(0x10)));
 }
 
 /************************************************************************
@@ -301,7 +301,7 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 
 	uint16 workloadBits = size * 8;
 
-	printf("Received a search packet with size %u byte\n", size);
+	ShowMessage("Received a search packet with size %u byte\n", size);
 	
 	while(bitOffset < workloadBits)
 	{
@@ -513,22 +513,20 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 
 void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 {
-    uint8* data    = (uint8*)PTCPRequest->GetData();                            // Original request data
-	uint8  AHCatID = RBUFB(data,(0x16));                                        // Requested AH category
+    uint8* data    = (uint8*)PTCPRequest->GetData();                            
+	uint8  AHCatID = RBUFB(data,(0x16));                                        
 
 	CAuctionHouse* PAuctionHouse = new CAuctionHouse(0);                        
-    std::vector<ahItem*> ItemList = PAuctionHouse->GetItemsToCategry(AHCatID);  // Get items to category
+    std::vector<ahItem*> ItemList = PAuctionHouse->GetItemsToCategry(AHCatID);
 
-    for(uint8 i = 0; i < 2; ++i) 
+    uint8 PacketsCount = ItemList.size() / 20 + (ItemList.size() % 20 != 0 ? 1 : 0);
+
+    for(uint8 i = 0; i < PacketsCount; ++i) 
     {
         CAHItemsListPacket* PAHPacket = new CAHItemsListPacket(20*i);
 
         PAHPacket->SetKey(PTCPRequest->GetKey());
         PAHPacket->SetItemCount(ItemList.size());  
-
-        // не более 20 предметов
-
-        ShowDebug(CL_CYAN"count %u\n"CL_RESET, ItemList.size());
 
         for (uint8 y = 20*i; (y != 20*(i+1)) && (y < ItemList.size()); ++y)
         {
