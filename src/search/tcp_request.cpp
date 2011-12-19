@@ -45,33 +45,16 @@
 
 CTCPRequestPacket::CTCPRequestPacket()
 {
-	data = NULL;
-
-    blowfish.key[0] = 0x6D3D7330; // { 0x30, 0x73, 0x3D, 0x6D }
-    blowfish.key[1] = 0x5A49313C; // { 0x3C, 0x31, 0x49, 0x5A }
-    blowfish.key[2] = 0x43427A32; // { 0x32, 0x7A, 0x42, 0x43 }
-    blowfish.key[3] = 0x7E7B3863; // { 0x63, 0x38, 0x7B, 0x7E }
-    blowfish.key[4] = 0x00000000; // { 0x00, 0x00, 0x00, 0x00 }
+	m_data = NULL;
 
 	char keys[24] = {0x30, 0x73, 0x3D, 0x6D, 0x3C, 0x31, 0x49, 0x5A, 0x32, 0x7A, 0x42, 0x43, 0x63, 0x38, 0x7B, 0x7E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     
-    memcpy(&key[0],&keys[0], 24);
+    memcpy(&key[0], &keys[0], 24);
 }
 
 CTCPRequestPacket::~CTCPRequestPacket()
 {
-    delete[] data;
-}
-
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
-
-int8* CTCPRequestPacket::GetKey()
-{
-	return &key[0];
+    delete[] m_data;
 }
 
 /************************************************************************
@@ -82,7 +65,7 @@ int8* CTCPRequestPacket::GetKey()
 
 int8* CTCPRequestPacket::GetData()
 {
-	return data;
+	return m_data;
 }
 
 /************************************************************************
@@ -93,7 +76,7 @@ int8* CTCPRequestPacket::GetData()
 
 uint32 CTCPRequestPacket::GetSize()
 {
-	return size;
+	return m_size;
 }
 
 /************************************************************************
@@ -102,33 +85,33 @@ uint32 CTCPRequestPacket::GetSize()
 *																		*
 ************************************************************************/
 
-void CTCPRequestPacket::ReceiveFromSocket(SOCKET* s)
+void CTCPRequestPacket::ReceiveFromSocket(SOCKET* socket)
 {
 	int8 recvbuf[DEFAULT_BUFLEN];
 
-	size = recv(*s, recvbuf, DEFAULT_BUFLEN, 0);
-	if (size == -1) 
+	m_size = recv(*socket, recvbuf, DEFAULT_BUFLEN, 0);
+	if (m_size == -1) 
 	{
 		ShowError(CL_RED"recv failed with error: %d\n"CL_RESET, WSAGetLastError());
-		closesocket(*s);
+		closesocket(*socket);
 		WSACleanup();
 		return;
 	}
-    if (size == 0) 
+    if (m_size == 0) 
 	{
 		ShowError("TCP Connection closing...\n");
 		return;
 	}
-	if (size != RBUFW(recvbuf,(0x00))) 
+	if (m_size != RBUFW(recvbuf,(0x00))) 
 	{
-		ShowError(CL_RED"Search packetsize wrong. Size %d should be %d.\n"CL_RESET, size, RBUFW(recvbuf,(0x00)));
+		ShowError(CL_RED"Search packetsize wrong. Size %d should be %d.\n"CL_RESET, m_size, RBUFW(recvbuf,(0x00)));
 		return;
 	}
-    delete[] data; 
-    data = new int8[size];
+    delete[] m_data; 
+    m_data = new int8[m_size];
 
-	memcpy(&data[0], &recvbuf[0], size);
-	memcpy(key+16, data+size-4, 4);
+	memcpy(&m_data[0], &recvbuf[0], m_size);
+	memcpy(key+16, m_data+m_size-4, 4);
 
 	decipher();
 }
@@ -139,23 +122,58 @@ void CTCPRequestPacket::ReceiveFromSocket(SOCKET* s)
 *																		*
 ************************************************************************/
 
+void CTCPRequestPacket::SendToSocket(SOCKET* socket, uint8* data, uint32 length)
+{
+    int32 iResult;
+
+    md5((uint8*)(key), blowfish.hash, 24);
+
+	blowfish_init((int8*)blowfish.hash,16, blowfish.P, blowfish.S[0]);
+
+	md5(data+8, data+length-0x18+0x04, length-0x18-0x04);
+
+	uint8 tmp = (length-12)/4;
+	tmp -= tmp%2;
+
+	for(uint8 i = 0; i < tmp; i += 2) 
+    {
+		blowfish_encipher((uint32*)data+i+2, (uint32*)data+i+3, blowfish.P, blowfish.S[0]);
+	}
+
+	memcpy(&data[length]-0x04, key+16, 4);
+
+    iResult = send(*socket, (const int8*)data, length, 0);
+    if (iResult == SOCKET_ERROR) 
+    {
+        ShowError("send failed with error: %d\n", WSAGetLastError());
+        return;
+    }
+    ReceiveFromSocket(socket);
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
 void CTCPRequestPacket::CheckHash()
 {
-	uint8 PacketHash[16];
+    uint8 PacketHash[16];
 
-	int32 toHash = size;	// whole packet
+    int32 toHash = m_size;  // whole packet
 
-	toHash -= 0x08;			// -headersize
-	toHash -= 0x10;			// -hashsize
-	toHash -= 0x04;			// -keysize
+    toHash -= 0x08;         // -headersize
+    toHash -= 0x10;         // -hashsize
+    toHash -= 0x04;         // -keysize
 
-	md5((uint8*)(&data[8]), PacketHash, toHash);
+	md5((uint8*)(&m_data[8]), PacketHash, toHash);
 
 	for(uint8 i = 0; i < 16; ++i)
 	{
-		if((uint8)data[size-0x14+i] != PacketHash[i])
+		if((uint8)m_data[m_size-0x14+i] != PacketHash[i])
 		{
-			ShowError("Search hash wrong byte %d: 0x%.2X should be 0x%.2x\n", i, PacketHash[i], (uint8)data[size-0x14+i]);
+			ShowError("Search hash wrong byte %d: 0x%.2X should be 0x%.2x\n", i, PacketHash[i], (uint8)m_data[m_size-0x14+i]);
 		}
 	}
 }
@@ -168,9 +186,9 @@ void CTCPRequestPacket::CheckHash()
 
 uint8 CTCPRequestPacket::GetPacketType() 
 {
-	DSP_DEBUG_BREAK_IF(data == NULL)
+	DSP_DEBUG_BREAK_IF(m_data == NULL)
 
-	return data[0x0B];
+	return m_data[0x0B];
 }
 
 /************************************************************************
@@ -185,14 +203,14 @@ void CTCPRequestPacket::decipher()
 
 	blowfish_init((int8*)blowfish.hash, 16, blowfish.P, blowfish.S[0]);
 
-	uint8 tmp = (size-12)/4;
+	uint8 tmp = (m_size-12)/4;
 	tmp -= tmp%2;
 
 	for(uint8 i = 0; i < tmp; i += 2) 
 	{
-		blowfish_decipher((uint32*)data+i+2, (uint32*)data+i+3, blowfish.P, blowfish.S[0]);
+		blowfish_decipher((uint32*)m_data+i+2, (uint32*)m_data+i+3, blowfish.P, blowfish.S[0]);
 	}
 
 	CheckHash();
-	memcpy(key+20,data+(size-0x18),4);
+	memcpy(key+20, m_data+(m_size-0x18), 4);
 }

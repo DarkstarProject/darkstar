@@ -513,21 +513,18 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 
 void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 {
-    int iResult;
-
     uint8* data    = (uint8*)PTCPRequest->GetData();                            
 	uint8  AHCatID = RBUFB(data,(0x16));                                        
 
 	CAuctionHouse* PAuctionHouse = new CAuctionHouse(0);                        
     std::vector<ahItem*> ItemList = PAuctionHouse->GetItemsToCategry(AHCatID);
 
-    uint8 PacketsCount = ItemList.size() / 20 + (ItemList.size() % 20 != 0 ? 1 : 0);
+    uint8 PacketsCount = (ItemList.size() / 20) + (ItemList.size() % 20 != 0) + (ItemList.size() == 0);
 
     for(uint8 i = 0; i < PacketsCount; ++i) 
     {
         CAHItemsListPacket* PAHPacket = new CAHItemsListPacket(20*i);
 
-        PAHPacket->SetKey(PTCPRequest->GetKey());
         PAHPacket->SetItemCount(ItemList.size());  
 
         for (uint16 y = 20*i; (y != 20*(i+1)) && (y < ItemList.size()); ++y)
@@ -535,15 +532,7 @@ void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
             PAHPacket->AddItem(ItemList.at(y));
         }
 
-        iResult = send(socket, (const int8*)PAHPacket->GetData(), PAHPacket->GetSize(), 0);
-        if (iResult == SOCKET_ERROR) 
-        {
-            ShowError("send failed with error: %d\n", WSAGetLastError());
-            delete PAHPacket;
-            break;
-        }
-        PTCPRequest->ReceiveFromSocket(&socket);
-
+        PTCPRequest->SendToSocket(&socket, PAHPacket->GetData(), PAHPacket->GetSize());
         delete PAHPacket;
     }
     delete PAuctionHouse;

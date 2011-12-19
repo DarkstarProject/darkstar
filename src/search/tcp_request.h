@@ -52,17 +52,17 @@ public:
 	CTCPRequestPacket();
    ~CTCPRequestPacket();
 
-    int8*  GetKey();
 	int8*  GetData();
 	uint32 GetSize();
 	uint8  GetPacketType();
 	
-	void ReceiveFromSocket(SOCKET* s);
+	void ReceiveFromSocket(SOCKET* socket);
+    void SendToSocket(SOCKET* socket, uint8* data, uint32 length);
 
 private:
 
-	int8* data;
-    int32 size;
+	int8* m_data;
+    int32 m_size;
 
 	blowfish_t blowfish;
 

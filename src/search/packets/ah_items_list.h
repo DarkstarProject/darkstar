@@ -36,7 +36,6 @@ public:
     CAHItemsListPacket(uint16 offset);
    ~CAHItemsListPacket();
     
-    void SetKey(int8* key);
     void AddItem(ahItem* item);
     void SetItemCount(uint16 count);
 
@@ -47,10 +46,6 @@ private:
 
     uint8  m_count;
     uint16 m_offset;
-
-    blowfish_t blowfish;
-
-    int8  m_key[24];
 
     uint8 m_PData[PACKET_DATA_SIZE];
 };

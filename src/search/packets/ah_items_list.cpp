@@ -95,38 +95,12 @@ void CAHItemsListPacket::SetItemCount(uint16 count)
 
 /************************************************************************
 *																		*
-*                                                                       *
-*																		*
-************************************************************************/
-
-void CAHItemsListPacket::SetKey(int8* key) 
-{
-	memcpy(m_key, key, 24);
-}
-
-/************************************************************************
-*																		*
 *  Возвращаем собранный пакет                                           *
 *																		*
 ************************************************************************/
 
 uint8* CAHItemsListPacket::GetData()
 {
-	md5((uint8*)(m_key), blowfish.hash, 24);
-
-	blowfish_init((int8*)blowfish.hash,16, blowfish.P, blowfish.S[0]);
-
-	md5((uint8*)(m_PData+8), (uint8*)m_PData+PACKET_DATA_SIZE-0x18+0x04, PACKET_DATA_SIZE-0x18-0x04);
-
-	uint8 tmp = (PACKET_DATA_SIZE-12)/4;
-	tmp -= tmp%2;
-
-	for(uint8 i = 0; i < tmp; i += 2) 
-    {
-		blowfish_encipher((uint32*)m_PData+i+2, (uint32*)m_PData+i+3, blowfish.P, blowfish.S[0]);
-	}
-
-	memcpy(&m_PData[PACKET_DATA_SIZE]-0x04, m_key+16, 4);
     return m_PData;
 }
 
