@@ -430,6 +430,11 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 			m_regionList.empty() ? zone_server : zone_server_region,
 			500);
 	}
+    if (PChar->animation == ANIMATION_CHOCOBO && !CanUseMisc(MISC_CHOCOBO))
+    {
+        PChar->animation = ANIMATION_NONE;
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
+    }
 	if (m_TreasurePool != NULL)
 	{
 		PChar->PTreasurePool = m_TreasurePool;
