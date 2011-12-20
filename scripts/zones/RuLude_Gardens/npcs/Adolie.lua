@@ -1,16 +1,15 @@
 -----------------------------------
--- Area: Upper Jeuno
--- NPC: Mailloquetat
--- Involved in Quests: Save my Sister
--- @zone 244
--- @pos -31 -1 8
+-- Area: Ru'Lude Gardens
+-- NPC:  Adolie
+-- @zone 243
+-- @pos -35 2 59
 -----------------------------------
 
 require("scripts/globals/settings");
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Upper_Jeuno/TextIDs");
+package.loaded["scripts/zones/Rulude_Gardens/TextIDs"] = nil;
+require("scripts/zones/Rulude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,12 +23,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getFameLevel(JEUNO) >= 4 and player:getVar("saveMySisterVar") == 1) then 
-		player:startEvent(0x009f); -- For "Save my Sister" quest
-	else
-		player:startEvent(0x0019); -- Standard dialog
-	end
-end; 
+	player:startEvent(0x001e); -- Standard dialog
+end;
+
+-- 0x0018  0x001e  0x001f  0x0020  0x009e  0x0062  0x009d  0x0061  0x0064  0x276b
 
 -----------------------------------
 -- onEventUpdate
@@ -47,9 +44,6 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x009f) then 
-		player:setVar("saveMySisterVar", 2);
-	end
 end;
 
 

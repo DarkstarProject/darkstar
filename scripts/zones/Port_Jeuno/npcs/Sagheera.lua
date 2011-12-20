@@ -1,16 +1,15 @@
 -----------------------------------
--- Area: Upper Jeuno
--- NPC: Mailloquetat
--- Involved in Quests: Save my Sister
--- @zone 244
--- @pos -31 -1 8
+-- Area: Port Jeuno
+-- NPC: Sagheera
+-- @zone 246
+-- @pos -3 0 -9
 -----------------------------------
 
 require("scripts/globals/settings");
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Upper_Jeuno/TextIDs");
+package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,12 +23,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getFameLevel(JEUNO) >= 4 and player:getVar("saveMySisterVar") == 1) then 
-		player:startEvent(0x009f); -- For "Save my Sister" quest
-	else
-		player:startEvent(0x0019); -- Standard dialog
-	end
+	player:startEvent(0x0136); -- Standard dialog
 end; 
+
+-- 0x0136 0x0137 0x0138 0x0139
 
 -----------------------------------
 -- onEventUpdate
@@ -47,9 +44,6 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x009f) then 
-		player:setVar("saveMySisterVar", 2);
-	end
 end;
 
 

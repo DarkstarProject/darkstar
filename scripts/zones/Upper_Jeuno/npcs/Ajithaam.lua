@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Mailloquetat
--- Involved in Quests: Save my Sister
+-- NPC: Ajithaam
 -- @zone 244
--- @pos -31 -1 8
+-- @pos -82 0 160
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/teleports");
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
@@ -24,12 +24,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getFameLevel(JEUNO) >= 4 and player:getVar("saveMySisterVar") == 1) then 
-		player:startEvent(0x009f); -- For "Save my Sister" quest
-	else
-		player:startEvent(0x0019); -- Standard dialog
-	end
-end; 
+	player:startEvent(0x276c); -- Standard dialog
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -47,9 +43,6 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x009f) then 
-		player:setVar("saveMySisterVar", 2);
-	end
 end;
 
 

@@ -64,6 +64,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	if(csid == 0x0077 and option == 1) then 
 		player:addQuest(JEUNO,A_CLOCK_MOST_DELICATE);
+		player:setVar("aClockMostdelicateVar",0);
 	elseif(csid == 0x0077 and option == 0) then 
 		player:setVar("aClockMostdelicateVar",2);
 	elseif(csid == 0x0076 and option == 1) then 

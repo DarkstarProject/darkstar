@@ -1,14 +1,17 @@
 -----------------------------------
 -- Area: Upper Jeuno
 -- NPC: Baudin
+-- Starts and Finishes Quest: Crest of Davoi, Save My Sister
 -- Involved in Quests: Save the Clock Tower
 -- @zone 244
 -- @pos -75 0 80
 -----------------------------------
 
+require("scripts/globals/titles");
 require("scripts/globals/settings");
 package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
+require("scripts/globals/missions");
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
@@ -23,6 +26,9 @@ function onTrade(player,npc,trade)
 		   a ~= 672 and a ~= 416 and a ~= 608 and a ~= 480 and a ~= 736 and a ~= 864 and a ~= 928 and a ~= 992)) then 
 			player:startEvent(0x00b1,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
 		end
+	elseif(player:getQuestStatus(JEUNO,CREST_OF_DAVOI) == QUEST_ACCEPTED and 
+		   trade:hasItemQty(4377,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+		player:startEvent(0x00AB); -- Finish Quest "Crest of Davoi" Start Quest "Save my Sister" with var, not addquest()
 	end
 end; 
 
@@ -31,7 +37,26 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x00AC);
+	CrestOfDavoi = player:getQuestStatus(JEUNO,CREST_OF_DAVOI);
+	SaveMySister = player:getQuestStatus(JEUNO,SAVE_MY_SISTER);
+	
+	if(player:getCurrentMission(13) == true and CrestOfDavoi == QUEST_AVAILABLE) then
+		player:startEvent(0x00AE); -- Start Quest "Crest of Davoi"
+	elseif(CrestOfDavoi == QUEST_ACCEPTED) then 
+		player:startEvent(0x00AF); -- During Quest "Crest of Davoi"
+	elseif(CrestOfDavoi == QUEST_COMPLETED and SaveMySister == QUEST_AVAILABLE and player:getVar("saveMySisterVar") == 1) then 
+		player:startEvent(0x00AC); -- During Quest "Save my Sister" (before speak with Mailloquetat)
+	elseif(CrestOfDavoi == QUEST_COMPLETED and player:getVar("saveMySisterVar") == 2) then 
+		player:startEvent(0x0069); -- During Quest "Save my Sister" (after speak with Mailloquetat)
+	elseif(SaveMySister == QUEST_ACCEPTED and player:getVar("saveMySisterFireLantern") < 4) then 
+		player:startEvent(0x001b); -- During Quest "Save my Sister" (after speak with Neraf-Najiruf)
+	elseif(SaveMySister == QUEST_ACCEPTED and player:getVar("saveMySisterFireLantern") == 4) then 
+		player:startEvent(0x006b); -- Ending Quest "Save my Sister"
+	elseif(SaveMySister == QUEST_COMPLETED) then 
+		player:startEvent(0x00B0); -- New standard dialog after "Save my Sister"
+	else
+		player:startEvent(0x007a); -- Standard dialog
+	end
 end; 
 
 -----------------------------------
@@ -50,8 +75,32 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x00b1) then 
+	if(csid == 0x00b1) then --1
 		player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
 		player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 32);
+	elseif(csid == 0x00AE and option == 1) then 
+		player:addQuest(JEUNO,CREST_OF_DAVOI);
+	elseif(csid == 0x00AB) then 
+		player:completeQuest(JEUNO,CREST_OF_DAVOI);
+		player:setVar("saveMySisterVar",1);
+		player:addKeyItem(21);
+		player:messageSpecial(KEYITEM_OBTAINED,21); -- Crest of Davoi
+		player:addFame(JEUNO,30);
+		
+	elseif(csid == 0x0069) then 
+		player:setVar("saveMySisterVar",3);
+	elseif(csid == 0x006b) then 
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17041);
+		else 
+			player:completeQuest(JEUNO,SAVE_MY_SISTER);
+			player:setTitle(EXORCIST_IN_TRAINING);
+			player:addGil(3000);
+			player:messageSpecial(GIL_OBTAINED,3000);
+			player:addItem(17041);
+			player:messageSpecial(ITEM_OBTAINED,17041);
+			player:addFame(JEUNO,30);
+			player:tradeComplete();
+		end
 	end
 end;
