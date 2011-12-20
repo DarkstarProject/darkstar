@@ -379,8 +379,9 @@ void CAICharNormal::ActionDeath()
 void CAICharNormal::ActionItemStart() 
 {
 	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
-	//DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetType() != UCONTAINER_USEITEM);
-	//DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetItem(0) == NULL);
+
+	DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetType() != UCONTAINER_USEITEM);
+	DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetItem(0) == NULL);
 
 	m_PItemUsable = (CItemUsable*)m_PChar->UContainer->GetItem(0);
 	m_PChar->UContainer->Clean();
@@ -830,8 +831,7 @@ void CAICharNormal::ActionMagicStart()
 		return;
 	}
 
-	if ( m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING &&
-		!m_PZone->CanUseMisc(MISC_FELLOW))
+	if ( m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING && !m_PZone->CanUseMisc(MISC_PET))
 	{
 		m_ActionTargetID = 0;
 
@@ -1094,7 +1094,7 @@ void CAICharNormal::UpdateHealth()
 
 void CAICharNormal::ActionMagicFinish()
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
@@ -1126,7 +1126,12 @@ void CAICharNormal::ActionMagicFinish()
 	bool callLUA = false;
 	bool sendInitSpellMsg = false;
 
+    // TODO: как-то криво все получилось
 	
+    if (m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING)
+    {
+        callLUA = true;
+    }
 
 	switch(m_PSpell->getSpellType())
 	{
