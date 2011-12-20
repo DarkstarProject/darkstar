@@ -51,9 +51,28 @@ CAuctionHouse::~CAuctionHouse()
     Sql_Free(SqlHandle);
 }
 
+std::vector<ahHistory*> CAuctionHouse::GetItemHystory(uint16 ItemID)
+{
+    std::vector<ahHistory*> HistoryList;
+
+    for (uint8 i = 0; i < 10; ++i)
+    {
+        ahHistory* PAHHistory = new ahHistory;
+
+        PAHHistory->Price = 2500;
+        PAHHistory->Data = 1;
+
+        memcpy(PAHHistory->Name1, "Dia"+'\0', 4);
+        memcpy(PAHHistory->Name2, "Dia"+'\0', 4);
+
+        HistoryList.push_back(PAHHistory);
+    }
+    return HistoryList;
+}
+
 /************************************************************************
 *                                                                       *
-*  Список продаваемых предметов в указанной категории (пустышка)        *
+*  Список продаваемых предметов в указанной категории                   *
 *                                                                       *
 ************************************************************************/
 

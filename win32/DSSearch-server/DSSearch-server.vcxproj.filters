@@ -62,6 +62,9 @@
     <ClCompile Include="..\..\src\common\timer.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\search\packets\auction_history.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\common\cbasetypes.h">
@@ -111,6 +114,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\common\timer.h">
       <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\search\packets\auction_history.h">
+      <Filter>Header Files\packets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

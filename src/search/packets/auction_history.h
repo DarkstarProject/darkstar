@@ -21,32 +21,29 @@
 ===========================================================================
 */
 
-#ifndef _CAHITEMSLISTPACKET_H_
-#define _CAHITEMSLISTPACKET_H_
+#ifndef _CAHHISTORYPACKET_H_
+#define _CAHHISTORYPACKET_H_
 
 #include "../../common/cbasetypes.h"
 
-#define PACKET_DATA_SIZE    268
+#define AH_HISTORY_SIZE    460
 
-class CAHItemsListPacket
+class CAHHistoryPacket
 {
 public:
 
-    CAHItemsListPacket(uint16 offset);
-   ~CAHItemsListPacket();
+    CAHHistoryPacket();
+   ~CAHHistoryPacket();
     
-    void AddItem(ahItem* item);
-    void SetItemCount(uint16 count);
+    void AddItem(ahHistory* item);
 
     uint8* GetData();
     uint16 GetSize();
 
 private:
 
-    uint8  m_count;
-    uint16 m_offset;
-
-    uint8 m_PData[PACKET_DATA_SIZE];
+    uint8 m_count;
+    uint8 m_PData[AH_HISTORY_SIZE];
 };
 
 #endif

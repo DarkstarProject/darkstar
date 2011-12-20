@@ -30,10 +30,24 @@
 
 typedef struct  
 {
-    uint16  ItemID;
-    uint32  SinglAmount;
-    uint32  StackAmount;
+    uint16 ItemID;
+    uint32 SinglAmount;
+    uint32 StackAmount;
 } ahItem;
+
+typedef struct
+{
+    uint32 Price;
+    uint32 Data;
+    uint8  Name1[15];
+    uint8  Name2[15];
+} ahHistory;
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 class CAuctionHouse
 {
@@ -46,7 +60,8 @@ public:
 	CAuctionHouse(uint8 AuctionHouseID);
    ~CAuctionHouse();
 
-	std::vector<ahItem*> GetItemsToCategry(uint8 AHCategoryID);
+    std::vector<ahHistory*> GetItemHystory(uint16 ItemID);
+	std::vector<ahItem*>    GetItemsToCategry(uint8 AHCategoryID);
 };
 
 

@@ -23,6 +23,7 @@
 
 #include "../common/cbasetypes.h"
 #include "../common/blowfish.h"
+#include "../common/md52.h"
 #include "../common/mmo.h"
 #include "../common/showmsg.h"
 #include "../common/socket.h"
@@ -37,6 +38,7 @@
 #include "search.h"
 #include "tcp_request.h"
 
+#include "packets/auction_history.h"
 #include "packets/ah_items_list.h"
 #include "packets/search_list.h"
 
@@ -77,6 +79,7 @@ ppuint32 __stdcall TCPComm(void* lpParam);
 extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
 extern void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest);
+extern void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest);
 
 /************************************************************************
@@ -261,9 +264,13 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 		break;
 		case TCP_AH_REQUEST: 
         case TCP_AH_REQUEST_MORE:
+        {
+            HandleAuctionHouseRequest(PTCPRequest);
+		}
+		break;
 		case TCP_AH_HISTORY: 
 		{
-            HandleAuctionHouseRequest(PTCPRequest);
+            HandleAuctionHouseHistoru(PTCPRequest);
 		}
 		break;
 	}
@@ -333,6 +340,67 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
         0xDB, 0xE7, 0x37, 0x0E, 0x33, 0x91, 0x97, 0xCE, 0x5A, 0x7C, 0xB7, 0x75
     };
     PTCPRequest->SendRawToSocket(packet, 140);
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
+{
+    uint8* data    = (uint8*)PTCPRequest->GetData();                            
+	uint8  AHCatID = RBUFB(data,(0x16));                                        
+
+	CAuctionHouse* PAuctionHouse = new CAuctionHouse(0);                        
+    std::vector<ahItem*> ItemList = PAuctionHouse->GetItemsToCategry(AHCatID);
+
+    uint8 PacketsCount = (ItemList.size() / 20) + (ItemList.size() % 20 != 0) + (ItemList.size() == 0);
+
+    for(uint8 i = 0; i < PacketsCount; ++i) 
+    {
+        CAHItemsListPacket* PAHPacket = new CAHItemsListPacket(20*i);
+
+        PAHPacket->SetItemCount(ItemList.size());  
+
+        for (uint16 y = 20*i; (y != 20*(i+1)) && (y < ItemList.size()); ++y)
+        {
+            PAHPacket->AddItem(ItemList.at(y));
+        }
+
+        PTCPRequest->SendToSocket(PAHPacket->GetData(), PAHPacket->GetSize());
+        delete PAHPacket;
+    }
+    delete PAuctionHouse;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
+{
+    uint8* data   = (uint8*)PTCPRequest->GetData();                            
+	uint16 ItemID = RBUFW(data,(0x12));
+
+    CAHHistoryPacket* PAHPacket = new CAHHistoryPacket();
+
+    CAuctionHouse* PAuctionHouse = new CAuctionHouse(0);                        
+    std::vector<ahHistory*> HistoryList = PAuctionHouse->GetItemHystory(ItemID);
+
+    for (uint8 i = 0; i < HistoryList.size(); ++i)
+    {
+        PAHPacket->AddItem(HistoryList.at(i));
+    }
+    
+    PTCPRequest->SendToSocket(PAHPacket->GetData(), PAHPacket->GetSize());
+
+    delete PAuctionHouse;
+    delete PAHPacket;
+    return;
 }
 
 /************************************************************************
@@ -561,37 +629,4 @@ void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 	printf("\n");
 
 	// не обрабатываем последние биты, что мешает в одну кучу например "/blacklist delete Name" и "/sea all Name"
-}
-
-/************************************************************************
-*                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
-
-void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
-{
-    uint8* data    = (uint8*)PTCPRequest->GetData();                            
-	uint8  AHCatID = RBUFB(data,(0x16));                                        
-
-	CAuctionHouse* PAuctionHouse = new CAuctionHouse(0);                        
-    std::vector<ahItem*> ItemList = PAuctionHouse->GetItemsToCategry(AHCatID);
-
-    uint8 PacketsCount = (ItemList.size() / 20) + (ItemList.size() % 20 != 0) + (ItemList.size() == 0);
-
-    for(uint8 i = 0; i < PacketsCount; ++i) 
-    {
-        CAHItemsListPacket* PAHPacket = new CAHItemsListPacket(20*i);
-
-        PAHPacket->SetItemCount(ItemList.size());  
-
-        for (uint16 y = 20*i; (y != 20*(i+1)) && (y < ItemList.size()); ++y)
-        {
-            PAHPacket->AddItem(ItemList.at(y));
-        }
-
-        PTCPRequest->SendToSocket(PAHPacket->GetData(), PAHPacket->GetSize());
-        delete PAHPacket;
-    }
-    delete PAuctionHouse;
 }

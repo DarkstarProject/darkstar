@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\src\common\utils.cpp" />
     <ClCompile Include="..\..\src\search\auction_house.cpp" />
     <ClCompile Include="..\..\src\search\packets\ah_items_list.cpp" />
+    <ClCompile Include="..\..\src\search\packets\auction_history.cpp" />
     <ClCompile Include="..\..\src\search\search.cpp" />
     <ClCompile Include="..\..\src\search\tcp_request.cpp" />
   </ItemGroup>
@@ -40,6 +41,7 @@
     <ClInclude Include="..\..\src\common\utils.h" />
     <ClInclude Include="..\..\src\search\auction_house.h" />
     <ClInclude Include="..\..\src\search\packets\ah_items_list.h" />
+    <ClInclude Include="..\..\src\search\packets\auction_history.h" />
     <ClInclude Include="..\..\src\search\packets\search_list.h" />
     <ClInclude Include="..\..\src\search\tcp_request.h" />
   </ItemGroup>

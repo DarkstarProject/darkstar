@@ -26,69 +26,56 @@
 
 #include "../auction_house.h"
 
-#include "ah_items_list.h"
+#include "auction_history.h"
 
 
 /************************************************************************
 *                                                                       *
-*  Если количество отправляемых предметов превышает 20, то отправляем   *
-*  их несколькими пакетами, в кажный их коротых записываем смещение     *
+*                                                                       *
 *                                                                       *
 ************************************************************************/
 
-CAHItemsListPacket::CAHItemsListPacket(uint16 offset)
+CAHHistoryPacket::CAHHistoryPacket()
 {
     m_count  = 0;
-    m_offset = offset;
 
-    memset(m_PData, 0, PACKET_DATA_SIZE);
+    memset(m_PData, 0, AH_HISTORY_SIZE);
 
-    WBUFW(m_PData,(0x00)) = PACKET_DATA_SIZE;
+    WBUFW(m_PData,(0x00)) = AH_HISTORY_SIZE;
     WBUFL(m_PData,(0x04)) = 0x46465849; // "XIFF"
 
-	WBUFB(m_PData,(0x0B)) = 0x95;
+    WBUFW(m_PData,(0x0E)) = 1;
+
+    WBUFB(m_PData,(0x0A)) = 0x80;
+    WBUFB(m_PData,(0x0B)) = 0x85;
+
+    WBUFW(m_PData,(0x08)) = 0x1A + 0x28*10;
 }
 
-CAHItemsListPacket::~CAHItemsListPacket()
+CAHHistoryPacket::~CAHHistoryPacket()
 {
     
 }
 
 /************************************************************************
 *                                                                       *
-*  Добавляем предмет в пакет (по 10 байт на предмер)                    *
+*                                                                       *
 *                                                                       *
 ************************************************************************/
 
-void CAHItemsListPacket::AddItem(ahItem* item) 
+void CAHHistoryPacket::AddItem(ahHistory* item) 
 {
-    WBUFL(m_PData,(0x18 + 0x0A*m_count) + 0) = item->ItemID;
-    WBUFL(m_PData,(0x18 + 0x0A*m_count) + 2) = item->SinglAmount;
-    WBUFL(m_PData,(0x18 + 0x0A*m_count) + 6) = item->StackAmount;
-
-    m_count++;
-    delete item;
-}
-
-/************************************************************************
-*                                                                       *
-*  Устанавливаем общее количество отправляемых предметов                *
-*                                                                       *
-************************************************************************/
-
-void CAHItemsListPacket::SetItemCount(uint16 count)
-{
-	WBUFW(m_PData,(0x0E)) = count;
-
-    if ((count - m_offset) < 20)
+    if (m_count < 10)
     {
-        WBUFB(m_PData,(0x0A)) = 0x80;
-        WBUFW(m_PData,(0x08)) = 0x10 + (count - m_offset)*0x0A + 0x08;
-    } 
-    else 
-    {
-        WBUFW(m_PData,(0x08)) = 0x10 + 20*0x0A + 0x08;
+        WBUFL(m_PData,(0x1A + 40*m_count)+ 0x00) = item->Price;
+        WBUFL(m_PData,(0x1A + 40*m_count)+ 0x04) = item->Data;
+
+        memcpy(m_PData + 0x1A + 40*m_count + 0x08, item->Name1, 15);
+        memcpy(m_PData + 0x1A + 40*m_count + 0x18, item->Name2, 15);
+
+        m_count++;
     }
+    delete item;
 }
 
 /************************************************************************
@@ -97,7 +84,7 @@ void CAHItemsListPacket::SetItemCount(uint16 count)
 *																		*
 ************************************************************************/
 
-uint8* CAHItemsListPacket::GetData()
+uint8* CAHHistoryPacket::GetData()
 {
     return m_PData;
 }
@@ -108,7 +95,7 @@ uint8* CAHItemsListPacket::GetData()
 *																		*
 ************************************************************************/
 
-uint16 CAHItemsListPacket::GetSize()
+uint16 CAHHistoryPacket::GetSize()
 {
-    return PACKET_DATA_SIZE;
+    return AH_HISTORY_SIZE;
 }
