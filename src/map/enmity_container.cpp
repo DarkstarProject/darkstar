@@ -36,17 +36,23 @@ CEnmityContainer::CEnmityContainer()
 
 CEnmityContainer::~CEnmityContainer()
 {
-	Clear();
+    Clear();
 }
 
 /************************************************************************
-*	Clear Enmity List													*
+*                                                                       *
+*  Clear Enmity List                                                    *
+*                                                                       *
 ************************************************************************/
 
 void CEnmityContainer::Clear(uint32 EntityID)
 {
 	if (EntityID == 0)
 	{
+        for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
+	    {
+            delete it->second;
+	    }
 		m_EnmityList.clear();
 		return; 
 	}
@@ -55,7 +61,9 @@ void CEnmityContainer::Clear(uint32 EntityID)
 	{
 		if (it->second->PEnmityOwner->id = EntityID)
 		{
-			delete it->second;
+            delete it->second;
+            m_EnmityList.erase(it);
+            break;
 		}
 	}
 }
@@ -70,7 +78,9 @@ void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 }
 
 /************************************************************************
-*  Add entity to hate list												*
+*                                                                       *
+*  Add entity to hate list                                              *
+*                                                                       *
 ************************************************************************/
 
 void CEnmityContainer::UpdateEnmity(EnmityObject_t* PEnmityObject)
@@ -80,7 +90,7 @@ void CEnmityContainer::UpdateEnmity(EnmityObject_t* PEnmityObject)
 	if( PEnmity != m_EnmityList.end() &&
 	   !m_EnmityList.key_comp()(PEnmityObject->PEnmityOwner->id, PEnmity->first))
 	{
-		PEnmity->second->CE + PEnmityObject->CE; 
+		PEnmity->second->CE += PEnmityObject->CE; 
 		PEnmity->second->VE += PEnmityObject->VE;
 
 		//Check for cap limit 
@@ -95,9 +105,10 @@ void CEnmityContainer::UpdateEnmity(EnmityObject_t* PEnmityObject)
 	}
 }
 
-
 void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 {
+    // TODO: добавляемые персонажи уже могут быть в списке enmity, я не уверен, что добавление базового значения здесь актуально
+
 	if (PChar->PParty != NULL)
 	{
 		for (int i = 0; i < PChar->PParty->members.size(); i++)
@@ -105,12 +116,11 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
             CBattleEntity* PTarget = (CBattleEntity*)PChar->PParty->members[i];
             if (distance(PChar->loc.p, PTarget->loc.p) <= 40)
             {
-                UpdateEnmity(PTarget,1,1);
+                AddBaseEnmity(PTarget);
             }
         }
 	}
 }
-
 
 void CEnmityContainer::UpdateEnmity(CBattleEntity* PChar,uint16 CE, uint16 VE)
 {
@@ -121,15 +131,13 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PChar,uint16 CE, uint16 VE)
 	UpdateEnmity(enmity);
 }
 
-
 void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, uint16 CureAmount)
 {
 	//CureAmount = (CureAmount < 1 ? 1 : CureAmount);
 	uint16 mod = battleutils::GetEnmityMod(level - 1, 0);
-	uint16 ce = 40 / mod * CureAmount;
+	uint16 ce =  40 / mod * CureAmount;
 	uint16 ve = 240 / mod * CureAmount;
-	UpdateEnmity(PChar,ce,ve); 
-
+	UpdateEnmity(PChar,ce,ve);
 }
 
 void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PChar, uint16 Damage)
@@ -138,10 +146,9 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PChar, uint16 Damag
 	uint16 mod = battleutils::GetEnmityMod(PChar->GetMLevel() - 1, 1);
 	if (mod < 1) 
 	{mod = 1;}
-	uint16 ce = 80 / mod * Damage;
+	uint16 ce =  80 / mod * Damage;
 	uint16 ve = 240 / mod * Damage;
 	UpdateEnmity(PChar,ce,ve); 
-
 }
 
 void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PChar, uint16 Damage)
@@ -150,7 +157,9 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PChar, uint16 Damag
 }
 
 /************************************************************************
-*  Decay Enmity, Get Entity with the highest enmity						*
+*                                                                       *
+*  Decay Enmity, Get Entity with the highest enmity                     *
+*                                                                       *
 ************************************************************************/
 
 CBattleEntity* CEnmityContainer::GetHighestEnmity()
@@ -172,11 +181,5 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 			PEntity = PEnmityObject->PEnmityOwner;
 		}
 	}
-
-	if (HighestEnmity > 0 && HighestEnmity < 20000)
-	{
-		return PEntity;
-	}
-
-	return NULL;
+    return PEntity;
 }

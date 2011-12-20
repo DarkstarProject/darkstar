@@ -216,7 +216,6 @@ void LoadZoneList()
 
 				PZone->InsertMOB(PMob);
 			}
-
 		}
 
 		PZone->ZoneServer(-1);

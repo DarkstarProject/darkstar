@@ -1271,8 +1271,6 @@ int32 SmallPacket0x05E(CCharEntity* PChar, int8* data)
 					}
 					PChar->loc.zone = ( zone == 0 ? PChar->loc.prevzone : prevzone);
 				}else{
-					ShowDebug("SmallPacket0x5E: ZoneLine %u to Zone %u\n", PZoneLine->m_zoneLineID, PZoneLine->m_toZone);
-
 					PChar->loc.prevzone = PChar->getZone();
 					PChar->loc.zone     = PZoneLine->m_toZone;
 				}

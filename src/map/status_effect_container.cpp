@@ -566,6 +566,8 @@ const int8* GetStatusEffectName(uint16 EffectID)
 CStatusEffectContainer::CStatusEffectContainer(CBattleEntity * PEntity) 
 	: m_pOwner(PEntity)
 {
+    DSP_DEBUG_BREAK_IF(m_pOwner == NULL);
+
 	m_Flags = 0;
 	m_EffectCheckTime = gettick();
 	m_StatusEffectList.reserve(32);
@@ -919,13 +921,9 @@ void CStatusEffectContainer::SaveStatusEffects()
 
 void CStatusEffectContainer::CheckEffects(uint32 tick)
 {
-	//DSP_DEBUG_BREAK_IF(m_pOwner == NULL);
-	if (this == NULL)
-	{
-		return;
-	}
-try
-{	if (!m_pOwner->isDead()) 
+	DSP_DEBUG_BREAK_IF(m_pOwner == NULL);
+	
+	if (!m_pOwner->isDead()) 
 	{
 		if ((tick - m_EffectCheckTime) < 1000 )
 		{
@@ -951,10 +949,5 @@ try
 				RemoveStatusEffect(i);
 			}
 		}
-	}	
-}
-catch (int ex){
-
-}
-
+    }
 }
