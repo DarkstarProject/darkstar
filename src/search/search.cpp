@@ -75,8 +75,9 @@ enum SEARCHTYPE
 ppuint32 __stdcall TCPComm(void* lpParam);
 
 extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
+extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
 extern void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest);
-extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket);
+extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest);
 
 /************************************************************************
 *																		*
@@ -182,6 +183,10 @@ int32 main (int32 argc, int8 **argv)
 		return 1;
 	}
 
+    ShowMessage(CL_WHITE"========================================================\n\n"CL_RESET);
+    ShowMessage(CL_WHITE"DSSearch-server\n\n");
+    ShowMessage(CL_WHITE"========================================================\n\n"CL_RESET);
+
 	while (true)
 	{
 		// Accept a client socket
@@ -199,6 +204,7 @@ int32 main (int32 argc, int8 **argv)
 
 		CreateThread(0,0,TCPComm,&CommInfo,0,0);
 	}
+    // TODO: сейчас мы никогда сюда не попадем
 
     // shutdown the connection since we're done
     iResult = shutdown(ClientSocket, SD_SEND);
@@ -227,10 +233,9 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 	SearchCommInfo CommInfo = *((SearchCommInfo*)lpParam);
 
 	ShowMessage("TCP connection from client with port: %u\n", htons(CommInfo.port));
-	SOCKET s = CommInfo.socket;
-
-	CTCPRequestPacket* PTCPRequest = new CTCPRequestPacket();
-	PTCPRequest->ReceiveFromSocket(&s);
+	
+	CTCPRequestPacket* PTCPRequest = new CTCPRequestPacket(&CommInfo.socket);
+	PTCPRequest->ReceiveFromSocket();
 
 	PrintPacket(PTCPRequest->GetData(), PTCPRequest->GetSize());
 
@@ -238,10 +243,15 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 
 	switch(PTCPRequest->GetPacketType()) 
 	{
-		case TCP_SEARCH_REQUEST:
-		case TCP_SEARCHALL_REQUEST: 
+		case TCP_SEARCH:
+		case TCP_SEARCH_ALL:
+        {
+            HandleSearchRequest(PTCPRequest);
+        }
+        break;
+        case TCP_SEARCH_COMMENT:
 		{
-			HandleSearchRequest(PTCPRequest);
+            HandleSearchComment(PTCPRequest);
 		}
 		break;
 		case TCP_PARTY_LIST:
@@ -251,16 +261,14 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 		break;
 		case TCP_AH_REQUEST: 
         case TCP_AH_REQUEST_MORE:
-		case TCP_AH_HISTORY_REQUEST: 
+		case TCP_AH_HISTORY: 
 		{
-            HandleAuctionHouseRequest(PTCPRequest, CommInfo.socket);
+            HandleAuctionHouseRequest(PTCPRequest);
 		}
 		break;
 	}
 
 	delete PTCPRequest;
-	shutdown(s,SD_SEND);
-	closesocket(s);
 	return 1;
 }
 
@@ -278,12 +286,62 @@ void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
+{
+    uint8 packet[] = 
+    {
+        0xCC, 0x00, 0x00, 0x00, 0x49, 0x58, 0x46, 0x46, 0x20, 0x9B, 0x16, 0xC8, 0x4C, 0x76, 0x07, 0x02, 
+        0x17, 0x71, 0xB9, 0xA8, 0xF5, 0xB6, 0xCF, 0xED, 0xF1, 0xFF, 0x70, 0x52, 0xA9, 0xAE, 0x81, 0xB6, 
+        0x1B, 0x2B, 0x7B, 0xA0, 0xC1, 0xD2, 0xD1, 0xFD, 0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 
+        0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 
+        0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 
+        0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 
+        0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 
+        0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 
+        0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 
+        0x61, 0x43, 0x80, 0x37, 0x08, 0x74, 0xC5, 0x8D, 0x0C, 0x04, 0x13, 0xC0, 0x89, 0x17, 0x8F, 0x72, 
+        0x93, 0xD6, 0x90, 0xF1, 0x21, 0x7A, 0xA5, 0xAC, 0x93, 0xD6, 0x90, 0xF1, 0x21, 0x7A, 0xA5, 0xAC, 
+        0x93, 0xD6, 0x90, 0xF1, 0x21, 0x7A, 0xA5, 0xAC, 0x38, 0x25, 0x69, 0x79, 0x00, 0xC6, 0x7E, 0xDC, 
+        0x80, 0x3D, 0x99, 0x85, 0xF4, 0xDF, 0xCF, 0xFC, 0x1A, 0x72, 0xE2, 0x0D 
+    };
+    PTCPRequest->SendRawToSocket(packet, 204);
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
+{
+    uint8 packet[] = 
+    {
+        0x8C, 0x00, 0x00, 0x00, 0x49, 0x58, 0x46, 0x46, 0x97, 0x8B, 0xCD, 0xFC, 0xEC, 0x89, 0xDA, 0xAF, 
+        0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 0x32, 0x27, 0xA9, 0x9C, 0x97, 0x0F, 0x55, 0x42, 
+        0x03, 0xC9, 0x99, 0x2F, 0x62, 0x50, 0xB8, 0x09, 0xA6, 0xDF, 0x5B, 0xD8, 0x60, 0xE0, 0x16, 0x91, 
+        0xD9, 0x64, 0xFD, 0x4E, 0x97, 0xBC, 0xFD, 0x39, 0x20, 0x2A, 0x01, 0x4E, 0xD0, 0x35, 0x9E, 0x7C, 
+        0x7E, 0xA7, 0x25, 0x7D, 0x31, 0x5D, 0xBD, 0x60, 0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 
+        0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 
+        0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 
+        0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 0x3D, 0x83, 0xD6, 0x51, 0x78, 0x9F, 0x82, 0x67, 
+        0xDB, 0xE7, 0x37, 0x0E, 0x33, 0x91, 0x97, 0xCE, 0x5A, 0x7C, 0xB7, 0x75
+    };
+    PTCPRequest->SendRawToSocket(packet, 140);
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 {
 	// суть в том, чтобы заполнить некоторую структуру, на основании которой будет создан запрос к базе
 	// результат поиска в базе отправляется клиенту
@@ -506,12 +564,12 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
-void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
+void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
 {
     uint8* data    = (uint8*)PTCPRequest->GetData();                            
 	uint8  AHCatID = RBUFB(data,(0x16));                                        
@@ -532,7 +590,7 @@ void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
             PAHPacket->AddItem(ItemList.at(y));
         }
 
-        PTCPRequest->SendToSocket(&socket, PAHPacket->GetData(), PAHPacket->GetSize());
+        PTCPRequest->SendToSocket(PAHPacket->GetData(), PAHPacket->GetSize());
         delete PAHPacket;
     }
     delete PAuctionHouse;

@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2011 Darkstar Dev Teams
@@ -43,11 +43,20 @@
 *																		*
 ************************************************************************/
 
-CTCPRequestPacket::CTCPRequestPacket()
+CTCPRequestPacket::CTCPRequestPacket(SOCKET* socket)
 {
 	m_data = NULL;
+    m_socket = socket;
 
-	char keys[24] = {0x30, 0x73, 0x3D, 0x6D, 0x3C, 0x31, 0x49, 0x5A, 0x32, 0x7A, 0x42, 0x43, 0x63, 0x38, 0x7B, 0x7E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+	uint8 keys[24] = 
+    {
+        0x30, 0x73, 0x3D, 0x6D, 
+        0x3C, 0x31, 0x49, 0x5A, 
+        0x32, 0x7A, 0x42, 0x43, 
+        0x63, 0x38, 0x7B, 0x7E, 
+        0x00, 0x00, 0x00, 0x00, 
+        0x00, 0x00, 0x00, 0x00
+    };
     
     memcpy(&key[0], &keys[0], 24);
 }
@@ -55,6 +64,9 @@ CTCPRequestPacket::CTCPRequestPacket()
 CTCPRequestPacket::~CTCPRequestPacket()
 {
     delete[] m_data;
+
+    shutdown(*m_socket,SD_SEND);
+    closesocket(*m_socket);
 }
 
 /************************************************************************
@@ -85,16 +97,14 @@ uint32 CTCPRequestPacket::GetSize()
 *																		*
 ************************************************************************/
 
-void CTCPRequestPacket::ReceiveFromSocket(SOCKET* socket)
+void CTCPRequestPacket::ReceiveFromSocket()
 {
 	int8 recvbuf[DEFAULT_BUFLEN];
 
-	m_size = recv(*socket, recvbuf, DEFAULT_BUFLEN, 0);
+	m_size = recv(*m_socket, recvbuf, DEFAULT_BUFLEN, 0);
 	if (m_size == -1) 
 	{
 		ShowError(CL_RED"recv failed with error: %d\n"CL_RESET, WSAGetLastError());
-		closesocket(*socket);
-		WSACleanup();
 		return;
 	}
     if (m_size == 0) 
@@ -117,12 +127,30 @@ void CTCPRequestPacket::ReceiveFromSocket(SOCKET* socket)
 }
 
 /************************************************************************
+*                                                                       *
+*  Отправляем данные без шифрования                                     *
+*                                                                       *
+************************************************************************/
+
+void CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
+{
+    int32 iResult;
+
+    iResult = send(*m_socket, (const int8*)data, length, 0);
+    if (iResult == SOCKET_ERROR) 
+    {
+        ShowError("send failed with error: %d\n", WSAGetLastError());
+        return;
+    }
+}
+
+/************************************************************************
 *																		*
 *																		*
 *																		*
 ************************************************************************/
 
-void CTCPRequestPacket::SendToSocket(SOCKET* socket, uint8* data, uint32 length)
+void CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 {
     int32 iResult;
 
@@ -142,13 +170,13 @@ void CTCPRequestPacket::SendToSocket(SOCKET* socket, uint8* data, uint32 length)
 
 	memcpy(&data[length]-0x04, key+16, 4);
 
-    iResult = send(*socket, (const int8*)data, length, 0);
+    iResult = send(*m_socket, (const int8*)data, length, 0);
     if (iResult == SOCKET_ERROR) 
     {
         ShowError("send failed with error: %d\n", WSAGetLastError());
         return;
     }
-    ReceiveFromSocket(socket);
+    ReceiveFromSocket();
 }
 
 /************************************************************************
