@@ -35,26 +35,17 @@
 *                                                                       *
 ************************************************************************/
 
-CAHHistoryPacket::CAHHistoryPacket()
+CAHHistoryPacket::CAHHistoryPacket(uint16 ItemID)
 {
     m_count  = 0;
 
-    memset(m_PData, 0, AH_HISTORY_SIZE);
+    memset(m_PData, 0, AHHISTORYPACKET_SIZE);
 
-    WBUFW(m_PData,(0x00)) = AH_HISTORY_SIZE;
-    WBUFL(m_PData,(0x04)) = 0x46465849; // "XIFF"
+    WBUFW(m_PData,(0x00)) = AHHISTORYPACKET_SIZE;       // packet size
+    WBUFL(m_PData,(0x04)) = 0x46465849;                 // "XIFF"
 
-    WBUFW(m_PData,(0x0E)) = 1;
-
-    WBUFB(m_PData,(0x0A)) = 0x80;
-    WBUFB(m_PData,(0x0B)) = 0x85;
-
-    WBUFW(m_PData,(0x08)) = 0x1A + 0x28*10;
-}
-
-CAHHistoryPacket::~CAHHistoryPacket()
-{
-    
+    WBUFB(m_PData,(0x0B)) = 0x85;                       // packe type
+    WBUFW(m_PData,(0x10)) = ItemID;
 }
 
 /************************************************************************
@@ -79,6 +70,22 @@ void CAHHistoryPacket::AddItem(ahHistory* item)
 }
 
 /************************************************************************
+*                                                                       *
+*  Устанавливаем общее количество отправляемых предметов и номер пакета *
+*                                                                       *
+************************************************************************/
+
+void CAHHistoryPacket::SetItemCount()
+{
+    DSP_DEBUG_BREAK_IF(m_count > 10);
+
+    WBUFB(m_PData,(0x0A)) = 0x80;
+    WBUFW(m_PData,(0x0E)) = 1;
+
+    WBUFW(m_PData,(0x08)) = 0x12 + 0x28*m_count + 0x08;
+}
+
+/************************************************************************
 *																		*
 *  Возвращаем собранный пакет                                           *
 *																		*
@@ -86,6 +93,7 @@ void CAHHistoryPacket::AddItem(ahHistory* item)
 
 uint8* CAHHistoryPacket::GetData()
 {
+    SetItemCount();
     return m_PData;
 }
 
@@ -97,5 +105,5 @@ uint8* CAHHistoryPacket::GetData()
 
 uint16 CAHHistoryPacket::GetSize()
 {
-    return AH_HISTORY_SIZE;
+    return AHHISTORYPACKET_SIZE;
 }

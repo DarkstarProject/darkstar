@@ -39,7 +39,7 @@
 #include "tcp_request.h"
 
 #include "packets/auction_history.h"
-#include "packets/ah_items_list.h"
+#include "packets/auction_list.h"
 #include "packets/search_list.h"
 
 #define DEFAULT_PORT "54002"
@@ -274,7 +274,6 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 		}
 		break;
 	}
-
 	delete PTCPRequest;
 	return 1;
 }
@@ -386,7 +385,7 @@ void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
     uint8* data   = (uint8*)PTCPRequest->GetData();                            
 	uint16 ItemID = RBUFW(data,(0x12));
 
-    CAHHistoryPacket* PAHPacket = new CAHHistoryPacket();
+    CAHHistoryPacket* PAHPacket = new CAHHistoryPacket(ItemID);
 
     CAuctionHouse* PAuctionHouse = new CAuctionHouse(0);                        
     std::vector<ahHistory*> HistoryList = PAuctionHouse->GetItemHystory(ItemID);

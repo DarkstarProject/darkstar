@@ -26,7 +26,7 @@
 
 #include "../auction_house.h"
 
-#include "ah_items_list.h"
+#include "auction_list.h"
 
 
 /************************************************************************
@@ -41,12 +41,12 @@ CAHItemsListPacket::CAHItemsListPacket(uint16 offset)
     m_count  = 0;
     m_offset = offset;
 
-    memset(m_PData, 0, PACKET_DATA_SIZE);
+    memset(m_PData, 0, AHITEMSLISTPACKET_SIZE);
 
-    WBUFW(m_PData,(0x00)) = PACKET_DATA_SIZE;
-    WBUFL(m_PData,(0x04)) = 0x46465849; // "XIFF"
+    WBUFW(m_PData,(0x00)) = AHITEMSLISTPACKET_SIZE;     // packet size
+    WBUFL(m_PData,(0x04)) = 0x46465849;                 // "XIFF"
 
-	WBUFB(m_PData,(0x0B)) = 0x95;
+	WBUFB(m_PData,(0x0B)) = 0x95;                       // packet type
 }
 
 CAHItemsListPacket::~CAHItemsListPacket()
@@ -110,5 +110,5 @@ uint8* CAHItemsListPacket::GetData()
 
 uint16 CAHItemsListPacket::GetSize()
 {
-    return PACKET_DATA_SIZE;
+    return AHITEMSLISTPACKET_SIZE;
 }

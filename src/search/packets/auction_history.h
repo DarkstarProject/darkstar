@@ -26,14 +26,13 @@
 
 #include "../../common/cbasetypes.h"
 
-#define AH_HISTORY_SIZE    460
+#define AHHISTORYPACKET_SIZE    460
 
 class CAHHistoryPacket
 {
 public:
 
-    CAHHistoryPacket();
-   ~CAHHistoryPacket();
+    CAHHistoryPacket(uint16 ItemID);
     
     void AddItem(ahHistory* item);
 
@@ -43,7 +42,9 @@ public:
 private:
 
     uint8 m_count;
-    uint8 m_PData[AH_HISTORY_SIZE];
+    uint8 m_PData[AHHISTORYPACKET_SIZE];
+
+    void SetItemCount();
 };
 
 #endif
