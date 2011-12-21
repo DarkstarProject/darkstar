@@ -31,36 +31,13 @@ function onTrigger(player,npc)
 		player:addKeyItem(TENSHODO_APPLICATION_FORM);
 		player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_APPLICATION_FORM);
 	elseif(player:hasKeyItem(TENSHODO_MEMBERS_CARD) == true) then 
-		player:messageSpecial(TENSHODO_SHOP_OPEN_DIALOG); -- Ah, one of our members. Welcome to the Tenshodo shop.
-		stock = {4877,39270,	-- Absorb-AGI
-				 4880,14070,	-- Absorb-CHR
-				 4875,2250,		-- Absorb-DEX
-				 4878,37800,	-- Absorb-INT
-				 4879,14070,	-- Absorb-MND
-				 4874,40740,	-- Absorb-STR
-				 4876,41370,	-- Absorb-VIT
-				 0704,96,		-- Bamboo Stick
-				 1555,1061,		-- Coriander
-				 1475,579,		-- Curry Powder
-				 4937,1561,		-- Doton: Ichi
-				 5164,2075,		-- Ground Wasabi
-				 1590,536,		-- Holy Basil
-				 4934,1561,		-- Huton: Ichi
-				 4928,1561,		-- Katon: Ichi
-				 1652,160,		-- Rice Vinegar
-				 5236,224,		-- Shungiku
-				 4943,1561,		-- Suiton: Ichi
-				 0657,4690,		-- Tama-Hagane
-				 1164,30,		-- Tsurara
-				 1554,431}		-- Turmeric
-		showShop(player, NORG, stock);
+		if(player:sendGuild(0xEC03, 1, 23, 4)) then 
+			player:showText(npc,TENSHODO_SHOP_OPEN_DIALOG,514);
+		end
 	else
 		player:messageSpecial(NO_MEMBERSHIP_SHOP_DIALOG); -- I have nothing to sell you.
 	end
-end; 
-
- 	
-
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -79,6 +56,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-
