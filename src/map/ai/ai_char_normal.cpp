@@ -980,7 +980,7 @@ void CAICharNormal::ActionMagicStart()
 
 void CAICharNormal::ActionMagicCasting()
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	if (!GetValidTarget(&m_PBattleSubTarget,m_PSpell->getValidTarget()))
 	{
@@ -1070,9 +1070,10 @@ void CAICharNormal::ActionMagicCasting()
 	}
 }
 
-void CAICharNormal::UpdateHealth() 
+void CAICharNormal::UpdateHealth()
 {
 	m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF,new CCharHealthPacket(m_PChar));
+
 	if (m_PChar->PParty != NULL)
 	{	
 		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
@@ -1664,8 +1665,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 }
 
-
-
 /************************************************************************
 *																		*
 *		Start the weapon skill											*
@@ -1674,7 +1673,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 void CAICharNormal::ActionWeaponSkillStart()
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
 	if (m_PBattleTarget->isDead())
 	{
@@ -1716,6 +1715,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 	
 	uint16 damage = luautils::OnUseWeaponSkill(m_PChar,m_PBattleTarget);
+
 	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 	{
 		m_PChar->health.tp -= 100;
@@ -1726,8 +1726,12 @@ void CAICharNormal::ActionWeaponSkillStart()
 	}
 
 	m_LastActionTime = m_Tick; 
+
 	apAction_t Action;
+    m_PChar->m_ActionList.clear();
+
 	damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
+
 	Action.ActionTarget = m_PBattleTarget;
 	Action.reaction   = REACTION_NONE;
 	Action.speceffect = SPECEFFECT_RECOIL;
@@ -1735,6 +1739,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 	Action.param	  = damage;
 	Action.messageID  = 185;
 	Action.flag		  = 0;
+
 	((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar,damage);
 
 	SUBEFFECT effect =  CAICharNormal::GetSkillChainEffect(m_PBattleTarget,m_PWeaponSkill);
@@ -1775,8 +1780,9 @@ void CAICharNormal::ActionWeaponSkillStart()
 	}
 	
 	m_PChar->m_ActionList.push_back(Action);
-	m_ActionType = ACTION_WEAPONSKILL_FINISH; 
+	m_ActionType = ACTION_WEAPONSKILL_FINISH;
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+
 	UpdateHealth();
 }
 
