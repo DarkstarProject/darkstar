@@ -313,7 +313,7 @@ BABBAN_NY_MHEILLEA              = 95;
 --  Jeuno
 -----------------------------------
 
-SAVE_MY_SISTER                  = 1;
+SAVE_MY_SISTER                  = 1;  -- + --
 A_CLOCK_MOST_DELICATE           = 2;  -- + --
 ATOP_THE_HIGHEST_MOUNTAINS      = 3;
 CHOCOBO_S_WOUNDS                = 4;
@@ -329,7 +329,7 @@ RUBBISH_DAY                     = 13;
 NEVER_TO_RETURN                 = 14; -- + --
 COMMUNITY_SERVICE               = 15;
 COOK_S_PRIDE                    = 16;
-TENSHODO_MEMBERSHIP             = 17;
+TENSHODO_MEMBERSHIP             = 17; -- + --
 THE_LOST_CARDIAN                = 18;
 PATH_OF_THE_BEASTMASTER         = 19;
 PATH_OF_THE_BARD                = 20;
@@ -438,6 +438,8 @@ UNLOCKING_A_MYTH_SCHOLAR        = 121;
 THE_GOBBIEBAG_PART_IX           = 123;
 THE_GOBBIEBAG_PART_X            = 124;
 SAVE_THE_CLOCK_TOWER			= 125; -- + --
+CREST_OF_DAVOI					= 126; -- + --
+
 
 IN_DEFIANT_CHALLENGE            = 128;
 

@@ -59,3 +59,8 @@ DHENTEVRYOKOH_CLOSED_DIALOG = 8137; -- I'm trrrying to start a business selling 
 
 	  BAGNOBROK_OPEN_DIALOG = 8890; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!
 	BAGNOBROK_CLOSED_DIALOG = 8889; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
+	
+-- Tenshodo shop & quest "Tenshodo membership"
+  TENSHODO_SHOP_OPEN_DIALOG = 6629; -- Ah, one of our members. Welcome to the Tenshodo shop.
+  NO_MEMBERSHIP_SHOP_DIALOG = 6625; -- I have nothing to sell you.
+
