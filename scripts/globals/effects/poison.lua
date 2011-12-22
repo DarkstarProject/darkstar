@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- 	EFFECT_NONE
+-- 	EFFECT_POISON
 -- 	
 -----------------------------------
 
@@ -16,6 +16,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+	target:addHP(-effect:getPower());
 end;
 
 -----------------------------------
