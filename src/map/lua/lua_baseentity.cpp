@@ -404,11 +404,20 @@ inline int32 CLuaBaseEntity::getRace(lua_State *L)
 	return 1;
 }
 
-//======================================================//
+/************************************************************************
+*                                                                       *
+*  Мгновенное перемещение сущности                                      *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::setPos(lua_State *L)
 {
-	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    if( m_PBaseEntity->objtype != TYPE_PC)
+    {
+        zoneutils::GetZone(m_PBaseEntity->loc.zone)->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_DESPAWN));
+    }
 
 	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 		m_PBaseEntity->loc.p.x = (float) lua_tonumber(L,1);
@@ -434,10 +443,16 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 			((CCharEntity*)m_PBaseEntity)->loc.boundary = 0;
 			((CCharEntity*)m_PBaseEntity)->clearPacketList();
 			((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,2));
-		} else {
+		} 
+        else 
+        {
 			((CCharEntity*)m_PBaseEntity)->pushPacket(new CPositionPacket((CCharEntity*)m_PBaseEntity));
 		}
 	}
+    else
+    {
+        zoneutils::GetZone(m_PBaseEntity->loc.zone)->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_SPAWN));
+    }
 
 	lua_pushnil(L);
 	return 1;
