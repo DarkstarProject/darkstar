@@ -19001,7 +19001,7 @@ INSERT INTO `mob_spawn_points` VALUES ('17436960', 'Dread_Demon', '8507', '-90.2
 INSERT INTO `mob_spawn_points` VALUES ('17436961', 'Judicator_Demon', '8521', '-98.000', '19.000', '-18.000', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17436962', 'Stygian_Demon', '8533', '-61.297', '22.499', '4.468', '94');
 INSERT INTO `mob_spawn_points` VALUES ('17436963', 'Demon_s_Elemental', '8503', '0.000', '0.000', '0.000', '0');
-INSERT INTO `mob_spawn_points` VALUES ('17436964', 'Dark_Spark', '8493', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('17436964', 'Dark_Spark', '8493', '62.000', '-24.000', '19.000', '10');
 INSERT INTO `mob_spawn_points` VALUES ('17436965', 'Mimic', '8526', '189.783', '20.290', '20.761', '77');
 INSERT INTO `mob_spawn_points` VALUES ('17436966', 'Marquis_Andrealphus', '8525', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17436967', 'Demon_Banneret', '8494', '0.000', '0.000', '0.000', '0');
