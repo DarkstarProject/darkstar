@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : DarkStar
-Source Server Version : 50515
+Source Server Version : 50514
 Source Host           : localhost:3306
 Source Database       : dspdb
 
 Target Server Type    : MYSQL
-Target Server Version : 50515
+Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2011-08-29 21:45:08
+Date: 2011-12-22 07:09:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -326,3 +326,5 @@ INSERT INTO `mob_family_system` VALUES ('269', 'Xzomit', '15', 'Luminian', '0', 
 INSERT INTO `mob_family_system` VALUES ('270', 'Yagudo', '7', 'Beastmen', '0', '40', '1', '2', '5', '1', '3', '4', '2', '3', '3', '1', '1', '1', '1', '1', '1.25', '1', '1', '1', '1', '1', '1', '3');
 INSERT INTO `mob_family_system` VALUES ('271', 'Yovra', '15', 'Luminian', '3', '40', '4', '3', '5', '3', '1', '2', '2', '3', '3', '1', '1', '1', '1', '1', '1', '1', '1', '0.5', '1', '1', '1.125', '0');
 INSERT INTO `mob_family_system` VALUES ('272', 'Zdei', '16', 'Luminion', '0', '40', '3', '3', '3', '3', '1', '3', '4', '3', '3', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0');
+INSERT INTO `mob_family_system` VALUES ('274', 'KingV', '20', 'Vermin', '3', '40', '4', '3', '4', '3', '3', '6', '5', '3', '3', '1', '1', '1', '1', '1', '1.25', '1', '1', '1', '0.875', '1.25', '0.875', '4');
+INSERT INTO `mob_family_system` VALUES ('273', 'Serket', '20', 'Vermin', '3', '40', '3', '3', '4', '3', '3', '6', '5', '3', '3', '1', '1', '1', '1', '1', '1.25', '1', '1', '1', '0.875', '1.25', '0.875', '4');
