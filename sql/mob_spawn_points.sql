@@ -6822,8 +6822,8 @@ INSERT INTO `mob_spawn_points` VALUES ('17248442', 'Carrion_Crow', '6315', '320.
 INSERT INTO `mob_spawn_points` VALUES ('17248443', 'Mad_Fox', '6328', '294.765', '-17.118', '437.473', '125');
 INSERT INTO `mob_spawn_points` VALUES ('17248444', 'Mandragora', '6330', '61.172', '-14.019', '202.369', '92');
 INSERT INTO `mob_spawn_points` VALUES ('17248445', 'Mandragora', '6330', '246.967', '-24.908', '261.980', '47');
-INSERT INTO `mob_spawn_points` VALUES ('17248446', 'Crawler', '6320', '207.466', '-17.659', '169.464', '93');
-INSERT INTO `mob_spawn_points` VALUES ('17248447', 'Crawler', '6320', '223.415', '-18.565', '204.808', '91');
+INSERT INTO `mob_spawn_points` VALUES ('17248446', 'Crawler', '10834', '123.0', '-32.0', '282.0', '93');
+INSERT INTO `mob_spawn_points` VALUES ('17248447', 'Crawler', '10834', '158.0', '-40.0', '318.0', '91');
 INSERT INTO `mob_spawn_points` VALUES ('17248448', 'Giant_Bee', '6322', '92.305', '-14.906', '202.505', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17248449', 'Giant_Bee', '6322', '259.497', '-17.572', '217.120', '75');
 INSERT INTO `mob_spawn_points` VALUES ('17248450', 'Giant_Bee', '6322', '112.397', '-18.985', '198.166', '127');
@@ -6845,8 +6845,8 @@ INSERT INTO `mob_spawn_points` VALUES ('17248465', 'Yagudo_Scribe', '6349', '222
 INSERT INTO `mob_spawn_points` VALUES ('17248466', 'Mandragora', '6330', '77.509', '-20.719', '434.757', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17248467', 'Mandragora', '6330', '31.149', '-20.045', '358.265', '61');
 INSERT INTO `mob_spawn_points` VALUES ('17248468', 'Tom_Tit_Tat', '6342', '139.943', '-35.719', '299.835', '127');
-INSERT INTO `mob_spawn_points` VALUES ('17248469', 'Crawler', '6320', '60.788', '-21.237', '408.262', '127');
-INSERT INTO `mob_spawn_points` VALUES ('17248470', 'Crawler', '6320', '26.384', '-19.851', '400.203', '127');
+INSERT INTO `mob_spawn_points` VALUES ('17248469', 'Crawler', '10834', '221.0', '-34.0', '360.0', '127');
+INSERT INTO `mob_spawn_points` VALUES ('17248470', 'Crawler', '10834', '119.0', '-30.0', '378.0', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17248471', 'Giant_Bee', '6322', '36.269', '-19.959', '332.570', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17248472', 'Giant_Bee', '6322', '27.459', '-18.435', '328.847', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17248473', 'Giant_Bee', '6322', '99.666', '-22.386', '439.796', '40');
@@ -6863,8 +6863,8 @@ INSERT INTO `mob_spawn_points` VALUES ('17248483', 'Balloon', '6305', '11.546', 
 INSERT INTO `mob_spawn_points` VALUES ('17248484', 'Mandragora', '6330', '284.830', '-23.668', '350.717', '41');
 INSERT INTO `mob_spawn_points` VALUES ('17248485', 'Mandragora', '6330', '245.293', '-22.125', '423.282', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17248486', 'Tom_Tit_Tat', '6342', '0.000', '0.000', '0.000', '0');
-INSERT INTO `mob_spawn_points` VALUES ('17248487', 'Crawler', '6320', '250.465', '-27.298', '324.969', '127');
-INSERT INTO `mob_spawn_points` VALUES ('17248488', 'Crawler', '6320', '236.617', '-24.031', '409.243', '48');
+INSERT INTO `mob_spawn_points` VALUES ('17248487', 'Crawler', '10834', '212.0', '-28.0', '282.0', '127');
+INSERT INTO `mob_spawn_points` VALUES ('17248488', 'Crawler', '10834', '157.0', '-40.0', '363.0', '48');
 INSERT INTO `mob_spawn_points` VALUES ('17248489', 'Giant_Bee', '6322', '198.575', '-20.399', '474.479', '113');
 INSERT INTO `mob_spawn_points` VALUES ('17248490', 'Giant_Bee', '6322', '246.154', '-22.060', '420.920', '122');
 INSERT INTO `mob_spawn_points` VALUES ('17248491', 'Giant_Bee', '6322', '253.999', '-22.043', '412.483', '69');

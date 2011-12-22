@@ -2,7 +2,6 @@
 --	Area: Windurst Waters
 --	NPC:  Fuepepe
 --	Starts and Finishes Quest: Teacher's Pet
---	Working 100%
 --  @zone = 238
 --  @pos = 161 -2 161
 -----------------------------------
@@ -24,9 +23,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	teacherstatus = player:getQuestStatus(WINDURST,TEACHER_S_PET);
-	gradestatus = player:getQuestStatus(WINDURST,MAKING_THE_GRADE);
-	if (teacherstatus == QUEST_COMPLETED and gradestatus == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >=3) then
+
+teacherstatus = player:getQuestStatus(WINDURST,TEACHER_S_PET);
+gradestatus = player:getQuestStatus(WINDURST,MAKING_THE_GRADE);
+qLetSleepingDogsLie = player:getQuestStatus(WINDURST,LET_SLEEPING_DOGS_LIE);
+	if (teacherstatus == QUEST_COMPLETED and gradestatus == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >=3 and qLetSleepingDogsLie ~= QUEST_ACCEPTED) then
 		player:startEvent(0x01ba); -- Quest Start
 	elseif (gradestatus == QUEST_ACCEPTED) then
 		prog = player:getVar("QuestMakingTheGrade_prog");
@@ -67,7 +68,6 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x01ba and option == 1) then -- Quest Start
 		player:addQuest(WINDURST,MAKING_THE_GRADE);
 	elseif (csid == 0x01c7) then -- Quest Progress: Test Papers Shown and told to deliver them to principal
-		player:tradeComplete(trade);
 		player:setVar("QuestMakingTheGrade_prog",1);
 	elseif (csid == 0x01ca) then -- Quest Finish
 		if (player:getFreeSlotsCount() == 0) then
@@ -81,4 +81,3 @@ function onEventFinish(player,csid,option)
 		end
 	end	
 end;
-
