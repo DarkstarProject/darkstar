@@ -1,7 +1,9 @@
 -----------------------------------
--- Area: Northern San d'Oria
--- NPC: Guillerme
--- Used for Quest: Rosel the Armorer
+--  Area: Northern San d'Oria
+--  NPC: Guillerme
+--  Used for Quest: Rosel the Armorer
+--  @zone: 231
+--  @pos: -4.500 0.000 99.000
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -40,6 +42,8 @@ function onTrigger(player,npc)
 	-- "Rosel the Armorer" - turn in reciept to prince
 	if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(119)) then
 		player:startEvent(0x01fb);  -- 
+	else
+		player:showText(npc,GUILERME_DIALOG);
 	end;
 		
 end; 
