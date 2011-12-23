@@ -33,6 +33,7 @@ CREATE TABLE `mob_spawn_points` (
 -- ----------------------------
 -- Records of mob_spawn_points
 -- ----------------------------
+
 INSERT INTO `mob_spawn_points` VALUES ('17186817', 'Tree_Crab', '5580', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17186818', 'Limicoline_Crab', '5563', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17186819', 'Land_Crab', '5562', '0.000', '0.000', '0.000', '0');
@@ -19551,6 +19552,7 @@ INSERT INTO `mob_spawn_points` VALUES ('17457305', 'Bilesucker', '10788', '254.2
 INSERT INTO `mob_spawn_points` VALUES ('17457306', 'Bilesucker', '10788', '258.499', '-66.777', '245.887', '62');
 INSERT INTO `mob_spawn_points` VALUES ('17457307', 'Bilesucker', '10788', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17457308', 'Bilesucker', '10788', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('17457309', 'Tros', '8768', '-287.000', '-45.000', '208.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17461249', 'Bloodsucker', '8772', '-140.000', '16.000', '-231.000', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17461250', 'Acid_Grease', '8770', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17461251', 'Bloodsucker', '8772', '-140.000', '16.000', '-216.000', '127');

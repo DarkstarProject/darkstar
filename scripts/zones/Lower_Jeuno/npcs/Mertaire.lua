@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: Lower Jeuno
 -- NPC: Mertaire
--- Starts Quest: The Old Monument
+-- Starts and Finishes Quest: The Old Monument (start only), A Minstrel in Despair, Painful Memory (BARD AF1)
+-- @zone 245
+-- @pos -17 0 -61
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -16,7 +18,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if (player:getQuestStatus(JEUNO, THE_OLD_MONUMENT) == 2) then
+	if (player:getQuestStatus(JEUNO, THE_OLD_MONUMENT) == QUEST_COMPLETED) then
 		count = trade:getItemCount();
 		gil = trade:getGil();
 		
@@ -32,12 +34,24 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getMainLvl() >= 30) then
-		if (player:getVar("TheOldMonument_Event") == 0 and player:getQuestStatus(JEUNO,THE_OLD_MONUMENT) == 0) then
+	if(player:getMainJob() ~= 10 and player:getMainLvl() >= 30) then
+		if (player:getVar("TheOldMonument_Event") == 0 and player:getQuestStatus(JEUNO,THE_OLD_MONUMENT) == QUEST_AVAILABLE) then
 			player:startEvent(0x0066);
 		end
+	elseif(player:getMainJob() == 10 and player:getMainLvl() >= 40 and player:hasKeyItem(228) == false) then 
+		if(player:getVar("PainfulMemoryCS") == 0) then 
+			player:startEvent(0x008a); -- Long dialog for "Painful Memory"
+		else
+			player:startEvent(0x0089); -- Short dialog for "Painful Memory"
+		end
+	elseif(player:hasKeyItem(228) == true) then 
+		player:startEvent(0x0088); -- During Quest "Painful Memory"
+	elseif(player:getQuestStatus(JEUNO,PAINFUL_MEMORY) == QUEST_COMPLETED) then 
+		player:startEvent(0x0087); -- Standard dialog after completed "Painful Memory"
 	end
 end; 
+
+-- 0x0066  0x0065  0x0067  0x008a  0x0089  0x0088  0x0087  0x008b  0x276e
 
 -----------------------------------
 -- onEventUpdate
@@ -66,6 +80,13 @@ function onEventFinish(player,csid,option)
 		player:addFame(BASTOK,BAS_FAME*10);
 		player:addFame(SAN_D_ORIA,SAN_FAME*10);
 		player:addFame(WINDURST,WIN_FAME*10);
+	elseif(csid == 0x008a and option == 1 or csid == 0x0089 and option == 1) then 
+		player:addQuest(JEUNO,PAINFUL_MEMORY);
+		player:setVar("PainfulMemoryCS",0);
+		player:addKeyItem(228);
+		player:messageSpecial(KEYITEM_OBTAINED,228); -- Mertaire's Bracelet (key item).
+	elseif(csid == 0x008a and option == 0) then 
+		player:setVar("PainfulMemoryCS",1);
 	end
 end;
 
