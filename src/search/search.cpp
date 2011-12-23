@@ -40,6 +40,7 @@
 
 #include "packets/auction_history.h"
 #include "packets/auction_list.h"
+#include "packets/party_list.h"
 #include "packets/search_list.h"
 
 #define DEFAULT_PORT "54002"
@@ -287,8 +288,13 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest)
 {
 	uint8* data = (uint8*)PTCPRequest->GetData();
+    uint32 partyid = RBUFL(data,(0x10));
 
-	ShowMessage("SEARCH::PartyID = %u\n", RBUFL(data,(0x10)));
+	ShowMessage("SEARCH::PartyID = %u\n", partyid);
+
+    CPartyListPacket* PPartyListPacket = new CPartyListPacket(partyid);
+    
+    PTCPRequest->SendToSocket(PPartyListPacket->GetData(), PPartyListPacket->GetSize());
 }
 
 /************************************************************************

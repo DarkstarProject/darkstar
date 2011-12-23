@@ -120,7 +120,7 @@ void CTCPRequestPacket::ReceiveFromSocket()
     delete[] m_data; 
     m_data = new int8[m_size];
 
-	memcpy(&m_data[0], &recvbuf[0], m_size);
+    memcpy(&m_data[0], &recvbuf[0], m_size);
 	memcpy(key+16, m_data+m_size-4, 4);
 
 	decipher();
