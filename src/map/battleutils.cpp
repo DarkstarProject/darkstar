@@ -584,7 +584,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(MOD_HTHRES)))	 / 1000; break;
 	}
 
-	PDefender->addHP(0); //PDefender->addHP(-damage);
+	PDefender->addHP(-damage);
 	PDefender->m_OwnerID = PAttacker->id;
 
     uint8 TP = 0;
