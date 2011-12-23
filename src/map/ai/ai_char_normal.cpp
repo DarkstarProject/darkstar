@@ -1835,7 +1835,7 @@ void CAICharNormal::ActionAttack()
 		return;
 	}
 
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 
@@ -1880,11 +1880,11 @@ void CAICharNormal::ActionAttack()
 
 		if (battleutils::IsParalised(m_PChar)) 
 		{
-			m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,29));
+			m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,29));
 		}
 		else if (battleutils::IsIntimidated(m_PChar, m_PBattleTarget)) 
 		{
-			m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,106));
+			m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,106));
 		}
 		else
 		{
@@ -1897,8 +1897,7 @@ void CAICharNormal::ActionAttack()
 			uint32 numKickAttacks = 0;
 
 			uint16 subType = m_PChar->m_Weapons[SLOT_SUB]->getDmgType();
-			
-			
+
 			//keep until tested without dual wield
 			//if ((hasBit(DUAL_WIELD,m_PChar->m_TraitList, sizeof(m_PChar->m_TraitList)) == 4 && subType > 0 && subType < 8) || (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH))
 			
@@ -1910,7 +1909,6 @@ void CAICharNormal::ActionAttack()
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			for (uint32 i = 0; i < (numattacksLeftHand + numattacksRightHand); ++i) 
 			{
-			
 				if (i != 0)
 				{
 					if (m_PBattleTarget->isDead())
@@ -1923,7 +1921,6 @@ void CAICharNormal::ActionAttack()
 						PWeapon = m_PChar->m_Weapons[SLOT_SUB];
 					}
 				}
-
 				uint16 damage = 0;
 
 				// во время физической атаки:
@@ -1942,7 +1939,7 @@ void CAICharNormal::ActionAttack()
 				{
 					float DamageRatio = battleutils::GetDamageRatio(m_PChar,m_PBattleTarget); 
 
-					if ( rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleTarget) )
+					if ( rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget) )
 					{
 						DamageRatio += 1;
 						DamageRatio = (DamageRatio > 3 ? 3 : DamageRatio);
@@ -1951,38 +1948,36 @@ void CAICharNormal::ActionAttack()
 						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 						Action.messageID  = 67;
 						Action.flag = 0;
-					}else{
+					}
+                    else
+                    {
 						Action.reaction   = REACTION_HIT;
 						Action.speceffect = SPECEFFECT_HIT;
 						Action.messageID  = 1;
 					}
+                    damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar, m_PBattleTarget)) * DamageRatio));
 
 					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
-					m_PChar->addTP(12);
-					UpdateHealth();
-
-					damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleTarget)) * DamageRatio));
 				}
 				else
 				{
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
-					
 				}
-					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
+				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
 
-				if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BLOOD_WEAPON) && Action.reaction != REACTION_EVADE && damage > 0 && m_PBattleTarget->m_EcoSystem != SYSTEM_UNDEAD)
+				if (Action.reaction != REACTION_EVADE &&
+                    m_PBattleTarget->m_EcoSystem != SYSTEM_UNDEAD &&
+                    m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BLOOD_WEAPON))
 				{
 					Action.flag = 1;
 					Action.subeffect = SUBEFFECT_BLOOD_WEAPON;
 					Action.submessageID = 167;
-					Action.subparam = damage;
-					m_PChar->addHP(damage);
+					Action.subparam = m_PChar->addHP(Action.param);
+
 					UpdateHealth();
 				}
-				
-				((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar,damage);
 				m_PChar->m_ActionList.push_back(Action);
 			}
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);

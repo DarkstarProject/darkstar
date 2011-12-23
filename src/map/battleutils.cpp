@@ -295,7 +295,6 @@ void LoadMobSkillsList()
 	}
 }
 
-
 void LoadTraitsList()
 {
 	//memset(g_PTraitList,0,sizeof(g_PTraitList));
@@ -323,7 +322,6 @@ void LoadTraitsList()
 		}
 	}
 }
-
 
 /************************************************************************
 *	Clear Spell List													*
@@ -413,7 +411,7 @@ CSpell* GetSpell(uint16 SpellID)
 	{
 		return g_PSpellList[SpellID];
 	}
-	ShowFatalError(CL_RED"SpellID <%u> out of range\n", SpellID);
+	ShowFatalError(CL_RED"SpellID <%u> out of range\n"CL_RESET, SpellID);
 	return NULL;
 }
 
@@ -444,7 +442,7 @@ CAbility* GetAbility(uint16 AbilityID)
 		//ShowDebug(CL_GREEN"Getting CurrentAbility %u \n"CL_RESET, g_PAbilityList[AbilityID]->getID());
 		return g_PAbilityList[AbilityID];
 	}
-	ShowFatalError(CL_RED"AbilityID <%u> is out of range\n", AbilityID);
+	ShowFatalError(CL_RED"AbilityID <%u> is out of range\n"CL_RESET, AbilityID);
 	return NULL;
 }
 
@@ -471,16 +469,22 @@ bool CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID)
 }
 
 /************************************************************************
-*	Get Enmity Modifier													*
+*                                                                       *
+*  Get Enmity Modifier                                                  *
+*                                                                       *
 ************************************************************************/
 
 uint16 GetEnmityMod(uint8 level, uint16 modType)
 {
+    DSP_DEBUG_BREAK_IF(g_EnmityTable[level][modType] == 0);
+
 	return g_EnmityTable[level][modType];
 }
 
 /************************************************************************
-*  Get Weapon Skill by Id												*
+*                                                                       *
+*  Get Weapon Skill by ID                                               *
+*                                                                       *
 ************************************************************************/
 
 CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
@@ -489,7 +493,7 @@ CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
 	{
 		return g_PWeaponSkillList[WSkillID];
 	}
-	ShowFatalError(CL_RED"WeaponSkillID <%u> out of range\n", WSkillID);
+	ShowFatalError(CL_RED"WeaponSkillID <%u> out of range\n"CL_RESET, WSkillID);
 	return NULL;
 }
 
@@ -512,7 +516,7 @@ CMobSkill* GetMobSkill(uint16 SkillID)
 	{
 		return g_PMobSkillList[SkillID];
 	}
-	ShowFatalError(CL_RED"MobSkillID <%u> out of range\n", SkillID);
+	ShowFatalError(CL_RED"MobSkillID <%u> out of range\n"CL_RESET, SkillID);
 	return NULL;
 }
 
@@ -580,54 +584,69 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(MOD_HTHRES)))	 / 1000; break;
 	}
 
-	PDefender->addHP(-damage);
+	PDefender->addHP(0); //PDefender->addHP(-damage);
 	PDefender->m_OwnerID = PAttacker->id;
 
-	// Chance to interrupt caster
-	if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
-	{
-		uint32 MagicInterruptRate = 50; // должен вычисляться на основании skill, разници уровней сущностей и модификаторе прерывания чтения заклинаний MOD_SPELLINTRATE
+    uint8 TP = 0;
 
-		if (damage > 0 && MagicInterruptRate  < rand()*100)
-		{
-			PDefender->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);
-		}
-	}
+    if (damage > 0)
+    {
+        if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
+        {
+            // TODO: должен вычисляться на основании skill, разници уровней сущностей и модификаторе прерывания чтения заклинаний MOD_SPELLINTRATE
+	        uint32 MagicInterruptRate = 50;
 
-	if (PDefender->objtype == TYPE_PC)
-	{
-		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+            if (MagicInterruptRate  < rand()*100)
+            {
+                PDefender->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);
+            }
+        }
+        TP = 10; // TODO: расчет ТР (я думаю, что будет достаточно линейной зависимости TP от DELAY)
 
-		switch (PDefender->animation)
-		{
-			case ANIMATION_SIT:
-			{
-				PDefender->animation = ANIMATION_NONE;
+        PDefender->addTP(3);
+        PAttacker->addTP(TP);
+    }
 
-				((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
-			}
-			break;
-			case ANIMATION_HEALING:
-			{
-				PDefender->animation = ANIMATION_NONE;
+    switch (PDefender->objtype)
+    {
+        case TYPE_PC:
+	    {
+		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
+		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 
-				PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-				PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_LEAVEGAME);
-			}
-			break;
-		};
-		
-		if (damage > 0)
-		{
-			(CCharEntity*)PDefender->addTP(3);
-		}
-	}
-	
-	PZone->PushPacket(PDefender,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PDefender)); 
-	
+		    switch (PDefender->animation)
+		    {
+			    case ANIMATION_SIT:
+			    {
+				    PDefender->animation = ANIMATION_NONE;
+
+				    ((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
+			    }
+			    break;
+			    case ANIMATION_HEALING:
+			    {
+				    PDefender->animation = ANIMATION_NONE;
+
+				    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+				    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_LEAVEGAME);
+			    }
+			    break;
+		    };
+            PZone->PushPacket(PDefender, CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PDefender));
+	    }
+        break;
+        case TYPE_MOB:
+        {
+            if (PDefender->PMaster == NULL)
+            {
+                PDefender->addTP(TP);
+            }
+            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
+        }
+        break;
+    }
 	return damage;
 }
 
@@ -700,10 +719,13 @@ uint32 MagicCalculateDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpe
 	};
 	
 	PTarget->addHP(-D);
-	((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(PCaster,D); 
-	PTarget->m_OwnerID = PCaster->id;
-	
-	PZone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget)); 
+    if (PTarget->objtype == TYPE_MOB)
+    {
+        ((CMobEntity*)PTarget)->m_OwnerID = PCaster->id;
+	    ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(PCaster,D); 
+    }
+    // TODO: брак
+	PZone->PushPacket(PTarget, CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget));
 	return D;
 
 }

@@ -48,8 +48,8 @@
 
 CParty::CParty(CCharEntity* PChar)
 {
-	//DSP_DEBUG_BREAK_IF(PChar == NULL);
-	//DSP_DEBUG_BREAK_IF(PChar->PParty != NULL);
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar->PParty != NULL);
 
 	m_PSyncTarget 	= NULL;
 	m_PQuaterMaster = NULL;
@@ -176,7 +176,6 @@ void CParty::RemoveMemberByName(int8* MemberName)
 			return;
 		} 
 	}
-	//DSP_DEBUG_BREAK_IF(true);
 	ShowError(CL_RED"The character with name <%s> isn't found in party\n"CL_RESET, MemberName);
 }
 
@@ -188,8 +187,8 @@ void CParty::RemoveMemberByName(int8* MemberName)
 
 void CParty::RemoveMember(CCharEntity* PChar) 
 {
-	//DSP_DEBUG_BREAK_IF(PChar == NULL);
-	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
 	if (m_PLeader == PChar) 
 	{
@@ -242,8 +241,8 @@ void CParty::RemoveMember(CCharEntity* PChar)
 
 void CParty::RemovePartyLeader(CCharEntity* PChar) 
 {
-	//DSP_DEBUG_BREAK_IF(members.empty());
-	//DSP_DEBUG_BREAK_IF(m_PLeader != PChar);
+	DSP_DEBUG_BREAK_IF(members.empty());
+	DSP_DEBUG_BREAK_IF(m_PLeader != PChar);
 
 	if (members.size() == 1) 
 	{
@@ -274,8 +273,8 @@ void CParty::RemovePartyLeader(CCharEntity* PChar)
 
 void CParty::AddMember(CCharEntity* PChar) 
 {
-	//DSP_DEBUG_BREAK_IF(PChar == NULL);
-	//DSP_DEBUG_BREAK_IF(PChar->PParty != NULL);
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar->PParty != NULL);
 
 	// TODO: количество членов группы не должно быть больше шести, но при этом можно приглашать лидера другой группы вступить в альянс
 
@@ -366,8 +365,8 @@ CAlliance* CParty::getAlliance()
 
 void CParty::ReloadParty(CCharEntity* PChar) 
 {
-	//DSP_DEBUG_BREAK_IF(PChar == NULL);
-	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
 	PushPacket(NULL, 0, new CPartyDefinePacket(this));
 	PushPacket(PChar, PChar->getZone(), new CPartyMemberUpdatePacket(PChar, ReloadPartyMembers(PChar), PChar->getZone()));
@@ -382,8 +381,8 @@ void CParty::ReloadParty(CCharEntity* PChar)
 
 int8 CParty::ReloadPartyMembers(CCharEntity* PChar) 
 {
-	//DSP_DEBUG_BREAK_IF(PChar == NULL);
-	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
 	int8 MemberNumber = -1;
 
@@ -406,8 +405,8 @@ int8 CParty::ReloadPartyMembers(CCharEntity* PChar)
 
 void CParty::ReloadTreasurePool(CCharEntity* PChar)
 {
-	//DSP_DEBUG_BREAK_IF(PChar == NULL);
-	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
 	if (PChar->PTreasurePool != NULL &&
 		PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE)
@@ -415,8 +414,9 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 
 	for (uint8 i = 0; i < members.size(); ++i) 
 	{
-		if (PChar != members.at(i) &&
-			PChar->getZone() == members.at(i)->getZone())
+        if (members.at(i) != PChar &&
+            members.at(i)->PTreasurePool != NULL &&
+			members.at(i)->getZone() == PChar->getZone())
 		{			
 			if (PChar->PTreasurePool != NULL)
 			{
@@ -442,16 +442,13 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 
 void CParty::SetLeader(CCharEntity* PChar) 
 {
-	//DSP_DEBUG_BREAK_IF(PChar == NULL);
-	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+
+    Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", m_PartyID, PChar->id);
 
 	m_PLeader = PChar;
 	m_PartyID = PChar->id;
-
-	for (int32 i = 0; i < members.size(); ++i)
-	{
-		Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE charid = %u", m_PartyID, members.at(i)->id);
-	}
 }
 
 /************************************************************************

@@ -1004,21 +1004,14 @@ void CZone::ZoneServer(uint32 tick)
 		PPet->PBattleAI->CheckCurrentAction(tick);
 	}
 
-	for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-	{
-		try
-		{
-			CCharEntity* PChar = (CCharEntity*)it->second;
+    for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+    {
+        CCharEntity* PChar = (CCharEntity*)it->second;
 
-			PChar->StatusEffectContainer->CheckEffects(tick);
-			PChar->PBattleAI->CheckCurrentAction(tick);
-			PChar->PTreasurePool->CheckItems(tick);
-		}
-		catch (int ex)
-		{
-			//eat this error... could be due to a player logging out.
-		}
-	}
+        PChar->StatusEffectContainer->CheckEffects(tick);
+        PChar->PBattleAI->CheckCurrentAction(tick);
+        PChar->PTreasurePool->CheckItems(tick);
+    }
 }
 
 /************************************************************************
@@ -1048,40 +1041,32 @@ void CZone::ZoneServerRegion(uint32 tick)
 		PPet->PBattleAI->CheckCurrentAction(tick);
 	}
 
-	for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-	{
+    for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+    {
+        CCharEntity* PChar = (CCharEntity*)it->second;
+        if (PChar->status != STATUS_SHUTDOWN)
+        {
+            PChar->StatusEffectContainer->CheckEffects(tick);
+            PChar->PBattleAI->CheckCurrentAction(tick);
+            PChar->PTreasurePool->CheckItems(tick);
 
-		try
-		{
-			CCharEntity* PChar = (CCharEntity*)it->second;
-			if (PChar->status != STATUS_SHUTDOWN)
-			{
-				PChar->StatusEffectContainer->CheckEffects(tick);
-				PChar->PBattleAI->CheckCurrentAction(tick);
-				PChar->PTreasurePool->CheckItems(tick);
+            uint32 RegionID = 0;
 
-				uint32 RegionID = 0;
+            for (regionList_t::const_iterator region = m_regionList.begin(); region != m_regionList.end(); ++region)
+            {
+                if ((*region)->isPointInside(PChar->loc.p))
+                {
+                    RegionID = (*region)->GetRegionID();
 
-				for (regionList_t::const_iterator region = m_regionList.begin(); region != m_regionList.end(); ++region)
-				{
-					if ((*region)->isPointInside(PChar->loc.p))
-					{
-						RegionID = (*region)->GetRegionID();
-
-						if ((*region)->GetRegionID() != PChar->m_InsideRegionID)
-						{
-							luautils::OnRegionEnter(PChar, RegionID);
-						}
-						break;
-					}
-				}
-				PChar->m_InsideRegionID = RegionID;
-			}
-		}
-		catch (int ex)
-		{
-			//eat it
-		}
+                    if ((*region)->GetRegionID() != PChar->m_InsideRegionID)
+                    {
+                        luautils::OnRegionEnter(PChar, RegionID);
+                    }
+                    break;
+                }
+            }
+            PChar->m_InsideRegionID = RegionID;
+        }
 	}
 }
 

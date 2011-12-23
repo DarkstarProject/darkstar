@@ -121,7 +121,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 	CPetEntity* PPet = new CPetEntity();
 
 	PPet->id = 0x1000850 + (PMaster->loc.zone << 12);
-	PPet->targid = 0x750;
+	PPet->targid = 0x800;
 
 	PPet->loc = PMaster->loc;
 

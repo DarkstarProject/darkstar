@@ -1781,20 +1781,6 @@ void LoadExpTable()
 			}
 		}
 	}
-
-	//ret = Sql_Query(SqlHandle,"SELECT value FROM settings WHERE name = 'xprate'"); 
-	//
-	//if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	//{
-	//	while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-	//	{
-	//		g_expRate = (float)Sql_GetFloatData(SqlHandle,0);
-	//	}
-	//}
-	//	
-	
-	
-
 }
 
 /************************************************************************
@@ -1853,9 +1839,9 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 		for (int i = 0; i < PChar->PParty->members.size(); i++)
 		{
 			if (PChar->PParty->members[i]->GetMLevel() > lvl) 
-				{
-					lvl = PChar->PParty->members[i]->GetMLevel();
-				}
+			{
+				lvl = PChar->PParty->members[i]->GetMLevel();
+			}
 		}
 	}
 
@@ -2146,7 +2132,7 @@ void SaveCharJobs(CCharEntity* PChar)
 
 void SaveCharExp(CCharEntity* PChar, JOBTYPE job)
 {
-	//DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
+	DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
 
 	const int8* fmtQuery;
 	
@@ -2185,7 +2171,7 @@ void SaveCharExp(CCharEntity* PChar, JOBTYPE job)
 
 void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
 {
-	//DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
+	DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
 
 	const int8* fmtQuery = "INSERT INTO char_skills \
 							SET charid = %u, skillid = %u, value = %u, rank = %u \

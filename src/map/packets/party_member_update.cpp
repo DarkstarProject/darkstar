@@ -35,7 +35,7 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
 	this->type = 0xDD;
 	this->size = 0x18;	
 
-	//DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
 
 	WBUFL(data,(0x04)-4) = PChar->id;
 

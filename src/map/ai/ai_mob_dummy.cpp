@@ -94,10 +94,6 @@ void CAIMobDummy::ActionRoaming()
 {
 	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL)
 	{
-		uint16 TargID = ((CBattleEntity*)m_PMob->PEnmityContainer->GetHighestEnmity())->id;
-		
-		m_PBattleTarget = (CBattleEntity*)m_PZone->GetEntity(TargID, TYPE_PC | TYPE_MOB | TYPE_PET);
-
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
 	}
@@ -105,6 +101,9 @@ void CAIMobDummy::ActionRoaming()
 	{
 		uint16 TargID = m_PMob->m_OwnerID & 0x0FFF;
 		m_PBattleTarget = (CBattleEntity*)m_PZone->GetEntity(TargID, TYPE_PC | TYPE_MOB | TYPE_PET);
+
+        // TODO: возможно необходимо добавлять цели базовое количество ненависти
+
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
 	}
@@ -133,25 +132,17 @@ void CAIMobDummy::ActionRoaming()
 }
 
 /************************************************************************
-*																		*
-*  Монстр переходит в боевую стойку, включается прежим атаки			*
-*																		*
+*                                                                       *
+*  Монстр переходит в боевую стойку, включается режим атаки             *
+*                                                                       *
 ************************************************************************/
 
 void CAIMobDummy::ActionEngage() 
 {
-	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
-	
-    // возвращаемся в исходное состояние, если цель не была найдена
-	if (m_PBattleTarget == NULL)
-	{
-        //m_ActionType = ACTION_DISENGAGE;
-		return;
-	}
 	m_PMob->animation = ANIMATION_ATTACK;
 
 	m_ActionType = ACTION_ATTACK;
-	m_LastActionTime = m_Tick - 10000;
+	m_LastActionTime = m_Tick - 1000;
 
 	ActionAttack();
 }
@@ -172,9 +163,10 @@ void CAIMobDummy::ActionDisengage()
 	m_PMob->m_OwnerID = 0;
 	m_PMob->m_CallForHelp = 0;
 	m_PMob->animation = ANIMATION_NONE;
+    m_PMob->health.tp = 0;
 	m_PMob->health.hp = m_PMob->health.maxhp;
 
-	m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+	m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
 /************************************************************************
@@ -333,7 +325,7 @@ void CAIMobDummy::ActionSpawn()
 		mobutils::CalculateStats(m_PMob);
 
 		m_PMob->loc.p = m_PMob->m_SpawnPoint;
-		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_SPAWN));
+		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
 
         //luautils::OnMobSpawn(m_PMob); 
 	}
@@ -391,6 +383,8 @@ void CAIMobDummy::ActionAbilityStart()
 void CAIMobDummy::ActionAbilityFinish()
 {
     DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+
+    // TODO: это условие должно быть в методе ActionAbilityUsing для возможности прерывания
 
     if ((m_Tick - m_LastActionTime) > m_PMobSkill->getActivationTime())
     {
@@ -470,11 +464,11 @@ void CAIMobDummy::ActionAttack()
 
 			if (battleutils::IsParalised(m_PMob)) 
 			{
-				m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,29));
+				m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,29));
 			}
 			else if (battleutils::IsIntimidated(m_PMob, m_PBattleTarget)) 
 			{
-				m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,106));
+				m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,106));
 			}
 			else
 			{
@@ -509,8 +503,7 @@ void CAIMobDummy::ActionAttack()
 					uint16 utsu = m_PBattleTarget->getMod(MOD_UTSUSEMI);
 					if (utsu > 0) 
 					{
-						utsu -= 1;
-						m_PBattleTarget->setModifier(MOD_UTSUSEMI, utsu);
+						m_PBattleTarget->setModifier(MOD_UTSUSEMI, --utsu);
 						Action.messageID  = 0;
 
 						m_PZone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,1,1,31));
@@ -525,7 +518,7 @@ void CAIMobDummy::ActionAttack()
 						Action.speceffect = SPECEFFECT_HIT;
 						Action.messageID  = 1;
 
-						float DamageRatio = battleutils::GetDamageRatio(m_PMob,m_PBattleTarget); 
+						float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget); 
 
 						if ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) )
 						{
@@ -535,10 +528,7 @@ void CAIMobDummy::ActionAttack()
 							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 							Action.messageID  = 67;
 						}
-					
-						damage = (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ? 0 : (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob,m_PBattleTarget)) * DamageRatio));
-						m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget,damage);
-						m_PMob->addTP(12); 
+						damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget)) * DamageRatio);
 
 						/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BLAZE_SPIKES))
 						{
@@ -590,15 +580,16 @@ void CAIMobDummy::ActionAttack()
 						} */
 					}
 				}
-				else
+                else if (m_PBattleTarget->objtype == TYPE_PC)
 				{
-					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_EVA,m_PMob->GetMLevel());
+					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
 				}
 				Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, m_PZone);
 
 				m_PMob->m_ActionList.push_back(Action);
+                m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
 
-				m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CActionPacket(m_PMob));
+				m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 			}
 		}
 	}
@@ -607,6 +598,6 @@ void CAIMobDummy::ActionAttack()
 		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
 	}
 			
-	m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+	m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 

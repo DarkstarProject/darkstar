@@ -29,6 +29,13 @@
 #include "battleutils.h" 
 #include "charentity.h"
 
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 CEnmityContainer::CEnmityContainer()
 {
 
@@ -56,25 +63,29 @@ void CEnmityContainer::Clear(uint32 EntityID)
 		m_EnmityList.clear();
 		return; 
 	}
-	
-	for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
-	{
-		if (it->second->PEnmityOwner->id = EntityID)
-		{
-            delete it->second;
-            m_EnmityList.erase(it);
-            break;
-		}
-	}
+    else
+    {
+	    for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
+	    {
+		    if (it->second->PEnmityOwner->id = EntityID)
+		    {
+                delete it->second;
+                m_EnmityList.erase(it);
+                return;
+		    }
+	    }
+    }
 }
+
+/************************************************************************
+*                                                                       *
+*  Минимальное (базовое) значение ненависти                             *
+*                                                                       *
+************************************************************************/
 
 void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 {
-	EnmityObject_t* enmity = new EnmityObject_t;
-	enmity->CE = 1;
-	enmity->VE = 1;
-	enmity->PEnmityOwner = PChar;
-	UpdateEnmity(enmity);
+    UpdateEnmity(PChar, 1, 1);
 }
 
 /************************************************************************
@@ -83,27 +94,37 @@ void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::UpdateEnmity(EnmityObject_t* PEnmityObject)
+void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
 {
-	EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEnmityObject->PEnmityOwner->id);
+    EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
-	if( PEnmity != m_EnmityList.end() &&
-	   !m_EnmityList.key_comp()(PEnmityObject->PEnmityOwner->id, PEnmity->first))
+    if( PEnmity != m_EnmityList.end() && 
+       !m_EnmityList.key_comp()(PEntity->id, PEnmity->first))
 	{
-		PEnmity->second->CE += PEnmityObject->CE; 
-		PEnmity->second->VE += PEnmityObject->VE;
+        PEnmity->second->CE += CE; 
+        PEnmity->second->VE += VE;
 
-		//Check for cap limit 
-		PEnmity->second->CE = cap_value(PEnmity->second->CE,1,10000);
-		PEnmity->second->VE = cap_value(PEnmity->second->VE,1,10000);
-		
-		delete PEnmityObject;
-	}
-	else 
-	{
-		m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEnmityObject->PEnmityOwner->id, PEnmityObject));
-	}
+        //Check for cap limit 
+        PEnmity->second->CE = cap_value(PEnmity->second->CE, 1, 10000);
+        PEnmity->second->VE = cap_value(PEnmity->second->VE, 1, 10000);
+    }
+    else 
+    {
+        EnmityObject_t* PEnmityObject = new EnmityObject_t;
+
+        PEnmityObject->CE = CE;
+        PEnmityObject->VE = VE;
+        PEnmityObject->PEnmityOwner = PEntity;
+
+        m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEntity->id, PEnmityObject));
+    }
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 {
@@ -122,38 +143,51 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 	}
 }
 
-void CEnmityContainer::UpdateEnmity(CBattleEntity* PChar,uint16 CE, uint16 VE)
-{
-	EnmityObject_t* enmity = new EnmityObject_t;
-	enmity->CE = CE;
-	enmity->VE = VE;
-	enmity->PEnmityOwner = PChar; 
-	UpdateEnmity(enmity);
-}
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
-void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, uint16 CureAmount)
+void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level, uint16 CureAmount)
 {
-	//CureAmount = (CureAmount < 1 ? 1 : CureAmount);
+	CureAmount = (CureAmount < 1 ? 1 : CureAmount);
+
 	uint16 mod = battleutils::GetEnmityMod(level - 1, 0);
-	uint16 ce =  40 / mod * CureAmount;
-	uint16 ve = 240 / mod * CureAmount;
-	UpdateEnmity(PChar,ce,ve);
+
+	uint16 CE =  40 / mod * CureAmount;
+	uint16 VE = 240 / mod * CureAmount;
+
+	UpdateEnmity(PEntity, CE, VE);
 }
 
-void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PChar, uint16 Damage)
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage)
 {
 	Damage = (Damage < 1 ? 1 : Damage);
-	uint16 mod = battleutils::GetEnmityMod(PChar->GetMLevel() - 1, 1);
-	if (mod < 1) 
-	{mod = 1;}
-	uint16 ce =  80 / mod * Damage;
-	uint16 ve = 240 / mod * Damage;
-	UpdateEnmity(PChar,ce,ve); 
+
+	uint16 mod = battleutils::GetEnmityMod(PEntity->GetMLevel() - 1, 1);
+
+	uint16 CE =  80 / mod * Damage;
+	uint16 VE = 240 / mod * Damage;
+
+	UpdateEnmity(PEntity, CE, VE); 
 }
 
-void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PChar, uint16 Damage)
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Damage)
 {
-	UpdateEnmity(PChar, -(1800 * Damage / PChar->health.maxhp), 0);
+	UpdateEnmity(PEntity, -(1800 * Damage / PEntity->health.maxhp), 0);
 }
 
 /************************************************************************
@@ -167,6 +201,7 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 	uint32 HighestEnmity = 0;
 	
 	CBattleEntity* PEntity = NULL;
+
 	for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
 	{
 		EnmityObject_t* PEnmityObject = it->second;

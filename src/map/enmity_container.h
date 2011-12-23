@@ -49,7 +49,7 @@ struct EnmityObject_t
 {
 	CBattleEntity* PEnmityOwner;	// Enmity Target
 	int16 CE;						// Cumulative Enmity
-	uint16 VE;						// Volatile Enmity
+	int16 VE;						// Volatile Enmity
 };
 
 typedef std::map<uint32,EnmityObject_t*> EnmityList_t;
@@ -65,21 +65,22 @@ class CEnmityContainer
 {
 public:
 
+    CEnmityContainer();
+   ~CEnmityContainer();
+
+    CBattleEntity*	GetHighestEnmity();			// Decays VE and gets target with highest enmity
+
 	void	Clear(uint32 EntityID = 0);			// Removes Entries from list
-	void	UpdateEnmity(EnmityObject_t*);		// Updates hate in list
-	void	UpdateEnmity(CBattleEntity* PChar,uint16 CE, uint16 VE);
-	void	AddBaseEnmity(CBattleEntity*);
-	void	UpdateEnmityFromDamage(CBattleEntity* PChar,uint16 Damage);
-	void	UpdateEnmityFromCure(CBattleEntity* PChar, uint16 level, uint16 CureAmount);
-	void	UpdateEnmityFromAttack(CBattleEntity* PChar,uint16 Damage);
+    void	AddBaseEnmity(CBattleEntity* PEntity);
+	void	UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE);
+	void	UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
+	void	UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level, uint16 CureAmount);
+	void	UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
 	void	AddPartyEnmity(CCharEntity* PChar);
 
-	EnmityList_t	m_EnmityList;
+private:
 
-	CBattleEntity*	GetHighestEnmity();			// Decays VE and gets target with highest enmity
-	
-	CEnmityContainer();
-   ~CEnmityContainer();
+	EnmityList_t	m_EnmityList;
 };
 
 #endif

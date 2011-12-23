@@ -311,9 +311,9 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		packBitsBE(data, ActionNum, 150, 4);
 	}
 
-	uint8 WorkSize = ((bitOffset >> 3) + (bitOffset%8 == 0 ? 0 : 1));				
+	uint8 WorkSize = ((bitOffset >> 3) + (bitOffset%8 != 0));				
 
-	this->size = ((((WorkSize + 7) >> 1) + 1) & 0xFE);
+	this->size = ((((WorkSize + 7) >> 1) + 1) & -2);
 
 	WBUFB(data,(0x04)-4) = WorkSize; 												// Workload Size - 0x23 с дополнительным эффектом - 0x29 два удара монаха 
 	WBUFB(data,(0x09)-4) = TargetNum;												// количество атакуемых целей
