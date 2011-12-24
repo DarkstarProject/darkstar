@@ -82,7 +82,12 @@ std::vector<ahItem*> CAuctionHouse::GetItemsToCategry(uint8 AHCategoryID)
 
     std::vector<ahItem*> ItemList;
 
-    const int8* fmtQuery = "SELECT itemId, stackSize FROM item_basic WHERE aH = %u";
+    const int8* fmtQuery = "SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack) \
+                            FROM item_basic \
+                            LEFT JOIN auction_house \
+                            ON item_basic.itemid = auction_house.itemid AND auction_house.buyer_name IS NULL \
+                            WHERE aH = %u \
+                            GROUP BY item_basic.itemid";
 
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, AHCategoryID);
 
@@ -94,8 +99,8 @@ std::vector<ahItem*> CAuctionHouse::GetItemsToCategry(uint8 AHCategoryID)
 
             PAHItem->ItemID	= Sql_GetIntData(SqlHandle,0);
 
-            PAHItem->SinglAmount	 = 0;
-            PAHItem->StackAmount = 0;
+            PAHItem->SinglAmount = Sql_GetIntData(SqlHandle,2);
+            PAHItem->StackAmount = Sql_GetIntData(SqlHandle,3);
 
             if (Sql_GetIntData(SqlHandle,1) == 1)
             {

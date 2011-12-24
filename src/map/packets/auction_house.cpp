@@ -50,7 +50,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action)
     }
 }
 
-CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem)
+CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quantity)
 {
     this->type = 0x4C;
     this->size = 0x1E;
@@ -59,12 +59,12 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem)
     WBUFB(data,(0x05)-4) = 0xFF;
     WBUFB(data,(0x06)-4) = IsAuctionOpen;
     WBUFB(data,(0x07)-4) = 0x02;
-    WBUFL(data,(0x08)-4) = AUCTION_FEE(PItem->getCharPrice());
+    WBUFL(data,(0x08)-4) = 0x00; // AUCTION_FEE(PItem->getCharPrice());
 
     WBUFL(data,(0x0E)-4) = PItem->getID();
     WBUFB(data,(0x0C)-4) = PItem->getSlotID();
 	
-    WBUFB(data,(0x10)-4) = PItem->getStackSize() != PItem->getQuantity();   // продается один предмет, а не вся пачка
+    WBUFB(data,(0x10)-4) = quantity;
 	WBUFB(data,(0x30)-4) = AUCTION_ID;                                      
 }
 
@@ -76,6 +76,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot)
     WBUFB(data,(0x04)-4) = action;       
     WBUFB(data,(0x05)-4) = slot;                // порядковый номер предмета
     WBUFB(data,(0x06)-4) = IsAuctionOpen;
+    
 
     if (slot < 5)
     {

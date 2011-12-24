@@ -775,7 +775,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quanti
 		return SlotID;
 	}
 	ShowDebug(CL_CYAN"charplugin::AddItem: Item <%i> is not found in a database\n"CL_RESET, ItemID);
-	return -1;
+	return ERROR_SLOTID;
 }
 
 /************************************************************************

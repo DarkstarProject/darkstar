@@ -1044,9 +1044,10 @@ int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
     {	
         case 0x04:
         { 
-            uint32 price  = RBUFL(data,(0x08));
-            uint8  slot   = RBUFB(data,(0x0C));
-            uint32 itemid = RBUFW(data,(0x0E));
+            uint32 price    = RBUFL(data,(0x08));
+            uint8  slot     = RBUFB(data,(0x0C));
+            uint32 itemid   = RBUFW(data,(0x0E));
+            uint8  quantity = RBUFB(data,(0x10));
 
             CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
 
@@ -1056,17 +1057,17 @@ int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
                !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
             {
                 PItem->setCharPrice(price);
-                PChar->pushPacket(new CAuctionHousePacket(action, PItem));
+                PChar->pushPacket(new CAuctionHousePacket(action, PItem, quantity));
             }
 		} 
-            break;
+        break;
         case 0x05: 
         { 
             // TODO: необходим таймер последного запроса статуса продаж; открывать список не чаще раза в 5 секунд
 
             PChar->pushPacket(new CAuctionHousePacket(action));
 		} 
-            break;
+        break;
         case 0x0A: 
         { 
             // TODO: в идеале, хорошо было бы загружать продаваемые предметы в универсальный контейнер персонажа
@@ -1078,27 +1079,61 @@ int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
                 PChar->pushPacket(new CAuctionHousePacket(0x0C, slot));
             }
 		}
-            break;
+        break;
 		case 0x0B: 
         {
+            uint32 price    = RBUFL(data,(0x08));
+            uint8  slot     = RBUFB(data,(0x0C));
+            uint8  quantity = RBUFB(data,(0x10));
+            
+            CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
 
+            if ((PItem != NULL) && 
+               !(PItem->getSubType() & ITEM_LOCKED) &&
+               !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
+            {
+                if (quantity == 0 &&
+                   (PItem->getStackSize() == 1 ||
+                    PItem->getStackSize() != PItem->getQuantity()))
+                {
+                    ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Incorrect quantity of item\n"CL_RESET);
+                    return 0;
+                }
+
+                const int8* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) \
+									    VALUES(%u,%u,%u,'%s',%u,%u)";
+
+			    if (Sql_Query(SqlHandle, 
+                              fmtQuery,
+                              PItem->getID(),
+                              quantity == 0,
+                              PChar->id,
+                              PChar->GetName(),
+                              CVanaTime::getInstance()->getSysTime(),
+                              price) == SQL_ERROR)
+			    {
+				    ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item to database\n"CL_RESET);
+				    return 0;
+			    }
+                charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(quantity != 0 ? 1 : PItem->getStackSize()));
+            }
 		} 
-            break;
+        break;
 		case 0x0E: 
         {
 			
         } 
-            break;
+        break;
         case 0x0C: 
         {
 		
 		}
-            break;
+        break;
 		case 0x0D: 
         {
             PChar->pushPacket(new CAuctionHousePacket(action, slotid));
 		} 
-            break;
+        break;
 	}
     return 0;
 }

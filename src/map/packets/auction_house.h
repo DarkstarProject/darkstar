@@ -46,23 +46,9 @@ class CAuctionHousePacket : public CBasicPacket
 {
 public:
 
-    CAuctionHousePacket(uint8 action);                  // отправляем персонажу меню аукциона
-    CAuctionHousePacket(uint8 action, uint8 slot);      // отправляем список продаваемых персонажем предметов
-    CAuctionHousePacket(uint8 action, CItem* PItem);
+    CAuctionHousePacket(uint8 action);                                  // отправляем персонажу меню аукциона
+    CAuctionHousePacket(uint8 action, uint8 slot);                      // отправляем список продаваемых персонажем предметов
+    CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quantity);
 };
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
