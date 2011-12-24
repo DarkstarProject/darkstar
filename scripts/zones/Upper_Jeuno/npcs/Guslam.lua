@@ -86,7 +86,7 @@ function onTrigger(player,npc)
 			   player:getQuestStatus(JEUNO,BORGHERTZ_S_CALLING_HANDS) == QUEST_AVAILABLE) then 
 			player:startEvent(0x009b); -- Start Quest for SMN
 		else
-			player:startEvent(0x009b); -- Standard dialog
+			player:startEvent(0x009a); -- Standard dialog
 		end
 	elseif(player:getVar("BorghertzAlreadyActiveWithJob") >= 1 and player:hasKeyItem(OLD_GAUNTLETS) == false) then 
 		player:startEvent(0x002b); -- During Quest before KI obtained

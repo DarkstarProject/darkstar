@@ -58,10 +58,9 @@ function onEventFinish(player,csid,option)
 		else 
 			player:completeQuest(JEUNO,PAINFUL_MEMORY);
 			player:delKeyItem(228); -- Mertaire's Bracelet (key item).
-			killer:setVar("painfulMemoryTrosKilled",0);
+			player:setVar("painfulMemoryTrosKilled",0);
 			player:addItem(16766);
 			player:messageSpecial(ITEM_OBTAINED,16766); -- Paper Knife
 		end
-		
 	end
 end;
