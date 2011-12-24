@@ -26760,7 +26760,7 @@ INSERT INTO `mob_spawn_points` VALUES ('17576261', 'Tomb_Warrior', '9759', '0.00
 INSERT INTO `mob_spawn_points` VALUES ('17576262', 'Tomb_Warrior', '9759', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17576263', 'Tomb_Mage', '9758', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17576264', 'Tomb_Mage', '9758', '0.000', '0.000', '0.000', '0');
-INSERT INTO `mob_spawn_points` VALUES ('17576265', 'Yum_Kimil', '9764', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('17576265', 'Yum_Kimil', '9764', '-414.000', '8.000', '499.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17576321', 'Titan\'s_Gate', '9761', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17576325', 'East_Plate', '9757', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17580033', 'Pirate_Pugil', '9790', '0.000', '0.000', '0.000', '0');
