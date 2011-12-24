@@ -1,16 +1,11 @@
 -----------------------------------
 --  Area: Northern San d'Oria
---  NPC: Bertenont
+--  NPC: Lotine
 --  Type: Standard Info NPC
---  Involved in Quest: Lure of the Wildcat
---  Involved in Quest: Her Memories: The Faux Pas
 --  @zone: 231
---  @pos: -165.449 0.000 226.443
+--  @pos: -137.504 11.999 171.090
 --
 -----------------------------------
-
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,7 +19,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,BERTENONT_DIALOG);
+	rand = math.random(1,2);
+      if(rand == 1)then
+         player:startEvent(0x028c);
+      else
+         player:startEvent(0x0290);
+      end 	
 end;
 
 -----------------------------------

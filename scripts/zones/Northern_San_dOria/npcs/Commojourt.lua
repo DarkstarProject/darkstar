@@ -31,7 +31,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x028d);
+	rand = math.random(1,2);
+      if(rand == 1)then
+         player:startEvent(0x028d);
+      else
+         player:startEvent(0x0291);
+      end
 end; 
 
 -----------------------------------

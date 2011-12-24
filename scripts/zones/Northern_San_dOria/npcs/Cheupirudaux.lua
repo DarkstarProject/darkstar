@@ -1,16 +1,12 @@
 -----------------------------------
 --  Area: Northern San d'Oria
---  NPC: Bertenont
---  Type: Standard Info NPC
---  Involved in Quest: Lure of the Wildcat
---  Involved in Quest: Her Memories: The Faux Pas
+--  NPC: Cheupirudaux
+--  Type: Woodworking Guildmaster NPC
+--  Involved in Quest: It's Raining Mannequins!
 --  @zone: 231
---  @pos: -165.449 0.000 226.443
+--  @pos: -138.163 11.999 250.949
 --
 -----------------------------------
-
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,BERTENONT_DIALOG);
+	player:startEvent(0x026d);	
 end;
 
 -----------------------------------

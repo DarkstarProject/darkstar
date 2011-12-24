@@ -1,16 +1,11 @@
 -----------------------------------
 --  Area: Northern San d'Oria
---  NPC: Bertenont
+--  NPC: Shomo Pochachilo
 --  Type: Standard Info NPC
---  Involved in Quest: Lure of the Wildcat
---  Involved in Quest: Her Memories: The Faux Pas
 --  @zone: 231
---  @pos: -165.449 0.000 226.443
+--  @pos: 28.369 -0.199 30.061
 --
 -----------------------------------
-
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,7 +19,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,BERTENONT_DIALOG);
+
+	quest_FatherAndSon = player:getQuestStatus(SANDORIA,FATHER_AND_SON);
+	
+	if (quest_FatherAndSon == QUEST_COMPLETED) then 
+		player:startEvent(0x02b8);
+	else
+		player:startEvent(0x02a3);
+	end
+	
 end;
 
 -----------------------------------

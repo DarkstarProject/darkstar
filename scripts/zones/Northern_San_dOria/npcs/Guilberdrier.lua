@@ -1,16 +1,13 @@
 -----------------------------------
 --  Area: Northern San d'Oria
---  NPC: Bertenont
+--  NPC: Guilberdrier
 --  Type: Standard Info NPC
---  Involved in Quest: Lure of the Wildcat
---  Involved in Quest: Her Memories: The Faux Pas
+--  Involved in Quest: Flyers for Regine
+--  Involved in Quest: Exit the Gambler
 --  @zone: 231
---  @pos: -165.449 0.000 226.443
+--  @pos: -159.082 12.000 253.794
 --
 -----------------------------------
-
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,BERTENONT_DIALOG);
+	player:startEvent(0x020a);	
 end;
 
 -----------------------------------

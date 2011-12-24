@@ -1,16 +1,13 @@
 -----------------------------------
 --  Area: Northern San d'Oria
---  NPC: Bertenont
+--  NPC: Chasalvige
 --  Type: Standard Info NPC
---  Involved in Quest: Lure of the Wildcat
---  Involved in Quest: Her Memories: The Faux Pas
+--  Involved in Mission: The Road Forks
+--  Involved in Mission: Promathia Mission 5 - Three Paths
 --  @zone: 231
---  @pos: -165.449 0.000 226.443
+--  @pos: 96.432 -0.520 134.046
 --
 -----------------------------------
-
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,7 +21,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,BERTENONT_DIALOG);
 end;
 
 -----------------------------------

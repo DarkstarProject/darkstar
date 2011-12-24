@@ -1,16 +1,11 @@
 -----------------------------------
 --  Area: Northern San d'Oria
---  NPC: Bertenont
---  Type: Standard Info NPC
---  Involved in Quest: Lure of the Wildcat
---  Involved in Quest: Her Memories: The Faux Pas
+--  NPC: Jeanvirgaud
+--  Type: Outpost Teleporter NPC
 --  @zone: 231
---  @pos: -165.449 0.000 226.443
+--  @pos: 45.559 -0.199 26.300
 --
 -----------------------------------
-
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,BERTENONT_DIALOG);
+	player:startEvent(0x02cc);
 end;
 
 -----------------------------------
