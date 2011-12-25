@@ -35,15 +35,15 @@ CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE Mes
 	this->type = 0x17;
 	this->size = ((24 + (strlen(buff) + 3) >> 1) + 1) & 0xFE;
 
-	//DSP_DEBUG_BREAK_IF(strlen(buff) > 256);
-	//DSP_DEBUG_BREAK_IF(PChar->name.size() > 15);
+	DSP_DEBUG_BREAK_IF(strlen(buff) > 256);
+	DSP_DEBUG_BREAK_IF(PChar->name.size() > 15);
 
 	if (PChar->nameflags.flags & FLAG_GM)
 	{
 		WBUFB(data,(0x05)-4) = 0x01;
 	}
-
 	WBUFB(data,(0x04)-4) = MessageType;
+    WBUFB(data,(0x06)-4) = PChar->getZone();
 
 	memcpy(data+(0x08)-4, PChar->GetName(), PChar->name.size());
 	memcpy(data+(0x18)-4, buff, strlen(buff));

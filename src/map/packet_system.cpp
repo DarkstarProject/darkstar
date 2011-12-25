@@ -1026,8 +1026,12 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
 
 int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
 {
-	uint8 action  = RBUFB(data,(0x04));
-    uint8 slotid  = RBUFB(data,(0x05));
+	uint8  action   = RBUFB(data,(0x04));
+    uint8  slotid   = RBUFB(data,(0x05));
+    uint32 price    = RBUFL(data,(0x08));
+    uint8  slot     = RBUFB(data,(0x0C));
+    uint32 itemid   = RBUFW(data,(0x0E));
+    uint8  quantity = RBUFB(data,(0x10));
 
     ShowDebug(CL_CYAN"AH Action (%02hx)\n"CL_RESET, RBUFB(data,(0x04)));
     PrintPacket(data);
@@ -1044,11 +1048,6 @@ int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
     {	
         case 0x04:
         { 
-            uint32 price    = RBUFL(data,(0x08));
-            uint8  slot     = RBUFB(data,(0x0C));
-            uint32 itemid   = RBUFW(data,(0x0E));
-            uint8  quantity = RBUFB(data,(0x10));
-
             CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
 
             if ((PItem != NULL) && 
@@ -1082,10 +1081,6 @@ int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
         break;
 		case 0x0B: 
         {
-            uint32 price    = RBUFL(data,(0x08));
-            uint8  slot     = RBUFB(data,(0x0C));
-            uint8  quantity = RBUFB(data,(0x10));
-            
             CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
 
             if ((PItem != NULL) && 
@@ -1121,7 +1116,14 @@ int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
         break;
 		case 0x0E: 
         {
-			
+            if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
+            {
+                // 0x4C, 0x1E, 0xD9, 0x22, 0x0E, 0x07, 0xE5 // You cannot bid. Inventory is full.
+            }
+            else
+            {
+                // ...
+            }
         } 
         break;
         case 0x0C: 
@@ -1759,6 +1761,7 @@ int32 SmallPacket0x0B5(CCharEntity* PChar, int8* data)
 				}
 			}
 			break;
+            case MESSAGE_YELL: PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256)); break;
 		}
 	}
 	return 0;

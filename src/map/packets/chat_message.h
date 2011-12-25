@@ -30,15 +30,16 @@
 
 enum CHAT_MESSAGE_TYPE
 {
-	MESSAGE_SAY			= 0,
-	MESSAGE_SHOUT		= 1,
-	MESSAGE_UNKNOWN		= 2,
-	MESSAGE_TELL		= 3,
-	MESSAGE_PARTY		= 4,
-	MESSAGE_LINKSHELL	= 5,
-	MESSAGE_SYSTEM_1	= 6,
-	MESSAGE_SYSTEM_2	= 7,
-	MESSAGE_EMOTION		= 8
+    MESSAGE_SAY         = 0x00,
+    MESSAGE_SHOUT       = 0x01,
+    MESSAGE_UNKNOWN     = 0x02,
+    MESSAGE_TELL        = 0x03,
+    MESSAGE_PARTY       = 0x04,
+    MESSAGE_LINKSHELL   = 0x05,
+    MESSAGE_SYSTEM_1    = 0x06,
+    MESSAGE_SYSTEM_2    = 0x07,
+    MESSAGE_EMOTION     = 0x08,
+    MESSAGE_YELL        = 0x1A,
 };
 
 /************************************************************************
