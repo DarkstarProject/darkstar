@@ -943,6 +943,9 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
 	uint8 boxtype = RBUFB(data,(0x05));
 	uint8 slotID  = RBUFB(data,(0x06));
 
+    ShowDebug(CL_CYAN"DeliveryBox Action (%02hx)\n"CL_RESET, RBUFB(data,(0x04)));
+    PrintPacket(data);
+
 	// 0x01 - отправка клиенту старых предметов
 	// 0x02 - добавление предметов в список отправляемых (подготовка к отправке)
 	// 0x03 - подтверждение отправки (отправляем предметы)
@@ -965,19 +968,83 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
 		{
 			// отправляем персонажу старые предметы (предметы, которые персонаж уже видел в delivery box)
 			// все старые предметы расположены в ячейках 0-7
+
+			const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender \
+                                    FROM delivery_box \
+							        WHERE charid = %u \
+							        ORDER BY slot \
+							        LIMIT 8";
+
+	        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+	        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	        {
+                uint8 slotid    = 8;
+                uint8 old_items = 0;
+
+                PChar->UContainer->Clean();
+                PChar->UContainer->SetType(UCONTAINER_DELIVERYBOX);
+
+		        while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		        {
+                    CItem* PItem = itemutils::GetItem(Sql_GetUIntData(SqlHandle,0));
+
+                    PItem->setSubID(Sql_GetIntData(SqlHandle,1));
+                    PItem->setSlotID(Sql_GetIntData(SqlHandle,2));
+                    PItem->setQuantity(Sql_GetUIntData(SqlHandle,3));
+                    PItem->setSender(Sql_GetData(SqlHandle,4));
+
+                    if (PItem->getSlotID() < 8)
+                    {
+                        old_items++;
+                        PChar->UContainer->SetItem(PItem->getSlotID(), PItem);
+                        continue;
+                    }
+                    PChar->UContainer->SetItem(slotid++, PItem);
+		        }
+                for (uint8 i = 0; i < 8; ++i)
+                {
+                    if (!PChar->UContainer->IsSlotEmpty(i))
+                    {
+                        PChar->pushPacket(new CDeliveryBoxPacket(action, PChar->UContainer->GetItem(i), old_items));
+                    }
+                }
+	        }
 			return 0;
 		}
 		case 0x05:
 		{
 			// отправляем персонажу количество новых предметов (предметы, которые персонаж еще не видел в delivery box)
-			// все новые предметы помещаются в базу начиная со значения 10, но навсякий случай проверка идет начиная с 8
+			// все новые предметы помещаются в контейнет начиная со значения 8
 			// перемещаем новые предметы в свободные ячейки delivery box
-			//
-			// запрашиваем из базы только 8 предметов и сортируем результат по полю slotid
-			// если один из slotid больше 7, то с полной уверенностью можно сказать, 
-			// что в почте есть свободные ячейки и предмет нужно переместить в первую из них
+			
+            if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX) return 0;
+ 
+            uint8 new_items = 0;
+            
+            for (uint8 slotid = 8; slotid < 16; ++slotid)
+		    {
+                if (PChar->UContainer->IsSlotEmpty(slotid)) break;
 
-			PChar->pushPacket(new CDeliveryBoxPacket(action,0));
+                CItem* PItem = PChar->UContainer->GetItem(slotid);
+
+                for (uint8 i = 0; i < 8 ; ++i)
+                {
+                    if (PChar->UContainer->IsSlotEmpty(i))
+                    {
+                        if (Sql_Query(SqlHandle, "UPDATE delivery_box SET slot = %u WHERE charid = %u AND slot = %u", i, PChar->id, PItem->getSlotID()) != SQL_ERROR &&
+                            Sql_AffectedRows(SqlHandle) != 0)
+                        {
+                            PItem->setSlotID(i);
+                            PChar->UContainer->SetItem(i, PItem);
+                            PChar->UContainer->SetItem(slotid, NULL);
+                            new_items++;
+                        }
+                        break;
+                    }
+                }
+			}
+			PChar->pushPacket(new CDeliveryBoxPacket(action, new_items));
 			return 0;
 		}
 		case 0x06:
@@ -1003,18 +1070,43 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
 			//
 			// зачем нужен этот пустой пакет я не знаю, но и без него все отлично работает
 			// предположительно он отчищает целевую ячейку от предметов, на всякий случай
+
+            if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX) return 0;
+
+            if (!PChar->UContainer->IsSlotEmpty(slotID))
+            {
+                PChar->pushPacket(new CDeliveryBoxPacket(action, PChar->UContainer->GetItem(slotID), 1));
+            }
 			return 0;
 		}
-		case 0x0b:
+		case 0x0B:
 		{
-			// удаление предмета
+            // удаление предмета из ячейки
+
+            if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX) return 0;
+
+            if (!PChar->UContainer->IsSlotEmpty(slotID))
+            {
+                if (Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u", PChar->id, slotID) != SQL_ERROR && 
+                    Sql_AffectedRows(SqlHandle) != 0)
+                {
+                    PChar->pushPacket(new CDeliveryBoxPacket(action, PChar->UContainer->GetItem(slotID), 1));
+                }
+            }
 			return 0;
 		}
+        case 0x0F:
+        {
+            if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX) return 0;
+
+            PChar->UContainer->Clean(true);
+        }
+        break;
 	}
 	
 	// отправка простых действий - открыть окно почты, закрыть окно почты
 
-	PChar->pushPacket(new CDeliveryBoxPacket(action,0));
+	PChar->pushPacket(new CDeliveryBoxPacket(action, 0));
 	return 0;
 }
 

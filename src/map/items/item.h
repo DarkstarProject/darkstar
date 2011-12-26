@@ -105,9 +105,11 @@ public:
 	void		setLocationID(uint8 LocationID);
 	void		setSlotID(uint8 SlotID);
 
-
 	const int8* getName();
 	void		setName(int8* name);
+
+    const int8* getSender();
+	void		setSender(int8* sender);
 
 	const int8* getSignature();
 	void		setSignature(int8* signature);
@@ -129,6 +131,7 @@ private:
 	uint8		m_locationID;
 
 	string_t	m_name;
+    string_t	m_send;
 	string_t	m_sign;
 };
 

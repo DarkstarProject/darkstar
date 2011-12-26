@@ -29,8 +29,7 @@
 
 #include "../charentity.h"
 #include "../vana_time.h"
-
-#include "../items/item.h"
+#include "../itemutils.h"
 
 
 bool IsAuctionOpen = true;  // торговля на аукционе разрешена 

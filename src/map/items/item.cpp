@@ -159,6 +159,17 @@ void CItem::setName(int8* name)
 	m_name.insert(0,name);
 }
 
+const int8* CItem::getSender()
+{
+    return m_send.c_str();
+}
+
+void CItem::setSender(int8* sender)
+{
+    m_send.clear();
+    m_send.insert(0,sender);
+}
+
 const int8* CItem::getSignature()
 {
 	return m_sign.c_str();

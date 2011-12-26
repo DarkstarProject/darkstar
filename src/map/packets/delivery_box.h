@@ -28,13 +28,10 @@
 
 #include "basic.h"
 
-// если не ошибаюсь, то можно добавить любое имя аукциона, главное начать с префикса "AH-"
-
 #define AH_SANDORIA		"AH-SandOria"
 #define AH_JEUNO		"AH-Jeuno"
 #define AH_WINDURST		"AH-Windurst"
 #define AH_BASTOK		"AH-Bastok"
-#define AH_VANADIEL		"AH-Vanadiel"
 
 /************************************************************************
 *																		*
@@ -47,6 +44,7 @@ class CDeliveryBoxPacket : public CBasicPacket
 public:
 
 	CDeliveryBoxPacket(uint8 action, uint8 count);
+    CDeliveryBoxPacket(uint8 action, CItem* item, uint8 count);
 };
 
 #endif

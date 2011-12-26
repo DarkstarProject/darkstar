@@ -33,10 +33,11 @@ enum UCONTAINERTYPE
 	UCONTAINER_SYNTES,
 	UCONTAINER_FISHING,
 	UCONTAINER_SHOP,
-	UCONTAINER_PC_TRADE,
+	UCONTAINER_PC_TRADE,    // возможно необходим лишь один тип UCONTAINER_TRADE
 	UCONTAINER_NPC_TRADE,
 	UCONTAINER_USEITEM,
-    UCONTAINER_AUCTION
+    UCONTAINER_AUCTION,
+    UCONTAINER_DELIVERYBOX
 };
 
 #define UCONTAINER_SIZE		16
@@ -62,8 +63,9 @@ public:
 	void	SetType(UCONTAINERTYPE Type);
 	void	SetItem(uint8 slotID, CItem* PItem);
 
-	void	Clean();
+	void	Clean(bool NeedDelete = false);
 	bool	IsContainerEmpty();
+    bool    IsSlotEmpty(uint8 slotID);
 
 	CItem*	GetItem(uint8 slotID);
 

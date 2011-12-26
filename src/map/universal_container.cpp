@@ -44,10 +44,17 @@ CUContainer::CUContainer()
 *																		*
 ************************************************************************/
 
-void CUContainer::Clean()
+void CUContainer::Clean(bool NeedDelete)
 {
 	m_ContainerType = UCONTAINER_EMPTY;
 
+    if (NeedDelete)
+    {
+        for (uint8 i = 0; i < UCONTAINER_SIZE; ++i)
+        {
+            delete m_PItem[i];
+        }
+    }
 	memset(m_PItem, 0, sizeof(m_PItem));
 }
 
@@ -70,7 +77,7 @@ UCONTAINERTYPE CUContainer::GetType()
 
 void CUContainer::SetType(UCONTAINERTYPE Type)
 {
-	//DSP_DEBUG_BREAK_IF(m_ContainerType != UCONTAINER_EMPTY);
+	DSP_DEBUG_BREAK_IF(m_ContainerType != UCONTAINER_EMPTY);
 
 	m_ContainerType = Type;
 }
@@ -84,6 +91,21 @@ void CUContainer::SetType(UCONTAINERTYPE Type)
 bool CUContainer::IsContainerEmpty()
 {
 	return (m_ContainerType == UCONTAINER_EMPTY);
+}
+
+/************************************************************************
+*                                                                       *
+*  Проверяем, пуста ли ячейка                                           *
+*                                                                       *
+************************************************************************/
+
+bool CUContainer::IsSlotEmpty(uint8 slotID)
+{
+    if (slotID < UCONTAINER_SIZE)
+	{
+        return m_PItem[slotID] == NULL;
+    }
+    return true;
 }
 
 /************************************************************************
