@@ -39,12 +39,11 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 count)
 
 	WBUFB(data,(0x04)-4) = action;
 
-	if (action = 0x05)
+	if (action == 0x05)
 	{
 		WBUFB(data,(0x05)-4) = 0x01;		
 		WBUFB(data,(0x0E)-4) = count;
 	}
-
 	WBUFB(data,(0x0C)-4) = 0x01;
 }
 

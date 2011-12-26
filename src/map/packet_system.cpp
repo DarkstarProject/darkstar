@@ -969,6 +969,9 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
 			// отправляем персонажу старые предметы (предметы, которые персонаж уже видел в delivery box)
 			// все старые предметы расположены в ячейках 0-7
 
+            PChar->UContainer->Clean();
+            PChar->UContainer->SetType(UCONTAINER_DELIVERYBOX);
+
 			const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender \
                                     FROM delivery_box \
 							        WHERE charid = %u \
@@ -981,9 +984,6 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
 	        {
                 uint8 slotid    = 8;
                 uint8 old_items = 0;
-
-                PChar->UContainer->Clean();
-                PChar->UContainer->SetType(UCONTAINER_DELIVERYBOX);
 
 		        while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 		        {
@@ -1010,7 +1010,7 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
                     }
                 }
 	        }
-			return 0;
+            return 0;
 		}
 		case 0x05:
 		{
@@ -1071,21 +1071,25 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
 			// зачем нужен этот пустой пакет я не знаю, но и без него все отлично работает
 			// предположительно он отчищает целевую ячейку от предметов, на всякий случай
 
-            if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX) return 0;
-
-            if (!PChar->UContainer->IsSlotEmpty(slotID))
+            if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
+               !PChar->UContainer->IsSlotEmpty(slotID))
             {
                 PChar->pushPacket(new CDeliveryBoxPacket(action, PChar->UContainer->GetItem(slotID), 1));
             }
 			return 0;
 		}
+        case 0x09:
+        case 0x0A:
+        {
+            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 142));
+        }
+        break;
 		case 0x0B:
 		{
             // удаление предмета из ячейки
 
-            if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX) return 0;
-
-            if (!PChar->UContainer->IsSlotEmpty(slotID))
+            if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
+               !PChar->UContainer->IsSlotEmpty(slotID))
             {
                 if (Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u", PChar->id, slotID) != SQL_ERROR && 
                     Sql_AffectedRows(SqlHandle) != 0)
@@ -1097,9 +1101,10 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
 		}
         case 0x0F:
         {
-            if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX) return 0;
-
-            PChar->UContainer->Clean(true);
+            if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX)
+            {
+                PChar->UContainer->Clean(true);
+            }
         }
         break;
 	}
