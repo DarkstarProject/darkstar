@@ -4,11 +4,10 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
--- timeoffset Action
+-- Action
 -----------------------------------
 
-function timeoffset(player,offset)
+function onTrigger(player,offset)
 	VanadielTimeOffset(offset);
 end;

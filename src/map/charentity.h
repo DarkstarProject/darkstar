@@ -59,6 +59,7 @@ enum QUESTAREA
 
 #define FLAG_INEVENT		0x00000002 // флаг под вопросом
 #define FLAG_CHOCOBO		0x00000040
+#define FLAG_WALLHACK       0x00000200
 #define FLAG_INVITE			0x00000800
 #define FLAG_ANON			0x00001000
 #define FLAG_UNKNOWN		0x00002000

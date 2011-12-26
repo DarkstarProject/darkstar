@@ -5,9 +5,9 @@
 -----------------------------------
 
 -----------------------------------
--- tp Action
+-- Action
 -----------------------------------
 
-function tp(player,tp)
+function onTrigger(player,tp)
 	player:setTP(tp);
 end;

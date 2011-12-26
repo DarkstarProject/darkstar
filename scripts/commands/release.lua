@@ -5,9 +5,9 @@
 -----------------------------------
 
 -----------------------------------
--- release Action
+-- Action
 -----------------------------------
 
-function release(player)
+function onTrigger(player)
 	player:release();
 end;

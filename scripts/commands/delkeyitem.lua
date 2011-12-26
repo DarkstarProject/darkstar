@@ -4,11 +4,10 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
--- delKeyItem Action
+-- Action
 -----------------------------------
 
-function delkeyitem(player,keyID)
+function onTrigger(player,keyID)
 	player:delKeyItem(keyID);
 end;

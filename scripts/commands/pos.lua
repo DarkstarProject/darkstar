@@ -4,11 +4,10 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
--- pos Action
+-- Action
 -----------------------------------
 
-function pos(player,x,y,z)
+function onTrigger(player,x,y,z)
 	player:setPos(x,y,z,0);
 end;

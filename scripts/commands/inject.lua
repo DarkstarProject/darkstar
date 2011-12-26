@@ -4,11 +4,10 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
--- inject Action
+-- Action
 -----------------------------------
 
-function inject(player,packet)
+function onTrigger(player,packet)
 	player:injectPacket(packet);
 end;

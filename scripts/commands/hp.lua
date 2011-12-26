@@ -5,9 +5,9 @@
 -----------------------------------
 
 -----------------------------------
--- hp Action
+-- Action
 -----------------------------------
 
-function hp(player,hp)
+function onTrigger(player,hp)
 	player:setHP(hp);
 end;

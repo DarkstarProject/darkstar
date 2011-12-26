@@ -5,9 +5,9 @@
 -----------------------------------
 
 -----------------------------------
--- where Action
+-- Action
 -----------------------------------
 
-function where(player)
+function onTrigger(player)
 	player:showPosition();
 end;

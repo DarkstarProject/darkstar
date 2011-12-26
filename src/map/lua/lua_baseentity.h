@@ -180,6 +180,7 @@ public:
 
 	int32 needToZone(lua_State*);			// Check if player has zoned since the flag has been raised
 
+    int32 setFlag(lua_State*);
 	int32 showPosition(lua_State*);			// Display current position of character
 	int32 injectPacket(lua_State*);			// Send the character a packet kept in a file 
 	

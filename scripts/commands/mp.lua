@@ -5,9 +5,9 @@
 -----------------------------------
 
 -----------------------------------
--- mp Action
+-- Action
 -----------------------------------
 
-function mp(player,mp)
+function onTrigger(player,mp)
 	player:setMP(mp);
 end;

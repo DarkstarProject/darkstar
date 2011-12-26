@@ -1,5 +1,5 @@
 -----------------------------------
---	[Command name]: spawnmob
+--	[Command name]: wallhack
 --	[Author      ]: 
 --	[Description ]: 
 -----------------------------------
@@ -8,6 +8,6 @@
 -- Action
 -----------------------------------
 
-function onTrigger(player,mobid)
-	SpawnMOBByID(mobid);
+function onTrigger(player)
+	player:setFlag(0x00000200);
 end;

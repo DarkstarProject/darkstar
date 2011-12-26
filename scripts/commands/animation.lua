@@ -4,11 +4,10 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
--- setAnimation Action
+-- Action
 -----------------------------------
 
-function animation(player,animation)
+function onTrigger(player,animation)
 	player:setAnimation(animation);
 end;

@@ -4,12 +4,11 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
--- cs Action
+-- Action
 -----------------------------------
 
-function cs(player,csid)
+function onTrigger(player,csid)
 	player:startEvent(csid);
 end;
 

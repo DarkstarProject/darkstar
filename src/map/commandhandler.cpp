@@ -166,12 +166,12 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 	}
 
 	//Загрузка адреса функции в стек.
-	lua_pushstring(m_LState,CmdHandler->CmdName.c_str());
+	lua_pushstring(m_LState, "onTrigger");
 	lua_gettable(m_LState,LUA_GLOBALSINDEX);
 
 	if( lua_isnil(m_LState,-1) || !lua_isfunction(m_LState,-1) )
 	{
-		ShowError("cmdhandler::call: can't load the function:<%s>\n",CmdHandler->CmdName.c_str());
+		ShowError("cmdhandler::call: can't load the function: onTrigger\n");
 		lua_pop(m_LState,-1);
 		return -1;
 	}

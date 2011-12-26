@@ -4,11 +4,10 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
--- addKeyItem Action
+-- Action
 -----------------------------------
 
-function addkeyitem(player,keyID)
+function onTrigger(player,keyID)
 	player:addKeyItem(keyID);
 end;

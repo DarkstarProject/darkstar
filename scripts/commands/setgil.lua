@@ -4,11 +4,10 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
--- addGil Action
+-- Action
 -----------------------------------
 
-function setgil(player,quantity)
+function onTrigger(player,quantity)
 	player:setGil(quantity);
 end;

@@ -4,11 +4,10 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
--- addItem Action
+-- Action
 -----------------------------------
 
-function additem(player,itemID,quantity)
+function onTrigger(player,itemID,quantity)
 	player:addItem(itemID,quantity);
 end;

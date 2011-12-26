@@ -4,11 +4,10 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
--- speed Action
+-- Action
 -----------------------------------
 
-function speed(player,speed)
+function onTrigger(player,speed)
 	player:addMod(169,speed);
 end;

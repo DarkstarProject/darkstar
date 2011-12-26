@@ -4,11 +4,10 @@
 --	[Description ]: 
 -----------------------------------
 
-
 -----------------------------------
 -- zone Action
 -----------------------------------
 
-function zone(player,zoneID)
+function onTrigger(player,zoneID)
 	player:setPos(0,0,0,0,zoneID);
 end;
