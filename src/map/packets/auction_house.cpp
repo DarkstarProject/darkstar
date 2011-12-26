@@ -91,3 +91,14 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot)
         WBUFB(data,(0x30)-4) = AUCTION_ID;
     }
 }
+
+CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, uint16 itemid, uint32 price)
+{
+    this->type = 0x4C;
+    this->size = 0x1E;
+
+    WBUFB(data,(0x04)-4) = action;  
+    WBUFB(data,(0x06)-4) = message;
+    WBUFL(data,(0x08)-4) = price;
+    WBUFW(data,(0x0C)-4) = itemid;
+}

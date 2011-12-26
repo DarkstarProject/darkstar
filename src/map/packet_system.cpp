@@ -192,7 +192,7 @@ int32 SmallPacket0x00A(CCharEntity* PChar, int8* data, map_session_data_t* sessi
 	}
 	else
 	{
-		//DSP_DEBUG_BREAK_IF(PChar->status != STATUS_NORMAL);	 // статус персонажа должен быть STATUS_NORMAL
+		DSP_DEBUG_BREAK_IF(PChar->status != STATUS_NORMAL);	 // статус персонажа должен быть STATUS_NORMAL
 	}
 
 	int16 EventID = luautils::OnZoneIn(PChar);
@@ -1030,7 +1030,7 @@ int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
     uint8  slotid   = RBUFB(data,(0x05));
     uint32 price    = RBUFL(data,(0x08));
     uint8  slot     = RBUFB(data,(0x0C));
-    uint32 itemid   = RBUFW(data,(0x0E));
+    uint16 itemid   = RBUFW(data,(0x0E));
     uint8  quantity = RBUFB(data,(0x10));
 
     ShowDebug(CL_CYAN"AH Action (%02hx)\n"CL_RESET, RBUFB(data,(0x04)));
@@ -1116,13 +1116,65 @@ int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
         break;
 		case 0x0E: 
         {
+            itemid = RBUFW(data,(0x0C));
+
             if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
             {
-                // 0x4C, 0x1E, 0xD9, 0x22, 0x0E, 0x07, 0xE5 // You cannot bid. Inventory is full.
+                PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, 0, 0));
             }
             else
             {
-                // ...
+                CItem* PItem = itemutils::GetItemPointer(itemid);
+
+                if (PItem != NULL)
+                {
+                    if (PItem->getFlag() & ITEM_FLAG_RARE)
+                    {
+                        for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
+			            {
+				            if (PChar->getStorage(LocID)->SearchItem(itemid) != ERROR_SLOTID)
+				            {
+					            PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, 0, 0));           
+					            return 0;
+				            }
+			            }
+                    }
+                    CItem* gil  = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
+	
+	                if (gil != NULL && 
+                        gil->getType() & ITEM_CURRENCY &&
+                        gil->getQuantity() >= price)
+	                {
+                        const int8* fmtQuery = "UPDATE auction_house \
+                                                SET buyer_name = '%s', sale = %u, sell_date = %u \
+                                                WHERE itemid = %u AND buyer_name IS NULL AND stack = %u AND price <= %u \
+                                                ORDER BY price \
+                                                LIMIT 1";
+
+                        if (Sql_Query(SqlHandle, 
+                                      fmtQuery, 
+                                      PChar->GetName(), 
+                                      price, 
+                                      CVanaTime::getInstance()->getSysTime(),
+                                      itemid,
+                                      quantity == 0,
+                                      price) != SQL_ERROR &&
+                            Sql_AffectedRows(SqlHandle) != 0)
+                        {
+                            uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemid, (quantity == 0 ? PItem->getStackSize() : 1));
+
+			                if (SlotID != ERROR_SLOTID)
+			                {
+				                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price));
+
+                                PChar->pushPacket(new CAuctionHousePacket(action, 0x01, itemid, price));
+				                PChar->pushPacket(new CInventoryFinishPacket());
+                            }
+                            return 0;
+                        }
+                    }
+                }
+                PChar->pushPacket(new CAuctionHousePacket(action, 0xC5, itemid, price));
             }
         } 
         break;
@@ -1189,7 +1241,7 @@ int32 SmallPacket0x05A(CCharEntity* PChar, int8* data)
 
 /************************************************************************
 *																		*
-* Завершаем или обновляем текущее событие	 							*
+*  Завершаем или обновляем текущее событие                              *
 *																		*
 ************************************************************************/					
 
@@ -1211,8 +1263,8 @@ int32 SmallPacket0x05B(CCharEntity* PChar, int8* data)
 
 /************************************************************************
 *																		*
-* Завершаем или обновляем текущее событие								*
-* Так же требуется обновить позицию персонажа							*
+*  Завершаем или обновляем текущее событие                              *
+*  Так же требуется обновить позицию персонажа                          *
 *																		*
 ************************************************************************/					
 
@@ -1592,7 +1644,7 @@ int32 SmallPacket0x083(CCharEntity* PChar, int8* data)
 		{
 			uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
 
-			if (SlotID != 0xFF)
+			if (SlotID != ERROR_SLOTID)
 			{
 				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price * quantity));
 

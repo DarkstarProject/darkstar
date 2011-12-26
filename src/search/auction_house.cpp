@@ -55,17 +55,28 @@ std::vector<ahHistory*> CAuctionHouse::GetItemHystory(uint16 ItemID)
 {
     std::vector<ahHistory*> HistoryList;
 
-    for (uint8 i = 0; i < 10; ++i)
-    {
-        ahHistory* PAHHistory = new ahHistory;
+    const int8* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name \
+                            FROM auction_house \
+                            WHERE itemid = %u AND buyer_name IS NOT NULL \
+                            ORDER BY sell_date DESC \
+                            LIMIT 10";
 
-        PAHHistory->Price = 2500;
-        PAHHistory->Data = 1;
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, ItemID);
 
-        memcpy(PAHHistory->Name1, "Dia"+'\0', 4);
-        memcpy(PAHHistory->Name2, "Dia"+'\0', 4);
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		{
+            ahHistory* PAHHistory = new ahHistory;
 
-        HistoryList.push_back(PAHHistory);
+            PAHHistory->Price = Sql_GetUIntData(SqlHandle,0);
+            PAHHistory->Data  = Sql_GetUIntData(SqlHandle,1);
+
+            snprintf((int8*)PAHHistory->Name1, 15, "%s", Sql_GetData(SqlHandle,2));
+            snprintf((int8*)PAHHistory->Name2, 15, "%s", Sql_GetData(SqlHandle,3));
+
+            HistoryList.push_back(PAHHistory);
+        }
     }
     return HistoryList;
 }
