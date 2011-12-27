@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Lower Jeuno
 -- NPC: Teigero Bangero
--- Involved in Quests: Save the Clock Tower
+-- Involved in Quests: Save the Clock Tower, The Lost Cardian
 -- @zone 245
 -- @pos -58 0 -143
 -----------------------------------
@@ -28,7 +28,30 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x004B);
+	TheKindCardian = player:getQuestStatus(JEUNO,THE_KING_CARDIAN);
+
+	if(player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET) == QUEST_AVAILABLE) then 
+		player:startEvent(0x0022); -- Base Standard CS & dialog
+	elseif(player:getQuestStatus(JEUNO,COOK_S_PRIDE) ~= QUEST_COMPLETED) then 
+		rand = math.random(1,2);
+		if(rand == 1) then 
+			player:startEvent(0x004B); -- During Panta and Naruru Quests
+		else
+			player:startEvent(0x0020); -- Same...
+		end
+	elseif(player:getQuestStatus(JEUNO,THE_LOST_CARDIAN) == QUEST_AVAILABLE) then 
+		if(player:getVar("theLostCardianVar") == 0) then 
+			player:startEvent(0x001D); -- First dialog for "The lost cardien" quest
+		else
+			player:startEvent(0x0042);
+		end
+	elseif(TheKindCardian == QUEST_ACCEPTED) then 
+		player:startEvent(0x0042); -- During quest "The kind cardien"
+	elseif(TheKindCardian == QUEST_COMPLETED) then 
+		player:startEvent(0x0043); -- New standard dialog after "The kind cardien"
+	else
+		player:startEvent(0x0022); -- Base Standard CS & dialog
+	end
 end; 
 
 -----------------------------------
@@ -50,5 +73,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x004a) then 
 		player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
 		player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 128);
+	elseif(csid == 0x001D) then 
+		player:setVar("theLostCardianVar",1);
 	end
 end;

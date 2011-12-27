@@ -1,9 +1,14 @@
 -----------------------------------
 -- Area: Lower Jeuno
 -- NPC: Naruru
--- Standard Info NPC
+-- Starts and Finishes Quests: Cook's Pride
+-- @zone 245
+-- @pos -56 0 -138
 -----------------------------------
 
+require("scripts/globals/settings");
+package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/quests");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
@@ -19,7 +24,33 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0062);
+	TheWonderMagicSet = player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET);
+	CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
+	TheKindCardian = player:getQuestStatus(JEUNO,THE_KING_CARDIAN);
+	
+	if(TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then 
+		if(player:getVar("CooksPrideVar") == 0) then
+			player:startEvent(0x00BD); -- Start quest "Cook's pride" Long CS
+ 		else
+			player:startEvent(0x00BC); -- Start quest "Cook's pride" Short CS
+		end
+	elseif(CooksPride == QUEST_ACCEPTED and player:hasKeyItem(SUPER_SOUP_POT) == false) then 
+		player:startEvent(0x00BA); -- During quest "Cook's pride"
+	elseif(player:hasKeyItem(SUPER_SOUP_POT) == true) then 
+		player:startEvent(0x00BB); -- Finish quest "Cook's pride"
+	elseif(CooksPride == QUEST_COMPLETED and TheKindCardian == QUEST_AVAILABLE) then 
+		if(player:getVar("theLostCardianVar") == 0) then 
+			player:startEvent(0x001f); -- During quests "The lost cardian"
+		else
+			player:startEvent(0x0047); -- During quests "The lost cardian"
+		end
+	elseif(CooksPride == QUEST_COMPLETED and TheKindCardian ~= QUEST_COMPLETED) then
+		player:startEvent(0x0047); -- During quests "The kind cardien"
+	elseif(TheKindCardian == QUEST_COMPLETED) then
+		player:startEvent(0x0048); -- New standard dialog after the quest "The kind cardien"
+	else
+		player:startEvent(0x0062); -- Standard dialog
+	end
 end; 
 
 -----------------------------------
@@ -38,6 +69,24 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if(csid == 0x00BD and option == 0 or csid == 0x00BC and option == 0) then 
+		player:addQuest(JEUNO,COOK_S_PRIDE);
+	elseif(csid == 0x00BD and option == 1) then 
+		player:setVar("CooksPrideVar",1);
+	elseif(csid == 0x00BB) then 
+		if (player:getFreeSlotsCount() == 0) then
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13446);
+		else
+			player:completeQuest(JEUNO,COOK_S_PRIDE);
+			player:setTitle(MERCY_ERRAND_RUNNER);
+			player:delKeyItem(SUPER_SOUP_POT);
+			player:addGil(3000);
+			player:messageSpecial(GIL_OBTAINED,3000);
+			player:addItem(13446);
+			player:messageSpecial(ITEM_OBTAINED,13446); -- Mythril Ring
+			player:addFame(JEUNO,30);
+		end
+	end
 end;
 
 
