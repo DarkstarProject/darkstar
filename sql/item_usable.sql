@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Dim 12 Juin 2011 à 12:59
+-- GÃ©nÃ©rÃ© le : Mer 28 DÃ©cembre 2011 Ã  10:28
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnÃ©es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -135,14 +135,14 @@ INSERT INTO `item_usable` VALUES (4184, 0, 'kongou_inaho', 1, 1, 48, 0, 0, 0, 0)
 INSERT INTO `item_usable` VALUES (4185, 0, 'meifu_goma', 1, 1, 49, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4186, 0, 'airborne', 1, 1, 50, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4187, 0, 'bastok_mines_gate_glyph', 1, 10, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (4188, 0, 'bastok_markets_gate_glyph', 1, 10, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (4189, 0, 'port_bastok_gate_glyph', 1, 10, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (4190, 0, 'eastern_san_doria_gate_glyph', 1, 10, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (4191, 0, 'western_san_doria_gate_glyph', 1, 10, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (4192, 0, 'northern_san_doria_gate_glyph', 1, 10, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (4193, 0, 'windurst_waters_gate_glyph', 1, 10, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (4194, 0, 'port_windurst_gate_glyph', 1, 10, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (4195, 0, 'windurst_woods_gate_glyph', 1, 10, 0, 0, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (4188, 0, 'bastok_markets_gate_glyph', 1, 10, 80, 3, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (4189, 0, 'port_bastok_gate_glyph', 1, 10, 80, 3, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (4190, 0, 'eastern_san_doria_gate_glyph', 1, 10, 80, 3, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (4191, 0, 'western_san_doria_gate_glyph', 1, 10, 80, 3, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (4192, 0, 'northern_san_doria_gate_glyph', 1, 10, 80, 3, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (4193, 0, 'windurst_waters_gate_glyph', 1, 10, 80, 3, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (4194, 0, 'port_windurst_gate_glyph', 1, 10, 80, 3, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (4195, 0, 'windurst_woods_gate_glyph', 1, 10, 80, 3, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4196, 0, 'rotten_quiver', 1, 1, 55, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4197, 0, 'rusty_bolt_case', 1, 1, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4198, 0, 'page_from_the_dragon_chronicles', 1, 5, 0, 0, 0, 0, 0);
@@ -1660,6 +1660,7 @@ INSERT INTO `item_usable` VALUES (6058, 287, 'klimaform_schema', 1, 1, 12, 5, 0,
 INSERT INTO `item_usable` VALUES (6059, 308, 'animus_augeo_schema', 1, 1, 11, 5, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (6060, 309, 'animus_minuo_schema', 1, 1, 11, 5, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (6061, 495, 'adloquium_schema', 1, 1, 11, 5, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (10875, 0, 'snowman_cap', 1, 1, 0, 0, 1, 30, 3600);
 INSERT INTO `item_usable` VALUES (11273, 0, 'custom_gilet_+1', 1, 8, 0, 0, 1, 30, 432000);
 INSERT INTO `item_usable` VALUES (11274, 0, 'custom_top_+1', 1, 8, 0, 0, 1, 30, 432000);
 INSERT INTO `item_usable` VALUES (11275, 0, 'magna_gilet_+1', 1, 8, 0, 0, 1, 30, 432000);
@@ -1676,6 +1677,8 @@ INSERT INTO `item_usable` VALUES (11491, 0, 'snow_bunny_hat_+1', 1, 1, 0, 0, 1, 
 INSERT INTO `item_usable` VALUES (11538, 0, 'nexus_cape', 1, 8, 0, 0, 1, 30, 144000);
 INSERT INTO `item_usable` VALUES (11666, 0, 'novennial_ring', 1, 12, 76, 0, 10, 15, 3600);
 INSERT INTO `item_usable` VALUES (11811, 0, 'destrier_beret', 1, 4, 0, 0, 1, 30, 3600);
+INSERT INTO `item_usable` VALUES (11861, 0, 'hikogami_yukata', 1, 2, 0, 0, 1, 30, 86400);
+INSERT INTO `item_usable` VALUES (11862, 0, 'himegami_yukata', 1, 2, 0, 0, 1, 30, 86400);
 INSERT INTO `item_usable` VALUES (12406, 0, 'coated_shield', 1, 2, 0, 0, 20, 30, 1800);
 INSERT INTO `item_usable` VALUES (12408, 0, 'absorbing_shield', 20, 2, 0, 0, 20, 30, 3600);
 INSERT INTO `item_usable` VALUES (12411, 0, 'dominus_shield', 1, 10, 0, 0, 15, 30, 180);
@@ -1986,6 +1989,9 @@ INSERT INTO `item_usable` VALUES (18845, 0, 'miracle_wand_+1', 4, 3, 0, 0, 1, 30
 INSERT INTO `item_usable` VALUES (18853, 0, 'spirit_maul', 1, 3, 0, 0, 100, 30, 600);
 INSERT INTO `item_usable` VALUES (18867, 0, 'daedalus_hammer', 1, 3, 0, 0, 50, 30, 1800);
 INSERT INTO `item_usable` VALUES (18871, 0, 'kitty_rod', 1, 0, 0, 0, 1, 30, 86400);
+INSERT INTO `item_usable` VALUES (18879, 0, 'rounsey_wand', 1, 8, 0, 0, 1, 30, 604800);
+INSERT INTO `item_usable` VALUES (18880, 0, 'maestros_baton', 1, 1, 0, 0, 1, 30, 3600);
+INSERT INTO `item_usable` VALUES (18881, 0, 'melomane_mallet', 1, 1, 0, 0, 1, 30, 3600);
 INSERT INTO `item_usable` VALUES (18945, 0, 'jet_sickle', 1, 3, 0, 0, 100, 30, 600);
 INSERT INTO `item_usable` VALUES (19181, 0, 'moogles_largesse', 1, 12, 0, 0, 9, 10, 259200);
 INSERT INTO `item_usable` VALUES (19204, 0, 'fiendtrapper', 20, 0, 0, 0, 12, 10, 30);
