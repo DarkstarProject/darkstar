@@ -4,11 +4,13 @@
 --	Summons Fenrir to fight by your side
 -----------------------------------------
 
+require("scripts/globals/pets");
+
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	caster:spawnPet(9);
+	caster:spawnPet(PET_FENRIR);
 	return 0;
 end;

@@ -4,11 +4,13 @@
 --	Summons LightSpirit to fight by your side
 -----------------------------------------
 
+require("scripts/globals/pets");
+
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	caster:spawnPet(6);
+	caster:spawnPet(PET_LIGHT_SPIRIT);
 	return 0;
 end;

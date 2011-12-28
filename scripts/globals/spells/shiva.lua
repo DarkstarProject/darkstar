@@ -4,11 +4,13 @@
 --	Summons Shiva to fight by your side
 -----------------------------------------
 
+require("scripts/globals/pets");
+
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	caster:spawnPet(14);
+	caster:spawnPet(PET_SHIVA);
 	return 0;
 end;
