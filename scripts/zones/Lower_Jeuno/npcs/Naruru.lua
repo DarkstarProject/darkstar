@@ -80,8 +80,9 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(JEUNO,COOK_S_PRIDE);
 			player:setTitle(MERCY_ERRAND_RUNNER);
 			player:delKeyItem(SUPER_SOUP_POT);
-			player:addGil(3000);
-			player:messageSpecial(GIL_OBTAINED,3000);
+			player:setVar("CooksPrideVar",0);
+			player:addGil(GIL_RATE*3000);
+			player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
 			player:addItem(13446);
 			player:messageSpecial(ITEM_OBTAINED,13446); -- Mythril Ring
 			player:addFame(JEUNO,30);
