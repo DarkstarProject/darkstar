@@ -88,6 +88,8 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 				WBUFB(data,(0x26)-4) = LSColor.B << 4;
 			}
 
+            WBUFL(data,(0x34)-4) = 0x010CA248; // black chocobo
+
 			if (PChar->PPet != NULL)
 			{
 				WBUFW(data,(0x3C)-4) = PChar->PPet->targid << 3;

@@ -120,9 +120,6 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 
 	CPetEntity* PPet = new CPetEntity();
 
-	PPet->id = 0x1000850 + (PMaster->loc.zone << 12);
-	PPet->targid = 0x800;
-
 	PPet->loc = PMaster->loc;
 
 	PPet->look = g_PPetList.at(PetID)->look;
@@ -140,9 +137,8 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 	PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 	PPet->PBattleAI->SetCurrentZone(zoneutils::GetZone(PMaster->getZone()));
 
+    PMaster->PPet = PPet;
 	PPet->PMaster = PMaster;
-
-	PMaster->PPet = PPet;
 
 	zoneutils::GetZone(PMaster->getZone())->InsertPET(PPet);
 
@@ -161,7 +157,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 
 void DespawnPet(CBattleEntity* PMaster)
 {
-	//DSP_DEBUG_BREAK_IF(PMaster->PPet == NULL);
+	DSP_DEBUG_BREAK_IF(PMaster->PPet == NULL);
 
 	CBattleEntity* PPet = PMaster->PPet;
 
@@ -169,9 +165,6 @@ void DespawnPet(CBattleEntity* PMaster)
 	{
 		case TYPE_PET:
 		{
-			// удалять питомца нельзя, т.к. может получится нарушение целостности указателей в EnmityList монстра
-			// необходимо просто перевести персонажа в режим STATUS_DISAPPEAR
-			// удаление питомца должно происходить лишь при вызове нового питомца, покидании зоны или выходе из игры
 			PPet->PBattleAI->SetCurrentAction(ACTION_DEATH);
 		}
 		break;

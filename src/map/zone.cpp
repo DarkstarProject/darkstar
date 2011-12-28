@@ -309,17 +309,34 @@ void CZone::InsertNPC(CBaseEntity* PNpc)
 }
 
 /************************************************************************
-*																		*
-*  Добавляем в зону PET													*	 
-*																		*
+*                                                                       *
+*  Добавляем в зону PET (свободные targid 0x700-0x7FF)                  *	 
+*                                                                       *
 ************************************************************************/
-
-// здесь нужно генерировать свободный targid для питомца 0x700-0xA00
 
 void CZone::InsertPET(CBaseEntity* PPet)
 {
 	if ((PPet != NULL) && (PPet->objtype == TYPE_PET))
 	{
+        uint16 targid = 0x700;
+
+        for (EntityList_t::const_iterator it = m_petList.begin() ; it != m_petList.end() ; ++it)
+	    {
+            if (targid != it->first)
+            {
+                break;
+            }
+		    targid++;
+	    }
+        if (targid >= 0x800)
+        {
+            ShowError(CL_RED"CZone::InsertPET : targid is high (03hX)\n"CL_RESET, targid);
+            return;
+        }
+
+        PPet->id = 0x1000000 + (m_zoneID << 12) + targid;
+        PPet->targid = targid;
+
 		m_petList[PPet->targid] = PPet;
 
 		for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
@@ -329,7 +346,7 @@ void CZone::InsertPET(CBaseEntity* PPet)
 			if(distance(PPet->loc.p, PCurrentChar->loc.p) < 50) 
 			{
 				PCurrentChar->SpawnPETList[PPet->id] = PPet;
-				PCurrentChar->pushPacket(new CEntityUpdatePacket(PPet,ENTITY_SPAWN));
+				PCurrentChar->pushPacket(new CEntityUpdatePacket(PPet, ENTITY_SPAWN));
 			}
 		}
 		return;
@@ -462,15 +479,10 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 
 void CZone::SpawnMOBs(CCharEntity* PChar)
 {
-	// наличие эффектов sneak и invisible в контейнере необходимо проверять здесь,
-	// чтобы не делать этого для каждого из монстров
-
-	// TODO: если хранить всех монстров в vector, то насколько быстрее станет их перебор ? 
-
 	for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
 	{
 		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
-		SpawnIDList_t::iterator MOB = PChar->SpawnMOBList.lower_bound(PCurrentMob->id);
+        SpawnIDList_t::iterator MOB = PChar->SpawnMOBList.lower_bound(PCurrentMob->id);
 
 		float CurrentDistance = distance(PChar->loc.p, PCurrentMob->loc.p);
 
@@ -481,31 +493,29 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 				PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first))
 			{
 				PChar->SpawnMOBList.insert(MOB, SpawnIDList_t::value_type(PCurrentMob->id, PCurrentMob));
-				PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob,ENTITY_SPAWN));
+				PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob, ENTITY_SPAWN));
 			}
 
-			// тестовая логика агрессии
-			// позднее агрессия будет реализовываться через EnmityContainer вместо присвоения обладателя монстру
-			// проверка ночного/дневного сна монстров уже учтена в проверке CurrentAction, т.к. во сне монстры не ходят ^^
-
-			if (PChar->isDead()) 
+			if (PChar->isDead() ||
+                PChar->nameflags.flags & FLAG_GM) 
 				continue; 
 
-			if (PCurrentMob->m_Behaviour != BEHAVIOUR_NONE &&
+            // проверка ночного/дневного сна монстров уже учтена в проверке CurrentAction, т.к. во сне монстры не ходят ^^
+
+            if (PCurrentMob->m_Behaviour != BEHAVIOUR_NONE &&
+                PCurrentMob->PMaster == NULL &&
 				PCurrentMob->PBattleAI->GetCurrentAction() == ACTION_ROAMING &&
 				CurrentDistance < 20)
 			{
 				if (PChar->animation != ANIMATION_CHOCOBO &&
 				   (PChar->animation == ANIMATION_HEALING ||
-				   (PChar->GetMLevel() - PCurrentMob->GetMLevel() < 10)))
+				   (int8)(PChar->GetMLevel() - PCurrentMob->GetMLevel()) < 10))
 				{
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && 
                        (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
                         !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
                         !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE)))
 					{
-						// отсутствие эффекта invisible
-
 						if (CurrentDistance < 15 &&
 							isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
 						{
@@ -513,17 +523,17 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 							continue;
 						}
 					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING && 
+                       !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
 					{
-						// отсутствие эффекта sneak
-
 						if (CurrentDistance < 8)
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						} 
 					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_LOWHP && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_LOWHP && 
+                       !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
 					{
 						if (PChar->GetHPP() < 66)
 						{
@@ -754,7 +764,7 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 			}
 		}
 	}
-	else if (targid < 0x800)
+	else if (targid < 0x700)
 	{
 		if (filter & TYPE_PC)
 		{
