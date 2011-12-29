@@ -2836,34 +2836,6 @@ inline int32 CLuaBaseEntity::decreaseContainerSize(lua_State *L)
 	return 0;
 }
 
-
-int32 CLuaBaseEntity::sendToJail(lua_State* L)
-{
-	const int8* fmtQuery = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charid = '%u' LIMIT 1";
-
-	if(!lua_isnil(L,1) && lua_isnumber(L,1))
-	{
-		int32 charid = lua_tointeger(L,1);
-		int32 ret = Sql_Query(SqlHandle, fmtQuery, charid);
-
-		if (ret != SQL_ERROR && 
-			Sql_NumRows(SqlHandle) != 0 &&
-			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			uint32 CharID = (uint32)Sql_GetUIntData(SqlHandle,0);
-			uint16 TargID = (uint16)Sql_GetUIntData(SqlHandle,1);
-			uint8  ZoneID = (uint8) Sql_GetUIntData(SqlHandle,2);
-
-			CCharEntity* POffender = (CCharEntity*)zoneutils::GetZone(ZoneID)->GetEntity(TargID, TYPE_PC);
-			
-			luautils::SendToJail(POffender);
-			return 1;
-		}
-	}
-	lua_pushnil(L);
-	return 0; 
-}
-
 void CLuaBaseEntity::UpdateHealth(CCharEntity* PChar, CZone* PZone) 
 {
 	PZone->PushPacket(PChar,CHAR_INRANGE_SELF,new CCharHealthPacket(PChar));
@@ -3001,6 +2973,5 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,decreaseContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendToJail),
 	{NULL,NULL}
 };

@@ -42,7 +42,7 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 		{
 			uint16 PartyFlags = 0;
 
-			CCharEntity* PChar = PParty->members.at(i);
+			CBattleEntity* PChar = PParty->members.at(i);
 
 			DSP_DEBUG_BREAK_IF(PChar == NULL);
 					

@@ -25,7 +25,7 @@
 
 #include <string.h>
 
-#include "alliance.h"
+#include "battleentity.h"
 #include "charutils.h"
 #include "map.h"
 #include "party.h"
@@ -38,29 +38,24 @@
 #include "packets/party_member_update.h"
 
 
-#define PARTYCOUNT		6
-
 /************************************************************************
 *																		*
 *  Конструктор   														*
 *																		*
 ************************************************************************/
 
-CParty::CParty(CCharEntity* PChar)
+CParty::CParty(CBattleEntity* PEntity)
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != NULL);
+	DSP_DEBUG_BREAK_IF(PEntity == NULL);
+	DSP_DEBUG_BREAK_IF(PEntity->PParty != NULL);
 
 	m_PSyncTarget 	= NULL;
 	m_PQuaterMaster = NULL;
 
-	alliance = NULL;
-	inAlliance = 0;
+	AddMember(PEntity);
+	SetLeader(PEntity);
 
-	AddMember(PChar);
-	SetLeader(PChar);
-
-	members.reserve(PARTYCOUNT);
+    m_PartyType = PEntity->objtype == TYPE_PC ? PARTY_PCS : PARTY_MOBS;
 }
 
 /************************************************************************
@@ -71,47 +66,49 @@ CParty::CParty(CCharEntity* PChar)
 
 void CParty::DisbandParty() 
 {
-	PushPacket(NULL, 0, new CPartyDefinePacket(NULL));
-
 	SetSyncTarget(NULL);
 	SetQuaterMaster(NULL);
 
 	m_PLeader = NULL;
 
-	for (int32 i = 0; i < members.size(); ++i) 
-	{
-		CCharEntity* PChar = members.at(i);
+    if (m_PartyType == PARTY_PCS)
+    {
+        PushPacket(NULL, 0, new CPartyDefinePacket(NULL));
 
-		PChar->PParty = NULL;
-		PChar->pushPacket(new CPartyMemberUpdatePacket(PChar, 0, PChar->getZone()));
+	    for (int32 i = 0; i < members.size(); ++i) 
+	    {
+		    CCharEntity* PChar = (CCharEntity*)members.at(i);
 
-		// TODO: TreasurePool должен оставаться у последнего персонажа, но сейчас это не критично
+		    PChar->PParty = NULL;
+		    PChar->pushPacket(new CPartyMemberUpdatePacket(PChar, 0, PChar->getZone()));
 
-		if (PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
-		{
-			PChar->PTreasurePool->DelMember(PChar);
-			PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
-			PChar->PTreasurePool->AddMember(PChar);
-		}
-		Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE charid = %u", 0, PChar->id);
-	}
+		    // TODO: TreasurePool должен оставаться у последнего персонажа, но сейчас это не критично
+
+		    if (PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
+		    {
+			    PChar->PTreasurePool->DelMember(PChar);
+			    PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
+			    PChar->PTreasurePool->AddMember(PChar);
+		    }
+		    Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE charid = %u", 0, PChar->id);
+	    }
+    }
 	delete this;
 }
 
 /************************************************************************
-*																		*
-*  Назначаем роли участникам группы										*
-*																		*
+*                                                                       *
+*  Назначаем роли участникам группы	(только для персонажей)             *
+*                                                                       *
 ************************************************************************/
 
 void CParty::AssignPartyRole(int8* MemberName, uint8 role)
-{		
-	//DSP_DEBUG_BREAK_IF(m_PLeader == NULL);
-	//DSP_DEBUG_BREAK_IF(MemberName == NULL);
+{	
+    DSP_DEBUG_BREAK_IF (m_PartyType != PARTY_PCS);
 
 	for (int32 i = 0; i < members.size(); ++i) 
 	{
-		CCharEntity* PChar = members.at(i);
+		CCharEntity* PChar = (CCharEntity*)members.at(i);
 
 		if (strcmp(MemberName, PChar->GetName()) == 0)
 		{
@@ -120,7 +117,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 				case 0: SetLeader(PChar);		break;
 				case 4: SetQuaterMaster(PChar); break;
 				case 5: SetQuaterMaster(NULL);	break;
-				case 6: SetSyncTarget(PChar);	break;
+			    case 6: SetSyncTarget(PChar);	break;
 			}
 			PushPacket(NULL, 0, new CPartyDefinePacket(this));
 			
@@ -128,14 +125,13 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 			{
 				if (PChar->getZone() == members.at(i)->getZone())
 				{
-					PushPacket(NULL, PChar->getZone(), new CPartyMemberUpdatePacket(members.at(i), i, PChar->getZone()));
-				}
+				    PushPacket(NULL, PChar->getZone(), new CPartyMemberUpdatePacket((CCharEntity*)members.at(i), i, PChar->getZone()));
+			    }
 			}
-			return;
-		} 
-	}
-	//DSP_DEBUG_BREAK_IF(true);
-	ShowError(CL_RED"The character with name <%s> isn't found in party\n"CL_RESET, MemberName);
+		    return;
+        }
+    }
+    ShowError(CL_RED"The character with name <%s> isn't found in party\n"CL_RESET, MemberName);
 }
 
 /************************************************************************
@@ -159,14 +155,14 @@ uint8 CParty::MemberCount(uint8 ZoneID)
 }
 
 /************************************************************************
-*																		*
-*  Удаление персонажа из группы по имени	  							*
-*																		*
+*                                                                       *
+*  Удаление персонажа из группы по имени (только для персонажей)        *
+*                                                                       *
 ************************************************************************/
 
 void CParty::RemoveMemberByName(int8* MemberName)
 {
-	//DSP_DEBUG_BREAK_IF(MemberName == NULL);
+    DSP_DEBUG_BREAK_IF (m_PartyType != PARTY_PCS);
 
 	for (int32 i = 0; i < members.size(); ++i) 
 	{
@@ -185,48 +181,53 @@ void CParty::RemoveMemberByName(int8* MemberName)
 *																		*
 ************************************************************************/
 
-void CParty::RemoveMember(CCharEntity* PChar) 
+void CParty::RemoveMember(CBattleEntity* PEntity) 
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	DSP_DEBUG_BREAK_IF(PEntity == NULL);
+	DSP_DEBUG_BREAK_IF(PEntity->PParty != this);
 
-	if (m_PLeader == PChar) 
+	if (m_PLeader == PEntity) 
 	{
-		RemovePartyLeader(PChar);
+		RemovePartyLeader(PEntity);
 	}
 	else
 	{
 		for (int32 i = 0; i < members.size(); ++i) 
 		{
-			if (PChar == members.at(i)) 
+			if (PEntity == members.at(i)) 
 			{
 				members.erase(members.begin()+i);
-					
-				if (m_PQuaterMaster == PChar) 
-				{
-					SetQuaterMaster(NULL);
-				}
-				if (m_PSyncTarget == PChar) 
-				{
-					SetSyncTarget(NULL);
-				}
+				
+                if (m_PartyType == PARTY_PCS)
+                {
+                    CCharEntity* PChar = (CCharEntity*)PEntity;
 
-				PChar->pushPacket(new CPartyDefinePacket(NULL));
-				PChar->pushPacket(new CPartyMemberUpdatePacket(PChar, 0, PChar->getZone()));
-				PChar->pushPacket(new CCharUpdatePacket(PChar));
-				PChar->pushPacket(new CCharSyncPacket(PChar));
-				PChar->PParty = NULL;
+				    if (m_PQuaterMaster == PChar) 
+				    {
+					    SetQuaterMaster(NULL);
+				    }
+				    if (m_PSyncTarget == PChar) 
+				    {
+					    SetSyncTarget(NULL);
+				    }
 
-				PushPacket(NULL, 0, new CPartyDefinePacket(this));
+				    PChar->pushPacket(new CPartyDefinePacket(NULL));
+				    PChar->pushPacket(new CPartyMemberUpdatePacket(PChar, 0, PChar->getZone()));
+				    PChar->pushPacket(new CCharUpdatePacket(PChar));
+				    PChar->pushPacket(new CCharSyncPacket(PChar));
+				    PChar->PParty = NULL;
 
-				if (PChar->status != STATUS_SHUTDOWN &&
-					PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
-				{
-					PChar->PTreasurePool->DelMember(PChar);
-					PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
-					PChar->PTreasurePool->AddMember(PChar);
-				}
-				Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = 0 WHERE charid = %u", PChar->id);
+				    PushPacket(NULL, 0, new CPartyDefinePacket(this));
+
+				    if (PChar->status != STATUS_SHUTDOWN &&
+					    PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
+				    {
+					    PChar->PTreasurePool->DelMember(PChar);
+					    PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
+					    PChar->PTreasurePool->AddMember(PChar);
+				    }
+				    Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = 0 WHERE charid = %u", PChar->id);
+                }
 				break;
 			}
 		}
@@ -239,12 +240,13 @@ void CParty::RemoveMember(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void CParty::RemovePartyLeader(CCharEntity* PChar) 
+void CParty::RemovePartyLeader(CBattleEntity* PEntity) 
 {
 	DSP_DEBUG_BREAK_IF(members.empty());
-	DSP_DEBUG_BREAK_IF(m_PLeader != PChar);
+	DSP_DEBUG_BREAK_IF(m_PLeader != PEntity);
+    DSP_DEBUG_BREAK_IF(PEntity->objtype != TYPE_PC);
 
-	if (members.size() == 1) 
+	if (members.size() == 1)
 	{
 		DisbandParty();
 		return;
@@ -253,16 +255,16 @@ void CParty::RemovePartyLeader(CCharEntity* PChar)
 	{
 		for (int32 i = 0; i < members.size(); ++i) 
 		{
-			CCharEntity* PPartyMember = members.at(i);
+			CBattleEntity* PPartyMember = members.at(i);
 
-			if (PPartyMember != PChar) 
+			if (PPartyMember != PEntity) 
 			{
 				SetLeader(PPartyMember);
 				break;
 			}
 		}
 	}
-	RemoveMember(PChar);
+	RemoveMember(PEntity);
 }
 
 /************************************************************************
@@ -271,30 +273,35 @@ void CParty::RemovePartyLeader(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void CParty::AddMember(CCharEntity* PChar) 
+void CParty::AddMember(CBattleEntity* PEntity) 
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != NULL);
+	DSP_DEBUG_BREAK_IF(PEntity == NULL);
+	DSP_DEBUG_BREAK_IF(PEntity->PParty != NULL);
 
-	// TODO: количество членов группы не должно быть больше шести, но при этом можно приглашать лидера другой группы вступить в альянс
+	PEntity->PParty = this;
+	members.push_back(PEntity);
 
-	PChar->PParty = this;
-	members.push_back(PChar);
+    if (m_PartyType == PARTY_PCS)
+    {
+        DSP_DEBUG_BREAK_IF(PEntity->objtype != TYPE_PC);
 
-	ReloadParty(PChar);
-	ReloadTreasurePool(PChar);
+        CCharEntity* PChar = (CCharEntity*)PEntity;
 
-	if (PChar->nameflags.flags & FLAG_INVITE) 				
-	{
-		PChar->status = STATUS_UPDATE;
-		PChar->nameflags.flags ^= FLAG_INVITE;
-		PChar->pushPacket(new CMenuConfigPacket(PChar));
-		PChar->pushPacket(new CCharUpdatePacket(PChar));
-		PChar->pushPacket(new CCharSyncPacket(PChar));
-	}
-	PChar->PTreasurePool->UpdatePool(PChar);
+	    ReloadParty(PChar);
+	    ReloadTreasurePool(PChar);
 
-	Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE charid = %u", m_PartyID, PChar->id);
+	    if (PChar->nameflags.flags & FLAG_INVITE) 				
+	    {
+		    PChar->status = STATUS_UPDATE;
+		    PChar->nameflags.flags ^= FLAG_INVITE;
+		    PChar->pushPacket(new CMenuConfigPacket(PChar));
+		    PChar->pushPacket(new CCharUpdatePacket(PChar));
+		    PChar->pushPacket(new CCharSyncPacket(PChar));
+	    }
+	    PChar->PTreasurePool->UpdatePool(PChar);
+
+	    Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE charid = %u", m_PartyID, PChar->id);
+    }
 }
 
 /************************************************************************
@@ -314,10 +321,8 @@ uint32 CParty::GetPartyID()
 *																		*
 ************************************************************************/
 
-CCharEntity* CParty::GetLeader() 
+CBattleEntity* CParty::GetLeader() 
 {
-	//DSP_DEBUG_BREAK_IF(m_PLeader == NULL);
-
 	return m_PLeader;
 }
 
@@ -327,7 +332,7 @@ CCharEntity* CParty::GetLeader()
 *																		*
 ************************************************************************/
 
-CCharEntity* CParty::GetSyncTarget() 
+CBattleEntity* CParty::GetSyncTarget() 
 {
 	return m_PSyncTarget;
 }
@@ -338,21 +343,9 @@ CCharEntity* CParty::GetSyncTarget()
 *																		*
 ************************************************************************/
 
-CCharEntity* CParty::GetQuaterMaster() 
+CBattleEntity* CParty::GetQuaterMaster() 
 {
 	return m_PQuaterMaster;
-}
-
-/************************************************************************
-*																		*
-*				  														*
-*																		*
-************************************************************************/
-
-//Returns a pointer to the alliance this party belongs to
-CAlliance* CParty::getAlliance() 
-{
-	return this->alliance;
 }
 
 /************************************************************************
@@ -392,7 +385,7 @@ int8 CParty::ReloadPartyMembers(CCharEntity* PChar)
 		{
 			MemberNumber = i;
 		}
-		PChar->pushPacket(new CPartyMemberUpdatePacket(members.at(i), i, PChar->getZone()));
+		PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)members.at(i), i, PChar->getZone()));
 	}
 	return MemberNumber;
 }
@@ -414,15 +407,17 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 
 	for (uint8 i = 0; i < members.size(); ++i) 
 	{
-        if (members.at(i) != PChar &&
-            members.at(i)->PTreasurePool != NULL &&
-			members.at(i)->getZone() == PChar->getZone())
+        CCharEntity* PPartyMember = (CCharEntity*)members.at(i);
+
+        if (PPartyMember != PChar &&
+            PPartyMember->PTreasurePool != NULL &&
+			PPartyMember->getZone() == PChar->getZone())
 		{			
 			if (PChar->PTreasurePool != NULL)
 			{
 				PChar->PTreasurePool->DelMember(PChar);
 			}
-			PChar->PTreasurePool = members.at(i)->PTreasurePool;
+			PChar->PTreasurePool = PPartyMember->PTreasurePool;
 			PChar->PTreasurePool->AddMember(PChar);
 			return;
 		}
@@ -440,15 +435,18 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void CParty::SetLeader(CCharEntity* PChar) 
+void CParty::SetLeader(CBattleEntity* PEntity) 
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	DSP_DEBUG_BREAK_IF(PEntity == NULL);
+	DSP_DEBUG_BREAK_IF(PEntity->PParty != this);
 
-    Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", m_PartyID, PChar->id);
+    if (m_PartyType == PARTY_PCS)
+    {
+        Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", m_PartyID, PEntity->id);
 
-	m_PLeader = PChar;
-	m_PartyID = PChar->id;
+	    m_PLeader = PEntity;
+	    m_PartyID = PEntity->id;
+    }
 }
 
 /************************************************************************
@@ -457,24 +455,9 @@ void CParty::SetLeader(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void CParty::SetSyncTarget(CCharEntity* PChar) 
+void CParty::SetSyncTarget(CBattleEntity* PEntity) 
 {
-	//DSP_DEBUG_BREAK_IF(m_PLeader == NULL);
-
-	/*
-	// TODO: установка LevelSync невозможна, если на персонажах уже есть ограничение уровня
-
-	if (m_PLeader->getZone() == PChar->getZone()) 
-	{
-		m_PSyncTarget = PChar;
-
-		// TODO: реализация LevelSync
-
-		return;
-	}
-
-	// Error message, can't level sync if not in same zone
-	*/
+    m_PSyncTarget = PEntity;
 }
 
 /************************************************************************
@@ -483,27 +466,9 @@ void CParty::SetSyncTarget(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void CParty::SetQuaterMaster(CCharEntity* PChar) 
+void CParty::SetQuaterMaster(CBattleEntity* PEntity) 
 {
-	m_PQuaterMaster = PChar;
-}
-
-/************************************************************************
-*																		*
-*				  														*
-*																		*
-************************************************************************/
-
-//Assigns the party to an alliance, or removes the party from an alliance
-int CParty::setAlliance(CAlliance * alliance) 
-{
-	if (alliance == NULL) {
-		//If we are setting the value to null, chances are we are no longer in an alliance
-		this->inAlliance = 0;
-	}
-	//Regardless of the result above; we will set the alliance
-	this->alliance = alliance;
-	return 0;
+	m_PQuaterMaster = PEntity;
 }
 
 /************************************************************************
@@ -522,7 +487,7 @@ void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* p
 		{
 			if (ZoneID == 0 || members.at(i)->getZone() == ZoneID)
 			{
-				members.at(i)->pushPacket(new CBasicPacket(*packet));
+				((CCharEntity*)members.at(i))->pushPacket(new CBasicPacket(*packet));
 			}
 		}
 	}

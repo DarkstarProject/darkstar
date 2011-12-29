@@ -206,7 +206,6 @@ void CAIMobDummy::ActionDropItems()
             // TODO: blu может выучить последнюю использованную монстром специальную атаку m_PMobSkill
 
 			luautils::OnMobDeath(m_PMob, PChar);
-			luautils::OnSpecialWeaponKill(PChar); 
 
 			m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0,6));
 			
@@ -218,7 +217,7 @@ void CAIMobDummy::ActionDropItems()
 				{
 					for (int i = 0; i < PChar->PParty->members.size(); i++)
 					{
-						CCharEntity * PMember = PChar->PParty->members[i];
+						CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
 						if (PMember->getZone() == PChar->getZone())
 						{
 							exp = charutils::DistributeExperiencePoints(PMember, m_PMob);

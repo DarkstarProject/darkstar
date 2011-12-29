@@ -171,61 +171,35 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 	return false;
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
-
-bool CAICharNormal::IsMobSubOwner()
+bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 {
-
-	if (m_PBattleSubTarget == NULL)
+	if (PBattleTarget == NULL)
 	{
 		return false;
 	}
-	
-	if	(m_PBattleSubTarget->m_OwnerID == 0 || m_PBattleSubTarget->m_OwnerID == m_PChar->id)
+	if (PBattleTarget->m_OwnerID == 0 || PBattleTarget->m_OwnerID == m_PChar->id) 
 	{
 		return true;
 	}
 	
-	if (m_PBattleSubTarget->m_OwnerID == m_PChar->id) 
-	{
-		return true;
-	}
+    // TODO: а еще есть питомцы, так что нужно придумать что-нибудь элегантнее, чем перебор всех подряд
+
 	if (m_PChar->PParty != NULL) 
 	{
-		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
+		for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
 		{
-			if (m_PChar->PParty->members[i]->id == m_PBattleSubTarget->m_OwnerID)
+			if (m_PChar->PParty->members[i]->id == PBattleTarget->m_OwnerID)
 			{
 				return true;
 			}
 		}
 	}
-	return false;
-}
-
-bool CAICharNormal::IsMobOwner()
-{
-	if (m_PBattleTarget == NULL)
-	{
-		return false;
-	}
-
-	if (m_PBattleTarget->m_OwnerID == 0 || m_PBattleTarget->m_OwnerID == m_PChar->id) 
-	{
-		return true;
-	}
-	
-	if (m_PChar->PParty != NULL) 
-	{
-		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
-		{
-			if (m_PChar->PParty->members[i]->id == m_PBattleTarget->m_OwnerID)
-			{
-				return true;
-			}
-		}
-	}
-
 	return false;
 }
 
@@ -241,28 +215,39 @@ void CAICharNormal::ActionEngage()
 
 	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY) && m_PChar->animation != ANIMATION_HEALING)
 	{
-		if(IsMobOwner())
+		if(IsMobOwner(m_PBattleTarget))
 		{
 			if (distance(m_PChar->loc.p, m_PBattleTarget->loc.p) <= 30)
 			{
 				if ((m_Tick - m_LastActionTime) > m_PChar->m_Weapons[SLOT_MAIN]->getDelay())
 				{
+                    if (m_PChar->animation == ANIMATION_CHOCOBO)
+                    {
+                        m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
+                    }
+                    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+
 					m_ActionType = ACTION_ATTACK;
 					m_LastActionTime = m_Tick - m_PChar->m_Weapons[SLOT_MAIN]->getDelay() + 1500;
 
 					m_PChar->status = STATUS_UPDATE;
 					m_PChar->animation = ANIMATION_ATTACK;
-					m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
 					m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
 					m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 					return;
-				}else{
+				}
+                else
+                {
 					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,94));
 				}
-			}else{
+			}
+            else
+            {
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
 			}
-		}else{
+		}
+        else
+        {
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
 		}
 	}
@@ -270,11 +255,9 @@ void CAICharNormal::ActionEngage()
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,446));
 	}
-
 	m_PBattleTarget = NULL;
 	m_ActionType = ACTION_NONE;
 }
-
 
 /************************************************************************
 *																		*
@@ -292,7 +275,7 @@ void CAICharNormal::ActionChangeBattleTarget()
 
 		if (GetValidTarget(&PBattleTarget, TARGET_ENEMY))
 		{
-			if (IsMobOwner())
+			if (IsMobOwner(m_PBattleTarget))
 			{
 				if (distance(m_PChar->loc.p, PBattleTarget->loc.p) <= 30)
 				{
@@ -308,7 +291,6 @@ void CAICharNormal::ActionChangeBattleTarget()
 			}
 		}
 	}
-
 	m_ActionType = ACTION_ATTACK;
 }
 
@@ -672,7 +654,7 @@ void CAICharNormal::ActionRangedStart()
 			m_PBattleSubTarget = NULL;
 			return;
 		}
-		if (!IsMobSubOwner())
+		if (!IsMobOwner(m_PBattleSubTarget))
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
 
@@ -727,7 +709,7 @@ void CAICharNormal::ActionRangedStart()
 
 void CAICharNormal::ActionRangedFinish()
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	if (m_PBattleSubTarget->isDead())
 	{
@@ -761,7 +743,6 @@ void CAICharNormal::ActionRangedFinish()
 		Action.messageID  = 352;
 
 		Action.param = battleutils::TakePhysicalDamage(m_PChar,m_PBattleSubTarget, damage,m_PZone);
-		//charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PChar->m_Weapons[SLOT_RANGED]->getSkillType(), m_PBattleTarget->GetMLevel());
 		Action.flag = 3;
 		Action.subeffect = SUBEFFECT_FIRE_DAMAGE;
 		Action.subparam  = 0;
@@ -773,6 +754,8 @@ void CAICharNormal::ActionRangedFinish()
 
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PBattleSubTarget = NULL;
+
+        //charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PChar->m_Weapons[SLOT_RANGED]->getSkillType(), m_PBattleTarget->GetMLevel());
 	}
 }
 
@@ -868,8 +851,7 @@ void CAICharNormal::ActionMagicStart()
 			m_PBattleSubTarget = NULL;
 			return;
 		}
-		if (m_PBattleSubTarget->objtype == TYPE_MOB &&
-			!IsMobSubOwner())
+		if (m_PBattleSubTarget->objtype == TYPE_MOB && !IsMobOwner(m_PBattleSubTarget))
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
 
@@ -962,14 +944,7 @@ void CAICharNormal::ActionMagicStart()
 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
-	{
-		m_ActionType = ACTION_MAGIC_FINISH;
-	}
-	else
-	{
-		m_ActionType = ACTION_MAGIC_CASTING;
-	}
+    m_ActionType = m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) ? ACTION_MAGIC_FINISH : ACTION_MAGIC_CASTING;
 }
 
 /************************************************************************
@@ -988,8 +963,7 @@ void CAICharNormal::ActionMagicCasting()
 		ActionMagicInterrupt();
 		return;
 	}
-	if (m_PBattleSubTarget->objtype == TYPE_MOB &&
-		!IsMobSubOwner())
+	if (m_PBattleSubTarget->objtype == TYPE_MOB && !IsMobOwner(m_PBattleSubTarget))
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
 
@@ -1520,13 +1494,13 @@ void CAICharNormal::ActionJobAbilityStart()
 		if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
 		{
 			m_PBattleTarget = PBattleTarget;
-			if (!IsMobOwner())
+			if (!IsMobOwner(m_PBattleTarget))
 			{
 				return;
 			}
 		}
 				
-		if (!IsMobOwner() && !IsMobSubOwner())
+		if (!IsMobOwner(m_PBattleTarget) && !IsMobOwner(m_PBattleSubTarget))
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,12));
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1609,7 +1583,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 void CAICharNormal::ActionJobAbilityFinish()
 {
-	////DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+    // TODO: условие кривое, не забыть посмотреть
 
 	if (m_Tick - m_LastActionTime < 100)
 	{
@@ -1625,7 +1599,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 	{
 		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
 		{
-			CCharEntity* PTarget = m_PChar->PParty->members[i];
+			CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
 
 			if (distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange()) 
 			{
@@ -1681,7 +1655,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 		ActionDisengage();
 		return;
 	}
-	if (!IsMobOwner())
+	if (!IsMobOwner(m_PBattleTarget))
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
 
@@ -1808,14 +1782,15 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 void CAICharNormal::ActionAttack() 
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+
 	if (m_PBattleTarget->isDead())
 	{
 		m_ActionType = ACTION_DISENGAGE;
 		ActionDisengage();
 		return;
 	}
-	if (!IsMobOwner())
+	if (!IsMobOwner(m_PBattleTarget))
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
 

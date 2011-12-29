@@ -28,9 +28,15 @@
 
 #include <vector>
 
-class CAlliance;
 class CBasicPacket;
+class CBattleEntity;
 class CCharEntity;
+
+enum PARTYTYPE
+{
+    PARTY_PCS,
+    PARTY_MOBS,
+};
 
 enum PARTYFLAG
 {
@@ -52,56 +58,45 @@ class CParty
 {
 public:
 
-	CParty(CCharEntity* PChar);
+    CParty(CBattleEntity* PEntity);
 	
-	uint32 GetPartyID();								// узнаем уникальный ID группы
-	uint8  MemberCount(uint8 ZoneID);					// узнаем количество участников группы в указанной зоне
+    uint32 GetPartyID();                                // узнаем уникальный ID группы
+    uint8  MemberCount(uint8 ZoneID);                   // узнаем количество участников группы в указанной зоне
 
-	CCharEntity* GetLeader();							// узнаем лидера группы
-	CCharEntity* GetSyncTarget();						// узнаем цель синхронизации
-	CCharEntity* GetQuaterMaster();						// узнаем владельца сокровищ
+    CBattleEntity* GetLeader();                         // узнаем лидера группы
+    CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
+    CBattleEntity* GetQuaterMaster();                   // узнаем владельца сокровищ
 
 	void DisbandParty();								// распускаем группу
-	void ReloadParty(CCharEntity* PChar);				// перезагружаем карту группы для всех участников группы
-	int8 ReloadPartyMembers(CCharEntity* PChar);		// oбновляем статусы участников группы для выбранного персонажа
+	void ReloadParty(CCharEntity* PChar);               // перезагружаем карту группы для всех участников группы
+	int8 ReloadPartyMembers(CCharEntity* PChar);        // oбновляем статусы участников группы для выбранного персонажа
 	void ReloadTreasurePool(CCharEntity* PChar);
 
-	void AddMember(CCharEntity* PChar);					// добавляем персонажа в группу
-	void RemoveMember(CCharEntity* PChar);				// удаление персонажа из группы
-	void RemoveMemberByName(int8* MemberName);			// удаление персонажа из группы по имени
-	void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
+    void AddMember(CBattleEntity* PEntity);             // добавляем персонажа в группу
+    void RemoveMember(CBattleEntity* PEntity);          // удаление персонажа из группы
+    void RemoveMemberByName(int8* MemberName);			// удаление персонажа из группы по имени
+    void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
 
-	void PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
+    void PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
 
-	// ВНИМАНИЕ: НЕ ИЗМЕНЯТЬ ЗНАЧЕНИЯ СПИСКА ВНЕ КЛАССА ГРУППЫ
+    // ВНИМАНИЕ: НЕ ИЗМЕНЯТЬ ЗНАЧЕНИЯ СПИСКА ВНЕ КЛАССА ГРУППЫ
 
-	std::vector<CCharEntity*> members;					// список участников группы
-
-
-	// Returns the alliance the party belongs to (if it does) WILL RETURN NULL IF PARTY DOES NOT BELONG TO AN ALLIANCE
-	CAlliance*	 getAlliance();			
-
-	//If the party is in an alliance, this will be the parties index number (+1) in the alliance
-	unsigned int inAlliance;
-
-	//Sets the Alliance the party belongs to (NULL MEANS NOT USED / REMOVED)
-	int setAlliance(CAlliance * alliance);
+    std::vector<CBattleEntity*> members;                // список участников группы
 
 private:
 
-	uint32 m_PartyID;									// уникальный ID группы
-
-	CAlliance*	 alliance;								// if in an alliance, reference it for ease of access
+    uint32    m_PartyID;                                // уникальный ID группы
+    PARTYTYPE m_PartyType;                              // тип существ, составляющих группу
 	
-	CCharEntity* m_PLeader;								// лидер группы
-	CCharEntity* m_PSyncTarget;							// цель синхронизации уровней
-	CCharEntity* m_PQuaterMaster;						// владелец сокровищ
+	CBattleEntity* m_PLeader;                           // лидер группы
+	CBattleEntity* m_PSyncTarget;                       // цель синхронизации уровней
+	CBattleEntity* m_PQuaterMaster;                     // владелец сокровищ
 
-	void SetLeader(CCharEntity* PChar);					// устанавливаем лидера группы
-	void SetSyncTarget(CCharEntity* PChar);				// устанавливаем цель синхронизации уровней
-	void SetQuaterMaster(CCharEntity* PChar);			// устанавливаем владельца сокровищ
+	void SetLeader(CBattleEntity* PEntity);             // устанавливаем лидера группы
+	void SetSyncTarget(CBattleEntity* PEntity);         // устанавливаем цель синхронизации уровней
+	void SetQuaterMaster(CBattleEntity* PEntity);       // устанавливаем владельца сокровищ
 
-	void RemovePartyLeader(CCharEntity* PChar);			// лидер покидает группу
+	void RemovePartyLeader(CBattleEntity* PEntity);     // лидер покидает группу
 };
 
 #endif

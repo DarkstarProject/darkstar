@@ -32,7 +32,6 @@
 
 #include "battleentity.h"
 #include "item_container.h"
-#include "party.h"
 #include "trade_container.h"
 #include "treasure_pool.h"
 
@@ -151,8 +150,6 @@ public:
 	int32			 pushPacket(CBasicPacket*);		// добавление копии пакета в PacketList
 	bool			 isPacketListEmpty();			// проверка размера PacketList
 	CBasicPacket*	 popPacket();					// получение первого пакета из PacketList
-
-	CParty*			 PParty;						// описание группы, в которой состоит персонаж
 
 	CTreasurePool*	 PTreasurePool;					// сокровища, добытые с монстров
 	uint32			 InvitePending;					// ID персонажа, отправившего приглашение в группу 

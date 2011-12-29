@@ -76,8 +76,7 @@ protected:
 	void ActionRaiseMenuSelection();
 	void UpdateHealth();
 
-	bool IsMobOwner();
-	bool IsMobSubOwner();
+	bool IsMobOwner(CBattleEntity* PBattleTarget);
 	bool GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget);
 	SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill);
 };

@@ -32,6 +32,7 @@
 
 #include "baseentity.h"
 #include "modifier.h"
+#include "party.h"
 #include "status_effect_container.h"
 
 
@@ -226,7 +227,6 @@ enum SUBEFFECT
 	SUBEFFECT_SLEEP				= 4,	// 110010	19
 	SUBEFFECT_HP_DRAIN			= 10,	// 110101	43
 
-
 	//SKILLCHAINS
 	//flag 1                            
 	SUBEFFECT_DARKNESS          = 1,   
@@ -305,59 +305,62 @@ class CBattleEntity : public CBaseEntity
 {
 public:
 
-	health_t	health;						// hp,mp,tp
-	stats_t		stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
-	skills_t	WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
+	health_t	    health;						// hp,mp,tp
+	stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
+	skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
 
-	bool		isDead();					// проверяем, мертва ли сущность
+	bool		    isDead();					// проверяем, мертва ли сущность
 
-	JOBTYPE		GetMJob();					// главная профессия
-	JOBTYPE		GetSJob();					// дополнительная профессия
-	uint8		GetMLevel();				// уровень главной профессии
-	uint8		GetSLevel();				// уровень дополнительной профессии
+	JOBTYPE		    GetMJob();					// главная профессия
+	JOBTYPE		    GetSJob();					// дополнительная профессия
+	uint8		    GetMLevel();				// уровень главной профессии
+	uint8		    GetSLevel();				// уровень дополнительной профессии
 
-	void		SetMJob(uint8 mjob);		// главная профессия
-	void		SetSJob(uint8 sjob);		// дополнительная профессия
-	void		SetMLevel(uint8 mlvl);		// уровень главной профессии
-	void		SetSLevel(uint8 slvl);		// уровень дополнительной профессии
+	void		    SetMJob(uint8 mjob);		// главная профессия
+	void		    SetSJob(uint8 sjob);		// дополнительная профессия
+	void		    SetMLevel(uint8 mlvl);		// уровень главной профессии
+	void		    SetSLevel(uint8 slvl);		// уровень дополнительной профессии
 
-	uint8		GetHPP();					// количество hp в процентах
-	uint8		GetMPP();					// количество mp в процентах
+	uint8		    GetHPP();					// количество hp в процентах
+	uint8		    GetMPP();					// количество mp в процентах
 
-	uint16		GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
+	uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
 
-	uint16		addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
-	uint16		addHP(int16 hp);			// увеличиваем/уменьшаем количество hp
-	uint16		addMP(int16 mp);			// увеличиваем/уменьшаем количество mp
+	uint16		    addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
+	uint16		    addHP(int16 hp);			// увеличиваем/уменьшаем количество hp
+	uint16		    addMP(int16 mp);			// увеличиваем/уменьшаем количество mp
 
-	int16		getMod(uint16 modID);		// величина модификатора
+	int16		    getMod(uint16 modID);		// величина модификатора
 
-	int32		getDespawnTimer();			// Despawn Timer to Despawn a Mob after duration has been reached
+	int32		    getDespawnTimer();			// Despawn Timer to Despawn a Mob after duration has been reached
 	
-	void		addModifier(uint16 type, int16 amount);
-	void		setModifier(uint16 type, int16 amount);
-	void		delModifier(uint16 type, int16 amount);
-	void		addModifiers(std::vector<CModifier*> *modList);
-	void		setModifiers(std::vector<CModifier*> *modList);
-	void		delModifiers(std::vector<CModifier*> *modList);
-	void		setDespawnTimer(int32 duration);
-	void		setSpawnTime();
+	void		    addModifier(uint16 type, int16 amount);
+	void		    setModifier(uint16 type, int16 amount);
+	void		    delModifier(uint16 type, int16 amount);
+	void		    addModifiers(std::vector<CModifier*> *modList);
+	void		    setModifiers(std::vector<CModifier*> *modList);
+	void		    delModifiers(std::vector<CModifier*> *modList);
 
-	bool		IsMageJob();					// Determines if job is mage job or not
-	uint8			m_ModelSize;			// размер модели сущности, для расчета дальности физической атаки
-	ECOSYSTEM		m_EcoSystem;			// эко-система сущности
-	CItemWeapon*	m_Weapons[4];			// четыре основных ячейки, используемыж для хранения оружия (только оружия)
+	void		    setDespawnTimer(int32 duration); // TODO: этого метода в классе быть не должно
+	void		    setSpawnTime();                  // TODO: этого метода в классе быть не должно
 
-	uint32			m_OwnerID;				// ID атакующей сущности (после смерти будет хранить ID сущности, нанесщей последний удар)
+	bool		    IsMageJob();			    // Determines if job is mage job or not
+	uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
+	ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
+	CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
+
+	uint32			m_OwnerID;				    // ID атакующей сущности (после смерти будет хранить ID сущности, нанесщей последний удар)
 	
-	uint16			m_RangedDelay;			// задержка дельнего оружия
-	int32			m_DespawnTimer;			// Despawn Timer to despawn mob after set duration
-	ActionList_t	m_ActionList;			// список совершенных действий за одну атаку (нужно будет написать структуру, включающую ActionList в которой будут категории анимации и т.д.)
+	uint16			m_RangedDelay;			    // задержка дельнего оружия
+	int32			m_DespawnTimer;			    // Despawn Timer to despawn mob after set duration
+	ActionList_t	m_ActionList;			    // список совершенных действий за одну атаку (нужно будет написать структуру, включающую ActionList в которой будут категории анимации и т.д.)
 
-	CAIGeneral*		PBattleAI;				// интеллект боевой сущности
+	CAIGeneral*		PBattleAI;				    // интеллект боевой сущности
 
-	CBattleEntity*	PPet;					// питомец сущности
-	CBattleEntity*	PMaster;				// владелец/хозяин сущности (распространяется на все боевые сущности)
+    CParty*			PParty;					    // описание группы, в которой состоит сущность
+
+	CBattleEntity*	PPet;					    // питомец сущности
+	CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
 
 	CStatusEffectContainer* StatusEffectContainer;
 

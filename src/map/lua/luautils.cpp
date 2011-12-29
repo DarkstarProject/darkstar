@@ -86,7 +86,6 @@ int32 init()
 	lua_register(LuaHandle,"RunElevator",luautils::StartElevator);
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
-//	lua_register(LuaHandle,"SendToJail",luautils::SendToJail);
 
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
     Lunar<CLuaRegion>::Register(LuaHandle);
@@ -129,7 +128,11 @@ int32 print(lua_State* LuaHandle)
 	return 0;
 }
 
-//======================================================//
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 int32 GetNPCByID(lua_State* L)
 {
@@ -264,7 +267,9 @@ int32 VanadielTimeOffset(lua_State* L)
 }
 
 /************************************************************************
+*                                                                       *
 *  Spawn a mob using mob ID.											*
+*                                                                       *
 ************************************************************************/
 
 int32 SpawnMob(lua_State* L)
@@ -293,7 +298,9 @@ int32 SpawnMob(lua_State* L)
 }
 
 /************************************************************************
+*                                                                       *
 *  DeSpawn mob using mob ID.											*
+*                                                                       *
 ************************************************************************/
 
 int32 DespawnMob(lua_State* L)
@@ -316,7 +323,9 @@ int32 DespawnMob(lua_State* L)
 }
 
 /************************************************************************
+*                                                                       *
 *  Get Current Mob Action by Mob ID.									*
+*                                                                       *
 ************************************************************************/
 
 int32 GetMobAction(lua_State* L)
@@ -337,7 +346,6 @@ int32 GetMobAction(lua_State* L)
 	}
 	return -1;
 }
-
 
 /************************************************************************
 *																		*
@@ -372,24 +380,6 @@ int32 OnServerStart()
 		return -1;
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
-}
-
-/************************************************************************
-*																		*
-*  Получаем значение константы из соответствующего TextIDs				*
-*																		*
-************************************************************************/
-
-int32 GetGlobalConstant(const int8* name, uint8 ZoneID)
-{
-	CZone* PZone = zoneutils::GetZone(ZoneID);
-
-	int8 File[255];
-	memset(File,0,sizeof(File));
-
-	snprintf(File,sizeof(File),"%s/zones/%s/TextIDs.lua",LuaScriptDir,PZone->GetName());
-
-	return 0;
 }
 
 /************************************************************************
@@ -1018,7 +1008,8 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 
 int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller) 
 {	
-	//DSP_DEBUG_BREAK(if PKiller == NULL || PMob == NULL);
+	DSP_DEBUG_BREAK_IF(PKiller == NULL || PMob == NULL);
+
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
@@ -1079,98 +1070,58 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 int32 OnMobSpawn(CBaseEntity* PMob) 
 {       
-		//DSP_DEBUG_BREAK(if PKiller == NULL || PMob == NULL);
-		int8 File[255];
-		memset(File,0,sizeof(File));
+    DSP_DEBUG_BREAK_IF(PMob == NULL);
 
-		snprintf(File,sizeof(File),"%s/zones/%s/mobs/%s.lua",LuaScriptDir,zoneutils::GetZone(PMob->getZone())->GetName(), PMob->GetName());
+    int8 File[255];
+    memset(File,0,sizeof(File));
 
-		if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-		{
-				return -1;
-		}
+    snprintf(File,sizeof(File),"%s/zones/%s/mobs/%s.lua",LuaScriptDir,zoneutils::GetZone(PMob->getZone())->GetName(), PMob->GetName());
 
-		lua_pushstring(LuaHandle,"onMobSpawn");
-		lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
-		if( lua_isnil(LuaHandle,-1) )
-		{
-				//ShowError("luautils::OnMobSpawn: undefined procedure onMobSpawn\n");
-				return -1;
-		}
+    if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+    {
+        return -1;
+    }
 
-		CLuaBaseEntity LuaMobEntity(PMob);
-		Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+    lua_pushstring(LuaHandle,"onMobSpawn");
+    lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    if( lua_isnil(LuaHandle,-1) )
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaMobEntity(PMob);
+    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
 
-		if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
-		{
-				ShowError("luautils::OnMobSpawn: %s\n",lua_tostring(LuaHandle,-1));
-				return -1;
-		}
-		return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+    if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+    {
+        ShowError("luautils::OnMobSpawn: %s\n",lua_tostring(LuaHandle,-1));
+        return -1;
+    }
+    return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }
 
 /************************************************************************
-*																		*
-*		Runs LUA for special weapons on Kill							*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
-
-int32 OnSpecialWeaponKill(CCharEntity* PChar) 
-{
-	if (PChar->m_event.EventID > -1)
-	{
-		return 0;
-	}
-	
-	int8 File[255];
-	memset(File,0,sizeof(File));
-
-	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
-	
-	snprintf(File,sizeof(File),"%s/globals/specialweapons/%s.lua",LuaScriptDir, PItem->getName());
-	
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		//ShowError("luautils::OnSpecialWeaponKill: %s\n",lua_tostring(LuaHandle,-1));
-		return -1;
-	}
-   
-	lua_pushstring(LuaHandle,"onSpecialWeaponKill");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
-	if( lua_isnil(LuaHandle,-1) )
-	{
-		ShowError("luautils::OnSpecialWeaponKill: undefined procedure onSpecialWeaponKill\n");
-		return -1;
-	}
-
-	CLuaBaseEntity LuaBaseEntity(PChar);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-  
-	lua_pushinteger(LuaHandle,0);
-  
-	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
-	{
-		ShowError("luautils::OnSpecialWeaponKill: %s\n",lua_tostring(LuaHandle,-1));
-		return -1;
-	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
-	
-}
 
 int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob) 
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-   //CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
 	CWeaponSkill* wskill = PChar->PBattleAI->GetCurrentWeaponSkill();
 	snprintf(File,sizeof(File),"%s/globals/weaponskills/%s.lua",LuaScriptDir, wskill->getName());
-
-	PChar->m_event.reset();
-	PChar->m_event.Script.insert(0,File);
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -1192,16 +1143,19 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob)
 	CLuaBaseEntity LuaMobEntity(PMob);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 	
-	//lua_pushinteger(LuaHandle,0);
-  
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnUseWeaponSkill: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	//return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
-	return (int32)lua_tonumber(LuaHandle,-1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget) 
 {
@@ -1210,9 +1164,6 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget)
 
 	CAbility* ability = PChar->PBattleAI->GetCurrentJobAbility();
 	snprintf(File,sizeof(File),"%s/globals/abilities/%s.lua",LuaScriptDir, ability->getName());
-
-	//PChar->m_event.reset();
-	//PChar->m_event.Script.insert(0,File);
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -1234,69 +1185,38 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget)
 	CLuaBaseEntity LuaMobEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 	
-	//lua_pushinteger(LuaHandle,0);
-  
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnUseAbility: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	//return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
-	return (int32)lua_tonumber(LuaHandle,-1);
-}
-
-int32 SendToJail(CCharEntity* PChar)
-{
-	int8 File[255];
-	memset(File,0,sizeof(File));
-
-	snprintf(File,sizeof(File),"%s/globals/gotojail.lua",LuaScriptDir);
-
-	PChar->m_event.reset();
-	PChar->m_event.Script.insert(0,File);
-
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		ShowError("luautils::OnGoToJail: %s\n",lua_tostring(LuaHandle,-1));
-		return -1;
-	}
-   
-	lua_pushstring(LuaHandle,"onTrigger");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
-	if( lua_isnil(LuaHandle,-1) )
-	{
-		ShowError("luautils::OnTrigger: undefined procedure onTrigger\n");
-		return -1;
-	}
-
-	CLuaBaseEntity LuaBaseEntity(PChar);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-   
-	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
-	{
-		ShowError("luautils::OnSendToJail: %s\n",lua_tostring(LuaHandle,-1));
-		return -1;
-	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 int32 StartElevator(lua_State* L)
 {
-	
-	uint32 elevatorID = (uint32)lua_tointeger(L, -1);
-	CTransportHandler* transport = CTransportHandler::getInstance();
-	transport->startElevator(elevatorID);
-	//CTransportHandler::startElevator(elevatorID);
-	return 0;
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
+	uint32 ElevatorID = (uint32)lua_tointeger(L, -1);
+    CTransportHandler::getInstance()->startElevator(ElevatorID);
+	return 0;
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 int32 luautils::GetServerVariable(lua_State *L)
 {
-	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isstring(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isstring(L,-1));
 
 	int32 value = 0;
 
@@ -1316,11 +1236,14 @@ int32 luautils::GetServerVariable(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 int32 luautils::SetServerVariable(lua_State *L)
 {
-	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	//DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
 	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
 
@@ -1340,6 +1263,5 @@ int32 luautils::SetServerVariable(lua_State *L)
 	lua_pushnil(L);
 	return 1;
 }
-
 
 }; // namespace luautils

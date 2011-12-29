@@ -2005,7 +2005,7 @@ int32 SmallPacket0x0D2(CCharEntity* PChar, int8* data)
 	{
 		for (int32 i = 0; i < PChar->PParty->members.size(); ++i) 
 		{
-			CCharEntity* PPartyMember = PChar->PParty->members.at(i);
+			CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->members.at(i);
 
 			if (PPartyMember->getZone() == PChar->getZone())
 			{
