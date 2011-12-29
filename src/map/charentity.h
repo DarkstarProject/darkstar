@@ -129,6 +129,7 @@ public:
 	uint8			 m_SpellList[96];				// список изученных заклинаний
 	uint8			 m_Abilities[38];				// список текущих способностей
 	uint8			 m_TraitList[16];				// список постянно активных способностей
+    uint8            m_PetCommands[32];             // список доступных команд питомцу
 	uint8            m_WeaponSkills[32];  
 	questlog_t		 m_questLog[MAX_QUESTAREA];		// список всех квестов
 	missionlog_t	 m_missionLog[6];				// список миссий
@@ -142,6 +143,8 @@ public:
 	uint16			 m_acpCurrent;					// текущая миссия A Crystalline Prophecy
 	uint16			 m_mkeCurrent;					// текущая миссия A Moogle Kupo d'Etat
 	uint16			 m_asaCurrent;					// текущая миссия A Shantotto Ascension
+
+    uint8            GetGender();                   // узнаем пол персонажа
 
 	int32			 firstPacketSize();				// размер первого пакета в PacketList
 	int32			 clearPacketList();				// отчистка PacketList

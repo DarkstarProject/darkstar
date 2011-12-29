@@ -704,9 +704,9 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 		return -1;
 	}
 
-	fmtQuery = "INSERT INTO char_stats(charid,mjob, nameflags, hp, mp) VALUES(%u,%u, %u, 50,50);";
-	int32 gender = ((createchar->m_look.race == 1 ||createchar->m_look.race == 3 ||createchar->m_look.race == 5 || createchar->m_look.race == 8) ? 32768 : 0); 
-	if( Sql_Query(SqlHandle,fmtQuery,charid,createchar->m_mjob, gender) == SQL_ERROR )
+	fmtQuery = "INSERT INTO char_stats(charid,mjob, hp, mp) VALUES(%u,%u, 50, 50);";
+	
+	if( Sql_Query(SqlHandle, fmtQuery, charid, createchar->m_mjob) == SQL_ERROR )
 	{
 		return -1;
 	}

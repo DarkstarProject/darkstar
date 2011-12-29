@@ -59,6 +59,7 @@ CCharEntity::CCharEntity()
 	memset(& m_ZonesList, 0, sizeof(m_ZonesList));
 	memset(& m_Abilities, 0, sizeof(m_Abilities));
 	memset(& m_TraitList, 0, sizeof(m_TraitList));
+    memset(& m_PetCommands,  0, sizeof(m_PetCommands)); 
 	memset(& m_WeaponSkills, 0, sizeof(m_WeaponSkills));
 
 	memset(& m_questLog,    0, sizeof(m_questLog));
@@ -106,6 +107,11 @@ CCharEntity::~CCharEntity()
 	delete m_Moglocker;
 	delete m_Mogsatchel;
 	delete m_Mogsack;
+}
+
+uint8 CCharEntity::GetGender()
+{
+    return (look.race)%2 ^ (look.race > 6);
 }
 
 int32 CCharEntity::firstPacketSize()

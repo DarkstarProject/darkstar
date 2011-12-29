@@ -1081,7 +1081,13 @@ int32 SmallPacket0x04D(CCharEntity* PChar, int8* data)
         case 0x09:
         case 0x0A:
         {
-            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 142));
+            //PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 142));
+            if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
+               !PChar->UContainer->IsSlotEmpty(slotID))
+            {
+                PChar->pushPacket(new CDeliveryBoxPacket(action, PChar->UContainer->GetItem(slotID), 1));
+            }
+			return 0;
         }
         break;
 		case 0x0B:
@@ -1468,6 +1474,23 @@ int32 SmallPacket0x05E(CCharEntity* PChar, int8* data)
 
 	PChar->clearPacketList();
 	PChar->pushPacket(new CServerIPPacket(PChar,2));
+	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Персонаж присылает текстовую информацию для продолжения события      *
+*                                                                       *
+************************************************************************/					
+
+// zone 245 cs 0x00C7 Password
+
+int32 SmallPacket0x060(CCharEntity* PChar, int8* data)
+{
+	PrintPacket(data);
+
+  //luautils::OnEventUpdate(PChar, 0, 0);
+  //PChar->pushPacket(new CReleasePacket(PChar,RELEASE_EVENT));
 	return 0;
 }
 

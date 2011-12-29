@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2011 Darkstar Dev Teams
@@ -26,8 +26,11 @@
 
 #include "../common/cbasetypes.h"
 
-#include "map.h"
 #include "charentity.h"
+
+struct map_session_data_t;
+
+//void (*PacketParcer[512])(map_session_data_t* session, int8* data);
 
 int32 SmallPacket0x00A(CCharEntity*, int8*, map_session_data_t*);
 int32 SmallPacket0x00B(CCharEntity*, int8*);
@@ -61,6 +64,7 @@ int32 SmallPacket0x05B(CCharEntity*, int8*);
 int32 SmallPacket0x05C(CCharEntity*, int8*);
 int32 SmallPacket0x05D(CCharEntity*, int8*);
 int32 SmallPacket0x05E(CCharEntity*, int8*);
+int32 SmallPacket0x060(CCharEntity*, int8*);
 int32 SmallPacket0x061(CCharEntity*, int8*);
 int32 SmallPacket0x063(CCharEntity*, int8*);
 int32 SmallPacket0x064(CCharEntity*, int8*);

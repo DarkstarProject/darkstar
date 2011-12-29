@@ -38,7 +38,7 @@ enum CONTAINER_ID
 };
 
 #define MAX_CONTAINER_ID	  7
-#define MAX_CONTAINER_SIZE	 85
+#define MAX_CONTAINER_SIZE	 80
 #define ERROR_SLOTID		255
 
 /************************************************************************
@@ -71,6 +71,7 @@ private:
 
 	uint16	m_id;
 	uint8	m_size;
+    uint8   m_count;
 
 	uint8	m_ReservedSlot;
 

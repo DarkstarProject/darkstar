@@ -31,7 +31,9 @@
 CItemContainer::CItemContainer(uint16 LocationID, bool ReservedSlot)
 {
 	m_id = LocationID;
-	m_size = 0;
+
+	m_size  = 0;
+    m_count = 0;
 
 	m_ReservedSlot = (ReservedSlot ? 1 : 0);
 
@@ -42,10 +44,7 @@ CItemContainer::~CItemContainer()
 {
 	for (uint8 SlotID = 0; SlotID < m_size; ++SlotID)
 	{
-		if (m_ItemList[SlotID] != NULL)
-		{
-			delete m_ItemList[SlotID];
-		}
+        delete m_ItemList[SlotID];
 	}
 }
 
@@ -61,16 +60,7 @@ uint8 CItemContainer::GetSize()
 
 uint8 CItemContainer::GetFreeSlotsCount()
 {
-	uint8 count = 0;
-
-	for (uint8 SlotID = m_ReservedSlot; SlotID < m_size; ++SlotID) 
-	{
-		if (m_ItemList[SlotID] == NULL) 
-		{
-			count++;
-		}
-	}
-	return count;
+    return m_size - (m_count + m_ReservedSlot);
 }
 
 // функция не доработана, советую ей не пользоваться для уменьшения размера хранилища
@@ -81,22 +71,9 @@ uint8 CItemContainer::SetSize(uint8 size)
 	{
 		size += m_ReservedSlot;
 
-		// здесь мы проверяем, чтобы новый размер контейнера не оказался меньше текущего количества предметов
-		// TODO: хорошо бы придумать способ по оригинальнее, чем перебор всего контейнера
-
-		uint8 count = 0;
-
-		for (uint8 SlotID = 0; SlotID < m_size; ++SlotID) 
-		{
-			if (m_ItemList[SlotID] != NULL)
-			{
-				count++;
-			}
-		}
-
 		// TODO: при уменьшении размера контейнера необходимо производить перемещение предметов, оказавшихся за пределами нового размера
 
-		if (size >= count)
+		if (size >= m_count)
 		{
 			m_size = size;
 			return m_size;	
@@ -108,12 +85,14 @@ uint8 CItemContainer::SetSize(uint8 size)
 
 uint8 CItemContainer::InsertItem(CItem* PItem)
 {
-	//DSP_DEBUG_BREAK_IF(PItem == NULL);
+	DSP_DEBUG_BREAK_IF(PItem == NULL);
 
 	for (uint8 SlotID = m_ReservedSlot; SlotID < m_size; ++SlotID) 
 	{
 		if (m_ItemList[SlotID] == NULL) 
 		{
+            m_count++;
+
 			PItem->setSlotID(SlotID);
 			PItem->setLocationID(m_id);
 
@@ -124,7 +103,7 @@ uint8 CItemContainer::InsertItem(CItem* PItem)
 	
 	ShowDebug("ItemContainer: Container is full\n");
 
-	if (PItem) delete PItem;
+	delete PItem;
 	return ERROR_SLOTID;
 }
 
@@ -142,15 +121,18 @@ uint8 CItemContainer::InsertItem(CItem* PItem, uint8 SlotID)
 		{
 			PItem->setSlotID(SlotID);
 			PItem->setLocationID(m_id);
+
+            if (m_ItemList[SlotID] == NULL) m_count++;
 		}
-		
+        else if(m_ItemList[SlotID] != NULL) m_count--;
+        
 		m_ItemList[SlotID] = PItem;
 		return SlotID;
 	}
 
 	ShowDebug("ItemContainer: SlotID %i is out of range\n", SlotID);
 
-	if (PItem) delete PItem;
+	delete PItem;
 	return ERROR_SLOTID;
 }
 

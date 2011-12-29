@@ -536,6 +536,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 			case 0x05C: result = SmallPacket0x05C(PChar, SmallPD_ptr); break;
 			case 0x05D:	result = SmallPacket0x05D(PChar, SmallPD_ptr); break;
 			case 0x05E:	result = SmallPacket0x05E(PChar, SmallPD_ptr); break;
+            case 0x060:	result = SmallPacket0x060(PChar, SmallPD_ptr); break;
 			case 0x061:	result = SmallPacket0x061(PChar, SmallPD_ptr); break;
 			case 0x063:	result = SmallPacket0x063(PChar, SmallPD_ptr); break;
 			case 0x064:	result = SmallPacket0x064(PChar, SmallPD_ptr); break;

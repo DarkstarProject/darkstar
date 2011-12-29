@@ -99,7 +99,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 		case ACTION_JOBABILITY_FINISH:		ActionJobAbilityFinish();	break;
 		case ACTION_RAISE_MENU_SELECTION:	ActionRaiseMenuSelection(); break;
 
-		default :; //DSP_DEBUG_BREAK_IF(true);
+		default : DSP_DEBUG_BREAK_IF(true);
 	}
 
 	// слишком частая проверка, достаточно одного раза в секунду
