@@ -1,7 +1,11 @@
 -----------------------------------
 --	Area: Southern San d'Oria
 --	NPC: Cahaurme
+--  Type: Quest Giver NPC
 --  Involved in Quest: A Knight's Test
+--  Involved in Quest: Lost Chick
+--  @zone: 230
+--  @pos: 55.749 -8.601 -29.354
 -------------------------------------
 
 require("scripts/globals/keyItems");
