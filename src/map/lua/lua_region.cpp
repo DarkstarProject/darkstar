@@ -21,37 +21,39 @@
 ===========================================================================
 */
 
-#include "../common/showmsg.h"
-
-#include "region.h"
+#include "lua_region.h"
 
 
 /************************************************************************
 *																		*
-*  При инициализации области задаем уникальный номер в пределах зоны.	*
-*  При попытке установить 0 в качестве номера выдаем предупреждение.	*
+*  Конструктор															*
 *																		*
 ************************************************************************/
 
-CRegion::CRegion(uint32 RegionID) : 
-    m_Count(0),
-    m_RegionID(RegionID)
+CLuaRegion::CLuaRegion(lua_State *L)
 {
-	if (m_RegionID == 0)
+	if (!lua_isnil(L,-1))
 	{
-		ShowWarning(CL_YELLOW"Region ID cannot be zero\n"CL_RESET);	
+		m_PLuaRegion = (CRegion*)(lua_touserdata(L,-1));
+        lua_pop(L,1);
+	} 
+    else 
+    {
+		m_PLuaRegion = NULL;
 	}
 }
 
 /************************************************************************
 *																		*
-*  Узнаем уникальный номер активной области								*
+*  Конструктор															*
 *																		*
 ************************************************************************/
 
-uint32 CRegion::GetRegionID()
+CLuaRegion::CLuaRegion(CRegion* PRegion)
 {
-	return m_RegionID;
+    DSP_DEBUG_BREAK_IF(PRegion == NULL); 
+
+	m_PLuaRegion = PRegion;
 }
 
 /************************************************************************
@@ -60,9 +62,12 @@ uint32 CRegion::GetRegionID()
 *                                                                       *
 ************************************************************************/
 
-int16 CRegion::GetCount()
+inline int32 CLuaRegion::GetRegionID(lua_State *L)
 {
-    return m_Count;
+    DSP_DEBUG_BREAK_IF(m_PLuaRegion == NULL); 
+
+    lua_pushinteger(L, m_PLuaRegion->GetRegionID());
+	return 1;
 }
 
 /************************************************************************
@@ -70,11 +75,13 @@ int16 CRegion::GetCount()
 *                                                                       *
 *                                                                       *
 ************************************************************************/
-    
-int16 CRegion::AddCount(int16 count)
+
+inline int32 CLuaRegion::GetCount(lua_State *L)
 {
-    m_Count += count;
-    return m_Count;
+    DSP_DEBUG_BREAK_IF(m_PLuaRegion == NULL); 
+
+    lua_pushinteger(L, m_PLuaRegion->GetCount());
+	return 1;
 }
 
 /************************************************************************
@@ -82,51 +89,44 @@ int16 CRegion::AddCount(int16 count)
 *                                                                       *
 *                                                                       *
 ************************************************************************/
-    
-int16 CRegion::DelCount(int16 count)
+
+inline int32 CLuaRegion::AddCount(lua_State *L)
 {
-    m_Count -= count;
-    return m_Count;
+    DSP_DEBUG_BREAK_IF(m_PLuaRegion == NULL); 
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+    lua_pushinteger(L, m_PLuaRegion->AddCount(lua_tointeger(L,-1)));
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaRegion::DelCount(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaRegion == NULL); 
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+    lua_pushinteger(L, m_PLuaRegion->DelCount(lua_tointeger(L,-1)));
+	return 1;
 }
 
 /************************************************************************
 *																		*
-*  Устанавливаем верхний левый угол области								*
+*  Инициализация методов в lua											*
 *																		*
 ************************************************************************/
 
-void CRegion::SetULCorner(float x, float y, float z)
+const int8 CLuaRegion::className[] = "CRegion";
+
+Lunar<CLuaRegion>::Register_t CLuaRegion::methods[] = 
 {
-	x1 = x;
-	y1 = y;
-	z1 = z;
-}
-
-/************************************************************************
-*																		*
-*  Устанавливаем нижний правый угол области								*
-*																		*
-************************************************************************/
-
-void CRegion::SetLRCorner(float x, float y, float z)
-{
-	x2 = x;
-	y2 = y;
-	z2 = z;
-}
-
-/************************************************************************
-*																		*
-*  Проверяем, находится ли позиция внутри области						*
-*																		*
-************************************************************************/
-
-bool CRegion::isPointInside(position_t pos)
-{
-	return (x1 <= pos.x && 
-			y1 <= pos.y && 
-			z1 <= pos.z && 
-			x2 >= pos.x && 
-			y2 >= pos.y && 
-			z2 >= pos.z);
-}
+	LUNAR_DECLARE_METHOD(CLuaRegion,GetRegionID),
+    LUNAR_DECLARE_METHOD(CLuaRegion,GetCount),
+    LUNAR_DECLARE_METHOD(CLuaRegion,AddCount),
+    LUNAR_DECLARE_METHOD(CLuaRegion,DelCount),
+	{NULL,NULL}
+}; 

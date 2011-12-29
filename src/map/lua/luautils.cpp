@@ -30,6 +30,7 @@
 
 #include "luautils.h"
 #include "lua_baseentity.h"
+#include "lua_region.h"
 #include "lua_spell.h"
 #include "lua_statuseffect.h"
 #include "lua_trade_container.h"
@@ -88,6 +89,7 @@ int32 init()
 //	lua_register(LuaHandle,"SendToJail",luautils::SendToJail);
 
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
+    Lunar<CLuaRegion>::Register(LuaHandle);
 	Lunar<CLuaSpell>::Register(LuaHandle);
 	Lunar<CLuaStatusEffect>::Register(LuaHandle);
 	Lunar<CLuaTradeContainer>::Register(LuaHandle);
@@ -482,7 +484,7 @@ int32 OnZoneIn(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-int32 OnRegionEnter(CCharEntity* PChar, uint32 RegionID)
+int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -508,8 +510,8 @@ int32 OnRegionEnter(CCharEntity* PChar, uint32 RegionID)
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-  
-	lua_pushinteger(LuaHandle,RegionID);
+    CLuaRegion LuaRegion(PRegion);
+	Lunar<CLuaRegion>::push(LuaHandle,&LuaRegion);
   
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
@@ -525,9 +527,41 @@ int32 OnRegionEnter(CCharEntity* PChar, uint32 RegionID)
 *																		*
 ************************************************************************/
 
-int32 OnRegionLeave(CCharEntity* PChar, uint32 RegionID)
+int32 OnRegionLeave(CCharEntity* PChar, CRegion* PRegion)
 {
-	return 0;
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName());
+
+	PChar->m_event.reset();
+	PChar->m_event.Script.insert(0,File);
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnRegionLeave: %s\n",lua_tostring(LuaHandle,-1));
+		return -1;
+	}
+   
+	lua_pushstring(LuaHandle,"onRegionLeave");
+	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnRegionEnter: undefined procedure onRegionLeave\n");
+		return -1;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+    CLuaRegion LuaRegion(PRegion);
+	Lunar<CLuaRegion>::push(LuaHandle,&LuaRegion);
+  
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnRegionLeave: %s\n",lua_tostring(LuaHandle,-1));
+		return -1;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }
 
 /************************************************************************
@@ -541,11 +575,7 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
-		
-	//ShowDebug(CL_YELLOW"Sending AH Packet \n"CL_RESET, PNpc->GetName()); 
-	//PChar->pushPacket(new CAuctionHousePacket(PChar));
-	//return 0;
-	
+
 	snprintf(File,sizeof(File),"%s/zones/%s/npcs/%s.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName(),PNpc->GetName());
 	
 	PChar->m_event.reset();

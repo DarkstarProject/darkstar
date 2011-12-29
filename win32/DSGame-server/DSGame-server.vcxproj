@@ -148,6 +148,7 @@
     <ClInclude Include="..\..\src\map\item_container.h" />
     <ClInclude Include="..\..\src\map\lua\luautils.h" />
     <ClInclude Include="..\..\src\map\lua\lua_baseentity.h" />
+    <ClInclude Include="..\..\src\map\lua\lua_region.h" />
     <ClInclude Include="..\..\src\map\lua\lua_spell.h" />
     <ClInclude Include="..\..\src\map\lua\lua_statuseffect.h" />
     <ClInclude Include="..\..\src\map\lua\lua_trade_container.h" />
@@ -307,6 +308,7 @@
     <ClCompile Include="..\..\src\map\item_container.cpp" />
     <ClCompile Include="..\..\src\map\lua\luautils.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_baseentity.cpp" />
+    <ClCompile Include="..\..\src\map\lua\lua_region.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_spell.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_statuseffect.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_trade_container.cpp" />

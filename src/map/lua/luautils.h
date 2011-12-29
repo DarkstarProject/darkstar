@@ -36,6 +36,7 @@ class CBaseEntity;
 class CBattleEntity;
 class CCharEntity;
 class CItem;
+class CRegion;
 class CStatusEffect;
 
 namespace luautils
@@ -67,8 +68,8 @@ namespace luautils
 		
 	int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone
 	int32 OnZoneInitialise(uint8 ZoneID);										// triggers when zone is loaded
-	int32 OnRegionEnter(CCharEntity* PChar, uint32 RegionID);					// when player enters a region of a zone
-	int32 OnRegionLeave(CCharEntity* PChar, uint32 RegionID);					// not implemented
+	int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);					// when player enters a region of a zone
+	int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);					// when player leaves a region of a zone
 
 	int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);						// triggered when user targets npc and clicks action button
 	int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when game triggers event update during cutscene

@@ -3,9 +3,10 @@
 -- Zone: Windurst_Walls
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------
@@ -41,8 +42,8 @@ end;
 -- onRegionEnter          
 -----------------------------------
 
-function onRegionEnter(player,regionID)
-switch (regionID): caseof 
+function onRegionEnter(player,region)
+switch (region:GetRegionID): caseof 
 {
 	---------------------------------
 	[1] = function (x)  -- Heaven's Tower enter portal
@@ -51,6 +52,13 @@ switch (regionID): caseof
 	end,
 	---------------------------------
 }
+end;
+
+-----------------------------------
+-- onRegionLeave
+-----------------------------------
+
+function onRegionLeave(player,region)
 end;
 
 -----------------------------------

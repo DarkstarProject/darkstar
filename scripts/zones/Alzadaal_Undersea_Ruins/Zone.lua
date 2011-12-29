@@ -3,9 +3,10 @@
 -- Zone: Alzadaal_Undersea_Ruins
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
 require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
 
 -----------------------------------
@@ -59,8 +60,8 @@ end;
 -- onRegionEnter          
 -----------------------------------
 
-function onRegionEnter(player,regionID)
-switch (regionID): caseof 
+function onRegionEnter(player,region)
+switch (region:GetRegionID): caseof 
 {
 	---------------------------------
 	[1] = function (x)
@@ -173,6 +174,13 @@ switch (regionID): caseof
 		player:startEvent(0x00D2);
 	end,
 }
+end;
+
+-----------------------------------
+-- onRegionLeave
+-----------------------------------
+
+function onRegionLeave(player,region)
 end;
 
 -----------------------------------

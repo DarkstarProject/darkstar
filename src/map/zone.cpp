@@ -377,7 +377,7 @@ void CZone::InsertRegion(CRegion* Region)
 
 void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 {
-	// TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
+    // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
 
 	m_charList.erase(PChar->targid);
 	ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u>\n"CL_RESET, GetName(), m_charList.size());
@@ -410,7 +410,14 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	{
 		PChar->PTreasurePool->DelMember(PChar);
 	}
-
+    for (regionList_t::const_iterator region = m_regionList.begin(); region != m_regionList.end(); ++region)
+    {
+        if ((*region)->GetRegionID() == PChar->m_InsideRegionID)
+        {
+            luautils::OnRegionLeave(PChar, *region);
+            break;
+        }
+    }
 	PChar->SpawnPCList.clear();
 	PChar->SpawnNPCList.clear();
 	PChar->SpawnMOBList.clear();
@@ -433,6 +440,7 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
 
 	PChar->loc.NeedToZone = false;
+    PChar->m_InsideRegionID = 0;
 
 	m_charList[PChar->targid] = PChar;
 	ShowDebug(CL_CYAN"CZone:: %s IncreaseZoneCounter <%u>\n"CL_RESET, GetName(), m_charList.size());
@@ -754,7 +762,6 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 				PEntity = it->second;
 			}
 		}
-
 		if (filter & TYPE_NPC)
 		{
 			EntityList_t::const_iterator it = m_npcList.find(targid); 
@@ -775,7 +782,7 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 			}
 		}
 	}
-	else
+	else if (targid < 0x800)
 	{
 		if (filter & TYPE_PET)
 		{
@@ -1070,9 +1077,13 @@ void CZone::ZoneServerRegion(uint32 tick)
 
                     if ((*region)->GetRegionID() != PChar->m_InsideRegionID)
                     {
-                        luautils::OnRegionEnter(PChar, RegionID);
+                        luautils::OnRegionEnter(PChar, *region);
                     }
-                    break;
+                    if (PChar->m_InsideRegionID == 0) break;
+                }
+                else if ((*region)->GetRegionID() == PChar->m_InsideRegionID)
+                {
+                    luautils::OnRegionLeave(PChar, *region);
                 }
             }
             PChar->m_InsideRegionID = RegionID;

@@ -3,9 +3,10 @@
 -- Zone: Heavens_Tower
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 require("scripts/zones/Heavens_Tower/TextIDs");
 
 -----------------------------------
@@ -30,8 +31,8 @@ end;
 -- onRegionEnter          
 -----------------------------------
 
-function onRegionEnter(player,regionID)
-switch (regionID): caseof 
+function onRegionEnter(player,region)
+switch (region:GetRegionID): caseof 
 {
 	---------------------------------
 	[1] = function (x)  -- Heaven's Tower exit portal
@@ -40,6 +41,13 @@ switch (regionID): caseof
 	end,
 	---------------------------------
 }
+end;
+
+-----------------------------------
+-- onRegionLeave
+-----------------------------------
+
+function onRegionLeave(player,region)
 end;
 
 -----------------------------------

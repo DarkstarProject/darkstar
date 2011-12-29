@@ -3,10 +3,11 @@
 -- Zone: Northern_San_dOria
 --
 -----------------------------------
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/server");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -50,8 +51,8 @@ end;
 -- onRegionEnter
 -----------------------------------
 
-function onRegionEnter(player,regionID)
-switch (regionID): caseof
+function onRegionEnter(player,region)
+switch (region:GetRegionID()): caseof
 {
 	---------------------------------
 	[1] = function (x)  -- Chateau d'Oraguille access
@@ -66,6 +67,13 @@ switch (regionID): caseof
 	end,
 	---------------------------------
 }
+end;
+
+-----------------------------------
+-- onRegionLeave
+-----------------------------------
+
+function onRegionLeave(player,region)
 end;
 
 -----------------------------------

@@ -51,7 +51,7 @@ end;
 -- onRegionEnter          
 -----------------------------------
 
-function onRegionEnter(player,regionID)
+function onRegionEnter(player,region)
 end;
 
 -----------------------------------
