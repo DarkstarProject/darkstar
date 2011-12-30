@@ -455,6 +455,20 @@ void CAIMobDummy::ActionAttack()
 
     m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
+    if (m_PMob->PParty != NULL)
+    {
+        for (uint16 i = 0; i < m_PMob->PParty->members.size(); ++i)
+        {
+            CMobEntity* PPartyMember = (CMobEntity*)m_PMob->PParty->members[i];
+
+            if (PPartyMember->PBattleAI->GetCurrentAction() == ACTION_ROAMING &&
+                distance(m_PMob->loc.p, PPartyMember->loc.p) < 10)
+            {
+                PPartyMember->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
+            }
+        }
+    }
+
 	if (distance(m_PMob->loc.p, m_PBattleTarget->loc.p) <= m_PMob->m_ModelSize)
 	{
 		if ((m_Tick - m_LastActionTime) > m_PMob->m_Weapons[SLOT_MAIN]->getDelay())
