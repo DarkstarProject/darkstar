@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2011-12-22 07:09:09
+Date: 2011-12-30 12:05:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -328,3 +328,5 @@ INSERT INTO `mob_family_system` VALUES ('271', 'Yovra', '15', 'Luminian', '3', '
 INSERT INTO `mob_family_system` VALUES ('272', 'Zdei', '16', 'Luminion', '0', '40', '3', '3', '3', '3', '1', '3', '4', '3', '3', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0');
 INSERT INTO `mob_family_system` VALUES ('274', 'KingV', '20', 'Vermin', '3', '40', '4', '3', '4', '3', '3', '6', '5', '3', '3', '1', '1', '1', '1', '1', '1.25', '1', '1', '1', '0.875', '1.25', '0.875', '4');
 INSERT INTO `mob_family_system` VALUES ('273', 'Serket', '20', 'Vermin', '3', '40', '3', '3', '4', '3', '3', '6', '5', '3', '3', '1', '1', '1', '1', '1', '1.25', '1', '1', '1', '0.875', '1.25', '0.875', '4');
+INSERT INTO `mob_family_system` VALUES ('275', 'MiniAdam', '14', 'Lizard', '5', '40', '2', '5', '1', '6', '6', '4', '3', '3', '3', '1', '1', '1', '1', '1', '1.25', '1', '0.875', '1.125', '0.875', '1', '1', '4');
+INSERT INTO `mob_family_system` VALUES ('276', 'BigWorm', '1', 'Amorph', '3', '0', '6', '3', '6', '3', '2', '3', '4', '3', '3', '1', '1', '1', '1', '1', '1', '1.25', '0.875', '1', '1', '1.25', '0.875', '4');
