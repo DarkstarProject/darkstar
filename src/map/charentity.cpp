@@ -89,7 +89,6 @@ CCharEntity::CCharEntity()
 
 	InvitePending = 0;
 
-	PParty = NULL;
 	PTreasurePool = NULL;
 	PWideScanTarget = NULL;
 }

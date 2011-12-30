@@ -54,6 +54,7 @@ CBattleEntity::CBattleEntity()
 	memset(& WorkingSkills, 0, sizeof(WorkingSkills));
 
 	PPet = NULL;
+    PParty  = NULL;
 	PMaster = NULL;
 
 	PBattleAI = NULL;

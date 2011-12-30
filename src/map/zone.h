@@ -128,6 +128,8 @@ public:
 	void			InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
 	void			InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
 
+    void            FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
+
 	void			InsertRegion(CRegion* Region);									// добавляем в зону активную область
 
 	void			TOTDCharnge(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток

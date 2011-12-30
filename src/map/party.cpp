@@ -49,6 +49,7 @@ CParty::CParty(CBattleEntity* PEntity)
 	DSP_DEBUG_BREAK_IF(PEntity == NULL);
 	DSP_DEBUG_BREAK_IF(PEntity->PParty != NULL);
 
+    m_PLeader       = NULL;
 	m_PSyncTarget 	= NULL;
 	m_PQuaterMaster = NULL;
 

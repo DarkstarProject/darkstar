@@ -290,6 +290,7 @@ void CZone::InsertMOB(CBaseEntity* PMob)
 {
 	if ((PMob != NULL) && (PMob->objtype == TYPE_MOB))
 	{
+        FindPartyForMob(PMob);
 		m_mobList[PMob->targid] = PMob;
 	}
 }
@@ -366,6 +367,37 @@ void CZone::InsertRegion(CRegion* Region)
 	{
 		m_regionList.push_back(Region);
 	}
+}
+
+/************************************************************************
+*                                                                       *
+*  Ищем группу для монстра. Для монстров, объединенных в группу         *
+*  работает система взаимопомощи (link)                                 * 
+*                                                                       *
+************************************************************************/
+
+void CZone::FindPartyForMob(CBaseEntity* PEntity)
+{
+    DSP_DEBUG_BREAK_IF(PEntity == NULL);
+    DSP_DEBUG_BREAK_IF(PEntity->objtype != TYPE_MOB);
+
+    CMobEntity* PMob = (CMobEntity*)PEntity;
+
+    if (PMob->m_Link && PMob->PParty == NULL)
+    {
+        for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
+        {
+            CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+            
+            if (PCurrentMob->m_Link && 
+                PCurrentMob->m_Family == PMob->m_Family)
+            {
+                PCurrentMob->PParty->AddMember(PMob);
+                return;
+            }
+        }
+        PMob->PParty = new CParty(PMob);
+    }
 }
 
 /************************************************************************
