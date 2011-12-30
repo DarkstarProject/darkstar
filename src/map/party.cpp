@@ -49,14 +49,15 @@ CParty::CParty(CBattleEntity* PEntity)
 	DSP_DEBUG_BREAK_IF(PEntity == NULL);
 	DSP_DEBUG_BREAK_IF(PEntity->PParty != NULL);
 
+    m_PartyType = PEntity->objtype == TYPE_PC ? PARTY_PCS : PARTY_MOBS;
+
+    m_PartyID       = 0;
     m_PLeader       = NULL;
 	m_PSyncTarget 	= NULL;
 	m_PQuaterMaster = NULL;
 
 	AddMember(PEntity);
 	SetLeader(PEntity);
-
-    m_PartyType = PEntity->objtype == TYPE_PC ? PARTY_PCS : PARTY_MOBS;
 }
 
 /************************************************************************
@@ -76,7 +77,7 @@ void CParty::DisbandParty()
     {
         PushPacket(NULL, 0, new CPartyDefinePacket(NULL));
 
-	    for (int32 i = 0; i < members.size(); ++i) 
+	    for (uint32 i = 0; i < members.size(); ++i) 
 	    {
 		    CCharEntity* PChar = (CCharEntity*)members.at(i);
 
@@ -107,7 +108,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 {	
     DSP_DEBUG_BREAK_IF (m_PartyType != PARTY_PCS);
 
-	for (int32 i = 0; i < members.size(); ++i) 
+	for (uint32 i = 0; i < members.size(); ++i) 
 	{
 		CCharEntity* PChar = (CCharEntity*)members.at(i);
 
@@ -145,7 +146,7 @@ uint8 CParty::MemberCount(uint8 ZoneID)
 {	
 	uint8 count = 0;
 
-	for (int32 i = 0; i < members.size(); ++i) 
+	for (uint32 i = 0; i < members.size(); ++i) 
 	{
 		if (members.at(i)->getZone() == ZoneID)
 		{
@@ -163,9 +164,9 @@ uint8 CParty::MemberCount(uint8 ZoneID)
 
 void CParty::RemoveMemberByName(int8* MemberName)
 {
-    DSP_DEBUG_BREAK_IF (m_PartyType != PARTY_PCS);
+    DSP_DEBUG_BREAK_IF(m_PartyType != PARTY_PCS);
 
-	for (int32 i = 0; i < members.size(); ++i) 
+	for (uint32 i = 0; i < members.size(); ++i) 
 	{
 		if (strcmp(MemberName, members.at(i)->GetName()) == 0)
 		{
@@ -193,7 +194,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 	}
 	else
 	{
-		for (int32 i = 0; i < members.size(); ++i) 
+		for (uint32 i = 0; i < members.size(); ++i) 
 		{
 			if (PEntity == members.at(i)) 
 			{
@@ -254,7 +255,7 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 	} 
 	else
 	{
-		for (int32 i = 0; i < members.size(); ++i) 
+		for (uint32 i = 0; i < members.size(); ++i) 
 		{
 			CBattleEntity* PPartyMember = members.at(i);
 
@@ -380,7 +381,7 @@ int8 CParty::ReloadPartyMembers(CCharEntity* PChar)
 
 	int8 MemberNumber = -1;
 
-	for (int32 i = 0; i < members.size(); ++i) 
+	for (uint32 i = 0; i < members.size(); ++i) 
 	{
 		if (PChar == members.at(i))
 		{
@@ -406,7 +407,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 		PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE)
 		return;
 
-	for (uint8 i = 0; i < members.size(); ++i) 
+	for (uint32 i = 0; i < members.size(); ++i) 
 	{
         CCharEntity* PPartyMember = (CCharEntity*)members.at(i);
 
@@ -482,7 +483,7 @@ void CParty::SetQuaterMaster(CBattleEntity* PEntity)
 
 void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet)
 {
-	for (int32 i = 0; i < members.size(); ++i)
+	for (uint32 i = 0; i < members.size(); ++i)
 	{
 		if (PPartyMember != members.at(i))
 		{
