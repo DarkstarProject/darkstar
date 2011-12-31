@@ -1,16 +1,14 @@
 -----------------------------------
--- Area: Selbina
--- NPC: Yaya
--- Starts Quest: Under the sea
--- @zone 248
--- @pos -19 -2 -16
+-- Area: Mhaura
+-- NPC:  Zexu
+-- Involved in Quests: The Sand Charm
+-- @zone 249
+-- @pos 30 -8 25
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
-require("scripts/zones/Selbina/TextIDs");
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
+require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,12 +22,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getFameLevel(OTHER_AREAS) >= 2 and player:getQuestStatus(OTHER_AREAS,UNDER_THE_SEA) == QUEST_AVAILABLE) then 
-		player:startEvent(0x001f); -- Start quest "Under the sea"
+	if(player:getVar("theSandCharmVar") == 1) then
+		player:startEvent(0x007b); -- During quest "The Sand Charm" - 1st dialog
 	else
-		player:startEvent(0x0099); -- Standard dialog
+		player:startEvent(0x0079); -- Standard dialog
 	end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -47,11 +45,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x001f) then 
-		player:addQuest(OTHER_AREAS,UNDER_THE_SEA);
-		player:setVar("underTheSeaVar",1);
+	if(csid == 0x007b) then 
+		player:setVar("theSandCharmVar",2);
 	end
 end;
-
-
-
