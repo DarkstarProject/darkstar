@@ -348,25 +348,19 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,17,&zones,&length);
 		memcpy(PChar->m_ZonesList, zones, (length > sizeof(PChar->m_ZonesList) ? sizeof(PChar->m_ZonesList) : length));
 
-		length = Sql_GetIntData(SqlHandle,18); 
-		PChar->getStorage(LOC_INVENTORY)->SetSize(length > 30 ? length : 30);
-		length = Sql_GetIntData(SqlHandle,19); 
-		PChar->getStorage(LOC_MOGSAFE)->SetSize(length > 50 ? length : 50);
-		length = Sql_GetIntData(SqlHandle,20); 
-		PChar->getStorage(LOC_STORAGE)->SetSize(length > 0 ? length : 0);
-		PChar->getStorage(LOC_TEMPITEMS)->SetSize(18);
-		length = Sql_GetIntData(SqlHandle,21); 
-		PChar->getStorage(LOC_MOGLOCKER)->SetSize(length > 0 ? length : 0);
-		length = Sql_GetIntData(SqlHandle,22); 
-		PChar->getStorage(LOC_MOGSATCHEL)->SetSize(length > 30 ? length : 30);
-		length = Sql_GetIntData(SqlHandle,23); 
-		PChar->getStorage(LOC_MOGSACK)->SetSize(length > 30 ? length : 30);
+		PChar->getStorage(LOC_INVENTORY)->SetSize((uint8)Sql_GetIntData(SqlHandle,18)); 
+		PChar->getStorage(LOC_MOGSAFE)->SetSize((uint8)Sql_GetIntData(SqlHandle,19)); 
+		PChar->getStorage(LOC_STORAGE)->SetSize((uint8)Sql_GetIntData(SqlHandle,20));
+		PChar->getStorage(LOC_TEMPITEMS)->SetSize(18); 
+		PChar->getStorage(LOC_MOGLOCKER)->SetSize((uint8)Sql_GetIntData(SqlHandle,21)); 
+		PChar->getStorage(LOC_MOGSATCHEL)->SetSize((uint8)Sql_GetIntData(SqlHandle,22)); 
+		PChar->getStorage(LOC_MOGSACK)->SetSize((uint8)Sql_GetIntData(SqlHandle,23));
+
+        PChar->profile.rank[0] = (uint8)Sql_GetIntData(SqlHandle,25);
+		PChar->profile.rank[1] = (uint8)Sql_GetIntData(SqlHandle,26);
+		PChar->profile.rank[2] = (uint8)Sql_GetIntData(SqlHandle,27);
 		
-		PChar->profile.rank[0] = (uint16)Sql_GetIntData(SqlHandle,25);
-		PChar->profile.rank[1] = (uint16)Sql_GetIntData(SqlHandle,26);
-		PChar->profile.rank[2] = (uint16)Sql_GetIntData(SqlHandle,27);
-		
-		PChar->profile.rankpoints = (uint16)Sql_GetIntData(SqlHandle,28);
+		PChar->profile.rankpoints = Sql_GetUIntData(SqlHandle,28);
 
 		PChar->profile.fame[0] =  (uint16)Sql_GetIntData(SqlHandle,28);  //Sandoria
 		PChar->profile.fame[1] =  (uint16)Sql_GetIntData(SqlHandle,29);  //Bastok
@@ -1987,8 +1981,13 @@ void SaveMissionsList(CCharEntity* PChar)
 	int8 missionslist[sizeof(PChar->m_missionLog)*2+1];
 	Sql_EscapeStringLen(SqlHandle,missionslist,(const int8*)PChar->m_missionLog,sizeof(PChar->m_missionLog));
 
-	Sql_Query(SqlHandle,fmtQuery,missionslist,PChar->profile.rankpoints, \
-		PChar->profile.rank[0],PChar->profile.rank[1], PChar->profile.rank[2], PChar->id);
+	Sql_Query(SqlHandle,fmtQuery,
+        missionslist,
+        PChar->profile.rankpoints,
+		PChar->profile.rank[0],
+        PChar->profile.rank[1], 
+        PChar->profile.rank[2], 
+        PChar->id);
 }
 
 /************************************************************************
@@ -1999,18 +1998,19 @@ void SaveMissionsList(CCharEntity* PChar)
 
 void SaveCharInventoryCapacity(CCharEntity* PChar)
 {
-	const int8* fmtQuery = "UPDATE chars SET inventory = '%u', safe = '%u', \
-						   storage = '%u', locker = '%u', satchel = '%u', \
-						   sack = '%u' WHERE charid = %u;";
+	const int8* fmtQuery = "UPDATE chars \
+                            SET inventory = '%u', safe = '%u', storage = '%u', locker = '%u', satchel = '%u', sack = '%u' \
+                            WHERE charid = %u;";
 	
-	int8 keyitems[sizeof(PChar->keys)*2+1];
-	
-	Sql_Query(SqlHandle,fmtQuery,PChar->getStorage(LOC_INVENTORY)->GetSize()-1,PChar->getStorage(LOC_MOGSAFE)->GetSize()-1, \
-		PChar->getStorage(LOC_STORAGE)->GetSize()-1,PChar->getStorage(LOC_MOGLOCKER)->GetSize()-1,PChar->getStorage(LOC_MOGSATCHEL)->GetSize()-1, \
-		PChar->getStorage(LOC_MOGSACK)->GetSize()-1,PChar->id);
+	Sql_Query(SqlHandle, fmtQuery,
+        PChar->getStorage(LOC_INVENTORY)->GetSize()-1,
+        PChar->getStorage(LOC_MOGSAFE)->GetSize()-1,
+		PChar->getStorage(LOC_STORAGE)->GetSize()-1,
+        PChar->getStorage(LOC_MOGLOCKER)->GetSize()-1,
+        PChar->getStorage(LOC_MOGSATCHEL)->GetSize()-1,
+		PChar->getStorage(LOC_MOGSACK)->GetSize()-1,
+        PChar->id);
 }
-
-
 
 /************************************************************************
 *																		*
