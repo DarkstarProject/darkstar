@@ -37,6 +37,7 @@ class CItemContainer;
 namespace guildutils
 {
 	void Initialize();
+    void UpdateGuildsStock();
 
 	CItemContainer* GetGuildShop(uint16 GuildID);
 }

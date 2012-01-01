@@ -133,7 +133,6 @@
     <ClInclude Include="..\..\src\map\fishingutils.h" />
     <ClInclude Include="..\..\src\map\grades.h" />
     <ClInclude Include="..\..\src\map\guildutils.h" />
-    <ClInclude Include="..\..\src\map\guild.h" />
     <ClInclude Include="..\..\src\map\items\item.h" />
     <ClInclude Include="..\..\src\map\items\item_armor.h" />
     <ClInclude Include="..\..\src\map\items\item_currency.h" />
@@ -293,7 +292,6 @@
     <ClCompile Include="..\..\src\map\fishingutils.cpp" />
     <ClCompile Include="..\..\src\map\grades.cpp" />
     <ClCompile Include="..\..\src\map\guildutils.cpp" />
-    <ClCompile Include="..\..\src\map\guild.cpp" />
     <ClCompile Include="..\..\src\map\items\item.cpp" />
     <ClCompile Include="..\..\src\map\items\item_armor.cpp" />
     <ClCompile Include="..\..\src\map\items\item_currency.cpp" />

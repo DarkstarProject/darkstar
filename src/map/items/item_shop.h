@@ -38,31 +38,25 @@ class CItemShop : public CItem
 {
 public:
 
-	CItemShop(uint16 id);
-	virtual ~CItemShop();
+    CItemShop(uint16 id);
+    virtual ~CItemShop();
 
+    uint32  getMinPrice();
+    uint32  getMaxPrice();
 	
-	uint32	getMinPrice();
-	uint32	getMaxPrice();
-	uint8	getDailyIncrease();
+    bool    IsInMenu();
+    bool    IsDailyIncrease();
+	
+    void    setMinPrice(uint32 price);
+    void    setMaxPrice(uint32 price);
+    void    setDailyIncreace(uint8 quantity);
 
-	bool	IsInMenu();
-	
-	void	setMinPrice(uint32 price);
-	void	setMaxPrice(uint32 price);
-	void	setDailyIncreace(uint8 quantity);
-
-	void	IsInMenu(bool menu);
-	
-	
 private:
 
-	uint32	m_MinPrice;
-	uint32	m_MaxPrice;
-	
-	bool	m_IsInMenu;
+    uint32  m_MinPrice;
+    uint32  m_MaxPrice;
 
-	uint8	m_DailyIncrease;
+    bool    m_DailyIncrease;
 };
 
 #endif

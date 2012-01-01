@@ -58,9 +58,9 @@ namespace guildutils
 
 void Initialize()
 {
-	//DSP_DEBUG_BREAK_IF(g_PGuildList.size() != 0);
+	DSP_DEBUG_BREAK_IF(g_PGuildList.size() != 0);
 
-	const int8* fmtQuery = "SELECT DISTINCT guildid FROM guild_shops ORDER BY guildid ASC";
+	const int8* fmtQuery = "SELECT DISTINCT guildid FROM guild_shops ORDER BY guildid ASC LIMIT 256";
 
 	if (Sql_Query(SqlHandle,fmtQuery) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -71,21 +71,20 @@ void Initialize()
 			g_PGuildList.push_back(new CItemContainer(Sql_GetIntData(SqlHandle,0), false));
 		}
 	}
-
-	for (int32 i = 0; i < g_PGuildList.size(); ++i)
+	for (uint32 i = 0; i < g_PGuildList.size(); ++i)
 	{
 		CItemContainer* PGuild = g_PGuildList.at(i);
 
 		fmtQuery = "SELECT itemid, min_price, max_price, quantity, daily_increase \
 				    FROM guild_shops \
 					WHERE guildid = %u \
-					ORDER BY itemid ASC";
+                    LIMIT %u";
 
-		int32 ret = Sql_Query(SqlHandle, fmtQuery, PGuild->GetID());
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, PGuild->GetID(), MAX_CONTAINER_SIZE);
 
 		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
-			PGuild->SetSize(Sql_NumRows(SqlHandle));
+			PGuild->SetSize((uint8)Sql_NumRows(SqlHandle));
 
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
@@ -96,16 +95,41 @@ void Initialize()
 				PItem->setStackSize(Sql_GetIntData(SqlHandle,3));
 				PItem->setDailyIncreace(Sql_GetIntData(SqlHandle,4));
 
-				if (PItem->getDailyIncrease() != 0)
+				if (PItem->IsDailyIncrease())
 				{
-					PItem->setQuantity((PItem->getStackSize() * 70) / 100);
+					PItem->setQuantity((PItem->getStackSize() * 75) / 100);
 				}
-
-				PItem->IsInMenu(PItem->getQuantity() != 0);
-
 				PGuild->InsertItem(PItem);
 			}
 		}
+	}
+}
+
+/************************************************************************
+*                                                                       *
+*  Обновляем запас гильдий                                              *
+*                                                                       *
+************************************************************************/
+
+void UpdateGuildsStock()
+{
+    for (uint16 i = 0; i < g_PGuildList.size(); ++i)
+	{
+		CItemContainer* PGuild = g_PGuildList.at(i);
+        for(uint8 slotid = 0; slotid < PGuild->GetSize(); ++slotid)
+        {
+            CItemShop* PItem = (CItemShop*)PGuild->GetItem(slotid);
+            if (PItem->IsDailyIncrease())
+            {
+                PItem->setQuantity(PItem->getQuantity() + (PItem->getStackSize() * 25) / 100);
+            }
+
+            uint32 limit = (PItem->getStackSize() * 75) / 100;
+            if (PItem->getQuantity() > limit)
+            {
+                PItem->setQuantity(limit);
+            }
+        }
 	}
 }
 
@@ -117,7 +141,7 @@ void Initialize()
 
 CItemContainer* GetGuildShop(uint16 GuildID)
 {
-	for (uint8 i = 0; i < g_PGuildList.size(); ++i)
+	for (uint16 i = 0; i < g_PGuildList.size(); ++i)
 	{
 		if (g_PGuildList.at(i)->GetID() == GuildID)
 		{

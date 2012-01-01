@@ -37,51 +37,38 @@ CGuildMenuBuyPacket::CGuildMenuBuyPacket(CCharEntity* PChar, CItemContainer* PGu
 	this->type = 0x83;
 	this->size = 0x7C;
 
-	//DSP_DEBUG_BREAK_IF(PChar == NULL);
-	//DSP_DEBUG_BREAK_IF(PGuild == NULL);
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PGuild == NULL);
 
-	uint8 ItemCount = 0;
-	uint8 PacketCount = 0;
+    uint8 ItemCount = 0;
+    uint8 PacketCount = 0;
 
-	for (uint8 SlotID = 0; SlotID < PGuild->GetSize(); ++SlotID) 
-	{
-		CItemShop* PItem = (CItemShop*)PGuild->GetItem(SlotID);
+    for (uint8 SlotID = 0; SlotID < PGuild->GetSize(); ++SlotID) 
+    {
+        CItemShop* PItem = (CItemShop*)PGuild->GetItem(SlotID);
 
 		if (PItem->IsInMenu()) 
 		{
-			if ((ItemCount == 30) && (ItemCount < PGuild->GetSize()))
+			if (ItemCount == 30)
 			{
-				WBUFB(data,(0xF4)-4) = ItemCount;
-				WBUFB(data,(0xF5)-4) = (PacketCount == 0 ? 0x40 : PacketCount);
+                WBUFB(data,(0xF4)-4) = ItemCount;
+                WBUFB(data,(0xF5)-4) = (PacketCount == 0 ? 0x40 : PacketCount);
 
-				if (PacketCount == 2) 
-				{
-					data[0xF5-0x04] += 0x80;
-					return;
-				} 
-				else 
-				{
-					PChar->pushPacket(new CBasicPacket(*this));
+                PChar->pushPacket(new CBasicPacket(*this));
 
-					ItemCount = 0;
-					PacketCount++;
+                ItemCount = 0;
+                PacketCount++;
 						
-					memset(data, 0, sizeof(data));
-				}
+                memset(data, 0, sizeof(data));
 			}
+            WBUFW(data,(0x08*ItemCount+0x04)-4) = PItem->getID();
+            WBUFB(data,(0x08*ItemCount+0x06)-4) = PItem->getQuantity();
+            WBUFB(data,(0x08*ItemCount+0x07)-4) = PItem->getStackSize();
+            WBUFL(data,(0x08*ItemCount+0x08)-4) = PItem->getBasePrice();
 
-			WBUFW(data,(0x08*ItemCount+0x04)-4) = PItem->getID();
-			WBUFB(data,(0x08*ItemCount+0x06)-4) = PItem->getQuantity();
-			WBUFB(data,(0x08*ItemCount+0x07)-4) = PItem->getStackSize();
-			WBUFL(data,(0x08*ItemCount+0x08)-4) = PItem->getBasePrice();
-
-			ItemCount++;
-		}
-	}
-
-	if (ItemCount > 0)
-	{
-		WBUFB(data,(0xF4)-4) = ItemCount;
-		WBUFB(data,(0xF5)-4) = PacketCount + 0x80;
-	}
+            ItemCount++;
+        }
+    }
+    WBUFB(data,(0xF4)-4) = ItemCount;
+    WBUFB(data,(0xF5)-4) = PacketCount + 0x80;
 }

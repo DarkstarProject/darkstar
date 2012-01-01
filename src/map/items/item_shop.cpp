@@ -31,9 +31,7 @@ CItemShop::CItemShop(uint16 id) : CItem(id)
 	m_MinPrice = 0;
 	m_MaxPrice = 0;
 	
-	m_IsInMenu = false;
-
-	m_DailyIncrease = 0;
+	m_DailyIncrease = false;
 }
 
 CItemShop::~CItemShop()
@@ -45,37 +43,33 @@ uint32 CItemShop::getMinPrice()
 	return m_MinPrice;
 }
 
-void CItemShop::setMinPrice(uint32 price)
-{
-	m_MinPrice = price;
-}
 	
 uint32 CItemShop::getMaxPrice()
 {
 	return m_MaxPrice;
 }
 
-void CItemShop::setMaxPrice(uint32 price)
+bool CItemShop::IsInMenu()
 {
-	m_MaxPrice = price;
+    return getQuantity() != 0;
 }
 	
-uint8 CItemShop::getDailyIncrease()
+bool CItemShop::IsDailyIncrease()
 {
 	return m_DailyIncrease;
 }
 
-void CItemShop::setDailyIncreace(uint8 quantity)
+void CItemShop::setMinPrice(uint32 price)
 {
-	m_DailyIncrease = quantity;
+	m_MinPrice = price;
 }
 
-bool CItemShop::IsInMenu()
+void CItemShop::setMaxPrice(uint32 price)
 {
-	return m_IsInMenu;
+	m_MaxPrice = price;
 }
-	
-void  CItemShop::IsInMenu(bool menu)
+
+void CItemShop::setDailyIncreace(uint8 increace)
 {
-	m_IsInMenu = menu;
+	m_DailyIncrease = increace > 0;
 }
