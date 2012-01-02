@@ -14,10 +14,10 @@ require("scripts/globals/conquest");
 SANDORIA = 0;
   BASTOK = 1;
 WINDURST = 2;
-	NORG = 3;
+   JEUNO = 3;
  SELBINA = 4;
    RABAO = 4;
-   JEUNO = 5;
+    NORG = 5;
 TAVNAZIA = 6;
   STATIC = 7;
 
@@ -98,6 +98,6 @@ stock =
 	0x1036,2595, --Eye Drops
 	0x1010,910   --Potion
 };
-	
+
 showShop(player, STATIC, stock)
 end;

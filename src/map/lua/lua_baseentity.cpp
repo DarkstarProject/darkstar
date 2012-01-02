@@ -2020,26 +2020,26 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
 
 				switch (fameArea) 
 				{
-					case 0:
-					case 1:
-					case 2:
-					case 3:
+					case 0: // San d'Oria
+					case 1: // Bastock
+					case 2: // Windurst
 						fame = PChar->profile.fame[fameArea];
-						break;
-					case 4: 
-					{   // Selbina / Rabao
-						fame = PChar->profile.fame[0] + PChar->profile.fame[1];
-						fame = (uint16)( fame / 2 );
+                    break;
+                    case 3: // Jeuno
+					{   
+						fame = (PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) / 3;
 					}
-						break;
-					case 5: 
-					{   // Jeuno
-						fame = PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2];
-						fame = (uint16)( fame / 3 );
+					case 4: // Selbina / Rabao
+					{   
+						fame = (PChar->profile.fame[0] + PChar->profile.fame[1]) / 2;
 					}
-						break;
+                    break;
+                    case 5: // Norg
+					{
+						fame = PChar->profile.fame[3];
+					}
+                    break;
 				}
-
 				lua_pushinteger( L, fame);
 				return 1;
 			}
@@ -2102,17 +2102,18 @@ inline int32 CLuaBaseEntity::setFame(lua_State *L)
 			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) &&
 				!lua_isnil(L,-2) && lua_isnumber(L,-2) )
 			{
-
 				uint8  fameArea = (uint8)lua_tointeger(L, -2); 
 				uint16 fame     = (uint16)lua_tointeger(L, -1);
 				
 				switch(fameArea) 
 				{
-					case 0: 
-					case 1: 
-					case 2: 
-					case 3: 
+					case 0: // San d'Oria
+					case 1: // Bastock
+					case 2: // Windurst
 						((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] = fame;
+                    break;
+                    case 5: // Norg
+                        ((CCharEntity*)m_PBaseEntity)->profile.fame[3] = fame;
 					break;
 				}
 				return 0;

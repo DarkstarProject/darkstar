@@ -62,5 +62,4 @@ DHENTEVRYOKOH_CLOSED_DIALOG = 8137; -- I'm trrrying to start a business selling 
 	
 -- Tenshodo shop & quest "Tenshodo membership"
   TENSHODO_SHOP_OPEN_DIALOG = 6629; -- Ah, one of our members. Welcome to the Tenshodo shop.
-  NO_MEMBERSHIP_SHOP_DIALOG = 6625; -- I have nothing to sell you.
 

@@ -3,10 +3,11 @@
 -- Zone: Windurst_Woods
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/server");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
@@ -26,7 +27,7 @@ cs = -1;
 	-- FIRST LOGIN (START CS)
 	if (prevZone == 0) then
 		if (OPENING_CUTSCENE_ENABLE == 1) then
-			cs = 0x16f;
+			cs = 0x016F;
 		end
 		CharCreate(player);
 		player:setPos(0,0,-50,0);
@@ -70,7 +71,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x16f) then
+	if(csid == 0x016F) then
 		player:messageSpecial(ITEM_OBTAINED,0x218);
 	elseif (csid == 0x7534 and option == 0) then
 		player:setHomePoint();
