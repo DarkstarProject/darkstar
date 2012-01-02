@@ -9,5 +9,5 @@
 -----------------------------------
 
 function onTrigger(player,mobid)
-	SpawnMOBByID(mobid);
+	SpawnMob(mobid);
 end;

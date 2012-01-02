@@ -23,6 +23,7 @@
 
 #include "../../common/lua/lunar.h"
 #include "../../common/showmsg.h"
+#include "../../common/timer.h"
 #include "../../common/utils.h"
 #include <string.h>
 
@@ -256,25 +257,32 @@ int32 SpawnMob(lua_State* L)
 {
 	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 	{
-		uint32 mobid = (uint32)lua_tointeger(L, 1);
+		uint32 mobid = (uint32)lua_tointeger(L,1);
 		uint8  zone  = (mobid >> 12)-4096;
 		
-		CMobEntity* PMob = (CMobEntity*)zoneutils::GetZone(zone)->GetEntity((uint16)mobid & 0x0FFF, TYPE_MOB);
-		
-		if (PMob != NULL)
-		{
-			PMob->PBattleAI->SetLastActionTime(0);
-			PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-			if( !lua_isnil(L,2) && lua_isnumber(L,2))
-			{
-				int32 duration = (int32)lua_tointeger(L, 2); 
-				PMob->setDespawnTimer(duration); 
-			}
-		}
-		return 0;
-	}
-	lua_pushnil(L);
-	return 1;
+        CMobEntity* PMob = (CMobEntity*)zoneutils::GetZone(zone)->GetEntity((uint16)mobid & 0x0FFF, TYPE_MOB);
+        if (PMob != NULL)
+        {
+            if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
+                PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
+            {
+                PMob->PBattleAI->SetLastActionTime(0);
+                PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+
+                if( !lua_isnil(L,2) && lua_isnumber(L,2))
+                {
+                    PMob->SetDespawnTimer((uint32)lua_tointeger(L,2)); 
+                }
+            } else {
+                ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n"CL_RESET, PMob->GetName());
+            }
+        } else {
+            ShowDebug(CL_RED"SpawnMob: mob <%u> not found\n"CL_RESET, mobid);
+        }
+        return 0;
+    }
+    lua_pushnil(L);
+    return 1;
 }
 
 /************************************************************************
@@ -293,8 +301,8 @@ int32 DespawnMob(lua_State* L)
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetZone(zone)->GetEntity((uint16)mobid & 0x0FFF, TYPE_MOB);
 		if (PMob != NULL)
 		{
-			PMob->PBattleAI->SetLastActionTime(0);
-			PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+			PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
+			PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
 		}
 		return 0;
 	}
@@ -321,8 +329,7 @@ int32 GetMobAction(lua_State* L)
 			int32 currentAction = (int32)PMob->PBattleAI->GetCurrentAction(); 
 			lua_pushinteger(L,currentAction);
 		    return 1;
-		}
-		
+        }
 	}
 	return -1;
 }

@@ -65,7 +65,11 @@ enum BEHAVIOUR
 	BEHAVIOUR_AGGRO_JOBABILITY	= 0x80,
 };
 
-
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 class CMobEntity : public CBattleEntity 
 {
@@ -91,10 +95,15 @@ public:
 
 	CEnmityContainer* PEnmityContainer;	// система ненависти монстров
 
-	 CMobEntity();				// конструктор
-	~CMobEntity();				// деструктор
+    uint32 GetDespawnTimer();
+    void   SetDespawnTimer(uint32 duration);
+
+    CMobEntity();				// конструктор
+   ~CMobEntity();				// деструктор
 
 private:
+
+    uint32       m_DespawnTimer; // Despawn Timer to despawn mob after set duration
 
 };
 

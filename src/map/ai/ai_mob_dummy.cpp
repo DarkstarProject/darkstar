@@ -123,10 +123,9 @@ void CAIMobDummy::ActionRoaming()
 
 		m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 	}
-
-	if (m_PMob->getDespawnTimer() > 0 && m_PMob->getDespawnTimer() < m_Tick)
+	if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
 	{
-		m_LastActionTime = m_Tick; 
+		m_LastActionTime = m_Tick - 12000; 
 		m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
 	}
 }
@@ -337,20 +336,20 @@ void CAIMobDummy::ActionSpawn()
 
 void CAIMobDummy::ActionAbilityStart()
 {
-    m_LastActionTime = m_Tick;
-
-	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
-	
-    // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
     std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->m_Family);
 
+    // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
     if (MobSkills.size() == 0)
     {
         m_PMob->health.tp = 0; 
 		m_ActionType = ACTION_ATTACK;
+        ActionAttack();
 		return; 
     }
+    m_LastActionTime = m_Tick;
+
 	m_PMobSkill = MobSkills.at(rand() % MobSkills.size());
 
     apAction_t Action;
@@ -472,8 +471,6 @@ void CAIMobDummy::ActionAttack()
 	{
 		if ((m_Tick - m_LastActionTime) > m_PMob->m_Weapons[SLOT_MAIN]->getDelay())
 		{
-			m_LastActionTime = m_Tick;
-
 			if (battleutils::IsParalised(m_PMob)) 
 			{
 				m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,29));
@@ -603,13 +600,13 @@ void CAIMobDummy::ActionAttack()
 
 				m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 			}
+            m_LastActionTime = m_Tick;
 		}
 	}
 	else
     {
 		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
 	}
-			
 	m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 

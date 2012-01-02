@@ -21,6 +21,8 @@
 ===========================================================================
 */
 
+#include "../common/timer.h"
+
 #include <string.h>
 
 #include "mobentity.h"
@@ -35,7 +37,8 @@ CMobEntity::CMobEntity()
 	m_minLevel = 1;
 	m_maxLevel = 1;
 
-	m_CallForHelp = 0;
+	m_CallForHelp  = 0;
+    m_DespawnTimer = 0;
 	m_Family = 0;
 	m_Type      = MOBTYPE_NORMAL;
 	m_Behaviour = BEHAVIOUR_NONE;
@@ -50,4 +53,14 @@ CMobEntity::CMobEntity()
 CMobEntity::~CMobEntity()
 {
 	delete PEnmityContainer;
+}
+
+uint32 CMobEntity::GetDespawnTimer()
+{
+	return m_DespawnTimer;
+}
+
+void CMobEntity::SetDespawnTimer(uint32 duration)
+{
+	m_DespawnTimer = (duration > 0 ? (duration * 1000) + gettick() : duration);
 }
