@@ -157,6 +157,7 @@ TIMETYPE CVanaTime::SyncTime()
 	{
 		switch (m_vHour)
 		{
+            case  0: m_TimeType = TIME_NIGHT;   return TIME_MIDNIGHT;
 			case  4: m_TimeType = TIME_NEWDAY;	return TIME_NEWDAY;
 			case  6: m_TimeType = TIME_DAWN;	return TIME_DAWN;
 			case  7: m_TimeType = TIME_DAY;		return TIME_DAY;

@@ -132,8 +132,7 @@ public:
 
 	void			InsertRegion(CRegion* Region);									// добавляем в зону активную область
 
-	void			TOTDCharnge(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
-	void			UpdateVanadielTime();											// обновляем игровое время для всех персонажей в зоне
+	void			TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
 	void			PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
 
 	uint32			m_RegionCheckTime;												// время последней проверки регионов

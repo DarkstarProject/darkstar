@@ -23,6 +23,7 @@
 
 #include "../common/showmsg.h"
 
+#include "guildutils.h"
 #include "time_server.h"
 #include "transport.h"
 #include "vana_time.h"
@@ -37,6 +38,10 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 	{
 		zoneutils::TOTDCharnge(VanadielTOTD);
 	}
+    if (VanadielTOTD == TIME_MIDNIGHT)
+    {
+        guildutils::UpdateGuildsStock();
+    }
 
 	CTransportHandler::getInstance()->TransportTimer();
 	return 0;

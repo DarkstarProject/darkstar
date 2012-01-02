@@ -78,7 +78,6 @@ int32 init()
 	lua_register(LuaHandle,"VanadielTOTD",luautils::VanadielTOTD);
 	lua_register(LuaHandle,"VanadielHour",luautils::VanadielHour);
 	lua_register(LuaHandle,"VanadielMinute",luautils::VanadielMinute);
-	lua_register(LuaHandle,"VanadielTimeOffset",luautils::VanadielTimeOffset);
 	lua_register(LuaHandle,"VanadielDayOfTheMonth",luautils::VanadielDayOfTheMonth);
 	lua_register(LuaHandle,"VanadielDayOfTheYear",luautils::VanadielDayOfTheYear);
 	lua_register(LuaHandle,"VanadielYear",luautils::VanadielYear);
@@ -244,25 +243,6 @@ int32 VanadielHour(lua_State* L)
 int32 VanadielMinute(lua_State* L)
 {
 	lua_pushinteger(L, CVanaTime::getInstance()->getMinute());
-	return 1;
-}
-
-/************************************************************************
-*																		*
-*  Устанавливаем/узнаем смещение Vana'diel Time в минутах				*
-*																		*
-************************************************************************/
-
-int32 VanadielTimeOffset(lua_State* L)
-{
-	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
-	{
-		int32 offset = (uint32)lua_tointeger(L, -1);
-		CVanaTime::getInstance()->setCustomOffset(offset);
-		zoneutils::UpdateVanadielTime();
-		return 0;
-	}
-	lua_pushinteger(L,CVanaTime::getInstance()->getCustomOffset());
 	return 1;
 }
 

@@ -262,42 +262,40 @@ void CAIMobDummy::ActionDropItems()
 
 void CAIMobDummy::ActionDeath() 
 {
-	m_PMob->PEnmityContainer->Clear();	
 	if ((m_Tick - m_LastActionTime) > 12000 )
 	{
 		m_ActionType = ACTION_FADE_OUT;
-		m_PMob->PEnmityContainer->Clear();
 		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
 	}
 }
 
 /************************************************************************
-*																		*
-*  Здесь модель пропадает после постепенного ичезновения, так же		*
-*  решается вопрос, а нужно ли включать процесс возрождения монстра.	*
-*  Если его время возрождения равно нулю, значит он был вызван и в		*
-*  возрождении не нуждается, иначе запускаем процесс					*
-*																		*
+*                                                                       *
+*  Здесь модель пропадает после постепенного ичезновения, так же        *
+*  решается вопрос, а нужно ли включать процесс возрождения монстра.    *
+*  Если его тип возрождения равно нулю, значит он был вызван и в        *
+*  возрождении не нуждается, иначе запускаем процесс                    *
+*                                                                       *
 ************************************************************************/
 
 void CAIMobDummy::ActionFadeOut() 
 {
 	if ((m_Tick - m_LastActionTime) > 15000 )
 	{
-		m_PMob->PEnmityContainer->Clear();
 		m_PMob->status = STATUS_DISAPPEAR;
-		m_ActionType = (m_PMob->m_RespawnTime != 0 ? ACTION_SPAWN : ACTION_NONE);
+        m_ActionType   = m_PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE;
 
-		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_DESPAWN));
+		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_DESPAWN));
 	}
 }
 
 /************************************************************************
-*																		*
-*  Вознождение монстра. Сейчас используется время 25 секунд после		*
-*  смерти, позднее будет использоватся реальное время возрождения		*
-*																		*
+*                                                                       *
+*  Возрождение монстра.                                                 *
+*                                                                       *
 ************************************************************************/
+
+// TODO: ночные монстры должны появляться только ночью
 
 void CAIMobDummy::ActionSpawn() 
 {
@@ -310,6 +308,7 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->m_CallForHelp = 0;
 		m_PMob->status = STATUS_UPDATE;
 		m_PMob->animation = ANIMATION_NONE;
+        m_PMob->PEnmityContainer->Clear();
 
 		uint8 level = m_PMob->m_minLevel;
 

@@ -3,10 +3,11 @@
 -- Zone: Windurst_Waters
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/server");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------

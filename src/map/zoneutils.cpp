@@ -52,15 +52,7 @@ void TOTDCharnge(TIMETYPE TOTD)
 {
 	for(int32 ZoneID = 0; ZoneID < 256; ++ZoneID)
 	{
-		g_PZoneList[ZoneID]->TOTDCharnge(TOTD);
-	}
-}
-
-void UpdateVanadielTime()
-{
-	for(int32 ZoneID = 0; ZoneID < 256; ++ZoneID)
-	{
-		g_PZoneList[ZoneID]->UpdateVanadielTime();
+		g_PZoneList[ZoneID]->TOTDChange(TOTD);
 	}
 }
 
@@ -211,7 +203,7 @@ void LoadZoneList()
 				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,44); 
 				PMob->PBattleAI = new CAIMobDummy(PMob);
 				PMob->PBattleAI->SetCurrentZone(PZone);
-				PMob->PBattleAI->SetCurrentAction(PMob->m_RespawnTime != 0 ? ACTION_SPAWN : ACTION_NONE);
+				PMob->PBattleAI->SetCurrentAction(PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE);
 
 				PZone->InsertMOB(PMob);
 			}

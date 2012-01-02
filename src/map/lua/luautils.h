@@ -55,7 +55,6 @@ namespace luautils
 	int32 VanadielTOTD(lua_State*);												// текущее игровое время суток
 	int32 VanadielHour(lua_State*);												// текущие Vanadiel часы
 	int32 VanadielMinute(lua_State*);											// текущие Vanadiel минуты
-	int32 VanadielTimeOffset(lua_State*);										// смещение игрового времени (в целях отладки)
 	int32 VanadielDayOfTheYear(lua_State*);										// Gets Integer Value for Day of the Year (Jan 01 = Day 1) 
 	int32 VanadielDayOfTheMonth(lua_State*);									// Gets day of the month (Feb 6 = Day 6)
 	int32 VanadielYear(lua_State*);												// Gets the current Vanadiel Year

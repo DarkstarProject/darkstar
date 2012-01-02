@@ -119,6 +119,9 @@ void UpdateGuildsStock()
         for(uint8 slotid = 0; slotid < PGuild->GetSize(); ++slotid)
         {
             CItemShop* PItem = (CItemShop*)PGuild->GetItem(slotid);
+
+            // TODO: сначала, анализируя текущее количество предметов, обновляем их стоимость
+
             if (PItem->IsDailyIncrease())
             {
                 PItem->setQuantity(PItem->getQuantity() + (PItem->getStackSize() * 25) / 100);
@@ -131,6 +134,7 @@ void UpdateGuildsStock()
             }
         }
 	}
+    ShowDebug(CL_CYAN"UpdateGuildsStock is finished\n"CL_RESET);
 }
 
 /************************************************************************

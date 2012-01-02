@@ -390,6 +390,7 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
             CMobEntity* PCurrentMob = (CMobEntity*)it->second;
             
             if (PCurrentMob->m_Link && 
+                PCurrentMob->PMaster == NULL &&
                 PCurrentMob->m_Family == PMob->m_Family)
             {
                 PCurrentMob->PParty->AddMember(PMob);
@@ -678,8 +679,6 @@ void CZone::SpawnPETs(CCharEntity* PChar)
 
 void CZone::SpawnNPCs(CCharEntity* PChar)
 {
-	// TODO: если хранить всех npc в vector, то насколько быстрее станет их перебор ?
-
 	for (EntityList_t::const_iterator it = m_npcList.begin() ; it != m_npcList.end() ; ++it)
 	{
 		CNpcEntity* PCurrentNpc = (CNpcEntity*)it->second;
@@ -710,7 +709,7 @@ void CZone::SpawnNPCs(CCharEntity* PChar)
 /************************************************************************
 *																		*
 *  Проверка видимости персонажей. Смысл действий в том, что персонажи	*
-*  сами себя обновляют и добавляют в списки других персонажей.          *
+*  сами себя обновляют и добавляются в списки других персонажей.        *
 *  В оригинальной версии размер списка ограничен и изменяется в			*
 *  пределах 25-50 видимых персонажей.									*
 *																		*
@@ -834,7 +833,7 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 *																		*
 ************************************************************************/
 
-void CZone::TOTDCharnge(TIMETYPE TOTD)
+void CZone::TOTDChange(TIMETYPE TOTD)
 {
 	if (ZoneTimer == NULL)
 		return;
@@ -851,7 +850,8 @@ void CZone::TOTDCharnge(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
 				{
-					//PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+                    PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
+					PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
 				}
 			}
 		}
@@ -866,7 +866,8 @@ void CZone::TOTDCharnge(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
 				{
-					//PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+                    PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
+					PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
 				}
 			}
 		}
@@ -891,7 +892,7 @@ void CZone::TOTDCharnge(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
 				{
-					//PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+					PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 				}
 			}
 		}
@@ -904,7 +905,7 @@ void CZone::TOTDCharnge(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
 				{
-					//PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+					PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 				}
 			}
 		}
@@ -917,22 +918,6 @@ void CZone::TOTDCharnge(TIMETYPE TOTD)
 		{
 			charutils::CheckEquipLogic((CCharEntity*)it->second, ScriptType, TOTD);
 		}
-	}
-}
-
-/************************************************************************
-*																		*
-*  Обновляем игровое время для всех персонажей в зоне					*
-*																		*
-************************************************************************/
-
-void CZone::UpdateVanadielTime()
-{
-	for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-	{
-		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-		PCurrentChar->status = STATUS_DISAPPEAR;
-		PCurrentChar->pushPacket(new CServerIPPacket(PCurrentChar,2));
 	}
 }
 

@@ -1213,7 +1213,7 @@ int32 SmallPacket0x04E(CCharEntity* PChar, int8* data)
 				    ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item to database\n"CL_RESET);
 				    return 0;
 			    }
-                charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(quantity != 0 ? 1 : PItem->getStackSize()));
+                charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(int32)(quantity != 0 ? 1 : PItem->getStackSize()));
             }
 		} 
         break;
@@ -1916,9 +1916,10 @@ int32 SmallPacket0x0B5(CCharEntity* PChar, int8* data)
 {
 	if (RBUFB(data,(0x06)) == '@' && PChar->nameflags.flags & FLAG_GM)
 	{
-		const int8* cmdline = data+7;
-		CmdHandler.call(PChar,cmdline);
-	}else{
+		CmdHandler.call(PChar, (const int8*)data+7);
+	}
+    else
+    {
 		switch(RBUFB(data,(0x04)))
 		{
 			case MESSAGE_SAY:		zoneutils::GetZone(PChar->getZone())->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6)); break;

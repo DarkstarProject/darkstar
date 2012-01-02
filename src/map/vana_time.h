@@ -40,13 +40,14 @@ enum DAYTYPE
 
 enum TIMETYPE
 {
-	TIME_NONE		= 0,
-	TIME_NEWDAY		= 1,
-	TIME_DAWN		= 2,
-	TIME_DAY		= 3,
-	TIME_DUSK		= 4,
-	TIME_EVENING	= 5,
-	TIME_NIGHT		= 6
+    TIME_NONE       = 0,
+    TIME_MIDNIGHT   = 1,
+    TIME_NEWDAY     = 2,
+    TIME_DAWN       = 3,
+    TIME_DAY        = 4,
+    TIME_DUSK       = 5,
+    TIME_EVENING    = 6,
+    TIME_NIGHT      = 7
 };
 
 class CVanaTime
