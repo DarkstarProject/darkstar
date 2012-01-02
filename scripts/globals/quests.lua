@@ -313,9 +313,10 @@ BABBAN_NY_MHEILLEA              = 95;
 --  Jeuno
 -----------------------------------
 
+CREST_OF_DAVOI					= 0;  -- + --
 SAVE_MY_SISTER                  = 1;  -- + --
 A_CLOCK_MOST_DELICATE           = 2;  -- + --
-ATOP_THE_HIGHEST_MOUNTAINS      = 3;
+SAVE_THE_CLOCK_TOWER            = 3;  -- + --
 CHOCOBO_S_WOUNDS                = 4;  -- + ----
 SAVE_MY_SON                     = 5;  -- + ----
 A_CANDLELIGHT_VIGIL             = 6;  -- + --
@@ -388,7 +389,7 @@ A_CHOCOBO_S_TALE                = 72;
 A_REPUTATION_IN_RUINS           = 73;
 THE_GOBBIEBAG_PART_V            = 74; -- + ----
 THE_GOBBIEBAG_PART_VI           = 75; -- + ----
-ATOP_THE_HIGHEST_MOUNTAINS      = 76;
+BEYOND_THE_SUN                  = 76;
 UNLISTED_QUALITIES              = 77;
 GIRL_IN_THE_LOOKING_GLASS       = 78;
 MIRROR_MIRROR                   = 79;
@@ -437,11 +438,28 @@ UNLOCKING_A_MYTH_SCHOLAR        = 121;
 
 THE_GOBBIEBAG_PART_IX           = 123; -- + ----
 THE_GOBBIEBAG_PART_X            = 124; -- + ----
-SAVE_THE_CLOCK_TOWER			= 125; -- + --
-CREST_OF_DAVOI					= 126; -- + --
-
 
 IN_DEFIANT_CHALLENGE            = 128;
+ATOP_THE_HIGHEST_MOUNTAINS      = 129;
+WHENCE_BLOWS_THE_WIND           = 130;
+RIDING_ON_THE_CLOUDS            = 131;
+SHATTERING_STARS                = 132;
+NEW_WORLDS_AWAIT                = 133;
+EXPANDING_HORIZONS              = 134;
+BEYOND_THE_STARS                = 135;
+DORMANT_POWERS_DISLODGED        = 136;
+BEYOND_INFINITY                 = 137;
+
+A_TRIAL_IN_TANDEM               = 160;
+A_TRIAL_IN_TANDEM_REDUX         = 161;
+YET_ANOTHER_TRIAL_IN_TANDEM     = 162;
+A_QUATERNARY_TRIAL_IN_TANDEM    = 163;
+A_TRIAL_IN_TANDEM_REVISITED     = 164;
+ALL_IN_THE_CARDS                = 166;
+MARTIAL_MASTERY                 = 167;
+VW_OP_115_VALKURM_DUSTER        = 168;
+VW_OP_118_BUBURIMU_SQUALL       = 169;
+PRELUDE_TO_PUISSANCE            = 170;
 
 -----------------------------------
 --  Other Areas
