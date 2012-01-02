@@ -264,10 +264,8 @@ int32 login_config_read(const char *cfgName)
 	{
 		char* ptr;
 
-		if( line[0] == '/' && line[1] == '/' )
+        if( line[0] == '#')
 			continue;
-		if( (ptr = strstr(line, "//")) != NULL )
-			*ptr = '\n'; //Strip comments
 		if( sscanf(line, "%[^:]: %[^\t\r\n]", w1, w2) < 2 )
 			continue;
 
@@ -277,39 +275,47 @@ int32 login_config_read(const char *cfgName)
 		ptr++;
 		*ptr = '\0';
 			
-		if(strcmpi(w1,"timestamp_format")==0)
+		if(strcmpi(w1,"timestamp_format") == 0)
+        {
 			strncpy(timestamp_format, w2, 20);
-		else 
-		if(strcmpi(w1,"stdout_with_ansisequence")==0)
+        }
+		else if(strcmpi(w1,"stdout_with_ansisequence") == 0 )
+        {
 			stdout_with_ansisequence = config_switch(w2);
-		else
-		if(strcmpi(w1,"console_silent")==0) {
+        }
+		else if(strcmpi(w1,"console_silent") == 0 ) 
+        {
 			ShowInfo("Console Silent Setting: %d\n", atoi(w2));
 			msg_silent = atoi(w2);
-		} else
-		if (strcmp(w1, "mysql_host" ) == 0){
-			//--
+		} 
+        else if (strcmp(w1, "mysql_host" ) == 0)
+        {
 			login_config.mysql_host = aStrdup(w2);
-		}else
-		if (strcmp(w1, "mysql_login" ) == 0){
-			//--
+        }
+        else if (strcmp(w1, "mysql_login" ) == 0)
+        {
 			login_config.mysql_login = aStrdup(w2);
-		}else
-		if (strcmp(w1, "mysql_password") == 0){
+        }
+		else if (strcmp(w1, "mysql_password") == 0)
+        {
 			login_config.mysql_password = aStrdup(w2);
 		}
-		else 
-		if (strcmp(w1, "mysql_port") == 0 ){
+		else if (strcmp(w1, "mysql_port") == 0)
+        {
 			login_config.mysql_port = atoi(w2);
 		}
-		else 
-		if (strcmp(w1,"mysql_database") == 0){
+		else if (strcmp(w1,"mysql_database") == 0)
+        {
 			login_config.mysql_database = aStrdup(w2);
-		}else
-		if (strcmpi(w1, "import") == 0)
+		}
+        else if (strcmpi(w1, "import") == 0)
+        {
 			login_config_read(w2);
+        }
 		else
+        {
 			ShowWarning("Unknown setting '%s' in file %s\n", w1, cfgName);
+        }
 	}
 
 	fclose(fp);

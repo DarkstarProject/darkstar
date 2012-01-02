@@ -59,10 +59,8 @@ struct map_config_t
 	const int8 *mysql_password;		// mysql pass  -> default NULL
 	const int8 *mysql_database;		// mysql database -> default dspdb
 
-	uint32 time_wait_normal;		// wait time when nobody connects
-	uint32 time_wait_between2recv;	// waite time between two event recv packet 
-
 	uint32 max_time_lastupdate;		// max interval wait of last update player char
+    int32  vanadiel_time_offset;    // смещение игрового времени относительно реального времени
 };
 
 /************************************************************************

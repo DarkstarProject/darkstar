@@ -181,13 +181,14 @@ int32 do_init(int32 argc, int8** argv)
 	map_fd = makeBind_udp(map_config.uiMapIp,map_config.usMapPort);
 	ShowMessage("\t - "CL_GREEN"[OK]"CL_RESET"\n");
 
-	CTaskMgr::getInstance()->AddTask("time_server",gettick()+1000,NULL,CTaskMgr::TASK_INTERVAL,time_server,2400);
-	CTaskMgr::getInstance()->AddTask("map_cleanup",gettick()+5000,NULL,CTaskMgr::TASK_INTERVAL,map_cleanup,map_config.max_time_lastupdate);
+    CVanaTime::getInstance()->setCustomOffset(map_config.vanadiel_time_offset);
 
-	CVanaTime::getInstance()->setCustomOffset(0);
+	CTaskMgr::getInstance()->AddTask("time_server", gettick()+1000, NULL, CTaskMgr::TASK_INTERVAL, time_server, 2400);
+	CTaskMgr::getInstance()->AddTask("map_cleanup", gettick()+5000, NULL, CTaskMgr::TASK_INTERVAL, map_cleanup, map_config.max_time_lastupdate);
 
-	CREATE(g_PBuff,char,map_config.uiBuffMaxSize);
+	CREATE(g_PBuff, int8, map_config.uiBuffMaxSize);
 	ShowStatus("The map-server is "CL_GREEN"ready"CL_RESET" to work...\n");
+    ShowStatus("====================================================\n");
 	return 0;
 }
 
@@ -838,8 +839,8 @@ int32 map_config_default()
 	map_config.mysql_database = "dspdb";
 	map_config.mysql_port     = 3306;
 	map_config.uiBuffMaxSize  = 1874;
-	map_config.time_wait_between2recv = 10;		// 100ms;
-	map_config.max_time_lastupdate = 60000;		// 1 minutes;
+    map_config.vanadiel_time_offset = 0;
+	map_config.max_time_lastupdate  = 60000;
 	return 0;
 }
 
@@ -865,10 +866,8 @@ int32 map_config_read(const int8* cfgName)
 	{
 		int8* ptr;
 
-		if( line[0] == '/' && line[1] == '/' )
+        if( line[0] == '#' )
 			continue;
-		if( (ptr = strstr(line, "//")) != NULL )
-			*ptr = '\n'; //Strip comments
 		if( sscanf(line, "%[^:]: %[^\t\r\n]", w1, w2) < 2 )
 			continue;
 
@@ -891,35 +890,35 @@ int32 map_config_read(const int8* cfgName)
 			ShowInfo("Console Silent Setting: %d", atoi(w2));
 			msg_silent = atoi(w2);
 		} 
-		else if (strcmpi(w1, "map_port") == 0) 
+		else if (strcmpi(w1,"map_port") == 0) 
 		{
 			map_config.usMapPort = (atoi(w2));
 		} 
-		else if (strcmp(w1, "buff_maxsize") == 0)
+		else if (strcmp(w1,"buff_maxsize") == 0)
 		{
 			map_config.uiBuffMaxSize = atoi(w2);
-		} 
-		else if (strcmp(w1, "time_wait_between2recv") == 0)
-		{
-			map_config.time_wait_between2recv = atoi(w2);
-		} 
+		}
 		else if (strcmp(w1,"max_time_lastupdate") == 0)
 		{
 			map_config.max_time_lastupdate = atoi(w2);
 		}
-		else if (strcmp(w1, "mysql_host") == 0)
+        else if (strcmp(w1,"vanadiel_time_offset") == 0)
+        {
+            map_config.vanadiel_time_offset = atoi(w2);
+        }
+		else if (strcmp(w1,"mysql_host") == 0)
 		{
 			map_config.mysql_host = aStrdup(w2);
 		}
-		else if (strcmp(w1, "mysql_login") == 0)
+		else if (strcmp(w1,"mysql_login") == 0)
 		{
 			map_config.mysql_login = aStrdup(w2);
 		}
-		else if (strcmp(w1, "mysql_password") == 0)
+		else if (strcmp(w1,"mysql_password") == 0)
 		{
 			map_config.mysql_password = aStrdup(w2);
 		}
-		else if (strcmp(w1, "mysql_port") == 0)
+		else if (strcmp(w1,"mysql_port") == 0)
 		{
 			map_config.mysql_port = atoi(w2);
 		}
@@ -927,7 +926,7 @@ int32 map_config_read(const int8* cfgName)
 		{
 			map_config.mysql_database = aStrdup(w2);
 		}
-		else if (strcmpi(w1, "import") == 0)
+		else if (strcmpi(w1,"import") == 0)
 		{
 			map_config_read(w2);
 		}
