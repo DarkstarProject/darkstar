@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Selbina
 -- NPC: Oswald
--- Finish Quest: Under the sea
+-- Starts and Finishes Quest: Under the sea (finish), The gift, The real gift
 -- @zone 248
 -- @pos 48 -15 9
 -----------------------------------

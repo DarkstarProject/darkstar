@@ -37,8 +37,9 @@ end;
 
 function onTrigger(player,npc)
 	OnlyTheBest = player:getQuestStatus(OTHER_AREAS,ONLY_THE_BEST);
+	SelbiFame = math.floor((player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK)) / 2); -- Selbina Fame
 	
-	if(OnlyTheBest == QUEST_AVAILABLE) then
+	if(SelbiFame >= 1 and OnlyTheBest == QUEST_AVAILABLE) then
 		player:startEvent(0x003c,4366,629,919); -- Start quest "Only the Best"
 	elseif(OnlyTheBest ~= QUEST_AVAILABLE) then
 		player:startEvent(0x003d,4366,629,919); -- During & after completed quest "Only the Best"
