@@ -5,11 +5,12 @@
 -- @zone 248
 -- @pos -19 -2 -16
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
@@ -24,9 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	SelbiFame = math.floor((player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK)) / 2); -- Selbina Fame
-	
-	if(SelbiFame >= 2 and player:getQuestStatus(OTHER_AREAS,UNDER_THE_SEA) == QUEST_AVAILABLE) then 
+	if(player:getFameLevel(SELBINA) >= 2 and player:getQuestStatus(OTHER_AREAS,UNDER_THE_SEA) == QUEST_AVAILABLE) then 
 		player:startEvent(0x001f); -- Start quest "Under the sea"
 	else
 		player:startEvent(0x0099); -- Standard dialog

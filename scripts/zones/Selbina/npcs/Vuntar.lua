@@ -5,11 +5,11 @@
 -- @zone 248
 -- @pos 7 -2 -15
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
@@ -43,16 +43,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	SelbiFame = math.floor((player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK)) / 2); -- Selbina Fame
-	
-	if(SelbiFame >= 1 and player:getMainLvl() >= 20 and player:getQuestStatus(OTHER_AREAS,CARGO) == QUEST_AVAILABLE) then
+	if(player:getMainLvl() >= 20 and player:getQuestStatus(OTHER_AREAS,CARGO) == QUEST_AVAILABLE) then
 		player:startEvent(0x0032,4365); -- Start quest "Cargo"
-	elseif(SelbiFame == 0 or player:getMainLvl() < 20) then
+	elseif(player:getMainLvl() < 20) then
 		player:startEvent(0x0035); -- Dialog for low level or low fame
 	else
 		player:startEvent(0x0033,4365); -- During & after completed quest "Cargo"
 	end
-
 end;
 
 -----------------------------------

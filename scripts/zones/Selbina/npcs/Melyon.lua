@@ -5,11 +5,11 @@
 -- @zone 248
 -- @pos 25 -6 6
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
@@ -37,9 +37,8 @@ end;
 
 function onTrigger(player,npc)
 	OnlyTheBest = player:getQuestStatus(OTHER_AREAS,ONLY_THE_BEST);
-	SelbiFame = math.floor((player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK)) / 2); -- Selbina Fame
 	
-	if(SelbiFame >= 1 and OnlyTheBest == QUEST_AVAILABLE) then
+	if (OnlyTheBest == QUEST_AVAILABLE) then
 		player:startEvent(0x003c,4366,629,919); -- Start quest "Only the Best"
 	elseif(OnlyTheBest ~= QUEST_AVAILABLE) then
 		player:startEvent(0x003d,4366,629,919); -- During & after completed quest "Only the Best"
@@ -65,29 +64,25 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x003c and option == 10) then
 		player:addQuest(OTHER_AREAS,ONLY_THE_BEST);
 	elseif(csid == 0x003e) then
+		player:completeQuest(OTHER_AREAS,ONLY_THE_BEST);
 		player:addGil(100);
 		player:messageSpecial(GIL_OBTAINED,100);
 		player:tradeComplete();
+		player:addFame(BASTOK,  BAS_FAME*10);
+		player:addFame(SANDORIA,SAN_FAME*10);
 	elseif(csid == 0x003f) then
+		player:completeQuest(OTHER_AREAS,ONLY_THE_BEST);
 		player:addGil(120);
 		player:messageSpecial(GIL_OBTAINED,120);
 		player:tradeComplete();
+		player:addFame(BASTOK,  BAS_FAME*20);
+		player:addFame(SANDORIA,SAN_FAME*20);
 	elseif(csid == 0x0040) then
+		player:completeQuest(OTHER_AREAS,ONLY_THE_BEST);
 		player:addGil(600);
 		player:messageSpecial(GIL_OBTAINED,600);
 		player:tradeComplete();
-	end
-	if(player:getQuestStatus(OTHER_AREAS,ONLY_THE_BEST) == QUEST_ACCEPTED) then
-		player:completeQuest(OTHER_AREAS,ONLY_THE_BEST);
-		player:addFame(BASTOK,BAS_FAME*15);
-		player:addFame(SANDORIA,SAN_FAME*15);
-		player:addFame(OTHER_AREAS,30);
-	else
-		player:addFame(BASTOK,BAS_FAME*15);
-		player:addFame(SANDORIA,SAN_FAME*15);
-		player:addFame(JEUNO,10);
+		player:addFame(BASTOK,  BAS_FAME*30);
+		player:addFame(SANDORIA,SAN_FAME*30);
 	end
 end;
-
-
-
