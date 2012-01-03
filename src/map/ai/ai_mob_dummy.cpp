@@ -272,7 +272,7 @@ void CAIMobDummy::ActionDeath()
 *                                                                       *
 *  Здесь модель пропадает после постепенного ичезновения, так же        *
 *  решается вопрос, а нужно ли включать процесс возрождения монстра.    *
-*  Если его тип возрождения равно нулю, значит он был вызван и в        *
+*  Если его тип возрождения равен нулю, значит он был вызван и в        *
 *  возрождении не нуждается, иначе запускаем процесс                    *
 *                                                                       *
 ************************************************************************/
@@ -283,8 +283,6 @@ void CAIMobDummy::ActionFadeOut()
 	{
 		m_PMob->status = STATUS_DISAPPEAR;
         m_ActionType   = m_PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE;
-
-		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_DESPAWN));
 	}
 }
 

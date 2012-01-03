@@ -5923,7 +5923,7 @@ INSERT INTO `mob_groups` VALUES ('5909', '3381', '106', '330', '0', '519', '3', 
 INSERT INTO `mob_groups` VALUES ('5910', '3452', '106', '0', '128', '1550', '3', '4');
 INSERT INTO `mob_groups` VALUES ('5911', '3458', '106', '330', '0', '1734', '18', '20');
 INSERT INTO `mob_groups` VALUES ('5912', '3464', '106', '0', '128', '1551', '20', '25');
-INSERT INTO `mob_groups` VALUES ('5913', '3611', '106', '330', '0', '259', '8', '10');
+INSERT INTO `mob_groups` VALUES ('5913', '3611', '106', '330', '8', '259', '8', '10');
 INSERT INTO `mob_groups` VALUES ('5914', '3774', '106', '3600', '0', '780', '9', '10');
 INSERT INTO `mob_groups` VALUES ('5915', '3779', '106', '0', '128', '1550', '2', '4');
 INSERT INTO `mob_groups` VALUES ('5916', '3780', '106', '330', '0', '1209', '2', '5');
@@ -5967,7 +5967,7 @@ INSERT INTO `mob_groups` VALUES ('5953', '3199', '107', '0', '0', '0', '0', '0')
 INSERT INTO `mob_groups` VALUES ('5954', '3241', '107', '1', '0', '0', '1', '1');
 INSERT INTO `mob_groups` VALUES ('5955', '3381', '107', '330', '0', '519', '3', '8');
 INSERT INTO `mob_groups` VALUES ('5956', '3452', '107', '0', '128', '1550', '3', '4');
-INSERT INTO `mob_groups` VALUES ('5957', '3611', '107', '330', '0', '259', '8', '10');
+INSERT INTO `mob_groups` VALUES ('5957', '3611', '107', '330', '8', '259', '8', '10');
 INSERT INTO `mob_groups` VALUES ('5958', '3779', '107', '0', '128', '1550', '2', '3');
 INSERT INTO `mob_groups` VALUES ('5959', '3780', '107', '330', '0', '1209', '1', '5');
 INSERT INTO `mob_groups` VALUES ('5960', '4053', '107', '330', '0', '1211', '1', '1');

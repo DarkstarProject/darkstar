@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2011 Darkstar Dev Teams
@@ -103,7 +103,7 @@ void CVanaTime::setCustomOffset(int32 offset)
 
 	SyncTime();
 
-	if (m_vHour >= 20) m_TimeType = TIME_NIGHT;
+	if (m_vHour >= 20)      m_TimeType = TIME_NIGHT;
 	else if (m_vHour >= 18) m_TimeType = TIME_EVENING;
 	else if (m_vHour >= 17) m_TimeType = TIME_DUSK;
 	else if (m_vHour >=  7) m_TimeType = TIME_DAY;
@@ -157,7 +157,10 @@ TIMETYPE CVanaTime::SyncTime()
 	{
 		switch (m_vHour)
 		{
+            // FOG и MIDNIGHT являются TIME_NIGHT (это не ошибка)
+
             case  0: m_TimeType = TIME_NIGHT;   return TIME_MIDNIGHT;
+            case  2: m_TimeType = TIME_NIGHT;   return TIME_FOG;
 			case  4: m_TimeType = TIME_NEWDAY;	return TIME_NEWDAY;
 			case  6: m_TimeType = TIME_DAWN;	return TIME_DAWN;
 			case  7: m_TimeType = TIME_DAY;		return TIME_DAY;
@@ -166,6 +169,5 @@ TIMETYPE CVanaTime::SyncTime()
 			case 20: m_TimeType = TIME_NIGHT;	return TIME_NIGHT;
 		}
 	}
-
 	return TIME_NONE;
 }

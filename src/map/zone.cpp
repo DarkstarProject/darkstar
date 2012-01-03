@@ -842,17 +842,30 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
 	switch (TOTD)
 	{
+        case TIME_FOG:
+        {
+            for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
+			{
+				CMobEntity* PMob = (CMobEntity*)it->second;
+
+				if (PMob->m_SpawnType == SPAWNTYPE_FOG)
+				{
+                    PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+				}
+			}
+        }
+        break;
 		case TIME_NEWDAY:
 		{
 			for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 			{
 				CMobEntity* PMob = (CMobEntity*)it->second;
 
-				if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
-				{
+                if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
+                {
                     PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
 					PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
-				}
+                }
 			}
 		}
 		break;
@@ -875,6 +888,17 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 		case TIME_DAY:
 		{
 			ScriptType = SCRIPT_TIME_DAY;
+
+            for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
+			{
+				CMobEntity* PMob = (CMobEntity*)it->second;
+
+                if (PMob->m_SpawnType ==  SPAWNTYPE_FOG)
+                {
+                    PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
+					PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+                }
+			}
 		}
 		break;
 		case TIME_DUSK:
