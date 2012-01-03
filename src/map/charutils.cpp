@@ -459,7 +459,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle,19);
 	}
 
-	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, title \
+	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title \
 				FROM char_stats \
 				WHERE charid = %u;";
 
@@ -469,8 +469,8 @@ void LoadChar(CCharEntity* PChar)
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-		PChar->nameflags.flags = (uint32)Sql_GetUIntData(SqlHandle,0); 
-
+		PChar->nameflags.flags = (uint32)Sql_GetUIntData(SqlHandle,0);
+        
 		PChar->SetMJob(Sql_GetUIntData(SqlHandle,1));
 		PChar->SetSJob(Sql_GetUIntData(SqlHandle,2));
 
@@ -480,7 +480,8 @@ void LoadChar(CCharEntity* PChar)
 		PChar->health.hp = Sql_GetIntData(SqlHandle,3);
 		PChar->health.mp = Sql_GetIntData(SqlHandle,4);
 
-		PChar->profile.title = (uint16)Sql_GetUIntData(SqlHandle,5);
+        PChar->profile.mhflag = (uint8) Sql_GetIntData(SqlHandle,5);
+		PChar->profile.title  = (uint16)Sql_GetIntData(SqlHandle,6);
 	}
 
 	fmtQuery = "SELECT skillid, value, rank \
@@ -2095,10 +2096,18 @@ void SaveCharEquip(CCharEntity* PChar)
 void SaveCharStats(CCharEntity* PChar)
 {
 	const int8* fmtQuery = "UPDATE char_stats \
-							SET hp = %u, mp = %u, nameflags = %u, mjob = %u, sjob = %u \
+							SET hp = %u, mp = %u, nameflags = %u, mhflag = %u, mjob = %u, sjob = %u \
 							WHERE charid = %u;";
 
-	Sql_Query(SqlHandle,fmtQuery,PChar->health.hp,PChar->health.mp,PChar->nameflags.flags,PChar->GetMJob(),PChar->GetSJob(),PChar->id);
+	Sql_Query(SqlHandle, 
+        fmtQuery,
+        PChar->health.hp,
+        PChar->health.mp,
+        PChar->nameflags.flags,
+        PChar->profile.mhflag,
+        PChar->GetMJob(),
+        PChar->GetSJob(),
+        PChar->id);
 }
 
 /************************************************************************

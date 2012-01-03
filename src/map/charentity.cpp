@@ -38,7 +38,6 @@ CCharEntity::CCharEntity()
 	m_EcoSystem = SYSTEM_HUMANOID;
 
 	m_event.reset();
-	profile.mhflag = 0xFF; // временно mog house работает на выход в любую зону города
 
 	Container    = new CTradeContainer();
 	UContainer	 = new CUContainer();

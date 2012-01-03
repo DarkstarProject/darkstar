@@ -181,14 +181,13 @@ public:
 	int32 needToZone(lua_State*);			// Check if player has zoned since the flag has been raised
 
     int32 setFlag(lua_State*);
+    int32 moghouseFlag(lua_State*);
 	int32 showPosition(lua_State*);			// Display current position of character
 	int32 injectPacket(lua_State*);			// Send the character a packet kept in a file 
 	
 	int32 getContainerSize(lua_State*);			// Gets the current capacity of a container
 	int32 increaseContainerSize(lua_State*);	// Increase container size
 	int32 decreaseContainerSize(lua_State*);	// Decreases a containers size -- Should be used for testing only
-
-	int32 sendToJail(lua_State*);			// Transports naughty player to Mordion Gaol
 
 	void UpdateHealth(CCharEntity* PChar, CZone* PZone); // Sends health packet update to character 
 };

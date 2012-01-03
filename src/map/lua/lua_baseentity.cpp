@@ -2605,6 +2605,29 @@ inline int32 CLuaBaseEntity::setFlag(lua_State *L)
     return 0;
 }
 
+/************************************************************************
+*                                                                       *
+*  Устанавливаем/запрашиваем флаг выхода из MogHouse                    *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::moghouseFlag(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    if (!lua_isnil(L,1) && lua_isnumber(L,1))
+    {
+        PChar->profile.mhflag |= (uint8)lua_tointeger(L,1);
+        charutils::SaveCharStats(PChar);
+        return 0;
+    }
+    lua_pushinteger(L, PChar->profile.mhflag);
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
@@ -2962,6 +2985,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setFlag),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,moghouseFlag),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectPacket),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showPosition),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmity),
