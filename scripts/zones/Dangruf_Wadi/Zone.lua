@@ -3,10 +3,11 @@
 -- Zone: Dangruf_Wadi
 --
 -----------------------------------
+package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,7 @@ require("scripts/zones/Dangruf_Wadi/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+	zone:registerRegion(1, -133.800, 1, 133.450, -132.800, 4, 134.800);
 end;
 
 -----------------------------------
@@ -36,6 +38,16 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
+switch (region:GetRegionID()): caseof
+{
+	---------------------------------
+	[1] = function (x)
+	---------------------------------
+		player:startEvent(0x000A);
+		SendUncnown0x39Packet(17559896);
+	end,
+	---------------------------------
+}
 end;
 
 -----------------------------------

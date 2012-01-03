@@ -1,23 +1,30 @@
-/*
-Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 3.3.8
+-- http://www.phpmyadmin.net
+--
+-- Serveur: localhost
+-- Généré le : Mar 03 Janvier 2012 à  03:54
+-- Version du serveur: 6.0.0
+-- Version de PHP: 5.2.9-2
 
-Source Server         : DarkStar
-Source Server Version : 50515
-Source Host           : localhost:3306
-Source Database       : dspdb
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
-Target Server Type    : MYSQL
-Target Server Version : 50515
-File Encoding         : 65001
 
-Date: 2011-11-11 07:49:47
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-SET FOREIGN_KEY_CHECKS=0;
+--
+-- Base de données: `dspdb`
+--
 
--- ----------------------------
--- Table structure for `npc_list`
--- ----------------------------
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `npc_list`
+--
+
 DROP TABLE IF EXISTS `npc_list`;
 CREATE TABLE `npc_list` (
   `npcid` int(10) unsigned NOT NULL,
@@ -7480,6 +7487,7 @@ INSERT INTO `npc_list` VALUES ('17555950', 'Vauderame', 'Vauderame', '35', '-3.1
 INSERT INTO `npc_list` VALUES ('17555951', 'Ramblix', 'Ramblix', '104', '-114.019', '0.000', '256.279', '0', '40', '40', '0', '0', '0', '6', '27', 0x0000550000000000000000000000000000000000, '32', '190');
 INSERT INTO `npc_list` VALUES ('17555952', 'Goblin_Footprint', 'Goblin_Footprint', '104', '-114.019', '0.000', '256.279', '1', '40', '40', '0', '0', '0', '0', '3', 0x0000340000000000000000000000000000000000, '0', '190');
 INSERT INTO `npc_list` VALUES ('17559876', 'qm1', '???', '0', '-430.330', '4.400', '115.100', '6', '40', '40', '0', '0', '0', '0', '3', 0x0000340000000000000000000000000000000000, '0', '191');
+INSERT INTO `npc_list` VALUES ('17559896', '', '', '189', '-133.394', '2.937', '133.122', '1', '40', '40', '0', '0', '0', '0', '2051', 0x0000340000000000000000000000000000000000, '0', '191');
 INSERT INTO `npc_list` VALUES ('17559900', 'Moogle', 'Moogle', '0', '0.000', '0.000', '0.000', '0', '40', '40', '0', '0', '0', '2', '4194307', 0x0000520000000000000000000000000000000000, '0', '191');
 INSERT INTO `npc_list` VALUES ('17559901', 'Moogle', 'Moogle', '0', '0.000', '0.000', '0.000', '0', '40', '40', '0', '0', '0', '2', '4194307', 0x0000520000000000000000000000000000000000, '0', '191');
 INSERT INTO `npc_list` VALUES ('17559902', 'Moogle', 'Moogle', '0', '0.000', '0.000', '0.000', '0', '40', '40', '0', '0', '0', '2', '4194307', 0x0000520000000000000000000000000000000000, '0', '191');

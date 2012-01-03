@@ -48,10 +48,11 @@
 #include "../vana_time.h"
 #include "../zoneutils.h"
 #include "../transport.h"
+#include "../packets/auction_house.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/message_basic.h"
-#include "../packets/auction_house.h"
+#include "../packets/uncnown_39.h"
 
 namespace luautils
 {
@@ -86,6 +87,7 @@ int32 init()
 	lua_register(LuaHandle,"RunElevator",luautils::StartElevator);
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
+    lua_register(LuaHandle,"SendUncnown0x39Packet",luautils::SendUncnown0x39Packet);
 
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
     Lunar<CLuaRegion>::Register(LuaHandle);
@@ -126,6 +128,31 @@ int32 print(lua_State* LuaHandle)
 		return 0;
 	} 
 	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+int32 SendUncnown0x39Packet(lua_State* L)
+{
+    if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+	{
+		uint32 npcid = (uint32)lua_tointeger(L, -1);
+		uint8  zone  = (npcid >> 12)-4096;
+
+		CBaseEntity* PNpc = zoneutils::GetZone(zone)->GetEntity((uint16)npcid & 0x0FFF, TYPE_NPC);
+
+        if (PNpc != NULL)
+        {
+            zoneutils::GetZone(zone)->PushPacket(PNpc, CHAR_INRANGE, new CUncnown0x39Packet(PNpc));   
+        }
+		return 0;
+	}
+	lua_pushnil(L);
+	return 1;
 }
 
 /************************************************************************

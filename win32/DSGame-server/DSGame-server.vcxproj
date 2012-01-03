@@ -234,6 +234,7 @@
     <ClInclude Include="..\..\src\map\packets\synth_message.h" />
     <ClInclude Include="..\..\src\map\packets\treasure_find_item.h" />
     <ClInclude Include="..\..\src\map\packets\treasure_lot_item.h" />
+    <ClInclude Include="..\..\src\map\packets\uncnown_39.h" />
     <ClInclude Include="..\..\src\map\packets\weather.h" />
     <ClInclude Include="..\..\src\map\packets\wide_scan.h" />
     <ClInclude Include="..\..\src\map\packets\wide_scan_track.h" />
@@ -393,6 +394,7 @@
     <ClCompile Include="..\..\src\map\packets\synth_message.cpp" />
     <ClCompile Include="..\..\src\map\packets\treasure_find_item.cpp" />
     <ClCompile Include="..\..\src\map\packets\treasure_lot_item.cpp" />
+    <ClCompile Include="..\..\src\map\packets\uncnown_39.cpp" />
     <ClCompile Include="..\..\src\map\packets\weather.cpp" />
     <ClCompile Include="..\..\src\map\packets\wide_scan.cpp" />
     <ClCompile Include="..\..\src\map\packets\wide_scan_track.cpp" />

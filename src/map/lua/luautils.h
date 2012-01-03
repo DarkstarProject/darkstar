@@ -48,6 +48,8 @@ namespace luautils
 	int32 free();
 	int32 print(lua_State*);
 
+    int32 SendUncnown0x39Packet(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi
+
 	int32 GetNPCByID(lua_State*);												// Returns NPC By Id
 	int32 SpawnMob(lua_State*);													// Spawn Mob By Mob Id - NMs, BCNM...
 	int32 DespawnMob(lua_State*);												// Despawn (Fade Out) Mob By Id
