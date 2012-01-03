@@ -6,8 +6,8 @@
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/keyitems");
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 -----------------------------------
@@ -15,7 +15,9 @@ require("scripts/zones/Dangruf_Wadi/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-	zone:registerRegion(1, -133.800, 1, 133.450, -132.800, 4, 134.800);
+	zone:registerRegion(1, -133.5, 2, 132.6, -132.7, 4,  133.8);  -- I-8 Geyser
+	zone:registerRegion(2, -213.5, 2,  92.6, -212.7, 4,   94.0);  -- H-8 Geyser
+	zone:registerRegion(3,  -67.3, 2, 532.8,  -66.3, 4,  534.0);  -- J-3 Geyser
 end;
 
 -----------------------------------
@@ -24,11 +26,6 @@ end;
 
 function onZoneIn(player,prevZone)
 cs = -1;
-
-	if (player:hasKeyItem(BLUE_ACIDITY_TESTER)) then
-		player:delKeyItem(BLUE_ACIDITY_TESTER);
-		player:addKeyItem(RED_ACIDITY_TESTER);
-	end
 
 return cs;
 end;
@@ -44,10 +41,35 @@ switch (region:GetRegionID()): caseof
 	[1] = function (x)
 	---------------------------------
 		player:startEvent(0x000A);
-		SendUncnown0x39Packet(17559896);
+		SendUncnown0x39Packet(17559896, 0x32);
+	end,
+	---------------------------------
+	---------------------------------
+	[2] = function (x)
+	---------------------------------
+		player:startEvent(0x000B);
+		SendUncnown0x39Packet(17559897, 0x31);
+	end,
+	---------------------------------
+	---------------------------------
+	[3] = function (x)
+	---------------------------------
+		player:startEvent(0x000C);
+		SendUncnown0x39Packet(17559898, 0x33);
 	end,
 	---------------------------------
 }
+	if (player:hasKeyItem(BLUE_ACIDITY_TESTER)) then
+		player:delKeyItem(BLUE_ACIDITY_TESTER);
+		player:addKeyItem(RED_ACIDITY_TESTER);
+	end
+end;
+
+-----------------------------------
+-- onRegionLeave
+-----------------------------------
+
+function onRegionLeave(player,region)
 end;
 
 -----------------------------------
@@ -67,6 +89,3 @@ function onEventFinish(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
 end;
-
-
-

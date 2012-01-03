@@ -28,7 +28,7 @@
 #include "uncnown_39.h"
 
 
-CUncnown0x39Packet::CUncnown0x39Packet(CBaseEntity* PEntity)
+CUncnown0x39Packet::CUncnown0x39Packet(CBaseEntity* PEntity, uint8 param)
 {
 	this->type = 0x39;
 	this->size = 0x0A;
@@ -39,7 +39,7 @@ CUncnown0x39Packet::CUncnown0x39Packet(CBaseEntity* PEntity)
     WBUFL(data,(0x0C)-4) = 0x6B;
     WBUFL(data,(0x0D)-4) = 0x6B;
     WBUFL(data,(0x0E)-4) = 0x6A;
-    WBUFL(data,(0x0F)-4) = 0x32;
+    WBUFL(data,(0x0F)-4) = param;
 
     WBUFW(data,(0x10)-4) = PEntity->targid;
 	WBUFW(data,(0x12)-4) = PEntity->targid;

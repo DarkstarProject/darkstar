@@ -40,7 +40,7 @@ class CUncnown0x39Packet : public CBasicPacket
 {
 public:
 
-	CUncnown0x39Packet(CBaseEntity* PEntity);
+	CUncnown0x39Packet(CBaseEntity* PEntity, uint8 param);
 };
 
 #endif
