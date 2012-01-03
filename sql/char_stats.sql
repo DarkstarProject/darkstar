@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Ven 24 Juin 2011 à 08:06
+-- GÃ©nÃ©rÃ© le : Mar 03 Janvier 2012 Ã  21:12
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnÃ©es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `char_stats` (
   `hp` smallint(4) unsigned NOT NULL DEFAULT '0',
   `mp` smallint(4) unsigned NOT NULL DEFAULT '0',
   `nameflags` int(10) unsigned NOT NULL DEFAULT '0',
+  `mhflag` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `mjob` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `sjob` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `title` smallint(4) unsigned NOT NULL DEFAULT '0',
