@@ -100,6 +100,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				{
 					WBUFB(data,(0x1E)-4) = 0x64;
 					WBUFL(data,(0x21)-4) = ((CNpcEntity*)PEntity)->unknown;
+                    WBUFL(data,(0x27)-4) = ((CNpcEntity*)PEntity)->name_prefix;     // gender and something else 
 					WBUFB(data,(0x2B)-4) = ((CNpcEntity*)PEntity)->namevis;
 				}
 				break;
