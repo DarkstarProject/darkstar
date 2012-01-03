@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Mer 28 Décembre 2011 à 10:27
+-- Généré le : Mar 03 Janvier 2012 à 19:42
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -2443,11 +2443,11 @@ INSERT INTO `item_basic` VALUES (2599, 'mint_drop', 1, 61504, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (2600, 'pile_of_golden_teeth', 1, 61504, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (2601, 'greenling', 1, 61504, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (2602, 'bottle_of_spoilt_blood', 1, 61504, 0, 1, 0);
-INSERT INTO `item_basic` VALUES (2603, 'coin_of_birth', 12, 28736, 0, 1, 0);
-INSERT INTO `item_basic` VALUES (2604, 'coin_of_advancement', 12, 28736, 0, 1, 0);
-INSERT INTO `item_basic` VALUES (2605, 'coin_of_glory', 12, 28736, 0, 1, 0);
-INSERT INTO `item_basic` VALUES (2606, 'coin_of_decay', 12, 28736, 0, 1, 0);
-INSERT INTO `item_basic` VALUES (2607, 'coin_of_ruin', 12, 28736, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (2603, 'coin_of_birth', 99, 28736, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (2604, 'coin_of_advancement', 99, 28736, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (2605, 'coin_of_glory', 99, 28736, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (2606, 'coin_of_decay', 99, 28736, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (2607, 'coin_of_ruin', 99, 28736, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (2608, 'plateau_chestnut', 12, 28736, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (2609, 'tinnins_fang', 1, 61504, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (2610, 'armed_gears_fragment', 1, 61504, 0, 1, 0);
@@ -11294,22 +11294,22 @@ INSERT INTO `item_basic` VALUES (16988, 'kotetsu', 1, 2048, 10, 0, 3664);
 INSERT INTO `item_basic` VALUES (16989, 'mikazuki_+1', 1, 2080, 10, 0, 4791);
 INSERT INTO `item_basic` VALUES (16990, 'daihannya', 1, 2048, 10, 0, 6171);
 INSERT INTO `item_basic` VALUES (16991, 'odenta', 1, 2048, 10, 0, 4362);
-INSERT INTO `item_basic` VALUES (16992, 'slice_of_bluetail', 12, 2048, 47, 0, 11);
-INSERT INTO `item_basic` VALUES (16993, 'peeled_crayfish', 12, 2048, 47, 0, 10);
-INSERT INTO `item_basic` VALUES (16994, 'slice_of_moat_carp', 12, 2048, 47, 0, 10);
+INSERT INTO `item_basic` VALUES (16992, 'slice_of_bluetail', 99, 2048, 47, 0, 11);
+INSERT INTO `item_basic` VALUES (16993, 'peeled_crayfish', 99, 2048, 47, 0, 10);
+INSERT INTO `item_basic` VALUES (16994, 'slice_of_moat_carp', 99, 2048, 47, 0, 10);
 INSERT INTO `item_basic` VALUES (16995, 'piece_of_rotten_meat', 12, 2048, 47, 0, 9);
-INSERT INTO `item_basic` VALUES (16996, 'ball_of_sardine_paste', 12, 2048, 47, 0, 10);
-INSERT INTO `item_basic` VALUES (16997, 'ball_of_crayfish_paste', 12, 2048, 47, 0, 10);
-INSERT INTO `item_basic` VALUES (16998, 'ball_of_insect_paste', 12, 2048, 47, 0, 5);
-INSERT INTO `item_basic` VALUES (16999, 'ball_of_trout_paste', 12, 2048, 47, 0, 11);
-INSERT INTO `item_basic` VALUES (17000, 'meatball', 12, 2048, 47, 0, 10);
+INSERT INTO `item_basic` VALUES (16996, 'ball_of_sardine_paste', 99, 2048, 47, 0, 10);
+INSERT INTO `item_basic` VALUES (16997, 'ball_of_crayfish_paste', 99, 2048, 47, 0, 10);
+INSERT INTO `item_basic` VALUES (16998, 'ball_of_insect_paste', 99, 2048, 47, 0, 5);
+INSERT INTO `item_basic` VALUES (16999, 'ball_of_trout_paste', 99, 2048, 47, 0, 11);
+INSERT INTO `item_basic` VALUES (17000, 'meatball', 99, 2048, 47, 0, 10);
 INSERT INTO `item_basic` VALUES (17001, 'giant_shell_bug', 12, 6144, 47, 1, 0);
 INSERT INTO `item_basic` VALUES (17002, 'robber_rig', 1, 2048, 47, 0, 1513);
-INSERT INTO `item_basic` VALUES (17003, 'super_scoop', 12, 2048, 47, 0, 1);
+INSERT INTO `item_basic` VALUES (17003, 'super_scoop', 99, 2048, 47, 0, 1);
 INSERT INTO `item_basic` VALUES (17004, 'judge_minnow', 1, 2048, 47, 0, 60);
-INSERT INTO `item_basic` VALUES (17005, 'lufaise_fly', 12, 2048, 47, 0, 680);
-INSERT INTO `item_basic` VALUES (17006, 'drill_calamary', 12, 30784, 0, 1, 0);
-INSERT INTO `item_basic` VALUES (17007, 'dwarf_pugil', 12, 30784, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (17005, 'lufaise_fly', 99, 2048, 47, 0, 680);
+INSERT INTO `item_basic` VALUES (17006, 'drill_calamary', 99, 30784, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (17007, 'dwarf_pugil', 99, 30784, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (17008, 'regular_maze_monger_ball', 12, 30784, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (17009, 'large_maze_monger_ball', 12, 30784, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (17010, 'goliath_worm', 12, 30784, 0, 1, 0);
@@ -11589,7 +11589,7 @@ INSERT INTO `item_basic` VALUES (17292, 'long_boomerang', 1, 2048, 13, 0, 2948);
 INSERT INTO `item_basic` VALUES (17293, 'yagudo_freezer', 1, 2048, 13, 0, 136);
 INSERT INTO `item_basic` VALUES (17294, 'comet_tail', 1, 2048, 13, 0, 9384);
 INSERT INTO `item_basic` VALUES (17295, 'rising_sun_+1', 1, 2080, 13, 0, 4653);
-INSERT INTO `item_basic` VALUES (17296, 'pebble', 12, 2048, 15, 0, 1);
+INSERT INTO `item_basic` VALUES (17296, 'pebble', 99, 2048, 15, 0, 1);
 INSERT INTO `item_basic` VALUES (17297, 'throwing_coin', 12, 2048, 15, 0, 985);
 INSERT INTO `item_basic` VALUES (17298, 'tathlum', 99, 2048, 15, 0, 40);
 INSERT INTO `item_basic` VALUES (17299, 'astragalos', 99, 2048, 15, 0, 42);
@@ -11684,11 +11684,11 @@ INSERT INTO `item_basic` VALUES (17388, 'fastwater_fishing_rod', 1, 2080, 47, 0,
 INSERT INTO `item_basic` VALUES (17389, 'bamboo_fishing_rod', 1, 2080, 47, 0, 137);
 INSERT INTO `item_basic` VALUES (17390, 'yew_fishing_rod', 1, 2080, 47, 0, 57);
 INSERT INTO `item_basic` VALUES (17391, 'willow_fishing_rod', 1, 2080, 47, 0, 18);
-INSERT INTO `item_basic` VALUES (17392, 'slice_of_sardine', 12, 2048, 47, 0, 54);
-INSERT INTO `item_basic` VALUES (17393, 'slice_of_cod', 12, 2048, 47, 0, 57);
-INSERT INTO `item_basic` VALUES (17394, 'peeled_lobster', 12, 2048, 47, 0, 66);
-INSERT INTO `item_basic` VALUES (17395, 'lugworm', 12, 2048, 47, 0, 1);
-INSERT INTO `item_basic` VALUES (17396, 'little_worm', 12, 2048, 47, 0, 1);
+INSERT INTO `item_basic` VALUES (17392, 'slice_of_sardine', 99, 2048, 47, 0, 54);
+INSERT INTO `item_basic` VALUES (17393, 'slice_of_cod', 99, 2048, 47, 0, 57);
+INSERT INTO `item_basic` VALUES (17394, 'peeled_lobster', 99, 2048, 47, 0, 66);
+INSERT INTO `item_basic` VALUES (17395, 'lugworm', 99, 2048, 47, 0, 1);
+INSERT INTO `item_basic` VALUES (17396, 'little_worm', 99, 2048, 47, 0, 1);
 INSERT INTO `item_basic` VALUES (17397, 'shell_bug', 12, 2048, 47, 0, 17);
 INSERT INTO `item_basic` VALUES (17398, 'rogue_rig', 1, 2080, 47, 0, 870);
 INSERT INTO `item_basic` VALUES (17399, 'sabiki_rig', 1, 2080, 47, 0, 500);

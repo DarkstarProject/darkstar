@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Lun 23 Mai 2011 à 21:57
+-- GÃ©nÃ©rÃ© le : Mar 03 Janvier 2012 Ã  19:42
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnÃ©es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -27,7 +27,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 DROP TABLE IF EXISTS `item_furnishing`;
 CREATE TABLE IF NOT EXISTS `item_furnishing` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` smallint(5) unsigned NOT NULL,
   `name` text NOT NULL,
   `storage` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `moghancement` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -353,14 +353,21 @@ INSERT INTO `item_furnishing` VALUES (3586, 'pot_of_red_viola', 4, 0, 0, 0);
 INSERT INTO `item_furnishing` VALUES (3587, 'pot_of_blue_viola', 4, 0, 1, 0);
 INSERT INTO `item_furnishing` VALUES (3588, 'pot_of_yellow_viola', 4, 0, 3, 0);
 INSERT INTO `item_furnishing` VALUES (3589, 'pot_of_white_viola', 4, 0, 6, 0);
+INSERT INTO `item_furnishing` VALUES (3592, 'jewelry_case', 6, 0, 0, 0);
+INSERT INTO `item_furnishing` VALUES (3593, 'keepsake_case', 6, 0, 6, 0);
+INSERT INTO `item_furnishing` VALUES (3594, 'gemstone_case', 6, 0, 3, 0);
 INSERT INTO `item_furnishing` VALUES (3595, 'gemscope', 1, 0, 6, 0);
 INSERT INTO `item_furnishing` VALUES (3596, 'ornament_case', 1, 0, 6, 0);
+INSERT INTO `item_furnishing` VALUES (3598, 'opus_shelf', 14, 0, 0, 0);
 INSERT INTO `item_furnishing` VALUES (3609, 'stepping_stool', 1, 0, 7, 0);
 INSERT INTO `item_furnishing` VALUES (3610, 'red_mariners_bed', 2, 0, 0, 0);
 INSERT INTO `item_furnishing` VALUES (3611, 'blue_mariners_bed', 2, 0, 1, 0);
 INSERT INTO `item_furnishing` VALUES (3612, 'green_mariners_bed', 2, 0, 2, 0);
 INSERT INTO `item_furnishing` VALUES (3613, 'yellow_mariners_bed', 2, 0, 3, 0);
 INSERT INTO `item_furnishing` VALUES (3614, 'white_mariners_bed', 2, 0, 6, 0);
+INSERT INTO `item_furnishing` VALUES (3619, 'couronne_des_etoiles', 4, 0, 1, 0);
+INSERT INTO `item_furnishing` VALUES (3620, 'silberkranz', 4, 0, 1, 0);
+INSERT INTO `item_furnishing` VALUES (3621, 'leafberry_wreath', 4, 0, 1, 0);
 INSERT INTO `item_furnishing` VALUES (3622, 'jack-o-pricket', 1, 0, 7, 0);
 INSERT INTO `item_furnishing` VALUES (3623, 'djinn_pricket', 1, 0, 7, 0);
 INSERT INTO `item_furnishing` VALUES (3624, 'korrigan_pricket', 1, 0, 7, 0);
@@ -379,12 +386,16 @@ INSERT INTO `item_furnishing` VALUES (3636, 'serving_of_bavarois_potiron', 1, 0,
 INSERT INTO `item_furnishing` VALUES (3637, 'banquet_set', 1, 0, 3, 0);
 INSERT INTO `item_furnishing` VALUES (3638, 'plate_of_mock_hare', 1, 0, 0, 0);
 INSERT INTO `item_furnishing` VALUES (3639, 'purifying_ewer', 1, 0, 5, 0);
+INSERT INTO `item_furnishing` VALUES (3640, 'rolanberry_delightaru', 1, 0, 1, 0);
 INSERT INTO `item_furnishing` VALUES (3641, 'kabuto-kazari', 2, 0, 7, 0);
 INSERT INTO `item_furnishing` VALUES (3642, 'katana-kazari', 1, 0, 4, 0);
 INSERT INTO `item_furnishing` VALUES (3643, 'carillon_vermeil', 1, 0, 2, 0);
 INSERT INTO `item_furnishing` VALUES (3644, 'aeolsglocke', 1, 0, 2, 0);
 INSERT INTO `item_furnishing` VALUES (3645, 'leafbell', 1, 0, 2, 0);
 INSERT INTO `item_furnishing` VALUES (3646, 'mandragora_pricket', 1, 0, 6, 0);
+INSERT INTO `item_furnishing` VALUES (3647, 'spook-a-swirl', 1, 0, 7, 0);
+INSERT INTO `item_furnishing` VALUES (3648, 'chocolate_grumpkin', 1, 0, 7, 0);
+INSERT INTO `item_furnishing` VALUES (3649, 'harvest_horror', 1, 0, 7, 0);
 INSERT INTO `item_furnishing` VALUES (3655, 'treasury_table', 10, 0, 0, 0);
 INSERT INTO `item_furnishing` VALUES (3656, 'treasury_stand', 10, 0, 0, 0);
 INSERT INTO `item_furnishing` VALUES (3657, 'sundries_table', 10, 0, 4, 0);
@@ -407,3 +418,5 @@ INSERT INTO `item_furnishing` VALUES (3673, 'set_of_chocobo_carvings', 2, 0, 3, 
 INSERT INTO `item_furnishing` VALUES (3674, 'alembic', 4, 0, 4, 0);
 INSERT INTO `item_furnishing` VALUES (3675, 'flask_set', 2, 0, 4, 0);
 INSERT INTO `item_furnishing` VALUES (3676, 'celestial_globe', 5, 0, 7, 0);
+INSERT INTO `item_furnishing` VALUES (3677, 'spinet', 1, 0, 6, 0);
+INSERT INTO `item_furnishing` VALUES (3678, 'recital_bench', 1, 0, 6, 0);
