@@ -34,12 +34,15 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 {
 	TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
 
-    if (VanadielTOTD == TIME_MIDNIGHT)
-    {
-        guildutils::UpdateGuildsStock();
-    }
+    if (VanadielTOTD != TIME_NONE)
+	{
+		zoneutils::TOTDCharnge(VanadielTOTD);
 
-    zoneutils::TOTDCharnge(VanadielTOTD);
+        if (VanadielTOTD == TIME_MIDNIGHT)
+        {
+            guildutils::UpdateGuildsStock();
+        }
+	}
 	CTransportHandler::getInstance()->TransportTimer();
 	return 0;
 }
