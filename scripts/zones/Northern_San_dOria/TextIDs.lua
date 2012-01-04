@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6565; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6568; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6570; -- Obtained key item: <keyitem>
 		  HOMEPOINT_SET = 188; -- Home point set!
-
+		  MOGHOUSE_EXIT = 12156; -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
 
     MISSION_OFFSET = 76; -- The situation in Davoi worsens by the day. This won't be easy, but I can't think of a better adventurer for the job!
 ACCEPT_THE_MISSION = 5; -- You accept the mission.

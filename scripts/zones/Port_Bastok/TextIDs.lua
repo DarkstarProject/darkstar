@@ -9,7 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
              HOMEPOINT_SET = 6451; -- Home point set!
             NOT_ENOUGH_GIL = 12372; -- You do not have enough gil.
                   CONQUEST = 7774; -- You've earned conquest points!
-             MOGHOUSE_EXIT = 7645; -- You have learned your way through the back alleys of Jeuno! Now you can exit to any area from your residence.
+             MOGHOUSE_EXIT = 7720; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 
 -- Quest Items
 	 KING_TRUFFLE = 4386; -- 

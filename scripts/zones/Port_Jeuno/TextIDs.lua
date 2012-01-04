@@ -6,6 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6696; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6700; -- Obtained <number> gil
 	   KEYITEM_OBTAINED = 6702; -- Obtained key item: <keyitem>
 		  HOMEPOINT_SET = 161; -- Home point set!
+		  MOGHOUSE_EXIT = 7052; -- You have learned your way through the back alleys of Jeuno! Now you can exit to any area from your residence.
 
 -- Conquest system
 CONQUEST = 7260; -- You've earned conquest points!
