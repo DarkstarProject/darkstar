@@ -8,8 +8,8 @@ package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Lower_Jeuno/textids");
 require("scripts/globals/keyitems");
+require("scripts/zones/Lower_Jeuno/TextIDs")
 
 -----------------------------------
 -- onTrade Action

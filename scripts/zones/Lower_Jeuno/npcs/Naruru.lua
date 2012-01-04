@@ -9,9 +9,8 @@ package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+require("scripts/globals/titles");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
