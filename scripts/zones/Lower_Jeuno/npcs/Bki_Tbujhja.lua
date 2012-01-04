@@ -1,16 +1,18 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Bki Tbujhja
+-- NPC:  Bki Tbujhja
 -- Involved in Quest: The Old Monument
 -- Starts and Finishes Quests: Path of the Bard (just start), The Requiem (BARD AF2)
 -- @zone 245
 -- @pos -22 0 -60
 -----------------------------------
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/shop");
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -19,7 +21,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
 	if(player:getQuestStatus(JEUNO,THE_REQUIEM) == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 2) then 
-		if(trade:hasItemQty(4154,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+		if(trade:hasItemQty(4154,1) == true and trade:getItemCount() == 1) then 
 			player:startEvent(0x0097); -- After trade Holy water for "The Requiem"
 		end
 	end
@@ -45,14 +47,14 @@ function onTrigger(player,npc)
 		end
 	elseif(TheRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 2) then 
 		player:startEvent(0x0092); -- During Quest "The Requiem" (before trading Holy Water)
-	elseif(TheRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 3 and player:hasKeyItem(225) == false) then 
+	elseif(TheRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 3 and player:hasKeyItem(STAR_RING1) == false) then 
 		rand = math.random(1,2);
 		if(rand == 1) then 
 			player:startEvent(0x0093); -- During Quest "The Requiem" (after trading Holy Water)
 		else
 			player:startEvent(0x0095); -- During Quest "The Requiem" (after trading Holy Water)
 		end
-	elseif(TheRequiem == QUEST_ACCEPTED and player:hasKeyItem(225) == true) then 
+	elseif(TheRequiem == QUEST_ACCEPTED and player:hasKeyItem(STAR_RING1) == true) then 
 		player:startEvent(0x0096); -- Finish Quest "The Requiem"
 	elseif(TheRequiem == QUEST_COMPLETED) then 
 		player:startEvent(0x0086); -- Standard dialog after "The Requiem"

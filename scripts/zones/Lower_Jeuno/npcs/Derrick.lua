@@ -5,11 +5,13 @@
 -- @zone 245
 -- @pos -32 -1 -7
 -----------------------------------
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -18,7 +20,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
 	TotalNPC = player:getVar("saveTheClockTowerNPCz1") + player:getVar("saveTheClockTowerNPCz2");
-	if(TotalNPC == 1023 and trade:hasItemQty(555,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if(TotalNPC == 1023 and trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then 
 		player:startEvent(0x00e7); -- Ending quest "save the clock tower"
 	end
 end;
@@ -47,22 +49,6 @@ function onTrigger(player,npc)
 		player:startEvent(0x00e6,14); -- rien
 	end
 end;
-
--- 0x00e6,1 : airship + petition + petition help/restart
--- 0x00e6,2 : petition + petition help/restart
--- 0x00e6,3 : petition + petition help/restart
--- 0x00e6,4 : airship + petition help/restart
--- 0x00e6,5 : airship + petition help/restart
--- 0x00e6,6 : petition help/restart
--- 0x00e6,7 : petition help/restart
--- 0x00e6,8 : airship + petition
--- 0x00e6,9 : airship + petition
--- 0x00e6,10 : petition
--- 0x00e6,11 : petition
--- 0x00e6,12 : airship
--- 0x00e6,13 : airship
--- 0x00e6,14 : rien
--- 0x00e6,15 : rien
 
 -----------------------------------
 -- onEventUpdate Action

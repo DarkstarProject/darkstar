@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Southern San d'Oria
+-- Area: Lower Jeuno
 -- NPC: Alrauverat
 -- @zone 245
 -- @pos -101 0 -182
@@ -9,12 +9,13 @@
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.
 -- X Sells items in exchange for Conquest Points
 -------------------------------------
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/conquestguards"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
-package.loaded["scripts/globals/conquestguards"] = nil;
 require("scripts/globals/conquestguards");
 
 PlayerCP = 56000; 	-- Player Conquest Points

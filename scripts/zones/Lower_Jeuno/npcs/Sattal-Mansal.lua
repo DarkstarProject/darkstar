@@ -1,16 +1,17 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Sattal-Mansal
+-- NPC:  Sattal-Mansal
 -- Starts and Finishes Quest: Mysteries of Beadeaux I & II
 -- @zone 245
 -- @pos 40 3 -53
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -18,9 +19,9 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_ACCEPTED and trade:hasItemQty(495,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if(player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_ACCEPTED and trade:hasItemQty(495,1) == true and trade:getItemCount() == 1) then 
 		player:startEvent(0x005B); -- Ending quest Mysteries I
-	elseif(player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_II) == QUEST_ACCEPTED and trade:hasItemQty(494,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	elseif(player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_II) == QUEST_ACCEPTED and trade:hasItemQty(494,1) == true and trade:getItemCount() == 1) then 
 		player:startEvent(0x005C); -- Ending quest Mysteries II
 	end
 end; 

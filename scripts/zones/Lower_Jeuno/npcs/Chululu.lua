@@ -1,16 +1,18 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Chululu
+-- NPC:  Chululu
 -- Starts and Finishes Quest: Collect Tarut Cards, Rubbish Day
 -- @zone 245
 -- @pos -13 -6 -42
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -19,8 +21,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
 	if(player:getQuestStatus(JEUNO,COLLECT_TARUT_CARDS) == QUEST_ACCEPTED) then 
-		if(trade:hasItemQty(558,1) == true and trade:hasItemQty(559,1) == true and trade:hasItemQty(561,1) == true and 
-		   trade:hasItemQty(562,1) == true and trade:getGil() == 0 and trade:getItemCount() == 4) then 
+		if(trade:hasItemQty(558,1) == true and trade:hasItemQty(559,1) == true and trade:hasItemQty(561,1) == true and trade:hasItemQty(562,1) == true and trade:getItemCount() == 4) then 
 			player:startEvent(0x00c8); -- Finish quest "Collect Tarut Cards"
 		end
 	end
@@ -34,7 +35,7 @@ function onTrigger(player,npc)
 	CollectTarutCards = player:getQuestStatus(JEUNO,COLLECT_TARUT_CARDS);
 	RubbishDay = player:getQuestStatus(JEUNO,RUBBISH_DAY);
 	
-	if(player:getFameLevel(JEUNO) >= 0 and CollectTarutCards == QUEST_AVAILABLE) then 
+	if(player:getFameLevel(JEUNO) >= 3 and CollectTarutCards == QUEST_AVAILABLE) then 
 		player:startEvent(0x001C); -- Start quest "Collect Tarut Cards" with option
 	elseif(CollectTarutCards == QUEST_ACCEPTED) then 
 		player:startEvent(0x001B); -- During quest "Collect Tarut Cards"

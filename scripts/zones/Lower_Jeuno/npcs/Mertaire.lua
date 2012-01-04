@@ -5,11 +5,13 @@
 -- @zone 245
 -- @pos -17 0 -61
 -----------------------------------
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -77,14 +79,12 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(JEUNO,A_MINSTREL_IN_DESPAIR);
 		player:addGil(GIL_RATE*2100);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100);
-		player:addFame(BASTOK,BAS_FAME*10);
-		player:addFame(SAN_D_ORIA,SAN_FAME*10);
-		player:addFame(WINDURST,WIN_FAME*10);
+		player:addFame(JEUNO,30);
 	elseif(csid == 0x008a and option == 1 or csid == 0x0089 and option == 1) then 
 		player:addQuest(JEUNO,PAINFUL_MEMORY);
 		player:setVar("PainfulMemoryCS",0);
-		player:addKeyItem(228);
-		player:messageSpecial(KEYITEM_OBTAINED,228); -- Mertaire's Bracelet (key item).
+		player:addKeyItem(MERTAIRES_BRACELET);
+		player:messageSpecial(KEYITEM_OBTAINED,MERTAIRES_BRACELET); -- Mertaire's Bracelet (key item).
 	elseif(csid == 0x008a and option == 0) then 
 		player:setVar("PainfulMemoryCS",1);
 	end

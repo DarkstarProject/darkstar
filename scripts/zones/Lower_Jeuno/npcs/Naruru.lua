@@ -1,9 +1,11 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Naruru
+-- NPC:  Naruru
 -- Starts and Finishes Quests: Cook's Pride
 -- @zone 245
 -- @pos -56 0 -138
+-----------------------------------
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");

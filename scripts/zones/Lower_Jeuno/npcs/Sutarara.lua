@@ -1,15 +1,15 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Sutarara
+-- NPC:  Sutarara
 -- Involved in Quests: Tenshodo Menbership (before accepting)
 -- @zone 245
 -- @pos 30 0 -2
 -----------------------------------
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -31,9 +31,7 @@ function onTrigger(player,npc)
 	elseif(TenshodoMembership == QUEST_COMPLETED) then 
 		player:startEvent(0x00d3);
 	end
-end; 
-
--- 0x00d0  0x00d3  0x2747  0x2742  0x2743  0x276e
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -52,6 +50,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

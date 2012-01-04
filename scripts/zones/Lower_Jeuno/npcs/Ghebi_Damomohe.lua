@@ -6,13 +6,14 @@
 -- @zone 245
 -- @pos 16 0 -5
 -----------------------------------
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -20,7 +21,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP)~= QUEST_COMPLETED and trade:hasItemQty(548,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if(player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP)~= QUEST_COMPLETED and trade:hasItemQty(548,1) == true and trade:getItemCount() == 1) then 
 		player:startEvent(0x006c); -- Finish Quest (don't need fame or starting quest)
 	end
 end; 

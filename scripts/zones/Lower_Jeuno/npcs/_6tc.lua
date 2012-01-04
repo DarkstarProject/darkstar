@@ -5,12 +5,14 @@
 -- @zone 245
 -- @pos 35 0 -15
 -----------------------------------
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -19,13 +21,13 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
 	if(player:getQuestStatus(JEUNO,BEAT_AROUND_THE_BUSHIN) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(1526,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1 and player:getVar("BeatAroundTheBushin") == 2) then 
+		if(trade:hasItemQty(1526,1) == true and trade:getItemCount() == 1 and player:getVar("BeatAroundTheBushin") == 2) then 
 			player:startEvent(0x009c); -- After trade Wyrm Beard
-		elseif(trade:hasItemQty(1527,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1 and player:getVar("BeatAroundTheBushin") == 4) then 
+		elseif(trade:hasItemQty(1527,1) == true and trade:getItemCount() == 1 and player:getVar("BeatAroundTheBushin") == 4) then 
 			player:startEvent(0x009d); -- After trade Behemoth Tongue
-		elseif(trade:hasItemQty(1525,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1 and player:getVar("BeatAroundTheBushin") == 6) then 
+		elseif(trade:hasItemQty(1525,1) == true and trade:getItemCount() == 1 and player:getVar("BeatAroundTheBushin") == 6) then 
 			player:startEvent(0x009e); -- After trade Adamantoise Egg
-		elseif(trade:hasItemQty(13202,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1 and player:getVar("BeatAroundTheBushin") == 7) then 
+		elseif(trade:hasItemQty(13202,1) == true and trade:getItemCount() == 1 and player:getVar("BeatAroundTheBushin") == 7) then 
 			player:startEvent(0x009f); -- After trade Brown Belt, Finish Quest "Beat around the Bushin"
 		end
 	end
@@ -44,10 +46,7 @@ function onTrigger(player,npc)
 		player:messageSpecial(DOOR_IS_LOCKED);
 		return 1;
 	end
-end; 
-
--- 0x2726  0x2741  0x2742  0x2743  0x2753  0x276e  0x0054
--- 0x0009  0x000a  0x0056  0x0069  0x0014  0x009b  0x009c  0x009d  0x009e  0x009f
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -86,11 +85,8 @@ function onEventFinish(player,csid,option)
 			player:addItem(13186);
 			player:messageSpecial(ITEM_OBTAINED,13186);
 			player:setVar("BeatAroundTheBushin",0);
-			player:addFame(3,NORG_FAME*125);
+			player:addFame(NORG,NORG_FAME*125);
 			player:tradeComplete();
 		end
 	end
 end;
-
-
-

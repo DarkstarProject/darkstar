@@ -4,12 +4,12 @@
 -- 	Starts & Finishes Quest: Save My Son
 --  Optional Involvement in Quest: Chocobo's Wounds, Path of the Beastmaster
 -----------------------------------
-
-require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -80,4 +80,3 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
-

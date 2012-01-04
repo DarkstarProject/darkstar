@@ -4,12 +4,13 @@
 -- @zone 245
 -- @pos -4 -6 -28
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -17,13 +18,13 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(player:getQuestStatus(JEUNO,YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if(player:getQuestStatus(JEUNO,YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and trade:getItemCount() == 1) then 
 		if(trade:hasItemQty(557,1) == true) then
 			player:startEvent(0x00C0); -- CS for ahriman lens trade; Trading the lens to Kurou-Morou is optional
 		elseif(trade:hasItemQty(556,1) == true) then
 			player:startEvent(0x00C4); -- Trade divination sphere, finish quest
 		end
-	elseif(player:getQuestStatus(JEUNO,NEVER_TO_RETURN) == QUEST_ACCEPTED and trade:hasItemQty(12507,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	elseif(player:getQuestStatus(JEUNO,NEVER_TO_RETURN) == QUEST_ACCEPTED and trade:hasItemQty(12507,1) == true and trade:getItemCount() == 1) then 
 		player:startEvent(0x00Cb); -- Finish "Never to return" quest
 	end
 end; 

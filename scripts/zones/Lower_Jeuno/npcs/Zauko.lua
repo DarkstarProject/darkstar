@@ -1,15 +1,15 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Zauko
+-- NPC:  Zauko
 -- Involved in Quests: Save the Clock Tower
 -- @zone 245
 -- @pos -3 0 11
 -----------------------------------
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -17,7 +17,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(trade:hasItemQty(555,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if(trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then 
 		a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
 		if(a == 0 or (a ~= 256 and a ~= 288 and a ~= 320 and a ~= 384 and a ~= 768 and a ~= 352 and a ~= 896 and a ~= 416 and 
 		   a ~= 832 and a ~= 448 and a ~= 800 and a ~= 480 and a ~= 864 and a ~= 928 and a ~= 960 and a ~= 992)) then 

@@ -1,14 +1,15 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Bluffnix
+-- NPC:  Bluffnix
 -- Starts and Finishes Quests: Gobbiebags I-X
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -97,7 +98,7 @@ function onEventFinish(player,csid,option)
 		end
 	elseif (csid == 0x0049) then
 		player:completeQuest(JEUNO,TheGobbieBag[1]);
-		player:addFame(SAN_D_ORIA,20*SAN_FAME); --I'm still not sure what the fame scale is here!
+		player:addFame(SANDORIA,20*SAN_FAME); --I'm still not sure what the fame scale is here!
 		player:addFame(BASTOK,20*BAS_FAME);
 		player:addFame(WINDURST,20*WIN_FAME);
 		player:increaseContainerSize(0,5);

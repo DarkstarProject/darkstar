@@ -1,18 +1,18 @@
 -----------------------------------
 --  Area: Lower Jeuno
---  NPC: Ruslan
+--  NPC:  Ruslan
 --	Involved In Quest: Wondering Minstrel
 --	Working 100%
 --  @zone = 245
 --  @pos = -19 -1 -58
 -----------------------------------
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 require("scripts/globals/settings");
+require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");	
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
