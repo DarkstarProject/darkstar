@@ -1,37 +1,39 @@
 -----------------------------------
--- Area: Bastok Mines
--- NPC: Echo Hawk
+-- Area: Port Bastok
+-- NPC: Otto
 -- Standard Info NPC
 -- Involved in Quest: The Siren's Tear
--- @zone: 234
--- @pos: -0.965 5.999 -15.567
+-- @zone: 236
+-- @pos: -145.929 -7.48 -13.701
 -----------------------------------
 
 require("scripts/globals/quests");
 
 
 -----------------------------------
--- onTrade Action
+-- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 
 -----------------------------------
--- onTrigger Action
+-- onTrigger
 -----------------------------------
 
 function onTrigger(player,npc)
 
 SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
+TalkedToCarmelo = player:getVar("SirensTear");
 
-	if (SirensTear == QUEST_AVAILABLE) then
+	if (SirensTear == QUEST_ACCEPTED and TalkedToCarmelo == 1 and TalkedToCarmelo == 2) then
 		player:startEvent(0x0005);
 	else
-		player:startEvent(0x000d);
+		player:startEvent(0x0014);
 	end
-end; 
+
+end;
 
 
 -----------------------------------

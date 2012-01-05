@@ -1,0 +1,96 @@
+-----------------------------------
+-- Area: North Gustaberg
+-- NPC: ??? / qm1
+-- Involved In Quest: The Siren's Tear
+-- @zone: 106
+-- @pos: 309.600, 2.600, 324.000 | DB start position
+-- @pos: 290.000, 0.600, 332.100 | alternative start position
+-----------------------------------
+
+require("scripts/globals/quests");
+require("scripts/zones/North_Gustaberg/TextIDs");
+
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
+
+function onTrade(player,npc,trade)
+end; 
+
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+
+SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
+TalkedToCarmelo = player:getVar("SirensTear");
+
+	if (SirensTear == QUEST_ACCEPTED or (SirensTear == QUEST_COMPLETED and TalkedToCarmelo == 2)) then
+
+		mainweapon = player:getEquipID(0x00);
+		subweapon = player:getEquipID(0x01);
+		currentJob = player:getMainJob();
+
+		if (mainweapon == 0 and subweapon == 0 and currentJob ~= 3) then
+
+			freeslots = player:getFreeSlotsCount();
+			alreadyHasItem = player:hasItem(576);
+		
+			if (freeslots == 0) then
+				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,576);
+			elseif (alreadyHasItem) then
+				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_TWICE,576);
+				player:addItem(576);
+			else
+				player:addItem(576);
+				player:messageSpecial(ITEM_OBTAINED,576);
+			end
+		else
+			player:messageSpecial(SHINING_OBJECT_SLIPS_AWAY);
+			moveSirenTear(npc);
+		end
+	end
+end;
+
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate(player,csid,option)
+--printf("CSID2: %u",csid);
+--printf("RESULT2: %u",option);
+end;
+
+
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
+function onEventFinish(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+end;
+
+
+-----------------------------------
+-- Additional Functions
+-----------------------------------
+
+function moveSirenTear(npc)
+	-- determining starting point of the journey using the 3rd decimal place
+	npcPos = math.floor(math.floor(npc:getXPos())*1000000 + math.floor(npc:getYPos())*1000 + npc:getZPos());
+	disp = (npc:getYPos()*100 - math.floor(npc:getYPos()*100+0.5))*10;
+	dispf = disp*0.001;
+
+	switch (npcPos) : caseof {
+		[309002324] = function (x) npc:setPos(296,3+dispf,220,0); end,
+		[296003220] = function (x) npc:setPos(349.48,3.3+dispf,208,0); end,
+		[349003208] = function (x) npc:setPos(332.1,6+dispf,150.1); end,
+		[332006150] = function (x) if (disp == 0) then npc:setPos(290,0.601,332.1); else npc:setPos(309.6,2.6,324); end end,
+		[290000332] = function (x) npc:setPos(296,3+dispf,220,0); end,
+	default = function (x) end }
+end;
