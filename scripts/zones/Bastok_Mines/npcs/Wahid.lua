@@ -5,12 +5,13 @@
 -- @zone: 234
 -- @pos: 26.305 -1 -66.403
 -----------------------------------
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Mines/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action
@@ -19,14 +20,12 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 function onTrade(player,npc,trade)
 
 SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
-hasSirensTear = trade:hasItemQty(576,1);
-count = trade:getItemCount();
-gil = trade:getGil();
 
-	if (SirensTear == QUEST_ACCEPTED and hasSirensTear and count == 1 and gil == 0) then
-		player:startEvent(0x0052);
+	if (SirensTear == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(576,1) and trade:getItemCount() == 1) then
+			player:startEvent(0x0052);
+		end
 	end		
-			
 end; 
 
 -----------------------------------

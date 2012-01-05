@@ -6,10 +6,11 @@
 -- @pos: 309.600, 2.600, 324.000 | DB start position
 -- @pos: 290.000, 0.600, 332.100 | alternative start position
 -----------------------------------
+package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/quests");
 require("scripts/zones/North_Gustaberg/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action
