@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
 TalkedToCarmelo = player:getVar("SirensTear");
 
-	if (SirensTear == QUEST_ACCEPTED and TalkedToCarmelo == 1 and TalkedToCarmelo == 2) then
+	if (SirensTear == QUEST_ACCEPTED and TalkedToCarmelo ~= 0) then
 		player:startEvent(0x0005);
 	else
 		player:startEvent(0x0014);
