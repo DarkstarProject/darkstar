@@ -549,6 +549,16 @@ inline int32 CLuaBaseEntity::getZone(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::getPreviousZone(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	lua_pushinteger( L, m_PBaseEntity->loc.prevzone );
+	return 1;
+}
+
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getNation(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -2913,7 +2923,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getYPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPos),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPreviousZone),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRace),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNation),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addQuest),

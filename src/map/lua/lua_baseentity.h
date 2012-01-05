@@ -70,8 +70,9 @@ public:
 	int32 getXPos(lua_State*);				// Get Entity X position
 	int32 getYPos(lua_State*);				// Get Entity Y position
 	int32 getZPos(lua_State*);				// Get Entity Z position
+    int32 setPos(lua_State*);				// Set Entity position (zone,x,y,z)
 	int32 getZone(lua_State*);				// Get Entity zone
-	int32 setPos(lua_State*);				// Set Entity position (zone,x,y,z)
+    int32 getPreviousZone(lua_State*);      // Get Entity previous zone
 
 	int32 getAnimation(lua_State*);			// Get Entity Animation
 	int32 setAnimation(lua_State*);			// Set Entity Animation

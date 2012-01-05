@@ -34,18 +34,19 @@
 *																		*
 ************************************************************************/
 
+class CBaseEntity;
 class CNpcEntity;
 
 namespace zoneutils
 {
-	void		LoadZoneList();									// загружаем список зон
-	void		FreeZoneList();									// освобождаем список зон
+	void LoadZoneList();                                        // загружаем список зон
+	void FreeZoneList();                                        // освобождаем список зон
 
-	void		UpdateVanadielTime();							// обновляем время во всех зонах
-	void		TOTDCharnge(TIMETYPE TOTD);						// реакция мира на смену времени суток
+	void TOTDCharnge(TIMETYPE TOTD);                            // реакция мира на смену времени суток
 
-	CZone*		GetZone(uint8 ZoneID);							// получаем указатель на зону
-	CNpcEntity*	GetTrigger(uint16 TargID, uint8 ZoneID);		// триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
+	CZone*		 GetZone(uint8 ZoneID);							// получаем указатель на зону
+	CNpcEntity*	 GetTrigger(uint16 TargID, uint8 ZoneID);		// триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
+    CBaseEntity* GetEntity(uint32 ID, uint8 filter = -1);       // получаем указатель на любую сущность			
 };
 
 #endif

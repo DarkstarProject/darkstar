@@ -129,6 +129,7 @@ public:
 	void			InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
 
     void            FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
+    void            TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
 
 	void			InsertRegion(CRegion* Region);									// добавляем в зону активную область
 

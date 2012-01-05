@@ -4,10 +4,6 @@
 -- 
 -----------------------------------
 
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Kazham-Jeuno_Airship/TextIDs"] = nil;
-require("scripts/zones/Kazham-Jeuno_Airship/TextIDs");
-
 -----------------------------------
 --  onInitialize
 -----------------------------------
@@ -26,29 +22,35 @@ return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onTransportEvent
 -----------------------------------
 
-function onRegionEnter(player,region)
+function onTransportEvent(player,transport)
+	player:startEvent(0x000A);
 end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
+function onEventUpdate(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
+function onEventFinish(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+	if (csid == 0x000A) then
+		prevzone = player:getPreviousZone();
+		if (prevzone == 250) then
+			player:setPos(0,0,0,0,246);
+		elseif (prevzone == 246) then
+			player:setPos(0,0,0,0,250);
+		end
+	end
 end;
-
-
-

@@ -1280,4 +1280,47 @@ int32 luautils::SetServerVariable(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID) 
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName());
+
+	PChar->m_event.reset();
+	PChar->m_event.Script.insert(0,File);
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnTransportEvent: %s\n",lua_tostring(LuaHandle,-1));
+		return -1;
+	}
+   
+	lua_pushstring(LuaHandle,"onTransportEvent");
+	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnTransportEvent: undefined procedure\n");
+		return -1;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+  
+	lua_pushinteger(LuaHandle,TransportID);
+  
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnTransportEvent: %s\n",lua_tostring(LuaHandle,-1));
+		return -1;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+}
+
 }; // namespace luautils

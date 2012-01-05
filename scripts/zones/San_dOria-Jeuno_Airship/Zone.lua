@@ -4,10 +4,6 @@
 -- 
 -----------------------------------
 
-require("scripts/globals/settings");
-package.loaded["scripts/zones/San_dOria-Jeuno_Airship/TextIDs"] = nil;
-require("scripts/zones/San_dOria-Jeuno_Airship/TextIDs");
-
 -----------------------------------
 --  onInitialize
 -----------------------------------
@@ -26,29 +22,35 @@ return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onTransportEvent
 -----------------------------------
 
-function onRegionEnter(player,region)
+function onTransportEvent(player,transport)
+	player:startEvent(0x0064);
 end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
+function onEventUpdate(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
+function onEventFinish(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+	if (csid == 0x0064) then
+		prevzone = player:getPreviousZone();
+		if (prevzone == 246) then
+			player:setPos(0,0,0,0,232);
+		elseif (prevzone == 232) then
+			player:setPos(0,0,0,0,246);
+		end
+	end
 end;
-
-
-

@@ -30,6 +30,23 @@
 
 #include "npcentity.h"
 
+struct Transport_t
+{
+    location_t   Dock;
+
+    uint8  AnimationArrive;
+    uint8  AnimationDepart;
+
+    uint16 TimeOffset;
+    uint16 TimeAnimationArrive;
+    uint16 TimeAnimationDepart;
+    uint16 TimeInterval;
+    uint16 TimeWaiting;
+
+    CBaseEntity* PDoorNPC;
+    CBaseEntity* PTransportNPC;
+};
+
 struct Elevator_t 
 {
 	uint8 id;
@@ -47,6 +64,11 @@ struct Elevator_t
 	bool isPermanent;
 };
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 class CTransportHandler
 {
@@ -62,13 +84,14 @@ private:
 
 	CTransportHandler();
 
+    void InitializeTransport();
 	void InitializeElevators();
 
-	
 	void startElevator(Elevator_t *);
 	void arrivElevator(Elevator_t *);
 
 	std::vector<Elevator_t> ElevatorList;
+    std::vector<Transport_t*> TransportList;
 };
 
 #endif

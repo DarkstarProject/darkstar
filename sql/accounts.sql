@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Ven 24 Juin 2011 à 07:56
+-- GÃ©nÃ©rÃ© le : Jeu 05 Janvier 2012 Ã  05:50
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnÃ©es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `password` varchar(64) NOT NULL DEFAULT '',
   `timecreate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `timelastmodify` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `content_ids` tinyint(2) unsigned NOT NULL DEFAULT '16',
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `priv` tinyint(3) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)

@@ -86,7 +86,7 @@ bool CBattleEntity::isDead()
 
 uint8 CBattleEntity::GetHPP()
 {
-	return (uint8)ceil(((float)health.hp / (float)health.maxhp) * 100);
+	return (uint8)ceil(((float)health.hp / (float)(health.maxhp + getMod(MOD_HP))) * 100);
 }
 
 /************************************************************************
@@ -97,7 +97,7 @@ uint8 CBattleEntity::GetHPP()
 
 uint8 CBattleEntity::GetMPP()
 {
-	return (uint8)ceil(((float)health.mp / (float)health.maxmp) * 100);
+	return (uint8)ceil(((float)health.mp / (float)(health.maxmp + getMod(MOD_MP))) * 100);
 }
 
 uint16 CBattleEntity::addTP(int16 tp)
@@ -118,7 +118,7 @@ uint16 CBattleEntity::addHP(int16 hp)
 {
 	if (status == STATUS_NORMAL) status = STATUS_UPDATE;
 
-	int16 cap = cap_value(health.hp + hp,0,health.maxhp);
+    int16 cap = cap_value(health.hp + hp, 0, health.maxhp + getMod(MOD_HP));
 	hp = health.hp - cap;
 	health.hp = cap;
 
@@ -128,13 +128,12 @@ uint16 CBattleEntity::addHP(int16 hp)
 	{
 		PBattleAI->SetCurrentAction(ACTION_FALL);
 	}
-
 	return abs(hp);
 }
 
 uint16 CBattleEntity::addMP(int16 mp)
 {
-	int16 cap = cap_value(health.mp + mp,0,health.maxmp);
+	int16 cap = cap_value(health.mp + mp, 0, health.maxmp + getMod(MOD_MP));
 	mp = health.mp - cap;
 	health.mp = cap;
 	return abs(mp);

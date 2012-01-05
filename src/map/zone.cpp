@@ -402,6 +402,25 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 }
 
 /************************************************************************
+*                                                                       *
+*  Транспотр отправляется, необходимо собрать пассажиров                *
+*                                                                       *
+************************************************************************/
+
+void CZone::TransportDepart(CBaseEntity* PTransportNPC)
+{
+    for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+	{
+		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+
+        if (PCurrentChar->loc.boundary == PTransportNPC->loc.boundary)
+        {
+            luautils::OnTransportEvent(PCurrentChar, PTransportNPC->loc.boundary);
+        }
+    }
+}
+
+/************************************************************************
 *																		*
 *  Удаляем персонажа из зоны. Если запущен ZoneServer и персонажей		*
 *  в зоне больше не осталось, то останавливаем ZoneServer				*
