@@ -1568,7 +1568,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 	Recast.TimeStamp = m_Tick;
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PChar,m_PJobAbility->getID()+16,0,100));
-	//m_PChar->RecastAbilityList.push_back(Recast);
+	m_PChar->RecastAbilityList.push_back(Recast);
 	m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 	
 	
