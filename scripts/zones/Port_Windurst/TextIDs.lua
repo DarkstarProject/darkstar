@@ -21,7 +21,7 @@ CONQUEST = 11622; -- You've earned conquest points!
 -- Shop Texts
       KUCHAMALKOBHI_SHOP_DIALOG = 12423; -- How about a nice suit of adventurer-issue armorrr? Be careful though. We offer no rrrefunds!
              KUSUSU_SHOP_DIALOG = 4117; -- Welcome to Kususu's Ho～odo～os! We have low-level to medium-level magic on sale to help you through the early, rough spells in your life.
-      HOHBIBAMUBUBA_SHOP_DIALOG = 4119; -- Hohbiba-Mubiba! Just because, at first glance, we Tarutaru look weak, doesn't mean you should make light of our weapons.
+      HOHBIBAMUBIBA_SHOP_DIALOG = 4119; -- Hohbiba-Mubiba! Just because, at first glance, we Tarutaru look weak, doesn't mean you should make light of our weapons.
      GURUNAMAGURUNA_SHOP_DIALOG = 4123; -- There's a time to attack and a time to defend... And speaking defensively, why not get some armor or fine clothes here?
 		     KUMAMA_SHOP_DIALOG = 4124; -- At Guruna-Maguruna's, we tailor to your needs!
 		     BABUBU_SHOP_DIALOG = 3589; -- This be the Fishermen's Guild shop. What supplies will you be needin' today?
