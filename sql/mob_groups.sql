@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2012-01-05 18:16:08
+Date: 2012-01-05 19:12:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -9239,7 +9239,7 @@ INSERT INTO `mob_groups` VALUES ('9227', '3440', '176', '1056', '0', '1898', '50
 INSERT INTO `mob_groups` VALUES ('9228', '3442', '176', '0', '128', '703', '58', '60');
 INSERT INTO `mob_groups` VALUES ('9229', '3519', '176', '1056', '0', '1841', '47', '50');
 INSERT INTO `mob_groups` VALUES ('9230', '3521', '176', '3960', '0', '1870', '62', '62');
-INSERT INTO `mob_groups` VALUES ('9231', '3558', '176', '7200', '0', '0', '48', '48');
+INSERT INTO `mob_groups` VALUES ('9231', '3558', '176', '7200', '0', '2328', '48', '48');
 INSERT INTO `mob_groups` VALUES ('9232', '3609', '176', '1056', '0', '1576', '62', '72');
 INSERT INTO `mob_groups` VALUES ('9233', '3743', '176', '792', '0', '1704', '36', '39');
 INSERT INTO `mob_groups` VALUES ('9234', '3803', '176', '0', '128', '1734', '65', '67');
@@ -9248,13 +9248,13 @@ INSERT INTO `mob_groups` VALUES ('9236', '3912', '176', '1056', '4', '1519', '55
 INSERT INTO `mob_groups` VALUES ('9237', '3992', '176', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('9238', '4092', '176', '1056', '0', '734', '36', '39');
 INSERT INTO `mob_groups` VALUES ('9239', '4127', '176', '1056', '0', '738', '42', '45');
-INSERT INTO `mob_groups` VALUES ('9240', '4250', '176', '7200', '0', '0', '64', '66');
+INSERT INTO `mob_groups` VALUES ('9240', '4250', '176', '7200', '0', '2326', '64', '66');
 INSERT INTO `mob_groups` VALUES ('9241', '4309', '176', '1056', '4', '1908', '65', '68');
 INSERT INTO `mob_groups` VALUES ('9242', '4311', '176', '0', '128', '1550', '80', '82');
-INSERT INTO `mob_groups` VALUES ('9243', '4377', '176', '7200', '0', '0', '60', '61');
-INSERT INTO `mob_groups` VALUES ('9244', '4383', '176', '7200', '0', '0', '48', '50');
-INSERT INTO `mob_groups` VALUES ('9245', '4467', '176', '31680', '0', '0', '64', '66');
-INSERT INTO `mob_groups` VALUES ('9246', '4525', '176', '7200', '0', '0', '70', '70');
+INSERT INTO `mob_groups` VALUES ('9243', '4377', '176', '7200', '0', '2325', '60', '61');
+INSERT INTO `mob_groups` VALUES ('9244', '4383', '176', '7200', '0', '2329', '48', '50');
+INSERT INTO `mob_groups` VALUES ('9245', '4467', '176', '31680', '0', '2327', '64', '66');
+INSERT INTO `mob_groups` VALUES ('9246', '4525', '176', '7200', '0', '2330', '70', '70');
 INSERT INTO `mob_groups` VALUES ('9247', '71', '177', '1056', '0', '994', '70', '71');
 INSERT INTO `mob_groups` VALUES ('9248', '531', '177', '0', '128', '858', '75', '80');
 INSERT INTO `mob_groups` VALUES ('9249', '638', '177', '0', '128', '702', '76', '79');
