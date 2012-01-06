@@ -78,6 +78,7 @@ CCharEntity::CCharEntity()
 	m_mkeCurrent = 0;
 	m_asaCurrent = 0;
 
+    m_Costum     = 0;
 	m_hasTractor = 0;
 	m_hasRaise	 = 0;
 	m_InsideRegionID   = 0;

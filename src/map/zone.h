@@ -118,6 +118,7 @@ public:
 	void			SpawnPETs(CCharEntity* PChar);									// отображаем PETs в зоне
 	void			SpawnNPCs(CCharEntity* PChar);									// отображаем NPCs в зоне
 	void			SpawnMoogle(CCharEntity* PChar);								// отображаем Moogle в MogHouse
+    void            SpawnTransport(CCharEntity* PChar);                             // отображаем транспорт
 
 	void			WideScan(CCharEntity* PChar, uint16 radius);					// сканирование местности с заданным радиусом
 
@@ -164,6 +165,7 @@ private:
 	regionList_t	m_regionList;			// список активных областей зоны
 	zoneLineList_t	m_zoneLineList;			// список всех доступных zonelines для зоны
 
+    CBaseEntity*    m_Transport;            // указатель на транспорт в зоне
 	CTreasurePool*	m_TreasurePool;			// глобальный TreasuerPool
 
 	CTaskMgr::CTask* ZoneTimer;				// указатель на созданный таймер - ZoneServer. необходим для возможности его остановки

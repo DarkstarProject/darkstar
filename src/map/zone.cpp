@@ -65,7 +65,6 @@
 int32 zone_server(uint32 tick, CTaskMgr::CTask* PTask)
 {
 	((CZone*)PTask->m_data)->ZoneServer(tick);
-
 	return 0;
 }
 
@@ -87,7 +86,6 @@ int32 zone_server_region(uint32 tick, CTaskMgr::CTask* PTask)
 		PZone->ZoneServerRegion(tick);
 		PZone->m_RegionCheckTime = tick;
 	}
-
 	return 0;
 }
 
@@ -102,6 +100,7 @@ CZone::CZone(uint8 zoneID)
 	ZoneTimer = NULL;
 
 	m_zoneID = zoneID;
+    m_Transport = 0;
 	m_TreasurePool = 0;
 	m_RegionCheckTime = 0;
 
@@ -145,6 +144,7 @@ CZone::~CZone()
 		delete m_petList.begin()->second;
 		m_petList.erase(m_petList.begin());
 	}
+    delete m_Transport;
 	delete m_TreasurePool;
 }
 
@@ -305,6 +305,11 @@ void CZone::InsertNPC(CBaseEntity* PNpc)
 {
 	if ((PNpc != NULL) && (PNpc->objtype == TYPE_NPC))
 	{
+        if (PNpc->look.size == MODEL_SHIP)
+        {
+            m_Transport = PNpc;
+            return;
+        }
 		m_npcList[PNpc->targid] = PNpc;
 	}
 }
@@ -415,7 +420,7 @@ void CZone::TransportDepart(CBaseEntity* PTransportNPC)
 
         if (PCurrentChar->loc.boundary == PTransportNPC->loc.boundary)
         {
-            luautils::OnTransportEvent(PCurrentChar, PTransportNPC->loc.boundary);
+            luautils::OnTransportEvent(PCurrentChar, PTransportNPC->loc.prevzone);
         }
     }
 }
@@ -511,6 +516,11 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
     {
         PChar->animation = ANIMATION_NONE;
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
+    }
+    if (PChar->m_Costum != 0)
+    {
+        PChar->m_Costum = 0;
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COSTUME);
     }
 	if (m_TreasurePool != NULL)
 	{
@@ -793,6 +803,21 @@ void CZone::SpawnMoogle(CCharEntity* PChar)
 }
 
 /************************************************************************
+*                                                                       *
+*  Отображаем транспотр в зоне (не хранится в основном списке)          *
+*                                                                       *
+************************************************************************/
+
+void CZone::SpawnTransport(CCharEntity* PChar)
+{
+	if (m_Transport != NULL)
+    {
+		PChar->pushPacket(new CEntityUpdatePacket(m_Transport, ENTITY_SPAWN));
+	    return;
+    }
+}
+
+/************************************************************************
 *																		*
 *  Получаем указатель на любую сущность в зоне по ее targid				*
 *																		*
@@ -820,6 +845,10 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 				PEntity = it->second;;
 			}
 		}
+        if (filter & TYPE_SHIP)
+        {
+            PEntity = m_Transport;
+        }
 	}
 	else if (targid < 0x700)
 	{

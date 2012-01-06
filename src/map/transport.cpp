@@ -69,7 +69,7 @@ void CTransportHandler::InitializeTransport()
             PTransport->Dock.prevzone   = (uint8) Sql_GetIntData(SqlHandle,8);
 
             PTransport->PDoorNPC      = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle,2), TYPE_NPC);
-            PTransport->PTransportNPC = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle,1), TYPE_NPC);
+            PTransport->PTransportNPC = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle,1), TYPE_SHIP);
 
             PTransport->AnimationArrive = (uint8)Sql_GetIntData(SqlHandle, 9);
             PTransport->AnimationDepart = (uint8)Sql_GetIntData(SqlHandle,10);
@@ -164,8 +164,6 @@ void CTransportHandler::TransportTimer()
         // корабль появляется на горизонте
         if (ShipTimerOffset == 0)
         {
-            ShowDebug(CL_CYAN"arrival animation. VanaTime %u\n"CL_RESET, VanaTime);
-
             PTransport->PTransportNPC->status = STATUS_NORMAL;
             PTransport->PTransportNPC->animation = PTransport->AnimationArrive;
             PTransport->PTransportNPC->loc = PTransport->Dock;
@@ -186,16 +184,12 @@ void CTransportHandler::TransportTimer()
             // корабль причалил, открываем двери пассажирам
             else if (ShipTimerOffset == PTransport->TimeAnimationArrive)
             {
-                ShowDebug(CL_CYAN"stop animation. VanaTime %u\n"CL_RESET, VanaTime);
-
                 PTransport->PDoorNPC->animation = ANIMATION_OPEN_DOOR;
                 zoneutils::GetZone(PTransport->Dock.zone)->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE)); 
             }
             //корабль отчаливает
             else if (ShipTimerOffset == PTransport->TimeAnimationArrive + PTransport->TimeWaiting)
             {
-                ShowDebug(CL_CYAN"depart animation. VanaTime %u\n"CL_RESET, VanaTime);
-
                 PTransport->PDoorNPC->animation = ANIMATION_CLOSE_DOOR;
                 PTransport->PTransportNPC->animation = PTransport->AnimationDepart;
                 PTransport->PTransportNPC->loc.boundary = PTransport->Dock.boundary;
@@ -209,8 +203,6 @@ void CTransportHandler::TransportTimer()
             //корабль исчезает
             else if (ShipTimerOffset == PTransport->TimeAnimationArrive + PTransport->TimeWaiting + PTransport->TimeAnimationDepart)
             {
-                ShowDebug(CL_CYAN"despawn animation. VanaTime %u\n"CL_RESET, VanaTime);
-
                 PTransport->PTransportNPC->status = STATUS_DISAPPEAR;
                 zoneutils::GetZone(PTransport->Dock.zone)->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_DESPAWN));
             }

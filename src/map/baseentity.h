@@ -32,7 +32,8 @@ enum ENTITYTYPE
 	TYPE_PC		= 0x01,
 	TYPE_NPC	= 0x02,
 	TYPE_MOB	= 0x04,
-	TYPE_PET	= 0x08
+	TYPE_PET	= 0x08,
+    TYPE_SHIP   = 0x10
 };
 
 // еще не придумал логичные имена

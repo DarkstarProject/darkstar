@@ -2207,6 +2207,37 @@ inline int32 CLuaBaseEntity::setAnimation(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Получаем/устанавливаем значение дополнительной анимации              *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::AnimationSub(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	
+    if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+    {
+        uint8 animationsub = (uint8)lua_tointeger(L,-1);
+
+        if (m_PBaseEntity->animationsub != animationsub)
+		{
+		    m_PBaseEntity->animationsub = animationsub;
+
+			if (m_PBaseEntity->objtype == TYPE_PC)
+			{
+			    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
+            } else {
+			    zoneutils::GetZone(m_PBaseEntity->getZone())->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE));
+            }
+        }
+        return 0;
+	}
+	lua_pushinteger(L, m_PBaseEntity->animationsub);
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::setStatus(lua_State *L)
@@ -2983,6 +3014,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFameLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAnimation),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAnimation),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,AnimationSub),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatus),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendRaise),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendTractor),

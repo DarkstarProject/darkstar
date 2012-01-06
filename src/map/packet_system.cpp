@@ -229,13 +229,12 @@ int32 SmallPacket0x00C(CCharEntity* PChar, int8* data)
 	{
 		PChar->PParty->ReloadParty(PChar);
 	}
-
 	// TODO: в MogHouse TreasurePool сейчас не создается, по этому необходима проверка
-
 	if (PChar->PTreasurePool != NULL)
 	{
 		PChar->PTreasurePool->UpdatePool(PChar);
 	}
+    zoneutils::GetZone(PChar->getZone())->SpawnTransport(PChar);
 	return 0;
 } 
 

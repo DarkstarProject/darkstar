@@ -53,13 +53,13 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
-	if (transport == 474) then
+	if (transport == 223) then
 		player:startEvent(0x271A);
-	elseif (transport == 475) then
+	elseif (transport == 224) then
 		player:startEvent(0x271C);
-	elseif (transport == 476) then
+	elseif (transport == 225) then
 		player:startEvent(0x271B);
-	elseif (transport == 477) then
+	elseif (transport == 226) then
 		player:startEvent(0x271D);
 	end
 end;

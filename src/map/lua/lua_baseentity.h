@@ -76,6 +76,7 @@ public:
 
 	int32 getAnimation(lua_State*);			// Get Entity Animation
 	int32 setAnimation(lua_State*);			// Set Entity Animation
+    int32 AnimationSub(lua_State*);         // get or set animationsub
 
 	int32 addItem(lua_State*);				// Add item to Entity inventory (additem(itemNumber,quantity))
 	int32 hasItem(lua_State*);				// Check to see if Entity has item in inventory (hasItem(itemNumber))
