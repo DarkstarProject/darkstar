@@ -45,8 +45,8 @@
 ************************************************************************/
 
 uint16 g_SkillTable[100][12];									// All Skills by level/skilltype
+uint8  g_EnmityTable[100][2];		                            // Holds Enmity Modifier Values
 uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
-uint16 g_EnmityTable[MAX_ENMITY_LEVEL][MAX_ENMITY_TYPE];		// Holds Enmity Modifier Values
 
 CSpell*		  g_PSpellList[MAX_SPELL_ID];						// Complete Spells List
 CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// Complete Abilities List
@@ -67,30 +67,25 @@ namespace battleutils
 {
 
 /************************************************************************
-*  Load Enmity From Database											*
+*                                                                       *
+*  Generate Enmity Table                                                *
+*                                                                       *
 ************************************************************************/
+
 void LoadEnmityTable()
 {
-	memset(g_EnmityTable,0, sizeof(g_EnmityTable));
-
-	const int8* fmtQuery = "SELECT level,cmod,dmod \
-						    FROM enmity \
-							ORDER BY level \
-							LIMIT 95";
-
-	int32 ret = Sql_Query(SqlHandle,fmtQuery);
-	
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		for (uint32 x = 0; x < 99 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
-		{
-			for (uint32 y = 0; y < 2; ++y) 
-			{
-				g_EnmityTable[x][y] = (uint16)Sql_GetIntData(SqlHandle,y+1);
-			}
-		}
-	}
+    for (uint32 x = 0; x < 100; ++x)
+    {
+        g_EnmityTable[x][0] = (uint8)abs(0.5441*x + 13.191);     // cmod
+        g_EnmityTable[x][1] = (uint8)abs(0.6216*x + 5.4363);     // dmod
+    }
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 void LoadSkillTable()
 {
@@ -474,10 +469,11 @@ bool CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID)
 *                                                                       *
 ************************************************************************/
 
-uint16 GetEnmityMod(uint8 level, uint16 modType)
+uint8 GetEnmityMod(uint8 level, uint8 modType)
 {
-    DSP_DEBUG_BREAK_IF(g_EnmityTable[level][modType] == 0);
-
+    DSP_DEBUG_BREAK_IF(level >= 100);
+    DSP_DEBUG_BREAK_IF(modType >= 2);
+    
 	return g_EnmityTable[level][modType];
 }
 

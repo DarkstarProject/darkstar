@@ -81,7 +81,7 @@ namespace battleutils
 	uint32  MagicCalculateDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	uint32  MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	
-	uint16	GetEnmityMod(uint8 level, uint16 modType);
+    uint8	GetEnmityMod(uint8 level, uint8 modType);
 	bool	Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	void	MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode);
 };
