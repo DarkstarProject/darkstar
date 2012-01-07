@@ -2238,6 +2238,57 @@ inline int32 CLuaBaseEntity::AnimationSub(lua_State *L)
     return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Получаем/устанавливаем костюм персонажу                              *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::costume(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+    {
+        uint16 costum = (uint16)lua_tointeger(L,-1);
+
+        if (PChar->m_Costum != costum &&
+            PChar->status   != STATUS_SHUTDOWN &&
+            PChar->status   != STATUS_DISAPPEAR)
+		{
+            PChar->m_Costum = costum;
+            PChar->status   = STATUS_UPDATE;
+            PChar->pushPacket(new CCharUpdatePacket(PChar));
+        }
+        return 0;
+	}
+    lua_pushinteger(L, PChar->m_Costum);
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*  Проверяем, может ли персонаж использовать костюм                     *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::canUseCostume(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if (((CCharEntity*)m_PBaseEntity)->m_Costum != 0)
+    {
+        lua_pushinteger(L, 445);
+        return 1;
+    }
+    lua_pushinteger(L, (zoneutils::GetZone(m_PBaseEntity->getZone())->CanUseMisc(MISC_COSTUME) ? 0 : 316));
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::setStatus(lua_State *L)
@@ -3015,6 +3066,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAnimation),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAnimation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,AnimationSub),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseCostume),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatus),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendRaise),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendTractor),

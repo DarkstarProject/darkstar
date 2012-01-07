@@ -842,12 +842,15 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 			EntityList_t::const_iterator it = m_npcList.find(targid); 
 			if (it != m_npcList.end())
 			{
-				PEntity = it->second;;
+				PEntity = it->second;
 			}
 		}
         if (filter & TYPE_SHIP)
         {
-            PEntity = m_Transport;
+            if (m_Transport != NULL && m_Transport->targid == targid)
+            {
+                PEntity = m_Transport;
+            }
         }
 	}
 	else if (targid < 0x700)
@@ -982,8 +985,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 			}
 		}
 		break;
-	}
-
+    }
 	if (ScriptType != SCRIPT_NONE)
 	{
 		for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)

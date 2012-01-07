@@ -439,8 +439,8 @@ void CAICharNormal::ActionItemStart()
 
 void CAICharNormal::ActionItemUsing()
 {
-	//DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
-	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x ||
 		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
@@ -522,8 +522,8 @@ void CAICharNormal::ActionItemUsing()
 
 void CAICharNormal::ActionItemFinish() 
 {
-	//DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
-	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getAnimationTime())
 	{
