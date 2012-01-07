@@ -40,18 +40,20 @@ extern lan_config_t lan_config;
 struct login_config_t
 {
 	uint16 usLoginAuthPort;			// authentification port of login server      ->  54231
-	uint32  uiLoginAuthIp;			// authentification ip of login server	      -> INADDR_ANY
-	//////////////////////////////////
+	uint32 uiLoginAuthIp;			// authentification ip of login server	      -> INADDR_ANY
+	
 	uint16 usLobbyDataPort;
 	uint32 uiLobbyDataIp;
-	//////////////////////////////////
+	
 	uint16 usLobbyViewPort;
 	uint32 uiLobbyViewIp;
-	//////////////////////////////////
+
+    uint16 expansions;
+	
 	const char *mysql_host;			// mysql addr -> localhost:3306
-	uint16 mysql_port;			// mysql port -> 3306
-	const char *mysql_login;          // mysql login -> default root
-	const char *mysql_password;       // mysql pass  -> default NULL
+	uint16 mysql_port;			    // mysql port -> 3306
+	const char *mysql_login;        // mysql login -> default root
+	const char *mysql_password;     // mysql pass  -> default NULL
 	const char *mysql_database;		// mysql database -> default dspdb
 };
 

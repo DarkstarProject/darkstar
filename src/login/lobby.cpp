@@ -413,7 +413,7 @@ int32 lobbyview_parse(int32 fd)
 				uint8 SendBuffSize = 0x28;
 
 				LOBBY_026_RESERVEPACKET(ReservPacket);
-				WBUFW(ReservPacket,32) = 0x02;	// BitMask for expansions;
+				WBUFW(ReservPacket,32) = login_config.expansions;	// BitMask for expansions;
 			
 				//Хеширование пакета, и запись значения Хеш функции в пакет
 				unsigned char Hash[16];
