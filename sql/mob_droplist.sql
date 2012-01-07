@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2012-01-07 13:32:52
+Date: 2012-01-07 14:22:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -10060,10 +10060,10 @@ INSERT INTO `mob_droplist` VALUES ('2331', '0', '2307', '12');
 INSERT INTO `mob_droplist` VALUES ('2299', '0', '15530', '20');
 INSERT INTO `mob_droplist` VALUES ('2299', '0', '2158', '30');
 INSERT INTO `mob_droplist` VALUES ('2299', '0', '2158', '30');
-INSERT INTO `mob_droplist` VALUES ('2299', '0', '5564', '25');
-INSERT INTO `mob_droplist` VALUES ('2299', '0', '5564', '25');
-INSERT INTO `mob_droplist` VALUES ('2299', '0', '2172', '33');
-INSERT INTO `mob_droplist` VALUES ('2299', '0', '2172', '33');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '5564', '50');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '5564', '50');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '2172', '50');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '2172', '50');
 INSERT INTO `mob_droplist` VALUES ('2299', '0', '2154', '50');
 INSERT INTO `mob_droplist` VALUES ('2299', '0', '17952', '15');
 INSERT INTO `mob_droplist` VALUES ('2332', '0', '655', '6');
@@ -10091,10 +10091,10 @@ INSERT INTO `mob_droplist` VALUES ('597', '0', '4272', '7');
 INSERT INTO `mob_droplist` VALUES ('597', '0', '903', '7');
 INSERT INTO `mob_droplist` VALUES ('597', '0', '837', '8');
 INSERT INTO `mob_droplist` VALUES ('597', '0', '17586', '25');
-INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '10');
-INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '10');
-INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '10');
-INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '10');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '100');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '100');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '50');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '50');
 INSERT INTO `mob_droplist` VALUES ('597', '0', '1311', '10');
 INSERT INTO `mob_droplist` VALUES ('597', '0', '1313', '5');
 INSERT INTO `mob_droplist` VALUES ('597', '0', '1816', '50');
