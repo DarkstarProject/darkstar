@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2012-01-05 19:12:51
+Date: 2012-01-07 13:32:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -10054,3 +10054,55 @@ INSERT INTO `mob_droplist` VALUES ('2330', '0', '16884', '33');
 INSERT INTO `mob_droplist` VALUES ('2330', '0', '624', '10');
 INSERT INTO `mob_droplist` VALUES ('2330', '0', '4514', '20');
 INSERT INTO `mob_droplist` VALUES ('2330', '2', '748', '0');
+INSERT INTO `mob_droplist` VALUES ('2331', '0', '15613', '15');
+INSERT INTO `mob_droplist` VALUES ('2331', '0', '18741', '37');
+INSERT INTO `mob_droplist` VALUES ('2331', '0', '2307', '12');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '15530', '20');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '2158', '30');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '2158', '30');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '5564', '25');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '5564', '25');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '2172', '33');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '2172', '33');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '2154', '50');
+INSERT INTO `mob_droplist` VALUES ('2299', '0', '17952', '15');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '655', '6');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '1110', '6');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '860', '13');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '658', '3');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '836', '3');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '722', '10');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '1133', '6');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '4486', '7');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '4272', '7');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '903', '6');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '15322', '25');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '837', '7');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '14869', '30');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '1311', '12');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '1313', '9');
+INSERT INTO `mob_droplist` VALUES ('2332', '0', '1816', '50');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '860', '6');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '836', '3');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '658', '3');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '722', '15');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '1133', '7');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '4272', '7');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '903', '7');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '837', '8');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '17586', '25');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '10');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '10');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '10');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '647', '10');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '1311', '10');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '1313', '5');
+INSERT INTO `mob_droplist` VALUES ('597', '0', '1816', '50');
+INSERT INTO `mob_droplist` VALUES ('187', '0', '18385', '45');
+INSERT INTO `mob_droplist` VALUES ('187', '0', '2168', '100');
+INSERT INTO `mob_droplist` VALUES ('187', '0', '2168', '100');
+INSERT INTO `mob_droplist` VALUES ('187', '0', '2169', '100');
+INSERT INTO `mob_droplist` VALUES ('187', '0', '5565', '100');
+INSERT INTO `mob_droplist` VALUES ('2333', '0', '17953', '30');
+INSERT INTO `mob_droplist` VALUES ('2333', '0', '15979', '35');
+INSERT INTO `mob_droplist` VALUES ('2333', '2', '2150', '0');

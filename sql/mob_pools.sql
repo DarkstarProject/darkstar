@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2012-01-07 11:39:54
+Date: 2012-01-07 13:33:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2159,7 +2159,7 @@ INSERT INTO `mob_pools` VALUES ('2119', 'Jack_of_Coins', '61', 0x0000AF010000000
 INSERT INTO `mob_pools` VALUES ('2120', 'Jack_of_Cups', '61', 0x0000AF0100000000000000000000000000000000, '3', '3', '12', '240', '34', '1', '2');
 INSERT INTO `mob_pools` VALUES ('2121', 'Jack_of_Swords', '61', 0x0000AF0100000000000000000000000000000000, '7', '7', '12', '240', '34', '1', '2');
 INSERT INTO `mob_pools` VALUES ('2122', 'Jaculus', '0', 0x0000000000000000000000000000000000000000, '1', '1', '2', '200', '0', '0', '2');
-INSERT INTO `mob_pools` VALUES ('2123', 'Jaded_Jody', '186', 0x00007E0100000000000000000000000000000000, '1', '1', '7', '200', '128', '0', '0');
+INSERT INTO `mob_pools` VALUES ('2123', 'Jaded_Jody', '186', 0x00007E0100000000000000000000000000000000, '1', '1', '7', '200', '128', '0', '2');
 INSERT INTO `mob_pools` VALUES ('2124', 'Jagd_Doll', '85', 0x0000300100000000000000000000000000000000, '1', '1', '12', '240', '32', '0', '0');
 INSERT INTO `mob_pools` VALUES ('2125', 'Jaggedy-Eared_Jack', '206', 0x00000C0100000000000000000000000000000000, '6', '6', '7', '240', '0', '1', '2');
 INSERT INTO `mob_pools` VALUES ('2126', 'Jagidbod_of_Clan_Reaper', '189', 0x0000650200000000000000000000000000000000, '11', '11', '5', '240', '1', '1', '0');
