@@ -2367,41 +2367,45 @@ inline int32 CLuaBaseEntity::sendRaise(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Добавляем боевой сущности StatusEffect                               *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
-				!lua_isnil(L,2) && lua_isnumber(L,2) &&
-				!lua_isnil(L,3) && lua_isnumber(L,3) && 
-				!lua_isnil(L,4) && lua_isnumber(L,4) )
-			{
-				int32 n = lua_gettop(L);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	
+    if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
+        !lua_isnil(L,2) && lua_isnumber(L,2) &&
+        !lua_isnil(L,3) && lua_isnumber(L,3) && 
+        !lua_isnil(L,4) && lua_isnumber(L,4) )
+    {
+        int32 n = lua_gettop(L);
 
-				CStatusEffect * PEffect = new CStatusEffect(
-					(EFFECT)lua_tointeger(L,1),
-					(uint16)lua_tointeger(L,2),
-					(uint16)lua_tointeger(L,3),
-					(uint16)lua_tointeger(L,4),
-					(n >= 5 ? (uint16)lua_tointeger(L,5) : 0),
-					(n >= 6 ? (uint16)lua_tointeger(L,6) : 0));
+        CStatusEffect * PEffect = new CStatusEffect(
+            (EFFECT)lua_tointeger(L,1),
+            (uint16)lua_tointeger(L,2),
+            (uint16)lua_tointeger(L,3),
+            (uint16)lua_tointeger(L,4),
+            (n >= 5 ? (uint16)lua_tointeger(L,5) : 0),
+            (n >= 6 ? (uint16)lua_tointeger(L,6) : 0));
 
-				((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
-				if (m_PBaseEntity->objtype == TYPE_PC)
-				{
-					CCharUpdatePacket((CCharEntity*)m_PBaseEntity);
-				}
-				return 0;
-			}
-		}
-	}
+        ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
+
+        if (m_PBaseEntity->objtype == TYPE_PC)
+        {
+            ((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
+        }
+        return 0;
+    }
 	lua_pushnil(L);
 	return 1;
 }
+
+//==========================================================//
 
 inline int32 CLuaBaseEntity::addPartyEffect(lua_State *L)
 {
