@@ -25,9 +25,8 @@
 #include "../../common/showmsg.h"
 #include "../../common/timer.h"
 #include "../../common/utils.h"
-#include <string.h>
 
-#include <string>
+#include <string.h>
 
 #include "luautils.h"
 #include "lua_baseentity.h"
@@ -56,7 +55,6 @@
 
 namespace luautils
 {
-
 lua_State*  LuaHandle = NULL;
 const int8* LuaScriptDir = "scripts";
 
@@ -1226,20 +1224,18 @@ int32 StartElevator(lua_State* L)
 
 /************************************************************************
 *                                                                       *
-*                                                                       *
+*  Получаем значение глобальной переменной сервера.                     *
+*  Переменная действительна лишь в пределах зоны, в которой установлена *
 *                                                                       *
 ************************************************************************/
 
-int32 luautils::GetServerVariable(lua_State *L)
+int32 GetServerVariable(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isstring(L,-1));
 
-	int32 value = 0;
+    int32 value = 0;
 
-	const int8* varname  = lua_tostring(L, -1); 
-	const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = 21000 AND varname = '%s' LIMIT 1;";
-
-	int32 ret = Sql_Query(SqlHandle,fmtQuery, varname);
+	int32 ret = Sql_Query(SqlHandle,"SELECT value FROM server_variables WHERE name = '%s' LIMIT 1;", lua_tostring(L,-1));
 
 	if (ret != SQL_ERROR && 
 		Sql_NumRows(SqlHandle) != 0 &&
@@ -1247,37 +1243,25 @@ int32 luautils::GetServerVariable(lua_State *L)
 	{
 		value = (int32)Sql_GetIntData(SqlHandle,0); 
 	}
-
 	lua_pushinteger(L, value);
 	return 1;
 }
 
 /************************************************************************
 *                                                                       *
-*                                                                       *
+*  Устанавливаем значение глобальной переменной сервера.                *
 *                                                                       *
 ************************************************************************/
 
-int32 luautils::SetServerVariable(lua_State *L)
+int32 SetServerVariable(lua_State *L)
 {
-	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	//DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
 
-	const int8* varname =  lua_tostring(L,-2); 
 	int32 value = (int32)lua_tointeger(L,-1); 
-			
-	if (value == 0)
-	{
-		Sql_Query(SqlHandle,"DELETE FROM char_vars WHERE charid = 21000 AND varname = '%s' LIMIT 1;", varname);
-		return 0;
-	}
 
-	const int8* fmtQuery = "INSERT INTO char_vars SET charid = 21000, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
-	
-	Sql_Query(SqlHandle,fmtQuery,varname, value, value);
-		
-	lua_pushnil(L);
-	return 1;
+	Sql_Query(SqlHandle,"INSERT INTO server_variables VALUES ('%s', %i) ON DUPLICATE KEY UPDATE value = %i;", lua_tostring(L,-2), value, value);
+	return 0;
 }
 
 /************************************************************************

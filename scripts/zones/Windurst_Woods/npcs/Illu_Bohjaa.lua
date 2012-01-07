@@ -4,12 +4,12 @@
 --	Starts the repeatable quest "Creepy Crawlies"
 --	Working 100% 
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
