@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2011-12-30 12:05:20
+Date: 2012-01-07 11:39:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2256,7 +2256,7 @@ INSERT INTO `mob_pools` VALUES ('2216', 'Khadem_Quemquoma', '217', 0x00001C01000
 INSERT INTO `mob_pools` VALUES ('2217', 'Khalamari', '0', 0x0000000000000000000000000000000000000000, '1', '1', '6', '240', '0', '0', '2');
 INSERT INTO `mob_pools` VALUES ('2218', 'Khalkotaur', '0', 0x0000000000000000000000000000000000000000, '1', '2', '1', '240', '0', '0', '2');
 INSERT INTO `mob_pools` VALUES ('2219', 'Kharon', '0', 0x0000000000000000000000000000000000000000, '8', '8', '3', '240', '0', '0', '2');
-INSERT INTO `mob_pools` VALUES ('2220', 'Khimaira', '168', 0x00000D0700000000000000000000000000000000, '1', '1', '7', '320', '141', '1', '16');
+INSERT INTO `mob_pools` VALUES ('2220', 'Khimaira', '168', 0x00000D0700000000000000000000000000000000, '1', '1', '7', '320', '141', '1', '2');
 INSERT INTO `mob_pools` VALUES ('2221', 'Khimaira_13', '168', 0x00000D0700000000000000000000000000000000, '1', '1', '7', '320', '141', '1', '0');
 INSERT INTO `mob_pools` VALUES ('2222', 'Khimaira_14X', '168', 0x00000D0700000000000000000000000000000000, '1', '1', '7', '320', '129', '1', '0');
 INSERT INTO `mob_pools` VALUES ('2223', 'Khromasoul_Bhurborlor', '246', 0x0000A80600000000000000000000000000000000, '7', '7', '2', '230', '13', '0', '0');
