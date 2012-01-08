@@ -800,11 +800,10 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
 
 			PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID, 1));
 			PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID, 2));
-
-			charutils::SaveQuestsList(PChar);
 		}
+        charutils::SaveQuestsList(PChar);
 	}else{
-		ShowError(CL_RED"Lua::completeQuest: LogID %i is invalid\n"CL_RESET, logID);
+		ShowError(CL_RED"Lua::completeQuest: LogID %u is invalid\n"CL_RESET, logID);
 	}
 	
 	lua_pushnil(L);
