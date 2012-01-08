@@ -71,12 +71,12 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13202);
 		else 
-			player:completeQuest(JEUNO,FISTFUL_OF_FURY);
 			player:setTitle(BROWN_BELT);
 			player:addItem(13202);
 			player:messageSpecial(ITEM_OBTAINED,13202);
 			player:addFame(NORG,NORG_FAME*125);
 			player:tradeComplete();
+			player:completeQuest(JEUNO,FISTFUL_OF_FURY);
 		end		
 	elseif(csid == 0x00a0 and player:getQuestStatus(JEUNO,BEAT_AROUND_THE_BUSHIN) == QUEST_AVAILABLE) then 
 		player:setVar("BeatAroundTheBushin",1); -- For the next quest "Beat around the Bushin"
