@@ -2025,7 +2025,7 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
 				uint8  fameArea = (uint8)lua_tointeger(L, -1); 
 
 				CCharEntity * PChar = (CCharEntity*)m_PBaseEntity;
-				uint16 fame = 1;
+				uint16 fame = 0;
 
 				switch (fameArea) 
 				{
@@ -2035,18 +2035,13 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
 						fame = PChar->profile.fame[fameArea];
                     break;
                     case 3: // Jeuno
-					{   
 						fame = (PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) / 3;
-					}
+                    break;
 					case 4: // Selbina / Rabao
-					{   
 						fame = (PChar->profile.fame[0] + PChar->profile.fame[1]) / 2;
-					}
                     break;
                     case 5: // Norg
-					{
 						fame = PChar->profile.fame[3];
-					}
                     break;
 				}
 				lua_pushinteger( L, fame);
