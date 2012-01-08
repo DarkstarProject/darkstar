@@ -133,6 +133,7 @@ int32 do_init(int32 argc, int8** argv)
 
 	luautils::init();
 	CmdHandler.init("conf/commands.conf",luautils::LuaHandle);
+    PacketParderInitialize();
 	SqlHandle = Sql_Malloc();
 
 	ShowStatus("do_init: sqlhandle is allocating");
@@ -188,7 +189,7 @@ int32 do_init(int32 argc, int8** argv)
 
 	CREATE(g_PBuff, int8, map_config.uiBuffMaxSize);
 	ShowStatus("The map-server is "CL_GREEN"ready"CL_RESET" to work...\n");
-    ShowStatus("====================================================\n");
+    ShowMessage("=======================================================================\n");
 	return 0;
 }
 
@@ -496,115 +497,11 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 			(RBUFW(SmallPD_ptr,2) >  SmallPD_Code))
 			continue;
 
-		int32 result = -1;
-
 		if (SmallPD_Type != 0x15) 
 		{
 			ShowInfo("parse: Incoming Packet: %03hX | %02hX from user: %s\n", SmallPD_Type, SmallPD_Size, PChar->GetName());
 		}
-
-		switch(SmallPD_Type) 
-		{
-			case 0x00A: result = SmallPacket0x00A(PChar, SmallPD_ptr, map_session_data); break;
-			case 0x00B:	break;
-			case 0x00C: result = SmallPacket0x00C(PChar, SmallPD_ptr); break;
-			case 0x00D:	result = SmallPacket0x00D(PChar, SmallPD_ptr, map_session_data); break;
-			case 0x00F:	result = SmallPacket0x00F(PChar, SmallPD_ptr); break;
-			case 0x011:	result = SmallPacket0x011(PChar, SmallPD_ptr); break;
-			case 0x015:	result = SmallPacket0x015(PChar, SmallPD_ptr); break;
-			case 0x016:	result = SmallPacket0x016(PChar, SmallPD_ptr); break;
-			case 0x017:	result = SmallPacket0x017(PChar, SmallPD_ptr); break;
-			case 0x01A:	result = SmallPacket0x01A(PChar, SmallPD_ptr); break;
-			case 0x01C: result = SmallPacket0x01C(PChar, SmallPD_ptr); break;
-			case 0x028:	result = SmallPacket0x028(PChar, SmallPD_ptr); break;
-			case 0x029:	result = SmallPacket0x029(PChar, SmallPD_ptr); break;
-			case 0x032:	break;
-			case 0x033:	break;
-			case 0x034:	break;
-			case 0x036:	result = SmallPacket0x036(PChar, SmallPD_ptr); break;
-			case 0x037:	result = SmallPacket0x037(PChar, SmallPD_ptr); break;
-			case 0x03A:	result = SmallPacket0x03A(PChar, SmallPD_ptr); break;
-			case 0x03C:	result = SmallPacket0x03C(PChar, SmallPD_ptr); break;
-			case 0x041:	result = SmallPacket0x041(PChar, SmallPD_ptr); break;
-			case 0x042:	result = SmallPacket0x042(PChar, SmallPD_ptr); break;
-			case 0x04B: result = SmallPacket0x04B(PChar, SmallPD_ptr); break; 
-			case 0x04D:	result = SmallPacket0x04D(PChar, SmallPD_ptr); break;
-			case 0x04E:	result = SmallPacket0x04E(PChar, SmallPD_ptr); break;
-			case 0x050:	result = SmallPacket0x050(PChar, SmallPD_ptr); break;
-			case 0x059:	result = SmallPacket0x059(PChar, SmallPD_ptr); break;
-			case 0x05A:	result = SmallPacket0x05A(PChar, SmallPD_ptr); break;
-			case 0x05B:	result = SmallPacket0x05B(PChar, SmallPD_ptr); break;
-			case 0x05C: result = SmallPacket0x05C(PChar, SmallPD_ptr); break;
-			case 0x05D:	result = SmallPacket0x05D(PChar, SmallPD_ptr); break;
-			case 0x05E:	result = SmallPacket0x05E(PChar, SmallPD_ptr); break;
-            case 0x060:	result = SmallPacket0x060(PChar, SmallPD_ptr); break;
-			case 0x061:	result = SmallPacket0x061(PChar, SmallPD_ptr); break;
-			case 0x063:	result = SmallPacket0x063(PChar, SmallPD_ptr); break;
-			case 0x064:	result = SmallPacket0x064(PChar, SmallPD_ptr); break;
-			case 0x066:	result = SmallPacket0x066(PChar, SmallPD_ptr); break;
-			case 0x06E:	result = SmallPacket0x06E(PChar, SmallPD_ptr); break;
-			case 0x06F:	result = SmallPacket0x06F(PChar, SmallPD_ptr); break;
-			case 0x070:	result = SmallPacket0x070(PChar, SmallPD_ptr); break;
-			case 0x071:	result = SmallPacket0x071(PChar, SmallPD_ptr); break;
-			case 0x074:	result = SmallPacket0x074(PChar, SmallPD_ptr); break;
-			case 0x076:	result = SmallPacket0x076(PChar, SmallPD_ptr); break;
-			case 0x077:	result = SmallPacket0x077(PChar, SmallPD_ptr); break;
-			case 0x078:	result = SmallPacket0x078(PChar, SmallPD_ptr); break;
-			case 0x083:	result = SmallPacket0x083(PChar, SmallPD_ptr); break;
-			case 0x084:	result = SmallPacket0x084(PChar, SmallPD_ptr); break;
-			case 0x085:	result = SmallPacket0x085(PChar, SmallPD_ptr); break;
-			case 0x096:	result = SmallPacket0x096(PChar, SmallPD_ptr); break;
-			case 0x0A0:	break;
-			case 0x0A1:	break;
-			case 0x0A2:	result = SmallPacket0x0A2(PChar, SmallPD_ptr); break;
-			case 0x0AA:	break;
-			case 0x0AB:	result = SmallPacket0x0AB(PChar, SmallPD_ptr); break;
-			case 0x0AC:	break;
-			case 0x0AD:	result = SmallPacket0x0AD(PChar, SmallPD_ptr); break;
-			case 0x0B5:	result = SmallPacket0x0B5(PChar, SmallPD_ptr); break;
-			case 0x0B6:	result = SmallPacket0x0B6(PChar, SmallPD_ptr); break;
-			case 0x0BE:	break;
-			case 0x0C3:	break;
-			case 0x0C4:	break;
-			case 0x0CB:	break;
-			case 0x0D2:	result = SmallPacket0x0D2(PChar, SmallPD_ptr); break;
-			case 0x0D3:	result = SmallPacket0x0D3(PChar, SmallPD_ptr); break;
-			case 0x0D4:	break;
-			case 0x0DB:	result = SmallPacket0x0DB(PChar, SmallPD_ptr); break;
-			case 0x0DC:	result = SmallPacket0x0DC(PChar, SmallPD_ptr); break;
-			case 0x0DD:	result = SmallPacket0x0DD(PChar, SmallPD_ptr); break;
-			case 0x0DE:	result = SmallPacket0x0DE(PChar, SmallPD_ptr); break;
-			case 0x0E0:	result = SmallPacket0x0E0(PChar, SmallPD_ptr); break;
-			case 0x0E1:	break;
-			case 0x0E2:	break;
-			case 0x0E7:	result = SmallPacket0x0E7(PChar, SmallPD_ptr); break;
-			case 0x0E8:	result = SmallPacket0x0E8(PChar, SmallPD_ptr); break;
-			case 0x0EA:	result = SmallPacket0x0EA(PChar, SmallPD_ptr); break;
-			case 0x0F1:	result = SmallPacket0x0F1(PChar, SmallPD_ptr); break;
-			case 0x0F2:	result = SmallPacket0x0F2(PChar, SmallPD_ptr); break;
-			case 0x0F4:	result = SmallPacket0x0F4(PChar, SmallPD_ptr); break;
-			case 0x0F5:	result = SmallPacket0x0F5(PChar, SmallPD_ptr); break;
-			case 0x0F6: result = SmallPacket0x0F6(PChar, SmallPD_ptr); break;
-			case 0x0FA:	result = SmallPacket0x0FA(PChar, SmallPD_ptr); break;
-			case 0x0FB:	result = SmallPacket0x0FB(PChar, SmallPD_ptr); break;
-			case 0x100:	result = SmallPacket0x100(PChar, SmallPD_ptr); break;
-			case 0x102:	break;
-			case 0x104:	result = SmallPacket0x104(PChar, SmallPD_ptr); break;
-			case 0x105: result = SmallPacket0x105(PChar, SmallPD_ptr); break;
-			case 0x106: break;
-			case 0x109:	result = SmallPacket0x109(PChar, SmallPD_ptr); break;
-			case 0x10A:	result = SmallPacket0x10A(PChar, SmallPD_ptr); break;
-			case 0x10B:	result = SmallPacket0x10B(PChar, SmallPD_ptr); break;
-			default:
-			{
-				result = 0;
-				ShowWarning(CL_YELLOW"parse: Unhandled game packet %03hX from user: %s\n"CL_RESET, SmallPD_Type, PChar->GetName());
-			}
-		}
-		if (result != 0)
-		{
-			ShowDebug(CL_CYAN"parse: SmallPacket is not implemented Type<%03hX>\n"CL_RESET, SmallPD_Type);
-		}
+        PacketParcer[SmallPD_Type](map_session_data, PChar, SmallPD_ptr);
 	}
 
 	map_session_data->client_packet_id = SmallPD_Code;
@@ -773,7 +670,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 				ShowWarning("map_cleanup: "CL_WHITE"%s"CL_RESET" timed out, session closed\n",map_session_data->PChar->GetName());
 
 				map_session_data->PChar->status = STATUS_SHUTDOWN;
-				SmallPacket0x00D(map_session_data->PChar, 0, map_session_data);
+                PacketParcer[0x00D](map_session_data, map_session_data->PChar, 0);
 			} else {
 				ShowWarning("map_cleanup: "CL_WHITE"WHITHOUT CHAR"CL_RESET" timed out, session closed\n");
 
