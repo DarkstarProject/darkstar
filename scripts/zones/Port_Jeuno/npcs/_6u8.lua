@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Door (Illauvolahaut dialog)
+-- NPC:  Door: Departures Exit (for Kahzam)
 -- @zone 246
 -- @pos -12 8 54
 -----------------------------------
@@ -52,4 +52,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if(csid == 0x0025) then 
+		player:delGil(200);
+	end
 end;
