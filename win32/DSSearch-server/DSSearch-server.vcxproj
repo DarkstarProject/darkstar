@@ -48,6 +48,7 @@
     <ClInclude Include="..\..\src\search\packets\party_list.h" />
     <ClInclude Include="..\..\src\search\packets\search_comment.h" />
     <ClInclude Include="..\..\src\search\packets\search_list.h" />
+    <ClInclude Include="..\..\src\search\search.h" />
     <ClInclude Include="..\..\src\search\tcp_request.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -133,5 +133,8 @@
     <ClInclude Include="..\..\src\search\packets\search_comment.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\search\search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

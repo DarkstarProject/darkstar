@@ -25,6 +25,7 @@
 #include "../common/sql.h"
 
 #include "auction_house.h"
+#include "search.h"
 
 
 Sql_t* SqlHandle = NULL;
@@ -36,11 +37,11 @@ CAuctionHouse::CAuctionHouse(uint8 AuctionHouseID)
     SqlHandle = Sql_Malloc();
 
 	ShowStatus("sqlhandle is allocating\n");
-	if( Sql_Connect(SqlHandle,"root",
-							  "root",
-							  "127.0.0.1",
-							  3306,
-							  "dspdb") == SQL_ERROR )
+    if( Sql_Connect(SqlHandle,search_config.mysql_login,
+                              search_config.mysql_password,
+                              search_config.mysql_host,
+                              search_config.mysql_port,
+                              search_config.mysql_database) == SQL_ERROR )
 	{
 		ShowError("cant connect\n");
 	}
@@ -95,10 +96,12 @@ std::vector<ahItem*> CAuctionHouse::GetItemsToCategry(uint8 AHCategoryID)
 
     const int8* fmtQuery = "SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack) \
                             FROM item_basic \
-                            LEFT JOIN auction_house \
-                            ON item_basic.itemid = auction_house.itemid AND auction_house.buyer_name IS NULL \
+	                        LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS NULL \
+                            LEFT JOIN item_armor ON item_basic.itemid = item_armor.itemid \
+                            LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid \
                             WHERE aH = %u \
-                            GROUP BY item_basic.itemid";
+                            GROUP BY item_basic.itemid \
+                            ORDER BY item_armor.level DESC, item_weapon.dmg DESC, item_basic.sortname ASC";
 
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, AHCategoryID);
 
