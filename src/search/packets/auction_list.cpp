@@ -41,17 +41,9 @@ CAHItemsListPacket::CAHItemsListPacket(uint16 offset)
     m_count  = 0;
     m_offset = offset;
 
-    memset(m_PData, 0, AHITEMSLISTPACKET_SIZE);
-
-    WBUFW(m_PData,(0x00)) = AHITEMSLISTPACKET_SIZE;     // packet size
-    WBUFL(m_PData,(0x04)) = 0x46465849;                 // "XIFF"
+    memset(m_PData, 0, sizeof(m_PData));
 
 	WBUFB(m_PData,(0x0B)) = 0x95;                       // packet type
-}
-
-CAHItemsListPacket::~CAHItemsListPacket()
-{
-    
 }
 
 /************************************************************************
@@ -62,7 +54,7 @@ CAHItemsListPacket::~CAHItemsListPacket()
 
 void CAHItemsListPacket::AddItem(ahItem* item) 
 {
-    WBUFL(m_PData,(0x18 + 0x0A*m_count) + 0) = item->ItemID;
+    WBUFW(m_PData,(0x18 + 0x0A*m_count) + 0) = item->ItemID;
     WBUFL(m_PData,(0x18 + 0x0A*m_count) + 2) = item->SinglAmount;
     WBUFL(m_PData,(0x18 + 0x0A*m_count) + 6) = item->StackAmount;
 
@@ -83,11 +75,11 @@ void CAHItemsListPacket::SetItemCount(uint16 count)
     if ((count - m_offset) <= 20)
     {
         WBUFB(m_PData,(0x0A)) = 0x80;
-        WBUFW(m_PData,(0x08)) = 0x10 + (count - m_offset)*0x0A + 0x08;
+        WBUFW(m_PData,(0x08)) = 0x18 + 0x0A*(count - m_offset);
     } 
     else 
     {
-        WBUFW(m_PData,(0x08)) = 0x10 + 20*0x0A + 0x08;
+        WBUFW(m_PData,(0x08)) = 0x18 + 0x0A*20;
     }
 }
 
@@ -110,5 +102,5 @@ uint8* CAHItemsListPacket::GetData()
 
 uint16 CAHItemsListPacket::GetSize()
 {
-    return AHITEMSLISTPACKET_SIZE;
+    return 0x18 + 0x0A*m_count + 28;
 }

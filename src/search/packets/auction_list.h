@@ -26,14 +26,12 @@
 
 #include "../../common/cbasetypes.h"
 
-#define AHITEMSLISTPACKET_SIZE    268
 
 class CAHItemsListPacket
 {
 public:
 
     CAHItemsListPacket(uint16 offset);
-   ~CAHItemsListPacket();
     
     void AddItem(ahItem* item);
     void SetItemCount(uint16 count);
@@ -46,7 +44,7 @@ private:
     uint8  m_count;
     uint16 m_offset;
 
-    uint8 m_PData[AHITEMSLISTPACKET_SIZE];
+    uint8 m_PData[256];
 };
 
 #endif

@@ -26,8 +26,6 @@
 
 #include "../../common/cbasetypes.h"
 
-#define AHHISTORYPACKET_SIZE    460
-
 class CAHHistoryPacket
 {
 public:
@@ -42,9 +40,7 @@ public:
 private:
 
     uint8 m_count;
-    uint8 m_PData[AHHISTORYPACKET_SIZE];
-
-    void SetItemCount();
+    uint8 m_PData[454];
 };
 
 #endif

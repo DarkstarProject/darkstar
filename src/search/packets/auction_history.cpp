@@ -39,11 +39,9 @@ CAHHistoryPacket::CAHHistoryPacket(uint16 ItemID)
 {
     m_count  = 0;
 
-    memset(m_PData, 0, AHHISTORYPACKET_SIZE);
+    memset(m_PData, 0, sizeof(m_PData));
 
-    WBUFW(m_PData,(0x00)) = AHHISTORYPACKET_SIZE;       // packet size
-    WBUFL(m_PData,(0x04)) = 0x46465849;                 // "XIFF"
-
+    WBUFB(m_PData,(0x0A)) = 0x80;
     WBUFB(m_PData,(0x0B)) = 0x85;                       // packe type
     WBUFW(m_PData,(0x10)) = ItemID;
 }
@@ -64,25 +62,9 @@ void CAHHistoryPacket::AddItem(ahHistory* item)
         memcpy(m_PData + 0x1A + 40*m_count + 0x08, item->Name1, 15);
         memcpy(m_PData + 0x1A + 40*m_count + 0x18, item->Name2, 15);
 
-        m_count++;
+        WBUFW(m_PData,(0x08)) = 0x1A + 40*++m_count;
     }
     delete item;
-}
-
-/************************************************************************
-*                                                                       *
-*  Устанавливаем общее количество отправляемых предметов и номер пакета *
-*                                                                       *
-************************************************************************/
-
-void CAHHistoryPacket::SetItemCount()
-{
-    DSP_DEBUG_BREAK_IF(m_count > 10);
-
-    WBUFB(m_PData,(0x0A)) = 0x80;
-    WBUFW(m_PData,(0x0E)) = 1;
-
-    WBUFW(m_PData,(0x08)) = 0x12 + 0x28*m_count + 0x08;
 }
 
 /************************************************************************
@@ -93,7 +75,6 @@ void CAHHistoryPacket::SetItemCount()
 
 uint8* CAHHistoryPacket::GetData()
 {
-    SetItemCount();
     return m_PData;
 }
 
@@ -105,5 +86,5 @@ uint8* CAHHistoryPacket::GetData()
 
 uint16 CAHHistoryPacket::GetSize()
 {
-    return AHHISTORYPACKET_SIZE;
+    return 0x1A + 40*m_count + 28;
 }

@@ -354,7 +354,8 @@ ppuint32 __stdcall TCPComm(void* lpParam)
             HandleAuctionHouseRequest(PTCPRequest);
 		}
 		break;
-		case TCP_AH_HISTORY: 
+		case TCP_AH_HISTORY:
+        case TCP_AH_HISTORY_STACK:
 		{
             HandleAuctionHouseHistoru(PTCPRequest);
 		}
@@ -475,11 +476,12 @@ void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
 {
     uint8* data   = (uint8*)PTCPRequest->GetData();                            
 	uint16 ItemID = RBUFW(data,(0x12));
+    uint8  stack  = RBUFB(data,(0x15));
 
     CAHHistoryPacket* PAHPacket = new CAHHistoryPacket(ItemID);
 
     CAuctionHouse* PAuctionHouse = new CAuctionHouse(0);                        
-    std::vector<ahHistory*> HistoryList = PAuctionHouse->GetItemHystory(ItemID);
+    std::vector<ahHistory*> HistoryList = PAuctionHouse->GetItemHystory(ItemID, stack);
 
     for (uint8 i = 0; i < HistoryList.size(); ++i)
     {

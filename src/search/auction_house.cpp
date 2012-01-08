@@ -52,17 +52,17 @@ CAuctionHouse::~CAuctionHouse()
     Sql_Free(SqlHandle);
 }
 
-std::vector<ahHistory*> CAuctionHouse::GetItemHystory(uint16 ItemID)
+std::vector<ahHistory*> CAuctionHouse::GetItemHystory(uint16 ItemID, bool stack)
 {
     std::vector<ahHistory*> HistoryList;
 
     const int8* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name \
                             FROM auction_house \
-                            WHERE itemid = %u AND buyer_name IS NOT NULL \
+                            WHERE itemid = %u AND stack = %u AND buyer_name IS NOT NULL \
                             ORDER BY sell_date DESC \
                             LIMIT 10";
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, ItemID);
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, ItemID, stack);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{

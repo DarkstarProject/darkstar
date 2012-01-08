@@ -60,7 +60,7 @@ public:
 	CAuctionHouse(uint8 AuctionHouseID);
    ~CAuctionHouse();
 
-    std::vector<ahHistory*> GetItemHystory(uint16 ItemID);
+    std::vector<ahHistory*> GetItemHystory(uint16 ItemID, bool stack);
 	std::vector<ahItem*>    GetItemsToCategry(uint8 AHCategoryID);
 };
 
