@@ -5,11 +5,12 @@
 -- @zone 147
 -- @pos 56 0 -23
 -----------------------------------
+package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/zones/Beadeaux/TextIDs");
 
 -----------------------------------
@@ -17,8 +18,8 @@ require("scripts/zones/Beadeaux/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(player:getQuestStatus(OTHER_AREAS,THE_RESCUE) == ACCEPTED and player:hasKeyItem(TRADERS_SACK) == false) then
-		if(trade:hasItemQty(495,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if(player:getQuestStatus(OTHER_AREAS,THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(TRADERS_SACK) == false) then
+		if(trade:hasItemQty(495,1) == true and trade:getItemCount() == 1) then 
 			player:startEvent(0x03e8);
 		end
 	end
@@ -29,12 +30,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getQuestStatus(OTHER_AREAS,THE_RESCUE) == ACCEPTED and player:hasKeyItem(TRADERS_SACK) == false) then
+	if(player:getQuestStatus(OTHER_AREAS,THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(TRADERS_SACK) == false) then
 		player:messageSpecial(LOCKED_DOOR_QUADAV_HAS_KEY);
-		return 1;
 	else
 		player:messageSpecial(NOTHING_OUT_ORDINARY_HERE);
 	end
+	return 1;
 end; 
 
 -----------------------------------

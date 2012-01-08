@@ -33,15 +33,16 @@ end;
 
 function onTrigger(player,npc)
 	FistfulOfFury = player:getQuestStatus(JEUNO,FISTFUL_OF_FURY);
+	BeatAroundTheBushin = player:getQuestStatus(JEUNO,BEAT_AROUND_THE_BUSHIN);
 	
 	if(player:getFameLevel(NORG) >= 3 and FistfulOfFury == QUEST_AVAILABLE and player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS) == QUEST_COMPLETED) then 
 		player:startEvent(0x00D8); -- Start Quest "Fistful of Fury" 
 	elseif(FistfulOfFury == QUEST_ACCEPTED) then 
 		player:startEvent(0x00D7); -- During Quest "Fistful of Fury"
-	elseif(FistfulOfFury == QUEST_COMPLETED and player:getMainJob() == 2 and player:getMainLvl() >= 71 and player:getFameLevel(NORG) >= 6) then 
+	elseif(BeatAroundTheBushin == QUEST_AVAILABLE and player:getMainJob() == 2 and player:getMainLvl() >= 71 and player:getFameLevel(NORG) >= 6) then 
 		player:startEvent(0x00a0); -- Start Quest "Beat Around the Bushin"
-	elseif(player:getQuestStatus(JEUNO,BEAT_AROUND_THE_BUSHIN) == QUEST_COMPLETED) then 
-		player:startEvent(0x00D6); -- After Quest "Beat Around the Bushin"
+	elseif(BeatAroundTheBushin ~= QUEST_AVAILABLE) then 
+		player:startEvent(0x00D6); -- During & After Quest "Beat Around the Bushin"
 	else
 		player:startEvent(0x00D4); -- Standard dialog
 	end
