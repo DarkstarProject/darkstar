@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2012-01-09 11:48:38
+Date: 2012-01-09 13:35:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20252,25 +20252,18 @@ INSERT INTO `mob_spawn_points` VALUES ('17481735', 'River_Crab', '8986', '-32.00
 INSERT INTO `mob_spawn_points` VALUES ('17481736', 'Ding_Bats', '8981', '-53.000', '-1.000', '59.000', '65');
 INSERT INTO `mob_spawn_points` VALUES ('17481737', 'River_Crab', '8986', '-32.000', '-1.000', '71.000', '49');
 INSERT INTO `mob_spawn_points` VALUES ('17481738', 'Ding_Bats', '8981', '-59.000', '-1.000', '34.000', '127');
-INSERT INTO `mob_spawn_points` VALUES ('17481739', 'River_Crab', '8986', '0.000', '0.000', '0.000', '107');
+INSERT INTO `mob_spawn_points` VALUES ('17481739', 'River_Crab', '8986', '-7.000', '-1.000', '48.000', '107');
 INSERT INTO `mob_spawn_points` VALUES ('17481759', 'Colliery_Bat', '10748', '-70.000', '8.000', '-219.000', '127');
-INSERT INTO `mob_spawn_points` VALUES ('17481802', 'River_Crab', '8986', '0.000', '0.000', '0.000', '0');
-INSERT INTO `mob_spawn_points` VALUES ('17481803', 'River_Crab', '8986', '-7.000', '-1.000', '48.000', '127');
-INSERT INTO `mob_spawn_points` VALUES ('17481804', 'River_Crab', '8986', '-6.000', '-1.000', '71.000', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17481760', 'Colliery_Bat', '10748', '96.214', '7.921', '-174.945', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17481761', 'Colliery_Bat', '10748', '51.707', '7.815', '-219.583', '110');
 INSERT INTO `mob_spawn_points` VALUES ('17481774', 'Colliery_Bat', '10748', '62.000', '8.000', '-267.000', '48');
 INSERT INTO `mob_spawn_points` VALUES ('17481775', 'Colliery_Bat', '10748', '60.875', '8.127', '-196.263', '64');
 INSERT INTO `mob_spawn_points` VALUES ('17481764', 'Soot_Crab', '10750', '-87.000', '8.000', '-336.000', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17481740', 'Ding_Bats', '8981', '-31.000', '-1.000', '19.000', '3');
-INSERT INTO `mob_spawn_points` VALUES ('17481741', 'River_Crab', '8986', '0.000', '0.000', '0.000', '127');
+INSERT INTO `mob_spawn_points` VALUES ('17481741', 'River_Crab', '8986', '-6.000', '-1.000', '71.000', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17481762', 'Colliery_Bat', '10748', '8.000', '9.000', '-119.000', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17481742', 'Colliery_Bat', '10748', '138.000', '8.000', '-186.000', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17481743', 'Colliery_Bat', '10748', '116.596', '8.159', '-180.234', '127');
-INSERT INTO `mob_spawn_points` VALUES ('17481834', 'Leech', '8983', '0.000', '0.000', '0.000', '0');
-INSERT INTO `mob_spawn_points` VALUES ('17481835', 'Leech', '8983', '0.000', '0.000', '0.000', '0');
-INSERT INTO `mob_spawn_points` VALUES ('17481836', 'Leech', '8983', '0.000', '0.000', '0.000', '0');
-INSERT INTO `mob_spawn_points` VALUES ('17481799', 'Ormr', '8985', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17481788', 'Veindigger_Leech', '10751', '-57.000', '8.000', '-325.000', '127');
 INSERT INTO `mob_spawn_points` VALUES ('17485825', 'Snipper', '9013', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('17485826', 'Snipper', '9013', '0.000', '0.000', '0.000', '0');
@@ -30741,3 +30734,42 @@ INSERT INTO `mob_spawn_points` VALUES ('16990471', 'Greater_Colibri', '1754', '-
 INSERT INTO `mob_spawn_points` VALUES ('16990472', 'Greater_Colibri', '1754', '-593.000', '-4.000', '-8.000', '127');
 INSERT INTO `mob_spawn_points` VALUES ('16990473', 'Lividroot_Amooshah', '1771', '0.000', '0.000', '0.000', '0');
 INSERT INTO `mob_spawn_points` VALUES ('16990474', 'Dea', '1743', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793601', 'Ghost_Crab', '83', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793602', 'Grindylow', '88', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793603', 'Greater_Pugil', '87', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793604', 'Apsaras', '76', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793605', 'Kraken', '102', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793606', 'Lancet_Jagil', '104', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793607', 'Jagil', '101', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793608', 'Coralline_Urganite', '80', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793609', 'Coralline_Urganite', '80', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793610', 'Coralline_Urganite', '80', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793611', 'Coralline_Urganite', '80', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793612', 'Kraken', '102', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793613', 'Viscous_Clot', '121', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793614', 'Coralline_Urganite', '80', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793615', 'Coralline_Urganite', '80', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793616', 'Viscous_Clot', '121', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793617', 'Coralline_Urganite', '80', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793618', 'Ignis_Fatuus', '98', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793619', 'Coastal_Opo-opo', '79', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793620', 'Coastal_Opo-opo', '79', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793621', 'Alraune', '75', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793622', 'Toucan', '118', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793623', 'Alraune', '75', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793624', 'Alraune', '75', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793625', 'Coastal_Opo-opo', '79', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793626', 'Coastal_Opo-opo', '79', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793627', 'Coastal_Opo-opo', '79', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793628', 'Toucan', '118', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793629', 'Coastal_Opo-opo', '79', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793630', 'Coastal_Opo-opo', '79', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793631', 'Toucan', '118', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793633', 'Alraune', '75', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793634', 'Alraune', '75', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793635', 'Alraune', '75', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793637', 'Coralline_Urganite', '80', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793636', 'Jagil', '101', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793632', 'Ignis_Fatuus', '98', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('16793638', 'Coralline_Urganite', '80', '0.000', '0.000', '0.000', '0');
+INSERT INTO `mob_spawn_points` VALUES ('17481729', 'Ding_Bats', '8981', '0.000', '0.000', '0.000', '0');
