@@ -324,7 +324,7 @@
 324 - The <player> uses .. but misses <target>.
 325 - You are charmed by an enemy and unable to act.
 326 - The <player> readies ..
-327 - The <player> starts casting Curaga IV on <target>.
+327 - The <player> starts casting <spell> on <target>.
 328 - <target> is too far away.
 329 - The <player> casts (NULL). <target>'s STR is drained.
 330 - The <player> casts (NULL). <target>'s DEX is drained.

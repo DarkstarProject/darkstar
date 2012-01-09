@@ -4,6 +4,17 @@ USE dspdb;
 
 DELIMITER $$
 
+DROP TRIGGER IF EXISTS delivery_box_insert $$
+CREATE TRIGGER delivery_box_insert
+	BEFORE INSERT ON delivery_box
+	FOR EACH ROW
+BEGIN
+	SET @slot := 0;
+	SELECT MAX(slot) INTO @slot FROM delivery_box WHERE box = NEW.box AND charid = NEW.charid;
+	IF @slot IS NULL OR @slot < 10 THEN SET NEW.slot := 10; ELSE SET NEW.slot := @slot + 1; END IF;
+END $$
+
+
 DROP TRIGGER IF EXISTS account_delete $$
 CREATE TRIGGER account_delete
 	BEFORE DELETE ON accounts
@@ -11,8 +22,7 @@ CREATE TRIGGER account_delete
 BEGIN
 	DELETE FROM `accounts_banned` WHERE `accid` = OLD.id;
 	DELETE FROM `chars` WHERE `accid` = OLD.id;     
-END
-$$
+END $$
 
 DROP TRIGGER IF EXISTS char_delete $$
 CREATE TRIGGER char_delete
@@ -29,8 +39,6 @@ BEGIN
 	DELETE FROM `char_titles`     WHERE `charid` = OLD.charid;
 	DELETE FROM `char_inventory`  WHERE `charid` = OLD.charid;
 	DELETE FROM `char_vars`       WHERE `charid` = OLD.charid;
-	DELETE FROM `char_bazaar_msg` WHERE `charid` = OLD.charid;
-END
-$$
+END $$
 
 DELIMITER ;

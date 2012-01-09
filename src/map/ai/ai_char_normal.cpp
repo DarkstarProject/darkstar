@@ -102,23 +102,19 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
 
-	// слишком частая проверка, достаточно одного раза в секунду
+    RecastList_t::iterator it = m_PChar->RecastList.begin();
 
-	for (int32 i = (int32)m_PChar->RecastList.size() - 1; i >= 0; --i)
+	while(it != m_PChar->RecastList.end())
 	{
-		if (m_Tick >= (m_PChar->RecastList.at(i).TimeStamp + m_PChar->RecastList.at(i).RecastTime))
+		Recast_t* recast = *it;
+		if (m_Tick >= (recast->TimeStamp + recast->RecastTime))
 		{
-			m_PChar->RecastList.erase(m_PChar->RecastList.begin() + i);
+            m_PChar->RecastList.erase(it++);
+            delete recast;
+            continue;
 		}
-	}
-
-	for (int32 i = (int32)m_PChar->RecastAbilityList.size() - 1; i >= 0; --i)
-	{
-		if ((m_Tick - m_PChar->RecastAbilityList.at(i).TimeStamp) / 1000 >= (m_PChar->RecastAbilityList.at(i).RecastTime))
-		{
-			m_PChar->RecastAbilityList.erase(m_PChar->RecastAbilityList.begin() + i);
-		}
-	}
+		it++;
+    }
 }
 
 /************************************************************************
@@ -179,17 +175,12 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 
 bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 {
-	if (PBattleTarget == NULL)
-	{
-		return false;
-	}
+    DSP_DEBUG_BREAK_IF(PBattleTarget == NULL);
+
 	if (PBattleTarget->m_OwnerID == 0 || PBattleTarget->m_OwnerID == m_PChar->id) 
 	{
 		return true;
 	}
-	
-    // TODO: а еще есть питомцы, так что нужно придумать что-нибудь элегантнее, чем перебор всех подряд
-
 	if (m_PChar->PParty != NULL) 
 	{
 		for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
@@ -211,8 +202,14 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 
 void CAICharNormal::ActionEngage() 
 {
-	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget != NULL);
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0)
+    DSP_DEBUG_BREAK_IF(m_PBattleTarget != NULL);
 
+    if (m_PChar->animation == ANIMATION_HEALING)
+    {
+        m_ActionTargetID = 0;
+        return;
+    }
 	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY) && m_PChar->animation != ANIMATION_HEALING)
 	{
 		if(IsMobOwner(m_PBattleTarget))
@@ -798,77 +795,54 @@ void CAICharNormal::ActionRangedInterrupt()
 
 void CAICharNormal::ActionMagicStart()
 {
-	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
+    DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
+    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
-	if (m_PSpell == NULL ||
-	   !charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
-	   !battleutils::CanUseSpell(m_PChar, m_PSpell->getID()))
+	if (!charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
+	    !battleutils::CanUseSpell(m_PChar, m_PSpell->getID()))
 	{
-		m_ActionTargetID = 0;
-
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,49));
-
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-		m_PSpell = NULL;
-		m_PBattleSubTarget = NULL;
+        ActionMagicStartError(49);
 		return;
 	}
-
-	if ( m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING && !m_PZone->CanUseMisc(MISC_PET))
+	if (m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING)
 	{
-		m_ActionTargetID = 0;
-
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,40));
-
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-		m_PSpell = NULL;
-		m_PBattleSubTarget = NULL;
-		return;
+        if (m_PChar->PPet != NULL)
+        {
+            ActionMagicStartError(315);
+		    return;
+        } 
+        else if (!m_PZone->CanUseMisc(MISC_PET))
+        {
+            ActionMagicStartError(40);
+		    return;
+        }
 	}
-
-	for (uint32 i = 0; i < m_PChar->RecastList.size(); ++i)
-	{
-		if (m_PChar->RecastList.at(i).ID == m_PSpell->getID())
-		{
-			m_ActionTargetID = 0;
-
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,18));
-
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PSpell = NULL;
-			m_PBattleSubTarget = NULL;
+    for(RecastList_t::iterator it = m_PChar->RecastList.begin(); it != m_PChar->RecastList.end(); ++it)
+    {
+        if ((*it)->Type == RECAST_MAGIC && (*it)->ID == m_PSpell->getID())
+        {
+            ActionMagicStartError(18);
 			return;
-		}
-	}
-
+        }
+    }
 	if (GetValidTarget(&m_PBattleSubTarget, m_PSpell->getValidTarget()))
 	{
-		if (m_PBattleSubTarget->isDead() &&
-		  !(m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD))
+		if (m_PBattleSubTarget->isDead() && !(m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD))
 		{
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PSpell = NULL;
-			m_PBattleSubTarget = NULL;
+			ActionMagicStartError(0); // TODO: узнать сообщение
 			return;
 		}
 		if (m_PBattleSubTarget->objtype == TYPE_MOB && !IsMobOwner(m_PBattleSubTarget))
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
-
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PSpell = NULL;
-			m_PBattleSubTarget = NULL;
+            ActionMagicStartError(12);
 			return;
 		}
 		if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
 		{
 			if (m_PChar->getStorage(LOC_INVENTORY)->SearchItem(m_PSpell->getMPCost()) == ERROR_SLOTID)
 			{
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,35));
-
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PSpell = NULL;
-				m_PBattleSubTarget = NULL;
+                ActionMagicStartError(35);
 				return;
 			}
 		} 
@@ -876,28 +850,19 @@ void CAICharNormal::ActionMagicStart()
 		{
 			if (m_PSpell->getMPCost() > m_PChar->health.mp && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
 			{
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,34));
-
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PSpell = NULL;
-				m_PBattleSubTarget = NULL;
+                ActionMagicStartError(34);
 				return;
 			}
 		}
 	}
 	else if (m_PBattleSubTarget != NULL)
 	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PSpell->getID(),0,48));
-
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-		m_PSpell = NULL;
-		m_PBattleSubTarget = NULL;
+        ActionMagicStartError(48);
 		return;
 	}
 	else
 	{
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-		m_PSpell = NULL;
+        ActionMagicStartError(0);
 		return;
 	}
 
@@ -907,20 +872,12 @@ void CAICharNormal::ActionMagicStart()
 
 		if (Distance > 25)
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,78));
-
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PSpell = NULL;
-			m_PBattleSubTarget = NULL;
+            ActionMagicStartError(78);
 			return;
 		}
 		if (Distance > 21.5)
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PSpell->getID(),0,313));
-
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PSpell = NULL;
-			m_PBattleSubTarget = NULL;
+            ActionMagicStartError(313);
 			return;
 		}
 	}
@@ -945,6 +902,28 @@ void CAICharNormal::ActionMagicStart()
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
     m_ActionType = m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) ? ACTION_MAGIC_FINISH : ACTION_MAGIC_CASTING;
+}
+
+/************************************************************************
+*                                                                       *
+*  Невозможно начать читать заклинание                                  *
+*                                                                       *
+************************************************************************/
+
+void CAICharNormal::ActionMagicStartError(uint16 error)
+{
+    DSP_DEBUG_BREAK_IF(m_ActionType != ACTION_MAGIC_START);
+
+    if (error != 0)
+    {
+        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, (m_PBattleSubTarget != NULL ? m_PBattleSubTarget : m_PChar), m_PSpell->getID(), 0, error));
+    }
+    m_ActionTargetID = 0;
+
+	m_PSpell = NULL;
+	m_PBattleSubTarget = NULL;
+
+    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 }
 
 /************************************************************************
@@ -1075,14 +1054,14 @@ void CAICharNormal::ActionMagicFinish()
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 
-	Recast_t Recast;
+	Recast_t* Recast = new Recast_t;
 	
-	Recast.ID = m_PSpell->getID();
-	Recast.TimeStamp = m_Tick;
+	Recast->ID = m_PSpell->getID();
+	Recast->TimeStamp = m_Tick;
 	int16 timeToRecast = (m_PSpell->getRecastTime() * 1000);
  	int16 hasteTime = ((float)m_PChar->getMod(MOD_HASTE)/100 * timeToRecast);
 	timeToRecast = timeToRecast - hasteTime; 
-	Recast.RecastTime = (timeToRecast > 0 ? timeToRecast : 0);
+	Recast->RecastTime = (timeToRecast > 0 ? timeToRecast : 0);
 
 	m_PChar->RecastList.push_back(Recast);
 
@@ -1093,290 +1072,43 @@ void CAICharNormal::ActionMagicFinish()
 	Action.reaction   = REACTION_NONE;
 	Action.speceffect = SPECEFFECT_NONE;
 	Action.animation  = m_PSpell->getAnimationID();
+	Action.param      = 0; 
 	Action.messageID  = 0;
 	Action.flag		  = 0;
-
-	bool callMagicDamage = false;
-	bool callCure = false;
-	bool callLUA = false;
-	bool sendInitSpellMsg = false;
-
-    // TODO: как-то криво все получилось
-	
-    if (m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING)
-    {
-        callLUA = true;
-    }
-
-	switch(m_PSpell->getSpellType())
-	{
-		case 2: // magic Damage
-		{
-			callMagicDamage = true; 
-			sendInitSpellMsg = true;
-			Action.messageID  = 264;
-			charutils::TrySkillUP(m_PChar,SKILL_ELE,m_PChar->GetMLevel());
-		} break;
-		/*	
-		{	
-			int32 damage;
-			
-			Action.ActionTarget = m_PBattleSubTarget;
-			Action.reaction   = REACTION_NONE;
-			Action.speceffect = SPECEFFECT_NONE;
-			Action.animation  = m_PSpell->getAnimationID();
-			Action.param	  = battleutils::MagicCalculateDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 1, m_PZone);
-			Action.messageID  = m_PSpell->getSpellType();
-			Action.flag		  = 0;
-		
-			m_PChar->m_ActionList.push_back(Action);
-
-			if (m_PSpell->isAOE() && m_PBattleSubTarget->objtype == TYPE_MOB)
-			{
-				int16 targetNumber = 1; 
-				for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); 
-					 it != m_PChar->SpawnMOBList.end() && 
-					 m_PChar->m_ActionList.size() < 16;
-					 ++it)
-				{
-					targetNumber +=1; 
-					CMobEntity* PCurrentMob = (CMobEntity*)it->second;
-
-					if (m_PBattleSubTarget != PCurrentMob &&
-						PCurrentMob->status == STATUS_UPDATE &&
-						distance(m_PBattleSubTarget->loc.p, PCurrentMob->loc.p) <= 10)
-					{
-						Action.ActionTarget = PCurrentMob;
-						Action.reaction   = REACTION_NONE;
-						Action.speceffect = SPECEFFECT_NONE;
-						Action.animation  = m_PSpell->getAnimationID();
-						Action.param	  = battleutils::MagicCalculateDamage(m_PChar, PCurrentMob, m_PSpell, targetNumber, m_PZone);
-						Action.messageID  = 264;
-						Action.flag		  = 0;
-
-						m_PChar->m_ActionList.push_back(Action);	
-					}
-				}
-			}
-		}*/
-			break;
-		case 7: // cure
-		{
-			callCure = true;
-			sendInitSpellMsg = true;
-			Action.messageID = 24;
-			charutils::TrySkillUP(m_PChar,SKILL_HEA,m_PChar->GetMLevel());
-		}
-			break;
-		/*{		
-			Action.ActionTarget = m_PBattleSubTarget;
-			Action.reaction   = REACTION_NONE;
-			Action.speceffect = SPECEFFECT_NONE;
-			Action.animation  = m_PSpell->getAnimationID();
-			Action.param	  = battleutils::MagicCalculateCure(m_PChar, m_PBattleSubTarget, m_PSpell, 0, m_PZone);
-			Action.messageID  = m_PSpell->getSpellType();
-			Action.flag		  = 0;
-
-			m_PChar->m_ActionList.push_back(Action);
-			CCharEntity* Target = (CCharEntity*)m_PBattleSubTarget;
-			if (m_PSpell->isAOE() && Target->PParty != NULL)
-			{
-				for (int i = 0; i < Target->PParty->members.size(); i++)
-				{
-					CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-					if (!PTarget->isDead() && PTarget != Target && distance(Target->loc.p, PTarget->loc.p) <= 10)
-					{
-						Action.ActionTarget = m_PChar->PParty->members[i];
-						Action.reaction   = REACTION_NONE;
-						Action.speceffect = SPECEFFECT_NONE;
-						Action.animation  = m_PSpell->getAnimationID();
-						
-						
-						if (callMagicDamage) 
-						{
-							Action.param = battleutils::MagicCalculateCure(m_PChar, PTarget, m_PSpell, 0, m_PZone);
-						}
-						
-						if (callCure) 
-						{
-							Action.param = battleutils::MagicCalculateCure(m_PChar, PTarget, m_PSpell, 0, m_PZone);
-						}
-						
-						if (callLUA)
-						{
-							luautils::OnSpellCast(m_PChar,m_PBattleSubTarget);
-						}
-
-
-						
-						Action.messageID  = 24;
-						Action.flag		  = 0;
-
-						m_PChar->m_ActionList.push_back(Action);	
-					}
-				}
-			}
-		}*/
-
-		case 93: //warp
-		{
-			callLUA = true;
-			sendInitSpellMsg = true;
-			charutils::TrySkillUP(m_PChar,SKILL_DRK,m_PChar->GetMLevel());
-		}
-			break;
-		case 227: // drain
-		{
-			Action.messageID = 227;
-			int16 drain = (rand()%100 < 50 ? m_PChar->GetSkill(SKILL_DRK) : m_PChar->GetSkill(SKILL_DRK) / 2);
-			m_PBattleSubTarget->addHP(-(drain > m_PBattleSubTarget->health.hp ? m_PBattleSubTarget->health.hp : drain)); 
-			m_PChar->addHP(drain);
-			
-			charutils::TrySkillUP(m_PChar,SKILL_DRK,m_PChar->GetMLevel());
-			Action.param = drain;
-			m_PBattleSubTarget->m_OwnerID = m_PChar->id;
-			((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar,m_PSpell->getCE(),m_PSpell->getVE()); 
-		} 
-			break;
-		case 228: // aspir
-		{
-			int16 aspir = (m_PChar->GetSkill(SKILL_DRK) / 3.2);
-			aspir = (m_PBattleSubTarget->health.mp > aspir ? aspir : m_PBattleSubTarget->health.mp);
-			Action.messageID = 228;
-			charutils::TrySkillUP(m_PChar,SKILL_DRK,m_PChar->GetMLevel());
-			m_PBattleSubTarget->addMP(-aspir);
-			m_PChar->addMP(aspir);
-			Action.param = aspir;
-			m_PBattleSubTarget->m_OwnerID = m_PChar->id;
-			((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar,m_PSpell->getCE(),m_PSpell->getVE()); 
-		} 
-			break;
-		case 230: // buff
-		{
-			callLUA = true;
-			sendInitSpellMsg = true;
-			Action.messageID = 0;
-			Action.param = m_PSpell->getID();
-			charutils::TrySkillUP(m_PChar,SKILL_ENH,m_PChar->GetMLevel());
-		}
-			break;
-		case 237: //enfeeble
-		{
-			callLUA = true;
-			sendInitSpellMsg = true;
-			//Action.messageID = 266; 
-			Action.param = m_PSpell->getID(); 
-			if (m_PSpell->getElement() == 7)
-			{
-				charutils::TrySkillUP(m_PChar,SKILL_DIV,m_PChar->GetMLevel());
-			}
-			else if (m_PSpell->getElement() == 8)
-			{
-				charutils::TrySkillUP(m_PChar,SKILL_DRK,m_PChar->GetMLevel());
-			}
-			else
-			{
-				charutils::TrySkillUP(m_PChar,SKILL_ENF,m_PChar->GetMLevel());
-			}
-			
-			m_PBattleSubTarget->m_OwnerID = m_PChar->id;
-			((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar,m_PSpell->getCE(),m_PSpell->getVE()); 
-		} 
-			break;
-		case 42:
-			{
-			sendInitSpellMsg = true;
-			Action.messageID = 0; 
-			charutils::TrySkillUP(m_PChar,SKILL_DIV,m_PChar->GetMLevel());
-			} break;
-			
-	};
 
 	/******************************************************************************************/
 
 	if (!m_PSpell->isAOE())
 	{
-		Action.ActionTarget = m_PBattleSubTarget;
-		if (sendInitSpellMsg)
-		{
-			m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PSpell->getID(),0,42));
-		}
-						
-		if (callMagicDamage) 
-		{
-			Action.param = battleutils::MagicCalculateDamage(m_PChar, m_PBattleSubTarget, m_PSpell, 0, m_PZone);
-		}
-						
-		if (callCure) 
-		{
-			Action.param = battleutils::MagicCalculateCure(m_PChar, m_PBattleSubTarget, m_PSpell, 0, m_PZone);
-		}
-						
-		if (callLUA)
-		{
-
-			EFFECT statEffect = (EFFECT)m_PSpell->getEffect();
-
-			if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(statEffect))
-			{
-				m_PBattleSubTarget->StatusEffectContainer->DelStatusEffect(statEffect);
-			}
-		
-			luautils::OnSpellCast(m_PChar,m_PBattleSubTarget);
-			Action.param = m_PSpell->getEffect();
-		}
-
 		m_PChar->m_ActionList.push_back(Action);
 	}
 	else if (m_PBattleSubTarget->objtype = TYPE_PC) 
 	{
 		CCharEntity* Target = (CCharEntity*)m_PBattleSubTarget;
-		if (m_PSpell->isAOE() && Target->PParty != NULL)
+		if (Target->PParty != NULL)
 		{
-			for (int i = 0; i < Target->PParty->members.size(); i++)
+			for (uint32 i = 0; i < Target->PParty->members.size(); i++)
 			{
 				CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
 				if (!PTarget->isDead() && distance(Target->loc.p, PTarget->loc.p) <= 10)
 				{
 					Action.ActionTarget = m_PChar->PParty->members[i];
-	
-					if (sendInitSpellMsg)
-					{
-						m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PSpell->getID(),0,42));
-						sendInitSpellMsg = false;
-					}
-						
-					if (callCure) 
-					{
-						Action.param = battleutils::MagicCalculateCure(m_PChar, PTarget, m_PSpell, 0, m_PZone);
-					}
-						
-					if (callLUA)
-					{
-						EFFECT statEffect = (EFFECT)m_PSpell->getEffect();
-
-						if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(statEffect))
-						{
-							m_PBattleSubTarget->StatusEffectContainer->DelStatusEffect(statEffect);
-						}
-
-						luautils::OnSpellCast(m_PChar,m_PBattleSubTarget);
-					}
 					
 					m_PChar->m_ActionList.push_back(Action);	
 				}
 			}
 		}
+		else
+		{
+			m_PChar->m_ActionList.push_back(Action);
+		}
 	}
 	else if (m_PBattleSubTarget->objtype = TYPE_MOB)
 	{
-		int16 targetNumber = 1; 
-		for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); 
-				it != m_PChar->SpawnMOBList.end() && 
-				m_PChar->m_ActionList.size() < 16;
-				++it)
+		m_PChar->m_ActionList.push_back(Action);
+
+		for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin();  it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 16; ++it)
 		{
-			targetNumber +=1; 
 			CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
 			if (m_PBattleSubTarget != PCurrentMob &&
@@ -1385,30 +1117,7 @@ void CAICharNormal::ActionMagicFinish()
 			{
 				Action.ActionTarget = PCurrentMob;
 
-				if (sendInitSpellMsg)
-				{
-					m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,PCurrentMob,m_PSpell->getID(),0,42));
-					sendInitSpellMsg = false;
-				}
-						
-				if (callMagicDamage) 
-				{
-					Action.param = battleutils::MagicCalculateCure(m_PChar, PCurrentMob, m_PSpell, 0, m_PZone);
-				}
-						
-				if (callCure) 
-				{
-					Action.param = battleutils::MagicCalculateCure(m_PChar, PCurrentMob, m_PSpell, 0, m_PZone);
-					Action.messageID = 264;
-				}
-						
-				if (callLUA)
-				{
-					luautils::OnSpellCast(m_PChar,PCurrentMob);
-				}
-				
-				m_PChar->m_ActionList.push_back(Action);	
-				
+				m_PChar->m_ActionList.push_back(Action);					
 			}
 		}
 	}
@@ -1464,22 +1173,23 @@ void CAICharNormal::ActionMagicInterrupt()
 
 void CAICharNormal::ActionJobAbilityStart()
 {
-	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
 
-	for (uint32 i = 0; i < m_PChar->RecastAbilityList.size(); i++)
-	{
-		if (m_PChar->RecastAbilityList.at(i).ID == m_PJobAbility->getID())
-		{
-			m_ActionTargetID = 0;
+    for(RecastList_t::iterator it = m_PChar->RecastList.begin(); it != m_PChar->RecastList.end(); ++it)
+    {
+        if ((*it)->Type == RECAST_ABILITIE && 
+            (*it)->ID == m_PJobAbility->getID())
+        {
+            m_ActionTargetID = 0;
 
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,87));
 
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PSpell = NULL;
+			m_PJobAbility = NULL;
 			m_PBattleSubTarget = NULL;
 			return;
-		}
-	}
+        }
+    }
 
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
@@ -1488,8 +1198,6 @@ void CAICharNormal::ActionJobAbilityStart()
 	
 	if (m_PJobAbility->getValidTarget() == 4)
 	{
-		
-
 		CBattleEntity* PBattleTarget = NULL;
 		if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
 		{
@@ -1528,10 +1236,10 @@ void CAICharNormal::ActionJobAbilityStart()
 	apAction_t Action;
 	m_PChar->m_ActionList.clear();
 
-	RecastAbility_t Recast;
-	Recast.ID = m_PJobAbility->getID();
-	Recast.RecastTime = m_PJobAbility->getRecastTime(); //+ m_Tick;
-	Recast.RecastId = m_PJobAbility->getRecastId(); 
+	Recast_t* Recast = new Recast_t;
+	Recast->ID = m_PJobAbility->getID();
+	Recast->RecastTime = m_PJobAbility->getRecastTime(); //+ m_Tick;
+	Recast->RecastID = m_PJobAbility->getRecastId(); 
 
 	if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
 	{
@@ -1553,9 +1261,9 @@ void CAICharNormal::ActionJobAbilityStart()
 		
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 
-		Recast.TimeStamp = m_Tick;
+		Recast->TimeStamp = m_Tick;
 		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PChar,m_PJobAbility->getID()+16,0,100));
-		m_PChar->RecastAbilityList.push_back(Recast);
+		m_PChar->RecastList.push_back(Recast);
 		m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 		m_PJobAbility = NULL;
 		return;
@@ -1566,9 +1274,9 @@ void CAICharNormal::ActionJobAbilityStart()
 		m_LastActionTime = m_Tick;
 	}
 
-	Recast.TimeStamp = m_Tick;
+	Recast->TimeStamp = m_Tick;
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PChar,m_PJobAbility->getID()+16,0,100));
-	m_PChar->RecastAbilityList.push_back(Recast);
+	m_PChar->RecastList.push_back(Recast);
 	m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 	
 	

@@ -43,4 +43,5 @@ end;
 
 function onEffectLose(target,effect)
 	target:setAnimation(0);
+	target:delStatusEffect(EFFECT_LEAVEGAME);
 end;

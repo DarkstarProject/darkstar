@@ -57,6 +57,7 @@ public:
 	TREASUREPOOLTYPE GetPoolType();
 
 	uint8 AddItem(uint16 ItemID, CMobEntity*);
+
 	void LotItem(uint8 SlotID, uint16 Lot);
 	void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);
 	void AddMember(CCharEntity* PChar);
@@ -75,7 +76,7 @@ private:
 		uint16 ItemID;
 		uint32 timestamp;
 
-		std::vector<int>ItemLotters;
+		std::vector<int32>ItemLotters;
 	};
 
 	uint32 m_Tick;

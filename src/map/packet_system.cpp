@@ -2200,13 +2200,10 @@ int32 SmallPacket0x0DE(map_session_data_t* session, CCharEntity* PChar, int8* da
 	PChar->bazaar.message.clear();
 	PChar->bazaar.message.insert(0,data+4);
 
-	const int8 *fmtQuery = "INSERT INTO char_bazaar_msg SET charid = %u, message = '%s' ON DUPLICATE KEY UPDATE message = '%s';";
-
 	int8 message[256];
 	Sql_EscapeString(SqlHandle,message,data+4);
 
-	Sql_Query(SqlHandle,fmtQuery,PChar->id,message,message);
-
+	Sql_Query(SqlHandle, "UPDATE char_stats SET bazaar_message = '%s' WHERE charid = %u;", message, PChar->id);
 	return 0;
 }
 
@@ -2224,7 +2221,6 @@ int32 SmallPacket0x0E0(map_session_data_t* session, CCharEntity* PChar, int8* da
 	PChar->search.message.insert(0,data+4);
 
 	PChar->search.messagetype = RBUFB(data,(0xA4));
-
 	return 0;
 }
 
@@ -2268,14 +2264,12 @@ int32 SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* da
 		{
 			PChar->status = STATUS_UPDATE;
 			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_LEAVEGAME);
 		} else {
 			uint8 ExitType = (RBUFB(data,(0x06)) == 1 ? 7 : 35);
 
 			PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEAVEGAME,ExitType,5,0));
 		}
 	}
-
 	return 0;
 }
 
@@ -2316,7 +2310,6 @@ int32 SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, int8* da
 		{
 			PChar->status = STATUS_UPDATE;
 			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_LEAVEGAME);
 		}
 		break;
 	}

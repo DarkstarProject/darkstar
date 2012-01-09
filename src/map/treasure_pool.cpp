@@ -98,7 +98,7 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
-	for (int32 i = 0; i < members.size(); ++i) 
+	for (uint32 i = 0; i < members.size(); ++i) 
 	{
 		if (PChar == members.at(i))
 		{
@@ -113,7 +113,7 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 		delete this;
 		return;
 	}
-	ShowDebug(CL_CYAN"TreasurePool::DelMember <%s>\n"CL_RESET, PChar->GetName());
+    ShowDebug(CL_CYAN"TreasurePool::DelMember <%s>\n"CL_RESET, PChar->GetName());
 }
 
 /************************************************************************
@@ -127,6 +127,9 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CMobEntity* PMob)
 	uint8  SlotID;
 	uint8  FreeSlotID;
 	uint32 oldest = -1;
+
+    // нам нужно общее количество хранимых в данный момент предметов
+    // все предметы располагаются последовательно, без пробелов
 
 	for (SlotID = 0; SlotID < 10; ++SlotID) 
 	{	
@@ -151,20 +154,20 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CMobEntity* PMob)
 		CheckItem(FreeSlotID);
 	}
 	
-	for (int i = 0; i < members.size(); i++)
+	for (uint32 i = 0; i < members.size(); ++i)
 	{
-		members[i]->pushPacket( new CTreasureFindItemPacket(ItemID, FreeSlotID, PMob)); // лучше вынести это сообщение за пределы контейнера. возвращать SlotID
+		members[i]->pushPacket(new CTreasureFindItemPacket(ItemID, FreeSlotID, PMob)); // лучше вынести это сообщение за пределы контейнера. возвращать SlotID
 	}
 
     if (members.size() == 1) //Attempt to award for solo play
 	{
-		if (charutils::AddItem(members[0], LOC_INVENTORY, ItemID) != 0xFF)
+		if (charutils::AddItem(members[0], LOC_INVENTORY, ItemID) != ERROR_SLOTID)
 		{
-		members[0]->pushPacket(new CTreasureLotItemPacket(members[0], SlotID, -1, ITEMLOT_WIN));
-		members[0]->pushPacket(new CInventoryFinishPacket());
-		return -1;
+		    members[0]->pushPacket(new CTreasureLotItemPacket(members[0], SlotID, -1, ITEMLOT_WIN));
+		    members[0]->pushPacket(new CInventoryFinishPacket());
+		    return -1;
 		}
-	 }
+    }
 	
 	m_PoolItems[FreeSlotID].ItemID = ItemID;
 	m_PoolItems[FreeSlotID].timestamp = gettick();
@@ -201,25 +204,28 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 
 void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 {
+    DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
+
 	ShowDebug(CL_RED"Loot Item: Lot Pool Members: %u  Members in Party: %u \n"CL_RESET, m_PoolItems[SlotID].ItemLotters.size(), members.size());	
 	
-	if (m_PoolItems[SlotID].ItemLotters.size() == 0)
+    // TODO: а если персонаж из середины списка покинет группу ? ^^
+
+	for (uint32 i = 0; i < members.size(); ++i) 
 	{
-		m_PoolItems[SlotID].ItemLotters.resize(members.size());
-	}
-	for (int i = 0; i < members.size(); i++) 
-	{
-		if(members[i]->id == PChar->id)
+		if (members[i]->id == PChar->id)
 		{
 			ShowDebug(CL_RED"Member: %u \n"CL_RESET, i); 
 			m_PoolItems[SlotID].ItemLotters[i] = Lot;
 		}
 	}
 	
-	for (int i = 0; i < members.size(); i++) 
+	for (uint32 i = 0; i < members.size(); ++i) 
 	{
-		members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,Lot)); 
+		members[i]->pushPacket(new CTreasureLotItemPacket(PChar, SlotID, Lot)); 
 	}
+
+    // TODO: первый проголосовал, а остальных не ждем ? ^^
 
 	if (m_PoolItems[SlotID].ItemLotters.size() >= members.size())
 	{
@@ -236,11 +242,6 @@ void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 
 void CTreasurePool::CheckItems(uint32 tick) 
 {	
-    // TODO: жестокая проверка ^^
-	if (TREASUREPOOL_SIZE != NULL)
-	{
-		return;
-	}
 	if (tick - m_Tick < TREASURE_CHECKTIME)
 		return;
 
@@ -259,22 +260,21 @@ void CTreasurePool::CheckItems(uint32 tick)
 
 void CTreasurePool::CheckItem(uint8 SlotID) 
 {
-	CTreasurePool::TeasurePoolItem poolItem = m_PoolItems[SlotID]; 
+	TeasurePoolItem poolItem = m_PoolItems[SlotID]; 
 		
 	if (poolItem.ItemID == 0)
 	{
 		return;
 	}
 	
-	if (poolItem.timestamp == 0 || (abs((double)(gettick() - poolItem.timestamp)) > TREASURE_LIVETIME)) //Treasure beyond livetime
+	if (poolItem.timestamp == 0 || ((gettick() - poolItem.timestamp) > TREASURE_LIVETIME)) //Treasure beyond livetime
 	{
-		
 		if (m_PoolItems[SlotID].ItemLotters.size() > 0)
 		{
 			int WinningLot = 0; 
 			int WinningLotter = 0; 
 
-			for (int i = 0; i < m_PoolItems[SlotID].ItemLotters.size(); i++)
+			for (uint32 i = 0; i < m_PoolItems[SlotID].ItemLotters.size(); ++i)
 			{
 			    if (poolItem.ItemLotters[i] > WinningLot)
 				{
@@ -284,15 +284,15 @@ void CTreasurePool::CheckItem(uint8 SlotID)
 			}
 			if (WinningLot == 0)
 			{
-				for (int i = 0; i < members.size(); i++)
+				for (uint32 i = 0; i < members.size(); ++i)
 				{
-					members[i]->pushPacket(new CTreasureLotItemPacket(members[i],SlotID, -1, ITEMLOT_LOST)); 
+					members[i]->pushPacket(new CTreasureLotItemPacket(members[i], SlotID, -1, ITEMLOT_LOST)); 
 					members[i]->pushPacket(new CInventoryFinishPacket());
 				}
 			}
-			else if(charutils::AddItem(members[WinningLotter], LOC_INVENTORY, poolItem.ItemID) != 0xFF) 
+			else if(charutils::AddItem(members[WinningLotter], LOC_INVENTORY, poolItem.ItemID) != ERROR_SLOTID) 
 			{
-				for (int i = 0; i < members.size(); i++)
+				for (uint32 i = 0; i < members.size(); ++i)
 				{
 					members[i]->pushPacket(new CTreasureLotItemPacket(members[WinningLotter], SlotID, -1, ITEMLOT_WIN));
 					members[i]->pushPacket(new CInventoryFinishPacket());
@@ -300,7 +300,7 @@ void CTreasurePool::CheckItem(uint8 SlotID)
 			}
 			else
 			{
-				for (int i = 0; i < members.size(); i++)
+				for (uint32 i = 0; i < members.size(); ++i)
 				{
 					members[i]->pushPacket(new CTreasureLotItemPacket(SlotID, ITEMLOT_WINERROR)); 
 					members[i]->pushPacket(new CInventoryFinishPacket());
@@ -309,7 +309,7 @@ void CTreasurePool::CheckItem(uint8 SlotID)
 		}
 		else
 		{
-			TreasureLost(poolItem.ItemID);
+			TreasureLost(SlotID); // TODO: какая-то батва. почему в слот улетает ItemID ? // TreasureLost(poolItem.ItemID);
 		}
 	
 		m_PoolItems[SlotID].timestamp = 0; 
@@ -319,7 +319,10 @@ void CTreasurePool::CheckItem(uint8 SlotID)
 
 void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID) 
 {
-	for (int i = 0; i < members.size(); i++)
+    DSP_DEBUG_BREAK_IF(winner == NULL);
+	DSP_DEBUG_BREAK_IF(winner->PTreasurePool != this);
+
+	for (uint32 i = 0; i < members.size(); ++i)
 	{
 		members[i]->pushPacket(new CTreasureLotItemPacket(winner, SlotID, -1, ITEMLOT_WIN));
 		members[i]->pushPacket(new CInventoryFinishPacket());
@@ -328,9 +331,9 @@ void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
 
 void CTreasurePool::TreasureLost(uint8 SlotID) 
 {
-	for (int i = 0; i < members.size(); i++)
+	for (uint32 i = 0; i < members.size(); ++i)
 	{
-		members[i]->pushPacket(new CTreasureLotItemPacket(members[i],SlotID, -1, ITEMLOT_WINERROR)); 
+		members[i]->pushPacket(new CTreasureLotItemPacket(members[i], SlotID, -1, ITEMLOT_WINERROR)); 
 		members[i]->pushPacket(new CInventoryFinishPacket());
 	}
 }

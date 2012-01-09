@@ -471,6 +471,8 @@ EFFECT_STRIKING_FLOURISH		= 468
 EFFECT_PERPETUANCE				= 469
 EFFECT_IMMANENCE				= 470
 EFFECT_MIGAWARI					= 471
+EFFECT_HEALING					= 700
+EFFECT_LEAVEGAME				= 701
 
 -----------------------------------
 -- These codes are the gateway to directly interacting with the pXI core program with status effects.

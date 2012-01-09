@@ -22,23 +22,25 @@
 */
 
 #include "../../common/socket.h"
+#include "../../common/timer.h"
 #include "../../common/utils.h"
 
-
 #include <string.h>
-#include "char_skills.h"
+
 #include "../charentity.h"
-#include "../battleutils.h"
-#include "../../common/timer.h"
+
+#include "char_skills.h"
 
 
-CCharSkillsPacket::CCharSkillsPacket(CCharEntity * PChar) 
+CCharSkillsPacket::CCharSkillsPacket(CCharEntity* PChar) 
 {
 	this->type = 0x62;
 	this->size = 0x80;
 
-	int realcount = 0; 
-	for(unsigned int i = 0; i < PChar->RecastAbilityList.size(); i++) {
+	/*int realcount = 0; 
+
+	for(unsigned int i = 0; i < PChar->RecastAbilityList.size(); i++) 
+    {
 		int diff = (gettick() - PChar->RecastAbilityList[i].TimeStamp) / 1000;
 		int ttg = PChar->RecastAbilityList[i].RecastTime - diff;
 
@@ -52,6 +54,6 @@ CCharSkillsPacket::CCharSkillsPacket(CCharEntity * PChar)
 		{
 			memcpy(this->data, &ttg, 3);
 		}
-	}
+	}*/
 	memcpy(data+(0x80)-4, &PChar->WorkingSkills, 128);
 }

@@ -459,7 +459,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle,19);
 	}
 
-	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title \
+	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message \
 				FROM char_stats \
 				WHERE charid = %u;";
 
@@ -482,6 +482,8 @@ void LoadChar(CCharEntity* PChar)
 
         PChar->profile.mhflag = (uint8) Sql_GetIntData(SqlHandle,5);
 		PChar->profile.title  = (uint16)Sql_GetIntData(SqlHandle,6);
+
+        PChar->bazaar.message.insert(0,Sql_GetData(SqlHandle,7)); 
 	}
 
 	fmtQuery = "SELECT skillid, value, rank \
@@ -505,17 +507,6 @@ void LoadChar(CCharEntity* PChar)
 				}
 			}
 		}
-	}
-
-	fmtQuery = "SELECT message FROM char_bazaar_msg WHERE charid = %u;";
-
-	ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
-
-	if (ret != SQL_ERROR && 
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		PChar->bazaar.message.insert(0,Sql_GetData(SqlHandle,0)); 
 	}
 
 	BuildingCharSkillsTable(PChar);

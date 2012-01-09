@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Mar 03 Janvier 2012 à 21:12
+-- Généré le : Lun 09 Janvier 2012 à 23:17
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -35,5 +35,6 @@ CREATE TABLE IF NOT EXISTS `char_stats` (
   `mjob` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `sjob` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `title` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `bazaar_message` varchar(120) NOT NULL DEFAULT '\0',
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

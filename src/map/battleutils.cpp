@@ -581,7 +581,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	}
 
 	PDefender->addHP(-damage);
-	PDefender->m_OwnerID = PAttacker->id;
+    PDefender->m_OwnerID = PAttacker->PMaster != NULL ? PAttacker->PMaster->id : PAttacker->id;
 
     uint8 TP = 0;
 
@@ -626,11 +626,13 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 				    PDefender->animation = ANIMATION_NONE;
 
 				    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-				    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_LEAVEGAME);
 			    }
 			    break;
 		    };
-            PZone->PushPacket(PDefender, CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PDefender));
+            if (PDefender->PParty != NULL)
+            {
+                PDefender->PParty->PushPacket(NULL, PDefender->getZone(), new CCharHealthPacket((CCharEntity*)PDefender));
+            }
 	    }
         break;
         case TYPE_MOB:

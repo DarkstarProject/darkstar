@@ -1373,7 +1373,6 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
         m_PBaseEntity->animation = ANIMATION_NONE;
 
         ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-        ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_LEAVEGAME);
     }		
     uint16 EventID = (uint16)lua_tointeger(L,1);
 
