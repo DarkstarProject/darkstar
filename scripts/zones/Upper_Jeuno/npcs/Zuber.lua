@@ -5,11 +5,11 @@
 -- @zone 244
 -- @pos -106 0 90
 -----------------------------------
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -17,7 +17,7 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(trade:hasItemQty(555,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if(trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then 
 		a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
 		if(a == 0 or (a ~= 64 and a ~= 96 and a ~= 192 and a ~= 320 and a ~= 576 and a ~= 224 and a ~= 832 and a ~= 352 and 
 		   a ~= 704 and a ~= 448 and a ~= 608 and a ~= 480 and a ~= 736 and a ~= 864 and a ~= 960 and a ~= 992)) then 

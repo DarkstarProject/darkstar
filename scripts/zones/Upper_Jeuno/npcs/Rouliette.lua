@@ -5,12 +5,14 @@
 -- @zone 244 
 -- @pos -24 -2 11
 -----------------------------------
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -18,7 +20,7 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if (player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_ACCEPTED and trade:hasItemQty(531,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if (player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_ACCEPTED and trade:hasItemQty(531,1) == true and trade:getItemCount() == 1) then 
 		player:startEvent(0x0025);
 	end
 end; 
@@ -57,12 +59,12 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0024 and player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_AVAILABLE) then 
 		player:addQuest(JEUNO,CANDLE_MAKING);
 	elseif(csid == 0x0025) then 
-		player:completeQuest(JEUNO,CANDLE_MAKING);
 		player:setTitle(BELIEVER_OF_ALTANA);
 		player:addKeyItem(HOLY_CANDLE);
 		player:messageSpecial(KEYITEM_OBTAINED,HOLY_CANDLE);
 		player:addFame(JEUNO,30);
 		player:tradeComplete(trade);
+		player:completeQuest(JEUNO,CANDLE_MAKING);
 	end
 end;
 

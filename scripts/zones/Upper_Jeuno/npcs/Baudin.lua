@@ -6,13 +6,15 @@
 -- @zone 244
 -- @pos -75 0 80
 -----------------------------------
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -20,7 +22,7 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(trade:hasItemQty(555,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if(trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then 
 		a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
 		if(a == 0 or (a ~= 32 and a ~= 96 and a ~= 160 and a ~= 288 and a ~= 544 and a ~= 224 and a ~= 800 and a ~= 352 and 
 		   a ~= 672 and a ~= 416 and a ~= 608 and a ~= 480 and a ~= 736 and a ~= 864 and a ~= 928 and a ~= 992)) then 
@@ -81,11 +83,11 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x00AE and option == 1) then 
 		player:addQuest(JEUNO,CREST_OF_DAVOI);
 	elseif(csid == 0x00AB) then 
-		player:completeQuest(JEUNO,CREST_OF_DAVOI);
 		player:setVar("saveMySisterVar",1);
-		player:addKeyItem(21);
-		player:messageSpecial(KEYITEM_OBTAINED,21); -- Crest of Davoi
+		player:addKeyItem(CREST_OF_DAVOI);
+		player:messageSpecial(KEYITEM_OBTAINED,CREST_OF_DAVOI);
 		player:addFame(JEUNO,30);
+		player:completeQuest(JEUNO,CREST_OF_DAVOI);
 		
 	elseif(csid == 0x0069) then 
 		player:setVar("saveMySisterVar",3);
@@ -93,14 +95,14 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17041);
 		else 
-			player:completeQuest(JEUNO,SAVE_MY_SISTER);
 			player:setTitle(EXORCIST_IN_TRAINING);
-			player:addGil(3000);
-			player:messageSpecial(GIL_OBTAINED,3000);
+			player:addGil(GIL_RATE*3000);
+			player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
 			player:addItem(17041);
 			player:messageSpecial(ITEM_OBTAINED,17041);
 			player:addFame(JEUNO,30);
 			player:tradeComplete();
+			player:completeQuest(JEUNO,SAVE_MY_SISTER);
 		end
 	end
 end;

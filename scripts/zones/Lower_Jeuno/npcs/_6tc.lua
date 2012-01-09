@@ -80,13 +80,13 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13186);
 		else
-			player:completeQuest(JEUNO,BEAT_AROUND_THE_BUSHIN);
 			player:setTitle(BLACK_BELT);
 			player:addItem(13186);
 			player:messageSpecial(ITEM_OBTAINED,13186);
 			player:setVar("BeatAroundTheBushin",0);
 			player:addFame(NORG,NORG_FAME*125);
 			player:tradeComplete();
+			player:completeQuest(JEUNO,BEAT_AROUND_THE_BUSHIN);
 		end
 	end
 end;

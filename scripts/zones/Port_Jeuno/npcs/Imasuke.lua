@@ -5,12 +5,14 @@
 -- @zone 246
 -- @pos -165 11 94
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
@@ -18,7 +20,7 @@ require("scripts/zones/Port_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if (player:getQuestStatus(JEUNO,THE_ANTIQUE_COLLECTOR) == QUEST_ACCEPTED and trade:hasItemQty(16631,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if (player:getQuestStatus(JEUNO,THE_ANTIQUE_COLLECTOR) == QUEST_ACCEPTED and trade:hasItemQty(16631,1) == true and trade:getItemCount() == 1) then 
 		player:startEvent(0x000f); -- End quest 
 	end
 end; 
@@ -58,12 +60,12 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x000d and option == 1) then
 		player:addQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
 	elseif(csid == 0x000f) then
-		player:completeQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
 		player:setTitle(TRADER_OF_ANTIQUITIES);
 		player:addKeyItem(MAP_OF_DELKFUTTS_TOWER);
 		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_DELKFUTTS_TOWER);
 		player:addFame(JEUNO,30);
 		player:tradeComplete(trade);
+		player:completeQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
 	end
 end;
 

@@ -57,7 +57,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getContainerSize(0) < 80) then
-        pFame = player:getFameLevel(5);
+        pFame = player:getFameLevel(JEUNO);
         inventorySize = player:getContainerSize(0);
 	    TheGobbieBag = gobQuest(player,inventorySize);
         questStatus = player:getQuestStatus(JEUNO,TheGobbieBag[1]);
@@ -97,22 +97,17 @@ function onEventFinish(player,csid,option)
 			player:addQuest(JEUNO,TheGobbieBag[1]);
 		end
 	elseif (csid == 0x0049) then
-		player:completeQuest(JEUNO,TheGobbieBag[1]);
-		player:addFame(SANDORIA,20*SAN_FAME); --I'm still not sure what the fame scale is here!
-		player:addFame(BASTOK,20*BAS_FAME);
-		player:addFame(WINDURST,20*WIN_FAME);
-		player:increaseContainerSize(0,5);
-		player:increaseContainerSize(5,5);
-		player:tradeComplete();
-
 		if (gobbieBag == 5) then
 			player:setTitle(GREEDALOX);
 		elseif (gobbieBag == 10) then
 			player:setTitle(GRAND_GREEDALOX);
 		end
+		
+		player:increaseContainerSize(0,5);
+		player:increaseContainerSize(5,5);
+		player:addFame(JEUNO,30);
+		player:tradeComplete();
+		player:completeQuest(JEUNO,TheGobbieBag[1]);
+	
 	end
 end;
-
-
-
-

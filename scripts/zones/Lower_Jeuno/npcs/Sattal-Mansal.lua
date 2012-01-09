@@ -58,17 +58,17 @@ function onEventFinish(player,csid,option)
 		player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_I);
 		player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);
 	elseif(csid == 0x005B) then
-		player:completeQuest(JEUNO,MYSTERIES_OF_BEADEAUX_I);
 		player:addKeyItem(CORUSCANT_ROSARY);
 		player:messageSpecial(KEYITEM_OBTAINED,CORUSCANT_ROSARY);
 		player:addFame(JEUNO,30);
 		player:tradeComplete(trade);
+		player:completeQuest(JEUNO,MYSTERIES_OF_BEADEAUX_I);
 	elseif(csid == 0x005C) then
-		player:completeQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);
 		player:addKeyItem(BLACK_MATINEE_NECKLACE);
 		player:messageSpecial(KEYITEM_OBTAINED,BLACK_MATINEE_NECKLACE);
 		player:addFame(JEUNO,30);
 		player:tradeComplete(trade);
+		player:completeQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);
 	end
 end;
 

@@ -3,13 +3,14 @@
 -- NPC: Chocobo
 -- Finishes Quest: Chocobo's Wounds
 -----------------------------------
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -137,17 +138,15 @@ function onEventFinish(player,csid,option)
         player:setVar("ChocobosWounds_Year",VanadielYear());
         player:tradeComplete();
     elseif (csid == 0x0040) then
-        player:completeQuest(JEUNO,CHOCOBO_S_WOUNDS);
         player:addKeyItem(CHOCOBO_LICENSE);
         player:messageSpecial(KEYITEM_OBTAINED, CHOCOBO_LICENSE);
         player:setTitle(CHOCOBO_TRAINER);
-        player:addFame(BASTOK,BAS_FAME*40);
-        player:addFame(SAN_D_ORIA,SAN_FAME*40);
-        player:addFame(WINDURST,WIN_FAME*40);
         player:setVar("ChocobosWounds_Event", 0);
         player:setVar("ChocobosWounds_Day", 0);
         player:setVar("ChocobosWounds_Year",0);
+		player:addFame(JEUNO,30);
         player:tradeComplete();
+		player:completeQuest(JEUNO,CHOCOBO_S_WOUNDS);
     end
 end;
 

@@ -75,11 +75,11 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x0066 and option == 0) then
 		player:setVar("TheOldMonument_Event",1);
 	elseif (csid == 0x0065) then
-		player:tradeComplete();
-		player:completeQuest(JEUNO,A_MINSTREL_IN_DESPAIR);
 		player:addGil(GIL_RATE*2100);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100);
 		player:addFame(JEUNO,30);
+		player:tradeComplete();
+		player:completeQuest(JEUNO,A_MINSTREL_IN_DESPAIR);
 	elseif(csid == 0x008a and option == 1 or csid == 0x0089 and option == 1) then 
 		player:addQuest(JEUNO,PAINFUL_MEMORY);
 		player:setVar("PainfulMemoryCS",0);

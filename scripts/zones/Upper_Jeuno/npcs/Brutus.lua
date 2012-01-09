@@ -3,12 +3,13 @@
 -- NPC: Brutus
 -- Starts Quest: Chocobo's Wounds, Save My Son, Path of the Beastmaster
 -----------------------------------
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -66,13 +67,11 @@ function onEventFinish(player,csid,option)
     	player:setVar("ChocobosWounds_Event",1);
     elseif (csid == 0x0046) then
     	player:addQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
-    	player:completeQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
 		player:setTitle(ANIMAL_TRAINER);
-		player:addFame(BASTOK,BAS_FAME*40);
-        player:addFame(SAN_D_ORIA,SAN_FAME*40);
-        player:addFame(WINDURST,WIN_FAME*40);
 		player:unlockJob(9); --Beastmaster
 		player:messageSpecial(7018); --You can now become a beastmaster
+		player:addFame(JEUNO,30);
+		player:completeQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
     end
 end;
 

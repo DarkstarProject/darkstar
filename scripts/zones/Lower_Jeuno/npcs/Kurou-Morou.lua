@@ -71,10 +71,10 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x00C2 and option == 0) then
 		player:addQuest(JEUNO,YOUR_CRYSTAL_BALL);
 	elseif(csid == 0x00C4) then
-		player:completeQuest(JEUNO,YOUR_CRYSTAL_BALL);
 		player:setTitle(FORTUNETELLER_IN_TRAINING);
 		player:addFame(JEUNO,30);
 		player:tradeComplete(trade);
+		player:completeQuest(JEUNO,YOUR_CRYSTAL_BALL);
 	elseif(csid == 0x00Cc and option == 0) then 
 		player:setVar("QuestNeverToReturn_prog", player:getVar("QuestNeverToReturn_prog") + 1);  -- Keep track of how many times the players fortune has been read
 		player:setVar("QuestNeverToReturn_day", VanadielDayOfTheYear()); -- new vanadiel day
@@ -86,13 +86,13 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13477);
 		else
-			player:completeQuest(JEUNO,NEVER_TO_RETURN);
 			player:addGil(1200);
-			player:messageSpecial(GIL_OBTAINED,1200); 
+			player:messageSpecial(GIL_OBTAINED,GIL_RATE*1200); 
 			player:addItem(13477);
 			player:messageSpecial(ITEM_OBTAINED,13477);
 			player:addFame(JEUNO,30);
 			player:tradeComplete(trade);
+			player:completeQuest(JEUNO,NEVER_TO_RETURN);
 		end
 	end
 end;

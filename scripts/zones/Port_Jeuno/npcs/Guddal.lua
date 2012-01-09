@@ -5,11 +5,12 @@
 -- @zone 246
 -- @pos -14 8 44 
 -----------------------------------
+package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------

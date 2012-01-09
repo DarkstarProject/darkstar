@@ -38,9 +38,7 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x006a,4); -- Menu without quest
 	end
-end; 
-
--- 0x0036  0x0035  0x0033  0x0034  0x00a9  0x006a  0x006c  0x006b  0x273f  0x276e
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -70,7 +68,6 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,548);
 		else 
-			player:completeQuest(JEUNO,TENSHODO_MEMBERSHIP);
 			player:setTitle(TENSHODO_MEMBER);
 			player:delKeyItem(TENSHODO_APPLICATION_FORM);
 			player:addKeyItem(TENSHODO_MEMBERS_CARD);
@@ -78,14 +75,15 @@ function onEventFinish(player,csid,option)
 			player:addItem(548);
 			player:messageSpecial(ITEM_OBTAINED,548);
 			player:addFame(JEUNO,30);
+			player:completeQuest(JEUNO,TENSHODO_MEMBERSHIP);
 		end
 	elseif(csid == 0x006c) then 
-		player:completeQuest(JEUNO,TENSHODO_MEMBERSHIP);
 		player:setTitle(TENSHODO_MEMBER);
 		player:addKeyItem(TENSHODO_MEMBERS_CARD);
 		player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_MEMBERS_CARD);
 		player:messageSpecial(ITEM_OBTAINED,548);
 		player:addFame(JEUNO,30);
+		player:completeQuest(JEUNO,TENSHODO_MEMBERSHIP);
 	end
 end;
 

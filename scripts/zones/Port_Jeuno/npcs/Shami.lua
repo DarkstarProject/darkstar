@@ -5,11 +5,11 @@
 -- @zone 246
 -- @pos -14 8 44 
 -----------------------------------
+package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
@@ -21,11 +21,11 @@ function onTrade(player,npc,trade)
 	BeastmensSeal = player:getVar("ShamiBeastmensSeal");
 	KindredsSeal = player:getVar("ShamiKindredsSeal");
 	
-	if(trade:hasItemQty(1126,NumberItem) == true and trade:getGil() == 0 and trade:getItemCount() == NumberItem) then 
+	if(trade:hasItemQty(1126,NumberItem) == true and trade:getItemCount() == NumberItem) then 
 		player:startEvent(0x0141,0,BeastmensSeal + NumberItem); -- Beastmen's Seal
 		player:setVar("ShamiBeastmensSeal",BeastmensSeal + NumberItem);
 		player:tradeComplete(trade);
-	elseif(trade:hasItemQty(1127,NumberItem) == true and trade:getGil() == 0 and trade:getItemCount() == NumberItem) then 
+	elseif(trade:hasItemQty(1127,NumberItem) == true and trade:getItemCount() == NumberItem) then 
 		player:startEvent(0x0141,1,KindredsSeal + NumberItem); -- Kindred's Seal
 		player:setVar("ShamiKindredsSeal",KindredsSeal + NumberItem);
 		player:tradeComplete(trade);

@@ -5,12 +5,13 @@
 -- @zone 244
 -- @pos -80 0 104
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -74,8 +75,6 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12727);
 		else 
-			player:completeQuest(JEUNO,A_CLOCK_MOST_DELICATE);
-			player:addQuest(JEUNO,SAVE_THE_CLOCK_TOWER); -- Start next quest "Save the Clock Tower"
 			player:setTitle(PROFESSIONAL_LOAFER);
 			player:delKeyItem(CLOCK_TOWER_OIL);
 			player:addGil(1200);
@@ -83,19 +82,21 @@ function onEventFinish(player,csid,option)
 			player:addItem(12727);
 			player:messageSpecial(ITEM_OBTAINED,12727);
 			player:addFame(JEUNO,30);
+			player:completeQuest(JEUNO,A_CLOCK_MOST_DELICATE);
+			player:addQuest(JEUNO,SAVE_THE_CLOCK_TOWER); -- Start next quest "Save the Clock Tower"
 		end
 	elseif(csid == 0x0098) then 
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17083);
 		else 
 			player:addQuest(JEUNO,THE_CLOCKMASTER);
-			player:completeQuest(JEUNO,THE_CLOCKMASTER);
 			player:setTitle(TIMEKEEPER);
 			player:addGil(1200);
 			player:messageSpecial(GIL_OBTAINED,1200);
 			player:addItem(17083);
 			player:messageSpecial(ITEM_OBTAINED,17083);
 			player:addFame(JEUNO,30);
+			player:completeQuest(JEUNO,THE_CLOCKMASTER);
 		end
 	end
 end;

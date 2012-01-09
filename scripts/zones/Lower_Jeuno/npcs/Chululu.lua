@@ -96,10 +96,10 @@ function onEventFinish(player,csid,option)
 			end
 		end
 	elseif(csid == 0x00c8) then
-		player:completeQuest(JEUNO,COLLECT_TARUT_CARDS);
 		player:setTitle(CARD_COLLECTOR);
 		player:addFame(JEUNO,30);
 		player:tradeComplete();
+		player:completeQuest(JEUNO,COLLECT_TARUT_CARDS);
 	elseif(csid == 0x00c7 and option == 0) then
 		player:setVar("RubbishDay_prog", player:getVar("RubbishDay_prog") + 1);
 		player:setVar("RubbishDay_day", VanadielDayOfTheYear()); -- new vanadiel day
@@ -113,13 +113,13 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13083);
 		else 
-			player:completeQuest(JEUNO,RUBBISH_DAY);
 			player:addGil(GIL_RATE*6000);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*6000);
 			player:addItem(13083);
 			player:messageSpecial(ITEM_OBTAINED,13083);
 			player:setVar("RubbishDayVar",0);
 			player:addFame(JEUNO,30);
+			player:completeQuest(JEUNO,RUBBISH_DAY);
 		end
 	end
 end;

@@ -94,10 +94,10 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14098);
 		else 
-			player:completeQuest(JEUNO,THE_REQUIEM);
 			player:addItem(14098);
 			player:messageSpecial(ITEM_OBTAINED,14098); -- Choral Slippers
 			player:addFame(JEUNO,30);
+			player:completeQuest(JEUNO,THE_REQUIEM);
 		end		
 	end
 end;

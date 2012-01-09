@@ -5,12 +5,14 @@
 -- @zone : 244
 -- @pos : -75 -1 58
 -----------------------------------
+package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
@@ -61,16 +63,13 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13094);
 		else
-			player:completeQuest(JEUNO,A_CANDLELIGHT_VIGIL);
 			player:setTitle(ACTIVIST_FOR_KINDNESS);
+			player:delKeyItem(HOLY_CANDLE);
 			player:addItem(13094);
 			player:messageSpecial(ITEM_OBTAINED,13094);
 			player:needToZone(true);
 			player:addFame(JEUNO,30);
-			player:delKeyItem(HOLY_CANDLE);
+			player:completeQuest(JEUNO,A_CANDLELIGHT_VIGIL);
 		end
 	end
 end;
-
-
-

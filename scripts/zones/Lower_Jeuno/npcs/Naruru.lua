@@ -78,7 +78,6 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13446);
 		else
-			player:completeQuest(JEUNO,COOK_S_PRIDE);
 			player:setTitle(MERCY_ERRAND_RUNNER);
 			player:delKeyItem(SUPER_SOUP_POT);
 			player:setVar("CooksPrideVar",0);
@@ -87,6 +86,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(13446);
 			player:messageSpecial(ITEM_OBTAINED,13446); -- Mythril Ring
 			player:addFame(JEUNO,30);
+			player:completeQuest(JEUNO,COOK_S_PRIDE);
 		end
 	end
 end;

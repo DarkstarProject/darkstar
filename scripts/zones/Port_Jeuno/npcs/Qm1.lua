@@ -5,11 +5,13 @@
 -- @zone 246
 -- @pos -51 8 -4
 -----------------------------------
+package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
@@ -61,13 +63,14 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,NumHands);
 		else 
-			player:completeQuest(JEUNO,NumQuest);
 			player:addItem(NumHands);
 			player:messageSpecial(ITEM_OBTAINED,NumHands);
 			player:delKeyItem(OLD_GAUNTLETS);
 			player:delKeyItem(SHADOW_FLAMES);
 			player:setVar("BorghertzCS",0);
 			player:setVar("BorghertzAlreadyActiveWithJob",0);
+			player:addFame(JEUNO,30);
+			player:completeQuest(JEUNO,NumQuest);
 		end
 	end
 end;
