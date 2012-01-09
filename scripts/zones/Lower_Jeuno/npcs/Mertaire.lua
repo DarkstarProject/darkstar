@@ -21,10 +21,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 function onTrade(player,npc,trade)
 
 	if (player:getQuestStatus(JEUNO, THE_OLD_MONUMENT) == QUEST_COMPLETED) then
-		count = trade:getItemCount();
-		gil = trade:getGil();
-		
-		if (trade:hasItemQty(POETIC_PARCHMENT,1) == true and count == 1 and gil == 0) then
+		if (trade:hasItemQty(POETIC_PARCHMENT,1) == true and trade:getItemCount() == 1) then
 			player:startEvent(0x0065);
 		end
 	end
@@ -51,9 +48,7 @@ function onTrigger(player,npc)
 	elseif(player:getQuestStatus(JEUNO,PAINFUL_MEMORY) == QUEST_COMPLETED) then 
 		player:startEvent(0x0087); -- Standard dialog after completed "Painful Memory"
 	end
-end; 
-
--- 0x0066  0x0065  0x0067  0x008a  0x0089  0x0088  0x0087  0x008b  0x276e
+end;
 
 -----------------------------------
 -- onEventUpdate

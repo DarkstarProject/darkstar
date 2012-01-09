@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13477);
 		else
-			player:addGil(1200);
+			player:addGil(GIL_RATE*1200);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*1200); 
 			player:addItem(13477);
 			player:messageSpecial(ITEM_OBTAINED,13477);
