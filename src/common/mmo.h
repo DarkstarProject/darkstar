@@ -164,20 +164,6 @@ struct profile_t
 	location_t home_point;		// точка возрождения персонажа
 };
 
-struct event_t
-{
-	int32 EventID;
-
-	string_t Script;
-	string_t Function;
-
-	void reset() {
-		EventID = -1;
-		Script.clear();
-		Function.clear();
-	}
-};
-
 struct nameflags_t 
 {
 	union {

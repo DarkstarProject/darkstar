@@ -129,6 +129,7 @@ public:
 	int32 release(lua_State*);				// Stops event
 	int32 startEvent(lua_State*);			// Begins Event
 	int32 updateEvent(lua_State*);			// Updates event 
+    int32 getEventTarget(lua_State*);       //
 
 	int32 sendMenu(lua_State*);				// Displays a menu (AH,Raise,Tractor,MH etc)
 	int32 sendGuild(lua_State*);			// Sends guild shop menu

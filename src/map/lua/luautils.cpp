@@ -583,6 +583,7 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 	snprintf(File,sizeof(File),"%s/zones/%s/npcs/%s.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName(),PNpc->GetName());
 	
 	PChar->m_event.reset();
+    PChar->m_event.Target = PNpc;
 	PChar->m_event.Script.insert(0,File);
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
@@ -699,6 +700,7 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 	snprintf(File,sizeof(File),"%s/zones/%s/npcs/%s.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName(),PNpc->GetName());
 
 	PChar->m_event.reset();
+    PChar->m_event.Target = PNpc;
 	PChar->m_event.Script.insert(0,File);
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )

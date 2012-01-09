@@ -85,13 +85,29 @@ struct jobs_t
 	uint8  genkai;					// максимальный уровень профессий персонажа
 };
 
+struct event_t
+{
+	int32 EventID;
+    CBaseEntity* Target;
+
+	string_t Script;
+	string_t Function;
+
+	void reset() 
+    {
+		EventID = -1;
+        Target  =  0;
+		Script.clear();
+		Function.clear();
+	}
+};
+
 struct Recast_t 
 {
 	uint16 ID;
 	uint32 TimeStamp;
 	uint16 RecastTime;
 };
-
 
 struct RecastAbility_t 
 {

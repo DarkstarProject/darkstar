@@ -1483,6 +1483,31 @@ inline int32 CLuaBaseEntity::updateEvent(lua_State *L)
 
 /************************************************************************
 *																		*
+*  Получаем указатель на персонажа, начавшего событие   				*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getEventTarget(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if (((CCharEntity*)m_PBaseEntity)->m_event.Target == NULL)
+    {
+        ShowWarning(CL_YELLOW"EventTarget is empty: %s\n"CL_RESET, m_PBaseEntity->GetName());
+    }
+    lua_pushstring(L,CLuaBaseEntity::className);
+    lua_gettable(L,LUA_GLOBALSINDEX);
+    lua_pushstring(L,"new");
+    lua_gettable(L,-2);
+    lua_insert(L,-2);
+    lua_pushlightuserdata(L,(void*)((CCharEntity*)m_PBaseEntity)->m_event.Target);
+    lua_pcall(L,2,1,0);
+    return 1;
+}
+
+/************************************************************************
+*																		*
 *  Отображаем статичный текст от лица NPC								*
 *																		*
 ************************************************************************/
@@ -2016,87 +2041,80 @@ inline int32 CLuaBaseEntity::addShopItem(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Узнаем текущее значение известности персонажа                        *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::getFame(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
-			{
-				uint8  fameArea = (uint8)lua_tointeger(L, -1); 
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-				CCharEntity * PChar = (CCharEntity*)m_PBaseEntity;
-				uint16 fame = 0;
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	
+    uint8  fameArea = (uint8)lua_tointeger(L, -1); 
+    uint16 fame     = 0;
 
-				switch (fameArea) 
-				{
-					case 0: // San d'Oria
-					case 1: // Bastock
-					case 2: // Windurst
-						fame = PChar->profile.fame[fameArea];
-                    break;
-                    case 3: // Jeuno
-						fame = (PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) / 3;
-                    break;
-					case 4: // Selbina / Rabao
-						fame = (PChar->profile.fame[0] + PChar->profile.fame[1]) / 2;
-                    break;
-                    case 5: // Norg
-						fame = PChar->profile.fame[3];
-                    break;
-				}
-				lua_pushinteger( L, fame);
-				return 1;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    switch (fameArea) 
+    {
+        case 0: // San d'Oria
+        case 1: // Bastock
+        case 2: // Windurst
+            fame = PChar->profile.fame[fameArea];
+        break;
+        case 3: // Jeuno
+            fame = (PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) / 3;
+        break;
+        case 4: // Selbina / Rabao
+            fame = (PChar->profile.fame[0] + PChar->profile.fame[1]) / 2;
+        break;
+        case 5: // Norg
+            fame = PChar->profile.fame[3];
+        break;
+    }
+    lua_pushinteger( L, fame);
+    return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Узнаем текущий уровень известности персонажа                         *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::getFameLevel(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			this->getFame(L);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
-			{
-				uint16 fame = (uint16)lua_tointeger(L, -1); 
-				
-				uint8 fameLevel = 1;
+    this->getFame(L);
 
-				if (fame >= 2450)
-					fameLevel = 9;
-				else if (fame >= 2200)
-					fameLevel = 8;
-				else if (fame >= 1950)
-					fameLevel = 7;
-				else if (fame >= 1700)
-					fameLevel = 6;
-				else if (fame >= 1300)
-					fameLevel = 5;
-				else if (fame >= 900)
-					fameLevel = 4;
-				else if (fame >= 500)
-					fameLevel = 3;
-				else if (fame >= 200)
-					fameLevel = 2;
+    uint16 fame = (uint16)lua_tointeger(L, -1); 			
+    uint8  fameLevel = 1;
 
-				lua_pushinteger(L, fameLevel);
-				return 1;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    if (fame >= 2450)
+        fameLevel = 9;
+    else if (fame >= 2200)
+        fameLevel = 8;
+    else if (fame >= 1950)
+        fameLevel = 7;
+    else if (fame >= 1700)
+        fameLevel = 6;
+    else if (fame >= 1300)
+        fameLevel = 5;
+    else if (fame >= 900)
+        fameLevel = 4;
+    else if (fame >= 500)
+        fameLevel = 3;
+    else if (fame >= 200)
+        fameLevel = 2;
+
+    lua_pushinteger(L, fameLevel);
+    return 1;
 }
 
 /************************************************************************
@@ -3060,6 +3078,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,release),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEvent),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEvent),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEventTarget),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showText),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSpecial),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
