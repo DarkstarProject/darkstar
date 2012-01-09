@@ -2099,69 +2099,84 @@ inline int32 CLuaBaseEntity::getFameLevel(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Устанавливаем известность персонажу                                  *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::setFame(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) &&
-				!lua_isnil(L,-2) && lua_isnumber(L,-2) )
-			{
-				uint8  fameArea = (uint8)lua_tointeger(L, -2); 
-				uint16 fame     = (uint16)lua_tointeger(L, -1);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+
+    uint8  fameArea = (uint8) lua_tointeger(L,-2); 
+    uint16 fame     = (uint16)lua_tointeger(L,-1);
 				
-				switch(fameArea) 
-				{
-					case 0: // San d'Oria
-					case 1: // Bastock
-					case 2: // Windurst
-						((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] = fame;
-                    break;
-                    case 5: // Norg
-                        ((CCharEntity*)m_PBaseEntity)->profile.fame[3] = fame;
-					break;
-				}
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    switch(fameArea) 
+    {
+        case 0: // San d'Oria
+        case 1: // Bastock
+        case 2: // Windurst
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] = fame;
+        break;
+        case 3: // Jeuno
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] = fame;
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] = fame;
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[2] = fame;
+        break;
+        case 4: // Selbina / Rabao
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] = fame;
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] = fame;
+        break;
+        case 5: // Norg
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[3] = fame;
+        break;
+    }
+    return 0;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Добавляем известность персонажу                                      *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::addFame(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) &&
-				!lua_isnil(L,-2) && lua_isnumber(L,-2) )
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-			{
-				uint8  fameArea = (uint8)lua_tointeger(L, -2); 
-				uint16 fame     = (uint16)lua_tointeger(L, -1);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+
+    uint8  fameArea = (uint8) lua_tointeger(L,-2); 
+    uint16 fame     = (uint16)lua_tointeger(L,-1);
 				
-				switch(fameArea) 
-				{
-					case 0: 
-					case 1: 
-					case 2: 
-					case 3: 
-						((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] += fame;
-					break;
-				}
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    switch(fameArea) 
+    {
+        case 0: // San d'Oria
+        case 1: // Bastock
+        case 2: // Windurst
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] += fame;
+        break;
+        case 3: // Jeuno
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] += fame;
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] += fame;
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[2] += fame;
+        break;
+        case 4: // Selbina / Rabao
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] += fame;
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] += fame;
+        break;
+        case 5: // Norg
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[3] += fame;
+        break;
+    }
+    return 0;
 }	
 
 //==========================================================//
