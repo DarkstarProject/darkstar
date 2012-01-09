@@ -186,9 +186,9 @@ function SetExplorerMoogles()
 
 	Moogles  = 
 	{
-		17723627,	-- Northern_San_d'Oria
+		17723638,	-- Northern_San_d'Oria
 		17735847,	-- Bastok_Mines
-		17760439,	-- Port_Windurst
+		17760441,	-- Port_Windurst
 		17793123,	-- Selbina
 		17797245,	-- Mhaura
 	}
