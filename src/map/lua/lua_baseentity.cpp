@@ -1347,73 +1347,77 @@ inline int32 CLuaBaseEntity::release(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::startEvent(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			int32 n = lua_gettop(L);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-			if ( n > 9 ) 
-			{
-				ShowError("CLuaBaseEntity::startEvent: Could not start event, Lack of arguments.\n");
-				lua_settop(L,-n);
-				return 0;
-			}
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	
+    int32 n = lua_gettop(L);
 
-			if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-			{
-				uint16 EventID = (uint16)lua_tointeger(L,1);
+    if (n > 9) 
+    {
+        ShowError("CLuaBaseEntity::startEvent: Could not start event, Lack of arguments.\n");
+        lua_settop(L,-n);
+        return 0;
+    }
+    if (m_PBaseEntity->animation = ANIMATION_HEALING)
+    {
+        m_PBaseEntity->animation = ANIMATION_NONE;
 
-				uint32 param0 = 0;
-				uint32 param1 = 0;
-				uint32 param2 = 0;
-				uint32 param3 = 0;
-				uint32 param4 = 0;
-				uint32 param5 = 0;
-				uint32 param6 = 0;
-				uint32 param7 = 0;
+        ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+        ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_LEAVEGAME);
+    }		
+    uint16 EventID = (uint16)lua_tointeger(L,1);
 
-				if( !lua_isnil(L,2) && lua_isnumber(L,2) )
-					param0 = (uint32)lua_tointeger(L,2);
-				if( !lua_isnil(L,3) && lua_isnumber(L,3) )
-					param1 = (uint32)lua_tointeger(L,3);
-				if( !lua_isnil(L,4) && lua_isnumber(L,4) )
-					param2 = (uint32)lua_tointeger(L,4);
-				if( !lua_isnil(L,5) && lua_isnumber(L,5) )
-					param3 = (uint32)lua_tointeger(L,5);
-				if( !lua_isnil(L,6) && lua_isnumber(L,6) )
-					param4 = (uint32)lua_tointeger(L,6);
-				if( !lua_isnil(L,7) && lua_isnumber(L,7) )
-					param5 = (uint32)lua_tointeger(L,7);
-				if( !lua_isnil(L,8) && lua_isnumber(L,8) )
-					param6 = (uint32)lua_tointeger(L,8);
-				if( !lua_isnil(L,9) && lua_isnumber(L,9) )
-					param7 = (uint32)lua_tointeger(L,9);
+    uint32 param0 = 0;
+    uint32 param1 = 0;
+    uint32 param2 = 0;
+    uint32 param3 = 0;
+    uint32 param4 = 0;
+    uint32 param5 = 0;
+    uint32 param6 = 0;
+    uint32 param7 = 0;
+
+    if( !lua_isnil(L,2) && lua_isnumber(L,2) )
+        param0 = (uint32)lua_tointeger(L,2);
+    if( !lua_isnil(L,3) && lua_isnumber(L,3) )
+        param1 = (uint32)lua_tointeger(L,3);
+    if( !lua_isnil(L,4) && lua_isnumber(L,4) )
+        param2 = (uint32)lua_tointeger(L,4);
+    if( !lua_isnil(L,5) && lua_isnumber(L,5) )
+        param3 = (uint32)lua_tointeger(L,5);
+    if( !lua_isnil(L,6) && lua_isnumber(L,6) )
+        param4 = (uint32)lua_tointeger(L,6);
+    if( !lua_isnil(L,7) && lua_isnumber(L,7) )
+        param5 = (uint32)lua_tointeger(L,7);
+    if( !lua_isnil(L,8) && lua_isnumber(L,8) )
+        param6 = (uint32)lua_tointeger(L,8);
+    if( !lua_isnil(L,9) && lua_isnumber(L,9) )
+        param7 = (uint32)lua_tointeger(L,9);
 		
-				((CCharEntity*)m_PBaseEntity)->pushPacket(
-					new CEventPacket(
-						(CCharEntity*)m_PBaseEntity,
-						EventID,
-						n-1,
-						param0,
-						param1,
-						param2,
-						param3,
-						param4,
-						param5,
-						param6,
-						param7)); 
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(
+        new CEventPacket(
+            (CCharEntity*)m_PBaseEntity,
+            EventID,
+            n-1,
+            param0,
+            param1,
+            param2,
+            param3,
+            param4,
+            param5,
+            param6,
+            param7)); 
 
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    return 0;
 }
 
 //==========================================================//

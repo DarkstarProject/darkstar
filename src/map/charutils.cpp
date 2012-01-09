@@ -362,10 +362,10 @@ void LoadChar(CCharEntity* PChar)
 		
 		PChar->profile.rankpoints = Sql_GetUIntData(SqlHandle,28);
 
-		PChar->profile.fame[0] =  (uint16)Sql_GetIntData(SqlHandle,28);  //Sandoria
-		PChar->profile.fame[1] =  (uint16)Sql_GetIntData(SqlHandle,29);  //Bastok
-		PChar->profile.fame[2] =  (uint16)Sql_GetIntData(SqlHandle,30);  //Windurst
-		PChar->profile.fame[3] =  (uint16)Sql_GetIntData(SqlHandle,31);  //Norg
+		PChar->profile.fame[0] =  (uint16)Sql_GetIntData(SqlHandle,29);  //Sandoria
+		PChar->profile.fame[1] =  (uint16)Sql_GetIntData(SqlHandle,30);  //Bastok
+		PChar->profile.fame[2] =  (uint16)Sql_GetIntData(SqlHandle,31);  //Windurst
+		PChar->profile.fame[3] =  (uint16)Sql_GetIntData(SqlHandle,32);  //Norg
 	}
 
 	fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged \
