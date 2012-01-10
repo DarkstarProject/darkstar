@@ -60,5 +60,5 @@ ORIGINAL_MISSION_OFFSET = 6439; -- You can consult the “Mission” section of 
 -- Standard NPC Dialogs
 		 HILDITH_DIALOG = 6495; -- The residential area is up ahead. You will find your Mog House there.
         GULLDAGO_DIALOG = 12109; -- Go talk to the guard Rabid Wolf over yonder and have him cast “Signet” on you. Then come back and see me.
-   ITEM_DELIVERY_DIALOG = 7386; -- Need something sent to a friend's house? Sending items to your own room? You've come to the right place!
+   ITEM_DELIVERY_DIALOG = 7388; -- Need something sent to a friend's house? Sending items to your own room? You've come to the right place!
 		  ELLARD_DIALOG = 6901; -- Ah, welcome, young ≺Multiple Choice (Player Gender)≻[man/lady], to the Goldsmiths' Guild. This is a special association for those who work with silver, gold, gems, and all precious materials.
