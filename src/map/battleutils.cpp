@@ -601,6 +601,15 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
         PDefender->addTP(3);
         PAttacker->addTP(TP);
+
+        if (PAttacker->objtype == TYPE_PC)
+        {
+            if (PAttacker->PParty != NULL)
+            {
+                PAttacker->PParty->PushPacket((CCharEntity*)PAttacker, PAttacker->getZone(), new CCharHealthPacket((CCharEntity*)PAttacker));
+            }
+            ((CCharEntity*)PAttacker)->pushPacket(new CCharHealthPacket((CCharEntity*)PAttacker));
+        }
     }
 
     switch (PDefender->objtype)
