@@ -951,7 +951,7 @@ int32 SmallPacket0x042(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	PChar->pushPacket(new CServerMessagePacket());
+    PChar->pushPacket(new CServerMessagePacket(map_config.server_message));
 	return 0;
 }
 

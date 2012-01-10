@@ -59,6 +59,8 @@ struct map_config_t
 	const int8 *mysql_password;		// mysql pass  -> default NULL
 	const int8 *mysql_database;		// mysql database -> default dspdb
 
+    const int8 *server_message;     // сообщение сервера
+
 	uint32 max_time_lastupdate;		// max interval wait of last update player char
     int32  vanadiel_time_offset;    // смещение игрового времени относительно реального времени
 };

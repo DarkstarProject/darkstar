@@ -735,6 +735,7 @@ int32 map_config_default()
 	map_config.mysql_password = "root";
 	map_config.mysql_database = "dspdb";
 	map_config.mysql_port     = 3306;
+    map_config.server_message = "";
 	map_config.uiBuffMaxSize  = 1874;
     map_config.vanadiel_time_offset = 0;
 	map_config.max_time_lastupdate  = 60000;
@@ -823,6 +824,20 @@ int32 map_config_read(const int8* cfgName)
 		{
 			map_config.mysql_database = aStrdup(w2);
 		}
+        else if (strcmpi(w1,"server_message") == 0)
+        {
+            map_config.server_message = aStrdup(w2);
+
+            uint32 length = (uint32)strlen(map_config.server_message);
+
+            for(uint32 count = 0; count < length; ++count) 
+            {
+                if (RBUFW(map_config.server_message, count) == 0x6E5C) //  \n = 0x6E5C in hex
+                {
+                    WBUFW(map_config.server_message, count) =  0x0A0D;
+                }
+	        }
+        }
 		else if (strcmpi(w1,"import") == 0)
 		{
 			map_config_read(w2);
