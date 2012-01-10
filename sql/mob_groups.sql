@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2012-01-09 00:08:38
+Date: 2012-01-09 19:19:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -10690,3 +10690,6 @@ INSERT INTO `mob_groups` VALUES ('10835', '323', '178', '300', '0', '0', '81', '
 INSERT INTO `mob_groups` VALUES ('10836', '593', '178', '300', '0', '0', '81', '84');
 INSERT INTO `mob_groups` VALUES ('10837', '1487', '178', '300', '0', '0', '81', '84');
 INSERT INTO `mob_groups` VALUES ('10838', '4099', '178', '300', '0', '0', '81', '84');
+INSERT INTO `mob_groups` VALUES ('10839', '4040', '4', '300', '0', '1352', '81', '84');
+INSERT INTO `mob_groups` VALUES ('10840', '660', '4', '300', '0', '1128', '81', '84');
+INSERT INTO `mob_groups` VALUES ('10841', '3848', '4', '300', '0', '375', '81', '84');
