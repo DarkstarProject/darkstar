@@ -631,8 +631,9 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		    };
             if (PDefender->PParty != NULL)
             {
-                PDefender->PParty->PushPacket(NULL, PDefender->getZone(), new CCharHealthPacket((CCharEntity*)PDefender));
+                PDefender->PParty->PushPacket((CCharEntity*)PDefender, PDefender->getZone(), new CCharHealthPacket((CCharEntity*)PDefender));
             }
+            ((CCharEntity*)PDefender)->pushPacket(new CCharHealthPacket((CCharEntity*)PDefender));
 	    }
         break;
         case TYPE_MOB:
