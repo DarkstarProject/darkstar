@@ -25,35 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
-TalkedToCarmelo = player:getVar("SirensTear");
-
-	if (SirensTear == QUEST_ACCEPTED or (SirensTear == QUEST_COMPLETED and TalkedToCarmelo == 2)) then
-
-		mainweapon = player:getEquipID(0x00);
-		subweapon = player:getEquipID(0x01);
-		currentJob = player:getMainJob();
-
-		if (mainweapon == 0 and subweapon == 0 and currentJob ~= 3) then
-
-			freeslots = player:getFreeSlotsCount();
-			alreadyHasItem = player:hasItem(576);
-		
-			if (freeslots == 0) then
-				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,576);
-			elseif (alreadyHasItem) then
-				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_TWICE,576);
-				player:addItem(576);
-			else
-				player:addItem(576);
-				player:messageSpecial(ITEM_OBTAINED,576);
-			end
-		else
-			player:messageSpecial(SHINING_OBJECT_SLIPS_AWAY);
-			moveSirenTear(npc);
-		end
-	end
+	player:startEvent(0x000a);
 end;
 
 
@@ -74,6 +46,35 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+
+npc = player:getEventTarget();
+
+	if (csid == 0x000a and option == 0) then
+
+		mainweapon = player:getEquipID(0x00);
+		subweapon = player:getEquipID(0x01);
+		currentJob = player:getMainJob();
+
+		if (mainweapon == 0 and subweapon == 0 and currentJob ~= 3) then
+
+			freeslots = player:getFreeSlotsCount();
+			alreadyHasItem = player:hasItem(576);
+		
+			if (freeslots == 0) then
+				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,576);
+			elseif (alreadyHasItem) then
+				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_TWICE,576);
+				player:addItem(576);
+			else
+				player:addItem(576);
+				player:messageSpecial(ITEM_OBTAINED,576);
+				resetSirenTear(npc);
+			end
+		else
+			player:messageSpecial(SHINING_OBJECT_SLIPS_AWAY);
+			moveSirenTear(npc);
+		end
+	end 
 end;
 
 
@@ -94,4 +95,16 @@ function moveSirenTear(npc)
 		[332006150] = function (x) if (disp == 0) then npc:setPos(290,0.601,332.1); else npc:setPos(309.6,2.6,324); end end,
 		[290000332] = function (x) npc:setPos(296,3+dispf,220,0); end,
 	default = function (x) end }
+end;
+
+
+function resetSirenTear(npc)
+	npcPos = math.floor(math.floor(npc:getXPos())*1000000 + math.floor(npc:getYPos())*1000 + npc:getZPos());
+	disp = (npc:getYPos()*100 - math.floor(npc:getYPos()*100+0.5))*10;
+	
+	if (npcPos == 290000332 or disp == 1) then
+		npc:setPos(309.6,2.6,324);
+	else
+		npc:setPos(290,0.601,332.1);
+	end
 end;

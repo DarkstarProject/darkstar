@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
 
 SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
 
-	if (SirensTear == QUEST_ACCEPTED) then
+	if (SirensTear ~= QUEST_AVAILABLE) then
 		if (trade:hasItemQty(576,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0052);
 		end
@@ -41,7 +41,6 @@ SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
 	else 
 		player:startEvent(0x001c);
 	end
-
 end;
 
 -----------------------------------
@@ -72,5 +71,4 @@ function onEventFinish(player,csid,option)
 		player:setTitle(TEARJERKER);
 		player:setVar("SirensTear",0);
 	end
-		
 end;
