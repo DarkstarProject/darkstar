@@ -107,7 +107,7 @@ enum RECASTTYPE
 {
     RECAST_ITEM,
     RECAST_MAGIC,
-    RECAST_ABILITIE,
+    RECAST_ABILITY,
 };
 
 struct Recast_t 
@@ -115,8 +115,8 @@ struct Recast_t
     uint16     ID;
     RECASTTYPE Type;
     uint32     TimeStamp;
-    uint16     RecastTime;
-    uint32     RecastID;
+    uint32     RecastTime;
+    uint8      RecastID;
 };
 
 class CBasicPacket;

@@ -37,23 +37,26 @@ CCharSkillsPacket::CCharSkillsPacket(CCharEntity* PChar)
 	this->type = 0x62;
 	this->size = 0x80;
 
-	/*int realcount = 0; 
+	uint8 count = 0; 
 
-	for(unsigned int i = 0; i < PChar->RecastAbilityList.size(); i++) 
+    for (RecastList_t::iterator it = PChar->RecastList.begin(); it != PChar->RecastList.end(); ++it)
     {
-		int diff = (gettick() - PChar->RecastAbilityList[i].TimeStamp) / 1000;
-		int ttg = PChar->RecastAbilityList[i].RecastTime - diff;
+        Recast_t* recast = *it;
+        if (recast->Type == RECAST_ABILITY)
+        {
+		    uint32 time = (recast->RecastTime - (gettick() - recast->TimeStamp)) / 1000;
 
-		if(PChar->RecastAbilityList[i].RecastId != 0) 
-		{
-			memcpy(data+(0x08)-4 +((realcount)*4), &ttg,4);
-			memcpy(data+(0x0B)-4 +((realcount)*4), &PChar->RecastAbilityList[i].RecastId,1);
-			realcount++;
-		} 
-		else
-		{
-			memcpy(this->data, &ttg, 3);
-		}
-	}*/
+		    if(recast->RecastID != 0) 
+		    {
+                WBUFL(data,(0x08 + count*4)-4) = time;
+                WBUFB(data,(0x0B + count*4)-4) = recast->RecastID;
+			    count++;
+		    } 
+		    else
+		    {
+                WBUFL(data,(0x04)-4) = time;  // 2h ability (recast id is 0)
+		    }
+        }
+    }
 	memcpy(data+(0x80)-4, &PChar->WorkingSkills, 128);
 }

@@ -1160,12 +1160,13 @@ void CAICharNormal::ActionJobAbilityStart()
 
     for(RecastList_t::iterator it = m_PChar->RecastList.begin(); it != m_PChar->RecastList.end(); ++it)
     {
-        if ((*it)->Type == RECAST_ABILITIE && 
+        if ((*it)->Type == RECAST_ABILITY && 
             (*it)->ID == m_PJobAbility->getID())
         {
             m_ActionTargetID = 0;
 
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 87));
+            ShowWarning(CL_YELLOW"%s want to use <%s> but recast is %u\n"CL_RESET, m_PChar->GetName(), m_PJobAbility->getName(), (*it)->TimeStamp + (*it)->RecastTime - m_Tick);
 
             m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 			m_PJobAbility = NULL;
@@ -1225,8 +1226,9 @@ void CAICharNormal::ActionJobAbilityFinish()
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 
     Recast_t* Recast = new Recast_t;
+    Recast->Type       = RECAST_ABILITY;
 	Recast->ID         = m_PJobAbility->getID();
-	Recast->RecastTime = m_PJobAbility->getRecastTime();
+	Recast->RecastTime = m_PJobAbility->getRecastTime() * 1000;
 	Recast->RecastID   = m_PJobAbility->getRecastId(); 
     Recast->TimeStamp  = m_Tick;
     
