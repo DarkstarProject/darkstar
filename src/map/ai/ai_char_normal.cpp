@@ -124,42 +124,43 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
 bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget)
 {
-	////DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || *PBattleTarget != NULL);
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
 
-	*PBattleTarget = (CBattleEntity*)m_PZone->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC);
-	//m_ActionTargetID = 0;
+    CBattleEntity* PTarget = (CBattleEntity*)m_PZone->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC);
+	*PBattleTarget = PTarget; 
 
-	if (*PBattleTarget == NULL)
+    m_ActionTargetID = 0;
+
+	if (PTarget == NULL)
 	{
 		return false;
 	}
-	if ((*PBattleTarget)->objtype == TYPE_PC)
+	if (PTarget->objtype == TYPE_PC)
 	{
-		if ((*PBattleTarget)->targid == m_PChar->targid && ValidTarget & TARGET_SELF)
+		if ((ValidTarget & TARGET_SELF) &&
+             PTarget->targid == m_PChar->targid)
 		{
 			return true;
 		}
-
 		if (ValidTarget & TARGET_PLAYER)
 		{
 			return true;
 		}
-
-		if (ValidTarget & TARGET_PLAYER_PARTY && (((CCharEntity*)*PBattleTarget)->PParty != NULL && ((CCharEntity*)*PBattleTarget)->PParty->GetPartyID() == m_PChar->PParty->GetPartyID()))
+		if ((ValidTarget & TARGET_PLAYER_PARTY) && 
+            m_PChar->PParty != NULL &&
+            m_PChar->PParty == ((CCharEntity*)PTarget)->PParty)
 		{
 			return true;
 		}
-
-		if (ValidTarget & TARGET_PLAYER_DEAD && (*PBattleTarget)->isDead())
+		if ((ValidTarget & TARGET_PLAYER_DEAD) && PTarget->isDead())
 		{
 			return true;
 		}
 		return false;
 	}
-
 	if (ValidTarget & TARGET_ENEMY)
 	{
-		if ((*PBattleTarget)->objtype == TYPE_MOB && !(*PBattleTarget)->isDead())
+		if (PTarget->objtype == TYPE_MOB && !PTarget->isDead())
 		{
 			return true;
 		}
@@ -936,7 +937,7 @@ void CAICharNormal::ActionMagicCasting()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-	if (!GetValidTarget(&m_PBattleSubTarget,m_PSpell->getValidTarget()))
+	if (!GetValidTarget(&m_PBattleSubTarget, m_PSpell->getValidTarget()))
 	{
 		m_ActionType = ACTION_MAGIC_INTERRUPT;
 		ActionMagicInterrupt();
@@ -1146,14 +1147,16 @@ void CAICharNormal::ActionMagicInterrupt()
 }
 
 /************************************************************************
-*																		*
-*		Start the Job Ability											*
-*																		*
+*                                                                       *
+*  Start the Job Ability                                                *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionJobAbilityStart()
 {
-	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL);
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
+    DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
     for(RecastList_t::iterator it = m_PChar->RecastList.begin(); it != m_PChar->RecastList.end(); ++it)
     {
@@ -1162,134 +1165,86 @@ void CAICharNormal::ActionJobAbilityStart()
         {
             m_ActionTargetID = 0;
 
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,87));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 87));
 
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+            m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 			m_PJobAbility = NULL;
 			m_PBattleSubTarget = NULL;
 			return;
         }
     }
-
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
-	
-	if (m_PJobAbility->getValidTarget() == 4)
+    if (GetValidTarget(&m_PBattleSubTarget, m_PJobAbility->getValidTarget()))
 	{
-		CBattleEntity* PBattleTarget = NULL;
-		if 	(GetValidTarget(&PBattleTarget, TARGET_ENEMY))
-		{
-			m_PBattleTarget = PBattleTarget;
-			if (!IsMobOwner(m_PBattleTarget))
-			{
+	    if (m_PJobAbility->getValidTarget() == TARGET_ENEMY)
+	    {
+            if (!IsMobOwner(m_PBattleSubTarget))
+            {
+                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 12));
+
+                m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+                m_PJobAbility = NULL;
+			    m_PBattleSubTarget = NULL;
 				return;
 			}
 		}
-				
-		if (!IsMobOwner(m_PBattleTarget) && !IsMobOwner(m_PBattleSubTarget))
-		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,12));
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PJobAbility = NULL;
-			ActionDisengage();
-			return;
-		}
+        if (m_PBattleSubTarget != m_PChar)
+        {
+            if (distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p) > m_PJobAbility->getRange())
+            {
+                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 78));
 
-		if (m_PBattleTarget != m_PChar)
-		{
-			float Distance = distance(m_PChar->loc.p,m_PBattleTarget->loc.p);
-
-			if (Distance > 25)
-			{
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
-
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+                m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
-				m_PBattleTarget = NULL;
+				m_PBattleSubTarget = NULL;
 				return;
 			}
 		}
+        m_ActionType = ACTION_JOBABILITY_FINISH;
+        ActionJobAbilityFinish();
+        return;
 	}
-
-	apAction_t Action;
-	m_PChar->m_ActionList.clear();
-
-	Recast_t* Recast = new Recast_t;
-	Recast->ID = m_PJobAbility->getID();
-	Recast->RecastTime = m_PJobAbility->getRecastTime(); //+ m_Tick;
-	Recast->RecastID = m_PJobAbility->getRecastId(); 
-
-	if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
-	{
-		m_ActionType = ACTION_JOBABILITY_FINISH;
-		Action.ActionTarget = m_PBattleTarget;
-		((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmity(m_PChar,m_PJobAbility->getCE(),m_PJobAbility->getVE());
-		m_PBattleTarget->m_OwnerID = m_PChar->id; 
-		Action.reaction   = REACTION_NONE;
-		Action.speceffect = SPECEFFECT_RECOIL;
-		Action.animation  = m_PJobAbility->getAnimationID();
-		Action.param = 0;
-		Action.flag = 0; 
-		Action.messageID = 0;
-
-		m_PChar->m_ActionList.push_back(Action);
-		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF,new CActionPacket(m_PChar));
-		
-		m_ActionTargetID = 0; 
-		
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-
-		Recast->TimeStamp = m_Tick;
-		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PChar,m_PJobAbility->getID()+16,0,100));
-		m_PChar->RecastList.push_back(Recast);
-		m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
-		m_PJobAbility = NULL;
-		return;
-	}
-	else
-	{
-		m_ActionType = ACTION_JOBABILITY_FINISH;
-		m_LastActionTime = m_Tick;
-	}
-
-	Recast->TimeStamp = m_Tick;
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PChar,m_PJobAbility->getID()+16,0,100));
-	m_PChar->RecastList.push_back(Recast);
-	m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
-	
-	
+    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+    m_PJobAbility = NULL;
+    m_PBattleTarget = NULL;
+    return;
 }
 
-
 /************************************************************************
-*																		*
-*			End the Job Ability											*
-*																		*
+*                                                                       *
+*  End the Job Ability                                                  *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionJobAbilityFinish()
 {
-    // TODO: условие кривое, не забыть посмотреть
+    m_LastActionTime = m_Tick;
 
-	if (m_Tick - m_LastActionTime < 100)
-	{
-		return;
-	}
+    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 
-	m_PChar->pushPacket(new CCharAbilitiesPacket(m_PChar));
+    Recast_t* Recast = new Recast_t;
+	Recast->ID         = m_PJobAbility->getID();
+	Recast->RecastTime = m_PJobAbility->getRecastTime();
+	Recast->RecastID   = m_PJobAbility->getRecastId(); 
+    Recast->TimeStamp  = m_Tick;
+    
+    m_PChar->RecastList.push_back(Recast);
+    m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 
-	apAction_t Action;
+    apAction_t Action;
 	m_PChar->m_ActionList.clear();
 
 	if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
 	{
-		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
+		for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
 		{
 			CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
 
-			if (distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange()) 
+            if(!PTarget->isDead() &&
+                PTarget->getZone() == m_PChar->getZone() &&
+                distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
 			{
 				Action.ActionTarget = PTarget;
 				Action.reaction   = REACTION_NONE;
@@ -1305,25 +1260,34 @@ void CAICharNormal::ActionJobAbilityFinish()
 			}
 		}
 	}
-	else
+    else
 	{
-		Action.ActionTarget = m_PChar;
+		Action.ActionTarget = m_PBattleSubTarget;
 		Action.reaction   = REACTION_NONE;
-		Action.speceffect = SPECEFFECT_NONE;
+		Action.speceffect = SPECEFFECT_RECOIL;
 		Action.animation  = m_PJobAbility->getAnimationID();
-		Action.param	  = 0;
+		Action.param      = 0;
+		Action.flag       = 0; 
 		Action.messageID  = 0;
-		Action.flag		  = 0;
-		m_PChar->m_ActionList.push_back(Action);	
 
-		luautils::OnUseAbility(m_PChar,m_PChar);
-	}	
-	
+        m_PChar->m_ActionList.push_back(Action);
+        
+        luautils::OnUseAbility(m_PChar, m_PBattleSubTarget);	
+
+        if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
+        {
+            DSP_DEBUG_BREAK_IF(m_PBattleSubTarget->objtype != TYPE_MOB);
+
+            ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID = m_PChar->id;
+            ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
+        }
+	}
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	
-	m_ActionTargetID = 0; 
-	m_PJobAbility = NULL;
-	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+    m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
+		
+    m_PJobAbility = NULL;
+    m_PBattleSubTarget = NULL;
+    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 }
 
 /************************************************************************
@@ -1496,25 +1460,12 @@ void CAICharNormal::ActionAttack()
 		return;
 	}
 
-    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-
-	uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN]->getDelay());
-	WeaponDelay -= (m_PChar->getMod(MOD_HASTE)/100 * WeaponDelay);
-
-	if (m_PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0)
-	{
-		WeaponDelay += (m_PChar->m_Weapons[SLOT_SUB]->getDelay());
-		WeaponDelay -= (m_PChar->getMod(MOD_DUAL_WIELD)/100 * WeaponDelay);
-	}
-
-	//uint16 WeaponDelay = (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) ? 1700 : m_PChar->m_Weapons[SLOT_MAIN] ->getDelay());
-	if 	(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
+	uint16 WeaponDelay = (m_PChar->m_Weapons[SLOT_MAIN]->getDelay() * (100 - m_PChar->getMod(MOD_HASTE))) / 100;
+	
+	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
 	{
 		WeaponDelay = 1700;
 	}
-	//uint16 WeaponDelay = m_PChar->m_Weapons[SLOT_MAIN] ->getDelay();
 
 	if ((m_Tick - m_LastActionTime) > WeaponDelay)
 	{
@@ -1537,7 +1488,11 @@ void CAICharNormal::ActionAttack()
 			return;
 		}
 
-		m_LastActionTime = m_Tick - (m_Tick - m_LastActionTime) % WeaponDelay;
+        m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+	    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
+
+        m_LastActionTime = (m_LastActionTime > m_AttackMessageTime) ? m_LastActionTime + WeaponDelay : m_Tick;
 
 		if (battleutils::IsParalised(m_PChar)) 
 		{
@@ -1558,9 +1513,6 @@ void CAICharNormal::ActionAttack()
 			uint32 numKickAttacks = 0;
 
 			uint16 subType = m_PChar->m_Weapons[SLOT_SUB]->getDmgType();
-
-			//keep until tested without dual wield
-			//if ((hasBit(DUAL_WIELD,m_PChar->m_TraitList, sizeof(m_PChar->m_TraitList)) == 4 && subType > 0 && subType < 8) || (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH))
 			
 			if ((subType > 0 && subType < 4) || (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH))
 			{ 
