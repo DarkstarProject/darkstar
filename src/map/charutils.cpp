@@ -1405,9 +1405,6 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 
-
-
-
 /************************************************************************
 *																		*
 *  Пытаемся увеличить значение умения									*
@@ -1626,7 +1623,6 @@ int32 unseenKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 	return delBit(KeyItemID, PChar->keys.seenList, sizeof(PChar->keys.seenList));
 }
 
-
 int32 addKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 {
 	return addBit(KeyItemID, PChar->keys.keysList, sizeof(PChar->keys.keysList));
@@ -1714,7 +1710,6 @@ int32 hasTrait(CCharEntity* PChar, uint16 TraitID)
 
 int32 addTrait(CCharEntity* PChar, uint16 TraitID)
 {
-
 	return addBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
 }
 
@@ -1723,6 +1718,23 @@ int32 delTrait(CCharEntity* PChar, uint16 TraitID)
 	return delBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
 }
 
+/************************************************************************
+*                                                                       *
+*  Обновляем MP, HP и TP персонажа                                      *
+*                                                                       *
+************************************************************************/
+
+void UpdateHealth(CCharEntity* PChar)
+{
+    DSP_DEBUG_BREAK_IF(PChar->objtype != TYPE_PC);
+
+    if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
+	if (PChar->PParty != NULL)
+	{	
+        PChar->PParty->PushPacket(PChar, PChar->getZone(), new CCharHealthPacket(PChar));
+	}
+    PChar->pushPacket(new CCharHealthPacket(PChar));
+}
 
 /************************************************************************
 *																		*

@@ -30,7 +30,7 @@
 #include "packets/char_update.h"
 
 #include "ability.h"
-#include "charentity.h"
+#include "charutils.h"
 #include "battleutils.h"
 #include "map.h"
 #include "spell.h"
@@ -604,11 +604,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
         if (PAttacker->objtype == TYPE_PC)
         {
-            if (PAttacker->PParty != NULL)
-            {
-                PAttacker->PParty->PushPacket((CCharEntity*)PAttacker, PAttacker->getZone(), new CCharHealthPacket((CCharEntity*)PAttacker));
-            }
-            ((CCharEntity*)PAttacker)->pushPacket(new CCharHealthPacket((CCharEntity*)PAttacker));
+            charutils::UpdateHealth((CCharEntity*)PAttacker);
         }
     }
 
@@ -638,11 +634,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			    }
 			    break;
 		    };
-            if (PDefender->PParty != NULL)
-            {
-                PDefender->PParty->PushPacket((CCharEntity*)PDefender, PDefender->getZone(), new CCharHealthPacket((CCharEntity*)PDefender));
-            }
-            ((CCharEntity*)PDefender)->pushPacket(new CCharHealthPacket((CCharEntity*)PDefender));
+            charutils::UpdateHealth((CCharEntity*)PDefender);
 	    }
         break;
         case TYPE_MOB:
