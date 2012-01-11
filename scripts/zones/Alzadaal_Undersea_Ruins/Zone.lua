@@ -61,7 +61,7 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
-switch (region:GetRegionID): caseof 
+switch (region:GetRegionID()): caseof 
 {
 	---------------------------------
 	[1] = function (x)
