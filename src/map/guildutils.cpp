@@ -152,6 +152,7 @@ CItemContainer* GetGuildShop(uint16 GuildID)
 			return g_PGuildList.at(i);
 		}
 	}
+	ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n"CL_RESET);
     return NULL;
 }
 

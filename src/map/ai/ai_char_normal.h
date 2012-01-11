@@ -74,7 +74,6 @@ protected:
 	void ActionAttack();
 	void ActionChangeBattleTarget();
 	void ActionRaiseMenuSelection();
-	void UpdateHealth();
 
     void ActionMagicStartError(uint16 error);
 

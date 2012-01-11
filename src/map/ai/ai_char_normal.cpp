@@ -1017,26 +1017,8 @@ void CAICharNormal::ActionMagicCasting()
 				}
 			}
 		}
-
 		m_ActionType = ACTION_MAGIC_FINISH;
 		ActionMagicFinish();
-	}
-}
-
-void CAICharNormal::UpdateHealth()
-{
-	m_PZone->PushPacket(m_PChar,CHAR_INRANGE_SELF,new CCharHealthPacket(m_PChar));
-
-	if (m_PChar->PParty != NULL)
-	{	
-		for (int i = 0; i < m_PChar->PParty->members.size(); i++)
-		{
-			CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-			if (PTarget->getZone() == m_PChar->getZone() && distance(m_PChar->loc.p, PTarget->loc.p) >= 50)
-			{
-				PTarget->pushPacket(new CCharHealthPacket(m_PChar));
-			}
-		}
 	}
 }
 
@@ -1124,10 +1106,9 @@ void CAICharNormal::ActionMagicFinish()
 
 	/*******************************************************************************************/
 
+	charutils::UpdateHealth(m_PChar);
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	
-	UpdateHealth();
 
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
@@ -1163,7 +1144,6 @@ void CAICharNormal::ActionMagicInterrupt()
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
 }
-
 
 /************************************************************************
 *																		*
@@ -1340,7 +1320,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 	}	
 	
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	UpdateHealth();
 	
 	m_ActionTargetID = 0; 
 	m_PJobAbility = NULL;
@@ -1461,11 +1440,10 @@ void CAICharNormal::ActionWeaponSkillStart()
 		}
 	}
 	
+	charutils::UpdateHealth(m_PChar);
 	m_PChar->m_ActionList.push_back(Action);
 	m_ActionType = ACTION_WEAPONSKILL_FINISH;
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-
-	UpdateHealth();
 }
 
 /************************************************************************
@@ -1659,7 +1637,7 @@ void CAICharNormal::ActionAttack()
 					Action.submessageID = 167;
 					Action.subparam = m_PChar->addHP(Action.param);
 
-					UpdateHealth();
+					charutils::UpdateHealth(m_PChar);
 				}
 				m_PChar->m_ActionList.push_back(Action);
 			}
@@ -1674,8 +1652,11 @@ void CAICharNormal::ActionAttack()
 *  Gets SkillChain Effect												*
 *																		*
 ************************************************************************/
+
 SUBEFFECT CAICharNormal::GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill)
 {
+	// TODO: что-то сложное здесь замутили, особенно с SIGNET ^^
+
 	if (!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET, 1))
 	{
 		CStatusEffect* NewEffect = new CStatusEffect(EFFECT_SIGNET, PWeaponSkill->getID(),1,9999,0,1);
@@ -1710,7 +1691,7 @@ SUBEFFECT CAICharNormal::GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSk
 				return SUBEFFECT_DISTORTION;
 		}
 	}
-	
+
 	CWeaponSkill* LastWeaponSkill = battleutils::GetWeaponSkill(PEffect->GetPower());
 	CStatusEffect* NewEffect = new CStatusEffect(EFFECT_SIGNET, PWeaponSkill->getID(),0,5);
 	SUBEFFECT effect = SUBEFFECT_NONE; 
@@ -1831,26 +1812,26 @@ SUBEFFECT CAICharNormal::GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSk
 
 void CAICharNormal::ActionRaiseMenuSelection() 
 {	
-    m_PChar->animation = ANIMATION_NONE; 
+    //m_PChar->animation = ANIMATION_NONE; 
 			
-    m_PChar->addHP(500); 
-    UpdateHealth();
-    m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));			
-				
-    apAction_t Action;
-    m_PChar->m_ActionList.clear();
+    //m_PChar->addHP(500); 
+    //UpdateHealth();
+    //m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));			
+				//
+    //apAction_t Action;
+    //m_PChar->m_ActionList.clear();
 
-    Action.ActionTarget = m_PChar;
-    //Action.subeffect = 511;
-    Action.animation = 511;
-    Action.reaction = REACTION_NONE;
-    Action.speceffect = SPECEFFECT_RAISE;
-    //Action.subeffect = SUBEFFECT_NONE;
-				
-    //Action.subparam = 4; 
+    //Action.ActionTarget = m_PChar;
+    ////Action.subeffect = 511;
+    //Action.animation = 511;
+    //Action.reaction = REACTION_NONE;
+    //Action.speceffect = SPECEFFECT_RAISE;
+    ////Action.subeffect = SUBEFFECT_NONE;
+				//
+    ////Action.subparam = 4; 
 			
-    m_PChar->m_ActionList.push_back(Action);
+    //m_PChar->m_ActionList.push_back(Action);
 
-    m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-    m_ActionType = ACTION_NONE; 												
+    //m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+    //m_ActionType = ACTION_NONE; 												
 }
