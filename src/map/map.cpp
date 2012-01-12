@@ -532,8 +532,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 
 	*buffsize = FFXI_HEADER_SIZE;
 
-	while(!PChar->isPacketListEmpty() && 
-		  *buffsize + PChar->firstPacketSize()*2 < map_config.uiBuffMaxSize )
+	while(!PChar->isPacketListEmpty() && *buffsize + PChar->firstPacketSize()*2 < map_config.uiBuffMaxSize )
 	{
 		PSmallPacket = PChar->popPacket();
 
@@ -568,8 +567,9 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 	// сохранение текущего времени (32 BIT!)
 	WBUFL(buff,8) = (uint32)time(NULL);
 
-	int8* tempbuff = NULL;
-	CREATE(tempbuff,int8,*buffsize);
+    //Создаем буфер = размер пакета + 16 hash + 4 выравнивание (на случай, если пакет сжать вообще не получится)
+    int8* tempbuff = NULL;
+	CREATE(tempbuff, int8, *buffsize + 20); 
 
 	//Сжимаем данные без учета заголовка
 	//Возвращаемый размер в 8 раз больше реальных данных
@@ -584,7 +584,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 	md5((uint8*)tempbuff,hash, PacketSize);
 	memcpy(tempbuff+PacketSize, hash, 16);
 	PacketSize += 16;
-
+    
 	//making total packet
 	memcpy(buff+FFXI_HEADER_SIZE,tempbuff,PacketSize);
 
