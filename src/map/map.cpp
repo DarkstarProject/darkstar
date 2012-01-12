@@ -59,7 +59,8 @@
 
 const int8* MAP_CONF_FILENAME = NULL;
 
-int8*  g_PBuff = NULL;					// глобальный буфер обмена пакетами
+int8*  g_PBuff   = NULL;                // глобальный буфер обмена пакетами
+int8*  PTempBuff = NULL;                // временный  буфер обмена пакетами
 Sql_t* SqlHandle = NULL;				// SQL descriptor
 
 int32  map_fd = 0;						// main socket
@@ -96,7 +97,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 	map_session_data_t* map_session_data = new map_session_data_t;
 	memset(map_session_data, 0, sizeof(map_session_data_t));
 
-	CREATE(map_session_data->server_packet_data,char,map_config.uiBuffMaxSize);
+	CREATE(map_session_data->server_packet_data, int8, map_config.uiBuffMaxSize + 20);
 		
 	map_session_data->last_update = time(NULL);
 	map_session_data->client_addr = ip;
@@ -187,7 +188,8 @@ int32 do_init(int32 argc, int8** argv)
 	CTaskMgr::getInstance()->AddTask("time_server", gettick()+1000, NULL, CTaskMgr::TASK_INTERVAL, time_server, 2400);
 	CTaskMgr::getInstance()->AddTask("map_cleanup", gettick()+5000, NULL, CTaskMgr::TASK_INTERVAL, map_cleanup, map_config.max_time_lastupdate);
 
-	CREATE(g_PBuff, int8, map_config.uiBuffMaxSize);
+	CREATE(g_PBuff,   int8, map_config.uiBuffMaxSize + 20);
+    CREATE(PTempBuff, int8, map_config.uiBuffMaxSize + 20);
 	ShowStatus("The map-server is "CL_GREEN"ready"CL_RESET" to work...\n");
     ShowMessage("=======================================================================\n");
 	return 0;
@@ -518,7 +520,6 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 		*buffsize = map_session_data->server_packet_size;
 
 		map_session_data->server_packet_data = buff;
-
 		return -1;
 	}
 
@@ -567,26 +568,27 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 	// сохранение текущего времени (32 BIT!)
 	WBUFL(buff,8) = (uint32)time(NULL);
 
-    //Создаем буфер = размер пакета + 16 hash + 4 выравнивание (на случай, если пакет сжать вообще не получится)
-    int8* tempbuff = NULL;
-	CREATE(tempbuff, int8, *buffsize + 20); 
-
 	//Сжимаем данные без учета заголовка
 	//Возвращаемый размер в 8 раз больше реальных данных
-	uint32 PacketSize = zlib_compress(buff+FFXI_HEADER_SIZE, *buffsize-FFXI_HEADER_SIZE, tempbuff, *buffsize, zlib_compress_table);
+	uint32 PacketSize = zlib_compress(buff+FFXI_HEADER_SIZE, *buffsize-FFXI_HEADER_SIZE, PTempBuff, *buffsize, zlib_compress_table);
 
 	//Запись размера данных без учета заголовка
-	WBUFL(tempbuff,(PacketSize+7)/8) = PacketSize;
+	WBUFL(PTempBuff,(PacketSize+7)/8) = PacketSize;
 
 	//Расчет hash'a также без учета заголовка, но с учетом записанного выше размера данных
 	PacketSize = (PacketSize+7)/8+4;
 	uint8 hash[16];
-	md5((uint8*)tempbuff,hash, PacketSize);
-	memcpy(tempbuff+PacketSize, hash, 16);
+	md5((uint8*)PTempBuff, hash, PacketSize);
+	memcpy(PTempBuff+PacketSize, hash, 16);
 	PacketSize += 16;
     
+    if (PacketSize > map_config.uiBuffMaxSize + 20)
+    {
+        ShowFatalError(CL_RED"%Memory manager: PTempBuff is overflowed (%u)\n"CL_RESET, PacketSize);
+    }
+
 	//making total packet
-	memcpy(buff+FFXI_HEADER_SIZE,tempbuff,PacketSize);
+	memcpy(buff+FFXI_HEADER_SIZE, PTempBuff, PacketSize);
 
 	uint32 CypherSize = (PacketSize/4)&-2;
 
@@ -610,8 +612,6 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 	{
 		ShowWarning(CL_YELLOW"send_parse: packet is very big <%u>\n"CL_RESET,*buffsize);
 	}
-
-	aFree(tempbuff);
 	return 0;
 }
 
