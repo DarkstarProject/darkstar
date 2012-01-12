@@ -916,12 +916,12 @@ int32 SmallPacket0x03C(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x041(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	PrintPacket(data);
+	//PrintPacket(data);
+	//uint8 SlotID  = RBUFB(data,(0x04));
+	//uint16 lot = 1+(rand()%1000);
+	//PChar->PTreasurePool->LotItem(PChar,SlotID,lot);
 
-	uint8 SlotID  = RBUFB(data,(0x04));
-	uint16 lot = 1+(rand()%1000);
-	PChar->PTreasurePool->LotItem(PChar,SlotID,lot);
-	
+    PChar->pushPacket(new CMessageSystemPacket(0,0,155));
 	return 0;
 }
 
@@ -1999,7 +1999,9 @@ int32 SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* da
 				PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 181));
 				return 0;
 			}
-			PTellRecipient->pushPacket(new CChatMessagePacket(PChar, MESSAGE_TELL, data+20));
+            CBasicPacket* PPacket = new CChatMessagePacket(PChar, MESSAGE_TELL, data+20);
+            PrintPacket((int8*)PPacket);
+			//PTellRecipient->pushPacket(new CChatMessagePacket(PChar, MESSAGE_TELL, data+20));
 			return 0;
 		}
 	}
