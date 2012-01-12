@@ -326,17 +326,20 @@ void CAICharNormal::ActionFall()
 	m_ActionTargetID = 0;
 	m_LastActionTime = m_Tick;
 
-	m_PSpell = NULL;
-	m_PBattleTarget = NULL;
+	m_PSpell           = NULL;
+    m_PJobAbility      = NULL;
+	m_PBattleTarget    = NULL;
 	m_PBattleSubTarget = NULL;
+
+    m_PChar->UContainer->Clean();
 
 	m_PChar->StatusEffectContainer->EraseStatusEffect(true);
 	m_PChar->StatusEffectContainer->DispelStatusEffect(true);
 
 	m_PChar->animation = ANIMATION_DEATH;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+    m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
-	m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
 }
 
 /************************************************************************
@@ -961,8 +964,8 @@ void CAICharNormal::ActionMagicCasting()
 		return;
 	}
 	
-	//Need to factor MOD_FASTCAST     |-----------------------|
-	if ((m_Tick - m_LastActionTime) >= m_PSpell->getCastTime() && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))		
+    // TODO: need MOD_FASTCAST
+	if ((m_Tick - m_LastActionTime) >= m_PSpell->getCastTime())
 	{
 		m_LastActionTime = m_Tick;
 
@@ -1039,12 +1042,10 @@ void CAICharNormal::ActionMagicFinish()
 
 	Recast_t* Recast = new Recast_t;
 	
+    Recast->Type = RECAST_MAGIC;
 	Recast->ID = m_PSpell->getID();
-	Recast->TimeStamp = m_Tick;
-	int16 timeToRecast = (m_PSpell->getRecastTime() * 1000);
- 	int16 hasteTime = ((float)m_PChar->getMod(MOD_HASTE)/100 * timeToRecast);
-	timeToRecast = timeToRecast - hasteTime; 
-	Recast->RecastTime = (timeToRecast > 0 ? timeToRecast : 0);
+	Recast->TimeStamp  = m_Tick;
+	Recast->RecastTime = m_PSpell->getRecastTime() * (100 + m_PChar->getMod(MOD_HASTE)) * 10;
 
 	m_PChar->RecastList.push_back(Recast);
 
@@ -1093,6 +1094,8 @@ void CAICharNormal::ActionMagicFinish()
 		for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin();  it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 16; ++it)
 		{
 			CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+
+            // TODO: isMobOwner
 
 			if (m_PBattleSubTarget != PCurrentMob &&
 				PCurrentMob->status == STATUS_UPDATE &&
