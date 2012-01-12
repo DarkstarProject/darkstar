@@ -1,26 +1,14 @@
 -----------------------------------
--- Area: Lower Jeuno
--- NPC: Crematory Hatch
--- Type: Door
--- @zone 200
--- @pos 139 -6 127
+--	Area: Lower Jeuno
+--	NPC:  Auction Counter
+--	Working 100%
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(trade:hasItemQty(1041,1) == true and trade:getItemCount() == 1) then 
-		player:startEvent(0x0004); -- Open the door
-	end
 end; 
 
 -----------------------------------
@@ -28,15 +16,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	X = player:getXPos();
-	Z = player:getZPos();
-	
-	if(X >= 135 and X <= 144 and Z >= 128 and Z <= 135) then 
-		player:startEvent(0x0005);
-	else
-		player:messageSpecial(OPEN_WITH_THE_RIGHT_KEY);
-		return 0;
-	end
+	player:sendMenu(3);
 end; 
 
 -----------------------------------

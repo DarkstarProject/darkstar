@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Lower Jeuno
+-- Area: The Eldieme Necropolis
 -- NPC:  Brazier
 -- Involved in Quests: Save my Sister
 -- @zone 195
@@ -8,12 +8,11 @@
 -- @pos 99 -33 98 (F-7)
 -- @pos 259 -33 -58 (H-9)
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/quests");
 require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 -----------------------------------
@@ -97,6 +96,3 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
-
-
-

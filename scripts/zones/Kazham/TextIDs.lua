@@ -18,3 +18,7 @@ GHEMISENTERILO_SHOP_DIALOG = 9961; -- Can you really get everything that you wan
  PAHYALOLOHOIV_SHOP_DIALOG = 10244; -- Nothing in this world is crrreated good or evil. However, evil can arrrise when something exists in a place where it did not originally belong.
     TAHNPOSBEI_SHOP_DIALOG = 9965; -- You don't want to get whipped by those Tonberries, do you? Well, have I got the equipment forrr you!
  TOJIMUMOSULAH_SHOP_DIALOG = 9939; -- Things meant to live will live. Things meant to die will die when their time has come. However, this does not mean you should cease your strrruggle for life.
+
+ -- Quest Items
+	SLAB_OF_ELSHIMO_MARBLE = 1146; -- Item of the quest "Missionary Man"
+  SCROLL_OF_TELEPORT_YHOAT = 4728; -- Reward of the quest "Missionary Man"

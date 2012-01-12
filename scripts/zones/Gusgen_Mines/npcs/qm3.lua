@@ -1,17 +1,17 @@
 -----------------------------------
--- Area: Garlaige Citadel
--- NPC:  qm1 (???)
--- Involved In Quest: Altana's Sorrow
--- @zone: 200
--- @pos: -283 0 263 (around)
+-- Area: Gusgen Mines
+-- NPC:  qm3 (???)
+-- Involved In Quest: Healing the Land
+-- @zone: 196
+-- @pos: -168 1 311
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
+package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Garlaige_Citadel/TextIDs");
+require("scripts/zones/Gusgen_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -25,15 +25,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	AltanaSorrow = player:getQuestStatus(BASTOK,ALTANA_S_SORROW);
-	VirnageLetter = player:hasKeyItem(LETTER_FROM_VIRNAGE);
-	DivinePaint = player:hasKeyItem(BUCKET_OF_DIVINE_PAINT);
+	HealingTheLand = player:getQuestStatus(SANDORIA,HEALING_THE_LAND);
 
-	if(AltanaSorrow == QUEST_ACCEPTED and VirnageLetter == false and DivinePaint == false) then
-		player:addKeyItem(BUCKET_OF_DIVINE_PAINT);
-		player:messageSpecial(KEYITEM_OBTAINED,BUCKET_OF_DIVINE_PAINT);
-	else
-		player:messageSpecial(YOU_FIND_NOTHING);
+	if(HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING) == true) then 
+		player:delKeyItem(SEAL_OF_BANISHING);
+		player:messageSpecial(FOUND_LOCATION_SEAL, SEAL_OF_BANISHING);
+	elseif(HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING) == false) then 
+		player:messageSpecial(IS_ON_THIS_SEAL, SEAL_OF_BANISHING);
+	else 
+		player:messageSpecial(LETTERS_IS_WRITTEN_HERE);
 	end
 end;
 

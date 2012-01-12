@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6538; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
 
--- QUEST "Save my son"
+-- Quest "Save my son"
 NOTHING_OUT_OF_ORDINARY = 7385; -- There is nothing out of the ordinary here.
 	 THE_BRAZIER_IS_LIT = 7295; --	The brazier is lit.
 		REFUSE_TO_LIGHT = 7296;	-- Unexpectedly, the Ducal Guard's lantern refuses to light.
@@ -18,3 +18,6 @@ NOTHING_OUT_OF_ORDINARY = 7385; -- There is nothing out of the ordinary here.
 -- Quest "The requiem"
 SARCOPHAGUS_CANNOT_BE_OPENED = 7354; -- It is a stone sarcophagus with the lid sealed tight. It cannot be opened.
 		 SENSE_OF_FOREBODING = 6552; -- You are suddenly overcome with a sense of foreboding...
+
+-- Quest "Acting in Good Faith"
+SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7337; -- The spirit incense emits a putrid odor and burns up. Your attempt this time has failed

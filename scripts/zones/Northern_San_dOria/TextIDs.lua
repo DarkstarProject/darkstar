@@ -18,9 +18,12 @@ MISSION_SMASH_THE_ORCISH_SCOUTS = 16; -- Bring me one of those axes, and your mi
 CONQUEST = 11508; -- You've earned conquest points!
 
 -- Quest Items
-SCROLL_OF_TELEPORT_DEM = 4731; -- 
-			WYVERN_EGG = 1159; -- 
-    CASTLE_FLOOR_PLANS = 530; -- 
+SCROLL_OF_TELEPORT_HOLLA = 4730; -- Reward of the quest "Healing the Land"
+  SCROLL_OF_TELEPORT_DEM = 4731; -- Reward of the quest "Altana's Sorrow"
+  SCROLL_OF_TELEPORT_MEA = 4732; -- Reward of the quest "Acting in Good Faith"
+SCROLL_OF_TELEPORT_VAHZL = 4747; -- Reward of the quest "Sorcery of the North"
+			  WYVERN_EGG = 1159; -- 
+      CASTLE_FLOOR_PLANS =  530; -- 
 
 	    MagicmartFlyer = 532; -- item: Magicmart_flyer
          FLYER_REFUSED = 11323; -- Your flyer is refused.

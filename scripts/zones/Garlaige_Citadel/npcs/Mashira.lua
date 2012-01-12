@@ -5,11 +5,12 @@
 -- @zone 200
 -- @pos 141 -6 138
 -----------------------------------
+package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 -----------------------------------

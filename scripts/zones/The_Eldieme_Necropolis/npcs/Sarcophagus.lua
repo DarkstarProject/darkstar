@@ -5,11 +5,12 @@
 -- @zone 195
 -- @pos -420 8 500
 -----------------------------------
+package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 -----------------------------------
@@ -17,7 +18,7 @@ require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(trade:hasItemQty(4154,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	if(trade:hasItemQty(4154,1) == true and trade:getItemCount() == 1) then 
 		YumKilled = player:getVar("TheRequiemYumKilled");
 		
 		if(player:getVar("TheRequiemCS") == 3 and YumKilled == 0) then 
@@ -58,8 +59,8 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x002e) then 
 		player:setVar("TheRequiemCS",0);
 		player:setVar("TheRequiemYumKilled",0);
-		player:addKeyItem(225);
-		player:messageSpecial(KEYITEM_OBTAINED,225); -- Star Ring (Key Item). 
+		player:addKeyItem(STAR_RING1);
+		player:messageSpecial(KEYITEM_OBTAINED,STAR_RING1); -- Star Ring (Key Item). 
 		player:tradeComplete();
 	end
 end;

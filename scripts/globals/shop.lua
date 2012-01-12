@@ -14,6 +14,7 @@ require("scripts/globals/conquest");
 SANDORIA = 0;
   BASTOK = 1;
 WINDURST = 2;
+  KAZHAM = 2;
    JEUNO = 3;
  SELBINA = 4;
    RABAO = 4;
