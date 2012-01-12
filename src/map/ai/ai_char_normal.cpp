@@ -869,7 +869,7 @@ void CAICharNormal::ActionMagicStart()
 
 	if (m_PBattleSubTarget != m_PChar)
 	{
-		float Distance = distance(m_PChar->loc.p,m_PBattleSubTarget->loc.p);
+		float Distance = distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p);
 
 		if (Distance > 25)
 		{
@@ -937,7 +937,7 @@ void CAICharNormal::ActionMagicCasting()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-	if (!GetValidTarget(&m_PBattleSubTarget, m_PSpell->getValidTarget()))
+    if (m_PBattleSubTarget->isDead())
 	{
 		m_ActionType = ACTION_MAGIC_INTERRUPT;
 		ActionMagicInterrupt();

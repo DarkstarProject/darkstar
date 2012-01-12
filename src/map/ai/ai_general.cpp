@@ -72,12 +72,7 @@ ACTIONTYPE CAIGeneral::GetCurrentAction()
 	
 void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 {
-	//DSP_DEBUG_BREAK_IF(m_ActionTargetID != 0);
-
-	if (m_ActionTargetID != 0)
-	{
-		m_ActionTargetID = 0;
-	}
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID != 0);
 
 	switch (Action)
 	{
