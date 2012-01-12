@@ -2,8 +2,8 @@
 -- Area: Garlaige Citadel
 -- NPC:  qm1 (???)
 -- Involved In Quest: Altana's Sorrow
--- @zone: 200
--- @pos: -283 0 263 (around)
+-- @zone 200
+-- @pos -283 0 263 (around)
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------

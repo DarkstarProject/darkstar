@@ -2,8 +2,8 @@
 -- Area: Bastok Mines
 -- NPC:  Virnage
 -- Starts Quest: Altana's Sorrow
--- @zone: 234
--- @pos: 0 0 51
+-- @zone 234
+-- @pos 0 0 51
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -63,7 +63,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x008d) then
+	if(csid == 0x008d and option == 0) then
 		player:addQuest(BASTOK,ALTANA_S_SORROW);
 	elseif(csid == 0x008f) then
 		player:delKeyItem(BUCKET_OF_DIVINE_PAINT);
