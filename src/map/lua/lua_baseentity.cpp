@@ -1102,6 +1102,25 @@ inline int32 CLuaBaseEntity::addSpell(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Проверяем у персонажа наличие заклинания в списке заклинаний         *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::hasSpell(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    
+    uint16 SpellID = (uint16)lua_tointeger(L,-1);
+
+    lua_pushboolean(L, (charutils::hasSpell((CCharEntity*)m_PBaseEntity, SpellID) == 0 ? false : true));
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::canLearnSpell(lua_State *L)
@@ -3064,6 +3083,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unseenKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSpell),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMainJob),
