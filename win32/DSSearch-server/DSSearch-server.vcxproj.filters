@@ -47,9 +47,6 @@
     <ClCompile Include="..\..\src\common\malloc.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\search\auction_house.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\common\sql.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
@@ -73,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\search\packets\search_comment.cpp">
       <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\search\data_loader.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,9 +109,6 @@
     <ClInclude Include="..\..\src\common\socket.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\search\auction_house.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\common\sql.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
@@ -134,6 +131,9 @@
       <Filter>Header Files\packets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\search\search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\search\data_loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

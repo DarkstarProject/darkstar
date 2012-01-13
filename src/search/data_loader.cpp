@@ -24,16 +24,14 @@
 #include "../common/showmsg.h"
 #include "../common/sql.h"
 
-#include "auction_house.h"
+#include "data_loader.h"
 #include "search.h"
 
 
 Sql_t* SqlHandle = NULL;
 
-CAuctionHouse::CAuctionHouse(uint8 AuctionHouseID)
+CDataLoader::CDataLoader()
 {
-    m_AHID = AuctionHouseID;
-
     SqlHandle = Sql_Malloc();
 
 	ShowStatus("sqlhandle is allocating\n");
@@ -47,14 +45,14 @@ CAuctionHouse::CAuctionHouse(uint8 AuctionHouseID)
 	}
 }
 
-CAuctionHouse::~CAuctionHouse()
+CDataLoader::~CDataLoader()
 {
     Sql_Free(SqlHandle);
 }
 
-std::vector<ahHistory*> CAuctionHouse::GetItemHystory(uint16 ItemID, bool stack)
+std::list<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
 {
-    std::vector<ahHistory*> HistoryList;
+    std::list<ahHistory*> HistoryList;
 
     const int8* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name \
                             FROM auction_house \
@@ -65,7 +63,7 @@ std::vector<ahHistory*> CAuctionHouse::GetItemHystory(uint16 ItemID, bool stack)
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, ItemID, stack);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
+    {
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 		{
             ahHistory* PAHHistory = new ahHistory;
@@ -76,7 +74,7 @@ std::vector<ahHistory*> CAuctionHouse::GetItemHystory(uint16 ItemID, bool stack)
             snprintf((int8*)PAHHistory->Name1, 15, "%s", Sql_GetData(SqlHandle,2));
             snprintf((int8*)PAHHistory->Name2, 15, "%s", Sql_GetData(SqlHandle,3));
 
-            HistoryList.push_back(PAHHistory);
+            HistoryList.push_front(PAHHistory);
         }
     }
     return HistoryList;
@@ -88,7 +86,7 @@ std::vector<ahHistory*> CAuctionHouse::GetItemHystory(uint16 ItemID, bool stack)
 *                                                                       *
 ************************************************************************/
 
-std::vector<ahItem*> CAuctionHouse::GetItemsToCategry(uint8 AHCategoryID)
+std::vector<ahItem*> CDataLoader::GetAHItemsToCategry(uint8 AHCategoryID)
 {
     ShowDebug("try find category %u\n", AHCategoryID);
 

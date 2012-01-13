@@ -21,11 +21,12 @@
 ===========================================================================
 */
 
-#ifndef _CAUCTIONHOUSE_H_
-#define _CAUCTIONHOUSE_H_
+#ifndef _CDATALOADER_H_
+#define _CDATALOADER_H_
 
 #include "../common/cbasetypes.h"
 
+#include <list>
 #include <vector>
 
 typedef struct  
@@ -49,20 +50,17 @@ typedef struct
 *                                                                       *
 ************************************************************************/
 
-class CAuctionHouse
+class CDataLoader
 {
-private:
-
-	uint8 m_AHID;
-
 public:
 
-	CAuctionHouse(uint8 AuctionHouseID);
-   ~CAuctionHouse();
+	CDataLoader();
+   ~CDataLoader();
 
-    std::vector<ahHistory*> GetItemHystory(uint16 ItemID, bool stack);
-	std::vector<ahItem*>    GetItemsToCategry(uint8 AHCategoryID);
+    std::list<ahHistory*> GetAHItemHystory(uint16 ItemID, bool stack);
+	std::vector<ahItem*>  GetAHItemsToCategry(uint8 AHCategoryID);
+
+private:
 };
-
 
 #endif

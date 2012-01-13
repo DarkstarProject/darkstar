@@ -24,7 +24,7 @@
 #include "../../common/showmsg.h"
 #include "../../common/socket.h"
 
-#include "../auction_house.h"
+#include "../data_loader.h"
 
 #include "auction_list.h"
 

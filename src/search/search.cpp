@@ -35,7 +35,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "auction_house.h"
+#include "data_loader.h"
 #include "search.h"
 #include "tcp_request.h"
 
@@ -444,8 +444,8 @@ void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
     uint8* data    = (uint8*)PTCPRequest->GetData();                            
 	uint8  AHCatID = RBUFB(data,(0x16));                                        
 
-	CAuctionHouse* PAuctionHouse = new CAuctionHouse(0);                        
-    std::vector<ahItem*> ItemList = PAuctionHouse->GetItemsToCategry(AHCatID);
+	CDataLoader* PDataLoader = new CDataLoader();                        
+    std::vector<ahItem*> ItemList = PDataLoader->GetAHItemsToCategry(AHCatID);
 
     uint8 PacketsCount = (ItemList.size() / 20) + (ItemList.size() % 20 != 0) + (ItemList.size() == 0);
 
@@ -463,7 +463,7 @@ void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
         PTCPRequest->SendToSocket(PAHPacket->GetData(), PAHPacket->GetSize());
         delete PAHPacket;
     }
-    delete PAuctionHouse;
+    delete PDataLoader;
 }
 
 /************************************************************************
@@ -480,17 +480,17 @@ void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
 
     CAHHistoryPacket* PAHPacket = new CAHHistoryPacket(ItemID);
 
-    CAuctionHouse* PAuctionHouse = new CAuctionHouse(0);                        
-    std::vector<ahHistory*> HistoryList = PAuctionHouse->GetItemHystory(ItemID, stack);
+    CDataLoader* PDataLoader = new CDataLoader();                        
+    std::list<ahHistory*> HistoryList = PDataLoader->GetAHItemHystory(ItemID, stack);
 
-    for (uint8 i = 0; i < HistoryList.size(); ++i)
+    for (std::list<ahHistory*>::iterator it = HistoryList.begin(); it != HistoryList.end(); ++it)
     {
-        PAHPacket->AddItem(HistoryList.at(i));
+        PAHPacket->AddItem(*it);
     }
-    
+
     PTCPRequest->SendToSocket(PAHPacket->GetData(), PAHPacket->GetSize());
 
-    delete PAuctionHouse;
+    delete PDataLoader;
     delete PAHPacket;
     return;
 }
