@@ -3,13 +3,8 @@
 --  NPC: Svana
 --  Type: Weather Checker
 --  @zone: 235
---  @pos: -193.997 0.999 -139.086
---
---  Auto-Script: Requires Verification - Verified standard dialog 12/8/2011 
+--  @pos: -193.997 0.999 -139.086 
 -----------------------------------
-
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,SVANA_DIALOG);
+	player:startEvent(0x0004);
 end;
 
 -----------------------------------

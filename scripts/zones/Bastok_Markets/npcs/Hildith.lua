@@ -4,12 +4,7 @@
 --  Type: Room Renters
 -- @zone: 235
 --  @pos: -176.664 -9 25.158
---
--- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------
-
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, HILDITH_DIALOG);
+	player:startEvent(0x01E8);
 end;
 
 -----------------------------------

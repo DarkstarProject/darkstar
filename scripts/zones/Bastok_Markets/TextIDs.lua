@@ -6,7 +6,7 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
              ITEM_OBTAINED = 6378; -- Obtained: <item>
               GIL_OBTAINED = 6379; -- Obtained <number> gil
           KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
-		    ITEMS_OBTAINED = 6384; -- You obtain <X:number> <Item_Name_plural>!
+		    ITEMS_OBTAINED = 6384; -- You obtain <number> <item>!
 			 HOMEPOINT_SET = 6424; -- Home point set!
 
                   CONQUEST = 7503; -- You've earned conquest points!
@@ -47,18 +47,10 @@ CHARGINGCHOKOBO_SHOP_DIALOG = 7408; -- Hello. What piece of armor are you missin
   SOMNPAEMN_OPEN_DIALOG = 7418; -- Welcome! I have goods straight from Sarutabaruta! What say you?
 SOMNPAEMN_CLOSED_DIALOG = 7297; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Sarutabaruta, but it's not easy getting stuff out of areas that aren't under Bastokan control.
 
-
 -- Missions Dialogs
-
 	 RANK_POINTS_DIALOG = 7546; -- You do not need to donate any more crystals at your current rank. Speak to the guard at the gatehouse for further instructions.
 ORIGINAL_MISSION_OFFSET = 6439; -- You can consult the “Mission” section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
   ZILART_MISSION_OFFSET = 7864; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
-  
--- Weather Dialogs
-           SVANA_DIALOG = 6680; -- Your fate rides on the changing winds of Vana'diel. I can give you insight on the local weather.
 		   
 -- Standard NPC Dialogs
-		 HILDITH_DIALOG = 6495; -- The residential area is up ahead. You will find your Mog House there.
-        GULLDAGO_DIALOG = 12109; -- Go talk to the guard Rabid Wolf over yonder and have him cast “Signet” on you. Then come back and see me.
    ITEM_DELIVERY_DIALOG = 7388; -- Need something sent to a friend's house? Sending items to your own room? You've come to the right place!
-		  ELLARD_DIALOG = 6901; -- Ah, welcome, young ≺Multiple Choice (Player Gender)≻[man/lady], to the Goldsmiths' Guild. This is a special association for those who work with silver, gold, gems, and all precious materials.

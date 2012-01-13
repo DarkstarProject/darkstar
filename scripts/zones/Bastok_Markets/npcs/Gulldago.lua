@@ -4,12 +4,7 @@
 --  Type: Tutorial NPC
 -- @zone: 235
 --  @pos: -364.121 -11.034 -167.456
---
--- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------
-
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,GULLDAGO_DIALOG);
+	player:startEvent(0x0217);
 end;
 
 -----------------------------------
