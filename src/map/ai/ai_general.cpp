@@ -159,7 +159,7 @@ void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 			}
 		}
 			break;
-		case ACTION_CHANGE_BATTLE_TARGET:
+		case ACTION_CHANGE_TARGET:
 		{
 			if (m_ActionType == ACTION_ATTACK)
 			{

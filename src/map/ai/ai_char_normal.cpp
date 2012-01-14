@@ -92,7 +92,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 		case ACTION_ITEM_USING:				ActionItemUsing();			break;
 		case ACTION_ITEM_FINISH:			ActionItemFinish();			break;
 		case ACTION_ITEM_INTERRUPT:			ActionItemInterrupt();		break;
-		case ACTION_CHANGE_BATTLE_TARGET:	ActionChangeBattleTarget(); break;
+		case ACTION_CHANGE_TARGET:	        ActionChangeBattleTarget(); break;
 		case ACTION_WEAPONSKILL_START:		ActionWeaponSkillStart();	break; 
 		case ACTION_WEAPONSKILL_FINISH:		ActionWeaponSkillFinish();	break; 
 		case ACTION_JOBABILITY_START:		ActionJobAbilityStart();	break;
@@ -265,7 +265,8 @@ void CAICharNormal::ActionEngage()
 
 void CAICharNormal::ActionChangeBattleTarget()
 {
-	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
+    DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
 	if (m_PBattleTarget->targid != m_ActionTargetID)
 	{
@@ -273,22 +274,23 @@ void CAICharNormal::ActionChangeBattleTarget()
 
 		if (GetValidTarget(&PBattleTarget, TARGET_ENEMY))
 		{
-			if (IsMobOwner(m_PBattleTarget))
+			if (IsMobOwner(PBattleTarget))
 			{
 				if (distance(m_PChar->loc.p, PBattleTarget->loc.p) <= 30)
 				{
 					m_LastActionTime = m_Tick;
 					m_PBattleTarget = PBattleTarget;
 						
-					m_PChar->pushPacket(new CLockOnPacket(m_PChar,PBattleTarget));
+					m_PChar->pushPacket(new CLockOnPacket(m_PChar,m_PBattleTarget));
 				}else{
-					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,PBattleTarget,0,0,78));
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
 				}
 			}else{
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,12));
 			}
 		}
 	}
+    m_ActionTargetID = 0;
 	m_ActionType = ACTION_ATTACK;
 }
 

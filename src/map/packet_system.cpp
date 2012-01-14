@@ -566,7 +566,7 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 		break;
 		case 0x0F: // смена цели во время боя
 		{
-			PChar->PBattleAI->SetCurrentAction(ACTION_CHANGE_BATTLE_TARGET, TargID);
+			PChar->PBattleAI->SetCurrentAction(ACTION_CHANGE_TARGET, TargID);
 			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
