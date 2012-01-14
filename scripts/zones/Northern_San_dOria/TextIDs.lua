@@ -17,6 +17,9 @@ MISSION_SMASH_THE_ORCISH_SCOUTS = 16; -- Bring me one of those axes, and your mi
 
 CONQUEST = 11508; -- You've earned conquest points!
 
+-- Quest Dialog
+ SHIVA_UNLOCKED = 12601; -- You are now able to summon Shiva
+
 -- Quest Items
 SCROLL_OF_TELEPORT_HOLLA = 4730; -- Reward of the quest "Healing the Land"
   SCROLL_OF_TELEPORT_DEM = 4731; -- Reward of the quest "Altana's Sorrow"
@@ -24,6 +27,7 @@ SCROLL_OF_TELEPORT_HOLLA = 4730; -- Reward of the quest "Healing the Land"
 SCROLL_OF_TELEPORT_VAHZL = 4747; -- Reward of the quest "Sorcery of the North"
 			  WYVERN_EGG = 1159; -- 
       CASTLE_FLOOR_PLANS =  530; -- 
+ MINI_TUNING_FORK_OF_ICE = 1545; -- quest "Trial Size Trial by Ice"
 
 	    MagicmartFlyer = 532; -- item: Magicmart_flyer
          FLYER_REFUSED = 11323; -- Your flyer is refused.

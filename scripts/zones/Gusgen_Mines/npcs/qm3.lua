@@ -2,8 +2,8 @@
 -- Area: Gusgen Mines
 -- NPC:  qm3 (???)
 -- Involved In Quest: Healing the Land
--- @zone: 196
--- @pos: -168 1 311
+-- @zone 196
+-- @pos -168 1 311
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
