@@ -1685,10 +1685,8 @@ int32 SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	// TODO: не совсем корректно вычислять TargID на основании ID для персонажей
+    CCharEntity* PInviter = zoneutils::GetCharFromRegion(PChar->InvitePending, conquest::GetCurrentRegion(PChar->getZone()));
 
-	CCharEntity* PInviter = (CCharEntity*)zoneutils::GetZone(PChar->getZone())->GetEntity(PChar->InvitePending & 0x0FFF, TYPE_PC); 
-	
 	if (PInviter != NULL) 
 	{
 		uint8 InviteAnswer = RBUFB(data,(0x04));
