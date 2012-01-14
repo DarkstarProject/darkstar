@@ -29,6 +29,7 @@
 
 #include "lua/luautils.h"
 
+#include "conquest_system.h"
 #include "map.h"
 #include "mobentity.h"
 #include "npcentity.h"
@@ -87,6 +88,28 @@ CBaseEntity* GetEntity(uint32 ID, uint8 filter)
 }
 
 /************************************************************************
+*                                                                       *
+*  Получаем указатель на любую сущность по ID                           *
+*                                                                       *
+************************************************************************/
+
+CCharEntity* GetCharFromRegion(uint32 ID, uint8 RegionID)
+{
+    CCharEntity* PChar = NULL;
+
+    for(int32 ZoneID = 0; ZoneID < 256; ZoneID++)
+	{
+        if (g_PZoneList[ZoneID]->GetRegionID() == RegionID)
+        {
+            PChar = (CCharEntity*)g_PZoneList[ZoneID]->GetEntity((uint16)ID & 0x0FFF, TYPE_PC); 
+            
+            if (PChar != NULL) break;
+        }
+    }
+    return PChar;
+}
+
+/************************************************************************
 *																		*
 *  Инициализация зон. Возрождаем всех монстров при старте сервера.		*
 *																		*
@@ -98,7 +121,7 @@ void LoadZoneList()
 
 	for(int32 ZoneID = 0; ZoneID < 256; ZoneID++)
 	{
-		CZone* PZone = new CZone(ZoneID);
+        CZone* PZone = new CZone(ZoneID, conquest::GetCurrentRegion(ZoneID));
 
 		// загружаем NPCs из базы и добавляем их в зону
 

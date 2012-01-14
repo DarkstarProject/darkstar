@@ -95,11 +95,12 @@ int32 zone_server_region(uint32 tick, CTaskMgr::CTask* PTask)
 *																		*
 ************************************************************************/
 
-CZone::CZone(uint8 zoneID)
+CZone::CZone(uint8 ZoneID, uint8 RegionID)
 {
 	ZoneTimer = NULL;
 
-	m_zoneID = zoneID;
+	m_zoneID = ZoneID;
+    m_regionID = RegionID;
     m_Transport = 0;
 	m_TreasurePool = 0;
 	m_RegionCheckTime = 0;
@@ -151,6 +152,11 @@ CZone::~CZone()
 uint8 CZone::GetID()
 {
 	return m_zoneID;
+}
+
+uint8 CZone::GetRegionID()
+{
+    return m_regionID;
 }
 
 uint32 CZone::GetIP()

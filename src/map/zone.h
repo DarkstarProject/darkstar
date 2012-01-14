@@ -100,6 +100,7 @@ class CZone
 public:
 
 	uint8			GetID();
+    uint8           GetRegionID();
 	uint32			GetIP();
 	uint16			GetPort();
 	uint16			GetTax();
@@ -142,12 +143,13 @@ public:
 	void			ZoneServer(uint32 tick);
 	void			ZoneServerRegion(uint32 tick);
 
-	CZone(uint8 zoneID);
+	CZone(uint8 ZoneID, uint8 RegionID);
    ~CZone();
 
 private:
 
 	uint8			m_zoneID;				// ID зоны
+    uint8           m_regionID;             // id области
 	string_t		m_zoneName;				// имя зоны
 	uint16			m_zonePort;				// порт зоны
 	uint32			m_zoneIP;				// IP зоны

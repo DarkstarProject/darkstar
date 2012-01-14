@@ -35,6 +35,7 @@
 ************************************************************************/
 
 class CBaseEntity;
+class CCharEntity;
 class CNpcEntity;
 
 namespace zoneutils
@@ -46,7 +47,8 @@ namespace zoneutils
 
 	CZone*		 GetZone(uint8 ZoneID);							// получаем указатель на зону
 	CNpcEntity*	 GetTrigger(uint16 TargID, uint8 ZoneID);		// триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
-    CBaseEntity* GetEntity(uint32 ID, uint8 filter = -1);       // получаем указатель на любую сущность			
+    CBaseEntity* GetEntity(uint32 ID, uint8 filter = -1);       // получаем указатель на любую сущность	
+    CCharEntity* GetCharFromRegion(uint32 ID, uint8 RegionID);  // получаем указатель на персонажа в указанном регионе
 };
 
 #endif
