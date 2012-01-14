@@ -29,20 +29,39 @@
 #include <list>
 #include <vector>
 
-typedef struct  
+struct ahItem 
 {
     uint16 ItemID;
     uint32 SinglAmount;
     uint32 StackAmount;
-} ahItem;
+};
 
-typedef struct
+struct ahHistory
 {
     uint32 Price;
     uint32 Data;
     uint8  Name1[15];
     uint8  Name2[15];
-} ahHistory;
+};
+
+struct SearchEntity
+{
+    uint8  name[16];
+    uint32 id;
+	uint8  mjob;
+	uint8  mlvl;
+	uint8  sjob;
+	uint8  slvl;
+	uint8  nation;
+	uint8  rank;
+	uint8  race;
+	uint8  zone;
+	uint16 flags1;
+	uint32 flags2;
+	uint32 comment;
+	uint8  linkshell;
+	uint16 languages;
+};
 
 /************************************************************************
 *                                                                       *
@@ -57,8 +76,10 @@ public:
 	CDataLoader();
    ~CDataLoader();
 
-    std::list<ahHistory*> GetAHItemHystory(uint16 ItemID, bool stack);
-	std::vector<ahItem*>  GetAHItemsToCategry(uint8 AHCategoryID);
+    std::list<ahHistory*>    GetAHItemHystory(uint16 ItemID, bool stack);
+    std::list<SearchEntity*> GetPartyList(uint32 PartyID);
+    std::list<SearchEntity*> GetPlayersList();
+	std::vector<ahItem*>     GetAHItemsToCategry(uint8 AHCategoryID);
 
 private:
 };

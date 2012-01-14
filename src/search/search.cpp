@@ -55,27 +55,6 @@ struct SearchCommInfo
 
 const int8* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
 
-enum SEARCHTYPE
-{
-	SEARCH_NAME			 = 0x00,	// 00000 
-	SEARCH_AREA			 = 0x01,	// 00001
-	SEARCH_NATIONALITY	 = 0x02,	// 00010
-	SEARCH_JOB			 = 0x03,	// 00011
-	SEARCH_LEVEL		 = 0x04,	// 00100
-	SEARCH_RACE			 = 0x05,	// 00101
-	SEARCH_FLAGS1		 = 0x06,	// 00110
-	SEARCH_UNKNOWN0x08	 = 0x08,	// 01000
-	SEARCH_PARTY		 = 0x0A,	// 01010
-	SEARCH_LINKSHELL	 = 0x0B,	// 01011
-	SEARCH_FRIEND		 = 0x0C,	// 01100
-	SEARCH_LINKSHELLRANK = 0x0D,	// 01101
-	SEARCH_UNKNOWN0x0E	 = 0x0E,	// 01110
-	SEARCH_RANK			 = 0x10,	// 10000
-	SEARCH_COMMENT		 = 0x11,	// 10001
-	SEARCH_FLAGS2		 = 0x14,	// 10100
-	SEARCH_LANGUAGE		 = 0x15,	// 10101
-};
-
 ppuint32 __stdcall TCPComm(void* lpParam);
 
 extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
@@ -417,20 +396,21 @@ void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
 ************************************************************************/
 
 void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
-{
-    uint8 packet[] = 
+{                        
+    CSearchListPacket* PSearchPacket = new CSearchListPacket();
+
+    CDataLoader* PDataLoader = new CDataLoader();
+    std::list<SearchEntity*> SearchList = PDataLoader->GetPlayersList();
+
+    for (std::list<SearchEntity*>::iterator it = SearchList.begin(); it != SearchList.end(); ++it)
     {
-        0x8C, 0x00, 0x00, 0x00, 0x49, 0x58, 0x46, 0x46, 0x97, 0x8B, 0xCD, 0xFC, 0xEC, 0x89, 0xDA, 0xAF, 
-        0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 0x32, 0x27, 0xA9, 0x9C, 0x97, 0x0F, 0x55, 0x42, 
-        0x03, 0xC9, 0x99, 0x2F, 0x62, 0x50, 0xB8, 0x09, 0xA6, 0xDF, 0x5B, 0xD8, 0x60, 0xE0, 0x16, 0x91, 
-        0xD9, 0x64, 0xFD, 0x4E, 0x97, 0xBC, 0xFD, 0x39, 0x20, 0x2A, 0x01, 0x4E, 0xD0, 0x35, 0x9E, 0x7C, 
-        0x7E, 0xA7, 0x25, 0x7D, 0x31, 0x5D, 0xBD, 0x60, 0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 
-        0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 
-        0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 
-        0xB8, 0xBF, 0x2A, 0xC3, 0x4B, 0x5E, 0x2E, 0xAF, 0x3D, 0x83, 0xD6, 0x51, 0x78, 0x9F, 0x82, 0x67, 
-        0xDB, 0xE7, 0x37, 0x0E, 0x33, 0x91, 0x97, 0xCE, 0x5A, 0x7C, 0xB7, 0x75
-    };
-    PTCPRequest->SendRawToSocket(packet, 140);
+        PSearchPacket->AddPlayer(*it);
+    }
+
+    PrintPacket((int8*)PSearchPacket->GetData(), PSearchPacket->GetSize());
+    PTCPRequest->SendToSocket(PSearchPacket->GetData(), PSearchPacket->GetSize());
+
+    delete PSearchPacket;
 }
 
 /************************************************************************
@@ -492,7 +472,6 @@ void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
 
     delete PDataLoader;
     delete PAHPacket;
-    return;
 }
 
 /************************************************************************
@@ -593,7 +572,7 @@ void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 				}
 				break;
 			}
-			case SEARCH_NATIONALITY: //Country - 2 bit
+			case SEARCH_NATION: //Country - 2 bit
 			{
 				if (isPresent==0x1)
 				{

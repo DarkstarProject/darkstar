@@ -204,6 +204,7 @@ int32 do_init(int32 argc, int8** argv)
 void do_final(void)
 {
 	aFree(g_PBuff);
+    aFree(PTempBuff);
 
 	aFree((void*)map_config.mysql_host);
 	aFree((void*)map_config.mysql_login);
@@ -333,7 +334,6 @@ int32 do_sockets(int32 next)
 			}
 		}
 	}
-
 	return 0;
 }
 
@@ -544,7 +544,6 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 
 		delete PSmallPacket;
 	}
-
 	return 0;
 }
 

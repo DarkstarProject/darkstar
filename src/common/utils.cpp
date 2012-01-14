@@ -251,12 +251,12 @@ uint64 unpackBitsBE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 leng
 	return retVal;
 }
 
-void packBitsLE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit)
+uint32 packBitsLE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit)
 {
-	packBitsLE(target, value, 0, bitOffset, lengthInBit);
+	return packBitsLE(target, value, 0, bitOffset, lengthInBit);
 }
 
-void packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
+uint32 packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
 {
 	byteOffset += (bitOffset >> 3);													//correct bitOffsets >= 8
 	bitOffset  %= 8;
@@ -273,7 +273,7 @@ void packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, 
 	else
 	{
 		ShowError("Pack Bits Error: packBitsLE(...) not implemented for targetsizes above 64 bits.\n Targetsize: %d\n",(lengthInBit+bitOffset));
-		return;
+		return 0;
 	}
 
 	uint8* modifiedTarget = new uint8[bytesNeeded];									//convert byteOrder to Big Endian
@@ -293,6 +293,7 @@ void packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, 
 	}
 
 	if (modifiedTarget) delete[] modifiedTarget;
+    return ((byteOffset << 3) + bitOffset + lengthInBit);
 }
 
 uint64 unpackBitsLE(uint8* target, int32 bitOffset, uint8 lengthInBit)

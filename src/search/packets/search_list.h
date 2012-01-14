@@ -21,27 +21,48 @@
 ===========================================================================
 */
 
-#ifndef _CSEARCHRESPONCEPACKET_H
-#define _CSEARCHRESPONCEPACKET_H
+#ifndef _CSEARCHLISTPACKET_H_
+#define _CSEARCHLISTPACKET_H_
 
 #include "../../common/cbasetypes.h"
 
-struct SearchEntity
+enum SEARCHTYPE
 {
-	uint8	name[16];
-	uint8	mainjob;
-	uint8	mainlevel;
-	uint8	subjob;
-	uint8	sublevel;
-	uint8	country;
-	uint8	rank;
-	uint8	race;
-	uint8	zone;
-	uint16	flags1;
-	uint32	flags2;
-	uint32	comment;
-	uint8	linkshellRank;
-	uint16	languages;
+	SEARCH_NAME          = 0x00,    // 00000 
+	SEARCH_AREA          = 0x01,    // 00001
+	SEARCH_NATION        = 0x02,    // 00010
+	SEARCH_JOB           = 0x03,    // 00011
+	SEARCH_LEVEL         = 0x04,    // 00100
+	SEARCH_RACE          = 0x05,    // 00101
+	SEARCH_FLAGS1        = 0x06,    // 00110
+	SEARCH_ID            = 0x08,    // 01000
+	SEARCH_PARTY         = 0x0A,    // 01010
+	SEARCH_LINKSHELL     = 0x0B,    // 01011
+	SEARCH_FRIEND        = 0x0C,    // 01100
+	SEARCH_LINKSHELLRANK = 0x0D,    // 01101
+	SEARCH_UNK0x0E       = 0x0E,    // 01110
+	SEARCH_RANK          = 0x10,    // 10000
+	SEARCH_COMMENT       = 0x11,    // 10001
+	SEARCH_FLAGS2        = 0x14,    // 10100
+	SEARCH_LANGUAGE      = 0x15,    // 10101
+};
+
+class CSearchListPacket
+{
+public:
+
+    CSearchListPacket();
+    
+    void AddPlayer(SearchEntity* PPlayer);
+
+    uint8* GetData();
+    uint16 GetSize();
+
+private:
+
+    uint8  m_count;
+    uint32 m_offset;
+    uint8  m_data[1024];
 };
 
 #endif

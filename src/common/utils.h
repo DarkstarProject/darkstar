@@ -46,8 +46,8 @@ uint32 packBitsBE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBi
 uint64 unpackBitsBE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
 uint64 unpackBitsBE(uint8* target, int32 bitOffset, uint8 lengthInBit);
 	//(un)pack functions for Little Endian(LE) targets
-void packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
-void packBitsLE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit);
+uint32 packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
+uint32 packBitsLE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit);
 uint64 unpackBitsLE(uint8* target,int32 bitOffset, uint8 lengthInBit);
 uint64 unpackBitsLE(uint8* target,int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
 
