@@ -353,3 +353,7 @@ function toExplorerMoogle(player,zone)
 	
 end;
 
+function toCloisterOfFrost(player)
+	player:setPos(554, 0, 589, 209, 203); -- Cloister of Frost (shiva)
+end;
+
