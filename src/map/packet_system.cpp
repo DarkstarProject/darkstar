@@ -835,7 +835,6 @@ int32 SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, int8* da
 			}
 		}
 	}
-
 	return 0;
 }
 
@@ -1999,9 +1998,7 @@ int32 SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* da
 				PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 181));
 				return 0;
 			}
-            CBasicPacket* PPacket = new CChatMessagePacket(PChar, MESSAGE_TELL, data+20);
-            PrintPacket((int8*)PPacket);
-			//PTellRecipient->pushPacket(new CChatMessagePacket(PChar, MESSAGE_TELL, data+20));
+			PTellRecipient->pushPacket(new CChatMessagePacket(PChar, MESSAGE_TELL, data+20));
 			return 0;
 		}
 	}
@@ -2223,6 +2220,51 @@ int32 SmallPacket0x0E0(map_session_data_t* session, CCharEntity* PChar, int8* da
 	PChar->search.message.insert(0,data+4);
 
 	PChar->search.messagetype = RBUFB(data,(0xA4));
+
+    // в ответ на этот пакет не нужно посылать что-либо клиенту
+	// эта информация используется лишь при поиске персонажа
+					
+	//                s   a   l   u   t
+	//e0  4c  c2  00  73  61  6c  75  74  20  20  20  20  20  20  20 
+	//20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20 
+	//20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20 
+	//20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20 
+	//20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20 
+	//20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20 
+	//20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20 
+	//20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  00 
+	//00  00  00  00  2f  15  4c  4b  57  49  4e  08  3f  00  00  00 
+	//ff  00  00  00  11  00  00  00 
+
+	// сообщение максимум 120, 3 строки по 40 символов, идущие подряд, начиная с 5-го байта
+	// тип сообщения - 4й байт с конца
+
+	//EXP party
+	    //0x11 - seek party
+		//0x12 - find member
+		//0x13 - other
+	//Mission
+		//0x21 - seek party
+		//0x22 - find member
+		//0x23 - other
+	//Quest
+		//0x31 - seek party
+		//0x32 - find member
+		//0x33 - other
+	//Battlefield
+		//0x41 - seek party
+		//0x42 - find member
+		//0x43 - other
+	//Item
+		//0x51 - Want to Sell
+		//0x52 - Want to Buy
+		//0x53 - Other
+	//Synthesis
+		//0x61 - Need Made
+		//0x62 - Can Make
+		//0x63 - Other
+    //Others
+		//0x73 - others
 	return 0;
 }
 
