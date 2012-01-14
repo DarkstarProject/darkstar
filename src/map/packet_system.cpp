@@ -34,7 +34,7 @@
 #include <string.h>
 
 #include "packet_system.h"
-
+#include "conquest_system.h"
 #include "battleutils.h"
 #include "charutils.h"
 #include "fishingutils.h"
@@ -1591,10 +1591,9 @@ int32 SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* da
 	if (PChar->id == CharID)
 		return 0;
 
-	CCharEntity* PInvitee = (CCharEntity*)zoneutils::GetZone(PChar->getZone())->GetEntity(TargID, TYPE_PC);
+    CCharEntity* PInvitee = zoneutils::GetCharFromRegion(CharID, conquest::GetCurrentRegion(PChar->getZone()));
 
-	if (PInvitee != NULL &&
-		PInvitee->id == CharID )
+	if (PInvitee != NULL)
 	{
 		if (PInvitee->PParty != NULL)
 		{
@@ -2088,6 +2087,7 @@ int32 SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, int8* da
 			//if(RBUFB(data,(0x10)) == 2)	// autogroup off
 			break;
 	}
+    charutils::SaveCharStats(PChar);
 
 	PChar->status = STATUS_UPDATE;
 	PChar->pushPacket(new CMenuConfigPacket(PChar));

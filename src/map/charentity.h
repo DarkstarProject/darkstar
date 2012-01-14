@@ -53,30 +53,7 @@ enum QUESTAREA
 	QUESTS_ABYSSEA		= 8
 };
 
-#define MAX_QUESTAREA	  9
-
-// флаги перед именем персонажа
-
-#define FLAG_INEVENT		0x00000002 // флаг под вопросом
-#define FLAG_CHOCOBO		0x00000040
-#define FLAG_WALLHACK       0x00000200
-#define FLAG_INVITE			0x00000800
-#define FLAG_ANON			0x00001000
-#define FLAG_UNKNOWN		0x00002000
-#define FLAG_AWAY			0x00004000
-#define FLAG_PLAYONLINE		0x00010000
-#define FLAG_LINKSHELL      0x00020000
-#define FLAG_DC				0x00040000
-#define FLAG_GM				0x04000000
-#define FLAG_GM_SUPPORT		0x04000000
-#define FLAG_GM_SENIOR		0x05000000
-#define FLAG_GM_LEAD		0x06000000
-#define FLAG_GM_PRODUCER	0x07000000
-#define FLAG_BAZAAR         0x80000000
-
-//#define FLAG_AUTOGROUP		
-//#define FLAG_NEWPLAYER		
-//#define FLAG_MENTOR         
+#define MAX_QUESTAREA	  9         
 
 struct jobs_t 
 {

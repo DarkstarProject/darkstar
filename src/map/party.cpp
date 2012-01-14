@@ -294,8 +294,11 @@ void CParty::AddMember(CBattleEntity* PEntity)
 
 	    if (PChar->nameflags.flags & FLAG_INVITE) 				
 	    {
+            PChar->nameflags.flags ^= FLAG_INVITE;
+
+            charutils::SaveCharStats(PChar);
+
 		    PChar->status = STATUS_UPDATE;
-		    PChar->nameflags.flags ^= FLAG_INVITE;
 		    PChar->pushPacket(new CMenuConfigPacket(PChar));
 		    PChar->pushPacket(new CCharUpdatePacket(PChar));
 		    PChar->pushPacket(new CCharSyncPacket(PChar));

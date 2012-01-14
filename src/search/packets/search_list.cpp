@@ -72,26 +72,25 @@ void CSearchListPacket::AddPlayer(SearchEntity* PPlayer)
 	m_offset = packBitsLE(m_data, SEARCH_AREA,   m_offset, 5);
     m_offset = packBitsLE(m_data, PPlayer->zone, m_offset, 8);
 
-    //not anonymous
-
-    m_offset = packBitsLE(m_data, SEARCH_NATION,   m_offset, 5);
-    m_offset = packBitsLE(m_data, PPlayer->nation, m_offset, 2);
+    if (!(PPlayer->flags1 & 0x4000))
+    {
+        m_offset = packBitsLE(m_data, SEARCH_NATION,   m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->nation, m_offset, 2);
 	
-    m_offset = packBitsLE(m_data, SEARCH_JOB,      m_offset, 5);
-    m_offset = packBitsLE(m_data, PPlayer->mjob,   m_offset, 5);
-    m_offset = packBitsLE(m_data, PPlayer->sjob,   m_offset, 5);
+        m_offset = packBitsLE(m_data, SEARCH_JOB,      m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->mjob,   m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->sjob,   m_offset, 5);
 
-    m_offset = packBitsLE(m_data, SEARCH_LEVEL,    m_offset, 5);
-    m_offset = packBitsLE(m_data, PPlayer->mlvl,   m_offset, 8);
-    m_offset = packBitsLE(m_data, PPlayer->slvl,   m_offset, 8);
+        m_offset = packBitsLE(m_data, SEARCH_LEVEL,    m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->mlvl,   m_offset, 8);
+        m_offset = packBitsLE(m_data, PPlayer->slvl,   m_offset, 8);
 
-    m_offset = packBitsLE(m_data, SEARCH_RACE,     m_offset, 5);
-    m_offset = packBitsLE(m_data, PPlayer->race,   m_offset, 4);
+        m_offset = packBitsLE(m_data, SEARCH_RACE,     m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->race,   m_offset, 4);
 
-    m_offset = packBitsLE(m_data, SEARCH_RANK,     m_offset, 5);
-    m_offset = packBitsLE(m_data, PPlayer->rank,   m_offset, 8);
-
-    //--------------
+        m_offset = packBitsLE(m_data, SEARCH_RANK,     m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->rank,   m_offset, 8);
+    }
 
     m_offset = packBitsLE(m_data, SEARCH_FLAGS1,   m_offset, 5);
     m_offset = packBitsLE(m_data, PPlayer->flags1, m_offset,16);

@@ -21,6 +21,7 @@
 ===========================================================================
 */
 
+#include "../common/mmo.h"
 #include "../common/showmsg.h"
 #include "../common/sql.h"
 
@@ -165,6 +166,18 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList()
             PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->sjob);
             PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
             PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
+
+            uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);
+            uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
+
+            if (partyid == PPlayer->id) PPlayer->flags1 |= 0x0008;
+            if (nameflag & FLAG_AWAY)   PPlayer->flags1 |= 0x0100;
+            if (nameflag & FLAG_DC)     PPlayer->flags1 |= 0x0800;
+            if (partyid != 0)           PPlayer->flags1 |= 0x2000;
+            if (nameflag & FLAG_ANON)   PPlayer->flags1 |= 0x4000;
+            if (nameflag & FLAG_INVITE) PPlayer->flags1 |= 0x8000;
+
+            PPlayer->flags2 = PPlayer->flags1;
 
             PlayersList.push_back(PPlayer);
         }
