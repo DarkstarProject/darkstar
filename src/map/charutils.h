@@ -48,8 +48,8 @@ namespace charutils
 	uint32	GetExpNEXTLevel(uint8 charlvl);
 	uint32	GetRealExp(uint8 charlvl, uint8 moblvl);
 
-	void	AddExperiencePoints(CCharEntity* PChar, uint16 exp);
-	void	DelExperiencePoints(CCharEntity* PChar, uint16 exp);
+	void	AddExperiencePoints(CCharEntity* PChar, uint32 exp);
+	void	DelExperiencePoints(CCharEntity* PChar, uint32 exp);
 	uint32	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
 
 	void	TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl);

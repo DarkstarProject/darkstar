@@ -1815,118 +1815,153 @@ uint32 GetExpNEXTLevel(uint8 charlvl)
 
 /************************************************************************
 *																		*
-*  Распределяем очки опыта												*
-*  Наверное все же стоит разделить получение опыта на 2 функции:		*
-*  распределение и добавление опыта										*
+*  Распределяем очки опыта между всеми членами группы                   *
 *																		*
 *  Signet																*
-*  25% bonus for parties of 2 players									*
+*  25%   bonus for parties of 2 players									*
 *  22.2% bonus for parties of 3 players									*
 *  12.5% bonus for parties of 4 players									*
-*  5.4% bonus for parties of 5 players									*
+*  5.4%  bonus for parties of 5 players									*
 *																		*
 ************************************************************************/
 
 uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 {
-
-	uint8 lvl = PChar->GetMLevel(); 
+	uint8 lvl = PChar->GetMLevel();
 
 	if (PChar->PParty != NULL) 
 	{
-		for (int i = 0; i < PChar->PParty->members.size(); i++)
+		for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
 		{
-			if (PChar->PParty->members[i]->GetMLevel() > lvl) 
+            if (PChar->PParty->members[i]->GetMLevel() > lvl &&
+                PChar->PParty->members[i]->getZone() == PMob->getZone())
 			{
 				lvl = PChar->PParty->members[i]->GetMLevel();
 			}
 		}
 	}
 
-	uint32 exp = GetRealExp(lvl,PMob->GetMLevel());
+	uint32 exp = GetRealExp(lvl, PMob->GetMLevel());
 
 	if (exp != 0)
 	{
-		if (PChar->getZone() != PMob->getZone())
-		{
-			return 0;
-		}
+        if (PChar->PParty != NULL)
+        {
+            for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
+		    {
+                CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
 
-		if (distance(PChar->loc.p, PMob->loc.p) > 100)
-		{
-			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,37));
-			return 0;
-		}
-
-		if (PChar->GetMLevel() <= 50) 
-		{
-			if (exp > 200) 
-			{
-				exp = exp;
-			}
-		} 
-		else if (PChar->GetMLevel() <= 60) 
-		{
-			if (exp > 250) 
-			{
-				exp = exp;
-			}
-		} 
-		else if (exp > 300) 
-		{
-			exp = exp;
-		}
-
-		exp = (exp * g_expRate);
-
-		PChar->pushPacket(new CMessageDebugPacket(PChar, PMob, exp, 0, 8));
-
-		PChar->jobs.exp[PChar->GetMJob()] += exp;
-
-		if (PChar->jobs.exp[PChar->GetMJob()] >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]))
-		{
-			if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai)
-			{
-				PChar->jobs.exp[PChar->GetMJob()]  = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;	
-			} else {
-				PChar->jobs.exp[PChar->GetMJob()] -= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]);
-				PChar->jobs.job[PChar->GetMJob()] += 1;
-
-				if (PChar->m_LevelRestriction == 0 ||
-					PChar->m_LevelRestriction > PChar->GetMLevel())
-				{
-					PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
-					PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
-
-					CalculateStats(PChar);
-					BuildingCharSkillsTable(PChar);
-					BuildingCharAbilityTable(PChar);
-					BuildingCharTraitsTable(PChar);
-				}
-
-				PChar->health.hp = PChar->health.maxhp;
-				PChar->health.mp = PChar->health.maxmp;
-
-				CZone* PZone = zoneutils::GetZone(PChar->getZone());
-				PZone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar,PMob,PChar->jobs.job[PChar->GetMJob()],0,9));
-
-				SaveCharJobs(PChar);
-				SaveCharStats(PChar);
-				SaveCharExp(PChar, PChar->GetMJob());
-
-				PChar->pushPacket(new CCharJobsPacket(PChar));
-				PChar->pushPacket(new CCharUpdatePacket(PChar));
-				PZone->PushPacket(PChar,CHAR_INRANGE_SELF, new CCharHealthPacket(PChar));		
-				PChar->pushPacket(new CCharSkillsPacket(PChar));
-				PChar->pushPacket(new CCharAbilitiesPacket(PChar));
-				PChar->pushPacket(new CMenuMeritPacket(PChar));
-				PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
-				PChar->pushPacket(new CCharSyncPacket(PChar));
-			}
-		}
-		PChar->pushPacket(new CCharStatsPacket(PChar));
+                if(PMember->getZone() == PMob->getZone())
+                {
+                    if (distance(PMember->loc.p, PMob->loc.p) > 100)
+                    {
+                        PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,0,0,37));
+                        continue;
+                    }
+                    if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
+                    {
+                        PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
+                    }
+                    AddExperiencePoints(PMember, exp);
+                }
+            }
+        }
+        else
+        {
+            if (distance(PChar->loc.p, PMob->loc.p) > 100)
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,37));
+                return exp;
+            }
+            if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
+            {
+                PChar->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
+            }
+            AddExperiencePoints(PChar, exp);
+        }
 	}
 	return exp; 
+}
+
+/************************************************************************
+*                                                                       *
+*  Добавляем очки опытка указанному персонажу                           *
+*                                                                       *
+************************************************************************/
+
+void AddExperiencePoints(CCharEntity* PChar, uint32 exp)
+{
+    if (PChar->isDead()) return;
+
+    if (PChar->GetMLevel() <= 50) 
+    {
+        if (exp > 200) 
+        {
+            exp = exp;
+        }
+    } 
+    else if (PChar->GetMLevel() <= 60) 
+    {
+        if (exp > 250) 
+        {
+            exp = exp;
+        }
+    } 
+    else if (exp > 300) 
+    {
+        exp = exp;
+    }
+
+    exp = (exp * g_expRate);
+
+    PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
+
+    PChar->jobs.exp[PChar->GetMJob()] += exp;
+
+    if (PChar->jobs.exp[PChar->GetMJob()] >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]))
+    {
+        if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai)
+        {
+            PChar->jobs.exp[PChar->GetMJob()]  = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;	
+        } 
+        else 
+        {
+            PChar->jobs.exp[PChar->GetMJob()] -= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]);
+            PChar->jobs.job[PChar->GetMJob()] += 1;
+
+            if (PChar->m_LevelRestriction == 0 ||
+                PChar->m_LevelRestriction > PChar->GetMLevel())
+            {
+                PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
+                PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+
+                CalculateStats(PChar);
+                BuildingCharSkillsTable(PChar);
+                BuildingCharAbilityTable(PChar);
+                BuildingCharTraitsTable(PChar);
+            }
+
+            PChar->health.hp = PChar->health.maxhp;
+            PChar->health.mp = PChar->health.maxmp;
+
+            SaveCharJobs(PChar);
+            SaveCharStats(PChar);
+            SaveCharExp(PChar, PChar->GetMJob());
+
+            PChar->pushPacket(new CCharJobsPacket(PChar));
+            PChar->pushPacket(new CCharUpdatePacket(PChar));
+            PChar->pushPacket(new CCharSkillsPacket(PChar));
+            PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+            PChar->pushPacket(new CMenuMeritPacket(PChar));
+            PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
+            PChar->pushPacket(new CCharSyncPacket(PChar));
+
+            CZone* PZone = zoneutils::GetZone(PChar->getZone());
+            PZone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharHealthPacket(PChar));
+            PZone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 9));
+        }
+    }
+    PChar->pushPacket(new CCharStatsPacket(PChar));
 }
 
 /************************************************************************

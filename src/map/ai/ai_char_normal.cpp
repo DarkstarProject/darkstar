@@ -209,9 +209,10 @@ void CAICharNormal::ActionEngage()
     if (m_PChar->animation == ANIMATION_HEALING)
     {
         m_ActionTargetID = 0;
+        m_ActionType = ACTION_NONE;
         return;
     }
-	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY) && m_PChar->animation != ANIMATION_HEALING)
+	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY))
 	{
 		if(IsMobOwner(m_PBattleTarget))
 		{
@@ -319,11 +320,6 @@ void CAICharNormal::ActionDisengage()
 
 void CAICharNormal::ActionFall() 
 {
-	if (m_PSpell != NULL)
-	{
-		ActionMagicInterrupt();
-	}
-
 	m_ActionType = ACTION_DEATH;
 	m_ActionTargetID = 0;
 	m_LastActionTime = m_Tick;
@@ -363,7 +359,8 @@ void CAICharNormal::ActionDeath()
 
 void CAICharNormal::ActionItemStart() 
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
+    DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
+    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
 	DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetType() != UCONTAINER_USEITEM);
 	DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetItem(0) == NULL);
@@ -550,7 +547,7 @@ void CAICharNormal::ActionItemFinish()
 
 void CAICharNormal::ActionItemInterrupt()
 {
-	//DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
+	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
 
 	m_PItemUsable->setSubType(ITEM_UNLOCKED);
 
@@ -596,7 +593,8 @@ void CAICharNormal::ActionItemInterrupt()
 
 void CAICharNormal::ActionRangedStart()
 {
-	//DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0 || m_PBattleSubTarget != NULL); 
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
+    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
 	CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
 
@@ -1129,8 +1127,6 @@ void CAICharNormal::ActionMagicFinish()
 
 void CAICharNormal::ActionMagicInterrupt()
 {
-	//DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
-
 	apAction_t Action;
     m_PChar->m_ActionList.clear();
 
@@ -1305,116 +1301,63 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 void CAICharNormal::ActionWeaponSkillStart()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+    DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
+    DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
-	if (m_PBattleTarget->isDead())
-	{
-		m_ActionType = ACTION_DISENGAGE;
-		ActionDisengage();
-		return;
-	}
-	if (!IsMobOwner(m_PBattleTarget))
-	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
+    if (GetValidTarget(&m_PBattleSubTarget, TARGET_ENEMY))
+    {
+        if (!IsMobOwner(m_PBattleSubTarget))
+	    {
+		    m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 12));
 
-		m_ActionType = ACTION_DISENGAGE;
-		ActionDisengage();
-		return;
-	}
+
+            m_PWeaponSkill = NULL;
+            m_PBattleSubTarget = NULL;
+
+		    m_ActionType = ACTION_ATTACK;
+		    ActionAttack();
+		    return;
+	    }
 	
-	float Distance = distance(m_PChar->loc.p,m_PBattleTarget->loc.p);
+	    float Distance = distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p);
 
-	if (Distance > m_PWeaponSkill->getRange())
-	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,36));
+	    if (Distance > m_PWeaponSkill->getRange())
+	    {
+		    m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 36));
 
-		m_ActionType = ACTION_ATTACK;
-		ActionAttack();
-		return;
-	}
+            m_PWeaponSkill = NULL;
+            m_PBattleSubTarget = NULL;
+    
+		    m_ActionType = ACTION_ATTACK;
+		    ActionAttack();
+		    return;
+	    }
 
-	if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
-		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,5));
-			m_ActionType = ACTION_ATTACK;
-			ActionAttack();
-			return;
-		}
+	    if (!isFaceing(m_PChar->loc.p, m_PBattleSubTarget->loc.p, 40))
+	    {
+		    m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleTarget, 0, 0, 5));
+
+            m_PWeaponSkill = NULL;
+            m_PBattleSubTarget = NULL;
+
+		    m_ActionType = ACTION_ATTACK;
+		    ActionAttack();
+		    return;
+	    }
+
+        m_ActionType = ACTION_WEAPONSKILL_FINISH;
+        ActionWeaponSkillFinish();
+        return;
+    }
+    m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 446));
 	
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
-	
-	uint16 damage = luautils::OnUseWeaponSkill(m_PChar,m_PBattleTarget);
+    m_PWeaponSkill = NULL;
+    m_PBattleSubTarget = NULL;
 
-	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
-	{
-		m_PChar->health.tp -= 100;
-	}
-	else
-	{
-		m_PChar->health.tp = 8; 
-	}
-
-	m_LastActionTime = m_Tick; 
-
-	apAction_t Action;
-    m_PChar->m_ActionList.clear();
-
-	damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, m_PZone);
-
-	Action.ActionTarget = m_PBattleTarget;
-	Action.reaction   = REACTION_NONE;
-	Action.speceffect = SPECEFFECT_RECOIL;
-	Action.animation  = m_PWeaponSkill->getAnimationId();
-	Action.param	  = damage;
-	Action.messageID  = 185;
-	Action.flag		  = 0;
-
-	((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar,damage);
-
-	SUBEFFECT effect =  CAICharNormal::GetSkillChainEffect(m_PBattleTarget,m_PWeaponSkill);
-	if (effect != SUBEFFECT_NONE) 
-	{	
-		Action.subeffect = effect;
-		switch(effect)
-		{
-			case SUBEFFECT_DARKNESS:
-			case SUBEFFECT_FRAGMENTATION:
-			case SUBEFFECT_FUSION:
-			case SUBEFFECT_LIQUEFACATION:
-			case SUBEFFECT_REVERBERATION:
-			case SUBEFFECT_SCISSION:
-			case SUBEFFECT_IMPACTION:
-			{
-				Action.flag = 1;
-			}
-			break;
-		}
-		if (Action.flag == 0)
-		{
-			switch(effect)
-			{
-				case SUBEFFECT_LIGHT:
-				case SUBEFFECT_GRAVITATION:
-				case SUBEFFECT_DISTORTION:
-				case SUBEFFECT_COMPRESSION:
-				case SUBEFFECT_INDURATION:
-				case SUBEFFECT_TRANSFIXION:
-				case SUBEFFECT_DETONATION:
-				{
-					Action.flag = 3;
-				}
-				break;
-			};
-		}
-	}
-	
-	charutils::UpdateHealth(m_PChar);
-	m_PChar->m_ActionList.push_back(Action);
-	m_ActionType = ACTION_WEAPONSKILL_FINISH;
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_ActionType = ACTION_ATTACK;
+    ActionAttack();
 }
 
 /************************************************************************
@@ -1425,9 +1368,87 @@ void CAICharNormal::ActionWeaponSkillStart()
 
 void CAICharNormal::ActionWeaponSkillFinish()
 {
-	m_LastActionTime = m_Tick;
-	m_ActionTargetID = 0; 
+    DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+    m_LastActionTime = m_Tick;
+
+    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+	
+	uint16 damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget);
+
+	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+	{
+	    m_PChar->health.tp -= 100;
+    }
+	else
+	{
+	    m_PChar->health.tp = 8; 
+    }
+
+	m_LastActionTime = m_Tick; 
+
+	apAction_t Action;
+    m_PChar->m_ActionList.clear();
+
+	damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, m_PZone);
+
+	Action.ActionTarget = m_PBattleSubTarget;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_RECOIL;
+	Action.animation  = m_PWeaponSkill->getAnimationId();
+	Action.param	  = damage;
+	Action.messageID  = 185;
+	Action.flag		  = 0;
+
+	    //SUBEFFECT effect =  CAICharNormal::GetSkillChainEffect(m_PBattleSubTarget,m_PWeaponSkill);
+	    //if (effect != SUBEFFECT_NONE) 
+	    //{	
+		//    Action.subeffect = effect;
+		//    switch(effect)
+		//    {
+		//	    case SUBEFFECT_DARKNESS:
+		//	    case SUBEFFECT_FRAGMENTATION:
+		//	    case SUBEFFECT_FUSION:
+		//	    case SUBEFFECT_LIQUEFACATION:
+		//	    case SUBEFFECT_REVERBERATION:
+		//	    case SUBEFFECT_SCISSION:
+		//	    case SUBEFFECT_IMPACTION:
+		//	    {
+		//		    Action.flag = 1;
+		//	    }
+		//	    break;
+		//    }
+		//    if (Action.flag == 0)
+		//    {
+		//	    switch(effect)
+		//	    {
+		//		    case SUBEFFECT_LIGHT:
+		//		    case SUBEFFECT_GRAVITATION:
+		//		    case SUBEFFECT_DISTORTION:
+		//		    case SUBEFFECT_COMPRESSION:
+		//		    case SUBEFFECT_INDURATION:
+		//		    case SUBEFFECT_TRANSFIXION:
+		//		    case SUBEFFECT_DETONATION:
+		//		    {
+		//			    Action.flag = 3;
+		//		    }
+		//		    break;
+		//	    };
+		//    }
+	    //}
+	
+	charutils::UpdateHealth(m_PChar);
+
+	m_PChar->m_ActionList.push_back(Action);
+	
+	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	
 	m_PWeaponSkill = NULL;
+    m_PBattleSubTarget = NULL;
 	m_ActionType = ACTION_ATTACK; 
 }
 

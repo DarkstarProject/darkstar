@@ -210,44 +210,20 @@ void CAIMobDummy::ActionDropItems()
 			
 			if (m_PMob->m_CallForHelp == 0)
 			{
-                uint32 exp = 0;
+                uint32 exp = charutils::DistributeExperiencePoints(PChar, m_PMob);
 
-				if (PChar->PParty != NULL)
-				{
-					for (int i = 0; i < PChar->PParty->members.size(); i++)
-					{
-						CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
-						if (PMember->getZone() == PChar->getZone())
-						{
-							exp = charutils::DistributeExperiencePoints(PMember, m_PMob);
-							if (exp > 0 && PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET,0) && m_PMob->m_Element > 0 && rand()%100 < 19) // Need to move to SIGNET_CHANCE constant
-							{
-								PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
-							}		
-						}
-					}
-				}
-				else
-				{
-					exp = charutils::DistributeExperiencePoints(PChar, m_PMob);
-					if (exp > 0 && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET,0) && m_PMob->m_Element > 0 && rand()%100 < 19) // Need to move to SIGNET_CHANCE constant
-					{
-						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
-					}		
-				}
-			}
-
-			DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
+                DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
 		
-			if (DropList && DropList->size())
-			{
-				for(DropList_t::const_iterator it = DropList->begin(); it != DropList->end(); ++it)
-				{
-					if(rand()%100 < it->DropRate) 
-					{
-						PChar->PTreasurePool->AddItem(it->ItemID, m_PMob); 
-					}		
-				}
+			    if (DropList && DropList->size())
+			    {
+				    for(DropList_t::const_iterator it = DropList->begin(); it != DropList->end(); ++it)
+				    {
+					    if(rand()%100 < it->DropRate) 
+					    {
+						    PChar->PTreasurePool->AddItem(it->ItemID, m_PMob); 
+					    }		
+				    }
+			    }
 			}
 		}
 	}				

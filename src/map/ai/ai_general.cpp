@@ -85,95 +85,96 @@ void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
-				return;
 			}
 		}
-			break;
+	    break;
 		case ACTION_WEAPONSKILL_START:
 		{
 			if (m_ActionType == ACTION_ATTACK)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
-				return;
 			}
 		}
-			break;
+		break;
 		case ACTION_WEAPONSKILL_FINISH:
 		{
 			if (m_ActionType == ACTION_WEAPONSKILL_START)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
-				return;
 			}
 		}
-			break;
+		break;
 		case ACTION_ITEM_INTERRUPT:
 		{
 			if (m_ActionType == ACTION_ITEM_USING)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
-				return;
 			}
 		}
-			break;
+		break;
 		case ACTION_MAGIC_INTERRUPT:
 		{
 			if (m_ActionType == ACTION_MAGIC_CASTING)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
-				return;
 			}
 		}
-			break;
+		break;
 		case ACTION_RANGED_INTERRUPT:
 		{
 			if (m_ActionType == ACTION_RANGED_FINISH)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
-				return;
 			}
 		}
-			break;
+		break;
 		case ACTION_ENGAGE:
 		{
 			if (m_ActionType == ACTION_NONE)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
-				return;
 			}
 		}
-			break;
+		break;
 		case ACTION_SPAWN:
 		{
 			if (m_ActionType == ACTION_NONE)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
-				return;
 			}
 		}
-			break;
+		break;
 		case ACTION_CHANGE_TARGET:
 		{
 			if (m_ActionType == ACTION_ATTACK)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
-				return;
 			}
 		}
-			break;
+		break;
+        case ACTION_FALL:
+        {
+            switch (m_ActionType)
+            {
+                case ACTION_ITEM_USING:    m_ActionType = ACTION_ITEM_INTERRUPT;  CheckCurrentAction(m_Tick); break;
+                case ACTION_MAGIC_CASTING: m_ActionType = ACTION_MAGIC_INTERRUPT; CheckCurrentAction(m_Tick); break;
+            }
+            m_ActionType = Action;
+			m_ActionTargetID = TargetID;
+        }
+        break;
 		default:
 		{
 			m_ActionType = Action;
 			m_ActionTargetID = TargetID;
-			return;
 		}
 	}
 }
