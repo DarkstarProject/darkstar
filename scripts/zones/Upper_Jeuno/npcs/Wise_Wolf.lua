@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Upper Jeuno
+--	NPC:  Wise Wolf
 --	Working 100%
 -----------------------------------
 

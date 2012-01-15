@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Tavnazian Safehold
+--	NPC:  Eliot
 --	Working 100%
 -----------------------------------
 

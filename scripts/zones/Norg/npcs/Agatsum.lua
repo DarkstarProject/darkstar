@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Norg
+--	NPC:  Agatsum
 --	Working 100%
 -----------------------------------
 

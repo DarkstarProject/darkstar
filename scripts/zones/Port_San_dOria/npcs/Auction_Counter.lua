@@ -1,5 +1,5 @@
 -----------------------------------
---	Area: Bastok Mines
+--	Area: Port San d'Oria
 --	NPC:  Auction Counter
 --	Working 100%
 -----------------------------------

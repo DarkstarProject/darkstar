@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Kazham
+--	NPC:  Sulo Mouzho
 --	Working 100%
 -----------------------------------
 

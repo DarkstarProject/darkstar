@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Nashmau
+--	NPC:  Momoroon
 --	Working 100%
 -----------------------------------
 

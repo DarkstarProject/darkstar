@@ -1,5 +1,5 @@
 -----------------------------------
---	Area: Bastok Mines
+--	Area: Ru'Lude Gardens
 --	NPC:  Auction Counter
 --	Working 100%
 -----------------------------------

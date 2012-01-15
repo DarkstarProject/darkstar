@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Tavnazian Safehold
+--	NPC:  Ferocious Artisan
 --	Working 100%
 -----------------------------------
 

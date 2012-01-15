@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Rabao
+--	NPC:  Cavalgrinne
 --	Working 100%
 -----------------------------------
 

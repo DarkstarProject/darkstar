@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Kazham
+--	NPC:  Cha Chalco
 --	Working 100%
 -----------------------------------
 

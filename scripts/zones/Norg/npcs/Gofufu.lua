@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Norg
+--	NPC:  Gofufu
 --	Working 100%
 -----------------------------------
 

@@ -1,5 +1,5 @@
 -----------------------------------
---	Area: Bastok Mines
+--	Area: Windurst Walls
 --	NPC:  Auction Counter
 --	Working 100%
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Port Jeuno
+--	NPC:  Kouang
 --	Working 100%
 -----------------------------------
 

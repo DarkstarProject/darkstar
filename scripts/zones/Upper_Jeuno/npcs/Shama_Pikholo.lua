@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Upper Jeuno
+--	NPC:  Shama Pikholo
 --	Working 100%
 -----------------------------------
 

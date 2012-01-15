@@ -1,5 +1,5 @@
 -----------------------------------
---	Area: Bastok Mines
+--	Area: Aht Urhgan Whitegate
 --	NPC:  Auction Counter
 --	Working 100%
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
---	Area: Bastok Mines
+--	Area: Bastok Markets
 --	NPC:  Auction Counter
 --	Working 100%
 -----------------------------------

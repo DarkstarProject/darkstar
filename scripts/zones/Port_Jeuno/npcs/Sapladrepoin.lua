@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Port Jeuno
+--	NPC:  Sapladrepoin
 --	Working 100%
 -----------------------------------
 

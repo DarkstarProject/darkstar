@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Port Jeuno
+--	NPC:  Rilve-Hitolve
 --	Working 100%
 -----------------------------------
 

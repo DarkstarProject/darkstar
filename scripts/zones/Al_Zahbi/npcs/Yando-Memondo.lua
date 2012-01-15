@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC:  Auction Counter
+--	Area: Al Zahbi
+--	NPC:  Yando-Memondo
 --	Working 100%
 -----------------------------------
 
