@@ -1404,43 +1404,42 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.messageID  = 185;
 	Action.flag		  = 0;
 
-	    //SUBEFFECT effect =  CAICharNormal::GetSkillChainEffect(m_PBattleSubTarget,m_PWeaponSkill);
-	    //if (effect != SUBEFFECT_NONE) 
-	    //{	
-		//    Action.subeffect = effect;
-		//    switch(effect)
-		//    {
-		//	    case SUBEFFECT_DARKNESS:
-		//	    case SUBEFFECT_FRAGMENTATION:
-		//	    case SUBEFFECT_FUSION:
-		//	    case SUBEFFECT_LIQUEFACATION:
-		//	    case SUBEFFECT_REVERBERATION:
-		//	    case SUBEFFECT_SCISSION:
-		//	    case SUBEFFECT_IMPACTION:
-		//	    {
-		//		    Action.flag = 1;
-		//	    }
-		//	    break;
-		//    }
-		//    if (Action.flag == 0)
-		//    {
-		//	    switch(effect)
-		//	    {
-		//		    case SUBEFFECT_LIGHT:
-		//		    case SUBEFFECT_GRAVITATION:
-		//		    case SUBEFFECT_DISTORTION:
-		//		    case SUBEFFECT_COMPRESSION:
-		//		    case SUBEFFECT_INDURATION:
-		//		    case SUBEFFECT_TRANSFIXION:
-		//		    case SUBEFFECT_DETONATION:
-		//		    {
-		//			    Action.flag = 3;
-		//		    }
-		//		    break;
-		//	    };
-		//    }
-	    //}
-	
+	SUBEFFECT effect = SUBEFFECT_NONE; //CAICharNormal::GetSkillChainEffect(m_PBattleSubTarget,m_PWeaponSkill);
+	if (effect != SUBEFFECT_NONE) 
+	{	
+		switch(effect)
+		{
+		    case SUBEFFECT_DARKNESS:
+		    case SUBEFFECT_FRAGMENTATION:
+		    case SUBEFFECT_FUSION:
+			case SUBEFFECT_LIQUEFACATION:
+			case SUBEFFECT_REVERBERATION:
+			case SUBEFFECT_SCISSION:
+			case SUBEFFECT_IMPACTION:
+			{
+			    Action.flag = 1;
+                Action.subeffect    = effect;
+                Action.subparam     = 0;
+                Action.submessageID = 287;
+            }
+			break;
+            case SUBEFFECT_LIGHT:
+			case SUBEFFECT_GRAVITATION:
+			case SUBEFFECT_DISTORTION:
+			case SUBEFFECT_COMPRESSION:
+			case SUBEFFECT_INDURATION:
+			case SUBEFFECT_TRANSFIXION:
+			case SUBEFFECT_DETONATION:
+			{
+			    Action.flag = 3;
+                Action.subeffect    = SUBEFFECT(effect - 10);
+                Action.subparam     = 0;
+                Action.submessageID = 288;
+            }
+			break;
+        }
+        Action.submessageID += Action.subeffect * 2;
+    }
 	charutils::UpdateHealth(m_PChar);
 
 	m_PChar->m_ActionList.push_back(Action);
