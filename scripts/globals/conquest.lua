@@ -174,25 +174,25 @@ switch (region): caseof {
 
 	npc  = {
 	--
-		17187485,SANDORIA,	-- Doladepaiton, R.K.
-		17187492,SANDORIA,	-- Ballie, R.K.
-		17187488,SANDORIA,	-- Flag 
-		17187496,SANDORIA,	-- Flag
+		17187488,SANDORIA,	-- Doladepaiton, R.K.
+		17187495,SANDORIA,	-- Ballie, R.K.
+		17187491,SANDORIA,	-- Flag 
+		17187500,SANDORIA,	-- Flag
 	--
-		17187486,BASTOK,	-- Yoshihiro, I.M.
-		17187493,BASTOK,	-- Molting Moth, I.M.
-		17187489,BASTOK,	-- Flag 
-		17187497,BASTOK,	-- Flag
+		17187489,BASTOK,	-- Yoshihiro, I.M.
+		17187496,BASTOK,	-- Molting Moth, I.M.
+		17187492,BASTOK,	-- Flag 
+		17187501,BASTOK,	-- Flag
 	--
-		17187494,WINDURST,	-- Tottoto, W.W.
-		17187487,WINDURST,	-- Kyanta-Pakyanta, W.W.
-		17187490,WINDURST,	-- Flag 	
-		17187498,WINDURST,	-- Flag
+		17187497,WINDURST,	-- Tottoto, W.W.
+		17187490,WINDURST,	-- Kyanta-Pakyanta, W.W.
+		17187493,WINDURST,	-- Flag 	
+		17187502,WINDURST,	-- Flag
 	--
-		17187491,BEASTMEN,	-- Flag 
-		17187499,BEASTMEN,	-- Flag
+		17187494,BEASTMEN,	-- Flag 
+		17187503,BEASTMEN,	-- Flag
 	--
-		17187495,OTHER,		-- Harvetour
+		17187498,OTHER,		-- Harvetour
 	}	
   end,
 
@@ -203,26 +203,26 @@ switch (region): caseof {
 
 	npc  = {
 	-- 
-		17199696,SANDORIA,	-- Quanteilleron, R.K.
-		17199703,SANDORIA,	-- Prunilla, R.K. 	 
-		17199699,SANDORIA,	-- flag
-		17199707,SANDORIA,	-- flag
+		17199699,SANDORIA,	-- Quanteilleron, R.K.
+		17199706,SANDORIA,	-- Prunilla, R.K. 	 
+		17199702,SANDORIA,	-- flag
+		17199711,SANDORIA,	-- flag
 	-- 
-		17199697,BASTOK,	-- Tsunashige, I.M.
-		17199704,BASTOK,	-- Fighting Ant, I.M. 	
-		17199700,BASTOK,	-- flag
-		17199708,BASTOK,	-- flag
+		17199700,BASTOK,	-- Tsunashige, I.M.
+		17199707,BASTOK,	-- Fighting Ant, I.M. 	
+		17199703,BASTOK,	-- flag
+		17199712,BASTOK,	-- flag
 	-- 
-		17199698,WINDURST,	-- Nyata-Mobuta, W.W.
-		17199705,WINDURST,	-- Tebubu, W.W. 
-		17199701,WINDURST,	-- flag
-		17199709,WINDURST,	-- flag
+		17199701,WINDURST,	-- Nyata-Mobuta, W.W.
+		17199708,WINDURST,	-- Tebubu, W.W. 
+		17199704,WINDURST,	-- flag
+		17199713,WINDURST,	-- flag
 	--
-		17199702,BEASTMEN,	-- flag
-		17199710,BEASTMEN,	-- flag
+		17199705,BEASTMEN,	-- flag
+		17199714,BEASTMEN,	-- flag
 		17199719,BEASTMEN,	-- flag
 	--	
-		17199706,OTHER,		-- Medicine Axe
+		17199709,OTHER,		-- Medicine Axe
 	}
   end,
 
@@ -233,26 +233,26 @@ switch (region): caseof {
 	
 	npc  = {
 	-- 
-		17203835,SANDORIA,	-- Chaplion, R.K.
-		17203842,SANDORIA,	-- Taumiale, R.K. 
-		17203838,SANDORIA,	-- flag
-	    17203846,SANDORIA,	-- flag
+		17203838,SANDORIA,	-- Chaplion, R.K.
+		17203845,SANDORIA,	-- Taumiale, R.K. 
+		17203841,SANDORIA,	-- flag
+	    17203849,SANDORIA,	-- flag
 	-- 
-		17203836,BASTOK,	-- Takamoto, I.M.
-		17203843,BASTOK,	-- Pure Heart, I.M. 
-		17203839,BASTOK,	-- flag
-		17203847,BASTOK,	-- flag
+		17203839,BASTOK,	-- Takamoto, I.M.
+		17203846,BASTOK,	-- Pure Heart, I.M. 
+		17203842,BASTOK,	-- flag
+		17203850,BASTOK,	-- flag
 	-- 
-		17203837,WINDURST,	-- Bubchu-Bibinchu, W.W.
-		17203844,WINDURST,	-- Geruru, W.W.  
-		17203840,WINDURST,	-- flag
-		17203848,WINDURST,	-- flag
+		17203840,WINDURST,	-- Bubchu-Bibinchu, W.W.
+		17203847,WINDURST,	-- Geruru, W.W.  
+		17203843,WINDURST,	-- flag
+		17203851,WINDURST,	-- flag
 	-- 
-		17203841,BEASTMEN,	-- flag
-	    17203849,BEASTMEN,	-- flag
-	    17203860,BEASTMEN,	-- flag
+		17203844,BEASTMEN,	-- flag
+	    17203852,BEASTMEN,	-- flag
+	    17203863,BEASTMEN,	-- flag
 	--
-		17203845,OTHER,		-- Mionie
+		17203848,OTHER,		-- Mionie
 	} 
   end,
   
@@ -263,25 +263,25 @@ switch (region): caseof {
 
 	npc  = {
 	-- 
-		17212020,SANDORIA,	-- Ennigreaud, R.K.
-		17212027,SANDORIA,	-- Quellebie, R.K.  
-		17212023,SANDORIA,	-- flag
-	    17212031,SANDORIA,	-- flag
+		17212023,SANDORIA,	-- Ennigreaud, R.K.
+		17212030,SANDORIA,	-- Quellebie, R.K.  
+		17212026,SANDORIA,	-- flag
+	    17212034,SANDORIA,	-- flag
 	-- 
-		17212021,BASTOK,	-- Shigezane, I.M.
-		17212028,BASTOK,	-- Heavy Fog, I.M.  
-		17212024,BASTOK,	-- flag
-		17212032,BASTOK,	-- flag
+		17212024,BASTOK,	-- Shigezane, I.M.
+		17212031,BASTOK,	-- Heavy Fog, I.M.  
+		17212027,BASTOK,	-- flag
+		17212035,BASTOK,	-- flag
 	-- 
-		17212022,WINDURST,	-- Kuuwari-Aori, W.W.
-		17212029,WINDURST,	-- Butsutsu, W.W.
-		17212025,WINDURST,	-- flag
-		17212033,WINDURST,	-- flag
+		17212025,WINDURST,	-- Kuuwari-Aori, W.W.
+		17212032,WINDURST,	-- Butsutsu, W.W.
+		17212028,WINDURST,	-- flag
+		17212036,WINDURST,	-- flag
 	-- 
-		17212026,BEASTMEN,	-- flag
-	    17212034,BEASTMEN,	-- flag
+		17212029,BEASTMEN,	-- flag
+	    17212037,BEASTMEN,	-- flag
 	--
-		17212030,OTHER,		-- Kuleo
+		17212033,OTHER,		-- Kuleo
 	}
   end,
   
@@ -292,26 +292,26 @@ switch (region): caseof {
   
 	npc  = {
 	-- 
-		17224313,SANDORIA,	-- Mesachedeau, R.K.
-		17224320,SANDORIA,	-- Ioupie, R.K. 
-		17224316,SANDORIA,	-- flag
-		17224324,SANDORIA,	-- flag
+		17224316,SANDORIA,	-- Mesachedeau, R.K.
+		17224323,SANDORIA,	-- Ioupie, R.K. 
+		17224319,SANDORIA,	-- flag
+		17224327,SANDORIA,	-- flag
 	-- 
-		17224314,BASTOK,	-- Souun, I.M.
-		17224321,BASTOK,	-- Sharp Tooth, I.M. 
-		17224317,BASTOK,	-- flag
-		17224325,BASTOK,	-- flag
+		17224317,BASTOK,	-- Souun, I.M.
+		17224324,BASTOK,	-- Sharp Tooth, I.M. 
+		17224320,BASTOK,	-- flag
+		17224328,BASTOK,	-- flag
 	-- 
-		17224315,WINDURST,	-- Mokto-Lankto, W.W.
-		17224322,WINDURST,	-- Shikoko, W.W. 
-		17224318,WINDURST,	-- flag
-		17224326,WINDURST,	-- flag
+		17224318,WINDURST,	-- Mokto-Lankto, W.W.
+		17224325,WINDURST,	-- Shikoko, W.W. 
+		17224321,WINDURST,	-- flag
+		17224329,WINDURST,	-- flag
 	-- 
-		17224319,BEASTMEN,	-- flag
-	    17224327,BEASTMEN,	-- flag
-	    17224333,BEASTMEN,	-- flag
+		17224322,BEASTMEN,	-- flag
+	    17224330,BEASTMEN,	-- flag
+	    17224336,BEASTMEN,	-- flag
 	--
-		17224323,OTHER,		-- Tahmasp
+		17224326,OTHER,		-- Tahmasp
 	}
   end,
   
@@ -322,25 +322,25 @@ switch (region): caseof {
 	
 	npc  = {
 	-- 
-		17248785,SANDORIA,	-- Naguipeillont, R.K.
-		17248792,SANDORIA,	-- Banege, R.K. 
-		17248788,SANDORIA,	-- flag
-		17248796,SANDORIA,	-- flag
+		17248788,SANDORIA,	-- Naguipeillont, R.K.
+		17248795,SANDORIA,	-- Banege, R.K. 
+		17248791,SANDORIA,	-- flag
+		17248799,SANDORIA,	-- flag
 	-- 
-		17248786,BASTOK,	-- Ryokei, I.M.
-		17248793,BASTOK,	-- Slow Axe, I.M.
-		17248789,BASTOK,	-- flag
-		17248797,BASTOK,	-- flag
+		17248789,BASTOK,	-- Ryokei, I.M.
+		17248796,BASTOK,	-- Slow Axe, I.M.
+		17248792,BASTOK,	-- flag
+		17248800,BASTOK,	-- flag
 	-- 
-		17248787,WINDURST,	-- Roshina-Kuleshuna, W.W.
-		17248794,WINDURST,	-- Darumomo, W.W. 
-		17248790,WINDURST,	-- flag
-		17248798,WINDURST,	-- flag
+		17248790,WINDURST,	-- Roshina-Kuleshuna, W.W.
+		17248797,WINDURST,	-- Darumomo, W.W. 
+		17248793,WINDURST,	-- flag
+		17248801,WINDURST,	-- flag
 	-- 
-		17248791,BEASTMEN,	-- flag
-	    17248799,BEASTMEN,	-- flag
+		17248794,BEASTMEN,	-- flag
+	    17248802,BEASTMEN,	-- flag
 	--
-		17248795,OTHER,		-- Mahien-Uhien
+		17248798,OTHER,		-- Mahien-Uhien
 	}	
   end,
   
@@ -351,26 +351,26 @@ switch (region): caseof {
 
 	npc  = {
 	-- 
-		17261136,SANDORIA,	-- Bonbavour, R.K. 
-		17261143,SANDORIA,	-- Craigine, R.K.
-		17261139,SANDORIA,	-- flag	
-		17261147,SANDORIA,	-- flag
+		17261139,SANDORIA,	-- Bonbavour, R.K. 
+		17261146,SANDORIA,	-- Craigine, R.K.
+		17261142,SANDORIA,	-- flag	
+		17261150,SANDORIA,	-- flag
 	-- 
-		17261137,BASTOK,	-- Ishin, I.M. 
-		17261144,BASTOK,	-- Wise Turtle, I.M.
-		17261140,BASTOK,	-- flag
-		17261148,BASTOK,	-- flag
+		17261140,BASTOK,	-- Ishin, I.M. 
+		17261147,BASTOK,	-- Wise Turtle, I.M.
+		17261143,BASTOK,	-- flag
+		17261152,BASTOK,	-- flag
 	-- 
-		17261138,WINDURST,	-- Ganemu-Punnemu, W.W.
-		17261145,WINDURST,	-- Mashasha, W.W.
-		17261141,WINDURST,	-- flag	
-		17261149,WINDURST,	-- flag	
+		17261141,WINDURST,	-- Ganemu-Punnemu, W.W.
+		17261148,WINDURST,	-- Mashasha, W.W.
+		17261144,WINDURST,	-- flag	
+		17261152,WINDURST,	-- flag	
 	-- 
-		17261142,BEASTMEN,	-- flag
-		17261150,BEASTMEN,	-- flag
-	    17261170,BEASTMEN,	-- flag
+		17261145,BEASTMEN,	-- flag
+		17261153,BEASTMEN,	-- flag
+	    17261173,BEASTMEN,	-- flag
 	--
-		17261146,OTHER,		-- Lobho Ukipturi
+		17261149,OTHER,		-- Lobho Ukipturi
 	}	
   end,
   
@@ -381,26 +381,26 @@ switch (region): caseof {
 
 	npc  = {
 	-- 
-		17265258,SANDORIA,	-- Chegourt, R.K.
-		17265265,SANDORIA,	-- Buliame, R.K. 
-		17265261,SANDORIA,	-- flag
-		17265269,SANDORIA,	-- flag
+		17265261,SANDORIA,	-- Chegourt, R.K.
+		17265268,SANDORIA,	-- Buliame, R.K. 
+		17265264,SANDORIA,	-- flag
+		17265272,SANDORIA,	-- flag
 	-- 
-		17265259,BASTOK,	-- Akane, I.M.
-		17265266,BASTOK,	-- Three Steps, I.M.  
-		17265262,BASTOK,	-- flag
-		17265270,BASTOK,	-- flag
+		17265262,BASTOK,	-- Akane, I.M.
+		17265269,BASTOK,	-- Three Steps, I.M.  
+		17265265,BASTOK,	-- flag
+		17265273,BASTOK,	-- flag
 	-- 
-		17265260,WINDURST,	-- Donmo-Boronmo, W.W.
-		17265267,WINDURST,	-- Daruru, W.W. 
-		17265263,WINDURST,	-- flag
-		17265271,WINDURST,	-- flag
+		17265263,WINDURST,	-- Donmo-Boronmo, W.W.
+		17265270,WINDURST,	-- Daruru, W.W. 
+		17265266,WINDURST,	-- flag
+		17265274,WINDURST,	-- flag
 	-- 
-		17265264,BEASTMEN,	-- flag
-	    17265272,BEASTMEN,	-- flag
-	    17265274,BEASTMEN,	-- flag
+		17265267,BEASTMEN,	-- flag
+	    17265275,BEASTMEN,	-- flag
+	    17265277,BEASTMEN,	-- flag
 	--
-		17265268,OTHER,		-- Mushosho
+		17265271,OTHER,		-- Mushosho
 	}	
   end,
   
@@ -471,26 +471,26 @@ switch (region): caseof {
 
 	npc  = {
 	-- 
-		17293701,SANDORIA,	-- Pitoire, R.K.
-		17293708,SANDORIA,	-- Matica, R.K. 
-		17293704,SANDORIA,	-- flag
-		17293712,SANDORIA,	-- flag
+		17293704,SANDORIA,	-- Pitoire, R.K.
+		17293711,SANDORIA,	-- Matica, R.K. 
+		17293707,SANDORIA,	-- flag
+		17293715,SANDORIA,	-- flag
 	-- 
-		17293702,BASTOK,	-- Sasa, I.M.
-		17293709,BASTOK,	-- Singing Blade, I.M. 
-		17293705,BASTOK,	-- flag
-		17293713,BASTOK,	-- flag
+		17293705,BASTOK,	-- Sasa, I.M.
+		17293712,BASTOK,	-- Singing Blade, I.M. 
+		17293708,BASTOK,	-- flag
+		17293716,BASTOK,	-- flag
 	--
-		17293703,WINDURST,	-- Tsonga-Hoponga, W.W.
-		17293710,WINDURST,	-- Numumu, W.W.
-		17293706,WINDURST,	-- flag
-		17293714,WINDURST,	-- flag
+		17293706,WINDURST,	-- Tsonga-Hoponga, W.W.
+		17293713,WINDURST,	-- Numumu, W.W.
+		17293709,WINDURST,	-- flag
+		17293717,WINDURST,	-- flag
 	-- 
-		17293707,BEASTMEN,	-- flag
-		17293715,BEASTMEN,	-- flag
-		17293731,BEASTMEN,	-- flag
+		17293710,BEASTMEN,	-- flag
+		17293718,BEASTMEN,	-- flag
+		17293734,BEASTMEN,	-- flag
 	--
-		17293711,OTHER,		-- Jiwon
+		17293714,OTHER,		-- Jiwon
 	}
   end,
   
