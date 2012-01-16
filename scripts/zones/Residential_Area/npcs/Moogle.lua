@@ -38,12 +38,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("CSID: %u",csid);
-printf("RESULT: %u",option);
-  local mogintro = player:getVar("MoghouseExplication");
-    if (mogintro==0) then
-      player:setVar("MoghouseExplication",1);
-    end
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+	if (csid == 0x7530) then
+		player:setVar("MoghouseExplication",1);
+	end
 end;
 
 
