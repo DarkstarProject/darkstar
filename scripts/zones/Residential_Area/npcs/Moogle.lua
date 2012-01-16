@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-  local loadintro = player:getVar("MogIntro");
+  local loadintro = player:getVar("MoghouseExplication");
     if (loadintro ==0) then
       player:startEvent(0x7530);
     else
@@ -40,9 +40,9 @@ end;
 function onEventFinish(player,csid,option)
 printf("CSID: %u",csid);
 printf("RESULT: %u",option);
-  local mogintro = player:getVar("MogIntro");
+  local mogintro = player:getVar("MoghouseExplication");
     if (mogintro==0) then
-      player:setVar("mogintro",1);
+      player:setVar("MoghouseExplication",1);
     end
 end;
 
