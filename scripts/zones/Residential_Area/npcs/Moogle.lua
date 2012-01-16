@@ -16,7 +16,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x7530);
+  local loadintro = player:getVar("MogIntro");
+    if (loadintro ==0) then
+      player:startEvent(0x7530);
+    else
+      player:sendMenu(1);
+    end
 end; 
 
 -----------------------------------
@@ -33,8 +38,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+printf("CSID: %u",csid);
+printf("RESULT: %u",option);
+  local mogintro = player:getVar("MogIntro");
+    if (mogintro==0) then
+      player:setVar("mogintro",1);
+    end
 end;
 
 
