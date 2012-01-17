@@ -2958,7 +2958,7 @@ inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
 
 inline int32 CLuaBaseEntity::increaseContainerSize(lua_State *L)
 {
-	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	
 	if( m_PBaseEntity != NULL )
 	{
@@ -2985,24 +2985,47 @@ inline int32 CLuaBaseEntity::increaseContainerSize(lua_State *L)
 
 inline int32 CLuaBaseEntity::decreaseContainerSize(lua_State *L)
 {
-	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	
-		if( m_PBaseEntity != NULL )
+	if( m_PBaseEntity != NULL )
 	{
 		if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
-				!lua_isnil(L,2) && lua_isnumber(L,2))
-			{
-				CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
-				uint8 size = PChar->getStorage(lua_tointeger(L,1))->GetSize();
-				PChar->getStorage(lua_tointeger(L,1))->SetSize(size - 1 - lua_tointeger(L,2));
-				//CInventorySizePacket::CInventorySizePacket
-				PChar->pushPacket(new CInventorySizePacket(PChar));
-				charutils::SaveCharInventoryCapacity(PChar);
-				return 1;
-			}
+			!lua_isnil(L,2) && lua_isnumber(L,2))
+		{
+			CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+			uint8 size = PChar->getStorage(lua_tointeger(L,1))->GetSize();
+			PChar->getStorage(lua_tointeger(L,1))->SetSize(size - 1 - lua_tointeger(L,2));
+			PChar->pushPacket(new CInventorySizePacket(PChar));
+			charutils::SaveCharInventoryCapacity(PChar);
+			return 1;
+		}
 	}
 	lua_pushnil(L);
 	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *   
+************************************************************************/
+
+inline int32 CLuaBaseEntity::takeMagicDamage(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
+
+    uint16 damage = 0;
+	if(PLuaBaseEntity != NULL)
+	{
+        damage = battleutils::TakeMagicDamage((CBattleEntity*)PLuaBaseEntity->GetBaseEntity(), (CBattleEntity*)m_PBaseEntity);
+	}
+    lua_pushinteger(L, damage);
+	return 1;
 }
 
 void CLuaBaseEntity::UpdateHealth(CCharEntity* PChar, CZone* PZone) 
@@ -3149,5 +3172,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,decreaseContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeMagicDamage),
 	{NULL,NULL}
 };

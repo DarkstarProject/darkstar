@@ -363,7 +363,8 @@ int32 SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	if (PChar->status != STATUS_DISAPPEAR)
+	if (PChar->status != STATUS_SHUTDOWN &&
+        PChar->status != STATUS_DISAPPEAR)
 	{
 		bool isUpdate = ( (PChar->status == STATUS_UPDATE) ||
 						  (PChar->loc.p.x  != RBUFF(data,(0x04))) || 
@@ -852,45 +853,57 @@ int32 SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	uint8 size = PItemContainer->GetSize();
 
-	if (size > 0)
-	{
-		for (uint8 slotID = 1; slotID <= size; ++slotID) 
-		{
-			CItem* PItem = PItemContainer->GetItem(slotID);
+    if (gettick() - PItemContainer->LastSortingTime < 1000)
+    {
+        if (map_config.lightluggage_block == ++PItemContainer->SortingPacket)
+        {
+            ShowWarning(CL_YELLOW"lightluggage detected: <%s> will be removed from server\n"CL_RESET, PChar->GetName());
 
-			if ( (PItem != NULL) && 
-				 (PItem->getQuantity() < PItem->getStackSize()) &&
-				!(PItem->getSubType() & ITEM_LOCKED))
-			{
-				for (uint8 slotID2 = slotID+1; slotID2 <= size; ++slotID2) 
-				{
-					CItem* PItem2 = PItemContainer->GetItem(slotID2);
+            PChar->status = STATUS_SHUTDOWN;
+            PChar->pushPacket(new CServerIPPacket(PChar,1));
+        }
+        return 0;
+    }
+    else
+    {
+        PItemContainer->SortingPacket = 0;
+        PItemContainer->LastSortingTime = gettick();
+    }
+    for (uint8 slotID = 1; slotID <= size; ++slotID) 
+    {
+        CItem* PItem = PItemContainer->GetItem(slotID);
 
-					if ( (PItem2 != NULL) &&  
-						 (PItem2->getID() == PItem->getID()) &&
-						 (PItem2->getQuantity() < PItem2->getStackSize()) &&
-						!(PItem2->getSubType() & ITEM_LOCKED)) 
-					{
-						uint32 totalQty = PItem->getQuantity() + PItem2->getQuantity();
-						uint32 moveQty  = 0;
+        if ((PItem != NULL) && 
+            (PItem->getQuantity() < PItem->getStackSize()) &&
+           !(PItem->getSubType() & ITEM_LOCKED))
+        {
+            for (uint8 slotID2 = slotID+1; slotID2 <= size; ++slotID2) 
+            {
+                CItem* PItem2 = PItemContainer->GetItem(slotID2);
 
-						if (totalQty >= PItem->getStackSize()) {
-							moveQty = PItem->getStackSize() - PItem->getQuantity();
-						} else {
-							moveQty = PItem2->getQuantity();
-						}
-						if(moveQty > 0) 
-						{
-							charutils::UpdateItem(PChar, PItemContainer->GetID(), slotID, moveQty);
-							charutils::UpdateItem(PChar, PItemContainer->GetID(), slotID2, -(int32)moveQty);								
-						}
-					}
-				}
-			}
-		}
-		PChar->pushPacket(new CInventoryFinishPacket());
-	}
-	
+                if ((PItem2 != NULL) &&  
+                    (PItem2->getID() == PItem->getID()) &&
+                    (PItem2->getQuantity() < PItem2->getStackSize()) &&
+                   !(PItem2->getSubType() & ITEM_LOCKED)) 
+                {
+                    uint32 totalQty = PItem->getQuantity() + PItem2->getQuantity();
+                    uint32 moveQty  = 0;
+
+                    if (totalQty >= PItem->getStackSize()) {
+                        moveQty = PItem->getStackSize() - PItem->getQuantity();
+                    } else {
+                        moveQty = PItem2->getQuantity();
+                    }
+                    if(moveQty > 0) 
+                    {
+						charutils::UpdateItem(PChar, PItemContainer->GetID(), slotID, moveQty);
+                        charutils::UpdateItem(PChar, PItemContainer->GetID(), slotID2, -(int32)moveQty);								
+                    }
+                }
+            }
+        }
+    }
+    PChar->pushPacket(new CInventoryFinishPacket());
 	return 0;
 }
 

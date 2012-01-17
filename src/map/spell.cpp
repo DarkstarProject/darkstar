@@ -29,12 +29,13 @@ CSpell::CSpell(uint16 id)
 {
 	m_ID = id;
 
-	m_mpCost = 0;
-	m_castTime = 0;
+	m_mpCost     = 0;
+	m_castTime   = 0;
 	m_recastTime = 0;
-	m_animationID = 0;
-	m_spellGroup = SPELLGROUP_NONE;	
-	m_spellType = 0;
+	m_animation  = 0;
+    m_message    = 0;
+    m_element    = 0;
+	m_spellGroup = SPELLGROUP_NONE;
 	
 	memset(m_job, 0, sizeof(m_job));
 }
@@ -59,22 +60,22 @@ void CSpell::setJob(int8* jobs)
 	memcpy(&m_job[1], jobs, 20);
 }
 
-uint16 CSpell::getCastTime()
+uint32 CSpell::getCastTime()
 {
 	return m_castTime;
 }
 
-void CSpell::setCastTime(uint16 CastTime)
+void CSpell::setCastTime(uint32 CastTime)
 {
 	m_castTime = CastTime;
 }
 
-uint8 CSpell::getRecastTime()
+uint32 CSpell::getRecastTime()
 {
 	return m_recastTime;
 }
 
-void CSpell::setRecastTime(uint8 RecastTime)
+void CSpell::setRecastTime(uint32 RecastTime)
 {
 	m_recastTime = RecastTime;
 }
@@ -102,12 +103,12 @@ void CSpell::setSpellGroup(SPELLGROUP SpellGroup)
 
 uint16 CSpell::getAnimationID()
 {
-	return m_animationID;
+	return m_animation;
 }
 
 void CSpell::setAnimationID(uint16 AnimationID)
 {
-	m_animationID = AnimationID;
+	m_animation = AnimationID;
 }
 
 uint16 CSpell::getMPCost()
@@ -130,8 +131,6 @@ void CSpell::setAOE(uint8 AOE)
 	m_isAOE = (AOE != 0);
 }
 
-// Added base damage and effect to spell.
-
 uint16 CSpell::getBase()
 {
 	return m_base;
@@ -140,16 +139,6 @@ uint16 CSpell::getBase()
 void CSpell::setBase(uint16 base)
 {
 	m_base = base;
-}
-
-uint8 CSpell::getEffect()
-{
-	return m_effect;
-}
-
-void CSpell::setEffect(uint8 effect)
-{
-	m_effect = effect;
 }
 
 uint8 CSpell::getValidTarget()
@@ -172,6 +161,16 @@ void CSpell::setMultiplier(float multiplier)
 	m_multiplier = multiplier;
 }
 
+uint16 CSpell::getMessage()
+{
+    return m_message;
+}
+
+void CSpell::setMessage(uint16 message)
+{
+    m_message = message;
+}
+
 uint16 CSpell::getElement()
 {
 	return m_element;
@@ -180,16 +179,6 @@ uint16 CSpell::getElement()
 void CSpell::setElement(uint16 element)
 {
 	m_element = element;
-}
-
-uint16 CSpell::getSpellType()
-{
-	return m_spellType;
-}
-
-void CSpell::setSpellType(uint16 spellType)
-{
-	m_spellType = spellType;
 }
 
 void CSpell::setCE(uint16 ce)

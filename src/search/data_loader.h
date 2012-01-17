@@ -76,7 +76,7 @@ public:
 	CDataLoader();
    ~CDataLoader();
 
-    std::list<ahHistory*>    GetAHItemHystory(uint16 ItemID, bool stack);
+    std::vector<ahHistory*>  GetAHItemHystory(uint16 ItemID, bool stack);
     std::list<SearchEntity*> GetPartyList(uint32 PartyID);
     std::list<SearchEntity*> GetPlayersList();
 	std::vector<ahItem*>     GetAHItemsToCategry(uint8 AHCategoryID);

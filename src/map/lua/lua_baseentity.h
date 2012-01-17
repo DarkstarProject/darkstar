@@ -74,6 +74,8 @@ public:
 	int32 getZone(lua_State*);				// Get Entity zone
     int32 getPreviousZone(lua_State*);      // Get Entity previous zone
 
+    int32 takeMagicDamage(lua_State*);      //
+
 	int32 getAnimation(lua_State*);			// Get Entity Animation
 	int32 setAnimation(lua_State*);			// Set Entity Animation
     int32 AnimationSub(lua_State*);         // get or set animationsub

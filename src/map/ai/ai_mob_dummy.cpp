@@ -567,7 +567,7 @@ void CAIMobDummy::ActionAttack()
 				{
 					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
 				}
-				Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, m_PZone);
+				Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage);
 
 				m_PMob->m_ActionList.push_back(Action);
                 m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);

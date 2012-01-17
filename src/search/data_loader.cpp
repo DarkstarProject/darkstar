@@ -25,6 +25,8 @@
 #include "../common/showmsg.h"
 #include "../common/sql.h"
 
+#include <algorithm>
+
 #include "data_loader.h"
 #include "search.h"
 
@@ -51,9 +53,9 @@ CDataLoader::~CDataLoader()
     Sql_Free(SqlHandle);
 }
 
-std::list<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
+std::vector<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
 {
-    std::list<ahHistory*> HistoryList;
+    std::vector<ahHistory*> HistoryList;
 
     const int8* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name \
                             FROM auction_house \
@@ -75,8 +77,9 @@ std::list<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
             snprintf((int8*)PAHHistory->Name1, 15, "%s", Sql_GetData(SqlHandle,2));
             snprintf((int8*)PAHHistory->Name2, 15, "%s", Sql_GetData(SqlHandle,3));
 
-            HistoryList.push_front(PAHHistory);
+            HistoryList.push_back(PAHHistory);
         }
+        std::reverse(HistoryList.begin(),HistoryList.end());
     }
     return HistoryList;
 }

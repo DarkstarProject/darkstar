@@ -141,13 +141,12 @@ int32 SendUncnown0x39Packet(lua_State* L)
 	{
 		uint32 npcid = (uint32)lua_tointeger(L,1);
         uint8  param = (uint8)lua_tointeger(L,2);
-		uint8  zone  = (npcid >> 12)-4096;
 
-		CBaseEntity* PNpc = zoneutils::GetZone(zone)->GetEntity((uint16)npcid & 0x0FFF, TYPE_NPC);
+		CBaseEntity* PNpc = zoneutils::GetEntity(npcid & 0x0FFF, TYPE_NPC);
 
         if (PNpc != NULL)
         {
-            zoneutils::GetZone(zone)->PushPacket(PNpc, CHAR_INRANGE, new CUncnown0x39Packet(PNpc, param));   
+            zoneutils::GetZone(PNpc->getZone())->PushPacket(PNpc, CHAR_INRANGE, new CUncnown0x39Packet(PNpc, param));   
         }
 		return 0;
 	}
@@ -166,9 +165,8 @@ int32 GetNPCByID(lua_State* L)
 	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
 	{
 		uint32 npcid = (uint32)lua_tointeger(L, -1);
-		uint8  zone  = (npcid >> 12)-4096;
 
-		CBaseEntity* PNpc = zoneutils::GetZone(zone)->GetEntity((uint16)npcid & 0x0FFF, TYPE_NPC);
+		CBaseEntity* PNpc = zoneutils::GetEntity(npcid & 0x0FFF, TYPE_NPC);
 
 		lua_pushstring(L,CLuaBaseEntity::className);
 		lua_gettable(L,LUA_GLOBALSINDEX);
@@ -285,9 +283,8 @@ int32 SpawnMob(lua_State* L)
 	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 	{
 		uint32 mobid = (uint32)lua_tointeger(L,1);
-		uint8  zone  = (mobid >> 12)-4096;
 		
-        CMobEntity* PMob = (CMobEntity*)zoneutils::GetZone(zone)->GetEntity((uint16)mobid & 0x0FFF, TYPE_MOB);
+        CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
         if (PMob != NULL)
         {
             if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
@@ -323,9 +320,8 @@ int32 DespawnMob(lua_State* L)
 	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
 	{
 		uint32 mobid = (uint32)lua_tointeger(L, -1);
-		uint8  zone  = (mobid >> 12)-4096;
 
-		CMobEntity* PMob = (CMobEntity*)zoneutils::GetZone(zone)->GetEntity((uint16)mobid & 0x0FFF, TYPE_MOB);
+		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 		if (PMob != NULL)
 		{
 			PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
@@ -348,9 +344,8 @@ int32 GetMobAction(lua_State* L)
 	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
 	{
 		uint32 mobid = (uint32)lua_tointeger(L, -1);
-		uint8  zone  = (mobid >> 12)-4096;
 
-		CMobEntity* PMob = (CMobEntity*)zoneutils::GetZone(zone)->GetEntity((uint16)mobid & 0x0FFF, TYPE_MOB);
+		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 		if (PMob != NULL)
 		{
 			int32 currentAction = (int32)PMob->PBattleAI->GetCurrentAction(); 
@@ -773,22 +768,6 @@ int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		ShowError("luautils::OnEffectGain: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-
-	PEntity->addModifiers(&PStatusEffect->modList);
-
-	if (PEntity->objtype == TYPE_PC)
-	{
-		CCharEntity* PChar = (CCharEntity*)PEntity;
-		
-		CZone* PZone = zoneutils::GetZone(PChar->getZone());
-		if (PStatusEffect->GetStatusID() <512)
-		{
-			PZone->PushPacket(PChar,CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar,PChar,PStatusEffect->GetStatusID(),0,205));
-		}
-		
-		PZone->PushPacket(PChar,CHAR_INRANGE_SELF, new CCharUpdatePacket(PChar));
-		PChar->pushPacket(new CCharSyncPacket(PChar));
-	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
@@ -871,20 +850,6 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 	{
 		ShowError("luautils::OnEffectLose: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
-	}
-	 
-	PEntity->delModifiers(&PStatusEffect->modList);
-
-	if (PEntity->objtype == TYPE_PC)
-	{
-		CCharEntity* PChar = (CCharEntity*)PEntity;
-		if (PStatusEffect->GetStatusID() < 512)
-		{
-			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,PStatusEffect->GetStatusID(),0,206));
-		}
-		CZone* PZone = zoneutils::GetZone(PChar->getZone());
-		PZone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharUpdatePacket(PChar));
-		PChar->pushPacket(new CCharSyncPacket(PChar));
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
 }

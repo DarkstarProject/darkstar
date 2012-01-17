@@ -461,12 +461,12 @@ void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
     CAHHistoryPacket* PAHPacket = new CAHHistoryPacket(ItemID);
 
     CDataLoader* PDataLoader = new CDataLoader();                        
-    std::list<ahHistory*> HistoryList = PDataLoader->GetAHItemHystory(ItemID, stack);
+    std::vector<ahHistory*> HistoryList = PDataLoader->GetAHItemHystory(ItemID, stack);
 
-    for (std::list<ahHistory*>::iterator it = HistoryList.begin(); it != HistoryList.end(); ++it)
-    {
-        PAHPacket->AddItem(*it);
-    }
+	for (uint8 i = 0; i < HistoryList.size(); ++i)
+	{
+		PAHPacket->AddItem(HistoryList.at(i));
+	}
 
     PTCPRequest->SendToSocket(PAHPacket->GetData(), PAHPacket->GetSize());
 

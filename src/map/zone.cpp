@@ -443,11 +443,10 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
     DSP_DEBUG_BREAK_IF(PChar == NULL);
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
     
-    uint32 count = m_charList.size(); // сталкивался с ситуацией, когда персонаж оставался в зоне
-
+    uint32 count = m_charList.size();
+    
 	m_charList.erase(PChar->targid);
 	ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u>\n"CL_RESET, GetName(), m_charList.size());
-    DSP_DEBUG_BREAK_IF(m_charList.size() != 0 && count == m_charList.size());
 
 	if (ZoneTimer && m_charList.empty())
 	{

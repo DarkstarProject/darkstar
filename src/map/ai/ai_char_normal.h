@@ -75,7 +75,8 @@ protected:
 	void ActionChangeBattleTarget();
 	void ActionRaiseMenuSelection();
 
-    void ActionMagicStartError(uint16 error);
+    void MagicStartError(uint16 error);
+    void WeaponSkillStartError(uint16 error);
 
 	bool IsMobOwner(CBattleEntity* PBattleTarget);
 	bool GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget);

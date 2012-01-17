@@ -109,12 +109,12 @@ unsigned int gettick(void)
 // tick doesn't get cached
 uint32 gettick_nocache(void)
 {
-	return tick();
+	return tick() + 100000000; // +27 hours for respawn
 }
 
 uint32 gettick(void)
 {
-	return tick();
+	return tick() + 100000000; // +27 hours for respawn
 }
 //////////////////////////////////////////////////////////////////////////
 #endif

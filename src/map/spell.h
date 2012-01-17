@@ -52,17 +52,16 @@ public:
 	uint16		getID();
 	uint8		getJob(JOBTYPE JobID);					
 	uint16		getMPCost();
-	uint16		getCastTime();
-	uint8		getRecastTime();
+	uint32		getCastTime();
+	uint32		getRecastTime();
 	uint8		getValidTarget();
 	uint16		getAnimationID();
-	uint16		getSpellType();
 	SPELLGROUP	getSpellGroup();
 	bool		isAOE();
 	uint16		getBase();
-	uint8		getEffect();
 	uint16		getElement();
 	float		getMultiplier();
+    uint16      getMessage();
 	uint16		getCE();
 	uint16		getVE();
 
@@ -70,17 +69,16 @@ public:
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);						
 	void		setMPCost(uint16 MP);
-	void		setCastTime(uint16 CastTime);
-	void		setRecastTime(uint8 RecastTime);
+	void		setCastTime(uint32 CastTime);
+	void		setRecastTime(uint32 RecastTime);
 	void		setValidTarget(uint8 ValidTarget);
 	void		setAnimationID(uint16 AnimationID);
 	void		setSpellGroup(SPELLGROUP SpellGroup);
 	void		setAOE(uint8 AOE);
 	void		setBase(uint16 base);
-	void		setEffect(uint8 effect);
 	void		setElement(uint16 element); 
 	void		setMultiplier(float multiplier);
-	void		setSpellType(uint16 spellType);
+    void        setMessage(uint16 message);
 	void		setCE(uint16 ce);
 	void		setVE(uint16 ve);
 
@@ -89,22 +87,21 @@ public:
 	
 private:
 
-	uint16		m_ID;									// SpellId
-	uint16		m_castTime;								// Time to cast spell
-	uint8		m_recastTime;							// recast time
-	uint16		m_animationID;							// animation for spell
-	uint16		m_mpCost;								// mpCost/ItemId for ninjitsu tool
+	uint16		m_ID;									// spell id
+	uint32		m_castTime;								// time to cast spell
+	uint32		m_recastTime;							// recast time
+	uint16		m_animation;							// animation for spell
+	uint16		m_mpCost;								// mpCost/itemId for ninjitsu tool
 	uint8		m_job[MAX_JOBTYPE];						// job
 	uint8		m_ValidTarget;							// target pc/npc/both
 	SPELLGROUP  m_spellGroup;							// spellgroup 
 	bool		m_isAOE;								// aoe or single target spell
 	uint16		m_base;									// spell base damage
-	uint16		m_spellType;
-	uint8		m_effect;								// additional or added effect
-	float		m_multiplier;							// Multiplier for upper tier spells
-	uint16		m_element;								// Element of spell
-	uint16		m_CE;									// Cumulative Enmity of spell
-	uint16		m_VE;									// Volatile Enmity of spell
+	float		m_multiplier;							// multiplier for upper tier spells
+	uint16		m_element;								// element of spell
+    uint16      m_message;                              // default message id
+	uint16		m_CE;									// cumulative enmity of spell
+	uint16		m_VE;									// volatile enmity of spell
 	string_t	m_name;									// spell name
 };
 

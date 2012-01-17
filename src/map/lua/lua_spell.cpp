@@ -36,10 +36,10 @@ CLuaSpell::CLuaSpell(lua_State *L)
 {
 	if( !lua_isnil(L,-1) )
 	{
-		m_pLuaSpell = (CSpell*)(lua_touserdata(L,-1));
+		m_PLuaSpell = (CSpell*)(lua_touserdata(L,-1));
 		lua_pop(L,1);
 	}else{
-		m_pLuaSpell = NULL;
+		m_PLuaSpell = NULL;
 	}
 }
 
@@ -51,7 +51,22 @@ CLuaSpell::CLuaSpell(lua_State *L)
 
 CLuaSpell::CLuaSpell(CSpell* PSpell)
 {
-	m_pLuaSpell = PSpell;
+	m_PLuaSpell = PSpell;
+}
+
+/************************************************************************
+*                                                                       *
+*  Устанавливаем сообщение заклинания                                   *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaSpell::setMsg(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL); 
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+    m_PLuaSpell->setMessage(lua_tointeger(L,-1));
+	return 0;
 }
 
 /************************************************************************
@@ -63,5 +78,6 @@ CLuaSpell::CLuaSpell(CSpell* PSpell)
 const int8 CLuaSpell::className[] = "CSpell";
 Lunar<CLuaSpell>::Register_t CLuaSpell::methods[] = 
 {
+    LUNAR_DECLARE_METHOD(CLuaSpell,setMsg),
 	{NULL,NULL}
 }; 

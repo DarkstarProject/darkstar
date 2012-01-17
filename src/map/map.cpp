@@ -737,6 +737,7 @@ int32 map_config_default()
     map_config.server_message = "";
 	map_config.uiBuffMaxSize  = 1874;
     map_config.vanadiel_time_offset = 0;
+    map_config.lightluggage_block   = 0;
 	map_config.max_time_lastupdate  = 60000;
 	return 0;
 }
@@ -802,6 +803,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1,"vanadiel_time_offset") == 0)
         {
             map_config.vanadiel_time_offset = atoi(w2);
+        }
+        else if (strcmp(w1,"lightluggage_block") == 0)
+        {
+            map_config.lightluggage_block = atoi(w2);
         }
 		else if (strcmp(w1,"mysql_host") == 0)
 		{

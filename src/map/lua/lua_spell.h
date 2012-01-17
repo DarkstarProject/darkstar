@@ -32,7 +32,7 @@
 
 class CLuaSpell
 {
-	CSpell *m_pLuaSpell;
+	CSpell *m_PLuaSpell;
 public:
 
 	static const int8 className[];
@@ -41,10 +41,12 @@ public:
 	CLuaSpell(lua_State*);
 	CLuaSpell(CSpell*);
 
-	CSpell* GetSpell()const
+	CSpell* GetSpell() const
 	{
-		return m_pLuaSpell;
+		return m_PLuaSpell;
 	}
+
+    int32 setMsg(lua_State*);
 };
 
 #endif

@@ -139,11 +139,11 @@ void LoadSpellList()
 	memset(g_PSpellList,0,sizeof(g_PSpellList));
 
 	const int8* fmtQuery = "SELECT spellid, name, jobs, `group`, validTargets, castTime, recastTime, animation, mpCost, \
-							isAOE, base, effect, element, multiplier, defaultMsgType, CE, VE \
+							isAOE, base, element, multiplier, message, CE, VE \
 							FROM spell_list \
 							WHERE spellid < %u;";
 
-	int32 ret = Sql_Query(SqlHandle,fmtQuery,MAX_SPELL_ID);
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_SPELL_ID);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -155,18 +155,18 @@ void LoadSpellList()
 			PSpell->setJob(Sql_GetData(SqlHandle,2));
 			PSpell->setSpellGroup((SPELLGROUP)Sql_GetIntData(SqlHandle,3));
 			PSpell->setValidTarget(Sql_GetIntData(SqlHandle,4));
-			PSpell->setCastTime((uint16)(Sql_GetFloatData(SqlHandle,5) * 1000));
+			PSpell->setCastTime(Sql_GetIntData(SqlHandle,5));
 			PSpell->setRecastTime(Sql_GetIntData(SqlHandle,6));
 			PSpell->setAnimationID(Sql_GetIntData(SqlHandle,7));
 			PSpell->setMPCost(Sql_GetIntData(SqlHandle,8));
 			PSpell->setAOE(Sql_GetIntData(SqlHandle,9));
 			PSpell->setBase(Sql_GetIntData(SqlHandle,10)); 
-			PSpell->setEffect(Sql_GetIntData(SqlHandle,11)); 
-			PSpell->setElement(Sql_GetIntData(SqlHandle,12)); 
-			PSpell->setMultiplier(Sql_GetIntData(SqlHandle,13)); 
-			PSpell->setSpellType(Sql_GetIntData(SqlHandle,14));
-			PSpell->setCE(Sql_GetIntData(SqlHandle,15));
-			PSpell->setVE(Sql_GetIntData(SqlHandle,16));
+			PSpell->setElement(Sql_GetIntData(SqlHandle,11)); 
+			PSpell->setMultiplier(Sql_GetIntData(SqlHandle,12)); 
+            PSpell->setMessage(Sql_GetIntData(SqlHandle,13)); 
+			PSpell->setCE(Sql_GetIntData(SqlHandle,14));
+			PSpell->setVE(Sql_GetIntData(SqlHandle,15));
+
 			g_PSpellList[PSpell->getID()] = PSpell;
 		}
 	}
@@ -180,9 +180,9 @@ void LoadAbilitiesList()
 {
 	memset(g_PAbilityList,0,sizeof(g_PAbilityList));
 
-	const int8* fmtQuery = "SELECT abilityId, name, job, level, validTarget, recastTime, animation, `range`, isAOE, recastId, \
-						    CE, VE \
-							FROM abilities WHERE job > 0 AND job < %u AND abilityId < %u \
+	const int8* fmtQuery = "SELECT abilityId, name, job, level, validTarget, recastTime, animation, `range`, isAOE, recastId, CE, VE \
+							FROM abilities \
+                            WHERE job > 0 AND job < %u AND abilityId < %u \
 							ORDER BY job, level ASC";
 
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_JOBTYPE, MAX_ABILITY_ID);
@@ -204,6 +204,7 @@ void LoadAbilitiesList()
 			PAbility->setRecastId(Sql_GetIntData(SqlHandle,9));
 			PAbility->setCE(Sql_GetIntData(SqlHandle,10));
 			PAbility->setVE(Sql_GetIntData(SqlHandle,11));
+
 			g_PAbilityList[PAbility->getID()] = PAbility;
 			g_PAbilitiesList[PAbility->getJob()].push_back(PAbility);
 		}
@@ -561,7 +562,7 @@ std::list<CTrait*> GetTraits(JOBTYPE JobID)
 *																		*
 ************************************************************************/
 
-uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, CZone* PZone)
+uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE))
 	{
@@ -656,78 +657,61 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 *																		*
 ************************************************************************/
 
-uint32 MagicCalculateDamage(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone) 
+uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender) 
 {
-	int32 dINT = PCaster->stats.INT - PTarget->stats.INT; 
-	int32 base = PSpell->getBase(); 
-	float M = PSpell->getMultiplier(); 
-
-	int32 D = (dINT < 0 ? base + dINT : base + (dINT * M)); 
-
-	if (PSpell->isAOE() && targetNumber > 1)
-	{
-		if (targetNumber > 1 && targetNumber < 10) 
-			D = (D * 0.9); // Need to correct this later, every +2 targets, reduce by 0.1
-		else if (targetNumber >= 10)
-		{
-			D = (D * 0.4);
-		}
-	}
-
-	switch(PSpell->getElement())
-	{
-	case 1: // Fire
-	{
-		D = (PTarget->getMod(MOD_FIRERES) > 0 ? (D * (PTarget->getMod(MOD_FIRERES))) / 1000 : D);
-	}
-		break;
-	case 2: // Earth
-	{
-		D = (PTarget->getMod(MOD_EARTHRES) > 0 ? (D * (PTarget->getMod(MOD_EARTHRES))) / 1000 : D);
-	}
-		break;
-	case 3: // water
-	{
-		D = (PTarget->getMod(MOD_WATERRES) > 0 ? (D * (PTarget->getMod(MOD_WATERRES))) / 1000 : D);
-	}
-		break;
-	case 4: // air
-	{
-		D = (PTarget->getMod(MOD_WINDRES) > 0 ? (D * (PTarget->getMod(MOD_WINDRES))) / 1000 : D);
-	}
-		break;
-	case 5: // ice 
-	{
-		D = (PTarget->getMod(MOD_ICERES) > 0 ? (D * (PTarget->getMod(MOD_ICERES))) / 1000 : D);
-	}
-		break;
-	case 6: // thunder
-	{
-		D = (PTarget->getMod(MOD_THUNDERRES) > 0 ? (D * (PTarget->getMod(MOD_THUNDERRES))) / 1000 : D);
-	}
-		break;
-	case 7: // light
-	{
-		D = (PTarget->getMod(MOD_LIGHTRES) > 0 ? (D * (PTarget->getMod(MOD_LIGHTRES))) / 1000 : D);
-	}
-		break;
-	case 8: // dark
-	{
-		D = (PTarget->getMod(MOD_DARKRES) > 0 ? (D * (PTarget->getMod(MOD_DARKRES))) / 1000 : D);
-	}
-		break;
-	};
+	DSP_DEBUG_BREAK_IF(PAttacker->PBattleAI->GetCurrentSpell() == NULL);
+    DSP_DEBUG_BREAK_IF(PAttacker->PBattleAI->GetCurrentAction() != ACTION_MAGIC_FINISH);
 	
-	PTarget->addHP(-D);
-    if (PTarget->objtype == TYPE_MOB)
-    {
-        ((CMobEntity*)PTarget)->m_OwnerID = PCaster->id;
-	    ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(PCaster,D); 
-    }
-    // TODO: брак
-	PZone->PushPacket(PTarget, CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget));
-	return D;
+	CSpell* PSpell = PAttacker->PBattleAI->GetCurrentSpell();
 
+	int32 INT   = (PAttacker->stats.INT + PAttacker->getMod(MOD_INT)) - (PDefender->stats.INT + PDefender->getMod(MOD_INT));
+	uint32 base =  PSpell->getBase();
+	float M     =  PSpell->getMultiplier();
+
+	uint32 damage = INT < 0 ? base + INT : base + (INT * M); 
+	
+    damage = damage * (100 - (10 * PAttacker->m_ActionList.size() / 2)) / 100;
+	damage = damage * (1000 + PDefender->getMod(MOD_FIRERES + PSpell->getElement())) / 1000;
+	
+	PDefender->addHP(-damage);
+	PDefender->m_OwnerID = PAttacker->PMaster != NULL ? PAttacker->PMaster->id : PAttacker->id;
+	
+	switch (PDefender->objtype)
+	{
+		case TYPE_PC:
+		{
+			PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
+		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+			
+			switch (PDefender->animation)
+		    {
+			    case ANIMATION_SIT:
+			    {
+				    PDefender->animation = ANIMATION_NONE;
+
+				    ((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
+			    }
+			    break;
+			    case ANIMATION_HEALING:
+			    {
+				    PDefender->animation = ANIMATION_NONE;
+
+				    ((CCharEntity*)PDefender)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+			    }
+			    break;
+		    };
+            charutils::UpdateHealth((CCharEntity*)PDefender);
+		}
+		break;
+		case TYPE_MOB:
+		{
+			((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage); 
+		}
+		break;
+	}
+	return damage;
 }
 
 /************************************************************************

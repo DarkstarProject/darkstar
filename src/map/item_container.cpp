@@ -32,6 +32,9 @@ CItemContainer::CItemContainer(uint16 LocationID, bool ReservedSlot)
 {
 	m_id = LocationID;
 
+    SortingPacket = 0;
+    LastSortingTime = 0;
+
 	m_size  = 0;
     m_count = 0;
 
@@ -100,7 +103,6 @@ uint8 CItemContainer::InsertItem(CItem* PItem)
 			return SlotID;
 		}
 	}
-	
 	ShowDebug("ItemContainer: Container is full\n");
 
 	delete PItem;
@@ -129,7 +131,6 @@ uint8 CItemContainer::InsertItem(CItem* PItem, uint8 SlotID)
 		m_ItemList[SlotID] = PItem;
 		return SlotID;
 	}
-
 	ShowDebug("ItemContainer: SlotID %i is out of range\n", SlotID);
 
 	delete PItem;
