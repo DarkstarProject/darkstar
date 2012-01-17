@@ -29,7 +29,5 @@ function onSpellCast(caster,target,spell)
 	end
 	
 	target:addStatusEffect(EFFECT_REGEN,hp,3,duration,FLAG_DISPELABLE);
-	
-	target:updateEnmity(caster,1,300);
 	return 0;
 end;
