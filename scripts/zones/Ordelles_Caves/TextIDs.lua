@@ -12,6 +12,8 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
  A_SQUIRE_S_TEST_II_DIALOG_II = 7296; -- The dew from the stalactite slips through your fingers.
 A_SQUIRE_S_TEST_II_DIALOG_III = 7297; -- You have already obtained the dew.
 
+
+
 --Generic Dialogs
 
 NOTHING_FOUND = 7386; -- There is nothing out of the ordinary here.
