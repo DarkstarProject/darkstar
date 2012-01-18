@@ -68,7 +68,7 @@ void Initialize()
 
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 		{
-			g_PGuildList.push_back(new CItemContainer(Sql_GetIntData(SqlHandle,0), false));
+			g_PGuildList.push_back(new CItemContainer(Sql_GetIntData(SqlHandle,0)));
 		}
 	}
 	for (uint32 i = 0; i < g_PGuildList.size(); ++i)
@@ -116,7 +116,7 @@ void UpdateGuildsStock()
     for (uint16 i = 0; i < g_PGuildList.size(); ++i)
 	{
 		CItemContainer* PGuild = g_PGuildList.at(i);
-        for(uint8 slotid = 0; slotid < PGuild->GetSize(); ++slotid)
+        for(uint8 slotid = 1; slotid <= PGuild->GetSize(); ++slotid)
         {
             CItemShop* PItem = (CItemShop*)PGuild->GetItem(slotid);
 

@@ -648,6 +648,16 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         }
         break;
     }
+    if (PAttacker->objtype == TYPE_PC)
+    {
+        PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST);
+        PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK_ATTACK);
+
+        PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	    PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+	    PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
+        PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+    }
 	return damage;
 }
 

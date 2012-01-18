@@ -47,29 +47,26 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 count)
 	WBUFB(data,(0x0C)-4) = 0x01;
 }
 
-CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, CItem* PItem, uint8 count)
+CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, CItem* PItem, uint8 count, uint8 message)
 {
 	this->type = 0x4B;
 	this->size = 0x2C;
 
 	memset(data, 0xFF, 12);
 
-    WBUFB(data,(0x04)-4) = action;                      // тип действия	
-    WBUFB(data,(0x05)-4) = 0x01;	                        // тип почтового ящика - 0x01 окно приема почты, 0x02 окно отправки почты 
-    WBUFB(data,(0x06)-4) = PItem->getSlotID();          // номер ячейки, в которой находится предмет
-    WBUFB(data,(0x0C)-4) = 0x01;	                        // назначение неизвестно
-    WBUFB(data,(0x0D)-4) = count;                       // общее количество предметов, которые мы передадим в delivery box
+    WBUFB(data,(0x04)-4) = action;                          // тип действия	
+    WBUFB(data,(0x05)-4) = 0x01;	                            // тип почтового ящика - 0x01 окно приема почты, 0x02 окно отправки почты 
+    WBUFB(data,(0x06)-4) = PItem->getSlotID();              // номер ячейки, в которой находится предмет
+    WBUFB(data,(0x0C)-4) = message;	                        // сообщение об ошибке, либо 0x01 в случае успеха
+    WBUFB(data,(0x0D)-4) = count;                           // общее количество предметов, которые мы передадим в delivery box
 
-    if (action != 0x0B)
+    if ((action != 0x0A && action != 0x0B) || message > 1)
     {
-        WBUFB(data,(0x10)-4) = 0x07;	                    // назначение неизвестно
-        WBUFB(data,(0x24)-4) = 0xE6;	                    // значение меняется, назначение неизвестно
-        WBUFB(data,(0x34)-4) = 0x05;	                    // значение меняется, назначение неизвестно
+        WBUFB(data,(0x10)-4) = 0x0B;	                        // назначение неизвестно
+        memcpy(data + 0x14-4, PItem->getSender(), 15);      // имя отправителя или название аукциона. Если имя начинается на AH, то клиент отключает кнопку "вернуть"	
     }
-	
-    memcpy(data + 0x14-4, PItem->getSender(), 15);      // имя отправителя или название аукциона. Если имя начинается на AH, то клиент отключает кнопку "вернуть"	
 
-    WBUFW(data,(0x2C)-4) = PItem->getSubID();           // предмет, за продажу которого прислали деньги с аукциона
-    WBUFW(data,(0x30)-4) = PItem->getID();              // передаваемый предмет
-    WBUFL(data,(0x38)-4) = PItem->getQuantity();               // количество предметов или сумма денег
+    WBUFW(data,(0x2C)-4) = PItem->getSubID();               // предмет, за продажу которого прислали деньги с аукциона
+    WBUFW(data,(0x30)-4) = PItem->getID();                  // передаваемый предмет
+    WBUFL(data,(0x38)-4) = PItem->getQuantity();            // количество предметов или сумма денег
 }

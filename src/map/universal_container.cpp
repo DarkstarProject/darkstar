@@ -44,17 +44,18 @@ CUContainer::CUContainer()
 *																		*
 ************************************************************************/
 
-void CUContainer::Clean(bool NeedDelete)
+void CUContainer::Clean()
 {
-	m_ContainerType = UCONTAINER_EMPTY;
-
-    if (NeedDelete)
+    if (m_ContainerType == UCONTAINER_DELIVERYBOX)
     {
         for (uint8 i = 0; i < UCONTAINER_SIZE; ++i)
         {
             delete m_PItem[i];
         }
     }
+    m_count = 0;
+    m_ContainerType = UCONTAINER_EMPTY;
+
 	memset(m_PItem, 0, sizeof(m_PItem));
 }
 
@@ -118,8 +119,22 @@ void CUContainer::SetItem(uint8 slotID, CItem* PItem)
 {
 	if (slotID < UCONTAINER_SIZE)
 	{
+        if (PItem != NULL && m_PItem[slotID] == NULL) m_count++;
+        if (PItem == NULL && m_PItem[slotID] != NULL) m_count--;
+
 		m_PItem[slotID] = PItem;
 	}
+}
+
+/************************************************************************
+*                                                                       *
+*  Узнаем количество предметов, находящихся в контейнере                *
+*                                                                       *
+************************************************************************/
+
+uint8 CUContainer::GetItemsCount()
+{
+    return m_count;
 }
 
 /************************************************************************

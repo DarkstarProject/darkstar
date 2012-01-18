@@ -53,7 +53,7 @@ class CItemContainer
 {
 public:
 
-	CItemContainer(uint16 LocationID, bool ReservedSlot = true);
+	CItemContainer(uint16 LocationID);
    ~CItemContainer();
 
 	uint16	GetID();
@@ -75,8 +75,6 @@ private:
 	uint16	m_id;
 	uint8	m_size;
     uint8   m_count;
-
-	uint8	m_ReservedSlot;
 
 	CItem*	m_ItemList[MAX_CONTAINER_SIZE+1];
 };

@@ -719,6 +719,11 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quanti
 
 	if (PItem != NULL) 
 	{
+        if (PItem->getType() & ITEM_CURRENCY)
+        {
+            UpdateItem(PChar, LocationID, 0, quantity);
+            return 0;
+        }
 		if (PItem->getFlag() & ITEM_FLAG_RARE)
 		{
 			for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
@@ -774,12 +779,12 @@ uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quan
 {
 	CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
 	
-	if(PItem == NULL) {
+	if(PItem == NULL) 
+    {
 		ShowDebug("UpdateItem: No item in slot %u\n", slotID);
 		PChar->pushPacket(new CInventoryItemPacket(NULL, LocationID, slotID));
 		return 0;
 	}
-
 	if ((int32)PItem->getQuantity() + quantity < 0)
 	{
 		ShowDebug("UpdateItem: Trying to move too much quantity\n");
@@ -791,27 +796,27 @@ uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quan
 
 	if (newQuantity > PItem->getStackSize()) newQuantity = PItem->getStackSize();
 
-	if(newQuantity > 0 || (PItem->getType() & ITEM_CURRENCY)) {
-
+	if (newQuantity > 0 || (PItem->getType() & ITEM_CURRENCY)) 
+    {
 		const int8* fmtQuery = "UPDATE char_inventory \
 								SET quantity = %u \
 								WHERE charid = %u AND location = %u AND slot = %u;";
 
-		if( Sql_Query(SqlHandle,fmtQuery,newQuantity,PChar->id,LocationID,slotID) != SQL_ERROR )
+		if (Sql_Query(SqlHandle,fmtQuery,newQuantity,PChar->id,LocationID,slotID) != SQL_ERROR)
 		{
 			PItem->setQuantity(newQuantity);
 			PChar->pushPacket(new CInventoryModifyPacket(LocationID,slotID,newQuantity));
 		}
-	}else if(newQuantity == 0) {
+	}
+    else if (newQuantity == 0) 
+    {
+		const int8* fmtQuery = "DELETE FROM char_inventory WHERE charid = %u AND location = %u AND slot = %u;";
 
-		const int8* fmtQuery = "DELETE FROM char_inventory \
-								WHERE charid = %u AND location = %u AND slot = %u;";
-
-		if( Sql_Query(SqlHandle,fmtQuery,PChar->id,LocationID,slotID) != SQL_ERROR )
+		if (Sql_Query(SqlHandle,fmtQuery,PChar->id,LocationID,slotID) != SQL_ERROR)
 		{
-			delete PItem;
 			PChar->getStorage(LocationID)->InsertItem(NULL, slotID);
 			PChar->pushPacket(new CInventoryItemPacket(NULL, LocationID, slotID));
+            delete PItem;
 		}
 	}
 	return ItemID;
@@ -2042,12 +2047,12 @@ void SaveCharInventoryCapacity(CCharEntity* PChar)
                             WHERE charid = %u;";
 	
 	Sql_Query(SqlHandle, fmtQuery,
-        PChar->getStorage(LOC_INVENTORY)->GetSize()-1,
-        PChar->getStorage(LOC_MOGSAFE)->GetSize()-1,
-		PChar->getStorage(LOC_STORAGE)->GetSize()-1,
-        PChar->getStorage(LOC_MOGLOCKER)->GetSize()-1,
-        PChar->getStorage(LOC_MOGSATCHEL)->GetSize()-1,
-		PChar->getStorage(LOC_MOGSACK)->GetSize()-1,
+        PChar->getStorage(LOC_INVENTORY)->GetSize(),
+        PChar->getStorage(LOC_MOGSAFE)->GetSize(),
+		PChar->getStorage(LOC_STORAGE)->GetSize(),
+        PChar->getStorage(LOC_MOGLOCKER)->GetSize(),
+        PChar->getStorage(LOC_MOGSATCHEL)->GetSize(),
+		PChar->getStorage(LOC_MOGSACK)->GetSize(),
         PChar->id);
 }
 

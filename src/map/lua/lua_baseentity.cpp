@@ -2916,7 +2916,7 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 
 inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 {
-	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	if (!lua_isnil(L,-1) && lua_isboolean(L,-1))
 	{
@@ -2935,20 +2935,15 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 
 inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
 {
-	//DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 	
-	if( m_PBaseEntity != NULL )
-	{
-		if( !lua_isnil(L,1) && lua_isnumber(L,1))
-			{
-				CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
-				uint8 size = PChar->getStorage(lua_tointeger(L,1))->GetSize() -1;
-				lua_pushinteger(L,size);
-			}
-	}
+    CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+    lua_pushinteger(L, PChar->getStorage(lua_tointeger(L,1))->GetSize());
 	return 1;
 }
-	
 
 /************************************************************************
 *																		*

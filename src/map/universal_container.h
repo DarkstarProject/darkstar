@@ -63,16 +63,18 @@ public:
 	void	SetType(UCONTAINERTYPE Type);
 	void	SetItem(uint8 slotID, CItem* PItem);
 
-	void	Clean(bool NeedDelete = false);
+	void	Clean();
 	bool	IsContainerEmpty();
     bool    IsSlotEmpty(uint8 slotID);
 
+    uint8	GetItemsCount();
 	CItem*	GetItem(uint8 slotID);
 
 private:
 
 	UCONTAINERTYPE	m_ContainerType;
 	
+    uint8   m_count;
 	CItem*  m_PItem[UCONTAINER_SIZE];
 };
 

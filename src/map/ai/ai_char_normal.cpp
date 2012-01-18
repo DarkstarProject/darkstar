@@ -758,7 +758,7 @@ void CAICharNormal::ActionRangedFinish()
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PBattleSubTarget = NULL;
 
-        //charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PChar->m_Weapons[SLOT_RANGED]->getSkillType(), m_PBattleTarget->GetMLevel());
+      //charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PChar->m_Weapons[SLOT_RANGED]->getSkillType(), m_PBattleTarget->GetMLevel());
 	}
 }
 
@@ -1229,6 +1229,9 @@ void CAICharNormal::ActionJobAbilityStart()
 
 void CAICharNormal::ActionJobAbilityFinish()
 {
+    DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
     m_LastActionTime = m_Tick;
 
     m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
@@ -1390,11 +1393,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
     m_LastActionTime = m_Tick;
 
-    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
-	
 	uint16 damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget);
 
 	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
@@ -1531,11 +1529,6 @@ void CAICharNormal::ActionAttack()
 			}
 			return;
 		}
-
-        m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-	    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-	    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-
         m_LastActionTime = (m_LastActionTime > m_AttackMessageTime) ? m_LastActionTime + WeaponDelay : m_Tick;
 
 		if (battleutils::IsParalised(m_PChar)) 

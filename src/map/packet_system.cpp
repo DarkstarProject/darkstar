@@ -948,7 +948,7 @@ int32 SmallPacket0x042(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	uint8 SlotID  = RBUFB(data,(0x04));
 
-	PChar->PTreasurePool->LotItem(PChar, SlotID,0);
+	PChar->PTreasurePool->LotItem(PChar, SlotID, 0);
 	return 0;
 }
 
@@ -989,8 +989,8 @@ int32 SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* da
 	// 0x06 - отправка клиенту новых предметов
 	// 0x07 -
 	// 0x08 - обновление предмета в ячейке перед удалением
-	// 0x09 - взять предмет из ячейки
-	// 0x0a - вернуть предмет отправителю
+	// 0x09 - вернуть предмет отправителю
+    // 0x0a - взять предмет из ячейки
 	// 0x0b - удаление предмета из ячейки
 	// 0x0c - подтверждение введенного имени в окне отправки
 	// 0x0d - открытие окна отправки почты
@@ -1022,7 +1022,7 @@ int32 SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 		        while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 		        {
-                    CItem* PItem = itemutils::GetItem(Sql_GetUIntData(SqlHandle,0));
+                    CItem* PItem = itemutils::GetItem(Sql_GetIntData(SqlHandle,0));
 
                     PItem->setSubID(Sql_GetIntData(SqlHandle,1));
                     PItem->setSlotID(Sql_GetIntData(SqlHandle,2));
@@ -1067,8 +1067,9 @@ int32 SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* da
                 {
                     if (PChar->UContainer->IsSlotEmpty(i))
                     {
-                        if (Sql_Query(SqlHandle, "UPDATE delivery_box SET slot = %u WHERE charid = %u AND slot = %u", i, PChar->id, PItem->getSlotID()) != SQL_ERROR &&
-                            Sql_AffectedRows(SqlHandle) != 0)
+                        int32 ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET slot = %u WHERE charid = %u AND slot = %u", i, PChar->id, PItem->getSlotID());
+
+                        if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
                         {
                             PItem->setSlotID(i);
                             PChar->UContainer->SetItem(i, PItem);
@@ -1114,9 +1115,7 @@ int32 SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* da
 			return 0;
 		}
         case 0x09:
-        case 0x0A:
         {
-            //PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 142));
             if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
                !PChar->UContainer->IsSlotEmpty(slotID))
             {
@@ -1124,7 +1123,37 @@ int32 SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* da
             }
 			return 0;
         }
-        break;
+        case 0x0A:
+        {
+            if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
+               !PChar->UContainer->IsSlotEmpty(slotID))
+            {
+                CItem* PItem = PChar->UContainer->GetItem(slotID);
+
+                ShowMessage("FreeSlots %u\n", PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount());
+                ShowMessage("ItemType %u", PItem->getType());
+
+                if (PItem->getType() != ITEM_CURRENCY &&
+                    PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
+                {
+                    PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount(), 0xB9));
+                    return 0;
+                }
+                int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u LIMIT 1", PChar->id, slotID);
+
+                if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
+                {
+                    charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity());
+                   
+                    PChar->UContainer->SetItem(slotID, NULL);
+
+                    PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
+                    PChar->pushPacket(new CInventoryFinishPacket());
+                    delete PItem;
+                }
+            }
+			return 0;
+        }
 		case 0x0B:
 		{
             // удаление предмета из ячейки
@@ -1132,10 +1161,15 @@ int32 SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* da
             if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
                !PChar->UContainer->IsSlotEmpty(slotID))
             {
-                if (Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u", PChar->id, slotID) != SQL_ERROR && 
-                    Sql_AffectedRows(SqlHandle) != 0)
+                int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u LIMIT 1", PChar->id, slotID);
+
+                if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
                 {
-                    PChar->pushPacket(new CDeliveryBoxPacket(action, PChar->UContainer->GetItem(slotID), 1));
+                    CItem* PItem = PChar->UContainer->GetItem(slotID);
+                    PChar->UContainer->SetItem(slotID, NULL);
+
+                    PChar->pushPacket(new CDeliveryBoxPacket(action, PChar->UContainer->GetItem(slotID), PChar->UContainer->GetItemsCount()));
+                    delete PItem;
                 }
             }
 			return 0;
@@ -1144,7 +1178,7 @@ int32 SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* da
         {
             if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX)
             {
-                PChar->UContainer->Clean(true);
+                PChar->UContainer->Clean();
             }
         }
         break;

@@ -38,19 +38,19 @@ CInventorySizePacket::CInventorySizePacket(CCharEntity* PChar)
 	this->type = 0x1C;
 	this->size = 0x1A;
 
-	WBUFB(data,(0x04)-4) = PChar->getStorage(LOC_INVENTORY)->GetSize();
-	WBUFB(data,(0x05)-4) = PChar->getStorage(LOC_MOGSAFE)->GetSize();
-	WBUFB(data,(0x06)-4) = PChar->getStorage(LOC_STORAGE)->GetSize();
-	WBUFB(data,(0x07)-4) = PChar->getStorage(LOC_TEMPITEMS)->GetSize();
-	WBUFB(data,(0x08)-4) = PChar->getStorage(LOC_MOGLOCKER)->GetSize();
-	WBUFB(data,(0x09)-4) = PChar->getStorage(LOC_MOGSATCHEL)->GetSize();
-	WBUFB(data,(0x0A)-4) = PChar->getStorage(LOC_MOGSACK)->GetSize();
+	WBUFB(data,(0x04)-4) = 1 + PChar->getStorage(LOC_INVENTORY)->GetSize();
+	WBUFB(data,(0x05)-4) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetSize();
+	WBUFB(data,(0x06)-4) = 1 + PChar->getStorage(LOC_STORAGE)->GetSize();
+	WBUFB(data,(0x07)-4) = 1 + PChar->getStorage(LOC_TEMPITEMS)->GetSize();
+	WBUFB(data,(0x08)-4) = 1 + PChar->getStorage(LOC_MOGLOCKER)->GetSize();
+	WBUFB(data,(0x09)-4) = 1 + PChar->getStorage(LOC_MOGSATCHEL)->GetSize();
+	WBUFB(data,(0x0A)-4) = 1 + PChar->getStorage(LOC_MOGSACK)->GetSize();
 
-	WBUFB(data,(0x14)-4) = PChar->getStorage(LOC_INVENTORY)->GetSize();
-	WBUFB(data,(0x16)-4) = PChar->getStorage(LOC_MOGSAFE)->GetSize();
-	WBUFB(data,(0x18)-4) = PChar->getStorage(LOC_STORAGE)->GetSize();
-	WBUFB(data,(0x1A)-4) = PChar->getStorage(LOC_TEMPITEMS)->GetSize();
-	WBUFB(data,(0x1C)-4) = PChar->getStorage(LOC_MOGLOCKER)->GetSize();
-	WBUFB(data,(0x1E)-4) = PChar->getStorage(LOC_MOGSATCHEL)->GetSize();
-	WBUFB(data,(0x20)-4) = PChar->getStorage(LOC_MOGSACK)->GetSize();
+	WBUFB(data,(0x14)-4) = 1 + PChar->getStorage(LOC_INVENTORY)->GetSize();
+	WBUFB(data,(0x16)-4) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetSize();
+	WBUFB(data,(0x18)-4) = 1 + PChar->getStorage(LOC_STORAGE)->GetSize();
+	WBUFB(data,(0x1A)-4) = 1 + PChar->getStorage(LOC_TEMPITEMS)->GetSize();
+	WBUFB(data,(0x1C)-4) = 1 + PChar->getStorage(LOC_MOGLOCKER)->GetSize();
+	WBUFB(data,(0x1E)-4) = 1 + PChar->getStorage(LOC_MOGSATCHEL)->GetSize();
+	WBUFB(data,(0x20)-4) = 1 + PChar->getStorage(LOC_MOGSACK)->GetSize();
 }

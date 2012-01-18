@@ -609,7 +609,7 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect * PStatusEffect)
 
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
-            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetStatusID(), 0, 206));
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetStatusID(), 0, 205));
             PChar->pushPacket(new CCharUpdatePacket(PChar));
             PChar->pushPacket(new CCharSyncPacket(PChar));
 		}

@@ -43,7 +43,7 @@ CGuildMenuBuyPacket::CGuildMenuBuyPacket(CCharEntity* PChar, CItemContainer* PGu
     uint8 ItemCount = 0;
     uint8 PacketCount = 0;
 
-    for (uint8 SlotID = 0; SlotID < PGuild->GetSize(); ++SlotID) 
+    for (uint8 SlotID = 1; SlotID <= PGuild->GetSize(); ++SlotID) 
     {
         CItemShop* PItem = (CItemShop*)PGuild->GetItem(SlotID);
 

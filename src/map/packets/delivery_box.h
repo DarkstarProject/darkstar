@@ -44,7 +44,7 @@ class CDeliveryBoxPacket : public CBasicPacket
 public:
 
 	CDeliveryBoxPacket(uint8 action, uint8 count);
-    CDeliveryBoxPacket(uint8 action, CItem* item, uint8 count);
+    CDeliveryBoxPacket(uint8 action, CItem* item, uint8 count, uint8 message = 1);
 };
 
 #endif
