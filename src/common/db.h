@@ -1,4 +1,4 @@
-//Copyright (c) 2010-2011 Darkstar Dev Teams
+//Copyright (c) 2010-2012 Darkstar Dev Teams
 
 #ifndef _DB_H
 #define _DB_H
