@@ -649,8 +649,7 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 		}
 		break;
 	}
-
-	//ShowDebug(CL_CYAN"CLIENT PERFORMING ACTION %02hX\n"CL_RESET, action);
+	ShowDebug(CL_CYAN"CLIENT PERFORMING ACTION %02hX\n"CL_RESET, action);
 	return 0;
 } 
 
