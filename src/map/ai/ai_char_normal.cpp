@@ -326,6 +326,8 @@ void CAICharNormal::ActionFall()
 
 	m_PSpell           = NULL;
     m_PJobAbility      = NULL;
+	m_PWeaponSkill     = NULL;
+	m_PItemUsable      = NULL;
 	m_PBattleTarget    = NULL;
 	m_PBattleSubTarget = NULL;
 
@@ -1215,7 +1217,7 @@ void CAICharNormal::ActionJobAbilityStart()
 	}
     m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
     m_PJobAbility = NULL;
-    m_PBattleTarget = NULL;
+    m_PBattleSubTarget = NULL;
     return;
 }
 
