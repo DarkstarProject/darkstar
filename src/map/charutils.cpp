@@ -1894,31 +1894,40 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 *                                                                       *
 ************************************************************************/
 
-void AddExperiencePoints(CCharEntity* PChar, uint32 exp)
+void AddExperiencePoints(CCharEntity* PChar, uint32 exp, bool limit)
 {
     if (PChar->isDead()) return;
 
-    if (PChar->GetMLevel() <= 50) 
+    if (limit)
     {
-        if (exp > 200) 
+        if (PChar->GetMLevel() <= 50) 
         {
-            exp = exp;
-        }
-    } 
-    else if (PChar->GetMLevel() <= 60) 
-    {
-        if (exp > 250) 
+            if (exp > 200) exp = 200;
+        } 
+        else if (PChar->GetMLevel() <= 60) 
         {
-            exp = exp;
+            if (exp > 250) exp = 250;
+        } 
+        else if (exp > 300) 
+        {
+            exp = 300;
         }
-    } 
-    else if (exp > 300) 
-    {
-        exp = exp;
+
+        exp = (exp * g_expRate);
+
+        if (PChar->getMod(MOD_DEDICATION) != 0)
+        {
+            uint32 dedication = cap_value(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getMod(MOD_DEDICATION_CAP));
+
+            PChar->setModifier(MOD_DEDICATION, PChar->getMod(MOD_DEDICATION_CAP) - dedication);
+
+            if (PChar->getMod(MOD_DEDICATION_CAP) == 0)
+            {
+                PChar->StatusEffectContainer->DelStatusEffect(EFFECT_DEDICATION);
+            }
+            exp += dedication;
+        }
     }
-
-    exp = (exp * g_expRate);
-
     PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
 
     PChar->jobs.exp[PChar->GetMJob()] += exp;
@@ -1944,13 +1953,14 @@ void AddExperiencePoints(CCharEntity* PChar, uint32 exp)
                 BuildingCharSkillsTable(PChar);
                 BuildingCharAbilityTable(PChar);
                 BuildingCharTraitsTable(PChar);
+                BuildingCharWeaponSkills(PChar);
             }
 
             PChar->health.hp = PChar->health.maxhp;
             PChar->health.mp = PChar->health.maxmp;
 
-            SaveCharJobs(PChar);
             SaveCharStats(PChar);
+            SaveCharJob(PChar, PChar->GetMJob());
             SaveCharExp(PChar, PChar->GetMJob());
 
             PChar->pushPacket(new CCharJobsPacket(PChar));
@@ -2159,21 +2169,36 @@ void SaveCharStats(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void SaveCharJobs(CCharEntity* PChar)
+void SaveCharJob(CCharEntity* PChar, JOBTYPE job)
 {
-	const int8* fmtQuery = "UPDATE char_jobs \
-							SET unlocked = %u, genkai = %u, war = %u, mnk = %u, whm = %u, blm = %u, rdm = %u, thf = %u, \
-								pld = %u, drk = %u, bst = %u, brd = %u, rng = %u, sam = %u, nin = %u, drg = %u, \
-								smn = %u, blu = %u, cor = %u, pup = %u, dnc = %u, sch = %u \
-							WHERE charid = %u;";
+    DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
 
-	Sql_Query(SqlHandle,fmtQuery,
-		PChar->jobs.unlocked,PChar->jobs.genkai,
-		PChar->jobs.job[JOB_WAR],PChar->jobs.job[JOB_MNK],PChar->jobs.job[JOB_WHM],PChar->jobs.job[JOB_BLM],PChar->jobs.job[JOB_RDM],
-		PChar->jobs.job[JOB_THF],PChar->jobs.job[JOB_PLD],PChar->jobs.job[JOB_DRK],PChar->jobs.job[JOB_BST],PChar->jobs.job[JOB_BRD],
-		PChar->jobs.job[JOB_RNG],PChar->jobs.job[JOB_SAM],PChar->jobs.job[JOB_NIN],PChar->jobs.job[JOB_DRG],PChar->jobs.job[JOB_SMN],
-		PChar->jobs.job[JOB_BLU],PChar->jobs.job[JOB_COR],PChar->jobs.job[JOB_PUP],PChar->jobs.job[JOB_DNC],PChar->jobs.job[JOB_SCH],
-		PChar->id);
+    const int8* fmtQuery;
+	
+    switch (job)
+	{
+		case JOB_WAR: fmtQuery = "UPDATE char_jobs SET unlocked = %u, war = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_MNK: fmtQuery = "UPDATE char_jobs SET unlocked = %u, mnk = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_WHM: fmtQuery = "UPDATE char_jobs SET unlocked = %u, whm = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_BLM: fmtQuery = "UPDATE char_jobs SET unlocked = %u, blm = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_RDM: fmtQuery = "UPDATE char_jobs SET unlocked = %u, rdm = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_THF: fmtQuery = "UPDATE char_jobs SET unlocked = %u, thf = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_PLD: fmtQuery = "UPDATE char_jobs SET unlocked = %u, pld = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_DRK: fmtQuery = "UPDATE char_jobs SET unlocked = %u, drk = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_BST: fmtQuery = "UPDATE char_jobs SET unlocked = %u, bst = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_BRD: fmtQuery = "UPDATE char_jobs SET unlocked = %u, brd = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_RNG: fmtQuery = "UPDATE char_jobs SET unlocked = %u, rng = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_SAM: fmtQuery = "UPDATE char_jobs SET unlocked = %u, sam = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_NIN: fmtQuery = "UPDATE char_jobs SET unlocked = %u, nin = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_DRG: fmtQuery = "UPDATE char_jobs SET unlocked = %u, drg = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_SMN: fmtQuery = "UPDATE char_jobs SET unlocked = %u, smn = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_BLU: fmtQuery = "UPDATE char_jobs SET unlocked = %u, blu = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_COR: fmtQuery = "UPDATE char_jobs SET unlocked = %u, cor = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_PUP: fmtQuery = "UPDATE char_jobs SET unlocked = %u, pup = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_DNC: fmtQuery = "UPDATE char_jobs SET unlocked = %u, dnc = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_SCH: fmtQuery = "UPDATE char_jobs SET unlocked = %u, sch = %u WHERE charid = %u LIMIT 1"; break;
+	}
+    Sql_Query(SqlHandle, fmtQuery, PChar->jobs.unlocked, PChar->jobs.job[job], PChar->id);
 }
 
 /************************************************************************
@@ -2184,35 +2209,34 @@ void SaveCharJobs(CCharEntity* PChar)
 
 void SaveCharExp(CCharEntity* PChar, JOBTYPE job)
 {
-	DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
+    DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
 
 	const int8* fmtQuery;
 	
-	switch (job)
+    switch (job)
 	{
-		case JOB_WAR: fmtQuery = "UPDATE char_exp SET war = %u WHERE charid = %u"; break;
-		case JOB_MNK: fmtQuery = "UPDATE char_exp SET mnk = %u WHERE charid = %u"; break;
-		case JOB_WHM: fmtQuery = "UPDATE char_exp SET whm = %u WHERE charid = %u"; break;
-		case JOB_BLM: fmtQuery = "UPDATE char_exp SET blm = %u WHERE charid = %u"; break;
-		case JOB_RDM: fmtQuery = "UPDATE char_exp SET rdm = %u WHERE charid = %u"; break;
-		case JOB_THF: fmtQuery = "UPDATE char_exp SET thf = %u WHERE charid = %u"; break;
-		case JOB_PLD: fmtQuery = "UPDATE char_exp SET pld = %u WHERE charid = %u"; break;
-		case JOB_DRK: fmtQuery = "UPDATE char_exp SET drk = %u WHERE charid = %u"; break;
-		case JOB_BST: fmtQuery = "UPDATE char_exp SET bst = %u WHERE charid = %u"; break;
-		case JOB_BRD: fmtQuery = "UPDATE char_exp SET brd = %u WHERE charid = %u"; break;
-		case JOB_RNG: fmtQuery = "UPDATE char_exp SET rng = %u WHERE charid = %u"; break;
-		case JOB_SAM: fmtQuery = "UPDATE char_exp SET sam = %u WHERE charid = %u"; break;
-		case JOB_NIN: fmtQuery = "UPDATE char_exp SET nin = %u WHERE charid = %u"; break;
-		case JOB_DRG: fmtQuery = "UPDATE char_exp SET drg = %u WHERE charid = %u"; break;
-		case JOB_SMN: fmtQuery = "UPDATE char_exp SET smn = %u WHERE charid = %u"; break;
-		case JOB_BLU: fmtQuery = "UPDATE char_exp SET blu = %u WHERE charid = %u"; break;
-		case JOB_COR: fmtQuery = "UPDATE char_exp SET cor = %u WHERE charid = %u"; break;
-		case JOB_PUP: fmtQuery = "UPDATE char_exp SET pup = %u WHERE charid = %u"; break;
-		case JOB_DNC: fmtQuery = "UPDATE char_exp SET dnc = %u WHERE charid = %u"; break;
-		case JOB_SCH: fmtQuery = "UPDATE char_exp SET sch = %u WHERE charid = %u"; break;
+		case JOB_WAR: fmtQuery = "UPDATE char_exp SET war = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_MNK: fmtQuery = "UPDATE char_exp SET mnk = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_WHM: fmtQuery = "UPDATE char_exp SET whm = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_BLM: fmtQuery = "UPDATE char_exp SET blm = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_RDM: fmtQuery = "UPDATE char_exp SET rdm = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_THF: fmtQuery = "UPDATE char_exp SET thf = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_PLD: fmtQuery = "UPDATE char_exp SET pld = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_DRK: fmtQuery = "UPDATE char_exp SET drk = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_BST: fmtQuery = "UPDATE char_exp SET bst = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_BRD: fmtQuery = "UPDATE char_exp SET brd = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_RNG: fmtQuery = "UPDATE char_exp SET rng = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_SAM: fmtQuery = "UPDATE char_exp SET sam = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_NIN: fmtQuery = "UPDATE char_exp SET nin = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_DRG: fmtQuery = "UPDATE char_exp SET drg = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_SMN: fmtQuery = "UPDATE char_exp SET smn = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_BLU: fmtQuery = "UPDATE char_exp SET blu = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_COR: fmtQuery = "UPDATE char_exp SET cor = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_PUP: fmtQuery = "UPDATE char_exp SET pup = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_DNC: fmtQuery = "UPDATE char_exp SET dnc = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_SCH: fmtQuery = "UPDATE char_exp SET sch = %u WHERE charid = %u LIMIT 1"; break;
 	}
-
-	Sql_Query(SqlHandle, fmtQuery, PChar->jobs.exp[job], PChar->id);
+    Sql_Query(SqlHandle, fmtQuery, PChar->jobs.exp[job], PChar->id);
 }
 
 /************************************************************************

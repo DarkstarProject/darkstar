@@ -123,6 +123,7 @@ public:
 	int32 getSubJob(lua_State*);			// Get Entity Sub Job 
 	int32 getSubLvl(lua_State*);			// Get Entity Sub Job Level
 	int32 unlockJob(lua_State*);			// Unlocks a job for the entity, sets job level to 1
+    int32 levelCap(lua_State*);             // genkai
 	int32 levelRestriction(lua_State*);		// Establish/return current level restriction
 
 	int32 showText(lua_State*);				// Displays Dialog for npc

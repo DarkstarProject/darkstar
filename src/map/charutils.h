@@ -48,8 +48,8 @@ namespace charutils
 	uint32	GetExpNEXTLevel(uint8 charlvl);
 	uint32	GetRealExp(uint8 charlvl, uint8 moblvl);
 
-	void	AddExperiencePoints(CCharEntity* PChar, uint32 exp);
 	void	DelExperiencePoints(CCharEntity* PChar, uint32 exp);
+    void	AddExperiencePoints(CCharEntity* PChar, uint32 exp, bool limit = true);
 	uint32	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
 
 	void	TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl);
@@ -89,7 +89,7 @@ namespace charutils
 	int32	hasWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);  //declaration of function to check for weapon skill
 	int32	delWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);  //declaration of function to delete weapon skill
 
-	void	SaveCharJobs(CCharEntity* PChar);					// сохраняем уровни профессий персонажа
+	void	SaveCharJob(CCharEntity* PChar, JOBTYPE job);		// сохраняем уровень для выбранной профессий персонажа
 	void	SaveCharExp(CCharEntity* PChar, JOBTYPE job);		// сохраняем опыт для выбранной профессии персонажа
 	void	SaveCharEquip(CCharEntity* PChar);					// сохраняем экипировку и внешний вид персонажа
 	void	SaveCharPosition(CCharEntity* PChar);				// сохраняем позицию персонажа

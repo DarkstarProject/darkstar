@@ -1250,32 +1250,55 @@ inline int32 CLuaBaseEntity::getSubLvl(lua_State *L)
 
 inline int32 CLuaBaseEntity::unlockJob(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    JOBTYPE JobID = (JOBTYPE)lua_tointeger(L,-1);
+
+    if (JobID < MAX_JOBTYPE)
+    {
+        PChar->jobs.unlocked |= (1 << JobID);
+        
+        if (JobID == JOB_NON) JobID = JOB_WAR;
+		if (PChar->jobs.job[JobID] == 0) PChar->jobs.job[JobID] = 1;
+		
+        charutils::SaveCharJob(PChar, JobID);
+        PChar->pushPacket(new CCharJobsPacket(PChar));
+    }
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Изменяем ограничение максимального уровня персонажа (genkai)         *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::levelCap(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    if (!lua_isnil(L,-1) && lua_isnumber(L,-1))
+    {
+        uint8 genkai = (uint8)lua_tointeger(L,-1);
+
+        if (PChar->jobs.genkai != genkai)
 		{
-			if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-			{
-				CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+		    PChar->jobs.genkai = (uint8)lua_tointeger(L,1);
 
-				uint32 JobID = (uint32)lua_tointeger(L,1);
-
-				if (JobID < MAX_JOBTYPE)
-				{
-					PChar->jobs.unlocked |= (1 << JobID);
-					if (PChar->jobs.job[JobID] == 0)
-					{
-						PChar->jobs.job[JobID] = 1;
-					}
-					charutils::SaveCharJobs(PChar);
-					PChar->pushPacket(new CCharJobsPacket(PChar));
-				}
-				return 0;
-			}
-		}
+            Sql_Query(SqlHandle,"UPDATE char_jobs SET genkai = %u WHERE charid = %u LIMIT 1", PChar->jobs.genkai, PChar->id);
+        }
+        return 0;
 	}
-	lua_pushnil(L);
-	return 1;
+	lua_pushinteger(L, PChar->jobs.genkai);
+    return 1;
 }
 
 /************************************************************************
@@ -2692,23 +2715,21 @@ inline int32 CLuaBaseEntity::setMod(lua_State *L)
 	return 1;
 }	
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Добавляем очки опыта персонажу                                       *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::addExp(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-			{
-				uint16 Exp = (uint16)lua_tointeger(L,1); 
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    charutils::AddExperiencePoints((CCharEntity*)m_PBaseEntity, (uint32)lua_tointeger(L,1), false);
+    return 0;
 }
 
 //==========================================================//
@@ -3109,6 +3130,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSubJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSubLvl),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockJob),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,levelCap),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,levelRestriction),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVar),
