@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Stone
+-- Spell: Stone II
 -- Deals earth damage to an enemy.
 -----------------------------------------
 

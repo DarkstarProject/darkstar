@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Stone
--- Deals earth damage to an enemy.
+-- Spell: Aero II
+-- Deals wind damage to an enemy.
 -----------------------------------------
 
 -----------------------------------------

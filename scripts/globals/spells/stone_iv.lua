@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Stone
+-- Spell: Stone IV
 -- Deals earth damage to an enemy.
 -----------------------------------------
 

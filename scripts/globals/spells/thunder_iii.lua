@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Stone
--- Deals earth damage to an enemy.
+-- Spell: Thunder III
+-- Deals lightning damage to an enemy.
 -----------------------------------------
 
 -----------------------------------------

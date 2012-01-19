@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Stone
--- Deals earth damage to an enemy.
+-- Spell: Water IV
+-- Deals water damage to an enemy.
 -----------------------------------------
 
 -----------------------------------------

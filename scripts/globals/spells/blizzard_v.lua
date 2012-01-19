@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Stone
--- Deals earth damage to an enemy.
+-- Spell: Blizzard V
+-- Deals ice damage to an enemy.
 -----------------------------------------
 
 -----------------------------------------

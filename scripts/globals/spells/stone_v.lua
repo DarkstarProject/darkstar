@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Stone
+-- Spell: Stone V
 -- Deals earth damage to an enemy.
 -----------------------------------------
 

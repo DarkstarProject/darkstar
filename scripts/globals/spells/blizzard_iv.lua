@@ -1,6 +1,6 @@
 -----------------------------------------
--- Spell: Stone
--- Deals earth damage to an enemy.
+-- Spell: Blizzard IV
+-- Deals ice damage to an enemy.
 -----------------------------------------
 
 -----------------------------------------
