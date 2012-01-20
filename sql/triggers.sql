@@ -49,4 +49,3 @@ BEGIN
 	DELETE FROM `char_vars`       WHERE `charid` = OLD.charid;
 END $$
 
-DELIMITER ;
