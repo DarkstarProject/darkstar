@@ -86,7 +86,7 @@ int8* CTCPRequestPacket::GetData()
 *																		*
 ************************************************************************/
 
-uint32 CTCPRequestPacket::GetSize()
+int32 CTCPRequestPacket::GetSize()
 {
 	return m_size;
 }
@@ -97,7 +97,7 @@ uint32 CTCPRequestPacket::GetSize()
 *																		*
 ************************************************************************/
 
-void CTCPRequestPacket::ReceiveFromSocket()
+int32 CTCPRequestPacket::ReceiveFromSocket()
 {
 	int8 recvbuf[DEFAULT_BUFLEN];
 
@@ -105,25 +105,25 @@ void CTCPRequestPacket::ReceiveFromSocket()
 	if (m_size == -1) 
 	{
 		ShowError(CL_RED"recv failed with error: %d\n"CL_RESET, WSAGetLastError());
-		return;
+		return 0;
 	}
     if (m_size == 0) 
 	{
 		ShowError("TCP Connection closing...\n");
-		return;
+		return 0;
 	}
-	if (m_size != RBUFW(recvbuf,(0x00))) 
+	if (m_size != RBUFW(recvbuf,(0x00)) || m_size < 28) 
 	{
 		ShowError(CL_RED"Search packetsize wrong. Size %d should be %d.\n"CL_RESET, m_size, RBUFW(recvbuf,(0x00)));
-		return;
+		return 0;
 	}
     delete[] m_data; 
     m_data = new int8[m_size];
 
     memcpy(&m_data[0], &recvbuf[0], m_size);
-	memcpy(key+16, m_data+m_size-4, 4);
+	WBUFL(key,(16)) = RBUFL(m_data,(m_size-4));
 
-	decipher();
+	return decipher();
 }
 
 /************************************************************************
@@ -132,7 +132,7 @@ void CTCPRequestPacket::ReceiveFromSocket()
 *                                                                       *
 ************************************************************************/
 
-void CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
+int32 CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
 {
     int32 iResult;
 
@@ -140,8 +140,9 @@ void CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
     if (iResult == SOCKET_ERROR) 
     {
         ShowError("send failed with error: %d\n", WSAGetLastError());
-        return;
+        return 0;
     }
+	return 1;
 }
 
 /************************************************************************
@@ -150,7 +151,7 @@ void CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
 *																		*
 ************************************************************************/
 
-void CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
+int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 {
     int32 iResult;
 
@@ -177,9 +178,9 @@ void CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
     if (iResult == SOCKET_ERROR) 
     {
         ShowError("send failed with error: %d\n", WSAGetLastError());
-        return;
+        return 0;
     }
-    ReceiveFromSocket();
+    return ReceiveFromSocket();
 }
 
 /************************************************************************
@@ -188,7 +189,7 @@ void CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 *																		*
 ************************************************************************/
 
-void CTCPRequestPacket::CheckHash()
+int32 CTCPRequestPacket::CheckPacketHash()
 {
     uint8 PacketHash[16];
 
@@ -205,8 +206,10 @@ void CTCPRequestPacket::CheckHash()
 		if((uint8)m_data[m_size-0x14+i] != PacketHash[i])
 		{
 			ShowError("Search hash wrong byte %d: 0x%.2X should be 0x%.2x\n", i, PacketHash[i], (uint8)m_data[m_size-0x14+i]);
+			return 0;
 		}
 	}
+	return 1;
 }
 
 /************************************************************************
@@ -228,7 +231,7 @@ uint8 CTCPRequestPacket::GetPacketType()
 *																		*
 ************************************************************************/
 
-void CTCPRequestPacket::decipher()
+int32 CTCPRequestPacket::decipher()
 {
 	md5((uint8*)(key), blowfish.hash, 20);
 
@@ -241,7 +244,7 @@ void CTCPRequestPacket::decipher()
 	{
 		blowfish_decipher((uint32*)m_data+i+2, (uint32*)m_data+i+3, blowfish.P, blowfish.S[0]);
 	}
+	WBUFL(key,(20)) = RBUFL(m_data,(m_size-0x18));
 
-	CheckHash();
-	memcpy(key+20, m_data+(m_size-0x18), 4);
+	return CheckPacketHash();
 }

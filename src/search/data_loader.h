@@ -29,6 +29,8 @@
 #include <list>
 #include <vector>
 
+struct Sql_t;
+
 struct ahItem 
 {
     uint16 ItemID;
@@ -82,6 +84,8 @@ public:
 	std::vector<ahItem*>     GetAHItemsToCategry(uint8 AHCategoryID);
 
 private:
+
+	Sql_t* SqlHandle;
 };
 
 #endif

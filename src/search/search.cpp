@@ -303,10 +303,13 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 	ShowMessage("TCP connection from client with port: %u\n", htons(CommInfo.port));
 	
 	CTCPRequestPacket* PTCPRequest = new CTCPRequestPacket(&CommInfo.socket);
-	PTCPRequest->ReceiveFromSocket();
 
+	if (PTCPRequest->ReceiveFromSocket() == 0)
+	{
+		delete PTCPRequest;
+		return 0;
+	}
 	PrintPacket(PTCPRequest->GetData(), PTCPRequest->GetSize());
-
 	ShowMessage("PacketType %u\n", PTCPRequest->GetPacketType());
 
 	switch(PTCPRequest->GetPacketType()) 
@@ -458,9 +461,9 @@ void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
 	uint16 ItemID = RBUFW(data,(0x12));
     uint8  stack  = RBUFB(data,(0x15));
 
-    CAHHistoryPacket* PAHPacket = new CAHHistoryPacket(ItemID);
+	CAHHistoryPacket* PAHPacket = new CAHHistoryPacket(ItemID);
 
-    CDataLoader* PDataLoader = new CDataLoader();                        
+    CDataLoader* PDataLoader = new CDataLoader();
     std::vector<ahHistory*> HistoryList = PDataLoader->GetAHItemHystory(ItemID, stack);
 
 	for (uint8 i = 0; i < HistoryList.size(); ++i)

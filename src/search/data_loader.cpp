@@ -30,9 +30,6 @@
 #include "data_loader.h"
 #include "search.h"
 
-
-Sql_t* SqlHandle = NULL;
-
 CDataLoader::CDataLoader()
 {
     SqlHandle = Sql_Malloc();
