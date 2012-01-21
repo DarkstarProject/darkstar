@@ -678,7 +678,7 @@ void SendInventory(CCharEntity* PChar)
 	for(uint8 LocationID = 0; LocationID < MAX_CONTAINER_ID; ++LocationID) 
 	{
 		uint8 size = PChar->getStorage(LocationID)->GetSize();
-		for(uint8 slotID = 0; slotID < size; ++slotID) 
+		for(uint8 slotID = 0; slotID <= size; ++slotID) 
 		{
 			CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
 			if(PItem != NULL) 
@@ -710,10 +710,10 @@ void SendInventory(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quantity)
+uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quantity, bool silence)
 {
-	if (quantity == 0)
-		return ERROR_SLOTID;
+    if (PChar->getStorage(LocationID)->GetFreeSlotsCount() == 0 || quantity == 0)
+        return ERROR_SLOTID;
 
 	CItem* PItem = itemutils::GetItem(ItemID);
 
@@ -730,7 +730,10 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quanti
 			{
 				if (PChar->getStorage(LocID)->SearchItem(ItemID) != ERROR_SLOTID)
 				{
-					PChar->pushPacket(new CMessageStandardPacket(PChar, ItemID, 0, 220));
+					if (!silence) 
+                    {
+                        PChar->pushPacket(new CMessageStandardPacket(PChar, ItemID, 0, 220));
+                    }
 					delete PItem;
 					return ERROR_SLOTID;
 				}
@@ -1919,7 +1922,7 @@ void AddExperiencePoints(CCharEntity* PChar, uint32 exp, bool limit)
         {
             uint32 dedication = cap_value(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getMod(MOD_DEDICATION_CAP));
 
-            PChar->setModifier(MOD_DEDICATION, PChar->getMod(MOD_DEDICATION_CAP) - dedication);
+            PChar->setModifier(MOD_DEDICATION_CAP, PChar->getMod(MOD_DEDICATION_CAP) - dedication);
 
             if (PChar->getMod(MOD_DEDICATION_CAP) == 0)
             {

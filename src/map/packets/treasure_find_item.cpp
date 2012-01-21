@@ -24,19 +24,20 @@
 #include "../../common/socket.h"
 
 #include "../baseentity.h"
+#include "../treasure_pool.h"
 
 #include "treasure_find_item.h"
 
 
-CTreasureFindItemPacket::CTreasureFindItemPacket(uint16 ItemID, uint8 TreasureSlotID, CBaseEntity* PMob) 
+CTreasureFindItemPacket::CTreasureFindItemPacket(TreasurePoolItem* PItem , CBaseEntity* PMob) 
 {
 	this->type = 0xD2;
 	this->size = 0x1E;
 
-	WBUFL(data,(0x04)-4) = 1;					// ItemQuantity, а вожможен размер, отличный от единицы, исключая gil ???
-	WBUFW(data,(0x10)-4) = ItemID;				// ItemID
-	WBUFB(data,(0x14)-4) = TreasureSlotID;		// TreasurePool slotID
-	WBUFL(data,(0x18)-4) = 0;					// TimeStamp
+	WBUFL(data,(0x04)-4) = 1;                   // ItemQuantity, а вожможен размер, отличный от единицы, исключая gil ???
+	WBUFW(data,(0x10)-4) = PItem->ID;           // ItemID
+	WBUFB(data,(0x14)-4) = PItem->SlotID;       // TreasurePool slotID
+	WBUFL(data,(0x18)-4) = PItem->TimeStamp;    // TimeStamp
 
 	if (PMob != NULL)
 	{

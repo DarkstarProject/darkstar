@@ -67,14 +67,14 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 
 			//if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
 			//{
-			//	WBUFB(data,(0x22)-4) = 0x020;
+			//	WBUFB(data,(0x22)-4) = 0x20;
 			//}
 
 			if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
                 PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
                 PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE))
 			{
-				WBUFB(data,(0x23)-4) = 0x020;
+				WBUFB(data,(0x23)-4) = 0x20;
 			}
 
 			CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);

@@ -34,13 +34,14 @@
 *																		*
 ************************************************************************/
 
-class CBaseEntity;
+class  CBaseEntity;
+struct TreasurePoolItem;
 
 class CTreasureFindItemPacket : public CBasicPacket
 {
 public:
 
-	CTreasureFindItemPacket(uint16 ItemID, uint8 TreasureSlotID, CBaseEntity* PMob);
+	CTreasureFindItemPacket(TreasurePoolItem* PItem, CBaseEntity* PMob);
 };
 
 #endif

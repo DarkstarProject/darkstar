@@ -48,6 +48,21 @@ enum TREASUREPOOLTYPE
 class CCharEntity;
 class CMobEntity;
 
+struct LotInfo
+{
+    uint16 lot;
+    CCharEntity* member;
+};
+
+struct TreasurePoolItem 
+{
+    uint16 ID;
+    uint8  SlotID;
+	uint32 TimeStamp;
+
+	std::vector<LotInfo> Lotters;
+};
+
 class CTreasurePool
 {
 public:
@@ -66,26 +81,20 @@ public:
 
 	void CheckItems(uint32 tick);
 
-	void TreasureWon(CCharEntity* winner, uint8 SlotID); 
+	void TreasureWon(CCharEntity* winner, uint8 SlotID);
+    void TreasureError(CCharEntity* winner, uint8 SlotID);
 	void TreasureLost(uint8 SlotID);
 
 private:
 
-	struct TeasurePoolItem 
-	{
-		uint16 ItemID;
-		uint32 timestamp;
-
-		std::vector<int32>ItemLotters;
-	};
-
 	uint32 m_Tick;
+    uint8  m_count;
 
 	TREASUREPOOLTYPE m_TreasurePoolType;
 
-	void CheckItem(uint8 SlotID);
+	void CheckTreasureItem(uint32 tick, uint8 SlotID);
 
-	TeasurePoolItem m_PoolItems[TREASUREPOOL_SIZE];
+	TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE];
 
 	std::vector<CCharEntity*> members;
 };

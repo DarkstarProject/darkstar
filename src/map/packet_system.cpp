@@ -415,7 +415,7 @@ int32 SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	if (PChar->targid == targid)
 	{
-		PChar->pushPacket(new CCharPacket(PChar,ENTITY_SPAWN));
+		PChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN));
 	}else{
 		CBaseEntity* PNpc = zoneutils::GetZone(PChar->getZone())->GetEntity(targid, TYPE_NPC);
 
@@ -423,7 +423,7 @@ int32 SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* da
 		{
 			PNpc = zoneutils::GetTrigger(targid, PChar->getZone());
 		}
-		PChar->pushPacket(new CEntityUpdatePacket(PNpc,ENTITY_SPAWN));
+		PChar->pushPacket(new CEntityUpdatePacket(PNpc, ENTITY_SPAWN));
 	}
 
 	return 0;
@@ -927,12 +927,11 @@ int32 SmallPacket0x03C(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x041(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	//PrintPacket(data);
-	//uint8 SlotID  = RBUFB(data,(0x04));
-	//uint16 lot = 1+(rand()%1000);
-	//PChar->PTreasurePool->LotItem(PChar,SlotID,lot);
+	PrintPacket(data);
+	
+    uint8 SlotID  = RBUFB(data,(0x04));
 
-    PChar->pushPacket(new CMessageSystemPacket(0,0,155));
+	PChar->PTreasurePool->LotItem(PChar, SlotID, 1+(rand()%1000));
 	return 0;
 }
 
