@@ -67,7 +67,7 @@ void CEnmityContainer::Clear(uint32 EntityID)
     {
 	    for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
 	    {
-		    if (it->second->PEnmityOwner->id = EntityID)
+		    if (it->second->PEnmityOwner->id == EntityID)
 		    {
                 delete it->second;
                 m_EnmityList.erase(it);
@@ -132,7 +132,7 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 
 	if (PChar->PParty != NULL)
 	{
-		for (int i = 0; i < PChar->PParty->members.size(); i++)
+		for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
         {
             CBattleEntity* PTarget = (CBattleEntity*)PChar->PParty->members[i];
             if (distance(PChar->loc.p, PTarget->loc.p) <= 40)
