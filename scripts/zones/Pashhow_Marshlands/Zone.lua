@@ -24,7 +24,7 @@ end;
 function onZoneIn(player,prevZone)
 cs = -1;
 
-	if (prevZone = 147 and player:getCurrentMission(1) == 10) then
+	if (prevZone == 147 and player:getCurrentMission(1) == 10) then
 		missionStatus = player:getVar("MissionStatus");
 		if (missionStatus < 22) then
 			cs = 0x000a;
