@@ -142,7 +142,7 @@ int32 SendUncnown0x39Packet(lua_State* L)
 		uint32 npcid = (uint32)lua_tointeger(L,1);
         uint8  param = (uint8)lua_tointeger(L,2);
 
-		CBaseEntity* PNpc = zoneutils::GetEntity(npcid & 0x0FFF, TYPE_NPC);
+		CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
 
         if (PNpc != NULL)
         {
@@ -166,7 +166,7 @@ int32 GetNPCByID(lua_State* L)
 	{
 		uint32 npcid = (uint32)lua_tointeger(L, -1);
 
-		CBaseEntity* PNpc = zoneutils::GetEntity(npcid & 0x0FFF, TYPE_NPC);
+		CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
 
 		lua_pushstring(L,CLuaBaseEntity::className);
 		lua_gettable(L,LUA_GLOBALSINDEX);
