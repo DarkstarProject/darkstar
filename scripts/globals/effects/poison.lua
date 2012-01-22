@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	target:addHP(-effect:getPower());
+	target:delHP(effect:getPower());
 end;
 
 -----------------------------------
