@@ -363,6 +363,8 @@ void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest)
     CPartyListPacket* PPartyListPacket = new CPartyListPacket(partyid);
     
     PTCPRequest->SendToSocket(PPartyListPacket->GetData(), PPartyListPacket->GetSize());
+
+    delete PPartyListPacket;
 }
 
 /************************************************************************
@@ -414,6 +416,7 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
     PTCPRequest->SendToSocket(PSearchPacket->GetData(), PSearchPacket->GetSize());
 
     delete PSearchPacket;
+    delete PDataLoader;
 }
 
 /************************************************************************

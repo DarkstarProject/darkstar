@@ -146,6 +146,7 @@ int32 do_init(int32 argc, int8** argv)
 	{
 		exit(EXIT_FAILURE);
 	}
+    Sql_Keepalive(SqlHandle);
 
 	ShowMessage("\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
 	ShowStatus("do_init: zlib is reading");
@@ -224,8 +225,7 @@ void do_final(void)
 
 	delete CTaskMgr::getInstance();
 	delete CVanaTime::getInstance();
-	
-	Sql_Query(SqlHandle,"TRUNCATE TABLE accounts_sessions;"); //cleanup the sessions table
+
 	Sql_Free(SqlHandle);
 }
 

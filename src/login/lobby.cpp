@@ -249,6 +249,8 @@ int32 lobbydata_parse(int32 fd)
 									    FROM zone_settings, chars \
 										WHERE zoneid = pos_zone AND charid = %u;";
 				uint32 ZoneIP	= sd->servip;
+                uint16 ZonePort = 54230;
+
 				if( Sql_Query(SqlHandle,fmtQuery,charid) != SQL_ERROR &&
 					Sql_NumRows(SqlHandle) != 0 )
 				{
@@ -256,9 +258,9 @@ int32 lobbydata_parse(int32 fd)
 					
 					if (Sql_GetIntData(SqlHandle,3) == 0)  key3[16] += 6;
 
-					ZoneIP	= Sql_GetUIntData(SqlHandle,0);
-					uint16 ZonePort = (uint16)Sql_GetUIntData(SqlHandle,1);
-					uint8  ZoneID	= (uint8)Sql_GetUIntData(SqlHandle,2);
+					ZoneIP = Sql_GetUIntData(SqlHandle,0);
+					ZonePort = (uint16)Sql_GetUIntData(SqlHandle,1);
+					uint8  ZoneID = (uint8)Sql_GetUIntData(SqlHandle,2);
 					WBUFL(ReservePacket,(0x38)) = ZoneIP;
 					WBUFW(ReservePacket,(0x3C)) = ZonePort;
 					ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n",ZoneID,ip2str(ntohl(ZoneIP),NULL),ZonePort,charid);
@@ -272,19 +274,16 @@ int32 lobbydata_parse(int32 fd)
 			  //WBUFW(ReservePacket,(0x44)) = port;				// search-server port
 
 				memcpy(MainReservePacket,ReservePacket,RBUFB(ReservePacket,0));
-				
-				/////////////////////////////////////////////////////////////////////////////////////////
+
 				// if client got error "no responce from map-server" we need to delete old session record
-				fmtQuery = "DELETE FROM accounts_sessions WHERE accid = %u";
-				Sql_Query(SqlHandle,fmtQuery,sd->accid);
-				////////////////////////////////////////////////////////////////////////////////////////
+				Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE accid = %u", sd->accid);
+				
 				int8 session_key[sizeof(key3)*2+1];
 				bin2hex(session_key,key3,sizeof(key3));
 
-				fmtQuery = "INSERT INTO accounts_sessions(charid,session_key,server_addr,accid,client_addr) \
-							 VALUES(%u,x'%s',%u,%u,%u)";
+				fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr) VALUES(%u,%u,x'%s',%u,%u,%u)";
 
-				if( Sql_Query(SqlHandle,fmtQuery,charid,session_key,ZoneIP,sd->accid,sd->client_addr) == SQL_ERROR )
+				if( Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr) == SQL_ERROR )
 				{
 					//отправляем клиенту сообщение об ошибке
 					LOBBBY_ERROR_MESSAGE(ReservePacket);

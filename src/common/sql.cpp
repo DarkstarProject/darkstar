@@ -76,12 +76,10 @@ Sql_t* Sql_Malloc(void)
 	mysql_init(&self->handle);
 	StringBuf_Init(&self->buf);
 	self->lengths = NULL;
-	self->result = NULL;
+	self->result  = NULL;
 	self->keepalive = CTaskMgr::TASK_INVALID;
 	return self;
 }
-
-static int32 Sql_P_Keepalive(Sql_t* self);
 
 /************************************************************************
 *																		*
@@ -100,14 +98,7 @@ int32 Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char*
 		ShowSQL("%s\n", mysql_error(&self->handle));
 		return SQL_ERROR;
 	}
-
-	self->keepalive = Sql_P_Keepalive(self);
-	if( self->keepalive == CTaskMgr::TASK_INVALID )
-	{
-		ShowSQL("Failed to establish keepalive for DB connection!\n");
-		return SQL_ERROR;
-	}
-
+	
 	return SQL_SUCCESS;
 }
 
@@ -223,9 +214,8 @@ static int32 Sql_P_KeepaliveTimer(uint32 tick,CTaskMgr::CTask* PTask)
 ************************************************************************/
 
 /// @return the keepalive timer id, or INVALID_TIMER
-/// @private
 
-static int32 Sql_P_Keepalive(Sql_t* self)
+int32 Sql_Keepalive(Sql_t* self)
 {
 	uint32 timeout, ping_interval;
 
@@ -243,7 +233,6 @@ static int32 Sql_P_Keepalive(Sql_t* self)
 	ping_interval = timeout - 30; // 30-second reserve
 	CTaskMgr::getInstance()->AddTask("Sql_P_KeepAliveTimer",gettick()+ping_interval*1000,self,CTaskMgr::TASK_INTERVAL,Sql_P_KeepaliveTimer,ping_interval*1000);
 	return 0;
-
 }
 
 /************************************************************************
@@ -545,8 +534,8 @@ void Sql_FreeResult(Sql_t* self)
 	if( self && self->result )
 	{
 		mysql_free_result(self->result);
-		self->result = NULL;
-		self->row = NULL;
+		self->result  = NULL;
+		self->row     = NULL;
 		self->lengths = NULL;
 	}
 }
@@ -579,6 +568,7 @@ void Sql_Free(Sql_t* self)
 {
 	if( self )
 	{
+        mysql_close(&self->handle);
 		Sql_FreeResult(self);
 		StringBuf_Destroy(&self->buf);
 		if( self->keepalive != CTaskMgr::TASK_INVALID ) CTaskMgr::getInstance()->RemoveTask("Sql_P_KeepAliveTimer");

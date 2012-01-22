@@ -96,12 +96,14 @@ int32 do_init(int32 argc,char** argv)
 	{
 		exit(EXIT_FAILURE);
 	}
+    Sql_Keepalive(SqlHandle);
 
 	const char *fmtQuery = "OPTIMIZE TABLE `accounts`,`accounts_banned`, `accounts_sessions`, `chars`,`char_equip`, \
 						   `char_inventory`, `char_jobs`,`char_look`,`char_stats`, `char_vars`, `char_bazaar_msg`, \
 						   `char_skills`, `char_titles`, `char_effects`, `char_exp`;";
 	
-	if( Sql_Query(SqlHandle,fmtQuery) == SQL_ERROR ) {
+	if( Sql_Query(SqlHandle,fmtQuery) == SQL_ERROR ) 
+    {
 		ShowError("do_init: Impossible to optimise tables\n");
 	}
 	

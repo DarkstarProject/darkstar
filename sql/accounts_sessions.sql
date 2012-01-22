@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Sam 20 Août 2011 à 11:41
+-- GÃ©nÃ©rÃ© le : Dim 22 Janvier 2012 Ã  08:02
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnÃ©es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -27,14 +27,15 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 DROP TABLE IF EXISTS `accounts_sessions`;
 CREATE TABLE IF NOT EXISTS `accounts_sessions` (
+  `accid` int(10) unsigned NOT NULL DEFAULT '0',
   `charid` int(10) unsigned NOT NULL DEFAULT '0',
   `targid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `partyid` int(10) unsigned NOT NULL DEFAULT '0',
   `session_key` binary(20) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
-  `server_addr` int(10) unsigned NOT NULL DEFAULT '0',
-  `accid` int(10) unsigned NOT NULL DEFAULT '0',
+  `server_addr` int(10) unsigned zerofill NOT NULL DEFAULT '0000000000',
+  `server_port` smallint(5) unsigned NOT NULL DEFAULT '0',
   `client_addr` int(10) unsigned zerofill NOT NULL DEFAULT '0000000000',
   `client_port` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`),
-  UNIQUE KEY `UK_sessions_accid` (`accid`)
+  UNIQUE KEY `accid` (`accid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;

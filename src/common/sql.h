@@ -22,8 +22,6 @@
 #define SQL_SUCCESS 0
 #define SQL_NO_DATA 100
 
-
-
 /// Data type identifier.
 /// String, enum and blob data types need the buffer length specified.
 enum SqlDataType
@@ -67,17 +65,8 @@ enum SqlDataType
 *
 */
 
-
 struct Sql_t; // private access;
-struct Sql_Res_t
-{
-	MYSQL_RES *result;
-	MYSQL_ROW row;
-	unsigned long* lengths;
-};
 
-Sql_Res_t Sql_GetRes(Sql_t*);
-void Sql_SetRes(Sql_t*,Sql_Res_t* );
 /// Allocates and initializes a new Sql handle.
 struct Sql_t* Sql_Malloc(void);
 
@@ -157,6 +146,10 @@ uint64 Sql_NumRows(Sql_t* self);
 /// @return SQL_SUCCESS, SQL_ERROR or SQL_NO_DATA
 int32 Sql_NextRow(Sql_t* self);
 
+/// Establishes keepalive (periodic ping) on the connection
+///
+/// @return the keepalive timer id, or INVALID_TIMER
+int32 Sql_Keepalive(Sql_t* self);
 
 /// Gets the data of a column.
 /// The data remains valid until the next row is fetched or the result is freed.
