@@ -2517,29 +2517,33 @@ inline int32 CLuaBaseEntity::addPartyEffect(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Проверяем наличие статус-эффекта в контейнере                        *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::hasStatusEffect(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-			{
-				int32 n = lua_gettop(L);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-				bool hasEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->HasStatusEffect(
-					(EFFECT)lua_tointeger(L,1),
-					(n >= 2 ? (uint16)lua_tointeger(L,2) : 0));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+		
+    int32 n = lua_gettop(L);
+    bool hasEffect = false;
 
-				lua_pushboolean(L, hasEffect);
-				return 1;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    if (lua_gettop(L) >= 2)
+    {
+        hasEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->HasStatusEffect(
+            (EFFECT)lua_tointeger(L,1), 
+            (uint16)lua_tointeger(L,2));
+    } else {    
+        hasEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->HasStatusEffect(
+            (EFFECT)lua_tointeger(L,1));
+    }
+    lua_pushboolean(L, hasEffect);
+    return 1;
 }
 
 //==========================================================//

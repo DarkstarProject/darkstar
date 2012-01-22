@@ -42,10 +42,12 @@ public:
 	bool DelStatusEffect(EFFECT StatusID);
 	bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
 	
-	bool HasStatusEffect(EFFECT StatusID, uint16 SubID = 0);	// проверяем наличие стату-эффекта
-	CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);
+    bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие стату-эффекта
+	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие стату-эффекта с уникальным subid
 	bool EraseStatusEffect (bool RemoveAll = false);			// удаляем первый/все отрицательный эффект
 	bool DispelStatusEffect(bool RemoveAll = false);			// удаляем первый/все положительный эффект
+
+    CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);
 
 	void CheckEffects(uint32 tick);
 

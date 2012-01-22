@@ -728,6 +728,24 @@ bool CStatusEffectContainer::DispelStatusEffect(bool RemoveAll)
 *																		*
 ************************************************************************/
 
+bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
+{
+	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+	{
+		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+/************************************************************************
+*                                                                       *
+*  Проверяем наличие статус-эффекта	в контейнере с уникальным subid     *
+*                                                                       *
+************************************************************************/
+
 bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID, uint16 SubID)
 {
 	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
@@ -740,6 +758,12 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID, uint16 SubID)
 	}
 	return false;
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint16 SubID)
 {
@@ -871,6 +895,8 @@ void CStatusEffectContainer::SetEffectName(CStatusEffect* StatusEffect)
 
 void CStatusEffectContainer::LoadStatusEffects()
 {
+    DSP_DEBUG_BREAK_IF(m_pOwner->objtype != TYPE_PC);
+
 	const int8 *fmtQuery = "SELECT effectid, power, tick, duration, flag, subid \
 							FROM char_effects \
 							WHERE charid = %u;";
@@ -902,6 +928,8 @@ void CStatusEffectContainer::LoadStatusEffects()
 
 void CStatusEffectContainer::SaveStatusEffects()
 {
+    DSP_DEBUG_BREAK_IF(m_pOwner->objtype != TYPE_PC);
+
 	Sql_Query(SqlHandle,"DELETE FROM char_effects WHERE charid = %u",m_pOwner->id);
 
 	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
