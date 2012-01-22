@@ -1634,9 +1634,9 @@ int32 SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, int8* da
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*  Персонаж приглашает другого персонажа в группу                       *
+*                                                                       *
 ************************************************************************/					
 
 int32 SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* data)
@@ -1663,7 +1663,7 @@ int32 SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* da
 			PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
 			return 0;
 		}
-		// TODO: а ведь мы можем сохранять и targid приглашающего, для корректного поиска
+
 		PInvitee->InvitePending = PChar->id;
 		PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
 
@@ -1752,7 +1752,7 @@ int32 SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* da
 		{
 			PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 11));
 		}
-		else
+        else if (PChar->PParty == NULL)
 		{
 			if (PInviter->PParty == NULL)
 			{
