@@ -3,10 +3,13 @@
 --	NPC: Eugballion
 --	Only sells when San d'Oria controlls Qufim Region
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
+require("scripts/globals/conquest");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -31,18 +34,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	RegionOwner = getRegionOwner(QUFIM);
 
-RegionOwner = getRegionOwner(QUFIM);
-
-if (RegionOwner ~= SANDORIA) then 
-	player:showText(npc,EUGBALLION_CLOSED_DIALOG);
-else
-	player:showText(npc,EUGBALLION_OPEN_DIALOG);
-	
-	stock = {0x03ba,4121}		-- Magic Pot Shard
-			  
-showShop(player,SANDORIA,stock);
-end
+	if (RegionOwner ~= SANDORIA) then 
+		player:showText(npc,EUGBALLION_CLOSED_DIALOG);
+	else
+		player:showText(npc,EUGBALLION_OPEN_DIALOG);
+		
+		stock = {0x03ba,4121}		-- Magic Pot Shard
+				  
+		showShop(player,SANDORIA,stock);
+	end
 end; 
 
 -----------------------------------

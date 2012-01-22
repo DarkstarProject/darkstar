@@ -3,8 +3,11 @@
 -- NPC: Helaku
 -- Involved in Missions 2-3
 -----------------------------------
-
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/missions");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------

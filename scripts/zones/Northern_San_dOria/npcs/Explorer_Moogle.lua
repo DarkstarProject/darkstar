@@ -3,8 +3,13 @@
 -- NPC:  Explorer Moogle
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/teleports");
+require("scripts/globals/quests");
+require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -37,6 +42,7 @@ currentZone = 231;
 	end
 
 	player:startEvent(0x35e,currentZone,0,teleport);	
+	
 end;
 
 -----------------------------------

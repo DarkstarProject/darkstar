@@ -1,16 +1,18 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Abeaule
--- Involved in Quest: The Trader in the Forest
+-- NPC:  Abeaule
+-- Starts and Finishes Quest: The Trader in the Forest, The Medicine Woman
 -- @zone 231
 -- @pos -136 -2 56
 -----------------------------------
-
-require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -18,27 +20,14 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	-- "The Trader in the Forest" Quest status
-	theTraderInTheForest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
-	MedicineWoman = player:getQuestStatus(0,30);
-	
-	if (theTraderInTheForest == QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		bataGreens = trade:hasItemQty(4367,1);
-		freeSlots = player:getFreeSlotsCount();
-		print(bataGreens);
-		if ( count == 1 and bataGreens == true and freeSlots > 0) then
-			player:tradeComplete();
-			player:addFame(SANDORIA, SAN_FAME*30);
-			player:setTitle(GREEN_GROCER);
-			player:completeQuest(SANDORIA, THE_TRADER_IN_THE_FOREST);
-			player:startEvent(0x020d);
-		else
-			player:messageSpecial(6564, 12600);
-		end;
-	end;
 
+	theTraderInTheForest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
 	
+	if(theTraderInTheForest == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(CLUMP_OF_BATAGREENS,1) == true and trade:getItemCount() == 1) then 
+			player:startEvent(0x020d);
+		end
+	end
 	
 end;
 
@@ -49,26 +38,29 @@ end;
 function onTrigger(player,npc)
 
 	theTraderInTheForest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
-	MedicineWoman = player:getQuestStatus(0,30);
-	sanFame = player:getFameLevel(SANDORIA);
+	medicineWoman = player:getQuestStatus(SANDORIA,THE_MEDICINE_WOMAN);
 	
-	
-	if (theTraderInTheForest == QUEST_AVAILABLE and player:getVar("theTraderInTheForestCS") == 1) then
-		player:startEvent(0x0250);
-	elseif (theTraderInTheForest == QUEST_AVAILABLE) then
-		player:startEvent(0x020c);
-		player:setVar("theTraderInTheForestCS",1);
-	elseif (theTraderInTheForest == QUEST_ACCEPTED) then
-		player:startEvent(0x0251);
-	elseif (theTraderInTheForest == 2 and MedicineWoman == 0 and sanFame >= 3) then
-		player:startEvent(0x0265);
-		elseif (theTraderInTheForest == 2 and MedicineWoman == 1 and player:hasKeyItem(147) == true) then
-		player:startEvent(0x0266);
+	if(theTraderInTheForest == QUEST_AVAILABLE) then
+		if(player:getVar("theTraderInTheForestCS") == 1) then
+			player:startEvent(0x0250);
 		else
-		player:startEvent(0x0267);
-	
-   end
-end; 
+			player:startEvent(0x020c);
+			player:setVar("theTraderInTheForestCS",1);
+		end
+	elseif(theTraderInTheForest == QUEST_ACCEPTED) then
+		player:startEvent(0x0251);
+	elseif(theTraderInTheForest == QUEST_COMPLETED and medicineWoman == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
+		if(player:getVar("medicineWomanCS") == 1) then 
+			player:startEvent(0x0267);
+		else
+			player:startEvent(0x0265);
+			player:setVar("medicineWomanCS",1);
+		end
+	elseif(player:hasKeyItem(COLD_MEDICINE) == true) then
+		player:startEvent(0x0266);
+	end
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -88,41 +80,43 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	-- "The Trader in the Forest" Quest
-	if (csid == 0x020c and option == 0) then
-		player:addQuest(SANDORIA,THE_TRADER_IN_THE_FOREST);
-		if ( player:getFreeSlotsCount() > 0) then
-			player:addItem(592);
-			player:messageSpecial(6567, 592);
+	if(csid == 0x020c and option == 0 or csid == 0x0250 and option == 0) then
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, SUPPLIES_ORDER);
 		else
-			player:messageSpecial(6564, 592);
-		end;
-	elseif (csid == 0x0250 and option == 0) then
 			player:addQuest(SANDORIA,THE_TRADER_IN_THE_FOREST);
-		if ( player:getFreeSlotsCount() > 0) then
-			player:addItem(592);
-			player:messageSpecial(6567, 592);
+			player:setVar("theTraderInTheForestCS",0);
+			player:addItem(SUPPLIES_ORDER);
+			player:messageSpecial(ITEM_OBTAINED, SUPPLIES_ORDER);
+		end
+	elseif(csid == 0x0251 and option == 1) then
+		if (player:getFreeSlotsCount() > 0 and player:hasItem(SUPPLIES_ORDER) == false) then
+			player:addItem(SUPPLIES_ORDER);
+			player:messageSpecial(ITEM_OBTAINED, SUPPLIES_ORDER);
 		else
-			player:messageSpecial(6564, 592);
-		end;
-	elseif (csid == 0x0251 and option == 1) then
-		if (player:getFreeSlotsCount() > 0 and player:hasItem(592) == false) then
-			player:addItem(592);
-			player:messageSpecial(6567, 592);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, SUPPLIES_ORDER);
+		end
+	elseif(csid == 0x020d) then
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ROBE);
 		else
-			player:messageSpecial(6564, 592);
-		end;
-	elseif (csid == 0x020d) then
-		player:addItem(12600);
-		player:messageSpecial(6567, 12600);
-	end;
-	if (csid == 0x0265 and option == 0) then
-		player:addQuest(0,30)
+			player:tradeComplete();
+			player:setTitle(GREEN_GROCER);
+			player:addItem(ROBE);
+			player:messageSpecial(ITEM_OBTAINED, ROBE);
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:completeQuest(SANDORIA,THE_TRADER_IN_THE_FOREST);
+		end
+	-- "The Medicine Woman" Quest
+	elseif(csid == 0x0265 and option == 0 or csid == 0x0267 and option == 0) then
+		player:addQuest(SANDORIA,THE_MEDICINE_WOMAN);
 	elseif (csid == 0x0266) then
-		player:delKeyItem(147)
-		player:addGil(2100)
-		player:messageSpecial(GIL_OBTAINED,2100);
-		player:setTitle(74); 		
-		player:completeQuest(0,30);
-		player:addFame(0,SAN_FAME*30);
+		player:setTitle(TRAVELING_MEDICINE_MAN); 
+		player:delKeyItem(COLD_MEDICINE);
+		player:addGil(GIL_RATE*2100);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);	
+		player:addFame(SANDORIA,SAN_FAME*30);
+		player:completeQuest(SANDORIA,THE_MEDICINE_WOMAN);
+	end
+	
 end;
-		end;

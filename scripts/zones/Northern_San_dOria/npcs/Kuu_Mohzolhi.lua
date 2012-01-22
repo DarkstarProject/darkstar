@@ -5,11 +5,12 @@
 -- @zone 231
 -- @pos -123 0 80
 -----------------------------------
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action

@@ -40,6 +40,9 @@ REVIVAL_TREE_ROOT = 940; --
 	  KITE_SHIELD = 12306; -- 
 		   SPATHA = 16565; -- 
     LADY_BUG_WING = 2506; -- item Atelloune's Lament
+	  MalboroVine = 920; -- Quest "The Medicine Woman"
+		  ZincOre = 642; -- Quest "The Medicine Woman"
+	   InsectWing = 846; -- Quest "The Medicine Woman"
 
 -- Quest Dialogs
 UNLOCK_PALADIN = 7826; -- You can now become a paladin!

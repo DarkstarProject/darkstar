@@ -1,15 +1,17 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Belgidiveau
--- Involved in Quest : Trouble at the Sluice
+-- NPC:  Belgidiveau
+-- Starts and Finishes Quest: Trouble at the Sluice
 -- @zone 231
 -- @pos -98 0 69
 -----------------------------------
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -24,22 +26,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-Flor = player:getQuestStatus(0,68);
-sanFame = player:getFameLevel(SANDORIA);
-FlorVar = player:getVar("QuestFlorVar")
-KeyFlor = player:hasKeyItem(166);
-if (Flor == 0 and sanFame >= 3) then
-player:startEvent(0x0039);
-player:setVar("QuestFlorVar",1)
-elseif (FlorVar == 1) then
-player:startEvent(0x0037)
-NewFlorVar = FlorVar + 1;
-              player:setVar("QuestFlorVar",NewFlorVar)
-elseif (FlorVar == 3) then
-player:startEvent(0x0038)
-else
-player:startEvent(0x0249);
-end
+
+	troubleAtTheSluice = player:getQuestStatus(SANDORIA,TROUBLE_AT_THE_SLUICE);
+	
+	if(troubleAtTheSluice == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
+		player:startEvent(0x0039);
+	elseif(troubleAtTheSluice == QUEST_ACCEPTED) then
+		player:startEvent(0x0037);
+	elseif(player:hasKeyItem(NEUTRALIZER) == true) then
+		player:startEvent(0x0038);
+	else
+		player:startEvent(0x0249);
+	end
+	
 end; 
 
 -----------------------------------
@@ -58,21 +57,20 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-FlorVar = player:getVar("QuestFlorVar")
-Flor = player:getQuestStatus(0,68);
-if (csid == 0x0039 and option == 0) then
-player:addQuest(0,68);
-elseif (csid == 0x0038) then
-player:completeQuest(0,68);
-player:addFame(SANDORIA,SAN_FAME*30);
-player:delKeyItem(166);
-player:tradeComplete();
-player:addItem(16706,1);
-player:messageSpecial(6567,16706)
-player:setVar("QuestFlorVar",0)
-end
+	
+	if(csid == 0x0039 and option == 0) then
+		player:addQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
+	elseif(csid == 0x0038) then
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,HEAVY_AXE);
+		else
+			player:tradeComplete();
+			player:delKeyItem(NEUTRALIZER);
+			player:addItem(HEAVY_AXE);
+			player:messageSpecial(ITEM_OBTAINED,HEAVY_AXE);
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:completeQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
+		end
+	end
+	
 end;
-
-
-
-

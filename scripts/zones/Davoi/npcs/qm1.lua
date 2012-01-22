@@ -1,14 +1,17 @@
 -----------------------------------
--- Area: Northern San d'Oria
--- NPC: Miageau
--- Quest NPC
+-- Area: Davoi
+-- NPC:  ???
+-- Involved in Quest: To Cure a Cough
+-- @zone 149
+-- @pos 
+-----------------------------------
+package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
@@ -24,13 +27,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	Cura = player:getQuestStatus(0,20);
-	if (Cura == 1 and player:hasKeyItem(153) == false) then
-	player:addKeyItem(153);
-player:messageSpecial(6381,153);
-elseif (Cura == 1 and player:hasKeyItem(153) == true) then
-player:addKeyItem(153);
-end
+	
+	toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
+	
+	if(toCureaCough == QUEST_ACCEPTED and player:hasKeyItem(THYME_MOSS) == false) then
+		player:addKeyItem(THYME_MOSS);
+		player:messageSpecial(KEYITEM_OBTAINED,THYME_MOSS);
+	elseif (toCureaCough == QUEST_ACCEPTED and player:hasKeyItem(THYME_MOSS) == true) then
+		player:addKeyItem(THYME_MOSS);
+	end
+	
 end; 
 
 -----------------------------------

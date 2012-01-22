@@ -3,12 +3,10 @@
 -- NPC: Miageau
 -- Quest NPC
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -16,7 +14,6 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------
@@ -24,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x02a2);
+	player:startEvent(0x02a2);
 end; 
 
 -----------------------------------

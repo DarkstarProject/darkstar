@@ -3,10 +3,11 @@
 -- NPC: Madaline
 -- Standard Info NPC 
 -----------------------------------
-
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------

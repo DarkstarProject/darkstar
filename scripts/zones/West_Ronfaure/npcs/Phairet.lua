@@ -1,38 +1,40 @@
 -----------------------------------
 -- Area: West Ronfaure
--- NPC: Phairet
--- NPC for Quest "The Trader in the Forest"
+-- NPC:  Phairet
+-- Involved in Quest: The Trader in the Forest
+-- @zone 100
+-- @pos -57 -1 -501
+-----------------------------------
+package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 require("scripts/zones/West_Ronfaure/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-	-- "The Trader in the Forest" Quest status
-	theTraderInTheForest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
 	
-	-- "The Trader in the Forest" Quest Dialogs 
-	if (theTraderInTheForest == QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		suppliesOrder = trade:hasItemQty(592, 1);
-		freeSlots = player:getFreeSlotsCount();
-		if (count == 1 and suppliesOrder == true and freeSlots > 0) then
-			player:tradeComplete();
+	theTraderInTheforest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
+	
+	if(theTraderInTheforest == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(SUPPLIES_ORDER,1) == true and trade:getItemCount() == 1) then 
 			player:startEvent(0x007c);
-		else
-			player:messageSpecial(6378, 4367);
-		end;
-	end;
+		end
+	elseif(theTraderInTheforest == QUEST_COMPLETED) then 
+		if(trade:getGil() == 50) then 
+			if(player:getFreeSlotsCount() == 0) then 
+				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,CLUMP_OF_BATAGREENS);
+			else
+				player:tradeComplete();
+				player:addItem(CLUMP_OF_BATAGREENS);
+				player:messageSpecial(ITEM_OBTAINED, CLUMP_OF_BATAGREENS);
+			end
+		end
+	end
 
 end; 
 
@@ -41,8 +43,21 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	player:startEvent(0x0075);
+	
+	theTraderInTheforest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
+	hasBatagreens = player:hasItem(CLUMP_OF_BATAGREENS);
+	
+	if(theTraderInTheforest == QUEST_ACCEPTED) then
+		if(hasBatagreens == true) then
+			player:startEvent(0x007d);
+		else
+			player:startEvent(0x0075);
+		end
+	elseif(theTraderInTheforest == QUEST_COMPLETED or hasBatagreens == false) then
+		player:startEvent(0x007f, 4367);
+	else
+		player:startEvent(0x0075);
+	end
 	
 end;
 
@@ -63,12 +78,15 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	-- "The Trader in the Forest" Quest
-	if (csid == 0x007c) then
-		player:addItem(4367);
-		player:messageSpecial(6381, 4367);
-	end;
-		
+	if(csid == 0x007c) then
+		if(player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,CLUMP_OF_BATAGREENS);
+		else
+			player:tradeComplete();
+			player:addItem(CLUMP_OF_BATAGREENS);
+			player:messageSpecial(ITEM_OBTAINED, CLUMP_OF_BATAGREENS);
+		end
+	end
 	
 end;
 

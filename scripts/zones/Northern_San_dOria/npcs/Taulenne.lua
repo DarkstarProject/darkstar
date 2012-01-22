@@ -3,11 +3,13 @@
 -- NPC: Taulenne
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-package.loaded["scripts/globals/armorstorage"] = nil;
-require("scripts/globals/armorstorage");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/globals/armorstorage"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/globals/armorstorage");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 Deposit = 0x0304;

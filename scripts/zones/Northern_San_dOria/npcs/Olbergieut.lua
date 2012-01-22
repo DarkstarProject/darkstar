@@ -3,11 +3,14 @@
 -- NPC: Olbergieut 
 -- Quest NPC
 -----------------------------------
-
-require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -15,7 +18,6 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------

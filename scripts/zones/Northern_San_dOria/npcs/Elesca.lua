@@ -3,12 +3,13 @@
 -- NPC: Elesca
 -- Map Seller NPC
 -----------------------------------
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Northern_San_dOria/textids");
 require("scripts/globals/keyitems");
+require("scripts/zones/Northern_San_dOria/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

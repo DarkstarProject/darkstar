@@ -4,10 +4,13 @@
 -- Regional Marchant NPC 
 -- Only sells when San d'Oria controls Vollbow.
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
+require("scripts/globals/conquest");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -33,20 +36,21 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(VOLLBOW);
+	RegionOwner = getRegionOwner(VOLLBOW);
 
-if (RegionOwner ~= SANDORIA) then 
-	player:showText(npc,MILLECHUCA_CLOSED_DIALOG);
-else
-	player:showText(npc,MILLECHUCA_OPEN_DIALOG);
+	if (RegionOwner ~= SANDORIA) then 
+		player:showText(npc,MILLECHUCA_CLOSED_DIALOG);
+	else
+		player:showText(npc,MILLECHUCA_OPEN_DIALOG);
 
-	stock = {0x27c,119,  --Chamomile
-			 0x360,88,   --Fish Scales
-			 0x3a8,14,   --Rock Salt
-			 0x582,1656} --Sweet William
+		stock = {0x27c,119,  -- Chamomile
+				 0x360,88,   -- Fish Scales
+				 0x3a8,14,   -- Rock Salt
+				 0x582,1656} -- Sweet William
+		
+		showShop(player,SANDORIA,stock);	
+	end
 	
-showShop(player,SANDORIA,stock);	
-end
 end; 
 
 -----------------------------------

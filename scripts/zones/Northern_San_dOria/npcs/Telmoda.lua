@@ -3,10 +3,11 @@
 -- NPC: Telmoda
 -- Standard Info NPC 
 -----------------------------------
-
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -31,13 +32,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-Telmoda_Madaline = player:getVar("Telmoda_Madaline_Event");
-if (Telmoda_Madaline ~= 1) then
-player:setVar(player,"Telmoda_Madaline_Event",1);
-player:startEvent(0x0213);
- else
-  player:startEvent(0x0268);
-end
+	Telmoda_Madaline = player:getVar("Telmoda_Madaline_Event");
+	
+	if(Telmoda_Madaline ~= 1) then
+		player:setVar(player,"Telmoda_Madaline_Event",1);
+		player:startEvent(0x0213);
+	else
+		player:startEvent(0x0268);
+	end
 end; 
 
 -----------------------------------

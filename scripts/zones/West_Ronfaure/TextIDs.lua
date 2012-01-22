@@ -14,3 +14,7 @@ DISMAYED_CUSTOMER = 7326; -- You find some worthless scraps of paper.
    COLMAIE_DIALOG = 7249; -- Orcish scouts lurk in the shadows. Consider yourself warned!
  GACHEMAGE_DIALOG = 7249; -- Orcish scouts lurk in the shadows. Consider yourself warned!
   LAILLERA_DIALOG = 7251; -- I mustn't chat while on duty. Sorry.
+
+  -- Quest Items
+		 SUPPLIES_ORDER = 592; -- Quest "The Trader in the Forest"
+	CLUMP_OF_BATAGREENS = 4367; -- Quest "The Trader in the Forest"

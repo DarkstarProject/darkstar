@@ -3,10 +3,13 @@
 --	NPC: Vichuel
 --	Only sells when San d'Oria controlls Fauregandi Region
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
+require("scripts/globals/conquest");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------

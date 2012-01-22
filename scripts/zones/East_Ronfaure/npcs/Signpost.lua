@@ -1,16 +1,16 @@
 -----------------------------------
---  Area: Northern San d'Oria
---  NPC: Shomo Pochachilo
---  Type: Standard Info NPC
---  @zone: 231
---  @pos: 28.369 -0.199 30.061
+-- Area: East Ronfaure
+-- NPC:  Dauperiat
+-- Involved in quest: To Cure a Cough
+-- @zone 101
+-- @pos 257 -45 212
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/globals/keyitems");
+require("scripts/zones/East_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -25,23 +25,20 @@ end;
 
 function onTrigger(player,npc)
 
-	quest_FatherAndSon = player:getQuestStatus(SANDORIA,FATHER_AND_SON);
-	
-	if (quest_FatherAndSon == QUEST_COMPLETED) then 
-		player:startEvent(0x02b8);
-	else
-		player:startEvent(0x02a3);
+	if(player:hasKeyItem(SCROLL_OF_TREASURE) == true) then
+		player:delKeyItem(SCROLL_OF_TREASURE);
+		player:addGil(GIL_RATE*3000);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);	
 	end
 	
-end;
-
+end; 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,7 +46,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--print("CSID: %u",csid);
+--print("RESULT: %u",option);
 end;
-

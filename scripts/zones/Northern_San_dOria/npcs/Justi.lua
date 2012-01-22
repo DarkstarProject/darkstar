@@ -3,9 +3,12 @@
 -- NPC: Justi
 -- Conquest depending furniture seller
 -----------------------------------
-
-require("scripts/globals/shop");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -31,21 +34,22 @@ end;
 
 function onTrigger(player,npc)
 	
-player:showText(npc,JUSTI_SHOP_DIALOG);
+	player:showText(npc,JUSTI_SHOP_DIALOG);
 
-stock = {0x0037,69888,1,  --Cabinet
-		 0x003b,57333,1,  --Chiffonier
-		 0x0020,170726,1, --Dresser
+	stock = {0x0037,69888,1,  --Cabinet
+			 0x003b,57333,1,  --Chiffonier
+			 0x0020,170726,1, --Dresser
 
-		 0x0031,35272,2,  --Coffer
+			 0x0031,35272,2,  --Coffer
 
-		 0x002e,8376,3,	  --Armor Box
-		 0x0679,92,3,	  --Bundling Twine
-		 0x0039,15881,3,  --Cupboard
-		 0x0018,129168,3, --Oak Table
-		 0x005d,518,3}    --Water Cask
+			 0x002e,8376,3,	  --Armor Box
+			 0x0679,92,3,	  --Bundling Twine
+			 0x0039,15881,3,  --Cupboard
+			 0x0018,129168,3, --Oak Table
+			 0x005d,518,3}    --Water Cask
 
-showNationShop(player, SANDORIA, stock);
+	showNationShop(player, SANDORIA, stock);
+	
 end; 
 
 -----------------------------------

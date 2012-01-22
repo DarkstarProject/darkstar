@@ -1,38 +1,30 @@
 -----------------------------------
--- Area: Northern San d'Oria
--- NPC: Amaura
--- Quest NPC
+-- Area: Southern San d'Oria
+-- NPC:  Amaura
+-- Involved in Quest: The Medicine Woman, To Cure a Cough
+-- @zone 230
+-- @pos -85 -6 89
+-----------------------------------
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
-MalboroVine = 920;
-ZincOre = 642;
-InsectWing = 846;
-AmurasFormula = 148;
-ColdMedicine = 147;
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-MalboroVine = 1013;
-ZincOre = 642;
-InsectWing = 846;
-AmurasFormula = 0x0094;
-ColdMedicine = 0x0093;
-MedicineWoman = player:getQuestStatus(0,30);
-if (MedicineWoman == QUEST_ACCEPTED) then
-count = trade:getItemCount();
-		if (count and trade:hasItemQty(MalboroVine,1) == true and trade:hasItemQty(ZincOre,1) == true and trade:hasItemQty(InsectWing,1) == true and count == 3 and player:getQuestStatus(0,30) == 1) then
-		player:tradeComplete();
-		player:startEvent(0x027D);
+
+	if(player:hasKeyItem(AMAURAS_FORMULA) == true) then
+		if (trade:hasItemQty(MalboroVine,1) == true and trade:hasItemQty(ZincOre,1) == true and trade:hasItemQty(InsectWing,1) == true and trade:getItemCount() == 3) then
+			player:startEvent(0x027D);
 		end
-		end
+	end
 		
 end;
 
@@ -41,27 +33,30 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-MalboroVine = 1013;
-ZincOre = 642;
-InsectWing = 846;
-AmurasFormula = 0x0094;
-ColdMedicine = 0x0093;
-MedicineWoman = player:getQuestStatus(0,30);
-Cura = player:getQuestStatus(0,20);
-	if (MedicineWoman == 1 and player:hasKeyItem(0x0094) == false and player:hasKeyItem(0x0093) == false) then
-		player:startEvent(0x027C);
-		elseif (MedicineWoman == 1 and player:hasKeyItem(0x0094) == true and player:hasKeyItem(0x0093) == false) then
-		player:startEvent(0x03bc);
-		elseif (MedicineWoman == 1 and player:hasKeyItem(0x0094) == false and player:hasKeyItem(0x0093) == true) then
-		player:startEvent(0x0282);
-		elseif (Cura == 1 and player:getVar("DiaryPage") == 3 and player:hasKeyItem(153) == false and player:hasKeyItem(154) == false) then
-		player:startEvent(0x285); -- need thyme moss for cough med
-	    elseif (Cura == 1 and player:getVar("DiaryPage") == 3 and player:hasKeyItem(153) == true) then
-		player:startEvent(0x286); -- receive cough med for Nenne
+
+	medicineWoman = player:getQuestStatus(SANDORIA,THE_MEDICINE_WOMAN);
+	toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
+	
+	if(medicineWoman == QUEST_ACCEPTED) then
+		amaurasFormulaKI = player:hasKeyItem(AMAURAS_FORMULA);
+		coldMedicine = player:hasKeyItem(COLD_MEDICINE);
+		
+		if(amaurasFormulaKI == false and coldMedicine == false) then
+			player:startEvent(0x027C);
+		else
+			player:startEvent(0x0282);
+		end		
+	elseif(player:getVar("toCureaCough") == 4 or toCureaCough == QUEST_ACCEPTED) then
+		if(player:hasKeyItem(THYME_MOSS) == false and player:hasKeyItem(COUGH_MEDICINE) == false) then 
+			player:startEvent(0x0285); -- need thyme moss for cough med
+		elseif(player:hasKeyItem(THYME_MOSS) == true) then
+			player:startEvent(0x0286); -- receive cough med for Nenne
+		end
 	else
-		player:startEvent(0x282);
+		player:startEvent(0x0282);
 	end
-		end; 
+	
+end; 
 
 -----------------------------------
 -- onEventUpdate
@@ -79,21 +74,20 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-MalboroVine = 1013;
-ZincOre = 642;
-InsectWing = 846;
-AmurasFormula = 0x0094;
-ColdMedicine = 0x0093;
-	if (csid == 0x027C) then
-		player:addKeyItem(148);
-		player:messageSpecial(6406,148);
-			elseif (csid == 0x027D) then
-		player:delKeyItem(AmurasFormula);
-		player:addKeyItem(ColdMedicine);
-		player:messageSpecial(6406,147);
-elseif (csid == 0x286) then 
-		player:delKeyItem(153);
-		player:addKeyItem(154);
-		player:messageSpecial(6406,154);
-		end
+
+	if(csid == 0x027C and option == 0) then
+		player:addKeyItem(AMAURAS_FORMULA);
+		player:messageSpecial(KEYITEM_OBTAINED,AMAURAS_FORMULA);
+	elseif(csid == 0x027D) then
+		player:delKeyItem(AMAURAS_FORMULA);
+		player:addKeyItem(COLD_MEDICINE);
+		player:messageSpecial(KEYITEM_OBTAINED,COLD_MEDICINE);
+	elseif(csid == 0x0285) then 
+		player:addQuest(SANDORIA,TO_CURE_A_COUGH);
+	elseif(csid == 0x0286) then 
+		player:delKeyItem(THYME_MOSS);
+		player:addKeyItem(COUGH_MEDICINE);
+		player:messageSpecial(KEYITEM_OBTAINED,COUGH_MEDICINE);
+	end
+	
 end;

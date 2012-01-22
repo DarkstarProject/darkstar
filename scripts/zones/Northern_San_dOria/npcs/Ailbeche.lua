@@ -58,8 +58,8 @@ function onTrigger(player,npc)
 	-- Checking levels and jobs for af quest
 	mLvl = player:getMainLvl();
 	mJob = player:getMainJob();
-	-- Check if they have key item "Ordelle whetstone"
-	OrdelleWhetstone = player:hasKeyItem(ORDELLE_WHETSTONE);
+	-- Check if they have key item "Ordelle whetWater"
+	OrdelleWhetWater = player:hasKeyItem(ORDELLE_WHETWater);
 	sharpeningTheSwordCS = player:getVar("sharpeningTheSwordCS");
 	aBoysDreamCS = player:getVar("aBoysDreamCS");
 	
@@ -77,9 +77,9 @@ function onTrigger(player,npc)
 		elseif(mJob == 7 and mLvl >= 40 and sharpeningTheSwordCS == 1) then
 			player:startEvent(0x002b); -- Start Quest "Sharpening the Sword"
 		end
-	elseif(sharpeningTheSword == QUEST_ACCEPTED and OrdelleWhetstone == false) then
+	elseif(sharpeningTheSword == QUEST_ACCEPTED and OrdelleWhetWater == false) then
 		player:startEvent(0x002a); -- During Quest "Sharpening the Sword"
-	elseif(sharpeningTheSword == QUEST_ACCEPTED and OrdelleWhetstone == true) then
+	elseif(sharpeningTheSword == QUEST_ACCEPTED and OrdelleWhetWater == true) then
 		player:startEvent(0x002c); -- Finish Quest "Sharpening the Sword"
 	-- "A Boy's Dream" Quest Dialogs
 	elseif(aBoysDream == QUEST_AVAILABLE and mJob == 7 and mLvl >= 50) then
@@ -150,7 +150,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17643);
 		else
-			player:delKeyItem(ORDELLE_WHETSTONE);
+			player:delKeyItem(ORDELLE_WHETWater);
 			player:addItem(17643);
 			player:messageSpecial(ITEM_OBTAINED, 17643); -- Honor Sword
 			player:setVar("sharpeningTheSwordCS",0);

@@ -1,14 +1,18 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Dauperiat
--- Quest NPC
+-- NPC:  Dauperiat
+-- Starts and Finishes Quest: Blackmail (R)
+-- @zone 231
+-- @pos 
+-----------------------------------
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -34,28 +38,31 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
--- "Blackmail" quest status
-Black = player:getQuestStatus(SANDORIA, BLACKMAIL);
-Key1 = player:hasKeyItem(161);
-word = player:hasKeyItem(318);
-sanFame = player:getFameLevel(SANDORIA);
-sanRank = player:getRank(SANDORIA);
-   if (sanFame >= 3 and sanRank >= 3) then
-      if (Black == 0 and Key1 == false and word == false) then
-         player:startEvent(0x0283);
-      elseif (Key1) then  
-         player:startEvent(0x0285);
-      elseif (Black == 0 and word) then
-         player:startEvent(0x0286);
-	 player:delKeyItem(295);
-      elseif (Black == 1) then
-	 player:startEvent(0x0281);
-      elseif (Black == 2) then
-         player:startEvent(0x0287);
-      end
-   else
-      player:startEvent(0x0282);
-   end	
+
+	-- "Blackmail" quest status
+	blackMail = player:getQuestStatus(SANDORIA, BLACKMAIL);
+	envelope = player:hasKeyItem(SUSPICIOUS_ENVELOPE);
+	word = player:hasKeyItem(KEY_ITEM318);
+	sanFame = player:getFameLevel(SANDORIA);
+	sanRank = player:getRank(SANDORIA);
+	
+	if(sanFame >= 3 and sanRank >= 3) then
+		if(blackMail == QUEST_AVAILABLE and envelope == false and word == false) then
+			player:startEvent(0x0283);
+		elseif(envelope) then  
+			player:startEvent(0x0285);
+		elseif(blackMail == QUEST_AVAILABLE and word) then
+			player:startEvent(0x0286);
+			player:delKeyItem(SEALED_IRON_BOX);
+		elseif(blackMail == QUEST_ACCEPTED) then
+			player:startEvent(0x0281);
+		elseif(blackMail == QUEST_COMPLETED) then
+			player:startEvent(0x0287);
+		end
+	else
+		player:startEvent(0x0282);
+	end	
+	
 end; 
 -----------------------------------
 -- onEventUpdate
@@ -74,25 +81,23 @@ end;
 function onEventFinish(player,csid,option)
 --print("CSID: %u",csid);
 --print("RESULT: %u",option);
-if (csid == 0x0283) then
-	player:addKeyItem(161);
-	player:messageSpecial(KEYITEM_OBTAINED);
-	player:getQuestStatus(SANDORIA,BLACKMAIL);
-                end
-       if (csid == 0x0288) then
-                if (player:getQuestStatus(SANDORIA,BLACKMAIL) == 1) then
-                        player:completeQuest(SANDORIA,BLACKMAIL);
-                        player:addFame(SANDORIA,SAN_FAME*30);
-                else
-                        player:addFame(SANDORIA,SAN_FAME*5);
-                end
 
-
-                player:tradeComplete();
-                player:addGil(GIL_RATE*900);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*900)
-		if (csid == 0x028 and option == 1) then
+	if(csid == 0x0283) then
 		player:addQuest(SANDORIA,BLACKMAIL);
+		player:addKeyItem(SUSPICIOUS_ENVELOPE);
+		player:messageSpecial(KEYITEM_OBTAINED,SUSPICIOUS_ENVELOPE);
+	elseif(csid == 0x0288) then
+		player:tradeComplete();
+		player:addGil(GIL_RATE*900);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*900)
+		if(player:getQuestStatus(SANDORIA,BLACKMAIL) == QUEST_ACCEPTED) then
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:completeQuest(SANDORIA,BLACKMAIL);
+		else
+			player:addFame(SANDORIA,SAN_FAME*5);
 		end
-		end
-				end;
+	elseif(csid == 0x028 and option == 1) then
+		player:addQuest(SANDORIA,BLACKMAIL);
+	end
+
+end;

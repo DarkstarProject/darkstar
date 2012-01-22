@@ -3,10 +3,11 @@
 -- NPC: Commojourt
 -- Standard Info NPC 
 -----------------------------------
-
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -32,11 +33,12 @@ end;
 
 function onTrigger(player,npc)
 	rand = math.random(1,2);
-      if(rand == 1)then
-         player:startEvent(0x028d);
-      else
-         player:startEvent(0x0291);
-      end
+	
+	if(rand == 1)then
+		player:startEvent(0x028d);
+	else
+		player:startEvent(0x0291);
+	end
 end; 
 
 -----------------------------------
