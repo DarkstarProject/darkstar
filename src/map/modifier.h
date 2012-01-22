@@ -241,6 +241,8 @@ enum MODIFIER
 	MOD_DEMON_KILLER		= 0xEA,
 	MOD_EMPTY_KILLER		= 0xEB,
 	MOD_HUMANOID_KILLER		= 0xEC,
+    MOD_LUMORIAN_KILLER     = 0xED,
+    MOD_LUMINION_KILLER     = 0xEE,
 
 // Resistances to enfeebles - Traits/Job Ability
 

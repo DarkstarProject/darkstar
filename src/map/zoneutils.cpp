@@ -239,6 +239,23 @@ void LoadZoneList()
 				PMob->PBattleAI->SetCurrentZone(PZone);
 				PMob->PBattleAI->SetCurrentAction(PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE);
 
+                // Killer Effect
+                switch (PMob->m_EcoSystem)
+	            {
+		            case SYSTEM_AMORPH:   PMob->addModifier(MOD_BIRD_KILLER,     5); break;
+		            case SYSTEM_AQUAN:    PMob->addModifier(MOD_AMORPH_KILLER,   5); break;
+		            case SYSTEM_ARCANA:   PMob->addModifier(MOD_UNDEAD_KILLER,   5); break;
+		            case SYSTEM_BEAST:    PMob->addModifier(MOD_LIZARD_KILLER,   5); break;
+		            case SYSTEM_BIRD:     PMob->addModifier(MOD_AQUAN_KILLER,    5); break;
+		            case SYSTEM_DEMON:    PMob->addModifier(MOD_DRAGON_KILLER,   5); break;
+		            case SYSTEM_DRAGON:   PMob->addModifier(MOD_DEMON_KILLER,    5); break;
+		            case SYSTEM_LIZARD:   PMob->addModifier(MOD_VERMIN_KILLER,   5); break;
+                    case SYSTEM_LUMINION: PMob->addModifier(MOD_LUMORIAN_KILLER, 5); break;
+                    case SYSTEM_LUMORIAN: PMob->addModifier(MOD_LUMINION_KILLER, 5); break;
+		            case SYSTEM_PLANTOID: PMob->addModifier(MOD_BEAST_KILLER,    5); break;
+		            case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
+		            case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
+	            }
 				PZone->InsertMOB(PMob);
 			}
 		}

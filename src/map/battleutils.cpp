@@ -990,12 +990,14 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 }
 
 /************************************************************************
-*	Chance paralysis will cause you to be paralyzed  					*
+*                                                                       *
+*  Chance paralysis will cause you to be paralyzed                      *
+*                                                                       *
 ************************************************************************/
 
 bool IsParalised(CBattleEntity* PAttacker)
 {
-	return (rand()%100 < PAttacker->getMod(MOD_PARALYZE)); // PAttacker->getMod(MOD_PARALYZERES)
+	return (rand()%100 < cap_value(PAttacker->getMod(MOD_PARALYZE) - PAttacker->getMod(MOD_PARALYZERES), 0, 100));
 }
 
 /************************************************************************
@@ -1018,13 +1020,14 @@ bool IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 		case SYSTEM_DEMON:		KillerEffect = PDefender->getMod(MOD_DEMON_KILLER);    break;
 		case SYSTEM_DRAGON:		KillerEffect = PDefender->getMod(MOD_DRAGON_KILLER);   break;
 		case SYSTEM_EMPTY:		KillerEffect = PDefender->getMod(MOD_EMPTY_KILLER);    break;
+        case SYSTEM_HUMANOID:	KillerEffect = PDefender->getMod(MOD_HUMANOID_KILLER); break;
 		case SYSTEM_LIZARD:		KillerEffect = PDefender->getMod(MOD_LIZARD_KILLER);   break;
+        case SYSTEM_LUMINION:   KillerEffect = PDefender->getMod(MOD_LUMINION_KILLER); break;
+        case SYSTEM_LUMORIAN:   KillerEffect = PDefender->getMod(MOD_LUMORIAN_KILLER); break;
 		case SYSTEM_PLANTOID:	KillerEffect = PDefender->getMod(MOD_PLANTOID_KILLER); break;
 		case SYSTEM_UNDEAD:		KillerEffect = PDefender->getMod(MOD_UNDEAD_KILLER);   break;
 		case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(MOD_VERMIN_KILLER);   break;
-		case SYSTEM_HUMANOID:	KillerEffect = PDefender->getMod(MOD_HUMANOID_KILLER); break;
 	}
-
 	return (rand()%100 < KillerEffect);
 }
 

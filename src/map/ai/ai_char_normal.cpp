@@ -965,6 +965,22 @@ void CAICharNormal::ActionMagicCasting()
 		ActionMagicInterrupt();
 		return;
 	}
+    if (battleutils::IsParalised(m_PChar)) 
+    {
+	    m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,29));
+
+        m_ActionType = ACTION_MAGIC_INTERRUPT;
+		ActionMagicInterrupt();
+		return;
+    }
+    else if (battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget)) 
+    {
+	    m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,106));
+
+        m_ActionType = ACTION_MAGIC_INTERRUPT;
+		ActionMagicInterrupt();
+		return;
+    }
 	
 	if ((m_Tick - m_LastActionTime) >= m_PSpell->getCastTime()) // TODO: need MOD_FASTCAST
 	{
