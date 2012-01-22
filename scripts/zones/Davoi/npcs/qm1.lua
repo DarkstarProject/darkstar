@@ -27,6 +27,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+<<<<<<< .mine
+	
+	toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
+	
+	if(toCureaCough == QUEST_ACCEPTED and player:hasKeyItem(THYME_MOSS) == false) then
+		player:addKeyItem(THYME_MOSS);
+		player:messageSpecial(KEYITEM_OBTAINED,THYME_MOSS);
+	end
+	
+=======
 	
 	toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
 	
@@ -37,6 +47,7 @@ function onTrigger(player,npc)
 		player:addKeyItem(THYME_MOSS);
 	end
 	
+>>>>>>> .r531
 end; 
 
 -----------------------------------

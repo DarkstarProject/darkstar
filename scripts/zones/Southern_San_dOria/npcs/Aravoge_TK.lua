@@ -1,6 +1,6 @@
 -----------------------------------
 --	Area: Southern San d'Oria
---	NPC: Aravoge, T.K.
+--	NPC:  Aravoge, T.K.
 
 -- X Grant Signet
 --   Recharge Emperor Band, Empress Band, or Chariot Band

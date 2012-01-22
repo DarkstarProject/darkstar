@@ -1,11 +1,11 @@
 -----------------------------------
 --  Area: Southern San d'Oria
---  NPC: Arpevion, T.K.
+--  NPC:  Arpevion, T.K.
 
 -- X Grant Signet
 --   Recharge Emperor Band, Empress Band, or Chariot Band
---   Accepts traded Crystals to fill up the Rank bar to open new Missions.
---   Sells items in exchange for Conquest Points
+-- X Accepts traded Crystals to fill up the Rank bar to open new Missions.
+-- X Sells items in exchange for Conquest Points
 --   Start Supply Run Missions and offers a list of already-delivered supplies.
 --   Start an Expeditionary Force by giving an E.F. region insignia to you. 
 -------------------------------------

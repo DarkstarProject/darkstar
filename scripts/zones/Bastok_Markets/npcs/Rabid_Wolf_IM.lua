@@ -1,8 +1,17 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Rabid Wolf IM
--- National Conquest Guard
------------------------------------
+-- NPC:  Rabid Wolf IM
+
+-- X Grant Signet
+--   Recharge Emperor Band, Empress Band, or Chariot Band
+-- X Accepts traded Crystals to fill up the Rank bar to open new Missions.
+-- X Sells items in exchange for Conquest Points
+--   Start Supply Run Missions and offers a list of already-delivered supplies.
+--   Start an Expeditionary Force by giving an E.F. region insignia to you. 
+-------------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/status");
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
 package.loaded["scripts/globals/conquestguards"] = nil;
@@ -26,6 +35,7 @@ size = table.getn(Inventory);
 -----------------------------------
 -- onTrade Action
 -----------------------------------
+
 function onTrade(player,npc,trade)
    if (player:getNation() == NPCNation) then
       TradeCount = trade:getItemCount();
@@ -62,8 +72,8 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
+
 function onTrigger(player,npc)
-   player:addItem(4096,12);
    Menu1 = (NPCNation * 16) + (NationAlly*256)  + 65537;
    Menu2 = 0;
    Menu3 = SandRank + (BastRank * 4) + (WindRank * 16);
@@ -72,12 +82,15 @@ function onTrigger(player,npc)
    Menu6 = player:getRank() + (player:getNation() * 32);
    Menu7 = PlayerCP;
    Menu8 = 0;
+   if(player:getNation() == NPCNation) then
    player:startEvent(0x7FF9,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
+   end
 end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
+
 function onEventUpdate(player,csid,option)
    if (option >= 32768 and option <= 32944) then
       for Item = 1,size,3 do
@@ -96,6 +109,7 @@ end;
 -----------------------------------
 -- onEventFinish
 -----------------------------------
+
 function onEventFinish(player,csid,option)
    if (player:getNation() == 0 and NationAlly == 4 and SandRank >= CurNRank or 
        player:getNation() == 1 and NationAlly == 2 and BastRank >= CurNRank or 

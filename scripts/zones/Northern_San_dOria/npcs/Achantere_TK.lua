@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Bastok Mines
--- NPC:  Crying Wind, I.M.
+--	Area: Northern San d'Oria
+--	NPC:  Achatere, T.K.
 
 -- X Grant Signet
 --   Recharge Emperor Band, Empress Band, or Chariot Band
@@ -12,29 +12,29 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-require("scripts/zones/Bastok_Mines/TextIDs");
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+require("scripts/zones/Northern_San_dOria/TextIDs");
 package.loaded["scripts/globals/conquestguards"] = nil;
 require("scripts/globals/conquestguards");
 
-NPCNation = 1;		-- NPCs Nationality (0 = Sand, 1 = Bast, 2 = Wind)
-NationAlly = 3; 		-- NPC's Ally Nations (1 = Wind, 2 = Bast, 3 = None, 4 = Sand)
+NPCNation = 0;		-- NPCs Nationality (0 = Sand, 1 = Bast, 2 = Wind)
+NationAlly = 3; 	-- NPC's Ally Nations (1 = Wind, 2 = Bast, 3 = None, 4 = Sand)
 PlayerCP = 56000; 	-- Player Conquest Points
 SandRank = 1; 		-- Sand Rank
 BastRank = 1; 		-- Bast Rank
 WindRank = 1; 		-- Wind Rank
-CurNRank = BastRank;	-- NPC's National Rank
+CurNRank = SandRank;	-- NPC's National Rank
 CanEquip = 2;		-- 1 = Player can equip, 2 = Player can't equip
 DONATE_LOW_RANK = 7496;
 DONATE_AT_MAXIM = 7546;
 DONATE_OVERFLOW = 7547;
 DONATE_CRYSTALS = 7548;
-Inventory = BastInv;
+Inventory = SandInv;
 size = table.getn(Inventory);
 
------------------------------------
--- onTrade Action
------------------------------------
+----------------------------------- 
+-- onTrade Action 
+----------------------------------- 
 
 function onTrade(player,npc,trade)
    if (player:getNation() == NPCNation) then
@@ -69,8 +69,8 @@ function onTrade(player,npc,trade)
    end;
 end; 
 
------------------------------------
--- onTrigger Action
+----------------------------------- 
+-- onTrigger Action 
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -83,9 +83,9 @@ function onTrigger(player,npc)
    Menu7 = PlayerCP;
    Menu8 = 0;
    if(player:getNation() == NPCNation) then
-   player:startEvent(0x7FF9,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
+	player:startEvent(0x7ffa,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
    end
-end;
+end; 
 
 -----------------------------------
 -- onEventUpdate
@@ -115,7 +115,15 @@ function onEventFinish(player,csid,option)
        player:getNation() == 1 and NationAlly == 2 and BastRank >= CurNRank or 
        player:getNation() == 2 and NationAlly == 1 and WindRank >= CurNRank or
        option == 1) then
-      -- Grant Signet
+		duration = (player:getRank() + 3 + 3) * 3600;
+		
+		if(player:hasStatusEffect(EFFECT_SIGNET) == true) then 
+			player:delStatusEffect(EFFECT_SIGNET);
+			player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0); -- Grant Signet
+		else
+			player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0); -- Grant Signet
+		end
+		
    elseif (option >= 32768 and option <= 32944) then
       for Item = 1,size,3 do
          if (option == Inventory[Item]) then
