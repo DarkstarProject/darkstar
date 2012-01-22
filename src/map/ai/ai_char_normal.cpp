@@ -1071,7 +1071,7 @@ void CAICharNormal::ActionMagicFinish()
 	{
 		m_PChar->m_ActionList.push_back(Action);
 	}
-	else if (m_PBattleSubTarget->objtype = TYPE_PC) 
+	else if (m_PBattleSubTarget->objtype == TYPE_PC)
 	{
 		CCharEntity* Target = (CCharEntity*)m_PBattleSubTarget;
 
@@ -1093,7 +1093,7 @@ void CAICharNormal::ActionMagicFinish()
 			m_PChar->m_ActionList.push_back(Action);
 		}
 	}
-	else if (m_PBattleSubTarget->objtype = TYPE_MOB)
+	else if (m_PBattleSubTarget->objtype == TYPE_MOB)
 	{
 		m_PChar->m_ActionList.push_back(Action);
         ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
@@ -1232,7 +1232,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-    m_LastActionTime = m_Tick;
+    if (m_PChar->animation == ANIMATION_ATTACK) m_LastActionTime = m_Tick;
 
     m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);

@@ -374,9 +374,8 @@ int32 OnServerStart()
 		ShowError("luautils::OnServerStart: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-   
-	lua_pushstring(LuaHandle,"onServerStart");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onServerStart");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnServerStart: undefined procedure onServerStart\n");
@@ -410,12 +409,11 @@ int32 OnZoneInitialise(uint8 ZoneID)
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
-		//ShowError("luautils::OnZoneInitialise: %s\n",lua_tostring(LuaHandle,-1));
+	  //ShowError("luautils::OnZoneInitialise: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
    
-	lua_pushstring(LuaHandle,"onInitialize");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onInitialize");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnZoneInitialise: undefined procedure onInitialize\n");
@@ -456,8 +454,7 @@ int32 OnZoneIn(CCharEntity* PChar)
 		return -1;
 	}
    
-	lua_pushstring(LuaHandle,"onZoneIn");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onZoneIn");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnZoneIn: undefined procedure onZoneIn\n");
@@ -498,9 +495,8 @@ int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion)
 		ShowError("luautils::OnRegionEnter: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-   
-	lua_pushstring(LuaHandle,"onRegionEnter");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onRegionEnter");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnRegionEnter: undefined procedure onRegionEnter\n");
@@ -541,9 +537,8 @@ int32 OnRegionLeave(CCharEntity* PChar, CRegion* PRegion)
 		ShowError("luautils::OnRegionLeave: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-   
-	lua_pushstring(LuaHandle,"onRegionLeave");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onRegionLeave");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnRegionEnter: undefined procedure onRegionLeave\n");
@@ -587,8 +582,7 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 		return -1;
 	}
 
-	lua_pushstring(LuaHandle,"onTrigger");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onTrigger");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnTrigger: undefined procedure onTrigger\n");
@@ -623,8 +617,7 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 		return -1;  
 	}
 
-	lua_pushstring(LuaHandle,"onEventUpdate");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEventUpdate");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnEventUpdate: undefined procedure onEventUpdate\n");
@@ -659,8 +652,7 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 		return -1;  
 	}
 
-	lua_pushstring(LuaHandle,"onEventFinish");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEventFinish");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnEventFinish: undefined procedure onEventFinish\n");
@@ -704,8 +696,7 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 		return -1;
 	}
 
-	lua_pushstring(LuaHandle,"onTrade");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onTrade");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnTrade: undefined procedure onTrade\n");
@@ -749,8 +740,7 @@ int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		return -1;
 	}
 
-	lua_pushstring(LuaHandle,"onEffectGain");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEffectGain");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnEffectGain: undefined procedure onEffectGain\n");
@@ -790,8 +780,7 @@ int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		return -1;
 	}
 
-	lua_pushstring(LuaHandle,"onEffectTick");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEffectTick");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnEffectTick: undefined procedure onEffectTick\n");
@@ -832,8 +821,7 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		return -1;
 	}
 
-	lua_pushstring(LuaHandle,"onEffectLose");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEffectLose");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnEffectLose: undefined procedure onEffectLose\n");
@@ -874,8 +862,7 @@ int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param)
 		return 56;
 	}
 
-	lua_pushstring(LuaHandle,"onItemCheck");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onItemCheck");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnItemCheck: undefined procedure onItemCheck\n");
@@ -916,8 +903,7 @@ int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem)
 		return -1;
 	}
 
-	lua_pushstring(LuaHandle,"onItemUse");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onItemUse");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnItemUse: undefined procedure onItemUse\n");
@@ -956,8 +942,7 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 		return -1;
 	}
 
-	lua_pushstring(LuaHandle,"onSpellCast");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onSpellCast");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnSpellCast: undefined procedure onSpellCast\n");
@@ -1001,15 +986,14 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		return -1;
 	}
 
-	CCharEntity* PChar = (CCharEntity*)PKiller;
-
-	lua_pushstring(LuaHandle,"onMobDeath");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
 		return -1;
 	}
+
+    CCharEntity* PChar = (CCharEntity*)PKiller;
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
@@ -1073,8 +1057,7 @@ int32 OnMobSpawn(CBaseEntity* PMob)
         return -1;
     }
 
-    lua_pushstring(LuaHandle,"onMobSpawn");
-    lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobSpawn");
     if( lua_isnil(LuaHandle,-1) )
     {
         return -1;
@@ -1111,9 +1094,8 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob)
 		ShowError("luautils::OnUseWeaponSkill: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-   
-	lua_pushstring(LuaHandle,"OnUseWeaponSkill");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnUseWeaponSkill");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnUseWeaponSkill: undefined procedure OnUseWeaponSkill\n");
@@ -1153,9 +1135,8 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget)
 		ShowError("luautils::OnUseAbility: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-   
-	lua_pushstring(LuaHandle,"OnUseAbility");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnUseAbility");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnUseAbility: undefined procedure OnUseAbility\n");
@@ -1251,12 +1232,11 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
-		ShowError("luautils::OnTransportEvent: %s\n",lua_tostring(LuaHandle,-1));
+	    ShowError("luautils::OnTransportEvent: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-   
-	lua_pushstring(LuaHandle,"onTransportEvent");
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onTransportEvent");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnTransportEvent: undefined procedure\n");

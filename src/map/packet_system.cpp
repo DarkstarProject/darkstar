@@ -282,7 +282,19 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 		PChar->animation = ANIMATION_NONE;
 	}
 
-	PChar->RecastList.clear();
+    RecastList_t::iterator it = PChar->RecastList.begin();
+
+	while(it != PChar->RecastList.end())
+	{
+		Recast_t* recast = *it;
+        if (recast->Type == RECAST_MAGIC)
+		{
+            PChar->RecastList.erase(it++);
+            delete recast;
+            continue;
+		}
+		it++;
+    }
 
 	charutils::SaveCharStats(PChar);
 	charutils::SaveCharPosition(PChar);
