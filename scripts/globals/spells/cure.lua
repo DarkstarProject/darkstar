@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
 	
 	Final = math.floor(Base);
 	
-	if(Final < capm) then Final = cap; end
+	if(Final < cap) then Final = cap; end
 
 	caster:addHP(target,Final);
 	return Final;
