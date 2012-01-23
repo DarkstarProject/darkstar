@@ -3,9 +3,12 @@
 --	NPC: Baunise
 --  Involved in Quest: A Knight's Test
 -------------------------------------
-
-require("scripts/globals/keyItems");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 

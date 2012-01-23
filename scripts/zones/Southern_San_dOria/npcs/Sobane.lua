@@ -28,6 +28,7 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
+	
 	signedInBlood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
 	
 	if(signedInBlood == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
@@ -35,9 +36,8 @@ function onTrigger(player,npc)
 	elseif(player:getVar("sharpeningTheSwordCS") >= 2) then
 		player:startEvent(0x0034);
 	end
-end; 
-
--- 0x0034  0x02dc  0x02dd  0x02de  0x02df  0x02e0  0x02e1  0x02e2  0x02e3  0x02e4  0x02e5
+	
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -55,11 +55,13 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
 	if(csid == 0x02dc and option == 1) then
 		player:addQuest(SANDORIA,SIGNED_IN_BLOOD);
 	elseif(csid == 0x0034) then
 		player:setVar("sharpeningTheSwordCS",3);
 	end
+	
 end;
 
 

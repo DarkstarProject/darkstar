@@ -1,14 +1,16 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Hanaa Punaa
---  NPC for Quest "The Seamstress"
+-- Area: Southern San d'Oria
+-- NPC: Hanaa Punaa
+-- NPC for Quest "The Seamstress"
 -------------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 

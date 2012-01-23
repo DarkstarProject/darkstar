@@ -3,12 +3,13 @@
 --	NPC: Apairemant
 --	Only sells when San d'Oria controls Gustaberg Region
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
+require("scripts/globals/conquest");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -34,20 +35,21 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(GUSTABERG);
+	RegionOwner = getRegionOwner(GUSTABERG);
 
-if (RegionOwner ~= SANDORIA) then 
-	player:showText(npc,APAIREMANT_CLOSED_DIALOG);
-else
-	player:showText(npc,APAIREMANT_OPEN_DIALOG);
-	
-	stock = {0x0454,703,		-- Sulfur
-		 0x026b,43,		-- Popoto
-		 0x0263,36,		-- Rye Flour
-		 0x1124,40}		-- Eggplant
-			  
-showShop(player,SANDORIA,stock);
-end
+	if (RegionOwner ~= SANDORIA) then 
+		player:showText(npc,APAIREMANT_CLOSED_DIALOG);
+	else
+		player:showText(npc,APAIREMANT_OPEN_DIALOG);
+		
+		stock = {0x0454,703,		-- Sulfur
+				 0x026b,43,		-- Popoto
+				 0x0263,36,		-- Rye Flour
+				 0x1124,40}		-- Eggplant
+				  
+		showShop(player,SANDORIA,stock);
+	end
+
 end; 
 
 -----------------------------------

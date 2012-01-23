@@ -3,11 +3,12 @@
 -- NPC: Thadiene
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -33,24 +34,25 @@ end;
 
 function onTrigger(player,npc)
 	
-player:showText(npc,THADIENE_SHOP_DIALOG);
+	player:showText(npc,THADIENE_SHOP_DIALOG);
 
-stock = {0x4380,1575,1,	 --Boomerang
-		 0x430a,19630,1, --Great Bow
-		 0x43a9,16,1,	 --Silver Arrow
-		 0x4302,7128,1,	 --Wrapped Bow
+	stock = {0x4380,1575,1,	 --Boomerang
+			 0x430a,19630,1, --Great Bow
+			 0x43a9,16,1,	 --Silver Arrow
+			 0x4302,7128,1,	 --Wrapped Bow
 
-		 0x43b8,5,2,	 --Crossbow Bolt
-		 0x43aa,126,2,	 --Fire Arrow
-		 0x43a8,7,2,	 --Iron Arrow
-		 0x4301,482,2,	 --Self Bow
+			 0x43b8,5,2,	 --Crossbow Bolt
+			 0x43aa,126,2,	 --Fire Arrow
+			 0x43a8,7,2,	 --Iron Arrow
+			 0x4301,482,2,	 --Self Bow
 
-		 0x4308,442,3,	 --Longbow
-		 0x4300,38,3,	 --Shortbow
-		 0x43a6,3,3,	 --Wooden Arrow
-		 0x13a5,4320,3}	 --Scroll of Battlefield Elegy
+			 0x4308,442,3,	 --Longbow
+			 0x4300,38,3,	 --Shortbow
+			 0x43a6,3,3,	 --Wooden Arrow
+			 0x13a5,4320,3}	 --Scroll of Battlefield Elegy
 
-showNationShop(player, SANDORIA, stock);
+	showNationShop(player, SANDORIA, stock);
+
 end; 
 
 -----------------------------------

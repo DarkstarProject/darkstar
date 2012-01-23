@@ -3,12 +3,14 @@
 -- NPC: Violitte
 -- Map Seller NPC
 -----------------------------------
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Southern_San_dOria/textids");
 require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+require("scripts/zones/Southern_San_dOria/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -93,7 +95,7 @@ gil = 0;
 	   player:addKeyItem(option);
 	   player:messageSpecial(KEYITEM_OBTAINED,keyItem);
 	else
-	   player:messageSpecial(6408);
+	   player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
     end
   end
 end;

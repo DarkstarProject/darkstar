@@ -6,6 +6,7 @@ FULL_INVENTORY_AFTER_TRADE = 6402; -- You cannot obtain the <item>. Try trading 
              ITEM_OBTAINED = 6403; -- Obtained: <item>
               GIL_OBTAINED = 6404; -- Obtained <number> gil
           KEYITEM_OBTAINED = 6406; -- Obtained key item: <keyitem>
+	   NOT_HAVE_ENOUGH_GIL = 6408; -- You do not have enough gil.
 		     HOMEPOINT_SET = 24; -- Home point set!
 	   
     MISSION_OFFSET = 7105; -- The situation in Davoi worsens by the day. This won't be easy, but I can't think of a better adventurer for the job!

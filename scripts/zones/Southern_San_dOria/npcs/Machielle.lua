@@ -3,12 +3,13 @@
 --	NPC: Machielle
 --	Only sells when Bastok controls Norvallen Region
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
+require("scripts/globals/conquest");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------

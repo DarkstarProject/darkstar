@@ -3,13 +3,15 @@
 -- NPC: Andecia
 -- Quest NPC
 -----------------------------------
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

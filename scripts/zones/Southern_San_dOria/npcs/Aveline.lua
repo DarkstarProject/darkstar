@@ -3,11 +3,12 @@
 -- NPC: Aveline
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -33,22 +34,23 @@ end;
 
 function onTrigger(player,npc)
 	
-player:showText(npc,AVELINE_SHOP_DIALOG);
+	player:showText(npc,AVELINE_SHOP_DIALOG);
 
-stock = {0x0271,79,1,	--Apple Vinegar
-	0x026f,117,1,	--Bay Leaves
-	0x111e,28,1,	--Frost Turnip
-	0x1128,28,1,	--Saruta Orange
+	stock = {0x0271,79,1,	--Apple Vinegar
+			 0x026f,117,1,	--Bay Leaves
+			 0x111e,28,1,	--Frost Turnip
+			 0x1128,28,1,	--Saruta Orange
 
-	0x110b,39,2,	--Faerie Apple
-	0x110E,21,2,	--La Theine Cabbage
+			 0x110b,39,2,	--Faerie Apple
+			 0x110E,21,2,	--La Theine Cabbage
 
-	0x0279,14,3,	--Olive Oil
-	0x027e,166,3,	--Sage
-	0x1125,28,3,	--San d'Orian Carrot
-	0x114f,68,3}	--San d'Orian Grape
- 
-showNationShop(player, SANDORIA, stock);
+			 0x0279,14,3,	--Olive Oil
+			 0x027e,166,3,	--Sage
+			 0x1125,28,3,	--San d'Orian Carrot
+			 0x114f,68,3}	--San d'Orian Grape
+	 
+	showNationShop(player, SANDORIA, stock);
+
 end; 
 
 -----------------------------------

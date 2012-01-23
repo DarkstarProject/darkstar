@@ -5,11 +5,11 @@
 -- @zone: 230
 -- @pos: 17.396 1.699 -29.357
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------

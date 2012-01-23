@@ -7,9 +7,12 @@
 --  @zone: 230
 --  @pos: 55.749 -8.601 -29.354
 -------------------------------------
-
-require("scripts/globals/keyItems");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 

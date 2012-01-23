@@ -3,11 +3,12 @@
 -- NPC: Lusiane
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -33,19 +34,20 @@ end;
 
 function onTrigger(player,npc)
 	
-player:showText(npc,LUSIANE_SHOP_DIALOG);
+	player:showText(npc,LUSIANE_SHOP_DIALOG);
 
-stock = {0x43ed,496,1,		-- Bamboo Fishing Rod
+	stock = {0x43ed,496,1,		-- Bamboo Fishing Rod
 
-	 0x43f3,9,2,		-- Lugworm
-	 0x43ee,217,2,		-- Yew Fishing Rod
+			 0x43f3,9,2,		-- Lugworm
+			 0x43ee,217,2,		-- Yew Fishing Rod
 
-	 0x43f4,3,3,		-- Little Worm
-	 0x13cc,110,3,		-- Scroll of Light Threnoldy
-	 0x13ca,1265,3,		-- Scroll of Lightning Threnoldy
-	 0x43ef,66,3}		-- Willow Fishing Rod
- 
-showNationShop(player, SANDORIA, stock);
+			 0x43f4,3,3,		-- Little Worm
+			 0x13cc,110,3,		-- Scroll of Light Threnoldy
+			 0x13ca,1265,3,		-- Scroll of Lightning Threnoldy
+			 0x43ef,66,3}		-- Willow Fishing Rod
+	 
+	showNationShop(player, SANDORIA, stock);
+
 end; 
 
 -----------------------------------

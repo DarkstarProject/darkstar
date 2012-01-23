@@ -3,11 +3,11 @@
 --	NPC: Arpetion
 --  General Info NPC
 -------------------------------------
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
