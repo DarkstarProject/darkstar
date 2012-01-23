@@ -76,8 +76,9 @@ void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 
 	switch (Action)
 	{
-		case ACTION_RANGED_START:
 		case ACTION_ITEM_START:
+        case ACTION_MAGIC_START:
+        case ACTION_RANGED_START:
 		case ACTION_DISENGAGE:
 		{
 			if (m_ActionType == ACTION_NONE ||

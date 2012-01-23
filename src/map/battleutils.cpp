@@ -629,8 +629,6 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			    break;
 			    case ANIMATION_HEALING:
 			    {
-				    PDefender->animation = ANIMATION_NONE;
-
 				    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
 			    }
 			    break;

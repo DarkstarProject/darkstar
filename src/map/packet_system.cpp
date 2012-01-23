@@ -1502,7 +1502,8 @@ int32 SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* da
 	// игнорируем все zoneline пакеты,
 	// пока не завершен текущий переход
 
-	if (PChar->status == STATUS_NORMAL)
+	if (PChar->status == STATUS_NORMAL ||
+        PChar->status == STATUS_UPDATE)
 	{
 		PChar->status = STATUS_DISAPPEAR;
 		PChar->loc.boundary = 0;

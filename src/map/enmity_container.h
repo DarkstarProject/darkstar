@@ -29,22 +29,6 @@
 #include <map>
 
 
-// PEntity, EntityID, CE (Cumulative Enmity), VE (Volatile Enmity)
-
-// TE = CE + VE
-
-// Max CE = 10000
-// Max VE = 10000
-
-// VE Decays -60VE/second
-
-// сортировать список ненависти безсмысленно,
-// достаточно два раза в секунду пробегаться по списку, уменьшая VE,
-// и одновременно искать сущность с максимальным количеством TE.
-
-// наверное хорошо бы иметь указатель на структуру с самой высокой TE, 
-// чтобы избежать повторного перебора списка с целью уменьшения TE, когда монст атакует цель
-
 struct EnmityObject_t
 {
 	CBattleEntity* PEnmityOwner;	// Enmity Target
@@ -53,11 +37,6 @@ struct EnmityObject_t
 };
 
 typedef std::map<uint32,EnmityObject_t*> EnmityList_t;
-
-
-#define MAX_ENMITY_LEVEL 95
-
-#define MAX_ENMITY_TYPE 2
 
 class CBattleEntity;
 
