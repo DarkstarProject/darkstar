@@ -1,19 +1,17 @@
 -----------------------------------------
---	ID: 5333
---	Sleep Quiver
---	When used, you will obtain one stack of Sleep Arrows
+--	ID: 16257
+--	Ghost Cape
+--	Enchantment: 60Min, Costume - Ghost
 -----------------------------------------
+
+require("scripts/globals/status");
 
 -----------------------------------------
 -- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
-	if (target:getFreeSlotsCount() == 0) then
-		result = 308;
-	end
-return result;
+	return target:canUseCostume();
 end;
 
 -----------------------------------------
@@ -21,5 +19,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addItem(18158,99);
+	target:addStatusEffect(EFFECT_COSTUME,368,0,3600);
 end;

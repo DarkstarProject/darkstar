@@ -1,19 +1,17 @@
 -----------------------------------------
---	ID: 5333
---	Sleep Quiver
---	When used, you will obtain one stack of Sleep Arrows
+-- ID: 4114
+-- Item: Potion +2
+-- Item Effect: Restores 75 HP
 -----------------------------------------
+
+require("scripts/globals/settings");
 
 -----------------------------------------
 -- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
-	if (target:getFreeSlotsCount() == 0) then
-		result = 308;
-	end
-return result;
+return 0;
 end;
 
 -----------------------------------------
@@ -21,5 +19,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addItem(18158,99);
+	target:addHP(75*ITEM_POWER);
 end;

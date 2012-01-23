@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5333
---	Sleep Quiver
---	When used, you will obtain one stack of Sleep Arrows
+--	ID: 13684
+--	Potion Tank
+--	When used, you will obtain one Potion
 -----------------------------------------
 
 -----------------------------------------
@@ -21,5 +21,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addItem(18158,99);
+	target:addItem(4112,1);
 end;
