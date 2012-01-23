@@ -9,7 +9,7 @@ CREATE TRIGGER auction_house_buy
 	BEFORE UPDATE ON auction_house
 	FOR EACH ROW
 BEGIN
-	IF NEW.sale != 0 THEN INSERT INTO delivery_box VALUES (NEW.seller, 0, 0, x'FFFF', NEW.itemid, NEW.sale, 0, 'AH-Jeuno'); END IF;
+	IF NEW.sale != 0 AND old.seller != '20969' THEN INSERT INTO delivery_box VALUES (NEW.seller, 0, 0, x'FFFF', NEW.itemid, NEW.sale, 0, 'AH-Jeuno'); END IF;
 END $$
 
 DROP TRIGGER IF EXISTS delivery_box_insert $$
