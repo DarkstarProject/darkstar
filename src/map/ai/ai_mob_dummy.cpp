@@ -420,6 +420,10 @@ void CAIMobDummy::ActionAttack()
 	}
 	if (m_PBattleTarget->isDead())
 	{
+        if (m_PMob->m_OwnerID == m_PBattleTarget->id)
+        {
+            m_PMob->m_OwnerID = 0;
+        }
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		ActionAttack();
 		return;
