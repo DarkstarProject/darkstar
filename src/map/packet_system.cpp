@@ -217,7 +217,11 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
 	}
 	else
 	{
-		DSP_DEBUG_BREAK_IF(PChar->status != STATUS_NORMAL);	 // статус персонажа должен быть STATUS_NORMAL
+        if (zoneutils::GetZone(PChar->getZone())->GetEntity(PChar->targid, TYPE_PC) != NULL)
+        {
+            ShowWarning(CL_YELLOW"Server cannot generate valid blowfish key: %s\n"CL_RESET, PChar->GetName());
+        }
+        return 0;
 	}
 
 	int16 EventID = luautils::OnZoneIn(PChar);
