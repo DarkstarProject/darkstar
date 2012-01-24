@@ -922,12 +922,11 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender)  
 {
-	
-	float attackeratt = PAttacker->getMod(MOD_ATT) + (PAttacker->stats.STR + PAttacker->getMod(MOD_STR))/2;
-	attackeratt = (PAttacker->getMod(MOD_ATTP) != 0 ? attackeratt + (attackeratt * (PAttacker->getMod(MOD_ATTP)*.01)) : attackeratt);
+	float attackeratt = PAttacker->getMod(MOD_ATT) + (PAttacker->stats.STR + PAttacker->getMod(MOD_STR)) / 2;
+    attackeratt  = (1 + PAttacker->getMod(MOD_ATTP)* 0.01 + cap_value(PAttacker->getMod(MOD_FOOD_ATTP)* 0.01, 0, PAttacker->getMod(MOD_FOOD_ATT_CAP))) * attackeratt;
 		
-	float defenderdef = PDefender->getMod(MOD_DEF) + (PDefender->stats.VIT + PDefender->getMod(MOD_VIT))/2;
-	defenderdef = (PDefender->getMod(MOD_DEFP) != 0 ? defenderdef + (defenderdef * (PDefender->getMod(MOD_DEFP)*.01)) : defenderdef);
+	float defenderdef = PDefender->getMod(MOD_DEF) + (PDefender->stats.VIT + PDefender->getMod(MOD_VIT)) / 2;
+    defenderdef  = (1 + PDefender->getMod(MOD_DEFP)* 0.01 + cap_value(PDefender->getMod(MOD_FOOD_DEFP)* 0.01, 0, PDefender->getMod(MOD_FOOD_DEF_CAP))) * defenderdef;
 	
 	float cRatio = attackeratt / defenderdef;
 

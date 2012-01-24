@@ -39,7 +39,7 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	this->size = 0x2a;	
 	
 	WBUFL(data,(0x04)-4) = PChar->health.maxhp + PChar->getMod(MOD_HP) + PChar->getMod(MOD_CONVMPTOHP) - PChar->getMod(MOD_CONVHPTOMP);
-	WBUFL(data,(0x08)-4) = PChar->health.maxmp + PChar->getMod(MOD_MP) - PChar->getMod(MOD_CONVMPTOHP) +  PChar->getMod(MOD_CONVHPTOMP);
+	WBUFL(data,(0x08)-4) = PChar->health.maxmp + PChar->getMod(MOD_MP) - PChar->getMod(MOD_CONVMPTOHP) + PChar->getMod(MOD_CONVHPTOMP);
 
 	WBUFB(data,(0x0C)-4) = PChar->GetMJob();
 	WBUFB(data,(0x0D)-4) = PChar->GetMLevel();
@@ -59,17 +59,11 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	WBUFW(data,(0x2C)-4) = PChar->getMod(MOD_MND);
 	WBUFW(data,(0x2E)-4) = PChar->getMod(MOD_CHR);
 	
-	int16 attStat = PChar->getMod(MOD_ATT) + (PChar->stats.STR + PChar->getMod(MOD_STR))/2;
-	if (PChar->getMod(MOD_ATTP) != 0)
-	{
-		attStat += attStat * (PChar->getMod(MOD_ATTP)*.01);
-	}
+	int16 attStat = PChar->getMod(MOD_ATT) + (PChar->stats.STR + PChar->getMod(MOD_STR)) / 2;
+    attStat  = (1 + PChar->getMod(MOD_ATTP)* 0.01 + cap_value(PChar->getMod(MOD_FOOD_ATTP)* 0.01, 0, PChar->getMod(MOD_FOOD_ATT_CAP))) * attStat;
 	
-	int16 defStat = PChar->getMod(MOD_DEF) + (PChar->stats.VIT + PChar->getMod(MOD_VIT))/2; //172
-	if (PChar->getMod(MOD_DEFP) != 0)   // -1500
-	{
-		defStat += PChar->getMod(MOD_DEFP)*.01 * defStat;  
-	}
+	int16 defStat = PChar->getMod(MOD_DEF) + (PChar->stats.VIT + PChar->getMod(MOD_VIT)) / 2;
+	defStat  = (1 + PChar->getMod(MOD_DEFP)* 0.01 + cap_value(PChar->getMod(MOD_FOOD_DEFP)* 0.01, 0, PChar->getMod(MOD_FOOD_DEF_CAP))) * defStat;
 
 	WBUFW(data,(0x30)-4) = attStat;
 	WBUFW(data,(0x32)-4) = defStat;
