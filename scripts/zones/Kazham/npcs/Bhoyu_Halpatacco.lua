@@ -25,7 +25,7 @@ function onTrigger(player,npc)
 	
 	if(Z >= -11 and Z <= -6) then
 		player:startEvent(0x0043);
-	elseif(player:getGil() >= 200)
+	elseif(player:getGil() >= 200) then
 		player:startEvent(0x0074,0,200);
 	end
 

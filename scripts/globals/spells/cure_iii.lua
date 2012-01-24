@@ -10,7 +10,7 @@
 function onSpellCast(caster,target,spell)
 	
 	MND = caster:getMod(MOD_MND);
-	VIT = caster:getMod(MOD_VIT);
+	VIT = target:getMod(MOD_VIT);
 	HealingMagic = caster:getMod(MOD_HEALING);
 	cap = 130;
 	rate = 1;
@@ -24,7 +24,7 @@ function onSpellCast(caster,target,spell)
 	
 	if(Final < cap) then Final = cap; end
 
-	caster:addHP(target,Final);
+	target:addHP(Final);
 	return Final;
 	
 end;
