@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
 			player:messageSpecial(ITEM_OBTAINED, POETIC_PARCHMENT);
 			player:setTitle(RESEARCHER_OF_CLASSICS);
 			player:addFame(BASTOK,BAS_FAME*10);
-			player:addFame(SAN_D_ORIA,SAN_FAME*10);
+			player:addFame(SANDORIA,SAN_FAME*10);
 			player:addFame(WINDURST,WIN_FAME*10);
 			player:setVar("TheOldMonument_Event",0);
 		end

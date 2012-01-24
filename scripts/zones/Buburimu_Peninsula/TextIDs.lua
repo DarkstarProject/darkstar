@@ -11,4 +11,4 @@ POETIC_PARCHMENT = 634; --
 	   PARCHMENT = 917; -- 
 
 -- Dialog Texts
-FIVEOFSPADES_DIALOG = 7156; -- GiMme★fIvE! FiVe is★A cArdIan★OF WiN-DuRst! FIvE★iS On★pA-tRol!
+FIVEOFSPADES_DIALOG = 7156; 
