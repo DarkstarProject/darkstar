@@ -44,7 +44,15 @@ REVIVAL_TREE_ROOT = 940; --
 	  MalboroVine = 920; -- Quest "The Medicine Woman"
 		  ZincOre = 642; -- Quest "The Medicine Woman"
 	   InsectWing = 846; -- Quest "The Medicine Woman"
-
+	   FlintStone = 768; -- Quest "Starting a Flame"
+	  SOWellWater = 567; -- Quest "Grave Concerns"
+	  TGWaterskin = 547; -- Quest "Grave Concerns"
+   BlackTigerFang = 884; -- Quest "Tiger's Teeth"
+	   RabbitHide = 856; -- Quest "The Merchant's Bidding"
+	 OintmentCase = 601; -- Quest "A Sentry's Peril"
+   DoseOfOintment = 600; -- Quest "A Sentry's Peril"
+   BronzeSubligar = 12832; -- Quest "A Sentry's Peril"
+	   
 -- Quest Dialogs
 UNLOCK_PALADIN = 7826; -- You can now become a paladin!
 

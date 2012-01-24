@@ -1,14 +1,15 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Taumila
--- Quest NPC
+-- NPC:  Taumila
+-- Starts and Finishes Quest: Tiger's Teeth (R)
+-- @zone 230
+-- @pos -140 -5 -8
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
@@ -18,15 +19,13 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-Diente = player:getQuestStatus(0,23);
-if (Diente == 1 or Diente == 2) then
-	count = trade:getItemCount();
-		carta = trade:hasItemQty(884, 3);
-		gil = trade:getGil();
-		if (carta and count == 3 and gil == 0) then
+
+	if(player:getQuestStatus(SANDORIA,TIGER_S_TEETH) ~= QUEST_AVAILABLE) then
+		if(trade:hasItemQty(BlackTigerFang,3) and trade:getItemCount() == 3) then 
 			player:startEvent(0x023c);
-			end
-			end
+		end
+	end
+
 end;
 
 -----------------------------------
@@ -34,17 +33,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-sanFame = player:getFameLevel(SANDORIA);
-Diente = player:getQuestStatus(0,23);
-if (sanFame <= 2) then
-	player:startEvent(0x023b);
-	elseif(sanFame >= 3 and  Diente == 0) then
-	player:startEvent(0x023e);
-	elseif (Diente == 1) then
-	player:startEvent(0x023f);
-	elseif (Diente == 2) then
-	player:startEvent(0x023d);
+	
+	tigersTeeth = player:getQuestStatus(SANDORIA,TIGER_S_TEETH);
+	
+	if(player:getFameLevel(SANDORIA) >= 3 and tigersTeeth == QUEST_AVAILABLE) then
+		player:startEvent(0x023e);
+	elseif(tigersTeeth == QUEST_ACCEPTED) then
+		player:startEvent(0x023f);
+	elseif(tigersTeeth == QUEST_COMPLETED) then
+		player:startEvent(0x023d);
+	else
+		player:startEvent(0x023b);
 	end
+	
 end; 
 
 -----------------------------------
@@ -63,25 +64,20 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-Diente = player:getQuestStatus(0,23);
-if (csid == 0x023e and option == 0) then
-player:addQuest(0,23);
-elseif (csid == 0x023c) then
-if (Diente == 1) then
-player:completeQuest(0,23);
-player:addFame(SANDORIA,SAN_FAME*30);
-player:tradeComplete();
-player:setTitle(61);
-player:addGil(GIL_RATE*2100);
-player:messageSpecial(6404,GIL_RATE*2100)
-elseif (csid == 0x023c) then
-if (Diente == 2) then
-player:addFame(SANDORIA,SAN_FAME*5);
-player:tradeComplete();
-player:setTitle(61);
-player:addGil(GIL_RATE*2100);
-player:messageSpecial(6404,GIL_RATE*2100)
-end
-end
-end
+	
+	if(csid == 0x023e and option == 0) then
+		player:addQuest(SANDORIA,TIGER_S_TEETH);
+	elseif(csid == 0x023c) then
+		player:tradeComplete();
+		player:setTitle(FANG_FINDER);
+		player:addGil(GIL_RATE*2100);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100)
+		if(player:getQuestStatus(SANDORIA,TIGER_S_TEETH) == QUEST_ACCEPTED) then
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:completeQuest(SANDORIA,TIGER_S_TEETH);
+		else
+			player:addFame(SANDORIA,SAN_FAME*5);
+		end
+	end
+
 end;

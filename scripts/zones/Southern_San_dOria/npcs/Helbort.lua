@@ -63,12 +63,12 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount(0) == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17090);
 		else
-			player:completeQuest(SANDORIA, A_PURCHASE_OF_ARMS);
-			player:delKeyItem(WEAPONS_RECEIPT); --delete KI
-			player:addFame(SANDORIA,30); --fame
 			player:setTitle(ARMS_TRADER); --title : Arms Trader
+			player:delKeyItem(WEAPONS_RECEIPT); --delete KI
 			player:addItem(17090); --reward : Elm Staff
 			player:messageSpecial(ITEM_OBTAINED,17090);
+			player:addFame(SANDORIA,SAN_FAME*30); --fame
+			player:completeQuest(SANDORIA, A_PURCHASE_OF_ARMS);
 		end
 	end 
 end;

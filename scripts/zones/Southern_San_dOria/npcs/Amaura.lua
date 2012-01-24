@@ -79,6 +79,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(AMAURAS_FORMULA);
 		player:messageSpecial(KEYITEM_OBTAINED,AMAURAS_FORMULA);
 	elseif(csid == 0x027D) then
+		player:tradeComplete();
 		player:delKeyItem(AMAURAS_FORMULA);
 		player:addKeyItem(COLD_MEDICINE);
 		player:messageSpecial(KEYITEM_OBTAINED,COLD_MEDICINE);
