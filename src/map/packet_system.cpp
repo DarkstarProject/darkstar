@@ -719,11 +719,17 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 	uint8  FromSlotID	  = RBUFB(data,(0x0A));
 	uint8  ToSlotID		  = RBUFB(data,(0x0B));
 
+    if (FromLocationID >= MAX_CONTAINER_ID)
+        return;
+
 	CItem* PItem = PChar->getStorage(FromLocationID)->GetItem(FromSlotID);
 
 	if(PItem == NULL)
 	{
 		ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move NULL form location %u slot %u\n"CL_RESET, FromLocationID, FromSlotID);
+
+        PChar->pushPacket(new CInventoryItemPacket(NULL, FromLocationID, FromSlotID));
+        PChar->pushPacket(new CInventoryFinishPacket());
 		return 0;
 	}
 	if(PItem->getQuantity() < quantity) 
@@ -742,8 +748,10 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 		{
 			charutils::UpdateItem(PChar, FromLocationID, FromSlotID, -(int32)quantity);
 		}
-	}else{
-		// переносим всю пачку, или пытаемся объединить одинаковые предметы
+	}
+    else // переносим всю пачку, или пытаемся объединить одинаковые предметы
+    {
+		
 		if (ToSlotID < 82)
 		{
 			// объединение еще не реализовано
@@ -765,7 +773,9 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 				PChar->pushPacket(new CInventoryItemPacket(NULL, FromLocationID, FromSlotID));	// убираем предмет из FormLocationID
 				PChar->pushPacket(new CInventoryItemPacket(PItem, ToLocationID, newSlotID));		// добавляем предмет в ToLocationID
 			}
-		}else{
+		}
+        else
+        {
 			ShowDebug("SmallPacket0x29: Location %u is full\n", ToLocationID);
 			return 0;
 		}
