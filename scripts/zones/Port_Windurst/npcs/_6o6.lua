@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Port San d'Oria
+-- Area: Port Windurst
 -- NPC:  Door: Departures Exit
 -- @zone 240
 -- @pos 218 -5 114
@@ -50,8 +50,12 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x00b5 and option == 1) then 
-		player:delGil(200);
+	if(csid == 0x00b5) then 
+		X = player:getXPos();
+		
+		if(X >= 221 and X <= 225) then
+			player:delGil(200);
+		end
 	end
 	
 end;

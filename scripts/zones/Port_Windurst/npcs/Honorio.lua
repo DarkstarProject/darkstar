@@ -49,8 +49,12 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x00b5 and option == 0) then 
-		player:delGil(200);
+	if(csid == 0x00b5) then 
+		X = player:getXPos();
+		
+		if(X >= 222 and X <= 225) then
+			player:delGil(200);
+		end
 	end
 
 end;

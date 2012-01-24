@@ -1,10 +1,13 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Dakha Topsalwan
--- Standard Info NPC
+-- NPC:  Dakha Topsalwan
+-- @zone 250
+-- @pos 
+-----------------------------------
+package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
+require("scripts/globals/settings");
 require("scripts/zones/Kazham/TextIDs");
 
 -----------------------------------
@@ -19,7 +22,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0042);
+	
+	Z = player:getZPos();
+	
+	if(Z >= -20 and Z <= -16) then
+		player:startEvent(0x0042);
+	else
+		player:startEvent(0x0079);
+	end
+	
 end;
 -----------------------------------
 -- onEventUpdate
