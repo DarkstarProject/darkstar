@@ -720,7 +720,7 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 	uint8  ToSlotID		  = RBUFB(data,(0x0B));
 
     if (FromLocationID >= MAX_CONTAINER_ID)
-        return;
+        return 0;
 
 	CItem* PItem = PChar->getStorage(FromLocationID)->GetItem(FromSlotID);
 
