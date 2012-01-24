@@ -529,7 +529,7 @@ void CAICharNormal::ActionItemFinish()
 
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getAnimationTime())
 	{
-		m_LastActionTime = m_Tick;
+		if (m_PChar->animation == ANIMATION_ATTACK) m_LastActionTime = m_Tick;
 
 		luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
 
@@ -811,6 +811,7 @@ void CAICharNormal::ActionMagicStart()
         MagicStartError(49);
 		return;
 	}
+    // mute 049 
 	if (m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING)
 	{
         if (m_PChar->PPet != NULL)
@@ -907,7 +908,7 @@ void CAICharNormal::ActionMagicStart()
 
 	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-    m_ActionType = m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) ? ACTION_MAGIC_FINISH : ACTION_MAGIC_CASTING;
+    m_ActionType = ACTION_MAGIC_CASTING;
 }
 
 /************************************************************************
@@ -982,9 +983,10 @@ void CAICharNormal::ActionMagicCasting()
 		return;
     }
 	
-	if ((m_Tick - m_LastActionTime) >= m_PSpell->getCastTime()) // TODO: need MOD_FASTCAST
+	if (m_Tick - m_LastActionTime >= m_PSpell->getCastTime() ||
+        m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL)) // TODO: need MOD_FASTCAST
 	{
-		m_LastActionTime = m_Tick;
+		if (m_PChar->animation == ANIMATION_ATTACK) m_LastActionTime = m_Tick;
 
 		if (!charutils::hasSpell(m_PChar, m_PSpell->getID()))
 		{
@@ -1063,14 +1065,17 @@ void CAICharNormal::ActionMagicFinish()
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 
-	Recast_t* Recast = new Recast_t;
+    if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+    {
+	    Recast_t* Recast = new Recast_t;
 	
-    Recast->Type = RECAST_MAGIC;
-	Recast->ID = m_PSpell->getID();
-	Recast->TimeStamp  = m_Tick;
-	Recast->RecastTime = m_PSpell->getRecastTime() * (100 + m_PChar->getMod(MOD_HASTE)) / 100;
+        Recast->Type = RECAST_MAGIC;
+	    Recast->ID = m_PSpell->getID();
+	    Recast->TimeStamp  = m_Tick;
+	    Recast->RecastTime = m_PSpell->getRecastTime() * (100 + m_PChar->getMod(MOD_HASTE)) / 100;
 
-	m_PChar->RecastList.push_back(Recast);
+	    m_PChar->RecastList.push_back(Recast);
+    }
 
 	apAction_t Action;
     m_PChar->m_ActionList.clear();
