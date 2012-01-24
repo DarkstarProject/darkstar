@@ -1,41 +1,30 @@
 -----------------------------------
--- Area: Davoi
--- NPC:  ???
--- Involved in Quest: To Cure a Cough
--- @zone 149
--- @pos 
+-- Area: Port Bastok
+-- NPC:  Door: Arrivals Entrance
+-- @zone 236
+-- @pos -80 1 -26
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Davoi/TextIDs");
+require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-end;
+end; 
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
-	
-	if(toCureaCough == QUEST_ACCEPTED and player:hasKeyItem(THYME_MOSS) == false) then
-		player:addKeyItem(THYME_MOSS);
-		player:messageSpecial(KEYITEM_OBTAINED,THYME_MOSS);
-	end
-	
-end; 
+	player:startEvent(0x008C);
+	return 1;
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -53,4 +42,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if(csid == 0x008d) then 
+		player:delGil(200);
+	end
 end;
+
+
+

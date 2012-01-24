@@ -1,21 +1,21 @@
 -----------------------------------
--- Area: Lower Jeuno
--- NPC: Alrauverat
--- @zone 245
--- @pos -101 0 -182
+-- Area: Port Jeuno
+-- NPC:  Kochahy-Muwachahy
+-- @zone 246
+-- @pos 40 0 6
 
 -- X Grant Signet
 --   Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.
 -- X Sells items in exchange for Conquest Points
 -------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/conquestguards");
 
 PlayerCP = 56000; 	-- Player Conquest Points

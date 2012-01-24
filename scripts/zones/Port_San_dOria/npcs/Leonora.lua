@@ -1,12 +1,15 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Leonora
--- Standard Info NPC
+-- NPC:  Leonora
+-- Involved in Quest: 
+-- @zone 232
+-- @pos -24 -8 15
+-----------------------------------
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/settings");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
@@ -31,7 +34,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x206);
+	player:startEvent(0x0206);
 end;
 
 -----------------------------------

@@ -1,26 +1,22 @@
 -----------------------------------
--- Area: Davoi
--- NPC:  ???
--- Involved in Quest: To Cure a Cough
--- @zone 149
--- @pos 
+-- Area: Port San d'Oria
+-- NPC:  Door: Departures Exit
+-- @zone 232
+-- @pos -19 -8 27
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Davoi/TextIDs");
+require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-end;
+end; 
 
 -----------------------------------
 -- onTrigger Action
@@ -28,14 +24,16 @@ end;
 
 function onTrigger(player,npc)
 	
-	toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
-	
-	if(toCureaCough == QUEST_ACCEPTED and player:hasKeyItem(THYME_MOSS) == false) then
-		player:addKeyItem(THYME_MOSS);
-		player:messageSpecial(KEYITEM_OBTAINED,THYME_MOSS);
+	if(player:hasKeyItem(AIRSHIP_PASS) == false) then 
+		player:startEvent(0x0205);
+	elseif(player:getGil() < 200) then
+		player:startEvent(0x02cc);
+	else
+		player:startEvent(0x025c);
 	end
+	return 1;
 	
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -53,4 +51,12 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
+	if(csid == 0x025c and option == 0) then
+		player:delGil(200);
+	end
+	
 end;
+
+
+

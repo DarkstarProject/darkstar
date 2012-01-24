@@ -1,10 +1,14 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Breanainn
---	Working 100%
+-- Area: Port Windurst
+-- NPC:  Breanainn
+-- @zone 240
+-- @pos 212 -6 96
+-----------------------------------
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -18,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0xb6);
+	player:startEvent(0x00b6);
 end;
 
 -----------------------------------

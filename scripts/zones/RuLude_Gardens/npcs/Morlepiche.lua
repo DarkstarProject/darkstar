@@ -1,21 +1,21 @@
 -----------------------------------
--- Area: Lower Jeuno
--- NPC: Alrauverat
--- @zone 245
--- @pos -101 0 -182
+-- Area: Rulude Gardens
+-- NPC:  Morlepiche
+-- @zone 244
+-- @pos -95 0 160
 
 -- X Grant Signet
 --   Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.
 -- X Sells items in exchange for Conquest Points
 -------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/zones/Rulude_Gardens/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+require("scripts/zones/Rulude_Gardens/TextIDs");
 require("scripts/globals/conquestguards");
 
 PlayerCP = 56000; 	-- Player Conquest Points

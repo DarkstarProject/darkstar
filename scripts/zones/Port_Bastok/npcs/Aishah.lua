@@ -3,9 +3,10 @@
 -- NPC: Aishah
 -- Standard Info NPC
 -----------------------------------
-
-
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -20,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x008C);
+	player:startEvent(0x008C);
 end; 
 
 -----------------------------------
