@@ -810,151 +810,183 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Добавляем выбранную миссию                                           *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::addMission(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 
-	uint8 missionID = (uint8)lua_tointeger(L,-1);
-	uint8 logID   = (uint8)lua_tointeger(L,-2);
+    uint8 LogID     = (uint8)lua_tointeger(L,1);
+    uint8 MissionID = (uint8)lua_tointeger(L,2);
 
-	if (logID < 6)
-	{
-		//uint8 current  = PChar->m_missionLog[logID].current = missionID;
+    if (LogID < 6 && MissionID < 64)
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-		PChar->m_missionLog[logID].current = missionID;
-		PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID + 10,1));
+        if (PChar->m_missionLog[LogID].current != LogID > 2 ? 0 : -1)
+        {
+            ShowWarning(CL_YELLOW"Lua::addMission: player has a current mission\n"CL_RESET, LogID);
+        }
+        PChar->m_missionLog[LogID].current = MissionID;
+		PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 1));
+
 		charutils::SaveMissionsList(PChar);
-	}
-	else
-	{
-		ShowError(CL_RED"Lua::addMission: LogID %i is invalid\n"CL_RESET, logID);
-	}	
-	
-	lua_pushnil(L);
-	return 1;
+    }
+    else
+    {
+        ShowError(CL_RED"Lua::delMission: LogID %i or Mission %i is invalid\n"CL_RESET, LogID, MissionID);
+    }
+	return 0;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Удаляем выбранную миссию                                             *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::delMission(lua_State *L)
 {
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	uint8 missionID = (uint8)lua_tointeger(L,-1);
-	uint8 logID   = (uint8)lua_tointeger(L,-2);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 
-	if (logID < 6)
-	{
-		uint8 current  = PChar->m_missionLog[logID].current;
-		uint8 complete = PChar->m_missionLog[logID].complete[missionID];
+    uint8 LogID     = (uint8)lua_tointeger(L,1);
+    uint8 MissionID = (uint8)lua_tointeger(L,2);
 
-		if (current == missionID)
+    if (LogID < 6 && MissionID < 64)
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        uint8 current  = PChar->m_missionLog[LogID].current;
+		uint8 complete = PChar->m_missionLog[LogID].complete[MissionID];
+
+		if (current == MissionID)
 		{
-			PChar->m_missionLog[logID].current = -1; 
-			PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID+10, 1));
+			PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
+			PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 1));
 		}
-		
-	
-
 		if (complete != 0) 
 		{
-			PChar->m_missionLog[logID].complete[missionID/8] &= ~(1 << (missionID % 8)); 
-			PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID+10, 2));
+			PChar->m_missionLog[LogID].complete[MissionID] = false; 
+			PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 2));
 		}
-			
-			charutils::SaveMissionsList(PChar);
-	}
-	else
-	{
-		ShowError(CL_RED"Lua::delMission: LogID %i is invalid\n"CL_RESET, logID);
-	}
-	
-	lua_pushnil(L);
-	return 1;
+		charutils::SaveMissionsList(PChar);
+    }
+    else
+    {
+        ShowError(CL_RED"Lua::delMission: LogID %i or Mission %i is invalid\n"CL_RESET, LogID, MissionID);
+    }
+	return 0;
 }
 
-//==========================================================//
-
-inline int32 CLuaBaseEntity::hasCurrentMission(lua_State *L)
-{
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-	uint8 logID   = (uint8)lua_tointeger(L,-1);
-	uint8 current = PChar->m_missionLog[logID].current;
-	if (current < 255) 
-	{
-		lua_pushboolean(L, true); 
-		return 1;
-	}
-	
-	lua_pushboolean( L, false );
-	return 1;
-} 
+/************************************************************************
+*                                                                       *
+*  Проверяем, завершил ли персонаж выбранную миссию                     *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 LogID     = (uint8)lua_tointeger(L,1);
+    uint8 MissionID = (uint8)lua_tointeger(L,2);
 
-	uint8 missionID = (uint8)lua_tointeger(L,-1);
-	uint8 logID   = (uint8)lua_tointeger(L,-2);
-	uint8 complete = PChar->m_missionLog[logID].complete[missionID];
-	lua_pushinteger( L, (complete != 0 ? 1 : 0) );
+    bool complete = false;
+
+    if (LogID < 6 && MissionID < 64)
+    {
+        complete = ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].complete[MissionID];
+    }
+    else
+    {
+        ShowError(CL_RED"Lua::completeMission: LogID %i or Mission %i is invalid\n"CL_RESET, LogID, MissionID);
+    }
+	lua_pushboolean( L, complete );
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Узнаем текущую миссию                                                *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::getCurrentMission(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-	uint8 logID   = (uint8)lua_tointeger(L,-1);
-	uint8 current = (PChar->m_missionLog[logID].current > -1 ? PChar->m_missionLog[logID].current : -1);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-	lua_pushinteger( L, current );
+    uint8  LogID     = (uint8)lua_tointeger(L,1);
+    uint8  MissionID = 0;
+
+    if (LogID < 6)
+    {
+        MissionID = (uint8)((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].current;
+    }
+    else
+    {
+        ShowError(CL_RED"Lua::completeMission: LogID %i is invalid\n"CL_RESET, LogID);
+    }
+	lua_pushinteger( L, MissionID );
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Завершаем выбранную миссию                                           *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::completeMission(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-	uint8 logID   = (uint8)lua_tointeger(L,-1);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 
-	uint8 current = PChar->m_missionLog[logID].current;
-	PChar->m_missionLog[logID].current = -1;
-	PChar->m_missionLog[logID].complete[current] = true; 
-	PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID+10, 1));
-	PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID+10, 2));
+    uint8 LogID     = (uint8)lua_tointeger(L,1);
+    uint8 MissionID = (uint8)lua_tointeger(L,2);
+
+    if (LogID < 6 && MissionID < 64)
+    {
+	    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        if (PChar->m_missionLog[LogID].current != MissionID)
+        {
+            ShowWarning(CL_YELLOW"Lua::completeMission: completion of not current mission\n"CL_RESET, LogID);
+        }
+	    PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
+	    PChar->m_missionLog[LogID].complete[MissionID] = true;
+	    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 1));
+	    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 2));
 	
-	charutils::SaveMissionsList(PChar);
-	lua_pushnil(L);
-	return 1;
+	    charutils::SaveMissionsList(PChar);
+    }
+    else
+    {
+        ShowError(CL_RED"Lua::completeMission: LogID %i or Mission %i is invalid\n"CL_RESET, LogID, MissionID);
+    }
+	return 0;
 }
 
 //==========================================================//
@@ -3112,7 +3144,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentMission),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCurrentMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompletedMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRank),

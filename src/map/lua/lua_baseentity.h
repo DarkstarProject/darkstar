@@ -95,7 +95,6 @@ public:
 
 	int32 addMission(lua_State*);			// Add Mission
 	int32 delMission(lua_State*);			// Delete Mission from Mission Log
-	int32 hasCurrentMission(lua_State*);	// Checks to see if the user has accepted a mission
 	int32 hasCompletedMission(lua_State*);	// Checks if mission has been completed
 	int32 getCurrentMission(lua_State*);	// Gets the current mission
 	int32 completeMission(lua_State*);		// Complete Mission
