@@ -591,11 +591,11 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 				   (int8)(PChar->GetMLevel() - PCurrentMob->GetMLevel()) < 10))
 				{
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && 
-                       (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
-                        !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
-                        !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE)))
+                      !(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
+                        PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
+                        PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE)))
 					{
-						if (CurrentDistance < 15 &&
+                        if (CurrentDistance < 15 &&
 							isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
