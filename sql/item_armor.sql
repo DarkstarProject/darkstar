@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
@@ -7265,7 +7265,7 @@ INSERT INTO `item_armor` VALUES (18063, 'garudas_sickle', 72, 393, 366, 0, 0, 1,
 INSERT INTO `item_armor` VALUES (18064, 'volunteers_scythe', 70, 128, 196, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES (18065, 'storm_zaghnal', 71, 385, 345, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES (18066, 'blackjack', 69, 393, 350, 0, 0, 1, 0);
-INSERT INTO `item_armor` VALUES (18067, 'keen_zaghnal', 10, 385, 198, 0, 0, 1, 0);
+INSERT INTO `item_armor` VALUES (18067, 'keen_zaghnal', 10, 385, 198, 0, 1, 1, 0);
 INSERT INTO `item_armor` VALUES (18068, 'san_dorian_spear', 23, 10305, 205, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES (18069, 'kingdom_spear', 23, 10305, 205, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES (18070, 'san_dorian_halberd', 34, 10305, 202, 0, 0, 1, 0);
