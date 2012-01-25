@@ -478,6 +478,11 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 	{
 		case 0x00: // trigger
 		{
+            if (PChar->m_Costum != 0)
+            {
+                PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
+                return 0;
+            }
 			CBaseEntity* PNpc = zoneutils::GetZone(PChar->getZone() != 0 ? PChar->loc.zone : PChar->loc.prevzone)->GetEntity(TargID, TYPE_NPC);
 
 			if (PNpc != NULL)
@@ -487,13 +492,13 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 				{
 					PNpc->animation = ANIMATION_OPEN_DOOR;
 					zoneutils::GetZone(PChar->getZone())->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE)); 
-					CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door",gettick()+7000,PNpc,CTaskMgr::TASK_ONCE,close_door));
+					CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", gettick()+7000, PNpc, CTaskMgr::TASK_ONCE, close_door));
 				}
 			}
 			if(PChar->m_event.EventID == -1) 
 			{
 				PChar->m_event.reset();
-				PChar->pushPacket(new CReleasePacket(PChar,RELEASE_STANDARD));
+				PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
 			}
 		}
 		break;	

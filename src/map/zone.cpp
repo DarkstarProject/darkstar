@@ -279,7 +279,7 @@ void CZone::LoadZoneSettings()
 		m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);			// tax for bazaar
 		m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
 
-		if (m_miscMask & MISC_TREASUER)
+		if (m_miscMask & MISC_TREASURE)
 		{
 			m_TreasurePool = new CTreasurePool(TREASUREPOOL_ZONE);
 		}

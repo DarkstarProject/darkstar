@@ -44,7 +44,7 @@ enum ZONE_MISC
 	MISC_CHOCOBO	= 0x0004,	// 0x0020, // возможность использования chocobo
 	MISC_MOGMENU	= 0x0020,	// 0x0040, // возможность общения с Nomad Moogle (доступ к меню mog house)
 	MISC_COSTUME	= 0x0040,	// 0x0080, // возможность использовать маскарадный костюм (costume)
-	MISC_TREASUER	= 0x0100,	// 0x0100, // наличие в зоне глобального TreasuerPool
+	MISC_TREASURE	= 0x0100,	// 0x0100, // наличие в зоне глобального TreasurePool
 };
 
 enum GLOBAL_MESSAGE_TYPE 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Mar 20 Décembre 2011 à 18:29
+-- Généré le : Mer 25 Janvier 2012 à 23:10
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -70,7 +70,7 @@ INSERT INTO `zone_settings` VALUES (22, 0016777343, 54230, 'Promyvion-Vahzl', 22
 INSERT INTO `zone_settings` VALUES (23, 0016777343, 54230, 'Spire_of_Vahzl', 0, 220, 220, 0, 0.00, 144);
 INSERT INTO `zone_settings` VALUES (24, 0016777343, 54230, 'Lufaise_Meadows', 230, 218, 219, 0, 0.00, 152);
 INSERT INTO `zone_settings` VALUES (25, 0016777343, 54230, 'Misareaux_Coast', 230, 218, 219, 0, 0.00, 152);
-INSERT INTO `zone_settings` VALUES (26, 0016777343, 54230, 'Tavnazian_Safehold', 245, 218, 219, 0, 0.00, 40);
+INSERT INTO `zone_settings` VALUES (26, 0016777343, 54230, 'Tavnazian_Safehold', 245, 218, 219, 0, 0.00, 104);
 INSERT INTO `zone_settings` VALUES (27, 0016777343, 54230, 'Phomiuna_Aqueducts', 0, 218, 219, 40, 0.00, 145);
 INSERT INTO `zone_settings` VALUES (28, 0016777343, 54230, 'Sacrarium', 0, 218, 219, 50, 0.00, 145);
 INSERT INTO `zone_settings` VALUES (29, 0016777343, 54230, 'Riverne-Site_B01', 0, 218, 219, 50, 0.00, 153);
@@ -105,7 +105,7 @@ INSERT INTO `zone_settings` VALUES (57, 0016777343, 54230, 'Talacca_Cove', 0, 14
 INSERT INTO `zone_settings` VALUES (58, 0016777343, 54230, 'Silver_Sea_route_to_Nashmau', 147, 139, 139, 0, 0.00, 16);
 INSERT INTO `zone_settings` VALUES (59, 0016777343, 54230, 'Silver_Sea_route_to_Al_Zahbi', 147, 139, 139, 0, 0.00, 16);
 INSERT INTO `zone_settings` VALUES (60, 0016777343, 54230, 'The_Ashu_Talif', 172, 143, 143, 0, 0.00, 0);
-INSERT INTO `zone_settings` VALUES (61, 0016777343, 54230, 'Mount_Zhayolm', 0, 139, 139, 0, 0.00, 256);
+INSERT INTO `zone_settings` VALUES (61, 0016777343, 54230, 'Mount_Zhayolm', 0, 139, 139, 0, 0.00, 0);
 INSERT INTO `zone_settings` VALUES (62, 0016777343, 54230, 'Halvung', 0, 138, 138, 0, 0.00, 145);
 INSERT INTO `zone_settings` VALUES (63, 0016777343, 54230, 'Lebros_Cavern', 0, 138, 138, 0, 0.00, 145);
 INSERT INTO `zone_settings` VALUES (64, 0016777343, 54230, 'Navukgo_Execution_Chamber', 0, 143, 143, 0, 0.00, 144);
@@ -124,21 +124,21 @@ INSERT INTO `zone_settings` VALUES (76, 0016777343, 54230, 'Silver_Sea_Remnants'
 INSERT INTO `zone_settings` VALUES (77, 0016777343, 54230, 'Nyzul_Isle', 148, 138, 138, 0, 0.00, 144);
 INSERT INTO `zone_settings` VALUES (78, 0016777343, 54230, 'Hazhalm_Testing_Grounds', 0, 143, 143, 0, 0.00, 144);
 INSERT INTO `zone_settings` VALUES (79, 0016777343, 54230, 'Caedarva_Mire', 173, 139, 139, 0, 0.00, 152);
-INSERT INTO `zone_settings` VALUES (80, 0016777343, 54230, 'Southern_San_dOria_[S]', 254, 215, 215, 0, 0.00, 8);
+INSERT INTO `zone_settings` VALUES (80, 0016777343, 54230, 'Southern_San_dOria_[S]', 254, 215, 215, 0, 0.00, 72);
 INSERT INTO `zone_settings` VALUES (81, 0016777343, 54230, 'East_Ronfaure_[S]', 251, 215, 215, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (82, 0016777343, 54230, 'Jugner_Forest_[S]', 0, 215, 215, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (83, 0016777343, 54230, 'Vunkerl_Inlet_[S]', 0, 215, 215, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (84, 0016777343, 54230, 'Batallia_Downs_[S]', 252, 215, 215, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (85, 0016777343, 54230, 'La_Vaule_[S]', 0, 216, 216, 0, 0.00, 145);
 INSERT INTO `zone_settings` VALUES (86, 0016777343, 54230, 'Everbloom_Hollow', 0, 216, 216, 0, 0.00, 144);
-INSERT INTO `zone_settings` VALUES (87, 0016777343, 54230, 'Bastok_Markets_[S]', 180, 215, 215, 0, 0.00, 8);
+INSERT INTO `zone_settings` VALUES (87, 0016777343, 54230, 'Bastok_Markets_[S]', 180, 215, 215, 0, 0.00, 72);
 INSERT INTO `zone_settings` VALUES (88, 0016777343, 54230, 'North_Gustaberg_[S]', 253, 215, 215, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (89, 0016777343, 54230, 'Grauberg_[S]', 0, 215, 215, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (90, 0016777343, 54230, 'Pashhow_Marshlands_[S]', 0, 215, 215, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (91, 0016777343, 54230, 'Rolanberry_Fields_[S]', 252, 215, 215, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (92, 0016777343, 54230, 'Beadeaux_[S]', 0, 216, 216, 0, 0.00, 145);
 INSERT INTO `zone_settings` VALUES (93, 0016777343, 54230, 'Ruhotz_Silvermines', 0, 216, 216, 0, 0.00, 145);
-INSERT INTO `zone_settings` VALUES (94, 0016777343, 54230, 'Windurst_Waters_[S]', 182, 215, 215, 0, 0.00, 8);
+INSERT INTO `zone_settings` VALUES (94, 0016777343, 54230, 'Windurst_Waters_[S]', 182, 215, 215, 0, 0.00, 72);
 INSERT INTO `zone_settings` VALUES (95, 0016777343, 54230, 'West_Sarutabaruta_[S]', 141, 215, 215, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (96, 0016777343, 54230, 'Fort_Karugo-Narugo_[S]', 0, 215, 215, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (97, 0016777343, 54230, 'Meriphataud_Mountains_[S]', 0, 215, 215, 0, 0.00, 156);
@@ -274,29 +274,29 @@ INSERT INTO `zone_settings` VALUES (226, 0016777343, 54230, 'Kazham-Jeuno_Airshi
 INSERT INTO `zone_settings` VALUES (227, 0016777343, 54230, 'Ship_bound_for_Selbina', 106, 101, 103, 0, 0.00, 152);
 INSERT INTO `zone_settings` VALUES (228, 0016777343, 54230, 'Ship_bound_for_Mhaura', 106, 101, 103, 0, 0.00, 152);
 INSERT INTO `zone_settings` VALUES (229, 0016777343, 0, 'noname', 0, 0, 0, 0, 0.00, 0);
-INSERT INTO `zone_settings` VALUES (230, 0016777343, 54230, 'Southern_San_dOria', 107, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (231, 0016777343, 54230, 'Northern_San_dOria', 107, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (232, 0016777343, 54230, 'Port_San_dOria', 107, 101, 103, 0, 0.00, 8);
+INSERT INTO `zone_settings` VALUES (230, 0016777343, 54230, 'Southern_San_dOria', 107, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (231, 0016777343, 54230, 'Northern_San_dOria', 107, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (232, 0016777343, 54230, 'Port_San_dOria', 107, 101, 103, 0, 0.00, 72);
 INSERT INTO `zone_settings` VALUES (233, 0016777343, 54230, 'Chateau_dOraguille', 156, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (234, 0016777343, 54230, 'Bastok_Mines', 152, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (235, 0016777343, 54230, 'Bastok_Markets', 152, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (236, 0016777343, 54230, 'Port_Bastok', 152, 101, 103, 0, 0.00, 8);
+INSERT INTO `zone_settings` VALUES (234, 0016777343, 54230, 'Bastok_Mines', 152, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (235, 0016777343, 54230, 'Bastok_Markets', 152, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (236, 0016777343, 54230, 'Port_Bastok', 152, 101, 103, 0, 0.00, 72);
 INSERT INTO `zone_settings` VALUES (237, 0016777343, 54230, 'Metalworks', 154, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (238, 0016777343, 54230, 'Windurst_Waters', 151, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (239, 0016777343, 54230, 'Windurst_Walls', 151, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (240, 0016777343, 54230, 'Port_Windurst', 151, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (241, 0016777343, 54230, 'Windurst_Woods', 151, 101, 103, 0, 0.00, 8);
+INSERT INTO `zone_settings` VALUES (238, 0016777343, 54230, 'Windurst_Waters', 151, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (239, 0016777343, 54230, 'Windurst_Walls', 151, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (240, 0016777343, 54230, 'Port_Windurst', 151, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (241, 0016777343, 54230, 'Windurst_Woods', 151, 101, 103, 0, 0.00, 72);
 INSERT INTO `zone_settings` VALUES (242, 0016777343, 54230, 'Heavens_Tower', 162, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (243, 0016777343, 54230, 'RuLude_Gardens', 117, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (244, 0016777343, 54230, 'Upper_Jeuno', 110, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (245, 0016777343, 54230, 'Lower_Jeuno', 110, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (246, 0016777343, 54230, 'Port_Jeuno', 110, 101, 103, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (247, 0016777343, 54230, 'Rabao', 208, 191, 191, 0, 0.00, 40);
+INSERT INTO `zone_settings` VALUES (243, 0016777343, 54230, 'RuLude_Gardens', 117, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (244, 0016777343, 54230, 'Upper_Jeuno', 110, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (245, 0016777343, 54230, 'Lower_Jeuno', 110, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (246, 0016777343, 54230, 'Port_Jeuno', 110, 101, 103, 0, 0.00, 72);
+INSERT INTO `zone_settings` VALUES (247, 0016777343, 54230, 'Rabao', 208, 191, 191, 0, 0.00, 104);
 INSERT INTO `zone_settings` VALUES (248, 0016777343, 54230, 'Selbina', 112, 101, 103, 0, 0.00, 40);
 INSERT INTO `zone_settings` VALUES (249, 0016777343, 54230, 'Mhaura', 105, 101, 103, 0, 0.00, 40);
 INSERT INTO `zone_settings` VALUES (250, 0016777343, 54230, 'Kazham', 135, 191, 191, 0, 0.00, 40);
 INSERT INTO `zone_settings` VALUES (251, 0016777343, 54230, 'Hall_of_the_Gods', 213, 191, 191, 0, 0.00, 8);
-INSERT INTO `zone_settings` VALUES (252, 0016777343, 54230, 'Norg', 209, 191, 191, 0, 0.00, 40);
+INSERT INTO `zone_settings` VALUES (252, 0016777343, 54230, 'Norg', 209, 191, 191, 0, 0.00, 104);
 INSERT INTO `zone_settings` VALUES (253, 0016777343, 54230, 'Abyssea-Uleguerand', 51, 52, 52, 0, 0.00, 0);
 INSERT INTO `zone_settings` VALUES (254, 0016777343, 54230, 'Abyssea-Grauberg', 51, 52, 52, 0, 0.00, 0);
 INSERT INTO `zone_settings` VALUES (255, 0016777343, 54230, 'Abyssea-Empyreal_Paradox', 51, 52, 52, 0, 0.00, 0);
