@@ -1,7 +1,9 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Rosel
---  Starts Quest: Rosel The Armorer
+-- Area: Southern San d'Oria
+-- NPC:  Rosel
+-- Starts and Finishes Quest: Rosel the Armorer
+-- @zone 230
+-- @pos 
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -36,26 +38,20 @@ end;
  
 function onTrigger(player,npc) 
 	
-	-- "Rosel the Armorer" quest status var
 	RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
-	-- var to skip the Rosel the Armorer CS if player already talked and refuse to help him the first time
-	skipRoselTheArmorerCS = player:getVar("RefuseRoselTheArmorerQuest");
+	receiprForThePrince = player:hasKeyItem(RECEIPT_FOR_THE_PRINCE);
 	
-	-- Rosel the Armorer eventId selection
-	if ( skipRoselTheArmorerCS == 1 and RoselTheArmorer == 0) then
+	if(player:getVar("RefuseRoselTheArmorerQuest") == 1 and RoselTheArmorer == QUEST_AVAILABLE) then
 		player:startEvent(0x020c);
-	elseif (RoselTheArmorer == 0) then
+	elseif(RoselTheArmorer == QUEST_AVAILABLE) then
 		player:startEvent(0x020b);
-	elseif(RoselTheArmorer == 1 and player:hasKeyItem(119)) then
+		player:setVar("RefuseRoselTheArmorerQuest",1);
+	elseif(RoselTheArmorer == QUEST_ACCEPTED and receiprForThePrince) then
 		player:startEvent(0x020c);
-	elseif (RoselTheArmorer == 1 and player:hasKeyItem(119) == false) then
-		player:addGil(200);
-		player:addFame(SANDORIA,SAN_FAME*30);
-		player:setTitle(ENTRANCE_DENIED);
-		player:completeQuest(SANDORIA,ROSEL_THE_ARMORER);
+	elseif(RoselTheArmorer == QUEST_ACCEPTED and receiprForThePrince == false) then
 		player:startEvent(0x020f);
-		player:setVar("RefuseRoselTheArmorerQuest",0);
-	end;
+	end
+	
 end; 
 
 -----------------------------------
@@ -76,25 +72,20 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	-- Rosel the Armorer, get quest and receipt for prince
-	if (csid == 0x020b and option == 0) then
-		player:addKeyItem(119);
-		player:messageSpecial(6406,119); -- KEYITEM_OBTAINED MSG
+	if((csid == 0x020b or csid == 0x020c) and option == 0) then
 		player:addQuest(SANDORIA, ROSEL_THE_ARMORER);
-	else 
-		player:setVar("RefuseRoselTheArmorerQuest",1); -- used to skip CS if already seen, but declined quest.
-	end;
-	
-	-- Rosel the Armorer, if player refused quest on opening CS with rosel, they can still get it here.
-	if (csid == 0x020c and option == 0) then
-		player:addKeyItem(119);
-		player:messageSpecial(6406,119); -- KEYITEM_OBTAINED MSG
-		player:addQuest(SANDORIA, ROSEL_THE_ARMORER);
-	end;
-	
+		player:setVar("RefuseRoselTheArmorerQuest",0);
+		player:addKeyItem(RECEIPT_FOR_THE_PRINCE);
+		player:messageSpecial(KEYITEM_OBTAINED,RECEIPT_FOR_THE_PRINCE);
 	-- Rosel the Armorer, finished quest, recieve 200gil
-	if (csid == 0x020f) then
-		player:messageSpecial(6404, 200); -- GIL_OBTAINED MSG
-	end;
+	elseif(csid == 0x020f) then
+		player:setTitle(ENTRANCE_DENIED);
+		player:addGil(GIL_RATE*200);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
+		player:addFame(SANDORIA,SAN_FAME*30);
+		player:completeQuest(SANDORIA,ROSEL_THE_ARMORER);
+	end
+	
 end;
 
 

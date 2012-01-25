@@ -1,7 +1,9 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Balasiel
---  Starts and Finishes: A Squire's Test, A Squire's Test II, A Knight's Test
+-- Area: Southern San d'Oria
+-- NPC:  Balasiel
+-- Starts and Finishes: A Squire's Test, A Squire's Test II, A Knight's Test
+-- @zone 230
+-- @pos -136 -10 64
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -18,12 +20,13 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	count = trade:getItemCount();
-	gil = trade:getGil();
 
-	if (trade:hasItemQty(REVIVAL_TREE_ROOT,1) == true and gil == 0 and count == 1 and player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST) == 1) then
-		player:startEvent(0x0269);
+	if(player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(940,1) and trade:getItemCount() == 1) then
+			player:startEvent(0x0269);
+		end
 	end
+
 end;
 
 -----------------------------------
@@ -31,47 +34,48 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	currentLevel = player:getMainLvl();
+	
+	LvL = player:getMainLvl();
 	ASquiresTest = player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST);
 	ASquiresTestII = player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II);
 	AKnightsTest = player:getQuestStatus(SANDORIA, A_KNIGHT_S_TEST);
 
-	if (currentLevel < 7) then
+	if(LvL < 7) then
 		player:startEvent(0x029c);
-	elseif (currentLevel >= 7 and ASquiresTest ~= 2) then
-		if (ASquiresTest == 0) then
-			if (player:getVar("SquiresTest") == 1) then
+	elseif(LvL >= 7 and ASquiresTest ~= QUEST_COMPLETED) then
+		if(ASquiresTest == 0) then
+			if(player:getVar("SquiresTest") == 1) then
 				player:startEvent(0x0277);
 			else
 				player:startEvent(0x0268);
 			end
-		elseif (ASquiresTest == 1) then
+		elseif(ASquiresTest == QUEST_ACCEPTED) then
 			player:startEvent(0x029b);
 		end
-	elseif (currentLevel >= 7 and currentLevel < 15) then
+	elseif(LvL >= 7 and LvL < 15) then
 		player:startEvent(0x029f);
-	elseif (currentLevel >= 15 and ASquiresTestII ~= 2) then
+	elseif(LvL >= 15 and ASquiresTestII ~= QUEST_COMPLETED) then
 		StalactiteDew = player:hasKeyItem(STALACTITE_DEW)
 		
-		if (ASquiresTestII == 0) then
+		if(ASquiresTestII == QUEST_AVAILABLE) then
 			player:startEvent(0x0271);
-		elseif (ASquiresTestII == 1 and StalactiteDew == false) then
+		elseif(ASquiresTestII == QUEST_ACCEPTED and StalactiteDew == false) then
 			player:startEvent(0x0276);
-		elseif (StalactiteDew) then
+		elseif(StalactiteDew) then
 			player:startEvent(0x0272);
 		else
 			player:startEvent(0x029b);
 		end
-	elseif (currentLevel >= 15 and currentLevel < 30) then
+	elseif(LvL >= 15 and LvL < 30) then
 		player:startEvent(0x029e);
-	elseif (currentLevel >= 30 and AKnightsTest ~= 2) then
-		if (AKnightsTest == 0) then
-			if (player:getVar("KnightsTest_Event") == 1) then
+	elseif(LvL >= 30 and AKnightsTest ~= QUEST_COMPLETED) then
+		if(AKnightsTest == 0) then
+			if(player:getVar("KnightsTest_Event") == 1) then
 				player:startEvent(0x027b);
 			else
 				player:startEvent(0x0273);
 			end
-		elseif (player:hasKeyItem(KNIGHTS_SOUL)) then
+		elseif(player:hasKeyItem(KNIGHTS_SOUL)) then
 			player:startEvent(0x0274);
 		else
 			player:startEvent(0x029d);
@@ -79,6 +83,7 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x029b);
 	end
+	
 end;
 
 -----------------------------------
@@ -98,65 +103,65 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x0268) then
-		if (option == 0) then
+	if(csid == 0x0268) then
+		if(option == 0) then
 			player:addQuest(SANDORIA,A_SQUIRE_S_TEST);
 		else
 			player:setVar("SquiresTest_Event",1);
 		end 
-	elseif (csid == 0x0277 and option == 0) then
+	elseif(csid == 0x0277 and option == 0) then
 		player:addQuest(SANDORIA,A_SQUIRE_S_TEST);
 		player:setVar("SquiresTest_Event",0);
-	elseif (csid == 0x0269) then
-        if (player:getFreeSlotsCount(0) >= 1) then
-        	player:completeQuest(SANDORIA,A_SQUIRE_S_TEST);
-			player:addItem(SPATHA);
-			player:messageSpecial(ITEM_OBTAINED, SPATHA);
+	elseif(csid == 0x0269) then
+        if(player:getFreeSlotsCount(0) >= 1) then
+        	player:tradeComplete();
 			player:setTitle(KNIGHT_IN_TRAINING);
-			player:addFame(SANDORIA, SAN_FAME*20);
-			player:tradeComplete();
+			player:addItem(16565);
+			player:messageSpecial(ITEM_OBTAINED, 16565); -- Spatha
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:completeQuest(SANDORIA,A_SQUIRE_S_TEST);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, SPATHA);
+           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16565); -- Spatha
         end
-    elseif (csid == 0x0271 or csid == 0x0276) then
+    elseif(csid == 0x0271 or csid == 0x0276) then
     	player:addQuest(SANDORIA,A_SQUIRE_S_TEST_II);
-	elseif (csid == 0x0272) then
-		player:completeQuest(SANDORIA,A_SQUIRE_S_TEST_II);
+	elseif(csid == 0x0272) then
+		player:tradeComplete();
+		player:setTitle(SPELUNKER);
+		player:delKeyItem(STALACTITE_DEW);
 		player:addKeyItem(SQUIRE_CERTIFICATE);
 		player:messageSpecial(KEYITEM_OBTAINED, SQUIRE_CERTIFICATE);
-		player:delKeyItem(STALACTITE_DEW);
-		player:setTitle(SPELUNKER);
-		player:addFame(SANDORIA, SAN_FAME*20);
-		player:tradeComplete();
-	elseif (csid == 0x0273) then
-		if (option == 0) then
+		player:addFame(SANDORIA,SAN_FAME*30);
+		player:completeQuest(SANDORIA,A_SQUIRE_S_TEST_II);
+	elseif(csid == 0x0273) then
+		if(option == 0) then
 			player:addQuest(SANDORIA,A_KNIGHT_S_TEST);
 			player:addKeyItem(BOOK_OF_TASKS);
 			player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_TASKS);
 		else
 			player:setVar("KnightsTest_Event",1);
 		end
-	elseif (csid == 0x027b and option == 0) then
+	elseif(csid == 0x027b and option == 0) then
 		player:addQuest(SANDORIA,A_KNIGHT_S_TEST);
 		player:addKeyItem(BOOK_OF_TASKS);
 		player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_TASKS);
 		player:setVar("KnightsTest_Event",0);
-	elseif (csid == 0x0274) then
-		if (player:getFreeSlotsCount(0) >= 1) then
-			player:completeQuest(SANDORIA,A_KNIGHT_S_TEST);
-			player:addItem(KITE_SHIELD);
-			player:messageSpecial(ITEM_OBTAINED, KITE_SHIELD);
+	elseif(csid == 0x0274) then
+		if(player:getFreeSlotsCount(0) >= 1) then
 			player:setTitle(TRIED_AND_TESTED_KNIGHT);
-			player:addFame(SANDORIA, SAN_FAME*20);
 			player:delKeyItem(KNIGHTS_SOUL);
 			player:delKeyItem(BOOK_OF_TASKS);
 			player:delKeyItem(BOOK_OF_THE_WEST);
 			player:delKeyItem(BOOK_OF_THE_EAST);
+			player:addItem(12306);
+			player:messageSpecial(ITEM_OBTAINED, 12306); -- Kite Shield
 			player:unlockJob(7); --Paladin
 			player:messageSpecial(UNLOCK_PALADIN);
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:completeQuest(SANDORIA,A_KNIGHT_S_TEST);
 		else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, KITE_SHIELD);
+           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 12306); -- Kite Shield
 	    end
 	end
+	
 end;
-

@@ -21,7 +21,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 	
 	if (player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(TGWaterskin, 1) and trade:getItemCount() == 1 and player:getVar("OfferingWaterOK") == 1) then
+		if(trade:hasItemQty(547, 1) and trade:getItemCount() == 1 and player:getVar("OfferingWaterOK") == 1) then
 			player:startEvent(0x0270);
 		end
 	end
@@ -35,8 +35,8 @@ end;
 function onTrigger(player,npc)
 	
 	Tomb = player:getQuestStatus(SANDORIA,GRAVE_CONCERNS);
-	WellWater = player:hasItem(SOWellWater);
-	Waterskin = player:hasItem(TGWaterskin);
+	WellWater = player:hasItem(567); -- Well Water
+	Waterskin = player:hasItem(547); -- Tomb Waterskin
 	
 	if(Tomb == QUEST_AVAILABLE) then
 		player:startEvent(0x021d);
@@ -71,12 +71,12 @@ function onEventFinish(player,csid,option)
 
 	if(csid == 0x021d and option == 0) then
 		if (player:getFreeSlotsCount() == 0) then 
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,SOWellWater);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,567); -- Well Water
 		else
 			player:addQuest(SANDORIA,GRAVE_CONCERNS);
 			player:setVar("graveConcernsVar",0);
-			player:addItem(SOWellWater);
-			player:messageSpecial(ITEM_OBTAINED,SOWellWater);
+			player:addItem(567);
+			player:messageSpecial(ITEM_OBTAINED,567); -- Well Water
 		end
 	elseif(csid == 0x0270) then
 		player:tradeComplete();

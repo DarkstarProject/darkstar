@@ -21,7 +21,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 
 	if(player:hasKeyItem(AMAURAS_FORMULA) == true) then
-		if (trade:hasItemQty(MalboroVine,1) == true and trade:hasItemQty(ZincOre,1) == true and trade:hasItemQty(InsectWing,1) == true and trade:getItemCount() == 3) then
+		if (trade:hasItemQty(920,1) == true and trade:hasItemQty(642,1) == true and trade:hasItemQty(846,1) == true and trade:getItemCount() == 3) then
 			player:startEvent(0x027D);
 		end
 	end
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x0282);
 		end		
-	elseif(player:getVar("toCureaCough") == 4 or toCureaCough == QUEST_ACCEPTED) then
+	elseif(player:getVar("DiaryPage") == 3 or toCureaCough == QUEST_ACCEPTED) then
 		if(player:hasKeyItem(THYME_MOSS) == false and player:hasKeyItem(COUGH_MEDICINE) == false) then 
 			player:startEvent(0x0285); -- need thyme moss for cough med
 		elseif(player:hasKeyItem(THYME_MOSS) == true) then

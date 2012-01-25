@@ -20,7 +20,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 	
 	if(player:getQuestStatus(SANDORIA,THE_MERCHANT_S_BIDDING) ~= QUEST_AVAILABLE) then
-		if(trade:hasItemQty(RabbitHide,3) and trade:getItemCount() == 3) then 
+		if(trade:hasItemQty(856,3) and trade:getItemCount() == 3) then 
 			player:startEvent(0x59);
 		end
 	end

@@ -1,14 +1,15 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Baunise
---  Involved in Quest: A Knight's Test
+-- Area: Southern San d'Oria
+-- NPC:  Baunise
+-- Involved in Quest: A Knight's Test
+-- @zone 230
+-- @pos -55 -8 -32
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
@@ -24,9 +25,10 @@ end;
  
 function onTrigger(player,npc)
 
-	if (player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_WEST) == false) then
+	if(player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_WEST) == false) then
 		player:startEvent(0x027a);
 	end
+	
 end; 
 
 -----------------------------------
@@ -50,4 +52,5 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(BOOK_OF_THE_WEST);
 		player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_THE_WEST);
 	end
+	
 end;

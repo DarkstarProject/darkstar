@@ -1,11 +1,9 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Cahaurme
---  Type: Quest Giver NPC
---  Involved in Quest: A Knight's Test
---  Involved in Quest: Lost Chick
---  @zone: 230
---  @pos: 55.749 -8.601 -29.354
+-- Area: Southern San d'Oria
+-- NPC:  Cahaurme
+-- Involved in Quest: A Knight's Test, Lost Chick
+-- @zone 230
+-- @pos 55.749 -8.601 -29.354
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -28,9 +26,10 @@ end;
  
 function onTrigger(player,npc)
 
-	if (player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_EAST) == false) then
+	if(player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_EAST) == false) then
 		player:startEvent(0x0279);
 	end
+	
 end; 
 
 -----------------------------------
@@ -54,4 +53,5 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(BOOK_OF_THE_EAST);
 		player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_THE_EAST);
 	end
+	
 end;

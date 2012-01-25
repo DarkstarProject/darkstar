@@ -17,6 +17,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
+
 function onTrade(player,npc,trade)
 end; 
 
@@ -29,7 +30,7 @@ function onTrigger(player,npc)
 	quest_fas = player:getQuestStatus(FATHER_AND_SON);  -- 1st Quest in Series
 	quest_poa = player:getQuestStatus(A_PURCHASE_OF_ARMS);  -- 2nd Quest in Series
 
-	if(player:getFameLevel(SANDORIA) >= 2 and quest_fas == QUEST_COMPLETED and quest_poa == QUEST_AVAILABLE) then  
+	if(player:getFameLevel(SANDORIA) >= 2 and quest_fas == QUEST_COMPLETED and quest_poa == QUEST_AVAILABLE) then 
         player:startEvent(0x0252);  -- Start quest A Purchase of Arms
 	elseif(quest_poa == QUEST_ACCEPTED and player:hasKeyItem(WEAPONS_RECEIPT) == true) then
         player:startEvent(0x025f); -- Finish A Purchase of Arms quest
@@ -61,14 +62,15 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,WEAPONS_ORDER);
 	elseif(csid == 0x025f) then
 		if (player:getFreeSlotsCount(0) == 0) then
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17090);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17090); -- Elm Staff
 		else
-			player:setTitle(ARMS_TRADER); --title : Arms Trader
-			player:delKeyItem(WEAPONS_RECEIPT); --delete KI
-			player:addItem(17090); --reward : Elm Staff
-			player:messageSpecial(ITEM_OBTAINED,17090);
-			player:addFame(SANDORIA,SAN_FAME*30); --fame
+			player:setTitle(ARMS_TRADER);
+			player:delKeyItem(WEAPONS_RECEIPT);
+			player:addItem(17090); 
+			player:messageSpecial(ITEM_OBTAINED,17090); -- Elm Staff
+			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA, A_PURCHASE_OF_ARMS);
 		end
-	end 
+	end
+	
 end;

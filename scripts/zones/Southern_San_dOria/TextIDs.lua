@@ -35,23 +35,6 @@ ROSEL_MESSAGE    = 8649; -- Rosel looks over curiously for a moment.
 CONQUEST = 8301; -- You've earned conquest points!
 
 PAUNELIE_DIALOG = 0; -- 1997; -- Like <item> ? -- (linkshell)
-
--- Quest Items
-REVIVAL_TREE_ROOT = 940; -- 
-	  KITE_SHIELD = 12306; -- 
-		   SPATHA = 16565; -- 
-    LADY_BUG_WING = 2506; -- item Atelloune's Lament
-	  MalboroVine = 920; -- Quest "The Medicine Woman"
-		  ZincOre = 642; -- Quest "The Medicine Woman"
-	   InsectWing = 846; -- Quest "The Medicine Woman"
-	   FlintStone = 768; -- Quest "Starting a Flame"
-	  SOWellWater = 567; -- Quest "Grave Concerns"
-	  TGWaterskin = 547; -- Quest "Grave Concerns"
-   BlackTigerFang = 884; -- Quest "Tiger's Teeth"
-	   RabbitHide = 856; -- Quest "The Merchant's Bidding"
-	 OintmentCase = 601; -- Quest "A Sentry's Peril"
-   DoseOfOintment = 600; -- Quest "A Sentry's Peril"
-   BronzeSubligar = 12832; -- Quest "A Sentry's Peril"
 	   
 -- Quest Dialogs
 UNLOCK_PALADIN = 7826; -- You can now become a paladin!

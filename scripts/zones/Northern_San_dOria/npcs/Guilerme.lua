@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Northern San d'Oria
---  NPC: Guillerme
---  Used for Quest: Rosel the Armorer
+--  NPC:  Guillerme
+--  Involved in Quest: Rosel the Armorer
 --  @zone: 231
 --  @pos: -4.500 0.000 99.000
 -----------------------------------
@@ -41,8 +41,8 @@ function onTrigger(player,npc)
 	RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
 	
 	-- "Rosel the Armorer" - turn in reciept to prince
-	if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(119)) then
-		player:startEvent(0x01fb);  -- 
+	if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(RECEIPT_FOR_THE_PRINCE)) then
+		player:startEvent(0x01fb);
 	else
 		player:showText(npc,GUILERME_DIALOG);
 	end
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
 
 	-- "Rosel the Armorer", give receipt to NPC:Guilerme
 	if (csid == 0x01fb) then
-		player:delKeyItem(119);
+		player:delKeyItem(RECEIPT_FOR_THE_PRINCE);
 	end;
 		
 end;

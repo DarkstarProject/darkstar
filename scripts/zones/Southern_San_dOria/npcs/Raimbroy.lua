@@ -1,14 +1,15 @@
 -----------------------------------
---  Area: Southern San d'Oria
---  NPC: Raimbroy
---  Starts Quest: The Sweetest Things
+-- Area: Southern San d'Oria
+-- NPC:  Raimbroy
+-- Starts and Finishes Quest: The Sweetest Things
+-- @zone 230
+-- @pos 
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
@@ -21,23 +22,15 @@ function onTrade(player,npc,trade)
 	-- "Flyers for Regine" conditional script
 	FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 	-- "The Sweetest Things" quest status var
-	theSweetestThings = player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS);
+	theSweetestThings = player:getQuestStatus(SANDORIA,THE_SWEETEST_THINGS);
    
-	if (theSweetestThings == QUEST_ACCEPTED or theSweetestThings == QUEST_COMPLETED) then
-		count = trade:getItemCount();
-		honey = trade:hasItemQty(4370, 5);
-		if (count == 5 and honey == true) then
-			if (theSweetestThings == QUEST_ACCEPTED) then
-				player:addFame(SANDORIA, SAN_FAME*40);
-				player:completeQuest(SANDORIA, THE_SWEETEST_THINGS);
-			else
-				player:addFame(SANDORIA, SAN_FAME*5);
-			end;
+	if(theSweetestThings ~= QUEST_AVAILABLE) then
+		if(trade:hasItemQty(4370,5) and trade:getItemCount() == 5) then
 			player:startEvent(0x0217,GIL_RATE*400);
-		else 
+		else
 			player:startEvent(0x020a);
-		end;
-	end;
+		end
+	end
    
 	if (FlyerForRegine == 1) then
 		count = trade:getItemCount();
@@ -46,6 +39,7 @@ function onTrade(player,npc,trade)
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
+	
 end;
 
 ----------------------------------- 
@@ -54,26 +48,24 @@ end;
 
 function onTrigger(player,npc) 
    
-	-- "The Sweetest Things" quest status var
 	theSweetestThings = player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS);
    
 	-- "The Sweetest Things" Quest Dialogs
-	if (theSweetestThings == QUEST_COMPLETED) then
-		player:startEvent(0x0219);
-	elseif (theSweetestThings == QUEST_ACCEPTED) then
-		player:startEvent(0x0218);
-	elseif (player:getFameLevel(SANDORIA) >= 2) then
-		if (theSweetestThings == QUEST_AVAILABLE) then
-			theSweetestThingsVar = player:getVar("theSweetestThings");
-			if (theSweetestThingsVar == 1) then
-				player:startEvent(0x0215);
-			elseif (theSweetestThingsVar == 2) then
-				player:startEvent(0x0216);
-			else
-				player:startEvent(0x0214);
-			end
+	if(player:getFameLevel(SANDORIA) >= 2 and theSweetestThings == QUEST_AVAILABLE) then
+		theSweetestThingsVar = player:getVar("theSweetestThings");
+		if(theSweetestThingsVar == 1) then
+			player:startEvent(0x0215);
+		elseif(theSweetestThingsVar == 2) then
+			player:startEvent(0x0216);
+		else
+			player:startEvent(0x0214);
 		end
+	elseif(theSweetestThings == QUEST_ACCEPTED) then
+		player:startEvent(0x0218);
+	elseif(theSweetestThings == QUEST_COMPLETED) then
+		player:startEvent(0x0219);
 	end
+	
 end; 
 
 -----------------------------------
@@ -94,25 +86,28 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	-- "The Sweetest Things" ACCEPTED
-	if (csid == 0x0215) then
-		if (option == 0) then
-			player:addQuest(SANDORIA, THE_SWEETEST_THINGS);
+	elseif(csid == 0x0214) then
+		player:setVar("theSweetestThings", 1);
+	elseif(csid == 0x0215) then
+		if(option == 0) then
+			player:addQuest(SANDORIA,THE_SWEETEST_THINGS);
+			player:setVar("theSweetestThings", 0);
 		else
 			player:setVar("theSweetestThings", 2);
 		end
-	elseif (csid == 0x0214) then
-		player:setVar("theSweetestThings", 1);
-	elseif (csid == 0x0216 and option == 0) then
-		player:setVar("theSweetestThings", 0);
+	elseif(csid == 0x0216 and option == 0) then
 		player:addQuest(SANDORIA, THE_SWEETEST_THINGS);
-	-- "The Sweetest Things" REWARD
-	elseif (csid == 0x0217) then
+		player:setVar("theSweetestThings", 0);
+	elseif(csid == 0x0217) then
 		player:tradeComplete();
 		player:setTitle(APIARIST);
 		player:addGil(GIL_RATE*400);
+		if(player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS) == QUEST_ACCEPTED) then
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:completeQuest(SANDORIA, THE_SWEETEST_THINGS);
+		else
+			player:addFame(SANDORIA, SAN_FAME*5);
+		end
 	end
+	
 end;
-
-
-
-

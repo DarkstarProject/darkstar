@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Hanaa Punaa
--- NPC for Quest "The Seamstress"
+-- NPC:  Hanaa Punaa
+-- Starts and Finishes: A Squire's Test, A Squire's Test II, A Knight's Test
+-- @zone 230
+-- @pos 
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -19,82 +21,36 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)	
 	
-	-- "Flyers for Regine" conditional script
-	FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-	-- "The Seamstress" quest status
-	theSteamStress = player:getQuestStatus(SANDORIA,THE_SEAMSTRESS);
-	-- Checking "Lizard Skins" Quest Status
-	lizardSkins = player:getQuestStatus(SANDORIA,LIZARD_SKINS);
-	-- Checking "Black Tiger Skins" Quest Status
-	blackTigerSkins = player:getQuestStatus(SANDORIA,BLACK_TIGER_SKINS);
-	
-		-- "Black Tiger Skins", Tiger Hide trade
-	if (blackTigerSkins == QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		hasSheepskin = trade:hasItemQty(861,3);
-		freeSlots = player:getFreeSlotsCount();
-		if (freeSlots > 0 and hasSheepskin == true and count == 3) then
-			player:tradeComplete();
-			player:addFame(SANDORIA,SAN_FAME*30);
-			player:setTitle(CAT_SKINNER);
-			player:completeQuest(SANDORIA,BLACK_TIGER_SKINS);
-			player:setVar("blkTigerSkin",0);
-			player:startEvent(0x0241);
-		elseif (freeSlots < 1) then
-			player:messageSpecial(6402, 13119);
-		end;
-	end;
-	
-		-- "Lizard Skins", lizard skin trade
-	if (lizardSkins == QUEST_ACCEPTED or lizardSkins == QUEST_COMPLETED) then
-		count = trade:getItemCount();
-		hasSheepskin = trade:hasItemQty(852,3);
-		freeSlots = player:getFreeSlotsCount();
-		if (freeSlots > 0 and hasSheepskin == true and count == 3) then
-			player:tradeComplete();
-			if (lizardSkins == QUEST_ACCEPTED) then
-				player:addFame(SANDORIA,SAN_FAME*30);
-				player:setTitle(LIZARD_SKINNER);
-				player:completeQuest(SANDORIA,LIZARD_SKINS);
-				player:setVar("lzdSkins",0);
-			elseif (lizardSkins == QUEST_COMPLETED) then
-				player:addFame(SANDORIA,SAN_FAME*5);
-			end;
-			player:startEvent(0x0231);
-		elseif (freeSlots < 1) then
-			player:messageSpecial(6402, 12697);
-		end;
-	end;
-	
-	-- "The Seamstress" , sheepskin trade
-	if (theSteamStress == QUEST_ACCEPTED or theSteamStress == QUEST_COMPLETED) then
-		count = trade:getItemCount();
-		hasSheepskin = trade:hasItemQty(505,3);
-		freeSlots = player:getFreeSlotsCount();
-		if (freeSlots > 0 and hasSheepskin == true and count == 3) then
-			player:tradeComplete();
-			if (theSteamStress == QUEST_ACCEPTED) then
-				player:addFame(SANDORIA,SAN_FAME*30);
-				player:setTitle(SILENCER_OF_THE_LAMBS);
-				player:completeQuest(SANDORIA,THE_SEAMSTRESS);
-				player:setVar("theSeamStress",0);
-			elseif (theSteamStress == QUEST_COMPLETED) then
-				player:addFame(SANDORIA,SAN_FAME*5);
-			end;
+	-- "The Seamstress" , x3 sheepskin trade
+	if(player:getQuestStatus(SANDORIA,THE_SEAMSTRESS) ~= QUEST_AVAILABLE) then
+		if(trade:hasItemQty(505,3) and trade:getItemCount() == 3) then
 			player:startEvent(0x0212);
-		elseif (freeSlots < 1) then
-			player:messageSpecial(6402, 12696);
-		end;
-	end;
+		end
+	end
+	
+	-- "Black Tiger Skins", Tiger Hide trade
+	if(player:getQuestStatus(SANDORIA,BLACK_TIGER_SKINS) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(861,3) and trade:getItemCount() == 3) then
+			player:startEvent(0x0241);
+		end
+	end
+	
+	-- "Lizard Skins", lizard skin trade
+	if(player:getQuestStatus(SANDORIA,LIZARD_SKINS) ~= QUEST_AVAILABLE) then
+		if(trade:hasItemQty(852,3) and trade:getItemCount() == 3) then
+			player:startEvent(0x0231);
+		end
+	end
 	
 	-- "Flyers for Regine"
-	if (FlyerForRegine == 1) then
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
 		count = trade:getItemCount();
 		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
+		if(MagicFlyer == true and count == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
+	
 end;
 
 ----------------------------------- 
@@ -103,52 +59,46 @@ end;
  
 function onTrigger(player,npc) 
 
-	-- Checking "The Seamstress" Quest Status
-	theSteamStress = player:getQuestStatus(SANDORIA,THE_SEAMSTRESS);
-	-- Checking "Lizard Skins" Quest Status
-	lizardSkins = player:getQuestStatus(SANDORIA,LIZARD_SKINS);
-	-- Checking "Black Tiger Skins" Quest Status
-	blackTigerSkins = player:getQuestStatus(SANDORIA,BLACK_TIGER_SKINS);
-
-	-- Checking Fame Level
+	-- Checking Fame Level & Quest
 	sanFame = player:getFameLevel(SANDORIA);
-		
-	player:setFame(SANDORIA, 500);
-	print(player:getFameLevel(SANDORIA));
-		
-	-- "Black Tiger Skins" Quest Dialogs
-	if (blackTigerSkins == QUEST_AVAILABLE and player:getVar("blkTigerSkin") == 1 and sanFame >= 3 and theSteamStress == QUEST_COMPLETED and lizardSkins == QUEST_COMPLETED) then
-		player:startEvent(0x0243 );
-	elseif (blackTigerSkins == QUEST_AVAILABLE and sanFame >= 3 and theSteamStress == QUEST_COMPLETED and lizardSkins == QUEST_COMPLETED) then
-		player:startEvent(0x0240);
-		player:setVar("blkTigerSkin",1);
-	elseif (blackTigerSkins == QUEST_ACCEPTED) then
-		player:startEvent(0x0242);
-	elseif (blackTigerSkins == QUEST_COMPLETED) then
-		player:startEvent(0x0250);
+	theSteamStress = player:getQuestStatus(SANDORIA,THE_SEAMSTRESS);
+	lizardSkins = player:getQuestStatus(SANDORIA,LIZARD_SKINS);
+	blackTigerSkins = player:getQuestStatus(SANDORIA,BLACK_TIGER_SKINS);
 	
-	-- "Lizard Skins" Quest Dialogs
-	elseif (lizardSkins == QUEST_AVAILABLE and player:getVar("lzdSkins") == 1 and sanFame >= 2 and theSteamStress == QUEST_COMPLETED) then
-		player:startEvent(0x0232);
-	elseif (lizardSkins == QUEST_AVAILABLE and sanFame >= 2 and theSteamStress == QUEST_COMPLETED) then
-		player:startEvent(0x022f);
-		player:setVar("lzdSkins",1);
-	elseif (lizardSkins == QUEST_ACCEPTED) then
-		player:startEvent(0x0230);
-	elseif (lizardSkins == QUEST_COMPLETED) then
-		player:startEvent(0x024f);
-	
-	-- "The Seamstress" Quest Dialogs
-	elseif (theSteamStress == QUEST_AVAILABLE and player:getVar("theSeamStress") == 1) then
+	-- "The Seamstress" Quest Status
+	if(theSteamStress == QUEST_AVAILABLE and player:getVar("theSeamStress") == 1) then
 		player:startEvent(0x0213);
-	elseif (theSteamStress == QUEST_AVAILABLE) then
+	elseif(theSteamStress == QUEST_AVAILABLE) then
 		player:startEvent(0x0210);
 		player:setVar("theSeamStress",1);
-	elseif (theSteamStress == QUEST_ACCEPTED) then
+	elseif(theSteamStress == QUEST_ACCEPTED) then
 		player:startEvent(0x0211);
-	elseif (theSteamStress == QUEST_COMPLETED) then
+	elseif(theSteamStress == QUEST_COMPLETED and sanFame < 2) then
 		player:startEvent(0x024e);
-	end;
+	
+	-- "Lizard Skins" Quest Dialogs
+	elseif(lizardSkins == QUEST_AVAILABLE and player:getVar("lzdSkins") == 1 and sanFame >= 2 and theSteamStress == QUEST_COMPLETED) then
+		player:startEvent(0x0232);
+	elseif(lizardSkins == QUEST_AVAILABLE and sanFame >= 2 and theSteamStress == QUEST_COMPLETED) then
+		player:startEvent(0x022f);
+		player:setVar("lzdSkins",1);
+	elseif(lizardSkins == QUEST_ACCEPTED) then
+		player:startEvent(0x0230);
+	elseif(lizardSkins == QUEST_COMPLETED and sanFame < 3) then
+		player:startEvent(0x024f);
+		
+	-- "Black Tiger Skins" Quest Dialogs
+	elseif(blackTigerSkins == QUEST_AVAILABLE and player:getVar("blkTigerSkin") == 1 and sanFame >= 3 and theSteamStress == QUEST_COMPLETED and lizardSkins == QUEST_COMPLETED) then
+		player:startEvent(0x0243 );
+	elseif(blackTigerSkins == QUEST_AVAILABLE and sanFame >= 3 and theSteamStress == QUEST_COMPLETED and lizardSkins == QUEST_COMPLETED) then
+		player:startEvent(0x0240);
+		player:setVar("blkTigerSkin",1);
+	elseif(blackTigerSkins == QUEST_ACCEPTED) then
+		player:startEvent(0x0242);
+	elseif(blackTigerSkins == QUEST_COMPLETED) then
+		player:startEvent(0x0250);
+	end
+	
 end; 
 
 -----------------------------------
@@ -169,35 +119,60 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	-- "The Seamstress" Quest
-	if (csid == 0x0210 and option == 0) then
+	if((csid == 0x0210 or csid == 0x0213) and option == 0) then
 		player:addQuest(SANDORIA,THE_SEAMSTRESS);
-	elseif (csid == 0x0213 and option == 0) then
-		player:addQuest(SANDORIA,THE_SEAMSTRESS);
-	elseif (csid == 0x0212) then
-		player:addItem(12696);
-		player:messageSpecial(6403,12696);
-		
+		player:setVar("theSeamStress",0);
+	elseif(csid == 0x0212) then
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12696); -- Leather Gloves
+		else
+			player:tradeComplete();
+			player:setTitle(SILENCER_OF_THE_LAMBS);
+			player:addItem(12696);
+			player:messageSpecial(ITEM_OBTAINED, 12696); -- Leather Gloves
+			if(player:getQuestStatus(SANDORIA,THE_SEAMSTRESS) == QUEST_ACCEPTED) then
+				player:addFame(SANDORIA,SAN_FAME*30);
+				player:completeQuest(SANDORIA,THE_SEAMSTRESS);
+			else
+				player:addFame(SANDORIA,SAN_FAME*5);
+			end
+		end
+	
 	-- "Liard Skins" Quest 
-	elseif (csid == 0x022f and option == 0) then
+	elseif((csid == 0x022f or csid == 0x0232) and option == 0) then
 		player:addQuest(SANDORIA,LIZARD_SKINS);
-	elseif (csid == 0x0232 and option == 0) then
-		player:addQuest(SANDORIA,LIZARD_SKINS);
-	elseif (csid == 0x0231) then
-		player:addItem(12697);
-		player:messageSpecial(6403,12697);
+		player:setVar("lzdSkins",0);
+	elseif(csid == 0x0231) then
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12697); -- Lizard Gloves
+		else
+			player:tradeComplete();
+			player:setTitle(LIZARD_SKINNER);
+			player:addItem(12697);
+			player:messageSpecial(ITEM_OBTAINED, 12697); -- Lizard Gloves
+			if(player:getQuestStatus(SANDORIA,LIZARD_SKINS) == QUEST_ACCEPTED) then
+				player:addFame(SANDORIA,SAN_FAME*30);
+				player:completeQuest(SANDORIA,LIZARD_SKINS);
+			else
+				player:addFame(SANDORIA,SAN_FAME*5);
+			end
+		end
 		
 	-- "Black Tiger Skins" Quest 
-	elseif (csid == 0x0240 and option == 0) then
+	elseif((csid == 0x0240 or csid == 0x0243) and option == 0) then
 		player:addQuest(SANDORIA,BLACK_TIGER_SKINS);
-	elseif (csid == 0x0243 and option == 0) then
-		player:addQuest(SANDORIA,BLACK_TIGER_SKINS);
-	elseif (csid == 0x0241) then
-		player:addItem(13119);
-		player:messageSpecial(6403,13119);
-		
-	end;
+		player:setVar("blkTigerSkin",0);
+	elseif(csid == 0x0241) then
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13119); -- Tyger Stole
+		else
+			player:tradeComplete();
+			player:setTitle(CAT_SKINNER);
+			player:addItem(13119);
+			player:messageSpecial(ITEM_OBTAINED, 13119); -- Tyger Stole
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:completeQuest(SANDORIA,BLACK_TIGER_SKINS);
+		end
+	end
+	
 end;
-
-
-
-

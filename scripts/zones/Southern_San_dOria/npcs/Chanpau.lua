@@ -1,15 +1,14 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Chanpau
---  Optional Involvement in Quest: A Squire's Test II
+-- Area: Southern San d'Oria
+-- NPC:  Chanpau
+-- Optional Involvement in Quest: A Squire's Test II
+-- @zone 230
+-- @pos -152 -2 55
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
@@ -28,6 +27,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
+	
 end;
 
 ----------------------------------- 
@@ -36,7 +36,7 @@ end;
  
 function onTrigger(player,npc) 
 	
-	if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == 1) then
+	if(player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED) then
 		player:startEvent(0x275);
 	else
 		player:startEvent(0x0236);

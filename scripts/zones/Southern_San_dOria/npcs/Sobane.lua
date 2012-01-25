@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 	signedInBlood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
 	
 	if(signedInBlood == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
-		player:startEvent(0x02dc,0,1662); -- Start Quest "Father and Son"
+		player:startEvent(0x02dc,0,1662); -- Start Quest
 	elseif(player:getVar("sharpeningTheSwordCS") >= 2) then
 		player:startEvent(0x0034);
 	end

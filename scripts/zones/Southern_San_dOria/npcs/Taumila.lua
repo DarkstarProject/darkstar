@@ -21,7 +21,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 
 	if(player:getQuestStatus(SANDORIA,TIGER_S_TEETH) ~= QUEST_AVAILABLE) then
-		if(trade:hasItemQty(BlackTigerFang,3) and trade:getItemCount() == 3) then 
+		if(trade:hasItemQty(884,3) and trade:getItemCount() == 3) then 
 			player:startEvent(0x023c);
 		end
 	end
