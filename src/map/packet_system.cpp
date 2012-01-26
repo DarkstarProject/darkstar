@@ -1402,7 +1402,8 @@ int32 SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	if (PChar->status != STATUS_NORMAL)
+	if (PChar->status != STATUS_NORMAL && 
+        PChar->status != STATUS_UPDATE)
 		return 0;
 
 	uint8 slotID      = RBUFB(data,(0x04));
