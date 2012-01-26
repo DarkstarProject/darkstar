@@ -202,7 +202,7 @@ function toPalaceEntrance(player)
 end;
 
 function toSelbina(player)
-	player:setPos(-57.329,-0.959,-45.690,125,0xF8) --to Isacio for subjob quest
+	player:setPos(-57.329,-0.959,-45.690,125,0xF8); --to Isacio for subjob quest
 end;
 
 function toWajaomPukCamp(player)  -- Just a camp just for puks \\ disregard
