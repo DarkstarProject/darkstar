@@ -24,6 +24,7 @@
 #include "../common/timer.h"
 #include "../common/utils.h"
 
+#include <math.h>
 #include <string.h>
 
 #include "packets/char_health.h"

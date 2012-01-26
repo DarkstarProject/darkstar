@@ -23,6 +23,8 @@
 
 #include "../../common/socket.h"
 
+#include <string.h>
+
 #include "treasure_lot_item.h"
 
 #include "../baseentity.h"

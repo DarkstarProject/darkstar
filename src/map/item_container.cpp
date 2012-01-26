@@ -24,6 +24,8 @@
 #include "../common/malloc.h"
 #include "../common/showmsg.h"
 
+#include <string.h>
+
 #include "item_container.h"
 #include "itemutils.h"
 
