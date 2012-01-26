@@ -4,11 +4,10 @@
 --  Type: Outpost Teleporter
 -- @zone: 234
 --  @pos: 94.457 -0.375 -66.161
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-----------------------------------
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
@@ -31,16 +30,15 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
--- onEventFinish
+--onEventFinish
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
-
