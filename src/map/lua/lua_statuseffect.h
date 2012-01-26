@@ -32,7 +32,8 @@
 
 class CLuaStatusEffect
 {
-	CStatusEffect *m_pLuaStatusEffect;
+	CStatusEffect *m_PLuaStatusEffect;
+	
 public:
 
 	static const int8 className[];
@@ -43,7 +44,7 @@ public:
 
 	CStatusEffect* GetStatusEffect()const
 	{
-		return m_pLuaStatusEffect;
+		return m_PLuaStatusEffect;
 	}
 
 	int32 getType(lua_State*);

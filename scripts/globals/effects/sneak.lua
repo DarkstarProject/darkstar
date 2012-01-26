@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- 	EFFECT_NONE
+-- 	EFFECT_SNEAK
 -- 	
 -----------------------------------
 
@@ -16,6 +16,10 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+	tick = effect:getLastTick();
+	if (tick < 4 and tick ~= 0) then
+		target:messageBasic(251, effect:getType());
+	end
 end;
 
 -----------------------------------

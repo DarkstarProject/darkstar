@@ -628,24 +628,27 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect * PStatusEffect)
 
 void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
 {
-	if (m_StatusEffectList.at(id)->GetStatusID() < 512 && m_pOwner->objtype == TYPE_PC)
+    CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
+
+    luautils::OnEffectLose(m_pOwner, PStatusEffect);
+
+    m_pOwner->delModifiers(&PStatusEffect->modList);
+
+    m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
+
+	if (PStatusEffect->GetStatusID() < 512 && m_pOwner->objtype == TYPE_PC)
 	{
-        DelStatusIcon(m_StatusEffectList.at(id)->GetStatusID());
+        DelStatusIcon(PStatusEffect->GetStatusID());
 
         CCharEntity* PChar = (CCharEntity*)m_pOwner;
 
         if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
-        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, m_StatusEffectList.at(id)->GetStatusID(), 0, 206));
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetStatusID(), 0, 206));
         PChar->pushPacket(new CCharUpdatePacket(PChar));
         PChar->pushPacket(new CCharSyncPacket(PChar));
 	}
-	luautils::OnEffectLose(m_pOwner, m_StatusEffectList.at(id));
-
-    m_pOwner->delModifiers(&m_StatusEffectList.at(id)->modList);
-
-    delete m_StatusEffectList.at(id);
-	m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
+    delete PStatusEffect;
 }
 
 /************************************************************************

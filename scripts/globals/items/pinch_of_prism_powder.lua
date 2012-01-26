@@ -1,4 +1,8 @@
-
+-----------------------------------------
+--	ID: 4164
+--	Prism Powder
+--	When applied, it makes things invisible.
+-----------------------------------------
 
 require("scripts/globals/status");
 
@@ -6,11 +10,7 @@ require("scripts/globals/status");
 -- OnItemCheck
 -----------------------------------------
 function onItemCheck(target)
-result = 0;
-	if (target:hasStatusEffect(EFFECT_FOOD) == true) then
-		result = 246;
-	end
-return result;
+	return 0;
 end;
 
 -----------------------------------------
@@ -18,5 +18,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_INVISIBLE,1,0,120);
+	if (not target:hasStatusEffect(EFFECT_INVISIBLE)) then
+		target:addStatusEffect(EFFECT_INVISIBLE,1,10,120);
+	end
 end;

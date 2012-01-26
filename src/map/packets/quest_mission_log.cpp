@@ -154,7 +154,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 			}
 
 		case MISSION_WINDURST:
-						if(status == 0x01) {
+			if(status == 0x01) {
 				generateCurrentMissionPacket(PChar);
 				logType = MISS_CURRENT;	
 				break;
@@ -226,8 +226,8 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 	WBUFW(data,(0x0C)-4) = PChar->m_missionLog[MISSION_ZILART-10].current;		// Rise of the Zilart 
 
 	WBUFL(data,(0x10)-4) = chains;												// Chains of Promathia Missions
-  //WBUFB(data,(0x16)-4) = 0x30;												// назначение неизвестно
-	WBUFW(data,(0x18)-4) = add_on_scenarios;									// A Crystalline Prophecy ,A Moogle Kupo d'Etat,A Shantotto Ascension
+  //WBUFB(data,(0x16)-4) = 0x30;                                                // назначение неизвестно
+	WBUFW(data,(0x18)-4) = add_on_scenarios;                                    // A Crystalline Prophecy ,A Moogle Kupo d'Etat,A Shantotto Ascension
 }
 
 void CQuestMissionLogPacket::generateCompleteMissionPacket(CCharEntity * PChar) 

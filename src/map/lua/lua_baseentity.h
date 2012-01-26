@@ -126,8 +126,9 @@ public:
 	int32 levelRestriction(lua_State*);		// Establish/return current level restriction
 
 	int32 showText(lua_State*);				// Displays Dialog for npc
-	int32 messageSpecial(lua_State*);		// Sends Special Message Dialog
-	int32 messageSystem(lua_State*);		// Sends System Message Dialog
+	int32 messageSpecial(lua_State*);		// Sends Special Message
+	int32 messageSystem(lua_State*);		// Sends System Message
+    int32 messageBasic(lua_State*);         // Sends Basic Message
 
 	int32 release(lua_State*);				// Stops event
 	int32 startEvent(lua_State*);			// Begins Event

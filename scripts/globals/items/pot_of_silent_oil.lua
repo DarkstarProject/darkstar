@@ -1,4 +1,8 @@
-
+-----------------------------------------
+--	ID: 4165
+--	Silent oil
+--	This lubricant cuts down 99.99% of all friction
+-----------------------------------------
 
 require("scripts/globals/status");
 
@@ -6,6 +10,7 @@ require("scripts/globals/status");
 -- OnItemCheck
 -----------------------------------------
 function onItemCheck(target)
+	return 0;
 end;
 
 -----------------------------------------
@@ -13,5 +18,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_SNEAK,1,0,90);
+	if (not target:hasStatusEffect(EFFECT_SNEAK)) then
+		target:addStatusEffect(EFFECT_SNEAK,1,10,90);
+	end
 end;

@@ -38,13 +38,13 @@ CPetSyncPacket::CPetSyncPacket(CCharEntity* PChar)
 	this->type = 0x67;
 	this->size = 0x12;
 
+    DSP_DEBUG_BREAK_IF(PChar->PPet == NULL);
+
 	WBUFB(data,(0x04)-4) = 0x44; 	// назначение неизвестно
 	WBUFB(data,(0x05)-4) = 0x08; 	// назначение неизвестно
 
 	WBUFW(data,(0x06)-4) = PChar->targid;
 	WBUFL(data,(0x08)-4) = PChar->id;
-
-	//DSP_DEBUG_BREAK_IF(PChar->PPet == NULL);
 
 	WBUFW(data,(0x0C)-4) = PChar->PPet->targid;
 	WBUFB(data,(0x0E)-4) = PChar->PPet->GetHPP();

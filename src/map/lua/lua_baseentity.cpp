@@ -50,6 +50,7 @@
 #include "../packets/menu_mog.h"
 #include "../packets/menu_merit.h"
 #include "../packets/menu_raisetractor.h"
+#include "../packets/message_basic.h"
 #include "../packets/message_special.h"
 #include "../packets/message_standard.h"
 #include "../packets/message_system.h"
@@ -2030,6 +2031,33 @@ inline int32 CLuaBaseEntity::messageSpecial(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Отправляем базовое сообщение персонажу                               *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::messageBasic(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    uint16 messageID = (uint16)lua_tointeger(L,1);
+
+	uint32 param0 = 0;
+	uint32 param1 = 0;
+
+    if( !lua_isnil(L,2) && lua_isnumber(L,2) )
+        param0 = (uint32)lua_tointeger(L,2);
+    if( !lua_isnil(L,3) && lua_isnumber(L,3) )
+        param1 = (uint32)lua_tointeger(L,3);
+		
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageBasicPacket(m_PBaseEntity, m_PBaseEntity, param0, param1, messageID));
+    return 0;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::messageSystem(lua_State* L)
@@ -3174,6 +3202,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEvent),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEventTarget),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showText),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageBasic),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSpecial),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendMenu),
