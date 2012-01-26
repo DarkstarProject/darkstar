@@ -1,13 +1,19 @@
 -----------------------------------
 -- Area: Bostaunieux Obliette
--- NPC: Novalmauge
+-- NPC:  Novalmauge
+-- Starts and Finishes Quest: The Rumor
 -- Involved in Quest: The Holy Crest and Trouble at the Sluice
 -- @zone 167
 -- @pos 70 -24 21
 -----------------------------------
-
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
 
 -----------------------------------
@@ -15,24 +21,20 @@ require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-Rumor = player:getQuestStatus(0,61);
-FlorVar= player:getVar("QuestFlorVar")
-if (FlorVar == 2 or FlorVar == 3) then
-	count = trade:getItemCount();
-		florecita = trade:hasItemQty(959, 1);
-		gil = trade:getGil();
-		if (florecita and count == 1 and gil == 0) then
+
+	FlorVar= player:getVar("QuestFlorVar");
+	
+	if(FlorVar == 2 or FlorVar == 3) then
+		if(trade:hasItemQty(959,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0011);
-			end
-			end
-if (Rumor == 1) then
-	count = trade:getItemCount();
-		florecita = trade:hasItemQty(2015, 1);
-		gil = trade:getGil();
-		if (florecita and count == 1 and gil == 0) then
+		end
+	end
+	
+	if(player:getQuestStatus(SANDORIA,THE_RUMOR) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(930,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x000c);
-			end
-			end
+		end
+	end
 end;
 
 -----------------------------------
@@ -40,24 +42,24 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-Rumor = player:getQuestStatus(0,61);
-FlorVar = player:getVar("QuestFlorVar");
-TheHolyCrest = player:getVar("TheHolyCrest_Event");
-FlorVar= player:getVar("QuestFlorVar");
-sanFame = player:getFameLevel(SANDORIA);
-		if (TheHolyCrest == 1) then
-			player:startEvent(0x0006);
-		elseif (TheHolyCrest == 2) then
-			player:startEvent(0x0007);
-		elseif (FlorVar == 1) then
-	player:startEvent(0x000f)
-	NewFlorVar = FlorVar + 1;
-              player:setVar("QuestFlorVar",NewFlorVar) 
-		elseif (FlorVar == 2) then
+
+	theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
+	TheHolyCrest = player:getVar("TheHolyCrest_Event");
+	FlorVar= player:getVar("QuestFlorVar");
+	
+	if(TheHolyCrest == 1) then
+		player:startEvent(0x0006);
+	elseif(TheHolyCrest == 2) then
+		player:startEvent(0x0007);
+	elseif(FlorVar == 1) then
+		player:startEvent(0x000f);
+		NewFlorVar = FlorVar + 1;
+		player:setVar("QuestFlorVar",NewFlorVar);
+	elseif(FlorVar == 2) then
 		player:startEvent(0x0010);
-		elseif (Rumor == 0 and sanFame >= 3) then
+	elseif(theRumor == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
 		player:startEvent(0x000d);
-		elseif (Rumor == 1) then
+	elseif(theRumor == QUEST_ACCEPTED) then
 		player:startEvent(0x000b);
 	else
 		player:startEvent(0x000a);
@@ -80,25 +82,31 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-FlorVar= player:getVar("QuestFlorVar")
-	if (csid == 0x0006) then
+
+	FlorVar= player:getVar("QuestFlorVar")
+	
+	if(csid == 0x0006) then
 		player:setVar("TheHolyCrest_Event",2);
 	end
-	if (csid == 0x0011) then
-	player:tradeComplete();
-	player:addKeyItem(166)
-	player:messageSpecial(6540,166)
-	NewFlorVar = FlorVar + 1;
-              player:setVar("QuestFlorVar",NewFlorVar)
-			  	end
-				if (csid == 0x000d and option == 1) then
-player:addQuest(0,61);		
-end		
-if (csid == 0x000c) then
-player:completeQuest(0,61);
-player:addFame(SANDORIA,SAN_FAME*30);
-player:tradeComplete();
-player:addItem(4853);
-player:messageSpecial(6537,4853);
-end
+	if(csid == 0x0011) then
+		player:tradeComplete();
+		player:addKeyItem(NEUTRALIZER);
+		player:messageSpecial(KEYITEM_OBTAINED,NEUTRALIZER);
+		player:setVar("QuestFlorVar",FlorVar + 1);
+	end
+	if(csid == 0x000d and option == 1) then
+		player:addQuest(SANDORIA,THE_RUMOR);			
+	elseif(csid == 0x000c) then
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4853); -- Scroll of Drain
+		else
+			player:tradeComplete();
+			player:addItem(4853);
+			player:messageSpecial(ITEM_OBTAINED, 4853); -- Scroll of Drain
+			player:setVar("sharpeningTheSwordCS",0);
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:completeQuest(SANDORIA,THE_RUMOR);
+		end
+	end
+	
 end;

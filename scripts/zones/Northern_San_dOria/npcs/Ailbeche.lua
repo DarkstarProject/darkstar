@@ -150,7 +150,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17643);
 		else
-			player:delKeyItem(ORDELLE_WHETStone);
+			player:delKeyItem(ORDELLE_WHETSTONE);
 			player:addItem(17643);
 			player:messageSpecial(ITEM_OBTAINED, 17643); -- Honor Sword
 			player:setVar("sharpeningTheSwordCS",0);
