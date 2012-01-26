@@ -153,3 +153,13 @@ OPWARP = {5,"RONF_TELE",0x64,-446,-20,-220,0,
           1,"BAST_TELE",0xEA,89,0,-66,0,
           2,"WIND_TELE",0xF0,193,-12,220,64,
 		  "TAVN_TELE",0x18,-538,-6,-55,116};
+		  
+-----------------------------------
+-- Outpost Vendor
+-- {ItemID,Price}
+-----------------------------------
+OPVENDOR = {4148,316,		-- Antidote
+			4151,800,		-- Echo Drops
+			4128,4832,		-- Ether
+			4150,2595,		-- Eye Drops
+			4112,910}		-- Potion

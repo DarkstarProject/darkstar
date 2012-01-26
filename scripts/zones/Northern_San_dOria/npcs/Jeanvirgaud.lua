@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
---  NPC: Jeanvirgaud
---  Type: Outpost Teleporter NPC
---  @zone: 231
---  @pos: 45.559 -0.199 26.300
+-- Area: Northern San d'Oria
+-- NPC:  Jeanvirgaud
+-- Type: Outpost Teleporter NPC
+-- @zone 231
+-- @pos 45.559 -0.199 26.300
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;

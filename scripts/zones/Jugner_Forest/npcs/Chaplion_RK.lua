@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Valkurm Dunes
---	NPC:  Quanteilleron, R.K.
+--	Area: Jugner Forest
+--	NPC:  Chaplion, R.K.
 
 -- Outpost Conquest Guards
 
@@ -10,13 +10,13 @@
 -- X Accepts supplies for the region in which the guard is located, for finishing Supply Quest
 --   Accepts Garrison starting item of the region, in which the guard is located 
 -------------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/conquestguards");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/Jugner_Forest/TextIDs");
 
 NationNPC = 0; -- 0: San d'oria, 1: Bastok, 2: Windurst
 
@@ -34,10 +34,10 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getNation() == NationNPC) then
-		if(player:hasKeyItem(ZULKHEIM_SUPPLIES)) then
-			player:messageSpecial(7286);
-			player:setVar("ZULK_TELE", 1);
-			player:delKeyItem(ZULKHEIM_SUPPLIES);
+		if(player:hasKeyItem(NORVALLEN_SUPPLIES)) then
+			player:messageSpecial(7961);
+			player:setVar("NORV_TELE", 1);
+			player:delKeyItem(NORVALLEN_SUPPLIES);
 		else
 			player:startEvent(0x7ffb); 
 		end

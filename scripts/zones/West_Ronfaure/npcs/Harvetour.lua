@@ -9,10 +9,12 @@ package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/conquest");
 require("scripts/globals/conquestguards");
 require("scripts/zones/West_Ronfaure/TextIDs");
 
-NationNPC = 0; -- 0: San d'oria, 1: Bastok, 2: Windurst
+NationNPC = getRegionOwner(RONFAURE);
 Region = "RONF_TELE";
 RequiredCP = 100;
 RequiredGils = 100;
@@ -64,7 +66,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("OPTION: %u",option);
 	
-	if(option == 2) then
+	if(option == 1) then
+		showShop(player,NationNPC,OPVENDOR);
+	elseif(option == 2) then
 		Nation = player:getNation();
 		
 		if(Nation ~= NationNPC) then RequiredGils = RequiredGils * 3; end

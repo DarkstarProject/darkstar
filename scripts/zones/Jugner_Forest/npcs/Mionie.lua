@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: Valkurm Dunes
--- NPC:  Medicine Axe
--- @zone 103
--- @pos 144 -7 104
+-- Area: Jugner Forest
+-- NPC:  Mionie
+-- @zone 104
+-- @pos 54 0 -11
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
@@ -12,12 +12,12 @@ require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/globals/conquestguards");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/Jugner_Forest/TextIDs");
 
-NationNPC = getRegionOwner(ZULKHEIM);
-Region = "ZULK_TELE";
-RequiredCP = 100;
-RequiredGils = 100;
+NationNPC = getRegionOwner(NORVALLEN);
+Region = "NORV_TELE";
+RequiredCP = 150;
+RequiredGils = 150;
 
 -----------------------------------
 -- onTrade Action
