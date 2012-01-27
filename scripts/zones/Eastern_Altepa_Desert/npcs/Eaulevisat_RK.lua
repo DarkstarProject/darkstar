@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Valkurm Dunes
---	NPC:  Quanteilleron, R.K.
+-- Area: Eastern Altepa desert
+-- NPC:  Eaulevisat, R.K.
 
 -- Outpost Conquest Guards
 
@@ -10,16 +10,18 @@
 -- X Accepts supplies for the region in which the guard is located, for finishing Supply Quest
 --   Accepts Garrison starting item of the region, in which the guard is located 
 -------------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/Eastern_Altepa_desert/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
--------------------------------------
+--------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 require("scripts/globals/conquestguards");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/Eastern_Altepa_desert/TextIDs");
 
 NationNPC = 0; -- 0: San d'oria, 1: Bastok, 2: Windurst
+Region = "KUZO_TELE";
 
 ----------------------------------- 
 -- onTrade Action 
@@ -35,16 +37,16 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getNation() == NationNPC) then
-		if(player:hasKeyItem(ZULKHEIM_SUPPLIES)) then
-			player:messageSpecial(7286);
-			player:setVar("ZULK_TELE", 1);
-			player:delKeyItem(ZULKHEIM_SUPPLIES);
+		if(player:hasKeyItem(KUZOTZ_SUPPLIES)) then
+			player:messageSpecial(7160);
+			player:setVar(Region, 1);
+			player:delKeyItem(KUZOTZ_SUPPLIES);
 		else
-			player:startEvent(0x7ffb); 
+			player:startEvent(0x7ffb);
 		end
 	end
 	
-end;  
+end; 
 
 -----------------------------------
 -- onEventUpdate
@@ -67,10 +69,10 @@ function onEventFinish(player,csid,option)
 		player:delStatusEffect(EFFECT_SIGNET);
 		ranktime = player:getRank() * 60 * 60;
 		duration = ranktime + 0 + 10800;
-		player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0);
+		player:addStatusEffect(EFFECT_SIGNET,0,0,0,0);
 	elseif(option == 4) then
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
 	end
-
+	
 end;

@@ -15,6 +15,7 @@ package.loaded["scripts/globals/conquestguards"] = nil;
 -------------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Jugner_Forest/TextIDs");
 
