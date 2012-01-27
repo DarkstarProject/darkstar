@@ -91,6 +91,7 @@ void CParty::DisbandParty()
 			    PChar->PTreasurePool->DelMember(PChar);
 			    PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
 			    PChar->PTreasurePool->AddMember(PChar);
+                PChar->PTreasurePool->UpdatePool(PChar);
 		    }
 		    Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE charid = %u", 0, PChar->id);
 	    }
@@ -227,6 +228,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 					    PChar->PTreasurePool->DelMember(PChar);
 					    PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
 					    PChar->PTreasurePool->AddMember(PChar);
+                        PChar->PTreasurePool->UpdatePool(PChar);
 				    }
 				    Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = 0 WHERE charid = %u", PChar->id);
                 }
