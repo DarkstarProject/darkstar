@@ -1,22 +1,22 @@
 -----------------------------------
--- Area: Valkurm Dunes
--- NPC:  Medicine Axe
--- @zone 103
--- @pos 144 -7 104
+-- Area: Xarcabard
+-- NPC:  Pelogrant
+-- @zone 112
+-- @pos 210 -22 -201
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/Xarcabard/TextIDs");
 
-NationNPC = getRegionOwner(ZULKHEIM);
-Region = "ZULK_TELE";
-RequiredLvL = 10;
-RequiredCP = 100;
-RequiredGils = 100;
+NationNPC = getRegionOwner(VALDEAUNIA);
+Region = "VALD_TELE";
+RequiredLvL = 40;
+RequiredCP = 400;
+RequiredGils = 400;
 
 -----------------------------------
 -- onTrade Action

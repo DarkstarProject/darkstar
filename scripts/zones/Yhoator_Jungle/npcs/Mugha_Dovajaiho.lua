@@ -1,22 +1,22 @@
 -----------------------------------
--- Area: Valkurm Dunes
--- NPC:  Medicine Axe
--- @zone 103
--- @pos 144 -7 104
+-- Area: Yhoator Jungle
+-- NPC:  Mugha Dovajaiho
+-- @zone 124
+-- @pos 202 0 -82
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/Yhoator_Jungle/TextIDs");
 
-NationNPC = getRegionOwner(ZULKHEIM);
-Region = "ZULK_TELE";
-RequiredLvL = 10;
-RequiredCP = 100;
-RequiredGils = 100;
+NationNPC = getRegionOwner(ELSHIMOUPLANDS);
+Region = "ELUP_TELE";
+RequiredLvL = 35;
+RequiredCP = 350;
+RequiredGils = 350;
 
 -----------------------------------
 -- onTrade Action

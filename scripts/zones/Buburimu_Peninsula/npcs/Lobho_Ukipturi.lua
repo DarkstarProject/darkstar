@@ -1,19 +1,19 @@
 -----------------------------------
--- Area: Valkurm Dunes
--- NPC:  Medicine Axe
--- @zone 103
--- @pos 144 -7 104
+-- Area: Buburimu Peninsula
+-- NPC:  Lobho Ukipturi
+-- @zone 118
+-- @pos -485 -31 50
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
-NationNPC = getRegionOwner(ZULKHEIM);
-Region = "ZULK_TELE";
+NationNPC = getRegionOwner(KOLSHUSHU);
+Region = "KOLS_TELE";
 RequiredLvL = 10;
 RequiredCP = 100;
 RequiredGils = 100;

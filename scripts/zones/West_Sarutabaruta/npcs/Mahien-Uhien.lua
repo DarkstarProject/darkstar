@@ -1,19 +1,19 @@
 -----------------------------------
--- Area: Valkurm Dunes
--- NPC:  Medicine Axe
--- @zone 103
--- @pos 144 -7 104
+-- Area: West Sarutabaruta
+-- NPC:  Mahien-Uhien
+-- @zone 115
+-- @pos -13 -12 311
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/West_Sarutabaruta/TextIDs");
 
-NationNPC = getRegionOwner(ZULKHEIM);
-Region = "ZULK_TELE";
+NationNPC = getRegionOwner(SARUTABARUTA);
+Region = "SARU_TELE";
 RequiredLvL = 10;
 RequiredCP = 100;
 RequiredGils = 100;

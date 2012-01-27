@@ -1,22 +1,22 @@
 -----------------------------------
--- Area: Valkurm Dunes
--- NPC:  Medicine Axe
--- @zone 103
--- @pos 144 -7 104
+-- Area: The Sanctuary of Zitah
+-- NPC:  Kasim
+-- @zone 121
+-- @pos -46 0 -148
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/The_Sanctuary_of_Zitah/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/The_Sanctuary_of_Zitah/TextIDs");
 
-NationNPC = getRegionOwner(ZULKHEIM);
-Region = "ZULK_TELE";
-RequiredLvL = 10;
-RequiredCP = 100;
-RequiredGils = 100;
+NationNPC = getRegionOwner(LITELOR);
+Region = "LITE_TELE";
+RequiredLvL = 25;
+RequiredCP = 250;
+RequiredGils = 250;
 
 -----------------------------------
 -- onTrade Action

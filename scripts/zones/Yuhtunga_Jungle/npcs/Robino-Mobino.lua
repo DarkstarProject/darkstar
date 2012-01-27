@@ -1,22 +1,22 @@
 -----------------------------------
--- Area: Valkurm Dunes
--- NPC:  Medicine Axe
--- @zone 103
--- @pos 144 -7 104
+-- Area: Yuhtunga Jungle
+-- NPC:  Robino-Mobino
+-- @zone 123
+-- @pos -244 0 -401
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
-NationNPC = getRegionOwner(ZULKHEIM);
-Region = "ZULK_TELE";
-RequiredLvL = 10;
-RequiredCP = 100;
-RequiredGils = 100;
+NationNPC = getRegionOwner(ELSHIMOLOWLANDS);
+Region = "ELLO_TELE";
+RequiredLvL = 25;
+RequiredCP = 250;
+RequiredGils = 250;
 
 -----------------------------------
 -- onTrade Action

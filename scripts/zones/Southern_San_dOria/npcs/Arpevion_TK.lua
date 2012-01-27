@@ -16,7 +16,7 @@ package.loaded["scripts/globals/conquestguards"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
+require("scripts/globals/conquest");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
@@ -78,21 +78,28 @@ end;
 
 function onTrigger(player,npc)
    
-	basenumber = 0;
+	SupplyAvailable = 0;
+	SupplyDone = 0;
 	startnumber = 32;
+	LvL = player:getMainLvl()
    
-	for nb = 1,96,6 do
+	for nb = 1,128,8 do
 		if(player:getVar(SupplyRun[nb + 5]) == 1) then
-			basenumber = basenumber + startnumber;
+			SupplyDone = SupplyDone + startnumber;
 		end
+		
+		if(LvL < SupplyRun[nb + 6] or getRegionOwner(SupplyRun[nb + 7]) ~= SANDORIA) then
+			SupplyAvailable = SupplyAvailable + startnumber;
+		end
+		
 		startnumber = startnumber * 2;
 	end
    
    Menu1 = (NPCNation * 16) + (NationAlly*256)  + 65537;
    Menu2 = 0;
    Menu3 = SandRank + (BastRank * 4) + (WindRank * 16);
-   Menu4 = 2145386527;
-   Menu5 = basenumber;
+   Menu4 = 2145386527 + SupplyAvailable;
+   Menu5 = SupplyDone;
    Menu6 = player:getRank() + (player:getNation() * 32);
    Menu7 = PlayerCP;
    Menu8 = 0; -- expedition recompense
@@ -162,13 +169,15 @@ function onEventFinish(player,csid,option)
 		end
 	
 	elseif(option >= 65541 and option <= 65556) then
-		for nb = 1, 96, 6 do
+		for nb = 1, 128, 8 do
 			if(option == SupplyRun[nb]) then
 				supDay = player:getVar("supplyRun_Day");
 				TP = player:getVar(SupplyRun[nb+5]);
 				KI = player:hasKeyItem(SupplyRun[nb+1]);
 				
-				if(supDay ~= VanadielDayOfTheYear() and TP == 0 and KI == false) then
+				if(supDay == VanadielDayOfTheYear()) then
+					player:messageSpecial(WAIT_VANADIEL_DAY);
+				elseif(TP == 0 and KI == false) then
 					player:addKeyItem(SupplyRun[nb+1]);
 					player:messageSpecial(KEYITEM_OBTAINED,SupplyRun[nb+1]);
 					player:setVar("supplyRun_Day",VanadielDayOfTheYear());

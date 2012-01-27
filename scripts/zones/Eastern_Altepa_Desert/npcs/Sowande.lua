@@ -1,22 +1,22 @@
 -----------------------------------
--- Area: Valkurm Dunes
--- NPC:  Medicine Axe
--- @zone 103
--- @pos 144 -7 104
+-- Area: Eastern Altepa Desert
+-- NPC:  Sowande
+-- @zone 114
+-- @pos -257 8 -249
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
-NationNPC = getRegionOwner(ZULKHEIM);
-Region = "ZULK_TELE";
-RequiredLvL = 10;
-RequiredCP = 100;
-RequiredGils = 100;
+NationNPC = getRegionOwner(KUZOTZ);
+Region = "KUZO_TELE";
+RequiredLvL = 30;
+RequiredCP = 300;
+RequiredGils = 300;
 
 -----------------------------------
 -- onTrade Action

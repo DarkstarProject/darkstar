@@ -10,6 +10,7 @@ package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/conquest");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
@@ -37,8 +38,8 @@ function onTrigger(player,npc)
 	basenumber = 2145386527;
 	startnumber = 32;
 	
-	for nb = 1,96,6 do
-		if(player:getVar(SupplyRun[nb + 5]) == 0) then
+	for nb = 1,128,8 do
+		if(player:getVar(SupplyRun[nb + 5]) == 0 or LvL < SupplyRun[nb + 6]) then
 			basenumber = basenumber + startnumber;
 		end
 		startnumber = startnumber * 2;
@@ -67,13 +68,8 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x02cc) then
 		
-		for nb = 1,112,7 do
-			if(OPWARP[nb] == option) then
-				player:setPos(OPWARP[nb+3],OPWARP[nb+4],OPWARP[nb+5],OPWARP[nb+6],OPWARP[nb+2]);
-				player:delGil(RequiredGils);
-				break
-			end
-		end
+		toOutpost(player,option);
+		player:delGil(RequiredGils);
 		
 	end
 	

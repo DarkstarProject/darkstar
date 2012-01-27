@@ -5,17 +5,16 @@
 -- @pos -448 -19 -214
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/globals/conquestguards");
 require("scripts/zones/West_Ronfaure/TextIDs");
 
 NationNPC = getRegionOwner(RONFAURE);
 Region = "RONF_TELE";
+RequiredLvL = 10;
 RequiredCP = 100;
 RequiredGils = 100;
 
@@ -41,7 +40,7 @@ function onTrigger(player,npc)
 		MenuType = 0; RequiredGils = RequiredGils * 3; 
 	end
 	
-	if(player:getVar(Region) == 0 or player:getMainLvl() < 10 or MyGils < RequiredGils) then 
+	if(player:getVar(Region) == 0 or player:getMainLvl() < RequiredLvL or MyGils < RequiredGils) then 
 		RequiredGils = 0; 
 	end
 	
@@ -67,19 +66,15 @@ function onEventFinish(player,csid,option)
 --printf("OPTION: %u",option);
 	
 	if(option == 1) then
-		showShop(player,NationNPC,OPVENDOR);
+		ShowOPVendorShop(player);
 	elseif(option == 2) then
 		Nation = player:getNation();
 		
 		if(Nation ~= NationNPC) then RequiredGils = RequiredGils * 3; end
 		
-		for nb = 113,133,7 do
-			if(OPWARP[nb] == Nation) then
-				player:setPos(OPWARP[nb+3],OPWARP[nb+4],OPWARP[nb+5],OPWARP[nb+6],OPWARP[nb+2]);
-				player:delGil(RequiredGils);
-				break
-			end
-		end
+		toHomeNation(player);
+		player:delGil(RequiredGils);
+		
 	end
 	
 end;

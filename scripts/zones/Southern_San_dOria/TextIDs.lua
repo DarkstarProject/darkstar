@@ -66,3 +66,6 @@ FERDOULEMIONT_SHOP_DIALOG = 8230; -- Hello!
 
 	 POURETTE_OPEN_DIALOG = 8243; -- Derfland produce for sale!
    POURETTE_CLOSED_DIALOG = 8244; -- Listen, adventurer... I can't import from Derfland until the region knows San d'Orian power!
+
+   -- Supply Run quest
+WAIT_VANADIEL_DAY = 8342;

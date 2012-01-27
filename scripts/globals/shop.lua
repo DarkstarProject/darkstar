@@ -85,20 +85,21 @@ end;
 
 -----------------------------------
 -- function ShowOPVendorShop
---
 -- creates the usual OP vendor store
+-- {ItemID,Price}
 -----------------------------------
 
 function ShowOPVendorShop(player)
 
-stock = 
-{
-	0x1034,316,  --Antidote
-	0x1037,800,  --Echo Drops
-	0x1020,4832, --Ether
-	0x1036,2595, --Eye Drops
-	0x1010,910   --Potion
-};
+	stock = 
+	{
+		0x1034,316,		--Antidote
+		0x1037,800,		--Echo Drops
+		0x1020,4832,	--Ether
+		0x1036,2595,	--Eye Drops
+		0x1010,910		--Potion
+	};
 
-showShop(player, STATIC, stock)
+	showShop(player, STATIC, stock);
+
 end;

@@ -1,19 +1,19 @@
 -----------------------------------
--- Area: Valkurm Dunes
--- NPC:  Medicine Axe
--- @zone 103
--- @pos 144 -7 104
+-- Area: North Gustaberg
+-- NPC:  Kuleo
+-- @zone 106
+-- @pos -586 39 61
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/North_Gustaberg/TextIDs");
 
-NationNPC = getRegionOwner(ZULKHEIM);
-Region = "ZULK_TELE";
+NationNPC = getRegionOwner(GUSTABERG);
+Region = "GUST_TELE";
 RequiredLvL = 10;
 RequiredCP = 100;
 RequiredGils = 100;
