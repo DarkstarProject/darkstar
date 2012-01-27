@@ -68,8 +68,8 @@ public:
     CBattleEntity* GetQuaterMaster();                   // узнаем владельца сокровищ
 
 	void DisbandParty();								// распускаем группу
-	void ReloadParty(CCharEntity* PChar);               // перезагружаем карту группы для всех участников группы
-	int8 ReloadPartyMembers(CCharEntity* PChar);        // oбновляем статусы участников группы для выбранного персонажа
+	void ReloadParty();                                 // перезагружаем карту группы для всех участников группы
+	void ReloadPartyMembers(CCharEntity* PChar);        // oбновляем статусы участников группы для выбранного персонажа
 	void ReloadTreasurePool(CCharEntity* PChar);
 
     void AddMember(CBattleEntity* PEntity);             // добавляем персонажа в группу

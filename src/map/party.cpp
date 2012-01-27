@@ -122,15 +122,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 				case 5: SetQuaterMaster(NULL);	break;
 			    case 6: SetSyncTarget(PChar);	break;
 			}
-			PushPacket(NULL, 0, new CPartyDefinePacket(this));
-			
-			for (int32 i = 0; i < members.size(); ++i) 
-			{
-				if (PChar->getZone() == members.at(i)->getZone())
-				{
-				    PushPacket(NULL, PChar->getZone(), new CPartyMemberUpdatePacket((CCharEntity*)members.at(i), i, PChar->getZone()));
-			    }
-			}
+            ReloadParty();
 		    return;
         }
     }
@@ -220,7 +212,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 				    PChar->pushPacket(new CCharSyncPacket(PChar));
 				    PChar->PParty = NULL;
 
-				    PushPacket(NULL, 0, new CPartyDefinePacket(this));
+				    ReloadParty();
 
 				    if (PChar->status != STATUS_SHUTDOWN &&
 					    PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
@@ -291,7 +283,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
 
         CCharEntity* PChar = (CCharEntity*)PEntity;
 
-	    ReloadParty(PChar);
+	    ReloadParty();
 	    ReloadTreasurePool(PChar);
 
 	    if (PChar->nameflags.flags & FLAG_INVITE) 				
@@ -356,20 +348,23 @@ CBattleEntity* CParty::GetQuaterMaster()
 }
 
 /************************************************************************
-*																		*
-*  Обновляем карту группы для всех членов. Обновляем всех статусы всех	*
-*  членов группы для указанного персонажа. Обновляем статус указанного	*
-*  персонажа для всех членов группы, находящихся с ним в одной зоне		*
-*																		*
+*                                                                       *
+*  Обновляем карту группы для всех членов группы                        *
+*                                                                       *
 ************************************************************************/
 
-void CParty::ReloadParty(CCharEntity* PChar) 
+void CParty::ReloadParty() 
 {
-	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+    for (int32 i = 0; i < members.size(); ++i) 
+	{
+        CCharEntity* PChar = (CCharEntity*)members.at(i);
 
-	PushPacket(NULL, 0, new CPartyDefinePacket(this));
-	PushPacket(PChar, PChar->getZone(), new CPartyMemberUpdatePacket(PChar, ReloadPartyMembers(PChar), PChar->getZone()));
+        PChar->pushPacket(new CPartyDefinePacket(this));
+        for (uint8 y = 0; y < members.size(); ++y)
+        {
+            PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)members.at(y), y, PChar->getZone()));
+        }
+    }
 }
 
 /************************************************************************
@@ -379,22 +374,15 @@ void CParty::ReloadParty(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-int8 CParty::ReloadPartyMembers(CCharEntity* PChar) 
+void CParty::ReloadPartyMembers(CCharEntity* PChar) 
 {
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
-	int8 MemberNumber = -1;
-
-	for (uint32 i = 0; i < members.size(); ++i) 
+    for (int32 i = 0; i < members.size(); ++i) 
 	{
-		if (PChar == members.at(i))
-		{
-			MemberNumber = i;
-		}
-		PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)members.at(i), i, PChar->getZone()));
-	}
-	return MemberNumber;
+        PushPacket(NULL, 0, new CPartyMemberUpdatePacket((CCharEntity*)members.at(i), i, PChar->getZone()));
+    }
 }
 
 /************************************************************************

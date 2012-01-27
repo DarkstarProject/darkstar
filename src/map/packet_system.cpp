@@ -256,7 +256,7 @@ int32 SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	if (PChar->PParty != NULL)
 	{
-		PChar->PParty->ReloadParty(PChar);
+		PChar->PParty->ReloadParty();
 	}
 	// TODO: в MogHouse TreasurePool сейчас не создается, по этому необходима проверка
 	if (PChar->PTreasurePool != NULL)
