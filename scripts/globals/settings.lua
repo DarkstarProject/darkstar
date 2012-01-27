@@ -127,7 +127,8 @@ ABSORB_SPELL_TICK = 9; -- duration of 1 absorb spell tick
 SNEAK_INVIS_DURATION_MULTIPLIER = 1; -- multiplies duration of sneak,invis,deodorize to reduce player torture. 1 = retail behavior. MUST BE INTEGER.
 
 --CELEBRATIONS
-EXPLORER_MOOGLE = 1; 
+EXPLORER_MOOGLE = 1;
+EXPLORER_MOOGLE_LEVELCAP = 10;
 
 --MISC
 HOMEPOINT_HEAL = 0; --Set to 1 if you want Home Points to heal you like in single-player Final Fantasy games.

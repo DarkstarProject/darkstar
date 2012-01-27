@@ -37,12 +37,12 @@ function onTrigger(player,npc)
 teleport = 0;
 currentZone = 231;
 	
-	if (player:getGil() < 300) then
+	if (player:getGil() < 300 or 
+	    player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP) 
+	then
 		teleport = 1;
 	end
-
-	player:startEvent(0x35e,currentZone,0,teleport);	
-	
+	player:startEvent(0x035e,currentZone,0,teleport);	
 end;
 
 -----------------------------------
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x35e) then
+	if (csid == 0x035e) then
 		if (option == 1) then		
 			toExplorerMoogle(player,231);
 			player:delGil(300);
@@ -80,8 +80,4 @@ function onEventFinish(player,csid,option)
 			player:delGil(300);
 		end
 	end
-
 end;
-
-
-
