@@ -16,7 +16,6 @@ package.loaded["scripts/globals/conquestguards"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/status");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Eastern_Altepa_desert/TextIDs");
 
@@ -69,7 +68,7 @@ function onEventFinish(player,csid,option)
 		player:delStatusEffect(EFFECT_SIGNET);
 		ranktime = player:getRank() * 60 * 60;
 		duration = ranktime + 0 + 10800;
-		player:addStatusEffect(EFFECT_SIGNET,0,0,0,0);
+		player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0);
 	elseif(option == 4) then
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);

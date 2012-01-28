@@ -14,7 +14,6 @@ package.loaded["scripts/globals/conquestguards"] = nil;
 -------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/conquest");
 require("scripts/globals/conquestguards");
@@ -88,25 +87,26 @@ function onTrigger(player,npc)
 			SupplyDone = SupplyDone + startnumber;
 		end
 		
-		if(LvL < SupplyRun[nb + 6] or getRegionOwner(SupplyRun[nb + 7]) ~= SANDORIA) then
+		if(LvL < SupplyRun[nb + 6] or getRegionOwner(SupplyRun[nb + 7]) ~= NPCNation) then
 			SupplyAvailable = SupplyAvailable + startnumber;
 		end
 		
 		startnumber = startnumber * 2;
 	end
    
-   Menu1 = (NPCNation * 16) + (NationAlly*256)  + 65537;
-   Menu2 = 0;
-   Menu3 = SandRank + (BastRank * 4) + (WindRank * 16);
-   Menu4 = 2145386527 + SupplyAvailable;
-   Menu5 = SupplyDone;
-   Menu6 = player:getRank() + (player:getNation() * 32);
-   Menu7 = PlayerCP;
-   Menu8 = 0; -- expedition recompense
-   if(player:getNation() == NPCNation) then
+	Menu1 = (NPCNation * 16) + (NationAlly*256)  + 65537;
+	Menu2 = 0;
+	Menu3 = SandRank + (BastRank * 4) + (WindRank * 16);
+	Menu4 = 2145386527 + SupplyAvailable;
+	Menu5 = SupplyDone;
+	Menu6 = player:getRank() + (player:getNation() * 32);
+	Menu7 = PlayerCP;
+	Menu8 = 0; -- expedition recompense
+	
+	if(player:getNation() == NPCNation) then
 		player:startEvent(0x7ffb,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8); 
-   end
-   
+	end
+	
 end; 
 
 -----------------------------------
@@ -133,18 +133,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-   if(player:getNation() == 0 and NationAlly == 4 and SandRank >= CurNRank or 
-       player:getNation() == 1 and NationAlly == 2 and BastRank >= CurNRank or 
-       player:getNation() == 2 and NationAlly == 1 and WindRank >= CurNRank or
-       option == 1) then
-		duration = (player:getRank() + 3 + 3) * 3600;
-		
-		if(player:hasStatusEffect(EFFECT_SIGNET) == true) then 
-			player:delStatusEffect(EFFECT_SIGNET);
-			player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0); -- Grant Signet
-		else
-			player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0); -- Grant Signet
-		end
+   if(option == 1) then -- Grant Signet
+		player:delStatusEffect(EFFECT_SIGNET);
+		ranktime = player:getRank() * 60 * 60;
+		duration = ranktime + 0 + 10800;
+		player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0);
 		
 	elseif(option >= 32768 and option <= 32944) then
 		for Item = 1,size,3 do

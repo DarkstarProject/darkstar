@@ -14,6 +14,7 @@ require("scripts/globals/conquest");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
+NPCNation = 0;		-- NPCs Nationality (0 = Sand, 1 = Bast, 2 = Wind)
 RequiredCP = 100;
 RequiredGils = 100;
 
@@ -30,10 +31,11 @@ end;
 
 function onTrigger(player,npc)
 	
-	Nation = player:getNation();
 	LvL = player:getMainLvl();
 	MyGils = player:getGil();
 	MyCP = 0;
+	
+	if(player:getNation() ~= NPCNation) then AllowTP = 1; else AllowTP = 0; end
 	
 	basenumber = 2145386527;
 	startnumber = 32;
@@ -45,7 +47,7 @@ function onTrigger(player,npc)
 		startnumber = startnumber * 2;
 	end
 	
-	player:startEvent(0x02cc,MyGils,RequiredGils,0,RequiredCP,MyCP,Nation,LvL,basenumber);
+	player:startEvent(0x02cc,MyGils,RequiredGils,0,RequiredCP,MyCP,AllowTP,LvL,basenumber);
 	
 end;
 

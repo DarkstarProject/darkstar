@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: West Ronfaure
--- NPC:  Doladepaiton, R.K.
+--	Area: North Gustaberg
+--	NPC:  Shigezane, I.M.
 
 -- Outpost Conquest Guards
 
@@ -10,17 +10,16 @@
 -- X Accepts supplies for the region in which the guard is located, for finishing Supply Quest
 --   Accepts Garrison starting item of the region, in which the guard is located 
 -------------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
+package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
---------------------------------------
+-------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/conquestguards");
-require("scripts/zones/West_Ronfaure/TextIDs");
+require("scripts/zones/North_Gustaberg/TextIDs");
 
-NationNPC = 0; -- 0: San d'oria, 1: Bastok, 2: Windurst
-Region = "RONF_TELE";
+NationNPC = 1; -- 0: San d'oria, 1: Bastok, 2: Windurst
 
 ----------------------------------- 
 -- onTrade Action 
@@ -36,16 +35,16 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getNation() == NationNPC) then
-		if(player:hasKeyItem(RONFAURE_SUPPLIES)) then
-			player:messageSpecial(7446);
-			player:setVar(Region, 1);
-			player:delKeyItem(RONFAURE_SUPPLIES);
+		if(player:hasKeyItem(GUSTABERG_SUPPLIES)) then
+			player:messageSpecial(7396);
+			player:setVar("GUST_TELE", 1);
+			player:delKeyItem(GUSTABERG_SUPPLIES);
 		else
-			player:startEvent(0x7ffb);
+			player:startEvent(0x7ffb); 
 		end
 	end
 	
-end; 
+end;  
 
 -----------------------------------
 -- onEventUpdate
@@ -73,5 +72,5 @@ function onEventFinish(player,csid,option)
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
 	end
-	
+
 end;
