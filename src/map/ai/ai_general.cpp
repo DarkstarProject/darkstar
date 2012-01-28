@@ -79,6 +79,7 @@ void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 		case ACTION_ITEM_START:
         case ACTION_MAGIC_START:
         case ACTION_RANGED_START:
+        case ACTION_JOBABILITY_START:
 		case ACTION_DISENGAGE:
 		{
 			if (m_ActionType == ACTION_NONE ||
@@ -92,15 +93,6 @@ void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 		case ACTION_WEAPONSKILL_START:
 		{
 			if (m_ActionType == ACTION_ATTACK)
-			{
-				m_ActionType = Action;
-				m_ActionTargetID = TargetID;
-			}
-		}
-		break;
-		case ACTION_WEAPONSKILL_FINISH:
-		{
-			if (m_ActionType == ACTION_WEAPONSKILL_START)
 			{
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
@@ -217,8 +209,6 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 		m_ActionType != ACTION_MAGIC_FINISH  &&
 		m_ActionType != ACTION_MAGIC_INTERRUPT)
 	{
-		//DSP_DEBUG_BREAK_IF(m_PSpell != NULL);
-
 		m_PSpell = battleutils::GetSpell(SpellID);
 	}
 }
@@ -247,8 +237,6 @@ void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
 	if (m_ActionType != ACTION_WEAPONSKILL_START   &&
 		m_ActionType != ACTION_WEAPONSKILL_FINISH)
 	{
-		//DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
-
 		m_PWeaponSkill = battleutils::GetWeaponSkill(WSkillID);
 	}
 }
@@ -261,7 +249,7 @@ void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
 
 CWeaponSkill* CAIGeneral::GetCurrentWeaponSkill()
 {
-	//DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
+	DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
 	
 	return m_PWeaponSkill;
 }
@@ -277,8 +265,6 @@ void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
 	if (m_ActionType != ACTION_JOBABILITY_START   &&
 		m_ActionType != ACTION_JOBABILITY_FINISH)
 	{
-		//DSP_DEBUG_BREAK_IF(m_PWeaponSkill != NULL);
-
 		m_PJobAbility = battleutils::GetAbility(JobAbilityID);
 	}
 }
@@ -291,7 +277,7 @@ void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
 
 CAbility* CAIGeneral::GetCurrentJobAbility()
 {
-	//DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
+	DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
 	
 	return m_PJobAbility;
 }
@@ -307,17 +293,6 @@ CBattleEntity* CAIGeneral::GetBattleTarget()
 	//DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
 	return m_PBattleTarget;
-}
-
-/************************************************************************
-*																		*
-*	Set Mob Skill														*
-*																		*
-************************************************************************/
-
-void CAIGeneral::SetCurrentMobSkill(uint16 SkillID)
-{
-    m_PMobSkill = battleutils::GetMobSkill(SkillID);
 }
 
 /************************************************************************

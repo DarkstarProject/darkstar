@@ -92,7 +92,6 @@ public:
 	void			SetCurrentSpell(uint16 SpellID);
 	void			SetCurrentWeaponSkill(uint16 WSkillID);
 	void			SetCurrentJobAbility(uint16 JobAbilityID);
-	void			SetCurrentMobSkill(uint16 SkillID);
 	void			SetCurrentZone(CZone* Zone);
 	void			SetLastActionTime(uint32 time);
 	void			SetCurrentAction(ACTIONTYPE Action, uint16 TargetID = 0);
