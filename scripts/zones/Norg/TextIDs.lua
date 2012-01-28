@@ -8,16 +8,6 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
 		  HOMEPOINT_SET = 2; -- Home point set!
 		 DOOR_IS_LOCKED = 10271; -- The door is locked tight.
 
--- Quest Items	
- DARKSTEEL_ORE = 645; -- 
-	  GOLD_ORE = 737; -- 
-  PLATINUM_ORE = 738; -- 
- SACRED_BRANCH = 1153; -- 
-   	BOMB_STEEL = 1152; -- 
-ORIENTAL_STEEL = 1151; -- 
-  SACRED_SPRIG = 1198; -- 
-  	   MUMEITO = 17809; -- 
-
 -- Quest Dialog
 NOMAD_MOOGLE_DIALOG = 10453; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
 	 SPASIJA_DIALOG = 10265; -- Hiya! I can deliver packages to anybody, anywhere, anytime. What do you say?

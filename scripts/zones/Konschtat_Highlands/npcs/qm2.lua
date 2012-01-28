@@ -1,11 +1,15 @@
 -----------------------------------
 -- Area: Konschtat Highlands
--- NPC: qm1
--- Continues Quests: Past Perfect
+-- NPC:  ???
+-- Involved in Quest: Forge Your Destiny
+-- @zone 108
+-- @pos 
+-----------------------------------
+package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
+require("scripts/globals/quests");
 require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 -----------------------------------
@@ -13,12 +17,10 @@ require("scripts/zones/Konschtat_Highlands/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	count = trade:getItemCount();
-	gil	= trade:getGil();
 	
-	if (count == 1 and gil == 0 and trade:hasItemQty(ORIENTAL_STEEL,1)) then -- Oriental Steel
-		if (GetMobAction(FORGER) == 0) then
-			SpawnMob(FORGER, 288); -- Despawn after inactive for 5 minutes
+	if(player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED) then
+		if(trade:getItemCount() == 1 and trade:hasItemQty(1151,1) and GetMobAction(17219999) == 0) then -- Oriental Steel
+			SpawnMob(17219999, 288); -- Spawn Forger, Despawn after inactive for 5 minutes
 			player:tradeComplete();
 		end
 	end
