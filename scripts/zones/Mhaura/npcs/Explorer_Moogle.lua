@@ -20,15 +20,16 @@ end;
  
 function onTrigger(player,npc) 
 
-teleport = 0;
-currentZone = 249;
+accept = 0;
+event  = 0x014e;
 	
-	if (player:getGil() < 300 or 
-	    player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP) 
-	then
-		teleport = 1;
+	if (player:getGil() < 300)then
+		accept = 1;
 	end
-	player:startEvent(0x014e,currentZone,0,teleport);	
+	if (player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP) then
+		event = event + 1;
+	end
+	player:startEvent(event,player:getZone(),0,accept);
 end;
 
 -----------------------------------
