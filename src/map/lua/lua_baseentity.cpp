@@ -1443,10 +1443,8 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
         lua_settop(L,-n);
         return 0;
     }
-    if (m_PBaseEntity->animation = ANIMATION_HEALING)
+    if (m_PBaseEntity->animation == ANIMATION_HEALING)
     {
-        m_PBaseEntity->animation = ANIMATION_NONE;
-
         ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
     }		
     uint16 EventID = (uint16)lua_tointeger(L,1);
