@@ -2975,16 +2975,24 @@ inline int32 CLuaBaseEntity::despawnPet(lua_State *L)
 }
 
 /************************************************************************
-*																		*
-*  Обновляем ненависть монстров к указанной цели (цель,CE,VE)			*
-*																		*
+*                                                                       *
+*  Обновляем ненависть монстров к указанной цели                        *
+*                                                                       *
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 {
-	if ( m_PBaseEntity != NULL )
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
+
+    if (PEntity != NULL && 
+        PEntity->GetBaseEntity()->objtype != TYPE_NPC)
 	{
-	   //CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+        ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->AddBaseEnmity((CBattleEntity*)PEntity->GetBaseEntity());
 	}
 	return 0;
 }

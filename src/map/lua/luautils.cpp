@@ -300,6 +300,14 @@ int32 SpawnMob(lua_State* L)
             } else {
                 ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n"CL_RESET, PMob->GetName());
             }
+		    lua_pushstring(L,CLuaBaseEntity::className);
+		    lua_gettable(L,LUA_GLOBALSINDEX);
+		    lua_pushstring(L,"new");
+		    lua_gettable(L,-2);
+		    lua_insert(L,-2);
+		    lua_pushlightuserdata(L,(void*)PMob);
+		    lua_pcall(L,2,1,0);
+		    return 1;
         } else {
             ShowDebug(CL_RED"SpawnMob: mob <%u> not found\n"CL_RESET, mobid);
         }
@@ -353,7 +361,8 @@ int32 GetMobAction(lua_State* L)
 		    return 1;
         }
 	}
-	return -1;
+	lua_pushnil(L);
+	return 1;
 }
 
 /************************************************************************

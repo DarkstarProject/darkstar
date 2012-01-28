@@ -3,12 +3,11 @@
 -- NPC:  ???
 -- Involved in Quest: Forge Your Destiny
 -- @zone 108
--- @pos 
+-- @pos -709 2 102
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Konschtat_Highlands/TextIDs");
 
@@ -20,7 +19,7 @@ function onTrade(player,npc,trade)
 	
 	if(player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED) then
 		if(trade:getItemCount() == 1 and trade:hasItemQty(1151,1) and GetMobAction(17219999) == 0) then -- Oriental Steel
-			SpawnMob(17219999, 288); -- Spawn Forger, Despawn after inactive for 5 minutes
+			SpawnMob(17219999, 300):updateEnmity(player); -- Spawn Forger, Despawn after inactive for 5 minutes
 			player:tradeComplete();
 		end
 	end

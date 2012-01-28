@@ -258,6 +258,8 @@ void CAIMobDummy::ActionFadeOut()
 	if ((m_Tick - m_LastActionTime) > 15000 )
 	{
 		m_PMob->status = STATUS_DISAPPEAR;
+        m_PMob->PEnmityContainer->Clear();
+
         m_ActionType   = m_PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE;
 	}
 }
@@ -281,7 +283,6 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->m_CallForHelp = 0;
 		m_PMob->status = STATUS_UPDATE;
 		m_PMob->animation = ANIMATION_NONE;
-        m_PMob->PEnmityContainer->Clear();
 
 		uint8 level = m_PMob->m_minLevel;
 
@@ -297,8 +298,6 @@ void CAIMobDummy::ActionSpawn()
 
 		m_PMob->loc.p = m_PMob->m_SpawnPoint;
 		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
-
-        //luautils::OnMobSpawn(m_PMob); 
 	}
 }
 
