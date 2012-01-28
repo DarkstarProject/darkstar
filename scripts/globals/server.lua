@@ -4,6 +4,7 @@
 -- 
 -----------------------------------
 
+require("scripts/globals/mobs");
 require("scripts/globals/titles");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");

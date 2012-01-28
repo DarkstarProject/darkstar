@@ -219,11 +219,9 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
 	{
         if (zoneutils::GetZone(PChar->getZone())->GetEntity(PChar->targid, TYPE_PC) != NULL)
         {
-            ShowWarning(CL_YELLOW"Server cannot generate valid blowfish key: %s\n"CL_RESET, PChar->GetName());
+            ShowWarning(CL_YELLOW"Client cannot receive packet or key is invalid: %s\n"CL_RESET, PChar->GetName());
         }
-        return 0;
 	}
-
 	int16 EventID = luautils::OnZoneIn(PChar);
 
 	if (PChar->loc.prevzone == 0)

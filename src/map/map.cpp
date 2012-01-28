@@ -97,7 +97,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 	map_session_data_t* map_session_data = new map_session_data_t;
 	memset(map_session_data, 0, sizeof(map_session_data_t));
 
-	CREATE(map_session_data->server_packet_data, int8, map_config.uiBuffMaxSize + 20);
+	CREATE(map_session_data->server_packet_data, int8, map_config.buffer_size + 20);
 		
 	map_session_data->last_update = time(NULL);
 	map_session_data->client_addr = ip;
@@ -189,8 +189,8 @@ int32 do_init(int32 argc, int8** argv)
 	CTaskMgr::getInstance()->AddTask("time_server", gettick()+1000, NULL, CTaskMgr::TASK_INTERVAL, time_server, 2400);
 	CTaskMgr::getInstance()->AddTask("map_cleanup", gettick()+5000, NULL, CTaskMgr::TASK_INTERVAL, map_cleanup, map_config.max_time_lastupdate);
 
-	CREATE(g_PBuff,   int8, map_config.uiBuffMaxSize + 20);
-    CREATE(PTempBuff, int8, map_config.uiBuffMaxSize + 20);
+	CREATE(g_PBuff,   int8, map_config.buffer_size + 20);
+    CREATE(PTempBuff, int8, map_config.buffer_size + 20);
 	ShowStatus("The map-server is "CL_GREEN"ready"CL_RESET" to work...\n");
     ShowMessage("=======================================================================\n");
 	return 0;
@@ -260,7 +260,6 @@ void set_server_type()
 int32 do_sockets(int32 next)
 {
 	fd_set rfd;
-	uint32 BuffMaxSize = map_config.uiBuffMaxSize;
 
 	struct timeval timeout;
 	int32 ret;
@@ -288,7 +287,7 @@ int32 do_sockets(int32 next)
 		struct sockaddr_in from;
 		socklen_t fromlen = sizeof(from);
 
-		int32 ret = recvudp(map_fd,g_PBuff,BuffMaxSize,0,(struct sockaddr*)&from,&fromlen);
+		int32 ret = recvudp(map_fd,g_PBuff,map_config.buffer_size,0,(struct sockaddr*)&from,&fromlen);
 		if( ret != -1)
 		{
 			// find player char
@@ -447,12 +446,12 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 		uint32 PacketDataSize = RBUFL(buff,*buffsize-sizeof(int32)-16);
 		// creating buffer for decompress data
 		int8* PacketDataBuff = NULL;
-		CREATE(PacketDataBuff,int8,map_config.uiBuffMaxSize);
+		CREATE(PacketDataBuff,int8,map_config.buffer_size);
 		// it's decompressing data and getting new size
 		PacketDataSize = zlib_decompress(buff+FFXI_HEADER_SIZE,
 										 PacketDataSize,
 										 PacketDataBuff,
-										 map_config.uiBuffMaxSize,
+										 map_config.buffer_size,
 										 zlib_decompress_table);
 		
 		// it's making result buff
@@ -527,13 +526,13 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 
 	map_session_data->server_packet_id += 1;
 
-	// собираем нормальный пакет
+	// собираем большой пакет, состоящий из нескольких маленьких
 
 	CBasicPacket* PSmallPacket = NULL;
 
 	*buffsize = FFXI_HEADER_SIZE;
 
-	while(!PChar->isPacketListEmpty() && *buffsize + PChar->firstPacketSize()*2 < map_config.uiBuffMaxSize )
+	while(!PChar->isPacketListEmpty() && *buffsize + PChar->firstPacketSize()*2 < map_config.buffer_size )
 	{
 		PSmallPacket = PChar->popPacket();
 
@@ -581,7 +580,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 	memcpy(PTempBuff+PacketSize, hash, 16);
 	PacketSize += 16;
     
-    if (PacketSize > map_config.uiBuffMaxSize + 20)
+    if (PacketSize > map_config.buffer_size + 20)
     {
         ShowFatalError(CL_RED"%Memory manager: PTempBuff is overflowed (%u)\n"CL_RESET, PacketSize);
     }
@@ -735,9 +734,9 @@ int32 map_config_default()
 	map_config.mysql_database = "dspdb";
 	map_config.mysql_port     = 3306;
     map_config.server_message = "";
-	map_config.uiBuffMaxSize  = 1874;
+	map_config.buffer_size    = 1800;
     map_config.vanadiel_time_offset = 0;
-    map_config.lightluggage_block   = 0;
+    map_config.lightluggage_block   = 4;
 	map_config.max_time_lastupdate  = 60000;
 	return 0;
 }
@@ -794,7 +793,7 @@ int32 map_config_read(const int8* cfgName)
 		} 
 		else if (strcmp(w1,"buff_maxsize") == 0)
 		{
-			map_config.uiBuffMaxSize = atoi(w2);
+			map_config.buffer_size = atoi(w2);
 		}
 		else if (strcmp(w1,"max_time_lastupdate") == 0)
 		{

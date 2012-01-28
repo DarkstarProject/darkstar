@@ -976,6 +976,22 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 {	
 	DSP_DEBUG_BREAK_IF(PKiller == NULL || PMob == NULL);
 
+	CLuaBaseEntity LuaMobEntity(PMob);
+	CLuaBaseEntity LuaKillerEntity(PKiller);
+	
+    if (((CMobEntity*)PMob)->m_OwnerID == PKiller->id)
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeathEx");
+	if( !lua_isnil(LuaHandle,-1) )
+	{
+        Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+
+        if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	    {
+		    ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
+	    }
+	}
+
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
@@ -993,12 +1009,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		return -1;
 	}
 
-    CCharEntity* PChar = (CCharEntity*)PKiller;
-
-	CLuaBaseEntity LuaMobEntity(PMob);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-	
-	CLuaBaseEntity LuaKillerEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
 
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
@@ -1007,24 +1018,25 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		return -1;
 	}
 
+    CCharEntity* PChar = (CCharEntity*)PKiller;
+
 	if (PChar->PParty != NULL)
 	{
-	    for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
+	    for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
 	    {
-            if (PChar->PParty->members[i] == PChar) continue;
+            if (PChar->PParty->members[i] == PChar ||
+                PChar->PParty->members[i]->getZone() != PChar->getZone()) 
+                continue;
 
-		    lua_pushstring(LuaHandle,"onMobDeath");
-		    lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+            lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
 		    if (lua_isnil(LuaHandle,-1))
 		    {
 			    ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
 			    return -1;
 		    }
+            CLuaBaseEntity LuaKillerEntity(PChar->PParty->members[i]);
 
-		    CLuaBaseEntity LuaMobEntity(PMob);
 		    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-	
-		    CLuaBaseEntity LuaKillerEntity(PChar->PParty->members[i]);
 		    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
 
 		    if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )

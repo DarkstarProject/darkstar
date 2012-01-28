@@ -49,9 +49,9 @@ CParty::CParty(CBattleEntity* PEntity)
 	DSP_DEBUG_BREAK_IF(PEntity == NULL);
 	DSP_DEBUG_BREAK_IF(PEntity->PParty != NULL);
 
+    m_PartyID   = PEntity->id;
     m_PartyType = PEntity->objtype == TYPE_PC ? PARTY_PCS : PARTY_MOBS;
 
-    m_PartyID       = 0;
     m_PLeader       = NULL;
 	m_PSyncTarget 	= NULL;
 	m_PQuaterMaster = NULL;
@@ -93,8 +93,8 @@ void CParty::DisbandParty()
 			    PChar->PTreasurePool->AddMember(PChar);
                 PChar->PTreasurePool->UpdatePool(PChar);
 		    }
-		    Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE charid = %u", 0, PChar->id);
 	    }
+        Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", 0, m_PartyID);
     }
 	delete this;
 }
@@ -245,22 +245,19 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 	if (members.size() == 1)
 	{
 		DisbandParty();
-		return;
 	} 
-	else
-	{
+    else 
+    {
 		for (uint32 i = 0; i < members.size(); ++i) 
 		{
-			CBattleEntity* PPartyMember = members.at(i);
-
-			if (PPartyMember != PEntity) 
+			if (PEntity != members.at(i)) 
 			{
-				SetLeader(PPartyMember);
+				SetLeader(members.at(i));
 				break;
 			}
 		}
+        RemoveMember(PEntity);
 	}
-	RemoveMember(PEntity);
 }
 
 /************************************************************************

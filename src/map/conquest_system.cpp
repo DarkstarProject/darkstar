@@ -41,7 +41,7 @@ uint8 GetBalance()
 
 /************************************************************************
 *																		*
-*  Оставшееся количество дняй до подсчета conquest						*
+*  Оставшееся количество дней до подсчета conquest						*
 *																		*
 ************************************************************************/
 
@@ -219,7 +219,32 @@ REGIONTYPE GetCurrentRegion(uint8 ZoneID)
 		case ZONE_SEALIONS_DEN:
 		case ZONE_TAVNAZIAN_SAFEHOLD:
 			RegionID = REGION_TAVNAZIA;
+            break;
+        case ZONE_SOUTHERN_SANDORIA:
+        case ZONE_NORTHERN_SANDORIA:
+        case ZONE_PORT_SANDORIA:
+        case ZONE_CHATEAU_DORAGUILLE:
+            RegionID = REGION_SANDORIA;
 			break;
+        case ZONE_BASTOK_MINES:
+        case ZONE_BASTOK_MARKETS:
+        case ZONE_PORT_BASTOK:
+        case ZONE_METALWORKS:
+            RegionID = REGION_BASTOK;
+            break;
+        case ZONE_WINDURST_WATERS:
+        case ZONE_WINDURST_WALLS:
+        case ZONE_PORT_WINDURST:
+        case ZONE_WINDURST_WOODS:
+        case ZONE_HEAVENS_TOWER:
+            RegionID = REGION_WINDURST;
+            break;
+        case ZONE_RULUDE_GARDENS:
+        case ZONE_UPPER_JEUNO:
+        case ZONE_LOWER_JEUNO:
+        case ZONE_PORT_JEUNO:
+            RegionID = REGION_JEUNO;
+            break;
 	}
 	return RegionID;
 }
