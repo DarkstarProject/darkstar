@@ -1113,14 +1113,14 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob)
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
 		ShowError("luautils::OnUseWeaponSkill: %s\n",lua_tostring(LuaHandle,-1));
-		return -1;
+		return 0;
 	}
 
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnUseWeaponSkill");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnUseWeaponSkill: undefined procedure OnUseWeaponSkill\n");
-		return -1;
+		return 0;
 	}
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
@@ -1132,9 +1132,9 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob)
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnUseWeaponSkill: %s\n",lua_tostring(LuaHandle,-1));
-		return -1;
+		return 0;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
