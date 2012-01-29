@@ -14,6 +14,9 @@ NOMAD_MOOGLE_DIALOG = 10453; -- I'm a traveling moogle, kupo. I help adventurers
 	PALEILLE_DIALOG = 10266; -- We can deliver parcels to any residence in Vana'diel.
 	  FOUIVA_DIALOG = 10477; -- Oi 'av naw business wi' de likes av you.
 
+YOU_CAN_NOW_BECOME_A_SAMURAI = 10114; -- You accept the Mumeito from Gilgamesh. You can now become a samurai.
+   CARRYING_TOO_MUCH_ALREADY = 10115; -- I wish to give you your reward, but you seem to be carrying too much already. Come back when you have more room in your pack.
+
 -- Shop Texts
 SOLBYMAHOLBY_SHOP_DIALOG = 10491; -- Hiya! My name's Solby-Maholby! I'm new here, so they put me on tooty-fruity shop duty. I'll give you a super-duper deal on unwanted items!
    JIROKICHI_SHOP_DIALOG = 10261; -- Heh-heh-heh. Feast your eyes on these beauties. You won't find stuff like this anywhere!
