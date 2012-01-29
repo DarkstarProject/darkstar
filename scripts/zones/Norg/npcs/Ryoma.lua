@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x005f) then
 		player:addKeyItem(SEALED_DAGGER);
 		player:messageSpecial(KEYITEM_OBTAINED, SEALED_DAGGER);
-		player:delKeyItem(STRANGLEY_SHAPED_CORAL);
+		player:delKeyItem(STRANGELY_SHAPED_CORAL);
 		player:setVar("AyameAndKaede_Event", 4);
 	end
 	

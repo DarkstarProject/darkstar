@@ -27,7 +27,7 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
  PAUJEAN_DIALOG_1 = 7420; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea. Just don't do anything I wouldn't...heh heh.
    RONAN_DIALOG_1 = 7229; -- Do something! Isn't there anything you can do to make him come out of his shell?
 POWHATAN_DIALOG_1 = 7043; -- I'm sick and tired of entertaining guests.
-	 UNLOCK_NINJA = 8200; -- You can now become a ninja.
+	 UNLOCK_NINJA = 8203; -- You can now become a ninja.
 
 -- Shop Texts
         DENVIHR_SHOP_DIALOG = 7409; -- Ah, interested in my wares, are you? You can only buy these in Bastok, my friend.
