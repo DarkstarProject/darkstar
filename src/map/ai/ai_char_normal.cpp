@@ -1266,6 +1266,11 @@ void CAICharNormal::ActionJobAbilityFinish()
 	Recast->RecastTime = m_PJobAbility->getRecastTime() * 1000;
 	Recast->RecastID   = m_PJobAbility->getRecastId(); 
     Recast->TimeStamp  = m_Tick;
+
+    if (m_PJobAbility->getLevel() == 0)
+    {
+		Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", CVanaTime::getInstance()->getSysTime() - 1009810800, m_PChar->id);
+    }
     
     m_PChar->RecastList.push_back(Recast);
     m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
@@ -1425,8 +1430,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	    m_PChar->health.tp = 8; 
     }
 
-	m_LastActionTime = m_Tick; 
-
 	apAction_t Action;
     m_PChar->m_ActionList.clear();
 
@@ -1440,7 +1443,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.messageID  = 185;
 	Action.flag		  = 0;
 
-	SUBEFFECT effect = SUBEFFECT_NONE; //CAICharNormal::GetSkillChainEffect(m_PBattleSubTarget,m_PWeaponSkill);
+	SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill);
 	if (effect != SUBEFFECT_NONE) 
 	{	
 		switch(effect)
@@ -1655,169 +1658,6 @@ void CAICharNormal::ActionAttack()
 			m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 		}
 	}
-}
-
-/************************************************************************
-*																		*
-*  Gets SkillChain Effect												*
-*																		*
-************************************************************************/
-
-SUBEFFECT CAICharNormal::GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill)
-{
-	// TODO: что-то сложное здесь замутили, особенно с SIGNET ^^
-
-	if (!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET, 1))
-	{
-		CStatusEffect* NewEffect = new CStatusEffect(EFFECT_SIGNET, PWeaponSkill->getID(),1,9999,0,1);
-		PDefender->StatusEffectContainer->AddStatusEffect(NewEffect);
-		
-		return SUBEFFECT_NONE;
-	}
-
-	CStatusEffect* PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SIGNET, 1);
-	
-
-	if (PEffect->modList.size() == 2) 
-	{	
-		if  (PEffect->modList[0]->getModID() == MOD_LIGHTRES && PEffect->modList[1]->getModID() == MOD_FIRERES)
-		{
-		
-				return SUBEFFECT_FUSION;			  
-		}
-		else if (PEffect->modList[0]->getModID() == MOD_DARKRES && PEffect->modList[1]->getModID() == MOD_EARTHRES)
-		{
-				//gravitation	  
-				return SUBEFFECT_GRAVITATION;
-		}
-		else if (PEffect->modList[0]->getModID() == MOD_THUNDERRES && PEffect->modList[1]->getModID() == MOD_WINDRES)
-		{
-				//fragmentation
-				return SUBEFFECT_FRAGMENTATION;
-		}
-		else if (PEffect->modList[0]->getModID() == MOD_WATERRES && PEffect->modList[1]->getModID() == MOD_ICERES)
-		{
-				//distortion
-				return SUBEFFECT_DISTORTION;
-		}
-	}
-
-	CWeaponSkill* LastWeaponSkill = battleutils::GetWeaponSkill(PEffect->GetPower());
-	CStatusEffect* NewEffect = new CStatusEffect(EFFECT_SIGNET, PWeaponSkill->getID(),0,5);
-	SUBEFFECT effect = SUBEFFECT_NONE; 
-	
-	if (LastWeaponSkill->hasElement(LIGHT))
-	{
-		if (PWeaponSkill->hasElement(EARTH)) 
-		{
-			NewEffect->addMod(MOD_WATERRES,0);
-			NewEffect->addMod(MOD_ICERES,0);
-			effect = SUBEFFECT_DISTORTION;
-		}
-		else if (PWeaponSkill->hasElement(DARK)) 
-		{
-			effect = SUBEFFECT_COMPRESSION;
-		}
-		else if	(PWeaponSkill->hasElement(WATER)) 
-		{
-			effect = SUBEFFECT_REVERBERATION;
-		}
-	}
-	else if (LastWeaponSkill->hasElement(DARK))
-	{
-		if (PWeaponSkill->hasElement(WIND)) 
-		{
-			effect = SUBEFFECT_DETONATION;
-		}
-		else if	(PWeaponSkill->hasElement(LIGHT)) 
-		{
-			effect = SUBEFFECT_TRANSFIXION;
-		}
-	}
-	else if (LastWeaponSkill->hasElement(FIRE))
-	{
-		if (PWeaponSkill->hasElement(THUNDER)) 
-		{
-			NewEffect->addMod(MOD_LIGHTRES,0);
-			NewEffect->addMod(MOD_FIRERES,0);
-			effect = SUBEFFECT_FUSION;
-		}
-		else if (PWeaponSkill->hasElement(EARTH)) 
-		{
-			effect = SUBEFFECT_SCISSION;
-		}
-	}
-	else if (LastWeaponSkill->hasElement(EARTH))
-	{
-		if (PWeaponSkill->hasElement(WIND)) 
-		{
-			effect = SUBEFFECT_DETONATION;
-		}
-		else if	(PWeaponSkill->hasElement(WATER)) 
-		{
-			effect = SUBEFFECT_REVERBERATION;
-		}
-		else if	(PWeaponSkill->hasElement(FIRE)) 
-		{
-			effect = SUBEFFECT_LIQUEFACATION;
-		}
-	}
-	else if (LastWeaponSkill->hasElement(THUNDER))
-	{
-		if (PWeaponSkill->hasElement(WIND)) 
-		{
-			effect = SUBEFFECT_DETONATION;
-		}
-		else if	(PWeaponSkill->hasElement(FIRE)) 
-		{
-			effect = SUBEFFECT_LIQUEFACATION;
-		}
-	}
-	else if (LastWeaponSkill->hasElement(WATER))
-	{
-		if (PWeaponSkill->hasElement(ICE)) 
-		{
-			effect = SUBEFFECT_INDURATION;
-		}
-		else if	(PWeaponSkill->hasElement(THUNDER)) 
-		{
-			effect = SUBEFFECT_IMPACTION;
-		}
-	}
-	else if (LastWeaponSkill->hasElement(WIND))
-	{
-
-		if (PWeaponSkill->hasElement(DARK) & 1) 
-		{
-			NewEffect->addMod(MOD_DARKRES,0);
-			NewEffect->addMod(MOD_EARTHRES,0);
-			effect = SUBEFFECT_GRAVITATION;
-		}
-		else if (PWeaponSkill->hasElement(EARTH)) 
-		{
-			effect = SUBEFFECT_SCISSION;
-		}
-	}
-	else if (LastWeaponSkill->hasElement(ICE))
-	{
-		if (PWeaponSkill->hasElement(WATER)) 
-		{
-			NewEffect->addMod(MOD_WATERRES,0);
-			NewEffect->addMod(MOD_ICERES,0);
-			effect = SUBEFFECT_DISTORTION;
-		}
-		else if (PWeaponSkill->hasElement(DARK)) 
-		{
-			effect = SUBEFFECT_COMPRESSION;
-		}
-		else if (PWeaponSkill->hasElement(THUNDER)) 
-		{
-			effect = SUBEFFECT_IMPACTION;
-		}
-	}
-	PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SIGNET,1);
-	PDefender->StatusEffectContainer->AddStatusEffect(NewEffect);
-	return effect;
 }
 
 void CAICharNormal::ActionRaiseMenuSelection() 

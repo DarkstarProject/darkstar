@@ -24,5 +24,21 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_ACCURACY_BOOST,3,0,1800,FLAG_DISPELABLE,18067);
+	target:addStatusEffect(EFFECT_ACCURACY_BOOST,0,0,1800,FLAG_DISPELABLE,18067);
+end;
+
+-----------------------------------------
+-- onEffectGain Action
+-----------------------------------------
+
+function onEffectGain(target,effect)
+	target:addMod(MOD_ACC, 3);
+end;
+
+-----------------------------------------
+-- onEffectLose Action
+-----------------------------------------
+
+function onEffectLose(target,effect)
+	target:delMod(MOD_ACC, 3);
 end;

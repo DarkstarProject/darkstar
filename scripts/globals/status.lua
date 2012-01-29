@@ -9,7 +9,7 @@
 -----------------------------------
 
 FLAG_DISPELABLE				= 1
-FLAG_ERASBLE				= 2
+FLAG_ERASABLE				= 2
 
 -----------------------------------
 -- These codes represent the actual status effects.  

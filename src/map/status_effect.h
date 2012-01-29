@@ -495,7 +495,8 @@ enum EFFECT : uint16
 	EFFECT_MIGAWARI					= 471,
 
 	EFFECT_HEALING					= 700,
-	EFFECT_LEAVEGAME				= 701
+	EFFECT_LEAVEGAME				= 701,
+    EFFECT_SKILLCHAIN               = 702
 };
 
 /************************************************************************

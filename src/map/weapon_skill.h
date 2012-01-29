@@ -42,22 +42,22 @@ public:
 	uint8		getJob(JOBTYPE JobID);
 	uint8		getSkillLevel();
 	uint8		getRange();
-	uint8       getSkillChain();
+	uint8       getElement();
 	
 	uint8		getAoe();
 	uint8		getAnimationId();
-	uint8       getSkillType();
+	uint8       getType();
 
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);
 	void		setSkillLevel(uint8 level);
 	void		setRange(uint8 range);
-	void		setSkillChain(uint8 skillChain);
+	void		setElement(uint8 element);
 	void		setAoe(uint8 aoe);
-	void        setAnimationId(int8 id); 
-	void		setSkillType(uint8 id);
+	void        setAnimationId(int8 animation); 
+	void		setType(uint8 type);
 	
-	int32		hasElement(ELEMENTS element);
+	bool		hasElement(uint8 elements);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -65,16 +65,15 @@ public:
 private:
 
 	uint16		m_ID;
-	uint8       m_SkillTypeID;
+	uint8       m_TypeID;
 	uint8		m_Job[MAX_JOBTYPE]; 
 	uint8		m_Skilllevel;
 	uint8       m_AnimationId;
-	uint8       m_SkillChain;
+	uint8       m_Element;
 	uint8		m_Range;
 	uint8       m_AOE;
 
 	string_t	m_name;
-
 };
 
 #endif;

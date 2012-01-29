@@ -277,18 +277,6 @@ enum TARGETTYPE
 	TARGET_NPC				= 0x40		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
 };
 
-enum ELEMENTS
-{
-	LIGHT		= 1,
-	DARK		= 2,
-	FIRE		= 4,
-	EARTH		= 8,
-	THUNDER		= 16,
-	WATER		= 32,
-	WIND		= 64,
-	ICE			= 128
-};
-
 struct apAction_t
 {
 	CBattleEntity*	ActionTarget;		// 32 bits

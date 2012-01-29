@@ -41,6 +41,7 @@
 #include "mobentity.h"
 #include "enmity_container.h"
 
+
 /************************************************************************
 *	lists used in battleutils											*
 ************************************************************************/
@@ -220,10 +221,10 @@ void LoadWeaponSkillsList()
 {
 	memset(g_PWeaponSkillList,0,sizeof(g_PWeaponSkillList));
 
-	const int8* fmtQuery = "SELECT weaponskillid, name, jobs, skilltype, skilllevel, skillchain, animation, `range`, aoe \
+	const int8* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, `range`, aoe \
 							FROM weapon_skills \
 							WHERE weaponskillid < %u \
-							ORDER BY skilltype, skilllevel ASC";
+							ORDER BY type, skilllevel ASC";
 
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_WEAPONSKILL_ID);
 
@@ -235,15 +236,15 @@ void LoadWeaponSkillsList()
 			
 			PWeaponSkill->setName(Sql_GetData(SqlHandle,1));
 			PWeaponSkill->setJob(Sql_GetData(SqlHandle,2));
-			PWeaponSkill->setSkillType(Sql_GetIntData(SqlHandle,3));
+			PWeaponSkill->setType(Sql_GetIntData(SqlHandle,3));
 			PWeaponSkill->setSkillLevel(Sql_GetIntData(SqlHandle,4));
-			PWeaponSkill->setSkillChain(Sql_GetIntData(SqlHandle,5));
+			PWeaponSkill->setElement(Sql_GetIntData(SqlHandle,5));
 			PWeaponSkill->setAnimationId(Sql_GetIntData(SqlHandle,6));
 			PWeaponSkill->setRange(Sql_GetIntData(SqlHandle,7));
 			PWeaponSkill->setAoe(Sql_GetIntData(SqlHandle,8));
 			
 			g_PWeaponSkillList[PWeaponSkill->getID()] = PWeaponSkill;
-			g_PWeaponSkillsList[PWeaponSkill->getSkillType()].push_back(PWeaponSkill);
+			g_PWeaponSkillsList[PWeaponSkill->getType()].push_back(PWeaponSkill);
 		}
 	}
 }
@@ -1085,6 +1086,185 @@ bool EnfeebleHit(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect
 	return false;
 }
 
+/************************************************************************
+*																		*
+*  Gets SkillChain Effect												*
+*																		*
+************************************************************************/
 
+SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill)
+{
+	CStatusEffect* PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
+
+	if (PEffect == NULL)
+	{
+        PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, PWeaponSkill->getElement(),0,6));
+		return SUBEFFECT_NONE;
+	}
+    else
+    {
+        PEffect->SetStartTime(gettick());
+
+        if (PEffect->GetPower() & LIGHT)
+	    {
+            if (PEffect->GetPower() & FIRE)
+            {
+                if (PWeaponSkill->hasElement(DARK + EARTH)) 
+		        {
+                    PEffect->SetPower(DARK + EARTH);
+			        return SUBEFFECT_GRAVITATION;
+		        }
+		        if (PWeaponSkill->hasElement(THUNDER + WIND)) 
+		        {
+                    PEffect->SetPower(LIGHT + FIRE + THUNDER + WIND);
+			        return SUBEFFECT_LIGHT;
+		        }
+            }
+		    if (PWeaponSkill->hasElement(EARTH)) 
+		    {
+                PEffect->SetPower(WATER + ICE);
+			    return SUBEFFECT_DISTORTION;
+		    }
+		    if (PWeaponSkill->hasElement(DARK)) 
+		    {
+                PEffect->SetPower(DARK);
+			    return SUBEFFECT_COMPRESSION;
+		    }
+		    if (PWeaponSkill->hasElement(WATER)) 
+		    {
+                PEffect->SetPower(WATER);
+			    return SUBEFFECT_REVERBERATION;
+		    }
+	    }
+	    if (PEffect->GetPower() & DARK)
+	    {
+            if (PEffect->GetPower() & EARTH)
+            {
+                if (PWeaponSkill->hasElement(THUNDER + WIND)) 
+		        {
+                    PEffect->SetPower(THUNDER + WIND);
+			        return SUBEFFECT_FRAGMENTATION;
+		        }
+		        if (PWeaponSkill->hasElement(WATER + ICE)) 
+		        {
+                    PEffect->SetPower(THUNDER + WIND + WATER + ICE);
+			        return SUBEFFECT_DARKNESS;
+		        }
+            }
+		    if (PWeaponSkill->hasElement(WIND)) 
+		    {
+                PEffect->SetPower(WIND);
+			    return SUBEFFECT_DETONATION;
+		    }
+		    if (PWeaponSkill->hasElement(LIGHT)) 
+		    {
+                PEffect->SetPower(LIGHT);
+			    return SUBEFFECT_TRANSFIXION;
+		    }
+	    }
+	    if (PEffect->GetPower() & FIRE)
+	    {
+		    if (PWeaponSkill->hasElement(THUNDER)) 
+		    {
+                PEffect->SetPower(LIGHT + FIRE);
+			    return SUBEFFECT_FUSION;
+		    }
+		    if (PWeaponSkill->hasElement(EARTH)) 
+		    {
+                PEffect->SetPower(EARTH);
+			    return SUBEFFECT_SCISSION;
+		    }
+	    }
+	    if (PEffect->GetPower() & EARTH)
+	    {
+		    if (PWeaponSkill->hasElement(WIND)) 
+		    {
+                PEffect->SetPower(WIND);
+			    return SUBEFFECT_DETONATION;
+		    }
+		    if (PWeaponSkill->hasElement(WATER)) 
+		    {
+                PEffect->SetPower(WATER);
+			    return SUBEFFECT_REVERBERATION;
+		    }
+		    if (PWeaponSkill->hasElement(FIRE)) 
+		    {
+                PEffect->SetPower(FIRE);
+			    return SUBEFFECT_LIQUEFACATION;
+		    }
+	    }
+	    if (PEffect->GetPower() & THUNDER)
+	    {
+            if (PEffect->GetPower() & WIND &&
+                PWeaponSkill->hasElement(WATER + ICE)) 
+            {
+		        PEffect->SetPower(WATER + ICE);
+			    return SUBEFFECT_DISTORTION;
+            }
+		    if (PWeaponSkill->hasElement(WIND)) 
+		    {
+                PEffect->SetPower(WIND);
+			    return SUBEFFECT_DETONATION;
+		    }
+		    if (PWeaponSkill->hasElement(FIRE)) 
+		    {
+                PEffect->SetPower(FIRE);
+			    return SUBEFFECT_LIQUEFACATION;
+		    }
+	    }
+	    if (PEffect->GetPower() & WATER)
+	    {
+            if (PEffect->GetPower() & ICE &&
+                PWeaponSkill->hasElement(LIGHT + FIRE))
+            {
+                PEffect->SetPower(LIGHT + FIRE);
+                return SUBEFFECT_FUSION;
+            }
+		    if (PWeaponSkill->hasElement(ICE)) 
+		    {
+                PEffect->SetPower(ICE);
+			    return SUBEFFECT_INDURATION;
+		    }
+		    if (PWeaponSkill->hasElement(THUNDER)) 
+		    {
+                PEffect->SetPower(THUNDER);
+			    return SUBEFFECT_IMPACTION;
+		    }
+	    }
+	    if (PEffect->GetPower() & WIND)
+	    {
+		    if (PWeaponSkill->hasElement(DARK)) 
+		    {
+                PEffect->SetPower(DARK + EARTH);
+			    return SUBEFFECT_GRAVITATION;
+		    }
+		    if (PWeaponSkill->hasElement(EARTH)) 
+		    {
+                PEffect->SetPower(EARTH);
+			    return SUBEFFECT_SCISSION;
+		    }
+	    }
+	    if (PEffect->GetPower() & ICE)
+	    {
+            if (PWeaponSkill->hasElement(WATER))
+		    {
+                PEffect->SetPower(THUNDER + WIND);
+			    return SUBEFFECT_FRAGMENTATION;
+		    }
+		    if (PWeaponSkill->hasElement(DARK)) 
+		    {
+                PEffect->SetPower(DARK);
+			    return SUBEFFECT_COMPRESSION;
+		    }
+		    if (PWeaponSkill->hasElement(THUNDER))
+		    {
+                PEffect->SetPower(THUNDER);
+			    return SUBEFFECT_IMPACTION;
+		    }
+	    }
+        PEffect->SetPower(PWeaponSkill->getElement());
+    }
+    return SUBEFFECT_NONE;;
+}
 
 }; 

@@ -60,6 +60,18 @@ enum FLAGTYPE
 //  FLAG_MENTOR         = 0x00000000,
 };
 
+enum ELEMENTS
+{
+    FIRE		= 0x01,
+    ICE			= 0x02,
+    WIND		= 0x04,
+    EARTH		= 0x08,
+    THUNDER		= 0x10,
+    WATER		= 0x20,
+	LIGHT		= 0x40,
+	DARK		= 0x80,
+};
+
 typedef std::string string_t;
 
 struct blowfish_t 

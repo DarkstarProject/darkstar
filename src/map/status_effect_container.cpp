@@ -561,6 +561,7 @@ const int8* GetStatusEffectName(uint16 EffectID)
 	{
 		case EFFECT_HEALING:	return "healing";
 		case EFFECT_LEAVEGAME:	return "leavegame";
+        case EFFECT_SKILLCHAIN: return "skillchain";
 	}
 	return EFFECT_NAMES[EffectID < 512 ? EffectID : 511];
 }
@@ -854,40 +855,31 @@ void CStatusEffectContainer::DelStatusIcon(EFFECT StatusID)
 }
 
 /************************************************************************
-*																		*
-*  Проверяем все эффекты на необходимость удаление, если их срок		*
-*  действия истек.														*
-*																		*
+*                                                                       *
+*  Устанавливаем имя эффекта для работы со скриптами                    *
+*                                                                       *
 ************************************************************************/
 
 void CStatusEffectContainer::SetEffectName(CStatusEffect* StatusEffect)
 {
-	uint16 SubID = StatusEffect->GetSubID();
+    DSP_DEBUG_BREAK_IF(StatusEffect->GetStatusID() == EFFECT_FOOD && StatusEffect->GetSubID() == 0);
+    DSP_DEBUG_BREAK_IF(StatusEffect->GetStatusID() == EFFECT_NONE && StatusEffect->GetSubID() == 0);
 
-	if (StatusEffect->GetStatusID() == EFFECT_FOOD &&
-	   ((SubID >= 0x1000) && (SubID <= 0x17FF)))
+    string_t name;
+
+	if (StatusEffect->GetSubID() == 0)
 	{
-		CItem * item = itemutils::GetItemPointer(SubID);
-		
-		if (item != NULL)
-		{
-			string_t name;
-
-			name.insert(0,"globals/items/");
-			name.insert(name.size(),item->getName());
-
-			StatusEffect->SetName(name);
-		}
-	}
-	else
-	{
-		string_t name;
-
 		name.insert(0,"globals/effects/");
 		name.insert(name.size(),GetStatusEffectName(StatusEffect->GetStatusID()));
-
-		StatusEffect->SetName(name);
+	} else {
+		CItem* Ptem = itemutils::GetItemPointer(StatusEffect->GetSubID());
+		if (Ptem != NULL)
+		{
+            name.insert(0,"globals/items/");
+			name.insert(name.size(),Ptem->getName());
+		}
 	}
+    StatusEffect->SetName(name);
 }
 
 /************************************************************************
@@ -900,7 +892,7 @@ void CStatusEffectContainer::LoadStatusEffects()
 {
     DSP_DEBUG_BREAK_IF(m_pOwner->objtype != TYPE_PC);
 
-	const int8 *fmtQuery = "SELECT effectid, power, tick, duration, flag, subid \
+	const int8* fmtQuery = "SELECT effectid, power, tick, duration, flag, subid \
 							FROM char_effects \
 							WHERE charid = %u;";
 
@@ -939,7 +931,7 @@ void CStatusEffectContainer::SaveStatusEffects()
 	{
 		if (m_StatusEffectList.at(i)->GetDuration() != 0)
 		{
-			const int8 *fmtQuery = "INSERT INTO char_effects (charid, effectid, power, tick, duration, flag, subid) \
+			const int8* fmtQuery = "INSERT INTO char_effects (charid, effectid, power, tick, duration, flag, subid) \
 									VALUES(%u,%u,%u,%u,%u,%u,%u);";
 
 			Sql_Query(SqlHandle,fmtQuery,
@@ -974,9 +966,9 @@ void CStatusEffectContainer::CheckEffects(uint32 tick)
 
 		m_EffectCheckTime = tick;
 
-		for (int32 i = (int32)m_StatusEffectList.size() - 1 ; i >= 0 ; --i) 
+		for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
 		{
-			CStatusEffect * PStatusEffect = m_StatusEffectList.at(i);
+			CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
 			if (PStatusEffect->GetTickTime() != 0 &&
 				PStatusEffect->GetLastTick() + PStatusEffect->GetTickTime() <= tick) 
@@ -988,7 +980,7 @@ void CStatusEffectContainer::CheckEffects(uint32 tick)
 			if (PStatusEffect->GetDuration() != 0 &&
 				PStatusEffect->GetDuration() + PStatusEffect->GetStartTime() <= tick) 
 			{	
-				RemoveStatusEffect(i);
+				RemoveStatusEffect(i--);
 			}
 		}
     }

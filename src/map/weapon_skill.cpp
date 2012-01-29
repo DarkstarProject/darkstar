@@ -27,14 +27,14 @@
 CWeaponSkill::CWeaponSkill(uint16 id)
 {
 	m_ID = id;
+
 	m_AnimationId = 0;
-	m_AOE = 0;
-	//m_JobSkills[0] = 0;
-	m_Skilllevel =0; 
-	m_SkillTypeID = 0;
-	m_name = "";
-	m_Range = 0;
-	m_SkillChain = 0;
+	m_AOE         = 0;
+	m_Skilllevel  = 0; 
+	m_TypeID      = 0;
+	m_Range       = 0;
+	m_Element     = 0;
+
 	memset(m_Job, 0, sizeof(m_Job));
 }
 	
@@ -43,9 +43,9 @@ void CWeaponSkill::setID(uint16 id)
 	m_ID = id;
 }
 
-void CWeaponSkill::setSkillType(uint8 id)
+void CWeaponSkill::setType(uint8 type)
 {
-	m_SkillTypeID = id;
+	m_TypeID = type;
 }
 
 void CWeaponSkill::setJob(int8* jobs)
@@ -63,9 +63,9 @@ const int8* CWeaponSkill::getName()
 	return m_name.c_str();
 }
 
-void CWeaponSkill::setSkillChain(uint8 skillChain)
+void CWeaponSkill::setElement(uint8 element)
 {
-	m_SkillChain = skillChain;
+	m_Element = element;
 }
 
 void CWeaponSkill::setName(int8* name)
@@ -94,9 +94,9 @@ uint16 CWeaponSkill::getID()
 	return m_ID;
 }
 
-uint8 CWeaponSkill::getSkillType()
+uint8 CWeaponSkill::getType()
 {
-	return m_SkillTypeID;
+	return m_TypeID;
 }
 
 uint8 CWeaponSkill::getJob(JOBTYPE job)
@@ -109,9 +109,9 @@ uint8 CWeaponSkill::getSkillLevel()
 	return m_Skilllevel;
 }
 
-uint8 CWeaponSkill::getSkillChain()
+uint8 CWeaponSkill::getElement()
 {
-	return m_SkillChain;
+	return m_Element;
 }
 
 uint8 CWeaponSkill::getAnimationId()
@@ -129,9 +129,7 @@ uint8 CWeaponSkill::getRange()
 	return m_Range;
 }
 
-int32 CWeaponSkill::hasElement(ELEMENTS element)
+bool CWeaponSkill::hasElement(uint8 elements)
 {
-	return (m_SkillChain & element);
+	return (m_Element & elements) == elements;
 }
-
-

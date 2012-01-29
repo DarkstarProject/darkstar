@@ -80,7 +80,6 @@ protected:
 
 	bool IsMobOwner(CBattleEntity* PBattleTarget);
 	bool GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget);
-	SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill);
 };
 
 #endif
