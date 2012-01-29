@@ -1,12 +1,15 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Kaede
--- Starts Quest: Ayame and Kaede (Ninja Flag Quest)
+-- NPC:  Kaede
+-- Start Quest: Ayame and Kaede
+-- @zone 236
+-- @pos 48 -6 67
+-----------------------------------
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/settings");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -21,9 +24,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	--player:delQuest(BASTOK,AYAME_AND_KAEDE);
-	if (player:getMainLvl() >= 30) then			
-		if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) ~= 2) then
+
+	if(player:getMainLvl() >= 30) then			
+		if(player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) ~= QUEST_FINISHED) then
 			player:startEvent(0x00f0);
 		else
 			player:startEvent(0x00f8);
@@ -31,6 +34,7 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x001a);
 	end
+	
 end; 
 
 -----------------------------------
@@ -50,10 +54,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x00f0) then
-		if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == 0) then
+	if(csid == 0x00f0) then
+		if(player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_AVAILABLE) then
 			player:addQuest(BASTOK,AYAME_AND_KAEDE);
 		end
 	end
+	
 end;
-

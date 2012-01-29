@@ -1,12 +1,15 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Kagetora
--- Involved in Quest: Ayame and Kaede (Ninja Flag Quest)
+-- NPC:  Kagetora
+-- Involved in Quest: Ayame and Kaede
+-- @zone 236
+-- @pos -96 -2 29
+-----------------------------------
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/settings");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -21,14 +24,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:delKeyItem(STRANGELY_SHAPED_CORAL);
 
-	if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == 1) then
+	if(player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
+		
 		AyameAndKaede = player:getVar("AyameAndKaede_Event");
 		
-		if (AyameAndKaede == 0) then
+		if(AyameAndKaede == 0) then
 			player:startEvent(0x00f1);
-		elseif (AyameAndKaede > 2) then
+		elseif(AyameAndKaede > 2) then
 			player:startEvent(0x00f4);
 		else
 			player:startEvent(0x0017);
@@ -36,6 +39,7 @@ player:delKeyItem(STRANGELY_SHAPED_CORAL);
 	else
 		player:startEvent(0x0017);
 	end
+	
 end; 
 
 -----------------------------------
@@ -55,8 +59,8 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x00f1) then
+	if(csid == 0x00f1) then
 		player:setVar("AyameAndKaede_Event",1);
 	end
+	
 end;
-
