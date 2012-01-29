@@ -6,7 +6,6 @@
 -- Health 20
 -- Magic 20
 -- Attack 3
--- Ranged ATT 3
 -----------------------------------------
 
 require("scripts/globals/status");
