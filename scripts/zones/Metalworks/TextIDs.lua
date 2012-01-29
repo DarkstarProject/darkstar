@@ -12,7 +12,6 @@ FADED_CRYSTAL = 613; --
  FIRE_CRYSTAL = 4096; -- 
    LIZARD_EGG = 4362; -- 
    RAM_MANTLE = 13450; -- 
-    RAZOR_AXE = 16678; -- 
 
 -- General Text
 GOOD_LUCK = 7249; -- Good luck on your mission. Bastokers like to do things by the book, so stay out of trouble and follow their rules.
