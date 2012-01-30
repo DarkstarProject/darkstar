@@ -113,9 +113,8 @@ inline int32 CLuaBaseEntity::warp(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	((CCharEntity*)m_PBaseEntity)->loc.boundary = 0;
-	((CCharEntity*)m_PBaseEntity)->loc.prevzone = ((CCharEntity*)m_PBaseEntity)->loc.zone;
 	((CCharEntity*)m_PBaseEntity)->loc.p = ((CCharEntity*)m_PBaseEntity)->profile.home_point.p;
-	((CCharEntity*)m_PBaseEntity)->loc.zone = ((CCharEntity*)m_PBaseEntity)->profile.home_point.zone;
+    ((CCharEntity*)m_PBaseEntity)->loc.destination = ((CCharEntity*)m_PBaseEntity)->profile.home_point.destination;
 
 	((CCharEntity*)m_PBaseEntity)->status = STATUS_DISAPPEAR;
 	((CCharEntity*)m_PBaseEntity)->animation = ANIMATION_NONE;
@@ -123,8 +122,7 @@ inline int32 CLuaBaseEntity::warp(lua_State *L)
 	((CCharEntity*)m_PBaseEntity)->clearPacketList();
 	((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,2));
 
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//
@@ -151,7 +149,7 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		UpdateHealth((CCharEntity*)m_PBaseEntity,zoneutils::GetZone(m_PBaseEntity->getZone()));
+        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
 	
 	lua_pushnil(L);
@@ -171,7 +169,7 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		UpdateHealth((CCharEntity*)m_PBaseEntity,zoneutils::GetZone(m_PBaseEntity->getZone()));
+        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
 		
 	lua_pushnil(L);
@@ -192,7 +190,7 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		UpdateHealth((CCharEntity*)m_PBaseEntity,zoneutils::GetZone(m_PBaseEntity->getZone()));
+        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
 	
 	lua_pushnil(L);
@@ -223,7 +221,7 @@ inline int32 CLuaBaseEntity::addMP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		UpdateHealth((CCharEntity*)m_PBaseEntity,zoneutils::GetZone(m_PBaseEntity->getZone()));
+        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
 	lua_pushnil(L);
 	return 1;
@@ -242,7 +240,7 @@ inline int32 CLuaBaseEntity::delMP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		UpdateHealth((CCharEntity*)m_PBaseEntity,zoneutils::GetZone(m_PBaseEntity->getZone()));
+        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
 	
 	lua_pushnil(L);
@@ -263,7 +261,7 @@ inline int32 CLuaBaseEntity::setMP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		UpdateHealth((CCharEntity*)m_PBaseEntity,zoneutils::GetZone(m_PBaseEntity->getZone()));
+        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
 	
 	lua_pushnil(L);
@@ -294,7 +292,7 @@ inline int32 CLuaBaseEntity::addTP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		UpdateHealth((CCharEntity*)m_PBaseEntity,zoneutils::GetZone(m_PBaseEntity->getZone()));
+        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
 	
 	lua_pushnil(L);
@@ -314,7 +312,7 @@ inline int32 CLuaBaseEntity::delTP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		UpdateHealth((CCharEntity*)m_PBaseEntity,zoneutils::GetZone(m_PBaseEntity->getZone()));
+        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
 	
 	lua_pushnil(L);
@@ -335,7 +333,7 @@ inline int32 CLuaBaseEntity::setTP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		UpdateHealth((CCharEntity*)m_PBaseEntity,zoneutils::GetZone(m_PBaseEntity->getZone()));
+		UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
 	
 	lua_pushnil(L);
@@ -417,18 +415,15 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 
     if( m_PBaseEntity->objtype != TYPE_PC)
     {
-        zoneutils::GetZone(m_PBaseEntity->loc.zone)->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_DESPAWN));
+        m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_DESPAWN));
     }
 
 	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 		m_PBaseEntity->loc.p.x = (float) lua_tonumber(L,1);
-
 	if( !lua_isnil(L,2) && lua_isnumber(L,2) )
 		m_PBaseEntity->loc.p.y = (float) lua_tonumber(L,2);
-
 	if( !lua_isnil(L,3) && lua_isnumber(L,3) )
 		m_PBaseEntity->loc.p.z = (float) lua_tonumber(L,3);
-
 	if( !lua_isnil(L,4) && lua_isnumber(L,4) )
 		m_PBaseEntity->loc.p.rotation = (uint8) lua_tointeger(L,4);
 
@@ -436,9 +431,7 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 	{
 		if( !lua_isnil(L,5) && lua_isnumber(L,5) )
 		{
-			((CCharEntity*)m_PBaseEntity)->loc.prevzone = ((CCharEntity*)m_PBaseEntity)->loc.zone;
-
-			((CCharEntity*)m_PBaseEntity)->loc.zone = (uint8)lua_tointeger(L,5);
+            ((CCharEntity*)m_PBaseEntity)->loc.destination = (uint8)lua_tointeger(L,5);
 
 			((CCharEntity*)m_PBaseEntity)->status = STATUS_DISAPPEAR;
 			((CCharEntity*)m_PBaseEntity)->loc.boundary = 0;
@@ -452,11 +445,9 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 	}
     else
     {
-        zoneutils::GetZone(m_PBaseEntity->loc.zone)->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_SPAWN));
+        m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_SPAWN));
     }
-
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //==========================================================//
@@ -1604,7 +1595,7 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
 			PBaseEntity->m_TargID = m_PBaseEntity->targid;
 			PBaseEntity->loc.p.rotation = getangle(PBaseEntity->loc.p, m_PBaseEntity->loc.p);
 
-			zoneutils::GetZone(PBaseEntity->getZone())->PushPacket(
+			PBaseEntity->loc.zone->PushPacket(
 				PBaseEntity,
 				CHAR_INRANGE,
 				new CEntityUpdatePacket(PBaseEntity,ENTITY_UPDATE));
@@ -1779,14 +1770,20 @@ inline int32 CLuaBaseEntity::setHomePoint(lua_State *L)
 		{
 			CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-			PChar->profile.home_point = PChar->loc;
+            PChar->profile.home_point.p = PChar->loc.p;
+            PChar->profile.home_point.destination = PChar->getZone();
 			
 			const int8 *fmtQuery = "UPDATE chars \
 									SET home_zone = %u, home_rot = %u, home_x = %.3f, home_y = %.3f, home_z = %.3f \
 									WHERE charid = %u;";
 
-			Sql_Query(SqlHandle,fmtQuery, PChar->profile.home_point.zone, PChar->profile.home_point.p.rotation,
-				PChar->profile.home_point.p.x, PChar->profile.home_point.p.y, PChar->profile.home_point.p.z, PChar->id);
+			Sql_Query(SqlHandle, fmtQuery, 
+                PChar->profile.home_point.destination, 
+                PChar->profile.home_point.p.rotation,
+				PChar->profile.home_point.p.x, 
+                PChar->profile.home_point.p.y, 
+                PChar->profile.home_point.p.z, 
+                PChar->id);
 			return 0;
 		}
 	}
@@ -2327,7 +2324,7 @@ inline int32 CLuaBaseEntity::setAnimation(lua_State *L)
 				{
 					((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
 				} else {
-					zoneutils::GetZone(m_PBaseEntity->getZone())->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE));
+                    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE));
 				}
 			}
 			return 0;
@@ -2359,7 +2356,7 @@ inline int32 CLuaBaseEntity::AnimationSub(lua_State *L)
 			{
 			    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
             } else {
-			    zoneutils::GetZone(m_PBaseEntity->getZone())->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE));
+                m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE));
             }
         }
         return 0;
@@ -2415,7 +2412,7 @@ inline int32 CLuaBaseEntity::canUseCostume(lua_State *L)
         lua_pushinteger(L, 445);
         return 1;
     }
-    lua_pushinteger(L, (zoneutils::GetZone(m_PBaseEntity->getZone())->CanUseMisc(MISC_COSTUME) ? 0 : 316));
+    lua_pushinteger(L, (m_PBaseEntity->loc.zone->CanUseMisc(MISC_COSTUME) ? 0 : 316));
     return 1;
 }
 
@@ -3011,10 +3008,10 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 
 	if (!lua_isnil(L,-1) && lua_isboolean(L,-1))
 	{
-		m_PBaseEntity->loc.NeedToZone = lua_toboolean(L,-1);				
+        m_PBaseEntity->loc.zoning = lua_toboolean(L,-1);				
 		return 0;
 	}
-	lua_pushboolean( L, m_PBaseEntity->loc.NeedToZone );
+    lua_pushboolean( L, m_PBaseEntity->loc.zoning );
 	return 1;
 }
 

@@ -100,7 +100,7 @@ void CAIMobDummy::ActionRoaming()
 	else if (m_PMob->m_OwnerID != 0)
 	{
 		uint16 TargID = m_PMob->m_OwnerID & 0x0FFF;
-		m_PBattleTarget = (CBattleEntity*)m_PZone->GetEntity(TargID, TYPE_PC | TYPE_MOB | TYPE_PET);
+		m_PBattleTarget = (CBattleEntity*)m_PMob->loc.zone->GetEntity(TargID, TYPE_PC | TYPE_MOB | TYPE_PET);
 
         // TODO: возможно необходимо добавлять цели базовое количество ненависти
 
@@ -121,7 +121,7 @@ void CAIMobDummy::ActionRoaming()
 
 		battleutils::MoveTo(m_PMob, RoamingPoint, 1);
 
-		m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 	}
 	if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
 	{
@@ -165,7 +165,7 @@ void CAIMobDummy::ActionDisengage()
     m_PMob->health.tp = 0;
 	m_PMob->health.hp = m_PMob->health.maxhp;
 
-	m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
 /************************************************************************
@@ -180,7 +180,7 @@ void CAIMobDummy::ActionFall()
 	m_LastActionTime = m_Tick;
 	m_PMob->animation = ANIMATION_DEATH;
 
-	m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 }
 
 /************************************************************************
@@ -198,7 +198,7 @@ void CAIMobDummy::ActionDropItems()
 		
 		// TODO: условие не дописано. питомец персонажа тоже может убить монстра
 
-		CCharEntity* PChar = (CCharEntity*)m_PZone->GetEntity(m_PMob->m_OwnerID & 0x0FFF, TYPE_PC);
+		CCharEntity* PChar = (CCharEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID & 0x0FFF, TYPE_PC);
 
 		if (PChar != NULL)
 		{
@@ -206,7 +206,7 @@ void CAIMobDummy::ActionDropItems()
 
 			luautils::OnMobDeath(m_PMob, PChar);
 
-			m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0,6));
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0,6));
 			
 			if (m_PMob->m_CallForHelp == 0)
 			{
@@ -240,7 +240,7 @@ void CAIMobDummy::ActionDeath()
 	if ((m_Tick - m_LastActionTime) > 12000 )
 	{
 		m_ActionType = ACTION_FADE_OUT;
-		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
 	}
 }
 
@@ -297,7 +297,7 @@ void CAIMobDummy::ActionSpawn()
 		mobutils::CalculateStats(m_PMob);
 
 		m_PMob->loc.p = m_PMob->m_SpawnPoint;
-		m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
 	}
 }
 
@@ -337,7 +337,7 @@ void CAIMobDummy::ActionAbilityStart()
 	Action.flag		  = 0;
 
 	m_PMob->m_ActionList.push_back(Action);
-	m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
 	m_ActionType = ACTION_MOBABILITY_FINISH;
 }
@@ -380,7 +380,7 @@ void CAIMobDummy::ActionAbilityFinish()
         Action.flag       = 0;
 	
 	    m_PMob->m_ActionList.push_back(Action);
-	    m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+	    m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
 	    m_PMob->health.tp = 0; 
 
@@ -450,11 +450,11 @@ void CAIMobDummy::ActionAttack()
 		{
 			if (battleutils::IsParalised(m_PMob)) 
 			{
-				m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,29));
+				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,29));
 			}
 			else if (battleutils::IsIntimidated(m_PMob, m_PBattleTarget)) 
 			{
-				m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,106));
+				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,106));
 			}
 			else
 			{
@@ -492,7 +492,7 @@ void CAIMobDummy::ActionAttack()
 						m_PBattleTarget->setModifier(MOD_UTSUSEMI, --utsu);
 						Action.messageID  = 0;
 
-						m_PZone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,1,1,31));
+						m_PMob->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,1,1,31));
 						if (utsu == 0)
 						{
 							m_PBattleTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE_1);
@@ -575,7 +575,7 @@ void CAIMobDummy::ActionAttack()
 				m_PMob->m_ActionList.push_back(Action);
                 m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
 
-				m_PZone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 			}
             m_LastActionTime = m_Tick;
 		}
@@ -584,6 +584,6 @@ void CAIMobDummy::ActionAttack()
     {
 		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
 	}
-	m_PZone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 

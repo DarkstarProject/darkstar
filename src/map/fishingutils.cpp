@@ -341,7 +341,7 @@ void StartFishing(CCharEntity* PChar)
 
 	if (MessageOffset == 0)
 	{
-		ShowWarning(CL_YELLOW"Player wants to fish in %s\n"CL_RESET, zoneutils::GetZone(PChar->getZone())->GetName());
+        ShowWarning(CL_YELLOW"Player wants to fish in %s\n"CL_RESET, PChar->loc.zone->GetName());
 		PChar->pushPacket(new CReleasePacket(PChar,RELEASE_FISHING));
 		return;
 	}
@@ -582,7 +582,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				CItem* PFish = PChar->UContainer->GetItem(0);
 
 				charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
-				zoneutils::GetZone(PChar->getZone())->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
 
 				if (PFish->getType() & ITEM_USABLE)
 				{

@@ -126,7 +126,7 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 {
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
 
-    CBattleEntity* PTarget = (CBattleEntity*)m_PZone->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC);
+    CBattleEntity* PTarget = (CBattleEntity*)m_PChar->loc.zone->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC);
 	*PBattleTarget = PTarget; 
 
     m_ActionTargetID = 0;
@@ -339,7 +339,7 @@ void CAICharNormal::ActionFall()
 	m_PChar->animation = ANIMATION_DEATH;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
+	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
 }
 
 /************************************************************************
@@ -428,7 +428,7 @@ void CAICharNormal::ActionItemStart()
 	Action.flag		  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 	m_ActionType = ACTION_ITEM_USING;
 }
@@ -509,7 +509,7 @@ void CAICharNormal::ActionItemUsing()
 
 		m_PChar->m_ActionList.push_back(Action);
 
-		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 		ActionItemFinish();
 	}
@@ -699,7 +699,7 @@ void CAICharNormal::ActionRangedStart()
 
 	m_PChar->m_ActionList.push_back(Action);
 
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 	m_ActionType = ACTION_RANGED_FINISH;
 }
@@ -753,7 +753,7 @@ void CAICharNormal::ActionRangedFinish()
 
 		m_PChar->m_ActionList.push_back(Action);
 
-		m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PBattleSubTarget = NULL;
@@ -785,7 +785,7 @@ void CAICharNormal::ActionRangedInterrupt()
 		
 	m_PChar->m_ActionList.push_back(Action);
 
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PBattleSubTarget = NULL;
@@ -819,7 +819,7 @@ void CAICharNormal::ActionMagicStart()
             MagicStartError(315);
 		    return;
         } 
-        else if (!m_PZone->CanUseMisc(MISC_PET))
+        else if (!m_PChar->loc.zone->CanUseMisc(MISC_PET))
         {
             MagicStartError(40);
 		    return;
@@ -906,7 +906,7 @@ void CAICharNormal::ActionMagicStart()
 
 	m_PChar->m_ActionList.push_back(Action);
 
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
     m_ActionType = ACTION_MAGIC_CASTING;
 }
@@ -968,7 +968,7 @@ void CAICharNormal::ActionMagicCasting()
 	}
     if (battleutils::IsParalised(m_PChar)) 
     {
-	    m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,29));
+	    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,29));
 
         m_ActionType = ACTION_MAGIC_INTERRUPT;
 		ActionMagicInterrupt();
@@ -976,7 +976,7 @@ void CAICharNormal::ActionMagicCasting()
     }
     else if (battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget)) 
     {
-	    m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,106));
+	    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,106));
 
         m_ActionType = ACTION_MAGIC_INTERRUPT;
 		ActionMagicInterrupt();
@@ -1143,7 +1143,7 @@ void CAICharNormal::ActionMagicFinish()
 
 	charutils::UpdateHealth(m_PChar);
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
@@ -1171,7 +1171,7 @@ void CAICharNormal::ActionMagicInterrupt()
 
 	m_PChar->m_ActionList.push_back(Action);
 
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
@@ -1324,8 +1324,8 @@ void CAICharNormal::ActionJobAbilityFinish()
             ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
         }
 	}
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-    m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
+	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
 		
     m_PJobAbility = NULL;
     m_PBattleSubTarget = NULL;
@@ -1483,7 +1483,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	m_PChar->m_ActionList.push_back(Action);
 	
-	m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 	
 	m_PWeaponSkill = NULL;
     m_PBattleSubTarget = NULL;
@@ -1557,11 +1557,11 @@ void CAICharNormal::ActionAttack()
 
 		if (battleutils::IsParalised(m_PChar)) 
 		{
-			m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,29));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,29));
 		}
 		else if (battleutils::IsIntimidated(m_PChar, m_PBattleTarget)) 
 		{
-			m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,106));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,106));
 		}
 		else
 		{
@@ -1655,7 +1655,7 @@ void CAICharNormal::ActionAttack()
 				m_PChar->m_ActionList.push_back(Action);
 			}
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
-			m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 		}
 	}
 }

@@ -172,6 +172,7 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
 	WBUFL(data,(0x5C)) = 0;
 
+    bool firstlogin = true; // временное решение, до появления PlayTime
 	PChar->clearPacketList();
 
 	if (PChar->status == STATUS_DISAPPEAR) 
@@ -193,23 +194,25 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
 		int8 session_key[20*2+1];
 		bin2hex(session_key,(uint8*)session->blowfish.key,20);
 
-		uint32 ServerIP = zoneutils::GetZone(PChar->getZone())->GetIP();
-
-		PChar->PBattleAI->SetCurrentZone(zoneutils::GetZone(PChar->getZone()));
-		PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone()%8));
-
-		if (PChar->getZone() != 0 && 
-			PChar->getZone() != 214) 
+        if (PChar->loc.destination != 0 && 
+            PChar->loc.destination != 214) 
 		{
-			zoneutils::GetZone(PChar->getZone())->IncreaseZoneCounter(PChar);
-		}
+            zoneutils::GetZone(PChar->loc.destination)->IncreaseZoneCounter(PChar);
+		} else {
+            PChar->loc.zone = zoneutils::GetZone(PChar->loc.destination);
+        }
+        for(uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
+        {
+            if (PChar->m_ZonesList[i] != 0) firstlogin = false;
+        }
+		PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone()%8));
 
 		const int8* fmtQuery = "UPDATE accounts_sessions SET targid = %u, session_key = x'%s', server_addr = %u, client_port = %u WHERE charid = %u";
 
 		Sql_Query(SqlHandle,fmtQuery,
 			PChar->targid,
 			session_key,
-			ServerIP,
+            PChar->loc.zone->GetIP(),
 			session->client_port,
 			PChar->id);
 
@@ -217,17 +220,16 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
 	}
 	else
 	{
-        if (zoneutils::GetZone(PChar->getZone())->GetEntity(PChar->targid, TYPE_PC) != NULL)
+        if (PChar->loc.zone != NULL)
         {
             ShowWarning(CL_YELLOW"Client cannot receive packet or key is invalid: %s\n"CL_RESET, PChar->GetName());
         }
 	}
-	int16 EventID = luautils::OnZoneIn(PChar);
-
-	if (PChar->loc.prevzone == 0)
+    if (PChar->loc.prevzone == 0)
 	{
 		PChar->loc.prevzone = PChar->getZone();
 	}
+	int16 EventID = luautils::OnZoneIn(PChar);
 
 	charutils::SaveCharPosition(PChar);
 	charutils::SaveZonesVisited(PChar);
@@ -261,7 +263,7 @@ int32 SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* da
 	{
 		PChar->PTreasurePool->UpdatePool(PChar);
 	}
-    zoneutils::GetZone(PChar->getZone())->SpawnTransport(PChar);
+    PChar->loc.zone->SpawnTransport(PChar);
 	return 0;
 } 
 
@@ -276,6 +278,8 @@ int32 SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    if (PChar->loc.zone == NULL) return 0;
+
 	PChar->InvitePending = 0;
 	PChar->PWideScanTarget = NULL;
 
@@ -297,10 +301,11 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 		}
 		it++;
     }
-
-	charutils::SaveCharStats(PChar);
+    charutils::SaveCharStats(PChar);
 	charutils::SaveCharPosition(PChar);
 	charutils::SaveCharExp(PChar, PChar->GetMJob());
+
+    PChar->loc.zone->DecreaseZoneCounter(PChar);
 
 	if (PChar->status == STATUS_SHUTDOWN)
 	{
@@ -308,12 +313,10 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 		{
 			PChar->PParty->RemoveMember(PChar);
 		}
-		zoneutils::GetZone(PChar->getZone())->DecreaseZoneCounter(PChar);
-		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session",gettick()+5000,session,CTaskMgr::TASK_ONCE,map_close_session));
+		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+5000, session, CTaskMgr::TASK_ONCE, map_close_session));
 	} 
 	else  // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру 
 	{
-		zoneutils::GetZone(PChar->loc.prevzone)->DecreaseZoneCounter(PChar);
 		charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->loc.prevzone);
 	}
 
@@ -397,12 +400,12 @@ int32 SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* da
 		if (isUpdate)
 		{
 			PChar->status = STATUS_NORMAL;
-			zoneutils::GetZone(PChar->getZone())->SpawnPCs(PChar);
-			zoneutils::GetZone(PChar->getZone())->SpawnNPCs(PChar);
+            PChar->loc.zone->SpawnPCs(PChar);
+			PChar->loc.zone->SpawnNPCs(PChar);
 		}
 
-		zoneutils::GetZone(PChar->getZone())->SpawnMOBs(PChar);
-		zoneutils::GetZone(PChar->getZone())->SpawnPETs(PChar);
+		PChar->loc.zone->SpawnMOBs(PChar);
+		PChar->loc.zone->SpawnPETs(PChar);
 
 		if (PChar->PWideScanTarget != NULL)
 		{
@@ -431,7 +434,7 @@ int32 SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* da
 	{
 		PChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN));
 	}else{
-		CBaseEntity* PNpc = zoneutils::GetZone(PChar->getZone())->GetEntity(targid, TYPE_NPC);
+		CBaseEntity* PNpc = PChar->loc.zone->GetEntity(targid, TYPE_NPC);
 
 		if (PNpc == NULL)
 		{
@@ -481,7 +484,7 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
                 PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
                 return 0;
             }
-			CBaseEntity* PNpc = zoneutils::GetZone(PChar->getZone() != 0 ? PChar->loc.zone : PChar->loc.prevzone)->GetEntity(TargID, TYPE_NPC);
+            CBaseEntity* PNpc = zoneutils::GetZone(PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone)->GetEntity(TargID, TYPE_NPC);
 
 			if (PNpc != NULL)
 			{
@@ -489,7 +492,7 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 					PNpc->animation == ANIMATION_CLOSE_DOOR)
 				{
 					PNpc->animation = ANIMATION_OPEN_DOOR;
-					zoneutils::GetZone(PChar->getZone())->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE)); 
+					PChar->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE)); 
 					CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", gettick()+7000, PNpc, CTaskMgr::TASK_ONCE, close_door));
 				}
 			}
@@ -531,7 +534,7 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 					MOB->PBattleAI->GetBattleTarget() == PChar)
 				{
 					MOB->m_CallForHelp = 0x20;
-					zoneutils::GetZone(PChar->getZone())->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar,PChar,0,0,19));
+					PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar,PChar,0,0,19));
 					break;
 				}
 			}
@@ -561,9 +564,8 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 			PChar->health.mp = PChar->health.maxmp;
 
 			PChar->loc.boundary = 0;
-			PChar->loc.prevzone = PChar->loc.zone;
 			PChar->loc.p = PChar->profile.home_point.p;
-			PChar->loc.zone = PChar->profile.home_point.zone;
+            PChar->loc.destination = PChar->profile.home_point.destination;
 
 			PChar->status = STATUS_DISAPPEAR;
 			PChar->animation = ANIMATION_NONE;
@@ -649,9 +651,9 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 			{
 				zoneutils::GetZone(PChar->loc.prevzone)->SpawnMoogle(PChar);
 			}else{
-				zoneutils::GetZone(PChar->getZone())->SpawnPCs(PChar);
-				zoneutils::GetZone(PChar->getZone())->SpawnNPCs(PChar);
-				zoneutils::GetZone(PChar->getZone())->SpawnMOBs(PChar);
+				PChar->loc.zone->SpawnPCs(PChar);
+				PChar->loc.zone->SpawnNPCs(PChar);
+				PChar->loc.zone->SpawnMOBs(PChar);
 			}
 		}
 		break;
@@ -816,7 +818,7 @@ int32 SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* da
 		}
 	}
 
-	CBaseEntity* PNpc = zoneutils::GetZone(PChar->getZone())->GetEntity(targid, TYPE_NPC);
+	CBaseEntity* PNpc = PChar->loc.zone->GetEntity(targid, TYPE_NPC);
 
 	if ((PNpc != NULL) && (PNpc->id == npcid))
 	{
@@ -1499,7 +1501,7 @@ int32 SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x05D(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	zoneutils::GetZone(PChar->getZone())->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar,data));
+	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar,data));
 	return 0;
 }
 
@@ -1526,7 +1528,7 @@ int32 SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* da
 		PChar->status = STATUS_DISAPPEAR;
 		PChar->loc.boundary = 0;
 
-		zoneLine_t* PZoneLine = zoneutils::GetZone(PChar->getZone())->GetZoneLine(zoneLineID);
+		zoneLine_t* PZoneLine = PChar->loc.zone->GetZoneLine(zoneLineID);
 
 		if (PZoneLine == NULL)
 		{
@@ -1536,7 +1538,6 @@ int32 SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* da
 			// разворачиваем персонажа на 180° и отправляем туда, откуда пришел
 
 			PChar->loc.p.rotation += 128;
-
 		}else{
 			if (zoneutils::GetZone(PZoneLine->m_toZone)->GetIP() == 0)
 			{
@@ -1546,11 +1547,11 @@ int32 SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* da
 				// разворачиваем персонажа на 180° и отправляем туда, откуда пришел
 
 				PChar->loc.p.rotation += 128;
-
-			}else{
+			} else {
+                // выход из MogHouse
 				if(PZoneLine->m_zoneLineID == 1903324538)
 				{
-					uint8 prevzone  = 0;
+                    uint8 prevzone = PChar->loc.prevzone;
 
 					switch (town)
 					{
@@ -1560,15 +1561,14 @@ int32 SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* da
 						case 4: prevzone = zone + 0xF2; break;
 						case 5: prevzone = zone + (zone == 1 ? 0x2F : 0x30); break;
 					}
-					PChar->loc.zone = ( zone == 0 ? PChar->loc.prevzone : prevzone);
-				}else{
-					PChar->loc.prevzone = PChar->getZone();
-					PChar->loc.zone     = PZoneLine->m_toZone;
+                    PChar->loc.destination = prevzone;
+				} else {
+                    PChar->loc.destination = PZoneLine->m_toZone;
 				}
 				PChar->loc.p = PZoneLine->m_toPos;
 			}
 		}
-		ShowInfo(CL_WHITE"Zoning from zone %u to zone %u: %s\n"CL_RESET, PChar->loc.prevzone, PChar->loc.zone, PChar->GetName());
+        ShowInfo(CL_WHITE"Zoning from zone %u to zone %u: %s\n"CL_RESET, PChar->getZone(), PChar->loc.destination, PChar->GetName());
 	}
 
 	PChar->clearPacketList();
@@ -1968,7 +1968,7 @@ int32 SmallPacket0x0A2(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
 	uint16 diceroll = 1 + rand()%1000;
 
-	zoneutils::GetZone(PChar->getZone())->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageStandardPacket(PChar, diceroll, 88)); 
+	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageStandardPacket(PChar, diceroll, 88)); 
 	return 0;
 }
 
@@ -2018,9 +2018,9 @@ int32 SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* da
     {
 		switch(RBUFB(data,(0x04)))
 		{
-			case MESSAGE_SAY:		zoneutils::GetZone(PChar->getZone())->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6)); break;
-			case MESSAGE_EMOTION:	zoneutils::GetZone(PChar->getZone())->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data+6)); break;
-			case MESSAGE_SHOUT:		zoneutils::GetZone(PChar->getZone())->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT,   data+6)); break;
+			case MESSAGE_SAY:		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6)); break;
+			case MESSAGE_EMOTION:	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data+6)); break;
+			case MESSAGE_SHOUT:		PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT,   data+6)); break;
 			case MESSAGE_LINKSHELL: break;
 			case MESSAGE_PARTY:		
 			{
@@ -2205,7 +2205,7 @@ int32 SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* da
 	uint32 id     = RBUFL(data,(0x04));
 	uint16 targid = RBUFW(data,(0x08));
 
-	CBaseEntity* PEntity = zoneutils::GetZone(PChar->getZone())->GetEntity(targid, TYPE_MOB | TYPE_PC);
+	CBaseEntity* PEntity = PChar->loc.zone->GetEntity(targid, TYPE_MOB | TYPE_PC);
 	if (PEntity == NULL) 
 	{
 		return 0;
@@ -2358,7 +2358,6 @@ int32 SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	if (PChar->getZone() == 0 ||
 		PChar->nameflags.flags & FLAG_GM)
-		
 	{
 		PChar->status = STATUS_SHUTDOWN;
 		PChar->pushPacket(new CServerIPPacket(PChar,1));
@@ -2489,7 +2488,7 @@ int32 SmallPacket0x0F2(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x0F4(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	zoneutils::GetZone(PChar->getZone())->WideScan(PChar,10000); // MOD_WIDESCAN
+	PChar->loc.zone->WideScan(PChar,10000); // MOD_WIDESCAN
 	return 0;
 }
 
@@ -2503,7 +2502,7 @@ int32 SmallPacket0x0F5(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
 	uint16 TargID = RBUFW(data,(0x04));
 
-	PChar->PWideScanTarget = zoneutils::GetZone(PChar->getZone())->GetEntity(TargID, TYPE_MOB | TYPE_NPC);
+	PChar->PWideScanTarget = PChar->loc.zone->GetEntity(TargID, TYPE_MOB | TYPE_NPC);
 	return 0;
 }
 
@@ -2615,9 +2614,7 @@ int32 SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	CZone* PZone = zoneutils::GetZone(PChar->getZone());
-
-	if (PZone->CanUseMisc(MISC_MOGMENU))
+	if (PChar->loc.zone->CanUseMisc(MISC_MOGMENU))
 	{
 		uint8 mjob = RBUFB(data,(0x04));
 		uint8 sjob = RBUFB(data,(0x05));
@@ -2696,13 +2693,11 @@ int32 SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
 	uint32 charid = RBUFL(data,(0x04));
 
-	CCharEntity* PTarget = (CCharEntity*)zoneutils::GetZone(PChar->getZone())->GetEntity((uint16)charid & 0x0FFF, TYPE_PC);
+	CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)charid & 0x0FFF, TYPE_PC);
 
 	if (PTarget != NULL) 
 	{
 		PTarget->pushPacket(new CBazaarCheckPacket(PChar,BAZAAR_ENTER));
-       
-		uint16 tax = zoneutils::GetZone(PChar->getZone())->GetTax();
 
 		CItemContainer* Bazaar = PTarget->getStorage(LOC_INVENTORY);
 
@@ -2714,7 +2709,7 @@ int32 SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, int8* da
 				(PItem->getCharPrice() != 0) &&
 			   !(PItem->getFlag() & ITEM_FLAG_EX)) 
 			{
-				PChar->pushPacket(new CBazaarItemPacket(PItem, slotID, tax));
+                PChar->pushPacket(new CBazaarItemPacket(PItem, slotID, PChar->loc.zone->GetTax()));
 			}
 		}
 	}

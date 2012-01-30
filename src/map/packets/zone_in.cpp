@@ -62,8 +62,6 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	this->type = 0x0A;
 	this->size = 0x82;
 
-	CZone * zone = zoneutils::GetZone(PChar->getZone());
-
 	WBUFL(data,(0x04)-4) = PChar->id;
 	WBUFW(data,(0x08)-4) = PChar->targid;
 
@@ -95,10 +93,10 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	WBUFW(data,(0x52)-4) = PChar->look.sub    + 0x7000;
 	WBUFW(data,(0x54)-4) = PChar->look.ranged + 0x8000;
 
-	WBUFB(data,(0x56)-4) = zone->GetBackgroundMusic();
-	WBUFB(data,(0x58)-4) = zone->GetBackgroundMusic();
-	WBUFB(data,(0x5A)-4) = zone->GetSoloBattleMusic();
-	WBUFB(data,(0x5C)-4) = zone->GetPartyBattleMusic();
+	WBUFB(data,(0x56)-4) = PChar->loc.zone->GetBackgroundMusic();
+	WBUFB(data,(0x58)-4) = PChar->loc.zone->GetBackgroundMusic();
+	WBUFB(data,(0x5A)-4) = PChar->loc.zone->GetSoloBattleMusic();
+	WBUFB(data,(0x5C)-4) = PChar->loc.zone->GetPartyBattleMusic();
 
 	WBUFW(data,(0x60)-4) = PChar->loc.boundary;
 
@@ -125,7 +123,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 		WBUFB(data,(0x42)-4) = PChar->getZone();				// to zone
 	    WBUFW(data,(0xAA)-4) = 0x01FF;
 	    WBUFB(data,(0xAC)-4) = 0x01;							// сообщаем клиенту, что он должен начать отправлять 0x15-ые пакеты лишь после полной загрузки
-		WBUFB(data,(0xAF)-4) = zone->CanUseMisc(MISC_MOGMENU);	// флаг, позволяет использовать mog menu за пределами mog house
+		WBUFB(data,(0xAF)-4) = PChar->loc.zone->CanUseMisc(MISC_MOGMENU);	// флаг, позволяет использовать mog menu за пределами mog house
 	}
 
   //WBUFL(data,(0x98)-4) = PChar->clientip;

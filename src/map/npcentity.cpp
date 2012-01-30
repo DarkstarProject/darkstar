@@ -40,12 +40,13 @@
 
 int32 close_door(uint32 tick, CTaskMgr::CTask* PTask)
 {
-	//DSP_DEBUG_BREAK_IF(PTask->m_data == NULL || ((CBaseEntity*)PTask->m_data)->objtype != TYPE_NPC);
+	//DSP_DEBUG_BREAK_IF(PTask->m_data == NULL)
+    //DSP_DEBUG_BREAK_IF(((CBaseEntity*)PTask->m_data)->objtype != TYPE_NPC);
 
 	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
 
 	PNpc->animation = ANIMATION_CLOSE_DOOR;
-	zoneutils::GetZone(PNpc->loc.zone)->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE));
+	PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE));
 	return 0;
 }
 

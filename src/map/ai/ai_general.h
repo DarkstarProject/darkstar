@@ -70,7 +70,6 @@ enum ACTIONTYPE
 *																		*
 ************************************************************************/
 
-class CZone;
 class CSpell;
 class CItemUsable;
 class CBattleEntity;
@@ -92,7 +91,6 @@ public:
 	void			SetCurrentSpell(uint16 SpellID);
 	void			SetCurrentWeaponSkill(uint16 WSkillID);
 	void			SetCurrentJobAbility(uint16 JobAbilityID);
-	void			SetCurrentZone(CZone* Zone);
 	void			SetLastActionTime(uint32 time);
 	void			SetCurrentAction(ACTIONTYPE Action, uint16 TargetID = 0);
 
@@ -108,7 +106,6 @@ protected:
 	uint32			m_LastActionTime;		// время начала любого действия
 	uint32			m_Tick;					// текущее значение времени
 
-	CZone*			m_PZone;				// указатель на зону, в которой находится сущность
 	CSpell*			m_PSpell;				// читаемое заклинание
 	CItemUsable*	m_PItemUsable;			// используемый предмет
 	CBattleEntity*	m_PBattleTarget;		// боевая цель - основная

@@ -32,9 +32,7 @@ CServerIPPacket::CServerIPPacket(CCharEntity* PChar, uint8 type)
 	this->type = 0x0B;
 	this->size = 0x0E;
 
-	CZone* zone = zoneutils::GetZone(PChar->getZone());
-
 	WBUFB(data,(0x04)-4) = type;
-	WBUFL(data,(0x08)-4) = zone->GetIP();
-	WBUFW(data,(0x0C)-4) = zone->GetPort();
+	WBUFL(data,(0x08)-4) = PChar->loc.zone->GetIP();
+	WBUFW(data,(0x0C)-4) = PChar->loc.zone->GetPort();
 }

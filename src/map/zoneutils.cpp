@@ -148,7 +148,6 @@ void LoadZoneList()
 				PNpc->loc.p.y = Sql_GetFloatData(SqlHandle,4);
 				PNpc->loc.p.z = Sql_GetFloatData(SqlHandle,5);
 				PNpc->loc.p.moving  = (uint16)Sql_GetUIntData(SqlHandle,6);
-				PNpc->loc.zone = ZoneID;
 
 				PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlHandle,6) >> 16; // вполне вероятно
 
@@ -202,7 +201,6 @@ void LoadZoneList()
 				PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,3);
 				PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,4);
 				PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle,5);
-				PMob->loc.zone = ZoneID;
 
 				PMob->m_RespawnTime = Sql_GetUIntData(SqlHandle,6) * 1000;
 				PMob->m_SpawnType   = (SPAWNTYPE)Sql_GetUIntData(SqlHandle,7);
@@ -236,7 +234,6 @@ void LoadZoneList()
 				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,43);
 				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,44); 
 				PMob->PBattleAI = new CAIMobDummy(PMob);
-				PMob->PBattleAI->SetCurrentZone(PZone);
 				PMob->PBattleAI->SetCurrentAction(PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE);
 
                 // Killer Effect

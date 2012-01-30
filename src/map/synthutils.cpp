@@ -757,10 +757,8 @@ int32 startSynth(CCharEntity* PChar)
 	}
 
 	PChar->animation = ANIMATION_SYNTH;
-	PChar->pushPacket(new CCharUpdatePacket(PChar));
-		
-	zoneutils::GetZone(PChar->getZone())->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthAnimationPacket(PChar,effect,result));  
-	
+	PChar->pushPacket(new CCharUpdatePacket(PChar));	
+    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthAnimationPacket(PChar,effect,result));  
 	return 0;
 }
 

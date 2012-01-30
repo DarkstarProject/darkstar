@@ -296,6 +296,8 @@ void CZone::InsertMOB(CBaseEntity* PMob)
 {
 	if ((PMob != NULL) && (PMob->objtype == TYPE_MOB))
 	{
+        PMob->loc.zone = this;
+
         FindPartyForMob(PMob);
 		m_mobList[PMob->targid] = PMob;
 	}
@@ -311,6 +313,8 @@ void CZone::InsertNPC(CBaseEntity* PNpc)
 {
 	if ((PNpc != NULL) && (PNpc->objtype == TYPE_NPC))
 	{
+        PNpc->loc.zone = this;
+
         if (PNpc->look.size == MODEL_SHIP)
         {
             m_Transport = PNpc;
@@ -345,9 +349,9 @@ void CZone::InsertPET(CBaseEntity* PPet)
             ShowError(CL_RED"CZone::InsertPET : targid is high (03hX)\n"CL_RESET, targid);
             return;
         }
-
         PPet->id = 0x1000000 + (m_zoneID << 12) + targid;
         PPet->targid = targid;
+        PPet->loc.zone = this;
 
 		m_petList[PPet->targid] = PPet;
 
@@ -441,9 +445,9 @@ void CZone::TransportDepart(CBaseEntity* PTransportNPC)
 void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 {
     DSP_DEBUG_BREAK_IF(PChar == NULL);
+    DSP_DEBUG_BREAK_IF(PChar->loc.zone != this);
+
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
-    
-    uint32 count = m_charList.size();
     
 	m_charList.erase(PChar->targid);
 	ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u>\n"CL_RESET, GetName(), m_charList.size());
@@ -484,6 +488,9 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
             break;
         }
     }
+    PChar->loc.zone = NULL;
+    PChar->loc.prevzone = m_zoneID;
+
 	PChar->SpawnPCList.clear();
 	PChar->SpawnNPCList.clear();
 	PChar->SpawnMOBList.clear();
@@ -503,9 +510,12 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 {
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
+    DSP_DEBUG_BREAK_IF(PChar->loc.zone != NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
 
-	PChar->loc.NeedToZone = false;
+    PChar->loc.zone = this;
+    PChar->loc.zoning = false;
+    PChar->loc.destination = 0;
     PChar->m_InsideRegionID = 0;
 
 	m_charList[PChar->targid] = PChar;

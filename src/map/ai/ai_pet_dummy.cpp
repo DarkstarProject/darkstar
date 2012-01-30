@@ -77,7 +77,7 @@ void CAIPetDummy::ActionRoaming()
 
 		battleutils::MoveTo(m_PPet, m_PPet->PMaster->loc.p, 2);
 
-		m_PZone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+        m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 	}
 }
 
@@ -91,7 +91,7 @@ void CAIPetDummy::ActionDeath()
 {
     m_ActionType = ACTION_NONE;
 
-    m_PZone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));
+    m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));
 }
 
 /************************************************************************

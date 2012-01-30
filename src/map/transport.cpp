@@ -60,7 +60,7 @@ void CTransportHandler::InitializeTransport()
 		{
             Transport_t* PTransport = new Transport_t;
 
-            PTransport->Dock.zone = Sql_GetUIntData(SqlHandle,1) >> 12;
+            PTransport->Dock.zone = zoneutils::GetZone(Sql_GetUIntData(SqlHandle,1) >> 12);
             PTransport->Dock.p.x  = Sql_GetFloatData(SqlHandle,3);
             PTransport->Dock.p.y  = Sql_GetFloatData(SqlHandle,4);
             PTransport->Dock.p.z  = Sql_GetFloatData(SqlHandle,5);
@@ -170,7 +170,7 @@ void CTransportHandler::TransportTimer()
 
             WBUFL(&PTransport->PTransportNPC->name[0],4) = CVanaTime::getInstance()->getSysTime() - 1009810800;
 
-            zoneutils::GetZone(PTransport->Dock.zone)->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_SPAWN));
+            PTransport->Dock.zone->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_SPAWN));
         }
         // персонажи видят корабль, иначе ждем следующего прибытия
         else if (PTransport->PTransportNPC->status == STATUS_NORMAL) 
@@ -185,7 +185,7 @@ void CTransportHandler::TransportTimer()
             else if (ShipTimerOffset == PTransport->TimeAnimationArrive)
             {
                 PTransport->PDoorNPC->animation = ANIMATION_OPEN_DOOR;
-                zoneutils::GetZone(PTransport->Dock.zone)->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE)); 
+                PTransport->Dock.zone->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE)); 
             }
             //корабль отчаливает
             else if (ShipTimerOffset == PTransport->TimeAnimationArrive + PTransport->TimeWaiting)
@@ -196,15 +196,15 @@ void CTransportHandler::TransportTimer()
 
                 WBUFL(&PTransport->PTransportNPC->name[0],4) = CVanaTime::getInstance()->getSysTime() - 1009810800;
 
-                zoneutils::GetZone(PTransport->Dock.zone)->TransportDepart(PTransport->PTransportNPC);
-                zoneutils::GetZone(PTransport->Dock.zone)->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE)); 
-                zoneutils::GetZone(PTransport->Dock.zone)->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_UPDATE));
+                PTransport->Dock.zone->TransportDepart(PTransport->PTransportNPC);
+                PTransport->Dock.zone->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE)); 
+                PTransport->Dock.zone->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_UPDATE));
             }
             //корабль исчезает
             else if (ShipTimerOffset == PTransport->TimeAnimationArrive + PTransport->TimeWaiting + PTransport->TimeAnimationDepart)
             {
                 PTransport->PTransportNPC->status = STATUS_DISAPPEAR;
-                zoneutils::GetZone(PTransport->Dock.zone)->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_DESPAWN));
+                PTransport->Dock.zone->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_DESPAWN));
             }
         }
     }

@@ -43,7 +43,6 @@ CAIGeneral::CAIGeneral()
 	m_ActionTargetID = 0;
 	m_LastActionTime = 0;
 
-	m_PZone = NULL;
 	m_PSpell = NULL;
 	m_PWeaponSkill = NULL;
 	m_PItemUsable = NULL;
@@ -182,18 +181,6 @@ void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 void CAIGeneral::SetLastActionTime(uint32 time)
 {
 	m_LastActionTime = time;
-}
-
-/************************************************************************
-*																		*
-*  Устанавливаем текущую зону сущности (временное решение до появления	*
-*  более грамотного и универсального)									*
-*																		*
-************************************************************************/
-
-void CAIGeneral::SetCurrentZone(CZone* Zone)
-{
-	m_PZone = Zone;
 }
 
 /************************************************************************

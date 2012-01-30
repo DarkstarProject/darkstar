@@ -146,7 +146,7 @@ int32 SendUncnown0x39Packet(lua_State* L)
 
         if (PNpc != NULL)
         {
-            zoneutils::GetZone(PNpc->getZone())->PushPacket(PNpc, CHAR_INRANGE, new CUncnown0x39Packet(PNpc, param));   
+            PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CUncnown0x39Packet(PNpc, param));   
         }
 		return 0;
 	}
@@ -452,7 +452,7 @@ int32 OnZoneIn(CCharEntity* PChar)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName());
+	snprintf(File, sizeof(File), "%s/zones/%s/Zone.lua", LuaScriptDir, PChar->loc.zone->GetName());
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);
@@ -494,7 +494,7 @@ int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName());
+	snprintf(File, sizeof(File), "%s/zones/%s/Zone.lua", LuaScriptDir, PChar->loc.zone->GetName());
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);
@@ -536,7 +536,7 @@ int32 OnRegionLeave(CCharEntity* PChar, CRegion* PRegion)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName());
+	snprintf(File, sizeof(File), "%s/zones/%s/Zone.lua", LuaScriptDir, PChar->loc.zone->GetName());
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);
@@ -579,7 +579,7 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/zones/%s/npcs/%s.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName(),PNpc->GetName());
+	snprintf( File, sizeof(File), "%s/zones/%s/npcs/%s.lua", LuaScriptDir, PChar->loc.zone->GetName(),PNpc->GetName());
 	
 	PChar->m_event.reset();
     PChar->m_event.Target = PNpc;
@@ -693,7 +693,7 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/zones/%s/npcs/%s.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName(),PNpc->GetName());
+	snprintf(File, sizeof(File), "%s/zones/%s/npcs/%s.lua", LuaScriptDir, PChar->loc.zone->GetName(),PNpc->GetName());
 
 	PChar->m_event.reset();
     PChar->m_event.Target = PNpc;
@@ -1004,7 +1004,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/zones/%s/mobs/%s.lua",LuaScriptDir,zoneutils::GetZone(PMob->getZone())->GetName(), PMob->GetName());
+	snprintf( File, sizeof(File), "%s/zones/%s/mobs/%s.lua", LuaScriptDir, PMob->loc.zone->GetName(), PMob->GetName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -1071,7 +1071,7 @@ int32 OnMobSpawn(CBaseEntity* PMob)
     int8 File[255];
     memset(File,0,sizeof(File));
 
-    snprintf(File,sizeof(File),"%s/zones/%s/mobs/%s.lua",LuaScriptDir,zoneutils::GetZone(PMob->getZone())->GetName(), PMob->GetName());
+    snprintf( File, sizeof(File), "%s/zones/%s/mobs/%s.lua", LuaScriptDir, PMob->loc.zone->GetName(), PMob->GetName());
 
     if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
     {
@@ -1246,7 +1246,7 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,zoneutils::GetZone(PChar->getZone())->GetName());
+	snprintf(File, sizeof(File), "%s/zones/%s/Zone.lua", LuaScriptDir, PChar->loc.zone->GetName());
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);

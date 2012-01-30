@@ -307,16 +307,16 @@ void LoadChar(CCharEntity* PChar)
 
 		PChar->targid = (uint16)PChar->id & 0x0FFF;
 
-		PChar->loc.zone	= (uint8)Sql_GetIntData(SqlHandle,1);
-		PChar->loc.prevzone = (uint8)Sql_GetIntData(SqlHandle,2);
-		PChar->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle,3);
+        PChar->loc.destination = (uint8)Sql_GetIntData(SqlHandle,1);
+		PChar->loc.prevzone    = (uint8)Sql_GetIntData(SqlHandle,2);
+		PChar->loc.p.rotation  = (uint8)Sql_GetIntData(SqlHandle,3);
 		PChar->loc.p.x = Sql_GetFloatData(SqlHandle,4);
 		PChar->loc.p.y = Sql_GetFloatData(SqlHandle,5);
 		PChar->loc.p.z = Sql_GetFloatData(SqlHandle,6);
 		PChar->loc.boundary = (uint16)Sql_GetIntData(SqlHandle,7);
 
-		PChar->profile.home_point.zone = (uint8)Sql_GetIntData(SqlHandle,8);
-		PChar->profile.home_point.p.rotation = (uint8)Sql_GetIntData(SqlHandle,9);
+        PChar->profile.home_point.destination = (uint8)Sql_GetIntData(SqlHandle,8);
+		PChar->profile.home_point.p.rotation  = (uint8)Sql_GetIntData(SqlHandle,9);
 		PChar->profile.home_point.p.x = Sql_GetFloatData(SqlHandle,10);
 		PChar->profile.home_point.p.y = Sql_GetFloatData(SqlHandle,11);
 		PChar->profile.home_point.p.z = Sql_GetFloatData(SqlHandle,12);
@@ -1974,9 +1974,8 @@ void AddExperiencePoints(CCharEntity* PChar, uint32 exp, bool limit)
             PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
             PChar->pushPacket(new CCharSyncPacket(PChar));
 
-            CZone* PZone = zoneutils::GetZone(PChar->getZone());
-            PZone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharHealthPacket(PChar));
-            PZone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 9));
+            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharHealthPacket(PChar));
+            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 9));
         }
     }
     PChar->pushPacket(new CCharStatsPacket(PChar));
@@ -2004,8 +2003,16 @@ void SaveCharPosition(CCharEntity* PChar)
 	const int8* fmtQuery = "UPDATE chars \
 							SET pos_zone = %u, pos_prevzone = %u, pos_rot = %u, pos_x = %.3f, pos_y = %.3f, pos_z = %.3f, boundary = %u \
 							WHERE charid = %u;";
-	Sql_Query(SqlHandle,fmtQuery,PChar->loc.zone,PChar->loc.prevzone,PChar->loc.p.rotation,PChar->loc.p.x,PChar->loc.p.y,
-		PChar->loc.p.z,PChar->loc.boundary,PChar->id);
+
+    Sql_Query(SqlHandle, fmtQuery,
+        PChar->getZone(),
+        PChar->loc.prevzone,
+        PChar->loc.p.rotation,
+        PChar->loc.p.x,
+        PChar->loc.p.y,
+		PChar->loc.p.z,
+        PChar->loc.boundary,
+        PChar->id);
 }
 
 /************************************************************************
@@ -2016,12 +2023,18 @@ void SaveCharPosition(CCharEntity* PChar)
 
 void SaveQuestsList(CCharEntity* PChar)
 {
-	const int8* fmtQuery = "UPDATE chars SET quests = '%s',fameSandoria = %u, fameBastok = %u, fameWindurst = %u, fameNorg = %u WHERE charid = %u;";
+	const int8* fmtQuery = "UPDATE chars SET quests = '%s', fameSandoria = %u, fameBastok = %u, fameWindurst = %u, fameNorg = %u WHERE charid = %u;";
 
 	int8 questslist[sizeof(PChar->m_questLog)*2+1];
 	Sql_EscapeStringLen(SqlHandle,questslist,(const int8*)PChar->m_questLog,sizeof(PChar->m_questLog));
 
-	Sql_Query(SqlHandle,fmtQuery,questslist,PChar->profile.fame[0],PChar->profile.fame[1],PChar->profile.fame[2],PChar->profile.fame[3],PChar->id);
+	Sql_Query(SqlHandle, fmtQuery,
+        questslist,
+        PChar->profile.fame[0],
+        PChar->profile.fame[1],
+        PChar->profile.fame[2],
+        PChar->profile.fame[3],
+        PChar->id);
 }
 
 /************************************************************************

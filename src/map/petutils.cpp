@@ -135,12 +135,11 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 	PPet->PBattleAI = new CAIPetDummy(PPet);
 	PPet->PBattleAI->SetLastActionTime(gettick());
 	PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-	PPet->PBattleAI->SetCurrentZone(zoneutils::GetZone(PMaster->getZone()));
 
     PMaster->PPet = PPet;
 	PPet->PMaster = PMaster;
 
-	zoneutils::GetZone(PMaster->getZone())->InsertPET(PPet);
+    PMaster->loc.zone->InsertPET(PPet);
 
 	if (PMaster->objtype == TYPE_PC)
 	{

@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include "baseentity.h"
+#include "zone.h"
 
 CBaseEntity::CBaseEntity() 
 {
@@ -51,7 +52,7 @@ const int8* CBaseEntity::GetName()
 
 uint8 CBaseEntity::getZone()
 {
-	return loc.zone;
+    return loc.zone->GetID();
 }
 
 float CBaseEntity::GetXPos()
