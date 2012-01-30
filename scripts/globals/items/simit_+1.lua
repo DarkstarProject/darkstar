@@ -1,14 +1,11 @@
 -----------------------------------------
--- ID: 4488
--- Item: jack-o-lantern
--- Food Effect: 180Min, All Races
+-- ID: 5597
+-- Item: simit_+1
+-- Food Effect: 60Min, All Races
 -----------------------------------------
--- Charisma -10
--- Accuracy 10
--- Ranged Acc 10
--- Evasion 10
--- Arcana Killer 5
--- Dark Def 25
+-- Health 18
+-- Vitality 4
+-- Defense 2
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -18,7 +15,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
+result = 0
         if (target:hasStatusEffect(EFFECT_FOOD) == true) then
                 result = 246;
         end
@@ -30,7 +27,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-        target:addStatusEffect(EFFECT_FOOD,0,0,10800,0,4488);
+        target:addStatusEffect(EFFECT_FOOD,0,0,3600,0,5597);
 end;
 
 -----------------------------------
@@ -38,12 +35,9 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-        target:addMod(MOD_CHR, -10);
-        target:addMod(MOD_ACC, 10);
-	target:addMod(MOD_RACC, 10);
-        target:addMod(MOD_EVA, 10);
-        target:addMod(MOD_ARCANA_KILLER, 5);
-        target:addMod(MOD_DARKDEF, 25);
+        target:addMod(MOD_HP, 18);
+        target:addMod(MOD_VIT, 4);
+        target:addMod(MOD_DEF, 2);
 end;
 
 -----------------------------------------
@@ -51,10 +45,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-        target:delMod(MOD_CHR, -10);
-        target:delMod(MOD_ACC, 10);
-        target:delMod(MOD_RACC, 10);
-        target:delMod(MOD_EVA, 10);
-        target:delMod(MOD_ARCANA_KILLER, 5);
-        target:delMod(MOD_DARKDEF, 25);
+        target:delMod(MOD_MP, 18);
+        target:delMod(MOD_VIT, 4);
+        target:delMod(MOD_DEF, 2);
 end;
