@@ -320,7 +320,7 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
     PChar->loc.zone->DecreaseZoneCounter(PChar);
 
 	PChar->status = STATUS_DISAPPEAR;
-	PChar->PBattleAI->SetCurrentAction(ACTION_NONE);
+    PChar->PBattleAI->Reset();
 	return 0;
 } 	
 

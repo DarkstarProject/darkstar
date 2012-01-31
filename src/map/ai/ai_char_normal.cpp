@@ -456,7 +456,6 @@ void CAICharNormal::ActionItemUsing()
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getActivationTime())
 	{
 		m_ActionType = ACTION_ITEM_FINISH;
-		m_LastActionTime = m_Tick;
 
 		m_PItemUsable->setSubType(ITEM_UNLOCKED);
 
@@ -526,6 +525,10 @@ void CAICharNormal::ActionItemFinish()
 {
 	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
+	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getAnimationTime())
 	{

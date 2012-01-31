@@ -80,13 +80,14 @@ class CAIGeneral
 {
 public:
 
+    void            Reset();
+
 	ACTIONTYPE		GetCurrentAction();
 	CSpell*			GetCurrentSpell();
 	CBattleEntity*	GetBattleTarget();
 	CAbility*		GetCurrentJobAbility();
 	CWeaponSkill*	GetCurrentWeaponSkill();
 	CMobSkill*		GetCurrentMobSkill();
-
 
 	void			SetCurrentSpell(uint16 SpellID);
 	void			SetCurrentWeaponSkill(uint16 WSkillID);

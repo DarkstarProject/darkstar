@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Dim 08 Janvier 2012 à 19:53
+-- Généré le : Mar 31 Janvier 2012 à 23:10
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -25,7 +25,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Structure de la table `item_basic`
 --
 
-DROP TABLE IF EXISTS `item_basic`;
 CREATE TABLE IF NOT EXISTS `item_basic` (
   `itemid` smallint(5) unsigned NOT NULL,
   `name` tinytext NOT NULL,
@@ -2183,10 +2182,10 @@ INSERT INTO `item_basic` VALUES (2335, 'soulflayer_tentacle', 'soulfl_tentacle',
 INSERT INTO `item_basic` VALUES (2336, 'soulflayer_staff', 'soulflayer_staff', 1, 4096, 50, 1, 0);
 INSERT INTO `item_basic` VALUES (2337, 'clump_of_wamoura_hair', 'wamoura_hair', 12, 0, 40, 0, 150);
 INSERT INTO `item_basic` VALUES (2338, 'wamoura_scale', 'wamoura_scale', 12, 0, 44, 0, 312);
-INSERT INTO `item_basic` VALUES (2339, 'chococard_update_item_basic_(itemid;_m;', 'chococard_(m)', 1, 12384, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (2339, 'chococard_(m)', 'chococard_(m)', 1, 12384, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (2340, 'square_of_imperial_silk_cloth', 'imp_silk_cloth', 12, 0, 40, 0, 970);
 INSERT INTO `item_basic` VALUES (2341, 'hydrogauge', 'hydrogauge', 1, 28736, 0, 1, 0);
-INSERT INTO `item_basic` VALUES (2342, 'chococard_update_item_basic_(itemid;_f;', 'chococard_(f)', 1, 12384, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (2342, 'chococard_(f)', 'chococard_(f)', 1, 12384, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (2343, 'bag_of_la_theine_millet', 'la_theine_millet', 1, 0, 48, 0, 450);
 INSERT INTO `item_basic` VALUES (2344, 'vcs_honeymoon_ticket', 'vcs_hon_ticket', 1, 61536, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (2345, 'hi-chocolixir', 'hi-chocolixir', 1, 0, 48, 0, 1348);
@@ -5009,12 +5008,12 @@ INSERT INTO `item_basic` VALUES (5859, 'galkan_sausage_+1', 'glk_sausage_+1', 12
 INSERT INTO `item_basic` VALUES (5860, 'galkan_sausage_+2', 'glk_sausage_+2', 12, 1536, 99, 0, 0);
 INSERT INTO `item_basic` VALUES (5861, 'galkan_sausage_+3', 'glk_sausage_+3', 12, 1536, 99, 0, 0);
 INSERT INTO `item_basic` VALUES (5862, 'galkan_sausage_-1', 'glk_sausage_-1', 12, 1536, 99, 0, 0);
-INSERT INTO `item_basic` VALUES (5863, 'toolbag_kabenro', 'toolbg_(kaben)', 12, 1536, 99, 0, 0);
-INSERT INTO `item_basic` VALUES (5864, 'toolbag_jinko', 'toolbag_(jinko)', 12, 1536, 99, 0, 0);
-INSERT INTO `item_basic` VALUES (5866, 'toolbag_mokujin', 'toolbag_(moku)', 12, 1536, 99, 0, 0);
-INSERT INTO `item_basic` VALUES (5867, 'toolbag_inoshishinofuda', 'toolbag_(ino)', 12, 1536, 99, 0, 0);
-INSERT INTO `item_basic` VALUES (5868, 'toolbag_shikanofuda', 'toolbag_(shika)', 12, 1536, 99, 0, 0);
-INSERT INTO `item_basic` VALUES (5869, 'toolbag_chonofuda', 'toolbag_(cho)', 12, 1536, 99, 0, 0);
+INSERT INTO `item_basic` VALUES (5863, 'toolbag_(kabenro)', 'toolbg_(kaben)', 12, 1536, 99, 0, 0);
+INSERT INTO `item_basic` VALUES (5864, 'toolbag_(jinko)', 'toolbag_(jinko)', 12, 1536, 99, 0, 0);
+INSERT INTO `item_basic` VALUES (5866, 'toolbag_(mokujin)', 'toolbag_(moku)', 12, 1536, 99, 0, 0);
+INSERT INTO `item_basic` VALUES (5867, 'toolbag_(inoshishinofuda)', 'toolbag_(ino)', 12, 1536, 99, 0, 0);
+INSERT INTO `item_basic` VALUES (5868, 'toolbag_(shikanofuda)', 'toolbag_(shika)', 12, 1536, 99, 0, 0);
+INSERT INTO `item_basic` VALUES (5869, 'toolbag_(chonofuda)', 'toolbag_(cho)', 12, 1536, 99, 0, 0);
 INSERT INTO `item_basic` VALUES (5870, 'trump_card_case', 'trump_card_case', 12, 1536, 99, 0, 0);
 INSERT INTO `item_basic` VALUES (5871, 'ruszor_quiver', 'ruszor_quiver', 12, 1536, 99, 0, 0);
 INSERT INTO `item_basic` VALUES (5872, 'dark_adaman_bolt_quiver', 'da_bolt_quiver', 12, 1536, 99, 0, 0);

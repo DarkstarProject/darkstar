@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Mer 28 Décembre 2011 à 10:28
+-- Généré le : Mar 31 Janvier 2012 à 23:15
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -1122,8 +1122,8 @@ INSERT INTO `item_usable` VALUES (5323, 0, 'copy_of_the_brenner_bluebook', 1, 1,
 INSERT INTO `item_usable` VALUES (5324, 0, 'page_of_the_brenner_bluebook', 1, 1, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5325, 0, 'copy_of_the_brenner_blackbook', 1, 1, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5326, 0, 'page_of_the_brenner_blackbook', 1, 1, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (5327, 0, 'bottle_of_potion_drops', 1, 2, 31, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (5328, 0, 'bottle_of_hi-potion_drops', 1, 2, 0, 0, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (5327, 0, 'bottle_of_potion_drops', 1, 1, 31, 0, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (5328, 0, 'bottle_of_hi-potion_drops', 1, 2, 31, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5329, 0, 'tarutaru_snare', 32, 1, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5330, 0, 'mithra_snare', 32, 1, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5331, 0, 'qiqirn_mine', 1, 1, 0, 0, 0, 0, 0);
@@ -1675,7 +1675,7 @@ INSERT INTO `item_usable` VALUES (11403, 0, 'talaria', 1, 5, 0, 0, 1, 15, 1800);
 INSERT INTO `item_usable` VALUES (11490, 0, 'snow_bunny_hat', 1, 1, 0, 0, 10, 30, 86400);
 INSERT INTO `item_usable` VALUES (11491, 0, 'snow_bunny_hat_+1', 1, 1, 0, 0, 1, 30, 86400);
 INSERT INTO `item_usable` VALUES (11538, 0, 'nexus_cape', 1, 8, 0, 0, 1, 30, 144000);
-INSERT INTO `item_usable` VALUES (11666, 0, 'novennial_ring', 1, 12, 76, 0, 10, 15, 3600);
+INSERT INTO `item_usable` VALUES (11666, 0, 'novennial_ring', 1, 3, 76, 0, 10, 15, 3600);
 INSERT INTO `item_usable` VALUES (11811, 0, 'destrier_beret', 1, 4, 0, 0, 1, 30, 3600);
 INSERT INTO `item_usable` VALUES (11861, 0, 'hikogami_yukata', 1, 2, 0, 0, 1, 30, 86400);
 INSERT INTO `item_usable` VALUES (11862, 0, 'himegami_yukata', 1, 2, 0, 0, 1, 30, 86400);
@@ -1690,12 +1690,12 @@ INSERT INTO `item_usable` VALUES (13179, 0, 'kingdom_stables_collar', 1, 8, 0, 0
 INSERT INTO `item_usable` VALUES (13180, 0, 'republic_stables_medal', 1, 8, 0, 0, 10, 30, 86400);
 INSERT INTO `item_usable` VALUES (13181, 0, 'federation_stables_scarf', 1, 8, 0, 0, 10, 30, 86400);
 INSERT INTO `item_usable` VALUES (13182, 0, 'oscar_scarf', 20, 3, 0, 0, 50, 30, 900);
-INSERT INTO `item_usable` VALUES (13682, 0, 'ether_tank', 1, 1, 0, 0, 5, 30, 60);
-INSERT INTO `item_usable` VALUES (13683, 0, 'water_tank', 1, 1, 0, 0, 40, 30, 60);
-INSERT INTO `item_usable` VALUES (13684, 0, 'potion_tank', 1, 1, 0, 0, 11, 30, 60);
+INSERT INTO `item_usable` VALUES (13682, 0, 'ether_tank', 1, 1, 55, 0, 5, 30, 60);
+INSERT INTO `item_usable` VALUES (13683, 0, 'water_tank', 1, 1, 55, 0, 40, 30, 60);
+INSERT INTO `item_usable` VALUES (13684, 0, 'potion_tank', 1, 1, 55, 0, 11, 30, 60);
 INSERT INTO `item_usable` VALUES (13685, 0, 'invisible_mantle', 1, 6, 0, 0, 20, 30, 20);
-INSERT INTO `item_usable` VALUES (13688, 0, 'hi-potion_tank', 1, 2, 0, 0, 20, 30, 60);
-INSERT INTO `item_usable` VALUES (13689, 0, 'hi-ether_tank', 1, 2, 0, 0, 20, 30, 60);
+INSERT INTO `item_usable` VALUES (13688, 0, 'hi-potion_tank', 1, 2, 55, 0, 20, 30, 60);
+INSERT INTO `item_usable` VALUES (13689, 0, 'hi-ether_tank', 1, 2, 55, 0, 20, 30, 60);
 INSERT INTO `item_usable` VALUES (13693, 0, 'aries_mantle', 1, 3, 0, 0, 20, 30, 1800);
 INSERT INTO `item_usable` VALUES (13823, 0, 'regen_cuirass', 1, 8, 0, 0, 50, 30, 1800);
 INSERT INTO `item_usable` VALUES (14324, 0, 'mist_slacks', 1, 1, 0, 0, 15, 30, 600);
@@ -1761,7 +1761,7 @@ INSERT INTO `item_usable` VALUES (15182, 0, 'zoolater_hat', 1, 3, 0, 0, 50, 30, 
 INSERT INTO `item_usable` VALUES (15194, 0, 'maats_cap', 1, 8, 0, 0, 1, 30, 86400);
 INSERT INTO `item_usable` VALUES (15198, 0, 'sprout_beret', 4, 3, 0, 0, 1, 30, 600);
 INSERT INTO `item_usable` VALUES (15199, 0, 'guide_beret', 4, 3, 0, 0, 1, 30, 1800);
-INSERT INTO `item_usable` VALUES (15204, 0, 'mandragora_beret', 1, 1, 0, 0, 1, 30, 86400);
+INSERT INTO `item_usable` VALUES (15204, 0, 'mandragora_beret', 1, 1, 0, 0, 1, 30, 3600);
 INSERT INTO `item_usable` VALUES (15211, 0, 'reraise_hairpin', 1, 8, 0, 0, 10, 30, 60);
 INSERT INTO `item_usable` VALUES (15212, 0, 'stars_cap', 1, 8, 0, 0, 1, 30, 86400);
 INSERT INTO `item_usable` VALUES (15213, 0, 'laurel_crown', 1, 8, 0, 0, 1, 30, 86400);
@@ -1778,7 +1778,7 @@ INSERT INTO `item_usable` VALUES (15290, 0, 'haste_belt', 1, 6, 0, 0, 20, 30, 40
 INSERT INTO `item_usable` VALUES (15296, 0, 'tathlum_belt', 1, 1, 0, 0, 12, 30, 3600);
 INSERT INTO `item_usable` VALUES (15297, 0, 'rabbit_belt', 1, 1, 0, 0, 1, 30, 86400);
 INSERT INTO `item_usable` VALUES (15298, 0, 'worm_belt', 1, 1, 0, 0, 1, 30, 86400);
-INSERT INTO `item_usable` VALUES (15299, 0, 'mandragora_belt', 1, 1, 0, 0, 1, 30, 86400);
+INSERT INTO `item_usable` VALUES (15299, 0, 'mandragora_belt', 1, 1, 0, 0, 1, 30, 3600);
 INSERT INTO `item_usable` VALUES (15300, 0, 'nebimonite_belt', 1, 3, 0, 0, 50, 30, 86400);
 INSERT INTO `item_usable` VALUES (15312, 0, 'mist_pumps', 1, 1, 0, 0, 10, 30, 600);
 INSERT INTO `item_usable` VALUES (15320, 0, 'powder_boots', 1, 3, 0, 0, 20, 30, 600);
@@ -1878,15 +1878,15 @@ INSERT INTO `item_usable` VALUES (16145, 0, 'lunar_cap', 1, 3, 0, 0, 1, 15, 3600
 INSERT INTO `item_usable` VALUES (16153, 0, 'reikyo_hairpin', 20, 3, 0, 0, 50, 30, 900);
 INSERT INTO `item_usable` VALUES (16182, 0, 'town_moogle_shield', 1, 5, 0, 0, 1, 15, 57600);
 INSERT INTO `item_usable` VALUES (16183, 0, 'nomad_moogle_shield', 1, 5, 0, 0, 1, 15, 57600);
-INSERT INTO `item_usable` VALUES (16223, 0, 'orange_au_lait_tank', 1, 1, 0, 0, 8, 30, 60);
-INSERT INTO `item_usable` VALUES (16224, 0, 'apple_au_lait_tank', 1, 1, 0, 0, 8, 30, 60);
-INSERT INTO `item_usable` VALUES (16225, 0, 'pear_au_lait_tank', 1, 1, 0, 0, 8, 30, 60);
-INSERT INTO `item_usable` VALUES (16226, 0, 'pamama_au_lait_tank', 1, 1, 0, 0, 8, 30, 60);
-INSERT INTO `item_usable` VALUES (16227, 0, 'persikos_au_lait_tank', 1, 1, 0, 0, 5, 30, 60);
+INSERT INTO `item_usable` VALUES (16223, 0, 'orange_au_lait_tank', 1, 1, 55, 0, 8, 30, 60);
+INSERT INTO `item_usable` VALUES (16224, 0, 'apple_au_lait_tank', 1, 1, 55, 0, 8, 30, 60);
+INSERT INTO `item_usable` VALUES (16225, 0, 'pear_au_lait_tank', 1, 1, 55, 0, 8, 30, 60);
+INSERT INTO `item_usable` VALUES (16226, 0, 'pamama_au_lait_tank', 1, 1, 55, 0, 8, 30, 60);
+INSERT INTO `item_usable` VALUES (16227, 0, 'persikos_au_lait_tank', 1, 1, 55, 0, 5, 30, 60);
 INSERT INTO `item_usable` VALUES (16230, 0, 'lieutenants_cape', 1, 8, 0, 0, 100, 30, 1800);
 INSERT INTO `item_usable` VALUES (16243, 0, 'drovers_mantle', 1, 1, 0, 0, 15, 10, 10);
-INSERT INTO `item_usable` VALUES (16249, 0, 'elixir_tank', 1, 2, 0, 0, 4, 30, 60);
-INSERT INTO `item_usable` VALUES (16251, 0, 'casaba_melon_tank', 1, 2, 0, 0, 50, 30, 60);
+INSERT INTO `item_usable` VALUES (16249, 0, 'elixir_tank', 1, 2, 55, 0, 4, 30, 60);
+INSERT INTO `item_usable` VALUES (16251, 0, 'casaba_melon_tank', 1, 2, 55, 0, 50, 30, 60);
 INSERT INTO `item_usable` VALUES (16257, 0, 'ghost_cape', 1, 1, 0, 0, 30, 15, 600);
 INSERT INTO `item_usable` VALUES (16273, 0, 'chocobo_pullus_torque', 1, 1, 0, 0, 1, 30, 86400);
 INSERT INTO `item_usable` VALUES (16285, 0, 'pendant_compass', 1, 1, 0, 0, 10, 5, 10);

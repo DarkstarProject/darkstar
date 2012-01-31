@@ -38,7 +38,18 @@
 
 CAIGeneral::CAIGeneral()
 {
-	m_Tick = 0;
+	Reset();
+}
+
+/************************************************************************
+*                                                                       *
+*  Сбрасываем AI в исходное состояние                                   *
+*                                                                       *
+************************************************************************/
+
+void CAIGeneral::Reset()
+{
+    m_Tick = 0;
 	m_ActionType = ACTION_NONE;
 	m_ActionTargetID = 0;
 	m_LastActionTime = 0;
