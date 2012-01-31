@@ -167,6 +167,8 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList()
             PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
             PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
 
+            PPlayer->slvl = (PPlayer->slvl > (PPlayer->mlvl >> 1) ? (PPlayer->mlvl == 1 ? 1 : (PPlayer->mlvl >> 1)) : PPlayer->slvl);
+
             uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);
             uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
 
