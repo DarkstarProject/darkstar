@@ -19,7 +19,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x34);
+
+	player:startEvent(0x34);
+	return 1;
+
 end; 
 
 -----------------------------------
@@ -39,6 +42,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-
