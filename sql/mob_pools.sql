@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2012-01-13 13:23:53
+Date: 2012-01-30 16:58:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4181,7 +4181,7 @@ INSERT INTO `mob_pools` VALUES ('4141', 'Vanguard_Chanter', '270', 0x00003D04000
 INSERT INTO `mob_pools` VALUES ('4142', 'Vanguard_Constable', '202', 0x00001E0400000000000000000000000000000000, '3', '3', '3', '265', '16', '1', '0');
 INSERT INTO `mob_pools` VALUES ('4143', 'Vanguard_Defender', '202', 0x00001D0400000000000000000000000000000000, '7', '7', '4', '265', '16', '1', '0');
 INSERT INTO `mob_pools` VALUES ('4144', 'Vanguard_Dollmaster', '189', 0x0000190400000000000000000000000000000000, '15', '15', '4', '240', '16', '1', '0');
-INSERT INTO `mob_pools` VALUES ('4145', 'Vanguard_Dragon', '133', 0x00003F0400000000000000000000000000000000, '1', '1', '12', '240', '8', '1', '2');
+INSERT INTO `mob_pools` VALUES ('4145', 'Vanguard_Dragontamer', '133', 0x00003F0400000000000000000000000000000000, '1', '1', '12', '240', '8', '1', '2');
 INSERT INTO `mob_pools` VALUES ('4146', 'Vanguard_Drakekeeper', '202', 0x00001D0400000000000000000000000000000000, '14', '1', '3', '265', '16', '1', '0');
 INSERT INTO `mob_pools` VALUES ('4147', 'Vanguard_Enchanter', '133', 0x00003F0400000000000000000000000000000000, '5', '5', '3', '240', '16', '1', '2');
 INSERT INTO `mob_pools` VALUES ('4148', 'Vanguard_Exemplar', '270', 0x00003A0400000000000000000000000000000000, '7', '12', '1', '240', '16', '1', '0');
