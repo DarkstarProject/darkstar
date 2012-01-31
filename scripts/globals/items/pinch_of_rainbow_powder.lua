@@ -1,6 +1,6 @@
 -----------------------------------------
---	ID: 4164
---	Prism Powder
+--	ID: 5362
+--	Rainbow Powder
 --	When applied, it makes things invisible.
 -----------------------------------------
 
@@ -11,7 +11,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+result = 0;
+	if (target:hasStatusEffect(EFFECT_MEDICINE) == true) then
+		result = 111;
+	end
+return result;
 end;
 
 -----------------------------------------
@@ -20,6 +24,7 @@ end;
 
 function onItemUse(target)
 	if (not target:hasStatusEffect(EFFECT_INVISIBLE)) then
-		target:addStatusEffect(EFFECT_INVISIBLE,0,10,120);
+		target:addStatusEffect(EFFECT_INVISIBLE,0,10,180);
 	end
+	target:addStatusEffect(EFFECT_MEDICINE,0,0,180);
 end;
