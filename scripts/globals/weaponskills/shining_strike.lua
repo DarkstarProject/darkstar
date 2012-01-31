@@ -3,5 +3,5 @@
 ------------------------
 
 function OnUseWeaponSkill(attacker, target, wsID)
-	return 6500;
+	return 65;
 end
