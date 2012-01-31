@@ -5,12 +5,12 @@ function OnMobSpawn(mob)
 end;
 function onMobDeath(mob,killer)
 -- vars: Gil & exp are the same, tabs are 10% rounded down
-gilExp=270;
+gilExp=285;
 newTabs=math.floor((gilExp/10));
 --
 	fov = killer:getVar("fov_regimeid");
-	if (fov == 89 and killer:getMainLvl()<11) then -- 6 members of the mandy family
-		--check to see if they have all mandies killed
+	if (fov == 90 and killer:getMainLvl()<12) then -- 6 members of the bee family
+		--check to see if they have all bees killed
 		numneeded = killer:getVar("fov_numneeded1"); 
 		numkilled = killer:getVar("fov_numkilled1"); 
 		if (numkilled<numneeded) then --increment number killed!
@@ -21,15 +21,15 @@ newTabs=math.floor((gilExp/10));
 			--	completed Regime!
 				 killer:messageBasic(559);
 			--	give tabs
+			-- Needs message to character
 				tabs = killer:getVar("tabs");
 				tabs = tabs+newTabs;
 				 killer:setVar("tabs",tabs);
 				 killer:messageBasic(566,newTabs,tabs);
 			--	add gil
-				 killer:addGil(gilExp);
+				 killer:addGil(newTabs);
 				 killer:messageSpecial(6379,gilExp);
 			--	add exp
-			--	function needed.
 				 killer:addExp(gilExp);
 				 killer:showText(killer,9795);
 			--	reset FoV marker.
@@ -38,5 +38,6 @@ newTabs=math.floor((gilExp/10));
 				 killer:setVar("fov_numkilled1",0);
 			 end;
 		end
+			
 	end
 end;

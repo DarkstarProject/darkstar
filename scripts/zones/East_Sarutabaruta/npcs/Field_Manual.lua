@@ -211,16 +211,16 @@ elseif(option==18) then --Page 1
 	player:showText(player,9794);
 elseif(option==34) then --Page 2
 	player:setVar("fov_regimeid",90);
-	player:setVar("fov_numkilled1",6);
-	player:setVar("fov_numkilled2",0);
-	player:setVar("fov_numkilled3",1);
-	player:setVar("fov_numkilled4",8);
+	player:setVar("fov_numneeded1",6);
+	player:setVar("fov_numkilled1",0);
+--	player:setVar("fov_numkilled3",1);
+--	player:setVar("fov_numkilled4",8);
 	--display message about training regime accepted!
 	player:showText(player,9793);
 	player:showText(player,9794);
 elseif(option==50) then --Page 3
 	player:setVar("fov_regimeid",91);
-	player:setVar("fov_numkilled1",6);
+	player:setVar("fov_numneeded1",6);
 	player:setVar("fov_numkilled2",0);
 	player:setVar("fov_numkilled3",2);
 	player:setVar("fov_numkilled4",6);
@@ -229,8 +229,8 @@ elseif(option==50) then --Page 3
 	player:showText(player,9794);
 elseif(option==66) then --Page 4
 	player:setVar("fov_regimeid",92);
-	player:setVar("fov_numkilled1",4);
-	player:setVar("fov_numkilled2",2);
+	player:setVar("fov_numneeded1",4);
+	player:setVar("fov_numneeded2",2);
 	player:setVar("fov_numkilled3",3);
 	player:setVar("fov_numkilled4",6);
 	--display message about training regime accepted!
