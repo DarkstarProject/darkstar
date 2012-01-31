@@ -475,7 +475,8 @@ void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* p
 {
 	for (uint32 i = 0; i < members.size(); ++i)
 	{
-		if (PPartyMember != members.at(i))
+        if (members.at(i) != PPartyMember && 
+            members.at(i)->status != STATUS_DISAPPEAR)
 		{
 			if (ZoneID == 0 || members.at(i)->getZone() == ZoneID)
 			{
