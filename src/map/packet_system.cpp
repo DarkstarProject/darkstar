@@ -305,8 +305,6 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 	charutils::SaveCharPosition(PChar);
 	charutils::SaveCharExp(PChar, PChar->GetMJob());
 
-    PChar->loc.zone->DecreaseZoneCounter(PChar);
-
 	if (PChar->status == STATUS_SHUTDOWN)
 	{
 		if (PChar->PParty != NULL)
@@ -317,8 +315,9 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 	} 
 	else  // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру 
 	{
-		charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->loc.prevzone);
+        charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
 	}
+    PChar->loc.zone->DecreaseZoneCounter(PChar);
 
 	PChar->status = STATUS_DISAPPEAR;
 	PChar->PBattleAI->SetCurrentAction(ACTION_NONE);

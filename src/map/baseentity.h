@@ -36,8 +36,6 @@ enum ENTITYTYPE
     TYPE_SHIP   = 0x10
 };
 
-// еще не придумал логичные имена
-
 enum STATUSTYPE
 {
 	STATUS_NORMAL			= 0,
@@ -50,7 +48,7 @@ enum STATUSTYPE
 	STATUS_SHUTDOWN			= 20
 };
 
-enum ANIMATIONTYPE : uint8
+enum ANIMATIONTYPE
 {
 	ANIMATION_NONE					= 0,
 	ANIMATION_ATTACK				= 1,
@@ -114,8 +112,8 @@ public:
 	float			GetYPos();			// позиция по координате Y
 	float			GetZPos();			// позиция по координате Z
 
-	 CBaseEntity();						// конструктор
-	~CBaseEntity();						// деструктор
+    CBaseEntity();						// конструктор
+   ~CBaseEntity();						// деструктор
 private:
 };
 
