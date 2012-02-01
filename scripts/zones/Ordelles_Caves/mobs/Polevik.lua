@@ -1,7 +1,13 @@
-require("scripts/globals/settings");
+-----------------------------------
+-- Area: Ordelles Caves
+-- NPC:  Polevik
+-- Involved In Quest: Sharpening the Sword
+-- @zone 193
+-- @pos -51 0 3
+-----------------------------------
 
 -----------------------------------
--- onMobSpawn Action
+-- onMobSpawn
 -----------------------------------
 
 function OnMobSpawn(mob)
@@ -12,6 +18,10 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setVar("NM",1);
-	killer:setVar("NM_Timer",os.time());
+
+	if(player:getVar("sharpeningTheSwordCS") == 3) then
+		killer:setVar("PolevikKilled",1);
+		killer:setVar("Polevik_Timer",os.time());
+	end
+
 end;

@@ -1,11 +1,14 @@
 -----------------------------------
 -- Area: Davoi
--- NPC: Disused Well
+-- NPC:  Disused Well
 -- Involved in Quest: A Knight's Test
+-- @zone 149
+-- @pos -221 2 -293
+-----------------------------------
+package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
@@ -27,6 +30,7 @@ function onTrigger(player,npc)
 	else
 		player:messageSpecial(YOU_SEE_NOTHING);
 	end
+	
 end; 
 
 -----------------------------------

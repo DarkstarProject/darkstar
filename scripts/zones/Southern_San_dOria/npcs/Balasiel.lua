@@ -3,7 +3,7 @@
 -- NPC:  Balasiel
 -- Starts and Finishes: A Squire's Test, A Squire's Test II, A Knight's Test
 -- @zone 230
--- @pos -136 -10 64
+-- @pos -136 -11 64
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

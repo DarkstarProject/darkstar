@@ -1,14 +1,12 @@
 -----------------------------------
--- Area: Castle Zvahl Baileys
--- NPC: Dark Spark
--- Involved in Quests: Borghertz's Hands (AF Hands, Many job)
--- @zone 161
--- @pos 63 -24 21
+-- Area: Ranguemont Pass
+-- NM:   Tros
+-- Used in Quests: Painful Memory
+-- @zone 166
+-- @pos -289 -45 212
 -----------------------------------
 
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
-require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
+require("scripts/globals/keyitems");
 
 -----------------------------------
 -- OnMobSpawn Action
@@ -20,6 +18,10 @@ end;
 -----------------------------------
 -- OnMobDeath Action
 -----------------------------------
+
 function onMobDeath(mob, killer)
-	killer:setVar("painfulMemoryTrosKilled",1);
+	if(player:hasKeyItem(MERTAIRES_BRACELET)) then 
+		killer:setVar("TrosKilled",1);
+		killer:setVar("Tros_Timer",os.time());
+	end
 end;
