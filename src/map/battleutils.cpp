@@ -29,6 +29,7 @@
 
 #include "packets/char_health.h"
 #include "packets/char_update.h"
+#include "packets/message_basic.h"
 
 #include "ability.h"
 #include "charutils.h"
@@ -571,7 +572,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		damage = 0;
 	}
 
-	damage = (damage * (100 + PDefender->getMod(MOD_DMG)))/100;
+    damage = (damage * (100 + PDefender->getMod(MOD_DMG) + PDefender->getMod(MOD_DMGPHYS)))/100;
 
 	switch(PAttacker->m_Weapons[SLOT_MAIN]->getDmgType())
 	{
@@ -635,6 +636,10 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			    }
 			    break;
 		    };
+            //if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_INTERRUPT)
+            //{
+            //    ((CCharEntity*)PDefender)->pushPacket(new CMessageBasicPacket(PDefender, PDefender, 0, 0, 16));
+            //}
             charutils::UpdateHealth((CCharEntity*)PDefender);
 	    }
         break;

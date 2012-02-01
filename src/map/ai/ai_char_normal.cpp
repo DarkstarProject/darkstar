@@ -455,6 +455,9 @@ void CAICharNormal::ActionItemUsing()
 
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getActivationTime())
 	{
+        // обновление времени необходимо для правильной работы задержки анимации
+
+        m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_ITEM_FINISH;
 
 		m_PItemUsable->setSubType(ITEM_UNLOCKED);
@@ -532,7 +535,7 @@ void CAICharNormal::ActionItemFinish()
 
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getAnimationTime())
 	{
-		if (m_PChar->animation == ANIMATION_ATTACK) m_LastActionTime = m_Tick;
+		if (m_PChar->animation != ANIMATION_ATTACK) m_LastActionTime = 0;
 
 		luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
 
