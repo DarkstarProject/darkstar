@@ -225,7 +225,7 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
             ShowWarning(CL_YELLOW"Client cannot receive packet or key is invalid: %s\n"CL_RESET, PChar->GetName());
         }
 	}
-    if (PChar->loc.prevzone == 0)
+    if (PChar->loc.prevzone == 0 && !firstlogin)
 	{
 		PChar->loc.prevzone = PChar->getZone();
 	}
