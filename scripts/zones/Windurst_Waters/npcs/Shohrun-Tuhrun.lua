@@ -43,7 +43,7 @@ stock = {0x1239,18000,1, --Haste
 		 0x1280,74520,3, --Scroll of Protectra IV
 		 0x1304,64400,3} --Scroll of Dispel
  
-showNationShop(player, WINDARST, stock);
+showNationShop(player, WINDURST, stock);
 end; 
 
 -----------------------------------
