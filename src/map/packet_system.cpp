@@ -2015,6 +2015,16 @@ int32 SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* da
 	{
 		CmdHandler.call(PChar, (const int8*)data+7);
 	}
+    else if (RBUFB(data,(0x06)) == '#' && PChar->nameflags.flags & FLAG_GM)
+    {
+        for (uint16 zone = 0; zone < 256; ++zone)
+        {
+            zoneutils::GetZone(zone)->PushPacket(
+                NULL, 
+                CHAR_INZONE, 
+                new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data+7));
+        }
+    }
     else
     {
 		switch(RBUFB(data,(0x04)))
