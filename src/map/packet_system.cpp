@@ -862,7 +862,9 @@ int32 SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, int8* da
 			if (PChar->PBattleAI->GetCurrentAction() != ACTION_ITEM_START)
 			{
 				PChar->UContainer->Clean();
+                return 0;
 			}
+            PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 	}
 	return 0;
