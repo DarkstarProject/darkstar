@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2012-01-12 12:57:13
+Date: 2012-02-02 13:45:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -10108,3 +10108,4 @@ INSERT INTO `mob_droplist` VALUES ('2333', '0', '15979', '35');
 INSERT INTO `mob_droplist` VALUES ('2333', '2', '2150', '0');
 INSERT INTO `mob_droplist` VALUES ('2334', '0', '15701', '25');
 INSERT INTO `mob_droplist` VALUES ('2334', '0', '18386', '45');
+INSERT INTO `mob_droplist` VALUES ('2335', '0', '13122', '100');
