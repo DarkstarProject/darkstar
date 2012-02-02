@@ -347,7 +347,7 @@ inline int32 CLuaBaseEntity::getMaxHP(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->health.maxhp );
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetMaxHP() );
 	return 1;
 }
 
@@ -358,7 +358,7 @@ inline int32 CLuaBaseEntity::getMaxMP(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->health.maxmp );
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetMaxMP() );
 	return 1;
 }
 

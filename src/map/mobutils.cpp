@@ -101,8 +101,8 @@ void CalculateStats(CMobEntity * PMob)
 	PMob->health.maxhp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
 
 	PMob->health.tp = 0;
-	PMob->health.hp = PMob->health.maxhp;
-	PMob->health.mp = PMob->health.maxmp;
+    PMob->health.hp = PMob->GetMaxHP();
+    PMob->health.mp = PMob->GetMaxMP();
 
 	PMob->setModifier(MOD_DEF, GetBase(PMob,3) + 8);
 	PMob->setModifier(MOD_EVA, GetBase(PMob,3) + 8);

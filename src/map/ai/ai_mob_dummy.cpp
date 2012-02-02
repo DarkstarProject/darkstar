@@ -163,7 +163,8 @@ void CAIMobDummy::ActionDisengage()
 	m_PMob->m_CallForHelp = 0;
 	m_PMob->animation = ANIMATION_NONE;
     m_PMob->health.tp = 0;
-	m_PMob->health.hp = m_PMob->health.maxhp;
+    m_PMob->health.hp = m_PMob->GetMaxHP();
+    m_PMob->health.mp = m_PMob->GetMaxMP();
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }

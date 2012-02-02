@@ -35,9 +35,9 @@ CCharHealthPacket::CCharHealthPacket(CCharEntity* PChar)
 
 	WBUFL(data,(0x04)-4) = PChar->id;
 
-	WBUFW(data,(0x08)-4) = PChar->health.hp;
-	WBUFW(data,(0x0C)-4) = PChar->health.mp;
-	WBUFW(data,(0x10)-4) = PChar->health.tp;
+	WBUFL(data,(0x08)-4) = PChar->health.hp;
+	WBUFL(data,(0x0C)-4) = PChar->health.mp;
+	WBUFL(data,(0x10)-4) = PChar->health.tp;
 
 	WBUFW(data,(0x14)-4) = PChar->targid;
 

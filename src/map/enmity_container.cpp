@@ -187,7 +187,7 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
 
 void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Damage)
 {
-	UpdateEnmity(PEntity, -(1800 * Damage / PEntity->health.maxhp), 0);
+    UpdateEnmity(PEntity, -(1800 * Damage / PEntity->GetMaxHP()), 0);
 }
 
 /************************************************************************

@@ -559,8 +559,8 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 		break;
 		case 0x0B: // homepoint
 		{
-			PChar->health.hp = PChar->health.maxhp;
-			PChar->health.mp = PChar->health.maxmp;
+			PChar->health.hp = PChar->GetMaxHP();
+            PChar->health.mp = PChar->GetMaxMP();
 
 			PChar->loc.boundary = 0;
 			PChar->loc.p = PChar->profile.home_point.p;
@@ -2652,8 +2652,8 @@ int32 SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* da
 		charutils::BuildingCharSkillsTable(PChar);
 		charutils::BuildingCharAbilityTable(PChar);
 
-		PChar->health.hp = PChar->health.maxhp;
-		PChar->health.mp = PChar->health.maxmp;
+        PChar->health.hp = PChar->GetMaxHP();
+        PChar->health.mp = PChar->GetMaxMP();
 
 		PChar->StatusEffectContainer->DispelStatusEffect(true);
 

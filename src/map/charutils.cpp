@@ -272,11 +272,8 @@ void CalculateStats(CCharEntity* PChar)
 		WBUFW(&PChar->stats,counter) = (uint16)(raceStat + jobStat + sJobStat);
 		counter += 2;
 	}
-
-
-
-	PChar->health.hp = (PChar->loc.prevzone == 0 || PChar->loc.zone == 0 ? PChar->health.maxhp : cap_value(PChar->health.hp, 0, PChar->health.maxhp));
-	PChar->health.mp = (PChar->loc.prevzone == 0 || PChar->loc.zone == 0 ? PChar->health.maxmp : cap_value(PChar->health.mp, 0, PChar->health.maxmp));
+    PChar->health.hp = (PChar->loc.prevzone == 0 || PChar->loc.destination == 0 ? PChar->GetMaxHP() : cap_value(PChar->health.hp, 0, PChar->GetMaxHP()));
+    PChar->health.mp = (PChar->loc.prevzone == 0 || PChar->loc.destination == 0 ? PChar->GetMaxMP() : cap_value(PChar->health.mp, 0, PChar->GetMaxMP()));
 }
 
 /************************************************************************
@@ -1070,37 +1067,42 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 	else 
 	{
 		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
+        if (PItem != NULL)
+        {
+		    if (PItem->getType() & ITEM_ARMOR)
+		    {
+			    if (!(PItem->getSubType() & ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID)) 
+			    {
+				    if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
+				    {
+					    luautils::OnItemCheck(PChar, PItem);
+					    PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
+				    }
+				    PItem->setSubType(ITEM_LOCKED);
 
-		if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR)) 
-		{
-			if (!(PItem->getSubType() & ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID)) 
-			{
-				if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
-				{
-					luautils::OnItemCheck(PChar, PItem);
-					PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
-				}
-				//gibbs
+				    PChar->addModifiers(&((CItemArmor*)PItem)->modList);
 
-				PItem->setSubType(ITEM_LOCKED);
+				    PChar->status = STATUS_UPDATE;
+				    PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
+				    PChar->pushPacket(new CCharAppearancePacket(PChar));
+				    PChar->pushPacket(new CInventoryAssignPacket(PItem->getID(), PItem->getQuantity(), LOC_INVENTORY, slotID, INV_NODROP));
+				    PChar->pushPacket(new CCharUpdatePacket(PChar));
+			    } 
+		    }
+            if (PItem->getType() & ITEM_USABLE)
+		    {
+                // TODO: позднее нужно будет добавить логику recast item
 
-				PChar->addModifiers(&((CItemArmor*)PItem)->modList);
-
-				PChar->status = STATUS_UPDATE;
-				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
-				PChar->pushPacket(new CCharAppearancePacket(PChar));
-				PChar->pushPacket(new CInventoryAssignPacket(PItem->getID(), PItem->getQuantity(), LOC_INVENTORY, slotID, INV_NODROP));
-				charutils::CalculateStats(PChar);
-				PChar->pushPacket(new CCharUpdatePacket(PChar));
-			} 
-		}
-		else if ((PItem != NULL) && (PItem->getType() & ITEM_WEAPON))
-		{
-			PChar->addModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
-			PChar->addModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
-		}
+			    PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, slotID));
+	            PChar->pushPacket(new CInventoryFinishPacket());
+		    }
+        }
 	}
+    PChar->health.hp = cap_value(PChar->health.hp, 0, PChar->GetMaxHP());
+    PChar->health.mp = cap_value(PChar->health.mp, 0, PChar->GetMaxMP());
 	
+    // TODO: зачем нам это делать при смене экипировки, отличной от оружия ?
+
 	BuildingCharWeaponSkills(PChar);
 	SaveCharEquip(PChar);
 }
@@ -1169,7 +1171,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				}
 				PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
 			}
-				break;
+		    break;
 			case SLOT_MAIN:
 			{
 				if (PItem->getType() & ITEM_WEAPON) 
@@ -1200,7 +1202,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				PChar->m_Weapons[SLOT_MAIN]->setDmgType(DAMAGE_NONE);
                 PChar->m_Weapons[SLOT_MAIN]->setSkillType((PChar->GetMJob() == JOB_MNK ? SKILL_H2H : 0));
 			}
-				break;
+			break;
 		}
 	}
 
@@ -1959,8 +1961,8 @@ void AddExperiencePoints(CCharEntity* PChar, uint32 exp, bool limit)
                 BuildingCharWeaponSkills(PChar);
             }
 
-            PChar->health.hp = PChar->health.maxhp;
-            PChar->health.mp = PChar->health.maxmp;
+            PChar->health.hp = PChar->GetMaxHP();
+            PChar->health.mp = PChar->GetMaxMP();
 
             SaveCharStats(PChar);
             SaveCharJob(PChar, PChar->GetMJob());

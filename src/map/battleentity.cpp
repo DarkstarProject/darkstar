@@ -79,26 +79,42 @@ bool CBattleEntity::isDead()
 }
 
 /************************************************************************
-*																		*
-*  Получаем текущее количество очков жизней в процентах					*
-*																		*
+*                                                                       *
+*  Получаем текущее количество очков жизней                             *
+*                                                                       *
 ************************************************************************/
 
 uint8 CBattleEntity::GetHPP()
 {
-	return (uint8)ceil(((float)health.hp / (float)(health.maxhp + getMod(MOD_HP))) * 100);
+	return (uint8)ceil(((float)health.hp / (float)GetMaxHP()) * 100);
+}
+
+uint32 CBattleEntity::GetMaxHP()
+{
+    return (health.maxhp + getMod(MOD_HP)) * (100 + getMod(MOD_HPP)) / 100; //  + (MOD_CONVMPTOHP - MOD_CONVHPTOMP)
 }
 
 /************************************************************************
-*																		*
-*  Получаем текущее количество очков маны в процентах					*
-*																		*
+*                                                                       *
+*  Получаем текущее количество очков маны                               *
+*                                                                       *
 ************************************************************************/
 
 uint8 CBattleEntity::GetMPP()
 {
-	return (uint8)ceil(((float)health.mp / (float)(health.maxmp + getMod(MOD_MP))) * 100);
+	return (uint8)ceil(((float)health.mp / (float)GetMaxMP()) * 100);
 }
+
+uint32 CBattleEntity::GetMaxMP()
+{
+    return (health.maxmp + getMod(MOD_MP)) * (100 + getMod(MOD_MPP)) / 100; //  + (MOD_CONVHPTOMP - MOD_CONVMPTOHP)
+}
+
+/************************************************************************
+*																		*
+*  Изменяем количество TP сущности      								*
+*																		*
+************************************************************************/
 
 uint16 CBattleEntity::addTP(int16 tp)
 {	
@@ -118,7 +134,7 @@ uint16 CBattleEntity::addHP(int16 hp)
 {
 	if (status == STATUS_NORMAL) status = STATUS_UPDATE;
 
-    int16 cap = cap_value(health.hp + hp, 0, health.maxhp + getMod(MOD_HP));
+    int16 cap = cap_value(health.hp + hp, 0, GetMaxHP());
 	hp = health.hp - cap;
 	health.hp = cap;
 
@@ -133,7 +149,7 @@ uint16 CBattleEntity::addHP(int16 hp)
 
 uint16 CBattleEntity::addMP(int16 mp)
 {
-	int16 cap = cap_value(health.mp + mp, 0, health.maxmp + getMod(MOD_MP));
+	int16 cap = cap_value(health.mp + mp, 0, GetMaxMP());
 	mp = health.mp - cap;
 	health.mp = cap;
 	return abs(mp);

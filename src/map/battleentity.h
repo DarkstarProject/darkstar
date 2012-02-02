@@ -292,6 +292,19 @@ struct apAction_t
 	uint16			submessageID;		// 10 bits
 };
 
+/************************************************************************
+*																		*
+*  TP хранится то пому же принципу, что и skill, т.е. 6,4% = 64			*
+*																		*
+************************************************************************/
+
+struct health_t 
+{
+	int16	tp;
+	int32   hp, mp;
+	int32   maxhp, maxmp;
+};
+
 typedef std::vector<apAction_t> ActionList_t;
 
 class CBattleEntity : public CBaseEntity 
@@ -315,7 +328,9 @@ public:
 	void		    SetSLevel(uint8 slvl);		// уровень дополнительной профессии
 
 	uint8		    GetHPP();					// количество hp в процентах
+    uint32          GetMaxHP();                 // максимальное количество hp
 	uint8		    GetMPP();					// количество mp в процентах
+    uint32          GetMaxMP();                 // максимальное количество mp
 
 	uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
 

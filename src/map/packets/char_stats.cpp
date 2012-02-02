@@ -38,8 +38,8 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	this->type = 0x61;	
 	this->size = 0x2a;	
 	
-	WBUFL(data,(0x04)-4) = PChar->health.maxhp + PChar->getMod(MOD_HP) + PChar->getMod(MOD_CONVMPTOHP) - PChar->getMod(MOD_CONVHPTOMP);
-	WBUFL(data,(0x08)-4) = PChar->health.maxmp + PChar->getMod(MOD_MP) - PChar->getMod(MOD_CONVMPTOHP) + PChar->getMod(MOD_CONVHPTOMP);
+    WBUFL(data,(0x04)-4) = PChar->GetMaxHP();
+    WBUFL(data,(0x08)-4) = PChar->GetMaxMP();
 
 	WBUFB(data,(0x0C)-4) = PChar->GetMJob();
 	WBUFB(data,(0x0D)-4) = PChar->GetMLevel();
