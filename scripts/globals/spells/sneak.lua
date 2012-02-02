@@ -1,5 +1,8 @@
 -----------------------------------------
 --	Spell: Sneak
+-- 	Lessens chance of being detected by sound
+--  
+--  Duration is random number between 30 seconds and 5 minutes
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -11,9 +14,9 @@ require("scripts/globals/status");
 function onSpellCast(caster,target,spell)
 	if (target:hasStatusEffect(EFFECT_SNEAK) == false) then
 		
-		duration = math.random(40, 300);
-		duration = math.random(40, 300);
-		duration = math.random(40, 300);
+		duration = math.random(30, 300);
+		duration = math.random(30, 300);
+		duration = math.random(30, 300);
 		
 		if (target:getMainLvl() < 20) then
 			duration = duration * target:getMainLvl() / 20; -- level adjustment
