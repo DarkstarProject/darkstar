@@ -4,14 +4,12 @@
 -- Starts and Finishes Quest: Signed in Blood
 -- Involved in quest: Sharpening the Sword
 -- @zone 230
--- @pos  -190 -2 97
+-- @pos  -190 -3 97
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");

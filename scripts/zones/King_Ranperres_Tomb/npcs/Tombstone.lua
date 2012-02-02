@@ -19,10 +19,8 @@ require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 function onTrade(player,npc,trade)
 
 	if(player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(SOWellWater,1) and trade:getItemCount() == 1) then
+		if(trade:hasItemQty(567,1) and trade:getItemCount() == 1) then -- Trade Well Water
 			player:startEvent(0x0003);
-			player:tradeComplete();
-			player:setVar("OfferingWaterOK",1);
 		end
 	end
 
@@ -33,11 +31,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc) 
-	
-	if(player:hasItem(TGWaterskin) == false and player:hasItem(SOWellWater) == false) then
-		player:startEvent(0x0002);
-	end
-	
+	player:startEvent(0x0002);
 end; 
 
 -----------------------------------
@@ -58,12 +52,21 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x0002) then
-		if (player:getFreeSlotsCount() == 0) then 
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,TGWaterskin);
-		else
-			player:addItem(TGWaterskin);
-			player:messageSpecial(ITEM_OBTAINED,TGWaterskin);
+		graveConcerns = player:getQuestStatus(SANDORIA,GRAVE_CONCERNS);
+		
+		if(graveConcerns == QUEST_ACCEPTED and player:hasItem(547) == false and player:hasItem(567) == false) then 
+			if(player:getFreeSlotsCount() == 0) then 
+				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,547); -- Tomb Waterskin
+			else
+				player:addItem(547);
+				player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
+			end
 		end
+	if(csid == 0x0003) then
+		player:tradeComplete();
+		player:setVar("OfferingWaterOK",1);
+		player:addItem(547);
+		player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
 	end
 	
 end;

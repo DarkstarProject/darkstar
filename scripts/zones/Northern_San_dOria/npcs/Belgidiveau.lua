@@ -60,14 +60,15 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0039 and option == 0) then
 		player:addQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
+		player:setVar("troubleAtTheSluiceVar",1);
 	elseif(csid == 0x0038) then
 		if (player:getFreeSlotsCount() == 0) then 
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,HEAVY_AXE);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16706); -- Heavy Axe
 		else
 			player:tradeComplete();
 			player:delKeyItem(NEUTRALIZER);
-			player:addItem(HEAVY_AXE);
-			player:messageSpecial(ITEM_OBTAINED,HEAVY_AXE);
+			player:addItem(16706);
+			player:messageSpecial(ITEM_OBTAINED,16706); -- Heavy Axe
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
 		end

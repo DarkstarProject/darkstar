@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
 -- NPC: ???
--- Starts Quest: The Holy Crest
+-- Involved in Quest: The Holy Crest
+-- @zone 119
+-- @pos 641 -15 7
 -----------------------------------
 
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
@@ -12,14 +14,13 @@ require("scripts/zones/Meriphataud_Mountains/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	count = trade:getItemCount();
-	gil = trade:getGil();
 
-	if (trade:hasItemQty(WYVERN_EGG,1) == true and count == 1 and gil == 0) then
-		if (player:getVar("TheHolyCrest_Event") == 4) then
+	if(trade:hasItemQty(1159,1) and trade:getItemCount() == 1) then
+		if(player:getVar("TheHolyCrest_Event") == 4) then
 			player:startEvent(0x0038);
 		end
 	end
+	
 end;
 
 -----------------------------------
@@ -47,9 +48,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x0038) then
+	if(csid == 0x0038) then
 		player:tradeComplete();
 		player:setVar("TheHolyCrest_Event",5);
-		player:startEvent(0x0021)
+		player:startEvent(0x0021);
 	end
+	
 end;

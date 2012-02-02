@@ -1,15 +1,17 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Phara
--- Standard Info NPC
+-- NPC:  Phara
+-- Starts and Finishes Quest: The doorman (start)
+-- @zone 234
+-- @pos 75 0 -80
+-----------------------------------
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/keyitems");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+require("scripts/globals/quests");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
@@ -25,28 +27,21 @@ end;
 
 function onTrigger(player,npc)
 
-Door = player:getQuestStatus(BASTOK,THE_DOORMAN);
-DoorVar = player:getVar("Doorman");
+	theDoorman = player:getQuestStatus(BASTOK,THE_DOORMAN);
 
-	if (Door ==0 and player:getMainJob() ==1 and player:getMainLvl() >=40) then
-	--Doorman WAR AF Weapon Quest
-		player:startEvent(0x0097);
-	--Doorman Key Item
-		elseif (player:hasKeyItem(SWORD_GRIP_MATERIAL)) then
-		player:startEvent(0x0098);
-	--the doorman notification, go to naji
-		elseif (DoorVar == 2) then
-		player:startEvent(0x0099);
-	--Lead in to Talekeeper's Truth
-		elseif (Door ==2 and player:getMainJob() ==1 and player:getMainLvl() >=50) then
-		player:startEvent(0x009a);
-	--Default text
-		else
-		player:startEvent(0x0096);
-	end;
+	if(theDoorman == QUEST_AVAILABLE and player:getMainJob() == 1 and player:getMainLvl() >= 40) then
+		player:startEvent(0x0097); -- Start Quests "The doorman"
+	elseif(player:hasKeyItem(SWORD_GRIP_MATERIAL)) then
+		player:startEvent(0x0098); -- Need to wait 1 vanadiel day
+	elseif(player:getVar("theDoormanCS") == 2 and VanadielDayOfTheYear() ~= player:getVar("theDoorman_time")) then
+		player:startEvent(0x0099); -- The doorman notification, go to naji
+	elseif(theDoorman == QUEST_FINISHED) then
+		player:startEvent(0x009a); -- New standard dialog
+	else
+		player:startEvent(0x0096); -- Standard dialog
+	end
 
 end;
-
 
 -----------------------------------
 -- onEventUpdate
@@ -62,29 +57,20 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-
-	if (csid == 0x0097) then
-		player:addQuest(BASTOK,THE_DOORMAN);
-		player:setVar("Doorman",1);
-	elseif (csid == 0x0098) then
---		setVar("Time", os.time() + 3456); -- wait for 24 hrs
---		if getVar("Time") <= os.time() then  -- etc
-		player:setVar("Doorman",2);
-		player:delKeyItem(SWORD_GRIP_MATERIAL);
-	elseif (csid == 0x0099) then
-		player:addKeyItem(YASINS_SWORD);
-		player:messageSpecial(6381,YASINS_SWORD);
-		player:setVar("Doorman",3);
-	else
-	end;
-
-
-
-
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+
+	if(csid == 0x0097) then
+		player:addQuest(BASTOK,THE_DOORMAN);
+		player:setVar("theDoormanCS",1);
+	elseif(csid == 0x0098) then
+		player:setVar("theDoorman_time",VanadielDayOfTheYear());
+		player:setVar("theDoormanCS",2);
+		player:delKeyItem(SWORD_GRIP_MATERIAL);
+	elseif(csid == 0x0099) then
+		player:addKeyItem(YASINS_SWORD);
+		player:messageSpecial(KEYITEM_OBTAINED,YASINS_SWORD);
+		player:setVar("theDoormanCS",3);
+	end
+
 end;
-
-
-
-

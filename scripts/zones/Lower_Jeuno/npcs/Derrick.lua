@@ -63,7 +63,7 @@ function onEventUpdate(player,csid,option)
 		if (player:getGil() >= 500000) then
 			player:delGil(500000);
 			player:addKeyItem(AIRSHIP_PASS);
-			player:updateEvent(0,1);
+			player:updateEvent(1,0);
 		end
 	end
 

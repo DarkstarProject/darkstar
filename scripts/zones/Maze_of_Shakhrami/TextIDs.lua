@@ -6,7 +6,3 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.
-
--- Quest Items
-   PICKAXE = 605; -- 
-WYVERN_EGG = 1159; -- 

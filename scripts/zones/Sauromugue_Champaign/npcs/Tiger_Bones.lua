@@ -1,14 +1,16 @@
 -----------------------------------
---	Area: Sauromougue Champaign
---	NPC: Tiger Bones
---  Involed in Quest: The Fanged One.
+-- Area: Sauromugue Champaign
+-- NPC:  Tiger Bones
+-- Involed in Quest: The Fanged One.
+-- @zone 120
+-- @pos 666 -8 -379
+-------------------------------------
+package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 require("scripts/zones/Sauromugue_Champaign/TextIDs");
 
 -----------------------------------
@@ -24,19 +26,20 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getQuestStatus(WINDURST,THE_FANGED_ONE) == 1) then
+	if(player:getQuestStatus(WINDURST,THE_FANGED_ONE) == QUEST_ACCEPTED) then
 		deadTiger = player:getVar("TheFangedOne_Died");
 
-		if (deadTiger == 1 and player:hasKeyItem(OLD_TIGERS_FANG) == false) then
+		if(deadTiger == 1 and player:hasKeyItem(OLD_TIGERS_FANG) == false) then
 			player:addKeyItem(OLD_TIGERS_FANG);
 			player:messageSpecial(KEYITEM_OBTAINED, OLD_TIGERS_FANG);
-		elseif (deadTiger == 0) then
-			if (GetMobAction(OLD_SABERTOOTH) == 0) then
-				SpawnMob(OLD_SABERTOOTH);
+		elseif(deadTiger == 0) then
+			if(GetMobAction(17268808) == 0) then
+				SpawnMob(17268808);
 				player:messageSpecial(OLD_SABERTOOTH_DIALOG_I);
 			end
 		end
 	end
+	
 end;
 
 -----------------------------------

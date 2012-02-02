@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 	peaceForTheSpiritCS = player:getVar("peace_for_the_spirit_status");
 	OrcishDriedFood = player:hasKeyItem(ORCISH_DRIED_FOOD);
 
-	if(player:getMainJob() == 5 and player:getMainLvl >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
+	if(player:getMainJob() == 5 and player:getMainLvl() >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
 		if(player:getVar("has_seen_rdmaf1_quest_already") == 0) then
 			player:startEvent(0x46);
 		else
@@ -89,6 +89,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16829); -- Fencing Degen
 		else
+			player:delKeyItem(ORCISH_DRIED_FOOD);
 			player:addItem(16829);
 			player:messageSpecial(ITEM_OBTAINED, 16829); -- Fencing Degen
 			player:addFame(SANDORIA,SAN_FAME*30);

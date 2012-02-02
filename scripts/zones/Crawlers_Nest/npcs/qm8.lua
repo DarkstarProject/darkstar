@@ -1,11 +1,20 @@
 -----------------------------------
+-- Area: Crawlers Nest
+-- NPC:  ???
+-- Involved in Quest: The Crimson Trial
+-- @zone 197
+-- @pos 
+-----------------------------------
+package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/zones/Crawlers_Nest/TextIDs");
 --	Author: ReaperX
 -- 	???
 -- 	for RDM AF quest
 -----------------------------------
-     OldBoots = 198;
- CrawlerBlood = 201;
-WarlocksBoots = 14093;
 
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
@@ -24,12 +33,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-if (player:hasKeyItem(CrawlerBlood) == true) and (player:hasKeyItem(OldBoots) == true) then
-  player:startEvent(4);
-else
-  player:messageSpecial(846);
-end
-	end; 
+	
+	if(player:hasKeyItem(CRAWLER_BLOOD) == true and player:hasKeyItem(OLD_BOOTS) == true) then
+		player:startEvent(4);
+	else
+		player:messageSpecial(846);
+	end
+	
+end; 
 
 -----------------------------------
 -- onEventUpdate
@@ -51,8 +62,8 @@ if (csid == 4) and (option == 1) then
   player:delKeyItem(CrawlerBlood);
   player:delKeyItem(OldBoots);
 	player:messageSpecial(849,OldBoots,CrawlerBlood);
-	player:messageSpecial(ITEM_OBTAINED,WarlocksBoots);
-  player:addItem(WarlocksBoots);
+	player:messageSpecial(ITEM_OBTAINED,14093);
+  player:addItem(14093);
   player:completeQuest(0,85);    -- quest completed sound should play here
 	player:addFame(0,SAN_FAME*AF2_FAME);
 end;

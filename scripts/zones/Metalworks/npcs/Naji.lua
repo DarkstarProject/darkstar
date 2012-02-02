@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Naji
--- Involved in Missions
+-- NPC:  Naji
+-- Involved in Quests: The doorman (finish)
+-- @zone 237
+-- @pos 64 -14 -4
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -26,30 +28,31 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getCurrentMission(BASTOK) ~= 255) then
+	if(player:getCurrentMission(BASTOK) ~= 255) then
 		currentMission = player:getCurrentMission(BASTOK);
-		if (currentMission == 0 and player:hasKeyItem(ZERUHN_REPORT)) then
-			if (player:seenKeyItem(ZERUHN_REPORT)) then
+		if(currentMission == 0 and player:hasKeyItem(ZERUHN_REPORT)) then
+			if(player:seenKeyItem(ZERUHN_REPORT)) then
 				player:startEvent(0x02C6,0);
 			else
 				player:startEvent(0x02C6,1);
 			end
-		elseif (currentMission == 3 and player:hasKeyItem(C_L_REPORTS)) then
+		elseif(currentMission == 3 and player:hasKeyItem(C_L_REPORTS)) then
 			player:startEvent(0x02c7);
-		elseif (player:hasKeyItem(KINDRED_REPORT)) then
+		elseif(player:hasKeyItem(KINDRED_REPORT)) then
 			player:startEvent(0x02ca);
-		elseif (currentMission == 5) then
-			if (player:getVar("MissionStatus") == 0 and player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false) then
+		elseif(currentMission == 5) then
+			if(player:getVar("MissionStatus") == 0 and player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false) then
 				player:startEvent(0x02c9);
 			else
 				player:showText(npc,GOOD_LUCK);
 			end
 		end
-	elseif (player:hasKeyItem(YASINS_SWORD)) then	--The Doorman
+	elseif(player:hasKeyItem(YASINS_SWORD)) then -- The Doorman
 		player:startEvent(0x02ee);
 	else
 		player:startEvent(0x02bc);
 	end
+	
 end;
 
 --0x02c6  zeruhn mines
@@ -90,19 +93,25 @@ function onEventFinish(player,csid,option)
 
 --Razor_Axe = 16678;
 
-	if (csid == 0x02ee) then
-		player:addItem(16678);
-		player:messageSpecial(ITEM_OBTAINED, 16678);
-		player:delKeyItem(YASINS_SWORD);
-		player:completeQuest(BASTOK,THE_DOORMAN);
-	elseif (csid == 0x02C6) then
+	if(csid == 0x02ee) then
+		if(player:getFreeSlotsCount(0) >= 1) then
+			player:addItem(16678);
+			player:messageSpecial(ITEM_OBTAINED, 16678); -- Razor Axe
+			player:delKeyItem(YASINS_SWORD);
+			player:setVar("theDoormanCS",0);
+			player:addFame(BASTOK,BAS_FAME*30);
+			player:completeQuest(BASTOK,THE_DOORMAN);
+		else
+           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
+	    end
+	elseif(csid == 0x02C6) then
 		player:delKeyItem(ZERUHN_REPORT);
 		player:completeMission(BASTOK,THE_ZERUHN_REPORT);
-	elseif (csid == 0x02c9) then
+	elseif(csid == 0x02c9) then
 		player:addKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_BASTOK);
 		player:setVar("MissionStatus",1);
-	elseif (csid == 0x02ca) then
+	elseif(csid == 0x02ca) then
 		player:addKeyItem(ADVENTURERS_CERTIFICATE);
 		player:setTitle(CERTIFIED_ADVENTURER);
 		player:messageSpecial(KEYITEM_OBTAINED,ADVENTURERS_CERTIFICATE);

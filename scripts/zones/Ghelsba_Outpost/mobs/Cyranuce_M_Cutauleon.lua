@@ -3,9 +3,13 @@
 -- NPC: Hut Door
 -- Involved in Quest: The Holy Crest
 -----------------------------------
-
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 -----------------------------------
@@ -23,7 +27,7 @@ function onMobDeath(mob, killer)
 	record = 1;
 	partyMembers = 1;
 
-	if (killer:getQuestStatus(SANDORIA,THE_HOLY_CREST) == 1) then
+	if(killer:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_ACCEPTED) then
 		skip = 0;
 	else
 		skip = 1;
@@ -32,7 +36,3 @@ function onMobDeath(mob, killer)
 	killer:startEvent(0x7D01,0,record,0,(os.time() - killer:getVar("TheHolyCrest_Timer")),partyMembers,1,skip);
 
 end;
-
-
-
-

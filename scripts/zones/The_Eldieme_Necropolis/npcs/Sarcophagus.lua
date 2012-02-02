@@ -23,9 +23,9 @@ function onTrade(player,npc,trade)
 		
 		if(player:getVar("TheRequiemCS") == 3 and YumKilled == 0) then 
 			player:messageSpecial(SENSE_OF_FOREBODING);
-			SpawnMob(17576265); -- Spawn Yum Kimil NM @pos -414 8 499
-			SpawnMob(17576267); -- Spawn Owl Guardian NM @pos -414 8 501
-			SpawnMob(17576266); -- Spawn Dog Guardian NM @pos -414 8 497
+			SpawnMob(17576265):updateEnmity(player); -- Spawn Yum Kimil NM @pos -414 8 499
+			SpawnMob(17576267):updateEnmity(player); -- Spawn Owl Guardian NM @pos -414 8 501
+			SpawnMob(17576266):updateEnmity(player); -- Spawn Dog Guardian NM @pos -414 8 497
 		elseif(player:getVar("TheRequiemCS") == 3 and YumKilled == 1) then 
 			player:startEvent(0x002e);
 		end

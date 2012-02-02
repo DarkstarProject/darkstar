@@ -27,12 +27,11 @@ function onTrigger(player,npc)
 	MyDay = VanadielDayOfTheYear();
 	
 	if(MyDay ~= DreadbugTimer) then
-		NMDespawned = GetMobAction(17584425) == 0;
 		spawnTime = player:getVar("NM_Spawned");
 		canSpawn = (os.time() - spawnTime) > 30;
 		
-		if(canSpawn or NMDespawned) then
-			SpawnMob(17584425,168); -- Despawn after 3 minutes (-12 seconds for despawn delay).
+		if(canSpawn) then
+			SpawnMob(17584425,168):updateEnmity(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
 			player:setVar("NM_Spawned",os.time()+180);
 			player:messageSpecial(SENSE_OF_FOREBODING);
 		else

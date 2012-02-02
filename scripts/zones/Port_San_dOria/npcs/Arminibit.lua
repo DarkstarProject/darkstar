@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Arminibit
+-- NPC:  Arminibit
 -- Standard Info NPC
 -----------------------------------
-
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/quests");
 require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
@@ -17,10 +17,10 @@ function onTrade(player,npc,trade)
 -- "Flyers for Regine" conditional script
 FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
-	if (FlyerForRegine == 1) then
+	if(FlyerForRegine == 1) then
 		count = trade:getItemCount();
 		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
+		if(MagicFlyer == true and count == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
@@ -32,11 +32,12 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getMainLvl() >= 30 and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == 0) then
+	if(player:getMainLvl() >= 30 and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_AVAILABLE) then
 		player:startEvent(0x0018);
 	else
 		player:startEvent(0x024b);
 	end
+	
 end;
 
 -----------------------------------
@@ -55,5 +56,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-end;
 
+	if(csid == 0x0018) then
+		player:setVar("TheHolyCrest_Event",1);
+	end
+
+end;

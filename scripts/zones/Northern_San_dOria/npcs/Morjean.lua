@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Morjean
--- Optional Involvement in Quest: A Squire's Test II
+-- NPC:  Morjean
+-- Involved in Quest: A Squire's Test II (Optional), The Holy Crest
 -- @zone 231
 -- @pos 99 0 116
 -------------------------------------
@@ -25,14 +25,12 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_ACCEPTED) then
-		TheHolyCrest = player:getVar("TheHolyCrest_Event");
+	TheHolyCrest = player:getVar("TheHolyCrest_Event");
 
-		if(TheHolyCrest == 2) then
-			player:startEvent(0x0041);
-		elseif((TheHolyCrest == 3 and player:hasItem(WYVERN_EGG)) or TheHolyCrest == 4) then
-			player:startEvent(0x003e);
-		end
+	if(TheHolyCrest == 2) then
+		player:startEvent(0x0041);
+	elseif((TheHolyCrest == 3 and player:hasItem(WYVERN_EGG)) or TheHolyCrest == 4) then
+		player:startEvent(0x003e);
 	elseif(player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED) then
 		player:startEvent(0x25a);
 	else
@@ -59,6 +57,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x0041) then
+		player:addQuest(SANDORIA,THE_HOLY_CREST);
 		player:setVar("TheHolyCrest_Event",3);
 	elseif(csid == 0x003e and option == 0) then
 		player:setVar("TheHolyCrest_Event",4);

@@ -6,6 +6,3 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6538; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
 
--- Quest Items
-			SOWellWater = 567; -- Quest "Grave Concerns"
-			TGWaterskin = 547; -- Quest "Grave Concerns"

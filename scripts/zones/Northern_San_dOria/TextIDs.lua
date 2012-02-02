@@ -24,7 +24,6 @@ CONQUEST = 11508; -- You've earned conquest points!
 		  SUPPLIES_ORDER = 592; -- Quest "The Trader in the Forest"
 	 CLUMP_OF_BATAGREENS = 4367; -- Quest "The Trader in the Forest"
 					ROBE = 12600; -- Quest "The Trader in the Forest"
-			   HEAVY_AXE = 16706; -- Quest "Trouble at the Sluice"
 
 SCROLL_OF_TELEPORT_HOLLA = 4730; -- Reward of the quest "Healing the Land"
   SCROLL_OF_TELEPORT_DEM = 4731; -- Reward of the quest "Altana's Sorrow"

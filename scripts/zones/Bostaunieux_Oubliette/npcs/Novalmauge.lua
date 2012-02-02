@@ -2,7 +2,7 @@
 -- Area: Bostaunieux Obliette
 -- NPC:  Novalmauge
 -- Starts and Finishes Quest: The Rumor
--- Involved in Quest: The Holy Crest and Trouble at the Sluice
+-- Involved in Quest: The Holy Crest, Trouble at the Sluice
 -- @zone 167
 -- @pos 70 -24 21
 -----------------------------------
@@ -22,9 +22,9 @@ require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	FlorVar= player:getVar("QuestFlorVar");
+	tatsVar = player:getVar("troubleAtTheSluiceVar");
 	
-	if(FlorVar == 2 or FlorVar == 3) then
+	if(tatsVar == 2) then
 		if(trade:hasItemQty(959,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0011);
 		end
@@ -35,6 +35,7 @@ function onTrade(player,npc,trade)
 			player:startEvent(0x000c);
 		end
 	end
+	
 end;
 
 -----------------------------------
@@ -44,20 +45,24 @@ end;
 function onTrigger(player,npc)
 
 	theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
+	troubleAtTheSluice = player:getQuestStatus(SANDORIA,TROUBLE_AT_THE_SLUICE);
 	TheHolyCrest = player:getVar("TheHolyCrest_Event");
-	FlorVar= player:getVar("QuestFlorVar");
+	tatsVar = player:getVar("troubleAtTheSluiceVar");
 	
 	if(TheHolyCrest == 1) then
 		player:startEvent(0x0006);
 	elseif(TheHolyCrest == 2) then
 		player:startEvent(0x0007);
-	elseif(FlorVar == 1) then
+	end
+	
+	if(tatsVar == 1) then
 		player:startEvent(0x000f);
-		NewFlorVar = FlorVar + 1;
-		player:setVar("QuestFlorVar",NewFlorVar);
-	elseif(FlorVar == 2) then
+		player:setVar("troubleAtTheSluiceVar",2);
+	elseif(tatsVar == 2) then
 		player:startEvent(0x0010);
-	elseif(theRumor == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
+	end
+	
+	if(theRumor == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
 		player:startEvent(0x000d);
 	elseif(theRumor == QUEST_ACCEPTED) then
 		player:startEvent(0x000b);
@@ -82,19 +87,15 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
-	FlorVar= player:getVar("QuestFlorVar")
 	
 	if(csid == 0x0006) then
 		player:setVar("TheHolyCrest_Event",2);
-	end
-	if(csid == 0x0011) then
+	elseif(csid == 0x0011) then
 		player:tradeComplete();
 		player:addKeyItem(NEUTRALIZER);
 		player:messageSpecial(KEYITEM_OBTAINED,NEUTRALIZER);
-		player:setVar("QuestFlorVar",FlorVar + 1);
-	end
-	if(csid == 0x000d and option == 1) then
+		player:setVar("troubleAtTheSluiceVar",0);
+	elseif(csid == 0x000d and option == 1) then
 		player:addQuest(SANDORIA,THE_RUMOR);			
 	elseif(csid == 0x000c) then
 		if (player:getFreeSlotsCount() == 0) then 

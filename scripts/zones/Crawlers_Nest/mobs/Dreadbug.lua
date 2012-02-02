@@ -1,14 +1,20 @@
-require("scripts/globals/settings");
+-----------------------------------
+-- Area: Crawlers Nest
+-- NM:   Dreadbug
+-- Used in Quests: A Boy's Dream
+-- @zone 197
+-- @pos -18 -8 124
+-----------------------------------
 
 -----------------------------------
--- onMobSpawn Action
+-- OnMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
-end;
+function onMobSpawn(mob)
+end; 
 
 -----------------------------------
--- onMobDeath
+-- OnMobDeath Action
 -----------------------------------
 
 function onMobDeath(mob, killer)
