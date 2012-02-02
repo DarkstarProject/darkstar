@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 -- NPC:  Narcheral
--- Starts and Finishes Quest: Messenger from Beyond, Prelude of Black and White (finish)
+-- Starts and Finishes Quest: Messenger from Beyond
 -- @zone 231
 -- @pos 129 -11 126
 -----------------------------------
@@ -33,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	messengerFromBeyond = player:getQuestStatus(SANDORIA, MESSENGER_FROM_BEYOND);
+	messengerFromBeyond = player:getQuestStatus(SANDORIA,MESSENGER_FROM_BEYOND);
 	
 	-- Checking levels and jobs for af quest
 	mLvl = player:getMainLvl();
@@ -66,6 +66,7 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
+	
 	if(csid == 0x02b1) then
 		player:addQuest(SANDORIA,MESSENGER_FROM_BEYOND);
 	elseif(csid == 0x02b2) then
@@ -79,4 +80,5 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(SANDORIA,MESSENGER_FROM_BEYOND);
 		end
 	end
+	
 end;

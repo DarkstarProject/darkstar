@@ -3,7 +3,7 @@
 -- NPC:  Tombstone
 -- Involved in Quest: Grave Concerns
 -- @zone 190
--- @pos 
+-- @pos 1 0 -101
 -----------------------------------
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
 -----------------------------------
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
 			end
 		end
-	if(csid == 0x0003) then
+	elseif(csid == 0x0003) then
 		player:tradeComplete();
 		player:setVar("OfferingWaterOK",1);
 		player:addItem(547);
