@@ -680,10 +680,10 @@ uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	CSpell* PSpell = PAttacker->PBattleAI->GetCurrentSpell();
 
 	int32 INT   = (PAttacker->stats.INT + PAttacker->getMod(MOD_INT)) - (PDefender->stats.INT + PDefender->getMod(MOD_INT));
-	uint32 base =  PSpell->getBase();
+	int32 base  =  PSpell->getBase();
 	float M     =  PSpell->getMultiplier();
 
-	uint32 damage = INT < 0 ? base + INT : base + (INT * M); 
+	int32 damage = INT < 0 ? base + INT : base + (INT * M); 
 	
     damage = damage * (100 - (10 * PAttacker->m_ActionList.size() / 2)) / 100;
 	damage = damage * (1000 + PDefender->getMod(MOD_FIRERES + PSpell->getElement())) / 1000;
