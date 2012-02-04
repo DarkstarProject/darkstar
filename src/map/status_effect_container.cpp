@@ -28,6 +28,7 @@
 
 #include "lua/luautils.h"
 
+#include "packets/char_health.h"
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
@@ -63,8 +64,8 @@ const int8* EFFECT_NAMES[] =
 	"sleep",
 	"curse",
 	"addle",
-	"st22",
-	"st23",
+	"intimidate",
+	"kaustra",
 	"st24",
 	"st25",
 	"st26",
@@ -264,15 +265,15 @@ const int8* EFFECT_NAMES[] =
 	"sirvente",
 	"dirge",
 	"scherzo",
-	"bard_song_32",
+	"nocturne",
 	"st224",
 	"st225",
 	"st226",
-	"st227",
-	"st228",
-	"st229",
-	"st230",
-	"st231",
+	"store_tp",
+	"embrava",
+	"manawell",
+	"spontaneity",
+	"marcato",
 	"(none)",
 	"auto-regen",
 	"auto-refresh",
@@ -567,9 +568,9 @@ const int8* GetStatusEffectName(uint16 EffectID)
 }
 
 CStatusEffectContainer::CStatusEffectContainer(CBattleEntity * PEntity) 
-	: m_pOwner(PEntity)
+	: m_POwner(PEntity)
 {
-    DSP_DEBUG_BREAK_IF(m_pOwner == NULL);
+    DSP_DEBUG_BREAK_IF(m_POwner == NULL);
 
 	m_Flags = 0;
 	m_EffectCheckTime = gettick();
@@ -593,30 +594,33 @@ CStatusEffectContainer::~CStatusEffectContainer()
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::AddStatusEffect(CStatusEffect * PStatusEffect)
+void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect)
 {
 	if(PStatusEffect != NULL) 
 	{
 		SetEffectName(PStatusEffect);
+        PStatusEffect->SetOwner(m_POwner);
 		PStatusEffect->SetStartTime(gettick());
+
+        luautils::OnEffectGain(m_POwner, PStatusEffect);
+
+        m_POwner->addModifiers(&PStatusEffect->modList);
+        m_POwner->UpdateHealth();
 
 		m_StatusEffectList.push_back(PStatusEffect);
 
-		if (PStatusEffect->GetStatusID() < 512 && m_pOwner->objtype == TYPE_PC) 
+		if (PStatusEffect->GetIcon() != 0 && m_POwner->objtype == TYPE_PC) 
 		{
-			AddStatusIcon(PStatusEffect->GetStatusID());
+            UpdateStatusIcons();
 
-            CCharEntity* PChar = (CCharEntity*)m_pOwner;
+            CCharEntity* PChar = (CCharEntity*)m_POwner;
 
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
-            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetStatusID(), 0, 205));
-            PChar->pushPacket(new CCharUpdatePacket(PChar));
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
+            PChar->pushPacket(new CCharHealthPacket(PChar));
             PChar->pushPacket(new CCharSyncPacket(PChar));
 		}
-		luautils::OnEffectGain(m_pOwner, PStatusEffect);
-
-        m_pOwner->addModifiers(&PStatusEffect->modList);
 	}
 }
 
@@ -631,22 +635,23 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
 {
     CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
 
-    luautils::OnEffectLose(m_pOwner, PStatusEffect);
+    luautils::OnEffectLose(m_POwner, PStatusEffect);
 
-    m_pOwner->delModifiers(&PStatusEffect->modList);
+    m_POwner->delModifiers(&PStatusEffect->modList);
+    m_POwner->UpdateHealth();
 
     m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
 
-	if (PStatusEffect->GetStatusID() < 512 && m_pOwner->objtype == TYPE_PC)
+	if (PStatusEffect->GetStatusID() < 512 && m_POwner->objtype == TYPE_PC)
 	{
-        DelStatusIcon(PStatusEffect->GetStatusID());
+        UpdateStatusIcons();
 
-        CCharEntity* PChar = (CCharEntity*)m_pOwner;
+        CCharEntity* PChar = (CCharEntity*)m_POwner;
 
         if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetStatusID(), 0, 206));
-        PChar->pushPacket(new CCharUpdatePacket(PChar));
+        PChar->pushPacket(new CCharHealthPacket(PChar));
         PChar->pushPacket(new CCharSyncPacket(PChar));
 	}
     delete PStatusEffect;
@@ -687,19 +692,36 @@ bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID, uint16 SubID)
 }
 
 /************************************************************************
+*                                                                       *
+*  Удаляем все эффекты с указанными флагами                             *
+*                                                                       *
+************************************************************************/
+
+void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag)
+{
+    for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+	{
+        if (m_StatusEffectList.at(i)->GetFlag() & flag)
+		{
+			RemoveStatusEffect(i--);
+		}
+	}
+}
+
+/************************************************************************
 *																		*
-*  Удаляем последний добавленный отрицательный эффект с флагом	erasa.	*
+*  Удаляем последний добавленный отрицательный эффект с флагом	erase.	*
 *  Возвращаем результат выполнения операции.							*
 *																		*
 ************************************************************************/
 
 bool CStatusEffectContainer::EraseStatusEffect(bool RemoveAll)
 {
-	for (int32 i = (int32)m_StatusEffectList.size() - 1 ; i >= 0 ; --i) 
+	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
 		if (m_StatusEffectList.at(i)->GetFlag() == EFFECTFLAG_ERASABLE)
 		{
-			RemoveStatusEffect(i);
+			RemoveStatusEffect(i--);
 			if (!RemoveAll) return true;
 		}
 	}
@@ -715,11 +737,11 @@ bool CStatusEffectContainer::EraseStatusEffect(bool RemoveAll)
 
 bool CStatusEffectContainer::DispelStatusEffect(bool RemoveAll)
 {
-	for (int32 i = (int32)m_StatusEffectList.size() - 1 ; i >= 0 ; --i) 
+	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
 		if (m_StatusEffectList.at(i)->GetFlag() == EFFECTFLAG_DISPELABLE)
 		{
-			RemoveStatusEffect(i);
+			RemoveStatusEffect(i--);
 			if (!RemoveAll) return true;
 		}
 	}
@@ -783,75 +805,33 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint16 S
 }
 
 /************************************************************************
-*																		*
-*  Добавляем иконку эффекта в m_StatusIcons, сортируя их по возрастанию	*
-*																		*
+*                                                                       *
+*  Пересчитываем иконки всех эфффектов                                  *
+*                                                                       *
 ************************************************************************/
 
-void CStatusEffectContainer::AddStatusIcon(EFFECT StatusID) 
+void CStatusEffectContainer::UpdateStatusIcons()
 {
-	if (m_StatusIcons[31] != EFFECT_NONE)
+    if (m_POwner->objtype != TYPE_PC) return;
+
+    m_Flags = 0;
+    memset(m_StatusIcons, EFFECT_NONE, sizeof(m_StatusIcons));
+ 
+    uint8 count = 0;
+
+    for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
-		ShowDebug(CL_CYAN"CStatusEffectContainer::AddStatusIcon: entity has 32 statuses, cannot add another\n"CL_RESET);
-		return;
+        uint16 icon = m_StatusEffectList.at(i)->GetIcon();
+
+        if (icon != 0)
+        {
+            m_Flags |= ((icon >= 256) << count);
+            m_StatusIcons[count] = icon & 255;
+
+            if (++count == 32) break;
+        }
 	}
-
-	uint8 count = 0;
-
-	for (count = 0; count < 32; ++count)
-	{ 
-		if (m_StatusIcons[count] != EFFECT_NONE)
-		{
-			if (m_StatusIcons[count] + ((m_Flags & (1 << count)) ? 256 : 0) > StatusID)
-			{
-				for(uint8 i = 30; i > count; --i)
-				{
-					m_StatusIcons[i] = m_StatusIcons[i-1];
-				}
-
-				uint32 flag = m_Flags & ((uint64)0xFFFFFFFF >> (32 - count));
-				m_Flags = ((m_Flags ^ flag) << 1) | flag;
-
-				break;
-			}
-		}else{
-			break;
-		}
-	}
-
-	if (StatusID > 255)
-	{
-		m_Flags |= (1 << count);
-		m_StatusIcons[count] = StatusID - 256;
-	}else{
-		m_StatusIcons[count] = StatusID;
-	}
-}
-
-/************************************************************************
-*																		*
-*  Удаляем иконку эффекта из m_StatusIcons								*
-*																		*
-************************************************************************/
-
-void CStatusEffectContainer::DelStatusIcon(EFFECT StatusID) 
-{
-	for (uint8 count = 0; count < 32; ++count)
-	{ 
-		if (m_StatusIcons[count] + ((m_Flags & (1 << count)) ? 256 : 0) == StatusID)
-		{
-			for(uint8 i = count; i < 31; ++i)
-			{
-				m_StatusIcons[i] = m_StatusIcons[i+1];
-			}
-			m_StatusIcons[31] = EFFECT_NONE;
-
-			uint32 flag = m_Flags & ((uint64)0xFFFFFFFF >> (32 - count));
-			m_Flags = ((m_Flags ^ flag) >> 1) & (0xFFFFFFFF << count) | flag;
-
-			return;
-		}
-	}
+    ((CCharEntity*)m_POwner)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_POwner));
 }
 
 /************************************************************************
@@ -869,14 +849,14 @@ void CStatusEffectContainer::SetEffectName(CStatusEffect* StatusEffect)
 
 	if (StatusEffect->GetSubID() == 0)
 	{
-		name.insert(0,"globals/effects/");
-		name.insert(name.size(),GetStatusEffectName(StatusEffect->GetStatusID()));
+		name.insert(0, "globals/effects/");
+		name.insert(name.size(), GetStatusEffectName(StatusEffect->GetStatusID()));
 	} else {
 		CItem* Ptem = itemutils::GetItemPointer(StatusEffect->GetSubID());
 		if (Ptem != NULL)
 		{
-            name.insert(0,"globals/items/");
-			name.insert(name.size(),Ptem->getName());
+            name.insert(0, "globals/items/");
+			name.insert(name.size(), Ptem->getName());
 		}
 	}
     StatusEffect->SetName(name);
@@ -890,13 +870,13 @@ void CStatusEffectContainer::SetEffectName(CStatusEffect* StatusEffect)
 
 void CStatusEffectContainer::LoadStatusEffects()
 {
-    DSP_DEBUG_BREAK_IF(m_pOwner->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
 
-	const int8* fmtQuery = "SELECT effectid, power, tick, duration, flag, subid \
+	const int8* fmtQuery = "SELECT effectid, icon, power, tick, duration, flag, subid \
 							FROM char_effects \
 							WHERE charid = %u;";
 
-	int32 ret = Sql_Query(SqlHandle,fmtQuery,m_pOwner->id);
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, m_POwner->id);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -904,11 +884,12 @@ void CStatusEffectContainer::LoadStatusEffects()
 		{
 			CStatusEffect* PStatusEffect = new CStatusEffect(
 				(EFFECT)Sql_GetUIntData(SqlHandle,0),
-				(uint16)Sql_GetUIntData(SqlHandle,1),
-				(uint32)Sql_GetUIntData(SqlHandle,2),
+                (uint16)Sql_GetUIntData(SqlHandle,1),
+				(uint16)Sql_GetUIntData(SqlHandle,2),
 				(uint32)Sql_GetUIntData(SqlHandle,3),
-				(uint16)Sql_GetUIntData(SqlHandle,4),
-				(uint16)Sql_GetUIntData(SqlHandle,5));
+				(uint32)Sql_GetUIntData(SqlHandle,4),
+				(uint16)Sql_GetUIntData(SqlHandle,5),
+				(uint16)Sql_GetUIntData(SqlHandle,6));
 
 			AddStatusEffect(PStatusEffect);
 		}
@@ -923,20 +904,21 @@ void CStatusEffectContainer::LoadStatusEffects()
 
 void CStatusEffectContainer::SaveStatusEffects()
 {
-    DSP_DEBUG_BREAK_IF(m_pOwner->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
 
-	Sql_Query(SqlHandle,"DELETE FROM char_effects WHERE charid = %u",m_pOwner->id);
+	Sql_Query(SqlHandle,"DELETE FROM char_effects WHERE charid = %u", m_POwner->id);
 
 	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
 		if (m_StatusEffectList.at(i)->GetDuration() != 0)
 		{
-			const int8* fmtQuery = "INSERT INTO char_effects (charid, effectid, power, tick, duration, flag, subid) \
-									VALUES(%u,%u,%u,%u,%u,%u,%u);";
+			const int8* fmtQuery = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, flag, subid) \
+									VALUES(%u,%u,%u,%u,%u,%u,%u,%u);";
 
 			Sql_Query(SqlHandle,fmtQuery,
-				m_pOwner->id,
+				m_POwner->id,
 				m_StatusEffectList.at(i)->GetStatusID(),
+                m_StatusEffectList.at(i)->GetIcon(),
 				m_StatusEffectList.at(i)->GetPower(),
 				m_StatusEffectList.at(i)->GetTickTime() / 1000,
 			   (m_StatusEffectList.at(i)->GetDuration() + m_StatusEffectList.at(i)->GetStartTime() - gettick()) / 1000,
@@ -955,9 +937,9 @@ void CStatusEffectContainer::SaveStatusEffects()
 
 void CStatusEffectContainer::CheckEffects(uint32 tick)
 {
-	DSP_DEBUG_BREAK_IF(m_pOwner == NULL);
+	DSP_DEBUG_BREAK_IF(m_POwner == NULL);
 	
-	if (!m_pOwner->isDead()) 
+	if (!m_POwner->isDead()) 
 	{
 		if ((tick - m_EffectCheckTime) < 1000 )
 		{
@@ -974,7 +956,7 @@ void CStatusEffectContainer::CheckEffects(uint32 tick)
 				PStatusEffect->GetLastTick() + PStatusEffect->GetTickTime() <= tick) 
 			{
 				PStatusEffect->SetLastTick(tick);
-				luautils::OnEffectTick(m_pOwner,PStatusEffect);
+				luautils::OnEffectTick(m_POwner,PStatusEffect);
 			}
 
 			if (PStatusEffect->GetDuration() != 0 &&

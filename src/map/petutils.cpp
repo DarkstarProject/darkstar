@@ -127,6 +127,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 
 	PPet->health.hp    = 1;
 	PPet->health.maxhp = 1;
+    PPet->UpdateHealth();
 
 	PPet->status = STATUS_NORMAL;
 	PPet->m_ModelSize += g_PPetList.at(PetID)->size;

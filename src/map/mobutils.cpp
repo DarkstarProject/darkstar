@@ -99,6 +99,8 @@ uint16 GetBase(CMobEntity * PMob, uint8 rank)
 void CalculateStats(CMobEntity * PMob)
 {
 	PMob->health.maxhp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
+    
+    PMob->UpdateHealth();
 
 	PMob->health.tp = 0;
     PMob->health.hp = PMob->GetMaxHP();

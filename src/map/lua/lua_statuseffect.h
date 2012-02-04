@@ -55,8 +55,11 @@ public:
 	int32 getLastTick(lua_State*);
 	int32 getTickCount(lua_State*);
 	
+    int32 setIcon(lua_State*);
 	int32 setPower(lua_State*);
 	int32 setDuration(lua_State*);
+
+    int32 resetStartTime(lua_State*);
 
 	int32 addMod(lua_State*);
 };

@@ -31,12 +31,17 @@
 
 #include "modifier.h"
 
+enum EFFECTFLAG
+{
+    EFFECTFLAG_NONE				= 0x00,
+    EFFECTFLAG_DISPELABLE		= 0x01,
+    EFFECTFLAG_ERASABLE			= 0x02,
+    EFFECTFLAG_ATTACK           = 0x04,
+    EFFECTFLAG_DAMAGE           = 0x08,
+    EFFECTFLAG_SPELLCAST        = 0x10,
+};
 
-#define EFFECTFLAG_NONE				0x00
-#define EFFECTFLAG_DISPELABLE		0x01
-#define EFFECTFLAG_ERASABLE			0x02
-
-enum EFFECT : uint16
+enum EFFECT
 {
 	EFFECT_KO						= 0,
 	EFFECT_WEAKNESS					= 1,
@@ -60,7 +65,9 @@ enum EFFECT : uint16
 	EFFECT_SLEEP_II					= 19,
 	EFFECT_CURSE_II					= 20,
 	EFFECT_ADDLE					= 21,
-	EFFECT_TERROR					= 28,
+    EFFECT_INTIMIDATE               = 22,
+    EFFECT_KAUSTRA                  = 23,
+    EFFECT_TERROR					= 28,
 	EFFECT_MUTE						= 29,
 	EFFECT_BANE						= 30,
 	EFFECT_PLAGUE					= 31,
@@ -98,7 +105,8 @@ enum EFFECT : uint16
 	EFFECT_SOULEATER				= 63,
 	EFFECT_LAST_RESORT				= 64,
 	EFFECT_SNEAK_ATTACK				= 65,
-	EFFECT_COPY_IMAGE_1				= 66,
+	EFFECT_COPY_IMAGE				= 66,
+    EFFECT_COPY_IMAGE_1				= 66,
 	EFFECT_THIRD_EYE				= 67,
 	EFFECT_WARCRY					= 68,
 	EFFECT_INVISIBLE				= 69,
@@ -255,8 +263,13 @@ enum EFFECT : uint16
 	EFFECT_SIRVENTE					= 220,
 	EFFECT_DIRGE					= 221,
 	EFFECT_SCHERZO					= 222,
-	EFFECT_BARD_SONG_32				= 223,
-	EFFECT_NA						= 232,
+	EFFECT_NOCTURNE 				= 223,
+    EFFECT_STORE_TP                 = 227,
+    EFFECT_EMBRAVA                  = 228,
+    EFFECT_MANAWELL                 = 229,
+    EFFECT_SPONTANEITY              = 230,
+    EFFECT_MARCATO                  = 231,   
+    EFFECT_NA						= 232,
 	EFFECT_AUTO_REGEN				= 233,
 	EFFECT_AUTO_REFRESH				= 234,
 	EFFECT_FISHING_IMAGERY			= 235,
@@ -509,12 +522,15 @@ enum EFFECT : uint16
 *																		*
 ************************************************************************/
 
+class CBattleEntity;
+
 class CStatusEffect
 {
 public:
 
 	EFFECT	GetStatusID();
 	uint16 	GetSubID();
+    uint16  GetIcon();
 	uint16	GetPower();
 	uint16	GetFlag();
 
@@ -523,8 +539,10 @@ public:
 	uint32	GetLastTick();
 	uint32	GetStartTime();
 
+    void    SetIcon(uint16 Icon);
 	void	SetPower(uint16 Power);
 	void	SetDuration(uint32 Duration);
+    void    SetOwner(CBattleEntity* Owner);
 
 	void	SetLastTick(uint32 LastTick);
 	void	SetStartTime(uint32 StartTime);
@@ -538,19 +556,23 @@ public:
 
 	std::vector<CModifier*> modList;	// список модификаторов
 
-	 CStatusEffect(
-		 EFFECT id, 
+	CStatusEffect(
+		 EFFECT id,
+         uint16 icon,
 		 uint16 power, 
 		 uint32 tick, 
 		 uint32 duration, 
 		 uint16 flag = EFFECTFLAG_NONE,
 		 uint16 subid = 0);
-	~CStatusEffect();
+   ~CStatusEffect();
 
 private:
 
+    CBattleEntity* m_POwner;
+
 	EFFECT		m_StatusID;				// основной тип эффекта
 	uint16		m_SubID;				// дополнительный тип эффекта
+    uint16      m_Icon;                 // иконка эффекта
 	uint16		m_Power;				// сила эффекта
 	uint16		m_Flag;					// флаг эффекта, определяющий возможность его отмены (erase или dispel)
 

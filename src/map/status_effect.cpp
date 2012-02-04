@@ -21,13 +21,17 @@
 ===========================================================================
 */
 
+#include "../common/utils.h"
+
+#include "battleentity.h"
 #include "status_effect.h"
 
 
-CStatusEffect::CStatusEffect(EFFECT id, uint16 power, uint32 tick, uint32 duration, uint16 flag, uint16 subid)
+CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint16 flag, uint16 subid)
 {
 	m_StatusID = id;
 	m_SubID	   = subid;
+    m_Icon     = icon;
 	m_Power	   = power;
 	m_Flag	   = flag;
 	m_TickTime = tick * 1000;
@@ -47,6 +51,11 @@ const int8* CStatusEffect::GetName()
 	return m_Name.c_str();
 }
 
+void CStatusEffect::SetOwner(CBattleEntity* Owner)
+{
+    m_POwner = Owner;
+}
+
 EFFECT CStatusEffect::GetStatusID()
 {
 	return m_StatusID;
@@ -55,6 +64,11 @@ EFFECT CStatusEffect::GetStatusID()
 uint16 CStatusEffect::GetSubID()
 {
 	return m_SubID;
+}
+
+uint16 CStatusEffect::GetIcon()
+{
+	return m_Icon;
 }
 
 uint16 CStatusEffect::GetPower()
@@ -85,6 +99,14 @@ uint32 CStatusEffect::GetStartTime()
 uint32 CStatusEffect::GetLastTick()
 {
 	return m_LastTick;
+}
+
+void CStatusEffect::SetIcon(uint16 Icon)
+{
+    DSP_DEBUG_BREAK_IF(m_POwner == NULL);
+
+	m_Icon = Icon;
+    m_POwner->StatusEffectContainer->UpdateStatusIcons();
 }
 
 void CStatusEffect::SetPower(uint16 Power)

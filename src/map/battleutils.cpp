@@ -695,28 +695,13 @@ uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	{
 		case TYPE_PC:
 		{
-			PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 			
-			switch (PDefender->animation)
+			if(PDefender->animation == ANIMATION_SIT)
 		    {
-			    case ANIMATION_SIT:
-			    {
-				    PDefender->animation = ANIMATION_NONE;
-
-				    ((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
-			    }
-			    break;
-			    case ANIMATION_HEALING:
-			    {
-				    PDefender->animation = ANIMATION_NONE;
-
-				    ((CCharEntity*)PDefender)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-			    }
-			    break;
-		    };
+			    PDefender->animation = ANIMATION_NONE;
+                ((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
+            }
             charutils::UpdateHealth((CCharEntity*)PDefender);
 		}
 		break;
@@ -1005,6 +990,50 @@ bool IsParalised(CBattleEntity* PAttacker)
 }
 
 /************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+bool IsAbsorbByShadow(CBattleEntity* PDefender)
+{
+    uint16 Shadow = PDefender->getMod(MOD_UTSUSEMI);
+
+    if (Shadow != 0) 
+    {
+        PDefender->setModifier(MOD_UTSUSEMI, --Shadow);
+
+        if (Shadow == 0)
+        {
+            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+        }
+        else if (Shadow < 4)
+        {
+            if (PDefender->objtype == TYPE_PC)
+            {
+                CStatusEffect* PStatusEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_COPY_IMAGE, 0);
+
+                if (PStatusEffect != NULL)
+                {
+                    uint16 icon = EFFECT_COPY_IMAGE_3;
+                    switch (Shadow)
+                    {
+                        case 1: icon = EFFECT_COPY_IMAGE_1; break;
+                        case 2: icon = EFFECT_COPY_IMAGE_2; break;
+                    }
+                    PStatusEffect->SetIcon(icon);
+                    PStatusEffect->SetPower(Shadow);
+                    PDefender->StatusEffectContainer->UpdateStatusIcons();
+                }
+            }
+        }
+        return true;
+    }
+    // TODO: blink
+    return false;
+}
+
+/************************************************************************
 *																		*
 *  Intimidation from Killer Effects (chance to intimidate)				*
 *																		*
@@ -1103,7 +1132,7 @@ SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSki
 
 	if (PEffect == NULL)
 	{
-        PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, PWeaponSkill->getElement(),0,6));
+        PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN,0,PWeaponSkill->getElement(),0,6));
 		return SUBEFFECT_NONE;
 	}
     else

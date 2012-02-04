@@ -272,8 +272,6 @@ void CalculateStats(CCharEntity* PChar)
 		WBUFW(&PChar->stats,counter) = (uint16)(raceStat + jobStat + sJobStat);
 		counter += 2;
 	}
-    PChar->health.hp = (PChar->loc.prevzone == 0 || PChar->loc.destination == 0 ? PChar->GetMaxHP() : cap_value(PChar->health.hp, 0, PChar->GetMaxHP()));
-    PChar->health.mp = (PChar->loc.prevzone == 0 || PChar->loc.destination == 0 ? PChar->GetMaxMP() : cap_value(PChar->health.mp, 0, PChar->GetMaxMP()));
 }
 
 /************************************************************************
@@ -589,7 +587,7 @@ void LoadInventory(CCharEntity* PChar)
 					luautils::OnItemCheck(PChar, PItem);
 					PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
 				}
-				//ShowDebug(CL_YELLOW"Item Type == %u"CL_RESET, PItem->getType());
+				
 				if ((i == SLOT_MAIN) && (PItem->getType() & ITEM_WEAPON))
 				{
 					PChar->m_Weapons[SLOT_MAIN]->setDelay(((CItemWeapon*)PItem)->getDelay());
@@ -607,8 +605,8 @@ void LoadInventory(CCharEntity* PChar)
 	} else {
 		ShowError(CL_RED"Loading error from char_equip\n"CL_RESET);
 	}
-
 	PChar->StatusEffectContainer->LoadStatusEffects();
+    PChar->UpdateHealth();
 }
 
 /************************************************************************
@@ -1092,17 +1090,14 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
             if (PItem->getType() & ITEM_USABLE)
 		    {
                 // TODO: позднее нужно будет добавить логику recast item
-
 			    PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, slotID));
 	            PChar->pushPacket(new CInventoryFinishPacket());
 		    }
         }
 	}
-    PChar->health.hp = cap_value(PChar->health.hp, 0, PChar->GetMaxHP());
-    PChar->health.mp = cap_value(PChar->health.mp, 0, PChar->GetMaxMP());
+    PChar->UpdateHealth();
 	
     // TODO: зачем нам это делать при смене экипировки, отличной от оружия ?
-
 	BuildingCharWeaponSkills(PChar);
 	SaveCharEquip(PChar);
 }

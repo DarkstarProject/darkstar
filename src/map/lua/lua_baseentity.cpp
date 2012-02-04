@@ -27,6 +27,7 @@
 #include <math.h>
 
 #include "lua_baseentity.h"
+#include "lua_statuseffect.h"
 #include "lua_trade_container.h"
 #include "luautils.h"
 
@@ -1098,32 +1099,30 @@ inline int32 CLuaBaseEntity::unseenKeyItem(lua_State *L)
 	return 1;
 }
 
-
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Добавляем персонажу заклинание с отображением сообщения              *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::addSpell(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
-			{
-				CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-				uint16 SpellID = (uint16)lua_tointeger(L,-1);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-				if (charutils::addSpell(PChar,SpellID))
-				{
-					charutils::SaveSpells(PChar);
-					PChar->pushPacket(new CCharSpellsPacket(PChar));
-				}
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint16 SpellID = (uint16)lua_tointeger(L,-1);
+
+    if (charutils::addSpell(PChar, SpellID))
+    {
+        charutils::SaveSpells(PChar);
+        PChar->pushPacket(new CCharSpellsPacket(PChar));
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 23));
+    }
+    return 0;
 }
 
 /************************************************************************
@@ -2505,31 +2504,56 @@ inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 	
-    if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
-        !lua_isnil(L,2) && lua_isnumber(L,2) &&
-        !lua_isnil(L,3) && lua_isnumber(L,3) && 
-        !lua_isnil(L,4) && lua_isnumber(L,4) )
-    {
-        int32 n = lua_gettop(L);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,3) || !lua_isnumber(L,3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,4) || !lua_isnumber(L,4));
+    
+    int32 n = lua_gettop(L);
 
-        CStatusEffect * PEffect = new CStatusEffect(
-            (EFFECT)lua_tointeger(L,1),
-            (uint16)lua_tointeger(L,2),
-            (uint16)lua_tointeger(L,3),
-            (uint16)lua_tointeger(L,4),
-            (n >= 5 ? (uint16)lua_tointeger(L,5) : 0),
-            (n >= 6 ? (uint16)lua_tointeger(L,6) : 0));
+    CStatusEffect * PEffect = new CStatusEffect(
+        (EFFECT)lua_tointeger(L,1),
+        (uint16)lua_tointeger(L,1),
+        (uint16)lua_tointeger(L,2),
+        (uint16)lua_tointeger(L,3),
+        (uint16)lua_tointeger(L,4),
+        (n >= 5 ? (uint16)lua_tointeger(L,5) : 0),
+        (n >= 6 ? (uint16)lua_tointeger(L,6) : 0));
 
-        ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
+    ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
+	return 0;
+}
 
-        if (m_PBaseEntity->objtype == TYPE_PC)
-        {
-            ((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
-        }
-        return 0;
-    }
-	lua_pushnil(L);
-	return 1;
+/************************************************************************
+*                                                                       *
+*  Добавляем боевой сущности StatusEffect                               *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addStatusEffectEx(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,3) || !lua_isnumber(L,3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,4) || !lua_isnumber(L,4));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,5) || !lua_isnumber(L,5));
+    
+    int32 n = lua_gettop(L);
+
+    CStatusEffect * PEffect = new CStatusEffect(
+        (EFFECT)lua_tointeger(L,1),
+        (uint16)lua_tointeger(L,2),
+        (uint16)lua_tointeger(L,3),
+        (uint16)lua_tointeger(L,4),
+        (uint16)lua_tointeger(L,5),
+        (n >= 6 ? (uint16)lua_tointeger(L,5) : 0),
+        (n >= 7 ? (uint16)lua_tointeger(L,6) : 0));
+
+    ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
+	return 0;
 }
 
 //==========================================================//
@@ -2570,6 +2594,44 @@ inline int32 CLuaBaseEntity::addPartyEffect(lua_State *L)
 	}
 	lua_pushnil(L);
 	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*  Получаем указатель на эффект по имени                                *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getStatusEffect(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    uint8 n = lua_gettop(L);
+		
+    CStatusEffect* PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetStatusEffect(
+        (EFFECT)lua_tointeger(L,1), 
+        (n >= 2) ? (uint16)lua_tointeger(L,2) : 0);
+    
+    if (PStatusEffect == NULL)
+        lua_pushnil(L);
+    else 
+    {
+        lua_pop(L,1);
+        lua_pushstring(L, CLuaStatusEffect::className);
+        lua_gettable(L,LUA_GLOBALSINDEX);
+        lua_pushstring(L,"new");
+        lua_gettable(L,-2);
+        lua_insert(L,-2);
+        lua_pushlightuserdata(L,(void*)PStatusEffect);
+    }
+    if( lua_pcall(L,2,1,0) )
+    {
+        return 0;
+    }
+    return 1;
 }
 
 /************************************************************************
@@ -3234,6 +3296,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendRaise),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendTractor),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffectEx),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseStatusEffect),

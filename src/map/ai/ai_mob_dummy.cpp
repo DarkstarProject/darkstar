@@ -29,6 +29,7 @@
 #include "../itemutils.h"
 #include "../mobskill.h"
 #include "../mobutils.h"
+#include "../status_effect.h"
 #include "../zone.h"
 
 #include "ai_mob_dummy.h"
@@ -39,7 +40,7 @@
 #include "../packets/entity_update.h"
 #include "../packets/fade_out.h"
 #include "../packets/message_basic.h"
-#include "../status_effect.h"
+
 
 /************************************************************************
 *																		*
@@ -485,19 +486,10 @@ void CAIMobDummy::ActionAttack()
 				}
 				else if ( rand()%90 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
 				{
-					// TODO: иконки у utsusemi изменяются в зависимости от количества оставшихся теней
-
-					uint16 utsu = m_PBattleTarget->getMod(MOD_UTSUSEMI);
-					if (utsu > 0) 
+                    if (battleutils::IsAbsorbByShadow(m_PBattleTarget)) 
 					{
-						m_PBattleTarget->setModifier(MOD_UTSUSEMI, --utsu);
-						Action.messageID  = 0;
-
-						m_PMob->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,1,1,31));
-						if (utsu == 0)
-						{
-							m_PBattleTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE_1);
-						}
+                        Action.messageID = 0;
+                        m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
 					}
 					else
 					{
@@ -516,55 +508,6 @@ void CAIMobDummy::ActionAttack()
 							Action.messageID  = 67;
 						}
 						damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget)) * DamageRatio);
-
-						/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BLAZE_SPIKES))
-						{
-							uint32 spikeDamage = 6; //Calculate Spike Damage
-							m_PMob->addhp(-spikeDamage);
-							m_PBattleTarget->addHP(damage);
-							Action.subeffect = SUBEFFECT_BLAZE_SPIKES;
-							Action.flag = 2; 
-							Action.submessageID = ??; 
-						} */
-
-						/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ICE_SPIKES))
-						{
-							uint32 spikeDamage = 6; //Calculate Spike Damage
-							m_PMob->addhp(-spikeDamage);
-							m_PBattleTarget->addHP(damage);
-
-							if (rand() > 0.5) 
-							{
-								//m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS,1,0,60));
-							}
-							Action.subeffect = SUBEFFECT_ICE_SPIKES;
-							Action.flag = 2; 
-							Action.submessageID = ??; 
-						} */
-
-
-						/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SHOCK_SPIKES))
-						{
-							uint32 spikeDamage = 6; //Calculate Spike Damage
-							m_PMob->addhp(-spikeDamage);
-							m_PBattleTarget->addHP(damage);
-
-							if (rand() > 0.5) 
-							{
-								//m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS,1,0,3));
-							}
-							Action.subeffect = SUBEFFECT_ICE_SPIKES;
-							Action.flag = 2; 
-							Action.submessageID = ??; 
-						} */
-
-						/*	if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DREAD_SPIKES))
-						{
-							m_PBattleTarget->addHP(damage);
-							Action.subeffect = SUBEFFECT_DREAD_SPIKES;
-							Action.flag = 2; 
-							Action.submessageID = 132; 
-						} */
 					}
 				}
                 else if (m_PBattleTarget->objtype == TYPE_PC)

@@ -300,9 +300,10 @@ struct apAction_t
 
 struct health_t 
 {
-	int16	tp;
-	int32   hp, mp;
-	int32   maxhp, maxmp;
+    int16   tp;                 // текущее значение
+    int32   hp, mp;             // текущие значения
+    int32   maxhp, maxmp;       // максимальные значения
+    int32   modhp, modmp;       // модифицированные максимальные значения
 };
 
 typedef std::vector<apAction_t> ActionList_t;
@@ -331,6 +332,7 @@ public:
     int32           GetMaxHP();                 // максимальное количество hp
 	uint8		    GetMPP();					// количество mp в процентах
     int32           GetMaxMP();                 // максимальное количество mp
+    void            UpdateHealth();             // пересчет максимального количества hp и mp, а так же корректировка их текущих значений
 
 	uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
 

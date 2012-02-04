@@ -2381,10 +2381,10 @@ int32 SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* da
 		   (PChar->PPet->m_EcoSystem != SYSTEM_AVATAR &&
 			PChar->PPet->m_EcoSystem != SYSTEM_ELEMENTAL))
 		{
-			PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING,0,10,0));
+			PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING,0,0,10,0,EFFECTFLAG_DAMAGE));
 		}
 		PChar->status = STATUS_UPDATE;
-		PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEAVEGAME,ExitType,5,0));
+		PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEAVEGAME,0,ExitType,5,0));
 	}
 	else if (PChar->animation == ANIMATION_HEALING)
 	{
@@ -2395,7 +2395,7 @@ int32 SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* da
 		} else {
 			uint8 ExitType = (RBUFB(data,(0x06)) == 1 ? 7 : 35);
 
-			PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEAVEGAME,ExitType,5,0));
+			PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEAVEGAME,0,ExitType,5,0));
 		}
 	}
 	return 0;
@@ -2428,7 +2428,7 @@ int32 SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, int8* da
 				}
 				PChar->status = STATUS_UPDATE;
 				PChar->PBattleAI->CheckCurrentAction(gettick());
-				PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING,0,10,0));
+				PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING,0,0,10,0,EFFECTFLAG_DAMAGE));
 				return 0;
 			}
 			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,345));

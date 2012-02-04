@@ -80,6 +80,29 @@ bool CBattleEntity::isDead()
 
 /************************************************************************
 *                                                                       *
+*  Пересчитываем максимальные значения hp и mp с учетом модификаторов   *
+*                                                                       *
+************************************************************************/
+
+void CBattleEntity::UpdateHealth()
+{
+    int32 dif = (getMod(MOD_CONVMPTOHP) - getMod(MOD_CONVHPTOMP));
+
+    health.modmp = (health.maxmp + getMod(MOD_MP)) * (100 + getMod(MOD_MPP)) / 100;
+    health.modhp = (health.maxhp + getMod(MOD_HP)) * (100 + getMod(MOD_HPP)) / 100;
+
+    //dif = health.modmp <  dif ?  health.modmp : dif;
+    //dif = health.modhp < -dif ? -health.modhp : dif;
+
+    //health.modhp += dif;
+    //health.modmp -= dif;
+
+    health.hp = cap_value(health.hp, 0, health.maxhp);
+    health.mp = cap_value(health.mp, 0, health.modmp);
+}
+
+/************************************************************************
+*                                                                       *
 *  Получаем текущее количество очков жизней                             *
 *                                                                       *
 ************************************************************************/
@@ -91,7 +114,7 @@ uint8 CBattleEntity::GetHPP()
 
 int32 CBattleEntity::GetMaxHP()
 {
-    return (health.maxhp + getMod(MOD_HP)) * (100 + getMod(MOD_HPP)) / 100; //  + (MOD_CONVMPTOHP - MOD_CONVHPTOMP)
+    return health.modhp;
 }
 
 /************************************************************************
@@ -107,7 +130,7 @@ uint8 CBattleEntity::GetMPP()
 
 int32 CBattleEntity::GetMaxMP()
 {
-    return (health.maxmp + getMod(MOD_MP)) * (100 + getMod(MOD_MPP)) / 100; //  + (MOD_CONVHPTOMP - MOD_CONVMPTOHP)
+    return health.modmp;
 }
 
 /************************************************************************

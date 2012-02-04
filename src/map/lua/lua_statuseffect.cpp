@@ -22,6 +22,7 @@
 */
 
 #include "../../common/showmsg.h"
+#include "../../common/timer.h"
 
 #include "lua_statuseffect.h"
 
@@ -140,6 +141,18 @@ inline int32 CLuaStatusEffect::getTickCount(lua_State* L)
 
 //======================================================//
 
+inline int32 CLuaStatusEffect::setIcon(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	m_PLuaStatusEffect->SetIcon( lua_tointeger(L,1) );
+	return 0;
+}
+
+//======================================================//
+
 inline int32 CLuaStatusEffect::setPower(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
@@ -159,6 +172,20 @@ inline int32 CLuaStatusEffect::setDuration(lua_State* L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 	
 	m_PLuaStatusEffect->SetDuration( lua_tointeger(L,1) );
+	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Перезапускаем эффект                                                 *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaStatusEffect::resetStartTime(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	
+	m_PLuaStatusEffect->SetStartTime(gettick());
 	return 0;
 }
 
@@ -183,6 +210,7 @@ Lunar<CLuaStatusEffect>::Register_t CLuaStatusEffect::methods[] =
 {
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getType),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getSubType),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,setIcon),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getPower),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,setPower),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getDuration),
@@ -190,6 +218,7 @@ Lunar<CLuaStatusEffect>::Register_t CLuaStatusEffect::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getStartTime),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getLastTick),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getTickCount),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,resetStartTime),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,addMod),
 	{NULL,NULL}
 }; 

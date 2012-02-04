@@ -170,7 +170,9 @@ public:
 	int32 updateEnmity(lua_State*);			// Adds Enmity to player for specified mob
 
 	int32 addStatusEffect(lua_State*);		// Adds status effect to character
+    int32 addStatusEffectEx(lua_State*);	// Adds status effect to character
 	int32 hasStatusEffect(lua_State*);		// Checks to see if character has specified effect
+    int32 getStatusEffect(lua_State*);		// 
 	int32 delStatusEffect(lua_State*);		// Removes Status Effect 
 	int32 eraseStatusEffect(lua_State*);	// Used with "Erase" spell 
 	int32 dispelStatusEffect(lua_State*);	// Used with "Dispel" spell

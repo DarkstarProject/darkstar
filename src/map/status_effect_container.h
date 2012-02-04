@@ -38,9 +38,10 @@ public:
 	uint32	m_Flags;											// биты переполнения байтов m_StatusIcons	
 	uint8	m_StatusIcons[32];									// иконки статус-эффектов
 
-	void AddStatusEffect(CStatusEffect* StatusEffect);			
+	void AddStatusEffect(CStatusEffect* StatusEffect);
 	bool DelStatusEffect(EFFECT StatusID);
 	bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
+    void DelStatusEffectsByFlag(uint16 flag);                   // удаляем все эффекты с указанным типом
 	
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие стату-эффекта
 	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие стату-эффекта с уникальным subid
@@ -49,6 +50,7 @@ public:
 
     CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);
 
+    void UpdateStatusIcons();                                   // пересчитываем иконки эффектов
 	void CheckEffects(uint32 tick);
 
 	void LoadStatusEffects();									// загружаем эффекты персонажа
@@ -59,13 +61,9 @@ public:
 
 private:
 
-	CBattleEntity* m_pOwner;
+	CBattleEntity* m_POwner;
 
 	void RemoveStatusEffect(uint32 id);							// удаляем эффект по его номеру в контейнере
-
-	void AddStatusIcon(EFFECT StatusID);
-	void DelStatusIcon(EFFECT StatusID);
-
 	void SetEffectName(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
 
 	uint32 m_EffectCheckTime;

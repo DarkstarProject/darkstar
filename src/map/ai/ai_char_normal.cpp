@@ -333,9 +333,8 @@ void CAICharNormal::ActionFall()
 
     m_PChar->UContainer->Clean();
 
-	m_PChar->StatusEffectContainer->EraseStatusEffect(true);
-	m_PChar->StatusEffectContainer->DispelStatusEffect(true);
-
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ERASABLE + EFFECTFLAG_DISPELABLE);
+	
 	m_PChar->animation = ANIMATION_DEATH;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
@@ -528,10 +527,6 @@ void CAICharNormal::ActionItemFinish()
 {
 	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
-
-    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getAnimationTime())
 	{
@@ -1019,7 +1014,7 @@ void CAICharNormal::ActionMagicCasting()
 
 			if (SlotID != ERROR_SLOTID)
 			{
-				if (rand()%100 < m_PChar->getMod(MOD_NINJA_TOOL))
+				if (rand()%100 > m_PChar->getMod(MOD_NINJA_TOOL))
 				{
 					charutils::UpdateItem(m_PChar, LOC_INVENTORY, SlotID, -1);
 					m_PChar->pushPacket(new CInventoryFinishPacket());
@@ -1559,7 +1554,7 @@ void CAICharNormal::ActionAttack()
 			}
 			return;
 		}
-        m_LastActionTime = (m_LastActionTime > m_AttackMessageTime) ? m_LastActionTime + WeaponDelay : m_Tick;
+        m_LastActionTime = (m_LastActionTime >= m_AttackMessageTime) ? m_LastActionTime + WeaponDelay : m_Tick;
 
 		if (battleutils::IsParalised(m_PChar)) 
 		{

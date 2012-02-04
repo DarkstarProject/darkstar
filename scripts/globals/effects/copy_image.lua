@@ -4,13 +4,14 @@
 -- 	
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-target:addMod(MOD_UTSUSEMI,effect:getPower());
---print("Shadows gained: %u",effect:getPower());
+	target:setMod(MOD_UTSUSEMI, effect:getPower());
 end;
 
 -----------------------------------
@@ -25,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-target:setMod(MOD_UTSUSEMI,0);
+	target:setMod(MOD_UTSUSEMI, 0);
 end;
