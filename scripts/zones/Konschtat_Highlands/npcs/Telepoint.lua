@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Konschtat Highlands
--- NPC: Telepoint
---
+-- NPC:  Telepoint
+-----------------------------------
+package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 -----------------------------------
@@ -13,22 +14,18 @@ require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 function onTrade(player,npc,trade)
 
+	item = trade:getItem();
 
-	if (player:getCurrentMission(1) == 3) then
-		count = trade:getItemCount();
-		gil = trade:getGil();
-		crystal = trade:getItem();
-
-		if (trade:getItemQty(crystal, 1) and crystal > 4095 and crystal < 4104 and count == 1 and gil == 0) then
-			if (player:getFreeSlotsCount(0) >= 1 and player:hasItem(FADED_CRYSTAL) == false) then
-				player:tradeComplete();
-				player:addItem(FADED_CRYSTAL);
-				player:messageSpecial(ITEM_OBTAINED,FADED_CRYSTAL);
-			else
-				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,FADED_CRYSTAL);
-			end
+	if(trade:getItemCount() == 1 and item > 4095 and item < 4104) then	
+		if(player:getFreeSlotsCount() > 0 and player:hasItem(613) == false) then
+			player:tradeComplete();
+			player:addItem(613);
+			player:messageSpecial(ITEM_OBTAINED,613); -- Faded Crystal
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,613); -- Faded Crystal
 		end
 	end
+	
 end;
 
 -----------------------------------
@@ -36,12 +33,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:hasKeyItem(353) == false) then
-		player:addKeyItem(353);
-		player:messageSpecial(KEYITEM_OBTAINED,353);
+	
+	if(player:hasKeyItem(DEM_GATE_CRYSTAL) == false) then
+		player:addKeyItem(DEM_GATE_CRYSTAL);
+		player:messageSpecial(KEYITEM_OBTAINED,DEM_GATE_CRYSTAL);
 	else
 		player:messageSpecial(ALREADY_OBTAINED_TELE);
 	end
+	
 end;
 
 -----------------------------------
@@ -61,6 +60,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

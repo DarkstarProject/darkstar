@@ -27,14 +27,15 @@ end;
 function onTrigger(player,npc)
 	TrosKilled = player:getVar("TrosKilled");
 	
-	if(player:hasKeyItem(MERTAIRES_BRACELET) and (TrosKilled == 0 or (os.time() - player:getVar("Tros_Timer")) > 60) then 
+	if(player:hasKeyItem(MERTAIRES_BRACELET) and (TrosKilled == 0 or (os.time() - player:getVar("Tros_Timer")) > 60)) then 
 		player:messageSpecial(SENSE_OF_FOREBODING);
-		SpawnMob(17457309):updateEnmity(player); -- Spawn Tros NM
+		SpawnMob(17457309,180):updateEnmity(player); -- Spawn Tros NM
 	elseif(player:hasKeyItem(MERTAIRES_BRACELET) == true and TrosKilled == 1) then 
 		player:startEvent(0x0008); -- Finish Quest "Painful Memory"
 	else
 		player:messageSpecial(NOTHING_ORDINARY_HERE);
 	end
+	
 end; 
 
 -----------------------------------
@@ -53,6 +54,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
 	if(csid == 0x0008) then 
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16766);
@@ -65,4 +67,5 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,16766); -- Paper Knife
 		end
 	end
+	
 end;

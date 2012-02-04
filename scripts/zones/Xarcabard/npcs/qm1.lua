@@ -1,46 +1,37 @@
 -----------------------------------
--- Area: La Theine Plateau
--- NPC:  Telepoint
+-- Area: Xarcabard
+-- NPC:  ???
+-- Involved in Quests: The Three Magi
+-- @zone 112
+-- @pos -331 -29 -49
 -----------------------------------
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
+package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/keyitems");
-require("scripts/zones/La_Theine_Plateau/TextIDs");
+require("scripts/globals/quests");
+require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-	item = trade:getItem();
-
-	if(trade:getItemCount() == 1 and item > 4095 and item < 4104) then	
-		if(player:getFreeSlotsCount() > 0 and player:hasItem(613) == false) then
+	
+	if(player:getQuestStatus(WINDURST,THE_THREE_MAGI) == QUEST_ACCEPTED and player:hasItem(1104) == false) then
+		if(trade:hasItemQty(613,1) and trade:getItemCount() == 1) then -- Trade Faded Crystal
 			player:tradeComplete();
-			player:addItem(613);
-			player:messageSpecial(ITEM_OBTAINED,613); -- Faded Crystal
-		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,613); -- Faded Crystal
+			SpawnMob(17236201,180):updateEnmity(player);
 		end
 	end
 	
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:hasKeyItem(HOLLA_GATE_CRYSTAL) == false) then
-		player:addKeyItem(HOLLA_GATE_CRYSTAL);
-		player:messageSpecial(KEYITEM_OBTAINED,HOLLA_GATE_CRYSTAL);
-	else
-		player:messageSpecial(ALREADY_OBTAINED_TELE);
-	end
-	
+	player:messageSpecial(NOTHING_ORDINARY_HERE);
 end;
 
 -----------------------------------

@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC: Telepoint
--- 
+-- NPC:  Telepoint
+-----------------------------------
+package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
@@ -13,17 +14,18 @@ require("scripts/zones/Xarcabard/TextIDs");
 
 function onTrade(player,npc,trade)
 
-item = trade:getItem();
+	item = trade:getItem();
 
-if (trade:getItemCount() == 1 and item > 4095 and item < 4104) then	
-	if (player:getFreeSlotsCount() > 0 and not(player:hasItem(613))) then
-		player:tradeComplete();
-		player:addItem(613);
-		player:messageSpecial(ITEM_OBTAINED,613);
-	else
-		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,613);
+	if(trade:getItemCount() == 1 and item > 4095 and item < 4104) then	
+		if(player:getFreeSlotsCount() > 0 and player:hasItem(613) == false) then
+			player:tradeComplete();
+			player:addItem(613);
+			player:messageSpecial(ITEM_OBTAINED,613); -- Faded Crystal
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,613); -- Faded Crystal
+		end
 	end
-end
+	
 end;
 
 -----------------------------------
@@ -31,12 +33,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:hasKeyItem(355) == false) then
-		player:addKeyItem(355);
-		player:messageSpecial(KEYITEM_OBTAINED,355);
+	
+	if(player:hasKeyItem(VAHZL_GATE_CRYSTAL) == false) then
+		player:addKeyItem(VAHZL_GATE_CRYSTAL);
+		player:messageSpecial(KEYITEM_OBTAINED,VAHZL_GATE_CRYSTAL);
 	else
 		player:messageSpecial(ALREADY_OBTAINED_TELE);
 	end
+	
 end;
 
 -----------------------------------
@@ -56,6 +60,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-
