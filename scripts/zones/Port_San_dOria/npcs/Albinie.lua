@@ -25,7 +25,8 @@ function onTrigger(player,npc)
 	
 player:showText(npc,ALBINIE_SHOP_DIALOG);
 
-stock = {
+stock = 
+{
 	0x02bb,5688,1, --Oak Log 
 	0x0284,1800,1, --Mythril Ore 
 	0x0343,225,1,  --Flax Flower
@@ -39,7 +40,7 @@ stock = {
 	0x02ba,86,3,   --Ash Log 
 	0x0001,1800,3  --Chocobo Bedding 
 }
-showShop(player, SANDORIA, stock);
+showNationShop(player, SANDORIA, stock);
 end; 
 
 -----------------------------------
