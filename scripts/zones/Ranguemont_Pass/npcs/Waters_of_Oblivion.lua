@@ -56,15 +56,16 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x0008) then 
-		if (player:getFreeSlotsCount() == 0) then 
+		if(player:getFreeSlotsCount() == 0 or player:hasItem(16766)) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16766);
 		else 
-			player:completeQuest(JEUNO,PAINFUL_MEMORY);
 			player:delKeyItem(MERTAIRES_BRACELET); -- Mertaire's Bracelet (key item).
 			player:setVar("TrosKilled",0);
 			player:setVar("Tros_Timer",0);
 			player:addItem(16766);
 			player:messageSpecial(ITEM_OBTAINED,16766); -- Paper Knife
+			player:addFame(JEUNO,30);
+			player:completeQuest(JEUNO,PAINFUL_MEMORY);
 		end
 	end
 	

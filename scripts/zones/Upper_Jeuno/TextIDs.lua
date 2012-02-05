@@ -16,6 +16,7 @@ GAUSEBIT_GRASS = 534; --
 
 -- NPC Texts
 KIRISOMANRISO_DIALOG = 7934; -- Delivering goods to residences everywhere!
+YOU_CAN_NOW_BECOME_A_BEASTMASTER = 7052; -- You can now become a beastmaster
 
 -- Shop Texts
        GLYKE_SHOP_DIALOG = 6840; -- Can I help you?

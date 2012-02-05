@@ -20,11 +20,12 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if (player:getQuestStatus(JEUNO, THE_OLD_MONUMENT) == QUEST_COMPLETED) then
-		if (trade:hasItemQty(POETIC_PARCHMENT,1) == true and trade:getItemCount() == 1) then
+	if(player:getQuestStatus(JEUNO, THE_OLD_MONUMENT) == QUEST_COMPLETED) then
+		if(trade:hasItemQty(POETIC_PARCHMENT,1) == true and trade:getItemCount() == 1) then
 			player:startEvent(0x0065);
 		end
 	end
+	
 end; 
 
 -----------------------------------
@@ -32,20 +33,22 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+	
+	painfulMemory = player:getQuestStatus(JEUNO,PAINFUL_MEMORY);
+	
 	if(player:getMainJob() ~= 10 and player:getMainLvl() >= 30) then
-		if (player:getVar("TheOldMonument_Event") == 0 and player:getQuestStatus(JEUNO,THE_OLD_MONUMENT) == QUEST_AVAILABLE) then
+		if(player:getVar("TheOldMonument_Event") == 0 and player:getQuestStatus(JEUNO,THE_OLD_MONUMENT) == QUEST_AVAILABLE) then
 			player:startEvent(0x0066);
 		end
-	elseif(player:getMainJob() == 10 and player:getMainLvl() >= 40 and player:hasKeyItem(228) == false) then 
+	elseif(player:getMainJob() == 10 and player:getMainLvl() >= 40 and painfulMemory == QUEST_AVAILABLE) then 
 		if(player:getVar("PainfulMemoryCS") == 0) then 
 			player:startEvent(0x008a); -- Long dialog for "Painful Memory"
 		else
 			player:startEvent(0x0089); -- Short dialog for "Painful Memory"
 		end
-	elseif(player:hasKeyItem(228) == true) then 
+	elseif(painfulMemory == QUEST_ACCEPTED) then 
 		player:startEvent(0x0088); -- During Quest "Painful Memory"
-	elseif(player:getQuestStatus(JEUNO,PAINFUL_MEMORY) == QUEST_COMPLETED) then 
+	elseif(painfulMemory == QUEST_COMPLETED) then 
 		player:startEvent(0x0087); -- Standard dialog after completed "Painful Memory"
 	end
 end;
@@ -67,9 +70,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x0066 and option == 0) then
+	if(csid == 0x0066 and option == 0) then
 		player:setVar("TheOldMonument_Event",1);
-	elseif (csid == 0x0065) then
+	elseif(csid == 0x0065) then
 		player:addGil(GIL_RATE*2100);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100);
 		player:addFame(JEUNO,30);
