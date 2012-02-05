@@ -2648,14 +2648,17 @@ int32 SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 		charutils::CheckValidEquipment(PChar);
 		charutils::CalculateStats(PChar);
-		charutils::SaveCharStats(PChar);
 		charutils::BuildingCharSkillsTable(PChar);
 		charutils::BuildingCharAbilityTable(PChar);
+
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+
+        PChar->UpdateHealth();
 
         PChar->health.hp = PChar->GetMaxHP();
         PChar->health.mp = PChar->GetMaxMP();
 
-		PChar->StatusEffectContainer->DispelStatusEffect(true);
+        charutils::SaveCharStats(PChar);
 
 		PChar->pushPacket(new CCharJobsPacket(PChar));
 		PChar->pushPacket(new CCharUpdatePacket(PChar));

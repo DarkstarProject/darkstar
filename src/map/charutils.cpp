@@ -1955,6 +1955,7 @@ void AddExperiencePoints(CCharEntity* PChar, uint32 exp, bool limit)
                 BuildingCharTraitsTable(PChar);
                 BuildingCharWeaponSkills(PChar);
             }
+            PChar->UpdateHealth();
 
             PChar->health.hp = PChar->GetMaxHP();
             PChar->health.mp = PChar->GetMaxMP();
@@ -1971,7 +1972,7 @@ void AddExperiencePoints(CCharEntity* PChar, uint32 exp, bool limit)
             PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
             PChar->pushPacket(new CCharSyncPacket(PChar));
 
-            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharHealthPacket(PChar));
+            UpdateHealth(PChar);
             PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 9));
         }
     }
