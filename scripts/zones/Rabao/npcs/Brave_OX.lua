@@ -3,9 +3,10 @@
 -- NPC: Brave Ox
 -- Standard Merchant NPC
 -----------------------------------
+package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
@@ -23,7 +24,9 @@ function onTrigger(player,npc)
 	
 player:showText(npc,BRAVEOX_SHOP_DIALOG);
 
-stock = {0x122E,77350,	--Protect IV
+stock = 
+{
+	0x122E,77350,	--Protect IV
 	0x1280,73710,	--Protectra IV
 	0x1304,63700,	--Dispel
 	0x12FC,31850,	--Stun
@@ -34,10 +37,10 @@ stock = {0x122E,77350,	--Protect IV
 	0x125E,62192,	--Sacrifice
 	0x125F,64584,	--Esuna
 	0x1260,30967,	--Auspice
-	0x0000,141137,	--Cure VI	(Not Implemented yet)
-	0x0000,103882,	--Protect V	(Not Implemented yet)
-	0x0000,125069}	--Shell V	(Not Implemented yet)
- 
+	0x1206,141137,	--Cure VI	(Not Implemented yet)
+	0x122F,103882,	--Protect V	(Not Implemented yet)
+	0x1234,125069	--Shell V	(Not Implemented yet)
+}
 showShop(player, STATIC, stock);
 end; 
 
@@ -58,6 +61,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

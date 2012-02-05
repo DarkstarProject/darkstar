@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Mar 31 Janvier 2012 à 23:10
+-- Généré le : Dim 05 Février 2012 à 10:32
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -25,6 +25,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Structure de la table `item_basic`
 --
 
+DROP TABLE IF EXISTS `item_basic`;
 CREATE TABLE IF NOT EXISTS `item_basic` (
   `itemid` smallint(5) unsigned NOT NULL,
   `name` tinytext NOT NULL,
@@ -3979,12 +3980,12 @@ INSERT INTO `item_basic` VALUES (4651, 'scroll_of_protect', 'protect', 1, 1664, 
 INSERT INTO `item_basic` VALUES (4652, 'scroll_of_protect_ii', 'protect_ii', 1, 1664, 28, 0, 1167);
 INSERT INTO `item_basic` VALUES (4653, 'scroll_of_protect_iii', 'protect_iii', 1, 1664, 28, 0, 2031);
 INSERT INTO `item_basic` VALUES (4654, 'scroll_of_protect_iv', 'protect_iv', 1, 1664, 28, 0, 5062);
-INSERT INTO `item_basic` VALUES (4655, 'scroll_of_protect_v', 'protect_v', 1, 34432, 28, 0, 0);
+INSERT INTO `item_basic` VALUES (4655, 'scroll_of_protect_v', 'protect_v', 1, 34432, 28, 0, 6075);
 INSERT INTO `item_basic` VALUES (4656, 'scroll_of_shell', 'shell', 1, 1664, 28, 0, 352);
 INSERT INTO `item_basic` VALUES (4657, 'scroll_of_shell_ii', 'shell_ii', 1, 1664, 28, 0, 2255);
 INSERT INTO `item_basic` VALUES (4658, 'scroll_of_shell_iii', 'shell_iii', 1, 1664, 28, 0, 2463);
 INSERT INTO `item_basic` VALUES (4659, 'scroll_of_shell_iv', 'shell_iv', 1, 34432, 28, 0, 6835);
-INSERT INTO `item_basic` VALUES (4660, 'scroll_of_shell_v', 'shell_v', 1, 34432, 28, 0, 0);
+INSERT INTO `item_basic` VALUES (4660, 'scroll_of_shell_v', 'shell_v', 1, 34432, 28, 0, 7155);
 INSERT INTO `item_basic` VALUES (4661, 'scroll_of_blink', 'blink', 1, 1664, 28, 0, 821);
 INSERT INTO `item_basic` VALUES (4662, 'scroll_of_stoneskin', 'stoneskin', 1, 1664, 28, 0, 1210);
 INSERT INTO `item_basic` VALUES (4663, 'scroll_of_aquaveil', 'aquaveil', 1, 1664, 28, 0, 432);
@@ -4014,8 +4015,8 @@ INSERT INTO `item_basic` VALUES (4686, 'scroll_of_barvirus', 'barvirus', 1, 1664
 INSERT INTO `item_basic` VALUES (4687, 'scroll_of_recall-jugner', 'recall-jugner', 1, 1664, 28, 0, 2290);
 INSERT INTO `item_basic` VALUES (4688, 'scroll_of_recall-pashh', 'recall-pashh', 1, 1664, 28, 0, 2290);
 INSERT INTO `item_basic` VALUES (4689, 'scroll_of_recall-meriph', 'recall-meriph', 1, 1664, 28, 0, 2290);
-INSERT INTO `item_basic` VALUES (4690, 'scroll_of_baramnesia', 'baramnesia', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (4691, 'scroll_of_baramnesra', 'baramnesra', 1, 34432, 28, 0, 0);
+INSERT INTO `item_basic` VALUES (4690, 'scroll_of_baramnesia', 'baramnesia', 1, 34432, 28, 0, 1680);
+INSERT INTO `item_basic` VALUES (4691, 'scroll_of_baramnesra', 'baramnesra', 1, 34432, 28, 0, 1722);
 INSERT INTO `item_basic` VALUES (4694, 'scroll_of_barsleepra', 'barsleepra', 1, 1664, 28, 0, 302);
 INSERT INTO `item_basic` VALUES (4695, 'scroll_of_barpoisonra', 'barpoisonra', 1, 1664, 28, 0, 432);
 INSERT INTO `item_basic` VALUES (4696, 'scroll_of_barparalyzra', 'barparalyzra', 1, 1664, 28, 0, 518);
@@ -4027,8 +4028,8 @@ INSERT INTO `item_basic` VALUES (4701, 'scroll_of_cura', 'cura', 1, 34432, 28, 0
 INSERT INTO `item_basic` VALUES (4702, 'scroll_of_sacrifice', 'sacrifice', 1, 34432, 28, 0, 1060);
 INSERT INTO `item_basic` VALUES (4703, 'scroll_of_esuna', 'esuna', 1, 34432, 28, 0, 1001);
 INSERT INTO `item_basic` VALUES (4704, 'scroll_of_auspice', 'auspice', 1, 34432, 28, 0, 1009);
-INSERT INTO `item_basic` VALUES (4706, 'scroll_of_enlight', 'enlight', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (4707, 'scroll_of_endark', 'endark', 1, 34432, 28, 0, 0);
+INSERT INTO `item_basic` VALUES (4706, 'scroll_of_enlight', 'enlight', 1, 34432, 28, 0, 5040);
+INSERT INTO `item_basic` VALUES (4707, 'scroll_of_endark', 'endark', 1, 34432, 28, 0, 5040);
 INSERT INTO `item_basic` VALUES (4708, 'scroll_of_enfire', 'enfire', 1, 1664, 28, 0, 1037);
 INSERT INTO `item_basic` VALUES (4709, 'scroll_of_enblizzard', 'enblizzard', 1, 1664, 28, 0, 950);
 INSERT INTO `item_basic` VALUES (4710, 'scroll_of_enaero', 'enaero', 1, 1664, 28, 0, 864);
@@ -4075,22 +4076,22 @@ INSERT INTO `item_basic` VALUES (4752, 'scroll_of_fire', 'fire', 1, 1664, 29, 0,
 INSERT INTO `item_basic` VALUES (4753, 'scroll_of_fire_ii', 'fire_ii', 1, 1664, 29, 0, 1642);
 INSERT INTO `item_basic` VALUES (4754, 'scroll_of_fire_iii', 'fire_iii', 1, 34432, 29, 0, 2613);
 INSERT INTO `item_basic` VALUES (4755, 'scroll_of_fire_iv', 'fire_iv', 1, 34432, 29, 0, 3155);
-INSERT INTO `item_basic` VALUES (4756, 'scroll_of_fire_v', 'fire_v', 1, 34432, 29, 0, 0);
+INSERT INTO `item_basic` VALUES (4756, 'scroll_of_fire_v', 'fire_v', 1, 34432, 29, 0, 8125);
 INSERT INTO `item_basic` VALUES (4757, 'scroll_of_blizzard', 'blizzard', 1, 1664, 29, 0, 734);
 INSERT INTO `item_basic` VALUES (4758, 'scroll_of_blizzard_ii', 'blizzard_ii', 1, 1664, 29, 0, 1815);
 INSERT INTO `item_basic` VALUES (4759, 'scroll_of_blizzard_iii', 'blizzard_iii', 1, 34432, 29, 0, 2812);
 INSERT INTO `item_basic` VALUES (4760, 'scroll_of_blizzard_iv', 'blizzard_iv', 1, 34432, 29, 0, 8750);
-INSERT INTO `item_basic` VALUES (4761, 'scroll_of_blizzard_v', 'blizzard_v', 1, 34432, 29, 0, 0);
+INSERT INTO `item_basic` VALUES (4761, 'scroll_of_blizzard_v', 'blizzard_v', 1, 34432, 29, 0, 8875);
 INSERT INTO `item_basic` VALUES (4762, 'scroll_of_aero', 'aero', 1, 1664, 29, 0, 389);
 INSERT INTO `item_basic` VALUES (4763, 'scroll_of_aero_ii', 'aero_ii', 1, 1664, 29, 0, 1469);
 INSERT INTO `item_basic` VALUES (4764, 'scroll_of_aero_iii', 'aero_iii', 1, 1664, 29, 0, 2312);
 INSERT INTO `item_basic` VALUES (4765, 'scroll_of_aero_iv', 'aero_iv', 1, 34432, 29, 0, 7943);
-INSERT INTO `item_basic` VALUES (4766, 'scroll_of_aero_v', 'aero_v', 1, 34432, 29, 0, 0);
+INSERT INTO `item_basic` VALUES (4766, 'scroll_of_aero_v', 'aero_v', 1, 34432, 29, 0, 7625);
 INSERT INTO `item_basic` VALUES (4767, 'scroll_of_stone', 'stone', 1, 1664, 29, 0, 17);
 INSERT INTO `item_basic` VALUES (4768, 'scroll_of_stone_ii', 'stone_ii', 1, 1664, 29, 0, 1123);
 INSERT INTO `item_basic` VALUES (4769, 'scroll_of_stone_iii', 'stone_iii', 1, 1664, 29, 0, 1812);
 INSERT INTO `item_basic` VALUES (4770, 'scroll_of_stone_iv', 'stone_iv', 1, 34432, 29, 0, 6885);
-INSERT INTO `item_basic` VALUES (4771, 'scroll_of_stone_v', 'stone_v', 1, 34432, 29, 0, 0);
+INSERT INTO `item_basic` VALUES (4771, 'scroll_of_stone_v', 'stone_v', 1, 34432, 29, 0, 6875);
 INSERT INTO `item_basic` VALUES (4772, 'scroll_of_thunder', 'thunder', 1, 1664, 29, 0, 619);
 INSERT INTO `item_basic` VALUES (4773, 'scroll_of_thunder_ii', 'thunder_ii', 1, 1664, 29, 0, 1988);
 INSERT INTO `item_basic` VALUES (4774, 'scroll_of_thunder_iii', 'thunder_iii', 1, 34432, 29, 0, 3000);
@@ -4099,7 +4100,7 @@ INSERT INTO `item_basic` VALUES (4777, 'scroll_of_water', 'water', 1, 1664, 29, 
 INSERT INTO `item_basic` VALUES (4778, 'scroll_of_water_ii', 'water_ii', 1, 1664, 29, 0, 1296);
 INSERT INTO `item_basic` VALUES (4779, 'scroll_of_water_iii', 'water_iii', 1, 1664, 29, 0, 2062);
 INSERT INTO `item_basic` VALUES (4780, 'scroll_of_water_iv', 'water_iv', 1, 34432, 29, 0, 7250);
-INSERT INTO `item_basic` VALUES (4781, 'scroll_of_water_v', 'water_v', 1, 34432, 29, 0, 0);
+INSERT INTO `item_basic` VALUES (4781, 'scroll_of_water_v', 'water_v', 1, 34432, 29, 0, 7579);
 INSERT INTO `item_basic` VALUES (4782, 'scroll_of_firaga', 'firaga', 1, 1664, 29, 0, 1210);
 INSERT INTO `item_basic` VALUES (4783, 'scroll_of_firaga_ii', 'firaga_ii', 1, 34432, 29, 0, 1937);
 INSERT INTO `item_basic` VALUES (4784, 'scroll_of_firaga_iii', 'firaga_iii', 1, 34432, 29, 0, 7157);
@@ -4137,19 +4138,19 @@ INSERT INTO `item_basic` VALUES (4845, 'scroll_of_choke', 'choke', 1, 1664, 29, 
 INSERT INTO `item_basic` VALUES (4846, 'scroll_of_rasp', 'rasp', 1, 1664, 29, 0, 416);
 INSERT INTO `item_basic` VALUES (4847, 'scroll_of_shock', 'shock', 1, 1664, 29, 0, 310);
 INSERT INTO `item_basic` VALUES (4848, 'scroll_of_drown', 'drown', 1, 1664, 29, 0, 1208);
-INSERT INTO `item_basic` VALUES (4849, 'scroll_of_addle', 'addle', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (4850, 'scroll_of_refresh_ii', 'refresh_ii', 1, 34432, 28, 0, 0);
+INSERT INTO `item_basic` VALUES (4849, 'scroll_of_addle', 'addle', 1, 34432, 28, 0, 6982);
+INSERT INTO `item_basic` VALUES (4850, 'scroll_of_refresh_ii', 'refresh_ii', 1, 34432, 28, 0, 7500);
 INSERT INTO `item_basic` VALUES (4853, 'scroll_of_drain', 'drain', 1, 1664, 29, 0, 102);
 INSERT INTO `item_basic` VALUES (4854, 'scroll_of_drain_ii', 'drain_ii', 1, 34432, 29, 0, 2679);
 INSERT INTO `item_basic` VALUES (4855, 'scroll_of_aspir', 'aspir', 1, 1664, 29, 0, 1080);
-INSERT INTO `item_basic` VALUES (4856, 'scroll_of_aspir_ii', 'aspir_ii', 1, 34432, 29, 0, 0);
+INSERT INTO `item_basic` VALUES (4856, 'scroll_of_aspir_ii', 'aspir_ii', 1, 34432, 29, 0, 4200);
 INSERT INTO `item_basic` VALUES (4857, 'scroll_of_blaze_spikes', 'blaze_spikes', 1, 1664, 29, 0, 101);
 INSERT INTO `item_basic` VALUES (4858, 'scroll_of_ice_spikes', 'ice_spikes', 1, 34432, 29, 0, 300);
 INSERT INTO `item_basic` VALUES (4859, 'scroll_of_shock_spikes', 'shock_spikes', 1, 1664, 29, 0, 1296);
 INSERT INTO `item_basic` VALUES (4860, 'scroll_of_stun', 'stun', 1, 34432, 29, 0, 3060);
 INSERT INTO `item_basic` VALUES (4861, 'scroll_of_sleep', 'sleep', 1, 1664, 29, 0, 864);
 INSERT INTO `item_basic` VALUES (4862, 'scroll_of_blind', 'blind', 1, 1664, 29, 0, 31);
-INSERT INTO `item_basic` VALUES (4863, 'scroll_of_break', 'break', 1, 34432, 29, 0, 0);
+INSERT INTO `item_basic` VALUES (4863, 'scroll_of_break', 'break', 1, 34432, 29, 0, 6300);
 INSERT INTO `item_basic` VALUES (4866, 'scroll_of_bind', 'bind', 1, 1664, 29, 0, 61);
 INSERT INTO `item_basic` VALUES (4867, 'scroll_of_sleep_ii', 'sleep_ii', 1, 1664, 29, 0, 1772);
 INSERT INTO `item_basic` VALUES (4868, 'scroll_of_dispel', 'dispel', 1, 34432, 29, 0, 1383);
@@ -4170,10 +4171,10 @@ INSERT INTO `item_basic` VALUES (4882, 'scroll_of_sleepga_ii', 'sleepga_ii', 1, 
 INSERT INTO `item_basic` VALUES (4883, 'scroll_of_absorb-tp', 'absorb-tp', 1, 34432, 29, 0, 1500);
 INSERT INTO `item_basic` VALUES (4885, 'scroll_of_dread_spikes', 'dread_spikes', 1, 34432, 29, 0, 3068);
 INSERT INTO `item_basic` VALUES (4886, 'scroll_of_absorb-acc', 'absorb-acc', 1, 34304, 29, 0, 1500);
-INSERT INTO `item_basic` VALUES (4890, 'scroll_of_firaja', 'firaja', 1, 34432, 29, 0, 0);
-INSERT INTO `item_basic` VALUES (4892, 'scroll_of_aeroja', 'aeroja', 1, 34432, 29, 0, 0);
-INSERT INTO `item_basic` VALUES (4893, 'scroll_of_stoneja', 'stoneja', 1, 34432, 29, 0, 0);
-INSERT INTO `item_basic` VALUES (4895, 'scroll_of_waterja', 'waterja', 1, 34432, 29, 0, 0);
+INSERT INTO `item_basic` VALUES (4890, 'scroll_of_firaja', 'firaja', 1, 34432, 29, 0, 9690);
+INSERT INTO `item_basic` VALUES (4892, 'scroll_of_aeroja', 'aeroja', 1, 34432, 29, 0, 9262);
+INSERT INTO `item_basic` VALUES (4893, 'scroll_of_stoneja', 'stoneja', 1, 34432, 29, 0, 9027);
+INSERT INTO `item_basic` VALUES (4895, 'scroll_of_waterja', 'waterja', 1, 34432, 29, 0, 9300);
 INSERT INTO `item_basic` VALUES (4896, 'fire_spirit_pact', 'fire_spirit', 1, 34432, 30, 0, 100);
 INSERT INTO `item_basic` VALUES (4897, 'ice_spirit_pact', 'ice_spirit', 1, 34432, 30, 0, 43);
 INSERT INTO `item_basic` VALUES (4898, 'air_spirit_pact', 'air_spirit', 1, 34432, 30, 0, 100);
@@ -4205,10 +4206,10 @@ INSERT INTO `item_basic` VALUES (4958, 'scroll_of_dokumori_ichi', 'dokumori_ichi
 INSERT INTO `item_basic` VALUES (4961, 'scroll_of_tonko_ichi', 'tonko_ichi', 1, 1664, 31, 0, 389);
 INSERT INTO `item_basic` VALUES (4962, 'scroll_of_tonko_ni', 'tonko_ni', 1, 34432, 31, 0, 1500);
 INSERT INTO `item_basic` VALUES (4964, 'scroll_of_monomi_ichi', 'monomi_ichi', 1, 34304, 31, 0, 1700);
-INSERT INTO `item_basic` VALUES (4965, 'scroll_of_aisha_ichi', 'aisha_ichi', 1, 34432, 31, 0, 0);
-INSERT INTO `item_basic` VALUES (4966, 'scroll_of_myoshu_ichi', 'myoshu_ichi', 1, 34432, 31, 0, 0);
-INSERT INTO `item_basic` VALUES (4967, 'scroll_of_yurin_ichi', 'yurin_ichi', 1, 34432, 31, 0, 0);
-INSERT INTO `item_basic` VALUES (4969, 'scroll_of_migawari_ichi', 'migawari_ichi', 1, 34432, 31, 0, 0);
+INSERT INTO `item_basic` VALUES (4965, 'scroll_of_aisha_ichi', 'aisha_ichi', 1, 34432, 31, 0, 4200);
+INSERT INTO `item_basic` VALUES (4966, 'scroll_of_myoshu_ichi', 'myoshu_ichi', 1, 34432, 31, 0, 4095);
+INSERT INTO `item_basic` VALUES (4967, 'scroll_of_yurin_ichi', 'yurin_ichi', 1, 34432, 31, 0, 3965);
+INSERT INTO `item_basic` VALUES (4969, 'scroll_of_migawari_ichi', 'migawari_ichi', 1, 34432, 31, 0, 5385);
 INSERT INTO `item_basic` VALUES (4976, 'scroll_of_foe_requiem', 'foe_requiem', 1, 1664, 32, 0, 302);
 INSERT INTO `item_basic` VALUES (4977, 'scroll_of_foe_requiem_ii', 'foe_requiem_ii', 1, 1664, 32, 0, 734);
 INSERT INTO `item_basic` VALUES (4978, 'scroll_of_foe_requiem_iii', 'foe_requiem_iii', 1, 1664, 32, 0, 1599);
@@ -4276,10 +4277,10 @@ INSERT INTO `item_basic` VALUES (5050, 'scroll_of_lightning_carol', 'lightning_c
 INSERT INTO `item_basic` VALUES (5051, 'scroll_of_water_carol', 'water_carol', 1, 1664, 32, 0, 1728);
 INSERT INTO `item_basic` VALUES (5052, 'scroll_of_light_carol', 'light_carol', 1, 1664, 32, 0, 1556);
 INSERT INTO `item_basic` VALUES (5053, 'scroll_of_dark_carol', 'dark_carol', 1, 1664, 32, 0, 2161);
-INSERT INTO `item_basic` VALUES (5054, 'scroll_of_fire_carol_ii', 'fire_carol_ii', 1, 34432, 32, 0, 0);
-INSERT INTO `item_basic` VALUES (5056, 'scroll_of_wind_carol_ii', 'wind_carol_ii', 1, 34432, 32, 0, 0);
-INSERT INTO `item_basic` VALUES (5057, 'scroll_of_earth_carol_ii', 'earth_carol_ii', 1, 34432, 32, 0, 0);
-INSERT INTO `item_basic` VALUES (5059, 'scroll_of_water_carol_ii', 'water_carol_ii', 1, 34432, 32, 0, 0);
+INSERT INTO `item_basic` VALUES (5054, 'scroll_of_fire_carol_ii', 'fire_carol_ii', 1, 34432, 32, 0, 1588);
+INSERT INTO `item_basic` VALUES (5056, 'scroll_of_wind_carol_ii', 'wind_carol_ii', 1, 34432, 32, 0, 1588);
+INSERT INTO `item_basic` VALUES (5057, 'scroll_of_earth_carol_ii', 'earth_carol_ii', 1, 34432, 32, 0, 1475);
+INSERT INTO `item_basic` VALUES (5059, 'scroll_of_water_carol_ii', 'water_carol_ii', 1, 34432, 32, 0, 1588);
 INSERT INTO `item_basic` VALUES (5062, 'scroll_of_fire_threnody', 'fire_threnody', 1, 1664, 32, 0, 864);
 INSERT INTO `item_basic` VALUES (5063, 'scroll_of_ice_threnody', 'ice_threnody', 1, 1664, 32, 0, 950);
 INSERT INTO `item_basic` VALUES (5064, 'scroll_of_wind_threnody', 'wind_threnody', 1, 1664, 32, 0, 778);
@@ -4295,17 +4296,17 @@ INSERT INTO `item_basic` VALUES (5073, 'scroll_of_chocobo_mazurka', 'chocobo_maz
 INSERT INTO `item_basic` VALUES (5074, 'scroll_of_maidens_virelai', 'maidens_virelai', 1, 34432, 32, 0, 2400);
 INSERT INTO `item_basic` VALUES (5075, 'scroll_of_raptor_mazurka', 'raptor_mazurka', 1, 34432, 32, 0, 1599);
 INSERT INTO `item_basic` VALUES (5078, 'scroll_of_sentinels_scherzo', 'sentinels_scherzo', 1, 34432, 32, 0, 3000);
-INSERT INTO `item_basic` VALUES (5079, 'scroll_of_foe_lullaby_ii', 'foe_lullaby_ii', 1, 34432, 32, 0, 0);
-INSERT INTO `item_basic` VALUES (5082, 'scroll_of_cura_ii', 'cura_ii', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (5085, 'scroll_of_regen_iv', 'regen_iv', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (5089, 'scroll_of_gain-vit', 'gain-vit', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (5090, 'scroll_of_gain-agi', 'gain-agi', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (5092, 'scroll_of_gain-mnd', 'gain-mnd', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (5093, 'scroll_of_gain-chr', 'gain-chr', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (5096, 'scroll_of_boost-vit', 'boost-vit', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (5097, 'scroll_of_boost-agi', 'boost-agi', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (5099, 'scroll_of_boost-mnd', 'boost-mnd', 1, 34432, 28, 0, 0);
-INSERT INTO `item_basic` VALUES (5100, 'scroll_of_boost-chr', 'boost-chr', 1, 34432, 28, 0, 0);
+INSERT INTO `item_basic` VALUES (5079, 'scroll_of_foe_lullaby_ii', 'foe_lullaby_ii', 1, 34432, 32, 0, 3507);
+INSERT INTO `item_basic` VALUES (5082, 'scroll_of_cura_ii', 'cura_ii', 1, 34432, 28, 0, 4575);
+INSERT INTO `item_basic` VALUES (5085, 'scroll_of_regen_iv', 'regen_iv', 1, 34432, 28, 0, 2460);
+INSERT INTO `item_basic` VALUES (5089, 'scroll_of_gain-vit', 'gain-vit', 1, 34432, 28, 0, 3687);
+INSERT INTO `item_basic` VALUES (5090, 'scroll_of_gain-agi', 'gain-agi', 1, 34432, 28, 0, 4080);
+INSERT INTO `item_basic` VALUES (5092, 'scroll_of_gain-mnd', 'gain-mnd', 1, 34432, 28, 0, 3875);
+INSERT INTO `item_basic` VALUES (5093, 'scroll_of_gain-chr', 'gain-chr', 1, 34432, 28, 0, 3900);
+INSERT INTO `item_basic` VALUES (5096, 'scroll_of_boost-vit', 'boost-vit', 1, 34432, 28, 0, 3779);
+INSERT INTO `item_basic` VALUES (5097, 'scroll_of_boost-agi', 'boost-agi', 1, 34432, 28, 0, 4182);
+INSERT INTO `item_basic` VALUES (5099, 'scroll_of_boost-mnd', 'boost-mnd', 1, 34432, 28, 0, 3875);
+INSERT INTO `item_basic` VALUES (5100, 'scroll_of_boost-chr', 'boost-chr', 1, 34432, 28, 0, 3997);
 INSERT INTO `item_basic` VALUES (5120, 'titanic_sawfish', 'titanic_sawfish', 1, 1536, 51, 0, 1652);
 INSERT INTO `item_basic` VALUES (5121, 'moorish_idol', 'moorish_idol', 12, 1536, 51, 0, 242);
 INSERT INTO `item_basic` VALUES (5122, 'bibiki_slug', 'bibiki_slug', 12, 1536, 51, 0, 1);
