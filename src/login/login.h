@@ -49,12 +49,14 @@ struct login_config_t
 	uint32 uiLobbyViewIp;
 
     uint16 expansions;
+
+    const char* servername;
 	
-	const char *mysql_host;			// mysql addr -> localhost:3306
-	uint16 mysql_port;			    // mysql port -> 3306
-	const char *mysql_login;        // mysql login -> default root
-	const char *mysql_password;     // mysql pass  -> default NULL
-	const char *mysql_database;		// mysql database -> default dspdb
+	const char* mysql_host;			// mysql addr     -> localhost:3306
+	uint16      mysql_port;			// mysql port     -> 3306
+	const char* mysql_login;        // mysql login    -> default root
+	const char* mysql_password;     // mysql pass     -> default NULL
+	const char* mysql_database;		// mysql database -> default dspdb
 };
 
 extern login_config_t login_config;

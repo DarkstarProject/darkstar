@@ -314,6 +314,10 @@ int32 login_config_read(const char *cfgName)
         {
             login_config.expansions = atoi(w2);
 		}
+        else if (strcmp(w1,"servername") == 0)
+        {
+            login_config.servername = aStrdup(w2);
+		}
         else if (strcmpi(w1, "import") == 0)
         {
 			login_config_read(w2);
@@ -337,6 +341,7 @@ int32 login_config_default()
 	login_config.usLoginAuthPort = 54231;
 
     login_config.expansions = 0xFFFF;
+    login_config.servername = "DarkStar";
 
 	login_config.mysql_host     = "";
 	login_config.mysql_login    = "";
