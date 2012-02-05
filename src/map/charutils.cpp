@@ -605,6 +605,7 @@ void LoadInventory(CCharEntity* PChar)
 	} else {
 		ShowError(CL_RED"Loading error from char_equip\n"CL_RESET);
 	}
+    CheckValidEquipment(PChar);
 	PChar->StatusEffectContainer->LoadStatusEffects();
     PChar->UpdateHealth();
 }
@@ -1218,17 +1219,19 @@ void CheckValidEquipment(CCharEntity* PChar)
 	for(uint8 slotID = 0; slotID < 16; ++slotID)
 	{
 		PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
-
+        
 		if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
 		{
-			if (!(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) || (PItem->getReqLvl() > PChar->GetMLevel()))
+			if ((PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) && 
+                (PItem->getReqLvl() <= PChar->GetMLevel()) && 
+                (PItem->getEquipSlotId() & (1 << slotID)))
 			{
-				UnequipItem(PChar, slotID);
-				PChar->pushPacket(new CEquipPacket(0, slotID));
+				continue;
 			}
-		}	
+            UnequipItem(PChar, slotID);
+		}
+        PChar->pushPacket(new CEquipPacket(0, slotID));
 	}
-
 	PChar->pushPacket(new CCharAppearancePacket(PChar));
 	SaveCharEquip(PChar);
 }
