@@ -494,6 +494,11 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 		// если код текущего пакета меньше либо равен последнему полученному
 		// или больше глобального то игнорируем пакет
 
+        if (SmallPD_Type != 0x15) 
+		{
+			ShowInfo("parse: Incoming Packet: %03hX | %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr,2), SmallPD_Size, PChar->GetName());
+		}
+
 		if ((RBUFW(SmallPD_ptr,2) <= map_session_data->client_packet_id) ||
 			(RBUFW(SmallPD_ptr,2) >  SmallPD_Code))
         {
@@ -501,15 +506,9 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
             PrintPacket(SmallPD_ptr);
 			continue;
         }
-
-		if (SmallPD_Type != 0x15) 
-		{
-			ShowInfo("parse: Incoming Packet: %03hX | %02hX from user: %s\n", SmallPD_Type, SmallPD_Size, PChar->GetName());
-		}
         PacketParcer[SmallPD_Type](map_session_data, PChar, SmallPD_ptr);
-	}
-
-	map_session_data->client_packet_id = SmallPD_Code;
+    }
+    map_session_data->client_packet_id = SmallPD_Code;
 
 	// здесь мы проверяем, получил ли клиент предыдущий пакет
 	// если не получил, то мы не создаем новый, а отправляем предыдущий
@@ -519,8 +518,8 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 		WBUFW(map_session_data->server_packet_data,2) = SmallPD_Code;
 		WBUFW(map_session_data->server_packet_data,8) = (uint32)time(NULL);
 
-		g_PBuff	  = map_session_data->server_packet_data;
-		*buffsize = map_session_data->server_packet_size;
+		g_PBuff	 = map_session_data->server_packet_data;
+	   *buffsize = map_session_data->server_packet_size;
 
 		map_session_data->server_packet_data = buff;
 		return -1;
