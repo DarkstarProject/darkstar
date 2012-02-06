@@ -1,15 +1,19 @@
 -----------------------------------
 -- Area: Windurst Walls
--- NPC: Nanaa Mihgo
--- Starts and Finishes Repeatable Quest: Mihgo's Amigo
+-- NPC:  Nanaa Mihgo
+-- Starts and Finishes Quest: Mihgo's Amigo (R), The Tenshodo Showdown (start)
 -- Involved In Quest: Crying Over Onions
+-- @zone 241
+-- @pos 62 -4 240
+-----------------------------------
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
@@ -18,14 +22,14 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 
 function onTrade(player,npc,trade)
    
-MihgosAmigo   = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
-
-	if (MihgosAmigo >= QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		YagudoBeadNecklace = trade:hasItemQty(498,4);
+	if(trade:hasItemQty(498,4) and trade:getItemCount() == 4) then -- Trade Yagudo Necklace x4
 		
-		if (YagudoBeadNecklace == true and count == 4) then
+		MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
+		
+		if(MihgosAmigo == QUEST_ACCEPTED) then	
 			player:startEvent(0x0058,GIL_RATE*200);
+		elseif(MihgosAmigo == QUEST_COMPLETED) then
+			player:startEvent(0x01ee,GIL_RATE*200);
 		end
 	end
    
@@ -37,25 +41,45 @@ end;
 
 function onTrigger(player,npc)
 
-CryingOverOnionsVar = player:getVar("CryingOverOnions");
-MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
-
-	if (CryingOverOnionsVar == 1) then
+	CryingOverOnionsVar = player:getVar("CryingOverOnions");
+	MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
+	theTenshodoShowdown = player:getQuestStatus(WINDURST,THE_TENSHODO_SHOWDOWN);
+	theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS");
+	
+	LvL = player:getMainLvl();
+	Job = player:getMainJob();
+	
+	AF_BYPASS = (Job ~= 6 or Job == 6 and LvL < 40);
+	
+	-- Optional CS of the quest "Crying Over Onions"
+	if(CryingOverOnionsVar == 1) then
 		player:startEvent(0x0256);
-	elseif (MihgosAmigo == QUEST_COMPLETED) then
-		player:startEvent(0x0059);
-	elseif (MihgosAmigo == QUEST_ACCEPTED) then
-		player:startEvent(0x0052);
-	elseif (MihgosAmigo == QUEST_AVAILABLE) then
-		CryingOverOnions = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
 		
-		if (CryingOverOnions >= QUEST_ACCEPTED) then
-			player:startEvent(0x0051);
+	-- Quest "Mihgo's Amigo"
+	elseif(MihgosAmigo == QUEST_AVAILABLE) then
+		player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
+		
+		if(CryingOverOnions ~= QUEST_AVAILABLE) then
+			player:startEvent(0x0051); -- Start Quest "Mihgo's Amigo" with quest "Crying Over Onions" Activated
 		else	
-			player:startEvent(0x0050);
+			player:startEvent(0x0050); -- Start Quest "Mihgo's Amigo"
 		end
+	elseif(AF_BYPASS and MihgosAmigo == QUEST_ACCEPTED) then
+		player:startEvent(0x0052);
+	elseif(AF_BYPASS and MihgosAmigo == QUEST_COMPLETED) then
+		player:startEvent(0x0059);
+	
+	-- Quest "The Tenshodo Showdown"
+	elseif(Job == 6 and LvL >= 40 and theTenshodoShowdown == QUEST_AVAILABLE) then 
+		player:startEvent(0x01f0); -- Start Quest "The Tenshodo Showdown"
+	elseif(theTenshodoShowdownCS == 1) then 
+		player:startEvent(0x01f1); -- During Quest "The Tenshodo Showdown" (before cs at tensho HQ)
+	elseif(theTenshodoShowdownCS >= 2) then
+		player:startEvent(0x01f2); -- During Quest "The Tenshodo Showdown" (after cs at tensho HQ)
+	elseif(Job == 6 and LvL < 50 and theTenshodoShowdown == QUEST_COMPLETED) then 
+		player:startEvent(0x01f0); -- Standard dialog after "The Tenshodo Showdown"
 	else
-		player:startEvent(0x004c);
+		player:startEvent(0x004c); -- Standard dialog
 	end
    
 end;
@@ -76,27 +100,25 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
-	if (csid == 0x0050 or csid == 0x0051) then
+	
+	if(csid == 0x0050 or csid == 0x0051) then
 		player:addQuest(WINDURST,MIHGO_S_AMIGO);
-	elseif (csid == 0x0058) then
-		MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
-		
-		if (MihgosAmigo == QUEST_ACCEPTED) then
-			player:completeQuest(WINDURST,MIHGO_S_AMIGO);
-			player:addFame(3,NORG_FAME*60);
-			player:setTitle(CAT_BURGLAR_GROUPIE);
-			player:needToZone(true);
-		else
-			player:addFame(3,NORG_FAME*8);
-		end
-		
+	elseif(csid == 0x0058) then
 		player:tradeComplete();
 		player:addGil(GIL_RATE*200);
+		player:setTitle(CAT_BURGLAR_GROUPIE);
+		player:needToZone(true);
+		player:addFame(NORG,NORG_FAME*60);
+		player:completeQuest(WINDURST,MIHGO_S_AMIGO);
+	elseif(csid == 0x01ee) then
+		player:tradeComplete();
+		player:addGil(GIL_RATE*200);
+		player:addFame(NORG,NORG_FAME*8);
+	elseif(csid == 0x01f0) then
+		player:addQuest(WINDURST,THE_TENSHODO_SHOWDOWN);
+		player:setVar("theTenshodoShowdownCS",1);
+		player:addKeyItem(LETTER_FROM_THE_TENSHODO);
+		player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_THE_TENSHODO);
 	end
 
 end;
-
-
-
-
