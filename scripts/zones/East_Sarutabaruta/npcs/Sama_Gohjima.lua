@@ -4,7 +4,6 @@
 --	Working 100%
 -----------------------------------
 
-package.loaded["scripts/globals/missions"] = nil;
 package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 require("scripts/globals/missions");
 require("scripts/zones/East_Sarutabaruta/TextIDs");

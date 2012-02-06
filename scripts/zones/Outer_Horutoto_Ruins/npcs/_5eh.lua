@@ -5,8 +5,6 @@
 --	Working ???%
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/missions");

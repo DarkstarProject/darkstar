@@ -8,10 +8,6 @@
 --  @pos = -259 -1 -20
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-ackage.loaded["scripts/globals/settings"] = nil;
-ackage.loaded["scripts/globals/titles"] = nil;
-ackage.loaded["scripts/globals/keyitems"] = nil;
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");

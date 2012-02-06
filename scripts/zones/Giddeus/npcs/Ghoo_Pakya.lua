@@ -4,8 +4,6 @@
 -- Involved in Mission 2-3
 -----------------------------------
 
-package.loaded["scripts/globals/settings"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/missions");

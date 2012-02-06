@@ -4,10 +4,6 @@
 --	Starts Windurst Missions
 --	Working ???% 
 -----------------------------------
-package.loaded["scripts/globals/settings"] = nil;
-package.loaded["scripts/globals/titles"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
-package.loaded["scripts/globals/rankpoints"] = nil;
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
 

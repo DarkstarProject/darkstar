@@ -6,7 +6,6 @@
 -- @pos -11 -2 13
 -----------------------------------
 
-package.loaded["scripts/globals/missions"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 

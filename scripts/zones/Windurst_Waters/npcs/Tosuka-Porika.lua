@@ -6,8 +6,6 @@
 --  @zone = 238
 --  @pos = -26 -6 103
 -----------------------------------
-
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;

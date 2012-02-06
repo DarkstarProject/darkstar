@@ -4,8 +4,6 @@
 --	Starts Windurst Missions
 --	Working ???% 
 -----------------------------------
-package.loaded["scripts/globals/settings"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
 
