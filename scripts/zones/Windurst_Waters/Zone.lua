@@ -94,6 +94,8 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x7534 and option == 0) then
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
+	elseif(csid == 0x92) -- Returned from Giddeus, Windurst 1-3
+		player:setVar("windurst_mission_1_3",4);
 	end
 end;
 

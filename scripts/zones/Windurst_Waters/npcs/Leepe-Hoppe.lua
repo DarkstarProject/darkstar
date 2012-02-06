@@ -31,20 +31,6 @@ function onTrigger(player,npc)
 		elseif(windurst_mission_1_3 == 2) then
 			-- Keep displaying the instructions
 			player:startEvent(0x8e);
-		elseif(windurst_mission_1_3 == 3) then
-			-- You're back from Giddeus
-			player:startEvent(0x92);
-			-- NOTE:
-			-- I have no idea how to detect being in proximity
-			-- of the npc around the same height, I'm assuming
-			-- it's beingd one by onEventUpdate, which is
-			-- called each time a char's stats get updated?
-			--
-			-- That right now seems to only happen when you
-			-- touch a door or zone (to keep queries low?)
-			-- So hence, I will have to make the player
-			-- just talk to the NPC, which will trigger
-			-- this cutscene
 		end
 	end
 end;
@@ -81,9 +67,6 @@ function onEventFinish(player,csid,option)
 				player:setVar("drink_offering_delivered",1);
 			end
 		end
-	elseif(csid == 0x92) then
-		-- Set Mission Progress
-		player:setVar("windurst_mission_1_3",4);
 	end
 end;
 
