@@ -39,7 +39,7 @@ function onTrigger(player,npc)
 					player:setVar("BorghertzCS",0);
 				else
 					player:messageSpecial(SENSE_OF_FOREBODING);
-					SpawnMob(17436964);
+					SpawnMob(17436964,180):updateEnmity(player);
 					player:setVar("BorghertzSparkKilled",0);
 					player:setVar("BorghertzChooseTorch",2);
 				end
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
 					player:setVar("BorghertzCS",0);
 				else
 					player:messageSpecial(SENSE_OF_FOREBODING);
-					SpawnMob(17436964);
+					SpawnMob(17436964,180):updateEnmity(player);
 					player:setVar("BorghertzSparkKilled",0);
 					player:setVar("BorghertzChooseTorch",1);
 				end
@@ -60,11 +60,11 @@ function onTrigger(player,npc)
 		else
 			if(X >= 57 and X <= 67 and Z >= 20 and Z <= 26) then -- Right Torch
 				player:messageSpecial(SENSE_OF_FOREBODING);
-				SpawnMob(17436964);
+				SpawnMob(17436964,180):updateEnmity(player);
 				player:setVar("BorghertzChooseTorch",2);
 			elseif(X >= 57 and X <= 67 and Z >= 13 and Z <= 20) then -- Left Torch
 				player:messageSpecial(SENSE_OF_FOREBODING);
-				SpawnMob(17436964);
+				SpawnMob(17436964,180):updateEnmity(player);
 				player:setVar("BorghertzChooseTorch",1);
 			end
 		end

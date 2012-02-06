@@ -3,9 +3,10 @@
 -- Zone: FeiYin
 -- 
 -----------------------------------
+package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
 require("scripts/zones/FeiYin/TextIDs");
 
 -----------------------------------
@@ -20,9 +21,16 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
-
-return cs;
+	
+	cs = -1;
+	
+	if(prevZone == 111 and player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:getVar("pieujesDecisionCS") == 0) then 
+		cs = 0x0013;
+		player:setVar("pieujesDecisionCS",1);
+	end
+	
+	return cs;
+	
 end;
 
 -----------------------------------
