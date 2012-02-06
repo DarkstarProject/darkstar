@@ -9,11 +9,14 @@
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
+ackage.loaded["scripts/globals/settings"] = nil;
+ackage.loaded["scripts/globals/titles"] = nil;
+ackage.loaded["scripts/globals/keyitems"] = nil;
+package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 
 -----------------------------------

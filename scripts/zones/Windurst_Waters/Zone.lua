@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 
 require("scripts/globals/server");
 require("scripts/globals/settings");
+require("scripts/globals/missions");
 require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
@@ -15,6 +16,14 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+	-- Check if we are on Windurst Mission 1-3
+	if(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
+		windurst_mission_1_3 = player:getVar("windurst_mission_1_3");
+		if(windurst_mission_1_3 == 3) then
+			-- You're back from Giddeus, done with the offerings
+			zone:registerRegion(1, 23,-11,-208, 24,-8,-207);
+		end
+	end
 end;
 
 -----------------------------------
@@ -53,6 +62,19 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
+switch (region:GetRegionID()): caseof
+{
+	---------------------------------
+	[1] = function (x)  -- Windurst Mission 1-3, final cutscene with Leepe-Hoppe
+	---------------------------------
+		-- If we're on Windurst Mission 1-3
+		windurst_mission_1_3 = player:getVar("windurst_mission_1_3");
+		if(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE and windurst_mission_1_3 == 3) then
+			player:startEvent(0x92);
+		end
+	end,
+	---------------------------------
+}
 end;
 
 -----------------------------------

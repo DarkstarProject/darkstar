@@ -26,6 +26,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	
+	
 	function testflag(set,flag)
 		return (set % (2*flag) >= flag)
 	end

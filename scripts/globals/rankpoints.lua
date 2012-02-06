@@ -1,3 +1,11 @@
+--[[
+
+----------------------------------
+-- Old file, the content as well
+-- as the old code was moved to
+-- missions.lua
+----------------------------------
+
 function rankPointMath(rank)
 	return 0.372*rank^2 - 1.62*rank + 6.2;
 end
@@ -5,7 +13,7 @@ end
 -- returns true if you have enough rank points to undertake the mission, for any of the 3 nations.
 ----------------------------------------------------
 function getMissionRankPoints(player, missionID)
-	--[[if (missionID == 3) then                   	-- mission 2.1
+	if (missionID == 3) then                   	-- mission 2.1
 		crystals = 9;
 	elseif (missionID == 4) then                -- mission 2.2
 		crystals = 17;
@@ -45,34 +53,27 @@ function getMissionRankPoints(player, missionID)
 		crystals = 228;														-- Additional 8 stacks needed, plus mission reward of 36 (87% rank bar)
 	end;
 
-	points_needed = 1024 * (crystals-.25) / (3*rank_point_function(player:getRank()))
-	--print("Has rank points: ",player:getRankPoints()," Needs Rank Points for Mission ", missionID, ": ",points_needed);
-	return (player:getRankPoints() >= points_needed );
-	--]]
-	return (true);
+	points_needed = 1024 * (crystals-.25) / (3*rankPointMath(player:getRank()));
+	--printf("Got [%d/%d] for Mission with ID: %d", player:getRankPoints(), points_needed, missionID);
+	if(player:getRankPoints() >= points_needed) then
+		return 1;
+	else
+		return 0;
+	end
+	
+	--return (true);
 end;
 
---------------------------------------------------------------------
-------- computes the mission masks for a character of any of the three nations (first and repeat missions)
---------------------------------------------------------------------
-function getMissionMask(player)
 
+function getMissionMask(player)
 	rank = player:getRank()
 	nation = player:getNation();  -- 0 = San d'Oria ; 1 = Bastok ; 2 = Windurst
-	mission_status =  player:hasCurrentMission(nation);
+	mission_status =  player:getCurrentMission(nation);
 
 	first_mission = 0;
 	repeat_mission = 0;
 
-	------------- check repeatable missions -----------------------------
-	 -- missions 2.2 and 3.2 are repeatable in all 3 nations.
-	 -- mission 1.3 is repeatable in Bastok and San d'Oria.
-	 -- missions 1.1 and 1.2 are repeatable in San d'Oria.
-
-	-- if you've already completed a repeatable mission, you may get it again.
-	--------------------------------------------------------
-
-	if (player:hasCompletedMission(nation,2) == 1) and (nation ~= 2) then
+	--[[if (player:hasCompletedMission(nation,2) == 1) and (nation ~= 2) then
 		repeat_mission = repeat_mission + 4;									-- 1.3 repeatable anywhere but Windurst
 	end
 
@@ -162,8 +163,9 @@ function getMissionMask(player)
 		elseif (player:getMissionStatus(nation,22) == 2) and getMissionRankPoints(player, 23) then -- 9.2
 			first_mission = first_mission + 8388608;
 		end
-	end
+	end--]]
 
 	mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..
 	return mission_mask,repeat_mission;
 end;
+]]--

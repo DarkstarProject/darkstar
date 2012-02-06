@@ -52,44 +52,54 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	foodstatus = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
-	if (foodstatus <= 1) then
-		prog = player:getVar("QuestFoodForThought_var"); 
-		-- 	Variable to track quest progress
-		-- 	1 = Ohbiru: Hungry
-		--	2 = Kenapa: Hungry
-		--  4 = Kerutoto: Quest Refused 
-		-- 	8 = Ohbiru: Order		
-		--	16 = Kenapa: Stammer 1/3
-		--	32 = Kenapa: Stammer 2/3
-		--	64 = Kenapa: Order 3/3
-		--  128 = Ohbiru: Gave Food
-		--  256 = Kenapa: Gave Food
-		--  512 = Kerutoto: Gave Food
-	end
-	if (foodstatus == 0) then
-		rand = math.random(1,2)
-		if (rand == 1) then
-			player:startEvent(0x0134); -- Hungry 1
+	-- Check for Missions first (priority?)
+	-- If the player has started the mission or not
+	if(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
+		if(player:getVar("ohbiru_dohbiru_talk") == 1) then
+			player:startEvent(0x8f);
 		else
-			player:startEvent(0x0135); -- Hungry 2
-		end		
-		if (testflag(tonumber(prog),1) == false) then 
-			player:setVar("QuestFoodForThought_var",prog+1);
-		end
-	elseif (foodstatus == 1 and testflag(tonumber(prog),8) == false and testflag(tonumber(prog),128) == false) then
-		player:startEvent(0x013c,0,4493,624,4408); -- Gives Order
-		player:setVar("QuestFoodForThought_var",prog+8);
-	elseif (foodstatus == 1 and testflag(tonumber(prog),8) == true and testflag(tonumber(prog),128) == false) then
-		rand = math.random(1,2)
-		if (rand == 1) then
-			player:startEvent(0x013d,0,4493,624,4408); -- Repeats Order
-		else
-			player:startEvent(0x0144); -- Reminds to check on friends
+			player:startEvent(0x90);
 		end
 	else
-		player:startEvent(0x0158); -- Standard Conversation	
-	end	
+		foodstatus = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
+		if (foodstatus <= 1) then
+			prog = player:getVar("QuestFoodForThought_var"); 
+			-- 	Variable to track quest progress
+			-- 	1 = Ohbiru: Hungry
+			--	2 = Kenapa: Hungry
+			--  4 = Kerutoto: Quest Refused 
+			-- 	8 = Ohbiru: Order		
+			--	16 = Kenapa: Stammer 1/3
+			--	32 = Kenapa: Stammer 2/3
+			--	64 = Kenapa: Order 3/3
+			--  128 = Ohbiru: Gave Food
+			--  256 = Kenapa: Gave Food
+			--  512 = Kerutoto: Gave Food
+		end
+		if (foodstatus == 0) then
+			rand = math.random(1,2)
+			if (rand == 1) then
+				player:startEvent(0x0134); -- Hungry 1
+			else
+				player:startEvent(0x0135); -- Hungry 2
+			end		
+			if (testflag(tonumber(prog),1) == false) then 
+				player:setVar("QuestFoodForThought_var",prog+1);
+			end
+		elseif (foodstatus == 1 and testflag(tonumber(prog),8) == false and testflag(tonumber(prog),128) == false) then
+			player:startEvent(0x013c,0,4493,624,4408); -- Gives Order
+			player:setVar("QuestFoodForThought_var",prog+8);
+		elseif (foodstatus == 1 and testflag(tonumber(prog),8) == true and testflag(tonumber(prog),128) == false) then
+			rand = math.random(1,2)
+			if (rand == 1) then
+				player:startEvent(0x013d,0,4493,624,4408); -- Repeats Order
+			else
+				player:startEvent(0x0144); -- Reminds to check on friends
+			end
+		else
+			player:startEvent(0x0158); -- Standard Conversation	
+		end	
+	end
 end; 
 
 -----------------------------------
@@ -108,7 +118,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x0142 or csid == 0x0145)  then
+	-- Check Missions first (priority?)
+	if(csid == 0x8f) then
+		player:setVar("ohbiru_dohbiru_talk",2);
+	elseif (csid == 0x0142 or csid == 0x0145)  then
 		player:addGil(GIL_RATE*440);
 		player:tradeComplete(trade);
 		prog = player:getVar("QuestFoodForThought_var");

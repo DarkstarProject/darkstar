@@ -46,6 +46,11 @@ UNLOCK_RNG = 13220; --
    MILLEROVIEUNET_OPEN_DIALOG = 9677; -- Please have a look at these wonderful products from Qufim Island! You won't regret it!
  MILLEROVIEUNET_CLOSED_DIALOG = 9678; -- Now that I've finally learned the language here, I'd like to start my own business. If I could only find a supplier...
 
+
+--Test
+       RAKOHBUUMA_OPEN_DIALOG = 7355; -- To expel those who would subvert the law and order of Windurst Woods...
+
+
 -- Quest Dialog
 PERIH_VASHAI_DIALOG = 7968; -- You can now become a ranger!
 	 APURURU_DIALOG = 9195; -- There's no way Semih Lafihna will just hand it over for no good reason. Maybe if you try talking with Kupipi...
