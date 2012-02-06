@@ -343,26 +343,26 @@ int32 DespawnMob(lua_State* L)
 
 /************************************************************************
 *                                                                       *
-*  Get Current Mob Action by Mob ID.									*
+*  Get Current Mob Action by Mob ID.                                    *
 *                                                                       *
 ************************************************************************/
 
 int32 GetMobAction(lua_State* L)
 {
-	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
-	{
-		uint32 mobid = (uint32)lua_tointeger(L, -1);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-		if (PMob != NULL)
-		{
-			int32 currentAction = (int32)PMob->PBattleAI->GetCurrentAction(); 
-			lua_pushinteger(L,currentAction);
-		    return 1;
-        }
-	}
-	lua_pushnil(L);
-	return 1;
+    uint32 mobid = (uint32)lua_tointeger(L,-1);
+
+    CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+    if (PMob != NULL)
+    {
+        int32 CurrentAction = (int32)PMob->PBattleAI->GetCurrentAction(); 
+        lua_pushinteger(L, CurrentAction);
+        return 1;
+    }
+    ShowError(CL_RED"luautils::GetMobAction: mob <%u> was not found\n"CL_RESET, mobid);
+    lua_pushnil(L);
+    return 1;
 }
 
 /************************************************************************
