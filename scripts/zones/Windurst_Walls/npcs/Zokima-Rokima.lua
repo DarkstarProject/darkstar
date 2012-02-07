@@ -10,7 +10,6 @@ package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/globals/rankpoints");
 require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------

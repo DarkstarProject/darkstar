@@ -4,8 +4,6 @@
 -- Starts: Bastok Misions
 -----------------------------------
 
-package.loaded["scripts/globals/rankpoints"] = nil;
-require("scripts/globals/rankpoints");
 require("scripts/globals/settings");
 package.loaded["scripts/globals/missions"] = nil;
 require("scripts/globals/missions");
