@@ -1,6 +1,6 @@
 -----------------------------------
 --
---Refresh
+--  EFFECT_REGEN
 --
 -----------------------------------
 
@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-target:addMP(3);
+	target:addMP(effect:getPower());
 end;
 
 -----------------------------------
