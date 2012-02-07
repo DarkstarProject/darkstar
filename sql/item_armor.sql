@@ -2997,7 +2997,7 @@ INSERT INTO `item_armor` VALUES (13744, 'justaucorps', 58, 1033918, 45, 0, 0, 32
 INSERT INTO `item_armor` VALUES (13745, 'justaucorps_+1', 58, 1033918, 45, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES (13746, 'gem_cuirass', 73, 65, 55, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES (13747, 'gavial_mail_+1', 72, 10240, 27, 0, 0, 32, 0);
-INSERT INTO `item_armor` VALUES (13748, 'vermillion_cloak', 59, 706142, 47, 0, 0, 32, 4);
+INSERT INTO `item_armor` VALUES (13748, 'vermillion_cloak', 59, 706142, 47, 0, 1, 32, 4);
 INSERT INTO `item_armor` VALUES (13749, 'royal_cloak', 59, 706142, 47, 0, 0, 32, 4);
 INSERT INTO `item_armor` VALUES (13750, 'linen_doublet', 33, 518006, 21, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES (13751, 'linen_doublet_+1', 33, 518006, 21, 0, 0, 32, 0);
