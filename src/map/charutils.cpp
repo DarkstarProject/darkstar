@@ -1096,8 +1096,13 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 		    }
         }
 	}
+    if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED)
+    {
+        PChar->health.tp = 0;
+    }
     PChar->UpdateHealth();
-	
+	PChar->pushPacket(new CCharHealthPacket(PChar));
+
     // TODO: зачем нам это делать при смене экипировки, отличной от оружия ?
 	BuildingCharWeaponSkills(PChar);
 	SaveCharEquip(PChar);

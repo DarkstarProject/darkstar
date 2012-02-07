@@ -609,18 +609,20 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect)
 
 		m_StatusEffectList.push_back(PStatusEffect);
 
-		if (PStatusEffect->GetIcon() != 0 && m_POwner->objtype == TYPE_PC) 
-		{
-            UpdateStatusIcons();
-
+		if (m_POwner->objtype == TYPE_PC)
+        {
             CCharEntity* PChar = (CCharEntity*)m_POwner;
 
+            if (PStatusEffect->GetIcon() != 0)
+            {
+                UpdateStatusIcons();
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
+            }
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
-            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
             PChar->pushPacket(new CCharHealthPacket(PChar));
             PChar->pushPacket(new CCharSyncPacket(PChar));
-		}
+        }
 	}
 }
 
@@ -642,18 +644,20 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
 
     m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
 
-	if (PStatusEffect->GetStatusID() < 512 && m_POwner->objtype == TYPE_PC)
-	{
-        UpdateStatusIcons();
-
+    if (m_POwner->objtype == TYPE_PC)
+    {
         CCharEntity* PChar = (CCharEntity*)m_POwner;
 
+        if (PStatusEffect->GetIcon() != 0)
+        {
+            UpdateStatusIcons();
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
+        }
         if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
-        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetStatusID(), 0, 206));
         PChar->pushPacket(new CCharHealthPacket(PChar));
         PChar->pushPacket(new CCharSyncPacket(PChar));
-	}
+    }
     delete PStatusEffect;
 }
 
