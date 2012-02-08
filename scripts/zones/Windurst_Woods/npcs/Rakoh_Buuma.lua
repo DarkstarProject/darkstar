@@ -54,7 +54,7 @@ function onTrigger(player,npc)
 					player:startEvent(0x88);
 				end
 			elseif(windy_1_3_completed == false and windy_1_1_completed == true and windy_1_2_completed == true) then
-				-- Windurst 1-3 (final mission of this rank) (cs 0x95 (149) triggers this) (cs 0x96 (150) = this mission is already started - gives info on what to do)
+				-- Windurst 1-3 (final mission of this rank) (cs 0x95 (149)
 				-- If the player has started the mission or not
 				if(player:getCurrentMission(WINDURST) ~= THE_PRICE_OF_PEACE) then
 					-- Mission has not been started yet
@@ -72,11 +72,15 @@ function onTrigger(player,npc)
 				printf( "Default: Error" );
 			end
 		elseif(player_cur_rank >= 2) then
-			-- More missions
-			printf("Rank 2 Missions time!");
-			
-			flagMission, repeatMission = getMissionMask(player);
-			player:startEvent(0x72,flagMission,0,0,0,0,repeatMission);
+			-- Rank2 Missions
+			-- Get the Mission Mask
+			--flagMission, repeatMission = getMissionMask(player);
+			-- Display the Mission List (if any)
+			--player:startEvent(0x72,flagMission,0,0,0,0,repeatMission);
+			--
+			-- Note: Make sure to check if the flagMission variable is not 
+			-- the default one (meaning no missions available, if it is,
+			-- trigger the alternative cs)
 		end
 		--[[elseif(player_cur_rank == 3) then
 			-- More missions
@@ -103,9 +107,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("CSID: %u",csid);
-printf("RESULT: %u",option);
-	if(option == 1 and csid == 0x8a) then
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+	if(option == 1 and csid == 0x79) then
 		-- Log who we started the mission from (to know which title we get)
 		player:setVar("mission_started_from",1); -- Windurst Woods Guard
 		-- Start Windurst 1-1
