@@ -985,6 +985,8 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 {	
 	DSP_DEBUG_BREAK_IF(PKiller == NULL || PMob == NULL);
 
+    CCharEntity* PChar = (CCharEntity*)PKiller;
+
 	CLuaBaseEntity LuaMobEntity(PMob);
 	CLuaBaseEntity LuaKillerEntity(PKiller);
 	
@@ -1005,6 +1007,10 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	memset(File,0,sizeof(File));
 
 	snprintf( File, sizeof(File), "%s/zones/%s/mobs/%s.lua", LuaScriptDir, PMob->loc.zone->GetName(), PMob->GetName());
+
+    PChar->m_event.reset();
+    PChar->m_event.Target = PMob;
+	PChar->m_event.Script.insert(0,File);
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -1027,8 +1033,6 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		return -1;
 	}
 
-    CCharEntity* PChar = (CCharEntity*)PKiller;
-
 	if (PChar->PParty != NULL)
 	{
 	    for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
@@ -1036,6 +1040,10 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
             if (PChar->PParty->members[i] == PChar ||
                 PChar->PParty->members[i]->getZone() != PChar->getZone()) 
                 continue;
+
+            ((CCharEntity*)PChar->PParty->members[i])->m_event.reset();
+            ((CCharEntity*)PChar->PParty->members[i])->m_event.Target = PMob;
+	        ((CCharEntity*)PChar->PParty->members[i])->m_event.Script.insert(0,File);
 
             lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
 		    if (lua_isnil(LuaHandle,-1))
