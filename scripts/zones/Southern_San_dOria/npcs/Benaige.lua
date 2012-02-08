@@ -42,7 +42,7 @@ function onTrigger(player,npc)
 			 0x026e,43,2,	--Dried Marjoram
 			 0x0262,54,2,	--San d'Orian Flour
 			 0x0273,36,2,	--Maple Sugar
-			 0x0730,1800,	--Semolina
+			 0x0730,1800,2,	--Semolina
 			 0x165e,442,2,	--Zucchini
 			 0x166c,511,2,	--Paprika
 
