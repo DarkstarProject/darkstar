@@ -2,11 +2,14 @@
 --	Area: Port Bastok
 --	NPC:  Dhen Tevryukoh
 --	Only sells when Bastok controlls Elshimo Uplands
+--  @zone 236
+--  @pos 35 -2 2 
+-----------------------------------
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------

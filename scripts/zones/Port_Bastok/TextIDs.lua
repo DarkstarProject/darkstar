@@ -54,8 +54,8 @@ POWHATAN_DIALOG_1 = 7043; -- I'm sick and tired of entertaining guests.
 	  ZOBYQUHYO_OPEN_DIALOG = 8134; -- Hey therrre! I've got lots of wonderrrful goodies, fresh from the Elshimo Lowlands.
 	ZOBYQUHYO_CLOSED_DIALOG = 8135; -- I'm trrrying to start a business selling goods from the Elshimo Lowlands, but it's not easy getting stuff from areas that aren't under Bastokan contrrrol.
 
-  DHENTEVRYOKOH_OPEN_DIALOG = 8136; -- Welcome! Welcome! Take a wonderrr at these specialty goods from the Elshimo Uplands!
-DHENTEVRYOKOH_CLOSED_DIALOG = 8137; -- I'm trrrying to start a business selling goods from the Elshimo Uplands, but it's not easy transporting goods from areas that aren't under Bastokan contrrrol.
+  DHENTEVRYUKOH_OPEN_DIALOG = 8136; -- Welcome! Welcome! Take a wonderrr at these specialty goods from the Elshimo Uplands!
+DHENTEVRYUKOH_CLOSED_DIALOG = 8137; -- I'm trrrying to start a business selling goods from the Elshimo Uplands, but it's not easy transporting goods from areas that aren't under Bastokan contrrrol.
 
 	  BAGNOBROK_OPEN_DIALOG = 8890; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!
 	BAGNOBROK_CLOSED_DIALOG = 8889; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
