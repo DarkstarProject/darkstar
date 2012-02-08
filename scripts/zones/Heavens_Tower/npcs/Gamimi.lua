@@ -1,7 +1,9 @@
 -----------------------------------
--- Area: Port Bastok
--- NPC: Kachada
--- Standard Info NPC
+--  Area: Heavens Tower
+--  GOLD WORLD PASS ARBITER: Gamimi
+--  She gives adventurers gold world passes.
+--  @zone 242
+--  @pos 4 0 32
 -----------------------------------
 
 -----------------------------------
@@ -16,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0060)--,0,0,0,0,0,-1,2);
+	player:startEvent(0x2710);--,0,0,0,0,0,-1,2);
 end; 
 
 -----------------------------------
@@ -36,6 +38,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

@@ -101,6 +101,7 @@
 #include "packets/shop_buy.h"
 #include "packets/stop_downloading.h"
 #include "packets/wide_scan_track.h"
+#include "packets/world_pass.h"
 #include "packets/zone_in.h"
 #include "packets/zone_visited.h"
 #include "packets/menu_raisetractor.h"
@@ -175,9 +176,10 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
     bool firstlogin = true; // временное решение, до появления PlayTime
 	PChar->clearPacketList();
 
-	if (PChar->status == STATUS_DISAPPEAR) 
+	if (PChar->status == STATUS_DISAPPEAR)
 	{
 		session->blowfish.key[4] += 2;
+      //session->blowfish.status = BLOWFISH_SENT;
 
 		md5((uint8*)(session->blowfish.key), session->blowfish.hash, 20);
 
@@ -671,6 +673,20 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 	}
 	ShowDebug(CL_CYAN"CLIENT PERFORMING ACTION %02hX\n"CL_RESET, action);
 	return 0;
+} 
+
+/************************************************************************
+*                                                                       *
+*  Генерация World Pass                                                 *
+*                                                                       *
+************************************************************************/
+
+int32 SmallPacket0x01B(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    // 0 - world pass, 2 - gold world pass; +1 - purchase
+
+    PChar->pushPacket(new CWorldPassPacket(RBUFB(data,(0x04)) & 1 ? rand() % 9999999999 : 0));
+    return 0;
 } 
 
 /************************************************************************
@@ -2816,6 +2832,7 @@ void PacketParderInitialize()
     PacketParcer[0x016] = &SmallPacket0x016;
     PacketParcer[0x017] = &SmallPacket0x017;
     PacketParcer[0x01A] = &SmallPacket0x01A;
+    PacketParcer[0x01B] = &SmallPacket0x01B;
     PacketParcer[0x01C] = &SmallPacket0x01C;
     PacketParcer[0x028] = &SmallPacket0x028;
     PacketParcer[0x029] = &SmallPacket0x029;
