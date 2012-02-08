@@ -56,7 +56,6 @@
 namespace luautils
 {
 lua_State*  LuaHandle = NULL;
-const int8* LuaScriptDir = "scripts";
 
 /************************************************************************
 *																		*
@@ -376,7 +375,10 @@ int32 OnServerStart()
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/globals/server.lua",LuaScriptDir);
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onServerStart");
+
+	snprintf(File, sizeof(File), "scripts/globals/server.lua");
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -414,7 +416,10 @@ int32 OnZoneInitialise(uint8 ZoneID)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/zones/%s/Zone.lua",LuaScriptDir,PZone->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onInitialize");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PZone->GetName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -452,7 +457,10 @@ int32 OnZoneIn(CCharEntity* PChar)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File, sizeof(File), "%s/zones/%s/Zone.lua", LuaScriptDir, PChar->loc.zone->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onZoneIn");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);
@@ -494,7 +502,10 @@ int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File, sizeof(File), "%s/zones/%s/Zone.lua", LuaScriptDir, PChar->loc.zone->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onRegionEnter");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);
@@ -536,7 +547,10 @@ int32 OnRegionLeave(CCharEntity* PChar, CRegion* PRegion)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File, sizeof(File), "%s/zones/%s/Zone.lua", LuaScriptDir, PChar->loc.zone->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onRegionLeave");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);
@@ -579,7 +593,10 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf( File, sizeof(File), "%s/zones/%s/npcs/%s.lua", LuaScriptDir, PChar->loc.zone->GetName(),PNpc->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onTrigger");
+
+	snprintf( File, sizeof(File), "scripts/zones/%s/npcs/%s.lua", PChar->loc.zone->GetName(),PNpc->GetName());
 	
 	PChar->m_event.reset();
     PChar->m_event.Target = PNpc;
@@ -620,6 +637,9 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 
 int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 {
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onEventUpdate");
+
 	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0)) 
 	{  
 		ShowError("luautils::OnEventUpdate: %s\n", lua_tostring(LuaHandle, -1)); 		
@@ -655,6 +675,9 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 
 int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 {
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onEventFinish");
+
 	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0)) 
 	{  
 		ShowError("luautils::OnEventFinish %s\n", lua_tostring(LuaHandle, -1)); 		
@@ -693,7 +716,10 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File, sizeof(File), "%s/zones/%s/npcs/%s.lua", LuaScriptDir, PChar->loc.zone->GetName(),PNpc->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onTrade");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/npcs/%s.lua", PChar->loc.zone->GetName(),PNpc->GetName());
 
 	PChar->m_event.reset();
     PChar->m_event.Target = PNpc;
@@ -741,7 +767,10 @@ int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/%s.lua",LuaScriptDir,PStatusEffect->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onEffectGain");
+
+	snprintf(File, sizeof(File), "scripts/%s.lua", PStatusEffect->GetName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -781,7 +810,10 @@ int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/%s.lua",LuaScriptDir,PStatusEffect->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onEffectTick");
+
+	snprintf(File, sizeof(File), "scripts/%s.lua", PStatusEffect->GetName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -822,7 +854,10 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/%s.lua",LuaScriptDir,PStatusEffect->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onEffectLose");
+
+	snprintf(File, sizeof(File), "scripts/%s.lua", PStatusEffect->GetName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -863,7 +898,10 @@ int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/globals/items/%s.lua",LuaScriptDir,PItem->getName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onItemCheck");
+
+	snprintf(File, sizeof(File), "scripts/globals/items/%s.lua", PItem->getName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -904,7 +942,10 @@ int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File,sizeof(File),"%s/globals/items/%s.lua",LuaScriptDir,PItem->getName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onItemUse");
+
+	snprintf(File, sizeof(File), "scripts/globals/items/%s.lua", PItem->getName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -941,9 +982,12 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onSpellCast");
+
 	CSpell* PSpell = PCaster->PBattleAI->GetCurrentSpell();
 
-	snprintf(File,sizeof(File),"%s/globals/spells/%s.lua",LuaScriptDir, PSpell->getName());
+	snprintf(File, sizeof(File), "scripts/globals/spells/%s.lua", PSpell->getName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -1006,7 +1050,10 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf( File, sizeof(File), "%s/zones/%s/mobs/%s.lua", LuaScriptDir, PMob->loc.zone->GetName(), PMob->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onMobDeath");
+
+	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
     PChar->m_event.reset();
     PChar->m_event.Target = PMob;
@@ -1079,7 +1126,10 @@ int32 OnMobSpawn(CBaseEntity* PMob)
     int8 File[255];
     memset(File,0,sizeof(File));
 
-    snprintf( File, sizeof(File), "%s/zones/%s/mobs/%s.lua", LuaScriptDir, PMob->loc.zone->GetName(), PMob->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onMobSpawn");
+
+    snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
     if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
     {
@@ -1115,8 +1165,12 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnUseWeaponSkill");
+
 	CWeaponSkill* wskill = PChar->PBattleAI->GetCurrentWeaponSkill();
-	snprintf(File,sizeof(File),"%s/globals/weaponskills/%s.lua",LuaScriptDir, wskill->getName());
+
+	snprintf(File, sizeof(File), "scripts/globals/weaponskills/%s.lua", wskill->getName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -1156,8 +1210,11 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnUseAbility");
+
 	CAbility* ability = PChar->PBattleAI->GetCurrentJobAbility();
-	snprintf(File,sizeof(File),"%s/globals/abilities/%s.lua",LuaScriptDir, ability->getName());
+	snprintf(File, sizeof(File), "scripts/globals/abilities/%s.lua", ability->getName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -1254,7 +1311,10 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
-	snprintf(File, sizeof(File), "%s/zones/%s/Zone.lua", LuaScriptDir, PChar->loc.zone->GetName());
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onTransportEvent");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0,File);

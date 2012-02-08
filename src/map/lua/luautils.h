@@ -42,7 +42,6 @@ class CStatusEffect;
 namespace luautils
 {
 	extern struct lua_State* LuaHandle;
-	extern const  int8*		 LuaScriptDir;
 
 	int32 init();
 	int32 free();
