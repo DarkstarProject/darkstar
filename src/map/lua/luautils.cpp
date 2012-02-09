@@ -488,7 +488,7 @@ int32 OnZoneIn(CCharEntity* PChar)
 		ShowError("luautils::OnZoneIn: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -533,7 +533,7 @@ int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion)
 		ShowError("luautils::OnRegionEnter: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -578,7 +578,7 @@ int32 OnRegionLeave(CCharEntity* PChar, CRegion* PRegion)
 		ShowError("luautils::OnRegionLeave: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -626,7 +626,7 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 		ShowError("luautils::OnTrigger: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -664,7 +664,7 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 		ShowError("luautils::OnEventUpdate: %s\n", lua_tostring(LuaHandle, -1)); 
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -702,7 +702,7 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 		ShowError("luautils::OnEventFinish %s\n", lua_tostring(LuaHandle, -1)); 
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -752,7 +752,7 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 		ShowError("luautils::OnTrade: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -839,7 +839,7 @@ int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		ShowError("luautils::OnEffectTick: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -883,7 +883,7 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		ShowError("luautils::OnEffectLose: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -926,7 +926,7 @@ int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param)
 		ShowError("luautils::OnItemCheck: %s\n",lua_tostring(LuaHandle,-1));
 		return 56;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -1016,7 +1016,7 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 		ShowError("luautils::OnSpellCast: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -1110,7 +1110,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		    }
 	    }
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -1151,7 +1151,7 @@ int32 OnMobSpawn(CBaseEntity* PMob)
         ShowError("luautils::OnMobSpawn: %s\n",lua_tostring(LuaHandle,-1));
         return -1;
     }
-    return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+    return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -1240,7 +1240,7 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget)
 		ShowError("luautils::OnUseAbility: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
@@ -1342,7 +1342,7 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 		ShowError("luautils::OnTransportEvent: %s\n",lua_tostring(LuaHandle,-1));
 		return -1;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -1);
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 }; // namespace luautils
