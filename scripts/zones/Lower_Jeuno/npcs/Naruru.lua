@@ -27,9 +27,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	
 	TheWonderMagicSet = player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET);
 	CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
-	TheKindCardian = player:getQuestStatus(JEUNO,THE_KING_CARDIAN);
+	TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
 	
 	if(TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then 
 		if(player:getVar("CooksPrideVar") == 0) then
@@ -54,6 +55,7 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x0062); -- Standard dialog
 	end
+	
 end; 
 
 -----------------------------------
@@ -72,6 +74,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
 	if(csid == 0x00BD and option == 0 or csid == 0x00BC and option == 0) then 
 		player:addQuest(JEUNO,COOK_S_PRIDE);
 	elseif(csid == 0x00BD and option == 1) then 
@@ -91,7 +94,5 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(JEUNO,COOK_S_PRIDE);
 		end
 	end
+	
 end;
-
-
-

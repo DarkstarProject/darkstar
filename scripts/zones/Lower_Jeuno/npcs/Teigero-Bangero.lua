@@ -31,7 +31,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	TheKindCardian = player:getQuestStatus(JEUNO,THE_KING_CARDIAN);
+	TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
 
 	if(player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET) == QUEST_AVAILABLE) then 
 		player:startEvent(0x0022); -- Base Standard CS & dialog
