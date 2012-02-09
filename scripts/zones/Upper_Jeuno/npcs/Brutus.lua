@@ -44,6 +44,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x0016);
     elseif(saveMySon == QUEST_COMPLETED and player:getQuestStatus(JEUNO,PATH_OF_THE_BEASTMASTER) == QUEST_AVAILABLE) then
     	player:startEvent(0x0046);
+	else 
+		player:startEvent(0x0014);
     end
 	
 end;

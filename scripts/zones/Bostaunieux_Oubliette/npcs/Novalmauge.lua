@@ -21,11 +21,9 @@ require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-	tatsVar = player:getVar("troubleAtTheSluiceVar");
 	
-	if(tatsVar == 2) then
-		if(trade:hasItemQty(959,1) and trade:getItemCount() == 1) then
+	if(player:getVar("troubleAtTheSluiceVar") == 2) then
+		if(trade:hasItemQty(959,1) and trade:getItemCount() == 1) then -- Trade Dahlia
 			player:startEvent(0x0011);
 		end
 	end
@@ -49,25 +47,24 @@ function onTrigger(player,npc)
 	TheHolyCrest = player:getVar("TheHolyCrest_Event");
 	tatsVar = player:getVar("troubleAtTheSluiceVar");
 	
+	-- The Holy Crest Quest
 	if(TheHolyCrest == 1) then
 		player:startEvent(0x0006);
 	elseif(TheHolyCrest == 2) then
 		player:startEvent(0x0007);
-	end
-	
-	if(tatsVar == 1) then
+	-- Trouble at the Sluice Quest
+	elseif(tatsVar == 1) then
 		player:startEvent(0x000f);
 		player:setVar("troubleAtTheSluiceVar",2);
 	elseif(tatsVar == 2) then
 		player:startEvent(0x0010);
-	end
-	
-	if(theRumor == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
+	-- The rumor Quest
+	elseif(theRumor == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
 		player:startEvent(0x000d);
 	elseif(theRumor == QUEST_ACCEPTED) then
 		player:startEvent(0x000b);
 	else
-		player:startEvent(0x000a);
+		player:startEvent(0x000a); -- Standard dialog
 	end
 end;
 

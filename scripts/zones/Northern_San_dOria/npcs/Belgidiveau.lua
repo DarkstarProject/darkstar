@@ -26,14 +26,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+	
 	troubleAtTheSluice = player:getQuestStatus(SANDORIA,TROUBLE_AT_THE_SLUICE);
+	NeutralizerKI = player:hasKeyItem(NEUTRALIZER);
 	
 	if(troubleAtTheSluice == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
 		player:startEvent(0x0039);
-	elseif(troubleAtTheSluice == QUEST_ACCEPTED) then
+	elseif(troubleAtTheSluice == QUEST_ACCEPTED and NeutralizerKI == false) then
 		player:startEvent(0x0037);
-	elseif(player:hasKeyItem(NEUTRALIZER) == true) then
+	elseif(NeutralizerKI) then
 		player:startEvent(0x0038);
 	else
 		player:startEvent(0x0249);
