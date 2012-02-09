@@ -280,8 +280,6 @@ int32 SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->loc.zone == NULL) return 0;
-
 	PChar->InvitePending = 0;
 	PChar->PWideScanTarget = NULL;
 
@@ -315,12 +313,17 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 		}
 		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+5000, session, CTaskMgr::TASK_ONCE, map_close_session));
 	} 
-	else  // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру 
+    // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру 
+	else  
 	{
         charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
 	}
-    PChar->loc.zone->DecreaseZoneCounter(PChar);
-
+    // персонаж может отвалиться во время перехода между зонами, 
+    // map_cleanup вызовет этот метод и zone персонажа будет NULL
+    if (PChar->loc.zone != NULL)
+    {
+        PChar->loc.zone->DecreaseZoneCounter(PChar);
+    }
 	PChar->status = STATUS_DISAPPEAR;
     PChar->PBattleAI->Reset();
 	return 0;
