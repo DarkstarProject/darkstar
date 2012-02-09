@@ -465,9 +465,9 @@ PRELUDE_TO_PUISSANCE            = 170;
 --  Other Areas
 -----------------------------------
 
-RYCHARDE_THE_CHEF               = 0;
-WAY_OF_THE_COOK                 = 1;
-UNENDING_CHASE                  = 2;
+RYCHARDE_THE_CHEF               = 0; -- + --
+WAY_OF_THE_COOK                 = 1; -- + --
+UNENDING_CHASE                  = 2; -- + --
 HIS_NAME_IS_VALGEIR             = 3;
 EXPERTISE                       = 4;
 THE_CLUE                        = 5;
