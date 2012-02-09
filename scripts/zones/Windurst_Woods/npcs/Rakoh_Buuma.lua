@@ -74,9 +74,9 @@ function onTrigger(player,npc)
 		elseif(player_cur_rank >= 2) then
 			-- Rank2 Missions
 			-- Get the Mission Mask
-			--flagMission, repeatMission = getMissionMask(player);
+			flagMission, repeatMission = getMissionMask(player);
 			-- Display the Mission List (if any)
-			--player:startEvent(0x72,flagMission,0,0,0,0,repeatMission);
+			player:startEvent(0x72,flagMission,0,0,0,0,repeatMission);
 			--
 			-- Note: Make sure to check if the flagMission variable is not 
 			-- the default one (meaning no missions available, if it is,
@@ -127,10 +127,6 @@ function onEventFinish(player,csid,option)
 		player:setVar("ohbiru_dohbiru_talk",1);
 		-- Add the Mission to the Mission Log
 		player:addMission(WINDURST,THE_PRICE_OF_PEACE);
-	elseif(option == 3 and csid == 0x72) then
-		-- Start Windurst 2-1
-		player:addMission(WINDURST,LOST_FOR_WORDS);
-		player:setVar("windurst_mission_2_1",1);
 	elseif(option == 0 and csid == 0x9a) then
 		-- Windurst 1-3 Mission isover
 		player:completeMission(WINDURST,THE_PRICE_OF_PEACE);
@@ -147,6 +143,10 @@ function onEventFinish(player,csid,option)
 		player:setVar("drink_offering_delivered",0);
 		player:setVar("ghoo_talk",0);
 		player:setVar("laa_talk",0);
+	elseif(option == 3 and csid == 0x72) then
+		-- Start Windurst 2-1
+		player:addMission(WINDURST,LOST_FOR_WORDS);
+		player:setVar("windurst_mission_2_1",1);
 	end
 end;
 

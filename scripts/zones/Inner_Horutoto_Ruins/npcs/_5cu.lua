@@ -55,6 +55,7 @@ function onTrigger(player,npc)
 	else
 		-- Nothing
 	end
+	return 1;
 end; 
 		
 -----------------------------------

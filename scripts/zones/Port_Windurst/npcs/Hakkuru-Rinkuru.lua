@@ -103,6 +103,12 @@ function onEventFinish(player,csid,option)
 			-- Delete the variable(s) that was created for this mission
 			player:setVar("windurst_mission_1_1",0);
 			player:setVar("mission_started_from",0);
+			player:setVar("windurst_mission_1_1_op1",0);
+			player:setVar("windurst_mission_1_1_op2",0);
+			player:setVar("windurst_mission_1_1_op3",0);
+			player:setVar("windurst_mission_1_1_op4",0);
+			player:setVar("windurst_mission_1_1_op5",0);
+			player:setVar("windurst_mission_1_1_op6",0);
 		end
 	else
 		if (csid == 0x0112 and option == 1) then

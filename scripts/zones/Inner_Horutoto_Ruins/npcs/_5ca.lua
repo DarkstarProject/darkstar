@@ -25,22 +25,33 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	function testflag(set,flag)
-		return (set % (2*flag) >= flag)
-	end
-	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
-	if (MakingHeadlines == 1) then
-		prog = player:getVar("QuestMakingHeadlines_var");
-		if (testflag(tonumber(prog),16) == false and testflag(tonumber(prog),8) == true) then
-			player:messageSpecial(7208,1,WINDURST_WOODS_SCOOP); -- Confirm Story
-			player:setVar("QuestMakingHeadlines_var",prog+16);
+	-- Check for Missions first (priority?)
+	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
+		windurst_mission_2_1 = player:getVar("windurst_mission_2_1");
+		if(windurst_mission_2_1 == 5) then
+			player:startEvent(0x2e); -- "The door is firmly shut"
+		else
+			player:startEvent(0x2c); -- "The door is firmly shut"
+		end
+		return 1;
+	else
+		function testflag(set,flag)
+			return (set % (2*flag) >= flag)
+		end
+		MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
+		if (MakingHeadlines == 1) then
+			prog = player:getVar("QuestMakingHeadlines_var");
+			if (testflag(tonumber(prog),16) == false and testflag(tonumber(prog),8) == true) then
+				player:messageSpecial(7208,1,WINDURST_WOODS_SCOOP); -- Confirm Story
+				player:setVar("QuestMakingHeadlines_var",prog+16);
+			else
+				player:startEvent(0x002c); -- "The door is firmly shut"
+			end
 		else
 			player:startEvent(0x002c); -- "The door is firmly shut"
 		end
-	else
-		player:startEvent(0x002c); -- "The door is firmly shut"
+		return 1;
 	end
-	return 1;
 end; 
 		
 -----------------------------------
@@ -59,6 +70,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+
+	if(csid == 0x2e) then
+		-- Mark the progress
+		player:setVar("windurst_mission_2_1",6);
+	end
 end;
 
 

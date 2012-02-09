@@ -52,6 +52,7 @@ function onTrigger(player,npc)
 		-- There's nohing at this door
 		player:showText(npc,DOOR_FIRMLY_CLOSED);
 	end
+	return 1;
 end; 
 		
 -----------------------------------

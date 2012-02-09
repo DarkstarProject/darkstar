@@ -54,6 +54,7 @@ function onTrigger(player,npc)
 	else
 		player:messageSpecial(DARK_MANA_ORB_RECHARGER);
 	end
+	return 1;
 end; 
 		
 -----------------------------------

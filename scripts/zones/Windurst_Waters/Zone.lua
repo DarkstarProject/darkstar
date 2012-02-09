@@ -17,7 +17,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onInitialize(zone)
 	-- Check if we are on Windurst Mission 1-3
-	zone:registerRegion(1, 23,-11,-208, 24,-8,-207);
+	zone:registerRegion(1, 23,-12,-208, 31,-8,-197);
 end;
 
 -----------------------------------
@@ -65,6 +65,9 @@ switch (region:GetRegionID()): caseof
 		if(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
 			windurst_mission_1_3 = player:getVar("windurst_mission_1_3");
 			if(windurst_mission_1_3 == 3) then
+				-- Set the progress variable further so the event won't
+				-- be called over and over (thanks Dia!)
+				player:setVar("windurst_mission_1_3",4);
 				player:startEvent(0x92);
 			end
 		end
@@ -95,7 +98,6 @@ function onEventFinish(player,csid,option)
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
 	elseif(csid == 0x92) then -- Returned from Giddeus, Windurst 1-3
-		player:setVar("windurst_mission_1_3",4);
 	end
 end;
 

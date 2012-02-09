@@ -8,6 +8,9 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/missions");
+require("scripts/globals/keyitems");
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action

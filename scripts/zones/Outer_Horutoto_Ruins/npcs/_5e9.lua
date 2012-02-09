@@ -38,6 +38,7 @@ function onTrigger(player,npc)
 	else
 		player:messageSpecial(DOOR_FIRMLY_SHUT);
 	end
+	return 1;
 end; 
 		
 -----------------------------------

@@ -25,15 +25,34 @@ end;
 
 function onTrigger(player,npc)
 	
+	-- cs notes
+	-- 0x172 (370) = You have no mission, gtfo
+	-- 0x17b (379) = Not sure yet (Adventurer from the other day?)
+	-- 0x17c (380) = About the book of gods and "some adventurer"
+	-- 0xa0 (160) = 1st cutscene of Windurst Mission 2-1
+	-- 0xa1 (161) = More info on 2-1, if you talk to him right after the previous cutscene again
 	
-	function testflag(set,flag)
-		return (set % (2*flag) >= flag)
-	end
-	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
-	if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),32) == false) then
-		player:startEvent(0x0037); -- Show Off Hat
+	-- Check if we are on Windurst Mission 2-1
+	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
+		windurst_mission_2_1 = player:getVar("windurst_mission_2_1");
+		if(windurst_mission_2_1 == 1) then
+			player:startEvent(0xa0);
+		elseif(windurst_mission_2_1 > 1 and windurst_mission_2_1 < 7) then
+			player:startEvent(0xa1);
+		elseif(windurst_mission_2_1 == 7) then
+			-- We're done with the mission
+			player:startEvent(0xa8);
+		end
 	else
-		player:startEvent(0x0172); -- Standard Conversation
+		function testflag(set,flag)
+			return (set % (2*flag) >= flag)
+		end
+		hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
+		if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),32) == false) then
+			player:startEvent(0x0037); -- Show Off Hat
+		else
+			player:startEvent(0x0172); -- Standard Conversation
+		end
 	end
 end;
 
@@ -56,6 +75,16 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x0037) then  -- Show Off Hat
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+32);
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
+	elseif(csid == 0xa0) then -- Windurst Mission 2-1
+		player:setVar("windurst_mission_2_1",2);
+	elseif(csid == 0xa8) then -- Windurst Mission 1-2 is over (good end)
+		-- Returned with the key item, mission's over
+		player:completeMission(WINDURST,LOST_FOR_WORDS);
+		-- Add Rank Points (Note: I have no idea how much should be added)
+		player:addRankPoints(0);
+		-- Remove all variables set for this mission
+		player:setVar("windurst_mission_2_1",0);
+		player:setVar("wm_2_1_randfoss",0);
 	end
 end;
 

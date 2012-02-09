@@ -25,20 +25,28 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:hasKeyItem(264) == true) then
-		player:startEvent(0x0183,0,264);
-	elseif (player:getVar("WildCard") == 1) then
-		player:startEvent(0x0182);
-	elseif (player:getVar("OnionRings") == 1) then
-		player:startEvent(0x0121);
-	elseif (player:getVar("KnowOnesOnions") == 1) then
-		player:startEvent(0x0120,0,4387);
-	elseif (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 0) then
-		if (player:getMainLvl() >= 30 and player:hasItem(1125)) then
-			player:startEvent(0x0180,1125,1125,1125,1125,1125,1125,1125,1125);
+	-- Check for Missions first (priority?)
+	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
+		windurst_mission_2_1 = player:getVar("windurst_mission_2_1");
+		if(windurst_mission_2_1 == 6) then
+			player:startEvent(0x151);
 		end
-	elseif (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1) then
-		player:startEvent(0x0181,1125,1125,1125,1125,1125,1125,1125,1125);
+	else
+		if (player:hasKeyItem(264) == true) then
+			player:startEvent(0x0183,0,264);
+		elseif (player:getVar("WildCard") == 1) then
+			player:startEvent(0x0182);
+		elseif (player:getVar("OnionRings") == 1) then
+			player:startEvent(0x0121);
+		elseif (player:getVar("KnowOnesOnions") == 1) then
+			player:startEvent(0x0120,0,4387);
+		elseif (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 0) then
+			if (player:getMainLvl() >= 30 and player:hasItem(1125)) then
+				player:startEvent(0x0180,1125,1125,1125,1125,1125,1125,1125,1125);
+			end
+		elseif (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1) then
+			player:startEvent(0x0181,1125,1125,1125,1125,1125,1125,1125,1125);
+		end
 	end
 
 return 1;
@@ -80,6 +88,9 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(264);
 		player:addGil(GIL_RATE*8000);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*8000);
+	elseif(csid == 0x151) then
+		-- Mark the progress
+		player:setVar("windurst_mission_2_1",7);
 	end
 
 end;
