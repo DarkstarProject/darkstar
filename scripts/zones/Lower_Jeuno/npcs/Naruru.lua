@@ -74,8 +74,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if(csid == 0x00BD and option == 0 or csid == 0x00BC and option == 0) then 
+	if((csid == 0x00BD or csid == 0x00BC) and option == 0) then 
 		player:addQuest(JEUNO,COOK_S_PRIDE);
 	elseif(csid == 0x00BD and option == 1) then 
 		player:setVar("CooksPrideVar",1);
