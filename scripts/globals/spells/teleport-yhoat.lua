@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: teleport yhoat
+-- Spell: Teleport-Yhoat
 -----------------------------------------
 require("scripts/globals/teleports");
 
@@ -8,8 +8,7 @@ require("scripts/globals/teleports");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-   if (target:hasKeyItem(356) == true) then
-   toYhoat(target);
-   end;
+   		if (target:hasKeyItem(356) == true) then
+   				toYhoat(target);
+   		end;
 end;
-

@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: teleport holla
+-- Spell: Teleport-Holla
 -----------------------------------------
 require("scripts/globals/teleports");
 
@@ -8,8 +8,7 @@ require("scripts/globals/teleports");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-   if (target:hasKeyItem(352) == true) then
-   toHolla(target);
-   end;
+   		if (target:hasKeyItem(352) == true) then
+   				toHolla(target);
+   		end;
 end;
-

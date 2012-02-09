@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: teleport dem
+-- Spell: Teleport-Dem
 -----------------------------------------
 require("scripts/globals/teleports");
 
@@ -8,8 +8,7 @@ require("scripts/globals/teleports");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-   if (target:hasKeyItem(353) == true) then
-   toDem(target);
-   end;
+  		if (target:hasKeyItem(353) == true) then
+  				toDem(target);
+   		end;
 end;
-

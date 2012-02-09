@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: teleport altep
+-- Spell: Teleport-Altep
 -----------------------------------------
 require("scripts/globals/teleports");
 
@@ -8,8 +8,7 @@ require("scripts/globals/teleports");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-   if (target:hasKeyItem(357) == true) then
-   toAltep(target);
-   end;
+        if (target:hasKeyItem(357) == true) then
+                toAltep(target);
+        end;
 end;
-
