@@ -1,18 +1,17 @@
 -----------------------------------
--- Area: Toraimarai Canal
+-- Area: Monastic Cavern
 -- NPC:  Treasure Coffer
--- Involved In Quest: Wild Card
--- @zone 169
--- @pos 220 16 -50
+-- @zone 150
+-- @pos 9 -1 -221
 -----------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
+package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/Treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Toraimarai_Canal/TextIDs");
+require("scripts/zones/Monastic_Cavern/TextIDs");
 
 TreasureType = "Coffer";
 TreasureLvL = 53;
@@ -23,32 +22,33 @@ TreasureMinLvL = 43;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	key = trade:hasItemQty(1057,1); 		-- Treasure Key
+
+	key = trade:hasItemQty(1042,1); 		-- Treasure Key
 	sk = trade:hasItemQty(1115,1);			-- Skeleton Key
 	lk = trade:hasItemQty(1023,1);			-- Living Key
 	ttk = trade:hasItemQty(1022,1);			-- Thief's Tools
 	questItemNeeded = 0;
 	
-	if(key and trade:getItemCount() == 1 and player:getVar("WildCard") == 2) then
-		player:tradeComplete();
-		player:addKeyItem(JOKER_CARD);
-		player:messageSpecial(KEYITEM_OBTAINED,JOKER_CARD);
-		player:setVar("WildCard",3);
-	
-	elseif((key or sk or lk or ttk) and trade:getItemCount() == 1) then 
+	-- Player traded a key.
+	if((key or sk or lk or ttk) and trade:getItemCount() == 1) then 
 		
 		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
 		mJob = player:getMainJob();
 		zone = player:getZone();
+		AFHandsActivated = player:getVar("BorghertzAlreadyActiveWithJob");
+		oldGauntlets = player:hasKeyItem(OLD_GAUNTLETS);
 		
-		listAF = getAFbyZone(zone);
+		if(AFHandsActivated == 6 and oldGauntlets == false) then 
+			questItemNeeded = 1;
+		else
+			listAF = getAFbyZone(zone);
 			
-		for nb = 1,table.getn(listAF),3 do
-			QHANDS = player:getQuestStatus(JEUNO,listAF[nb + 1]);
-			if(QHANDS ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
-				questItemNeeded = 2;
-				break
+			for nb = 1,table.getn(listAF),3 do
+				QHANDS = player:getQuestStatus(JEUNO,listAF[nb + 1]);
+				if(QHANDS ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
+					questItemNeeded = 2;
+					break
+				end
 			end
 		end
 		--------------------------------------
@@ -70,7 +70,10 @@ function onTrade(player,npc,trade)
 				-- Succeded to open the coffer
 				player:messageSpecial(CHEST_UNLOCKED);
 				
-				if(questItemNeeded == 2) then
+				if(questItemNeeded == 1) then
+					player:addKeyItem(OLD_GAUNTLETS);
+					player:messageSpecial(KEYITEM_OBTAINED,OLD_GAUNTLETS); -- Old Gauntlets (KI)
+				elseif(questItemNeeded == 2) then
 					for nb = 1,table.getn(listAF),3 do
 						if(mJob == listAF[nb]) then
 							player:addItem(listAF[nb + 2]);
@@ -99,24 +102,23 @@ function onTrade(player,npc,trade)
 		end
 	end
 
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(CHEST_LOCKED,1057);
-end;
+	player:messageSpecial(CHEST_LOCKED,1042);
+end; 
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
-
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -126,9 +128,4 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
 end;
-
-
-
-

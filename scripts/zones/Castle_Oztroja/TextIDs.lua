@@ -5,5 +5,16 @@ ITEM_CANNOT_BE_OBTAINED = 6560; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6563; -- Obtained: <item>
            GIL_OBTAINED = 6564; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6566; -- Obtained key item: <keyitem>
-	   
+
+-- Treasure Coffer/Chest Dialog
+	  CHEST_UNLOCKED = 7360; -- You unlock the chest !
+		  CHEST_FAIL = 7361; -- Fails to open the chest. 
+		  CHEST_TRAP = 7362; -- The chest was trapped! 
+		  CHEST_WEAK = 7363; -- You cannot open the chest when you are in a weakened state.
+		 CHEST_MIMIC = 7364; -- The chest was a mimic! 
+		CHEST_MOOGLE = 7365; -- You cannot open the chest while participating in the moogle event.
+	  CHEST_ILLUSION = 7366; -- The chest was but an illusion...
+		CHEST_LOCKED = 7367; -- The chest appears to be locked.
+
+-- Quest dialog
   NOTHING_ORDINARY_HERE = 6577; -- There is nothing out of ordinary here

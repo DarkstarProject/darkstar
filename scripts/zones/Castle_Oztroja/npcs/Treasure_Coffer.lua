@@ -1,18 +1,17 @@
 -----------------------------------
--- Area: Toraimarai Canal
+-- Area: Castle Oztroja
 -- NPC:  Treasure Coffer
--- Involved In Quest: Wild Card
--- @zone 169
--- @pos 220 16 -50
+-- @zone 151
+-- @pos 
 -----------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
+package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/Treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Toraimarai_Canal/TextIDs");
+require("scripts/zones/Castle_Oztroja/TextIDs");
 
 TreasureType = "Coffer";
 TreasureLvL = 53;
@@ -23,20 +22,15 @@ TreasureMinLvL = 43;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	key = trade:hasItemQty(1057,1); 		-- Treasure Key
+
+	key = trade:hasItemQty(1044,1); 		-- Treasure Key
 	sk = trade:hasItemQty(1115,1);			-- Skeleton Key
 	lk = trade:hasItemQty(1023,1);			-- Living Key
 	ttk = trade:hasItemQty(1022,1);			-- Thief's Tools
 	questItemNeeded = 0;
 	
-	if(key and trade:getItemCount() == 1 and player:getVar("WildCard") == 2) then
-		player:tradeComplete();
-		player:addKeyItem(JOKER_CARD);
-		player:messageSpecial(KEYITEM_OBTAINED,JOKER_CARD);
-		player:setVar("WildCard",3);
-	
-	elseif((key or sk or lk or ttk) and trade:getItemCount() == 1) then 
+	-- Player traded a key.
+	if((key or sk or lk or ttk) and trade:getItemCount() == 1) then 
 		
 		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
 		mJob = player:getMainJob();
@@ -99,24 +93,23 @@ function onTrade(player,npc,trade)
 		end
 	end
 
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(CHEST_LOCKED,1057);
-end;
+	player:messageSpecial(CHEST_LOCKED,1044);
+end; 
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
-
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -126,9 +119,4 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
 end;
-
-
-
-

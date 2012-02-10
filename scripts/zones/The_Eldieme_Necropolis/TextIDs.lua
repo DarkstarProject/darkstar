@@ -6,6 +6,16 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6538; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
 
+-- Treasure Coffer/Chest Dialog
+	  CHEST_UNLOCKED = 7327; -- You unlock the chest !
+		  CHEST_FAIL = 7328; -- Fails to open the chest. 
+		  CHEST_TRAP = 7329; -- The chest was trapped! 
+		  CHEST_WEAK = 7330; -- You cannot open the chest when you are in a weakened state.
+		 CHEST_MIMIC = 7331; -- The chest was a mimic! 
+		CHEST_MOOGLE = 7332; -- You cannot open the chest while participating in the moogle event.
+	  CHEST_ILLUSION = 7333; -- The chest was but an illusion...
+		CHEST_LOCKED = 7334; -- The chest appears to be locked.
+
 -- Quest "Save my son"
 NOTHING_OUT_OF_ORDINARY = 7385; -- There is nothing out of the ordinary here.
 	 THE_BRAZIER_IS_LIT = 7295; --	The brazier is lit.
