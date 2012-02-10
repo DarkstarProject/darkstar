@@ -1,5 +1,5 @@
 -------------------------------------------------
---	Author: Almendro
+--	Author: Almendro, Ezekyel
 --	Treasure functions
 --  Info from: 
 --      http://wiki.ffxiclopedia.org/wiki/Picking_your_Coffers_and_Chests 
@@ -7,21 +7,7 @@
 -------------------------------------------------
 -- Includes
 require("scripts/globals/settings");
--------------------------------------------------
--- Initialization variables
--------------------------------------------------
 
--------------------------------------------------
--- Auxiliar messages
--------------------------------------------------
-  CHEST_UNLOCKED_AUX = 1;    --You unlock the chest!
-      CHEST_FAIL_AUX = 2;    --fails to open the chest. 
-      CHEST_TRAP_AUX = 3;    --The chest was trapped! 
-      CHEST_WEAK_AUX = 4;    --You cannot open the chest when you are in a weakened state.
-     CHEST_MIMIC_AUX = 5;    --The chest was a mimic! 
-    CHEST_MOOGLE_AUX = 6;    --You cannot open the chest while participating in the moogle event.
-  CHEST_ILLUSION_AUX = 7;    --The chest was but an illusion...
-    CHEST_LOCKED_AUX = 8;    --The chest appears to be locked.
 
 -------------------------------------------------
 -- THF tools/keys & their chance increment
@@ -91,33 +77,105 @@ LapisLazuli = 0x31B;
  Tourmaline = 0x326;
   Turquoise = 0x31E;
      Zircon = 0x325;
+	 
+-------------------------------------------------
+-- AF by Zone
+-------------------------------------------------
 
- 
----------------------------------------
--- Returns true if NPC is a Treasure Chest.
----------------------------------------
-function isChest(npc)
-	treasureName = npc:getName();
-	if(treasureName == "TreasureChest" or treasureName == "Treasure_Chest" or treasureName == "Treasure Chest")then
-		return true;
-	else
-		return false;
+function getAFbyZone(zone)
+	
+	-- nbAF, job#1, quest#1, item#1, job#2, quest#2, item#2, ...
+	
+	if(zone == 147) then -- Beadeaux
+		-- Beast Jackcoat (BST), Gallant Breeches (PLD), Temple Cyclas (MNK)
+		return {9,BORGHERTZ_S_WILD_HANDS,12646,
+				7,BORGHERTZ_S_STALWART_HANDS,14220,
+				2,BORGHERTZ_S_STRIKING_HANDS,12639};
+	elseif(zone == 150) then -- Monastic Cavern
+		-- Chaos Flanchard (DRK), Hunter's Jerkin (RNG), Wizard's Coat (BLM)
+		return { 8,BORGHERTZ_S_SHADOWY_HANDS,14221,
+				11,BORGHERTZ_S_CHASING_HANDS,12648,
+				 4,BORGHERTZ_S_SORCEROUS_HANDS,12641};
+	elseif(zone == 151) then -- Castle Oztroja
+		-- Chaos Cuirass(DRK), Choral Cannions (BRD), Rogue's Culottes (THF), Warlock's Tabard (RDM)
+		return { 8,BORGHERTZ_S_SHADOWY_HANDS,14221,
+				10,BORGHERTZ_S_HARMONIOUS_HANDS,14223,
+				 6,BORGHERTZ_S_SNEAKY_HANDS,14219,
+				 5,BORGHERTZ_S_VERMILLION_HANDS,12642};
+	elseif(zone == 153) then -- The Boyahda Tree
+		-- Ninja Hatsuburi (NIN)
+		return {13,BORGHERTZ_S_LURKING_HANDS,13869};
+	elseif(zone == 159) then -- Temple of Uggalepih
+		-- Evoker's Doublet (SMN), Myochin Domaru (SAM)
+		return {15,BORGHERTZ_S_CALLING_HANDS,12650,
+				12,BORGHERTZ_S_LOYAL_HANDS,13781};
+	elseif(zone == 161) then -- Castle Zvahl Baileys
+		-- Fighter's Cuisses (WAR), Rogue's Vest (THF)
+		return {1,BORGHERTZ_S_WARRING_HANDS,14214,
+				6,BORGHERTZ_S_SNEAKY_HANDS,12643};
+	elseif(zone == 169) then -- Toraimarai Canal
+		-- Evoker's Pigaches (SMN)
+		return {15,BORGHERTZ_S_CALLING_HANDS,14103};
+	elseif(zone == 176) then -- Sea Serpent Grotto
+		-- Ninja Kyahan (NIN)
+		return {13,BORGHERTZ_S_LURKING_HANDS,14101};
+	elseif(zone == 195) then -- The eldieme Necropolis
+		-- Wizard's Tonban (BLM)
+		return {4,BORGHERTZ_S_SORCEROUS_HANDS,14217};
+	elseif(zone == 197) then -- Crawler's Nest
+		-- Choral Roundlet (BRD), Fighter's Mask (WAR), Healer's Pantaloons (WHM), Hunter's Braccae (RNG)
+		return {10,BORGHERTZ_S_HARMONIOUS_HANDS,13857,
+				 1,BORGHERTZ_S_WARRING_HANDS,12511,
+				 3,BORGHERTZ_S_HEALING_HANDS,14216,
+				11,BORGHERTZ_S_CHASING_HANDS,14224};
+	elseif(zone == 200) then -- Garlaige Citadel
+		-- Beast Helm (BST), Gallant Coronet (PLD), Healer's Cap (WHM), Temple Crown (MNK), Warlock's Tights (RDM)
+		return {9,BORGHERTZ_S_WILD_HANDS,12517,
+				7,BORGHERTZ_S_STALWART_HANDS,12515,
+				3,BORGHERTZ_S_HEALING_HANDS,13855,
+				2,BORGHERTZ_S_STRIKING_HANDS,12512,
+				5,BORGHERTZ_S_VERMILLION_HANDS,14218};
+	elseif(zone == 205) then -- Ifrit's Cauldron
+		-- Drachen Mail (DRG)
+		return {14,BORGHERTZ_S_DRAGON_HANDS,12649};
+	elseif(zone == 208) then -- Quicksand Caves
+		-- Drachen Greaves (DRG), Myochin Haidate (SAM)
+		return {14,BORGHERTZ_S_DRAGON_HANDS,14102,
+				12,BORGHERTZ_S_LOYAL_HANDS,14225};
 	end
+	
 end
+
 ---------------------------------------
--- Returns true if NPC is a Treasure Coffer.
+-- Returns true if NPC is a Treasure Chest. getName doesn't work
 ---------------------------------------
-function isCoffer(npc)
-	treasureName = npc:getName();
-	if(treasureName == "TreasureCoffer" or treasureName == "Treasure_Coffer" or treasureName == "Treasure Coffer")then
-		return true;
-	else
-		return false;
-	end
-end
+
+--function isChest(npc)
+--	treasureName = npc:getName();
+--	if(treasureName == "TreasureChest" or treasureName == "Treasure_Chest" or treasureName == "Treasure Chest")then
+--		return true;
+--	else
+--		return false;
+--	end
+--end
+
+---------------------------------------
+-- Returns true ifNPC is a Treasure Coffer. getName doesn't work
+---------------------------------------
+
+--function isCoffer(npc)
+--	treasureName = npc:getName();
+--	if(treasureName == "TreasureCoffer" or treasureName == "Treasure_Coffer" or treasureName == "Treasure Coffer")then
+--		return true;
+--	else
+--		return false;
+--	end
+--end
+
 ---------------------------------------
 -- Returns the success increment depending on the THF tool used.
 ---------------------------------------
+
 function thfKeySuccess(trade,playerLVL,treasureLVL)
 	 sk = trade:hasItemQty(skeletonKey,1);
 	 lk = trade:hasItemQty(livingKey,1);
@@ -132,9 +190,11 @@ function thfKeySuccess(trade,playerLVL,treasureLVL)
 	end
 	return success;
 end
+
 ---------------------------------------
 -- Returns true if the key is a THF "key", false in other case.
 ---------------------------------------
+
 function isTHFKey(trade)
 	 sk = trade:hasItemQty(skeletonKey,1);
 	 lk = trade:hasItemQty(livingKey,1);
@@ -145,50 +205,51 @@ function isTHFKey(trade)
 		return false;
 	end
 end
+
 ---------------------------------------
 -- Chance calculation based on job, key used and lvl of the chest/coffer
 ---------------------------------------
-function openChance(player,npc,trade,treasureLVL,minLVL,questItemNeeded)
+
+function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNeeded)
+	
 	success = 0;
 	chance_answer = {nil,nil}; -- {success%,messageType}
 
 	weak = player:getStatusEffect(EFFECT_WEAKNESS);
-	if(isCoffer(npc))then
-		treasure_type = "Coffer";
-	else
-		treasure_type = "Chest";
-	end
-	illu  = getGlobalVar("["..player:getZone().."]".."Treasure"..treasure_type); 
+	illu  = player:getVar("["..player:getZone().."]".."Treasure_"..TreasureType); 
+	
 	-- SE impleted this in order to prevent coffer farming. 
 	-- Noone in the same area can open more than 1 coffer per hour except for AF, maps or quests items.
 
-	if( weak ~= nil ) then -- old code: os.time() <= weak
-		chance_answer = {-1,CHEST_WEAK_AUX};
-	elseif( os.time() < illu and questItemNeeded == 0) then
+	if(weak ~= nil) then -- old code: os.time() <= weak
+		chance_answer = {-1,CHEST_WEAK};
+	elseif(os.time() < illu and questItemNeeded == 0) then
 		-- here should be a function in order to depop the coffer/chest and pop the coffer in another location after 5 minutes. 
 		-- Fast search for fixing in future:  dePOP() , dePOP , dePOPNPC() , dePOPNPC
-		if (isChest(npc))then
-			chance_answer = {-2,CHEST_ILLUSION_AUX};
-		elseif(isCoffer(npc)) then
-			if( isTHFKey(trade) )then
-				chance_answer = {-1,CHEST_ILLUSION_AUX}; -- If you used a THF tool you will lose it.
+		if(TreasureType == "Chest")then
+			chance_answer = {-2,CHEST_ILLUSION};
+		elseif(TreasureType == "Coffer") then
+			if(isTHFKey(trade))then
+				chance_answer = {-1,CHEST_ILLUSION}; -- if you used a THF tool you will lose it.
 			else
-				chance_answer = {-2,CHEST_ILLUSION_AUX}; -- If you traded a zone key droped from mobs you will keep the key
+				chance_answer = {-2,CHEST_ILLUSION}; -- if you traded a zone key droped from mobs you will keep the key
 			end		
 		end
-	elseif (not(isTHFKey(trade))) then 									  
+	elseif(not(isTHFKey(trade))) then 									  
 		chance_answer = {1,nil}; -- Zone Key is always 100% success
-	elseif ( player:getMainJob() == 6 and player:getMainLvl() >= minLVL ) then -- if player is THF with level higher or equal than minimun lv for coffer/chest
+	elseif(player:getMainJob() == 6 and player:getMainLvl() >= minLVL) then -- ifplayer is THF with level higher or equal than minimun lv for coffer/chest
 		success = thfKeySuccess(trade,player:getMainLvl(),treasureLVL);
 		chance_answer = {success,nil};
 	else
 		-- Player is not THF (as main job) or doesn't haven enough level to open the coffer
-		chance_answer = {-1,CHEST_FAIL_AUX};
+		chance_answer = {-1,CHEST_FAIL};
 	end
+	
 	return chance_answer;
+	
 end
 
-function getLoot(gil,gems,items)
+function chestLoot(zone,npc)
 --[[-----------------------------------------------
                                           Chest Loot
 -------------------------------------------------
@@ -203,11 +264,16 @@ Any update should be here with the date which was modified as well as an URL whe
 		       URL : http://wiki.ffxiclopedia.org/wiki/Treasure_Chest/Coffer_Guide
 		      Done : First collection of all the loot and drop rate.		
 --]]-----------------------------------------------
-	-- Loot calculation 
-	rand = math.random();
-	rand = math.random();
-	rand = math.random();
 
+	gil = {0.387,6040,12100};
+	gems = {0.320,0x317,0x321,0x31D,0x325,0x323};
+	items = {0.226,0x104D};
+	
+	-- Loot calculation 
+	--rand = math.random();
+	--rand = math.random();
+	rand = math.random();
+	
 	if(rand <= gil[1])then
 		reward = {"gil",math.random(gil[2],gil[3])};
 	elseif(rand <= (gil[1] + gems[1])) then
