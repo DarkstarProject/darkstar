@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4510
--- Item: acorn_cookie
+-- Item: Acorn Cookie
 -- Food Effect: 3Min, All Races
 -----------------------------------------
 -- Magic Regen While Healing 3

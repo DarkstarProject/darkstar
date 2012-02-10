@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 5335
---	Acid Bolt Quiver
+--	Item: Acid Bolt Quiver
 --	When used, you will obtain one stack of Acid Bolts
 -----------------------------------------
 

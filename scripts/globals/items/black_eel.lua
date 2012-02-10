@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4429
--- Item: black_eel
+-- Item: Black Eel
 -- Food Effect: 5Min, Mithra only
 -----------------------------------------
 -- Dexterity 2

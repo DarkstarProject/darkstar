@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5652
--- Item: anchovy
+-- Item: Anchovy
 -- Food Effect: 3Min, All Races
 -----------------------------------------
 -- Dexterity +1

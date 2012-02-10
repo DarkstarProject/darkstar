@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5600
--- Item: balik_sis
+-- Item: Balik Sis
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Dexterity 4

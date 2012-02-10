@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4460
--- Item: block_of_stone_cheese
+-- Item: Block of Stone Cheese
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Health % 5.5

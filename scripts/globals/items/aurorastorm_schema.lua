@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 6055
---	Aurorastorm Schema
+--	Item: Aurorastorm Schema
 --	Teaches the white magic Aurorastorm
 -----------------------------------------
 

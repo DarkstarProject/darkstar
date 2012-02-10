@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4536
--- Item: blackened_frog
+-- Item: Blackened Frog
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Dexterity 2

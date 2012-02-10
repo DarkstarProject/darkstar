@@ -1,10 +1,8 @@
 -----------------------------------------
--- ID: 5792
--- Item: Bastore Sardine
--- Food Effect: 5Min, Mithra only
+--  ID: 4207
+--  Item: Intelligence Potion
 -----------------------------------------
--- Dexterity 1
--- Mind -3
+--  Intelligence 7
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -15,11 +13,9 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 result = 0;
-	if (target:getRace() ~= 7) then
-		result = 247;
-	elseif (target:hasStatusEffect(EFFECT_FOOD) == true) then
-		result = 246;
-	end
+        if (target:hasStatusEffect(EFFECT_MEDICINE) == true) then
+                result = 111;
+        end
 return result;
 end;
 
@@ -28,7 +24,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,0,0,300,0,5792);
+        target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
 end;
 
 -----------------------------------------
@@ -36,8 +32,7 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_DEX, 1);
-	target:addMod(MOD_MND, -3);
+        target:addMod(MOD_INT, 7);
 end;
 
 -----------------------------------------
@@ -45,6 +40,5 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_DEX, 1);
-	target:delMod(MOD_MND, -3);
+        target:delMod(MOD_INT, 7);
 end;

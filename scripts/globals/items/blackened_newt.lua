@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4581
--- Item: blackened_newt
+-- Item: Blackened Newt
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Dexterity 4

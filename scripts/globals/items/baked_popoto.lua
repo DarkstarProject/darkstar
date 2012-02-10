@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4436
--- Item: baked_popoto
+-- Item: Baked Popoto
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Health 20

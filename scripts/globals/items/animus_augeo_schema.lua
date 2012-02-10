@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 6059
---	Animus Augeo Schema
+--	Item: Animus Augeo Schema
 --	Teaches the white magic Animus Augeo
 -----------------------------------------
 

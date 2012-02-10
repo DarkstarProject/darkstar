@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 6061
---	Adloquium Schema
+--	Item: Adloquium Schema
 --	Teaches the white magic Adloquium
 -----------------------------------------
 

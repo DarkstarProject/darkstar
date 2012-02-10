@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 5339
---	Bloody Bolt Quiver
+--	Item: Bloody Bolt Quiver
 --	When used, you will obtain one stack of Bloody Bolts
 -----------------------------------------
 

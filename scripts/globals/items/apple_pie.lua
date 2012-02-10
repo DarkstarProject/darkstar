@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4413
--- Item: apple_pie
+-- Item: Apple Pie
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Magic 25

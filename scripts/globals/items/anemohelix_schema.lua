@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 6046
---	Anemohelix Schema
+--	Item: Anemohelix Schema
 --	Teaches the black magic Anemohelix
 -----------------------------------------
 

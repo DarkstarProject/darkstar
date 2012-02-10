@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5590
--- Item: balik_sandvici
+-- Item: Balik Sandvici
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Dexterity 3

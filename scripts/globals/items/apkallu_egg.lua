@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5568
--- Item: apkallu_egg
+-- Item: Apkallu Egg
 -- Food Effect: 5Min, All Races
 -----------------------------------------
 -- Health 6

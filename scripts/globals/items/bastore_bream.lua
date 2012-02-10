@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4461
--- Item: bastore_bream
+-- Item: Bastore Bream
 -- Food Effect: 5Min, Mithra only
 -----------------------------------------
 -- Dexterity 4

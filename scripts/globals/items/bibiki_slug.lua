@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5122
--- Item: bibiki_slug
+-- Item: Bibiki Slug
 -- Food Effect: 5Min, Mithra only
 -----------------------------------------
 -- Dexterity -5

@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 4218
---	Air Rider
+--	Item: Air Rider
 --	A goblin in a Santa outfit rides a sleigh in a downward spiral
 -----------------------------------------
 

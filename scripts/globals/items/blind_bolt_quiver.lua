@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 5334
---	Blind Bolt Quiver
+--	Item: Blind Bolt Quiver
 --	When used, you will obtain one stack of Blind Bolts
 -----------------------------------------
 

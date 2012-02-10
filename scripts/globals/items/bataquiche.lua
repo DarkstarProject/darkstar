@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5168
--- Item: bataquiche
+-- Item: Bataquiche
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Magic 8

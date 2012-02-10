@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4406
--- Item: baked_apple
+-- Item: Baked Apple
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Magic 20

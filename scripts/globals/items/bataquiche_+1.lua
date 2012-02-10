@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5169
--- Item: bataquiche_+1
+-- Item: Bataquiche +1
 -- Food Effect: 60Min, All Races
 -----------------------------------------
 -- Magic 10

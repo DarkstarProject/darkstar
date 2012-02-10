@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4311
--- Item: black_bubble-eye
+-- Item: Black Bubble-Eye
 -- Food Effect: 30Min, Mithra only
 -----------------------------------------
 -- Dexterity 2

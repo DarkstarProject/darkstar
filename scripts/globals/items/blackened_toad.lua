@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4599
--- Item: blackened_toad
+-- Item: Blackened Toad
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Dexterity 2

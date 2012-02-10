@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4269
--- Item: bijou_glace
+-- Item: Bijou Glace
 -- Food Effect: 240Min, All Races
 -----------------------------------------
 -- Magic % 13
