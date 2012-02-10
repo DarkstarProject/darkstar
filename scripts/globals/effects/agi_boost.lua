@@ -1,14 +1,17 @@
 -----------------------------------
 --
---
+--  EFFECT_AGI_BOOST
 --
 -----------------------------------
+
+require("scripts/globals/status");
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_AGI, effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_AGI, effect:getPower());
 end;
