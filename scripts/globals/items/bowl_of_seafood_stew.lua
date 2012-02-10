@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4561
--- Item: bowl_of_seafood_stew
+-- Item: Bowl of Seafood Stew
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Health 20

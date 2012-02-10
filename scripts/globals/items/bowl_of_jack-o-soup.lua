@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4522
--- Item: bowl_of_jack-o-soup
+-- Item: Bowl of Jack-o'-Soup
 -- Food Effect: 240Min, All Races
 -----------------------------------------
 -- Health % 2

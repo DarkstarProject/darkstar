@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4453
--- Item: bowl_of_eyeball_soup
+-- Item: Bowl of Eyeball Soup
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Charisma -10

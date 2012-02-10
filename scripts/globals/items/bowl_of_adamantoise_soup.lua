@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5210
--- Item: bowl_of_adamantoise_soup
+-- Item: Bowl of Adamantoise Soup
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Strength -7

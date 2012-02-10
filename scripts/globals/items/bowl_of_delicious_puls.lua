@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4533
--- Item: bowl_of_delicious_puls
+-- Item: Bowl of Delicious Puls
 -- Food Effect: 240Min, All Races
 -----------------------------------------
 -- Dexterity -1

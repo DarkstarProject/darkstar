@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4433
--- Item: bowl_of_dhalmel_stew
+-- Item: Bowl of Dhalmel Stew
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Strength 4

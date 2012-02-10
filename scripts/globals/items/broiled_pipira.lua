@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4585
--- Item: broiled_pipira
+-- Item: Broiled Pipira
 -- Food Effect: 60Min, All Races
 -----------------------------------------
 -- Dexterity 4

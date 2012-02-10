@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4349
--- Item: bunny_ball
+-- Item: Bunny Ball
 -- Food Effect: 240Min, All Races
 -----------------------------------------
 -- Health 10

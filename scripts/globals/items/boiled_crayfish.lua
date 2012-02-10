@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4535
--- Item: boiled_crayfish
+-- Item: Boiled Crayfish
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- defense % 30

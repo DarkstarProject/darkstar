@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5541
--- Item: bunch_of_royal_grapes
+-- Item: Bunch of Royal Grapes
 -- Food Effect: 5Min, All Races
 -----------------------------------------
 -- Agility -6

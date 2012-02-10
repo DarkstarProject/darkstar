@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4586
--- Item: broiled_carp
+-- Item: Broiled Carp
 -- Food Effect: 60Min, All Races
 -----------------------------------------
 -- Dexterity 2

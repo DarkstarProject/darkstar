@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4511
--- Item: bowl_of_ambrosia
+-- Item: Bowl of Ambrosia
 -- Food Effect: 240Min, All Races
 -----------------------------------------
 -- Health 7

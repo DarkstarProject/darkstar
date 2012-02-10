@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5222
--- Item: bowl_of_homemade_stew
+-- Item: Bowl of Homemade Stew
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Vitality 1

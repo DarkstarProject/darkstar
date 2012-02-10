@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4440
--- Item: bowl_of_whitefish_stew
+-- Item: Bowl of Whitefish Stew
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Health 10

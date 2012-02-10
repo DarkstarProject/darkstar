@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4587
--- Item: broiled_trout
+-- Item: Broiled Trout
 -- Food Effect: 60Min, All Races
 -----------------------------------------
 -- Dexterity 4

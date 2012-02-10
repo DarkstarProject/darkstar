@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4235
--- Item: bowl_of_cursed_soup
+-- Item: Bowl of Cursed Soup
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Strength -7

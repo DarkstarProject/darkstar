@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4284
--- Item: bowl_of_tender_navarin
+-- Item: Bowl of Tender Navarin
 -- Food Effect: 240Min, All Races
 -----------------------------------------
 -- Health % 3

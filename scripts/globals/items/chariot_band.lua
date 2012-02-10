@@ -3,6 +3,8 @@
 -- Item: chariot band
 -- Experience point bonus
 -----------------------------------------
+-- ID: 15761
+-- Item: Chariot Band
 -- Bonus: +75%
 -- Duration: 90 min
 -- Max bonus: 500 exp

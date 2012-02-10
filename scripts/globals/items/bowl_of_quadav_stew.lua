@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4569
--- Item: bowl_of_quadav_stew
+-- Item: Bowl of Quadav Stew
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Agility -4

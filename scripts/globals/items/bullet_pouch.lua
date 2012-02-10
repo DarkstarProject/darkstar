@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 5363
---	Bullet Pouch
+--	Item: Bullet Pouch
 --	When used, you will obtain one stack of Bullets
 -----------------------------------------
 

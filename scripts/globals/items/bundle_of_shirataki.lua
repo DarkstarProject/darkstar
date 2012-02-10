@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5237
--- Item: bundle_of_shirataki
+-- Item: Bundle of Shirataki
 -- Food Effect: 5Min, All Races
 -----------------------------------------
 -- Strength -3

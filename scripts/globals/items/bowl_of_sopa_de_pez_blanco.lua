@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4601
--- Item: bowl_of_sopa_de_pez_blanco
+-- Item: Bowl of Sopa de Pez Blanco
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Health 12

@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4589
--- Item: bowl_of_wild_stew
+-- Item: Bowl of Wild Stew
 -- Food Effect: 240Min, All Races
 -----------------------------------------
 -- Strength 4

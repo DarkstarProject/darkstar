@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4417
--- Item: bowl_of_egg_soup
+-- Item: Bowl of Egg Soup
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Health % 6

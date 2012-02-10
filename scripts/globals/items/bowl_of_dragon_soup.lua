@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4549
--- Item: bowl_of_dragon_soup
+-- Item: Bowl of Dragon Soup
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Health 20

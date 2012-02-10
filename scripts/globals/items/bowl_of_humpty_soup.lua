@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4521
--- Item: bowl_of_humpty_soup
+-- Item: Bowl of Humpty Soup
 -- Food Effect: 240Min, All Races
 -----------------------------------------
 -- Health % 6

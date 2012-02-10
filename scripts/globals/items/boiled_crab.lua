@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4456
--- Item: boiled_crab
+-- Item: Boiled Crab
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Vitality 2

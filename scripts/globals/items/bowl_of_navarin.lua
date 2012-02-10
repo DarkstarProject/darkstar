@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4439
--- Item: bowl_of_navarin
+-- Item: Bowl of Navarin
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Health % 3

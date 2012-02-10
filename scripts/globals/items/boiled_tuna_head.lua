@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4540
--- Item: boiled_tuna_head
+-- Item: Boiled Tuna Head
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Magic 20

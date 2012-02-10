@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4431
--- Item: bunch_of_san_dorian_grapes
+-- Item: Bunch of San Dorian Grapes
 -- Food Effect: 5Min, All Races
 -----------------------------------------
 -- Agility -5

@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4596
--- Item: bunch_of_wild_pamamas
+-- Item: Bunch of Wild Pamamas
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Strength -3

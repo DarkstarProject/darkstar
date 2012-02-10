@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4542
--- Item: bowl_of_brain_stew
+-- Item: Bowl of Brain Stew
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Dexterity 5

@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4547
--- Item: bowl_of_boiled_cockatrice
+-- Item: Bowl of Boiled Cockatrice
 -- Food Effect: 180Min, All Races
 -----------------------------------------
 -- Strength 5

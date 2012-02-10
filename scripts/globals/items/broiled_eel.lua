@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4588
--- Item: broiled_eel
+-- Item: Broiled Eel
 -- Food Effect: 60Min, All Races
 -----------------------------------------
 -- Dexterity 4

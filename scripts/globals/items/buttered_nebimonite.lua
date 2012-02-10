@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4267
--- Item: buttered_nebimonite
+-- Item: Buttered Nebimonite
 -- Food Effect: 60Min, All Races
 -----------------------------------------
 -- Dexterity 1

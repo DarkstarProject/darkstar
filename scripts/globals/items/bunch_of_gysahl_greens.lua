@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4545
--- Item: bunch_of_gysahl_greens
+-- Item: Bunch of Gysahl Greens
 -- Food Effect: 5Min, All Races
 -----------------------------------------
 -- Agility 3

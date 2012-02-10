@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4503
--- Item: bunch_of_buburimu_grapes
+-- Item: Bunch of Buburimu Grapes
 -- Food Effect: 5Min, All Races
 -----------------------------------------
 -- Agility -6

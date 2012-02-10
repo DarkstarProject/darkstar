@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 4216
---	Briliant snow
+--	Item: Briliant Snow
 --	Creates a spiral of "snow" effects
 -----------------------------------------
 

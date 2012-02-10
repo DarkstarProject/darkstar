@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4327
--- Item: bowl_of_emerald_soup
+-- Item: Bowl of Emerald Soup
 -- Food Effect: 240Min, All Races
 -----------------------------------------
 -- Agility 2

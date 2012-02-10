@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5194
--- Item: bowl_of_pomodoro_sauce
+-- Item: Bowl of Pomodoro Sauce
 -- Food Effect: 5Min, All Races
 -----------------------------------------
 -- Intelligence 2

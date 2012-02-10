@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 4220
---	Bone Quiver
+--	Item: Bone Quiver
 --	When used, you will obtain one stack of Bone Arrows
 -----------------------------------------
 

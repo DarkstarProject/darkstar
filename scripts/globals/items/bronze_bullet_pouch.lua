@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 5359
---	Bronze Bullet Pouch
+--	Item: Bronze Bullet Pouch
 --	When used, you will obtain one stack of Bronze Bullets
 -----------------------------------------
 

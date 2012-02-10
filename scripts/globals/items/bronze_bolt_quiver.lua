@@ -1,6 +1,6 @@
 -----------------------------------------
 --	ID: 4227
---	Bronze Bolt Quiver
+--	Item: Bronze Bolt Quiver
 --	When used, you will obtain one stack of Bronze Bolts
 -----------------------------------------
 
