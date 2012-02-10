@@ -13,7 +13,7 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 result = 0;
-        if (target:hasStatusEffect(EFFECT_MEDICINE) == true) then
+        if (target:hasStatusEffect(EFFECT_MEDICINE)) then
                 result = 111;
         end
 return result;
@@ -24,21 +24,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
+        target:addStatusEffect(EFFECT_AGI_BOOST,7,0,180);
         target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
-function onEffectGain(target,effect)
-        target:addMod(MOD_AGI, 7);
-end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-        target:delMod(MOD_AGI, 7);
 end;
