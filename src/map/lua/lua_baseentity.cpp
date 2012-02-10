@@ -146,15 +146,13 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addHP(lua_tointeger(L,-1));
+	int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(lua_tointeger(L,-1));
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
         UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-	
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//
@@ -166,15 +164,13 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addHP(-lua_tointeger(L,-1));
+	int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(-lua_tointeger(L,-1));
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
         UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-		
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//
@@ -187,15 +183,13 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	((CBattleEntity*)m_PBaseEntity)->health.hp = 0;
-	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addHP(lua_tointeger(L,-1));
+	int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(lua_tointeger(L,-1));
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
         UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-	
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//
@@ -218,14 +212,13 @@ inline int32 CLuaBaseEntity::addMP(lua_State *L)
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 	
-	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addMP(lua_tointeger(L,-1));
+	int32 result = ((CBattleEntity*)m_PBaseEntity)->addMP(lua_tointeger(L,-1));
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
         UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//
@@ -237,15 +230,13 @@ inline int32 CLuaBaseEntity::delMP(lua_State *L)
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addMP(-lua_tointeger(L,-1));
+	int32 result = ((CBattleEntity*)m_PBaseEntity)->addMP(-lua_tointeger(L,-1));
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
         UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-	
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//
@@ -258,15 +249,13 @@ inline int32 CLuaBaseEntity::setMP(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	((CBattleEntity*)m_PBaseEntity)->health.mp = 0;
-	uint16 result = ((CBattleEntity*)m_PBaseEntity)->addMP(lua_tointeger(L,-1));
+	int32 result = ((CBattleEntity*)m_PBaseEntity)->addMP(lua_tointeger(L,-1));
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
         UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-	
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//
@@ -295,9 +284,7 @@ inline int32 CLuaBaseEntity::addTP(lua_State *L)
 	{
         UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-	
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//
@@ -315,9 +302,7 @@ inline int32 CLuaBaseEntity::delTP(lua_State *L)
 	{
         UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-	
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//
@@ -336,9 +321,7 @@ inline int32 CLuaBaseEntity::setTP(lua_State *L)
 	{
 		UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-	
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//

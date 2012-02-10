@@ -26,6 +26,21 @@
 
 #include "../common/cbasetypes.h"
 
+enum BLOWFISH
+{
+    BLOWFISH_WAITING,
+    BLOWFISH_SENT,
+    BLOWFISH_ACCEPTED,
+};
+
+struct blowfish_t 
+{
+	uint32 key[5];
+	uint8  hash[16];
+	uint32 P[18], S[4][256];
+    BLOWFISH status;
+};
+
 void blowfish_decipher(uint32* xl, uint32* xr, uint32* P, uint32* S);
 void blowfish_encipher(uint32* xl, uint32* xr, uint32* P, uint32* S);
 

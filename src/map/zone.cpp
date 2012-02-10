@@ -600,6 +600,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 				   (PChar->animation == ANIMATION_HEALING ||
 				   (int8)(PChar->GetMLevel() - PCurrentMob->GetMLevel()) < 10))
 				{
+                    CurrentDistance += PChar->getMod(MOD_STEALTH);
+
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && 
                       !(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
                         PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 

@@ -178,8 +178,13 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	if (PChar->status == STATUS_DISAPPEAR)
 	{
+        if (PChar->loc.zone != NULL)
+        {
+            PacketParcer[0x00D](session, PChar, NULL);
+        }
+
 		session->blowfish.key[4] += 2;
-      //session->blowfish.status = BLOWFISH_SENT;
+        session->blowfish.status = BLOWFISH_SENT;
 
 		md5((uint8*)(session->blowfish.key), session->blowfish.hash, 20);
 
@@ -280,6 +285,8 @@ int32 SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    session->blowfish.status = BLOWFISH_WAITING;
+
 	PChar->InvitePending = 0;
 	PChar->PWideScanTarget = NULL;
 
@@ -360,6 +367,8 @@ int32 SmallPacket0x00F(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    session->blowfish.status = BLOWFISH_ACCEPTED;
+
 	PChar->health.tp = 0;
 
 	for(int32 i = 0; i < 16; ++i) 
@@ -803,7 +812,6 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 			return 0;
 		}
 	}
-
 	PChar->pushPacket(new CInventoryFinishPacket());
 	return 0;
 }
@@ -819,30 +827,28 @@ int32 SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* da
 	uint32 npcid  = RBUFL(data,(0x04));
 	uint16 targid = RBUFW(data,(0x3A));
 
-	uint8  numItems = RBUFB(data,(0x3C));
-
-	PChar->Container->Clean();
-
-	for(int32 slotID = 0; slotID < numItems; ++slotID) 
-	{
-		uint8  invSlotID    = RBUFB(data,(0x30+slotID));
-		uint32 itemQuantity = RBUFL(data,(0x08+slotID*4));
-						
-		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
-
-		if (PItem != NULL)
-		{
-			PChar->Container->setItem(slotID, PItem->getID(), invSlotID, itemQuantity);
-		}
-	}
-
 	CBaseEntity* PNpc = PChar->loc.zone->GetEntity(targid, TYPE_NPC);
 
 	if ((PNpc != NULL) && (PNpc->id == npcid))
 	{
-		luautils::OnTrade(PChar,PNpc);
-	}
-					
+        uint8 numItems = RBUFB(data,(0x3C));
+
+	    PChar->Container->Clean();
+
+	    for(int32 slotID = 0; slotID < numItems; ++slotID) 
+	    {
+		    uint8  invSlotID = RBUFB(data,(0x30+slotID));
+		    uint32 Quantity  = RBUFL(data,(0x08+slotID*4));
+						
+		    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
+
+            if (PItem != NULL && PItem->getQuantity() >= Quantity)
+		    {
+			    PChar->Container->setItem(slotID, PItem->getID(), invSlotID, Quantity);
+		    }
+	    }
+		luautils::OnTrade(PChar, PNpc);
+	}				
 	return 0;
 }
 

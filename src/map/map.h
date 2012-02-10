@@ -26,6 +26,7 @@
 
 #include "../common/cbasetypes.h"
 
+#include "../common/blowfish.h"
 #include "../common/kernel.h"
 #include "../common/socket.h"
 #include "../common/sql.h"

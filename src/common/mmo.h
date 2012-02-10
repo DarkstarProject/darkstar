@@ -74,13 +74,6 @@ enum ELEMENTS
 
 typedef std::string string_t;
 
-struct blowfish_t 
-{
-	uint32	key[5];
-	uint8	hash[16];
-	uint32	P[18], S[4][256];
-};
-
 // для персонажей в size хранится рост, 
 // для npc и монстров что-то вроде типа используемой модели
 

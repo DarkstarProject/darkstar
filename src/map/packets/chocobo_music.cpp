@@ -30,7 +30,6 @@ CChocoboMusicPacket::CChocoboMusicPacket()
 	this->type = 0x5F;
 	this->size = 0x04;
 
-	WBUFB(data,(0x04)-4) = 0x04;	// block
-	WBUFB(data,(0x06)-4) = 0xD4;	// music
-
+	WBUFB(data,(0x04)-4) = 0x04;    // block
+	WBUFB(data,(0x06)-4) = 0xD4;    // music
 }
