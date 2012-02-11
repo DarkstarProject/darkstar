@@ -1,32 +1,21 @@
 -----------------------------------
--- Area: FeiYin
+-- Area: Palborough Mines
 -- NPC:  ???
--- Involved In Quest: Pieuje's Decision
--- @zone 204
--- @pos 166 -23 -87
+-- Involved In Quest: The Talekeeper's Truth
+-- @zone 143
+-- @pos 15 -31 -94
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
+package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/FeiYin/TextIDs");
+require("scripts/zones/Palborough_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-	if(player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:hasItem(13842) == false) then
-		if(trade:hasItemQty(1098,1) and trade:getItemCount() == 1) then -- Trade Tavnazia Bell
-			player:tradeComplete();
-			player:messageSpecial(SENSE_OF_FOREBODING);
-			SpawnMob(17612836,180):updateEnmity(player);
-		end
-	end
-
 end;
 
 -----------------------------------
@@ -34,7 +23,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(THERE_IS_NOTHING_ORDINARY);
+	
+	if(player:getVar("theTalekeeperTruthCS") == 3) then
+		player:messageSpecial(SENSE_OF_FOREBODING);
+		SpawnMob(17363318,180):updateEnmity(player);
+	else
+		player:messageSpecial(THERE_IS_NOTHING_ORDINARY);
+	end
 end;
 
 -----------------------------------

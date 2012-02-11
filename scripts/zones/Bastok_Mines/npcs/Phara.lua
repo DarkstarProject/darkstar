@@ -2,6 +2,7 @@
 -- Area: Bastok Mines
 -- NPC:  Phara
 -- Starts and Finishes Quest: The doorman (start)
+-- Involved in Quest: The Talekeeper's Truth
 -- @zone 234
 -- @pos 75 0 -80
 -----------------------------------
@@ -10,7 +11,6 @@ package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
@@ -28,6 +28,7 @@ end;
 function onTrigger(player,npc)
 
 	theDoorman = player:getQuestStatus(BASTOK,THE_DOORMAN);
+	theTalekeeperTruth = player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH);
 
 	if(theDoorman == QUEST_AVAILABLE and player:getMainJob() == 1 and player:getMainLvl() >= 40) then
 		player:startEvent(0x0097); -- Start Quests "The doorman"
@@ -35,7 +36,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x0098); -- Need to wait 1 vanadiel day
 	elseif(player:getVar("theDoormanCS") == 2 and VanadielDayOfTheYear() ~= player:getVar("theDoorman_time")) then
 		player:startEvent(0x0099); -- The doorman notification, go to naji
-	elseif(theDoorman == QUEST_FINISHED) then
+	elseif(theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE) then
 		player:startEvent(0x009a); -- New standard dialog
 	else
 		player:startEvent(0x0096); -- Standard dialog
@@ -71,6 +72,9 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(YASINS_SWORD);
 		player:messageSpecial(KEYITEM_OBTAINED,YASINS_SWORD);
 		player:setVar("theDoormanCS",3);
+		player:setVar("theDoorman_time",0);
+	elseif(csid == 0x009a and player:getMainJob() == 1 and player:getMainLvl() >= 50) then
+		player:setVar("theTalekeeperTruthCS",1);
 	end
 
 end;
