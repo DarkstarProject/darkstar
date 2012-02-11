@@ -13,7 +13,7 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 result = 0;
-        if (target:hasStatusEffect(EFFECT_MEDICINE) == true) then
+        if (target:hasStatusEffect(EFFECT_MEDICINE)) then
                 result = 111;
         end
 return result;
