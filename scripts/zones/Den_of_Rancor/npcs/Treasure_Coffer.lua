@@ -34,7 +34,7 @@ function onTrade(player,npc,trade)
 		
 		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
 		zone = player:getZone();
-		if((player:hasKeyItem(MAP_OF_THE_DEN_OF_RANCOR) == false) then 
+		if(player:hasKeyItem(MAP_OF_THE_DEN_OF_RANCOR) == false) then 
 			questItemNeeded = 1;
 		end
 		--------------------------------------
