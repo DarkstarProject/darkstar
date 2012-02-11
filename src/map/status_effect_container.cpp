@@ -651,7 +651,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
         if (PStatusEffect->GetIcon() != 0)
         {
             UpdateStatusIcons();
-            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 206));
         }
         if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
