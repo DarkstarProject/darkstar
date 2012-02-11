@@ -1579,14 +1579,17 @@ int32 SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* da
 				{
                     uint8 prevzone = PChar->loc.prevzone;
 
-					switch (town)
-					{
-						case 1: prevzone = zone + 0xE5; break;
-						case 2: prevzone = zone + 0xE9; break;
-						case 3: prevzone = zone + 0xED; break;
-						case 4: prevzone = zone + 0xF2; break;
-						case 5: prevzone = zone + (zone == 1 ? 0x2F : 0x30); break;
-					}
+                    if (zone != 0)  // 0 - выход в предыдущую зону, остальные значения - выбор зоны по имени
+                    {
+					    switch (town)
+					    {
+						    case 1: prevzone = zone + 0xE5; break;
+						    case 2: prevzone = zone + 0xE9; break;
+						    case 3: prevzone = zone + 0xED; break;
+						    case 4: prevzone = zone + 0xF2; break;
+						    case 5: prevzone = zone + (zone == 1 ? 0x2F : 0x30); break;
+					    }
+                    }
                     PChar->loc.destination = prevzone;
 				} else {
                     PChar->loc.destination = PZoneLine->m_toZone;

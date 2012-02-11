@@ -91,13 +91,13 @@ void CBattleEntity::UpdateHealth()
     health.modmp = (health.maxmp + getMod(MOD_MP)) * (100 + getMod(MOD_MPP)) / 100;
     health.modhp = (health.maxhp + getMod(MOD_HP)) * (100 + getMod(MOD_HPP)) / 100;
 
-    //dif = health.modmp <  dif ?  health.modmp : dif;
-    //dif = health.modhp < -dif ? -health.modhp : dif;
+    dif = (health.modmp - 0) <  dif ?  (health.modmp - 0) : dif;
+    dif = (health.modhp - 1) < -dif ? -(health.modhp - 1) : dif;
 
-    //health.modhp += dif;
-    //health.modmp -= dif;
+    health.modhp += dif;
+    health.modmp -= dif;
 
-    health.hp = cap_value(health.hp, 0, health.maxhp);
+    health.hp = cap_value(health.hp, 0, health.modhp);
     health.mp = cap_value(health.mp, 0, health.modmp);
 }
 
