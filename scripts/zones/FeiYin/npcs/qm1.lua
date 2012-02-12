@@ -3,7 +3,7 @@
 -- NPC:  ???
 -- Involved In Quest: Pieuje's Decision
 -- @zone 204
--- @pos 166 -23 -87
+-- @pos -55 -16 69
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
 -----------------------------------

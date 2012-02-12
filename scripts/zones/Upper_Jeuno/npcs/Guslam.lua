@@ -21,10 +21,29 @@ function onTrade(player,npc,trade)
 end; 
 
 -----------------------------------
+-- If it's the first Hands quest
+-----------------------------------
+
+function nbHandsQuestsCompleted(player)
+	
+	questNotAvailable = 0;
+	
+	for nb = 1, 15, 1 do
+		if(player:getQuestStatus(JEUNO,43 + nb) ~= QUEST_AVAILABLE) then
+			questNotAvailable = questNotAvailable + 1;
+		end
+	end
+	
+	return questNotAvailable;
+	
+end;
+
+-----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
+	
 	if(player:getMainLvl() >= 50 and player:getVar("BorghertzAlreadyActiveWithJob") == 0) then
 		if(player:getMainJob() == 1 and 
 		   player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH) ~= QUEST_AVAILABLE and 
@@ -92,10 +111,17 @@ function onTrigger(player,npc)
 	elseif(player:getVar("BorghertzAlreadyActiveWithJob") >= 1 and player:hasKeyItem(OLD_GAUNTLETS) == false) then 
 		player:startEvent(0x002b); -- During Quest before KI obtained
 	elseif(player:hasKeyItem(OLD_GAUNTLETS) == true) then 
-		player:startEvent(0x001a); -- Dialog avec Old Gauntlets KI
+		player:startEvent(0x001a); -- Dialog with Old Gauntlets KI
+		
+		if(nbHandsQuestsCompleted(player) == 1) then
+			player:setVar("BorghertzHandsFirstTime",1);
+		else
+			player:setVar("BorghertzCS",1);
+		end
 	else
 		player:startEvent(0x009a); -- Standard dialog
 	end
+	
 end; 
 
 -- 0x009a Standard dialog
@@ -120,12 +146,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
 	if(csid == 0x009b) then 
 		NumQuest = 43 + player:getMainJob();
 		player:addQuest(JEUNO,NumQuest);
 		player:setVar("BorghertzAlreadyActiveWithJob",player:getMainJob());
 	end
+	
 end;
-
-
-

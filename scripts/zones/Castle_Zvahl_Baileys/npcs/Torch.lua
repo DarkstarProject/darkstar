@@ -5,9 +5,10 @@
 -- @zone 161
 -- @pos 63 -24 21
 -----------------------------------
+package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
 require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
 
 -----------------------------------
@@ -28,7 +29,7 @@ function onTrigger(player,npc)
 	X = player:getXPos();
 	Z = player:getZPos();
 	
-	if(OldGauntlets == true and ShadowFlames == false and BorghertzCS >= 1) then
+	if(OldGauntlets == true and ShadowFlames == false and BorghertzCS >= 2) then
 		if(player:getVar("BorghertzSparkKilled") == 1) then 
 			if(X >= 57 and X <= 67 and Z >= 20 and Z <= 26) then -- Right Torch
 				if(player:getVar("BorghertzChooseTorch") == 2) then 

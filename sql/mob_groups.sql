@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50514
 File Encoding         : 65001
 
-Date: 2012-02-11 13:45:44
+Date: 2012-02-12 13:45:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -8010,13 +8010,13 @@ INSERT INTO `mob_groups` VALUES ('7998', '3463', '148', '1056', '0', '1590', '69
 INSERT INTO `mob_groups` VALUES ('7999', '3716', '148', '0', '128', '1550', '72', '75');
 INSERT INTO `mob_groups` VALUES ('8000', '4494', '148', '604800', '0', '1550', '85', '85');
 INSERT INTO `mob_groups` VALUES ('8001', '340', '149', '0', '128', '0', '43', '43');
-INSERT INTO `mob_groups` VALUES ('8002', '419', '149', '0', '128', '187', '55', '55');
+INSERT INTO `mob_groups` VALUES ('8002', '419', '149', '0', '128', '0', '55', '55');
 INSERT INTO `mob_groups` VALUES ('8003', '475', '149', '900', '0', '1899', '45', '47');
 INSERT INTO `mob_groups` VALUES ('8004', '924', '149', '792', '0', '944', '20', '23');
 INSERT INTO `mob_groups` VALUES ('8005', '925', '149', '792', '0', '1899', '33', '36');
 INSERT INTO `mob_groups` VALUES ('8006', '926', '149', '792', '0', '1731', '20', '23');
 INSERT INTO `mob_groups` VALUES ('8007', '927', '149', '792', '0', '786', '30', '33');
-INSERT INTO `mob_groups` VALUES ('8008', '964', '149', '0', '128', '187', '53', '53');
+INSERT INTO `mob_groups` VALUES ('8008', '964', '149', '0', '128', '0', '53', '53');
 INSERT INTO `mob_groups` VALUES ('8009', '1046', '149', '1800', '0', '358', '71', '71');
 INSERT INTO `mob_groups` VALUES ('8010', '1323', '149', '0', '128', '1550', '22', '24');
 INSERT INTO `mob_groups` VALUES ('8011', '1478', '149', '0', '128', '188', '45', '45');
