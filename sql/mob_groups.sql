@@ -6853,7 +6853,7 @@ INSERT INTO `mob_groups` VALUES ('6841', '130', '127', '0', '128', '703', '66', 
 INSERT INTO `mob_groups` VALUES ('6842', '387', '127', '86400', '0', '1450', '80', '80');
 INSERT INTO `mob_groups` VALUES ('6843', '407', '127', '330', '1', '684', '46', '48');
 INSERT INTO `mob_groups` VALUES ('6844', '980', '127', '330', '0', '703', '45', '46');
-INSERT INTO `mob_groups` VALUES ('6845', '1074', '127', '0', '128', '187', '50', '50');
+INSERT INTO `mob_groups` VALUES ('6845', '1074', '127', '0', '128', '0', '58', '58');
 INSERT INTO `mob_groups` VALUES ('6846', '1803', '127', '330', '0', '741', '42', '44');
 INSERT INTO `mob_groups` VALUES ('6847', '1836', '127', '1', '0', '0', '1', '1');
 INSERT INTO `mob_groups` VALUES ('6848', '2255', '127', '285120', '0', '1451', '85', '85');
@@ -6862,8 +6862,8 @@ INSERT INTO `mob_groups` VALUES ('6850', '2397', '127', '330', '0', '758', '40',
 INSERT INTO `mob_groups` VALUES ('6851', '2413', '127', '330', '4', '1910', '48', '50');
 INSERT INTO `mob_groups` VALUES ('6852', '2442', '127', '330', '1', '0', '45', '47');
 INSERT INTO `mob_groups` VALUES ('6853', '2585', '127', '330', '0', '1486', '45', '50');
-INSERT INTO `mob_groups` VALUES ('6854', '2767', '127', '0', '128', '187', '50', '50');
-INSERT INTO `mob_groups` VALUES ('6855', '3135', '127', '0', '128', '187', '50', '50');
+INSERT INTO `mob_groups` VALUES ('6854', '2767', '127', '0', '128', '0', '58', '58');
+INSERT INTO `mob_groups` VALUES ('6855', '3135', '127', '0', '128', '0', '60', '60');
 INSERT INTO `mob_groups` VALUES ('6856', '3912', '127', '330', '4', '1519', '48', '50');
 INSERT INTO `mob_groups` VALUES ('6857', '44', '128', '86400', '0', '1020', '72', '74');
 INSERT INTO `mob_groups` VALUES ('6858', '71', '128', '330', '4', '994', '66', '68');
@@ -8091,7 +8091,7 @@ INSERT INTO `mob_groups` VALUES ('8079', '582', '151', '792', '0', '734', '29', 
 INSERT INTO `mob_groups` VALUES ('8080', '872', '151', '792', '0', '1677', '29', '31');
 INSERT INTO `mob_groups` VALUES ('8081', '1160', '151', '990', '4', '1196', '47', '49');
 INSERT INTO `mob_groups` VALUES ('8082', '1341', '151', '990', '4', '385', '47', '49');
-INSERT INTO `mob_groups` VALUES ('8083', '2016', '151', '0', '0', '0', '0', '0');
+INSERT INTO `mob_groups` VALUES ('8083', '2016', '151', '0', '128', '999', '63', '63');
 INSERT INTO `mob_groups` VALUES ('8084', '2226', '151', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('8085', '2405', '151', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('8086', '2602', '151', '792', '0', '1389', '29', '31');
