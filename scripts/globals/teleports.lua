@@ -363,22 +363,22 @@ function toEscape(player, zone)
 	if(zone == 140 or zone == 141 or zone == 142) then -- From Ghelsba Outpost, Fort Ghelsba, Yughott Grotto
 		player:setPos(-732,-64,611,45,0x64); -- To West Ronfaure at E-4
 	elseif(zone == 157 or zone == 158 or zone == 184) then -- From Delkfutt's Tower - Middle, Upper, Lower
-		player:setPos(-286,-19,320,255,7E); -- To Qufim Island at F-6
+		player:setPos(-286,-19,320,255,0x7E); -- To Qufim Island at F-6
 	elseif(zone == 169 or zone == 192 or zone == 194 or zone == 170) then -- From Toraimarai Canal or Inner Horutoto Ruins or Outer Horutoto Ruins or Full Moon Fountain
 		player:setPos(360,-13,99,128,116); -- To East Sarutabaruta at J-7
 	elseif(zone == 16 or zone == 20 or zone == 18) then -- From Promyvion - Holla or Promyvion - Mea or Promyvion - Dem
-		player:setPos(280,-80,-58,0,); -- To Hall of Transference
+		player:setPos(280,-80,-58,0,14); -- To Hall of Transference
 	elseif(zone == 162 or zone == 161) then -- From Castle Zvahl Keep or Castle Zvahl Baileys
 		player:setPos(-412,-43,19,254,0x70); -- To Xarcabard at G-7
 	elseif(zone == 149 or zone == 150) then --From Davoi or Monastic Cavern
 		player:setPos(239,-7,-591,187,0x68); -- To Jugner Forest at G-12
 	elseif(zone == 148 or zone == 147) then -- From Qulun Dome or Beadeaux
-		player:setPos(553,25,-380,120,6D); -- To Pashhow Marshlands at K-11
+		player:setPos(553,25,-380,120,0x6D); -- To Pashhow Marshlands at K-11
 	elseif(zone == 177 or zone == 178) then --From Ve'Lugannon Palace or Shrine of Ru'Avitau
 		player:setPos(4,-54,-599,185,130); -- To Ru'Aun Gardens at H-11
 	elseif(zone == 152 or zone == 151) then -- From Altar Room or Castle Oztroja
 		player:setPos(752,-32,-40,129,119); -- To Meriphataud Mountains at L-8
-	elseif(zone == 159 zone == 160) then -- From Temple of Uggalepih or Den of Rancor
+	elseif(zone == 159 or zone == 160) then -- From Temple of Uggalepih or Den of Rancor
 		player:setPos(300,-4,-586,193,124); -- To Yhoator Jungle at J-11
 	elseif(zone == 12 or zone == 11) then -- From Newton Movalpolos or Oldton Movalpolos
 		player:setPos(552,-12,660,124,106); -- To North Gustaberg at K-6
@@ -401,7 +401,7 @@ function toEscape(player, zone)
 	elseif(zone == 204) then -- From Fei'Yin
 		player:setPos(280,20,568,61,0x6F); -- To Beaucedine Glacier at J-4
 	elseif(zone == 197) then -- From Crawlers' Nest
-		player:setPos(-372,-28,-772,0,6E); -- To Rolanberry Fields at F-13
+		player:setPos(-372,-28,-772,0,0x6E); -- To Rolanberry Fields at F-13
 	elseif(zone == 153) then -- From The Boyahda Tree
 		player:setPos(508,2,-577,133,121); -- To The Sanctuary of Zi'Tah at K-12
 	elseif(zone == 200) then -- From Garlaige Citadel
@@ -457,3 +457,4 @@ function toEscape(player, zone)
 	elseif(zone == 171) then -- From Crawlers' Nest (S)
 		player:setPos(-373,-28,772,218,91); -- To Rolanberry Field (S) F-13
 	end;
+end;
