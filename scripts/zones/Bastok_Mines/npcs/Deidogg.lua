@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok Mines
 -- NPC:  Deidogg
--- Starts and Finishes Quest: The Talekeeper's Truth
+-- Starts and Finishes Quest: The Talekeeper's Truth, The Talekeeper's Gift (start)
 -- @zone 234
 -- @pos -13 7 29
 -----------------------------------
@@ -27,6 +27,10 @@ function onTrade(player,npc,trade)
 		if(trade:hasItemQty(1099,1) and trade:getItemCount() == 1) then -- Trade Parasite Skin
 			player:startEvent(0x00a4);
 		end
+	elseif(player:getVar("theTalekeeperGiftCS") == 2) then
+		if(trade:hasItemQty(4394,1) and trade:getItemCount() == 1) then -- Trade Ginger Cookie
+			player:startEvent(0x00ac);
+		end
 	end
 	
 end;
@@ -47,19 +51,25 @@ function onTrigger(player,npc)
 			player:setVar("theTalekeeperTruthCS",2);
 		elseif(theTalekeeperTruthCS == 2) then
 			player:startEvent(0x00a1); -- Start Quest "The Talekeeper's Truth"
+		else
+			player:startEvent(0x0020); -- Standard dialog
 		end
 	elseif(theTalekeeperTruthCS == 4) then
 		player:startEvent(0x00a3); -- During Quest "The Talekeeper's Truth"
 	elseif(theTalekeeperTruthCS == 5 and VanadielDayOfTheYear() ~= player:getVar("theTalekeeperTruth_timer")) then
 		player:startEvent(0x00a5); -- Finish Quest "The Talekeeper's Truth"
-	elseif(theTalekeeperTruthCS == 5 or theTalekeeperTruth == QUEST_COMPLETED) then
+	elseif(theTalekeeperTruthCS == 5 or (theTalekeeperTruth == QUEST_COMPLETED and (player:needToZone() or VanadielDayOfTheYear() == player:getVar("DeidoggWait1DayForAF3")))) then
 		player:startEvent(0x00a6); -- New standard dialog after "The Talekeeper's Truth"
+	elseif(player:needToZone() == false and VanadielDayOfTheYear() ~= player:getVar("DeidoggWait1DayForAF3") and player:getVar("theTalekeeperGiftCS") == 0) then
+		player:startEvent(0x00aa);
+		player:setVar("theTalekeeperGiftCS",1);
+		player:setVar("DeidoggWait1DayForAF3",0);
 	else
 		player:startEvent(0x0020); -- Standard dialog
 	end
 	
 end;
--- 0x0001  0x0020  0x00a0  0x00a1  0x00a2  0x00a3  0x00a4  0x00a5  0x00a6  0x00aa  0x00ac  0x00b0  0x00b4  0x01f8
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -94,10 +104,15 @@ function onEventFinish(player,csid,option)
 			player:addItem(14089);
 			player:messageSpecial(ITEM_OBTAINED, 14089); -- Fighter's Calligae
 			player:setVar("theTalekeeperTruthCS",0);
-			player:setVar("theTalekeeperTruth_timer",0);
+			player:setVar("DeidoggWait1DayForAF3",VanadielDayOfTheYear());
+			player:needToZone(true);
 			player:addFame(BASTOK,AF2_FAME);
 			player:completeQuest(BASTOK,THE_TALEKEEPER_S_TRUTH);
 		end
+	elseif(csid == 0x00ac) then
+		player:tradeComplete();
+		player:addQuest(BASTOK,THE_TALEKEEPER_S_GIFT);
+		player:setVar("theTalekeeperGiftCS",3);
 	end
 	
 end;

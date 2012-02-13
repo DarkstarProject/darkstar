@@ -3,12 +3,13 @@
 -- NPC: Detzo
 -- Starts & Finishes Quest: Rivals
 -----------------------------------
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
@@ -17,9 +18,9 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 
 function onTrade(player,npc,trade)
 
-Rivals = player:getQuestStatus(BASTOK,RIVALS);
+	Rivals = player:getQuestStatus(BASTOK,RIVALS);
 
-	if (Rivals == QUEST_ACCEPTED) then
+	if(Rivals == QUEST_ACCEPTED) then
 		FreeSlots = player:getFreeSlotsCount();
 		
 		if (FreeSlots >= 1) then
@@ -43,19 +44,21 @@ end;
 
 function onTrigger(player,npc)
 
-Rivals = player:getQuestStatus(BASTOK,RIVALS);
-Fame   = player:getFameLevel(BASTOK);
+	Rivals = player:getQuestStatus(BASTOK,RIVALS);
 	
-	if (Rivals == QUEST_AVAILABLE and Fame >= 3) then
+	if(player:getVar("theTalekeeperGiftCS") == 1) then
+		player:startEvent(0x00ab);
+		player:setVar("theTalekeeperGiftCS",2);
+	elseif(Rivals == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 3) then
 		player:startEvent(0x005d);
-	elseif (Rivals == QUEST_ACCEPTED) then
+	elseif(Rivals == QUEST_ACCEPTED) then
 		player:showText(npc,10311);
 	else
 		player:startEvent(0x001e);
 	end
 
 end;
-
+-- 0x0001  0x001e  0x005d  0x005e  0x00ab  0x03f2  0x00b0  0x00b4  0x00b8
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -76,15 +79,11 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x005d) then
 		player:addQuest(BASTOK,RIVALS);
 	elseif (csid == 0x005e) then
-		player:completeQuest(BASTOK,RIVALS);
-		player:addFame(BASTOK,BAS_FAME*100);
 		player:setTitle(CONTEST_RIGGER);		
 		player:addItem(13571);
 		player:messageSpecial(ITEM_OBTAINED,13571);
+		player:addFame(BASTOK,BAS_FAME*30);
+		player:completeQuest(BASTOK,RIVALS);
 	end
 	
 end;
-
-
-
-

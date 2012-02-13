@@ -17,4 +17,5 @@ ITEM_CANNOT_BE_OBTAINED = 6560; -- You cannot obtain the item <item> come back a
 		CHEST_LOCKED = 7367; -- The chest appears to be locked.
 
 -- Quest dialog
+    SENSE_OF_FOREBODING = 6578; -- You are suddenly overcome with a sense of foreboding...
   NOTHING_ORDINARY_HERE = 6577; -- There is nothing out of ordinary here

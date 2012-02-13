@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,YASINS_SWORD);
 		player:setVar("theDoormanCS",3);
 		player:setVar("theDoorman_time",0);
-	elseif(csid == 0x009a and player:getMainJob() == 1 and player:getMainLvl() >= 50) then
+	elseif(csid == 0x009a) then
 		player:setVar("theTalekeeperTruthCS",1);
 	end
 
