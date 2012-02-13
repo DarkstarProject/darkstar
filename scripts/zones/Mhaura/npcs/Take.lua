@@ -20,7 +20,7 @@ require("scripts/zones/Mhaura/TextIDs");
 		--player:startEvent(0x3f);-- expertice not done yet
 		--player:startEvent(0x40); -- after expertice quest
 		--player:startEvent(0x41); -- good luck
-		--player:startEvent(0x42);--valgier cook was delicious
+		--player:startEvent(0x42);-- Valgeir cook was delicious
 		--player:startEvent(0x43);-- after back to basics i think
 		
 -----------------------------------
@@ -37,7 +37,7 @@ end;
 function onTrigger(player,npc)
 
 if(false)then
-		player:addKeyItem(91); --give Land Crab Bisque from valgier
+		player:addKeyItem(91); --give Land Crab Bisque from Valgeir
 		
 		
 elseif (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then -- if available and allready talked to mayor assistant
@@ -55,7 +55,7 @@ elseif(player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_AVAILABLE and player:
 	
 	
 elseif(player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_ACCEPTED) then --
-	if(player:hasKeyItem(91)) then -- if have the Land Crab Bisque from valgier
+	if(player:hasKeyItem(91)) then -- if have the Land Crab Bisque from Valgeir
 		player:startEvent(0x3e);-- expertice completed		
 	else
 		player:startEvent(0x3f);-- expertice not done yet
@@ -66,7 +66,7 @@ elseif(player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_COMPLETED and player:
 elseif(player:getQuestStatus(OTHER_AREAS,THE_CLUE)==QUEST_ACCEPTED)then--
 	player:startEvent(0x41); -- good luck
 elseif(player:getQuestStatus(OTHER_AREAS,THE_CLUE)==QUEST_COMPLETED and player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_AVAILABLE) then --
-	player:startEvent(0x42);--valgier cook was delicious
+	player:startEvent(0x42);-- Valgeir cook was delicious
 elseif(player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_COMPLETED)then--
 	player:startEvent(0x43);-- after back to basics i think
 else
@@ -103,7 +103,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("QuestHNIVCCompYear_var",0);
 		player:setVar("QuestExpertiseCompDay_var",VanadielDayOfTheYear()); -- completition day of expertise quest
 		player:setVar("QuestExpertiseCompYear_var",VanadielYear());
-		player:delKeyItem(91); --give Land Crab Bisque from valgier
+		player:delKeyItem(91); --give Land Crab Bisque from Valgeir
 		player:completeQuest(OTHER_AREAS,EXPERTISE);	
 	end;
 end;

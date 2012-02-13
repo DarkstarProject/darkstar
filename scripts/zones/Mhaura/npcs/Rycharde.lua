@@ -5,7 +5,7 @@
 -- Starts & Finishes non Repeatable Quest: Rycharde the Chef (100%)
 -- quest WAY_OF_THE_COOK (100%)
 -- QUEST UNENDING_CHASE (100%)
--- his name is valgier (not completed correctly, ferry not implemented)
+-- his name is Valgeir (not completed correctly, ferry not implemented)
 -- the clue (100%)
 -- the basics (not completed correctly, ferry not implemented)
 -----------------------------------
@@ -294,7 +294,7 @@ printf("RESULT: %u",option);
 			player:addKeyItem(90); --give pizza to player
 			player:addQuest(OTHER_AREAS,HIS_NAME_IS_VALGEIR);	
 		end;
-	elseif(csid == 0x58) then  -- end quest 4 his name is valgier
+	elseif(csid == 0x58) then  -- end quest 4 his name is Valgeir
 		player:addFame(WINDURST,WIN_FAME*120);
 		player:addKeyItem(396); --reward Map of the Toraimarai Canal 
 		player:setVar("QuestUnendingCCompDay_var",0); -- completition day of unending chase delete
