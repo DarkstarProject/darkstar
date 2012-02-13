@@ -44,6 +44,8 @@ function onTrigger(player,npc)
 	theDoorman = player:getQuestStatus(BASTOK,THE_DOORMAN);
 	theTalekeeperTruth = player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH);
 	theTalekeeperTruthCS = player:getVar("theTalekeeperTruthCS");
+	Wait1DayForAF3 = player:getVar("DeidoggWait1DayForAF3");
+	theTalekeeperGiftCS = player:getVar("theTalekeeperGiftCS");
 	
 	if(theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == 1 and player:getMainLvl() >= 50) then
 		if(theTalekeeperTruthCS == 1) then
@@ -58,9 +60,9 @@ function onTrigger(player,npc)
 		player:startEvent(0x00a3); -- During Quest "The Talekeeper's Truth"
 	elseif(theTalekeeperTruthCS == 5 and VanadielDayOfTheYear() ~= player:getVar("theTalekeeperTruth_timer")) then
 		player:startEvent(0x00a5); -- Finish Quest "The Talekeeper's Truth"
-	elseif(theTalekeeperTruthCS == 5 or (theTalekeeperTruth == QUEST_COMPLETED and (player:needToZone() or VanadielDayOfTheYear() == player:getVar("DeidoggWait1DayForAF3")))) then
+	elseif(theTalekeeperTruthCS == 5 or (theTalekeeperTruth == QUEST_COMPLETED and (player:needToZone() or VanadielDayOfTheYear() == Wait1DayForAF3))) then
 		player:startEvent(0x00a6); -- New standard dialog after "The Talekeeper's Truth"
-	elseif(player:needToZone() == false and VanadielDayOfTheYear() ~= player:getVar("DeidoggWait1DayForAF3") and player:getVar("theTalekeeperGiftCS") == 0) then
+	elseif(player:needToZone() == false and VanadielDayOfTheYear() ~= Wait1DayForAF3 and Wait1DayForAF3 ~= 0 and theTalekeeperGiftCS == 0 and player:getMainJob() == 1) then
 		player:startEvent(0x00aa);
 		player:setVar("theTalekeeperGiftCS",1);
 		player:setVar("DeidoggWait1DayForAF3",0);
