@@ -106,6 +106,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(14089);
 			player:messageSpecial(ITEM_OBTAINED, 14089); -- Fighter's Calligae
 			player:setVar("theTalekeeperTruthCS",0);
+			player:setVar("theTalekeeperTruth_timer",0);
 			player:setVar("DeidoggWait1DayForAF3",VanadielDayOfTheYear());
 			player:needToZone(true);
 			player:addFame(BASTOK,AF2_FAME);
