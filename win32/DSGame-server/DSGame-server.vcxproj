@@ -214,6 +214,10 @@
     <ClInclude Include="..\..\src\map\packets\message_standard.h" />
     <ClInclude Include="..\..\src\map\packets\message_system.h" />
     <ClInclude Include="..\..\src\map\packets\message_text.h" />
+    <ClInclude Include="..\..\src\map\packets\trade_action.h" />
+    <ClInclude Include="..\..\src\map\packets\trade_item.h" />
+    <ClInclude Include="..\..\src\map\packets\trade_request.h" />
+    <ClInclude Include="..\..\src\map\packets\trade_update.h" />
     <ClInclude Include="..\..\src\map\packets\world_pass.h" />
     <ClInclude Include="..\..\src\map\packets\party_define.h" />
     <ClInclude Include="..\..\src\map\packets\party_invite.h" />
@@ -375,6 +379,10 @@
     <ClCompile Include="..\..\src\map\packets\message_standard.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_system.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_text.cpp" />
+    <ClCompile Include="..\..\src\map\packets\trade_action.cpp" />
+    <ClCompile Include="..\..\src\map\packets\trade_item.cpp" />
+    <ClCompile Include="..\..\src\map\packets\trade_request.cpp" />
+    <ClCompile Include="..\..\src\map\packets\trade_update.cpp" />
     <ClCompile Include="..\..\src\map\packets\world_pass.cpp" />
     <ClCompile Include="..\..\src\map\packets\party_define.cpp" />
     <ClCompile Include="..\..\src\map\packets\party_invite.cpp" />
