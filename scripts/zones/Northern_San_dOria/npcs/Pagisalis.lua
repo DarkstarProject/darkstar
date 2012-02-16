@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Pagisalis
--- Quest NPC
+-- NPC:  Pagisalis
+-- Involved In Quest: Enveloped in Darkness
+-- @zone 231
+-- @pos 
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -13,54 +15,49 @@ require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
-OldPocketWatch = 197;
-      OldBoots = 198;
-   VelvetCloth = 828;
-
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-Abeja = player:getQuestStatus(0,26);
-if (Abeja == 1) then
-	count = trade:getItemCount();
-		carta = trade:hasItemQty(913, 2);
-		gil = trade:getGil();
-		if (carta and count == 2 and gil == 0) then
+
+	if(player:getQuestStatus(SANDORIA,UNDYING_FLAMES) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(913,2) and trade:getItemCount() == 2) then -- Trade Lump of Beeswax
 			player:startEvent(0x0233);
-			end
-			end;
+		end
+	end
 			
-	if (player:hasKeyItem(197) == true) and (player:hasKeyItem(198) == false) then 
-	if (trade:hasItemQty(828,1)) and (trade:getItemCount() == 1) then
-		player:startEvent(0x25);
-		player:delKeyItem(197);
-			end
-			end;
-			end;
+	if(player:hasKeyItem(OLD_POCKET_WATCH) and player:hasKeyItem(OLD_BOOTS) == false) then 
+		if(trade:hasItemQty(828,1) and trade:getItemCount() == 1) then -- Trade Velvet Cloth
+			player:startEvent(0x0025);
+		end
+	end
+	
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-sanFame = player:getFameLevel(SANDORIA);
-Abeja = player:getQuestStatus(0,26);
-if (sanFame >= 2 and Abeja == 0 and player:hasKeyItem(198) == false and player:hasKeyItem(197) == false) then
-	player:startEvent(0x0232);
-	elseif (Abeja == 1) then
-	player:startEvent(0x0235);
-	elseif (Abeja == 2 and player:hasKeyItem(198) == false and player:hasKeyItem(197) == false) then
-	player:startEvent(0x0236);
-	elseif (player:hasKeyItem(198) == true) then
-  player:startEvent(0x3A);
-elseif (player:hasKeyItem(197) == true) then
-  player:startEvent(0x30);
+
+	sanFame = player:getFameLevel(SANDORIA);
+	undyingFlames = player:getQuestStatus(SANDORIA,UNDYING_FLAMES);
+	if(player:hasKeyItem(OLD_POCKET_WATCH)) then
+		player:startEvent(0x0030);
+	elseif(player:hasKeyItem(OLD_BOOTS)) then
+		player:startEvent(0x003A);
+	elseif(sanFame >= 2 and undyingFlames == QUEST_AVAILABLE) then
+		player:startEvent(0x0232);
+	elseif(undyingFlames == QUEST_ACCEPTED) then
+		player:startEvent(0x0235);
+	elseif(undyingFlames == QUEST_COMPLETED) then
+		player:startEvent(0x0236);
 	else
-  player:startEvent(0x234)
-end
-	end; 
+		player:startEvent(0x0234)
+	end
+	
+end; 
 
 -----------------------------------
 -- onEventUpdate
@@ -78,19 +75,25 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-if (csid == 0x0232 and option == 0) then
-player:addQuest(0,26);
-elseif (csid == 0x0233) then
-player:completeQuest(0,26);
-player:addFame(SANDORIA,SAN_FAME*30);
-player:tradeComplete();
-player:setTitle(62);
-player:addItem(13211);
-player:messageSpecial(6567,13211);
-elseif (csid == 0x25) then
-	player:addKeyItem(198);
-	player:messagerSpecial(KEYITEM_OBTAINED,198);
-	player:delKeyItem(197);
-	player:tradeComplete();
-end
+
+	if(csid == 0x0232 and option == 0) then
+		player:addQuest(SANDORIA,UNDYING_FLAMES);
+	elseif(csid == 0x0233) then
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
+		else
+			player:tradeComplete();
+			player:setTitle(FAITH_LIKE_A_CANDLE);
+			player:addItem(13211);
+			player:messageSpecial(ITEM_OBTAINED,13211); -- Friars Rope
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:completeQuest(SANDORIA,UNDYING_FLAMES);
+		end
+	elseif(csid == 0x0025) then
+		player:tradeComplete();
+		player:delKeyItem(OLD_POCKET_WATCH);
+		player:addKeyItem(OLD_BOOTS);
+		player:messagerSpecial(KEYITEM_OBTAINED,OLD_BOOTS);
+	end
+	
 end;

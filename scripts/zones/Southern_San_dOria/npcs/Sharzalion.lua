@@ -28,35 +28,35 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+	
 	theCrimsonTrial = player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL);
 	envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS);
 	peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT);
-	peaceForTheSpiritCS = player:getVar("peace_for_the_spirit_status");
+	peaceForTheSpiritCS = player:getVar("peaceForTheSpiritCS");
 	OrcishDriedFood = player:hasKeyItem(ORCISH_DRIED_FOOD);
 
 	if(player:getMainJob() == 5 and player:getMainLvl() >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
 		if(player:getVar("has_seen_rdmaf1_quest_already") == 0) then
-			player:startEvent(0x46);
+			player:startEvent(0x0046);
 		else
-			player:startEvent(0x47);
+			player:startEvent(0x0047);
 		end
 	elseif(theCrimsonTrial == QUEST_ACCEPTED and OrcishDriedFood == false) then
-		player:startEvent(0x4A);
+		player:startEvent(0x004A);
 	elseif(OrcishDriedFood == true) then
-		player:startEvent(0x4B);
+		player:startEvent(0x004B);
 	elseif(theCrimsonTrial == QUEST_COMPLETED and envelopedInDarkness == QUEST_AVAILABLE) then
-		player:startEvent(0x44);
+		player:startEvent(0x0044);
 	elseif(envelopedInDarkness == QUEST_COMPLETED and peaceForTheSpirit == QUEST_AVAILABLE) then
-		player:startEvent(0x45);
+		player:startEvent(0x0045);
 	elseif(peaceForTheSpirit == QUEST_ACCEPTED and peaceForTheSpiritCS == 0) then
-		player:startEvent(0x40);
+		player:startEvent(0x0040);
 	elseif(peaceForTheSpirit == QUEST_ACCEPTED and peaceForTheSpiritCS == 1) then
-		player:startEvent(0x41);
+		player:startEvent(0x0041);
 	elseif(peaceForTheSpirit == QUEST_ACCEPTED and (peaceForTheSpiritCS == 2 or peaceForTheSpiritCS == 3)) then
-		player:startEvent(0x42);
+		player:startEvent(0x0042);
 	else
-		player:startEvent(0x00F);
+		player:startEvent(0x000F);
 	end
 	
 end; 
@@ -78,14 +78,14 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x46 or csid == 0x47) then
-		if(csid == 0x46 and option == 0) then
+	if(csid == 0x0046 or csid == 0x0047) then
+		if(csid == 0x0046 and option == 0) then
 			player:setVar("has_seen_rdmaf1_quest_already",1);
 		elseif(option == 1) then
 			player:addQuest(SANDORIA,THE_CRIMSON_TRIAL);
 			player:setVar("has_seen_rdmaf1_quest_already",0);
 		end
-	elseif(csid == 0x4B) then
+	elseif(csid == 0x004B) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16829); -- Fencing Degen
 		else
@@ -95,10 +95,10 @@ function onEventFinish(player,csid,option)
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA,THE_CRIMSON_TRIAL);
 		end
-	elseif(csid == 0x40) then
-		player:setVar("peace_for_the_spirit_status",1);
-	elseif(csid == 0x42) then
-		player:setVar("peace_for_the_spirit_status",3);
+	elseif(csid == 0x0040) then
+		player:setVar("peaceForTheSpiritCS",1);
+	elseif(csid == 0x0042) then
+		player:setVar("peaceForTheSpiritCS",3);
 	end
 	
 end;

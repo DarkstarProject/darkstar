@@ -16,7 +16,11 @@ ITEM_CANNOT_BE_OBTAINED = 6565; -- You cannot obtain the item <item> come back a
 	  CHEST_ILLUSION = 7202; -- The chest was but an illusion...
 		CHEST_LOCKED = 7203; -- The chest appears to be locked.
 
--- Dreadbug NM Dialog
-	SENSE_OF_FOREBODING = 6583; -- You are suddenly overcome with a sense of foreboding...
-NOTHING_WILL_HAPPEN_YET = 7210; -- It seems that nothing will happen yet
-NOTHING_SEEMS_TO_HAPPEN = 7211; -- Nothing seems to happen.
+-- Quest Dialog
+		  SENSE_OF_FOREBODING = 6583; -- You are suddenly overcome with a sense of foreboding...
+	  NOTHING_WILL_HAPPEN_YET = 7210; -- It seems that nothing will happen yet
+	  NOTHING_SEEMS_TO_HAPPEN = 7211; -- Nothing seems to happen.
+
+				 YOU_BURY_THE = 7207; -- You bury the old boot and crawler blood.
+SOMEONE_HAS_BEEN_DIGGING_HERE = 7204; -- Someone has been digging here.
+EQUIPMENT_COMPLETELY_PURIFIED = 7205 -- Your equipment has not been completely purified.
