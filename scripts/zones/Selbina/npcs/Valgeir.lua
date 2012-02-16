@@ -2,8 +2,8 @@
 -- Area: Selbina
 -- NPC: Valgeir
 -- involved in his name is his name is Valgeir quest
--- involved in his name is expertise quest
--- involved in his name is the basics quest
+-- involved in expertise quest
+-- involved in the basics quest
 -----------------------------------
 
 --player:startEvent(0x0064);-- His name is Valgeir quest
@@ -38,12 +38,7 @@ end;
 
 function onTrigger(player,npc)
 
-if(false) then -- Debug
-player:addItem(4447,1);
-player:addItem(4400,1);
-player:addKeyItem(92);
-
-elseif (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED and player:hasKeyItem(90)) then -- if quest accepted and has pizza
+if (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED and player:hasKeyItem(90)) then -- if quest accepted and has pizza
 	player:startEvent(0x0064);-- His name is Valgeir quest
 elseif(player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_ACCEPTED and player:getVar("QUEST_EXPERTISE_STATE_var")~=3) then
 	if(player:getVar("QUEST_EXPERTISE_STATE_var")==1) then --already asked	
@@ -55,7 +50,6 @@ elseif(player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_ACCEPTED and player:g
 			player:startEvent(0x0069);-- done cooking quest Expertise
 		else -- have to wait more
 			player:startEvent(0x008c);-- i am busy standar dialog
---			player:messageSpecial(GIL_OBTAINED,TotalHourLeft);
 		end;
 	else
 		player:startEvent(0x0066,4447,4400); -- cook something for me quest Expertise  4447 - scream_fungus 4400 - slice_of_land_crab_meat

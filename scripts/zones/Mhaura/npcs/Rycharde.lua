@@ -98,22 +98,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-if(false) then
-				-- player:delQuest(OTHER_AREAS,RYCHARDE_THE_CHEF);
-				-- player:delQuest(OTHER_AREAS,WAY_OF_THE_COOK);
-				-- player:delQuest(OTHER_AREAS,UNENDING_CHASE);
-				-- player:delQuest(OTHER_AREAS,HIS_NAME_IS_VALGEIR);
-				-- player:delQuest(OTHER_AREAS,EXPERTISE);
-				-- player:delQuest(OTHER_AREAS,THE_CLUE);
-				-- player:delQuest(OTHER_AREAS,THE_BASICS);
--- player:addItem(4357,5);
-	-- player:addItem(4436,1); --4436 - baked_popoto	
-			player:setVar("QuestTheClueStatus_var",0);
-	player:addItem(4359,5); --4359 - slice_of_dhalmel_meat
-	player:addItem(912,5); --4359 - slice_of_dhalmel_meat
 ------------------------------------ QUEST RYCHARDE_THE_CHEF-----------------------------------------
-elseif (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then
+if (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then
 	QuestStatus = player:getVar("QuestRychardetheChef_var");
 	if (QuestStatus == 2 ) then  -- seconnd stage one quest
 		player:startEvent(0x46,4359); -- ask if player would do quest
@@ -217,8 +203,8 @@ end;
 
 function onEventFinish(player,csid,option)
 
-printf("CSID: %u",csid);
-printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 
 	if ((csid == 0x46 or csid == 0x47)) then  --accept quest 1
 		player:setVar("QuestRychardetheChef_var",3); --

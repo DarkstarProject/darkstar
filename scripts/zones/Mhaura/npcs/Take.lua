@@ -36,11 +36,8 @@ end;
 
 function onTrigger(player,npc)
 
-if(false)then
-		player:addKeyItem(91); --give Land Crab Bisque from Valgeir
 		
-		
-elseif (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then -- if available and allready talked to mayor assistant
+if (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then -- if available and allready talked to mayor assistant
 	if(player:getVar("QuestRychardetheChef_var") == 1)then
 		player:startEvent(0x3c); -- tell to look for ricarde
 	elseif(player:getVar("QuestRychardetheChef_var") == 2)then
@@ -90,7 +87,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x3c) then  -- accept quest EXPERTICE
+	if(csid == 0x3c) then  
 		player:setVar("QuestRychardetheChef_var",2); -- second stage on quest
 	elseif(csid == 0x3d) then  -- accept quest EXPERTICE
 		player:addQuest(OTHER_AREAS,EXPERTISE);	
