@@ -31,6 +31,8 @@ function onZoneIn(player,prevZone)
 		player:setVar("pieujesDecisionCS",1);
 	elseif(prevZone == 206 and player:getQuestStatus(BASTOK,THE_FIRST_MEETING) == QUEST_ACCEPTED and player:hasKeyItem(LETTER_FROM_DALZAKK) == false) then
 		cs = 0x0010;
+	elseif(player:getVar("peaceForTheSpiritCS") == 1 and player:hasItem(1093) == false) then -- Antique Coin
+		SpawnMob(17612849);
 	end
 	
 	return cs;
