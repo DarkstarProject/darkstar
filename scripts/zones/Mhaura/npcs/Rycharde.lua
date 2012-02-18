@@ -97,7 +97,7 @@ end;
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)
+function onTrigger(player,npc)		
 ------------------------------------ QUEST RYCHARDE_THE_CHEF-----------------------------------------
 if (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then
 	QuestStatus = player:getVar("QuestRychardetheChef_var");
@@ -277,12 +277,14 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x56) then  -- accept quest 4 HIS_NAME_IS_VALGEIR
 		if(option == 80 ) then -- answer yes!
 			--TODO pay for ferry
-			player:addKeyItem(90); --give pizza to player
+			player:addKeyItem(ARAGONEU_PIZZA); --give pizza to player
+			player:messageSpecial(KEYITEM_OBTAINED,ARAGONEU_PIZZA);
 			player:addQuest(OTHER_AREAS,HIS_NAME_IS_VALGEIR);	
 		end;
 	elseif(csid == 0x58) then  -- end quest 4 his name is Valgeir
 		player:addFame(WINDURST,WIN_FAME*120);
-		player:addKeyItem(396); --reward Map of the Toraimarai Canal 
+		player:addKeyItem(MAP_OF_THE_TORAIMARAI_CANAL); --reward Map of the Toraimarai Canal 
+		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_TORAIMARAI_CANAL);
 		player:setVar("QuestUnendingCCompDay_var",0); -- completition day of unending chase delete
 		player:setVar("QuestUnendingCCompYear_var",0);
 		player:setVar("QuestHNIVCCompDay_var",VanadielDayOfTheYear()); -- completition day of unending chase
@@ -308,7 +310,8 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x5e) then  --accept quest the basics
 		if(option == 85 )then
 						--TODO pay for ferry
-			player:addKeyItem(92); --MHAURAN_COUSCOUS                = 92;
+			player:addKeyItem(MHAURAN_COUSCOUS); --MHAURAN_COUSCOUS                = 92;
+			player:messageSpecial(KEYITEM_OBTAINED,MHAURAN_COUSCOUS);
 			player:addQuest(OTHER_AREAS,THE_BASICS);		
 		end;
 	elseif (csid == 0x60) then   -- end quest the basics

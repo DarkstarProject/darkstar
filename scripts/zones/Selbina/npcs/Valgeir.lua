@@ -54,8 +54,12 @@ elseif(player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_ACCEPTED and player:g
 	else
 		player:startEvent(0x0066,4447,4400); -- cook something for me quest Expertise  4447 - scream_fungus 4400 - slice_of_land_crab_meat
 	end;
-elseif (player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_ACCEPTED and player:hasKeyItem(92)) then -- if quest accepted and has MHAURAN_COUSCOUS 
-	player:startEvent(0x006a);-- involved in back to basics quest
+elseif (player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_ACCEPTED and player:hasKeyItem(MHAURAN_COUSCOUS)) then -- if quest accepted and has MHAURAN_COUSCOUS 
+	if (player:getFreeSlotsCount() == 0) then         			
+		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4436); --4436 - baked_popoto
+	else
+		player:startEvent(0x006a);-- involved in back to basics quest
+	end;
 elseif (player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_COMPLETED and 	player:getVar("QuestTheBacisCommentary_var")==1) then 
 	player:startEvent(0x006b); -- end commentary the basics quest 
 else
@@ -81,7 +85,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 if (csid==0x0064) then
-	player:delKeyItem(90); -- Give pizza to Valgeir
+	player:delKeyItem(ARAGONEU_PIZZA); -- Give pizza to Valgeir
 elseif (csid==0x0066) then
 	player:setVar("QUEST_EXPERTISE_STATE_var",1); -- Already asked	
 elseif (csid==0x0067) then  -- Found the ingredients
@@ -91,14 +95,16 @@ elseif (csid==0x0067) then  -- Found the ingredients
 	player:setVar("QuestExpertiseHourStarted_var",VanadielHour());
 	player:setVar("QuestExpertiseDayStarted_var",VanadielDayOfTheYear());	
 elseif (csid==0x0069) then  -- Done the cooking
-	player:addKeyItem(91); -- give pizza to player
+	player:addKeyItem(LAND_CRAB_BISQUE); -- give LAND_CRAB_BISQUE
+	player:messageSpecial(KEYITEM_OBTAINED,LAND_CRAB_BISQUE);
 	player:setVar("QUEST_EXPERTISE_STATE_var",3); -- Done cooking
 	player:setVar("QuestExpertiseHourStarted_var",0);
 	player:setVar("QuestExpertiseDayStarted_var",0);
 elseif (csid==0x006a) then
 	player:setVar("QuestTheBacisCommentary_var",1);
-	player:delKeyItem(92); -- Give MHAURAN_COUSCOUS  to Valgeir	
+	player:delKeyItem(MHAURAN_COUSCOUS); -- Give MHAURAN_COUSCOUS  to Valgeir	
 	player:addItem(4436,1); --4436 - baked_popoto
+	player:messageSpecial(ITEM_OBTAINED,4436); --  baked_popoto
 elseif (csid==0x006b) then
 	player:setVar("QuestTheBacisCommentary_var",0);	
 end;

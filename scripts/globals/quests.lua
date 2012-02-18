@@ -465,16 +465,16 @@ PRELUDE_TO_PUISSANCE            = 170;
 --  Other Areas
 -----------------------------------
 
-RYCHARDE_THE_CHEF               = 0; -- + --
-WAY_OF_THE_COOK                 = 1; -- + --
-UNENDING_CHASE                  = 2; -- + --
-HIS_NAME_IS_VALGEIR             = 3; -- + --
-EXPERTISE                       = 4; -- + --
-THE_CLUE                        = 5; -- + --
-THE_BASICS                      = 6; -- + --
+RYCHARDE_THE_CHEF               = 0;  -- + --
+WAY_OF_THE_COOK                 = 1;  -- + --
+UNENDING_CHASE                  = 2;  -- + --
+HIS_NAME_IS_VALGEIR             = 3;  -- + --
+EXPERTISE                       = 4;  -- + --
+THE_CLUE                        = 5;  -- + --
+THE_BASICS                      = 6;  -- + --
 ORLANDO_S_ANTIQUES              = 7;
 THE_SAND_CHARM                  = 8;  -- + --
-A_POTTER_S_PREFERENCE           = 9;
+A_POTTER_S_PREFERENCE           = 9;  -- + --
 THE_OLD_LADY                    = 10; -- + --
 FISHERMAN_S_HEART               = 11;
 
