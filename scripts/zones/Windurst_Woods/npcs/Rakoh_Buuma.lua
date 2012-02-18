@@ -54,7 +54,7 @@ function onTrigger(player,npc)
 					player:startEvent(0x88);
 				end
 			elseif(windy_1_3_completed == false and windy_1_1_completed == true and windy_1_2_completed == true) then
-				-- Windurst 1-3 (final mission of this rank) (cs 0x95 (149)
+				-- Windurst 1-3
 				-- If the player has started the mission or not
 				if(player:getCurrentMission(WINDURST) ~= THE_PRICE_OF_PEACE) then
 					-- Mission has not been started yet
@@ -135,7 +135,8 @@ function onEventFinish(player,csid,option)
 		-- Set Rank Points back to 0
 		player:setRankPoints(0);
 		-- Add 2,000 gil as reward
-		player:addGil(2000);
+		player:addGil(1000);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
 		-- Remove all variables set for this mission
 		player:setVar("windurst_mission_1_3",0);
 		player:setVar("ohbiru_dohbiru_talk",0);
@@ -147,6 +148,13 @@ function onEventFinish(player,csid,option)
 		-- Start Windurst 2-1
 		player:addMission(WINDURST,LOST_FOR_WORDS);
 		player:setVar("windurst_mission_2_1",1);
+	elseif(option == 4 and csid == 0x72) then
+		-- Start Windurst 2-2 (Repeatable)
+		
+	elseif(option == 5 and csid == 0x72) then
+		-- Start Windurst 2-3
+		player:addMission(WINDURST,THE_THREE_KINGDOMS);
+		player:setVar("windurst_mission_2_3",1);
 	end
 end;
 
