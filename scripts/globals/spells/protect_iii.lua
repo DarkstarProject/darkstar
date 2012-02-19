@@ -9,5 +9,6 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
+   target:delStatusEffect(EFFECT_PROTECT);
    target:addStatusEffect(EFFECT_PROTECT,30,0,1800);
 end;
