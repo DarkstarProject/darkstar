@@ -38,7 +38,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x0037); -- Start Quest "The General's Secret"
 	elseif(mJob == 5 and mLvL >= AF2_QUEST_LEVEL and player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_COMPLETED and envelopedInDarkness == QUEST_AVAILABLE) then
 		player:startEvent(0x005E); -- Start Quest "Enveloped in Darkness"
-	elseif(player:hasKeyItem(OLD_POCKET_WATCH) == false and player:hasKeyItem(OLD_BOOTS) == false) then
+	elseif(player:hasKeyItem(OLD_POCKET_WATCH) and player:hasKeyItem(OLD_BOOTS) == false) then
 		player:startEvent(0x005D);
 	elseif(player:hasKeyItem(OLD_BOOTS) and player:getVar("needs_crawler_blood") == 0) then
 		player:startEvent(0x0065);
