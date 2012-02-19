@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Bastok
 -- NPC:  Kagetora
--- Involved in Quest: Ayame and Kaede
+-- Involved in Quest: Ayame and Kaede, 20 in Pirate Years
 -- @zone 236
 -- @pos -96 -2 29
 -----------------------------------
@@ -36,6 +36,8 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x0017);
 		end
+	elseif(player:getVar("twentyInPirateYearsCS") == 1) then
+		player:startEvent(0x0105);
 	else
 		player:startEvent(0x0017);
 	end
@@ -61,6 +63,8 @@ function onEventFinish(player,csid,option)
 
 	if(csid == 0x00f1) then
 		player:setVar("AyameAndKaede_Event",1);
+	elseif(csid == 0x0105) then
+		player:setVar("twentyInPirateYearsCS",2);
 	end
 	
 end;

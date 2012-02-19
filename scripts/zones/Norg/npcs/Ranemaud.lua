@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Norg
 -- NPC: Ranemaud
--- Involved in Quest: Forge Your Destiny
+-- Involved in Quest: Forge Your Destiny, The Sacred Katana
 -- @zone 252
 -- @pos 15 0 23
 -----------------------------------
@@ -26,6 +26,13 @@ function onTrade(player,npc,trade)
 			player:startEvent(0x002b,0,0,738,737); -- Platinum Ore, Gold Ore
 		end
 	end
+	
+	if(player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED and player:hasItem(17809) == false) then
+		if(trade:getGil() == 30000 and trade:getItemCount() == 1 and player:getFreeSlotsCount() >= 1) then
+			player:startEvent(0x0091);
+		end
+	end
+	
 end; 
 
 -----------------------------------
@@ -58,6 +65,8 @@ function onTrigger(player,npc)
 		elseif(player:hasItem(1198)) then -- Sacred Sprig
 			player:startEvent(0x0029);
 		end	
+	elseif(player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED and player:hasItem(17809) == false) then
+		player:startEvent(0x0090);
 	else
 		player:startEvent(0x0044);
 	end
@@ -98,6 +107,10 @@ function onEventFinish(player,csid,option)
 		else
 		   player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1198); -- Sacred Sprig
 		end
+	elseif(csid == 0x0091) then
+		player:tradeComplete();
+		player:addItem(17809);
+		player:messageSpecial(ITEM_OBTAINED,17809); -- Mumeito
 	end
 	
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Bastok
 -- NPC:  Ensetsu
--- Finish Quest: Ayame and Kaede
+-- Finish Quest: Ayame and Kaede, 20 in Pirate Years
 -- @zone 236
 -- @pos 33 -6 67
 -----------------------------------
@@ -11,7 +11,6 @@ package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
 
@@ -28,7 +27,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == 1) then
+	AyameAndKaede = player:getQuestStatus(BASTOK,AYAME_AND_KAEDE);
+	
+	if(AyameAndKaede == QUEST_ACCEPTED) then
 		
 		questStatus = player:getVar("AyameAndKaede_Event")
 		
@@ -41,8 +42,12 @@ function onTrigger(player,npc)
 		elseif(player:hasKeyItem(SEALED_DAGGER)) then
 			player:startEvent(0x00f6,SEALED_DAGGER);
 		end
-	elseif(player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_COMPLETED) then
+	elseif(AyameAndKaede == QUEST_COMPLETED and player:getQuestStatus(OUTLANDS,TWENTY_IN_PIRATE_YEARS) == QUEST_AVAILABLE) then
 		player:startEvent(0x00f7);
+	elseif(player:getVar("twentyInPirateYearsCS") == 2) then
+		player:startEvent(0x0106);
+	elseif(player:getVar("twentyInPirateYearsCS") == 4) then
+		player:startEvent(0x0107);
 	else
 		player:startEvent(0x001b);
 	end
@@ -78,6 +83,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("AyameAndKaede_Event", 0);
 		player:addFame(BASTOK, BAS_FAME*30);
 		player:completeQuest(BASTOK,AYAME_AND_KAEDE);
+	elseif(csid == 0x0106) then
+		player:setVar("twentyInPirateYearsCS",3);
 	end
 	
 end;
