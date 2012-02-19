@@ -1,9 +1,9 @@
 -----------------------------------
---	     ARCANE CIRCLE		 --
+--       ARCANE CIRCLE           --
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/status");
+
 function OnUseAbility(player, target, ability)
-	target:addStatusEffect(EFFECT_ARCANE_CIRCLE,1,0,60);
+	target:addStatusEffect(EFFECT_ARCANE_CIRCLE,8,0,180);
 end;
