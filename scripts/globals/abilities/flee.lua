@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Flee
+-- Ability: Flee
 -----------------------------------
 
 require("scripts/globals/status");

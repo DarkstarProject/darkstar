@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Sneak Attack
+-- Ability: Sneak Attack
 -----------------------------------
  
 require("scripts/globals/settings");

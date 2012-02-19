@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Hundred Fists
+-- Ability: Hundred Fists
 -----------------------------------
  
 require("scripts/globals/settings");

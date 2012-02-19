@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Focus			 	 		 
+-- Ability: Focus			 	 		 
 -----------------------------------
  
 require("scripts/globals/settings");

@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Hide
+-- Ability: Hide
 -----------------------------------
  
 require("scripts/globals/settings");

@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Mighty Strikes
+-- Ability: Mighty Strikes
 -----------------------------------
  
 require("scripts/globals/settings");

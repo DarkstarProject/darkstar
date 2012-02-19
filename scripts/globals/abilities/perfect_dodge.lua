@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Perfect Dodge
+-- Ability: Perfect Dodge
 -----------------------------------
  
 require("scripts/globals/settings");

@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Chainspell
+-- Ability: Chainspell
 -----------------------------------
  
 require("scripts/globals/settings");

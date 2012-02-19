@@ -1,5 +1,5 @@
 -----------------------------------
---	Ability: Meikyo Shisui
+-- Ability: Meikyo Shisui
 -----------------------------------
  
 require("scripts/globals/settings");

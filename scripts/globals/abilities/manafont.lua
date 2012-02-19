@@ -1,5 +1,5 @@
 -----------------------------------
---	Ability: Manafont
+-- Ability: Manafont
 -----------------------------------
 
 require("scripts/globals/settings");

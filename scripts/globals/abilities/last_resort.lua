@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Last Resort
+-- Ability: Last Resort
 -----------------------------------
  
 require("scripts/globals/settings");

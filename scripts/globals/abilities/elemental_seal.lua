@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Elemental Seal
+-- Ability: Elemental Seal
 -----------------------------------
 
 require("scripts/globals/settings");

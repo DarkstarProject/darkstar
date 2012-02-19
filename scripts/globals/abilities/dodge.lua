@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability:	Dodge
+-- Ability: Dodge
 -----------------------------------
 
 require("scripts/globals/status");
