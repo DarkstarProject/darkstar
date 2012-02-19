@@ -3,12 +3,11 @@
 -- NPC: Gumbah
 -- Finishes Quest: Blade of Darkness
 -----------------------------------
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/globals/titles");
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
@@ -24,11 +23,10 @@ end;
 
 function onTrigger(player,npc)
 
-Blades = player:getQuestStatus(BASTOK,BLADE_OF_DARKNESS);
-PlayerLevel = player:getMainLvl();
-
---DARK KNIGHT QUEST
-	if PlayerLevel >= 30 and Blades == 0 then
+	local Blades = player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS);
+	
+	if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and  Blades == QUEST_AVAILABLE) then
+		--DARK KNIGHT QUEST
 		player:startEvent(0x0063);
 	else 
 		--DEFAULT 
@@ -41,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,13 +50,8 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
---
+
 	if (csid == 0x0063) then
-		player:addQuest(BASTOK,BLADE_OF_DARKNESS);
+		player:addQuest(BASTOK, BLADE_OF_DARKNESS);
 	end
-	
 end;
-
-
-
-

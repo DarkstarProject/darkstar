@@ -3,11 +3,11 @@
 -- Zone: Beadeaux
 --
 -----------------------------------
-require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/titles");
+require("scripts/globals/quests");
 require("scripts/zones/Beadeaux/TextIDs");
 
 -----------------------------------
@@ -23,10 +23,12 @@ end;
 
 function onZoneIn(player,prevZone)
 cs = -1;
-	if (prevZone == 109 and player:getQuestStatus(BASTOK,BLADE_OF_DARKNESS)== 1 and player:getVar("Blade_Of_Darkness_SwordKills")==100) then
-		cs = 0x0079;
-	elseif (player:getCurrentMission(1) == 10 and player:getVar("MissionStatus") == 2) then
-		cs = 0x0078;
+	if (prevZone == 109) then
+		if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getVar("Blade_of_Darkness_SwordKills") == 100) then
+			cs = 0x0079;
+		elseif (player:getCurrentMission(1) == 10 and player:getVar("MissionStatus") == 2) then
+			cs = 0x0078;
+		end
 	end
 return cs;
 end;
@@ -42,24 +44,26 @@ end;
 -- onEventUpdate
 -----------------------------------
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
+function onEventUpdate(player,csid,option)
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-	if (csid==0x0079) then
-		player:messageSpecial(7294);
+function onEventFinish(player,csid,option)
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+
+	if (csid == 0x0079) then
 		player:unlockJob(8);
-		player:completeQuest(BASTOK,BLADE_OF_DARKNESS);
-		player:setVar("BLADE_OF_DARKNESS_SWORDKILLS",0);
 		player:setTitle(DARK_SIDER);
+		player:setVar("ZeruhnMines_Zeid_CS", 0);
+		player:setVar("Blade_of_Darkness_SwordKills", 0);
+		player:completeQuest(BASTOK, BLADE_OF_DARKNESS);
+		player:messageSpecial(YOU_CAN_NOW_BECOME_A_DARK_KNIGHT);
 	elseif (csid == 0x0078) then
 		player:setVar("MissionStatus",2);
 		player:setPos(-297, 1, 96, 1);

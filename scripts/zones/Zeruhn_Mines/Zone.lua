@@ -3,10 +3,10 @@
 -- Zone: Zeruhn_Mines
 -- 
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/quests");
 require("scripts/zones/Zeruhn_Mines/TextIDs");
 
 -----------------------------------
@@ -22,20 +22,17 @@ end;
 
 function onZoneIn(player,prevZone)
 cs = -1;
-
-Blades = player:getQuestStatus(BASTOK,BLADE_OF_DARKNESS); 
-if (prevZone == 143 and Blades > 0) then
-   if (Blades == 2) then 
-      if (player:getFreeSlotsCount(0) >= 1) then
-         player:messageSpecial(6537, 16607);
-         player:additem(16607,1);
-      else
-	player:messageSpecial(6534,16607);
-      end
-    else
-       cs = 0x82;  
-    end
-end
+	if (prevZone == 143) then
+		cs = 0x0096;
+		local Blades = player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS); 
+		if (Blades == QUEST_ACCEPTED) then
+			if (player:getVar("ZeruhnMines_Zeid_CS") == 0) then
+				cs = 0x0082;
+			elseif (player:hasItem(16607) == false) then
+				cs = 0x0083;
+			end
+		end
+	end
 return cs;
 end;
 
@@ -50,29 +47,27 @@ end;
 -- onEventUpdate
 -----------------------------------
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
+function onEventUpdate(player,csid,option)
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
+function onEventFinish(player,csid,option)
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 
-   if (csid==0x82) then 
-      if (player:getFreeSlotsCount(0) >= 1) then
-	 player:messageSpecial(6537, 16607);
-         player:addItem(16607);
-      else
-	player:messageSpecial(6534,16607);
-      end
-      
-   end
+	if (csid == 0x0082 or csid == 0x0083) then 
+		if (player:getFreeSlotsCount() > 0) then
+			player:addItem(16607);
+			player:setVar("Blade_of_Darkness_SwordKills", 0);
+			player:messageSpecial(ITEM_OBTAINED,16607);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16607);
+		end
+		player:setVar("ZeruhnMines_Zeid_CS", 1);
+	end
 end;
-
-
-
