@@ -1,5 +1,12 @@
 -----------------------------------
---	Benediction
+-- Ability:	Benediction
+-----------------------------------
+
+
+
+
+-----------------------------------
+-- OnUseAbility
 -----------------------------------
 
 function OnUseAbility(player, target, ability)

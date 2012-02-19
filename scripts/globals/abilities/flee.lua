@@ -1,11 +1,12 @@
 -----------------------------------
---	Flee
+-- Ability:	Flee
 -----------------------------------
 
 require("scripts/globals/status");
 
+
 -----------------------------------
--- 
+-- OnUseAbility
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
