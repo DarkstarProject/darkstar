@@ -28,6 +28,7 @@ NOTHING_OUT_OF_ORDINARY = 7385; -- There is nothing out of the ordinary here.
 -- Quest "The requiem"
 SARCOPHAGUS_CANNOT_BE_OPENED = 7354; -- It is a stone sarcophagus with the lid sealed tight. It cannot be opened.
 		 SENSE_OF_FOREBODING = 6552; -- You are suddenly overcome with a sense of foreboding...
+			NOTHING_HAPPENED = 7268; -- Nothing happened...
 
 -- Quest "Acting in Good Faith"
 SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7337; -- The spirit incense emits a putrid odor and burns up. Your attempt this time has failed
