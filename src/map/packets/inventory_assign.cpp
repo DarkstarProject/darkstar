@@ -23,16 +23,19 @@
 
 #include "../../common/socket.h"
 
+#include "../itemutils.h"
+
 #include "inventory_assign.h"
 
-CInventoryAssignPacket::CInventoryAssignPacket(uint16 itemID, uint32 quantity, uint8 LocationID, uint8 slotID, uint8 flag) 
+
+CInventoryAssignPacket::CInventoryAssignPacket(CItem* PItem, uint8 Flag)
 {
 	this->type = 0x1F;
 	this->size = 0x08;
 
-	WBUFL(data,(0x04)-4) = quantity;
-	WBUFW(data,(0x08)-4) = itemID;
-	WBUFB(data,(0x0A)-4) = LocationID;
-	WBUFB(data,(0x0B)-4) = slotID;
-	WBUFB(data,(0x0C)-4) = flag;
+    WBUFL(data,(0x04)-4) = PItem->getQuantity();
+	WBUFW(data,(0x08)-4) = PItem->getID();
+    WBUFB(data,(0x0A)-4) = PItem->getLocationID();
+    WBUFB(data,(0x0B)-4) = PItem->getSlotID();
+	WBUFB(data,(0x0C)-4) = Flag;
 }

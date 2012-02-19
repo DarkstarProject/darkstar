@@ -36,6 +36,16 @@ struct lscolor_t
 	uint8 A:4;
 };
 
+enum LSTYPE
+{
+    LSTYPE_NEW_LINKSHELL,
+    LSTYPE_LINKSHELL,
+    LSTYPE_PEARLSACK,
+    LSTYPE_LINKPEARL,
+    LSTYPE_RIPPED_PERLSACK,
+    LSTYPE_BROKEN_LINKSHELL,
+};
+
 class CItemLinkshell : public CItem
 {
 public:
@@ -43,12 +53,17 @@ public:
 	CItemLinkshell(uint16);
 	virtual ~CItemLinkshell();
 
+    uint32      GetLSID();
+    LSTYPE      GetLSType();
 	lscolor_t	GetLSColor();
-	void		SetLSColor(uint32 color);	
+    uint16      GetLSRawColor();
+    void        SetLSID(uint32 lsid);
+	void		SetLSColor(uint16 color);	
 	
 private:
 
 	lscolor_t	m_LSColor;
+    uint32      m_LinkshellID;
 };
 
 #endif

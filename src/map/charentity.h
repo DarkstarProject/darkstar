@@ -33,6 +33,7 @@
 
 #include "battleentity.h"
 #include "item_container.h"
+#include "linkshell.h"
 #include "trade_container.h"
 #include "treasure_pool.h"
 
@@ -155,6 +156,7 @@ public:
 	bool			 isPacketListEmpty();			// проверка размера PacketList
 	CBasicPacket*	 popPacket();					// получение первого пакета из PacketList
 
+    CLinkshell*      PLinkshell;                    // linkshell, в которой общается персонаж
 	CTreasurePool*	 PTreasurePool;					// сокровища, добытые с монстров
 	uint32			 InvitePending;					// ID персонажа, отправившего приглашение в группу 
 

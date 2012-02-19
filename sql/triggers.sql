@@ -1,7 +1,5 @@
 ﻿SET NAMES 'utf8';
 
-USE dspdb;
-
 DELIMITER $$
 
 DROP TRIGGER IF EXISTS auction_house_buy $$

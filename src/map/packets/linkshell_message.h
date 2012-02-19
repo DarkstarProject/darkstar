@@ -21,49 +21,24 @@
 ===========================================================================
 */
 
-#include "../../common/socket.h"
+#ifndef _CLINKSHELLMESSAGEPACKET_H
+#define _CLINKSHELLMESSAGEPACKET_H
 
-#include "item_linkshell.h"
+#include "../../common/cbasetypes.h"
 
+#include "basic.h"
 
-CItemLinkshell::CItemLinkshell(uint16 id) : CItem(id)
+/************************************************************************
+*																		*
+*  																		*
+*																		*
+************************************************************************/
+
+class CLinkshellMessagePacket : public CBasicPacket
 {
-	setType(ITEM_LINKSHELL);
+public:
 
-    m_LinkshellID = 100;
-	WBUFW(&m_LSColor,0) = 0;
-}
+    CLinkshellMessagePacket();
+};
 
-CItemLinkshell::~CItemLinkshell()
-{
-}
-
-uint32 CItemLinkshell::GetLSID()
-{
-    return m_LinkshellID;
-}
-
-void CItemLinkshell::SetLSID(uint32 lsid)
-{
-    m_LinkshellID = lsid;
-}
-
-LSTYPE CItemLinkshell::GetLSType()
-{
-    return (LSTYPE)(getID() - 0x200);
-}
-
-lscolor_t CItemLinkshell::GetLSColor()
-{
-	return m_LSColor;
-}
-
-uint16 CItemLinkshell::GetLSRawColor()
-{
-    return RBUFW(&m_LSColor,0);
-}
-
-void CItemLinkshell::SetLSColor(uint16 color)
-{
-	WBUFW(&m_LSColor,0) = color;
-}
+#endif

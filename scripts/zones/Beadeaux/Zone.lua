@@ -24,7 +24,7 @@ end;
 function onZoneIn(player,prevZone)
 cs = -1;
 	if (prevZone == 109) then
-		if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getVar("Blade_of_Darkness_SwordKills") == 100) then
+		if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getVar("Blade_of_Darkness_SwordKills") >= 100) then
 			cs = 0x0079;
 		elseif (player:getCurrentMission(1) == 10 and player:getVar("MissionStatus") == 2) then
 			cs = 0x0078;

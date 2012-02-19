@@ -2,7 +2,7 @@
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
-
+  
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -39,6 +39,7 @@
 #include "charutils.h"
 #include "fishingutils.h"
 #include "itemutils.h"
+#include "linkshell.h"
 #include "map.h"
 #include "mobentity.h"
 #include "npcentity.h"
@@ -84,6 +85,7 @@
 #include "packets/inventory_modify.h"
 #include "packets/inventory_size.h"
 #include "packets/lock_on.h"
+#include "packets/linkshell_equip.h"
 #include "packets/menu_config.h"
 #include "packets/menu_merit.h"
 #include "packets/message_basic.h"
@@ -100,6 +102,8 @@
 #include "packets/shop_appraise.h"
 #include "packets/shop_buy.h"
 #include "packets/stop_downloading.h"
+#include "packets/trade_action.h"
+#include "packets/trade_request.h"
 #include "packets/wide_scan_track.h"
 #include "packets/world_pass.h"
 #include "packets/zone_in.h"
@@ -173,7 +177,7 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
 	WBUFL(data,(0x5C)) = 0;
 
-    bool firstlogin = true; // временное решение, до появления PlayTime
+    bool firstlogin = false; // временное решение, до появления PlayTime
 	PChar->clearPacketList();
 
 	if (PChar->status == STATUS_DISAPPEAR)
@@ -208,6 +212,9 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
 		} else {
             PChar->loc.zone = zoneutils::GetZone(PChar->loc.destination);
         }
+
+        firstlogin = true;
+
         for(uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
         {
             if (PChar->m_ZonesList[i] != 0) firstlogin = false;
@@ -318,6 +325,10 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 		{
 			PChar->PParty->RemoveMember(PChar);
 		}
+        if (PChar->PLinkshell != NULL)
+        {
+            // TODO: ...
+        }
 		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+5000, session, CTaskMgr::TASK_ONCE, map_close_session));
 	} 
     // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру 
@@ -361,7 +372,7 @@ int32 SmallPacket0x00F(map_session_data_t* session, CCharEntity* PChar, int8* da
 *																		*
 *  Первый пакет после входа в игру / перехода между зонами, является	*
 *  подтверждением завершения перехода персонажа.						*
-*  Привязываем экипированные предметы + linkshell	 					*
+*  Привязываем экипированные предметы           	 					*
 *																		*
 ************************************************************************/	
 
@@ -371,14 +382,13 @@ int32 SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	PChar->health.tp = 0;
 
-	for(int32 i = 0; i < 16; ++i) 
+	for(uint8 i = 0; i < 16; ++i) 
 	{
 		if (PChar->equip[i] != 0) 
 		{
-			PChar->pushPacket(new CEquipPacket(PChar->equip[i],i));
+			PChar->pushPacket(new CEquipPacket(PChar->equip[i], i));
 		}
 	}
-	//PChar->pushPacket(CEquipPacket(PChar->equip[SLOT_LINK]));
 	return 0;
 }
 
@@ -519,7 +529,15 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 		case 0x02: // attack
 		{
 			PChar->PBattleAI->SetCurrentAction(ACTION_ENGAGE, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
+            
+            if (PChar->PBattleAI->GetCurrentAction() == ACTION_ENGAGE)
+            {
+                if (PChar->animation == ANIMATION_CHOCOBO)
+                {
+                    PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
+                }
+                PChar->PBattleAI->CheckCurrentAction(gettick());
+            }
 		}
 		break;	
 		case 0x03: // spellcast
@@ -564,7 +582,6 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 		break;	
 		case 0x09: // jobability
 		{
-			PrintPacket(data);
 			uint16 JobAbilityID = RBUFW(data,(0x0C));
 			PChar->PBattleAI->SetCurrentJobAbility(JobAbilityID-16);
 			PChar->PBattleAI->SetCurrentAction(ACTION_JOBABILITY_START, TargID);
@@ -590,8 +607,8 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 		case 0x0C: break;	// assist
 		case 0x0D: 	// raise menu
 	    {
-            PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
-            PChar->PBattleAI->CheckCurrentAction(gettick());
+            //PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
+            //PChar->PBattleAI->CheckCurrentAction(gettick());
 	    } 
         break;
 		case 0x0E: // рыбалка
@@ -784,7 +801,7 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
     else // переносим всю пачку, или пытаемся объединить одинаковые предметы
     {
 		
-		if (ToSlotID < 82)
+		if (ToSlotID < 82) // 80 + 1
 		{
 			// объединение еще не реализовано
 			ShowDebug("SmallPacket0x29: Trying to unite items\n", FromLocationID, FromSlotID);
@@ -797,7 +814,7 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 									SET location = %u, slot = %u \
 									WHERE charid = %u AND location = %u AND slot = %u;";
 
-			if( Sql_Query(SqlHandle,fmtQuery,ToLocationID,newSlotID,PChar->id,FromLocationID,FromSlotID) != SQL_ERROR &&
+			if( Sql_Query(SqlHandle, fmtQuery, ToLocationID, newSlotID, PChar->id, FromLocationID, FromSlotID) != SQL_ERROR &&
 				Sql_AffectedRows(SqlHandle) != 0)
 			{
 				PChar->getStorage(FromLocationID)->InsertItem(NULL, FromSlotID);
@@ -814,6 +831,74 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 	}
 	PChar->pushPacket(new CInventoryFinishPacket());
 	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Запрос начала обмена между персонажами (trade)                       *
+*                                                                       *
+************************************************************************/
+
+int32 SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    uint32 charid = RBUFL(data,(0x04));
+    uint16 targid = RBUFW(data,(0x08));
+
+    CCharEntity* PTradeTarget = (CCharEntity*)PChar->loc.zone->GetEntity(targid, TYPE_PC);
+
+    if ((PTradeTarget != NULL) && (PTradeTarget->id == charid))
+    {
+        PChar->UContainer->SetTarget(PTradeTarget->targid);
+        PTradeTarget->UContainer->SetTarget(PChar->targid);
+        PTradeTarget->pushPacket(new CTradeRequestPacket(PChar));
+    }
+    ShowDebug(CL_CYAN"Trade request to CharID: %d TargetID: %d\n"CL_RESET, charid, targid);
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Запрос начала обмена между персонажами (trade)                       *
+*                                                                       *
+************************************************************************/
+
+int32 SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    PrintPacket(data);
+
+    uint16 action = RBUFB(data,(0x04));
+
+    CCharEntity* PTradeTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->UContainer->GetTarget(), TYPE_PC);
+
+    switch (action)
+    {
+        case 0x00: // request accepted
+        {
+            if (PTradeTarget != NULL)
+            {
+                PChar->pushPacket(new CTradeActionPacket(PTradeTarget, action));
+                PTradeTarget->pushPacket(new CTradeActionPacket(PChar, action));
+            }
+        }
+        break;
+        case 0x01: // trade cancelled
+        {
+            // TODO: нужно проверять, действительно ли цель торгует именно со мной, иначе мы прервем чужой обмен или какое-либо действие
+
+            if (PTradeTarget != NULL)
+            {
+                PChar->pushPacket(new CTradeActionPacket(PTradeTarget, action));               
+                PTradeTarget->pushPacket(new CTradeActionPacket(PChar, action));
+            }
+        }
+        break;
+        case 0x02: // trade accepted
+        {
+
+        }
+        break;
+    }
+    return 0;
 }
 
 /************************************************************************
@@ -1765,7 +1850,7 @@ int32 SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
 	switch(RBUFB(data,(0x0A)))
 	{
-		case 0:
+		case 0: // from party
 		{
 			if (PChar->PParty != NULL &&
 				PChar->PParty->GetLeader() == PChar)
@@ -1774,9 +1859,17 @@ int32 SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* da
 			}
 		}
 		break;
+        //case 1: // from linkshell
+        //{
+        //    if (PChar->PLinkshell != NULL)
+        //    {
+        //
+        //    }
+        //}
+        //break;
 		default:
 		{
-			ShowError(CL_RED"SmallPacket0x071 : Remove packet with unknown byte <%.2X>\n"CL_RESET, RBUFB(data,(0x0A)));
+			ShowError(CL_RED"SmallPacket0x071 : unknown byte <%.2X>\n"CL_RESET, RBUFB(data,(0x0A)));
 		}
 	}
 	return 0;
@@ -2060,7 +2153,14 @@ int32 SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* da
 			case MESSAGE_SAY:		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6)); break;
 			case MESSAGE_EMOTION:	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data+6)); break;
 			case MESSAGE_SHOUT:		PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT,   data+6)); break;
-			case MESSAGE_LINKSHELL: break;
+			case MESSAGE_LINKSHELL: 
+            {
+                if (PChar->PLinkshell != NULL)
+                {
+                    PChar->PLinkshell->PushPacket(PChar, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data+6));
+                }
+            }
+            break;
 			case MESSAGE_PARTY:		
 			{
 				if (PChar->PParty != NULL)
@@ -2126,6 +2226,91 @@ int32 SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Создание и экипировка LinkShell                         				*
+*                                                                       *
+************************************************************************/					
+
+int32 SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    uint8 SlotID = RBUFB(data,(0x06));
+    uint8 action = RBUFB(data,(0x07));  
+
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
+
+    if (PItemLinkshell != NULL || (PItemLinkshell->getType() & ITEM_LINKSHELL))
+    {
+        if (PItemLinkshell->getID() == 512) // создание новой linkshell
+        {
+            string_t LinkshellName;
+
+            if (linkshell::IsValidLinkshellName(LinkshellName.c_str()))
+            {
+                PItemLinkshell->setID(513);
+                PItemLinkshell->setSignature(data+8);
+                PItemLinkshell->SetLSColor(RBUFW(data,(0x04)));
+
+	            const int8* Query = "UPDATE char_inventory SET signature = '%s', itemId = %u WHERE charid = %u AND location = 0 AND slot = %u;";
+
+		        int8 signature[15*2+1];
+		        Sql_EscapeStringLen(SqlHandle, signature, PItemLinkshell->getSignature(), cap_value(strlen(PItemLinkshell->getSignature()),0,15));
+
+		      //Sql_Query(SqlHandle, Query, signature, PItemLinkshell->getID(), PChar->id, SlotID);
+
+                PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
+            }
+            else
+            {
+                PChar->pushPacket(new CMessageStandardPacket(112));
+                //DE
+                //20
+                //1D
+                return 0;
+            }
+        }
+        else
+        {
+            switch (action)
+            {
+                case 0: // unequip linkshell
+                {
+                    linkshell::DelOnlineMember(PChar, PItemLinkshell);
+
+                    PItemLinkshell->setSubType(ITEM_UNLOCKED);
+
+                    PChar->equip[SLOT_LINK] = 0;
+                    PChar->nameflags.flags &= ~FLAG_LINKSHELL;
+
+                    PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
+                }
+                break;
+                case 1: // equip linkshell
+                {
+                    linkshell::AddOnlineMember(PChar, PItemLinkshell);
+
+                    PItemLinkshell->setSubType(ITEM_LOCKED);
+
+                    PChar->equip[SLOT_LINK] = SlotID;
+                    PChar->nameflags.flags |= FLAG_LINKSHELL; 
+
+                    PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_LINKSHELL));
+                    PChar->pushPacket(new CInventoryFinishPacket());
+                }
+                break;
+            }
+            charutils::SaveCharStats(PChar);
+            charutils::SaveCharEquip(PChar);
+
+            PChar->pushPacket(new CLinkshellEquipPacket(PChar));
+            PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
+        }
+        PChar->pushPacket(new CInventoryFinishPacket());
+        PChar->pushPacket(new CCharUpdatePacket(PChar));
+    }
 	return 0;
 }
 
@@ -2848,8 +3033,8 @@ void PacketParderInitialize()
     PacketParcer[0x01C] = &SmallPacket0x01C;
     PacketParcer[0x028] = &SmallPacket0x028;
     PacketParcer[0x029] = &SmallPacket0x029;
-    PacketParcer[0x032] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x033] = &SmallPacket0xFFF;	// not implemented
+    PacketParcer[0x032] = &SmallPacket0x032;
+    PacketParcer[0x033] = &SmallPacket0x033;
     PacketParcer[0x034] = &SmallPacket0xFFF;	// not implemented
     PacketParcer[0x036] = &SmallPacket0x036;
     PacketParcer[0x037] = &SmallPacket0x037;
@@ -2895,7 +3080,7 @@ void PacketParderInitialize()
     PacketParcer[0x0B6] = &SmallPacket0x0B6;
     PacketParcer[0x0BE] = &SmallPacket0xFFF;	// not implemented
     PacketParcer[0x0C3] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x0C4] = &SmallPacket0xFFF;	// not implemented
+    PacketParcer[0x0C4] = &SmallPacket0x0C4;
     PacketParcer[0x0CB] = &SmallPacket0xFFF;	// not implemented
     PacketParcer[0x0D2] = &SmallPacket0x0D2;
     PacketParcer[0x0D3] = &SmallPacket0x0D3;

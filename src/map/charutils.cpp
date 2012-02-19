@@ -48,6 +48,7 @@
 #include "packets/inventory_finish.h"
 #include "packets/inventory_modify.h"
 #include "packets/key_items.h"
+#include "packets/linkshell_equip.h"
 #include "packets/menu_merit.h"
 #include "packets/message_basic.h"
 #include "packets/message_debug.h"
@@ -520,11 +521,12 @@ void LoadChar(CCharEntity* PChar)
 
 void LoadInventory(CCharEntity* PChar) 
 {
-	const int8* fmtQuery = "SELECT itemId, location, slot, quantity, bazaar, signature, currCharges, lastUseTime \
-							FROM char_inventory \
-							WHERE charid = %u;";
+	const int8* Query = "SELECT itemid, location, slot, quantity, bazaar, signature, currCharges, lastUseTime, linkshellid, color \
+                         FROM char_inventory \
+                         LEFT JOIN linkshells ON signature = name \
+                         WHERE charid = %u";
 
-	int32 ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+	int32 ret = Sql_Query(SqlHandle, Query, PChar->id);
 
 	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -547,39 +549,44 @@ void LoadInventory(CCharEntity* PChar)
 				{
 					PItem->setSignature(Sql_GetData(SqlHandle,5));
 				}
-				if ((PItem->getType() & ITEM_USABLE) &&
-					(PItem->getSubType() & ITEM_CHARGED))
+				if ((PItem->getType() & ITEM_USABLE) && (PItem->getSubType() & ITEM_CHARGED))
 				{
 					((CItemUsable*)PItem)->setCurrentCharges(Sql_GetUIntData(SqlHandle,6));
 					((CItemUsable*)PItem)->setLastUseTime(Sql_GetUIntData(SqlHandle,7));
 				}
-
+                if (PItem->getType() & ITEM_LINKSHELL)
+                {
+                    ((CItemLinkshell*)PItem)->SetLSID(Sql_GetUIntData(SqlHandle,8));
+                    ((CItemLinkshell*)PItem)->SetLSColor(Sql_GetIntData(SqlHandle,9));
+                }
 				PChar->getStorage(PItem->getLocationID())->InsertItem(PItem, PItem->getSlotID());
 			}
 		}
 	}
 
-	fmtQuery = "SELECT main, sub, ranged, ammo, head, body, hands, legs, feet, neck, waist, ear1, ear2, ring1, ring2, back, link \
-				FROM char_equip \
-				WHERE charid = %u;";
+	Query = "SELECT main, sub, ranged, ammo, head, body, hands, legs, feet, neck, waist, ear1, ear2, ring1, ring2, back, link \
+			 FROM char_equip \
+	         WHERE charid = %u;";
 
-	ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+	ret = Sql_Query(SqlHandle, Query, PChar->id);
 
 	if (ret != SQL_ERROR && 
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-		for (int32 i = 0; i < 16; i++)
+		for (int32 i = 0; i < 16; ++i)
 		{
-			PChar->equip[i] = (uint8)Sql_GetIntData(SqlHandle,i);
+            uint8 SlotID = (uint8)Sql_GetIntData(SqlHandle, i);
 
-			CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[i]);
+			CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
 			if ((PItem != NULL) && 
 				(PItem->getType() & ITEM_ARMOR) &&
 			   !(PItem->getSubType() & ITEM_LOCKED))
 			{
 				PItem->setSubType(ITEM_LOCKED);
+
+                PChar->equip[i] = SlotID;
 				PChar->addModifiers(&((CItemArmor*)PItem)->modList);
 
 				if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
@@ -598,11 +605,21 @@ void LoadInventory(CCharEntity* PChar)
 					PChar->addModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 					PChar->addModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 				}
-			} else {
-				PChar->equip[i] = 0;
 			}
 		}
-	} else {
+        uint8 SlotID = (uint8)Sql_GetIntData(SqlHandle, SLOT_LINK);
+
+		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
+
+		if ((PItem != NULL) && (PItem->getType() & ITEM_LINKSHELL))
+        {
+		    PItem->setSubType(ITEM_LOCKED);
+            PChar->equip[SLOT_LINK] = SlotID;
+            linkshell::AddOnlineMember(PChar, (CItemLinkshell*)PItem);
+        }
+	}
+    else 
+    {
 		ShowError(CL_RED"Loading error from char_equip\n"CL_RESET);
 	}
     CheckValidEquipment(PChar);
@@ -692,11 +709,23 @@ void SendInventory(CCharEntity* PChar)
 			if(PItem != NULL) 
 			{
 				PItem->setSubType(ITEM_LOCKED);
-				PChar->pushPacket(new CInventoryAssignPacket(PItem->getID(), PItem->getQuantity(), LOC_INVENTORY, PChar->equip[i], INV_NODROP));
+				PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NODROP));
 			}
 		}
 	}
+    if (PChar->equip[SLOT_LINK] != 0)
+    {
+        CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+        if (PItem != NULL)
+        {
+            PItem->setSubType(ITEM_LOCKED);
 
+            PChar->nameflags.flags |= FLAG_LINKSHELL;
+            PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, PChar->equip[SLOT_LINK]));
+		    PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_LINKSHELL));
+            PChar->pushPacket(new CLinkshellEquipPacket(PChar));
+        }
+    }
 	PChar->pushPacket(new CInventoryFinishPacket());
 }
 
@@ -1084,7 +1113,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				    PChar->status = STATUS_UPDATE;
 				    PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
 				    PChar->pushPacket(new CCharAppearancePacket(PChar));
-				    PChar->pushPacket(new CInventoryAssignPacket(PItem->getID(), PItem->getQuantity(), LOC_INVENTORY, slotID, INV_NODROP));
+				    PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NODROP));
 				    PChar->pushPacket(new CCharUpdatePacket(PChar));
 			    } 
 		    }
@@ -1152,7 +1181,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 
 		PChar->delModifiers(&((CItemArmor*)PItem)->modList);
 
-		PChar->pushPacket(new CInventoryAssignPacket(PItem->getID(), PItem->getQuantity(), LOC_INVENTORY, slotID , INV_NORMAL));
+		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
 		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
 
 		switch(equipSlotID)

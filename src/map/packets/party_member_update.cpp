@@ -33,47 +33,29 @@
 CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint8 ZoneID) 
 {
 	this->type = 0xDD;
-	this->size = 0x18;	
+	this->size = 0x20;	
 
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
 
 	WBUFL(data,(0x04)-4) = PChar->id;
 
-	if (PChar->PParty != NULL)
+    if (PChar->PParty != NULL)
 	{
-		uint16 PartyFlags = 0;
-
-		if (PChar->PParty->GetLeader() == PChar)
-		{
-			PartyFlags += PARTY_LEADER;
-		}
-		if (PChar->PParty->GetQuaterMaster() == PChar)
-		{
-			PartyFlags += PARTY_QM;
-		}
-		if (PChar->PParty->GetSyncTarget() == PChar)
-		{
-			PartyFlags += PARTY_SYNC;
-		}
-		WBUFW(data,(0x14)-4) = PartyFlags;
-	}
+        WBUFW(data,(0x14)-4) = PChar->PParty->GetMemberFlags(PChar);
+    }
 	if (PChar->getZone() != ZoneID) 
 	{
 		WBUFB(data,(0x1F)-4) = PChar->getZone();
 	} 
 	else
 	{
-		WBUFW(data,(0x08)-4) = PChar->health.hp;
-		WBUFW(data,(0x0C)-4) = PChar->health.mp; 
+		WBUFL(data,(0x08)-4) = PChar->health.hp;
+		WBUFL(data,(0x0C)-4) = PChar->health.mp; 
 		WBUFW(data,(0x10)-4) = PChar->health.tp;
-
+        WBUFW(data,(0x18)-4) = PChar->targid;
 		WBUFB(data,(0x1D)-4) = PChar->GetHPP(); 
 		WBUFB(data,(0x1E)-4) = PChar->GetMPP();
-
-		WBUFW(data,(0x18)-4) = PChar->targid;
-
 		WBUFB(data,(0x1A)-4) = MemberNumber;
 	}
-
-	memcpy(data+(0x20)-4, PChar->GetName(), PChar->name.size()); 
+	memcpy(data+(0x22)-4, PChar->GetName(), PChar->name.size()); 
 }

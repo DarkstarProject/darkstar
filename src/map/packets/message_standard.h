@@ -40,6 +40,7 @@ class CMessageStandardPacket : public CBasicPacket
 {
 public:
 
+    CMessageStandardPacket(uint16 MessageID);
 	CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint16 MessageID);
 	CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint32 param1, uint16 MessageID);
 	CMessageStandardPacket(uint32 param0, uint32 param1, uint32 param2, uint32 param3, uint16 MessageID);

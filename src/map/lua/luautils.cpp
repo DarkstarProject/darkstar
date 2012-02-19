@@ -1035,17 +1035,19 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	CLuaBaseEntity LuaKillerEntity(PKiller);
 	
     if (((CMobEntity*)PMob)->m_OwnerID == PKiller->id)
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeathEx");
-	if( !lua_isnil(LuaHandle,-1) )
-	{
-        Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
-
-        if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+    {
+        lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeathEx");
+	    if( !lua_isnil(LuaHandle,-1) )
 	    {
-		    ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
+            Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+            Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+
+            if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	        {
+		        ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
+	        }
 	    }
-	}
+    }
 
 	int8 File[255];
 	memset(File,0,sizeof(File));

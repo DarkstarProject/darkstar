@@ -23,6 +23,7 @@
 
 #include <string.h>
 
+#include "baseentity.h"
 #include "itemutils.h"
 #include "universal_container.h"
 
@@ -53,10 +54,34 @@ void CUContainer::Clean()
             delete m_PItem[i];
         }
     }
-    m_count = 0;
+    m_lock   = 0;
+    m_count  = 0;
+    m_target = 0;
     m_ContainerType = UCONTAINER_EMPTY;
 
 	memset(m_PItem, 0, sizeof(m_PItem));
+}
+
+/************************************************************************
+*                                                                       *
+*  Узнаем цель обмена                                                   *
+*                                                                       *
+************************************************************************/
+
+uint16 CUContainer::GetTarget()
+{
+    return m_target;
+}
+
+/************************************************************************
+*                                                                       *
+*  Устанавливаем цель обмена                                            *
+*                                                                       *
+************************************************************************/
+	
+void CUContainer::SetTarget(uint16 Target)
+{
+    m_target = Target;
 }
 
 /************************************************************************
@@ -81,6 +106,17 @@ void CUContainer::SetType(UCONTAINERTYPE Type)
 	DSP_DEBUG_BREAK_IF(m_ContainerType != UCONTAINER_EMPTY);
 
 	m_ContainerType = Type;
+}
+
+/************************************************************************
+*                                                                       *
+*  Проверяем, заблокирован ли контейнер                                 *
+*                                                                       *
+************************************************************************/
+
+bool CUContainer::IsLocked()
+{
+	return m_lock;
 }
 
 /************************************************************************

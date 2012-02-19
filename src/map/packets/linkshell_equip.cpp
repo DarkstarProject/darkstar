@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -23,47 +23,16 @@
 
 #include "../../common/socket.h"
 
-#include "item_linkshell.h"
+#include "linkshell_equip.h"
+
+#include "../charentity.h"
+#include "../linkshell.h"
 
 
-CItemLinkshell::CItemLinkshell(uint16 id) : CItem(id)
+CLinkshellEquipPacket::CLinkshellEquipPacket(CCharEntity* PChar)
 {
-	setType(ITEM_LINKSHELL);
+	this->type = 0xE0;
+	this->size = 0x04; 
 
-    m_LinkshellID = 100;
-	WBUFW(&m_LSColor,0) = 0;
-}
-
-CItemLinkshell::~CItemLinkshell()
-{
-}
-
-uint32 CItemLinkshell::GetLSID()
-{
-    return m_LinkshellID;
-}
-
-void CItemLinkshell::SetLSID(uint32 lsid)
-{
-    m_LinkshellID = lsid;
-}
-
-LSTYPE CItemLinkshell::GetLSType()
-{
-    return (LSTYPE)(getID() - 0x200);
-}
-
-lscolor_t CItemLinkshell::GetLSColor()
-{
-	return m_LSColor;
-}
-
-uint16 CItemLinkshell::GetLSRawColor()
-{
-    return RBUFW(&m_LSColor,0);
-}
-
-void CItemLinkshell::SetLSColor(uint16 color)
-{
-	WBUFW(&m_LSColor,0) = color;
+    WBUFB(data,(0x04)-4) = PChar->equip[SLOT_LINK];
 }

@@ -77,6 +77,8 @@ void CParty::DisbandParty()
     {
         PushPacket(NULL, 0, new CPartyDefinePacket(NULL));
 
+        // если вызвать это метод, когда один из персонажей переходит между зонами или находится в moghouse, тогда сервер упадет
+
 	    for (uint32 i = 0; i < members.size(); ++i) 
 	    {
 		    CCharEntity* PChar = (CCharEntity*)members.at(i);
@@ -346,6 +348,26 @@ CBattleEntity* CParty::GetQuaterMaster()
 
 /************************************************************************
 *                                                                       *
+*  Получаем список флагов персонажа                                     *
+*                                                                       *
+************************************************************************/
+
+uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
+{
+    DSP_DEBUG_BREAK_IF(PEntity == NULL);
+	DSP_DEBUG_BREAK_IF(PEntity->PParty != this);
+
+    uint16 Flags = 0;
+
+    if (PEntity == m_PLeader)       Flags |= PARTY_LEADER;
+    if (PEntity == m_PQuaterMaster) Flags |= PARTY_QM;
+    if (PEntity == m_PSyncTarget)   Flags |= PARTY_SYNC;
+
+    return Flags;
+}
+
+/************************************************************************
+*                                                                       *
 *  Обновляем карту группы для всех членов группы                        *
 *                                                                       *
 ************************************************************************/
@@ -378,7 +400,7 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
 
     for (int32 i = 0; i < members.size(); ++i) 
 	{
-        PushPacket(NULL, 0, new CPartyMemberUpdatePacket((CCharEntity*)members.at(i), i, PChar->getZone()));
+        PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)members.at(i), i, PChar->getZone()));
     }
 }
 

@@ -145,6 +145,7 @@
     <ClInclude Include="..\..\src\map\items\item_weapon.h" />
     <ClInclude Include="..\..\src\map\itemutils.h" />
     <ClInclude Include="..\..\src\map\item_container.h" />
+    <ClInclude Include="..\..\src\map\linkshell.h" />
     <ClInclude Include="..\..\src\map\lua\luautils.h" />
     <ClInclude Include="..\..\src\map\lua\lua_baseentity.h" />
     <ClInclude Include="..\..\src\map\lua\lua_region.h" />
@@ -202,6 +203,8 @@
     <ClInclude Include="..\..\src\map\packets\inventory_modify.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_size.h" />
     <ClInclude Include="..\..\src\map\packets\key_items.h" />
+    <ClInclude Include="..\..\src\map\packets\linkshell_message.h" />
+    <ClInclude Include="..\..\src\map\packets\linkshell_equip.h" />
     <ClInclude Include="..\..\src\map\packets\lock_on.h" />
     <ClInclude Include="..\..\src\map\packets\menu_config.h" />
     <ClInclude Include="..\..\src\map\packets\menu_merit.h" />
@@ -310,6 +313,7 @@
     <ClCompile Include="..\..\src\map\items\item_weapon.cpp" />
     <ClCompile Include="..\..\src\map\itemutils.cpp" />
     <ClCompile Include="..\..\src\map\item_container.cpp" />
+    <ClCompile Include="..\..\src\map\linkshell.cpp" />
     <ClCompile Include="..\..\src\map\lua\luautils.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_baseentity.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_region.cpp" />
@@ -367,6 +371,8 @@
     <ClCompile Include="..\..\src\map\packets\inventory_modify.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_size.cpp" />
     <ClCompile Include="..\..\src\map\packets\key_items.cpp" />
+    <ClCompile Include="..\..\src\map\packets\linkshell_message.cpp" />
+    <ClCompile Include="..\..\src\map\packets\linkshell_equip.cpp" />
     <ClCompile Include="..\..\src\map\packets\lock_on.cpp" />
     <ClCompile Include="..\..\src\map\packets\menu_config.cpp" />
     <ClCompile Include="..\..\src\map\packets\menu_merit.cpp" />

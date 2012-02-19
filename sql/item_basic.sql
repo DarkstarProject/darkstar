@@ -390,9 +390,9 @@ INSERT INTO `item_basic` VALUES (509, 'orc_mask', 'orc_mask', 1, 4096, 50, 1, 0)
 INSERT INTO `item_basic` VALUES (510, 'goblin_armor', 'goblin_armor', 1, 4096, 50, 1, 0);
 INSERT INTO `item_basic` VALUES (511, 'goblin_mask', 'goblin_mask', 1, 4096, 50, 1, 0);
 INSERT INTO `item_basic` VALUES (512, 'new_linkshell', 'new_linkshell', 1, 24896, 0, 0, 2000);
-INSERT INTO `item_basic` VALUES (513, 'linkshell', 'linkshell', 1, 28736, 0, 1, 0);
-INSERT INTO `item_basic` VALUES (514, 'pearlsack', 'pearlsack', 1, 28736, 0, 1, 0);
-INSERT INTO `item_basic` VALUES (515, 'linkpearl', 'linkpearl', 1, 28992, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (513, 'linkshell', 'linkshell', 1, 28768, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (514, 'pearlsack', 'pearlsack', 1, 28768, 0, 1, 0);
+INSERT INTO `item_basic` VALUES (515, 'linkpearl', 'linkpearl', 1, 29024, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (516, 'ripped_pearlsack', 'ripped_pearlsack', 1, 28736, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (517, 'broken_linkpearl', 'broken_linkpearl', 1, 28736, 0, 1, 0);
 INSERT INTO `item_basic` VALUES (519, 'linkshell', 'linkshell', 1, 4096, 99, 1, 0);

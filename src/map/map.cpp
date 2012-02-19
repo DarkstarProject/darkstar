@@ -44,6 +44,7 @@
 #include "charutils.h"
 #include "itemutils.h"
 #include "guildutils.h"
+#include "linkshell.h"
 #include "petutils.h"
 #include "zoneutils.h"
 #include "transport.h"
@@ -166,6 +167,7 @@ int32 do_init(int32 argc, int8** argv)
 
 	guildutils::Initialize();
 	charutils::LoadExpTable();
+    linkshell::LoadLinkshellList();
 	battleutils::LoadSkillTable();
 	battleutils::LoadAbilitiesList();
 	battleutils::LoadWeaponSkillsList();

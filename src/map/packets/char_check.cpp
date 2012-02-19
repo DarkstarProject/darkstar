@@ -29,9 +29,8 @@
 #include "char_check.h"
 
 #include "../charentity.h"
+#include "../itemutils.h"
 #include "../vana_time.h"
-
-#include "../items/item_usable.h"
 
 
 CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget) 
@@ -104,8 +103,20 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 	WBUFB(data,(0x0A)-4) = 0x01;
 
-	if ( (PChar->nameflags.flags & FLAG_GM) ||
-		!(PTarget->nameflags.flags & FLAG_ANON)) 
+    if (PTarget->equip[SLOT_LINK] != 0)
+    {
+        CItemLinkshell* PLinkshell = (CItemLinkshell*)PTarget->getStorage(LOC_INVENTORY)->GetItem(PTarget->equip[SLOT_LINK]);
+
+        if ((PLinkshell != NULL) && (PLinkshell->getType() & ITEM_LINKSHELL))
+	    {
+          //WBUFW(data,(0x0C)-4) = PLinkshell->GetLSID(); 
+            WBUFW(data,(0x0E)-4) = PLinkshell->getID();
+            WBUFW(data,(0x10)-4) = PLinkshell->GetLSRawColor();
+
+	        memcpy(data+(0x14)-4, PLinkshell->getSignature(), cap_value(strlen(PLinkshell->getSignature()), 0, 15));
+        }
+    }
+	if ((PChar->nameflags.flags & FLAG_GM) || !(PTarget->nameflags.flags & FLAG_ANON)) 
 	{
 		WBUFB(data,(0x12)-4) = PTarget->GetMJob();
 		WBUFB(data,(0x13)-4) = PTarget->GetSJob();

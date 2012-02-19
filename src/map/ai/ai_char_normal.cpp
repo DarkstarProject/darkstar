@@ -379,12 +379,7 @@ void CAICharNormal::ActionItemStart()
 			
 			m_PItemUsable->setSubType(ITEM_LOCKED);
 
-			m_PChar->pushPacket(new CInventoryAssignPacket(
-				m_PItemUsable->getID(), 
-				m_PItemUsable->getQuantity(), 
-				m_PItemUsable->getLocationID(), 
-				m_PItemUsable->getSlotID(), 
-				INV_NOSELECT));
+			m_PChar->pushPacket(new CInventoryAssignPacket(m_PItemUsable, INV_NOSELECT));
 			m_PChar->pushPacket(new CInventoryFinishPacket());
 		}
 		else
@@ -554,12 +549,7 @@ void CAICharNormal::ActionItemInterrupt()
 
 	m_PItemUsable->setSubType(ITEM_UNLOCKED);
 
-	m_PChar->pushPacket(new CInventoryAssignPacket(
-		m_PItemUsable->getID(), 
-		m_PItemUsable->getQuantity(), 
-		m_PItemUsable->getLocationID(), 
-		m_PItemUsable->getSlotID(), 
-		INV_NORMAL));
+	m_PChar->pushPacket(new CInventoryAssignPacket(m_PItemUsable, INV_NORMAL));
 	m_PChar->pushPacket(new CInventoryFinishPacket());
 
 	apAction_t Action;

@@ -61,6 +61,7 @@ public:
     CParty(CBattleEntity* PEntity);
 	
     uint32 GetPartyID();                                // узнаем уникальный ID группы
+    uint16 GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
     uint8  MemberCount(uint8 ZoneID);                   // узнаем количество участников группы в указанной зоне
 
     CBattleEntity* GetLeader();                         // узнаем лидера группы

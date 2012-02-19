@@ -50,8 +50,9 @@ CCharEntity::CCharEntity()
 	m_Mogsatchel = new CItemContainer(LOC_MOGSATCHEL);
 	m_Mogsack	 = new CItemContainer(LOC_MOGSACK);
 
-	memset(& jobs, 0, sizeof(jobs));
-	memset(& keys, 0, sizeof(keys));
+	memset(& jobs,  0, sizeof(jobs));
+	memset(& keys,  0, sizeof(keys));
+    memset(& equip, 0, sizeof(equip));
 	memset(& RealSkills, 0, sizeof(RealSkills));
 
 	memset(& m_SpellList, 0, sizeof(m_SpellList));
@@ -65,7 +66,7 @@ CCharEntity::CCharEntity()
 	memset(& m_missionLog,  0, sizeof(m_missionLog));
 	memset(& m_assaultLog,  0, sizeof(m_assaultLog));
 	memset(& m_campaignLog, 0, sizeof(m_campaignLog));
-	for(int32 i = 0; i <= 3; ++i) 
+	for(uint8 i = 0; i <= 3; ++i) 
 	{
 		m_missionLog[i].current = 0xFFFF;
 	}
@@ -89,6 +90,7 @@ CCharEntity::CCharEntity()
 
 	InvitePending = 0;
 
+    PLinkshell = NULL;
 	PTreasurePool = NULL;
 	PWideScanTarget = NULL;
 }

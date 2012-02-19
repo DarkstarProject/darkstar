@@ -33,8 +33,7 @@ enum UCONTAINERTYPE
 	UCONTAINER_SYNTES,
 	UCONTAINER_FISHING,
 	UCONTAINER_SHOP,
-	UCONTAINER_PC_TRADE,    // возможно необходим лишь один тип UCONTAINER_TRADE
-	UCONTAINER_NPC_TRADE,
+	UCONTAINER_TRADE,
 	UCONTAINER_USEITEM,
     UCONTAINER_AUCTION,
     UCONTAINER_DELIVERYBOX
@@ -48,9 +47,9 @@ enum UCONTAINERTYPE
 *																		*
 ************************************************************************/
 
-// скорее всего понадобятся:
 // главный предмет (gil, кристалл, используемый предмет ...)
-// цель обмена (npc, персонаж)
+
+class CBaseEntity;
 
 class CUContainer
 {
@@ -60,21 +59,27 @@ public:
 
 	UCONTAINERTYPE	GetType();
 
+    void    SetLock();
+    void    SetTarget(uint16 Target);
 	void	SetType(UCONTAINERTYPE Type);
 	void	SetItem(uint8 slotID, CItem* PItem);
 
 	void	Clean();
+    bool    IsLocked();
 	bool	IsContainerEmpty();
     bool    IsSlotEmpty(uint8 slotID);
 
+    uint16  GetTarget();
     uint8	GetItemsCount();
 	CItem*	GetItem(uint8 slotID);
 
 private:
 
 	UCONTAINERTYPE	m_ContainerType;
-	
+
+    bool    m_lock;
     uint8   m_count;
+    uint16  m_target;
 	CItem*  m_PItem[UCONTAINER_SIZE];
 };
 

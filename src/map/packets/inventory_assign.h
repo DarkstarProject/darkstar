@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -31,6 +31,7 @@
 #define INV_NORMAL		0x00
 #define INV_NODROP		0x05
 #define INV_NOSELECT	0x0F
+#define INV_LINKSHELL   0x13 // название под большим вопросом
 
 /************************************************************************
 *																		*
@@ -38,11 +39,13 @@
 *																		*
 ************************************************************************/
 
+class CItem;
+
 class CInventoryAssignPacket: public CBasicPacket
 {
 public:
 
-	CInventoryAssignPacket(uint16,uint32,uint8,uint8,uint8);
+    CInventoryAssignPacket(CItem* PItem, uint8 Flag);
 };
 
 #endif

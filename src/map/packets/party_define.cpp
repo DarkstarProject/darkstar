@@ -32,7 +32,7 @@
 CPartyDefinePacket::CPartyDefinePacket(CParty* PParty) 
 {
 	this->type = 0xC8;
-	this->size = 0x54;
+	this->size = 0x7C;
 
 	if (PParty != NULL)
 	{
@@ -40,29 +40,12 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 
 		for (int32 i = 0; i < PParty->members.size(); ++i) 
 		{
-			uint16 PartyFlags = 0;
-
 			CBattleEntity* PChar = PParty->members.at(i);
 
-			DSP_DEBUG_BREAK_IF(PChar == NULL);
-					
-			if (PParty->GetLeader() == PChar)
-			{
-				PartyFlags += PARTY_LEADER;
-			}
-			if (PParty->GetQuaterMaster() == PChar)
-			{
-				PartyFlags += PARTY_QM;
-			}
-			if (PParty->GetSyncTarget() == PChar)
-			{
-				PartyFlags += PARTY_SYNC;
-			}
-
-			WBUFL(data,8*i+(0x08)-4) = PChar->id;
-			WBUFW(data,8*i+(0x0C)-4) = PChar->targid;
-			WBUFB(data,8*i+(0x0E)-4) = PartyFlags;
-			WBUFB(data,8*i+(0x0F)-4) = PChar->getZone();
+			WBUFL(data,12*i+(0x08)-4) = PChar->id;
+			WBUFW(data,12*i+(0x0C)-4) = PChar->targid;
+			WBUFW(data,12*i+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
+			WBUFB(data,12*i+(0x10)-4) = PChar->getZone();
 		}
 	}
 }

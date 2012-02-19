@@ -77,17 +77,19 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 				WBUFB(data,(0x23)-4) = 0x20;
 			}
 
-			CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+            if (PChar->equip[SLOT_LINK] != 0)
+            {
+			    CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
-			if ((linkshell != NULL) && (linkshell->getType() & ITEM_LINKSHELL))
-			{
-				lscolor_t LSColor = linkshell->GetLSColor();
+			    if ((linkshell != NULL) && (linkshell->getType() & ITEM_LINKSHELL))
+			    {
+				    lscolor_t LSColor = linkshell->GetLSColor();
 		
-				WBUFB(data,(0x24)-4) = LSColor.R << 4;
-				WBUFB(data,(0x25)-4) = LSColor.G << 4;
-				WBUFB(data,(0x26)-4) = LSColor.B << 4;
-			}
-
+				    WBUFB(data,(0x24)-4) = LSColor.R << 4;
+				    WBUFB(data,(0x25)-4) = LSColor.G << 4;
+				    WBUFB(data,(0x26)-4) = LSColor.B << 4;
+			    }
+            }
             WBUFW(data,(0x30)-4) = PChar->m_Costum;
             WBUFL(data,(0x34)-4) = 0x010CA248; // black chocobo
 

@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `char_inventory` (
   `itemId` smallint(5) unsigned NOT NULL DEFAULT '0',
   `quantity` int(10) unsigned NOT NULL DEFAULT '0',
   `bazaar` int(8) unsigned NOT NULL DEFAULT '0',
-  `signature` varchar(12) DEFAULT NULL,
+  `signature` varchar(15) DEFAULT NULL,
   `currCharges` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `lastUseTime` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`,`slot`,`location`)

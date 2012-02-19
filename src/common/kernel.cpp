@@ -29,10 +29,6 @@
 #include "../common/timer.h"
 #include "../common/version.h"
 
-#ifndef _WIN32
-	#include "svnversion.h"
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>

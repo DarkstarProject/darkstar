@@ -53,28 +53,28 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	{
 		WBUFB(data,(0x2D)-4) = 0x80;
 	}
-	
 	if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK)) 
 	{
 		WBUFB(data,(0x38)-4) = 0x04;
 	}
 
     WBUFB(data,(0x29)-4) = PChar->GetGender(); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
-
 	WBUFB(data,(0x2C)-4) = PChar->speed * (100 + PChar->getMod(MOD_MOVE)) / 100;	
 	WBUFB(data,(0x30)-4) = PChar->animation;
 
-	CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+    if (PChar->equip[SLOT_LINK] != 0)
+    {
+	    CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
-	if ((linkshell != NULL) && (linkshell->getType() & ITEM_LINKSHELL))
-	{
-		lscolor_t LSColor = linkshell->GetLSColor();
+	    if ((linkshell != NULL) && (linkshell->getType() & ITEM_LINKSHELL))
+	    {
+		    lscolor_t LSColor = linkshell->GetLSColor();
 		
-		WBUFB(data,(0x31)-4) = LSColor.R << 4;
-		WBUFB(data,(0x32)-4) = LSColor.G << 4;
-		WBUFB(data,(0x33)-4) = LSColor.B << 4;
-	}
-
+		    WBUFB(data,(0x31)-4) = LSColor.R << 4;
+		    WBUFB(data,(0x32)-4) = LSColor.G << 4;
+		    WBUFB(data,(0x33)-4) = LSColor.B << 4;
+	    }
+    }
 	if (PChar->PPet != NULL)
 	{
 		WBUFW(data,(0x34)-4) = PChar->PPet->targid << 3;

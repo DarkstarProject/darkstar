@@ -648,7 +648,7 @@ int32 doSynthFail(CCharEntity* PChar)
 					charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(int32)lostCount);
 					lostCount = 0;
 				}else{				
-					PChar->pushPacket(new CInventoryAssignPacket(PItem->getID(), PItem->getQuantity(), LOC_INVENTORY, invSlotID, INV_NORMAL));
+					PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
 				}
 			}
 			invSlotID  = nextSlotID;
@@ -751,7 +751,7 @@ int32 startSynth(CCharEntity* PChar)
 			if (PItem != NULL)
 			{
 				PItem->setSubType(ITEM_LOCKED);
-				PChar->pushPacket(new CInventoryAssignPacket(PItem->getID(), PItem->getQuantity(), LOC_INVENTORY, invSlotID, INV_NOSELECT));
+				PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NOSELECT));
 			}
 		}
 	}

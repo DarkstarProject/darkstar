@@ -356,9 +356,12 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest)
 {
 	uint8* data = (uint8*)PTCPRequest->GetData();
+
     uint32 partyid = RBUFL(data,(0x10));
+    uint32 linkshellid = RBUFL(data,(0x18));
 
 	ShowMessage("SEARCH::PartyID = %u\n", partyid);
+    ShowMessage("SEARCH::LinkshlellID = %u\n", linkshellid);
 
     CPartyListPacket* PPartyListPacket = new CPartyListPacket(partyid);
     
