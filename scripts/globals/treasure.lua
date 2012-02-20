@@ -98,7 +98,7 @@ function getAFbyZone(zone)
 				 4,BORGHERTZ_S_SORCEROUS_HANDS,12641};
 	elseif(zone == 151) then -- Castle Oztroja
 		-- Chaos Cuirass(DRK), Choral Cannions (BRD), Rogue's Culottes (THF), Warlock's Tabard (RDM)
-		return { 8,BORGHERTZ_S_SHADOWY_HANDS,14221,
+		return { 8,BORGHERTZ_S_SHADOWY_HANDS,12645,
 				10,BORGHERTZ_S_HARMONIOUS_HANDS,14223,
 				 6,BORGHERTZ_S_SNEAKY_HANDS,14219,
 				 5,BORGHERTZ_S_VERMILLION_HANDS,12642};
@@ -270,8 +270,8 @@ Any update should be here with the date which was modified as well as an URL whe
 	items = {0.226,0x104D};
 	
 	-- Loot calculation 
-	--rand = math.random();
-	--rand = math.random();
+	rand = math.random();
+	rand = math.random();
 	rand = math.random();
 	
 	if(rand <= gil[1])then

@@ -33,7 +33,10 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
+	mLvl = player:getMainLvl();
+	mJob = player:getMainJob();
+	
+	if(mJob == 8 and mLvl >= AF2_QUEST_LEVEL and player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
 		player:startEvent(0x02f8); -- Start Quest "Dark Puppet"
 	elseif(player:getCurrentMission(BASTOK) == GEOLOGICAL_SURVEY) then
 		if(player:hasKeyItem(RED_ACIDITY_TESTER)) then
