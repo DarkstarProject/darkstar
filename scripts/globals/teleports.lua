@@ -375,7 +375,7 @@ function toEscape(player, zone)
 	elseif(zone == 148 or zone == 147) then 								-- From Qulun Dome or Beadeaux
 		player:setPos(553,25,-380,120,109); 								-- To Pashhow Marshlands at K-11
 	elseif(zone == 177 or zone == 178) then 								--From Ve'Lugannon Palace or Shrine of Ru'Avitau
-		player:setPos(4,-54,-599,185,130); 									-- To Ru'Aun Gardens at H-11
+		player:setPos(0,-34,-471,185,130); 									-- To Ru'Aun Gardens at H-11
 	elseif(zone == 152 or zone == 151) then 								-- From Altar Room or Castle Oztroja
 		player:setPos(752,-32,-40,129,119); 								-- To Meriphataud Mountains at L-8
 	elseif(zone == 159 or zone == 160) then 								-- From Temple of Uggalepih or Den of Rancor
@@ -383,7 +383,7 @@ function toEscape(player, zone)
 	elseif(zone == 12 or zone == 11) then 									-- From Newton Movalpolos or Oldton Movalpolos
 		player:setPos(552,-12,660,124,106); 								-- To North Gustaberg at K-6
 	elseif(zone == 29 or zone == 30) then 									-- From Riverne - Site B01 or Riverne - Site A01
-		player:setPos(516,-32,359,6,25); 									-- To Misareaux Coast at D-6
+		player:setPos(-516,-32,359,6,25); 									-- To Misareaux Coast at D-6
 	elseif(zone == 155 or zone == 138) then 								-- Fromn Castle Zvahl Keep (S) or Castle Zvahl Baileys (S)
 		player:setPos(-418,-44,20,0,137); 									-- To Xarcabard (S) at G-7
 	elseif(zone == 167) then 												-- From Bostaunieux Oubliette
@@ -404,6 +404,8 @@ function toEscape(player, zone)
 		player:setPos(-372,-28,-772,0,110); 								-- To Rolanberry Fields at F-13
 	elseif(zone == 153) then 												-- From The Boyahda Tree
 		player:setPos(508,2,-577,133,121); 									-- To The Sanctuary of Zi'Tah at K-12
+	elseif(zone == 154) then												-- From Dragon's Aery
+		player:setPos(213,0,-179,240,121)									-- To The Sanctuary of Zi'Tah at 
 	elseif(zone == 200) then 												-- From Garlaige Citadel
 		player:setPos(-104,-24,-408,189,120); 								-- To Sauromugue Champaign at H-10
 	elseif(zone == 213) then 												-- From Labyrinth of Onzozo
@@ -415,7 +417,7 @@ function toEscape(player, zone)
 	elseif(zone == 205) then 												-- From Ifrit's Cauldron
 		player:setPos(97,0,341,110,124); 									-- To Yhoator Jungle at I-6
 	elseif(zone == 176) then 												-- From Sea Serpent Grotto
-		player:setPos(-492,17,376,10,123); 									-- To Yuhtunga Jungle at E-11
+		player:setPos(-492,17,-376,10,123);									-- To Yuhtunga Jungle at E-11
 	elseif(zone == 191) then 												-- From Dangruf Wadi
 		player:setPos(-596,39,-520,4,107); 									-- To South Gustaberg at D-9
 	elseif(zone == 143) then 												-- From Palborough Mines
