@@ -1,14 +1,13 @@
 -----------------------------------
---  Area: Giddeus
---   NPC: Quu Bokye
---  Type: Quest NPC
--- @zone: 145
---  @pos: -159.715 16.132 181.504
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Giddeus
+-- NPC:  Quu Bokye
+-- Involved in Quest: Dark Legacy
+-- @zone 145
+-- @pos -159.715 16.132 181.504
+-----------------------------------
+package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 require("scripts/zones/Giddeus/TextIDs");
 
 -----------------------------------
@@ -16,6 +15,11 @@ require("scripts/zones/Giddeus/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(player:getVar("darkLegacyCS") == 3 and trade:hasItemQty(4445,1) and trade:getItemCount() == 1) then -- Trade Yagudo Cherries
+		player:startEvent(0x003e);
+	end
+	
 end;
 
 -----------------------------------
@@ -23,7 +27,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0038); 
+	
+	if(player:getVar("darkLegacyCS") == 3) then
+		player:startEvent(0x003d);
+	else
+		player:startEvent(0x0038);
+	end
+	
 end;
 
 -----------------------------------
@@ -31,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,7 +50,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	
+	if(csid == 0x003e) then
+		player:tradeComplete();
+		player:setVar("darkLegacyCS",4);
+	end
+	
 end;
-

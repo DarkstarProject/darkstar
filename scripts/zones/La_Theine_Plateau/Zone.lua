@@ -3,11 +3,11 @@
 -- Zone: La_Theine_Plateau
 --
 -----------------------------------
-
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/quests");
 require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------
@@ -24,22 +24,24 @@ end;
 function onZoneIn(player,prevZone)
 cs = -1;
 
-	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1 and player:hasItem(1125)) then
+	if(player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125)) then
 		colors = player:getVar("ICanHearARainbow");
 		g = (tonumber(colors) % 16 >= 8);
 		b = (tonumber(colors) % 32 >= 16);
 
 		cs = 0x007b;
 
-		if (g == false) then
+		if(g == false) then
 			player:setVar("ICanHearARainbow_Weather",10);
 			player:setVar("ICanHearARainbow",colors+8);
-		elseif (b == false) then
+		elseif(b == false) then
 			player:setVar("ICanHearARainbow_Weather",6);
 			player:setVar("ICanHearARainbow",colors+16);
 		else
 			cs = -1;
 		end
+	elseif(prevZone == 193 and player:getVar("darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
+		cs = 0x007a;
 	end
 
 return cs;
@@ -60,9 +62,9 @@ function onEventUpdate(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
 
-	if (csid == 0x007b) then
+	if(csid == 0x007b) then
 		weather = player:getVar("ICanHearARainbow_Weather");
-		if (player:getVar("ICanHearARainbow") < 127) then
+		if(player:getVar("ICanHearARainbow") < 127) then
 			player:updateEvent(0,0,weather);
 		else
 			player:updateEvent(0,0,weather,6);
@@ -78,7 +80,13 @@ function onEventFinish(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
 
-	if (csid == 0x007b) then
+	if(csid == 0x007b) then
 		player:setVar("ICanHearARainbow_Weather",0);
+	elseif(csid == 0x007a) then
+		player:addItem(14096);
+		player:messageSpecial(ITEM_OBTAINED,14096); -- Chaos Sollerets
+		player:setVar("darkPuppetCS",0);
+		player:addFame(BASTOK,AF2_FAME);
+		player:completeQuest(BASTOK,DARK_PUPPET);
 	end
 end;
