@@ -74,7 +74,7 @@ private:
 
 /************************************************************************
 *                                                                       *
-*                                                                       *
+*  namespase для работы с Linkshells                                    *
 *                                                                       *
 ************************************************************************/
 
@@ -85,7 +85,7 @@ namespace linkshell
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
 
-    bool IsValidLinkshellName(const int8* name);
+    uint32 RegisterNewLinkshell(const int8* name, uint16 color);
 };
 
 #endif

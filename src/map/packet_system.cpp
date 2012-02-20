@@ -2246,22 +2246,24 @@ int32 SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* da
     {
         if (PItemLinkshell->getID() == 512) // создание новой linkshell
         {
-            string_t LinkshellName;
+            uint32   LinkshellID    = 0;
+            uint16   LinkshellColor = RBUFW(data,(0x04));
+            string_t LinkshellName  = data+8;
 
-            if (linkshell::IsValidLinkshellName(LinkshellName.c_str()))
+            if (LinkshellID = linkshell::RegisterNewLinkshell(LinkshellName.c_str(), LinkshellColor)) // здесь дейтсвительно присваивание
             {
-                PItemLinkshell->setID(513);
-                PItemLinkshell->setSignature(data+8);
-                PItemLinkshell->SetLSColor(RBUFW(data,(0x04)));
+	            const int8* Query = "UPDATE char_inventory SET signature = '%s', itemId = 513 WHERE charid = %u AND location = 0 AND slot = %u LIMIT 1";
 
-	            const int8* Query = "UPDATE char_inventory SET signature = '%s', itemId = %u WHERE charid = %u AND location = 0 AND slot = %u;";
+		        if (Sql_Query(SqlHandle, Query, LinkshellName.c_str(), PChar->id, SlotID) != SQL_ERROR && 
+                    Sql_AffectedRows(SqlHandle) != 0)
+                {
+                    PItemLinkshell->setID(513);
+                    PItemLinkshell->SetLSID(LinkshellID);
+                    PItemLinkshell->setSignature(data+8);
+                    PItemLinkshell->SetLSColor(LinkshellColor);
 
-		        int8 signature[15*2+1];
-		        Sql_EscapeStringLen(SqlHandle, signature, PItemLinkshell->getSignature(), cap_value(strlen(PItemLinkshell->getSignature()),0,15));
-
-		      //Sql_Query(SqlHandle, Query, signature, PItemLinkshell->getID(), PChar->id, SlotID);
-
-                PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
+                    PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
+                }
             }
             else
             {

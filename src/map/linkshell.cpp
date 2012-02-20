@@ -21,6 +21,8 @@
 ===========================================================================
 */
 
+#include "../common/utils.h"
+
 #include "packets/basic.h"
 
 #include "charentity.h"
@@ -135,9 +137,9 @@ namespace linkshell
 			    CLinkshell* PLinkshell = new CLinkshell(Sql_GetUIntData(SqlHandle,0));
 			
 			    PLinkshell->setColor(Sql_GetIntData(SqlHandle,1));
-                PLinkshell->setName(Sql_GetData(SqlHandle,1));
-                PLinkshell->setPoster(Sql_GetData(SqlHandle,1));
-                PLinkshell->setMessage(Sql_GetData(SqlHandle,1));
+                PLinkshell->setName(Sql_GetData(SqlHandle,2));
+                PLinkshell->setPoster(Sql_GetData(SqlHandle,3));
+                PLinkshell->setMessage(Sql_GetData(SqlHandle,4));
 
                 LinkshellList[PLinkshell->getID()] = PLinkshell;
 		    }
@@ -152,8 +154,8 @@ namespace linkshell
 
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell)
     {
-        DSP_DEBUG_BREAK_IF(PChar == NULL);
-        DSP_DEBUG_BREAK_IF(PChar->PLinkshell != NULL);
+        //DSP_DEBUG_BREAK_IF(PChar == NULL);
+        //DSP_DEBUG_BREAK_IF(PChar->PLinkshell != NULL);
 
         if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
         {
@@ -177,8 +179,8 @@ namespace linkshell
 
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell)
     {
-        DSP_DEBUG_BREAK_IF(PChar == NULL);
-        DSP_DEBUG_BREAK_IF(PChar->PLinkshell == NULL);
+        //DSP_DEBUG_BREAK_IF(PChar == NULL);
+        //DSP_DEBUG_BREAK_IF(PChar->PLinkshell == NULL);
 
         if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
         {
@@ -202,6 +204,31 @@ namespace linkshell
 
     bool IsValidLinkshellName(const int8* name)
     {
-        return false;
+        return true;
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Регистрируем новую linkshell                                         *
+    *                                                                       *
+    ************************************************************************/
+
+    uint32 RegisterNewLinkshell(const int8* name, uint16 color)
+    {
+        if (IsValidLinkshellName(name))
+        {
+		    if (Sql_Query(SqlHandle, "INSERT INTO linkshells (name, color) VALUES ('%s', %u)", name, color) != SQL_ERROR)
+            {
+                CLinkshell* PLinkshell = new CLinkshell(Sql_LastInsertId(SqlHandle));
+			
+			    PLinkshell->setColor(color);
+                PLinkshell->setName((int8*)name);
+                
+                LinkshellList[PLinkshell->getID()] = PLinkshell;
+
+                return PLinkshell->getID();
+            }
+        }
+        return 0;
     }
 };
