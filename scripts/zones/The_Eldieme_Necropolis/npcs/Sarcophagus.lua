@@ -46,9 +46,9 @@ function onTrade(player,npc,trade)
 			player:tradeComplete();
 			player:messageSpecial(SENSE_OF_FOREBODING);
 			player:setVar("TheRequiemAlreadyPoped",1);
-			SpawnMob(17576265):updateEnmity(player); -- Spawn Yum Kimil NM @pos -414 8 499
-			SpawnMob(17576267):updateEnmity(player); -- Spawn Owl Guardian NM @pos -414 8 501
-			SpawnMob(17576266):updateEnmity(player); -- Spawn Dog Guardian NM @pos -414 8 497
+			SpawnMob(17576265,300):updateEnmity(player); -- Spawn Yum Kimil NM @pos -414 8 499
+			SpawnMob(17576267,180):updateEnmity(player); -- Spawn Owl Guardian NM @pos -414 8 501
+			SpawnMob(17576266,180):updateEnmity(player); -- Spawn Dog Guardian NM @pos -414 8 497
 		else
 			player:messageSpecial(NOTHING_HAPPENED);
 		end

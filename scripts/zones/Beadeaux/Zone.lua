@@ -22,15 +22,21 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
+	
+	cs = -1;
+	
 	if (prevZone == 109) then
 		if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getVar("Blade_of_Darkness_SwordKills") >= 100) then
 			cs = 0x0079;
 		elseif (player:getCurrentMission(1) == 10 and player:getVar("MissionStatus") == 2) then
 			cs = 0x0078;
+		elseif(player:getMainJob() == 8 and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_AVAILABLE) then
+			cs = 0x007a;
 		end
 	end
-return cs;
+	
+	return cs;
+	
 end;
 
 -----------------------------------
@@ -67,6 +73,8 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x0078) then
 		player:setVar("MissionStatus",2);
 		player:setPos(-297, 1, 96, 1);
+	elseif(csid == 0x007a) then
+		player:addQuest(BASTOK,BLADE_OF_EVIL);
 	end
 end;
 

@@ -5,3 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6538; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6541; -- Obtained: <item>
            GIL_OBTAINED = 6542; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6544; -- Obtained key item: <keyitem>
+
+-- Quest dialog
+	  SENSE_OF_FOREBODING = 6393; -- You are suddenly overcome with a sense of foreboding...
+THERE_IS_NOTHING_ORDINARY = 6392; -- There is nothing out of the ordinary here
