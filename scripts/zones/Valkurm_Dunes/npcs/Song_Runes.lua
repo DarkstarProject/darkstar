@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
 		player:setTitle(WANDERING_MINSTREL);
 		player:addFame(BASTOK,BAS_FAME*10);
-		player:addFame(SAN_D_ORIA,SAN_FAME*10);
+		player:addFame(SANDORIA,SAN_FAME*10);
 		player:addFame(WINDURST,WIN_FAME*10);
 		player:unlockJob(10); -- Bard
 		player:messageSpecial(UNLOCK_BARD);  --You can now become a bard!
