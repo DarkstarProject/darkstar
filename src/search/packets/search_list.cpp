@@ -70,7 +70,7 @@ void CSearchListPacket::AddPlayer(SearchEntity* PPlayer)
     }
     
 	m_offset = packBitsLE(m_data, SEARCH_AREA,   m_offset, 5);
-    m_offset = packBitsLE(m_data, PPlayer->zone, m_offset, 8);
+    m_offset = packBitsLE(m_data, PPlayer->zone, m_offset,10);
 
     if (!(PPlayer->flags1 & 0x4000))
     {
