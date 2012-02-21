@@ -28,6 +28,7 @@ function onSpellCast(caster,target,spell)
 		duration = duration * target:getMainLvl() / 21;
 	end
 	
+	target:delStatusEffect(EFFECT_REGEN);
 	target:addStatusEffect(EFFECT_REGEN,hp,3,duration,FLAG_DISPELABLE);
 	return 0;
 end;
