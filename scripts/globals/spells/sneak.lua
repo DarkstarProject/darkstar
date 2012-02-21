@@ -1,8 +1,7 @@
 -----------------------------------------
---	Spell: Sneak
--- 	Lessens chance of being detected by sound
---  
---  Duration is random number between 30 seconds and 5 minutes
+-- Spell: Sneak
+-- Lessens chance of being detected by sound
+-- Duration is random number between 30 seconds and 5 minutes
 -----------------------------------------
 
 require("scripts/globals/status");

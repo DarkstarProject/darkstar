@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: WaterSpirit
---	Summons WaterSpirit to fight by your side
+-- Spell: WaterSpirit
+-- Summons WaterSpirit to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

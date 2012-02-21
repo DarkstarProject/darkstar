@@ -1,7 +1,6 @@
------------------------------------------
---	
---	Spell: AirSpirit
---	Summons AirSpirit to fight by your side
+-----------------------------------------	
+-- Spell: AirSpirit
+-- Summons AirSpirit to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

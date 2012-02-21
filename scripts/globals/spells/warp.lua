@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Warp
---	Transports the user to their Home Point
+-- Spell: Warp
+-- Transports the user to their Home Point
 -----------------------------------------
 
 -----------------------------------------

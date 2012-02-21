@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Shiva
---	Summons Shiva to fight by your side
+-- Spell: Shiva
+-- Summons Shiva to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

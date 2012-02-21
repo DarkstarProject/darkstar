@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: FireSpirit
---	Summons FireSpirit to fight by your side
+-- Spell: FireSpirit
+-- Summons FireSpirit to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

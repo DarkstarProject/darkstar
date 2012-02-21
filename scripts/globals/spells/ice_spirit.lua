@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: IceSpirit
---	Summons IceSpirit to fight by your side
+-- Spell: IceSpirit
+-- Summons IceSpirit to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

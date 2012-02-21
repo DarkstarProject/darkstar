@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Diabolos
---	Summons Diabolos to fight by your side
+-- Spell: Diabolos
+-- Summons Diabolos to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

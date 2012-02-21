@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Fenrir
---	Summons Fenrir to fight by your side
+-- Spell: Fenrir
+-- Summons Fenrir to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

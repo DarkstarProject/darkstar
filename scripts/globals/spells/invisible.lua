@@ -1,8 +1,7 @@
 -----------------------------------------
---	Spell: Invisible
--- 	Lessens chance of being detected by sight.
---  
---  Duration is random number between 30 seconds and 5 minutes
+-- Spell: Invisible
+-- Lessens chance of being detected by sight.
+-- Duration is random number between 30 seconds and 5 minutes
 -----------------------------------------
 
 require("scripts/globals/status");

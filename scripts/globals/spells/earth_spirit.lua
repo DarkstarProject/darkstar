@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: EarthSpirit
---	Summons EarthSpirit to fight by your side
+-- Spell: EarthSpirit
+-- Summons EarthSpirit to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

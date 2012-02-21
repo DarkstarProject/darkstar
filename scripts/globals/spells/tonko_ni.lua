@@ -1,8 +1,7 @@
 -----------------------------------------
---	Spell: Tonko: ni
--- 	Lessens chance of being detected by sound
---  
---  Duration is 5 minutes (non-random duration)
+-- Spell: Tonko: ni
+-- Lessens chance of being detected by sound
+-- Duration is 5 minutes (non-random duration)
 -----------------------------------------
 
 require("scripts/globals/status");

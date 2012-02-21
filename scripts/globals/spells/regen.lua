@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Regen
---	Gradually restores target's HP.
+-- Spell: Regen
+-- Gradually restores target's HP.
 -----------------------------------------
 -- Cleric's Briault enhances the effect
 -- Scale down duration based on level

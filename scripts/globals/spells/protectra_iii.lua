@@ -1,5 +1,5 @@
 -----------------------------------------
---	Spell: Protectra III
+-- Spell: Protectra III
 -----------------------------------------
 
 require("scripts/globals/status");

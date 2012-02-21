@@ -1,5 +1,5 @@
 -----------------------------------------
---  Spell: Utsusemi: San
+-- Spell: Utsusemi: San
 -----------------------------------------
 
 require("scripts/globals/status");

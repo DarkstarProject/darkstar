@@ -1,5 +1,5 @@
 -----------------------------------------
---	Spell: Shellra IV
+-- Spell: Shellra IV
 -----------------------------------------
 
 require("scripts/globals/status");

@@ -1,5 +1,5 @@
 -----------------------------------------
---	Spell: Shell II
+-- Spell: Shell II
 -----------------------------------------
 
 require("scripts/globals/status");

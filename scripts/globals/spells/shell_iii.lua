@@ -1,5 +1,5 @@
 -----------------------------------------
---	Spell: Shell III
+-- Spell: Shell III
 -----------------------------------------
 
 require("scripts/globals/status");

@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Warp II
---  Transports player to their home point. Can cast on allies.
+-- Spell: Warp II
+-- Transports player to their home point. Can cast on allies.
 -----------------------------------------
 
 -----------------------------------------

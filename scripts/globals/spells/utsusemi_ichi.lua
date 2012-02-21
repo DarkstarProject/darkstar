@@ -1,5 +1,5 @@
 -----------------------------------------
---	Spell: Utsusemi: Ichi
+-- Spell: Utsusemi: Ichi
 -----------------------------------------
 
 require("scripts/globals/status");

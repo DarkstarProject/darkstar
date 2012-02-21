@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Garuda
---	Summons Garuda to fight by your side
+-- Spell: Garuda
+-- Summons Garuda to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

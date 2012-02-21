@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Leviathan
---	Summons Leviathan to fight by your side
+-- Spell: Leviathan
+-- Summons Leviathan to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

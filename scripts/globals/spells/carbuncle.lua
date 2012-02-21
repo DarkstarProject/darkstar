@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Carbuncle
---	Summons Carbuncle to fight by your side
+-- Spell: Carbuncle
+-- Summons Carbuncle to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

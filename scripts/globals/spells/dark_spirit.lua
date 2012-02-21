@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: DarkSpirit
---	Summons DarkSpirit to fight by your side
+-- Spell: DarkSpirit
+-- Summons DarkSpirit to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

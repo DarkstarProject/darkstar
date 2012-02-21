@@ -1,5 +1,5 @@
 -----------------------------------------
---	Spell: Utsusemi: Ni
+-- Spell: Utsusemi: Ni
 -----------------------------------------
 
 require("scripts/globals/status");

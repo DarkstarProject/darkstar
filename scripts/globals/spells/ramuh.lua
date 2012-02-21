@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Ramuh
---	Summons Ramuh to fight by your side
+-- Spell: Ramuh
+-- Summons Ramuh to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

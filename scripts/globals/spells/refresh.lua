@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Refresh
---	Gradually restores target party member's MP
+-- Spell: Refresh
+-- Gradually restores target party member's MP
 -----------------------------------------
 
 require("scripts/globals/status");

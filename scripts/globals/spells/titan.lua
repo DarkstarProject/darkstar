@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Titan
---	Summons Titan to fight by your side
+-- Spell: Titan
+-- Summons Titan to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");

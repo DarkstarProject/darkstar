@@ -1,7 +1,6 @@
 -----------------------------------------
---	
---	Spell: Ifrit
---	Summons Ifrit to fight by your side
+-- Spell: Ifrit
+-- Summons Ifrit to fight by your side
 -----------------------------------------
 
 require("scripts/globals/pets");
