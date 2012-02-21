@@ -71,22 +71,22 @@ function onRegionEnter(player,region)
 		---------------------------------
 		[4] = function (x)
 		---------------------------------
-		player:startEvent(3);
+		player:startEvent(5);
 		end,
 
 		---------------------------------
 		[5] = function (x)
 		---------------------------------
-		player:startEvent(4);
+		player:startEvent(3);
 		end,
 
 		---------------------------------
 		[6] = function (x)
 		---------------------------------
-		if(player:getVar("bladeOfEvilCS") == 1 and player:getFreeSlotsCount() >= 1) then
+		if(player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED and player:getFreeSlotsCount() >= 1 and player:getVar("bladeOfEvilCS") == 1) then
 			player:startEvent(0x000e);
 		else
-			player:startEvent(5);
+			player:startEvent(7);
 		end
 		
 		end,
@@ -94,13 +94,13 @@ function onRegionEnter(player,region)
 		--------------------------------
 		[7] = function (x)
 		---------------------------------
-		player:startEvent(6);
+		player:startEvent(4);
 		end,
 
 		---------------------------------
 		[8] = function (x)
 		---------------------------------
-		player:startEvent(7);
+		player:startEvent(6);
 		end,
 
 		---------------------------------

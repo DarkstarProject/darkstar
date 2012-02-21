@@ -16,7 +16,7 @@ require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 function onInitialize(zone)
 
 	zone:registerRegion(1, 403, -34, 83, 409, -33, 89); -- Third Floor G-6 porter to Middle Delkfutt's Tower
-	zone:registerRegion(2, 390, -34, -49, 397, -33, -43); -- Third Floor G-6 porter to Middle Delkfutt's Tower "1"
+	zone:registerRegion(2, 390, -34, -49, 397, -33, -43); -- Third Floor F-10 porter to Middle Delkfutt's Tower "1"
 	--print("Lower Delkfutt's Tower Teleporters initialized.")
 
 end;
@@ -42,13 +42,15 @@ function onRegionEnter(player,region)
 		---------------------------------
 		[1] = function (x)
 		---------------------------------
+		player:setVar("option",1);
 		player:startEvent(4);
 		end,
 
 		---------------------------------
 		[2] = function (x)
 		---------------------------------
-		player:startEvent(5);
+		player:setVar("option",2);
+		player:startEvent(4);
 		end,
 	}
 	
@@ -78,10 +80,15 @@ function onEventFinish(player,csid,menuchoice)
 --print("CSID: ",csid);
 --print("RESULT: ",menuchoice);
 	
-	if(csid == 4 and menuchoice == 1) then
-		player:setPos(-28 , -48 , 80, 111, 157);
-	elseif(csid == 5 and menuchoice == 1) then
-		player:setPos(-51 , -48 , -40, 246, 157);
+	if(menuchoice == 1) then
+		if(player:getVar("option") == 1) then
+			player:setPos(-28, -48, 80, 111, 157);
+		else
+			player:setPos(-51, -48, -40, 246, 157);
+		end
+		player:setVar("option",0);
+	elseif(menuchoice == 0 or menuchoice >= 3) then
+		player:setVar("option",0);
 	end
 	
 end;
