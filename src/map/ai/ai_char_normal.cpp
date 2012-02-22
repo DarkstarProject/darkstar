@@ -796,25 +796,12 @@ void CAICharNormal::ActionMagicStart()
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
+    // mute 049 
 	if (!charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
 	    !battleutils::CanUseSpell(m_PChar, m_PSpell->getID()))
 	{
         MagicStartError(49);
 		return;
-	}
-    // mute 049 
-	if (m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING)
-	{
-        if (m_PChar->PPet != NULL)
-        {
-            MagicStartError(315);
-		    return;
-        } 
-        else if (!m_PChar->loc.zone->CanUseMisc(MISC_PET))
-        {
-            MagicStartError(40);
-		    return;
-        }
 	}
     for(RecastList_t::iterator it = m_PChar->RecastList.begin(); it != m_PChar->RecastList.end(); ++it)
     {
@@ -824,6 +811,19 @@ void CAICharNormal::ActionMagicStart()
 			return;
         }
     }
+    if (!m_PChar->loc.zone->CanUseMisc(m_PSpell->getZoneMisc()))
+    {
+        MagicStartError(40);
+		return;
+    }
+    if (m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING)
+	{
+        if (m_PChar->PPet != NULL)
+        {
+            MagicStartError(315);
+		    return;
+        } 
+	}
 	if (GetValidTarget(&m_PBattleSubTarget, m_PSpell->getValidTarget()))
 	{
 		if (m_PBattleSubTarget->isDead() && !(m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD))

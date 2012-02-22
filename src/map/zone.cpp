@@ -194,9 +194,9 @@ uint8 CZone::GetBackgroundMusic()
 	return m_zoneMusic.m_song;
 }
 
-bool CZone::CanUseMisc(ZONE_MISC miscID)
+bool CZone::CanUseMisc(uint16 misc)
 {
-	return (miscID & m_miscMask ? true : false);
+	return (m_miscMask & misc) == misc;
 }
 
 zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
@@ -491,7 +491,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
     PChar->loc.zone = NULL;
     PChar->loc.prevzone = m_zoneID;
 
-	PChar->SpawnPCList.clear();
+    PChar->SpawnPCList.clear();
 	PChar->SpawnNPCList.clear();
 	PChar->SpawnMOBList.clear();
 	PChar->SpawnPETList.clear();

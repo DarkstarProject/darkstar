@@ -34,6 +34,7 @@ CSpell::CSpell(uint16 id)
 	m_recastTime    = 0;
 	m_animation     = 0;
     m_animationTime = 0;
+    m_zoneMisc      = 0;
     m_message       = 0;
     m_element       = 0;
 	m_spellGroup    = SPELLGROUP_NONE;
@@ -100,6 +101,16 @@ SPELLGROUP CSpell::getSpellGroup()
 void CSpell::setSpellGroup(SPELLGROUP SpellGroup)
 {
 	m_spellGroup = SpellGroup;
+}
+
+uint16 CSpell::getZoneMisc()
+{
+    return m_zoneMisc;
+}
+
+void CSpell::setZoneMisc(uint16 Misc)
+{
+    m_zoneMisc = Misc;
 }
 
 uint16 CSpell::getAnimationID()

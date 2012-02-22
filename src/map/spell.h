@@ -58,6 +58,7 @@ public:
 	uint16		getAnimationID();
     uint16      getAnimationTime();
 	SPELLGROUP	getSpellGroup();
+    uint16      getZoneMisc();
 	bool		isAOE();
 	uint16		getBase();
 	uint16		getElement();
@@ -76,6 +77,7 @@ public:
 	void		setAnimationID(uint16 AnimationID);
     void        setAnimationTime(uint16 AnimationTime);
 	void		setSpellGroup(SPELLGROUP SpellGroup);
+    void        setZoneMisc(uint16 Misc);
 	void		setAOE(uint8 AOE);
 	void		setBase(uint16 base);
 	void		setElement(uint16 element); 
@@ -98,6 +100,7 @@ private:
 	uint8		m_job[MAX_JOBTYPE];						// job
 	uint8		m_ValidTarget;							// target pc/npc/both
 	SPELLGROUP  m_spellGroup;							// spellgroup 
+    uint16      m_zoneMisc;                             // условия чтения заклинаний в зонах
 	bool		m_isAOE;								// aoe or single target spell
 	uint16		m_base;									// spell base damage
 	float		m_multiplier;							// multiplier for upper tier spells

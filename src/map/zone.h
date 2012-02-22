@@ -34,8 +34,9 @@
 #include "region.h"
 #include "vana_time.h"
 
-enum ZONE_MISC
+enum ZONEMISC
 {
+    MISC_NONE       = 0x0000,   // 0x0000, // возможность использовать в любой зоне
 	MISC_ESCAPE		= 0x0001,	// 0x0001, // возможность использования заклинания escape;
 	MISC_TRACTOR	= 0x0010,	// 0x0002, // возможность использования заклинания tractor;
 	MISC_MAZURKA	= 0x0008,	// 0x0004, // возможность использования заклинания mazurka;
@@ -112,7 +113,7 @@ public:
 
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
 
-	bool			CanUseMisc(ZONE_MISC miscID);
+	bool			CanUseMisc(uint16 misc);
 
 	void			SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
 	void			SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
