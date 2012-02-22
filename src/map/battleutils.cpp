@@ -141,7 +141,7 @@ void LoadSpellList()
 {
 	memset(g_PSpellList,0,sizeof(g_PSpellList));
 
-	const int8* fmtQuery = "SELECT spellid, name, jobs, `group`, validTargets, castTime, recastTime, animation, mpCost, \
+	const int8* fmtQuery = "SELECT spellid, name, jobs, `group`, validTargets, castTime, recastTime, animation, animationTime, mpCost, \
 							isAOE, base, element, multiplier, message, CE, VE \
 							FROM spell_list \
 							WHERE spellid < %u;";
@@ -161,14 +161,15 @@ void LoadSpellList()
 			PSpell->setCastTime(Sql_GetIntData(SqlHandle,5));
 			PSpell->setRecastTime(Sql_GetIntData(SqlHandle,6));
 			PSpell->setAnimationID(Sql_GetIntData(SqlHandle,7));
-			PSpell->setMPCost(Sql_GetIntData(SqlHandle,8));
-			PSpell->setAOE(Sql_GetIntData(SqlHandle,9));
-			PSpell->setBase(Sql_GetIntData(SqlHandle,10)); 
-			PSpell->setElement(Sql_GetIntData(SqlHandle,11)); 
-			PSpell->setMultiplier(Sql_GetIntData(SqlHandle,12)); 
-            PSpell->setMessage(Sql_GetIntData(SqlHandle,13)); 
-			PSpell->setCE(Sql_GetIntData(SqlHandle,14));
-			PSpell->setVE(Sql_GetIntData(SqlHandle,15));
+            PSpell->setAnimationTime(Sql_GetIntData(SqlHandle,8));
+			PSpell->setMPCost(Sql_GetIntData(SqlHandle,9));
+			PSpell->setAOE(Sql_GetIntData(SqlHandle,10));
+			PSpell->setBase(Sql_GetIntData(SqlHandle,11)); 
+			PSpell->setElement(Sql_GetIntData(SqlHandle,12)); 
+			PSpell->setMultiplier(Sql_GetIntData(SqlHandle,13)); 
+            PSpell->setMessage(Sql_GetIntData(SqlHandle,14)); 
+			PSpell->setCE(Sql_GetIntData(SqlHandle,15));
+			PSpell->setVE(Sql_GetIntData(SqlHandle,16));
 
 			g_PSpellList[PSpell->getID()] = PSpell;
 		}

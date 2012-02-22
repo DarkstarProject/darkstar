@@ -1079,57 +1079,62 @@ void CAICharNormal::ActionMagicFinish()
 	Action.messageID  = 0;
 	Action.flag		  = 0;
 
-	if (!m_PSpell->isAOE())
-	{
-		m_PChar->m_ActionList.push_back(Action);
-	}
-	else if (m_PBattleSubTarget->objtype == TYPE_PC)
-	{
-		CCharEntity* Target = (CCharEntity*)m_PBattleSubTarget;
+    m_PChar->m_ActionList.push_back(Action);
 
-		if (Target->PParty != NULL)
-		{
-			for (uint32 i = 0; i < Target->PParty->members.size(); i++)
-			{
-				CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+	if (m_PSpell->isAOE())
+    {
+	    if (m_PBattleSubTarget->objtype == TYPE_PC)
+	    {
+		    if (m_PBattleSubTarget->PParty != NULL)
+		    {
+			    for (uint8 i = 0; i < m_PBattleSubTarget->PParty->members.size(); ++i)
+			    {
+				    CBattleEntity* PTarget = m_PChar->PParty->members[i];
 
-				if (!PTarget->isDead() && distance(Target->loc.p, PTarget->loc.p) <= 10)
-				{
-					Action.ActionTarget = m_PChar->PParty->members[i];
-					m_PChar->m_ActionList.push_back(Action);	
-				}
-			}
-		}
-		else
-		{
-			m_PChar->m_ActionList.push_back(Action);
-		}
-	}
-	else if (m_PBattleSubTarget->objtype == TYPE_MOB)
-	{
-		m_PChar->m_ActionList.push_back(Action);
-        ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
-
-		for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin();  it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 16; ++it)
-		{
-			CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+				    if (m_PBattleSubTarget != PTarget &&
+                       !PTarget->isDead() && 
+                       distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
+				    {
+					    Action.ActionTarget = PTarget;
+					    m_PChar->m_ActionList.push_back(Action);	
+				    }
+			    }
+		    }
+	    }
+	    else if (m_PBattleSubTarget->objtype == TYPE_MOB)
+	    {
+		    for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin();  it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 16; ++it)
+		    {
+			    CBattleEntity* PTarget = (CBattleEntity*)it->second;
             
-			if (m_PBattleSubTarget != PCurrentMob &&
-                !PCurrentMob->isDead()  &&
-                IsMobOwner(PCurrentMob) &&
-				distance(m_PBattleSubTarget->loc.p, PCurrentMob->loc.p) <= 10)
-			{
-				Action.ActionTarget = PCurrentMob;
-			    m_PChar->m_ActionList.push_back(Action);
-                PCurrentMob->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
-			}
-		}
-	}
+			    if (m_PBattleSubTarget != PTarget &&
+                    !PTarget->isDead()  &&
+                    IsMobOwner(PTarget) &&
+				    distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
+			    {
+				    Action.ActionTarget = PTarget;
+			        m_PChar->m_ActionList.push_back(Action);
+			    }
+		    }
+	    }
+    }
 
     for (uint32 i = 0; i < m_PChar->m_ActionList.size(); ++i)
 	{
-        m_PChar->m_ActionList.at(i).param = luautils::OnSpellCast(m_PChar, m_PChar->m_ActionList.at(i).ActionTarget);
+        CBattleEntity* PTarget = m_PChar->m_ActionList.at(i).ActionTarget;
+
+        m_PChar->m_ActionList.at(i).param = luautils::OnSpellCast(m_PChar, PTarget);
         m_PChar->m_ActionList.at(i).messageID = m_PSpell->getMessage();
+
+        if (PTarget->objtype == TYPE_MOB)
+        {
+            if (PTarget->isDead())
+            {
+                ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
+            }
+            ((CMobEntity*)PTarget)->m_OwnerID = m_PChar->id;
+            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
+        }
     }
 
 	charutils::UpdateHealth(m_PChar);
@@ -1409,22 +1414,20 @@ void CAICharNormal::ActionWeaponSkillFinish()
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
     m_LastActionTime = m_Tick;
-
+    
 	uint16 damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget);
 
-	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
-	{
-	    m_PChar->health.tp -= 100;
-    }
-	else
-	{
-	    m_PChar->health.tp = 8; 
-    }
+	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI) ? m_PChar->addTP(-100) : m_PChar->health.tp = 8; 
+
+    damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage);
+
+    //if (m_PBattleSubTarget->objtype == TYPE_MOB && m_PBattleSubTarget->isDead())
+    //{
+    //    ((CMobEntity*)m_PBattleSubTarget)->m_DropItemTime = m_PWeaponSkill->getAnimationTime();
+    //}
 
 	apAction_t Action;
     m_PChar->m_ActionList.clear();
-
-	damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage);
 
 	Action.ActionTarget = m_PBattleSubTarget;
 	Action.reaction   = REACTION_NONE;

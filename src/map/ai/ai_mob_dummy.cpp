@@ -194,7 +194,7 @@ void CAIMobDummy::ActionFall()
 
 void CAIMobDummy::ActionDropItems() 
 {
-	if ((m_Tick - m_LastActionTime) > 1000 )
+    if ((m_Tick - m_LastActionTime) > m_PMob->m_DropItemTime)
 	{
 		m_ActionType = ACTION_DEATH;
 		
@@ -239,7 +239,7 @@ void CAIMobDummy::ActionDropItems()
 
 void CAIMobDummy::ActionDeath() 
 {
-	if ((m_Tick - m_LastActionTime) > 12000 )
+	if ((m_Tick - m_LastActionTime) > 12000)
 	{
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
@@ -283,6 +283,7 @@ void CAIMobDummy::ActionSpawn()
 
 		m_PMob->m_OwnerID = 0;
 		m_PMob->m_CallForHelp = 0;
+        m_PMob->m_DropItemTime = 1000;
 		m_PMob->status = STATUS_UPDATE;
 		m_PMob->animation = ANIMATION_NONE;
 

@@ -75,21 +75,22 @@ class CMobEntity : public CBattleEntity
 {
 public:
 
-	uint32		m_RespawnTime;	// отрезок времени, через который монстр возрождается после смерти
+	uint32		m_RespawnTime;	        // отрезок времени, через который монстр возрождается после смерти
+    uint32      m_DropItemTime;         // время анимации смерти монстра
 
-	uint32		m_DropID;		// номер группы оставляемых монстром предметов после смерти
+	uint32		m_DropID;		        // номер группы оставляемых монстром предметов после смерти
 
-	uint8		m_minLevel;		// минимально-возможный  уровень монстра
-	uint8		m_maxLevel;		// максимально-возможный уровень монстра
+	uint8		m_minLevel;		        // минимально-возможный  уровень монстра
+	uint8		m_maxLevel;		        // максимально-возможный уровень монстра
 	
-	uint8		m_Type;			// тип монстра
-    uint8       m_Link;         // взаимопомощь монстрам своего семейства
-	uint16		m_Behaviour;	// поведение монстра в различных ситуациях
-	SPAWNTYPE	m_SpawnType;	// условие появления монстра 
+	uint8		m_Type;			        // тип монстра
+    uint8       m_Link;                 // взаимопомощь монстрам своего семейства
+	uint16		m_Behaviour;	        // поведение монстра в различных ситуациях
+	SPAWNTYPE	m_SpawnType;	        // условие появления монстра 
 
-	uint8		m_CallForHelp;	// в перспективе желательно объединить эту переменную с CNpc->unknown 
+	uint8		m_CallForHelp;	        // в перспективе желательно объединить эту переменную с CNpc->unknown 
 
-	position_t	m_SpawnPoint;	// точка возрождения монстра
+	position_t	m_SpawnPoint;	        // точка возрождения монстра
 	uint8       m_Element;  
 	uint16		m_Family;
 
@@ -98,12 +99,12 @@ public:
     uint32 GetDespawnTimer();
     void   SetDespawnTimer(uint32 duration);
 
-    CMobEntity();				// конструктор
-   ~CMobEntity();				// деструктор
+    CMobEntity();
+   ~CMobEntity();
 
 private:
 
-    uint32       m_DespawnTimer; // Despawn Timer to despawn mob after set duration
+    uint32       m_DespawnTimer;        // Despawn Timer to despawn mob after set duration
 
 };
 

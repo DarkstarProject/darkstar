@@ -992,14 +992,14 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
 		ShowError("luautils::OnSpellCast: %s\n",lua_tostring(LuaHandle,-1));
-		return -1;
+		return 0;
 	}
 
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onSpellCast");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnSpellCast: undefined procedure onSpellCast\n");
-		return -1;
+		return 0;
 	}
 
 	CLuaBaseEntity LuaCasterEntity(PCaster);
@@ -1014,7 +1014,7 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnSpellCast: %s\n",lua_tostring(LuaHandle,-1));
-		return -1;
+		return 0;
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }

@@ -39,6 +39,7 @@ CMobEntity::CMobEntity()
 
 	m_CallForHelp  = 0;
     m_DespawnTimer = 0;
+    m_DropItemTime = 0;
 	m_Family = 0;
 	m_Type      = MOBTYPE_NORMAL;
 	m_Behaviour = BEHAVIOUR_NONE;

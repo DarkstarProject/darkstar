@@ -56,6 +56,7 @@ public:
 	uint32		getRecastTime();
 	uint8		getValidTarget();
 	uint16		getAnimationID();
+    uint16      getAnimationTime();
 	SPELLGROUP	getSpellGroup();
 	bool		isAOE();
 	uint16		getBase();
@@ -73,6 +74,7 @@ public:
 	void		setRecastTime(uint32 RecastTime);
 	void		setValidTarget(uint8 ValidTarget);
 	void		setAnimationID(uint16 AnimationID);
+    void        setAnimationTime(uint16 AnimationTime);
 	void		setSpellGroup(SPELLGROUP SpellGroup);
 	void		setAOE(uint8 AOE);
 	void		setBase(uint16 base);
@@ -91,6 +93,7 @@ private:
 	uint32		m_castTime;								// time to cast spell
 	uint32		m_recastTime;							// recast time
 	uint16		m_animation;							// animation for spell
+    uint16      m_animationTime;                        // 
 	uint16		m_mpCost;								// mpCost/itemId for ninjitsu tool
 	uint8		m_job[MAX_JOBTYPE];						// job
 	uint8		m_ValidTarget;							// target pc/npc/both

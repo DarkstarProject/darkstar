@@ -29,13 +29,14 @@ CSpell::CSpell(uint16 id)
 {
 	m_ID = id;
 
-	m_mpCost     = 0;
-	m_castTime   = 0;
-	m_recastTime = 0;
-	m_animation  = 0;
-    m_message    = 0;
-    m_element    = 0;
-	m_spellGroup = SPELLGROUP_NONE;
+	m_mpCost        = 0;
+	m_castTime      = 0;
+	m_recastTime    = 0;
+	m_animation     = 0;
+    m_animationTime = 0;
+    m_message       = 0;
+    m_element       = 0;
+	m_spellGroup    = SPELLGROUP_NONE;
 	
 	memset(m_job, 0, sizeof(m_job));
 }
@@ -109,6 +110,16 @@ uint16 CSpell::getAnimationID()
 void CSpell::setAnimationID(uint16 AnimationID)
 {
 	m_animation = AnimationID;
+}
+
+uint16 CSpell::getAnimationTime()
+{
+    return m_animationTime;
+}
+
+void CSpell::setAnimationTime(uint16 AnimationTime)
+{
+    m_animationTime = AnimationTime;
 }
 
 uint16 CSpell::getMPCost()
