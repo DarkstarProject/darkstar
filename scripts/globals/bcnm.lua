@@ -14,6 +14,8 @@ function getMonsterList(list,zone)
 		end
 	elseif(zone == 140) then
 		if(list == 1) then
+			monsterList = {17350662,17350663,17350664};
+		elseif(list == 2) then
 			monsterList = {17350928};
 		end
 	elseif(zone == 146) then
@@ -86,26 +88,17 @@ end;
 
 function bcnmSpawn(field,fight,zone)
 	local spawnList = getMonsterList(field,zone);
-
-	if(zone == 203 and fight == 100) then 
-		SpawnMob(spawnList[1],1800);
-	elseif(zone == 140 and fight == 101) then
-		SpawnMob(spawnList[1],1800);
-	elseif(zone ~= 203 and fight == 100) then
-		for x = 1,2,1 do
-			SpawnMob(spawnList[x],900);
-		end
+	
+	for x = 1, table.getn(spawnList), 1 do 
+		SpawnMob(spawnList[x],1800);
 	end
 end;
 
 function bcnmDespawn(field,fight,zone)
 	local despawnList = getMonsterList(field,zone);
-
-	if((zone == 203 or zone == 140) and fight == 100) then
-		DespawnMob(spawnList[1]);
-	elseif(zone ~= 203 and fight == 100) then
-		for x = 1,2,1 do
-			DespawnMob(spawnList[x]);
-		end
+	
+	for x = 1, table.getn(despawnList), 1 do 
+		DespawnMob(despawnList[x]);
 	end
+	
 end;

@@ -31,8 +31,9 @@ MAUGIE_MESSAGE   = 8651; -- Maugie looks over curiously for a moment.
 ADAUNEL_MESSAGE  = 8653; -- Adaunel looks over curiously for a moment.
 ROSEL_MESSAGE    = 8649; -- Rosel looks over curiously for a moment.
 
-
-CONQUEST = 8301; -- You've earned conquest points!
+-- Mission Dialogs
+YOU_ACCEPT_THE_MISSION = 7034; -- You accept the mission
+YOUVE_EARNED_CONQUEST_POINTS = 8301; -- You've earned conquest points!
 
 PAUNELIE_DIALOG = 0; -- 1997; -- Like <item> ? -- (linkshell)
 	   

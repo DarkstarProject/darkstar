@@ -11,6 +11,7 @@ package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/bcnm");
 require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
@@ -30,16 +31,21 @@ function onTrigger(player,npc)
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
+	saveTheChildrenMissionCS = player:getVar("saveTheChildrenMissionCS");
 	
-	if(getAvailableBattlefield(pZone) ~= 255) then
+	if(player:hasKeyItem(ORCISH_HUT_KEY)) then
+		player:startEvent(0x0003);
+	elseif(getAvailableBattlefield(pZone) ~= 255) then
 		local bcnmFight = 0;
 		
-		if(player:hasKeyItem(DRAGON_CURSE_REMEDY)) then
-			bcnmFight = bcnmFight + 2;
-		end
+		if(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and saveTheChildrenMissionCS == 3) then 
+			bcnmFight = bcnmFight + 1; end
+		if(player:hasKeyItem(DRAGON_CURSE_REMEDY)) then 
+			bcnmFight = bcnmFight + 2; end
 		
 		if(bcnmFight >= 0) then
 			player:startEvent(0x7d00,0,0,0,bcnmFight);
+			player:setVar(tostring(pZone) .. "_Field",bcnmFight);
 		end
 	else
 		player:messageSpecial(YOU_CANNOT_ENTER_THE_BATTLEFIELD);
@@ -61,16 +67,16 @@ function onEventUpdate(player,csid,option)
 		readyField = getAvailableBattlefield(pZone);
 
 		if(option == 0) then
-			local bcnmFight = 0;
-			player:setVar(zoneReady,player:getVar(zoneReady)+1);
+			local bcnmFight = player:getVar(tostring(pZone) .. "_Field") - 1;
+			player:setVar(zoneReady,player:getVar(zoneReady) + 1);
 			
 			if(player:getVar(zoneReady) == readyField and readyField ~= 255) then
-				player:updateEvent(2,1,0,100,6,0);
+				player:updateEvent(2,bcnmFight,0,100,6,0);
 			else
 				player:updateEvent(0,0,0,0,0,0);
 			end
 		elseif(option == 255) then
-			player:setVar(tostring(pZone) .. "_Field",readyField);
+			
 		end
 	end
 	
@@ -89,12 +95,20 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x7d00 and option ~= 1073741824 and option ~= 0) then
 		if(option == 35) then
 			player:startEvent(0x7d02);
-		else
+		elseif(option == 100) then
 			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
-			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,1800,0);
-			player:setVar("TheHolyCrest_Timer", os.time());
+			player:addStatusEffect(EFFECT_BATTLEFIELD,1,0,600,0);
+			player:setVar("BCNM_Timer", os.time());
+			player:setVar(tostring(pZone) .. "_Fight",option);
+		elseif(option == 101) then
+			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
+			player:addStatusEffect(EFFECT_BATTLEFIELD,2,0,1800,0);
+			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		end
+	elseif(csid == 0x0003) then
+		player:delKeyItem(ORCISH_HUT_KEY);
+		player:setVar("saveTheChildrenMissionCS",5);
 	end
 	
 end;

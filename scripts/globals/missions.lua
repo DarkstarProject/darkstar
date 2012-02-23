@@ -273,17 +273,15 @@ function getMissionMask(player)
 		end
 	elseif(nation == SANDORIA) then
 		if(rank >= 1) then
-			if(1>0) then -- The first mission is repeatable in San d'Oria
+			if(player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
 				-- 1-1
 				repeat_mission = repeat_mission + 1;
-			end
-			if(player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
+			elseif(player:hasCompletedMission(SANDORIA,BAT_HUNT) == false) then
 				-- 1-2 If we completed 1-1, we can start and repeat this mission
-				repeat_mission = repeat_mission + 2;
-			end
-			if(player:hasCompletedMission(SANDORIA,BAT_HUNT) == false) then
+				repeat_mission = repeat_mission + 2 + 1;
+			elseif(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) == false) then
 				-- 1-3 If we completed 1-2, we can start and repeat this mission
-				repeat_mission = repeat_mission + 4;
+				repeat_mission = repeat_mission + 4 + 2 + 1;
 			end
 		end
 		if(rank >= 2) then
