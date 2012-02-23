@@ -101,6 +101,11 @@ uint32 CStatusEffect::GetLastTick()
 	return m_LastTick;
 }
 
+void CStatusEffect::SetFlag(uint16 Flag)
+{
+    m_Flag = Flag;
+}
+
 void CStatusEffect::SetIcon(uint16 Icon)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == NULL);

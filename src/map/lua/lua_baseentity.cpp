@@ -2629,8 +2629,7 @@ inline int32 CLuaBaseEntity::hasStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
-		
-    int32 n = lua_gettop(L);
+
     bool hasEffect = false;
 
     if (lua_gettop(L) >= 2)
@@ -2670,6 +2669,7 @@ inline int32 CLuaBaseEntity::delStatusEffect(lua_State *L)
 	return 1;
 }
 
+//==========================================================//
 
 inline int32 CLuaBaseEntity::removePartyEffect(lua_State *L)
 {
@@ -2700,39 +2700,34 @@ inline int32 CLuaBaseEntity::removePartyEffect(lua_State *L)
 	return 1;
 }
 
-
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Удаляем первый отрицательный эффект                                  *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::eraseStatusEffect(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			bool RemoveAll = (!lua_isnil(L,1) && lua_isboolean(L,1) ? lua_toboolean(L,1) != 0 : false);
-			lua_pushboolean( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->EraseStatusEffect(RemoveAll));
-			return 1;
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    lua_pushboolean( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->EraseStatusEffect());
+    return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Удаляем первый положительный эффект                                  *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::dispelStatusEffect(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			bool RemoveAll = (!lua_isnil(L,1) && lua_isboolean(L,1) ? lua_toboolean(L,1) != 0 : false);
-			lua_pushboolean( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelStatusEffect(RemoveAll));
-			return 1;
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    lua_pushboolean( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelStatusEffect());
+    return 1;
 }
 
 //==========================================================//

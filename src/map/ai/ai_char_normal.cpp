@@ -333,7 +333,7 @@ void CAICharNormal::ActionFall()
 
     m_PChar->UContainer->Clean();
 
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ERASABLE + EFFECTFLAG_DISPELABLE);
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
 	
 	m_PChar->animation = ANIMATION_DEATH;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
@@ -1052,10 +1052,6 @@ void CAICharNormal::ActionMagicFinish()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-
     if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
     {
 	    Recast_t* Recast = new Recast_t;
@@ -1136,6 +1132,7 @@ void CAICharNormal::ActionMagicFinish()
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
         }
     }
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC);
 
 	charutils::UpdateHealth(m_PChar);
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));

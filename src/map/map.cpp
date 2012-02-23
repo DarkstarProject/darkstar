@@ -160,7 +160,7 @@ int32 do_init(int32 argc, int8** argv)
 
 	// нужно будет написать один метод для инициализации всех данных в battleutils
 	// и один метод для освобождения этих данных
-
+    
 	ShowStatus("do_init: loading spells");
 	battleutils::LoadSpellList();
 	ShowMessage("\t\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
@@ -168,6 +168,7 @@ int32 do_init(int32 argc, int8** argv)
 	guildutils::Initialize();
 	charutils::LoadExpTable();
     linkshell::LoadLinkshellList();
+    effects::LoadEffectsParameters();
 	battleutils::LoadSkillTable();
 	battleutils::LoadAbilitiesList();
 	battleutils::LoadWeaponSkillsList();

@@ -33,12 +33,13 @@
 
 enum EFFECTFLAG
 {
-    EFFECTFLAG_NONE				= 0x00,
-    EFFECTFLAG_DISPELABLE		= 0x01,
-    EFFECTFLAG_ERASABLE			= 0x02,
-    EFFECTFLAG_ATTACK           = 0x04,
-    EFFECTFLAG_DAMAGE           = 0x08,
-    EFFECTFLAG_SPELLCAST        = 0x10,
+    EFFECTFLAG_NONE				= 0x0000,
+    EFFECTFLAG_DISPELABLE		= 0x0001,
+    EFFECTFLAG_ERASABLE			= 0x0002,
+    EFFECTFLAG_ATTACK           = 0x0004,     // эффект исчезает при нанесении урона
+    EFFECTFLAG_MAGIC            = 0x0008,     // эффект исчезает при чтении заклинаий
+    EFFECTFLAG_DAMAGE           = 0x0010,     // эффект исчезает при получении урона
+    EFFECTFLAG_DEATH            = 0x0020,     // эффект исчезает при смерти
 };
 
 enum EFFECT
@@ -120,13 +121,13 @@ enum EFFECT
 	EFFECT_CAMOUFLAGE				= 77,
 	EFFECT_DIVINE_SEAL				= 78,
 	EFFECT_ELEMENTAL_SEAL			= 79,
-	EFFECT_STR_BOOST_1				= 80,
-	EFFECT_DEX_BOOST_1				= 81,
-	EFFECT_VIT_BOOST_1				= 82,
-	EFFECT_AGI_BOOST_1				= 83,
-	EFFECT_INT_BOOST_1				= 84,
-	EFFECT_MND_BOOST_1				= 85,
-	EFFECT_CHR_BOOST_1				= 86,
+	EFFECT_STR_BOOST				= 80,
+	EFFECT_DEX_BOOST				= 81,
+	EFFECT_VIT_BOOST				= 82,
+	EFFECT_AGI_BOOST				= 83,
+	EFFECT_INT_BOOST				= 84,
+	EFFECT_MND_BOOST				= 85,
+	EFFECT_CHR_BOOST				= 86,
 	EFFECT_TRICK_ATTACK				= 87,
 	EFFECT_MAX_HP_BOOST				= 88,
 	EFFECT_MAX_MP_BOOST				= 89,
@@ -507,18 +508,19 @@ enum EFFECT
 	EFFECT_IMMANENCE				= 470,
 	EFFECT_MIGAWARI					= 471,
 
-	EFFECT_HEALING					= 700,
-	EFFECT_LEAVEGAME				= 701,
-    EFFECT_SKILLCHAIN               = 702
+	EFFECT_HEALING					= 512,
+	EFFECT_LEAVEGAME				= 513,
+    EFFECT_SKILLCHAIN               = 514,
 };
+
+#define MAX_EFFECTID    600
 
 /************************************************************************
 *																		*
 *  Нерешенные задачи:													*
 *																		*
 *  - сохранение ID сущности, добавившей эффект							*
-*  - обновление иконки эффекта без удаления эффекта (copy image)		*
-*  - обновление эффекта (например перезапись protect 1 на protect 2)	*
+*  - обновление эффекта (например перезапись protect 1 на protect 2)    *
 *																		*
 ************************************************************************/
 
@@ -539,6 +541,7 @@ public:
 	uint32	GetLastTick();
 	uint32	GetStartTime();
 
+    void    SetFlag(uint16 Flag);
     void    SetIcon(uint16 Icon);
 	void	SetPower(uint16 Power);
 	void	SetDuration(uint32 Duration);
@@ -568,13 +571,13 @@ public:
 
 private:
 
-    CBattleEntity* m_POwner;
+    CBattleEntity* m_POwner;            // владелец
 
 	EFFECT		m_StatusID;				// основной тип эффекта
 	uint16		m_SubID;				// дополнительный тип эффекта
     uint16      m_Icon;                 // иконка эффекта
 	uint16		m_Power;				// сила эффекта
-	uint16		m_Flag;					// флаг эффекта, определяющий возможность его отмены (erase или dispel)
+	uint16		m_Flag;					// флаг эффекта (условия его исчезновения)
 
 	uint32		m_TickTime;				// время повторения эффекта (млс)
 	uint32		m_Duration;				// продолжительность эффекта (млс)

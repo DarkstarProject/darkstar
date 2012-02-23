@@ -29,6 +29,12 @@
 
 #include "status_effect.h"
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 class CBattleEntity;
 
 class CStatusEffectContainer
@@ -45,8 +51,8 @@ public:
 	
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие стату-эффекта
 	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие стату-эффекта с уникальным subid
-	bool EraseStatusEffect (bool RemoveAll = false);			// удаляем первый/все отрицательный эффект
-	bool DispelStatusEffect(bool RemoveAll = false);			// удаляем первый/все положительный эффект
+	bool EraseStatusEffect();			                        // удаляем первый отрицательный эффект
+	bool DispelStatusEffect();	                        		// удаляем первый положительный эффект
 
     CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);
 
@@ -64,13 +70,22 @@ private:
 	CBattleEntity* m_POwner;
 
 	void RemoveStatusEffect(uint32 id);							// удаляем эффект по его номеру в контейнере
-	void SetEffectName(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
+	void SetEffectParams(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
 
 	uint32 m_EffectCheckTime;
 
-	// TODO: протестировать возможность замены vector на статический массив из 32 элементов
-
 	std::vector<CStatusEffect*>	m_StatusEffectList;
+};
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+namespace effects
+{
+    void LoadEffectsParameters();
 };
 
 #endif

@@ -40,534 +40,63 @@
 #include "status_effect_container.h"
 #include "zoneutils.h"
 
-const int8* EFFECT_NAMES[] = 
-{
-	"ko",
-	"weakness",
-	"sleep",
-	"poison",
-	"paralysis",
-	"blindness",
-	"silence",
-	"petrification",
-	"disease",
-	"curse",
-	"stun",
-	"bind",
-	"weight",
-	"slow",
-	"charm",
-	"doom",
-	"amnesia",
-	"charm",
-	"gradual_petrification",
-	"sleep",
-	"curse",
-	"addle",
-	"intimidate",
-	"kaustra",
-	"st24",
-	"st25",
-	"st26",
-	"st27",
-	"terror",
-	"mute",
-	"bane",
-	"plague",
-	"flee",
-	"haste",
-	"blaze_spikes",
-	"ice_spikes",
-	"blink",
-	"stoneskin",
-	"shock_spikes",
-	"aquaveil",
-	"protect",
-	"shell",
-	"regen",
-	"refresh",
-	"mighty_strikes",
-	"boost",
-	"hundred_fists",
-	"manafont",
-	"chainspell",
-	"perfect_dodge",
-	"invincible",
-	"blood_weapon",
-	"soul_voice",
-	"eagle_eye_shot",
-	"meikyo_shisui",
-	"astral_flow",
-	"berserk",
-	"defender",
-	"aggressor",
-	"focus",
-	"dodge",
-	"counterstance",
-	"sentinel",
-	"souleater",
-	"last_resort",
-	"sneak_attack",
-	"copy_image",
-	"third_eye",
-	"warcry",
-	"invisible",
-	"deodorize",
-	"sneak",
-	"sharpshot",
-	"barrage",
-	"holy_circle",
-	"arcane_circle",
-	"hide",
-	"camouflage",
-	"divine_seal",
-	"elemental_seal",
-	"str_boost",
-	"dex_boost",
-	"vit_boost",
-	"agi_boost",
-	"int_boost",
-	"mnd_boost",
-	"chr_boost",
-	"trick_attack",
-	"max_hp_boost",
-	"max_mp_boost",
-	"accuracy_boost",
-	"attack_boost",
-	"evasion_boost",
-	"defense_boost",
-	"enfire",
-	"enblizzard",
-	"enaero",
-	"enstone",
-	"enthunder",
-	"enwater",
-	"barfire",
-	"barblizzard",
-	"baraero",
-	"barstone",
-	"barthunder",
-	"barwater",
-	"barsleep",
-	"barpoison",
-	"barparalyze",
-	"barblind",
-	"barsilence",
-	"barpetrify",
-	"barvirus",
-	"reraise",
-	"cover",
-	"unlimited_shot",
-	"phalanx",
-	"warding_circle",
-	"ancient_circle",
-	"str_boost",
-	"dex_boost",
-	"vit_boost",
-	"agi_boost",
-	"int_boost",
-	"mnd_boost",
-	"chr_boost",
-	"spirit_surge",
-	"costume",
-	"burn",
-	"frost",
-	"choke",
-	"rasp",
-	"shock",
-	"drown",
-	"dia",
-	"bio",
-	"str_down",
-	"dex_down",
-	"vit_down",
-	"agi_down",
-	"int_down",
-	"mnd_down",
-	"chr_down",
-	"level_restriction",
-	"max_hp_down",
-	"max_mp_down",
-	"accuracy_down",
-	"attack_down",
-	"evasion_down",
-	"defense_down",
-	"physical_shield",
-	"arrow_shield",
-	"magic_shield",
-	"damage_spikes",
-	"shining_ruby",
-	"medicine",
-	"flash",
-	"sj_restriction",
-	"provoke",
-	"penalty",
-	"preparations",
-	"sprint",
-	"enchantment",
-	"azure_lore",
-	"chain_affinity",
-	"burst_affinity",
-	"overdrive",
-	"magic_def_down",
-	"inhibit_tp",
-	"potency",
-	"regain",
-	"pax",
-	"intension",
-	"dread_spikes",
-	"magic_acc_down",
-	"magic_atk_down",
-	"quickening",
-	"encumbrance",
-	"firestorm",
-	"hailstorm",
-	"windstorm",
-	"sandstorm",
-	"thunderstorm",
-	"rainstorm",
-	"aurorastorm",
-	"voidstorm",
-	"helix",
-	"sublimation_activated",
-	"sublimation_complete",
-	"max_tp_down",
-	"magic_atk_boost",
-	"magic_def_boost",
-	"requiem",
-	"lullaby",
-	"elegy",
-	"paeon",
-	"ballad",
-	"minne",
-	"minuet",
-	"madrigal",
-	"prelude",
-	"mambo",
-	"aubade",
-	"pastoral",
-	"hum",
-	"fantasia",
-	"operetta",
-	"capriccio",
-	"serenade",
-	"round",
-	"gavotte",
-	"fugue",
-	"rhapsody",
-	"aria",
-	"march",
-	"etude",
-	"carol",
-	"threnody",
-	"hymnus",
-	"mazurka",
-	"sirvente",
-	"dirge",
-	"scherzo",
-	"nocturne",
-	"st224",
-	"st225",
-	"st226",
-	"store_tp",
-	"embrava",
-	"manawell",
-	"spontaneity",
-	"marcato",
-	"(none)",
-	"auto-regen",
-	"auto-refresh",
-	"fishing_imagery",
-	"woodworking_imagery",
-	"smithing_imagery",
-	"goldsmithing_imagery",
-	"clothcraft_imagery",
-	"leathercraft_imagery",
-	"bonecraft_imagery",
-	"alchemy_imagery",
-	"cooking_imagery",
-	"imagery",
-	"imagery",
-	"imagery",
-	"imagery",
-	"imagery",
-	"dedication",
-	"ef_badge",
-	"food",
-	"chocobo",
-	"signet",
-	"battlefield",
-	"none",
-	"sanction",
-	"besieged",
-	"illusion",
-	"encumbrance",
-	"obliviscence",
-	"impairment",
-	"omerta",
-	"debilitation",
-	"pathos",
-	"flurry",
-	"concentration",
-	"allied_tags",
-	"sigil",
-	"level_sync",
-	"aftermath_lv1",
-	"aftermath_lv2",
-	"aftermath_lv3",
-	"aftermath",
-	"enlight",
-	"auspice",
-	"confrontation",
-	"enfire_ii",
-	"enblizzard_ii",
-	"enaero_ii",
-	"enstone_ii",
-	"enthunder_ii",
-	"enwater_ii",
-	"perfect_defense",
-	"egg",
-	"visitant",
-	"baramnesia",
-	"atma",
-	"endark",
-	"enmity_boost",
-	"subtle_blow_plus",
-	"enmity_down",
-	"pennant",
-	"negate_petrify",
-	"negate_terror",
-	"negate_amnesia",
-	"negate_doom",
-	"negate_poison",
-	"crit_hit_evasion_down",
-	"overload",
-	"fire_maneuver",
-	"ice_maneuver",
-	"wind_maneuver",
-	"earth_maneuver",
-	"thunder_maneuver",
-	"water_maneuver",
-	"light_maneuver",
-	"dark_maneuver",
-	"double-up_chance",
-	"bust",
-	"fighters_roll",
-	"monks_roll",
-	"healers_roll",
-	"wizards_roll",
-	"warlocks_roll",
-	"rogues_roll",
-	"gallants_roll",
-	"chaos_roll",
-	"beast_roll",
-	"choral_roll",
-	"hunters_roll",
-	"samurai_roll",
-	"ninja_roll",
-	"drachen_roll",
-	"evokers_roll",
-	"maguss_roll",
-	"corsairs_roll",
-	"puppet_roll",
-	"dancers_roll",
-	"scholars_roll",
-	"bolters_roll",
-	"casters_roll",
-	"coursers_roll",
-	"blitzers_roll",
-	"tacticians_roll",
-	"allies_roll",
-	"none",
-	"none",
-	"none",
-	"none",
-	"warriors_charge",
-	"formless_strikes",
-	"assassins_charge",
-	"feint",
-	"fealty",
-	"dark_seal",
-	"diabolic_eye",
-	"nightingale",
-	"troubadour",
-	"killer_instinct",
-	"stealth_shot",
-	"flashy_shot",
-	"sange",
-	"hasso",
-	"seigan",
-	"convergence",
-	"diffusion",
-	"snake_eye",
-	"light_arts",
-	"dark_arts",
-	"penury",
-	"parsimony",
-	"celerity",
-	"alacrity",
-	"rapture",
-	"ebullience",
-	"accession",
-	"manifestation",
-	"drain_samba",
-	"aspir_samba",
-	"haste_samba",
-	"velocity_shot",
-	"none",
-	"none",
-	"none",
-	"building_flourish",
-	"trance",
-	"tabula_rasa",
-	"drain_daze",
-	"aspir_daze",
-	"haste_daze",
-	"finishing_move",
-	"finishing_move",
-	"finishing_move",
-	"finishing_move",
-	"finishing_move",
-	"lethargic_daze",
-	"lethargic_daze",
-	"lethargic_daze",
-	"lethargic_daze",
-	"lethargic_daze",
-	"sluggish_daze",
-	"sluggish_daze",
-	"sluggish_daze",
-	"sluggish_daze",
-	"sluggish_daze",
-	"weakened_daze",
-	"weakened_daze",
-	"weakened_daze",
-	"weakened_daze",
-	"weakened_daze",
-	"addendum_white",
-	"addendum_black",
-	"reprisal",
-	"magic_evasion_down",
-	"retaliation",
-	"footwork",
-	"klimaform",
-	"sekkanoki",
-	"pianissimo",
-	"saber_dance",
-	"fan_dance",
-	"altruism",
-	"focalization",
-	"tranquility",
-	"equanimity",
-	"enlightenment",
-	"afflatus_solace",
-	"afflatus_misery",
-	"composure",
-	"yonin",
-	"innin",
-	"carbuncles_favor",
-	"ifrits_favor",
-	"shivas_favor",
-	"garudas_favor",
-	"titans_favor",
-	"ramuhs_favor",
-	"leviathans_favor",
-	"fenrirs_favor",
-	"diaboloss_favor",
-	"avatars_favor",
-	"multi_strikes",
-	"double_shot",
-	"transcendency",
-	"restraint",
-	"perfect_counter",
-	"mana_wall",
-	"divine_emblem",
-	"nether_void",
-	"sengikori",
-	"futae",
-	"presto",
-	"climactic_flourish",
-	"copy_image_2",
-	"copy_image_3",
-	"copy_image_4",
-	"multi_shots",
-	"bewildered_daze",
-	"bewildered_daze",
-	"bewildered_daze",
-	"bewildered_daze",
-	"bewildered_daze",
-	"divine_caress",
-	"saboteur",
-	"tenuto",
-	"spur",
-	"efflux",
-	"earthen_armor",
-	"divine_caress",
-	"blood_rage",
-	"impetus",
-	"conspirator",
-	"sepulcher",
-	"arcane_crest",
-	"hamanoha",
-	"dragon_breaker",
-	"triple_shot",
-	"striking_flourish",
-	"perpetuance",
-	"immanence",
-	"migawari",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-	"none",
-};
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
-const int8* GetStatusEffectName(uint16 EffectID) 
+namespace effects
 {
-	switch (EffectID)
-	{
-		case EFFECT_HEALING:	return "healing";
-		case EFFECT_LEAVEGAME:	return "leavegame";
-        case EFFECT_SKILLCHAIN: return "skillchain";
-	}
-	return EFFECT_NAMES[EffectID < 512 ? EffectID : 511];
+    /************************************************************************
+    *                                                                       *
+    *  Контейнер параметров эффектов                                        *
+    *                                                                       *
+    ************************************************************************/
+
+    struct EffectParams_t
+    {
+        uint16   Flag;
+        string_t Name;
+    };
+
+    EffectParams_t EffectsParams[MAX_EFFECTID];
+
+    /************************************************************************
+    *                                                                       *
+    *                                                                       *
+    *                                                                       *
+    ************************************************************************/
+
+    void LoadEffectsParameters()
+    {
+        for (uint16 i = 0; i < MAX_EFFECTID; ++i)
+        {
+            EffectsParams[i].Flag = 0;
+        }
+
+        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags FROM status_effects WHERE id < %u", MAX_EFFECTID);
+
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    {
+                uint16 EffectID = (uint16)Sql_GetIntData(SqlHandle,0);
+
+                EffectsParams[EffectID].Name = Sql_GetData(SqlHandle,1);
+                EffectsParams[EffectID].Flag = Sql_GetIntData(SqlHandle,2);
+            }
+        }
+    }
 }
 
-CStatusEffectContainer::CStatusEffectContainer(CBattleEntity * PEntity) 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+CStatusEffectContainer::CStatusEffectContainer(CBattleEntity* PEntity) 
 	: m_POwner(PEntity)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == NULL);
@@ -581,7 +110,7 @@ CStatusEffectContainer::CStatusEffectContainer(CBattleEntity * PEntity)
 
 CStatusEffectContainer::~CStatusEffectContainer()
 {
-	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i)
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
 		delete m_StatusEffectList.at(i);
 	}
@@ -598,7 +127,8 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect)
 {
 	if(PStatusEffect != NULL) 
 	{
-		SetEffectName(PStatusEffect);
+		SetEffectParams(PStatusEffect);
+
         PStatusEffect->SetOwner(m_POwner);
 		PStatusEffect->SetStartTime(gettick());
 
@@ -670,7 +200,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
 
 bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID) 
 {
-	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
 		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
 		{
@@ -683,7 +213,7 @@ bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID)
 
 bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID, uint16 SubID) 
 {
-	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
 		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
 		   (m_StatusEffectList.at(i)->GetSubID() == SubID))
@@ -703,9 +233,9 @@ bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID, uint16 SubID)
 
 void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag)
 {
-    for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
-        if (m_StatusEffectList.at(i)->GetFlag() & flag)
+        if ((m_StatusEffectList.at(i)->GetFlag() & flag) == flag)
 		{
 			RemoveStatusEffect(i--);
 		}
@@ -714,19 +244,19 @@ void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag)
 
 /************************************************************************
 *																		*
-*  Удаляем последний добавленный отрицательный эффект с флагом	erase.	*
+*  Удаляем первый добавленный отрицательный эффект с флагом	erase.      *
 *  Возвращаем результат выполнения операции.							*
 *																		*
 ************************************************************************/
 
-bool CStatusEffectContainer::EraseStatusEffect(bool RemoveAll)
+bool CStatusEffectContainer::EraseStatusEffect()
 {
-	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
 		if (m_StatusEffectList.at(i)->GetFlag() == EFFECTFLAG_ERASABLE)
 		{
-			RemoveStatusEffect(i--);
-			if (!RemoveAll) return true;
+			RemoveStatusEffect(i);
+			return true;
 		}
 	}
 	return false;
@@ -734,19 +264,19 @@ bool CStatusEffectContainer::EraseStatusEffect(bool RemoveAll)
 
 /************************************************************************
 *																		*
-*  Удаляем последний добавленный положительный эффект с флагом	dispel.	*
+*  Удаляем первый добавленный положительный эффект с флагом dispel.     *
 *  Возвращаем результат выполнения операции.							*
 *																		*
 ************************************************************************/
 
-bool CStatusEffectContainer::DispelStatusEffect(bool RemoveAll)
+bool CStatusEffectContainer::DispelStatusEffect()
 {
-	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i)
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
 		if (m_StatusEffectList.at(i)->GetFlag() == EFFECTFLAG_DISPELABLE)
 		{
-			RemoveStatusEffect(i--);
-			if (!RemoveAll) return true;
+			RemoveStatusEffect(i);
+			return true;
 		}
 	}
 	return false;
@@ -760,7 +290,7 @@ bool CStatusEffectContainer::DispelStatusEffect(bool RemoveAll)
 
 bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
 {
-	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
 		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
 		{
@@ -778,7 +308,7 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
 
 bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID, uint16 SubID)
 {
-	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
 		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
 		   (m_StatusEffectList.at(i)->GetSubID() == SubID))
@@ -797,7 +327,7 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID, uint16 SubID)
 
 CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint16 SubID)
 {
-	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
 		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
 		   (m_StatusEffectList.at(i)->GetSubID() == SubID))
@@ -823,7 +353,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
  
     uint8 count = 0;
 
-    for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
         uint16 icon = m_StatusEffectList.at(i)->GetIcon();
 
@@ -844,8 +374,9 @@ void CStatusEffectContainer::UpdateStatusIcons()
 *                                                                       *
 ************************************************************************/
 
-void CStatusEffectContainer::SetEffectName(CStatusEffect* StatusEffect)
+void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 {
+    DSP_DEBUG_BREAK_IF(StatusEffect->GetStatusID() >= MAX_EFFECTID);
     DSP_DEBUG_BREAK_IF(StatusEffect->GetStatusID() == EFFECT_FOOD && StatusEffect->GetSubID() == 0);
     DSP_DEBUG_BREAK_IF(StatusEffect->GetStatusID() == EFFECT_NONE && StatusEffect->GetSubID() == 0);
 
@@ -854,7 +385,7 @@ void CStatusEffectContainer::SetEffectName(CStatusEffect* StatusEffect)
 	if (StatusEffect->GetSubID() == 0)
 	{
 		name.insert(0, "globals/effects/");
-		name.insert(name.size(), GetStatusEffectName(StatusEffect->GetStatusID()));
+        name.insert(name.size(), effects::EffectsParams[StatusEffect->GetStatusID()].Name);
 	} else {
 		CItem* Ptem = itemutils::GetItemPointer(StatusEffect->GetSubID());
 		if (Ptem != NULL)
@@ -864,6 +395,7 @@ void CStatusEffectContainer::SetEffectName(CStatusEffect* StatusEffect)
 		}
 	}
     StatusEffect->SetName(name);
+    StatusEffect->SetFlag(effects::EffectsParams[StatusEffect->GetStatusID()].Flag);
 }
 
 /************************************************************************
@@ -952,7 +484,7 @@ void CStatusEffectContainer::CheckEffects(uint32 tick)
 
 		m_EffectCheckTime = tick;
 
-		for (uint32 i = 0; i < m_StatusEffectList.size(); ++i) 
+		for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 		{
 			CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 

@@ -618,30 +618,13 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     {
         case TYPE_PC:
 	    {
-		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-		    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+		   PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
-		    switch (PDefender->animation)
+		    if(PDefender->animation == ANIMATION_SIT)
 		    {
-			    case ANIMATION_SIT:
-			    {
-				    PDefender->animation = ANIMATION_NONE;
-
-				    ((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
-			    }
-			    break;
-			    case ANIMATION_HEALING:
-			    {
-				    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-			    }
-			    break;
-		    };
-            //if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_INTERRUPT)
-            //{
-            //    ((CCharEntity*)PDefender)->pushPacket(new CMessageBasicPacket(PDefender, PDefender, 0, 0, 16));
-            //}
+			    PDefender->animation = ANIMATION_NONE;
+                ((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
+            }
             charutils::UpdateHealth((CCharEntity*)PDefender);
 	    }
         break;
@@ -657,13 +640,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     }
     if (PAttacker->objtype == TYPE_PC)
     {
-        PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST);
-        PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK_ATTACK);
-
-        PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-	    PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-	    PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-        PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+        PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
     }
 	return damage;
 }

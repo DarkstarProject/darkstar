@@ -1178,7 +1178,8 @@ int32 makeBind_udp(uint32 ip, uint16 port)
 	server_address.sin_port        = htons(port);
 
 	result = sBind(fd, (struct sockaddr*)&server_address, sizeof(server_address));
-	if( result == SOCKET_ERROR ) {
+	if( result == SOCKET_ERROR ) 
+    {
 		ShowError("make_listen_bind: bind failed (socket #%d, code %d)!\n", fd, sErrno);
 		exit(EXIT_FAILURE);
 	}

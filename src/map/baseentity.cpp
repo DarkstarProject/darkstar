@@ -52,8 +52,6 @@ const int8* CBaseEntity::GetName()
 
 uint8 CBaseEntity::getZone()
 {
-	DSP_DEBUG_BREAK_IF(loc.zone == NULL && status != STATUS_DISAPPEAR);
-
     return loc.zone != NULL ? loc.zone->GetID() : loc.destination;
 }
 

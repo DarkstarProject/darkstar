@@ -178,6 +178,7 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
 	WBUFL(data,(0x5C)) = 0;
 
     bool firstlogin = false; // временное решение, до появления PlayTime
+
 	PChar->clearPacketList();
 
 	if (PChar->status == STATUS_DISAPPEAR)
@@ -1347,7 +1348,6 @@ int32 SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* da
     uint8  quantity = RBUFB(data,(0x10));
 
     ShowDebug(CL_CYAN"AH Action (%02hx)\n"CL_RESET, RBUFB(data,(0x04)));
-    PrintPacket(data);
 
     // 0x04 - продажа предмета
     // 0x05 - похоже, что в ответ на этот пакет мы можем открыть список продаж или предложить персонажу подождать немного
@@ -2183,13 +2183,11 @@ int32 SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	int8 RecipientName[16];
-	memcpy(RecipientName,data+5, 15);
-	RecipientName[15] = 0;
+    string_t RecipientName = data+5;
 
-	const int8* fmtQuery = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charname = '%s' LIMIT 1";
+	const int8* Query = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charname = '%s' LIMIT 1";
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, RecipientName);
+	int32 ret = Sql_Query(SqlHandle, Query, RecipientName);
 
 	if (ret != SQL_ERROR && 
 		Sql_NumRows(SqlHandle) != 0 &&

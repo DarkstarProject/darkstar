@@ -77,8 +77,6 @@ void CParty::DisbandParty()
     {
         PushPacket(NULL, 0, new CPartyDefinePacket(NULL));
 
-        // если вызвать это метод, когда один из персонажей переходит между зонами или находится в moghouse, тогда сервер упадет
-
 	    for (uint32 i = 0; i < members.size(); ++i) 
 	    {
 		    CCharEntity* PChar = (CCharEntity*)members.at(i);
@@ -88,7 +86,7 @@ void CParty::DisbandParty()
 
 		    // TODO: TreasurePool должен оставаться у последнего персонажа, но сейчас это не критично
 
-		    if (PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
+            if (PChar->PTreasurePool != NULL && PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE) // заплатка на переход между зонами и MogHouse
 		    {
 			    PChar->PTreasurePool->DelMember(PChar);
 			    PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
