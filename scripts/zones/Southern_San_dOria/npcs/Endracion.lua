@@ -119,6 +119,7 @@ printf("onFinishOPTION: %u",option);
 		player:addMission(SANDORIA,SAVE_THE_CHILDREN);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
 	elseif(csid == 0x03ec) then
+		player:setRank(2);
 		player:delKeyItem(ORCISH_HUT_KEY);
 		player:setVar("saveTheChildrenMissionCS",6);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
