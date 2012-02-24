@@ -2187,7 +2187,7 @@ int32 SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	const int8* Query = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charname = '%s' LIMIT 1";
 
-	int32 ret = Sql_Query(SqlHandle, Query, RecipientName);
+    int32 ret = Sql_Query(SqlHandle, Query, RecipientName.c_str());
 
 	if (ret != SQL_ERROR && 
 		Sql_NumRows(SqlHandle) != 0 &&
