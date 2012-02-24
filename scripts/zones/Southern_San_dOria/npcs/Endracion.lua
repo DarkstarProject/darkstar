@@ -51,7 +51,7 @@ end;
 -- 0x03ec Finish Mission "Save the Children" with rank
 -- 0x0400 Finish Mission "Save the Children" (repeat)
 -- 0x03ed Finish Mission "The Rescue Drill"
--- 0x03ee Finish Mission "The Davoi Report"
+-- 0x03ee Finish Mission "The Davoi Report"??
 -- 0x03ef During Mission "Journey Abroad"
 -- 0x03f4 Finish Mission "Infiltrate Davoi"
 --0x01f7  0x03f3  0x03e8  0x03ea  0x03f0  0x03f2  0x03f1  0x03e9  0x03eb  0x03ec  0x0400  0x03ed  0x03ee  0x03ef  0x03f4  0x03f5  0x03f7  0x003d  0x040b  0x040d  0x040f  0x0409  0x0411  0x0413  0x0415  0x03fc  0x03fd  0x03fe  0x03ff  0x0401  0x0402  0x0403  0x0404  0x0405  0x0408  0x0406  0x0407
@@ -65,6 +65,8 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x0400); -- Finish Mission "Save the Children" (repeat)
 		end
+	elseif(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL and player:getVar("theRescueDrillMissionCS") == 11) then
+		player:startEvent(0x03ed); -- Finish Mission "The Rescue Drill"
 	elseif(player:getCurrentMission(SANDORIA) ~= 255) then
 		player:startEvent(0x03e9); -- Have mission already activated
 	else
@@ -101,6 +103,7 @@ printf("onFinishOPTION: %u",option);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
 	elseif(csid == 0x03ea) then
 		player:tradeComplete();
+		player:addRankPoints(150);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
 	elseif(csid == 0x03F1 and option == 101) then
@@ -108,6 +111,7 @@ printf("onFinishOPTION: %u",option);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
 	elseif(csid == 0x03eb) then
 		player:tradeComplete();
+		player:addRankPoints(200);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,BAT_HUNT);
 	elseif(csid == 0x03F1 and option == 102) then
@@ -122,13 +126,30 @@ printf("onFinishOPTION: %u",option);
 		player:setRank(2);
 		player:delKeyItem(ORCISH_HUT_KEY);
 		player:setVar("saveTheChildrenMissionCS",6);
+		player:addRankPoints(250);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
+		player:addGil(GIL_RATE*1000);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
 		player:completeMission(SANDORIA,SAVE_THE_CHILDREN);
 	elseif(csid == 0x0400) then
 		player:delKeyItem(ORCISH_HUT_KEY);
 		player:setVar("saveTheChildrenMissionCS",0);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,SAVE_THE_CHILDREN);
+	elseif(csid == 0x03F1 and option == 3) then
+		player:addMission(SANDORIA,THE_RESCUE_DRILL);
+		player:setVar("theRescueDrillMissionCS",1);
+		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
+	elseif(csid == 0x03ed) then
+		player:delKeyItem(RESCUE_TRAINING_CERTIFICATE);
+		player:setVar("theRescueDrillMissionCS",0);
+		--player:setRankPoints(0);
+		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
+		player:completeMission(SANDORIA,THE_RESCUE_DRILL);
+	elseif(csid == 0x03F1 and option == 104) then
+		player:addMission(SANDORIA,THE_DAVOI_REPORT);
+		player:setVar("theDavoiReportMissionCS",1);
+		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
 	end
 	
 end;

@@ -1,0 +1,62 @@
+-----------------------------------
+-- Area: Davoi
+-- NPC:  Zantaviat
+-- Involved in Mission: The Davoi Report
+-- @zone 149
+-- @pos 215 0 -10
+-----------------------------------
+
+require("scripts/globals/missions");
+require("scripts/globals/keyitems");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
+
+function onTrade(player,npc,trade)
+end;
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+	
+	CurrentMission = player:getCurrentMission(SANDORIA)
+	
+	if(CurrentMission == THE_DAVOI_REPORT and player:getVar("theDavoiReportMissionCS") == 1) then
+		player:startEvent(0x0064);
+	elseif(CurrentMission == THE_DAVOI_REPORT and player:hasKeyItem(LOST_DOCUMENT)) then
+		player:startEvent(0x0068);
+	else
+		player:startEvent(0x0065);
+	end
+	
+end;
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+end;
+
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
+function onEventFinish(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+
+	if(csid == 0x0064) then
+		player:setVar("theDavoiReportMissionCS",2);
+	elseif(csid == 0x0068) then
+		player:delKeyItem(LOST_DOCUMENT);
+		player:addKeyItem(TEMPLE_KNIGHTS_DAVOI_REPORT);
+		player:messageSpecial(KEYITEM_OBTAINED,TEMPLE_KNIGHTS_DAVOI_REPORT);
+	end
+
+end;

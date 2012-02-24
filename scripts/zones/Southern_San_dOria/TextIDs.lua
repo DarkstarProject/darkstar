@@ -8,11 +8,17 @@ FULL_INVENTORY_AFTER_TRADE = 6402; -- You cannot obtain the <item>. Try trading 
           KEYITEM_OBTAINED = 6406; -- Obtained key item: <keyitem>
 	   NOT_HAVE_ENOUGH_GIL = 6408; -- You do not have enough gil.
 		     HOMEPOINT_SET = 24; -- Home point set!
-	   
-    MISSION_OFFSET = 7105; -- The situation in Davoi worsens by the day. This won't be easy, but I can't think of a better adventurer for the job!
-   MISSION_OFFSET2 = 9024; -- Head to the chambers of Prince Trion inside Chateau d'Oraguille as soon as you're presentable!
-RANK_POINTS_DIALOG = 8344; -- You do not need to donate any more crystals at your current rank. Speak to the guard at the gatehouse for further instructions.
 
+-- Mission Dialogs
+			 DONATE_LOW_RANK = 8294; -- I cannot accept crystals from someone whose rank is still 1...
+			 DONATE_AT_MAXIM = 8344; -- You do not need to donate any more crystals at your current rank...
+			 DONATE_OVERFLOW = 8345; -- Your rank are full. We've added the excess to your conquest points...
+			 DONATE_CRYSTALS = 8346; -- Good work, citizen. We've awarded you rank points for the crystals you've donated.
+	  YOU_ACCEPT_THE_MISSION = 7034; -- You accept the mission
+YOUVE_EARNED_CONQUEST_POINTS = 8301; -- You've earned conquest points!
+
+-- Supply Run quest
+WAIT_VANADIEL_DAY = 8342;
 
   MagicmartFlyer = 532; -- item: Magicmart_flyer
    FLYER_REFUSED = 7997; -- Your flyer is refused.
@@ -30,10 +36,6 @@ BLENDARE_MESSAGE = 8648; -- Blendare looks over curiously for a moment.
 MAUGIE_MESSAGE   = 8651; -- Maugie looks over curiously for a moment.
 ADAUNEL_MESSAGE  = 8653; -- Adaunel looks over curiously for a moment.
 ROSEL_MESSAGE    = 8649; -- Rosel looks over curiously for a moment.
-
--- Mission Dialogs
-YOU_ACCEPT_THE_MISSION = 7034; -- You accept the mission
-YOUVE_EARNED_CONQUEST_POINTS = 8301; -- You've earned conquest points!
 
 PAUNELIE_DIALOG = 0; -- 1997; -- Like <item> ? -- (linkshell)
 	   
@@ -67,6 +69,3 @@ FERDOULEMIONT_SHOP_DIALOG = 8230; -- Hello!
 
 	 POURETTE_OPEN_DIALOG = 8243; -- Derfland produce for sale!
    POURETTE_CLOSED_DIALOG = 8244; -- Listen, adventurer... I can't import from Derfland until the region knows San d'Orian power!
-
-   -- Supply Run quest
-WAIT_VANADIEL_DAY = 8342;

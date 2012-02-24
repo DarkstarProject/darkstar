@@ -110,7 +110,6 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
 end;
 
 -----------------------------------
@@ -125,7 +124,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x01fc) then 
 		player:addQuest(SANDORIA,FATHER_AND_SON);
 	elseif(csid == 0x01fd) then 
-		if (player:getFreeSlotsCount() == 0) then 
+		if(player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17391);
 		else
 			player:addItem(17391);

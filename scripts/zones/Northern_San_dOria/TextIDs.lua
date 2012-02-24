@@ -8,14 +8,16 @@ ITEM_CANNOT_BE_OBTAINED = 6565; -- You cannot obtain the item <item> come back a
 		  HOMEPOINT_SET = 188; -- Home point set!
 		  MOGHOUSE_EXIT = 12156; -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
 
-    MISSION_OFFSET = 76; -- The situation in Davoi worsens by the day. This won't be easy, but I can't think of a better adventurer for the job!
-ACCEPT_THE_MISSION = 5; -- You accept the mission.
-   MISSION_OFFSET2 = 12409; -- Head to the chambers of Prince Trion inside Chateau d'Oraguille as soon as you're presentable!
-RANK_POINTS_DIALOG = 11553; -- You do not need to donate any more crystals at your current rank. Speak to the guard at the gatehouse for further instructions.
+-- Mission Dialogs
+			 DONATE_LOW_RANK = 11503; -- I cannot accept crystals from someone whose rank is still 1...
+			 DONATE_AT_MAXIM = 11553; -- You do not need to donate any more crystals at your current rank...
+			 DONATE_OVERFLOW = 11554; -- Your rank are full. We've added the excess to your conquest points...
+			 DONATE_CRYSTALS = 11555; -- Good work, citizen. We've awarded you rank points for the crystals you've donated.
+	  YOU_ACCEPT_THE_MISSION = 5; -- You accept the mission
+YOUVE_EARNED_CONQUEST_POINTS = 11510; -- You've earned conquest points!
 
-MISSION_SMASH_THE_ORCISH_SCOUTS = 16; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
-
-CONQUEST = 11508; -- You've earned conquest points!
+-- Supply Run quest
+WAIT_VANADIEL_DAY = 8342;
 
 -- Quest Dialog
  SHIVA_UNLOCKED = 12601; -- You are now able to summon Shiva

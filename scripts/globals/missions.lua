@@ -282,6 +282,8 @@ function getMissionMask(player)
 			elseif(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) == false) then
 				-- 1-3 If we completed 1-2, we can start and repeat this mission
 				repeat_mission = repeat_mission + 4 + 2 + 1;
+			else
+				repeat_mission = repeat_mission + 4 + 2 + 1;
 			end
 		end
 		if(rank >= 2) then
