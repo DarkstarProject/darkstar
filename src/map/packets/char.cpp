@@ -34,7 +34,7 @@
 CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type) 
 {
 	this->type = 0x0D;
-	this->size = 0x30;
+	this->size = 0x32;
 
 	WBUFL(data,(0x04)-4) = PChar->id;
 	WBUFW(data,(0x08)-4) = PChar->targid;
