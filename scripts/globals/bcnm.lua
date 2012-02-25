@@ -26,6 +26,10 @@ function getMonsterList(list,zone)
 		elseif(list == 3) then
 			monsterList = {17375237,17375238};
 		end
+	elseif(zone == 202) then
+		if(list == 1) then
+			monsterList = {17604610};
+		end			
 	elseif(zone == 203) then
 		if(list == 1) then
 			monsterList = {17608705};
