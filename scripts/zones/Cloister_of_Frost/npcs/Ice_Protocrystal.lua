@@ -35,15 +35,15 @@ function onTrigger(player,npc)
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 
-			if(player:hasKeyItem(TUNING_FORK_OF_ICE) == true) then
-				bcnmFight = bcnmFight + 4;
+			if(player:hasKeyItem(TUNING_FORK_OF_ICE)) then
+				bcnmFight = bcnmFight + 1;
 			end
 
 			if(bcnmFight >= 0) then
 				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
 			end
 		else
-			player:messageSpecial(7155);
+			player:messageSpecial(YOU_CANNOT_ENTER_THE_BATTLEFIELD);
 		end
 	else
 		player:startEvent(0x7d03);
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-printf("onUpdate CSID: %u",csid);
-printf("onUpdate RESULT: %u",option);
+--printf("onUpdate CSID: %u",csid);
+--printf("onUpdate RESULT: %u",option);
 	
 	if(csid == 0x7d00) then
 		pZone = player:getZone();
@@ -83,8 +83,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("onFinish CSID: %u",csid);
-printf("onFinish RESULT: %u",option);
+--printf("onFinish CSID: %u",csid);
+--printf("onFinish RESULT: %u",option);
 
 	pZone = player:getZone();
 
@@ -93,20 +93,17 @@ printf("onFinish RESULT: %u",option);
 			player:startEvent(0x7d02);
 		else
 			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
-			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,1800,0);
-			player:setVar("ShivaFight_Timer", os.time());
+			player:addStatusEffect(EFFECT_BATTLEFIELD,2,0,1800,0); -- 2 for battlefield.lua
+			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		end
 	elseif(csid == 0x7d03 and option == 4) then
 		if(player:getVar(tostring(pZone) .. "_Fight") == 100) then
-			player:setVar("ShivaFight_Killed",0);
-			player:setVar("ShivaFight_Timer",0);
+			player:setVar("BCNM_Killed",0);
+			player:setVar("BCNM_Timer",0);
 		end
 		player:setVar(tostring(pZone) .. "_Runaway",1);
 		player:delStatusEffect(EFFECT_BATTLEFIELD);
-		player:setVar(tostring(pZone) .. "_Runaway",0)
-		player:setVar(tostring(pZone) .. "_Ready",0);
-		player:setVar(tostring(pZone) .. "_Field",0);
-		player:setVar(tostring(pZone) .. "_Fight",0);
+		player:setVar(tostring(pZone) .. "_Runaway",0);
 	end
 end;

@@ -26,19 +26,19 @@ function onEffectLose(target,effect)
 
 	fieldEffect = effect:getPower();
 	pZone = target:getZone();
-		
-	if(fieldEffect == 1 and target:getVar("BCNM_Killed") < 3) then -- San d'Oria Mission 1-3
+	
+	if(fieldEffect == 1 and target:getVar("BCNM_Killed") < 3) then -- BCNM with 3 mob : San d'Oria Mission 1-3
 		target:setAnimation(0);
 		target:startEvent(0x7d02);
 		bcnmDespawn(target:getVar(tostring(pZone) .. "_Field"),fieldEffect,pZone);
-	elseif(fieldEffect == 2 and target:getVar("BCNM_Killed") == 0) then -- DRG Flag quest
+	elseif(fieldEffect == 2 and target:getVar("BCNM_Killed") < 1) then -- BCNM with 1 mob : DRG Flag quest, Trial by..
 		target:setAnimation(0);
 		target:startEvent(0x7d02);
-		bcnmDespawn(target:getVar(tostring(pZone) .. "_Field"),fieldEffect,pZone); -- Nation Mission 2-3
-	elseif(fieldEffect == 100 and target:getVar("BCNM_Killed") < 2 and target:getVar(tostring(pZone) .. "_Runaway") == 0) then
+		bcnmDespawn(target:getVar(tostring(pZone) .. "_Field"),fieldEffect,pZone);
+	elseif(fieldEffect == 100 and target:getVar("BCNM_Killed") < 2 and target:getVar(tostring(pZone) .. "_Runaway") == 0) then -- BCNM with 2 mob with lvl restriction : Nation Mission 2-3
 		target:setAnimation(0);
 		target:startEvent(0x7d02);
-		player:levelRestriction(0);
+		target:levelRestriction(0);
 		bcnmDespawn(target:getVar(tostring(pZone) .. "Field"),fieldEffect,pZone);
 	end
 	

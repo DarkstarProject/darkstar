@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 
-			if(player:hasKeyItem(TUNING_FORK_OF_LIGHTNING) == true) then
+			if(player:hasKeyItem(TUNING_FORK_OF_LIGHTNING)) then
 				bcnmFight = bcnmFight + 4;
 			end
 
@@ -93,20 +93,17 @@ printf("onFinish RESULT: %u",option);
 			player:startEvent(0x7d02);
 		else
 			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
-			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,1800,0);
-			player:setVar("RamuhFight_Timer", os.time());
+			player:addStatusEffect(EFFECT_BATTLEFIELD,2,0,1800,0); -- 2 for battlefield.lua
+			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		end
 	elseif(csid == 0x7d03 and option == 4) then
 		if(player:getVar(tostring(pZone) .. "_Fight") == 100) then
-			player:setVar("RamuhFight_Killed",0);
-			player:setVar("RamuhFight_Timer",0);
+			player:setVar("BCNM_Killed",0);
+			player:setVar("BCNM_Timer",0);
 		end
 		player:setVar(tostring(pZone) .. "_Runaway",1);
 		player:delStatusEffect(EFFECT_BATTLEFIELD);
 		player:setVar(tostring(pZone) .. "_Runaway",0)
-		player:setVar(tostring(pZone) .. "_Ready",0);
-		player:setVar(tostring(pZone) .. "_Field",0);
-		player:setVar(tostring(pZone) .. "_Fight",0);
 	end
 end;
