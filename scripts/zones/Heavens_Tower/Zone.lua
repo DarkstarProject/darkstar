@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/missions");
 require("scripts/zones/Heavens_Tower/TextIDs");
 
 -----------------------------------
@@ -23,8 +24,13 @@ end;
 
 function onZoneIn(player,prevZone)
 cs = -1;
+	
+	if(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST and player:getVar("MissionStatus") == 3) then
+		cs = 0x002a;
+	end
+	
+	return cs;
 
-return cs;
 end;
 
 -----------------------------------
@@ -66,8 +72,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x29) then
+	if(csid == 0x29) then
 		player:setPos(0,-17,135,60,239);
+	elseif(csid == 0x002a) then
+		player:setVar("MissionStatus",4);
 	end
 end;
 

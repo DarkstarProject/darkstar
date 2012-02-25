@@ -25,9 +25,19 @@ function onTrade(player,npc,trade)
 		else
 			player:startEvent(0x03f2); -- Mission not activated
 		end
-	elseif(trade:hasItemQty(1112,1) and trade:getItemCount() == 1) then -- Trade Orcish Mail Scales
+	elseif(trade:hasItemQty(1112,1) and trade:getItemCount() == 1 and player:hasCompletedMission(SANDORIA,BAT_HUNT) == false) then -- Trade Orcish Mail Scales
 		if(player:getCurrentMission(SANDORIA) == BAT_HUNT) then
-			player:startEvent(0x03eb); -- Finish Mission "Bat Hunt"
+			if(player:getVar("MissionStatus") == 2) then
+				player:startEvent(0x03ff); -- Finish Mission "Bat Hunt"
+			end
+		else
+			player:startEvent(0x03f2); -- Mission not activated
+		end
+	elseif(trade:hasItemQty(891,1) and trade:getItemCount() == 1 and player:hasCompletedMission(SANDORIA,BAT_HUNT)) then -- Trade Bat Fang
+		if(player:getCurrentMission(SANDORIA) == BAT_HUNT) then
+			if(player:getVar("MissionStatus") == 2) then
+				player:startEvent(0x03eb); -- Finish Mission "Bat Hunt" (repeat)
+			end
 		else
 			player:startEvent(0x03f2); -- Mission not activated
 		end
@@ -108,10 +118,12 @@ printf("onFinishOPTION: %u",option);
 		player:completeMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
 	elseif(csid == 0x03F1 and option == 101) then
 		player:addMission(SANDORIA,BAT_HUNT);
+		player:setVar("MissionStatus",1);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
-	elseif(csid == 0x03eb) then
+	elseif(csid == 0x03eb or csid == 0x03ff) then
 		player:tradeComplete();
 		player:addRankPoints(200);
+		player:setVar("MissionStatus",0);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,BAT_HUNT);
 	elseif(csid == 0x03F1 and option == 102) then
@@ -139,6 +151,7 @@ printf("onFinishOPTION: %u",option);
 	elseif(csid == 0x03F1 and option == 3) then
 		player:addMission(SANDORIA,THE_RESCUE_DRILL);
 		player:setVar("theRescueDrillMissionCS",1);
+		player:setVar("saveTheChildrenMissionCS",0);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
 	elseif(csid == 0x03ed) then
 		player:delKeyItem(RESCUE_TRAINING_CERTIFICATE);
@@ -149,6 +162,10 @@ printf("onFinishOPTION: %u",option);
 	elseif(csid == 0x03F1 and option == 104) then
 		player:addMission(SANDORIA,THE_DAVOI_REPORT);
 		player:setVar("theDavoiReportMissionCS",1);
+		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
+	elseif(csid == 0x03F1 and option == 5) then
+		player:addMission(SANDORIA,JOURNEY_ABROAD);
+		player:setVar("MissionStatus",1);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
 	end
 	

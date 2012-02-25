@@ -9,6 +9,7 @@ package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 
@@ -31,7 +32,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc) 
-	player:startEvent(0x0002);
+	
+	if(player:getCurrentMission(SANDORIA) == BAT_HUNT and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x0004);
+	else
+		player:startEvent(0x0002);
+	end
+	
 end; 
 
 -----------------------------------
@@ -50,8 +57,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
-	if(csid == 0x0002) then
+	
+	if(csid == 0x0004) then
+		player:setVar("MissionStatus",2);
+	elseif(csid == 0x0002) then
 		graveConcerns = player:getQuestStatus(SANDORIA,GRAVE_CONCERNS);
 		
 		if(graveConcerns == QUEST_ACCEPTED and player:hasItem(547) == false and player:hasItem(567) == false) then 

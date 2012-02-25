@@ -35,9 +35,10 @@ function onEffectLose(target,effect)
 		target:setAnimation(0);
 		target:startEvent(0x7d02);
 		bcnmDespawn(target:getVar(tostring(pZone) .. "_Field"),fieldEffect,pZone); -- Nation Mission 2-3
-	elseif(fieldEffect == 100 and target:getVar("Mission_2_3_Killed") < 2 and target:getVar(tostring(pZone) .. "_Runaway") == 0) then
+	elseif(fieldEffect == 100 and target:getVar("BCNM_Killed") < 2 and target:getVar(tostring(pZone) .. "_Runaway") == 0) then
 		target:setAnimation(0);
 		target:startEvent(0x7d02);
+		player:levelRestriction(0);
 		bcnmDespawn(target:getVar(tostring(pZone) .. "Field"),fieldEffect,pZone);
 	end
 	

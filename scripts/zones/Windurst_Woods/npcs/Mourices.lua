@@ -1,20 +1,29 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Mourices
---  Type: Consul. Rep.
--- @zone: 241
---  @pos: -50.646 -0.501 -27.642
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
+-- Area: Windurst Woods
+-- NPC:  Mourices
+-- Involved In Mission: Journey Abroad
+-- @zone 241
+-- @pos -50.646 -0.501 -27.642
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
+require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST and MissionStatus == 7) then
+		if(trade:hasItemQty(12298,2) and trade:getItemCount() == 2) then -- Trade 2 Parana Shield
+			player:startEvent(0x01c9);
+		end
+	end
+	
 end;
 
 -----------------------------------
@@ -22,7 +31,32 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x01b9);
+	
+	MissionStatus = player:getVar("MissionStatus");
+	
+	-- San d'Oria Mission 2-3 Part I - Windurst > Bastok
+	if(player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD and MissionStatus == 2) then
+		player:startEvent(0x01c0);
+	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST) then
+		if(MissionStatus == 3) then
+			player:startEvent(0x01c1);
+		elseif(MissionStatus == 5) then
+			player:startEvent(0x01c3);
+		elseif(MissionStatus == 6) then
+			player:startEvent(0x01c8);
+		end
+	-- San d'Oria Mission 2-3 Part II - Bastok > Windurst
+	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD and MissionStatus == 6) then
+		player:startEvent(0x01ce);
+	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST2) then
+		if(MissionStatus == 7) then
+			player:startEvent(0x01cf);
+		elseif(MissionStatus == 9 or MissionStatus == 10) then
+			player:startEvent(0x01d3);
+		end
+	else
+		player:startEvent(0x01b9);
+	end
 end;
 
 -----------------------------------
@@ -30,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +73,26 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	
+	if(csid == 0x01c0) then
+		player:addMission(SANDORIA,JOURNEY_TO_WINDURST);
+		player:setVar("MissionStatus",3);
+	elseif(csid == 0x01c8) then
+		player:setVar("MissionStatus",7);
+	elseif(csid == 0x01c9) then
+		player:tradeComplete();
+		player:addMission(SANDORIA,JOURNEY_ABROAD);
+	elseif(csid == 0x01ce) then
+		player:addMission(SANDORIA,JOURNEY_TO_WINDURST2);
+		player:setVar("MissionStatus",7);
+	elseif(csid == 0x01d3) then
+		player:addMission(SANDORIA,JOURNEY_ABROAD);
+		player:delKeyItem(KINDRED_CREST);
+		player:setVar("MissionStatus",11);
+		player:addKeyItem(KINDRED_REPORT);
+		player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+	end
+	
 end;
-
