@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Jeu 05 Janvier 2012 à 14:39
+-- Généré le : Sam 25 Février 2012 à 14:59
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -59,3 +59,6 @@ INSERT INTO `transport` VALUES (5, 'Jeuno-Bastok_Airship', 17784932, 17784929, -
 INSERT INTO `transport` VALUES (6, 'Sandoria-Jeuno_Airship', 17727593, 17727590, 20.000, -2.000, 44.000, 64, 369, 18, 19, 180, 360, 12, 60, 16, 223);
 INSERT INTO `transport` VALUES (7, 'Windurst-Jeuno_Airship', 17760415, 17760414, 242.281, -3.522, 61.994, 96, 416, 18, 19, 270, 360, 18, 60, 14, 225);
 INSERT INTO `transport` VALUES (8, 'Bastok-Jeuno_Airship', 17743967, 17743961, -36.458, 6.365, -77.322, 128, 315, 18, 19, 0, 360, 14, 60, 16, 224);
+INSERT INTO `transport` VALUES (9, 'Selbina-Mhaura_Boat', 17793084, 17793083, 9.294, 0.000, -69.775, 0, 482, 18, 19, 382, 480, 18, 80, 16, 221);
+INSERT INTO `transport` VALUES (10, 'Mhaura-Selbina_Boat', 17797178, 17797177, -0.516, 0.003, -8.409, 0, 493, 18, 19, 382, 480, 18, 80, 16, 220);
+INSERT INTO `transport` VALUES (11, 'Mhaura-Whitegate_Boat', 17797178, 17797177, -0.516, 0.003, -8.409, 0, 493, 18, 19, 142, 480, 18, 80, 16, 46);
