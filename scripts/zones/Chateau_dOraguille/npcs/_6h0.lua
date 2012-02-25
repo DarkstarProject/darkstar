@@ -10,7 +10,8 @@ package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/shop");
+require("scripts/globals/missions");
+require("scripts/globals/quests");
 require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 -----------------------------------
@@ -25,11 +26,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getVar("aBoysDreamCS") == 8) then 
+	
+	Mission = player:getCurrentMission(SANDORIA);
+	
+	if(Mission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x0229,0,ROYAL_KNIGHTS_DAVOI_REPORT);
+	elseif(Mission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 4) then
+		player:startEvent(0x022a,0,ROYAL_KNIGHTS_DAVOI_REPORT);
+	elseif(player:getVar("aBoysDreamCS") == 8) then 
 		player:startEvent(0x0058);
 	end
 	
 	return 1;
+	
 end;
 
 -----------------------------------
@@ -48,8 +57,16 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x0058) then
-		if (player:getFreeSlotsCount() == 0) then 
+	
+	if(csid == 0x0229) then
+		player:setVar("MissionStatus",2);
+	elseif(csid == 0x022a) then
+		player:delKeyItem(ROYAL_KNIGHTS_DAVOI_REPORT);
+		player:setVar("MissionStatus",0);
+		player:addRankPoints(350);
+		player:completeMission(SANDORIA,INFILTRATE_DAVOI);
+	elseif(csid == 0x0058) then
+		if(player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14095);
 		else
 			if(player:getMainJob() == 7) then 
@@ -63,5 +80,5 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(SANDORIA,A_BOY_S_DREAM);
 		end
 	end
+	
 end;
-

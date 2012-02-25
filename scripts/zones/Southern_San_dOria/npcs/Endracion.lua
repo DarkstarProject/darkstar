@@ -41,6 +41,16 @@ function onTrade(player,npc,trade)
 		else
 			player:startEvent(0x03f2); -- Mission not activated
 		end
+	elseif(trade:hasItemQty(4528,1) and trade:getItemCount() == 1) then -- Trade Crystal Bass
+		if(player:getCurrentMission(SANDORIA) == THE_CRYSTAL_SPRING) then
+			if(player:hasCompletedMission(SANDORIA,THE_CRYSTAL_SPRING)) then
+				player:startEvent(0x03f5); -- Finish Mission "The Crystal Spring" (repeat)
+			else
+				player:startEvent(0x0406);
+			end
+		else
+			player:startEvent(0x03f2); -- Mission not activated
+		end
 	else
 		player:startEvent(0x03f0); -- Wrong Item
 	end
@@ -50,34 +60,24 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
--- 0x03f3 for non san d'orians
--- 0x03e8 Start Mission "Smash the Orcish scouts"
--- 0x03ea Finish Mission "Smash the Orcish scouts" by trade 
--- 0x03f0 Qu'est ce que c'est ? je ne veut pas de ca
--- 0x03f2 ecoutez avant de m'apporter quelque chose, vous devez accepter la mission...
--- 0x03f1 menu
--- 0x03e9 terminez d'abord votre mission. Ensuite, vous pourrez en demander une nouvelle
--- 0x03eb Finish Mission "Bat Hunt"
--- 0x03ec Finish Mission "Save the Children" with rank
--- 0x0400 Finish Mission "Save the Children" (repeat)
--- 0x03ed Finish Mission "The Rescue Drill"
--- 0x03ee Finish Mission "The Davoi Report"??
--- 0x03ef During Mission "Journey Abroad"
--- 0x03f4 Finish Mission "Infiltrate Davoi"
---0x01f7  0x03f3  0x03e8  0x03ea  0x03f0  0x03f2  0x03f1  0x03e9  0x03eb  0x03ec  0x0400  0x03ed  0x03ee  0x03ef  0x03f4  0x03f5  0x03f7  0x003d  0x040b  0x040d  0x040f  0x0409  0x0411  0x0413  0x0415  0x03fc  0x03fd  0x03fe  0x03ff  0x0401  0x0402  0x0403  0x0404  0x0405  0x0408  0x0406  0x0407
+
 function onTrigger(player,npc)
+	
+	CurrentMission = player:getCurrentMission(SANDORIA);
 	
 	if(player:getNation() ~= SANDORIA) then
 		player:startEvent(0x03F3); -- for Non-San d'Orians
-	elseif(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("saveTheChildrenMissionCS") == 5) then
+	elseif(CurrentMission == SAVE_THE_CHILDREN and player:getVar("saveTheChildrenMissionCS") == 5) then
 		if(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) == false) then
 			player:startEvent(0x03ec); -- Finish Mission "Save the Children" with rank
 		else
 			player:startEvent(0x0400); -- Finish Mission "Save the Children" (repeat)
 		end
-	elseif(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL and player:getVar("theRescueDrillMissionCS") == 11) then
+	elseif(CurrentMission == THE_RESCUE_DRILL and player:getVar("theRescueDrillMissionCS") == 11) then
 		player:startEvent(0x03ed); -- Finish Mission "The Rescue Drill"
-	elseif(player:getCurrentMission(SANDORIA) ~= 255) then
+	elseif(CurrentMission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 10) then
+		player:startEvent(0x03f4); -- Finish Mission "Infiltrate Davoi"
+	elseif(CurrentMission ~= 255) then
 		player:startEvent(0x03e9); -- Have mission already activated
 	else
 		if(player:getRank() == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
@@ -156,7 +156,6 @@ printf("onFinishOPTION: %u",option);
 	elseif(csid == 0x03ed) then
 		player:delKeyItem(RESCUE_TRAINING_CERTIFICATE);
 		player:setVar("theRescueDrillMissionCS",0);
-		--player:setRankPoints(0);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,THE_RESCUE_DRILL);
 	elseif(csid == 0x03F1 and option == 104) then
@@ -167,6 +166,32 @@ printf("onFinishOPTION: %u",option);
 		player:addMission(SANDORIA,JOURNEY_ABROAD);
 		player:setVar("MissionStatus",1);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
+	elseif(csid == 0x03F1 and option == 110) then
+		player:addMission(SANDORIA,INFILTRATE_DAVOI);
+		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
+		if(player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS)) then
+			player:setVar("MissionStatus",5);
+		else
+			player:setVar("MissionStatus",1);
+		end
+	elseif(csid == 0x03f4) then
+		player:setVar("MissionStatus",0);
+		player:addRankPoints(350);
+		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
+		player:completeMission(SANDORIA,INFILTRATE_DAVOI);
+	elseif(csid == 0x03F1 and option == 111) then
+		player:addMission(SANDORIA,THE_CRYSTAL_SPRING);
+		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
+		player:setVar("MissionStatus",1);
+	elseif(csid == 0x0406) then
+		player:tradeComplete();
+		player:setVar("MissionStatus",2);
+	elseif(csid == 0x03f5) then
+		player:tradeComplete();
+		player:setVar("MissionStatus",0);
+		player:addRankPoints(400);
+		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
+		player:completeMission(SANDORIA,THE_CRYSTAL_SPRING);
 	end
 	
 end;

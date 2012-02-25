@@ -28,6 +28,10 @@ function onTrigger(player,npc)
 		player:startEvent(0x0064);
 	elseif(CurrentMission == THE_DAVOI_REPORT and player:hasKeyItem(LOST_DOCUMENT)) then
 		player:startEvent(0x0068);
+	elseif(CurrentMission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 5) then
+		player:startEvent(0x0066);
+	elseif(CurrentMission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 9) then
+		player:startEvent(0x0069);
 	else
 		player:startEvent(0x0065);
 	end
@@ -57,6 +61,13 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(LOST_DOCUMENT);
 		player:addKeyItem(TEMPLE_KNIGHTS_DAVOI_REPORT);
 		player:messageSpecial(KEYITEM_OBTAINED,TEMPLE_KNIGHTS_DAVOI_REPORT);
+	elseif(csid == 0x0066) then
+		player:setVar("MissionStatus",6);
+	elseif(csid == 0x0069) then
+		player:setVar("MissionStatus",10);
+		player:delKeyItem(EAST_BLOCK_CODE);
+		player:delKeyItem(SOUTH_BLOCK_CODE);
+		player:delKeyItem(NORTH_BLOCK_CODE);
 	end
 
 end;
