@@ -769,7 +769,8 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 	uint8  FromSlotID	  = RBUFB(data,(0x0A));
 	uint8  ToSlotID		  = RBUFB(data,(0x0B));
 
-    if (FromLocationID >= MAX_CONTAINER_ID)
+    if (ToLocationID   >= MAX_CONTAINER_ID ||
+        FromLocationID >= MAX_CONTAINER_ID)
         return 0;
 
 	CItem* PItem = PChar->getStorage(FromLocationID)->GetItem(FromSlotID);
@@ -788,12 +789,10 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 		return 0;
 	}
 
-	uint8 newSlotID = 0;
+	uint32 NewQuantity = PItem->getQuantity() - quantity;
 
-	uint32 newQuantity = PItem->getQuantity() - quantity;
-	if(newQuantity != 0) 
+	if(NewQuantity != 0) // делим пачку
 	{
-		// делим пачку
 		if (charutils::AddItem(PChar, ToLocationID, PItem->getID(), quantity) != ERROR_SLOTID) 
 		{
 			charutils::UpdateItem(PChar, FromLocationID, FromSlotID, -(int32)quantity);
@@ -801,32 +800,41 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 	}
     else // переносим всю пачку, или пытаемся объединить одинаковые предметы
     {
-		
 		if (ToSlotID < 82) // 80 + 1
 		{
 			// объединение еще не реализовано
 			ShowDebug("SmallPacket0x29: Trying to unite items\n", FromLocationID, FromSlotID);
 			return 0;
 		}
-		newSlotID = PChar->getStorage(ToLocationID)->InsertItem(PItem);
-		if(newSlotID != ERROR_SLOTID) 
-		{
-			const int8 *fmtQuery = "UPDATE char_inventory \
-									SET location = %u, slot = %u \
-									WHERE charid = %u AND location = %u AND slot = %u;";
 
-			if( Sql_Query(SqlHandle, fmtQuery, ToLocationID, newSlotID, PChar->id, FromLocationID, FromSlotID) != SQL_ERROR &&
+		uint8 NewSlotID = PChar->getStorage(ToLocationID)->InsertItem(PItem);
+
+		if(NewSlotID != ERROR_SLOTID) 
+		{
+			const int8* Query = "UPDATE char_inventory \
+								 SET location = %u, slot = %u \
+								 WHERE charid = %u AND location = %u AND slot = %u;";
+
+			if( Sql_Query(SqlHandle, Query, ToLocationID, NewSlotID, PChar->id, FromLocationID, FromSlotID) != SQL_ERROR &&
 				Sql_AffectedRows(SqlHandle) != 0)
 			{
 				PChar->getStorage(FromLocationID)->InsertItem(NULL, FromSlotID);
 
 				PChar->pushPacket(new CInventoryItemPacket(NULL, FromLocationID, FromSlotID));	// убираем предмет из FormLocationID
-				PChar->pushPacket(new CInventoryItemPacket(PItem, ToLocationID, newSlotID));		// добавляем предмет в ToLocationID
+				PChar->pushPacket(new CInventoryItemPacket(PItem, ToLocationID, NewSlotID));		// добавляем предмет в ToLocationID
 			}
+            else // в случае ошибки отменяем перемещение предмета
+            {
+                PChar->getStorage(ToLocationID)->InsertItem(NULL, NewSlotID);       // убираем предмет 
+                PChar->getStorage(FromLocationID)->InsertItem(PItem, FromSlotID);   // возвращаем предмет (для обновления Location и Slot предмета)
+            }
 		}
         else
         {
-			ShowDebug("SmallPacket0x29: Location %u is full\n", ToLocationID);
+            // клиент не позволяет перемещать предмет в полный контейнер. 
+            // если мы видим это сообщение, значит данные клиента и сервера различаются
+
+			ShowError(CL_RED"SmallPacket0x29: Location %u is full\n"CL_RESET, ToLocationID);
 			return 0;
 		}
 	}
