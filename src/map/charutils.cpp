@@ -1117,9 +1117,9 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				    PChar->pushPacket(new CCharUpdatePacket(PChar));
 			    } 
 		    }
-            if (PItem->getType() & ITEM_USABLE)
+            // TODO: позднее нужно будет добавить логику recast item
+            if ((PItem->getType() & ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
 		    {
-                // TODO: позднее нужно будет добавить логику recast item
 			    PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, slotID));
 	            PChar->pushPacket(new CInventoryFinishPacket());
 		    }

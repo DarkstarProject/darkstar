@@ -454,8 +454,6 @@ void CAICharNormal::ActionItemUsing()
         m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_ITEM_FINISH;
 
-		m_PItemUsable->setSubType(ITEM_UNLOCKED);
-
 		if (m_PItemUsable->getType() & ITEM_ARMOR)
 		{
 			if (m_PItemUsable->getMaxCharges() > 1)
@@ -480,8 +478,9 @@ void CAICharNormal::ActionItemUsing()
 
 			m_PItemUsable = new CItemUsable(*m_PItemUsable);
 		}
-		else
+		else // разблокируем все предметы, кроме экипирвоки
 		{
+            m_PItemUsable->setSubType(ITEM_UNLOCKED);
 			m_PItemUsable = new CItemUsable(*m_PItemUsable);
 
 			charutils::UpdateItem(m_PChar, m_PItemUsable->getLocationID(), m_PItemUsable->getSlotID(), -1);

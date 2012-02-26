@@ -744,14 +744,20 @@ int32 SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, int8* da
 	int32 quantity = RBUFB(data,(0x04));
 	uint8  slotID  = RBUFB(data,(0x09));
 	
-	uint32 ItemID  = charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -quantity);
+    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
 
-	if (ItemID != 0) 
-	{
-		PChar->pushPacket(new CMessageStandardPacket(0,ItemID,quantity,180));
-	}
+    if (PItem != NULL && !(PItem->getSubType() & ITEM_LOCKED))
+    {
+        uint16 ItemID = PItem->getID();
 
-	PChar->pushPacket(new CInventoryFinishPacket());
+	    if (charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -quantity) != 0) 
+	    {
+		    PChar->pushPacket(new CMessageStandardPacket(NULL, ItemID, quantity, 180));
+            PChar->pushPacket(new CInventoryFinishPacket());
+	    }
+        return 0;
+    }
+    ShowWarning(CL_YELLOW"SmallPacket0x028: Attempt of removal NULL or LOCKED item from slot %u\n"CL_RESET, slotID);
 	return 0;
 }
 
@@ -775,12 +781,9 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	CItem* PItem = PChar->getStorage(FromLocationID)->GetItem(FromSlotID);
 
-	if(PItem == NULL)
+    if(PItem == NULL || (PItem->getSubType() & ITEM_LOCKED))
 	{
-		ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move NULL form location %u slot %u\n"CL_RESET, FromLocationID, FromSlotID);
-
-        PChar->pushPacket(new CInventoryItemPacket(NULL, FromLocationID, FromSlotID));
-        PChar->pushPacket(new CInventoryFinishPacket());
+		ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move NULL or LOCKED item form location %u slot %u\n"CL_RESET, FromLocationID, FromSlotID);
 		return 0;
 	}
 	if(PItem->getQuantity() < quantity) 

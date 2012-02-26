@@ -55,11 +55,15 @@ CInventoryItemPacket::CInventoryItemPacket(CItem * item, uint8 LocationID, uint8
 			uint32 currentTime = CVanaTime::getInstance()->getSysTime() - 1009810800;
 			uint32 nextUseTime = ((CItemUsable*)item)->getLastUseTime() + ((CItemUsable*)item)->getReuseDelay();
 
-			WBUFB(data,(0x11)-4) = 0x01;                                                    	// флаг ITEM_CHARGED
+            if (item->getSubType() & ITEM_LOCKED)
+            {
+                WBUFB(data,(0x10)-4) = 0x05;
+            }
+			WBUFB(data,(0x11)-4) = 0x01;                                                  	// флаг ITEM_CHARGED
 			WBUFB(data,(0x12)-4) = ((CItemUsable*)item)->getCurrentCharges(); 
 			WBUFB(data,(0x14)-4) = (nextUseTime > currentTime ? 0x90 : 0xD0); 
 
-		    WBUFL(data,(0x15)-4) = nextUseTime;												// таймер следующего использования
+            WBUFL(data,(0x15)-4) = nextUseTime;											// таймер следующего использования
 			WBUFL(data,(0x19)-4) = ((CItemUsable*)item)->getUseDelay() + currentTime;		// таймер задержки использования
 		}
         memcpy(data+(0x1D)-4, item->getSignature(), cap_value(strlen(item->getSignature()), 0, 12));
