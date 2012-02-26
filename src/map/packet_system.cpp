@@ -842,13 +842,19 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    if (PChar->UContainer->GetType() != UCONTAINER_EMPTY) return 0;
+
     uint32 charid = RBUFL(data,(0x04));
     uint16 targid = RBUFW(data,(0x08));
 
     CCharEntity* PTradeTarget = (CCharEntity*)PChar->loc.zone->GetEntity(targid, TYPE_PC);
 
+    // TODO:
+    // когда персонаж предлагает обмен второму персонажу, то первому должен быть отправлен запрос об отмене обмена
+
     if ((PTradeTarget != NULL) && (PTradeTarget->id == charid))
     {
+        // у PTradeTarget UContainer тоже не должен быть занят
         PChar->UContainer->SetTarget(PTradeTarget->targid);
         PTradeTarget->UContainer->SetTarget(PChar->targid);
         PTradeTarget->pushPacket(new CTradeRequestPacket(PChar));
@@ -2377,8 +2383,10 @@ int32 SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, int8* da
 			PChar->nameflags.flags ^= FLAG_ANON; 
 			break;
 		case 0x4000:
-			//if(RBUFB(data,(0x10)) == 1)	// autotarget off
-			//if(RBUFB(data,(0x10)) == 2)	// autotarget on
+			if(RBUFB(data,(0x10)) == 1)
+                PChar->m_hasAutoTarget = false;
+			if(RBUFB(data,(0x10)) == 2)
+                PChar->m_hasAutoTarget = true;
 			break;
 		case 0x8000: 
 			//if(RBUFB(data,(0x10)) == 1)	// autogroup on

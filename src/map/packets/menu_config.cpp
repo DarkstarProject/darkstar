@@ -30,15 +30,16 @@
 
 CMenuConfigPacket::CMenuConfigPacket(CCharEntity* PChar) 
 {
-	this->type = 0xB4;
-	this->size = 0x0C;
+    this->type = 0xB4;
+    this->size = 0x0C;
 	
-	WBUFB(data,(0x04)-4) = 0x18 + (PChar->nameflags.flags & FLAG_INVITE ? 1 : 0);
-	WBUFB(data,(0x05)-4) = 0x00;//(PChar->nameflags.flags & FLAG_AUTOGROUP ? 0x80 : 0);  
-	WBUFB(data,(0x07)-4) = 0x04; 
+    WBUFB(data,(0x04)-4) = 0x18 + (PChar->nameflags.flags & FLAG_INVITE ? 1 : 0);
+    WBUFB(data,(0x05)-4)|= PChar->m_hasAutoTarget ? 0 : 0x40;
+  //WBUFB(data,(0x05)-4)|= PChar->nameflags.flags & FLAG_AUTOGROUP ? 0x80 : 0;  
+    WBUFB(data,(0x07)-4) = 0x04; 
 
-	WBUFB(data,(0x12)-4) = 0x02;
-	WBUFB(data,(0x14)-4) = 0x02;
+    WBUFB(data,(0x12)-4) = 0x02;
+    WBUFB(data,(0x14)-4) = 0x02;
 }
 
 // активные поля data[0x07-4]

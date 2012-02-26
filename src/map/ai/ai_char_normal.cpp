@@ -1493,6 +1493,38 @@ void CAICharNormal::ActionAttack()
 
 	if (m_PBattleTarget->isDead())
 	{
+        if (m_PChar->m_hasAutoTarget && m_PBattleTarget->objtype == TYPE_MOB) // Auto-Target
+	    {
+		    for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin();  it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 16; ++it)
+		    {
+			    CBattleEntity* PTarget = (CBattleEntity*)it->second;
+            
+                if (PTarget->m_OwnerID != 0 &&
+                   !PTarget->isDead() && 
+                    isFaceing(m_PChar->loc.p, PTarget->loc.p, 40) &&
+                    distance(m_PChar->loc.p, PTarget->loc.p) <= 10)
+                {
+                    if (m_PChar->PParty != NULL) 
+	                {
+		                for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
+		                {
+			                if (m_PChar->PParty->members[i]->id == PTarget->m_OwnerID)
+			                {
+                                m_PBattleTarget = PTarget;
+				                m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+                                return;
+			                }
+		                }
+	                }
+                    else if (PTarget->m_OwnerID == m_PChar->id)
+                    {
+                        m_PBattleTarget = PTarget;
+                        m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+                        return;
+                    }
+                }
+		    }
+	    }
 		m_ActionType = ACTION_DISENGAGE;
 		ActionDisengage();
 		return;

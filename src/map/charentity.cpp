@@ -82,6 +82,7 @@ CCharEntity::CCharEntity()
     m_Costum     = 0;
 	m_hasTractor = 0;
 	m_hasRaise	 = 0;
+    m_hasAutoTarget    = 1;
 	m_InsideRegionID   = 0;
 	m_LevelRestriction = 0;
 
