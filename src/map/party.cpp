@@ -86,7 +86,8 @@ void CParty::DisbandParty()
 
 		    // TODO: TreasurePool должен оставаться у последнего персонажа, но сейчас это не критично
 
-            if (PChar->PTreasurePool != NULL && PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE) // заплатка на переход между зонами и MogHouse
+            if (PChar->PTreasurePool != NULL && 
+                PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
 		    {
 			    PChar->PTreasurePool->DelMember(PChar);
 			    PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
@@ -214,7 +215,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 
 				    ReloadParty();
 
-				    if (PChar->status != STATUS_SHUTDOWN &&
+				    if (PChar->PTreasurePool != NULL &&
 					    PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
 				    {
 					    PChar->PTreasurePool->DelMember(PChar);
