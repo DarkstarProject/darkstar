@@ -1,21 +1,28 @@
 -----------------------------------
--- Area: Chateau d'Oraguille
--- NPC:  Door: Great Hall
--- @zone 233
--- @pos 0 -1 13
+-- Area: Upper Delkfutt's Tower
+-- NPC:  Elevator
+-- @zone 158
+-- @pos -294 -143 27
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
+package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
+require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
+		player:tradeComplete();
+		player:addKeyItem(DELKFUTT_KEY);
+		player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
+		player:startEvent(0x0006);
+	end
+	
 end;
 
 -----------------------------------
@@ -24,10 +31,10 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(SANDORIA) == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 2) then
-		player:startEvent(0x0219);
+	if(player:hasKeyItem(DELKFUTT_KEY)) then
+		player:startEvent(0x0006);
 	else
-		player:startEvent(0x0202);
+		player:messageSpecial(THIS_ELEVATOR_GOES_DOWN);
 	end
 	
 	return 1;
@@ -50,11 +57,4 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if(csid == 0x0219) then
-		player:setVar("MissionStatus",3);
-		player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
-		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
-	end
-	
 end;

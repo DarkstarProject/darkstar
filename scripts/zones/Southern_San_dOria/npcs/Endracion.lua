@@ -108,7 +108,7 @@ function onEventFinish(player,csid,option)
 printf("onFinishCSID: %u",csid);
 printf("onFinishOPTION: %u",option);
 	
-	if((csid == 0x03e8 or csid == 0x03F1) and option == 0) then
+	if((csid == 0x03e8 or csid == 0x03F1) and option == 0) then ----- MISSION 1-1
 		player:addMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
 	elseif(csid == 0x03ea) then
@@ -116,7 +116,7 @@ printf("onFinishOPTION: %u",option);
 		player:addRankPoints(150);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
-	elseif(csid == 0x03F1 and option == 101) then
+	elseif(csid == 0x03F1 and option == 101) then ----- MISSION 1-2
 		player:addMission(SANDORIA,BAT_HUNT);
 		player:setVar("MissionStatus",1);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
@@ -126,7 +126,7 @@ printf("onFinishOPTION: %u",option);
 		player:setVar("MissionStatus",0);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,BAT_HUNT);
-	elseif(csid == 0x03F1 and option == 102) then
+	elseif(csid == 0x03F1 and option == 102) then ----- MISSION 1-3
 		if(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) == false) then
 			player:setVar("saveTheChildrenMissionCS",1);
 		else
@@ -148,7 +148,7 @@ printf("onFinishOPTION: %u",option);
 		player:setVar("saveTheChildrenMissionCS",0);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,SAVE_THE_CHILDREN);
-	elseif(csid == 0x03F1 and option == 3) then
+	elseif(csid == 0x03F1 and option == 3) then ----- MISSION 2-1
 		player:addMission(SANDORIA,THE_RESCUE_DRILL);
 		player:setVar("theRescueDrillMissionCS",1);
 		player:setVar("saveTheChildrenMissionCS",0);
@@ -158,15 +158,15 @@ printf("onFinishOPTION: %u",option);
 		player:setVar("theRescueDrillMissionCS",0);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,THE_RESCUE_DRILL);
-	elseif(csid == 0x03F1 and option == 104) then
+	elseif(csid == 0x03F1 and option == 104) then ----- MISSION 2-2
 		player:addMission(SANDORIA,THE_DAVOI_REPORT);
 		player:setVar("theDavoiReportMissionCS",1);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
-	elseif(csid == 0x03F1 and option == 5) then
+	elseif(csid == 0x03F1 and option == 5) then ----- MISSION 2-3
 		player:addMission(SANDORIA,JOURNEY_ABROAD);
 		player:setVar("MissionStatus",1);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
-	elseif(csid == 0x03F1 and option == 110) then
+	elseif(csid == 0x03F1 and option == 110) then ----- MISSION 3-1
 		player:addMission(SANDORIA,INFILTRATE_DAVOI);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
 		if(player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS)) then
@@ -179,7 +179,7 @@ printf("onFinishOPTION: %u",option);
 		player:addRankPoints(350);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,INFILTRATE_DAVOI);
-	elseif(csid == 0x03F1 and option == 111) then
+	elseif(csid == 0x03F1 and option == 111) then ----- MISSION 3-2
 		player:addMission(SANDORIA,THE_CRYSTAL_SPRING);
 		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
 		player:setVar("MissionStatus",1);
@@ -192,6 +192,10 @@ printf("onFinishOPTION: %u",option);
 		player:addRankPoints(400);
 		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 		player:completeMission(SANDORIA,THE_CRYSTAL_SPRING);
+	elseif(csid == 0x03F1 and option == 12) then ----- MISSION 3-3
+		player:addMission(SANDORIA,APPOINTMENT_TO_JEUNO);
+		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
+		player:setVar("MissionStatus",1);
 	end
 	
 end;

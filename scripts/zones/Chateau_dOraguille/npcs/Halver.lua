@@ -35,6 +35,8 @@ function onTrigger(player,npc)
 			player:startEvent(0x01fb);
 		elseif(currentMission == JOURNEY_ABROAD) then
 			player:startEvent(0x0214);
+		elseif(currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 1) then
+			player:startEvent(0x01fc);
 		end
 	elseif(pNation == BASTOK) then
 		if(currentMission == THE_EMISSARY) then
@@ -101,6 +103,8 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,ADVENTURERS_CERTIFICATE);
 		player:setRank(3);
 		player:completeMission(SANDORIA,JOURNEY_ABROAD);
+	elseif(csid == 0x01fc) then
+		player:setVar("MissionStatus",2);
 	end
 	
 end;
