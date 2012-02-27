@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 	
 	if(player:getVar("TheOldMonument_Event") == 1) then
 		player:startEvent(0x00b5); -- For the quest "The Old Monument"
-	elseif(player:getMainJob() ~= 10 and player:getVar("PathOfTheBard_Event") == 0 and player:getQuestStatus(JEUNO,A_MINSTREL_IN_DESPAIR) == QUEST_COMPLETED) then
+	elseif(player:getQuestStatus(JEUNO,A_MINSTREL_IN_DESPAIR) == QUEST_COMPLETED and player:getVar("PathOfTheBard_Event") == 0) then
 		player:startEvent(0x00b6); -- Start Quest "Path of the Bard" (with var)
 	elseif(player:getMainJob() == 10 and player:getMainLvl() >= 50 and PainfulMemory == QUEST_COMPLETED and TheRequiem == QUEST_AVAILABLE) then 
 		if(player:getVar("TheRequiemCS") == 0) then

@@ -23,11 +23,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuestStatus(JEUNO,PATH_OF_THE_BARD) == QUEST_ACCEPTED) then
-		if (player:getVar("PathOfTheBard_Event") == 1) then
-			player:startEvent(0x0002);
-		end
+	
+	if(player:getQuest(JEUNO,PATH_OF_THE_BARD) == QUEST_AVAILABLE and player:getVar("PathOfTheBard_Event") == 1) then
+		player:startEvent(0x0002);
 	end
+	
 end;
 
 -----------------------------------
@@ -46,16 +46,16 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x0002) then
+	
+	if(csid == 0x0002) then
 		player:addGil(GIL_RATE*3000);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
 		player:setTitle(WANDERING_MINSTREL);
-		player:addFame(BASTOK,BAS_FAME*10);
-		player:addFame(SANDORIA,SAN_FAME*10);
-		player:addFame(WINDURST,WIN_FAME*10);
 		player:unlockJob(10); -- Bard
 		player:messageSpecial(UNLOCK_BARD);  --You can now become a bard!
 		player:setVar("PathOfTheBard_Event",0);
+		player:addFame(JEUNO,30);
 		player:completeQuest(JEUNO,PATH_OF_THE_BARD);
 	end
+	
 end;
