@@ -9,6 +9,15 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+    nRes=1;
+	cRes = target:getMod(MOD_POISONRES);
+    if(cRes > 0) then
+	    nRes = cRes + nRes
+	    
+	end	
+    target:setMod(MOD_POISONRES,nRes,30);
+	
+
 end;
 
 -----------------------------------
@@ -16,12 +25,16 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	target:delHP(effect:getPower());
+    target:delHP(effect:getPower());
+	--printf("onEffectTick %u", target:getHP(), target);
+
 end;
+
 
 -----------------------------------
 -- onEffectLose Action
 -----------------------------------
 
 function onEffectLose(target,effect)
+
 end;
