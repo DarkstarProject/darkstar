@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuest(JEUNO,PATH_OF_THE_BARD) == QUEST_ACCEPTED) then
+	if (player:getQuestStatus(JEUNO,PATH_OF_THE_BARD) == QUEST_ACCEPTED) then
 		if (player:getVar("PathOfTheBard_Event") == 1) then
 			player:startEvent(0x0002);
 		end
