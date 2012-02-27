@@ -1,20 +1,21 @@
 -----------------------------------
--- Ability: Chainspell
+-- Ability: Convert
+-- Swaps current HP with MP
+--
+-- At 0 MP this ability will not activate, as it would cause a self-KO. 
+-- Instead, a message stating "Player cannot perform that action" will be received. 
+-- In the past, the ability would still activate, but it would have no effect.
 -----------------------------------
- 
-require("scripts/globals/settings");
-require("scripts/globals/status");
 
 -----------------------------------
 -- OnUseAbility
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-    cHP = player:getHP(); --grabs the hp of the player using ability
-	cMP = player:getMP(); --grabs the mp of the player using ability
-	player:setHP(cMP);
-	player:setMP(cHP);
-	
-	return;	
+	local MP = player:getMP();
+	local HP = player:getHP();
+	if (MP > 0) then
+		player:setHP(MP);
+		player:setMP(HP);
+	end
 end;
-
