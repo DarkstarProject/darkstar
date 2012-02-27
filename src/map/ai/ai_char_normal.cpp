@@ -1498,16 +1498,16 @@ void CAICharNormal::ActionAttack()
 		    {
 			    CBattleEntity* PTarget = (CBattleEntity*)it->second;
             
-                if (PTarget->m_OwnerID != 0 &&
-                   !PTarget->isDead() && 
-                    isFaceing(m_PChar->loc.p, PTarget->loc.p, 40) &&
+                if (PTarget->animation == ANIMATION_ATTACK &&
+                    isFaceing(m_PChar->loc.p, PTarget->loc.p, 64) &&
                     distance(m_PChar->loc.p, PTarget->loc.p) <= 10)
                 {
                     if (m_PChar->PParty != NULL) 
 	                {
 		                for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
 		                {
-			                if (m_PChar->PParty->members[i]->id == PTarget->m_OwnerID)
+			                if (PTarget->m_OwnerID == m_PChar->PParty->members[i]->id ||
+                               (PTarget->m_OwnerID == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->members[i]))
 			                {
                                 m_PBattleTarget = PTarget;
 				                m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
@@ -1515,7 +1515,8 @@ void CAICharNormal::ActionAttack()
 			                }
 		                }
 	                }
-                    else if (PTarget->m_OwnerID == m_PChar->id)
+                    else if (PTarget->m_OwnerID == m_PChar->id ||
+                            (PTarget->m_OwnerID == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar))
                     {
                         m_PBattleTarget = PTarget;
                         m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
