@@ -797,7 +797,7 @@ void CAICharNormal::ActionMagicStart()
 
     // mute 049 
 	if (!charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
-	    !battleutils::CanUseSpell(m_PChar, m_PSpell->getID()))
+	    !spell::CanUseSpell(m_PChar, m_PSpell->getID()))
 	{
         MagicStartError(49);
 		return;
@@ -1134,6 +1134,8 @@ void CAICharNormal::ActionMagicFinish()
     m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC);
 
 	charutils::UpdateHealth(m_PChar);
+    charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PBattleSubTarget->GetMLevel());
+
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 

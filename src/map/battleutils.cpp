@@ -51,7 +51,6 @@ uint16 g_SkillTable[100][12];									// All Skills by level/skilltype
 uint8  g_EnmityTable[100][2];		                            // Holds Enmity Modifier Values
 uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
 
-CSpell*		  g_PSpellList[MAX_SPELL_ID];						// Complete Spells List
 CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// Complete Abilities List
 CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skills
 CTrait*		  g_PTraitList[MAX_TRAIT_ID]; 
@@ -129,50 +128,6 @@ void LoadSkillTable()
 			{
 				g_SkillRanks[SkillID][y] = cap_value((uint16)Sql_GetIntData(SqlHandle,y), 0, 11);
 			}
-		}
-	}
-}
-
-/************************************************************************
-*  Load Spells from Database											*
-************************************************************************/
-
-void LoadSpellList()
-{
-	memset(g_PSpellList,0,sizeof(g_PSpellList));
-
-	const int8* fmtQuery = "SELECT spellid, name, jobs, `group`, validTargets, castTime, recastTime, animation, animationTime, mpCost, \
-							isAOE, base, element, zonemisc, multiplier, message, CE, VE \
-							FROM spell_list \
-							WHERE spellid < %u;";
-
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_SPELL_ID);
-
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		{
-			CSpell* PSpell = new CSpell(Sql_GetIntData(SqlHandle,0));
-
-			PSpell->setName(Sql_GetData(SqlHandle,1));
-			PSpell->setJob(Sql_GetData(SqlHandle,2));
-			PSpell->setSpellGroup((SPELLGROUP)Sql_GetIntData(SqlHandle,3));
-			PSpell->setValidTarget(Sql_GetIntData(SqlHandle,4));
-			PSpell->setCastTime(Sql_GetIntData(SqlHandle,5));
-			PSpell->setRecastTime(Sql_GetIntData(SqlHandle,6));
-			PSpell->setAnimationID(Sql_GetIntData(SqlHandle,7));
-            PSpell->setAnimationTime(Sql_GetIntData(SqlHandle,8));
-			PSpell->setMPCost(Sql_GetIntData(SqlHandle,9));
-			PSpell->setAOE(Sql_GetIntData(SqlHandle,10));
-			PSpell->setBase(Sql_GetIntData(SqlHandle,11)); 
-			PSpell->setElement(Sql_GetIntData(SqlHandle,12));
-            PSpell->setZoneMisc(Sql_GetIntData(SqlHandle,13));
-			PSpell->setMultiplier(Sql_GetIntData(SqlHandle,14)); 
-            PSpell->setMessage(Sql_GetIntData(SqlHandle,15)); 
-			PSpell->setCE(Sql_GetIntData(SqlHandle,16));
-			PSpell->setVE(Sql_GetIntData(SqlHandle,17));
-
-			g_PSpellList[PSpell->getID()] = PSpell;
 		}
 	}
 }
@@ -325,18 +280,6 @@ void LoadTraitsList()
 }
 
 /************************************************************************
-*	Clear Spell List													*
-************************************************************************/
-
-void FreeSpellList()
-{
-	for(int32 SpellID = 0; SpellID < MAX_SPELL_ID; ++SpellID)
-	{
-		delete g_PSpellList[SpellID];
-	}
-}
-
-/************************************************************************
 *	Clear Abilities List												*
 ************************************************************************/
 
@@ -400,36 +343,6 @@ uint8 GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID)
 uint16 GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level)
 {
 	return g_SkillTable[level][g_SkillRanks[SkillID][JobID]];
-}
-
-/************************************************************************
-*	Get Spell By Id														*
-************************************************************************/
-
-CSpell* GetSpell(uint16 SpellID)
-{
-	if (SpellID < MAX_SPELL_ID)
-	{
-		return g_PSpellList[SpellID];
-	}
-	ShowFatalError(CL_RED"SpellID <%u> out of range\n"CL_RESET, SpellID);
-	return NULL;
-}
-
-/************************************************************************
-*	Check If user can cast spell										*
-************************************************************************/
-
-bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
-{
-	if (GetSpell(SpellID) != NULL)
-	{
-		uint8 JobMLVL = g_PSpellList[SpellID]->getJob(PCaster->GetMJob());
-		uint8 JobSLVL = g_PSpellList[SpellID]->getJob(PCaster->GetSJob());
-
-		return (PCaster->GetMLevel() >= JobMLVL || PCaster->GetSLevel() >= JobSLVL);
-	}
-	return false;
 }
 
 /************************************************************************

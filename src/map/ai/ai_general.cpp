@@ -207,7 +207,7 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 		m_ActionType != ACTION_MAGIC_FINISH  &&
 		m_ActionType != ACTION_MAGIC_INTERRUPT)
 	{
-		m_PSpell = battleutils::GetSpell(SpellID);
+		m_PSpell = spell::GetSpell(SpellID);
 	}
 }
 

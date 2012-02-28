@@ -1144,7 +1144,7 @@ inline int32 CLuaBaseEntity::canLearnSpell(lua_State *L)
 				{
 					Message = 96;
 				}
-				else if (!battleutils::CanUseSpell((CCharEntity*)m_PBaseEntity, SpellID))
+				else if (!spell::CanUseSpell((CCharEntity*)m_PBaseEntity, SpellID))
 				{
 					Message = 95;
 				}

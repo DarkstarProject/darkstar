@@ -23,7 +23,9 @@
 
 #include <string.h>
 
+#include "map.h"
 #include "spell.h"
+
 
 CSpell::CSpell(uint16 id)
 {
@@ -34,6 +36,7 @@ CSpell::CSpell(uint16 id)
 	m_recastTime    = 0;
 	m_animation     = 0;
     m_animationTime = 0;
+    m_skillType     = 0;
     m_zoneMisc      = 0;
     m_message       = 0;
     m_element       = 0;
@@ -101,6 +104,16 @@ SPELLGROUP CSpell::getSpellGroup()
 void CSpell::setSpellGroup(SPELLGROUP SpellGroup)
 {
 	m_spellGroup = SpellGroup;
+}
+
+uint8 CSpell::getSkillType()
+{
+    return m_skillType;
+}
+
+void CSpell::setSkillType(uint8 SkillType)
+{
+    m_skillType = SkillType;
 }
 
 uint16 CSpell::getZoneMisc()
@@ -222,3 +235,95 @@ uint16 CSpell::getVE()
 {
 	return m_VE;
 }
+
+/************************************************************************
+*                                                                       *
+*  Реализация namespase для работы с заклинаниями                       *
+*                                                                       *
+************************************************************************/
+
+namespace spell
+{
+    CSpell* PSpellList[MAX_SPELL_ID]; // список заклинаний
+
+    /************************************************************************
+    *                                                                       *
+    *  Загружаем список заклинаний                                          *
+    *                                                                       *
+    ************************************************************************/
+
+    void LoadSpellList()
+    {
+	    memset(PSpellList, 0, sizeof(PSpellList));
+
+	    const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
+					         isAOE, base, element, zonemisc, multiplier, message, CE, VE \
+							 FROM spell_list \
+							 WHERE spellid < %u;";
+
+	    int32 ret = Sql_Query(SqlHandle, Query, MAX_SPELL_ID);
+
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    {
+			    CSpell* PSpell = new CSpell(Sql_GetIntData(SqlHandle,0));
+
+			    PSpell->setName(Sql_GetData(SqlHandle,1));
+			    PSpell->setJob(Sql_GetData(SqlHandle,2));
+			    PSpell->setSpellGroup((SPELLGROUP)Sql_GetIntData(SqlHandle,3));
+			    PSpell->setValidTarget(Sql_GetIntData(SqlHandle,4));
+                PSpell->setSkillType(Sql_GetIntData(SqlHandle,5));
+			    PSpell->setCastTime(Sql_GetIntData(SqlHandle,6));
+			    PSpell->setRecastTime(Sql_GetIntData(SqlHandle,7));
+			    PSpell->setAnimationID(Sql_GetIntData(SqlHandle,8));
+                PSpell->setAnimationTime(Sql_GetIntData(SqlHandle,9));
+			    PSpell->setMPCost(Sql_GetIntData(SqlHandle,10));
+			    PSpell->setAOE(Sql_GetIntData(SqlHandle,11));
+			    PSpell->setBase(Sql_GetIntData(SqlHandle,12)); 
+			    PSpell->setElement(Sql_GetIntData(SqlHandle,13));
+                PSpell->setZoneMisc(Sql_GetIntData(SqlHandle,14));
+			    PSpell->setMultiplier(Sql_GetIntData(SqlHandle,15)); 
+                PSpell->setMessage(Sql_GetIntData(SqlHandle,16)); 
+			    PSpell->setCE(Sql_GetIntData(SqlHandle,17));
+			    PSpell->setVE(Sql_GetIntData(SqlHandle,18));
+
+			    PSpellList[PSpell->getID()] = PSpell;
+		    }
+	    }
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Get Spell By ID                                                      *
+    *                                                                       *
+    ************************************************************************/
+
+    CSpell* GetSpell(uint16 SpellID)
+    {
+	    if (SpellID < MAX_SPELL_ID)
+	    {
+		    return PSpellList[SpellID];
+	    }
+	    ShowFatalError(CL_RED"SpellID <%u> out of range\n"CL_RESET, SpellID);
+	    return NULL;
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Check If user can cast spell                                         *
+    *                                                                       *
+    ************************************************************************/
+
+    bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
+    {
+	    if (GetSpell(SpellID) != NULL)
+	    {
+		    uint8 JobMLVL = PSpellList[SpellID]->getJob(PCaster->GetMJob());
+		    uint8 JobSLVL = PSpellList[SpellID]->getJob(PCaster->GetSJob());
+
+		    return (PCaster->GetMLevel() >= JobMLVL || PCaster->GetSLevel() >= JobSLVL);
+	    }
+	    return false;
+    }
+};

@@ -1451,166 +1451,78 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 *  Пытаемся увеличить значение умения									*
 *																		*
 ************************************************************************/
-//Skill up calculated on level difference -- this is not final!! 
-//TESTING PURPOSES ONLY
+
 void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 {
-	//DSP_DEBUG_BREAK_IF(SkillID > SKILL_BLU);	// выход за пределы допустимых умений 
+	DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);	// выход за пределы допустимых умений 
 
-	if ( (PChar->WorkingSkills.rank[SkillID] != 0) && !(PChar->WorkingSkills.skill[SkillID] & 0x8000)) 
+	if ((PChar->WorkingSkills.rank[SkillID] != 0) && !(PChar->WorkingSkills.skill[SkillID] & 0x8000)) 
 	{
-		uint16 curSkill = PChar->RealSkills.skill[SkillID];
-		uint16 maxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), lvl);
+		uint16 CurSkill = PChar->RealSkills.skill[SkillID];
+		uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), lvl) * 10;
 
-		uint8 Diff = maxSkill - (curSkill/10);
+		uint16 Diff = (MaxSkill - CurSkill) / 10;
+		double SkillUpChance = (Diff * (2.6 - (log(1.2 + CurSkill / 100))))/10; // переписать формулу
 
-		if( Diff > 0 ) 
+		double random = rand() / ((double)RAND_MAX);
+
+		if(random < SkillUpChance) 
 		{
-			int skillAmount = 1;
-			
-			if (Diff > 21) 
+			double chance = 0;
+			uint8  SkillAmount  = 1;
+			uint8  tier = cap_value(1 + (Diff / 5), 0, 5);
+		
+			for(uint8 i = 0; i < 5; ++i) 
 			{
-				skillAmount +=4; 
-			}
-			else if (Diff > 14) 
-			{
-				skillAmount +=3; 
-			}
-			else if (Diff > 10) 
-			{
-				skillAmount +=2; 
-			}
-			else if (Diff > 7) 
-			{
-				skillAmount +=1; 
-			}
+				random = rand() / ((double)RAND_MAX);
 
-
-			if (skillAmount + curSkill /10  <= maxSkill)
-			{
-	
-				PChar->RealSkills.skill[SkillID] += skillAmount; 
-				PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, skillAmount, 38));
-	            
-				if((curSkill/10) < (curSkill + skillAmount)/10) 
+				switch(tier)
 				{
-					PChar->WorkingSkills.skill[SkillID] += 1;
-					PChar->pushPacket(new CCharSkillsPacket(PChar));
-					PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, (curSkill + skillAmount)/10, 53));	
-					CheckWeaponSkill(PChar, SkillID);
-					if (SkillID >= 1 && SkillID <= 12)
-					{
-						PChar->delModifier(MOD_ATT, PChar->GetSkill(SkillID)-1);
-						PChar->delModifier(MOD_ACC, PChar->GetSkill(SkillID)-1);
-						PChar->addModifier(MOD_ATT, PChar->GetSkill(SkillID));
-						PChar->addModifier(MOD_ACC, PChar->GetSkill(SkillID));
-					}
-
-					if (SkillID == SKILL_EVA)
-					{
-						PChar->delModifier(MOD_EVA, PChar->GetSkill(SkillID)-1);
-						PChar->addModifier(MOD_EVA, PChar->GetSkill(SkillID));
-					}
+					case 5:  chance = 0.900; break;
+					case 4:  chance = 0.700; break;
+					case 3:  chance = 0.500; break;
+					case 2:  chance = 0.300; break;
+					case 1:  chance = 0.100; break;
+					default: chance = 0.000; break;
 				}
-					SaveCharSkills(PChar, SkillID);
+				if (chance < random) break;
+
+				tier -= 1;
+				SkillAmount += 1;
 			}
-			 
+			if (SkillAmount + CurSkill > MaxSkill)
+			{
+				SkillAmount = MaxSkill - CurSkill;
+			}
+			PChar->RealSkills.skill[SkillID] += SkillAmount; 
+			PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, SkillAmount, 38));
+	            
+			if((CurSkill/10) < (CurSkill + SkillAmount)/10) 
+			{
+				PChar->WorkingSkills.skill[SkillID] += 1;
+				PChar->pushPacket(new CCharSkillsPacket(PChar));
+				PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, (CurSkill + SkillAmount)/10, 53));
+
+				CheckWeaponSkill(PChar, SkillID);
+
+				if (SkillID >= 1 && SkillID <= 12)
+				{
+					PChar->delModifier(MOD_ATT, PChar->GetSkill(SkillID)-1);
+					PChar->delModifier(MOD_ACC, PChar->GetSkill(SkillID)-1);
+					PChar->addModifier(MOD_ATT, PChar->GetSkill(SkillID));
+					PChar->addModifier(MOD_ACC, PChar->GetSkill(SkillID));
+				}
+				else if (SkillID == SKILL_EVA)
+				{
+					PChar->delModifier(MOD_EVA, PChar->GetSkill(SkillID)-1);
+					PChar->addModifier(MOD_EVA, PChar->GetSkill(SkillID));
+				}
+			}
+			SaveCharSkills(PChar, SkillID);
 		}
-	
 	}
 }
 
-/* OLD SKILL UP ROUTINE
-void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
-{
-	//DSP_DEBUG_BREAK_IF(SkillID > SKILL_BLU);	// выход за пределы допустимых умений 
-
-	if ( (PChar->WorkingSkills.rank[SkillID] != 0) &&
-		!(PChar->WorkingSkills.skill[SkillID] & 0x8000))
-	{
-		uint16 curSkill = PChar->RealSkills.skill[SkillID];
-		uint16 maxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), lvl);
-
-		//ShowDebug(CL_CYAN"SkillID: %u  CurSkill: %u  MaxSkill: %u\n"CL_RESET, SkillID, (curSkill/10), maxSkill);
-
-
-		uint16 Diff = maxSkill - curSkill;
-
-		
-		double skillUpChance = (Diff * (2.6 - (log(1.2 + curSkill/100))))/10; // переписать формулу
-
-		if( random < chance) 
-		{
-			int skillAmount = 1;
-
-			// Every 10 levels = 1 tier
-			uint8 tier = (Diff/100);
-
-			ShowDebug(CL_CYAN"Tier for 2nd - 5th chances: %i\n"CL_RESET, tier);
-				
-			chance = 1.00 / pow((double)2, (tier+1));
-			random = rand() / ((double) RAND_MAX);
-			CConsole::outDebOnly("2nd Chance: %g  Random: %g",chance,random);
-			if(random < chance) skillAmount+=1;
-				
-			chance = chance / 2;
-			random = rand() / ((double) RAND_MAX);
-			CConsole::outDebOnly("3rd Chance: %g  Random: %g",chance,random);
-			if(random < chance) skillAmount+=1;
-				
-			chance = chance / 2;
-			random = rand() / ((double) RAND_MAX);
-			CConsole::outDebOnly("4th Chance: %g  Random: %g",chance,random);
-			if(random < chance) skillAmount+=1;
-				
-			chance = chance / 2;
-			random = rand() / ((double) RAND_MAX);
-			CConsole::outDebOnly("5th Chance: %g  Random: %g",chance,random);
-			if(random < chance) skillAmount+=1;
-
-			for(uint8 i = 0; i < 4; i ++) 
-				{
-					random = rand() / ((double)RAND_MAX);
-
-					ShowDebug(CL_CYAN"SkillAmount Tier: %i  Random: %g\n"CL_RESET, satier, random);
-						
-					switch(satier) 
-					{
-						case 5:  chance = 0.900; break;
-						case 4:  chance = 0.700; break;
-						case 3:  chance = 0.500; break;
-						case 2:  chance = 0.300; break;
-						case 1:  chance = 0.100; break;
-						default: chance = 0.000; break;
-					}
-					if(chance < random)
-						break;
-					skillAmount += 1;
-					satier -= 1;
-				}
-
-			if((skillAmount + charSkill) > maxSkill)
-			{
-				skillAmount = maxSkill - charSkill;
-			}
-
-			PChar->RealSkills.skill[skillID] += skillAmount; 
-			PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, skillID, skillAmount, 38));
-
-			if((charSkill/10) < (charSkill + skillAmount)/10) 
-			{
-				PChar->WorkingSkills.skill[skillID] += 1;
-
-				PChar->pushPacket(new CCharSkillsPacket(PChar));
-				PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, (charSkill + skillAmount)/10, 53));	
-			}
-
-				//SaveCharSkills(PChar, SkillID);
-			}
-		}
-		
-	}
-} */
 /************************************************************************
 *																		*
 *  When skill level gained check for weapon skill						*

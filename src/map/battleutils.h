@@ -40,7 +40,6 @@ class CMobSkill;
 namespace battleutils
 {
 	void	LoadSkillTable();
-	void	LoadSpellList();
 	void	LoadAbilitiesList();
 	void	LoadWeaponSkillsList(); 
 	void	LoadMobSkillsList();
@@ -50,7 +49,6 @@ namespace battleutils
 	uint8	GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16	GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
 
-	CSpell*	      GetSpell(uint16 SpellID);
 	CAbility*     GetAbility(uint16 AbilityID);
 	CTrait*       GetTrait(uint16 TraitID);
 	CWeaponSkill* GetWeaponSkill(uint16 WSkillID);
@@ -61,10 +59,8 @@ namespace battleutils
 	std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
 	std::vector<CMobSkill*>  GetMobSkillsByFamily(uint16 FamilyID);
 
-	bool	CanUseSpell(CBattleEntity* PAttacker, uint16 SpellID);
 	bool	CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID);
 
-	void	FreeSpellList();
 	void	FreeAbilitiesList();
 	void	FreeTraitsList();
 	void    FreeWeaponSkillsList();

@@ -36,19 +36,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "map.h"
-#include "time_server.h"
-#include "packet_system.h"
-
 #include "battleutils.h"
 #include "charutils.h"
 #include "itemutils.h"
 #include "guildutils.h"
 #include "linkshell.h"
+#include "map.h"
+#include "packet_system.h"
 #include "petutils.h"
-#include "zoneutils.h"
+#include "spell.h"
+#include "time_server.h"
 #include "transport.h"
 #include "vana_time.h"
+#include "zoneutils.h"
 
 #include "ai/ai_char_gm.h"
 #include "ai/ai_char_normal.h"
@@ -56,7 +56,6 @@
 #include "lua/luautils.h"
 
 #include "packets/basic.h"
-
 
 const int8* MAP_CONF_FILENAME = NULL;
 
@@ -134,7 +133,7 @@ int32 do_init(int32 argc, int8** argv)
 	ShowMessage("\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
 
 	luautils::init();
-	CmdHandler.init("conf/commands.conf",luautils::LuaHandle);
+	CmdHandler.init("conf/commands.conf", luautils::LuaHandle);
     PacketParderInitialize();
 	SqlHandle = Sql_Malloc();
 
@@ -162,7 +161,7 @@ int32 do_init(int32 argc, int8** argv)
 	// и один метод для освобождения этих данных
     
 	ShowStatus("do_init: loading spells");
-	battleutils::LoadSpellList();
+	spell::LoadSpellList();
 	ShowMessage("\t\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
 
 	guildutils::Initialize();
@@ -216,11 +215,9 @@ void do_final(void)
 	aFree((void*)map_config.mysql_database);
 
 	itemutils::FreeItemList();
-	battleutils::FreeSpellList();
 	battleutils::FreeAbilitiesList();
 	battleutils::FreeWeaponSkillsList();
 	battleutils::FreeTraitsList();
-	//battleutils::FreeMobSkillsList();
 	
 	petutils::FreePetList();
 	zoneutils::FreeZoneList();

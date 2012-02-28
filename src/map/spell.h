@@ -58,6 +58,7 @@ public:
 	uint16		getAnimationID();
     uint16      getAnimationTime();
 	SPELLGROUP	getSpellGroup();
+    uint8       getSkillType();
     uint16      getZoneMisc();
 	bool		isAOE();
 	uint16		getBase();
@@ -77,6 +78,7 @@ public:
 	void		setAnimationID(uint16 AnimationID);
     void        setAnimationTime(uint16 AnimationTime);
 	void		setSpellGroup(SPELLGROUP SpellGroup);
+    void        setSkillType(uint8 SkillType);
     void        setZoneMisc(uint16 Misc);
 	void		setAOE(uint8 AOE);
 	void		setBase(uint16 base);
@@ -95,7 +97,8 @@ private:
 	uint32		m_castTime;								// time to cast spell
 	uint32		m_recastTime;							// recast time
 	uint16		m_animation;							// animation for spell
-    uint16      m_animationTime;                        // 
+    uint16      m_animationTime;                        
+    uint8	    m_skillType;                            
 	uint16		m_mpCost;								// mpCost/itemId for ninjitsu tool
 	uint8		m_job[MAX_JOBTYPE];						// job
 	uint8		m_ValidTarget;							// target pc/npc/both
@@ -109,6 +112,20 @@ private:
 	uint16		m_CE;									// cumulative enmity of spell
 	uint16		m_VE;									// volatile enmity of spell
 	string_t	m_name;									// spell name
+};
+
+/************************************************************************
+*                                                                       *
+*  namespase для работы с заклинаниями                                  *
+*                                                                       *
+************************************************************************/
+
+namespace spell
+{
+    void    LoadSpellList();
+
+    CSpell* GetSpell(uint16 SpellID);
+    bool    CanUseSpell(CBattleEntity* PCaster, uint16 SpellID);
 };
 
 #endif
