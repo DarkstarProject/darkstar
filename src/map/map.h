@@ -65,6 +65,7 @@ struct map_config_t
 	uint32 max_time_lastupdate;		// max interval wait of last update player char
     int32  vanadiel_time_offset;    // смещение игрового времени относительно реального времени
     int32  lightluggage_block;      // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
+    float  exp_rate;                // множитель получаемого опыта
 };
 
 /************************************************************************

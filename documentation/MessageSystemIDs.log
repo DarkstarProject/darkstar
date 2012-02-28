@@ -23,9 +23,9 @@
 22 - Caution: All unclaimed treasure will be lost if you join a party.
 23 - You cannot invite that person at this time.
 24 - Player Name wishes to trade with you.
-25 - You have already sent a trade request to .
-26 - You cannot trade with  at this time.
-27 - You cannot trade the  to .
+25 - You have already sent a trade request to <player>.
+26 - You cannot trade with <player> at this time.
+27 - You cannot trade the <item> to <player>.
 28 - You cannot trade with that target.
 29 - Select a target to trade with.
 30 - Trade complete.

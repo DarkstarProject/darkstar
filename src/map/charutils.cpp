@@ -74,7 +74,6 @@
 
 uint16 g_ExpTable[50][20];
 uint16 g_ExpPerLevel[100];
-float  g_expRate = 1.00;
 
 /************************************************************************
 *																		*
@@ -1867,23 +1866,29 @@ uint32 GetExpNEXTLevel(uint8 charlvl)
 *																		*
 ************************************************************************/
 
-uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
+void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 {
-	uint8 lvl = PChar->GetMLevel();
+    uint8 count = 0;
+	uint8 level = PChar->GetMLevel();
 
 	if (PChar->PParty != NULL) 
 	{
 		for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
 		{
-            if (PChar->PParty->members[i]->GetMLevel() > lvl &&
-                PChar->PParty->members[i]->getZone() == PMob->getZone())
+            CBattleEntity* PMember = PChar->PParty->members[i];
+
+            if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
 			{
-				lvl = PChar->PParty->members[i]->GetMLevel();
+                if (PMember->GetMLevel() > level)
+                {
+				    level = PMember->GetMLevel();
+                }
+                count++;
 			}
 		}
 	}
 
-	uint32 exp = GetRealExp(lvl, PMob->GetMLevel());
+	uint32 exp = GetRealExp(level, PMob->GetMLevel()) / (count != 0 ? count : 1);
 
 	if (exp != 0)
 	{
@@ -1904,7 +1909,7 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                     {
                         PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
                     }
-                    AddExperiencePoints(PMember, exp);
+                    AddExperiencePoints(PMember, PMob, exp);
                 }
             }
         }
@@ -1913,16 +1918,15 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
             if (distance(PChar->loc.p, PMob->loc.p) > 100)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,37));
-                return exp;
+                return;
             }
-            if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
+            if (PMob->m_Element > 0 && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
             {
                 PChar->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
             }
-            AddExperiencePoints(PChar, exp);
+            AddExperiencePoints(PChar, PMob, exp);
         }
 	}
-	return exp; 
 }
 
 /************************************************************************
@@ -1931,7 +1935,7 @@ uint32 DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 *                                                                       *
 ************************************************************************/
 
-void AddExperiencePoints(CCharEntity* PChar, uint32 exp, bool limit)
+void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool limit)
 {
     if (PChar->isDead()) return;
 
@@ -1950,7 +1954,7 @@ void AddExperiencePoints(CCharEntity* PChar, uint32 exp, bool limit)
             exp = 300;
         }
 
-        exp = (exp * g_expRate);
+        exp = exp * map_config.exp_rate;
 
         if (PChar->getMod(MOD_DEDICATION) != 0)
         {
@@ -2010,7 +2014,7 @@ void AddExperiencePoints(CCharEntity* PChar, uint32 exp, bool limit)
             PChar->pushPacket(new CCharSyncPacket(PChar));
 
             UpdateHealth(PChar);
-            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 9));
+            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PMob, PChar->jobs.job[PChar->GetMJob()], 0, 9));
         }
     }
     PChar->pushPacket(new CCharStatsPacket(PChar));

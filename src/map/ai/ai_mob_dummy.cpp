@@ -212,7 +212,7 @@ void CAIMobDummy::ActionDropItems()
 			
 			if (m_PMob->m_CallForHelp == 0)
 			{
-                uint32 exp = charutils::DistributeExperiencePoints(PChar, m_PMob);
+                charutils::DistributeExperiencePoints(PChar, m_PMob);
 
                 DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
 		
