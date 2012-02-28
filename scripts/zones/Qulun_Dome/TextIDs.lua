@@ -5,5 +5,9 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6378; -- Obtained: <item>
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
-	   
-  NOTHING_ORDINARY_HERE = 6392; -- There is nothing out of ordinary here
+
+-- Other Dialog
+				  NOTHING_ORDINARY_HERE = 6392; -- There is nothing out of ordinary here
+IT_SEEMS_TO_BE_LOCKED_BY_POWERFUL_MAGIC = 7153; -- A door...It seems to be locked by powerful magic.
+			   THE_3_ITEMS_GLOW_FAINTLY = 7154; -- The Coruscant rosary, Black Matinee Necklace and Silver bell glow faintly.
+		   THE_MAGICITE_GLOWS_OMINOUSLY = 7196; -- The magicite glows ominously.

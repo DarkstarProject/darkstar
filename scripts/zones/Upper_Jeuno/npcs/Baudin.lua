@@ -12,7 +12,6 @@ package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Upper_Jeuno/TextIDs");
@@ -22,14 +21,13 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then 
+	if(trade:hasItemQty(555,1) and trade:getItemCount() == 1) then 
 		a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
 		if(a == 0 or (a ~= 32 and a ~= 96 and a ~= 160 and a ~= 288 and a ~= 544 and a ~= 224 and a ~= 800 and a ~= 352 and 
 		   a ~= 672 and a ~= 416 and a ~= 608 and a ~= 480 and a ~= 736 and a ~= 864 and a ~= 928 and a ~= 992)) then 
 			player:startEvent(0x00b1,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
 		end
-	elseif(player:getQuestStatus(JEUNO,CREST_OF_DAVOI) == QUEST_ACCEPTED and 
-		   trade:hasItemQty(4377,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+	elseif(player:getQuestStatus(JEUNO,CREST_OF_DAVOI) == QUEST_ACCEPTED and trade:hasItemQty(4377,1) and trade:getItemCount() == 1) then 
 		player:startEvent(0x00AB); -- Finish Quest "Crest of Davoi" Start Quest "Save my Sister" with var, not addquest()
 	end
 end; 
@@ -42,7 +40,8 @@ function onTrigger(player,npc)
 	CrestOfDavoi = player:getQuestStatus(JEUNO,CREST_OF_DAVOI);
 	SaveMySister = player:getQuestStatus(JEUNO,SAVE_MY_SISTER);
 	
-	if(player:getCurrentMission(13) == true and CrestOfDavoi == QUEST_AVAILABLE) then
+	-- You need to talk to Aldo before you can obtain the Crest of Davoi or Yagudo Torch
+	if(player:hasKeyItem(SILVER_BELL) and CrestOfDavoi == QUEST_AVAILABLE) then
 		player:startEvent(0x00AE); -- Start Quest "Crest of Davoi"
 	elseif(CrestOfDavoi == QUEST_ACCEPTED) then 
 		player:startEvent(0x00AF); -- During Quest "Crest of Davoi"
@@ -84,8 +83,8 @@ function onEventFinish(player,csid,option)
 		player:addQuest(JEUNO,CREST_OF_DAVOI);
 	elseif(csid == 0x00AB) then 
 		player:setVar("saveMySisterVar",1);
-		player:addKeyItem(CREST_OF_DAVOI);
-		player:messageSpecial(KEYITEM_OBTAINED,CREST_OF_DAVOI);
+		player:addKeyItem(CREST_OF_DAVOI_KI);
+		player:messageSpecial(KEYITEM_OBTAINED,CREST_OF_DAVOI_KI);
 		player:addFame(JEUNO,30);
 		player:completeQuest(JEUNO,CREST_OF_DAVOI);
 		
@@ -100,8 +99,8 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
 			player:addItem(17041);
 			player:messageSpecial(ITEM_OBTAINED,17041);
-			player:addFame(JEUNO,30);
 			player:tradeComplete();
+			player:addFame(JEUNO,30);
 			player:completeQuest(JEUNO,SAVE_MY_SISTER);
 		end
 	end

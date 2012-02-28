@@ -1,15 +1,15 @@
 -----------------------------------
--- Area: Lower Jeuno
--- NPC:  Muckvix
+-- Area: Monastic Cavern
+-- NPC:  Magicite
 -- Involved in Mission: Magicite
--- @zone 245
--- @pos -26.824 3.601 -137.082
+-- @zone 149
+-- @pos -22 1 -66
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+require("scripts/zones/Monastic_Cavern/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,14 +24,14 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(YAGUDO_TORCH) == false) then
-		if(player:getVar("YagudoTorchCS") == 1) then
-			player:startEvent(0x00b8);
+	if(player:getCurrentMission(player:getNation()) == 13 and player:hasKeyItem(MAGICITE_OPTISTONE) == false) then
+		if(player:getVar("MissionStatus") < 4) then
+			player:startEvent(0x0000,1,1,1,1,1,1,1,1); -- play Lion part of the CS (this is first magicite)
 		else
-			player:startEvent(0x0050);
+			player:startEvent(0x0000); -- don't play Lion part of the CS 
 		end
 	else
-		player:startEvent(0x000f);
+		player:messageSpecial(THE_MAGICITE_GLOWS_OMINOUSLY);
 	end
 	
 end;
@@ -51,12 +51,12 @@ end;
 
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+-- printf("RESULT: %u",option);	
 	
-	if(csid == 0x00b8) then
-		player:addKeyItem(YAGUDO_TORCH);
-		player:messageSpecial(KEYITEM_OBTAINED,YAGUDO_TORCH);
-		player:setVar("YagudoTorchCS",0);
+	if(csid == 0x0000) then
+		player:setVar("MissionStatus",4);
+		player:addKeyItem(MAGICITE_OPTISTONE);
+		player:messageSpecial(KEYITEM_OBTAINED,MAGICITE_OPTISTONE);
 	end
 	
 end;

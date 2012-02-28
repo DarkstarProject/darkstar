@@ -42,6 +42,13 @@ function onRegionEnter(player,region)
 end;
 
 -----------------------------------
+-- onRegionLeave
+-----------------------------------
+
+function onRegionLeave(player,region)
+end;
+
+-----------------------------------
 -- onEventUpdate
 -----------------------------------
 

@@ -5,8 +5,10 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6378; -- Obtained: <item>
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
-	   
-  NOTHING_ORDINARY_HERE = 6392; -- There is nothing out of ordinary here
+
+-- Other dialog
+	   NOTHING_ORDINARY_HERE = 6392; -- There is nothing out of ordinary here
+THE_MAGICITE_GLOWS_OMINOUSLY = 7212; -- The magicite glows ominously.
 
 -- Treasure Coffer/Chest Dialog
 	  CHEST_UNLOCKED = 7230; -- You unlock the chest !

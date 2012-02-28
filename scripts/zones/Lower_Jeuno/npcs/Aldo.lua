@@ -1,15 +1,16 @@
 -----------------------------------
--- Area: Upper Jeuno
--- NPC:  Paya-Sabya
+-- Area: Lower Jeuno
+-- NPC:  Aldo
 -- Involved in Mission: Magicite
--- @zone 244
--- @pos 9 1 70
+-- @zone 245
+-- @pos 20 3 -58
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+require("scripts/globals/missions");
+require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,13 +25,13 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(YAGUDO_TORCH) == false and player:getVar("YagudoTorchCS") == 0) then
-		player:startEvent(0x0050);
-	else
-		player:startEvent(0x004f);
+	if(player:hasKeyItem(LETTERS_TO_ALDO)) then
+		player:startEvent(0x0098);
+	elseif(player:getCurrentMission(player:getNation()) == 13 and player:getVar("MissionStatus") == 3) then
+		player:startEvent(0x00B7);
 	end
 	
-end;
+end; 
 
 -----------------------------------
 -- onEventUpdate
@@ -49,8 +50,11 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x0050) then
-		player:setVar("YagudoTorchCS",1);
+	if(csid == 0x0098) then
+		player:delKeyItem(LETTERS_TO_ALDO);
+		player:addKeyItem(SILVER_BELL);
+		player:messageSpecial(KEYITEM_OBTAINED,SILVER_BELL);
+		player:setVar("MissionStatus",3);
 	end
 	
 end;

@@ -7,6 +7,9 @@ ITEM_CANNOT_BE_OBTAINED = 6515;  -- You cannot obtain the item <item> come back 
        KEYITEM_OBTAINED = 6521;  -- Obtained key item: <keyitem>
           HOMEPOINT_SET = 10184; -- Home point set!
 
+-- Other dialog
+SOVEREIGN_WITHOUT_AN_APPOINTMENT = 10081; -- Nobody sees the sovereign without an appointment!
+
 -- Mission Dialog
 YOUVE_EARNED_CONQUEST_POINTS = 10452; -- You've earned conquest points
 

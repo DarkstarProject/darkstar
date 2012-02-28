@@ -1,15 +1,15 @@
 -----------------------------------
--- Area: Lower Jeuno
--- NPC:  Muckvix
+-- Area: Qulun Dome
+-- NPC:  Door
 -- Involved in Mission: Magicite
--- @zone 245
--- @pos -26.824 3.601 -137.082
+-- @zone 147
+-- @pos 60 24 -2
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+require("scripts/zones/Qulun_Dome/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,15 +24,17 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(YAGUDO_TORCH) == false) then
-		if(player:getVar("YagudoTorchCS") == 1) then
-			player:startEvent(0x00b8);
+	if(player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(CORUSCANT_ROSARY) and player:hasKeyItem(BLACK_MATINEE_NECKLACE)) then
+		if(player:getZPos() < -7.2) then
+			player:startEvent(0x0033);
 		else
-			player:startEvent(0x0050);
+			player:startEvent(0x0032);
 		end
 	else
-		player:startEvent(0x000f);
+		player:messageSpecial(IT_SEEMS_TO_BE_LOCKED_BY_POWERFUL_MAGIC);
 	end
+	
+	return 1;
 	
 end;
 
@@ -51,12 +53,10 @@ end;
 
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+-- printf("RESULT: %u",option);	
 	
-	if(csid == 0x00b8) then
-		player:addKeyItem(YAGUDO_TORCH);
-		player:messageSpecial(KEYITEM_OBTAINED,YAGUDO_TORCH);
-		player:setVar("YagudoTorchCS",0);
+	if((csid == 0x0032 or csid == 0x0033) and option == 1) then
+		player:messageSpecial(THE_3_ITEMS_GLOW_FAINTLY,SILVER_BELL,CORUSCANT_ROSARY,BLACK_MATINEE_NECKLACE);
 	end
 	
 end;

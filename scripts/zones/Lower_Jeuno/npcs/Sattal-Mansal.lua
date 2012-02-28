@@ -19,9 +19,9 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_ACCEPTED and trade:hasItemQty(495,1) == true and trade:getItemCount() == 1) then 
+	if(player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_ACCEPTED and trade:hasItemQty(495,1) and trade:getItemCount() == 1) then 
 		player:startEvent(0x005B); -- Ending quest Mysteries I
-	elseif(player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_II) == QUEST_ACCEPTED and trade:hasItemQty(494,1) == true and trade:getItemCount() == 1) then 
+	elseif(player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_II) == QUEST_ACCEPTED and trade:hasItemQty(494,1) and trade:getItemCount() == 1) then 
 		player:startEvent(0x005C); -- Ending quest Mysteries II
 	end
 end; 
@@ -31,7 +31,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_AVAILABLE and player:hasKeyItem(SILVER_BELL) == true) then --Magicite Mission active (receive this KI after the first CS with aldo)
+	if(player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_AVAILABLE and player:hasKeyItem(SILVER_BELL)) then --Magicite Mission active (receive this KI after the first CS with aldo)
 		player:startEvent(0x0059); -- Start quests
 	else
 		player:startEvent(0x0060); -- Standard dialog

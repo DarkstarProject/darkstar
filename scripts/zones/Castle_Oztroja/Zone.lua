@@ -3,9 +3,10 @@
 -- Zone: Castle_Oztroja
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 require("scripts/zones/Castle_Oztroja/TextIDs");
 
 -----------------------------------
@@ -21,7 +22,6 @@ end;
 
 function onZoneIn(player,prevZone)
 cs = -1;
-
 return cs;
 end;
 
