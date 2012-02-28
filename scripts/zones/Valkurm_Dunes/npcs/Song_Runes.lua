@@ -1,7 +1,9 @@
 -----------------------------------
---  Area: Valkurm Dunes
---  NPC: Song Runes
---  Finishes Quest: Path of the Bard
+-- Area: Valkurm Dunes
+-- NPC:  Song Runes
+-- Finishes Quest: Path of the Bard
+-- @zone 103
+-- @pos -721 -7 102
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getQuest(JEUNO,PATH_OF_THE_BARD) == QUEST_AVAILABLE and player:getVar("PathOfTheBard_Event") == 1) then
+	if(player:getQuestStatus(JEUNO,PATH_OF_THE_BARD) == QUEST_AVAILABLE and player:getVar("PathOfTheBard_Event") == 1) then
 		player:startEvent(0x0002);
 	end
 	
