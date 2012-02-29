@@ -11,7 +11,6 @@ package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
-require("scripts/globals/teleports");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
@@ -27,41 +26,40 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	
 	TrialByIce = player:getQuestStatus(SANDORIA,TRIAL_BY_ICE);
-	Fame = player:getFameLevel(SANDORIA);
 	WhisperOfFrost = player:hasKeyItem(WHISPER_OF_FROST);
 	realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-	starttime = player:getVar("TrialByIce_date");
 	
-	if((TrialByIce == QUEST_AVAILABLE and Fame >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= starttime)) then 
+	if((TrialByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= player:getVar("TrialByIce_date"))) then 
 		player:startEvent(0x02c2,0,TUNING_FORK_OF_ICE); -- Start and restart quest "Trial by ice"
 	elseif(TrialByIce == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_ICE) == false and WhisperOfFrost == false) then 
 		player:startEvent(0x02ce,0,TUNING_FORK_OF_ICE); -- Defeat against Shiva : Need new Fork
 	elseif(TrialByIce == QUEST_ACCEPTED and WhisperOfFrost == false) then 
 		player:startEvent(0x02c3,0,TUNING_FORK_OF_ICE,4);
-	elseif(TrialByIce == QUEST_ACCEPTED and WhisperOfFrost == true) then 
+	elseif(TrialByIce == QUEST_ACCEPTED and WhisperOfFrost) then 
 		numitem = 0;
 		
-		if(player:hasItem(17492) == true) then numitem = numitem + 1; end  -- Shiva's Claws
-		if(player:hasItem(13242) == true) then numitem = numitem + 2; end  -- Ice Belt
-		if(player:hasItem(13561) == true) then numitem = numitem + 4; end  -- Ice Ring
-		if(player:hasItem(1207) == true) then numitem = numitem + 8; end   -- Rust 'B' Gone
-		--if(player:hasSpell(302) == true) then numitem = numitem + 32; end  -- Ability to summon Shiva	
+		if(player:hasItem(17492)) then numitem = numitem + 1; end  -- Shiva's Claws
+		if(player:hasItem(13242)) then numitem = numitem + 2; end  -- Ice Belt
+		if(player:hasItem(13561)) then numitem = numitem + 4; end  -- Ice Ring
+		if(player:hasItem(1207)) then numitem = numitem + 8; end   -- Rust 'B' Gone
+		if(player:hasSpell(302)) then numitem = numitem + 32; end  -- Ability to summon Shiva	
 		
 		player:startEvent(0x02c5,0,TUNING_FORK_OF_ICE,4,0,numitem);
 	else 
 		player:startEvent(0x02c6); -- Standard dialog
 	end
+	
 end;
 
--- 0x02c6*  0x02c2 start  0x02c3  0x02ce  0x02c4  0x02c5  0x02c9  0x02ca  0x02c8  0x02dd  0x02de  0x02e2  0x02e0  0x02e1
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -69,9 +67,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	
 	if(csid == 0x02c2 and option == 1) then
+		if(player:getQuestStatus(SANDORIA,TRIAL_BY_ICE) == QUEST_COMPLETED) then
+			player:delQuest(SANDORIA,TRIAL_BY_ICE);
+		end
 		player:addQuest(SANDORIA,TRIAL_BY_ICE);
 		player:setVar("TrialByIce_date", 0);
 		player:addKeyItem(TUNING_FORK_OF_ICE);
@@ -105,5 +107,5 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(SANDORIA,TRIAL_BY_ICE);
 		end
 	end
+	
 end;
-

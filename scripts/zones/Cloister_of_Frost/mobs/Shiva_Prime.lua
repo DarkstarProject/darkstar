@@ -51,8 +51,6 @@ function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
 
-	pZone = player:getZone();
-
 	if(csid == 0x7d01) then
 		player:delKeyItem(TUNING_FORK_OF_ICE);
 		player:addKeyItem(WHISPER_OF_FROST);

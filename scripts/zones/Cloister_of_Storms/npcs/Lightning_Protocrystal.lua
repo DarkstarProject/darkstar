@@ -43,7 +43,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
 			end
 		else
-			player:messageSpecial(7155);
+			player:messageSpecial(YOU_CANNOT_ENTER_THE_BATTLEFIELD);
 		end
 	else
 		player:startEvent(0x7d03);
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-printf("onUpdate CSID: %u",csid);
-printf("onUpdate RESULT: %u",option);
+--printf("onUpdate CSID: %u",csid);
+--printf("onUpdate RESULT: %u",option);
 	
 	if(csid == 0x7d00) then
 		pZone = player:getZone();
@@ -83,8 +83,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("onFinish CSID: %u",csid);
-printf("onFinish RESULT: %u",option);
+--printf("onFinish CSID: %u",csid);
+--printf("onFinish RESULT: %u",option);
 
 	pZone = player:getZone();
 

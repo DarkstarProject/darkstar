@@ -20,7 +20,7 @@ end;
 
 function onMobDeath(mob, killer)
 	
-	killer:setVar("BCNM_Killed",killer:getVar("BCNM_Killed") + 1);
+	killer:setVar("BCNM_Killed",1);
 	record = 300;
 	partyMembers = 6;
 	pZone = killer:getZone();
@@ -40,6 +40,7 @@ function onEventUpdate(player,csid,option)
 	if(csid == 0x7d01) then
 		player:delStatusEffect(EFFECT_BATTLEFIELD);
 	end
+	
 end;
 
 -----------------------------------
@@ -49,9 +50,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
-
-	pZone = player:getZone();
-
+	
 	if(csid == 0x7d01) then
 		player:delKeyItem(TUNING_FORK_OF_LIGHTNING);
 		player:addKeyItem(WHISPER_OF_STORMS);

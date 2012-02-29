@@ -373,9 +373,9 @@ function getMissionMask(player)
 				-- 1-1 NOTE: This mission will not be listed in the Mission List for Bastok
 				--first_mission = first_mission + 1;
 			end
-			if(player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == true) then
+			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == false) then
 				-- 1-2 NOTE: This mission will not be listed in the Mission List for Bastok
-				repeat_mission = repeat_mission + 2;
+				first_mission = first_mission + 2;
 			end
 			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == true) then
 				-- 1-3
