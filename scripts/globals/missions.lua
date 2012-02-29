@@ -100,7 +100,6 @@ THE_JESTER_WHO_D_BE_KING      = 21;
 DOLL_OF_THE_DEAD              = 22;
 MOON_READING                  = 23;
 
-
 --jAuriya|Moki:	Old function, will likely be further tested and rewritten later
 function rankPointMath(rank)
 	return 0.372*rank^2 - 1.62*rank + 6.2;
@@ -374,11 +373,11 @@ function getMissionMask(player)
 				-- 1-1 NOTE: This mission will not be listed in the Mission List for Bastok
 				--first_mission = first_mission + 1;
 			end
-			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == false) then
+			if(player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == true) then
 				-- 1-2 NOTE: This mission will not be listed in the Mission List for Bastok
-				--first_mission = first_mission + 2;
+				repeat_mission = repeat_mission + 2;
 			end
-			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == true and player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == true) then
+			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == true) then
 				-- 1-3
 				repeat_mission = repeat_mission + 4;
 			end

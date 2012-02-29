@@ -3,7 +3,7 @@
 -- NPC:  Cid
 -- Starts & Finishes Quest: Cid's Secret, The Usual, Dark Puppet (start)
 -- @zone 237
--- @pos 14 -10 2
+-- @pos -12 -12 1
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -94,8 +94,8 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(BLUE_ACIDITY_TESTER);
 		player:messageSpecial(KEYITEM_OBTAINED, BLUE_ACIDITY_TESTER);
 	elseif(csid == 0x01f8) then
-		player:completeMission(1);
 		player:delKeyItem(RED_ACIDITY_TESTER);
+		player:completeMission(BASTOK,GEOLOGICAL_SURVEY);
 	elseif(csid == 0x01f9 and option == 0) then
 		if(player:getVar("MissionStatus") == 0) then
 			if(player:getFreeSlotsCount(0) >= 1) then

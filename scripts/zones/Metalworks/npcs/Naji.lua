@@ -29,19 +29,21 @@ end;
 function onTrigger(player,npc)
 
 	if(player:getCurrentMission(BASTOK) ~= 255) then
+		
 		currentMission = player:getCurrentMission(BASTOK);
-		if(currentMission == 0 and player:hasKeyItem(ZERUHN_REPORT)) then
+		
+		if(currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(ZERUHN_REPORT)) then
 			if(player:seenKeyItem(ZERUHN_REPORT)) then
 				player:startEvent(0x02C6,0);
 			else
 				player:startEvent(0x02C6,1);
 			end
-		elseif(currentMission == 3 and player:hasKeyItem(C_L_REPORTS)) then
+		elseif(currentMission == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
 			player:startEvent(0x02c7);
 		elseif(player:hasKeyItem(KINDRED_REPORT)) then
 			player:startEvent(0x02ca);
-		elseif(currentMission == 5) then
-			if(player:getVar("MissionStatus") == 0 and player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false) then
+		elseif(currentMission == THE_EMISSARY) then
+			if(player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false and player:getVar("MissionStatus") == 0) then
 				player:startEvent(0x02c9);
 			else
 				player:showText(npc,GOOD_LUCK);
