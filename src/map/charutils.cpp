@@ -1459,9 +1459,9 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 	if ((PChar->WorkingSkills.rank[SkillID] != 0) && !(PChar->WorkingSkills.skill[SkillID] & 0x8000)) 
 	{
 		uint16 CurSkill = PChar->RealSkills.skill[SkillID];
-		uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), lvl) * 10;
+        uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), min(PChar->GetMLevel(),lvl));
 
-		uint16 Diff = (MaxSkill - CurSkill) / 10;
+		uint16 Diff = MaxSkill - CurSkill/10;
 		double SkillUpChance = (Diff * (2.6 - (log(1.2 + CurSkill / 100))))/10; // переписать формулу
 
 		double random = rand() / ((double)RAND_MAX);
@@ -1469,8 +1469,8 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 		if(random < SkillUpChance) 
 		{
 			double chance = 0;
-			uint8  SkillAmount  = 1;
-			uint8  tier = cap_value(1 + (Diff / 5), 0, 5);
+			uint8  SkillAmount = 1;
+			uint8  tier = cap_value(1 + (Diff / 5), 1, 5);
 		
 			for(uint8 i = 0; i < 5; ++i) 
 			{
@@ -1490,9 +1490,12 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 				tier -= 1;
 				SkillAmount += 1;
 			}
-			if (SkillAmount + CurSkill > MaxSkill)
+            MaxSkill = MaxSkill * 10;
+
+			if (SkillAmount + CurSkill >= MaxSkill)
 			{
 				SkillAmount = MaxSkill - CurSkill;
+                PChar->WorkingSkills.skill[SkillID] |= 0x8000;
 			}
 			PChar->RealSkills.skill[SkillID] += SkillAmount; 
 			PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, SkillAmount, 38));
@@ -1507,15 +1510,8 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 
 				if (SkillID >= 1 && SkillID <= 12)
 				{
-					PChar->delModifier(MOD_ATT, PChar->GetSkill(SkillID)-1);
-					PChar->delModifier(MOD_ACC, PChar->GetSkill(SkillID)-1);
-					PChar->addModifier(MOD_ATT, PChar->GetSkill(SkillID));
-					PChar->addModifier(MOD_ACC, PChar->GetSkill(SkillID));
-				}
-				else if (SkillID == SKILL_EVA)
-				{
-					PChar->delModifier(MOD_EVA, PChar->GetSkill(SkillID)-1);
-					PChar->addModifier(MOD_EVA, PChar->GetSkill(SkillID));
+					PChar->addModifier(MOD_ATT, 1);
+					PChar->addModifier(MOD_ACC, 1);
 				}
 			}
 			SaveCharSkills(PChar, SkillID);
