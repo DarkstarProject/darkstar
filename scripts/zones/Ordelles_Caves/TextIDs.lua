@@ -15,3 +15,6 @@ A_SQUIRE_S_TEST_II_DIALOG_III = 7297; -- You have already obtained the dew.
 		  GERWITZS_AXE_DIALOG = 7350; -- Mine axe shall rend thy throat!
 		GERWITZS_SWORD_DIALOG = 7351; -- Mine sword shall pierce thy tongue!
 		 GERWITZS_SOUL_DIALOG = 7352; -- Long have i waited. I will tell all...
+
+-- Mission Dialog
+	  RUILLONT_INITIAL_DIALOG = 7282; -- "Confound it! If I only had my sword, I'd cut through these fiends single-handedly..."

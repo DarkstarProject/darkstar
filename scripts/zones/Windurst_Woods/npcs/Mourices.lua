@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
+require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action

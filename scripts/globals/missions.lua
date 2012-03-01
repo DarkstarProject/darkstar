@@ -470,3 +470,43 @@ function getMissionMask(player)
 	mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..
 	return mission_mask,repeat_mission;
 end;
+
+function getStartMissionList(player)
+	
+	-- option, missionid, missionstatus, rep.missionstatuts
+	pNation = player:getNation();
+	
+	if(pNation == SANDORIA) then
+		MissionList = {0,SMASH_THE_ORCISH_SCOUTS,0,0,101,BAT_HUNT,1,1,102,SAVE_THE_CHILDREN,1,2,3,THE_RESCUE_DRILL,1,0,104,THE_DAVOI_REPORT,1,1,5,JOURNEY_ABROAD,1,0,110,INFILTRATE_DAVOI,1,5,111,THE_CRYSTAL_SPRING,1,1,12,APPOINTMENT_TO_JEUNO,1,0};
+	end
+	
+	return MissionList;
+	
+end;
+
+function getMissionOffset(player,guard,pMission,MissionStatus)
+	offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
+	
+	if(guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407}; end
+	
+	switch (pMission) : caseof {
+		[0] = function (x) offset = 0; end,
+		[1] = function (x) if(MissionStatus == 2) then cs = GuardCS[1]; else cs = GuardCS[2]; end end,
+		[2] = function (x) if(MissionStatus == 1) then cs = GuardCS[3]; 
+					   elseif(MissionStatus == 4 and player:hasCompletedMission(0,2) == false) then cs = GuardCS[4]; 
+					   elseif(MissionStatus == 4) then cs = GuardCS[5]; else offset = 24; end end,
+		[3] = function (x) if(MissionStatus == 11) then cs = GuardCS[6]; else offset = 36; end end,
+		[4] = function (x) if(MissionStatus == 3 and player:hasCompletedMission(0,4)) then cs = GuardCS[7];
+					   elseif(MissionStatus == 3) then cs = GuardCS[8]; params = {0,0,0,44}; else offset = 44; end end,
+		[5] = function (x) if(MissionStatus == 1) then offset = 50; else offset = 51; end end,
+		[10] = function (x) if(MissionStatus == 1) then cs = GuardCS[9];
+					    elseif(MissionStatus == 4) then offset = 55; 
+						elseif(MissionStatus == 5) then offset = 60;
+					    elseif(MissionStatus == 10) then cs = GuardCS[10]; end end, 
+		[11] = function (x) if(MissionStatus == 1) then offset = 68; 
+						elseif(MissionStatus == 2) then cs = GuardCS[11]; end end, 
+		[12] = function (x) if(MissionStatus == 1) then offset = 74; end end, 
+	default = function (x) end, }
+	return cs, params, offset;
+	
+end;

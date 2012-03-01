@@ -24,11 +24,12 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("saveTheChildrenMissionCS") < 3) then
+	if(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") < 3) then
 		player:startEvent(0x02b5);
-		player:setVar("saveTheChildrenMissionCS",3);
-	elseif(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) and player:getVar("saveTheChildrenMissionCS") == 6) then
-		player:setVar("saveTheChildrenMissionCS",0);
+		player:setVar("MissionStatus",3);
+	elseif(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) and player:getVar("OptionalCSforSavetheChildren") == 1) then
+		player:startEvent(0x02b6);
+		player:setVar("OptionalCSforSavetheChildren",0);
 	else
 		player:startEvent(0x0014);
 	end

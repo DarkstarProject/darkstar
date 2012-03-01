@@ -14,6 +14,7 @@ FULL_INVENTORY_AFTER_TRADE = 6402; -- You cannot obtain the <item>. Try trading 
 			 DONATE_AT_MAXIM = 8344; -- You do not need to donate any more crystals at your current rank...
 			 DONATE_OVERFLOW = 8345; -- Your rank are full. We've added the excess to your conquest points...
 			 DONATE_CRYSTALS = 8346; -- Good work, citizen. We've awarded you rank points for the crystals you've donated.
+	 ORIGINAL_MISSION_OFFSET = 7045; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
 	  YOU_ACCEPT_THE_MISSION = 7034; -- You accept the mission
 YOUVE_EARNED_CONQUEST_POINTS = 8301; -- You've earned conquest points!
 

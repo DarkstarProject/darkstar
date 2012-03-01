@@ -5,8 +5,11 @@
 -- @zone 102
 -- @pos -263 22 129
 -----------------------------------
+package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/missions");
+require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -21,8 +24,20 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL and player:getVar("theRescueDrillMissionCS") == 6) then
-		player:startEvent(0x006b);
+	if(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
+		MissionStatus = player:getVar("MissionStatus");
+		
+		if(MissionStatus == 6) then
+			player:startEvent(0x006b);
+		elseif(MissionStatus == 7) then
+			player:showText(npc, RESCUE_DRILL + 14);
+		elseif(MissionStatus == 8) then
+			player:showText(npc, RESCUE_DRILL + 21);
+		elseif(MissionStatus >= 9) then
+			player:showText(npc, RESCUE_DRILL + 26);
+		end
+	else
+		player:showText(npc, RESCUE_DRILL);
 	end
 	
 end;
@@ -45,7 +60,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x006b) then
-		player:setVar("theRescueDrillMissionCS",7);
+		player:setVar("MissionStatus",7);
 	end
 	
 end;

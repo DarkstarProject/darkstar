@@ -1,16 +1,15 @@
 -----------------------------------
---  Area: Northern San d'Oria
---  NPC:  Papal Chambers
---  Finish Mission: The Davoi Report
---  @zone 231
---  @pos 131 -11 122
+-- Area: Davoi
+-- NPC:  Wall of Dark Arts
+-- Involved in Mission: Magicite
+-- @zone 149
+-- @pos -22 1 -66
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -25,11 +24,11 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(SANDORIA) == THE_DAVOI_REPORT and player:hasKeyItem(TEMPLE_KNIGHTS_DAVOI_REPORT)) then
-		player:startEvent(0x02b7); -- Finish Mission "The Davoi Report"
+	if(player:hasKeyItem(CREST_OF_DAVOI_KI)) then
+		player:startEvent(0x0036);
+	else
+		player:startEvent(0x0037);
 	end
-	
-	return 1;
 	
 end;
 
@@ -48,14 +47,5 @@ end;
 
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-	
-	if(csid == 0x02b7) then
-		player:delKeyItem(TEMPLE_KNIGHTS_DAVOI_REPORT);
-		player:setVar("MissionStatus",0);
-		player:addRankPoints(300);
-		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
-		player:completeMission(SANDORIA,THE_DAVOI_REPORT);
-	end
-	
+-- printf("RESULT: %u",option);	
 end;

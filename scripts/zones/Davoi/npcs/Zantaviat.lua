@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 	
 	CurrentMission = player:getCurrentMission(SANDORIA)
 	
-	if(CurrentMission == THE_DAVOI_REPORT and player:getVar("theDavoiReportMissionCS") == 1) then
+	if(CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 1) then
 		player:startEvent(0x0064);
 	elseif(CurrentMission == THE_DAVOI_REPORT and player:hasKeyItem(LOST_DOCUMENT)) then
 		player:startEvent(0x0068);
@@ -56,8 +56,9 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x0064) then
-		player:setVar("theDavoiReportMissionCS",2);
+		player:setVar("MissionStatus",2);
 	elseif(csid == 0x0068) then
+		player:setVar("MissionStatus",3);
 		player:delKeyItem(LOST_DOCUMENT);
 		player:addKeyItem(TEMPLE_KNIGHTS_DAVOI_REPORT);
 		player:messageSpecial(KEYITEM_OBTAINED,TEMPLE_KNIGHTS_DAVOI_REPORT);

@@ -3,9 +3,14 @@
 -- NPC:  Strongarm Zodvad
 -- Involved in Mission: Save the Children
 -----------------------------------
+package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 require("scripts/globals/titles");
+require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -60,7 +65,7 @@ function onEventFinish(player,csid,option)
 		player:setTitle(FODDERCHIEF_FLAYER);
 		player:addKeyItem(ORCISH_HUT_KEY);
 		player:messageSpecial(KEYITEM_OBTAINED,ORCISH_HUT_KEY);
-		player:setVar("saveTheChildrenMissionCS",4);
+		player:setVar("MissionStatus",4);
 	end
 	
 end;

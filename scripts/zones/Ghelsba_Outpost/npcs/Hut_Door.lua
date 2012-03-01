@@ -31,14 +31,14 @@ function onTrigger(player,npc)
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
-	saveTheChildrenMissionCS = player:getVar("saveTheChildrenMissionCS");
+	MissionStatus = player:getVar("MissionStatus");
 	
 	if(player:hasKeyItem(ORCISH_HUT_KEY)) then
 		player:startEvent(0x0003);
 	elseif(getAvailableBattlefield(pZone) ~= 255) then
 		local bcnmFight = 0;
 		
-		if(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and saveTheChildrenMissionCS == 3) then 
+		if(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and MissionStatus == 3) then 
 			bcnmFight = bcnmFight + 1; end
 		if(player:hasKeyItem(DRAGON_CURSE_REMEDY)) then 
 			bcnmFight = bcnmFight + 2; end
@@ -108,7 +108,7 @@ function onEventFinish(player,csid,option)
 		end
 	elseif(csid == 0x0003) then
 		player:delKeyItem(ORCISH_HUT_KEY);
-		player:setVar("saveTheChildrenMissionCS",5);
+		player:setVar("MissionStatus",5);
 	end
 	
 end;

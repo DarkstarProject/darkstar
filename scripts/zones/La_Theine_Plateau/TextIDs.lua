@@ -7,7 +7,9 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
   ALREADY_OBTAINED_TELE = 7153; -- You already possess the gate crystal for this telepoint.
 
-
 -- Quest Dialogs
  UNLOCK_SUMMONER = 7500; -- You can now become a summoner.
 UNLOCK_CARBUNCLE = 7501; -- You can now summon Carbuncle.
+
+-- Mission Dialogs
+RESCUE_DRILL = 7318; -- "Rescue drills in progress. Try to stay out of the way."
