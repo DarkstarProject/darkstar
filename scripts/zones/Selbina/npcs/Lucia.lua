@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Aleria
--- Standard Info NPC
+-- NPC: Lucia
+-- @zone
+-- @pos
 -----------------------------------
 
 -----------------------------------
@@ -9,19 +10,19 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getZPos() < -28.750) then
-		player:startEvent(0x00df);
+	if (player:getZPos() > -28.750) then
+		player:startEvent(0x00dd,player:getGil(),100);
 	else
-		player:startEvent(0x00e4);
+		player:startEvent(0x00eb); 
 	end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -39,7 +40,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if (csid == 0x00dd and player:getZPos() < -28.750) then
+		player:delGil(100);
+	end
 end;
-
-
-

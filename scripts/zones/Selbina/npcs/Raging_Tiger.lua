@@ -16,7 +16,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x00D6);
+	if (player:getZPos() > -28.750) then
+		player:startEvent(0x00D6);
+	else
+		player:startEvent(0x00eb);
+	end
 end; 
 
 -----------------------------------
