@@ -6,8 +6,8 @@
 -----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windarst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windarst_Waters/TextIDs");
+package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action

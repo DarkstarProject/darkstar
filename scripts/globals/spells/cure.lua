@@ -2,7 +2,7 @@
 -- Spell: Cure
 -- Restores target's HP.
 -----------------------------------------
-
+require("scripts/globals/status");
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
@@ -12,19 +12,23 @@ function onSpellCast(caster,target,spell)
 	MND = caster:getMod(MOD_MND);
 	VIT = target:getMod(MOD_VIT);
 	HealingMagic = caster:getMod(MOD_HEALING);
-	cap = 10;
+	cap = 30;
 	rate = 1;
-	constant = -10;
-	
+	constant = 10;
 	Power = 3 * MND + VIT + 3 * (HealingMagic /5);
 	
 	Base = ((Power / 2) / rate) + constant;
 	
 	Final = math.floor(Base);
 	
-	if(Final < cap) then Final = cap; end
+	if(Final > cap) then Final = cap; end
+	if (Final + target:getHP() > target:getMaxHP()) then
+		Final = target:getMaxHP() - target:getHP();
+		target:setHP(target:getMaxHP());
+	else
+		target:addHP(Final);
+	end
 
-	target:addHP(Final);
 	return Final;
 	
 end;

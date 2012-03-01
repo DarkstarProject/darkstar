@@ -2,7 +2,7 @@
 -- Spell: Cure II
 -- Restores target's HP.
 -----------------------------------------
-
+require("scripts/globals/status");
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
@@ -23,8 +23,12 @@ function onSpellCast(caster,target,spell)
 	Final = math.floor(Base);
 	
 	if(Final < cap) then Final = cap; end
-	
-	target:addHP(Final);
+	if (Final + target:getHP() > target:getMaxHP()) then
+		Final = target:getMaxHP() - target:getHP();
+		target:setHP(target:getMaxHP());
+	else
+		target:addHP(Final);
+	end
 	return Final;
 	
 end;
