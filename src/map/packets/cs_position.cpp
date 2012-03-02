@@ -24,6 +24,7 @@
 #include "../../common/socket.h"
 
 #include "cs_position.h"
+
 #include "../charentity.h"
 
 
@@ -40,6 +41,12 @@ CCSPositionPacket::CCSPositionPacket(CCharEntity* PChar)
 	WBUFL(data,(0x10)-4) = PChar->id;
 	WBUFW(data,(0x14)-4) = PChar->targid;
 
-	WBUFB(data,(0x16)-4) = 0x01;	// назначение неизвестно			
-	WBUFB(data,(0x18)-4) = 0x01;	// назначение неизвестно
+    if (PChar->status == STATUS_DISAPPEAR)
+    {
+        WBUFB(data,(0x16)-4) = 0x05;
+        WBUFB(data,(0x1C)-4) = 0x01;
+    } else {
+        WBUFB(data,(0x16)-4) = 0x01;
+        WBUFB(data,(0x18)-4) = 0x01;
+    }
 }

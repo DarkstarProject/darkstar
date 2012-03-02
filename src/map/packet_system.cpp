@@ -851,6 +851,11 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 *                                                                       *
 ************************************************************************/
 
+//24 - Player Name wishes to trade with you.
+//25 - You have already sent a trade request to .
+//26 - You cannot trade with  at this time.
+//27 - You cannot trade the  to .
+
 int32 SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
     if (PChar->UContainer->GetType() != UCONTAINER_EMPTY) return 0;
@@ -860,17 +865,24 @@ int32 SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* da
 
     CCharEntity* PTradeTarget = (CCharEntity*)PChar->loc.zone->GetEntity(targid, TYPE_PC);
 
-    // TODO:
-    // когда персонаж предлагает обмен второму персонажу, то первому должен быть отправлен запрос об отмене обмена
-
     if ((PTradeTarget != NULL) && (PTradeTarget->id == charid))
     {
-        // у PTradeTarget UContainer тоже не должен быть занят
+        if (PChar->UContainer->GetTarget() == PTradeTarget->targid &&
+            PTradeTarget->UContainer->GetTarget() == PChar->targid)
+        {
+            //You have already sent a trade request to <player>
+            return 0;
+        }
+        if (PTradeTarget->UContainer->GetType() != UCONTAINER_EMPTY)
+        {
+            //You cannot trade with <player> at this time
+            return 0;
+        }
         PChar->UContainer->SetTarget(PTradeTarget->targid);
+
         PTradeTarget->UContainer->SetTarget(PChar->targid);
         PTradeTarget->pushPacket(new CTradeRequestPacket(PChar));
     }
-    ShowDebug(CL_CYAN"Trade request to CharID: %d TargetID: %d\n"CL_RESET, charid, targid);
     return 0;
 }
 
@@ -1658,23 +1670,29 @@ int32 SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 		zoneLine_t* PZoneLine = PChar->loc.zone->GetZoneLine(zoneLineID);
 
-		if (PZoneLine == NULL)
+		if (PZoneLine == NULL) // разворачиваем персонажа на 180° и отправляем туда, откуда пришел
 		{
-			ShowError(CL_RED"SmallPacket0x5E: Zone line %u not found\n"CL_RESET, zoneLineID); // в идеале нужно добавить зону и координаты
-
-			// You could not enter the next area.
-			// разворачиваем персонажа на 180° и отправляем туда, откуда пришел
+            ShowError(CL_RED"SmallPacket0x5E: Zone line %u not found\n"CL_RESET, zoneLineID); // в идеале нужно добавить зону и координаты
 
 			PChar->loc.p.rotation += 128;
+
+            PChar->pushPacket(new CMessageSystemPacket(0,0,2));
+            PChar->pushPacket(new CCSPositionPacket(PChar));
+
+            PChar->status = STATUS_UPDATE;
+            return 0;
 		}else{
-			if (zoneutils::GetZone(PZoneLine->m_toZone)->GetIP() == 0)
+			if (zoneutils::GetZone(PZoneLine->m_toZone)->GetIP() == 0) 	// разворачиваем персонажа на 180° и отправляем туда, откуда пришел
 			{
 				ShowDebug(CL_CYAN"SmallPacket0x5E: Zone %u closed to chars\n"CL_RESET, PZoneLine->m_toZone);
 
-				// You could not enter the next area.
-				// разворачиваем персонажа на 180° и отправляем туда, откуда пришел
-
 				PChar->loc.p.rotation += 128;
+
+                PChar->pushPacket(new CMessageSystemPacket(0,0,2));
+                PChar->pushPacket(new CCSPositionPacket(PChar));
+
+                PChar->status = STATUS_UPDATE;
+                return 0;
 			} else {
                 // выход из MogHouse
 				if(PZoneLine->m_zoneLineID == 1903324538)
@@ -1701,7 +1719,6 @@ int32 SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* da
 		}
         ShowInfo(CL_WHITE"Zoning from zone %u to zone %u: %s\n"CL_RESET, PChar->getZone(), PChar->loc.destination, PChar->GetName());
 	}
-
 	PChar->clearPacketList();
 	PChar->pushPacket(new CServerIPPacket(PChar,2));
 	return 0;
