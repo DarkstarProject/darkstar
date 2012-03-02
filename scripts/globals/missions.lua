@@ -510,3 +510,106 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 	return cs, params, offset;
 	
 end;
+
+function getMissionOffset(player,guard,pMission,MissionStatus)
+	
+	offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
+	
+	if(guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407}; end
+	
+	switch (pMission) : caseof {
+		[0] = function (x) offset = 0; end, -- Mission 1-1
+		[1] = function (x) if(MissionStatus == 2) then cs = GuardCS[1]; else cs = GuardCS[2]; end end, -- Mission 1-2 (2) after check tombstone
+		[2] = function (x) if(MissionStatus == 1) then cs = GuardCS[3]; -- Mission 1-3 before Battlefield
+					   elseif(MissionStatus == 5 and player:hasCompletedMission(0,2) == false) then cs = GuardCS[4]; -- Mission 1-3 after Battlefield
+					   elseif(MissionStatus == 5) then cs = GuardCS[5]; else offset = 24; end end, -- Mission 1-3 after Battlefield (Finish Quest)
+		[3] = function (x) if(MissionStatus == 11) then cs = GuardCS[6]; else offset = 36; end end,
+		[4] = function (x) if(MissionStatus == 3 and player:hasCompletedMission(0,4)) then cs = GuardCS[7];
+					   elseif(MissionStatus == 3) then cs = GuardCS[8]; params = {0,0,0,44}; else offset = 44; end end,
+		[5] = function (x) if(MissionStatus == 1) then offset = 50; else offset = 51; end end,
+		[10] = function (x) if(MissionStatus == 1) then cs = GuardCS[9];
+					    elseif(MissionStatus == 4) then offset = 55; 
+						elseif(MissionStatus == 5) then offset = 60;
+					    elseif(MissionStatus == 10) then cs = GuardCS[10]; end end, 
+		[11] = function (x) if(MissionStatus == 1) then offset = 68; 
+						elseif(MissionStatus == 2) then cs = GuardCS[11]; end end, 
+		[12] = function (x) if(MissionStatus == 1) then offset = 74; end end, 
+	}
+	return cs, params, offset;
+	
+end;
+
+function finishMissionTimeline(player,guard,csid,option)
+	
+	nation = player:getNation();
+	
+	-- missionid, {Guard1CS,option}, {Guard2CS,option}, {Guard3CS,option}, {Guard4CS,option}, {{function,value},...first time}, {{function,value},...for repeat}, 
+	--  1: player:addMission(nation,mission);
+	--  2: player:messageSpecial(YOU_ACCEPT_THE_MISSION);
+	--  3: player:setVar(variablename,value);
+	--  4: player:tradeComplete();
+	--  5: player:addRankPoints(number);
+	--  6: player:setRankPoints(0);
+	--  7: player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
+	--  8: player:addGil(GIL_RATE*number); player:messageSpecial(GIL_OBTAINED,GIL_RATE*number);
+	--  9: player:delKeyItem(number);
+	-- 10: player:addKeyItem(number);
+	-- 11: player:setRank(number);
+	-- 12: player:completeMission(nation,mission);
+	
+	if(nation == SANDORIA) then
+		timeline = {0,{0x03e8,0},{0,0},{0,0},{0,0},{{1},{2}},0, -- MISSION 1-1 (First Mission)
+					0,{0x03f1,0},{0,0},{0,0},{0,0},0,{{1},{2}}, -- MISSION 1-1 (Repeat)
+					0,{0x03ea,0},{0,0},{0,0},{0,0},{{4},{5,150},{7},{12}},{{4},{5,150},{7},{12}}, -- MISSION 1-1 (Finish)
+					1,{0x03f1,101},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",1},{2}}, -- Mission 1-2 (First & Repeat)
+					1,{0x03ff,0},{0,0},{0,0},{0,0},{{4},{3,"MissionStatus",0},{5,200},{7},{12}},0, -- MISSION 1-2 (Finish First Mission)
+					1,{0x03eb,0},{0,0},{0,0},{0,0},0,{{4},{3,"MissionStatus",0},{5,200},{7},{12}}, -- MISSION 1-2 (Finish Repeat)
+					2,{0x03f1,102},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",2},{2}}, -- MISSION 1-3 (First & Repeat)
+					2,{0x03ec,0},{0,0},{0,0},{0,0},{{11,2},{3,"OptionalCSforSavetheChildren",1},{3,"MissionStatus",0},{5,250},{7},{8,1000},{12}},0, -- MISSION 1-3 (Finish first Mission)
+					2,{0x0400,0},{0,0},{0,0},{0,0},0,{{3,"MissionStatus",0},{5,250},{7},{12}}, -- MISSION 1-3 (Finish Repeat)
+					3,{0x03f1,3},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 2-1 (First & No Repeat)
+					3,{0x03ed,0},{0,0},{0,0},{0,0},{{9,65},{3,"MissionStatus",0},{5,300},{7},{12}},0, -- MISSION 2-1 (Finish)
+					4,{0x03f1,104},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",1},{2}}, -- MISSION 2-2 (First & Repeat)
+					5,{0x03f1,5},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 2-3 (First & No Repeat)
+					10,{0x03f1,110},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",5},{2}}, -- MISSION 3-1 (First & Repeat)
+					10,{0x03f4,0},{0,0},{0,0},{0,0},{{3,"MissionStatus",0},{5,300},{7},{12}},{{3,"MissionStatus",0},{5,300},{7},{12}}, -- MISSION 3-1 (Finish)
+					11,{0x03f1,111},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",1},{2}}, -- MISSION 3-2 (First & Repeat)
+					11,{0x0406,0},{0,0},{0,0},{0,0},{{4},{3,"MissionStatus",2}},0, -- MISSION 3-2 (First: Continue Mission)
+					11,{0x03f5,0},{0,0},{0,0},{0,0},0,{{4},{3,"MissionStatus",0},{5,300},{7},{12}}, -- MISSION 3-2 (Repeat: Finish)
+					12,{0x03f1,12},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 3-3 (First & No Repeat)
+					};
+	elseif(nation == BASTOK) then
+	else
+	end
+
+	for cs = 1, table.getn(timeline), 7 do
+		if(csid == timeline[cs + guard][1] and option == timeline[cs + guard][2]) then
+			if(player:hasCompletedMission(nation,timeline[cs])) then
+				getMessList = 6;
+			else
+				getMessList = 5;
+			end
+			
+			for nb = 1, table.getn(timeline[cs + getMessList]), 1 do
+				
+				messList = timeline[cs + getMessList][nb];
+				
+				switch (messList[1]) : caseof {
+					[1] = function (x) player:addMission(nation,timeline[cs]); end, 
+					[2] = function (x) player:messageSpecial(YOU_ACCEPT_THE_MISSION); end, 
+					[3] = function (x) player:setVar(messList[2],messList[3]); end, 
+					[4] = function (x) player:tradeComplete(); end, 
+					[5] = function (x) player:addRankPoints(messList[2]); end, 
+					[6] = function (x) player:setRankPoints(0); end, 
+					[7] = function (x) player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS); end, 
+					[8] = function (x) player:addGil(GIL_RATE*messList[2]); player:messageSpecial(GIL_OBTAINED,GIL_RATE*messList[2]); end, 
+					[9] = function (x) player:delKeyItem(messList[2]); end, 
+					[10] = function (x) player:addKeyItem(messList[2]); end,
+					[11] = function (x) player:setRank(messList[2]); end,
+					[12] = function (x) player:completeMission(nation,timeline[cs]); end, 
+				}
+			end
+		end
+	end
+
+end;

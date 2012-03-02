@@ -34,18 +34,21 @@ function onTrigger(player,npc)
 	MissionStatus = player:getVar("MissionStatus");
 	
 	if(player:hasKeyItem(ORCISH_HUT_KEY)) then
-		player:startEvent(0x0003);
+		if(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then
+			player:startEvent(0x0003);
+		else
+			player:startEvent(0x0037);
+		end
 	elseif(getAvailableBattlefield(pZone) ~= 255) then
 		local bcnmFight = 0;
 		
-		if(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and MissionStatus == 3) then 
+		if((player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and (MissionStatus == 2 or MissionStatus == 3))) then 
 			bcnmFight = bcnmFight + 1; end
 		if(player:hasKeyItem(DRAGON_CURSE_REMEDY)) then 
 			bcnmFight = bcnmFight + 2; end
 		
 		if(bcnmFight >= 0) then
 			player:startEvent(0x7d00,0,0,0,bcnmFight);
-			player:setVar(tostring(pZone) .. "_Field",bcnmFight);
 		end
 	else
 		player:messageSpecial(YOU_CANNOT_ENTER_THE_BATTLEFIELD);
@@ -67,8 +70,16 @@ function onEventUpdate(player,csid,option)
 		readyField = getAvailableBattlefield(pZone);
 
 		if(option == 0) then
-			local bcnmFight = player:getVar(tostring(pZone) .. "_Field") - 1;
+			local bcnmFight = 0;
 			player:setVar(zoneReady,player:getVar(zoneReady) + 1);
+			
+			if((player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and (MissionStatus == 2 or MissionStatus == 3))) then 
+				bcnmFight = bcnmFight + 0;
+			elseif(player:hasKeyItem(DRAGON_CURSE_REMEDY)) then 
+				bcnmFight = bcnmFight + 1;
+			end
+			
+			player:setVar(tostring(pZone) .. "_Field",bcnmFight+1);
 			
 			if(player:getVar(zoneReady) == readyField and readyField ~= 255) then
 				player:updateEvent(2,bcnmFight,0,100,6,0);
@@ -96,17 +107,17 @@ function onEventFinish(player,csid,option)
 		if(option == 35) then
 			player:startEvent(0x7d02);
 		elseif(option == 100) then
-			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
+			bcnmSpawn(1,option,pZone);
 			player:addStatusEffect(EFFECT_BATTLEFIELD,1,0,600,0);
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		elseif(option == 101) then
-			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
+			bcnmSpawn(2,option,pZone);
 			player:addStatusEffect(EFFECT_BATTLEFIELD,2,0,1800,0);
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		end
-	elseif(csid == 0x0003) then
+	elseif(csid == 0x0003 or csid == 0x0037) then
 		player:delKeyItem(ORCISH_HUT_KEY);
 		player:setVar("MissionStatus",5);
 	end

@@ -59,7 +59,7 @@ function onTrigger(player,npc)
 		pRank = player:getRank();
 		cs, p, offset = getMissionOffset(player,1,CurrentMission,MissionStatus);
 		
-		if(CurrentMission <= 15 and (cs ~= 0 or offset ~= 0)) then
+		if(CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
 			if(cs == 0) then
 				player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
 			else
@@ -71,7 +71,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x03e9); -- Have mission already activated
 		else
 			mission_mask, repeat_mask = getMissionMask(player);
-			player:startEvent(0x03F1,mission_mask, 0, 0 ,0 ,0 ,repeat_mask); -- Mission List
+			player:startEvent(0x03f1,mission_mask, 0, 0 ,0 ,0 ,repeat_mask); -- Mission List
 		end
 	end
 	
@@ -94,71 +94,6 @@ function onEventFinish(player,csid,option)
 --printf("onFinishCSID: %u",csid);
 --printf("onFinishOPTION: %u",option);
 	
-	MissionList = getStartMissionList(player);
-	
-	if(csid == 0x03e8 and option == 0) then ----- Start First Mission
-		player:addMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
-		player:messageSpecial(YOU_ACCEPT_THE_MISSION);
-	elseif(csid == 0x03F1) then ----- Start Other Mission
-		for nb = 1, table.getn(MissionList), 4 do
-			if(option == MissionList[nb]) then
-				
-				player:addMission(SANDORIA,MissionList[nb + 1]);
-				
-				if(player:hasCompletedMission(SANDORIA,MissionList[nb + 1]) == false) then
-					player:setVar("MissionStatus",MissionList[nb + 2]);
-				else
-					player:setVar("MissionStatus",MissionList[nb + 3]);
-				end
-				
-				player:messageSpecial(YOU_ACCEPT_THE_MISSION);
-				break;
-				
-			end
-		end
-	elseif(csid == 0x03ea) then ----- MISSION 1-1
-		player:tradeComplete();
-		player:addRankPoints(150);
-		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
-		player:completeMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
-	elseif(csid == 0x03eb or csid == 0x03ff) then ----- MISSION 1-2
-		player:tradeComplete();
-		player:addRankPoints(200);
-		player:setVar("MissionStatus",0);
-		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
-		player:completeMission(SANDORIA,BAT_HUNT);
-	elseif(csid == 0x03ec) then ----- MISSION 1-3
-		player:setRank(2);
-		player:setVar("OptionalCSforSavetheChildren",1);
-		player:setVar("MissionStatus",0);
-		player:addRankPoints(250);
-		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
-		player:addGil(GIL_RATE*1000);
-		player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
-		player:completeMission(SANDORIA,SAVE_THE_CHILDREN);
-	elseif(csid == 0x0400) then ----- MISSION 1-3 (Repeat)
-		player:setVar("MissionStatus",0);
-		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
-		player:completeMission(SANDORIA,SAVE_THE_CHILDREN);
-	elseif(csid == 0x03ed) then ----- MISSION 2-1
-		player:delKeyItem(RESCUE_TRAINING_CERTIFICATE);
-		player:setVar("MissionStatus",0);
-		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
-		player:completeMission(SANDORIA,THE_RESCUE_DRILL);
-	elseif(csid == 0x03f4) then ----- MISSION 3-1
-		player:setVar("MissionStatus",0);
-		player:addRankPoints(350);
-		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
-		player:completeMission(SANDORIA,INFILTRATE_DAVOI);
-	elseif(csid == 0x0406) then ----- MISSION 3-2
-		player:tradeComplete();
-		player:setVar("MissionStatus",2);
-	elseif(csid == 0x03f5) then ----- MISSION 3-2 (repeat)
-		player:tradeComplete();
-		player:setVar("MissionStatus",0);
-		player:addRankPoints(400);
-		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
-		player:completeMission(SANDORIA,THE_CRYSTAL_SPRING);
-	end
-	
+	finishMissionTimeline(player,1,csid,option);
+
 end;
