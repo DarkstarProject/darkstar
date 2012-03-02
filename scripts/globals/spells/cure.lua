@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
 	
 	Final = math.floor(Base);
 	
-	if(Final > cap) then Final = cap; end
+	if(Final < cap) then Final = cap; end
 	if (Final + target:getHP() > target:getMaxHP()) then
 		Final = target:getMaxHP() - target:getHP();
 		target:setHP(target:getMaxHP());
