@@ -18,9 +18,13 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST and MissionStatus == 7) then
-		if(trade:hasItemQty(12298,2) and trade:getItemCount() == 2) then -- Trade 2 Parana Shield
-			player:startEvent(0x01c9);
+	MissionStatus = player:getVar("MissionStatus");
+	
+	if(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST and trade:hasItemQty(12298,2) and trade:getItemCount() == 2) then -- Trade 2 Parana Shield
+		if(MissionStatus == 5) then
+			player:startEvent(0x1c7); -- before deliver shield to the yagudo
+		elseif(MissionStatus == 6) then
+			player:startEvent(0x01c9); -- after deliver...Finish part of this quest
 		end
 	end
 	
@@ -35,21 +39,27 @@ function onTrigger(player,npc)
 	MissionStatus = player:getVar("MissionStatus");
 	
 	-- San d'Oria Mission 2-3 Part I - Windurst > Bastok
-	if(player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD and MissionStatus == 2) then
-		player:startEvent(0x01c0);
+	if(player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD) then 
+		if(MissionStatus == 2) then
+			player:startEvent(0x01c0);
+		elseif(MissionStatus == 7) then
+			player:startEvent(0x1ca);
+		end
 	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST) then
-		if(MissionStatus == 3) then
+		if(MissionStatus >= 3 and MissionStatus <= 5) then
 			player:startEvent(0x01c1);
-		elseif(MissionStatus == 5) then
-			player:startEvent(0x01c3);
 		elseif(MissionStatus == 6) then
 			player:startEvent(0x01c8);
 		end
 	-- San d'Oria Mission 2-3 Part II - Bastok > Windurst
-	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD and MissionStatus == 6) then
-		player:startEvent(0x01ce);
+	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD) then
+		if(MissionStatus == 6) then
+			player:startEvent(0x01ce);
+		elseif(MissionStatus == 11) then
+			player:startEvent(0x1d4);
+		end
 	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST2) then
-		if(MissionStatus == 7) then
+		if(MissionStatus == 7 or MissionStatus == 8) then
 			player:startEvent(0x01cf);
 		elseif(MissionStatus == 9 or MissionStatus == 10) then
 			player:startEvent(0x01d3);
@@ -79,9 +89,8 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x01c0) then
 		player:addMission(SANDORIA,JOURNEY_TO_WINDURST);
 		player:setVar("MissionStatus",3);
-	elseif(csid == 0x01c8) then
-		player:setVar("MissionStatus",7);
 	elseif(csid == 0x01c9) then
+		player:setVar("MissionStatus",7);
 		player:tradeComplete();
 		player:addMission(SANDORIA,JOURNEY_ABROAD);
 	elseif(csid == 0x01ce) then

@@ -24,16 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
--- 0x00ee parle de l'offrande de guiddeus donne litem
--- 0x00f0 suite de l'offrande
--- 0x00f1 fin de l'offrande
--- 0x00f2 parle du monstre est donne la key
--- 0x00f3 suite du monstre
--- 0x00f4 fin du monstre bastok
--- 0x00f5 apres fin du monstre bastok
--- 0x00f6 fin du monstre sandy
--- 0x00f7 apres fin du monstre sandy
-
+	
 	pNation = player:getNation();
 	
 	if(pNation == SANDORIA) then
