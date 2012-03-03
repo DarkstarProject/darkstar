@@ -1084,6 +1084,30 @@ inline int32 CLuaBaseEntity::unseenKeyItem(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  получить текущий уровень мастерства					                *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getSkillLevel(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	uint16 SkillID = (uint16)lua_tointeger(L,-1);
+	DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
+
+	uint16 CurSkill = PChar->RealSkills.skill[SkillID];
+	uint16 MaxSkill = battleutils::GetMaxSkill((SKILLTYPE)SkillID, PChar->GetMJob(), PChar->GetMLevel());
+
+	if (MaxSkill < CurSkill) lua_pushinteger( L, MaxSkill );
+	else lua_pushinteger( L, CurSkill );
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
 *  Добавляем персонажу заклинание с отображением сообщения              *
 *                                                                       *
 ************************************************************************/
@@ -3227,6 +3251,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,seenKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unseenKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delKeyItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkillLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnSpell),
