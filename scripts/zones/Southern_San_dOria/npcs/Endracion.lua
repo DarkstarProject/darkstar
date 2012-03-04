@@ -20,14 +20,17 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 	
 	CurrentMission = player:getCurrentMission(SANDORIA);
+	OrcishScoutCompleted = player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
 	BatHuntCompleted = player:hasCompletedMission(SANDORIA,BAT_HUNT);
 	TheCSpringCompleted = player:hasCompletedMission(SANDORIA,THE_CRYSTAL_SPRING);
 	MissionStatus = player:getVar("MissionStatus");
 	Count = trade:getItemCount();
 	
 	if(CurrentMission ~= 255) then
-		if(CurrentMission == SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1) then -- Trade Orcish Axe
-			player:startEvent(0x03ea); -- Finish Mission "Smash the Orcish scouts"
+		if(CurrentMission == SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1 and OrcishScoutCompleted == false) then -- Trade Orcish Axe
+			player:startEvent(0x03fc); -- Finish Mission "Smash the Orcish scouts" (First Time)
+		elseif(CurrentMission == SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1) then -- Trade Orcish Axe
+			player:startEvent(0x03ea); -- Finish Mission "Smash the Orcish scouts" (Repeat)
 		elseif(CurrentMission == BAT_HUNT and trade:hasItemQty(1112,1) and Count == 1 and BatHuntCompleted == false and MissionStatus == 2) then -- Trade Orcish Mail Scales
 			player:startEvent(0x03ff); -- Finish Mission "Bat Hunt"
 		elseif(CurrentMission == BAT_HUNT and trade:hasItemQty(891,1) and Count == 1 and BatHuntCompleted and MissionStatus == 2) then -- Trade Bat Fang

@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
 --print("RESULT:",option);
 	
 	if(csid == 0x0010 and option == 1) then 
-		if(player:hasKeyItem(KeyitemDelkfuttKey) == false) then
+		if(player:hasKeyItem(DELKFUTT_KEY) == false) then
 			player:tradeComplete();
 			player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
 			player:addKeyItem(DELKFUTT_KEY);

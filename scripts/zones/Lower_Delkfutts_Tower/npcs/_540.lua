@@ -19,6 +19,12 @@ require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
+		player:tradeComplete();
+		player:startEvent(0x0002);
+	end
+	
 end; 
 
 -----------------------------------
@@ -32,7 +38,7 @@ function onTrigger(player,npc)
 	if(currentMission == A_NEW_JOURNEY and player:getVar("MissionStatus") == 4 and player:hasKeyItem(DELKFUTT_KEY) == false) then
 		player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);
 	elseif(currentMission == A_NEW_JOURNEY and player:getVar("MissionStatus") == 4 and player:hasKeyItem(DELKFUTT_KEY)) then
-		player:startEvent(0x0000);
+		player:startEvent(0x0002);
 	else
 		player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT);
 	end
@@ -58,7 +64,12 @@ function onEventFinish(player,csid,option)
 --print("CSID:",csid);
 --print("RESULT:",option);
 
-	if(csid == 0x0000) then
+	if(csid == 0x0002) then
+		if(player:hasKeyItem(DELKFUTT_KEY) == false) then
+			player:tradeComplete();
+			player:addKeyItem(DELKFUTT_KEY);
+			player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
+		end
 		player:setVar("MissionStatus",5);
 	end
 

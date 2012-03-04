@@ -17,9 +17,6 @@ require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
-		player:tradeComplete();
-		player:addKeyItem(DELKFUTT_KEY);
-		player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
 		player:startEvent(0x0006);
 	end
 	
