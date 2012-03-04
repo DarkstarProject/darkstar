@@ -431,7 +431,21 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
 {
     uint8* data    = (uint8*)PTCPRequest->GetData();                            
-	uint8  AHCatID = RBUFB(data,(0x16));                                        
+	uint8  AHCatID = RBUFB(data,(0x16));
+
+    //2 - уровень
+    //3 - раса
+    //4 - профессия
+    //5 - урон
+    //6 - задержка
+    //7 - защита
+    //8 - сопротивление
+    //9 - название
+
+    for (uint8 i = 0; i < RBUFB(data,(0x12)); ++i) // параметры сортировки предметов
+    {
+        ShowMessage(" Param%u: %u\n", i, RBUFL(data,(0x18)+8*i));
+    }
 
 	CDataLoader* PDataLoader = new CDataLoader();                        
     std::vector<ahItem*> ItemList = PDataLoader->GetAHItemsToCategry(AHCatID);
