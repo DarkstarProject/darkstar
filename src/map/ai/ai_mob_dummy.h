@@ -61,6 +61,7 @@ protected:
 	void ActionAbilityFinish();
     void ActionAbilityInterrupt();
 	void ActionAttack();
+    void ActionSleep();
 };
 
 #endif

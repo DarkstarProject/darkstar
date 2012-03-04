@@ -5028,10 +5028,10 @@ INSERT INTO `item_basic` VALUES (5880, 'phial_of_poison_screen', 'poison_screen'
 INSERT INTO `item_basic` VALUES (5881, 'shisai_kaboku', 'shisai_kaboku', 99, 1536, 99, 0, 0);
 INSERT INTO `item_basic` VALUES (5882, 'marine_bliss', 'marine_bliss', 99, 1536, 99, 0, 0);
 INSERT INTO `item_basic` VALUES (5883, 'falling_star', 'falling_star', 99, 1536, 99, 0, 0);
-INSERT INTO `item_basic` VALUES (5885, 'saltena', 'saltena', 12, 1536, 99, 0, 0);
-INSERT INTO `item_basic` VALUES (5886, 'elshena', 'elshena', 12, 1536, 99, 0, 0);
-INSERT INTO `item_basic` VALUES (5889, 'stuffed_pitaru', 'stuffed_pitaru', 12, 1536, 99, 0, 0);
-INSERT INTO `item_basic` VALUES (5890, 'poultry_pitaru', 'poultry_pitaru', 12, 1536, 99, 0, 0);
+INSERT INTO `item_basic` VALUES (5885, 'saltena', 'saltena', 12, 1536, 99, 0, 100);
+INSERT INTO `item_basic` VALUES (5886, 'elshena', 'elshena', 12, 1536, 99, 0, 105);
+INSERT INTO `item_basic` VALUES (5889, 'stuffed_pitaru', 'stuffed_pitaru', 12, 1536, 99, 0, 68);
+INSERT INTO `item_basic` VALUES (5890, 'poultry_pitaru', 'poultry_pitaru', 12, 1536, 99, 0, 147);
 INSERT INTO `item_basic` VALUES (6041, 'pyrohelix_schema', 'pyrohelix', 1, 34432, 29, 0, 2896);
 INSERT INTO `item_basic` VALUES (6042, 'hydrohelix_schema', 'hydrohelix', 1, 34432, 29, 0, 2723);
 INSERT INTO `item_basic` VALUES (6043, 'ionohelix_schema', 'ionohelix', 1, 34432, 29, 0, 3068);

@@ -1077,7 +1077,6 @@ inline int32 CLuaBaseEntity::unseenKeyItem(lua_State *L)
 
 		charutils::SaveKeyItems(PChar);
 	}
-
 	lua_pushnil(L);
 	return 1;
 }
@@ -1092,17 +1091,12 @@ inline int32 CLuaBaseEntity::getSkillLevel(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	uint16 SkillID = (uint16)lua_tointeger(L,-1);
+	uint8 SkillID = (uint8)lua_tointeger(L,-1);
 	DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
 
-	uint16 CurSkill = PChar->RealSkills.skill[SkillID];
-	uint16 MaxSkill = battleutils::GetMaxSkill((SKILLTYPE)SkillID, PChar->GetMJob(), PChar->GetMLevel());
-
-	if (MaxSkill < CurSkill) lua_pushinteger( L, MaxSkill );
-	else lua_pushinteger( L, CurSkill );
+	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->WorkingSkills.skill[SkillID] & ~0x8000 );
 	return 1;
 }
 

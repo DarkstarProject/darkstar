@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -24,7 +24,7 @@
 #ifndef _ITEMUTILS_H
 #define _ITEMUTILS_H
 
-#include <list>
+#include <vector>
 
 #include "items/item.h"
 #include "items/item_armor.h"
@@ -43,7 +43,13 @@ struct DropItem_t
 	uint8  DropRate;
 };
 
-typedef std::list<DropItem_t> DropList_t;
+typedef std::vector<DropItem_t> DropList_t;
+
+/************************************************************************
+*                                                                       *
+*  Пространстов имен дла работы с глобальными списками предметов        *
+*                                                                       *
+************************************************************************/
 
 namespace itemutils
 {

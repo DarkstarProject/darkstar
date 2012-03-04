@@ -6,7 +6,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action

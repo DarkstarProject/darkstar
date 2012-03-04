@@ -26,11 +26,11 @@
 #include "map.h"
 #include "itemutils.h"
 
-#define MaxItemID 20000
-#define MaxDropID  2500
+#define MAX_ITEMID  20000
+#define MAX_DROPID  2500
 
-CItem *		g_pItemList[MaxItemID];	// глобальный массив указателей на игровые предметы
-DropList_t* g_pDropList[MaxDropID];	// глобальный массив списков выпадающих предметов
+CItem *		g_pItemList[MAX_ITEMID];    // глобальный массив указателей на игровые предметы
+DropList_t* g_pDropList[MAX_DROPID];    // глобальный массив списков выпадающих предметов
 
 namespace itemutils
 {
@@ -76,7 +76,7 @@ CItem* GetItem(uint16 ItemID)
 		return new CItemCurrency(ItemID);
 	}
 
-	if (ItemID < MaxItemID && g_pItemList[ItemID] != NULL)
+	if (ItemID < MAX_ITEMID && g_pItemList[ItemID] != NULL)
 	{
 		if( (ItemID >= 0x0200) && (ItemID <= 0x0206) ) 
 		{
@@ -113,7 +113,7 @@ CItem* GetItem(uint16 ItemID)
 
 CItem* GetItemPointer(uint16 ItemID)
 {
-	if (ItemID < MaxItemID)
+	if (ItemID < MAX_ITEMID)
 	{
 		return g_pItemList[ItemID];
 	}
@@ -122,7 +122,7 @@ CItem* GetItemPointer(uint16 ItemID)
 
 DropList_t* GetDropList(uint16 DropID)
 {
-	if (DropID < MaxDropID)
+	if (DropID < MAX_ITEMID)
 	{
 		 return g_pDropList[DropID];
 	}
@@ -146,7 +146,7 @@ void LoadItemList()
 							LEFT JOIN item_furnishing AS f USING (itemId) \
 							WHERE itemId < %u;";
 
-	int32 ret = Sql_Query(SqlHandle,fmtQuery,MaxItemID);
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_ITEMID);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -166,7 +166,6 @@ void LoadItemList()
 				{
 
 				}
-
 				if (PItem->getType() & ITEM_USABLE)
 				{
 					((CItemUsable*)PItem)->setSubID(Sql_GetUIntData(SqlHandle,6));
@@ -179,12 +178,10 @@ void LoadItemList()
 					((CItemUsable*)PItem)->setUseDelay(Sql_GetUIntData(SqlHandle,12));
 					((CItemUsable*)PItem)->setReuseDelay(Sql_GetUIntData(SqlHandle,13));
 				}
-
 				if (PItem->getType() & ITEM_PUPPET)
 				{
 
 				}
-
 				if (PItem->getType() & ITEM_ARMOR)
 				{
 					((CItemArmor*)PItem)->setReqLvl(Sql_GetUIntData(SqlHandle,14));
@@ -200,7 +197,6 @@ void LoadItemList()
 						((CItemArmor*)PItem)->setSubType(ITEM_CHARGED);
 					}
 				}
-
 				if (PItem->getType() & ITEM_WEAPON)
 				{
 					((CItemWeapon*)PItem)->setSkillType(Sql_GetUIntData(SqlHandle,21));
@@ -208,7 +204,6 @@ void LoadItemList()
 					((CItemWeapon*)PItem)->setDamage(Sql_GetUIntData(SqlHandle,23));
 					((CItemWeapon*)PItem)->setDmgType(Sql_GetUIntData(SqlHandle,24));
 				}
-
 				if (PItem->getType() & ITEM_FURNISHING)
 				{
 					((CItemFurnishing*)PItem)->setStorage(Sql_GetUIntData(SqlHandle,25));
@@ -216,7 +211,6 @@ void LoadItemList()
 					((CItemFurnishing*)PItem)->setElement(Sql_GetUIntData(SqlHandle,27));
 					((CItemFurnishing*)PItem)->setAura(Sql_GetUIntData(SqlHandle,28));
 				}
-
 				g_pItemList[PItem->getID()] = PItem;
 			}
 		}
@@ -240,7 +234,7 @@ void LoadItemList()
 		}
 	}
 
-	ret = Sql_Query(SqlHandle,"SELECT dropId, itemId, type, rate FROM mob_droplist;");
+	ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, type, rate FROM mob_droplist WHERE dropid < %u", MAX_DROPID);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -248,28 +242,25 @@ void LoadItemList()
 		{
 			uint16 DropID  = (uint16)Sql_GetUIntData(SqlHandle,0);
 
-			if (DropID < MaxDropID)
-			{
-				if (g_pDropList[DropID] == 0)
-				{
-					g_pDropList[DropID] = new DropList_t;
-				}
+            if (g_pDropList[DropID] == 0)
+            {
+                g_pDropList[DropID] = new DropList_t;
+            }
 
-				DropItem_t DropItem;
+            DropItem_t DropItem;
 
-				DropItem.ItemID  = (uint16)Sql_GetUIntData(SqlHandle,1);
-				DropItem.DropType = (uint8)Sql_GetUIntData(SqlHandle,2);
-				DropItem.DropRate = (uint8)Sql_GetUIntData(SqlHandle,3);
+            DropItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
+            DropItem.DropType = (uint8)Sql_GetIntData(SqlHandle,2);
+            DropItem.DropRate = (uint8)Sql_GetIntData(SqlHandle,3);
 
-				g_pDropList[DropID]->push_back(DropItem);
-			}
+            g_pDropList[DropID]->push_back(DropItem);
 		}
 	}
 }
 
 void FreeItemList()
 {
-	for(int32 ItemID = 0; ItemID < MaxItemID; ++ItemID)
+	for(int32 ItemID = 0; ItemID < MAX_ITEMID; ++ItemID)
 	{
 		if ((g_pItemList[ItemID] != NULL) &&
 			(g_pItemList[ItemID]->getType() & ITEM_ARMOR))
@@ -285,7 +276,7 @@ void FreeItemList()
 		delete g_pItemList[ItemID];
 	}
 
-	for(int32 DropID = 0; DropID < MaxDropID; ++DropID)
+	for(int32 DropID = 0; DropID < MAX_DROPID; ++DropID)
 	{
 		delete g_pDropList[DropID];
 	}

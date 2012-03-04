@@ -76,6 +76,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_FADE_OUT:			  ActionFadeOut();          break;
 		case ACTION_SPAWN:				  ActionSpawn();            break;
 		case ACTION_ATTACK:				  ActionAttack();           break;
+        case ACTION_SLEEP:                ActionSleep();            break;
 		case ACTION_MOBABILITY_START:     ActionAbilityStart();     break;
 		case ACTION_MOBABILITY_FINISH:	  ActionAbilityFinish();    break;
         case ACTION_MOBABILITY_INTERRUPT: ActionAbilityInterrupt(); break;
@@ -216,13 +217,13 @@ void CAIMobDummy::ActionDropItems()
 
                 DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
 		
-			    if (DropList && DropList->size())
+			    if (DropList != NULL && DropList->size())
 			    {
-				    for(DropList_t::const_iterator it = DropList->begin(); it != DropList->end(); ++it)
+                    for(uint8 i = 0; i < DropList->size(); ++i)
 				    {
-					    if(rand()%100 < it->DropRate) 
+                        if(rand()%100 < DropList->at(i).DropRate) 
 					    {
-						    PChar->PTreasurePool->AddItem(it->ItemID, m_PMob); 
+                            PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, m_PMob); 
 					    }		
 				    }
 			    }
@@ -268,7 +269,7 @@ void CAIMobDummy::ActionFadeOut()
 
 /************************************************************************
 *                                                                       *
-*  Возрождение монстра.                                                 *
+*  Возрождение монстра                                                  *
 *                                                                       *
 ************************************************************************/
 
@@ -403,6 +404,20 @@ void CAIMobDummy::ActionAbilityInterrupt()
 
     m_PMobSkill = NULL;
     m_ActionType = ACTION_ATTACK;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+void CAIMobDummy::ActionSleep()
+{
+    if (!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP))
+    {
+
+    }
 }
 
 /************************************************************************

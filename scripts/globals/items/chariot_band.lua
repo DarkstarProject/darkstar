@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 15761
--- Item: chariot band
+-- Item: Chariot Band
 -- Experience point bonus
 -----------------------------------------
 -- Bonus: +75%

@@ -506,7 +506,8 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
     if (damage > 0)
     {
-        if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
+        if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING &&
+            PDefender->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG)
         {
             // TODO: должен вычисляться на основании skill, разници уровней сущностей и модификаторе прерывания чтения заклинаний MOD_SPELLINTRATE
 	        uint32 MagicInterruptRate = 50;
