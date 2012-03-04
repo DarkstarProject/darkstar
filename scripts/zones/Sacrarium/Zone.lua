@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Sacrarium
--- 
+--
 -----------------------------------
 
 require("scripts/globals/status");
@@ -14,45 +14,45 @@ require("scripts/zones/Sacrarium/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-end;
+end;		
 
------------------------------------
--- onZoneIn
------------------------------------
+-----------------------------------		
+-- onZoneIn		
+-----------------------------------		
 
-function onZoneIn(player,prevZone)
-cs = -1;
+function onZoneIn(player,prevZone)		
+	cs = -1;	
 
-	-- ZONE LEVEL RESTRICTION
-	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);
-	
-return cs;
-end;
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(-219.996,-18.587,82.795,64);
+	end	
+	-- ZONE LEVEL RESTRICTION	
+	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);	
 
------------------------------------
--- onRegionEnter          
------------------------------------
+	return cs;	
+end;	
 
-function onRegionEnter(player,region)
-end;
+-----------------------------------	
+-- onRegionEnter	
+-----------------------------------	
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onRegionEnter(player,region)	
+end;	
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+-----------------------------------	
+-- onEventUpdate	
+-----------------------------------	
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+end;	
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+-----------------------------------	
+-- onEventFinish	
+-----------------------------------	
 
-
-
+function onEventFinish(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+end;	

@@ -20,11 +20,11 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-		player:setPos(6.500, -9.000, -820.000, 239);
-	end
-return cs;
+	cs = -1;
+		if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+			player:setPos(6.509,-9.163,-819.333,239);
+		end
+	return cs;
 end;
 
 -----------------------------------

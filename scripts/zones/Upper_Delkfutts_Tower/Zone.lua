@@ -1,90 +1,94 @@
 -----------------------------------
--- 
+--
 -- Zone: Upper_Delkfutts_Tower
--- 
------------------------------------
-package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
+--
 -----------------------------------
 
+package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
+
+-----------------------------------
 require("/scripts/globals/common");
 require("/scripts/globals/settings");
 require("scripts/globals/teleports");
 require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
-
 -----------------------------------
+
 --  onInitialize
------------------------------------
 
-function onInitialize(zone)
-	
+-----------------------------------	
+function onInitialize(zone)	
+
 	zone:registerRegion(1, -369, -146, 83,  -365, -145,  89); -- Tenth Floor F-6 porter to Middle Delkfutt's Tower
 	zone:registerRegion(2, -369, -178, -49, -365, -177, -43); -- Twelfth Floor F-10 porter to Stellar Fulcrum
 	-- print("Upper Delkfutt's Tower Teleporters initialized.");
+end;	
+-----------------------------------	
 
-end;
+-- onZoneIn	
 
------------------------------------
--- onZoneIn
------------------------------------
+-----------------------------------	
+function onZoneIn(player,prevZone)	
+	cs = -1;
 
-function onZoneIn(player,prevZone)
-cs = -1;
-return cs;
-end;
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(12.098,-105.408,27.683,239);
+	end	
+	return cs;	
+end;		
+-----------------------------------		
 
------------------------------------
--- onRegionEnter          
------------------------------------
+-- onRegionEnter		
 
-function onRegionEnter(player,region)
-	
-	switch (region:GetRegionID()): caseof
-	{
-		---------------------------------
-		[1] = function (x)
-		---------------------------------
-		--player:setVar("porter_lock",1);
-		player:startEvent(1);
-		end,
-		
-  		---------------------------------
-		[2] = function (x)
-		---------------------------------
-		--player:setVar("porter_lock",1);
-		player:startEvent(2);
-		end,
+-----------------------------------		
+function onRegionEnter(player,region)		
+
+	switch (region:GetRegionID()): caseof	
+	{	
+	---------------------------------	
+	[1] = function (x)	
+	---------------------------------
+	--player:setVar("porter_lock",1);
+	player:startEvent(1);
+	end,
+
+	---------------------------------
+	[2] = function (x)
+	---------------------------------
+	--player:setVar("porter_lock",1);
+	player:startEvent(2);
+	end,
 	}
-	
-end;
 
------------------------------------
--- onRegionLeave
------------------------------------
+end;	
+-----------------------------------	
 
-function onRegionLeave(player,region)
-end;
+-- onRegionLeave	
 
------------------------------------
--- onEventUpdate
------------------------------------
+-----------------------------------	
+function onRegionLeave(player,region)	
+end;	
+-----------------------------------	
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+-- onEventUpdate	
 
------------------------------------
--- onEventFinish
------------------------------------
+-----------------------------------	
+function onEventUpdate(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+end;	
+-----------------------------------	
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-	
-	if(csid == 1 and menuchoice == 1) then
+-- onEventFinish		
+
+-----------------------------------		
+function onEventFinish(player,csid,menuchoice)		
+	--print("CSID: ",csid);	
+	--print("RESULT: ",menuchoice);	
+
+	if(csid == 1 and menuchoice == 1) then	
 		player:setPos(-490, -130, 81, 231, 157);
-	elseif(csid == 2 and menuchoice == 1) then
+		elseif(csid == 2 and menuchoice == 1) then
 		player:setPos(-520 , 1 , -23, 192, 0xB3); -- to stellar fulcrum
-	end
-	
-end;
+	end	
+
+end;		

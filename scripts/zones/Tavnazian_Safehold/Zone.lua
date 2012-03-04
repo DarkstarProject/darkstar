@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Tavnazian_Safehold
--- 
+--
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -15,40 +15,40 @@ require("scripts/zones/Tavnazian_Safehold/TextIDs");
 function onInitialize(zone)
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
+-----------------------------------		
+-- onZoneIn		
+-----------------------------------		
 
-function onZoneIn(player,prevZone)
-cs = -1;
+function onZoneIn(player,prevZone)		
+	cs = -1;	
 
-return cs;
-end;
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(27.971,-14.068,43.735,66);
+	end	
+	return cs;	
+end;		
 
------------------------------------
--- onRegionEnter          
------------------------------------
+-----------------------------------		
+-- onRegionEnter		
+-----------------------------------	
 
-function onRegionEnter(player,region)
-end;
+function onRegionEnter(player,region)	
+end;	
 
------------------------------------
--- onEventUpdate
------------------------------------
+-----------------------------------	
+-- onEventUpdate	
+-----------------------------------	
 
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
+function onEventUpdate(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
+end;	
 
------------------------------------
--- onEventFinish
------------------------------------
+-----------------------------------	
+-- onEventFinish	
+-----------------------------------	
 
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
-
-
+function onEventFinish(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
+end;	

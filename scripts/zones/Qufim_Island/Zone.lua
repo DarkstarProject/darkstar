@@ -1,67 +1,72 @@
 -----------------------------------
--- 
+--
 -- Zone: Qufim_Island
--- 
------------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
+--
 -----------------------------------
 
+package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
+
+-----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Qufim_Island/TextIDs");
-
 -----------------------------------
+
 --  onInitialize
------------------------------------
 
-function onInitialize(zone)
-end;
+-----------------------------------		
+function onInitialize(zone)		
+end;		
+-----------------------------------		
 
------------------------------------
--- onZoneIn
------------------------------------
+-- onZoneIn		
 
-function onZoneIn(player,prevZone)
-	
-	cs = -1;
-	
-	if(prevZone == 127 and player:getVar("theTalekeepersGiftKilledNM") >= 3) then
+-----------------------------------		
+function onZoneIn(player,prevZone)		
+
+	cs = -1;	
+
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(-286.271,-21.619,320.084,255);
+	end	
+
+	if(prevZone == 127 and player:getVar("theTalekeepersGiftKilledNM") >= 3) then	
 		cs = 0x0064;
-	end
-	
-	return cs;
-	
-end;
+	end	
 
------------------------------------
--- onRegionEnter          
------------------------------------
+	return cs;	
 
-function onRegionEnter(player,region)
-end;
+end;		
+-----------------------------------		
 
------------------------------------
--- onEventUpdate
------------------------------------
+-- onRegionEnter		
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+-----------------------------------		
+function onRegionEnter(player,region)		
+end;		
+-----------------------------------		
 
------------------------------------
--- onEventFinish
------------------------------------
+-- onEventUpdate	
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-	
-	if(csid == 0x0064) then
-		if (player:getFreeSlotsCount() == 0) then 
+-----------------------------------	
+function onEventUpdate(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+end;	
+-----------------------------------	
+
+-- onEventFinish	
+
+-----------------------------------	
+function onEventFinish(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+
+	if(csid == 0x0064) then		
+		if (player:getFreeSlotsCount() == 0) then	
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12638); -- Fighter's Lorica
-		else
+			else
 			player:setTitle(PARAGON_OF_WARRIOR_EXCELLENCE);
 			player:addItem(12638);
 			player:messageSpecial(ITEM_OBTAINED, 12638); -- Fighter's Lorica
@@ -69,7 +74,7 @@ function onEventFinish(player,csid,menuchoice)
 			player:setVar("theTalekeepersGiftKilledNM",0);
 			player:addFame(BASTOK,AF3_FAME);
 			player:completeQuest(BASTOK,THE_TALEKEEPER_S_GIFT);
-		end
-	end
-	
-end;
+		end	
+	end		
+
+end;			

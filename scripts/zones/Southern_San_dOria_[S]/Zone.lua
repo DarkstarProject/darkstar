@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Southern_San_dOria_[S]
--- 
+--
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -15,40 +15,40 @@ require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 function onInitialize(zone)
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
+-----------------------------------		
+-- onZoneIn		
+-----------------------------------		
 
-function onZoneIn(player,prevZone)
-cs = -1;
+function onZoneIn(player,prevZone)		
+	cs = -1;	
 
-return cs;
-end;
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(103.978,-1,-47.951,158);
+	end	
+	return cs;	
+end;		
 
------------------------------------
--- onRegionEnter          
------------------------------------
+-----------------------------------		
+-- onRegionEnter		
+-----------------------------------	
 
-function onRegionEnter(player,region)
-end;
+function onRegionEnter(player,region)	
+end;	
 
------------------------------------
--- onEventUpdate
------------------------------------
+-----------------------------------	
+-- onEventUpdate	
+-----------------------------------	
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+function onEventUpdate(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+end;	
 
------------------------------------
--- onEventFinish
------------------------------------
+-----------------------------------	
+-- onEventFinish	
+-----------------------------------	
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
-
-
-
+function onEventFinish(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+end;	

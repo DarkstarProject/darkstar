@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Bibiki_Bay
--- 
+--
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -15,40 +15,40 @@ require("scripts/zones/Bibiki_Bay/TextIDs");
 function onInitialize(zone)
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
+-----------------------------------		
+-- onZoneIn		
+-----------------------------------		
 
-function onZoneIn(player,prevZone)
-cs = -1;
+function onZoneIn(player,prevZone)		
+	cs = -1;	
 
-return cs;
-end;
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(669.917,-23.138,911.655,111);
+	end	
+	return cs;	
+end;		
 
------------------------------------
--- onRegionEnter          
------------------------------------
+-----------------------------------		
+-- onRegionEnter		
+-----------------------------------	
 
-function onRegionEnter(player,region)
-end;
+function onRegionEnter(player,region)	
+end;	
 
------------------------------------
--- onEventUpdate
------------------------------------
+-----------------------------------	
+-- onEventUpdate	
+-----------------------------------	
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+function onEventUpdate(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+end;	
 
------------------------------------
--- onEventFinish
------------------------------------
+-----------------------------------	
+-- onEventFinish	
+-----------------------------------	
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
-
-
-
+function onEventFinish(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+end;	

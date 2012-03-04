@@ -14,77 +14,76 @@ require("scripts/zones/Buburimu_Peninsula/TextIDs");
 --  onInitialize
 -----------------------------------
 
-function onInitialize(zone)
-end;
+function onInitialize(zone)		
+end;		
 
------------------------------------
--- onZoneIn
------------------------------------
+-----------------------------------		
+-- onZoneIn		
+-----------------------------------		
 
-function onZoneIn(player,prevZone)
-cs = -1;
-	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1 and player:hasItem(1125)) then
+function onZoneIn(player,prevZone)		
+	cs = -1;	
+
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(-276.529,16.403,-324.519,14);
+	end	
+	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1 and player:hasItem(1125)) then	
 		colors = player:getVar("ICanHearARainbow");
 		o = (tonumber(colors) % 4 >= 2);
-		g = (tonumber(colors) % 16 >= 8);
-		b = (tonumber(colors) % 32 >= 16);
-
-		cs = 0x0003;
-
-		if (o == false) then
+		g = (tonumber(colors) % 16 >= 8);	
+		b = (tonumber(colors) % 32 >= 16);	
+		cs = 0x0003;	
+		if (o == false) then	
 			player:setVar("ICanHearARainbow_Weather",1);
 			player:setVar("ICanHearARainbow",colors+2);
-		elseif (g == false) then
+			elseif (g == false) then
 			player:setVar("ICanHearARainbow_Weather",10);
 			player:setVar("ICanHearARainbow",colors+8);
-		elseif (b == false) then
+			elseif (b == false) then
 			player:setVar("ICanHearARainbow_Weather",6);
 			player:setVar("ICanHearARainbow",colors+16);
-		else
+			else
 			cs = -1;
-		end
-	end
+		end	
+	end		
+	return cs;
+end;	
 
-return cs;
-end;
+-----------------------------------	
+-- onRegionEnter	
+-----------------------------------	
 
------------------------------------
--- onRegionEnter
------------------------------------
+function onRegionEnter(player,region)	
+end;	
 
-function onRegionEnter(player,region)
-end;
+-----------------------------------	
+-- onEventUpdate	
+-----------------------------------	
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-	if (csid == 0x0003) then
-		weather = player:getVar("ICanHearARainbow_Weather");
-
-		if (weather == 1) then
+function onEventUpdate(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);		
+	if (csid == 0x0003) then		
+		weather = player:getVar("ICanHearARainbow_Weather");	
+		if (weather == 1) then	
 			weather = 0;
-		end
-
-		if (player:getVar("ICanHearARainbow") < 127) then
+		end	
+		if (player:getVar("ICanHearARainbow") < 127) then	
 			player:updateEvent(0,0,weather);
-		else
+			else
 			player:updateEvent(0,0,weather,6);
-		end
-	end
-end;
+		end	
+	end		
+end;			
 
------------------------------------
--- onEventFinish
------------------------------------
+-----------------------------------			
+-- onEventFinish			
+-----------------------------------		
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-	if (csid == 0x0003) then
+function onEventFinish(player,csid,menuchoice)		
+	--print("CSID: ",csid);	
+	--print("RESULT: ",menuchoice);	
+	if (csid == 0x0003) then	
 		player:setVar("ICanHearARainbow_Weather",0);
-	end
-end;
+	end	
+end;		

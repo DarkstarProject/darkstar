@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Promyvion-Holla
--- 
+--
 -----------------------------------
 
 require("scripts/globals/status");
@@ -14,45 +14,45 @@ require("scripts/zones/Promyvion-Holla/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-end;
+end;		
 
------------------------------------
--- onZoneIn
------------------------------------
+-----------------------------------		
+-- onZoneIn		
+-----------------------------------		
 
-function onZoneIn(player,prevZone)
-cs = -1;
+function onZoneIn(player,prevZone)		
+	cs = -1;	
 
-	-- ZONE LEVEL RESTRICTION
-	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);
-	
-return cs;
-end;
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(179.973,-2.1,-23.145,57);
+	end	
+	-- ZONE LEVEL RESTRICTION	
+	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);	
 
------------------------------------
--- onRegionEnter          
------------------------------------
+	return cs;	
+end;	
 
-function onRegionEnter(player,region)
-end;
+-----------------------------------	
+-- onRegionEnter	
+-----------------------------------	
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onRegionEnter(player,region)	
+end;	
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+-----------------------------------	
+-- onEventUpdate	
+-----------------------------------	
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+end;	
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+-----------------------------------	
+-- onEventFinish	
+-----------------------------------	
 
-
-
+function onEventFinish(player,csid,menuchoice)	
+	--print("CSID: ",csid);
+	--print("RESULT: ",menuchoice);
+end;	
