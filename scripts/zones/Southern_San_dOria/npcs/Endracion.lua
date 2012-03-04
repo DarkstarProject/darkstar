@@ -53,10 +53,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:addMission(0,5);
-	--player:completeMission(0,4);
-	--player:setRankPoints(4000);
-	player:setRank(2);
+	
 	if(player:getNation() ~= SANDORIA) then
 		player:startEvent(0x03F3); -- for Non-San d'Orians
 	else
