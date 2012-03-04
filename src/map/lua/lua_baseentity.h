@@ -66,6 +66,8 @@ public:
 
 	int32 getMaxHP(lua_State*);				// Get max hp of entity
 	int32 getMaxMP(lua_State*);				// Get max mp of entity
+
+    int32 getStat(lua_State*);				// STR,DEX,VIT,AGI,INT,MND,CHR
 	
 	int32 getXPos(lua_State*);				// Get Entity X position
 	int32 getYPos(lua_State*);				// Get Entity Y position

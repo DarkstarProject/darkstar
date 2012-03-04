@@ -329,20 +329,24 @@ uint16 CBattleEntity::GetSkill(uint16 SkillID)
 	return 0;
 }
 
-bool CBattleEntity::IsMageJob()
+/************************************************************************
+*                                                                       *
+*  Текущая атака                                                        *
+*                                                                       *
+************************************************************************/
+
+uint16 CBattleEntity::GetAtt()
 {
-	switch(m_mjob)
-	{
-		case JOB_WHM:
-		case JOB_BLM:
-		case JOB_RDM:
-		case JOB_PLD:
-		case JOB_DRK:
-		case JOB_SMN:
-		case JOB_BLU:
-		case JOB_SCH:
-			return true;
-			break;
-	};
-	return false;
+    return ((1 + getMod(MOD_ATTP)* 0.01 + cap_value(getMod(MOD_FOOD_ATTP)* 0.01, 0, getMod(MOD_FOOD_ATT_CAP))) * (getMod(MOD_ATT) + (stats.STR + getMod(MOD_STR)) / 2));
+}
+
+/************************************************************************
+*                                                                       *
+*  Текущая защита                                                       *
+*                                                                       *
+************************************************************************/
+
+uint16 CBattleEntity::GetDef()
+{
+    return ((1 + getMod(MOD_DEFP)* 0.01 + cap_value(getMod(MOD_FOOD_DEFP)* 0.01, 0, getMod(MOD_FOOD_DEF_CAP))) * (getMod(MOD_DEF) + (stats.VIT + getMod(MOD_VIT)) / 2));
 }

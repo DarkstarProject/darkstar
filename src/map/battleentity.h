@@ -336,6 +336,9 @@ public:
 
 	uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
 
+    uint16          GetDef();                   // текущяа величина защиты
+    uint16          GetAtt();                   // текущая величина атаки
+
 	uint16		    addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
 	int32	        addHP(int32 hp);			// увеличиваем/уменьшаем количество hp
 	int32   	    addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
@@ -349,20 +352,16 @@ public:
 	void		    setModifiers(std::vector<CModifier*> *modList);
 	void		    delModifiers(std::vector<CModifier*> *modList);
 
-	bool		    IsMageJob();			    // Determines if job is mage job or not
 	uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
 	ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
 	CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
 
 	uint32			m_OwnerID;				    // ID атакующей сущности (после смерти будет хранить ID сущности, нанесщей последний удар)
 	
-	uint16			m_RangedDelay;			    // задержка дельнего оружия
 	ActionList_t	m_ActionList;			    // список совершенных действий за одну атаку (нужно будет написать структуру, включающую ActionList в которой будут категории анимации и т.д.)
 
 	CAIGeneral*		PBattleAI;				    // интеллект боевой сущности
-
     CParty*			PParty;					    // описание группы, в которой состоит сущность
-
 	CBattleEntity*	PPet;					    // питомец сущности
 	CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
 

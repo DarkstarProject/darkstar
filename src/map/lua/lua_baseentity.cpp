@@ -1093,11 +1093,38 @@ inline int32 CLuaBaseEntity::getSkillLevel(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	uint8 SkillID = (uint8)lua_tointeger(L,-1);
-	DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
 
-	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->WorkingSkills.skill[SkillID] & ~0x8000 );
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetSkill(lua_tointeger(L,-1)));
 	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getStat(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    switch(lua_tointeger(L,-1)) 
+    {
+        case 1:  lua_pushinteger(L, (PEntity->stats.STR + PEntity->getMod(MOD_STR))); break;
+        case 2:  lua_pushinteger(L, (PEntity->stats.DEX + PEntity->getMod(MOD_DEX))); break;
+        case 3:  lua_pushinteger(L, (PEntity->stats.VIT + PEntity->getMod(MOD_VIT))); break;
+        case 4:  lua_pushinteger(L, (PEntity->stats.AGI + PEntity->getMod(MOD_AGI))); break;
+        case 5:  lua_pushinteger(L, (PEntity->stats.INT + PEntity->getMod(MOD_INT))); break;
+        case 6:  lua_pushinteger(L, (PEntity->stats.MND + PEntity->getMod(MOD_MND))); break;
+        case 7:  lua_pushinteger(L, (PEntity->stats.CHR + PEntity->getMod(MOD_CHR))); break;
+        default: lua_pushnil(L);
+    }
+    return 1;
 }
 
 /************************************************************************
@@ -3213,6 +3240,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delTP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setTP),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStat),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxMP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItem),

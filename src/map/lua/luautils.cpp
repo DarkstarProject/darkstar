@@ -296,6 +296,7 @@ int32 SpawnMob(lua_State* L)
                 {
                     PMob->SetDespawnTimer((uint32)lua_tointeger(L,2)); 
                 }
+                PMob->PBattleAI->CheckCurrentAction(gettick());
             } else {
                 ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n"CL_RESET, PMob->GetName());
             }

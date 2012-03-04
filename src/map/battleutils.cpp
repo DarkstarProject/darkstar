@@ -780,10 +780,9 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	int32 crithitrate = 5;
 
 	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) && (abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23))
-	{// && 
-		ShowDebug(CL_BLUE"SneakAttack!  \n"CL_RESET); 
+	{
 		crithitrate = 100;
-		PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK_ATTACK);
+        ShowDebug(CL_CYAN"SneakAttack!\n"CL_RESET); 
 	}
 	else
 	{
@@ -795,7 +794,6 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 		crithitrate += (dDEX * 30) / 100 + PAttacker->getMod(MOD_CRITHITRATE) + PDefender->getMod(MOD_ENEMYCRITRATE);
 		crithitrate  = cap_value(crithitrate,0,100);
 	}
-
 	return (uint8)crithitrate;
 }
 
@@ -807,13 +805,7 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender)  
 {
-	float attackeratt = PAttacker->getMod(MOD_ATT) + (PAttacker->stats.STR + PAttacker->getMod(MOD_STR)) / 2;
-    attackeratt  = (1 + PAttacker->getMod(MOD_ATTP)* 0.01 + cap_value(PAttacker->getMod(MOD_FOOD_ATTP)* 0.01, 0, PAttacker->getMod(MOD_FOOD_ATT_CAP))) * attackeratt;
-		
-	float defenderdef = PDefender->getMod(MOD_DEF) + (PDefender->stats.VIT + PDefender->getMod(MOD_VIT)) / 2;
-    defenderdef  = (1 + PDefender->getMod(MOD_DEFP)* 0.01 + cap_value(PDefender->getMod(MOD_FOOD_DEFP)* 0.01, 0, PDefender->getMod(MOD_FOOD_DEF_CAP))) * defenderdef;
-	
-	float cRatio = attackeratt / defenderdef;
+    float cRatio = PAttacker->GetAtt() / PDefender->GetDef();
 
 	float cRatioMax = 0;
 	float cRatioMin = 0;
