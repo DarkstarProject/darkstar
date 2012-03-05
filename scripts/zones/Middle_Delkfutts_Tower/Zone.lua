@@ -135,20 +135,20 @@ end;
 -- onEventUpdate
 -----------------------------------
 
-function onEventUpdate(player,csid,menuchoice)
+function onEventUpdate(player,csid,option)
 --print("onUpdateCSID: ",csid);
---print("onUpdateRESULT: ",menuchoice);
+--print("onUpdateRESULT: ",option);
 end;
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,menuchoice)
+function onEventFinish(player,csid,option)
 --print("onFinishCSID: ",csid);
---print("onFinishRESULT: ",menuchoice);
+--print("onFinishRESULT: ",option);
 	
-	if(csid <= 11 and menuchoice == 1) then
+	if(csid <= 11 and option == 1) then
 		if(csid == 0) then
 			player:setPos(412, -32, 80, 100, 184);
 		elseif(csid == 1) then

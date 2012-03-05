@@ -71,14 +71,14 @@ end;
 function onEventFinish(player,csid,option)			
 	--printf("CSID: %u",csid);		
 	--printf("RESULT: %u",option);		
-	if(menuchoice == 1) then		
+	if(option == 1) then		
 		if(player:getVar("option") == 1) then	
 			player:setPos(-28, -48, 80, 111, 157);
 		else	
 			player:setPos(-51, -48, -40, 246, 157);
 		end	
 		player:setVar("option",0);	
-	elseif(menuchoice == 0 or menuchoice >= 3) then	
+	elseif(option == 0 or option >= 3) then	
 		player:setVar("option",0);
 	end	
 end;		

@@ -36,7 +36,7 @@ function onZoneIn(player,prevZone)
 		-- Set the progress	
 		player:setVar("windurst_mission_1_2",7);	
 	end		
-	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1 and player:hasItem(1125)) then		
+	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125,0)) then		
 		colors = player:getVar("ICanHearARainbow");	
 		o = (tonumber(colors) % 4 >= 2);	
 		cs = 0x0032;	

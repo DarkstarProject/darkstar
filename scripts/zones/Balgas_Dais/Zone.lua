@@ -42,7 +42,7 @@ end;
 
 function onEventUpdate(player,csid,option)	
 	print("zone CSID: ",csid);
-	print("zone RESULT: ",menuchoice);
+	print("zone RESULT: ",option);
 end;	
 
 -----------------------------------	

@@ -73,9 +73,9 @@ end;
 function onEventFinish(player,csid,option)		
 	--printf("CSID: %u",csid);	
 	--printf("RESULT: %u",option);	
-	if(csid == 1 and menuchoice == 1) then	
+	if(csid == 1 and option == 1) then	
 		player:setPos(-490, -130, 81, 231, 157);
-	elseif(csid == 2 and menuchoice == 1) then	
+	elseif(csid == 2 and option == 1) then	
 		player:setPos(-520 , 1 , -23, 192, 0xB3); -- to stellar fulcrum
 	end	
 end;

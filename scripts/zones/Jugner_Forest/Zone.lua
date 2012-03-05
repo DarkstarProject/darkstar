@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(342,-5,15.117,169);
 	end	
-	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125)) then	
+	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125,0)) then	
 		colors = player:getVar("ICanHearARainbow");
 		b = (tonumber(colors) % 32 >= 16);
 		v = (tonumber(colors) % 128 >= 64);
