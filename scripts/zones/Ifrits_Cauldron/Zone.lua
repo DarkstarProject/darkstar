@@ -1,54 +1,53 @@
 -----------------------------------
--- 
--- Zone: Ifrits_Cauldron
--- 
+--
+-- Zone: Ifrits_Cauldron (205)
+--
 -----------------------------------
 
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
+require("scripts/globals/settings");
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
+-----------------------------------		
+-- onZoneIn		
+-----------------------------------		
 
-function onZoneIn(player,prevZone)
-cs = -1;
+function onZoneIn(player,prevZone)		
+	cs = -1;	
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(-60.296,48.884,105.967,69);
+	end	
+	return cs;	
+end;		
 
-return cs;
-end;
+-----------------------------------		
+-- onRegionEnter		
+-----------------------------------		
 
------------------------------------
--- onRegionEnter          
------------------------------------
+function onRegionEnter(player,region)	
+end;	
 
-function onRegionEnter(player,region)
-end;
+-----------------------------------	
+-- onEventUpdate	
+-----------------------------------	
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
+end;	
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+-----------------------------------	
+-- onEventFinish	
+-----------------------------------	
 
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
-
-
-
+function onEventFinish(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
+end;	

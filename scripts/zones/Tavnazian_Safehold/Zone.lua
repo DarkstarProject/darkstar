@@ -1,15 +1,15 @@
 -----------------------------------
 --
--- Zone: Tavnazian_Safehold
+-- Zone: Tavnazian_Safehold (26)
 --
 -----------------------------------
 
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
+require("scripts/globals/settings");
 require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,7 +21,6 @@ end;
 
 function onZoneIn(player,prevZone)		
 	cs = -1;	
-
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(27.971,-14.068,43.735,66);
 	end	
@@ -30,7 +29,7 @@ end;
 
 -----------------------------------		
 -- onRegionEnter		
------------------------------------	
+-----------------------------------		
 
 function onRegionEnter(player,region)	
 end;	

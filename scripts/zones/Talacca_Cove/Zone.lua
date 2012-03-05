@@ -1,15 +1,15 @@
 -----------------------------------
 --
--- Zone: Talacca_Cove
+-- Zone: Talacca_Cove (57)
 --
 -----------------------------------
 
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Talacca_Cove/TextIDs"] = nil;
+require("scripts/globals/settings");
 require("scripts/zones/Talacca_Cove/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,7 +21,6 @@ end;
 
 function onZoneIn(player,prevZone)		
 	cs = -1;	
-
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(64.007,-9.281,-99.988,88);
 	end	
@@ -30,7 +29,7 @@ end;
 
 -----------------------------------		
 -- onRegionEnter		
------------------------------------	
+-----------------------------------		
 
 function onRegionEnter(player,region)	
 end;	
@@ -39,16 +38,16 @@ end;
 -- onEventUpdate	
 -----------------------------------	
 
-function onEventUpdate(player,csid,menuchoice)	
-	--print("CSID: ",csid);
-	--print("RESULT: ",menuchoice);
+function onEventUpdate(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
 end;	
 
 -----------------------------------	
 -- onEventFinish	
 -----------------------------------	
 
-function onEventFinish(player,csid,menuchoice)	
-	--print("CSID: ",csid);
-	--print("RESULT: ",menuchoice);
+function onEventFinish(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
 end;	

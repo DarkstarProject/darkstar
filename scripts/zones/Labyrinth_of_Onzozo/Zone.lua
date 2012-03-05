@@ -1,54 +1,53 @@
 -----------------------------------
--- 
--- Zone: Labyrinth_of_Onzozo
--- 
+--
+-- Zone: Labyrinth_of_Onzozo (213)
+--
 -----------------------------------
 
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
+require("scripts/globals/settings");
 require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
+-----------------------------------		
+-- onZoneIn		
+-----------------------------------		
 
-function onZoneIn(player,prevZone)
-cs = -1;
+function onZoneIn(player,prevZone)		
+	cs = -1;	
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(-58.808,-21.364,-286.654,190);
+	end	
+	return cs;	
+end;		
 
-return cs;
-end;
+-----------------------------------		
+-- onRegionEnter		
+-----------------------------------		
 
------------------------------------
--- onRegionEnter          
------------------------------------
+function onRegionEnter(player,region)	
+end;	
 
-function onRegionEnter(player,region)
-end;
+-----------------------------------	
+-- onEventUpdate	
+-----------------------------------	
 
------------------------------------
--- onEventUpdate
------------------------------------
+function onEventUpdate(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
+end;	
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+-----------------------------------	
+-- onEventFinish	
+-----------------------------------	
 
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
-
-
-
+function onEventFinish(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
+end;	

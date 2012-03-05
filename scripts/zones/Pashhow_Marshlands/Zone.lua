@@ -1,40 +1,38 @@
 -----------------------------------
 --
--- Zone: Pashhow_Marshlands
+-- Zone: Pashhow_Marshlands (109)
 --
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
+package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
-function onInitialize(zone)		
-end;		
+function onInitialize(zone)			
+end;			
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------			
+-- onZoneIn			
+-----------------------------------			
 
-function onZoneIn(player,prevZone)		
-	cs = -1;	
-
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(547.841,23.192,696.323,136);
-	end	
-	if (prevZone == 147 and player:getCurrentMission(1) == 10) then	
-		missionStatus = player:getVar("MissionStatus");
-		if (missionStatus < 22) then
+function onZoneIn(player,prevZone)			
+	cs = -1;		
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then		
+		player:setPos(547.841,23.192,696.323,136);	
+	end		
+	if (prevZone == 147 and player:getCurrentMission(1) == 10) then		
+		missionStatus = player:getVar("MissionStatus");	
+		if (missionStatus < 22) then	
 			cs = 0x000a;
-			elseif (missionStatus == 22) then
+		elseif (missionStatus == 22) then	
 			cs = 0x000b;
 		end	
-		elseif (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1 and player:hasItem(1125)) then	
+	elseif (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1 and player:hasItem(1125)) then		
 		colors = player:getVar("ICanHearARainbow");	
 		b = (tonumber(colors) % 32 >= 16);	
 		v = (tonumber(colors) % 128 >= 64);	
@@ -42,35 +40,35 @@ function onZoneIn(player,prevZone)
 		if (b == false) then	
 			player:setVar("ICanHearARainbow_Weather",6);
 			player:setVar("ICanHearARainbow",colors+16);
-			elseif (v == false) then
+		elseif (v == false) then	
 			player:setVar("ICanHearARainbow_Weather",14);
 			player:setVar("ICanHearARainbow",colors+64);
-			else
+		else	
 			cs = -1;
-		end	
-	end		
-	return cs;		
-end;			
+		end
+	end	
+	return cs;	
+end;		
 
------------------------------------			
--- onRegionEnter			
------------------------------------			
+-----------------------------------		
+-- onRegionEnter		
+-----------------------------------		
 
-function onRegionEnter(player,region)			
-end;			
+function onRegionEnter(player,region)		
+end;		
 
------------------------------------			
--- onEventUpdate			
------------------------------------			
+-----------------------------------		
+-- onEventUpdate		
+-----------------------------------		
 
-function onEventUpdate(player,csid,menuchoice)			
-	--print("CSID: ",csid);		
-	--print("RESULT: ",menuchoice);		
+function onEventUpdate(player,csid,option)			
+	--printf("CSID: %u",csid);		
+	--printf("RESULT: %u",option);		
 	if (csid == 0x000d) then		
 		weather = player:getVar("ICanHearARainbow_Weather");	
 		if (player:getVar("ICanHearARainbow") < 127) then	
 			player:updateEvent(0,0,weather);
-			else
+		else	
 			player:updateEvent(0,0,weather,6);
 		end	
 	end		
@@ -78,19 +76,19 @@ end;
 
 -----------------------------------			
 -- onEventFinish			
------------------------------------		
+-----------------------------------			
 
-function onEventFinish(player,csid,menuchoice)		
-	--print("CSID: ",csid);	
-	--print("RESULT: ",menuchoice);	
+function onEventFinish(player,csid,option)		
+	--printf("CSID: %u",csid);	
+	--printf("RESULT: %u",option);	
 	if (csid == 0x000a) then	
 		player:setPos(578, 25, -376, 126);
-		elseif (csid == 0x000b) then
+	elseif (csid == 0x000b) then	
 		player:completeMission(1);
 		player:addRankPoints(10);
 		player:setVar("MissionStatus",0);
 		player:setPos(578, 25, -376, 126);
-		elseif (csid == 0x000d) then
+	elseif (csid == 0x000d) then	
 		player:setVar("ICanHearARainbow_Weather",0);
 	end	
 end;		

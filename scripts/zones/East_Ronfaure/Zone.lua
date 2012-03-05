@@ -1,17 +1,16 @@
 -----------------------------------
 --
--- Zone: East_Ronfaure
+-- Zone: East_Ronfaure (101)
 --
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
+package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 require("scripts/zones/East_Ronfaure/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)		
@@ -23,18 +22,17 @@ end;
 
 function onZoneIn(player,prevZone)		
 	cs = -1;	
-
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(200.015,-3.187,-536.074,187);
 	end	
 	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1 and player:hasItem(1125)) then	
 		colors = player:getVar("ICanHearARainbow");
 		o = (tonumber(colors) % 4 >= 2);
-		cs = 0x0015;	
+		cs = 0x0015;
 		if (o == false) then	
 			player:setVar("ICanHearARainbow_Weather",1);
 			player:setVar("ICanHearARainbow",colors+2);
-			else
+		else	
 			cs = -1;
 		end	
 	end		
@@ -52,9 +50,9 @@ end;
 -- onEventUpdate			
 -----------------------------------			
 
-function onEventUpdate(player,csid,menuchoice)			
-	--print("CSID: ",csid);		
-	--print("RESULT: ",menuchoice);		
+function onEventUpdate(player,csid,option)			
+	--printf("CSID: %u",csid);		
+	--printf("RESULT: %u",option);		
 	if (csid == 0x0015) then		
 		weather = player:getVar("ICanHearARainbow_Weather");	
 		if (weather == 1) then	
@@ -62,7 +60,7 @@ function onEventUpdate(player,csid,menuchoice)
 		end	
 		if (player:getVar("ICanHearARainbow") < 127) then	
 			player:updateEvent(0,0,weather);
-			else
+		else	
 			player:updateEvent(0,0,weather,6);
 		end	
 	end		
@@ -72,10 +70,10 @@ end;
 -- onEventFinish			
 -----------------------------------			
 
-function onEventFinish(player,csid,menuchoice)			
-	--print("CSID: ",csid);		
-	--print("RESULT: ",menuchoice);		
+function onEventFinish(player,csid,option)			
+	--printf("CSID: %u",csid);		
+	--printf("RESULT: %u",option);		
 	if (csid == 0x0015) then		
 		player:setVar("ICanHearARainbow_Weather",0);	
 	end		
-end;
+end;			

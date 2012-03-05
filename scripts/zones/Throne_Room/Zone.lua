@@ -1,15 +1,15 @@
 -----------------------------------
 --
--- Zone: Throne_Room
+-- Zone: Throne_Room (165)
 --
 -----------------------------------
 
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
+require("scripts/globals/settings");
 require("scripts/zones/Throne_Room/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,7 +21,6 @@ end;
 
 function onZoneIn(player,prevZone)		
 	cs = -1;	
-
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(114.308,-7.639,0.022,126);
 	end	
@@ -30,7 +29,7 @@ end;
 
 -----------------------------------		
 -- onRegionEnter		
------------------------------------	
+-----------------------------------		
 
 function onRegionEnter(player,region)	
 end;	
@@ -39,16 +38,16 @@ end;
 -- onEventUpdate	
 -----------------------------------	
 
-function onEventUpdate(player,csid,menuchoice)	
-	--print("CSID: ",csid);
-	--print("RESULT: ",menuchoice);
+function onEventUpdate(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
 end;	
 
 -----------------------------------	
 -- onEventFinish	
 -----------------------------------	
 
-function onEventFinish(player,csid,menuchoice)	
-	--print("CSID: ",csid);
-	--print("RESULT: ",menuchoice);
+function onEventFinish(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
 end;	

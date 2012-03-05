@@ -1,15 +1,15 @@
 -----------------------------------
 --
--- Zone: Balgas_Dais
+-- Zone: Balgas_Dais (146)
 --
 -----------------------------------
 
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
+require("scripts/globals/settings");
 require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,7 +21,6 @@ end;
 
 function onZoneIn(player,prevZone)		
 	cs = -1;	
-
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(317.842,-126.158,380.143,127);
 	end	
@@ -30,7 +29,7 @@ end;
 
 -----------------------------------		
 -- onRegionEnter		
------------------------------------	
+-----------------------------------		
 
 function onRegionEnter(player,region)	
 	print("Player: ",player);
@@ -41,7 +40,7 @@ end;
 -- onEventUpdate	
 -----------------------------------	
 
-function onEventUpdate(player,csid,menuchoice)	
+function onEventUpdate(player,csid,option)	
 	print("zone CSID: ",csid);
 	print("zone RESULT: ",menuchoice);
 end;	
@@ -50,7 +49,7 @@ end;
 -- onEventFinish	
 -----------------------------------	
 
-function onEventFinish(player,csid,menuchoice)	
-	--print("CSID: ",csid);
-	--print("RESULT: ",menuchoice);
+function onEventFinish(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
 end;	

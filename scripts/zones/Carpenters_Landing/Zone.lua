@@ -1,56 +1,53 @@
 -----------------------------------
--- 
--- Zone: Carpenters_Landing
--- 
+--
+-- Zone: Carpenters_Landing (2)
+--
 -----------------------------------
 
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
+require("scripts/globals/settings");
 require("scripts/zones/Carpenters_Landing/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
+-----------------------------------		
+-- onZoneIn		
+-----------------------------------		
 
-function onZoneIn(player,prevZone)
-	cs = -1;
-		if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-			player:setPos(6.509,-9.163,-819.333,239);
-		end
-	return cs;
-end;
+function onZoneIn(player,prevZone)		
+	cs = -1;	
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+		player:setPos(6.509,-9.163,-819.333,239);
+	end	
+	return cs;	
+end;		
 
------------------------------------
--- onRegionEnter          
------------------------------------
+-----------------------------------		
+-- onRegionEnter		
+-----------------------------------		
 
-function onRegionEnter(player,region)
-end;
+function onRegionEnter(player,region)	
+end;	
 
------------------------------------
--- onEventUpdate
------------------------------------
+-----------------------------------	
+-- onEventUpdate	
+-----------------------------------	
 
-function onEventUpdate(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
+function onEventUpdate(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
+end;	
 
------------------------------------
--- onEventFinish
------------------------------------
+-----------------------------------	
+-- onEventFinish	
+-----------------------------------	
 
-function onEventFinish(player,csid,menuchoice)
---print("CSID: ",csid);
---print("RESULT: ",menuchoice);
-end;
-
-
-
+function onEventFinish(player,csid,option)	
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
+end;	
