@@ -292,8 +292,8 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
-        if (m_StatusEffectList.at(i)->GetStatusID() == StatusID && 
-            m_StatusEffectList.at(i)->GetIcon() == 0)
+        if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
+            m_StatusEffectList.at(i)->GetIcon() != 0)
 		{
 			return true;
 		}
