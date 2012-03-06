@@ -4,6 +4,8 @@
 -- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
@@ -34,12 +36,6 @@ function onSpellCast(caster,target,spell)
 	Final = math.floor(basecure);
 	
 	if(Final > cap) then Final = cap; end
-	if (Final + target:getHP() > target:getMaxHP()) then
-		Final = target:getMaxHP() - target:getHP();
-		target:setHP(target:getMaxHP());
-	else
-		target:addHP(Final);
-	end
-	return Final;
 	
+	return target:addHP(Final);
 end;
