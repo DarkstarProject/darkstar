@@ -36,7 +36,7 @@
 *                                                                       *
 ************************************************************************/
 
-CSearchListPacket::CSearchListPacket()
+CSearchListPacket::CSearchListPacket(uint32 Total)
 {
     m_count  = 0;
     m_offset = 192;
@@ -45,7 +45,7 @@ CSearchListPacket::CSearchListPacket()
 
     WBUFB(m_data,(0x0A)) = 0x80;
     WBUFB(m_data,(0x0B)) = 0x80;
-    WBUFB(m_data,(0x0E)) = 0x10; // общее количество найденных персонажей (может отличаться от отправляемого)
+    WBUFB(m_data,(0x0E)) = Total; // общее количество найденных персонажей (может отличаться от отправляемого)
 }
 
 /************************************************************************

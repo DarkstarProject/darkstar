@@ -405,10 +405,10 @@ void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
 
 void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 {                        
-    CSearchListPacket* PSearchPacket = new CSearchListPacket();
-
     CDataLoader* PDataLoader = new CDataLoader();
     std::list<SearchEntity*> SearchList = PDataLoader->GetPlayersList();
+
+    CSearchListPacket* PSearchPacket = new CSearchListPacket(PDataLoader->GetPlayersCount());
 
     for (std::list<SearchEntity*>::iterator it = SearchList.begin(); it != SearchList.end(); ++it)
     {

@@ -51,7 +51,7 @@ class CSearchListPacket
 {
 public:
 
-    CSearchListPacket();
+    CSearchListPacket(uint32 Total);
     
     void AddPlayer(SearchEntity* PPlayer);
 

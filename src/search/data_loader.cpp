@@ -128,6 +128,24 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategry(uint8 AHCategoryID)
 
 /************************************************************************
 *                                                                       *
+*  Количество активных игроков в мире                                   *
+*                                                                       *
+************************************************************************/
+
+uint32 CDataLoader::GetPlayersCount()
+{
+	if( Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions") != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            return Sql_GetUIntData(SqlHandle, 0);
+        }
+    }
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
 *  Список найденных персонажей в игровом мире                           *
 *                                                                       *
 ************************************************************************/
