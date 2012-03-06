@@ -7,6 +7,7 @@
 -- @pos 133 -19 34
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -66,10 +67,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x02c8) then
-		player:completeMission(1);
-		player:delKeyItem(C_L_REPORTS);
-		player:addRankPoints(10);
-		player:setVar("MissionStatus",0);
+		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x02ec) then
 		player:addQuest(BASTOK,TRUE_STRENGTH);
 	elseif(csid == 0x02ed) then

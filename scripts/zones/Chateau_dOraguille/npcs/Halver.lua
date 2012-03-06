@@ -2,8 +2,11 @@
 -- Area: Chateau d'Oraguille
 -- NPC:  Halver
 -- Involved in Mission 2-3
+-- @zone 233
+-- @pos 2 0 0
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -46,7 +49,7 @@ function onTrigger(player,npc)
 			elseif(missionStatus == 4) then
 				player:showText(npc,HALVER_OFFSET+279);
 			end
-		elseif(currentMission == THE_EMISSARY_SANDORIA) then
+		elseif(currentMission == THE_EMISSARY_SANDORIA2) then
 			missionStatus = player:getVar("MissionStatus");
 			if(missionStatus == 17) then
 				player:startEvent(0x01f7);
@@ -92,15 +95,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(LETTER_TO_THE_CONSULS_SANDORIA);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_SANDORIA);
 	elseif(csid == 0x01fb) then
-		player:setVar("MissionStatus",0);
-		player:setRankPoints(0);
-		player:delKeyItem(KINDRED_REPORT);
-		player:addGil(GIL_RATE*3000);
-		player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
-		player:addKeyItem(ADVENTURERS_CERTIFICATE);
-		player:messageSpecial(KEYITEM_OBTAINED,ADVENTURERS_CERTIFICATE);
-		player:setRank(3);
-		player:completeMission(SANDORIA,JOURNEY_ABROAD);
+		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x01fc) then
 		player:setVar("MissionStatus",2);
 	end

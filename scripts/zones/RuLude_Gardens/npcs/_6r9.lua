@@ -77,8 +77,6 @@ function onEventFinish(player,csid,option)
 		else
 			player:addKeyItem(AIRSHIP_PASS);
 			player:messageSpecial(KEYITEM_OBTAINED,AIRSHIP_PASS);
-			player:addGil(GIL_RATE*10000);
-			player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); 
 			player:setTitle(HAVE_WINGS_WILL_FLY);
 		end
 		player:setVar("MissionStatus",4); -- all that's left is to go back to the embassy

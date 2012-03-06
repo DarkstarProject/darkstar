@@ -6,6 +6,7 @@
 -- @pos -12 -12 1
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -21,8 +22,10 @@ require("scripts/zones/Metalworks/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(trade:getItemQty(FADED_CRYSTAL,1) and trade:getItemCount() == 1) then
-		player:startEvent(0x01fa);
+	if(player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:getVar("MissionStatus") == 1) then
+		if(trade:getItemQty(613,1) and trade:getItemCount() == 1) then
+			player:startEvent(0x01fa);
+		end
 	end
 	
 end;
@@ -46,16 +49,16 @@ function onTrigger(player,npc)
 		end
 	elseif(player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE) then
 		if(player:hasKeyItem(C_L_REPORTS)) then
-			player:showText(npc,7376);
+			player:showText(npc,MISSION_DIALOG_CID_TO_AYAME);
 		else
 			player:startEvent(0x01f9);
 		end
 	elseif(player:getFameLevel(BASTOK) >= 4) then
 		CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
-    	if(CidsSecret ~= 2) then
+    	if(CidsSecret ~= QUEST_COMPLETED) then
 			questKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
 
-			if(CidsSecret == 0) then
+			if(CidsSecret == QUEST_AVAILABLE) then
 				player:startEvent(0x01fb);
 			elseif(player:getVar("CidsSecret_Event") == 1 and questKeyItem == false) then
 				player:startEvent(0x01fc);
@@ -94,8 +97,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(BLUE_ACIDITY_TESTER);
 		player:messageSpecial(KEYITEM_OBTAINED, BLUE_ACIDITY_TESTER);
 	elseif(csid == 0x01f8) then
-		player:delKeyItem(RED_ACIDITY_TESTER);
-		player:completeMission(BASTOK,GEOLOGICAL_SURVEY);
+		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x01f9 and option == 0) then
 		if(player:getVar("MissionStatus") == 0) then
 			if(player:getFreeSlotsCount(0) >= 1) then

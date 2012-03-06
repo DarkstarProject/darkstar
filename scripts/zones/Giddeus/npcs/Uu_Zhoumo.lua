@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 require("scripts/zones/Giddeus/TextIDs");
 
 -----------------------------------
@@ -16,11 +17,8 @@ require("scripts/zones/Giddeus/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-	count = trade:getItemCount();
-	gil = trade:getGil();
-
-	if(trade:hasItemQty(ASPIR_KNIFE,1) and count == 1 and gil == 0) then
+	
+	if(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST and trade:hasItemQty(16509,1) and trade:getItemCount() == 1) then -- Trade Aspir Knife
 		player:startEvent(0x0029);
 	end
 

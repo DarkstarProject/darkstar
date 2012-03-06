@@ -6,6 +6,7 @@
 -- @pos 64 -14 -4
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -57,26 +58,6 @@ function onTrigger(player,npc)
 	
 end;
 
---0x02c6  zeruhn mines
---0x02c7  "the chief" and ayame, a letter
---0x02bc  rude default?
---0x02c9  starting 2-3 for windy and sandoria
---0x02ca  ending 2-3
---0x02cb  iron eater join mission
---0x02cd  reminder to go to beadeaux
---0x02d0  next major mission, back from jeuno and on to fei'yin
---0x02d1  acceptance in case previous turned down
---0x03f0
---0x03f1
---0x02f9
---0x02fa
---0x030e
---0x0325
---0x034d
---0x036d
---0x03aa  0x03ab  0x03ac  0x03ad  0x03ae  0x03cb
---0x03c9  0x03ca
-
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -114,16 +95,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_BASTOK);
 		player:setVar("MissionStatus",1);
 	elseif(csid == 0x02ca) then
-		player:addKeyItem(ADVENTURERS_CERTIFICATE);
-		player:setTitle(CERTIFIED_ADVENTURER);
-		player:messageSpecial(KEYITEM_OBTAINED,ADVENTURERS_CERTIFICATE);
-		player:addGil(GIL_RATE*3000);
-		player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
-		player:setRank(3);
-		player:delKeyItem(KINDRED_REPORT);
-		player:setVar("MissionStatus",0);
-		player:setVar("Mission_2_3_Started",0);
-		player:completeMission(BASTOK,THE_EMISSARY);
+		finishMissionTimeline(player,1,csid,option);
 	end
 end;
 

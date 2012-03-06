@@ -54,8 +54,8 @@ WADING_BEASTS             = 4;
 THE_EMISSARY              = 5;
 THE_EMISSARY_SANDORIA     = 6;
 THE_EMISSARY_WINDURST     = 7;
-THE_EMISSARY_SANDORIA     = 8;
-THE_EMISSARY_WINDURST     = 9;
+THE_EMISSARY_SANDORIA2    = 8;
+THE_EMISSARY_WINDURST2    = 9;
 THE_FOUR_MUSKETEERS       = 10;
 TO_THE_FORSAKEN_MINES     = 11;
 JEUNO_MISSION             = 12;
@@ -471,71 +471,65 @@ function getMissionMask(player)
 	return mission_mask,repeat_mission;
 end;
 
-function getStartMissionList(player)
+function getMissionOffset(player,guard,pMission,MissionStatus)
 	
-	-- option, missionid, missionstatus, rep.missionstatuts
-	pNation = player:getNation();
+	offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
+	nation = player:getNation();
 	
-	if(pNation == SANDORIA) then
-		MissionList = {0,SMASH_THE_ORCISH_SCOUTS,0,0,101,BAT_HUNT,1,1,102,SAVE_THE_CHILDREN,1,2,3,THE_RESCUE_DRILL,1,0,104,THE_DAVOI_REPORT,1,1,5,JOURNEY_ABROAD,1,0,110,INFILTRATE_DAVOI,1,5,111,THE_CRYSTAL_SPRING,1,1,12,APPOINTMENT_TO_JEUNO,1,0};
+	if(nation == SANDORIA) then
+	
+		if(guard == 1 or guard == 3) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407};
+		elseif(guard == 2) then GuardCS = {0x07e6,0x07e5,0x07e9,0x07d4,0x07e8,0x07d5,0x07d6,0x07ec,0x07ed,0x07dc,0x07ef};
+		end
+		
+		switch (pMission) : caseof {
+			[0] = function (x) offset = 0; end, -- Mission 1-1
+			[1] = function (x) if(MissionStatus == 2) then cs = GuardCS[1]; else cs = GuardCS[2]; end end, -- Mission 1-2 (2) after check tombstone
+			[2] = function (x) if(MissionStatus == 1) then cs = GuardCS[3]; -- Mission 1-3 before Battlefield
+						   elseif(MissionStatus == 5 and player:hasCompletedMission(0,2) == false) then cs = GuardCS[4]; -- Mission 1-3 after Battlefield
+						   elseif(MissionStatus == 5) then cs = GuardCS[5]; else offset = 24; end end, -- Mission 1-3 after Battlefield (Finish Quest)
+			[3] = function (x) if(MissionStatus == 11) then cs = GuardCS[6]; else offset = 36; end end,
+			[4] = function (x) if(MissionStatus == 3 and player:hasCompletedMission(0,4)) then cs = GuardCS[7];
+						   elseif(MissionStatus == 3) then cs = GuardCS[8]; params = {0,0,0,44}; else offset = 44; end end,
+			[5] = function (x) if(MissionStatus == 1) then offset = 50; else offset = 51; end end,
+			[10] = function (x) if(MissionStatus == 1) then cs = GuardCS[9];
+							elseif(MissionStatus == 4) then offset = 55; 
+							elseif(MissionStatus == 5) then offset = 60;
+							elseif(MissionStatus == 10) then cs = GuardCS[10]; end end, 
+			[11] = function (x) if(MissionStatus == 1) then offset = 68; 
+							elseif(MissionStatus == 2) then cs = GuardCS[11]; end end, 
+			[12] = function (x) if(MissionStatus == 1) then offset = 74; end end, 
+		}
+		return cs, params, offset;
+	
+	elseif(nation == BASTOK) then GuardCS = {};
+		
+		if(guard == 1) then end
+		
+		switch (pMission) : caseof {
+			[0] = function (x) offset = 0; end,
+			[1] = function (x) offset = 3; end,
+			[2] = function (x) offset = 6; end,
+			[3] = function (x) offset = 19; end,
+			[4] = function (x) offset = 21; end,
+			[5] = function (x) offset = 23; end,
+			[10] = function (x) offset = 27; end,
+			[11] = function (x) offset = 30; end,
+			[12] = function (x) offset = 35; end,
+			[14] = function (x) offset = 37; end,
+			[15] = function (x) offset = 39; end,
+			[16] = function (x) offset = 0; end,
+			[17] = function (x) offset = 3; end,
+			[18] = function (x) offset = 5; end,
+			[19] = function (x) offset = 7; end,
+			[20] = function (x) offset = 10; end,
+			[21] = function (x) offset = 12; end,
+			[22] = function (x) offset = 14; end,
+			[23] = function (x) offset = 19; end,
+		}
+		return cs, params, offset;
+		
 	end
-	
-	return MissionList;
-	
-end;
-
-function getMissionOffset(player,guard,pMission,MissionStatus)
-	offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
-	
-	if(guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407}; end
-	
-	switch (pMission) : caseof {
-		[0] = function (x) offset = 0; end,
-		[1] = function (x) if(MissionStatus == 2) then cs = GuardCS[1]; else cs = GuardCS[2]; end end,
-		[2] = function (x) if(MissionStatus == 1) then cs = GuardCS[3]; 
-					   elseif(MissionStatus == 4 and player:hasCompletedMission(0,2) == false) then cs = GuardCS[4]; 
-					   elseif(MissionStatus == 4) then cs = GuardCS[5]; else offset = 24; end end,
-		[3] = function (x) if(MissionStatus == 11) then cs = GuardCS[6]; else offset = 36; end end,
-		[4] = function (x) if(MissionStatus == 3 and player:hasCompletedMission(0,4)) then cs = GuardCS[7];
-					   elseif(MissionStatus == 3) then cs = GuardCS[8]; params = {0,0,0,44}; else offset = 44; end end,
-		[5] = function (x) if(MissionStatus == 1) then offset = 50; else offset = 51; end end,
-		[10] = function (x) if(MissionStatus == 1) then cs = GuardCS[9];
-					    elseif(MissionStatus == 4) then offset = 55; 
-						elseif(MissionStatus == 5) then offset = 60;
-					    elseif(MissionStatus == 10) then cs = GuardCS[10]; end end, 
-		[11] = function (x) if(MissionStatus == 1) then offset = 68; 
-						elseif(MissionStatus == 2) then cs = GuardCS[11]; end end, 
-		[12] = function (x) if(MissionStatus == 1) then offset = 74; end end, 
-	default = function (x) end, }
-	return cs, params, offset;
-	
-end;
-
-function getMissionOffset(player,guard,pMission,MissionStatus)
-	
-	offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
-	
-	if(guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407}; end
-	
-	switch (pMission) : caseof {
-		[0] = function (x) offset = 0; end, -- Mission 1-1
-		[1] = function (x) if(MissionStatus == 2) then cs = GuardCS[1]; else cs = GuardCS[2]; end end, -- Mission 1-2 (2) after check tombstone
-		[2] = function (x) if(MissionStatus == 1) then cs = GuardCS[3]; -- Mission 1-3 before Battlefield
-					   elseif(MissionStatus == 5 and player:hasCompletedMission(0,2) == false) then cs = GuardCS[4]; -- Mission 1-3 after Battlefield
-					   elseif(MissionStatus == 5) then cs = GuardCS[5]; else offset = 24; end end, -- Mission 1-3 after Battlefield (Finish Quest)
-		[3] = function (x) if(MissionStatus == 11) then cs = GuardCS[6]; else offset = 36; end end,
-		[4] = function (x) if(MissionStatus == 3 and player:hasCompletedMission(0,4)) then cs = GuardCS[7];
-					   elseif(MissionStatus == 3) then cs = GuardCS[8]; params = {0,0,0,44}; else offset = 44; end end,
-		[5] = function (x) if(MissionStatus == 1) then offset = 50; else offset = 51; end end,
-		[10] = function (x) if(MissionStatus == 1) then cs = GuardCS[9];
-					    elseif(MissionStatus == 4) then offset = 55; 
-						elseif(MissionStatus == 5) then offset = 60;
-					    elseif(MissionStatus == 10) then cs = GuardCS[10]; end end, 
-		[11] = function (x) if(MissionStatus == 1) then offset = 68; 
-						elseif(MissionStatus == 2) then cs = GuardCS[11]; end end, 
-		[12] = function (x) if(MissionStatus == 1) then offset = 74; end end, 
-	}
-	return cs, params, offset;
 	
 end;
 
@@ -553,34 +547,50 @@ function finishMissionTimeline(player,guard,csid,option)
 	--  7: player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 	--  8: player:addGil(GIL_RATE*number); player:messageSpecial(GIL_OBTAINED,GIL_RATE*number);
 	--  9: player:delKeyItem(number);
-	-- 10: player:addKeyItem(number);
+	-- 10: player:addKeyItem(number); player:messageSpecial(KEYITEM_OBTAINED,number);
 	-- 11: player:setRank(number);
 	-- 12: player:completeMission(nation,mission);
+	-- 13: player:setTitle(number);
 	
 	if(nation == SANDORIA) then
-		timeline = {0,{0x03e8,0},{0,0},{0,0},{0,0},{{1},{2}},0, -- MISSION 1-1 (First Mission)
-					0,{0x03f1,0},{0,0},{0,0},{0,0},0,{{1},{2}}, -- MISSION 1-1 (Repeat)
-					0,{0x03ea,0},{0,0},{0,0},{0,0},{{4},{5,150},{7},{12}},{{4},{5,150},{7},{12}}, -- MISSION 1-1 (Finish)
-					1,{0x03f1,101},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",1},{2}}, -- Mission 1-2 (First & Repeat)
-					1,{0x03ff,0},{0,0},{0,0},{0,0},{{4},{3,"MissionStatus",0},{5,200},{7},{12}},0, -- MISSION 1-2 (Finish First Mission)
-					1,{0x03eb,0},{0,0},{0,0},{0,0},0,{{4},{3,"MissionStatus",0},{5,200},{7},{12}}, -- MISSION 1-2 (Finish Repeat)
-					2,{0x03f1,102},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",2},{2}}, -- MISSION 1-3 (First & Repeat)
-					2,{0x03ec,0},{0,0},{0,0},{0,0},{{11,2},{3,"OptionalCSforSavetheChildren",1},{3,"MissionStatus",0},{5,250},{7},{8,1000},{12}},0, -- MISSION 1-3 (Finish first Mission)
-					2,{0x0400,0},{0,0},{0,0},{0,0},0,{{3,"MissionStatus",0},{5,250},{7},{12}}, -- MISSION 1-3 (Finish Repeat)
-					3,{0x03f1,3},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 2-1 (First & No Repeat)
-					3,{0x03ed,0},{0,0},{0,0},{0,0},{{9,65},{3,"MissionStatus",0},{5,300},{7},{12}},0, -- MISSION 2-1 (Finish)
-					4,{0x03f1,104},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 2-2 (First)
-					4,{0x03f1,4},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",1},{2}}, -- MISSION 2-2 (Repeat)
-					5,{0x03f1,5},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 2-3 (First & No Repeat)
-					10,{0x03f1,110},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",5},{2}}, -- MISSION 3-1 (First & Repeat)
-					10,{0x03f4,0},{0,0},{0,0},{0,0},{{3,"MissionStatus",0},{5,300},{7},{12}},{{3,"MissionStatus",0},{5,300},{7},{12}}, -- MISSION 3-1 (Finish)
-					11,{0x03f1,111},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",1},{2}}, -- MISSION 3-2 (First & Repeat)
-					11,{0x0406,0},{0,0},{0,0},{0,0},{{4},{3,"MissionStatus",2}},0, -- MISSION 3-2 (First: Continue Mission)
-					11,{0x03f5,0},{0,0},{0,0},{0,0},0,{{4},{3,"MissionStatus",0},{5,300},{7},{12}}, -- MISSION 3-2 (Repeat: Finish)
-					12,{0x03f1,12},{0,0},{0,0},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 3-3 (First & No Repeat)
+		timeline = {0,{0x03e8,0},{0x07d0,0},{0x03e8,0},{0,0},{{1},{2}},0, -- MISSION 1-1 (First Mission)
+					0,{0x03f1,0},{0x07d9,0},{0x03f1,0},{0,0},0,{{1},{2}}, -- MISSION 1-1 (Repeat)
+					0,{0x03fc,0},{0x07e4,0},{0x03fc,0},{0,0},{{4},{5,150},{7},{12}},{{4},{5,150},{7},{12}}, -- MISSION 1-1 (Finish First)
+					0,{0x03ea,0},{0x07d2,0},{0x03ea,0},{0,0},{{4},{5,150},{7},{12}},{{4},{5,150},{7},{12}}, -- MISSION 1-1 (Finish Repeat)
+					1,{0x03f1,101},{0x07d9,101},{0x03f1,101},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",1},{2}}, -- Mission 1-2 (First & Repeat)
+					1,{0x03ff,0},{0x07e7,0},{0x03ff,0},{0,0},{{4},{3,"MissionStatus",0},{5,200},{7},{12}},0, -- MISSION 1-2 (Finish First Mission)
+					1,{0x03eb,0},{0x07d3,0},{0x03eb,0},{0,0},0,{{4},{3,"MissionStatus",0},{5,200},{7},{12}}, -- MISSION 1-2 (Finish Repeat)
+					2,{0x03f1,102},{0x07d9,102},{0x03f1,102},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",2},{2}}, -- MISSION 1-3 (First & Repeat)
+					2,{0x03ec,0},{0x07ea,0},{0x03ec,0},{0,0},{{11,2},{3,"OptionalCSforSavetheChildren",1},{3,"MissionStatus",0},{5,250},{7},{8,1000},{12}},0, -- MISSION 1-3 (Finish first Mission)
+					2,{0x0400,0},{0x07e8,0},{0x0400,0},{0,0},0,{{3,"MissionStatus",0},{5,250},{7},{12}}, -- MISSION 1-3 (Finish Repeat)
+					3,{0x03f1,3},{0x07d9,3},{0x03f1,3},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 2-1 (First & No Repeat)
+					3,{0x03ed,0},{0x07d5,0},{0x03ed,0},{0,0},{{9,65},{3,"MissionStatus",0},{5,300},{7},{12}},0, -- MISSION 2-1 (Finish)
+					4,{0x03f1,104},{0x07d9,104},{0x03f1,104},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 2-2 (First)
+					4,{0x03f1,4},{0x07d9,4},{0x03f1,4},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",1},{2}}, -- MISSION 2-2 (Repeat)
+					5,{0x03f1,5},{0x07d9,5},{0x03f1,5},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 2-3 (First & No Repeat)
+					5,{0x01fb,0},{0,0},{0,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{3,"MissionStatus",0},{12}},0, -- MISSION 2-3 (Finish (Halver))
+					10,{0x03f1,110},{0x07d9,110},{0x03f1,110},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",5},{2}}, -- MISSION 3-1 (First & Repeat)
+					10,{0x03f4,0},{0x07dc,0},{0x03f4,0},{0,0},{{3,"MissionStatus",0},{5,300},{7},{12}},{{3,"MissionStatus",0},{5,300},{7},{12}}, -- MISSION 3-1 (Finish)
+					11,{0x03f1,111},{0x07d9,111},{0x03f1,111},{0,0},{{1},{3,"MissionStatus",1},{2}},{{1},{3,"MissionStatus",1},{2}}, -- MISSION 3-2 (First & Repeat)
+					11,{0x0406,0},{0x07ee,0},{0x0406,0},{0,0},{{4},{3,"MissionStatus",2}},0, -- MISSION 3-2 (First: Continue Mission)
+					11,{0x03f5,0},{0x07dd,0},{0x03f5,0},{0,0},0,{{4},{3,"MissionStatus",0},{5,300},{7},{12}}, -- MISSION 3-2 (Repeat: Finish)
+					12,{0x03f1,12},{0x07d9,12},{0x03f1,12},{0,0},{{1},{3,"MissionStatus",1},{2}},0, -- MISSION 3-3 (First & No Repeat)
 					};
 	elseif(nation == BASTOK) then
-	else
+		if(csid == 0x03E9 and option ~= 1073741824 and option ~= 31) then
+			timeline = {option,{0x03E9,option},{0,0},{0,0},{0,0},{{1},{2}},{{1},{2}}};
+		else
+			timeline = {
+				0,{0x03e8,0},{0,0},{0,0},{0,0},{{1},{2}},0, -- MISSION 1-1 (First Mission)
+				1,{0x01f8,0},{0,0},{0,0},{0,0},{{9,4},{12}},0, -- MISSION 1-2 (Finish Mission)
+				2,{0x03F0,0},{0,0},{0,0},{0,0},{{4},{11,2},{8,1000},{12}},0, -- MISSION 1-3 (Finish First Mission)
+				2,{0x03ED,0},{0,0},{0,0},{0,0},0,{{4},{8,1000},{12}}, -- MISSION 1-3 (Finish Repeat)
+				3,{0x02c8,0},{0,0},{0,0},{0,0},{{9,12},{3,"MissionStatus",0},{5,200},{7},{12}},0, -- MISSION 2-1 (Finish (Ayame))
+				4,{0x0174,0},{0,0},{0,0},{0,0},{{4},{5,250},{7},{12}},0, -- MISSION 2-2 (Finish (Alois))
+				4,{0x0175,0},{0,0},{0,0},{0,0},0,{{4},{5,250},{7},{12}}, -- MISSION 2-2 (Finish (Repeat)(Alois))
+				5,{0x02ca,0},{0,0},{0,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{3,"MissionStatus",0},{12}},0, -- MISSION 2-3 (Finish (Naji))
+						};
+		end
 	end
 
 	for cs = 1, table.getn(timeline), 7 do
@@ -605,12 +615,13 @@ function finishMissionTimeline(player,guard,csid,option)
 					[7] = function (x) player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS); end, 
 					[8] = function (x) player:addGil(GIL_RATE*messList[2]); player:messageSpecial(GIL_OBTAINED,GIL_RATE*messList[2]); end, 
 					[9] = function (x) player:delKeyItem(messList[2]); end, 
-					[10] = function (x) player:addKeyItem(messList[2]); end,
+					[10] = function (x) player:addKeyItem(messList[2]); player:messageSpecial(KEYITEM_OBTAINED,messList[2]); end,
 					[11] = function (x) player:setRank(messList[2]); end,
 					[12] = function (x) player:completeMission(nation,timeline[cs]); end, 
+					[13] = function (x) player:setTitle(messList[2]); end, 
 				}
 			end
 		end
 	end
-
+	
 end;

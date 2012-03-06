@@ -8,7 +8,14 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
           KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 			 HOMEPOINT_SET = 6424; -- Home point set!
 
-                  CONQUEST = 10856; -- You've earned conquest points!
+-- Mission Dialogs
+			 DONATE_LOW_RANK = 10849; -- I cannot accept crystals from someone whose rank is still 1...
+			 DONATE_AT_MAXIM = 10899; -- You do not need to donate any more crystals at your current rank...
+			 DONATE_OVERFLOW = 10900; -- Your rank are full. We've added the excess to your conquest points...
+			 DONATE_CRYSTALS = 10901; -- Good work, citizen. We've awarded you rank points for the crystals you've donated.
+	 ORIGINAL_MISSION_OFFSET = 6439;  -- You can consult the “Mission” section of the main menu...
+	  YOU_ACCEPT_THE_MISSION = 6434;  -- You accept the mission
+YOUVE_EARNED_CONQUEST_POINTS = 10856; -- You've earned conquest points!
 
 -- Quest Items
 COPPER_RING = 13454; -- 

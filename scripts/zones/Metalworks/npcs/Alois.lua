@@ -2,10 +2,15 @@
 -- Area: Metalworks
 -- NPC: Alois
 -- Involved in Missions
+-- @zone 237
+-- @pos 96 -20 14
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+require("scripts/globals/missions");
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -14,17 +19,11 @@ require("scripts/zones/Metalworks/TextIDs");
 
 function onTrade(player,npc,trade)
 
-
-	if (player:getCurrentMission(1) == 4) then
-		count = trade:getItemCount();
-		gil = trade:getGil();
-
-		if (trade:hasItemQty(LIZARD_EGG,1) and count == 1 and gil == 0) then
-			if (player:hasCompletedMission(1,4) == 0) then
-				player:startEvent(0x0174);
-			else
-				player:startEvent(0x0175);
-			end
+	if(player:getCurrentMission(BASTOK) == WADING_BEASTS and trade:hasItemQty(4362,1) and trade:getItemCount() == 1) then -- Trade Lizard Egg
+		if(player:hasCompletedMission(BASTOK,WADING_BEASTS) == false) then
+			player:startEvent(0x0174);
+		else
+			player:startEvent(0x0175);
 		end
 	end
 end;
@@ -53,14 +52,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
-	if (csid == 0x0174) then
-		player:completeMission(1);
-		player:tradeComplete();
-		player:addRankPoints(10);
-	elseif (csid == 0x0175) then
-		player:tradeComplete();
-		player:addRankPoints(10);
+	
+	if(csid == 0x0174 or csid == 0x0175) then
+		finishMissionTimeline(player,1,csid,option);
 	end
+	
 end;
-

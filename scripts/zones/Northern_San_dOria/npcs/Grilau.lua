@@ -59,7 +59,7 @@ function onTrigger(player,npc)
 		CurrentMission = player:getCurrentMission(SANDORIA);
 		MissionStatus = player:getVar("MissionStatus");
 		pRank = player:getRank();
-		cs, p, offset = getMissionOffset(player,1,CurrentMission,MissionStatus);
+		cs, p, offset = getMissionOffset(player,3,CurrentMission,MissionStatus);
 		
 		if(CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
 			if(cs == 0) then

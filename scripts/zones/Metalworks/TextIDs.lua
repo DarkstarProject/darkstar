@@ -6,15 +6,22 @@
                 ITEM_OBTAINED = 6433; -- Obtained: <item>
                  GIL_OBTAINED = 6434; -- Obtained <number> gil
              KEYITEM_OBTAINED = 6436; -- Obtained key item: <keyitem>
-			 
--- Quest Items
-FADED_CRYSTAL = 613; -- 
- FIRE_CRYSTAL = 4096; -- 
-   LIZARD_EGG = 4362; -- 
-   RAM_MANTLE = 13450; -- 
 
--- General Text
+-- Mission Dialogs
+			 DONATE_LOW_RANK = 7995; -- I cannot accept crystals from someone whose rank is still 1...
+			 DONATE_AT_MAXIM = 8045; -- You do not need to donate any more crystals at your current rank...
+			 DONATE_OVERFLOW = 8046; -- Your rank are full. We've added the excess to your conquest points...
+			 DONATE_CRYSTALS = 8047; -- Good work, citizen. We've awarded you rank points for the crystals you've donated.
+	 ORIGINAL_MISSION_OFFSET = 14;  -- You can consult the “Mission” section of the main menu...
+	  YOU_ACCEPT_THE_MISSION = 9; -- You accept the mission
+YOUVE_EARNED_CONQUEST_POINTS = 8002; -- You've earned conquest points!
+
 GOOD_LUCK = 7249; -- Good luck on your mission. Bastokers like to do things by the book, so stay out of trouble and follow their rules.
+MISSION_DIALOG_CID_TO_AYAME = 7376; -- Give it to one of his Mythril Musketeers instead...
+
+-- Quest Items
+ FIRE_CRYSTAL = 4096; -- 
+   RAM_MANTLE = 13450; -- 
 
 -- Shop Texts
       NOGGA_SHOP_DIALOG = 0; -- 

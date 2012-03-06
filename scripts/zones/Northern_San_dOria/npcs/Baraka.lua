@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Helaku
+-- NPC:  Baraka
 -- Involved in Missions 2-3
+-- @zone 231
+-- @pos 36 -2 -2
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -23,21 +25,21 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:hasCurrentMission(1)) then
+	if(player:getCurrentMission(BASTOK) ~= 255) then
 		missionStatus = player:getVar("MissionStatus");
 
-		if (player:getCurrentMission(1) == 5) then
-			if (missionStatus == 1) then
+		if(player:getCurrentMission(BASTOK) == THE_EMISSARY) then
+			if(missionStatus == 1) then
 				player:startEvent(0x0245);
-			elseif (missionStatus == 2) then
+			elseif(missionStatus == 2) then
 				player:showText(npc,11141);
 			else
 				player:startEvent(0x021b);
 			end
-		elseif (player:getCurrentMission(1) == 7) then
-			if (missionStatus == 15) then
+		elseif(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST) then
+			if(missionStatus == 15) then
 				player:startEvent(0x0245);
-			elseif (missionStatus == 16) then
+			elseif(missionStatus == 16) then
 				player:showText(npc,11141);
 			else
 				player:startEvent(0x021b);
@@ -46,15 +48,15 @@ function onTrigger(player,npc)
 	else
 		pNation = player:getNation();
 
-		if (pNation == 0) then
+		if(pNation == SANDORIA) then
 			player:startEvent(0x0244);
-		elseif (pNation == 2) then
+		elseif(pNation == WINDURST) then
 			player:startEvent(0x0243);
 		else
 			player:startEvent(0x021b);
 		end
-
 	end
+	
 end;
 
 -----------------------------------
@@ -74,15 +76,12 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x0245) then
-		if (player:getCurrentMission(1) == 5) then
+	if(csid == 0x0245) then
+		if(player:getCurrentMission(BASTOK) == THE_EMISSARY) then
 			player:setVar("MissionStatus",2);
 		else
 			player:setVar("MissionStatus",16);
 		end
 	end
+	
 end;
-
-
-
-
