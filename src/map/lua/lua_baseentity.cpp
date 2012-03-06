@@ -152,7 +152,8 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
 	{
         UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-	return 0;
+    lua_pushinteger( L, result );
+	return 1;
 }
 
 //======================================================//
@@ -218,7 +219,8 @@ inline int32 CLuaBaseEntity::addMP(lua_State *L)
 	{
         UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
 	}
-	return 0;
+    lua_pushinteger( L, result );
+	return 1;
 }
 
 //======================================================//
