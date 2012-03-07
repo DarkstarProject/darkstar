@@ -22,13 +22,13 @@ function getMonsterList(list,zone)
 		end
 	elseif(zone == 144) then
 		if(list == 1) then
-			monsterList = { {2,17367041};
+			monsterList = { {2,17367041}
 							};
 		elseif(list == 2) then
-			monsterList = { {2,17367043};
+			monsterList = { {2,17367043}
 							};
 		elseif(list == 3) then
-			monsterList = { {2,17367045};
+			monsterList = { {2,17367045}
 							};
 		end
 	elseif (zone == 146) then
