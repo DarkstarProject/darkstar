@@ -9,13 +9,14 @@
 --   Start Supply Run Missions and offers a list of already-delivered supplies.
 --   Start an Expeditionary Force by giving an E.F. region insignia to you. 
 -------------------------------------
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+package.loaded["scripts/globals/conquestguards"] = nil;
+-------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
-package.loaded["scripts/globals/conquestguards"] = nil;
 require("scripts/globals/conquestguards");
+require("scripts/zones/Port_Bastok/TextIDs");
 
 NPCNation = 1;		-- NPCs Nationality (0 = Sand, 1 = Bast, 2 = Wind)
 NationAlly = 3; 		-- NPC's Ally Nations (1 = Wind, 2 = Bast, 3 = None, 4 = Sand)
@@ -25,10 +26,6 @@ BastRank = 1; 		-- Bast Rank
 WindRank = 1; 		-- Wind Rank
 CurNRank = BastRank;	-- NPC's National Rank
 CanEquip = 2;		-- 1 = Player can equip, 2 = Player can't equip
-DONATE_LOW_RANK = 7496;
-DONATE_AT_MAXIM = 7546;
-DONATE_OVERFLOW = 7547;
-DONATE_CRYSTALS = 7548;
 Inventory = BastInv;
 size = table.getn(Inventory);
 
@@ -37,24 +34,24 @@ size = table.getn(Inventory);
 -----------------------------------
 
 function onTrade(player,npc,trade)
-   if (player:getNation() == NPCNation) then
+   if(player:getNation() == NPCNation) then
       TradeCount = trade:getItemCount();
       for Crystal = 1,table.getn(DonateCrys),1 do
          TradeCrys = trade:hasItemQty(DonateCrys[Crystal],TradeCount);
-         if (TradeCrys == true) then
-            if (player:getRank() == 1) then
+         if(TradeCrys == true) then
+            if(player:getRank() == 1) then
                player:showText(npc,DONATE_LOW_RANK);
                break; 
-            elseif (player:getRankPoints() == 4000) then
+            elseif(player:getRankPoints() == 4000) then
                player:showText(npc,DONATE_AT_MAXIM);
                break;
-           elseif (DonateCrys[Crystal] == 4102 or DonateCrys[Crystal] == 4103 or 
+           elseif(DonateCrys[Crystal] == 4102 or DonateCrys[Crystal] == 4103 or 
                    DonateCrys[Crystal] == 4244 or DonateCrys[Crystal] == 4245) then
               AddPoints = TradeCount * math.floor(4000 / (player:getRank() * 12 - 16));
             else
                AddPoints = TradeCount * math.floor(4000 / (player:getRank() * 12 - 12));
             end;
-            if (AddPoints + player:getRankPoints() >= 4000) then
+            if(AddPoints + player:getRankPoints() >= 4000) then
                PlayerCP = PlayerCP + (AddPoints + player:getRankPoints()) - 4000;
                player:setRankPoints(4000);
                player:showText(npc,DONATE_OVERFLOW);
@@ -92,11 +89,11 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-   if (option >= 32768 and option <= 32944) then
+   if(option >= 32768 and option <= 32944) then
       for Item = 1,size,3 do
-         if (option == Inventory[Item]) then
+         if(option == Inventory[Item]) then
             CPVerify = 1;
-            if (PlayerCP >= Inventory[Item + 1]) then
+            if(PlayerCP >= Inventory[Item + 1]) then
                CPVerify = 0;
             end;
             player:updateEvent(CanEquip,CPVerify,Inventory[Item + 2]);
@@ -111,19 +108,33 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-   if (player:getNation() == 0 and NationAlly == 4 and SandRank >= CurNRank or 
+   if(player:getNation() == 0 and NationAlly == 4 and SandRank >= CurNRank or 
        player:getNation() == 1 and NationAlly == 2 and BastRank >= CurNRank or 
        player:getNation() == 2 and NationAlly == 1 and WindRank >= CurNRank or
        option == 1) then
       -- Grant Signet
-   elseif (option >= 32768 and option <= 32944) then
+	  duration = (player:getRank() + 3 + 3) * 3600;
+		
+		if(player:hasStatusEffect(EFFECT_SIGNET) == true) then 
+			player:delStatusEffect(EFFECT_SIGNET);
+			player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0); -- Grant Signet
+		else
+			player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0); -- Grant Signet
+		end
+		
+		player:delStatusEffect(EFFECT_SIGNET);
+		ranktime = player:getRank() * 60 * 60;
+		duration = ranktime + 0 + 10800;
+		player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0);
+		
+   elseif(option >= 32768 and option <= 32944) then
       for Item = 1,size,3 do
-         if (option == Inventory[Item]) then
-            if (player:getFreeSlotsCount() >= 1) then
-	       if (player:getNation() == NPCNation) then
+         if(option == Inventory[Item]) then
+            if(player:getFreeSlotsCount() >= 1) then
+	       if(player:getNation() == NPCNation) then
 	          PlayerCP = PlayerCP - Inventory[Item + 1];
                else
-                  if (Inventory[Item + 1] <= 8000) then
+                  if(Inventory[Item + 1] <= 8000) then
                      PlayerCP = PlayerCP - Inventory[Item + 1] * 2;
                   else
                      PlayerCP = PlayerCP - Inventory[Item + 1] + 8000;

@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 		-- San d'Oria Mission 2-3 Part I - Windurst > Bastok
 		if(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST) then
 			if(MissionStatus == 4) then
-				player:startEvent(0x00ee);
+				player:startEvent(0x00ee,1,1,1,1,pNation);
 			elseif(MissionStatus == 5) then
 				player:startEvent(0x00f0);
 			elseif(MissionStatus == 6) then
@@ -54,25 +54,25 @@ function onTrigger(player,npc)
 		end
 	elseif(pNation == BASTOK) then
 		MissionStatus = player:getVar("MissionStatus");
+		-- Bastok Mission 2-3 Part I - Windurst > San d'Oria
+		if(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST) then
+			if(MissionStatus == 2) then
+				player:startEvent(0x00ee,1,1,1,1,pNation);
+			elseif(MissionStatus <= 5) then
+				player:startEvent(0x00f0);
+			elseif(MissionStatus == 6) then
+				player:startEvent(0x00f1);
+			end
 		-- Bastok Mission 2-3 Part II - San d'Oria > Windurst
-		if(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST2) then
+		elseif(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST2) then
 			if(MissionStatus == 7) then
 				player:startEvent(0x00f2,1,1,1,1,pNation);
 			elseif(MissionStatus == 8) then
 				player:startEvent(0x00f3);
-			end
-		-- Bastok Mission 2-3 Part I - Windurst > San d'Oria
-		elseif(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST) then
-			if(MissionStatus == 10) then
-				player:startEvent(0x00ee,1,1,1,1,pNation);
-			elseif(MissionStatus == 11) then
-				player:startEvent(0x00f1);
-			elseif(MissionStatus == 14) then
+			elseif(MissionStatus == 9) then
 				player:startEvent(0x00f4);
-			elseif(MissionStatus == 14.5) then
+			elseif(MissionStatus == 10) then
 				player:startEvent(0x00f5);
-			else
-				player:startEvent(0x00fb);
 			end
 		else
 			player:startEvent(0x00fb);
@@ -104,7 +104,7 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x00ee) then
 		if(player:getNation() == BASTOK) then
-			player:setVar("MissionStatus",11);
+			player:setVar("MissionStatus",3);
 			player:addKeyItem(SWORD_OFFERING);
 			player:messageSpecial(KEYITEM_OBTAINED,SWORD_OFFERING);
 		else
@@ -112,18 +112,12 @@ function onEventFinish(player,csid,option)
 			player:addKeyItem(SHIELD_OFFERING);
 			player:messageSpecial(KEYITEM_OBTAINED,SHIELD_OFFERING);
 		end
-	elseif(csid == 0x00f4) then
-		player:setVar("MissionStatus",14.5);
+	elseif(csid == 0x00f4 or csid == 0x00f6) then
+		player:setVar("MissionStatus",10);
 	elseif(csid == 0x00f2) then
 		player:addKeyItem(DARK_KEY);
 		player:messageSpecial(KEYITEM_OBTAINED,DARK_KEY);
 		player:setVar("MissionStatus",8);
-	elseif(csid == 0x00f6) then
-		if(player:getNation() == SANDORIA) then
-			player:setVar("MissionStatus",10);
-		else
-			player:setVar("MissionStatus",13);
-		end
 	end
 	
 end;

@@ -38,13 +38,19 @@ function onTrigger(player,npc)
 	
 	MissionStatus = player:getVar("MissionStatus");
 	
-	-- San d'Oria Mission 2-3 Part I - Windurst > Bastok
 	if(player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD) then 
+		-- San d'Oria Mission 2-3 Part I - Windurst > Bastok
 		if(MissionStatus == 2) then
 			player:startEvent(0x01c0);
 		elseif(MissionStatus == 7) then
 			player:startEvent(0x1ca);
+		-- San d'Oria Mission 2-3 Part II - Bastok > Windurst
+		elseif(MissionStatus == 6) then
+			player:startEvent(0x01ce);
+		elseif(MissionStatus == 11) then
+			player:startEvent(0x1d4);
 		end
+	-- San d'Oria Mission 2-3 Part I - Windurst > Bastok
 	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST) then
 		if(MissionStatus >= 3 and MissionStatus <= 5) then
 			player:startEvent(0x01c1);
@@ -52,12 +58,6 @@ function onTrigger(player,npc)
 			player:startEvent(0x01c8);
 		end
 	-- San d'Oria Mission 2-3 Part II - Bastok > Windurst
-	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD) then
-		if(MissionStatus == 6) then
-			player:startEvent(0x01ce);
-		elseif(MissionStatus == 11) then
-			player:startEvent(0x1d4);
-		end
 	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST2) then
 		if(MissionStatus == 7 or MissionStatus == 8) then
 			player:startEvent(0x01cf);

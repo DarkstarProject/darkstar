@@ -40,7 +40,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x0039);
 			end
 		elseif(currentMission == THE_EMISSARY_WINDURST) then
-			if(missionStatus == 10) then
+			if(missionStatus == 2) then
 				player:startEvent(0x0032);
 			elseif(missionStatus == 12) then
 				player:startEvent(0x0036);
@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x0035) then
-		player:setVar("MissionStatus", 12);
+		player:setVar("MissionStatus", 4);
 		player:addKeyItem(DULL_SWORD);
 		player:messageSpecial(KEYITEM_OBTAINED,DULL_SWORD);
 		player:delKeyItem(SWORD_OFFERING);

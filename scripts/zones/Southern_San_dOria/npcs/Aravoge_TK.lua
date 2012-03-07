@@ -9,13 +9,14 @@
 --   Start Supply Run Missions and offers a list of already-delivered supplies.
 --   Start an Expeditionary Force by giving an E.F. region insignia to you. 
 -------------------------------------
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/globals/conquestguards"] = nil;
+-------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Southern_San_dOria/TextIDs");
-package.loaded["scripts/globals/conquestguards"] = nil;
 require("scripts/globals/conquestguards");
+require("scripts/zones/Southern_San_dOria/TextIDs");
 
 NPCNation = 0;		-- NPCs Nationality (0 = Sand, 1 = Bast, 2 = Wind)
 NationAlly = 3; 	-- NPC's Ally Nations (1 = Wind, 2 = Bast, 3 = None, 4 = Sand)

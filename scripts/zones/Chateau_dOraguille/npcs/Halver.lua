@@ -42,28 +42,26 @@ function onTrigger(player,npc)
 			player:startEvent(0x01fc);
 		end
 	elseif(pNation == BASTOK) then
+		missionStatus = player:getVar("MissionStatus");
 		if(currentMission == THE_EMISSARY) then
-			missionStatus = player:getVar("MissionStatus");
 			if(missionStatus == 3) then
 				player:startEvent(0x01f5);
-			elseif(missionStatus == 4) then
-				player:showText(npc,HALVER_OFFSET+279);
 			end
+		elseif(currentMission == THE_EMISSARY_SANDORIA) then
+			player:showText(npc,HALVER_OFFSET+279);
 		elseif(currentMission == THE_EMISSARY_SANDORIA2) then
 			missionStatus = player:getVar("MissionStatus");
-			if(missionStatus == 17) then
+			if(missionStatus == 8) then
 				player:startEvent(0x01f7);
-			elseif(missionStatus == 18) then
+			elseif(missionStatus <= 10) then
 				player:showText(npc,HALVER_OFFSET+279);
-			else
-				player:showText(npc,HALVER_OFFSET+1092)
 			end
 		else
-			player:showText(npc,HALVER_OFFSET+1092)
+			player:showText(npc,HALVER_OFFSET+1092);
 		end
 	elseif(pNation == WINDURST) then
 	else
-		player:showText(npc,HALVER_OFFSET+1092)
+		player:showText(npc,HALVER_OFFSET+1092);
 	end
 	
 end;
@@ -89,7 +87,7 @@ function onEventFinish(player,csid,option)
 		player:addMission(BASTOK,THE_EMISSARY_SANDORIA);
 		player:setVar("MissionStatus",4);
 	elseif(csid == 0x01f7) then
-		player:setVar("MissionStatus",18);
+		player:setVar("MissionStatus",9);
 	elseif(csid == 0x01f9) then
 		player:setVar("MissionStatus",2);
 		player:addKeyItem(LETTER_TO_THE_CONSULS_SANDORIA);

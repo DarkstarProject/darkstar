@@ -33,14 +33,8 @@ function onTrigger(player,npc)
 				player:startEvent(0x0245);
 			elseif(missionStatus == 2) then
 				player:showText(npc,11141);
-			else
-				player:startEvent(0x021b);
-			end
-		elseif(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST) then
-			if(missionStatus == 15) then
+			elseif(missionStatus == 7) then
 				player:startEvent(0x0245);
-			elseif(missionStatus == 16) then
-				player:showText(npc,11141);
 			else
 				player:startEvent(0x021b);
 			end
@@ -79,8 +73,9 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0245) then
 		if(player:getCurrentMission(BASTOK) == THE_EMISSARY) then
 			player:setVar("MissionStatus",2);
+			player:delKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
 		else
-			player:setVar("MissionStatus",16);
+			player:setVar("MissionStatus",7.5);
 		end
 	end
 	

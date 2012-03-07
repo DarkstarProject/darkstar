@@ -66,7 +66,7 @@ function onTrigger(player,npc)
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 
-			if(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 18) then
+			if(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 9) then
 				bcnmFight = bcnmFight + 1;
 			end
 
@@ -99,7 +99,7 @@ function onEventUpdate(player,csid,option)
 			player:setVar(zoneReady,player:getVar(zoneReady)+1);
 
 			if(player:getVar(zoneReady) == readyField and readyField ~= 255) then
-				if(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 18) then
+				if(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 9) then
 					player:updateEvent(2,bcnmFight,0,500,6,0);
 					player:levelRestriction(25);
 				elseif(player:hasCompletedMission(player:getNation(),5)) then

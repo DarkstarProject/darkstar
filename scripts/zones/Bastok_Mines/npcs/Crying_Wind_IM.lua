@@ -27,10 +27,6 @@ BastRank = 1; 		-- Bast Rank
 WindRank = 1; 		-- Wind Rank
 CurNRank = BastRank;	-- NPC's National Rank
 CanEquip = 2;		-- 1 = Player can equip, 2 = Player can't equip
-DONATE_LOW_RANK = 7496;
-DONATE_AT_MAXIM = 7546;
-DONATE_OVERFLOW = 7547;
-DONATE_CRYSTALS = 7548;
 Inventory = BastInv;
 size = table.getn(Inventory);
 
@@ -135,6 +131,15 @@ end;
 function onEventFinish(player,csid,option)
 
 	if(option == 1) then -- Grant Signet
+		duration = (player:getRank() + 3 + 3) * 3600;
+		
+		if(player:hasStatusEffect(EFFECT_SIGNET) == true) then 
+			player:delStatusEffect(EFFECT_SIGNET);
+			player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0); -- Grant Signet
+		else
+			player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0); -- Grant Signet
+		end
+		
 		player:delStatusEffect(EFFECT_SIGNET);
 		ranktime = player:getRank() * 60 * 60;
 		duration = ranktime + 0 + 10800;

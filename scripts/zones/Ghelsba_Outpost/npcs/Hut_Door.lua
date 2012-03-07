@@ -98,8 +98,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+printf("onFinish CSID: %u",csid);
+printf("onFinish RESULT: %u",option);
 	
 	pZone = player:getZone();
 	
@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option)
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		elseif(option == 101) then
-			bcnmSpawn(2,option,pZone);
+			bcnmSpawn(1,option,pZone);
 			player:addStatusEffect(EFFECT_BATTLEFIELD,2,0,1800,0);
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_Fight",option);

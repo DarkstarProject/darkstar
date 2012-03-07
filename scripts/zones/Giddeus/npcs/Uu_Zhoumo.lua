@@ -30,16 +30,21 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:hasKeyItem(DULL_SWORD)) then
-		player:startEvent(0x0028);
-	elseif(player:hasKeyItem(SHIELD_OFFERING)) then
+	if(player:hasKeyItem(SHIELD_OFFERING)) then
 		player:startEvent(0x002a);
-	elseif(player:getCurrentMission(1) == 7 and player:getVar("MissionStatus") == 13) then
-		player:startEvent(0x002b);
+	elseif(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST) then
+		if(player:hasKeyItem(DULL_SWORD)) then
+			player:startEvent(0x0028);
+		elseif(player:getVar("MissionStatus") == 5) then
+			player:startEvent(0x002b);
+		else
+			player:startEvent(0x002c);
+		end
 	else
 		player:startEvent(0x002c);
 	end
 end;
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -58,11 +63,11 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x0028) then
-		player:setVar("MissionStatus",13);
+		player:setVar("MissionStatus",5);
 		player:delKeyItem(DULL_SWORD);
 	elseif(csid == 0x0029) then
 		player:tradeComplete();
-		player:setVar("MissionStatus",14);
+		player:setVar("MissionStatus",6);
 	elseif(csid == 0x002a) then
 		player:setVar("MissionStatus",6);
 		player:delKeyItem(SHIELD_OFFERING);
