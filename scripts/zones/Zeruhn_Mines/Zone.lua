@@ -21,9 +21,6 @@ end;
 
 function onZoneIn(player,prevZone)				
 	cs = -1;			
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then			
-		player:setPos(-270.707,14.159,-20.268,0);		
-	end			
 	if (prevZone == 143) then			
 		cs = 0x0096;		
 		local Blades = player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS);		
@@ -34,6 +31,8 @@ function onZoneIn(player,prevZone)
 				cs = 0x0083;
 			end	
 		end		
+	else if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then			
+		player:setPos(-270.707,14.159,-20.268,0);		
 	end			
 	return cs;			
 end;				
