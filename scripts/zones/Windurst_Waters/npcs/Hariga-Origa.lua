@@ -5,12 +5,13 @@
 --  @zone: 238
 --  @pos: -62.511 -6.499 105.234
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Bastok_Markets/TextIDs");
-
+require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -26,18 +27,19 @@ end;
 function onTrigger(player,npc)
 
 GlyphHanger = player:getQuestStatus(WINDURST,GLYPH_HANGER);
-hasIpupuNotes = player:hasKeyItem(NOTES_FROM_IPUPU);
 
 	if (GlyphHanger == QUEST_COMPLETED) then
 		player:startEvent(0x0182);
-	elseif (GlyphHanger == QUEST_ACCEPTED and hasIpupuNotes) then
-		player:startEvent(0x0181);
-	elseif (GlyphHanger == QUEST_ACCEPTED) then
-		player:startEvent(0x017e);
+	elseif (GlyphHanger == QUEST_ACCEPTED)
+		if (player:hasKeyItem(NOTES_FROM_IPUPU)) then
+			player:startEvent(0x0181);
+		else 
+			player:startEvent(0x017e);
+		end
 	elseif (GlyphHanger == QUEST_AVAILABLE) then
 		player:startEvent(0x017d);
 	else
-		player:startEvent(0x0174);
+		player:startEvent(0x0174); -- The line will never be executed
 	end
 end;
 

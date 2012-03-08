@@ -5,10 +5,11 @@
 --  @zone 115
 --  @pos 251.745 -5.5 35.539
 -----------------------------------
+package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/zones/West_Sarutabaruta/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action
@@ -17,20 +18,17 @@ require("scripts/zones/West_Sarutabaruta/TextIDs");
 function onTrade(player,npc,trade)
 end;
 
-
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-
-hasHarigaOrigaNotes = player:hasKeyItem(NOTES_FROM_HARIGAORIGA);
-
-	if (hasHarigaOrigaNotes) then
-		player:startEvent(0x002f, 0, NOTES_FROM_HARIGAORIGA, 0);
+	if (player:hasKeyItem(NOTES_FROM_HARIGAORIGA)) then
+		player:startEvent(0x002f,0,NOTES_FROM_HARIGAORIGA);
+	else
+		player:showText(npc,IPUPU_DIALOG);
 	end
 end;
-
 
 -----------------------------------
 -- onEventUpdate
@@ -40,7 +38,6 @@ function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("OPTION: %u",option);
 end;
-
 
 -----------------------------------
 -- onEventFinish
