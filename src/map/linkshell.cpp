@@ -275,7 +275,7 @@ namespace linkshell
 			{
                 it->second->AddMember(PChar);
 
-                ShowDebug(CL_CYAN"linkshell:AddOnlineMember\n"CL_RESET);
+                ShowDebug(CL_CYAN"linkshell:AddOnlineMember <%u>\n"CL_RESET, it->first);
 			}
         }
         return false;
@@ -298,7 +298,7 @@ namespace linkshell
 			{
 				it->second->DelMember(PChar);
 
-                ShowDebug(CL_CYAN"linkshell:DelOnlineMember\n"CL_RESET);
+                ShowDebug(CL_CYAN"linkshell:DelOnlineMember <%u>\n"CL_RESET, it->first);
 			}
         }
         return false;

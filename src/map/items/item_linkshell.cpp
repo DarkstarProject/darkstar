@@ -30,7 +30,7 @@ CItemLinkshell::CItemLinkshell(uint16 id) : CItem(id)
 {
 	setType(ITEM_LINKSHELL);
 
-    m_LinkshellID = 100;
+    m_LinkshellID = 0;
 	WBUFW(&m_LSColor,0) = 0;
 }
 

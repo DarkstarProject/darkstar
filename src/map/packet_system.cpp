@@ -2369,6 +2369,23 @@ int32 SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* da
                 break;
                 case 1: // equip linkshell
                 {
+                    if (PItemLinkshell->GetLSID() == 0) // linkshell no exists, item is unusable
+                    {
+                        PChar->pushPacket(new CMessageSystemPacket(0,0,110));
+                        return 0;
+                    }
+                    if (PChar->PLinkshell != NULL) // switching linkshell group
+                    {
+                        CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+
+                        if (POldItemLinkshell != NULL && (POldItemLinkshell->getType() & ITEM_LINKSHELL))
+                        {
+                            linkshell::DelOnlineMember(PChar, POldItemLinkshell);
+
+                            POldItemLinkshell->setSubType(ITEM_UNLOCKED);
+                            PChar->pushPacket(new CInventoryAssignPacket(POldItemLinkshell, INV_NORMAL));
+                        }
+                    }
                     linkshell::AddOnlineMember(PChar, PItemLinkshell);
 
                     PItemLinkshell->setSubType(ITEM_LOCKED);
