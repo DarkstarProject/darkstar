@@ -59,6 +59,7 @@ namespace charutils
 	void	BuildingCharTraitsTable(CCharEntity* PChar); 
 
 	void	CheckWeaponSkill(CCharEntity* PChar, uint8 skill);
+    uint8   AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem);
 	uint8	AddItem(CCharEntity* PChar, uint8 LocationID, uint16 itemID, uint32 quantity = 1, bool silence = false);
 	uint32	UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity);
 	void	CheckValidEquipment(CCharEntity* PChar);

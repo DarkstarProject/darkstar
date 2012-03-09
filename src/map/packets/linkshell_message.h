@@ -26,6 +26,8 @@
 
 #include "../../common/cbasetypes.h"
 
+#include "../linkshell.h"
+
 #include "basic.h"
 
 /************************************************************************
@@ -38,7 +40,7 @@ class CLinkshellMessagePacket : public CBasicPacket
 {
 public:
 
-    CLinkshellMessagePacket();
+    CLinkshellMessagePacket(CLinkshell* PLinkshell);
 };
 
 #endif

@@ -67,7 +67,7 @@ public:
 	int32 getMaxHP(lua_State*);				// Get max hp of entity
 	int32 getMaxMP(lua_State*);				// Get max mp of entity
 
-    int32 getStat(lua_State*);				// STR,DEX,VIT,AGI,INT,MND,CHR
+    int32 getStat(lua_State*);				// STR,DEX,VIT,AGI,INT,MND,CHR,ATT,DEF
 	
 	int32 getXPos(lua_State*);				// Get Entity X position
 	int32 getYPos(lua_State*);				// Get Entity Y position
@@ -118,7 +118,10 @@ public:
 	int32 addSpell(lua_State*);				// Add spell to Entity spell list
     int32 hasSpell(lua_State*);				// Check to see if character has item in spell list
 	int32 canLearnSpell(lua_State*);		// Check to see if character can learn spell, 0 if so
-	int32 delSpell(lua_State*);				// Remove spell from Entity spell list (debug purposes only?)
+	int32 delSpell(lua_State*);				// Remove spell from Entity spell list
+
+    int32 addWeaponSkill(lua_State*);       // 
+    int32 delWeaponSkill(lua_State*);       //
 
 	int32 getMainJob(lua_State*);			// Returns Entity Main Job
 	int32 getMainLvl(lua_State*);			// Gets Entity Main Job Level

@@ -86,6 +86,7 @@
 #include "packets/inventory_size.h"
 #include "packets/lock_on.h"
 #include "packets/linkshell_equip.h"
+#include "packets/linkshell_message.h"
 #include "packets/menu_config.h"
 #include "packets/menu_merit.h"
 #include "packets/message_basic.h"
@@ -322,18 +323,17 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	if (PChar->status == STATUS_SHUTDOWN)
 	{
-		if (PChar->PParty != NULL)
+		if (PChar->PParty != NULL)      // удаляем персонажа из группы
 		{
 			PChar->PParty->RemoveMember(PChar);
 		}
-        if (PChar->PLinkshell != NULL)
+        if (PChar->PLinkshell != NULL)  // удаляем персонажа из linkshell
         {
-            // TODO: ...
+            PChar->PLinkshell->DelMember(PChar);
         }
 		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+5000, session, CTaskMgr::TASK_ONCE, map_close_session));
 	} 
-    // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру 
-	else  
+	else  // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру 
 	{
         charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
 	}
@@ -752,6 +752,8 @@ int32 SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	    if (charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -quantity) != 0) 
 	    {
+            // TODO: сломать linkshell, если раковина была выброшена
+
 		    PChar->pushPacket(new CMessageStandardPacket(NULL, ItemID, quantity, 180));
             PChar->pushPacket(new CInventoryFinishPacket());
 	    }
@@ -1815,31 +1817,34 @@ int32 SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* da
 	if (PChar->id == CharID)
 		return 0;
 
-    CCharEntity* PInvitee = zoneutils::GetCharFromRegion(CharID, conquest::GetCurrentRegion(PChar->getZone()));
+    if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
+    {
+        CCharEntity* PInvitee = zoneutils::GetCharFromRegion(CharID, conquest::GetCurrentRegion(PChar->getZone()));
 
-	if (PInvitee != NULL)
-	{
-		if (PInvitee->PParty != NULL)
-		{
-			PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 12));
-			return 0;
-		}
-		if (PInvitee->isDead() ||
-			PInvitee->InvitePending != 0)
-		{
-			PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
-			return 0;
-		}
+	    if (PInvitee != NULL)
+	    {
+		    if (PInvitee->PParty != NULL)
+		    {
+			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 12));
+			    return 0;
+		    }
+		    if (PInvitee->isDead() ||
+			    PInvitee->InvitePending != 0)
+		    {
+			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
+			    return 0;
+		    }
 
-		PInvitee->InvitePending = PChar->id;
-		PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
+		    PInvitee->InvitePending = PChar->id;
+		    PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
 
-		if (PChar->PParty != NULL &&
-			PChar->PParty->GetSyncTarget() != NULL)
-		{
-			PInvitee->pushPacket(new CMessageStandardPacket(PInvitee, 0, 0, 235));
-		}
-	}
+		    if (PChar->PParty != NULL &&
+			    PChar->PParty->GetSyncTarget() != NULL)
+		    {
+			    PInvitee->pushPacket(new CMessageStandardPacket(PInvitee, 0, 0, 235));
+		    }
+	    }
+    }
 	return 0;
 }
 
@@ -1884,7 +1889,7 @@ int32 SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
 	switch(RBUFB(data,(0x0A)))
 	{
-		case 0: // from party
+		case 0: // party
 		{
 			if (PChar->PParty != NULL &&
 				PChar->PParty->GetLeader() == PChar)
@@ -1893,14 +1898,19 @@ int32 SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* da
 			}
 		}
 		break;
-        //case 1: // from linkshell
-        //{
-        //    if (PChar->PLinkshell != NULL)
-        //    {
-        //
-        //    }
-        //}
-        //break;
+        case 1: // linkshell
+        {
+            if (PChar->PLinkshell != NULL)
+            {
+                CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+
+                if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL) && PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL)
+                {
+                    PChar->PLinkshell->RemoveMemberByName(data+0x0C);
+                }
+            }
+        }
+        break;
 		default:
 		{
 			ShowError(CL_RED"SmallPacket0x071 : unknown byte <%.2X>\n"CL_RESET, RBUFB(data,(0x0A)));
@@ -1933,7 +1943,10 @@ int32 SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* da
 			{
 				CParty* PParty = new CParty(PInviter);
 			}
-			PInviter->PParty->AddMember(PChar);
+            if (PInviter->PParty->GetLeader() == PInviter)
+            {
+			    PInviter->PParty->AddMember(PChar);   
+            }
 		}
 	}
 	PChar->InvitePending = 0;
@@ -1965,7 +1978,7 @@ int32 SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
 	switch(RBUFB(data,(0x14)))
 	{
-		case 0:
+		case 0: // party
 		{
 			if (PChar->PParty != NULL &&
 				PChar->PParty->GetLeader() == PChar)
@@ -1974,6 +1987,14 @@ int32 SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, int8* da
 			}
 		}
 		break;
+        case 1: // linkshell
+        {
+            if (PChar->PLinkshell != NULL)
+            {
+                // TODO: ....
+            }
+        }
+        break;
 		default:
 		{
 			ShowError(CL_RED"SmallPacket0x077 : changing role packet with unknown byte <%.2X>\n"CL_RESET, RBUFB(data,(0x14)));
@@ -2263,7 +2284,29 @@ int32 SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 /************************************************************************
 *                                                                       *
-*  Создание и экипировка LinkShell                         				*
+*  Создание жемчужины (Pearl) экипированной LinkShell                   *
+*                                                                       *
+************************************************************************/					
+
+int32 SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+
+    if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
+    {
+        CItemLinkshell* PItemLinkPearl = new CItemLinkshell(*PItemLinkshell);
+
+        PItemLinkPearl->setID(515);
+        PItemLinkPearl->setSubType(ITEM_UNLOCKED);
+
+        charutils::AddItem(PChar, LOC_INVENTORY, PItemLinkPearl);
+    }
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Создание и экипировка LinkShell                                      *
 *                                                                       *
 ************************************************************************/					
 
@@ -2274,13 +2317,15 @@ int32 SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* da
 
     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-    if (PItemLinkshell != NULL || (PItemLinkshell->getType() & ITEM_LINKSHELL))
+    if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
     {
         if (PItemLinkshell->getID() == 512) // создание новой linkshell
         {
             uint32   LinkshellID    = 0;
             uint16   LinkshellColor = RBUFW(data,(0x04));
             string_t LinkshellName  = data+8;
+
+            // TODO: проверить имя на необходимость добавления окончания строки 
 
             if (LinkshellID = linkshell::RegisterNewLinkshell(LinkshellName.c_str(), LinkshellColor)) // здесь дейтсвительно присваивание
             {
@@ -2291,7 +2336,7 @@ int32 SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* da
                 {
                     PItemLinkshell->setID(513);
                     PItemLinkshell->SetLSID(LinkshellID);
-                    PItemLinkshell->setSignature(data+8);
+                    PItemLinkshell->setSignature((int8*)LinkshellName.c_str());
                     PItemLinkshell->SetLSColor(LinkshellColor);
 
                     PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
@@ -2332,12 +2377,13 @@ int32 SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* da
                     PChar->nameflags.flags |= FLAG_LINKSHELL; 
 
                     PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_LINKSHELL));
-                    PChar->pushPacket(new CInventoryFinishPacket());
                 }
                 break;
             }
             charutils::SaveCharStats(PChar);
             charutils::SaveCharEquip(PChar);
+
+            if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
             PChar->pushPacket(new CLinkshellEquipPacket(PChar));
             PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
@@ -2600,6 +2646,69 @@ int32 SmallPacket0x0E0(map_session_data_t* session, CCharEntity* PChar, int8* da
     //Others
 		//0x73 - others
 	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Отправляем персонажу приветственное сообщение LinkShell (/lsmes)     *
+*                                                                       *
+************************************************************************/					
+
+int32 SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    if (PChar->PLinkshell != NULL)
+    {
+        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell));
+    }
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Обновление преветственного cообщения LinkShell                       *
+*                                                                       *
+************************************************************************/					
+
+int32 SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+
+    if (PChar->PLinkshell != NULL && (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL)))
+    {
+        switch (RBUFB(data,(0x05)) & 0xF0) // назначение первых бит пока неизвестно
+        {
+            case 0x20: // устанавливаем права на изменение сообщения
+            {
+                // TODO: ....
+            }
+            break;
+            case 0x40: // изменяем сообщение
+            {
+                if (PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL ||
+                    PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
+                {
+                    string_t Message = data+12;
+                    uint32   MessageTime = time(NULL);
+
+                    const int8* Query = "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %u WHERE linkshellid = %u LIMIT 1";
+
+                    if (Sql_Query(SqlHandle, Query, PChar->GetName(), Message.c_str(), MessageTime, PChar->PLinkshell->getID()) != SQL_ERROR && 
+                        Sql_AffectedRows(SqlHandle) != 0)
+                    {
+                        PChar->PLinkshell->setPoster((int8*)PChar->GetName());
+                        PChar->PLinkshell->setMessage((int8*)Message.c_str());
+                        PChar->PLinkshell->setMessageTime(MessageTime);
+
+                        PChar->PLinkshell->PushPacket(NULL, new CLinkshellMessagePacket(PChar->PLinkshell));
+                        return 0;
+                    }
+                }
+            }
+            break;
+        }
+    }
+    PChar->pushPacket(new CLinkshellMessagePacket(NULL)); // you are not authorized to this action
+    return 0;
 }
 
 /************************************************************************
@@ -3115,7 +3224,7 @@ void PacketParderInitialize()
     PacketParcer[0x0B5] = &SmallPacket0x0B5;
     PacketParcer[0x0B6] = &SmallPacket0x0B6;
     PacketParcer[0x0BE] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x0C3] = &SmallPacket0xFFF;	// not implemented
+    PacketParcer[0x0C3] = &SmallPacket0x0C3;
     PacketParcer[0x0C4] = &SmallPacket0x0C4;
     PacketParcer[0x0CB] = &SmallPacket0xFFF;	// not implemented
     PacketParcer[0x0D2] = &SmallPacket0x0D2;
@@ -3126,8 +3235,8 @@ void PacketParderInitialize()
     PacketParcer[0x0DD] = &SmallPacket0x0DD;
     PacketParcer[0x0DE] = &SmallPacket0x0DE;
     PacketParcer[0x0E0] = &SmallPacket0x0E0;
-    PacketParcer[0x0E1] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x0E2] = &SmallPacket0xFFF;	// not implemented
+    PacketParcer[0x0E1] = &SmallPacket0x0E1;
+    PacketParcer[0x0E2] = &SmallPacket0x0E2;
     PacketParcer[0x0E7] = &SmallPacket0x0E7;
     PacketParcer[0x0E8] = &SmallPacket0x0E8;
     PacketParcer[0x0EA] = &SmallPacket0x0EA;

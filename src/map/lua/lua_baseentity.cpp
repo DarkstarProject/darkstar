@@ -102,8 +102,7 @@ inline int32 CLuaBaseEntity::leavegame(lua_State *L)
 	((CCharEntity*)m_PBaseEntity)->status = STATUS_SHUTDOWN;
 	((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,1));
 
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //======================================================//

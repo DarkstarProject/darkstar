@@ -27,8 +27,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
-#include <map>
-
+#include <vector>
 
 /************************************************************************
 *                                                                       *
@@ -48,8 +47,10 @@ public:
 
     uint32      getID();
     uint16      getColor();
+    uint32      getMessageTime();
 
     void        setColor(uint16 color);
+    void        setMessageTime(uint32 time);
 
     const int8* getName();
 	void		setName(int8* name);
@@ -58,6 +59,11 @@ public:
     const int8* getMessage();
 	void		setMessage(int8* message);
 
+    void        AddMember(CCharEntity* PChar);
+    void        DelMember(CCharEntity* PChar);
+
+    void        RemoveMemberByName(int8* MemberName);
+
     void        PushPacket(CCharEntity* PChar, CBasicPacket* packet);
 
     std::vector<CCharEntity*> members; // список участников linkshell
@@ -65,6 +71,7 @@ public:
 private:
 
     uint32      m_id;
+    uint32      m_time;
     uint16      m_color;
 
     string_t    m_name;

@@ -806,6 +806,8 @@ int32 doSynthResult(CCharEntity* PChar)
 			}
 		}
 
+        // TODO: перейти на новую функцию AddItem, чтобы не обновлять signature ручками
+
 		invSlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
 
 		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
@@ -814,6 +816,8 @@ int32 doSynthResult(CCharEntity* PChar)
 		{
 			if ((PItem->getFlag() & ITEM_FLAG_INSCRIBABLE) && (PChar->Container->getItemID(0) > 0x1080))
 			{
+                // TODO: вынести метод в uitls (добавить метод обратного действия)
+
 				uint8 signature[12];
 				for(uint8 currChar = 0; currChar <= PChar->name.size(); ++currChar)
 				{

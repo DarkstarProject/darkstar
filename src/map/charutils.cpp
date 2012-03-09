@@ -614,6 +614,7 @@ void LoadInventory(CCharEntity* PChar)
         {
 		    PItem->setSubType(ITEM_LOCKED);
             PChar->equip[SLOT_LINK] = SlotID;
+
             linkshell::AddOnlineMember(PChar, (CItemLinkshell*)PItem);
         }
 	}
@@ -734,66 +735,77 @@ void SendInventory(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
+// TODO: мне не нравится параметр silens, нужно придумать что-нибудь более элегантное
+
 uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quantity, bool silence)
 {
     if (PChar->getStorage(LocationID)->GetFreeSlotsCount() == 0 || quantity == 0)
+    {
         return ERROR_SLOTID;
+    }
 
 	CItem* PItem = itemutils::GetItem(ItemID);
 
 	if (PItem != NULL) 
 	{
-        if (PItem->getType() & ITEM_CURRENCY)
-        {
-            UpdateItem(PChar, LocationID, 0, quantity);
-            return 0;
-        }
-		if (PItem->getFlag() & ITEM_FLAG_RARE)
-		{
-			for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
-			{
-				if (PChar->getStorage(LocID)->SearchItem(ItemID) != ERROR_SLOTID)
-				{
-					if (!silence) 
-                    {
-                        PChar->pushPacket(new CMessageStandardPacket(PChar, ItemID, 0, 220));
-                    }
-					delete PItem;
-					return ERROR_SLOTID;
-				}
-			}
-		}
-
-		quantity = (quantity > PItem->getStackSize() ? PItem->getStackSize() : quantity);
-
 		PItem->setQuantity(quantity);
-
-		uint8 SlotID = PChar->getStorage(LocationID)->InsertItem(PItem);
-
-		if (SlotID != ERROR_SLOTID)
-		{
-			uint8 charges = (PItem->getType() & ITEM_USABLE ? ((CItemUsable*)PItem)->getMaxCharges() : 0);
-
-			const int8* fmtQuery = "INSERT INTO char_inventory(charid, location, slot, itemId, quantity, signature, currCharges) \
-									VALUES(%u,%u,%u,%u,%u,'',%u)";
-
-			if( Sql_Query(SqlHandle,fmtQuery,PChar->id,LocationID,SlotID,ItemID,quantity,charges) == SQL_ERROR )
-			{
-				ShowError(CL_RED"charplugin::AddItem: Cannot insert item to database\n"CL_RESET);
-				return ERROR_SLOTID;
-			}
-
-			PChar->pushPacket(new CInventoryItemPacket(PItem, LocationID, SlotID));
-			PChar->pushPacket(new CInventoryFinishPacket());
-		}
-		else
-		{
-			ShowDebug(CL_CYAN"charplugin::AddItem: Location %i is full\n"CL_RESET, LocationID);
-		}
-		return SlotID;
+        return AddItem(PChar, LocationID, PItem);
 	}
-	ShowDebug(CL_CYAN"charplugin::AddItem: Item <%i> is not found in a database\n"CL_RESET, ItemID);
+	ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n"CL_RESET, ItemID);
 	return ERROR_SLOTID;
+}
+
+/************************************************************************
+*																		*
+*  Добавляем новый предмет персонажу в выбранный контейнер				*
+*																		*
+************************************************************************/
+
+uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
+{
+    if (PItem->getType() & ITEM_CURRENCY)
+    {
+        UpdateItem(PChar, LocationID, 0, PItem->getQuantity());
+        delete PItem;
+        return 0;
+    }
+    if (PItem->getFlag() & ITEM_FLAG_RARE)
+    {
+        for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
+        {
+            if (PChar->getStorage(LocID)->SearchItem(PItem->getID()) != ERROR_SLOTID)
+            {
+                PChar->pushPacket(new CMessageStandardPacket(PChar, PItem->getID(), 0, 220));
+                delete PItem;
+                return ERROR_SLOTID;
+            }
+        }
+    }
+
+    uint8 SlotID = PChar->getStorage(LocationID)->InsertItem(PItem);
+
+    if (SlotID != ERROR_SLOTID)
+    {
+        uint8 charges = (PItem->getType() & ITEM_USABLE ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
+
+        const int8* Query = "INSERT INTO char_inventory(charid, location, slot, itemId, quantity, signature, currCharges) \
+                             VALUES(%u,%u,%u,%u,%u,'%s',%u)";
+
+        if( Sql_Query(SqlHandle, Query, PChar->id, LocationID, SlotID, PItem->getID(), PItem->getQuantity(), PItem->getSignature(), charges) == SQL_ERROR )
+        {
+            ShowError(CL_RED"charplugin::AddItem: Cannot insert item to database\n"CL_RESET);
+            PChar->getStorage(LocationID)->InsertItem(NULL, SlotID);
+            delete PItem;
+            return ERROR_SLOTID;
+        }
+        PChar->pushPacket(new CInventoryItemPacket(PItem, LocationID, SlotID));
+	    PChar->pushPacket(new CInventoryFinishPacket());
+    }
+    else
+    {
+        ShowDebug(CL_CYAN"charplugin::AddItem: Location %i is full\n"CL_RESET, LocationID);
+    }
+    return SlotID;
 }
 
 /************************************************************************

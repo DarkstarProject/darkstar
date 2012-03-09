@@ -197,10 +197,6 @@ void CAIMobDummy::ActionDropItems()
 {
     if ((m_Tick - m_LastActionTime) > m_PMob->m_DropItemTime)
 	{
-		m_ActionType = ACTION_DEATH;
-		
-		// TODO: условие не дописано. питомец персонажа тоже может убить монстра
-
 		CCharEntity* PChar = (CCharEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID & 0x0FFF, TYPE_PC);
 
 		if (PChar != NULL)
@@ -229,6 +225,7 @@ void CAIMobDummy::ActionDropItems()
 			    }
 			}
 		}
+        m_ActionType = ACTION_DEATH;
 	}				
 }
 
@@ -287,6 +284,8 @@ void CAIMobDummy::ActionSpawn()
         m_PMob->m_DropItemTime = 1000;
 		m_PMob->status = STATUS_UPDATE;
 		m_PMob->animation = ANIMATION_NONE;
+
+        m_PMob->PEnmityContainer->Clear();
 
 		uint8 level = m_PMob->m_minLevel;
 
