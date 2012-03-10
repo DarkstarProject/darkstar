@@ -276,9 +276,6 @@ int32 lobbydata_parse(int32 fd)
 
 				memcpy(MainReservePacket,ReservePacket,RBUFB(ReservePacket,0));
 
-				// if client got error "no responce from map-server" we need to delete old session record
-				Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE accid = %u", sd->accid);
-				
 				int8 session_key[sizeof(key3)*2+1];
 				bin2hex(session_key,key3,sizeof(key3));
 

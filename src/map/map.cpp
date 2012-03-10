@@ -148,6 +148,9 @@ int32 do_init(int32 argc, int8** argv)
 	}
     Sql_Keepalive(SqlHandle);
 
+    // отчищаем таблицу сессий при старте сервера (временное решение, т.к. в кластере это не будет работать)
+    Sql_Query(SqlHandle, "TRUNCATE TABLE accounts_sessions"); 
+
 	ShowMessage("\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
 	ShowStatus("do_init: zlib is reading");
 	zlib_init();
@@ -188,8 +191,8 @@ int32 do_init(int32 argc, int8** argv)
 
     CVanaTime::getInstance()->setCustomOffset(map_config.vanadiel_time_offset);
 
-	CTaskMgr::getInstance()->AddTask("time_server", gettick()+1000, NULL, CTaskMgr::TASK_INTERVAL, time_server, 2400);
-	CTaskMgr::getInstance()->AddTask("map_cleanup", gettick()+5000, NULL, CTaskMgr::TASK_INTERVAL, map_cleanup, map_config.max_time_lastupdate);
+	CTaskMgr::getInstance()->AddTask("time_server", gettick(), NULL, CTaskMgr::TASK_INTERVAL, time_server, 2400);
+	CTaskMgr::getInstance()->AddTask("map_cleanup", gettick(), NULL, CTaskMgr::TASK_INTERVAL, map_cleanup, 5000);
 
 	CREATE(g_PBuff,   int8, map_config.buffer_size + 20);
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
@@ -430,7 +433,6 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
 			map_session_data->PChar = PChar;
 		}
-
 		map_session_data->client_packet_id = 0;
 		map_session_data->server_packet_id = 0;
 		return 0;
@@ -658,29 +660,52 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 	map_session_list_t::iterator it = map_session_list.begin();
 
 	while(it != map_session_list.end())
-	{
+	{ 
 		map_session_data_t* map_session_data = it->second;
 
-		if( (time(NULL) - map_session_data->last_update) > (map_config.max_time_lastupdate/1000) )
-		{
-			if (map_session_data->PChar) 
-			{
-				ShowWarning("map_cleanup: "CL_WHITE"%s"CL_RESET" timed out, session closed\n",map_session_data->PChar->GetName());
+        CCharEntity* PChar = map_session_data->PChar;
 
-				map_session_data->PChar->status = STATUS_SHUTDOWN;
-                PacketParcer[0x00D](map_session_data, map_session_data->PChar, 0);
-			} else {
-				ShowWarning("map_cleanup: "CL_WHITE"WHITHOUT CHAR"CL_RESET" timed out, session closed\n");
+        if ((time(NULL) - map_session_data->last_update) > 5)
+        {
+            if (PChar != NULL && !(PChar->nameflags.flags & FLAG_DC))
+            {
+                PChar->nameflags.flags |= FLAG_DC;
+                if (PChar->status == STATUS_NORMAL)
+                {
+                    PChar->status = STATUS_UPDATE;
+                    PChar->loc.zone->SpawnPCs(PChar);
+                }
+            }
+		    if ((time(NULL) - map_session_data->last_update) > map_config.max_time_lastupdate)
+		    {
+			    if (PChar != NULL) 
+			    {
+				    ShowDebug(CL_CYAN"map_cleanup: %s timed out, session closed\n"CL_RESET, PChar->GetName());
 
-				const int8* fmtQuery = "DELETE FROM accounts_sessions WHERE client_addr = %u AND client_port = %u";
-				Sql_Query(SqlHandle,fmtQuery,map_session_data->client_addr,map_session_data->client_port);
+				    PChar->status = STATUS_SHUTDOWN;
+                    PacketParcer[0x00D](map_session_data, PChar, 0);
+			    } else {
+				    ShowWarning(CL_YELLOW"map_cleanup: WHITHOUT CHAR timed out, session closed\n"CL_RESET);
 
-				aFree(map_session_data->server_packet_data);
-				delete map_session_data;
-				map_session_list.erase(it++);
-				continue;
-			}
-		}
+				    const int8* Query = "DELETE FROM accounts_sessions WHERE client_addr = %u AND client_port = %u";
+				    Sql_Query(SqlHandle, Query, map_session_data->client_addr, map_session_data->client_port);
+
+				    aFree(map_session_data->server_packet_data);
+				    delete map_session_data;
+				    map_session_list.erase(it++);
+				    continue;
+			    }
+		    }
+        }
+        else if (PChar != NULL && (PChar->nameflags.flags & FLAG_DC))
+        {
+            PChar->nameflags.flags &= ~FLAG_DC;
+            if (PChar->status == STATUS_NORMAL) 
+            {
+                PChar->status = STATUS_UPDATE;
+                PChar->loc.zone->SpawnPCs(PChar);
+            }
+        }
 		++it;
 	}
 	return 0;

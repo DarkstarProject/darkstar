@@ -331,7 +331,7 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
         {
             PChar->PLinkshell->DelMember(PChar);
         }
-		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+5000, session, CTaskMgr::TASK_ONCE, map_close_session));
+		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+2500, session, CTaskMgr::TASK_ONCE, map_close_session));
 	} 
 	else  // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру 
 	{
