@@ -28,7 +28,7 @@ function onMobDeath(mob,killer)
 	partyMembers = 6;
 	
 	if(killer:getVar("BCNM_Killed") == 2) then
-		if(player:hasCompletedMission(player:getNation(),5)) then
+		if(killer:hasCompletedMission(killer:getNation(),5)) then
 			killer:startEvent(0x7d01,0,record,0,(os.time() - killer:getVar("BCNM_Timer")),partyMembers,0,1);
 		else
 			killer:startEvent(0x7d01,0,record,0,(os.time() - killer:getVar("BCNM_Timer")),partyMembers,0,0);
