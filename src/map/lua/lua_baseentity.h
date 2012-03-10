@@ -205,7 +205,8 @@ public:
 	int32 getContainerSize(lua_State*);			// Gets the current capacity of a container
 	int32 increaseContainerSize(lua_State*);	// Increase container size
 	int32 decreaseContainerSize(lua_State*);	// Decreases a containers size -- Should be used for testing only
-
+	int32 setLevel(lua_State*);				//sets the character's level
+	int32 changeJob(lua_State*);				//changes the job of a char (testing only!)
 	void UpdateHealth(CCharEntity* PChar, CZone* PZone); // Sends health packet update to character 
 };
 

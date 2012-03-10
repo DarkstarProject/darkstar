@@ -2879,6 +2879,81 @@ inline int32 CLuaBaseEntity::addExp(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::changeJob(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	DSP_DEBUG_BREAK_IF((uint32)lua_tointeger(L,1)<1 || (uint32)lua_tointeger(L,1)>=MAX_JOBTYPE);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	//if(PChar->
+	PChar->jobs.unlocked |= (1 << (uint32)lua_tointeger(L,1));
+	PChar->SetMJob((uint32)lua_tointeger(L,1));
+
+	charutils::CalculateStats(PChar);
+    charutils::BuildingCharSkillsTable(PChar);
+    charutils::BuildingCharAbilityTable(PChar);
+    charutils::BuildingCharTraitsTable(PChar);
+    charutils::BuildingCharWeaponSkills(PChar);
+	PChar->UpdateHealth();
+    PChar->health.hp = PChar->GetMaxHP();
+    PChar->health.mp = PChar->GetMaxMP();
+    charutils::SaveCharStats(PChar);
+    charutils::SaveCharJob(PChar, PChar->GetMJob());
+    charutils::SaveCharExp(PChar, PChar->GetMJob());
+	charutils::CheckValidEquipment(PChar);
+    PChar->pushPacket(new CCharJobsPacket(PChar));
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+    PChar->pushPacket(new CCharSkillsPacket(PChar));
+    PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+    PChar->pushPacket(new CMenuMeritPacket(PChar));
+    PChar->pushPacket(new CCharSyncPacket(PChar));
+    charutils::UpdateHealth(PChar);
+    PChar->pushPacket(new CCharStatsPacket(PChar));
+
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::setLevel(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	DSP_DEBUG_BREAK_IF((uint32)lua_tointeger(L,1) > 127);
+	
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	PChar->SetMLevel((uint32)lua_tointeger(L,1));
+	PChar->jobs.exp[PChar->GetMJob()] = 100;
+	PChar->jobs.job[PChar->GetMJob()] = (uint32)lua_tointeger(L,1);
+
+	charutils::CalculateStats(PChar);
+    charutils::BuildingCharSkillsTable(PChar);
+    charutils::BuildingCharAbilityTable(PChar);
+    charutils::BuildingCharTraitsTable(PChar);
+    charutils::BuildingCharWeaponSkills(PChar);
+	PChar->UpdateHealth();
+    PChar->health.hp = PChar->GetMaxHP();
+    PChar->health.mp = PChar->GetMaxMP();
+    charutils::SaveCharStats(PChar);
+    charutils::SaveCharJob(PChar, PChar->GetMJob());
+    charutils::SaveCharExp(PChar, PChar->GetMJob());
+	charutils::CheckValidEquipment(PChar);
+    PChar->pushPacket(new CCharJobsPacket(PChar));
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+    PChar->pushPacket(new CCharSkillsPacket(PChar));
+    PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+    PChar->pushPacket(new CMenuMeritPacket(PChar));
+    PChar->pushPacket(new CCharSyncPacket(PChar));
+    charutils::UpdateHealth(PChar);
+
+    PChar->pushPacket(new CCharStatsPacket(PChar));
+
+    return 0;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::showPosition(lua_State *L)
@@ -3349,5 +3424,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeMagicDamage),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLevel),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeJob),
 	{NULL,NULL}
 };
