@@ -37,5 +37,5 @@ function onSpellCast(caster,target,spell)
 	Final = math.floor(basecure);
 	if(Final > cap) then Final = cap; end
 	
-	return target:addHP(Final);;
+	return target:addHP(Final);
 end;
