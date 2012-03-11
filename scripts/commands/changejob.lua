@@ -53,9 +53,9 @@ function onTrigger(player,jobname,lvl)
 	else
 		print('Unrecognised job (1st param) entered. Use the ID number or short name e.g. WAR'); 
 	end
-	if(lvl>0 and lvl<=127) then
+	if(lvl>0 and lvl<=99) then
 		player:setLevel(lvl);
 	else
-		print('Level (2nd param) must be between 1~127'); 
+		print('Level (2nd param) must be between 1~99'); 
 	end
 end;
