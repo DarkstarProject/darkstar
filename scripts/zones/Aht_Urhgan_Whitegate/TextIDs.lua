@@ -20,3 +20,4 @@ KULHAMARIYO_SHOP_DIALOG = 0; --
 	MULNITH_SHOP_DIALOG = 0; -- 
 	RUBAHAH_SHOP_DIALOG = 0; -- 
 	SALUHWA_SHOP_DIALOG = 0; -- 
+	 YAFAAF_SHOP_DIALOG = 7285; -- Welcome to Shararat Teahouse! Relax and forget your troubles over a soothing cup of chai!

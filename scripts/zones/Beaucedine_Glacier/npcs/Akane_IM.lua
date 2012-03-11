@@ -1,8 +1,9 @@
 -----------------------------------
 --	Area: Beaucedine Glacier
---	NPC:  Akane, I.M.
-
--- Outpost Conquest Guards
+--	 NPC: Akane, I.M.
+--  Type: Conquest Overseer
+-- @zone: 111
+--  @pos: -24.351 -60.421 -114.215
 
 -- X Grant Signet
 --   Recharge Emperor Band, Empress Band, or Chariot Band
@@ -40,7 +41,7 @@ function onTrigger(player,npc)
 			player:setVar("FAUR_TELE", 1);
 			player:delKeyItem(FAUREGANDI_SUPPLIES);
 		else
-			player:startEvent(0x7ffb); 
+			player:startEvent(0x7ff9); 
 		end
 	end
 	
