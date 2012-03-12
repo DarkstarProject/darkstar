@@ -18,6 +18,16 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 ----------------------------------- 
 
 function onTrade(player,npc,trade)
+-- "Flyers for Regine" conditional script
+FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+
+	if (FlyerForRegine == 1) then
+		count = trade:getItemCount();
+		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
+		if (MagicFlyer == true and count == 1) then
+			player:messageSpecial(FLYER_REFUSED);
+		end
+	end
 end;
 
 ----------------------------------- 
@@ -28,6 +38,9 @@ function onTrigger(player,npc)
 
 	if(player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_EAST) == false) then
 		player:startEvent(0x0279);
+	else
+		player:showText(npc, 7817); -- nothing to report
+	
 	end
 	
 end; 
@@ -55,3 +68,5 @@ function onEventFinish(player,csid,option)
 	end
 	
 end;
+--- for future use
+	-- player:startEvent(0x034f) --are you the chicks owner

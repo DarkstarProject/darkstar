@@ -11,7 +11,6 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
@@ -34,7 +33,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	LvL = player:getMainLvl();
 	ASquiresTest = player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST);
 	ASquiresTestII = player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II);
@@ -165,3 +164,11 @@ function onEventFinish(player,csid,option)
 	end
 	
 end;
+--	player:startEvent(0x7fb2) 	-- starlight celebration
+--	player:startEvent(0x000a) 	-- methods create madness you havent used the weapon to full extent 
+--	player:startEvent(0x0008)  	-- methods create madness start
+--	player:startEvent(0x000b)  	-- methods create nadness menu
+--	player:startEvent(0x0009)  	-- methods create madness map 
+--	player:startEvent(0x000c) 	-- methods create madness map reminder  
+--	player:startEvent(0x000d) 	-- methods create madness end 
+--	player:startEvent(0x003f) 	-- knight stalker	

@@ -2,6 +2,8 @@
 --	Area: Southern San d'Oria
 --	NPC: Coderiant
 --  General Info NPC
+-- 	@zone 230 
+--	@pos -111 -2 33
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

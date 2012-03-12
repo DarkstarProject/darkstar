@@ -2,6 +2,8 @@
 --	Area: Southern San d'Oria
 --	NPC: Esmallegue
 --  General Info NPC
+--  @zone 230
+--  @pos 0 2 -83
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -32,7 +34,8 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-	player:startEvent(0x37e);
+--	player:startEvent(0x37e);-- cavernous maw
+	player:startEvent(0x0375)
 end; 
 
 -----------------------------------

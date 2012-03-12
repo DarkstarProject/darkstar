@@ -44,15 +44,15 @@ function onTrigger(player,npc)
 	
 	atellounesLament = player:getQuestStatus(SANDORIA,ATELLOUNE_S_LAMENT)
 	sanFame = player:getFameLevel(SANDORIA);
-	
+
 	if (atellounesLament == QUEST_AVAILABLE and sanFame >= 2) then
 		player:startEvent(0x037a);
 	elseif (atellounesLament == QUEST_ACCEPTED) then
 		player:startEvent(0x037c);
 	elseif (atellounesLament == QUEST_COMPLETED) then
-		player:startEvent(0x0374);
+		player:startEvent(0x0374); -- im profesors research
 	elseif (sanFame < 2) then
-		player:startEvent(0x037c);
+		player:startEvent(0x0374); 
 	end
 	
 end; 

@@ -2,7 +2,7 @@
 --  Area: Southern San d'Oria
 --   NPC: Blendare
 --  Type: Standard NPC
--- @zone: 230
+--  @zone: 230
 --  @pos: 33.033 0.999 -30.119
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
@@ -22,7 +22,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x025e);
+	player:startEvent(0x025e)  -- my brother always takes my sweets
+--	player:startEvent(0x0256)   --did nothing no speech or text
+--	player:startEvent(0x03b1)	--black screen and hang
 end;
 
 -----------------------------------
@@ -41,5 +43,8 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	if (csid == 0x025e) then
+		player:setVar("BrothersCS", 1)
+	end
 end;
 

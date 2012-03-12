@@ -15,6 +15,14 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	if (FlyerForRegine == 1) then
+		count = trade:getItemCount();
+		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
+		if (MagicFlyer == true and count == 1) then
+			player:messageSpecial(FLYER_REFUSED);
+		end
+	end
+	
 end;
 
 -----------------------------------
@@ -22,7 +30,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	if(player:getVar("peaceForTheSpiritCS") == 3) then
 		player:startEvent(0x0048);
 	elseif(player:getVar("peaceForTheSpiritCS") == 5) then
@@ -55,3 +63,6 @@ function onEventFinish(player,csid,option)
 	end
 
 end;
+
+---- used for future expansion
+--	player:startEvent(0x032a)--red badge

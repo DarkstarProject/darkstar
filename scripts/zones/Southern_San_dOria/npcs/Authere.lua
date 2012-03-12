@@ -2,6 +2,8 @@
 --	Area: Southern San d'Oria
 --	NPC: Authere
 --  General Info NPC
+-- 	@zone 230 
+--	@pos 33 1 -31
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -31,9 +33,14 @@ end;
 -- onTrigger Action 
 -----------------------------------
  
-function onTrigger(player,npc) 
-	player:startEvent(0x255);
-end; 
+function onTrigger(player,npc)
+
+	if (player:getVar("BrothersCS") == 1) then
+		player:startEvent(0x0255)  -- brothers cs
+	else
+		player:startEvent(0x025d)  -- when i grow up im gonna fight like trion
+	end;
+end 
 
 -----------------------------------
 -- onEventUpdate
@@ -51,8 +58,14 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+
+	if (csid == 0x0255) then
+		player:setVar("BrothersCS", 0)
+	end
 end;
 
+------- for later use
 
-
+-- player:startEvent(0x0256)  -- did nothing no cs or speech
+-- player:startEvent(0x0329)  -- red badge talk
 

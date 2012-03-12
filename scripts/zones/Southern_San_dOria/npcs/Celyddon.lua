@@ -2,6 +2,8 @@
 --	Area: Southern San d'Oria
 --	NPC: Celyddon
 --  General Info NPC
+--	@zone 230 
+--	@pos -129 -6 90 
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -31,8 +33,17 @@ end;
 -- onTrigger Action 
 -----------------------------------
  
-function onTrigger(player,npc) 
-	player:startEvent(0x26A);
+function onTrigger(player,npc)
+ 
+	ASquiresTest = player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST)
+	
+	if ASquiresTest == (QUEST_AVAILABLE) then
+		player:startEvent(0x26A); -- im looking for the examiner
+	elseif ASquiresTest == (QUEST_ACCEPTED) then
+		player:startEvent(0x026b) -- i found the examiner but said i had to use sword
+	else
+		player:startEvent(0x026c) -- says i needs a revival tree root
+	end
 end; 
 
 -----------------------------------

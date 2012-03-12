@@ -2,6 +2,8 @@
 -- Area: Southern San d'Oria
 -- NPC: Ashene
 -- Standard Merchant NPC
+-- @zone 230 
+-- @pos 70 0 61
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -33,25 +35,25 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+	  
 	player:showText(npc,ASHENE_SHOP_DIALOG);
 
-	stock = {0x4047,4309,1,	--Baselard
-			 0x4094,16934,1,--Gladius
-			 0x40a1,21067,1,--Broadsword
-			 0x40c0,35769,1,--Hunting Sword
-			 0x408c,13406,1,--Fleuret 
+	stock = {0x4047,4309,1,		--Baselard
+			 0x4094,16934,1,	--Gladius
+			 0x40a1,21067,1,	--Broadsword
+			 0x40c0,35769,1,	--Hunting Sword
+			 0x408c,13406,1,	--Fleuret 
 
-			 0x4042,1827,2,	--Dagger
-			 0x4098,7128,2,	--Iron Sword
-			 0x40b6,8294,2,	--Longsword
-
-			 0x4001,129,3,	--Cesti
-			 0x4040,140,3,	--Bronze Dagger
-			 0x4041,837,3,	--Brass Dagger
-			 0x4093,3523,3,	--Brass Xiphos
-			 0x4097,241,3,	--Bronze Sword
-			 0x40b5,1674,3}	--Spatha
+			 0x4001,129,2,		--Cesti
+			 0x4042,1827,2,		--Dagger
+			 0x4098,7128,2,		--Iron Sword
+			 0x40b6,8294,2,		--Longsword
+			 			 
+			 0x4040,140,3,		--Bronze Dagger
+			 0x4041,837,3,		--Brass Dagger
+			 0x4093,3523,3,		--Brass Xiphos
+			 0x4097,241,3,		--Bronze Sword
+			 0x40b5,1674,3}		--Spatha
 	 
 	showNationShop(player, SANDORIA, stock);
 

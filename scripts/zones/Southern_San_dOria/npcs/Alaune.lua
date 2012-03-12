@@ -1,20 +1,14 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Aubejart
---  General Info NPC
---	@zone 230 
---	@pos 3 -2 46
--------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+--  Area: Southern San d`Oria
+--   NPC: Alaune
+--  Type: Tutorial NPC
+--  @zone: 230
+--  @pos: -90 1 -56
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-- can not find correct event IDs
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 -- "Flyers for Regine" conditional script
@@ -29,21 +23,22 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 	end
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
-	player:startEvent(0x246);
-end; 
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+	player:showText(npc,13315); -- my name is aluane
+
+end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,10 +46,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
-
 
 
 

@@ -2,6 +2,8 @@
 -- Area: Southern San d'Oria
 -- NPC: Aveline
 -- Standard Merchant NPC
+-- @zone 230 
+-- @pos -139 -6 46
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -33,7 +35,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	player:showText(npc,AVELINE_SHOP_DIALOG);
 
 	stock = {0x0271,79,1,	--Apple Vinegar

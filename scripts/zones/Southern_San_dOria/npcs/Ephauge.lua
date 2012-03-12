@@ -2,6 +2,8 @@
 --	Area: Southern San d'Oria
 --	NPC: Ephauge
 --  General Info NPC
+--  @zone 230
+--  @pos -2 -2 45
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -32,7 +34,7 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-	player:startEvent(0x245);
+	player:startEvent(0x245); 
 end; 
 
 -----------------------------------

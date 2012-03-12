@@ -2,6 +2,8 @@
 --	Area: Southern San d'Oria
 --	NPC: Corua
 --	Only sells when San d'Oria controlls Ronfaure Region
+-- 	@ zone 230 
+--	@pos -66 2 -11
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -36,7 +38,7 @@ end;
 function onTrigger(player,npc)
 
 	RegionOwner = getRegionOwner(RONFAURE);
-
+-- player:startEvent(0x0351) - are you the chicks owner
 	if (RegionOwner ~= SANDORIA) then 
 		player:showText(npc,CORUA_CLOSED_DIALOG);
 	else
@@ -44,7 +46,7 @@ function onTrigger(player,npc)
 		
 		stock = {0x1125,29,		-- San d'Orian Carrot
 				 0x114f,69,		-- San d'Orian Grape
-				 0x027f,110,		-- Chestnut
+				 0x027f,110,	-- Chestnut
 				 0x0262,55}		-- San d'Orian Flour
 				  
 		showShop(player,SANDORIA,stock);

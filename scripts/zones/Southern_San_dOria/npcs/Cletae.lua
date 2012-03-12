@@ -1,16 +1,17 @@
 -----------------------------------
--- Area: Carautia
--- NPC: Southern San d'Oria
--- Standard Merchant NPC
--- @zone 230 
--- @pos 70 0 39
+--	Area: Southern San d'Oria
+--	NPC: Cletae
+--	Letahercraft guild
+-- 	@zone 230
+-- 	@pos -189 -8 14
+-- guild shops not implemented so is using  a substitue shop
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/globals/quests");
+require("scripts/globals/conquest");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -18,9 +19,6 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
 	if (FlyerForRegine == 1) then
 		count = trade:getItemCount();
 		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
@@ -28,7 +26,9 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
-end; 
+	
+
+end;
 
 -----------------------------------
 -- onTrigger Action

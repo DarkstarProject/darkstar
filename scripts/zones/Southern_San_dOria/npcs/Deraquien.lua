@@ -1,7 +1,9 @@
 -----------------------------------
 --	Area: Southern San d'Oria
 --	NPC: Deraquien
---  General Info NPC
+--  A timely Visit
+-- 	@zone 230
+--	@pos -98 -2 31
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -33,6 +35,17 @@ end;
  
 function onTrigger(player,npc) 
 	player:startEvent(0x012);
+--	player:startEvent(0x028e) -- nothing to report 
+--	player:startEvent(0x0021)-- theif of royl sceptre  
+--	player:startEvent(0x002f)-- as again about the theif  
+--	player:startEvent(0x0022) -- reminder of theif in la thein 
+--	player:startEvent(0x0050)  -- thief caught but phillone was there
+--	player:startEvent(0x0014)  -- go get reward for thief
+--	player:startEvent(0x0057) -- vijrtall shows up and derq tells you go talk tho phillone 
+--	player:startEvent(0x001e) --reminder go talk to phillone 
+--	player:startEvent(0x0026) -- go help  retrieve royal sceptre 
+--	player:startEvent(0x001b) -- the lady wanst involved in the theft :( 
+
 end; 
 
 -----------------------------------
@@ -53,6 +66,6 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 end;
 
-
-
+----- used for future expansion
+--	player:startEvent(0x032b) -- red badge
 

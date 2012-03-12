@@ -10,7 +10,6 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
@@ -23,6 +22,17 @@ function onTrade(player,npc,trade)
 	if (player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
 		if(trade:hasItemQty(547, 1) and trade:getItemCount() == 1 and player:getVar("OfferingWaterOK") == 1) then
 			player:startEvent(0x0270);
+		end
+	end
+	
+		-- "Flyers for Regine" conditional script
+FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+
+	if (FlyerForRegine == 1) then
+		count = trade:getItemCount();
+		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
+		if (MagicFlyer == true and count == 1) then
+			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
 

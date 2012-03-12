@@ -2,6 +2,8 @@
 -- Area: Southern San d'Oria
 -- NPC: Emoussine
 -- Chocobo Vendor
+-- zone 230
+-- @pos -11 1 -100
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -13,6 +15,14 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	if (FlyerForRegine == 1) then
+		count = trade:getItemCount();
+		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
+		if (MagicFlyer == true and count == 1) then
+			player:messageSpecial(FLYER_REFUSED);
+		end
+	end
+	
 end;
 
 

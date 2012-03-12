@@ -4,6 +4,7 @@
 -- Involved in Quests: Father and Son, A Boy's Dream
 -- @zone 230
 -- @pos 72 -1 60
+
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -34,8 +35,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	-- "Father and Son" Event Dialogs
+  
+--	player:startEvent(0x004f)  -- how the paper works -- under oath
+--	player:startEvent(0x0033)  -- it says what i dont beleive you -- under oath
+--	player:startEvent(0x0013)  -- thanks for your help i have to tell trion -- under oath
+-- 	player:startEvent(0x004d)	-- a boys dream
+-- "Father and Son" Event Dialogs
 	if(player:getQuestStatus(SANDORIA,FATHER_AND_SON) == QUEST_ACCEPTED) then
 		player:startEvent(0x021e);
 	elseif(player:getVar("aBoysDreamCS") == 2) then 
@@ -72,3 +77,6 @@ function onEventFinish(player,csid,option)
 		player:setVar("aBoysDreamCS",8);
 	end
 end;
+------- used in expansions
+--	player:startEvent(0x03b2)  -- you want to hear of my father go talk to albieche
+--	player:startEvent(0x03b3) -- trainees spectacles
