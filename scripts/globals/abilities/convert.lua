@@ -16,7 +16,7 @@ function OnUseAbility(player, target, ability)
 	local HP = player:getHP();
 	if (MP > 0) then
 		-- Murgleis sword augments Convert.
-		if ((caster:getEquipID(0) == 18995 or caster:getEquipID(1) == 18995) and (HP > (player:getMaxHP()/2))) then
+		if ((player:getEquipID(0) == 18995 or player:getEquipID(1) == 18995) and (HP > (player:getMaxHP()/2))) then
 			HP = HP * 2;
 		end
 		player:setHP(MP);
