@@ -207,6 +207,7 @@ public:
 	int32 decreaseContainerSize(lua_State*);	// Decreases a containers size -- Should be used for testing only
 	int32 setLevel(lua_State*);				//sets the character's level
 	int32 changeJob(lua_State*);				//changes the job of a char (testing only!)
+	int32 getWeaponDmg(lua_State*);			//gets the current equipped weapons' DMG rating
 	void UpdateHealth(CCharEntity* PChar, CZone* PZone); // Sends health packet update to character 
 };
 

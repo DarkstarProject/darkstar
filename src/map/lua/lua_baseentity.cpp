@@ -33,6 +33,7 @@
 
 #include "../packets/auction_house.h"
 #include "../packets/char_abilities.h"
+#include "../packets/char_appearance.h"
 #include "../packets/char_jobs.h"
 #include "../packets/char_health.h"
 #include "../packets/char_skills.h"
@@ -2967,6 +2968,7 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
     return 0;
 }
 
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::showPosition(lua_State *L)
@@ -3309,6 +3311,31 @@ inline int32 CLuaBaseEntity::getID(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*          Gets the current weapon's base DMG; used for WS calcs        *
+*                                                                       *   
+************************************************************************/
+inline int32 CLuaBaseEntity::getWeaponDmg(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype == TYPE_PC )
+		{
+			CItemWeapon * weapon = ((CCharEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
+			
+			if(weapon == NULL) 
+			{
+				ShowDebug("lua::getWeaponDmg weapon in main slot is null!");
+				return 0;
+			}
+			lua_pushinteger( L, weapon->getDamage() );
+			return 1;
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
 
 
 //==========================================================//
@@ -3439,5 +3466,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeMagicDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeJob),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
 	{NULL,NULL}
 };
