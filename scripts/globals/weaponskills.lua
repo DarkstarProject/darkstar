@@ -24,11 +24,11 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	ftp = fTP(attacker:getTP(),ftp100,ftp200,ftp300);
 	
 	--get cratio min and max
-	cratio = cRatio( ((attacker:getMod(MOD_ATT)*atkmulti)/target:getMod(MOD_DEF)),attacker:getMainLvl(),target:getMainLvl());
+	cratio = cRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF)),attacker:getMainLvl(),target:getMainLvl());
 	ccmin = 0;
 	ccmax = 0;
 	if(canCrit) then --work out critical hit ratios, by +1ing 
-		--ccritratio = cCritRatio( ((attacker:getMod(MOD_ATT)*atkmulti)/target:getMod(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
+		--ccritratio = cCritRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
 	end
 	
 	
