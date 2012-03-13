@@ -8,6 +8,12 @@
 -- Action
 -----------------------------------
 
-function onTrigger(player,x,y,z)
-	player:setPos(x,y,z,0);
+function onTrigger(player,x,y,z,zone)
+	
+	if(zone == nil) then
+		player:setPos(x,y,z,0);
+	else
+		player:setPos(x,y,z,0,zone);
+	end
+	
 end;

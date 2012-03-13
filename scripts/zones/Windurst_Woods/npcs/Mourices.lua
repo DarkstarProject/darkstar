@@ -89,6 +89,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x01c0) then
 		player:addMission(SANDORIA,JOURNEY_TO_WINDURST);
 		player:setVar("MissionStatus",3);
+		player:delKeyItem(LETTER_TO_THE_CONSULS_SANDORIA);
 	elseif(csid == 0x01c9) then
 		player:setVar("MissionStatus",7);
 		player:tradeComplete();
