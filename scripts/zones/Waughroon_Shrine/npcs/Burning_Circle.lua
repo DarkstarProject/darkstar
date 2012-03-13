@@ -121,8 +121,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("onFinish CSID: %u",csid);
-printf("onFinish RESULT: %u",option);
+--printf("onFinish CSID: %u",csid);
+--printf("onFinish RESULT: %u",option);
 
 	pZone = player:getZone();
 

@@ -34,9 +34,9 @@ function onTrigger(player,npc)
 	
 	currentMission = player:getCurrentMission(BASTOK);
 	
-	if(currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 4 and player:hasKeyItem(DELKFUTT_KEY) == false) then
+	if(currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(DELKFUTT_KEY) == false) then
 		player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);
-	elseif(currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 4 and player:hasKeyItem(DELKFUTT_KEY)) then
+	elseif(currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(DELKFUTT_KEY)) then
 		player:startEvent(0x0001);
 	else
 		player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT);
@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
 			player:addKeyItem(DELKFUTT_KEY);
 			player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
 		end
-		player:setVar("MissionStatus",5);
+		player:setVar("MissionStatus",3);
 	end
 
 end;

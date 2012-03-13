@@ -1,14 +1,15 @@
 -----------------------------------
---  Area: Metalworks
---   NPC: Lucius
---  Type: Mission NPC
--- @zone: 237
---  @pos: 59.959 -17.39 -42.321
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Metalworks
+-- NPC:  Lucius
+-- Involved in Mission: Bastok 3-3
+-- @zone 237
+-- @pos 59.959 -17.39 -42.321
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -23,7 +24,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0140);
+	
+	if(player:getCurrentMission(BASTOK) == JEUNO_MISSION and player:getVar("MissionStatus") == 0) then
+		player:startEvent(0x0142);
+	else
+		player:startEvent(0x0140);
+	end
+	
 end;
 
 -----------------------------------
@@ -31,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,7 +47,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	
+	if(csid == 0x0142) then
+		player:setVar("MissionStatus",1);
+		player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
+		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
+	end
+	
 end;
-

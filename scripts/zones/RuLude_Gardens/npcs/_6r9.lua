@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(KEYITEM_OBTAINED,AIRSHIP_PASS);
 			player:setTitle(HAVE_WINGS_WILL_FLY);
 		end
-		player:setVar("MissionStatus",4); -- all that's left is to go back to the embassy
+		player:setVar("MissionStatus",6); -- all that's left is to go back to the embassy
 	end
 	
 end;

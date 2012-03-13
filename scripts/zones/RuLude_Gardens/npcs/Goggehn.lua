@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Nelcabrit
--- Involved in Mission: San d'Oria 3-3, 4-1
+-- NPC:  Goggehn
+-- Involved in Mission: Bastok 3-3, 4-1
 -- @zone 243
--- @pos -32 9 -49
+-- @pos 3 9 -76
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -28,31 +28,31 @@ end;
 function onTrigger(player,npc)
 	
 	pNation = player:getNation();
-	currentMission = player:getCurrentMission(SANDORIA);
+	currentMission = player:getCurrentMission(BASTOK);
 	missionStatus = player:getVar("MissionStatus");
 	
-	if(currentMission == APPOINTMENT_TO_JEUNO and missionStatus == 3) then
-		player:startEvent(0x002a);
-	elseif(currentMission == APPOINTMENT_TO_JEUNO and missionStatus == 4) then
-		player:startEvent(0x0043);
-	elseif(currentMission == APPOINTMENT_TO_JEUNO and missionStatus == 5) then
-		player:startEvent(0x0027);
-	elseif(player:getRank() == 4 and player:getCurrentMission(SANDORIA) == 255 and getMissionRankPoints(player,13) == 1) then
-		player:startEvent(0x0082); -- Start Mission 4-1 Magicite
+	if(currentMission == JEUNO_MISSION and missionStatus == 1) then
+		player:startEvent(0x0029);
+	elseif(currentMission == JEUNO_MISSION and missionStatus == 2) then
+		player:startEvent(0x0042);
+	elseif(currentMission == JEUNO_MISSION and missionStatus == 3) then
+		player:startEvent(0x0026);
+	elseif(player:getRank() == 4 and player:getCurrentMission(BASTOK) == 255 and getMissionRankPoints(player,13) == 1) then
+		player:startEvent(0x0081); -- Start Mission 4-1 Magicite
 	elseif(currentMission == MAGICITE_BASTOK and missionStatus == 1) then
-		player:startEvent(0x0085);
+		player:startEvent(0x0084);
 	elseif(currentMission == MAGICITE_BASTOK and missionStatus <= 5) then
-		player:startEvent(0x0088);
-	elseif(currentMission == MAGICITE_SAN_D_ORIA and missionStatus == 6) then
-		player:startEvent(0x0024);
-	elseif(player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
-		player:startEvent(0x0038);
+		player:startEvent(0x0087);
+	elseif(currentMission == MAGICITE_BASTOK and missionStatus == 6) then
+		player:startEvent(0x0023);
+	elseif(player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK)) then
+		player:startEvent(0x0037);
 	elseif(pNation == WINDURST) then
-		player:startEvent(0x002F);
-	elseif(pNation == BASTOK) then
-		player:startEvent(0x002E);
+		player:startEvent(0x0004);
+	elseif(pNation == SANDORIA) then
+		player:startEvent(0x0002);
 	else
-		player:startEvent(0x0066);
+		player:startEvent(0x0065);
 	end
 	
 end;
@@ -74,14 +74,14 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x002a) then
-		player:setVar("MissionStatus",4);
+	if(csid == 0x0029) then
+		player:setVar("MissionStatus",2);
 		player:delKeyItem(LETTER_TO_THE_AMBASSADOR);
-	elseif(csid == 0x0082 and option == 1) then
+	elseif(csid == 0x0081 and option == 1) then
 		player:setVar("MissionStatus",1);
 		player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
 		player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
-	elseif(csid == 0x0027 or csid == 0x0024) then
+	elseif(csid == 0x0026 or csid == 0x0023) then
 		finishMissionTimeline(player,1,csid,option);
 	end
 	

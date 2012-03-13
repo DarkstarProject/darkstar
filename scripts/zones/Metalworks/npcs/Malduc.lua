@@ -22,13 +22,18 @@ function onTrade(player,npc,trade)
 	
 	CurrentMission = player:getCurrentMission(BASTOK);
 	FetichismCompleted = player:hasCompletedMission(BASTOK,FETICHISM);
+	ForsakenCompleted = player:hasCompletedMission(BASTOK,TO_THE_FORSAKEN_MINES);
 	Count = trade:getItemCount();
 	
 	if(CurrentMission ~= 255) then
 		if(CurrentMission == FETICHISM and FetichismCompleted == false and trade:hasItemQty(606,1) and trade:hasItemQty(607,1) and trade:hasItemQty(608,1) and trade:hasItemQty(609,1) and Count == 4) then
-			player:startEvent(0x03F0);
+			player:startEvent(0x03F0); -- Finish Mission "Fetichism" (First Time)
 		elseif(CurrentMission == FETICHISM and trade:hasItemQty(606,1) and trade:hasItemQty(607,1) and trade:hasItemQty(608,1) and trade:hasItemQty(609,1) and Count == 4) then
-			player:startEvent(0x03ED);
+			player:startEvent(0x03ED); -- Finish Mission "Fetichism" (Repeat)
+		elseif(CurrentMission == TO_THE_FORSAKEN_MINES and ForsakenCompleted == false and trade:hasItemQty(563,1) and Count == 1) then
+			player:startEvent(0x03F2); -- Finish Mission "To the forsaken mines" (First Time)
+		elseif(CurrentMission == TO_THE_FORSAKEN_MINES and trade:hasItemQty(563,1) and Count == 1) then
+			player:startEvent(0x03EE); -- Finish Mission "To the forsaken mines" (Repeat)
 		end
 	else
 		player:startEvent(0x03f2); -- Mission not activated
@@ -85,8 +90,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("CSID: %u",csid);
-printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
 	finishMissionTimeline(player,1,csid,option);
 	

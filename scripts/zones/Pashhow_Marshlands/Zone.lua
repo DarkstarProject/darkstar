@@ -3,10 +3,13 @@
 -- Zone: Pashhow_Marshlands (109)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
-require("scripts/globals/quests");
+package.loaded["scripts/globals/missions"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
+require("scripts/globals/missions");
+require("scripts/globals/quests");
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 -----------------------------------
@@ -21,33 +24,36 @@ end;
 -----------------------------------			
 
 function onZoneIn(player,prevZone)			
-	cs = -1;		
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then		
+cs = -1;		
+	
+	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then		
 		player:setPos(547.841,23.192,696.323,136);	
 	end		
-	if (prevZone == 147 and player:getCurrentMission(1) == 10) then		
+	if(prevZone == 147 and player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS) then		
 		missionStatus = player:getVar("MissionStatus");	
-		if (missionStatus < 22) then	
+		if(missionStatus < 22) then	
 			cs = 0x000a;
-		elseif (missionStatus == 22) then	
+		elseif(missionStatus == 22) then	
 			cs = 0x000b;
 		end	
-	elseif (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125,0)) then		
+	elseif(player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125,0)) then		
 		colors = player:getVar("ICanHearARainbow");	
 		b = (tonumber(colors) % 32 >= 16);	
 		v = (tonumber(colors) % 128 >= 64);	
 		cs = 0x000d;	
-		if (b == false) then	
+		if(b == false) then	
 			player:setVar("ICanHearARainbow_Weather",6);
 			player:setVar("ICanHearARainbow",colors+16);
-		elseif (v == false) then	
+		elseif(v == false) then	
 			player:setVar("ICanHearARainbow_Weather",14);
 			player:setVar("ICanHearARainbow",colors+64);
 		else	
 			cs = -1;
 		end
 	end	
-	return cs;	
+	
+	return cs;
+	
 end;		
 
 -----------------------------------		
@@ -62,16 +68,18 @@ end;
 -----------------------------------		
 
 function onEventUpdate(player,csid,option)			
-	--printf("CSID: %u",csid);		
-	--printf("RESULT: %u",option);		
-	if (csid == 0x000d) then		
+--printf("CSID: %u",csid);		
+--printf("RESULT: %u",option);		
+	
+	if(csid == 0x000d) then		
 		weather = player:getVar("ICanHearARainbow_Weather");	
-		if (player:getVar("ICanHearARainbow") < 127) then	
+		if(player:getVar("ICanHearARainbow") < 127) then	
 			player:updateEvent(0,0,weather);
 		else	
 			player:updateEvent(0,0,weather,6);
 		end	
-	end		
+	end	
+	
 end;			
 
 -----------------------------------			
@@ -79,16 +87,16 @@ end;
 -----------------------------------			
 
 function onEventFinish(player,csid,option)		
-	--printf("CSID: %u",csid);	
-	--printf("RESULT: %u",option);	
-	if (csid == 0x000a) then	
+--printf("CSID: %u",csid);	
+--printf("RESULT: %u",option);	
+	
+	if(csid == 0x000a) then	
 		player:setPos(578, 25, -376, 126);
-	elseif (csid == 0x000b) then	
-		player:completeMission(1);
-		player:addRankPoints(10);
-		player:setVar("MissionStatus",0);
+	elseif(csid == 0x000b) then	
+		finishMissionTimeline(player,1,csid,option);
 		player:setPos(578, 25, -376, 126);
-	elseif (csid == 0x000d) then	
+	elseif(csid == 0x000d) then	
 		player:setVar("ICanHearARainbow_Weather",0);
 	end	
-end;		
+	
+end;

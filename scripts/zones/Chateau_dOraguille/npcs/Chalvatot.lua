@@ -6,6 +6,7 @@
 -- @pos -105.998 -0.602 72.233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -46,12 +47,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 	
 	if(csid == 0x022c) then
-		player:setVar("MissionStatus",0);
-		player:completeMission(SANDORIA,THE_CRYSTAL_SPRING);
+		finishMissionTimeline(player,1,csid,option);
 	end
 	
 end;

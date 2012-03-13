@@ -1,21 +1,29 @@
 -----------------------------------
--- Area: Metalworks
--- NPC: Iron Eater
--- Involved in Missions
--- @zone
--- @pos 
+-- Area: Gusgen Mines
+-- NPC:  qm2 (???)
+-- Involved In Mission: Bastok 3-2
+-- @zone 196
+-- @pos 206 -60 -101
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
+require("scripts/zones/Gusgen_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES and player:hasItem(563) == false) then
+		if(trade:hasItemQty(4358,1) and trade:getItemCount() == 1) then -- Trade Hare Meat
+			player:tradeComplete();
+			SpawnMob(17580038,300):updateEnmity(player);
+		end
+	end
+	
 end;
 
 -----------------------------------
@@ -23,18 +31,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	currentMission = player:getCurrentMission(BASTOK);
-	missionStatus = player:getVar("MissionStatus");
-
-	if(currentMission == THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
-		player:startEvent(0x02cb);
-	elseif(currentMission == THE_FOUR_MUSKETEERS and missionStatus == 1) then
-		player:startEvent(0x02cc);
-	else
-		player:startEvent(0x0301);
-	end
-	
+	player:messageSpecial(YOU_FIND_NOTHING);
 end;
 
 -----------------------------------
@@ -42,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("CSID2: %u",csid);
+--printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -53,9 +50,4 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
-	if(csid == 0x02cb and option == 0) then
-		player:setVar("MissionStatus",1);
-	end
-
 end;

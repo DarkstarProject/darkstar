@@ -1,14 +1,15 @@
 -----------------------------------
 -- Area: Bastok Mines
 -- NPC: Davyad
--- Standard Info NPC
 -- Involved in Mission: Bastok 3-2
+-- @zone 234
+-- @pos 83 0 30
+-----------------------------------
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action
@@ -23,10 +24,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-activeMission = player:hasCurrentMission(BASTOK,TO_THE_FORSAKEN_MINES);
-
-	if (activeMission == false) then
+	
+	if(player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES) then
 		player:startEvent(0x0036);
 	else
 		player:startEvent(0x0035);
