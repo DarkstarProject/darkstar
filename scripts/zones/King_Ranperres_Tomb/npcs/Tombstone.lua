@@ -33,10 +33,15 @@ end;
 
 function onTrigger(player,npc) 
 	
-	if(player:getCurrentMission(SANDORIA) == BAT_HUNT and player:getVar("MissionStatus") == 1) then
-		player:startEvent(0x0004);
-	else
-		player:startEvent(0x0002);
+	X = npc:getXPos();
+	Z = npc:getZPos();
+	
+	if(X >= -1 and X <= 1 and Z >= -106 and Z <= -102) then
+		if(player:getCurrentMission(SANDORIA) == BAT_HUNT and player:getVar("MissionStatus") == 0) then
+			player:startEvent(0x0004);
+		else
+			player:startEvent(0x0002);
+		end
 	end
 	
 end; 

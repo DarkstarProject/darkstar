@@ -6,6 +6,7 @@
 --  @pos 131 -11 122
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -51,11 +52,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	
 	if(csid == 0x02b7) then
-		player:delKeyItem(TEMPLE_KNIGHTS_DAVOI_REPORT);
-		player:setVar("MissionStatus",0);
-		player:addRankPoints(300);
-		player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
-		player:completeMission(SANDORIA,THE_DAVOI_REPORT);
+		finishMissionTimeline(player,1,csid,option);
 	end
 	
 end;

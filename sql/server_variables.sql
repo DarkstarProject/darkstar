@@ -31,3 +31,10 @@ CREATE TABLE IF NOT EXISTS `server_variables` (
   `value` int(11) NOT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of server_variables
+-- ----------------------------
+
+INSERT INTO server_variables VALUES ('[BF]Save_The_Children_record', '600');
+INSERT INTO server_variables VALUES ('[BF]The_Holy_Crest_record', '600');

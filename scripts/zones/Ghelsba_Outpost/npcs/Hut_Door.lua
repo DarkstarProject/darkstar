@@ -2,6 +2,7 @@
 -- Area: Ghelsba Outpost
 -- NPC:  Hut Door
 -- Involved in Quest: The Holy Crest
+-- Involved in Mission: Save the children
 -- @zone 140
 -- @pos -162 -11 78
 -----------------------------------
@@ -32,6 +33,7 @@ function onTrigger(player,npc)
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
 	MissionStatus = player:getVar("MissionStatus");
+	sTcCompleted = player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)
 	
 	if(player:hasKeyItem(ORCISH_HUT_KEY)) then
 		if(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then
@@ -42,7 +44,7 @@ function onTrigger(player,npc)
 	elseif(getAvailableBattlefield(pZone) ~= 255) then
 		local bcnmFight = 0;
 		
-		if((player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and (MissionStatus == 2 or MissionStatus == 3))) then 
+		if(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and (sTcCompleted and MissionStatus <= 2 or sTcCompleted == false and MissionStatus == 2)) then 
 			bcnmFight = bcnmFight + 1; end
 		if(player:hasKeyItem(DRAGON_CURSE_REMEDY)) then 
 			bcnmFight = bcnmFight + 2; end
@@ -74,15 +76,19 @@ function onEventUpdate(player,csid,option)
 			player:setVar(zoneReady,player:getVar(zoneReady) + 1);
 			
 			if((player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and (MissionStatus == 2 or MissionStatus == 3))) then 
+				record = GetServerVariable("[BF]Save_The_Children_record");
+				--nbplayer = GetServerVariable("[BF]Save_The_Children_nbplayer");
+				--leader = GetServerVariable("[BF]Save_The_Children_leader");
 				bcnmFight = bcnmFight + 0;
 			elseif(player:hasKeyItem(DRAGON_CURSE_REMEDY)) then 
+				record = GetServerVariable("[BF]The_Holy_Crest_record");
 				bcnmFight = bcnmFight + 1;
 			end
 			
 			player:setVar(tostring(pZone) .. "_Field",bcnmFight+1);
 			
 			if(player:getVar(zoneReady) == readyField and readyField ~= 255) then
-				player:updateEvent(2,bcnmFight,0,100,6,0);
+				player:updateEvent(2,bcnmFight,0,record,1,0);
 			else
 				player:updateEvent(0,0,0,0,0,0);
 			end
@@ -98,8 +104,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("onFinish CSID: %u",csid);
-printf("onFinish RESULT: %u",option);
+--printf("onFinish CSID: %u",csid);
+--printf("onFinish RESULT: %u",option);
 	
 	pZone = player:getZone();
 	
@@ -119,7 +125,7 @@ printf("onFinish RESULT: %u",option);
 		end
 	elseif(csid == 0x0003 or csid == 0x0037) then
 		player:delKeyItem(ORCISH_HUT_KEY);
-		player:setVar("MissionStatus",5);
+		player:setVar("MissionStatus",4);
 	end
 	
 end;

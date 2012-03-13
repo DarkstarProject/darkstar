@@ -22,13 +22,14 @@ end;
 
 function onTrigger(player,npc)
 	
-	CurrentMission = player:getCurrentMission(SANDORIA)
+	CurrentMission = player:getCurrentMission(SANDORIA);
+	infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
 	
-	if(CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 1) then
+	if(CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x0064);
 	elseif(CurrentMission == THE_DAVOI_REPORT and player:hasKeyItem(LOST_DOCUMENT)) then
 		player:startEvent(0x0068);
-	elseif(CurrentMission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 5) then
+	elseif(CurrentMission == INFILTRATE_DAVOI and infiltrateDavoi and player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x0066);
 	elseif(CurrentMission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 9) then
 		player:startEvent(0x0069);
@@ -56,7 +57,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x0064) then
-		player:setVar("MissionStatus",2);
+		player:setVar("MissionStatus",1);
 	elseif(csid == 0x0068) then
 		player:setVar("MissionStatus",3);
 		player:delKeyItem(LOST_DOCUMENT);

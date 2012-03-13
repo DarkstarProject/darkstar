@@ -32,13 +32,13 @@ function onTrigger(player,npc)
 	currentMission = player:getCurrentMission(pNation);
 	
 	if(pNation == SANDORIA) then
-		if(currentMission == JOURNEY_ABROAD and player:getVar("MissionStatus") == 1) then
+		if(currentMission == JOURNEY_ABROAD and player:getVar("MissionStatus") == 0) then
 			player:startEvent(0x01f9);
 		elseif(currentMission == JOURNEY_ABROAD and player:getVar("MissionStatus") == 11) then
 			player:startEvent(0x01fb);
 		elseif(currentMission == JOURNEY_ABROAD) then
 			player:startEvent(0x0214);
-		elseif(currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 1) then
+		elseif(currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 0) then
 			player:startEvent(0x01fc);
 		end
 	elseif(pNation == BASTOK) then

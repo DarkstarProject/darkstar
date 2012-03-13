@@ -24,7 +24,7 @@ end;
 function onMobDeath(mob, killer)
 
 	killer:setVar("BCNM_Killed",1);
-	record = 300;
+	record = GetServerVariable("[BF]The_Holy_Crest_record");
 	partyMembers = 6;
 	pZone = killer:getZone();
 
@@ -34,8 +34,15 @@ function onMobDeath(mob, killer)
 		skip = 1;
 	end
 	
-	killer:startEvent(0x7d01,0,record,0,(os.time() - killer:getVar("BCNM_Timer")),partyMembers,1,skip);
-
+	newtimer = os.time() - killer:getVar("BCNM_Timer");
+		
+	if(newtimer < record) then
+		SetServerVariable("[BF]Save_The_Children_record",newtimer);
+	end
+	
+	killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,1,skip);
+	end
+	
 end;
 
 -----------------------------------
@@ -64,19 +71,8 @@ function onEventFinish(player,csid,option)
 		player:unlockJob(14);
 		player:messageSpecial(YOU_CAN_NOW_BECOME_A_DRAGOON);
 		player:setVar("TheHolyCrest_Event",0);
-		player:setVar("BCNM_Killed",0);
-		player:setVar("BCNM_Timer",0);
-		player:setVar(tostring(pZone) .. "_Ready",0);
-		player:setVar(tostring(pZone) .. "_Field",0);
-		player:setVar(tostring(pZone) .. "_Fight",0);
 		player:addFame(SANDORIA,SAN_FAME*30);
 		player:completeQuest(SANDORIA,THE_HOLY_CREST);
-	else
-		player:setVar("BCNM_Killed",0);
-		player:setVar("BCNM_Timer",0);
-		player:setVar(tostring(pZone) .. "_Ready",0);
-		player:setVar(tostring(pZone) .. "_Field",0);
-		player:setVar(tostring(pZone) .. "_Fight",0);
 	end
 	
 end;

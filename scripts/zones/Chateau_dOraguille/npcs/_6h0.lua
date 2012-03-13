@@ -28,13 +28,14 @@ end;
 function onTrigger(player,npc)
 	
 	Mission = player:getCurrentMission(SANDORIA);
+	infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
 	
-	if(Mission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 1) then
+	if(player:getVar("aBoysDreamCS") == 8) then 
+		player:startEvent(0x0058);
+	elseif(Mission == INFILTRATE_DAVOI and infiltrateDavoi == false and player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x0229,0,ROYAL_KNIGHTS_DAVOI_REPORT);
 	elseif(Mission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 4) then
 		player:startEvent(0x022a,0,ROYAL_KNIGHTS_DAVOI_REPORT);
-	elseif(player:getVar("aBoysDreamCS") == 8) then 
-		player:startEvent(0x0058);
 	end
 	
 	return 1;
@@ -61,10 +62,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0229) then
 		player:setVar("MissionStatus",2);
 	elseif(csid == 0x022a) then
-		player:delKeyItem(ROYAL_KNIGHTS_DAVOI_REPORT);
-		player:setVar("MissionStatus",0);
-		player:addRankPoints(350);
-		player:completeMission(SANDORIA,INFILTRATE_DAVOI);
+		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x0058) then
 		if(player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14095);

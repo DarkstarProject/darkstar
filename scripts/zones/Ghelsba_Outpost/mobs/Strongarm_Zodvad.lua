@@ -26,8 +26,8 @@ end;
 function onMobDeath(mob, killer)
 
 	killer:setVar("BCNM_Killed",killer:getVar("BCNM_Killed") + 1);
-	record = 300;
-	partyMembers = 6;
+	record = GetServerVariable("[BF]Save_The_Children_record");
+	partyMembers = 1;
 	pZone = killer:getZone();
 	
 	if(killer:getVar("BCNM_Killed") >= 3) then
@@ -37,8 +37,15 @@ function onMobDeath(mob, killer)
 			skip = 0;
 		end
 		
-		killer:startEvent(0x7d01,0,record,0,(os.time() - killer:getVar("BCNM_Timer")),partyMembers,0,skip);
+		newtimer = os.time() - killer:getVar("BCNM_Timer");
+		
+		if(newtimer < record) then
+			SetServerVariable("[BF]Save_The_Children_record",newtimer);
+		end
+		
+		killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,0,skip);
 	end
+	
 end;
 
 -----------------------------------
@@ -65,7 +72,7 @@ function onEventFinish(player,csid,option)
 		player:setTitle(FODDERCHIEF_FLAYER);
 		player:addKeyItem(ORCISH_HUT_KEY);
 		player:messageSpecial(KEYITEM_OBTAINED,ORCISH_HUT_KEY);
-		player:setVar("MissionStatus",4);
+		player:setVar("MissionStatus",3);
 	end
 	
 end;
