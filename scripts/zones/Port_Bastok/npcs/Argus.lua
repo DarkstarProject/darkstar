@@ -34,8 +34,6 @@ function onTrade(player,npc,trade)
 		elseif(CurrentMission == TO_THE_FORSAKEN_MINES and trade:hasItemQty(563,1) and Count == 1) then
 			player:startEvent(0x03EE); -- Finish Mission "To the forsaken mines" (Repeat)
 		end
-	else
-		player:startEvent(0x03f2); -- Mission not activated
 	end
 	
 end;

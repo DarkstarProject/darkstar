@@ -49,6 +49,12 @@ function onTrigger(player,npc)
 			else
 				player:showText(npc,GOOD_LUCK);
 			end
+		elseif(player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK) and player:getVar("MissionStatus") == 0) then
+			player:startEvent(0x02d0);
+		elseif(currentMission == DARKNESS_RISING and player:getVar("MissionStatus") == 1) then
+			player:startEvent(0x02d1);
+		else
+			player:startEvent(0x02bc);
 		end
 	elseif(player:hasKeyItem(YASINS_SWORD)) then -- The Doorman
 		player:startEvent(0x02ee);
@@ -74,8 +80,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
---Razor_Axe = 16678;
-
 	if(csid == 0x02ee) then
 		if(player:getFreeSlotsCount(0) >= 1) then
 			player:addItem(16678);
@@ -94,8 +98,16 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_BASTOK);
 		player:setVar("MissionStatus",1);
+	elseif(csid == 0x02d0 and option == 0 or csid == 0x02d1) then
+		player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);
+		player:addKeyItem(NEW_FEIYIN_SEAL);
+		player:messageSpecial(KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
+		player:setVar("MissionStatus",2);
+	elseif(csid == 0x02d0 and option == 1) then
+		player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);
+		player:setVar("MissionStatus",1);
 	elseif(csid == 0x02ca) then
 		finishMissionTimeline(player,1,csid,option);
 	end
+	
 end;
-

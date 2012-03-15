@@ -20,8 +20,10 @@ require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
-		player:startEvent(0x0001);
+	if(player:getCurrentMission(BASTOK) == JEUNO_MISSION and player:getVar("MissionStatus") == 2) then
+		if(trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
+			player:startEvent(0x0001);
+		end
 	end
 	
 end; 

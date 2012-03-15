@@ -478,7 +478,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 	
 	if(nation == SANDORIA) then
 	
-		if(guard == 1 or guard == 3) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407};
+			if(guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407};
 		elseif(guard == 2) then GuardCS = {0x07e6,0x07e5,0x07e9,0x07d4,0x07e8,0x07d5,0x07d6,0x07ec,0x07ed,0x07dc,0x07ef};
 		end
 		
@@ -499,12 +499,11 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 			[11] = function (x) if(MissionStatus == 0) then offset = 68; 
 							elseif(MissionStatus == 2) then cs = GuardCS[11]; end end, 
 			[12] = function (x) if(MissionStatus == 0) then offset = 74; end end, 
+			[14] = function (x) if(MissionStatus == 0) then cs = 0x003D; end end, 
 		}
 		return cs, params, offset;
 	
 	elseif(nation == BASTOK) then GuardCS = {};
-		
-		if(guard == 1) then end
 		
 		switch (pMission) : caseof {
 			[0] = function (x) offset = 0; end,
@@ -516,7 +515,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 			[10] = function (x) offset = 27; end,
 			[11] = function (x) offset = 30; end,
 			[12] = function (x) offset = 35; end,
-			[14] = function (x) offset = 37; end,
+			[14] = function (x) cs = 0x03EF; end,
 			[15] = function (x) offset = 39; end,
 			[16] = function (x) offset = 0; end,
 			[17] = function (x) offset = 3; end,
@@ -577,7 +576,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				11,{0x0406,0},{0x07ee,0},{{4},{14,2}},{0,0},{0,0},{0}, -- MISSION 3-2 (dialog with the guard after trade)
 				11,{0x022c,0},{0,0},{{14,0},{5,400},{12}},{0x03f5,0},{0x07dd,0},{{4},{14,0},{5,400},{7},{12}}, -- MISSION 3-2 (Chalvatot - Guard)
 				12,{0x0027,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Nelcabrit)
-				13,{0x0024,0},{0,0},{{11,5},{14,0},{10,69},{8,10000},{12}},{0,0},{0,0},{0}, -- MISSION 4-1 (Nelcabrit)
+				13,{0x0024,0},{0,0},{{11,5},{14,0},{10,69},{8,10000},{12},{1,14}},{0,0},{0,0},{0}, -- MISSION 4-1 (Nelcabrit)
 				--[[0,{0,0},{0,0},{0},{0,0},{0,0},{0}, 
 				0,{0,0},{0,0},{0},{0,0},{0,0},{0}, ]]--
 						};
@@ -596,7 +595,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				10,{0x000b,0},{0,0},{{14,0},{5,350},{12}},{0,0},{0,0},{0}, -- MISSION 3-1 (Pashhow Marshlands Zone)
 				11,{0x03F2,0},{0,0},{{4},{5,400},{7},{12}},{0x03EE,0},{0,0},{{4},{5,400},{7},{12}}, -- MISSION 3-2
 				12,{0x0026,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Goggehn)
-				13,{0x0023,0},{0,0},{{11,5},{14,0},{10,70},{8,10000},{12}},{0,0},{0,0},{0}, -- MISSION 4-1 (Goggehn)
+				13,{0x0023,0},{0,0},{{11,5},{14,0},{10,70},{8,10000},{12},{1,14}},{0,0},{0,0},{0}, -- MISSION 4-1 (Goggehn)
 						};
 		end
 	end
@@ -614,7 +613,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				messList = timeline[cs + getMessList][nb];
 				
 				switch (messList[1]) : caseof {
-					[1] = function (x) player:addMission(nation,timeline[cs]); end, 
+					[1] = function (x) if(messList[2] ~= nil) then player:addMission(nation,messList[2]); else player:addMission(nation,timeline[cs]); end end, 
 					[2] = function (x) player:messageSpecial(YOU_ACCEPT_THE_MISSION); end, 
 					[3] = function (x) player:setVar(messList[2],messList[3]); end, 
 					[4] = function (x) player:tradeComplete(); end, 
