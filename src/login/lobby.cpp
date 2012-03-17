@@ -276,6 +276,9 @@ int32 lobbydata_parse(int32 fd)
 
 				memcpy(MainReservePacket,ReservePacket,RBUFB(ReservePacket,0));
 
+				// необходиму одалять сессию, необработанную игровым сервером
+				Sql_Query(SqlHandle,"DELETE FROM accounts_sessions WHERE accid = %u and client_port = 0", sd->accid);
+
 				int8 session_key[sizeof(key3)*2+1];
 				bin2hex(session_key,key3,sizeof(key3));
 
