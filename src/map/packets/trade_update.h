@@ -40,7 +40,7 @@ class CTradeUpdatePacket : public CBasicPacket
 {
 	public:
 
-	CTradeUpdatePacket(CItem* PItem, uint32 quantity, uint8 slot);
+	CTradeUpdatePacket(CItem* PItem, uint8 slot);
 };
 
 #endif

@@ -150,7 +150,7 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
+        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
     lua_pushinteger( L, result );
 	return 1;
@@ -169,7 +169,7 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
+        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
 	return 0;
 }
@@ -188,7 +188,7 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
+        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
 	return 0;
 }
@@ -217,7 +217,7 @@ inline int32 CLuaBaseEntity::addMP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
+        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
     lua_pushinteger( L, result );
 	return 1;
@@ -236,7 +236,7 @@ inline int32 CLuaBaseEntity::delMP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
+        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
 	return 0;
 }
@@ -255,7 +255,7 @@ inline int32 CLuaBaseEntity::setMP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
+        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
 	return 0;
 }
@@ -284,7 +284,7 @@ inline int32 CLuaBaseEntity::addTP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
+        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
 	return 0;
 }
@@ -302,7 +302,7 @@ inline int32 CLuaBaseEntity::delTP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-        UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
+        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
 	return 0;
 }
@@ -321,7 +321,7 @@ inline int32 CLuaBaseEntity::setTP(lua_State *L)
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
-		UpdateHealth((CCharEntity*)m_PBaseEntity, m_PBaseEntity->loc.zone);
+		charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
 	return 0;
 }
@@ -3289,54 +3289,37 @@ inline int32 CLuaBaseEntity::takeMagicDamage(lua_State *L)
 	return 1;
 }
 
-void CLuaBaseEntity::UpdateHealth(CCharEntity* PChar, CZone* PZone) 
-{
-	PZone->PushPacket(PChar,CHAR_INRANGE_SELF,new CCharHealthPacket(PChar));
-	if (PChar->PParty != NULL)
-	{	
-		for (int i = 0; i < PChar->PParty->members.size(); i++)
-		{
-			CCharEntity* PTarget = (CCharEntity*)PChar->PParty->members[i];
-			if (PTarget->getZone() == PChar->getZone() && distance(PChar->loc.p, PTarget->loc.p) >= 50)
-			{
-				PTarget->pushPacket(new CCharHealthPacket(PChar));
-			}
-		}
-	}
-}
+//==========================================================//
 
 inline int32 CLuaBaseEntity::getID(lua_State *L)
 {
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
 	lua_pushinteger( L, m_PBaseEntity->id );
 	return 1;
 }
 
 /************************************************************************
 *                                                                       *
-*          Gets the current weapon's base DMG; used for WS calcs        *
+*  Gets the current weapon's base DMG; used for WS calcs                *
 *                                                                       *   
 ************************************************************************/
+
 inline int32 CLuaBaseEntity::getWeaponDmg(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			CItemWeapon * weapon = ((CCharEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+	CItemWeapon* weapon = ((CCharEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
 			
-			if(weapon == NULL) 
-			{
-				ShowDebug("lua::getWeaponDmg weapon in main slot is null!");
-				return 0;
-			}
-			lua_pushinteger( L, weapon->getDamage() );
-			return 1;
-		}
-	}
-	lua_pushnil(L);
+	if(weapon == NULL) 
+	{
+	    ShowDebug(CL_CYAN"lua::getWeaponDmg weapon in main slot is null!\n"CL_RESET);
+		return 0;
+    }
+	lua_pushinteger( L, weapon->getDamage() );
 	return 1;
 }
-
 
 //==========================================================//
 

@@ -54,10 +54,11 @@ void CUContainer::Clean()
             delete m_PItem[i];
         }
     }
+    m_ContainerType = UCONTAINER_EMPTY;
+
     m_lock   = 0;
     m_count  = 0;
     m_target = 0;
-    m_ContainerType = UCONTAINER_EMPTY;
 
 	memset(m_PItem, 0, sizeof(m_PItem));
 }
@@ -110,6 +111,17 @@ void CUContainer::SetType(UCONTAINERTYPE Type)
 
 /************************************************************************
 *                                                                       *
+*  Запрещаем изменение содержимого контейнера                           *
+*                                                                       *
+************************************************************************/
+
+void CUContainer::SetLock()
+{
+    m_lock = true;
+}
+
+/************************************************************************
+*                                                                       *
 *  Проверяем, заблокирован ли контейнер                                 *
 *                                                                       *
 ************************************************************************/
@@ -151,15 +163,17 @@ bool CUContainer::IsSlotEmpty(uint8 slotID)
 *																		*
 ************************************************************************/
 
-void CUContainer::SetItem(uint8 slotID, CItem* PItem)
+bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
 {
-	if (slotID < UCONTAINER_SIZE)
+	if (slotID < UCONTAINER_SIZE && !m_lock)
 	{
         if (PItem != NULL && m_PItem[slotID] == NULL) m_count++;
         if (PItem == NULL && m_PItem[slotID] != NULL) m_count--;
 
 		m_PItem[slotID] = PItem;
+        return true;
 	}
+    return false;
 }
 
 /************************************************************************

@@ -49,6 +49,7 @@ enum UCONTAINERTYPE
 
 // главный предмет (gil, кристалл, используемый предмет ...)
 
+class CItem;
 class CBaseEntity;
 
 class CUContainer
@@ -62,7 +63,7 @@ public:
     void    SetLock();
     void    SetTarget(uint16 Target);
 	void	SetType(UCONTAINERTYPE Type);
-	void	SetItem(uint8 slotID, CItem* PItem);
+	bool	SetItem(uint8 slotID, CItem* PItem);
 
 	void	Clean();
     bool    IsLocked();

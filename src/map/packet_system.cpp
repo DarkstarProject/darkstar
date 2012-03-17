@@ -105,13 +105,15 @@
 #include "packets/stop_downloading.h"
 #include "packets/trade_action.h"
 #include "packets/trade_request.h"
+#include "packets/trade_item.h"
+#include "packets/trade_update.h"
 #include "packets/wide_scan_track.h"
 #include "packets/world_pass.h"
 #include "packets/zone_in.h"
 #include "packets/zone_visited.h"
 #include "packets/menu_raisetractor.h"
 
-int32 (*PacketParcer[512])(map_session_data_t*, CCharEntity*, int8*);
+int32 (*PacketParser[512])(map_session_data_t*, CCharEntity*, int8*);
 
 /************************************************************************
 *																		*
@@ -186,7 +188,7 @@ int32 SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* da
 	{
         if (PChar->loc.zone != NULL)
         {
-            PacketParcer[0x00D](session, PChar, NULL);
+            PacketParser[0x00D](session, PChar, NULL);
         }
 
 		session->blowfish.key[4] += 2;
@@ -296,6 +298,7 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
     session->blowfish.status = BLOWFISH_WAITING;
 
+    PChar->TradePending = 0;
 	PChar->InvitePending = 0;
 	PChar->PWideScanTarget = NULL;
 
@@ -323,12 +326,14 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	if (PChar->status == STATUS_SHUTDOWN)
 	{
-		if (PChar->PParty != NULL)      // удаляем персонажа из группы
+		if (PChar->PParty != NULL)
 		{
+            // удаляем персонажа из группы
 			PChar->PParty->RemoveMember(PChar);
 		}
-        if (PChar->PLinkshell != NULL)  // удаляем персонажа из linkshell
+        if (PChar->PLinkshell != NULL) 
         {
+            // удаляем персонажа из linkshell
             PChar->PLinkshell->DelMember(PChar);
         }
 		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+2500, session, CTaskMgr::TASK_ONCE, map_close_session));
@@ -853,37 +858,29 @@ int32 SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* da
 *                                                                       *
 ************************************************************************/
 
-//24 - Player Name wishes to trade with you.
-//25 - You have already sent a trade request to .
-//26 - You cannot trade with  at this time.
-//27 - You cannot trade the  to .
-
 int32 SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->UContainer->GetType() != UCONTAINER_EMPTY) return 0;
-
     uint32 charid = RBUFL(data,(0x04));
     uint16 targid = RBUFW(data,(0x08));
 
-    CCharEntity* PTradeTarget = (CCharEntity*)PChar->loc.zone->GetEntity(targid, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(targid, TYPE_PC);
 
-    if ((PTradeTarget != NULL) && (PTradeTarget->id == charid))
+    if ((PTarget != NULL) && (PTarget->id == charid))
     {
-        if (PChar->UContainer->GetTarget() == PTradeTarget->targid &&
-            PTradeTarget->UContainer->GetTarget() == PChar->targid)
+        if (PTarget->TradePending == PChar->id)
         {
-            //You have already sent a trade request to <player>
+            ShowDebug(CL_CYAN"You have already sent a trade request to %s\n"CL_RESET, PTarget->GetName());
             return 0;
         }
-        if (PTradeTarget->UContainer->GetType() != UCONTAINER_EMPTY)
+        if (!PTarget->UContainer->IsContainerEmpty())
         {
-            //You cannot trade with <player> at this time
+            ShowDebug(CL_CYAN"You cannot trade with %s at this time\n"CL_RESET, PTarget->GetName());
             return 0;
         }
-        PChar->UContainer->SetTarget(PTradeTarget->targid);
+        PChar->TradePending = charid;
 
-        PTradeTarget->UContainer->SetTarget(PChar->targid);
-        PTradeTarget->pushPacket(new CTradeRequestPacket(PChar));
+        PTarget->TradePending = PChar->id;
+        PTarget->pushPacket(new CTradeRequestPacket(PChar));
     }
     return 0;
 }
@@ -898,37 +895,123 @@ int32 SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
     PrintPacket(data);
 
-    uint16 action = RBUFB(data,(0x04));
+    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->TradePending & 0x0FFF, TYPE_PC);
 
-    CCharEntity* PTradeTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->UContainer->GetTarget(), TYPE_PC);
-
-    switch (action)
+    if (PTarget != NULL && PChar->TradePending == PTarget->id)
     {
-        case 0x00: // request accepted
-        {
-            if (PTradeTarget != NULL)
-            {
-                PChar->pushPacket(new CTradeActionPacket(PTradeTarget, action));
-                PTradeTarget->pushPacket(new CTradeActionPacket(PChar, action));
-            }
-        }
-        break;
-        case 0x01: // trade cancelled
-        {
-            // TODO: нужно проверять, действительно ли цель торгует именно со мной, иначе мы прервем чужой обмен или какое-либо действие
+        uint16 action = RBUFB(data,(0x04));
 
-            if (PTradeTarget != NULL)
-            {
-                PChar->pushPacket(new CTradeActionPacket(PTradeTarget, action));               
-                PTradeTarget->pushPacket(new CTradeActionPacket(PChar, action));
-            }
-        }
-        break;
-        case 0x02: // trade accepted
+        switch (action)
         {
+            case 0x00: // request accepted
+            {
+                // цели обмена у персонажей соответствующие
+                if (PChar->TradePending == PTarget->id && PTarget->TradePending == PChar->id)
+                {
+                    // контейнеры у персонажей свободны
+                    if (PChar->UContainer->IsContainerEmpty() && PTarget->UContainer->IsContainerEmpty())
+                    {
+                        // между персонажами соответствующая дистанция
+                        if (distance(PChar->loc.p, PTarget->loc.p) < 6)
+                        {
+                            PChar->UContainer->SetType(UCONTAINER_TRADE);
+                            PChar->pushPacket(new CTradeActionPacket(PTarget, action));
 
+                            PTarget->UContainer->SetType(UCONTAINER_TRADE);
+                            PTarget->pushPacket(new CTradeActionPacket(PChar, action));
+                            return 0;
+                        }
+                    }
+                    PChar->TradePending = 0;
+                    PTarget->TradePending = 0;
+
+                    ShowDebug(CL_CYAN"Trade: UContainer is not empty\n"CL_RESET);
+                }
+            }
+            break;
+            case 0x01: // trade cancelled
+            {
+                // цели обмена у персонажей соответствующие
+                if (PChar->TradePending == PTarget->id && PTarget->TradePending == PChar->id)
+                {
+                    // контейнер у цели зарезервирован для обмена
+                    if (PTarget->UContainer->GetType() == UCONTAINER_TRADE)
+                    {
+                        PTarget->TradePending = 0;
+                        PTarget->UContainer->Clean();
+
+                        PTarget->pushPacket(new CTradeActionPacket(PChar, action));
+                    }
+                } 
+                if (PChar->UContainer->GetType() == UCONTAINER_TRADE)
+                {                    
+                    PChar->UContainer->Clean();
+                }
+                PChar->TradePending = 0;
+            }
+            break;
+            case 0x02: // trade accepted
+            {
+                // цели обмена у персонажей соответствующие
+                if (PChar->TradePending == PTarget->id && PTarget->TradePending == PChar->id)
+                {
+                    PChar->UContainer->SetLock();
+                    PTarget->pushPacket(new CTradeActionPacket(PChar, action));
+
+                    // совершаем обмен предметами в контейнерах персонажей
+                    if (PTarget->UContainer->IsLocked())
+                    {
+                        // здесь все будет немного сложнее, пока с дублированием кода
+
+                        PChar->TradePending = 0;
+                        PChar->UContainer->Clean();
+                        PChar->pushPacket(new CTradeActionPacket(PTarget, 9));
+
+                        PTarget->TradePending = 0;
+                        PTarget->UContainer->Clean();
+                        PTarget->pushPacket(new CTradeActionPacket(PChar, 9));
+
+                        ShowDebug(CL_CYAN"Trade completed\n"CL_RESET);
+                    }
+                }
+            }
+            break;
         }
-        break;
+    }
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Заполняем ячейки окошка trade (обмен между персонажами)              *
+*                                                                       *
+************************************************************************/
+
+int32 SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    uint32 quantity    = RBUFL(data,(0x04));
+    uint16 itemID      = RBUFW(data,(0x08));
+    uint8  invSlotID   = RBUFB(data,(0x0A)); 
+    uint8  tradeSlotID = RBUFB(data,(0x0B));
+
+    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->TradePending & 0x0FFF, TYPE_PC);
+
+    if (PTarget != NULL && PTarget->id == PChar->TradePending)
+    {
+        CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
+
+        if (PItem != NULL && PItem->getID() == itemID)
+        {
+            // если количество предметов равно нулю, то удаляем предмет из контейнера
+            if (quantity == 0)
+	        {
+                ShowDebug(CL_CYAN"Remove item from trade window\n"CL_RESET);
+	        }
+            PItem->setReserve(quantity);
+
+            PChar->pushPacket(new CTradeItemPacket(PItem, tradeSlotID));
+            PTarget->pushPacket(new CTradeUpdatePacket(PItem, tradeSlotID));
+        }
     }
     return 0;
 }
@@ -3176,102 +3259,102 @@ int32 SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, int8* da
 *																		*
 ************************************************************************/
 
-void PacketParderInitialize()
+void PacketParserInitialize()
 {
     for (uint16 i = 0; i < 512; ++i)
     {
-        PacketParcer[i] = &SmallPacket0x000;
+        PacketParser[i] = &SmallPacket0x000;
     }
-    PacketParcer[0x00A] = &SmallPacket0x00A;
-    PacketParcer[0x00C] = &SmallPacket0x00C;
-    PacketParcer[0x00D] = &SmallPacket0x00D;
-    PacketParcer[0x00F] = &SmallPacket0x00F;
-    PacketParcer[0x011] = &SmallPacket0x011;
-    PacketParcer[0x015] = &SmallPacket0x015;
-    PacketParcer[0x016] = &SmallPacket0x016;
-    PacketParcer[0x017] = &SmallPacket0x017;
-    PacketParcer[0x01A] = &SmallPacket0x01A;
-    PacketParcer[0x01B] = &SmallPacket0x01B;
-    PacketParcer[0x01C] = &SmallPacket0x01C;
-    PacketParcer[0x028] = &SmallPacket0x028;
-    PacketParcer[0x029] = &SmallPacket0x029;
-    PacketParcer[0x032] = &SmallPacket0x032;
-    PacketParcer[0x033] = &SmallPacket0x033;
-    PacketParcer[0x034] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x036] = &SmallPacket0x036;
-    PacketParcer[0x037] = &SmallPacket0x037;
-    PacketParcer[0x03A] = &SmallPacket0x03A;
-    PacketParcer[0x03C] = &SmallPacket0x03C;
-    PacketParcer[0x041] = &SmallPacket0x041;
-    PacketParcer[0x042] = &SmallPacket0x042;
-    PacketParcer[0x04B] = &SmallPacket0x04B;
-    PacketParcer[0x04D] = &SmallPacket0x04D;
-    PacketParcer[0x04E] = &SmallPacket0x04E;
-    PacketParcer[0x050] = &SmallPacket0x050;
-    PacketParcer[0x059] = &SmallPacket0x059;
-    PacketParcer[0x05A] = &SmallPacket0x05A;
-    PacketParcer[0x05B] = &SmallPacket0x05B;
-    PacketParcer[0x05C] = &SmallPacket0x05C;
-    PacketParcer[0x05D] = &SmallPacket0x05D;
-    PacketParcer[0x05E] = &SmallPacket0x05E;
-    PacketParcer[0x060] = &SmallPacket0x060;
-    PacketParcer[0x061] = &SmallPacket0x061;
-    PacketParcer[0x063] = &SmallPacket0x063;
-    PacketParcer[0x064] = &SmallPacket0x064;
-    PacketParcer[0x066] = &SmallPacket0x066;
-    PacketParcer[0x06E] = &SmallPacket0x06E;
-    PacketParcer[0x06F] = &SmallPacket0x06F;
-    PacketParcer[0x070] = &SmallPacket0x070;
-    PacketParcer[0x071] = &SmallPacket0x071;
-    PacketParcer[0x074] = &SmallPacket0x074;
-    PacketParcer[0x076] = &SmallPacket0x076;
-    PacketParcer[0x077] = &SmallPacket0x077;
-    PacketParcer[0x078] = &SmallPacket0x078;
-    PacketParcer[0x083] = &SmallPacket0x083;
-    PacketParcer[0x084] = &SmallPacket0x084;
-    PacketParcer[0x085] = &SmallPacket0x085;
-    PacketParcer[0x096] = &SmallPacket0x096;
-    PacketParcer[0x0A0] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x0A1] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x0A2] = &SmallPacket0x0A2;
-    PacketParcer[0x0AA] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x0AB] = &SmallPacket0x0AB;
-    PacketParcer[0x0AC] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x0AD] = &SmallPacket0x0AD;
-    PacketParcer[0x0B5] = &SmallPacket0x0B5;
-    PacketParcer[0x0B6] = &SmallPacket0x0B6;
-    PacketParcer[0x0BE] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x0C3] = &SmallPacket0x0C3;
-    PacketParcer[0x0C4] = &SmallPacket0x0C4;
-    PacketParcer[0x0CB] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x0D2] = &SmallPacket0x0D2;
-    PacketParcer[0x0D3] = &SmallPacket0x0D3;
-    PacketParcer[0x0D4] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x0DB] = &SmallPacket0x0DB;
-    PacketParcer[0x0DC] = &SmallPacket0x0DC;
-    PacketParcer[0x0DD] = &SmallPacket0x0DD;
-    PacketParcer[0x0DE] = &SmallPacket0x0DE;
-    PacketParcer[0x0E0] = &SmallPacket0x0E0;
-    PacketParcer[0x0E1] = &SmallPacket0x0E1;
-    PacketParcer[0x0E2] = &SmallPacket0x0E2;
-    PacketParcer[0x0E7] = &SmallPacket0x0E7;
-    PacketParcer[0x0E8] = &SmallPacket0x0E8;
-    PacketParcer[0x0EA] = &SmallPacket0x0EA;
-    PacketParcer[0x0F1] = &SmallPacket0x0F1;
-    PacketParcer[0x0F2] = &SmallPacket0x0F2;
-    PacketParcer[0x0F4] = &SmallPacket0x0F4;
-    PacketParcer[0x0F5] = &SmallPacket0x0F5;
-    PacketParcer[0x0F6] = &SmallPacket0x0F6;
-    PacketParcer[0x0FA] = &SmallPacket0x0FA;
-    PacketParcer[0x0FB] = &SmallPacket0x0FB;
-    PacketParcer[0x100] = &SmallPacket0x100;
-    PacketParcer[0x102] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x104] = &SmallPacket0x104;
-    PacketParcer[0x105] = &SmallPacket0x105;
-    PacketParcer[0x106] = &SmallPacket0xFFF;	// not implemented
-    PacketParcer[0x109] = &SmallPacket0x109;
-    PacketParcer[0x10A] = &SmallPacket0x10A;
-    PacketParcer[0x10B] = &SmallPacket0x10B;
+    PacketParser[0x00A] = &SmallPacket0x00A;
+    PacketParser[0x00C] = &SmallPacket0x00C;
+    PacketParser[0x00D] = &SmallPacket0x00D;
+    PacketParser[0x00F] = &SmallPacket0x00F;
+    PacketParser[0x011] = &SmallPacket0x011;
+    PacketParser[0x015] = &SmallPacket0x015;
+    PacketParser[0x016] = &SmallPacket0x016;
+    PacketParser[0x017] = &SmallPacket0x017;
+    PacketParser[0x01A] = &SmallPacket0x01A;
+    PacketParser[0x01B] = &SmallPacket0x01B;
+    PacketParser[0x01C] = &SmallPacket0x01C;
+    PacketParser[0x028] = &SmallPacket0x028;
+    PacketParser[0x029] = &SmallPacket0x029;
+    PacketParser[0x032] = &SmallPacket0x032;
+    PacketParser[0x033] = &SmallPacket0x033;
+    PacketParser[0x034] = &SmallPacket0x034;
+    PacketParser[0x036] = &SmallPacket0x036;
+    PacketParser[0x037] = &SmallPacket0x037;
+    PacketParser[0x03A] = &SmallPacket0x03A;
+    PacketParser[0x03C] = &SmallPacket0x03C;
+    PacketParser[0x041] = &SmallPacket0x041;
+    PacketParser[0x042] = &SmallPacket0x042;
+    PacketParser[0x04B] = &SmallPacket0x04B;
+    PacketParser[0x04D] = &SmallPacket0x04D;
+    PacketParser[0x04E] = &SmallPacket0x04E;
+    PacketParser[0x050] = &SmallPacket0x050;
+    PacketParser[0x059] = &SmallPacket0x059;
+    PacketParser[0x05A] = &SmallPacket0x05A;
+    PacketParser[0x05B] = &SmallPacket0x05B;
+    PacketParser[0x05C] = &SmallPacket0x05C;
+    PacketParser[0x05D] = &SmallPacket0x05D;
+    PacketParser[0x05E] = &SmallPacket0x05E;
+    PacketParser[0x060] = &SmallPacket0x060;
+    PacketParser[0x061] = &SmallPacket0x061;
+    PacketParser[0x063] = &SmallPacket0x063;
+    PacketParser[0x064] = &SmallPacket0x064;
+    PacketParser[0x066] = &SmallPacket0x066;
+    PacketParser[0x06E] = &SmallPacket0x06E;
+    PacketParser[0x06F] = &SmallPacket0x06F;
+    PacketParser[0x070] = &SmallPacket0x070;
+    PacketParser[0x071] = &SmallPacket0x071;
+    PacketParser[0x074] = &SmallPacket0x074;
+    PacketParser[0x076] = &SmallPacket0x076;
+    PacketParser[0x077] = &SmallPacket0x077;
+    PacketParser[0x078] = &SmallPacket0x078;
+    PacketParser[0x083] = &SmallPacket0x083;
+    PacketParser[0x084] = &SmallPacket0x084;
+    PacketParser[0x085] = &SmallPacket0x085;
+    PacketParser[0x096] = &SmallPacket0x096;
+    PacketParser[0x0A0] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x0A1] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x0A2] = &SmallPacket0x0A2;
+    PacketParser[0x0AA] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x0AB] = &SmallPacket0x0AB;
+    PacketParser[0x0AC] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x0AD] = &SmallPacket0x0AD;
+    PacketParser[0x0B5] = &SmallPacket0x0B5;
+    PacketParser[0x0B6] = &SmallPacket0x0B6;
+    PacketParser[0x0BE] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x0C3] = &SmallPacket0x0C3;
+    PacketParser[0x0C4] = &SmallPacket0x0C4;
+    PacketParser[0x0CB] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x0D2] = &SmallPacket0x0D2;
+    PacketParser[0x0D3] = &SmallPacket0x0D3;
+    PacketParser[0x0D4] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x0DB] = &SmallPacket0x0DB;
+    PacketParser[0x0DC] = &SmallPacket0x0DC;
+    PacketParser[0x0DD] = &SmallPacket0x0DD;
+    PacketParser[0x0DE] = &SmallPacket0x0DE;
+    PacketParser[0x0E0] = &SmallPacket0x0E0;
+    PacketParser[0x0E1] = &SmallPacket0x0E1;
+    PacketParser[0x0E2] = &SmallPacket0x0E2;
+    PacketParser[0x0E7] = &SmallPacket0x0E7;
+    PacketParser[0x0E8] = &SmallPacket0x0E8;
+    PacketParser[0x0EA] = &SmallPacket0x0EA;
+    PacketParser[0x0F1] = &SmallPacket0x0F1;
+    PacketParser[0x0F2] = &SmallPacket0x0F2;
+    PacketParser[0x0F4] = &SmallPacket0x0F4;
+    PacketParser[0x0F5] = &SmallPacket0x0F5;
+    PacketParser[0x0F6] = &SmallPacket0x0F6;
+    PacketParser[0x0FA] = &SmallPacket0x0FA;
+    PacketParser[0x0FB] = &SmallPacket0x0FB;
+    PacketParser[0x100] = &SmallPacket0x100;
+    PacketParser[0x102] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x104] = &SmallPacket0x104;
+    PacketParser[0x105] = &SmallPacket0x105;
+    PacketParser[0x106] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x109] = &SmallPacket0x109;
+    PacketParser[0x10A] = &SmallPacket0x10A;
+    PacketParser[0x10B] = &SmallPacket0x10B;
 }
 
 /************************************************************************

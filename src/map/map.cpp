@@ -134,7 +134,7 @@ int32 do_init(int32 argc, int8** argv)
 
 	luautils::init();
 	CmdHandler.init("conf/commands.conf", luautils::LuaHandle);
-    PacketParderInitialize();
+    PacketParserInitialize();
 	SqlHandle = Sql_Malloc();
 
 	ShowStatus("do_init: sqlhandle is allocating");
@@ -505,7 +505,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 		{
 			ShowInfo("parse: %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr,2), RBUFW(buff,2), SmallPD_Size, PChar->GetName());
 		}
-        PacketParcer[SmallPD_Type](map_session_data, PChar, SmallPD_ptr);
+        PacketParser[SmallPD_Type](map_session_data, PChar, SmallPD_ptr);
     }
     map_session_data->client_packet_id = SmallPD_Code;
 
@@ -683,7 +683,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 				    ShowDebug(CL_CYAN"map_cleanup: %s timed out, session closed\n"CL_RESET, PChar->GetName());
 
 				    PChar->status = STATUS_SHUTDOWN;
-                    PacketParcer[0x00D](map_session_data, PChar, 0);
+                    PacketParser[0x00D](map_session_data, PChar, 0);
 			    } else {
 				    ShowWarning(CL_YELLOW"map_cleanup: WHITHOUT CHAR timed out, session closed\n"CL_RESET);
 
@@ -691,8 +691,8 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 				    Sql_Query(SqlHandle, Query, map_session_data->client_addr, map_session_data->client_port);
 
 				    aFree(map_session_data->server_packet_data);
-				    delete map_session_data;
 				    map_session_list.erase(it++);
+                    delete map_session_data;
 				    continue;
 			    }
 		    }

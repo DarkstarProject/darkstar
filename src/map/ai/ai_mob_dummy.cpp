@@ -231,7 +231,7 @@ void CAIMobDummy::ActionDropItems()
 
 /************************************************************************
 *																		*
-*																		*
+*  Время ожидания до исчезновения (монстр не обязательно мертв) 		*
 *																		*
 ************************************************************************/
 
@@ -242,6 +242,14 @@ void CAIMobDummy::ActionDeath()
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
 	}
+    else if (!m_PMob->isDead())
+    {
+        if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL)
+	    {
+		    m_ActionType = ACTION_ENGAGE;
+		    ActionEngage();
+	    }
+    }
 }
 
 /************************************************************************
@@ -434,7 +442,8 @@ void CAIMobDummy::ActionAttack()
         m_ActionType = ACTION_DISENGAGE;
 		return; 
 	}
-	if (m_PBattleTarget->isDead())
+    if (m_PBattleTarget->isDead() || 
+        m_PBattleTarget->animation == ANIMATION_CHOCOBO)
 	{
         if (m_PMob->m_OwnerID == m_PBattleTarget->id)
         {

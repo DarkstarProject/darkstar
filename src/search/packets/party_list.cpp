@@ -38,10 +38,7 @@ CPartyListPacket::CPartyListPacket(uint32 partyid)
 {
     m_partyid = partyid;
 
-    memset(m_PData, 0, PARTYLISTPACKET_SIZE);
-
-    WBUFW(m_PData,(0x00)) = PARTYLISTPACKET_SIZE;       // packet size
-    WBUFL(m_PData,(0x04)) = 0x46465849;                 // "XIFF"
+    memset(m_PData, 0, sizeof(m_PData));
 
     WBUFB(m_PData,(0x0A)) = 0x80;
 	WBUFB(m_PData,(0x0B)) = 0x82;                       // packet type

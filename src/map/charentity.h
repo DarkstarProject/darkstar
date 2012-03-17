@@ -158,7 +158,6 @@ public:
 
     CLinkshell*      PLinkshell;                    // linkshell, в которой общается персонаж
 	CTreasurePool*	 PTreasurePool;					// сокровища, добытые с монстров
-	uint32			 InvitePending;					// ID персонажа, отправившего приглашение в группу 
 
 	CItemContainer*  PGuildShop;					// текущий магазин гильдии, в котором персонаж производит закупки
 	CItemContainer*	 getStorage(uint8 LocationID);	// получение указателя на соответствующее хранилище
@@ -176,6 +175,9 @@ public:
 	RecastList_t	 RecastList;					// recast list for spells, abilities and items
 
 	void			 SetName(int8* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
+
+    uint32           TradePending;                  // ID персонажа, предлагающего обмен
+	uint32			 InvitePending;					// ID персонажа, отправившего приглашение в группу
 
 	uint32			 m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
 	uint8			 m_LevelRestriction;			// ограничение уровня персонажа

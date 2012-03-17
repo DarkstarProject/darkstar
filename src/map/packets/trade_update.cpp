@@ -33,12 +33,12 @@
 *																		*
 ************************************************************************/
 
-CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint32 quantity, uint8 slot)
+CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 slot)
 {
 	this->type = 0x23;
 	this->size = 0x14;
 
-	WBUFL(data,(0x04)-4) = quantity;
-	WBUFB(data,(0x0A)-4) = PItem->getID();
+    WBUFL(data,(0x04)-4) = PItem->getReserve();
+	WBUFW(data,(0x0A)-4) = PItem->getID();
 	WBUFB(data,(0x0D)-4) = slot;
 }

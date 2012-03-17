@@ -86,6 +86,7 @@ public:
 	uint8		getSubType();
 	uint16		getFlag();
 	uint8		getAHCat();
+    uint32      getReserve();
 	uint32		getQuantity();
 	uint32		getStackSize();
 	uint32		getBasePrice();
@@ -99,6 +100,7 @@ public:
 	void		setSubType(uint8);
 	void		setFlag(uint16);
 	void		setAHCat(uint8);
+    void        setReserve(uint32);
 	void		setQuantity(uint32);
 	void		setStackSize(uint32);
 	void		setBasePrice(uint32);
@@ -121,15 +123,16 @@ private:
 	uint16		m_subid;
 	uint8		m_type;
 	uint8		m_subtype;
-	uint32		m_quantity;
-	uint32		m_stackSize;
-	uint32		m_BasePrice;
+	uint32		m_quantity;     // текущее количество предметов
+    uint32      m_reserve;      // зарезервированное количество предметов
+	uint32		m_stackSize;    // максимальное количество предметов
+	uint32		m_BasePrice;    // стоимость предмета в bazaar
 	uint32		m_CharPrice;
-	uint8		m_ahCat;
+	uint8		m_ahCat;        // категоряи предмета на укционе
 	uint16		m_flag;
 
-	uint8		m_slotID;
-	uint8		m_locationID;
+	uint8		m_slotID;       // ячейка предмета в хранилище
+	uint8		m_locationID;   // номер хранилища предмета
 
 	string_t	m_name;
     string_t	m_send;
