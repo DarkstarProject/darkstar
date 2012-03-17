@@ -27,8 +27,19 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	cratio = cRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF)),attacker:getMainLvl(),target:getMainLvl());
 	ccmin = 0;
 	ccmax = 0;
+	ccritratio = 0;
+	critrate = 0;
 	if(canCrit) then --work out critical hit ratios, by +1ing 
-		--ccritratio = cCritRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
+		ccritratio = cCritRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
+		critrate = fTP(attacker:getTP(),crit100,crit200,crit300);
+		--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
+		nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
+		if(nativecrit > 0.2) then --caps!
+			nativecrit = 0.2;
+		elseif(nativecrit < 0.05) then
+			nativecrit = 0.05;
+		end
+		critrate = critrate + nativecrit;
 	end
 	
 	
@@ -51,7 +62,19 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	
 	local hitslanded = 0; --used for debug
 	if (firsthit <= hitrate) then
-		finaldmg = dmg * pdif;
+		if(canCrit) then
+			local double critchance = math.random();
+			if(critchance <= critrate) then --crit hit!
+				local double cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
+				cpdif = cpdif/1000; 
+				finaldmg = dmg * cpdif;
+				print("crit hit 1");
+			else
+				finaldmg = dmg * pdif;
+			end
+		else
+			finaldmg = dmg * pdif;
+		end
 		hitslanded = 1;
 	end
 	
@@ -67,7 +90,19 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 			if (chance<=hitrate) then --it hit
 				pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
 				pdif = pdif/1000; --multiplier set.
-				finaldmg = finaldmg + base * pdif; --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+				if(canCrit) then
+					critchance = math.random();
+					if(critchance <= critrate) then --crit hit!
+						cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
+						cpdif = cpdif/1000; 
+						finaldmg = finaldmg + base * cpdif;
+						print("crit hit");
+					else
+						finaldmg = finaldmg + base * pdif;
+					end
+				else
+					finaldmg = finaldmg + base * pdif; --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+				end
 				hitslanded = hitslanded + 1;
 			end
 			hitsdone = hitsdone + 1;
@@ -180,6 +215,52 @@ function cRatio(ratio,atk_lvl,def_lvl)
 	cratio[1] = cratiomin;
 	cratio[2] = cratiomax;
 	return cratio;
+end;
+
+--Given the raw ratio value (atk/def) and levels, returns the critical cRatio (min then max)
+function cCritRatio(rratio,atk_lvl,def_lvl)
+	--Level penalty...
+	local double levelcor = 0;
+	if (atk_lvl < def_lvl) then
+		levelcor = 0.05 * (def_lvl - atk_lvl);
+	end
+	rratio = rratio - levelcor;
+	
+	--apply caps
+	if(rratio<0) then
+		rratio = 0;
+	elseif(rratio>3) then
+		rratio = 3;
+	end
+	
+	--Obtaining cRatio_MIN
+	local double cratiomin = 0;
+	if (rratio<1.25) then
+	cratiomin = 1.2 * rratio - 0.5;
+	end
+	if (rratio>=1.25 and rratio<=1.5) then
+	cratiomin = 1;
+	end
+	if (rratio>1.5 and rratio<=3) then
+	cratiomin = 1.2 * rratio - 0.8;
+	end
+	
+	--Obtaining cRatio_MAX
+	local double cratiomax = 0;
+	if (rratio<0.5) then
+	cratiomax = 0.4 + 1.2 * rratio;
+	end
+	if (rratio<=0.833 and rratio>=0.5) then
+	cratiomax = 1;
+	end
+	if (rratio<=3 and rratio>0.833) then
+	cratiomax = 1.2 * rratio;
+	end
+	
+	critratio = {};
+	critratio[1] = cratiomin;
+	critratio[2] = cratiomax;
+	return critratio;
 end;
 
 --Given the attacker's str and the mob's vit, fSTR is calculated
