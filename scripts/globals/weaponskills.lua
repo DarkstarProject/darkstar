@@ -68,7 +68,6 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 				local double cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
 				cpdif = cpdif/1000; 
 				finaldmg = dmg * cpdif;
-				print("crit hit 1");
 			else
 				finaldmg = dmg * pdif;
 			end
@@ -96,7 +95,6 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 						cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
 						cpdif = cpdif/1000; 
 						finaldmg = finaldmg + base * cpdif;
-						print("crit hit");
 					else
 						finaldmg = finaldmg + base * pdif;
 					end
@@ -109,7 +107,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 		end
 	end
 	
-	print("Landed " .. hitslanded .. "/" .. numHits .. " hits with pdif range " .. cratio[1] .. " to " .. cratio[2] .. "and hitrate " .. hitrate .. "!");
+	--print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 	
 	return finaldmg;
 end;
