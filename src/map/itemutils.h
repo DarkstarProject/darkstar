@@ -56,6 +56,7 @@ namespace itemutils
 	void	LoadItemList();
 	void	FreeItemList();
 
+    CItem*  GetItem(CItem* PItem);
 	CItem*	GetItem(uint16 ItemID);
 	CItem*	GetItemPointer(uint16 ItemID);
 
