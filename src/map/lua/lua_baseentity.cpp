@@ -3337,9 +3337,9 @@ inline int32 CLuaBaseEntity::getID(lua_State *L)
 inline int32 CLuaBaseEntity::getWeaponDmg(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	CItemWeapon* weapon = ((CCharEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
+	CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
 			
 	if(weapon == NULL) 
 	{
