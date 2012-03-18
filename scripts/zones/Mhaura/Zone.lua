@@ -4,10 +4,6 @@
 --
 -----------------------------------
 
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
-require("scripts/globals/settings");
-require("scripts/zones/Mhaura/TextIDs");
-
 -----------------------------------
 -- onInitialize
 -----------------------------------
@@ -20,18 +16,24 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(0.003,-6.252,117.971,65);
+local cs = -1;	
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+		if (prevZone == 221) then
+			cs = 0x00ca;
+			player:setPos(14.960,-3.430,18.423,192);
+		else
+			player:setPos(0.003,-6.252,117.971,65);
+		end
 	end	
-	return cs;	
+return cs;	
 end;		
 
 -----------------------------------		
--- onRegionEnter		
+-- onTransportEvent		
 -----------------------------------		
 
-function onRegionEnter(player,region)	
+function onTransportEvent(player,transport)	
+	player:startEvent(0x00c8);
 end;	
 
 -----------------------------------	
@@ -39,8 +41,8 @@ end;
 -----------------------------------	
 
 function onEventUpdate(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;	
 
 -----------------------------------	
@@ -48,6 +50,9 @@ end;
 -----------------------------------	
 
 function onEventFinish(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+	if (csid == 0x00c8) then	
+		player:setPos(0,0,0,0,220);
+	end
 end;	
