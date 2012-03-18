@@ -10,11 +10,20 @@
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/quests");
+require("scripts/globals/missions");
+require("scripts/globals/teleports");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	if (player:hasCompletedMission(TOAU,PRESIDENT_SALAHEEM) and player:hasCompleteQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST)) then
+		if (trade:getItemCount() == 1 and trade:getGil() == 300) then
+			player:startEvent(0x031a);
+		end
+	end
 end;
 
 -----------------------------------
@@ -30,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +48,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	if (csid == 0x031a) then
+		player:tradeComplete();
+		toAhtUrhganWhitegate(player);
+	end
 end;
-

@@ -54,7 +54,8 @@ enum QUESTAREA
 	QUESTS_ABYSSEA		= 8
 };
 
-#define MAX_QUESTAREA	  9         
+#define MAX_QUESTAREA	  9      
+#define MAX_QUESTID     256
 
 struct jobs_t 
 {

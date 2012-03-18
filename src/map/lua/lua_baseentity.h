@@ -93,6 +93,7 @@ public:
 	int32 addQuest(lua_State*);				// Add Quest to Entity Quest Log
 	int32 delQuest(lua_State*);				// Remove quest from quest log (should be used for debugging only)
 	int32 getQuestStatus(lua_State*);		// Get Quest Status
+    int32 hasCompleteQuest(lua_State*);     // Checks if quest has been completed
 	int32 completeQuest(lua_State*);		// Set a quest status to complete
 
 	int32 addMission(lua_State*);			// Add Mission

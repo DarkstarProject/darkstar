@@ -666,7 +666,7 @@ inline int32 CLuaBaseEntity::addQuest(lua_State *L)
 	uint8 questID = (uint8)lua_tointeger(L,-1);
 	uint8 logID   = (uint8)lua_tointeger(L,-2);
 
-	if (logID < MAX_QUESTAREA)
+	if(logID < MAX_QUESTAREA && questID < MAX_QUESTID)
 	{
 		uint8 current  = PChar->m_questLog[logID].current [questID/8] & (1 << (questID % 8));
 		uint8 complete = PChar->m_questLog[logID].complete[questID/8] & (1 << (questID % 8));
@@ -678,7 +678,7 @@ inline int32 CLuaBaseEntity::addQuest(lua_State *L)
 		
 		}
 	}else{
-		ShowError(CL_RED"Lua::addQuest: LogID %i is invalid\n"CL_RESET, logID);
+		ShowError(CL_RED"Lua::addQuest: LogID %i or QuestID %i is invalid\n"CL_RESET, logID, questID);
 		return -1;
 	}
 		charutils::SaveQuestsList(PChar);
@@ -701,7 +701,7 @@ inline int32 CLuaBaseEntity::delQuest(lua_State *L)
 	uint8 questID = (uint8)lua_tointeger(L,-1);
 	uint8 logID   = (uint8)lua_tointeger(L,-2);
 
-	if (logID < MAX_QUESTAREA)
+	if(logID < MAX_QUESTAREA && questID < MAX_QUESTID)
 	{
 		uint8 current  = PChar->m_questLog[logID].current [questID/8] & (1 << (questID % 8));
 		uint8 complete = PChar->m_questLog[logID].complete[questID/8] & (1 << (questID % 8));
@@ -717,7 +717,7 @@ inline int32 CLuaBaseEntity::delQuest(lua_State *L)
 			charutils::SaveQuestsList(PChar);
 		}
 	}else{
-		ShowError(CL_RED"Lua::delQuest: LogID %i is invalid\n"CL_RESET, logID);
+		ShowError(CL_RED"Lua::delQuest: LogID %i or QuestID %i is invalid\n"CL_RESET, logID, questID);
 	}
 	
 	lua_pushnil(L);
@@ -737,7 +737,7 @@ inline int32 CLuaBaseEntity::getQuestStatus(lua_State *L)
 	uint8 questID = (uint8)lua_tointeger(L,-1);
 	uint8 logID   = (uint8)lua_tointeger(L,-2);
 
-	if(logID < MAX_QUESTAREA) 
+	if(logID < MAX_QUESTAREA && questID < MAX_QUESTID)
 	{
 		uint8 current  = ((CCharEntity*)m_PBaseEntity)->m_questLog[logID].current [questID/8] & (1 << (questID % 8));
 		uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[logID].complete[questID/8] & (1 << (questID % 8));
@@ -745,7 +745,7 @@ inline int32 CLuaBaseEntity::getQuestStatus(lua_State *L)
 		lua_pushinteger( L, (complete != 0 ? 2 : (current != 0 ? 1 : 0)) );
 		return 1;
 	}else{
-		ShowError(CL_RED"Lua::getQuestStatus: LogID %i is invalid\n"CL_RESET, logID);
+		ShowError(CL_RED"Lua::getQuestStatus: LogID %i or QuestID %i is invalid\n"CL_RESET, logID, questID);
 	}
 	
 	lua_pushnil(L);
@@ -767,7 +767,7 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
 	uint8 questID = (uint8)lua_tointeger(L,-1);
 	uint8 logID   = (uint8)lua_tointeger(L,-2);
 				
-	if (logID < MAX_QUESTAREA)
+	if(logID < MAX_QUESTAREA && questID < MAX_QUESTID)
 	{
 		uint8 complete = PChar->m_questLog[logID].complete[questID/8] & (1 << (questID % 8));
 
@@ -781,10 +781,39 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
 		}
         charutils::SaveQuestsList(PChar);
 	}else{
-		ShowError(CL_RED"Lua::completeQuest: LogID %u is invalid\n"CL_RESET, logID);
+		ShowError(CL_RED"Lua::completeQuest: LogID %i or QuestID %i is invalid\n"CL_RESET, logID, questID);
 	}
 	
 	lua_pushnil(L);
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*  Проверяем, завершил ли персонаж задачу (quest)                       *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::hasCompleteQuest(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+
+	uint8 questID = (uint8)lua_tointeger(L,-1);
+	uint8 logID   = (uint8)lua_tointeger(L,-2);
+
+	if(logID < MAX_QUESTAREA && questID < MAX_QUESTID)
+	{
+		uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[logID].complete[questID/8] & (1 << (questID % 8));
+					
+		lua_pushboolean( L, (complete != 0) );
+		return 1;
+	}
+    ShowError(CL_RED"Lua::hasCompleteQuest: LogID %i or QuestID %i is invalid\n"CL_RESET, logID, questID);
+	lua_pushboolean( L, false );
 	return 1;
 }
 
@@ -3359,6 +3388,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delQuest),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getQuestStatus),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeQuest),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompleteQuest),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMission),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentMission),

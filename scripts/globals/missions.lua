@@ -100,6 +100,63 @@ THE_JESTER_WHO_D_BE_KING      = 21;
 DOLL_OF_THE_DEAD              = 22;
 MOON_READING                  = 23;
 
+-----------------------------------
+--  Aht Urhgan Missions
+-----------------------------------
+
+LAND_OF_SACRED_SERPENTS = 0;
+IMMORTAL_SENTRIES       = 1;
+PRESIDENT_SALAHEEM      = 2;
+KNIGHT_OF_GOLD          = 3;
+CONFESSIONS_OF_ROYALTY  = 4;
+EASTERLY_WINDS          = 5;
+WESTERLY_WINDS          = 6;
+A_MERCENARY_LIFE        = 7;
+UNDERSEA_SCOUTING       = 8;
+ASTRAL_WAVES            = 9;
+IMPERIAL_SCHEMES        = 10;
+ROYAL_PUPPETEER         = 11;
+LOST_KINGDOM            = 12;
+THE_DOLPHIN_CREST       = 13;
+THE_BLACK_COFFIN        = 14;
+GHOSTS_OF_THE_PAST      = 15;
+GUESTS_OF_THE_EMPIRE    = 16;
+PASSING_GLORY           = 17;
+SWEETS_FOR_THE_SOUL     = 18;
+TEAHOUSE_TUMULT         = 19;
+FINDERS_KEEPERS         = 20;
+SHIELD_OF_DIPLOMACY	    = 21;
+SOCIAL_GRACES           = 22;
+FOILED_AMBITION         = 23;
+PLAYING_THE_PART        = 24;
+SEAL_OF_THE_SERPENT     = 25;
+MISPLACED_NOBILITY      = 26;
+BASTION_OF_KNOWLEDGE    = 27;
+PUPPET_IN_PERIL         = 28;
+PREVALENCE_OF_PIRATES   = 29;
+SHADES_OF_VENGEANCE     = 30;
+IN_THE_BLOOD            = 31;
+SENTINELS_HONOR         = 32;
+TESTING_THE_WATERS      = 33;
+LEGACY_OF_THE_LOST      = 34;
+GAZE_OF_THE_SABOTEUR    = 35;
+PATH_OF_BLOOD           = 36;
+STIRRINGS_OF_WAR        = 37;
+ALLIED_RUMBLINGS        = 38;
+UNRAVELING_REASON       = 39;
+LIGHT_OF_JUDGMENT       = 40;
+PATH_OF_DARKNESS        = 41;
+FANGS_OF_THE_LION       = 42;
+NASHMEIRAS_PLEA         = 43;
+URHGAN_MISSION_44       = 44;
+IMPERIAL_CORONATION     = 45;
+THE_EMPRESS_CROWNED     = 46;
+ETERNAL_MERCENARY       = 47;
+
+-----------------------------------
+--
+-----------------------------------
+
 --jAuriya|Moki:	Old function, will likely be further tested and rewritten later
 function rankPointMath(rank)
 	return 0.372*rank^2 - 1.62*rank + 6.2;
