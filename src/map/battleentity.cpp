@@ -58,9 +58,6 @@ CBattleEntity::CBattleEntity()
 
 	StatusEffectContainer = new CStatusEffectContainer(this);
 
-	m_modStat[MOD_ATT] = 8;
-	m_modStat[MOD_DEF] = 8;
-
 	m_modStat[MOD_SLASHRES]  = 1000;
 	m_modStat[MOD_PIERCERES] = 1000;
 	m_modStat[MOD_HTHRES]	 = 1000;
@@ -186,47 +183,51 @@ int32 CBattleEntity::addMP(int32 mp)
 
 uint16 CBattleEntity::STR() 
 { 
-    return stats.STR + m_modStat[MOD_STR];
+    return max(0, stats.STR + m_modStat[MOD_STR]);
 }
 
 uint16 CBattleEntity::DEX()
 {
-    return stats.DEX + m_modStat[MOD_DEX];
+    return max(0, stats.DEX + m_modStat[MOD_DEX]);
 }
 
 uint16 CBattleEntity::VIT()
 {
-    return stats.VIT + m_modStat[MOD_VIT];
+    return max(0, stats.VIT + m_modStat[MOD_VIT]);
 }
 
 uint16 CBattleEntity::AGI()
 {
-    return stats.AGI + m_modStat[MOD_AGI];
+    return max(0, stats.AGI + m_modStat[MOD_AGI]);
 }
 
 uint16 CBattleEntity::INT()
 {
-    return stats.INT + m_modStat[MOD_INT];
+    return max(0, stats.INT + m_modStat[MOD_INT]);
 }
 
 uint16 CBattleEntity::MND()
 {
-    return stats.MND + m_modStat[MOD_MND];
+    return max(0, stats.MND + m_modStat[MOD_MND]);
 }
 
 uint16 CBattleEntity::CHR()
 {
-    return stats.CHR + m_modStat[MOD_CHR];
+    return max(0, stats.CHR + m_modStat[MOD_CHR]);
 }
 
 uint16 CBattleEntity::ATT()
 {
-    return ((1 + (m_modStat[MOD_ATTP] + cap_value(m_modStat[MOD_FOOD_ATTP], 0, m_modStat[MOD_FOOD_ATT_CAP]))) * (m_modStat[MOD_ATT] + STR() / 2)) / 100;
+    uint32 ATT = 8 + m_modStat[MOD_ATT] + STR() / 2;
+
+    return ((100 + m_modStat[MOD_ATTP]) * ATT)/100 + min(((100 + m_modStat[MOD_FOOD_ATTP]) * ATT)/100, m_modStat[MOD_FOOD_ATT_CAP]);
 }
 
 uint16 CBattleEntity::DEF()
 {
-    return ((1 + (m_modStat[MOD_DEFP] + cap_value(m_modStat[MOD_FOOD_DEFP], 0, m_modStat[MOD_FOOD_DEF_CAP]))) * (m_modStat[MOD_DEF] + VIT() / 2)) / 100;
+    uint32 DEF = 8 + m_modStat[MOD_DEF] + VIT() / 2;
+
+    return ((100 + m_modStat[MOD_DEFP]) * DEF)/100 + min(((100 + m_modStat[MOD_FOOD_DEFP]) * DEF)/100, m_modStat[MOD_FOOD_DEF_CAP]);
 }
 
 /************************************************************************

@@ -106,8 +106,8 @@ void CalculateStats(CMobEntity * PMob)
     PMob->health.hp = PMob->GetMaxHP();
     PMob->health.mp = PMob->GetMaxMP();
 
-	PMob->setModifier(MOD_DEF, GetBase(PMob,3) + 8);
-	PMob->setModifier(MOD_EVA, GetBase(PMob,3) + 8);
+	PMob->setModifier(MOD_DEF, GetBase(PMob,3));
+	PMob->setModifier(MOD_EVA, GetBase(PMob,3));
 
 	uint16 BaseAttack = 0;
 
@@ -119,8 +119,8 @@ void CalculateStats(CMobEntity * PMob)
 		BaseAttack = (uint16)(PMob->GetMLevel() * 37 / 10); 
 	}
 
-	PMob->setModifier(MOD_ATT, BaseAttack + 8);
-	PMob->setModifier(MOD_ACC, BaseAttack + 8);
+	PMob->setModifier(MOD_ATT, BaseAttack);
+	PMob->setModifier(MOD_ACC, BaseAttack);
 
 	PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
 

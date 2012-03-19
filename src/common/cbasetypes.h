@@ -272,13 +272,13 @@ typedef char bool;
 // Avoid "value computed is not used" warning and generates the same assembly code
 #define darkstar_swap(a,b) if (a != b) ((a ^= b), (b ^= a), (a ^= b))
 
-//#ifndef max
-//#define max(a,b) (((a) > (b)) ? (a) : (b))
-//#endif
+#ifndef max
+#define max(a,b) (((a) > (b)) ? (a) : (b))
+#endif
 
-//#ifndef min
-//#define min(a,b) (((a) < (b)) ? (a) : (b))
-//#endif
+#ifndef min
+#define min(a,b) (((a) < (b)) ? (a) : (b))
+#endif
 
 //////////////////////////////////////////////////////////////////////////
 // should not happen
