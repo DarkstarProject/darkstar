@@ -41,7 +41,6 @@ function onMobDeath(mob, killer)
 	end
 	
 	killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,1,skip);
-	end
 	
 end;
 
