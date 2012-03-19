@@ -21,26 +21,24 @@
 ===========================================================================
 */
 
-#ifndef _CBAZAARITEMPACKET_H
-#define _CBAZAARITEMPACKET_H
+#include "../../common/socket.h"
 
-#include "../../common/cbasetypes.h"
+#include "../charentity.h"
 
-#include "basic.h"
+#include "bazaar_purchase.h"
 
 /************************************************************************
 *																		*
-*  																		*
+*																		*
 *																		*
 ************************************************************************/
 
-class CItem;
-
-class CBazaarItemPacket: public CBasicPacket
+CBazaarPurchasePacket::CBazaarPurchasePacket(CCharEntity* PChar, bool result)
 {
-public:
+	this->type = 0x06;  // 0x106
+	this->size = 0x0D;
 
-	CBazaarItemPacket(CItem* PItem, uint8 tax);
-};
+	WBUFB(data,(0x04)-4) = result;
 
-#endif
+    memcpy(data+(0x08)-4, PChar->GetName(), PChar->name.size());
+}

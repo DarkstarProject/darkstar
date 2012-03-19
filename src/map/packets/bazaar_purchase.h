@@ -21,8 +21,8 @@
 ===========================================================================
 */
 
-#ifndef _CBAZAARITEMPACKET_H
-#define _CBAZAARITEMPACKET_H
+#ifndef _CBAZAARPURCHASEPACKET_H
+#define _CBAZAARPURCHASEPACKET_H
 
 #include "../../common/cbasetypes.h"
 
@@ -30,17 +30,18 @@
 
 /************************************************************************
 *																		*
-*  																		*
+*																		*
 *																		*
 ************************************************************************/
 
-class CItem;
+class CCharEntity;
 
-class CBazaarItemPacket: public CBasicPacket
+
+class CBazaarPurchasePacket : public CBasicPacket
 {
-public:
+	public:
 
-	CBazaarItemPacket(CItem* PItem, uint8 tax);
+	CBazaarPurchasePacket(CCharEntity* PChar, bool result);
 };
 
 #endif

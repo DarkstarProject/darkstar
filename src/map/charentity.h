@@ -113,6 +113,7 @@ class CBasicPacket;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32,CBaseEntity*> SpawnIDList_t;
+typedef std::vector<uint32> BazaarList_t;
 typedef std::list<Recast_t*> RecastList_t;
 
 class CCharEntity : public CBattleEntity 
@@ -179,6 +180,8 @@ public:
 
     uint32           TradePending;                  // ID персонажа, предлагающего обмен
 	uint32			 InvitePending;					// ID персонажа, отправившего приглашение в группу
+    uint32           BazaarID;                      // Pointer to the bazaar we are browsing.
+	BazaarList_t	 BazaarCustomers;               // Array holding the IDs of the current customers
 
 	uint32			 m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
 	uint8			 m_LevelRestriction;			// ограничение уровня персонажа

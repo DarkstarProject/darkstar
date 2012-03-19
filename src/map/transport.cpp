@@ -29,6 +29,11 @@
 
 #include "packets/entity_update.h"
 
+/************************************************************************
+*                                                                       *
+*  Создание глобальной ссылки на объект класса                          *
+*                                                                       *
+************************************************************************/
 
 CTransportHandler* CTransportHandler::_instance = NULL;
 
@@ -40,11 +45,23 @@ CTransportHandler* CTransportHandler::getInstance()
 	return _instance;
 }
 
+/************************************************************************
+*                                                                       *
+*  В конструкторе инициализируем всю транспортную систему               *
+*                                                                       *
+************************************************************************/
+
 CTransportHandler::CTransportHandler() 
 {
     InitializeTransport();
 	InitializeElevators();
 }
+
+/************************************************************************
+*                                                                       *
+*  Инициализация транспорта (корабли и самолеты)                        *
+*                                                                       *
+************************************************************************/
 
 void CTransportHandler::InitializeTransport()
 {
@@ -105,6 +122,13 @@ void CTransportHandler::InitializeTransport()
     }
 }
 
+
+/************************************************************************
+*                                                                       *
+*  Инициализация лифтов и автоматических дверей                         *
+*                                                                       *
+************************************************************************/
+
 void CTransportHandler::InitializeElevators()
 {
     DSP_DEBUG_BREAK_IF(ElevatorList.size() != 0);
@@ -144,7 +168,7 @@ void CTransportHandler::InitializeElevators()
 
 /************************************************************************
 *                                                                       *
-*                                                                       *
+*  Все логика передвижения транспорта                                   *
 *                                                                       *
 ************************************************************************/
 
@@ -217,10 +241,13 @@ void CTransportHandler::TransportTimer()
 		{
 			uint16 elevatorTimerOffset = (VanaTime % elevator->interval);
 		
-			if(elevatorTimerOffset == 0){
+			if(elevatorTimerOffset == 0)
+            {
 				elevator->isMoving = true;
 				startElevator(elevator);
-			}else if (elevatorTimerOffset == elevator->movetime){
+			}
+            else if (elevatorTimerOffset == elevator->movetime)
+            {
 				if (elevator->isMoving)
 				{
 					if (!elevator->isPermanent)
@@ -235,6 +262,12 @@ void CTransportHandler::TransportTimer()
 	}
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 void CTransportHandler::startElevator(int32 elevatorID)
 {
     for(uint32 i = 0; i < ElevatorList.size(); ++i) 
@@ -248,6 +281,12 @@ void CTransportHandler::startElevator(int32 elevatorID)
 		}
     }
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 void CTransportHandler::startElevator(Elevator_t * elevator)
 {
@@ -281,6 +320,12 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
 	}
 	zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->Elevator,ENTITY_SPAWN));
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 void CTransportHandler::arrivElevator(Elevator_t * elevator)
 {

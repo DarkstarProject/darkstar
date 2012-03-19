@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -32,7 +32,7 @@
 #include "../vana_time.h"
 
 
-CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 slotID, uint8 tax) 
+CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 tax) 
 {
 	this->type = 0x05;	// 0x105
 	this->size = 0x17;
@@ -41,21 +41,19 @@ CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 slotID, uint8 tax)
 	WBUFL(data,(0x08)-4) = PItem->getQuantity();
 	WBUFW(data,(0x0C)-4) = tax;
 	WBUFW(data,(0x0E)-4) = PItem->getID();
-
-	WBUFB(data,(0x10)-4) = slotID;
+    WBUFB(data,(0x10)-4) = PItem->getSlotID();
 
 	if (PItem->getSubType() & ITEM_CHARGED)
 	{
 		uint32 currentTime = CVanaTime::getInstance()->getSysTime() - 1009810800;
 		uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
 
-		WBUFB(data,(0x11)-4) = 0x01;													// ôëàã ITEM_CHARGED
+		WBUFB(data,(0x11)-4) = 0x01;													    // Ñ„Ğ»Ğ°Ğ³ ITEM_CHARGED
 		WBUFB(data,(0x12)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 
 		WBUFB(data,(0x14)-4) = (nextUseTime > currentTime ? 0x90 : 0xD0); 
 
-	    WBUFL(data,(0x15)-4) = nextUseTime;												// òàéìåğ ñëåäóşùåãî èñïîëüçîâàíèÿ
-		WBUFL(data,(0x19)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		// òàéìåğ çàäåğæêè èñïîëüçîâàíèÿ
+	    WBUFL(data,(0x15)-4) = nextUseTime;												// Ñ‚Ğ°Ğ¹Ğ¼ĞµÑ€ ÑĞ»ĞµĞ´ÑƒÑÑ‰ĞµĞ³Ğ¾ Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ
+		WBUFL(data,(0x19)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		// Ñ‚Ğ°Ğ¹Ğ¼ĞµÑ€ Ğ·Ğ°Ğ´ĞµÑ€Ğ¶ĞºĞ¸ Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ
 	}
-
-	memcpy(data+(0x1D)-4, PItem->getSignature(), cap_value(strlen(PItem->getSignature()), 0, 12));
+	memcpy(data+(0x1D)-4, PItem->getSignature(), min(strlen(PItem->getSignature()), 12));
 }

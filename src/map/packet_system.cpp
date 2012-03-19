@@ -53,8 +53,10 @@
 #include "packets/auction_house.h"
 #include "packets/automaton_update.h"
 #include "packets/bazaar_check.h"
+#include "packets/bazaar_close.h"
 #include "packets/bazaar_item.h"
 #include "packets/bazaar_message.h"
+#include "packets/bazaar_purchase.h"
 #include "packets/campaing_map.h"
 #include "packets/char.h"
 #include "packets/char_abilities.h"
@@ -3144,36 +3146,55 @@ int32 SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 /************************************************************************
 *																		*
-*  Персонаж покидает bazaar												*	
-*  (пакет нельзя обработать без сохранения id обладателя базара во		*
-*  входящем 0x105)			 											*
+*  Closing the "View wares", sending a message to the bazaar			*	
+*  that you have left the shop	                                        *
 *																		*
-************************************************************************/					
+************************************************************************/	
 
 int32 SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->BazaarID & 0x0FFF, TYPE_PC);
+
+	if (PTarget != NULL)
+	{
+        // надеюсь, что персонаж прописался в массиве однажны, но на всякий случай пробегаем по всему
+        for (uint32 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
+		{
+            if (PTarget->BazaarCustomers[i] == PChar->id)
+            {
+                PTarget->BazaarCustomers.erase(PTarget->BazaarCustomers.begin() + i--);
+			}
+		}
+	    PTarget->pushPacket(new CBazaarCheckPacket(PChar, BAZAAR_LEAVE));
+	}
+    PChar->BazaarID = 0;
 	return 0;
 }
 
 /************************************************************************
-*																		*
-*  Персонаж заходит в bazaar											*
-*																		*
-************************************************************************/					
+*                                                                       *
+*  Clicking "View wares", opening the bazaar for browsing               *
+*                                                                       *
+************************************************************************/
 
 int32 SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    DSP_DEBUG_BREAK_IF(PChar->BazaarID != 0);
+
 	uint32 charid = RBUFL(data,(0x04));
 
 	CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)charid & 0x0FFF, TYPE_PC);
 
-	if (PTarget != NULL) 
+    if (PTarget != NULL && (PTarget->nameflags.flags & FLAG_BAZAAR)) 
 	{
-		PTarget->pushPacket(new CBazaarCheckPacket(PChar,BAZAAR_ENTER));
+        PChar->BazaarID = PTarget->id;
 
-		CItemContainer* Bazaar = PTarget->getStorage(LOC_INVENTORY);
+		PTarget->pushPacket(new CBazaarCheckPacket(PChar, BAZAAR_ENTER));
+        PTarget->BazaarCustomers.push_back(PChar->id);
 
-		for(uint8 slotID = 1; slotID <= Bazaar->GetSize(); ++slotID) 
+		CItemContainer* PBazaar = PTarget->getStorage(LOC_INVENTORY);
+
+		for(uint8 slotID = 1; slotID <= PBazaar->GetSize(); ++slotID) 
 		{
 			CItem* PItem = Bazaar->GetItem(slotID);
 
@@ -3181,9 +3202,99 @@ int32 SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, int8* da
 				(PItem->getCharPrice() != 0) &&
 			   !(PItem->getFlag() & ITEM_FLAG_EX)) 
 			{
-                PChar->pushPacket(new CBazaarItemPacket(PItem, slotID, PChar->loc.zone->GetTax()));
+                PChar->pushPacket(new CBazaarItemPacket(PItem, PChar->loc.zone->GetTax()));
 			}
 		}
+	}
+	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Purchasing an item from a bazaar                                     *
+*                                                                       *
+************************************************************************/	
+
+int32 SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{	
+	uint8 quantity = RBUFB(data,0x08);
+	uint8 slotID   = RBUFB(data,0x04);
+
+	CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->BazaarID & 0x0FFF, TYPE_PC);
+
+	if (PTarget == NULL)
+		return 0;
+
+    if (PChar->id == PTarget->id)
+    {
+        PChar->pushPacket(new CBazaarPurchasePacket(PTarget, false);
+        return 0;
+    }
+
+	CItemContainer* PInventory = PTarget->getStorage(LOC_INVENTORY);
+	CItemContainer* PBuyerInventory = PChar->getStorage(LOC_INVENTORY);
+	
+	// If the buyer has too few slots, return.
+	if (buyerInventory->GetFreeSlotsCount() == 0)
+		return 0;
+	
+	// We're gonna check if the bazaar gets emptied too.
+	bool stillHasItems = false;
+	
+	for(uint8 inventorySlotID = 1; inventorySlotID <= inventory->GetSize(); ++inventorySlotID) 
+	{
+		PItem = inventory->GetItem(inventorySlotID);
+	
+		if ((PItem != NULL) &&
+			(PItem->getCharPrice() != 0) &&
+		   !(PItem->getFlag() & ITEM_FLAG_EX)) 
+		{
+			// If the selection is the one being bought...
+			if (inventorySlotID == slotID)
+            {
+                ShowDebug(CL_CYAN"parse: Item id: %u\n"CL_RESET, PItem->getID());
+				ShowDebug(CL_CYAN"parse: Char price: %u\n"CL_RESET, PItem->getCharPrice());
+
+                // TODO: нужно проверять текущее количество предметов, т.к. один и тот же предмет одновременно могут купить несколько персонажей
+
+				// Give the seller his money and reduce his gil
+				//CItem* gil = inventory->GetItem(0);	
+				//charutils::UpdateItem(PTarget, LOC_INVENTORY, 0, PItem->getCharPrice() * quantity);
+				//charutils::UpdateItem(PTarget, LOC_INVENTORY, slotID, - quantity);
+
+				// Do the same for the buyer, but reversed of course!
+				//gil = buyerInventory->GetItem(0);	
+				//charutils::UpdateItem(PChar, LOC_INVENTORY, 0, - (PItem->getCharPrice() * quantity));
+				//charutils::AddItem(PChar, LOC_INVENTORY, ItemID, quantity);
+
+                ShowDebug(CL_CYAN"parse: Customers: %u\n"CL_RESET, PTarget->BazaarCustomers.size());
+				
+                for (uint32 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
+                {
+                    CCharEntity* PCustomer = (CCharEntity*)PTarget->loc.zone->GetEntity((uint16)PTarget->BazaarCustomers[i] & 0x0FFF, TYPE_PC);
+					if (PCustomer != NULL)
+                    {
+						ShowDebug(CL_CYAN"parse: Customer id: %u\n"CL_RESET, PCustomer->id);
+                        PChar->pushPacket(new CBazaarItemPacket(PItem, PChar->loc.zone->GetTax()));
+					}
+				}
+			}
+            // если предмет был куплен полностью, то IPtem уже не будет существовать, соответственно нас ждет crash
+			if (PItem->getQuantity() > 0) // что-то не совсем удачная проверка
+            {
+				ShowDebug(CL_CYAN"parse: Still has items, type: %u\n"CL_RESET, PItem->getID());
+				stillHasItems = true;
+			}
+		}	
+	}
+	// If there are no items remaining, remove the bazaar flag.
+	if (stillHasItems == false)
+    {
+		ShowDebug(CL_CYAN"parse: No items left! Removing bazaar flag.\n"CL_RESET);
+
+        PChar->status = STATUS_UPDATE;
+		PChar->nameflags.flags &= ~FLAG_BAZAAR;
+		PChar->pushPacket(new CCharUpdatePacket(PChar));
 	}
 	return 0;
 }
@@ -3206,6 +3317,7 @@ int32 SmallPacket0x109(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 		if ((PItem != NULL) && (PItem->getCharPrice() != 0)) 
 		{
+            PChar->status = STATUS_UPDATE;
 			PChar->nameflags.flags |= FLAG_BAZAAR;
 			PChar->pushPacket(new CCharUpdatePacket(PChar));
 			return 0;
@@ -3242,12 +3354,25 @@ int32 SmallPacket0x10A(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 /************************************************************************
 *																		*
-*  Режим установки цен в bazaar (открываем меню "Set Prices")	 		*
+*  Opening "Set Prices" in bazaar-menu, closing the bazaar		 		*
 *																		*
-************************************************************************/					
+************************************************************************/
 
 int32 SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+	// Send a packet to all customers that the bazaar has closed
+    for (uint32 i = 0; i < PChar->BazaarCustomers.size(); ++i)
+    {
+        CCharEntity* PCustomer = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->BazaarCustomers[i] & 0x0FFF, TYPE_PC);
+
+		if (PCustomer != NULL)
+        {
+			PCustomer->pushPacket(new CBazaarClosePacket(PChar));
+		}
+	}
+    PChar->BazaarCustomers.clear();
+
+    PChar->status = STATUS_UPDATE;
 	PChar->nameflags.flags &= ~FLAG_BAZAAR;
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
 	return 0;
@@ -3351,7 +3476,7 @@ void PacketParserInitialize()
     PacketParser[0x102] = &SmallPacket0xFFF;	// not implemented
     PacketParser[0x104] = &SmallPacket0x104;
     PacketParser[0x105] = &SmallPacket0x105;
-    PacketParser[0x106] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x106] = &SmallPacket0x106;
     PacketParser[0x109] = &SmallPacket0x109;
     PacketParser[0x10A] = &SmallPacket0x10A;
     PacketParser[0x10B] = &SmallPacket0x10B;

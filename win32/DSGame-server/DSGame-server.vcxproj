@@ -163,6 +163,7 @@
     <ClInclude Include="..\..\src\map\packets\auction_house.h" />
     <ClInclude Include="..\..\src\map\packets\automaton_update.h" />
     <ClInclude Include="..\..\src\map\packets\basic.h" />
+    <ClInclude Include="..\..\src\map\packets\bazaar_purchase.h" />
     <ClInclude Include="..\..\src\map\packets\bazaar_check.h" />
     <ClInclude Include="..\..\src\map\packets\bazaar_close.h" />
     <ClInclude Include="..\..\src\map\packets\bazaar_item.h" />
@@ -331,6 +332,7 @@
     <ClCompile Include="..\..\src\map\packets\auction_house.cpp" />
     <ClCompile Include="..\..\src\map\packets\automaton_update.cpp" />
     <ClCompile Include="..\..\src\map\packets\basic.cpp" />
+    <ClCompile Include="..\..\src\map\packets\bazaar_purchase.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_check.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_close.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_item.cpp" />
