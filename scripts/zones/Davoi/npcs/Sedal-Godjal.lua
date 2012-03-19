@@ -31,6 +31,8 @@ function onTrigger(player,npc)
 		countRedPoolForORB = player:getVar("countRedPoolForORB");
 		
 		if(miniQuestForORB_CS == 0) then 
+			player:startEvent(0x0018); -- 
+		elseif(miniQuestForORB_CS == 99) then 
 			player:startEvent(0x0016); -- Start mini quest
 		elseif(miniQuestForORB_CS == 1 and countRedPoolForORB ~= 15) then 
 			player:startEvent(0x0015); -- During mini quest

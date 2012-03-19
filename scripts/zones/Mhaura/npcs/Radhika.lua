@@ -22,7 +22,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00de);
+	
+	if(player:getZPos() >= 39) then
+		player:startEvent(0x00E5);
+	else
+		player:startEvent(0x00DE);
+	end
+	
 end;
 
 -----------------------------------
@@ -30,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +45,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
-

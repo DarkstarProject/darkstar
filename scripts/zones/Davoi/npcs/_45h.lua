@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
 			player:delKeyItem(RED_ORB);
 			player:addKeyItem(BLOOD_ORB);
 			player:messageSpecial(KEYITEM_OBTAINED, BLOOD_ORB);
-		elseif(c == 28) then
+		elseif(c == 14) then
 			player:setVar("countRedPoolForORB", c + 1);
 			player:delKeyItem(BLOOD_ORB);
 			player:addKeyItem(CURSED_ORB);

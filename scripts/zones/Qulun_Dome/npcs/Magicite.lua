@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Monastic Cavern
+-- Area: Qulun Dome
 -- NPC:  Magicite
 -- Involved in Mission: Magicite
--- @zone 147
+-- @zone 148
 -- @pos 11 25 -81
 -----------------------------------
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;

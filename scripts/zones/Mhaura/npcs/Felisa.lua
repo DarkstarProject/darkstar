@@ -1,7 +1,7 @@
 -----------------------------------
 --	Area: Mhaura
---	NPC: Albin
---	Standard Info NPC
+--	NPC:  Felisa
+--	Admits players to the dock in Mhaura.
 -----------------------------------
 
 -----------------------------------
@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00dc);
+	player:startEvent(0x00dd,player:getGil(),100);
 end;
 
 -----------------------------------
@@ -36,6 +36,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

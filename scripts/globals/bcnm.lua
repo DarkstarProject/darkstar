@@ -120,7 +120,7 @@ function bcnmSpawn(field,fight,zone)
 	local selectedFight = fight - 99;
 
 	for x = 0,spawnList[selectedFight][1]-1,1 do
-		SpawnMob(spawnList[selectedFight][2] + x,120);
+		SpawnMob(spawnList[selectedFight][2] + x,1800);
 	end
 end;
 

@@ -31,6 +31,7 @@ function onTrigger(player,npc)
 	else
 		player:messageSpecial(CAVE_HAS_BEEN_SEALED_OFF);
 		player:messageSpecial(MAY_BE_SOME_WAY_TO_BREAK);
+		player:setVar("miniQuestForORB_CS",99);
 		return 1;
 	end
 	
