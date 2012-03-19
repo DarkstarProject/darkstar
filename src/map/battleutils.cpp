@@ -404,35 +404,35 @@ uint8 GetEnmityMod(uint8 level, uint8 modType)
 
 CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
 {
-	if (WSkillID < MAX_WEAPONSKILL_ID)
-	{
-		return g_PWeaponSkillList[WSkillID];
-	}
-	ShowFatalError(CL_RED"WeaponSkillID <%u> out of range\n"CL_RESET, WSkillID);
-	return NULL;
+    DSP_DEBUG_BREAK_IF(WSkillID >= MAX_WEAPONSKILL_ID);
+	
+    return g_PWeaponSkillList[WSkillID];
 }
 
 /************************************************************************
+*                                                                       *
 * Get List of Weapon Skills from skill type								*
+*                                                                       *
 ************************************************************************/
 
 std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill)
 {
+    DSP_DEBUG_BREAK_IF(skill >= MAX_SKILLTYPE);
+
 	return g_PWeaponSkillsList[skill];
 }
 
 /************************************************************************
+*                                                                       *
 *  Get Mob Skill by Id													*
+*                                                                       *
 ************************************************************************/
 
 CMobSkill* GetMobSkill(uint16 SkillID)
 {
-	if (SkillID < MAX_MOBSKILL_ID)
-	{
-		return g_PMobSkillList[SkillID];
-	}
-	ShowFatalError(CL_RED"MobSkillID <%u> out of range\n"CL_RESET, SkillID);
-	return NULL;
+    DSP_DEBUG_BREAK_IF(SkillID >= MAX_MOBSKILL_ID);
+
+    return g_PMobSkillList[SkillID];
 }
 
 /************************************************************************
@@ -443,7 +443,7 @@ CMobSkill* GetMobSkill(uint16 SkillID)
 
 std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 {
-    DSP_DEBUG_BREAK_IF(FamilyID > sizeof(g_PMobFamilySkills));
+    DSP_DEBUG_BREAK_IF(FamilyID >= sizeof(g_PMobFamilySkills));
 
 	return g_PMobFamilySkills[FamilyID];
 }
@@ -456,7 +456,7 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 
 CTrait* GetTrait(uint16 TraitID)
 {
-    DSP_DEBUG_BREAK_IF(TraitID > sizeof(g_PTraitList));
+    DSP_DEBUG_BREAK_IF(TraitID >= sizeof(g_PTraitList));
 
 	return g_PTraitList[TraitID];
 }
@@ -469,7 +469,7 @@ CTrait* GetTrait(uint16 TraitID)
 
 std::list<CTrait*> GetTraits(JOBTYPE JobID)
 {
-    DSP_DEBUG_BREAK_IF(JobID > sizeof(g_PTraitsList));
+    DSP_DEBUG_BREAK_IF(JobID >= sizeof(g_PTraitsList));
 
 	return g_PTraitsList[JobID];
 }
@@ -572,9 +572,9 @@ uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	
 	CSpell* PSpell = PAttacker->PBattleAI->GetCurrentSpell();
 
-	int32 INT   = (PAttacker->stats.INT + PAttacker->getMod(MOD_INT)) - (PDefender->stats.INT + PDefender->getMod(MOD_INT));
-	int32 base  =  PSpell->getBase();
-	float M     =  PSpell->getMultiplier();
+	int32 INT  = PAttacker->INT() - PDefender->INT();
+	int32 base = PSpell->getBase();
+	float M    = PSpell->getMultiplier();
 
 	int32 damage = INT < 0 ? base + INT : base + (INT * M); 
 	
@@ -609,148 +609,6 @@ uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 /************************************************************************
 *																		*
-*  Calculate Power of Cure Spell										*
-*																		*
-************************************************************************/
-
-uint32 MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone) 
-{
-
-	int32 h; 
-	float x;
-	float x2;
-	float x3;
-
-	float y;
-	float y2;
-	float y3;
-
-	int32 minCap;
-	int32 midCap;
-	int32 maxCap;
-
-	switch (PSpell->getID())
-	{
-	case 1: 
-		x = 2;
-		x2 = 4;
-		x3 = 114;
-		y = -10;
-		y2 = 5;
-		y3 = 29.125;
-
-		minCap = 10;
-		midCap = 20;
-		maxCap = 30;
-		
-		break;
-	case 2: case 7:
-		x = 2;
-		x2 = 4;
-		x3 = 214/3;
-		y = 20;
-		y2 = 47.5;
-		y3 = 87.62;
-
-		minCap = 60;
-		midCap = 75;
-		maxCap = 90;
-		break;
-	case 3: case 8:
-		x = 2;
-		x2 = 4;
-		x3 = 94/3;
-		y = 70;
-		y2 = 115;
-		y3 = 180.43;
-
-		minCap = 130;
-		midCap = 160;
-		maxCap = 190;
-		break;
-	case 4: case 9:
-		x = 4/3;
-		x2 = 4;
-		x3 = 13;
-		y = 165;
-		y2 = 275;
-		y3 = 1064/3;
-
-		minCap = 270;
-		midCap = 330;
-		maxCap = 390;
-		break;
-	case 5: case 10:
-		x = 4/3;
-		x2 = 1;
-		x3 = 17/6;
-		y = 330;
-		y2 = 410;
-		y3 = 591.2;
-
-		minCap = 450;
-		midCap = 570;
-		maxCap = 690;
-		break;
-	case 6: case 11: //not implemented
-		x = 2;
-		x2 = 4;
-		x3 = 114;
-		y = -10;
-		y2 = 5;
-		y3 = 29.125;
-
-		minCap = 10;
-		midCap = 20;
-		maxCap = 30;
-		break;
-	};
-	
-
-	h = (((3*(PCaster->stats.MND + (PCaster->GetSkill(SKILL_HEA)/10)/5) + PCaster->stats.VIT) / x) + y) + MOD_HEALING; //+ Day bonus + Weather bonus) 
-
-	if (h < minCap)
-	{
-		h = minCap;
-	}
-	else if (minCap < h < maxCap) 
-	{
-		h = (((3*(PCaster->stats.MND + (PCaster->GetSkill(SKILL_HEA)/10)/5) + PCaster->stats.VIT) / x2) + y2) + MOD_HEALING; //+ Day bonus + Weather bonus) 
-	}
-	else if (maxCap < h)
-	{
-		h = (((3*(PCaster->stats.MND + (PCaster->GetSkill(SKILL_HEA)/10)/5) + PCaster->stats.VIT) / x3) + y3) + MOD_HEALING; //+ Day bonus + Weather bonus) 
-	}
-
-	h = (h > maxCap ? maxCap : h);
-
-	if  (PTarget->objtype == TYPE_MOB)
-	{
-		if (PTarget->m_EcoSystem == SYSTEM_UNDEAD) 
-		{
-			PTarget->addHP(-h);
-			PZone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget)); 
-			return -h; 
-		}
-		return 0; 
-	}
-	else 
-	{
-		if (PTarget->health.maxhp - PTarget->health.hp < h)
-		{
-			h = (PTarget->health.maxhp - PTarget->health.hp); 
-		}
-		if (PTarget->PBattleAI->GetBattleTarget() != NULL)
-			((CMobEntity*)PTarget->PBattleAI->GetBattleTarget())->PEnmityContainer->UpdateEnmityFromCure(PCaster,PTarget->GetMLevel(),h);
-		PTarget->addHP(h);
-		PZone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CCharHealthPacket((CCharEntity*)PTarget)); 
-	}
-	return h;
-}
-
-
-/************************************************************************
-*																		*
 *  Calculate Probability attack will hit (20% min cap - 95% max cap)	*
 *																		*
 ************************************************************************/
@@ -759,8 +617,8 @@ uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
 	int32 hitrate = 75;
 
-		int32 defendereva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + (PAttacker->stats.AGI + PAttacker->getMod(MOD_AGI))/2;
-		int32 attackeracc = (PAttacker->getMod(MOD_ACC) * (100 + PAttacker->getMod(MOD_ACCP)))/100 + (PAttacker->stats.DEX + PAttacker->getMod(MOD_DEX))/2; 
+		int32 defendereva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PAttacker->AGI()/2;
+		int32 attackeracc = (PAttacker->getMod(MOD_ACC) * (100 + PAttacker->getMod(MOD_ACCP)))/100 + PAttacker->DEX()/2;
 	
 		hitrate = hitrate + (attackeracc - defendereva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
@@ -786,8 +644,8 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	}
 	else
 	{
-		int32 attackerdex = PAttacker->stats.DEX + PAttacker->getMod(MOD_DEX);
-		int32 defenderagi = PDefender->stats.AGI + PDefender->getMod(MOD_AGI);
+		int32 attackerdex = PAttacker->DEX();
+		int32 defenderagi = PDefender->AGI();
 
 		int32 dDEX = cap_value(attackerdex - defenderagi,0,50);
 
@@ -805,7 +663,7 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender)  
 {
-    float cRatio = PAttacker->GetAtt() / PDefender->GetDef();
+    float cRatio = PAttacker->ATT() / PDefender->DEF();
 
 	float cRatioMax = 0;
 	float cRatioMin = 0;

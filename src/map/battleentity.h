@@ -316,6 +316,16 @@ public:
 	stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
 	skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
 
+    uint16          STR();
+    uint16          DEX();                      
+    uint16          VIT();                      
+    uint16          AGI();
+    uint16          INT();
+    uint16          MND();
+    uint16          CHR();
+    uint16          DEF();
+    uint16          ATT();
+
 	bool		    isDead();					// проверяем, мертва ли сущность
 
 	JOBTYPE		    GetMJob();					// главная профессия
@@ -335,9 +345,6 @@ public:
     void            UpdateHealth();             // пересчет максимального количества hp и mp, а так же корректировка их текущих значений
 
 	uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
-
-    uint16          GetDef();                   // текущяа величина защиты
-    uint16          GetAtt();                   // текущая величина атаки
 
 	uint16		    addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
 	int32	        addHP(int32 hp);			// увеличиваем/уменьшаем количество hp

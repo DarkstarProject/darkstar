@@ -49,7 +49,7 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	WBUFW(data,(0x10)-4) = PChar->jobs.exp[PChar->GetMJob()];
 	WBUFW(data,(0x12)-4) = charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]);
 
-	memcpy(data+(0x14)-4, &PChar->stats, 14);
+	memcpy(data+(0x14)-4, &PChar->stats, 14); // TODO: с merits это не прокатит
 
 	WBUFW(data,(0x22)-4) = PChar->getMod(MOD_STR);
 	WBUFW(data,(0x24)-4) = PChar->getMod(MOD_DEX);
@@ -59,8 +59,8 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	WBUFW(data,(0x2C)-4) = PChar->getMod(MOD_MND);
 	WBUFW(data,(0x2E)-4) = PChar->getMod(MOD_CHR);
 
-    WBUFW(data,(0x30)-4) = PChar->GetAtt();
-	WBUFW(data,(0x32)-4) = PChar->GetDef();
+    WBUFW(data,(0x30)-4) = PChar->ATT();
+	WBUFW(data,(0x32)-4) = PChar->DEF();
 
 	WBUFW(data,(0x34)-4) = PChar->getMod(MOD_FIREDEF);
 	WBUFW(data,(0x36)-4) = PChar->getMod(MOD_ICEDEF);

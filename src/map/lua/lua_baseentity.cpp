@@ -1146,15 +1146,15 @@ inline int32 CLuaBaseEntity::getStat(lua_State *L)
 
     switch(lua_tointeger(L,-1)) 
     {
-        case MOD_STR:  lua_pushinteger(L, (PEntity->stats.STR + PEntity->getMod(MOD_STR))); break;
-        case MOD_DEX:  lua_pushinteger(L, (PEntity->stats.DEX + PEntity->getMod(MOD_DEX))); break;
-        case MOD_VIT:  lua_pushinteger(L, (PEntity->stats.VIT + PEntity->getMod(MOD_VIT))); break;
-        case MOD_AGI:  lua_pushinteger(L, (PEntity->stats.AGI + PEntity->getMod(MOD_AGI))); break;
-        case MOD_INT:  lua_pushinteger(L, (PEntity->stats.INT + PEntity->getMod(MOD_INT))); break;
-        case MOD_MND:  lua_pushinteger(L, (PEntity->stats.MND + PEntity->getMod(MOD_MND))); break;
-        case MOD_CHR:  lua_pushinteger(L, (PEntity->stats.CHR + PEntity->getMod(MOD_CHR))); break;
-		case MOD_ATT:  lua_pushinteger(L, (PEntity->GetAtt())); break;
-		case MOD_DEF:  lua_pushinteger(L, (PEntity->GetDef())); break;
+        case MOD_STR:  lua_pushinteger(L, PEntity->STR()); break;
+        case MOD_DEX:  lua_pushinteger(L, PEntity->DEX()); break;
+        case MOD_VIT:  lua_pushinteger(L, PEntity->VIT()); break;
+        case MOD_AGI:  lua_pushinteger(L, PEntity->AGI()); break;
+        case MOD_INT:  lua_pushinteger(L, PEntity->INT()); break;
+        case MOD_MND:  lua_pushinteger(L, PEntity->MND()); break;
+        case MOD_CHR:  lua_pushinteger(L, PEntity->CHR()); break;
+		case MOD_ATT:  lua_pushinteger(L, PEntity->ATT()); break;
+		case MOD_DEF:  lua_pushinteger(L, PEntity->DEF()); break;
         default: lua_pushnil(L);
     }
     return 1;
