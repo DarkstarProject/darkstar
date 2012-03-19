@@ -178,6 +178,63 @@ int32 CBattleEntity::addMP(int32 mp)
 	return abs(mp);
 }
 
+/************************************************************************
+*                                                                       *
+*  Полные значения характеристик боевой сущности                        *
+*                                                                       *
+************************************************************************/
+
+uint16 CBattleEntity::STR() 
+{ 
+    return stats.STR + m_modStat[MOD_STR];
+}
+
+uint16 CBattleEntity::DEX()
+{
+    return stats.DEX + m_modStat[MOD_DEX];
+}
+
+uint16 CBattleEntity::VIT()
+{
+    return stats.VIT + m_modStat[MOD_VIT];
+}
+
+uint16 CBattleEntity::AGI()
+{
+    return stats.AGI + m_modStat[MOD_AGI];
+}
+
+uint16 CBattleEntity::INT()
+{
+    return stats.INT + m_modStat[MOD_INT];
+}
+
+uint16 CBattleEntity::MND()
+{
+    return stats.MND + m_modStat[MOD_MND];
+}
+
+uint16 CBattleEntity::CHR()
+{
+    return stats.CHR + m_modStat[MOD_CHR];
+}
+
+uint16 CBattleEntity::ATT()
+{
+    return ((1 + (m_modStat[MOD_ATTP] + cap_value(m_modStat[MOD_FOOD_ATTP], 0, m_modStat[MOD_FOOD_ATT_CAP]))) * (m_modStat[MOD_ATT] + STR() / 2)) / 100;
+}
+
+uint16 CBattleEntity::DEF()
+{
+    return ((1 + (m_modStat[MOD_DEFP] + cap_value(m_modStat[MOD_FOOD_DEFP], 0, m_modStat[MOD_FOOD_DEF_CAP]))) * (m_modStat[MOD_DEF] + VIT() / 2)) / 100;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 JOBTYPE CBattleEntity::GetMJob()
 {
 	return m_mjob;
@@ -327,26 +384,4 @@ uint16 CBattleEntity::GetSkill(uint16 SkillID)
 		return WorkingSkills.skill[SkillID] & 0x7FFF;
 	}
 	return 0;
-}
-
-/************************************************************************
-*                                                                       *
-*  Текущая атака                                                        *
-*                                                                       *
-************************************************************************/
-
-uint16 CBattleEntity::GetAtt()
-{
-    return ((1 + getMod(MOD_ATTP)* 0.01 + cap_value(getMod(MOD_FOOD_ATTP)* 0.01, 0, getMod(MOD_FOOD_ATT_CAP))) * (getMod(MOD_ATT) + (stats.STR + getMod(MOD_STR)) / 2));
-}
-
-/************************************************************************
-*                                                                       *
-*  Текущая защита                                                       *
-*                                                                       *
-************************************************************************/
-
-uint16 CBattleEntity::GetDef()
-{
-    return ((1 + getMod(MOD_DEFP)* 0.01 + cap_value(getMod(MOD_FOOD_DEFP)* 0.01, 0, getMod(MOD_FOOD_DEF_CAP))) * (getMod(MOD_DEF) + (stats.VIT + getMod(MOD_VIT)) / 2));
 }
