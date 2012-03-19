@@ -56,6 +56,7 @@
 #include "lua/luautils.h"
 
 #include "packets/basic.h"
+#include "packets/char_update.h"
 
 const int8* MAP_CONF_FILENAME = NULL;
 
@@ -700,11 +701,14 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
         else if (PChar != NULL && (PChar->nameflags.flags & FLAG_DC))
         {
             PChar->nameflags.flags &= ~FLAG_DC;
+            PChar->pushPacket(new CCharUpdatePacket(PChar));
+
             if (PChar->status == STATUS_NORMAL) 
             {
                 PChar->status = STATUS_UPDATE;
                 PChar->loc.zone->SpawnPCs(PChar);
             }
+            charutils::SaveCharStats(PChar);
         }
 		++it;
 	}
