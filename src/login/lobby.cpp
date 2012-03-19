@@ -53,8 +53,6 @@ int32 connect_client_lobbydata(int32 listenfd)
 	{
 		create_session(fd, recv_to_fifo, send_from_fifo, lobbydata_parse);
 		session[fd]->client_addr = ntohl(client_address.sin_addr.s_addr);
-
-
 		session[fd]->wdata[0] = 0x01;
 		WFIFOSET(fd,5);
 		return fd;
@@ -384,7 +382,7 @@ int32 lobbyview_parse(int32 fd)
 	login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
 	if( sd == NULL )
-	{
+	{	
 		sd = find_loginsd_byip(session[fd]->client_addr);
 		if( sd == NULL )
 		{

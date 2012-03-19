@@ -20,7 +20,9 @@
 
 ===========================================================================
 */
-
+#include "../common/malloc.h"
+#include "../common/showmsg.h"
+#include "../common/socket.h"
 #include "login_session.h"
 
 login_sd_list_t login_sd_list;
@@ -39,12 +41,35 @@ login_session_data_t *find_loginsd_byaccid(int32 accid)
 
 login_session_data_t *find_loginsd_byip(uint32 ip)
 {
+	//////// 19/03/2012 Fix for 1 IP -> Many Accounts
+	// Simply increases "serviced" by 1 every time a login is returned via an IP address.
+	// The result is the illusion of independancy (though really it's not!)
+	int minserv = 1000; 
+	int multiple_ip_count = 0;
 	for(login_sd_list_t::iterator i = login_sd_list.begin(); 
 		i != login_sd_list.end();
 		++i )
 	{
-		if( (*i)->client_addr == ip)
+		if( (*i)->client_addr == ip ){
+			multiple_ip_count++;
+			if((*i)->serviced < minserv){
+				minserv = (*i)->serviced;
+			}
+		}
+	}
+
+	if(multiple_ip_count>1){
+		ShowInfo("Detected %i instances from %s. Returning best account match.\n",multiple_ip_count,ip2str(ip,NULL));
+	}
+	////////////////
+	for(login_sd_list_t::iterator i = login_sd_list.begin(); 
+		i != login_sd_list.end();
+		++i )
+	{
+		if( (*i)->client_addr == ip && (*i)->serviced == minserv){
+			(*i)->serviced++;
 			return (*i);
+		}
 	}
 	return NULL;
 }

@@ -46,7 +46,7 @@ int32 connect_client_login(int32 listenfd)
 	struct sockaddr_in client_address;
 	if( ( fd = connect_client(listenfd,client_address) ) != -1 )
 	{
-		create_session(fd, recv_to_fifo, send_from_fifo, login_parse);
+		int32 code = create_session(fd, recv_to_fifo, send_from_fifo, login_parse);
 		session[fd]->client_addr = ntohl(client_address.sin_addr.s_addr);
 		return fd;
 	}
@@ -62,6 +62,7 @@ int32 login_parse(int32 fd)
 	{
 		CREATE(session[fd]->session_data,login_session_data_t,1);
 		sd = (login_session_data_t*)session[fd]->session_data;
+		sd->serviced = 0;
 		login_sd_list.push_back(sd);
 		sd->client_addr = session[fd]->client_addr;
 		sd->login_fd	= fd;
@@ -109,7 +110,6 @@ int32 login_parse(int32 fd)
 			const int8* fmtQuery = "SELECT accounts.id,accounts.status \
 									FROM accounts \
 									WHERE accounts.login = '%s' AND accounts.password = PASSWORD('%s')";
-
 			int32 ret = Sql_Query(SqlHandle,fmtQuery,login,password);	
 			if( ret != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
 			{
@@ -133,7 +133,6 @@ int32 login_parse(int32 fd)
 					//}
 					fmtQuery = "UPDATE accounts SET accounts.timelastmodify = NULL WHERE accounts.id = %d";
 					Sql_Query(SqlHandle,fmtQuery,sd->accid);
-
 					memset(session[fd]->wdata,0,33);
 					WBUFB(session[fd]->wdata,0) = LOGIN_SUCCESS;
 					WBUFL(session[fd]->wdata,1) = sd->accid;
