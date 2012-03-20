@@ -3196,7 +3196,7 @@ int32 SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 		for(uint8 slotID = 1; slotID <= PBazaar->GetSize(); ++slotID) 
 		{
-			CItem* PItem = Bazaar->GetItem(slotID);
+			CItem* PItem = PBazaar->GetItem(slotID);
 
 			if ((PItem != NULL) &&
 				(PItem->getCharPrice() != 0) &&
@@ -3227,7 +3227,7 @@ int32 SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* da
 
     if (PChar->id == PTarget->id)
     {
-        PChar->pushPacket(new CBazaarPurchasePacket(PTarget, false);
+        PChar->pushPacket(new CBazaarPurchasePacket(PTarget, false));
         return 0;
     }
 
@@ -3235,15 +3235,15 @@ int32 SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* da
 	CItemContainer* PBuyerInventory = PChar->getStorage(LOC_INVENTORY);
 	
 	// If the buyer has too few slots, return.
-	if (buyerInventory->GetFreeSlotsCount() == 0)
+	if (PBuyerInventory->GetFreeSlotsCount() == 0)
 		return 0;
 	
 	// We're gonna check if the bazaar gets emptied too.
 	bool stillHasItems = false;
-	
-	for(uint8 inventorySlotID = 1; inventorySlotID <= inventory->GetSize(); ++inventorySlotID) 
+	CItem* PItem;
+	for(uint8 inventorySlotID = 1; inventorySlotID <= PInventory->GetSize(); ++inventorySlotID) 
 	{
-		PItem = inventory->GetItem(inventorySlotID);
+		PItem = PInventory->GetItem(inventorySlotID);
 	
 		if ((PItem != NULL) &&
 			(PItem->getCharPrice() != 0) &&
