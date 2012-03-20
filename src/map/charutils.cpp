@@ -1319,13 +1319,13 @@ void CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param)
 void BuildingCharWeaponSkills(CCharEntity* PChar)
 {
 	memset(& PChar->m_WeaponSkills, 0, sizeof(PChar->m_WeaponSkills)); 
-	std::list<CWeaponSkill*> WeaponSkillList; 
 		
 	JOBTYPE curMainJob = PChar->GetMJob();
-	JOBTYPE curSubJob = PChar->GetSJob();
+	JOBTYPE curSubJob  = PChar->GetSJob();
+
 	uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
 	
-	WeaponSkillList = battleutils::GetWeaponSkills(skill); 
+	std::list<CWeaponSkill*> WeaponSkillList = battleutils::GetWeaponSkills(skill);
 
 	for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
 	{
@@ -1333,7 +1333,7 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 		
 		if ((PChar->RealSkills.skill[skill]/10) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0))
 		{
-			addWeaponSkill(PChar,PSkill->getID());
+			addWeaponSkill(PChar, PSkill->getID());
 		}
 	}
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
@@ -1471,7 +1471,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 	if ((PChar->WorkingSkills.rank[SkillID] != 0) && !(PChar->WorkingSkills.skill[SkillID] & 0x8000)) 
 	{
 		uint16 CurSkill = PChar->RealSkills.skill[SkillID];
-        uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), min(PChar->GetMLevel(),lvl));
+        uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), dsp_min(PChar->GetMLevel(),lvl));
 
 		int16  Diff = MaxSkill - CurSkill/10;
 		double SkillUpChance = (Diff * (2.6 - (log(1.2 + CurSkill / 100))))/10; // переписать формулу
@@ -1482,7 +1482,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 		{
 			double chance = 0;
 			uint8  SkillAmount = 1;
-			uint8  tier = min(1 + (Diff / 5), 5);
+			uint8  tier = dsp_min(1 + (Diff / 5), 5);
 		
 			for(uint8 i = 0; i < 5; ++i) 
 			{
