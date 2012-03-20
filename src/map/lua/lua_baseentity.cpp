@@ -22,6 +22,7 @@
 */
 
 #include "../../common/showmsg.h"
+#include "../../common/timer.h"
 #include "../../common/utils.h"
 
 #include <math.h>
@@ -69,6 +70,7 @@
 #include "../guildutils.h"
 #include "../map.h"
 #include "../mobentity.h"
+#include "../npcentity.h"
 #include "../petutils.h"
 #include "../spell.h"
 #include "../trade_container.h"
@@ -3350,9 +3352,33 @@ inline int32 CLuaBaseEntity::getWeaponDmg(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Открываем дверь и автоматически закрываем через 7 секунд             *
+*                                                                       *   
+************************************************************************/
+
+inline int32 CLuaBaseEntity::openDoor(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+    CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
+
+    if (m_PBaseEntity->animation == ANIMATION_CLOSE_DOOR)
+    {
+        m_PBaseEntity->animation = ANIMATION_OPEN_DOOR;
+        m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE));
+
+        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", gettick()+7000, m_PBaseEntity, CTaskMgr::TASK_ONCE, close_door));
+    }
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
+
 Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] = 
 {
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,warp),
@@ -3480,5 +3506,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,openDoor),
 	{NULL,NULL}
 };
