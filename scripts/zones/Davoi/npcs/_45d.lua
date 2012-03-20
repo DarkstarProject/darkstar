@@ -32,8 +32,9 @@ function onTrigger(player,npc)
 		player:messageSpecial(CAVE_HAS_BEEN_SEALED_OFF);
 		player:messageSpecial(MAY_BE_SOME_WAY_TO_BREAK);
 		player:setVar("miniQuestForORB_CS",99);
-		return 1;
 	end
+	
+	return 1;
 	
 end;
 
@@ -56,6 +57,7 @@ function onEventFinish(player,csid,option)
 
 	if(csid == 0x002a and option == 0) then
 		player:messageSpecial(POWER_OF_THE_ORB_ALLOW_PASS);
+		GetNPCByID(17387982):openDoor();
 	end
 
 end;

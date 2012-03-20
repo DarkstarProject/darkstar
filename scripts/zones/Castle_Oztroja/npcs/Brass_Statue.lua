@@ -1,11 +1,11 @@
 -----------------------------------
---  Area: Castle Oztroja
---   NPC: Brass Statue
---  Type: Passageway Machine
--- @zone: 151
---  @pos: -60.061 -4.348 -61.538
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Castle Oztroja
+-- NPC:  Brass Statue
+-- Type: Passageway Machine
+-- @zone 151
+-- @pos -60.061 -4.348 -61.538	(1)
+-- @pos -60 22 -100				(2)
+-- @pos -100 -72 -19			(3)
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +22,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x000d);
+	
+	Z = npc:getZPos();
+	
+	if(Z < -15 and Z > -19) then
+		GetNPCByID(17396188):openDoor();
+	end
+	--player:startEvent(0x000d);
+	
 end;
 
 -----------------------------------
