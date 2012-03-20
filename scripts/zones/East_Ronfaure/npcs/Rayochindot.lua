@@ -1,16 +1,16 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Shihu-Danhu
---  Type: Teleporter
--- @zone: 48
---  @pos: 62.768 -1.98 -51.299
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  Area: East Ronfaure
+--   NPC: Rayochindot
+--  Type: Gate Guard
+-- @zone: 101
+--  @pos: 93.159 -62.999 272.601
+--
+-- Auto-Script: Requires Verification
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
+package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/teleports");
+require("scripts/zones/East_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0067);
+	player:showText(npc, RAYOCHINDOT_DIALOG);
 end;
 
 -----------------------------------
@@ -43,9 +43,5 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	
-	if (csid == 0x0067 and option == 1) then
-		ShihuDanhuWarp(player);
-	end
 end;
 
