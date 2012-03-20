@@ -13,7 +13,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\common\blowfish.h" />
     <ClInclude Include="..\..\src\common\cbasetypes.h" />
-    <ClInclude Include="..\..\src\common\db.h" />
     <ClInclude Include="..\..\src\common\kernel.h" />
     <ClInclude Include="..\..\src\common\malloc.h" />
     <ClInclude Include="..\..\src\common\md52.h" />
@@ -35,7 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\common\blowfish.cpp" />
-    <ClCompile Include="..\..\src\common\db.cpp" />
     <ClCompile Include="..\..\src\common\kernel.cpp" />
     <ClCompile Include="..\..\src\common\malloc.cpp" />
     <ClCompile Include="..\..\src\common\md52.cpp" />
