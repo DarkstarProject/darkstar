@@ -183,51 +183,51 @@ int32 CBattleEntity::addMP(int32 mp)
 
 uint16 CBattleEntity::STR() 
 { 
-    return max(0, stats.STR + m_modStat[MOD_STR]);
+    return dsp_max(0, stats.STR + m_modStat[MOD_STR]);
 }
 
 uint16 CBattleEntity::DEX()
 {
-    return max(0, stats.DEX + m_modStat[MOD_DEX]);
+    return dsp_max(0, stats.DEX + m_modStat[MOD_DEX]);
 }
 
 uint16 CBattleEntity::VIT()
 {
-    return max(0, stats.VIT + m_modStat[MOD_VIT]);
+    return dsp_max(0, stats.VIT + m_modStat[MOD_VIT]);
 }
 
 uint16 CBattleEntity::AGI()
 {
-    return max(0, stats.AGI + m_modStat[MOD_AGI]);
+    return dsp_max(0, stats.AGI + m_modStat[MOD_AGI]);
 }
 
 uint16 CBattleEntity::INT()
 {
-    return max(0, stats.INT + m_modStat[MOD_INT]);
+    return dsp_max(0, stats.INT + m_modStat[MOD_INT]);
 }
 
 uint16 CBattleEntity::MND()
 {
-    return max(0, stats.MND + m_modStat[MOD_MND]);
+    return dsp_max(0, stats.MND + m_modStat[MOD_MND]);
 }
 
 uint16 CBattleEntity::CHR()
 {
-    return max(0, stats.CHR + m_modStat[MOD_CHR]);
+    return dsp_max(0, stats.CHR + m_modStat[MOD_CHR]);
 }
 
 uint16 CBattleEntity::ATT()
 {
     uint32 ATT = 8 + m_modStat[MOD_ATT] + STR() / 2;
 
-    return ((100 + m_modStat[MOD_ATTP]) * ATT)/100 + min(((100 + m_modStat[MOD_FOOD_ATTP]) * ATT)/100, m_modStat[MOD_FOOD_ATT_CAP]);
+    return ((100 + m_modStat[MOD_ATTP]) * ATT)/100 + dsp_min(((100 + m_modStat[MOD_FOOD_ATTP]) * ATT)/100, m_modStat[MOD_FOOD_ATT_CAP]);
 }
 
 uint16 CBattleEntity::DEF()
 {
     uint32 DEF = 8 + m_modStat[MOD_DEF] + VIT() / 2;
 
-    return ((100 + m_modStat[MOD_DEFP]) * DEF)/100 + min(((100 + m_modStat[MOD_FOOD_DEFP]) * DEF)/100, m_modStat[MOD_FOOD_DEF_CAP]);
+    return ((100 + m_modStat[MOD_DEFP]) * DEF)/100 + dsp_min(((100 + m_modStat[MOD_FOOD_DEFP]) * DEF)/100, m_modStat[MOD_FOOD_DEF_CAP]);
 }
 
 /************************************************************************

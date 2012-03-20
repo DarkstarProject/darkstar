@@ -1,7 +1,5 @@
 // Copyright (c) 2010-2012 Darkstar Dev Teams
 
-//#include "../common/cbasetypes.h"
-#include "../common/db.h"
 #include "../common/malloc.h"
 #include "../common/showmsg.h"
 #include "../common/utils.h"

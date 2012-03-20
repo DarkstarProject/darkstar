@@ -55,5 +55,5 @@ CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 tax)
 	    WBUFL(data,(0x15)-4) = nextUseTime;												// таймер следующего использования
 		WBUFL(data,(0x19)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		// таймер задержки использования
 	}
-	memcpy(data+(0x1D)-4, PItem->getSignature(), min(strlen(PItem->getSignature()), 12));
+	memcpy(data+(0x1D)-4, PItem->getSignature(), dsp_min(strlen(PItem->getSignature()), 12));
 }
