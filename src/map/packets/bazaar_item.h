@@ -40,7 +40,7 @@ class CBazaarItemPacket: public CBasicPacket
 {
 public:
 
-	CBazaarItemPacket(CItem* PItem, uint8 tax);
+	CBazaarItemPacket(CItem* PItem, uint8 SlotID, uint8 Tax);
 };
 
 #endif

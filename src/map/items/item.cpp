@@ -222,12 +222,12 @@ uint32 CItem::getBasePrice()
 
 void CItem::setCharPrice(uint32 CharPrice)
 {
-	m_CharPrice = CharPrice;
+    if (!(m_flag & ITEM_FLAG_EX)) m_CharPrice = CharPrice;
 }
 
 uint32 CItem::getCharPrice()
 {
-	return m_CharPrice;
+    return m_CharPrice;
 }
 
 /************************************************************************

@@ -28,7 +28,6 @@
 #include "../charentity.h"
 #include "../party.h"
 
-
 CPartySearchPacket::CPartySearchPacket(CCharEntity* PChar)
 {
 	this->type = 0xE1;

@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -23,22 +23,21 @@
 
 #include "../../common/socket.h"
 
+#include <string.h>
+
+#include "bazaar_confirmation.h"
+
 #include "../charentity.h"
 
-#include "bazaar_purchase.h"
 
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
-
-CBazaarPurchasePacket::CBazaarPurchasePacket(CCharEntity* PChar, bool result)
+CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, uint8 SlotID, uint8 Quantity)
 {
-	this->type = 0x06;  // 0x106
-	this->size = 0x0D;
+	this->type = 0x09;  // 0x109
+	this->size = 0x13;
 
-	WBUFB(data,(0x04)-4) = !result;
+    WBUFL(data,(0x04)-4) = PChar->id;
+    WBUFB(data,(0x08)-4) = Quantity;
+	WBUFB(data,(0x20)-4) = SlotID;
 
-    memcpy(data+(0x08)-4, PChar->GetName(), PChar->name.size());
+	memcpy(data+(0x10)-4, PChar->GetName(), PChar->name.size());	
 }

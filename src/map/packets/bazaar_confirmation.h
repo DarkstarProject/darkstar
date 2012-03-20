@@ -21,24 +21,26 @@
 ===========================================================================
 */
 
-#include "../../common/socket.h"
+#ifndef _CBAZAARCONFIRMATIONPACKET_H
+#define _CBAZAARCONFIRMATIONPACKET_H
 
-#include "../charentity.h"
+#include "../../common/cbasetypes.h"
 
-#include "bazaar_purchase.h"
+#include "basic.h"
 
 /************************************************************************
 *																		*
-*																		*
+*  																		*
 *																		*
 ************************************************************************/
 
-CBazaarPurchasePacket::CBazaarPurchasePacket(CCharEntity* PChar, bool result)
+class CCharEntity;
+
+class CBazaarConfirmationPacket: public CBasicPacket
 {
-	this->type = 0x06;  // 0x106
-	this->size = 0x0D;
+public:
 
-	WBUFB(data,(0x04)-4) = !result;
+	CBazaarConfirmationPacket(CCharEntity* PChar, uint8 SlotID, uint8 Quantity);
+};
 
-    memcpy(data+(0x08)-4, PChar->GetName(), PChar->name.size());
-}
+#endif

@@ -126,8 +126,8 @@ private:
 	uint32		m_quantity;     // текущее количество предметов
     uint32      m_reserve;      // зарезервированное количество предметов
 	uint32		m_stackSize;    // максимальное количество предметов
-	uint32		m_BasePrice;    // стоимость предмета в bazaar
-	uint32		m_CharPrice;
+	uint32		m_BasePrice;    
+	uint32		m_CharPrice;    // стоимость предмета в bazaar
 	uint8		m_ahCat;        // категоряи предмета на укционе
 	uint16		m_flag;
 
