@@ -22,3 +22,5 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
 
 -- Door dialog
 OPEN_WITH_THE_RIGHT_KEY = 7221; -- You might be able to open it with the right key.
+		BANISHING_GATES = 7230; -- The first banishing gate begins to open...
+ A_GATE_OF_STURDY_STEEL = 7215; -- A gate of sturdy steel

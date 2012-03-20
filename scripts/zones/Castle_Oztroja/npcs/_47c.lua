@@ -3,7 +3,7 @@
 -- NPC:  Handle
 -- Open trap door or brass door
 -- @zone 151
--- @pos 
+-- @pos 20 0 -13
 -----------------------------------
 
 require("scripts/globals/settings");

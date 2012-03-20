@@ -1,24 +1,28 @@
 -----------------------------------
--- Area: Castle Oztroja
--- NPC:  Brass Door
--- Open by handle (G-8)
--- @zone 151
--- @pos -182 -15 -19
+-- Area: Garlaige Citadel
+-- NPC:  Banishing Gate #3
+-- @zone 200
+-- @pos -100 0 353
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
+package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
+require("scripts/zones/Garlaige_Citadel/TextIDs");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
+
+function onTrade(player,npc,trade)
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	player:messageSpecial(ITS_LOCKED);
+	player:messageSpecial(A_GATE_OF_STURDY_STEEL);
 	return 1;
-	
 end;
 
 -----------------------------------
@@ -26,12 +30,12 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("upCSID: %u",csid);
---printf("upRESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
--- onEventFinish Action
+-- onEventFinish
 -----------------------------------
 
 function onEventFinish(player,csid,option)

@@ -5,8 +5,10 @@
 -- @zone 151
 -- @pos -100 -71 -49
 -----------------------------------
+package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
+-----------------------------------
 
-require("scripts/globals/settings");
+require("scripts/zones/Castle_Oztroja/TextIDs");
 
 -----------------------------------
 -- onTrigger Action

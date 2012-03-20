@@ -1,24 +1,19 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  Brass Door
--- Open by handle (G-8)
+-- NPC:  Handle
+-- Open door
 -- @zone 151
--- @pos -182 -15 -19
------------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
+-- @pos 20 0 -7
 -----------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	player:messageSpecial(ITS_LOCKED);
-	return 1;
-	
+	GetNPCByID(17396151):openDoor();
 end;
 
 -----------------------------------
@@ -26,8 +21,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("upCSID: %u",csid);
---printf("upRESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
