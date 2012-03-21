@@ -359,17 +359,6 @@ function toCloisterOfFrost(player)
 	player:setPos(554, 0, 589, 209, 203); -- Cloister of Frost (shiva)
 end;
 
-function ShihuDanhuWarp(player)
-	warp = math.random((1),(5));
-	if (warp == 1) then
-		player:setPos(0.000, 8.999, -38.670, -67, 243);    -- Ru'Lude Gardens
-	elseif (warp == 2) then
-		player:setPos(373.996, 7.164, -106.588, -35, 105); -- Batallia Downs
-	elseif (warp == 3) then
-		player:setPos(-327.325, 2.000, 438.500, 190, 120); -- Sauromugue Chapaign
-	elseif (warp == 4) then
-		player:setPos(213.125, 16.000, 419.125, 210, 110); -- Rolanberry Fields
-	elseif (warp == 5) then
-		player:setPos(181.850, 15.000, -171.250, 80, 126); -- Qufim Island
-	end
+function toRuLudeGardens(player)
+	player:setPos(0.000, 9.000, -38.670, -67, 243);
 end;
