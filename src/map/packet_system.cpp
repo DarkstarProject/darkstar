@@ -3218,7 +3218,6 @@ int32 SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* da
 {	
 	uint8 Quantity = RBUFB(data,0x08);
 	uint8 SlotID   = RBUFB(data,0x04);
-    uint8 Tax      = PChar->loc.zone->GetTax();
 
 	CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->BazaarID & 0x0FFF, TYPE_PC);
 
@@ -3249,10 +3248,11 @@ int32 SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* da
 
         // TODO: мне так лень делать проверки на текущее количество gil, на первое время понадеемся на клиента
 
-        uint32 Price = (PBazaarItem->getCharPrice() * Quantity); // TODO: возможна ошибка со слишком большими суммами
+        uint32 Price1 = (PBazaarItem->getCharPrice() * Quantity);               // цена
+        uint32 Price2 = (PChar->loc.zone->GetTax() * Price1) / 10000 + Price1;  // цена + налог
 
-        charutils::UpdateItem(PChar,   LOC_INVENTORY, 0, -Price);
-        charutils::UpdateItem(PTarget, LOC_INVENTORY, 0,  Price);
+        charutils::UpdateItem(PChar,   LOC_INVENTORY, 0, -Price2); 
+        charutils::UpdateItem(PTarget, LOC_INVENTORY, 0,  Price1); 
 
         charutils::UpdateItem(PTarget, LOC_INVENTORY, SlotID, -Quantity);
 
@@ -3280,7 +3280,7 @@ int32 SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* da
 
             if (PCustomer != NULL)
             {
-                PCustomer->pushPacket(new CBazaarItemPacket(PBazaar->GetItem(SlotID), SlotID, Tax));
+                PCustomer->pushPacket(new CBazaarItemPacket(PBazaar->GetItem(SlotID), SlotID, PChar->loc.zone->GetTax()));
 
                 if (PCustomer->id != PChar->id)
                 {
