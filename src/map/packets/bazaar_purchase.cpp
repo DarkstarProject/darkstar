@@ -25,6 +25,8 @@
 
 #include "../charentity.h"
 
+#include <string.h>
+
 #include "bazaar_purchase.h"
 
 /************************************************************************
