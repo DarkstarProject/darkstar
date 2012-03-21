@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Raibaht
 -- Starts and Finishes Quest: Dark Legacy
--- Involved in Quest: The Usual
+-- Involved in Quest: The Usual, Riding on the Clouds
 -- @zone 237
 -- @pos -27 -10 -1
 -----------------------------------
@@ -19,6 +19,15 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 7) then
+		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+			player:setVar("ridingOnTheClouds_2",0);
+			player:addKeyItem(SMILING_STONE);
+			player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+		end
+	end
+	
 end;
 
 -----------------------------------

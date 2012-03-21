@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
 -- NPC:  Maat
--- Starts and Finishes Quest: In Defiant Challenge, Atop the Highest Mountains, Whence Blows the Wind
+-- Starts and Finishes Quest: In Defiant Challenge, Atop the Highest Mountains, Whence Blows the Wind, Riding on the Clouds
 -- Involved in Quests: Beat Around the Bushin
 -- @zone 243
 -- @pos 8 3 118
@@ -41,6 +41,7 @@ function onTrigger(player,npc)
 	inDefiantChallenge = player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE);
 	atopTheHighestMountains = player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
 	whenceBlowsTheWind = player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND);
+	ridingOnTheClouds = player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS);
 	
 	if(player:getVar("BeatAroundTheBushin") == 5) then
 		player:startEvent(0x0075);
@@ -64,6 +65,24 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x0056); -- During Quest "Whence Blows the Wind"
 		end
+	elseif(ridingOnTheClouds == QUEST_AVAILABLE and LvL >= 61 and player:levelCap() == 65) then
+		rand1 = math.random(0,7); rand2 = math.random(0,7);
+		rand3 = math.random(0,7); rand4 = math.random(0,7);
+		player:setVar("ridingOnTheClouds_1",rand1 + 1); player:setVar("ridingOnTheClouds_2",rand2 + 1);
+		player:setVar("ridingOnTheClouds_3",rand3 + 1); player:setVar("ridingOnTheClouds_4",rand4 + 1);
+		
+		player:startEvent(0x0058,rand1,rand2,rand3,rand4,180); -- Start Quest "Riding on the Clouds"
+	elseif(ridingOnTheClouds == QUEST_ACCEPTED) then
+		if(player:hasKeyItem(SMILING_STONE) and player:hasKeyItem(SCOWLING_STONE) and player:hasKeyItem(SOMBER_STONE) and player:hasKeyItem(SPIRITED_STONE)) then
+			player:startEvent(0x005a); -- Finish Quest "Riding on the Clouds"
+		else
+			rand1 = player:getVar("ridingOnTheClouds_1") ; rand2 = player:getVar("ridingOnTheClouds_2");
+			rand3 = player:getVar("ridingOnTheClouds_3"); rand4 = player:getVar("ridingOnTheClouds_4");
+			if(rand1 == 0) then rand1 = 8; else rand1 = rand1 - 1; end if(rand2 == 0) then rand2 = 8; else rand2 = rand2 - 1; end
+			if(rand3 == 0) then rand3 = 8; else rand3 = rand3 - 1; end if(rand4 == 0) then rand4 = 8; else rand4 = rand4 - 1; end
+			
+			player:startEvent(0x0059,rand1,rand2,rand3,rand4,180); -- During Quest "Riding on the Clouds"
+		end
 	end
 	
 end;
@@ -78,8 +97,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("upCSID: %u",csid);
+--printf("upRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -111,7 +130,7 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(TRIANGULAR_FRIGICITE);
 		player:levelCap(60);
 		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_60);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO,40);
 		player:completeQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
 	-- Genkai 3
 	elseif(csid == 0x0055 and option == 1) then
@@ -123,8 +142,27 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(YAGUDO_CREST);
 		player:levelCap(65);
 		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_65);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO,50);
 		player:completeQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
+	elseif(csid == 0x0058) then
+		if(option == 1) then
+			player:addQuest(JEUNO,RIDING_ON_THE_CLOUDS);
+		else
+			player:setVar("ridingOnTheClouds_1",0);
+			player:setVar("ridingOnTheClouds_2",0);
+			player:setVar("ridingOnTheClouds_3",0);
+			player:setVar("ridingOnTheClouds_4",0);
+		end
+	elseif(csid == 0x005a) then
+		player:setTitle(CLOUD_BREAKER);
+		player:delKeyItem(SMILING_STONE);
+		player:delKeyItem(SCOWLING_STONE);
+		player:delKeyItem(SOMBER_STONE);
+		player:delKeyItem(SPIRITED_STONE);
+		player:levelCap(70);
+		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_70);
+		player:addFame(JEUNO,60);
+		player:completeQuest(JEUNO,RIDING_ON_THE_CLOUDS);
 	end
 	
 end;

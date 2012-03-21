@@ -1,12 +1,15 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Brifalien
--- Standard Info NPC
+-- NPC:  Brifalien
+-- Involved in Quests: Riding on the Clouds
+-- @zone 232
+-- @pos -20 -4 -74
+-----------------------------------
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
@@ -14,16 +17,21 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
+	
+	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 7) then
+		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+			player:setVar("ridingOnTheClouds_1",0);
+			player:addKeyItem(SCOWLING_STONE);
+			player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+		end
+	end
+	
 end; 
 
 -----------------------------------
@@ -31,7 +39,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x24d);
+	player:startEvent(0x024d);
 end;
 
 -----------------------------------
@@ -51,7 +59,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-
-

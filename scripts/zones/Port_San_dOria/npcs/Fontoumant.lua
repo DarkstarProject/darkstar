@@ -1,17 +1,18 @@
 -----------------------------------
---	Area: Port San d'Oria
---	NPC:  Fontoumant
---	Starts the quest "The Brugaire Consortium"
---	Involved inf Riding on the Clouds
---	0x0231  0x0230  0x0219  0x022e  0x0260  0x0261  0x0262
---	Working ?% 
+-- Area: Port San d'Oria
+-- NPC:  Fontoumant
+-- Starts Quest: The Brugaire Consortium
+-- Involved in Quests: Riding on the Clouds
+-- @zone 232
+-- @pos -44 31 174
+-----------------------------------
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
@@ -19,16 +20,21 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
+	
+	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 6) then
+		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+			player:setVar("ridingOnTheClouds_1",0);
+			player:addKeyItem(SCOWLING_STONE);
+			player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+		end
+	end
+	
 end; 
 
 -----------------------------------
@@ -37,19 +43,19 @@ end;
 
 function onTrigger(player,npc)
 
-TheBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
+	TheBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
 
-	if (TheBrugaireConsortium == 0) then
+	if(TheBrugaireConsortium == QUEST_AVAILABLE) then
 		player:startEvent(0x01fd);
-	elseif (TheBrugaireConsortium == 1) then
+	elseif(TheBrugaireConsortium == QUEST_ACCEPTED) then
 	
 		questState = player:getVar("TheBrugaireConsortium-Parcels");
 		
-		if (questState == 11) then
+		if(questState == 11) then
 			player:startEvent(0x01ff);
-		elseif (questState == 21) then
+		elseif(questState == 21) then
 			player:startEvent(0x0200);
-		elseif (questState == 31) then
+		elseif(questState == 31) then
 			player:startEvent(0x0203);
 		end
 	end
@@ -73,7 +79,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x01fd and option == 0) then
+	if(csid == 0x01fd and option == 0) then
 		if(player:getFreeSlotsCount() ~= 0)then
 			player:addItem(0x0251);
 			player:messageSpecial(ITEM_OBTAINED,0x0251);
@@ -82,7 +88,7 @@ function onEventFinish(player,csid,option)
 		else
 			player:startEvent(0x0219);
 		end
-	elseif (csid == 0x01ff) then
+	elseif(csid == 0x01ff) then
 		if(player:getFreeSlotsCount() ~= 0)then
 			player:addItem(0x0252);
 			player:messageSpecial(ITEM_OBTAINED,0x0252);
@@ -90,7 +96,7 @@ function onEventFinish(player,csid,option)
 		else
 			player:startEvent(0x0219);
 		end
-	elseif (csid == 0x0200) then
+	elseif(csid == 0x0200) then
 		if(player:getFreeSlotsCount() ~= 0)then
 			player:addItem(0x0253);
 			player:messageSpecial(ITEM_OBTAINED,0x0253);
@@ -98,7 +104,7 @@ function onEventFinish(player,csid,option)
 		else
 			player:startEvent(0x0219);
 		end
-	elseif (csid == 0x0203) then
+	elseif(csid == 0x0203) then
 		if(player:getFreeSlotsCount() ~= 0)then
 			player:addItem(0x3001);
 			player:messageSpecial(ITEM_OBTAINED,0x3001);
@@ -112,7 +118,3 @@ function onEventFinish(player,csid,option)
 	end
 
 end;
-
-
-
-

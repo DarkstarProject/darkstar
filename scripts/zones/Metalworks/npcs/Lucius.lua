@@ -2,6 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Lucius
 -- Involved in Mission: Bastok 3-3
+-- Involved in Quest: Riding on the Clouds
 -- @zone 237
 -- @pos 59.959 -17.39 -42.321
 -----------------------------------
@@ -9,6 +10,7 @@ package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Metalworks/TextIDs");
 
@@ -17,6 +19,15 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 8) then
+		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+			player:setVar("ridingOnTheClouds_2",0);
+			player:addKeyItem(SMILING_STONE);
+			player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+		end
+	end
+	
 end;
 
 -----------------------------------

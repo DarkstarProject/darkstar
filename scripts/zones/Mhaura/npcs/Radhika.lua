@@ -1,11 +1,9 @@
 -----------------------------------
---  Area: Mhaura
---   NPC: Radhika
---  Type: Standard NPC
--- @zone: 249
---  @pos: 34.124 -8.999 39.629
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Mhaura
+-- NPC:  Radhika
+-- Type: Standard NPC
+-- @zone 249
+-- @pos 34.124 -8.999 39.629
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

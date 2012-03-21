@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Metalworks
 -- NPC:  Naji
--- Involved in Quests: The doorman (finish)
+-- Involved in Quests: The doorman (finish), Riding on the Clouds 
 -- @zone 237
 -- @pos 64 -14 -4
 -----------------------------------
@@ -9,10 +9,10 @@ package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/globals/titles");
+require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Metalworks/TextIDs");
 
@@ -21,6 +21,15 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 6) then
+		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+			player:setVar("ridingOnTheClouds_2",0);
+			player:addKeyItem(SMILING_STONE);
+			player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+		end
+	end
+	
 end;
 
 -----------------------------------

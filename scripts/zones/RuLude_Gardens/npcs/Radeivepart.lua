@@ -6,12 +6,13 @@
 -- @zone 243
 -- @pos 5 9 -39
 -----------------------------------
+package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
+require("scripts/globals/shop");
 require("scripts/globals/quests");
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
@@ -43,8 +44,6 @@ function onTrigger(player,npc)
 		player:startEvent(0x009f); -- Standard dialog
 	end
 end;
-
---0x009f  0x003d  0x00a0
 
 -----------------------------------
 -- onEventUpdate
