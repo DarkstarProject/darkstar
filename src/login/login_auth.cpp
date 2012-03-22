@@ -147,6 +147,33 @@ int32 login_parse(int32 fd)
 					WFIFOSET(fd,33);
 					do_close_login(sd,fd);
 				}
+
+				//////22/03/2012 Fix for when a client crashes before fully logging in:
+				//				Before: When retry to login, would freeze client since login data corrupt.
+				//				After: Removes older login info if a client logs in twice (based on acc id!)
+
+				//check for multiple logins from this account id
+				int numCons = 0;
+				for(login_sd_list_t::iterator i = login_sd_list.begin(); i != login_sd_list.end(); i++ ){
+					if( (*i)->accid == sd->accid ){
+						numCons++;
+					}
+				}
+
+				if(numCons>1){
+					ShowInfo("login_parse:"CL_WHITE"<%s>"CL_RESET" has logged in %i times! Removing older logins.\n",login,numCons);
+					for(int j=0; j<(numCons-1); j++){
+						for(login_sd_list_t::iterator i = login_sd_list.begin(); i != login_sd_list.end(); i++ ){
+							if( (*i)->accid == sd->accid ){
+								//ShowInfo("Current login fd=%i Removing fd=%i \n",sd->login_fd,(*i)->login_fd);
+								login_sd_list.erase(i);
+								break;
+							}
+						}
+					} 
+				}
+				//////
+
 				ShowInfo("login_parse:"CL_WHITE"<%s>"CL_RESET" was connected\n",login,status);
 				return 0;
 			}else{
