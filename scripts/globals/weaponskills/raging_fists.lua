@@ -1,12 +1,12 @@
 -------------------------------
 -- Auth : Thief
--- Skill: Combo
+-- Skill: Raging Fists
 -- Class: H2H Weapon Skill
--- Level: 5
+-- Level: 125
 -- Mods : STR:20% DEX:20%
 -- 100%TP 	200%TP 	300%TP
 -- 1.0x		1.5x	2.0x
--- Delivers a 3-fold attack. Damage varies with TP(nope)
+-- Delivers a 5-fold attack. Damage varies with TP(nope)
 -------------------------------
 
 require("/scripts/globals/settings");
@@ -15,7 +15,7 @@ require("/scripts/globals/weaponskills");
 function OnUseWeaponSkill(attacker, target, wsID)
 	
 	--number of normal hits for ws
-	numHits = 3;
+	numHits = 5;
 
 	--stat-modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc)
 	str_mod = 0.2;		dex_mod = 0.2;

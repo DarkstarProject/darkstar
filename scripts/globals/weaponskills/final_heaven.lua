@@ -1,12 +1,12 @@
 -------------------------------
 -- Auth : Thief
--- Skill: Combo
+-- Skill: Final Heaven
 -- Class: H2H Weapon Skill
--- Level: 5
--- Mods : STR:20% DEX:20%
+-- Level: MNK Relic Only
+-- Mods : VIT:60%
 -- 100%TP 	200%TP 	300%TP
--- 1.0x		1.5x	2.0x
--- Delivers a 3-fold attack. Damage varies with TP(nope)
+-- 3.0x		3.0x	3.0x
+-- Caestus/Spharai: Temporarily enhances Subtle Blow effect. * +10 Subtle Blow for a short duration after using the weapon skill. (Not implemented)
 -------------------------------
 
 require("/scripts/globals/settings");
@@ -15,16 +15,16 @@ require("/scripts/globals/weaponskills");
 function OnUseWeaponSkill(attacker, target, wsID)
 	
 	--number of normal hits for ws
-	numHits = 3;
+	numHits = 1;
 
 	--stat-modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc)
-	str_mod = 0.2;		dex_mod = 0.2;
-	vit_mod = 0.0;		agi_mod = 0.0;
+	str_mod = 0.0;		dex_mod = 0.0;
+	vit_mod = 0.6;		agi_mod = 0.0;
 	int_mod = 0.0;		mnd_mod = 0.0;
 	chr_mod = 0.0;
 
 	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function fTP)
-	ftp100 = 1.0; ftp200 = 1.5; ftp300 = 2.0;
+	ftp100 = 3.0; ftp200 = 3.0; ftp300 = 3.0;
 
 	--critical modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc)
 	crit100 = 0.0; crit200=0.0; crit300=0.0;
