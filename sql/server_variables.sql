@@ -27,7 +27,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 DROP TABLE IF EXISTS `server_variables`;
 CREATE TABLE IF NOT EXISTS `server_variables` (
-  `name` varchar(30) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `value` int(11) NOT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -38,3 +38,19 @@ CREATE TABLE IF NOT EXISTS `server_variables` (
 
 INSERT INTO server_variables VALUES ('[BF]Save_The_Children_record', '600');
 INSERT INTO server_variables VALUES ('[BF]The_Holy_Crest_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Mission_2-3_Horlais_Peak_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job1_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job2_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job3_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job4_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job5_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job6_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job7_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job8_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job9_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job10_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job11_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job12_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job13_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job14_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job15_record', '600');

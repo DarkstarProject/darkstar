@@ -29,6 +29,14 @@ function onTrade(player,npc,trade)
 		end
 	end
 	
+	mJob = player:getMainJob();
+	
+	if(player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getMainLvl() >= 66) then
+		if(trade:hasItemQty(1425 + mJob,1) and trade:getItemCount() == 1 and mJob <= 15) then
+			player:startEvent(0x0040); -- Teleport to battlefield for "Shattering Stars"
+		end
+	end
+	
 end; 
 
 -----------------------------------
@@ -38,10 +46,12 @@ end;
 function onTrigger(player,npc)
 	
 	LvL = player:getMainLvl();
+	mJob = player:getMainJob();
 	inDefiantChallenge = player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE);
 	atopTheHighestMountains = player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
 	whenceBlowsTheWind = player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND);
 	ridingOnTheClouds = player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS);
+	shatteringStars = player:getQuestStatus(JEUNO,SHATTERING_STARS);
 	
 	if(player:getVar("BeatAroundTheBushin") == 5) then
 		player:startEvent(0x0075);
@@ -83,14 +93,19 @@ function onTrigger(player,npc)
 			
 			player:startEvent(0x0059,rand1,rand2,rand3,rand4,180); -- During Quest "Riding on the Clouds"
 		end
+	elseif(shatteringStars == QUEST_AVAILABLE and LvL >= 66 and mJob <= 15 and player:levelCap() == 70) then
+		player:startEvent(0x005c,player:getMainJob()); -- Start Quest "Shattering Stars"
+	elseif(shatteringStars == QUEST_ACCEPTED and LvL >= 66 and mJob <= 15 and player:getVar("maatDefeated") == 0) then
+		player:startEvent(0x005b,player:getMainJob()); -- During Quest "Shattering Stars"
+	elseif(shatteringStars == QUEST_ACCEPTED and LvL >= 66 and mJob <= 15 and player:getVar("maatDefeated") == 1) then
+		player:startEvent(0x005d); -- Finish Quest "Shattering Stars"
+	else
+		player:showText(npc,10259);
 	end
 	
 end;
 
--- 0x0075  0x004f  0x0050  0x0051  0x0052  0x0053  0x0054  0x0055  0x0056  0x0057  0x0058  0x0059  0x005a  0x005c  0x005b  
--- 0x0040  0x003e  0x003f  0x005d  0x004e  0x005e  0x004a  0x273d  0x2798  0x2799  0x27b1
--- 0x004f  0x0051  0x0052  0x0054  0x0055  0x0057  0x0058  0x0059  0x005a  0x005c  0x0040  0x005d  0x004a  0x0075  0x2798  
--- 0x2799  0x27b1  0x2793  0x2794
+-- Maat cap: 0x004a
 
 -----------------------------------
 -- onEventUpdate
@@ -163,6 +178,23 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_70);
 		player:addFame(JEUNO,60);
 		player:completeQuest(JEUNO,RIDING_ON_THE_CLOUDS);
+	elseif(csid == 0x005c) then
+		player:addQuest(JEUNO,SHATTERING_STARS);
+	elseif(csid == 0x0040 and option == 1) then
+		mJob = player:getMainJob();
+			if(mJob == 2 or mJob == 3 or mJob == 15) then	player:setPos(299.316,-123.591,353.760,66,146);
+		elseif(mJob == 1 or mJob == 4 or mJob == 11) then	player:setPos(-511.459,159.004,-210.543,10,139);
+		elseif(mJob == 7 or mJob == 8 or mJob == 10) then 	player:setPos(-225.146,-24.250,20.057,255,206);
+		elseif(mJob == 5 or mJob == 6 or mJob == 9) then  	player:setPos(-349.899,104.213,-260.150,0,144);
+		elseif(mJob == 12 or mJob == 13 or mJob == 14) then player:setPos(-220.084,-0.645,4.442,191,168); end
+	elseif(csid == 0x005d) then
+		player:setTitle(STAR_BREAKER);
+		player:levelCap(75);
+		player:setVar("maatDefeated",0);
+		-- Add variable for maat cap
+		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_75);
+		player:addFame(JEUNO,80);
+		player:completeQuest(JEUNO,SHATTERING_STARS);
 	end
 	
 end;

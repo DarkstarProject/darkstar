@@ -25,15 +25,21 @@ end;
 
 function onMobDeath(mob,killer)
 	killer:setVar("BCNM_Killed",killer:getVar("BCNM_Killed") + 1);
-	record = 300;
-	partyMembers = 6;
+	record = GetServerVariable("[BF]Mission_2-3_Horlais_Peak_record");
+	partyMembers = 1;
 	killer:setTitle(DREAD_DRAGON_SLAYER);
+	
+	newtimer = os.time() - killer:getVar("BCNM_Timer");
+		
+	if(newtimer < record) then
+		SetServerVariable("[BF]Mission_2-3_Horlais_Peak_record",newtimer);
+	end
 
 	if(killer:getVar("BCNM_Killed") == 2) then
 		if(killer:hasCompletedMission(killer:getNation(),5)) then
-			killer:startEvent(0x7d01,0,record,0,(os.time() - killer:getVar("BCNM_Timer")),partyMembers,0,1);
+			killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,0,1);
 		else
-			killer:startEvent(0x7d01,0,record,0,(os.time() - killer:getVar("BCNM_Timer")),partyMembers,0,0);
+			killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,0,0);
 		end
 	end
 	
@@ -60,8 +66,6 @@ end;
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
-
-	pZone = player:getZone();
 	
 	if(csid == 0x7d01) then
 		if(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 9) then

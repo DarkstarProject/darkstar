@@ -51,6 +51,36 @@ require("scripts/zones/Horlais_Peak/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	pZone = player:getZone();
+	player:setVar(tostring(pZone) .. "_Ready",0);
+	player:setVar(tostring(pZone) .. "_Field",0);
+	
+	LvL = player:getMainLvl();
+	mJob = player:getMainJob();
+	shatteringStars = player:getQuestStatus(JEUNO,SHATTERING_STARS);
+	
+	if(player:getXPos() >= -520 and player:getXPos() <= -500 and player:getZPos() >= -220 and player:getZPos() <= -200) then
+		if(getAvailableBattlefield(player:getZone()) ~= 255) then
+			local bcnmFight = 0;
+			
+			-- Battlefield for WAR, BLM, RNG
+			if(shatteringStars == QUEST_ACCEPTED and trade:getItemCount() == 1 and player:getVar("maatDefeated") == 0) then
+				if(trade:hasItemQty(1426,1) and mJob == 1 and LvL >= 66) then
+					bcnmFight = bcnmFight + 32;
+				elseif(trade:hasItemQty(1429,1) and mJob == 4 and LvL >= 66) then
+					bcnmFight = bcnmFight + 64;
+				elseif(trade:hasItemQty(1436,1) and mJob == 11 and LvL >= 66) then
+					bcnmFight = bcnmFight + 128;
+				end
+			end
+
+			if(bcnmFight >= 0) then
+				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
+			end
+		else
+			player:messageSpecial(7155);
+		end
+	end
 end;
 
 -----------------------------------
@@ -99,13 +129,21 @@ function onEventUpdate(player,csid,option)
 			player:setVar(zoneReady,player:getVar(zoneReady)+1);
 
 			if(player:getVar(zoneReady) == readyField and readyField ~= 255) then
-				if(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 9) then
-					player:updateEvent(2,bcnmFight,0,500,6,0);
+				if(player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED) then
+					skip = 0; mJob = player:getMainJob();
+					record = GetServerVariable("[BF]Shattering_Stars_job"..mJob.."_record");
+					if(mJob == 1) then bcnmFight = 5; elseif(mJob == 4) then bcnmFight = 6; else bcnmFight = 7; end
+				elseif(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 9) then
+					skip = 0;
+					record = GetServerVariable("[BF]Mission_2-3_Horlais_Peak_record");
 					player:levelRestriction(25);
 				elseif(player:hasCompletedMission(player:getNation(),5)) then
-					player:updateEvent(2,bcnmFight,0,500,6,1);
+					skip = 1;
+					record = GetServerVariable("[BF]Mission_2-3_Horlais_Peak_record");
 					player:levelRestriction(25);
 				end
+				
+				player:updateEvent(2,bcnmFight,0,record,1,skip);
 			else
 				player:updateEvent(0,0,0,0,0,0);
 			end
