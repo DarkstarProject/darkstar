@@ -616,8 +616,13 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 		case 0x0C: break;	// assist
 		case 0x0D: 	// raise menu
 	    {
-            //PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
-            //PChar->PBattleAI->CheckCurrentAction(gettick());
+			if(RBUFB(data,(0x0C)) == 0){ //ACCEPTED RAISE
+				PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
+				PChar->PBattleAI->CheckCurrentAction(gettick());
+			}
+			else{
+				PChar->m_hasRaise = 0;
+			}
 	    } 
         break;
 		case 0x0E: // рыбалка

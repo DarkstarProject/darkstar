@@ -2539,8 +2539,13 @@ inline int32 CLuaBaseEntity::sendRaise(lua_State *L)
 	{
 		if( m_PBaseEntity->objtype == TYPE_PC )
 		{
-			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+			if( !lua_isnil(L,-1) && lua_isnumber(L,-1))
 			{
+				if((uint8)lua_tonumber(L, -1)<1 || (uint8)lua_tonumber(L, -1)>3){
+					ShowDebug(CL_CYAN"lua::sendRaise raise value is not 1, 2 or 3!\n"CL_RESET);
+					return 0;
+				}
+
 				if(((CCharEntity*)m_PBaseEntity)->m_hasRaise == 0) 
 				{
 					uint8 RaiseLevel = (uint8)lua_tonumber(L, -1);

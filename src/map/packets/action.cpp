@@ -150,6 +150,16 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			ActionType = ACTION_RANGED_START;
 		}
 			break;
+		case ACTION_RAISE_MENU_SELECTION:
+		{
+			WBUFB(data,(0x0A)-4) = 0x10;
+			WBUFB(data,(0x0B)-4) = 0x00;
+			WBUFB(data,(0x0C)-4) = 0x00;
+			WBUFB(data,(0x0D)-4) = 0x00;
+			WBUFB(data,(0x0E)-4) = 0x00;
+			ActionType = ACTION_MAGIC_FINISH;
+		}
+			break;
 		case ACTION_MAGIC_START:
 		{
 			WBUFB(data,(0x0A)-4) = 0xE0;

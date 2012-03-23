@@ -331,6 +331,16 @@ void CAICharNormal::ActionFall()
 	m_PBattleTarget    = NULL;
 	m_PBattleSubTarget = NULL;
 
+	uint32 reraise_status = 0; //set to the raise power if reraise is up
+
+	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_RERAISE)){
+		//get strength
+		CStatusEffect* PStatusEffect = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_RERAISE,0);
+		reraise_status = PStatusEffect->GetPower();
+		//remove effect
+		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_RERAISE);
+	}
+
     m_PChar->UContainer->Clean();
 
     m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
@@ -339,6 +349,14 @@ void CAICharNormal::ActionFall()
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
+
+	//need to remove status effects on death! But only some, e.g. Protect is removed, but Signet is not removed.
+
+	//give raise
+	if(reraise_status>0){
+		m_PChar->m_hasRaise = reraise_status;
+		m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar, TYPE_RAISE));
+	}
 }
 
 /************************************************************************
@@ -933,7 +951,7 @@ void CAICharNormal::ActionMagicCasting()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-    if (m_PBattleSubTarget->isDead())
+    if (m_PBattleSubTarget->isDead() && m_PBattleSubTarget->objtype != TYPE_PC) //todo: so raise can be cast, will need to redo this
 	{
 		m_ActionType = ACTION_MAGIC_INTERRUPT;
 		ActionMagicInterrupt();
@@ -1687,26 +1705,52 @@ void CAICharNormal::ActionAttack()
 
 void CAICharNormal::ActionRaiseMenuSelection() 
 {	
-    //m_PChar->animation = ANIMATION_NONE; 
-			
-    //m_PChar->addHP(500); 
-    //UpdateHealth();
-    //m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));			
-				//
-    //apAction_t Action;
-    //m_PChar->m_ActionList.clear();
+	uint16 ANIM_RAISE_ONE = 511;
+	uint16 ANIM_RAISE_TWO = 512;
+	uint16 ANIM_RAISE_THREE = 496;
+	uint32 weakness_duration = 60*5; //5min
+	DSP_DEBUG_BREAK_IF(m_PChar->m_hasRaise > 3 || m_PChar->m_hasRaise < 0);
 
-    //Action.ActionTarget = m_PChar;
-    ////Action.subeffect = 511;
-    //Action.animation = 511;
-    //Action.reaction = REACTION_NONE;
-    //Action.speceffect = SPECEFFECT_RAISE;
-    ////Action.subeffect = SUBEFFECT_NONE;
-				//
-    ////Action.subparam = 4; 
-			
-    //m_PChar->m_ActionList.push_back(Action);
+    m_PChar->animation = ANIMATION_NONE; 	
 
-    //m_PZone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-    //m_ActionType = ACTION_NONE; 												
+	//set animation
+    apAction_t Action;
+    m_PChar->m_ActionList.clear();
+    Action.ActionTarget = m_PChar;
+	if(m_PChar->m_hasRaise==1){
+		Action.animation = ANIM_RAISE_ONE;
+		m_PChar->addHP(m_PChar->GetMaxHP()*0.1); 
+	}
+	else if(m_PChar->m_hasRaise==2){
+		Action.animation = ANIM_RAISE_TWO;
+		m_PChar->addHP(m_PChar->GetMaxHP()*0.25); 
+	}
+	else if(m_PChar->m_hasRaise==3){
+		Action.animation = ANIM_RAISE_THREE;
+		m_PChar->addHP(m_PChar->GetMaxHP()*0.5); 
+	}
+    Action.reaction = REACTION_NONE;
+    Action.speceffect = SPECEFFECT_RAISE;
+	Action.messageID = 0; //so no msg is displayed on raise
+		
+	//////send packets
+	//raise anim
+    m_PChar->m_ActionList.push_back(Action);
+    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS)){
+		//double weakness! Calculate stuff here
+		ShowDebug("ActionRaiseMenuSelection : todo: handle double-weakness.");
+		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_WEAKNESS);
+	}
+	//add weakness effect (75% reduction in HP/MP)
+	CStatusEffect * weakness = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,75,0,weakness_duration,EFFECTFLAG_NONE,0);
+	m_PChar->StatusEffectContainer->AddStatusEffect(weakness);
+	charutils::UpdateHealth(m_PChar);
+    m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));	
+
+	//todo: regain lost EXP
+    
+	//Reset statuses
+	m_PChar->m_hasRaise = 0; //reset the raise status
+	m_ActionType = ACTION_NONE; 												
 }
