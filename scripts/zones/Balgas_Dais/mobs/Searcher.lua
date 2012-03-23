@@ -22,15 +22,22 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
+	
 	killer:setVar("BCNM_Killed",killer:getVar("BCNM_Killed") + 1);
-	record = 300;
-	partyMembers = 6;
+	record = GetServerVariable("[BF]Mission_2-3_Balgas_Dais_record");
+	partyMembers = 1;
+	
+	newtimer = os.time() - killer:getVar("BCNM_Timer");
+		
+	if(newtimer < record) then
+		SetServerVariable("[BF]Mission_2-3_Balgas_Dais_record",newtimer);
+	end
 	
 	if(killer:getVar("BCNM_Killed") == 2) then
 		if(killer:hasCompletedMission(killer:getNation(),5)) then
-			killer:startEvent(0x7d01,0,record,0,(os.time() - killer:getVar("BCNM_Timer")),partyMembers,0,1);
+			killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,0,1);
 		else
-			killer:startEvent(0x7d01,0,record,0,(os.time() - killer:getVar("BCNM_Timer")),partyMembers,0,0);
+			killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,0,0);
 		end
 	end
 	

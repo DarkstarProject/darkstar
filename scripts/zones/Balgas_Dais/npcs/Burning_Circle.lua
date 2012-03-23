@@ -12,6 +12,7 @@ package.loaded["scripts/globals/bcnm"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
+require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Balgas_Dais/TextIDs");
 
@@ -51,6 +52,24 @@ require("scripts/zones/Balgas_Dais/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	pZone = player:getZone();
+	player:setVar(tostring(pZone) .. "_Ready",0);
+	player:setVar(tostring(pZone) .. "_Field",0);
+	player:setVar(tostring(pZone) .. "_onTrade",0);
+	
+	if(player:getXPos() >= 280 and player:getXPos() <= 320 and player:getZPos() >= 315 and player:getZPos() <= 348) then
+		if(getAvailableBattlefield(player:getZone()) ~= 255) then
+			
+			bcnmFight = getTradeFightBCNM(player,pZone,trade);
+			
+			if(bcnmFight >= 0) then
+				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
+				player:setVar(tostring(pZone) .. "_onTrade",trade:getItem());
+			end
+		else
+			player:messageSpecial(7155);
+		end
+	end
 end;
 
 -----------------------------------
@@ -95,17 +114,23 @@ function onEventUpdate(player,csid,option)
 		readyField = getAvailableBattlefield(pZone);
 
 		if(option == 0) then
-			local bcnmFight = 0;
+			local skip = 0;
 			player:setVar(zoneReady,player:getVar(zoneReady)+1);
+			onTradeFight = player:getVar(tostring(pZone) .. "_onTrade")
 
 			if(player:getVar(zoneReady) == readyField and readyField ~= 255) then
-				if(player:hasKeyItem(DARK_KEY)) then
-					player:updateEvent(2,bcnmFight,0,500,6,0);
+				if(onTradeFight ~= 0) then
+					bcnmFight = getUpdateFightBCNM(player,pZone,onTradeFight);
+					record = GetServerVariable("[BF]Shattering_Stars_job"..player:getMainJob().."_record");
+				elseif(player:hasKeyItem(DARK_KEY)) then
+					record = GetServerVariable("[BF]Mission_2-3_Balgas_Dais_record");
 					player:levelRestriction(25);
 				elseif(player:hasCompletedMission(player:getNation(),5)) then
-					player:updateEvent(2,bcnmFight,0,500,6,1);
+					skip = 1;
+					record = GetServerVariable("[BF]Mission_2-3_Balgas_Dais_record");
 					player:levelRestriction(25);
 				end
+				player:updateEvent(2,bcnmFight,0,record,1,skip);
 			else
 				player:updateEvent(0,0,0,0,0,0);
 			end
@@ -133,6 +158,7 @@ function onEventFinish(player,csid,option)
 			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
 			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,900,1);
 			player:setVar("BCNM_Timer", os.time());
+			player:setVar(tostring(pZone) .. "_onTrade",0);
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		end
 	elseif(csid == 0x7d03 and option == 4) then

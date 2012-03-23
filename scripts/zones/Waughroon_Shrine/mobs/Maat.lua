@@ -1,16 +1,15 @@
 -----------------------------------
--- Area: Waughroon Shrine
--- NPC:  Black Dragon
--- Mission 2-3 BCNM Fight
+-- Area: Waughroom Shrine
+-- NPC:  Maat
+-- Genkai 5 Fight
 -----------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
+package.loaded["scripts/zones/Waughroom_Shrine/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Balgas_Dais/TextIDs");
+require("scripts/globals/quests");
+require("scripts/zones/Waughroom_Shrine/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -25,24 +24,18 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	killer:setVar("BCNM_Killed",killer:getVar("BCNM_Killed") + 1);
-	record = GetServerVariable("[BF]Mission_2-3_Waughroon_record");
-	partyMembers = 1;
-	killer:setTitle(BLACK_DRAGON_SLAYER);
+	mJob = killer:getMainJob();
+	killer:setVar("maatDefeated",1);
+	record = GetServerVariable("[BF]Shattering_Stars_job"..mJob.."_record");
+	if(mJob == 5) then bcnmFight = 6; elseif(mJob == 6) then bcnmFight = 7; else bcnmFight = 8; end
 	
 	newtimer = os.time() - killer:getVar("BCNM_Timer");
 		
 	if(newtimer < record) then
-		SetServerVariable("[BF]Mission_2-3_Waughroon_record",newtimer);
+		SetServerVariable("[BF]Shattering_Stars_job"..mJob.."_record",newtimer);
 	end
 	
-	if(killer:getVar("BCNM_Killed") == 2) then
-		if(killer:hasCompletedMission(killer:getNation(),5)) then
-			killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,0,1);
-		else
-			killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,0,0);
-		end
-	end
+	killer:startEvent(0x7d01,0,record,0,newtimer,1,bcnmFight,0);
 	
 end;
 
@@ -67,16 +60,13 @@ end;
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
-
-	pZone = player:getZone();
 	
 	if(csid == 0x7d01) then
-		if(player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 and player:getVar("MissionStatus") == 10) then
-			player:addKeyItem(KINDRED_CREST);
-			player:messageSpecial(KEYITEM_OBTAINED,KINDRED_CREST);
-			player:setVar("MissionStatus",11);
+		if(player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
+			player:addItem(4181);
+			player:messageSpecial(ITEM_OBTAINED,4181);
 		end
-		player:levelRestriction(0);
+		player:setTitle(MAAT_MASHER);
 	end
 	
 end;

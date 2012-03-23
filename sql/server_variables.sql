@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS `server_variables` (
 INSERT INTO server_variables VALUES ('[BF]Save_The_Children_record', '600');
 INSERT INTO server_variables VALUES ('[BF]The_Holy_Crest_record', '600');
 INSERT INTO server_variables VALUES ('[BF]Mission_2-3_Horlais_Peak_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Mission_2-3_Balgas_Dais_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Mission_2-3_Waughroon_record', '600');
 INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job1_record', '600');
 INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job2_record', '600');
 INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job3_record', '600');

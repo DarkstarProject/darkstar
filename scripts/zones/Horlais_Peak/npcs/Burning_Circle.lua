@@ -12,6 +12,7 @@ package.loaded["scripts/globals/bcnm"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/bcnm");
 require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Horlais_Peak/TextIDs");
 
@@ -54,28 +55,16 @@ function onTrade(player,npc,trade)
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
-	
-	LvL = player:getMainLvl();
-	mJob = player:getMainJob();
-	shatteringStars = player:getQuestStatus(JEUNO,SHATTERING_STARS);
+	player:setVar(tostring(pZone) .. "_onTrade",0);
 	
 	if(player:getXPos() >= -520 and player:getXPos() <= -500 and player:getZPos() >= -220 and player:getZPos() <= -200) then
 		if(getAvailableBattlefield(player:getZone()) ~= 255) then
-			local bcnmFight = 0;
 			
-			-- Battlefield for WAR, BLM, RNG
-			if(shatteringStars == QUEST_ACCEPTED and trade:getItemCount() == 1 and player:getVar("maatDefeated") == 0) then
-				if(trade:hasItemQty(1426,1) and mJob == 1 and LvL >= 66) then
-					bcnmFight = bcnmFight + 32;
-				elseif(trade:hasItemQty(1429,1) and mJob == 4 and LvL >= 66) then
-					bcnmFight = bcnmFight + 64;
-				elseif(trade:hasItemQty(1436,1) and mJob == 11 and LvL >= 66) then
-					bcnmFight = bcnmFight + 128;
-				end
-			end
-
+			bcnmFight = getTradeFightBCNM(player,pZone,trade);
+			
 			if(bcnmFight >= 0) then
 				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
+				player:setVar(tostring(pZone) .. "_onTrade",trade:getItem());
 			end
 		else
 			player:messageSpecial(7155);
@@ -91,6 +80,7 @@ function onTrigger(player,npc)
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
+	player:setVar(tostring(pZone) .. "_onTrade",0);
 
 	if(player:getXPos() >= -520 and player:getXPos() <= -500 and player:getZPos() >= -220 and player:getZPos() <= -200) then
 		if(getAvailableBattlefield(pZone) ~= 255) then
@@ -125,16 +115,15 @@ function onEventUpdate(player,csid,option)
 		readyField = getAvailableBattlefield(pZone);
 
 		if(option == 0) then
-			local bcnmFight = 0;
+			local skip = 0;
 			player:setVar(zoneReady,player:getVar(zoneReady)+1);
+			onTradeFight = player:getVar(tostring(pZone) .. "_onTrade")
 
 			if(player:getVar(zoneReady) == readyField and readyField ~= 255) then
-				if(player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED) then
-					skip = 0; mJob = player:getMainJob();
-					record = GetServerVariable("[BF]Shattering_Stars_job"..mJob.."_record");
-					if(mJob == 1) then bcnmFight = 5; elseif(mJob == 4) then bcnmFight = 6; else bcnmFight = 7; end
+				if(onTradeFight ~= 0) then
+					bcnmFight = getUpdateFightBCNM(player,pZone,onTradeFight);
+					record = GetServerVariable("[BF]Shattering_Stars_job"..player:getMainJob().."_record");
 				elseif(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 9) then
-					skip = 0;
 					record = GetServerVariable("[BF]Mission_2-3_Horlais_Peak_record");
 					player:levelRestriction(25);
 				elseif(player:hasCompletedMission(player:getNation(),5)) then
@@ -171,6 +160,7 @@ function onEventFinish(player,csid,option)
 			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
 			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,900,1);
 			player:setVar("BCNM_Timer", os.time());
+			player:setVar(tostring(pZone) .. "_onTrade",0);
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		end
 	elseif(csid == 0x7d03 and option == 4) then

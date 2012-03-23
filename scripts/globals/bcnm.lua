@@ -1,4 +1,53 @@
 -----------------------
+-- BCNM Menu
+-----------------------
+
+--Zone,{[TRADE]item,job,result(first menu),result(update)...}
+fightList = {139,{1426,1,32,5,1429,4,64,6,1436,11,128,7},			-- Horlais Peak
+			 144,{1430,5,64,6,1431,6,128,7,1434,9,256,8},			-- Waughroon Shrine
+			 146,{1427,2,32,5,1428,3,64,6,1440,15,128,7},			-- Balga's Dais
+			 168,{1437,12,32,5,1438,13,64,6,1439,14,128,7},			-- Chamber of Oracles
+			 206,{1432,7,32,5,1433,8,64,6,1435,10,128,7} };			-- Qu'Bia Arena
+
+function getTradeFightBCNM(player,zone,trade)
+	
+	bcnmFight = 0; LvL = player:getMainLvl(); mJob = player:getMainJob(); count = trade:getItemCount();
+	
+	for nb = 1, table.getn(fightList), 2 do
+		if(fightList[nb] == zone) then
+			for nbi = 1, table.getn(fightList[nb + 1]), 4 do
+				if(player:getQuestStatus(JEUNO,SHATTERING_STARS) ~= 0 and fightList[nb + 1][nbi + 1] ~= 0 and player:getVar("maatDefeated") == 0) then
+					if(trade:hasItemQty(fightList[nb + 1][nbi],1) and count == 1 and mJob == fightList[nb + 1][nbi + 1] and LvL >= 66) then
+						bcnmFight = fightList[nb + 1][nbi + 2];
+					end
+				-- elseif for BCNM orb (job = 0)
+				end
+			end
+		end
+	end
+	
+	return bcnmFight;
+end;
+
+function getUpdateFightBCNM(player,zone,item)
+	
+	bcnmFight = 0; 
+	
+	for nb = 1, table.getn(fightList), 2 do
+		if(fightList[nb] == zone) then
+			for nbi = 1, table.getn(fightList[nb + 1]), 4 do
+				if(fightList[nb + 1][nbi + 1] ~= 0 and fightList[nb + 1][nbi] == item) then
+					bcnmFight = fightList[nb + 1][nbi + 3];
+				-- elseif for BCNM orb (job = 0)
+				end
+			end
+		end
+	end
+	
+	return bcnmFight;
+end;
+
+-----------------------
 -- BCNM Functions
 -----------------------
 
@@ -19,25 +68,19 @@ function getMonsterList(list,zone)
 		end
 	elseif(zone == 144) then
 		if(list == 1) then
-			monsterList = { {2,17367041}
-							};
+			monsterList = { {2,17367041},{0,0},{0,0},{0,0},{0,0},{0,0},{1,17367074},{1,17367077},{2,17367080} };
 		elseif(list == 2) then
-			monsterList = { {2,17367043}
-							};
+			monsterList = { {2,17367043},{0,0},{0,0},{0,0},{0,0},{0,0},{1,17367075},{1,17367078},{2,17367082} };
 		elseif(list == 3) then
-			monsterList = { {2,17367045}
-							};
+			monsterList = { {2,17367045},{0,0},{0,0},{0,0},{0,0},{0,0},{1,17367076},{1,17367079},{2,17367084} };
 		end
 	elseif (zone == 146) then
 		if (list == 1) then
-			monsterList = {	{2,17375233}
-							};
+			monsterList = {	{2,17375233},{0,0},{0,0},{0,0},{0,0},{1,17375257},{1,17375260},{2,17375263} };
 		elseif (list == 2) then
-			monsterList = {	{2,17375235}
-							};
+			monsterList = {	{2,17375235},{0,0},{0,0},{0,0},{0,0},{1,17375258},{1,17375261},{2,17375265} };
 		elseif (list == 3) then
-			monsterList = {	{2,17375237}
-							};
+			monsterList = {	{2,17375237},{0,0},{0,0},{0,0},{0,0},{1,17375259},{1,17375261},{2,17375267} };
 		end
     elseif(zone == 202) then
         if(list == 1) then
