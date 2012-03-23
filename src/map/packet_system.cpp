@@ -696,6 +696,8 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 			}
 		}
 		break;
+        case 0x15: break; // ballista - quarry
+        case 0x16: break; // ballista - sprint
 		case 0x18: // /blockaid
 		{
 			// Blockaid is currently inactive

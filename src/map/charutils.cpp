@@ -1509,6 +1509,8 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 				SkillAmount = MaxSkill - CurSkill;
                 PChar->WorkingSkills.skill[SkillID] |= 0x8000;
 			}
+            DSP_DEBUG_BREAK_IF(SkillAmount > 5);
+
 			PChar->RealSkills.skill[SkillID] += SkillAmount; 
 			PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, SkillAmount, 38));
 	            
@@ -1560,7 +1562,6 @@ void CheckWeaponSkill(CCharEntity* PChar, uint8 skill)
 			PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 		}
 	}
-
 }
 
 /************************************************************************
@@ -1591,7 +1592,6 @@ int32 addKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 
 int32 delKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 {
-			//delBit(KeyItemID, PChar->keys.seenList, sizeof(PChar->keys.seenList));
 	return delBit(KeyItemID, PChar->keys.keysList, sizeof(PChar->keys.keysList));
 }
 
@@ -2097,22 +2097,48 @@ void SaveZonesVisited(CCharEntity* PChar)
 
 void SaveCharEquip(CCharEntity* PChar)
 {
-	const int8* fmtQuery = "UPDATE char_equip \
-							SET main  = %u, sub   = %u, ranged = %u, ammo = %u, head  = %u, body = %u, \
-								hands = %u, legs  = %u, feet   = %u, neck = %u, waist = %u, ear1 = %u, \
-								ear2  = %u, ring1 = %u, ring2  = %u, back = %u, link  = %u \
-							WHERE charid = %u;";
+	const int8* Query = "UPDATE char_equip \
+						 SET main  = %u, sub   = %u, ranged = %u, ammo = %u, head  = %u, body = %u, \
+							 hands = %u, legs  = %u, feet   = %u, neck = %u, waist = %u, ear1 = %u, \
+							 ear2  = %u, ring1 = %u, ring2  = %u, back = %u, link  = %u \
+						 WHERE charid = %u;";
 
-	Sql_Query(SqlHandle,fmtQuery,
-		PChar->equip[0], PChar->equip[1], PChar->equip[2], PChar->equip[3], PChar->equip[4], PChar->equip[5], PChar->equip[6], 
-		PChar->equip[7], PChar->equip[8], PChar->equip[9], PChar->equip[10],PChar->equip[11],PChar->equip[12],PChar->equip[13], 
-		PChar->equip[14],PChar->equip[15],PChar->equip[16],PChar->id);
+	Sql_Query(SqlHandle, 
+        Query,
+		PChar->equip[0], 
+        PChar->equip[1], 
+        PChar->equip[2], 
+        PChar->equip[3], 
+        PChar->equip[4], 
+        PChar->equip[5], 
+        PChar->equip[6], 
+		PChar->equip[7], 
+        PChar->equip[8], 
+        PChar->equip[9], 
+        PChar->equip[10],
+        PChar->equip[11],
+        PChar->equip[12],
+        PChar->equip[13], 
+		PChar->equip[14],
+        PChar->equip[15],
+        PChar->equip[16],
+        PChar->id);
 
-	fmtQuery = "UPDATE char_look \
-				SET head = %u, body = %u, hands = %u, legs = %u, feet = %u, main = %u, sub = %u, ranged = %u \
-				WHERE charid = %u;";
-	Sql_Query(SqlHandle,fmtQuery,PChar->look.head, PChar->look.body, PChar->look.hands, PChar->look.legs,
-		PChar->look.feet, PChar->look.main, PChar->look.sub, PChar->look.ranged, PChar->id);	
+	Query = "UPDATE char_look \
+			 SET head = %u, body = %u, hands = %u, legs = %u, feet = %u, main = %u, sub = %u, ranged = %u \
+			 WHERE charid = %u;";
+
+	Sql_Query(SqlHandle,
+        Query,
+        PChar->look.head, 
+        PChar->look.body, 
+        PChar->look.hands, 
+        PChar->look.legs,
+		PChar->look.feet, 
+        PChar->look.main, 
+        PChar->look.sub, 
+        PChar->look.ranged, 
+        PChar->id);	
 }
 
 /************************************************************************
@@ -2123,12 +2149,12 @@ void SaveCharEquip(CCharEntity* PChar)
 
 void SaveCharStats(CCharEntity* PChar)
 {
-	const int8* fmtQuery = "UPDATE char_stats \
-							SET hp = %u, mp = %u, nameflags = %u, mhflag = %u, mjob = %u, sjob = %u \
-							WHERE charid = %u;";
+	const int8* Query = "UPDATE char_stats \
+				  		 SET hp = %u, mp = %u, nameflags = %u, mhflag = %u, mjob = %u, sjob = %u \
+						 WHERE charid = %u;";
 
 	Sql_Query(SqlHandle, 
-        fmtQuery,
+        Query,
         PChar->health.hp,
         PChar->health.mp,
         PChar->nameflags.flags,
