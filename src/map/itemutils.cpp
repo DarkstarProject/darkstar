@@ -183,21 +183,23 @@ namespace itemutils
 	    {
 		    return g_pItemList[ItemID];
 	    }
+        ShowWarning(CL_CYAN"ItemID %u too big\n"CL_RESET, ItemID);
 	    return NULL;
     }	
 
     /************************************************************************
     *                                                                       *
-    *  Вписок выпадаемых из монстров предметов                              *
+    *  Список выпадаемых из монстров предметов                              *
     *                                                                       *
     ************************************************************************/
 
     DropList_t* GetDropList(uint16 DropID)
     {
-	    if (DropID < MAX_ITEMID)
+	    if (DropID < MAX_DROPID)
 	    {
 		     return g_pDropList[DropID];
 	    }
+        ShowWarning(CL_CYAN"DropID %u too big\n"CL_RESET, DropID);
 	    return NULL;
     }
 
