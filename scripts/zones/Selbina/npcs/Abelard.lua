@@ -44,35 +44,35 @@ ZoneID =
 
 function onTrade(player,npc,trade)
 
-explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
+    local explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
 
-if (explorer == QUEST_ACCEPTED) then
-	clay = trade:hasItemQty(570,1);
-	count = trade:getItemCount();
-	if (count == 1 and clay) then
-		tablets = player:getVar("anExplorer-ClayTablets");
-		currtab = player:getVar("anExplorer-CurrentTablet");
-		if (currtab ~= 0 and (tablets % (2*currtab)) < currtab) then -- new tablet
-			for zone = 1, #ZoneID, 2 do
-				if (tablets % (2*ZoneID[zone]) < ZoneID[zone]) then
-					if ((tablets + currtab) == 0x1ffff) then
-						player:startEvent(0x002f);  -- end
-						break;
-					end
-					if (ZoneID[zone] == currtab) then
-						player:startEvent(0x0029);  -- the tablet he asked for
-					else
-						player:startEvent(0x002e);  -- not the one he asked for
-					end
-					player:setVar("anExplorer-ClayTablets", tablets + currtab);
-					break;
-				end
-			end
-		else
-			player:startEvent(0x002d);  -- i'm sorry, but i've already got this one
-		end
-	end
-end
+    if (explorer == QUEST_ACCEPTED) then
+        local clay = trade:hasItemQty(570,1);
+        local count = trade:getItemCount();
+        if (count == 1 and clay) then
+            local tablets = player:getVar("anExplorer-ClayTablets");
+            local currtab = player:getVar("anExplorer-CurrentTablet");
+            if (currtab ~= 0 and (tablets % (2*currtab)) < currtab) then -- new tablet
+                for zone = 1, #ZoneID, 2 do
+                    if (tablets % (2*ZoneID[zone]) < ZoneID[zone]) then
+                        if ((tablets + currtab) == 0x1ffff) then
+                            player:startEvent(0x002f);  -- end
+                            break;
+                        end
+                        if (ZoneID[zone] == currtab) then
+                            player:startEvent(0x0029);  -- the tablet he asked for
+                        else
+                            player:startEvent(0x002e);  -- not the one he asked for
+                        end
+                        player:setVar("anExplorer-ClayTablets", tablets + currtab);
+                        break;
+                    end
+                end
+            else
+                player:startEvent(0x002d);  -- i'm sorry, but i've already got this one
+            end
+        end
+    end
 end;
 
 -----------------------------------
@@ -81,15 +81,15 @@ end;
 
 function onTrigger(player,npc)
 
-explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
+local explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
 
 if (explorer == QUEST_AVAILABLE) then
 	player:startEvent(0x0028);
 elseif (explorer == QUEST_ACCEPTED) then
-	tab = player:hasItem(570);
-	clay = player:hasItem(571);
+	local tab = player:hasItem(570);
+	local clay = player:hasItem(571);
 	if (clay == false and tab == false) then
-		currtab = player:getVar("anExplorer-CurrentTablet");
+		local currtab = player:getVar("anExplorer-CurrentTablet");
 		if (currtab == -1) then
 			player:startEvent(0x002a);	
 		else
@@ -97,7 +97,7 @@ elseif (explorer == QUEST_ACCEPTED) then
 			player:setVar("anExplorer-CurrentTablet",0);
 		end
 	else
-		tablets = player:getVar("anExplorer-ClayTablets");
+		local tablets = player:getVar("anExplorer-ClayTablets");
 		for zone = 1, #ZoneID, 2 do
 			if (tablets % (2*ZoneID[zone]) < ZoneID[zone]) then 
 				if (zone < 20) then
@@ -109,7 +109,7 @@ elseif (explorer == QUEST_ACCEPTED) then
 			end
 		end
 	end
-elseif (explorer == QUEST_COMPLETED) then
+else
 	player:startEvent(0x046a);
 end
 end;
@@ -156,14 +156,14 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,571);
 		end
 	elseif (csid == 0x0029 or csid == 0x002e or csid == 0x002f) then 
-		currtab = player:getVar("anExplorer-CurrentTablet");
-		tablets = player:getVar("anExplorer-ClayTablets");
-		keyitem = player:hasKeyItem(MAP_OF_THE_CRAWLERS_NEST);
+		local currtab = player:getVar("anExplorer-CurrentTablet");
+		local tablets = player:getVar("anExplorer-ClayTablets");
+		local keyitem = player:hasKeyItem(MAP_OF_THE_CRAWLERS_NEST);
 		for zone = 1, #ZoneID, 2 do
 			if (ZoneID[zone] == currtab) then
 				player:tradeComplete();
 				player:addGil(GIL_RATE*ZoneID[zone+1]);
-				player:messageSpecial(GIL_OBTAINED,ZoneID[zone+1]);
+				player:messageSpecial(GIL_OBTAINED,GIL_RATE*ZoneID[zone+1]);
 				player:setVar("anExplorer-CurrentTablet",0);
 				break;
 			end
@@ -185,7 +185,3 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
-
-
-
-

@@ -1,12 +1,12 @@
 -----------------------------------
---  Area: West Sarutabaruta
+--  Area: Batallia Downs
 --  NPC: Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
+package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/West_Sarutabaruta/TextIDs");
+require("scripts/zones/Batallia_Downs/TextIDs");
 
 -----------------------------------
 -- onTrigger
@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 		player:tradeComplete();
 		player:addItem(570);
 		player:specialMessage(ITEM_OBTAINED,570);
-		player:setVar("anExplorer-CurrentTablet",0x00400);
+		player:setVar("anExplorer-CurrentTablet",0x10000);
 	end
 end;
 

@@ -3,8 +3,9 @@
 --  NPC: Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
 -----------------------------------
-
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/East_Ronfaure/TextIDs");
 
 -----------------------------------
@@ -20,11 +21,7 @@ end;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-clay = trade:hasItemQty(570,1);
-count = trade:getItemCount();
-
-	if (count == 1 and clay) then
+	if (trade:getItemCount() == 1 and trade:hasItemQty(570,1)) then
 		player:tradeComplete();
 		player:addItem(570);
 		player:specialMessage(ITEM_OBTAINED,570);
@@ -49,6 +46,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-
