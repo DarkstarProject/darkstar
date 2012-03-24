@@ -170,6 +170,7 @@ public:
 	int32 getFameLevel(lua_State*);			// Gets Fame Level for specified nation
 
 	int32 setStatus(lua_State*);			// Sets Character's Status
+    int32 setPVPFlag(lua_State*);           // Allow to attack this player
 
 	int32 sendRaise(lua_State*);			// send raise request to char
 	int32 sendTractor(lua_State*);			// send tractor request to char

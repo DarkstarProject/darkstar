@@ -135,6 +135,17 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 	{
 		return false;
 	}
+    if (ValidTarget & TARGET_ENEMY)
+	{
+        if (!PTarget->isDead())
+        {
+		    if (PTarget->objtype == TYPE_MOB || 
+               (PTarget->objtype == TYPE_PC && ((CCharEntity*)PTarget)->m_PVPFlag))
+		    {
+			    return true;
+		    }
+        }
+	}
 	if (PTarget->objtype == TYPE_PC)
 	{
 		if ((ValidTarget & TARGET_SELF) &&
@@ -147,8 +158,7 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 			return true;
 		}
 		if ((ValidTarget & TARGET_PLAYER_PARTY) && 
-            m_PChar->PParty != NULL &&
-            m_PChar->PParty == ((CCharEntity*)PTarget)->PParty)
+            (m_PChar->PParty != NULL && m_PChar->PParty == PTarget->PParty))
 		{
 			return true;
 		}
@@ -157,13 +167,6 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 			return true;
 		}
 		return false;
-	}
-	if (ValidTarget & TARGET_ENEMY)
-	{
-		if (PTarget->objtype == TYPE_MOB && !PTarget->isDead())
-		{
-			return true;
-		}
 	}
 	return false;
 }
@@ -1703,54 +1706,59 @@ void CAICharNormal::ActionAttack()
 	}
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 void CAICharNormal::ActionRaiseMenuSelection() 
 {	
-	uint16 ANIM_RAISE_ONE = 511;
-	uint16 ANIM_RAISE_TWO = 512;
-	uint16 ANIM_RAISE_THREE = 496;
-	uint32 weakness_duration = 60*5; //5min
-	DSP_DEBUG_BREAK_IF(m_PChar->m_hasRaise > 3 || m_PChar->m_hasRaise < 0);
+	DSP_DEBUG_BREAK_IF(m_PChar->m_hasRaise == 0 || m_PChar->m_hasRaise > 3);
 
     m_PChar->animation = ANIMATION_NONE; 	
 
-	//set animation
     apAction_t Action;
     m_PChar->m_ActionList.clear();
+
     Action.ActionTarget = m_PChar;
-	if(m_PChar->m_hasRaise==1){
-		Action.animation = ANIM_RAISE_ONE;
+	if(m_PChar->m_hasRaise == 1)
+    {
+		Action.animation = 511; 
 		m_PChar->addHP(m_PChar->GetMaxHP()*0.1); 
 	}
-	else if(m_PChar->m_hasRaise==2){
-		Action.animation = ANIM_RAISE_TWO;
+	else if(m_PChar->m_hasRaise == 2)
+    {
+		Action.animation = 512;
 		m_PChar->addHP(m_PChar->GetMaxHP()*0.25); 
 	}
-	else if(m_PChar->m_hasRaise==3){
-		Action.animation = ANIM_RAISE_THREE;
+	else if(m_PChar->m_hasRaise == 3)
+    {
+		Action.animation = 496;
 		m_PChar->addHP(m_PChar->GetMaxHP()*0.5); 
 	}
-    Action.reaction = REACTION_NONE;
+    Action.reaction   = REACTION_NONE;
     Action.speceffect = SPECEFFECT_RAISE;
-	Action.messageID = 0; //so no msg is displayed on raise
-		
-	//////send packets
-	//raise anim
+	Action.messageID  = 0;
+    Action.flag = 0;
+
     m_PChar->m_ActionList.push_back(Action);
     m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS)){
+
+	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS))
+    {
 		//double weakness! Calculate stuff here
-		ShowDebug("ActionRaiseMenuSelection : todo: handle double-weakness.");
+	    ShowDebug("ActionRaiseMenuSelection : todo: handle double-weakness.\n");
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_WEAKNESS);
 	}
 	//add weakness effect (75% reduction in HP/MP)
-	CStatusEffect * weakness = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,75,0,weakness_duration,EFFECTFLAG_NONE,0);
-	m_PChar->StatusEffectContainer->AddStatusEffect(weakness);
+	CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,75,0,300);
+	m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
+
 	charutils::UpdateHealth(m_PChar);
     m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));	
 
 	//todo: regain lost EXP
-    
-	//Reset statuses
-	m_PChar->m_hasRaise = 0; //reset the raise status
+
 	m_ActionType = ACTION_NONE; 												
 }

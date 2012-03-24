@@ -517,6 +517,7 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
     PChar->loc.zoning = false;
     PChar->loc.destination = 0;
     PChar->m_InsideRegionID = 0;
+    PChar->m_PVPFlag = 0;
 
 	m_charList[PChar->targid] = PChar;
 	ShowDebug(CL_CYAN"CZone:: %s IncreaseZoneCounter <%u>\n"CL_RESET, GetName(), m_charList.size());

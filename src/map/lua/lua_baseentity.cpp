@@ -2496,6 +2496,21 @@ inline int32 CLuaBaseEntity::setStatus(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Разрещение атаковать этого персонажа другим персонажам               *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setPVPFlag(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    ((CCharEntity*)m_PBaseEntity)->m_PVPFlag = 0x08;
+    return 0;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::sendTractor(lua_State *L)
@@ -2531,34 +2546,33 @@ inline int32 CLuaBaseEntity::sendTractor(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Отправляем персонажу Raise меню                                      *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::sendRaise(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			if( !lua_isnil(L,-1) && lua_isnumber(L,-1))
-			{
-				if((uint8)lua_tonumber(L, -1)<1 || (uint8)lua_tonumber(L, -1)>3){
-					ShowDebug(CL_CYAN"lua::sendRaise raise value is not 1, 2 or 3!\n"CL_RESET);
-					return 0;
-				}
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+	
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-				if(((CCharEntity*)m_PBaseEntity)->m_hasRaise == 0) 
-				{
-					uint8 RaiseLevel = (uint8)lua_tonumber(L, -1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-					((CCharEntity*)m_PBaseEntity)->m_hasRaise = RaiseLevel;
-					((CCharEntity*)m_PBaseEntity)->pushPacket(new CRaiseTractorMenuPacket((CCharEntity*)m_PBaseEntity, TYPE_RAISE));	
-				}
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    uint8 RaiseLevel = (uint8)lua_tonumber(L,1);
+
+    if (RaiseLevel == 0 || RaiseLevel > 3)
+    {
+        ShowDebug(CL_CYAN"lua::sendRaise raise value is not valide!\n"CL_RESET);
+    }
+    else if(PChar->m_hasRaise == 0)
+    {
+        PChar->m_hasRaise = RaiseLevel;
+        PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_RAISE));	
+    }
+    return 0;
 }
 
 /************************************************************************
@@ -3480,6 +3494,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseCostume),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatus),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPVPFlag),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendRaise),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendTractor),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffect),

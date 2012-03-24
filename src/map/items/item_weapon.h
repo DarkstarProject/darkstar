@@ -41,6 +41,8 @@ public:
 	uint16	getDamage();
 	uint16	getDmgType();
 
+    bool    isTwoHanded();
+
 	void	setSkillType(uint8 skillType);
 	void	setDelay(uint16 delay);
 	void	setDamage(uint16 damage);
@@ -52,6 +54,7 @@ private:
 	uint16	m_damage;
 	uint16	m_delay;
 	uint16	m_dmgType;
+    bool    m_twoHanded;
 };
 
 #endif

@@ -80,6 +80,7 @@ CCharEntity::CCharEntity()
 	m_asaCurrent = 0;
 
     m_Costum     = 0;
+    m_PVPFlag    = 0;
 	m_hasTractor = 0;
 	m_hasRaise	 = 0;
     m_hasAutoTarget    = 1;

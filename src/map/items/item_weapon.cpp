@@ -20,25 +20,62 @@
 
 ===========================================================================
 */
+#include "../battleentity.h"
 
 #include "item_weapon.h"
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
 {
 	setType(ITEM_WEAPON);
 
-	m_skillType = 0;
+	m_skillType = SKILL_H2H;
 	m_damage	= 0;
-	m_dmgType	= 0;
+	m_dmgType	= DAMAGE_HTH;
 	m_delay		= 8000;
+    m_twoHanded = false;
 }
 
 CItemWeapon::~CItemWeapon()
 {
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+bool CItemWeapon::isTwoHanded()
+{
+    return m_twoHanded;
+}
+
+/************************************************************************
+*                                                                       *
+*   Устанавливаем тип оружия и флаг isTwoHanded                         *
+*                                                                       *
+************************************************************************/
+
 void CItemWeapon::setSkillType(uint8 skillType) 
 {
+    switch (skillType)
+    {
+	    case SKILL_GSD:	
+	    case SKILL_GAX:	
+	    case SKILL_SYH:
+	    case SKILL_POL:
+	    case SKILL_GKT:
+	    case SKILL_STF:
+            m_twoHanded = true;
+		break;
+        default: m_twoHanded = false;
+	}
 	m_skillType = skillType;
 }
 
@@ -65,6 +102,12 @@ uint16 CItemWeapon::getDelay()
 	return m_delay;
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 void CItemWeapon::setDamage(uint16 damage) 
 {
 	m_damage = damage;
@@ -75,10 +118,22 @@ uint16 CItemWeapon::getDamage()
 	return m_damage;
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 void CItemWeapon::setDmgType(uint16 dmgType) 
 {
 	m_dmgType = dmgType;
 }
+
+uint16 CItemWeapon::getDmgType() 
+{
+	return m_dmgType;
+}
+
 
 //Blunt = MOD_HANDTOHAND, MOD_CLUB, MOD_STAFF
 //Slashing = MOD_AXE, MOD_GREATAXE, MOD_GREATSWORD, MOD_SWORD, MOD_SCYTHE, MOD_KATANA, MOD_GREATKATANA
@@ -87,8 +142,3 @@ void CItemWeapon::setDmgType(uint16 dmgType)
 //Hand-to-Hand est un type de Blunt, qui est pourquoi MNK est efficace contre les Undead (Corse et Skeleton). 
 //Je ne sais pas ce que vous entendez par Impact et Range? MOD_THROWING pourrait aller dans aucun d'eux parce qu'il ya différents types d'armes. 
 //Par exemple, Boomerangs sont Blunt, Chakrams sont Slashing, et Shurikens sont Piercing.
-
-uint16 CItemWeapon::getDmgType() 
-{
-	return m_dmgType;
-}
