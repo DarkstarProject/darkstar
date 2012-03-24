@@ -6,7 +6,7 @@
 fightList = {139,{1426,1,32,5,1429,4,64,6,1436,11,128,7},			-- Horlais Peak
 			 144,{1430,5,64,6,1431,6,128,7,1434,9,256,8},			-- Waughroon Shrine
 			 146,{1427,2,32,5,1428,3,64,6,1440,15,128,7},			-- Balga's Dais
-			 168,{1437,12,32,5,1438,13,64,6,1439,14,128,7},			-- Chamber of Oracles
+			 168,{1437,12,4,2,1438,13,8,3,1439,14,16,4},			-- Chamber of Oracles
 			 206,{1432,7,32,5,1433,8,64,6,1435,10,128,7} };			-- Qu'Bia Arena
 
 function getTradeFightBCNM(player,zone,trade)
@@ -82,6 +82,14 @@ function getMonsterList(list,zone)
 		elseif (list == 3) then
 			monsterList = {	{2,17375237},{0,0},{0,0},{0,0},{0,0},{1,17375259},{1,17375261},{2,17375267} };
 		end
+	elseif (zone == 168) then
+		if (list == 1) then
+			monsterList = {	{0,0},{0,0},{1,17465354},{1,17465357},{2,17465360} };
+		elseif (list == 2) then
+			monsterList = {	{0,0},{0,0},{1,17465355},{1,17465358},{2,17465362} };
+		elseif (list == 3) then
+			monsterList = {	{0,0},{0,0},{1,17465356},{1,17465359},{2,17465364} };
+		end
     elseif(zone == 202) then
         if(list == 1) then
             monsterList = { {1,17604610}
@@ -92,6 +100,14 @@ function getMonsterList(list,zone)
             monsterList = { {1,17608705}
             				};
         end
+	elseif (zone == 206) then
+		if (list == 1) then
+			monsterList = {	{0,0},{0,0},{0,0},{0,0},{0,0},{1,17621056},{1,17621059},{1,17621062} };
+		elseif (list == 2) then
+			monsterList = {	{0,0},{0,0},{0,0},{0,0},{0,0},{1,17621057},{1,17621060},{1,17621063} };
+		elseif (list == 3) then
+			monsterList = {	{0,0},{0,0},{0,0},{0,0},{0,0},{1,17621058},{1,17621061},{1,17621064} };
+		end
     elseif(zone == 207) then
         if(list == 1) then
             monsterList = { {1,17625089}
