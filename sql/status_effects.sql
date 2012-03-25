@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Jeu 23 Février 2012 à 17:08
+-- Généré le : Dim 25 Mars 2012 à 19:53
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -37,482 +37,481 @@ CREATE TABLE IF NOT EXISTS `status_effects` (
 -- Contenu de la table `status_effects`
 --
 
-INSERT INTO `status_effects` (`id`, `name`, `flags`) VALUES
-(0, 'ko', 0),
-(1, 'weakness', 0),
-(2, 'sleep', 0),
-(3, 'poison', 0),
-(4, 'paralysis', 0),
-(5, 'blindness', 0),
-(6, 'silence', 0),
-(7, 'petrification', 0),
-(8, 'disease', 0),
-(9, 'curse', 0),
-(10, 'stun', 0),
-(11, 'bind', 0),
-(12, 'weight', 0),
-(13, 'slow', 0),
-(14, 'charm', 0),
-(15, 'doom', 0),
-(16, 'amnesia', 0),
-(17, 'charm', 0),
-(18, 'gradual_petrification', 0),
-(19, 'sleep', 0),
-(20, 'curse', 0),
-(21, 'addle', 0),
-(22, 'intimidate', 0),
-(23, 'kaustra', 0),
-(28, 'terror', 0),
-(29, 'mute', 0),
-(30, 'bane', 0),
-(31, 'plague', 0),
-(32, 'flee', 4),
-(33, 'haste', 0),
-(34, 'blaze_spikes', 0),
-(35, 'ice_spikes', 0),
-(36, 'blink', 0),
-(37, 'stoneskin', 0),
-(38, 'shock_spikes', 0),
-(39, 'aquaveil', 0),
-(40, 'protect', 0),
-(41, 'shell', 0),
-(42, 'regen', 0),
-(43, 'refresh', 0),
-(44, 'mighty_strikes', 0),
-(45, 'boost', 4),
-(46, 'hundred_fists', 0),
-(47, 'manafont', 0),
-(48, 'chainspell', 0),
-(49, 'perfect_dodge', 0),
-(50, 'invincible', 0),
-(51, 'blood_weapon', 0),
-(52, 'soul_voice', 0),
-(53, 'eagle_eye_shot', 0),
-(54, 'meikyo_shisui', 0),
-(55, 'astral_flow', 0),
-(56, 'berserk', 0),
-(57, 'defender', 0),
-(58, 'aggressor', 0),
-(59, 'focus', 0),
-(60, 'dodge', 0),
-(61, 'counterstance', 0),
-(62, 'sentinel', 0),
-(63, 'souleater', 0),
-(64, 'last_resort', 0),
-(65, 'sneak_attack', 4),
-(66, 'copy_image', 0),
-(67, 'third_eye', 0),
-(68, 'warcry', 0),
-(69, 'invisible', 4),
-(70, 'deodorize', 0),
-(71, 'sneak', 4),
-(72, 'sharpshot', 0),
-(73, 'barrage', 0),
-(74, 'holy_circle', 0),
-(75, 'arcane_circle', 0),
-(76, 'hide', 4),
-(77, 'camouflage', 4),
-(78, 'divine_seal', 0),
-(79, 'elemental_seal', 0),
-(80, 'str_boost', 0),
-(81, 'dex_boost', 0),
-(82, 'vit_boost', 0),
-(83, 'agi_boost', 0),
-(84, 'int_boost', 0),
-(85, 'mnd_boost', 0),
-(86, 'chr_boost', 0),
-(87, 'trick_attack', 4),
-(88, 'max_hp_boost', 0),
-(89, 'max_mp_boost', 0),
-(90, 'accuracy_boost', 0),
-(91, 'attack_boost', 0),
-(92, 'evasion_boost', 0),
-(93, 'defense_boost', 0),
-(94, 'enfire', 0),
-(95, 'enblizzard', 0),
-(96, 'enaero', 0),
-(97, 'enstone', 0),
-(98, 'enthunder', 0),
-(99, 'enwater', 0),
-(100, 'barfire', 0),
-(101, 'barblizzard', 0),
-(102, 'baraero', 0),
-(103, 'barstone', 0),
-(104, 'barthunder', 0),
-(105, 'barwater', 0),
-(106, 'barsleep', 0),
-(107, 'barpoison', 0),
-(108, 'barparalyze', 0),
-(109, 'barblind', 0),
-(110, 'barsilence', 0),
-(111, 'barpetrify', 0),
-(112, 'barvirus', 0),
-(113, 'reraise', 32),
-(114, 'cover', 0),
-(115, 'unlimited_shot', 0),
-(116, 'phalanx', 0),
-(117, 'warding_circle', 0),
-(118, 'ancient_circle', 0),
-(119, 'str_boost', 0),
-(120, 'dex_boost', 0),
-(121, 'vit_boost', 0),
-(122, 'agi_boost', 0),
-(123, 'int_boost', 0),
-(124, 'mnd_boost', 0),
-(125, 'chr_boost', 0),
-(126, 'spirit_surge', 0),
-(127, 'costume', 0),
-(128, 'burn', 0),
-(129, 'frost', 0),
-(130, 'choke', 0),
-(131, 'rasp', 0),
-(132, 'shock', 0),
-(133, 'drown', 0),
-(134, 'dia', 0),
-(135, 'bio', 0),
-(136, 'str_down', 0),
-(137, 'dex_down', 0),
-(138, 'vit_down', 0),
-(139, 'agi_down', 0),
-(140, 'int_down', 0),
-(141, 'mnd_down', 0),
-(142, 'chr_down', 0),
-(143, 'level_restriction', 0),
-(144, 'max_hp_down', 0),
-(145, 'max_mp_down', 0),
-(146, 'accuracy_down', 0),
-(147, 'attack_down', 0),
-(148, 'evasion_down', 0),
-(149, 'defense_down', 0),
-(150, 'physical_shield', 0),
-(151, 'arrow_shield', 0),
-(152, 'magic_shield', 0),
-(153, 'damage_spikes', 0),
-(154, 'shining_ruby', 0),
-(155, 'medicine', 0),
-(156, 'flash', 0),
-(157, 'sj_restriction', 0),
-(158, 'provoke', 0),
-(159, 'penalty', 0),
-(160, 'preparations', 0),
-(161, 'sprint', 0),
-(162, 'enchantment', 0),
-(163, 'azure_lore', 0),
-(164, 'chain_affinity', 0),
-(165, 'burst_affinity', 0),
-(166, 'overdrive', 0),
-(167, 'magic_def_down', 0),
-(168, 'inhibit_tp', 0),
-(169, 'potency', 0),
-(170, 'regain', 0),
-(171, 'pax', 0),
-(172, 'intension', 0),
-(173, 'dread_spikes', 0),
-(174, 'magic_acc_down', 0),
-(175, 'magic_atk_down', 0),
-(176, 'quickening', 4),
-(177, 'encumbrance', 0),
-(178, 'firestorm', 0),
-(179, 'hailstorm', 0),
-(180, 'windstorm', 0),
-(181, 'sandstorm', 0),
-(182, 'thunderstorm', 0),
-(183, 'rainstorm', 0),
-(184, 'aurorastorm', 0),
-(185, 'voidstorm', 0),
-(186, 'helix', 0),
-(187, 'sublimation_activated', 0),
-(188, 'sublimation_complete', 0),
-(189, 'max_tp_down', 0),
-(190, 'magic_atk_boost', 0),
-(191, 'magic_def_boost', 0),
-(192, 'requiem', 0),
-(193, 'lullaby', 0),
-(194, 'elegy', 0),
-(195, 'paeon', 0),
-(196, 'ballad', 0),
-(197, 'minne', 0),
-(198, 'minuet', 0),
-(199, 'madrigal', 0),
-(200, 'prelude', 0),
-(201, 'mambo', 0),
-(202, 'aubade', 0),
-(203, 'pastoral', 0),
-(204, 'hum', 0),
-(205, 'fantasia', 0),
-(206, 'operetta', 0),
-(207, 'capriccio', 0),
-(208, 'serenade', 0),
-(209, 'round', 0),
-(210, 'gavotte', 0),
-(211, 'fugue', 0),
-(212, 'rhapsody', 0),
-(213, 'aria', 0),
-(214, 'march', 0),
-(215, 'etude', 0),
-(216, 'carol', 0),
-(217, 'threnody', 0),
-(218, 'hymnus', 0),
-(219, 'mazurka', 0),
-(220, 'sirvente', 0),
-(221, 'dirge', 0),
-(222, 'scherzo', 0),
-(223, 'nocturne', 0),
-(227, 'store_tp', 0),
-(228, 'embrava', 0),
-(229, 'manawell', 0),
-(230, 'spontaneity', 0),
-(231, 'marcato', 0),
-(233, 'auto-regen', 0),
-(234, 'auto-refresh', 0),
-(235, 'fishing_imagery', 0),
-(236, 'woodworking_imagery', 0),
-(237, 'smithing_imagery', 0),
-(238, 'goldsmithing_imagery', 0),
-(239, 'clothcraft_imagery', 0),
-(240, 'leathercraft_imagery', 0),
-(241, 'bonecraft_imagery', 0),
-(242, 'alchemy_imagery', 0),
-(243, 'cooking_imagery', 0),
-(244, '(imagery)', 0),
-(245, '(imagery)', 0),
-(246, '(imagery)', 0),
-(247, '(imagery)', 0),
-(248, '(imagery)', 0),
-(249, 'dedication', 0),
-(250, 'ef_badge', 0),
-(251, 'food', 0),
-(252, 'chocobo', 4),
-(253, 'signet', 0),
-(254, 'battlefield', 0),
-(256, 'sanction', 0),
-(257, 'besieged', 0),
-(258, 'illusion', 0),
-(259, 'encumbrance', 0),
-(260, 'obliviscence', 0),
-(261, 'impairment', 0),
-(262, 'omerta', 0),
-(263, 'debilitation', 0),
-(264, 'pathos', 0),
-(265, 'flurry', 0),
-(266, 'concentration', 0),
-(267, 'allied_tags', 0),
-(268, 'sigil', 0),
-(269, 'level_sync', 0),
-(270, 'aftermath', 0),
-(271, 'aftermath', 0),
-(272, 'aftermath', 0),
-(273, 'aftermath', 0),
-(274, 'enlight', 0),
-(275, 'auspice', 0),
-(276, 'confrontation', 0),
-(277, 'enfire_ii', 0),
-(278, 'enblizzard_ii', 0),
-(279, 'enaero_ii', 0),
-(280, 'enstone_ii', 0),
-(281, 'enthunder_ii', 0),
-(282, 'enwater_ii', 0),
-(283, 'perfect_defense', 0),
-(284, 'egg', 0),
-(285, 'visitant', 0),
-(286, 'baramnesia', 0),
-(287, 'atma', 0),
-(288, 'endark', 0),
-(289, 'enmity_boost', 0),
-(290, 'subtle_blow_plus', 0),
-(291, 'enmity_down', 0),
-(292, 'pennant', 0),
-(293, 'negate_petrify', 0),
-(294, 'negate_terror', 0),
-(295, 'negate_amnesia', 0),
-(296, 'negate_doom', 0),
-(297, 'negate_poison', 0),
-(298, 'critical_hit_evasion_down', 0),
-(299, 'overload', 0),
-(300, 'fire_maneuver', 0),
-(301, 'ice_maneuver', 0),
-(302, 'wind_maneuver', 0),
-(303, 'earth_maneuver', 0),
-(304, 'thunder_maneuver', 0),
-(305, 'water_maneuver', 0),
-(306, 'light_maneuver', 0),
-(307, 'dark_maneuver', 0),
-(308, 'double-up_chance', 0),
-(309, 'bust', 0),
-(310, 'fighters_roll', 0),
-(311, 'monks_roll', 0),
-(312, 'healers_roll', 0),
-(313, 'wizards_roll', 0),
-(314, 'warlocks_roll', 0),
-(315, 'rogues_roll', 0),
-(316, 'gallants_roll', 0),
-(317, 'chaos_roll', 0),
-(318, 'beast_roll', 0),
-(319, 'choral_roll', 0),
-(320, 'hunters_roll', 0),
-(321, 'samurai_roll', 0),
-(322, 'ninja_roll', 0),
-(323, 'drachen_roll', 0),
-(324, 'evokers_roll', 0),
-(325, 'maguss_roll', 0),
-(326, 'corsairs_roll', 0),
-(327, 'puppet_roll', 0),
-(328, 'dancers_roll', 0),
-(329, 'scholars_roll', 0),
-(330, 'bolters_roll', 0),
-(331, 'casters_roll', 0),
-(332, 'coursers_roll', 0),
-(333, 'blitzers_roll', 0),
-(334, 'tacticians_roll', 0),
-(335, 'allies_roll', 0),
-(336, 'misers_roll', 0),
-(337, 'companions_roll', 0),
-(338, 'avengers_roll', 0),
-(340, 'warriors_charge', 0),
-(341, 'formless_strikes', 0),
-(342, 'assassins_charge', 0),
-(343, 'feint', 0),
-(344, 'fealty', 0),
-(345, 'dark_seal', 0),
-(346, 'diabolic_eye', 0),
-(347, 'nightingale', 0),
-(348, 'troubadour', 0),
-(349, 'killer_instinct', 0),
-(350, 'stealth_shot', 0),
-(351, 'flashy_shot', 0),
-(352, 'sange', 0),
-(353, 'hasso', 0),
-(354, 'seigan', 0),
-(355, 'convergence', 0),
-(356, 'diffusion', 0),
-(357, 'snake_eye', 0),
-(358, 'light_arts', 0),
-(359, 'dark_arts', 0),
-(360, 'penury', 0),
-(361, 'parsimony', 0),
-(362, 'celerity', 0),
-(363, 'alacrity', 0),
-(364, 'rapture', 0),
-(365, 'ebullience', 0),
-(366, 'accession', 0),
-(367, 'manifestation', 0),
-(368, 'drain_samba', 0),
-(369, 'aspir_samba', 0),
-(370, 'haste_samba', 0),
-(371, 'velocity_shot', 0),
-(375, 'building_flourish', 0),
-(376, 'trance', 0),
-(377, 'tabula_rasa', 0),
-(378, 'drain_daze', 0),
-(379, 'aspir_daze', 0),
-(380, 'haste_daze', 0),
-(381, 'finishing_move', 0),
-(382, 'finishing_move', 0),
-(383, 'finishing_move', 0),
-(384, 'finishing_move', 0),
-(385, 'finishing_move', 0),
-(386, 'lethargic_daze', 0),
-(387, 'lethargic_daze', 0),
-(388, 'lethargic_daze', 0),
-(389, 'lethargic_daze', 0),
-(390, 'lethargic_daze', 0),
-(391, 'sluggish_daze', 0),
-(392, 'sluggish_daze', 0),
-(393, 'sluggish_daze', 0),
-(394, 'sluggish_daze', 0),
-(395, 'sluggish_daze', 0),
-(396, 'weakened_daze', 0),
-(397, 'weakened_daze', 0),
-(398, 'weakened_daze', 0),
-(399, 'weakened_daze', 0),
-(400, 'weakened_daze', 0),
-(401, 'addendum_white', 0),
-(402, 'addendum_black', 0),
-(403, 'reprisal', 0),
-(404, 'magic_evasion_down', 0),
-(405, 'retaliation', 0),
-(406, 'footwork', 0),
-(407, 'klimaform', 0),
-(408, 'sekkanoki', 0),
-(409, 'pianissimo', 0),
-(410, 'saber_dance', 0),
-(411, 'fan_dance', 0),
-(412, 'altruism', 0),
-(413, 'focalization', 0),
-(414, 'tranquility', 0),
-(415, 'equanimity', 0),
-(416, 'enlightenment', 0),
-(417, 'afflatus_solace', 0),
-(418, 'afflatus_misery', 0),
-(419, 'composure', 0),
-(420, 'yonin', 0),
-(421, 'innin', 0),
-(422, 'carbuncles_favor', 0),
-(423, 'ifrits_favor', 0),
-(424, 'shivas_favor', 0),
-(425, 'garudas_favor', 0),
-(426, 'titans_favor', 0),
-(427, 'ramuhs_favor', 0),
-(428, 'leviathans_favor', 0),
-(429, 'fenrirs_favor', 0),
-(430, 'diaboloss_favor', 0),
-(431, 'avatars_favor', 0),
-(432, 'multi_strikes', 0),
-(433, 'double_shot', 0),
-(434, 'transcendency', 0),
-(435, 'restraint', 0),
-(436, 'perfect_counter', 0),
-(437, 'mana_wall', 0),
-(438, 'divine_emblem', 0),
-(439, 'nether_void', 0),
-(440, 'sengikori', 0),
-(441, 'futae', 0),
-(442, 'presto', 0),
-(443, 'climactic_flourish', 0),
-(444, 'copy_image', 0),
-(445, 'copy_image', 0),
-(446, 'copy_image', 0),
-(447, 'multi_shots', 0),
-(448, 'bewildered_daze', 0),
-(449, 'bewildered_daze', 0),
-(450, 'bewildered_daze', 0),
-(451, 'bewildered_daze', 0),
-(452, 'bewildered_daze', 0),
-(453, 'divine_caress', 0),
-(454, 'saboteur', 0),
-(455, 'tenuto', 0),
-(456, 'spur', 0),
-(457, 'efflux', 0),
-(458, 'earthen_armor', 0),
-(459, 'divine_caress', 0),
-(460, 'blood_rage', 0),
-(461, 'impetus', 0),
-(462, 'conspirator', 0),
-(463, 'sepulcher', 0),
-(464, 'arcane_crest', 0),
-(465, 'hamanoha', 0),
-(466, 'dragon_breaker', 0),
-(467, 'triple_shot', 0),
-(468, 'striking_flourish', 0),
-(469, 'perpetuance', 0),
-(470, 'immanence', 0),
-(471, 'migawari', 0),
-(472, 'ternary_flourish', 0),
-(473, 'muddle', 0),
-(474, 'prowess', 0),
-(475, 'voidwatcher', 0),
-(476, 'ensphere', 0),
-(477, 'sacrosanctity', 0),
-(478, 'palisade', 0),
-(479, 'scarlet_delirium', 0),
-(480, 'scarlet_delirium', 0),
-(482, 'decoy_shot', 0),
-(483, 'hagakure', 0),
-(484, 'issekigan', 0),
-(485, 'unbridled_learning', 0),
-(486, 'counter_boost', 0),
-(487, 'endrain', 0),
-(488, 'enaspir', 0),
-(512, 'healing', 16),
-(513, 'leavegame', 16),
-(514, 'skillchain', 0);
+INSERT INTO `status_effects` VALUES(0, 'ko', 0);
+INSERT INTO `status_effects` VALUES(1, 'weakness', 0);
+INSERT INTO `status_effects` VALUES(2, 'sleep', 32);
+INSERT INTO `status_effects` VALUES(3, 'poison', 32);
+INSERT INTO `status_effects` VALUES(4, 'paralysis', 32);
+INSERT INTO `status_effects` VALUES(5, 'blindness', 32);
+INSERT INTO `status_effects` VALUES(6, 'silence', 32);
+INSERT INTO `status_effects` VALUES(7, 'petrification', 32);
+INSERT INTO `status_effects` VALUES(8, 'disease', 32);
+INSERT INTO `status_effects` VALUES(9, 'curse', 32);
+INSERT INTO `status_effects` VALUES(10, 'stun', 32);
+INSERT INTO `status_effects` VALUES(11, 'bind', 32);
+INSERT INTO `status_effects` VALUES(12, 'weight', 32);
+INSERT INTO `status_effects` VALUES(13, 'slow', 32);
+INSERT INTO `status_effects` VALUES(14, 'charm', 32);
+INSERT INTO `status_effects` VALUES(15, 'doom', 32);
+INSERT INTO `status_effects` VALUES(16, 'amnesia', 32);
+INSERT INTO `status_effects` VALUES(17, 'charm', 32);
+INSERT INTO `status_effects` VALUES(18, 'gradual_petrification', 32);
+INSERT INTO `status_effects` VALUES(19, 'sleep', 32);
+INSERT INTO `status_effects` VALUES(20, 'curse', 32);
+INSERT INTO `status_effects` VALUES(21, 'addle', 32);
+INSERT INTO `status_effects` VALUES(22, 'intimidate', 32);
+INSERT INTO `status_effects` VALUES(23, 'kaustra', 32);
+INSERT INTO `status_effects` VALUES(28, 'terror', 32);
+INSERT INTO `status_effects` VALUES(29, 'mute', 32);
+INSERT INTO `status_effects` VALUES(30, 'bane', 32);
+INSERT INTO `status_effects` VALUES(31, 'plague', 32);
+INSERT INTO `status_effects` VALUES(32, 'flee', 36);
+INSERT INTO `status_effects` VALUES(33, 'haste', 32);
+INSERT INTO `status_effects` VALUES(34, 'blaze_spikes', 32);
+INSERT INTO `status_effects` VALUES(35, 'ice_spikes', 32);
+INSERT INTO `status_effects` VALUES(36, 'blink', 32);
+INSERT INTO `status_effects` VALUES(37, 'stoneskin', 32);
+INSERT INTO `status_effects` VALUES(38, 'shock_spikes', 32);
+INSERT INTO `status_effects` VALUES(39, 'aquaveil', 32);
+INSERT INTO `status_effects` VALUES(40, 'protect', 32);
+INSERT INTO `status_effects` VALUES(41, 'shell', 32);
+INSERT INTO `status_effects` VALUES(42, 'regen', 32);
+INSERT INTO `status_effects` VALUES(43, 'refresh', 32);
+INSERT INTO `status_effects` VALUES(44, 'mighty_strikes', 32);
+INSERT INTO `status_effects` VALUES(45, 'boost', 36);
+INSERT INTO `status_effects` VALUES(46, 'hundred_fists', 32);
+INSERT INTO `status_effects` VALUES(47, 'manafont', 32);
+INSERT INTO `status_effects` VALUES(48, 'chainspell', 32);
+INSERT INTO `status_effects` VALUES(49, 'perfect_dodge', 32);
+INSERT INTO `status_effects` VALUES(50, 'invincible', 32);
+INSERT INTO `status_effects` VALUES(51, 'blood_weapon', 32);
+INSERT INTO `status_effects` VALUES(52, 'soul_voice', 32);
+INSERT INTO `status_effects` VALUES(53, 'eagle_eye_shot', 32);
+INSERT INTO `status_effects` VALUES(54, 'meikyo_shisui', 32);
+INSERT INTO `status_effects` VALUES(55, 'astral_flow', 32);
+INSERT INTO `status_effects` VALUES(56, 'berserk', 32);
+INSERT INTO `status_effects` VALUES(57, 'defender', 32);
+INSERT INTO `status_effects` VALUES(58, 'aggressor', 32);
+INSERT INTO `status_effects` VALUES(59, 'focus', 32);
+INSERT INTO `status_effects` VALUES(60, 'dodge', 32);
+INSERT INTO `status_effects` VALUES(61, 'counterstance', 32);
+INSERT INTO `status_effects` VALUES(62, 'sentinel', 32);
+INSERT INTO `status_effects` VALUES(63, 'souleater', 32);
+INSERT INTO `status_effects` VALUES(64, 'last_resort', 32);
+INSERT INTO `status_effects` VALUES(65, 'sneak_attack', 36);
+INSERT INTO `status_effects` VALUES(66, 'copy_image', 32);
+INSERT INTO `status_effects` VALUES(67, 'third_eye', 32);
+INSERT INTO `status_effects` VALUES(68, 'warcry', 32);
+INSERT INTO `status_effects` VALUES(69, 'invisible', 36);
+INSERT INTO `status_effects` VALUES(70, 'deodorize', 32);
+INSERT INTO `status_effects` VALUES(71, 'sneak', 36);
+INSERT INTO `status_effects` VALUES(72, 'sharpshot', 32);
+INSERT INTO `status_effects` VALUES(73, 'barrage', 32);
+INSERT INTO `status_effects` VALUES(74, 'holy_circle', 32);
+INSERT INTO `status_effects` VALUES(75, 'arcane_circle', 32);
+INSERT INTO `status_effects` VALUES(76, 'hide', 36);
+INSERT INTO `status_effects` VALUES(77, 'camouflage', 36);
+INSERT INTO `status_effects` VALUES(78, 'divine_seal', 32);
+INSERT INTO `status_effects` VALUES(79, 'elemental_seal', 32);
+INSERT INTO `status_effects` VALUES(80, 'str_boost', 32);
+INSERT INTO `status_effects` VALUES(81, 'dex_boost', 32);
+INSERT INTO `status_effects` VALUES(82, 'vit_boost', 32);
+INSERT INTO `status_effects` VALUES(83, 'agi_boost', 32);
+INSERT INTO `status_effects` VALUES(84, 'int_boost', 32);
+INSERT INTO `status_effects` VALUES(85, 'mnd_boost', 32);
+INSERT INTO `status_effects` VALUES(86, 'chr_boost', 32);
+INSERT INTO `status_effects` VALUES(87, 'trick_attack', 36);
+INSERT INTO `status_effects` VALUES(88, 'max_hp_boost', 32);
+INSERT INTO `status_effects` VALUES(89, 'max_mp_boost', 32);
+INSERT INTO `status_effects` VALUES(90, 'accuracy_boost', 32);
+INSERT INTO `status_effects` VALUES(91, 'attack_boost', 32);
+INSERT INTO `status_effects` VALUES(92, 'evasion_boost', 32);
+INSERT INTO `status_effects` VALUES(93, 'defense_boost', 32);
+INSERT INTO `status_effects` VALUES(94, 'enfire', 32);
+INSERT INTO `status_effects` VALUES(95, 'enblizzard', 32);
+INSERT INTO `status_effects` VALUES(96, 'enaero', 32);
+INSERT INTO `status_effects` VALUES(97, 'enstone', 32);
+INSERT INTO `status_effects` VALUES(98, 'enthunder', 32);
+INSERT INTO `status_effects` VALUES(99, 'enwater', 32);
+INSERT INTO `status_effects` VALUES(100, 'barfire', 32);
+INSERT INTO `status_effects` VALUES(101, 'barblizzard', 32);
+INSERT INTO `status_effects` VALUES(102, 'baraero', 32);
+INSERT INTO `status_effects` VALUES(103, 'barstone', 32);
+INSERT INTO `status_effects` VALUES(104, 'barthunder', 32);
+INSERT INTO `status_effects` VALUES(105, 'barwater', 32);
+INSERT INTO `status_effects` VALUES(106, 'barsleep', 32);
+INSERT INTO `status_effects` VALUES(107, 'barpoison', 32);
+INSERT INTO `status_effects` VALUES(108, 'barparalyze', 32);
+INSERT INTO `status_effects` VALUES(109, 'barblind', 32);
+INSERT INTO `status_effects` VALUES(110, 'barsilence', 32);
+INSERT INTO `status_effects` VALUES(111, 'barpetrify', 32);
+INSERT INTO `status_effects` VALUES(112, 'barvirus', 32);
+INSERT INTO `status_effects` VALUES(113, 'reraise', 32);
+INSERT INTO `status_effects` VALUES(114, 'cover', 32);
+INSERT INTO `status_effects` VALUES(115, 'unlimited_shot', 32);
+INSERT INTO `status_effects` VALUES(116, 'phalanx', 32);
+INSERT INTO `status_effects` VALUES(117, 'warding_circle', 32);
+INSERT INTO `status_effects` VALUES(118, 'ancient_circle', 32);
+INSERT INTO `status_effects` VALUES(119, 'str_boost', 32);
+INSERT INTO `status_effects` VALUES(120, 'dex_boost', 32);
+INSERT INTO `status_effects` VALUES(121, 'vit_boost', 32);
+INSERT INTO `status_effects` VALUES(122, 'agi_boost', 32);
+INSERT INTO `status_effects` VALUES(123, 'int_boost', 32);
+INSERT INTO `status_effects` VALUES(124, 'mnd_boost', 32);
+INSERT INTO `status_effects` VALUES(125, 'chr_boost', 32);
+INSERT INTO `status_effects` VALUES(126, 'spirit_surge', 32);
+INSERT INTO `status_effects` VALUES(127, 'costume', 32);
+INSERT INTO `status_effects` VALUES(128, 'burn', 32);
+INSERT INTO `status_effects` VALUES(129, 'frost', 32);
+INSERT INTO `status_effects` VALUES(130, 'choke', 32);
+INSERT INTO `status_effects` VALUES(131, 'rasp', 32);
+INSERT INTO `status_effects` VALUES(132, 'shock', 32);
+INSERT INTO `status_effects` VALUES(133, 'drown', 32);
+INSERT INTO `status_effects` VALUES(134, 'dia', 32);
+INSERT INTO `status_effects` VALUES(135, 'bio', 32);
+INSERT INTO `status_effects` VALUES(136, 'str_down', 32);
+INSERT INTO `status_effects` VALUES(137, 'dex_down', 32);
+INSERT INTO `status_effects` VALUES(138, 'vit_down', 32);
+INSERT INTO `status_effects` VALUES(139, 'agi_down', 32);
+INSERT INTO `status_effects` VALUES(140, 'int_down', 32);
+INSERT INTO `status_effects` VALUES(141, 'mnd_down', 32);
+INSERT INTO `status_effects` VALUES(142, 'chr_down', 32);
+INSERT INTO `status_effects` VALUES(143, 'level_restriction', 0);
+INSERT INTO `status_effects` VALUES(144, 'max_hp_down', 32);
+INSERT INTO `status_effects` VALUES(145, 'max_mp_down', 32);
+INSERT INTO `status_effects` VALUES(146, 'accuracy_down', 32);
+INSERT INTO `status_effects` VALUES(147, 'attack_down', 32);
+INSERT INTO `status_effects` VALUES(148, 'evasion_down', 32);
+INSERT INTO `status_effects` VALUES(149, 'defense_down', 32);
+INSERT INTO `status_effects` VALUES(150, 'physical_shield', 32);
+INSERT INTO `status_effects` VALUES(151, 'arrow_shield', 32);
+INSERT INTO `status_effects` VALUES(152, 'magic_shield', 32);
+INSERT INTO `status_effects` VALUES(153, 'damage_spikes', 32);
+INSERT INTO `status_effects` VALUES(154, 'shining_ruby', 32);
+INSERT INTO `status_effects` VALUES(155, 'medicine', 32);
+INSERT INTO `status_effects` VALUES(156, 'flash', 32);
+INSERT INTO `status_effects` VALUES(157, 'sj_restriction', 32);
+INSERT INTO `status_effects` VALUES(158, 'provoke', 32);
+INSERT INTO `status_effects` VALUES(159, 'penalty', 32);
+INSERT INTO `status_effects` VALUES(160, 'preparations', 32);
+INSERT INTO `status_effects` VALUES(161, 'sprint', 32);
+INSERT INTO `status_effects` VALUES(162, 'enchantment', 32);
+INSERT INTO `status_effects` VALUES(163, 'azure_lore', 32);
+INSERT INTO `status_effects` VALUES(164, 'chain_affinity', 32);
+INSERT INTO `status_effects` VALUES(165, 'burst_affinity', 32);
+INSERT INTO `status_effects` VALUES(166, 'overdrive', 32);
+INSERT INTO `status_effects` VALUES(167, 'magic_def_down', 32);
+INSERT INTO `status_effects` VALUES(168, 'inhibit_tp', 32);
+INSERT INTO `status_effects` VALUES(169, 'potency', 32);
+INSERT INTO `status_effects` VALUES(170, 'regain', 32);
+INSERT INTO `status_effects` VALUES(171, 'pax', 32);
+INSERT INTO `status_effects` VALUES(172, 'intension', 32);
+INSERT INTO `status_effects` VALUES(173, 'dread_spikes', 32);
+INSERT INTO `status_effects` VALUES(174, 'magic_acc_down', 32);
+INSERT INTO `status_effects` VALUES(175, 'magic_atk_down', 32);
+INSERT INTO `status_effects` VALUES(176, 'quickening', 36);
+INSERT INTO `status_effects` VALUES(177, 'encumbrance', 32);
+INSERT INTO `status_effects` VALUES(178, 'firestorm', 32);
+INSERT INTO `status_effects` VALUES(179, 'hailstorm', 32);
+INSERT INTO `status_effects` VALUES(180, 'windstorm', 32);
+INSERT INTO `status_effects` VALUES(181, 'sandstorm', 32);
+INSERT INTO `status_effects` VALUES(182, 'thunderstorm', 32);
+INSERT INTO `status_effects` VALUES(183, 'rainstorm', 32);
+INSERT INTO `status_effects` VALUES(184, 'aurorastorm', 32);
+INSERT INTO `status_effects` VALUES(185, 'voidstorm', 32);
+INSERT INTO `status_effects` VALUES(186, 'helix', 32);
+INSERT INTO `status_effects` VALUES(187, 'sublimation_activated', 32);
+INSERT INTO `status_effects` VALUES(188, 'sublimation_complete', 32);
+INSERT INTO `status_effects` VALUES(189, 'max_tp_down', 32);
+INSERT INTO `status_effects` VALUES(190, 'magic_atk_boost', 32);
+INSERT INTO `status_effects` VALUES(191, 'magic_def_boost', 32);
+INSERT INTO `status_effects` VALUES(192, 'requiem', 32);
+INSERT INTO `status_effects` VALUES(193, 'lullaby', 32);
+INSERT INTO `status_effects` VALUES(194, 'elegy', 32);
+INSERT INTO `status_effects` VALUES(195, 'paeon', 32);
+INSERT INTO `status_effects` VALUES(196, 'ballad', 32);
+INSERT INTO `status_effects` VALUES(197, 'minne', 32);
+INSERT INTO `status_effects` VALUES(198, 'minuet', 32);
+INSERT INTO `status_effects` VALUES(199, 'madrigal', 32);
+INSERT INTO `status_effects` VALUES(200, 'prelude', 32);
+INSERT INTO `status_effects` VALUES(201, 'mambo', 32);
+INSERT INTO `status_effects` VALUES(202, 'aubade', 32);
+INSERT INTO `status_effects` VALUES(203, 'pastoral', 32);
+INSERT INTO `status_effects` VALUES(204, 'hum', 32);
+INSERT INTO `status_effects` VALUES(205, 'fantasia', 32);
+INSERT INTO `status_effects` VALUES(206, 'operetta', 32);
+INSERT INTO `status_effects` VALUES(207, 'capriccio', 32);
+INSERT INTO `status_effects` VALUES(208, 'serenade', 32);
+INSERT INTO `status_effects` VALUES(209, 'round', 32);
+INSERT INTO `status_effects` VALUES(210, 'gavotte', 32);
+INSERT INTO `status_effects` VALUES(211, 'fugue', 32);
+INSERT INTO `status_effects` VALUES(212, 'rhapsody', 32);
+INSERT INTO `status_effects` VALUES(213, 'aria', 32);
+INSERT INTO `status_effects` VALUES(214, 'march', 32);
+INSERT INTO `status_effects` VALUES(215, 'etude', 32);
+INSERT INTO `status_effects` VALUES(216, 'carol', 32);
+INSERT INTO `status_effects` VALUES(217, 'threnody', 32);
+INSERT INTO `status_effects` VALUES(218, 'hymnus', 32);
+INSERT INTO `status_effects` VALUES(219, 'mazurka', 32);
+INSERT INTO `status_effects` VALUES(220, 'sirvente', 32);
+INSERT INTO `status_effects` VALUES(221, 'dirge', 32);
+INSERT INTO `status_effects` VALUES(222, 'scherzo', 32);
+INSERT INTO `status_effects` VALUES(223, 'nocturne', 32);
+INSERT INTO `status_effects` VALUES(227, 'store_tp', 32);
+INSERT INTO `status_effects` VALUES(228, 'embrava', 32);
+INSERT INTO `status_effects` VALUES(229, 'manawell', 32);
+INSERT INTO `status_effects` VALUES(230, 'spontaneity', 32);
+INSERT INTO `status_effects` VALUES(231, 'marcato', 32);
+INSERT INTO `status_effects` VALUES(233, 'auto-regen', 32);
+INSERT INTO `status_effects` VALUES(234, 'auto-refresh', 32);
+INSERT INTO `status_effects` VALUES(235, 'fishing_imagery', 32);
+INSERT INTO `status_effects` VALUES(236, 'woodworking_imagery', 32);
+INSERT INTO `status_effects` VALUES(237, 'smithing_imagery', 32);
+INSERT INTO `status_effects` VALUES(238, 'goldsmithing_imagery', 32);
+INSERT INTO `status_effects` VALUES(239, 'clothcraft_imagery', 32);
+INSERT INTO `status_effects` VALUES(240, 'leathercraft_imagery', 32);
+INSERT INTO `status_effects` VALUES(241, 'bonecraft_imagery', 32);
+INSERT INTO `status_effects` VALUES(242, 'alchemy_imagery', 32);
+INSERT INTO `status_effects` VALUES(243, 'cooking_imagery', 32);
+INSERT INTO `status_effects` VALUES(244, '(imagery)', 32);
+INSERT INTO `status_effects` VALUES(245, '(imagery)', 32);
+INSERT INTO `status_effects` VALUES(246, '(imagery)', 32);
+INSERT INTO `status_effects` VALUES(247, '(imagery)', 32);
+INSERT INTO `status_effects` VALUES(248, '(imagery)', 32);
+INSERT INTO `status_effects` VALUES(249, 'dedication', 32);
+INSERT INTO `status_effects` VALUES(250, 'ef_badge', 32);
+INSERT INTO `status_effects` VALUES(251, 'food', 32);
+INSERT INTO `status_effects` VALUES(252, 'chocobo', 36);
+INSERT INTO `status_effects` VALUES(253, 'signet', 0);
+INSERT INTO `status_effects` VALUES(254, 'battlefield', 0);
+INSERT INTO `status_effects` VALUES(256, 'sanction', 0);
+INSERT INTO `status_effects` VALUES(257, 'besieged', 32);
+INSERT INTO `status_effects` VALUES(258, 'illusion', 32);
+INSERT INTO `status_effects` VALUES(259, 'encumbrance', 32);
+INSERT INTO `status_effects` VALUES(260, 'obliviscence', 32);
+INSERT INTO `status_effects` VALUES(261, 'impairment', 32);
+INSERT INTO `status_effects` VALUES(262, 'omerta', 32);
+INSERT INTO `status_effects` VALUES(263, 'debilitation', 32);
+INSERT INTO `status_effects` VALUES(264, 'pathos', 32);
+INSERT INTO `status_effects` VALUES(265, 'flurry', 32);
+INSERT INTO `status_effects` VALUES(266, 'concentration', 32);
+INSERT INTO `status_effects` VALUES(267, 'allied_tags', 32);
+INSERT INTO `status_effects` VALUES(268, 'sigil', 32);
+INSERT INTO `status_effects` VALUES(269, 'level_sync', 0);
+INSERT INTO `status_effects` VALUES(270, 'aftermath', 32);
+INSERT INTO `status_effects` VALUES(271, 'aftermath', 32);
+INSERT INTO `status_effects` VALUES(272, 'aftermath', 32);
+INSERT INTO `status_effects` VALUES(273, 'aftermath', 32);
+INSERT INTO `status_effects` VALUES(274, 'enlight', 32);
+INSERT INTO `status_effects` VALUES(275, 'auspice', 32);
+INSERT INTO `status_effects` VALUES(276, 'confrontation', 32);
+INSERT INTO `status_effects` VALUES(277, 'enfire_ii', 32);
+INSERT INTO `status_effects` VALUES(278, 'enblizzard_ii', 32);
+INSERT INTO `status_effects` VALUES(279, 'enaero_ii', 32);
+INSERT INTO `status_effects` VALUES(280, 'enstone_ii', 32);
+INSERT INTO `status_effects` VALUES(281, 'enthunder_ii', 32);
+INSERT INTO `status_effects` VALUES(282, 'enwater_ii', 32);
+INSERT INTO `status_effects` VALUES(283, 'perfect_defense', 32);
+INSERT INTO `status_effects` VALUES(284, 'egg', 32);
+INSERT INTO `status_effects` VALUES(285, 'visitant', 32);
+INSERT INTO `status_effects` VALUES(286, 'baramnesia', 32);
+INSERT INTO `status_effects` VALUES(287, 'atma', 32);
+INSERT INTO `status_effects` VALUES(288, 'endark', 32);
+INSERT INTO `status_effects` VALUES(289, 'enmity_boost', 32);
+INSERT INTO `status_effects` VALUES(290, 'subtle_blow_plus', 32);
+INSERT INTO `status_effects` VALUES(291, 'enmity_down', 32);
+INSERT INTO `status_effects` VALUES(292, 'pennant', 32);
+INSERT INTO `status_effects` VALUES(293, 'negate_petrify', 32);
+INSERT INTO `status_effects` VALUES(294, 'negate_terror', 32);
+INSERT INTO `status_effects` VALUES(295, 'negate_amnesia', 32);
+INSERT INTO `status_effects` VALUES(296, 'negate_doom', 32);
+INSERT INTO `status_effects` VALUES(297, 'negate_poison', 32);
+INSERT INTO `status_effects` VALUES(298, 'critical_hit_evasion_down', 32);
+INSERT INTO `status_effects` VALUES(299, 'overload', 32);
+INSERT INTO `status_effects` VALUES(300, 'fire_maneuver', 32);
+INSERT INTO `status_effects` VALUES(301, 'ice_maneuver', 32);
+INSERT INTO `status_effects` VALUES(302, 'wind_maneuver', 32);
+INSERT INTO `status_effects` VALUES(303, 'earth_maneuver', 32);
+INSERT INTO `status_effects` VALUES(304, 'thunder_maneuver', 32);
+INSERT INTO `status_effects` VALUES(305, 'water_maneuver', 32);
+INSERT INTO `status_effects` VALUES(306, 'light_maneuver', 32);
+INSERT INTO `status_effects` VALUES(307, 'dark_maneuver', 32);
+INSERT INTO `status_effects` VALUES(308, 'double-up_chance', 32);
+INSERT INTO `status_effects` VALUES(309, 'bust', 32);
+INSERT INTO `status_effects` VALUES(310, 'fighters_roll', 32);
+INSERT INTO `status_effects` VALUES(311, 'monks_roll', 32);
+INSERT INTO `status_effects` VALUES(312, 'healers_roll', 32);
+INSERT INTO `status_effects` VALUES(313, 'wizards_roll', 32);
+INSERT INTO `status_effects` VALUES(314, 'warlocks_roll', 32);
+INSERT INTO `status_effects` VALUES(315, 'rogues_roll', 32);
+INSERT INTO `status_effects` VALUES(316, 'gallants_roll', 32);
+INSERT INTO `status_effects` VALUES(317, 'chaos_roll', 32);
+INSERT INTO `status_effects` VALUES(318, 'beast_roll', 32);
+INSERT INTO `status_effects` VALUES(319, 'choral_roll', 32);
+INSERT INTO `status_effects` VALUES(320, 'hunters_roll', 32);
+INSERT INTO `status_effects` VALUES(321, 'samurai_roll', 32);
+INSERT INTO `status_effects` VALUES(322, 'ninja_roll', 32);
+INSERT INTO `status_effects` VALUES(323, 'drachen_roll', 32);
+INSERT INTO `status_effects` VALUES(324, 'evokers_roll', 32);
+INSERT INTO `status_effects` VALUES(325, 'maguss_roll', 32);
+INSERT INTO `status_effects` VALUES(326, 'corsairs_roll', 32);
+INSERT INTO `status_effects` VALUES(327, 'puppet_roll', 32);
+INSERT INTO `status_effects` VALUES(328, 'dancers_roll', 32);
+INSERT INTO `status_effects` VALUES(329, 'scholars_roll', 32);
+INSERT INTO `status_effects` VALUES(330, 'bolters_roll', 32);
+INSERT INTO `status_effects` VALUES(331, 'casters_roll', 32);
+INSERT INTO `status_effects` VALUES(332, 'coursers_roll', 32);
+INSERT INTO `status_effects` VALUES(333, 'blitzers_roll', 32);
+INSERT INTO `status_effects` VALUES(334, 'tacticians_roll', 32);
+INSERT INTO `status_effects` VALUES(335, 'allies_roll', 32);
+INSERT INTO `status_effects` VALUES(336, 'misers_roll', 32);
+INSERT INTO `status_effects` VALUES(337, 'companions_roll', 32);
+INSERT INTO `status_effects` VALUES(338, 'avengers_roll', 32);
+INSERT INTO `status_effects` VALUES(340, 'warriors_charge', 32);
+INSERT INTO `status_effects` VALUES(341, 'formless_strikes', 32);
+INSERT INTO `status_effects` VALUES(342, 'assassins_charge', 32);
+INSERT INTO `status_effects` VALUES(343, 'feint', 32);
+INSERT INTO `status_effects` VALUES(344, 'fealty', 32);
+INSERT INTO `status_effects` VALUES(345, 'dark_seal', 32);
+INSERT INTO `status_effects` VALUES(346, 'diabolic_eye', 32);
+INSERT INTO `status_effects` VALUES(347, 'nightingale', 32);
+INSERT INTO `status_effects` VALUES(348, 'troubadour', 32);
+INSERT INTO `status_effects` VALUES(349, 'killer_instinct', 32);
+INSERT INTO `status_effects` VALUES(350, 'stealth_shot', 32);
+INSERT INTO `status_effects` VALUES(351, 'flashy_shot', 32);
+INSERT INTO `status_effects` VALUES(352, 'sange', 32);
+INSERT INTO `status_effects` VALUES(353, 'hasso', 32);
+INSERT INTO `status_effects` VALUES(354, 'seigan', 32);
+INSERT INTO `status_effects` VALUES(355, 'convergence', 32);
+INSERT INTO `status_effects` VALUES(356, 'diffusion', 32);
+INSERT INTO `status_effects` VALUES(357, 'snake_eye', 32);
+INSERT INTO `status_effects` VALUES(358, 'light_arts', 32);
+INSERT INTO `status_effects` VALUES(359, 'dark_arts', 32);
+INSERT INTO `status_effects` VALUES(360, 'penury', 32);
+INSERT INTO `status_effects` VALUES(361, 'parsimony', 32);
+INSERT INTO `status_effects` VALUES(362, 'celerity', 32);
+INSERT INTO `status_effects` VALUES(363, 'alacrity', 32);
+INSERT INTO `status_effects` VALUES(364, 'rapture', 32);
+INSERT INTO `status_effects` VALUES(365, 'ebullience', 32);
+INSERT INTO `status_effects` VALUES(366, 'accession', 32);
+INSERT INTO `status_effects` VALUES(367, 'manifestation', 32);
+INSERT INTO `status_effects` VALUES(368, 'drain_samba', 32);
+INSERT INTO `status_effects` VALUES(369, 'aspir_samba', 32);
+INSERT INTO `status_effects` VALUES(370, 'haste_samba', 32);
+INSERT INTO `status_effects` VALUES(371, 'velocity_shot', 32);
+INSERT INTO `status_effects` VALUES(375, 'building_flourish', 32);
+INSERT INTO `status_effects` VALUES(376, 'trance', 32);
+INSERT INTO `status_effects` VALUES(377, 'tabula_rasa', 32);
+INSERT INTO `status_effects` VALUES(378, 'drain_daze', 32);
+INSERT INTO `status_effects` VALUES(379, 'aspir_daze', 32);
+INSERT INTO `status_effects` VALUES(380, 'haste_daze', 32);
+INSERT INTO `status_effects` VALUES(381, 'finishing_move', 32);
+INSERT INTO `status_effects` VALUES(382, 'finishing_move', 32);
+INSERT INTO `status_effects` VALUES(383, 'finishing_move', 32);
+INSERT INTO `status_effects` VALUES(384, 'finishing_move', 32);
+INSERT INTO `status_effects` VALUES(385, 'finishing_move', 32);
+INSERT INTO `status_effects` VALUES(386, 'lethargic_daze', 32);
+INSERT INTO `status_effects` VALUES(387, 'lethargic_daze', 32);
+INSERT INTO `status_effects` VALUES(388, 'lethargic_daze', 32);
+INSERT INTO `status_effects` VALUES(389, 'lethargic_daze', 32);
+INSERT INTO `status_effects` VALUES(390, 'lethargic_daze', 32);
+INSERT INTO `status_effects` VALUES(391, 'sluggish_daze', 32);
+INSERT INTO `status_effects` VALUES(392, 'sluggish_daze', 32);
+INSERT INTO `status_effects` VALUES(393, 'sluggish_daze', 32);
+INSERT INTO `status_effects` VALUES(394, 'sluggish_daze', 32);
+INSERT INTO `status_effects` VALUES(395, 'sluggish_daze', 32);
+INSERT INTO `status_effects` VALUES(396, 'weakened_daze', 32);
+INSERT INTO `status_effects` VALUES(397, 'weakened_daze', 32);
+INSERT INTO `status_effects` VALUES(398, 'weakened_daze', 32);
+INSERT INTO `status_effects` VALUES(399, 'weakened_daze', 32);
+INSERT INTO `status_effects` VALUES(400, 'weakened_daze', 32);
+INSERT INTO `status_effects` VALUES(401, 'addendum_white', 32);
+INSERT INTO `status_effects` VALUES(402, 'addendum_black', 32);
+INSERT INTO `status_effects` VALUES(403, 'reprisal', 32);
+INSERT INTO `status_effects` VALUES(404, 'magic_evasion_down', 32);
+INSERT INTO `status_effects` VALUES(405, 'retaliation', 32);
+INSERT INTO `status_effects` VALUES(406, 'footwork', 32);
+INSERT INTO `status_effects` VALUES(407, 'klimaform', 32);
+INSERT INTO `status_effects` VALUES(408, 'sekkanoki', 32);
+INSERT INTO `status_effects` VALUES(409, 'pianissimo', 32);
+INSERT INTO `status_effects` VALUES(410, 'saber_dance', 32);
+INSERT INTO `status_effects` VALUES(411, 'fan_dance', 32);
+INSERT INTO `status_effects` VALUES(412, 'altruism', 32);
+INSERT INTO `status_effects` VALUES(413, 'focalization', 32);
+INSERT INTO `status_effects` VALUES(414, 'tranquility', 32);
+INSERT INTO `status_effects` VALUES(415, 'equanimity', 32);
+INSERT INTO `status_effects` VALUES(416, 'enlightenment', 32);
+INSERT INTO `status_effects` VALUES(417, 'afflatus_solace', 32);
+INSERT INTO `status_effects` VALUES(418, 'afflatus_misery', 32);
+INSERT INTO `status_effects` VALUES(419, 'composure', 32);
+INSERT INTO `status_effects` VALUES(420, 'yonin', 32);
+INSERT INTO `status_effects` VALUES(421, 'innin', 32);
+INSERT INTO `status_effects` VALUES(422, 'carbuncles_favor', 32);
+INSERT INTO `status_effects` VALUES(423, 'ifrits_favor', 32);
+INSERT INTO `status_effects` VALUES(424, 'shivas_favor', 32);
+INSERT INTO `status_effects` VALUES(425, 'garudas_favor', 32);
+INSERT INTO `status_effects` VALUES(426, 'titans_favor', 32);
+INSERT INTO `status_effects` VALUES(427, 'ramuhs_favor', 32);
+INSERT INTO `status_effects` VALUES(428, 'leviathans_favor', 32);
+INSERT INTO `status_effects` VALUES(429, 'fenrirs_favor', 32);
+INSERT INTO `status_effects` VALUES(430, 'diaboloss_favor', 32);
+INSERT INTO `status_effects` VALUES(431, 'avatars_favor', 32);
+INSERT INTO `status_effects` VALUES(432, 'multi_strikes', 32);
+INSERT INTO `status_effects` VALUES(433, 'double_shot', 32);
+INSERT INTO `status_effects` VALUES(434, 'transcendency', 32);
+INSERT INTO `status_effects` VALUES(435, 'restraint', 32);
+INSERT INTO `status_effects` VALUES(436, 'perfect_counter', 32);
+INSERT INTO `status_effects` VALUES(437, 'mana_wall', 32);
+INSERT INTO `status_effects` VALUES(438, 'divine_emblem', 32);
+INSERT INTO `status_effects` VALUES(439, 'nether_void', 32);
+INSERT INTO `status_effects` VALUES(440, 'sengikori', 32);
+INSERT INTO `status_effects` VALUES(441, 'futae', 32);
+INSERT INTO `status_effects` VALUES(442, 'presto', 32);
+INSERT INTO `status_effects` VALUES(443, 'climactic_flourish', 32);
+INSERT INTO `status_effects` VALUES(444, 'copy_image', 32);
+INSERT INTO `status_effects` VALUES(445, 'copy_image', 32);
+INSERT INTO `status_effects` VALUES(446, 'copy_image', 32);
+INSERT INTO `status_effects` VALUES(447, 'multi_shots', 32);
+INSERT INTO `status_effects` VALUES(448, 'bewildered_daze', 32);
+INSERT INTO `status_effects` VALUES(449, 'bewildered_daze', 32);
+INSERT INTO `status_effects` VALUES(450, 'bewildered_daze', 32);
+INSERT INTO `status_effects` VALUES(451, 'bewildered_daze', 32);
+INSERT INTO `status_effects` VALUES(452, 'bewildered_daze', 32);
+INSERT INTO `status_effects` VALUES(453, 'divine_caress', 32);
+INSERT INTO `status_effects` VALUES(454, 'saboteur', 32);
+INSERT INTO `status_effects` VALUES(455, 'tenuto', 32);
+INSERT INTO `status_effects` VALUES(456, 'spur', 32);
+INSERT INTO `status_effects` VALUES(457, 'efflux', 32);
+INSERT INTO `status_effects` VALUES(458, 'earthen_armor', 32);
+INSERT INTO `status_effects` VALUES(459, 'divine_caress', 32);
+INSERT INTO `status_effects` VALUES(460, 'blood_rage', 32);
+INSERT INTO `status_effects` VALUES(461, 'impetus', 32);
+INSERT INTO `status_effects` VALUES(462, 'conspirator', 32);
+INSERT INTO `status_effects` VALUES(463, 'sepulcher', 32);
+INSERT INTO `status_effects` VALUES(464, 'arcane_crest', 32);
+INSERT INTO `status_effects` VALUES(465, 'hamanoha', 32);
+INSERT INTO `status_effects` VALUES(466, 'dragon_breaker', 32);
+INSERT INTO `status_effects` VALUES(467, 'triple_shot', 32);
+INSERT INTO `status_effects` VALUES(468, 'striking_flourish', 32);
+INSERT INTO `status_effects` VALUES(469, 'perpetuance', 32);
+INSERT INTO `status_effects` VALUES(470, 'immanence', 32);
+INSERT INTO `status_effects` VALUES(471, 'migawari', 32);
+INSERT INTO `status_effects` VALUES(472, 'ternary_flourish', 32);
+INSERT INTO `status_effects` VALUES(473, 'muddle', 32);
+INSERT INTO `status_effects` VALUES(474, 'prowess', 32);
+INSERT INTO `status_effects` VALUES(475, 'voidwatcher', 32);
+INSERT INTO `status_effects` VALUES(476, 'ensphere', 32);
+INSERT INTO `status_effects` VALUES(477, 'sacrosanctity', 32);
+INSERT INTO `status_effects` VALUES(478, 'palisade', 32);
+INSERT INTO `status_effects` VALUES(479, 'scarlet_delirium', 32);
+INSERT INTO `status_effects` VALUES(480, 'scarlet_delirium', 32);
+INSERT INTO `status_effects` VALUES(482, 'decoy_shot', 32);
+INSERT INTO `status_effects` VALUES(483, 'hagakure', 32);
+INSERT INTO `status_effects` VALUES(484, 'issekigan', 32);
+INSERT INTO `status_effects` VALUES(485, 'unbridled_learning', 32);
+INSERT INTO `status_effects` VALUES(486, 'counter_boost', 32);
+INSERT INTO `status_effects` VALUES(487, 'endrain', 32);
+INSERT INTO `status_effects` VALUES(488, 'enaspir', 32);
+INSERT INTO `status_effects` VALUES(512, 'healing', 48);
+INSERT INTO `status_effects` VALUES(513, 'leavegame', 48);
+INSERT INTO `status_effects` VALUES(514, 'skillchain', 32);
