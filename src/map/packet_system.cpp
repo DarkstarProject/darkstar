@@ -464,8 +464,12 @@ int32 SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 	if (PChar->targid == targid)
 	{
+        // TODO: временное решение. в оригинале персонаж не отправляет запрос на обновление себя
+        // сохраняем флаг, обнуляем и восстанавливаем.
+        uint8 PVP = PChar->m_PVPFlag;
+        PChar->m_PVPFlag = 0;
 		PChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN));
-        PChar->pushPacket(new CCharUpdatePacket(PChar));
+        PChar->m_PVPFlag = PVP;
 	}else{
 		CBaseEntity* PNpc = PChar->loc.zone->GetEntity(targid, TYPE_NPC);
 
