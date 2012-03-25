@@ -65,7 +65,7 @@ FERDOULEMIONT_SHOP_DIALOG = 8230; -- Hello!
     PHAMELISE_OPEN_DIALOG = 8234; -- I've got fresh produce from Zulkheim!
   PHAMELISE_CLOSED_DIALOG = 8241; -- I'd be making a killing selling produce from Zulkheim, but the region's under foreign control!
  
-   APAIREMANT_OPEN_DIALOG = 8235; -- Might you be interested in produce from Gustaberg？
+   APAIREMANT_OPEN_DIALOG = 8235; -- Might you be interested in produce from Gustaberg
  APAIREMANT_CLOSED_DIALOG = 8242; -- I'd love to import produce from Gustaberg, but the foreign powers in control there make me feel unsafe!
 
 	 POURETTE_OPEN_DIALOG = 8243; -- Derfland produce for sale!

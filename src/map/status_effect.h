@@ -564,8 +564,7 @@ public:
          uint16 icon,
 		 uint16 power, 
 		 uint32 tick, 
-		 uint32 duration, 
-		 uint16 flag = EFFECTFLAG_NONE,
+		 uint32 duration,
 		 uint16 subid = 0);
    ~CStatusEffect();
 

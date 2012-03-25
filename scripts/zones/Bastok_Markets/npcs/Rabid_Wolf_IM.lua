@@ -117,9 +117,9 @@ function onEventFinish(player,csid,option)
 		
 		if(player:hasStatusEffect(EFFECT_SIGNET)) then 
 			player:delStatusEffect(EFFECT_SIGNET);
-			player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0); -- Grant Signet
+			player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 		else
-			player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0); -- Grant Signet
+			player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 		end
 		
    elseif(option >= 32768 and option <= 32944) then

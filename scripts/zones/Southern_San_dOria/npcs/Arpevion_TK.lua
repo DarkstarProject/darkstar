@@ -137,7 +137,7 @@ function onEventFinish(player,csid,option)
 		player:delStatusEffect(EFFECT_SIGNET);
 		ranktime = player:getRank() * 60 * 60;
 		duration = ranktime + 0 + 10800;
-		player:addStatusEffect(EFFECT_SIGNET,0,0,duration,0,0);
+		player:addStatusEffect(EFFECT_SIGNET,0,0,duration);
 		
 	elseif(option >= 32768 and option <= 32944) then
 		for Item = 1,size,3 do

@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 5201
 -- Item: dish_of_spaghetti_boscaiola_+1
--- Food Effect: 0Min, All Races
+-- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Health % 18
 -- Health Cap 125
@@ -32,7 +32,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,0,0,0,0,5201);
+	target:addStatusEffect(EFFECT_FOOD,0,0,1800,5201);
 end;
 
 -----------------------------------------

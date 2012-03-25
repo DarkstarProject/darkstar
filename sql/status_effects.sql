@@ -147,7 +147,7 @@ INSERT INTO `status_effects` (`id`, `name`, `flags`) VALUES
 (110, 'barsilence', 0),
 (111, 'barpetrify', 0),
 (112, 'barvirus', 0),
-(113, 'reraise', 0),
+(113, 'reraise', 32),
 (114, 'cover', 0),
 (115, 'unlimited_shot', 0),
 (116, 'phalanx', 0),

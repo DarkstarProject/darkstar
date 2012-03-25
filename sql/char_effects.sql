@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `char_effects` (
   `power` smallint(5) unsigned NOT NULL DEFAULT '0',
   `tick` int(10) unsigned NOT NULL DEFAULT '0',
   `duration` int(10) unsigned NOT NULL DEFAULT '0',
-  `flag` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `subid` smallint(5) unsigned NOT NULL DEFAULT '0',
   KEY `charid` (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

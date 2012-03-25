@@ -27,7 +27,7 @@ function onSpellCast(caster,target,spell)
 			duration = duration * 3;
 		end
 		spell:setMsg(0);
-		target:addStatusEffect(EFFECT_INVISIBLE,0,10,math.floor(duration),FLAG_DISPELABLE);
+		target:addStatusEffect(EFFECT_INVISIBLE,0,10,math.floor(duration));
 	else
 		spell:setMsg(75); -- no effect.
 	end

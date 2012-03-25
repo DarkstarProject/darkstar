@@ -2599,8 +2599,7 @@ inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
         (uint16)lua_tointeger(L,2),
         (uint16)lua_tointeger(L,3),
         (uint16)lua_tointeger(L,4),
-        (n >= 5 ? (uint16)lua_tointeger(L,5) : 0),
-        (n >= 6 ? (uint16)lua_tointeger(L,6) : 0));
+        (n >= 5 ? (uint16)lua_tointeger(L,5) : 0));
 
     ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
 	return 0;
@@ -2631,8 +2630,7 @@ inline int32 CLuaBaseEntity::addStatusEffectEx(lua_State *L)
         (uint16)lua_tointeger(L,3),
         (uint16)lua_tointeger(L,4),
         (uint16)lua_tointeger(L,5),
-        (n >= 6 ? (uint16)lua_tointeger(L,6) : 0),
-        (n >= 7 ? (uint16)lua_tointeger(L,7) : 0));
+        (n >= 6 ? (uint16)lua_tointeger(L,6) : 0));
 
     ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
 	return 0;
@@ -2658,8 +2656,7 @@ inline int32 CLuaBaseEntity::addPartyEffect(lua_State *L)
 					(uint16)lua_tointeger(L,2),
 					(uint16)lua_tointeger(L,3),
 					(uint16)lua_tointeger(L,4),
-					(n >= 5 ? (uint16)lua_tointeger(L,5) : 0),
-					(n >= 6 ? (uint16)lua_tointeger(L,6) : 0));
+					(n >= 5 ? (uint16)lua_tointeger(L,5) : 0));
 
 				CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
 				

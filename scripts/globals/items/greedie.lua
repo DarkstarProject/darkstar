@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 4500
 -- Item: greedie
--- Food Effect: 0Min, Mithra only
+-- Food Effect: 5Min, Mithra only
 -----------------------------------------
 -- Dexterity 1
 -- Mind -3
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,0,0,0,0,4500);
+	target:addStatusEffect(EFFECT_FOOD,0,0,300,4500);
 end;
 
 -----------------------------------

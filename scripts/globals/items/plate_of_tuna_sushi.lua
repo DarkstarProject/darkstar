@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 5150
 -- Item: plate_of_tuna_sushi
--- Food Effect: 0Min, All Races
+-- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Health 20
 -- Dexterity 3
@@ -30,7 +30,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,0,0,0,0,5150);
+	target:addStatusEffect(EFFECT_FOOD,0,0,1800,5150);
 end;
 
 -----------------------------------

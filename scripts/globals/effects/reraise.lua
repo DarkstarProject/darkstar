@@ -1,6 +1,6 @@
 -----------------------------------
 --
---
+--  EFFECT_RERAISE
 --
 -----------------------------------
 
@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    if(target:getHP()==0) then
-	target:sendRaise(effect:getPower());
+    if(target:getHP() == 0) then
+		target:sendRaise(effect:getPower());
     end
 end;

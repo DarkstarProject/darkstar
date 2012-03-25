@@ -334,32 +334,15 @@ void CAICharNormal::ActionFall()
 	m_PBattleTarget    = NULL;
 	m_PBattleSubTarget = NULL;
 
-	uint32 reraise_status = 0; //set to the raise power if reraise is up
-
-	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_RERAISE)){
-		//get strength
-		CStatusEffect* PStatusEffect = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_RERAISE,0);
-		reraise_status = PStatusEffect->GetPower();
-		//remove effect
-		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_RERAISE);
-	}
-
     m_PChar->UContainer->Clean();
 
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
-	
 	m_PChar->animation = ANIMATION_DEATH;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
+
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
-
-	//need to remove status effects on death! But only some, e.g. Protect is removed, but Signet is not removed.
-
-	//give raise
-	if(reraise_status>0){
-		m_PChar->m_hasRaise = reraise_status;
-		m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar, TYPE_RAISE));
-	}
 }
 
 /************************************************************************
@@ -378,6 +361,8 @@ void CAICharNormal::ActionDeath()
 *  316 - That action cannot be used in this area (costume)				*
 *																		*
 ************************************************************************/
+
+// TODO: нет проверки на наличие зарядов у предмета (в случае использования экипировки)
 
 void CAICharNormal::ActionItemStart() 
 {

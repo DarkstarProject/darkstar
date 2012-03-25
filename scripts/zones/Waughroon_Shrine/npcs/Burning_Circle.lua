@@ -157,7 +157,7 @@ function onEventFinish(player,csid,option)
 			player:startEvent(0x7d02);
 		else
 			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
-			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,900,1);
+			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,900);
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_onTrade",0);
 			player:setVar(tostring(pZone) .. "_Fight",option);

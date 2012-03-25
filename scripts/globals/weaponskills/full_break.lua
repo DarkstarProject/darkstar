@@ -20,10 +20,10 @@ function OnUseWeaponSkill(attacker, target, wsID)
 	durationMod = fTP(attacker:getTP(),ftp100,ftp200,ftp300);
 	duration = math.random(10,20*durationMod);
 
-	target:addStatusEffect(EFFECT_ATTACK_DOWN,0,12.5,math.floor(duration), FLAG_DISPELABLE);
-	target:addStatusEffect(EFFECT_DEFENSE_DOWN,0,12.5,math.floor(duration), FLAG_DISPELABLE);
-	target:addStatusEffect(EFFECT_ACCURACY_DOWN,0,20,math.floor(duration), FLAG_DISPELABLE);
-	target:addStatusEffect(EFFECT_EVASION_DOWN,0,20,math.floor(duration), FLAG_DISPELABLE);
+	target:addStatusEffect(EFFECT_ATTACK_DOWN,0,12.5,math.floor(duration));
+	target:addStatusEffect(EFFECT_DEFENSE_DOWN,0,12.5,math.floor(duration));
+	target:addStatusEffect(EFFECT_ACCURACY_DOWN,0,20,math.floor(duration));
+	target:addStatusEffect(EFFECT_EVASION_DOWN,0,20,math.floor(duration));
 
 	--number of normal hits for ws (example = Sturmwind)
 	numHits = 1;

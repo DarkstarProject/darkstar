@@ -27,13 +27,13 @@
 #include "status_effect.h"
 
 
-CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint16 flag, uint16 subid)
+CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint16 subid)
 {
 	m_StatusID = id;
 	m_SubID	   = subid;
     m_Icon     = icon;
 	m_Power	   = power;
-	m_Flag	   = flag;
+	m_Flag	   = EFFECTFLAG_NONE;
 	m_TickTime = tick * 1000;
 	m_Duration = duration * 1000;
 }

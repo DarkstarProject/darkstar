@@ -23,7 +23,7 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:hasStatusEffect(EFFECT_MUTE) == false) then
-		player:addStatusEffect(EFFECT_MUTE,0,0,300,0,0);
+		player:addStatusEffect(EFFECT_MUTE,0,0,300);
 	end
 	
 end;

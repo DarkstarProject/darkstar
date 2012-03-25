@@ -23,7 +23,7 @@ function OnUseWeaponSkill(attacker, target, wsID)
 	stunChance = math.random(0,20+chanceMod);
 
 	if( stunChance > 15 ) then
-		target:addStatusEffect(EFFECT_STUN,0,10,2,FLAG_DISPELABLE);
+		target:addStatusEffect(EFFECT_STUN,0,10,2);
 	end
 
 	--number of normal hits for ws (example = Sturmwind)

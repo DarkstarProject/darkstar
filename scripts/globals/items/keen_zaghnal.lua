@@ -24,7 +24,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_ACCURACY_BOOST,0,0,1800,FLAG_DISPELABLE,18067);
+	target:addStatusEffect(EFFECT_ACCURACY_BOOST,0,0,1800,18067);
 end;
 
 -----------------------------------------

@@ -383,7 +383,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
     string_t name;
 
-	if (StatusEffect->GetSubID() == 0)
+	if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000)
 	{
 		name.insert(0, "globals/effects/");
         name.insert(name.size(), effects::EffectsParams[StatusEffect->GetStatusID()].Name);
@@ -409,11 +409,11 @@ void CStatusEffectContainer::LoadStatusEffects()
 {
     DSP_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
 
-	const int8* fmtQuery = "SELECT effectid, icon, power, tick, duration, flag, subid \
-							FROM char_effects \
-							WHERE charid = %u;";
+	const int8* Query = "SELECT effectid, icon, power, tick, duration, subid \
+						 FROM char_effects \
+						 WHERE charid = %u;";
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, m_POwner->id);
+	int32 ret = Sql_Query(SqlHandle, Query, m_POwner->id);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -425,8 +425,7 @@ void CStatusEffectContainer::LoadStatusEffects()
 				(uint16)Sql_GetUIntData(SqlHandle,2),
 				(uint32)Sql_GetUIntData(SqlHandle,3),
 				(uint32)Sql_GetUIntData(SqlHandle,4),
-				(uint16)Sql_GetUIntData(SqlHandle,5),
-				(uint16)Sql_GetUIntData(SqlHandle,6));
+				(uint16)Sql_GetUIntData(SqlHandle,5));
 
 			AddStatusEffect(PStatusEffect);
 		}
@@ -449,17 +448,15 @@ void CStatusEffectContainer::SaveStatusEffects()
 	{
 		if (m_StatusEffectList.at(i)->GetDuration() != 0)
 		{
-			const int8* fmtQuery = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, flag, subid) \
-									VALUES(%u,%u,%u,%u,%u,%u,%u,%u);";
+			const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid) VALUES(%u,%u,%u,%u,%u,%u,%u);";
 
-			Sql_Query(SqlHandle,fmtQuery,
+			Sql_Query(SqlHandle, Query,
 				m_POwner->id,
 				m_StatusEffectList.at(i)->GetStatusID(),
                 m_StatusEffectList.at(i)->GetIcon(),
 				m_StatusEffectList.at(i)->GetPower(),
 				m_StatusEffectList.at(i)->GetTickTime() / 1000,
 			   (m_StatusEffectList.at(i)->GetDuration() + m_StatusEffectList.at(i)->GetStartTime() - gettick()) / 1000,
-				m_StatusEffectList.at(i)->GetFlag(),
 				m_StatusEffectList.at(i)->GetSubID());
 		}
 	}

@@ -114,12 +114,12 @@ function onEventFinish(player,csid,option)
 			player:startEvent(0x7d02);
 		elseif(option == 100) then
 			bcnmSpawn(1,option,pZone);
-			player:addStatusEffect(EFFECT_BATTLEFIELD,1,0,600,0);
+			player:addStatusEffect(EFFECT_BATTLEFIELD,1,0,600);
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		elseif(option == 101) then
 			bcnmSpawn(1,option,pZone);
-			player:addStatusEffect(EFFECT_BATTLEFIELD,2,0,1800,0);
+			player:addStatusEffect(EFFECT_BATTLEFIELD,2,0,1800);
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		end

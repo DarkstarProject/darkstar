@@ -12,7 +12,7 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 	if (target:getEquipID(5) == 13748) then
-		target:addStatusEffectEx(EFFECT_AUTO_REFRESH,0,1,3,0,0,13748);
+		target:addStatusEffectEx(EFFECT_AUTO_REFRESH,0,1,3,0,13748);
 	else
 		target:delStatusEffect(EFFECT_AUTO_REFRESH,13748);
 	end

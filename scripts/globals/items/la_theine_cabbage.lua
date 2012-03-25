@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 4366
 -- Item: la_theine_cabbage
--- Food Effect: 0Min, All Races
+-- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Agility 1
 -- Vitality -3
@@ -26,7 +26,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,0,0,0,0,4366);
+	target:addStatusEffect(EFFECT_FOOD,0,0,300,4366);
 end;
 
 -----------------------------------

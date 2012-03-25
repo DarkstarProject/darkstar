@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
 	end
 	
 	target:delStatusEffect(EFFECT_REFRESH);
-	target:addStatusEffect(EFFECT_REFRESH,mp,3,duration,FLAG_DISPELABLE);
+	target:addStatusEffect(EFFECT_REFRESH,mp,3,duration);
     return 0;
 	
 end;

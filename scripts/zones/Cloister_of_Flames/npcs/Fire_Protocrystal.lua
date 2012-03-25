@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
 			player:startEvent(0x7d02);
 		else
 			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
-			player:addStatusEffect(EFFECT_BATTLEFIELD,2,0,1800,0); -- 2 for battlefield.lua
+			player:addStatusEffect(EFFECT_BATTLEFIELD,2,0,1800); -- 2 for battlefield.lua
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_Fight",option);
 		end

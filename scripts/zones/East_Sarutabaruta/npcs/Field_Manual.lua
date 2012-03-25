@@ -98,7 +98,7 @@ if(option==53) then --Chose Regen. Regen from FoV removes all forms of regen.
 		player:removeStatusEffect(EFFECT_REGEN);
 	end
 	--Adds regen
-	player:addStatusEffect(EFFECT_REGEN,1,3,3600,FLAG_DISPELABLE);
+	player:addStatusEffect(EFFECT_REGEN,1,3,3600);
 elseif(option==69) then --Chose Refresh, removes all other refresh.
 	--Decrease tabs
 	local tabs = player:getVar("tabs");
@@ -110,7 +110,7 @@ elseif(option==69) then --Chose Refresh, removes all other refresh.
 		player:removeStatusEffect(EFFECT_REFRESH);
 	end
 	--Add refresh
-	player:addStatusEffect(EFFECT_REFRESH,1,3,3600,FLAG_DISPELABLE);
+	player:addStatusEffect(EFFECT_REFRESH,1,3,3600);
 elseif(option==85) then --Chose Protect, removes all other protect.
 	--Decrease tabs
 	local tabs = player:getVar("tabs");
@@ -133,7 +133,7 @@ elseif(option==85) then --Chose Protect, removes all other protect.
 		def=55;
 	end
 	--Add protect
-	player:addStatusEffect(EFFECT_PROTECT,def,0,1800,FLAG_DISPELABLE);
+	player:addStatusEffect(EFFECT_PROTECT,def,0,1800);
 elseif(option==101) then --Chose Shell, removes all other shell.
 	--Decrease tabs
 	local tabs = player:getVar("tabs");
@@ -157,7 +157,7 @@ elseif(option==101) then --Chose Shell, removes all other shell.
 		def=28;
 	end
 	--Add shell
-	player:addStatusEffect(EFFECT_SHELL,def,0,1800,FLAG_DISPELABLE);
+	player:addStatusEffect(EFFECT_SHELL,def,0,1800);
 elseif (option==37) then --Reraise chosen.
 	--Decrease tabs
 	local tabs = player:getVar("tabs");
@@ -169,7 +169,7 @@ elseif (option==37) then --Reraise chosen.
 		player:removeStatusEffect(EFFECT_RERAISE);
 	end
 	--apply RR, 2 hour duration.
-	player:addStatusEffect(EFFECT_RERAISE,power,0,7200,FLAG_DISPELABLE);
+	player:addStatusEffect(EFFECT_RERAISE,power,0,7200);
 elseif (option==21) then --Return to home nation.
 	--Decrease tabs
 	local tabs = player:getVar("tabs");

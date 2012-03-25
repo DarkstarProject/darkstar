@@ -5,15 +5,6 @@
 -----------------------------------
 
 -----------------------------------
--- These flags can be used to provide more information about the effect.
------------------------------------
-
-FLAG_DISPELABLE     = 1
-FLAG_ERASABLE       = 2
-FLAG_ATTACK         = 4
-FLAG_DAMAGE         = 8
-
------------------------------------
 -- These codes represent the actual status effects.  
 -- They are simply for convenience.
 -----------------------------------

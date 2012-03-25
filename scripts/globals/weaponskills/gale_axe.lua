@@ -22,7 +22,7 @@ function OnUseWeaponSkill(attacker, target, wsID)
 
 
 	if(target:hasStatusEffect(EFFECT_CHOKE) == false) then
-		target:addStatusEffect(EFFECT_CHOKE,0,10,durationMod,FLAG_DISPELABLE);
+		target:addStatusEffect(EFFECT_CHOKE,0,10,durationMod);
 	end
 	
 
