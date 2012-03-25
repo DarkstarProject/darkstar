@@ -1484,7 +1484,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 			uint8  SkillAmount = 1;
 			uint8  tier = dsp_min(1 + (Diff / 5), 5);
 		
-			for(uint8 i = 0; i < 5; ++i) 
+			for(uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
 			{
 				random = rand() / ((double)RAND_MAX);
 
