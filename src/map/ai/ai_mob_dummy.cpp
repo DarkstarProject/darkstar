@@ -549,12 +549,13 @@ void CAIMobDummy::ActionAttack()
 	}
 	else if(m_PMob->canDeaggro() && (m_Tick-m_LastActionTime) > m_PMob->m_DeaggroTimer && m_PMob->m_DeaggroTimer!=0){
 		//player has been too far away for some time, deaggro if the mob type dictates it.
-		if (m_PMob->m_OwnerID == m_PBattleTarget->id)
+/*		if (m_PMob->m_OwnerID == m_PBattleTarget->id)
         {
+			m_PMob->m_OwnerID = 0;
             m_PMob->m_OwnerID = 0;
         }
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
-		ActionAttack();
+		ActionAttack(); */
 	}
 	else
     {

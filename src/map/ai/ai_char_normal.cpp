@@ -343,6 +343,20 @@ void CAICharNormal::ActionFall()
     m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
+
+	//Give Reraise if the effect is on
+	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_RERAISE,0)){
+		CStatusEffect* reraise = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_RERAISE,0);
+		if (reraise->GetPower() == 0 || reraise->GetPower() > 3)
+		{
+			ShowDebug(CL_CYAN"ActionFall reraise : raise value is not valid!\n"CL_RESET);
+		}
+		else{
+			m_PChar->m_hasRaise = reraise->GetPower();
+			m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar, TYPE_RAISE));	
+		}
+		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_RERAISE);
+	}
 }
 
 /************************************************************************
