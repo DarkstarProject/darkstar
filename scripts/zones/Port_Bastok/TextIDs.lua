@@ -39,22 +39,22 @@ POWHATAN_DIALOG_1 = 7043; -- I'm sick and tired of entertaining guests.
 	 UNLOCK_NINJA = 8203; -- You can now become a ninja.
 
 -- Shop Texts
-        DENVIHR_SHOP_DIALOG = 7409; -- Ah, interested in my wares, are you? You can only buy these in Bastok, my friend.
-         GALVIN_SHOP_DIALOG = 7403; -- Welcome to Galvin's Travel Gear! We do our best to get the best for only the best!
-          ILITA_SHOP_DIALOG = 7407; -- Hello there. How about buying <item> to stay in touch with your friends?
-         MELLOA_SHOP_DIALOG = 7399; -- Welcome to the Steaming Sheep. Would you like something to drink?
-           NUMA_SHOP_DIALOG = 7404; -- Hello, hello! Won't you buy something? I'll give you a rebate!
-         SAWYER_SHOP_DIALOG = 7398; -- Hi, there. For here or to go?
-       SUGANDHI_SHOP_DIALOG = 7408; -- Traveler! I am sure my wares will prove useful on your journey. Why don't you buy some?
+        DENVIHR_SHOP_DIALOG = 7411; -- Ah, interested in my wares, are you? You can only buy these in Bastok, my friend.
+         GALVIN_SHOP_DIALOG = 7405; -- Welcome to Galvin's Travel Gear! We do our best to get the best for only the best!
+          ILITA_SHOP_DIALOG = 7409; -- Hello there. How about buying <item> to stay in touch with your friends?
+         MELLOA_SHOP_DIALOG = 7401; -- Welcome to the Steaming Sheep. Would you like something to drink?
+           NUMA_SHOP_DIALOG = 7406; -- Hello, hello! Won't you buy something? I'll give you a rebate!
+         SAWYER_SHOP_DIALOG = 7400; -- Hi, there. For here or to go?
+       SUGANDHI_SHOP_DIALOG = 7410; -- Traveler! I am sure my wares will prove useful on your journey. Why don't you buy some?
       VALERIANO_SHOP_DIALOG = 7353; -- Welcome to the Troupe Valeriano. Valeriano, at your service! Have a laugh, then spend some cash! Treats and sweets from exotic lands!
 
-		 EVELYN_OPEN_DIALOG = 7402; -- Hello! Might I interest you in some specialty goods from Gustaberg?
+		 EVELYN_OPEN_DIALOG = 7404; -- Hello! Might I interest you in some specialty goods from Gustaberg?
 	   EVELYN_CLOSED_DIALOG = 7348; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Gustaberg, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
-		  BELKA_OPEN_DIALOG = 7405; -- Welcome. I've got goods from Derfland. Interested?
+		  BELKA_OPEN_DIALOG = 7407; -- Welcome. I've got goods from Derfland. Interested?
 		BELKA_CLOSED_DIALOG = 7350; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Derfland, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
-	   ROSSWALD_OPEN_DIALOG = 7406; -- Hello, hello! Everything I have is imported directly from Zulkheim!
+	   ROSSWALD_OPEN_DIALOG = 7408; -- Hello, hello! Everything I have is imported directly from Zulkheim!
 	 ROSSWALD_CLOSED_DIALOG = 7349; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Zulkheim, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
 		VATTIAN_OPEN_DIALOG = 8133; -- Welcome to my humble establishment. I have a wide variety of specialty goods from Kuzotz.

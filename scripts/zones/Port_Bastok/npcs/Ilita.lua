@@ -2,9 +2,12 @@
 --  Area: Port Bastok
 --  NPC: Ilita
 --  Linkshell merchant
+--  @pos -142 -1 -25 236
+-----------------------------------
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+require("scripts/globals/shop");
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -19,9 +22,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(0xEC02, 12, 22, 7)) then
-		player:showText(npc,ILITA_SHOP_DIALOG,513);
-	end
+
+player:showText(npc,ILITA_SHOP_DIALOG,513);
+
+stock = 
+{
+	0x0200,8000, -- Linkshell
+	0x3f9d,375   -- Pendant Compass
+}
+showShop(player, STATIC, stock);
 end;
 
 -----------------------------------
