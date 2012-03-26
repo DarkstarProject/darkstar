@@ -87,6 +87,7 @@ public:
     uint8       m_Link;                 // взаимопомощь монстрам своего семейства
 	uint16		m_Behaviour;	        // поведение монстра в различных ситуациях
 	SPAWNTYPE	m_SpawnType;	        // условие появления монстра 
+	uint32		m_DeaggroTimer;			//the max amount of time between actions, after which a deaggro occurs.
 
 	uint8		m_CallForHelp;	        // в перспективе желательно объединить эту переменную с CNpc->unknown 
 
@@ -97,6 +98,7 @@ public:
 	CEnmityContainer* PEnmityContainer;	// система ненависти монстров
 
     uint32 GetDespawnTimer();
+	bool   canDeaggro();
     void   SetDespawnTimer(uint32 duration);
 
     CMobEntity();
