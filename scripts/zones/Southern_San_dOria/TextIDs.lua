@@ -55,7 +55,7 @@ FERDOULEMIONT_SHOP_DIALOG = 8230; -- Hello!
 	   SHILAH_SHOP_DIALOG = 0; -- 
 	 THADIENE_SHOP_DIALOG = 7799; -- Welcome to Helbort's Blades!
 	VALERIANO_SHOP_DIALOG = 0; -- 
-
+	PAUNELIE_SHOP_DIALOG = 8237;
     MACHIELLE_OPEN_DIALOG = 8232; -- Might I interest you in produce from Norvallen?
   MACHIELLE_CLOSED_DIALOG = 8239; -- We want to sell produce from Norvallen, but the entire region is under foreign control!
  
