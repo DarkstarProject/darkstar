@@ -99,10 +99,9 @@ void CAIMobDummy::ActionRoaming()
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
 	}
-	else if (m_PMob->m_OwnerID != 0)
+	else if (m_PMob->m_OwnerID.id != 0)
 	{
-		uint16 TargID = m_PMob->m_OwnerID & 0x0FFF;
-		m_PBattleTarget = (CBattleEntity*)m_PMob->loc.zone->GetEntity(TargID, TYPE_PC | TYPE_MOB | TYPE_PET);
+        m_PBattleTarget = (CBattleEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC | TYPE_MOB | TYPE_PET);
 
         // TODO: возможно необходимо добавлять цели базовое количество ненависти
 
@@ -161,7 +160,7 @@ void CAIMobDummy::ActionDisengage()
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
 
-	m_PMob->m_OwnerID = 0;
+    m_PMob->m_OwnerID.clean();
 	m_PMob->m_CallForHelp = 0;
 	m_PMob->animation = ANIMATION_NONE;
     m_PMob->health.tp = 0;
@@ -197,9 +196,9 @@ void CAIMobDummy::ActionDropItems()
 {
     if ((m_Tick - m_LastActionTime) > m_PMob->m_DropItemTime)
 	{
-		CCharEntity* PChar = (CCharEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID & 0x0FFF, TYPE_PC);
+        CCharEntity* PChar = (CCharEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC);
 
-		if (PChar != NULL)
+        if (PChar != NULL && PChar->id == m_PMob->m_OwnerID.id)
 		{
             // TODO: blu может выучить последнюю использованную монстром специальную атаку m_PMobSkill
 
@@ -287,7 +286,7 @@ void CAIMobDummy::ActionSpawn()
 		m_ActionType = ACTION_ROAMING;
 		m_PBattleTarget = NULL;
 
-		m_PMob->m_OwnerID = 0;
+        m_PMob->m_OwnerID.clean();
 		m_PMob->m_CallForHelp = 0;
         m_PMob->m_DropItemTime = 1000;
 		m_PMob->status = STATUS_UPDATE;
@@ -445,9 +444,9 @@ void CAIMobDummy::ActionAttack()
     if (m_PBattleTarget->isDead() || 
         m_PBattleTarget->animation == ANIMATION_CHOCOBO)
 	{
-        if (m_PMob->m_OwnerID == m_PBattleTarget->id)
+        if (m_PMob->m_OwnerID.id == m_PBattleTarget->id)
         {
-            m_PMob->m_OwnerID = 0;
+            m_PMob->m_OwnerID.clean();
         }
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		ActionAttack();

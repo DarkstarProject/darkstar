@@ -33,7 +33,7 @@
 
 CBattleEntity::CBattleEntity() 
 {
-	m_OwnerID	= 0;
+    m_OwnerID.clean();
 	m_ModelSize	= 3; // неправильная инициализация, она приведет к тому, что заклинания станут читаться на 3 дальше
 	m_mlvl = 0;
 	m_slvl = 0;

@@ -71,6 +71,20 @@ enum ANIMATIONTYPE
 	ANIMATION_FISHING_START			= 50
 };
 
+// TODO: возможо стоит сделать эту структуру частью класса, взамен нынешних id и targid, но уже без метода clean
+
+struct EntityID_t
+{
+    void clean()
+    {
+        id = 0;
+        targid = 0;
+    }
+
+    uint32 id;
+    uint16 targid;
+};
+
 class CZone;
 
 struct location_t 

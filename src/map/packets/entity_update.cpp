@@ -108,7 +108,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				{
 					WBUFB(data,(0x1E)-4) = ((CMobEntity*)PEntity)->GetHPP();
 					WBUFB(data,(0x21)-4) = ((CMobEntity*)PEntity)->m_CallForHelp;
-					WBUFL(data,(0x2C)-4) = ((CMobEntity*)PEntity)->m_OwnerID;
+                    WBUFL(data,(0x2C)-4) = ((CMobEntity*)PEntity)->m_OwnerID.id;
 
 					if (((CMobEntity*)PEntity)->PMaster != NULL)
 					{

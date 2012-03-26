@@ -181,7 +181,7 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 {
     DSP_DEBUG_BREAK_IF(PBattleTarget == NULL);
 
-	if (PBattleTarget->m_OwnerID == 0 || PBattleTarget->m_OwnerID == m_PChar->id) 
+	if (PBattleTarget->m_OwnerID.id == 0 || PBattleTarget->m_OwnerID.id == m_PChar->id) 
 	{
 		return true;
 	}
@@ -189,7 +189,7 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 	{
 		for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
 		{
-			if (m_PChar->PParty->members[i]->id == PBattleTarget->m_OwnerID)
+			if (m_PChar->PParty->members[i]->id == PBattleTarget->m_OwnerID.id)
 			{
 				return true;
 			}
@@ -1135,7 +1135,8 @@ void CAICharNormal::ActionMagicFinish()
             {
                 ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
             }
-            ((CMobEntity*)PTarget)->m_OwnerID = m_PChar->id;
+            ((CMobEntity*)PTarget)->m_OwnerID.id = m_PChar->id;
+            ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PChar->targid;
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
         }
     }
@@ -1321,7 +1322,8 @@ void CAICharNormal::ActionJobAbilityFinish()
         {
             DSP_DEBUG_BREAK_IF(m_PBattleSubTarget->objtype != TYPE_MOB);
 
-            ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID = m_PChar->id;
+            ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
+            ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
             ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
         }
 	}
@@ -1515,8 +1517,8 @@ void CAICharNormal::ActionAttack()
 	                {
 		                for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
 		                {
-			                if (PTarget->m_OwnerID == m_PChar->PParty->members[i]->id ||
-                               (PTarget->m_OwnerID == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->members[i]))
+			                if (PTarget->m_OwnerID.id == m_PChar->PParty->members[i]->id ||
+                               (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->members[i]))
 			                {
                                 m_PBattleTarget = PTarget;
 				                m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
@@ -1524,8 +1526,8 @@ void CAICharNormal::ActionAttack()
 			                }
 		                }
 	                }
-                    else if (PTarget->m_OwnerID == m_PChar->id ||
-                            (PTarget->m_OwnerID == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar))
+                    else if (PTarget->m_OwnerID.id == m_PChar->id ||
+                            (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar))
                     {
                         m_PBattleTarget = PTarget;
                         m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));

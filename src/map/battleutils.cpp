@@ -500,7 +500,17 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	}
 
 	PDefender->addHP(-damage);
-    PDefender->m_OwnerID = PAttacker->PMaster != NULL ? PAttacker->PMaster->id : PAttacker->id;
+
+    if (PAttacker->PMaster != NULL)
+    {
+        PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+        PDefender->m_OwnerID.targid = PAttacker->PMaster->targid; 
+    }
+    else
+    {
+        PDefender->m_OwnerID.id = PAttacker->id;
+        PDefender->m_OwnerID.targid = PAttacker->targid; 
+    }
 
     uint8 TP = 0;
 
@@ -582,7 +592,17 @@ uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	damage = damage * (1000 + PDefender->getMod(MOD_FIRERES + PSpell->getElement())) / 1000;
 	
 	PDefender->addHP(-damage);
-	PDefender->m_OwnerID = PAttacker->PMaster != NULL ? PAttacker->PMaster->id : PAttacker->id;
+	
+    if (PAttacker->PMaster != NULL)
+    {
+        PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+        PDefender->m_OwnerID.targid = PAttacker->PMaster->targid; 
+    }
+    else
+    {
+        PDefender->m_OwnerID.id = PAttacker->id;
+        PDefender->m_OwnerID.targid = PAttacker->targid; 
+    }
 	
 	switch (PDefender->objtype)
 	{

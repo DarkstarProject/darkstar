@@ -1064,7 +1064,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	CLuaBaseEntity LuaMobEntity(PMob);
 	CLuaBaseEntity LuaKillerEntity(PKiller);
 	
-    if (((CMobEntity*)PMob)->m_OwnerID == PKiller->id)
+    if (((CMobEntity*)PMob)->m_OwnerID.id == PKiller->id)
     {
         lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeathEx");
 	    if( !lua_isnil(LuaHandle,-1) )

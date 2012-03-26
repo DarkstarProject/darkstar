@@ -109,18 +109,6 @@ struct Recast_t
     uint8      RecastID;
 };
 
-struct EntityID_t
-{
-    void clean()
-    {
-        id = 0;
-        targid = 0;
-    }
-
-    uint32 id;
-    uint16 targid;
-};
-
 class CBasicPacket;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
