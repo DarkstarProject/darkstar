@@ -301,8 +301,8 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
     session->blowfish.status = BLOWFISH_WAITING;
 
-    PChar->TradePending = 0;
-	PChar->InvitePending = 0;
+    PChar->TradePending.clean();
+    PChar->InvitePending.clean();
 	PChar->PWideScanTarget = NULL;
 
 	if (PChar->animation == ANIMATION_ATTACK)
@@ -520,8 +520,7 @@ int32 SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 			if (PNpc != NULL)
 			{
-				if (luautils::OnTrigger(PChar, PNpc) == -1 && 
-					PNpc->animation == ANIMATION_CLOSE_DOOR)
+				if (luautils::OnTrigger(PChar, PNpc) == -1 && PNpc->animation == ANIMATION_CLOSE_DOOR)
 				{
 					PNpc->animation = ANIMATION_OPEN_DOOR;
 					PChar->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE)); 
@@ -876,7 +875,7 @@ int32 SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* da
 
     if ((PTarget != NULL) && (PTarget->id == charid))
     {
-        if (PTarget->TradePending == PChar->id)
+        if (PTarget->TradePending.id == PChar->id)
         {
             ShowDebug(CL_CYAN"You have already sent a trade request to %s\n"CL_RESET, PTarget->GetName());
             return 0;
@@ -886,9 +885,11 @@ int32 SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* da
             ShowDebug(CL_CYAN"You cannot trade with %s at this time\n"CL_RESET, PTarget->GetName());
             return 0;
         }
-        PChar->TradePending = charid;
+        PChar->TradePending.id     = charid;
+        PChar->TradePending.targid = targid;
 
-        PTarget->TradePending = PChar->id;
+        PTarget->TradePending.id     = PChar->id;
+        PTarget->TradePending.targid = PChar->targid;
         PTarget->pushPacket(new CTradeRequestPacket(PChar));
     }
     return 0;
@@ -902,11 +903,9 @@ int32 SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    PrintPacket(data);
+    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->TradePending.targid, TYPE_PC);
 
-    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->TradePending & 0x0FFF, TYPE_PC);
-
-    if (PTarget != NULL && PChar->TradePending == PTarget->id)
+    if (PTarget != NULL && PChar->TradePending.id == PTarget->id)
     {
         uint16 action = RBUFB(data,(0x04));
 
@@ -915,7 +914,7 @@ int32 SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* da
             case 0x00: // request accepted
             {
                 // цели обмена у персонажей соответствующие
-                if (PChar->TradePending == PTarget->id && PTarget->TradePending == PChar->id)
+                if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
                 {
                     // контейнеры у персонажей свободны
                     if (PChar->UContainer->IsContainerEmpty() && PTarget->UContainer->IsContainerEmpty())
@@ -931,8 +930,8 @@ int32 SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* da
                             return 0;
                         }
                     }
-                    PChar->TradePending = 0;
-                    PTarget->TradePending = 0;
+                    PChar->TradePending.clean();
+                    PTarget->TradePending.clean();
 
                     ShowDebug(CL_CYAN"Trade: UContainer is not empty\n"CL_RESET);
                 }
@@ -941,12 +940,12 @@ int32 SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* da
             case 0x01: // trade cancelled
             {
                 // цели обмена у персонажей соответствующие
-                if (PChar->TradePending == PTarget->id && PTarget->TradePending == PChar->id)
+                if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
                 {
                     // контейнер у цели зарезервирован для обмена
                     if (PTarget->UContainer->GetType() == UCONTAINER_TRADE)
                     {
-                        PTarget->TradePending = 0;
+                        PTarget->TradePending.clean();
                         PTarget->UContainer->Clean();
 
                         PTarget->pushPacket(new CTradeActionPacket(PChar, action));
@@ -956,13 +955,13 @@ int32 SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* da
                 {                    
                     PChar->UContainer->Clean();
                 }
-                PChar->TradePending = 0;
+                PChar->TradePending.clean();
             }
             break;
             case 0x02: // trade accepted
             {
                 // цели обмена у персонажей соответствующие
-                if (PChar->TradePending == PTarget->id && PTarget->TradePending == PChar->id)
+                if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
                 {
                     PChar->UContainer->SetLock();
                     PTarget->pushPacket(new CTradeActionPacket(PChar, action));
@@ -972,11 +971,11 @@ int32 SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* da
                     {
                         // здесь все будет немного сложнее, пока с дублированием кода
 
-                        PChar->TradePending = 0;
+                        PChar->TradePending.clean();
                         PChar->UContainer->Clean();
                         PChar->pushPacket(new CTradeActionPacket(PTarget, 9));
 
-                        PTarget->TradePending = 0;
+                        PTarget->TradePending.clean();
                         PTarget->UContainer->Clean();
                         PTarget->pushPacket(new CTradeActionPacket(PChar, 9));
 
@@ -1003,9 +1002,9 @@ int32 SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, int8* da
     uint8  invSlotID   = RBUFB(data,(0x0A)); 
     uint8  tradeSlotID = RBUFB(data,(0x0B));
 
-    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->TradePending & 0x0FFF, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->TradePending.targid, TYPE_PC);
 
-    if (PTarget != NULL && PTarget->id == PChar->TradePending)
+    if (PTarget != NULL && PTarget->id == PChar->TradePending.id)
     {
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
@@ -1902,16 +1901,19 @@ int32 SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint32 CharID = RBUFL(data,0x04);
-	uint16 TargID = RBUFW(data,0x08);
+	uint32 charid = RBUFL(data,0x04);
+	uint16 targid = RBUFW(data,0x08);
 
 	// Персонаж не должен приглашать сам себя.
-	if (PChar->id == CharID)
+	if (PChar->id == charid)
 		return 0;
 
     if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
     {
-        CCharEntity* PInvitee = zoneutils::GetCharFromRegion(CharID, conquest::GetCurrentRegion(PChar->getZone()));
+        CCharEntity* PInvitee = zoneutils::GetCharFromRegion(
+			charid, 
+			targid, 
+			conquest::GetCurrentRegion(PChar->getZone()));
 
 	    if (PInvitee != NULL)
 	    {
@@ -1921,13 +1923,14 @@ int32 SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* da
 			    return 0;
 		    }
 		    if (PInvitee->isDead() ||
-			    PInvitee->InvitePending != 0)
+			    PInvitee->InvitePending.id != 0)
 		    {
 			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
 			    return 0;
 		    }
 
-		    PInvitee->InvitePending = PChar->id;
+            PInvitee->InvitePending.id = PChar->id;
+            PInvitee->InvitePending.targid = PChar->targid;
 		    PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
 
 		    if (PChar->PParty != NULL &&
@@ -2019,7 +2022,10 @@ int32 SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CCharEntity* PInviter = zoneutils::GetCharFromRegion(PChar->InvitePending, conquest::GetCurrentRegion(PChar->getZone()));
+    CCharEntity* PInviter = zoneutils::GetCharFromRegion(
+        PChar->InvitePending.id,
+        PChar->InvitePending.targid, 
+        conquest::GetCurrentRegion(PChar->getZone()));
 
 	if (PInviter != NULL) 
 	{
@@ -2041,7 +2047,7 @@ int32 SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* da
             }
 		}
 	}
-	PChar->InvitePending = 0;
+    PChar->InvitePending.clean();
 	return 0;
 }
 
@@ -2621,54 +2627,50 @@ int32 SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* da
 	uint16 targid = RBUFW(data,(0x08));
 
 	CBaseEntity* PEntity = PChar->loc.zone->GetEntity(targid, TYPE_MOB | TYPE_PC);
-	if (PEntity == NULL) 
-	{
+
+	if (PEntity == NULL || PEntity->id != id) 
 		return 0;
-	}
+
 	switch (PEntity->objtype)
 	{
 		case TYPE_MOB:
 		{
 			CMobEntity* PTarget = (CMobEntity*)PEntity;
 
-			if (PTarget != NULL && PTarget->id == id) 
+            if (PTarget->m_Type & MOBTYPE_NOTORIOUS) 
 			{
-				if (PTarget->m_Type & MOBTYPE_NOTORIOUS) 
-				{
-					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, 249));
-				}else{
-					uint32 baseExp = charutils::GetRealExp(PChar->GetMLevel(),PTarget->GetMLevel());
-
-					if(baseExp >= 400) {
-						PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 174));
-					} else if(baseExp >= 240) {
-						PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 174));
-					} else if(baseExp >= 120) {
-						PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 174));
-					} else if(baseExp == 100) {
-						PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 174));
-					} else if(baseExp >=  75) {
-						PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 174));
-					} else if(baseExp >=  15) {
-						PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 174));
-					} else if(baseExp ==   0) {
-						PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 174));
-					}
-				}
+			    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, 249));
 			}
+            else
+            {
+				uint32 baseExp = charutils::GetRealExp(PChar->GetMLevel(),PTarget->GetMLevel());
+
+				if(baseExp >= 400) {
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 174));
+				} else if(baseExp >= 240) {
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 174));
+				} else if(baseExp >= 120) {
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 174));
+				} else if(baseExp == 100) {
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 174));
+				} else if(baseExp >=  75) {
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 174));
+				} else if(baseExp >=  15) {
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 174));
+				} else if(baseExp ==   0) {
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 174));
+				}
+            }
 		}
 		break;
 		case TYPE_PC:
 		{
 			CCharEntity* PTarget = (CCharEntity*)PEntity;
 
-			if (PTarget != NULL && PTarget->id == id) 
-			{
-				PTarget->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 89));
+			PTarget->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 89));
 
-				PChar->pushPacket(new CBazaarMessagePacket(PTarget));
-				PChar->pushPacket(new CCheckPacket(PChar, PTarget));
-			}
+			PChar->pushPacket(new CBazaarMessagePacket(PTarget));
+            PChar->pushPacket(new CCheckPacket(PChar, PTarget));
 		}
 		break;
 	}
@@ -3160,21 +3162,21 @@ int32 SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->BazaarID & 0x0FFF, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->BazaarID.targid, TYPE_PC);
 
-	if (PTarget != NULL)
+    if (PTarget != NULL && PTarget->id == PChar->BazaarID.id)
 	{
         // надеюсь, что персонаж прописался в массиве однажны, но на всякий случай пробегаем по всему
         for (uint32 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
 		{
-            if (PTarget->BazaarCustomers[i] == PChar->id)
+            if (PTarget->BazaarCustomers[i].id == PChar->targid)
             {
                 PTarget->BazaarCustomers.erase(PTarget->BazaarCustomers.begin() + i--);
 			}
 		}
 	    PTarget->pushPacket(new CBazaarCheckPacket(PChar, BAZAAR_LEAVE));
 	}
-    PChar->BazaarID = 0;
+    PChar->BazaarID.clean();
 	return 0;
 }
 
@@ -3186,18 +3188,22 @@ int32 SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    DSP_DEBUG_BREAK_IF(PChar->BazaarID != 0);
+    DSP_DEBUG_BREAK_IF(PChar->BazaarID.id != 0);
+    DSP_DEBUG_BREAK_IF(PChar->BazaarID.targid != 0);
 
 	uint32 charid = RBUFL(data,(0x04));
 
-	CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)charid & 0x0FFF, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->m_TargID, TYPE_PC);
 
-    if (PTarget != NULL && (PTarget->nameflags.flags & FLAG_BAZAAR)) 
+    if (PTarget != NULL && PTarget->id == charid && (PTarget->nameflags.flags & FLAG_BAZAAR)) 
 	{
-        PChar->BazaarID = PTarget->id;
+        PChar->BazaarID.id = PTarget->id;
+        PChar->BazaarID.targid = PTarget->targid;
+
+        EntityID_t EntityID = { PChar->id, PChar->targid };
 
 		PTarget->pushPacket(new CBazaarCheckPacket(PChar, BAZAAR_ENTER));
-        PTarget->BazaarCustomers.push_back(PChar->id);
+        PTarget->BazaarCustomers.push_back(EntityID);
 
 		CItemContainer* PBazaar = PTarget->getStorage(LOC_INVENTORY);
 
@@ -3225,9 +3231,9 @@ int32 SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* da
 	uint8 Quantity = RBUFB(data,0x08);
 	uint8 SlotID   = RBUFB(data,0x04);
 
-	CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->BazaarID & 0x0FFF, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->BazaarID.targid, TYPE_PC);
 
-	if (PTarget == NULL)
+    if (PTarget == NULL || PTarget->id != PChar->BazaarID.id)
 		return 0;
 
     CItemContainer* PBazaar = PTarget->getStorage(LOC_INVENTORY);
@@ -3282,9 +3288,9 @@ int32 SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* da
 	    }
         for (uint32 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
-            CCharEntity* PCustomer = (CCharEntity*)PTarget->loc.zone->GetEntity((uint16)PTarget->BazaarCustomers[i] & 0x0FFF, TYPE_PC);
+            CCharEntity* PCustomer = (CCharEntity*)PTarget->loc.zone->GetEntity(PTarget->BazaarCustomers[i].targid, TYPE_PC);
 
-            if (PCustomer != NULL)
+            if (PCustomer != NULL && PCustomer->id == PTarget->BazaarCustomers[i].id)
             {
                 PCustomer->pushPacket(new CBazaarItemPacket(PBazaar->GetItem(SlotID), SlotID, PChar->loc.zone->GetTax()));
 
@@ -3371,9 +3377,9 @@ int32 SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, int8* da
 {
     for (uint32 i = 0; i < PChar->BazaarCustomers.size(); ++i)
     {
-        CCharEntity* PCustomer = (CCharEntity*)PChar->loc.zone->GetEntity((uint16)PChar->BazaarCustomers[i] & 0x0FFF, TYPE_PC);
+        CCharEntity* PCustomer = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->BazaarCustomers[i].targid, TYPE_PC);
 
-		if (PCustomer != NULL)
+        if (PCustomer != NULL && PCustomer->id == PChar->BazaarCustomers[i].id)
         {
 			PCustomer->pushPacket(new CBazaarClosePacket(PChar));
 		}

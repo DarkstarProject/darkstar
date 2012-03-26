@@ -90,9 +90,9 @@ CCharEntity::CCharEntity()
 	m_EquipFlag = 0;
 	nameflags.flags = 0;
 
-    BazaarID = 0;
-    TradePending  = 0;
-	InvitePending = 0;
+    BazaarID.clean();
+    TradePending.clean();
+    InvitePending.clean();
 
     PLinkshell = NULL;
 	PTreasurePool = NULL;

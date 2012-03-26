@@ -109,11 +109,23 @@ struct Recast_t
     uint8      RecastID;
 };
 
+struct EntityID_t
+{
+    void clean()
+    {
+        id = 0;
+        targid = 0;
+    }
+
+    uint32 id;
+    uint16 targid;
+};
+
 class CBasicPacket;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32,CBaseEntity*> SpawnIDList_t;
-typedef std::vector<uint32> BazaarList_t;
+typedef std::vector<EntityID_t> BazaarList_t;
 typedef std::list<Recast_t*> RecastList_t;
 
 class CCharEntity : public CBattleEntity 
@@ -178,9 +190,9 @@ public:
 
 	void			 SetName(int8* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
 
-    uint32           TradePending;                  // ID персонажа, предлагающего обмен
-	uint32			 InvitePending;					// ID персонажа, отправившего приглашение в группу
-    uint32           BazaarID;                      // Pointer to the bazaar we are browsing.
+    EntityID_t       TradePending;                  // ID персонажа, предлагающего обмен
+	EntityID_t       InvitePending;					// ID персонажа, отправившего приглашение в группу
+    EntityID_t       BazaarID;                      // Pointer to the bazaar we are browsing.
 	BazaarList_t	 BazaarCustomers;               // Array holding the IDs of the current customers
 
 	uint32			 m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)

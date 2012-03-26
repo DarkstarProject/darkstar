@@ -73,6 +73,7 @@ CNpcEntity* GetTrigger(uint16 TargID, uint8 ZoneID)
 	g_PTrigger->targid = TargID;
 	g_PTrigger->id = ((4096 + ZoneID) << 12) + TargID;
 
+    ShowWarning(CL_YELLOW"Server need NPC <%u>\n"CL_RESET, g_PTrigger->id);
 	return g_PTrigger;
 }
 
@@ -89,11 +90,11 @@ CBaseEntity* GetEntity(uint32 ID, uint8 filter)
 
 /************************************************************************
 *                                                                       *
-*  Получаем указатель на любую сущность по ID                           *
+*  Получаем указатель на CCharEntity по id и targid                     *
 *                                                                       *
 ************************************************************************/
 
-CCharEntity* GetCharFromRegion(uint32 ID, uint8 RegionID)
+CCharEntity* GetCharFromRegion(uint32 charid, uint16 targid, uint8 RegionID)
 {
     CCharEntity* PChar = NULL;
 
@@ -101,9 +102,13 @@ CCharEntity* GetCharFromRegion(uint32 ID, uint8 RegionID)
 	{
         if (g_PZoneList[ZoneID]->GetRegionID() == RegionID)
         {
-            PChar = (CCharEntity*)g_PZoneList[ZoneID]->GetEntity((uint16)ID & 0x0FFF, TYPE_PC); 
+            CBaseEntity* PEntity = g_PZoneList[ZoneID]->GetEntity(targid, TYPE_PC); 
             
-            if (PChar != NULL) break;
+            if (PEntity != NULL && PEntity->id == charid)
+            {
+                PChar = (CCharEntity*)PEntity;
+                break;
+            }
         }
     }
     return PChar;

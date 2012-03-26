@@ -501,11 +501,9 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 *																		*
 *  Добавляем персонажа в зону. Если ZoneServer не запущен то запускам.	*
 *  Обязательно проверяем количество персонажей в зоне.					*
+*  Максимальное число персонажей в одной зоне - 768                     *
 *																		*
 ************************************************************************/
-
-// здесь нужно генерировать свободный targid для персонажа 0x400-0x700
-// получается, что зона не может принять более 768 персонажей
 
 void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 {
@@ -513,6 +511,23 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
     DSP_DEBUG_BREAK_IF(PChar->loc.zone != NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
 
+    // ищем свободный targid для входящего в зону персонажа
+
+    PChar->targid = 0x400;
+
+    for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+	{
+        if (PChar->targid != it->first)
+        {
+            break;
+        }
+        PChar->targid++;
+    }
+    if (PChar->targid >= 0x700)
+    {
+        ShowError(CL_RED"CZone::InsertChar : targid is high (03hX)\n"CL_RESET, PChar->targid);
+        return;
+    }
     PChar->loc.zone = this;
     PChar->loc.zoning = false;
     PChar->loc.destination = 0;

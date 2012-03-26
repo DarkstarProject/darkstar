@@ -300,8 +300,6 @@ void LoadChar(CCharEntity* PChar)
 	{
 		PChar->SetName(Sql_GetData(SqlHandle,0));
 
-		PChar->targid = (uint16)PChar->id & 0x0FFF;
-
         PChar->loc.destination = (uint8)Sql_GetIntData(SqlHandle,1);
 		PChar->loc.prevzone    = (uint8)Sql_GetIntData(SqlHandle,2);
 		PChar->loc.p.rotation  = (uint8)Sql_GetIntData(SqlHandle,3);
@@ -685,6 +683,12 @@ void SendKeyItems(CCharEntity* PChar)
 	PChar->pushPacket(new CKeyItemsPacket(PChar,KEYS_TABLE_2));
 	PChar->pushPacket(new CKeyItemsPacket(PChar,KEYS_TABLE_3));
 }
+
+/************************************************************************
+*                                                                       *
+*  Отправляем персонажу весь его инвентарь                              *
+*                                                                       *
+************************************************************************/
 
 void SendInventory(CCharEntity* PChar) 
 {
