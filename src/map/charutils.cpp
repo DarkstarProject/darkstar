@@ -298,6 +298,7 @@ void LoadChar(CCharEntity* PChar)
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
+        PChar->targid = 0x400;
 		PChar->SetName(Sql_GetData(SqlHandle,0));
 
         PChar->loc.destination = (uint8)Sql_GetIntData(SqlHandle,1);
