@@ -27,6 +27,7 @@ function onTrade(player,npc,trade)
 	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 7) then
 		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_1",0);
+			player:tradeComplete();
 			player:addKeyItem(SCOWLING_STONE);
 			player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
 		end
