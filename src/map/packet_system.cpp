@@ -2786,7 +2786,7 @@ int32 SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* da
 
     if (PChar->PLinkshell != NULL && (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL)))
     {
-        switch (RBUFB(data,(0x05)) & 0xF0) // назначение первых бит пока неизвестно
+        switch (RBUFB(data,(0x04)) & 0xF0) // назначение первых бит пока неизвестно
         {
             case 0x20: // устанавливаем права на изменение сообщения
             {
