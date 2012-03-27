@@ -20,7 +20,7 @@ require("scripts/zones/Port_Bastok/TextIDs");
 function onTrade(player,npc,trade)
 	
     if(trade:getGil() == 0 and trade:getItemCount() == 1) then
-        if(trade:hasItemQty(ROLANBERRY,1); and player:getVar("CidsSecret_Event") == 1 and player:hasKeyItem(UNFINISHED_LETTER) == false) then
+        if(trade:hasItemQty(ROLANBERRY,1) and player:getVar("CidsSecret_Event") == 1 and player:hasKeyItem(UNFINISHED_LETTER) == false) then
             player:startEvent(0x0085);
         elseif(trade:hasItemQty(KING_TRUFFLE,1) and player:getQuestStatus(BASTOK,THE_USUAL) == 1) then
             player:startEvent(0x0087);

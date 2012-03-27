@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
 -- NPC:  Maat
--- Starts and Finishes Quest: In Defiant Challenge, Atop the Highest Mountains, Whence Blows the Wind, Riding on the Clouds
+-- Starts and Finishes Quest: Limit Break Quest 1-5
 -- Involved in Quests: Beat Around the Bushin
 -- @zone 243
 -- @pos 8 3 118
@@ -12,7 +12,6 @@ package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/RuLude_Gardens/TextIDs");
 
@@ -55,11 +54,11 @@ function onTrigger(player,npc)
 	
 	if(player:getVar("BeatAroundTheBushin") == 5) then
 		player:startEvent(0x0075);
-	elseif(inDefiantChallenge == QUEST_AVAILABLE and LvL == 50 and player:levelCap() == 50) then
+	elseif(inDefiantChallenge == QUEST_AVAILABLE and LvL == 50 and player:levelCap() == 50 and MAX_LEVEL >= 55) then
 		player:startEvent(0x004f); -- Start Quest "In Defiant Challenge"
 	elseif(inDefiantChallenge == QUEST_ACCEPTED) then
 		player:startEvent(0x0050); -- During Quest "In Defiant Challenge"
-	elseif(atopTheHighestMountains == QUEST_AVAILABLE and LvL >= 51 and player:levelCap() == 55) then
+	elseif(atopTheHighestMountains == QUEST_AVAILABLE and LvL >= 51 and player:levelCap() == 55 and MAX_LEVEL >= 60) then
 		player:startEvent(0x0052); -- Start Quest "Atop the Highest Mountains"
 	elseif(atopTheHighestMountains == QUEST_ACCEPTED) then
 		if(player:hasKeyItem(ROUND_FRIGICITE) and player:hasKeyItem(SQUARE_FRIGICITE) and player:hasKeyItem(TRIANGULAR_FRIGICITE)) then 
@@ -67,7 +66,7 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x0053); -- During Quest "Atop the Highest Mountains"
 		end
-	elseif(whenceBlowsTheWind == QUEST_AVAILABLE and LvL >= 56 and player:levelCap() == 60) then
+	elseif(whenceBlowsTheWind == QUEST_AVAILABLE and LvL >= 56 and player:levelCap() == 60 and MAX_LEVEL >= 65) then
 		player:startEvent(0x0055); -- Start Quest "Whence Blows the Wind"
 	elseif(whenceBlowsTheWind == QUEST_ACCEPTED) then
 		if(player:hasKeyItem(ORCISH_CREST) and player:hasKeyItem(QUADAV_CREST) and player:hasKeyItem(YAGUDO_CREST)) then 
@@ -75,13 +74,13 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x0056); -- During Quest "Whence Blows the Wind"
 		end
-	elseif(ridingOnTheClouds == QUEST_AVAILABLE and LvL >= 61 and player:levelCap() == 65) then
+	elseif(ridingOnTheClouds == QUEST_AVAILABLE and LvL >= 61 and player:levelCap() == 65 and MAX_LEVEL >= 70) then
 		rand1 = math.random(0,7); rand2 = math.random(0,7);
 		rand3 = math.random(0,7); rand4 = math.random(0,7);
 		player:setVar("ridingOnTheClouds_1",rand1 + 1); player:setVar("ridingOnTheClouds_2",rand2 + 1);
 		player:setVar("ridingOnTheClouds_3",rand3 + 1); player:setVar("ridingOnTheClouds_4",rand4 + 1);
 		
-		player:startEvent(0x0058,rand1,rand2,rand3,rand4,180); -- Start Quest "Riding on the Clouds"
+		player:startEvent(0x0058,rand1,rand2,rand4,rand3,180); -- Start Quest "Riding on the Clouds"
 	elseif(ridingOnTheClouds == QUEST_ACCEPTED) then
 		if(player:hasKeyItem(SMILING_STONE) and player:hasKeyItem(SCOWLING_STONE) and player:hasKeyItem(SOMBER_STONE) and player:hasKeyItem(SPIRITED_STONE)) then
 			player:startEvent(0x005a); -- Finish Quest "Riding on the Clouds"
@@ -91,9 +90,9 @@ function onTrigger(player,npc)
 			if(rand1 == 0) then rand1 = 8; else rand1 = rand1 - 1; end if(rand2 == 0) then rand2 = 8; else rand2 = rand2 - 1; end
 			if(rand3 == 0) then rand3 = 8; else rand3 = rand3 - 1; end if(rand4 == 0) then rand4 = 8; else rand4 = rand4 - 1; end
 			
-			player:startEvent(0x0059,rand1,rand2,rand3,rand4,180); -- During Quest "Riding on the Clouds"
+			player:startEvent(0x0059,rand1,rand2,rand4,rand3,180); -- During Quest "Riding on the Clouds"
 		end
-	elseif(shatteringStars == QUEST_AVAILABLE and LvL >= 66 and mJob <= 15 and player:levelCap() == 70) then
+	elseif(shatteringStars == QUEST_AVAILABLE and LvL >= 66 and mJob <= 15 and player:levelCap() == 70 and MAX_LEVEL >= 75) then
 		player:startEvent(0x005c,player:getMainJob()); -- Start Quest "Shattering Stars"
 	elseif(shatteringStars == QUEST_ACCEPTED and LvL >= 66 and mJob <= 15 and player:getVar("maatDefeated") == 0) then
 		player:startEvent(0x005b,player:getMainJob()); -- During Quest "Shattering Stars"
