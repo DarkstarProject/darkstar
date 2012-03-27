@@ -7,12 +7,11 @@
 -- Includes
 require("/scripts/globals/settings");
 require("/scripts/globals/fieldsofvalor");
-package.loaded["/scripts/globals/fieldsofvalor"]=nil;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 function onTrigger(player,npc)
-	startFov(0x003e,player);
+	startFov(FOV_EVENT_RUAUN_GARDENS,player);
  end;
  
 function onTrade(player,npc,trade)
@@ -22,12 +21,12 @@ function onTrade(player,npc,trade)
 -- onEventSelection
 --------------------------------------
 function onEventUpdate(player,csid,menuchoice)
-	updateFov(player,csid,menuchoice,1,2,3,4,56); --the 5 regime IDs corresponding to the 5 pages in this area
+	updateFov(player,csid,menuchoice,142,143,144,145,146); --the 5 regime IDs corresponding to the 5 pages in this area
 end;
  
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
 function onEventFinish(player,csid,option)
-	finishFov(player,csid,option,1,2,3,4,56);
+	finishFov(player,csid,option,142,143,144,145,146,FOV_MSG_RUAUN_GARDENS); --5 reg ids and the msg offset
 end;

@@ -11,7 +11,6 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
 	MND = caster:getStat(MOD_MND);
 	VIT = target:getStat(MOD_VIT);
 	HealingMagic = caster:getSkillLevel(0x0021);
