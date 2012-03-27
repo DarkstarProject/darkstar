@@ -1,9 +1,15 @@
-require("/scripts/globals/settings");
+-----------------------------------
+--  Area: Batallia Downs
+--  MOB:  Stalking Sapling
+-----------------------------------
+
 require("/scripts/globals/fieldsofvalor");
-function OnMobSpawn(mob)
-end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
 function onMobDeath(mob,killer)
-	checkRegime(killer,mob,72,1); --killer, regime ID, index in the list of mobs to kill that this mob corresponds to (1-4)
+	checkRegime(killer,mob,72,1);
 	checkRegime(killer,mob,73,1);
 end;

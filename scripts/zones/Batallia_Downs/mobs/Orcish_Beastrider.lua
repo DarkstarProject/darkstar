@@ -1,8 +1,14 @@
-require("/scripts/globals/settings");
+-----------------------------------
+--  Area: Batallia Downs
+--  MOB:  Orcish Beastrider
+-----------------------------------
+
 require("/scripts/globals/fieldsofvalor");
-function OnMobSpawn(mob)
-end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
 function onMobDeath(mob,killer)
-	checkRegime(killer,mob,74,3); --killer, mob, regime ID, index in the list of mobs to kill that this mob corresponds to (1-4)
+	checkRegime(killer,mob,74,3);
 end;

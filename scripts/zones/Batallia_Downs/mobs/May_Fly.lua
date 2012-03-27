@@ -1,9 +1,15 @@
-require("/scripts/globals/settings");
+-----------------------------------
+--  Area: Batallia Downs
+--  MOB:  May Fly
+-----------------------------------
+
 require("/scripts/globals/fieldsofvalor");
-function OnMobSpawn(mob)
-end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
 function onMobDeath(mob,killer)
-	checkRegime(killer,mob,15,1); --killer, regime ID, index in the list of mobs to kill that this mob corresponds to (1-4)
+	checkRegime(killer,mob,15,1);
 	checkRegime(killer,mob,72,2);
 end;
