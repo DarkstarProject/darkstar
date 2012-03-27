@@ -40,7 +40,6 @@ CMobEntity::CMobEntity()
 	m_CallForHelp  = 0;
     m_DespawnTimer = 0;
     m_DropItemTime = 0;
-	m_DeaggroTimer = 30000; //30sec deaggro
 	m_Family = 0;
 	m_Type      = MOBTYPE_NORMAL;
 	m_Behaviour = BEHAVIOUR_NONE;
@@ -62,12 +61,9 @@ uint32 CMobEntity::GetDespawnTimer()
 	return m_DespawnTimer;
 }
 
-bool CMobEntity::canDeaggro()
+bool CMobEntity::CanDeaggro()
 {
-	if(m_Type==MOBTYPE_BATTLEFIELD || m_Type==MOBTYPE_NOTORIOUS){
-		return false;
-	}
-	return true;
+	return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
 }
 
 void CMobEntity::SetDespawnTimer(uint32 duration)
