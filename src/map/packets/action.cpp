@@ -293,6 +293,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 
 		bitOffset = packBitsBE(data, Action.reaction,   bitOffset,  5);				// физическая реакция на урон
 		bitOffset = packBitsBE(data, Action.animation,  bitOffset, 10);				// анимация специальных эффектов
+        bitOffset += 1;
 		bitOffset = packBitsBE(data, Action.speceffect, bitOffset, 10);				// specialEffect					
 		bitOffset = packBitsBE(data, Action.param,	    bitOffset, 16);				// параметр сообщения (урон)
 		bitOffset += 1;
@@ -309,14 +310,9 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			bitOffset += 1;
 			bitOffset = packBitsBE(data, Action.submessageID,	bitOffset, 10);		// сообщение
 		}
-		
 		ActionNum++;
 	}
-	
-	if (ActionNum > 1)
-	{
-		packBitsBE(data, ActionNum, 150, 4);
-	}
+    packBitsBE(data, ActionNum, 150, 4);
 
 	uint8 WorkSize = ((bitOffset >> 3) + (bitOffset%8 != 0));				
 

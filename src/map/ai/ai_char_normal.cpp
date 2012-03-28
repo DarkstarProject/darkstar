@@ -316,9 +316,9 @@ void CAICharNormal::ActionDisengage()
 }
 
 /************************************************************************
-*																		*
-*  Смерть персонажа еще не реализована									*
-*																		*
+*                                                                       *
+*  Смерть персонажа                                                     *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionFall() 
@@ -1200,7 +1200,6 @@ void CAICharNormal::ActionJobAbilityStart()
             m_ActionTargetID = 0;
 
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 87));
-            ShowWarning(CL_YELLOW"%s want to use <%s> but recast is %u\n"CL_RESET, m_PChar->GetName(), m_PJobAbility->getName(), (*it)->TimeStamp + (*it)->RecastTime - m_Tick);
 
             m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 			m_PJobAbility = NULL;
@@ -1238,6 +1237,8 @@ void CAICharNormal::ActionJobAbilityStart()
         ActionJobAbilityFinish();
         return;
 	}
+    m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,88));
+
     m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
     m_PJobAbility = NULL;
     m_PBattleSubTarget = NULL;

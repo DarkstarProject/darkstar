@@ -168,8 +168,8 @@ INSERT INTO `abilities` VALUES ('133', 'warriors_charge', '1', '75', '1', '900',
 INSERT INTO `abilities` VALUES ('134', 'tomahawk', '1', '75', '4', '180', '7', '244', '20', '0', '1', '600');
 INSERT INTO `abilities` VALUES ('135', 'mantra', '2', '75', '1', '600', '19', '155', '20', '1', '1', '60');
 INSERT INTO `abilities` VALUES ('136', 'formless_strikes', '2', '75', '1', '600', '20', '156', '20', '0', '1', '300');
-INSERT INTO `abilities` VALUES ('137', 'martyr', '3', '75', '2', '1200', '27', '157', '20', '0', '1', '300');
-INSERT INTO `abilities` VALUES ('138', 'devotion', '3', '75', '2', '1200', '28', '158', '20', '0', '1', '300');
+INSERT INTO `abilities` VALUES ('137', 'martyr', '3', '75', '3', '1200', '27', '157', '20', '0', '1', '300');
+INSERT INTO `abilities` VALUES ('138', 'devotion', '3', '75', '3', '1200', '28', '158', '20', '0', '1', '300');
 INSERT INTO `abilities` VALUES ('139', 'assassins_charge', '6', '75', '1', '900', '67', '160', '20', '0', '1', '300');
 INSERT INTO `abilities` VALUES ('140', 'feint', '6', '75', '1', '600', '68', '159', '20', '0', '1', '300');
 INSERT INTO `abilities` VALUES ('141', 'fealty', '7', '75', '1', '1200', '78', '148', '20', '0', '1', '300');
