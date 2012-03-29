@@ -1479,7 +1479,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
         uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), dsp_min(PChar->GetMLevel(),lvl));
 
 		int16  Diff = MaxSkill - CurSkill/10;
-        double SkillUpChange = Diff/5 + 2.5 * (2.0 - log(1 + CurSkill /100));
+        double SkillUpChance = Diff/5 + 2.5 * (2.0 - log(1.0 + CurSkill /100));
 
 		double random = rand() / ((double)RAND_MAX);
 
