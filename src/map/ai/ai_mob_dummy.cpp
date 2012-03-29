@@ -547,17 +547,17 @@ void CAIMobDummy::ActionAttack()
             m_LastActionTime = m_Tick;
 		}
 	}
-	else if (m_PMob->CanDeaggro() && (m_Tick - m_LastActionTime) > 30000)
-    {
+	//else if (m_PMob->CanDeaggro() && (m_Tick - m_LastActionTime) > 30000)
+    //{
         //player has been too far away for some time, deaggro if the mob type dictates it
 
-		if (m_PMob->m_OwnerID.id == m_PBattleTarget->id)
-        {
-            m_PMob->m_OwnerID.clean();
-        }
-		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
-		ActionAttack();
-	}
+	//	if (m_PMob->m_OwnerID.id == m_PBattleTarget->id)
+    //    {
+    //        m_PMob->m_OwnerID.clean();
+    //    }
+	//	m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
+	//	ActionAttack();
+	//}
 	else
     {
 		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
