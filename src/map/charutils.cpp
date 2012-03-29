@@ -1479,15 +1479,15 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
         uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), dsp_min(PChar->GetMLevel(),lvl));
 
 		int16  Diff = MaxSkill - CurSkill/10;
-		double SkillUpChance = (Diff * (2.6 - (log(1.2 + CurSkill / 100))))/10; // переписать формулу
+        double SkillUpChange = Diff/5 + 2.5 * (2.0 - log(1 + CurSkill /100));
 
 		double random = rand() / ((double)RAND_MAX);
 
-		if(random < SkillUpChance) 
+		if(Diff >= 0 && random < SkillUpChance) 
 		{
 			double chance = 0;
 			uint8  SkillAmount = 1;
-			uint8  tier = dsp_min(1 + (Diff / 5), 5);
+			uint8  tier = dsp_min(1 + (Diff/5), 5);
 		
 			for(uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
 			{

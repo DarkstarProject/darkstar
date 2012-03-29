@@ -397,7 +397,8 @@ int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_sessio
 int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t* map_session_data)
 {
 	size_t size = *buffsize;
-	if( checksum((uint8*)(buff+FFXI_HEADER_SIZE),size-(FFXI_HEADER_SIZE+16),buff+*buffsize-16) == 0)
+
+	if( checksum((uint8*)(buff+FFXI_HEADER_SIZE),size-(FFXI_HEADER_SIZE+16),buff+size-16) == 0)
 	{
 		if (map_session_data->PChar == NULL) 
 		{
