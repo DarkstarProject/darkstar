@@ -560,7 +560,6 @@ void CAIMobDummy::ActionAttack()
 	}
 	else
     {
-		ShowInfo("timer %i",(m_Tick - m_LastActionTime));
 		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
 	}
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
