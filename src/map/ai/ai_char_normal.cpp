@@ -1321,11 +1321,13 @@ void CAICharNormal::ActionJobAbilityFinish()
 
         if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
         {
-            DSP_DEBUG_BREAK_IF(m_PBattleSubTarget->objtype != TYPE_MOB);
-
-            ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
-            ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
-            ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
+            // во время pvp целью могут быт персонажи, монстры и их питомцы
+            if (m_PBattleSubTarget->objtype == TYPE_MOB)
+            {
+                ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
+                ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
+                ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
+            }
         }
 	}
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
