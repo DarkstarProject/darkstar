@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -22,23 +22,47 @@
 */
 
 #include "../../common/socket.h"
+#include "../../common/utils.h"
 
 #include "../itemutils.h"
+#include "../vana_time.h"
 
 #include "trade_update.h"
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
-CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 slot)
+CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
 {
 	this->type = 0x23;
 	this->size = 0x14;
 
     WBUFL(data,(0x04)-4) = PItem->getReserve();
 	WBUFW(data,(0x0A)-4) = PItem->getID();
-	WBUFB(data,(0x0D)-4) = slot;
+	WBUFB(data,(0x0D)-4) = SlotID;
+
+    if (PItem->getSubType() & ITEM_CHARGED)
+    {
+		WBUFB(data,(0x0E)-4) = 0x01;
+
+        if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
+        {
+            WBUFB(data,(0x0F)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 
+        }
+	}
+    if (PItem->getType() & ITEM_LINKSHELL) 
+	{	
+        WBUFL(data,(0x0E)-4) = ((CItemLinkshell*)PItem)->GetLSID();
+        WBUFW(data,(0x14)-4) = ((CItemLinkshell*)PItem)->GetLSRawColor();
+        WBUFB(data,(0x16)-4) = ((CItemLinkshell*)PItem)->GetLSType();
+
+        memcpy(data+(0x17)-4, PItem->getSignature(), dsp_min(strlen(PItem->getSignature()),15));
+    }
+    else
+    {
+        memcpy(data+(0x15)-4, PItem->getSignature(), dsp_min(strlen(PItem->getSignature()),12));
+    }
 }

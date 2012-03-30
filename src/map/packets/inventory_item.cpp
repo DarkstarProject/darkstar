@@ -32,72 +32,72 @@
 #include "../vana_time.h"
 
 
-CInventoryItemPacket::CInventoryItemPacket(CItem * item, uint8 LocationID, uint8 slotID) 
+CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8 SlotID) 
 {
 	this->type = 0x20;
 	this->size = 0x16;
 
 	WBUFB(data,(0x0E)-4) = LocationID;
-	WBUFB(data,(0x0F)-4) = slotID;	
+	WBUFB(data,(0x0F)-4) = SlotID;	
 
-	if (item != NULL)
+	if (PItem != NULL)
 	{
-		WBUFL(data,(0x04)-4) = item->getQuantity();
-		WBUFL(data,(0x08)-4) = item->getCharPrice();
-		WBUFW(data,(0x0C)-4) = item->getID();
+		WBUFL(data,(0x04)-4) = PItem->getQuantity();
+		WBUFL(data,(0x08)-4) = PItem->getCharPrice();
+		WBUFW(data,(0x0C)-4) = PItem->getID();
 
-		if (item->getCharPrice() != 0)
+		if (PItem->getCharPrice() != 0)
 		{
 			WBUFB(data,(0x10)-4) = 0x19;
 		}
-		if (item->getSubType() & ITEM_CHARGED)
+		if (PItem->getSubType() & ITEM_CHARGED)
 		{
-			uint32 currentTime = CVanaTime::getInstance()->getSysTime() - 1009810800;
-			uint32 nextUseTime = ((CItemUsable*)item)->getLastUseTime() + ((CItemUsable*)item)->getReuseDelay();
-
-            if (item->getSubType() & ITEM_LOCKED)
+            if (PItem->getSubType() & ITEM_LOCKED)
             {
                 WBUFB(data,(0x10)-4) = 0x05;
             }
-			WBUFB(data,(0x11)-4) = 0x01;                                                    // флаг ITEM_CHARGED
+			WBUFB(data,(0x11)-4) = 0x01;    // флаг ITEM_CHARGED
 
-            if (((CItemUsable*)item)->getCurrentCharges() > 0)
+            if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
             {
-			    WBUFB(data,(0x12)-4) = ((CItemUsable*)item)->getCurrentCharges(); 
+                uint32 currentTime = CVanaTime::getInstance()->getSysTime() - 1009810800;
+			    uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
+
+			    WBUFB(data,(0x12)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 
 			    WBUFB(data,(0x14)-4) = (nextUseTime > currentTime ? 0x90 : 0xD0); 
 
-                WBUFL(data,(0x15)-4) = nextUseTime;                                         // таймер следующего использования
-			    WBUFL(data,(0x19)-4) = ((CItemUsable*)item)->getUseDelay() + currentTime;   // таймер задержки использования
+                WBUFL(data,(0x15)-4) = nextUseTime;                                          // таймер следующего использования
+			    WBUFL(data,(0x19)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;   // таймер задержки использования
             }
 		}
-        memcpy(data+(0x1D)-4, item->getSignature(), cap_value(strlen(item->getSignature()), 0, 12));
+        memcpy(data+(0x1D)-4, PItem->getSignature(), cap_value(strlen(PItem->getSignature()), 0, 12));
 
-		switch (item->getType()) 
+		switch (PItem->getType()) 
 		{
 			case ITEM_FURNISHING:
 			{
-				if (item->getSubType() & ITEM_LOCKED)
+				if (PItem->getSubType() & ITEM_LOCKED)
 				{
 					WBUFB(data,(0x12)-4) = 0x40;
 
-					WBUFB(data,(0x17)-4) = ((CItemFurnishing*)item)->getCol();
-					WBUFB(data,(0x18)-4) = ((CItemFurnishing*)item)->getLevel();
-					WBUFB(data,(0x19)-4) = ((CItemFurnishing*)item)->getRow();
-					WBUFB(data,(0x1A)-4) = ((CItemFurnishing*)item)->getRotation();
+					WBUFB(data,(0x17)-4) = ((CItemFurnishing*)PItem)->getCol();
+					WBUFB(data,(0x18)-4) = ((CItemFurnishing*)PItem)->getLevel();
+					WBUFB(data,(0x19)-4) = ((CItemFurnishing*)PItem)->getRow();
+					WBUFB(data,(0x1A)-4) = ((CItemFurnishing*)PItem)->getRotation();
 				}
 			}
 			break;
 			case ITEM_LINKSHELL:
             {
-                if (item->getSubType() & ITEM_LOCKED)
+                if (PItem->getSubType() & ITEM_LOCKED)
                 {
                     WBUFB(data,(0x10)-4) = 0x13;
                 }
-                WBUFL(data,(0x11)-4) = ((CItemLinkshell*)item)->GetLSID();
-                WBUFW(data,(0x17)-4) = ((CItemLinkshell*)item)->GetLSRawColor();
-                WBUFB(data,(0x19)-4) = ((CItemLinkshell*)item)->GetLSType();
+                WBUFL(data,(0x11)-4) = ((CItemLinkshell*)PItem)->GetLSID();
+                WBUFW(data,(0x17)-4) = ((CItemLinkshell*)PItem)->GetLSRawColor();
+                WBUFB(data,(0x19)-4) = ((CItemLinkshell*)PItem)->GetLSType();
 
-                memcpy(data+(0x1A)-4, item->getSignature(), cap_value(strlen(item->getSignature()), 0, 15));
+                memcpy(data+(0x1A)-4, PItem->getSignature(), cap_value(strlen(PItem->getSignature()), 0, 15));
             }
 			break;
 		}

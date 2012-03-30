@@ -969,17 +969,56 @@ int32 SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* da
                     // совершаем обмен предметами в контейнерах персонажей
                     if (PTarget->UContainer->IsLocked())
                     {
-                        // здесь все будет немного сложнее, пока с дублированием кода
+                        if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() < PTarget->UContainer->GetItemsCount() ||
+                            PTarget->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() < PChar->UContainer->GetItemsCount())
+                        {
+                            // обмен не состоялся, недостаточно места в контейнере одного или обоих персонажей
+                            PChar->pushPacket(new CTradeActionPacket(PTarget, 1));
+                            PTarget->pushPacket(new CTradeActionPacket(PChar, 1));
+                        }
+                        else
+                        {
+                            for (uint8 slotid = 0; slotid <= 8; ++slotid)
+                            {
+                                CItem* PItem = PTarget->UContainer->GetItem(slotid);
 
+                                if (PItem != NULL)
+                                {
+                                    if (PItem->getStackSize() == 1)
+                                    {
+                                        charutils::AddItem(PChar, LOC_INVENTORY, itemutils::GetItem(PItem));
+                                    } else {
+                                        charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
+                                    }
+                                    charutils::UpdateItem(PTarget, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
+                                }
+                            }
+                            PTarget->pushPacket(new CTradeActionPacket(PChar, 9));
+
+                            // абсолютная копия метода. пока не знаю, где реализовать функцию
+
+                            for (uint8 slotid = 0; slotid <= 8; ++slotid)
+                            {
+                                CItem* PItem = PChar->UContainer->GetItem(slotid);
+
+                                if (PItem != NULL)
+                                {
+                                    if (PItem->getStackSize() == 1)
+                                    {
+                                        charutils::AddItem(PTarget, LOC_INVENTORY, itemutils::GetItem(PItem));
+                                    } else {
+                                        charutils::AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
+                                    }
+                                    charutils::UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
+                                }
+                            }
+                            PChar->pushPacket(new CTradeActionPacket(PTarget, 9));
+                        }
                         PChar->TradePending.clean();
                         PChar->UContainer->Clean();
-                        PChar->pushPacket(new CTradeActionPacket(PTarget, 9));
 
                         PTarget->TradePending.clean();
                         PTarget->UContainer->Clean();
-                        PTarget->pushPacket(new CTradeActionPacket(PChar, 9));
-
-                        ShowDebug(CL_CYAN"Trade completed\n"CL_RESET);
                     }
                 }
             }
@@ -1008,14 +1047,12 @@ int32 SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, int8* da
     {
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-        if (PItem != NULL && PItem->getID() == itemID)
+        // обмен редкими предметами временно недоступен
+        if (PItem != NULL && PItem->getID() == itemID && !(PItem->getFlag() & ITEM_FLAG_RARE))
         {
             // если количество предметов равно нулю, то удаляем предмет из контейнера
-            if (quantity == 0)
-	        {
-                ShowDebug(CL_CYAN"Remove item from trade window\n"CL_RESET);
-	        }
             PItem->setReserve(quantity);
+            PChar->UContainer->SetItem(tradeSlotID, quantity > 0 ? PItem : NULL);
 
             PChar->pushPacket(new CTradeItemPacket(PItem, tradeSlotID));
             PTarget->pushPacket(new CTradeUpdatePacket(PItem, tradeSlotID));
