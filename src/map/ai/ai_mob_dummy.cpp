@@ -469,7 +469,9 @@ void CAIMobDummy::ActionAttack()
         }
     }
 
-	if (distance(m_PMob->loc.p, m_PBattleTarget->loc.p) <= m_PMob->m_ModelSize)
+    float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+
+	if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
 		if ((m_Tick - m_LastActionTime) > m_PMob->m_Weapons[SLOT_MAIN]->getDelay())
 		{
@@ -547,7 +549,7 @@ void CAIMobDummy::ActionAttack()
             m_LastActionTime = m_Tick;
 		}
 	}
-	else if (m_PMob->CanDeaggro() && (m_Tick - m_LastActionTime) > 20000 && distance(m_PMob->loc.p, m_PBattleTarget->loc.p) > 25)
+	else if (m_PMob->CanDeaggro() && CurrentDistance > 25 && (m_Tick - m_LastActionTime) > 20000)
     {
         //player has been too far away for some time, deaggro if the mob type dictates it
 
