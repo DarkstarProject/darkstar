@@ -18,11 +18,11 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
 	dmg = V;
 	if(dint<=0) then --If dINT penalises, it's always M=1
 		dmg = dmg + dint;
-	elseif(dint > 0 and dint <= SOFT_CAP) --The standard calc, most spells hit this
+	elseif(dint > 0 and dint <= SOFT_CAP) then --The standard calc, most spells hit this
 		dmg = dmg + (dint*M);
-	elseif(dint > 0 and dint > SOFT_CAP and dint < HARD_CAP) --After SOFT_CAP, INT is only half effective
+	elseif(dint > 0 and dint > SOFT_CAP and dint < HARD_CAP) then --After SOFT_CAP, INT is only half effective
 		dmg = dmg + SOFT_CAP*M + ((dint-SOFT_CAP)*M)/2;
-	elseif(dint > 0 and dint > SOFT_CAP and dint >= HARD_CAP) --After HARD_CAP, INT has no effect.
+	elseif(dint > 0 and dint > SOFT_CAP and dint >= HARD_CAP) then --After HARD_CAP, INT has no effect.
 		dmg = dmg + HARD_CAP*M;
 	end
 	
