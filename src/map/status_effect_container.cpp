@@ -35,7 +35,6 @@
 
 #include "battleentity.h" 
 #include "charentity.h"
-#include "mobentity.h"
 #include "itemutils.h"
 #include "map.h"
 #include "status_effect_container.h"
@@ -189,12 +188,11 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
         PChar->pushPacket(new CCharHealthPacket(PChar));
         PChar->pushPacket(new CCharSyncPacket(PChar));
     }
-	else if(m_POwner->objtype == TYPE_MOB)
+	else
 	{
-		CMobEntity* PMob = (CMobEntity*)m_POwner;
 		if (PStatusEffect->GetIcon() != 0)
 		{
-			PMob->loc.zone->PushPacket(PMob,CHAR_INRANGE,new CMessageBasicPacket(PMob, PMob, PStatusEffect->GetIcon(), 0, 206));
+			m_POwner->loc.zone->PushPacket(m_POwner, CHAR_INRANGE, new CMessageBasicPacket(m_POwner, m_POwner, PStatusEffect->GetIcon(), 0, 206));
 		}
 	}
     delete PStatusEffect;

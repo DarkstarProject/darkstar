@@ -467,15 +467,6 @@ void CAIMobDummy::ActionAttack()
         }
     }
 
-	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) ||
-		m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) ||
-		m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) ||
-		m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR)){
-			//if mob is roaming then you cast Sleep, it must change to claimed so update packet required.
-			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
-			return;
-	}
-
     m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
@@ -569,7 +560,7 @@ void CAIMobDummy::ActionAttack()
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		ActionAttack();
 	}
-	else if(!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
+	else
     {
 		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
 	}

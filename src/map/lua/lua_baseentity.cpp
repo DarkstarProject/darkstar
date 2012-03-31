@@ -150,11 +150,7 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
 
 	int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(lua_tointeger(L,-1));
 
-	if(m_PBaseEntity->objtype == TYPE_MOB){
-		CMobEntity* m_PMob = (CMobEntity*)m_PBaseEntity;
-		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
-	}
-	else if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
+	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
         charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
@@ -172,11 +168,8 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(-lua_tointeger(L,-1));
-	if(m_PBaseEntity->objtype == TYPE_MOB){
-		CMobEntity* m_PMob = (CMobEntity*)m_PBaseEntity;
-		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
-	}
-	else if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
+	
+    if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
         charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}

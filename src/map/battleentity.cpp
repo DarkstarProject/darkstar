@@ -158,13 +158,6 @@ int32 CBattleEntity::addHP(int32 hp)
 	hp = health.hp - cap;
 	health.hp = cap;
 
-	if(hp>0){ //taking damage or healing. Either way, remove sleep.
-		if(this->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP) ||
-			this->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP_II)){
-				//TODO: Display "xxx effect wears off"
-		}
-	}
-
 	// если количество жизней достигает нуля, то сущность умирает
 
 	if (health.hp == 0)
