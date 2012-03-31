@@ -48,7 +48,7 @@ public:
 	bool DelStatusEffect(EFFECT StatusID);
 	bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
     void DelStatusEffectsByFlag(uint16 flag);                   // удаляем все эффекты с указанным типом
-	
+
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие стату-эффекта
 	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие стату-эффекта с уникальным subid
 	bool EraseStatusEffect();			                        // удаляем первый отрицательный эффект
@@ -61,6 +61,8 @@ public:
 
 	void LoadStatusEffects();									// загружаем эффекты персонажа
 	void SaveStatusEffects();									// сохраняем эффекты персонажа
+
+    uint8 GetEffectsCount(uint16 SubID);                        // получаем количество еффектов с указанным subid
 
 	 CStatusEffectContainer(CBattleEntity* PEntity);
 	~CStatusEffectContainer();

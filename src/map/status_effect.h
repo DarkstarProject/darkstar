@@ -33,13 +33,15 @@
 
 enum EFFECTFLAG
 {
-    EFFECTFLAG_NONE				= 0x0000,
-    EFFECTFLAG_DISPELABLE		= 0x0001,
-    EFFECTFLAG_ERASABLE			= 0x0002,
-    EFFECTFLAG_ATTACK           = 0x0004,     // эффект исчезает при нанесении урона
-    EFFECTFLAG_MAGIC            = 0x0008,     // эффект исчезает при чтении заклинаий
-    EFFECTFLAG_DAMAGE           = 0x0010,     // эффект исчезает при получении урона
-    EFFECTFLAG_DEATH            = 0x0020,     // эффект исчезает при смерти
+    EFFECTFLAG_NONE             = 0x0000,
+    EFFECTFLAG_DISPELABLE       = 0x0001,
+    EFFECTFLAG_ERASABLE         = 0x0002,
+    EFFECTFLAG_ATTACK           = 0x0004,     // исчезает при нанесении урона
+    
+    EFFECTFLAG_DAMAGE           = 0x0010,     // исчезает при получении урона
+    EFFECTFLAG_DEATH            = 0x0020,     // исчезает при смерти
+    EFFECTFLAG_MAGIC_BEGIN      = 0x0040,     // исчезает перед началом чтения заклинания
+    EFFECTFLAG_MAGIC_END        = 0x0080,     // исчезает после прочтения заклинания
 };
 
 enum EFFECT

@@ -25,6 +25,7 @@
 #define _CHARUTILS_H
 
 #include "../common/cbasetypes.h"
+
 #include "trait.h"
 #include "charentity.h"
 

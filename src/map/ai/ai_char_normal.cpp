@@ -1057,7 +1057,7 @@ void CAICharNormal::ActionMagicFinish()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC);
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_BEGIN);
 
     if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
     {
@@ -1121,7 +1121,6 @@ void CAICharNormal::ActionMagicFinish()
 		    }
 	    }
     }
-
     for (uint32 i = 0; i < m_PChar->m_ActionList.size(); ++i)
 	{
         CBattleEntity* PTarget = m_PChar->m_ActionList.at(i).ActionTarget;
@@ -1140,6 +1139,7 @@ void CAICharNormal::ActionMagicFinish()
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
         }
     }
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 
 	charutils::UpdateHealth(m_PChar);
     charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PBattleSubTarget->GetMLevel());
