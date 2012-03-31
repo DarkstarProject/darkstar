@@ -262,7 +262,7 @@ void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag)
 {
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
-        if ((m_StatusEffectList.at(i)->GetFlag() & flag) == flag)
+        if (m_StatusEffectList.at(i)->GetFlag() & flag)
 		{
 			RemoveStatusEffect(i--);
 		}

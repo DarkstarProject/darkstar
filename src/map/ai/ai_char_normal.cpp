@@ -1139,7 +1139,8 @@ void CAICharNormal::ActionMagicFinish()
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
         }
     }
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
+    // если заклинание атакующее, то дополнительно удаляем эффекты с флагом атаки
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END | ((m_PSpell->getValidTarget() & TARGET_ENEMY) ? EFFECTFLAG_ATTACK : EFFECTFLAG_NONE));
 
 	charutils::UpdateHealth(m_PChar);
     charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PBattleSubTarget->GetMLevel());
