@@ -2398,6 +2398,37 @@ inline int32 CLuaBaseEntity::setAnimation(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  Получаем/устанавливаем скорость передвижения сущности                *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::speed(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	
+    if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+    {
+        uint8 speed = (uint8)dsp_min(lua_tointeger(L,-1), 255);
+
+        if (m_PBaseEntity->speed != speed)
+		{
+            m_PBaseEntity->speed = speed;
+
+			if (m_PBaseEntity->objtype == TYPE_PC)
+			{
+			    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
+            } else {
+                m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE));
+            }
+        }
+        return 0;
+	}
+    lua_pushinteger(L, m_PBaseEntity->speed);
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
 *  Получаем/устанавливаем значение дополнительной анимации              *
 *                                                                       *
 ************************************************************************/
@@ -3488,6 +3519,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAnimation),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAnimation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,AnimationSub),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,speed),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseCostume),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatus),

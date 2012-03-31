@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
 	if(target:hasStatusEffect(EFFECT_BIND)) then
 		--TODO: No effect
 	else
-		target:addStatusEffect(EFFECT_BIND,1,0,duration);
+		target:addStatusEffect(EFFECT_BIND,target:speed(),0,duration);
 	end
 	
 	return 0;

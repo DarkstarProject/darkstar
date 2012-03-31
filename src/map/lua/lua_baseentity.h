@@ -78,6 +78,7 @@ public:
 
     int32 takeMagicDamage(lua_State*);      //
 
+    int32 speed(lua_State*);                // скорость передвижения сущности
 	int32 getAnimation(lua_State*);			// Get Entity Animation
 	int32 setAnimation(lua_State*);			// Set Entity Animation
     int32 AnimationSub(lua_State*);         // get or set animationsub
