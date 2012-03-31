@@ -28,6 +28,7 @@
 #include "../common/timer.h"
 #include "../common/utils.h"
 
+#include <math.h>
 #include <stdio.h>
 #include <string.h>
 
