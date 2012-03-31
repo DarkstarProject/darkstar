@@ -3303,11 +3303,12 @@ int32 SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* da
         charutils::UpdateItem(PChar,   LOC_INVENTORY, 0, -Price2); 
         charutils::UpdateItem(PTarget, LOC_INVENTORY, 0,  Price1); 
 
-        charutils::UpdateItem(PTarget, LOC_INVENTORY, SlotID, -Quantity);
-
         PChar->pushPacket(new CBazaarPurchasePacket(PTarget, true));
 
         PTarget->pushPacket(new CBazaarConfirmationPacket(PChar, SlotID, Quantity));
+
+        charutils::UpdateItem(PTarget, LOC_INVENTORY, SlotID, -Quantity);
+
         PTarget->pushPacket(new CInventoryItemPacket(PBazaar->GetItem(SlotID), LOC_INVENTORY, SlotID));
 		PTarget->pushPacket(new CInventoryFinishPacket());
 
@@ -3329,23 +3330,23 @@ int32 SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* da
 
             if (PCustomer != NULL && PCustomer->id == PTarget->BazaarCustomers[i].id)
             {
-                PCustomer->pushPacket(new CBazaarItemPacket(PBazaar->GetItem(SlotID), SlotID, PChar->loc.zone->GetTax()));
-
                 if (PCustomer->id != PChar->id)
                 {
                     PCustomer->pushPacket(new CBazaarConfirmationPacket(PChar, SlotID, Quantity));
                 }
+                PCustomer->pushPacket(new CBazaarItemPacket(PBazaar->GetItem(SlotID), SlotID, PChar->loc.zone->GetTax()));
+
                 if (BazaarIsEmpty)
                 {
-                    PCustomer->pushPacket(new CBazaarClosePacket(PChar)); 
+                    PCustomer->pushPacket(new CBazaarClosePacket(PTarget)); 
                 }
             }
         }
         if (BazaarIsEmpty)
         {
-            PChar->status = STATUS_UPDATE;
-		    PChar->nameflags.flags &= ~FLAG_BAZAAR;
-		    PChar->pushPacket(new CCharUpdatePacket(PChar));
+            PTarget->status = STATUS_UPDATE;
+		    PTarget->nameflags.flags &= ~FLAG_BAZAAR;
+		    PTarget->pushPacket(new CCharUpdatePacket(PTarget));
 	    }
         return 0;
     }
