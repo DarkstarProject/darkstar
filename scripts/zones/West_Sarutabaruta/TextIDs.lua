@@ -12,8 +12,7 @@ REGIME_ACCEPTED = 10077; -- New training regime registered!
  DONT_SWAP_JOBS = 10078; -- Changing your job will result in the cancellation of your current training regime.
 REGIME_CANCELED = 10079; -- Training regime canceled.
 
--- Conquest system
-
+-- Conquest
 CONQUEST = 7390; -- You've earned conquest points!
 
 -- NPC Dialog

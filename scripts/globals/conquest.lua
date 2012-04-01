@@ -35,151 +35,84 @@ ELSHIMOLOWLANDS = 19;
           TULIA = 21;
      MOVALPOLOS = 22;
        TAVNAZIA = 23;
-	   
+
+-----------------------------------------------------------------
+-- getCP(player) returns a player's conquest points. 
+-----------------------------------------------------------------
+
+function getCP(player)
+	return player:getVar("CP");
+end;
+
+-----------------------------------------------------------------
+-- add_CP(player, amount) adds to a player's conquest points.
+-----------------------------------------------------------------
+
+function addCP(player,amount)
+	cp = player:getVar("CP") + amount;
+	player:setVar("CP",cp);
+end;
+
+-----------------------------------------------------------------
+-- setCP(player) sets player's conquest points. 
+-----------------------------------------------------------------
+
+function setCP(player,amount)
+	return player:setVar("CP",amount);
+end;
+
 -----------------------------------
 -- Nation rank in conquest
 -----------------------------------
 	   
 function getNationRank(nation)
 
-rank = 0;
+	rank = 0;
 
-if(nation == BASTOK) then
-	rank = 1;	
-elseif(nation == SANDORIA) then
-	rank = 1;
-elseif(nation == WINDURST) then
-	rank = 1;
-end
+	if(nation == BASTOK) then
+		rank = 1;	
+	elseif(nation == SANDORIA) then
+		rank = 1;
+	elseif(nation == WINDURST) then
+		rank = 1;
+	end
 
 	return rank;
+	
 end
 
 -----------------------------------
--- Regional Merchant NPCs
+-- getRegionOwner(region)
 -----------------------------------
 
 function getRegionOwner(region)
-
-nation = OTHER;
-
-if(region == RONFAURE) then
-	nation = SANDORIA;
-elseif(region == ZULKHEIM) then
-	nation = SANDORIA;
-elseif(region == NORVALLEN) then
-	nation = SANDORIA;
-elseif(region == GUSTABERG) then
-	nation = BASTOK;
-elseif(region == DERFLAND) then
-	nation = WINDURST;
-elseif(region == SARUTABARUTA) then
-	nation = WINDURST;
-elseif(region == KOLSHUSHU) then
-	nation = WINDURST;
-elseif(region == ARAGONEU) then
-	nation = SANDORIA;
-elseif(region == FAUREGANDI) then
-	nation = BASTOK;
-elseif(region == VALDEAUNIA) then
-	nation = WINDURST;
-elseif(region == QUFIMISLAND) then
-	nation = BASTOK;
-elseif(region == LITELOR) then
-	nation = BASTOK;
-elseif(region == KUZOTZ) then
-	nation = SANDORIA;
-elseif(region == VOLLBOW) then
-	nation = WINDURST;
-elseif(region == ELSHIMOLOWLANDS) then
-	nation = SANDORIA;
-elseif(region == ELSHIMOUPLANDS) then
-	nation = WINDURST;
-elseif(region == TULIA) then
-	nation = WINDURST;
-elseif(region == MOVALPOLOS) then
-	nation = BEASTMEN;
-elseif(region == TAVNAZIA) then
-	nation = WINDURST;
-end
-
-	return nation;
-end;
-
----------------------------------
--- Teleport Nation > Outpost
----------------------------------
-
-function toOutpost(player,option)
-	-- Ronfaure
-	if(option == 5) then
-		player:setPos(-446, -20 , -220, 0, 100); 
-	-- Zulkheim
-	elseif(option == 6) then
-		player:setPos(149, -7 , 94, 154, 103); 
-	-- Norvallen
-	elseif(option == 7) then
-		player:setPos(62, 0 , -1, 67, 104); 
-	-- Gustaberg
-	elseif(option == 8) then
-		player:setPos(-579, 39 , 62, 89, 106); 
-	-- Derfland
-	elseif(option == 9) then
-		player:setPos(465, 24 , 422, 29, 109); 
-	-- Sarutabatura
-	elseif(option == 10) then
-		player:setPos(-15, -13 , 318, 128, 115); 
-	-- Kolshushu
-	elseif(option == 11) then
-		player:setPos(-480, -30 , 57, 62, 118); 
-	-- Aragoneu
-	elseif(option == 12) then
-		player:setPos(-298, 17 , 418, 98, 119); 
-	-- Fauregandi
-	elseif(option == 13) then
-		player:setPos(-18, -59, -108, 100, 111);
-	-- Valdeaunia
-	elseif(option == 14) then
-		player:setPos(210, -23, -206, 160, 112);
-	-- Qufim Island
-	elseif(option == 15) then
-		player:setPos(-246, -20 , 301, 192, 126); 
-	-- Lil'Telor
-	elseif(option == 16) then
-		player:setPos(-38, 0, -140, 69, 121); 
-	-- Kuzotz
-	elseif(option == 17) then
-		player:setPos(-250, 8, -252, 122, 114); 
-	-- Vollbow
-	elseif(option == 18) then
-		player:setPos(-184, 8, -66, 0, 113); 
-	-- Elshimo Lowlands
-	elseif(option == 19) then
-		player:setPos(-243, 0, -400, 192, 123); 
-	-- Elshimo Uplands
-	elseif(option == 20) then
-		player:setPos(203, 0, -82, 36, 124); 
-	-- Tulia ?!
-	elseif(option == 21) then
-		player:setPos(4, -54, -600, 192, 130); 
-	-- Tavnazia
-	elseif(option == 22) then
-		player:setPos(-535, -6, -53, 122, 24); 
-	end;
-end;
-
----------------------------------
--- Teleport Outpost > Nation
----------------------------------
-
-function toHomeNation(player)
-	if(player:getNation() == BASTOK) then
-		player:setPos(89, 0, -66, 0, 234); 
-	elseif(player:getNation() == SANDORIA) then
-		player:setPos(49, -1 , 29, 164, 231); 
-	else 
-		player:setPos(193, -12 , 220, 64, 240); 
-	end;
+	
+	switch (region): caseof
+	{
+		[RONFAURE] = 		function (x) owner = SANDORIA; end,
+		[ZULKHEIM] = 		function (x) owner = SANDORIA; end,
+		[NORVALLEN] = 		function (x) owner = SANDORIA; end,
+		[GUSTABERG] = 		function (x) owner = BASTOK; end,
+		[DERFLAND] = 		function (x) owner = WINDURST; end,
+		[SARUTABARUTA] = 	function (x) owner = WINDURST; end,
+		[KOLSHUSHU] = 		function (x) owner = WINDURST; end,
+		[ARAGONEU] = 		function (x) owner = SANDORIA; end,
+		[FAUREGANDI] = 		function (x) owner = BASTOK; end,
+		[VALDEAUNIA] = 		function (x) owner = WINDURST; end,
+		[QUFIMISLAND] = 	function (x) owner = BASTOK; end,
+		[LITELOR] = 		function (x) owner = BASTOK; end,
+		[KUZOTZ] = 			function (x) owner = SANDORIA; end,
+		[VOLLBOW] = 		function (x) owner = WINDURST; end,
+		[ELSHIMOLOWLANDS] = function (x) owner = SANDORIA; end,
+		[ELSHIMOUPLANDS] =  function (x) owner = WINDURST; end,
+		[TULIA] = 			function (x) owner = WINDURST; end,
+		[MOVALPOLOS] = 		function (x) owner = BEASTMEN; end,
+		[TAVNAZIA] = 		function (x) owner = WINDURST; end,
+		default = 			function (x) owner = OTHER; end,
+	}
+	
+	return owner;
+	
 end;
 
 ---------------------------------
@@ -745,7 +678,7 @@ region = 5;
 	while region <= 23 do
 
 	npclist = getRegionalConquestOverseers(region);
-	owner   = getRegionOwner(region);
+	nation  = getRegionOwner(region);
 
 		i = 1;
 		while i <= (table.getn(npclist)) do

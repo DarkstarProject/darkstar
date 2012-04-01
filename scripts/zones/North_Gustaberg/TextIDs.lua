@@ -7,3 +7,6 @@ ITEM_CANNOT_BE_OBTAINED_TWICE = 6536; -- You cannot obtain the item <item>
 				 GIL_OBTAINED = 6541; -- Obtained <number> gil
 			 KEYITEM_OBTAINED = 6543; -- Obtained key item: <keyitem>
     SHINING_OBJECT_SLIPS_AWAY = 7355; -- The shining object slips through your fingers and is washed down the stream.
+	
+-- Conquest
+CONQUEST =  7398; -- "You've earned conquest points!"

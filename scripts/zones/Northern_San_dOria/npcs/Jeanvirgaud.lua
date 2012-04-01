@@ -10,13 +10,15 @@ package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/conquest");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 NPCNation = 0;		-- NPCs Nationality (0 = Sand, 1 = Bast, 2 = Wind)
 RequiredCP = 100;
 RequiredGils = 100;
+
+guardnation = SANDORIA;
+csid 		= 0x02cc;
 
 -----------------------------------
 -- onTrade Action
@@ -34,7 +36,16 @@ function onTrigger(player,npc)
 	LvL = player:getMainLvl();
 	MyGils = player:getGil();
 	MyCP = 0;
+	control = getTeleAvailable(guardnation);
 	
+	if(guardnation == player:getNation()) then
+		player:startEvent(csid,1,2,3,4,0,0,player:getMainLvl(),1073741823 - player:getVar("supplyQuest_SANDORIA"));
+	else
+		player:startEvent(csid,control,0,0,0,0,1,player:getMainLvl(),1073741823 - player:getVar("supplyQuest_SANDORIA"));
+	end
+	
+end;
+--[[	
 	if(player:getNation() ~= NPCNation) then AllowTP = 1; else AllowTP = 0; end
 	
 	basenumber = 2145386527;
@@ -48,16 +59,18 @@ function onTrigger(player,npc)
 	end
 	
 	player:startEvent(0x02cc,MyGils,RequiredGils,0,RequiredCP,MyCP,AllowTP,LvL,basenumber);
-	
-end;
-
+	]]--
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+	
+	loca = option - 1073741824;
+	player:updateEvent(player:getGil(),OP_TeleFee(player,loca),getCP(player),OP_TeleFee(player,loca));
+	
 end;
 
 -----------------------------------
@@ -65,15 +78,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+printf("CSID: %u",csid);
+printf("RESULT: %u",option);
 	
-	if(csid == 0x02cc) then
-		
+	if(option >= 5 and option <= 23) then
+		player:delGil(OP_TeleFee(player,option));
 		toOutpost(player,option);
-		player:delGil(RequiredGils);
-		
 	end
 	
 end;
-

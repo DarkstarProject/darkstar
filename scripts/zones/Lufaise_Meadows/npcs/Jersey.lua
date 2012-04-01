@@ -1,16 +1,21 @@
 -----------------------------------
---  Area: Lufaise Meadows
---   NPC: Jersey
---  Type: Outpost Vendor
--- @zone: 24
---  @pos: -548.706 -7.197 -53.897
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Lufaise Meadows
+-- NPC:  Jersey
+-- Type: Outpost Vendor
+-- @zone 24
+-- @pos -548.706 -7.197 -53.897
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
+package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/shop");
+require("scripts/globals/conquestguards");
+require("scripts/zones/Lufaise_Meadows/TextIDs");
+
+region 	= TAVNAZIA;
+csid	= 0x7ff4;
 
 -----------------------------------
 -- onTrade Action
@@ -24,7 +29,20 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x7ff4);
+	
+	owner = getRegionOwner(region);
+	arg1 = getArg1(owner,player);
+	
+	if(owner == player:getNation()) then
+		nation = 1;
+	elseif(arg1 < 1792) then
+		nation = 2;
+	else
+		nation = 0;
+	end
+	
+	player:startEvent(csid,nation,OP_TeleFee(player,region),getCP(player),OP_TeleFee(player,region),0,0,0,0);
+	
 end;
 
 -----------------------------------
@@ -32,8 +50,11 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("OPTION: %u",option);
+	
+	player:updateEvent(player:getGil(),OP_TeleFee(player,region),getCP(player),OP_TeleFee(player,region));
+	
 end;
 
 -----------------------------------
@@ -41,7 +62,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("OPTION: %u",option);
+	
+	if(option == 1) then
+		ShowOPVendorShop(player);
+	elseif(option == 2) then
+		player:delGil(OP_TeleFee(player,region));
+		toHomeNation(player);
+	end
+	
 end;
-

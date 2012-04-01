@@ -6,6 +6,9 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6382; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
 
+-- Conquest
+CONQUEST =  7815; -- "You've earned conquest points!"
+
 -- Quest Items
 WYVERN_EGG = 1159; -- 
 

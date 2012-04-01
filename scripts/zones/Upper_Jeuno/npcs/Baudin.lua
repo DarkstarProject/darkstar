@@ -82,6 +82,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x00AE and option == 1) then 
 		player:addQuest(JEUNO,CREST_OF_DAVOI);
 	elseif(csid == 0x00AB) then 
+		player:tradeComplete();
 		player:setVar("saveMySisterVar",1);
 		player:addKeyItem(CREST_OF_DAVOI_KI);
 		player:messageSpecial(KEYITEM_OBTAINED,CREST_OF_DAVOI_KI);

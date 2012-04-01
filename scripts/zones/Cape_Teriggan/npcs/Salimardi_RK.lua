@@ -1,33 +1,33 @@
 -----------------------------------
--- Area: Valkurm Dunes
--- NPC:  Quanteilleron, R.K.
+-- Area: Cape Teriggan
+-- NPC:  Bright Moon
 -- Outpost Conquest Guards
--- @zone 103
--- @pos 144 -7 104
--------------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+-- @zone 113
+-- @pos -185 7 -63
+-----------------------------------
+package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
--------------------------------------
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/conquestguards");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/zones/Cape_Teriggan/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 guardtype 	= 3;		-- 1: city, 2: foreign, 3: outpost, 4: border
-region 		= ZULKHEIM;
+region 		= VOLLBOW;
 csid 		= 0x7ffb;
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 	tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end; 
 
------------------------------------ 
--- onTrigger Action 
+-----------------------------------
+-- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -50,7 +50,7 @@ function onTrigger(player,npc)
 		end
 	end
 	
-end;  
+end;
 
 -----------------------------------
 -- onEventUpdate

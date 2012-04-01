@@ -5,18 +5,16 @@
 -- @pos 144 -7 104
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/globals/conquest");
+require("scripts/globals/conquestguards");
 require("scripts/zones/Valkurm_Dunes/TextIDs");
 
-NationNPC = getRegionOwner(ZULKHEIM);
-Region = "ZULK_TELE";
-RequiredLvL = 10;
-RequiredCP = 100;
-RequiredGils = 100;
+region 	= ZULKHEIM;
+csid	= 0x7ff4;
 
 -----------------------------------
 -- onTrade Action
@@ -31,20 +29,18 @@ end;
 
 function onTrigger(player,npc)
 	
-	MyGils = player:getGil();
-	MyCP = 0;
+	owner = getRegionOwner(region);
+	arg1 = getArg1(owner,player);
 	
-	if(player:getNation() == NationNPC) then 
-		MenuType = 1;
-	else 
-		MenuType = 0; RequiredGils = RequiredGils * 3; 
+	if(owner == player:getNation()) then
+		nation = 1;
+	elseif(arg1 < 1792) then
+		nation = 2;
+	else
+		nation = 0;
 	end
 	
-	if(player:getVar(Region) == 0 or player:getMainLvl() < RequiredLvL or MyGils < RequiredGils) then 
-		RequiredGils = 0; 
-	end
-	
-	player:startEvent(0x7ff4,MenuType,RequiredGils,0,RequiredCP,0,0,0,0);
+	player:startEvent(csid,nation,OP_TeleFee(player,region),getCP(player),OP_TeleFee(player,region),0,0,0,0);
 	
 end;
 
@@ -55,6 +51,9 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("OPTION: %u",option);
+	
+	player:updateEvent(player:getGil(),OP_TeleFee(player,region),getCP(player),OP_TeleFee(player,region));
+	
 end;
 
 -----------------------------------
@@ -68,13 +67,8 @@ function onEventFinish(player,csid,option)
 	if(option == 1) then
 		ShowOPVendorShop(player);
 	elseif(option == 2) then
-		Nation = player:getNation();
-		
-		if(Nation ~= NationNPC) then RequiredGils = RequiredGils * 3; end
-		
+		player:delGil(OP_TeleFee(player,region));
 		toHomeNation(player);
-		player:delGil(RequiredGils);
-		
 	end
 	
 end;
