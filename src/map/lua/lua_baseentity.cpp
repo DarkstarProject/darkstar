@@ -1477,7 +1477,7 @@ inline int32 CLuaBaseEntity::release(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*                                                                       *
+*  Запускаем событие с указанными параметрами                           *
 *                                                                       *
 ************************************************************************/
 
@@ -1490,7 +1490,7 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
 	
     int32 n = lua_gettop(L);
 
-    if (n > 9) 
+    if (n > 10) 
     {
         ShowError("CLuaBaseEntity::startEvent: Could not start event, Lack of arguments.\n");
         lua_settop(L,-n);
@@ -1542,6 +1542,11 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
             param6,
             param7)); 
 
+    // если требуется вернуть фиктивный результат, то делаем это
+    if( !lua_isnil(L,10) && lua_isnumber(L,10) )
+    {
+        ((CCharEntity*)m_PBaseEntity)->m_event.Option = (int32)lua_tointeger(L,10);
+    }
     return 0;
 }
 
@@ -2772,27 +2777,27 @@ inline int32 CLuaBaseEntity::hasStatusEffect(lua_State *L)
     return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*																		*
+*  Удаляем статус-эффект по его основному и дополнительному типам.		*
+*  Возвращаем результат выполнения операции.							*
+*																		*
+************************************************************************/
 
 inline int32 CLuaBaseEntity::delStatusEffect(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    bool result = false;
+
+    if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-			{
-				int32 n = lua_gettop(L);
-
-				((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(
-					(EFFECT)lua_tointeger(L,1), 
-					(n >= 2 ? (uint16)lua_tointeger(L,2) : 0));
-
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
+		result = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(
+                     (EFFECT)lua_tointeger(L,1), 
+					 (lua_gettop(L) >= 2 ? (uint16)lua_tointeger(L,2) : 0));
+    }
+	lua_pushboolean(L, result);
 	return 1;
 }
 
@@ -2808,8 +2813,7 @@ inline int32 CLuaBaseEntity::removePartyEffect(lua_State *L)
 			{
 				int32 n = lua_gettop(L);
 
-
-					CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+                CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
 				
 				for (int i=0; i< PChar->PParty->members.size(); ++i)
 				{
@@ -2818,7 +2822,6 @@ inline int32 CLuaBaseEntity::removePartyEffect(lua_State *L)
 						PChar->PParty->members[i]->StatusEffectContainer->DelStatusEffect((EFFECT)lua_tointeger(L,1));
 					}
 				}
-				
 				return 0;
 			}
 		}

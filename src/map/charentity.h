@@ -67,15 +67,18 @@ struct jobs_t
 
 struct event_t
 {
-	int32 EventID;
-    CBaseEntity* Target;
+	int32 EventID;                  // номер события
+    int32 Option;                   // фиктивный возвращаемый результат
 
-	string_t Script;
-	string_t Function;
+    CBaseEntity* Target;            // инициатор события
+
+	string_t Script;                // путь к файлу, отвечающему за обработку события
+	string_t Function;              // не используется
 
 	void reset() 
     {
 		EventID = -1;
+        Option  =  0;
         Target  =  0;
 		Script.clear();
 		Function.clear();

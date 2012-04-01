@@ -62,7 +62,7 @@ public:
 	void LoadStatusEffects();									// загружаем эффекты персонажа
 	void SaveStatusEffects();									// сохраняем эффекты персонажа
 
-    uint8 GetEffectsCount(uint16 SubID);                        // получаем количество еффектов с указанным subid
+    uint8 GetEffectsCount(uint16 SubID);                        // получаем количество эффектов с указанным subid
 
 	 CStatusEffectContainer(CBattleEntity* PEntity);
 	~CStatusEffectContainer();

@@ -7,7 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 		  HOMEPOINT_SET = 6424; -- Home point set!
 	   
-		DO_NOT_PROSSESS = 7629; -- You do not possess <keyitem>. You were not permitted to board the ship...
+		DO_NOT_PROSSESS = 7630; -- You do not possess <keyitem>. You were not permitted to board the ship...
 	   
 -- Quest Dialog
      SUBJOB_UNLOCKED = 6944; -- You can now use support jobs!
