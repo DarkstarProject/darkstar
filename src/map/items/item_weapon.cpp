@@ -36,6 +36,7 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
 
 	m_skillType = SKILL_H2H;
 	m_damage	= 0;
+    m_effect    = 0;
 	m_dmgType	= DAMAGE_HTH;
 	m_delay		= 8000;
     m_twoHanded = false;
@@ -132,6 +133,22 @@ void CItemWeapon::setDmgType(uint16 dmgType)
 uint16 CItemWeapon::getDmgType() 
 {
 	return m_dmgType;
+}
+
+/************************************************************************
+*                                                                       *
+*  Дополнительный урон от оружия (fire, water и т.д.)                   *
+*                                                                       *
+************************************************************************/
+
+void CItemWeapon::setAdditionalEffect(uint8 effect)
+{
+    m_effect = effect;
+}
+
+uint8 CItemWeapon::getAdditionalEffect()
+{
+    return m_effect;
 }
 
 

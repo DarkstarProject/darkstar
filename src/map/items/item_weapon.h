@@ -40,6 +40,7 @@ public:
 	uint16	getDelay();
 	uint16	getDamage();
 	uint16	getDmgType();
+    uint8   getAdditionalEffect();
 
     bool    isTwoHanded();
 
@@ -47,6 +48,7 @@ public:
 	void	setDelay(uint16 delay);
 	void	setDamage(uint16 damage);
 	void	setDmgType(uint16 dmgType);
+    void    setAdditionalEffect(uint8 effect);
 	
 private:
 
@@ -54,6 +56,8 @@ private:
 	uint16	m_damage;
 	uint16	m_delay;
 	uint16	m_dmgType;
+    uint8   m_effect;
+
     bool    m_twoHanded;
 };
 
