@@ -1947,6 +1947,17 @@ int32 SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* da
 
     if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
     {
+        // если targid персонажа клиенту не известен, то получаем его из таблицы активных сессий
+        if (targid == 0)
+        {
+	        int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
+
+	        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	        {
+		        targid = (uint16)Sql_GetIntData(SqlHandle,0); 
+	        }
+        }
+
         CCharEntity* PInvitee = zoneutils::GetCharFromRegion(
 			charid, 
 			targid, 
