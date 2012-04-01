@@ -15,7 +15,7 @@ require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 guardtype 	= 4;		-- 1: city, 2: foreign, 3: outpost, 4: border
-region 		= DERFLAND
+region 		= DERFLAND;
 csid 		= 0x7ffa;
 
 -----------------------------------

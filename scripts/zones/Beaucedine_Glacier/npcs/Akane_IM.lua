@@ -1,32 +1,29 @@
 -----------------------------------
---	Area: Beaucedine Glacier
---	 NPC: Akane, I.M.
---  Type: Conquest Overseer
--- @zone: 111
---  @pos: -24.351 -60.421 -114.215
-
--- X Grant Signet
---   Recharge Emperor Band, Empress Band, or Chariot Band
--- X Sets the player's Home Point to their location for free
--- X Accepts supplies for the region in which the guard is located, for finishing Supply Quest
---   Accepts Garrison starting item of the region, in which the guard is located 
+-- Area: Beaucedine Glacier
+-- NPC:  Akane, I.M.
+-- Outpost Conquest Guards
+-- @zone 111
+-- @pos -24.351 -60.421 -114.215
 -------------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/keyitems");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
-NationNPC = 1; -- 0: San d'oria, 1: Bastok, 2: Windurst
+guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+guardtype 	= 3;		-- 1: city, 2: foreign, 3: outpost, 4: border
+region 		= FAUREGANDI;
+csid 		= 0x7ff9;
 
 ----------------------------------- 
 -- onTrade Action 
 ----------------------------------- 
 
 function onTrade(player,npc,trade)
+	tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end; 
 
 ----------------------------------- 
@@ -35,13 +32,21 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getNation() == NationNPC) then
-		if(player:hasKeyItem(FAUREGANDI_SUPPLIES)) then
-			player:messageSpecial(7398);
-			player:setVar("FAUR_TELE", 1);
-			player:delKeyItem(FAUREGANDI_SUPPLIES);
+	if(player:hasKeyItem(70 + region) and player:getNation() == guardnation) then
+		if(supplyRunFresh(player) == 1) then
+			player:startEvent(csid,16,0,0,0,1,0,0,255); -- you have brought us supplies !
 		else
-			player:startEvent(0x7ff9); 
+			player:showText(npc, CONQUEST - 1); -- "Hmm... These supplies you have brought us are too old to be of any use."
+			player:delKeyItem(70 + region);
+			player:messageSpecial(KEYITEM_OBTAINED + 1, 70 + region);
+			player:setVar("supplyQuest_region",0);
+		end
+	else
+		arg1 = getArg1(guardnation, player) - 1;
+		if(arg1 >= 1792) then -- foreign, non-allied
+			player:startEvent(csid,1808,0,0,0,0,player:getRank(),0,0);
+		else -- citizen or allied
+			player:startEvent(csid,arg1,0,0x3F0000,0,0,getArg6(player),0,0);
 		end
 	end
 	
@@ -65,13 +70,28 @@ function onEventFinish(player,csid,option)
 --printf("OPTION: %u",option);
 
 	if(option == 1) then
+		duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
 		player:delStatusEffect(EFFECT_SIGNET);
-		ranktime = player:getRank() * 60 * 60;
-		duration = ranktime + 0 + 10800;
-		player:addStatusEffect(EFFECT_SIGNET,0,0,duration);
+		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
+	elseif(option == 2) then
+		player:delKeyItem(70 + region);
+		addCP(player,supplyReward[region - 4])
+		player:messageSpecial(CONQUEST); -- "You've earned conquest points!"
+		if(hasOutpost(player, region) == 0) then
+			supply_quests = player:getVar("supplyQuest_BASTOK");
+			supply_quests = supply_quests + 2^region;
+			player:setVar("supplyQuest_BASTOK",supply_quests);
+			player:setVar("supplyQuest_region",0);
+		end
 	elseif(option == 4) then
-		player:setHomePoint();
-		player:messageSpecial(HOMEPOINT_SET);
+		SetHPGil = giltosetHP(guardnation,player);
+		if(player:getGil() >= SetHPGil) then
+			player:removeGil(SetHPGil);
+			player:setHomePoint();
+			player:specialMessage(CONQUEST + 89); -- "Your home point has been set."
+		else
+			player:specialMessage(CONQUEST + 90); -- "You do not have enough gil to set your home point here."
+		end
 	end
 
 end;

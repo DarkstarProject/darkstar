@@ -65,7 +65,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	Menu1 = (player:getNation() * 16) + (3*256)  + 65537;
+	Menu1 = (player:getNation() * 16) + (3 * 256)  + 65537;
 	Menu2 = 0;
 	Menu3 = player:getRank();
 	Menu4 = 1069547551 + 4194272;

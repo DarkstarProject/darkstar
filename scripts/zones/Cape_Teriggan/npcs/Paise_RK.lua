@@ -3,7 +3,7 @@
 -- NPC:  Bright Moon
 -- Border Conquest Guards
 -- @zone 113
--- @pos 
+-- @pos 119 0 282
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;

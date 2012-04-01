@@ -105,8 +105,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-printf("onUpdate CSID: %u",csid);
-printf("onUpdate RESULT: %u",option);
+--printf("onUpdate CSID: %u",csid);
+--printf("onUpdate RESULT: %u",option);
 
 	if(csid == 0x7d00) then
 		pZone = player:getZone();

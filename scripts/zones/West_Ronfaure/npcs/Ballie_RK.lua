@@ -15,7 +15,7 @@ require("scripts/zones/West_Ronfaure/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 guardtype 	= 4;		-- 1: city, 2: foreign, 3: outpost, 4: border
-region 		= RONFAURE
+region 		= RONFAURE;
 csid 		= 0x7ffa;
 
 -----------------------------------

@@ -1,33 +1,33 @@
 -----------------------------------
--- Area: Qufim Island
--- NPC:  Sasa, I.M.
--- Outpost Conquest Guards
--- @zone 126
--- @pos 
--------------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
+-- Area: Cape Teriggan
+-- NPC:  Orukeke, W.W.
+-- Border Conquest Guards
+-- @zone 113
+-- @pos 119 0 282
+-----------------------------------
+package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
--------------------------------------
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/conquestguards");
-require("scripts/zones/Qufim_Island/TextIDs");
+require("scripts/zones/Cape_Teriggan/TextIDs");
 
-guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
-guardtype 	= 3;		-- 1: city, 2: foreign, 3: outpost, 4: border
-region 		= QUFIMISLAND;
-csid 		= 0x7ff9;
+guardnation = WINDURST;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+guardtype 	= 4;		-- 1: city, 2: foreign, 3: outpost, 4: border
+region 		= VOLLBOW;
+csid 		= 0x7ff6;
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 	tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end; 
 
------------------------------------ 
--- onTrigger Action 
+-----------------------------------
+-- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -50,7 +50,7 @@ function onTrigger(player,npc)
 		end
 	end
 	
-end;  
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -78,9 +78,9 @@ function onEventFinish(player,csid,option)
 		addCP(player,supplyReward[region - 4])
 		player:messageSpecial(CONQUEST); -- "You've earned conquest points!"
 		if(hasOutpost(player, region) == 0) then
-			supply_quests = player:getVar("supplyQuest_BASTOK");
+			supply_quests = player:getVar("supplyQuest_WINDURST");
 			supply_quests = supply_quests + 2^region;
-			player:setVar("supplyQuest_BASTOK",supply_quests);
+			player:setVar("supplyQuest_WINDURST",supply_quests);
 			player:setVar("supplyQuest_region",0);
 		end
 	elseif(option == 4) then

@@ -15,7 +15,7 @@ require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 guardtype 	= 3;		-- 1: city, 2: foreign, 3: outpost, 4: border
-region 		= FAUREGANDI
+region 		= FAUREGANDI;
 csid 		= 0x7ffb;
 
 -----------------------------------

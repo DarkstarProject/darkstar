@@ -1,33 +1,33 @@
 -----------------------------------
--- Area: Qufim Island
--- NPC:  Sasa, I.M.
--- Outpost Conquest Guards
--- @zone 126
--- @pos 
--------------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
+-- Area: Cape Teriggan
+-- NPC:  Dulwa, I.M.
+-- Border Conquest Guards
+-- @zone 113
+-- @pos 119 0 282
+-----------------------------------
+package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
--------------------------------------
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/conquestguards");
-require("scripts/zones/Qufim_Island/TextIDs");
+require("scripts/zones/Cape_Teriggan/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
-guardtype 	= 3;		-- 1: city, 2: foreign, 3: outpost, 4: border
-region 		= QUFIMISLAND;
-csid 		= 0x7ff9;
+guardtype 	= 4;		-- 1: city, 2: foreign, 3: outpost, 4: border
+region 		= VOLLBOW;
+csid 		= 0x7ff8;
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 	tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end; 
 
------------------------------------ 
--- onTrigger Action 
+-----------------------------------
+-- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -50,7 +50,7 @@ function onTrigger(player,npc)
 		end
 	end
 	
-end;  
+end;
 
 -----------------------------------
 -- onEventUpdate
