@@ -22,7 +22,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	numHits = 3;
 	ftp100 = 1; ftp200 = 1; ftp300 = 1;
 	str_wsc = 0.3; dex_wsc = 0.3; vit_wsc = 0.0; agi_wsc = 0.0; int_wsc = 0.0; mnd_wsc = 0.0; chr_wsc = 0.0;
-	crit100 = 0.1; crit200 = 0.0; crit300 = 0.0;
+	crit100 = 0.1; crit200 = 0.3; crit300 = 0.5;
 	canCrit = true;
 	acc100 = 0.0; acc200= 0.0; acc300= 0.0;
 	atkmulti = 1;

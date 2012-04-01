@@ -343,6 +343,14 @@ void CAICharNormal::ActionFall()
     m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
+
+	//TODO: Change so it doesn't use HasStatusEffect?
+	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_RERAISE)){
+		CStatusEffect* PStatus = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_RERAISE,0);
+		m_PChar->m_hasRaise = PStatus->GetPower();
+		m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar, TYPE_RAISE));	
+		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_RERAISE);
+	}
 }
 
 /************************************************************************
@@ -1668,6 +1676,19 @@ void CAICharNormal::ActionAttack()
 						Action.messageID  = 1;
 					}
                     damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar, m_PBattleTarget)) * DamageRatio));
+
+					//TODO: use an alternative to HasStatusEffect. Performance is maximised by the job check FIRST
+					//		so the if loop will fail and HasStatusEffect will not execute. Souleater has no effect <10HP.
+					if(m_PChar->GetMJob()==JOB_DRK && m_PChar->health.hp>=10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)){
+						//lost 10% current hp, converted to damage (displayed as just a strong regular hit)
+						damage = damage + m_PChar->health.hp*0.1;
+						m_PChar->addHP(-0.1*m_PChar->health.hp);
+					}
+					else if(m_PChar->GetSJob()==JOB_DRK &&m_PChar->health.hp>=10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)){
+						//lose 10% Current HP, only HALF (5%) converted to damage	
+						damage = damage + m_PChar->health.hp*0.05;
+						m_PChar->addHP(-0.1*m_PChar->health.hp);
+					}
 
 					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
 				}
