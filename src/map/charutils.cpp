@@ -1484,7 +1484,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 
 		double random = rand() / ((double)RAND_MAX);
 
-		if(Diff >= 0 && random < SkillUpChance) 
+		if(Diff > 0 && random < SkillUpChance) 
 		{
 			double chance = 0;
 			uint8  SkillAmount = 1;
