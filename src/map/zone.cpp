@@ -923,9 +923,6 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 
 void CZone::TOTDChange(TIMETYPE TOTD)
 {
-	if (ZoneTimer == NULL)
-		return;
-
 	SCRIPTTYPE ScriptType = SCRIPT_NONE;
 
 	switch (TOTD)
