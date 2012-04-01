@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability: Sneak Attack
+-- Ability: Souleater
 -----------------------------------
  
 require("scripts/globals/settings");
