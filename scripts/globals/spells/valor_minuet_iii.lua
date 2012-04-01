@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Valor Minuet II
+-- Spell: Valor Minuet III
 -- Grants Attack bonus to all allies.
 -----------------------------------------
 
@@ -10,7 +10,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	duration = 120;
+
 	local sItem = caster:getEquipID(2);
 	local sLvl = caster:getSkillLevel(40); -- Gets skill level of Singing
 	
@@ -33,17 +33,10 @@ function onSpellCast(caster,target,spell)
 	
 	if(sItem == 17369 or sItem == 17846) then -- Cornette +1 and Cornette +2 give 5 more
 		power = power + 5;
-		
 	end
-		
-	
--- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
--- Since all the tiers use the same effect buff it is hard to delete a specific one.
-	if(target:hasStatusEffect(EFFECT_MINUET) == true) then
-		target:delStatusEffect(EFFECT_MINUET);
-	end
-	
-	target:addStatusEffect(EFFECT_MINUET,power,0,duration,FLAG_DISPELABLE);	
 
-	return 0;
+	-- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
+	-- Since all the tiers use the same effect buff it is hard to delete a specific one.
+	target:delStatusEffect(EFFECT_MINUET);
+	target:addStatusEffect(EFFECT_MINUET,power,0,120);	
 end;
