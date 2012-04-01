@@ -3,7 +3,6 @@
 -- Grants Defense bonus to all allies.
 -----------------------------------------
 
-
 require("scripts/globals/status");
 
 -----------------------------------------

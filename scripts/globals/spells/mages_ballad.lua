@@ -2,7 +2,6 @@
 -- Spell: Mage's Ballad
 -- Gradually restores target's MP.
 -----------------------------------------
------------------------------------------
 
 require("scripts/globals/status");
 
