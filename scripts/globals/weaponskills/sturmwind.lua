@@ -1,42 +1,33 @@
--------------------------------
--- Auth : Thief
--- Skill: Sturmwind
--- Class: G.Axe Weapon Skill
--- Level: 70
--- Mods : STR:30%
--- 100%TP 	200%TP 	300%TP
--- 1.0x		1.0x	1.0x
--- Delivers a 2-hit attack. Attack varies with TP(nope)
--------------------------------
-
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
-
-function OnUseWeaponSkill(attacker, target, wsID)
+-----------------------------------	
+-- Sturmwind	
+-- Great Axe weapon skill	
+-- Skill level: 70	
+-- Delivers a two-hit attack. Attack varies with TP.	
+-- Will stack with Sneak Attack, but only the first hit.	
+-- Aligned with the Soil Gorget & Aqua Gorget.	
+-- Aligned with the Soil Belt & Aqua Belt.	
+-- Element: None	
+-- Modifiers: STR:30%	
+-- 100%TP    200%TP    300%TP	
+-- 1.00      1.00      1.00	
+-----------------------------------	
 	
-	--number of normal hits for ws
+require("scripts/globals/status");	
+require("scripts/globals/settings");	
+require("scripts/globals/weaponskills");	
+-----------------------------------	
+	
+function OnUseWeaponSkill(player, target, wsID)	
+	
 	numHits = 2;
-
-	--stat-modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc)
-	str_mod = 0.3;		dex_mod = 0.0;
-	vit_mod = 0.0;		agi_mod = 0.0;
-	int_mod = 0.0;		mnd_mod = 0.0;
-	chr_mod = 0.0;
-
-	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function fTP)
-	ftp100 = 1.0; ftp200 = 1.0; ftp300 = 1.0;
-
-	--critical modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc)
-	crit100 = 0.0; crit200=0.0; crit300=0.0;
+	ftp100 = 1; ftp200 = 1; ftp300 = 1;
+	str_wsc = 0.3; dex_wsc = 0.0; vit_wsc = 0.0; agi_wsc = 0.0; int_wsc = 0.0; mnd_wsc = 0.0; chr_wsc = 0.0;
+	crit100 = 0.0; crit200 = 0.0; crit300 = 0.0;
 	canCrit = false;
-
-	--accuracy modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc) Keep 0 if ws doesn't have accuracy modification.
-	acc100 = 0.0; acc200=0.0; acc300=0.0;
-
-	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
-	atkMulti = 1;
-
-	damage = doPhysicalWeaponskill(attacker,target, numHits, str_mod, dex_mod, vit_mod, agi_mod, int_mod, mnd_mod, chr_mod, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, atkMulti);
-
+	acc100 = 0.0; acc200= 0.0; acc300= 0.0;
+	atkmulti = 1;
+	damage = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
+	
 	return damage;
-end
+	
+end	

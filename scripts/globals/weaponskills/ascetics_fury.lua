@@ -1,42 +1,33 @@
--------------------------------
--- Auth : Thief
--- Skill: Ascetic's Fury
--- Class: H2H Weapon Skill
--- Level: N/A (Mythic MNK Weaponskill)
--- Mods : STR:50% VIT:50%
--- 100%TP 	200%TP 	300%TP
--- 1.0x		1.0x	1.0x
--- Delivers an area attack. Radius varies with TP. (Not implemented)
--------------------------------
-
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
-
-function OnUseWeaponSkill(attacker, target, wsID)
+-----------------------------------	
+-- Ascetics Fury	
+-- Hand-to-Hand weapon skill	
+-- Skill Level: N/A	
+-- Chance of critical hit varies with TP. Glanzfaust: Aftermath effect varies with TP.	
+-- Available only after completing the Unlocking a Myth (Monk) quest.	
+-- Aligned with the Flame Gorget & Light Gorget.	
+-- Aligned with the Flame Belt & Light Belt.	
+-- Element: None	
+-- Modifiers: STR:50% ; VIT:50%	
+-- 100%TP    200%TP    300%TP	
+-- 1.00      1.00      1.00	
+-----------------------------------	
 	
-	--number of normal hits for ws
+require("scripts/globals/status");	
+require("scripts/globals/settings");	
+require("scripts/globals/weaponskills");	
+-----------------------------------	
+	
+function OnUseWeaponSkill(player, target, wsID)	
+	
 	numHits = 1;
-
-	--stat-modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc)
-	str_mod = 0.5;		dex_mod = 0.0;
-	vit_mod = 0.5;		agi_mod = 0.0;
-	int_mod = 0.0;		mnd_mod = 0.0;
-	chr_mod = 0.0;
-
-	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function fTP)
-	ftp100 = 1.0; ftp200 = 1.0; ftp300 = 1.0;
-
-	--critical modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc)
-	crit100 = 0.6; crit200=0.7; crit300=0.8;
-	canCrit = false;
-
-	--accuracy modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc) Keep 0 if ws doesn't have accuracy modification.
-	acc100 = 0.0; acc200=0.0; acc300=0.0;
-
-	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
-	atkMulti = 1;
-
-	damage = doPhysicalWeaponskill(attacker,target, numHits, str_mod, dex_mod, vit_mod, agi_mod, int_mod, mnd_mod, chr_mod, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, atkMulti);
-
+	ftp100 = 1; ftp200 = 1; ftp300 = 1;
+	str_wsc = 0.5; dex_wsc = 0.0; vit_wsc = 0.5; agi_wsc = 0.0; int_wsc = 0.0; mnd_wsc = 0.0; chr_wsc = 0.0;
+	crit100 = 0.1; crit200 = 0.3; crit300 = 0.5;
+	canCrit = true;
+	acc100 = 0.0; acc200= 0.0; acc300= 0.0;
+	atkmulti = 1;
+	damage = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
+	
 	return damage;
-end
+	
+end	

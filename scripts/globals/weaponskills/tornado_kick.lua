@@ -11,7 +11,7 @@
 
 require("/scripts/globals/settings");
 require("/scripts/globals/weaponskills");
-
+require("scripts/globals/weaponskills");
 function OnUseWeaponSkill(attacker, target, wsID)
 	
 	--number of normal hits for ws

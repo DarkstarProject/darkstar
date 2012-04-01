@@ -9,6 +9,7 @@
 -----------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/weaponskills");
+require("scripts/globals/weaponskills");
 function OnUseWeaponSkill(attacker, target, wsID)
 	numHits = 3;
 	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function

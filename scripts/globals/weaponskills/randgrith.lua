@@ -1,28 +1,37 @@
------------------------------------
--- Randgrith    
--- Club weapon skill
--- Skill: Mjollnir
--- Modifiers: STR:40% ; MND:40% 
--- 100%TP 	200%TP 	300%TP
--- 2.75		2.75	2.75
------------------------------------
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
-function OnUseWeaponSkill(attacker, target, wsID)
-	numHits = 1;
-	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function
-	ftp100 = 2.75; ftp200 = 2.75; ftp300 = 2.75;
-	--wscs are in % so 0.2=20%
-	str_wsc = 0.4; dex_wsc = 0.0; vit_wsc = 0.0; agi_wsc = 0.0; int_wsc = 0.0; mnd_wsc = 0.4; chr_wsc = 0.0;
-	--critical mods, again in % (ONLY USE FOR CRITICAL HIT VARIES WITH TP)
-	crit100 = 0.0; crit200=0.0; crit300=0.0;
-	canCrit = false;
-	--accuracy mods (ONLY USE FOR ACCURACY VARIES WITH TP) , should be the acc at those %s NOT the penalty values. Leave 0 if acc doesnt vary with tp.
-	acc100 = 0.0; acc200=0.0; acc300=0.0;
-	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
-	atkmulti = 1;
+-----------------------------------	
+-- Randgrith	
+-- Club weapon skill	
+-- Skill level: N/A	
+-- Lowers target's evasion. Gullintani/Mjollnir: Temporarily improves accuracy.	
+-- Available only when equipped with the Relic Weapons Gullintani (Dynamis use only), Mjollnir, or a Charged Molva Maul.	
+-- Aftermath: Adds +20 accuracy after the weapon skill is used, duration is determined by TP. Only available with Gullintani and Mjollnir.	
+-- 100% = 20 seconds, 200% = 40 seconds, 300% = 60 seconds.	
+-- This Relic Weapon is only available to White Mages; Scholars must use the Molva Maul to acquire this weapon skill.	
+-- Shield Break effect : Evasion -32	
+-- Aligned with the Breeze Gorget & Thunder Gorget.	
+-- Aligned with the Breeze Belt & Thunder Belt.	
+-- Element: None	
+-- Modifiers: STR:40% ; MND:40%	
+-- 100%TP    200%TP    300%TP	
+-- 2.75      2.75      2.75	
+-----------------------------------	
 	
-	damage = doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,  canCrit,crit100,crit200,crit300,  acc100,acc200,acc300,   atkmulti);
+require("scripts/globals/status");	
+require("scripts/globals/settings");	
+require("scripts/globals/weaponskills");	
+-----------------------------------	
+	
+function OnUseWeaponSkill(player, target, wsID)	
+	
+	numHits = 1;
+	ftp100 = 2.75; ftp200 = 2.75; ftp300 = 2.75;
+	str_wsc = 0.4; dex_wsc = 0.0; vit_wsc = 0.0; agi_wsc = 0.0; int_wsc = 0.0; mnd_wsc = 0.4; chr_wsc = 0.0;
+	crit100 = 0.0; crit200 = 0.0; crit300 = 0.0;
+	canCrit = false;
+	acc100 = 0.0; acc200= 0.0; acc300= 0.0;
+	atkmulti = 1;
+	damage = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
 	
 	return damage;
-end
+	
+end	

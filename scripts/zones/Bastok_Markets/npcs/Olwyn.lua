@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 	
 player:showText(npc,OLWYN_SHOP_DIALOG);
 
-stock = {0x1020,4445,1,		-- Ether
+stock = {0x1020,445,1,		-- Ether
 
 	 0x1037,736,2,		-- Echo Drops
 	 0x1010,837,2,		-- Potion
