@@ -12,6 +12,7 @@ require("scripts/globals/status");
 
 function onSpellCast(caster,target,spell)
 	
+	local hp = 5;
 	local sItem = caster:getEquipID(2);
 	-- If Job is Bard and Level is at or above 75 then get bonus HP.
 	if(caster:getMainJob() == 10 and caster:getMainLvl() >= 75) then 
