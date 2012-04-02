@@ -30,6 +30,8 @@ function onSpellCast(caster,target,spell)
 	end	
 	-- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
 	-- Since all the tiers use the same effect buff it is hard to delete a specific one.
-	target:delStatusEffect(EFFECT_PAEON);
+	if(target:hasStatusEffect(EFFECT_PAEON == true) then
+		target:delStatusEffect(EFFECT_PAEON);
+	end
 	target:addStatusEffect(EFFECT_PAEON,hp,3,120);
 end;
