@@ -340,28 +340,25 @@ void CAICharNormal::ActionFall()
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
 
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
-
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
-
-	//TODO: Change so it doesn't use HasStatusEffect?
-	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_RERAISE)){
-		CStatusEffect* PStatus = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_RERAISE,0);
-		m_PChar->m_hasRaise = PStatus->GetPower();
-		m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar, TYPE_RAISE));	
-		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_RERAISE);
-	}
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*  Удаляем соответствующие эффекты с ожиданием в одну секунду           *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionDeath()
 {
+    // без задержки удаление эффектов не всегда правильно обрабатывается клиентом
+    if ((m_Tick - m_LastActionTime) >= 1000)
+    {
+        m_ActionType = ACTION_NONE;
+	    m_LastActionTime = m_Tick;
 
+        m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+    }
 }
 
 /************************************************************************
