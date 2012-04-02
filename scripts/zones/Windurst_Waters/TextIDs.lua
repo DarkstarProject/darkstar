@@ -5,9 +5,10 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6537; -- Obtained: <item>
            GIL_OBTAINED = 6538; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
+		  HOMEPOINT_SET = 6583; -- Home point set!
 
-	 CONQUEST = 8971; -- You've earned conquest points!
-HOMEPOINT_SET = 6583; -- Home point set!
+-- Conquest System
+CONQUEST = 8971; -- You've earned conquest points!
 
 -- Shop Texts
         KOPOPO_SHOP_DIALOG = 7600; -- Cooking is as much an art as music and painting are. Can your taste buds appreciate the full value of our works of art?

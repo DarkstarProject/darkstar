@@ -17,7 +17,7 @@ require("scripts/globals/settings");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
-guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, JEUNO
 guardtype	= 1;		-- 1: city, 2: foreign, 3: outpost, 4: border
 size 		= table.getn(BastInv);
 
@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
 		for Item = 1,size,3 do
 			if(option == Inventory[Item]) then
 				if(player:getFreeSlotsCount() >= 1) then
-					if(player:getNation() == NPCNation) then
+					if(player:getNation() == guardnation) then
 						PlayerCP = myCP - Inventory[Item + 1];
 					else
 						if(Inventory[Item + 1] <= 8000) then

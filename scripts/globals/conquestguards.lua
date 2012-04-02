@@ -109,23 +109,23 @@ tpFees = { 0, 0, 0, 0, 100, 100, 150, 100, 150, 100, 100, 150, 350, 400, 150, 25
 
 function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 	
-	-- Nation:	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+	-- Nation:	-- SANDORIA, BASTOK, WINDURST, JEUNO
 	-- Type: 	1: city, 2: foreign, 3: outpost, 4: border
 	
 	myCP = getCP(player);
 	item = trade:getItem();
 	count = trade:getItemCount();
 	
-	if(player:getNation() == guardnation) then
+	if(player:getNation() == guardnation or guardnation == JEUNO) then
 		if(guardtype ~= 3 and guardtype ~= 4) then -- all guard can trade crystal except outpost and border.
 			if(item >= 4096 and item <= 4103 or item >= 4238 and item <= 4245) then
 				for Crystal = 1,table.getn(DonateCrys),1 do
 					if(trade:hasItemQty(DonateCrys[Crystal],count)) then
 						if(player:getRank() == 1) then
-							player:showText(npc,DONATE_LOW_RANK);
+							player:showText(npc,CONQUEST - 7);
 							break; 
 						elseif(player:getRankPoints() == 4000) then
-							player:showText(npc,DONATE_AT_MAXIM);
+							player:showText(npc,CONQUEST + 43);
 							break;
 						elseif(DonateCrys[Crystal] == 4102 or DonateCrys[Crystal] == 4103 or DonateCrys[Crystal] == 4244 or DonateCrys[Crystal] == 4245) then
 							AddPoints = count * math.floor(4000 / (player:getRank() * 12 - 16));
@@ -133,14 +133,14 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 							AddPoints = count * math.floor(4000 / (player:getRank() * 12 - 12));
 						end
 					end
-						--printf("nb: %u",AddPoints);
+					
 					if(AddPoints + player:getRankPoints() >= 4000) then
 						setCP(player,myCP + (AddPoints + player:getRankPoints()) - 4000);
 						player:setRankPoints(4000);
-						player:showText(npc,DONATE_OVERFLOW);
+						player:showText(npc,CONQUEST + 44);
 					else
 						player:addRankPoints(AddPoints);
-						player:showText(npc,DONATE_CRYSTALS);
+						player:showText(npc,CONQUEST + 45);
 					end
 					player:tradeComplete();
 					break
@@ -221,7 +221,7 @@ function getArg1(guardnation,player)
 		end
 	end
 	
-	if(guardnation == 4) then
+	if(guardnation == JEUNO) then
 		output = (pNation * 16) + (3 * 256)  + 65537;
 	else
 		output = output + 256 * signet;
@@ -315,7 +315,7 @@ function giltosetHP(guardnation,player)
 	
 	rank = player:getRank();
 	
-	if(getArg1(guardnation,player) < 0x700) then -- determine if player is in same or allied nation as guard 
+	if(getArg1(guardnation,player) < 0x700) then -- determine ifplayer is in same or allied nation as guard 
 		HPgil = 0;
 	else
 		if(rank <= 5) then
@@ -404,7 +404,7 @@ function getTeleAvailable(nation)
 	mask = 2145386527;
 	
 	for i = 5,23 do 
-		if (getRegionOwner(i) ~= nation) then
+		if(getRegionOwner(i) ~= nation) then
 			mask = mask + 2^i;
 		end;
 	end

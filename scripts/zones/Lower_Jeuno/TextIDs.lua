@@ -6,10 +6,12 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 		   GIL_OBTAINED = 6379; -- Obtained <number> gil
 	   KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
-		   CONQUEST = 7912; -- You've earned conquest points!
 	  HOMEPOINT_SET = 6439; -- Home point set!
 INVENTORU_INCREASED = 7638; -- Your inventory capacity has increased.
 	 DOOR_IS_LOCKED = 7446; -- It's locked.
+
+-- Conquest system
+CONQUEST = 7912; -- You've earned conquest points!
 
 -- Quest Items
 POETIC_PARCHMENT = 634; -- 

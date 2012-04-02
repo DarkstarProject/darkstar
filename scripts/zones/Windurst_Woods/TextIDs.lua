@@ -9,6 +9,8 @@ ITEM_CANNOT_BE_OBTAINED = 6682; -- You cannot obtain the item <item> come back a
 
 -- Conquest System
 		CONQUEST = 8633; -- You've earned conquest points!
+		
+-- Mission Dialogs
 ACCEPTED_MISSION = 6657; -- You have accepted the mission.
 
 -- Quest Items

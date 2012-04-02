@@ -11,11 +11,10 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
                   CONQUEST = 7774; -- You've earned conquest points!
              MOGHOUSE_EXIT = 7720; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 
+-- Conquest System
+CONQUEST = 7776; -- You've earned conquest points!
+			 
 -- Mission Dialogs
-			 DONATE_LOW_RANK = 7769; -- I cannot accept crystals from someone whose rank is still 1...
-			 DONATE_AT_MAXIM = 7819; -- You do not need to donate any more crystals at your current rank...
-			 DONATE_OVERFLOW = 7820; -- Your rank are full. We've added the excess to your conquest points...
-			 DONATE_CRYSTALS = 7821; -- Good work, citizen. We've awarded you rank points for the crystals you've donated.
 	 ORIGINAL_MISSION_OFFSET = 7121;  -- You can consult the “Mission” section of the main menu...
 	  YOU_ACCEPT_THE_MISSION = 7116; -- You accept the mission
 YOUVE_EARNED_CONQUEST_POINTS = 7776; -- You've earned conquest points!

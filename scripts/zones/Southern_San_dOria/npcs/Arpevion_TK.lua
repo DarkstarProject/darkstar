@@ -17,7 +17,7 @@ require("scripts/globals/settings");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
-guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, JEUNO
 guardtype	= 1;		-- 1: city, 2: foreign, 3: outpost, 4: border
 size 		= table.getn(SandInv);
 
@@ -26,7 +26,7 @@ size 		= table.getn(SandInv);
 ----------------------------------- 
 
 function onTrade(player,npc,trade)
-   tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+	tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end; 
 
 ----------------------------------- 
@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
 		for Item = 1,size,3 do
 			if(option == Inventory[Item]) then
 				if(player:getFreeSlotsCount() >= 1) then
-					if(player:getNation() == NPCNation) then
+					if(player:getNation() == guardnation) then
 						PlayerCP = myCP - Inventory[Item + 1];
 					else
 						if(Inventory[Item + 1] <= 8000) then
@@ -116,7 +116,7 @@ function onEventFinish(player,csid,option)
 				break;
 			end;
 		end;
-	elseif (option >= 65536 and option <= 65560) then -- player chose supply quest.
+	elseif(option >= 65536 and option <= 65560) then -- player chose supply quest.
 		region = option - 65536;
 		player:addKeyItem(70 + region);
 		player:messageSpecial(KEYITEM_OBTAINED,70 + region);

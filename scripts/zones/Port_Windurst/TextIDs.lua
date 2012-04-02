@@ -8,15 +8,16 @@ FULL_INVENTORY_AFTER_TRADE = 10944; -- You cannot obtain the <item>. Try trading
           KEYITEM_OBTAINED = 10948; -- Obtained key item: <keyitem>
 	   		   	    NO_GIL = 12443; -- You do not have enough gil.
 		     HOMEPOINT_SET = 10991; -- Home point set!
-		  
+
+-- Conquest System
+CONQUEST = 11622; -- You've earned conquest points!
+
 -- Quest Dialog
     GOLD_SKULL_DIALOG = 3235; -- Welcome back. Your mission went without incident, I trust?
 KOHLO_LAKOLO_DIALOG_A = 12164; -- On your Star Onion Brigade honor, you can't tell anybody that Joker is hiding in the ghosty house!
        MELEK_DIALOG_A = 3262; -- Well, good luck with your mission. I look forward to hearing of your success."good luck with your mission" (may not be correct response)
        MELEK_DIALOG_B = 3234; -- Take that sword to Giddeus. Good luck.
        MELEK_DIALOG_C = 3240; -- I hope to see you safe and well again someday. Take care, ≺Player Name≻.
-   
-CONQUEST = 11622; -- You've earned conquest points!
 
 -- Shop Texts
       KUCHAMALKOBHI_SHOP_DIALOG = 12423; -- How about a nice suit of adventurer-issue armorrr? Be careful though. We offer no rrrefunds!
