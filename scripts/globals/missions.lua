@@ -17,20 +17,20 @@ ACP      = 9;
 --  San d'Oria
 -----------------------------------
 
-SMASH_THE_ORCISH_SCOUTS = 0;
-BAT_HUNT                = 1;
-SAVE_THE_CHILDREN       = 2;
-THE_RESCUE_DRILL        = 3;
-THE_DAVOI_REPORT        = 4;
-JOURNEY_ABROAD          = 5;
-JOURNEY_TO_BASTOK       = 6; -- Sand
-JOURNEY_TO_WINDURST     = 7; -- Offering
-JOURNEY_TO_BASTOK2      = 8; -- Monster
-JOURNEY_TO_WINDURST2    = 9; -- Monster
-INFILTRATE_DAVOI        = 10;
-THE_CRYSTAL_SPRING      = 11;
-APPOINTMENT_TO_JEUNO    = 12;
-MAGICITE_SAN_D_ORIA     = 13;
+SMASH_THE_ORCISH_SCOUTS = 0;  -- ± --
+BAT_HUNT                = 1;  -- ± --
+SAVE_THE_CHILDREN       = 2;  -- ± --
+THE_RESCUE_DRILL        = 3;  -- ± --
+THE_DAVOI_REPORT        = 4;  -- ± --
+JOURNEY_ABROAD          = 5;  -- ± --
+JOURNEY_TO_BASTOK       = 6;  -- ± --
+JOURNEY_TO_WINDURST     = 7;  -- ± --
+JOURNEY_TO_BASTOK2      = 8;  -- ± --
+JOURNEY_TO_WINDURST2    = 9;  -- ± --
+INFILTRATE_DAVOI        = 10; -- ± --
+THE_CRYSTAL_SPRING      = 11; -- ± --
+APPOINTMENT_TO_JEUNO    = 12; -- ± --
+MAGICITE_SAN_D_ORIA     = 13; -- ± --
 THE_RUINS_OF_FEI_YIN    = 14;
 THE_SHADOW_LORD         = 15;
 LEAUTE_S_LAST_WISHES    = 16;
@@ -46,20 +46,20 @@ THE_HEIR_TO_THE_LIGHT   = 23;
 --  Bastok
 -----------------------------------
 
-THE_ZERUHN_REPORT         = 0;
-GEOLOGICAL_SURVEY         = 1;
-FETICHISM                 = 2;
-THE_CRYSTAL_LINE          = 3;
-WADING_BEASTS             = 4;
-THE_EMISSARY              = 5;
-THE_EMISSARY_SANDORIA     = 6;
-THE_EMISSARY_WINDURST     = 7;
-THE_EMISSARY_SANDORIA2    = 8;
-THE_EMISSARY_WINDURST2    = 9;
-THE_FOUR_MUSKETEERS       = 10;
-TO_THE_FORSAKEN_MINES     = 11;
-JEUNO_MISSION             = 12;
-MAGICITE_BASTOK           = 13;
+THE_ZERUHN_REPORT         = 0;  -- ± --
+GEOLOGICAL_SURVEY         = 1;  -- ± --
+FETICHISM                 = 2;  -- ± --
+THE_CRYSTAL_LINE          = 3;  -- ± --
+WADING_BEASTS             = 4;  -- ± --
+THE_EMISSARY              = 5;  -- ± --
+THE_EMISSARY_SANDORIA     = 6;  -- ± --
+THE_EMISSARY_WINDURST     = 7;  -- ± --
+THE_EMISSARY_SANDORIA2    = 8;  -- ± --
+THE_EMISSARY_WINDURST2    = 9;  -- ± --
+THE_FOUR_MUSKETEERS       = 10; -- ± --
+TO_THE_FORSAKEN_MINES     = 11; -- ± --
+JEUNO_MISSION             = 12; -- ± --
+MAGICITE_BASTOK           = 13; -- ± --
 DARKNESS_RISING           = 14;
 XARCABARD_LAND_OF_TRUTHS  = 15;
 RETURN_OF_THE_TALEKEEPER  = 16;
@@ -99,6 +99,35 @@ VAIN                          = 20;
 THE_JESTER_WHO_D_BE_KING      = 21;
 DOLL_OF_THE_DEAD              = 22;
 MOON_READING                  = 23;
+
+-----------------------------------
+--  Zilart Missions
+-----------------------------------
+
+THE_NEW_FRONTIER			= 0;
+WELCOME_TNORG				= 1;
+KAZAMS_CHIEFTAINESS			= 2;
+THE_TEMPLE_OF_UGGALEPIH		= 3;
+HEADSTONE_PILGRIMAGE		= 4;
+THROUGH_THE_QUICKSAND_CAVES	= 5;
+THE_CHAMBER_OF_ORACLES		= 6;
+RETURN_TO_DELKFUTTS_TOWER	= 7;
+ROMAEVE						= 8;
+THE_TEMPLE_OF_DESOLATION	= 9;
+THE_HALL_OF_THE_GODS		= 10;
+THE_MITHRA_AND_THE_CRYSTAL	= 11;
+THE_GATE_OF_THE_GODS		= 12;
+ARK_ANGELS					= 13;
+THE_SEALED_SHRINE			= 14;
+THE_CELESTIAL_NEXUS			= 15;
+AWAKENING					= 16;
+THE_LAST_VERSE				= 17;
+
+-----------------------------------
+--  Promathia Missions
+-----------------------------------
+
+
 
 -----------------------------------
 --  Aht Urhgan Missions

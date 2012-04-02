@@ -529,7 +529,6 @@ THE_FIREBLOOM_TREE              = 1;
 GREETINGS_TO_THE_GUARDIAN       = 2;
 A_QUESTION_OF_TASTE             = 3;
 EVERYONES_GRUDGING              = 4;
-FORGE_YOUR_DESTINY				= 129;-- ± --
 YOU_CALL_THAT_A_KNIFE           = 6;
 MISSIONARY_MAN                  = 7;  -- ± --
 GULLIBLES_TRAVELS               = 8;
@@ -542,8 +541,13 @@ A_DISCERNING_EYE_KAZHAM         = 14;
 TRIAL_SIZE_TRIAL_BY_FIRE        = 15;
 YOMI_OKURI						= 16;
 I_LL_TAKE_THE_BIG_BOX			= 17;
-THE_SACRED_KATANA				= 18; -- ± --
-TWENTY_IN_PIRATE_YEARS			= 19; -- ± --
+FORGE_YOUR_DESTINY				= 129; -- ± --
+LIKE_A_SHINING_SUBLIGAR			= 138;
+LIKE_A_SHINING_LEGGINGS			= 139;
+THE_SACRED_KATANA				= 140; -- ± --
+YOMI_OKURI						= 141;
+A_THIEF_IN_NORG					= 142;
+TWENTY_IN_PIRATE_YEARS			= 143; -- ± --
 
 -----------------------------------
 --  Aht Urhgan
