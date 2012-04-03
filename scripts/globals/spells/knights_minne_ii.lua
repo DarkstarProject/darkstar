@@ -12,7 +12,6 @@ require("scripts/globals/status");
 function onSpellCast(caster,target,spell)
 
 	-- If your skill level is below 65 your stuck at the minimum
-	local power = 12;
 	local sItem = caster:getEquipID(2);
 	local sLvl = caster:getSkillLevel(40); -- Gets skill level of Singing
 	
