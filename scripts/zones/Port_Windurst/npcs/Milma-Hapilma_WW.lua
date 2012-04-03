@@ -36,10 +36,10 @@ end;
 function onTrigger(player,npc)
    
 	if(player:getNation() == guardnation and player:getVar("supplyQuest_started") > 0 and supplyRunFresh(player) == 0) then
-		player:showText(npc,YOUVE_EARNED_CONQUEST_POINTS + 40); -- "We will dispose of those unusable supplies."
+		player:showText(npc,CONQUEST + 40); -- "We will dispose of those unusable supplies."
 		region = player:getVar("supplyQuest_region");
-		player:delKeyItem(70 + region);
-		player:messageSpecial(KEYITEM_OBTAINED + 1,70 + region);
+		player:delKeyItem(getSupplyKey(region));
+		player:messageSpecial(KEYITEM_OBTAINED + 1,getSupplyKey(region));
 		player:setVar("supplyQuest_started",0);
 		player:setVar("supplyQuest_region",0);
 	else
@@ -73,7 +73,7 @@ function onEventUpdate(player,csid,option)
 					CPVerify = 0;
 				end;
 				
-				player:updateEvent(2,CPVerify,Inventory[Item + 2]); -- can't equip = 2 ?
+				player:updateEvent(2,CPVerify,Inventory[Item + 2]);
 				break;
 			end;
 		end;
@@ -118,8 +118,8 @@ function onEventFinish(player,csid,option)
 		end;
 	elseif (option >= 65536 and option <= 65560) then -- player chose supply quest.
 		region = option - 65536;
-		player:addKeyItem(70 + region);
-		player:messageSpecial(KEYITEM_OBTAINED,70 + region);
+		player:addKeyItem(getSupplyKey(region));
+		player:messageSpecial(KEYITEM_OBTAINED,getSupplyKey(region));
 		player:setVar("supplyQuest_started",VanadielDayOfTheYear());
 		player:setVar("supplyQuest_region",region);
 	end;

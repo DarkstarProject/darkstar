@@ -112,9 +112,10 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 	-- Nation:	-- SANDORIA, BASTOK, WINDURST, JEUNO
 	-- Type: 	1: city, 2: foreign, 3: outpost, 4: border
 	
-	myCP = getCP(player);
-	item = trade:getItem();
-	count = trade:getItemCount();
+	local myCP = getCP(player);
+	local item = trade:getItem();
+	local count = trade:getItemCount();
+	local AddPoints = 0;
 	
 	if(player:getNation() == guardnation or guardnation == JEUNO) then
 		if(guardtype ~= 3 and guardtype ~= 4) then -- all guard can trade crystal except outpost and border.
@@ -153,9 +154,9 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 					setCP(player,myCP - XpRing[item - 15760]);
 					player:tradeComplete();
 					player:addItem(item);
-					player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS + 58,item,XpRing[item - 15760],RingCharg[(item - 15760)]);
+					player:messageSpecial(CONQUEST + 58,item,XpRing[item - 15760],RingCharg[(item - 15760)]);
 				else
-					player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS + 55,item,XpRing[item - 15760]);
+					player:messageSpecial(CONQUEST + 55,item,XpRing[item - 15760]);
 				end
 			end
 		end
@@ -170,12 +171,10 @@ end;
 function supplyRunFresh(player)
 	
 	if(player:getVar("supplyQuest_started") + 1 >= VanadielDayOfTheYear()) then
-		output = 1;
+		return 1;
 	else
-		output = 0;
+		return 0;
 	end;
-	
-	return output;
 	
 end;
 
@@ -189,7 +188,9 @@ sandy_bastok_ally = 0;
 
 function getArg1(guardnation,player)
 	
-	pNation = player:getNation();
+	local pNation = player:getNation();
+	local output = 0;
+	local signet = 0;
 
 	if(guardnation == WINDURST) then
 		output = 33;
@@ -254,7 +255,7 @@ end;
 
 function getSupplyAvailable(nation,player)
 	
-	mask = 2145386527;
+	local mask = 2145386527;
 	
 	if(player:getVar("supplyQuest_started") == VanadielDayOfTheYear()) then
 		mask = 4294967295; -- Need to wait 1 vanadiel day
@@ -262,7 +263,7 @@ function getSupplyAvailable(nation,player)
 	
 	for nb = 0,12 do
 		if(player:hasKeyItem(75 + nb)) then
-			mask = -1; -- ifyou have supply run already activated
+			mask = -1; -- if you have supply run already activated
 		end
 	end
 	
@@ -286,16 +287,14 @@ end;
 
 function getArg6(player)
 	
-	output = player:getRank();
-	nation = player:getNation();
+	local output = player:getRank();
+	local nation = player:getNation();
 	
 	if(nation == BASTOK) then
-		output = output + 32;
+		return output + 32;
 	elseif(nation == WINDURST) then
-		output = output + 64;
+		return output + 64;
 	end
-	
-	return output;
 	
 end;
 
@@ -307,13 +306,33 @@ function getRewardExForce(guardnation,player)
 	return 0;
 end;
 
+------------------------------------------------
+-- function getKeySupply(region)
+------------------------------------------------
+
+function getSupplyKey(region)
+	
+	if(region <= 14) then
+		return 70 + region;
+	elseif(region == 15) then
+		return 124;
+	elseif(region <= 18) then
+		return 69 + region;
+	elseif(region <= 20) then
+		return 243 + region;
+	elseif(region == 23) then
+		return 620;
+	end
+	
+end;
+
 -----------------------------------------------------------------
 -- giltosetHP(player) returns the amount of gil it costs a player to set a homepoint at a foreign outpost/border guard.
 -----------------------------------------------------------------
 
 function giltosetHP(guardnation,player)
 	
-	rank = player:getRank();
+	local rank = player:getRank();
 	
 	if(getArg1(guardnation,player) < 0x700) then -- determine ifplayer is in same or allied nation as guard 
 		HPgil = 0;
@@ -335,7 +354,8 @@ end;
 
 function hasOutpost(player, region)
 	
-	nation = player:getNation()
+	local nation = player:getNation()
+	local bit = {};
 	
 	if(nation == BASTOK) then
 		supply_quests = player:getVar("supplyQuest_BASTOK");
@@ -344,7 +364,7 @@ function hasOutpost(player, region)
 	elseif(nation == WINDURST) then
 		supply_quests = player:getVar("supplyQuest_WINDURST");
 	end;
-	bit = {}
+	
 	for i = 23,5,-1 do 
 		twop = 2^i
 		if(supply_quests >= twop) then
@@ -367,15 +387,13 @@ function OP_TeleFee(player,region)
 	
 	if(hasOutpost(player,region) == 1) then
 		if(getRegionOwner(region) == player:getNation()) then
-			fee = tpFees[region];
+			return tpFees[region];
 		else
-			fee = tpFees[region]*3;
+			return tpFees[region] * 3;
 		end
 	else
-		fee = 0;
+		return 0;
 	end
-	
-	return fee;
 	
 end;
 
@@ -401,7 +419,7 @@ end;
 
 function getTeleAvailable(nation)
 	
-	mask = 2145386527;
+	local mask = 2145386527;
 	
 	for i = 5,23 do 
 		if(getRegionOwner(i) ~= nation) then

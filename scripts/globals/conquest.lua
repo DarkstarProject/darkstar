@@ -50,8 +50,7 @@ end;
 -----------------------------------------------------------------
 
 function addCP(player,amount)
-	cp = player:getVar("CP") + amount;
-	player:setVar("CP",cp);
+	player:setVar("CP",(player:getVar("CP") + amount));
 end;
 
 -----------------------------------------------------------------
@@ -59,7 +58,7 @@ end;
 -----------------------------------------------------------------
 
 function setCP(player,amount)
-	return player:setVar("CP",amount);
+	player:setVar("CP",amount);
 end;
 
 -----------------------------------
@@ -68,7 +67,7 @@ end;
 	   
 function getNationRank(nation)
 
-	rank = 0;
+	local rank = 0;
 
 	if(nation == BASTOK) then
 		rank = 1;	
@@ -87,6 +86,8 @@ end
 -----------------------------------
 
 function getRegionOwner(region)
+	
+	local owner = 0;
 	
 	switch (region): caseof
 	{
@@ -674,12 +675,12 @@ end;
 
 function SetRegionalConquestOverseers()
 
-region = 5;
+	local region = 5;
 
 	while region <= 23 do
 
-	npclist = getRegionalConquestOverseers(region);
-	nation  = getRegionOwner(region);
+	local npclist = getRegionalConquestOverseers(region);
+	local nation  = getRegionOwner(region);
 
 		i = 1;
 		while i <= (table.getn(npclist)) do

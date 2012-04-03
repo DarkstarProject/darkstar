@@ -33,13 +33,13 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(70 + region) and player:getNation() == guardnation) then
+	if(player:hasKeyItem(getSupplyKey(region)) and player:getNation() == guardnation) then
 		if(supplyRunFresh(player) == 1) then
 			player:startEvent(csid,16,0,0,0,1,0,0,255); -- you have brought us supplies !
 		else
 			player:showText(npc, CONQUEST - 1); -- "Hmm... These supplies you have brought us are too old to be of any use."
-			player:delKeyItem(70 + region);
-			player:messageSpecial(KEYITEM_OBTAINED + 1, 70 + region);
+			player:delKeyItem(getSupplyKey(region));
+			player:messageSpecial(KEYITEM_OBTAINED + 1, getSupplyKey(region));
 			player:setVar("supplyQuest_region",0);
 		end
 	else
@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
 		player:delStatusEffect(EFFECT_SIGNET);
 		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 	elseif(option == 2) then
-		player:delKeyItem(70 + region);
+		player:delKeyItem(getSupplyKey(region));
 		addCP(player,supplyReward[region - 4])
 		player:messageSpecial(CONQUEST); -- "You've earned conquest points!"
 		if(hasOutpost(player, region) == 0) then
