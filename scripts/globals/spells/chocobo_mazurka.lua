@@ -2,7 +2,6 @@
 -- Spell: Chocobo Mazurka
 -- Gives party members enhanced movement
 -----------------------------------------
------------------------------------------
 
 require("scripts/globals/status");
 

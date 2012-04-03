@@ -2,7 +2,6 @@
 -- Spell: Army's Paeon II
 -- Gradually restores target's HP.
 -----------------------------------------
------------------------------------------
 
 require("scripts/globals/status");
 

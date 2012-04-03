@@ -2,7 +2,6 @@
 -- Spell: Advancing March
 -- Gives party members Haste
 -----------------------------------------
------------------------------------------
 
 require("scripts/globals/status");
 

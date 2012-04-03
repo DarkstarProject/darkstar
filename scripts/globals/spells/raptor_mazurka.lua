@@ -2,7 +2,6 @@
 -- Spell: Raptor Mazurka
 -- Gives party members enhanced movement
 -----------------------------------------
------------------------------------------
 
 require("scripts/globals/status");
 

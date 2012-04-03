@@ -2,7 +2,6 @@
 -- Spell: Army's Paeon IV
 -- Gradually restores target's HP.
 -----------------------------------------
------------------------------------------
 
 require("scripts/globals/status");
 
