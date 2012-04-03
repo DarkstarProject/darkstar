@@ -24,6 +24,8 @@
 #include "../../common/socket.h"
 #include "../../common/utils.h"
 
+#include <string.h>
+
 #include "../itemutils.h"
 #include "../vana_time.h"
 
