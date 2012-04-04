@@ -86,8 +86,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("onFinishCSID: %u",csid);
-printf("onFinishOPTION: %u",option);
+--printf("onFinishCSID: %u",csid);
+--printf("onFinishOPTION: %u",option);
 	
 	if(option == 1) then
 		duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;

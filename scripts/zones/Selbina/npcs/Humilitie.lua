@@ -1,11 +1,8 @@
 -----------------------------------
---  Area: Selbina
---   NPC: Humilitie
---  Type: Adventurer's Assistant
--- @zone: 248
---  @pos: 17.979 -2.39 -58.800
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Selbina
+-- NPC:  Humilitie
+-- Reports the time remaining before boat arrival.
+-- @pos 17.979 -2.39 -58.800 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +19,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00e7);
+	
+	-- The boat comes every 1152 seconds.
+	timer = 1152 - ((os.time() - 1009810584)%1152);
+	player:startEvent(0x00e7,timer);
+	
 end;
 
 -----------------------------------
@@ -30,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +40,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
-

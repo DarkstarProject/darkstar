@@ -540,7 +540,6 @@ CLOAK_AND_DAGGER                = 13;
 A_DISCERNING_EYE_KAZHAM         = 14;
 TRIAL_SIZE_TRIAL_BY_FIRE        = 15;
 YOMI_OKURI						= 16;
-I_LL_TAKE_THE_BIG_BOX			= 17;
 FORGE_YOUR_DESTINY				= 129; -- ± --
 LIKE_A_SHINING_SUBLIGAR			= 138;
 LIKE_A_SHINING_LEGGINGS			= 139;
@@ -548,6 +547,8 @@ THE_SACRED_KATANA				= 140; -- ± --
 YOMI_OKURI						= 141;
 A_THIEF_IN_NORG					= 142;
 TWENTY_IN_PIRATE_YEARS			= 143; -- ± --
+I_LL_TAKE_THE_BIG_BOX			= 144; -- ± --
+TRUE_WILL						= 145; -- ± --
 
 -----------------------------------
 --  Aht Urhgan

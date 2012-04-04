@@ -9,3 +9,6 @@ ITEM_CANNOT_BE_OBTAINED = 7735; -- You cannot obtain the item <item> come back a
 
 -- Conquest
 CONQUEST =  7162; -- "You've earned conquest points!"
+
+-- Other dialog
+YOU_SEE_NOTHING = 6392;

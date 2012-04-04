@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
 -- NPC:  Treasure Coffer
--- @zone 174
--- @pos 103 -11 211
+-- @pos 103 -11 211 174
 -----------------------------------
 package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 -----------------------------------
@@ -42,6 +41,8 @@ function onTrade(player,npc,trade)
 			questItemNeeded = 1;
 		elseif(player:hasKeyItem(MAP_OF_THE_KUFTAL_TUNNEL) == false) then
 			questItemNeeded = 2;
+		elseif(player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2) then
+			questItemNeeded = 3;
 		end
 		--------------------------------------
 		
@@ -68,6 +69,9 @@ function onTrade(player,npc,trade)
 				elseif(questItemNeeded == 2) then
 					player:addKeyItem(MAP_OF_THE_KUFTAL_TUNNEL);
 					player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_KUFTAL_TUNNEL); -- Map of the Kuftal Tunnel (KI)
+				elseif(questItemNeeded == 3) then
+					player:addKeyItem(LARGE_TRICK_BOX);
+					player:messageSpecial(KEYITEM_OBTAINED,LARGE_TRICK_BOX);
 				else
 					player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
 					

@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Port Bastok
 -- NPC:  Ensetsu
--- Finish Quest: Ayame and Kaede, 20 in Pirate Years
--- @zone 236
--- @pos 33 -6 67
+-- Finish Quest: Ayame and Kaede
+-- Involved in Quest: 20 in Pirate Years, I'll Take the Big Box
+-- @pos 33 -6 67 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -48,11 +48,17 @@ function onTrigger(player,npc)
 		player:startEvent(0x0106);
 	elseif(player:getVar("twentyInPirateYearsCS") == 4) then
 		player:startEvent(0x0107);
+	elseif(player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getVar("illTakeTheBigBoxCS") == 0) then
+		player:startEvent(0x0108);
+	elseif(player:getVar("illTakeTheBigBoxCS") == 1) then
+		player:startEvent(0x0109);
 	else
 		player:startEvent(0x001b);
 	end
 	
 end;
+
+-- 0x001b  0x00f0  0x00f2  0x00f3  0x00f5  0x00f6  0x00f7  0x0106  0x0107  0x0108  0x0109  0x0105
 
 -----------------------------------
 -- onEventUpdate
@@ -85,6 +91,8 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(BASTOK,AYAME_AND_KAEDE);
 	elseif(csid == 0x0106) then
 		player:setVar("twentyInPirateYearsCS",3);
+	elseif(csid == 0x0108) then
+		player:setVar("illTakeTheBigBoxCS",1);
 	end
 	
 end;
