@@ -237,7 +237,7 @@ WATER_WAY_TO_GO                 = 16;
 BLUE_RIBBON_BLUES               = 17;
 THE_ALL_NEW_C_3000              = 18;
 THE_POSTMAN_ALWAYS_KO_S_TWICE   = 19; -- + --
-EARLY_BIRD_CATCHES_THE_BOOKWORM = 20;
+EARLY_BIRD_CATCHES_THE_BOOKWORM = 20; -- + --
 CATCH_IT_IF_YOU_CAN             = 21; -- + --
 
 ALL_AT_SEA                      = 23;
@@ -247,7 +247,7 @@ ROCK_RACKETTER                  = 26;
 CHOCOBILIOUS                    = 27;
 TEACHER_S_PET                   = 28; -- + --
 REAP_WHAT_YOU_SOW               = 29; -- + --
-GLYPH_HANGER                    = 30;
+GLYPH_HANGER                    = 30; -- + --
 THE_FANGED_ONE                  = 31;
 CURSES_FOILED_AGAIN_1           = 32;
 CURSES_FOILED_AGAIN_2           = 33;
