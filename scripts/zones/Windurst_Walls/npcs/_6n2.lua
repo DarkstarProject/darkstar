@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if (csid == 0x0120) then
-		player:setVar("KnowOnesOnions",1);
+		player:setVar("KnowOnesOnions",2);
 	elseif (csid == 0x0121) then
 		player:completeQuest(WINDURST,ONION_RINGS);
 		player:addFame(WINDURST,WIN_FAME*100);
