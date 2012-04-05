@@ -30,7 +30,7 @@ GlyphHanger = player:getQuestStatus(WINDURST,GLYPH_HANGER);
 
 	if (GlyphHanger == QUEST_COMPLETED) then
 		player:startEvent(0x0182);
-	elseif (GlyphHanger == QUEST_ACCEPTED)
+	elseif (GlyphHanger == QUEST_ACCEPTED) then
 		if (player:hasKeyItem(NOTES_FROM_IPUPU)) then
 			player:startEvent(0x0181);
 		else 
