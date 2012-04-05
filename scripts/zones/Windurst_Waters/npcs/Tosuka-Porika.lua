@@ -50,9 +50,20 @@ function onTrigger(player,npc)
 		hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
 		if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),32) == false) then
 			player:startEvent(0x0037); -- Show Off Hat
-		else
-			player:startEvent(0x0172); -- Standard Conversation
+
 		end
+	end
+	bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
+	glyphStatus = player:getQuestStatus(WINDURST,GLYPH_HANGER);
+		
+	if(bookwormStatus == QUEST_AVAILABLE and player:getCurrentMission(WINDURST) ~= LOST_FOR_WORDS and glyphStatus == QUEST_COMPLETED and Fame >= 2) then
+		player:startEvent(0x0183); -- Accept quest 
+	
+	elseif(bookwormStatus == QUEST_ACCEPTED) then
+		player:startEvent(0x0184); -- Dialogue after accepting quest
+		
+	else
+		player:startEvent(0x0172); -- Standard Conversation
 	end
 end;
 
@@ -85,6 +96,9 @@ function onEventFinish(player,csid,option)
 		-- Remove all variables set for this mission
 		player:setVar("windurst_mission_2_1",0);
 		player:setVar("wm_2_1_randfoss",0);
+	end
+	if(csid == 0x0183 and option == 0) then -- Early Bird Gets The Bookworm
+		player:addQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
 	end
 end;
 
