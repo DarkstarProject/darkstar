@@ -1,45 +1,38 @@
------------------------------------
---  Area: North Gustaberg
---   NPC: Field Manual
---  Type: Fields of Valor
--- @zone: 106
---  @pos: 625.019 -2.045 316.154
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
------------------------------------
-
-function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-	player:startEvent(0x010c);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-end;
-
+-----------------------------------	
+-- Field Manual	
+-- Area: North Gustaberg	
+-----------------------------------	
+	
+require("/scripts/globals/settings");	
+require("/scripts/globals/fieldsofvalor");	
+	
+-----------------------------------	
+-- onTrigger Action	
+-----------------------------------	
+	
+function onTrigger(player,npc)	
+	startFov(FOV_EVENT_NORTH_GUSTABERG,player);
+end;	
+	
+-----------------------------------	
+-- onTrade Action	
+-----------------------------------	
+	
+function onTrade(player,npc,trade)	
+end;	
+	
+-----------------------------------	
+-- onEventSelection	
+-----------------------------------	
+	
+function onEventUpdate(player,csid,menuchoice)	
+	updateFov(player,csid,menuchoice,16,17,18,19,59);
+end;	
+	
+-----------------------------------	
+-- onEventFinish Action	
+-----------------------------------	
+	
+function onEventFinish(player,csid,option)	
+	finishFov(player,csid,option,16,17,18,19,59,FOV_MSG_NORTH_GUSTABERG);
+end;	
