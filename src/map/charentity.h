@@ -154,6 +154,8 @@ public:
 	uint16			 m_mkeCurrent;					// текущая миссия A Moogle Kupo d'Etat
 	uint16			 m_asaCurrent;					// текущая миссия A Shantotto Ascension
 
+    uint32           RegionPoints[4];               // concuest points, imperial standing points etc
+
     uint8            GetGender();                   // узнаем пол персонажа
 
 	int32			 firstPacketSize();				// размер первого пакета в PacketList

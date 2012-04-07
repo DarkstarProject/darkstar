@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(ARAGONEU);
+RegionOwner = GetRegionOwner(ARAGONEU);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,MAQUMOLPIH_CLOSED_DIALOG);

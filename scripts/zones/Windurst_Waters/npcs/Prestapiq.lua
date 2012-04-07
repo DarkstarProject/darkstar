@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(MOVALPOLOS);
+RegionOwner = GetRegionOwner(MOVALPOLOS);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,PRESTAPIQ_CLOSED_DIALOG);

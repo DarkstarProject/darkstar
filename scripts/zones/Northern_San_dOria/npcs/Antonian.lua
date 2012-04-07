@@ -36,7 +36,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(ARAGONEU);
+RegionOwner = GetRegionOwner(ARAGONEU);
 
 	if(RegionOwner ~= SANDORIA) then 
 		player:showText(npc,ANTONIAN_CLOSED_DIALOG);

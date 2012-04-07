@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(VOLLBOW);
+RegionOwner = GetRegionOwner(VOLLBOW);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,AULAVIA_CLOSED_DIALOG);

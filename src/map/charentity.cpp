@@ -53,7 +53,8 @@ CCharEntity::CCharEntity()
 	memset(& jobs,  0, sizeof(jobs));
 	memset(& keys,  0, sizeof(keys));
     memset(& equip, 0, sizeof(equip));
-	memset(& RealSkills, 0, sizeof(RealSkills));
+	memset(& RealSkills,   0, sizeof(RealSkills));
+    memset(& RegionPoints, 0, sizeof(RegionPoints));
 
 	memset(& m_SpellList, 0, sizeof(m_SpellList));
 	memset(& m_ZonesList, 0, sizeof(m_ZonesList));
@@ -66,6 +67,7 @@ CCharEntity::CCharEntity()
 	memset(& m_missionLog,  0, sizeof(m_missionLog));
 	memset(& m_assaultLog,  0, sizeof(m_assaultLog));
 	memset(& m_campaignLog, 0, sizeof(m_campaignLog));
+
 	for(uint8 i = 0; i <= 3; ++i) 
 	{
 		m_missionLog[i].current = 0xFFFF;

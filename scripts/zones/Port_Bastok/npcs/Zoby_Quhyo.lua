@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(ELSHIMOLOWLANDS);
+RegionOwner = GetRegionOwner(ELSHIMOLOWLANDS);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,ZOBYQUHYO_CLOSED_DIALOG);

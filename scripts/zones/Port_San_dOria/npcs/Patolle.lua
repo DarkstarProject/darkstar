@@ -35,7 +35,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(KUZOTZ);
+RegionOwner = GetRegionOwner(KUZOTZ);
 
 if (RegionOwner ~= SANDORIA) then 
 	player:showText(npc,PATOLLE_CLOSED_DIALOG);

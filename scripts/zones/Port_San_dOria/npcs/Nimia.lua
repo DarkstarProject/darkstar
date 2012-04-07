@@ -35,7 +35,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(ELSHIMOLOWLANDS);
+RegionOwner = GetRegionOwner(ELSHIMOLOWLANDS);
 
 if (RegionOwner ~= SANDORIA) then 
 	player:showText(npc,NIMIA_CLOSED_DIALOG);

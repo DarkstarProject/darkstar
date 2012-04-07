@@ -25,6 +25,7 @@
 
 #include <string.h>
 
+#include "../charentity.h"
 #include "../conquest_system.h"
 
 #include "conquest_map.h"
@@ -32,38 +33,40 @@
 
 CConquestPacket::CConquestPacket(CCharEntity * PChar) 
 {
-	this->type = 0x5e; 
-	this->size = 0x5a; 
+	this->type = 0x5E; 
+	this->size = 0x5A;
 
 	WBUFB(data,(0x04)-4) = conquest::GetBalance();
 
-	WBUFL(data,(0x1A)-4) = 0x01801515;
-	WBUFL(data,(0x1E)-4) = 0x01801515;
-	WBUFL(data,(0x22)-4) = 0x01801515;
-	WBUFL(data,(0x26)-4) = 0x02801515;
-	WBUFL(data,(0x2A)-4) = 0x03801515;
-	WBUFL(data,(0x2E)-4) = 0x03801515;
-	WBUFL(data,(0x32)-4) = 0x03801515;
-	WBUFL(data,(0x36)-4) = 0x01801515;
-	WBUFL(data,(0x3A)-4) = 0x02801515;
-	WBUFL(data,(0x3E)-4) = 0x03801515;
-	WBUFL(data,(0x42)-4) = 0x02801515;
-	WBUFL(data,(0x46)-4) = 0x02801515;
-	WBUFL(data,(0x4A)-4) = 0x01801515;
-	WBUFL(data,(0x4E)-4) = 0x03801515; 
-	WBUFL(data,(0x52)-4) = 0x01801515; 
-	WBUFL(data,(0x56)-4) = 0x03801515;
-	WBUFL(data,(0x5A)-4) = 0x03801515;
-	WBUFL(data,(0x5E)-4) = 0x04801515;
-	WBUFL(data,(0x62)-4) = 0x03801515;
+    WBUFL(data,(0x1A)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_RONFAURE));
+	WBUFL(data,(0x1E)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_ZULKHEIM));
+	WBUFL(data,(0x22)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_NORVALLEN));
+	WBUFL(data,(0x26)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_GUSTABERG));
+	WBUFL(data,(0x2A)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_DERFLAND));
+	WBUFL(data,(0x2E)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_SARUTABARUTA));
+	WBUFL(data,(0x32)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_KOLSHUSHU));
+	WBUFL(data,(0x36)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_ARAGONEU));
+	WBUFL(data,(0x3A)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_FAUREGANDI));
+	WBUFL(data,(0x3E)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_VALDEAUNIA));
+	WBUFL(data,(0x42)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_QUFIMISLAND));
+	WBUFL(data,(0x46)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_LITELOR));
+	WBUFL(data,(0x4A)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_KUZOTZ));
+	WBUFL(data,(0x4E)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_VOLLBOW));
+	WBUFL(data,(0x52)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_ELSHIMOLOWLANDS));
+	WBUFL(data,(0x56)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_ELSHIMOUPLANDS));
+	WBUFL(data,(0x5A)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_TULIA));
+	WBUFL(data,(0x5E)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_MOVALPOLOS));
+	WBUFL(data,(0x62)-4) = 0x00801515 + 0x01000000 * (1 + conquest::GetRegionOwner(REGION_TAVNAZIA));
 
 	WBUFB(data,(0x8C)-4) = conquest::GetNexTally();
-  //WBUFL(data,(0x90)-4) = PChar->GetConquestPoints();
+    WBUFL(data,(0x90)-4) = PChar->RegionPoints[PChar->profile.nation];
 
 	WBUFB(data,(0x9C)-4) = 0x01;
 
-	uint8 packet[] = {
-	0x80, 0x78, 0x52, 0x03, 0x1a, 0x46, 0x04, 0x00, 0x42, 0x46, 0x04, 0x00, 0x65, 0x3d, 0x04, 0x00};
+	uint8 packet[] = 
+    {
+	    0x80, 0x78, 0x52, 0x03, 0x1a, 0x46, 0x04, 0x00, 0x42, 0x46, 0x04, 0x00, 0x65, 0x3d, 0x04, 0x00
+    };
 	memcpy(data+(0xA0)-4, &packet, 16);
 
   //WBUFL(data,(0xB0)-4) = PChar->GetImperialStandingPoints();

@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(ZULKHEIM);
+RegionOwner = GetRegionOwner(ZULKHEIM);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,BIN_STEJIHNA_CLOSED_DIALOG);

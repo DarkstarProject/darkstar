@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(SARUTABARUTA);
+RegionOwner = GetRegionOwner(SARUTABARUTA);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,SOMNPAEMN_CLOSED_DIALOG);

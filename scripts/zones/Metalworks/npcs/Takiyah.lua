@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(QUFIM);
+RegionOwner = GetRegionOwner(QUFIM);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,TAKIYAH_CLOSED_DIALOG);

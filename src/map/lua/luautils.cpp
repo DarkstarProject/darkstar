@@ -40,6 +40,7 @@
 #include "../baseentity.h"
 #include "../battleentity.h"
 #include "../charentity.h"
+#include "../conquest_system.h"
 #include "../map.h"
 #include "../mobentity.h"
 #include "../spell.h"
@@ -71,6 +72,7 @@ int32 init()
 
 	lua_register(LuaHandle,"print",luautils::print);
 	lua_register(LuaHandle,"GetNPCByID",luautils::GetNPCByID);
+    lua_register(LuaHandle,"GetRegionOwner", luautils::GetRegionOwner);
 	lua_register(LuaHandle,"SpawnMob",luautils::SpawnMob);
 	lua_register(LuaHandle,"DespawnMob",luautils::DespawnMob);
 	lua_register(LuaHandle,"GetMobAction",luautils::GetMobAction);
@@ -177,6 +179,20 @@ int32 GetNPCByID(lua_State* L)
 	}
 	lua_pushnil(L);
 	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*  Узнаем страну, владеющую текущим регионом                            *
+*                                                                       *
+************************************************************************/
+
+int32 GetRegionOwner(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    lua_pushinteger(L, conquest::GetRegionOwner((REGIONTYPE)lua_tointeger(L,1)));
+    return 1;
 }
 
 /************************************************************************

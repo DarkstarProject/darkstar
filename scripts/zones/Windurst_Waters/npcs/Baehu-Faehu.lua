@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(SARUTABARUTA);
+RegionOwner = GetRegionOwner(SARUTABARUTA);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,BAEHUFAEHU_CLOSED_DIALOG);

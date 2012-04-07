@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(NORVALLEN);
+RegionOwner = GetRegionOwner(NORVALLEN);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,POSSORUHBINI_CLOSED_DIALOG);

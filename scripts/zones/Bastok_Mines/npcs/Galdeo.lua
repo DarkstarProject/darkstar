@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(LITELOR);
+RegionOwner = GetRegionOwner(LITELOR);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,GALDEO_CLOSED_DIALOG);

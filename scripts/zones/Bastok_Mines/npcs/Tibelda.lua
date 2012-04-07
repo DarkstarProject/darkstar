@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(VALDEAUNIA);
+RegionOwner = GetRegionOwner(VALDEAUNIA);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,TIBELDA_CLOSED_DIALOG);

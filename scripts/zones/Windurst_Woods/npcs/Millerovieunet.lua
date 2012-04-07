@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(QUFIM);
+RegionOwner = GetRegionOwner(QUFIM);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,MILLEROVIEUNET_CLOSED_DIALOG);

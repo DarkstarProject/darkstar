@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(DERFLAND);
+RegionOwner = GetRegionOwner(DERFLAND);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,TARAIHIPERUNHI_CLOSED_DIALOG);

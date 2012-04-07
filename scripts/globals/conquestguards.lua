@@ -269,7 +269,7 @@ function getSupplyAvailable(nation,player)
 	
 	if(mask ~= -1 and mask ~= 4294967295) then
 		for i = 5,20 do 
-			if(getRegionOwner(i) ~= nation) then
+			if(GetRegionOwner(i) ~= nation) then
 				mask = mask + 2^i;
 			end
 		end
@@ -386,7 +386,7 @@ end;
 function OP_TeleFee(player,region)
 	
 	if(hasOutpost(player,region) == 1) then
-		if(getRegionOwner(region) == player:getNation()) then
+		if(GetRegionOwner(region) == player:getNation()) then
 			return tpFees[region];
 		else
 			return tpFees[region] * 3;
@@ -422,7 +422,7 @@ function getTeleAvailable(nation)
 	local mask = 2145386527;
 	
 	for i = 5,23 do 
-		if(getRegionOwner(i) ~= nation) then
+		if(GetRegionOwner(i) ~= nation) then
 			mask = mask + 2^i;
 		end;
 	end

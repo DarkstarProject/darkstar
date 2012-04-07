@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(FAUREGANDI);
+RegionOwner = GetRegionOwner(FAUREGANDI);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,SHEIAPOHRICHAMAHA_CLOSED_DIALOG);

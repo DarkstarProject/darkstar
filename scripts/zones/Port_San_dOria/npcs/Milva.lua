@@ -34,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(SARUTABARUTA);
+RegionOwner = GetRegionOwner(SARUTABARUTA);
 
 if (RegionOwner ~= SANDORIA) then 
 	player:showText(npc,MILVA_CLOSED_DIALOG);

@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(RONFAURE);
+RegionOwner = GetRegionOwner(RONFAURE);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,FAUSTIN_CLOSED_DIALOG);

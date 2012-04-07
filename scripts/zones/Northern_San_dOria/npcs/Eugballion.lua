@@ -34,7 +34,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	RegionOwner = getRegionOwner(QUFIM);
+	RegionOwner = GetRegionOwner(QUFIM);
 
 	if (RegionOwner ~= SANDORIA) then 
 		player:showText(npc,EUGBALLION_CLOSED_DIALOG);

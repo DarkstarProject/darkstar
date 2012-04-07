@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(RONFAURE);
+RegionOwner = GetRegionOwner(RONFAURE);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,JOURILLE_CLOSED_DIALOG);

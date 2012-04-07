@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(VOLLBOW);
+RegionOwner = GetRegionOwner(VOLLBOW);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,LEBONDUR_CLOSED_DIALOG);

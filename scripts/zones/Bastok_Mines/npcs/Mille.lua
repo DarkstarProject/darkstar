@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(NORVALLEN);
+RegionOwner = GetRegionOwner(NORVALLEN);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,MILLE_CLOSED_DIALOG);

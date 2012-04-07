@@ -34,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(KOLSHUSHU);
+RegionOwner = GetRegionOwner(KOLSHUSHU);
 
 if (RegionOwner ~= SANDORIA) then 
 	player:showText(npc,FIVA_CLOSED_DIALOG);

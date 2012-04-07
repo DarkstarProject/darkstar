@@ -36,7 +36,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	RegionOwner = getRegionOwner(GUSTABERG);
+	RegionOwner = GetRegionOwner(GUSTABERG);
 
 	if (RegionOwner ~= SANDORIA) then 
 		player:showText(npc,APAIREMANT_CLOSED_DIALOG);

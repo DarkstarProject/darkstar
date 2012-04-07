@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(KUZOTZ);
+RegionOwner = GetRegionOwner(KUZOTZ);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,VATTIAN_CLOSED_DIALOG);

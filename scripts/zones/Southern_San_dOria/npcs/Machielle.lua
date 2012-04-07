@@ -35,7 +35,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(NORVALLEN);
+RegionOwner = GetRegionOwner(NORVALLEN);
 
 if (RegionOwner ~= SANDORIA) then 
 	player:showText(npc,MACHIELLE_CLOSED_DIALOG);

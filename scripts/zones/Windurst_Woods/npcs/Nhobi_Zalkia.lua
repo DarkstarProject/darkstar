@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(KUZOTZ);
+RegionOwner = GetRegionOwner(KUZOTZ);
 
 if (RegionOwner ~= WINDURST) then 
 	player:showText(npc,NHOBI_ZALKIA_CLOSED_DIALOG);

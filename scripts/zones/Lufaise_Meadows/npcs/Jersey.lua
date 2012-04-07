@@ -30,7 +30,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	owner = getRegionOwner(region);
+	owner = GetRegionOwner(region);
 	arg1 = getArg1(owner,player);
 	
 	if(owner == player:getNation()) then

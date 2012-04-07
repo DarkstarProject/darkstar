@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(ZULKHEIM);
+RegionOwner = GetRegionOwner(ZULKHEIM);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,ROSSWALD_CLOSED_DIALOG);

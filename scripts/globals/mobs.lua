@@ -22,11 +22,7 @@ function onMobDeathEx(mob,killer)
 			killer:setVar("Blade_of_Darkness_SwordKills", SwordKills + 1);	
 		end
 	end
-	
-	-- Need to add region condition (region owner are the same of player)
+
 	-- CP is 10% of the XP points
---	if(killer:getRegionOwner() == killer:getNation()) then
-		addCP(killer,15);
---	end
-	
+	addCP(killer,15);
 end;

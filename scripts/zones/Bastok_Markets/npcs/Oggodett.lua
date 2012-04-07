@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(ARAGONEU);
+RegionOwner = GetRegionOwner(ARAGONEU);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,OGGODETT_CLOSED_DIALOG);

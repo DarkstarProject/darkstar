@@ -37,7 +37,7 @@ end;
 
 function onTrigger(player,npc)
 
-	RegionOwner = getRegionOwner(RONFAURE);
+	RegionOwner = GetRegionOwner(RONFAURE);
 -- player:startEvent(0x0351) - are you the chicks owner
 	if (RegionOwner ~= SANDORIA) then 
 		player:showText(npc,CORUA_CLOSED_DIALOG);

@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(KOLSHUSHU);
+RegionOwner = GetRegionOwner(KOLSHUSHU);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,YAFAFA_CLOSED_DIALOG);

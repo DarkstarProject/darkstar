@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(ELSHIMOUPLANDS);
+RegionOwner = GetRegionOwner(ELSHIMOUPLANDS);
 
 if (RegionOwner ~= BASTOK) then 
 	player:showText(npc,DHENTEVRYUKOH_CLOSED_DIALOG);

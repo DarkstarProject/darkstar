@@ -35,7 +35,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = getRegionOwner(FAUREGANDI);
+RegionOwner = GetRegionOwner(FAUREGANDI);
 
 if (RegionOwner ~= SANDORIA) then 
 	player:showText(npc,VICHUEL_CLOSED_DIALOG);

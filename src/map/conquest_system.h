@@ -26,11 +26,11 @@
 
 #include "../common/cbasetypes.h"
 
-#define OTHER				0x00
-#define SANDORIA			0x01
-#define BASTOK				0x02
-#define WINDURST			0x03  
-#define BEASTMEN			0x04
+#define SANDORIA            0x00
+#define BASTOK              0x01
+#define WINDURST            0x02  
+#define BEASTMEN            0x03
+#define NEUTRAL             0xFF
 
 enum ZONEID : uint8
 {
@@ -327,7 +327,8 @@ namespace conquest
 {
 	uint8 GetBalance();
 	uint8 GetNexTally();
-	
+    uint8 GetRegionOwner(REGIONTYPE RegionID);
+
 	REGIONTYPE GetCurrentRegion(uint8 ZoneID);
 };
 
