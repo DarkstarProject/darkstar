@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 	-- "The Pickpocket" Quest events
 	if (player:getVar("thePickpocket") == 1 and thePickpocket == QUEST_AVAILABLE) then -- skips the original cut scene for "The Pickpocket" Quest if already seen.
 		player:startEvent(0x022a);
-	elseif (thePickpocket == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 1) then
+	elseif (thePickpocket == QUEST_AVAILABLE) then
 		player:startEvent(0x01f6);
 		player:setVar("thePickpocket",1);
 	-- "The Pickpocket" giving Eagle Button, but checking if they already have it.

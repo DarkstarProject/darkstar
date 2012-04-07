@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 	RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
 	receiprForThePrince = player:hasKeyItem(RECEIPT_FOR_THE_PRINCE);
 	
-	if(player:getVar("RefuseRoselTheArmorerQuest") == 1 and RoselTheArmorer == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 1) then
+	if(player:getVar("RefuseRoselTheArmorerQuest") == 1 and RoselTheArmorer == QUEST_AVAILABLE) then
 		player:startEvent(0x020c);
 	elseif(RoselTheArmorer == QUEST_AVAILABLE) then
 		player:startEvent(0x020b);
