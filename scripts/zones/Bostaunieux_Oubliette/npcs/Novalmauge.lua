@@ -27,13 +27,13 @@ function onTrade(player,npc,trade)
 			player:startEvent(0x0011);
 		end
 	end
-	
 	if(player:getQuestStatus(SANDORIA,THE_RUMOR) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(930,1) and trade:getItemCount() == 1) then
+		count = trade:getItemCount();
+		BeastBlood = trade:hasItemQty(930,1)
+		if(BeastBlood == true and count == 1) then
 			player:startEvent(0x000c);
 		end
 	end
-	
 end;
 
 -----------------------------------
@@ -42,10 +42,10 @@ end;
 
 function onTrigger(player,npc)
 
-	theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
 	troubleAtTheSluice = player:getQuestStatus(SANDORIA,TROUBLE_AT_THE_SLUICE);
 	TheHolyCrest = player:getVar("TheHolyCrest_Event");
 	tatsVar = player:getVar("troubleAtTheSluiceVar");
+	theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
 	
 	-- The Holy Crest Quest
 	if(TheHolyCrest == 1) then
@@ -59,10 +59,12 @@ function onTrigger(player,npc)
 	elseif(tatsVar == 2) then
 		player:startEvent(0x0010);
 	-- The rumor Quest
-	elseif(theRumor == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
+	elseif(theRumor == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3 and player:getMainLvl() >= 10) then
 		player:startEvent(0x000d);
 	elseif(theRumor == QUEST_ACCEPTED) then
 		player:startEvent(0x000b);
+	elseif(theRumor == QUEST_COMPLETED) then
+		player:startEvent(0x000e); -- Standard dialog after "The Rumor"
 	else
 		player:startEvent(0x000a); -- Standard dialog
 	end
@@ -101,7 +103,7 @@ function onEventFinish(player,csid,option)
 			player:tradeComplete();
 			player:addItem(4853);
 			player:messageSpecial(ITEM_OBTAINED, 4853); -- Scroll of Drain
-			player:setVar("sharpeningTheSwordCS",0);
+
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA,THE_RUMOR);
 		end

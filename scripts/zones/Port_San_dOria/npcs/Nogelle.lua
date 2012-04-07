@@ -24,7 +24,9 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 		if (MagicFlyer == true and count == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
-	elseif (player:getQuestStatus(SANDORIA,LUFET_S_LAKE_SALT) == 1) then
+	end
+	
+	if (player:getQuestStatus(SANDORIA,LUFET_S_LAKE_SALT) == 1) then
 		count = trade:getItemCount();
 		LufetSalt = trade:hasItemQty(1019,3);
 		if (LufetSalt == true and count == 3) then
