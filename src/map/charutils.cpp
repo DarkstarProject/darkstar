@@ -966,7 +966,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						case SKILL_KAT:
 						case SKILL_CLB:
 						{
-							if (PItem->getType() & ITEM_WEAPON && !charutils::hasTrait(PChar,18))
+							if (PItem->getType() & ITEM_WEAPON && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
 							{
 								PChar->pushPacket(new CCharAppearancePacket(PChar));
 								return false;
@@ -1436,29 +1436,47 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
 	}
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 void BuildingCharTraitsTable(CCharEntity* PChar)
 {
-	std::list<CTrait*> TraitsList;
-	memset(& PChar->m_TraitList, 0, sizeof(PChar->m_TraitList));
+    for (uint8 i = 0; i < PChar->TraitList.size(); ++i)
+    {
+        CTrait* PTrait = PChar->TraitList.at(i);
+        PChar->delModifier(PTrait->getMod(), PTrait->getValue());
+    }
+    PChar->TraitList.clear();
+	memset(&PChar->m_TraitList, 0, sizeof(PChar->m_TraitList));
 
-	TraitsList = battleutils::GetTraits(PChar->GetMJob());
-	for (std::list<CTrait*>::iterator it = TraitsList.begin(); it != TraitsList.end(); ++it)
+    TraitList_t* PTraitsList;
+
+	PTraitsList = traits::GetTraits(PChar->GetMJob());
+    for (uint8 i = 0; i <  PTraitsList->size(); ++i)
 	{
-		CTrait* PTrait = *it;
-		if (PChar->GetMLevel() >= PTrait->getLevel() && PChar->GetMJob() == (JOBTYPE)PTrait->getJob())
+		CTrait* PTrait = PTraitsList->at(i);
+		if (PChar->GetMLevel() >= PTrait->getLevel())
 		{
-			addTrait(PChar,  PTrait->getID());
+            addTrait(PChar, PTrait->getID());
+
+            PChar->TraitList.push_back(PTrait);
+            PChar->addModifier(PTrait->getMod(), PTrait->getValue());
 		}
 	}
 
-	TraitsList = battleutils::GetTraits(PChar->GetSJob());
-	for (std::list<CTrait*>::iterator it = TraitsList.begin(); it != TraitsList.end(); ++it)
+	PTraitsList = traits::GetTraits(PChar->GetSJob());
+	for (uint8 i = 0; i <  PTraitsList->size(); ++i)
 	{
-		CTrait* PTrait = *it;
-		if (PChar->GetSLevel() >= PTrait->getLevel() && PChar->GetSJob() == (JOBTYPE)PTrait->getJob())
+		CTrait* PTrait = PTraitsList->at(i);
+		if (PChar->GetSLevel() >= PTrait->getLevel())
 		{
 			addTrait(PChar, PTrait->getID());
+
+            PChar->TraitList.push_back(PTrait);
+            PChar->addModifier(PTrait->getMod(), PTrait->getValue());
 		}
 	}
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
@@ -1670,17 +1688,17 @@ int32 delWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID)
 *																		*
 ************************************************************************/
 
-int32 hasTrait(CCharEntity* PChar, uint16 TraitID)
+int32 hasTrait(CCharEntity* PChar, uint8 TraitID)
 {
 	return hasBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
 }
 
-int32 addTrait(CCharEntity* PChar, uint16 TraitID)
+int32 addTrait(CCharEntity* PChar, uint8 TraitID)
 {
 	return addBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
 }
 
-int32 delTrait(CCharEntity* PChar, uint16 TraitID)
+int32 delTrait(CCharEntity* PChar, uint8 TraitID)
 {
 	return delBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
 }

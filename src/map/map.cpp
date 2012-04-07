@@ -171,11 +171,11 @@ int32 do_init(int32 argc, int8** argv)
 	guildutils::Initialize();
 	charutils::LoadExpTable();
     linkshell::LoadLinkshellList();
+    traits::LoadTraitsList();
     effects::LoadEffectsParameters();
 	battleutils::LoadSkillTable();
 	battleutils::LoadAbilitiesList();
 	battleutils::LoadWeaponSkillsList();
-	battleutils::LoadTraitsList();
 	battleutils::LoadMobSkillsList();
 	battleutils::LoadEnmityTable();
 	petutils::LoadPetList();
@@ -221,7 +221,6 @@ void do_final(void)
 	itemutils::FreeItemList();
 	battleutils::FreeAbilitiesList();
 	battleutils::FreeWeaponSkillsList();
-	battleutils::FreeTraitsList();
 	
 	petutils::FreePetList();
 	zoneutils::FreeZoneList();

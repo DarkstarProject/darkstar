@@ -1575,6 +1575,10 @@ void CAICharNormal::ActionAttack()
 	{
 		WeaponDelay = 1700;
 	}
+    else if (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH)
+	{
+		WeaponDelay -= m_PChar->getMod(MOD_MARTIAL_ARTS) * 1000 / 60;
+	}
 
 	if ((m_Tick - m_LastActionTime) > WeaponDelay)
 	{

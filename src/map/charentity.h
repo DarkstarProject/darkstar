@@ -35,6 +35,7 @@
 #include "item_container.h"
 #include "linkshell.h"
 #include "trade_container.h"
+#include "trait.h"
 #include "treasure_pool.h"
 
 #include "universal_container.h"
@@ -137,7 +138,7 @@ public:
 	uint8			 m_ZonesList[32];				// список посещенных персонажем зон
 	uint8			 m_SpellList[96];				// список изученных заклинаний
 	uint8			 m_Abilities[38];				// список текущих способностей
-	uint8			 m_TraitList[16];				// список постянно активных способностей
+	uint8			 m_TraitList[16];				// список постянно активных способностей в виде битовой маски
     uint8            m_PetCommands[32];             // список доступных команд питомцу
 	uint8            m_WeaponSkills[32];  
 	questlog_t		 m_questLog[MAX_QUESTAREA];		// список всех квестов
@@ -178,6 +179,7 @@ public:
 	SpawnIDList_t	 SpawnNPCList;					// список видимых npc
 
 	RecastList_t	 RecastList;					// recast list for spells, abilities and items
+    TraitList_t      TraitList;                     // список постянно активных способностей в виде указателей
 
 	void			 SetName(int8* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
 

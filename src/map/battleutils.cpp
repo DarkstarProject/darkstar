@@ -53,10 +53,8 @@ uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skil
 
 CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// Complete Abilities List
 CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skills
-CTrait*		  g_PTraitList[MAX_TRAIT_ID]; 
 CMobSkill*    g_PMobSkillList[MAX_MOBSKILL_ID];					// List of mob skills
 
-std::list<CTrait*>       g_PTraitsList[23];
 std::list<CAbility*>     g_PAbilitiesList[MAX_JOBTYPE];			// Abilities List By Job Type
 std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
 std::vector<CMobSkill*>  g_PMobFamilySkills[MAX_MOB_FAMILY];	// Mob Skills By Family
@@ -251,34 +249,6 @@ void LoadMobSkillsList()
 	}
 }
 
-void LoadTraitsList()
-{
-	//memset(g_PTraitList,0,sizeof(g_PTraitList));
-
-	const int8* fmtQuery = "SELECT TraitId, name, job, level \
-							FROM traits \
-							WHERE job > 0 \
-							ORDER BY job, traitID, level ASC";
-
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_TRAIT_ID);
-
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		{
-			
-			CTrait* PTrait = new CTrait(Sql_GetIntData(SqlHandle,0));
-			
-			PTrait->setName(Sql_GetData(SqlHandle,1));
-			PTrait->setJob(Sql_GetIntData(SqlHandle,2));
-			PTrait->setLevel(Sql_GetIntData(SqlHandle,3));
-			
-			g_PTraitList[PTrait->getID()] = PTrait;
-			g_PTraitsList[PTrait->getJob()].push_back(PTrait);
-		}
-	}
-}
-
 /************************************************************************
 *	Clear Abilities List												*
 ************************************************************************/
@@ -301,18 +271,6 @@ void FreeWeaponSkillsList()
 	for(int32 SkillId= 0; SkillId < MAX_WEAPONSKILL_ID; ++SkillId)
 	{
 		delete g_PWeaponSkillList[SkillId];
-	}
-}
-
-
-/************************************************************************
-*  Clear Traits List													*
-************************************************************************/
-void FreeTraitsList()
-{
-	for(int32 TraitID= 0; TraitID < MAX_TRAIT_ID; ++TraitID)
-	{
-		delete g_PTraitList[TraitID];
 	}
 }
 
@@ -449,32 +407,6 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 }
 
 /************************************************************************
-*                                                                       *
-*  Get Trait By Id                                                      *
-*                                                                       *
-************************************************************************/
-
-CTrait* GetTrait(uint16 TraitID)
-{
-    DSP_DEBUG_BREAK_IF(TraitID >= sizeof(g_PTraitList));
-
-	return g_PTraitList[TraitID];
-}
-
-/************************************************************************
-*                                                                       *
-*  Get List of Traits by Main Job and Sub Job                           *
-*                                                                       *
-************************************************************************/
-
-std::list<CTrait*> GetTraits(JOBTYPE JobID)
-{
-    DSP_DEBUG_BREAK_IF(JobID >= sizeof(g_PTraitsList));
-
-	return g_PTraitsList[JobID];
-}
-
-/************************************************************************
 *																		*
 *  Calculates damage based on damage and resistance to damage type		*
 *																		*
@@ -499,7 +431,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(MOD_HTHRES)))	 / 1000; break;
 	}
 
-	PDefender->addHP(-damage);
+    PDefender->addHP(-damage);
 
     if (PAttacker->PMaster != NULL)
     {
@@ -537,7 +469,6 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
             charutils::UpdateHealth((CCharEntity*)PAttacker);
         }
     }
-
     switch (PDefender->objtype)
     {
         case TYPE_PC:

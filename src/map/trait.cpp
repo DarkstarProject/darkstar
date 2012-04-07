@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -22,57 +22,182 @@
 */
 
 #include <string.h>
-#include "trait.h"
-#include "modifier.h"
 
-CTrait::CTrait(uint16 id)
+#include "battleentity.h"
+#include "map.h"
+#include "trait.h"
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+CTrait::CTrait(uint8 id)
 {
 	m_id = id;
 	
-	m_Level = 0; 
-	m_name = "";
-	m_Job = 0;
+	m_level  = 0; 
+	m_job    = 0;
+    m_effect = 0;
+    m_mod    = 0;
+    m_value  = 0;
 }
 
-void CTrait::setJob(int8 job)
-{
-	m_Job = job;
-}
-
-void CTrait::setLevel(uint8 level)
-{
-	m_Level = level;
-}
-
-const int8* CTrait::getName()
-{
-	return m_name.c_str();
-}
-
-void CTrait::setName(int8* name)
-{
-	m_name.clear();
-	m_name.insert(0,name);
-}
-
-
-uint16 CTrait::getID()
+uint8 CTrait::getID()
 {
 	return m_id;
 }
 
-int8 CTrait::getJob()
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+uint8 CTrait::getJob()
 {
-	return m_Job;
+	return m_job;
 }
 
-int8 CTrait::getLevel()
+void CTrait::setJob(int8 job)
 {
-	return m_Level;
+    DSP_DEBUG_BREAK_IF(job > MAX_JOBTYPE);
+
+	m_job = job;
 }
 
-// 
-//MODIFIER getModifier() 
-//{
-//	return m_Mod; 
-//}
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+uint8 CTrait::getLevel()
+{
+	return m_level;
+}
+
+void CTrait::setLevel(uint8 level)
+{
+	m_level = level;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+uint16 CTrait::getMod()
+{
+    return m_mod;
+}
+
+void CTrait::setMod(uint16 mod)
+{
+    DSP_DEBUG_BREAK_IF(m_effect && mod);
+
+    m_mod = mod;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+uint16 CTrait::getEffect()
+{
+    return m_effect;
+}
+
+void CTrait::setEffect(uint16 effect)
+{
+    DSP_DEBUG_BREAK_IF(m_mod && effect);
+
+    m_effect = effect;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+int16 CTrait::getValue()
+{
+    return m_value;
+}
+
+void CTrait::setValue(int16 value)
+{
+    m_value = value;
+}
+
+/************************************************************************
+*                                                                       *
+*  Реализация namespase для работы с traits                             *
+*                                                                       *
+************************************************************************/
+
+namespace traits
+{
+    TraitList_t PTraitsList[MAX_JOBTYPE]; // список traits, сгруппированный по профессиям
+
+    /************************************************************************
+    *                                                                       *
+    *  Загружаем список traits                                              *
+    *                                                                       *
+    ************************************************************************/
+
+    void LoadTraitsList()
+    {
+	    const int8* Query = "SELECT traitid, job, level, effect, modifier, value \
+							 FROM traits \
+                             WHERE traitid < %u \
+							 ORDER BY job, traitid, level ASC";
+
+	    int32 ret = Sql_Query(SqlHandle, Query, MAX_TRAIT_ID);
+
+	    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    {
+			    CTrait* PTrait = new CTrait(Sql_GetIntData(SqlHandle,0));
+
+			    PTrait->setJob(Sql_GetIntData(SqlHandle,1));
+			    PTrait->setLevel(Sql_GetIntData(SqlHandle,2));
+                PTrait->setEffect(Sql_GetIntData(SqlHandle,3));
+                PTrait->setMod(Sql_GetIntData(SqlHandle,4));
+                PTrait->setValue(Sql_GetIntData(SqlHandle,5));
+
+			    PTraitsList[PTrait->getJob()].push_back(PTrait);
+		    }
+	    }
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Get List of Traits by Main Job or Sub Job                            *
+    *                                                                       *
+    ************************************************************************/
+
+    TraitList_t* GetTraits(uint8 JobID)
+    {
+        DSP_DEBUG_BREAK_IF(JobID >= sizeof(PTraitsList));
+
+	    return &PTraitsList[JobID];
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Clear Traits List													*
+    *                                                                       *
+    ************************************************************************/
+
+    void FreeTraitsList()
+    {
+	    // список освобождается операционной системой автоматически при завершении работы сервера
+    }
+};

@@ -43,26 +43,22 @@ namespace battleutils
 	void	LoadAbilitiesList();
 	void	LoadWeaponSkillsList(); 
 	void	LoadMobSkillsList();
-	void	LoadTraitsList();
 	void	LoadEnmityTable();
 
 	uint8	GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16	GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
 
 	CAbility*     GetAbility(uint16 AbilityID);
-	CTrait*       GetTrait(uint16 TraitID);
 	CWeaponSkill* GetWeaponSkill(uint16 WSkillID);
 	CMobSkill*    GetMobSkill(uint16 SkillID);
 
 	std::list<CAbility*>     GetAbilities(JOBTYPE JobID);
-	std::list<CTrait*>       GetTraits(JOBTYPE JobID);
 	std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
 	std::vector<CMobSkill*>  GetMobSkillsByFamily(uint16 FamilyID);
 
 	bool	CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID);
 
 	void	FreeAbilitiesList();
-	void	FreeTraitsList();
 	void    FreeWeaponSkillsList();
 	void	FreeMobSkillsList();
 

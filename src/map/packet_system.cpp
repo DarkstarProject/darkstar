@@ -3168,7 +3168,9 @@ int32 SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* da
 		charutils::CheckValidEquipment(PChar);
 		charutils::CalculateStats(PChar);
 		charutils::BuildingCharSkillsTable(PChar);
+        charutils::BuildingCharTraitsTable(PChar);
 		charutils::BuildingCharAbilityTable(PChar);
+        charutils::BuildingCharWeaponSkills(PChar);
 
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
 

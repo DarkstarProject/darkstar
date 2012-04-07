@@ -69,40 +69,40 @@ namespace charutils
 	void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID);
     void    UpdateHealth(CCharEntity* PChar);
 
-	int32	hasKeyItem(CCharEntity* PChar, uint16 KeyItemID);	// проверяем наличие ключевого предмета
-	int32	seenKeyItem(CCharEntity* PChar, uint16 KeyItemID);	// проверяем, было ли описание ключевого предмета прочитано
-	int32	unseenKeyItem(CCharEntity* PChar, uint16 KeyItemID);//Attempt to remove keyitem from seen list
-	int32	addKeyItem(CCharEntity* PChar, uint16 KeyItemID);	// добавляем ключевой предмет
-	int32	delKeyItem(CCharEntity* PChar, uint16 KeyItemID);	// улаляем ключевой предмет
+	int32	hasKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // проверяем наличие ключевого предмета
+	int32	seenKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // проверяем, было ли описание ключевого предмета прочитано
+	int32	unseenKeyItem(CCharEntity* PChar, uint16 KeyItemID);        // Attempt to remove keyitem from seen list
+	int32	addKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // добавляем ключевой предмет
+	int32	delKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // улаляем ключевой предмет
 
-	int32	hasSpell(CCharEntity* PChar, uint16 SpellID);		// проверяем наличие заклинания
-	int32	addSpell(CCharEntity* PChar, uint16 SpellID);		// добавляем заклинание
-	int32	delSpell(CCharEntity* PChar, uint16 SpellID);		// улаляем заклинание
+	int32	hasSpell(CCharEntity* PChar, uint16 SpellID);		        // проверяем наличие заклинания
+	int32	addSpell(CCharEntity* PChar, uint16 SpellID);		        // добавляем заклинание
+	int32	delSpell(CCharEntity* PChar, uint16 SpellID);		        // улаляем заклинание
 
-	int32	hasAbility(CCharEntity* PChar, uint16 AbilityID);	// проверяем наличие ключевого предмета
-	int32	addAbility(CCharEntity* PChar, uint16 AbilityID);	// добавляем ключевой предмет
-	int32	delAbility(CCharEntity* PChar, uint16 AbilityID);	// улаляем ключевой предмет
+	int32	hasAbility(CCharEntity* PChar, uint16 AbilityID);	        // проверяем наличие ключевого предмета
+	int32	addAbility(CCharEntity* PChar, uint16 AbilityID);	        // добавляем ключевой предмет
+	int32	delAbility(CCharEntity* PChar, uint16 AbilityID);	        // улаляем ключевой предмет
 
-	int32	hasTrait(CCharEntity* PChar, uint16 TraitID);	// check if pchar has trait by traitid and jobid
-	int32	addTrait(CCharEntity* PChar, uint16 TraitID);	// add trait by traitid and jobid
-	int32	delTrait(CCharEntity* PChar, uint16 TraitID);	// delete trait by traitid and jobid
+	int32	hasTrait(CCharEntity* PChar, uint8 TraitID);	            // check if pchar has trait by traitid and jobid
+	int32	addTrait(CCharEntity* PChar, uint8 TraitID);	            // add trait by traitid and jobid
+	int32	delTrait(CCharEntity* PChar, uint8 TraitID);	            // delete trait by traitid and jobid
 	
-	int32	addWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);  //declaration of function to add weapon skill
-	int32	hasWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);  //declaration of function to check for weapon skill
-	int32	delWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);  //declaration of function to delete weapon skill
+	int32	addWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to add weapon skill
+	int32	hasWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to check for weapon skill
+	int32	delWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to delete weapon skill
 
-	void	SaveCharJob(CCharEntity* PChar, JOBTYPE job);		// сохраняем уровень для выбранной профессий персонажа
-	void	SaveCharExp(CCharEntity* PChar, JOBTYPE job);		// сохраняем опыт для выбранной профессии персонажа
-	void	SaveCharEquip(CCharEntity* PChar);					// сохраняем экипировку и внешний вид персонажа
-	void	SaveCharPosition(CCharEntity* PChar);				// сохраняем позицию персонажа
-	void	SaveMissionsList(CCharEntity* PChar);               // Save the missions list 
-	void	SaveQuestsList(CCharEntity* PChar);					// сохраняем список ксевтов
-	void	SaveZonesVisited(CCharEntity* PChar);				// сохраняем посещенные зоны
-	void	SaveKeyItems(CCharEntity* PChar);					// сохраняем ключевые предметы
-	void	SaveCharInventoryCapacity(CCharEntity* PChar);      // Save Character inventory capacity
-	void	SaveSpells(CCharEntity* PChar);						// сохраняем выученные заклинания
-	void	SaveCharStats(CCharEntity* PChar);					// сохраняем флаги, текущие значения жихней, маны и профессий
-	void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	// сохраняем указанный skill персонажа
+	void	SaveCharJob(CCharEntity* PChar, JOBTYPE job);		        // сохраняем уровень для выбранной профессий персонажа
+	void	SaveCharExp(CCharEntity* PChar, JOBTYPE job);		        // сохраняем опыт для выбранной профессии персонажа
+	void	SaveCharEquip(CCharEntity* PChar);					        // сохраняем экипировку и внешний вид персонажа
+	void	SaveCharPosition(CCharEntity* PChar);				        // сохраняем позицию персонажа
+	void	SaveMissionsList(CCharEntity* PChar);                       // Save the missions list 
+	void	SaveQuestsList(CCharEntity* PChar);					        // сохраняем список ксевтов
+	void	SaveZonesVisited(CCharEntity* PChar);				        // сохраняем посещенные зоны
+	void	SaveKeyItems(CCharEntity* PChar);					        // сохраняем ключевые предметы
+	void	SaveCharInventoryCapacity(CCharEntity* PChar);              // Save Character inventory capacity
+	void	SaveSpells(CCharEntity* PChar);						        // сохраняем выученные заклинания
+	void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
+	void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа
 };
 
 #endif
