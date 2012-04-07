@@ -5,7 +5,7 @@
 -- @zone: 232
 --  @pos: -67 -5 -28
 --
--- Starts and Finishes Quest: A Taste of Meat
+-- Starts and Finishes Quest: A Taste For Meat
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 
 function onTrigger(player,npc)
 
-	aTasteOfMeat = player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT);
-	if (aTasteOfMeat == QUEST_AVAILABLE and player:getVar("aTasteOfMeat") == 1 or aTasteOfMeat == QUEST_ACCEPTED) then
+	aTasteForMeat = player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT);
+	if (aTasteForMeat == QUEST_AVAILABLE and player:getVar("aTasteForMeat") == 1 or aTasteForMeat == QUEST_ACCEPTED) then
 		player:startEvent(0x020e);
 	else
 	player:delQuest(SANDORIA, A_TASTE_FOR_MEAT);
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
 
 	if (csid == 0x020e) then
 		if (player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_AVAILABLE) then
-			player:setVar("aTasteOfMeat", 0);
+			player:setVar("aTasteForMeat", 0);
 			player:addQuest(SANDORIA, A_TASTE_FOR_MEAT);
 		end;
 	elseif (csid == 0x0210) then
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*150);
 		player:completeQuest(SANDORIA, A_TASTE_FOR_MEAT);
 		player:setTitle(RABBITER);
-		player:setVar("aTasteOfMeat", 1);
+		player:setVar("aTasteForMeat", 1);
 	end;
 	
 end;

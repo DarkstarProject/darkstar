@@ -1,32 +1,33 @@
 -----------------------------------
--- Area: Port San d'Oria
--- NPC: Gulemont
--- NPC for Quest "The Dismayed Customer"
+--  Area: Port San d'Oria
+--   NPC: Gulemont
+--  Type: Quest Giver
+-- @zone: 232
+--  @pos: -69 -5 -38
+--
+-- Starts and Finishes Quest: The Dismayed Customer
+-----------------------------------
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/zones/Port_San_dOria/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
+	if (player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(MagicmartFlyer,1) == true and trade:getItemCount() == 1) then
 			player:messageSpecial(FLYER_REFUSED);
-		end
-	end
+		end;
+	end;
+	
 end; 
 
 -----------------------------------
@@ -35,27 +36,19 @@ end;
 
 function onTrigger(player,npc)
 
-	-- "The Dismayed Customer" Quest status
 	theDismayedCustomer = player:getQuestStatus(SANDORIA, THE_DISMAYED_CUSTOMER);
-	sanFame = player:getFameLevel(SANDORIA);
-	
-	
-	-- "The Dismayed Customer" Quest Dialogs, start
-	if (theDismayedCustomer == QUEST_AVAILABLE and sanFame >= 2) then 
+	if (theDismayedCustomer == QUEST_ACCEPTED) then
+		if (player:hasKeyItem(GULEMONTS_DOCUMENT) == true) then
+			player:startEvent(0x025f);
+		else
+			player:startEvent(0x025e);
+		end;
+	elseif (theDismayedCustomer == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_COMPLETED) then 
 		player:startEvent(0x025d);
-	elseif (theDismayedCustomer == QUEST_ACCEPTED and player:hasKeyItem(129) == true) then
-		player:delKeyItem(129);
-		player:addFame(SANDORIA, SAN_FAME*30);
-		player:setTitle(LOST_CHILD_OFFICER);
-		player:completeQuest(SANDORIA, THE_DISMAYED_CUSTOMER);
-		player:startEvent(0x025f);
-	elseif (theDismayedCustomer == QUEST_ACCEPTED) then
-		player:startEvent(0x025e);
-	
-	-- Normal NPC TEXT
 	else
 		player:startEvent(0x0251);
 	end;
+	
 end;
 
 -----------------------------------
@@ -78,11 +71,14 @@ function onEventFinish(player,csid,option)
 	-- "The Dismayed Customer"
 	if (csid == 0x025d and option == 0) then
 		player:addQuest(SANDORIA, THE_DISMAYED_CUSTOMER);
-		rand = math.random(1,3);
-		player:setVar("theDismayedCustomer", rand);
+		player:setVar("theDismayedCustomer", math.random(1,3));
 	elseif (csid == 0x025f) then
-		player:addGil(560 * GIL_RATE);
-		player:messageSpecial(6404,560 * GIL_RATE);
+		player:delKeyItem(GULEMONTS_DOCUMENT);
+		player:addFame(SANDORIA,SAN_FAME*30);
+		player:setTitle(LOST_CHILD_OFFICER);
+		player:completeQuest(SANDORIA, THE_DISMAYED_CUSTOMER);
+		player:addGil(560*GIL_RATE);
+		player:messageSpecial(GIL_OBTAINED,560*GIL_RATE);
 	end;
 	
 end;
