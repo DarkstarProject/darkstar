@@ -1,15 +1,14 @@
 -----------------------------------
--- Area: Northern San d'Oria
--- NPC: Nouveil
--- Quest NPC
+--  Area: Northern San d'Oria
+--   NPC: Nouveil
+--  Type: General
+-- @zone: 231
+--  @pos: 123 0 106
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
@@ -18,34 +17,18 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	-- "Flyers for Regine" conditional script
-	FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-	-- "Waters of the Cheval" quest status var
-	waterOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
-	
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
+		
+	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(MagicmartFlyer,1) == true and trade:getItemCount() == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
 	
-	-- Waters of the Cheval, trade 10 gil for blessed waterskin
-	if (waterOfTheCheval == 1) then
-		gil = trade:getGil();
-		freeSlot = player:getFreeSlotsCount();
-		hasWaterskin = player:hasItem(602);
-		if (gil >= 10 and freeSlot >= 1 and hasWaterskin == false) then
-			player:tradeComplete();
-			player:delGil(10);
+	if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED) then
+		if (trade:getGil() >= 10) then
 			player:startEvent(0x023b);
-		else
-			player:messageSpecial(6564, 602); -- CANNOT_OBTAIN_ITEM, inv full or already has item
 		end;
 	end;
-			
 		
 end;
 
@@ -54,16 +37,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	-- "Waters of the Cheval" quest status var
-	waterOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
-	
-	-- Waters of the Cheval event selection
-	if (waterOfTheCheval == 1) then
-		player:startEvent(0x023f);
+
+	if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED) then
+		if (player:hasItem(603) == true) then
+			player:startEvent(0x023d);
+		elseif(player:hasItem(602) == true) then
+			player:startEvent(0x023c);
 		else
+			player:startEvent(0x023f);
+		end;
+	else
 		player:startEvent(0x023e);
 	end;
+	
 end; 
 
 -----------------------------------
@@ -85,8 +71,13 @@ function onEventFinish(player,csid,option)
 
 	-- Waters of the Cheval, recieve blessed waterskin
 	if (csid == 0x023b) then
-		player:addItem(602);
-		player:messageSpecial(6567, 602);
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 602);
+		else
+			player:delGil(10);
+			player:addItem(602);
+			player:messageSpecial(ITEM_OBTAINED, 602);
+		end;
 	end;
 end;
 

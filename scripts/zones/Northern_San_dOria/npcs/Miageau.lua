@@ -1,14 +1,17 @@
 -----------------------------------
--- Area: Northern San d'Oria
--- NPC: Miageau
--- Quest NPC
+--  Area: Northern San d'Oria
+--   NPC: Miageau
+--  Type: Quest Giver NPC
+-- @zone: 231
+--  @pos: 115 0 108
+--
+-- Starts and Finishes: Waters of Cheval
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
@@ -18,36 +21,18 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	-- "Flyers for Regine" conditional script
-	FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-	-- "Waters of the Cheval" quest status var
-	waterOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
-
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
+	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(MagicmartFlyer,1) == true and trade:getItemCount() == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
 	
-	-- Trading npc Cheval Water for Wing Pendant
-	if (waterOfTheCheval == QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		freeSlot = player:getFreeSlotsCount();
-		chevalWater = trade:hasItemQty(603, 1);
-		hasWingPendant = player:hasItem(13183);
-		if (count == 1 and freeSlot >= 1 and chevalWater and hasWingPendant == false) then
-			player:tradeComplete();
-			player:addFame(SANDORIA,SAN_FAME*30);
-			player:setTitle(THE_PURE_ONE);
-			player:completeQuest(SANDORIA,WATER_OF_THE_CHEVAL );
+	if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED) then
+		if (trade:getItemCount() == 1 and trade:hasItemQty(603, 1)) then
 			player:startEvent(0x0203);
-			
-		else
-			player:messageSpecial(6564, 13183); -- CANNOT_OBTAIN_ITEM, if player already has wing pendant or not enough inv space
 		end;
 	end;
+	
 end;
 
 -----------------------------------
@@ -56,16 +41,18 @@ end;
 
 function onTrigger(player,npc)
 	
-	-- "Waters of the Cheval" quest status var
-	waterOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
-	
-	-- Waters of the Cheval eventId selection
-	if (waterOfTheCheval == QUEST_AVAILABLE) then
+	if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED) then
+		if(player:hasItem(602) == true) then
+			player:startEvent(0x0200);
+		else
+			player:startEvent(0x0207);
+		end;
+	elseif (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_AVAILABLE) then
 		player:startEvent(0x01f8);
-		player:addQuest(SANDORIA, WATER_OF_THE_CHEVAL);
-	elseif (waterOfTheCheval == QUEST_ACCEPTED) then
-		player:startEvent(0x0200);
+	else
+		player:startEvent(0x0205);
 	end;
+	
 end; 
 
 -----------------------------------
@@ -85,13 +72,19 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	-- Waters of the Cheval, receiving wing pendant
 	if (csid == 0x0203) then
-		player:addItem(13183);
-		player:messageSpecial(6567, 13183);
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13183);
+		else
+			player:tradeComplete();
+			player:addItem(13183);
+			player:messageSpecial(ITEM_OBTAINED, 13183);
+			player:addFame(SANDORIA,SAN_FAME*30);
+			player:setTitle(THE_PURE_ONE);
+			player:completeQuest(SANDORIA,WATER_OF_THE_CHEVAL);
+		end;
+	elseif (csid == 0x01f8) then
+		player:addQuest(SANDORIA, WATER_OF_THE_CHEVAL);
 	end;
+	
 end;
-
-
-
-

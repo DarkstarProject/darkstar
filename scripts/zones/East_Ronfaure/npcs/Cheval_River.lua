@@ -1,15 +1,17 @@
 -----------------------------------
--- Area: East Ronfaure
--- NPC: Cheval_River
--- Quest NPC
+--  Area: East Ronfaure
+--   NPC: Cheval_River
+-- @zone: 101
+--  @pos: 223 -58 426
+--
+-- Involved in Quest: Waters of Cheval
+-----------------------------------
+package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/zones/East_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -17,25 +19,16 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	-- "Waters of the Cheval" quest status var
-	waterOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);	
-	
-	-- Waters of the Cheval, trading Blessed waterskin for Cheval Water
-	if (waterOfTheCheval == 1) then
-		count = trade:getItemCount();
-		freeSlot = player:getFreeSlotsCount();
-		blessedWaterskin = trade:hasItemQty(602, 1);
-		hasChevalWater = player:hasItem(603); 
-		if (count == 1 and blessedWaterskin and freeSlot >= 1 and hasChevalWater == false) then
+	if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED and trade:hasItemQty(602, 1)) then
+		if (trade:getItemCount() == 1 and player:getFreeSlotsCount() > 0) then
 			player:tradeComplete();
 			player:addItem(603);
-			player:messageSpecial(6381, 603); -- OBTAINED_ITEM, cheval water
+			player:messageSpecial(CHEVAL_RIVER_WATER, 603);
 		else
-			player:messageSpecial(6378, 603); -- CANNOT_OBTAIN_ITEM, because inv full or already has cheval water
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 603);
 		end;
 	end;
 			
-		
 end;
 
 -----------------------------------
@@ -43,7 +36,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+	
+	if (player:hasItem(602) == true) then
+		player:messageSpecial(BLESSED_WATERSKIN);
+	else
+		player:messageSpecial(NOTHING_ORDINARY);
+	end;
+	
 end; 
 
 -----------------------------------
