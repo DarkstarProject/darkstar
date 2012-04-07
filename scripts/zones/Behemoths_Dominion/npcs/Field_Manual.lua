@@ -1,6 +1,6 @@
 -----------------------------------	
 -- Field Manual	
--- Area: Meriphataud Mountains
+-- Area: Behemoth's Dominion
 -----------------------------------	
 	
 require("/scripts/globals/settings");	
@@ -11,7 +11,7 @@ require("/scripts/globals/fieldsofvalor");
 -----------------------------------	
 	
 function onTrigger(player,npc)	
-	startFov(FOV_EVENT_MERIPH,player);
+	startFov(FOV_EVENT_BEHEMOTH,player);
 end;	
 	
 -----------------------------------	
@@ -26,7 +26,7 @@ end;
 -----------------------------------	
 	
 function onEventUpdate(player,csid,menuchoice)	
-	updateFov(player,csid,menuchoice,36,37,38,39,63);
+	updateFov(player,csid,menuchoice,101,102,103,0,0);
 end;	
 	
 -----------------------------------	
@@ -34,5 +34,5 @@ end;
 -----------------------------------	
 	
 function onEventFinish(player,csid,option)	
-	finishFov(player,csid,option,36,37,38,39,63,FOV_MSG_MERIPH);
+	finishFov(player,csid,option,101,102,103,0,0,FOV_MSG_BEHEMOTH);
 end;	

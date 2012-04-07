@@ -164,6 +164,16 @@ Regime ID   Å™	Area   Å´	Listing   Å´
 146 	Ru'Aun Gardens 	Ice/Earth/Water Elementals
 147+ 	Values higher than 147 are Hunt Registries.]]--
 
+--key item IDs
+ELITE_TRAINING_INTRODUCTION     = 1116;
+ELITE_TRAINING_CHAPTER_1        = 1117;
+ELITE_TRAINING_CHAPTER_2        = 1118;
+ELITE_TRAINING_CHAPTER_3        = 1119;
+ELITE_TRAINING_CHAPTER_4        = 1120;
+ELITE_TRAINING_CHAPTER_5        = 1121;
+ELITE_TRAINING_CHAPTER_6        = 1122;
+ELITE_TRAINING_CHAPTER_7        = 1123;
+
 --EVENT PARAM ID CONSTANTS (change these if even seqs displayed break!)
 --onEventUpdate params
 FOV_MENU_PAGE_1 = 18;
@@ -178,6 +188,10 @@ FOV_MENU_REGEN = 53;
 FOV_MENU_REFRESH = 69;
 FOV_MENU_PROTECT = 85;
 FOV_MENU_SHELL = 101;
+FOV_MENU_MEAT = 117;
+FOV_MENU_FISH = 133;
+FOV_MENU_COOKIE = 149;
+FOV_MENU_NOODLES = 165;
 FOV_MENU_RERAISE = 37;
 FOV_MENU_HOME_NATION = 21;
 FOV_MENU_CANCEL_REGIME = 3;
@@ -186,6 +200,14 @@ FOV_MENU_REPEAT_REGIME2 = -2147483614;
 FOV_MENU_REPEAT_REGIME3 = -2147483598;
 FOV_MENU_REPEAT_REGIME4 = -2147483582;
 FOV_MENU_REPEAT_REGIME5 = -2147483566;
+FOV_MENU_ELITE_INTRO = 36;
+FOV_MENU_ELITE_CHAP1 = 52;
+FOV_MENU_ELITE_CHAP2 = 68;
+FOV_MENU_ELITE_CHAP3 = 84;
+FOV_MENU_ELITE_CHAP4 = 100;
+FOV_MENU_ELITE_CHAP5 = 116;
+FOV_MENU_ELITE_CHAP6 = 132;
+FOV_MENU_ELITE_CHAP7 = 148;
 
 --Special Message IDs (these usually don't break)
 FOV_MSG_KILLED_TARGET = 558;
@@ -214,18 +236,17 @@ FOV_MSG_BUBURIMU =10168;
 FOV_MSG_QUFIM =10242;
 FOV_MSG_RUAUN_GARDENS = 9662;
 
---dummies
-FOV_MSG_YUHTUNGA =9662;
-FOV_MSG_YHOATOR =9662;
-FOV_MSG_WEST_ALTEPA =9662;
-FOV_MSG_EAST_ALTEPA =9662;
-FOV_MSG_BEAUCEDINE =9662;
-FOV_MSG_XARCABARD =9662;
-FOV_MSG_BEHEMOTH =9662;
-FOV_MSG_ZITAH =9662;
-FOV_MSG_ROMAEVE =9662;
-FOV_MSG_TERIGGAN =9662;
-FOV_MSG_SORROWS =9662;
+FOV_MSG_BEAUCEDINE =10639;
+FOV_MSG_YUHTUNGA =9961;
+FOV_MSG_YHOATOR =9910;
+FOV_MSG_WEST_ALTEPA =9721;
+FOV_MSG_EAST_ALTEPA =9858;
+FOV_MSG_XARCABARD =10146;
+FOV_MSG_BEHEMOTH =9352;
+FOV_MSG_ZITAH =10178;
+FOV_MSG_ROMAEVE =9527;
+FOV_MSG_TERIGGAN =10021;
+FOV_MSG_SORROWS =9507;
 
 --Event IDs
 FOV_EVENT_RUAUN_GARDENS = 0x0049;
@@ -247,6 +268,17 @@ FOV_EVENT_ROLANBERRY =0x003d;
 FOV_EVENT_VALKURM = 0x002f;
 FOV_EVENT_BUBURIMU =0x0033;
 FOV_EVENT_QUFIM =0x0021;
+FOV_EVENT_YUHTUNGA =0x003d;
+FOV_EVENT_YHOATOR =0x003d;
+FOV_EVENT_WEST_ALTEPA =0x003d;
+FOV_EVENT_EAST_ALTEPA =0x003d; --test
+FOV_EVENT_BEAUCEDINE =0x00da;
+FOV_EVENT_XARCABARD =0x0030;
+FOV_EVENT_BEHEMOTH =0x003d;
+FOV_EVENT_ZITAH =0x003d;
+FOV_EVENT_ROMAEVE =0x003d;
+FOV_EVENT_TERIGGAN =0x003d; --test
+FOV_EVENT_SORROWS =0x003d;
 
 ----------------------------------
 -- Start FoV onTrigger
@@ -432,10 +464,39 @@ elseif(option==FOV_MENU_REPEAT_REGIME4) then --Page 4 Repeat
 	writeRegime(player,r4,msg_accept,msg_jobs,true);
 elseif(option==FOV_MENU_REPEAT_REGIME5) then --Page 5 Repeat
 	writeRegime(player,r5,msg_accept,msg_jobs,true);
+elseif(option==FOV_MENU_ELITE_INTRO) then --Want elite, 100tabs
+	--giveEliteRegime(player,ELITE_TRAINING_CHAPTER_7,100);
+elseif(option==FOV_MENU_ELITE_CHAP1) then --Want elite, 150tabs
+	--local tabs = player:getVar("tabs");
+	--local newtabs = tabs-150;
+	--player:setVar("tabs",newtabs);
+elseif(option==FOV_MENU_ELITE_CHAP2) then --Want elite, 200tabs
+	--local tabs = player:getVar("tabs");
+	--local newtabs = tabs-200;
+	--player:setVar("tabs",newtabs);
+elseif(option==FOV_MENU_ELITE_CHAP3) then --Want elite, 250tabs
+elseif(option==FOV_MENU_ELITE_CHAP4) then --Want elite, 300tabs
+elseif(option==FOV_MENU_ELITE_CHAP5) then --Want elite, 350tabs
+elseif(option==FOV_MENU_ELITE_CHAP6) then --Want elite, 400tabs
+elseif(option==FOV_MENU_ELITE_CHAP7) then --Want elite, 450tabs
+
+else
+	--print("opt is "..option);
 end
 
 end
 
+function giveEliteRegime(player,keyitem,cost)
+	if(player:hasKeyItem(keyitem)) then
+		--print("has");
+		--player:messageBasic(98,keyitem);
+	else
+		local tabs = player:getVar("tabs");
+		local newtabs = tabs-cost;
+		player:setVar("tabs",newtabs);
+		player:addKeyItem(keyitem);
+	end
+end
 
 --Writes the chosen Regime to the SQL database
 function writeRegime(player,rid,msg_accept,msg_jobs,regrepeat)

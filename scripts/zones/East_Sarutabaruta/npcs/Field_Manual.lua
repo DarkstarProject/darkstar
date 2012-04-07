@@ -1,6 +1,6 @@
 -----------------------------------	
 -- Field Manual	
--- Area: East Sarutabaruta	
+-- Area: East Sarutabaruta
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

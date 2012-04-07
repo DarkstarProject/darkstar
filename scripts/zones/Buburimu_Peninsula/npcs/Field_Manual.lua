@@ -1,6 +1,6 @@
 -----------------------------------	
 -- Field Manual	
--- Area: Buburimu Peninsula	
+-- Area: Buburimu Peninsula
 -----------------------------------	
 	
 require("/scripts/globals/settings");	
