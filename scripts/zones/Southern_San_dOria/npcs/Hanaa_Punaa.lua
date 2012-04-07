@@ -68,7 +68,7 @@ function onTrigger(player,npc)
 	-- "The Seamstress" Quest Status
 	if(theSteamStress == QUEST_AVAILABLE and player:getVar("theSeamStress") == 1) then
 		player:startEvent(0x0213);
-	elseif(theSteamStress == QUEST_AVAILABLE) then
+	elseif(theSteamStress == QUEST_AVAILABLE and sanFame >= 1) then
 		player:startEvent(0x0210);
 		player:setVar("theSeamStress",1);
 	elseif(theSteamStress == QUEST_ACCEPTED) then

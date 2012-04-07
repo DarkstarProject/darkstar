@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
 	end
 	
 	-- Trading npc Cheval Water for Wing Pendant
-	if (waterOfTheCheval == 1) then
+	if (waterOfTheCheval == QUEST_ACCEPTED) then
 		count = trade:getItemCount();
 		freeSlot = player:getFreeSlotsCount();
 		chevalWater = trade:hasItemQty(603, 1);
@@ -60,10 +60,10 @@ function onTrigger(player,npc)
 	waterOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
 	
 	-- Waters of the Cheval eventId selection
-	if (waterOfTheCheval == 0) then
+	if (waterOfTheCheval == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 1) then
 		player:startEvent(0x01f8);
 		player:addQuest(SANDORIA, WATER_OF_THE_CHEVAL);
-	elseif (waterOfTheCheval == 1) then
+	elseif (waterOfTheCheval == QUEST_ACCEPTED) then
 		player:startEvent(0x0200);
 	end;
 end; 

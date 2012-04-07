@@ -27,11 +27,11 @@ ABYSSEA     = 8;
 -----------------------------------
 
 A_SENTRY_S_PERIL                = 0;  -- ± --
-WATER_OF_THE_CHEVAL             = 1;
-ROSEL_THE_ARMORER               = 2;
-THE_PICKPOCKET                  = 3;
+WATER_OF_THE_CHEVAL             = 1;  -- ± --
+ROSEL_THE_ARMORER               = 2;  -- ± --
+THE_PICKPOCKET                  = 3;  -- ± --
 FATHER_AND_SON                  = 4;  -- + --
-THE_SEAMSTRESS                  = 5;
+THE_SEAMSTRESS                  = 5;  -- + --
 THE_DISMAYED_CUSTOMER           = 6;
 THE_TRADER_IN_THE_FOREST        = 7;
 THE_SWEETEST_THINGS             = 8;  -- + --
@@ -40,8 +40,8 @@ A_SQUIRE_S_TEST                 = 10;
 GRAVE_CONCERNS                  = 11; -- ± --
 THE_BRUGAIRE_CONSORTIUM         = 12; -- ± --
 
-LIZARD_SKINS                    = 15;
-FLYERS_FOR_REGINE               = 16;  
+LIZARD_SKINS                    = 15; -- + --
+FLYERS_FOR_REGINE               = 16; -- + --
 
 GATES_TO_PARADISE               = 18;
 A_SQUIRE_S_TEST_II              = 19;
@@ -54,7 +54,7 @@ A_PURCHASE_OF_ARMS              = 27; -- + --
 
 A_KNIGHT_S_TEST                 = 29;
 THE_MEDICINE_WOMAN              = 30; -- + --
-BLACK_TIGER_SKINS               = 31;
+BLACK_TIGER_SKINS               = 31; -- + --
 
 GROWING_FLOWERS                 = 58; -- ± --
 TRIAL_BY_ICE                    = 59; -- + --
