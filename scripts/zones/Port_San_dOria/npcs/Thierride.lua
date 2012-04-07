@@ -1,29 +1,36 @@
 -----------------------------------
--- Area: Northern San d'Oria
--- NPC: Thierride
--- Quest NPC
--- @zone 232
--- @pos -67 -5 -28
+--  Area: Port San d'Oria
+--   NPC: Thierride
+--  Type: Quest Giver
+-- @zone: 232
+--  @pos: -67 -5 -28
+--
+-- Starts and Finishes Quest: A Taste of Meat
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/globals/titles");
+require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+
 	if (player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		carta = trade:hasItemQty(4358, 5);
-		if (carta and count == 5) then
-			player:startEvent(0x0319);
-		end
-	end
+		if (trade:hasItemQty(4358, 5) and trade:getItemCount() == 5) then
+			player:startEvent(0x0210);
+		else
+			player:startEvent(0x020e);
+		end;
+	else
+		player:startEvent(0x0211);
+	end;
+	
 end;
 
 -----------------------------------
@@ -31,10 +38,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	conejo = player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT);
-	if (conejo == QUEST_AVAILABLE) then
-		player:startEvent(0x0318);
-	end
+
+	aTasteOfMeat = player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT);
+	if (aTasteOfMeat == QUEST_AVAILABLE and player:getVar("aTasteOfMeat") == 1 or aTasteOfMeat == QUEST_ACCEPTED) then
+		player:startEvent(0x020e);
+	else
+	player:delQuest(SANDORIA, A_TASTE_FOR_MEAT);
+		player:startEvent(0x020c);
+	end;
+	
 end; 
 
 -----------------------------------
@@ -53,13 +65,20 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x0318) then
-		player:addQuest(SANDORIA, A_TASTE_FOR_MEAT);
-	elseif (csid == 0x0319) then
+
+	if (csid == 0x020e) then
+		if (player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_AVAILABLE) then
+			player:setVar("aTasteOfMeat", 0);
+			player:addQuest(SANDORIA, A_TASTE_FOR_MEAT);
+		end;
+	elseif (csid == 0x0210) then
 		player:tradeComplete();
 		player:addFame(SANDORIA, SAN_FAME*30);
 		player:addGil(GIL_RATE*150);
-		player:messageSpecial(6404, GIL_RATE*150);
+		player:messageSpecial(GIL_OBTAINED, GIL_RATE*150);
 		player:completeQuest(SANDORIA, A_TASTE_FOR_MEAT);
-	end
+		player:setTitle(RABBITER);
+		player:setVar("aTasteOfMeat", 1);
+	end;
+	
 end;
