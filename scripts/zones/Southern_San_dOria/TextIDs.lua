@@ -9,10 +9,11 @@ FULL_INVENTORY_AFTER_TRADE = 6402; -- You cannot obtain the <item>. Try trading 
 	   NOT_HAVE_ENOUGH_GIL = 6408; -- You do not have enough gil.
 		     HOMEPOINT_SET = 24; -- Home point set!
 
--- Conquest System
-CONQUEST = 8331; -- You've earned conquest points!
-		
 -- Mission Dialogs
+			 DONATE_LOW_RANK = 8324; -- I cannot accept crystals from someone whose rank is still 1...
+			 DONATE_AT_MAXIM = 8374; -- You do not need to donate any more crystals at your current rank...
+			 DONATE_OVERFLOW = 8375; -- Your rank are full. We've added the excess to your conquest points...
+			 DONATE_CRYSTALS = 8376; -- Good work, citizen. We've awarded you rank points for the crystals you've donated.
 	 ORIGINAL_MISSION_OFFSET = 7075; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
 	  YOU_ACCEPT_THE_MISSION = 7064; -- You accept the mission
 YOUVE_EARNED_CONQUEST_POINTS = 8331; -- You've earned conquest points!
@@ -45,10 +46,10 @@ UNLOCK_PALADIN = 7856; -- You can now become a paladin!
 	  BENAIGE_SHOP_DIALOG = 8267; -- Looking for something in particular?
 	 CARAUTIA_SHOP_DIALOG = 0; -- 
 FERDOULEMIONT_SHOP_DIALOG = 8260; -- Hello!
-	  LUSIANE_SHOP_DIALOG = 0; -- 
+	  LUSIANE_SHOP_DIALOG = 7807; -- Hello! Let Taumila's handle all your sundry needs!
 	 MIOGIQUE_SHOP_DIALOG = 0; -- 
-	  OSTALIE_SHOP_DIALOG = 0; -- 
-	   SHILAH_SHOP_DIALOG = 0; -- 
+	  OSTALIE_SHOP_DIALOG = 7808; --  Welcome, customer. Please have a look.
+	   SHILAH_SHOP_DIALOG = 7961; -- Welcome, weary traveler. Make yourself at home!
 	 THADIENE_SHOP_DIALOG = 7829; -- Welcome to Helbort's Blades!
 	VALERIANO_SHOP_DIALOG = 0; -- 
 	PAUNELIE_SHOP_DIALOG =  8267;
