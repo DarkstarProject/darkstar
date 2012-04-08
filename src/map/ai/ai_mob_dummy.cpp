@@ -221,6 +221,10 @@ void CAIMobDummy::ActionDropItems()
                             PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, m_PMob); 
 					    }		
 				    }
+					//check for gil (beastmen drop gil, some NMs drop gil)
+					if(m_PMob->m_EcoSystem == SYSTEM_BEASTMEN || m_PMob->m_Type == MOBTYPE_NOTORIOUS){
+						charutils::DistributeGil(PChar, m_PMob);
+					}
 			    }
 			}
 		}

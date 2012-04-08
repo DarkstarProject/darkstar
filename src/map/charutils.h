@@ -51,6 +51,8 @@ namespace charutils
 
 	void	DelExperiencePoints(CCharEntity* PChar, float retainpct);
 	void	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
+	void	AddGil(CCharEntity* PChar, int amount);
+	void	DistributeGil(CCharEntity* PChar, CMobEntity* PMob);
     void	AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool limit = true);
 
 	void	TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl);

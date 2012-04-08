@@ -1798,6 +1798,74 @@ uint32 GetExpNEXTLevel(uint8 charlvl)
 	return 0;
 }
 
+void AddGil(CCharEntity* PChar, int amount)
+{
+	//TODO: Display "<player> obtains xx gil." message (unique for every zone based on text offsets)
+	CItem * item = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
+			
+	if(item == NULL || !(item->getType() & ITEM_CURRENCY)) 
+	{
+		ShowInfo("No Gil in currency slot\n");
+		return;
+	}
+
+	UpdateItem(PChar, LOC_INVENTORY, 0, amount);
+}
+
+/************************************************************************
+*																		*
+*  Distributes gil to party members.                                    *
+*																		*
+************************************************************************/
+void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
+{
+	//work out the amount of gil to give (guessed; replace with testing)
+	int gil = 0;
+	if(PMob->m_Type == MOBTYPE_NOTORIOUS && PMob->m_EcoSystem == SYSTEM_BEASTMEN){
+		gil = PMob->GetMLevel()*10;
+	}
+	else if(PMob->m_EcoSystem == SYSTEM_BEASTMEN){
+		gil = PMob->GetMLevel();
+	}
+
+	if(gil==0){
+		return;
+	}
+
+	//work out how many pt members should get the gil
+	uint8 count = 0;
+	if (PChar->PParty != NULL) 
+	{
+		for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
+		{
+            CBattleEntity* PMember = PChar->PParty->members[i];
+            if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
+			{
+                count++;
+			}
+		}
+	}
+
+	int gilperperson = gil / (count != 0 ? count : 1);
+
+	//distribute to said members (perhaps store pointers to each member in first loop?)
+	if (PChar->PParty != NULL) 
+	{
+		for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
+		{
+            CBattleEntity* PMember = PChar->PParty->members[i];
+			if (PMember->objtype == TYPE_PC && PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
+			{
+				AddGil((CCharEntity*)PMember,gilperperson);
+			}
+		}
+	}
+	else{
+		AddGil(PChar,gilperperson);
+	}
+
+}
+
 /************************************************************************
 *																		*
 *  Распределяем очки опыта между всеми членами группы                   *
