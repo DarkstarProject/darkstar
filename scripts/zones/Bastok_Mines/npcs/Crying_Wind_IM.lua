@@ -20,6 +20,7 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, JEUNO
 guardtype	= 1;		-- 1: city, 2: foreign, 3: outpost, 4: border
 size 		= table.getn(BastInv);
+inventory 	= BastInv;
 
 -----------------------------------
 -- onTrade Action
@@ -67,13 +68,13 @@ function onEventUpdate(player,csid,option)
 
 	if(option >= 32768 and option <= 32944) then
 		for Item = 1,size,3 do
-			if(option == Inventory[Item]) then
+			if(option == inventory[Item]) then
 				CPVerify = 1;
-				if(getCP(player) >= Inventory[Item + 1]) then
+				if(getCP(player) >= inventory[Item + 1]) then
 					CPVerify = 0;
 				end;
 				
-				player:updateEvent(2,CPVerify,Inventory[Item + 2]);
+				player:updateEvent(2,CPVerify,inventory[Item + 2]);
 				break;
 			end;
 		end;
@@ -96,22 +97,22 @@ function onEventFinish(player,csid,option)
 	elseif(option >= 32768 and option <= 32944) then
 		myCP = getCP(player);
 		for Item = 1,size,3 do
-			if(option == Inventory[Item]) then
+			if(option == inventory[Item]) then
 				if(player:getFreeSlotsCount() >= 1) then
 					if(player:getNation() == guardnation) then
-						PlayerCP = myCP - Inventory[Item + 1];
+						PlayerCP = myCP - inventory[Item + 1];
 					else
-						if(Inventory[Item + 1] <= 8000) then
-							PlayerCP = myCP - Inventory[Item + 1] * 2;
+						if(inventory[Item + 1] <= 8000) then
+							PlayerCP = myCP - inventory[Item + 1] * 2;
 						else
-							PlayerCP = myCP - Inventory[Item + 1] + 8000;
+							PlayerCP = myCP - inventory[Item + 1] + 8000;
 						end;
 					end;
 					setCP(player,PlayerCP);
-					player:addItem(Inventory[Item + 2],1);
-					player:messageSpecial(ITEM_OBTAINED,Inventory[Item + 2]);
+					player:addItem(inventory[Item + 2],1);
+					player:messageSpecial(ITEM_OBTAINED,inventory[Item + 2]);
 				else
-					player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,Inventory[Item + 2]);
+					player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
 				end;
 				break;
 			end;

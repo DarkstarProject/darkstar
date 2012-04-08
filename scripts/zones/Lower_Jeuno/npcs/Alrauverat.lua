@@ -52,25 +52,25 @@ function onEventUpdate(player,csid,option)
 --printf("onUpdateOPTION: %u",option);
 	
 	if(player:getNation() == 0) then 
-		Inventory = SandInv;
+		inventory = SandInv;
 		size = table.getn(SandInv);
 	elseif(player:getNation() == 1) then 
-		Inventory = BastInv;
+		inventory = BastInv;
 		size = table.getn(BastInv);
 	else 
-		Inventory = WindInv;
+		inventory = WindInv;
 		size = table.getn(WindInv);
 	end
 	
 	if(option >= 32768 and option <= 32944) then
 		for Item = 1,size,3 do
-			if(option == Inventory[Item]) then
+			if(option == inventory[Item]) then
 				CPVerify = 1;
-				if(getCP(player) >= Inventory[Item + 1]) then
+				if(getCP(player) >= inventory[Item + 1]) then
 					CPVerify = 0;
 				end;
 				
-				player:updateEvent(2,CPVerify,Inventory[Item + 2]); -- can't equip = 2 ?
+				player:updateEvent(2,CPVerify,inventory[Item + 2]); -- can't equip = 2 ?
 				break;
 			end;
 		end;
@@ -93,14 +93,14 @@ function onEventFinish(player,csid,option)
 	elseif(option >= 32768 and option <= 32944) then
 		myCP = getCP(player);
 		for Item = 1,size,3 do
-			if(option == Inventory[Item]) then
+			if(option == inventory[Item]) then
 				if(player:getFreeSlotsCount() >= 1) then
-					PlayerCP = myCP - Inventory[Item + 1];
+					PlayerCP = myCP - inventory[Item + 1];
 					setCP(player,PlayerCP);
-					player:addItem(Inventory[Item + 2],1);
-					player:messageSpecial(ITEM_OBTAINED,Inventory[Item + 2]);
+					player:addItem(inventory[Item + 2],1);
+					player:messageSpecial(ITEM_OBTAINED,inventory[Item + 2]);
 				else
-					player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,Inventory[Item + 2]);
+					player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
 				end;
 				break;
 			end;
