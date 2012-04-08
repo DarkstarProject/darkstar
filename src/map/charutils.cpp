@@ -1882,6 +1882,8 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 ************************************************************************/
 void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 {
+	DSP_DEBUG_BREAK_IF(retainPercent>1 || retainPercent<0);
+
 	//Players Lv30 or below do not lose exp (May 2011 Update)
 	if(PChar->GetMLevel()<=30){
 		return;
