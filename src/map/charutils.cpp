@@ -1875,6 +1875,68 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 
 /************************************************************************
 *                                                                       *
+*  Losing exp on death. retainPercent is the amount of exp to be        *
+*  saved on death, e.g. 0.05 = retain 5% of lost exp. A value of        *
+*  1 means no exp loss. A value of 0 means full exp loss.               *
+*                                                                       *
+************************************************************************/
+void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
+{
+	//Players Lv30 or below do not lose exp (May 2011 Update)
+	if(PChar->GetMLevel()<=30){
+		return;
+	}
+
+	int exploss = 0;
+	if(PChar->GetMLevel()<=67){
+		exploss = floor(GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) * 0.08);
+	}
+	else{
+		exploss = 2400;
+	}
+
+	//apply retention percent
+	exploss = exploss*(1-retainPercent);
+	
+	//loses xxx exp message
+	PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exploss, 0, 10));
+
+	if( (PChar->jobs.exp[PChar->GetMJob()] - exploss) < 0){
+		//de-level!
+		int diff = abs(PChar->jobs.exp[PChar->GetMJob()] - exploss);
+		PChar->jobs.exp[PChar->GetMJob()] = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]-1) - diff;
+		PChar->jobs.job[PChar->GetMJob()] -= 1;
+
+		PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
+        PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+
+        CalculateStats(PChar);
+        BuildingCharSkillsTable(PChar);
+        BuildingCharAbilityTable(PChar);
+        BuildingCharTraitsTable(PChar);
+        BuildingCharWeaponSkills(PChar);
+		CheckValidEquipment(PChar);
+        PChar->pushPacket(new CCharJobsPacket(PChar));
+        PChar->pushPacket(new CCharUpdatePacket(PChar));
+        PChar->pushPacket(new CCharSkillsPacket(PChar));
+        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+        PChar->pushPacket(new CMenuMeritPacket(PChar));
+        PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
+        PChar->pushPacket(new CCharSyncPacket(PChar));
+		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
+	}
+	else{
+		PChar->jobs.exp[PChar->GetMJob()] -= exploss;
+	}
+
+	SaveCharStats(PChar);
+    SaveCharJob(PChar, PChar->GetMJob());
+    SaveCharExp(PChar, PChar->GetMJob());
+	PChar->pushPacket(new CCharStatsPacket(PChar));
+}
+
+/************************************************************************
+*                                                                       *
 *  Добавляем очки опытка указанному персонажу                           *
 *                                                                       *
 ************************************************************************/

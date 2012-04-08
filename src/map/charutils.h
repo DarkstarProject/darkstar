@@ -49,7 +49,7 @@ namespace charutils
 	uint32	GetExpNEXTLevel(uint8 charlvl);
 	uint32	GetRealExp(uint8 charlvl, uint8 moblvl);
 
-	void	DelExperiencePoints(CCharEntity* PChar, uint32 exp);
+	void	DelExperiencePoints(CCharEntity* PChar, float retainpct);
 	void	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
     void	AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool limit = true);
 
