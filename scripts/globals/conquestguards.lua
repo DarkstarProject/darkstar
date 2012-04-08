@@ -269,7 +269,7 @@ function getSupplyAvailable(nation,player)
 	
 	if(mask ~= -1 and mask ~= 4294967295) then
 		for i = 5,20 do 
-			if(getRegionOwner(i) ~= nation) then
+			if(GetRegionOwner(i) ~= nation) then
 				mask = mask + 2^i;
 			end
 		end
