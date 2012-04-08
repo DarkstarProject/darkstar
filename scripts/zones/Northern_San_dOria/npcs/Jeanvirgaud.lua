@@ -45,7 +45,7 @@ function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	loca = option - 1073741824;
+	loca = option - 1073741829;
 	player:updateEvent(player:getGil(),OP_TeleFee(player,loca),getCP(player),OP_TeleFee(player,loca));
 	
 end;

@@ -87,7 +87,7 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("onFinishCSID: %u",csid);
---printf("onFinishOPTION: %u",option);
+printf("onFinishOPTION: %u",option);
 	
 	if(option == 1) then
 		duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
@@ -116,8 +116,8 @@ function onEventFinish(player,csid,option)
 				break;
 			end;
 		end;
-	elseif (option >= 65536 and option <= 65560) then -- player chose supply quest.
-		region = option - 65536;
+	elseif(option >= 65541 and option <= 65565) then -- player chose supply quest.
+		region = option - 65541;
 		player:addKeyItem(getSupplyKey(region));
 		player:messageSpecial(KEYITEM_OBTAINED,getSupplyKey(region));
 		player:setVar("supplyQuest_started",VanadielDayOfTheYear());

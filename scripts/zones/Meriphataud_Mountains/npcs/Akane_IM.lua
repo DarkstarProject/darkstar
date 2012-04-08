@@ -75,22 +75,22 @@ function onEventFinish(player,csid,option)
 		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 	elseif(option == 2) then
 		player:delKeyItem(getSupplyKey(region));
-		addCP(player,supplyReward[region - 4])
+		addCP(player,supplyReward[region + 1])
 		player:messageSpecial(CONQUEST); -- "You've earned conquest points!"
-		if(hasOutpost(player, region) == 0) then
+		if(hasOutpost(player, region+5) == 0) then
 			supply_quests = player:getVar("supplyQuest_BASTOK");
-			supply_quests = supply_quests + 2^region;
+			supply_quests = supply_quests + 2^(region+5);
 			player:setVar("supplyQuest_BASTOK",supply_quests);
 			player:setVar("supplyQuest_region",0);
 		end
 	elseif(option == 4) then
 		SetHPGil = giltosetHP(guardnation,player);
 		if(player:getGil() >= SetHPGil) then
-			player:removeGil(SetHPGil);
+			player:delGil(SetHPGil);
 			player:setHomePoint();
-			player:specialMessage(CONQUEST + 89); -- "Your home point has been set."
+			player:messageSpecial(CONQUEST + 94); -- "Your home point has been set."
 		else
-			player:specialMessage(CONQUEST + 90); -- "You do not have enough gil to set your home point here."
+			player:messageSpecial(CONQUEST + 95); -- "You do not have enough gil to set your home point here."
 		end
 	end
 

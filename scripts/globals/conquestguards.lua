@@ -101,7 +101,7 @@ WindInv = {0x80A1,0x000A,0x1055,0x8044,0x3E80,0x31BE,0x8025,0x0FA0,0x32B6,
 DonateCrys = {4096,4097,4098,4099,4100,4101,4102,4103,4238,4239,4240,4241,4242,4243,4244,4245};
 XpRing = {350,700,600}; RingCharg = {7,7,3};
 supplyReward = {10,30,40,10,40,10,40,40,70,50,60,40,70,70,70,70,70,70};
-tpFees = { 0, 0, 0, 0, 100, 100, 150, 100, 150, 100, 100, 150, 350, 400, 150, 250, 300, 500, 250, 350, 500, 0, 300 }
+tpFees = { 0,0,0,0,100, 100, 150, 100, 150, 100, 100, 150, 350, 400, 150, 250, 300, 500, 250, 350, 500, 0, 300 }
 
 ----------------------------------------------------------------
 -- function getArg1(player)
@@ -255,20 +255,20 @@ end;
 
 function getSupplyAvailable(nation,player)
 	
-	local mask = 2145386527;
+	local mask = 2145386535;
 	
 	if(player:getVar("supplyQuest_started") == VanadielDayOfTheYear()) then
 		mask = 4294967295; -- Need to wait 1 vanadiel day
 	end
 	
-	for nb = 0,12 do
-		if(player:hasKeyItem(75 + nb)) then
+	for nb = 0,18 do
+		if(player:hasKeyItem(getSupplyKey(nb))) then
 			mask = -1; -- if you have supply run already activated
 		end
 	end
 	
 	if(mask ~= -1 and mask ~= 4294967295) then
-		for i = 5,20 do 
+		for i = 0,18 do 
 			if(GetRegionOwner(i) ~= nation) then
 				mask = mask + 2^i;
 			end
@@ -312,15 +312,15 @@ end;
 
 function getSupplyKey(region)
 	
-	if(region <= 14) then
-		return 70 + region;
-	elseif(region == 15) then
+	if(region <= 9) then
+		return 75 + region;
+	elseif(region == 10) then
 		return 124;
-	elseif(region <= 18) then
-		return 69 + region;
-	elseif(region <= 20) then
-		return 243 + region;
-	elseif(region == 23) then
+	elseif(region <= 13) then
+		return 74 + region;
+	elseif(region <= 15) then
+		return 248 + region;
+	elseif(region == 18) then
 		return 620;
 	end
 	
@@ -385,11 +385,11 @@ end;
 
 function OP_TeleFee(player,region)
 	
-	if(hasOutpost(player,region) == 1) then
+	if(hasOutpost(player,region + 5) == 1) then
 		if(GetRegionOwner(region) == player:getNation()) then
-			return tpFees[region];
+			return tpFees[region + 5];
 		else
-			return tpFees[region] * 3;
+			return tpFees[region + 5] * 3;
 		end
 	else
 		return 0;
@@ -422,7 +422,7 @@ function getTeleAvailable(nation)
 	local mask = 2145386527;
 	
 	for i = 5,23 do 
-		if(GetRegionOwner(i) ~= nation) then
+		if(GetRegionOwner(i - 5) ~= nation) then
 			mask = mask + 2^i;
 		end;
 	end

@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
 	count = trade:getItemCount();
 	MoatCarp = trade:getItemQty(4401)
 	ForestCarp = trade:getItemQty(4289)
-	fishCountVar = player:getVar("fishCountVar");
+	fishCountVar = player:getVar("theCompetitionFishCountVar");
 	if(MoatCarp + ForestCarp > 0 and MoatCarp + ForestCarp == count) then
 		if(player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_ACCEPTED and fishCountVar >= 10000) then -- ultimate reward
 			player:tradeComplete();
@@ -36,7 +36,7 @@ function onTrade(player,npc,trade)
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:addGil((GIL_RATE*10*MoatCarp) + (GIL_RATE*15*ForestCarp));
 			totalFish = MoatCarp + ForestCarp + fishCountVar
-			player:setVar("fishCountVar",totalFish);
+			player:setVar("theCompetitionFishCountVar",totalfish);
 			player:startEvent(0x012d);
 		else
 			player:startEvent(0x012e);
@@ -50,7 +50,7 @@ end;
 
 function onTrigger(player,npc)
 	if(player:getQuestStatus(SANDORIA,THE_COMPETITION) == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_AVAILABLE) then -- If you haven't started either quest yet
-		player:startEvent(0x012c,4401,4289);
+		player:startEvent(0x012c);
 	end
 	-- Cannot find his "default" dialogue so he will not respond to being activated unless he is starting the quest event.
 end;
@@ -77,12 +77,12 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17386);
 		else
 			player:tradeComplete();
-			player:addItem(17386);
+			player:addItem(4853);
 			player:messageSpecial(ITEM_OBTAINED, 17386);
 			player:setTitle(CARP_DIEM);
 			player:addKeyItem(TESTIMONIAL);
 			player:messageSpecial(KEYITEM_OBTAINED,TESTIMONIAL);
-			player:setVar("fishCountVar",0);
+			player:setVar("theCompetitionFishCountVar",0);
 			player:completeQuest(SANDORIA,THE_RIVALRY);
 		end
 	elseif(csid == 0x012c and option == 700) then	

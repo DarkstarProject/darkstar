@@ -50,8 +50,7 @@ end;
 -----------------------------------------------------------------
 
 function addCP(player,amount)
-	local cp = player:getVar("CP") + amount;
-	player:setVar("CP",cp);
+	player:setVar("CP",player:getVar("CP") + amount);
 end;
 
 -----------------------------------------------------------------
