@@ -765,6 +765,7 @@ int32 map_config_default()
     map_config.server_message = "";
 	map_config.buffer_size    = 1800;
     map_config.exp_rate       = 1.0f;
+	map_config.exp_retain     = 0.0f;
     map_config.vanadiel_time_offset = 0;
     map_config.lightluggage_block   = 4;
 	map_config.max_time_lastupdate  = 60000;
@@ -840,6 +841,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1,"exp_rate") == 0)
         {
             map_config.exp_rate = atof(w2);
+        }
+		else if (strcmp(w1,"exp_retain") == 0)
+        {
+            map_config.exp_retain = atof(w2);
         }
 		else if (strcmp(w1,"mysql_host") == 0)
 		{
