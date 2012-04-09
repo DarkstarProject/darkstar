@@ -9,13 +9,13 @@
 -- X Start Supply Run Missions and offers a list of already-delivered supplies.
 --   Start an Expeditionary Force by giving an E.F. region insignia to you. 
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/conquestguards");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/zones/Windurst_Woods/TextIDs");
 
 guardnation = WINDURST;	-- SANDORIA, BASTOK, WINDURST, JEUNO
 guardtype	= 1;		-- 1: city, 2: foreign, 3: outpost, 4: border
