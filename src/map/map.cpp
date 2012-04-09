@@ -844,15 +844,7 @@ int32 map_config_read(const int8* cfgName)
         }
 		else if (strcmp(w1,"exp_retain") == 0)
         {
-			float expRetain = atof(w2);
-			if (1 >= expRetain && expRetain >= 0)
-			{
-				map_config.exp_retain = atof(w2);
-			}
-			else
-			{
-				ShowWarning(CL_YELLOW"Bad exp_retain value '%s' in file %s. Value should be between 0 and 1.\n"CL_RESET, w2, cfgName);
-			}
+            map_config.exp_retain = cap_value(atof(w2), 0.0f, 1.0f);
         }
 		else if (strcmp(w1,"mysql_host") == 0)
 		{

@@ -222,8 +222,9 @@ void CAIMobDummy::ActionDropItems()
 					    }		
 				    }
 					//check for gil (beastmen drop gil, some NMs drop gil)
-					if(m_PMob->m_EcoSystem == SYSTEM_BEASTMEN || m_PMob->m_Type == MOBTYPE_NOTORIOUS){
-						charutils::DistributeGil(PChar, m_PMob);
+					if(m_PMob->m_EcoSystem == SYSTEM_BEASTMEN || m_PMob->m_Type & MOBTYPE_NOTORIOUS)
+                    {
+						charutils::DistributeGil(PChar, m_PMob); // TODO: REALISATION MUST BE IN TREASUREPOOL
 					}
 			    }
 			}

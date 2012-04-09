@@ -1798,45 +1798,27 @@ uint32 GetExpNEXTLevel(uint8 charlvl)
 	return 0;
 }
 
-void AddGil(CCharEntity* PChar, int amount)
-{
-	//TODO: Display "<player> obtains xx gil." message (unique for every zone based on text offsets)
-	CItem * item = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
-			
-	if(item == NULL || !(item->getType() & ITEM_CURRENCY)) 
-	{
-		ShowInfo("No Gil in currency slot\n");
-		return;
-	}
-
-	UpdateItem(PChar, LOC_INVENTORY, 0, amount);
-}
-
 /************************************************************************
 *																		*
 *  Distributes gil to party members.                                    *
 *																		*
 ************************************************************************/
+
+// TODO: REALISATION MUST BE IN TREASUREPOOL
+
 void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
 {
 	//work out the amount of gil to give (guessed; replace with testing)
-	int gil = 0;
-	if(PMob->m_Type == MOBTYPE_NOTORIOUS && PMob->m_EcoSystem == SYSTEM_BEASTMEN){
-		gil = PMob->GetMLevel()*10;
-	}
-	else if(PMob->m_EcoSystem == SYSTEM_BEASTMEN){
-		gil = PMob->GetMLevel();
-	}
+    uint32 gil = PMob->GetMLevel() * ((PMob->m_Type & MOBTYPE_NOTORIOUS) ? 10 : 1);
 
-	if(gil==0){
-		return;
-	}
-
-	//work out how many pt members should get the gil
-	uint8 count = 0;
+	//distribute to said members (perhaps store pointers to each member in first loop?)
 	if (PChar->PParty != NULL) 
 	{
-		for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
+        // TODO: плохая реализация - два раза проверяем дистанцию, два раза проверяем один и тот же массив
+
+        uint8 count = 0;
+        //work out how many pt members should get the gil
+        for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
 		{
             CBattleEntity* PMember = PChar->PParty->members[i];
             if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
@@ -1844,26 +1826,22 @@ void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
                 count++;
 			}
 		}
-	}
 
-	int gilperperson = gil / (count != 0 ? count : 1);
+        uint32 gilperperson = count == 0 ? gil : (gil / count);
 
-	//distribute to said members (perhaps store pointers to each member in first loop?)
-	if (PChar->PParty != NULL) 
-	{
 		for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
 		{
-            CBattleEntity* PMember = PChar->PParty->members[i];
-			if (PMember->objtype == TYPE_PC && PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
+            CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
+			if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
 			{
-				AddGil((CCharEntity*)PMember,gilperperson);
+                UpdateItem(PMember, LOC_INVENTORY, 0, gilperperson);
 			}
 		}
 	}
-	else{
-		AddGil(PChar,gilperperson);
+	else if (distance(PChar->loc.p, PMob->loc.p) < 100)
+    {
+        UpdateItem(PChar, LOC_INVENTORY, 0, gil);
 	}
-
 }
 
 /************************************************************************
@@ -1880,48 +1858,51 @@ void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
 
 void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 {
-    uint8 count = 0;
-	uint8 level = PChar->GetMLevel();
-
-	if (PChar->PParty != NULL) 
-	{
-		for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
-		{
-            CBattleEntity* PMember = PChar->PParty->members[i];
-
-            if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
-			{
-                if (PMember->GetMLevel() > level)
-                {
-				    level = PMember->GetMLevel();
-                }
-                count++;
-			}
-		}
-	}
-
-	uint32 exp = GetRealExp(level, PMob->GetMLevel()) / (count != 0 ? count : 1);
+    uint8 level = PChar->GetMLevel();
+	uint32 exp  = GetRealExp(level, PMob->GetMLevel());
 
 	if (exp != 0)
 	{
         if (PChar->PParty != NULL)
         {
-            for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
-		    {
-                CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
+            uint8 count = 0;
 
-                if(PMember->getZone() == PMob->getZone())
-                {
-                    if (distance(PMember->loc.p, PMob->loc.p) > 100)
+            // TODO: плохая реализация - два раза проверяем дистанцию, два раза проверяем один и тот же массив
+
+            for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
+		    {
+                CBattleEntity* PMember = PChar->PParty->members[i];
+
+                if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
+			    {
+                    if (PMember->GetMLevel() > level)
                     {
-                        PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,0,0,37));
-                        continue;
+				        level = PMember->GetMLevel();
                     }
-                    if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
+                    count++;
+			    }
+		    }
+            exp = GetRealExp(level, PMob->GetMLevel()) / (count != 0 ? count : 1);
+
+            if (exp != 0)
+            {
+                for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
+		        {
+                    CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
+
+                    if(PMember->getZone() == PMob->getZone())
                     {
-                        PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
+                        if (distance(PMember->loc.p, PMob->loc.p) > 100)
+                        {
+                            PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,0,0,37));
+                            continue;
+                        }
+                        if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
+                        {
+                            PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
+                        }
+                        AddExperiencePoints(PMember, PMob, exp);
                     }
-                    AddExperiencePoints(PMember, PMob, exp);
                 }
             }
         }
@@ -1950,20 +1931,14 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 ************************************************************************/
 void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 {
-	DSP_DEBUG_BREAK_IF(retainPercent>1 || retainPercent<0);
+	DSP_DEBUG_BREAK_IF(retainPercent > 1.0f || retainPercent < 0.0f);
 
-	//Players Lv30 or below do not lose exp (May 2011 Update)
-	if(PChar->GetMLevel()<=30){
+	if(PChar->GetMLevel() <= 3)
+    {
 		return;
 	}
 
-	int exploss = 0;
-	if(PChar->GetMLevel()<=67){
-		exploss = floor(GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) * 0.08);
-	}
-	else{
-		exploss = 2400;
-	}
+    uint16 exploss = PChar->GetMLevel() <= 67 ? (GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) * 8 ) / 100 : 2400;
 
 	//apply retention percent
 	exploss = exploss*(1-retainPercent);
@@ -1971,9 +1946,10 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 	//loses xxx exp message
 	PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exploss, 0, 10));
 
-	if( (PChar->jobs.exp[PChar->GetMJob()] - exploss) < 0){
+	if( (PChar->jobs.exp[PChar->GetMJob()] - exploss) < 0)
+    {
 		//de-level!
-		int diff = abs(PChar->jobs.exp[PChar->GetMJob()] - exploss);
+		int32 diff = abs(PChar->jobs.exp[PChar->GetMJob()] - exploss);
 		PChar->jobs.exp[PChar->GetMJob()] = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]-1) - diff;
 		PChar->jobs.job[PChar->GetMJob()] -= 1;
 
@@ -1981,11 +1957,15 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
         PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
         CalculateStats(PChar);
+        CheckValidEquipment(PChar);
+
         BuildingCharSkillsTable(PChar);
         BuildingCharAbilityTable(PChar);
         BuildingCharTraitsTable(PChar);
         BuildingCharWeaponSkills(PChar);
-		CheckValidEquipment(PChar);
+
+        PChar->UpdateHealth();
+
         PChar->pushPacket(new CCharJobsPacket(PChar));
         PChar->pushPacket(new CCharUpdatePacket(PChar));
         PChar->pushPacket(new CCharSkillsPacket(PChar));
@@ -1993,14 +1973,17 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
         PChar->pushPacket(new CMenuMeritPacket(PChar));
         PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
         PChar->pushPacket(new CCharSyncPacket(PChar));
+
+        SaveCharStats(PChar);
+        SaveCharJob(PChar, PChar->GetMJob());
+
 		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
 	}
-	else{
+	else
+    {
 		PChar->jobs.exp[PChar->GetMJob()] -= exploss;
 	}
 
-	SaveCharStats(PChar);
-    SaveCharJob(PChar, PChar->GetMJob());
     SaveCharExp(PChar, PChar->GetMJob());
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 }
