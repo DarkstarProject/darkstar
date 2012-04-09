@@ -53,8 +53,11 @@ function onTrigger(player,npc)
 
 		end
 	end
+	--player:delQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
+
 	bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
 	glyphStatus = player:getQuestStatus(WINDURST,GLYPH_HANGER);
+	Fame = player:getFameLevel(WINDURST)
 		
 	if(bookwormStatus == QUEST_AVAILABLE and player:getCurrentMission(WINDURST) ~= LOST_FOR_WORDS and glyphStatus == QUEST_COMPLETED and Fame >= 2) then
 		player:startEvent(0x0183); -- Accept quest 
