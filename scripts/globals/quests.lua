@@ -114,7 +114,7 @@ OVER_THE_HILLS_AND_FAR_AWAY     = 112;
 LURE_OF_THE_WILDCAT_SAN_D_ORIA  = 113;
 ATELLOUNE_S_LAMENT              = 114;
 
-THICK_SHELLS                    = 117;  
+THICK_SHELLS                    = 117; -- ± -- 
 FOREST_FOR_THE_TREES            = 118;
 
 -----------------------------------

@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Abeaule
 -- Starts and Finishes Quest: The Trader in the Forest, The Medicine Woman
--- @zone 231
--- @pos -136 -2 56
+-- @pos -136 -2 56 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -11,7 +10,6 @@ package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
@@ -24,7 +22,7 @@ function onTrade(player,npc,trade)
 	theTraderInTheForest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
 	
 	if(theTraderInTheForest == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(CLUMP_OF_BATAGREENS,1) == true and trade:getItemCount() == 1) then 
+		if(trade:hasItemQty(4367,1) and trade:getItemCount() == 1) then -- Trade Batagreens 
 			player:startEvent(0x020d);
 		end
 	end
@@ -56,7 +54,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x0265);
 			player:setVar("medicineWomanCS",1);
 		end
-	elseif(player:hasKeyItem(COLD_MEDICINE) == true) then
+	elseif(player:hasKeyItem(COLD_MEDICINE)) then
 		player:startEvent(0x0266);
 	end
 
@@ -82,15 +80,15 @@ function onEventFinish(player,csid,option)
 	-- "The Trader in the Forest" Quest
 	if(csid == 0x020c and option == 0 or csid == 0x0250 and option == 0) then
 		if (player:getFreeSlotsCount() == 0) then 
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, SUPPLIES_ORDER);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,592);
 		else
 			player:addQuest(SANDORIA,THE_TRADER_IN_THE_FOREST);
 			player:setVar("theTraderInTheForestCS",0);
-			player:addItem(SUPPLIES_ORDER);
-			player:messageSpecial(ITEM_OBTAINED, SUPPLIES_ORDER);
+			player:addItem(592);
+			player:messageSpecial(ITEM_OBTAINED,592); -- Supplies Order
 		end
 	elseif(csid == 0x0251 and option == 1) then
-		if (player:getFreeSlotsCount() > 0 and player:hasItem(SUPPLIES_ORDER) == false) then
+		if (player:getFreeSlotsCount() > 0 and player:hasItem(592) == false) then -- Supplies Order
 			player:addItem(SUPPLIES_ORDER);
 			player:messageSpecial(ITEM_OBTAINED, SUPPLIES_ORDER);
 		else
@@ -98,12 +96,12 @@ function onEventFinish(player,csid,option)
 		end
 	elseif(csid == 0x020d) then
 		if (player:getFreeSlotsCount() == 0) then 
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ROBE);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12600); -- Robe
 		else
 			player:tradeComplete();
 			player:setTitle(GREEN_GROCER);
-			player:addItem(ROBE);
-			player:messageSpecial(ITEM_OBTAINED, ROBE);
+			player:addItem(12600);
+			player:messageSpecial(ITEM_OBTAINED,12600); -- Robe
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA,THE_TRADER_IN_THE_FOREST);
 		end

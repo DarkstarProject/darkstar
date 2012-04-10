@@ -2,14 +2,12 @@
 -- Area: Northern San d'Oria
 -- NPC:  Castilchat
 -- Starts Quest: Trial Size Trial by Ice
--- @zone 231
--- @pos -186 0 107
+-- @pos -186 0 107 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/shop");
 require("scripts/globals/teleports");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
@@ -19,18 +17,16 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+	
+	-- "Flyers for Regine" conditional script
+	FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(MagicmartFlyer,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	elseif(trade:hasItemQty(MINI_TUNING_FORK_OF_ICE,1) == true and trade:getItemCount() == 1) then 
-		player:startEvent(0x02de,0,1545,4,SMNLvL,2);
+	if(FlyerForRegine == QUEST_ACCEPTED and trade:hasItemQty(532,1) and trade:getItemCount() == 1) then
+		player:messageSpecial(FLYER_REFUSED);
+	elseif(trade:hasItemQty(1545,1) and trade:getItemCount() == 1) then -- Trade mini fork of ice
+		player:startEvent(0x02de,0,1545,4,player:getMainLvl(),2);
 	end
+	
 end;
 
 -----------------------------------
@@ -38,6 +34,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	
 	TrialSizeByIce = player:getQuestStatus(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE);
 	SMNLvL = player:getMainLvl();
 	
@@ -48,8 +45,9 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x02c7);
 	end
+	
 end; 
---0x02c2  0x02c7  0x02c4  0x02c5  0x02c9  0x02dd  0x02de  0x02e2  0x02df  0x02f6  0x02e0  0x02e1
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -66,6 +64,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
 	if(csid == 0x02dd and option == 1) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,MINI_TUNING_FORK_OF_ICE);
@@ -84,4 +83,5 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x02de and option == 1) then
 		toCloisterOfFrost(player);
 	end
+	
 end;

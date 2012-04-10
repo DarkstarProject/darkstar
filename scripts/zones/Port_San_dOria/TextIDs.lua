@@ -10,8 +10,7 @@ FULL_INVENTORY_AFTER_TRADE = 6402; -- You cannot obtain the <item>. Try trading 
           KEYITEM_OBTAINED = 6406; -- Obtained key item: <keyitem>
 			 HOMEPOINT_SET = 24; -- Home point set!
 
--- Quest Items
-    BEETLE_SHELL = 889;  -- 
+-- Dialogs
   MagicmartFlyer = 532;  -- item: Magicmart_flyer
   
    FLYER_REFUSED = 7102; -- This person isn't interested.

@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Morjean
 -- Involved in Quest: A Squire's Test II (Optional), The Holy Crest
--- @zone 231
--- @pos 99 0 116
+-- @pos 99 0 116 231
 -------------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +28,7 @@ function onTrigger(player,npc)
 
 	if(TheHolyCrest == 2) then
 		player:startEvent(0x0041);
-	elseif((TheHolyCrest == 3 and player:hasItem(WYVERN_EGG)) or TheHolyCrest == 4) then
+	elseif((TheHolyCrest == 3 and player:hasItem(1159)) or TheHolyCrest == 4) then -- Wyvern Egg
 		player:startEvent(0x003e);
 	elseif(player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED) then
 		player:startEvent(0x25a);

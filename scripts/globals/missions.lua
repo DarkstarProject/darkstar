@@ -703,7 +703,7 @@ function finishMissionTimeline(player,guard,csid,option)
 					[2] = function (x) player:messageSpecial(YOU_ACCEPT_THE_MISSION); end, 
 					[3] = function (x) player:setVar(messList[2],messList[3]); end, 
 					[4] = function (x) player:tradeComplete(); end, 
-					[5] = function (x) player:addRankPoints(messList[2]); end, 
+					[5] = function (x) if((player:getRankPoints() + messList[2]) > 4000) then player:setRankPoints(4000); else player:addRankPoints(messList[2]); end end, 
 					[6] = function (x) player:setRankPoints(0); end, 
 					[7] = function (x) player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS); end, 
 					[8] = function (x) player:addGil(GIL_RATE*messList[2]); player:messageSpecial(GIL_OBTAINED,GIL_RATE*messList[2]); end, 
