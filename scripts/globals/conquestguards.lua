@@ -10,7 +10,7 @@ package.loaded["scripts/globals/conquest"] = nil;
 nationAlly = 3;
 
 -----------------------------------
--- San d'Oria Inventory
+-- San d'Oria inventory
 -- {Option,CP,Item}
 -----------------------------------
 
@@ -38,7 +38,7 @@ SandInv = {0x80A1,0x000A,0x1055,0x80A0,0x0007,0x1056,0x80A3,0x2328,0x3CB5,
            0x80A4,0x1388,0x44AF};
 
 -----------------------------------
--- Bastok Inventory
+-- Bastok inventory
 -- {Option,CP,Item}
 -----------------------------------
 
@@ -64,7 +64,7 @@ BastInv = {0x80A1,0x000A,0x1055,0x80A0,0x0007,0x1056,0x80A3,0x2328,0x3CB5,
            0x8082,0xBB80,0x4714,0x8090,0xDAC0,0x385D,0x80A4,0x1388,0x44B0};
 
 -----------------------------------
--- Windurst Inventory
+-- Windurst inventory
 -- {Option,CP,Item}
 -----------------------------------
 
@@ -255,7 +255,7 @@ end;
 
 function getSupplyAvailable(nation,player)
 	
-	local mask = 2145386535;
+	local mask = 2130706463;
 	
 	if(player:getVar("supplyQuest_started") == VanadielDayOfTheYear()) then
 		mask = 4294967295; -- Need to wait 1 vanadiel day
@@ -270,7 +270,7 @@ function getSupplyAvailable(nation,player)
 	if(mask ~= -1 and mask ~= 4294967295) then
 		for i = 0,18 do 
 			if(GetRegionOwner(i) ~= nation) then
-				mask = mask + 2^i;
+				mask = mask + 2^(i + 5);
 			end
 		end
 	end
