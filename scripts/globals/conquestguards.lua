@@ -114,14 +114,15 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 	
 	local myCP = getCP(player);
 	local item = trade:getItem();
-	local count = trade:getItemCount();
 	local AddPoints = 0;
 	
 	if(player:getNation() == guardnation or guardnation == JEUNO) then
 		if(guardtype ~= 3 and guardtype ~= 4) then -- all guard can trade crystal except outpost and border.
 			if(item >= 4096 and item <= 4103 or item >= 4238 and item <= 4245) then
 				for Crystal = 1,table.getn(DonateCrys),1 do
-					if(trade:hasItemQty(DonateCrys[Crystal],count)) then
+					local tcount = trade:getItemQty(DonateCrys[Crystal])
+					
+					if(tcount > 0 and trade:hasItemQty(DonateCrys[Crystal],tcount)) then
 						if(player:getRank() == 1) then
 							player:showText(npc,CONQUEST - 7);
 							break; 
@@ -129,22 +130,24 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 							player:showText(npc,CONQUEST + 43);
 							break;
 						elseif(DonateCrys[Crystal] == 4102 or DonateCrys[Crystal] == 4103 or DonateCrys[Crystal] == 4244 or DonateCrys[Crystal] == 4245) then
-							AddPoints = count * math.floor(4000 / (player:getRank() * 12 - 16));
+							AddPoints = AddPoints + tcount * math.floor(4000 / (player:getRank() * 12 - 16));
 						else
-							AddPoints = count * math.floor(4000 / (player:getRank() * 12 - 12));
+							AddPoints = AddPoints + tcount * math.floor(4000 / (player:getRank() * 12 - 12));
 						end
 					end
+				end
 					
+				if(player:getRank() ~= 1 and player:getRankPoints() < 4000) then
 					if(AddPoints + player:getRankPoints() >= 4000) then
 						setCP(player,myCP + (AddPoints + player:getRankPoints()) - 4000);
 						player:setRankPoints(4000);
 						player:showText(npc,CONQUEST + 44);
 					else
+						--printf("point: %u",AddPoints);
 						player:addRankPoints(AddPoints);
 						player:showText(npc,CONQUEST + 45);
 					end
 					player:tradeComplete();
-					break
 				end
 			end
 		end
