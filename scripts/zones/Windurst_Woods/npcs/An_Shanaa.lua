@@ -11,14 +11,22 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x2d);
+
+	if(player:hasKeyItem(126) ==true) then
+		player:startEvent(0x0198,0,126);
+	elseif(player:getVar("CHASING_TALES_TRACK_BOOK") >= 1) then
+	    player:startEvent(0x0195); -- Neeed CS here
+    		
+    else
+	    player:startEvent(0x2d);
+    end	
 end;
 
 -----------------------------------
@@ -38,6 +46,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-
