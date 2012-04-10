@@ -18,6 +18,11 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	smudgeStatus = player:getQuestStatus(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
+	if(smudgeStatus and trade:hasItemQty(637,1) and trade:hasItemQty(4382,1)) then
+		player:startEvent(0x01a1,3000);
+	end
+		
 end;
 
 -----------------------------------
@@ -27,8 +32,17 @@ end;
 function onTrigger(player,npc)
 
 GlyphHanger = player:getQuestStatus(WINDURST,GLYPH_HANGER);
-
-	if (GlyphHanger == QUEST_COMPLETED) then
+chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
+smudgeStatus = player:getQuestStatus(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
+Fame = player:getFameLevel(WINDURST);
+	if(smudgeStatus == QUEST_COMPLETED and player:needToZone() == true) then
+		player:startEvent(0x01a2);
+	elseif (smudgeStatus == QUEST_ACCEPTED) then
+		player:startEvent(0x019e,0,637,4382);
+    elseif (smudgeStatus == QUEST_AVAILABLE and chasingStatus == QUEST_COMPLETED and Fame >= 4) then
+		player:startEvent(0x019d,0,637,4382);
+		
+	elseif (GlyphHanger == QUEST_COMPLETED and chasingStatus ~= QUEST_COMPLETED) then
 		player:startEvent(0x0182);
 	elseif (GlyphHanger == QUEST_ACCEPTED) then
 		if (player:hasKeyItem(NOTES_FROM_IPUPU)) then
@@ -38,6 +52,7 @@ GlyphHanger = player:getQuestStatus(WINDURST,GLYPH_HANGER);
 		end
 	elseif (GlyphHanger == QUEST_AVAILABLE) then
 		player:startEvent(0x017d);
+	
 	else
 		player:startEvent(0x0174); -- The line will never be executed
 	end
@@ -70,6 +85,17 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_HORUTOTO_RUINS);
 		player:addFame(WINDURST,WIN_FAME*120);
 		player:completeQuest(WINDURST,GLYPH_HANGER);
+		
+	elseif(csid == 0x019d and option == 0) then
+		player:addQuest(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
+	elseif(csid == 0x01a1) then
+		player:addGil(GIL_RATE*3000);
+		player:addKeyItem(MAP_OF_FEIYIN);
+		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_FEIYIN);
+		player:addFame(WINDURST,WIN_FAME*120);
+		player:completeQuest(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);	
+		player:needToZone(true);
+	
 	end
 end;
 
