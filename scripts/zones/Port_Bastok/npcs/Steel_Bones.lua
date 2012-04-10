@@ -4,11 +4,11 @@
 -- Standard Info NPC
 -- Involved in Quest: Guest of Hauteur
 -----------------------------------
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/keyitems");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -25,10 +25,10 @@ end;
 function onTrigger(player,npc)
 
   GuestofHauteur = player:getQuestStatus(BASTOK,GUEST_OF_HAUTEUR);
-  questStatus = player:getVar("GuestofHauteur_Event");
+  questStatus = ;
   itemEquipped = player:getEquipID(0);
 
-  if (GuestofHauteur == 1 and questStatus ~= 1 and (itemEquipped == MAUL or itemEquipped == REPLICA_MAUL)) then
+  if (GuestofHauteur == QUEST_ACCEPTED and player:getVar("GuestofHauteur_Event") ~= 1 and (itemEquipped == 17045 or itemEquipped == 17426)) then -- Maul / Replica Maul
     player:startEvent(0x39);
   else
   	player:startEvent(0x01d);
@@ -57,9 +57,5 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(LETTERS_FROM_DOMIEN);
         player:messageSpecial(KEYITEM_OBTAINED,LETTERS_FROM_DOMIEN);        
     end
+	
 end;
-
-
-
-
-

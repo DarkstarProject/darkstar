@@ -1,14 +1,14 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Bartolomeo
+-- NPC:  Bartolomeo
 -- Standard Info NPC
 -- Involved in Quest: Welcome to Bastok
 -----------------------------------
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/keyitems");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -25,10 +25,8 @@ end;
 function onTrigger(player,npc)
 
   WelcometoBastok = player:getQuestStatus(BASTOK,WELCOME_TO_BASTOK);
-  questStatus = player:getVar("WelcometoBastok_Event");
-  itemEquipped = player:getEquipID(1);
 
-  if (WelcometoBastok == 1 and questStatus ~= 1 and itemEquipped == SHELL_SHIELD) then
+  if (WelcometoBastok == QUEST_ACCEPTED and player:getVar("WelcometoBastok_Event") ~= 1 and player:getEquipID(1) == 12415) then -- Shell Shield
     player:startEvent(0x0034);
   else
   	player:startEvent(0x008c);
@@ -53,11 +51,8 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-    if (csid == 0x34 and WelcometoBastok == 1) then
+    if (csid == 0x34 and player:getQuestStatus(BASTOK,WELCOME_TO_BASTOK) == QUEST_ACCEPTED) then
         player:setVar("WelcometoBastok_Event",1)
     end
+	
 end;
-
-
-
-

@@ -119,12 +119,12 @@ function onEventFinish(player,csid,option)
 		if(player:getFreeSlotsCount(0) >= 1) then
 			player:delKeyItem(UNFINISHED_LETTER);
 			player:setVar("CidsSecret_Event",0);
-			player:addItem(RAM_MANTLE);
-			player:messageSpecial(ITEM_OBTAINED,RAM_MANTLE);
+			player:addItem(13450);
+			player:messageSpecial(ITEM_OBTAINED,13450); -- Ram Mantle
 			player:addFame(BASTOK,BAS_FAME*30);
 			player:completeQuest(BASTOK,CID_S_SECRET);
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,RAM_MANTLE);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13450);
 		end
      end
 end;

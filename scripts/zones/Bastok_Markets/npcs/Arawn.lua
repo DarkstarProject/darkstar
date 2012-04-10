@@ -1,15 +1,15 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Arawn
+-- NPC:  Arawn
 -- Starts & Finishes Quest: Stamp Hunt
 -----------------------------------
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
@@ -24,7 +24,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
+    
+	StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
 	    
 	if (StampHunt == 0) then
 		player:startEvent(0x00e1);
@@ -33,6 +34,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0072);
     end
+	
 end;
 
 -----------------------------------
@@ -58,19 +60,16 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,STAMP_SHEET);
     elseif (csid == 0x00e2) then
         if (player:getFreeSlotsCount(0) >= 1) then
-            player:completeQuest(BASTOK,STAMP_HUNT);
-            player:addFame(BASTOK,BAS_FAME*50);
             player:setTitle(STAMPEDER);
-            player:addItem(13081); --Leather Gorget
-            player:messageSpecial(ITEM_OBTAINED, 13081);
+            player:addItem(13081);
+            player:messageSpecial(ITEM_OBTAINED,13081); -- Leather Gorget
             player:delKeyItem(STAMP_SHEET);
             player:setVar("StampHunt_Event",0);
+			player:addFame(BASTOK,BAS_FAME*50);
+			player:completeQuest(BASTOK,STAMP_HUNT);
         else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, LEATHER_GORGET);
         end
     end
+	
 end;
-
-
-
-

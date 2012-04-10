@@ -19,22 +19,10 @@ CONQUEST = 7776; -- You've earned conquest points!
 	  YOU_ACCEPT_THE_MISSION = 7116; -- You accept the mission
 YOUVE_EARNED_CONQUEST_POINTS = 7776; -- You've earned conquest points!
 
--- Quest Items
-	 KING_TRUFFLE = 4386; -- 
-	   ROLANBERRY = 4530; -- 
-    BRASS_HAIRPIN = 12497; -- 
-    COTTON_GLOVES = 12721; -- 
-     SHELL_SHIELD = 12415; -- 
-     	   SPATHA = 16565; -- 
-    		 MAUL = 17045; -- 
-     REPLICA_MAUL = 17426; -- 
-            TARGE = 12300; -- 
-        SPEED_BOW = 17170; -- 
-
 -- Dialog Texts
- PAUJEAN_DIALOG_1 = 7420; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea. Just don't do anything I wouldn't...heh heh.
-   RONAN_DIALOG_1 = 7229; -- Do something! Isn't there anything you can do to make him come out of his shell?
-POWHATAN_DIALOG_1 = 7043; -- I'm sick and tired of entertaining guests.
+ PAUJEAN_DIALOG_1 = 7422; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea. Just don't do anything I wouldn't...heh heh.
+   RONAN_DIALOG_1 = 7231; -- Do something! Isn't there anything you can do to make him come out of his shell?
+POWHATAN_DIALOG_1 = 7045; -- I'm sick and tired of entertaining guests.
 	 UNLOCK_NINJA = 8203; -- You can now become a ninja.
 
 -- Shop Texts
@@ -45,28 +33,28 @@ POWHATAN_DIALOG_1 = 7043; -- I'm sick and tired of entertaining guests.
            NUMA_SHOP_DIALOG = 7406; -- Hello, hello! Won't you buy something? I'll give you a rebate!
          SAWYER_SHOP_DIALOG = 7400; -- Hi, there. For here or to go?
        SUGANDHI_SHOP_DIALOG = 7410; -- Traveler! I am sure my wares will prove useful on your journey. Why don't you buy some?
-      VALERIANO_SHOP_DIALOG = 7353; -- Welcome to the Troupe Valeriano. Valeriano, at your service! Have a laugh, then spend some cash! Treats and sweets from exotic lands!
+      VALERIANO_SHOP_DIALOG = 7355; -- Welcome to the Troupe Valeriano. Valeriano, at your service! Have a laugh, then spend some cash! Treats and sweets from exotic lands!
 
 		 EVELYN_OPEN_DIALOG = 7404; -- Hello! Might I interest you in some specialty goods from Gustaberg?
-	   EVELYN_CLOSED_DIALOG = 7348; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Gustaberg, but it's not easy getting stuff from areas that aren't under Bastokan control.
+	   EVELYN_CLOSED_DIALOG = 7350; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Gustaberg, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
 		  BELKA_OPEN_DIALOG = 7407; -- Welcome. I've got goods from Derfland. Interested?
-		BELKA_CLOSED_DIALOG = 7350; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Derfland, but it's not easy getting stuff from areas that aren't under Bastokan control.
+		BELKA_CLOSED_DIALOG = 7352; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Derfland, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
 	   ROSSWALD_OPEN_DIALOG = 7408; -- Hello, hello! Everything I have is imported directly from Zulkheim!
-	 ROSSWALD_CLOSED_DIALOG = 7349; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Zulkheim, but it's not easy getting stuff from areas that aren't under Bastokan control.
+	 ROSSWALD_CLOSED_DIALOG = 7351; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Zulkheim, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
-		VATTIAN_OPEN_DIALOG = 8133; -- Welcome to my humble establishment. I have a wide variety of specialty goods from Kuzotz.
-	  VATTIAN_CLOSED_DIALOG = 7351; -- I'm trying to start a business selling goods from Kuzotz, but it's not easy getting stuff from areas that aren't under Bastokan control.
+		VATTIAN_OPEN_DIALOG = 8136; -- Welcome to my humble establishment. I have a wide variety of specialty goods from Kuzotz.
+	  VATTIAN_CLOSED_DIALOG = 7353; -- I'm trying to start a business selling goods from Kuzotz, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
-	  ZOBYQUHYO_OPEN_DIALOG = 8134; -- Hey therrre! I've got lots of wonderrrful goodies, fresh from the Elshimo Lowlands.
-	ZOBYQUHYO_CLOSED_DIALOG = 8135; -- I'm trrrying to start a business selling goods from the Elshimo Lowlands, but it's not easy getting stuff from areas that aren't under Bastokan contrrrol.
+	  ZOBYQUHYO_OPEN_DIALOG = 8137; -- Hey therrre! I've got lots of wonderrrful goodies, fresh from the Elshimo Lowlands.
+	ZOBYQUHYO_CLOSED_DIALOG = 8138; -- I'm trrrying to start a business selling goods from the Elshimo Lowlands, but it's not easy getting stuff from areas that aren't under Bastokan contrrrol.
 
-  DHENTEVRYUKOH_OPEN_DIALOG = 8136; -- Welcome! Welcome! Take a wonderrr at these specialty goods from the Elshimo Uplands!
-DHENTEVRYUKOH_CLOSED_DIALOG = 8137; -- I'm trrrying to start a business selling goods from the Elshimo Uplands, but it's not easy transporting goods from areas that aren't under Bastokan contrrrol.
+  DHENTEVRYUKOH_OPEN_DIALOG = 8139; -- Welcome! Welcome! Take a wonderrr at these specialty goods from the Elshimo Uplands!
+DHENTEVRYUKOH_CLOSED_DIALOG = 8140; -- I'm trrrying to start a business selling goods from the Elshimo Uplands, but it's not easy transporting goods from areas that aren't under Bastokan contrrrol.
 
-	  BAGNOBROK_OPEN_DIALOG = 8890; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!
-	BAGNOBROK_CLOSED_DIALOG = 8889; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
+	  BAGNOBROK_OPEN_DIALOG = 8894; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!
+	BAGNOBROK_CLOSED_DIALOG = 8893; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
 	
 -- Tenshodo shop & quest "Tenshodo membership"
   TENSHODO_SHOP_OPEN_DIALOG = 6629; -- Ah, one of our members. Welcome to the Tenshodo shop.

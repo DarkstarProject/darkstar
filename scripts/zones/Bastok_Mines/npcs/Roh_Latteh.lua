@@ -4,13 +4,13 @@
 -- Involved in Quest: Mom, The Adventurer?
 -- Finishes Quest: The Signpost Marks the Spot
 -----------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/titles");
+require("scripts/globals/quests");
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
@@ -18,18 +18,13 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    MomTheAdventurer = player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER);
-    questStatus = player:getVar("MomTheAdventurer_Event");
-
-    if (MomTheAdventurer >=1 and questStatus == 1) then
-        count = trade:getItemCount();
-        gil = trade:getGil();
-        CopperRing = trade:hasItemQty(COPPER_RING,1);
-
-        if (CopperRing and count == 1 and gil == 0) then
+	
+    if (player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER) ~= QUEST_AVAILABLE and player:getVar("MomTheAdventurer_Event") == 1) then
+        if (trade:hasItemQty(13454,1) and trade:getItemCount() == 1) then -- Trade Copper Ring
             player:startEvent(0x005f);
         end
     end
+	
 end;
 
 -----------------------------------
@@ -39,13 +34,13 @@ end;
 function onTrigger(player,npc)
 
     SignPost = player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
-	Painting = player:hasKeyItem(PAINTING_OF_A_WINDMILL);
 	
-    if (SignPost == 1 and Painting == true) then
+    if (SignPost == QUEST_ACCEPTED and player:hasKeyItem(PAINTING_OF_A_WINDMILL)) then
         player:startEvent(0x0060);
     else
         player:startEvent(0x001d);
     end
+	
 end;
 
 -----------------------------------
@@ -78,14 +73,11 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(PAINTING_OF_A_WINDMILL);
             player:setTitle(TREASURE_SCAVENGER);
             player:addFame(BASTOK,BAS_FAME*50);
-            player:addItem(LINEN_ROBE);
-            player:messageSpecial(ITEM_OBTAINED,LINEN_ROBE);
+            player:addItem(12601);
+            player:messageSpecial(ITEM_OBTAINED,12601); -- Linen Robe
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, LINEN_ROBE);
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12601);
         end
     end
+	
 end;
-
-
-
-

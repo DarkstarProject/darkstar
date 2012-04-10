@@ -1,16 +1,16 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Nbu Latteh
+-- NPC:  Nbu Latteh
 -- Starts & Finishes Quest: Mom, The Adventurer?
 -- Starts Quest: The Signpost Marks the Spot
 -----------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/titles");
+require("scripts/globals/quests");
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
@@ -25,13 +25,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+	
 	pFame = player:getFameLevel(BASTOK);
-
+	
 	if (pFame < 2) then
 		MomTheAdventurer = player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER);
 		questStatus = player:getVar("MomTheAdventurer_Event");
-		zoneStatus = player:needToZone();
 
 		if (MomTheAdventurer ~= 2 and questStatus == 0) then
 			player:startEvent(0x00e6);
@@ -42,7 +41,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x00e9);
 			end
 		elseif (MomTheAdventurer == 2) then
-			if (zoneStatus) then
+			if (player:needToZone()) then
 				player:startEvent(0x007f);
 			else
 				player:startEvent(0x00e6);
@@ -58,6 +57,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x007f);
 		end
 	end
+	
 end;
 
 -----------------------------------
@@ -76,36 +76,37 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x00e6) and (option == 0) then
+	
+	if (csid == 0x00e6 and option == 0) then
 		if (player:getFreeSlotsCount(0) > 0) then
 			player:addQuest(BASTOK,MOM_THE_ADVENTURER);
 			player:setVar("MomTheAdventurer_Event",1);
-			player:addItem(FIRE_CRYSTAL);
-			player:messageSpecial(ITEM_OBTAINED,FIRE_CRYSTAL);
+			player:addItem(4096);
+			player:messageSpecial(ITEM_OBTAINED,4096); -- Fire Crystal
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,FIRE_CRYSTAL);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4096);
 		end
 	elseif (csid == 0x00e9 or csid == 0x00ea) then
-		if (player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER) == 1) then
-			player:completeQuest(BASTOK,MOM_THE_ADVENTURER);
-			player:addFame(BASTOK,BAS_FAME*50);
-		else
-			player:addFame(BASTOK,BAS_FAME*8)
-		end
-
 		if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH)) then
 			gilReward = 100;
 		else
 			gilReward = 200;
 		end
-
+		
 		player:delKeyItem(LETTER_FROM_ROH_LATTEH);
 		player:setTitle(RINGBEARER);
 		player:addGil(GIL_RATE*gilReward);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*gilReward);
-		player:setVar("MomTheAdventurer_Event",0)
+		player:setVar("MomTheAdventurer_Event",0);
+		
+		if (player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER) == QUEST_ACCEPTED) then
+			player:addFame(BASTOK,BAS_FAME*50);
+			player:completeQuest(BASTOK,MOM_THE_ADVENTURER);
+		else
+			player:addFame(BASTOK,BAS_FAME*8)
+		end
 	elseif (csid == 0x00eb and option == 0) then
 		player:addQuest(BASTOK,BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
    end
+   
 end;
-
