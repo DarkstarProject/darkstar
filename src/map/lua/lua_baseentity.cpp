@@ -1667,18 +1667,22 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
 				CHAR_INRANGE,
 				new CEntityUpdatePacket(PBaseEntity,ENTITY_UPDATE));
 		}
-		if (!lua_isnil(L,4) && lua_isnumber(L,4))
-		{
-			((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, lua_tointeger(L,3), lua_tointeger(L,4)));
-		}
-		else if (!lua_isnil(L,3) && lua_isnumber(L,3))		
-		{
-			((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, lua_tointeger(L,3)));
-		}
-		else
-		{
-			((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageTextPacket(PBaseEntity, messageID));
-		}
+
+        uint32 param0 = 0;
+        uint32 param1 = 0;
+        uint32 param2 = 0;
+        uint32 param3 = 0;
+
+        if( !lua_isnil(L,3) && lua_isnumber(L,3) )
+            param0 = (uint32)lua_tointeger(L,3);
+        if( !lua_isnil(L,4) && lua_isnumber(L,4) )
+            param1 = (uint32)lua_tointeger(L,4);
+        if( !lua_isnil(L,5) && lua_isnumber(L,5) )
+            param2 = (uint32)lua_tointeger(L,5);
+        if( !lua_isnil(L,6) && lua_isnumber(L,6) )
+            param3 = (uint32)lua_tointeger(L,6);
+
+        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3));
 	}
 	return 0;
 }
