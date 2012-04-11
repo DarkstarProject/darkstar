@@ -19,7 +19,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onTrade(player,npc,trade)
 	smudgeStatus = player:getQuestStatus(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
-	if(smudgeStatus and trade:hasItemQty(637,1) and trade:hasItemQty(4382,1)) then
+	if(smudgeStatus == QUEST_ACCEPTED sand trade:hasItemQty(637,1) and trade:hasItemQty(4382,1)) then
 		player:startEvent(0x01a1,3000);
 	end
 		
