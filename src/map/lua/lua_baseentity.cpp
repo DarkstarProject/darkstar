@@ -1667,7 +1667,11 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
 				CHAR_INRANGE,
 				new CEntityUpdatePacket(PBaseEntity,ENTITY_UPDATE));
 		}
-		if (!lua_isnil(L,3) && lua_isnumber(L,3))
+		if (!lua_isnil(L,4) && lua_isnumber(L,4))
+		{
+			((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, lua_tointeger(L,3), lua_tointeger(L,4)));
+		}
+		else if (!lua_isnil(L,3) && lua_isnumber(L,3))		
 		{
 			((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, lua_tointeger(L,3)));
 		}
