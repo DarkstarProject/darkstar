@@ -36,15 +36,15 @@ THE_DISMAYED_CUSTOMER           = 6;  -- + --
 THE_TRADER_IN_THE_FOREST        = 7;  -- + --
 THE_SWEETEST_THINGS             = 8;  -- + --
 THE_VICASQUE_S_SERMON           = 9;  -- + --
-A_SQUIRE_S_TEST                 = 10;
+A_SQUIRE_S_TEST                 = 10; -- + --
 GRAVE_CONCERNS                  = 11; -- ± --
 THE_BRUGAIRE_CONSORTIUM         = 12; -- ± --
 
 LIZARD_SKINS                    = 15; -- + --
 FLYERS_FOR_REGINE               = 16; -- + --
 
-GATES_TO_PARADISE               = 18;
-A_SQUIRE_S_TEST_II              = 19;
+GATES_TO_PARADISE               = 18; -- + --
+A_SQUIRE_S_TEST_II              = 19; -- + --
 TO_CURE_A_COUGH                 = 20; -- + --
 
 TIGER_S_TEETH                   = 23; -- ± --
@@ -52,7 +52,7 @@ TIGER_S_TEETH                   = 23; -- ± --
 UNDYING_FLAMES                  = 26;
 A_PURCHASE_OF_ARMS              = 27; -- + --
 
-A_KNIGHT_S_TEST                 = 29;
+A_KNIGHT_S_TEST                 = 29; -- + --
 THE_MEDICINE_WOMAN              = 30; -- + --
 BLACK_TIGER_SKINS               = 31; -- + --
 

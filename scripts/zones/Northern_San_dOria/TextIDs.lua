@@ -17,7 +17,8 @@ CONQUEST = 11564; -- You've earned conquest points!
 YOUVE_EARNED_CONQUEST_POINTS = 11564; -- You've earned conquest points!
 
 -- Quest Dialog
- SHIVA_UNLOCKED = 12655; -- You are now able to summon Shiva
+   SHIVA_UNLOCKED = 12655; -- You are now able to summon Shiva
+OLBERGIEUT_DIALOG = 11129; -- Friar Faurbellant is on retreat at the Crag of Holla. Please give <item> to him.
 
 -- Other Dialog
 	 MagicmartFlyer = 532; -- item: Magicmart_flyer

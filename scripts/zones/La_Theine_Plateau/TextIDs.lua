@@ -13,3 +13,9 @@ UNLOCK_CARBUNCLE = 7501; -- You can now summon Carbuncle.
 
 -- Mission Dialogs
 RESCUE_DRILL = 7318; -- "Rescue drills in progress. Try to stay out of the way."
+
+-- General Dialogs
+FAURBELLANT_1 = 7358; -- Greetings. traveler. Sorry, I've little time to chat. I must focus on my prayer.
+FAURBELLANT_2 = 7359; -- Ah, the <item>! Thank you for making such a long journey to bring this! May the Gates of Paradise open to all.
+FAURBELLANT_3 = 7360; -- Please deliver that <item> to the high priest in the San d'Oria Cathedral.
+FAURBELLANT_4 = 7361; -- My thanks again for your services. May the Gates of Paradise open to all.

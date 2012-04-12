@@ -1,13 +1,17 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Faurbellant
--- Quest NPC
+--  NPC: Faurbellant
+-- Type: Quest NPC
+-- @zone 102
+--  @pos 484 24 -89
+--
+-- Involved in Quest: Gates of Paradise
+-----------------------------------
+package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
 
-
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
+require("scripts/globals/keyitems");
 require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------
@@ -23,14 +27,23 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-gates = player:getQuestStatus(SANDORIA, GATES_TO_PARADISE)
-if (gates == 1 and player:hasKeyItem(150) == false) then 
-player:addKeyItem(150);
-player:messageSpecial(KEYITEM_OBTAINED, 150)
-if (gates == 1 and player:hasKeyItem(150)) then
-player:addKeyItem(150);
-end
-end
+
+	gates = player:getQuestStatus(SANDORIA,GATES_TO_PARADISE);
+	if (gates == QUEST_COMPLETED) then	
+		player:showText(npc, FAURBELLANT_4);
+	elseif (gates == QUEST_ACCEPTED) then
+		if (player:hasKeyItem(SCRIPTURE_OF_WIND) == true) then 
+			player:showText(npc, FAURBELLANT_2, 0, SCRIPTURE_OF_WIND);
+			player:delKeyItem(SCRIPTURE_OF_WIND);
+			player:addKeyItem(SCRIPTURE_OF_WATER);
+			player:messageSpecial(KEYITEM_OBTAINED, SCRIPTURE_OF_WATER)
+		else
+			player:showText(npc, FAURBELLANT_3, SCRIPTURE_OF_WATER);
+		end;
+	else
+		player:showText(npc, FAURBELLANT_1);
+	end;
+	
 end; 
 
 
@@ -50,5 +63,4 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
 end;
