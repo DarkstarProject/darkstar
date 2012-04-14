@@ -21,17 +21,17 @@
 ===========================================================================
 */
 
-#ifndef _CPARTYLISTPACKET_H_
-#define _CPARTYLISTPACKET_H_
+#ifndef _CLINKSHELLLISTPACKET_H_
+#define _CLINKSHELLLISTPACKET_H_
 
 #include "../../common/cbasetypes.h"
 
-class CPartyListPacket
+class CLinkshellListPacket
 {
 public:
 
-    CPartyListPacket(uint32 partyid);
-   ~CPartyListPacket();
+    CLinkshellListPacket();
+   ~CLinkshellListPacket();
 
     void AddPlayer(SearchEntity* PPlayer);
     
@@ -39,8 +39,6 @@ public:
     uint16 GetSize();
 
 private:
-
-    uint32 m_partyid;
 
     uint8 m_data[1024];
 };

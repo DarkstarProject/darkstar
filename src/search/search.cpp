@@ -34,6 +34,7 @@
 #include <ws2tcpip.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "data_loader.h"
 #include "search.h"
@@ -41,6 +42,7 @@
 
 #include "packets/auction_history.h"
 #include "packets/auction_list.h"
+#include "packets/linkshell_list.h"
 #include "packets/party_list.h"
 #include "packets/search_list.h"
 
@@ -59,7 +61,7 @@ ppuint32 __stdcall TCPComm(void* lpParam);
 
 extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
-extern void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest);
+extern void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest);
 
@@ -325,9 +327,9 @@ ppuint32 __stdcall TCPComm(void* lpParam)
             HandleSearchComment(PTCPRequest);
 		}
 		break;
-		case TCP_PARTY_LIST:
+		case TCP_GROUP_LIST:
 		{
-			HandlePartyListRequest(PTCPRequest);
+			HandleGroupListRequest(PTCPRequest);
 		}
 		break;
 		case TCP_AH_REQUEST: 
@@ -336,7 +338,7 @@ ppuint32 __stdcall TCPComm(void* lpParam)
             HandleAuctionHouseRequest(PTCPRequest);
 		}
 		break;
-		case TCP_AH_HISTORY:
+		case TCP_AH_HISTORY_SINGL:
         case TCP_AH_HISTORY_STACK:
 		{
             HandleAuctionHouseHistoru(PTCPRequest);
@@ -348,12 +350,12 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*  Запрос списка персонажей (party/linkshell)                           *
+*                                                                       *
 ************************************************************************/
 
-void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest)
+void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
 {
 	uint8* data = (uint8*)PTCPRequest->GetData();
 
@@ -363,11 +365,41 @@ void HandlePartyListRequest(CTCPRequestPacket* PTCPRequest)
 	ShowMessage("SEARCH::PartyID = %u\n", partyid);
     ShowMessage("SEARCH::LinkshlellID = %u\n", linkshellid);
 
-    CPartyListPacket* PPartyListPacket = new CPartyListPacket(partyid);
-    
-    PTCPRequest->SendToSocket(PPartyListPacket->GetData(), PPartyListPacket->GetSize());
+    CDataLoader* PDataLoader = new CDataLoader();
 
-    delete PPartyListPacket;
+    if (partyid != 0)
+    {
+        std::list<SearchEntity*> PartyList = PDataLoader->GetPartyList(partyid);
+
+        CPartyListPacket* PPartyPacket = new CPartyListPacket(partyid);
+
+        for (std::list<SearchEntity*>::iterator it = PartyList.begin(); it != PartyList.end(); ++it)
+        {
+            PPartyPacket->AddPlayer(*it);
+        }
+
+        PrintPacket((int8*)PPartyPacket->GetData(), PPartyPacket->GetSize());
+        PTCPRequest->SendToSocket(PPartyPacket->GetData(), PPartyPacket->GetSize());
+
+        delete PPartyPacket;
+    }
+    else if (linkshellid != 0)
+    {
+        std::list<SearchEntity*> LinkshellList = PDataLoader->GetLinkshellList(linkshellid);
+
+        CLinkshellListPacket* PLinkshellPacket = new CLinkshellListPacket();
+
+        for (std::list<SearchEntity*>::iterator it = LinkshellList.begin(); it != LinkshellList.end(); ++it)
+        {
+            PLinkshellPacket->AddPlayer(*it);
+        }
+
+        PrintPacket((int8*)PLinkshellPacket->GetData(), PLinkshellPacket->GetSize());
+        PTCPRequest->SendRawToSocket(PLinkshellPacket->GetData(), PLinkshellPacket->GetSize());
+
+        delete PLinkshellPacket;
+    }
+    delete PDataLoader;
 }
 
 /************************************************************************
@@ -394,7 +426,7 @@ void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
         0x93, 0xD6, 0x90, 0xF1, 0x21, 0x7A, 0xA5, 0xAC, 0x38, 0x25, 0x69, 0x79, 0x00, 0xC6, 0x7E, 0xDC, 
         0x80, 0x3D, 0x99, 0x85, 0xF4, 0xDF, 0xCF, 0xFC, 0x1A, 0x72, 0xE2, 0x0D 
     };
-    PTCPRequest->SendRawToSocket(packet, 204);
+    PTCPRequest->SendRawToSocket(packet, sizeof(packet));
 }
 
 /************************************************************************
@@ -484,7 +516,7 @@ void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
 	CAHHistoryPacket* PAHPacket = new CAHHistoryPacket(ItemID);
 
     CDataLoader* PDataLoader = new CDataLoader();
-    std::vector<ahHistory*> HistoryList = PDataLoader->GetAHItemHystory(ItemID, stack);
+    std::vector<ahHistory*> HistoryList = PDataLoader->GetAHItemHystory(ItemID, stack != 0);
 
 	for (uint8 i = 0; i < HistoryList.size(); ++i)
 	{

@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\src\search\data_loader.cpp" />
     <ClCompile Include="..\..\src\search\packets\auction_history.cpp" />
     <ClCompile Include="..\..\src\search\packets\auction_list.cpp" />
+    <ClCompile Include="..\..\src\search\packets\linkshell_list.cpp" />
     <ClCompile Include="..\..\src\search\packets\party_list.cpp" />
     <ClCompile Include="..\..\src\search\packets\search_comment.cpp" />
     <ClCompile Include="..\..\src\search\packets\search_list.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="..\..\src\search\data_loader.h" />
     <ClInclude Include="..\..\src\search\packets\auction_history.h" />
     <ClInclude Include="..\..\src\search\packets\auction_list.h" />
+    <ClInclude Include="..\..\src\search\packets\linkshell_list.h" />
     <ClInclude Include="..\..\src\search\packets\party_list.h" />
     <ClInclude Include="..\..\src\search\packets\search_comment.h" />
     <ClInclude Include="..\..\src\search\packets\search_list.h" />

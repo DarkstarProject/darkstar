@@ -50,6 +50,12 @@ CDataLoader::~CDataLoader()
     Sql_Free(SqlHandle);
 }
 
+/************************************************************************
+*                                                                       *
+*  История продаж предмета                                              *
+*                                                                       *
+************************************************************************/
+
 std::vector<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
 {
     std::vector<ahHistory*> HistoryList;
@@ -203,4 +209,76 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList()
         }
     }
     return PlayersList;
+}
+
+/************************************************************************
+*                                                                       *
+*  Список персонажей, состоящих в одной группе                          *
+*                                                                       *
+************************************************************************/
+
+std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
+{
+    std::list<SearchEntity*> PartyList;
+
+    const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
+                         war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
+                         FROM accounts_sessions \
+                         LEFT JOIN chars USING (charid) \
+                         LEFT JOIN char_look USING (charid) \
+                         LEFT JOIN char_stats USING (charid) \
+                         LEFT JOIN char_jobs USING(charid) \
+                         WHERE partyid = %u \
+                         ORDER BY charname ASC \
+                         LIMIT 18";
+
+    int32 ret = Sql_Query(SqlHandle, Query, PartyID);
+
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		{
+            SearchEntity* PPlayer = new SearchEntity;
+            memset(PPlayer, 0, sizeof(SearchEntity));
+
+            PPlayer->id     = (uint32)Sql_GetUIntData(SqlHandle, 0);
+            PPlayer->zone   = (uint8) Sql_GetIntData(SqlHandle,  3);
+            PPlayer->nation = (uint8) Sql_GetIntData(SqlHandle,  4);
+            PPlayer->mjob   = (uint8) Sql_GetIntData(SqlHandle, 10);
+            PPlayer->sjob   = (uint8) Sql_GetIntData(SqlHandle, 11);
+            PPlayer->mlvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->mjob);
+            PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->sjob);
+            PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
+            PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
+
+            PPlayer->slvl = (PPlayer->slvl > (PPlayer->mlvl >> 1) ? (PPlayer->mlvl == 1 ? 1 : (PPlayer->mlvl >> 1)) : PPlayer->slvl);
+
+            uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
+
+            if (PartyID == PPlayer->id) PPlayer->flags1 |= 0x0008;
+            if (nameflag & FLAG_AWAY)   PPlayer->flags1 |= 0x0100;
+            if (nameflag & FLAG_DC)     PPlayer->flags1 |= 0x0800;
+            if (PartyID != 0)           PPlayer->flags1 |= 0x2000;
+            if (nameflag & FLAG_ANON)   PPlayer->flags1 |= 0x4000;
+            if (nameflag & FLAG_INVITE) PPlayer->flags1 |= 0x8000;
+
+            PPlayer->flags2 = PPlayer->flags1;
+
+            PartyList.push_back(PPlayer);
+        }
+    }
+    return PartyList;
+}
+
+/************************************************************************
+*                                                                       *
+*  Список персонажей, состоящих в одной linkshell                       *
+*                                                                       *
+************************************************************************/
+
+std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
+{
+    std::list<SearchEntity*> LinkshellList;
+
+    return LinkshellList;
 }

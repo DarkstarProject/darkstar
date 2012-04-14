@@ -27,6 +27,8 @@
 
 #include "../data_loader.h"
 
+#include <string.h>
+
 #include "search_list.h"
 
 
@@ -45,6 +47,7 @@ CSearchListPacket::CSearchListPacket(uint32 Total)
 
     WBUFB(m_data,(0x0A)) = 0x80;
     WBUFB(m_data,(0x0B)) = 0x80;
+
     WBUFB(m_data,(0x0E)) = Total; // общее количество найденных персонажей (может отличаться от отправляемого)
 }
 

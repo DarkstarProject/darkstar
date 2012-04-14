@@ -23,14 +23,18 @@
 
 #include "../../common/showmsg.h"
 #include "../../common/socket.h"
+#include "../../common/utils.h"
+
+#include "../data_loader.h"
+
+#include <string.h>
 
 #include "party_list.h"
 
 
 /************************************************************************
 *                                                                       *
-*  Если количество отправляемых предметов превышает 20, то отправляем   *
-*  их несколькими пакетами, в кажный их коротых записываем смещение     *
+*                                                                       *
 *                                                                       *
 ************************************************************************/
 
@@ -38,17 +42,28 @@ CPartyListPacket::CPartyListPacket(uint32 partyid)
 {
     m_partyid = partyid;
 
-    memset(m_PData, 0, sizeof(m_PData));
+    memset(m_data, 0, sizeof(m_data));
 
-    WBUFB(m_PData,(0x0A)) = 0x80;
-	WBUFB(m_PData,(0x0B)) = 0x82;                       // packet type
+    WBUFB(m_data,(0x0A)) = 0x80;
+	WBUFB(m_data,(0x0B)) = 0x82;                       // packet type
 
-    WBUFB(m_PData,(0x0E)) = 0x00;                       // количество персонажей в пакете
+    WBUFB(m_data,(0x0E)) = 0x00;                       // количество персонажей в пакете
 }
 
 CPartyListPacket::~CPartyListPacket()
 {
     
+}
+
+/************************************************************************
+*																		*
+*  Добавляем персонажа в пакет                                          *
+*																		*
+************************************************************************/
+
+void CPartyListPacket::AddPlayer(SearchEntity* PPlayer) 
+{
+    delete PPlayer;
 }
 
 /************************************************************************
@@ -100,9 +115,9 @@ uint8* CPartyListPacket::GetData()
         0x47,  0x2c,  0xe0,  0x08,  0x3f,  0x38,  0x68,  0xaf,  0x5f,  0x28,  0xb7,  0x10
     };
 
-    memcpy(m_PData, packet, 588);
+    memcpy(m_data, packet, sizeof(packet));
 
-    return m_PData;
+    return m_data;
 }
 
 /************************************************************************
@@ -113,5 +128,5 @@ uint8* CPartyListPacket::GetData()
 
 uint16 CPartyListPacket::GetSize()
 {
-    return PARTYLISTPACKET_SIZE;
+    return 588;
 }
