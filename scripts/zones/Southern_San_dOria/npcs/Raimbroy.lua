@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	-- "The Sweetest Things" ACCEPTED
-	elseif(csid == 0x0214) then
+	if(csid == 0x0214) then
 		player:setVar("theSweetestThings", 1);
 	elseif(csid == 0x0215) then
 		if(option == 0) then

@@ -15,7 +15,6 @@ SANDORIA = 0;
 WINDURST = 2;  
 BEASTMEN = 3;
 OTHER    = 4;
-JEUNO	 = 4;
 
        RONFAURE = 0;
        ZULKHEIM = 1;

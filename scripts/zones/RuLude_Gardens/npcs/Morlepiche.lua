@@ -16,7 +16,7 @@ require("scripts/globals/settings");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Rulude_Gardens/TextIDs");
 
-guardnation = JEUNO;	-- SANDORIA, BASTOK, WINDURST, JEUNO.
+guardnation = OTHER;	-- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno).
 guardtype	= 1;		-- 1: city, 2: foreign, 3: outpost, 4: border
 
 -----------------------------------

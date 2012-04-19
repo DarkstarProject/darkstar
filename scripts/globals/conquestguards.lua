@@ -109,14 +109,14 @@ tpFees = { 0,0,0,0,100, 100, 150, 100, 150, 100, 100, 150, 350, 400, 150, 250, 3
 
 function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 	
-	-- Nation:	-- SANDORIA, BASTOK, WINDURST, JEUNO
+	-- Nation:	-- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno)
 	-- Type: 	1: city, 2: foreign, 3: outpost, 4: border
 	
 	local myCP = getCP(player);
 	local item = trade:getItem();
 	local AddPoints = 0;
 	
-	if(player:getNation() == guardnation or guardnation == JEUNO) then
+	if(player:getNation() == guardnation or guardnation == OTHER) then
 		if(guardtype ~= 3 and guardtype ~= 4) then -- all guard can trade crystal except outpost and border.
 			if(item >= 4096 and item <= 4103 or item >= 4238 and item <= 4245) then
 				for Crystal = 1,table.getn(DonateCrys),1 do
@@ -173,10 +173,13 @@ end;
 
 function supplyRunFresh(player)
 	
-	if(player:getVar("supplyQuest_started") + 1 >= VanadielDayOfTheYear()) then
-		return 1;
-	else
+	local started = player:getVar("supplyQuest_started");
+	local region = player:getVar("supplyQuest_region");
+	
+	if(started + 1 < VanadielDayOfTheYear() and (region > 0 or player:hasKeyItem(75))) then
 		return 0;
+	else
+		return 1;
 	end;
 	
 end;
@@ -225,7 +228,7 @@ function getArg1(guardnation,player)
 		end
 	end
 	
-	if(guardnation == JEUNO) then
+	if(guardnation == OTHER) then
 		output = (pNation * 16) + (3 * 256)  + 65537;
 	else
 		output = output + 256 * signet;
