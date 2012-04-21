@@ -15,3 +15,6 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 		CHEST_MOOGLE = 7257; -- You cannot open the chest while participating in the moogle event.
 	  CHEST_ILLUSION = 7258; -- The chest was but an illusion...
 		CHEST_LOCKED = 7259; -- The chest appears to be locked.
+		
+-- Dialog Texts
+     IT_IS_A_BEEHIVE = 7435; -- It is a beehive...
