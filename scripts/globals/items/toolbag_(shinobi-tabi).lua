@@ -1,16 +1,19 @@
 -----------------------------------------
---	ID: 4165
---	Silent oil
---	This lubricant cuts down 99.99% of all friction
+-- ID: 5319
+-- Toolbag Shinobi-tabi
+-- When used, you will obtain one stack of Shinobi-tabi
 -----------------------------------------
-
-require("scripts/globals/status");
 
 -----------------------------------------
 -- OnItemCheck
 -----------------------------------------
+
 function onItemCheck(target)
-	return 0;
+result = 0;
+    if (target:getFreeSlotsCount() == 0) then
+        result = 308;
+    end
+return result;
 end;
 
 -----------------------------------------
@@ -18,7 +21,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (not target:hasStatusEffect(EFFECT_SNEAK)) then
-		target:addStatusEffect(EFFECT_SNEAK,1,10,200);
-	end
+    target:addItem(1194,99);
 end;
+

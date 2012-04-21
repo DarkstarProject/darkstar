@@ -1,16 +1,17 @@
 -----------------------------------------
---	ID: 4165
---	Silent oil
---	This lubricant cuts down 99.99% of all friction
+-- ID: 5328
+-- Item: Hi-Potion Drop 
+-- Item Effect: Restores 110 HP
 -----------------------------------------
 
-require("scripts/globals/status");
+require("scripts/globals/settings");
 
 -----------------------------------------
 -- OnItemCheck
 -----------------------------------------
+
 function onItemCheck(target)
-	return 0;
+return 0;
 end;
 
 -----------------------------------------
@@ -18,7 +19,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (not target:hasStatusEffect(EFFECT_SNEAK)) then
-		target:addStatusEffect(EFFECT_SNEAK,1,10,200);
-	end
+	target:addHP(110);
+	target:addStatusEffect(EFFECT_MEDICINE,300);
 end;

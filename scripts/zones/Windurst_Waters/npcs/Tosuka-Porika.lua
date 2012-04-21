@@ -33,6 +33,7 @@ function onTrigger(player,npc)
 	-- 0xa1 (161) = More info on 2-1, if you talk to him right after the previous cutscene again
 
 	-- Check if we are on Windurst Mission 2-1
+	
 	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
 		windurst_mission_2_1 = player:getVar("windurst_mission_2_1");
 		if(windurst_mission_2_1 == 1) then
@@ -58,24 +59,24 @@ function onTrigger(player,npc)
 	glyphStatus = player:getQuestStatus(WINDURST,GLYPH_HANGER);
 	missionStatus = player:getCurrentMission(WINDURST);
 	Fame = player:getFameLevel(WINDURST)
+	if (player:needToZone() == false) then 
+		if(bookwormStatus == QUEST_AVAILABLE and missionStatus ~= LOST_FOR_WORDS and glyphStatus == QUEST_COMPLETED and Fame >= 2) then
+			player:startEvent(0x0183); -- Accept quest
 
-	if(bookwormStatus == QUEST_AVAILABLE and missionStatus ~= LOST_FOR_WORDS and glyphStatus == QUEST_COMPLETED and Fame >= 2) then
-		player:startEvent(0x0183); -- Accept quest
-
-	elseif(bookwormStatus == QUEST_ACCEPTED) then
-		player:startEvent(0x0184); -- Dialogue after accepting quest
-    end
-	
-    chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
+		elseif(bookwormStatus == QUEST_ACCEPTED) then
+			player:startEvent(0x0184); -- Dialogue after accepting quest
+		end
+	end
+	chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
 	-- Book is A_SONG_OF_LOVE, Keyitem ID = 126
 	if(chasingStatus  == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and missionStatus ~= THE_JESTER_WHOD_BE_KING and Fame >= 3 and player:needToZone() == false) then
 		player:startEvent(0x0193); --  Add initial cutscene
 	elseif(chasingStatus == QUEST_ACCEPTED and player:getVar("CHASING_TALES_TRACK_BOOK") > 0) then
-	    player:startEvent(0x019c);
+		player:startEvent(0x019c);
 	elseif(player:hasKeyItem(149) ==true) then
 		player:startEvent(0x019c);
-    elseif(chasingStatus == QUEST_ACCEPTED) then
-	    player:startEvent(0x0196); --  Add folllow up cutscene
+	elseif(chasingStatus == QUEST_ACCEPTED) then
+		player:startEvent(0x0196); --  Add folllow up cutscene
 	
 	else
 		player:startEvent(0x0172); -- Standard Conversation

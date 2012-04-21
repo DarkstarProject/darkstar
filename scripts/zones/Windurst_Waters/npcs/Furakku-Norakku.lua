@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -81,7 +82,7 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
 		player:addGil(1500);
 		player:messageSpecial(GIL_OBTAINED,1500);
-		player:setTitle(Savior_of_Knowledge);
+		player:setTitle(SAVIOR_OF_KNOWLEDGE);
 		player:setVar("EARLY_BIRD_TRACK_BOOK",0);
 		player:needToZone(true);
 	
@@ -91,7 +92,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x019a) then
 		player:addGil(GIL_RATE*2800);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*2800);
-		player:setTitle(Savior_of_Knowledge);
+		player:setTitle(SAVIOR_OF_KNOWLEDGE);
 		player:addFame(WINDURST,WIN_FAME*120);
 		player:delKeyItem(149);
 		player:delKeyItem(126);
