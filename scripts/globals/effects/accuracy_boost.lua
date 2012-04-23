@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_ACC, effect:getPower());
+	target:addMod(MOD_ACC,effect:getPower());
 end;
 
 -----------------------------------
@@ -19,6 +19,12 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+	-- the effect loses accuracy of 1 every 3 ticks depending on the source of the acc boost
+	boostACC_effect_size = effect:getPower();
+	if(boostACC_effect_size > 0) then
+		effect:setPower(boostACC_effect_size - 1)
+		target:delMod(MOD_ACC,1); 
+	end
 end;
 
 -----------------------------------
@@ -26,5 +32,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_ACC, effect:getPower());
+	boostACC_effect_size = effect:getPower();
+	if(boostACC_effect_size > 0) then
+		target:delMod(MOD_ACC,effect:getPower());
+	end
 end;

@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_STR, effect:getPower());
+	target:addMod(MOD_STR,effect:getPower());
 end;
 
 -----------------------------------
@@ -19,6 +19,12 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+	-- the effect loses strengh of 1 every 3 ticks depending on the source of the boost
+	boostSTR_effect_size = effect:getPower();
+	if(boostSTR_effect_size > 0) then
+		effect:setPower(boostSTR_effect_size - 1)
+		target:delMod(MOD_STR,1); 
+	end
 end;
 
 -----------------------------------
@@ -26,5 +32,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_STR, effect:getPower());
+	boostSTR_effect_size = effect:getPower();
+	if(boostSTR_effect_size > 0) then
+		target:delMod(MOD_STR,effect:getPower());
+	end
 end;

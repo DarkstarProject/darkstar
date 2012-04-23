@@ -1,14 +1,17 @@
 -----------------------------------
 --
--- 	EFFECT_NONE
+-- 	EFFECT_DEX_DOWN
 -- 	
 -----------------------------------
+
+require("scripts/globals/status");
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+	effect:addMod(MOD_DEX,-effect:getPower());
 end;
 
 -----------------------------------
@@ -16,6 +19,12 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+	-- the effect restore dexterity of 1 every 3 ticks.
+	downDEX_effect_size = effect:getPower()
+	if(downDEX_effect_size > 0) then
+		effect:setPower(downDEX_effect_size - 1)
+		target:delMod(MOD_DEX,-1);
+	end
 end;
 
 -----------------------------------
@@ -23,4 +32,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	downDEX_effect_size = effect:getPower()
+	if(downDEX_effect_size > 0) then
+		effect:delMod(MOD_DEX,-effect:getPower());
+	end
 end;
