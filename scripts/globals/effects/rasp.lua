@@ -1,14 +1,18 @@
 -----------------------------------
 --
--- 	EFFECT_NONE
+-- 	EFFECT_RASP
 -- 	
 -----------------------------------
+
+require("scripts/globals/status");
+require("scripts/globals/magic");
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_DEX, -getElementalDebuffStatDownFromDOT(effect:getPower()));
 end;
 
 -----------------------------------
@@ -16,6 +20,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+	target:delHP(effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +28,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_DEX, -getElementalDebuffStatDownFromDOT(effect:getPower()));
 end;
