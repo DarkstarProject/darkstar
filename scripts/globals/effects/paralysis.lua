@@ -1,6 +1,6 @@
 -----------------------------------
 --
---
+-- EFFECT_PARALISIS
 --
 -----------------------------------
 
@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_PARALYZE,effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_PARALYZE,effect:getPower());
 end;
