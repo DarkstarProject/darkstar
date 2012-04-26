@@ -15,3 +15,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 		CHEST_MOOGLE = 7284; -- You cannot open the chest while participating in the moogle event.
 	  CHEST_ILLUSION = 7285; -- The chest was but an illusion...
 		CHEST_LOCKED = 7286; -- The chest appears to be locked.
+
+-- Other dialog
+IT_IS_ALREADY_FUNCTIONING = 7246; -- It is already functioning.
+SKY_GOD_OFFSET = 7296; -- A strange insignia pointing north is carved into the wall.
