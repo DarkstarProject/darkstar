@@ -1,11 +1,9 @@
 -----------------------------------
--- Area: The Shrine of Ru'Avitau
--- NPC:  Kirin
+-- Area: 
+-- NPC:  Voluptuous_Vivian
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 require("scripts/globals/titles");
 
 -----------------------------------
@@ -20,6 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(KIRIN_CAPTIVATOR);
-	killer:showText(mob,KIRIN_OFFSET + 1);
+	killer:setTitle(THE_VIVISECTOR);
 end;

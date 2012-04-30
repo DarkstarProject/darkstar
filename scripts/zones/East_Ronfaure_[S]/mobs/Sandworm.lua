@@ -1,11 +1,9 @@
 -----------------------------------
--- Area: The Shrine of Ru'Avitau
--- NPC:  Kirin
------------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
+-- Area: Crystal War Areas
+-- NPC:  Sandworm
+-- Note:  Title Given if Sandworm does not Doomvoid
 -----------------------------------
 
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 require("scripts/globals/titles");
 
 -----------------------------------
@@ -20,6 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(KIRIN_CAPTIVATOR);
-	killer:showText(mob,KIRIN_OFFSET + 1);
+	killer:setTitle(SANDWORM_WRANGLER);
 end;
