@@ -3,12 +3,12 @@
 -- NPC: Yazan
 -- Starts Quests: Bite the Dust (100%)
 -----------------------------------
-
-require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+------------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -17,11 +17,9 @@ require("scripts/zones/Port_Bastok/TextIDs");
 
 function onTrade(player,npc,trade)
 
-count = trade:getItemCount();
-BatFang = trade:hasItemQty(1015,1);
-BiteDust = player:getQuestStatus(BASTOK,BITE_THE_DUST);
+	BiteDust = player:getQuestStatus(BASTOK,BITE_THE_DUST);
 
-	if (BiteDust >= 1 and BatFang == true and count == 1) then
+	if(BiteDust ~= QUEST_AVAILABLE and trade:hasItemQty(1015,1) and trade:getItemCount() == 1) then
 		player:tradeComplete();
 		player:startEvent(0x00c1);
 	end
@@ -34,12 +32,11 @@ end;
 
 function onTrigger(player,npc)
 
-BiteDust = player:getQuestStatus(BASTOK,BITE_THE_DUST);
-BiteDustVar = player:getVar("BiteTheDustVar");
+	BiteDust = player:getQuestStatus(BASTOK,BITE_THE_DUST);
 
-	if (BiteDust == 0) then
+	if(BiteDust == QUEST_AVAILABLE) then
 		player:startEvent(0x00bf);
-	elseif (BiteDust == 1 and BiteDustVar == 1) then
+	elseif(BiteDust == QUEST_ACCEPTED) then
 		player:startEvent(0x00c0);
 	else
 		player:startEvent(0x00be);
@@ -64,25 +61,19 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x00bf) then
+	if(csid == 0x00bf) then
 		player:addQuest(BASTOK,BITE_THE_DUST);
-		player:setVar("BiteTheDustVar",1);
-	elseif (csid == 0x00c1) then
-			BiteDustVar = player:getVar("BiteTheDustVar");
-			if (BiteDustVar == 1) then
-				player:completeQuest(BASTOK,BITE_THE_DUST);
-				player:setTitle(108)
-				player:setVar("BiteTheDustVar",2);
-				player:addFame(BASTOK,BAS_FAME*120);
-			else
-				player:addFame(BASTOK,BAS_FAME*8);
-			end
-			player:addGil(GIL_RATE*350);
-			player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
+	elseif(csid == 0x00c1) then
+		if(player:getQuestStatus(BASTOK,BITE_THE_DUST) == QUEST_ACCEPTED) then
+			player:setTitle(SAND_BLASTER)
+			player:addFame(BASTOK,BAS_FAME*120);
+			player:completeQuest(BASTOK,BITE_THE_DUST);
+		else
+			player:addFame(BASTOK,BAS_FAME*80);
+		end
+		
+		player:addGil(GIL_RATE*350);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
 	end
 	
 end;
-
-
-
-

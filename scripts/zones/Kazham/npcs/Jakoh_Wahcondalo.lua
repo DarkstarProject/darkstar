@@ -1,14 +1,13 @@
 -----------------------------------
---  Area: Kazham
---   NPC: Jakoh Wahcondalo
---  Type: Standard NPC
--- @zone: 250
---  @pos: 101.702 -16.023 -115.841
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Kazham
+-- NPC:  Jakoh Wahcondalo
+-- @pos 101 -16 -115 250
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/globals/missions");
+require("scripts/zones/Kazham/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -22,7 +21,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0071);
+	
+	if(player:getCurrentMission(ZILART) == KAZAMS_CHIEFTAINESS) then
+		player:startEvent(0x0072);
+	elseif(player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
+		player:startEvent(0x0073);
+	else
+		player:startEvent(0x0071);
+	end
+	
 end;
 
 -----------------------------------
@@ -30,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +46,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	
+	if(csid == 0x0072) then
+		player:addKeyItem(SACRIFICIAL_CHAMBER_KEY);
+		player:messageSpecial(SACRIFICIAL_CHAMBER_KEY,MAP_OF_NORG);
+		player:completeMission(ZILART,KAZAMS_CHIEFTAINESS);
+		player:addMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
+	end
+	
 end;
-

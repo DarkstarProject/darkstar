@@ -66,4 +66,4 @@ INSERT INTO server_variables VALUES ('Suzaku-to-Byakko-BlueTeleport', '0');
 INSERT INTO server_variables VALUES ('Byakko-to-Genbu-BlueTeleport', '0');
 INSERT INTO server_variables VALUES ('Genbu-to-Seiryu-BlueTeleport', '0');
 INSERT INTO server_variables VALUES ('Seiryu-to-Main-BlueTeleport', '0');
-INSERT INTO server_variables VALUES ('ToD-Despot', '0');
+INSERT INTO server_variables VALUES ('[TEMP]Respawn_qm1_for_curtana', '0');

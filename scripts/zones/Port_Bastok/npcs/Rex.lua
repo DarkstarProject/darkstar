@@ -3,18 +3,18 @@
 -- NPC: Rex
 -- Map Seller NPC
 -----------------------------------
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/port_bastok/textids");
 require("scripts/globals/keyitems");
+require("scripts/zones/port_bastok/textids");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------
@@ -89,11 +89,7 @@ gil = 0;
 	   player:addKeyItem(option);
 	   player:messageSpecial(KEYITEM_OBTAINED,keyItem); 
 	else
-	   player:messageSpecial(6383);
-    	end
+	   player:messageSpecial(KEYITEM_OBTAINED + 2);
+    end
   end
 end;
-
-
-
-

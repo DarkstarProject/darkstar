@@ -4,10 +4,7 @@
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -29,7 +26,7 @@ function onTrigger(player,npc)
     stampCount = player:getVar("StampHunt_Event");
 	checkStamp = testflag(tonumber(stampCount),0x40);
 
-    if (StampHunt == 1 and checkStamp == false) then
+    if(StampHunt == QUEST_ACCEPTED and checkStamp == false) then
         player:setVar("StampHunt_Event",stampCount+0x40);
         player:startEvent(0x0078);
     else
@@ -54,7 +51,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-
-

@@ -1,14 +1,16 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Talib
+-- NPC:  Talib
 -- Starts Quest: Beauty and the Galka
 -- Starts & Finishes Quest: Shady Business
 -----------------------------------
-
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -16,22 +18,13 @@ require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-BeautyAndTheGalka = player:getQuestStatus(BASTOK,BEAUTY_AND_THE_GALKA);
-ShadyBusiness     = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
-
-	if (ShadyBusiness >= QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		ZincOre = trade:hasItemQty(642,4);
-
-		if (ZincOre == true and count == 4) then
+	
+	if(player:getQuestStatus(BASTOK,SHADY_BUSINESS) >= QUEST_ACCEPTED) then
+		if(trade:hasItemQty(642,4) and trade:getItemCount() == 4) then
 			player:startEvent(0x005b);
 		end
-	elseif (BeautyAndTheGalka == QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		ZincOre = trade:hasItemQty(642,1);
-
-		if (ZincOre == true and count == 1) then
+	elseif(player:getQuestStatus(BASTOK,BEAUTY_AND_THE_GALKA) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(642,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0003);
 		end
 	end
@@ -44,12 +37,11 @@ end;
 
 function onTrigger(player,npc)
 
-BeautyAndTheGalka       = player:getQuestStatus(BASTOK,BEAUTY_AND_THE_GALKA);
-BeautyAndTheGalkaDenied = player:getVar("BeautyAndTheGalkaDenied");
+	BeautyAndTheGalka = player:getQuestStatus(BASTOK,BEAUTY_AND_THE_GALKA);
 
-	if (BeautyAndTheGalka == QUEST_COMPLETED) then
+	if(BeautyAndTheGalka == QUEST_COMPLETED) then
 		player:startEvent(0x005a);		
-	elseif (BeautyAndTheGalka == QUEST_ACCEPTED or BeautyAndTheGalkaDenied >= 1) then
+	elseif(BeautyAndTheGalka == QUEST_ACCEPTED or player:getVar("BeautyAndTheGalkaDenied") >= 1) then
 		player:startEvent(0x0004);
 	else 
 		player:startEvent(0x0002);
@@ -75,28 +67,28 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x0002 and option == 0) then
+	if(csid == 0x0002 and option == 0) then
 		player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);
-	elseif (csid == 0x0002 and option == 1) then
+	elseif(csid == 0x0002 and option == 1) then
 		player:setVar("BeautyAndTheGalkaDenied",1);
-	elseif (csid == 0x0003) then
+	elseif(csid == 0x0003) then
 		player:tradeComplete();
-		player:addKeyItem(2);
-		player:messageSpecial(KEYITEM_OBTAINED,2);
-	elseif (csid == 0x005a) then
+		player:addKeyItem(PALBOROUGH_MINES_LOGS);
+		player:messageSpecial(KEYITEM_OBTAINED,PALBOROUGH_MINES_LOGS);
+	elseif(csid == 0x005a) then
 		ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
 		
-		if (ShadyBusiness == QUEST_AVAILABLE) then
+		if(ShadyBusiness == QUEST_AVAILABLE) then
 			player:addQuest(BASTOK,SHADY_BUSINESS);
 		end
-	elseif (csid == 0x005b) then
+	elseif(csid == 0x005b) then
 		ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
 			
-		if (ShadyBusiness == QUEST_ACCEPTED) then
+		if(ShadyBusiness == QUEST_ACCEPTED) then
+			player:addFame(NORG,NORG_FAME*100);
 			player:completeQuest(BASTOK,SHADY_BUSINESS);
-			player:addFame(3,NORG_FAME*100);
 		else
-			player:addFame(3,NORG_FAME*8);
+			player:addFame(NORG,NORG_FAME*80);
 		end
 		
 		player:tradeComplete();
@@ -105,7 +97,3 @@ function onEventFinish(player,csid,option)
 	end
 	
 end;
-
-
-
-

@@ -1,33 +1,41 @@
 -----------------------------------
--- Area: Port Bastok
--- NPC: Mine Konte
--- Involved in Quest: Out of One's Shell
+-- Area: VeLugannon Palace
+-- NPC:  ???
+-- @pos -370.039 16.014 -274.378 177
+-----------------------------------
+package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/zones/VeLugannon_Palace/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	OutOfOneShell = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
-
-	if(OutOfOneShell == QUEST_ACCEPTED and player:getVar("OutOfTheShellZone") == 0) then
-		player:startEvent(0x0053);
+	
+	respawn = GetServerVariable("[TEMP]Respawn_qm1_for_curtana");
+	
+	if(player:hasItem(16575) == false and player:getFreeSlotsCount() >= 1 and respawn <= os.time(t)) then
+		player:addItem(16575);
+		player:messageSpecial(ITEM_OBTAINED,16575); -- Curtana
+		SetServerVariable("[TEMP]Respawn_qm1_for_curtana",os.time(t) + 7200); -- 2 hours
+		-- ??? dissapears for 2 hours and reappears on new position
 	else
-		player:startEvent(0x002a);	
+		player:messageSpecial(NOTHING_ORDINARY_HERE);
 	end
 	
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

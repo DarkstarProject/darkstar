@@ -3,11 +3,12 @@
 -- NPC: Gudav
 -- Starts Quests: A Foreman's Best Friend
 -----------------------------------
-
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -15,13 +16,9 @@ require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-count = trade:getItemCount();
-DogCollar = trade:hasItemQty(13096,1);
-
-	if(DogCollar == true and count == 1) then
-		AForemans = player:getQuestStatus(BASTOK,A_FOREMAN_S_BEST_FRIEND);
-		if (AForemans == 1) then
+	
+	if(trade:hasItemQty(13096,1) and trade:getItemCount() == 1) then
+		if(player:getQuestStatus(BASTOK,A_FOREMAN_S_BEST_FRIEND) == 1) then
 			player:tradeComplete();
 			player:startEvent(0x0070);
 		end
@@ -34,11 +31,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-pLevel = player:getMainLvl();
-AForemans = player:getQuestStatus(BASTOK,A_FOREMAN_S_BEST_FRIEND);
 	
-	if (pLevel >= 7 and AForemans == 0) then
+	if(player:getMainLvl() >= 7 and player:getQuestStatus(BASTOK,A_FOREMAN_S_BEST_FRIEND) == QUEST_AVAILABLE) then
 		player:startEvent(0x006e);
 	else
 		player:startEvent(0x001f);
@@ -63,17 +57,13 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if (csid == 0x006e) then
+	if(csid == 0x006e) then
 		player:addQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);
-	elseif (csid == 0x0070) then
-		player:completeQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);
+	elseif(csid == 0x0070) then
+		player:addKeyItem(MAP_OF_THE_GUSGEN_MINES);
+		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_GUSGEN_MINES);
 		player:addFame(BASTOK,BAS_FAME*60);
-		player:addKeyItem(0x18E);
-		player:messageSpecial(KEYITEM_OBTAINED,0x18E);
+		player:completeQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);
 	end
-			
+	
 end;
-
-
-
-

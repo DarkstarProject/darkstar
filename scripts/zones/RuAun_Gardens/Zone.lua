@@ -28,24 +28,21 @@ SetServerVariable("Byakko-to-Genbu-BlueTeleport",0);
 SetServerVariable("Genbu-to-Seiryu-BlueTeleport",0);
 SetServerVariable("Seiryu-to-Main-BlueTeleport",0);
 
---print("Blue portals initialized.");
-
+------------------------------
+-- Red teleports
+------------------------------
 zone:registerRegion(1,-3,-54,-583,1,-50,-579);
 zone:registerRegion(2,147,-26,-449,151,-22,-445);
 zone:registerRegion(3,186,-43,-405,190,-39,-401);
 zone:registerRegion(4,272,-42,-379,276,-38,-375);
---zone:registerRegion(4,272,-42,-379,276,-38,-375);
 zone:registerRegion(5,306,-39,-317,310,-35,-313);
 zone:registerRegion(6,393,-39,193,397,-35,197);
 zone:registerRegion(7,62,-39,434,66,-35,438);
 zone:registerRegion(8,-2,-42,464,2,-38,468);
---zone:registerRegion(8,-2,-42,464,2,-38,468);
 zone:registerRegion(9,-65,-39,434,-61,-35,438);
 zone:registerRegion(10,-397,-39,193,-393,-35,197);
 zone:registerRegion(11,-445,-42,142,-441,-38,146);
---zone:registerRegion(11,-445,-42,142,-441,-38,146);
 zone:registerRegion(12,-276,-42,-379,-272,-38,-375);
---zone:registerRegion(12,-276,-42,-379,-272,-38,-375);
 zone:registerRegion(13,-191,-43,-405,-187,-39,-401);
 zone:registerRegion(14,-151,-26,-449,-147,-22,-445);
 zone:registerRegion(15,543,-73,-19,547,-69,-15);
@@ -55,7 +52,6 @@ zone:registerRegion(18,-453,-73,-308,-449,-69,-304);
 zone:registerRegion(19,-436,-39,71,-432,-35,75);
 zone:registerRegion(20,-310,-39,-317,-306,-35,-313);
 zone:registerRegion(21,441,-42,142,445,-38,146);
---zone:registerRegion(21,441,-42,142,445,-38,146);
 zone:registerRegion(22,432,-39,71,436,-35,75);
 ------------------------------
 -- Blue teleports
@@ -63,7 +59,7 @@ zone:registerRegion(22,432,-39,71,436,-35,75);
 zone:registerRegion(23,162.5,-31,-353.5,168.5,-30,-347.5);
 zone:registerRegion(24,374.5,-25,61.5,380.5,-24,67.5);
 zone:registerRegion(25,52.5,-25,376.5,58.5,-24,382.5);
-zone:registerRegion(26,-340.5,-25,166.5,-346.5,-24,172.5);
+zone:registerRegion(26,-346.5,-25,166.5,-340.5,-24,172.5);
 zone:registerRegion(27,-270.5,-25,-277.5,-264.5,-24,-271.5);
 zone:registerRegion(28,-170,-31,-354.4,-162,-30,-347.2);
 zone:registerRegion(29,-381,-25,61.5,-374.5,-24,67.5);
@@ -234,7 +230,7 @@ function onRegionEnter(player,region)
 		---------------------------------
 		[22] = function (x)  -- Portal --
 		---------------------------------
-			player:startEvent(0x0022);
+			player:startEvent(0x0009);
 		end,
 		----------- BLUE portals --------------
 		---------------------------------

@@ -22,7 +22,7 @@ end;
 function onTrigger(player,npc)
 	
 	npcid = npc:getID();
-	
+	printf("id: %u", npcid);
 	if(npcid == 17310038) then
 		if(os.time() <= GetServerVariable("Main-to-Seiryu-BlueTeleport")) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
@@ -53,31 +53,31 @@ function onTrigger(player,npc)
 		else
 			SetServerVariable("Genbu-to-Byakko-BlueTeleport",os.time() + 120);
 		end	
-	elseif(npcid == 17310048) then
+	elseif(npcid == 17310036) then
 		if(os.time() <= GetServerVariable("Byakko-to-Genbu-BlueTeleport")) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
 			SetServerVariable("Byakko-to-Genbu-BlueTeleport",os.time() + 120);
 		end
-	elseif(npcid == 17310050) then
+	elseif(npcid == 17310034) then
 		if(os.time() <= GetServerVariable("Byakko-to-Suzaku-BlueTeleport")) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
 			SetServerVariable("Byakko-to-Suzaku-BlueTeleport",os.time() + 120);
 		end
-	elseif(npcid == 17310052) then
+	elseif(npcid == 17310028) then
 		if(os.time() <= GetServerVariable("Suzaku-to-Byakko-BlueTeleport")) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
 			SetServerVariable("Suzaku-to-Byakko-BlueTeleport",os.time() + 120);
 		end
-	elseif(npcid == 17310054) then
+	elseif(npcid == 17310030) then
 		if(os.time() <= GetServerVariable("Suzaku-to-Main-BlueTeleport")) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
 			SetServerVariable("Suzaku-to-Main-BlueTeleport",os.time() + 120);
 		end
-	elseif(npcid == 17310056) then
+	elseif(npcid == 17310032) then
 		if(os.time() <= GetServerVariable("Main-to-Suzaku-BlueTeleport")) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else

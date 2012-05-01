@@ -3,12 +3,13 @@
 -- NPC: Paujean
 -- Starts & Finishes Quest: Silence of the Rams
 -----------------------------------
-
-require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/shop");
+require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -38,9 +39,8 @@ end;
 function onTrigger(player,npc)
 
 SilenceOfTheRams = player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS);
-Fame = player:getFameLevel(3);
 
-	if (SilenceOfTheRams == QUEST_AVAILABLE and Fame >= 2) then
+	if (SilenceOfTheRams == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then
 		player:startEvent(0x00c3);
 	elseif (SilenceOfTheRams == QUEST_ACCEPTED) then
 		player:showText(npc,PAUJEAN_DIALOG_1);

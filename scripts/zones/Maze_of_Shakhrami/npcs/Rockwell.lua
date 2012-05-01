@@ -4,12 +4,12 @@
 -- @zone 198
 -- @pos -18 -13 181
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/titles");
+require("scripts/globals/quests");
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 -----------------------------------

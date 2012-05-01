@@ -3,9 +3,12 @@
 -- Zone: Norg (252)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
@@ -20,11 +23,17 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+	
+	cs = -1;
+	
+	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-19.238,-2.163,-63.964,187);
-	end	
-	return cs;	
+	elseif(player:getCurrentMission(ZILART) == THE_NEW_FRONTIER) then
+		cs = 0x0001;
+	end
+	
+	return cs;
+	
 end;		
 
 -----------------------------------		
@@ -39,8 +48,8 @@ end;
 -----------------------------------	
 
 function onEventUpdate(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;	
 
 -----------------------------------	
@@ -48,6 +57,14 @@ end;
 -----------------------------------	
 
 function onEventFinish(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+	
+	if(csid == 0x0001) then
+		player:addKeyItem(MAP_OF_NORG);
+		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_NORG);
+		player:completeMission(ZILART,THE_NEW_FRONTIER);
+		player:addMission(ZILART,WELCOME_TNORG);
+	end
+	
 end;	
