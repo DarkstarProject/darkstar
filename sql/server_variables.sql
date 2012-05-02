@@ -67,3 +67,8 @@ INSERT INTO server_variables VALUES ('Byakko-to-Genbu-BlueTeleport', '0');
 INSERT INTO server_variables VALUES ('Genbu-to-Seiryu-BlueTeleport', '0');
 INSERT INTO server_variables VALUES ('Seiryu-to-Main-BlueTeleport', '0');
 INSERT INTO server_variables VALUES ('[TEMP]Respawn_qm1_for_curtana', '0');
+INSERT INTO server_variables VALUES ('[TEMP]Respawn_qm1_for_rattle', '0');
+INSERT INTO server_variables VALUES ('[TEMP]Respawn_qm2_for_offering', '0');
+INSERT INTO server_variables VALUES ('[TEMP]Respawn_qm3_for_whistle', '0');
+INSERT INTO server_variables VALUES ('[POP]Beryl-footed_Molberry', '0');
+INSERT INTO server_variables VALUES ('[POP]Crimson-toothed_Pawberry', '0');

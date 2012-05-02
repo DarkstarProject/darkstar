@@ -1,11 +1,8 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  qm7  (???)
--- Involved In Mission: Notorious Monster : Death From Above
--- @zone 159
--- @pos 53 1 -32 (71)
--- 
--- Note: ??? needs to Dissapear for 15 min
+-- NPC:  ??? (Death From Above NM)
+-- Involved In Mission: Death From Above
+-- @pos 53 1 -32 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
@@ -17,11 +14,13 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-		if(trade:hasItemQty(1267,1) and trade:getItemCount() == 1) then -- Trade Bee Larvae
-				player:tradeComplete();
-				SpawnMob(17428810,300):updateEnmity(player);
-		end
+	
+	-- Trade Bee Larvae
+	if(trade:hasItemQty(1267,1) and trade:getItemCount() == 1) then 
+		player:tradeComplete();
+		SpawnMob(17428810,300):updateEnmity(player);
+		-- Note: The ??? reappears after 15 minutes
+	end
 
 end;
 
@@ -30,5 +29,5 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(IT_IS_A_BEEHIVE);
+	player:messageSpecial(NM_OFFSET + 4);
 end;
