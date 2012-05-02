@@ -3422,13 +3422,17 @@ inline int32 CLuaBaseEntity::openDoor(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
 
     CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
+	uint32 tDoorOpened = (uint32)lua_tointeger(L,1);
+
+	if(tDoorOpened == NULL) tDoorOpened = 7000;
+	else tDoorOpened = tDoorOpened * 1000;
 
     if (m_PBaseEntity->animation == ANIMATION_CLOSE_DOOR)
     {
         m_PBaseEntity->animation = ANIMATION_OPEN_DOOR;
         m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE));
 
-        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", gettick()+7000, m_PBaseEntity, CTaskMgr::TASK_ONCE, close_door));
+        CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", gettick()+tDoorOpened, m_PBaseEntity, CTaskMgr::TASK_ONCE, close_door));
     }
 	return 0;
 }
