@@ -53,6 +53,7 @@ namespace luautils
     int32 GetRegionOwner(lua_State*);										    // узнаем страну, владеющую текущим регионом
 	int32 SpawnMob(lua_State*);													// Spawn Mob By Mob Id - NMs, BCNM...
 	int32 DespawnMob(lua_State*);												// Despawn (Fade Out) Mob By Id
+	int32 GetPlayerByName(lua_State*);											// Gets Player ref from a name supplied
 	int32 GetMobAction(lua_State*);												// Get Mobs current action
 	int32 VanadielTOTD(lua_State*);												// текущее игровое время суток
 	int32 VanadielHour(lua_State*);												// текущие Vanadiel часы

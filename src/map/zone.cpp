@@ -1029,6 +1029,21 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 	}
 }
 
+CCharEntity* CZone::FindPlayerInZone(char* name){
+	if(m_charList.empty()){
+		return NULL;
+	}
+
+	for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+	{
+		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+		if(strcmp(PCurrentChar->GetName(),name)==0){
+			return PCurrentChar;
+		}
+	}
+	return NULL;
+}
+
 /************************************************************************
 *																		*
 *  Отправляем глобальные пакеты											*

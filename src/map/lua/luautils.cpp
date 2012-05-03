@@ -75,6 +75,7 @@ int32 init()
     lua_register(LuaHandle,"GetRegionOwner", luautils::GetRegionOwner);
 	lua_register(LuaHandle,"SpawnMob",luautils::SpawnMob);
 	lua_register(LuaHandle,"DespawnMob",luautils::DespawnMob);
+	lua_register(LuaHandle,"GetPlayerByName",luautils::GetPlayerByName);
 	lua_register(LuaHandle,"GetMobAction",luautils::GetMobAction);
 	lua_register(LuaHandle,"VanadielTOTD",luautils::VanadielTOTD);
 	lua_register(LuaHandle,"VanadielHour",luautils::VanadielHour);
@@ -351,6 +352,40 @@ int32 DespawnMob(lua_State* L)
 			PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
 		}
 		return 0;
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+/************************************************************************
+*																		*
+*			Gets a player object via the player's name.					*
+*				Used for GM commands ONLY.								*
+************************************************************************/
+int32 GetPlayerByName(lua_State* L) 
+{
+	if( !lua_isnil(L,-1) && lua_isstring(L,-1))
+	{
+		size_t namelen = lua_objlen(L,-1);
+		char* name = (char*)lua_tolstring(L, -1,&namelen);
+
+		for (uint16 zone = 0; zone < 256; ++zone)
+        {
+			CCharEntity* PTargetChar = zoneutils::GetZone(zone)->FindPlayerInZone(name);
+			if(PTargetChar!=NULL){
+				lua_pushstring(L,CLuaBaseEntity::className);
+				lua_gettable(L,LUA_GLOBALSINDEX);
+				lua_pushstring(L,"new");
+				lua_gettable(L,-2);
+				lua_insert(L,-2);
+				lua_pushlightuserdata(L,(void*)PTargetChar);
+				lua_pcall(L,2,1,0);
+				return 1;
+			}
+		}
+	}
+	else{
+		ShowError(CL_RED"GetPlayerByName :: Input string is not valid."CL_RESET);
 	}
 	lua_pushnil(L);
 	return 1;
