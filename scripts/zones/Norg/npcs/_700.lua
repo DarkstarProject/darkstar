@@ -19,9 +19,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(ZILART) == WELCOME_TNORG) then -- ZM2 (4?)
+	if(player:getCurrentMission(ZILART) == WELCOME_TNORG) then
 		player:startEvent(0x0002); -- Zilart Missions 2
-	elseif(player:getCurrentMission(ZILART) == 18 and player:getVar("ZilartStatus") == 2) then -- ZM9 (18?)
+	elseif(player:getCurrentMission(ZILART) == ROMAEVE and player:getVar("ZilartStatus") == 2) then
 		player:startEvent(0x0003); -- Zilart Missions 9
 	end
 	

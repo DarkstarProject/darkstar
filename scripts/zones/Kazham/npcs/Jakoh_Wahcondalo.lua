@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0072) then
 		player:addKeyItem(SACRIFICIAL_CHAMBER_KEY);
-		player:messageSpecial(SACRIFICIAL_CHAMBER_KEY,MAP_OF_NORG);
+		player:messageSpecial(KEYITEM_OBTAINED,SACRIFICIAL_CHAMBER_KEY);
 		player:completeMission(ZILART,KAZAMS_CHIEFTAINESS);
 		player:addMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
 	end

@@ -56,6 +56,7 @@ INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job12_record', '600')
 INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job13_record', '600');
 INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job14_record', '600');
 INSERT INTO server_variables VALUES ('[BF]Shattering_Stars_job15_record', '600');
+INSERT INTO server_variables VALUES ('[BF]Zilart_Mission_4_record', '600');
 INSERT INTO server_variables VALUES ('Main-to-Seiryu-BlueTeleport', '0');
 INSERT INTO server_variables VALUES ('Seiryu-to-Genbu-BlueTeleport', '0');
 INSERT INTO server_variables VALUES ('Genbu-to-Byakko-BlueTeleport', '0');
@@ -72,3 +73,7 @@ INSERT INTO server_variables VALUES ('[TEMP]Respawn_qm2_for_offering', '0');
 INSERT INTO server_variables VALUES ('[TEMP]Respawn_qm3_for_whistle', '0');
 INSERT INTO server_variables VALUES ('[POP]Beryl-footed_Molberry', '0');
 INSERT INTO server_variables VALUES ('[POP]Crimson-toothed_Pawberry', '0');
+INSERT INTO server_variables VALUES ('[LANTERN]_rancor_nw_last_lit', '0');
+INSERT INTO server_variables VALUES ('[LANTERN]_rancor_ne_last_lit', '0');
+INSERT INTO server_variables VALUES ('[LANTERN]_rancor_sw_last_lit', '0');
+INSERT INTO server_variables VALUES ('[LANTERN]_rancor_se_last_lit', '0');

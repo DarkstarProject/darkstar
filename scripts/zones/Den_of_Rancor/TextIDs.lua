@@ -15,3 +15,6 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 		CHEST_MOOGLE = 7285; -- You cannot open the chest while participating in the moogle event.
 	  CHEST_ILLUSION = 7286; -- The chest was but an illusion...
 		CHEST_LOCKED = 7287; -- The chest appears to be locked.
+		
+-- Other dialog
+	  LANTERN_OFFSET = 7153; -- The grating will not budge.

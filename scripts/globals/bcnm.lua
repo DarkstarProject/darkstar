@@ -63,8 +63,7 @@ function getMonsterList(list,zone)
 		end
 	elseif (zone == 140) then
 		if (list == 1) then
-			monsterList = {	{3,17350662},
-							{1,17350928} };
+			monsterList = {	{3,17350662},{1,17350928} };
 		end
 	elseif(zone == 144) then
 		if(list == 1) then
@@ -82,6 +81,14 @@ function getMonsterList(list,zone)
 		elseif (list == 3) then
 			monsterList = {	{2,17375237},{0,0},{0,0},{0,0},{0,0},{1,17375259},{1,17375261},{2,17375267} };
 		end
+	elseif (zone == 163) then
+		if (list == 1) then
+			monsterList = {	{4,17444865},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0} };
+		elseif (list == 2) then
+			monsterList = {	{4,17444870},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0} };
+		elseif (list == 3) then
+			monsterList = {	{4,17444875},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0} };
+		end
 	elseif (zone == 168) then
 		if (list == 1) then
 			monsterList = {	{0,0},{0,0},{1,17465354},{1,17465357},{2,17465360} };
@@ -92,13 +99,11 @@ function getMonsterList(list,zone)
 		end
     elseif(zone == 202) then
         if(list == 1) then
-            monsterList = { {1,17604610}
-            				};
+            monsterList = { {1,17604610} };
         end
     elseif(zone == 203) then
         if(list == 1) then
-            monsterList = { {1,17608705}
-            				};
+            monsterList = { {1,17608705} };
         end
 	elseif (zone == 206) then
 		if (list == 1) then
@@ -110,13 +115,11 @@ function getMonsterList(list,zone)
 		end
     elseif(zone == 207) then
         if(list == 1) then
-            monsterList = { {1,17625089}
-            				};
+            monsterList = { {1,17625089} };
         end
     elseif(zone == 209) then
         if(list == 1) then
-            monsterList = { {1,17633281}
-            				};
+            monsterList = { {1,17633281} };
         end
     end
 
