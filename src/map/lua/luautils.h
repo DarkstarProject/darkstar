@@ -88,6 +88,7 @@ namespace luautils
 
     int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
 	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// triggers on mob death
+	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);					// triggers on mob engaging a target
 	
 	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob);				// triggers when weapon skill is used
 	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget);				// triggers when job ability is used

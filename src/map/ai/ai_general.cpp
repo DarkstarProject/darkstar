@@ -174,6 +174,18 @@ void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 			m_ActionTargetID = TargetID;
         }
         break;
+		case ACTION_SLEEP:
+        {
+            switch (m_ActionType)
+            {
+                case ACTION_ITEM_USING:    m_ActionType = ACTION_ITEM_INTERRUPT;  CheckCurrentAction(m_Tick); break;
+                case ACTION_MAGIC_CASTING: m_ActionType = ACTION_MAGIC_INTERRUPT; CheckCurrentAction(m_Tick); break;
+				case ACTION_MOBABILITY_START: m_ActionType = ACTION_MOBABILITY_INTERRUPT; CheckCurrentAction(m_Tick); break;
+            }
+            m_ActionType = Action;
+			m_ActionTargetID = TargetID;
+        }
+		break;
 		default:
 		{
 			m_ActionType = Action;

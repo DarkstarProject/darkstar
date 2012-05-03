@@ -144,6 +144,11 @@ void CAIMobDummy::ActionEngage()
 	m_ActionType = ACTION_ATTACK;
 	m_LastActionTime = m_Tick - 1000;
 
+	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+	if (m_PMob->m_OwnerID.id == m_PBattleTarget->id){
+		luautils::OnMobEngaged(m_PMob,m_PBattleTarget);
+	}
+
 	ActionAttack();
 }
 

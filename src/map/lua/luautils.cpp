@@ -1067,6 +1067,57 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 
 /************************************************************************
 *																		*
+*  Сalled when a monster engages a target for the first time			*
+*		Added by request (for doing stuff when mobs first engage)		*
+************************************************************************/
+
+int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget) 
+{	
+	DSP_DEBUG_BREAK_IF(PTarget == NULL || PMob == NULL);
+    CCharEntity* PChar = (CCharEntity*)PTarget;
+
+	CLuaBaseEntity LuaMobEntity(PMob);
+	CLuaBaseEntity LuaKillerEntity(PTarget);
+
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onMobEngaged");
+
+	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+    PChar->m_event.reset();
+    PChar->m_event.Target = PMob;
+	PChar->m_event.Script.insert(0,File);
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobEngaged");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		return -1;
+	}
+
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnMobEngaged: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/************************************************************************
+*																		*
 *  Скрипт выполняется после смерти любого монстра в игре				*
 *																		*
 ************************************************************************/
