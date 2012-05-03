@@ -32,7 +32,7 @@ enum ITEMLOTTYPE
 {
 	ITEMLOT_WIN			= 0x01,
 	ITEMLOT_WINERROR	= 0x02,
-	ITEMLOT_LOST		= 0x03
+	ITEMLOT_LOST		= 0x03,
 };
 
 class CBaseEntity;

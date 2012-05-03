@@ -101,6 +101,20 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
+	if(m_TreasurePoolType != TREASUREPOOL_ZONE){
+		//Zone drops e.g. Dynamis DO NOT remove previous lot info. Everything else does.
+		for( int i=0; i<10; i++){
+			if(m_PoolItems[i].Lotters.size()>0){
+				for(int j=0; j<m_PoolItems[i].Lotters.size(); j++){
+					//remove their lot info
+					if(PChar->id == m_PoolItems[i].Lotters[j].member->id){
+						m_PoolItems[i].Lotters.erase(m_PoolItems[i].Lotters.begin()+j);
+					}
+				}
+			}
+		}
+	}
+
 	for (uint32 i = 0; i < members.size(); ++i) 
 	{
 		if (PChar == members.at(i))
@@ -202,7 +216,38 @@ void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 
     if (SlotID >= TREASUREPOOL_SIZE) return;
 
-	//....
+	LotInfo li;
+	li.lot = Lot;
+	li.member = PChar;
+	bool hasLottedBefore = false;
+
+	if(Lot==0){ //passed mask is FF FF
+		Lot = 65535;
+		//if this member has lotted on this item previously, set their lot to 0.
+		for(int i=0; i<m_PoolItems[SlotID].Lotters.size();i++){
+			if(m_PoolItems[SlotID].Lotters[i].member->id == PChar->id){
+				m_PoolItems[SlotID].Lotters[i].lot = 0;
+				hasLottedBefore = true;
+				break;
+			}
+		}
+	}
+
+	if(!hasLottedBefore){
+		m_PoolItems[SlotID].Lotters.push_back(li);
+	}
+
+	//Player lots Item for XXX message
+	for (uint32 i = 0; i < members.size(); ++i)
+	{
+		members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,Lot));
+	}
+
+	//if all lotters have lotted, evaluate immediately.
+	if(m_PoolItems[SlotID].Lotters.size() == members.size()){
+		CheckTreasureItem(m_Tick,SlotID);
+	}
+
 }
 
 /************************************************************************
@@ -237,10 +282,43 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
 	if (m_PoolItems[SlotID].ID == 0) return;
     
     if ((tick - m_PoolItems[SlotID].TimeStamp) > TREASURE_LIVETIME ||
-        (m_TreasurePoolType == TREASUREPOOL_SOLO && members[0]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)) 
+        (m_TreasurePoolType == TREASUREPOOL_SOLO && members[0]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0) ||
+		m_PoolItems[SlotID].Lotters.size() == members.size()) 
 	{
         if (!m_PoolItems[SlotID].Lotters.empty())
 		{
+			//give item to highest lotter
+			LotInfo highestInfo;
+			highestInfo.lot = 0;
+			highestInfo.member = NULL;
+
+			for(uint8 i = 0; i < m_PoolItems[SlotID].Lotters.size(); i++){
+				LotInfo curInfo = m_PoolItems[SlotID].Lotters[i];
+				if(curInfo.lot > highestInfo.lot){
+					highestInfo = curInfo;
+				}
+			}
+
+			//sanity check
+			if(highestInfo.member != NULL && highestInfo.lot!=0){
+				if(highestInfo.member->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0){
+					//add item as they have room!
+					if (charutils::AddItem(highestInfo.member, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
+					{
+						TreasureWon(highestInfo.member, SlotID);
+					} else {
+						TreasureError(highestInfo.member, SlotID);
+					}
+				}
+				else{
+					//drop the item
+					TreasureLost(SlotID);
+				}
+			}
+			else{ //no one has lotted on this item, drop it
+				TreasureLost(SlotID);
+			}
+
 			//.....
 		}
 		else

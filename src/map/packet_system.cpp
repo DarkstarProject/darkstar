@@ -1233,7 +1233,7 @@ int32 SmallPacket0x041(map_session_data_t* session, CCharEntity* PChar, int8* da
 	
     uint8 SlotID  = RBUFB(data,(0x04));
 
-	PChar->PTreasurePool->LotItem(PChar, SlotID, 1+(rand()%1000));
+	PChar->PTreasurePool->LotItem(PChar, SlotID, 1+(rand()%999)); //1 ~ 998+1
 	return 0;
 }
 

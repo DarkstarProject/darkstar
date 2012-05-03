@@ -22,6 +22,7 @@
 */
 
 #include "../../common/socket.h"
+#include "../../common/utils.h"
 
 #include <string.h>
 
@@ -60,10 +61,11 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, uint8 slotID,
 	
 	this->type = 0xD3;
 	this->size = 0x1E;
-	
+
 	WBUFL(data,(0x08)-4) = PChar->id;
 	WBUFW(data,(0x10)-4) = PChar->targid;	
-	WBUFB(data,(0x12)-4) = Lot;
+	packBitsBE(data, Lot, 112, 16);  //this fixes an offset problem with lot numbers
+	//WBUFB(data,(0x12)-4) = Lot;
 	WBUFB(data,(0x14)-4) = slotID; 
 	
 	memcpy(data+0x26-0x04, PChar->GetName(), 16);
