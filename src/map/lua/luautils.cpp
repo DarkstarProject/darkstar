@@ -72,6 +72,7 @@ int32 init()
 
 	lua_register(LuaHandle,"print",luautils::print);
 	lua_register(LuaHandle,"GetNPCByID",luautils::GetNPCByID);
+	lua_register(LuaHandle,"GetMobByID",luautils::GetMobByID);
     lua_register(LuaHandle,"GetRegionOwner", luautils::GetRegionOwner);
 	lua_register(LuaHandle,"SpawnMob",luautils::SpawnMob);
 	lua_register(LuaHandle,"DespawnMob",luautils::DespawnMob);
@@ -175,6 +176,33 @@ int32 GetNPCByID(lua_State* L)
 		lua_gettable(L,-2);
 		lua_insert(L,-2);
 		lua_pushlightuserdata(L,(void*)PNpc);
+		lua_pcall(L,2,1,0);
+		return 1;
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+int32 GetMobByID(lua_State* L)
+{
+	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+	{
+		uint32 mobid = (uint32)lua_tointeger(L, -1);
+
+		CBaseEntity* PMob = zoneutils::GetEntity(mobid, TYPE_MOB);
+
+		lua_pushstring(L,CLuaBaseEntity::className);
+		lua_gettable(L,LUA_GLOBALSINDEX);
+		lua_pushstring(L,"new");
+		lua_gettable(L,-2);
+		lua_insert(L,-2);
+		lua_pushlightuserdata(L,(void*)PMob);
 		lua_pcall(L,2,1,0);
 		return 1;
 	}
@@ -348,7 +376,7 @@ int32 DespawnMob(lua_State* L)
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 		if (PMob != NULL)
 		{
-			PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
+			PMob->PBattleAI->SetLastActionTime(gettick() - 12500);
 			PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
 		}
 		return 0;
