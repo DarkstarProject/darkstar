@@ -1617,7 +1617,6 @@ void CAICharNormal::ActionAttack()
             m_PChar->m_ActionList.clear();
 
 			Action.ActionTarget = m_PBattleTarget;
-			uint32 numattacksRightHand = ((rand()%100 < m_PChar->getMod(MOD_DOUBLE_ATTACK) / 10) ? 2 : 1);
 			uint32 numattacksLeftHand = 0;
 			uint32 numKickAttacks = 0;
 
@@ -1626,6 +1625,13 @@ void CAICharNormal::ActionAttack()
 			if ((subType > 0 && subType < 4) || (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH))
 			{ 
 				numattacksLeftHand = ((rand()%100 < m_PChar->getMod(MOD_DOUBLE_ATTACK) / 10) ? 2 : 1);
+			}
+
+			uint32 numattacksRightHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
+
+			//cap it, cannot have >8 hits per attack round!
+			if(numattacksRightHand+numattacksLeftHand > 8){
+				numattacksRightHand -= numattacksRightHand+numattacksLeftHand - 8;
 			}
 	
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];

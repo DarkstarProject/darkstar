@@ -69,6 +69,7 @@ namespace charutils
 	void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
 	void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID);
     void    UpdateHealth(CCharEntity* PChar);
+	uint8   checkMultiHits(CCharEntity* PChar, uint16 weaponid); //returns the number of hits for multihit weapons if applicable
 
 	int32	hasKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // проверяем наличие ключевого предмета
 	int32	seenKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // проверяем, было ли описание ключевого предмета прочитано
