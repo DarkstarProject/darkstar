@@ -2,8 +2,7 @@
 -- Area: Giddeus
 -- NPC:  Uu Zhoumo
 -- Involved in Mission 2-3
--- @zone 145
--- @pos -179 16 155
+-- @pos -179 16 155 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------

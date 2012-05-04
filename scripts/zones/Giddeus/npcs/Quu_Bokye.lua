@@ -2,8 +2,7 @@
 -- Area: Giddeus
 -- NPC:  Quu Bokye
 -- Involved in Quest: Dark Legacy
--- @zone 145
--- @pos -159.715 16.132 181.504
+-- @pos -159 16 181 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
