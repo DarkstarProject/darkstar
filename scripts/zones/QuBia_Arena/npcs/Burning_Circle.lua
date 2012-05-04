@@ -19,33 +19,34 @@ require("scripts/zones/QuBia_Arena/TextIDs");
 	-- 7D00 : BC menu
 	-- Param 4 is a bitmask for the choice of battlefields in the menu:
 	
-	-- 0: The Ruins of Fei'Yin
+	-- 0: The Ruins of Fei'Yin (Rank 5 Mission)
 	-- 1: Come Into My Parlor
 	-- 2: E-vase-ive Action
-	-- 3:Infernal Swarm
+	-- 3: Infernal Swarm
 	-- 4: The Heir to the Light
 	-- 5: Shattering Stars (Paladin)
 	-- 6: Shattering Stars (Dark Knight)
 	-- 7: Shattering Stars (Bard)
-	
-	-- Die by the Sword
-	-- Let Sleeping Dogs Die
-	-- Undying Promise
-	-- Factory Rejects
-	-- An Awful Autopsy
-	-- Idol Thoughts
-	-- Celery
-	-- Brothers D'Aurphe
-	-- Demolition Squad
-	-- Darkness Rising
-	-- The Final Seal
-	-- Those Who Lurk in Shadows (III)
-	-- A Furious Finale (Dancer)
-	-- Mirror Images
-	-- Clash of the Comrades
+	-- 8: Demolition Squad
+	-- 9: Die By the Sword
+	-- 10: Let Sleeping Dogs Die
+	-- 11: Brothers D'Aurphe
+	-- 12: Undying Promise
+	-- 13: Factory Rejects
+	-- 14: Idol Thoughts
+	-- 15: An Awful Autopsy
+	-- 16: Celery
+	-- 17: Mirror Images
+	-- 18: A Furious Finale (Dancer)
+	-- 19: Clash of the Comrades
+	-- 20: Those Who Lurk in the Shadows (III)
+	-- 21: Beyond Infinity
+
+ 	-- Darkness Rising (Bastok Rank 5 - see The Ruins of Fei'Yin)
+	-- The Final Seal (Windurst Rank 5 - see The Ruins of Fei'Yin)
 
 	-- Param 8 is a flag: 0 : menu, >0 : automatically enter and exit
-
+  
 	-- 7D01 : final BC event.
 	-- param 2: #time record for this mission
 	-- param 3: #clear time in seconds
@@ -89,9 +90,17 @@ function onTrigger(player,npc)
 	if(player:getXPos() >= -220 and player:getXPos() <= -207 and player:getZPos() >= 13 and player:getZPos() <= 26) then
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
+			if(player:getCurrentMission(BASTOK) == DARKNESS_RISING and player:getVar("MissionStatus") == 2) then
+				bcnmFight = bcnmFight + 1;
 
-			-- Nothing
-			bcnmFight=128;
+			-- San d'Oria Mission not implemented yet
+			--elseif(player:getCurrentMission(SANDORIA) == THE_RUINS_OF_FEI_YIN and player:getVar("MissionStatus") == 2) then
+			--	bcnmFight = bcnmFight + 1;
+
+			-- Windurst Missions not implemented to this point yet
+			--elseif(player:getCurrentMission(WINDURST) == THE_FINAL_SEAL and player:getVar("MissionStatus") == 2) then
+			--	bcnmFight = bcnmFight + 1;
+			end
 
 			if(bcnmFight >= 0) then
 				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
@@ -126,13 +135,10 @@ function onEventUpdate(player,csid,option)
 				if(onTradeFight ~= 0) then
 					bcnmFight = getUpdateFightBCNM(player,pZone,onTradeFight);
 					record = GetServerVariable("[BF]Shattering_Stars_job"..player:getMainJob().."_record");
-				elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 and player:getVar("MissionStatus") == 10) then
-					record = GetServerVariable("[BF]Mission_2-3_Waughroon_record");
-					player:levelRestriction(25);
-				elseif(player:hasCompletedMission(player:getNation(),5)) then
-					skip = 1;
-					record = GetServerVariable("[BF]Mission_2-3_Waughroon_record");
-					player:levelRestriction(25);
+				--elseif(player:hasCompletedMission(player:getNation(),14)) then
+				--	skip = 1;
+				--	record = GetServerVariable("[BF]The_Rank_5_Mission_record");
+				--	player:levelRestriction(50);
 				end
 				
 				player:updateEvent(2,bcnmFight,0,record,1,skip);
@@ -159,12 +165,14 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x7d00 and option ~= 1073741824 and option ~= 0) then
 		if(option == 3) then
 			player:startEvent(0x7d02);
-		else
+		-- Rank 5-1
+		elseif(option == 100) then
 			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
 			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,900);
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_onTrade",0);
 			player:setVar(tostring(pZone) .. "_Fight",option);
+			player:levelRestriction(50);
 		end
 	elseif(csid == 0x7d03 and option == 4) then
 		if(player:getVar(tostring(pZone) .. "_Fight") == 100) then
