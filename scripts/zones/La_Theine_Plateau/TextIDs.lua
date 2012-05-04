@@ -19,3 +19,9 @@ FAURBELLANT_1 = 7358; -- Greetings. traveler. Sorry, I've little time to chat. I
 FAURBELLANT_2 = 7359; -- Ah, the <item>! Thank you for making such a long journey to bring this! May the Gates of Paradise open to all.
 FAURBELLANT_3 = 7360; -- Please deliver that <item> to the high priest in the San d'Oria Cathedral.
 FAURBELLANT_4 = 7361; -- My thanks again for your services. May the Gates of Paradise open to all.
+
+-- ZM4 Dialog
+		ZILART_MONUMENT = 7520; -- Its an ancient Zilart Monument
+  ALREADY_OBTAINED_FRAG = 7517; -- You have already obtained this monuments...
+		FOUND_ALL_FRAGS = 7519; -- You have obtained <frag>! You now have all 8 fragments
+	 CANNOT_REMOVE_FRAG = 7516;	-- It is an oddly shaped monument. A shiny stone... cannot be removed.

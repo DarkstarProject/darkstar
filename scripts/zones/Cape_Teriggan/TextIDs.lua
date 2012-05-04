@@ -8,3 +8,9 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 
 -- Conquest
 CONQUEST =  7162; -- "You've earned conquest points!"
+
+-- ZM4 Dialog
+		ZILART_MONUMENT = 7606; -- Its an ancient Zilart Monument
+  ALREADY_OBTAINED_FRAG = 7603; -- You have already obtained this monuments...
+		FOUND_ALL_FRAGS = 7605; -- You have obtained <frag>! You now have all 8 fragments
+	 CANNOT_REMOVE_FRAG = 7602;	-- It is an oddly shaped monument. A shiny stone... cannot be removed.

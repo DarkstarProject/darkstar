@@ -77,3 +77,7 @@ INSERT INTO server_variables VALUES ('[LANTERN]_rancor_nw_last_lit', '0');
 INSERT INTO server_variables VALUES ('[LANTERN]_rancor_ne_last_lit', '0');
 INSERT INTO server_variables VALUES ('[LANTERN]_rancor_sw_last_lit', '0');
 INSERT INTO server_variables VALUES ('[LANTERN]_rancor_se_last_lit', '0');
+INSERT INTO server_variables VALUES ('[ZM4]Fire_Headstone_Active', '0');
+INSERT INTO server_variables VALUES ('[ZM4]Wind_Headstone_Active', '0');
+INSERT INTO server_variables VALUES ('[ZM4]Lightning_Headstone_Active', '0');
+INSERT INTO server_variables VALUES ('[ZM4]Light_Headstone_Active', '0');
