@@ -1626,7 +1626,7 @@ void CAICharNormal::ActionAttack()
 			{ 
 				numattacksLeftHand = ((rand()%100 < m_PChar->getMod(MOD_DOUBLE_ATTACK) / 10) ? 2 : 1);
 			}
-
+			//TODO: APPLY THIS TO LEFT HAND AS WELL SO BOTH HANDS CAN MULTI HIT!
 			uint32 numattacksRightHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
 
 			//cap it, cannot have >8 hits per attack round!
@@ -1644,7 +1644,8 @@ void CAICharNormal::ActionAttack()
 						break;
 					}
 					Action.ActionTarget = NULL;
-					if (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() != DAMAGE_HTH)
+					
+					if (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() != DAMAGE_HTH && i>=numattacksRightHand)
 					{
 						PWeapon = m_PChar->m_Weapons[SLOT_SUB];
 					}
