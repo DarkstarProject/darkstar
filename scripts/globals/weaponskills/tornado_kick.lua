@@ -39,11 +39,11 @@ function OnUseWeaponSkill(attacker, target, wsID)
 	damage = doPhysicalWeaponskill(attacker,target, numHits, str_mod, dex_mod, vit_mod, agi_mod, int_mod, mnd_mod, chr_mod, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, atkMulti);
 
 	if( attacker:hasStatusEffect(EFFECT_FOOTWORK) == true) then
-		damage += 18;
+		damage = damage + 18;
 	end
 
-	if( player:getEquipID(8) == 14128 ) then
-		damage += 25;
+	if( attacker:getEquipID(8) == 14128 ) then
+		damage =damage + 25;
 	end
 
 	damage = damage * fTP(attacker:getTP(), ftp100, ftp200, ftp300);
