@@ -27,7 +27,7 @@
 #include "../../common/cbasetypes.h"
 
 #include <stdio.h>
-
+#include <string.h>
 
 enum ENTITYUPDATE
 {
