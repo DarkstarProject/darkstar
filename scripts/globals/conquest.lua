@@ -421,27 +421,26 @@ switch (region): caseof {
 	
 	npc  = {
 	-- 
-		17273350,SANDORIA,	-- Credaurion, R.K.
-		17273357,SANDORIA,	-- Limion, R.K.
-		17273344,SANDORIA,	-- flag
-		17273353,SANDORIA,	-- flag
-		17273361,SANDORIA,	-- flag
+		17273359,SANDORIA,	-- Credaurion, R.K.
+		17273366,SANDORIA,	-- Limion, R.K.
+		17273362,SANDORIA,	-- flag
+		17273370,SANDORIA,	-- flag
 	-- 
-		17273351,BASTOK,	-- Calliope, I.M.
-		17273358,BASTOK,	-- Dedden, I.M. 
-		17273354,BASTOK,	-- flag
-		17273362,BASTOK,	-- flag
+		17273360,BASTOK,	-- Calliope, I.M.
+		17273367,BASTOK,	-- Dedden, I.M. 
+		17273363,BASTOK,	-- flag
+		17273371,BASTOK,	-- flag
 	-- 
-		17273352,WINDURST,	-- Ajimo-Majimo, W.W.
-		17273359,WINDURST,	-- Ochocho, W.W. 
-		17273355,WINDURST,	-- flag
-		17273363,WINDURST,	-- flag
+		17273361,WINDURST,	-- Ajimo-Majimo, W.W.
+		17273368,WINDURST,	-- Ochocho, W.W. 
+		17273364,WINDURST,	-- flag
+		17273372,WINDURST,	-- flag
 	-- 
-		17273356,BEASTMEN,	-- flag
-		17273364,BEASTMEN,	-- flag
-		17273380,BEASTMEN,	-- flag
+		17273389,BEASTMEN,	-- flag
+		17273373,BEASTMEN,	-- flag
+		17273365,BEASTMEN,	-- flag
 	--	
-		17273360,OTHER,		-- Kasim
+		17273369,OTHER,		-- Kasim
 	}
   end,
   
