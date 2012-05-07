@@ -55,7 +55,7 @@ INSERT INTO `abilities` VALUES ('13', 'spirit_surge', '14', '0', '1', '7200', '0
 INSERT INTO `abilities` VALUES ('14', 'astral_flow', '15', '0', '1', '7200', '0', '95', '20', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('15', 'berserk', '1', '15', '1', '300', '1', '0', '20', '0', '1', '80');
 INSERT INTO `abilities` VALUES ('16', 'warcry', '1', '35', '1', '300', '2', '28', '20', '1', '1', '300');
-INSERT INTO `abilities` VALUES ('17', 'defender', '1', '25', '1', '300', '3', '1', '20', '0', '1', '80');
+INSERT INTO `abilities` VALUES ('17', 'defender', '1', '25', '1', '180', '3', '1', '20', '0', '1', '80');
 INSERT INTO `abilities` VALUES ('18', 'aggressor', '1', '45', '1', '300', '4', '2', '20', '0', '1', '80');
 INSERT INTO `abilities` VALUES ('19', 'provoke', '1', '5', '4', '30', '5', '3', '18', '0', '1', '1800');
 INSERT INTO `abilities` VALUES ('20', 'focus', '2', '25', '1', '300', '13', '4', '20', '0', '1', '300');
