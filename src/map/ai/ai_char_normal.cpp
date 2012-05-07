@@ -1393,6 +1393,14 @@ void CAICharNormal::ActionWeaponSkillStart()
         ActionWeaponSkillFinish();
         return;
     }
+
+	if (m_PBattleSubTarget == m_PChar){
+		if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
+			m_ActionType = ACTION_WEAPONSKILL_FINISH;
+			ActionWeaponSkillFinish();
+			return;
+		}
+	}
     WeaponSkillStartError(446);
 }
 
@@ -1436,8 +1444,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI) ? m_PChar->addTP(-100) : m_PChar->health.tp = 8; 
 
-    damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage);
-
+	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
+		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage);
+	}
     //if (m_PBattleSubTarget->objtype == TYPE_MOB && m_PBattleSubTarget->isDead())
     //{
     //    ((CMobEntity*)m_PBattleSubTarget)->m_DropItemTime = m_PWeaponSkill->getAnimationTime();
@@ -1451,8 +1460,19 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.speceffect = SPECEFFECT_RECOIL;
 	Action.animation  = m_PWeaponSkill->getAnimationId();
 	Action.param	  = damage;
-	Action.messageID  = 185;
+	if(damage==0){
+		Action.messageID = 188; //but misses
+	}
+	else{
+		Action.messageID  = 185; //damage ws
+	}
 	Action.flag		  = 0;
+
+	if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
+		Action.speceffect = SPECEFFECT_NONE;
+		Action.messageID = 224; //restores mp msg
+		m_PChar->addMP(damage);
+	}
 
 	SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill);
 	if (effect != SUBEFFECT_NONE) 

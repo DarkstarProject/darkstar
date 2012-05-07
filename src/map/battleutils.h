@@ -79,6 +79,7 @@ namespace battleutils
     uint8	GetEnmityMod(uint8 level, uint8 modType);
 	bool	Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	void	MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode);
+	bool	isValidSelfTargetWeaponskill(int wsid);
 };
 
 #endif

@@ -303,6 +303,17 @@ uint16 GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level)
 	return g_SkillTable[level][g_SkillRanks[SkillID][JobID]];
 }
 
+bool isValidSelfTargetWeaponskill(int wsid){
+	switch(wsid){
+	case 163: //starlight
+	case 164: //moonlight
+	case 173: //dagan
+	case 190: //myrkr
+		return true;
+	}
+	return false;
+}
+
 /************************************************************************
 *	Get Ability By ID													*
 ************************************************************************/

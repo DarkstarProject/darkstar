@@ -1,13 +1,13 @@
 ------------------------
---    Moonlight     -- 
+--    Dagan     -- 
 ------------------------
 require("scripts/globals/status");	
 require("scripts/globals/settings");	
 require("scripts/globals/weaponskills");
 
 function OnUseWeaponSkill(attacker, target, wsID)
-	lvl = attacker:getSkillLevel(11); --get club skill
-	damage = (lvl/9) - 1;
-	damagemod = damage * ((50+(attacker:getTP()*0.5))/100);
-	return damagemod;
+	ftphp = fTP(attacker:getTP(),0.22,0.34,0.52);
+	ftpmp = fTP(attacker:getTP(),0.15,0.25,0.35);
+	attacker:addHP(ftphp*attacker:getMaxHP());
+	return (ftpmp*attacker:getMaxMP());
 end

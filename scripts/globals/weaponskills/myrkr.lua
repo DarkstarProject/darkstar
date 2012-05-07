@@ -1,13 +1,11 @@
 ------------------------
---    Moonlight     -- 
+--    Myrkr     -- 
 ------------------------
 require("scripts/globals/status");	
 require("scripts/globals/settings");	
 require("scripts/globals/weaponskills");
 
 function OnUseWeaponSkill(attacker, target, wsID)
-	lvl = attacker:getSkillLevel(11); --get club skill
-	damage = (lvl/9) - 1;
-	damagemod = damage * ((50+(attacker:getTP()*0.5))/100);
-	return damagemod;
+	ftpmp = fTP(attacker:getTP(),0.2,0.4,0.6);
+	return (ftpmp*attacker:getMaxMP());
 end
