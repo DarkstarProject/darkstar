@@ -15,3 +15,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 		CHEST_MOOGLE = 7257; -- You cannot open the chest while participating in the moogle event.
 	  CHEST_ILLUSION = 7258; -- The chest was but an illusion...
 		CHEST_LOCKED = 7259; -- The chest appears to be locked.
+
+-- Other dialog
+		 DOOR_LOCKED = 7260; -- The door is firmly shut.
+	   POOL_OF_WATER = 7292; -- It is a pool of water.
