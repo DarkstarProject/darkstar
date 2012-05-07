@@ -27,7 +27,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	acc100 = 0.0; acc200= 0.0; acc300= 0.0;
 	atkmulti = 1;
 	damage = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
-	
+	player:addMP(damage);
 	return damage;
 	
 end	
