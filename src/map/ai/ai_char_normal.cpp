@@ -1134,6 +1134,10 @@ void CAICharNormal::ActionMagicFinish()
         m_PChar->m_ActionList.at(i).param = luautils::OnSpellCast(m_PChar, PTarget);
         m_PChar->m_ActionList.at(i).messageID = m_PSpell->getMessage();
 
+		if(i>0 && m_PSpell->getMessage() == 2){ //if its a damage spell msg and is hitting the 2nd+ target
+			m_PChar->m_ActionList.at(i).messageID = 264; //change the id to "xxx takes ### damage." only
+		}
+
         if (PTarget->objtype == TYPE_MOB)
         {
             if (PTarget->isDead())
