@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
 	basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
 	dmg = calculateMagicDamage(basedmg,2,caster,spell,target,DARK_MAGIC_SKILL,MOD_INT,false);
 	--get resist multiplier (1x if no resist)
-	resist = applyResistance(caster,spell,target,caster:getMod(MOD_INT)-target:getMod(MOD_INT),ELEMENTAL_MAGIC_SKILL,1.0);
+	resist = applyResistance(caster,spell,target,caster:getMod(MOD_INT)-target:getMod(MOD_INT),DARK_MAGIC_SKILL,1.0);
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
