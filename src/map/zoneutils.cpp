@@ -201,7 +201,7 @@ void LoadZoneList()
 				PMob->name.insert(0,Sql_GetData(SqlHandle,0));
 				PMob->id = (uint32)Sql_GetUIntData(SqlHandle,1);
 				PMob->targid = (uint16)PMob->id & 0x0FFF;
-
+				
 				PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlHandle,2);
 				PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,3);
 				PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,4);

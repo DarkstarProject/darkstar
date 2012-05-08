@@ -100,6 +100,18 @@ void CalculateStats(CMobEntity * PMob)
 {
 	PMob->health.maxhp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
     
+	switch(PMob->GetMJob()){
+	case JOB_PLD:
+	case JOB_WHM:
+	case JOB_BLM:
+	case JOB_RDM:
+	case JOB_DRK:
+	case JOB_BLU:
+	case JOB_SCH:
+		PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
+		break;
+	}
+
     PMob->UpdateHealth();
 
 	PMob->health.tp = 0;
