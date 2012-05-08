@@ -177,6 +177,7 @@ public:
 	int32 sendTractor(lua_State*);			// send tractor request to char
 
 	int32 updateEnmity(lua_State*);			// Adds Enmity to player for specified mob
+	int32 updateEnmityFromDamage(lua_State*);			// Adds Enmity to player for specified mob for the damage specified
 
 	int32 addStatusEffect(lua_State*);		// Adds status effect to character
     int32 addStatusEffectEx(lua_State*);	// Adds status effect to character

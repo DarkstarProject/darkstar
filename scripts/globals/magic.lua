@@ -1,4 +1,3 @@
-
      DIVINE_MAGIC_SKILL = 32;
     HEALING_MAGIC_SKILL = 33;
   ENHANCING_MAGIC_SKILL = 34;
@@ -88,58 +87,26 @@ end;
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
 function applyResistance(player,spell,target,diff,skill,staff)
-	
-	-- Gather related stats.
 	resist = 1.0;
-	resist = 1;
 	
-	if(1 == 1) then -- if(player:isPlayer() == 1) then -- Yes I see how this might confuse you. player:isPlayer() NOT IMPLEMENTED
-		magicskill = player:getSkillLevel(skill) + player:getMod(79 + skill);
-	else -- "Player" is really an NPC here.
-		moblvl = player:getMainLvl();
-		if(moblvl <= 83) then
-			magicskill = getSkillLvl(7,moblvl);
-		else
-			magicskill = getSkillLvl(4,moblvl);
-		end
-	end
+	--raw skill + equip skill = total skill
+	magicskill = player:getSkillLevel(skill) + player:getMod(79 + skill); 
+	
+	--else -- monster macc baseline.
+	--	moblvl = player:getMainLvl();
+	--	if(moblvl <= 83) then
+	--		magicskill = getSkillLvl(7,moblvl);
+	--	else
+	--		magicskill = getSkillLvl(4,moblvl);
+	--	end
+	--end
 
 	macc = 50 + player:getMod(MOD_MACC);
---[[ WEATHER NOT IMPLEMENTED
-	zone = Zone(player:getZone());
-	weather = zone:getWeather();
-	element = spell:getElement();
-
--- Klimaform
-
-	if(player:getStatusEffect(EFFECT_KLIMAFORM) ~= nil) then
-		if((weather == Gloom or weather == Darkness or player:getStatusEffect(EFFECT_VOIDSTORM) ~= nil) and (element == 8)) then
-			macc = macc + KLIMAFORM_MACC;
-			--print("Dark Spell Magic Accuracy Enhanced by Klimaform");
-		elseif((weather == Auroras or weather == StellarGlare or player:getStatusEffect(EFFECT_AURORASTORM) ~= nil) and (element == 7)) then
-			macc = macc + KLIMAFORM_MACC;
-			--print("Light Spell Magic Accuracy Enhanced by Klimaform");
-		elseif((weather == Thunder or weather == Thunderstorms or player:getStatusEffect(EFFECT_THUNDERSTORM) ~= nil ) and (element == 6)) then
-			macc = macc + KLIMAFORM_MACC;
-			--print("Lightning Spell Magic Accuracy Enhanced by Klimaform");
-		elseif((weather == Snow or weather == Blizzard or player:getStatusEffect(EFFECT_HAILSTORM) ~= nil) and (element == 5)) then
-			macc = macc + KLIMAFORM_MACC;
-			--print("Ice Spell Magic Accuracy Enhanced by Klimaform");
-		elseif((weather == Wind or weather == Gales or player:getStatusEffect(EFFECT_WINDSTORM) ~= nil) and (element == 4)) then
-			macc = macc + KLIMAFORM_MACC;
-			--print("Wind Spell Magic Accuracy Enhanced by Klimaform");
-		elseif((weather == Rain or weather == Squall or player:getStatusEffect(EFFECT_RAINSTORM) ~= nil) and (element == 3)) then
-			macc = macc + KLIMAFORM_MACC;
-			--print("Water Spell Magic Accuracy Enhanced by Klimaform");
-		elseif((weather == DustStorm or weather == SandStorm or player:getStatusEffect(EFFECT_SANDSTORM) ~= nil) and (element == 2)) then
-			macc = macc + KLIMAFORM_MACC;
-			--print("Earth Spell Magic Accuracy Enhanced by Klimaform");
-		elseif((weather == HotSpell or weather == HeatWave or player:getStatusEffect(EFFECT_FIRESTORM) ~= nil) and (element == 1)) then
-			macc = macc + KLIMAFORM_MACC;
-			--print("Fire Spell Magic Accuracy Enhanced by Klimaform");
-		end
-	end
-]]
+	
+	--todo: weather
+	--todo: day
+	--todo: klimaform
+	
 	-- Elemental Seal doubles the accuracy.
 	if(player:getStatusEffect(EFFECT_ELEMENTAL_SEAL) ~= nil) then
 		macc = macc * 2;
@@ -150,30 +117,6 @@ function applyResistance(player,spell,target,diff,skill,staff)
 
 	-- Baseline p.
 	p = (macc / 100); -- Reasonable assumption based on 50% base magic accuracy.
---[[ WEAVER NOT IMPLEMENTED
-	-- Diabolos's Earring increases M.Acc. in dark weather.
-	if(weather == Gloom or weather == Darkness) then
-		ear1 = player:getEquipID(12);
-		ear2 = player:getEquipID(13);
-		if(ear1 == DiabolosEarring or ear2 == DiabolosEarring) then
-			p = (p+0.02);
-			--print("Magic accuracy enhanced by Diabolos's Earring.");
-		end
-	end
-]]
---[[
-	-- Adjust for magic skill.
-	vanaday = getVanaDayElement();
-	ring1 = player:getEquipID(14);
-	ring2 = player:getEquipID(15);
-	-- Diabolos's Ring increases Dark Magic skill on Darksday.
-	if(ring1 == 0x3CC5 or ring2 == 0x3CC5) then
-		if(vanaday == Darksday and skill == DARK_MAGIC_SKILL) then
-			magicskill = (magicskill + 15);
-			--print("Dark Magic skill increased by Diabolos's Ring.");
-		end
-	end
-]]	
 	p = (p + (magicskill / 100));
 	
 	-- Adjust for staff bonus.
@@ -207,36 +150,20 @@ function applyResistance(player,spell,target,diff,skill,staff)
 	end
 	
 	meva = meva + target:getMod(MOD_MEVA);
+	--todo: add on extra meva from fire resist etc (need getElement() method for spells)
 	p = (p - (meva / 100));
-
-	-- Reduce for elemental resist.  From kegsay: this is actually additional magic evasion.
-	elementalres = 0;
-	element = 1; --spell:getElement(); NOT IMPLEMENTED !
-	
-	switch (element): caseof {
-		[1] = function (x) elementalres = target:getMod(MOD_FIRERES); end, --Fire
-		[2] = function (x) elementalres = target:getMod(MOD_EARTHRES); end, --Earth
-		[3] = function (x) elementalres = target:getMod(MOD_WATERRES); end, --Water
-		[4] = function (x) elementalres = target:getMod(MOD_WINDRES); end, --Wind
-		[5] = function (x) elementalres = target:getMod(MOD_ICERES); end, --Ice
-		[6] = function (x) elementalres = target:getMod(MOD_THUNDERRES); end, --Thunder
-		[7] = function (x) elementalres = target:getMod(MOD_LIGHTRES); end, --Light
-		[8] = function (x) elementalres = target:getMod(MOD_DARKRES); end, --Dark
-	default = function (x) end, }
-	
-	p = p + (1 - (elementalres / 100));
 
 	-- Adjust for alpha.  Kegsay: this seems to be semi-linear branching from your level.
 	level = player:getMainLvl();
 	moblvl = target:getMainLvl();
-	alpha = 1.0;
+	alpha = 100;
 	if(level >= moblvl) then
 		alpha = alpha + (5 * (level - moblvl));
 	else
 		alpha = alpha - (10 * (moblvl - level));
 	end
 	
-	p = (p * alpha);
+	p = (p * (alpha/100));
 
 	-- Adjust p to be within bounds.
 	if(p > 0.95) then
@@ -244,26 +171,20 @@ function applyResistance(player,spell,target,diff,skill,staff)
 	elseif(p < 0.05) then
 		p = 0.05;
 	end
-	-- print("P: " .. p);
+	
 
 	-- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
 	half = (1 - p);
 	quart = ((1 - p)^2);
 	eighth = ((1 - p)^3);
-	sixteenth = ((1 - p)^4); -- Reasonable assumption based on the above pattern.
+	sixteenth = ((1 - p)^4);
 	--print("HALF:",half);
 	--print("QUART:",quart);
 	--print("EIGHTH:",eighth);
 	--print("SIXTEENTH:",sixteenth);
 
-	-- Pseudo-randomized seed to calculate resist chance for this spell.
---	if(spell:getCurrTargNum() == 1) then
---		math.randomseed(os.time());
---	end
-
-	resvar = math.random();resvar = math.random();resvar = math.random();
-	--print("RES:",resvar);
-
+	resvar = math.random();
+	
 	-- Determine final resist based on which thresholds have been crossed.
 	if(resvar <= sixteenth) then
 		resist = 0.0625;
@@ -383,212 +304,23 @@ function getSkillLvl(rank,level)
 	
  end;
  
------------------------------------
---	Author: ReaperX
--- 	Elemental Debuff Potency functions
------------------------------------
-
-function getElementalDebuffDOT(sINT)
-	
-	if(sINT<= 39) then
-		DOT = 1;
-	elseif(sINT <= 69) then
-		DOT = 2;
-	elseif(sINT <= 99) then
-		DOT = 3;
-	elseif(sINT <= 149) then
-		DOT = 4;
-	else 
-		DOT = 5;
-	end;
-	
-	return DOT;
-	
-end;
-
-function getElementalDebuffStatDownFromDOT(dot)
-	
-	if(dot == 1) then
-		stat_down = 5;
-	elseif(dot == 2) then
-		stat_down = 7;
-	elseif(dot == 3) then
-		stat_down = 9;
-	elseif(dot == 4) then
-		stat_down = 11;
-	else
-		stat_down = 13;
-	end;
-	
-	return stat_down;
-	
-end; 
-
------------------------------------
---	Author: Tenjou
--- 	MAGICAL DAMAGE
--- 	Consolidating this section into one script so that any one change will affect all spells.
------------------------------------
-
-function takeMagicalDamage(caster,target,final)
-
-	if(caster:getStatusEffect(EFFECT_ELEMENTAL_SEAL) ~= nil and caster:getEquipID(1) == 18994) then --Laevateinn enhances spell damage 10% with Elemental Seal.
-		final = final * 1.1;
-	end
-	
-	target:delHP(final);
-	target:updateEnmity(caster,final*(240/math.floor((6+(target:getMainLvl()*31/50)))),final*(80/math.floor((6+(target:getMainLvl()*31/50)))));
-	
-	return final;
-	
-end
-
------------------------------------
---	Author: Tenjou
--- 	NATURAL/ELEMENTAL RESISTANCE
--- 	Final adjustment to spell damage.
------------------------------------
-
-function getNaturalResist(family)
-
-	natural = 1.0;
-
-	switch (family): caseof {
-	[4] = function (x) natural = 0.75; end, --Ahriman
-	[52] = function (x) natural = 0.75; end, --Cardian
-	[61] = function (x) natural = 0.75; end, --Corse
-	[89] = function (x) natural = 0.875; end, --Evil Weapon
-	[90] = function (x) natural = 1.25; end, --Flan
-	[98] = function (x) natural = 0.875; end, --Ghrah
-	[122] = function (x) natural = 0.75; end, --Kindred
-	[124] = function (x) natural = 0.875; end, --Lamia
-	[127] = function (x) natural = 0.5; end, --Magic Pot
-	default = function (x) end, }
-
-	return natural;
-	
-end;
-
------------------------------------
---	Author: Tenjou
--- 	Cure Potency Check
--- 	List of gear which enhances Cure Potency.
------------------------------------
-
-function curePotency(caster)
-	c = 0;
-	main = caster:getEquipID(1);
-	sub = caster:getEquipID(2);
-	range = caster:getEquipID(3);
-	ammo = caster:getEquipID(4);
-	head = caster:getEquipID(5);
-	body = caster:getEquipID(6);
-	hand = caster:getEquipID(7);
-	leg = caster:getEquipID(8);
-	foot = caster:getEquipID(9);
-	neck = caster:getEquipID(10);
-	waist = caster:getEquipID(11);
-	ear1 = caster:getEquipID(12);
-	ear2 = caster:getEquipID(13);
-	ring1 = caster:getEquipID(14);
-	ring2 = caster:getEquipID(15);
-	back = caster:getEquipID(16);
-
-	if(main == 0x443a or sub == 0x443a) then
-		c = (c+0.01);
-		--print("Cure enhanced by Dia Wand.");
-	end
-	if(main == 0x442e or sub == 0x442e) then
-		c = (c+0.05);
-		--print("Cure enhanced by Asklepios.");
-	end
-	if(main == 0x4999 or sub == 0x4999) then
-		c = (c+0.10);
-		--print("Cure enhanced by Templar Mace.");
-	end
-	if(main == 17557 or main == 17558 or main == 0x42d4 or main == 0x429b) then
-		c = (c+0.10);
-		--print("Cure enhanced by Staff.");
-	end
-	if(body == 0x313d) then
-		c = (c+0.10);
-		--print("Cure enhanced by Noble's Tunic.");
-	elseif(body == 0x35ce) then
-		c = (c+0.12);
-		--print("Cure enhanced by Aristocrat's Coat.");
-	end
-	if(ear1 == 0x39d7 or ear2 == 0x39d7) then
-		c = (c+0.05);
-		--print("Cure enhanced by Hospitaler Earring.");
-	end
-	if(ear1 == 0x3e82 or ear2 == 0x3e82) then
-		c = (c+0.05);
-		--print("Cure enhanced by Roundel Earring.");
-	end
-	if(ring1 == 0x33e8 or ring2 == 0x33e8) then
-		hp = caster:getHP();
-		maxhp = caster:getMaxHP();
-		ratio = (hp/maxhp);
-		tp = caster:getTP();
-		if(ratio <= 0.75 and tp <= 100) then
-			c = (c+0.10);
-			--print("Cure enhanced by Medicine Ring.");
-		end
-	end
-	--print("Total enhancement: " .. (c+1));
-	
-	return c;
-	
- end;
+ function finalMagicAdjustments(caster,target,spell,dmg)
+	target:delHP(dmg);
+	target:updateEnmityFromDamage(caster,dmg);
+	return dmg;
+ end
  
- -----------------------------------
---	Author: Tenjou
--- 	HEAL
--- 	Consolidating this section into one script so that any one change will affect all cure spells.
------------------------------------
-
-function heal(caster,target,final)
-
-	--Divine Seal doubles the amount.
-	if(caster:getStatusEffect(EFFECT_DIVINE_SEAL) ~= nil) then
-		final = final*2;
-	end
-	
-	target:addHP(final);
-	
-	return final;
-	
+function adjustForTarget(target,dmg)
+	--e.g. family % reduction
+	return dmg;
 end
-
------------------------------------
---	Author: Tenjou
--- 	CURE RESISTANCE
--- 	To harm undead.
------------------------------------
-
-function cureResist(family)
-
-	resist = 0.0;
-	undead = {61,69,93,97,223,151,164,167,73,186};
-	
-	--print("FAMILY:",family);
-	for i = 0,table.getn(undead) do
-		if(family == undead[i]) then
-			resist = -1;
-		end
-	end
-
-	return resist;
-
- end;
 
 -- USED FOR DAMAGING MAGICAL SPELLS. Stages 4,5,6,7,8 of Calculating Magic Damage on Wiki
-function applyBonuses(dmg,player,spell,target)
+function addBonuses(caster,spell,target,dmg)
 	--TODO:
 	--Staff Bonus
 	--Day of the week / Weather bonus
 	--MB bonus
-	--MAB/MDB
-	--Target adjustment %
-	return dmg;
+	mab = (100+caster:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF)) ;
+	return dmg*mab;
 end

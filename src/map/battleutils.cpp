@@ -417,6 +417,38 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 	return g_PMobFamilySkills[FamilyID];
 }
 
+bool tryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
+	int base = 40; //Reasonable assumption for the time being.
+	int diff = PAttacker->GetMLevel() - PDefender->GetMLevel();
+	float check = base + diff;
+
+	if(PDefender->objtype==TYPE_PC) { //Check player's skill.  
+		//For mobs, we can assume their skill is capped at their level, so this term is 1 anyway.
+		CCharEntity* PChar = (CCharEntity*) PDefender;
+		float skill = PChar->GetSkill(PChar->PBattleAI->GetCurrentSpell()->getSkillType());
+		if(skill <= 0) {
+			skill = 1;
+		}
+			
+		float cap = GetMaxSkill((SKILLTYPE)PChar->PBattleAI->GetCurrentSpell()->getSkillType(),
+			PChar->GetMJob(),PChar->GetMLevel());
+		if(skill > cap) {
+			skill = cap;
+		}
+		float ratio = (float)cap/skill;
+		check *= ratio;
+	} 
+
+	float aquaveil = ((float)((100.0f - (float)PDefender->getMod(MOD_SPELLINTERRUPT))/100.0f));
+	check *= aquaveil;
+
+	if(rand()%100 < check)  {
+		//Mark for interruption.
+		return true;
+	}
+	return false;
+}
+
 /************************************************************************
 *																		*
 *  Calculates damage based on damage and resistance to damage type		*
@@ -461,12 +493,13 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     {
         if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING &&
             PDefender->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG)
-        {
-            // TODO: должен вычисляться на основании skill, разници уровней сущностей и модификаторе прерывания чтения заклинаний MOD_SPELLINTRATE
-	        uint32 MagicInterruptRate = 50;
-
-            if (MagicInterruptRate  < rand()*100)
+        { //try to interrupt the spell
+            if (tryInterruptSpell(PAttacker,PDefender))
             {
+				if(PDefender->objtype == TYPE_PC){
+					CCharEntity* PChar = (CCharEntity*) PDefender;
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 16)); 
+				}
                 PDefender->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);
             }
         }

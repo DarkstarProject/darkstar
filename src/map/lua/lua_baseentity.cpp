@@ -3262,6 +3262,31 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 }
 
 /************************************************************************
+			Calculates the enmity produced by the input damage
+************************************************************************/
+inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+	DSP_DEBUG_BREAK_IF(lua_tointeger(L,2) < 0);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
+	uint32 damage = lua_tointeger(L,2);
+
+    if (PEntity != NULL && 
+        PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+	{
+		((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(),damage);
+	}
+
+	return 0;
+}
+
+
+/************************************************************************
 *																		*
 *  Проверяем, покидал ли персонаж зону после поднятия флага				*
 *  необходимости ее покинуть. С параметром устанавливаем флаг, без		*
@@ -3525,6 +3550,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectPacket),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showPosition),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmity),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
