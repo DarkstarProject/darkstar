@@ -325,3 +325,54 @@ function addBonuses(caster,spell,target,dmg)
 	mab = (100+caster:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF)) ;
 	return dmg*mab;
 end
+
+
+
+---------------------------------------------------------------------
+--	Author: ReaperX
+-- 	Elemental Debuff Potency functions
+---------------------------------------------------------------------
+
+function getElementalDebuffDOT(INT)
+if (INT<= 39) then
+	DOT = 1;
+elseif (INT <= 69) then
+	DOT = 2;
+elseif (INT <= 99) then
+	DOT = 3;
+elseif (INT <= 149) then
+	DOT = 4;
+else 
+	DOT = 5;
+end;
+return DOT;
+end;
+
+function getElementalDebuffStatDownFromDOT(dot)
+if (dot == 1) then
+	stat_down = 5;
+elseif (dot == 2) then
+	stat_down = 7;
+elseif (dot == 3) then
+	stat_down = 9;
+elseif (dot == 4) then
+	stat_down = 11;
+else
+	stat_down = 13;
+end;
+return stat_down;
+end;
+
+function getEnspellDmg(caster)
+  Enhancing = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
+  if (Enhancing < 150) then 
+    basedmg = math.sqrt(Enhancing-1);
+  else
+  	basedmg = Enhancing/20 + 5;
+  end;
+  return basedmg;
+end;
+
+function getHelixDuration(caster, target, spell)
+  return math.random(45, 90);
+end;
