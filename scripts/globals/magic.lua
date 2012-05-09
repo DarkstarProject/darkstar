@@ -307,6 +307,7 @@ function getSkillLvl(rank,level)
  function finalMagicAdjustments(caster,target,spell,dmg)
 	target:delHP(dmg);
 	target:updateEnmityFromDamage(caster,dmg);
+	target:addTP(10);
 	return dmg;
  end
  
