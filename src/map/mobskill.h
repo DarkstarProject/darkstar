@@ -27,20 +27,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
-#define MAX_MOBSKILL_ID	2048
-
-//skilltype flag
-//1	physical
-//2	ranged
-//4	magical
-//8	aoe cone
-//16	aoe linear
-//32	aoe radius
-//64	healing
-//128	enhancing
-//256	enfeebling
-//512	dispel
-//1024	special
+#define MAX_MOBSKILL_ID	4096
 
 class CMobSkill
 {
@@ -49,26 +36,26 @@ public:
 	CMobSkill(uint16 id);
     
 	uint16		getID();
+	uint16		getAnimationID();
 	uint16		getfamilyID();
-	uint8		getSkillType();
-	uint8		getElement();
 	uint8		getAoe();
-	uint8       getNumHits();
 	float		getDistance();
 	uint8		getFlag();
     uint16      getAnimationTime();
     uint16      getActivationTime();
+	uint16		getMsg();
+	uint16		getValidTargets();
 
 	void		setID(uint16 id);
+	void		setAnimationID(uint16 aid);
 	void		setfamilyID(uint16 familyID);
-	void		setSkillType(uint8 skillType);
-	void		setElement(uint8 element);
 	void		setAoe(uint8 aoe);
-	void        setNumHits(uint8 numhits); 
 	void		setDistance(float distance);
 	void		setFlag(uint8 flag);
     void        setAnimationTime(uint16 AnimationTime);
     void        setActivationTime(uint16 ActivationTime);
+	void		setMsg(uint16 msg);
+	void		setValidTargets(uint16 targ);
 	
 	const int8* getName();
 	void		setName(int8* name);
@@ -77,15 +64,14 @@ private:
 
 	uint16		m_ID;
 	uint16      m_FamilyID;
-	uint8		m_SkillType;        // не используется
-	uint8		m_Element;          // не используется
-	uint8       m_Aoe;              // не используется
+	uint16		m_AnimID;			//animation id
+	uint8       m_Aoe;              // не используется 
 	float		m_Distance;         // не используется
-	uint8       m_NumHits;          // не используется
 	uint8		m_Flag;             // не используется
-    uint8       m_ValidTarget;
-    uint16      m_AnimationTime;
-    uint16      m_ActivationTime;
+    uint8       m_ValidTarget;		//same as 
+    uint16      m_AnimationTime;	//how long the tp animation lasts for in ms
+    uint16      m_ActivationTime;	//how long the mob prepares the tp move for
+	uint16		m_Message;			//message param, scripters can edit this depending on self/resist/etc.
 
 	string_t	m_name;
 };

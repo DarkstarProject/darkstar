@@ -78,6 +78,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_ATTACK:				  ActionAttack();           break;
         case ACTION_SLEEP:                ActionSleep();            break;
 		case ACTION_MOBABILITY_START:     ActionAbilityStart();     break;
+		case ACTION_MOBABILITY_USING:	  ActionAbilityUsing();     break;
 		case ACTION_MOBABILITY_FINISH:	  ActionAbilityFinish();    break;
         case ACTION_MOBABILITY_INTERRUPT: ActionAbilityInterrupt(); break;
 
@@ -397,23 +398,68 @@ void CAIMobDummy::ActionAbilityStart()
     }
     m_LastActionTime = m_Tick;
 
+	//TODO: Choose TP move sensibly (if no enemies in range, dont choose a damaging move, etc)
 	m_PMobSkill = MobSkills.at(rand() % MobSkills.size());
 
     apAction_t Action;
     m_PMob->m_ActionList.clear();
-	
-	Action.ActionTarget = m_PBattleTarget;
+	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
+		Action.ActionTarget = m_PBattleTarget;
+	}
+	else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
+		Action.ActionTarget = m_PMob;
+	}
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = 0;
-    Action.param	  = m_PMobSkill->getID() + 256;
-	Action.messageID  = 43;
+    Action.param	  = m_PMobSkill->getAnimationID();
+	Action.messageID  = 43; //readies message
 	Action.flag		  = 0;
 
 	m_PMob->m_ActionList.push_back(Action);
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
-	m_ActionType = ACTION_MOBABILITY_FINISH;
+	m_ActionType = ACTION_MOBABILITY_USING;
+}
+
+/***********************************************************************
+		In the readying animation to use a TP move
+************************************************************************/
+void CAIMobDummy::ActionAbilityUsing()
+{
+	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+
+	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
+		m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PMob->getZone()){
+		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+		ActionAbilityInterrupt();
+		return;
+	}
+
+	//TODO: Any checks whilst the monster is preparing.
+	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
+	//      THE ONLY CHECK IN HERE SHOULD BE WITH STUN/SLEEP/TERROR/ETC
+
+	if ((m_Tick - m_LastActionTime) > m_PMobSkill->getActivationTime())
+    {
+		//Range check
+		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
+			m_PBattleTarget!=m_PMob && 
+			distance(m_PBattleTarget->loc.p,m_PMob->loc.p) > m_PMobSkill->getDistance()){
+
+			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+			//too far away message
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 78));
+			ActionAbilityInterrupt();
+			return;
+		}
+
+		m_LastActionTime = m_Tick;
+		m_ActionType = ACTION_MOBABILITY_FINISH;
+		ActionAbilityFinish();
+	}
+
 }
 
 /************************************************************************
@@ -428,38 +474,93 @@ void CAIMobDummy::ActionAbilityFinish()
 {
     DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
 
-    // TODO: это условие должно быть в методе ActionAbilityUsing для возможности прерывания
-
-    if ((m_Tick - m_LastActionTime) > m_PMobSkill->getActivationTime())
-    {
-        m_LastActionTime = m_Tick;
-
         // TODO: для реализации эффектов и расчета урона должен использоваться script
         // TODO: необходимо проверить расстояние до персонажа, возможно он успел убежать, тогда следует прервать способность
         // TODO: монстр может промахнуться
         // TODO: необходима ValidTarget, т.к. монстр может использовать специальные атаки на себе, группе монстров, персонаже, группе персонажей
 
-        uint16 damage = 0;
+        uint16 value = 0; //more generic since it may be cure or damage!
 
-        apAction_t Action;
         m_PMob->m_ActionList.clear();
 
-	    Action.ActionTarget = m_PBattleTarget;
-	    Action.reaction   = REACTION_HIT;
-	    Action.speceffect = SPECEFFECT_HIT;
-	    Action.animation  = m_PMobSkill->getID();
-	    Action.param	  = damage;
-	    Action.subparam   = m_PMobSkill->getID() + 256;
-	    Action.messageID  = 185;
-        Action.flag       = 0;
+		//handle aoe stuff (self/mob)
+		//AOE=1 means the circle is around the MONSTER
+		//AOE=2 means the circle is around the BATTLE TARGET
+		if(m_PMobSkill->getAoe()==1 || m_PMobSkill->getAoe()==2){ //to handle both types of aoe
+			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){//aoe on the  players
+				//hit the target + the target's PT/alliance
+				apAction_t Action;
+				//value = luautils::OnTpMove(m_PChar, PTarget);	
+				Action.ActionTarget = m_PBattleTarget;
+				Action.reaction   = REACTION_HIT;
+				Action.speceffect = SPECEFFECT_HIT;
+				Action.animation  = m_PMobSkill->getID();
+				Action.param	  = value;
+				Action.subparam   = m_PMobSkill->getAnimationID();
+				Action.messageID  = m_PMobSkill->getMsg();
+				Action.flag		  = 0;
+				m_PMob->m_ActionList.push_back(Action);	
+
+				if(m_PBattleTarget->objtype==TYPE_PC){
+					CCharEntity* m_PChar = (CCharEntity*)m_PBattleTarget;
+					if(m_PChar->PParty != NULL){
+						//determine the type of circle
+						position_t radiusAround = m_PMob->loc.p;
+						if(m_PMobSkill->getAoe()==2){//radius around TARGET not the monster
+							radiusAround = m_PBattleTarget->loc.p;
+						}
+
+						for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
+						{
+							CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+							
+
+							if(!PTarget->isDead() && PTarget!=m_PBattleTarget &&
+							PTarget->getZone() == m_PChar->getZone() &&
+							distance(radiusAround, PTarget->loc.p) <= m_PMobSkill->getDistance())
+							{
+								
+								//value = luautils::OnTpMove(m_PChar, PTarget);	
+								Action.ActionTarget = PTarget;
+								Action.param	  = value;
+
+								//handle aoe damage text
+								if(Action.messageID == 185){
+									Action.messageID = 264; //just the damage value needed
+								}
+
+								m_PMob->m_ActionList.push_back(Action);	
+							}
+						}
+					}
+				}
+			}
+			else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //aoe on the enemy (e.g. aoe cure)
+				//hit self and all targets of the same family? pt?
+			}
+		}
+		else{//single target moves
+			apAction_t Action;
+			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){
+				Action.ActionTarget = m_PBattleTarget;
+			}
+			else if(m_PMobSkill->getValidTargets() == TARGET_SELF){
+				Action.ActionTarget = m_PMob;
+			}
+			Action.reaction   = REACTION_HIT;
+			Action.speceffect = SPECEFFECT_HIT;
+			Action.animation  = m_PMobSkill->getID();
+			Action.param	  = value;
+			Action.subparam   = m_PMobSkill->getAnimationID();
+			Action.messageID  = m_PMobSkill->getMsg();
+			Action.flag       = 0;
 	
-	    m_PMob->m_ActionList.push_back(Action);
-	    m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-
-	    m_PMob->health.tp = 0; 
-
-        m_ActionType = ACTION_ATTACK;
-    }
+			m_PMob->m_ActionList.push_back(Action);
+			
+		}
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+	m_PMob->health.tp = 0; 
+    m_ActionType = ACTION_ATTACK;
 }
 
 /************************************************************************
@@ -471,6 +572,22 @@ void CAIMobDummy::ActionAbilityFinish()
 void CAIMobDummy::ActionAbilityInterrupt()
 {
     m_LastActionTime = m_Tick;
+	//cancel the whole readying animation
+	apAction_t Action;
+    m_PMob->m_ActionList.clear();
+
+		Action.ActionTarget = m_PMob;
+		Action.reaction   = REACTION_NONE;
+		Action.speceffect = SPECEFFECT_NONE;
+		Action.animation  = m_PMobSkill->getID();
+	    Action.param	  = 0;
+		Action.messageID  = 0;
+        Action.flag       = 0;
+	
+	m_PMob->m_ActionList.push_back(Action);
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
+	m_PMob->health.tp = 0; 
 
     m_PMobSkill = NULL;
     m_ActionType = ACTION_ATTACK;

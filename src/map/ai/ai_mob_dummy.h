@@ -58,6 +58,7 @@ protected:
 	void ActionFadeOut();
 	void ActionSpawn();
 	void ActionAbilityStart();
+	void ActionAbilityUsing();
 	void ActionAbilityFinish();
     void ActionAbilityInterrupt();
 	void ActionAttack();

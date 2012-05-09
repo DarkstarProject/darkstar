@@ -96,9 +96,18 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
             ActionType = ACTION_WEAPONSKILL_START;
         }
             break;
+		case ACTION_MOBABILITY_INTERRUPT:
+		{
+			WBUFB(data,(0x0A)-4) = 0xDC;
+			WBUFB(data,(0x0B)-4) = 0x1C;
+			WBUFB(data,(0x0C)-4) = 0x1C;
+			WBUFB(data,(0x0D)-4) = 0x5D;
+			WBUFB(data,(0x0E)-4) = 0x19;
+		}
+			break;
 		case ACTION_MOBABILITY_FINISH:
 		{	
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentMobSkill()->getID() + 256, 54, 10);
+			packBitsBE(data, PEntity->PBattleAI->GetCurrentMobSkill()->getAnimationID(), 54, 10);
 		}
 			break;
 		case ACTION_ITEM_START:

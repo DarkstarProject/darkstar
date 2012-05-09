@@ -28,14 +28,14 @@ CMobSkill::CMobSkill(uint16 id)
 {
 	m_ID = id;
 	m_FamilyID= 0;
+	m_AnimID = 0;
 	m_Aoe = 0;
-	m_SkillType = 0;
 	m_Distance = 0;
 	m_Flag = 0;
-	m_Element = 0;
     m_ValidTarget = 0;
     m_AnimationTime = 0;
     m_ActivationTime = 0;
+	m_Message = 0;
 }
 	
 void CMobSkill::setID(uint16 id)
@@ -43,9 +43,9 @@ void CMobSkill::setID(uint16 id)
 	m_ID = id;
 }
 
-void CMobSkill::setSkillType(uint8 id)
+void CMobSkill::setMsg(uint16 msg)
 {
-	m_SkillType = id;
+	m_Message = msg;
 }
 
 void CMobSkill::setfamilyID(uint16 familyID)
@@ -53,9 +53,9 @@ void CMobSkill::setfamilyID(uint16 familyID)
 	m_FamilyID = familyID;
 }
 
-void CMobSkill::setElement(uint8 element)
+void CMobSkill::setAnimationID(uint16 animID)
 {
-	m_Element = element;
+	m_AnimID = animID;
 }
 
 const int8* CMobSkill::getName()
@@ -72,11 +72,6 @@ void CMobSkill::setName(int8* name)
 void CMobSkill::setAoe(uint8 aoe)
 {
 	m_Aoe = aoe;
-}
-
-void CMobSkill::setNumHits(uint8 numHits) 
-{
-	m_NumHits = numHits;
 }
 
 void CMobSkill::setDistance(float distance)
@@ -99,6 +94,12 @@ void CMobSkill::setActivationTime(uint16 ActivationTime)
     m_ActivationTime = ActivationTime;
 }
 
+void CMobSkill::setValidTargets(uint16 targ)
+{
+    m_ValidTarget = targ;
+}
+
+
 uint16 CMobSkill::getID()
 {
 	return m_ID;
@@ -109,14 +110,14 @@ uint16 CMobSkill::getfamilyID()
 	return m_FamilyID;
 }
 
-uint8 CMobSkill::getSkillType()
+uint16 CMobSkill::getAnimationID()
 {
-	return m_SkillType;
+	return m_AnimID;
 }
 
-uint8 CMobSkill::getNumHits()
+uint16 CMobSkill::getMsg()
 {
-	return m_NumHits;
+	return m_Message;
 }
 
 uint8 CMobSkill::getFlag()
@@ -134,9 +135,9 @@ float CMobSkill::getDistance()
 	return m_Distance;
 }
 
-uint8 CMobSkill::getElement()
+uint16 CMobSkill::getValidTargets()
 {
-	return m_Element;
+	return m_ValidTarget;
 }
 
 uint16 CMobSkill::getAnimationTime()

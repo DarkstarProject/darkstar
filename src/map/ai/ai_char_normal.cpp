@@ -959,15 +959,7 @@ void CAICharNormal::ActionMagicCasting()
 		ActionMagicInterrupt();
 		return;
 	}
-	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x ||
-		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
-	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 16)); 
-
-		m_ActionType = ACTION_MAGIC_INTERRUPT;
-		ActionMagicInterrupt();
-		return;
-	}
+	//shouldn't this be check AFTER the cast time is up?
     if (battleutils::IsParalised(m_PChar)) 
     {
 	    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,29));
@@ -976,6 +968,7 @@ void CAICharNormal::ActionMagicCasting()
 		ActionMagicInterrupt();
 		return;
     }
+	//shouldn't this be check AFTER the cast time is up?
     else if (battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget)) 
     {
 	    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,106));
@@ -998,7 +991,17 @@ void CAICharNormal::ActionMagicCasting()
 			ActionMagicInterrupt();
 			return;
 		}
+		//the check for player position only occurs AFTER the cast time is up, you can move so long as x/z is the same on finish.
+		//furthermore, it's actually quite lenient, hence the rounding to 1 dp
+		if (floorf(m_PChar->m_StartActionPos.x * 10 + 0.5) / 10 != floorf(m_PChar->loc.p.x * 10 + 0.5) / 10 ||
+		floorf(m_PChar->m_StartActionPos.z * 10 + 0.5) / 10 != floorf(m_PChar->loc.p.z * 10 + 0.5) / 10)
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 16)); 
 
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
 		if ((m_PBattleSubTarget != m_PChar) &&
 			(distance(m_PChar->loc.p,m_PBattleSubTarget->loc.p) > 21.5))
 		{
