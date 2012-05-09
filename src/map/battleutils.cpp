@@ -417,7 +417,27 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 	return g_PMobFamilySkills[FamilyID];
 }
 
-bool tryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
+float CalculateBaseTP(int delay){
+	float x = 1;
+	if(delay<=180){
+		x = 5.0f + (((float)delay-180.0f)*1.5f)/180.0f;
+	}
+	else if(delay<=450){
+		x = 5.0f + (((float)delay-180.0f)*6.5f)/270.0f;
+	}
+	else if(delay<=480){
+		x = 11.5f + (((float)delay-450.0f)*1.5f)/30.0f;
+	}
+	else if(delay<=530){
+		x = 13.0f + (((float)delay-480.0f)*1.5f)/50.0f;
+	}
+	else{
+		x = 14.5f + (((float)delay-530.0f)*3.5f)/470.0f;
+	}
+	return x;
+}
+
+bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	int base = 40; //Reasonable assumption for the time being.
 	int diff = PAttacker->GetMLevel() - PDefender->GetMLevel();
 	float check = base + diff;
@@ -487,14 +507,14 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         PDefender->m_OwnerID.targid = PAttacker->targid; 
     }
 
-    uint8 TP = 0;
+    float TP = 0;
 
     if (damage > 0)
     {
         if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING &&
             PDefender->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG)
         { //try to interrupt the spell
-            if (tryInterruptSpell(PAttacker,PDefender))
+            if (TryInterruptSpell(PAttacker,PDefender))
             {
 				if(PDefender->objtype == TYPE_PC){
 					CCharEntity* PChar = (CCharEntity*) PDefender;
@@ -503,10 +523,21 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
                 PDefender->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);
             }
         }
-        TP = 10; // TODO: расчет ТР (я думаю, что будет достаточно линейной зависимости TP от DELAY)
 
-        PDefender->addTP(3);
-        PAttacker->addTP(TP);
+		float baseTp = CalculateBaseTP((PAttacker->m_Weapons[SLOT_MAIN]->getDelay() * 60) / 1000);
+		PAttacker->addTP(baseTp*(1.0f+0.01f*(float)PAttacker->getMod(MOD_STORETP)));
+
+		//account for attacker's subtle blow which reduces the baseTP gain for the defender
+		baseTp = baseTp * ((100.0f -cap_value((float)PAttacker->getMod(MOD_SUBTLE_BLOW),0.0f,50.0f)) / 100.0f);
+
+		//mobs hit get basetp+3 whereas pcs hit get basetp/3
+		if(PDefender->objtype == TYPE_PC){
+			//yup store tp counts on hits taken too!
+			PDefender->addTP((baseTp/3) *(1.0f+0.01f*(float)PDefender->getMod(MOD_STORETP)));
+		}
+		else{
+			PDefender->addTP((baseTp+3) *(1.0f+0.01f*(float)PDefender->getMod(MOD_STORETP)));
+		}
 
         if (PAttacker->objtype == TYPE_PC)
         {

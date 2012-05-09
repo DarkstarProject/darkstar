@@ -132,13 +132,12 @@ int32 CBattleEntity::GetMaxMP()
 
 /************************************************************************
 *																		*
-*  Изменяем количество TP сущности      								*
-*																		*
+*  Изменяем количество TP сущности										*
 ************************************************************************/
 
-uint16 CBattleEntity::addTP(int16 tp)
+uint16 CBattleEntity::addTP(float tp)
 {	
-	int16 cap = cap_value(health.tp + tp,0,300);
+	float cap = cap_value(health.tp + tp,0,300);
 	tp = health.tp - cap;
 	health.tp = cap;
 	return abs(tp);
