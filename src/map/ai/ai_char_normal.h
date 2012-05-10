@@ -27,7 +27,7 @@
 #include "../../common/cbasetypes.h"
 
 #include "ai_general.h"
-
+#include <math.h>
 
 /************************************************************************
 *																		*
