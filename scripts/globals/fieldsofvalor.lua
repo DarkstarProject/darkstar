@@ -1,4 +1,6 @@
+package.loaded["scripts/globals/conquestguards"] = nil;
 require("/scripts/globals/settings");
+require("scripts/globals/conquestguards");
 
 -- The player can be MAX_MOB_LVL_DIFF levels above the monster and still complete Regimes.
 -- Increase to make it so Lv99s can get EXP off Lv10 regimes. 
@@ -321,7 +323,7 @@ function updateFov(player,csid,menuchoice,r1,r2,r3,r4,r5)
         if (info.n3 ~= 0) then n3 = player:getVar("fov_numkilled3"); else n3 = 0; end;
         if (info.n4 ~= 0) then n4 = player:getVar("fov_numkilled4"); else n4 = 0; end;
         player:updateEvent(info.n1,info.n2,info.n3,info.n4,n1,n2,n3,n4);
-    else if(menuchoice==FOV_MENU_LEVEL_RANGE) then --Level range and training area on View Regime...
+    elseif(menuchoice==FOV_MENU_LEVEL_RANGE) then --Level range and training area on View Regime...
         local regid = player:getVar("fov_regimeid");
         local info = getRegimeInfo(regid);
         player:updateEvent(0,0,0,0,0,info.sl,info.el,0);
@@ -511,7 +513,7 @@ function checkRegime(killer,mob,rid,index)
 	if(killer:getVar("fov_regimeid") == rid) then --player is doing this regime
 		if(killer:getMainLvl() - MAX_MOB_LEVEL_DIFF <= mob:getMainLvl()) then --should really have a killer:givesExp(mob) boolean function
             --get the number of mobs needed/killed
-            local needed = keller:getVar("for_numneeded"..index);
+            local needed = killer:getVar("fov_numneeded"..index);
             local killed = killer:getVar("fov_numkilled"..index);
             
 			if(killed < needed) then --increment killed number and save.
