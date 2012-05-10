@@ -14,7 +14,7 @@ require("scripts/globals/magic");
 function onSpellCast(caster,target,spell)
 	
 	if(target:getStatusEffect(EFFECT_AQUAVEIL) ~= nil) then
-		target:removeStatusType(EFFECT_AQUAVEIL);
+		target:delStatusEffect(EFFECT_AQUAVEIL);
 	end
 		
 	-- duration is said to be based on enhancing skill with max 5 minutes, but I could find no
