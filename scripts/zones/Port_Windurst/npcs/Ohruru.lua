@@ -3,6 +3,7 @@
 --	NPC:  Ohruru
 --	Starts & Finishes Repeatable Quest: Catch me if you can
 --	Working 90%
+--  Involved in Quest: Wonder Wands
 --  Note: Animation for his "Cure" is not functioning. Unable to capture option 1, so if the user says no, he heals them anyways.
 --  @zone = 240
 --  @pos = -108 -5 94
@@ -41,9 +42,12 @@ function onTrigger(player,npc)
 --		end
 --	end
 -- ======== FOR TESTING ONLY ==========-----
-
-	Catch = player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN);		
-	if (Catch == 0) then
+	
+	Catch = player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN);	
+	WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
+	if(WonderWands == QUEST_ACCEPTED) then
+		player:startEvent(0x0102,0,17053);
+	elseif (Catch == 0) then
 		prog = player:getVar("QuestCatchItIfYouCan_var");
 		if (prog == 0) then
 			player:startEvent(0x00e6); -- CATCH IT IF YOU CAN: Before Quest 1
@@ -66,8 +70,10 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x00fb); -- CATCH IT IF YOU CAN: During Quest 2
 		end	
+	elseif(WonderWands == QUEST_COMPLETED) then
+		player:startEvent(0x0109);
 	else
-		player:startEvent(0x0102); -- STANDARD CONVERSATION
+		player:startEvent(0x00e6); -- STANDARD CONVERSATION
 	end
 end; 
 
@@ -86,7 +92,7 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
-printf("RESULT: %u",option);
+--printf("RESULT: %u",option);
 	if (csid == 0x00e7) then
 		player:addQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
 	elseif (csid == 0x00f6 and option == 0) then

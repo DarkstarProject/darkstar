@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Lower Jeuno
+-- Area: Garlaige Citadel
 -- NPC: Crematory Hatch
 -- Type: Door
 -- @zone 200
@@ -18,7 +18,7 @@ require("scripts/zones/Garlaige_Citadel/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(trade:hasItemQty(1041,1) == true and trade:getItemCount() == 1) then 
+	if(trade:hasItemQty(502,1) == true and trade:getItemCount() == 1) then -- This is the Garlaige Key, dropped from Fallen Evacuees. Should not be Garlaige Chest Key.
 		player:startEvent(0x0004); -- Open the door
 	end
 end; 
