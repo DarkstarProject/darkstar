@@ -43,6 +43,6 @@ CREATE TABLE IF NOT EXISTS `mob_skill` (
 --
 -- Contenu de la table `mob_skill`
 --
-INSERT INTO `mob_skill` VALUES(334, 133, 590, 'Goblin_Rush', 0, 6.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES(335, 133, 591, 'Bomb_Toss', 1, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES(336, 133, 592, 'Bomb_Toss', 1, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES(334, 133, 334, 'Goblin_Rush', 0, 6.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES(335, 133, 335, 'Bomb_Toss', 1, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES(336, 133, 336, 'Bomb_Toss', 1, 7.0, 2000, 1500, 4, 0);

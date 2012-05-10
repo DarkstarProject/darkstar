@@ -107,7 +107,8 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			break;
 		case ACTION_MOBABILITY_FINISH:
 		{	
-			packBitsBE(data, PEntity->PBattleAI->GetCurrentMobSkill()->getAnimationID(), 54, 10);
+			//higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
+			packBitsBE(data, 256 + PEntity->PBattleAI->GetCurrentMobSkill()->getID(), 54, 12);
 		}
 			break;
 		case ACTION_ITEM_START:
@@ -301,8 +302,8 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		}
 
 		bitOffset = packBitsBE(data, Action.reaction,   bitOffset,  5);				// физическая реакция на урон
-		bitOffset = packBitsBE(data, Action.animation,  bitOffset, 10);				// анимация специальных эффектов
-        bitOffset += 1;
+		bitOffset = packBitsBE(data, Action.animation,  bitOffset, 11);				// анимация специальных эффектов
+     //   bitOffset += 1; NOT SURE ON THIS. UNCOMMENT AND CHANGE 11 TO 10 ABOVE TO FIX! NEEDED FOR MOB TP MOVES.
 		bitOffset = packBitsBE(data, Action.speceffect, bitOffset, 10);				// specialEffect					
 		bitOffset = packBitsBE(data, Action.param,	    bitOffset, 16);				// параметр сообщения (урон)
 		bitOffset += 1;

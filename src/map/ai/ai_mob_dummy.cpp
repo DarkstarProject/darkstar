@@ -412,7 +412,7 @@ void CAIMobDummy::ActionAbilityStart()
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = 0;
-    Action.param	  = m_PMobSkill->getAnimationID();
+    Action.param	  = m_PMobSkill->getID() + 256;//m_PMobSkill->getAnimationID();
 	Action.messageID  = 43; //readies message
 	Action.flag		  = 0;
 
@@ -478,7 +478,7 @@ void CAIMobDummy::ActionAbilityFinish()
         // TODO: необходимо проверить расстояние до персонажа, возможно он успел убежать, тогда следует прервать способность
         // TODO: монстр может промахнуться
         // TODO: необходима ValidTarget, т.к. монстр может использовать специальные атаки на себе, группе монстров, персонаже, группе персонажей
-
+	//ShowDebug("anim id %i and id %i \n",m_PMobSkill->getAnimationID(),m_PMobSkill->getID());
         uint16 value = 0; //more generic since it may be cure or damage!
 
         m_PMob->m_ActionList.clear();
@@ -486,6 +486,7 @@ void CAIMobDummy::ActionAbilityFinish()
 		//handle aoe stuff (self/mob)
 		//AOE=1 means the circle is around the MONSTER
 		//AOE=2 means the circle is around the BATTLE TARGET
+		//AOE=4 means conal (breath)
 		if(m_PMobSkill->getAoe()==1 || m_PMobSkill->getAoe()==2){ //to handle both types of aoe
 			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){//aoe on the  players
 				//hit the target + the target's PT/alliance
@@ -494,9 +495,9 @@ void CAIMobDummy::ActionAbilityFinish()
 				Action.ActionTarget = m_PBattleTarget;
 				Action.reaction   = REACTION_HIT;
 				Action.speceffect = SPECEFFECT_HIT;
-				Action.animation  = m_PMobSkill->getID();
-				Action.param	  = value;
-				Action.subparam   = m_PMobSkill->getAnimationID();
+				Action.animation  = m_PMobSkill->getAnimationID();
+				Action.param	  = 5; //value;
+				Action.subparam   = m_PMobSkill->getID() + 256;
 				Action.messageID  = m_PMobSkill->getMsg();
 				Action.flag		  = 0;
 				m_PMob->m_ActionList.push_back(Action);	
@@ -549,9 +550,9 @@ void CAIMobDummy::ActionAbilityFinish()
 			}
 			Action.reaction   = REACTION_HIT;
 			Action.speceffect = SPECEFFECT_HIT;
-			Action.animation  = m_PMobSkill->getID();
+			Action.animation  = m_PMobSkill->getAnimationID();
 			Action.param	  = value;
-			Action.subparam   = m_PMobSkill->getAnimationID();
+			Action.subparam   = m_PMobSkill->getID() + 256;
 			Action.messageID  = m_PMobSkill->getMsg();
 			Action.flag       = 0;
 	
