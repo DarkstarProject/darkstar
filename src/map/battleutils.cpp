@@ -638,19 +638,21 @@ uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender) 
 {
-	int32 hitrate = 75;
+    int32 hitrate = 75;
 
+    if (PAttacker->objtype == TYPE_PC && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
+    {
+		hitrate = 100; //attack with SA active cannot miss
+	}
+    else
+    {
 		int32 defendereva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PAttacker->AGI()/2;
 		int32 attackeracc = (PAttacker->getMod(MOD_ACC) * (100 + PAttacker->getMod(MOD_ACCP)))/100 + PAttacker->DEX()/2;
 	
 		hitrate = hitrate + (attackeracc - defendereva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
 		hitrate = cap_value(hitrate, 20, 95);
-
-	if(PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK)){
-		hitrate = 100; //attack with SA active cannot miss
-	}
-
+    }
 	return (uint8)hitrate;
 }
 
@@ -664,14 +666,14 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
 	int32 crithitrate = 5;
 
-	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
+	if (PAttacker->objtype == TYPE_PC && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
 	{	
+        // TODO: WRONG CALCULATION OF A POSITION OF THE CHARACTER
+
 		if(abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23)
 		{
 			crithitrate = 100;
-			//ShowDebug(CL_CYAN"SneakAttack!\n"CL_RESET); 
 		}
-		PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK_ATTACK);
 	}
 	else
 	{
