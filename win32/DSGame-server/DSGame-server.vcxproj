@@ -147,6 +147,7 @@
     <ClInclude Include="..\..\src\map\linkshell.h" />
     <ClInclude Include="..\..\src\map\lua\luautils.h" />
     <ClInclude Include="..\..\src\map\lua\lua_baseentity.h" />
+    <ClInclude Include="..\..\src\map\lua\lua_mobskill.h" />
     <ClInclude Include="..\..\src\map\lua\lua_region.h" />
     <ClInclude Include="..\..\src\map\lua\lua_spell.h" />
     <ClInclude Include="..\..\src\map\lua\lua_statuseffect.h" />
@@ -316,6 +317,7 @@
     <ClCompile Include="..\..\src\map\linkshell.cpp" />
     <ClCompile Include="..\..\src\map\lua\luautils.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_baseentity.cpp" />
+    <ClCompile Include="..\..\src\map\lua\lua_mobskill.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_region.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_spell.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_statuseffect.cpp" />
