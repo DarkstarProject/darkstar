@@ -59,7 +59,7 @@ function onRegionEnter(player,region)
 	[1] = function (x)  -- Chateau d'Oraguille access	
 	pNation = player:getNation();	
 	currentMission = player:getCurrentMission(pNation)	
-	if((pNation == 0 and player:getRank() >= 2) or (pNation > 0 and player:hasCompletedMission(pNation,5) == 1 or (currentMission >= 5 and currentMission <= 9))) then	
+	if((pNation == 0 and player:getRank() >= 2) or (pNation > 0 and player:hasCompletedMission(pNation,5) == 1) or (currentMission >= 5 and currentMission <= 9) or (player:getRank() >= 3)) then	
 		player:startEvent(0x0239);
 	else	
 		player:startEvent(0x0238);
