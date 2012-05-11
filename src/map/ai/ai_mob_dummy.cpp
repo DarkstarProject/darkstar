@@ -531,7 +531,7 @@ void CAIMobDummy::ActionAbilityFinish()
 				}
 			}
 			else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //aoe on the enemy (e.g. aoe cure)
-				//hit self and all targets of the same family? pt?
+				//TODO: hit self and all targets of the same family? pt?
 			}
 		}
 		else{//single target moves
@@ -553,9 +553,23 @@ void CAIMobDummy::ActionAbilityFinish()
 			m_PMob->m_ActionList.push_back(Action);
 			
 		}
+
+		if(m_ActionType==ACTION_FALL){//set when you kill the mob in a script, but need
+									//it to be ACTION_MOBABILITY_FINISH for pushing the packet.
+			m_ActionType = ACTION_MOBABILITY_FINISH;
+		}
+
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+	
 	m_PMob->health.tp = 0; 
-    m_ActionType = ACTION_ATTACK;
+
+	if(m_PMob->isDead()){ //e.g. self-destruct. Needed here AFTER sending the action packets.
+		m_ActionType = ACTION_FALL;
+		ActionFall();
+	}
+	else{
+		m_ActionType = ACTION_ATTACK;
+	}
 }
 
 /************************************************************************

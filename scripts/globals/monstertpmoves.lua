@@ -40,6 +40,9 @@ MSG_MISS = 188;
 function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mtp100,mtp200,mtp300)
 	--get dstr (bias to monsters, so no fSTR)
 	dstr = mob:getStat(MOD_STR) - target:getStat(MOD_VIT);
+	if(dstr < -10) then
+		dstr = -10;
+	end
 	
 	lvluser = mob:getMainLvl();
 	lvltarget = target:getMainLvl();
@@ -228,6 +231,8 @@ end
 --isEnfeeble = true if enfeeble
 --effect = EFFECT_WHATEVER if enfeeble
 --statmod = the stat to account for resist (INT,MND,etc) e.g. MOD_INT
+--This determines how much the monsters ability resists on the player.
+-- >= 0.5 means it lands, < 0.5 means it doesnt.
 function applyPlayerResistance(mob,skill,target,isEnfeeble,effect,statmod)
 	resist = 1.0;
 	
