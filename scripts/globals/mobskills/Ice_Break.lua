@@ -10,6 +10,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
+	
 	isEnfeeble = true;
 	typeEffect = EFFECT_BIND;
 	statmod = MOD_INT;
@@ -20,10 +21,9 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 	
-	
 	dmgmod = 1;
 	accmod = 1;
-	dmg = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*20,accmod,dmgmod,TP_MAB_BONUS,1);
+	dmg = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*6,accmod,dmgmod,TP_MAB_BONUS,1);
 	target:delHP(dmg);
 	return dmg;
 	

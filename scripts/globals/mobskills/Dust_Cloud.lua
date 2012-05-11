@@ -1,7 +1,7 @@
 ---------------------------------------------------
--- Thunder Break
--- Channels the power of Thunder toward targets in an area of effect. Additional effect: Stun
-
+-- Dust Cloud
+-- Deals Earth damage to targets in a fan-shaped area of effect. Additional effect: Blind
+-- Range: 10' cone 
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -13,12 +13,12 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 	
 	isEnfeeble = true;
-	typeEffect = EFFECT_STUN;
+	typeEffect = EFFECT_BLINDNESS;
 	statmod = MOD_INT;
 	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_STUN) == nil) then
-			target:addStatusEffect(EFFECT_STUN,1,0,5);
+		if(target:getStatusEffect(EFFECT_BLINDNESS) == nil) then
+			target:addStatusEffect(EFFECT_BLINDNESS,1,0,60);
 		end
 	end
 	

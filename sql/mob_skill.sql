@@ -49,8 +49,8 @@ INSERT INTO `mob_skill` VALUES(336, 133, 336, 'Bomb_Toss_Suicide', 1, 7.0, 2000,
 
 -- Rabbits
 INSERT INTO `mob_skill` VALUES (1,206,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (2,206,2,'Dust_Cloud', 4, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (3,206,3,'Whirl_Claws', 1, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (2,206,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (3,206,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0);
 -- Sheep
 INSERT INTO `mob_skill` VALUES (4,226,4,'Lamb_Chop', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (5,226,5,'Rage', 0, 7.0, 2000, 1500, 1, 0);
@@ -235,9 +235,9 @@ INSERT INTO `mob_skill` VALUES (408,126,408,'Impact_Roar', 0, 7.0, 2000, 1500, 4
 INSERT INTO `mob_skill` VALUES (409,127,409,'Grand_Slam', 1, 7.0, 2000, 1500, 4, 0);
 -- Golem
 INSERT INTO `mob_skill` VALUES (419,135,419,'Heavy_Strike', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (420,135,420,'Ice_Break', 1, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (421,135,421,'Thunder_Break', 1, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (422,135,422,'Crystal_Rain', 1, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (420,135,420,'Ice_Break', 1, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (421,135,421,'Thunder_Break', 1, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (422,135,422,'Crystal_Rain', 1, 15.0, 2000, 1500, 4, 0);
 -- Sapling
 INSERT INTO `mob_skill` VALUES (429,216,429,'Sprout_Spin', 1, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (430,216,430,'Slumber_Powder', 1, 7.0, 2000, 1500, 4, 0);

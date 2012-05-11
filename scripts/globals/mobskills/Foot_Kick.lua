@@ -1,7 +1,7 @@
 ---------------------------------------------------
--- Crystal Rain
--- Invokes the power of a crystal to deal Light damage to targets in an area of effect. 
--- Range: 15' radial 
+-- Foot Kick
+-- Deals critical damage. Chance of critical hit varies with TP. 
+-- 100% TP: ??? / 200% TP: ??? / 300% TP: ???
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -12,9 +12,10 @@ require("/scripts/globals/monstertpmoves");
 
 function OnMobWeaponSkill(target, mob, skill)
 	
-	dmgmod = 1;
+	numhits = 1;
 	accmod = 1;
-	dmg = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*6,accmod,dmgmod,TP_MAB_BONUS,1);
+	dmgmod = 1;
+	dmg = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_CRIT_VARIES,1,2,3);
 	target:delHP(dmg);
 	return dmg;
 	
