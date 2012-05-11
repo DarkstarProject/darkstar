@@ -136,8 +136,20 @@ int32 CBattleEntity::GetMaxMP()
 ************************************************************************/
 
 uint16 CBattleEntity::addTP(float tp)
-{	
-	float cap = cap_value(health.tp + tp,0,300);
+{
+	DSP_DEBUG_BREAK_IF((objtype != TYPE_PC) && (objtype != TYPE_MOB));
+	
+	float TPMulti = 1.0;
+	if(objtype == TYPE_PC)
+	{
+		TPMulti = map_config.player_tp_multiplier;
+	}
+	else if(objtype == TYPE_MOB)
+	{
+		TPMulti = map_config.mob_tp_multiplier;
+	}
+	
+	float cap = cap_value(health.tp + (tp * TPMulti),0,300);
 	tp = health.tp - cap;
 	health.tp = cap;
 	return abs(tp);

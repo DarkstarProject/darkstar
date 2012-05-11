@@ -34,6 +34,7 @@
 #include "modifier.h"
 #include "party.h"
 #include "status_effect_container.h"
+#include "map.h"
 
 
 enum ECOSYSTEM

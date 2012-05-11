@@ -67,6 +67,8 @@ struct map_config_t
     int32  lightluggage_block;      // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
     float  exp_rate;                // множитель получаемого опыта
 	float  exp_retain;				// percentage of normally lost experience to retain upon death
+	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
+	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
 };
 
 /************************************************************************
