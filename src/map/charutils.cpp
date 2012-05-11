@@ -225,6 +225,14 @@ void CalculateStats(CCharEntity* PChar)
 
 	PChar->health.maxmp = (int16)(raceStat + jobStat + sJobStat); // результат расчета MP
 
+	//add in evasion from skill
+	int16 evaskill = PChar->GetSkill(SKILL_EVA);
+
+	int16 eva = evaskill;
+	if(evaskill>200){ //Evasion skill is 0.9 evasion post-200
+		eva = 200 + (evaskill-200)*0.9;
+	}
+	PChar->setModifier(MOD_EVA,eva);
 
 	//Начало расчета характеристик
 	

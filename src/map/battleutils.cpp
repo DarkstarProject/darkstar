@@ -646,9 +646,9 @@ uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	}
     else
     {
-		int32 defendereva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PAttacker->AGI()/2;
+		int32 defendereva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PDefender->AGI()/2;
 		int32 attackeracc = (PAttacker->getMod(MOD_ACC) * (100 + PAttacker->getMod(MOD_ACCP)))/100 + PAttacker->DEX()/2;
-	
+		
 		hitrate = hitrate + (attackeracc - defendereva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
 		hitrate = cap_value(hitrate, 20, 95);
