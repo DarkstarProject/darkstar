@@ -2,6 +2,36 @@
 --			What is known is that they roughly follow player Weaponskill calculations (pDIF, dMOD, ratio, etc) so this is what
 --			this set of functions emulates.
 
+--skilltype
+MOBSKILL_PHYSICAL = 0;
+MOBSKILL_MAGICAL = 1;
+MOBSKILL_RANGED = 2;
+MOBSKILL_SPECIAL = 3;
+
+--skillparam (PHYSICAL)
+MOBPARAM_NONE = 0;
+MOBPARAM_BLUNT = 1;
+MOBPARAM_SLASH = 2;
+MOBPARAM_PIERCE = 3;
+MOBPARAM_H2H = 4;
+
+--skillparam (MAGICAL)
+MOBPARAM_FIRE = 6;
+MOBPARAM_EARTH = 7;
+MOBPARAM_WATER = 8;
+MOBPARAM_WIND = 9;
+MOBPARAM_ICE = 10;
+MOBPARAM_THUNDER = 11;
+MOBPARAM_LIGHT = 12;
+MOBPARAM_DARK = 13;
+
+--shadowbehav (number of shadows to take off)
+MOBPARAM_IGNORE_SHADOWS = 0;
+MOBPARAM_1_SHADOW = 1;
+MOBPARAM_2_SHADOW = 2;
+MOBPARAM_3_SHADOW = 3;
+MOBPARAM_WIPE_SHADOWS = 5;
+
 TP_ACC_VARIES = 0;
 TP_ATK_VARIES = 1;
 TP_DMG_VARIES = 2;
@@ -38,6 +68,8 @@ MSG_MISS = 188;
 -- if TP_DMG_VARIES -> three values are 
 
 function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mtp100,mtp200,mtp300)
+	returninfo = {};
+	
 	--get dstr (bias to monsters, so no fSTR)
 	dstr = mob:getStat(MOD_STR) - target:getStat(MOD_VIT);
 	if(dstr < -10) then
@@ -131,7 +163,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		hitsdone = hitsdone + 1;
 	end
 	
-	return finaldmg;		
+	returninfo.dmg = finaldmg;
+	returninfo.hitslanded = hitslanded;
+	
+	return returninfo;		
 
 end
 
@@ -157,6 +192,8 @@ end
 -- TP_DMG_BONUS and TP=200, tpvalue = 2, assume V=150  --> damage is now 150*(TP*2)/100 = 600
 
 function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
+	returninfo = {};
+
 	--get all the stuff we need
 	dint = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
 	mab = (100+mob:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF)) ;
@@ -223,7 +260,8 @@ function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
 	end
 	
 	finaldmg = base * resist;
-	return finaldmg;
+	returninfo.dmg = finaldmg;
+	return returninfo;
 	
 end
 
@@ -239,3 +277,9 @@ function applyPlayerResistance(mob,skill,target,isEnfeeble,effect,statmod)
 	return resist;
 	
 end;
+
+function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
+	--TODO: Handle shadows depending on shadow behaviour / skilltype
+	--TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
+	return dmg;
+end
