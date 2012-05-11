@@ -724,13 +724,13 @@ void CAIMobDummy::ActionAttack()
 							Action.messageID  = 67;
 						}
 						damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget)) * DamageRatio);
+						if (m_PBattleTarget->objtype == TYPE_PC)
+						{
+							charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
+						}
 					}
 				}
-                else if (m_PBattleTarget->objtype == TYPE_PC)
-				{
-					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
-				}
-				Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage);
+                Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage);
 
 				m_PMob->m_ActionList.push_back(Action);
                 m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
