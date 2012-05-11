@@ -236,6 +236,16 @@ uint16 CSpell::getVE()
 	return m_VE;
 }
 
+void CSpell::setModifiedRecast(uint16 mrec)
+{
+	m_modifiedRecastTime = mrec;
+}
+
+uint16 CSpell::getModifiedRecast()
+{
+	return m_modifiedRecastTime;
+}
+
 /************************************************************************
 *                                                                       *
 *  Реализация namespase для работы с заклинаниями                       *

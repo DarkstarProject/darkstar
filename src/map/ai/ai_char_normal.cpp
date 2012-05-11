@@ -909,7 +909,6 @@ void CAICharNormal::ActionMagicStart()
 	m_PChar->m_ActionList.push_back(Action);
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-
     m_ActionType = ACTION_MAGIC_CASTING;
 }
 
@@ -978,8 +977,8 @@ void CAICharNormal::ActionMagicCasting()
 		return;
     }
 	
-	if (m_Tick - m_LastActionTime >= m_PSpell->getCastTime() ||
-        m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL)) // TODO: need MOD_FASTCAST
+	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)cap_value(m_PChar->getMod(MOD_FASTCAST),0,50))/100.0f) ||
+        m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
 		if (m_PChar->animation == ANIMATION_ATTACK) m_LastActionTime = m_Tick;
 
@@ -1075,10 +1074,24 @@ void CAICharNormal::ActionMagicFinish()
         Recast->Type = RECAST_MAGIC;
 	    Recast->ID = m_PSpell->getID();
 	    Recast->TimeStamp  = m_Tick;
-	    Recast->RecastTime = m_PSpell->getRecastTime() * (100 + m_PChar->getMod(MOD_HASTE)) / 100;
+	    Recast->RecastTime = (float)m_PSpell->getRecastTime() * ((100.0f-cap_value((float)m_PChar->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
+		Recast->RecastTime = Recast->RecastTime * ((100.0f-cap_value((float)m_PChar->getMod(MOD_HASTE),0.0f,25.0f))/100.0f);
+		//needed so the client knows of the reduced recast time!
+		m_PSpell->setModifiedRecast(Recast->RecastTime);
 
 	    m_PChar->RecastList.push_back(Recast);
     }
+	else{ //chainspell does have a small delay between casts sadly!
+		Recast_t* Recast = new Recast_t;
+	
+        Recast->Type = RECAST_MAGIC;
+	    Recast->ID = m_PSpell->getID();
+	    Recast->TimeStamp  = m_Tick;
+	    Recast->RecastTime = 2000;
+		m_PSpell->setModifiedRecast(Recast->RecastTime);
+
+	    m_PChar->RecastList.push_back(Recast);
+	}
 
 	apAction_t Action;
     m_PChar->m_ActionList.clear();

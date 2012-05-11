@@ -67,6 +67,7 @@ public:
     uint16      getMessage();
 	uint16		getCE();
 	uint16		getVE();
+	uint16		getModifiedRecast();
 
 
 	void		setID(uint16 id);
@@ -87,6 +88,7 @@ public:
     void        setMessage(uint16 message);
 	void		setCE(uint16 ce);
 	void		setVE(uint16 ve);
+	void		setModifiedRecast(uint16 mrec);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -112,6 +114,7 @@ private:
 	uint16		m_CE;									// cumulative enmity of spell
 	uint16		m_VE;									// volatile enmity of spell
 	string_t	m_name;									// spell name
+	uint16		m_modifiedRecastTime;					//recast time after modifications
 };
 
 /************************************************************************
