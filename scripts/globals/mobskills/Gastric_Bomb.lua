@@ -1,6 +1,9 @@
 ---------------------------------------------------
--- Ice Break
--- Deals ice damage to enemies within range. Additional Effect: "Bind."
+-- Gastric Bomb
+-- Deals Water damage with a long-range acid bomb. Additional effect: Attack Down 
+-- Range: Long range
+-- Notes: Attack Down effect is 50%.
+-- Duration: Three minutes 
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -12,19 +15,20 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 	
 	isEnfeeble = true;
-	typeEffect = EFFECT_BIND;
+	typeEffect = EFFECT_ATTACK_DOWN;
 	statmod = MOD_INT;
 	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
-		if(target:hasStatusEffect(EFFECT_BIND) == nil) then
-			target:addStatusEffect(EFFECT_BIND,1,0,60);
+		if(target:getStatusEffect(EFFECT_ATTACK_DOWN) == nil) then
+			atkdown = target:getMod(MOD_ATT) / 2;
+			target:addStatusEffect(EFFECT_ATTACK_DOWN,atkdown,0,180);
 		end
 	end
 	
 	dmgmod = 1;
 	accmod = 1;
 	info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_MAB_BONUS,1);
-	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS);
+	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;
 	

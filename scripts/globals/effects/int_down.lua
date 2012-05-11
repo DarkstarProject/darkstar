@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	effect:addMod(MOD_INT,-effect:getPower());
+	target:addMod(MOD_INT,-effect:getPower());
 end;
 
 -----------------------------------
@@ -34,6 +34,6 @@ end;
 function onEffectLose(target,effect)
 	downINT_effect_size = effect:getPower()
 	if(downINT_effect_size > 0) then
-		effect:delMod(MOD_INT,-effect:getPower());
+		target:delMod(MOD_INT,-effect:getPower());
 	end
 end;

@@ -34,6 +34,6 @@ end;
 function onEffectLose(target,effect)
 	downACC_effect_size = effect:getPower()
 	if(downACC_effect_size > 0) then
-		effect:delMod(MOD_ACC,-effect:getPower());
+		target:delMod(MOD_ACC,-effect:getPower());
 	end
 end;

@@ -147,7 +147,7 @@ INSERT INTO `mob_skill` VALUES (160,172,160,'Sand_Breath', 4, 7.0, 2000, 1500, 4
 INSERT INTO `mob_skill` VALUES (161,172,161,'Drainkiss', 0, 7.0, 2000, 1500, 4, 0);
 -- Worm
 INSERT INTO `mob_skill` VALUES (168,258,168,'Full-force_Blow', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (169,258,169,'Gastric_Bomb', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (169,258,169,'Gastric_Bomb', 0, 18.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (170,258,170,'Sandspin', 1, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (171,258,171,'Tremors', 1, 7.0, 2000, 1500, 4, 0);
 -- Slime 

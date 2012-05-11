@@ -1,6 +1,6 @@
 -----------------------------------
 --
---
+-- EFFECT_ATTACK_DOWN
 --
 -----------------------------------
 
@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_ATT,-effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_ATT,-effect:getPower());
 end;
