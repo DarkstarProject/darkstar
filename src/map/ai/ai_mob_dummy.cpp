@@ -723,12 +723,12 @@ void CAIMobDummy::ActionAttack()
 							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 							Action.messageID  = 67;
 						}
-						damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget)) * DamageRatio);
-						if (m_PBattleTarget->objtype == TYPE_PC)
-						{
-							charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
-						}
+						damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget)) * DamageRatio);	
 					}
+				}
+				if (m_PBattleTarget->objtype == TYPE_PC)
+				{
+					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
 				}
                 Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage);
 
