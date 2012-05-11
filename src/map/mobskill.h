@@ -45,6 +45,7 @@ public:
     uint16      getActivationTime();
 	uint16		getMsg();
 	uint16		getValidTargets();
+	uint16		getTP();
 
 	void		setID(uint16 id);
 	void		setAnimationID(uint16 aid);
@@ -56,6 +57,7 @@ public:
     void        setActivationTime(uint16 ActivationTime);
 	void		setMsg(uint16 msg);
 	void		setValidTargets(uint16 targ);
+	void		setTP(uint16 tp);
 	
 	const int8* getName();
 	void		setName(int8* name);
@@ -72,6 +74,7 @@ private:
     uint16      m_AnimationTime;	//how long the tp animation lasts for in ms
     uint16      m_ActivationTime;	//how long the mob prepares the tp move for
 	uint16		m_Message;			//message param, scripters can edit this depending on self/resist/etc.
+	uint16		m_TP;				//the tp at the time of finish readying (for scripts)
 
 	string_t	m_name;
 };

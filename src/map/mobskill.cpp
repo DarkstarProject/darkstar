@@ -84,6 +84,11 @@ void CMobSkill::setFlag(uint8 flag)
 	m_Flag = flag;
 }
 
+void CMobSkill::setTP(uint16 tp)
+{
+	m_TP = tp;
+}
+
 void CMobSkill::setAnimationTime(uint16 AnimationTime)
 {
     m_AnimationTime = AnimationTime;
@@ -113,6 +118,11 @@ uint16 CMobSkill::getfamilyID()
 uint16 CMobSkill::getAnimationID()
 {
 	return m_AnimID;
+}
+
+uint16 CMobSkill::getTP()
+{
+	return m_TP;
 }
 
 uint16 CMobSkill::getMsg()

@@ -454,7 +454,7 @@ void CAIMobDummy::ActionAbilityUsing()
 			ActionAbilityInterrupt();
 			return;
 		}
-
+		m_PMobSkill->setTP(m_PMob->health.tp);
 		m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
@@ -474,13 +474,6 @@ void CAIMobDummy::ActionAbilityFinish()
 {
     DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
 
-        // TODO: для реализации эффектов и расчета урона должен использоваться script
-        // TODO: необходимо проверить расстояние до персонажа, возможно он успел убежать, тогда следует прервать способность
-        // TODO: монстр может промахнуться
-        // TODO: необходима ValidTarget, т.к. монстр может использовать специальные атаки на себе, группе монстров, персонаже, группе персонажей
-	//ShowDebug("anim id %i and id %i \n",m_PMobSkill->getAnimationID(),m_PMobSkill->getID());
-        uint16 value = 0; //more generic since it may be cure or damage!
-
         m_PMob->m_ActionList.clear();
 
 		//handle aoe stuff (self/mob)
@@ -491,12 +484,12 @@ void CAIMobDummy::ActionAbilityFinish()
 			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){//aoe on the  players
 				//hit the target + the target's PT/alliance
 				apAction_t Action;
-				//value = luautils::OnTpMove(m_PChar, PTarget);	
+
 				Action.ActionTarget = m_PBattleTarget;
 				Action.reaction   = REACTION_HIT;
 				Action.speceffect = SPECEFFECT_HIT;
 				Action.animation  = m_PMobSkill->getAnimationID();
-				Action.param	  = 5; //value;
+				Action.param	  = luautils::OnMobWeaponSkill(m_PBattleTarget, m_PMob,m_PMobSkill);
 				Action.subparam   = m_PMobSkill->getID() + 256;
 				Action.messageID  = m_PMobSkill->getMsg();
 				Action.flag		  = 0;
@@ -523,7 +516,8 @@ void CAIMobDummy::ActionAbilityFinish()
 								
 								//value = luautils::OnTpMove(m_PChar, PTarget);	
 								Action.ActionTarget = PTarget;
-								Action.param	  = value;
+								Action.param	  = luautils::OnMobWeaponSkill(PTarget, m_PMob,m_PMobSkill);
+								Action.messageID  = m_PMobSkill->getMsg();
 
 								//handle aoe damage text
 								if(Action.messageID == 185){
@@ -551,7 +545,7 @@ void CAIMobDummy::ActionAbilityFinish()
 			Action.reaction   = REACTION_HIT;
 			Action.speceffect = SPECEFFECT_HIT;
 			Action.animation  = m_PMobSkill->getAnimationID();
-			Action.param	  = value;
+			Action.param	  = luautils::OnMobWeaponSkill(m_PBattleTarget, m_PMob,m_PMobSkill);
 			Action.subparam   = m_PMobSkill->getID() + 256;
 			Action.messageID  = m_PMobSkill->getMsg();
 			Action.flag       = 0;

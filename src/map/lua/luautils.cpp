@@ -33,6 +33,7 @@
 #include "lua_region.h"
 #include "lua_spell.h"
 #include "lua_statuseffect.h"
+#include "lua_mobskill.h"
 #include "lua_trade_container.h"
 #include "lua_zone.h"
 
@@ -96,6 +97,7 @@ int32 init()
 	Lunar<CLuaStatusEffect>::Register(LuaHandle);
 	Lunar<CLuaTradeContainer>::Register(LuaHandle);
 	Lunar<CLuaZone>::Register(LuaHandle);
+	Lunar<CLuaMobSkill>::Register(LuaHandle);
 
 	ShowMessage("\t\t - "CL_GREEN"[OK]"CL_RESET"\n"); 
 	return 0;
@@ -1365,6 +1367,55 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob)
         lua_pop(LuaHandle, 1);
 		return 0;
 	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/***********************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill) 
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnMobWeaponSkill");
+
+	snprintf(File, sizeof(File), "scripts/globals/mobskills/%s.lua", PMobSkill->getName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnMobWeaponSkill: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMobWeaponSkill");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnMobWeaponSkill: undefined procedure OnMobWeaponSkill\n");
+		return 0;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PTarget);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+	
+	CLuaBaseEntity LuaMobEntity(PMob);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+
+	CLuaMobSkill LuaMobSkill(PMobSkill);
+	Lunar<CLuaMobSkill>::push(LuaHandle,&LuaMobSkill);
+	
+	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnMobWeaponSkill: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
