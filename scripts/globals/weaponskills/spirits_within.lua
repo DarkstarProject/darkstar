@@ -29,6 +29,8 @@ function OnUseWeaponSkill(player, target, wsID)
 		WSC = HP * ((TP - 100) / (100 / (0.1875 - 0.125)));
 	end	
 		
-	damage = math.floor(D + WSC);	
+	damage = math.floor(D + WSC);
+	
+	return damage
 		
 end		
