@@ -26,7 +26,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	accmod = 1;
 	cMobHp = mob:getHP();
 	mMobHp = mob:getMaxHP();
-	dmgmod = cModHp/mMobHp * 10;
+	dmgmod = cMobHp/mMobHp * 10;
 	info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 2,accmod,dmgmod,TP_MAB_BONUS,1);
 	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
 	target:delHP(dmg);
