@@ -36,6 +36,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x000a); -- door is firmly shut
 	end
 	
+	update = 0
 	return 1;
 	
 end; 
@@ -47,6 +48,12 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if (csid == 0x0010) then
+		update = update + 1;
+		if(update == 2) then
+			GetNPCByID(17531154):setAnimation(8);
+		end
+	end
 end;
  
 -----------------------------------
@@ -63,6 +70,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
 			player:addKeyItem(DELKFUTT_KEY);
 		end
+		GetNPCByID(17531154):setAnimation(9);
 	end
 	
 end;
