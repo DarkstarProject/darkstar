@@ -10,26 +10,26 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
-	isEnfeeble = true;
-	typeEffect = EFFECT_STR_DOWN;
-	statmod = MOD_INT;
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_STR_DOWN) == nil) then
-			strDown = target:getMod(MOD_STR) / 2;
-			target:addStatusEffect(EFFECT_STR_DOWN,strDown,0,180); -- -50%
-		end
-	end
-	
-	dmgmod = 1;
-	accmod = 1;
-	cMobHp = mob:getHP();
-	mMobHp = mob:getMaxHP();
-	dmgmod = cMobHp/mMobHp * 10;
-	info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 2,accmod,dmgmod,TP_MAB_BONUS,1);
-	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
-	
+        
+        isEnfeeble = true;
+        typeEffect = EFFECT_STR_DOWN;
+        statmod = MOD_INT;
+        resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+        if(resist > 0.5) then
+                if(target:getStatusEffect(EFFECT_STR_DOWN) == nil) then
+                        strDown = target:getMod(MOD_STR) / 2;
+                        target:addStatusEffect(EFFECT_STR_DOWN,strDown,0,180); -- -50%
+                end
+        end
+        
+        dmgmod = 1;
+        accmod = 1;
+        cMobHp = mob:getHP();
+        mMobHp = mob:getMaxHP();
+        dmgmod = cMobHp/mMobHp * 2;
+        info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
+        dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
+        target:delHP(dmg);
+        return dmg;
+        
 end
