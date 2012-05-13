@@ -82,6 +82,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(NOTES_FROM_HARIGAORIGA);
 		player:messageSpecial(KEYITEM_OBTAINED,NOTES_FROM_HARIGAORIGA);
 	elseif(csid == 0x0181) then
+		player:needToZone(true);
 		player:delKeyItem(NOTES_FROM_IPUPU);
 		player:addKeyItem(MAP_OF_THE_HORUTOTO_RUINS);
 		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_HORUTOTO_RUINS);
