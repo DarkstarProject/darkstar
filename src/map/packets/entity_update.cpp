@@ -60,9 +60,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				break;
 				case TYPE_PET:
 				{
-					WBUFB(data,(0x0A)-4) = 0x07;
-					WBUFB(data,(0x1F)-4) = ANIMATION_DEATH;
-					WBUFB(data,(0x28)-4) = 0x08;
+					WBUFB(data,(0x0A)-4) = 0x20;
 				}
 				break;
 			}
@@ -91,7 +89,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 			WBUFB(data,(0x1D)-4) = PEntity->speedsub;
 			WBUFB(data,(0x1F)-4) = PEntity->animation;
 
-			WBUFB(data,(0x20)-4) = PEntity->status;
+			WBUFB(data,(0x20)-4) = PEntity->status; 
 			WBUFB(data,(0x2A)-4) = PEntity->animationsub;
 
 			switch(PEntity->objtype)
@@ -118,11 +116,22 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				break;
 				case TYPE_PET:
 				{
-					this->size = 0x24;
-
-					WBUFB (data,(0x1E)-4) = ((CPetEntity*)PEntity)->GetHPP();
-					WBUFB (data,(0x27)-4) = 0x08;
-					memcpy(data+(0x34)-4, PEntity->GetName(),(PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
+					if(((CPetEntity*)PEntity)->PBattleAI->GetCurrentAction()==ACTION_FALL){
+						WBUFB(data,(0x0A)-4) = 0x07;
+						WBUFB (data,(0x21)-4) = 0x99;
+						//WBUFB (data,(0x27)-4) = 0x28;
+						WBUFW(data,(0x1A)-4) = 0x00;
+						WBUFW(data,(0x1B)-4) = 0x00;
+						WBUFB (data,(0x1E)-4) = 0x00; //0% HP
+						WBUFB (data,(0x1F)-4) = ANIMATION_DEATH; //death anim
+						WBUFB (data,(0x20)-4) = STATUS_NORMAL;
+					}
+					else{
+						this->size = 0x24;
+						WBUFB (data,(0x1E)-4) = ((CPetEntity*)PEntity)->GetHPP();
+						WBUFB (data,(0x27)-4) = 0x08;
+						memcpy(data+(0x34)-4, PEntity->GetName(),(PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
+					}
 				}
 				break;
 			}

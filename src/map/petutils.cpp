@@ -145,7 +145,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 	if (PMaster->objtype == TYPE_PC)
 	{
 		((CCharEntity*)PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)PMaster));
-		((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+		//((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
 	}
 }
 
@@ -165,7 +165,7 @@ void DespawnPet(CBattleEntity* PMaster)
 	{
 		case TYPE_PET:
 		{
-			PPet->PBattleAI->SetCurrentAction(ACTION_DEATH);
+			PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
 		}
 		break;
 		case TYPE_MOB:

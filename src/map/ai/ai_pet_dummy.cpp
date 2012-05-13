@@ -24,10 +24,12 @@
 #include "../../common/utils.h"
 
 #include "../battleutils.h"
+#include "../charentity.h"
 #include "../petentity.h"
 #include "../zone.h"
 
 #include "../packets/entity_update.h"
+#include "../packets/pet_sync.h"
 
 #include "ai_pet_dummy.h"
 
@@ -58,6 +60,7 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_ROAMING:	ActionRoaming();	break;
 		case ACTION_DEATH:		ActionDeath();		break;
 		case ACTION_SPAWN:		ActionSpawn();		break;
+		case ACTION_FALL:		ActionFall();		break;
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
@@ -87,11 +90,24 @@ void CAIPetDummy::ActionRoaming()
 *																		*
 ************************************************************************/
 
+void CAIPetDummy::ActionFall()
+{
+    m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+	m_LastActionTime = m_Tick;
+	m_ActionType = ACTION_DEATH;
+}
+
 void CAIPetDummy::ActionDeath()
 {
-    m_ActionType = ACTION_NONE;
-
-    m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));
+	if(m_Tick-m_LastActionTime > 3000){
+		m_PPet->status = STATUS_DISAPPEAR;
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));
+		if(m_PPet->PMaster!=NULL){
+			m_PPet->PMaster->PPet = NULL;
+			m_PPet->PMaster = NULL;
+		}
+		m_ActionType = ACTION_NONE;
+	}
 }
 
 /************************************************************************
