@@ -193,7 +193,7 @@ end
 
 function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
 	returninfo = {};
-
+	resist = 1;
 	--get all the stuff we need
 	dint = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
 	mab = (100+mob:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF)) ;
@@ -240,12 +240,13 @@ function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
 	--TODO: acc = acc + (1 - (elementalres/100))
 	
 	--thresholds
-	half = (1-acc);
-	quart = ((1-acc)^2);
-	eighth = ((1-acc)^3);
-	sixteenth = ((1-acc)^4);
+	half = 0.4; --(1-acc);
+	quart = 0.2; --((1-acc)^2);
+	eighth = 0.095; --((1-acc)^3);
+	sixteenth = 0.0325; --((1-acc)^4);
 	resvar = math.random();
-	
+	--random resists atm!	
+
 	--will this spell resist?
 	if (resvar <= sixteenth) then
 		resist = 0.0625;
