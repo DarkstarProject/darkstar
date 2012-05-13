@@ -1892,7 +1892,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                     count++;
 			    }
 		    }
-            exp = GetRealExp(level, PMob->GetMLevel()) / (count != 0 ? count : 1);
+            exp = GetRealExp(level, PMob->GetMLevel());
 
             if (exp != 0)
             {
