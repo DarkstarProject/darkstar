@@ -1,7 +1,6 @@
 -----------------------------------------
--- Spell: Cure V
--- Restores target's HP.
--- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
+-- Spell: Curaga IV
+-- Restores HP of all party members within area of effect.
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -80,6 +79,7 @@ function onSpellCast(caster,target,spell)
 		if(caster:getStatusEffect(EFFECT_DIVINE_SEAL) ~= nil) then
 			final = final * 2;
 		end
+		spell:setMsg(7);
 		target:addHP(final);
 	else
 		harm = 1;--cureResist(target:getFamily());

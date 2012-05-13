@@ -1,10 +1,11 @@
 -----------------------------------------
--- Spell: Cure V
--- Restores target's HP.
--- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
+-- Spell: Curaga II
+-- Restores HP of all party members within area of effect.
 -----------------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/magic");
 
 -----------------------------------------
 -- OnSpellCast
@@ -22,15 +23,15 @@ function onSpellCast(caster,target,spell)
 	--printf("VIT: %u",VIT);
 	--printf("POWER: %u",power);
 
-	-- Rate and Constant are based on which soft caps have been overcome by the caster.
-	rate = 0.6666;
-	constant = 330;
-	if(power > 560) then
-		rate = 2.8333;
-		constant = 591.2;
-	elseif(power > 320) then
-		rate = 1;
-		constant = 410;
+	--Rate and Constant are based on which soft caps have been overcome by the caster.
+	rate = 1;
+	constant = 70;
+	if(power > 300) then
+		rate = 15.6666;
+		constant = 180.43;
+	elseif(power > 180) then
+		rate = 2;
+		constant = 115;
 	end
 
 	--Amount to cure the target with.
@@ -50,8 +51,8 @@ function onSpellCast(caster,target,spell)
 	final = cure * staff * day * (1 + potency) * CURE_POWER;
 
 	--Raise the amount above the minimum hard cap.
-	if(final < 450) then
-		final = 450;
+	if(final < 130) then
+		final = 130;
 	end;
 
 	if(caster:getStatusEffect(EFFECT_AFFLATUS_SOLACE) ~= nil) and (target:getStatusEffect(EFFECT_STONESKIN) == nil) then
@@ -63,7 +64,7 @@ function onSpellCast(caster,target,spell)
 	  target:addStatusEffect(EFFECT_STONESKIN,Afflatus_Stoneskin,0,25);
 	end;
 
-	--Check to see if the target doesn't need that much healing.
+	--Check to see ifthe target doesn't need that much healing.
 	maxhp = target:getMaxHP();
 	hp = target:getHP();
 	diff = (maxhp - hp);
@@ -74,12 +75,13 @@ function onSpellCast(caster,target,spell)
 
 	--Truncate decimal amounts.
 	final = math.floor(final);
-	
+	 
 	-- Do it!
 	if(target:getRank() ~= nil) then
 		if(caster:getStatusEffect(EFFECT_DIVINE_SEAL) ~= nil) then
 			final = final * 2;
 		end
+		spell:setMsg(7);
 		target:addHP(final);
 	else
 		harm = 1;--cureResist(target:getFamily());

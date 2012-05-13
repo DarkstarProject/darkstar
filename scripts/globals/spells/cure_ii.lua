@@ -4,31 +4,99 @@
 -- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/magic");
 
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
+
+	--Pull base stats from caster.
 	MND = caster:getStat(MOD_MND);
 	VIT = target:getStat(MOD_VIT);
-	HealingMagic = caster:getSkillLevel(0x0021);
-	minimum = 60;
-	Power = 3 * MND + VIT + 3* math.floor((HealingMagic /5));
-	if (Power < 110) then
-		divisor = 1;
-		constant = 20;
-	elseif (Power < 170) then
-		divisor = 2;
+	Healing = caster:getSkillLevel(HEALING_MAGIC_SKILL);
+
+	power = ((3 * MND) + (VIT) + (3 * math.floor(Healing / 5)));
+	--printf("MIND: %u",MND);
+	--printf("VIT: %u",VIT);
+	--printf("POWER: %u",power);
+
+	--Rate and Constant are based on which soft caps have been overcome by the caster.
+	rate = 1;
+	constant = 20;
+	if(power > 170) then
+		rate = 35.6666;
+		constant = 87.62;
+	elseif(power > 110) then
+		rate = 2;
 		constant = 47.5;
+	end
+
+	--Amount to cure the target with.
+	cure = (math.floor(power / 2)) / (rate) + constant;
+	--printf("CURE: %u",cure);
+
+	--Adjust bonus for staff.
+	staff = StaffBonus(caster,spell);
+
+	--Check for cure potency equipment.
+	potency = curePotency(caster);
+
+	day = 1;--spellDayWeatherBonus(caster, spell, false);
+	--print("Total day/weather bonus:",day);
+
+	--Final amount to heal the target with.
+	final = cure * staff * day * (1 + potency) * CURE_POWER;
+
+	--Raise the amount above the minimum hard cap.
+	if(final < 60) then
+		final = 60;
+	end;
+
+	if(caster:getStatusEffect(EFFECT_AFFLATUS_SOLACE) ~= nil) and (target:getStatusEffect(EFFECT_STONESKIN) == nil) then
+	  Afflatus_Stoneskin = math.floor(final / 4);
+	  if(Afflatus_Stoneskin > 300) then
+		  Afflatus_Stoneskin = 300;
+	  end;
+	  --printf("Additional effect on target: Stoneskin");
+	  target:addStatusEffect(EFFECT_STONESKIN,Afflatus_Stoneskin,0,25);
+	end;
+
+	--Check to see ifthe target doesn't need that much healing.
+	maxhp = target:getMaxHP();
+	hp = target:getHP();
+	diff = (maxhp - hp);
+	mobfinal = final;
+	if(final > diff) then
+		final = diff;
+	end
+
+	--Truncate decimal amounts.
+	final = math.floor(final);
+	
+	-- Do it!
+	if(target:getRank() ~= nil) then
+		if(caster:getStatusEffect(EFFECT_DIVINE_SEAL) ~= nil) then
+			final = final * 2;
+		end
+		target:addHP(final);
 	else
-	divisor = 35.6666;
-	constant = 87.62;
-	end	
---ToDo: Implement day & weather bonuses
-	basecure = math.floor(Power/2)/divisor + constant;
-	Final = math.floor(basecure);
-	if(Final < minimum) then Final = minimum; end
-	return target:addHP(Final);
+		harm = 1;--cureResist(target:getFamily());
+		if(harm < 0) then
+			spell:setMsg(2);
+			if(mobfinal < 0) then
+				mobfinal = mobfinal * -1;
+			end
+			target:delHP(mobfinal);
+			final = mobfinal;
+		else
+			final = 0;
+		end
+	end
+	
+	return final;
+	
 end;

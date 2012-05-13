@@ -44,6 +44,75 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
 end
 
 -----------------------------------
+--	Author: Tenjou
+-- 	Cure Potency Check
+-- 	List of gear which enhances Cure Potency.
+-----------------------------------
+function curePotency(caster)
+c = 0;
+main = caster:getEquip(1);
+sub = caster:getEquip(2);
+range = caster:getEquip(3);
+ammo = caster:getEquip(4);
+head = caster:getEquip(5);
+body = caster:getEquip(6);
+hand = caster:getEquip(7);
+leg = caster:getEquip(8);
+foot = caster:getEquip(9);
+neck = caster:getEquip(10);
+waist = caster:getEquip(11);
+ear1 = caster:getEquip(12);
+ear2 = caster:getEquip(13);
+ring1 = caster:getEquip(14);
+ring2 = caster:getEquip(15);
+back = caster:getEquip(16);
+
+if (main == 0x443a or sub == 0x443a) then
+	c = (c+0.01);
+	--print("Cure enhanced by Dia Wand.");
+end
+if (main == 0x442e or sub == 0x442e) then
+	c = (c+0.05);
+	--print("Cure enhanced by Asklepios.");
+end
+if (main == 0x4999 or sub == 0x4999) then
+	c = (c+0.10);
+	--print("Cure enhanced by Templar Mace.");
+end
+if (main == 17557 or main == 17558 or main == 0x42d4 or main == 0x429b) then
+	c = (c+0.10);
+	--print("Cure enhanced by Staff.");
+end
+if (body == 0x313d) then
+	c = (c+0.10);
+	--print("Cure enhanced by Noble's Tunic.");
+elseif (body == 0x35ce) then
+	c = (c+0.12);
+	--print("Cure enhanced by Aristocrat's Coat.");
+end
+if (ear1 == 0x39d7 or ear2 == 0x39d7) then
+	c = (c+0.05);
+	--print("Cure enhanced by Hospitaler Earring.");
+end
+if (ear1 == 0x3e82 or ear2 == 0x3e82) then
+	c = (c+0.05);
+	--print("Cure enhanced by Roundel Earring.");
+end
+if (ring1 == 0x33e8 or ring2 == 0x33e8) then
+	hp = caster:getHP();
+	maxhp = caster:getMaxHP();
+	ratio = (hp/maxhp);
+	tp = 0; --caster:getTP();
+	if (ratio <= 0.75 and tp <= 100) then
+		c = (c+0.10);
+		--print("Cure enhanced by Medicine Ring.");
+	end
+end
+--print("Total enhancement: " .. (c+1));
+return c;
+ end;
+
+-----------------------------------
 --	Author: ReaperX
 -- 	Returns the staff bonus for the caster and spell. 
 -----------------------------------
