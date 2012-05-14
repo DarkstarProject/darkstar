@@ -22,9 +22,9 @@ function onSpellCast(caster,target,spell)
 		
 	duration = 300;
 	
-	if(caster:getStatusEffect(EFFECT_COMPOSURE) ~= nil) and (caster == target) then
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
 		duration = duration * 3;
-	end;
+	end
 		
 	target:addStatusEffect(EFFECT_AQUAVEIL,AQUAVEIL_INTERR_RATE,0,duration,FLAG_DISPELABLE);
 	--Adjust message for multiple targets.

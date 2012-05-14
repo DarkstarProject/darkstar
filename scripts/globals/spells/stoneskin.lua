@@ -16,6 +16,7 @@ function onSpellCast(caster,target,spell)
 	pMod = (caster:getSkillLevel(ENHANCING_MAGIC_SKILL)/3)+caster:getStat(MOD_MND);
 	pAbs = 0;
 	pEquipMods = 0;
+	duration = 300;
 	if (pMod < 80) then
 		pAbs = pMod;
 	elseif (pMod <= 130) then
@@ -39,9 +40,14 @@ function onSpellCast(caster,target,spell)
 	if (caster:getEquipID(7) == 11949) then -- haven hose
 		pEquipMods = pEquipMods + 20;
 	end
+	
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
+		duration = duration * 3;
+	end
+	
 	final = pAbs + pEquipMods;
 	if (effect == nil) then
-		target:addStatusEffect(EFFECT_STONESKIN,final,0,300);
+		target:addStatusEffect(EFFECT_STONESKIN,final,0,duration);
 		spell:setMsg(0);
 	else
 		spell:setMsg(75);

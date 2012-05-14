@@ -9,6 +9,10 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-   target:delStatusEffect(EFFECT_SHOCK_SPIKES);
-   target:addStatusEffect(EFFECT_SHOCK_SPIKES,0,0,180);
+	duration = 180;
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
+		duration = duration * 3;
+	end
+    target:delStatusEffect(EFFECT_SHOCK_SPIKES);
+    target:addStatusEffect(EFFECT_SHOCK_SPIKES,0,0,duration);
 end;

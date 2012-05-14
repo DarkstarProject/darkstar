@@ -1,6 +1,7 @@
 -----------------------------------------
 -- Spell: Refresh
 -- Gradually restores target party member's MP
+-- Composure increases duration 3x
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -14,7 +15,9 @@ function onSpellCast(caster,target,spell)
 	   
     mp = 3; 
 	duration = 150;
-	
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
+		duration = duration * 3;
+	end	
 			
 	if (target:getMainLvl() < 41) then
 		duration = duration * target:getMainLvl() / 41;

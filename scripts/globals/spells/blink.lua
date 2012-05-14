@@ -10,8 +10,13 @@ require("scripts/globals/status");
 
 function onSpellCast(caster,target,spell)
 	effect = target:getStatusEffect(EFFECT_BLINK);
+
 	if (effect == nil) then
-		target:addStatusEffect(EFFECT_BLINK,3,0,300);
+		duration = 300;
+		if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
+			duration = duration * 3;
+		end
+		target:addStatusEffect(EFFECT_BLINK,3,0,duration);
 		spell:setMsg(0);
 	else
 		effect:setPower(3);

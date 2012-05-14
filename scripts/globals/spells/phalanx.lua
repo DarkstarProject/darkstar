@@ -12,6 +12,10 @@ require("scripts/globals/magic");
 function onSpellCast(caster,target,spell)
 	enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
 	final = 0;
+	duration = 180;
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
+		duration = duration * 3;
+	end
 	
 	if(enhskill<=300) then
 		final = (enhskill/10) -2;
@@ -34,7 +38,7 @@ function onSpellCast(caster,target,spell)
 			spell:setMsg(75);
 		end
 	else
-		target:addStatusEffect(EFFECT_PHALANX,final,0,180);
+		target:addStatusEffect(EFFECT_PHALANX,final,0,duration);
 		spell:setMsg(0);
 	end
 	

@@ -1,7 +1,7 @@
 -----------------------------------
---
---
---
+-- Composure
+-- Increases accuracy and lengthens recast time. Enhancement effects gained through white 
+--    and black magic you cast on yourself last longer.
 -----------------------------------
 
 -----------------------------------
@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_ACC,15);
 end;
 
 -----------------------------------
@@ -23,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_ACC,15);
 end;

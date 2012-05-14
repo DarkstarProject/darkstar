@@ -1,5 +1,6 @@
 -----------------------------------------
 -- Spell: Haste
+-- Composure increases duration 3x
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -9,6 +10,12 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-   target:delStatusEffect(EFFECT_HASTE);
-   target:addStatusEffect(EFFECT_HASTE,15,0,180);
+	
+	duration = 180;
+
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
+		duration = duration * 3;
+	end
+    target:delStatusEffect(EFFECT_HASTE);
+    target:addStatusEffect(EFFECT_HASTE,15,0,duration);
 end;
