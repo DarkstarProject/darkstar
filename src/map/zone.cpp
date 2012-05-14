@@ -418,7 +418,7 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 
 /************************************************************************
 *			Checks if there is a monster targetting the given           *
-*			player and returns the first entry (for avatar behaviour)	*
+*			player and returns the first entry (unused now)				*
 *************************************************************************/
 CBaseEntity* CZone::FindMobTargettingMaster(CBaseEntity* PEntity)
 {

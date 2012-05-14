@@ -30,6 +30,7 @@
 #include "../mobskill.h"
 #include "../mobutils.h"
 #include "../status_effect.h"
+#include "../petentity.h"
 #include "../zone.h"
 
 #include "ai_mob_dummy.h"
@@ -641,6 +642,18 @@ void CAIMobDummy::ActionAttack()
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		ActionAttack();
 		return;
+	}
+
+	//handle pet behaviour on the targets behalf (faster than in ai_pet_dummy)
+	if(m_PBattleTarget->PPet != NULL && m_PBattleTarget->PPet->PBattleAI->GetBattleTarget()==NULL){
+		if(((CPetEntity*)m_PBattleTarget->PPet)->getPetType()==PETTYPE_AVATAR){
+			m_PBattleTarget->PPet->PBattleAI->SetBattleTarget(m_PMob);
+		}
+	}
+	else if(m_PBattleTarget->objtype == TYPE_PET && m_PBattleTarget->PBattleAI->GetBattleTarget()==NULL){
+		if(((CPetEntity*)m_PBattleTarget)->getPetType()==PETTYPE_JUGPET){
+			m_PBattleTarget->PBattleAI->SetBattleTarget(m_PMob);
+		}
 	}
 
     if (m_PMob->PParty != NULL)

@@ -86,25 +86,6 @@ void CAIPetDummy::ActionRoaming()
 		return;
 	}
 
-	if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PPet->PMaster->objtype == TYPE_PC){//avatars defend their master
-		//Defend master if any mob's highest enmity is them
-		CBaseEntity* PAggressor = ((CCharEntity*)m_PPet->PMaster)->loc.zone->FindMobTargettingMaster(m_PPet->PMaster);
-		if(PAggressor!=NULL){
-			if(PAggressor->objtype == TYPE_MOB || PAggressor->objtype == TYPE_PC){
-				m_PBattleTarget = (CBattleEntity*)PAggressor;
-			}
-		}
-	}
-	else if(m_PPet->getPetType()==PETTYPE_JUGPET && m_PPet->PMaster->objtype == TYPE_PC){//jugpets defend themselves
-		//Defend yourself (pet)
-		CBaseEntity* PAggressor = m_PPet->loc.zone->FindMobTargettingMaster(m_PPet);
-		if(PAggressor!=NULL){
-			if(PAggressor->objtype == TYPE_MOB || PAggressor->objtype == TYPE_PC){
-				m_PBattleTarget = (CBattleEntity*)PAggressor;
-			}
-		}
-	}
-
 	if(m_PBattleTarget!=NULL){
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
