@@ -19,5 +19,4 @@ end;
 
 function onMobDeath(mob, killer)
 	killer:setTitle(THE_HORNSPLITTER);
-	checkRegime(killer,mob,71,1);	
 end;

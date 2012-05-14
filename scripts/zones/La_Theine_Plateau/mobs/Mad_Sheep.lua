@@ -12,5 +12,4 @@ require("/scripts/globals/fieldsofvalor");
 function onMobDeath(mob,killer)	
 	checkRegime(killer,mob,69,1);
 	checkRegime(killer,mob,70,1);
-	checkRegime(killer,mob,71,1);
 end;	
