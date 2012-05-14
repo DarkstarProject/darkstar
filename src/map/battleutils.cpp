@@ -493,6 +493,11 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(MOD_HTHRES)))	 / 1000; break;
 	}
 
+	damage = damage - PDefender->getMod(MOD_PHALANX);
+	if(damage<0){
+		damage = 0;
+	}
+
 	if(damage>0 && PDefender->getMod(MOD_STONESKIN) >= damage){
 		PDefender->addModifier(MOD_STONESKIN,-damage);
 		damage = 0;

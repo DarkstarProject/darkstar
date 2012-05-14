@@ -378,6 +378,11 @@ function getSkillLvl(rank,level)
 		dmg = 0;
 	end
 	
+	dmg = dmg - target:getMod(MOD_PHALANX);
+	if(dmg<0) then
+		dmg = 0;
+	end
+	
 	--handling stoneskin
 	skin = target:getMod(MOD_STONESKIN);
 	if(skin>0) then

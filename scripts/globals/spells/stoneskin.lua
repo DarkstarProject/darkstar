@@ -5,6 +5,7 @@
 -- Max 350 damage absorbed
 
 require("scripts/globals/status");
+require("scripts/globals/magic");
 
 -----------------------------------------
 -- OnSpellCast
@@ -12,7 +13,7 @@ require("scripts/globals/status");
 
 function onSpellCast(caster,target,spell)
 	effect = target:getStatusEffect(EFFECT_STONESKIN);
-	pMod = (caster:getSkillLevel(0x0034)/3)+caster:getStat(MOD_MND);
+	pMod = (caster:getSkillLevel(ENHANCING_MAGIC_SKILL)/3)+caster:getStat(MOD_MND);
 	pAbs = 0;
 	pEquipMods = 0;
 	if (pMod < 80) then
@@ -41,7 +42,6 @@ function onSpellCast(caster,target,spell)
 	final = pAbs + pEquipMods;
 	if (effect == nil) then
 		target:addStatusEffect(EFFECT_STONESKIN,final,0,300);
-		target:setMod(MOD_STONESKIN, final);
 		spell:setMsg(0);
 	else
 		spell:setMsg(75);

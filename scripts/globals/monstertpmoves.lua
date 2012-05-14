@@ -283,6 +283,12 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	--TODO: Handle shadows depending on shadow behaviour / skilltype
 	--TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
 	
+	--handling phalanx
+	dmg = dmg - target:getMod(MOD_PHALANX);
+	if(dmg<0) then
+		dmg = 0;
+	end
+	
 	--handling stoneskin
 	skin = target:getMod(MOD_STONESKIN);
 	if(skin>0) then

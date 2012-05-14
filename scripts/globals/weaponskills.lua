@@ -109,6 +109,11 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	
 	--print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 	
+	finaldmg = finaldmg - target:getMod(MOD_PHALANX);
+	if(finaldmg<0) then
+		finaldmg = 0;
+	end
+	
 	--handle stoneskin
 	skin = target:getMod(MOD_STONESKIN);
 	if(skin>0) then
