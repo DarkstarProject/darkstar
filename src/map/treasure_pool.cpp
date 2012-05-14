@@ -315,11 +315,45 @@ void CTreasurePool::CheckTreasureItem(uint32 tick, uint8 SlotID)
 					TreasureLost(SlotID);
 				}
 			}
-			else{ //no one has lotted on this item, drop it
-				TreasureLost(SlotID);
-			}
+			else{ //no one has lotted on this item, give to random member who hasnt passed
+				//
+				std::vector<LotInfo> tempLots;
 
-			//.....
+				for (uint8 i = 0; i < members.size(); ++i)
+				{
+					bool hasPassed = false;
+					for(uint8 j = 0; j < m_PoolItems[SlotID].Lotters.size(); j++){
+						if(m_PoolItems[SlotID].Lotters[j].member->id == members[i]->id){
+							hasPassed = true;
+							break;
+						}
+					}
+
+					if (members[i]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && !hasPassed) 
+					{
+						LotInfo templi;
+						templi.member = members[i];
+						templi.lot = 1;
+						tempLots.push_back(templi);
+					}
+				}
+
+				if(tempLots.size()==0){
+					TreasureLost(SlotID);
+				}
+				else{
+					//select random member from this pool to give item to
+					CCharEntity* PChar = tempLots.at(rand() % tempLots.size()).member;
+					if (charutils::AddItem(PChar, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
+					{
+						TreasureWon(PChar, SlotID);
+					} else {
+						TreasureError(PChar, SlotID);
+					}
+					tempLots.clear();
+					return;
+				}
+			}
 		}
 		else
 		{
