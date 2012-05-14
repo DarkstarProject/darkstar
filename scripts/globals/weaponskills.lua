@@ -109,6 +109,22 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	
 	--print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 	
+	--handle stoneskin
+	skin = target:getMod(MOD_STONESKIN);
+	if(skin>0) then
+		if(skin >= finaldmg) then --absorb all damage
+			target:delMod(MOD_STONESKIN,finaldmg);
+			if(target:getMod(MOD_STONESKIN)==0) then
+				target:delStatusEffect(EFFECT_STONESKIN);
+			end
+			return 0;
+		else --absorbs some damage then wear
+			target:delMod(MOD_STONESKIN,skin);
+			target:delStatusEffect(EFFECT_STONESKIN);
+			return finaldmg - skin;
+		end
+	end
+	
 	return finaldmg;
 end;
 

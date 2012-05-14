@@ -51,7 +51,7 @@ MSG_DRAIN_TP = 226;
 MSG_NO_EFFECT = 189;
 MSG_MISS = 188;
 
-
+BOMB_TOSS_HPP = 1;
 
 -- PHYSICAL MOVE FUNCTION
 -- Call this on every physical move!
@@ -282,5 +282,22 @@ end;
 function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
 	--TODO: Handle shadows depending on shadow behaviour / skilltype
 	--TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
+	
+	--handling stoneskin
+	skin = target:getMod(MOD_STONESKIN);
+	if(skin>0) then
+		if(skin >= dmg) then --absorb all damage
+			target:delMod(MOD_STONESKIN,dmg);
+			if(target:getMod(MOD_STONESKIN)==0) then
+				target:delStatusEffect(EFFECT_STONESKIN);
+			end
+			return 0;
+		else --absorbs some damage then wear
+			target:delMod(MOD_STONESKIN,skin);
+			target:delStatusEffect(EFFECT_STONESKIN);
+			return dmg - skin;
+		end
+	end
+	
 	return dmg;
 end

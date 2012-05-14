@@ -493,6 +493,19 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(MOD_HTHRES)))	 / 1000; break;
 	}
 
+	if(damage>0 && PDefender->getMod(MOD_STONESKIN) >= damage){
+		PDefender->addModifier(MOD_STONESKIN,-damage);
+		damage = 0;
+		if(PDefender->getMod(MOD_STONESKIN)==0){
+			//wear off
+			PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_STONESKIN);
+		}
+	}
+	else if(damage>0 && PDefender->getMod(MOD_STONESKIN)>0 && PDefender->getMod(MOD_STONESKIN) < damage){
+		damage = damage - PDefender->getMod(MOD_STONESKIN);
+		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_STONESKIN);
+	}
+
     PDefender->addHP(-damage);
 
     if (PAttacker->PMaster != NULL)

@@ -377,6 +377,23 @@ function getSkillLvl(rank,level)
 	if(dmg<0) then
 		dmg = 0;
 	end
+	
+	--handling stoneskin
+	skin = target:getMod(MOD_STONESKIN);
+	if(skin>0) then
+		if(skin >= dmg) then --absorb all damage
+			target:delMod(MOD_STONESKIN,dmg);
+			if(target:getMod(MOD_STONESKIN)==0) then
+				target:delStatusEffect(EFFECT_STONESKIN);
+			end
+			return 0;
+		else --absorbs some damage then wear
+			target:delMod(MOD_STONESKIN,skin);
+			target:delStatusEffect(EFFECT_STONESKIN);
+			return dmg - skin;
+		end
+	end
+	
 	target:delHP(dmg);
 	target:updateEnmityFromDamage(caster,dmg);
 	target:addTP(10);
