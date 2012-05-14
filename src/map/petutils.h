@@ -27,6 +27,28 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
+enum PETID
+{
+	PETID_FIRESPIRIT = 0,
+	PETID_ICESPIRIT = 1,
+	PETID_AIRSPIRIT = 2,
+	PETID_EARTHSPIRIT = 3,
+	PETID_THUNDERSPIRIT = 4,
+	PETID_WATERSPIRIT = 5,
+	PETID_LIGHTSPIRIT = 6,
+	PETID_DARKSPIRIT = 7,
+	PETID_CARBUNCLE = 8,
+	PETID_FENRIR = 9,
+	PETID_IFRIT = 10,
+	PETID_TITAN = 11,
+	PETID_LEVIATHAN = 12,
+	PETID_GARUDA = 13,
+	PETID_SHIVA = 14,
+	PETID_RAMUH = 15,
+	PETID_DIABOLOS = 16
+};
+
+
 class CBattleEntity;
 class CPetEntity;
 
@@ -37,6 +59,8 @@ namespace petutils
 
 	void	SpawnPet(CBattleEntity* PMaster, uint32 PetID);
 	void	DespawnPet(CBattleEntity* PMaster);
+	void	AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget);
+	void	RetreatToMaster(CBattleEntity* PMaster);
 };
 
 #endif

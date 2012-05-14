@@ -137,7 +137,7 @@ int32 CBattleEntity::GetMaxMP()
 
 uint16 CBattleEntity::addTP(float tp)
 {
-	DSP_DEBUG_BREAK_IF((objtype != TYPE_PC) && (objtype != TYPE_MOB));
+	DSP_DEBUG_BREAK_IF((objtype != TYPE_PC) && (objtype != TYPE_MOB) && (objtype != TYPE_PET));
 	
 	float TPMulti = 1.0;
 	if(objtype == TYPE_PC)

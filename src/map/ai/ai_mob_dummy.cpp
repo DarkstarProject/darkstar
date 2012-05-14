@@ -103,7 +103,7 @@ void CAIMobDummy::ActionRoaming()
 	else if (m_PMob->m_OwnerID.id != 0)
 	{
         m_PBattleTarget = (CBattleEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC | TYPE_MOB | TYPE_PET);
-
+		
         // TODO: возможно необходимо добавлять цели базовое количество ненависти
 
 		m_ActionType = ACTION_ENGAGE;

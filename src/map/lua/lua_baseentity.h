@@ -198,6 +198,10 @@ public:
 
 	int32 spawnPet(lua_State*);				// Calls Pet
 	int32 despawnPet(lua_State*);			// Despawns Pet
+	int32 petAttack(lua_State*);			// Despawns Pet
+	int32 petRetreat(lua_State*);
+	int32 petStay(lua_State*);
+	int32 petAbility(lua_State*);
 
 	int32 needToZone(lua_State*);			// Check if player has zoned since the flag has been raised
 

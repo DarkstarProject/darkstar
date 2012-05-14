@@ -3220,6 +3220,44 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::petAttack(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	if ( m_PBaseEntity != NULL )
+	{
+		if ( m_PBaseEntity->objtype != TYPE_NPC )
+		{
+			CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
+			petutils::AttackTarget((CBattleEntity*)m_PBaseEntity,(CBattleEntity*)PEntity->GetBaseEntity());
+			return 0;
+		}
+	}
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::petRetreat(lua_State *L)
+{
+	if ( m_PBaseEntity != NULL )
+	{
+		if ( m_PBaseEntity->objtype != TYPE_NPC )
+		{
+			petutils::RetreatToMaster((CBattleEntity*)m_PBaseEntity);
+		}
+	}
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::petStay(lua_State *L)
+{
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::petAbility(lua_State *L)
+{
+	return 0;
+}
+
 /************************************************************************
 *																		*
 *  Сущность освобождает питомца											*
@@ -3554,6 +3592,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAttack),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petRetreat),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petStay),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAbility),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),

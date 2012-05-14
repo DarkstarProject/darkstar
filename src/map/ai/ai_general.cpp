@@ -206,6 +206,11 @@ void CAIGeneral::SetLastActionTime(uint32 time)
 	m_LastActionTime = time;
 }
 
+void CAIGeneral::SetBattleTarget(CBattleEntity* PEntity)
+{
+	m_PBattleTarget = PEntity;
+}
+
 /************************************************************************
 *																		*
 *																		*

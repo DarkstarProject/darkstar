@@ -111,6 +111,7 @@ public:
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
 
+	CBaseEntity*	FindMobTargettingMaster(CBaseEntity* PEntity);
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
 
 	bool			CanUseMisc(uint16 misc);

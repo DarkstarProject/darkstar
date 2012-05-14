@@ -26,15 +26,25 @@
 
 #include "battleentity.h"
 
+enum PETTYPE
+{
+	PETTYPE_AVATAR			= 0,
+	PETTYPE_WYVERN			= 1,
+	PETTYPE_JUGPET			= 2,
+	PETTYPE_CHARMEDMOB		= 3,
+	PETTYPE_PUPPET			= 4
+};
+
 class CPetEntity : public CBattleEntity
 {
 public:
 
-	 CPetEntity();						// конструктор
+	 CPetEntity(PETTYPE petType);						// конструктор
 	~CPetEntity();						// деструктор
+	PETTYPE getPetType();
 
 private:
-
+	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc
 };
 
 #endif

@@ -38,7 +38,7 @@ function onTrigger(player,jobname,lvl)
 		player:changeJob(13);
 	elseif(jobname=="DRG" or jobname=="drg" or jobname=='14') then
 		player:changeJob(14);
-	elseif(jobname=="SMN" or jobname=="SMN" or jobname=='15') then
+	elseif(jobname=="SMN" or jobname=="smn" or jobname=='15') then
 		player:changeJob(15);
 	elseif(jobname=="BLU" or jobname=="blu" or jobname=='16') then
 		player:changeJob(16);

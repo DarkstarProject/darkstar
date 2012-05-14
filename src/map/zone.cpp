@@ -417,6 +417,23 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 }
 
 /************************************************************************
+*			Checks if there is a monster targetting the given           *
+*			player and returns the first entry (for avatar behaviour)	*
+*************************************************************************/
+CBaseEntity* CZone::FindMobTargettingMaster(CBaseEntity* PEntity)
+{
+	for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
+    {
+            CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+			CBattleEntity* PBattleTarget = PCurrentMob->PBattleAI->GetBattleTarget();
+			if(PBattleTarget!=NULL && PBattleTarget->id == PEntity->id && !PCurrentMob->isDead()){
+				return PCurrentMob;
+			}
+	}
+	return NULL;
+}
+
+/************************************************************************
 *                                                                       *
 *  Транспотр отправляется, необходимо собрать пассажиров                *
 *                                                                       *

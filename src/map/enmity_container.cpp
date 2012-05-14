@@ -117,6 +117,10 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
         PEnmityObject->PEnmityOwner = PEntity;
 
         m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEntity->id, PEnmityObject));
+
+		if(PEntity->objtype == TYPE_PET && PEntity->PMaster!=NULL){ //add master to the enmity list
+			UpdateEnmity(PEntity->PMaster,0,0);
+		}
     }
 }
 
@@ -210,7 +214,7 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 
 		uint32 Enmity = PEnmityObject->CE + PEnmityObject->VE;
 
-		if (Enmity > HighestEnmity)
+		if (Enmity >= HighestEnmity)
 		{
 			HighestEnmity = Enmity;
 			PEntity = PEnmityObject->PEnmityOwner;

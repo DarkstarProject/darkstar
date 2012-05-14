@@ -29,6 +29,7 @@
 
 #include "packets/char_health.h"
 #include "packets/char_update.h"
+#include "packets/entity_update.h"
 #include "packets/message_basic.h"
 
 #include "ability.h"
@@ -40,6 +41,7 @@
 #include "weapon_skill.h"
 #include "mobskill.h"
 #include "mobentity.h"
+#include "petentity.h"
 #include "enmity_container.h"
 
 
@@ -564,6 +566,11 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
             ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
         }
         break;
+		case TYPE_PET:
+        {
+			((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender,CHAR_INRANGE,new CEntityUpdatePacket(PDefender,ENTITY_UPDATE));
+		}
+		break;
     }
     if (PAttacker->objtype == TYPE_PC)
     {

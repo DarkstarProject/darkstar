@@ -26,11 +26,15 @@
 #include "petentity.h"
 
 
-CPetEntity::CPetEntity() 
+CPetEntity::CPetEntity(PETTYPE petType) 
 {
 	objtype = TYPE_PET;
-
+	m_PetType = petType;
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
+}
+
+PETTYPE CPetEntity::getPetType(){
+	return m_PetType;
 }
 
 CPetEntity::~CPetEntity()

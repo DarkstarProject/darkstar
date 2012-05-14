@@ -327,6 +327,13 @@ int32 SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* da
 	charutils::SaveCharPosition(PChar);
 	charutils::SaveCharExp(PChar, PChar->GetMJob());
 
+	if(PChar->PPet != NULL){
+		PChar->PPet->PBattleAI->SetLastActionTime(0);
+		PChar->PPet->PBattleAI->SetCurrentAction(ACTION_DEATH);
+		PChar->PPet->PMaster = NULL;
+		PChar->PPet = NULL;
+	}
+
 	if (PChar->status == STATUS_SHUTDOWN)
 	{
 		if (PChar->PParty != NULL)

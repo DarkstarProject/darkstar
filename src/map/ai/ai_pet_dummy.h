@@ -50,6 +50,9 @@ protected:
 	CPetEntity* m_PPet;
 
 	void ActionRoaming();
+	void ActionDisengage();
+	void ActionEngage();
+	void ActionAttack();
 	void ActionFall();
 	void ActionDeath();
 	void ActionSpawn();
