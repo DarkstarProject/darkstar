@@ -1875,7 +1875,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 	{
         if (PChar->PParty != NULL)
         {
-            uint8 count = 0;
+			uint8 minlevel = level;
 
             // TODO: плохая реализация - два раза проверяем дистанцию, два раза проверяем один и тот же массив
 
@@ -1885,14 +1885,24 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 
                 if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
 			    {
-                    if (PMember->GetMLevel() > level)
+					if (PMember->GetMLevel() > level)
                     {
 				        level = PMember->GetMLevel();
                     }
-                    count++;
+					else if (PMember->GetMLevel() < level)
+						{
+							minlevel = PMember->GetMLevel();
+						}
 			    }
 		    }
-            exp = GetRealExp(level, PMob->GetMLevel());
+            if (level - minlevel > 7)
+			{ 
+				exp = 0;
+			}
+			else
+			{
+				exp = GetRealExp(level, PMob->GetMLevel());
+			}
 
             if (exp != 0)
             {
@@ -2006,8 +2016,7 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 
 void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool limit)
 {
-    if (PChar->isDead()) return;
-
+	if (PChar->isDead()) return;
     if (limit)
     {
         if (PChar->GetMLevel() <= 50) 
@@ -2025,7 +2034,31 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool
 
         exp = exp * map_config.exp_rate;
 
-        if (PChar->getMod(MOD_DEDICATION) != 0)
+        if (PChar->PParty != NULL)
+		{
+		switch(PChar->PParty->members.size()){
+							case 1:	exp *= 1.00; break;
+							case 2: exp *= 0.60; break;
+							case 3: exp *= 0.45; break;
+							case 4: exp *= 0.40; break;
+							case 5: exp *= 0.37; break;
+							case 6: exp *= 0.35; break;
+							default: break;
+							}
+		}
+		if (PChar->PParty != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET))
+		{
+		switch(PChar->PParty->members.size()){
+							case 1: exp *= 1.00; break;
+							case 2:	exp *= 0.75; break;
+							case 3: exp *= 0.55; break;
+							case 4: exp *= 0.45; break;
+							case 5:	exp *= 0.39; break;
+							case 6: exp *= 0.35; break;
+							default: break;
+							}
+		}
+		if (PChar->getMod(MOD_DEDICATION) != 0)
         {
             uint32 dedication = cap_value(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getMod(MOD_DEDICATION_CAP));
 
@@ -2037,6 +2070,7 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool
             }
             exp += dedication;
         }
+		
     }
     PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
 
