@@ -34,6 +34,8 @@
 #include "../vana_time.h"
 #include "../zone.h"
 #include "../charentity.h"
+#include "../petentity.h"
+#include "../ai/ai_pet_dummy.h"
 #include "../lua/luautils.h"
 
 #include "../packets/action.h"
@@ -1174,6 +1176,12 @@ void CAICharNormal::ActionMagicFinish()
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
+	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN &&
+		((CPetEntity*)m_PChar->PPet)->GetMJob()==JOB_WHM || ((CPetEntity*)m_PChar->PPet)->GetMJob()==JOB_RDM ){
+			((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_HEALING_BREATH;
+			m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+	}
+
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
@@ -1471,6 +1479,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
     //{
     //    ((CMobEntity*)m_PBattleSubTarget)->m_DropItemTime = m_PWeaponSkill->getAnimationTime();
     //}
+
+	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN &&
+		((CPetEntity*)m_PChar->PPet)->GetMJob()==JOB_DRG || ((CPetEntity*)m_PChar->PPet)->GetMJob()==JOB_RDM ){
+			((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_ELEMENTAL_BREATH;
+			m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+	}
 
 	apAction_t Action;
     m_PChar->m_ActionList.clear();

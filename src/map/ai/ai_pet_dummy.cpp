@@ -28,9 +28,13 @@
 #include "../charentity.h"
 #include "../petentity.h"
 #include "../zone.h"
+#include "../mobskill.h"
+
+#include "../lua/luautils.h"
 
 #include "../packets/entity_update.h"
 #include "../packets/action.h"
+#include "../packets/char_update.h"
 #include "../packets/pet_sync.h"
 #include "../packets/message_basic.h"
 
@@ -67,9 +71,210 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_ENGAGE:		ActionEngage();		break;
 		case ACTION_ATTACK:		ActionAttack();		break;
 		case ACTION_DISENGAGE:	ActionDisengage();	break;
+		case ACTION_MOBABILITY_START:	ActionAbilityStart();	break;
+		case ACTION_MOBABILITY_USING: ActionAbilityUsing(); break;
+		case ACTION_MOBABILITY_FINISH: ActionAbilityFinish(); break;
+		case ACTION_MOBABILITY_INTERRUPT: ActionAbilityInterrupt(); break;
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
+}
+
+void CAIPetDummy::ActionAbilityStart()
+{
+	if(m_PPet->getPetType()!=PETTYPE_WYVERN){
+		m_ActionType = ACTION_ROAMING;
+		ActionRoaming();
+		return;
+	}
+
+	if(m_MasterCommand==MASTERCOMMAND_ELEMENTAL_BREATH && (m_PPet->GetMJob()==JOB_DRG || m_PPet->GetMJob()==JOB_RDM)){
+		m_MasterCommand = MASTERCOMMAND_NONE;
+		//offensive or multipurpose wyvern
+		if(m_PPet->PBattleAI->GetBattleTarget()!=NULL){ //prepare elemental breaths
+			int skip = rand()%6;
+			int hasSkipped = 0;
+			for(int i=0; i<m_PPet->PetSkills.size(); i++){
+				if(m_PPet->PetSkills[i]->getValidTargets() == TARGET_ENEMY){
+					if(hasSkipped == skip){
+						m_PMobSkill = m_PPet->PetSkills[i];
+						break;
+					}
+					else{
+						hasSkipped++;
+					}
+				}
+			}
+			preparePetAbility(m_PBattleTarget);
+			return;
+		}
+	}
+	else if(m_MasterCommand==MASTERCOMMAND_HEALING_BREATH && (m_PPet->GetMJob()==JOB_WHM || m_PPet->GetMJob()==JOB_RDM)){
+		m_MasterCommand = MASTERCOMMAND_NONE;
+		m_PBattleSubTarget = NULL;
+
+	//	if(m_PPet->PMaster->PParty==NULL){//solo with master-kun
+			if(m_PPet->PMaster->GetHPP() <= 33 && m_PPet->GetMJob()==JOB_WHM){//healer wyvern 
+				m_PBattleSubTarget = m_PPet->PMaster;
+			}
+			else if(m_PPet->PMaster->GetHPP() <= 25 && m_PPet->GetMJob()==JOB_RDM){//hybrid wyvern
+				m_PBattleSubTarget = m_PPet->PMaster;
+			}
+	//	}
+	//	else{ //group play
+	//		//for( int i=0; i<
+	//	}
+		if(m_PBattleSubTarget != NULL){ //target to heal
+			//get highest breath for wyverns level
+			m_PMobSkill = NULL;
+			for(int i=0; i<m_PPet->PetSkills.size(); i++){
+				if(m_PPet->PetSkills[i]->getValidTargets() == TARGET_PLAYER_PARTY){
+					if(m_PPet->PetSkills[i]->getID()==638 && 
+						m_PPet->PMaster->GetMLevel() < 20){ //can only using hb1
+							m_PMobSkill = m_PPet->PetSkills[i];
+							break;
+					}
+					else if(m_PPet->PetSkills[i]->getID()==639 &&
+						m_PPet->PMaster->GetMLevel() < 40){ //can only using hb2
+							m_PMobSkill = m_PPet->PetSkills[i];
+							break;
+					}
+					else if(m_PPet->PetSkills[i]->getID()==640 &&
+						m_PPet->PMaster->GetMLevel() >= 40){ //can only using hb3
+							m_PMobSkill = m_PPet->PetSkills[i];
+							break;
+					}
+				}
+			}
+			preparePetAbility(m_PBattleSubTarget);
+			return;
+		}
+	}
+	m_ActionType = ACTION_ROAMING;
+	ActionRoaming();
+}
+
+void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
+	if(m_PMobSkill!=NULL){
+		apAction_t Action;
+		m_PPet->m_ActionList.clear();
+		Action.ActionTarget = PTarg;
+		Action.reaction   = REACTION_HIT;
+		Action.speceffect = SPECEFFECT_HIT;
+		Action.animation  = 0;
+		Action.param	  = m_PMobSkill->getID() + 256;//m_PMobSkill->getAnimationID();
+		Action.messageID  = 43; //readies message
+		Action.flag		  = 0;
+		m_PPet->m_ActionList.push_back(Action);
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
+				
+		m_ActionType = ACTION_MOBABILITY_USING;
+	}
+	else{
+		ShowDebug("Pet skill is null \n");
+	}
+}
+
+void CAIPetDummy::ActionAbilityUsing()
+{
+	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+
+	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
+		m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PPet->getZone()){
+		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+		ActionAbilityInterrupt();
+		return;
+	}
+	else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && m_PBattleSubTarget->isDead() ||
+		m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
+		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+		ActionAbilityInterrupt();
+		return;
+	}
+
+	//TODO: Any checks whilst the pet is preparing.
+	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
+	//      THE ONLY CHECK IN HERE SHOULD BE WITH STUN/SLEEP/TERROR/ETC
+
+	if ((m_Tick - m_LastActionTime) > m_PMobSkill->getActivationTime())
+    {
+		//Range check
+		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
+			m_PBattleTarget!=m_PPet && 
+			distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
+
+			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+			//too far away message
+			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 78));
+			ActionAbilityInterrupt();
+			return;
+		}
+		else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && 
+			distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
+			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+			//too far away message
+			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, 0, 78));
+			ActionAbilityInterrupt();
+			return;
+		}
+		m_PMobSkill->setTP(m_PPet->health.tp);
+		m_LastActionTime = m_Tick;
+		m_ActionType = ACTION_MOBABILITY_FINISH;
+		ActionAbilityFinish();
+	}
+}
+
+void CAIPetDummy::ActionAbilityFinish(){
+	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+    m_PPet->m_ActionList.clear();
+	
+	apAction_t Action;
+	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){
+		Action.ActionTarget = m_PBattleTarget;
+	}
+	else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY){
+		Action.ActionTarget = m_PBattleSubTarget;
+	}
+	Action.reaction   = REACTION_HIT;
+	Action.speceffect = SPECEFFECT_HIT;
+	Action.animation  = m_PMobSkill->getAnimationID();
+	Action.param	  = luautils::OnPetAbility(Action.ActionTarget, m_PPet,m_PMobSkill);
+	Action.subparam   = m_PMobSkill->getID() + 256;
+	Action.messageID  = m_PMobSkill->getMsg();
+	Action.flag       = 0;
+	
+	m_PPet->m_ActionList.push_back(Action);
+	
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
+	
+	m_PPet->health.tp = 0; 
+	m_PBattleSubTarget = NULL;
+	m_ActionType = ACTION_ATTACK;
+	
+}
+
+void CAIPetDummy::ActionAbilityInterrupt(){
+	m_LastActionTime = m_Tick;
+	//cancel the whole readying animation
+	apAction_t Action;
+    m_PPet->m_ActionList.clear();
+
+		Action.ActionTarget = m_PPet;
+		Action.reaction   = REACTION_NONE;
+		Action.speceffect = SPECEFFECT_NONE;
+		Action.animation  = m_PMobSkill->getID();
+	    Action.param	  = 0;
+		Action.messageID  = 0;
+        Action.flag       = 0;
+	
+	m_PPet->m_ActionList.push_back(Action);
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
+
+	m_PPet->health.tp = 0; 
+
+    m_PMobSkill = NULL;
+    m_ActionType = ACTION_ATTACK;
 }
 
 /************************************************************************
@@ -84,6 +289,14 @@ void CAIPetDummy::ActionRoaming()
 		m_ActionType = ACTION_FALL;
 		ActionFall();
 		return;
+	}
+
+	//wyvern behaviour
+	if(m_PPet->getPetType()==PETTYPE_WYVERN){
+		//see if master is engaged on something, if so, help attack
+		if(m_PPet->PMaster->PBattleAI->GetBattleTarget()!=NULL){
+			m_PBattleTarget = m_PPet->PMaster->PBattleAI->GetBattleTarget();
+		}
 	}
 
 	if(m_PBattleTarget!=NULL){
@@ -130,6 +343,11 @@ void CAIPetDummy::ActionAttack()
 		m_ActionType = ACTION_FALL;
 		ActionFall();
 		return;
+	}
+
+	//wyvern behaviour
+	if(m_PPet->PMaster->PBattleAI->GetBattleTarget()==NULL){
+		m_PBattleTarget = NULL;
 	}
 	
 	//handle death of target
@@ -221,8 +439,6 @@ void CAIPetDummy::ActionAttack()
 		}
 	}
 
-
-
 }
 
 void CAIPetDummy::ActionDisengage()
@@ -271,9 +487,13 @@ void CAIPetDummy::ActionDeath()
 				((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));
 			}
 			m_PPet->PMaster->PPet = NULL;
-			m_PPet->PMaster = NULL;
 		}
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));	
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));
+		if (m_PPet->PMaster != NULL && m_PPet->PMaster->objtype == TYPE_PC)
+		{
+			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PPet->PMaster));
+		}
+		m_PPet->PMaster = NULL;
 		m_ActionType = ACTION_NONE;
 	}
 }

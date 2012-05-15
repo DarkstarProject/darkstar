@@ -1419,6 +1419,55 @@ int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobS
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
+/***********************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill) 
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnPetAbility");
+
+	snprintf(File, sizeof(File), "scripts/globals/abilities/pets/%s.lua", PMobSkill->getName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnPetAbility: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnPetAbility");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnPetAbility: undefined procedure OnPetAbility\n");
+		return 0;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PTarget);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+	
+	CLuaBaseEntity LuaMobEntity(PMob);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+
+	CLuaMobSkill LuaMobSkill(PMobSkill);
+	Lunar<CLuaMobSkill>::push(LuaHandle,&LuaMobSkill);
+	
+	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnPetAbility: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
 /************************************************************************
 *                                                                       *
 *                                                                       *

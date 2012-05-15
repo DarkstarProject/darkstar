@@ -52,7 +52,7 @@ struct Pet_t
 	uint8		maxLevel;	// максимально-возможный уровень
 
 	uint8		size;		// размер модели
-
+	uint16		m_Family;
 	uint32		time;		// время существования (будет использоваться для задания длительности статус эффекта)
 };
 
@@ -71,7 +71,7 @@ void LoadPetList()
 {
 	FreePetList();
 
-	const int8* fmtQuery = "SELECT pet_list.name, modelid, minLevel, maxLevel, time, mobsize, systemid \
+	const int8* fmtQuery = "SELECT pet_list.name, modelid, minLevel, maxLevel, time, mobsize, systemid, mob_pools.familyid \
 						    FROM pet_list, mob_pools, mob_family_system \
 							WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
@@ -84,13 +84,13 @@ void LoadPetList()
 			Pet->name.insert(0,Sql_GetData(SqlHandle,0));
 
 			memcpy(&Pet->look,Sql_GetData(SqlHandle,1),20);
-
 			Pet->minLevel = (uint8)Sql_GetIntData(SqlHandle,2);
 			Pet->maxLevel = (uint8)Sql_GetIntData(SqlHandle,3);
 			Pet->time = Sql_GetUIntData(SqlHandle,4);
 			Pet->size = Sql_GetUIntData(SqlHandle,5);
 			Pet->EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle,6);
-			
+			Pet->m_Family = (uint16)Sql_GetIntData(SqlHandle,7);
+
 			g_PPetList.push_back(Pet);
 		}
 	}
@@ -363,15 +363,20 @@ void LoadAvatarStats(CPetEntity* PChar)
 void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 {
 	DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
+
 	PETTYPE petType = PETTYPE_JUGPET;
-	if(PetID<17){
+	if(PetID<=20){
 		petType = PETTYPE_AVATAR;
+	}
+	else if(PetID==PETID_WYVERN){
+		petType = PETTYPE_WYVERN; 
 	}
 	CPetEntity* PPet = new CPetEntity(petType);
 
 	PPet->loc = PMaster->loc;
 	PPet->look = g_PPetList.at(PetID)->look;
 	PPet->name = g_PPetList.at(PetID)->name;
+	PPet->m_Family = g_PPetList.at(PetID)->m_Family;
 
 	if(PPet->getPetType()==PETTYPE_AVATAR){
 		PPet->SetMJob(JOB_BLM);
@@ -400,9 +405,43 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 		PPet->SetMLevel(PMaster->GetMLevel());
 		LoadJugStats(PPet); //follow monster calcs (w/o SJ)
 	}
+	else if(PPet->getPetType()==PETTYPE_WYVERN){
+		PPet->SetMJob(JOB_DRG);
+		//set the wyvern job based on master's SJ
+		if(PMaster->GetSJob()!=NULL){
+			switch(PMaster->GetSJob()){
+				//defensive
+			case JOB_WHM:
+			case JOB_BLM:
+			case JOB_RDM:
+			case JOB_BLU:
+			case JOB_SMN:
+			case JOB_SCH:
+				PPet->SetMJob(JOB_WHM);
+				break;
+				//multipurpose
+			case JOB_BRD:
+			case JOB_DRK:
+			case JOB_PLD:
+			case JOB_NIN:
+				PPet->SetMJob(JOB_RDM);
+				break;
+			}
+		}
+		PPet->SetMLevel(PMaster->GetMLevel());
+		LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
+		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f/60.0f))); //320 delay
+		PPet->m_Weapons[SLOT_MAIN]->setDamage(1+floor(PPet->GetMLevel()*0.9f));
+		//Set A+ weapon skill
+		PPet->setModifier(MOD_ATT, battleutils::GetMaxSkill(SKILL_GAX,JOB_WAR,PPet->GetMLevel()));
+		PPet->setModifier(MOD_ACC, battleutils::GetMaxSkill(SKILL_GAX,JOB_WAR,PPet->GetMLevel()));
+		//Set D evasion and def
+		PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_H2H,JOB_WAR,PPet->GetMLevel()));
+		PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_H2H,JOB_WAR,PPet->GetMLevel()));
+	}
 	PPet->health.tp = 0;
     PPet->UpdateHealth();
-
+	PPet->PetSkills = battleutils::GetMobSkillsByFamily(PPet->m_Family);
 	PPet->status = STATUS_NORMAL;
 	PPet->m_ModelSize += g_PPetList.at(PetID)->size;
 	PPet->m_EcoSystem  = g_PPetList.at(PetID)->EcoSystem;
@@ -415,7 +454,6 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 	PPet->PMaster = PMaster;
 
     PMaster->loc.zone->InsertPET(PPet);
-
 	if (PMaster->objtype == TYPE_PC)
 	{
 		((CCharEntity*)PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)PMaster));

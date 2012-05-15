@@ -38,11 +38,11 @@ enum PETTYPE
 class CPetEntity : public CBattleEntity
 {
 public:
-
 	 CPetEntity(PETTYPE petType);						// конструктор
 	~CPetEntity();						// деструктор
 	PETTYPE getPetType();
-
+	uint16 m_Family;
+	std::vector<CMobSkill*> PetSkills;
 private:
 	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc
 };

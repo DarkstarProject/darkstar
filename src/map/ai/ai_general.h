@@ -26,6 +26,12 @@
 
 #include "../../common/cbasetypes.h"
 
+enum MASTERCOMMAND //master as in pet's master
+{
+	MASTERCOMMAND_NONE = 0,
+	MASTERCOMMAND_ELEMENTAL_BREATH = 1,
+	MASTERCOMMAND_HEALING_BREATH = 2
+};
 
 enum ACTIONTYPE
 {

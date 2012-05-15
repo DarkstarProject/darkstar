@@ -44,11 +44,13 @@ public:
 
 	CAIPetDummy(CPetEntity* PPet);
 	virtual ~CAIPetDummy() {}; 
+	uint8	m_MasterCommand; //used for wyverns atm
 
 protected:
 
 	CPetEntity* m_PPet;
 
+	void preparePetAbility(CBattleEntity* PTarg);
 	void ActionRoaming();
 	void ActionDisengage();
 	void ActionEngage();
@@ -56,6 +58,10 @@ protected:
 	void ActionFall();
 	void ActionDeath();
 	void ActionSpawn();
+	void ActionAbilityStart();
+	void ActionAbilityUsing();
+	void ActionAbilityInterrupt();
+	void ActionAbilityFinish();
 };
 
 #endif

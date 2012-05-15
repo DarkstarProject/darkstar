@@ -3229,7 +3229,9 @@ inline int32 CLuaBaseEntity::petAttack(lua_State *L)
 		if ( m_PBaseEntity->objtype != TYPE_NPC )
 		{
 			CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
-			petutils::AttackTarget((CBattleEntity*)m_PBaseEntity,(CBattleEntity*)PEntity->GetBaseEntity());
+			if(((CBattleEntity*)m_PBaseEntity)->PPet!=NULL){
+				petutils::AttackTarget((CBattleEntity*)m_PBaseEntity,(CBattleEntity*)PEntity->GetBaseEntity());
+			}
 			return 0;
 		}
 	}
@@ -3242,7 +3244,9 @@ inline int32 CLuaBaseEntity::petRetreat(lua_State *L)
 	{
 		if ( m_PBaseEntity->objtype != TYPE_NPC )
 		{
-			petutils::RetreatToMaster((CBattleEntity*)m_PBaseEntity);
+			if(((CBattleEntity*)m_PBaseEntity)->PPet!=NULL){
+				petutils::RetreatToMaster((CBattleEntity*)m_PBaseEntity);
+			}
 		}
 	}
 	return 0;
@@ -3270,7 +3274,9 @@ inline int32 CLuaBaseEntity::despawnPet(lua_State *L)
 	{
 		if ( m_PBaseEntity->objtype != TYPE_NPC )
 		{
-			petutils::DespawnPet((CBattleEntity*)m_PBaseEntity);
+			if(((CBattleEntity*)m_PBaseEntity)->PPet!=NULL){
+				petutils::DespawnPet((CBattleEntity*)m_PBaseEntity);
+			}
 		}
 	}
 	return 0;
