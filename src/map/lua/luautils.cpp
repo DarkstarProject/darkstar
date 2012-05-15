@@ -692,6 +692,7 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 	PChar->m_event.reset();
     PChar->m_event.Target = PNpc;
 	PChar->m_event.Script.insert(0,File);
+	PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST);
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{

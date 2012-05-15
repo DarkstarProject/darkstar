@@ -1475,6 +1475,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
 		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage);
+		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST);
 	}
     //if (m_PBattleSubTarget->objtype == TYPE_MOB && m_PBattleSubTarget->isDead())
     //{
@@ -1779,6 +1780,8 @@ void CAICharNormal::ActionAttack()
 				m_PChar->m_ActionList.push_back(Action);
 			}
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
+			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST);
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 		}
 	}
