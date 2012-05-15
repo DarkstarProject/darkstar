@@ -112,6 +112,7 @@ void CAIPetDummy::ActionAbilityStart()
 	else if(m_MasterCommand==MASTERCOMMAND_HEALING_BREATH && (m_PPet->GetMJob()==JOB_WHM || m_PPet->GetMJob()==JOB_RDM)){
 		m_MasterCommand = MASTERCOMMAND_NONE;
 		m_PBattleSubTarget = NULL;
+		//TODO: CHECK FOR STATUS EFFECTS FOR REMOVE- BREATH (higher priority than healing breaths)
 
 	//	if(m_PPet->PMaster->PParty==NULL){//solo with master-kun
 			if(m_PPet->PMaster->GetHPP() <= 33 && m_PPet->GetMJob()==JOB_WHM){//healer wyvern 
@@ -150,8 +151,8 @@ void CAIPetDummy::ActionAbilityStart()
 			return;
 		}
 	}
-	m_ActionType = ACTION_ROAMING;
-	ActionRoaming();
+	m_ActionType = ACTION_ATTACK;
+	ActionAttack();
 }
 
 void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
