@@ -540,7 +540,7 @@ INSERT INTO `mob_skill` VALUES (2374,187,1830,'Pelagic_Tempest', 0, 7.0, 2000, 1
 -- Amoeban
 INSERT INTO `mob_skill` VALUES (2375,5,1831,'Osmosis', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (2376,5,1832,'Vacuole_Discharge', 0, 7.0, 2000, 1500, 4, 0);
---pet wyvern
+-- pet wyvern
 INSERT INTO `mob_skill` VALUES (638,193,621,'Healing_Breath_I', 0, 10.0, 2000, 2000, 2, 0);
 INSERT INTO `mob_skill` VALUES (639,193,622,'Healing_Breath_II', 0, 10.0, 2000, 2000, 2, 0);
 INSERT INTO `mob_skill` VALUES (640,193,623,'Healing_Breath_III', 0, 10.0, 2000, 2000, 2, 0);

@@ -346,7 +346,7 @@ void CAIPetDummy::ActionAttack()
 	}
 
 	//wyvern behaviour
-	if(m_PPet->PMaster->PBattleAI->GetBattleTarget()==NULL){
+	if(m_PPet->getPetType()==PETTYPE_WYVERN && m_PPet->PMaster->PBattleAI->GetBattleTarget()==NULL){
 		m_PBattleTarget = NULL;
 	}
 	
