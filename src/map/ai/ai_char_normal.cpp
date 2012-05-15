@@ -1175,12 +1175,13 @@ void CAICharNormal::ActionMagicFinish()
 
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-
-	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN &&
-		((CPetEntity*)m_PChar->PPet)->GetMJob()==JOB_WHM || ((CPetEntity*)m_PChar->PPet)->GetMJob()==JOB_RDM ){
+	/*
+	if(m_PChar->PPet!=NULL && m_PChar->PPet->GetMJob()!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN){
+		if(m_PChar->PPet->GetMJob()==JOB_WHM || m_PChar->PPet->GetMJob()==JOB_RDM){
 			((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_HEALING_BREATH;
 			m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
-	}
+		}
+	}*/
 
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
@@ -1479,12 +1480,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
     //{
     //    ((CMobEntity*)m_PBattleSubTarget)->m_DropItemTime = m_PWeaponSkill->getAnimationTime();
     //}
-
-	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN &&
-		((CPetEntity*)m_PChar->PPet)->GetMJob()==JOB_DRG || ((CPetEntity*)m_PChar->PPet)->GetMJob()==JOB_RDM ){
+	/*
+	if(m_PChar->PPet!=NULL && m_PChar->PPet->GetMJob()!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN){
+		if(m_PChar->PPet->GetMJob()==JOB_DRG || m_PChar->PPet->GetMJob()==JOB_RDM){
 			((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_ELEMENTAL_BREATH;
 			m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
-	}
+		}
+	}*/
 
 	apAction_t Action;
     m_PChar->m_ActionList.clear();
