@@ -128,13 +128,14 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 {
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
 
-    CBattleEntity* PTarget = (CBattleEntity*)m_PChar->loc.zone->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC);
+    CBattleEntity* PTarget = (CBattleEntity*)m_PChar->loc.zone->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
 	*PBattleTarget = PTarget; 
 
     m_ActionTargetID = 0;
 
 	if (PTarget == NULL)
 	{
+		*PBattleTarget = m_PChar; //this prevents a null crash when message is sent
 		return false;
 	}
     if (ValidTarget & TARGET_ENEMY)

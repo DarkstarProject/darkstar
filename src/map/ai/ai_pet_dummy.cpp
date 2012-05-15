@@ -472,7 +472,6 @@ void CAIPetDummy::ActionFall()
 		//master won't get this fall packet, so send it directly
 		((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 	}
-
 	m_LastActionTime = m_Tick;
 	m_PPet->health.hp = 0;
 	m_ActionType = ACTION_DEATH;
