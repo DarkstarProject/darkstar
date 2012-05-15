@@ -10,8 +10,10 @@ require("scripts/globals/magic");
 function onSpellCast(caster,target,spell)
 	duration = 5;
 	
-	resm = applyResistance(caster,spell,target);
-	if(resm == (1/16)) then
+	taff = StaffBonus(caster,spell);
+	dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+	resist = applyResistance(caster,spell,target,dINT,37,staff);
+	if(resist <= (1/16)) then
 		--TODO: Set resist msg
 		return 0;
 	end
