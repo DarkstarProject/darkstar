@@ -9,6 +9,6 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(mob:getStatusEffect(EFFECT_STONESKIN) ~= nil) then
 		mob:delStatusEffect(EFFECT_STONESKIN);
 	end
-	mob:addStatusEffect(EFFECT_STONESKIN,base);
+	mob:addStatusEffect(EFFECT_STONESKIN,base,0,30);
 	return EFFECT_STONESKIN;
 end
