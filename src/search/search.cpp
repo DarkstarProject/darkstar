@@ -371,11 +371,11 @@ void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
     {
         std::list<SearchEntity*> PartyList = PDataLoader->GetPartyList(partyid);
 
-        CPartyListPacket* PPartyPacket = new CPartyListPacket(partyid);
+        CPartyListPacket* PPartyPacket = new CPartyListPacket(partyid,PartyList.size());
 
         for (std::list<SearchEntity*>::iterator it = PartyList.begin(); it != PartyList.end(); ++it)
         {
-            PPartyPacket->AddPlayer(*it);
+			PPartyPacket->AddPlayer(*it);
         }
 
         PrintPacket((int8*)PPartyPacket->GetData(), PPartyPacket->GetSize());

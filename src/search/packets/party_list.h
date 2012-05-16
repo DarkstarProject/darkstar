@@ -30,7 +30,7 @@ class CPartyListPacket
 {
 public:
 
-    CPartyListPacket(uint32 partyid);
+    CPartyListPacket(uint32 partyid,uint32 Total);
    ~CPartyListPacket();
 
     void AddPlayer(SearchEntity* PPlayer);
@@ -41,6 +41,7 @@ public:
 private:
 
     uint32 m_partyid;
+	uint32 m_offset;
 
     uint8 m_data[1024];
 };

@@ -241,6 +241,8 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
             SearchEntity* PPlayer = new SearchEntity;
             memset(PPlayer, 0, sizeof(SearchEntity));
 
+			memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
+
             PPlayer->id     = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PPlayer->zone   = (uint8) Sql_GetIntData(SqlHandle,  3);
             PPlayer->nation = (uint8) Sql_GetIntData(SqlHandle,  4);
