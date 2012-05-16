@@ -65,19 +65,19 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x015f) then
 		player:addQuest(WINDURST,THE_FANGED_ONE);
 	elseif(csid == 0x0165 or csid == 0x0166) then
-        if(player:getFreeSlotsCount(0) >= 1 and player:hasItem(RANGERS_NECKLACE) == false) then
+        if(player:getFreeSlotsCount(0) >= 1 and player:hasItem(13117) == false) then
 			player:delKeyItem(OLD_TIGERS_FANG);
 			player:setVar("TheFangedOne_Event",0);
 			player:setVar("TheFangedOne_Died",0);
 			player:setTitle(THE_FANGED_ONE);
-			player:addItem(RANGERS_NECKLACE);
-			player:messageSpecial(ITEM_OBTAINED, RANGERS_NECKLACE);
+			player:addItem(13117);
+			player:messageSpecial(ITEM_OBTAINED,13117);
 			player:unlockJob(11);
 			player:messageSpecial(UNLOCK_RNG);
 			player:addFame(WINDURST, WIN_FAME* 30);
 			player:completeQuest(WINDURST,THE_FANGED_ONE);
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, RANGERS_NECKLACE);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13117);
 			player:setVar("TheFangedOne_Event",1);
 		end
 	end
