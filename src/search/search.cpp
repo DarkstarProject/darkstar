@@ -384,10 +384,10 @@ void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
         delete PPartyPacket;
     }
     else if (linkshellid != 0)
-    {
+    {	
         std::list<SearchEntity*> LinkshellList = PDataLoader->GetLinkshellList(linkshellid);
 
-        CLinkshellListPacket* PLinkshellPacket = new CLinkshellListPacket();
+		CLinkshellListPacket* PLinkshellPacket = new CLinkshellListPacket(linkshellid,LinkshellList.size());
 
         for (std::list<SearchEntity*>::iterator it = LinkshellList.begin(); it != LinkshellList.end(); ++it)
         {
@@ -395,7 +395,7 @@ void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
         }
 
         PrintPacket((int8*)PLinkshellPacket->GetData(), PLinkshellPacket->GetSize());
-        PTCPRequest->SendRawToSocket(PLinkshellPacket->GetData(), PLinkshellPacket->GetSize());
+        PTCPRequest->SendToSocket(PLinkshellPacket->GetData(), PLinkshellPacket->GetSize());
 
         delete PLinkshellPacket;
     }

@@ -26,8 +26,10 @@
 #include "../../common/utils.h"
 
 #include "../data_loader.h"
+#include "search_list.h"
 
 #include <string.h>
+#include <fstream>
 
 #include "linkshell_list.h"
 
@@ -38,14 +40,18 @@
 *                                                                       *
 ************************************************************************/
 
-CLinkshellListPacket::CLinkshellListPacket()
+CLinkshellListPacket::CLinkshellListPacket(uint32 linkshellid, uint32 Total)
 {
+    m_linkshellid = linkshellid;
+	m_offset = 192;
+
     memset(m_data, 0, sizeof(m_data));
 
     WBUFB(m_data,(0x0A)) = 0x80;
-	WBUFB(m_data,(0x0B)) = 0x00;                       // packet type
+	WBUFB(m_data,(0x0B)) = 0x82;                       // packet type
 
-    WBUFB(m_data,(0x0E)) = 0x00;                       // количество персонажей в пакете
+   // WBUFB(m_data,(0x0E)) = 0x00;                       // количество персонажей в пакете
+	WBUFB(m_data,(0x0E)) = Total;
 }
 
 CLinkshellListPacket::~CLinkshellListPacket()
@@ -61,44 +67,80 @@ CLinkshellListPacket::~CLinkshellListPacket()
 
 void CLinkshellListPacket::AddPlayer(SearchEntity* PPlayer) 
 {
+	uint32 size_offset = m_offset / 8;
+    m_offset += 8;
+
+    m_offset = packBitsLE(m_data, SEARCH_NAME, m_offset, 5);
+
+	m_offset = packBitsLE(m_data, strlen((const int8*)PPlayer->name), m_offset, 4);
+
+    for (uint8 c = 0; c < strlen((const int8*)PPlayer->name); ++c)
+    {
+        m_offset = packBitsLE(m_data, PPlayer->name[c], m_offset, 7);
+    }
+    
+	m_offset = packBitsLE(m_data, 1,   m_offset, 5);
+    m_offset = packBitsLE(m_data, PPlayer->zone, m_offset,10);
+
+	if (!(PPlayer->flags1 & 0x4000))
+    {
+        m_offset = packBitsLE(m_data, SEARCH_NATION,   m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->nation, m_offset, 2);
+	
+        m_offset = packBitsLE(m_data, SEARCH_JOB,      m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->mjob,   m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->sjob,   m_offset, 5);
+
+        m_offset = packBitsLE(m_data, SEARCH_LEVEL,    m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->mlvl,   m_offset, 8);
+        m_offset = packBitsLE(m_data, PPlayer->slvl,   m_offset, 8);
+
+        m_offset = packBitsLE(m_data, SEARCH_RACE,     m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->race,   m_offset, 4);
+
+        m_offset = packBitsLE(m_data, SEARCH_RANK,     m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->rank,   m_offset, 8);
+    }
+
+    m_offset = packBitsLE(m_data, SEARCH_FLAGS1,   m_offset, 5);
+    m_offset = packBitsLE(m_data, PPlayer->flags1, m_offset,16);
+
+    m_offset = packBitsLE(m_data, SEARCH_ID,       m_offset, 5);
+    m_offset = packBitsLE(m_data, PPlayer->id,     m_offset,20);
+
+    //m_offset = packBitsLE(m_data, SEARCH_LINKSHELLRANK,  m_offset, 5);
+    //m_offset = packBitsLE(m_data, 0, m_offset,8);
+	
+    m_offset = packBitsLE(m_data, SEARCH_UNK0x0E,  m_offset, 5);
+    m_offset = packBitsLE(m_data, 0, m_offset, 32);
+	
+    if (PPlayer->comment != 0)
+    {
+        m_offset = packBitsLE(m_data, SEARCH_COMMENT,   m_offset, 5);
+        m_offset = packBitsLE(m_data, PPlayer->comment, m_offset,32);
+    }
+
+    m_offset = packBitsLE(m_data, SEARCH_FLAGS2,   m_offset, 5);
+    m_offset = packBitsLE(m_data, PPlayer->flags2, m_offset,32);
+
+	m_offset = packBitsLE(m_data, SEARCH_LANGUAGE,    m_offset, 5);
+    m_offset = packBitsLE(m_data, PPlayer->languages, m_offset,16);
+
+    if (m_offset%8 > 0) m_offset += 8 - m_offset%8;                 // побайтное выравнивание данных
+
+    WBUFB(m_data, size_offset) = m_offset/8 - size_offset - 1;      // размер данных сущности
+    WBUFW(m_data,(0x08)) = m_offset / 8;                            // размер отправляемых данных
     delete PPlayer;
 }
 
 /************************************************************************
 *																		*
-*  Возвращаем собранный пакет       
-uint8 packet[] = 
-    {
-        0x8C, 0x00, 0x00, 0x00, 0x49, 0x58, 0x46, 0x46, 0x8B, 0xC8, 0xC4, 0xF6, 0x1E, 0xD7, 0x81, 0xB1, 
-        0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 0x3A, 0x8A, 0x04, 0x17, 0xF9, 0x11, 0x45, 0x4D, 
-        0xB2, 0xD4, 0xF4, 0x84, 0xF5, 0xE0, 0x36, 0x76, 0x0C, 0xD4, 0xA2, 0xBB, 0x99, 0x77, 0x4E, 0xA9, 
-        0xCB, 0x50, 0xC8, 0xBC, 0xFD, 0x51, 0x3A, 0xDE, 0x61, 0x8F, 0x18, 0x67, 0xD6, 0x21, 0xB2, 0xEF, 
-        0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 
-        0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 
-        0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 
-        0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 0xE3, 0x51, 0x55, 0xAC, 0x0A, 0xCE, 0x0C, 0x21, 
-        0xDB, 0xEB, 0x8B, 0xF9, 0xD6, 0x1A, 0xFA, 0x87, 0xA1, 0x3D, 0x68, 0x87
-    };*
+*  Возвращаем собранный пакет
 *																		*
 ************************************************************************/
 
 uint8* CLinkshellListPacket::GetData()
 {
-    uint8 packet[] = 
-    {
-        0x8C, 0x00, 0x00, 0x00, 0x49, 0x58, 0x46, 0x46, 0x8B, 0xC8, 0xC4, 0xF6, 0x1E, 0xD7, 0x81, 0xB1, 
-        0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 0x3A, 0x8A, 0x04, 0x17, 0xF9, 0x11, 0x45, 0x4D, 
-        0xB2, 0xD4, 0xF4, 0x84, 0xF5, 0xE0, 0x36, 0x76, 0x0C, 0xD4, 0xA2, 0xBB, 0x99, 0x77, 0x4E, 0xA9, 
-        0xCB, 0x50, 0xC8, 0xBC, 0xFD, 0x51, 0x3A, 0xDE, 0x61, 0x8F, 0x18, 0x67, 0xD6, 0x21, 0xB2, 0xEF, 
-        0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 
-        0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 
-        0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 
-        0x7B, 0x25, 0xC4, 0xEA, 0xD3, 0x31, 0x04, 0x0F, 0xE3, 0x51, 0x55, 0xAC, 0x0A, 0xCE, 0x0C, 0x21, 
-        0xDB, 0xEB, 0x8B, 0xF9, 0xD6, 0x1A, 0xFA, 0x87, 0xA1, 0x3D, 0x68, 0x87
-    };
-
-    memcpy(m_data, packet, sizeof(packet));
-
     return m_data;
 }
 
@@ -110,5 +152,5 @@ uint8* CLinkshellListPacket::GetData()
 
 uint16 CLinkshellListPacket::GetSize()
 {
-    return 140;
+    return m_offset/8 + 20;
 }

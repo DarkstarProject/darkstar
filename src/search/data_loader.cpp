@@ -281,6 +281,55 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
 std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 {
     std::list<SearchEntity*> LinkshellList;
+	const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
+                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, linkshellid, linkshellrank \
+                            FROM accounts_sessions \
+                            LEFT JOIN chars USING (charid) \
+                            LEFT JOIN char_look USING (charid) \
+                            LEFT JOIN char_stats USING (charid) \
+                            LEFT JOIN char_jobs USING(charid) \
+							WHERE linkshellid = %u \
+                            ORDER BY charname ASC \
+                            LIMIT 20";
+
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, LinkshellID);
+
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		{
+            SearchEntity* PPlayer = new SearchEntity;
+            memset(PPlayer, 0, sizeof(SearchEntity));
+
+            memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
+
+            PPlayer->id     = (uint32)Sql_GetUIntData(SqlHandle, 0);
+            PPlayer->zone   = (uint8) Sql_GetIntData(SqlHandle,  3);
+            PPlayer->nation = (uint8) Sql_GetIntData(SqlHandle,  4);
+            PPlayer->mjob   = (uint8) Sql_GetIntData(SqlHandle, 10);
+            PPlayer->sjob   = (uint8) Sql_GetIntData(SqlHandle, 11);
+            PPlayer->mlvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->mjob);
+            PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->sjob);
+            PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
+            PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
+			PPlayer->linkshell = (uint8) Sql_GetIntData(SqlHandle,  33);
+            PPlayer->slvl = (PPlayer->slvl > (PPlayer->mlvl >> 1) ? (PPlayer->mlvl == 1 ? 1 : (PPlayer->mlvl >> 1)) : PPlayer->slvl);
+
+            uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);
+            uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
+
+            if (partyid == PPlayer->id) PPlayer->flags1 |= 0x0008;
+            if (nameflag & FLAG_AWAY)   PPlayer->flags1 |= 0x0100;
+            if (nameflag & FLAG_DC)     PPlayer->flags1 |= 0x0800;
+            if (partyid != 0)           PPlayer->flags1 |= 0x2000;
+            if (nameflag & FLAG_ANON)   PPlayer->flags1 |= 0x4000;
+            if (nameflag & FLAG_INVITE) PPlayer->flags1 |= 0x8000;
+
+            PPlayer->flags2 = PPlayer->flags1;
+
+            LinkshellList.push_back(PPlayer);
+        }
+    }
 
     return LinkshellList;
 }

@@ -25,12 +25,13 @@
 #define _CLINKSHELLLISTPACKET_H_
 
 #include "../../common/cbasetypes.h"
+#include "search_list.h"
 
 class CLinkshellListPacket
 {
 public:
 
-    CLinkshellListPacket();
+    CLinkshellListPacket(uint32 linkshellid, uint32 Total);
    ~CLinkshellListPacket();
 
     void AddPlayer(SearchEntity* PPlayer);
@@ -39,7 +40,8 @@ public:
     uint16 GetSize();
 
 private:
-
+	uint32 m_linkshellid;
+	uint32 m_offset;
     uint8 m_data[1024];
 };
 

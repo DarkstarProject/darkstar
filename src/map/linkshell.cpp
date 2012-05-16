@@ -115,7 +115,7 @@ void CLinkshell::setMessageTime(uint32 time)
 void CLinkshell::AddMember(CCharEntity* PChar)
 {
     members.push_back(PChar);
-
+	Sql_Query(SqlHandle,"UPDATE accounts_sessions SET linkshellid = %u WHERE charid = %u", this->getID(), PChar->id);
     PChar->PLinkshell = this;
 }
 
@@ -131,6 +131,7 @@ void CLinkshell::DelMember(CCharEntity* PChar)
 	{
         if (members.at(i) == PChar)
         {
+			Sql_Query(SqlHandle,"UPDATE accounts_sessions SET linkshellid = 0 WHERE charid = %u", PChar->id);
             members.erase(members.begin()+i);
             break;
         }
@@ -267,7 +268,6 @@ namespace linkshell
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell)
     {
         DSP_DEBUG_BREAK_IF(PChar == NULL);
-
         if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
         {
             LinkshellList_t::const_iterator it = LinkshellList.find(PItemLinkshell->GetLSID()); 
@@ -290,7 +290,6 @@ namespace linkshell
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell)
     {
         DSP_DEBUG_BREAK_IF(PChar == NULL);
-
         if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
         {
             LinkshellList_t::const_iterator it = LinkshellList.find(PItemLinkshell->GetLSID()); 
