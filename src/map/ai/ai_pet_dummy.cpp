@@ -493,8 +493,9 @@ void CAIPetDummy::ActionDeath()
 		{
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PPet->PMaster));
 		}
-		m_PPet->PMaster = NULL;
+		//m_PPet->PMaster = NULL;
 		m_ActionType = ACTION_NONE;
+		//m_PPet->loc.zone->DeletePET(m_PPet);
 	}
 }
 

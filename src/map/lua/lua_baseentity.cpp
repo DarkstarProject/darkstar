@@ -420,11 +420,11 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 		if( !lua_isnil(L,5) && lua_isnumber(L,5) )
 		{
             ((CCharEntity*)m_PBaseEntity)->loc.destination = (uint8)lua_tointeger(L,5);
-
 			((CCharEntity*)m_PBaseEntity)->status = STATUS_DISAPPEAR;
 			((CCharEntity*)m_PBaseEntity)->loc.boundary = 0;
 			((CCharEntity*)m_PBaseEntity)->clearPacketList();
 			((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,2));
+			((CCharEntity*)m_PBaseEntity)->loc.zone->DecreaseZoneCounter(((CCharEntity*)m_PBaseEntity));
 		} 
         else 
         {

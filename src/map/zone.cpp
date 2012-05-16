@@ -324,6 +324,12 @@ void CZone::InsertNPC(CBaseEntity* PNpc)
 	}
 }
 
+void CZone::DeletePET(CBaseEntity* PPet){
+	if(PPet!=NULL){
+		m_petList.erase(PPet->targid);// = 0;
+	}
+}
+
 /************************************************************************
 *                                                                       *
 *  Добавляем в зону PET (свободные targid 0x700-0x7FF)                  *	 
@@ -352,7 +358,6 @@ void CZone::InsertPET(CBaseEntity* PPet)
         PPet->id = 0x1000000 + (m_zoneID << 12) + targid;
         PPet->targid = targid;
         PPet->loc.zone = this;
-
 		m_petList[PPet->targid] = PPet;
 
 		for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
@@ -417,23 +422,6 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 }
 
 /************************************************************************
-*			Checks if there is a monster targetting the given           *
-*			player and returns the first entry (unused now)				*
-*************************************************************************/
-CBaseEntity* CZone::FindMobTargettingMaster(CBaseEntity* PEntity)
-{
-	for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
-    {
-            CMobEntity* PCurrentMob = (CMobEntity*)it->second;
-			CBattleEntity* PBattleTarget = PCurrentMob->PBattleAI->GetBattleTarget();
-			if(PBattleTarget!=NULL && PBattleTarget->id == PEntity->id && !PCurrentMob->isDead()){
-				return PCurrentMob;
-			}
-	}
-	return NULL;
-}
-
-/************************************************************************
 *                                                                       *
 *  Транспотр отправляется, необходимо собрать пассажиров                *
 *                                                                       *
@@ -463,6 +451,17 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 {
     DSP_DEBUG_BREAK_IF(PChar == NULL);
     DSP_DEBUG_BREAK_IF(PChar->loc.zone != this);
+
+	//remove pets
+	for (EntityList_t::const_iterator it = m_petList.begin() ; it != m_petList.end() ; ++it)
+	{
+		CPetEntity* PPet = (CPetEntity*)it->second;
+		if(PPet->PMaster!=NULL && PChar->id == PPet->PMaster->id){
+			PPet->loc.zone->PushPacket(PPet, CHAR_INRANGE, new CEntityUpdatePacket(PPet, ENTITY_DESPAWN));
+			DeletePET(PPet);
+		}
+	}
+	PChar->PPet = NULL;
 
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
     
