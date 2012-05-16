@@ -30,9 +30,19 @@ function onSpellCast(caster,target,spell)
 	if (target:getMainLvl() < 21) then
 		duration = duration * target:getMainLvl() / 21;
 	end
-
 	
-	target:delStatusEffect(EFFECT_REGEN);
-	target:addStatusEffect(EFFECT_REGEN,hp,3,duration);
+	if(target:hasStatusEffect(EFFECT_REGEN) == true) then
+		effect = target:getStatusEffect(EFFECT_REGEN);
+		cPower = effect:getPower();
+		if(cPower > 6) then
+			spell:setMsg(75); -- no effect
+		else
+			target:delStatusEffect(EFFECT_REGEN);
+			target:addStatusEffect(EFFECT_REGEN,hp,3,duration);	
+		end
+    else
+		target:addStatusEffect(EFFECT_REGEN,hp,3,duration);
+	end
+
 	return 0;
 end;
