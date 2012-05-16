@@ -74,7 +74,6 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x0035) then
-		player:setVar("MissionStatus", 4);
 		player:addKeyItem(DULL_SWORD);
 		player:messageSpecial(KEYITEM_OBTAINED,DULL_SWORD);
 		player:delKeyItem(SWORD_OFFERING);

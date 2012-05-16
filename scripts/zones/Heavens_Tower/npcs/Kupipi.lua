@@ -68,7 +68,7 @@ function onTrigger(player,npc)
 		MissionStatus = player:getVar("MissionStatus");
 		-- Bastok Mission 2-3 Part I - Windurst > San d'Oria
 		if(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST) then
-			if(MissionStatus == 2) then
+			if(MissionStatus == 3) then
 				player:startEvent(0x00ee,1,1,1,1,pNation);
 			elseif(MissionStatus <= 5) then
 				player:startEvent(0x00f0);
@@ -116,7 +116,7 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x00ee) then
 		if(player:getNation() == BASTOK) then
-			player:setVar("MissionStatus",3);
+			player:setVar("MissionStatus",4);
 			player:addKeyItem(SWORD_OFFERING);
 			player:messageSpecial(KEYITEM_OBTAINED,SWORD_OFFERING);
 		else

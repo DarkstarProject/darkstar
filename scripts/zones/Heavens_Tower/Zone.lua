@@ -27,6 +27,8 @@ cs = -1;
 	
 	if(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST and player:getVar("MissionStatus") == 3) then
 		cs = 0x002a;
+	elseif(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST and player:getVar("MissionStatus") == 2) then
+		cs = 0x002a;
 	end
 	
 	return cs;
@@ -75,7 +77,11 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x29) then
 		player:setPos(0,-17,135,60,239);
 	elseif(csid == 0x002a) then
-		player:setVar("MissionStatus",4);
+		if(player:getNation() == SANDORIA) then
+			player:setVar("MissionStatus",4);
+		else
+			player:setVar("MissionStatus",3);
+		end
 	end
 end;
 
