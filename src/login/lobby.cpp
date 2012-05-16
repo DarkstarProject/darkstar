@@ -460,6 +460,17 @@ int32 lobbyview_parse(int32 fd)
 			}
 		case 0x1F:
 			{
+				if(session[sd->login_lobbydata_fd]==NULL){
+					ShowInfo("0x1F Null pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
+						fd,sd->login_lobbydata_fd,sd->login_lobbyview_fd);
+					uint32 val = 1337;
+					if(sd->login_lobbydata_fd-1>=0 && session[sd->login_lobbydata_fd-1]!=NULL){
+						val = session[sd->login_lobbydata_fd-1]->client_addr;
+					}
+					ShowInfo("Details: %s ip %i and lobbydata-1 fd ip is %i\n",sd->login,sd->client_addr,val);
+					do_close_tcp(fd);
+					return -1;
+				}
 				memset(session[sd->login_lobbydata_fd]->wdata,0,5);
 				WBUFB(session[sd->login_lobbydata_fd]->wdata,0) = 0x01;
 				WFIFOSET(sd->login_lobbydata_fd,5);
@@ -485,6 +496,18 @@ int32 lobbyview_parse(int32 fd)
 			break;
 		case 0x07:
 			{
+				if(session[sd->login_lobbydata_fd]==NULL){
+					ShowInfo("0x07 Null pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
+						fd,sd->login_lobbydata_fd,sd->login_lobbyview_fd);
+					uint32 val = 1337;
+					if(sd->login_lobbydata_fd-1>=0 && session[sd->login_lobbydata_fd-1]!=NULL){
+						val = session[sd->login_lobbydata_fd-1]->client_addr;
+					}
+					ShowInfo("Details: %s ip %i and lobbydata-1 fd ip is %i\n",sd->login,sd->client_addr,val);
+					do_close_tcp(fd);
+					return -1;
+				}
+				
 				memset(session[sd->login_lobbydata_fd]->wdata,0,5);
 				WBUFB(session[sd->login_lobbydata_fd]->wdata,0) = 0x02;
 				WFIFOSET(sd->login_lobbydata_fd,5);
