@@ -7,13 +7,13 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:addStatusEffect(EFFECT_POISON,27,10,300);
 end;
 
 -----------------------------------
@@ -21,5 +21,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setVar("TheFangedOne_Died",1);
+	killer:setVar("TheFangedOne_Died",0);
 end;

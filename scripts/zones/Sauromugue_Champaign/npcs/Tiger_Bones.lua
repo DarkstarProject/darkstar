@@ -34,8 +34,9 @@ function onTrigger(player,npc)
 			player:messageSpecial(KEYITEM_OBTAINED, OLD_TIGERS_FANG);
 		elseif(deadTiger == 0) then
 			if(GetMobAction(17268808) == 0) then
-				SpawnMob(17268808);
+				SpawnMob(17268808):addStatusEffect(EFFECT_POISON,40,10,210);
 				player:messageSpecial(OLD_SABERTOOTH_DIALOG_I);
+				player:setVar("TheFangedOne_Died",1);
 			end
 		end
 	end
