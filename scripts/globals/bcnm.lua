@@ -4,7 +4,7 @@
 
 --Zone,{[TRADE]item,job,result(first menu),result(update)...}
 fightList = {139,{1426,1,32,5,1429,4,64,6,1436,11,128,7},			-- Horlais Peak
-			 144,{1430,5,64,6,1431,6,128,7,1434,9,256,8},			-- Waughroon Shrine
+			 144,{1166,0,16,4,1430,5,64,6,1431,6,128,7,1434,9,256,8},			-- Waughroon Shrine
 			 146,{1427,2,32,5,1428,3,64,6,1440,15,128,7},			-- Balga's Dais
 			 168,{1437,12,4,2,1438,13,8,3,1439,14,16,4},			-- Chamber of Oracles
 			 206,{1432,7,32,5,1433,8,64,6,1435,10,128,7} };			-- Qu'Bia Arena
@@ -21,6 +21,10 @@ function getTradeFightBCNM(player,zone,trade)
 						bcnmFight = fightList[nb + 1][nbi + 2];
 					end
 				-- elseif for BCNM orb (job = 0)
+				elseif(fightList[nb + 1][nbi + 1] == 0) then
+					if(trade:hasItemQty(fightList[nb + 1][nbi],1) and count == 1) then
+						bcnmFight = fightList[nb + 1][nbi + 2];
+					end
 				end
 			end
 		end
@@ -39,6 +43,9 @@ function getUpdateFightBCNM(player,zone,item)
 				if(fightList[nb + 1][nbi + 1] ~= 0 and fightList[nb + 1][nbi] == item) then
 					bcnmFight = fightList[nb + 1][nbi + 3];
 				-- elseif for BCNM orb (job = 0)
+				elseif(fightList[nb + 1][nbi + 1] == 0 and fightList[nb + 1][nbi] == item) then
+					bcnmFight = fightList[nb + 1][nbi + 3];
+					player:tradeComplete();
 				end
 			end
 		end
@@ -67,11 +74,11 @@ function getMonsterList(list,zone)
 		end
 	elseif(zone == 144) then
 		if(list == 1) then
-			monsterList = { {2,17367041},{0,0},{0,0},{0,0},{0,0},{0,0},{1,17367074},{1,17367077},{2,17367080} };
+			monsterList = { {2,17367041},{0,0},{0,0},{0,0},{4,17367059},{0,0},{1,17367074},{1,17367077},{2,17367080} };
 		elseif(list == 2) then
-			monsterList = { {2,17367043},{0,0},{0,0},{0,0},{0,0},{0,0},{1,17367075},{1,17367078},{2,17367082} };
+			monsterList = { {2,17367043},{0,0},{0,0},{0,0},{4,17367064},{0,0},{1,17367075},{1,17367078},{2,17367082} };
 		elseif(list == 3) then
-			monsterList = { {2,17367045},{0,0},{0,0},{0,0},{0,0},{0,0},{1,17367076},{1,17367079},{2,17367084} };
+			monsterList = { {2,17367045},{0,0},{0,0},{0,0},{4,17367069},{0,0},{1,17367076},{1,17367079},{2,17367084} };
 		end
 	elseif (zone == 146) then
 		if (list == 1) then

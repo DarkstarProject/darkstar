@@ -1,13 +1,14 @@
 -----------------------------------
 -- Area: Norg
 -- NPC:  Jaucribaix
--- Starts and Finishes Quest: Forge Your Destiny, The Sacred Katana, Yomi Okuri
+-- Starts and Finishes Quest: Forge Your Destiny, The Sacred Katana, Yomi Okuri, A Thief in Norg!?
 -- @pos 91 -7 -8 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/shop");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -28,6 +29,12 @@ function onTrade(player,npc,trade)
 	if(player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED) then
 		if(player:hasKeyItem(HANDFUL_OF_CRYSTAL_SCALES) and trade:hasItemQty(17809,1) and trade:getItemCount() == 1) then -- Trade Mumeito
 			player:startEvent(0x008d);
+		end
+	end
+	
+	if(player:getQuestStatus(OUTLANDS,A_THIEF_IN_NORG) == QUEST_ACCEPTED) then
+		if(player:hasKeyItem(CHARRED_HELM) and trade:hasItemQty(823,1) and trade:getItemCount() == 1) then -- Trade Gold Thread
+			player:startEvent(0x00a2);
 		end
 	end
 	
@@ -99,13 +106,31 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x009e); -- Start Quest "A Thief in Norg!?"
 		end
+	elseif(aThiefinNorg == QUEST_ACCEPTED) then
+		aThiefinNorgCS = player:getVar("aThiefinNorgCS");
+		if(aThiefinNorgCS < 5) then
+			player:startEvent(0x009f);
+		elseif(aThiefinNorgCS == 5) then
+			player:startEvent(0x00a6);
+		elseif(aThiefinNorgCS == 6 and player:hasItem(1166)) then -- Banishing Charm
+			player:startEvent(0x00a7); -- Go to the battlefield
+		elseif(aThiefinNorgCS == 6) then
+			player:startEvent(0x00a8); -- If you delete the item
+		elseif(aThiefinNorgCS == 7) then
+			player:startEvent(0x00a0);
+		elseif(aThiefinNorgCS == 8) then
+			player:startEvent(0x00a1);
+		elseif(aThiefinNorgCS == 9 and (player:needToZone() or tonumber(os.date("%j")) == player:getVar("Wait1DayForAThiefinNorg2_date"))) then
+			player:startEvent(0x00a3);
+		elseif(aThiefinNorgCS == 9) then
+			player:startEvent(0x00a4); -- Finish Quest "A Thief in Norg!?"
+		end
+	elseif(aThiefinNorg == QUEST_COMPLETED) then
+		player:startEvent(0x00a5); -- New Standard dialog
 	else
-		player:startEvent(0x0047);
+		player:startEvent(0x0047); -- Standard dialog
 	end
 end;
-
--- 0x00af  0x0047  0x0019  0x001a  0x001b  0x001c  0x001d  0x001e  0x008b  0x008c  0x008d  0x008e  0x008f  0x0092  0x0093  0x0098  0x0099  0x009a  0x009b  
--- 0x009c  0x009d  0x009e  0x009f  0x00a6  0x00a7  0x00a8  0x00a0  0x00a1  0x00a2  0x00a3  0x00a4  0x00a5  0x00b2  0x00b3  0x00b4  0x00b5  0x00b6  0x00b7
 
 -----------------------------------
 -- onEventUpdate
@@ -122,7 +147,7 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
-printf("RESULT: %u",option);
+--printf("RESULT: %u",option);
 
 	if(csid == 0x0019 and option == 1) then
 		player:addQuest(OUTLANDS,FORGE_YOUR_DESTINY);
@@ -171,12 +196,44 @@ printf("RESULT: %u",option);
 		else
 			player:delKeyItem(FADED_YOMOTSU_HIRASAKA);
 			player:addItem(14100);
-			player:messageSpecial(ITEM_OBTAINED,14100); -- Magoroku
+			player:messageSpecial(ITEM_OBTAINED,14100); -- Myochin Sune-Ate
 			player:setVar("yomiOkuriCS",0);
 			player:needToZone(true);
 			player:setVar("Wait1DayForAThiefinNorg_date", os.date("%j")); -- %M for next minute, %j for next day
 			player:addFame(OUTLANDS,NORG_FAME*AF2_FAME);
 			player:completeQuest(OUTLANDS,YOMI_OKURI);
+		end
+	elseif(csid == 0x009e and option == 1) then
+		player:addQuest(OUTLANDS,A_THIEF_IN_NORG);
+		player:setVar("Wait1DayForAThiefinNorg_date",0);
+		player:setVar("aThiefinNorgCS",1);
+	elseif(csid == 0x00a6 or csid == 0x00a8) then
+		if(player:getFreeSlotsCount() < 1) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1166);
+		else
+			player:addItem(1166);
+			player:messageSpecial(ITEM_OBTAINED,1166); -- Banishing Charm
+			player:setVar("aThiefinNorgCS",6);
+		end
+	elseif(csid == 0x00a0) then
+		player:setVar("aThiefinNorgCS",8);
+	elseif(csid == 0x00a2) then
+		player:tradeComplete();
+		player:delKeyItem(CHARRED_HELM);
+		player:setVar("aThiefinNorgCS",9);
+		player:needToZone(true);
+		player:setVar("Wait1DayForAThiefinNorg2_date", os.date("%j")); -- %M for next minute, %j for next day
+	elseif(csid == 0x00a4) then
+		if(player:getFreeSlotsCount() < 1) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13868);
+		else
+			player:addItem(13868);
+			player:messageSpecial(ITEM_OBTAINED,13868); -- 	Myochin Kabuto
+			player:setTitle(PARAGON_OF_SAMURAI_EXCELLENCE);
+			player:setVar("aThiefinNorgCS",0);
+			player:setVar("Wait1DayForAThiefinNorg2_date",0);
+			player:addFame(OUTLANDS,NORG_FAME*AF3_FAME);
+			player:completeQuest(OUTLANDS,A_THIEF_IN_NORG);
 		end
 	end
 	

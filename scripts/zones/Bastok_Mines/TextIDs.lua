@@ -19,6 +19,7 @@ YOUVE_EARNED_CONQUEST_POINTS = 10885; -- You've earned conquest points!
 -- Dialog Texts
 VIRNAGE_DIALOG_1 = 10762; -- They stayed in a citadel on the Sauromugue Champaign. The paint may be there still! I have heard people here say you are a great adventurer. Please, help the Goddess in Her hour of need!
 VIRNAGE_DIALOG_2 = 10768; -- Hand my letter to Eperdur in the San d'Oria Cathedral to claim your reward.
+THE_GATE_IS_LOCKED = 11929; -- The gate is locked.
 
 -- Shop Texts
           GRISELDA_SHOP_DIALOG = 10684; -- Good of you to drop by the Bat's Lair Inn! Why don't you try some of our specialty plates?
