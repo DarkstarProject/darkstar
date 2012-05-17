@@ -22,7 +22,7 @@ function OnUseAbility(player, target, ability)
 	elseif(val==17880) then player:spawnPet(32); --funguar
 	elseif(val==17887) then player:spawnPet(29); --eft
 	elseif(val==17862) then player:spawnPet(31); --mayfly
-	elseif(val==17872) then player:spawnPet(33); --beetle
+	elseif(val==17872) then player:spawnPet(33); --beetle 
 	elseif(val==17891) then player:spawnPet(34); --antlion
 	elseif(val==17889) then player:spawnPet(35); --diremite
 	else

@@ -74,7 +74,7 @@ INSERT INTO `pet_list` VALUES (30, 'LizardFamiliar', 1956, 33, 45, 3600);
 INSERT INTO `pet_list` VALUES (31, 'MayflyFamiliar', 1454, 33, 45, 3600);
 INSERT INTO `pet_list` VALUES (32, 'FunguarFamiliar', 1271, 33, 65, 3600);
 INSERT INTO `pet_list` VALUES (33, 'BeetleFamiliar', 512, 38, 45, 3600);
-INSERT INTO `pet_list` VALUES (34, 'AntlionFamiliar', 3141, 38, 50, 3600);
+INSERT INTO `pet_list` VALUES (34, 'AntlionFamiliar', 3982, 38, 50, 3600);
 INSERT INTO `pet_list` VALUES (35, 'MiteFamiliar', 1040, 43, 55, 3600);
 INSERT INTO `pet_list` VALUES (36, 'LullabyMelodia', 539, 43, 55, 3600);
 INSERT INTO `pet_list` VALUES (37, 'KeenearedSteffi', 2107, 43, 55, 5400);

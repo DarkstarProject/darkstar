@@ -1287,6 +1287,22 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+		if (m_PJobAbility->getID()==56){//Sic, check pet TP
+			if(m_PChar->PPet!=NULL && m_PChar->PPet->health.tp<100){ 
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 575));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+			else if(m_PChar->PPet==NULL){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+		}
         m_ActionType = ACTION_JOBABILITY_FINISH;
         ActionJobAbilityFinish();
         return;
@@ -1388,6 +1404,10 @@ void CAICharNormal::ActionJobAbilityFinish()
 	if(m_PJobAbility->getID()==69){ //Call Beast
 		charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
 		m_PChar->pushPacket(new CInventoryFinishPacket());
+	}
+	if(m_PJobAbility->getID()==56 && m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_JUGPET){//Sic
+		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_SIC;
+		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
 	}
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));

@@ -868,7 +868,14 @@ uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quan
 
 		if (Sql_Query(SqlHandle,fmtQuery,PChar->id,LocationID,slotID) != SQL_ERROR)
 		{
-			PChar->getStorage(LocationID)->InsertItem(NULL, slotID);
+			if(slotID==PChar->equip[SLOT_AMMO]){//unequip prior to removing to prevent issues with items being equipped
+				UnequipItem(PChar, slotID);
+				PChar->getStorage(LocationID)->InsertItem(NULL, slotID);
+				PChar->m_Weapons[SLOT_AMMO]   = new CItemWeapon(0);
+			}
+			else{
+				PChar->getStorage(LocationID)->InsertItem(NULL, slotID);
+			}
 			PChar->pushPacket(new CInventoryItemPacket(NULL, LocationID, slotID));
             delete PItem;
 		}

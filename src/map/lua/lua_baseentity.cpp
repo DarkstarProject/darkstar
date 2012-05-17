@@ -195,6 +195,19 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::petTP(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	if(((CBattleEntity*)m_PBaseEntity)->PPet!=NULL && lua_tointeger(L,-1)>=0 && lua_tointeger(L,-1)<=300){
+		((CBattleEntity*)m_PBaseEntity)->PPet->health.tp = lua_tointeger(L,-1);
+	}
+	return 0;
+}
+
 //======================================================//
 
 inline int32 CLuaBaseEntity::getMP(lua_State *L)
@@ -3630,6 +3643,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petRetreat),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petStay),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAbility),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petTP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),

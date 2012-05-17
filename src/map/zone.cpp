@@ -326,7 +326,7 @@ void CZone::InsertNPC(CBaseEntity* PNpc)
 
 void CZone::DeletePET(CBaseEntity* PPet){
 	if(PPet!=NULL){
-		m_petList.erase(PPet->targid);// = 0;
+		m_petList.erase(PPet->targid);
 	}
 }
 
@@ -451,20 +451,25 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 {
     DSP_DEBUG_BREAK_IF(PChar == NULL);
     DSP_DEBUG_BREAK_IF(PChar->loc.zone != this);
-
 	//remove pets
-	EntityList_t::iterator it = m_petList.begin();
+	if(PChar->PPet!=NULL){
+		PChar->PPet->status = STATUS_DISAPPEAR;
+		PChar->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+		DeletePET(PChar->PPet);//remove the TID for this pet
+		for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+		{
+			//inform other players of the pets removal
+			CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+			SpawnIDList_t::iterator PET = PCurrentChar->SpawnPETList.find(PChar->PPet->id);
 
-	while(it != m_petList.end())
-	{
-		CPetEntity* PPet = (CPetEntity*)it->second;
-		if(PPet->PMaster!=NULL && PChar->id == PPet->PMaster->id){
-			PPet->loc.zone->PushPacket(PPet, CHAR_INRANGE, new CEntityUpdatePacket(PPet, ENTITY_DESPAWN));
-			m_petList.erase(PPet->targid);
+			if( PET != PCurrentChar->SpawnPETList.end() )
+			{
+				PCurrentChar->SpawnPETList.erase(PET);
+				PCurrentChar->pushPacket(new CEntityUpdatePacket(PChar->PPet, ENTITY_DESPAWN));
+			}
 		}
-		it++;
-    }
-	PChar->PPet = NULL;
+		PChar->PPet = NULL;
+	}
 
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
     
@@ -736,7 +741,7 @@ void CZone::SpawnPETs(CCharEntity* PChar)
 		CPetEntity* PCurrentPet = (CPetEntity*)it->second;
 		SpawnIDList_t::iterator PET = PChar->SpawnPETList.lower_bound(PCurrentPet->id);
 
-		if (PCurrentPet->status == STATUS_NORMAL &&
+		if ((PCurrentPet->status == STATUS_NORMAL || PCurrentPet->status == STATUS_UPDATE) &&
 			distance(PChar->loc.p, PCurrentPet->loc.p) < 50) 
 		{
 			if( PET == PChar->SpawnPETList.end() ||
@@ -1175,7 +1180,6 @@ void CZone::ZoneServer(uint32 tick)
 	for (EntityList_t::const_iterator it = m_petList.begin() ; it != m_petList.end() ; ++it)
 	{
 		CPetEntity* PPet = (CPetEntity*)it->second;
-
 		PPet->StatusEffectContainer->CheckEffects(tick);
 		PPet->PBattleAI->CheckCurrentAction(tick);
 	}

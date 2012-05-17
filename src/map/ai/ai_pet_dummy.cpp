@@ -82,12 +82,17 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 
 void CAIPetDummy::ActionAbilityStart()
 {
-	if(m_PPet->getPetType()!=PETTYPE_WYVERN){
-		m_ActionType = ACTION_ROAMING;
-		ActionRoaming();
-		return;
+if(m_PPet->getPetType()==PETTYPE_JUGPET){
+	if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=100 && m_PBattleTarget!=NULL){ //choose random tp move
+		m_MasterCommand = MASTERCOMMAND_NONE;
+		if(m_PPet->PetSkills.size()>0){
+			m_PMobSkill = m_PPet->PetSkills.at(rand() % m_PPet->PetSkills.size());
+			preparePetAbility(m_PBattleTarget);
+			return;
+		}
 	}
-
+}
+else if(m_PPet->getPetType()==PETTYPE_WYVERN){
 	if(m_MasterCommand==MASTERCOMMAND_ELEMENTAL_BREATH && (m_PPet->GetMJob()==JOB_DRG || m_PPet->GetMJob()==JOB_RDM)){
 		m_MasterCommand = MASTERCOMMAND_NONE;
 		//offensive or multipurpose wyvern
@@ -151,6 +156,7 @@ void CAIPetDummy::ActionAbilityStart()
 			return;
 		}
 	}
+}
 	m_ActionType = ACTION_ATTACK;
 	ActionAttack();
 }
@@ -240,7 +246,12 @@ void CAIPetDummy::ActionAbilityFinish(){
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
-	Action.param	  = luautils::OnPetAbility(Action.ActionTarget, m_PPet,m_PMobSkill);
+	if(m_PPet->getPetType()==PETTYPE_JUGPET){
+		Action.param	  = luautils::OnMobWeaponSkill(Action.ActionTarget, m_PPet,m_PMobSkill);
+	}
+	else{
+		Action.param	  = luautils::OnPetAbility(Action.ActionTarget, m_PPet,m_PMobSkill);
+	}
 	Action.subparam   = m_PMobSkill->getID() + 256;
 	Action.messageID  = m_PMobSkill->getMsg();
 	Action.flag       = 0;
@@ -273,7 +284,6 @@ void CAIPetDummy::ActionAbilityInterrupt(){
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
 	m_PPet->health.tp = 0; 
-
     m_PMobSkill = NULL;
     m_ActionType = ACTION_ATTACK;
 }
@@ -493,9 +503,9 @@ void CAIPetDummy::ActionDeath()
 		{
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PPet->PMaster));
 		}
-		//m_PPet->PMaster = NULL;
+		m_PPet->PMaster = NULL;
 		m_ActionType = ACTION_NONE;
-		//m_PPet->loc.zone->DeletePET(m_PPet);
+		m_PPet->loc.zone->DeletePET(m_PPet);
 	}
 }
 

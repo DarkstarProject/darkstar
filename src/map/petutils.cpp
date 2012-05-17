@@ -55,6 +55,8 @@ struct Pet_t
 	uint8		size;		// размер модели
 	uint16		m_Family;
 	uint32		time;		// время существования (будет использоваться для задания длительности статус эффекта)
+
+	uint8		mJob;
 };
 
 std::vector<Pet_t*> g_PPetList;
@@ -72,7 +74,7 @@ void LoadPetList()
 {
 	FreePetList();
 
-	const int8* fmtQuery = "SELECT pet_list.name, modelid, minLevel, maxLevel, time, mobsize, systemid, mob_pools.familyid \
+	const int8* fmtQuery = "SELECT pet_list.name, modelid, minLevel, maxLevel, time, mobsize, systemid, mob_pools.familyid, mob_pools.mJob \
 						    FROM pet_list, mob_pools, mob_family_system \
 							WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
@@ -91,6 +93,7 @@ void LoadPetList()
 			Pet->size = Sql_GetUIntData(SqlHandle,5);
 			Pet->EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle,6);
 			Pet->m_Family = (uint16)Sql_GetIntData(SqlHandle,7);
+			Pet->mJob = (uint8)Sql_GetIntData(SqlHandle,8);
 
 			g_PPetList.push_back(Pet);
 		}
@@ -378,12 +381,9 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 	PPet->look = g_PPetList.at(PetID)->look;
 	PPet->name = g_PPetList.at(PetID)->name;
 	PPet->m_Family = g_PPetList.at(PetID)->m_Family;
+	PPet->SetMJob(g_PPetList.at(PetID)->mJob);
 
 	if(PPet->getPetType()==PETTYPE_AVATAR){
-		PPet->SetMJob(JOB_BLM);
-		if(PetID==PETID_CARBUNCLE){
-			PPet->SetMJob(JOB_WHM);
-		}
 		PPet->SetMLevel(PMaster->GetMLevel());
 		LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f/60.0f)));
@@ -400,14 +400,12 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 		PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_THR,JOB_WHM,PPet->GetMLevel()));
 	}
 	else if(PPet->getPetType()==PETTYPE_JUGPET){
-		PPet->SetMJob(JOB_WAR);
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(240.0f/60.0f)));
 		//TODO: Base off the caps + merits depending on jug type
 		PPet->SetMLevel(PMaster->GetMLevel());
 		LoadJugStats(PPet); //follow monster calcs (w/o SJ)
 	}
 	else if(PPet->getPetType()==PETTYPE_WYVERN){
-		PPet->SetMJob(JOB_DRG);
 		//set the wyvern job based on master's SJ
 		if(PMaster->GetSJob()!=NULL){
 			switch(PMaster->GetSJob()){
