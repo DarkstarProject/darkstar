@@ -52,7 +52,7 @@ end;
 -- onRegionLeave	
 -----------------------------------	
 
-function onRegionLeave(player,region)	
+function onRegionLeave(player,region)
 end;	
 
 -----------------------------------	

@@ -5,7 +5,7 @@
 --      http://wiki.ffxiclopedia.org/wiki/Picking_your_Coffers_and_Chests 
 --      http://ffxi.allakhazam.com/db/jobs.html?fjob=10&mid=1086187627165365190&num=150
 -------------------------------------------------
--- Includes
+
 require("scripts/globals/settings");
 
 
@@ -20,6 +20,21 @@ skeletonKey = 0x45B; -- 1115
    SK_SUCCESS_INCREMENT = 0.2
    LK_SUCCESS_INCREMENT = 0.15
   TTK_SUCCESS_INCREMENT = 0.1
+
+---------------------------------------
+-- Spawn Mimic
+---------------------------------------
+
+function spawnMimic(zone,player)
+	-- zone,mobid
+	mimic = {147,17379783};
+	
+	for nb = 1, table.getn(mimic), 2 do
+		if(zone == mimic[nb]) then
+			SpawnMob(mimic[nb + 1],120):updateEnmity(player);
+		end
+	end
+end;
 
 ---------------------------------------
 -- Items
@@ -84,7 +99,7 @@ LapisLazuli = 0x31B;
 
 function getAFbyZone(zone)
 	
-	-- nbAF, job#1, quest#1, item#1, job#2, quest#2, item#2, ...
+	-- job#1, quest#1, item#1, job#2, quest#2, item#2, ...
 	
 	if(zone == 147) then -- Beadeaux
 		-- Beast Jackcoat (BST), Gallant Breeches (PLD), Temple Cyclas (MNK)
@@ -145,32 +160,6 @@ function getAFbyZone(zone)
 	end
 	
 end
-
----------------------------------------
--- Returns true if NPC is a Treasure Chest. getName doesn't work
----------------------------------------
-
---function isChest(npc)
---	treasureName = npc:getName();
---	if(treasureName == "TreasureChest" or treasureName == "Treasure_Chest" or treasureName == "Treasure Chest")then
---		return true;
---	else
---		return false;
---	end
---end
-
----------------------------------------
--- Returns true ifNPC is a Treasure Coffer. getName doesn't work
----------------------------------------
-
---function isCoffer(npc)
---	treasureName = npc:getName();
---	if(treasureName == "TreasureCoffer" or treasureName == "Treasure_Coffer" or treasureName == "Treasure Coffer")then
---		return true;
---	else
---		return false;
---	end
---end
 
 ---------------------------------------
 -- Returns the success increment depending on the THF tool used.
