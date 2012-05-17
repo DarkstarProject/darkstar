@@ -243,6 +243,9 @@ void CAIPetDummy::ActionAbilityFinish(){
 	else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY){
 		Action.ActionTarget = m_PBattleSubTarget;
 	}
+	else if(m_PMobSkill->getValidTargets() == TARGET_SELF){
+		Action.ActionTarget = m_PPet;
+	}
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
