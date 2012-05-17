@@ -2389,8 +2389,8 @@ int32 SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* da
     string_t RecipientName = data+5;
 
 	const int8* Query = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charname = '%s' LIMIT 1";
-
-    int32 ret = Sql_Query(SqlHandle, Query, RecipientName.c_str());
+    
+	int32 ret = Sql_Query(SqlHandle, Query, RecipientName.c_str());
 
 	if (ret != SQL_ERROR && 
 		Sql_NumRows(SqlHandle) != 0 &&
@@ -2399,11 +2399,21 @@ int32 SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* da
 		uint32 CharID = (uint32)Sql_GetUIntData(SqlHandle,0);
 		uint16 TargID = (uint16)Sql_GetUIntData(SqlHandle,1);
 		uint8  ZoneID = (uint8) Sql_GetUIntData(SqlHandle,2);
-
+		
 		CCharEntity* PTellRecipient = (CCharEntity*)zoneutils::GetZone(ZoneID)->GetEntity(TargID, TYPE_PC);
 
 		if(PTellRecipient==NULL && ZoneID==0){//in a moghouse, do a full sweep
-			//todo:tell
+			map_session_list_t::iterator it = map_session_list.begin();
+			while(it != map_session_list.end())
+			{ 
+				map_session_data_t* map_session_data = it->second;
+				CCharEntity* PChar = map_session_data->PChar;
+				if(PChar->id == CharID){
+					PTellRecipient = PChar;
+					break;
+				}
+				++it;
+			}
 		}
 
 		if (PTellRecipient != NULL &&
