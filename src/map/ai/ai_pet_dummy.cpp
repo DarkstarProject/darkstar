@@ -505,7 +505,6 @@ void CAIPetDummy::ActionDeath()
 		}
 		m_PPet->PMaster = NULL;
 		m_ActionType = ACTION_NONE;
-		m_PPet->loc.zone->DeletePET(m_PPet);
 	}
 }
 

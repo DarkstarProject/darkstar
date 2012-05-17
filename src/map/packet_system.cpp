@@ -2402,6 +2402,10 @@ int32 SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 		CCharEntity* PTellRecipient = (CCharEntity*)zoneutils::GetZone(ZoneID)->GetEntity(TargID, TYPE_PC);
 
+		if(PTellRecipient==NULL && ZoneID==0){//in a moghouse, do a full sweep
+			//todo:tell
+		}
+
 		if (PTellRecipient != NULL &&
 			PTellRecipient->id == CharID &&
 			PTellRecipient->status != STATUS_DISAPPEAR)

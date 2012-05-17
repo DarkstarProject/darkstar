@@ -1179,9 +1179,16 @@ void CZone::ZoneServer(uint32 tick)
 
 	for (EntityList_t::const_iterator it = m_petList.begin() ; it != m_petList.end() ; ++it)
 	{
-		CPetEntity* PPet = (CPetEntity*)it->second;
-		PPet->StatusEffectContainer->CheckEffects(tick);
-		PPet->PBattleAI->CheckCurrentAction(tick);
+		
+			CPetEntity* PPet = (CPetEntity*)it->second;
+			PPet->StatusEffectContainer->CheckEffects(tick);
+			PPet->PBattleAI->CheckCurrentAction(tick);
+			if(PPet->status==STATUS_DISAPPEAR){
+				if(it!=m_petList.end()){ //TODO: REPLACE THIS WITH SOMETHING BETTER
+					PPet->loc.zone->DeletePET(PPet);
+					break;
+				}
+			}
 	}
 
     for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
