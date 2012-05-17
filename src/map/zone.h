@@ -130,7 +130,7 @@ public:
 	void			InsertNPC(CBaseEntity* PNpc);									// добавляем в зону npc
 	void			InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
 	void			InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
-	void			DeletePET(CBaseEntity* PPet);									//derefs the pet's ID from this zone
+	void			DeletePET(CBaseEntity* PPet);			//derefs the pet's ID from this zone
 
     void            FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
 	CCharEntity*	FindPlayerInZone(char* name);									//finds the player if exists in zone
