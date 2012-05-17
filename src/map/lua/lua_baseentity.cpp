@@ -3416,7 +3416,7 @@ inline int32 CLuaBaseEntity::changeContainerSize(lua_State *L)
 		CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
 
 		uint8 size = PChar->getStorage(LocationID)->GetSize();
-		PChar->getStorage(LocationID)->SetSize(size - 1 + lua_tointeger(L,2));
+		PChar->getStorage(LocationID)->SetSize(size + lua_tointeger(L,2));
 		PChar->pushPacket(new CInventorySizePacket(PChar));
 		charutils::SaveCharInventoryCapacity(PChar);
 	}
