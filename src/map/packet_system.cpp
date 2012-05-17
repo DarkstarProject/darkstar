@@ -2139,7 +2139,7 @@ int32 SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, int8* da
         {
             if (PChar->PLinkshell != NULL)
             {
-                // TODO: ....
+				PChar->PLinkshell->ChangeMemberRank(data+0x04, RBUFB(data,(0x15)));
             }
         }
         break;

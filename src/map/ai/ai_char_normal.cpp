@@ -1724,8 +1724,9 @@ void CAICharNormal::ActionAttack()
 			
 			if ((subType > 0 && subType < 4) || (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH))
 			{ 
-				numattacksLeftHand = ((rand()%100 < m_PChar->getMod(MOD_DOUBLE_ATTACK) / 10) ? 2 : 1);
+				numattacksLeftHand = ((rand()%100 < m_PChar->getMod(MOD_DOUBLE_ATTACK)) ? 2 : 1);
 			}
+
 			//TODO: APPLY THIS TO LEFT HAND AS WELL SO BOTH HANDS CAN MULTI HIT!
 			uint32 numattacksRightHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
 

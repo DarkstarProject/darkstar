@@ -46,7 +46,7 @@ INSERT INTO `traits` VALUES(60, 'resist charm', 0, 0, 0, 252, 0);
 INSERT INTO `traits` VALUES(65, 'gilfinder ii', 0, 0, 0, 0, 0);
 INSERT INTO `traits` VALUES(4, 'defense bonus', 1, 10, 0, 1, 10);
 INSERT INTO `traits` VALUES(54, 'resist virus', 1, 15, 0, 245, 0);
-INSERT INTO `traits` VALUES(15, 'double attack', 1, 25, 0, 288, 0);
+INSERT INTO `traits` VALUES(15, 'double attack', 1, 25, 0, 288, 10);
 INSERT INTO `traits` VALUES(3, 'attack bonus', 1, 30, 0, 23, 10);
 INSERT INTO `traits` VALUES(54, 'resist virus', 1, 35, 0, 245, 0);
 INSERT INTO `traits` VALUES(54, 'resist virus', 1, 55, 0, 245, 0);

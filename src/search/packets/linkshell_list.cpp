@@ -108,8 +108,8 @@ void CLinkshellListPacket::AddPlayer(SearchEntity* PPlayer)
     m_offset = packBitsLE(m_data, SEARCH_ID,       m_offset, 5);
     m_offset = packBitsLE(m_data, PPlayer->id,     m_offset,20);
 
-    //m_offset = packBitsLE(m_data, SEARCH_LINKSHELLRANK,  m_offset, 5);
-    //m_offset = packBitsLE(m_data, 0, m_offset,8);
+    m_offset = packBitsLE(m_data, SEARCH_LINKSHELLRANK,  m_offset, 5);
+    m_offset = packBitsLE(m_data, PPlayer->linkshell, m_offset,8); //2=sack, 1=holder, 3=pearl
 	
     m_offset = packBitsLE(m_data, SEARCH_UNK0x0E,  m_offset, 5);
     m_offset = packBitsLE(m_data, 0, m_offset, 32);

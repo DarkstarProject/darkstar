@@ -623,7 +623,6 @@ void LoadInventory(CCharEntity* PChar)
         {
 		    PItem->setSubType(ITEM_LOCKED);
             PChar->equip[SLOT_LINK] = SlotID;
-
             linkshell::AddOnlineMember(PChar, (CItemLinkshell*)PItem);
         }
 	}
@@ -2474,7 +2473,7 @@ void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
 }
 
 uint8 checkMultiHits(CCharEntity* PChar, uint16 weaponid){
-	uint32 num = ((rand()%100 < PChar->getMod(MOD_DOUBLE_ATTACK) / 10) ? 2 : 1);
+	uint32 num = ((rand()%100 < PChar->getMod(MOD_DOUBLE_ATTACK)) ? 2 : 1);
 	int distribution = 0;
 		switch(weaponid){
 		case 17440: //kraken club 2-8 (5:15:25:25:15:10:3:2) cdf = 5,20,45,70,85,95,98,100

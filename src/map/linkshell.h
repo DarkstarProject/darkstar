@@ -59,10 +59,11 @@ public:
     const int8* getMessage();
 	void		setMessage(int8* message);
 
-    void        AddMember(CCharEntity* PChar);
+    void        AddMember(CCharEntity* PChar,int8 type);
     void        DelMember(CCharEntity* PChar);
 
     void        RemoveMemberByName(int8* MemberName);
+	void		ChangeMemberRank(int8* MemberName, uint8 toSack);
 
     void        PushPacket(CCharEntity* PChar, CBasicPacket* packet);
 
