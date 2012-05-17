@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x00c8) then	
 		player:setPos(0,0,0,0,221);
 	elseif(csid == 0x044d) then
-		if(player:getFreeSlotsCount() <= 1) then 
+		if(player:getFreeSlotsCount() < 1) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14226);
 		else
 			player:delKeyItem(SEANCE_STAFF);
