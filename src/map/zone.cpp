@@ -453,14 +453,17 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
     DSP_DEBUG_BREAK_IF(PChar->loc.zone != this);
 
 	//remove pets
-	for (EntityList_t::const_iterator it = m_petList.begin() ; it != m_petList.end() ; ++it)
+	EntityList_t::iterator it = m_petList.begin();
+
+	while(it != m_petList.end())
 	{
 		CPetEntity* PPet = (CPetEntity*)it->second;
 		if(PPet->PMaster!=NULL && PChar->id == PPet->PMaster->id){
 			PPet->loc.zone->PushPacket(PPet, CHAR_INRANGE, new CEntityUpdatePacket(PPet, ENTITY_DESPAWN));
-			DeletePET(PPet);
+			m_petList.erase(PPet->targid);
 		}
-	}
+		it++;
+    }
 	PChar->PPet = NULL;
 
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)

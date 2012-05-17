@@ -1277,6 +1277,16 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+		if (m_PJobAbility->getID()==69)//Call Beast, check ammo slot
+		{
+			if(charutils::hasInvalidJugPetAmmo(m_PChar)){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 337));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+		}
         m_ActionType = ACTION_JOBABILITY_FINISH;
         ActionJobAbilityFinish();
         return;
@@ -1374,6 +1384,12 @@ void CAICharNormal::ActionJobAbilityFinish()
             }
         }
 	}
+
+	if(m_PJobAbility->getID()==69){ //Call Beast
+		charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+		m_PChar->pushPacket(new CInventoryFinishPacket());
+	}
+
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
     m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
 		

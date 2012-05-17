@@ -2008,6 +2008,31 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 }
 
+bool hasInvalidJugPetAmmo(CCharEntity* PChar){
+	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+	if(PItem==NULL){
+		return true;
+	}
+	
+	switch(PItem->getID()){
+	case 17876: //crab familiar
+	case 17864: //sheep
+	case 17860: //hare
+	case 17882: //homonculus
+	case 17870: //tiger
+	case 17885: //flytrap
+	case 17866: //lizard
+	case 17880: //funguar
+	case 17887: //eft
+	case 17862: //mayfly
+	case 17872: //beetle
+	case 17891: //antlion
+	case 17889: //diremite
+		return false;
+	}
+	return true;
+}
+
 /************************************************************************
 *                                                                       *
 *  Добавляем очки опытка указанному персонажу                           *

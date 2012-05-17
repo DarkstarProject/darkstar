@@ -60,6 +60,8 @@ namespace charutils
 	void	BuildingCharAbilityTable(CCharEntity* PChar);
 	void	BuildingCharTraitsTable(CCharEntity* PChar); 
 
+	bool	hasInvalidJugPetAmmo(CCharEntity* PChar);
+
 	void	CheckWeaponSkill(CCharEntity* PChar, uint8 skill);
     uint8   AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem);
 	uint8	AddItem(CCharEntity* PChar, uint8 LocationID, uint16 itemID, uint32 quantity = 1, bool silence = false);
