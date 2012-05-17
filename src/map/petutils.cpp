@@ -26,6 +26,7 @@
 
 #include <string.h>
 #include <vector>
+#include <math.h>
 
 #include "charentity.h"
 #include "map.h"
