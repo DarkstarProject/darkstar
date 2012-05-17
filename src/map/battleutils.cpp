@@ -577,6 +577,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         break;
         case TYPE_MOB:
         {
+			PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
             if (PDefender->PMaster == NULL)
             {
                 PDefender->addTP(TP);

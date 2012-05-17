@@ -16,6 +16,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+	target:wakeUp();
 end;
 
 -----------------------------------

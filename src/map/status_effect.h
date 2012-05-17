@@ -542,6 +542,7 @@ public:
 	uint32	GetDuration();
 	uint32	GetLastTick();
 	uint32	GetStartTime();
+	CBattleEntity* GetOwner();
 
     void    SetFlag(uint16 Flag);
     void    SetIcon(uint16 Icon);

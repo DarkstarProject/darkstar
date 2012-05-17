@@ -23,6 +23,7 @@ end;
 
 function onEffectTick(target,effect)
     target:delHP(effect:getPower());
+    target:wakeUp();
 end;
 
 

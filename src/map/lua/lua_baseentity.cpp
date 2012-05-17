@@ -459,6 +459,33 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 	return 1;
 }
 
+/*****************************************************
+wakeUp - Wakes the calling entity if necessary.
+Should only be used onTick for DoTs. This checks the
+ACTION_SLEEP state rather than enumerating StatusEffectContainer
+using delStatusEffect, so it's a lot faster.
+*******************************************************/
+
+inline int32 CLuaBaseEntity::wakeUp(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	switch(m_PBaseEntity->objtype){
+	case TYPE_PC:
+	case TYPE_MOB:
+		CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+		if(PEntity->PBattleAI->GetCurrentAction()==ACTION_SLEEP){
+			//wake them up!
+			PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP);
+			PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP_II);
+		}
+		break;
+	}
+	
+
+	return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::hasItem(lua_State *L)
@@ -3001,6 +3028,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     charutils::SaveCharStats(PChar);
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     charutils::SaveCharExp(PChar, PChar->GetMJob());
+	charutils::UpdateHealth(PChar);
 
     PChar->pushPacket(new CCharJobsPacket(PChar));
     PChar->pushPacket(new CCharStatsPacket(PChar));
@@ -3612,5 +3640,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openDoor),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
 	{NULL,NULL}
 };

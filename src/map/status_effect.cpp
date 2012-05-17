@@ -60,6 +60,11 @@ EFFECT CStatusEffect::GetStatusID()
 {
 	return m_StatusID;
 }
+ 
+CBattleEntity* CStatusEffect::GetOwner()
+{
+	return m_POwner;
+}
 
 uint16 CStatusEffect::GetSubID()
 {

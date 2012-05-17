@@ -611,10 +611,12 @@ void CAIMobDummy::ActionAbilityInterrupt()
 
 void CAIMobDummy::ActionSleep()
 {
-    if (!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP))
+    if (!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II))
     {
-
+		m_ActionType = ACTION_ATTACK;
     }
+	//TODO: possibly change this so have ActionBeforeSleep then ActionSleep (send ENTITY_UPDATE once only rather than spam)
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
 /************************************************************************

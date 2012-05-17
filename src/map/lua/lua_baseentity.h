@@ -203,6 +203,7 @@ public:
 	int32 petStay(lua_State*);
 	int32 petAbility(lua_State*);
 
+	int32 wakeUp(lua_State*);				//wakes target if necessary
 	int32 needToZone(lua_State*);			// Check if player has zoned since the flag has been raised
 
     int32 setFlag(lua_State*);

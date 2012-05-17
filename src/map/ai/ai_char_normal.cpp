@@ -1153,8 +1153,17 @@ void CAICharNormal::ActionMagicFinish()
         m_PChar->m_ActionList.at(i).param = luautils::OnSpellCast(m_PChar, PTarget);
         m_PChar->m_ActionList.at(i).messageID = m_PSpell->getMessage();
 
+		if(m_PChar->m_ActionList.at(i).param>0){ //damage spell which dealt damage, TODO: use a better identifier!
+			if(m_PSpell->getMessage()==2 || m_PSpell->getMessage()==227){//damage or drain hp
+				PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+			}
+		}
+
 		if(i>0 && m_PSpell->getMessage() == 2){ //if its a damage spell msg and is hitting the 2nd+ target
 			m_PChar->m_ActionList.at(i).messageID = 264; //change the id to "xxx takes ### damage." only
+		}
+		if(i>0 && m_PSpell->getMessage() == 237){ //if its a damage spell msg and is hitting the 2nd+ target
+			m_PChar->m_ActionList.at(i).messageID = 278; //change the id to "xxx receives the effect of xxx." only
 		}
 
         if (PTarget->objtype == TYPE_MOB)
@@ -1474,7 +1483,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
 		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage);
-		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST);
+		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST); //TODO: REMOVE THIS, BOOST EFFECT IN DB IS WRONG, MISSING EFFECTFLAG_DAMAGE
 	}
     //if (m_PBattleSubTarget->objtype == TYPE_MOB && m_PBattleSubTarget->isDead())
     //{
@@ -1776,6 +1786,7 @@ void CAICharNormal::ActionAttack()
 				}
 				m_PChar->m_ActionList.push_back(Action);
 			}
+			//TODO: INEFFICIENT, REPLACE WITH EFFECTFLAG_ATTACK
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST);
