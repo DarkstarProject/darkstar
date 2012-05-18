@@ -26,6 +26,7 @@
 
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
+#include "map.h"
 
 enum ENTITYTYPE 
 {

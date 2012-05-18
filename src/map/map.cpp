@@ -766,6 +766,7 @@ int32 map_config_default()
 	map_config.buffer_size    = 1800;
     map_config.exp_rate       = 1.0f;
 	map_config.exp_retain     = 0.0f;
+	map_config.speed_mod      = 0;
 	map_config.mob_tp_multiplier	= 1.0f;
 	map_config.player_tp_multiplier	= 1.0f;
     map_config.vanadiel_time_offset = 0;
@@ -856,6 +857,10 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.exp_retain = cap_value(atof(w2), 0.0f, 1.0f);
         }
+		else if (strcmp(w1,"speed_mod") == 0)
+		{
+			map_config.speed_mod = atoi(w2);
+		}
 		else if (strcmp(w1,"mysql_host") == 0)
 		{
 			map_config.mysql_host = aStrdup(w2);

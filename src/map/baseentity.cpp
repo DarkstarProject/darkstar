@@ -29,7 +29,7 @@ CBaseEntity::CBaseEntity()
 {
 	m_TargID = 0;
 
-	speed    = 40;
+	speed    = (int)(40 + (int)map_config.speed_mod);
 	speedsub = 40;
 	
 	animationsub = 0;
