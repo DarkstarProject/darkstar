@@ -728,13 +728,11 @@ void CAIMobDummy::ActionAttack()
 						Action.speceffect = SPECEFFECT_HIT;
 						Action.messageID  = 1;
 
-						float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget); 
+						bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) );
+						float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget,isCritical); 
 
-						if ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) )
+						if(isCritical)
 						{
-							DamageRatio += 1;
-							DamageRatio = (DamageRatio > 3 ? 3 : DamageRatio);
-
 							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 							Action.messageID  = 67;
 						}

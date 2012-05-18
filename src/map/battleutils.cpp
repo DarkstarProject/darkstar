@@ -720,13 +720,30 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 *																		*
 ************************************************************************/
 
-float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender)  
+float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical)  
 {
-    float cRatio = PAttacker->ATT() / PDefender->DEF();
-
+    float ratio = PAttacker->ATT() / PDefender->DEF();
 	float cRatioMax = 0;
 	float cRatioMin = 0;
 
+	float cap = 2.0f;
+	if(PAttacker->objtype==TYPE_PC){
+		switch(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()){
+		case SKILL_GAX:
+		case SKILL_GSD:
+		case SKILL_GKT:
+		case SKILL_POL:
+		case SKILL_SYH:
+		case SKILL_STF:
+			cap = 2.2f;
+			break;
+		}
+	}
+
+
+	ratio = cap_value(ratio,0,cap);
+	//2hs have more of a 'buffer' (0.2 more) for level correction than 1hs
+	float cRatio = ratio;
 	if(PAttacker->objtype == TYPE_PC) 
 	{
 		if(PAttacker->GetMLevel() < PDefender->GetMLevel()) 
@@ -734,28 +751,60 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 			cRatio -= 0.050f * (PDefender->GetMLevel() - PAttacker->GetMLevel());
 		}
 	}
-
+	//but its still capped
 	cRatio = cap_value(cRatio,0,2);
 
-	if((0 <= cRatio) && (cRatio < 0.5)) {
-		cRatioMax = 0.4f + 1.2f * cRatio;
-	} else if((0.5 <= cRatio) && (cRatio <= (5/6))) {
-		cRatioMax = 1;
-	} else if(((5/6) < cRatio) && (cRatio <= 2)) {
-		cRatioMax = 1.2f * (cRatio);
-	}
+	if(cap==2.0f){//1h weapon algorithm source: PChan @ BG (aka reliable)
+		if((0 <= cRatio) && (cRatio < 0.5)) {
+			cRatioMax = 1.0f + ((10.0f/9.0f)*(cRatio-0.5f));
+		} else if((0.5 <= cRatio) && (cRatio <= 0.75f)) {
+			cRatioMax = 1.0f;
+		} else if((0.75f < cRatio) && (cRatio <= 2)) {
+			cRatioMax = 1.0f + ((10.0f/9.0f)*(cRatio-0.75f));
+		}
 
-	if((0 <= cRatio) && (cRatio < 1.25)) {
-		cRatioMin =  (float)(-0.5 + 1.2 * cRatio);
-	} else if((1.25 <= cRatio) && (cRatio <= 1.5)) {
-		cRatioMin = 1;
-	} else if((1.5 < cRatio) && (cRatio <= 2)) {
-		cRatioMin = (float)(-0.8 + 1.2 * cRatio);
+		if((0 <= cRatio) && (cRatio < 0.5)) {
+			cRatioMin =  (float)(1.0f/6.0f);
+		} else if((0.5 <= cRatio) && (cRatio <= 1.25)) {
+			cRatioMin = 1.0f + ((10.0f/9.0f)*(cRatio-1.25));
+		} else if((1.25 < cRatio) && (cRatio <= 1.5)) {
+			cRatioMin = 1.0f;
+		} else if((1.5 < cRatio) && (cRatio <= 2)) {
+			cRatioMin = 1.0f + ((10.0f/9.0f)*(cRatio-1.5));
+		}
+	}
+	else{//2h weapon
+		if((0 <= cRatio) && (cRatio < 0.5)) {
+			cRatioMax = 0.4f + 1.2f * cRatio;
+		} else if((0.5 <= cRatio) && (cRatio <= (5.0f/6.0f))) {
+			cRatioMax = 1;
+		} else if(((5.0f/6.0f) < cRatio) && (cRatio <= (10.0f/6.0f))) {
+			cRatioMax = 1.25f * (cRatio);
+		} else if(((10.0f/6.0f) < cRatio) && (cRatio <= 2)) {
+			cRatioMax = 1.2f * (cRatio);
+		}
+
+		if((0 <= cRatio) && (cRatio < 1.25)) {
+			cRatioMin =  (float)(-0.5 + 1.2 * cRatio);
+		} else if((1.25 <= cRatio) && (cRatio <= 1.5)) {
+			cRatioMin = 1;
+		} else if((1.5 < cRatio) && (cRatio <= 2)) {
+			cRatioMin = (float)(-0.8 + 1.2 * cRatio);
+		}
 	}
 
 	cRatioMin = (cRatioMin < 0 ? 0 : cRatioMin);
 
-	return ((cRatioMax-cRatioMin) * ((float)rand()/RAND_MAX)) + cRatioMin;
+	if(isCritical){
+		cRatioMin += 1;
+		cRatioMax += 1;
+	}
+
+	cRatioMax = (cRatioMax > 3 ? 3 : cRatioMax);
+	float pDIF = ((cRatioMax-cRatioMin) * ((float)rand()/RAND_MAX)) + cRatioMin;
+
+	//x1.00 ~ x1.05 final multiplier, giving max value 3*1.05 -> 3.15
+	return pDIF * (1+((0.5f) * ((float)rand()/RAND_MAX)));
 }
 
 /************************************************************************

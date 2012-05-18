@@ -1774,13 +1774,12 @@ void CAICharNormal::ActionAttack()
 
 				if ( rand()%100 < battleutils::GetHitRate(m_PChar,m_PBattleTarget) )
 				{
-					float DamageRatio = battleutils::GetDamageRatio(m_PChar,m_PBattleTarget); 
+					bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget)) ;
 
-					if ( rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget) )
+					float DamageRatio = battleutils::GetDamageRatio(m_PChar,m_PBattleTarget,isCritical); 
+
+					if (isCritical)
 					{
-						DamageRatio += 1;
-						DamageRatio = (DamageRatio > 3 ? 3 : DamageRatio);
-
 						Action.reaction   = REACTION_HIT;
 						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 						Action.messageID  = 67;
