@@ -48,7 +48,7 @@ CWideScanPacket::CWideScanPacket(CCharEntity * PChar, CBaseEntity * PEntity)
 	// 0 - черная точка (? Char ?) 
 	// 1 - зеленая точка (NPC)
 	// 2 - красная точка (Mob)
-	WBUFB(data,(0x07)-4) = PEntity->objtype; 
+	WBUFB(data,(0x07)-4) = PEntity->objtype/2; 
 
 	WBUFW(data,(0x08)-4) = (int16)(PEntity->loc.p.x - PChar->loc.p.x); // x - разница координат персонажа и объекта
 	WBUFW(data,(0x0A)-4) = (int16)(PEntity->loc.p.z - PChar->loc.p.z); // z - разница координат персонажа и объекта

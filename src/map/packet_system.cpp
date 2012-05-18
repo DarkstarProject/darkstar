@@ -3034,7 +3034,7 @@ int32 SmallPacket0x0F2(map_session_data_t* session, CCharEntity* PChar, int8* da
 
 int32 SmallPacket0x0F4(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	PChar->loc.zone->WideScan(PChar,10000); // MOD_WIDESCAN
+	PChar->loc.zone->WideScan(PChar,PChar->getMod(MOD_WIDESCAN)); 
 	return 0;
 }
 

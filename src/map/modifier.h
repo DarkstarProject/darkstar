@@ -362,10 +362,11 @@ enum MODIFIER
 	MOD_LIGHT_ARTS_MPCOST	= 0x150,
 	MOD_LIGHT_ARTS_FASTCAST	= 0x151,
 	MOD_DARK_ARTS_MPCOST	= 0x152,
-	MOD_DARK_ARTS_FASTCAST	= 0x153
+	MOD_DARK_ARTS_FASTCAST	= 0x153,
+	MOD_WIDESCAN	= 0x154
 };
 
-#define MAX_MODIFIER		  0x154
+#define MAX_MODIFIER		  0x155
 
 
 /************************************************************************

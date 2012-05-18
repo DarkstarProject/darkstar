@@ -233,3 +233,12 @@ INSERT INTO `traits` VALUES(24, 'clear mind', 20, 20, 0, 295, 0);
 INSERT INTO `traits` VALUES(13, 'conserve mp', 20, 25, 0, 296, 0);
 INSERT INTO `traits` VALUES(8, 'max mp boost', 20, 30, 0, 5, 10);
 INSERT INTO `traits` VALUES(97, 'stormsurge', 20, 75, 0, 0, 0);
+-- trait id, job, lvl, effect, mod, value 
+INSERT INTO `traits` VALUES(59, 'widescan', 9, 1, 0, 340, 50);
+INSERT INTO `traits` VALUES(59, 'widescan', 11, 1, 0, 340, 150);
+INSERT INTO `traits` VALUES(59, 'widescan', 11, 20, 0, 340, 50);
+INSERT INTO `traits` VALUES(59, 'widescan', 11, 40, 0, 340, 50);
+INSERT INTO `traits` VALUES(59, 'widescan', 11, 60, 0, 340, 50);
+INSERT INTO `traits` VALUES(59, 'widescan', 9, 20, 0, 340, 100);
+INSERT INTO `traits` VALUES(59, 'widescan', 9, 40, 0, 340, 50);
+INSERT INTO `traits` VALUES(59, 'widescan', 9, 60, 0, 340, 50);
