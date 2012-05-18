@@ -1286,6 +1286,13 @@ void CAICharNormal::ActionJobAbilityStart()
 				m_PBattleSubTarget = NULL;
 				return;
 			}
+			if(m_PChar->PPet!=NULL){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 315));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
 		}
 		if (m_PJobAbility->getID()==56){//Sic, check pet TP
 			if(m_PChar->PPet!=NULL && m_PChar->PPet->health.tp<100){ 

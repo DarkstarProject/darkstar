@@ -2049,9 +2049,11 @@ int32 SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* da
             {
                 CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
-                if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL) && PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL)
+                if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
                 {
-                    PChar->PLinkshell->RemoveMemberByName(data+0x0C);
+					if(PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL || PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK){
+						PChar->PLinkshell->RemoveMemberByName(data+0x0C);
+					}
                 }
             }
         }
