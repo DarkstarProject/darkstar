@@ -30,7 +30,7 @@ CBaseEntity::CBaseEntity()
 	m_TargID = 0;
 
 	speed    = (int)(40 + (int)map_config.speed_mod);
-	speedsub = 40;
+	speedsub = (int)(40 + (int)map_config.speed_mod);
 	
 	animationsub = 0;
 	animation    = ANIMATION_NONE;
