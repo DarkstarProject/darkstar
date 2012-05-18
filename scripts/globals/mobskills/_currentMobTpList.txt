@@ -1,17 +1,17 @@
-----------------------------------------------
--- Please use this file to keep track of which
--- mob TP moves have been scripted and tested!
-----------------------------------------------
+-------------------------------------------------------------------
+--   Please use this file to keep track of which
+--   mob TP moves have been scripted and tested!
+--------------------------------------------------------------------
 
--- Goblin_Rush  =
--- Bomb_Toss  =
--- Bomb_Toss_Suicide  =
--- Foot_Kick  =
--- Dust_Cloud  =
--- Whirl_Claws  =
--- Lamb_Chop  =
+-- Goblin_Rush  =  done
+-- Bomb_Toss  =  done
+-- Bomb_Toss_Suicide  =  done
+-- Foot_Kick  =  done
+-- Dust_Cloud  =  done
+-- Whirl_Claws  =  done
+-- Lamb_Chop  =  done
 -- Rage  =
--- Sheep_Charge  =
+-- Sheep_Charge  =  done
 -- Sheep_Bleat  =
 -- Sheep_Song  =
 -- Rage  =
@@ -19,9 +19,9 @@
 -- Rumble  =
 -- Great_Bleat  =
 -- Petribreath  =
--- Roar  =
--- Razor_Fang  =
--- Claw_Cyclone  =
+-- Roar  =  done
+-- Razor_Fang  =  done
+-- Claw_Cyclone  =  done
 -- Sonic_Wave  =
 -- Stomping  =
 -- Cold_Stare  =
@@ -38,17 +38,17 @@
 -- Bad_Breath  =
 -- Needleshot  =
 -- 1000_Needles  =
--- Frogkick  =
--- Spore  =
--- Queasyshroom  =
+-- Frogkick  =  done
+-- Spore  =  done
+-- Queasyshroom  =  done
 -- Drill_Branch  =
 -- Pinecone_Bomb  =
 -- Leafstorm  =
 -- Entangle  =
 -- Final_Sting  =
--- Pollen  =
+-- Pollen  =  done
 -- Sharp_Sting  =
--- Power_Attack  =
+-- Power_Attack  =  done
 -- Hi-Freq_Field  =
 -- Rhino_Attack  =
 -- Cocoon  =
@@ -61,15 +61,15 @@
 -- Filamented_Hold  =
 -- Spinning_Top  =
 -- Tail_Blow  =
--- Fireball  =
--- Blockhead  =
--- Brain_Crush  =
--- Infrasonics  =
+-- Fireball  =  done
+-- Blockhead  =  done
+-- Brain_Crush  =  done
+-- Infrasonics  =  done
 -- Chomp_Rush  =
 -- Frost_Breath  =
 -- Scythe_Tail  =
--- Blood_Drain  =
--- Jet_Stream  =
+-- Blood_Drain  =  done
+-- Jet_Stream  =  done
 -- Stormwind  =
 -- Hammer_Beak  =
 -- Poison_Pick  =
@@ -77,18 +77,18 @@
 -- Acid_Mist  =
 -- Sand_Breath  =
 -- Drainkiss  =
--- Full-force_Blow  =
--- Gastric_Bomb  =
--- Sandspin  =
--- Tremors  =
--- Fluid_Spread  =
--- Fluid_Toss  =
--- Fluid_Spread  =
--- Fluid_Toss  =
+-- Full-force_Blow  =  done
+-- Gastric_Bomb  =  done
+-- Sandspin  =  done
+-- Tremors  =  done
 -- Fluid_Spread  =
 -- Fluid_Toss  =
 -- Death_Ray  =
 -- Hex_Eye  =
+-- Big_Scissors  =  done
+-- Bubble_Curtain  =
+-- Bubble_Shower  =  done
+-- Metallic_Body  =  done
 -- Big_Scissors  =
 -- Bubble_Curtain  =
 -- Bubble_Shower  =
@@ -97,11 +97,7 @@
 -- Bubble_Curtain  =
 -- Bubble_Shower  =
 -- Metallic_Body  =
--- Big_Scissors  =
--- Bubble_Curtain  =
--- Bubble_Shower  =
--- Metallic_Body  =
--- Screwdriver  =
+-- Screwdriver  =  done
 -- Maelstrom  =
 -- Maelstrom  =
 -- Howling  =
@@ -122,8 +118,6 @@
 -- Undead_Mold  =
 -- Abyss_Blast  =
 -- Self-Destruct  =
--- Smite_of_Rage  =
--- Whirl_of_Rage  =
 -- Smite_of_Rage  =
 -- Whirl_of_Rage  =
 -- Mysterious_Light  =
@@ -163,20 +157,12 @@
 -- Heavy_Stomp  =
 -- Cursed_Sphere  =
 -- Venom  =
--- Impact_Roar  =
--- Grand_Slam  =
--- Impact_Roar  =
--- Grand_Slam  =
--- Impact_Roar  =
--- Grand_Slam  =
--- Impact_Roar  =
--- Grand_Slam  =
--- Impact_Roar  =
--- Grand_Slam  =
--- Heavy_Strike  =
--- Ice_Break  =
--- Thunder_Break  =
--- Crystal_Rain  =
+-- Impact_Roar  =  done
+-- Grand_Slam  =  done
+-- Heavy_Strike  =  done
+-- Ice_Break  =  done
+-- Thunder_Break  =  done
+-- Crystal_Rain  =  done
 -- Sprout_Spin  =
 -- Slumber_Powder  =
 -- Sprout_Smack  =
@@ -248,21 +234,6 @@
 -- Cold_Wave  =
 -- Hypothermal_Combusti  =
 -- Envoutement  =
--- Hurricane_Wing  =
--- Spike_Flail  =
--- Dragon_Breath  =
--- Hurricane_Wing  =
--- Spike_Flail  =
--- Dragon_Breath  =
--- Hurricane_Wing  =
--- Spike_Flail  =
--- Dragon_Breath  =
--- Hurricane_Wing  =
--- Spike_Flail  =
--- Dragon_Breath  =
--- Hurricane_Wing  =
--- Spike_Flail  =
--- Dragon_Breath  =
 -- Hurricane_Wing  =
 -- Spike_Flail  =
 -- Dragon_Breath  =
