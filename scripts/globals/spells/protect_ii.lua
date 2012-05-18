@@ -11,7 +11,7 @@ require("scripts/globals/status");
 function onSpellCast(caster,target,spell)
 	power = 20;
 	duration = 1800;
-	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;
 	end	
 	if(target:hasStatusEffect(EFFECT_PROTECT) == true) then

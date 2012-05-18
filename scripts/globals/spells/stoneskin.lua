@@ -41,7 +41,7 @@ function onSpellCast(caster,target,spell)
 		pEquipMods = pEquipMods + 20;
 	end
 	
-	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;
 	end
 	

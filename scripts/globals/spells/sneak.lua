@@ -16,7 +16,7 @@ function onSpellCast(caster,target,spell)
 		duration = math.random(30, 300);
 		duration = math.random(30, 300);
 		duration = math.random(30, 300);
-		if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
+		if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 			duration = duration * 3;
 		end
 		
@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
 		if (target:getEquipID(15) == 13692) then -- skulker's cape
 			duration = duration * 1.5;
 		end
-		if (caster:hasStatusEffect(EFFECT_COMPOSURE)) and (caster == target) then
+		if (caster:hasStatusEffect(EFFECT_COMPOSURE)) and (caster:getID() == target:getID()) then
 			duration = duration * 3;
 		end
 		spell:setMsg(0);
