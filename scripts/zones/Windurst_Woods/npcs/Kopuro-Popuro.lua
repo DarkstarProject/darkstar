@@ -24,7 +24,7 @@ allnew = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_2000);
    if (allnew == QUEST_ACCEPTED) then
       count = trade:getItemCount();
      if(trade:hasItemQty(856,1) and trade:hasItemQty(4368,1) and trade:hasItemQty(846,1) and count == 3) then
-         player:startEvent(0x0124,GIL_RATE*1500); -- Correct items given, complete quest.
+         player:startEvent(0x0124,GIL_RATE*200); -- Correct items given, complete quest.
       else
          player:startEvent(0x0120,0,856,846,4368); -- Incorrect or not enough items.
       end
@@ -37,7 +37,7 @@ end;
 -----------------------------------
 function onTrigger(player,npc)
 
-allnew = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_2000);
+   allnew = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_2000);
 
    if (allnew == QUEST_COMPLETED) then
       player:startEvent(0x0125); -- Post Quest Finish Text
@@ -68,13 +68,13 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-   if (csid == 0x011d) then
+   if (csid == 0x011d and option ~= 2) then  -- option 2 is declining the quest for the second question
       player:addQuest(WINDURST,THE_ALL_NEW_C_2000);
    elseif (csid == 0x0124) then
       player:tradeComplete();
-      player:addFame(WIN_FAME*80);
+      player:addFame(WINDURST,WIN_FAME*80);
       player:setTitle(CARDIAN_TUTOR);
-      player:addGil(GIL_RATE*1500);
+      player:addGil(GIL_RATE*200);
       player:completeQuest(WINDURST,THE_ALL_NEW_C_2000);
    end
    
