@@ -241,7 +241,7 @@ void CAIMobDummy::ActionDropItems()
 							  >= 90 = High Kindred Crests ID=2956
 					*/
 					if(charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 &&
-						rand()%100 < 40){ //exp-yielding monster and drop is successful
+						rand()%100 < 40 && m_PMob->m_Type & MOBTYPE_NORMAL){ //exp-yielding monster and drop is successful
 						//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
 
 						//RULES: Only 1 kind may drop per mob
@@ -306,6 +306,7 @@ void CAIMobDummy::ActionDeath()
 	{
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
+		//TODO! wipe status container 
 	}
     else if (!m_PMob->isDead())
     {
@@ -351,7 +352,7 @@ void CAIMobDummy::ActionSpawn()
 	{
 		m_ActionType = ACTION_ROAMING;
 		m_PBattleTarget = NULL;
-
+		m_PMob->m_SkillStatus = 0;
         m_PMob->m_OwnerID.clean();
 		m_PMob->m_CallForHelp = 0;
         m_PMob->m_DropItemTime = 1000;
@@ -368,7 +369,7 @@ void CAIMobDummy::ActionSpawn()
 		}
 						
 		m_PMob->SetMLevel(level);
-		m_PMob->SetSLevel(level);
+		m_PMob->SetSLevel(level);//calculated in function
 
 		mobutils::CalculateStats(m_PMob);
 
@@ -401,6 +402,32 @@ void CAIMobDummy::ActionAbilityStart()
 
 	//TODO: Choose TP move sensibly (if no enemies in range, dont choose a damaging move, etc)
 	m_PMobSkill = MobSkills.at(rand() % MobSkills.size());
+
+	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS){
+		for(int i=0;i<MobSkills.size();i++){
+			if(MobSkills[i]->getID() == 0){ //TWO-HOUR
+				if(m_PMob->GetHPP() <= 50 && m_PMob->m_SkillStatus==0){//<50% HP and not used skill
+					m_PMobSkill = MobSkills[i];
+					m_ActionType = ACTION_MOBABILITY_FINISH; //no prep time
+					return;
+				}
+				break;
+			}
+		}
+	}
+		//prevent randomly selecting the 2h as a tp move
+		if(m_PMobSkill->getID()==0 && MobSkills.size()==1){//only 2h available, dont use a tp move
+			m_PMob->health.tp = 0; 
+			m_ActionType = ACTION_ATTACK;
+		    ActionAttack();
+			return; 
+		}
+		else if(m_PMobSkill->getID()==0 && MobSkills.size()>1){//>1 tp move available, choose index 0 or 1.
+			if(MobSkills[0]->getID()==0){ m_PMobSkill = MobSkills[1];}
+			else{ m_PMobSkill = MobSkills[0];}
+		}
+	
+	
 
     apAction_t Action;
     m_PMob->m_ActionList.clear();
@@ -477,6 +504,11 @@ void CAIMobDummy::ActionAbilityFinish()
 
         m_PMob->m_ActionList.clear();
 
+		if(m_PMobSkill->getID()==0 && m_PMob->m_SkillStatus==0){//2h
+			processTwoHour();
+			return;
+		}
+
 		//handle aoe stuff (self/mob)
 		//AOE=1 means the circle is around the MONSTER
 		//AOE=2 means the circle is around the BATTLE TARGET
@@ -514,8 +546,6 @@ void CAIMobDummy::ActionAbilityFinish()
 							PTarget->getZone() == m_PChar->getZone() &&
 							distance(radiusAround, PTarget->loc.p) <= m_PMobSkill->getDistance())
 							{
-								
-								//value = luautils::OnTpMove(m_PChar, PTarget);	
 								Action.ActionTarget = PTarget;
 								Action.param	  = luautils::OnMobWeaponSkill(PTarget, m_PMob,m_PMobSkill);
 								Action.messageID  = m_PMobSkill->getMsg();
@@ -603,6 +633,84 @@ void CAIMobDummy::ActionAbilityInterrupt()
     m_ActionType = ACTION_ATTACK;
 }
 
+void CAIMobDummy::processTwoHour(){
+	m_PMob->m_SkillStatus = 1;
+	m_LastActionTime = m_Tick;
+	apAction_t Action;
+    m_PMob->m_ActionList.clear();
+	Action.param = 0;
+
+	//determine the 2h based on mjob and set the correct target and do the right stuff
+	uint16 id = 0;
+	switch(m_PMob->GetMJob()){
+	case JOB_WAR: 
+		id=0; Action.ActionTarget = m_PMob; Action.messageID=101; 
+		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MIGHTY_STRIKES,0,1,0,45));
+		break;
+	case JOB_MNK: 
+		id=1; Action.ActionTarget = m_PMob; Action.messageID=101; 
+		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HUNDRED_FISTS,0,1,0,45));
+		break;
+	case JOB_THF: 
+		id=5; Action.ActionTarget = m_PMob; Action.messageID=101; 
+		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PERFECT_DODGE,0,1,0,30));
+		break;
+	case JOB_WHM: {
+		id=2; Action.ActionTarget = m_PMob; Action.messageID=103; 
+		int hp = m_PMob->GetMaxHP() - m_PMob->health.hp;
+		m_PMob->addHP(hp);
+		Action.param = hp;
+		}
+		break;
+	//case JOB_NIN: 
+	//	id=12; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
+	//case JOB_SMN: 
+	//	id=14; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
+	case JOB_PLD: 
+		id=6; Action.ActionTarget = m_PMob; Action.messageID=101; 
+		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_INVINCIBLE,0,1,0,30));
+		break;
+	//case JOB_DRK: 
+	//	id=7; Action.ActionTarget = m_PMob; Action.messageID=101; break;
+	//case JOB_SAM: 
+	//	id=11; Action.ActionTarget = m_PMob; Action.messageID=101; break;
+	//case JOB_RNG: 
+	//	id=10; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
+	default: 
+		m_PMobSkill = NULL; 
+		m_PMob->health.tp = 0;
+		m_ActionType = ACTION_ATTACK;
+		return;
+	}
+
+	m_PMobSkill->setID(1986+id);
+	//addstatuseffect
+	//send packet with msgid "xxx uses zzz."
+	Action.reaction   = REACTION_HIT;
+	Action.speceffect = SPECEFFECT_HIT;
+	Action.animation  = m_PMobSkill->getAnimationID();
+	Action.subparam   = m_PMobSkill->getID() + 256;
+	Action.flag		  = 0;
+	m_PMob->m_ActionList.push_back(Action);
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
+	//JAs to handle: SELF TARGET
+	//100 fists, might strike, benedict, perf dodge
+	//invincible, blood weapon, 
+	//MOB TARGET (PT)
+	//mijin gakure (no death), astral flow (no pet for now)
+
+	m_PMobSkill->setID(0);
+	m_PMob->health.tp = 0; 
+	if(m_PMob->isDead()){ //mijin will not kill the mob using the 2h, so no need to check for it, only for pcs killing
+		m_ActionType = ACTION_FALL;
+		ActionFall();
+	}
+	else{
+		m_ActionType = ACTION_ATTACK;
+	}
+}
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -678,7 +786,13 @@ void CAIMobDummy::ActionAttack()
 
 	if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
-		if ((m_Tick - m_LastActionTime) > m_PMob->m_Weapons[SLOT_MAIN]->getDelay())
+		uint32 WeaponDelay = m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
+		if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS,0))
+		{
+			WeaponDelay = 600;
+		}
+
+		if ((m_Tick - m_LastActionTime) > WeaponDelay)
 		{
 			if (battleutils::IsParalised(m_PMob)) 
 			{
@@ -729,8 +843,10 @@ void CAIMobDummy::ActionAttack()
 						Action.messageID  = 1;
 
 						bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) );
-						float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget,isCritical); 
+						if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0)){isCritical=true;}
 
+						float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget,isCritical); 
+						
 						if(isCritical)
 						{
 							Action.speceffect = SPECEFFECT_CRITICAL_HIT;

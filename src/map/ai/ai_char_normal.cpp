@@ -1771,8 +1771,13 @@ void CAICharNormal::ActionAttack()
 
 				// сначала вычисляем вероятность попадания по монстру
 				// затем нужно вычислить вероятность нанесения критического удара
-
-				if ( rand()%100 < battleutils::GetHitRate(m_PChar,m_PBattleTarget) )
+				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
+				{
+					Action.messageID = 32; 
+					Action.reaction   = REACTION_EVADE;
+					Action.speceffect = SPECEFFECT_NONE;
+				}
+				else if ( rand()%100 < battleutils::GetHitRate(m_PChar,m_PBattleTarget) )
 				{
 					bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget)) ;
 

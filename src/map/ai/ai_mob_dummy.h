@@ -63,6 +63,7 @@ protected:
     void ActionAbilityInterrupt();
 	void ActionAttack();
     void ActionSleep();
+	void processTwoHour();
 };
 
 #endif

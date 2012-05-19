@@ -242,6 +242,8 @@ void LoadMobSkillsList()
 			PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle,8));
 			PMobSkill->setFlag(Sql_GetIntData(SqlHandle,9));
 			PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
+			PMobSkill->m_SkillCondition = SKILLBEHAVIOUR_NONE;
+			PMobSkill->m_SkillConditionValue = 0;
 			g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
 			g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
 		}
@@ -506,7 +508,8 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender){
 
 uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked)
 {
-	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE))
+	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ||
+		PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE,0))
 	{
 		damage = 0;
 	}

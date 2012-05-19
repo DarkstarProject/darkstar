@@ -93,6 +93,7 @@ public:
 	position_t	m_SpawnPoint;	        // точка возрождения монстра
 	uint8       m_Element;  
 	uint16		m_Family;
+	uint8		m_SkillStatus;			//status of skills (used 2h/used epic tp move/etc)
 
 	CEnmityContainer* PEnmityContainer;	// система ненависти монстров
 
