@@ -49,11 +49,11 @@
 -- Pollen  =  done
 -- Sharp_Sting  =
 -- Power_Attack  =  done
--- Hi-Freq_Field  =
+-- Hi-Freq_Field  = done
 -- Rhino_Attack  =
--- Cocoon  =
+-- Cocoon  = done
 -- Poison_Breath  =
--- Sticky_Thread  =
+-- Sticky_Thread  = done
 -- Mandible_Bite  =
 -- Death_Scissors  =
 -- Wild_Rage  =
@@ -101,7 +101,7 @@
 -- Maelstrom  =
 -- Maelstrom  =
 -- Howling  =
--- Poison_Breath  =
+-- Poison_Breath  = done
 -- Rot_Gas  =
 -- Howling  =
 -- Poison_Breath  =
@@ -136,10 +136,10 @@
 -- Soul_Drain  =
 -- Hecatomb_Wave  =
 -- Battle_Dance  =
--- Slam_Dunk  =
--- Aerial_Wheel  =
--- Shoulder_Attack  =
--- Head_Butt  =
+-- Slam_Dunk  = done
+-- Aerial_Wheel  = done
+-- Shoulder_Attack  = done
+-- Head_Butt  = done ?
 -- Head_Butt  =
 -- Head_Butt  =
 -- Double_Kick  =
@@ -155,8 +155,8 @@
 -- Wind_Breath  =
 -- Body_Slam  =
 -- Heavy_Stomp  =
--- Cursed_Sphere  =
--- Venom  =
+-- Cursed_Sphere  = done
+-- Venom  = done
 -- Impact_Roar  =  done
 -- Grand_Slam  =  done
 -- Heavy_Strike  =  done
@@ -181,8 +181,8 @@
 -- Vertical_Slash  =
 -- Throat_Stab  =
 -- Everyones_Grudge  =
--- Magnetite_Cloud  =
--- Sandstorm  =
+-- Magnetite_Cloud  = done
+-- Sandstorm  = done
 -- Deadly_Hold  =
 -- Tail_Swing  =
 -- Tail_Smash  =
@@ -324,3 +324,5 @@
 -- Pelagic_Tempest  =
 -- Osmosis  =
 -- Vacuole_Discharge  =
+-- Spalsh_Breath = done
+-- Shell_Bash = done

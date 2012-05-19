@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
 	-- Calculate duration.
 	duration = 120;
 	
-	-- Check for Dia.
+	-- Check for Dia & bio.
 	dia = target:getStatusEffect(EFFECT_DIA);
 
 	-- Calculate DoT (rough, though fairly accurate)
@@ -38,6 +38,7 @@ function onSpellCast(caster,target,spell)
 	
 	-- Do it!
 	if(BIO_OVERWRITE == 0 or (BIO_OVERWRITE == 1 and dia == nil)) then
+		target:delStatusEffect(EFFECT_BIO); -- delete old bio
 		target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE);
 	end
 	

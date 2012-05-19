@@ -43,6 +43,8 @@ CREATE TABLE IF NOT EXISTS `mob_skill` (
 --
 -- Contenu de la table `mob_skill`
 -- 
+
+-- Goblin
 INSERT INTO `mob_skill` VALUES(334, 133, 334, 'Goblin_Rush', 0, 6.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES(335, 133, 335, 'Bomb_Toss', 2, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES(336, 133, 336, 'Bomb_Toss_Suicide', 1, 7.0, 2000, 1500, 4, 0);
@@ -94,7 +96,7 @@ INSERT INTO `mob_skill` VALUES (66,212,66,'1000_Needles', 1, 7.0, 2000, 1500, 4,
 -- Funguar
 INSERT INTO `mob_skill` VALUES (52,116,52,'Frogkick', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (53,116,53,'Spore', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (54,116,54,'Queasyshroom', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (54,116,54,'Queasyshroom', 0, 13.5, 2000, 1500, 4, 0);
 -- Treant
 INSERT INTO `mob_skill` VALUES (72,245,72,'Drill_Branch', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (73,245,73,'Pinecone_Bomb', 0, 7.0, 2000, 1500, 4, 0);
@@ -396,7 +398,7 @@ INSERT INTO `mob_skill` VALUES (561,267,489,'Dread_Shriek', 1, 15.0, 2000, 1500,
 INSERT INTO `mob_skill` VALUES (562,267,490,'Tail_Crush', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (565,267,493,'Radiant_Breath', 4, 15.0, 2000, 1500, 4, 0);
 
---Seiryu
+-- Seiryu
 INSERT INTO `mob_skill` VALUES (558,278,486,'Deadly Drive', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (559,278,487,'Wind_Wall', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (560,278,488,'Fang_Rush', 0, 7.0, 2000, 1500, 4, 0);
