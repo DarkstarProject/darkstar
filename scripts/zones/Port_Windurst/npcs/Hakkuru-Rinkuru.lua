@@ -4,6 +4,8 @@
 --  Involved In Quest: Making Amends
 --  Starts and Ends Quest: Wonder Wands
 --	Working 100%
+-- @zone 240
+-- @pos -111 -4 101
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
@@ -52,7 +54,7 @@ function onTrigger(player,npc)
 	SecondRewardVar = player:getVar("SecondRewardVar");
 	-- Check for the missions first (priority?)
 	-- Check if we are on Windurst Mission 1-1
-	if(player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT) then
+	if(player:getCurrentMission(WINDURST) ~= THE_HORUTOTO_RUINS_EXPERIMENT) then
 		windurst_mission_1_1 = player:getVar("windurst_mission_1_1");
 		if(windurst_mission_1_1 == 1) then
 			-- Next step in the mission
@@ -149,7 +151,7 @@ function onEventFinish(player,csid,option)
 			player:setTitle(QUICK_FIXER);
 			player:needToZone(true);
 			player:tradeComplete();
-	elseif(csid == 0x0103) then
+	elseif(csid == 0x0103 and option == 1) then
 			player:addQuest(WINDURST,WONDER_WANDS);
 	elseif(csid == 0x010b) then
 		rand = math.random(3); --Setup random variable to determine which 2 items are returned upon quest completion
