@@ -2066,29 +2066,34 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool
 
         exp = exp * map_config.exp_rate;
 
-        if (PChar->PParty != NULL)
+		if (PChar->PParty != NULL)
 		{
-		switch(PChar->PParty->members.size()){
-							case 1:	exp *= 1.00; break;
-							case 2: exp *= 0.60; break;
-							case 3: exp *= 0.45; break;
-							case 4: exp *= 0.40; break;
-							case 5: exp *= 0.37; break;
-							case 6: exp *= 0.35; break;
-							default: break;
-							}
-		}
-		if (PChar->PParty != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET))
-		{
-		switch(PChar->PParty->members.size()){
-							case 1: exp *= 1.00; break;
-							case 2:	exp *= 0.75; break;
-							case 3: exp *= 0.55; break;
-							case 4: exp *= 0.45; break;
-							case 5:	exp *= 0.39; break;
-							case 6: exp *= 0.35; break;
-							default: break;
-							}
+			if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) || !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION))
+			{
+				switch(PChar->PParty->members.size())
+				{
+					case 1:	exp *= 1.00; break;
+					case 2: exp *= 0.60; break;
+					case 3: exp *= 0.45; break;
+					case 4: exp *= 0.40; break;
+					case 5: exp *= 0.37; break;
+					case 6: exp *= 0.35; break;
+					default: break;
+				}
+			}
+			else if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION))
+			{
+				switch(PChar->PParty->members.size())
+				{
+					case 1: exp *= 1.00; break;
+					case 2:	exp *= 0.75; break;
+					case 3: exp *= 0.55; break;
+					case 4: exp *= 0.45; break;
+					case 5:	exp *= 0.39; break;
+					case 6: exp *= 0.35; break;
+					default: break;
+				}
+			}
 		}
 		if (PChar->getMod(MOD_DEDICATION) != 0)
         {
