@@ -486,7 +486,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender){
 	if(PDefender->objtype == TYPE_PC){
 		CCharEntity* PChar = (CCharEntity*)PDefender;
 		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
-		if(PItem!=NULL && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5){
+		if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5){
 			float chance = ((5-PItem->getShieldSize())*10.0f)+ //base
 				dsp_max(((float)(PChar->GetSkill(SKILL_SHL)+PChar->getMod(MOD_SHIELD)-GetMaxSkill(SKILL_SHL,JOB_PLD,PAttacker->GetMLevel()))/4.6f),-10);
 			//TODO: HANDLE OCHAIN
@@ -530,7 +530,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			charutils::TrySkillUP((CCharEntity*)PDefender,SKILL_SHL,PDefender->GetMLevel());
 			CItemArmor* PItem = (CItemArmor*)((CCharEntity*)PDefender)->getStorage(LOC_INVENTORY)->GetItem(
 											((CCharEntity*)PDefender)->equip[SLOT_SUB]);
-			if(PItem!=NULL && PItem->getShieldSize()>0){
+			if(PItem!=NULL && PItem->getID()!=65535 &&  PItem->getShieldSize()>0){
 				//get def amount (todo: find a better way?)
 				uint8 shield_def = 0;
 				for(int i=0; i<PItem->modList.size(); i++){
