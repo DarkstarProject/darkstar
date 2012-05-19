@@ -2,7 +2,8 @@
 --	Area: Windurst Waters
 --	NPC:  Tosuka-Porika
 --	Involved in Quests: Hat in Hand
---  @pos -26 -6 103 238
+--  @zone 238
+--  @pos -26 -6 103 
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

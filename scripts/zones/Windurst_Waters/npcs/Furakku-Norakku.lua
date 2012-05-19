@@ -42,8 +42,8 @@ function onTrigger(player,npc)
 	elseif(chasingStatus == QUEST_ACCEPTED and player:hasKeyItem(OVERDUE_BOOK_NOTIFICATION) == false) then
 	    player:startEvent(0x0194,0,126);
 	elseif(player:hasKeyItem(OVERDUE_BOOK_NOTIFICATION) and player:hasKeyItem(A_SONG_OF_LOVE) == false) then
-		player:startEvent(0x0195);
-	elseif(player:getVar("CHASING_TALES_TRACK_BOOK") == 1) then
+		player:startEvent(0x0195,0,126);
+	elseif(player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(A_SONG_OF_LOVE) == false) then
 	    player:startEvent(0x0199);
 	elseif(player:hasKeyItem(A_SONG_OF_LOVE)) then
 		player:startEvent(0x019a);

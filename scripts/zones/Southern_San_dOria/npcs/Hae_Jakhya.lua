@@ -35,9 +35,9 @@ function onTrigger(player,npc)
 	
 	chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
 	
-	if(player:getVar("CHASING_TALES_TRACK_BOOK") == 1) then
+	if(player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(126) == false) then
 	    player:startEvent(0x0263); -- Neeed CS here
-	elseif(player:hasKeyItem(126) ==true) then
+	elseif(player:hasKeyItem(126) == true) then
 		player:startEvent(0x0264,0,126);
 	else
 		player:startEvent(0x262);
@@ -63,6 +63,6 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
     if(csid == 0x0263) then
         player:addKeyItem(126);
-		player:messageSpecial(KEYITEM_OBTAINED,126);
+	player:messageSpecial(KEYITEM_OBTAINED,126);
     end		
 end;
