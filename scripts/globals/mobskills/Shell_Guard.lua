@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Rage
--- The ram goes berserk.
+-- Shell Guard
+-- Increases defense of user.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -11,12 +11,12 @@ require("/scripts/globals/monstertpmoves");
 
 function OnMobWeaponSkill(target, mob, skill)
 	
+	base = mob:getMainLvl() + 0.05*mob:getMaxHP()*(skill:getTP()/100); --base is around 5~150 level depending
 	skill:setMsg(MSG_BUFF);
-	atkBoost = mob:getMod(MOD_ATT) / 2;
-	if(mob:getStatusEffect(EFFECT_ATTACK_BOOST) ~= nil) then
-		mob:delStatusEffect(EFFECT_ATTACK_BOOST);
+	if(mob:getStatusEffect(EFFECT_PROTECT) ~= nil) then
+		mob:delStatusEffect(EFFECT_PROTECT);
 	end
-	mob:addStatusEffect(EFFECT_ATTACK_BOOST,atkBoost,0,30); -- +50%
-	return EFFECT_ATTACK_BOOST;
+	mob:addStatusEffect(EFFECT_PROTECT,base,0,180);
+	return EFFECT_PROTECT;
 	
 end

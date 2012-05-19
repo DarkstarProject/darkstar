@@ -22,4 +22,6 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 	
+	return EFFECT_ATTACK_DOWN;
+	
 end

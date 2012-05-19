@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Rage
--- The ram goes berserk.
+-- Water Wall
+-- Enhances defense.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -12,11 +12,11 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 	
 	skill:setMsg(MSG_BUFF);
-	atkBoost = mob:getMod(MOD_ATT) / 2;
-	if(mob:getStatusEffect(EFFECT_ATTACK_BOOST) ~= nil) then
-		mob:delStatusEffect(EFFECT_ATTACK_BOOST);
+	if(mob:getStatusEffect(EFFECT_DEFENSE_BOOST) ~= nil) then
+		mob:delStatusEffect(EFFECT_DEFENSE_BOOST);
 	end
-	mob:addStatusEffect(EFFECT_ATTACK_BOOST,atkBoost,0,30); -- +50%
-	return EFFECT_ATTACK_BOOST;
+	base = mob:getMod(MOD_DEF) * 2;
+	mob:addStatusEffect(EFFECT_DEFENSE_BOOST,base,0,60);
+	return EFFECT_DEFENSE_BOOST;
 	
 end

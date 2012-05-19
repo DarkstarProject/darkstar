@@ -14,10 +14,10 @@ function OnMobWeaponSkill(target, mob, skill)
 	isEnfeeble = true;
 	typeEffect = EFFECT_POISON;
 	statmod = MOD_INT;
-	poison = mob:getMainLvl() / 2;
 	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
 		if(target:getStatusEffect(EFFECT_POISON) == nil) then
+			poison = mob:getMainLvl() / 2;
 			target:addStatusEffect(EFFECT_POISON,1,poison,180); -- tick by level
 		end
 	end

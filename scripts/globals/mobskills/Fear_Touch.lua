@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Terror Touch
--- Additional effect: Weakens attacks. Accuracy varies with TP.
+-- Fear Touch
+-- Touches a single target. Additional effect: Slow
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -12,21 +12,29 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 	
 	isEnfeeble = true;
-	typeEffect = EFFECT_SILENCE;
+	typeEffect = EFFECT_SLOW;
 	statmod = MOD_INT;
+	mobTP = mob:getTP();
 	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_SILENCE) == nil) then
-			atkdown = (mob:getMod(MOD_ATT) / 100) * 15;
-			target:addStatusEffect(EFFECT_SILENCE,atkdown,0,60);
+		if(target:getStatusEffect(EFFECT_SLOW) == nil) then
+			if(mobTP <= 100) then 
+				slowTime = 60;
+			elseif(mobTP <= 200) then 
+				slowTime = 90;
+			else 
+				slowTime = 120; 
+			end
+			
+			target:addStatusEffect(EFFECT_SLOW,30,0,slowTime);
 		end
 	end
 	
 	numhits = 1;
 	accmod = 1;
 	dmgmod = 1;
-	info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_ACC_VARIES,1,2,3);
-	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
+	info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_1_SHADOW);
 	target:delHP(dmg);
 	return dmg;
 	
