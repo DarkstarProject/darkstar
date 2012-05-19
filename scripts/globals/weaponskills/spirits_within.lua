@@ -19,7 +19,8 @@ require("scripts/globals/weaponskills");
 		
 function OnUseWeaponSkill(player, target, wsID)		
 	D = player:getWeaponDmg();	
-	HP = player:getHP();	
+	HP = player:getHP();
+	TP = player:getTP();
 		
 	if (TP == 300) then	
 		WSC = HP * 0.46875;
