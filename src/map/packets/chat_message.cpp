@@ -33,7 +33,7 @@
 CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE MessageType, int8* buff) 
 {
 	this->type = 0x17;
-	this->size = ((32 + (strlen(buff) + 1) >> 1) + 1) & 0xFE;
+	this->size = 32 + strlen(buff) + strlen(buff)%2;
 
 	if (PChar->nameflags.flags & FLAG_GM)
 	{
