@@ -743,7 +743,11 @@ void CAIMobDummy::ActionAttack()
 				{
 					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
 				}
-                Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage);
+
+				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PMob,m_PBattleTarget));
+				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
+
+                Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked);
 
 				m_PMob->m_ActionList.push_back(Action);
                 m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);

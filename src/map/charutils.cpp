@@ -870,7 +870,7 @@ uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quan
 			if(slotID==PChar->equip[SLOT_AMMO]){//unequip prior to removing to prevent issues with items being equipped
 				UnequipItem(PChar, slotID);
 				PChar->getStorage(LocationID)->InsertItem(NULL, slotID);
-				PChar->m_Weapons[SLOT_AMMO]   = new CItemWeapon(0);
+				PChar->m_Weapons[SLOT_AMMO]   = 0;
 			}
 			else{
 				PChar->getStorage(LocationID)->InsertItem(NULL, slotID);
@@ -1191,7 +1191,8 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		}
 		
 		uint8 slotID = PChar->equip[equipSlotID];
-
+		//todo: issues as item 0 reference is being handled as a real equipment piece
+		//      thought to be source of nin bug
 		PChar->equip[equipSlotID] = 0;
 
 		if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
@@ -1211,7 +1212,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		}
 
 		PItem->setSubType(ITEM_UNLOCKED);
-
+		
 		PChar->delModifiers(&((CItemArmor*)PItem)->modList);
 
 		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));

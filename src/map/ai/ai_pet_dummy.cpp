@@ -441,7 +441,11 @@ void CAIPetDummy::ActionAttack()
 				{
 					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PPet->GetMLevel());
 				}
-                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage);
+
+				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PPet,m_PBattleTarget));
+				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
+
+                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked);
 
 				m_PPet->m_ActionList.push_back(Action);
 

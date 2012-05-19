@@ -750,7 +750,7 @@ void CAICharNormal::ActionRangedFinish()
 		Action.animation  = 0;
 		Action.messageID  = 352;
 
-		Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage);
+		Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, 0);
 		Action.flag = 3;
 		Action.subeffect = SUBEFFECT_FIRE_DAMAGE;
 		Action.subparam  = 0;
@@ -1525,7 +1525,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI) ? m_PChar->addTP(-100) : m_PChar->health.tp = 8; 
 
 	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
-		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage);
+		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false);
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST); //TODO: REMOVE THIS, BOOST EFFECT IN DB IS WRONG, MISSING EFFECTFLAG_DAMAGE
 	}
@@ -1814,7 +1814,11 @@ void CAICharNormal::ActionAttack()
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
 				}
-				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage);
+
+				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PChar,m_PBattleTarget));
+				if(isBlocked && Action.reaction!=REACTION_EVADE){ Action.reaction = REACTION_BLOCK; }
+				
+				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage,isBlocked);
 
 				if (Action.reaction != REACTION_EVADE &&
                     m_PBattleTarget->m_EcoSystem != SYSTEM_UNDEAD &&

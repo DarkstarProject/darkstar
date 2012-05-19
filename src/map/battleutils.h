@@ -71,9 +71,10 @@ namespace battleutils
 	int32	GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint8	GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint8	GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+	uint8   GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender);
 	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical); 
     uint16  TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage); 
+	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked); 
 	uint32  MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	
     uint8	GetEnmityMod(uint8 level, uint8 modType);

@@ -468,13 +468,43 @@ bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	return false;
 }
 
+/***********************************************************************
+		Calculates the block rate of the defender
+Generally assumed to be a linear relationship involving shield skill and
+'projected' skill (like with spell interruption). According to
+www.bluegartr.com/threads/103597-Random-Facts-Thread/page22 it appears
+to be BASE+(PLD_Skill - MOB_Skill)/4.6 where base is the base activation
+for the given shield type (unknown). These are subject to caps (65% max
+for non-Ochain shields) and presumably 5% min cap *untested*
+Presuming base values 10%/20%/30%/40% (big->low)
+They don't mention anything about caps on PLD_Skill-MOB_Skill but there
+has to be, else a Lv75 PLD with 0 skill would never be able to skillup
+as they need to be HIT to skillup, meaning they can't really lvl up on
+low level monsters as they miss too much. Presuming a min cap of -10%.
+************************************************************************/
+uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender){
+	if(PDefender->objtype == TYPE_PC){
+		CCharEntity* PChar = (CCharEntity*)PDefender;
+		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+		if(PItem!=NULL && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5){
+			float chance = ((5-PItem->getShieldSize())*10.0f)+ //base
+				dsp_max(((float)(PChar->GetSkill(SKILL_SHL)+PChar->getMod(MOD_SHIELD)-GetMaxSkill(SKILL_SHL,JOB_PLD,PAttacker->GetMLevel()))/4.6f),-10);
+			//TODO: HANDLE OCHAIN
+			if(PItem->getShieldSize()==5){return 65;}//aegis, presume capped? need info.
+			//65% cap
+			return cap_value(chance,5,65);
+		}
+	}
+	return 0;
+}
+
 /************************************************************************
 *																		*
 *  Calculates damage based on damage and resistance to damage type		*
 *																		*
 ************************************************************************/
 
-uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage)
+uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE))
 	{
@@ -491,6 +521,36 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		case DAMAGE_SLASHING: damage = (damage * (PDefender->getMod(MOD_SLASHRES)))	 / 1000; break;
 		case DAMAGE_IMPACT:	  damage = (damage * (PDefender->getMod(MOD_IMPACTRES))) / 1000; break;
 		case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(MOD_HTHRES)))	 / 1000; break;
+	}
+
+	//apply block
+	if(isBlocked){
+		// reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
+		if(PDefender->objtype == TYPE_PC){
+			charutils::TrySkillUP((CCharEntity*)PDefender,SKILL_SHL,PDefender->GetMLevel());
+			CItemArmor* PItem = (CItemArmor*)((CCharEntity*)PDefender)->getStorage(LOC_INVENTORY)->GetItem(
+											((CCharEntity*)PDefender)->equip[SLOT_SUB]);
+			if(PItem!=NULL && PItem->getShieldSize()>0){
+				//get def amount (todo: find a better way?)
+				uint8 shield_def = 0;
+				for(int i=0; i<PItem->modList.size(); i++){
+					if(PItem->modList[i]->getModID()==MOD_DEF){
+						shield_def = PItem->modList[i]->getModAmount();
+						break;
+					}
+				}
+				float pdt = 0.5f*(float)shield_def;
+				switch(PItem->getShieldSize()){
+					case 1: pdt += 22; break; //Bucker 22%
+					case 2: pdt += 40; break; //Round 40%
+					case 3: pdt += 50; break; //Kite 50%
+					case 4: pdt += 55; break; //Tower 55%
+					case 5: pdt += 55; break; //Aegis
+				}
+				if(pdt>100){pdt=100;}
+				damage = damage * ((100.0f-(float)pdt)/100.0f);
+			}
+		}
 	}
 
 	damage = damage - PDefender->getMod(MOD_PHALANX);
