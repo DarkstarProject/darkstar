@@ -188,6 +188,7 @@ public:
 	int32 dispelStatusEffect(lua_State*);	// Used with "Dispel" spell
 	int32 addPartyEffect(lua_State*);		// Adds Effect to all party members
 	int32 removePartyEffect(lua_State*);	// Removes Effect from all party members
+	int32 hasPartyEffect(lua_State*);		// Has Effect from all party members
 
 	int32 addMod(lua_State*);				// Adds Modifier Value
 	int32 getMod(lua_State*);				// Retrieves Modifier Value

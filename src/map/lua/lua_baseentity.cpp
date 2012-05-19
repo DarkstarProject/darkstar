@@ -2877,7 +2877,34 @@ inline int32 CLuaBaseEntity::removePartyEffect(lua_State *L)
 	lua_pushnil(L);
 	return 1;
 }
+//==========================================================//
 
+inline int32 CLuaBaseEntity::hasPartyEffect(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype != TYPE_NPC )
+		{
+			
+				int32 n = lua_gettop(L);
+                CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+				if (PChar->PParty != NULL)
+				{
+				for (int i=0; i< PChar->PParty->members.size(); ++i)
+				{		
+					if (PChar->PParty->members[i]->loc.zone == PChar->loc.zone) 
+					{
+						PChar->PParty->members[i]->StatusEffectContainer->HasStatusEffect((EFFECT)lua_tointeger(L,1));	
+					}
+				}
+				return 1;
+				}
+
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
 /************************************************************************
 *                                                                       *
 *  Удаляем первый отрицательный эффект                                  *
@@ -3649,6 +3676,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeMagicDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeJob),

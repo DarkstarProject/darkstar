@@ -412,7 +412,7 @@ function getMissionMask(player)
 				-- 5-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 16384;
 			--end
-			if(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and getMissionRankPoints(player,15) == 1) then
+			if(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == true and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
@@ -552,8 +552,12 @@ function getMissionMask(player)
 			end
 		end
 	end
-
-	mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..
+	
+	if (player:getCurrentMission(nation) == THE_RUINS_OF_FEI_YIN and player:getVar("MissionStatus") == 8) then
+		mission_mask = 2147483647 - 16384;
+	else	
+		mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..
+		end
 	return mission_mask,repeat_mission;
 end;
 
@@ -585,7 +589,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 			[11] = function (x) if(MissionStatus == 0) then offset = 68; 
 							elseif(MissionStatus == 2) then cs = GuardCS[11]; end end, 
 			[12] = function (x) if(MissionStatus == 0) then offset = 74; end end, 
-			[14] = function (x) if(MissionStatus == 0) then cs = 0x003D; end end, 
+			[14] = function (x) if(MissionStatus == 0) then cs = 0x003D; end end,
 		}
 		return cs, params, offset;
 	
@@ -646,13 +650,15 @@ function finishMissionTimeline(player,guard,csid,option)
 					if(option == badoption[op]) then 
 					timeline = {badoption[op+1],{0x03f1,badoption[op]},{0x07d9,badoption[op]},{{1},{2}},{0,0},{0,0},{{1},{2}}}; end
 				end
+			elseif 	(option == 14) then
+			timeline = {option,{0x03f1,option},{0,0},{{1},{2},{3,"MissionStatus",9}},{0,0},{0,0},{{0},{0}}};
 			else
 				timeline = {option,{0x03f1,option},{0x07d9,option},{{1},{2}},{0,0},{0,0},{{1},{2}}};
 			end
 		else
 			timeline = {
 				0,{0x03e8,0},{0x07d0,0},{{1},{2}},{0,0},{0,0},{0}, -- MISSION 1-1 (First Mission [START])
-				0,{0x03fc,0},{0x07d0,0},{{4},{5,150},{7},{12}},{0x03ea,0},{0x07d2,0},{{4},{5,150},{7},{12}}, -- MISSION 1-1
+				0,{0x03fc,0},{0x07e4,0},{{4},{5,150},{7},{12}},{0x03ea,0},{0x07d2,0},{{4},{5,150},{7},{12}}, -- MISSION 1-1
 				1,{0x03ff,0},{0x07e7,0},{{4},{14,0},{5,200},{7},{12}},{0x03eb,0},{0x07d3,0},{{4},{14,0},{5,200},{7},{12}}, -- Mission 1-2
 				2,{0x03ec,0},{0x07d4,0},{{11,2},{3,"OptionalCSforSavetheChildren",1},{14,0},{6},{8,1000},{12}},{0x0400,0},{0x07e8,0},{{14,0},{5,250},{7},{12}}, -- MISSION 1-3
 				3,{0x03ed,0},{0x07d5,0},{{9,65},{14,0},{5,300},{7},{12}},{0,0},{0,0},{0}, -- MISSION 2-1
@@ -663,6 +669,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				11,{0x022c,0},{0,0},{{14,0},{5,400},{12}},{0x03f5,0},{0x07dd,0},{{4},{14,0},{5,400},{7},{12}}, -- MISSION 3-2 (Chalvatot - Guard)
 				12,{0x0027,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Nelcabrit)
 				13,{0x0024,0},{0,0},{{11,5},{14,0},{10,69},{8,10000},{12},{1,14}},{0,0},{0,0},{0}, -- MISSION 4-1 (Nelcabrit)
+				14,{533,0},{0,0},{{10,72},{14,10}},{0,0},{0,0},{0}, -- MISSION 5-1
+				14,{534,0},{0,0},{{9,73},{5,400},{3,"MissionStatus",0},{13,10},{12}},{0,0},{0,0},{0}, -- MISSION 5-1
 				--[[0,{0,0},{0,0},{0},{0,0},{0,0},{0}, 
 				0,{0,0},{0,0},{0},{0,0},{0,0},{0}, ]]--
 						};

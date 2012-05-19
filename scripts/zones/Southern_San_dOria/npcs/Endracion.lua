@@ -70,7 +70,7 @@ function onTrigger(player,npc)
 			end
 		elseif(pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
 			player:startEvent(0x03e8); -- Start First Mission "Smash the Orcish scouts"
-		elseif(CurrentMission ~= 255) then
+		elseif((CurrentMission ~= 255) and not (player:getVar("MissionStatus") == 8)) then
 			player:startEvent(0x03e9); -- Have mission already activated
 		else
 			mission_mask, repeat_mask = getMissionMask(player);
@@ -95,7 +95,7 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("onFinishCSID: %u",csid);
---printf("onFinishOPTION: %u",option);
+printf("onFinishOPTION: %u",option);
 	
 	finishMissionTimeline(player,1,csid,option);
 

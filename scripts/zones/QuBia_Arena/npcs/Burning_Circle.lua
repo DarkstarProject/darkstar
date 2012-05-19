@@ -93,9 +93,11 @@ function onTrigger(player,npc)
 			if(player:getCurrentMission(BASTOK) == DARKNESS_RISING and player:getVar("MissionStatus") == 2) then
 				bcnmFight = bcnmFight + 1;
 
-			-- San d'Oria Mission not implemented yet
-			--elseif(player:getCurrentMission(SANDORIA) == THE_RUINS_OF_FEI_YIN and player:getVar("MissionStatus") == 2) then
-			--	bcnmFight = bcnmFight + 1;
+				
+			elseif((player:getMainLvl() >= 50) and (player:getCurrentMission(SANDORIA) == THE_RUINS_OF_FEI_YIN) and (player:getVar("MissionStatus") == 11) and (player:hasKeyItem(BURNT_SEAL) == false)) then
+			bcnmFight = bcnmFight + 1;
+			elseif ((player:getMainLvl() >= 50) and (player:hasPartyEffect()) and (GetServerVariable("[BF]Mission_5-1_Enter") == 1) and (player:hasCompletedMission(0,14))) then
+			bcnmFight = bcnmFight + 1;
 
 			-- Windurst Missions not implemented to this point yet
 			--elseif(player:getCurrentMission(WINDURST) == THE_FINAL_SEAL and player:getVar("MissionStatus") == 2) then
@@ -125,6 +127,7 @@ function onEventUpdate(player,csid,option)
 		pZone = player:getZone();
 		zoneReady = tostring(pZone) .. "_Ready";
 		readyField = getAvailableBattlefield(pZone);
+		SetServerVariable("[BF]Mission_5-1_Enter",1);
 
 		if(option == 0) then
 			local skip = 0;
@@ -136,7 +139,7 @@ function onEventUpdate(player,csid,option)
 					bcnmFight = getUpdateFightBCNM(player,pZone,onTradeFight);
 					record = GetServerVariable("[BF]Shattering_Stars_job"..player:getMainJob().."_record");
 				--elseif(player:hasCompletedMission(player:getNation(),14)) then
-				--	skip = 1;
+			--		skip = 1;
 				--	record = GetServerVariable("[BF]The_Rank_5_Mission_record");
 				--	player:levelRestriction(50);
 				end
@@ -172,7 +175,7 @@ function onEventFinish(player,csid,option)
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_onTrade",0);
 			player:setVar(tostring(pZone) .. "_Fight",option);
-			player:levelRestriction(50);
+			--player:levelRestriction(50);
 		end
 	elseif(csid == 0x7d03 and option == 4) then
 		if(player:getVar(tostring(pZone) .. "_Fight") == 100) then
@@ -183,6 +186,7 @@ function onEventFinish(player,csid,option)
 		player:delStatusEffect(EFFECT_BATTLEFIELD);
 		player:levelRestriction(0);
 		player:setVar(tostring(pZone) .. "_Runaway",0)
+		SetServerVariable("[BF]Mission_5-1_Enter",0);
 	end
 	
 end;

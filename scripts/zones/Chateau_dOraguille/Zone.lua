@@ -24,6 +24,7 @@ end;
 
 function onZoneIn(player,prevZone)		
 cs = -1;
+FeiYin = player:getVar("MissionStatus");
 	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(14.872,8.918,24.002,255);
@@ -34,6 +35,10 @@ cs = -1;
 	elseif(prevZone == 231 and player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
 		cs = 0x01FD;
 	end
+	if (player:getCurrentMission(SANDORIA) == THE_RUINS_OF_FEI_YIN and FeiYin == 0) then
+		cs = 509;	
+	end		
+	
 	
 	return cs;
 	
@@ -65,8 +70,12 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x022b) then	
 		player:setVar("MissionStatus",3);
-	elseif(csid == 0x01FD) then
+		end
+	if(csid == 0x01FD) then
 		player:delKeyItem(MESSAGE_TO_JEUNO_SANDORIA);
+		end
+	if(csid == 509) then
+		player:setVar("MissionStatus",8);
 	end
 	
 end;		

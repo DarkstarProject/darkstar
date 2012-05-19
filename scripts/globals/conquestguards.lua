@@ -391,15 +391,11 @@ end;
 
 function OP_TeleFee(player,region)
 	
-	if(hasOutpost(player,region + 5) == 1) then
 		if(GetRegionOwner(region) == player:getNation()) then
 			return tpFees[region + 5];
 		else
 			return tpFees[region + 5] * 3;
 		end
-	else
-		return 0;
-	end
 	
 end;
 
@@ -494,7 +490,7 @@ function toOutpost(player,option)
 	elseif(option == 21) then
 		player:setPos(4, -54, -600, 192, 130); 
 	-- Tavnazia
-	elseif(option == 22) then
+	elseif(option == 23) then
 		player:setPos(-535, -6, -53, 122, 24); 
 	end;
 end;

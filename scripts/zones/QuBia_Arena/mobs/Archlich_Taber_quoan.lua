@@ -43,13 +43,12 @@ function onMobDeath(mob,killer)
 		SetServerVariable("[BF]Mission_5-1_QuBia_Arena_record",newtimer);
 	end
 
-	if(killer:hasKeyItem(NEW_FEIYIN_SEAL) == true ) then
-		killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,0,1);
+	if(killer:hasKeyItem(NEW_FEIYIN_SEAL) == true) then
+		killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,0,0);
 	else
 		killer:delStatusEffect(EFFECT_BATTLEFIELD);
 	end
-	
-	
+
 end;
 
 -----------------------------------
@@ -77,12 +76,11 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
-	if(csid == 0x7d01) then
+printf("onUpdate CSID: %u",csid);
+printf("onUpdate RESULT: %u",option);
+	if (csid == 0x7d01) then
 		player:delStatusEffect(EFFECT_BATTLEFIELD);
 	end
-	
 end;
 
 -----------------------------------
@@ -91,16 +89,16 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+printf("onFinish RESULT: %u",option);
 
 	pZone = player:getZone();
-	
 	if(csid == 0x7d01) then
 		if(player:hasKeyItem(NEW_FEIYIN_SEAL) == true ) then
 			player:addKeyItem(BURNT_SEAL);
 			player:messageSpecial(KEYITEM_OBTAINED,BURNT_SEAL);
-			player:setVar("MissionStatus",3);
+			player:setVar("MissionStatus",12);
 			player:delKeyItem(NEW_FEIYIN_SEAL);
+			SetServerVariable("[BF]Mission_5-1_Enter",0);
 		end
 		player:levelRestriction(0);
 	end

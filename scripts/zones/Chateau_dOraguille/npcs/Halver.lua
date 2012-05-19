@@ -30,16 +30,23 @@ function onTrigger(player,npc)
 	HALVER_OFFSET = 6719;
 	pNation = player:getNation();
 	currentMission = player:getCurrentMission(pNation);
+	FeiYin = player:getVar("MissionStatus");
 	
 	if(pNation == SANDORIA) then
 		if(currentMission == JOURNEY_ABROAD and player:getVar("MissionStatus") == 0) then
-			player:startEvent(0x01f9);
-		elseif(currentMission == JOURNEY_ABROAD and player:getVar("MissionStatus") == 11) then
-			player:startEvent(0x01fb);
-		elseif(currentMission == JOURNEY_ABROAD) then
-			player:startEvent(0x0214);
-		elseif(currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 0) then
-			player:startEvent(0x01fc);
+				player:startEvent(0x01f9);
+			elseif(currentMission == JOURNEY_ABROAD and player:getVar("MissionStatus") == 11) then
+				player:startEvent(0x01fb);
+			elseif(currentMission == JOURNEY_ABROAD) then
+				player:startEvent(0x0214);
+			elseif(currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 0) then
+				player:startEvent(0x01fc);
+			elseif(currentMission == THE_RUINS_OF_FEI_YIN and FeiYin == 9) then
+				player:startEvent(533);
+			elseif (currentMission == THE_RUINS_OF_FEI_YIN and FeiYin == 10) then
+				player:showText(npc,HALVER_OFFSET+334);
+			elseif(currentMission == THE_RUINS_OF_FEI_YIN and FeiYin == 12 and player:hasKeyItem(73)) then
+				player:startEvent(534);
 		end
 	elseif(pNation == BASTOK) then
 		missionStatus = player:getVar("MissionStatus");
@@ -94,8 +101,10 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_SANDORIA);
 	elseif(csid == 0x01fb) then
 		finishMissionTimeline(player,1,csid,option);
-	elseif(csid == 0x01fc) then
-		player:setVar("MissionStatus",2);
+	elseif(csid == 533) then
+		finishMissionTimeline(player,1,csid,option);
+	elseif(csid == 534) then
+		finishMissionTimeline(player,1,csid,option);
 	end
 	
 end;
