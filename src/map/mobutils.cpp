@@ -112,6 +112,15 @@ void CalculateStats(CMobEntity * PMob)
 		break;
 	}
 
+	if(PMob->m_Type & MOBTYPE_NOTORIOUS){
+		PMob->health.maxmp *= 2.5;
+		PMob->health.maxhp *= 2.5;
+		if(PMob->GetMLevel()>75){
+			PMob->health.maxmp *= 2.5;
+			PMob->health.maxhp *= 2.5;
+		}
+	}
+
     PMob->UpdateHealth();
 
 	PMob->health.tp = 0;
@@ -120,7 +129,7 @@ void CalculateStats(CMobEntity * PMob)
 
 	PMob->setModifier(MOD_DEF, GetBase(PMob,3));
 	PMob->setModifier(MOD_EVA, GetBase(PMob,3));
-
+	
 	uint16 BaseAttack = 0;
 
 	if(PMob->GetMLevel() <= 30) {
@@ -186,6 +195,16 @@ void CalculateStats(CMobEntity * PMob)
 	PMob->stats.INT = fINT + mINT + sINT;
 	PMob->stats.MND = fMND + mMND + sMND;
 	PMob->stats.CHR = fCHR + mCHR + sCHR;
+	
+	if(PMob->m_Type & MOBTYPE_NOTORIOUS){
+		PMob->stats.STR *= 1.5;
+		PMob->stats.DEX *= 1.5;
+		PMob->stats.VIT *= 1.5;
+		PMob->stats.AGI *= 1.5;
+		PMob->stats.INT *= 1.5;
+		PMob->stats.MND *= 1.5;
+		PMob->stats.CHR *= 1.5;
+	}
 }
 
 }; // namespace mobutils
