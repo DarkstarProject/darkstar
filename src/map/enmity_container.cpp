@@ -147,6 +147,20 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 	}
 }
 
+bool CEnmityContainer::HasTargetID(uint16 TargetID){
+	EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(TargetID);
+
+    if( PEnmity != m_EnmityList.end() && 
+       !m_EnmityList.key_comp()(TargetID, PEnmity->first))
+	{
+        return true;
+    }
+    else 
+    {
+		return false;
+	}
+}
+
 /************************************************************************
 *                                                                       *
 *                                                                       *

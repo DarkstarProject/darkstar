@@ -3374,6 +3374,32 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 }
 
 /************************************************************************
+			Calculates the enmity produced by the input cure and
+			applies it to all on the base entity's enemies hate list
+			FORMAT: phealer:(ptarget,amount)
+************************************************************************/
+inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+	DSP_DEBUG_BREAK_IF(lua_tointeger(L,2) < 0);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
+	uint32 amount = lua_tointeger(L,2);
+
+    if (PEntity != NULL && 
+        PEntity->GetBaseEntity()->objtype == TYPE_PC)//TODO: Handle people curing skeletons
+	{
+		m_PBaseEntity->loc.zone->GenerateCureEnmity((CBattleEntity*)m_PBaseEntity,(CBattleEntity*)PEntity->GetBaseEntity(),amount);
+	}
+
+	return 0;
+}
+
+/************************************************************************
 			Calculates the enmity produced by the input damage
 ************************************************************************/
 inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
@@ -3683,5 +3709,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openDoor),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromCure),
 	{NULL,NULL}
 };

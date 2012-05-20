@@ -389,6 +389,8 @@ void CZone::InsertRegion(CRegion* Region)
 	}
 }
 
+
+
 /************************************************************************
 *                                                                       *
 *  Ищем группу для монстра. Для монстров, объединенных в группу         *
@@ -594,6 +596,34 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 	{
 		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
 		PChar->PTreasurePool->AddMember(PChar);
+	}
+}
+
+/************************************************************************
+Adds enmity to PSource for all the MOB targets who have PTarget on their
+enmity list. 
+************************************************************************/
+
+void CZone::GenerateCureEnmity(CBattleEntity* PSource,CBattleEntity* PTarget,uint16 amount){
+	DSP_DEBUG_BREAK_IF(PSource == NULL);
+	DSP_DEBUG_BREAK_IF(PTarget == NULL);
+	DSP_DEBUG_BREAK_IF(amount < 0);
+	DSP_DEBUG_BREAK_IF(PSource->objtype != TYPE_PC);
+	
+	CCharEntity* PChar = (CCharEntity*)PSource;
+	
+	for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
+	{
+		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+		float CurrentDistance = distance(PChar->loc.p, PCurrentMob->loc.p);
+		//cures only generate hate for monsters within 40" of the target of the cure who have
+		//the target on their list
+		if(CurrentDistance<40){
+			if(PCurrentMob->PEnmityContainer->HasTargetID(PTarget->id)){
+				//add for PSource
+				PCurrentMob->PEnmityContainer->UpdateEnmityFromCure(PChar,PTarget->GetMLevel(),amount);
+			}
+		}
 	}
 }
 

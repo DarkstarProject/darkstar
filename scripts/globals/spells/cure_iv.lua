@@ -95,7 +95,7 @@ function onSpellCast(caster,target,spell)
 			final = 0;
 		end
 	end
-	
+	caster:updateEnmityFromCure(target,final);
 	return final;
 	
 end;
