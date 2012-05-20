@@ -236,6 +236,9 @@ uint16 CBattleEntity::ATT()
 
 uint16 CBattleEntity::DEF()
 {
+	if(this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE,0)){
+		return VIT()/2;
+	}
     uint32 DEF = 8 + m_modStat[MOD_DEF] + VIT() / 2;
 
     return ((100 + m_modStat[MOD_DEFP]) * DEF)/100 + dsp_min(((100 + m_modStat[MOD_FOOD_DEFP]) * DEF)/100, m_modStat[MOD_FOOD_DEF_CAP]);

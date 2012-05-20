@@ -55,7 +55,7 @@ INSERT INTO `traits` VALUES(71, 'savagery', 1, 75, 0, 0, 0);
 INSERT INTO `traits` VALUES(72, 'aggressive aim', 1, 75, 0, 0, 0);
 INSERT INTO `traits` VALUES(23, 'martial arts', 2, 1, 0, 173, 80);
 INSERT INTO `traits` VALUES(67, 'subtle blow', 2, 5, 0, 289, 5);
-INSERT INTO `traits` VALUES(17, 'counter', 2, 10, 0, 291, 0);
+INSERT INTO `traits` VALUES(17, 'counter', 2, 10, 0, 291, 10);
 INSERT INTO `traits` VALUES(7, 'max hp boost', 2, 15, 0, 2, 30);
 INSERT INTO `traits` VALUES(23, 'martial arts', 2, 16, 0, 173, 20);
 INSERT INTO `traits` VALUES(23, 'martial arts', 2, 31, 0, 173, 20);

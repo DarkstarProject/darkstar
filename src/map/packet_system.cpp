@@ -2459,11 +2459,12 @@ int32 SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* da
     if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
     {
         CItemLinkshell* PItemLinkPearl = new CItemLinkshell(*PItemLinkshell);
+		if(PItemLinkPearl->GetLSType()==LSTYPE_PEARLSACK || PItemLinkPearl->GetLSType()==LSTYPE_LINKSHELL){
+			PItemLinkPearl->setID(515);
+			PItemLinkPearl->setSubType(ITEM_UNLOCKED);
 
-        PItemLinkPearl->setID(515);
-        PItemLinkPearl->setSubType(ITEM_UNLOCKED);
-
-        charutils::AddItem(PChar, LOC_INVENTORY, PItemLinkPearl);
+			charutils::AddItem(PChar, LOC_INVENTORY, PItemLinkPearl);
+		}
     }
     return 0;
 }

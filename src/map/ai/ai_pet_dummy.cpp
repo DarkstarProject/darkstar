@@ -185,7 +185,7 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 void CAIPetDummy::ActionAbilityUsing()
 {
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL && m_PMobSkill->getValidTargets()==TARGET_ENEMY);
 
 	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
 		m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PPet->getZone()){

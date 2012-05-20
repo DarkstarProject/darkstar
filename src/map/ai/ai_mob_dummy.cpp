@@ -824,12 +824,12 @@ void CAIMobDummy::ActionAttack()
 				Action.flag		  = 0;
 
 				uint16 damage = 0;
-
+				bool isCountered = false;
 				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
 				{
 					Action.messageID = 32; 
 				}
-				else if ( rand()%90 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
+				else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
 				{
                     if (battleutils::IsAbsorbByShadow(m_PBattleTarget)) 
 					{
@@ -842,20 +842,35 @@ void CAIMobDummy::ActionAttack()
 						Action.speceffect = SPECEFFECT_HIT;
 						Action.messageID  = 1;
 
-						bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) );
-						if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0)){isCritical=true;}
-
-						float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget,isCritical); 
-						
-						if(isCritical)
-						{
-							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-							Action.messageID  = 67;
+						//counter check (rate AND your hit rate makes it land, else its just a regular hit)
+						if(rand()%100 < m_PBattleTarget->getMod(MOD_COUNTER) && rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob)){
+							//countered! can crit but no message or new animation, just more damage
+							isCountered = true;
+							Action.messageID = 33; //counter msg
+							Action.reaction   = REACTION_NONE;
+							Action.speceffect = SPECEFFECT_NONE;
+							
+							bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob) );
+							if(m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0)){isCritical=true;}
+							float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical); 
+							damage = (uint16)((m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PBattleTarget, m_PMob)) * DamageRatio);
 						}
-						damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget)) * DamageRatio);	
+						else{
+							bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) );
+							if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0)){isCritical=true;}
+							
+							float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget,isCritical); 
+							
+							if(isCritical)
+							{
+								Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+								Action.messageID  = 67;
+							}
+							damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget)) * DamageRatio);	
+						}
 					}
 				}
-				if (m_PBattleTarget->objtype == TYPE_PC)
+				if (m_PBattleTarget->objtype == TYPE_PC && !isCountered)
 				{
 					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
 				}
@@ -863,11 +878,15 @@ void CAIMobDummy::ActionAttack()
 				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PMob,m_PBattleTarget));
 				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
-                Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked);
+				if(!isCountered){
+					Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked);
+					m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
+				}
+				else{
+					Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false);
+				}
 
 				m_PMob->m_ActionList.push_back(Action);
-                m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
-
 				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 			}
             m_LastActionTime = m_Tick;
