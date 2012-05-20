@@ -105,12 +105,16 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				case TYPE_MOB:
 				{
 					WBUFB(data,(0x1E)-4) = ((CMobEntity*)PEntity)->GetHPP();
-					WBUFB(data,(0x21)-4) = ((CMobEntity*)PEntity)->m_CallForHelp;
+					WBUFL(data,(0x21)-4) = ((CMobEntity*)PEntity)->m_unknown; 
+					WBUFB(data,(0x21)-4) |= ((CMobEntity*)PEntity)->m_CallForHelp;
+					WBUFB(data,(0x27)-4) = ((CMobEntity*)PEntity)->m_name_prefix;
                     WBUFL(data,(0x2C)-4) = ((CMobEntity*)PEntity)->m_OwnerID.id;
+					//set bit0 to 1 to make HP bars invisible e.g. Yilgeban, another bit somewhere controls mob targetability
+					//WBUFB(data,(0x22)-4) = 0; 
 
 					if (((CMobEntity*)PEntity)->PMaster != NULL)
 					{
-						WBUFB(data,(0x27)-4) = 0x08;
+						WBUFB(data,(0x27)-4) = 0x08; //todo: may need |= 
 					}
 				}
 				break;

@@ -2,7 +2,6 @@
 -- Area: Ru'Aun Gardens
 -- NPC:  Seiryu
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/RuAun_Gardens/TextIDs");

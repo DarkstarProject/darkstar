@@ -95,6 +95,8 @@ public:
 	uint16		m_Family;
 	uint8		m_SkillStatus;			//status of skills (used 2h/used epic tp move/etc)
 
+	uint32		m_unknown; //includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+	uint8		m_name_prefix; //The ding bats VS Ding bats
 	CEnmityContainer* PEnmityContainer;	// система ненависти монстров
 
     bool   CanDeaggro();
