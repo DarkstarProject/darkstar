@@ -1902,6 +1902,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 						}
 			    }
 		    }
+			if (PMob->GetMLevel() > level) exp *= 1.25; // Until expirence chains are implemented chain#2 bonus will be in effect for all party fights as an average
             if (level - minlevel > 7)
 			{ 
 				exp = 0;
@@ -2051,37 +2052,27 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool
 	if (PChar->isDead()) return;
     if (limit)
     {
-        if (PChar->GetMLevel() <= 50) 
+		// Original release expirence per monster cap before other bonus exp set to 1
+		// Up to Date expirence per monster cap before bouns exp set to 2
+		uint8 permonstercap = 2;
+		if (PChar->GetMLevel() <= 50) 
         {
-            if (exp > 200) exp = 200;
+            if (exp > (200*permonstercap)) exp = 200*permonstercap;
         } 
         else if (PChar->GetMLevel() <= 60) 
         {
-            if (exp > 250) exp = 250;
+            if (exp > (250*permonstercap)) exp = 250*permonstercap;
         } 
-        else if (exp > 300) 
+        else if (exp > (300*permonstercap)) 
         {
-            exp = 300;
+            exp = 300*permonstercap;
         }
 
         exp = exp * map_config.exp_rate;
 
 		if (PChar->PParty != NULL)
 		{
-			if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) || !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION))
-			{
-				switch(PChar->PParty->members.size())
-				{
-					case 1:	exp *= 1.00; break;
-					case 2: exp *= 0.60; break;
-					case 3: exp *= 0.45; break;
-					case 4: exp *= 0.40; break;
-					case 5: exp *= 0.37; break;
-					case 6: exp *= 0.35; break;
-					default: break;
-				}
-			}
-			else if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION))
+			if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION))
 			{
 				switch(PChar->PParty->members.size())
 				{
@@ -2090,6 +2081,19 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool
 					case 3: exp *= 0.55; break;
 					case 4: exp *= 0.45; break;
 					case 5:	exp *= 0.39; break;
+					case 6: exp *= 0.35; break;
+					default: break;
+				}
+			}
+			else
+			{
+				switch(PChar->PParty->members.size())
+				{
+					case 1:	exp *= 1.00; break;
+					case 2: exp *= 0.60; break;
+					case 3: exp *= 0.45; break;
+					case 4: exp *= 0.40; break;
+					case 5: exp *= 0.37; break;
 					case 6: exp *= 0.35; break;
 					default: break;
 				}
