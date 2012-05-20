@@ -950,7 +950,10 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 					PChar->m_Weapons[SLOT_MAIN]->setDamage(((CItemWeapon*)PItem)->getDamage());
 					PChar->m_Weapons[SLOT_MAIN]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
 					PChar->m_Weapons[SLOT_MAIN]->setSkillType(((CItemWeapon*)PItem)->getSkillType());
-
+					if(!PChar->m_Weapons[SLOT_MAIN]->isTwoHanded()){
+						PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HASSO);
+						PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEIGAN);
+					}
 					PChar->addModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 					PChar->addModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 				}

@@ -754,8 +754,11 @@ uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
 	int32 crithitrate = 5;
-
-	if (PAttacker->objtype == TYPE_PC && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
+	if(PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0) || 
+		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES)){
+			return 100;
+	}
+	else if (PAttacker->objtype == TYPE_PC && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
 	{	
         // TODO: WRONG CALCULATION OF A POSITION OF THE CHARACTER
 

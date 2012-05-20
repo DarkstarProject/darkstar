@@ -980,7 +980,7 @@ void CAICharNormal::ActionMagicCasting()
 		return;
     }
 	
-	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)cap_value(m_PChar->getMod(MOD_FASTCAST),0,50))/100.0f) ||
+	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)cap_value(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
 		if (m_PChar->animation == ANIMATION_ATTACK) m_LastActionTime = m_Tick;
@@ -1310,6 +1310,15 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+		if (m_PJobAbility->getID()==157 || m_PJobAbility->getID()==307){//Hasso/Seigan, check for 2h weapon
+			if(!m_PChar->m_Weapons[SLOT_MAIN]->isTwoHanded()){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 307));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+		}
         m_ActionType = ACTION_JOBABILITY_FINISH;
         ActionJobAbilityFinish();
         return;
@@ -1522,7 +1531,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
     
 	uint16 damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget);
 
-	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI) ? m_PChar->addTP(-100) : m_PChar->health.tp = 8; 
+	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI)){
+		m_PChar->addTP(-100);
+	}
+	else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI)){
+		m_PChar->addTP(-100); 
+		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
+	}
 
 	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
 		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false);

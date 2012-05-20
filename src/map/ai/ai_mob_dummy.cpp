@@ -851,7 +851,7 @@ void CAIMobDummy::ActionAttack()
 							Action.speceffect = SPECEFFECT_NONE;
 							
 							bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob) );
-							if(m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0)){isCritical=true;}
+
 							float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical); 
 							damage = (uint16)((m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PBattleTarget, m_PMob)) * DamageRatio);
 						}

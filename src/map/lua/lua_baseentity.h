@@ -219,6 +219,7 @@ public:
 	int32 setLevel(lua_State*);				// sets the character's level
 	int32 changeJob(lua_State*);			// changes the job of a char (testing only!)
 	int32 getWeaponDmg(lua_State*);			// gets the current equipped weapons' DMG rating
+	int32 isWeaponTwoHanded(lua_State*);
 
     int32 openDoor(lua_State*);             // открываем дверь
 };

@@ -286,7 +286,16 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	--handling phalanx
 	dmg = dmg - target:getMod(MOD_PHALANX);
 	if(dmg<0) then
-		dmg = 0;
+		return 0;
+	end
+	
+	--handle invincible
+	if(target:hasStatusEffect(EFFECT_INVINCIBLE) and skilltype==MOBSKILL_PHYSICAL)then
+		return 0;
+	end
+	--handle pd
+	if(target:hasStatusEffect(EFFECT_PERFECT_DODGE) and skilltype==MOBSKILL_PHYSICAL)then
+		return 0;
 	end
 	
 	--handling stoneskin

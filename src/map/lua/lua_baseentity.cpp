@@ -3545,6 +3545,22 @@ inline int32 CLuaBaseEntity::getWeaponDmg(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::isWeaponTwoHanded(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
+			
+	if(weapon == NULL) 
+	{
+	    ShowDebug(CL_CYAN"lua::getWeaponDmg weapon in main slot is null!\n"CL_RESET);
+		return 0;
+    }
+	lua_pushinteger( L, weapon->isTwoHanded() );
+	return 1;
+}
+
 /************************************************************************
 *                                                                       *
 *  Открываем дверь и автоматически закрываем через 7 секунд             *
@@ -3710,5 +3726,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openDoor),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromCure),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isWeaponTwoHanded),
 	{NULL,NULL}
 };
