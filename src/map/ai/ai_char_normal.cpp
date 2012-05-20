@@ -1538,6 +1538,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		m_PChar->addTP(-100); 
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
 	}
+	else{
+		m_PChar->health.tp = 0;
+	}
 
 	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
 		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false);
