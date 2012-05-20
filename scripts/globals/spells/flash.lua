@@ -14,7 +14,7 @@ function onSpellCast(caster,target,spell)
 	
 	final = 156;
 	spell:setMsg(236);
-	target:addStatusEffect(EFFECT_FLASH,75,0,12); -- Guess at power for now.
+	target:addStatusEffect(EFFECT_FLASH,100,0,12); -- Guess at power for now.
 	
 	target:updateEnmity(caster,1280,180);
 	

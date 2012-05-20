@@ -12,13 +12,12 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 	
 	isEnfeeble = true;
-	typeEffect = EFFECT_SILENCE;
+	typeEffect = EFFECT_ATTACK_DOWN;
 	statmod = MOD_INT;
 	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_SILENCE) == nil) then
-			atkdown = (mob:getMod(MOD_ATT) / 100) * 15;
-			target:addStatusEffect(EFFECT_SILENCE,atkdown,0,60);
+		if(target:getStatusEffect(EFFECT_ATTACK_DOWN) == nil) then
+			target:addStatusEffect(EFFECT_ATTACK_DOWN,50,0,60);
 		end
 	end
 	

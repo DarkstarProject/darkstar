@@ -17,8 +17,7 @@ function OnMobWeaponSkill(target, mob, skill)
         resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
         if(resist > 0.5) then
                 if(target:getStatusEffect(EFFECT_STR_DOWN) == nil) then
-                        strDown = target:getMod(MOD_STR) / 2;
-                        target:addStatusEffect(EFFECT_STR_DOWN,strDown,0,180); -- -50%
+                        target:addStatusEffect(EFFECT_STR_DOWN,30,0,180); -- -30
                 end
         end
         

@@ -12,13 +12,13 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 	
 	isEnfeeble = true;
-	typeEffect = EFFECT_PARALYSIS;
+	typeEffect = EFFECT_SLOW;
 	statmod = MOD_INT;
 	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_PARALYSIS) == nil) then
+		if(target:getStatusEffect(EFFECT_SLOW) == nil) then
 			skill:setMsg(MSG_ENFEEB_IS);
-			target:addStatusEffect(EFFECT_PARALYSIS,50,0,120); -- 50% ?
+			target:addStatusEffect(EFFECT_SLOW,2,0,120);
 		else
 			skill:setMsg(MSG_NO_EFFECT); -- no effect
 		end
@@ -26,6 +26,6 @@ function OnMobWeaponSkill(target, mob, skill)
 		skill:setMsg(MSG_MISS); -- resist !
 	end
 	
-	return EFFECT_PARALYSIS;
+	return EFFECT_SLOW;
 	
 end

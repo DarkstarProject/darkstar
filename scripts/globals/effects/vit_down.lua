@@ -11,6 +11,9 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
+	if((target:getMod(MOD_VIT) - effect:getPower()) < 0) then
+		effect:setPower(target:getMod(MOD_VIT));
+	end
 	target:addMod(MOD_VIT,-effect:getPower());
 end;
 

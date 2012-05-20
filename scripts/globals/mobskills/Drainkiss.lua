@@ -11,6 +11,16 @@ require("/scripts/globals/monstertpmoves");
 
 function OnMobWeaponSkill(target, mob, skill)
 	
+	isEnfeeble = true;
+	typeEffect = EFFECT_STR_DOWN;
+	statmod = MOD_INT;
+	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	if(resist > 0.5) then
+		if(target:getStatusEffect(EFFECT_STR_DOWN) == nil) then
+			target:addStatusEffect(EFFECT_STR_DOWN,20,0,60); -- -20
+		end
+	end
+	
 	dmgmod = 1;
 	accmod = 1;
 	info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_MAB_BONUS,1);
