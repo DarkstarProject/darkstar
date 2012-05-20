@@ -291,6 +291,29 @@ void CAIPetDummy::ActionAbilityInterrupt(){
     m_ActionType = ACTION_ATTACK;
 }
 
+bool CAIPetDummy::WyvernIsHealing(){
+	DSP_DEBUG_BREAK_IF(m_PPet->getPetType() != PETTYPE_WYVERN);
+
+	bool isMasterHealing = (m_PPet->PMaster->animation == ANIMATION_HEALING);
+	bool isPetHealing = (m_PPet->animation == ANIMATION_HEALING);
+
+	if(isMasterHealing && !isPetHealing){
+		//animation down
+		m_PPet->animation = ANIMATION_HEALING;
+		m_PPet->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING,0,0,10,0));
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		return true;
+	}
+	else if(!isMasterHealing && isPetHealing){
+		//animation up
+		m_PPet->animation = ANIMATION_NONE;
+		m_PPet->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		return false;
+	}
+	return isMasterHealing;
+}
+
 /************************************************************************
 *																		*
 *																		*
@@ -310,6 +333,13 @@ void CAIPetDummy::ActionRoaming()
 		//see if master is engaged on something, if so, help attack
 		if(m_PPet->PMaster->PBattleAI->GetBattleTarget()!=NULL){
 			m_PBattleTarget = m_PPet->PMaster->PBattleAI->GetBattleTarget();
+		}
+		if(WyvernIsHealing()){
+			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+			if(m_PPet->PMaster->objtype == TYPE_PC){
+				((CCharEntity*)m_PPet->PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)m_PPet->PMaster));
+			}
+			return;
 		}
 	}
 

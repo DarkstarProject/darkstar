@@ -62,6 +62,7 @@ protected:
 	void ActionAbilityUsing();
 	void ActionAbilityInterrupt();
 	void ActionAbilityFinish();
+	bool WyvernIsHealing(); //true if wyvern is healing
 };
 
 #endif

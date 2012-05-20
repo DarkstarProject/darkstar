@@ -1310,7 +1310,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
-		if (m_PJobAbility->getID()==157 || m_PJobAbility->getID()==307){//Hasso/Seigan, check for 2h weapon
+		if (m_PJobAbility->getID()==157 || m_PJobAbility->getID()==158){//Hasso/Seigan, check for 2h weapon
 			if(!m_PChar->m_Weapons[SLOT_MAIN]->isTwoHanded()){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 307));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);

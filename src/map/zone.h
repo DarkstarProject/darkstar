@@ -88,6 +88,7 @@ struct zoneLine_t
 class CBasicPacket;
 class CBaseEntity;
 class CCharEntity;
+class CBattleEntity;
 class CTreasurePool;
 
 typedef std::list<CRegion*> regionList_t;
