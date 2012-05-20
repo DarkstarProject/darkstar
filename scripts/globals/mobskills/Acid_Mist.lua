@@ -17,8 +17,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
 		if(target:getStatusEffect(EFFECT_ATTACK_DOWN) == nil) then
-			atkDown = target:getMod(MOD_ATT) / 2;
-			target:addStatusEffect(EFFECT_ATTACK_DOWN,atkDown,0,90); -- -50%
+			target:addStatusEffect(EFFECT_ATTACK_DOWN,50,0,90); -- -50%
 		end
 	end
 	

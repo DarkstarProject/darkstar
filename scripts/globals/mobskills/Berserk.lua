@@ -16,6 +16,6 @@ function OnMobWeaponSkill(target, mob, skill)
 		mob:delStatusEffect(EFFECT_BERSERK);
 	end
 	mob:addStatusEffect(EFFECT_BERSERK,1,0,180);
-	return EFFECT_ATTACK_BOOST;
+	return EFFECT_BERSERK;
 	
 end

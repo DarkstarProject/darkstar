@@ -9,7 +9,10 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_DEF,effect:getPower());
+	if(effect:getPower()>100) then
+		effect:setPower(50);
+	end
+	target:addMod(MOD_DEFP,effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +27,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_DEF,effect:getPower());
+	target:delMod(MOD_DEFP,effect:getPower());
 end;

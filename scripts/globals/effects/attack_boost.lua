@@ -1,6 +1,6 @@
 -----------------------------------
 --
---
+-- EFFECT_ATTACK_BOOST
 --
 -----------------------------------
 
@@ -9,7 +9,10 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_AGI,effect:getPower());
+	if(effect:getPower()>100) then
+		effect:setPower(50);
+	end
+	target:addMod(MOD_ATTP,effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +27,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_AGI,effect:getPower());
+	target:delMod(MOD_ATTP,effect:getPower());
 end;

@@ -18,7 +18,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(resist > 0.5) then
 		if(target:getStatusEffect(EFFECT_EVASION_DOWN) == nil) then
 			skill:setMsg(MSG_ENFEEB_IS);
-			target:addStatusEffect(EFFECT_EVASION_DOWN,50,0,120); -- -50 ?
+			target:addStatusEffect(EFFECT_EVASION_DOWN,50,0,120); -- 50%
 		else
 			skill:setMsg(MSG_NO_EFFECT); -- no effect
 		end
