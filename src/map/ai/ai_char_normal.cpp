@@ -1696,6 +1696,11 @@ void CAICharNormal::ActionAttack()
 	}
 
 	uint16 WeaponDelay = (m_PChar->m_Weapons[SLOT_MAIN]->getDelay() * (100 - m_PChar->getMod(MOD_HASTE))) / 100;
+	if(m_PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0 && m_PChar->m_Weapons[SLOT_SUB]->getDmgType() < 4){
+		WeaponDelay += (m_PChar->m_Weapons[SLOT_SUB]->getDelay() * (100 - m_PChar->getMod(MOD_HASTE))) / 100;
+		//apply dual wield delay reduction
+		WeaponDelay = WeaponDelay * ((100.0f - (float)m_PChar->getMod(MOD_DUAL_WIELD))/100.0f);
+	}
 	
 	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
 	{

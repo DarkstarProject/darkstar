@@ -613,6 +613,14 @@ void LoadInventory(CCharEntity* PChar)
 					PChar->addModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 					PChar->addModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 				}
+				if ((i == SLOT_SUB) && (PItem->getType() & ITEM_WEAPON))
+				{
+					PChar->m_Weapons[SLOT_SUB]->setID(((CItemWeapon*)PItem)->getID());
+					PChar->m_Weapons[SLOT_SUB]->setDelay(((CItemWeapon*)PItem)->getDelay());
+					PChar->m_Weapons[SLOT_SUB]->setDamage(((CItemWeapon*)PItem)->getDamage());
+					PChar->m_Weapons[SLOT_SUB]->setDmgType(((CItemWeapon*)PItem)->getDmgType());
+					PChar->m_Weapons[SLOT_SUB]->setSkillType(((CItemWeapon*)PItem)->getSkillType()); 
+				}
 			}
 		}
         uint8 SlotID = (uint8)Sql_GetIntData(SqlHandle, SLOT_LINK);
@@ -991,7 +999,8 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 								return false;
 							}
 							
-							PChar->m_Weapons[SLOT_SUB]->setType(ITEM_WEAPON);											
+							PChar->m_Weapons[SLOT_SUB]->setType(ITEM_WEAPON);	
+							PChar->m_Weapons[SLOT_SUB]->setID(((CItemWeapon*)PItem)->getID());
 							PChar->m_Weapons[SLOT_SUB]->setDelay(((CItemWeapon*)PItem)->getDelay());
 							PChar->m_Weapons[SLOT_SUB]->setDamage(((CItemWeapon*)PItem)->getDamage());
 							PChar->m_Weapons[SLOT_SUB]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
@@ -1228,7 +1237,14 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 			case SLOT_HANDS:  PChar->look.hands  = 0; break;
 			case SLOT_LEGS:   PChar->look.legs   = 0; break;
 			case SLOT_FEET:   PChar->look.feet   = 0; break;
-			case SLOT_SUB:	  PChar->look.sub    = 0; break;
+			case SLOT_SUB:	  
+				PChar->look.sub    = 0; 
+				PChar->m_Weapons[SLOT_SUB]->setDelay(8000);
+				PChar->m_Weapons[SLOT_SUB]->setDamage(0);
+				PChar->m_Weapons[SLOT_SUB]->setID(0);
+				PChar->m_Weapons[SLOT_SUB]->setDmgType(DAMAGE_NONE);
+                PChar->m_Weapons[SLOT_SUB]->setSkillType((PChar->GetMJob() == JOB_MNK ? SKILL_H2H : 0));
+				break;
 			case SLOT_AMMO:
 			case SLOT_RANGED:
 			{
@@ -2490,7 +2506,7 @@ uint8 checkMultiHits(CCharEntity* PChar, uint16 weaponid){
 	uint32 tripnum = ((rand()%100 < PChar->getMod(MOD_TRIPLE_ATTACK)) ? 3 : 1);
 	uint32 num = ((rand()%100 < PChar->getMod(MOD_DOUBLE_ATTACK)) ? 2 : 1);
 	if(tripnum==3){num=3;}
-
+	
 	int distribution = 0;
 		switch(weaponid){
 		case 17440: //kraken club 2-8 (5:15:25:25:15:10:3:2) cdf = 5,20,45,70,85,95,98,100
