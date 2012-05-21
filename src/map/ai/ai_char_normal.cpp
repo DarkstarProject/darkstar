@@ -1747,12 +1747,14 @@ void CAICharNormal::ActionAttack()
 
 			uint16 subType = m_PChar->m_Weapons[SLOT_SUB]->getDmgType();
 			
-			if ((subType > 0 && subType < 4) || (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH))
+			if ((subType > 0 && subType < 4))//sub weapon is equipped!
 			{ 
-				numattacksLeftHand = ((rand()%100 < m_PChar->getMod(MOD_DOUBLE_ATTACK)) ? 2 : 1);
+				numattacksLeftHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_SUB]->getID());
+			}
+			else if(m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH){ //h2h equipped!
+				numattacksLeftHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
 			}
 
-			//TODO: APPLY THIS TO LEFT HAND AS WELL SO BOTH HANDS CAN MULTI HIT!
 			uint32 numattacksRightHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
 
 			//cap it, cannot have >8 hits per attack round!
@@ -1778,6 +1780,7 @@ void CAICharNormal::ActionAttack()
 				}
 				uint16 damage = 0;
 
+				//todo: kick attacks
 				// во время физической атаки:
 				//	0 - правая рука 
 				//	1 - левая рука 

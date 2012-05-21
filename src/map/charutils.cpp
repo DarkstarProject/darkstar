@@ -2486,7 +2486,11 @@ void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
 }
 
 uint8 checkMultiHits(CCharEntity* PChar, uint16 weaponid){
+	//TA overwrites DA, both can't proc at once.
+	uint32 tripnum = ((rand()%100 < PChar->getMod(MOD_TRIPLE_ATTACK)) ? 3 : 1);
 	uint32 num = ((rand()%100 < PChar->getMod(MOD_DOUBLE_ATTACK)) ? 2 : 1);
+	if(tripnum==3){num=3;}
+
 	int distribution = 0;
 		switch(weaponid){
 		case 17440: //kraken club 2-8 (5:15:25:25:15:10:3:2) cdf = 5,20,45,70,85,95,98,100

@@ -1174,7 +1174,7 @@ int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
 
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
-		ShowError("luautils::OnMobEngaged: %s\n",lua_tostring(LuaHandle,-1));
+		ShowError("luautils::onMobEngaged: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
