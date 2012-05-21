@@ -14,13 +14,15 @@ function onSpellCast(caster,target,spell)
 	if (effect == nil) then
 		target:addStatusEffectEx(EFFECT_COPY_IMAGE,EFFECT_COPY_IMAGE_3,3,0,300);
 		target:setMod(MOD_UTSUSEMI, 3);
-		spell:setMsg(0);
+		spell:setMsg(230);
+		return EFFECT_COPY_IMAGE;
 	elseif (effect:getPower() <= 3) then
-		spell:setMsg(0);
 		effect:setPower(3);
 		effect:setIcon(EFFECT_COPY_IMAGE_3);
 		effect:resetStartTime();
 		target:setMod(MOD_UTSUSEMI, 3);
+		spell:setMsg(230);
+		return EFFECT_COPY_IMAGE;
 	else
 		spell:setMsg(75);
 	end

@@ -24,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:setMod(MOD_BLINK,0);
 end;
