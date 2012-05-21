@@ -509,6 +509,9 @@ void CAIMobDummy::ActionAbilityFinish()
 			return;
 		}
 
+		//todo: have a separate msg field from this for shadow absorb?
+		m_PMobSkill->setMsg(185); //need this as some skills may be set to "shadows absorb"
+
 		//handle aoe stuff (self/mob)
 		//AOE=1 means the circle is around the MONSTER
 		//AOE=2 means the circle is around the BATTLE TARGET

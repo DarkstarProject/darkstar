@@ -2150,7 +2150,6 @@ inline int32 CLuaBaseEntity::messageSpecial(lua_State *L)
 inline int32 CLuaBaseEntity::messageBasic(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
@@ -2163,9 +2162,14 @@ inline int32 CLuaBaseEntity::messageBasic(lua_State* L)
         param0 = (uint32)lua_tointeger(L,2);
     if( !lua_isnil(L,3) && lua_isnumber(L,3) )
         param1 = (uint32)lua_tointeger(L,3);
-		
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageBasicPacket(m_PBaseEntity, m_PBaseEntity, param0, param1, messageID));
-    return 0;
+	
+	if(m_PBaseEntity->objtype == TYPE_PC){
+		((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageBasicPacket(m_PBaseEntity, m_PBaseEntity, param0, param1, messageID));
+	}
+	else{//broadcast in range
+		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE,new CMessageBasicPacket(m_PBaseEntity, m_PBaseEntity, param0, param1, messageID));
+	}
+	return 0;
 }
 
 //==========================================================//

@@ -27,6 +27,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	cratio = cRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF)),attacker:getMainLvl(),target:getMainLvl());
 	ccmin = 0;
 	ccmax = 0;
+	hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
 	ccritratio = 0;
 	critrate = 0;
 	if(canCrit) then --work out critical hit ratios, by +1ing 
@@ -64,7 +65,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	if (firsthit <= hitrate) then
 		if(canCrit) then
 			local double critchance = math.random();
-			if(critchance <= critrate) then --crit hit!
+			if(critchance <= critrate or hasMightyStrikes) then --crit hit!
 				local double cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
 				cpdif = cpdif/1000; 
 				finaldmg = dmg * cpdif;
@@ -91,7 +92,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 				pdif = pdif/1000; --multiplier set.
 				if(canCrit) then
 					critchance = math.random();
-					if(critchance <= critrate) then --crit hit!
+					if(critchance <= critrate or hasMightyStrikes) then --crit hit!
 						cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
 						cpdif = cpdif/1000; 
 						finaldmg = finaldmg + base * cpdif;
@@ -106,8 +107,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 			hitsdone = hitsdone + 1;
 		end
 	end
-	
-	--print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
+	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 	
 	return finaldmg;
 end;

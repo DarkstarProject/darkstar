@@ -191,7 +191,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
 
     m_POwner->delModifiers(&PStatusEffect->modList);
     m_POwner->UpdateHealth();
-
+	
     m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
 
     if (m_POwner->objtype == TYPE_PC)

@@ -3006,7 +3006,9 @@ int32 SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, int8* da
 int32 SmallPacket0x0F1(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
 	EFFECT StatusID = (EFFECT)RBUFW(data,(0x04));
-	
+	if(StatusID==EFFECT_COPY_IMAGE_2 || StatusID==EFFECT_COPY_IMAGE_3 || StatusID==EFFECT_COPY_IMAGE_4){
+		StatusID = EFFECT_COPY_IMAGE;
+	}
 	PChar->StatusEffectContainer->DelStatusEffect(StatusID);
 	return 0;
 }

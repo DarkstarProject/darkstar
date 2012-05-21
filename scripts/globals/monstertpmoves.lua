@@ -280,7 +280,48 @@ function applyPlayerResistance(mob,skill,target,isEnfeeble,effect,statmod)
 end;
 
 function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
-	--TODO: Handle shadows depending on shadow behaviour / skilltype
+	--Handle shadows depending on shadow behaviour / skilltype
+	if(shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows. 
+		targShadows = target:getMod(MOD_UTSUSEMI);
+		shadowType = MOD_UTSUSEMI;
+		if(targShadows==0)then --try blink, as utsusemi always overwrites blink this is okay
+			targShadows = target:getMod(MOD_BLINK);
+			shadowType = MOD_BLINK;
+		end
+		
+		if(targShadows>0)then
+		--Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
+			if(targShadows >= shadowbehav) then --no damage, just suck the shadows
+				skill:setMsg(31);
+				target:setMod(shadowType,(targShadows-shadowbehav));
+				if(shadowType == MOD_UTSUSEMI) then --update icon
+					effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
+					if(effect ~= nil) then
+						if((targShadows-shadowbehav) == 1) then
+							effect:setIcon(EFFECT_COPY_IMAGE);
+						elseif((targShadows-shadowbehav) == 2) then
+							effect:setIcon(EFFECT_COPY_IMAGE_2);
+						elseif((targShadows-shadowbehav) == 3) then
+							effect:setIcon(EFFECT_COPY_IMAGE_3);
+						end
+					end
+				end
+				return shadowbehav;
+			else --less shadows than this move will take, remove all and factor damage down
+				dmg = dmg * ((shadowbehav-targShadows)/shadowbehav);
+				target:setMod(MOD_UTSUSEMI,0);
+				target:setMod(MOD_BLINK,0);
+				target:delStatusEffect(EFFECT_COPY_IMAGE);
+				target:delStatusEffect(EFFECT_BLINK);
+			end
+		end
+	elseif(shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
+		target:setMod(MOD_UTSUSEMI,0);
+		target:setMod(MOD_BLINK,0);
+		target:delStatusEffect(EFFECT_COPY_IMAGE);
+		target:delStatusEffect(EFFECT_BLINK);
+	end
+	
 	--TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
 	
 	--handling phalanx

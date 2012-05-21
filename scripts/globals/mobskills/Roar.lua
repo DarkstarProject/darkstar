@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		else
 			--land
 			skill:setMsg(MSG_ENFEEB_IS);
-			target:addStatusEffect(EFFECT_PARALYSIS,1,0,60);
+			target:addStatusEffect(EFFECT_PARALYSIS,10,0,60);
 			return EFFECT_PARALYSIS;
 		end
 	end

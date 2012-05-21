@@ -914,17 +914,34 @@ bool IsParalised(CBattleEntity* PAttacker)
 
 bool IsAbsorbByShadow(CBattleEntity* PDefender)
 {
+	//utsus always overwrites blink, so if utsus>0 then we know theres no blink.
     uint16 Shadow = PDefender->getMod(MOD_UTSUSEMI);
+	uint16 modShadow = MOD_UTSUSEMI;
+	if(Shadow==0){
+		Shadow=PDefender->getMod(MOD_BLINK);
+		modShadow = MOD_BLINK;
+		//random chance, assume 80% proc
+		if(rand()%100 < 20){
+			return false;
+		}
+	}
 
-    if (Shadow != 0) 
+    if (Shadow > 0) 
     {
-        PDefender->setModifier(MOD_UTSUSEMI, --Shadow);
+        PDefender->setModifier(modShadow, --Shadow);
 
         if (Shadow == 0)
         {
-            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+			switch(modShadow){
+			case MOD_UTSUSEMI:
+				PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+				break;
+			case MOD_BLINK:
+				PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
+				break;
+			}
         }
-        else if (Shadow < 4)
+        else if (Shadow < 4 && MOD_UTSUSEMI==modShadow)
         {
             if (PDefender->objtype == TYPE_PC)
             {
@@ -933,20 +950,19 @@ bool IsAbsorbByShadow(CBattleEntity* PDefender)
                 if (PStatusEffect != NULL)
                 {
                     uint16 icon = EFFECT_COPY_IMAGE_3;
-                    switch (Shadow)
+                    switch (PDefender->getMod(MOD_UTSUSEMI))
                     {
                         case 1: icon = EFFECT_COPY_IMAGE_1; break;
                         case 2: icon = EFFECT_COPY_IMAGE_2; break;
                     }
                     PStatusEffect->SetIcon(icon);
-                    PStatusEffect->SetPower(Shadow);
                     PDefender->StatusEffectContainer->UpdateStatusIcons();
                 }
             }
         }
         return true;
     }
-    // TODO: blink
+
     return false;
 }
 
