@@ -1921,7 +1921,6 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 						}
 			    }
 		    }
-			if (PMob->GetMLevel() > level) exp *= 1.25; // Until expirence chains are implemented chain#2 bonus will be in effect for all party fights as an average
             if (level - minlevel > 7)
 			{ 
 				exp = 0;
@@ -1939,15 +1938,17 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 
                     if(PMember->getZone() == PMob->getZone())
                     {
-                        if (distance(PMember->loc.p, PMob->loc.p) > 100)
+						if (distance(PMember->loc.p, PMob->loc.p) > 100)
                         {
                             PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,0,0,37));
                             continue;
                         }
+						else if (PMob->GetMLevel() > level && PChar->PParty->members.size() > 1) exp *= 1.25; // Until expirence chains are implemented chain#2 bonus will be in effect for all party fights as an average
                         if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
                         {
                             PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
                         }
+						
                         AddExperiencePoints(PMember, PMob, exp);
                     }
                 }
@@ -2073,7 +2074,7 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool
     {
 		// Original release expirence per monster cap before other bonus exp set to 1
 		// Up to Date expirence per monster cap before bouns exp set to 2
-		uint8 permonstercap = 2;
+		uint8 pcinzone = 0, permonstercap = 2;
 		if (PChar->GetMLevel() <= 50) 
         {
             if (exp > (200*permonstercap)) exp = 200*permonstercap;
@@ -2091,9 +2092,14 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool
 
 		if (PChar->PParty != NULL)
 		{
+			for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
+			{
+				CBattleEntity* PMember = PChar->PParty->members[i];
+				if (PMember->getZone() == PMob->getZone()) pcinzone++;
+			}
 			if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION))
 			{
-				switch(PChar->PParty->members.size())
+				switch(pcinzone)
 				{
 					case 1: exp *= 1.00; break;
 					case 2:	exp *= 0.75; break;
@@ -2106,7 +2112,7 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool
 			}
 			else
 			{
-				switch(PChar->PParty->members.size())
+				switch(pcinzone)
 				{
 					case 1:	exp *= 1.00; break;
 					case 2: exp *= 0.60; break;
