@@ -5,12 +5,9 @@
 -- @zone: 240
 --  @pos: -101.209 -4.25 110.886
 --  Involved in Quests: Wonder Wands
---  Will play Wonder Wands csid, but will not show item name. Although it is needed to know which item, the quest itself does not require this csid.
-
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
@@ -29,7 +26,7 @@ end;
 function onTrigger(player,npc)
 WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
 	if(WonderWands == QUEST_ACCEPTED) then
-		player:startEvent(0x0100,0,17061);
+		player:startEvent(0x0100,0,0,0,17061);
 	elseif(WonderWands == QUEST_COMPLETED) then
 		player:startEvent(0x010c);
 	else

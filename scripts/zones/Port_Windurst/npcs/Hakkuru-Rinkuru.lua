@@ -8,7 +8,6 @@
 -- @pos -111 -4 101
 -----------------------------------
 
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
@@ -37,7 +36,7 @@ WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS); --Third and final qu
 		else
 			player:startEvent(0x0104,0,17091,17061,17053); --Remind player which items are needed if quest is accepted and items are not traded
 		end
-	else player:startEvent(0x00e0)
+	else player:startEvent(0x00e0);
 	end
 end;
 
@@ -54,7 +53,7 @@ function onTrigger(player,npc)
 	SecondRewardVar = player:getVar("SecondRewardVar");
 	-- Check for the missions first (priority?)
 	-- Check if we are on Windurst Mission 1-1
-	if(player:getCurrentMission(WINDURST) ~= THE_HORUTOTO_RUINS_EXPERIMENT) then
+	if(player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT) then
 		windurst_mission_1_1 = player:getVar("windurst_mission_1_1");
 		if(windurst_mission_1_1 == 1) then
 			-- Next step in the mission
