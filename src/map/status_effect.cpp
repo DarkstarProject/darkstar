@@ -108,7 +108,7 @@ uint32 CStatusEffect::GetLastTick()
 
 void CStatusEffect::SetFlag(uint16 Flag)
 {
-    m_Flag = Flag;
+    m_Flag |= Flag;
 }
 
 void CStatusEffect::SetIcon(uint16 Icon)

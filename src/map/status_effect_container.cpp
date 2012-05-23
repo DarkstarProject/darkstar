@@ -252,6 +252,20 @@ bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID, uint16 SubID)
 	return false;
 }
 
+bool CStatusEffectContainer::DelStatusEffectWithPower(EFFECT StatusID, uint16 power) 
+{
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
+	{
+		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
+		   (m_StatusEffectList.at(i)->GetPower() == power))
+		{
+			RemoveStatusEffect(i);
+			return true;
+		}
+	}
+	return false;
+}
+
 /************************************************************************
 *                                                                       *
 *  Удаляем все эффекты с указанными флагами                             *
@@ -325,6 +339,67 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
 			return true;
 		}
 	}
+	return false;
+}
+
+/************************************************************************
+		Applies a bard song effect (after checking restrictions)
+		Returns true if the effect is applied, false otherwise.
+*************************************************************************/
+
+bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect)
+{
+	//break if not a BRD song.
+	DSP_DEBUG_BREAK_IF(!(PStatusEffect->GetStatusID() >= EFFECT_REQUIEM && 
+			PStatusEffect->GetStatusID() <= EFFECT_NOCTURNE));
+
+	//if all match tier/id/effect then overwrite
+
+	//if tier/effect match then overwrite //but id doesn't, NO EFFECT
+	//if targ has <2 of your songs on, then just apply
+	//if targ has 2 of your songs, remove oldest one and apply this one.
+	
+	uint8 numOfEffects = 0;
+	CStatusEffect* oldestSong = NULL;
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
+	{
+		if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_REQUIEM && 
+			m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_NOCTURNE) //is a brd effect
+		{
+			if(m_StatusEffectList.at(i)->GetPower() == PStatusEffect->GetPower() &&
+				m_StatusEffectList.at(i)->GetStatusID()==PStatusEffect->GetStatusID()){//same tier/type, overwrite
+					//OVERWRITE
+					DelStatusEffectWithPower(PStatusEffect->GetStatusID(),PStatusEffect->GetPower());
+					AddStatusEffect(PStatusEffect);
+					return true;
+			}
+			if(m_StatusEffectList.at(i)->GetSubID() == PStatusEffect->GetSubID()){//YOUR BRD effect
+				numOfEffects++;
+				if(oldestSong==NULL){
+					oldestSong = m_StatusEffectList.at(i);
+				}
+				else if(m_StatusEffectList.at(i)->GetDuration() + m_StatusEffectList.at(i)->GetStartTime() < 
+					oldestSong->GetDuration() + oldestSong->GetStartTime()){
+						oldestSong = m_StatusEffectList.at(i);
+				}
+			}
+		}
+	}
+
+	if(numOfEffects<2){
+		AddStatusEffect(PStatusEffect);
+		return true;
+	}
+	else if(numOfEffects==2){
+		//overwrite oldest
+		DelStatusEffectWithPower(oldestSong->GetStatusID(),oldestSong->GetPower());
+		AddStatusEffect(PStatusEffect);
+		return true;
+	}
+	else{
+		ShowDebug("ApplyBardEffect error: More than 2 effects on target from this BRD! Please report. \n");
+	}
+
 	return false;
 }
 
@@ -410,7 +485,8 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
     string_t name;
 
-	if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000)
+	if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000 || 
+		StatusEffect->GetStatusID()>=EFFECT_REQUIEM && StatusEffect->GetStatusID() <= EFFECT_NOCTURNE)
 	{
 		name.insert(0, "globals/effects/");
         name.insert(name.size(), effects::EffectsParams[StatusEffect->GetStatusID()].Name);

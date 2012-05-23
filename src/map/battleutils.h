@@ -76,7 +76,8 @@ namespace battleutils
     uint16  TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked); 
 	uint32  MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
-	
+	void    SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
+
     uint8	GetEnmityMod(uint8 level, uint8 modType);
 	bool	Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	void	MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode);

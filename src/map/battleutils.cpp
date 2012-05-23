@@ -895,6 +895,61 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	}
 }
 
+void SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
+	uint8 tier = 1;
+	EFFECT effect = EFFECT_NONE;
+	uint8 tick = 0;
+
+	//calculate strengths. Need to know TIER and EFFECTTYPE (Minuet, Paeon, etc) for icon
+	if(PSpell->getID() >= 394 && PSpell->getID() <= 398){ 
+		effect = EFFECT_MINUET;
+		tier = PSpell->getID()-393;
+	}
+	else if(PSpell->getID() >= 389 && PSpell->getID() <= 393){ 
+		effect = EFFECT_MINNE;
+		tier = PSpell->getID()-388;
+	}
+	else if(PSpell->getID() >= 399 && PSpell->getID() <= 400){ 
+		effect = EFFECT_MADRIGAL;
+		tier = PSpell->getID()-398;
+	}
+	else if(PSpell->getID() >= 403 && PSpell->getID() <= 404){ 
+		effect = EFFECT_MAMBO;
+		tier = PSpell->getID()-382;
+	}
+	else if(PSpell->getID() >= 386 && PSpell->getID() <= 388){ 
+		effect = EFFECT_BALLAD;
+		tier = PSpell->getID()-385;
+		tick = 3;
+	}
+	else if(PSpell->getID() >= 419 && PSpell->getID() <= 420){ 
+		effect = EFFECT_MARCH;
+		tier = PSpell->getID()-418;
+	}
+	else if(PSpell->getID() >= 378 && PSpell->getID() <= 385){ 
+		effect = EFFECT_PAEON;
+		tier = PSpell->getID()-377;
+		tick = 3;
+	}
+
+	if(effect==EFFECT_NONE){
+		if(PCaster->objtype==TYPE_PC){
+			CCharEntity* PChar = (CCharEntity*)PCaster;
+			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,PSpell->getID(),0,66));
+		}
+		return;
+	}
+	//TODO: Handle instruments!
+	//add status with power=charid, subid=tier 
+	CStatusEffect* PStatus = new CStatusEffect(effect,effect,tier,tick,120,PCaster->targid);
+	PStatus->SetFlag(EFFECTFLAG_ON_ZONE);//wears on zone
+
+	if(PTarget->StatusEffectContainer->ApplyBardEffect(PStatus)){
+		//ShowDebug("Applied %s! \n",PSpell->getName()); 
+	}
+}
+
+
 /************************************************************************
 *                                                                       *
 *  Chance paralysis will cause you to be paralyzed                      *

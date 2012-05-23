@@ -474,7 +474,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	}
 
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
-    
+
 	m_charList.erase(PChar->targid);
 	ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u>\n"CL_RESET, GetName(), m_charList.size());
 
@@ -573,6 +573,10 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 			m_regionList.empty() ? zone_server : zone_server_region,
 			500);
 	}
+	
+	//remove status effects that wear on zone
+	PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
+
     if (PChar->animation == ANIMATION_CHOCOBO && !CanUseMisc(MISC_CHOCOBO))
     {
         PChar->animation = ANIMATION_NONE;

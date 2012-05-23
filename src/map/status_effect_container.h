@@ -44,10 +44,12 @@ public:
 	uint32	m_Flags;											// биты переполнения байтов m_StatusIcons	
 	uint8	m_StatusIcons[32];									// иконки статус-эффектов
 
+	bool ApplyBardEffect(CStatusEffect* PStatusEffect);
 	void AddStatusEffect(CStatusEffect* StatusEffect);
 	bool DelStatusEffect(EFFECT StatusID);
 	bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
     void DelStatusEffectsByFlag(uint16 flag);                   // удаляем все эффекты с указанным типом
+	bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие стату-эффекта
 	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие стату-эффекта с уникальным subid

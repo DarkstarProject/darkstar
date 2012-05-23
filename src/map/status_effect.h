@@ -42,6 +42,7 @@ enum EFFECTFLAG
     EFFECTFLAG_DEATH            = 0x0020,     // исчезает при смерти
     EFFECTFLAG_MAGIC_BEGIN      = 0x0040,     // исчезает перед началом чтения заклинания
     EFFECTFLAG_MAGIC_END        = 0x0080,     // исчезает после прочтения заклинания
+  	EFFECTFLAG_ON_ZONE          = 0x0100,
 };
 
 enum EFFECT

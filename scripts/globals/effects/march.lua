@@ -1,7 +1,8 @@
 -----------------------------------
 --
 --   EFFECT_MARCH
---
+-- getPower returns the TIER (e.g. 1,2,3,4)
+-- DO NOT ALTER ANY OF THE EFFECT VALUES!
 -----------------------------------
 
 -----------------------------------
@@ -9,7 +10,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_HASTE,effect:getPower());  -- MOD_MARCH IS NOT IMPLEMENTED, USING HASTE UNTIL MARCH IS IMPLEMENTED
+   target:addMod(MOD_HASTE,effect:getPower());  -- MOD_MARCH IS NOT IMPLEMENTED, USING HASTE UNTIL MARCH IS IMPLEMENTED <--- I will do 05/23/2012
 end;
 
 -----------------------------------

@@ -25,7 +25,7 @@
 #define _LUAUTILS_H
 
 #include "../../common/cbasetypes.h"
-
+#include "../battleutils.h"
 /************************************************************************
 *																		*
 *																		*
