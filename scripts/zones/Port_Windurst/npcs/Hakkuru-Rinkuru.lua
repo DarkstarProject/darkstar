@@ -7,6 +7,8 @@
 -- @zone 240
 -- @pos -111 -4 101
 -----------------------------------
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
