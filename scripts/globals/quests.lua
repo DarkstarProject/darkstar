@@ -526,7 +526,7 @@ MITHRAN_DELICACIES              = 97;
 -----------------------------------
 
 THE_FIREBLOOM_TREE              = 1;
-GREETINGS_TO_THE_GUARDIAN       = 2;
+GREETINGS_TO_THE_GUARDIAN       = 2;  -- + --
 A_QUESTION_OF_TASTE             = 3;
 EVERYONES_GRUDGING              = 4;
 YOU_CALL_THAT_A_KNIFE           = 6;
@@ -535,7 +535,7 @@ GULLIBLES_TRAVELS               = 8;
 EVEN_MORE_GULLIBLES_TRAVELS     = 9;
 PERSONAL_HYGIENE                = 10;
 THE_OPO_OPO_AND_I               = 11;
-TRIAL_BY_FIRE                   = 12;
+TRIAL_BY_FIRE                   = 12; 
 CLOAK_AND_DAGGER                = 13;
 A_DISCERNING_EYE_KAZHAM         = 14;
 TRIAL_SIZE_TRIAL_BY_FIRE        = 15;
