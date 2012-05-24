@@ -4,7 +4,6 @@
 --	Starts & Finishes Quest: The Amazin' Scorpio
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
@@ -42,9 +41,9 @@ Fame = player:getFameLevel(WINDURST);
 	if (AmazinScorpio == QUEST_COMPLETED) then
 		player:startEvent(0x01e5);
 	elseif (AmazinScorpio == QUEST_ACCEPTED) then
-		player:startEvent(0x01e2);
+		player:startEvent(0x01e2,0,0,1017);
 	elseif (AmazinScorpio == QUEST_AVAILABLE and Fame >= 2) then
-		player:startEvent(0x01e1);
+		player:startEvent(0x01e1,0,0,1017);
 	else
 		player:startEvent(0x01a5);
 	end
