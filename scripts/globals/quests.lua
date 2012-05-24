@@ -522,8 +522,10 @@ BOMBS_AWAY                      = 96;
 MITHRAN_DELICACIES              = 97;
 
 -----------------------------------
---  Outlands
+--  Outlands -- 
 -----------------------------------
+
+-- Note: Kazham(1-15), Norg(128-149), Misc(160-165), Rabao(192-201)
 
 THE_FIREBLOOM_TREE              = 1;
 GREETINGS_TO_THE_GUARDIAN       = 2;  -- + --
@@ -539,8 +541,17 @@ TRIAL_BY_FIRE                   = 12;
 CLOAK_AND_DAGGER                = 13;
 A_DISCERNING_EYE_KAZHAM         = 14;
 TRIAL_SIZE_TRIAL_BY_FIRE        = 15;
+
+THE_SAHAGINS_KEY				= 128;
 FORGE_YOUR_DESTINY				= 129; -- ± --
+BLACK_MARKET					= 130;
 MAMA_MIA 						= 131;
+STOP_YOUR_WHINING				= 132;
+TRIAL_BY_WATER					= 133;
+EVERYONES_GRUDGE				= 134;
+SECRET_OF_THE_DAMP_SCROLL		= 135;
+THE_SAHAGINS_STASH				= 136;
+ITS_NOT_YOUR_VAULT				= 137;
 LIKE_A_SHINING_SUBLIGAR			= 138; -- + --
 LIKE_A_SHINING_LEGGINGS			= 139; -- + --
 THE_SACRED_KATANA				= 140; -- ± --
@@ -549,6 +560,27 @@ A_THIEF_IN_NORG					= 142; -- ± --
 TWENTY_IN_PIRATE_YEARS			= 143; -- ± --
 I_LL_TAKE_THE_BIG_BOX			= 144; -- ± --
 TRUE_WILL						= 145; -- ± --
+THE_POTENTIAL_WITHIN			= 146;
+BUGI_SODEN						= 147;
+TRIAL_SIZE_TRIAL_BY_WATER		= 148;
+AN_UNDYING_PLEDGE				= 149;
+
+WRATH_OF_THE_OPO_OPOS			= 160;
+WANDERING_SOULS					= 161;
+SOUL_SEARCHING					= 162;
+DIVINE_MIGHT					= 163;
+DIVINE_MIGHT_REPEAT				= 164;
+OPEN_SESAME						= 165;
+
+DONT_FORGET_THE_ANTIDOTE		= 192;
+THE_MISSING_PIECE				= 193;
+TRIAL_BY_WIND					= 194;
+THE_KUFTAL_TOUR					= 195;
+THE_IMMORTAL_LU_SHANG			= 196;
+TRIAL_SIZE_TRIAL_BY_WIND		= 197;
+CHASING_DREAMS					= 199;
+THE_SEARCH_FOR_GOLDMANE			= 200;
+INDOMITABLE_SPIRIT				= 201;
 
 -----------------------------------
 --  Aht Urhgan
