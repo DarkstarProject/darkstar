@@ -1929,7 +1929,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 			{
 				exp = GetRealExp(level, PMob->GetMLevel());
 			}
-
+			if (PMob->GetMLevel() > level && PChar->PParty->members.size() > 1) exp *= 1.25; // Until expirence chains are implemented chain#2 bonus will be in effect for all party fights as an average
             if (exp != 0)
             {
                 for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
@@ -1943,7 +1943,6 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                             PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,0,0,37));
                             continue;
                         }
-						else if (PMob->GetMLevel() > level && PChar->PParty->members.size() > 1) exp *= 1.25; // Until expirence chains are implemented chain#2 bonus will be in effect for all party fights as an average
                         if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
                         {
                             PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
