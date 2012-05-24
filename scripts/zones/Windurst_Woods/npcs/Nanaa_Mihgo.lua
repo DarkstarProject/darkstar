@@ -3,8 +3,8 @@
 -- NPC:  Nanaa Mihgo
 -- Starts and Finishes Quest: Mihgo's Amigo (R), The Tenshodo Showdown (start)
 -- Involved In Quest: Crying Over Onions
--- @zone 241
--- @pos 62 -4 240
+-- Involved in Mission 2-1
+-- @pos 62 -4 240 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -40,22 +40,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	-- cs info
-	-- 0x4c (76) = Nothing to say, gtfo
-	-- 0xa5 (165) = Windurst 2-1 related cs
-	-- 0x06 (166) = Windurst 2-1 related cs: More info about what she wants you to do for her before she helps you further
 	
 	-- Check for Missions first (priority?)
 	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
-		windurst_mission_2_1 = player:getVar("windurst_mission_2_1");
-		if(windurst_mission_2_1 == 2) then
-			player:startEvent(0xa5);
-		elseif(windurst_mission_2_1 == 3) then
-			player:startEvent(0xa6);
-		elseif(windurst_mission_2_1 == 4) then
-			player:startEvent(0xa9);
+		MissionStatus = player:getVar("MissionStatus");
+		if(MissionStatus == 1) then
+			player:startEvent(0x00a5,0,LAPIS_CORAL,LAPIS_MONOCLE);
+		elseif(MissionStatus == 2) then
+			player:startEvent(0x00a6,0,LAPIS_CORAL,LAPIS_MONOCLE);
+		elseif(MissionStatus == 3) then
+			player:startEvent(0x00a9);
 		else
-			player:startEvent(0xaa);
+			player:startEvent(0x00aa);
 		end
 	else
 		CryingOverOnionsVar = player:getVar("CryingOverOnions");
@@ -99,6 +95,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x004c); -- Standard dialog
 		end
 	end
+	
 end;
 
 -----------------------------------
@@ -136,24 +133,22 @@ function onEventFinish(player,csid,option)
 		player:setVar("theTenshodoShowdownCS",1);
 		player:addKeyItem(LETTER_FROM_THE_TENSHODO);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_THE_TENSHODO);
-	elseif(csid == 0xa5 and option == 1) then -- Windurst Mission 2-1
+	elseif(csid == 0x00a5 and option == 1) then -- Windurst Mission 2-1
 		-- Add the key item for the mission
 		player:addKeyItem(LAPIS_MONOCLE);
 		player:messageSpecial(KEYITEM_OBTAINED,LAPIS_MONOCLE);
 		-- Grab a random value to mark the correct fossil with
 		selections = {17588734,17588738,17588739,17588740,17588742} -- Id's of the fossils that we have to examine
 		random_value = math.random(1,5);
-		player:setVar("wm_2_1_randfoss",selections[random_value]);
+		player:setVar("MissionStatus_randfoss",selections[random_value]);
 		-- Mark the progress
-		player:setVar("windurst_mission_2_1",3);
-	elseif(csid == 0xa9) then -- Windurst Mission 2-1
-		-- Add remove the key items
+		player:setVar("MissionStatus",2);
+	elseif(csid == 0x00a9) then -- Windurst Mission 2-1
+		player:setVar("MissionStatus",4);
 		player:delKeyItem(LAPIS_MONOCLE);
 		player:delKeyItem(LAPIS_CORAL);
-		-- Add the Key item
-		player:delKeyItem(HIDEOUT_KEY);
+		player:addKeyItem(HIDEOUT_KEY);
 		player:messageSpecial(KEYITEM_OBTAINED,HIDEOUT_KEY);
-		-- Mark the progress
-		player:setVar("windurst_mission_2_1",5);
 	end
+	
 end;

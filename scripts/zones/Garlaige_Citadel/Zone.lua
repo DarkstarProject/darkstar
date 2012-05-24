@@ -77,7 +77,7 @@ function onRegionEnter(player,region)
 	
 	if(gate1:getAnimation() == 8 and gate2:getAnimation() == 8 and gate3:getAnimation() == 8 and gate4:getAnimation() == 8) then
 		player:messageSpecial(BANISHING_GATES + msg_offset); -- Banishing gate opening
-		GetNPCByID(gateid):openDoor();
+		GetNPCByID(gateid):openDoor(30);
 	end
 	
 end;

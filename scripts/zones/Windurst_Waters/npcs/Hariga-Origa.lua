@@ -2,6 +2,7 @@
 --  Area: Windurst Waters
 --  NPC:  Hariga-Origa
 --  Starts & Finishes Quest: Glyph Hanger
+--  Involved in Mission 2-1
 --  @pos -62 -6 105 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;

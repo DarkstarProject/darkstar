@@ -5,6 +5,8 @@ ITEM_CANNOT_BE_OBTAINED = 6580; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6583; -- Obtained: <item>
            GIL_OBTAINED = 6584; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6586; -- Obtained key item: <keyitem>
+	   
+-- Mission Texts
      ORB_ALREADY_PLACED = 0; -- A dark Mana Orb is already placed here.
    G_ORB_ALREADY_GOTTEN = 3; -- You have already retrieved a glowing Mana Orb from here.
    RETRIEVED_ALL_G_ORBS = 4; -- You have retrieved all of the glowing Mana Orbs.

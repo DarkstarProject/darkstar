@@ -1,16 +1,16 @@
 -----------------------------------
---	Area: Inner Horutoto Ruins
---	NPC:  Mahogany Door
---  Involved In Quest: Making Headlines
---	Working 100%
---  Unable to find EventID for Making Headlines quest. Used dialog ID instead.
+-- Area: Inner Horutoto Ruins
+-- NPC:  Mahogany Door
+-- Involved In Quest: Making Headlines
+-- Involved in Mission 2-1
+-- @pos -11 0 20 192
+-----------------------------------
+package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/globals/titles");
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
+require("scripts/globals/quests");
+require("scripts/globals/missions");
 require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 
 -----------------------------------
@@ -25,15 +25,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	
 	-- Check for Missions first (priority?)
 	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
-		windurst_mission_2_1 = player:getVar("windurst_mission_2_1");
-		if(windurst_mission_2_1 == 5) then
-			player:startEvent(0x2e); -- "The door is firmly shut"
+		MissionStatus = player:getVar("MissionStatus");
+		if(MissionStatus == 4) then
+			player:startEvent(0x002e);
 		else
-			player:startEvent(0x2c); -- "The door is firmly shut"
+			player:startEvent(0x002c); -- "The door is firmly shut"
 		end
-		return 1;
 	else
 		function testflag(set,flag)
 			return (set % (2*flag) >= flag)
@@ -50,8 +50,10 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x002c); -- "The door is firmly shut"
 		end
-		return 1;
 	end
+	
+	return 1;
+	
 end; 
 		
 -----------------------------------
@@ -71,11 +73,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x2e) then
+	if(csid == 0x002e) then
 		-- Mark the progress
-		player:setVar("windurst_mission_2_1",6);
+		player:setVar("MissionStatus",5);
 	end
+	
 end;
-
-
-

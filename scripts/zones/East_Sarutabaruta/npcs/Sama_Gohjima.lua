@@ -1,10 +1,12 @@
 -----------------------------------
 --	Area: East Sarutabaruta
 -- 	NPC: Sama Gohjima
---	Working 100%
+--  Involved in Mission: The Horutoto Ruins Experiment (optional)
+--	@pos 377 -13 98 116
+-----------------------------------
+package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 require("scripts/globals/missions");
 require("scripts/zones/East_Sarutabaruta/TextIDs");
 
@@ -20,14 +22,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	-- Check if we are on Windurst Mission 1-1
-	if(player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT) then
-		windurst_mission_1_1 = player:getVar("windurst_mission_1_1");
-		if(windurst_mission_1_1 == 2) then
-			-- The mission is active
-			player:showText(npc,SAMA_GOHJIMA_DIALOG);
-		end
+	
+	if(player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
+		player:showText(npc,SAMA_GOHJIMA_DIALOG);
 	end
+	
 end; 
  
 -----------------------------------
@@ -47,6 +46,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

@@ -12,6 +12,10 @@ FULL_INVENTORY_AFTER_TRADE = 10944; -- You cannot obtain the <item>. Try trading
 -- Conquest System
 CONQUEST = 11643; -- You've earned conquest points!
 
+-- Mission Dialogs
+YOU_ACCEPT_THE_MISSION = 11065; -- You have accepted the mission.
+YOUVE_EARNED_CONQUEST_POINTS = 11643; -- You've earned conquest points!
+
 -- Quest Dialog
     GOLD_SKULL_DIALOG = 3235; -- Welcome back. Your mission went without incident, I trust?
 KOHLO_LAKOLO_DIALOG_A = 12186; -- On your Star Onion Brigade honor, you can't tell anybody that Joker is hiding in the ghosty house!

@@ -51,22 +51,18 @@ end;
 -----------------------------------			
 
 function onRegionEnter(player,region)			
+	
 	switch (region:GetRegionID()): caseof		
 	{		
-	[1] = function (x)  -- Windurst Mission 1-3, final cutscene with Leepe-Hoppe		
-	-- If we're on Windurst Mission 1-3		
-	if(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then		
-		windurst_mission_1_3 = player:getVar("windurst_mission_1_3");	
-		if(windurst_mission_1_3 == 3) then	
-			-- Set the progress variable further so the event won't
-			-- be called over and over (thanks Dia!)
-			player:setVar("windurst_mission_1_3",4);
-			player:startEvent(0x92);
-		end
-	end	
-	end,	
-	}	
-end;		
+		[1] = function (x)  -- Windurst Mission 1-3, final cutscene with Leepe-Hoppe		
+			-- If we're on Windurst Mission 1-3		
+			if(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE and player:getVar("MissionStatus") == 2) then		
+				player:startEvent(0x0092);
+			end	
+		end,	
+	}
+	
+end;
 
 -----------------------------------		
 -- onEventUpdate		
@@ -89,6 +85,9 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x7534 and option == 0) then	
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
-	elseif(csid == 0x92) then -- Returned from Giddeus, Windurst 1-3	
+	elseif(csid == 0x0092) then -- Returned from Giddeus, Windurst 1-3	
+		player:setVar("MissionStatus",3);
+		player:setVar("ghoo_talk",0);
+		player:setVar("laa_talk",0);
 	end	
 end;		

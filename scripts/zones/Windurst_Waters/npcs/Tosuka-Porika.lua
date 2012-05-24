@@ -2,10 +2,11 @@
 --	Area: Windurst Waters
 --	NPC:  Tosuka-Porika
 --	Involved in Quests: Hat in Hand
---  @zone 238
---  @pos -26 -6 103 
+--  Involved in Mission 2-1
+--  @pos -26 -6 103 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -37,19 +38,21 @@ function onTrigger(player,npc)
 	bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
 	glyphStatus = player:getQuestStatus(WINDURST,GLYPH_HANGER);
 	chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
-	missionStatus = player:getCurrentMission(WINDURST);
-	windurst_mission_2_1 = player:getVar("windurst_mission_2_1");
-	Fame = player:getFameLevel(WINDURST)
+	
+	Fame = player:getFameLevel(WINDURST);
 	
 	-- Start Past Reflexion in First -----------
-	if(player:needToZone() == false and bookwormStatus == QUEST_AVAILABLE and missionStatus ~= LOST_FOR_WORDS and glyphStatus == QUEST_COMPLETED and Fame >= 2) then
+	if(player:needToZone() == false and bookwormStatus == QUEST_AVAILABLE and WindyMission ~= LOST_FOR_WORDS and glyphStatus == QUEST_COMPLETED and Fame >= 2) then
 		player:startEvent(0x0183); -- Start Quest "Early Bird Catches the Bookworm"
-	elseif(missionStatus == LOST_FOR_WORDS and windurst_mission_2_1 == 1) then
-		player:startEvent(0x00a0); -- First CS for Mission 2-1
-	elseif(missionStatus == LOST_FOR_WORDS and windurst_mission_2_1 > 1 and windurst_mission_2_1 < 7) then
-		player:startEvent(0x00a1); -- During Mission 2-1
-	elseif(missionStatus == LOST_FOR_WORDS and windurst_mission_2_1 == 7) then
-		player:startEvent(0x00a8); -- Finish Mission 2-1
+	elseif(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
+		MissionStatus = player:getVar("MissionStatus");
+		if(MissionStatus == 0) then
+			player:startEvent(0x00a0); -- First CS for Mission 2-1
+		elseif(MissionStatus > 0 and MissionStatus < 6) then
+			player:startEvent(0x00a1); -- During Mission 2-1
+		elseif(MissionStatus == 6) then
+			player:startEvent(0x00a8); -- Finish Mission 2-1
+		end
 	elseif(bookwormStatus == QUEST_ACCEPTED) then
 		player:startEvent(0x0184); -- During Quest "Early Bird Catches the Bookworm"
 	elseif(player:getQuestStatus(WINDURST,HAT_IN_HAND) == QUEST_ACCEPTED or player:getVar("QuestHatInHand_var2") == 1) then
@@ -60,7 +63,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x0037); -- Show Off Hat
 		end
 	-- Book is A_SONG_OF_LOVE, Keyitem ID = 126
-	elseif(chasingStatus  == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and missionStatus ~= THE_JESTER_WHOD_BE_KING and Fame >= 3 and player:needToZone() == false) then
+	elseif(chasingStatus  == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and WindyMission ~= THE_JESTER_WHOD_BE_KING and Fame >= 3 and player:needToZone() == false) then
 		player:startEvent(0x0193); --  Add initial cutscene
 	elseif(chasingStatus == QUEST_ACCEPTED and player:getVar("CHASING_TALES_TRACK_BOOK") > 0) then
 		player:startEvent(0x019c);
@@ -94,17 +97,10 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0037) then  -- Show Off Hat
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+32);
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
-	elseif(csid == 0x00a0) then -- Windurst Mission 2-1
-		player:setVar("windurst_mission_2_1",2);
-	elseif(csid == 0x00a8) then -- Windurst Mission 1-2 is over (good end)
-		-- Returned with the key item, mission's over
-		player:completeMission(WINDURST,LOST_FOR_WORDS);
-		-- Add Rank Points (Note: I have no idea how much should be added)
-		player:addRankPoints(0);
-		-- Remove all variables set for this mission
-		player:setVar("windurst_mission_2_1",0);
-		player:setVar("wm_2_1_randfoss",0);
-    
+	elseif(csid == 0x00a0) then
+		player:setVar("MissionStatus",1);
+	elseif(csid == 0x00a8) then
+		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x0183 and option == 0) then -- Early Bird Gets The Bookworm
 		player:addQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
 		

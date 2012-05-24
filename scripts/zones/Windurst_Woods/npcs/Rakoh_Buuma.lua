@@ -2,9 +2,10 @@
 --	Area: Windurst Woods
 --	NPC:  Rakoh Buuma
 --	Starts Windurst Missions
---	Working ???% 
+--	@pos 106 -5 -23 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -17,80 +18,35 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-	-- If the player is from Windurst
-	if(player:getNation() == WINDURST) then
-		-- Fetch our current rank
-		player_cur_rank = player:getRank();
-		
-		-- [ Notes ]
-		-- * Rank 1 missions start automatically when talked to guard
-		-- * Anything higher requies rank points
-		-- * cs0x72 (114) = Mission List (Used for Rank2 and up)
-		-- * Rank Points bar = 4000 points (@4000 it's full)
-		
-		-- If our Rank is 1
-		if(player_cur_rank == 1) then
-			windy_1_1_completed = player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT);
-			windy_1_2_completed = player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER);
-			windy_1_3_completed = player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE);
-			
-			-- Check for all Rank 1 missions
-			if(windy_1_1_completed == false) then
-				-- If the player has started the mission or not
-				if(player:getCurrentMission(WINDURST) ~= THE_HORUTOTO_RUINS_EXPERIMENT) then
-					-- Mission has not been started yet
-					player:startEvent(0x79);
-				else
-					-- Mission has been started, cannot accept more
-					player:startEvent(0x7f);
-				end
-			elseif(windy_1_2_completed == false and windy_1_1_completed == true) then
-				-- If the player has started the mission or not
-				if(player:getCurrentMission(WINDURST) ~= THE_HEART_OF_THE_MATTER) then
-					-- Mission has not been started yet
-					player:startEvent(0x84);
-				else
-					-- Mission has been started, cannot accept more
-					player:startEvent(0x88);
-				end
-			elseif(windy_1_3_completed == false and windy_1_1_completed == true and windy_1_2_completed == true) then
-				-- Windurst 1-3
-				-- If the player has started the mission or not
-				if(player:getCurrentMission(WINDURST) ~= THE_PRICE_OF_PEACE) then
-					-- Mission has not been started yet
-					player:startEvent(0x95);
-				else
-					if(player:getVar("windurst_mission_1_3") == 4) then
-						-- Play the cutscene of 1-3 being done
-						player:startEvent(0x9a);
-					else
-						-- Mission has been started, cannot accept more
-						player:startEvent(0x96);
-					end
-				end
-			else
-				printf( "Default: Error" );
-			end
-		elseif(player_cur_rank >= 2) then
-			-- Rank2 Missions
-			-- Get the Mission Mask
-			flagMission, repeatMission = getMissionMask(player);
-			-- Display the Mission List (if any)
-			player:startEvent(0x72,flagMission,0,0,0,0,repeatMission);
-			--
-			-- Note: Make sure to check if the flagMission variable is not 
-			-- the default one (meaning no missions available, if it is,
-			-- trigger the alternative cs)
-		end
-		--[[elseif(player_cur_rank == 3) then
-			-- More missions
-			printf("Rank 3 Missions time!");
-			--[Rank4, etc]
-		end]]--
+	
+	if(player:getNation() ~= WINDURST) then
+		player:startEvent(0x0069); -- for other nation
 	else
-		-- You're from another Nation
-		player:startEvent(0x69);
+		CurrentMission = player:getCurrentMission(WINDURST);
+		MissionStatus = player:getVar("MissionStatus");
+		pRank = player:getRank();
+		cs, p, offset = getMissionOffset(player,1,CurrentMission,MissionStatus);
+		
+		if(CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
+			if(cs == 0) then
+				player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
+			else
+				player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
+			end
+		elseif(CurrentMission ~= 255) then
+			player:startEvent(0x0070);
+		elseif(player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
+			player:startEvent(0x0079);
+		elseif(player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
+			player:startEvent(0x0084);
+		elseif(player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
+			player:startEvent(0x0095);
+		else
+			flagMission, repeatMission = getMissionMask(player);
+			player:startEvent(0x0072,flagMission,0,0,0,0,repeatMission);
+		end
 	end
+	
 end;
 
 -----------------------------------
@@ -108,42 +64,15 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-	if(option == 1 and csid == 0x79) then
-		-- Log who we started the mission from (to know which title we get)
-		player:setVar("mission_started_from",1); -- Windurst Woods Guard
-		-- Start Windurst 1-1
-		player:setVar("windurst_mission_1_1",1);
-		-- Add the Mission to the Mission Log
-		player:addMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT);
-	elseif(option == 1 and csid == 0x84) then
-		-- Start Windurst 1-2
-		player:setVar("windurst_mission_1_2",1);
-		-- Add the Mission to the Mission Log
-		player:addMission(WINDURST,THE_HEART_OF_THE_MATTER);
-	elseif(option == 2 and csid == 0x95) then
-		-- Start Windurst 1-3
-		player:setVar("windurst_mission_1_3",1);
-		player:setVar("ohbiru_dohbiru_talk",1);
-		-- Add the Mission to the Mission Log
-		player:addMission(WINDURST,THE_PRICE_OF_PEACE);
-	elseif(option == 0 and csid == 0x9a) then
-		-- Windurst 1-3 Mission isover
-		player:completeMission(WINDURST,THE_PRICE_OF_PEACE);
-		-- Yay, rank 2!
-		player:setRank(2);
-		-- Set Rank Points back to 0
-		player:setRankPoints(0);
-		-- Add 2,000 gil as reward
-		player:addGil(1000);
-		player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
-		-- Remove all variables set for this mission
-		player:setVar("windurst_mission_1_3",0);
-		player:setVar("ohbiru_dohbiru_talk",0);
-		player:setVar("food_offering_delivered",0);
-		player:setVar("drink_offering_delivered",0);
-		player:setVar("ghoo_talk",0);
-		player:setVar("laa_talk",0);
+printf("RESULT: %u",option);
+	
+	if(csid == 0x0079 and option == 1) then
+		player:setVar("Mission_started_from",1); -- Windurst Woods Guard
+	end
+	
+	finishMissionTimeline(player,1,csid,option);
+	
+	--[[
 	elseif(option == 3 and csid == 0x72) then
 		-- Start Windurst 2-1
 		player:addMission(WINDURST,LOST_FOR_WORDS);
@@ -155,7 +84,7 @@ function onEventFinish(player,csid,option)
 		-- Start Windurst 2-3
 		player:addMission(WINDURST,THE_THREE_KINGDOMS);
 		player:setVar("windurst_mission_2_3",1);
-	end
+	end]]
 end;
 
 

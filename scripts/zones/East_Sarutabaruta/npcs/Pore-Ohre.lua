@@ -1,11 +1,13 @@
 -----------------------------------
---	Area: East Sarutabaruta
--- 	NPC: Pore-Ohre
---	Working ???%
+-- Area: East Sarutabaruta
+-- NPC:  Pore-Ohre
+-- Involved In Mission: The Heart of the Matter
+-- @pos 261 -17 -458 116
+-----------------------------------
+package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
-require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/East_Sarutabaruta/TextIDs");
 
@@ -21,18 +23,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	
 	-- Check if we are on Windurst Mission 1-2
 	if(player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER) then
-		windurst_mission_1_2 = player:getVar("windurst_mission_1_2");
-		if(windurst_mission_1_2 == 2) then
-			-- The mission is active
-			-- Next step in the mission
-			player:startEvent(0x2e);
-		elseif(windurst_mission_1_2 == 3) then
-			-- Already been here, small description of what to do next
-			player:startEvent(0x2f);
+		MissionStatus = player:getVar("MissionStatus");
+		if(MissionStatus == 1) then
+			player:startEvent(0x002e);
+		elseif(MissionStatus == 2) then
+			player:startEvent(0x002f);
 		end
 	end
+	
 end; 
  
 -----------------------------------
@@ -51,11 +52,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x2e) then
+	
+	if(csid == 0x002e) then
+		player:setVar("MissionStatus",2);
 		player:addKeyItem(SOUTHEASTERN_STAR_CHARM);
 		player:messageSpecial(KEYITEM_OBTAINED,SOUTHEASTERN_STAR_CHARM);
 	end
+	
 end;
-
-
-

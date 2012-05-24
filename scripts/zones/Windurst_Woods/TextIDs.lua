@@ -11,7 +11,8 @@ ITEM_CANNOT_BE_OBTAINED = 6682; -- You cannot obtain the item <item> come back a
 		CONQUEST = 8688; -- You've earned conquest points!
 		
 -- Mission Dialogs
-ACCEPTED_MISSION = 6657; -- You have accepted the mission.
+YOU_ACCEPT_THE_MISSION = 6657; -- You have accepted the mission.
+YOUVE_EARNED_CONQUEST_POINTS = 8688; -- You've earned conquest points!
 
 -- Quest Items
 RANGERS_NECKLACE = 13220; -- 

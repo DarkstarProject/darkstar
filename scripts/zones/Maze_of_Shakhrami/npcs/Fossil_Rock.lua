@@ -2,10 +2,11 @@
 -- Area: Maze of Shakhrami
 -- NPC:  Fossil Rock
 -- Used in Mission: Windurst Mission 2-1
--- @zone 198
+-- @pos 17 18 184 198 + <many pos>
+-----------------------------------
+package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 -----------------------------------
@@ -20,19 +21,20 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	
 	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
-		windurst_mission_2_1 = player:getVar("windurst_mission_2_1");
-		if(windurst_mission_2_1 >= 3) then
+		MissionStatus = player:getVar("MissionStatus");
+		if(MissionStatus >= 2) then
 			-- Get the value of the randomly selected fossil
-			random_value = player:getVar("wm_2_1_randfoss");
+			random_value = player:getVar("MissionStatus_randfoss");
 			npc_id = npc:getID();
 			
 			if(npc_id == random_value) then
-				if(windurst_mission_2_1 == 3) then
-					-- Get the keyitem and head back to Nanaa
+				if(MissionStatus == 2) then
+					player:setVar("MissionStatus",3);
+					player:setVar("MissionStatus_randfoss",0);
 					player:addKeyItem(LAPIS_CORAL);
 					player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
-					player:setVar("windurst_mission_2_1",4);
 				else
 					-- Already removed the fossil
 					player:messageSpecial(FOSSIL_EXTRACTED);
@@ -42,6 +44,7 @@ function onTrigger(player,npc)
 			end
 		end
 	end
+	
 end;
 
 -----------------------------------

@@ -10,6 +10,10 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
 -- Conquest System
 CONQUEST = 9002; -- You've earned conquest points!
 
+-- Mission Dialogs
+YOU_ACCEPT_THE_MISSION = 6657; -- You have accepted the mission.
+YOUVE_EARNED_CONQUEST_POINTS = 9002; -- You've earned conquest points!
+
 -- Shop Texts
         KOPOPO_SHOP_DIALOG = 7631; -- Cooking is as much an art as music and painting are. Can your taste buds appreciate the full value of our works of art?
   CHOMOJINJAHL_SHOP_DIALOG = 7636; -- The qualities needed to be a good cook are strong arms, a sense of taste, and devotion.
