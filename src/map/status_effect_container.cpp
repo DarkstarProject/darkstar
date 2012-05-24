@@ -267,6 +267,23 @@ bool CStatusEffectContainer::DelStatusEffectWithPower(EFFECT StatusID, uint16 po
 }
 
 /************************************************************************
+*																		*
+*  Удаляем все эффекты с указанными иконками    						*
+*																		*
+************************************************************************/
+
+void CStatusEffectContainer::DelStatusEffectsByIcon(uint16 IconID) 
+{
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
+	{
+        if (m_StatusEffectList.at(i)->GetIcon() == IconID)
+		{
+			RemoveStatusEffect(i--);
+		}
+	}
+}
+
+/************************************************************************
 *                                                                       *
 *  Удаляем все эффекты с указанными флагами                             *
 *                                                                       *

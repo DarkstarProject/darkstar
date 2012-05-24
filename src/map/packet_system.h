@@ -30,7 +30,7 @@
 
 struct map_session_data_t;
 
-extern int32 (*PacketParser[512])(map_session_data_t*, CCharEntity*, int8*);
+extern void (*PacketParser[512])(map_session_data_t*, CCharEntity*, int8*);
 
 void PrintPacket(int8* data);
 void PacketParserInitialize();
