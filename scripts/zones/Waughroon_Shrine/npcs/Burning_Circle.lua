@@ -56,7 +56,7 @@ function onTrade(player,npc,trade)
 	player:setVar(tostring(pZone) .. "_Field",0);
 	player:setVar(tostring(pZone) .. "_onTrade",0);
 	
-	if(player:getXPos() >= -346 and player:getXPos() <= -330 and player:getZPos() >= -268 and player:getZPos() <= -252) then
+	if(npc:getID() == 17367339) then
 		if(getAvailableBattlefield(player:getZone()) ~= 255) then
 			
 			bcnmFight = getTradeFightBCNM(player,pZone,trade);
@@ -79,12 +79,13 @@ function onTrigger(player,npc)
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
-
-	if(player:getXPos() >= -346 and player:getXPos() <= -330 and player:getZPos() >= -268 and player:getZPos() <= -252) then
+	
+	if(npc:getID() == 17367339) then
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 
-			if(player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 and player:getVar("MissionStatus") == 10) then
+			if((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or 
+			   player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") == 10) then
 				bcnmFight = bcnmFight + 1;
 			end
 
@@ -121,7 +122,8 @@ function onEventUpdate(player,csid,option)
 				if(onTradeFight ~= 0) then
 					bcnmFight = getUpdateFightBCNM(player,pZone,onTradeFight);
 					record = GetServerVariable("[BF]Shattering_Stars_job"..player:getMainJob().."_record");
-				elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 and player:getVar("MissionStatus") == 10) then
+				elseif((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or 
+					   player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") == 10) then
 					record = GetServerVariable("[BF]Mission_2-3_Waughroon_record");
 					player:levelRestriction(25);
 				elseif(player:hasCompletedMission(player:getNation(),5)) then

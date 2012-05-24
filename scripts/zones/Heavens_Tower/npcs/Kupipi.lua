@@ -3,8 +3,7 @@
 -- NPC:  Kupipi
 -- Involved in Mission 2-3
 -- Involved in Quest: Riding on the Clouds
--- @zone 242
--- @pos 2 0 30
+-- @pos 2 0 30 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -38,11 +37,12 @@ end;
 function onTrigger(player,npc)
 	
 	pNation = player:getNation();
+	currentMission = player:getCurrentMission(pNation);
 	
 	if(pNation == SANDORIA) then
 		MissionStatus = player:getVar("MissionStatus");
 		-- San d'Oria Mission 2-3 Part I - Windurst > Bastok
-		if(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST) then
+		if(currentMission == JOURNEY_TO_WINDURST) then
 			if(MissionStatus == 4) then
 				player:startEvent(0x00ee,1,1,1,1,pNation);
 			elseif(MissionStatus == 5) then
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x00f1);
 			end
 		-- San d'Oria Mission 2-3 Part II - Bastok > Windurst
-		elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST2) then
+		elseif(currentMission == JOURNEY_TO_WINDURST2) then
 			if(MissionStatus == 7) then
 				player:startEvent(0x00f2,1,1,1,1,0);
 			elseif(MissionStatus == 8) then
@@ -67,7 +67,7 @@ function onTrigger(player,npc)
 	elseif(pNation == BASTOK) then
 		MissionStatus = player:getVar("MissionStatus");
 		-- Bastok Mission 2-3 Part I - Windurst > San d'Oria
-		if(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST) then
+		if(currentMission == THE_EMISSARY_WINDURST) then
 			if(MissionStatus == 3) then
 				player:startEvent(0x00ee,1,1,1,1,pNation);
 			elseif(MissionStatus <= 5) then
@@ -76,7 +76,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x00f1);
 			end
 		-- Bastok Mission 2-3 Part II - San d'Oria > Windurst
-		elseif(player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST2) then
+		elseif(currentMission == THE_EMISSARY_WINDURST2) then
 			if(MissionStatus == 7) then
 				player:startEvent(0x00f2,1,1,1,1,pNation);
 			elseif(MissionStatus == 8) then
@@ -88,6 +88,15 @@ function onTrigger(player,npc)
 			end
 		else
 			player:startEvent(0x00fb);
+		end
+	elseif(pNation == WINDURST) then
+		MissionStatus = player:getVar("MissionStatus");
+		if(currentMission == THE_THREE_KINGDOMS and MissionStatus == 0) then
+			player:startEvent(0x005F,0,0,0,LETTER_TO_THE_CONSULS_WINDURST);
+		elseif(currentMission == THE_THREE_KINGDOMS and MissionStatus == 11) then
+			player:startEvent(0x0065,0,0,ADVENTURERS_CERTIFICATE);
+		elseif(currentMission == THE_THREE_KINGDOMS) then
+			player:startEvent(0x0061);
 		end
 	else
 		player:startEvent(0x00fb);
@@ -112,8 +121,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	pNation = player:getNation();
-	
 	if(csid == 0x00ee) then
 		if(player:getNation() == BASTOK) then
 			player:setVar("MissionStatus",4);
@@ -130,6 +137,12 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(DARK_KEY);
 		player:messageSpecial(KEYITEM_OBTAINED,DARK_KEY);
 		player:setVar("MissionStatus",8);
+	elseif(csid == 0x005F) then
+		player:setVar("MissionStatus",1);
+		player:addKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
+		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_WINDURST);
+	elseif(csid == 0x0065) then
+		finishMissionTimeline(player,1,csid,option);
 	end
 	
 end;

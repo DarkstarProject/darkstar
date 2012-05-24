@@ -2,8 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Pius
 -- Involved In Mission: Journey Abroad
--- @zone 237
--- @pos 99.916 -21.17 -12.537
+-- @pos 99 -21 -12 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -24,18 +23,22 @@ end;
 
 function onTrigger(player,npc)
 	
-	Mission = player:getCurrentMission(SANDORIA);
+	Mission = player:getCurrentMission(player:getNation());
 	
-	if(Mission == JOURNEY_TO_BASTOK and player:getVar("MissionStatus") == 3 or Mission == JOURNEY_TO_BASTOK2 and player:getVar("MissionStatus") == 8) then
+	if(Mission == JOURNEY_TO_BASTOK and player:getVar("MissionStatus") == 3 or 
+	   Mission == JOURNEY_TO_BASTOK2 and player:getVar("MissionStatus") == 8) then
 		player:startEvent(0x0163);
-	elseif(Mission == JOURNEY_TO_BASTOK or Mission == JOURNEY_TO_BASTOK2) then
+	elseif(Mission == THE_THREE_KINGDOMS_BASTOK and player:getVar("MissionStatus") == 3 or 
+		   Mission == THE_THREE_KINGDOMS_BASTOK2 and player:getVar("MissionStatus") == 8) then
+		player:startEvent(0x0163,1);
+	elseif(Mission == JOURNEY_TO_BASTOK or Mission == JOURNEY_TO_BASTOK2 or Mission == THE_THREE_KINGDOMS_BASTOK2) then
 		player:startEvent(0x0164);
 	else
-		player:startEvent(0x015e);--
+		player:startEvent(0x015e);
 	end
 	
 end;
---0x015e  0x0163  0x0164
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

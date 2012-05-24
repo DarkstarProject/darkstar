@@ -67,7 +67,8 @@ function onEventFinish(player,csid,option)
 --printf("onFinish RESULT: %u",option);
 	
 	if(csid == 0x7d01) then
-		if(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 9) then
+		if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
+			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then
 			player:addKeyItem(KINDRED_CREST);
 			player:messageSpecial(KEYITEM_OBTAINED,KINDRED_CREST);
 			player:setVar("MissionStatus",10);

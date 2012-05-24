@@ -2,8 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Grohm
 -- Involved In Mission: Journey Abroad
--- @zone 237
--- @pos -18.084 -11 -27.576
+-- @pos -18 -11 -27 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -37,6 +36,20 @@ function onTrigger(player,npc)
 			player:startEvent(0x01aa);
 		else
 			player:startEvent(0x01ab);
+		end
+	elseif(player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK) then
+		if(player:getVar("notReceivePickaxe") == 1) then
+			player:startEvent(0x01a9,1);
+		elseif(player:getVar("MissionStatus") == 4) then
+			player:startEvent(0x01a7,1);
+		elseif(player:getVar("MissionStatus") == 5) then
+			player:startEvent(0x01a8,1);
+		end
+	elseif(player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) then
+		if(player:getVar("MissionStatus") == 9) then
+			player:startEvent(0x01aa,1);
+		else
+			player:startEvent(0x01ab,1);
 		end
 	else
 		player:startEvent(0x01a6);

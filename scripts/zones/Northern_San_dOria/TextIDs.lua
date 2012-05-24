@@ -28,6 +28,7 @@ OLBERGIEUT_DIALOG = 11129; -- Friar Faurbellant is on retreat at the Crag of Hol
      FLYER_ACCEPTED = 11916; -- Your flyer is accepted!
 
       HELAKU_DIALOG = 11253; -- Leave this building, and you'll see a great fortress to the right. That's Chateau d'Oraguille. And be polite; San d'Orians can be quite touchy.
+	KASARORO_DIALOG = 11292; -- Step right outside, and you'll see a big castle on the left. That's Chateau d'Oraguille..
 
 GUILBERDRIER_DIALOG = 11005; -- A magic shop, you say? A bit of magic would come in handy... I know! I'll have my daughter study it for me!
 	 VILLION_DIALOG = 11914; -- Opening a shop of magic, without consulting me first? I must pay this Regine a visit!

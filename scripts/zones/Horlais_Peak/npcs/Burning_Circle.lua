@@ -2,8 +2,7 @@
 -- Area: Horlais Peak
 -- NPC:  Burning Circle
 -- Horlais Peak Burning Circle
--- @zone 139
--- @pos -509 158 -211
+-- @pos -509 158 -211 139
 -------------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
@@ -57,7 +56,7 @@ function onTrade(player,npc,trade)
 	player:setVar(tostring(pZone) .. "_Field",0);
 	player:setVar(tostring(pZone) .. "_onTrade",0);
 	
-	if(player:getXPos() >= -520 and player:getXPos() <= -500 and player:getZPos() >= -220 and player:getZPos() <= -200) then
+	if(npc:getID() == 17346795) then
 		if(getAvailableBattlefield(player:getZone()) ~= 255) then
 			
 			bcnmFight = getTradeFightBCNM(player,pZone,trade);
@@ -81,12 +80,13 @@ function onTrigger(player,npc)
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
 	player:setVar(tostring(pZone) .. "_onTrade",0);
-
-	if(player:getXPos() >= -520 and player:getXPos() <= -500 and player:getZPos() >= -220 and player:getZPos() <= -200) then
+	
+	if(npc:getID() == 17346795) then
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 
-			if(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 9) then
+			if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
+				player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then
 				bcnmFight = bcnmFight + 1;
 			end
 
@@ -123,7 +123,8 @@ function onEventUpdate(player,csid,option)
 				if(onTradeFight ~= 0) then
 					bcnmFight = getUpdateFightBCNM(player,pZone,onTradeFight);
 					record = GetServerVariable("[BF]Shattering_Stars_job"..player:getMainJob().."_record");
-				elseif(player:getCurrentMission(BASTOK) == 8 and player:getVar("MissionStatus") == 9) then
+				elseif((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
+						player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then
 					record = GetServerVariable("[BF]Mission_2-3_Horlais_Peak_record");
 					player:levelRestriction(25);
 				elseif(player:hasCompletedMission(player:getNation(),5)) then

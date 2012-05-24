@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
--- NPC: Warchief Vatgit
+-- NPC:  Warchief Vatgit
 -- Involved in Mission 2-3
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/missions");
 require("scripts/globals/titles");
 
 -----------------------------------
@@ -18,8 +19,8 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, killer)
-
+function onMobDeath(mob,killer)
+	
 	if(killer:getCurrentMission(killer:getNation()) == 6) then
 		if(killer:getVar("MissionStatus") == 4) then
 			killer:setVar("MissionStatus",5);

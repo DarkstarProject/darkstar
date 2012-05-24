@@ -23,7 +23,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 
 function onTrigger(player,npc)
-	-- If the player is from Windurst
+	-- if the player is from Windurst
 	if(player:getNation() == WINDURST) then
 		-- Fetch our current rank
 		player_cur_rank = player:getRank();
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 		-- * Anything higher requies rank points
 		-- * Rank Points bar = 4000 points (@4000 it's full)
 		
-		-- If our Rank is 1
+		-- if our Rank is 1
 		if(player_cur_rank == 1) then
 			windy_1_1_completed = player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT);
 			windy_1_2_completed = player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER);
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 			
 			-- Check for all Rank 1 missions
 			if(windy_1_1_completed == false) then
-				-- If the player has started the mission or not
+				-- if the player has started the mission or not
 				if(player:getCurrentMission(WINDURST) ~= THE_HORUTOTO_RUINS_EXPERIMENT) then
 					-- Mission has not been started yet
 					player:startEvent(0x76);
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
 				end
 			elseif(windy_1_2_completed == false and windy_1_1_completed == true) then
 				-- Windurst 1-2 (cs 0x?? (???) triggers this) (cs 0x?? (???) = this mission is already started - gives info on what to do)
-				-- If the player has started the mission or not
+				-- if the player has started the mission or not
 				if(player:getCurrentMission(WINDURST) ~= THE_HEART_OF_THE_MATTER) then
 					-- Mission has not been started yet
 					player:startEvent(0x82);
@@ -61,7 +61,7 @@ function onTrigger(player,npc)
 				end
 			elseif(windy_1_3_completed == false and windy_1_1_completed == true and windy_1_2_completed == true) then
 				-- Windurst 1-3 (final mission of this rank)
-				-- If the player has started the mission or not
+				-- if the player has started the mission or not
 				if(player:getCurrentMission(WINDURST) ~= THE_PRICE_OF_PEACE) then
 					-- Mission has not been started yet
 					player:startEvent(0x83);
@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
 		-- Log who we started the mission from (to know which title we get)
 		player:setVar("mission_started_from",3); -- Windurst Waters Guard
 		-- Start Windurst 1-1
-		player:setVar("windurst_mission_1_1",1);
+		player:setVar("MissionStatus",1);
 		-- Add the Mission to the Mission Log
 		player:addMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT);
 	elseif(option == 1 and csid == 0x82) then

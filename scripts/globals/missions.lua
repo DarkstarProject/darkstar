@@ -80,11 +80,11 @@ THE_HEART_OF_THE_MATTER       = 1;  -- ± --
 THE_PRICE_OF_PEACE            = 2;  -- ± --
 LOST_FOR_WORDS                = 3;  -- ± --
 A_TESTING_TIME                = 4;  -- ± --
-THE_THREE_KINGDOMS            = 5;
-THE_THREE_KINGDOMS_SANDORIA   = 6;
-THE_THREE_KINGDOMS_BASTOK     = 7;
-THE_THREE_KINGDOMS_SANDORIA   = 8;
-THE_THREE_KINGDOMS_BASTOK     = 9;
+THE_THREE_KINGDOMS            = 5;  -- ± --
+THE_THREE_KINGDOMS_SANDORIA   = 6;  -- ± --
+THE_THREE_KINGDOMS_BASTOK     = 7;  -- ± --
+THE_THREE_KINGDOMS_SANDORIA2  = 8;  -- ± --
+THE_THREE_KINGDOMS_BASTOK2    = 9;  -- ± --
 TO_EACH_HIS_OWN_RIGHT         = 10;
 WRITTEN_IN_THE_STARS          = 11;
 A_NEW_JOURNEY                 = 12;
@@ -717,6 +717,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				3,{0x00a8,0},{0,0},{{14,0},{5,200},{7},{12}},{0,0},{0,0},{0}, -- MISSION 2-1
 				4,{0x00C9,0},{0,0},{{14,0},{9,38},{5,400},{7},{12}},{0x00CE,0},{0,0},{{14,0},{9,38},{5,400},{7},{12}}, -- MISSION 2-2 (+35 mob killed)
 				4,{0x00C8,0},{0,0},{{14,0},{9,38},{5,250},{7},{12}},{0x00D1,0},{0,0},{{14,0},{9,38},{5,250},{7},{12}}, -- MISSION 2-2 (30-34 mob killed)
+				5,{0x0065,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},{0,0},{0,0},{0}, -- MISSION 2-3
 						};
 		end
 	end
