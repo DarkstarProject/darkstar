@@ -438,6 +438,14 @@ float CalculateBaseTP(int delay){
 	return x;
 }
 
+bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender){
+	int skill = PDefender->GetSkill(SKILL_PAR)+PDefender->getMod(MOD_PARRY); //max A-, so need gear+ for 20% parry
+	int max = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel()); //A+ skill
+	int parryrate = 20 * ((double)skill/(double)max);
+	parryrate = cap_value(parryrate,1,20);//20% max parry rate
+	return  (rand()%100 < parryrate);
+}
+
 bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	int base = 40; //Reasonable assumption for the time being.
 	int diff = PAttacker->GetMLevel() - PDefender->GetMLevel();

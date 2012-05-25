@@ -834,7 +834,16 @@ void CAIMobDummy::ActionAttack()
 				}
 				else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
 				{
-                    if (battleutils::IsAbsorbByShadow(m_PBattleTarget)) 
+					if (battleutils::IsParried(m_PMob,m_PBattleTarget)) 
+					{
+                        Action.messageID = 70;
+						Action.reaction   = REACTION_PARRY;
+						Action.speceffect = SPECEFFECT_NONE;
+						if(m_PBattleTarget->objtype == TYPE_PC && rand()%2==0){//less chance to skill
+							charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_PAR,m_PBattleTarget->GetMLevel());
+						}
+					}
+                    else if (battleutils::IsAbsorbByShadow(m_PBattleTarget)) 
 					{
                         Action.messageID = 0;
                         m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
