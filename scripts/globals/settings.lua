@@ -132,6 +132,7 @@ EXPLORER_MOOGLE = 1;
 EXPLORER_MOOGLE_LEVELCAP = 10;
 
 --MISC
+FIELD_MANUALS = 1;
 HOMEPOINT_HEAL = 0; --Set to 1 if you want Home Points to heal you like in single-player Final Fantasy games.
 RIVERNE_PORTERS = 120; -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
 LANTERNS_STAY_LIT = 1200; -- time in seconds that lanterns in the Den of Rancor stay lit. 
