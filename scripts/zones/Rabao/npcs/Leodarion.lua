@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(OLD_TRICK_BOX);
 		player:setVar("trueWillCS",2);
 	elseif(csid == 0x0063) then
-		if(player:getFreeSlotsCount() <= 1) then 
+		if(player:getFreeSlotsCount() < 1) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13782);
 		else
 			player:delKeyItem(LARGE_TRICK_BOX);

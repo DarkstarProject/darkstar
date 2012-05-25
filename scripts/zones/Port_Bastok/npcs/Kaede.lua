@@ -3,8 +3,7 @@
 -- NPC:  Kaede
 -- Start Quest: Ayame and Kaede
 -- Involved in Quests: Riding on the Clouds
--- @zone 236
--- @pos 48 -6 67
+-- @pos 48 -6 67 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -36,13 +35,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	if(player:getMainLvl() >= 30) then			
-		if(player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) ~= QUEST_FINISHED) then
-			player:startEvent(0x00f0);
-		else
-			player:startEvent(0x00f8);
-		end
+	
+	ayameKaede = player:getQuestStatus(BASTOK,AYAME_AND_KAEDE);
+	
+	if(ayameKaede == QUEST_AVAILABLE and player:getMainLvl() >= 30) then			
+		player:startEvent(0x00f0);
+	elseif(ayameKaede == QUEST_ACCEPTED) then
+		player:startEvent(0x001a);
+	elseif(ayameKaede == QUEST_COMPLETED) then
+		player:startEvent(0x00f8);
 	else
 		player:startEvent(0x001a);
 	end
