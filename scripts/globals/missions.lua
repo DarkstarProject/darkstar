@@ -257,15 +257,15 @@ function getMissionMask(player)
 
 	if(nation == WINDURST) then
 		if(rank >= 1) then
-			if(player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == 0) then
+			if(player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
 				-- 1-1 NOTE: This mission will not be listed in the Mission List for Windurst
 				--first_mission = first_mission + 1;
 			end
-			if(player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == 0) then
+			if(player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
 				-- 1-2 NOTE: This mission will not be listed in the Mission List for Windurst
 				--first_mission = first_mission + 2;
 			end
-			if(player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == 0) then
+			if(player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
 				-- 1-3 NOTE: This mission will not be listed in the Mission List for Windurst
 				--first_mission = first_mission + 4;
 			end
@@ -287,17 +287,17 @@ function getMissionMask(player)
 		end
 		if(rank >= 3) then
 			-- 3-1
-			if(player:hasCompletedMission(WINDURST,TO_EACH_HIS_OWN_RIGHT) == 0 and getMissionRankPoints(player,10) == 1) then
+			if(player:hasCompletedMission(WINDURST,TO_EACH_HIS_OWN_RIGHT) == false and getMissionRankPoints(player,10) == 1) then
 				first_mission = first_mission + 1024;
 			else
-				if(player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) == 0 and getMissionRankPoints(player,11) == 1) then
+				if(player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) == false and getMissionRankPoints(player,11) == 1) then
 					-- 3-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 2048;
 				elseif(rank > 3 or getMissionRankPoints(player,11) == 1) then
 					-- 3-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 2048;
 				end
-				if(player:hasCompletedMission(WINDURST,A_NEW_JOURNEY) == 0 and getMissionRankPoints(player,12) == 1) then
+				if(player:hasCompletedMission(WINDURST,A_NEW_JOURNEY) == false and getMissionRankPoints(player,12) == 1) then
 					-- 3-3
 					first_mission = first_mission + 4096;
 				end
@@ -305,66 +305,66 @@ function getMissionMask(player)
 		end
 		if(rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
-			--if(player:hasCompletedMission(WINDURST,MAGICITE) == 0 and getMissionRankPoints(player,0) == 1) then
+			--if(player:hasCompletedMission(WINDURST,MAGICITE) == false and getMissionRankPoints(player,0) == 1) then
 				-- 4-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 8192;
 			--end
 		end
 		if(rank == 5) then
-			--if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == 0 and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+			--if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
 				-- 5-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 16384;
 			--end
-			if(player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == 0 and getMissionRankPoints(player,15) == 1) then
+			if(player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
 		end
 		if(rank == 6) then
-			if(player:hasCompletedMission(WINDURST,FULL_MOON_FOUNTAIN) == 0 and getMissionRankPoints(player,16) == 1) then
+			if(player:hasCompletedMission(WINDURST,FULL_MOON_FOUNTAIN) == false and getMissionRankPoints(player,16) == 1) then
 				-- 6-1
 				first_mission = first_mission + 65536;
-			elseif(player:hasCompletedMission(WINDURST,SAINTLY_INVITATION) == 0 and getMissionRankPoints(player,17) == 1) then
+			elseif(player:hasCompletedMission(WINDURST,SAINTLY_INVITATION) == false and getMissionRankPoints(player,17) == 1) then
 				-- 6-2
 				first_mission = first_mission + 131072;
 			end
 		end
 		if(rank == 7) then
-			if(player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY) == 0 and getMissionRankPoints(player,18) == 1) then
+			if(player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY) == false and getMissionRankPoints(player,18) == 1) then
 				-- 7-1
 				first_mission = first_mission + 262144;
-			elseif(player:hasCompletedMission(WINDURST,AWAKENING_OF_THE_GODS) == 0 and getMissionRankPoints(player,19) == 1) then
+			elseif(player:hasCompletedMission(WINDURST,AWAKENING_OF_THE_GODS) == false and getMissionRankPoints(player,19) == 1) then
 				-- 7-2
 				first_mission = first_mission + 524288;
 			end
 		end
 		if(rank == 8) then
-			if(player:hasCompletedMission(WINDURST,VAIN) == 0 and getMissionRankPoints(player,20) == 1) then
+			if(player:hasCompletedMission(WINDURST,VAIN) == false and getMissionRankPoints(player,20) == 1) then
 				-- 8-1
 				first_mission = first_mission + 1048576;
-			elseif(player:hasCompletedMission(WINDURST,THE_JESTER_WHO_D_BE_KING) == 0 and getMissionRankPoints(player,21) == 1) then
+			elseif(player:hasCompletedMission(WINDURST,THE_JESTER_WHO_D_BE_KING) == false and getMissionRankPoints(player,21) == 1) then
 				-- 8-2
 				first_mission = first_mission + 2097152;
 			end
 		end
 		if(rank == 9) then
-			if(player:hasCompletedMission(WINDURST,DOLL_OF_THE_DEAD) == 0 and getMissionRankPoints(player,22) == 1) then
+			if(player:hasCompletedMission(WINDURST,DOLL_OF_THE_DEAD) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			elseif(player:hasCompletedMission(WINDURST,MOON_READING) == 0 and getMissionRankPoints(player,23) == 1) then
+			elseif(player:hasCompletedMission(WINDURST,MOON_READING) == false and getMissionRankPoints(player,23) == 1) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 			end
 		end
 	elseif(nation == SANDORIA) then
 		if(rank >= 1) then
-			if(player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == 0) then -- The first mission is repeatable in San d'Oria
+			if(player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
 				-- 1-1
 				repeat_mission = repeat_mission + 1;
-			elseif(player:hasCompletedMission(SANDORIA,BAT_HUNT) == 0) then
+			elseif(player:hasCompletedMission(SANDORIA,BAT_HUNT) == false) then
 				-- 1-2 If we completed 1-1, we can start and repeat this mission
 				repeat_mission = repeat_mission + 2 + 1;
-			elseif(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) == 0) then
+			elseif(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN) == false) then
 				-- 1-3 If we completed 1-2, we can start and repeat this mission
 				repeat_mission = repeat_mission + 4 + 2 + 1;
 			else
@@ -373,14 +373,14 @@ function getMissionMask(player)
 		end
 		if(rank >= 2) then
 			-- 2-1
-			if(player:hasCompletedMission(SANDORIA,THE_RESCUE_DRILL) == 0 and getMissionRankPoints(player,3) == 1) then
+			if(player:hasCompletedMission(SANDORIA,THE_RESCUE_DRILL) == false and getMissionRankPoints(player,3) == 1) then
 				first_mission = first_mission + 8;
 			else
 				if(rank > 2 or getMissionRankPoints(player,4) == 1) then
 					-- 2-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 16;
 				end
-				if(player:hasCompletedMission(SANDORIA,JOURNEY_ABROAD) == 0 and getMissionRankPoints(player,5) == 1) then
+				if(player:hasCompletedMission(SANDORIA,JOURNEY_ABROAD) == false and getMissionRankPoints(player,5) == 1) then
 					-- 2-3
 					first_mission = first_mission + 32;
 				end
@@ -402,64 +402,64 @@ function getMissionMask(player)
 		end
 		if(rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
-			--if(player:hasCompletedMission(SANDORIA,MAGICITE_SAN_D_ORIA) == 0 and getMissionRankPoints(player,0) == 1) then
+			--if(player:hasCompletedMission(SANDORIA,MAGICITE_SAN_D_ORIA) == false and getMissionRankPoints(player,0) == 1) then
 				-- 4-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 8192;
 			--end
 		end
 		if(rank == 5) then
-			--if(player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == 0 and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+			--if(player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
 				-- 5-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 16384;
 			--end
-			if(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == 0 and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == true and getMissionRankPoints(player,15) == 1) then
+			if(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == true and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
 		end
 		if(rank == 6) then
-			if(player:hasCompletedMission(SANDORIA,LEAUTE_S_LAST_WISHES) == 0 and getMissionRankPoints(player,16) == 1) then
+			if(player:hasCompletedMission(SANDORIA,LEAUTE_S_LAST_WISHES) == false and getMissionRankPoints(player,16) == 1) then
 				-- 6-1
 				first_mission = first_mission + 65536;
-			elseif(player:hasCompletedMission(SANDORIA,RANPERRE_S_FINAL_REST) == 0 and getMissionRankPoints(player,17) == 1) then
+			elseif(player:hasCompletedMission(SANDORIA,RANPERRE_S_FINAL_REST) == false and getMissionRankPoints(player,17) == 1) then
 				-- 6-2
 				first_mission = first_mission + 131072;
 			end
 		end
 		if(rank == 7) then
-			if(player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) == 0 and getMissionRankPoints(player,18) == 1) then
+			if(player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) == false and getMissionRankPoints(player,18) == 1) then
 				-- 7-1
 				first_mission = first_mission + 262144;
-			elseif(player:hasCompletedMission(SANDORIA,THE_SECRET_WEAPON) == 0 and getMissionRankPoints(player,19) == 1) then
+			elseif(player:hasCompletedMission(SANDORIA,THE_SECRET_WEAPON) == false and getMissionRankPoints(player,19) == 1) then
 				-- 7-2
 				first_mission = first_mission + 524288;
 			end
 		end
 		if(rank == 8) then
-			if(player:hasCompletedMission(SANDORIA,COMING_OF_AGE) == 0 and getMissionRankPoints(player,20) == 1) then
+			if(player:hasCompletedMission(SANDORIA,COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
 				-- 8-1
 				first_mission = first_mission + 1048576;
-			elseif(player:hasCompletedMission(SANDORIA,LIGHTBRINGER) == 0 and getMissionRankPoints(player,21) == 1) then
+			elseif(player:hasCompletedMission(SANDORIA,LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1) then
 				-- 8-2
 				first_mission = first_mission + 2097152;
 			end
 		end
 		if(rank == 9) then
-			if(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == 0 and getMissionRankPoints(player,22) == 1) then
+			if(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			elseif(player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT) == 0 and getMissionRankPoints(player,23) == 1) then
+			elseif(player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT) == false and getMissionRankPoints(player,23) == 1) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 			end
 		end	
 	elseif(nation == BASTOK) then
 		if(rank >= 1) then
-			if(player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == 0) then
+			if(player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == false) then
 				-- 1-1 NOTE: This mission will not be listed in the Mission List for Bastok
 				--first_mission = first_mission + 1;
 			end
-			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == 0) then
+			if(player:hasCompletedMission(BASTOK,GEOLOGICAL_SURVEY) == false) then
 				-- 1-2 NOTE: This mission will not be listed in the Mission List for Bastok
 				first_mission = first_mission + 2;
 			end
@@ -470,14 +470,14 @@ function getMissionMask(player)
 		end
 		if(rank >= 2) then
 			-- 2-1
-			if(player:hasCompletedMission(BASTOK,THE_CRYSTAL_LINE) == 0 and getMissionRankPoints(player,3) == 1) then
+			if(player:hasCompletedMission(BASTOK,THE_CRYSTAL_LINE) == false and getMissionRankPoints(player,3) == 1) then
 				first_mission = first_mission + 8;
 			else
 				if(rank > 2 or getMissionRankPoints(player,4) == 1) then
 					-- 2-2 Repeatable
 					repeat_mission = repeat_mission + 16;
 				end
-				if(player:hasCompletedMission(BASTOK,THE_EMISSARY) == 0 and getMissionRankPoints(player,5) == 1) then
+				if(player:hasCompletedMission(BASTOK,THE_EMISSARY) == false and getMissionRankPoints(player,5) == 1) then
 					-- 2-3
 					first_mission = first_mission + 32;
 				end
@@ -485,14 +485,14 @@ function getMissionMask(player)
 		end
 		if(rank >= 3) then
 			-- 3-1
-			if(player:hasCompletedMission(BASTOK,THE_FOUR_MUSKETEERS) == 0 and getMissionRankPoints(player,10) == 1) then
+			if(player:hasCompletedMission(BASTOK,THE_FOUR_MUSKETEERS) == false and getMissionRankPoints(player,10) == 1) then
 				first_mission = first_mission + 1024;
 			else
 				if(rank > 3 or getMissionRankPoints(player,11) == 1) then
 					-- 3-2 Repeatable & Skippable
 					repeat_mission = repeat_mission + 2048;
 				end
-				if(player:hasCompletedMission(BASTOK,JEUNO_MISSION) == 0 and getMissionRankPoints(player,12) == 1) then
+				if(player:hasCompletedMission(BASTOK,JEUNO_MISSION) == false and getMissionRankPoints(player,12) == 1) then
 					-- 3-3
 					first_mission = first_mission + 4096;
 				end
@@ -500,53 +500,53 @@ function getMissionMask(player)
 		end
 		if(rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
-			--if(player:hasCompletedMission(BASTOK,MAGICITE_BASTOK) == 0 and getMissionRankPoints(player,0) == 1) then
+			--if(player:hasCompletedMission(BASTOK,MAGICITE_BASTOK) == false and getMissionRankPoints(player,0) == 1) then
 				-- 4-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 8192;
 			--end
 		end
 		if(rank == 5) then
-			--if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) == 0 and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+			--if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
 				-- 5-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 16384;
 			--end
-			if(player:hasCompletedMission(BASTOK,XARCABARD) == 0 and getMissionRankPoints(player,15) == 1) then
+			if(player:hasCompletedMission(BASTOK,XARCABARD) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
 		end
 		if(rank == 6) then
-			if(player:hasCompletedMission(BASTOK,RETURN_OF_THE_TALEKEEPER) == 0 and getMissionRankPoints(player,16) == 1) then
+			if(player:hasCompletedMission(BASTOK,RETURN_OF_THE_TALEKEEPER) == false and getMissionRankPoints(player,16) == 1) then
 				-- 6-1
 				first_mission = first_mission + 65536;
-			elseif(player:hasCompletedMission(BASTOK,THE_PIRATE_S_COVE) == 0 and getMissionRankPoints(player,17) == 1) then
+			elseif(player:hasCompletedMission(BASTOK,THE_PIRATE_S_COVE) == false and getMissionRankPoints(player,17) == 1) then
 				-- 6-2
 				first_mission = first_mission + 131072;
 			end
 		end
 		if(rank == 7) then
-			if(player:hasCompletedMission(BASTOK,THE_FINAL_IMAGE) == 0 and getMissionRankPoints(player,18) == 1) then
+			if(player:hasCompletedMission(BASTOK,THE_FINAL_IMAGE) == false and getMissionRankPoints(player,18) == 1) then
 				-- 7-1
 				first_mission = first_mission + 262144;
-			elseif(player:hasCompletedMission(BASTOK,ON_MY_WAY) == 0 and getMissionRankPoints(player,19) == 1) then
+			elseif(player:hasCompletedMission(BASTOK,ON_MY_WAY) == false and getMissionRankPoints(player,19) == 1) then
 				-- 7-2
 				first_mission = first_mission + 524288;
 			end
 		end
 		if(rank == 8) then
-			if(player:hasCompletedMission(BASTOK,THE_CHAINS_THAT_BIND_US) == 0 and getMissionRankPoints(player,20) == 1) then
+			if(player:hasCompletedMission(BASTOK,THE_CHAINS_THAT_BIND_US) == false and getMissionRankPoints(player,20) == 1) then
 				-- 8-1
 				first_mission = first_mission + 1048576;
-			elseif(player:hasCompletedMission(BASTOK,ENTER_THE_TALEKEEPER) == 0 and getMissionRankPoints(player,21) == 1) then
+			elseif(player:hasCompletedMission(BASTOK,ENTER_THE_TALEKEEPER) == false and getMissionRankPoints(player,21) == 1) then
 				-- 8-2
 				first_mission = first_mission + 2097152;
 			end
 		end
 		if(rank == 9) then
-			if(player:hasCompletedMission(BASTOK,THE_SALT_OF_THE_EARTH) == 0 and getMissionRankPoints(player,22) == 1) then
+			if(player:hasCompletedMission(BASTOK,THE_SALT_OF_THE_EARTH) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			elseif(player:hasCompletedMission(BASTOK,WHERE_TWO_PATHS_CONVERGE) == 0 and getMissionRankPoints(player,23) == 1) then
+			elseif(player:hasCompletedMission(BASTOK,WHERE_TWO_PATHS_CONVERGE) == false and getMissionRankPoints(player,23) == 1) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 			end
@@ -576,7 +576,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 			[0] = function (x) offset = 0; end, -- Mission 1-1
 			[1] = function (x) if(MissionStatus == 2) then cs = GuardCS[1]; else cs = GuardCS[2]; end end, -- Mission 1-2 (1) after check tombstone
 			[2] = function (x) if(MissionStatus == 0) then cs = GuardCS[3]; -- Mission 1-3 before Battlefield
-						   elseif(MissionStatus == 4 and player:hasCompletedMission(0,2) == 0) then cs = GuardCS[4]; -- Mission 1-3 after Battlefield
+						   elseif(MissionStatus == 4 and player:hasCompletedMission(0,2) == false) then cs = GuardCS[4]; -- Mission 1-3 after Battlefield
 						   elseif(MissionStatus == 4) then cs = GuardCS[5]; else offset = 24; end end, -- Mission 1-3 after Battlefield (Finish Quest)
 			[3] = function (x) if(MissionStatus == 11) then cs = GuardCS[6]; else offset = 36; end end,
 			[4] = function (x) if(MissionStatus == 3 and player:hasCompletedMission(0,4)) then cs = GuardCS[7];

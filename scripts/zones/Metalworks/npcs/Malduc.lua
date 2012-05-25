@@ -44,7 +44,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+	--player:completeMission(BASTOK,5);
 	if(player:getNation() ~= BASTOK) then
 		player:startEvent(0x03eb); -- For non-Bastokian
 	else
@@ -61,7 +61,7 @@ function onTrigger(player,npc)
 			end
 		elseif(CurrentMission > 15 and CurrentMission ~= 255) then
 			player:showText(npc,ZILART_MISSION_OFFSET+delta);
-		elseif(player:hasKeyItem(KINDRED_REPORT)) then
+		elseif(CurrentMission == THE_EMISSARY and player:hasKeyItem(KINDRED_REPORT)) then
 			player:startEvent(0x02ca);
 		elseif(pRank == 1 and player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == false) then
 			player:startEvent(0x03E8); -- Start First Mission "The Zeruhn Report"

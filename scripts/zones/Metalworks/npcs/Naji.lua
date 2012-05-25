@@ -51,7 +51,7 @@ function onTrigger(player,npc)
 			end
 		elseif(currentMission == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
 			player:startEvent(0x02c7);
-		elseif(player:hasKeyItem(KINDRED_REPORT)) then
+		elseif(currentMission == THE_EMISSARY and player:hasKeyItem(KINDRED_REPORT)) then
 			player:startEvent(0x02ca);
 		elseif(currentMission == THE_EMISSARY) then
 			if(player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false and player:getVar("MissionStatus") == 0) then
