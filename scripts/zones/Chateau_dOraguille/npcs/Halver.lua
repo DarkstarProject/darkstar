@@ -144,6 +144,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",4);
 	elseif(csid == 0x01f7) then
 		player:setVar("MissionStatus",9);
+	elseif(csid == 0x01fc) then
+		player:setVar("MissionStatus",2);
 	elseif(csid == 0x01f9) then
 		player:setVar("MissionStatus",2);
 		player:addKeyItem(LETTER_TO_THE_CONSULS_SANDORIA);
