@@ -39,7 +39,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x0089);
 		elseif(MissionStatus < 4) then
 			player:startEvent(0x008a);
-		elseif(MissionStatus == 4) then -- Cardinals encountered, no orbs
+		elseif(MissionStatus == 6) then -- Cardinals encountered, no orbs
 			-- Mission's over - Bad end (ish anyway, you lost the orbs)
 			player:startEvent(0x008f);
 		elseif(MissionStatus == 5) then -- Cardinals not encountered

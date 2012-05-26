@@ -3,12 +3,13 @@
 -- Zone: East_Sarutabaruta (116)
 --
 -----------------------------------
-
-package.loaded["scripts/globals/missions"] = nil;
 package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/globals/settings");
 require("scripts/zones/East_Sarutabaruta/TextIDs");
 
 -----------------------------------
@@ -29,14 +30,9 @@ function onZoneIn(player,prevZone)
 	end	
 	-- Check if we are on Windurst Mission 1-2	
 	printf( "prevzone: %d", prevZone);	
-	if(player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER and player:getVar("windurst_mission_1_2") == 6 and prevZone == 194) then		
-		-- Play cutscene	
-		--player:startEvent(0x30);	
-		cs = 0x30;	
-		-- Set the progress	
-		player:setVar("windurst_mission_1_2",7);	
-	end		
-	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125,0)) then		
+	if(player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER and player:getVar("MissionStatus") == 5 and prevZone == 194) then			
+		cs = 0x0030;	
+	elseif(player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125,0)) then		
 		colors = player:getVar("ICanHearARainbow");	
 		o = (tonumber(colors) % 4 >= 2);	
 		cs = 0x0032;	
@@ -84,7 +80,8 @@ end;
 function onEventFinish(player,csid,option)		
 	--printf("CSID: %u",csid);	
 	--printf("RESULT: %u",option);	
-	if(csid == 0x30) then	
+	if(csid == 0x0030) then	
+		player:setVar("MissionStatus",6);
 		-- Remove the glowing orb key items
 		player:delKeyItem(FIRST_GLOWING_MANA_ORB);
 		player:delKeyItem(SECOND_GLOWING_MANA_ORB);
