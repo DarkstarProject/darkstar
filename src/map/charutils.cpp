@@ -1921,14 +1921,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 						}
 			    }
 		    }
-            if (level - minlevel > 7)
-			{ 
-				exp = 0;
-			}
-			else
-			{
-				exp = GetRealExp(level, PMob->GetMLevel());
-			}
+			exp = GetRealExp(level, PMob->GetMLevel());
 			if (PMob->GetMLevel() > level && PChar->PParty->members.size() > 1) exp *= 1.25; // Until expirence chains are implemented chain#2 bonus will be in effect for all party fights as an average
             if (exp != 0)
             {
@@ -1948,7 +1941,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                             PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
                         }
 						
-                        AddExperiencePoints(PMember, PMob, exp);
+                        AddExperiencePoints(PMember, PMob, exp, minlevel, level);
                     }
                 }
             }
@@ -1964,7 +1957,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
             {
                 PChar->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
             }
-            AddExperiencePoints(PChar, PMob, exp);
+            AddExperiencePoints(PChar, PMob, exp, level, level);
         }
 	}
 }
@@ -2066,7 +2059,7 @@ bool hasInvalidJugPetAmmo(CCharEntity* PChar){
 *                                                                       *
 ************************************************************************/
 
-void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool limit)
+void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint8 minlevel, uint8 maxlevel, bool limit)
 {
 	if (PChar->isDead()) return;
     if (limit)
@@ -2135,7 +2128,17 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, bool
             }
             exp += dedication;
         }
-		
+		if (PChar->PParty != NULL)
+		{
+			if (PChar->GetMLevel() > 50 || maxlevel - minlevel > 7)
+			{
+				exp *= (PChar->GetMLevel()/maxlevel);
+			}
+			else
+			{
+				exp *= (GetExpNEXTLevel(PChar->GetMLevel())/GetExpNEXTLevel(maxlevel));
+			}
+		}
     }
     PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
 
