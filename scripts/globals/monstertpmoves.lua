@@ -297,7 +297,10 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 				if(shadowType == MOD_UTSUSEMI) then --update icon
 					effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
 					if(effect ~= nil) then
-						if((targShadows-shadowbehav) == 1) then
+						if((targShadows-shadowbehav) == 0) then
+							target:delStatusEffect(EFFECT_COPY_IMAGE);
+							target:delStatusEffect(EFFECT_BLINK);
+						elseif((targShadows-shadowbehav) == 1) then
 							effect:setIcon(EFFECT_COPY_IMAGE);
 						elseif((targShadows-shadowbehav) == 2) then
 							effect:setIcon(EFFECT_COPY_IMAGE_2);
