@@ -20,6 +20,23 @@ require("scripts/zones/Cloister_of_Tremors/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+ 	if(player:getXPos() >= -554 and player:getXPos() <=  -524 and player:getZPos() >= -508 and player:getZPos() <= -478) then
+		if(getAvailableBattlefield(pZone) ~= 255) then
+			local bcnmFight = 0;
+
+			if(trade:hasItemQty(1547,1) == true) then
+				bcnmFight = bcnmFight + 4; 
+			end
+
+			if(bcnmFight >= 0) then
+				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
+			end
+		else
+			player:messageSpecial(YOU_CANNOT_ENTER_THE_BATTLEFIELD);
+		end
+	else
+		player:startEvent(0x7d03);
+	end
 end; 
 
 -----------------------------------
@@ -36,7 +53,7 @@ function onTrigger(player,npc)
 			local bcnmFight = 0;
 
 			if(player:hasKeyItem(TUNING_FORK_OF_EARTH)) then
-				bcnmFight = bcnmFight + 1;
+				bcnmFight = bcnmFight + 1; -- 1:Trial by Earth, 2:The Puppet Master, 3:1+2 , 4: Trial Size Trial by Earth
 			end
 
 			if(bcnmFight >= 0) then

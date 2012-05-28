@@ -1,11 +1,10 @@
 -----------------------------------
--- Area: Cloister of Flames
--- NPC:  Fire Protocrystal
--- Involved in Quests: Trial by Fire
--- @zone 207
--- @pos -721 0 -598
+-- Area: Cloister of Gales
+-- NPC:  Wind Protocrystal
+-- Involved in Quests: Trial by Wind, Trial Size Trial By Wind
+-- @zone 201
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Flames/TextIDs"] = nil;
+package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -----------------------------------
 
@@ -13,18 +12,18 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Flames/TextIDs");
+require("scripts/zones/Cloister_of_Gales/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(player:getXPos() >= -736 and player:getXPos() <= -706 and player:getZPos() >= -613 and player:getZPos() <= -583) then
+	if(player:getXPos() >= -368 and player:getXPos() <= -343 and player:getZPos() >= -390 and player:getZPos() <= -370) then
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 
-			if(trade:hasItemQty(1544,1) == true) then
+			if(trade:hasItemQty(1546,1) == true) then
 				bcnmFight = bcnmFight + 2;
 			end
 
@@ -49,11 +48,11 @@ function onTrigger(player,npc)
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
 
- 	if(player:getXPos() >= -736 and player:getXPos() <= -706 and player:getZPos() >= -613 and player:getZPos() <= -583) then
+	if(player:getXPos() >= -368 and player:getXPos() <= -343 and player:getZPos() >= -390 and player:getZPos() <= -370) then
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 
-			if(player:hasKeyItem(TUNING_FORK_OF_FIRE)) then
+			if(player:hasKeyItem(TUNING_FORK_OF_WIND)) then
 				bcnmFight = bcnmFight + 1;
 			end
 

@@ -5,9 +5,6 @@
 -- @zone 202
 -- @pos 534.5 -13 492
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
@@ -20,6 +17,27 @@ require("scripts/zones/Cloister_of_Storms/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	pZone = player:getZone();
+	player:setVar(tostring(pZone) .. "_Ready",0);
+	player:setVar(tostring(pZone) .. "_Field",0);
+	
+	if(player:getXPos() >= 520 and player:getXPos() <= 550 and player:getZPos() >= 477 and player:getZPos() <= 507) then
+		if(getAvailableBattlefield(pZone) ~= 255) then
+			local bcnmFight = 0;
+
+			if(trade:hasItemQty(1548,1) == true) then
+				bcnmFight = bcnmFight + 4; -- 1=Trial by Lightning, 2=Carbuncle Debacle, 3=1+2, 4=Trial Size Trial by Lightning, 5=1+4, 6=2+4, 7=1+2+4, 8=Waking the Beast, etc.
+			end
+
+			if(bcnmFight >= 0) then
+				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
+			end
+		else
+			player:messageSpecial(YOU_CANNOT_ENTER_THE_BATTLEFIELD);
+		end
+	else
+		player:startEvent(0x7d03);
+	end
 end; 
 
 -----------------------------------
@@ -36,7 +54,7 @@ function onTrigger(player,npc)
 			local bcnmFight = 0;
 
 			if(player:hasKeyItem(TUNING_FORK_OF_LIGHTNING)) then
-				bcnmFight = bcnmFight + 4;
+				bcnmFight = bcnmFight + 1; -- 1=Trial by Lightning, 2=Carbuncle Debacle, 3=1+2, 4=Trial Size Trial by Lightning, 5=1+4, 6=2+4, 7=1+2+4, 8=Waking the Beast, etc.
 			end
 
 			if(bcnmFight >= 0) then

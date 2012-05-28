@@ -46,7 +46,7 @@ function onTrigger(player,npc)
 		if(player:hasItem(1203)) then numitem = numitem + 8; end   -- Egil's Torch
 		if(player:hasSpell(298)) then numitem = numitem + 32; end  -- Ability to summon Ifrit 
 		
-		player:startEvent(0x0111,0,TUNING_FORK_OF_FIRE,0,0,numitem); --change csid
+		player:startEvent(0x0111,0,TUNING_FORK_OF_FIRE,0,0,numitem); 
 	else 
 		player:startEvent(0x0112); -- Standard dialog
 	end
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
 		else 
 			if(option == 5) then 
 				player:addGil(GIL_RATE*10000);
-				player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gils
+				player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
 			elseif(option == 6) then 
 				player:addSpell(298); -- Ifrit Spell
 				player:messageSpecial(IFRIT_UNLOCKED,298); 
@@ -102,6 +102,8 @@ function onEventFinish(player,csid,option)
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item
 			end
+			player:setTitle(HEIR_OF_THE_GREAT_FIRE);
+			player:delKeyItem(320); --Whisper of Flames, as a trade for the above rewards
 			player:setVar("TrialByFire_date", os.date("%j")); -- %M for next minute, %j for next day
 			player:addFame(OUTLANDS,WIN_FAME*30);
 			player:completeQuest(OUTLANDS,TRIAL_BY_FIRE);

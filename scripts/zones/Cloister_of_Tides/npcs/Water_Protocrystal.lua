@@ -1,16 +1,15 @@
 -----------------------------------
--- Area: Cloister of Frost
--- NPC:  Ice Protocrystal
--- Involved in Quests: Trial by Ice
--- @zone 203
--- @pos 558 0 596
+-- Area: Cloister of Tides
+-- NPC:  Water Protocrystal
+-- Involved in Quests: Trial by Water, Trial Size Trial by Water
+-- @zone 211
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Frost/TextIDs");
+require("scripts/zones/Cloister_of_Tides/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -20,13 +19,13 @@ function onTrade(player,npc,trade)
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
-
- 	if(player:getXPos() >= 544 and player:getXPos() <= 574 and player:getZPos() >= 585 and player:getZPos() <= 615) then
+	
+	if(player:getXPos() >= 550 and player:getXPos() <= 570 and player:getZPos() >= 554 and player:getZPos() <= 571) then 
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 
-			if(trade:hasItemQty(1545,1) == true) then
-				bcnmFight = bcnmFight + 4;
+			if(trade:hasItemQty(1549,1) == true) then
+				bcnmFight = bcnmFight + 4; -- 1=Trial by Water, 2=, 3=1+2, 4=Trial Size Trial by Water, 5=1+4, 6=2+4, 7=1+2+4, etc.
 			end
 
 			if(bcnmFight >= 0) then
@@ -49,12 +48,12 @@ function onTrigger(player,npc)
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
 
- 	if(player:getXPos() >= 544 and player:getXPos() <= 574 and player:getZPos() >= 585 and player:getZPos() <= 615) then
+	if(player:getXPos() >= 550 and player:getXPos() <= 570 and player:getZPos() >= 554 and player:getZPos() <= 571) then 
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 
-			if(player:hasKeyItem(TUNING_FORK_OF_ICE)) then
-				bcnmFight = bcnmFight + 1;
+			if(player:hasKeyItem(TUNING_FORK_OF_WATER)) then
+				bcnmFight = bcnmFight + 1; -- 1=Trial by Water, 2=, 3=1+2, 4=Trial Size Trial by Water, 5=1+4, 6=2+4, 7=1+2+4, etc.
 			end
 
 			if(bcnmFight >= 0) then
@@ -122,6 +121,6 @@ function onEventFinish(player,csid,option)
 		end
 		player:setVar(tostring(pZone) .. "_Runaway",1);
 		player:delStatusEffect(EFFECT_BATTLEFIELD);
-		player:setVar(tostring(pZone) .. "_Runaway",0);
+		player:setVar(tostring(pZone) .. "_Runaway",0)
 	end
 end;

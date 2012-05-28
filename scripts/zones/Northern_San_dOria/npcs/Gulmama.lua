@@ -94,14 +94,16 @@ function onEventFinish(player,csid,option)
 		else 
 			if(option == 5) then 
 				player:addGil(GIL_RATE*10000);
-				player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gils
+				player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
 			elseif(option == 6) then 
 				player:addSpell(302); -- Avatar
-				player:messageSpecial(SHIVA_UNLOCKED,302);
+				player:messageSpecial(SHIVA_UNLOCKED,302); --Currently Bugged to say Ifrit, but will give Shiva spell
 			else
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item
 			end
+			player:setTitle(HEIR_OF_THE_GREAT_ICE);
+			player:delKeyItem(324); --Whisper of Frost, as a trade for the above rewards
 			player:setVar("TrialByIce_date", os.date("%j")); -- %M for next minute, %j for next day
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA,TRIAL_BY_ICE);
