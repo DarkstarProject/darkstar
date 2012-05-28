@@ -593,7 +593,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 		}
 		return cs, params, offset;
 	
-	elseif(nation == BASTOK) then GuardCS = {};
+	elseif(nation == BASTOK) then
 		
 		switch (pMission) : caseof {
 			[0] = function (x) offset = 0; end,
@@ -620,12 +620,19 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 		
 	elseif(nation == WINDURST) then
 		
+			if(guard == 1) then GuardCS = {0x007F,0x0088,0x0096,0x009A,0x00A0,0x01D9};
+		elseif(guard == 2) then GuardCS = {0x007b,0x0083,0x0136,0x0094,0x009c,0x00b1,0x00d7};
+		elseif(guard == 3) then GuardCS = {0x0059,0x0069,0x006e,0x0072,0x0078,0x0085,0x008a};
+		elseif(guard == 4) then GuardCS = {0x0064,0x0088,0x0070,0x0074,0x007a,0x007f,0x0086};
+		end
+		
 		switch (pMission) : caseof {
-			[0] = function (x) cs = 0x007F; end,
-			[1] = function (x) cs = 0x0088; end,
-			[2] = function (x) if(MissionStatus <= 2) then cs = 0x0096; else cs = 0x009A; end end,
-			[3] = function (x) cs = 0x00A0; end,
-			[4] = function (x) cs = 0x01D9; end,
+			[0] = function (x) cs = GuardCS[1]; end,
+			[1] = function (x) cs = GuardCS[2]; end,
+			[2] = function (x) if(MissionStatus <= 2) then cs = GuardCS[3]; else cs = GuardCS[4]; end end,
+			[3] = function (x) cs = GuardCS[5]; end,
+			[4] = function (x) cs = GuardCS[6]; end,
+			[5] = function (x) cs = GuardCS[7]; end,
 		}
 		return cs, params, offset;
 	end
@@ -635,6 +642,7 @@ end;
 function finishMissionTimeline(player,guard,csid,option)
 	
 	nation = player:getNation();
+	local dec = 0; -- Special variable for windy guards (4 guards use 4 differents cs)
 	
 	-- missionid, first: {Guard1CS,option}, {Guard2CS,option}, {{function,value},...first time}, repeat: {Guard1CS,option}, {Guard2CS,option}, {{function,value},...repeat}
 	--  1: player:addMission(nation,mission);
@@ -703,31 +711,33 @@ function finishMissionTimeline(player,guard,csid,option)
 						};
 		end
 	elseif(nation == WINDURST) then
-		if(csid == 0x0072 and option ~= 1073741824 and option ~= 31) then
-			timeline = {option,{0x0072,option},{0,0},{{1},{2}},{0,0},{0,0},{{1},{2}}};
+		dec = 2;
+		guardlist = {0x0072,0x006f,0x004e,0x005d};
+		if(csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
+			timeline = {option,{guardlist[guard],option},{0,0},{{1},{2}},{0,0},{0,0},{{1},{2}}};
 		else
 			timeline = {
-				0,{0x0079,1},{0,0},{{1},{2}},{0,0},{0,0},{0}, -- MISSION 1-1 (First Mission [START])
-				0,{0x005e,0},{0,0},{{14,0},{9,28},{7},{12}},{0,0},{0,0},{0}, -- MISSION 1-1
-				1,{0x0084,1},{0,0},{{1},{2}},{0,0},{0,0},{0}, -- MISSION 1-2 [START]
-				1,{0x008f,0},{0,0},{{14,0},{7},{12}},{0,0},{0,0},{0}, -- MISSION 1-2 [WITHOUT ORB]
-				1,{0x0091,0},{0,0},{{14,0},{7},{12}},{0,0},{0,0},{0}, -- MISSION 1-2 [WITH ORB]
-				2,{0x0095,2},{0,0},{{1},{2}},{0,0},{0,0},{0}, -- MISSION 1-3 [START]
-				2,{0x009A,0},{0,0},{{11,2},{14,0},{6},{8,1000},{12}},{0,0},{0,0},{0}, -- MISSION 1-3
-				3,{0x00a8,0},{0,0},{{14,0},{5,200},{7},{12}},{0,0},{0,0},{0}, -- MISSION 2-1
-				4,{0x00C9,0},{0,0},{{14,0},{9,38},{5,400},{7},{12}},{0x00CE,0},{0,0},{{14,0},{9,38},{5,400},{7},{12}}, -- MISSION 2-2 (+35 mob killed)
-				4,{0x00C8,0},{0,0},{{14,0},{9,38},{5,250},{7},{12}},{0x00D1,0},{0,0},{{14,0},{9,38},{5,250},{7},{12}}, -- MISSION 2-2 (30-34 mob killed)
-				5,{0x0065,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},{0,0},{0,0},{0}, -- MISSION 2-3
+				0,{0x0079,1},{0x0076,1},{0x0053,1},{0x0060,1},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-1 (First Mission [START])
+				0,{0x005e,0},{0,0},{0,0},{0,0},{{14,0},{9,28},{7},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-1 (Finish (Hakkuru-Rinkuru))
+				1,{0x0084,1},{0x0082,1},{0x0068,1},{0x0084,1},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-2 [START]
+				1,{0x008f,0},{0,0},{0,0},{0,0},{{14,0},{7},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-2 (Finish (Apururu)) [WITHOUT ORB]
+				1,{0x0091,0},{0,0},{0,0},{0,0},{{14,0},{7},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-2 (Finish (Apururu)) [WITH ORB]
+				2,{0x0095,2},{0x0083,2},{0x006d,2},{0x006f,2},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-3 [START]
+				2,{0x009A,0},{0x0094,0},{0x0072,0},{0x0074,0},{{11,2},{14,0},{6},{8,1000},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-3
+				3,{0x00a8,0},{0,0},{0,0},{0,0},{{14,0},{5,200},{7},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 2-1 (Finish (Tosuka-Porika))
+				4,{0x00C9,0},{0,0},{0,0},{0,0},{{14,0},{9,38},{5,400},{7},{12}},{0x00CE,0},{0,0},{0,0},{0,0},{{14,0},{9,38},{5,400},{7},{12}}, -- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed)
+				4,{0x00C8,0},{0,0},{0,0},{0,0},{{14,0},{9,38},{5,250},{7},{12}},{0x00D1,0},{0,0},{0,0},{0,0},{{14,0},{9,38},{5,250},{7},{12}}, -- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed)
+				5,{0x0065,0},{0,0},{0,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 2-3 (Finish (Kupipi))
 						};
 		end
 	end
 
-	for cs = 1, table.getn(timeline), 7 do
-		if(csid == timeline[cs + guard][1] and option == timeline[cs + guard][2] or csid == timeline[cs + guard + 3][1] and option == timeline[cs + guard + 3][2]) then
+	for cs = 1, table.getn(timeline), 7 + (dec * 2) do
+		if(csid == timeline[cs + guard][1] and option == timeline[cs + guard][2] or csid == timeline[cs + guard + 3 + dec][1] and option == timeline[cs + guard + 3 + dec][2]) then
 			if(player:hasCompletedMission(nation,timeline[cs])) then
-				getMessList = 6; -- Repeat Mission
+				getMessList = 6 + dec; -- Repeat Mission
 			else
-				getMessList = 3; -- First Mission
+				getMessList = 3 + dec; -- First Mission
 			end
 			
 			for nb = 1, table.getn(timeline[cs + getMessList]), 1 do

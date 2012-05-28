@@ -9,8 +9,8 @@ package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/missions");
 require("scripts/globals/titles");
+require("scripts/globals/missions");
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
@@ -64,7 +64,7 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
-printf("RESULT: %u",option);
+--printf("RESULT: %u",option);
 	
 	if(csid == 0x0079 and option == 1) then
 		player:setVar("Mission_started_from",1); -- Windurst Woods Guard
@@ -72,21 +72,4 @@ printf("RESULT: %u",option);
 	
 	finishMissionTimeline(player,1,csid,option);
 	
-	--[[
-	elseif(option == 3 and csid == 0x72) then
-		-- Start Windurst 2-1
-		player:addMission(WINDURST,LOST_FOR_WORDS);
-		player:setVar("windurst_mission_2_1",1);
-	elseif(option == 4 and csid == 0x72) then
-		-- Start Windurst 2-2 (Repeatable)
-		
-	elseif(option == 5 and csid == 0x72) then
-		-- Start Windurst 2-3
-		player:addMission(WINDURST,THE_THREE_KINGDOMS);
-		player:setVar("windurst_mission_2_3",1);
-	end]]
 end;
-
-
-
-
