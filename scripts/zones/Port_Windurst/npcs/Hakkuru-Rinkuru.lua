@@ -114,9 +114,9 @@ function onEventFinish(player,csid,option)
 		if(started_from_guard == 1) then
 			player:setTitle(NEW_BUUMAS_BOOMERS_RECRUIT);
 		elseif(started_from_guard == 2) then
-			player:setTitle(FRESH_NORTH_WINDS_RECRUIT);
-		elseif(started_from_guard == 3) then
 			player:setTitle(NEW_BEST_OF_THE_WEST_RECRUIT);
+		elseif(started_from_guard == 3) then
+			player:setTitle(FRESH_NORTH_WINDS_RECRUIT);
 		else
 			player:setTitle(HEAVENS_TOWER_GATEHOUSE_RECRUIT);
 		end

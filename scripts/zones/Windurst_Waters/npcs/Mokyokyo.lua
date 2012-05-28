@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
 		-- Log who we started the mission from (to know which title we get)
 		player:setVar("mission_started_from",3); -- Windurst Waters Guard
 		-- Start Windurst 1-1
-		player:setVar("MissionStatus",1);
+		player:setVar("MissionStatus",0);
 		-- Add the Mission to the Mission Log
 		player:addMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT);
 	elseif(option == 1 and csid == 0x82) then
