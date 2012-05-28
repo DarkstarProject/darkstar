@@ -3036,7 +3036,7 @@ inline int32 CLuaBaseEntity::addExp(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-    charutils::AddExperiencePoints((CCharEntity*)m_PBaseEntity, m_PBaseEntity, (uint32)lua_tointeger(L,1), false);
+    charutils::AddExperiencePoints((CCharEntity*)m_PBaseEntity, m_PBaseEntity, (uint32)lua_tointeger(L,1),1,1, false);
     return 0;
 }
 
