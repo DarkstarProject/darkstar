@@ -714,7 +714,7 @@ function finishMissionTimeline(player,guard,csid,option)
 		dec = 2;
 		guardlist = {0x0072,0x006f,0x004e,0x005d};
 		if(csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
-			timeline = {option,{guardlist[guard],option},{0,0},{{1},{2}},{0,0},{0,0},{{1},{2}}};
+			timeline = {option,{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{{1},{2}}};
 		else
 			timeline = {
 				0,{0x0079,1},{0x0076,1},{0x0053,1},{0x0060,1},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-1 (First Mission [START])
@@ -728,6 +728,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				4,{0x00C9,0},{0,0},{0,0},{0,0},{{14,0},{9,38},{5,400},{7},{12}},{0x00CE,0},{0,0},{0,0},{0,0},{{14,0},{9,38},{5,400},{7},{12}}, -- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed)
 				4,{0x00C8,0},{0,0},{0,0},{0,0},{{14,0},{9,38},{5,250},{7},{12}},{0x00D1,0},{0,0},{0,0},{0,0},{{14,0},{9,38},{5,250},{7},{12}}, -- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed)
 				5,{0x0065,0},{0,0},{0,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 2-3 (Finish (Kupipi))
+				10,{0,0},{0x0072,0},{0,0},{0,0},{{5,350},{14,0},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 3-1 (Finish (Rhy Epocan))
 						};
 		end
 	end
@@ -735,7 +736,7 @@ function finishMissionTimeline(player,guard,csid,option)
 	for cs = 1, table.getn(timeline), 7 + (dec * 2) do
 		if(csid == timeline[cs + guard][1] and option == timeline[cs + guard][2] or csid == timeline[cs + guard + 3 + dec][1] and option == timeline[cs + guard + 3 + dec][2]) then
 			if(player:hasCompletedMission(nation,timeline[cs])) then
-				getMessList = 6 + dec; -- Repeat Mission
+				getMessList = 6 + (dec * 2); -- Repeat Mission
 			else
 				getMessList = 3 + dec; -- First Mission
 			end

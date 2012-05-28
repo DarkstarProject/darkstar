@@ -16,6 +16,7 @@ require("scripts/zones/Heavens_Tower/TextIDs");
 
 function onInitialize(zone)
 	zone:registerRegion(1, -1,-1,-35, 1,1,-33);
+	zone:registerRegion(2, 6,-46,-30, 8,-44,-28);
 end;
 
 -----------------------------------
@@ -46,6 +47,11 @@ switch (region:GetRegionID()): caseof
 	[1] = function (x)  -- Heaven's Tower exit portal
 	---------------------------------
 		player:startEvent(0x29);
+	end,
+	---------------------------------
+	[2] = function (x)  -- Warp directly back to the first floor. 
+	---------------------------------
+		player:startEvent(0x0053);
 	end,
 	---------------------------------
 }

@@ -64,6 +64,8 @@ function onTrigger(player,npc)
 		elseif(MissionStatus == 3) then
 			player:startEvent(0x005e,0,CRACKED_MANA_ORBS) -- Finish Mission 1-1
 		end
+	elseif(player:getCurrentMission(WINDURST) == TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 2) then
+		player:startEvent(0x0093);
 -- Begin Making Amends Section
 	elseif(MakingAmends == QUEST_AVAILABLE and pFame >= 2) then
 			player:startEvent(0x0112,0,937); -- MAKING AMENDS + ANIMAL GLUE: Quest Start
@@ -107,18 +109,20 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x005a) then
 		player:setVar("MissionStatus",1);
+	elseif(csid == 0x0093) then
+		player:setVar("MissionStatus",3);
 	elseif(csid == 0x005e) then
 		-- Get one of the 4 titles
 		started_from_guard = player:getVar("Mission_started_from");
 		
 		if(started_from_guard == 1) then
-			player:setTitle(NEW_BUUMAS_BOOMERS_RECRUIT);
+			player:setTitle(NEW_BUUMAS_BOOMERS_RECRUIT); -- Rakoh Buuma
 		elseif(started_from_guard == 2) then
-			player:setTitle(NEW_BEST_OF_THE_WEST_RECRUIT);
+			player:setTitle(NEW_BEST_OF_THE_WEST_RECRUIT); -- Janshura-Rashura
 		elseif(started_from_guard == 3) then
-			player:setTitle(FRESH_NORTH_WINDS_RECRUIT);
+			player:setTitle(FRESH_NORTH_WINDS_RECRUIT); -- Mokyokyo
 		else
-			player:setTitle(HEAVENS_TOWER_GATEHOUSE_RECRUIT);
+			player:setTitle(HEAVENS_TOWER_GATEHOUSE_RECRUIT); -- Zokima-Rokima
 		end
 		
 		-- Delete the variable(s) that was created for this mission

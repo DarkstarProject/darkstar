@@ -2,11 +2,10 @@
 -- Area: Castle Oztroja
 -- NPC:  Handle
 -- Open trap door or brass door
--- @zone 151
--- @pos 20 0 -13
+-- @pos 20 0 -13 151
 -----------------------------------
 
-require("scripts/globals/settings");
+require("scripts/globals/missions");
 
 -----------------------------------
 -- onTrigger Action
@@ -23,6 +22,9 @@ function onTrigger(player,npc)
 			GetNPCByID(17396151):openDoor();
 		else
 			GetNPCByID(17396152):openDoor();
+			if(player:getCurrentMission(WINDURST) == TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 3) then
+				player:startEvent(0x002B);
+			end
 		end
 	else
 		player:messageSpecial(0);
@@ -46,4 +48,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
+	if(csid == 0x002B) then
+		player:setVar("MissionStatus",4);
+	end
+	
 end;

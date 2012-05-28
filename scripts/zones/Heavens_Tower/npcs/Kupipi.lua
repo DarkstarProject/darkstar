@@ -6,6 +6,7 @@
 -- @pos 2 0 30 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -38,9 +39,9 @@ function onTrigger(player,npc)
 	
 	pNation = player:getNation();
 	currentMission = player:getCurrentMission(pNation);
+	MissionStatus = player:getVar("MissionStatus");
 	
 	if(pNation == SANDORIA) then
-		MissionStatus = player:getVar("MissionStatus");
 		-- San d'Oria Mission 2-3 Part I - Windurst > Bastok
 		if(currentMission == JOURNEY_TO_WINDURST) then
 			if(MissionStatus == 4) then
@@ -65,7 +66,6 @@ function onTrigger(player,npc)
 			player:startEvent(0x00fb);
 		end
 	elseif(pNation == BASTOK) then
-		MissionStatus = player:getVar("MissionStatus");
 		-- Bastok Mission 2-3 Part I - Windurst > San d'Oria
 		if(currentMission == THE_EMISSARY_WINDURST) then
 			if(MissionStatus == 3) then
@@ -90,13 +90,18 @@ function onTrigger(player,npc)
 			player:startEvent(0x00fb);
 		end
 	elseif(pNation == WINDURST) then
-		MissionStatus = player:getVar("MissionStatus");
 		if(currentMission == THE_THREE_KINGDOMS and MissionStatus == 0) then
 			player:startEvent(0x005F,0,0,0,LETTER_TO_THE_CONSULS_WINDURST);
 		elseif(currentMission == THE_THREE_KINGDOMS and MissionStatus == 11) then
 			player:startEvent(0x0065,0,0,ADVENTURERS_CERTIFICATE);
 		elseif(currentMission == THE_THREE_KINGDOMS) then
 			player:startEvent(0x0061);
+		elseif(currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 0) then
+			player:startEvent(0x0067,0,0,STARWAY_STAIRWAY_BAUBLE);
+		elseif(currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
+			player:startEvent(0x0068);
+		else
+			player:startEvent(0x00fb);
 		end
 	else
 		player:startEvent(0x00fb);
@@ -141,6 +146,10 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",1);
 		player:addKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_WINDURST);
+	elseif(csid == 0x0067) then
+		player:setVar("MissionStatus",1);
+		player:addKeyItem(STARWAY_STAIRWAY_BAUBLE);
+		player:messageSpecial(KEYITEM_OBTAINED,STARWAY_STAIRWAY_BAUBLE);
 	elseif(csid == 0x0065) then
 		finishMissionTimeline(player,1,csid,option);
 	end
