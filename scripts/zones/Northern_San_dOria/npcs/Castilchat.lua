@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 
 	if(FlyerForRegine == QUEST_ACCEPTED and trade:hasItemQty(532,1) and trade:getItemCount() == 1) then
 		player:messageSpecial(FLYER_REFUSED);
-	elseif(trade:hasItemQty(1548,1) == true and TrialSizeByIce == QUEST_ACCEPTED) then -- Trade mini fork of ice
+	elseif(trade:hasItemQty(1545,1) == true and TrialSizeByIce == QUEST_ACCEPTED) then -- Trade mini fork of ice
 		player:startEvent(0x02de,0,1545,4,20);
 	end
 	
