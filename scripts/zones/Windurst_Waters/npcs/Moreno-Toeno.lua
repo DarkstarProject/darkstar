@@ -78,8 +78,10 @@ function onTrigger(player,npc)
 				start_hour = player:getVar("testingTime_start_hour");
 				if(VanadielDayOfTheYear() == start_day) then
 					hours_passed = VanadielHour() - start_hour;
+				elseif(VanadielDayOfTheYear() == start_day + 1) then
+					hours_passed = VanadielHour() - start_hour + 24;
 				else
-					if(alreadyCompleted) then hours_passed = (48 - start_hour) + VanadielHour();
+					if(alreadyCompleted) then hours_passed = (24 - start_hour) + VanadielHour() + 24;
 					else hours_passed = (24 - start_hour) + VanadielHour(); end
 				end;
 				if(alreadyCompleted) then

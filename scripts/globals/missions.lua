@@ -89,7 +89,7 @@ TO_EACH_HIS_OWN_RIGHT         = 10; -- ± --
 WRITTEN_IN_THE_STARS          = 11;
 A_NEW_JOURNEY                 = 12; -- ± --
 MAGICITE                      = 13; -- ± --
-THE_FINAL_SEAL                = 14;
+THE_FINAL_SEAL                = 14; -- ± --
 THE_SHADOW_AWAITS             = 15;
 FULL_MOON_FOUNTAIN            = 16;
 SAINTLY_INVITATION            = 17;
@@ -315,7 +315,7 @@ function getMissionMask(player)
 				-- 5-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 16384;
 			--end
-			if(player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
+			if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
@@ -707,7 +707,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				10,{0x000b,0},{0,0},{{14,0},{5,350},{12}},{0,0},{0,0},{0}, -- MISSION 3-1 (Pashhow Marshlands Zone)
 				11,{0x03F2,0},{0,0},{{4},{5,400},{7},{12}},{0x03EE,0},{0,0},{{4},{5,400},{7},{12}}, -- MISSION 3-2
 				12,{0x0026,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Finish (Goggehn))
-				13,{0x0023,0},{0,0},{{11,5},{14,0},{10,70},{8,10000},{12},{1,14}},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Goggehn))
+				13,{0x0023,0},{0,0},{{11,5},{14,0},{10,70},{8,10000},{12}},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Goggehn))
 						};
 		end
 	elseif(nation == WINDURST) then
@@ -730,7 +730,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				5,{0x0065,0},{0,0},{0,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 2-3 (Finish (Kupipi))
 				10,{0,0},{0x0072,0},{0,0},{0,0},{{5,350},{14,0},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 3-1 (Finish (Rhy Epocan))
 				12,{0x0028,0},{0,0},{0,0},{0,0},{{11,4},{9,30},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 3-3 (Finish (Ambassador's door))
-				13,{0x0025,0},{0,0},{0,0},{0,0},{{11,5},{14,0},{10,71},{8,10000},{12},{1,14}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Pakh Jatalfih))
+				13,{0x0025,0},{0,0},{0,0},{0,0},{{11,5},{14,0},{10,71},{8,10000},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Pakh Jatalfih))
+				14,{0x00C0,0},{0,0},{0,0},{0,0},{{14,0},{9,73},{5,600},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 5-1 (Finish (Star Sibyl))
 						};
 		end
 	end

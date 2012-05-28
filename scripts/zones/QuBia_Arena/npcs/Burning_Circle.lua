@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
 -- NPC:  Burning Circle
--- @zone 206
--- @pos -221 -24 19
+-- @pos -221 -24 19 206
 -------------------------------------
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
@@ -92,16 +91,11 @@ function onTrigger(player,npc)
 			local bcnmFight = 0;
 			if(player:getCurrentMission(BASTOK) == DARKNESS_RISING and player:getVar("MissionStatus") == 2) then
 				bcnmFight = bcnmFight + 1;
-
-				
-			elseif((player:getMainLvl() >= 50) and (player:getCurrentMission(SANDORIA) == THE_RUINS_OF_FEI_YIN) and (player:getVar("MissionStatus") == 11) and (player:hasKeyItem(BURNT_SEAL) == false)) then
+			
+			elseif((player:getMainLvl() >= 50) and (player:getCurrentMission(player:getNation()) == 14) and (player:getVar("MissionStatus") == 11) and (player:hasKeyItem(BURNT_SEAL) == false)) then
 			bcnmFight = bcnmFight + 1;
-			elseif ((player:getMainLvl() >= 50) and (player:hasPartyEffect()) and (GetServerVariable("[BF]Mission_5-1_Enter") == 1) and (player:hasCompletedMission(0,14))) then
+			elseif ((player:getMainLvl() >= 50) and (player:hasPartyEffect()) and (GetServerVariable("[BF]Mission_5-1_Enter") == 1) and (player:hasCompletedMission(player:getNation(),14))) then
 			bcnmFight = bcnmFight + 1;
-
-			-- Windurst Missions not implemented to this point yet
-			--elseif(player:getCurrentMission(WINDURST) == THE_FINAL_SEAL and player:getVar("MissionStatus") == 2) then
-			--	bcnmFight = bcnmFight + 1;
 			end
 
 			if(bcnmFight >= 0) then

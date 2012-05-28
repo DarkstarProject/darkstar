@@ -42,10 +42,11 @@ function onTrigger(player,npc)
 			player:startEvent(0x0082);
 		elseif(player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
 			player:startEvent(0x0083);
+		elseif(player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
+			player:startEvent(0x00e8);
 		else
-			if(pRank == 3) then ki = STAR_CRESTED_SUMMONS; else ki = 0 end;
 			flagMission, repeatMission = getMissionMask(player);
-			player:startEvent(0x006f,flagMission,0,0,0,ki,repeatMission);
+			player:startEvent(0x006f,flagMission,0,0,0,STAR_CRESTED_SUMMONS,repeatMission);
 		end
 	end
 	
