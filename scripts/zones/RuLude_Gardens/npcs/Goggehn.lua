@@ -38,7 +38,11 @@ function onTrigger(player,npc)
 	elseif(currentMission == JEUNO_MISSION and missionStatus == 3) then
 		player:startEvent(0x0026);
 	elseif(player:getRank() == 4 and player:getCurrentMission(BASTOK) == 255 and getMissionRankPoints(player,13) == 1) then
-		player:startEvent(0x0081); -- Start Mission 4-1 Magicite
+		if(player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT)) then
+			player:startEvent(0x0081,1);
+		else
+			player:startEvent(0x0081); -- Start Mission 4-1 Magicite
+		end
 	elseif(currentMission == MAGICITE_BASTOK and missionStatus == 1) then
 		player:startEvent(0x0084);
 	elseif(currentMission == MAGICITE_BASTOK and missionStatus <= 5) then
@@ -79,8 +83,10 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(LETTER_TO_THE_AMBASSADOR);
 	elseif(csid == 0x0081 and option == 1) then
 		player:setVar("MissionStatus",1);
-		player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
-		player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
+		if(player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT) == false) then
+			player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
+			player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
+		end
 	elseif(csid == 0x0026 or csid == 0x0023) then
 		finishMissionTimeline(player,1,csid,option);
 	end

@@ -10,6 +10,7 @@ package.loaded["scripts/globals/missions"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
+require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Windurst_Woods/TextIDs");
 
@@ -42,8 +43,9 @@ function onTrigger(player,npc)
 		elseif(player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
 			player:startEvent(0x0095);
 		else
+			if(pRank == 3) then ki = STAR_CRESTED_SUMMONS; else ki = 0 end;
 			flagMission, repeatMission = getMissionMask(player);
-			player:startEvent(0x0072,flagMission,0,0,0,0,repeatMission);
+			player:startEvent(0x0072,flagMission,0,0,0,ki,repeatMission);
 		end
 	end
 	
@@ -66,10 +68,13 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
+	finishMissionTimeline(player,1,csid,option);
+	
 	if(csid == 0x0079 and option == 1) then
 		player:setVar("Mission_started_from",1); -- Windurst Woods Guard
+	elseif(csid == 0x0072 and option == 12) then
+		player:addKeyItem(STAR_CRESTED_SUMMONS);
+		player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
 	end
-	
-	finishMissionTimeline(player,1,csid,option);
 	
 end;

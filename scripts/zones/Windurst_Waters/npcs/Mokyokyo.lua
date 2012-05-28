@@ -2,7 +2,7 @@
 --	Area: Windurst Waters
 --	NPC:  Mokyoko
 --	Starts Windurst Missions
---	@pos -55 -4 227 238
+--	@pos -55 -8 227 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -10,6 +10,7 @@ package.loaded["scripts/globals/missions"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
+require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Windurst_Waters/TextIDs");
 
@@ -42,8 +43,9 @@ function onTrigger(player,npc)
 		elseif(player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
 			player:startEvent(0x0083);
 		else
+			if(pRank == 3) then ki = STAR_CRESTED_SUMMONS; else ki = 0 end;
 			flagMission, repeatMission = getMissionMask(player);
-			player:startEvent(0x006f,flagMission,0,0,0,0,repeatMission);
+			player:startEvent(0x006f,flagMission,0,0,0,ki,repeatMission);
 		end
 	end
 	
@@ -64,12 +66,15 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+printf("RESULT: %u",option);
+	
+	finishMissionTimeline(player,2,csid,option);
 	
 	if(csid == 0x0076 and option == 1) then
 		player:setVar("Mission_started_from",3); -- Windurst Waters Guard
+	elseif(csid == 0x006f and option == 12) then
+		player:addKeyItem(STAR_CRESTED_SUMMONS);
+		player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
 	end
-	
-	finishMissionTimeline(player,2,csid,option);
 	
 end;

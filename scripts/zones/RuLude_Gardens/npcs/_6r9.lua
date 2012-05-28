@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Anoop
+-- NPC:  Audience Chamber
 -- Involved in Mission: Magicite
--- @zone 243
--- @pos 0 -5 66
+-- @pos 0 -5 66 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

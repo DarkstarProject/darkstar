@@ -2,7 +2,7 @@
 --	Area: Port Windurst
 --	NPC:  Janshura Rashura
 --	Starts Windurst Missions
---	@pos 
+--	@pos -227 -8 184 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -10,6 +10,7 @@ package.loaded["scripts/globals/missions"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
+require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Port_Windurst/TextIDs");
 
@@ -20,7 +21,7 @@ require("scripts/zones/Port_Windurst/TextIDs");
 function onTrigger(player,npc)
 	
 	if(player:getNation() ~= WINDURST) then
-		player:startEvent(0x004c); -- for other nation
+		player:startEvent(0x0047); -- for other nation
 	else
 		CurrentMission = player:getCurrentMission(WINDURST);
 		MissionStatus = player:getVar("MissionStatus");
@@ -34,7 +35,7 @@ function onTrigger(player,npc)
 				player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
 			end
 		elseif(CurrentMission ~= 255) then
-			player:startEvent(0x006e);
+			player:startEvent(0x004c);
 		elseif(player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
 			player:startEvent(0x0053);
 		elseif(player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
@@ -42,8 +43,9 @@ function onTrigger(player,npc)
 		elseif(player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
 			player:startEvent(0x006d);
 		else
+			if(pRank == 3) then ki = STAR_CRESTED_SUMMONS; else ki = 0 end;
 			flagMission, repeatMission = getMissionMask(player);
-			player:startEvent(0x004e,flagMission,0,0,0,0,repeatMission);
+			player:startEvent(0x004e,flagMission,0,0,0,ki,repeatMission);
 		end
 	end
 	
@@ -65,11 +67,14 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
-	if(csid == 0x0076 and option == 1) then
-		player:setVar("Mission_started_from",2); -- Port Windurst Guard
-	end
 	
 	finishMissionTimeline(player,3,csid,option);
+	
+	if(csid == 0x0076 and option == 1) then
+		player:setVar("Mission_started_from",2); -- Port Windurst Guard
+	elseif(csid == 0x004e and option == 12) then
+		player:addKeyItem(STAR_CRESTED_SUMMONS);
+		player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
+	end
 	
 end;

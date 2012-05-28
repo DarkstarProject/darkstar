@@ -15,6 +15,7 @@ SOVEREIGN_WITHOUT_AN_APPOINTMENT = 10081; -- Nobody sees the sovereign without a
 
 -- Mission Dialog
 YOUVE_EARNED_CONQUEST_POINTS = 10452; -- You've earned conquest points
+			WINDURST_EMBASSY = 10008; -- It reads, "Restricted Area".
 
 -- Quest Dialog
 YOUR_LEVEL_LIMIT_IS_NOW_60 = 10281; -- Your level limit is now 60

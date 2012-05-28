@@ -85,10 +85,10 @@ THE_THREE_KINGDOMS_SANDORIA   = 6;  -- ± --
 THE_THREE_KINGDOMS_BASTOK     = 7;  -- ± --
 THE_THREE_KINGDOMS_SANDORIA2  = 8;  -- ± --
 THE_THREE_KINGDOMS_BASTOK2    = 9;  -- ± --
-TO_EACH_HIS_OWN_RIGHT         = 10;
+TO_EACH_HIS_OWN_RIGHT         = 10; -- ± --
 WRITTEN_IN_THE_STARS          = 11;
-A_NEW_JOURNEY                 = 12;
-MAGICITE                      = 13;
+A_NEW_JOURNEY                 = 12; -- ± --
+MAGICITE                      = 13; -- ± --
 THE_FINAL_SEAL                = 14;
 THE_SHADOW_AWAITS             = 15;
 FULL_MOON_FOUNTAIN            = 16;
@@ -623,7 +623,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 			if(guard == 1) then GuardCS = {0x007F,0x0088,0x0096,0x009A,0x00A0,0x01D9};
 		elseif(guard == 2) then GuardCS = {0x007b,0x0083,0x0136,0x0094,0x009c,0x00b1,0x00d7};
 		elseif(guard == 3) then GuardCS = {0x0059,0x0069,0x006e,0x0072,0x0078,0x0085,0x008a};
-		elseif(guard == 4) then GuardCS = {0x0064,0x0088,0x0070,0x0074,0x007a,0x007f,0x0086};
+		elseif(guard == 4) then GuardCS = {0x0063,0x006b,0x0070,0x0074,0x007a,0x007f,0x0086};
 		end
 		
 		switch (pMission) : caseof {
@@ -685,8 +685,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				10,{0x022a,0},{0,0},{{9,237},{14,0},{5,400},{12}},{0x03f4,0},{0x07dc,0},{{14,0},{5,300},{7},{12}}, -- MISSION 3-1 (Prince Trion (door) - Guard)
 				11,{0x0406,0},{0x07ee,0},{{4},{14,2}},{0,0},{0,0},{0}, -- MISSION 3-2 (dialog with the guard after trade)
 				11,{0x022c,0},{0,0},{{14,0},{5,400},{12}},{0x03f5,0},{0x07dd,0},{{4},{14,0},{5,400},{7},{12}}, -- MISSION 3-2 (Chalvatot - Guard)
-				12,{0x0027,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Nelcabrit)
-				13,{0x0024,0},{0,0},{{11,5},{14,0},{10,69},{8,10000},{12},{1,14}},{0,0},{0,0},{0}, -- MISSION 4-1 (Nelcabrit)
+				12,{0x0027,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Finish (Nelcabrit))
+				13,{0x0024,0},{0,0},{{11,5},{14,0},{10,69},{8,10000},{12},{1,14}},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Nelcabrit))
 				14,{533,0},{0,0},{{10,72},{14,10}},{0,0},{0,0},{0}, -- MISSION 5-1
 				14,{534,0},{0,0},{{9,73},{5,400},{3,"MissionStatus",0},{13,10},{12}},{0,0},{0,0},{0}, -- MISSION 5-1
 				--[[0,{0,0},{0,0},{0},{0,0},{0,0},{0}, 
@@ -706,8 +706,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				5,{0x02ca,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},{0,0},{0,0},{0}, -- MISSION 2-3 (Finish (Naji))
 				10,{0x000b,0},{0,0},{{14,0},{5,350},{12}},{0,0},{0,0},{0}, -- MISSION 3-1 (Pashhow Marshlands Zone)
 				11,{0x03F2,0},{0,0},{{4},{5,400},{7},{12}},{0x03EE,0},{0,0},{{4},{5,400},{7},{12}}, -- MISSION 3-2
-				12,{0x0026,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Goggehn)
-				13,{0x0023,0},{0,0},{{11,5},{14,0},{10,70},{8,10000},{12},{1,14}},{0,0},{0,0},{0}, -- MISSION 4-1 (Goggehn)
+				12,{0x0026,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Finish (Goggehn))
+				13,{0x0023,0},{0,0},{{11,5},{14,0},{10,70},{8,10000},{12},{1,14}},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Goggehn))
 						};
 		end
 	elseif(nation == WINDURST) then
@@ -719,7 +719,7 @@ function finishMissionTimeline(player,guard,csid,option)
 			timeline = {
 				0,{0x0079,1},{0x0076,1},{0x0053,1},{0x0060,1},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-1 (First Mission [START])
 				0,{0x005e,0},{0,0},{0,0},{0,0},{{14,0},{9,28},{7},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-1 (Finish (Hakkuru-Rinkuru))
-				1,{0x0084,1},{0x0082,1},{0x0068,1},{0x0084,1},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-2 [START]
+				1,{0x0084,1},{0x0082,1},{0x0068,1},{0x006a,1},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-2 [START]
 				1,{0x008f,0},{0,0},{0,0},{0,0},{{14,0},{7},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-2 (Finish (Apururu)) [WITHOUT ORB]
 				1,{0x0091,0},{0,0},{0,0},{0,0},{{14,0},{7},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-2 (Finish (Apururu)) [WITH ORB]
 				2,{0x0095,2},{0x0083,2},{0x006d,2},{0x006f,2},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-3 [START]
@@ -729,6 +729,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				4,{0x00C8,0},{0,0},{0,0},{0,0},{{14,0},{9,38},{5,250},{7},{12}},{0x00D1,0},{0,0},{0,0},{0,0},{{14,0},{9,38},{5,250},{7},{12}}, -- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed)
 				5,{0x0065,0},{0,0},{0,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 2-3 (Finish (Kupipi))
 				10,{0,0},{0x0072,0},{0,0},{0,0},{{5,350},{14,0},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 3-1 (Finish (Rhy Epocan))
+				12,{0x0028,0},{0,0},{0,0},{0,0},{{11,4},{9,30},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 3-3 (Finish (Ambassador's door))
+				13,{0x0025,0},{0,0},{0,0},{0,0},{{11,5},{14,0},{10,71},{8,10000},{12},{1,14}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Pakh Jatalfih))
 						};
 		end
 	end
