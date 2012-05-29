@@ -903,8 +903,12 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 		return rank + 8;
 	}
 }
-
-void SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
+/*****************************************************************************
+	Handles song buff effects. Returns true if the song has been handled
+	or false if the song effect has not been implemented. This is used in
+	luautils to check if it needs to load a spell script or not.
+******************************************************************************/
+bool SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
 	uint8 tier = 1;
 	EFFECT effect = EFFECT_NONE;
 	uint8 tick = 0;
@@ -942,20 +946,36 @@ void SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
 	}
 
 	if(effect==EFFECT_NONE){
-		if(PCaster->objtype==TYPE_PC){
-			CCharEntity* PChar = (CCharEntity*)PCaster;
-			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,PSpell->getID(),0,66));
-		}
-		return;
+		return false;
 	}
 	//TODO: Handle instruments!
-	//add status with power=charid, subid=tier 
+
 	CStatusEffect* PStatus = new CStatusEffect(effect,effect,tier,tick,120,PCaster->targid);
 	PStatus->SetFlag(EFFECTFLAG_ON_ZONE);//wears on zone
+	
+	uint8 maxSongs = 2;
+	if(PCaster->objtype==TYPE_PC){
+		CCharEntity* PChar = (CCharEntity*)PCaster;
+		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+		if(PItem==NULL || PItem->getID()==65535 || !(PItem->getSkillType()==SKILL_STR || PItem->getSkillType()==SKILL_WND || PItem->getSkillType()==47) ){
+			//TODO: Remove check for Skilltype=47, its a DB error should be 41 (String)!!
+			maxSongs = 1;
+		}
+		else{
+			//handle skillups
+			if(PItem->getSkillType()==SKILL_STR || PItem->getSkillType()==47){
+				charutils::TrySkillUP(PChar,SKILL_STR,PChar->GetMLevel());
+			}
+			else if(PItem->getSkillType()==SKILL_WND){
+				charutils::TrySkillUP(PChar,SKILL_WND,PChar->GetMLevel());
+			}
+		}
+	}
 
-	if(PTarget->StatusEffectContainer->ApplyBardEffect(PStatus)){
+	if(PTarget->StatusEffectContainer->ApplyBardEffect(PStatus,maxSongs)){
 		//ShowDebug("Applied %s! \n",PSpell->getName()); 
 	}
+	return true;
 }
 
 

@@ -1,16 +1,21 @@
 -----------------------------------
---
---   EFFECT_MARCH
+--	
+--	EFFECT_MARCH
 -- getPower returns the TIER (e.g. 1,2,3,4)
--- DO NOT ALTER ANY OF THE EFFECT VALUES!
+-- DO NOT ALTER ANY OF THE EFFECT VALUES! DO NOT ALTER EFFECT POWER! 
+-- Todo: Find a better way of doing this. Need to account for varying modifiers + CASTER's skill (not target)
 -----------------------------------
-
+require("scripts/globals/status");
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_HASTE,effect:getPower());  -- MOD_MARCH IS NOT IMPLEMENTED, USING HASTE UNTIL MARCH IS IMPLEMENTED <--- I will do 05/23/2012
+	if(effect:getPower()==1) then
+		target:addMod(MOD_HASTE, 7);
+	elseif(effect:getPower()==2) then
+		target:addMod(MOD_HASTE, 10);
+	end
 end;
 
 -----------------------------------
@@ -25,5 +30,9 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_HASTE,effect:getPower());
+	if(effect:getPower()==1) then
+		target:delMod(MOD_HASTE, 7);
+	elseif(effect:getPower()==2) then
+		target:delMod(MOD_HASTE, 10);
+	end
 end;

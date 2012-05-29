@@ -44,7 +44,7 @@ public:
 	uint32	m_Flags;											// биты переполнения байтов m_StatusIcons	
 	uint8	m_StatusIcons[32];									// иконки статус-эффектов
 
-	bool ApplyBardEffect(CStatusEffect* PStatusEffect);
+	bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
 	void AddStatusEffect(CStatusEffect* StatusEffect);
 	bool DelStatusEffect(EFFECT StatusID);
 	bool DelStatusEffect(EFFECT StatusID, uint16 SubID);

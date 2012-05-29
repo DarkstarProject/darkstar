@@ -1090,8 +1090,9 @@ int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem)
 int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget) 
 {	
 	if(PCaster->PBattleAI->GetCurrentSpell()->getSpellGroup() == SPELLGROUP_SONG){
-		battleutils::SingSong(PCaster,PTarget,PCaster->PBattleAI->GetCurrentSpell());
-		return 0;
+		if(battleutils::SingSong(PCaster,PTarget,PCaster->PBattleAI->GetCurrentSpell())){
+			return 0;
+		}
 	}
 	int8 File[255];
 	memset(File,0,sizeof(File));

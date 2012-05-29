@@ -364,7 +364,7 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
 		Returns true if the effect is applied, false otherwise.
 *************************************************************************/
 
-bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect)
+bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs)
 {
 	//break if not a BRD song.
 	DSP_DEBUG_BREAK_IF(!(PStatusEffect->GetStatusID() >= EFFECT_REQUIEM && 
@@ -403,18 +403,15 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect)
 		}
 	}
 
-	if(numOfEffects<2){
-		AddStatusEffect(PStatusEffect);
-		return true;
-	}
-	else if(numOfEffects==2){
-		//overwrite oldest
-		DelStatusEffectWithPower(oldestSong->GetStatusID(),oldestSong->GetPower());
+	if(numOfEffects<maxSongs){
 		AddStatusEffect(PStatusEffect);
 		return true;
 	}
 	else{
-		ShowDebug("ApplyBardEffect error: More than 2 effects on target from this BRD! Please report. \n");
+		//overwrite oldest
+		DelStatusEffectWithPower(oldestSong->GetStatusID(),oldestSong->GetPower());
+		AddStatusEffect(PStatusEffect);
+		return true;
 	}
 
 	return false;
