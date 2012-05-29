@@ -5,12 +5,10 @@
 --	Working 100%
 --  Unable to find EventID for Making Headlines quest. Used dialog ID instead.
 -----------------------------------
-
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/quests");
 require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 
 -----------------------------------
@@ -60,6 +58,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

@@ -13,6 +13,10 @@ require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+	zone:registerRegion(1, 17,-90,45, -85,18,51);  -- map 4 NW porter 
+	zone:registerRegion(2, -90,17,-10, -85,18,-5);  -- map 4 SW porter 
+	zone:registerRegion(3, -34,17,-10, -30,18,-5);  -- map 4 SE porter 
+	zone:registerRegion(4, -34,17,45, -30,18,51);  -- map 4 NE porter 
 end;
 
 -----------------------------------		
@@ -31,8 +35,47 @@ end;
 -- onRegionEnter		
 -----------------------------------		
 
-function onRegionEnter(player,region)	
-end;	
+function onRegionEnter(player,region)
+	
+	switch (region:GetRegionID()): caseof
+	{
+	---------------------------------
+	[1] = function (x)  -- 
+	---------------------------------
+	  player:startEvent(0x0003); -- ports player to NW room of map 3
+	end,
+
+	---------------------------------
+	[2] = function (x)  -- 
+	---------------------------------
+	  player:startEvent(0x0002); -- ports player to SW room of map 3
+	end,
+
+	---------------------------------
+	[3] = function (x)  -- 
+	---------------------------------
+	  player:startEvent(0x0001); -- ports player to SE room of map 3
+	end,
+
+	---------------------------------
+	[4] = function (x)  -- 
+	---------------------------------
+	  player:startEvent(0x0000); -- ports player to NE room of map 3
+	end,
+
+	default = function (x)
+	--print("default");
+	end,
+	}
+	
+end;
+
+-----------------------------------	
+-- onRegionLeave	
+-----------------------------------	
+
+function onRegionLeave(player,region)
+end;		
 
 -----------------------------------	
 -- onEventUpdate	
