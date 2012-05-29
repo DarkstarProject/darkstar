@@ -10,10 +10,10 @@ require("scripts/globals/magic");
 function onSpellCast(caster,target,spell)
 	duration = 30;
 	staff = StaffBonus(caster, spell);
-	pINT = caster:getStat(MOD_INT);
-	mINT = target:getStat(MOD_INT);
-	dINT = (pINT - mINT);
-	resm = applyResistance(caster,spell,target,dINT,37,staff);
+	pCHR = caster:getStat(MOD_CHR);
+	mCHR = target:getStat(MOD_CHR);
+	dCHR = (pCHR - mCHR);
+	resm = applyResistance(caster,spell,target,dCHR,40,staff);
 	if(resm < 0.5) then
 		spell:setMsg(85);--resist message
 		return EFFECT_SLEEP_I;

@@ -384,7 +384,16 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 	PPet->SetMJob(g_PPetList.at(PetID)->mJob);
 
 	if(PPet->getPetType()==PETTYPE_AVATAR){
-		PPet->SetMLevel(PMaster->GetMLevel());
+		if(PMaster->GetMJob()==JOB_SMN){
+			PPet->SetMLevel(PMaster->GetMLevel());
+		}
+		else if(PMaster->GetSJob()==JOB_SMN){
+			PPet->SetMLevel(PMaster->GetSLevel());
+		}
+		else{ //should never happen
+			ShowDebug("%s summoned an avatar but is not SMN main or SMN sub! Please report. \n",PMaster->GetName());
+			PPet->SetMLevel(1);
+		}
 		LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f/60.0f)));
 		if(PetID==PETID_FENRIR){
