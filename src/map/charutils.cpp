@@ -2132,11 +2132,11 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
 		{
 			if (PChar->GetMLevel() > 50 || maxlevel - minlevel > 7)
 			{
-				exp *= (PChar->GetMLevel()/maxlevel);
+				exp *= (float)(PChar->GetMLevel())/(float)(maxlevel);
 			}
 			else
 			{
-				exp *= (GetExpNEXTLevel(PChar->GetMLevel())/GetExpNEXTLevel(maxlevel));
+				exp *= (float)(GetExpNEXTLevel(PChar->GetMLevel()))/(float)(GetExpNEXTLevel(maxlevel));
 			}
 		}
     }
