@@ -545,6 +545,8 @@ void CAICharNormal::ActionItemFinish()
 
 		delete m_PItemUsable;
 
+		m_PChar->StatusEffectContainer->SaveStatusEffects();
+
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PItemUsable = NULL;
 		m_PBattleSubTarget = NULL;
@@ -825,6 +827,15 @@ void CAICharNormal::ActionMagicStart()
 			return;
         }
     }
+	if(m_PChar->loc.zone==NULL){ //crash occured on the next if (CanUseMisc) because zone was null.
+		//Can't really explain how that's possible, possibly timing the spell as you zone..?
+		//Either way, this check is required now.
+		m_ActionTargetID = 0;
+		m_PSpell = NULL;
+		m_PBattleSubTarget = NULL;
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		return;
+	}
     if (!m_PChar->loc.zone->CanUseMisc(m_PSpell->getZoneMisc()))
     {
         MagicStartError(40);
@@ -961,29 +972,26 @@ void CAICharNormal::ActionMagicCasting()
 		ActionMagicInterrupt();
 		return;
 	}
-	//shouldn't this be check AFTER the cast time is up?
-    if (battleutils::IsParalised(m_PChar)) 
-    {
-	    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,29));
-
-        m_ActionType = ACTION_MAGIC_INTERRUPT;
-		ActionMagicInterrupt();
-		return;
-    }
-	//shouldn't this be check AFTER the cast time is up?
-    else if (battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget)) 
-    {
-	    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,106));
-
-        m_ActionType = ACTION_MAGIC_INTERRUPT;
-		ActionMagicInterrupt();
-		return;
-    }
 	
 	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)cap_value(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
 		if (m_PChar->animation == ANIMATION_ATTACK) m_LastActionTime = m_Tick;
+
+		if (battleutils::IsParalised(m_PChar)) 
+		{
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,29));
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
+		else if (battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget)) 
+		{
+		    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,106));
+		   m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
 
 		if (!charutils::hasSpell(m_PChar, m_PSpell->getID()))
 		{
