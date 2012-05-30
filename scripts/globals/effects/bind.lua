@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	effect:setPower(target:speed())
 	target:speed(0);
 end;
 
