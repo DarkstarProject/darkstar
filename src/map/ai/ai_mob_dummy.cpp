@@ -746,7 +746,8 @@ void CAIMobDummy::ActionAttack()
 		return; 
 	}
     if (m_PBattleTarget->isDead() || 
-        m_PBattleTarget->animation == ANIMATION_CHOCOBO)
+        m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
+		m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID())
 	{
         if (m_PMob->m_OwnerID.id == m_PBattleTarget->id)
         {
