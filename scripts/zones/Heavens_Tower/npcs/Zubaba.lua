@@ -56,8 +56,8 @@ function onTrigger(player,npc)
 		end
 	elseif(player:hasKeyItem(STAR_CRESTED_SUMMONS)) then
 		player:startEvent(0x009d);
-	elseif(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL)) then
-		player:startEvent(0x0C2); -- her reaction after 5-1.
+	elseif(currentMission == THE_SHADOW_AWAITS and player:hasKeyItem(SHADOW_FRAGMENT)) then
+		player:startEvent(0x00C2); -- her reaction after 5-1.
 	else
 		player:startEvent(0x0038);
 	end
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0079) then
 		player:addKeyItem(CHARM_OF_LIGHT);
-		player:specialMessage(KEYITEM_OBTAINED,CHARM_OF_LIGHT);
+		player:messageSpecial(KEYITEM_OBTAINED,CHARM_OF_LIGHT);
 		player:setVar("MissionStatus",1);
 	elseif(csid == 0x0095 or csid == 0x0101) then
 		player:setVar("MissionStatus",3);

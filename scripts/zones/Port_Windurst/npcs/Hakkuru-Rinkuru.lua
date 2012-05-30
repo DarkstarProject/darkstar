@@ -112,19 +112,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0093) then
 		player:setVar("MissionStatus",3);
 	elseif(csid == 0x005e) then
-		-- Get one of the 4 titles
-		started_from_guard = player:getVar("Mission_started_from");
-		
-		if(started_from_guard == 1) then
-			player:setTitle(NEW_BUUMAS_BOOMERS_RECRUIT); -- Rakoh Buuma
-		elseif(started_from_guard == 2) then
-			player:setTitle(NEW_BEST_OF_THE_WEST_RECRUIT); -- Janshura-Rashura
-		elseif(started_from_guard == 3) then
-			player:setTitle(FRESH_NORTH_WINDS_RECRUIT); -- Mokyokyo
-		else
-			player:setTitle(HEAVENS_TOWER_GATEHOUSE_RECRUIT); -- Zokima-Rokima
-		end
-		
+	
 		-- Delete the variable(s) that was created for this mission
 		player:setVar("Mission_started_from",0);
 		player:setVar("MissionStatus_op1",0);
