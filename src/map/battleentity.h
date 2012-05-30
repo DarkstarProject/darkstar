@@ -326,6 +326,7 @@ public:
     uint16          CHR();
     uint16          DEF();
     uint16          ATT();
+	uint16          RATT(uint8 skill);
 
 	bool		    isDead();					// проверяем, мертва ли сущность
 

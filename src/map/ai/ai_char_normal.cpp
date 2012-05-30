@@ -605,13 +605,24 @@ void CAICharNormal::ActionRangedStart()
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
+	if( (m_Tick - m_PChar->m_rangedDelay) < 2000){ //cooldown between shots
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,94));
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_ActionTargetID = 0;
+		m_PBattleSubTarget = NULL;
+		return;
+	}
+
 	CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
 
 	if (PItem != NULL && 
 	   (PItem->getType() & ITEM_WEAPON))
 	{
 		uint8 SkillType = PItem->getSkillType();
-
+		//ranged weapon delay is stored in the db as offset from 240 for some reason. Also, getDelay incorrectly
+		//returns the delay /60 - for ranged weapons it is /110 hence the calculation below.
+		m_PChar->m_rangedDelay = ((240+((PItem->getDelay()*60)/1000))*1000)/110; //literal time in ms until shot fired
+		
 		switch (SkillType)
 		{
 			case SKILL_THR: break;
@@ -646,6 +657,12 @@ void CAICharNormal::ActionRangedStart()
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,216));
 			return;
 		}
+
+		//todo: remove this and actually handle ammo thrown items (e.g. pebbles)
+		m_ActionTargetID = 0;
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,216));
+			return;
 	}
 
 	if (GetValidTarget(&m_PBattleSubTarget, TARGET_ENEMY))
@@ -737,10 +754,11 @@ void CAICharNormal::ActionRangedFinish()
 		return;
 	}
 
-	if ((m_Tick - m_LastActionTime) > 4000)		//m_PChar->m_RangedDelay
+	if ((m_Tick - m_LastActionTime) > m_PChar->m_rangedDelay) 
 	{
 		m_LastActionTime = m_Tick;
-
+		//todo: check for hit/miss
+		
 		uint16 damage = 0;
 
 		apAction_t Action;
@@ -751,21 +769,38 @@ void CAICharNormal::ActionRangedFinish()
 		Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
 		Action.animation  = 0;
 		Action.messageID  = 352;
+		Action.flag = 0;
 
+		float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
+		if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget)){
+			pdif *= 1.25; //uncapped
+			Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+			Action.messageID = 353;
+		}
+
+		CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+		if(PItem->getSkillType()!=SKILL_THR){
+			CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+			if(PAmmo!=NULL){
+				damage = PAmmo->getDamage();
+				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+				m_PChar->pushPacket(new CInventoryFinishPacket());
+			}
+		}
+		damage = (damage + PItem->getDamage()) * pdif; //needs fstr
 		Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, 0);
-		Action.flag = 3;
-		Action.subeffect = SUBEFFECT_FIRE_DAMAGE;
-		Action.subparam  = 0;
-		Action.submessageID = 163;
+
+		if(PItem != NULL){//not a throwing item, check the ammo for dmg/etc
+			battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
+			charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
+		}
 
 		m_PChar->m_ActionList.push_back(Action);
-
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PBattleSubTarget = NULL;
 
-      //charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PChar->m_Weapons[SLOT_RANGED]->getSkillType(), m_PBattleTarget->GetMLevel());
+		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots        
 	}
 }
 

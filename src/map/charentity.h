@@ -145,6 +145,7 @@ public:
 	missionlog_t	 m_missionLog[6];				// список миссий
 	assaultlog_t	 m_assaultLog;					// список assault миссий
 	campaignlog_t	 m_campaignLog;					// список campaing миссий
+	uint32			 m_rangedDelay;					//ranged attack delay (with timestamp for repeat attacks, hence 32bit)
 
 	// Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
 	// отображает более ранние миссии выплненными

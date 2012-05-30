@@ -418,6 +418,165 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 	return g_PMobFamilySkills[FamilyID];
 }
 
+/************************************************************************
+*                                                                       *
+*  Handles Ranged weapon's additional effects (e.g. Bolts)              *
+*                                                                       *
+************************************************************************/
+
+void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action){
+	CItemWeapon* PAmmo = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_AMMO]);
+	//add effects dont have 100% proc, presume level dependant. 95% chance but -5% for each level diff.
+	//capped at 5% proc when mob is 18 (!!!) levels higher than you.
+	uint8 chance = 95;
+	if(PDefender->GetMLevel() > PAttacker->GetMLevel()){
+		chance -= 5*(PDefender->GetMLevel() - PAttacker->GetMLevel());
+		chance = cap_value(chance,5,95);
+	}
+	if(rand()%100 >= chance){return;}
+	if(PAmmo==NULL){return;}
+
+	switch(PAmmo->getID()){
+	case 18153:{ //Holy Bolt
+	//damage doesn't exceed ~67 unless wearing light staff/lightsday/weather
+	//there isn't a formula, but MND affects damage, so this is guesstimated. It seems to be level
+	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
+	//is simply MND with a degree of randomisation
+			Action->subeffect = SUBEFFECT_LIGHT_DAMAGE;
+			Action->submessageID = 163;
+			Action->flag = 3;
+			//calculate damage
+			uint8 damage = (PAttacker->MND() - PDefender->MND())/2;
+			damage = cap_value(damage,0,50);
+			damage += 10; //10~60
+			damage += rand()%8; //10~67 randomised
+			//set damage TODO: handle resist/staff/day
+			Action->subparam  = damage;
+			PDefender->addHP(-damage);
+		}
+		break;
+	case 18151:{ //Bloody Bolt
+	//INT/2 is a semi-confirmed damage calculation. Also affected by level of target. Resists strongly
+	//and even doesn't proc on mobs strong to dark e.g. bats/skeles.
+			Action->subeffect = SUBEFFECT_HP_DRAIN;
+			Action->submessageID = 161;
+			Action->flag = 3;
+			int damage = (PAttacker->INT() - PDefender->INT())/2;
+			damage += (PAttacker->GetMLevel() - PDefender->GetMLevel());
+			damage = cap_value(damage,0,50);
+			damage += PAttacker->GetMLevel()/2;
+			damage += rand()%20; //At 75 -> 37~56 low or 87~106 high
+			Action->subparam  = damage;
+			PDefender->addHP(-damage);
+			PAttacker->addHP(damage);
+			charutils::UpdateHealth(PAttacker);
+		}
+		break;
+	case 18152:{ //Venom Bolt
+			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_POISON)){
+				Action->subeffect = SUBEFFECT_POISON;
+				Action->subparam  = EFFECT_POISON;
+				Action->submessageID = 160;
+				Action->flag = 1;
+				//4hp/tick for 30secs
+				PDefender->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_POISON,EFFECT_POISON,4,3,30));
+			}
+		}
+		break;
+	case 18150:{//Blind Bolt
+			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BLINDNESS)){
+				Action->subeffect = SUBEFFECT_BLIND;
+				Action->subparam  = EFFECT_BLINDNESS;
+				Action->submessageID = 160;
+				Action->flag = 1;
+				PDefender->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_BLINDNESS,EFFECT_BLINDNESS,10,0,30));
+			}
+		}
+		break;
+	case 18149:{//Sleep Bolt
+			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
+				!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
+				!PDefender->isDead()){
+			Action->subeffect = SUBEFFECT_SLEEP;
+			Action->subparam  = EFFECT_SLEEP;
+			Action->submessageID = 160;
+			Action->flag = 3;
+			int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel());
+			duration = cap_value(duration,1,25);
+			PDefender->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration));
+			}
+		}
+		break;
+	case 18148:{ //Acid Bolt
+			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DEFENSE_DOWN)){
+			Action->subeffect = SUBEFFECT_DEFENS_DOWN;
+			Action->subparam  = EFFECT_DEFENSE_DOWN;
+			Action->submessageID = 160;
+			Action->flag = 1;
+			PDefender->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_DEFENSE_DOWN,EFFECT_DEFENSE_DOWN,12,0,60));
+			}
+		}
+		break;
+	}
+}
+
+float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender){
+	//get ranged attack value
+	uint16 rAttack = 1;
+	if(PAttacker->objtype == TYPE_PC){
+		CCharEntity* PChar = (CCharEntity*)PAttacker;
+		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+		if (PItem != NULL && (PItem->getType() & ITEM_WEAPON)){
+			rAttack = PChar->RATT(PItem->getSkillType());
+		}
+		else{
+			PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+			if (PItem == NULL || !(PItem->getType() & ITEM_WEAPON) || (PItem->getSkillType() != SKILL_THR)){
+				ShowDebug("battleutils::GetRangedPDIF Cannot find a valid ranged weapon to calculate PDIF for. \n");
+			}
+			else{
+				rAttack = PChar->RATT(PItem->getSkillType());
+			}
+		}
+	}
+	else{//assume mobs capped
+		rAttack = battleutils::GetMaxSkill(SKILL_ARC,JOB_RNG,PAttacker->GetMLevel());
+	}
+
+	//get ratio (not capped for RAs)
+	float ratio = (float)rAttack / (float)PDefender->DEF();
+
+	//level correct (0.025 not 0.05 like for melee)
+	if(PDefender->GetMLevel() > PAttacker->GetMLevel()){
+		ratio -= 0.025f * (PDefender->GetMLevel() - PAttacker->GetMLevel());
+	}
+	if(ratio < 0) { ratio = 0; }
+	if(ratio > 3) { ratio = 3; }
+
+	//calculate min/max PDIF
+	float minPdif = 0;
+	float maxPdif = 0;
+	if(ratio < 0.9){
+		minPdif = ratio;
+		maxPdif = (10.0f/9.0f) * ratio;
+	}
+	else if(ratio <= 1.1){
+		minPdif = 1;
+		maxPdif = 1;
+	}
+	else if(ratio <= 3){
+		minPdif = (-3.0f/19.0f) + ((20.0f/19.0f) * ratio);
+		maxPdif = ratio;
+	}
+
+	//return random number between the two
+	return ((maxPdif-minPdif) * ((float)rand()/RAND_MAX)) + minPdif;
+}
+
 float CalculateBaseTP(int delay){
 	float x = 1;
 	if(delay<=180){
@@ -885,7 +1044,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 /************************************************************************
 *  	Formula for Strength												*
 ************************************************************************/
-
+//TODO: Add 3rd arg -> slotID since need for SUB and RANGED
 int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender) 
 {
 	int32 rank = PAttacker->m_Weapons[SLOT_MAIN]->getDamage() / 9; 

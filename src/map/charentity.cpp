@@ -76,6 +76,7 @@ CCharEntity::CCharEntity()
 	m_missionLog[4].current = 0; // MISSION_TOAU
 	m_missionLog[5].current = 0; // MISSION_WOTG
 
+	m_rangedDelay = 0;
 	m_copCurrent = 0;
 	m_acpCurrent = 0;
 	m_mkeCurrent = 0;

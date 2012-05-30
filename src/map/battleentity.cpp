@@ -234,6 +234,13 @@ uint16 CBattleEntity::ATT()
     return ((100 + m_modStat[MOD_ATTP]) * ATT)/100 + dsp_min(((100 + m_modStat[MOD_FOOD_ATTP]) * ATT)/100, m_modStat[MOD_FOOD_ATT_CAP]);
 }
 
+uint16 CBattleEntity::RATT(uint8 skill)
+{
+    uint32 ATT = 8 + GetSkill(skill) + m_modStat[MOD_RATT] + STR() / 2;
+
+    return ((100 + m_modStat[MOD_RATTP]) * ATT)/100 + dsp_min(((100 + m_modStat[MOD_FOOD_RATTP]) * ATT)/100, m_modStat[MOD_FOOD_RATT_CAP]);
+}
+
 uint16 CBattleEntity::DEF()
 {
 	if(this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE,0)){

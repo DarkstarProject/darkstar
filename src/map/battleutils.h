@@ -78,6 +78,8 @@ namespace battleutils
 	uint32  MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	bool    SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
 	bool    IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender); 
+	float   GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+	void    HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
 
     uint8	GetEnmityMod(uint8 level, uint8 modType);
 	bool	Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
