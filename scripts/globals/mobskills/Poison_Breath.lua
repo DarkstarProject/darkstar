@@ -1,33 +1,40 @@
----------------------------------------------------
--- Poison Breath
---     Deals Water damage to targets in a fan-shaped area of effect. Additional Effect: Poison 
----------------------------------------------------
-
+---------------------------------------------
+--  Poison Breath
+--
+--  Description: Deals water damage to enemies within a fan-shaped area originating from the caster. Additional effect: Poison.
+--  Type: Magical Water (Element)
+--  
+--  
+---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
+---------------------------------------------
+	
 
----------------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
-	isEnfeeble = true;
-	typeEffect = EFFECT_POISON;
-	statmod = MOD_INT;
-	poison = mob:getMainLvl() / 4;
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_POISON) == nil) then
-			target:addStatusEffect(EFFECT_POISON,1,poison,180); -- tick by level
-		end
-	end
-	
-	numhits = 1;
-	accmod = 1;
-	dmgmod = 1;
-	info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS); -- Breath dmg
-	target:delHP(dmg);
-	return dmg;
-	
+
+    power = mob:getHP()/100;
+    
+    tic = 3;
+    duration = 30;
+
+    isEnfeeble = true;
+    typeEffect = EFFECT_POISON;
+    statmod = MOD_INT;
+    accrand = math.random(1,2);
+    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+    if(resist > 0.5 and accrand == 1) then
+        if(target:getStatusEffect(typeEffect) == nil) then
+            target:addStatusEffect(typeEffect,power,tic,duration);
+        end
+    end
+
+    dmgmod = 1;
+    accmod = 1;
+    info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
+    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
 end
