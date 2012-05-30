@@ -1,14 +1,18 @@
 -----------------------------------
---  Area: Norg
---   NPC: Laisrean
---  Type: Standard NPC
+-- Area: Norg
+-- NPC: Laisrean
+-- Starts and Ends Quest: The Sahagin's Stash
 -- @zone: 252
---  @pos: -2.251 -1 21.654
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- @pos: -2.251 -1 21.654
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/globals/titles");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -22,7 +26,21 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0053);
+	Stash = player:getQuestStatus(OUTLANDS,THE_SAHAGINS_STASH);
+	mLvl = player:getMainLvl();
+	SeaStatue = player:hasKeyItem(296);
+	
+	if(Stash == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 4 and mLvl >= 5) then
+		player:startEvent(0x0021); -- Start quest
+	elseif(Stash == QUEST_ACCEPTED) then
+		if(SeaStatue == true) then
+			player:startEvent(0x0023,296); -- Finish quest
+		else
+			player:startEvent(0x0022); -- Reminder Dialogue
+		end
+	else
+		player:startEvent(0x0053); -- Standard Conversation
+	end
 end;
 
 -----------------------------------
@@ -41,5 +59,20 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	if(csid == 0x0021 and option == 1) then
+		player:addQuest(OUTLANDS,THE_SAHAGINS_STASH);
+	elseif (csid == 0x0023) then
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4946); 
+		else
+			player:delKeyItem(296);
+			player:addItem(4946); -- Scroll of Utsusemi: Ichi
+			player:messageSpecial(ITEM_OBTAINED, 4946);
+			player:setTitle(TREASUREHOUSE_RANSACKER);
+			player:addFame(OUTLANDS,NORG_FAME*75);
+			player:completeQuest(OUTLANDS,THE_SAHAGINS_STASH);
+		end
+	end
+
 end;
 

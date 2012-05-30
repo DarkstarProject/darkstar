@@ -15,3 +15,10 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 		CHEST_MOOGLE = 7199; -- You cannot open the chest while participating in the moogle event.
 	  CHEST_ILLUSION = 7200; -- The chest was but an illusion...
 		CHEST_LOCKED = 7201; -- The chest appears to be locked.
+		
+-- Altar of Ashes Dialog (unable to find csid)
+		ALTAR_COMPLETED	= 7183; --You have already made an offering today.
+		  ALTAR_INSPECT	= 7184; --This looks like the altar where offerings are to be placed.
+		 ALTAR_OFFERING	= 7185; --You place your offering of (item ID) on the altar.
+		 ALTAR_STANDARD	= 7186; --It is an altar for offerings.
+
