@@ -2,6 +2,7 @@
 -- Area: Norg
 -- NPC:  Washu
 -- Involved in Quest: Yomi Okuri
+-- Starts and finishes Quest: Stop Your Whining
 -- @pos 49 -6 15 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
@@ -9,6 +10,7 @@ package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/titles");
 require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
@@ -31,6 +33,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	Whining = player:getQuestStatus(OUTLANDS,STOP_YOUR_WHINING);
+	mLvl = player:getMainLvl();
 	
 	if(player:getQuestStatus(OUTLANDS,YOMI_OKURI) == QUEST_ACCEPTED) then
 		if(player:getVar("yomiOkuriCS") == 1) then
@@ -40,6 +44,14 @@ function onTrigger(player,npc)
 		elseif(player:getVar("yomiOkuriCS") >= 3) then
 			player:startEvent(0x0097);
 		end
+	elseif(Whining == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 4 and mLvl >= 10) then
+		player:startEvent(0x0015); --Start Quest
+	elseif(Whining == QUEST_ACCEPTED and player:hasKeyItem(260) == true) then
+		player:startEvent(0x0016); --Reminder Dialogue
+	elseif(Whining == QUEST_ACCEPTED and player:hasKeyItem(261) == true) then
+		player:startEvent(0x0017); --Finish Quest
+	elseif(Whining == QUEST_COMPLETED) then
+		player:startEvent(0x0018); 
 	else
 		player:startEvent(0x0050);
 	end
@@ -71,6 +83,21 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(WASHSUS_TASTY_WURST);
 		player:messageSpecial(KEYITEM_OBTAINED,WASHSUS_TASTY_WURST);
 		player:setVar("yomiOkuriCS",3);
+	elseif(csid == 0x0015 and option == 1) then
+		player:addKeyItem(260); --Empty Barrel
+		player:addQuest(OUTLANDS,STOP_YOUR_WHINING);
+		player:messageSpecial(KEYITEM_OBTAINED,260);
+	elseif(csid == 0x0017) then
+		if(player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4952); 
+		else
+			player:delKeyItem(261); --Filled Barrel
+			player:addItem(4952); -- Scroll of Hojo: Ichi
+			player:messageSpecial(ITEM_OBTAINED,4952); -- Scroll of Hojo: Ichi
+			player:addFame(OUTLANDS,NORG_FAME*75);
+			player:setTitle(APPRENTICE_SOMMELIER);
+			player:completeQuest(OUTLANDS,STOP_YOUR_WHINING);
+		end
 	end
 	
 end;

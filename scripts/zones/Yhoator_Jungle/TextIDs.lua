@@ -12,3 +12,8 @@ CONQUEST =  7162; -- "You've earned conquest points!"
 
 -- Other dialog
 YOU_SEE_NOTHING = 6392;
+
+			 TREE_CHECK	= 7613; --The hole in this tree is filled with a sweet-smelling liquid.
+			  TREE_FULL = 7614; --Your wine barrel is already full.
+			   ORDINARY	= 7616;	--There is nothing out of the ordinary here.
+
