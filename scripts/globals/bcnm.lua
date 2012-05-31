@@ -96,6 +96,14 @@ function getMonsterList(list,zone)
 		elseif (list == 3) then
 			monsterList = {	{4,17444875},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0} };
 		end
+	elseif (zone == 165) then
+		if (list == 1) then
+			monsterList = {	{1,17453057},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0} };
+		elseif (list == 2) then
+			monsterList = {	{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0} };
+		elseif (list == 3) then
+			monsterList = {	{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0} };
+		end
 	elseif (zone == 168) then
 		if (list == 1) then
 			monsterList = {	{0,0},{0,0},{1,17465354},{1,17465357},{2,17465360} };

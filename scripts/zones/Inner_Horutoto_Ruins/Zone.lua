@@ -16,7 +16,8 @@ require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 function onInitialize(zone)	
 	zone:registerRegion(1, -261, -1, -31, -257, 1, -27); -- Red
 	zone:registerRegion(2, -265, -1, -26, -261, 1, -22); -- White	
-	zone:registerRegion(3, -258, -1, -26, -254, 1, -22); -- Black	
+	zone:registerRegion(3, -258, -1, -26, -254, 1, -22); -- Black
+	zone:registerRegion(4, -261, -3, 182, -257, -1, 186); -- Teleport at H-6
 end;		
 
 -----------------------------------		
@@ -68,7 +69,10 @@ function onRegionEnter(player,region)
 					GetNPCByID(17563861):openDoor(30);
 					GetNPCByID(17563862):openDoor(30);
 				end	
-			end		
+			end
+		end,
+		[4] = function (x)  -- Teleport at H-6
+			player:setPos(-260,0,-21,65);
 		end,		
 	}
 	

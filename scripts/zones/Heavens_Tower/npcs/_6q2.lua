@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
+require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Heavens_Tower/TextIDs");
@@ -25,8 +26,9 @@ end;
 function onTrigger(player,npc)
 	
 	CurrentMission = player:getCurrentMission(WINDURST);
+	MissionStatus = player:getVar("MissionStatus");
 	
-	if(player:getCurrentMission(WINDURST) == A_NEW_JOURNEY and player:getVar("MissionStatus") == 0) then
+	if(CurrentMission == A_NEW_JOURNEY and MissionStatus == 0) then
 		player:startEvent(0x0099);
 	elseif(player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
 		player:startEvent(0x00A6);
@@ -34,6 +36,10 @@ function onTrigger(player,npc)
 		player:startEvent(0x00BE);
 	elseif(player:hasKeyItem(BURNT_SEAL)) then
 		player:startEvent(0x00C0);
+	elseif(CurrentMission == THE_SHADOW_AWAITS and MissionStatus == 0) then
+		player:startEvent(0x00D6);
+	elseif(CurrentMission == THE_SHADOW_AWAITS and player:hasKeyItem(SHADOW_FRAGMENT)) then
+		player:startEvent(0x00D8);
 	else
 		player:startEvent(0x009A);
 	end
@@ -71,7 +77,11 @@ printf("RESULT: %u",option);
 			player:setVar("MissionStatus",10);
 		end
 		player:delKeyItem(MESSAGE_TO_JEUNO_WINDURST);
-	elseif(csid == 0x00C0) then
+	elseif(csid == 0x00D6) then
+		player:setVar("MissionStatus",1);
+		player:delKeyItem(STAR_CRESTED_SUMMONS);
+		player:setTitle(STARORDAINED_WARRIOR);
+	elseif(csid == 0x00C0 or csid == 0x00D8) then
 		finishMissionTimeline(player,1,csid,option);
 	end
 	
