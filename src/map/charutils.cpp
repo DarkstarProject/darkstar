@@ -1077,12 +1077,14 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 					{
 						PChar->look.ranged = PItem->getModelId();
 					}
-					PChar->m_Weapons[SLOT_AMMO]->setType(ITEM_WEAPON);	
-					PChar->m_Weapons[SLOT_AMMO]->setID(((CItemWeapon*)PItem)->getID());
-					PChar->m_Weapons[SLOT_AMMO]->setDelay(((CItemWeapon*)PItem)->getDelay());
-					PChar->m_Weapons[SLOT_AMMO]->setDamage(((CItemWeapon*)PItem)->getDamage());
-					PChar->m_Weapons[SLOT_AMMO]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
-					PChar->m_Weapons[SLOT_AMMO]->setSkillType(((CItemWeapon*)PItem)->getSkillType());
+					if(PChar->m_Weapons[SLOT_AMMO]!=NULL){
+						PChar->m_Weapons[SLOT_AMMO]->setType(ITEM_WEAPON);	
+						PChar->m_Weapons[SLOT_AMMO]->setID(((CItemWeapon*)PItem)->getID());
+						PChar->m_Weapons[SLOT_AMMO]->setDelay(((CItemWeapon*)PItem)->getDelay());
+						PChar->m_Weapons[SLOT_AMMO]->setDamage(((CItemWeapon*)PItem)->getDamage());
+						PChar->m_Weapons[SLOT_AMMO]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
+						PChar->m_Weapons[SLOT_AMMO]->setSkillType(((CItemWeapon*)PItem)->getSkillType());
+					}
 				}
 			}
 				break;
