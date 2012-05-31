@@ -455,6 +455,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
     DSP_DEBUG_BREAK_IF(PChar->loc.zone != this);
 	//remove pets
 	if(PChar->PPet!=NULL){
+		charutils::BuildingCharPetAbilityTable(PChar,(CPetEntity*)PChar->PPet,0);//blank the pet commands
 		PChar->PPet->status = STATUS_DISAPPEAR;
 		PChar->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
 		DeletePET(PChar->PPet);//remove the TID for this pet

@@ -2172,6 +2172,49 @@ inline int32 CLuaBaseEntity::messageBasic(lua_State* L)
 	return 0;
 }
 
+//========================================================//
+
+inline int32 CLuaBaseEntity::capSkill(lua_State* L){
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype == TYPE_PC )
+		{
+			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+			{
+				uint8 skill = lua_tointeger(L, -1);
+				if(skill < MAX_SKILLTYPE){
+					CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+					CItemWeapon* PItem = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
+
+					//remove modifiers if valid
+					if(skill>=1 && skill<=12 && PItem!=NULL && PItem->getSkillType()==skill){
+						PChar->delModifier(MOD_ATT, PChar->GetSkill(skill));
+						PChar->delModifier(MOD_ACC, PChar->GetSkill(skill));
+					}
+
+					uint16 maxSkill = 10*battleutils::GetMaxSkill((SKILLTYPE)skill, PChar->GetMJob(),PChar->GetMLevel());
+					PChar->RealSkills.skill[skill] = maxSkill; //set to capped
+					PChar->WorkingSkills.skill[skill] = maxSkill/10;
+					PChar->WorkingSkills.skill[skill] |= 0x8000; //set blue capped flag
+					PChar->pushPacket(new CCharSkillsPacket(PChar));
+					charutils::CheckWeaponSkill(PChar, skill);
+
+					//reapply modifiers if valid
+					if(skill>=1 && skill<=12 && PItem!=NULL && PItem->getSkillType()==skill){
+						PChar->addModifier(MOD_ATT, PChar->GetSkill(skill));
+						PChar->addModifier(MOD_ACC, PChar->GetSkill(skill));
+					}
+
+					charutils::SaveCharSkills(PChar, skill); //save to db
+					return 0;
+				}
+			}
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::messageSystem(lua_State* L)
@@ -3810,5 +3853,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRATT),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRACC),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,capSkill),
 	{NULL,NULL}
 };

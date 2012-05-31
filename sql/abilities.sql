@@ -20,14 +20,14 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `abilities`;
 CREATE TABLE `abilities` (
-  `abilityId` tinyint(3) unsigned NOT NULL,
+  `abilityId` smallint(5) unsigned NOT NULL,
   `name` tinytext,
   `job` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `validTarget` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `recastTime` smallint(5) unsigned NOT NULL DEFAULT '0',
   `recastId` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `animation` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `animation` smallint(5) unsigned NOT NULL DEFAULT '0',
   `range` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `isAOE` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `CE` smallint(5) NOT NULL DEFAULT '0',

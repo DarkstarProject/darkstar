@@ -540,6 +540,7 @@ void CAIPetDummy::ActionDeath()
 		if (m_PPet->PMaster != NULL && m_PPet->PMaster->objtype == TYPE_PC)
 		{
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PPet->PMaster));
+			charutils::BuildingCharPetAbilityTable((CCharEntity*)m_PPet->PMaster,m_PPet,0);//blank the pet commands
 		}
 		m_PPet->PMaster = NULL;
 		m_ActionType = ACTION_NONE;

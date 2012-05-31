@@ -32,6 +32,7 @@
 #include "map.h"
 #include "petentity.h"
 #include "petutils.h"
+#include "charutils.h"
 #include "zoneutils.h"
 #include "battleutils.h"
 #include "grades.h"
@@ -464,6 +465,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
     PMaster->loc.zone->InsertPET(PPet);
 	if (PMaster->objtype == TYPE_PC)
 	{
+		charutils::BuildingCharPetAbilityTable((CCharEntity*)PMaster,PPet,PetID);
 		((CCharEntity*)PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)PMaster));
 		((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
 	}

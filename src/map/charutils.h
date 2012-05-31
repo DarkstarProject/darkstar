@@ -29,6 +29,7 @@
 #include "trait.h"
 #include "charentity.h"
 
+class CPetEntity;
 class CMobEntity;
 
 namespace charutils
@@ -59,6 +60,7 @@ namespace charutils
 	void    BuildingCharWeaponSkills(CCharEntity* PChar);
 	void	BuildingCharAbilityTable(CCharEntity* PChar);
 	void	BuildingCharTraitsTable(CCharEntity* PChar); 
+	void    BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID);
 
 	bool	hasInvalidJugPetAmmo(CCharEntity* PChar);
 
@@ -86,6 +88,10 @@ namespace charutils
 	int32	hasAbility(CCharEntity* PChar, uint16 AbilityID);	        // проверяем наличие ключевого предмета
 	int32	addAbility(CCharEntity* PChar, uint16 AbilityID);	        // добавляем ключевой предмет
 	int32	delAbility(CCharEntity* PChar, uint16 AbilityID);	        // улаляем ключевой предмет
+
+	int32	hasPetAbility(CCharEntity* PChar, uint16 AbilityID);	        //same as Ability but for pet commands (e.g. Healing Ruby)
+	int32	addPetAbility(CCharEntity* PChar, uint16 AbilityID);	        
+	int32	delPetAbility(CCharEntity* PChar, uint16 AbilityID);
 
 	int32	hasTrait(CCharEntity* PChar, uint8 TraitID);	            // check if pchar has trait by traitid and jobid
 	int32	addTrait(CCharEntity* PChar, uint8 TraitID);	            // add trait by traitid and jobid

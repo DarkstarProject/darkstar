@@ -1340,6 +1340,13 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+		if(m_PJobAbility->getID() >= 496){//blood pact
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 78));
+            m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PJobAbility = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
+		}
 		if (m_PJobAbility->getID()==69)//Call Beast, check ammo slot
 		{
 			if(charutils::hasInvalidJugPetAmmo(m_PChar)){

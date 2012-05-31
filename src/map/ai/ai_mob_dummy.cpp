@@ -835,7 +835,7 @@ void CAIMobDummy::ActionAttack()
 				}
 				else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
 				{
-					if (battleutils::IsParried(m_PMob,m_PBattleTarget)) 
+					if (isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40) && battleutils::IsParried(m_PMob,m_PBattleTarget)) 
 					{
                         Action.messageID = 70;
 						Action.reaction   = REACTION_PARRY;
@@ -889,6 +889,7 @@ void CAIMobDummy::ActionAttack()
 				}
 
 				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PMob,m_PBattleTarget));
+				if(isBlocked && !isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40)){isBlocked=false;}
 				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
 				if(!isCountered){

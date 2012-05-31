@@ -61,6 +61,8 @@
 #include "charutils.h"
 #include "grades.h"
 #include "itemutils.h"
+#include "petentity.h"
+#include "petutils.h"
 #include "map.h"
 #include "mobentity.h"
 #include "trait.h"
@@ -1424,6 +1426,36 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 
+void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID){
+	DSP_DEBUG_BREAK_IF(PPet==NULL || PChar==NULL);
+
+	memset(& PChar->m_PetCommands, 0, sizeof(PChar->m_PetCommands));
+
+	if(PetID==0){//technically Fire Spirit but we're using this to null the abilities shown
+		PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+		return;
+	}
+
+	if(PChar->GetMJob() == JOB_SMN || PChar->GetSJob() == JOB_SMN){
+		std::list<CAbility*> AbilitiesList;
+		AbilitiesList = battleutils::GetAbilities(JOB_SMN);
+		
+		for (std::list<CAbility*>::iterator it = AbilitiesList.begin(); it != AbilitiesList.end(); ++it)
+		{
+			CAbility* PAbility = *it;
+			
+			if (PPet->GetMLevel() >= PAbility->getLevel() && PetID>=8 && PetID<=15) //carby/fen/ele avatars NOT diabolos
+			{
+				//16 IDs per avatar starting from 496
+				if(PAbility->getID()>= (496+((PetID-8)*16)) && PAbility->getID() < (496+((PetID-7)*16))){ //pet ability
+					addPetAbility(PChar,PAbility->getID()-496);
+				}
+			}
+		}
+	}
+	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+}
+
 /************************************************************************
 *																		*
 *  Собираем рабочую таблицу способностей персонажа. С нулевым уровнем	*
@@ -1443,7 +1475,7 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 	{
 		CAbility* PAbility = *it;
 
-		if (PChar->GetMLevel() >= PAbility->getLevel())
+		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496)
 		{
 			addAbility(PChar, PAbility->getID());
 		}else{
@@ -1617,7 +1649,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 			PChar->RealSkills.skill[SkillID] += SkillAmount; 
 			PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, SkillAmount, 38));
 	            
-			if((CurSkill/10) < (CurSkill + SkillAmount)/10) 
+			if((CurSkill/10) < (CurSkill + SkillAmount)/10) //if gone up a level
 			{
 				PChar->WorkingSkills.skill[SkillID] += 1;
 				PChar->pushPacket(new CCharSkillsPacket(PChar));
@@ -1780,6 +1812,26 @@ int32 addTrait(CCharEntity* PChar, uint8 TraitID)
 int32 delTrait(CCharEntity* PChar, uint8 TraitID)
 {
 	return delBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
+}
+
+/************************************************************************
+*
+*		Pet Command Functions		
+*
+*************************************************************************/
+int32 hasPetAbility(CCharEntity* PChar, uint16 AbilityID)
+{
+	return hasBit(AbilityID, PChar->m_PetCommands, sizeof(PChar->m_PetCommands));
+}
+
+int32 addPetAbility(CCharEntity* PChar, uint16 AbilityID)
+{
+	return addBit(AbilityID, PChar->m_PetCommands, sizeof(PChar->m_PetCommands));
+}
+
+int32 delPetAbility(CCharEntity* PChar, uint16 AbilityID)
+{
+	return delBit(AbilityID, PChar->m_PetCommands, sizeof(PChar->m_PetCommands));
 }
 
 /************************************************************************
