@@ -98,7 +98,7 @@ void CItemWeapon::setDelay(uint16 delay)
 	m_delay = delay;
 }
 
-uint16 CItemWeapon::getDelay() 
+int16 CItemWeapon::getDelay() 
 {
 	return m_delay;
 }

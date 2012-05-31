@@ -68,13 +68,13 @@ namespace battleutils
     bool    IsAbsorbByShadow(CBattleEntity* PDefender);
 	bool	IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 
-	int32	GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+	int32	GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID);
 	uint8	GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint8	GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint8   GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender);
 	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical); 
     uint16  TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked); 
+	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot); 
 	uint32  MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	bool    SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
 	bool    IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender); 

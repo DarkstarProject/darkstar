@@ -37,7 +37,7 @@ public:
 	virtual ~CItemWeapon();
 
 	uint8	getSkillType();
-	uint16	getDelay();
+	int16	getDelay();
 	uint16	getDamage();
 	uint16	getDmgType();
     uint8   getAdditionalEffect();
@@ -54,7 +54,7 @@ private:
 
 	uint8	m_skillType;
 	uint16	m_damage;
-	uint16	m_delay;
+	int16	m_delay; //can be -ve e.g. ammo/ranged weapons
 	uint16	m_dmgType;
     uint8   m_effect;
 

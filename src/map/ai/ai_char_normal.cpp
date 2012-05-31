@@ -605,7 +605,7 @@ void CAICharNormal::ActionRangedStart()
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
-	if( (m_Tick - m_PChar->m_rangedDelay) < 2000){ //cooldown between shots
+	if( (m_Tick - m_PChar->m_rangedDelay) < 2400){ //cooldown between shots
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,94));
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_ActionTargetID = 0;
@@ -622,7 +622,7 @@ void CAICharNormal::ActionRangedStart()
 		//ranged weapon delay is stored in the db as offset from 240 for some reason. Also, getDelay incorrectly
 		//returns the delay /60 - for ranged weapons it is /110 hence the calculation below.
 		m_PChar->m_rangedDelay = ((240+((PItem->getDelay()*60)/1000))*1000)/110; //literal time in ms until shot fired
-		
+
 		switch (SkillType)
 		{
 			case SKILL_THR: break;
@@ -779,21 +779,25 @@ void CAICharNormal::ActionRangedFinish()
 		}
 
 		CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 		if(PItem->getSkillType()!=SKILL_THR){
-			CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 			if(PAmmo!=NULL){
 				damage = PAmmo->getDamage();
-				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
-				m_PChar->pushPacket(new CInventoryFinishPacket());
 			}
 		}
-		damage = (damage + PItem->getDamage()) * pdif; //needs fstr
-		Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, 0);
+		damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
+		Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED);
 
 		if(PItem != NULL){//not a throwing item, check the ammo for dmg/etc
 			battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
 			charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
 		}
+
+		if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){
+			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+			m_PChar->pushPacket(new CInventoryFinishPacket());
+		}
+
 
 		m_PChar->m_ActionList.push_back(Action);
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
@@ -1586,7 +1590,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	}
 
 	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
-		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false);
+		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false,SLOT_MAIN);
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST); //TODO: REMOVE THIS, BOOST EFFECT IN DB IS WRONG, MISSING EFFECTFLAG_DAMAGE
 	}
@@ -1811,6 +1815,7 @@ void CAICharNormal::ActionAttack()
 			}
 	
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
+			uint8 fstrslot = SLOT_MAIN;
 			for (uint32 i = 0; i < (numattacksLeftHand + numattacksRightHand); ++i) 
 			{
 				if (i != 0)
@@ -1824,6 +1829,7 @@ void CAICharNormal::ActionAttack()
 					if (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() != DAMAGE_HTH && i>=numattacksRightHand)
 					{
 						PWeapon = m_PChar->m_Weapons[SLOT_SUB];
+						fstrslot = SLOT_SUB;
 					}
 				}
 				uint16 damage = 0;
@@ -1865,7 +1871,8 @@ void CAICharNormal::ActionAttack()
 						Action.speceffect = SPECEFFECT_HIT;
 						Action.messageID  = 1;
 					}
-                    damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar, m_PBattleTarget)) * DamageRatio));
+
+                    damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 
 					//TODO: use an alternative to HasStatusEffect. Performance is maximised by the job check FIRST
 					//		so the if loop will fail and HasStatusEffect will not execute. Souleater has no effect <10HP.
@@ -1892,7 +1899,7 @@ void CAICharNormal::ActionAttack()
 				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PChar,m_PBattleTarget));
 				if(isBlocked && Action.reaction!=REACTION_EVADE){ Action.reaction = REACTION_BLOCK; }
 				
-				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage,isBlocked);
+				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage,isBlocked,fstrslot);
 
 				if (Action.reaction != REACTION_EVADE &&
                     m_PBattleTarget->m_EcoSystem != SYSTEM_UNDEAD &&

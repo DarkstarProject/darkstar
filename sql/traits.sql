@@ -169,7 +169,7 @@ INSERT INTO `traits` VALUES(1, 'accuracy bonus', 11, 50, 0, 64, 13);
 INSERT INTO `traits` VALUES(49, 'resist poison', 11, 60, 0, 241, 0);
 INSERT INTO `traits` VALUES(1, 'accuracy bonus', 11, 70, 0, 64, 13);
 INSERT INTO `traits` VALUES(83, 'snapshot', 11, 75, 0, 0, 0);
-INSERT INTO `traits` VALUES(84, 'recycle', 11, 75, 0, 305, 0);
+INSERT INTO `traits` VALUES(84, 'recycle', 11, 75, 0, 305, 10);
 INSERT INTO `traits` VALUES(51, 'resist blind', 12, 5, 0, 243, 0);
 INSERT INTO `traits` VALUES(14, 'store tp', 12, 10, 0, 73, 10);
 INSERT INTO `traits` VALUES(70, 'zanshin', 12, 20, 0, 306, 0);

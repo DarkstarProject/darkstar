@@ -524,6 +524,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	}
 }
 
+//todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
 float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	//get ranged attack value
 	uint16 rAttack = 1;
@@ -673,7 +674,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender){
 *																		*
 ************************************************************************/
 
-uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked)
+uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ||
 		PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE,0))
@@ -683,7 +684,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
     damage = (damage * (100 + PDefender->getMod(MOD_DMG) + PDefender->getMod(MOD_DMGPHYS)))/100;
 
-	switch(PAttacker->m_Weapons[SLOT_MAIN]->getDmgType())
+	switch(PAttacker->m_Weapons[slot]->getDmgType())
 	{
 		case DAMAGE_CROSSBOW:
 		case DAMAGE_GUN:
@@ -697,7 +698,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	if(isBlocked){
 		// reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
 		if(PDefender->objtype == TYPE_PC){
-			charutils::TrySkillUP((CCharEntity*)PDefender,SKILL_SHL,PDefender->GetMLevel());
+			charutils::TrySkillUP((CCharEntity*)PDefender,SKILL_SHL,PAttacker->GetMLevel());
 			CItemArmor* PItem = (CItemArmor*)((CCharEntity*)PDefender)->getStorage(LOC_INVENTORY)->GetItem(
 											((CCharEntity*)PDefender)->equip[SLOT_SUB]);
 			if(PItem!=NULL && PItem->getID()!=65535 &&  PItem->getShieldSize()>0){
@@ -770,8 +771,23 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
                 PDefender->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);
             }
         }
+		float baseTp = 0;
+		if(slot==SLOT_RANGED && PAttacker->objtype == TYPE_PC){
+			CCharEntity* PChar = (CCharEntity*)PAttacker;
+			CItemWeapon* PRange = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+			CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+			int delay = 0; uint16 offset = 240;
+			if(PRange!=NULL){delay+=PRange->getDelay();}
+			if(PAmmo!=NULL){delay+=PAmmo->getDelay(); offset+=240;}
+			baseTp = CalculateBaseTP(offset+((delay*60)/1000));
+		}
+		else if(slot==SLOT_AMMO && PAttacker->objtype == TYPE_PC){
+			//todo: e.g. pebbles
+		}
+		else{
+			baseTp = CalculateBaseTP((PAttacker->m_Weapons[slot]->getDelay() * 60) / 1000);
+		}
 
-		float baseTp = CalculateBaseTP((PAttacker->m_Weapons[SLOT_MAIN]->getDelay() * 60) / 1000);
 		PAttacker->addTP(baseTp*(1.0f+0.01f*(float)PAttacker->getMod(MOD_STORETP)));
 		//PAttacker->addTP(20);
 		//account for attacker's subtle blow which reduces the baseTP gain for the defender
@@ -1044,22 +1060,35 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 /************************************************************************
 *  	Formula for Strength												*
 ************************************************************************/
-//TODO: Add 3rd arg -> slotID since need for SUB and RANGED
-int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender) 
-{
-	int32 rank = PAttacker->m_Weapons[SLOT_MAIN]->getDamage() / 9; 
 
-	float dif = ((PAttacker->stats.STR * 2) + PAttacker->getMod(MOD_STR)) - ((PDefender->stats.VIT * 2) + PDefender->getMod(MOD_VIT));
+int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID) 
+{
+	int32 rank = PAttacker->m_Weapons[SlotID]->getDamage() / 9; 
+
+	float dif = PAttacker->STR() - PDefender->VIT();
 
 	int32 fstr = 1.95 + 0.195 * dif;
 
-	if(fstr < (-rank)) {
-		return (-rank);
+	if(SlotID==SLOT_RANGED){ //different caps than melee weapons
+		fstr /= 2; //fSTR2
+		if(fstr <= (-rank*2)){
+			return (-rank*2);
+		}
+		if((fstr > (-rank*2)) && (fstr <= (2*(rank + 8)))) {
+			return fstr;
+		} else {
+			return 2*(rank + 8);
+		}
 	}
-	if((fstr > (-rank)) && (fstr <= rank + 8)) {
-		return fstr;
-	} else {
-		return rank + 8;
+	else{
+		if(fstr <= (-rank)) {
+			return (-rank);
+		}
+		if((fstr > (-rank)) && (fstr <= rank + 8)) {
+			return fstr;
+		} else {
+			return rank + 8;
+		}
 	}
 }
 /*****************************************************************************

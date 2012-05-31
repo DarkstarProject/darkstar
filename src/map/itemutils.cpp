@@ -280,7 +280,7 @@ namespace itemutils
 				    if (PItem->getType() & ITEM_WEAPON)
 				    {
 					    ((CItemWeapon*)PItem)->setSkillType(Sql_GetUIntData(SqlHandle,21));
-					    ((CItemWeapon*)PItem)->setDelay((Sql_GetUIntData(SqlHandle,22)*1000)/60);
+					    ((CItemWeapon*)PItem)->setDelay((Sql_GetIntData(SqlHandle,22)*1000)/60);
 					    ((CItemWeapon*)PItem)->setDamage(Sql_GetUIntData(SqlHandle,23));
 					    ((CItemWeapon*)PItem)->setDmgType(Sql_GetUIntData(SqlHandle,24));
 				    }

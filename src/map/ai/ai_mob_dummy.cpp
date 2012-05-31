@@ -866,7 +866,7 @@ void CAIMobDummy::ActionAttack()
 							bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob) );
 
 							float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical); 
-							damage = (uint16)((m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PBattleTarget, m_PMob)) * DamageRatio);
+							damage = (uint16)((m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
 						}
 						else{
 							bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) );
@@ -879,7 +879,7 @@ void CAIMobDummy::ActionAttack()
 								Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 								Action.messageID  = 67;
 							}
-							damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget)) * DamageRatio);	
+							damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);	
 						}
 					}
 				}
@@ -892,11 +892,11 @@ void CAIMobDummy::ActionAttack()
 				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
 				if(!isCountered){
-					Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked);
+					Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked,SLOT_MAIN);
 					m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
 				}
 				else{
-					Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false);
+					Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false,SLOT_MAIN);
 				}
 
 				m_PMob->m_ActionList.push_back(Action);

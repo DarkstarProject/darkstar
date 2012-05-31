@@ -464,7 +464,7 @@ void CAIPetDummy::ActionAttack()
 							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 							Action.messageID  = 67;
 						}
-						damage = (uint16)((m_PPet->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PPet, m_PBattleTarget)) * DamageRatio);	
+						damage = (uint16)((m_PPet->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);	
 					}
 				}
 				if (m_PBattleTarget->objtype == TYPE_PC)
@@ -475,7 +475,7 @@ void CAIPetDummy::ActionAttack()
 				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PPet,m_PBattleTarget));
 				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
-                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked);
+                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked,SLOT_MAIN);
 
 				m_PPet->m_ActionList.push_back(Action);
 
