@@ -93,7 +93,11 @@ function onEventFinish(player,csid,option)
 		player:addQuest(OTHER_AREAS,EXPERTISE);	
 	elseif (csid == 0x3e) then   -- end quest expertice
 		player:addFame(WINDURST,WIN_FAME*120);
-		-- TODO add the furnishing item Tableware Set 
+		if(player:getFreeSlotsCount() <= 1) then
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,132);
+		else
+			player:addItem(132);
+			player.messageSpecial(ITEM_OBTAINED,132);
 		player:setTitle(THREESTAR_PURVEYOR);
 		player:setVar("QUEST_EXPERTISE_STATE_var",0); --done cooking
 		player:setVar("QuestHNIVCCompDay_var",0); -- completition day of unending chase

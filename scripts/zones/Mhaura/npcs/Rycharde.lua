@@ -139,8 +139,8 @@ elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE)==QUEST_AVAILABLE) then
 elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE)==QUEST_ACCEPTED) then
     player:startEvent(0x55);-- third quest  comment no hurry
 -------------------------QUEST HIS_NAME_IS_VALGEIR--------------------------------------------------
-elseif (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_AVAILABLE) then
-	if((player:getVar("QuestUnendingCCompDay_var")+3<VanadielDayOfTheYear() or player:getVar("QuestUnendingCCompYear_var")<VanadielYear())and player:getFameLevel(WINDURST)>3) then
+elseif (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>3) then
+	if((player:getVar("QuestUnendingCCompDay_var")+2<VanadielDayOfTheYear() or player:getVar("QuestUnendingCCompYear_var")<VanadielYear()) then
 		player:startEvent(0x56);-- forth quest   His Name is Valgeir
 	else
 		player:startEvent(0x4b); -- nothing to do
@@ -318,7 +318,11 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:addFame(WINDURST,WIN_FAME*120);
 		player:setTitle(FIVESTAR_PURVEYOR);
-		--TODO ADD TEA SET
+		if(player:getFreeSlotsCount() <= 1) then
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,133);
+		else
+			player:addItem(133);
+			player.messageSpecial(ITEM_OBTAINED,133);
 		player:setVar("QuestTheClueCompDay_var",0); -- completition day of THE CLUE
 		player:setVar("QuestTheClueCompYear_var",0);
 		player:setVar("QuestTheBasicsComentary_var",1);
