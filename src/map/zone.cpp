@@ -473,6 +473,12 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 		PChar->PPet = NULL;
 	}
 
+	for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
+	{
+		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+		PCurrentMob->PEnmityContainer->Clear(PChar->id);
+	}
+
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
 
 	m_charList.erase(PChar->targid);
@@ -514,6 +520,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
             break;
         }
     }
+	
     PChar->loc.zone = NULL;
     PChar->loc.prevzone = m_zoneID;
 
