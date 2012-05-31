@@ -524,6 +524,32 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	}
 }
 
+uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
+	int acc = 0;
+	uint8 hitrate = 75;
+	if(PAttacker->objtype == TYPE_PC){
+		CCharEntity* PChar = (CCharEntity*)PAttacker;
+		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+		if(PItem!=NULL && (PItem->getType() & ITEM_WEAPON)){
+			int skill = PChar->GetSkill(PItem->getSkillType());
+			acc = skill;
+			if(skill>200){ acc = 200 + (skill-200)*0.9;}
+			acc += PChar->getMod(MOD_RACC);
+			acc += PChar->AGI()/2;
+			acc = ((100 +  PChar->getMod(MOD_RACCP)) * acc)/100 + 
+				dsp_min(((100 +  PChar->getMod(MOD_FOOD_RACCP)) * acc)/100,  PChar->getMod(MOD_FOOD_RACC_CAP));
+		}
+	}
+	else{//monster racc not handled yet
+		return 95;
+	}
+
+	int eva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PDefender->AGI()/2;
+	hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
+	hitrate = cap_value(hitrate, 20, 95);
+	return hitrate;
+}
+
 //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
 float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	//get ranged attack value

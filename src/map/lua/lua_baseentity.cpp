@@ -3549,6 +3549,81 @@ inline int32 CLuaBaseEntity::getWeaponDmg(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_RANGED];
+			
+	if(weapon == NULL) 
+	{
+	    ShowDebug(CL_CYAN"lua::getRangedDmg weapon in ranged slot is null!\n"CL_RESET);
+		return 0;
+    }
+	lua_pushinteger( L, weapon->getDamage() );
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getAmmoDmg(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_AMMO];
+			
+	if(weapon == NULL) 
+	{
+	    ShowDebug(CL_CYAN"lua::getAmmoDmg weapon in ammo slot is null!\n"CL_RESET);
+		return 0;
+    }
+	lua_pushinteger( L, weapon->getDamage() );
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getRATT(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_RANGED];
+			
+	if(weapon == NULL) 
+	{
+	    ShowDebug(CL_CYAN"lua::getRATT weapon in ranged slot is null!\n"CL_RESET);
+		return 0;
+    }
+
+	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->RATT(weapon->getSkillType()));
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getRACC(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_RANGED];
+			
+	if(weapon == NULL) 
+	{
+	    ShowDebug(CL_CYAN"lua::getRACC weapon in ranged slot is null!\n"CL_RESET);
+		return 0;
+    }
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	int skill = PChar->GetSkill(weapon->getSkillType());
+	int acc = skill;
+	if(skill>200){ acc = 200 + (skill-200)*0.9;}
+	acc += PChar->getMod(MOD_RACC);
+	acc += PChar->AGI()/2;
+	acc = ((100 +  PChar->getMod(MOD_RACCP)) * acc)/100 + 
+		dsp_min(((100 +  PChar->getMod(MOD_FOOD_RACCP)) * acc)/100,  PChar->getMod(MOD_FOOD_RACC_CAP));
+
+	lua_pushinteger( L, acc);
+	return 1;
+}
+
 inline int32 CLuaBaseEntity::isWeaponTwoHanded(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -3731,5 +3806,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromCure),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isWeaponTwoHanded),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmg),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRATT),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRACC),
 	{NULL,NULL}
 };

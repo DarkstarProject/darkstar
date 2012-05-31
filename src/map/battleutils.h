@@ -80,6 +80,7 @@ namespace battleutils
 	bool    IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender); 
 	float   GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void    HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
+	uint8	GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender); 
 
     uint8	GetEnmityMod(uint8 level, uint8 modType);
 	bool	Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);

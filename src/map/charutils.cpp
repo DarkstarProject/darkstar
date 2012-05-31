@@ -621,6 +621,22 @@ void LoadInventory(CCharEntity* PChar)
 					PChar->m_Weapons[SLOT_SUB]->setDmgType(((CItemWeapon*)PItem)->getDmgType());
 					PChar->m_Weapons[SLOT_SUB]->setSkillType(((CItemWeapon*)PItem)->getSkillType()); 
 				}
+				if ((i == SLOT_RANGED) && (PItem->getType() & ITEM_WEAPON))
+				{
+					PChar->m_Weapons[SLOT_RANGED]->setID(((CItemWeapon*)PItem)->getID());
+					PChar->m_Weapons[SLOT_RANGED]->setDelay(((CItemWeapon*)PItem)->getDelay());
+					PChar->m_Weapons[SLOT_RANGED]->setDamage(((CItemWeapon*)PItem)->getDamage());
+					PChar->m_Weapons[SLOT_RANGED]->setDmgType(((CItemWeapon*)PItem)->getDmgType());
+					PChar->m_Weapons[SLOT_RANGED]->setSkillType(((CItemWeapon*)PItem)->getSkillType()); 
+				}
+				if ((i == SLOT_AMMO) && (PItem->getType() & ITEM_WEAPON))
+				{
+					PChar->m_Weapons[SLOT_AMMO]->setID(((CItemWeapon*)PItem)->getID());
+					PChar->m_Weapons[SLOT_AMMO]->setDelay(((CItemWeapon*)PItem)->getDelay());
+					PChar->m_Weapons[SLOT_AMMO]->setDamage(((CItemWeapon*)PItem)->getDamage());
+					PChar->m_Weapons[SLOT_AMMO]->setDmgType(((CItemWeapon*)PItem)->getDmgType());
+					PChar->m_Weapons[SLOT_AMMO]->setSkillType(((CItemWeapon*)PItem)->getSkillType()); 
+				}
 			}
 		}
         uint8 SlotID = (uint8)Sql_GetIntData(SqlHandle, SLOT_LINK);
@@ -1032,8 +1048,15 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 							UnequipItem(PChar,SLOT_AMMO);
 						}
 					}
+					PChar->m_Weapons[SLOT_RANGED]->setType(ITEM_WEAPON);	
+					PChar->m_Weapons[SLOT_RANGED]->setID(((CItemWeapon*)PItem)->getID());
+					PChar->m_Weapons[SLOT_RANGED]->setDelay(((CItemWeapon*)PItem)->getDelay());
+					PChar->m_Weapons[SLOT_RANGED]->setDamage(((CItemWeapon*)PItem)->getDamage());
+					PChar->m_Weapons[SLOT_RANGED]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
+					PChar->m_Weapons[SLOT_RANGED]->setSkillType(((CItemWeapon*)PItem)->getSkillType());
 				}
 				PChar->look.ranged = PItem->getModelId();
+				
 			}
 				break;
 			case SLOT_AMMO:
@@ -1052,6 +1075,12 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 					{
 						PChar->look.ranged = PItem->getModelId();
 					}
+					PChar->m_Weapons[SLOT_AMMO]->setType(ITEM_WEAPON);	
+					PChar->m_Weapons[SLOT_AMMO]->setID(((CItemWeapon*)PItem)->getID());
+					PChar->m_Weapons[SLOT_AMMO]->setDelay(((CItemWeapon*)PItem)->getDelay());
+					PChar->m_Weapons[SLOT_AMMO]->setDamage(((CItemWeapon*)PItem)->getDamage());
+					PChar->m_Weapons[SLOT_AMMO]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
+					PChar->m_Weapons[SLOT_AMMO]->setSkillType(((CItemWeapon*)PItem)->getSkillType());
 				}
 			}
 				break;
@@ -1378,6 +1407,20 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 			addWeaponSkill(PChar, PSkill->getID());
 		}
 	}
+	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+	if(PItem != NULL && (PItem->getType() & ITEM_WEAPON) && PItem->getSkillType()!=SKILL_THR){ //add in ranged ws
+		skill = PItem->getSkillType();
+		std::list<CWeaponSkill*> WeaponSkillList = battleutils::GetWeaponSkills(skill);
+		for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
+		{
+			CWeaponSkill* PSkill = *it;
+			if ((PChar->RealSkills.skill[skill]/10) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0))
+			{
+				addWeaponSkill(PChar, PSkill->getID());
+			}
+		}
+	}
+
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 

@@ -26,7 +26,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	canCrit = false;
 	acc100 = 0.8; acc200= 0.9; acc300= 1;
 	atkmulti = 1;
-	damage = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
+	damage = doRangedWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
 	
 	return damage;
 	

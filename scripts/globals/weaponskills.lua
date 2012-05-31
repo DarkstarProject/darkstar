@@ -162,6 +162,41 @@ function getHitRate(attacker,target,capHitRate)
 	return hitrate;
 end;
 
+function getRangedHitRate(attacker,target,capHitRate)
+	local int acc = attacker:getRACC();
+	local int eva = target:getMod(MOD_EVA);
+	
+	if(attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
+		acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
+	elseif(attacker:getMainLvl() < target:getMainLvl()) then --acc penalty :(
+		acc = acc - ((target:getMainLvl()-attacker:getMainLvl())*4);
+	end
+	
+	local double hitdiff = 0;
+	local double hitrate = 75;
+	if (acc>eva) then
+	hitdiff = (acc-eva)/2;
+	end
+	if (eva>acc) then
+	hitdiff = ((-1)*(eva-acc))/2;
+	end
+	
+	hitrate = hitrate+hitdiff;
+	hitrate = hitrate/100;
+	
+	
+	--Applying hitrate caps
+	if(capHitRate) then --this isn't capped for when acc varies with tp, as more penalties are due
+		if (hitrate>0.95) then
+			hitrate = 0.95;
+		end
+		if (hitrate<0.2) then
+			hitrate = 0.2;
+		end
+	end
+	return hitrate;
+end;
+
 function fTP(tp,ftp1,ftp2,ftp3)
 	if(tp>=100 and tp<200) then
 		return ftp1 + ( ((ftp2-ftp1)/100) * (tp-100));
@@ -334,3 +369,106 @@ elseif (level <= 99) then
 end
 return alpha;
  end; 
+ 
+ function doRangedWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,  canCrit,crit100,crit200,crit300,  acc100,acc200,acc300,   atkmulti)
+	--get fstr
+	fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getRangedDmg());
+	
+	--apply WSC
+	local base = attacker:getRangedDmg() + attacker:getAmmoDmg() + fstr + 
+		(attacker:getStat(MOD_STR) * str_wsc + attacker:getStat(MOD_DEX) * dex_wsc + 
+		 attacker:getStat(MOD_VIT) * vit_wsc + attacker:getStat(MOD_AGI) * agi_wsc + 
+		 attacker:getStat(MOD_INT) * int_wsc + attacker:getStat(MOD_MND) * mnd_wsc + 
+		 attacker:getStat(MOD_CHR) * chr_wsc) * getAlpha(attacker:getMainLvl());
+		 
+	--Applying fTP multiplier
+	ftp = fTP(attacker:getTP(),ftp100,ftp200,ftp300);
+	
+	--get cratio min and max
+	cratio = cRatio( ((attacker:getRATT()*atkmulti)/target:getStat(MOD_DEF)),attacker:getMainLvl(),target:getMainLvl());
+	ccmin = 0;
+	ccmax = 0;
+	hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
+	ccritratio = 0;
+	critrate = 0;
+	if(canCrit) then --work out critical hit ratios, by +1ing 
+		ccritratio = cCritRatio( ((attacker:getRATT()*atkmulti)/target:getStat(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
+		critrate = fTP(attacker:getTP(),crit100,crit200,crit300);
+		--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
+		nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
+		if(nativecrit > 0.2) then --caps!
+			nativecrit = 0.2;
+		elseif(nativecrit < 0.05) then
+			nativecrit = 0.05;
+		end
+		critrate = critrate + nativecrit;
+	end
+	
+	
+	dmg = base * ftp;  
+	
+	--Applying pDIF
+	local double pdif = math.random((cratio[1]*1000),(cratio[2]*1000)); 
+	pdif = pdif/1000; --multiplier set.
+	
+	--First hit has 95% acc always. Second hit + affected by hit rate.
+	local double firsthit = math.random();
+	local finaldmg = 0;
+	hitrate = 0.95; --first hit only
+	if(acc100~=0) then
+		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
+		--print("Accuracy varies with TP.");
+		hr = accVariesWithTP(getRangedHitRate(attacker,target,false),attacker:getRACC(),attacker:getTP(),acc100,acc200,acc300);
+		hitrate = hr;
+	end
+	
+	local hitslanded = 0; --used for debug
+	if (firsthit <= hitrate) then
+		if(canCrit) then
+			local double critchance = math.random();
+			if(critchance <= critrate or hasMightyStrikes) then --crit hit!
+				local double cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
+				cpdif = cpdif/1000; 
+				finaldmg = dmg * cpdif;
+			else
+				finaldmg = dmg * pdif;
+			end
+		else
+			finaldmg = dmg * pdif;
+		end
+		hitslanded = 1;
+	end
+	
+	if(numHits>1) then
+		if(acc100==0) then
+			--work out acc since we actually need it now
+			hitrate = getRangedHitRate(attacker,target,true);
+		end
+		
+		hitsdone = 1;
+		while (hitsdone < numHits) do 
+			chance = math.random();
+			if (chance<=hitrate) then --it hit
+				pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
+				pdif = pdif/1000; --multiplier set.
+				if(canCrit) then
+					critchance = math.random();
+					if(critchance <= critrate or hasMightyStrikes) then --crit hit!
+						cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
+						cpdif = cpdif/1000; 
+						finaldmg = finaldmg + base * cpdif;
+					else
+						finaldmg = finaldmg + base * pdif;
+					end
+				else
+					finaldmg = finaldmg + base * pdif; --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+				end
+				hitslanded = hitslanded + 1;
+			end
+			hitsdone = hitsdone + 1;
+		end
+	end
+	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
+	
+	return finaldmg;
+end;

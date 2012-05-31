@@ -757,8 +757,6 @@ void CAICharNormal::ActionRangedFinish()
 	if ((m_Tick - m_LastActionTime) > m_PChar->m_rangedDelay) 
 	{
 		m_LastActionTime = m_Tick;
-		//todo: check for hit/miss
-		
 		uint16 damage = 0;
 
 		apAction_t Action;
@@ -771,6 +769,12 @@ void CAICharNormal::ActionRangedFinish()
 		Action.messageID  = 352;
 		Action.flag = 0;
 
+	  if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0)){
+			Action.messageID = 32; 
+			Action.reaction   = REACTION_EVADE;
+			Action.speceffect = SPECEFFECT_NONE;
+	  }
+	  else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)){ //hit!
 		float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 		if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget)){
 			pdif *= 1.25; //uncapped
@@ -797,6 +801,18 @@ void CAICharNormal::ActionRangedFinish()
 			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
 			m_PChar->pushPacket(new CInventoryFinishPacket());
 		}
+	  }
+	  else{//miss
+		  Action.reaction   = REACTION_EVADE;
+	      Action.speceffect = SPECEFFECT_NONE;
+		  Action.messageID  = 354;
+
+		  CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+		  if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){
+			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+			m_PChar->pushPacket(new CInventoryFinishPacket());
+		  }
+	  }
 
 
 		m_PChar->m_ActionList.push_back(Action);
