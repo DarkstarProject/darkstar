@@ -21,7 +21,8 @@ function onTrigger(player,npc)
 	-- Check if we are on Windurst Mission 1-3
 	if(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
 		MissionStatus = player:getVar("MissionStatus");
-		if(MissionStatus == 0) then
+
+		if(player:hasKeyItem(FOOD_OFFERINGS) == false and player:hasKeyItem(DRINK_OFFERINGS) == false) then
 			player:startEvent(0x008c);
 		elseif(MissionStatus >= 1 and MissionStatus < 3) then
 			player:startEvent(0x008e); -- Keep displaying the instructions
