@@ -88,14 +88,15 @@ elseif (player:getQuestStatus(OTHER_AREAS,THE_BASICS) == QUEST_ACCEPTED) then
     if (BackedPototo  == true) then 
 		player:startEvent(0x60); -- completed ok
 	end
-
+end
 end; 
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)		
+function onTrigger(player,npc)	
+
 ------------------------------------ QUEST RYCHARDE_THE_CHEF-----------------------------------------
 if (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then
 	QuestStatus = player:getVar("QuestRychardetheChef_var");
@@ -109,8 +110,8 @@ if (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then
 elseif (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_ACCEPTED) then
 	player:startEvent(0x48); -- not done yet huh?
 --------------------------------------------- quest WAY_OF_THE_COOK
-elseif(player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK)==QUEST_AVAILABLE and (player:getFameLevel(WINDURST)>3)) then	-- quest WAY_OF_THE_COOK
-	if((player:getVar("QuestRychardeTCCompDay_var")+7<VanadielDayOfTheYear() or player:getVar("QuestRychardeTCCompYear_var")<VanadielYear()) then  --8 days or so after the completition of the last quest ... and required fame
+elseif(player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>2) then	-- quest WAY_OF_THE_COOK
+	if(player:getVar("QuestRychardeTCCompDay_var")+ 7 < VanadielDayOfTheYear() or player:getVar("QuestRychardeTCCompYear_var") < VanadielYear()) then  --8 days or so after the completition of the last quest ... and required fame
 		player:startEvent(0x4c,4359,912);-- second quest WAY_OF_THE_COOK 
 	else
 		player:startEvent(0x4b); -- nothing to do
@@ -124,8 +125,8 @@ elseif(player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK)==QUEST_ACCEPTED) then
 		player:startEvent(0x4f); -- not yet done
 	end
 ---------------------------QUEST UNENDING_CHASE--------------------------------------------------
-elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>3) then
-	if ((player:getVar("QuestWayofTCCompDay_var")+7<VanadielDayOfTheYear() or player:getVar("QuestWayofTCCompYear_var")<VanadielYear()) then  -- fame requeriment for quest and days between quest
+elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE)==QUEST_AVAILABLE and player:getFameLevel(WINDURST) > 2) then
+	if (player:getVar("QuestWayofTCCompDay_var")+7 < VanadielDayOfTheYear() or player:getVar("QuestWayofTCCompYear_var") < VanadielYear()) then  -- days between quest
 		if(player:getVar("QuestUnendingCAskedAlready_var")==2) then
 			player:startEvent(0x54,4448);-- third quest  said no, ask again	
 		else
@@ -137,8 +138,8 @@ elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE)==QUEST_AVAILABLE and p
 elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE)==QUEST_ACCEPTED) then
     player:startEvent(0x55);-- third quest  comment no hurry
 -------------------------QUEST HIS_NAME_IS_VALGEIR--------------------------------------------------
-elseif (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>3) then
-	if((player:getVar("QuestUnendingCCompDay_var")+2<VanadielDayOfTheYear() or player:getVar("QuestUnendingCCompYear_var")<VanadielYear()) then
+elseif (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>2) then
+	if(player:getVar("QuestUnendingCCompDay_var")+2< VanadielDayOfTheYear() or player:getVar("QuestUnendingCCompYear_var")< VanadielYear()) then
 		player:startEvent(0x56);-- forth quest   His Name is Valgeir
 	else
 		player:startEvent(0x4b); -- nothing to do
@@ -150,9 +151,9 @@ elseif (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED) 
 		player:startEvent(0x58);-- forth quest   done!
 	end
 ---------------------------QUEST THE CLUE--------------------------------------------------------
-elseif(player:getQuestStatus(OTHER_AREAS,THE_CLUE)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>5) then
+elseif(player:getQuestStatus(OTHER_AREAS,THE_CLUE)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>4) then
 	if(player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_COMPLETED) then 
-		if((player:getVar("QuestExpertiseCompDay_var")+7<VanadielDayOfTheYear() or player:getVar("QuestExpertiseCompYear_var")<VanadielYear()) then
+		if(player:getVar("QuestExpertiseCompDay_var")+7 < VanadielDayOfTheYear() or player:getVar("QuestExpertiseCompYear_var") < VanadielYear()) then
 			if(player:getVar("QuestTheClueStatus_var")==1)then
 				player:startEvent(0x5b,4357);-- fifth quest The Clue asked again 4357 - crawler_egg
 			else
@@ -167,8 +168,8 @@ elseif(player:getQuestStatus(OTHER_AREAS,THE_CLUE)==QUEST_AVAILABLE and player:g
 elseif(player:getQuestStatus(OTHER_AREAS,THE_CLUE)==QUEST_ACCEPTED) then
     player:startEvent(0x55);-- third quest  comment no hurry
 ---------------------------QUEST THE Basics--------------------------------------------------------
-elseif(player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>5) then
-	if((player:getVar("QuestTheClueCompDay_var")+7<VanadielDayOfTheYear() or player:getVar("QuestTheClueCompYear_var")<VanadielYear()) then
+elseif(player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_AVAILABLE and player:getFameLevel(WINDURST) > 4) then
+	if(player:getVar("QuestTheClueCompDay_var")+7 < VanadielDayOfTheYear() or player:getVar("QuestTheClueCompYear_var") < VanadielYear()) then
 		player:startEvent(0x5e);-- sixth quest The Basics
 	else
 		player:startEvent(0x4b); -- nothing to do standar dialog
@@ -181,6 +182,7 @@ else
 	else
 		player:startEvent(0x62);-- sixth quest completed commentary 2
 	end
+end
 end;
 
 
@@ -203,7 +205,7 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 
-	if ((csid == 0x46 or csid == 0x47)) then  --accept quest 1
+	if (csid == 0x46 or csid == 0x47) then  --accept quest 1
 		player:setVar("QuestRychardetheChef_var",3); --
 		if (option == 71 or option == 72) then	--70 = answer no  71 answer yes!
 			player:addQuest(OTHER_AREAS,RYCHARDE_THE_CHEF);			
