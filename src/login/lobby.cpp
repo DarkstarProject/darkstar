@@ -209,23 +209,30 @@ int32 lobbydata_parse(int32 fd)
 					++i;
 				}
 
-				// write into lobbydata
-				uList[1] = 0x10;
-				memcpy(session[fd]->wdata,uList,0x110);
-				WFIFOSET(fd,0x110);
-				RFIFOSKIP(fd,session[fd]->rdata_size);
-				RFIFOFLUSH(fd);
-				////////////////////////////////////////
+				if(session[sd->login_lobbyview_fd]!=NULL){
+					// write into lobbydata
+					uList[1] = 0x10;
+					memcpy(session[fd]->wdata,uList,0x110);
+					WFIFOSET(fd,0x110);
+					RFIFOSKIP(fd,session[fd]->rdata_size);
+					RFIFOFLUSH(fd);
+					////////////////////////////////////////
+				
+					unsigned char hash[16];
+					md5((unsigned char*)(CharList), hash, 2272);
 
-				unsigned char hash[16];
-				md5((unsigned char*)(CharList), hash, 2272);
-
-				memcpy(CharList+12,hash,16);
-				// write into lobbyview
-				memcpy(session[sd->login_lobbyview_fd]->wdata,CharList,2272);
-				WFIFOSET(sd->login_lobbyview_fd,2272);
-				RFIFOSKIP(sd->login_lobbyview_fd,session[sd->login_lobbyview_fd]->rdata_size);
-				RFIFOFLUSH(sd->login_lobbyview_fd);
+					memcpy(CharList+12,hash,16);
+					// write into lobbyview
+					memcpy(session[sd->login_lobbyview_fd]->wdata,CharList,2272);
+					WFIFOSET(sd->login_lobbyview_fd,2272);
+					RFIFOSKIP(sd->login_lobbyview_fd,session[sd->login_lobbyview_fd]->rdata_size);
+					RFIFOFLUSH(sd->login_lobbyview_fd);
+				}
+				else{ //cleanup
+					ShowWarning("lobbydata_parse: char:(%i) login data corrupt. Disconnecting client.\n",sd->accid);
+					do_close_lobbydata(sd,fd);
+					return -1;
+				}
 				/////////////////////////////////////////
 
 				break;
