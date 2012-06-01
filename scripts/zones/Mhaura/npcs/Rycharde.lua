@@ -56,7 +56,7 @@ if (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)== QUEST_ACCEPTED) then
 		player:startEvent(0x4a); -- completed ok
 	elseif(DhalmelMeat  == true and count == 1) then
 		player:startEvent(0x49); -- that's not enogh!
-	end;
+	end
 elseif (player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK) == QUEST_ACCEPTED) then
 	count = trade:getItemCount();
 	DhalmelMeat  = trade:hasItemQty(4359,1); --4359 - slice_of_dhalmel_meat
@@ -68,13 +68,13 @@ elseif (player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK) == QUEST_ACCEPTED) th
 			player:startEvent(0x50); -- second quest completed
 		else
 			player:startEvent(0x51); -- too late second quest
-		end;
-	end;
+		end
+	end
 elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE) == QUEST_ACCEPTED) then
 	puffball  = trade:hasItemQty(4448,1); --4448 - puffball
     if (puffball  == true) then 
 		player:startEvent(0x53); -- completed quest 3 UNENDING_CHASE
-	end;
+	end
 elseif (player:getQuestStatus(OTHER_AREAS,THE_CLUE) == QUEST_ACCEPTED) then
 	count = trade:getItemCount();
 	DhalmelMeat  = trade:hasItemQty(4357,trade:getItemCount()); --4357 - crawler egg
@@ -82,14 +82,12 @@ elseif (player:getQuestStatus(OTHER_AREAS,THE_CLUE) == QUEST_ACCEPTED) then
 		player:startEvent(0x5c); -- completed ok
 	elseif(DhalmelMeat  == true) then
 		player:startEvent(0x5d); -- that's not enogh!
-	end;
+	end
 elseif (player:getQuestStatus(OTHER_AREAS,THE_BASICS) == QUEST_ACCEPTED) then
 	BackedPototo  = trade:hasItemQty(4436,1); --4436 - baked_popoto
     if (BackedPototo  == true) then 
 		player:startEvent(0x60); -- completed ok
-	end;
-end;
-
+	end
 
 end; 
 
@@ -107,16 +105,16 @@ if (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_AVAILABLE) then
 		player:startEvent(0x47,4359); -- said no, ask again if player would do quest
 	else
 		player:startEvent(0x45); -- talk about something else
-	end;
+	end
 elseif (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)==QUEST_ACCEPTED) then
 	player:startEvent(0x48); -- not done yet huh?
 --------------------------------------------- quest WAY_OF_THE_COOK
-elseif(player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK)==QUEST_AVAILABLE) then	-- quest WAY_OF_THE_COOK
-	if((player:getVar("QuestRychardeTCCompDay_var")+8<VanadielDayOfTheYear() or player:getVar("QuestRychardeTCCompYear_var")<VanadielYear())and (player:getFameLevel(WINDURST)>3)) then  --8 days or so after the completition of the last quest ... and required fame
+elseif(player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK)==QUEST_AVAILABLE and (player:getFameLevel(WINDURST)>3)) then	-- quest WAY_OF_THE_COOK
+	if((player:getVar("QuestRychardeTCCompDay_var")+7<VanadielDayOfTheYear() or player:getVar("QuestRychardeTCCompYear_var")<VanadielYear()) then  --8 days or so after the completition of the last quest ... and required fame
 		player:startEvent(0x4c,4359,912);-- second quest WAY_OF_THE_COOK 
 	else
 		player:startEvent(0x4b); -- nothing to do
-	end;
+	end
 elseif(player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK)==QUEST_ACCEPTED) then
 	Dayspassed=VanadielDayOfTheYear()-player:getVar("QuestRychardeTCDayStarted_var");
 	TotalHourLeft=72-(VanadielHour()+Dayspassed*24)+player:getVar("QuestWayotcHourStarted_var");
@@ -124,18 +122,18 @@ elseif(player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK)==QUEST_ACCEPTED) then
 		player:startEvent(0x4e,TotalHourLeft); -- you have x hours left
 	else
 		player:startEvent(0x4f); -- not yet done
-	end;
+	end
 ---------------------------QUEST UNENDING_CHASE--------------------------------------------------
-elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE)==QUEST_AVAILABLE) then
-	if ((player:getVar("QuestWayofTCCompDay_var")+8<VanadielDayOfTheYear() or player:getVar("QuestWayofTCCompYear_var")<VanadielYear()) and player:getFameLevel(WINDURST)>3) then  -- fame requeriment for quest and days between quest
+elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>3) then
+	if ((player:getVar("QuestWayofTCCompDay_var")+7<VanadielDayOfTheYear() or player:getVar("QuestWayofTCCompYear_var")<VanadielYear()) then  -- fame requeriment for quest and days between quest
 		if(player:getVar("QuestUnendingCAskedAlready_var")==2) then
 			player:startEvent(0x54,4448);-- third quest  said no, ask again	
 		else
 			player:startEvent(0x52,4448);-- third quest UNENDING_CHASE	4448 - puffball
-		end;
+		end
 	else
 		player:startEvent(0x4b); -- nothing to do
-	end;
+	end
 elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE)==QUEST_ACCEPTED) then
     player:startEvent(0x55);-- third quest  comment no hurry
 -------------------------QUEST HIS_NAME_IS_VALGEIR--------------------------------------------------
@@ -144,17 +142,17 @@ elseif (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_AVAILABLE 
 		player:startEvent(0x56);-- forth quest   His Name is Valgeir
 	else
 		player:startEvent(0x4b); -- nothing to do
-	end;
+	end
 elseif (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED) then
 	if(player:hasKeyItem(90)) then
 		player:startEvent(0x57);-- forth quest   not done yet	
 	else
 		player:startEvent(0x58);-- forth quest   done!
-	end;
+	end
 ---------------------------QUEST THE CLUE--------------------------------------------------------
-elseif(player:getQuestStatus(OTHER_AREAS,THE_CLUE)==QUEST_AVAILABLE ) then
+elseif(player:getQuestStatus(OTHER_AREAS,THE_CLUE)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>5) then
 	if(player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_COMPLETED) then 
-		if((player:getVar("QuestExpertiseCompDay_var")+8<VanadielDayOfTheYear() or player:getVar("QuestExpertiseCompYear_var")<VanadielYear())and player:getFameLevel(WINDURST)>5) then
+		if((player:getVar("QuestExpertiseCompDay_var")+7<VanadielDayOfTheYear() or player:getVar("QuestExpertiseCompYear_var")<VanadielYear()) then
 			if(player:getVar("QuestTheClueStatus_var")==1)then
 				player:startEvent(0x5b,4357);-- fifth quest The Clue asked again 4357 - crawler_egg
 			else
@@ -162,19 +160,19 @@ elseif(player:getQuestStatus(OTHER_AREAS,THE_CLUE)==QUEST_AVAILABLE ) then
 			end;
 		else
 			player:startEvent(0x4b); -- nothing to do
-		end;
+		end
 	else
 		player:startEvent(0x4b); -- nothing to do		
-	end;
+	end
 elseif(player:getQuestStatus(OTHER_AREAS,THE_CLUE)==QUEST_ACCEPTED) then
     player:startEvent(0x55);-- third quest  comment no hurry
 ---------------------------QUEST THE Basics--------------------------------------------------------
-elseif(player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_AVAILABLE) then
-	if((player:getVar("QuestTheClueCompDay_var")+8<VanadielDayOfTheYear() or player:getVar("QuestTheClueCompYear_var")<VanadielYear())and player:getFameLevel(WINDURST)>5) then
+elseif(player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_AVAILABLE and player:getFameLevel(WINDURST)>5) then
+	if((player:getVar("QuestTheClueCompDay_var")+7<VanadielDayOfTheYear() or player:getVar("QuestTheClueCompYear_var")<VanadielYear()) then
 		player:startEvent(0x5e);-- sixth quest The Basics
 	else
 		player:startEvent(0x4b); -- nothing to do standar dialog
-	end;
+	end
 elseif(player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_ACCEPTED) then
 	player:startEvent(0x5f);-- sixth quest not done yet
 else
@@ -182,8 +180,7 @@ else
 		player:startEvent(0x61);-- sixth quest completed commentary
 	else
 		player:startEvent(0x62);-- sixth quest completed commentary 2
-	end;
-end;
+	end
 end;
 
 
@@ -210,7 +207,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("QuestRychardetheChef_var",3); --
 		if (option == 71 or option == 72) then	--70 = answer no  71 answer yes!
 			player:addQuest(OTHER_AREAS,RYCHARDE_THE_CHEF);			
-		end;	
+		end	
 	elseif (csid == 0x4a) then   -- end quest 1 RYCHARDE_THE_CHEF
 		player:tradeComplete();
 		player:addFame(WINDURST,WIN_FAME*120);
@@ -226,7 +223,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("QuestWayotcHourStarted_var",VanadielHour());
 				player:setVar("QuestRychardeTCDayStarted_var",VanadielDayOfTheYear());
 				player:addQuest(OTHER_AREAS,WAY_OF_THE_COOK);	
-		end;
+		end
 	elseif(csid == 0x50) then  --end quest 2 WAY_OF_THE_COOK
 		player:tradeComplete();
 		player:addFame(WINDURST,WIN_FAME*120);
@@ -257,11 +254,11 @@ function onEventFinish(player,csid,option)
 		player:setVar("QuestUnendingCAskedAlready_var",2);
 		if(option == 77 ) then -- answer yes!
 			player:addQuest(OTHER_AREAS,UNENDING_CHASE);	
-		end;
+		end
 	elseif(csid == 0x54) then  -- accept quest 3 UNENDING_CHASE
 		if(option == 78 ) then -- answer yes!
 			player:addQuest(OTHER_AREAS,UNENDING_CHASE);	
-		end;
+		end
 	elseif(csid == 0x53) then  -- end quest 3 UNENDING_CHASE
 		player:tradeComplete();
 		player:addFame(WINDURST,WIN_FAME*120);
@@ -276,11 +273,11 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(OTHER_AREAS,UNENDING_CHASE);	
 	elseif(csid == 0x56) then  -- accept quest 4 HIS_NAME_IS_VALGEIR
 		if(option == 80 ) then -- answer yes!
-			--TODO pay for ferry
+			
 			player:addKeyItem(ARAGONEU_PIZZA); --give pizza to player
 			player:messageSpecial(KEYITEM_OBTAINED,ARAGONEU_PIZZA);
 			player:addQuest(OTHER_AREAS,HIS_NAME_IS_VALGEIR);	
-		end;
+		end
 	elseif(csid == 0x58) then  -- end quest 4 his name is Valgeir
 		player:addFame(WINDURST,WIN_FAME*120);
 		player:addKeyItem(MAP_OF_THE_TORAIMARAI_CANAL); --reward Map of the Toraimarai Canal 
@@ -294,7 +291,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("QuestTheClueStatus_var",1);
 		if(option == 83 )then
 			player:addQuest(OTHER_AREAS,THE_CLUE);		
-		end;
+		end
 	elseif (csid == 0x5c) then   -- end quest THE CLUE
 		player:tradeComplete();
 		player:addFame(WINDURST,WIN_FAME*120);
@@ -313,7 +310,7 @@ function onEventFinish(player,csid,option)
 			player:addKeyItem(MHAURAN_COUSCOUS); --MHAURAN_COUSCOUS                = 92;
 			player:messageSpecial(KEYITEM_OBTAINED,MHAURAN_COUSCOUS);
 			player:addQuest(OTHER_AREAS,THE_BASICS);		
-		end;
+		end
 	elseif (csid == 0x60) then   -- end quest the basics
 		player:tradeComplete();
 		player:addFame(WINDURST,WIN_FAME*120);
@@ -323,11 +320,12 @@ function onEventFinish(player,csid,option)
 		else
 			player:addItem(133);
 			player.messageSpecial(ITEM_OBTAINED,133);
-		player:setVar("QuestTheClueCompDay_var",0); -- completition day of THE CLUE
-		player:setVar("QuestTheClueCompYear_var",0);
-		player:setVar("QuestTheBasicsComentary_var",1);
-		player:completeQuest(OTHER_AREAS,THE_BASICS);
+			player:setVar("QuestTheClueCompDay_var",0); -- completition day of THE CLUE
+			player:setVar("QuestTheClueCompYear_var",0);
+			player:setVar("QuestTheBasicsComentary_var",1);
+			player:completeQuest(OTHER_AREAS,THE_BASICS);
+		end
 	elseif(csid == 0x61) then  --end commentary quest the basics
 		player:setVar("QuestTheBasicsComentary_var",0);
-	end;	
+	end	
 end;
