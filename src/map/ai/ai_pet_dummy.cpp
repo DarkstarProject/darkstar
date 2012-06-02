@@ -92,6 +92,18 @@ if(m_PPet->getPetType()==PETTYPE_JUGPET){
 		}
 	}
 }
+else if(m_PPet->getPetType()==PETTYPE_AVATAR){
+	for(int i=0; i<m_PPet->PetSkills.size(); i++){
+		if(m_PPet->PetSkills[i]->getID() == m_MasterCommand){
+			m_PMobSkill = m_PPet->PetSkills[i];
+			m_PMobSkill->setID(m_PMobSkill->getID()+154); //todo: need to set back!!
+			m_MasterCommand = MASTERCOMMAND_NONE;
+			preparePetAbility(m_PPet);
+			return;
+		}
+	}
+	m_MasterCommand = MASTERCOMMAND_NONE;
+}
 else if(m_PPet->getPetType()==PETTYPE_WYVERN){
 	if(m_MasterCommand==MASTERCOMMAND_ELEMENTAL_BREATH && (m_PPet->GetMJob()==JOB_DRG || m_PPet->GetMJob()==JOB_RDM)){
 		m_MasterCommand = MASTERCOMMAND_NONE;
@@ -185,10 +197,16 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 void CAIPetDummy::ActionAbilityUsing()
 {
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL && m_PMobSkill->getValidTargets()==TARGET_ENEMY);
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL && m_PMobSkill->getValidTargets()==TARGET_ENEMY && m_PPet->getPetType()!=PETTYPE_AVATAR);
 
-	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
-		m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PPet->getZone()){
+	if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
+		m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PPet->getZone()){
+		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+		ActionAbilityInterrupt();
+		return;
+	}
+	else if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead() ||
+		m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
 		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
 		ActionAbilityInterrupt();
 		return;
@@ -207,13 +225,23 @@ void CAIPetDummy::ActionAbilityUsing()
 	if ((m_Tick - m_LastActionTime) > m_PMobSkill->getActivationTime())
     {
 		//Range check
-		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
+		if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
 			m_PBattleTarget!=m_PPet && 
 			distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
 			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
 			//too far away message
 			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 78));
+			ActionAbilityInterrupt();
+			return;
+		}
+		else if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
+			m_PBattleSubTarget!=m_PPet && 
+			distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
+
+			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+			//too far away message
+			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, 0, 78));
 			ActionAbilityInterrupt();
 			return;
 		}
@@ -237,8 +265,11 @@ void CAIPetDummy::ActionAbilityFinish(){
     m_PPet->m_ActionList.clear();
 	
 	apAction_t Action;
-	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){
+	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PPet->getPetType()!=PETTYPE_AVATAR){
 		Action.ActionTarget = m_PBattleTarget;
+	}
+	else if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PPet->getPetType()==PETTYPE_AVATAR){
+		Action.ActionTarget = m_PBattleSubTarget;
 	}
 	else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY){
 		Action.ActionTarget = m_PBattleSubTarget;
@@ -266,7 +297,9 @@ void CAIPetDummy::ActionAbilityFinish(){
 	m_PPet->health.tp = 0; 
 	m_PBattleSubTarget = NULL;
 	m_ActionType = ACTION_ATTACK;
-	
+	if(Action.ActionTarget!=NULL && m_PPet->getPetType()==PETTYPE_AVATAR){
+		Action.ActionTarget->loc.zone->PushPacket(Action.ActionTarget,CHAR_INRANGE,new CEntityUpdatePacket(Action.ActionTarget,ENTITY_UPDATE));
+	}
 }
 
 void CAIPetDummy::ActionAbilityInterrupt(){

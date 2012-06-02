@@ -99,6 +99,7 @@ public:
 	CMobSkill*		GetCurrentMobSkill();
 
 	void			SetBattleTarget(CBattleEntity* PEntity); //used for pets mainly
+	void			SetBattleSubTarget(CBattleEntity* PEntity); //used for pets mainly
 	void			SetCurrentSpell(uint16 SpellID);
 	void			SetCurrentWeaponSkill(uint16 WSkillID);
 	void			SetCurrentJobAbility(uint16 JobAbilityID);

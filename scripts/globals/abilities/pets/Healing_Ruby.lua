@@ -1,0 +1,19 @@
+---------------------------------------------------
+-- Healing Ruby
+---------------------------------------------------
+
+require("/scripts/globals/settings");
+require("/scripts/globals/status");
+require("/scripts/globals/monstertpmoves");
+
+---------------------------------------------------
+
+function OnPetAbility(target, pet, skill)
+	base = 14+target:getMainLvl()+skill:getTP()/12;
+	if(target:getHP()+base > target:getMaxHP()) then
+		base = target:getMaxHP() - target:getHP(); --cap it
+	end
+	skill:setMsg(MSG_SELF_HEAL);
+	target:addHP(base);
+	return base;
+end

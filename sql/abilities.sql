@@ -263,3 +263,11 @@ INSERT INTO `abilities` VALUES ('230', 'afflatus_misery', '3', '40', '1', '60', 
 INSERT INTO `abilities` VALUES ('231', 'composure', '5', '50', '1', '300', '50', '215', '20', '0', '1', '80');
 INSERT INTO `abilities` VALUES ('232', 'yonin', '13', '40', '1', '300', '146', '218', '20', '0', '1', '600');
 INSERT INTO `abilities` VALUES ('233', 'innin', '13', '40', '1', '300', '147', '219', '20', '0', '1', '60');
+-- bprage=173 ward=174
+INSERT INTO `abilities` VALUES ('502', 'searing_light', '15', '1', '4', '60', '173', '0', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('496', 'healing_ruby', '15', '1', '3', '60', '174', '6', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('497', 'poison_nails', '15', '5', '4', '60', '173', '11', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('498', 'shining_ruby', '15', '24', '1', '60', '174', '44', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('499', 'glittering_ruby', '15', '44', '1', '60', '174', '62', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('500', 'meteorite', '15', '55', '4', '60', '173', '94', '108', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('501', 'healing_ruby_ii', '15', '65', '1', '60', '174', '124', '18', '0', '1', '60');

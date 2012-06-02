@@ -211,6 +211,11 @@ void CAIGeneral::SetBattleTarget(CBattleEntity* PEntity)
 	m_PBattleTarget = PEntity;
 }
 
+void CAIGeneral::SetBattleSubTarget(CBattleEntity* PEntity)
+{
+	m_PBattleSubTarget = PEntity;
+}
+
 /************************************************************************
 *																		*
 *																		*

@@ -1341,11 +1341,13 @@ void CAICharNormal::ActionJobAbilityStart()
 			}
 		}
 		if(m_PJobAbility->getID() >= 496){//blood pact
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 78));
-            m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PJobAbility = NULL;
-			m_PBattleSubTarget = NULL;
-			return;
+			if(m_PChar->health.mp < m_PJobAbility->getAnimationID()){ //not enough mp for BP
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 87));
+			    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
 		}
 		if (m_PJobAbility->getID()==69)//Call Beast, check ammo slot
 		{
@@ -1436,8 +1438,24 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     apAction_t Action;
 	m_PChar->m_ActionList.clear();
-
-	if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
+	if(m_PJobAbility->getID()>=496){//bp
+		if(m_PChar->PPet!=NULL){//is a bp - dont display msg and notify pet
+			Action.animation  = 94; //assault anim
+			Action.ActionTarget = m_PBattleSubTarget;
+			Action.reaction   = REACTION_NONE;
+			Action.speceffect = SPECEFFECT_RECOIL;
+			Action.param      = 0;
+			Action.flag       = 0; 
+			Action.messageID  = 0;
+			m_PChar->addMP(-m_PJobAbility->getAnimationID());
+			m_PChar->m_ActionList.push_back(Action);
+			m_PChar->PPet->PBattleAI->SetBattleSubTarget(m_PBattleSubTarget);
+			((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = m_PJobAbility->getID();
+			m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+			charutils::UpdateHealth(m_PChar);
+		}
+	}
+	else if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
 	{
 		for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
 		{
@@ -1497,9 +1515,10 @@ void CAICharNormal::ActionJobAbilityFinish()
 	}
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
-		
-    m_PJobAbility = NULL;
+	if(m_PJobAbility->getID()<496){
+		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
+	}
+	m_PJobAbility = NULL;
     m_PBattleSubTarget = NULL;
     m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 }

@@ -44,7 +44,7 @@ public:
 
 	CAIPetDummy(CPetEntity* PPet);
 	virtual ~CAIPetDummy() {}; 
-	uint8	m_MasterCommand; //used for wyverns atm
+	uint16	m_MasterCommand; //used for avatars/wyverns atm
 
 protected:
 
