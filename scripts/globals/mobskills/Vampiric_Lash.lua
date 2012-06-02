@@ -19,6 +19,6 @@ function OnMobWeaponSkill(target, mob, skill)
     info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
     dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_1_SHADOW);
     target:delHP(dmg);
-    target:addHP(dmg);
+    mob:addHP(dmg);
     return dmg;
 end;
