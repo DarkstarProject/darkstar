@@ -1,5 +1,5 @@
 ---------------------------------------------------
--- Healing Ruby
+-- Healing Ruby II
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -9,10 +9,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	base = 14+target:getMainLvl()+skill:getTP()/12;
-	if(pet:getMainLvl()>30) then
-		base = 44 + 3*(pet:getMainLvl()-30) + skill:getTP()/12 * (pet:getMainLvl()*0.075 - 1);
-	end
+	base = 28 + pet:getMainLvl()*4;
 	
 	if(target:getHP()+base > target:getMaxHP()) then
 		base = target:getMaxHP() - target:getHP(); --cap it

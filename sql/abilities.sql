@@ -269,5 +269,5 @@ INSERT INTO `abilities` VALUES ('496', 'healing_ruby', '15', '1', '3', '60', '17
 INSERT INTO `abilities` VALUES ('497', 'poison_nails', '15', '5', '4', '60', '173', '11', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('498', 'shining_ruby', '15', '24', '1', '60', '174', '44', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('499', 'glittering_ruby', '15', '44', '1', '60', '174', '62', '18', '0', '1', '60');
-INSERT INTO `abilities` VALUES ('500', 'meteorite', '15', '55', '4', '60', '173', '94', '108', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('500', 'meteorite', '15', '55', '4', '60', '173', '108', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('501', 'healing_ruby_ii', '15', '65', '1', '60', '174', '124', '18', '0', '1', '60');

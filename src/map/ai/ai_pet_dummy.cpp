@@ -185,11 +185,13 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 		Action.flag		  = 0;
 		m_PPet->m_ActionList.push_back(Action);
 		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
-				
+		m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_MOBABILITY_USING;
 	}
 	else{
 		ShowDebug("Pet skill is null \n");
+		m_ActionType = ACTION_ATTACK;
+		ActionAttack();
 	}
 }
 
@@ -279,6 +281,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
+
 	if(m_PPet->getPetType()==PETTYPE_JUGPET){
 		Action.param	  = luautils::OnMobWeaponSkill(Action.ActionTarget, m_PPet,m_PMobSkill);
 	}
@@ -290,14 +293,85 @@ void CAIPetDummy::ActionAbilityFinish(){
 	Action.flag       = 0;
 	
 	m_PPet->m_ActionList.push_back(Action);
+
+	//check for aoe moves (buffs)
+	if (m_PMobSkill->getAoe()==1 && m_PPet->getPetType()==PETTYPE_AVATAR){ //aoe
+		if(m_PMobSkill->getValidTargets() == TARGET_SELF){//on the masters pt
+			//add effect on master (solo play)
+			if (m_PPet->PMaster->PParty==NULL && !m_PPet->PMaster->isDead() 
+				&& distance(m_PPet->loc.p, m_PPet->PMaster->loc.p) <= m_PMobSkill->getDistance()){
+			    Action.ActionTarget = m_PPet->PMaster;
+			    m_PPet->m_ActionList.push_back(Action);
+			}
+			//add effect on master's pt (incl. master)
+			if (m_PPet->PMaster->PParty != NULL){
+			    for (uint8 i = 0; i < m_PPet->PMaster->PParty->members.size(); ++i)
+			    {
+				    CBattleEntity* PTarget = m_PPet->PMaster->PParty->members[i];
+
+				    if (!PTarget->isDead() && 
+					   distance(m_PPet->loc.p, PTarget->loc.p) <= m_PMobSkill->getDistance())
+				    {
+					    Action.ActionTarget = PTarget;
+					    m_PPet->m_ActionList.push_back(Action);	
+				    }
+				}
+			}
+			//call the script for each member hit
+			for (uint32 i = 1; i < m_PPet->m_ActionList.size(); ++i){
+				CBattleEntity* PTarget = m_PPet->m_ActionList.at(i).ActionTarget;
+				m_PPet->m_ActionList.at(i).param = luautils::OnPetAbility(PTarget, m_PPet,m_PMobSkill);
+				m_PPet->m_ActionList.at(i).messageID = m_PMobSkill->getMsg();
+				if(m_PMobSkill->getMsg()==186){m_PPet->m_ActionList.at(i).messageID=280;} //gains effect of
+				if(m_PMobSkill->getMsg()==238){m_PPet->m_ActionList.at(i).messageID=263;} //recovers xx HP
+			}
+		}
+		else if(m_PMobSkill->getValidTargets()==TARGET_ENEMY && m_PBattleSubTarget!=NULL &&
+			m_PBattleSubTarget->objtype == TYPE_MOB && m_PPet->PMaster->objtype==TYPE_PC){//aoe -ga move
+			CCharEntity* PChar = (CCharEntity*)m_PPet->PMaster;
+			for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin();  it != PChar->SpawnMOBList.end() && m_PPet->m_ActionList.size() < 16; ++it)
+		    {
+			    CBattleEntity* PTarget = (CBattleEntity*)it->second;
+            
+				if (m_PBattleSubTarget != PTarget && !PTarget->isDead() && 
+					distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= m_PMobSkill->getDistance()){
+					bool petOwnsMob = false;
+					if (m_PPet->PMaster->PParty != NULL) {
+						for (uint8 i = 0; i < m_PPet->PMaster->PParty->members.size(); ++i){
+							if (m_PPet->PMaster->PParty->members[i]->id == PTarget->m_OwnerID.id){
+								petOwnsMob = true;
+								break;
+							}
+						}
+					}
+					if(PTarget->m_OwnerID.id == 0 || PTarget->m_OwnerID.id == m_PPet->PMaster->id){
+						petOwnsMob = true;
+					}
+					if(petOwnsMob){
+						Action.ActionTarget = PTarget;
+						m_PPet->m_ActionList.push_back(Action);
+					}
+			    }
+		    }
+			//call the script for each monster hit
+			for (uint32 i = 1; i < m_PPet->m_ActionList.size(); ++i){
+				CBattleEntity* PTarget = m_PPet->m_ActionList.at(i).ActionTarget;
+				m_PPet->m_ActionList.at(i).param = luautils::OnPetAbility(PTarget, m_PPet,m_PMobSkill);
+				m_PPet->m_ActionList.at(i).messageID = m_PMobSkill->getMsg();
+				if(m_PMobSkill->getMsg()==2){m_PPet->m_ActionList.at(i).messageID=264;} //takes xxx damage
+				if(m_PMobSkill->getMsg()==243){m_PPet->m_ActionList.at(i).messageID=278;} //gains effect of
+			}
+		}
+	}
 	
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 	
 	m_PPet->health.tp = 0; 
 	m_PBattleSubTarget = NULL;
 	m_ActionType = ACTION_ATTACK;
-	if(Action.ActionTarget!=NULL && m_PPet->getPetType()==PETTYPE_AVATAR){
+	if(Action.ActionTarget!=NULL && m_PPet->getPetType()==PETTYPE_AVATAR){ //todo: remove pet type avatar maybe
 		Action.ActionTarget->loc.zone->PushPacket(Action.ActionTarget,CHAR_INRANGE,new CEntityUpdatePacket(Action.ActionTarget,ENTITY_UPDATE));
+		m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE,new CEntityUpdatePacket(m_PPet,ENTITY_UPDATE));
 	}
 }
 
