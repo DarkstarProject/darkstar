@@ -621,5 +621,5 @@ INSERT INTO `mob_skill` VALUES (649,193,632,'Hydro_Breath', 0, 10.0, 2000, 1500,
 -- Maat
 -- dragon kick = anim 734
 -- asuran anim 735
-INSERT INTO `mob_skill` VALUES (496,34,605,'Healing_Ruby', 0, 10.0, 2000, 3000, 2, 0);
-INSERT INTO `mob_skill` VALUES (497,34,606,'Poison_Nails', 0, 10.0, 2000, 3000, 4, 0);
+INSERT INTO `mob_skill` VALUES (650,34,605,'Healing_Ruby', 0, 10.0, 496, 3000, 2, 0);
+INSERT INTO `mob_skill` VALUES (651,34,606,'Poison_Nails', 0, 10.0, 497, 3000, 4, 0);

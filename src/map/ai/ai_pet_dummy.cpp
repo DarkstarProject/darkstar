@@ -94,9 +94,8 @@ if(m_PPet->getPetType()==PETTYPE_JUGPET){
 }
 else if(m_PPet->getPetType()==PETTYPE_AVATAR){
 	for(int i=0; i<m_PPet->PetSkills.size(); i++){
-		if(m_PPet->PetSkills[i]->getID() == m_MasterCommand){
+		if(m_PPet->PetSkills[i]->getAnimationTime() == m_MasterCommand){
 			m_PMobSkill = m_PPet->PetSkills[i];
-			m_PMobSkill->setID(m_PMobSkill->getID()+154); //todo: need to set back!!
 			m_MasterCommand = MASTERCOMMAND_NONE;
 			preparePetAbility(m_PPet);
 			return;

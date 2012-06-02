@@ -12,5 +12,6 @@ function OnPetAbility(target, pet, skill)
 	base = pet:getMainLvl();
 	dmg = MobFinalAdjustments(base,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
+	target:updateEnmityFromDamage(pet,dmg);
 	return dmg;
 end
