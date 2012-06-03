@@ -56,7 +56,6 @@ CTreasurePool::CTreasurePool(TREASUREPOOLTYPE PoolType)
         m_PoolItems[i].SlotID = i;
 	}
 	members.reserve(PoolType);
-	ShowDebug(CL_CYAN"TreasurePool::Create\n"CL_RESET);
 }
 
 /************************************************************************
@@ -87,7 +86,6 @@ void CTreasurePool::AddMember(CCharEntity* PChar)
 	{
 		m_TreasurePoolType = TREASUREPOOL_PARTY;
 	}
-    ShowDebug(CL_CYAN"TreasurePool::AddMember <%s>\n"CL_RESET, PChar->GetName());
 }
 
 /************************************************************************
@@ -126,11 +124,9 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 	}
 	if (m_TreasurePoolType != TREASUREPOOL_ZONE && members.empty())
 	{
-		ShowDebug(CL_CYAN"TreasurePool::Delete self <%s>\n"CL_RESET, PChar->GetName());
 		delete this;
 		return;
 	}
-    ShowDebug(CL_CYAN"TreasurePool::DelMember <%s>\n"CL_RESET, PChar->GetName());
 }
 
 /************************************************************************
@@ -199,7 +195,6 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 		{	
 			PChar->pushPacket(new CTreasureFindItemPacket(&m_PoolItems[i], NULL));
 		}
-		ShowDebug(CL_CYAN"TreasurePool::Update <%s>\n"CL_RESET, PChar->GetName());
 	}
 }
 

@@ -3684,6 +3684,39 @@ inline int32 CLuaBaseEntity::isWeaponTwoHanded(lua_State *L)
 }
 
 /************************************************************************
+	Returns the value of a single hit against the target monster
+	(can return -1 if it misses). Useful for calculating physical
+	BP damage, but it isn't limited to just pets. Usage:
+	damage = attacker:getMeleeHitDamage(target,acc);
+	the acc value is OPTIONAL and it should be an int (e.g. 95 = 95% acc)
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getMeleeHitDamage(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
+
+	CBattleEntity* PAttacker = (CBattleEntity*)m_PBaseEntity;
+	CBattleEntity* PDefender = (CBattleEntity*)PLuaBaseEntity->GetBaseEntity();
+	int hitrate = battleutils::GetHitRate(PAttacker, PDefender);
+	if(!lua_isnil(L,2) && lua_isnumber(L,2)){
+		hitrate = lua_tointeger(L,2);
+	}
+
+	if(rand()%100 < hitrate){
+		float DamageRatio = battleutils::GetDamageRatio(PAttacker, PDefender,false); 
+		int damage = (uint16)((PAttacker->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(PAttacker,PDefender,SLOT_MAIN)) * DamageRatio);	
+		lua_pushinteger( L,damage );
+		return 1;
+	}
+	lua_pushinteger( L,-1 );
+	return 1;
+}
+
+/************************************************************************
 *                                                                       *
 *  Открываем дверь и автоматически закрываем через 7 секунд             *
 *                                                                       *   
@@ -3854,5 +3887,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRATT),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRACC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,capSkill),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeleeHitDamage),
 	{NULL,NULL}
 };

@@ -1,5 +1,5 @@
 ---------------------------------------------------
--- Poison Nails  M=3? guess
+-- Claw M=3.5
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -12,7 +12,7 @@ function OnPetAbility(target, pet, skill)
 	totaldamage = 0;
 	damage = pet:getMeleeHitDamage(target,95);
 	if(damage>0) then
-		totaldamage = totaldamage + damage*3;
+		totaldamage = totaldamage + damage*3.5;
 	end
 	numhits = 1;
 	if(damage==-1) then --it missed
@@ -21,9 +21,6 @@ function OnPetAbility(target, pet, skill)
 	totaldamage = MobFinalAdjustments(totaldamage,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,numhits);
 	target:delHP(totaldamage);
 	target:updateEnmityFromDamage(pet,totaldamage);
-	if(target:getStatusEffect(EFFECT_POISON)==nil) then
-		target:addStatusEffect(EFFECT_POISON,1,3,60);
-	end
 	
 	return totaldamage;
 end

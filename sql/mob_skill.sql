@@ -627,4 +627,14 @@ INSERT INTO `mob_skill` VALUES (652,34,607,'Shining_Ruby', 1, 10.0, 498, 2000, 1
 INSERT INTO `mob_skill` VALUES (653,34,608,'Glittering_Ruby', 1, 10.0, 499, 2000, 1, 0);
 INSERT INTO `mob_skill` VALUES (654,34,609,'Meteorite', 0, 10.0, 500, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (655,34,610,'Healing_Ruby_II', 1, 10.0, 501, 2000, 1, 0);
-INSERT INTO `mob_skill` VALUES (656,34,611,'Searing_Light', 1, 10.0, 502, 2000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (656,34,611,'Searing_Light', 1, 10.0, 502, 2000, 4, 0);
+
+INSERT INTO `mob_skill` VALUES (611,37,565,'Claw', 0, 10.0, 576, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (612,37,566,'Aero_II', 0, 10.0, 577, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (613,37,569,'Whispering_Wind', 1, 10.0, 578, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (614,37,568,'Hastega', 1, 10.0, 579, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (615,37,567,'Aerial_Armor', 1, 10.0, 580, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (616,37,570,'Aero_IV', 0, 10.0, 581, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (617,37,571,'Predator_Claws', 0, 10.0, 582, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (618,37,572,'Wind_Blade', 0, 10.0, 583, 2000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (619,37,573,'Aerial_Blast', 1, 10.0, 584, 2000, 4, 0);

@@ -1445,7 +1445,7 @@ void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 Pe
 		for (std::list<CAbility*>::iterator it = AbilitiesList.begin(); it != AbilitiesList.end(); ++it)
 		{
 			CAbility* PAbility = *it;
-			
+
 			if (PPet->GetMLevel() >= PAbility->getLevel() && PetID>=8 && PetID<=15) //carby/fen/ele avatars NOT diabolos
 			{
 				//16 IDs per avatar starting from 496

@@ -29,7 +29,7 @@
 
 #include "battleentity.h"
 
-#define MAX_ABILITY_ID	502
+#define MAX_ABILITY_ID	585
 
 class CAbility
 {
