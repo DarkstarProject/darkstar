@@ -97,6 +97,12 @@ struct profile_t
 	location_t home_point;		// точка возрождения персонажа
 };
 
+struct expChain_t
+{
+	uint16 chainNumber;
+	uint32 chainTime;
+};
+
 enum RECASTTYPE
 {
     RECAST_ITEM,
@@ -130,6 +136,7 @@ public:
 	skills_t		 RealSkills;					// структура всех реальных умений персонажа, с точностью до 0.1 и не ограниченных уровнем
 	nameflags_t		 nameflags;						// флаги перед именем персонажа
 	profile_t		 profile;						// профиль персонажа (все, что связывает города и персонажа)
+	expChain_t		 expChain;						// Exp Chains 
 	search_t		 search;						// данные и комментарий, отображаемые в окне поиска
 	bazaar_t		 bazaar;						// все данные, необходимые для таботы bazaar
 	uint16			 m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])

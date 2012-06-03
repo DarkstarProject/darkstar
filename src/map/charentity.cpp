@@ -89,6 +89,8 @@ CCharEntity::CCharEntity()
     m_hasAutoTarget    = 1;
 	m_InsideRegionID   = 0;
 	m_LevelRestriction = 0;
+	expChain.chainNumber = 0;
+	expChain.chainTime = 0;
 
 	m_EquipFlag = 0;
 	nameflags.flags = 0;
