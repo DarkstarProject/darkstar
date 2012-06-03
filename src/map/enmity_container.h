@@ -53,7 +53,7 @@ public:
     void	AddBaseEnmity(CBattleEntity* PEntity);
 	void	UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE);
 	void	UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
-	void	UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level, uint16 CureAmount);
+	void	UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level, uint16 CureAmount, bool isCureV);
 	void	UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
 	void	AddPartyEnmity(CCharEntity* PChar);
 	bool    HasTargetID(uint16 TargetID); //true if ID is in the container

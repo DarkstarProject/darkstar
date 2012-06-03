@@ -94,7 +94,7 @@ function onSpellCast(caster,target,spell)
 			final = 0;
 		end
 	end
-	caster:updateEnmityFromCure(target,final);
+	caster:updateEnmityFromCure(target,65535); --65535 is the special code for "cure v enmity generation"
 	return final;
 	
 end;

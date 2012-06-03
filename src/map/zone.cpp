@@ -633,7 +633,12 @@ void CZone::GenerateCureEnmity(CBattleEntity* PSource,CBattleEntity* PTarget,uin
 		if(CurrentDistance<40){
 			if(PCurrentMob->PEnmityContainer->HasTargetID(PTarget->id)){
 				//add for PSource
-				PCurrentMob->PEnmityContainer->UpdateEnmityFromCure(PChar,PTarget->GetMLevel(),amount);
+				if(amount==65535){ //cure v
+					PCurrentMob->PEnmityContainer->UpdateEnmityFromCure(PChar,PTarget->GetMLevel(),amount,true);
+				}
+				else{
+					PCurrentMob->PEnmityContainer->UpdateEnmityFromCure(PChar,PTarget->GetMLevel(),amount,false);
+				}
 			}
 		}
 	}

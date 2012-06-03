@@ -167,16 +167,21 @@ bool CEnmityContainer::HasTargetID(uint16 TargetID){
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level, uint16 CureAmount)
+void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level, uint16 CureAmount, bool isCureV)
 {
-	CureAmount = (CureAmount < 1 ? 1 : CureAmount);
+	if(isCureV){
+		UpdateEnmity(PEntity, 400, 700);
+	}
+	else{
+		CureAmount = (CureAmount < 1 ? 1 : CureAmount);
 
-	uint16 mod = battleutils::GetEnmityMod(level, 0);
+		uint16 mod = battleutils::GetEnmityMod(level, 0);
 
-	uint16 CE =  40 / mod * CureAmount;
-	uint16 VE = 240 / mod * CureAmount;
+		uint16 CE =  40 / mod * CureAmount;
+		uint16 VE = 240 / mod * CureAmount;
 
-	UpdateEnmity(PEntity, CE, VE);
+		UpdateEnmity(PEntity, CE, VE);
+	}
 }
 
 /************************************************************************

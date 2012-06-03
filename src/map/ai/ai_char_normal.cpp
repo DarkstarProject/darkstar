@@ -812,6 +812,11 @@ void CAICharNormal::ActionRangedFinish()
 			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
 			m_PChar->pushPacket(new CInventoryFinishPacket());
 		  }
+		  if(m_PBattleSubTarget->objtype == TYPE_MOB){
+			((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
+			((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
+            ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
+		  }
 	  }
 
 
@@ -869,7 +874,8 @@ void CAICharNormal::ActionMagicStart()
 
     // mute 049 
 	if (!charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
-	    !spell::CanUseSpell(m_PChar, m_PSpell->getID()))
+	    !spell::CanUseSpell(m_PChar, m_PSpell->getID()) ||
+		m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
 	{
         MagicStartError(49);
 		return;
@@ -1496,7 +1502,8 @@ void CAICharNormal::ActionJobAbilityFinish()
         if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
         {
             // во время pvp целью могут быт персонажи, монстры и их питомцы
-            if (m_PBattleSubTarget->objtype == TYPE_MOB)
+			if (m_PBattleSubTarget->objtype == TYPE_MOB && m_PJobAbility->getID()!=72 && m_PJobAbility->getID()!=53) 
+				//assault(72)/fight(53) doesnt generate hate directly
             {
                 ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
                 ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
