@@ -13,7 +13,7 @@ function onSpellCast(caster,target,spell)
 	pINT = caster:getStat(MOD_INT);
 	mINT = target:getStat(MOD_INT);
 	dINT = (pINT - mINT);
-	resm = applyResistance(caster,spell,target,dINT,37,staff);
+	resm = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,staff);
 	if(resm < 0.5) then
 		spell:setMsg(85);--resist message
 		return EFFECT_SLEEP_II;
