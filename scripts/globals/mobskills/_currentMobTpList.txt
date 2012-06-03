@@ -48,7 +48,7 @@
 -- Pinecone_Bomb  =
 -- Leafstorm  =
 -- Entangle  =
--- Final_Sting  = done
+-- Final_Sting  =  done
 -- Pollen  =  done
 -- Sharp_Sting  =
 -- Power_Attack  =  done
