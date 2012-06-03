@@ -28,8 +28,10 @@ function onTrigger(player,npc)
 			player:startEvent(0x01a9);
 		elseif(player:getVar("MissionStatus") == 4) then
 			player:startEvent(0x01a7);
-		elseif(player:getVar("MissionStatus") == 5) then
+		elseif(player:getVar("MissionStatus") == 5 and player:hasItem(599) == false) then
 			player:startEvent(0x01a8);
+		else
+			player:startEvent(0x01a6);
 		end
 	elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2) then
 		if(player:getVar("MissionStatus") == 9) then
@@ -42,8 +44,10 @@ function onTrigger(player,npc)
 			player:startEvent(0x01a9,1);
 		elseif(player:getVar("MissionStatus") == 4) then
 			player:startEvent(0x01a7,1);
-		elseif(player:getVar("MissionStatus") == 5) then
+		elseif(player:getVar("MissionStatus") == 5 and player:hasItem(599) == false) then
 			player:startEvent(0x01a8,1);
+		else
+			player:startEvent(0x01a6);
 		end
 	elseif(player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) then
 		if(player:getVar("MissionStatus") == 9) then
@@ -52,7 +56,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x01ab,1);
 		end
 	else
-		player:startEvent(0x01a6);
+		player:startEvent(0x01ab);--0x01a6
 	end
 	
 end;

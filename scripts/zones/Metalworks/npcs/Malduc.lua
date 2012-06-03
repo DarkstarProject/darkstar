@@ -44,7 +44,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	--player:completeMission(BASTOK,5);
+	--player:completeMission(BASTOK,10);
 	if(player:getNation() ~= BASTOK) then
 		player:startEvent(0x03eb); -- For non-Bastokian
 	else

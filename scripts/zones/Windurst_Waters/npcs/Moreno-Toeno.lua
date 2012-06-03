@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 	if(player:getQuestStatus(WINDURST,TEACHER_S_PET) >= 1 and trade:hasItemQty(847,1) == true and trade:hasItemQty(4368,1) == true and trade:getGil() == 0 and trade:getItemCount() == 2) then
 		player:startEvent(0x01b8,250,847,4368); -- -- Quest Finish
 	end
-end;      
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -47,7 +47,7 @@ function onTrigger(player,npc)
 			seconds_passed = os.time() - start_time;
 			
 			-- one Vana'diel Day is 3456 seconds (2 day for repeat)
-			if(alreadyCompleted == false and seconds_passed > 3456 or alreadyCompleted and seconds_passed > 6912) then
+			if((alreadyCompleted == false and seconds_passed > 3456) or (alreadyCompleted and seconds_passed > 6912)) then
 				player:startEvent(0x00CA);
 			-- are we in the last game hour of the Vana'diel Day?
 			elseif(alreadyCompleted == false and seconds_passed >= 3312) then 
