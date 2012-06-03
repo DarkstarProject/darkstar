@@ -1985,8 +1985,9 @@ void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
 
 void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 {
-	uint8 permonstercap, pcinzone = 0, minlevel = 0, maxlevel = PChar->GetMLevel();
+	uint8 pcinzone = 0, minlevel = 0, maxlevel = PChar->GetMLevel();
 	uint32 baseexp = 0, exp = 0, dedication = 0;
+	float permonstercap, monsterbonus = 1.0f;
 	bool chainactive = false;
 	if (PChar->PParty != NULL)
 	{
@@ -2006,6 +2007,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 			for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
 			{
 				exp = 0;
+				monsterbonus = 1.0f;
 				chainactive = false;
 				CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
 				if(PMember->getZone() == PMob->getZone())
@@ -2044,10 +2046,15 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 						default: break;
 						}
 					}
-					
-					// special monster exp bonus needs to be added here
-					
-					permonstercap = ((PMember->PParty != NULL && pcinzone > 1) ? 2 : 1);
+					if (PMob->m_Family == 58 && PMob->getZone() == 65) monsterbonus = 1.05f;
+					else if (PMob->m_Family == 245 && PMob->getZone() == 51) monsterbonus = 1.05f;
+						else if (PMob->m_Family == 186 && PMob->getZone() == 153) monsterbonus = 1.23f;
+							else if (PMob->m_Family == 179 && PMob->getZone() == 113) monsterbonus = 1.10f;
+								else if (PMob->m_Family == 266 && PMob->getZone() == 174) monsterbonus = 1.23f;
+									else if (PMob->m_Family == 206 && PMob->getZone() == 5) monsterbonus = 1.10f;
+										else if (PMob->m_Family == 208 && PMob->getZone() == 24) monsterbonus = 1.23f;
+					if (monsterbonus > 1.00f) exp *= monsterbonus;
+					permonstercap = ((PMember->PParty != NULL && pcinzone > 1) ? 1.35f : 1.0f);
 					if (PMember->GetMLevel() <= 50) 
 					{
 						if (exp > (200*permonstercap)) exp = 200*permonstercap;
@@ -2202,7 +2209,15 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 	{
 		baseexp  = GetRealExp(maxlevel, PMob->GetMLevel());
 		exp = baseexp;
-		permonstercap = 1;
+		permonstercap = 1.0f;
+		if (PMob->m_Family == 58 && PMob->getZone() == 65) monsterbonus = 1.05f;
+		else if (PMob->m_Family == 245 && PMob->getZone() == 51) monsterbonus = 1.05f;
+			else if (PMob->m_Family == 186 && PMob->getZone() == 153) monsterbonus = 1.23f;
+				else if (PMob->m_Family == 179 && PMob->getZone() == 113) monsterbonus = 1.10f;
+					else if (PMob->m_Family == 266 && PMob->getZone() == 174) monsterbonus = 1.23f;
+						else if (PMob->m_Family == 206 && PMob->getZone() == 5) monsterbonus = 1.10f;
+							else if (PMob->m_Family == 208 && PMob->getZone() == 24) monsterbonus = 1.23f;
+		if (monsterbonus > 1.00f) exp *= monsterbonus;
 		if (PChar->GetMLevel() <= 50) 
 		{
 			if (exp > (200*permonstercap)) exp = 200*permonstercap;
