@@ -229,7 +229,7 @@ int32 lobbydata_parse(int32 fd)
 					RFIFOFLUSH(sd->login_lobbyview_fd);
 				}
 				else{ //cleanup
-					ShowWarning("lobbydata_parse: char:(%i) login data corrupt. Disconnecting client.\n",sd->accid);
+					ShowWarning("lobbydata_parse: char:(%i) login data corrupt (0xA1). Disconnecting client.\n",sd->accid);
 					do_close_lobbydata(sd,fd);
 					return -1;
 				}
@@ -248,6 +248,12 @@ int32 lobbydata_parse(int32 fd)
 				
 				RFIFOSKIP(fd,session[fd]->rdata_size);
 				RFIFOFLUSH(fd);
+
+				if(session[sd->login_lobbyview_fd]==NULL){
+					ShowWarning("lobbydata_parse: char:(%i) login data corrupt (0xA2). Disconnecting client.\n",sd->accid);
+					do_close_lobbydata(sd,fd);
+					return -1;
+				}
 
 				uint32 charid = RBUFL(session[sd->login_lobbyview_fd]->rdata,32);
 
