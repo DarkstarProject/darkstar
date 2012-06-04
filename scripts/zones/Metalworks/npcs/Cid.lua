@@ -38,6 +38,8 @@ function onTrigger(player,npc)
 	
 	mLvl = player:getMainLvl();
 	mJob = player:getMainJob();
+	CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
+	LetterKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
 	
 	if(mJob == 8 and mLvl >= AF2_QUEST_LEVEL and player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
 		player:startEvent(0x02f8); -- Start Quest "Dark Puppet"
@@ -53,24 +55,20 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x01f9);
 		end
-	elseif(player:getFameLevel(BASTOK) >= 4) then
-		CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
-    	if(CidsSecret ~= QUEST_COMPLETED) then
-			questKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
-
-			if(CidsSecret == QUEST_AVAILABLE) then
-				player:startEvent(0x01fb);
-			elseif(player:getVar("CidsSecret_Event") == 1 and questKeyItem == false) then
-				player:startEvent(0x01fc);
-			elseif(questKeyItem) then
-				player:startEvent(0x01fd);
-			else
-				player:startEvent(0x01f6);
-			end
-		end
+	--Begin Cid's Secret
+	elseif(player:getFameLevel(BASTOK) >= 4 and CidsSecret == QUEST_AVAILABLE) then
+		player:startEvent(0x01fb);
+	elseif(CidsSecret == QUEST_ACCEPTED and LetterKeyItem == false and player:getVar("CidsSecret_Event") == 1) then
+		player:startEvent(0x01fc); --After talking to Hilda, Cid gives information on the item she needs
+	elseif(CidsSecret == QUEST_ACCEPTED and LetterKeyItem == false) then
+		player:startEvent(0x01f6); --Reminder dialogue from Cid if you have not spoken to Hilda
+	elseif(CidsSecret == QUEST_ACCEPTED and LetterKeyItem == true) then
+		player:startEvent(0x01fd);
+	--End Cid's Secret
     else
-        player:startEvent(0x01f4);
+        player:startEvent(0x01f4); -- Standard Dialogue
     end
+	
 end;
 
 -----------------------------------
@@ -113,18 +111,18 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:addKeyItem(C_L_REPORTS);
 		player:messageSpecial(KEYITEM_OBTAINED, C_L_REPORTS);
-    elseif(csid == 0x01fb and option == 0) then
+    elseif(csid == 0x01fb) then
         player:addQuest(BASTOK,CID_S_SECRET);
     elseif(csid == 0x01fd) then
 		if(player:getFreeSlotsCount(0) >= 1) then
 			player:delKeyItem(UNFINISHED_LETTER);
 			player:setVar("CidsSecret_Event",0);
-			player:addItem(13450);
-			player:messageSpecial(ITEM_OBTAINED,13450); -- Ram Mantle
+			player:addItem(13570);
+			player:messageSpecial(ITEM_OBTAINED,13570); -- Ram Mantle
 			player:addFame(BASTOK,BAS_FAME*30);
 			player:completeQuest(BASTOK,CID_S_SECRET);
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13450);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13570);
 		end
      end
 end;

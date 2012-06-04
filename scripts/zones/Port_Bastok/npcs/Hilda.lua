@@ -53,14 +53,18 @@ function onTrigger(player,npc)
 		elseif(player:getFameLevel(BASTOK) >= 5 and player:getQuestStatus(BASTOK,CID_S_SECRET) == QUEST_COMPLETED) then
 			if(player:getVar("TheUsual_Event") == 1) then
 				player:startEvent(0x0088);
+			elseif(player:getQuestStatus(BASTOK,THE_USUAL) == QUEST_ACCEPTED) then
+				player:startEvent(0x0031); --Hilda thanks the player for all the help; there is no reminder dialogue for this quest
 			else
 				player:startEvent(0x0086);
 			end
 		else
-			player:startEvent(0x0030);
+			player:startEvent(0x0030); --Standard dialogue if fame isn't high enough to start The Usual and Cid's Secret is not active
 		end
+	elseif(player:getQuestStatus(BASTOK,THE_USUAL) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,CID_S_SECRET) == QUEST_COMPLETED) then
+		player:startEvent(0x0031); --Hilda thanks the player for all the help 
 	else
-		player:startEvent(0x0030);
+		player:startEvent(0x0030); --Standard dialogue if no quests are active or available
 	end
 	
 end;
@@ -86,20 +90,20 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addKeyItem(UNFINISHED_LETTER);
         player:messageSpecial(KEYITEM_OBTAINED,UNFINISHED_LETTER);
-        player:setVar("CidsSecret_Event",2);
     elseif(csid == 0x0086 and option == 0) then
     	if(player:getQuestStatus(BASTOK,THE_USUAL) == QUEST_AVAILABLE) then
 			player:addQuest(BASTOK,THE_USUAL);
 		end
     elseif(csid == 0x0087) then
-        player:addKeyItem(STEAMING_SHEEP_INVITATION);
-        player:messageSpecial(KEYITEM_OBTAINED,STEAMING_SHEEP_INVITATION);
+        player:tradeComplete();
+		player:addKeyItem(127);
+        player:messageSpecial(KEYITEM_OBTAINED,127);
     elseif(csid == 0x0088) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17170);
 		else
 			player:setTitle(STEAMING_SHEEP_REGULAR);
-			player:delKeyItem(STEAMING_SHEEP_INVITATION);
+			player:delKeyItem(127);
 			player:setVar("TheUsual_Event",0);
 			player:addItem(17170);
 			player:messageSpecial(ITEM_OBTAINED,17170); -- Speed Bow
