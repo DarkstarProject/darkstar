@@ -15,3 +15,16 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 		CHEST_MOOGLE = 7257; -- You cannot open the chest while participating in the moogle event.
 	  CHEST_ILLUSION = 7258; -- The chest was but an illusion...
 		CHEST_LOCKED = 7259; -- The chest appears to be locked.
+		
+-- Secret Door Texts; The first five are the same for each door, with the 6th and 7th being unique
+		 FIRST_CHECK	=	7276; -- You do not see anything out of the ordinary.	
+		SECOND_CHECK	=	7277; -- You do not see anything out of the ordinary...
+		 THIRD_CHECK	=	7278; -- It looks like a rock wall.
+		FOURTH_CHECK	=	7279; -- It looks like a rock wall...
+		 FIFTH_CHECK	=	7280; -- You see a small indentation in the wall.
+		SILVER_CHECK	=	7281; -- You see something silver glittering around the indentation.
+	   MYTHRIL_CHECK	=	7282; -- You find something that looks like mythril dust scattered about the indentation.
+		  GOLD_CHECK	=	7283; -- You see something gold glittering around the indentation.
+	 COMPLETED_CHECK	=	7284; -- It is a door you can open using (insert item ID here).
+
+
