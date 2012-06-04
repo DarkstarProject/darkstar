@@ -483,7 +483,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
 
 	m_charList.erase(PChar->targid);
-	ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u>\n"CL_RESET, GetName(), m_charList.size());
+	ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u> %s\n"CL_RESET, GetName(), m_charList.size(),PChar->GetName());
 
 	if (ZoneTimer && m_charList.empty())
 	{
@@ -569,7 +569,7 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
     PChar->m_PVPFlag = 0;
 
 	m_charList[PChar->targid] = PChar;
-	ShowDebug(CL_CYAN"CZone:: %s IncreaseZoneCounter <%u>\n"CL_RESET, GetName(), m_charList.size());
+	ShowDebug(CL_CYAN"CZone:: %s IncreaseZoneCounter <%u> %s \n"CL_RESET, GetName(), m_charList.size(),PChar->GetName());
 
 	if (!ZoneTimer && !m_charList.empty())
 	{

@@ -455,7 +455,7 @@ void CParty::SetLeader(CBattleEntity* PEntity)
 
     if (m_PartyType == PARTY_PCS)
     {
-        Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", m_PartyID, PEntity->id);
+		Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", PEntity->id,  m_PartyID);
 
 	    m_PLeader = PEntity;
 	    m_PartyID = PEntity->id;

@@ -714,7 +714,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		}
 		break;
 	}
-	ShowDebug(CL_CYAN"CLIENT PERFORMING ACTION %02hX\n"CL_RESET, action);
+	ShowDebug(CL_CYAN"CLIENT %s PERFORMING ACTION %02hX\n"CL_RESET, PChar->GetName(),action);
 	return;
 } 
 

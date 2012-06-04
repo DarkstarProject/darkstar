@@ -1574,6 +1574,14 @@ void CAICharNormal::ActionWeaponSkillStart()
             WeaponSkillStartError(5);
 		    return;
 	    }
+		if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
+			CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+			if(PAmmo==NULL || !(PAmmo->getType() & ITEM_WEAPON)){//incorrect or non-existent ammo
+				WeaponSkillStartError(216);
+				return;
+			}
+		}
+
         m_ActionType = ACTION_WEAPONSKILL_FINISH;
         ActionWeaponSkillFinish();
         return;
@@ -1673,6 +1681,14 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		Action.speceffect = SPECEFFECT_NONE;
 		Action.messageID = 224; //restores mp msg
 		m_PChar->addMP(damage);
+	}
+
+	if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
+		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+		if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){
+			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+			m_PChar->pushPacket(new CInventoryFinishPacket());
+		}
 	}
 
 	SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill);
