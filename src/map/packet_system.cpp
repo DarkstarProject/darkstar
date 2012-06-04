@@ -798,7 +798,12 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     if(PItem == NULL || (PItem->getSubType() & ITEM_LOCKED))
 	{
-		ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move NULL or LOCKED item form location %u slot %u\n"CL_RESET, FromLocationID, FromSlotID);
+		if(PItem==NULL){
+			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move NULL item from location %u slot %u to location %u slot %u of quan %u \n"CL_RESET, FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
+		}
+		else{
+			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move LOCKED item from location %u slot %u to location %u slot %u of quan %u \n"CL_RESET, FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
+		}
 		return;
 	}
 	if(PItem->getQuantity() < quantity) 
@@ -852,7 +857,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
             // клиент не позволяет перемещать предмет в полный контейнер. 
             // если мы видим это сообщение, значит данные клиента и сервера различаются
 
-			ShowError(CL_RED"SmallPacket0x29: Location %u is full\n"CL_RESET, ToLocationID);
+			ShowError(CL_RED"SmallPacket0x29: Location %u Slot %u is full\n"CL_RESET, ToLocationID,ToSlotID);
 			return;
 		}
 	}
