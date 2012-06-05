@@ -14,6 +14,7 @@ YOUVE_EARNED_CONQUEST_POINTS = 8061; -- You've earned conquest points!
 
 GOOD_LUCK = 7308; -- Good luck on your mission. Bastokers like to do things by the book, so stay out of trouble and follow their rules.
 MISSION_DIALOG_CID_TO_AYAME = 7435; -- Give it to one of his Mythril Musketeers instead...
+ITS_LOCKED = 7846; -- It's locked.
 
 -- Shop Texts
       NOGGA_SHOP_DIALOG = 0; -- 

@@ -78,7 +78,7 @@ printf("RESULT: %u",option);
 		end
 		player:delKeyItem(MESSAGE_TO_JEUNO_WINDURST);
 	elseif(csid == 0x00D6) then
-		player:setVar("MissionStatus",1);
+		player:setVar("MissionStatus",2);
 		player:delKeyItem(STAR_CRESTED_SUMMONS);
 		player:setTitle(STARORDAINED_WARRIOR);
 	elseif(csid == 0x00C0 or csid == 0x00D8) then

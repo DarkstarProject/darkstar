@@ -1,14 +1,15 @@
 -----------------------------------
---  Area: Metalworks
---   NPC: Karst
---  Type: President and Mission NPC
--- @zone: 237
---  @pos: 106.990 -21.17 0.197
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Metalworks
+-- NPC:  Karst
+-- Type: President
+-- Involved in Bastok Missions 5-2
+-- @pos 106 -21 0 237
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -23,7 +24,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0259);
+	
+	currentMission = player:getCurrentMission(BASTOK);
+	
+	if(currentMission == XARCABARD_LAND_OF_TRUTHS and player:getVar("MissionStatus") == 0) then
+		player:startEvent(0x025a);
+	else
+		player:startEvent(0x0259);
+	end
+	
 end;
 
 -----------------------------------
@@ -31,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,7 +49,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	
+	if(csid == 0x025a) then
+		player:setVar("MissionStatus",2);
+	end
+	
 end;
-

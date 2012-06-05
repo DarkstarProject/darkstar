@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Iron Eater
--- Involved in Missions
--- @zone
--- @pos 
+-- Door: President's Office
+-- @pos 92 -19 0 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -16,26 +15,23 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end; 
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	currentMission = player:getCurrentMission(BASTOK);
-	missionStatus = player:getVar("MissionStatus");
-
-	if(currentMission == THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
-		player:startEvent(0x02cb);
-	elseif(currentMission == THE_FOUR_MUSKETEERS and missionStatus == 1) then
-		player:startEvent(0x02cc);
+	
+	if(player:getCurrentMission(BASTOK) == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(SHADOW_FRAGMENT)) then
+		player:startEvent(0x025b);
 	else
 		player:startEvent(0x025c);
 	end
 	
-end;
+	return 1;
+	
+end; 
 
 -----------------------------------
 -- onEventUpdate
@@ -53,9 +49,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
-	if(csid == 0x02cb and option == 0) then
-		player:setVar("MissionStatus",1);
+	
+	if(csid == 0x025b) then
+		finishMissionTimeline(player,1,csid,option);
 	end
-
+	
 end;

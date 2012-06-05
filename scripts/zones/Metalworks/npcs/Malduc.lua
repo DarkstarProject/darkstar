@@ -2,8 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Malduc
 -- Type: Mission Giver
--- @zone 237
--- @pos 66.200 -14.999 4.426
+-- @pos 66.200 -14.999 4.426 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -44,7 +43,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	--player:completeMission(BASTOK,10);
+	
 	if(player:getNation() ~= BASTOK) then
 		player:startEvent(0x03eb); -- For non-Bastokian
 	else

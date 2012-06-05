@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Throne Room
--- NPC:  Throne Room
+-- Door: Throne Room
 -- @pos -111 -6 0 165
 -------------------------------------
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
@@ -46,11 +46,13 @@ end;
 function onTrigger(player,npc)
 	
 	-- Temp script------
-	if(player:getCurrentMission(player:getNation()) == 15 and player:hasKeyItem(SHADOW_FRAGMENT) == false) then
+	MissionStatus = player:getVar("MissionStatus");
+	currentMission = player:getCurrentMission(player:getNation());
+	if(currentMission == 15 and MissionStatus == 2 and player:hasKeyItem(SHADOW_FRAGMENT) == false) then
 		player:addMission(ZILART,THE_NEW_FRONTIER);
 		player:addKeyItem(SHADOW_FRAGMENT);
 		player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
-		player:setVar("MissionStatus",2);
+		player:setVar("MissionStatus",3);
 	end
 	--------------------
 	

@@ -31,8 +31,8 @@ INFILTRATE_DAVOI        = 10; -- ± --
 THE_CRYSTAL_SPRING      = 11; -- ± --
 APPOINTMENT_TO_JEUNO    = 12; -- ± --
 MAGICITE_SAN_D_ORIA     = 13; -- ± --
-THE_RUINS_OF_FEI_YIN    = 14;
-THE_SHADOW_LORD         = 15;
+THE_RUINS_OF_FEI_YIN    = 14; -- ± -- ???
+THE_SHADOW_LORD         = 15; -- ± --
 LEAUTE_S_LAST_WISHES    = 16;
 RANPERRE_S_FINAL_REST   = 17;
 PRESTIGE_OF_THE_PAPSQUE = 18;
@@ -60,8 +60,8 @@ THE_FOUR_MUSKETEERS       = 10; -- ± --
 TO_THE_FORSAKEN_MINES     = 11; -- ± --
 JEUNO_MISSION             = 12; -- ± --
 MAGICITE_BASTOK           = 13; -- ± --
-DARKNESS_RISING           = 14;
-XARCABARD_LAND_OF_TRUTHS  = 15;
+DARKNESS_RISING           = 14; -- ± -- ??
+XARCABARD_LAND_OF_TRUTHS  = 15; -- ± --
 RETURN_OF_THE_TALEKEEPER  = 16;
 THE_PIRATE_S_COVE         = 17;
 THE_FINAL_IMAGE           = 18;
@@ -395,7 +395,7 @@ function getMissionMask(player)
 				-- 3-2 Repeatable & Skippable
 				repeat_mission = repeat_mission + 2048;
 			end
-			if(player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI) == true and getMissionRankPoints(player,12) == 1) then
+			if(player:hasCompletedMission(SANDORIA,APPOINTMENT_TO_JEUNO) == false and getMissionRankPoints(player,12) == 1) then
 				-- 3-3
 				first_mission = first_mission + 4096;
 			end
@@ -412,7 +412,7 @@ function getMissionMask(player)
 				-- 5-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 16384;
 			--end
-			if(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == true and getMissionRankPoints(player,15) == 1) then
+			if(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
@@ -510,7 +510,7 @@ function getMissionMask(player)
 				-- 5-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 16384;
 			--end
-			if(player:hasCompletedMission(BASTOK,XARCABARD) == false and getMissionRankPoints(player,15) == 1) then
+			if(player:hasCompletedMission(BASTOK,XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end
@@ -688,7 +688,9 @@ function finishMissionTimeline(player,guard,csid,option)
 				12,{0x0027,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Finish (Nelcabrit))
 				13,{0x0024,0},{0,0},{{11,5},{14,0},{13,212},{10,69},{6},{8,10000},{12}},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Nelcabrit))
 				14,{533,0},{0,0},{{10,72},{14,10}},{0,0},{0,0},{0}, -- MISSION 5-1
-				14,{534,0},{0,0},{{9,73},{5,400},{3,"MissionStatus",0},{13,10},{12}},{0,0},{0,0},{0}, -- MISSION 5-1
+				14,{534,0},{0,0},{{9,73},{5,400},{14,0},{13,10},{12}},{0,0},{0,0},{0}, -- MISSION 5-1
+				15,{0x0224,0},{0,0},{{11,6},{14,4}},{0,0},{0,0},{0}, -- MISSION 5-2 (Finish 1st Part (Halver))
+				15,{0x003D,0},{0,0},{{14,0},{9,74},{8,20000},{6},{12}},{0,0},{0,0},{0}, -- MISSION 5-2 (Finish 2nd Part (Trion in Great Hall))
 				--[[0,{0,0},{0,0},{0},{0,0},{0,0},{0}, 
 				0,{0,0},{0,0},{0},{0,0},{0,0},{0}, ]]--
 						};
@@ -708,6 +710,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				11,{0x03F2,0},{0,0},{{4},{5,400},{7},{12}},{0x03EE,0},{0,0},{{4},{5,400},{7},{12}}, -- MISSION 3-2
 				12,{0x0026,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Finish (Goggehn))
 				13,{0x0023,0},{0,0},{{11,5},{14,0},{13,212},{10,70},{6},{8,10000},{12}},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Goggehn))
+				14,{0,0},{0,0},{{14,0},{9,73},{5,600},{12}},{0,0},{0,0},{0}, -- MISSION 5-1 (Finish (???))
+				15,{0x025b,0},{0,0},{{11,6},{14,0},{9,74},{8,20000},{6},{12}},{0,0},{0,0},{0}, -- MISSION 5-2 (Finish (Star Sibyl))
 						};
 		end
 	elseif(nation == WINDURST) then
@@ -733,7 +737,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				12,{0x0028,0},{0,0},{0,0},{0,0},{{11,4},{9,30},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 3-3 (Finish (Ambassador's door))
 				13,{0x0025,0},{0,0},{0,0},{0,0},{{11,5},{14,0},{13,212},{10,71},{6},{8,10000},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Pakh Jatalfih))
 				14,{0x00C0,0},{0,0},{0,0},{0,0},{{14,0},{9,73},{5,600},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 5-1 (Finish (Star Sibyl))
-				15,{0x00D8,0},{0,0},{0,0},{0,0},{{11,6},{14,0},{9,74},{6},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 5-2 (Finish (Star Sibyl))
+				15,{0x00D8,0},{0,0},{0,0},{0,0},{{11,6},{14,0},{9,74},{8,20000},{6},{12}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 5-2 (Finish (Star Sibyl))
 						};
 		end
 	end

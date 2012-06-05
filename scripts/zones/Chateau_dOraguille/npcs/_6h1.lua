@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
--- NPC:  Door: Prince Regent's Rm
+-- Door: Prince Regent's Rm
 -- Starts and Finishes Quest: Prelude of Black and White (Start), Pieuje's Decision (Start)
--- @zone 233
--- @pos -37 -3 31
+-- @pos -37 -3 31 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
@@ -35,6 +34,8 @@ function onTrigger(player,npc)
 		elseif(preludeOfBandW == QUEST_COMPLETED and pieujesDecision == QUEST_AVAILABLE) then
 			player:startEvent(0x0228); -- Start Quest "Pieuje's Decision"
 		end
+	else
+		player:startEvent(0x020b);
 	end
 	
 	return 1;

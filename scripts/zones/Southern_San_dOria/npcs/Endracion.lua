@@ -95,7 +95,7 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("onFinishCSID: %u",csid);
-printf("onFinishOPTION: %u",option);
+--printf("onFinishOPTION: %u",option);
 	
 	finishMissionTimeline(player,1,csid,option);
 

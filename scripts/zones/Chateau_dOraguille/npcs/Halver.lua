@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
 -- NPC:  Halver
--- Involved in Mission 2-3
+-- Involved in Mission 2-3, 3-3, 5-1, 5-2
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos 2 0 0 233
 -----------------------------------
@@ -62,55 +62,60 @@ end;
 
 function onTrigger(player,npc)
 	
-	
 	pNation = player:getNation();
 	currentMission = player:getCurrentMission(pNation);
-	FeiYin = player:getVar("MissionStatus");
+	MissionStatus = player:getVar("MissionStatus");
 	
 	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and alreadyCheckedNPC(player,17) == false) then
 		player:startEvent(0x022e);
 	elseif(pNation == SANDORIA) then
-		if(currentMission == JOURNEY_ABROAD and player:getVar("MissionStatus") == 0) then
+		if(currentMission == JOURNEY_ABROAD and MissionStatus == 0) then
 			player:startEvent(0x01f9);
-		elseif(currentMission == JOURNEY_ABROAD and player:getVar("MissionStatus") == 11) then
+		elseif(currentMission == JOURNEY_ABROAD and MissionStatus == 11) then
 			player:startEvent(0x01fb);
 		elseif(currentMission == JOURNEY_ABROAD) then
 			player:startEvent(0x0214);
-		elseif(currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 0) then
+		elseif(currentMission == APPOINTMENT_TO_JEUNO and MissionStatus == 0) then
 			player:startEvent(0x01fc);
-		elseif(currentMission == THE_RUINS_OF_FEI_YIN and FeiYin == 9) then
+		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 9) then
 			player:startEvent(533);
-		elseif (currentMission == THE_RUINS_OF_FEI_YIN and FeiYin == 10) then
+		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 10) then
 			player:showText(npc,HALVER_OFFSET+334);
-		elseif(currentMission == THE_RUINS_OF_FEI_YIN and FeiYin == 12 and player:hasKeyItem(73)) then
+		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 12 and player:hasKeyItem(BURNT_SEAL)) then
 			player:startEvent(534);
+		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 0) then
+			player:startEvent(0x0222);
+		elseif(player:hasKeyItem(SHADOW_FRAGMENT) and MissionStatus == 3) then
+			player:startEvent(0x0224);
+		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 4) then
+			player:showText(npc,HALVER_OFFSET+471);
+		elseif(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) and currentMission == 255) then
+			player:showText(npc,HALVER_OFFSET+500);
 		end
 	elseif(pNation == BASTOK) then
-		missionStatus = player:getVar("MissionStatus");
 		if(currentMission == THE_EMISSARY) then
-			if(missionStatus == 3) then
+			if(MissionStatus == 3) then
 				player:startEvent(0x01f5);
 			end
 		elseif(currentMission == THE_EMISSARY_SANDORIA) then
 			player:showText(npc,HALVER_OFFSET+279);
 		elseif(currentMission == THE_EMISSARY_SANDORIA2) then
-			missionStatus = player:getVar("MissionStatus");
-			if(missionStatus == 8) then
+			MissionStatus = MissionStatus;
+			if(MissionStatus == 8) then
 				player:startEvent(0x01f7);
-			elseif(missionStatus <= 10) then
+			elseif(MissionStatus <= 10) then
 				player:showText(npc,HALVER_OFFSET+279);
 			end
 		else
 			player:showText(npc,HALVER_OFFSET+1092);
 		end
 	elseif(pNation == WINDURST) then
-		missionStatus = player:getVar("MissionStatus");
-		if(currentMission == THE_THREE_KINGDOMS and missionStatus < 3) then
+		if(currentMission == THE_THREE_KINGDOMS and MissionStatus < 3) then
 			player:startEvent(0x0214);
 		elseif(currentMission == THE_THREE_KINGDOMS_SANDORIA or currentMission == THE_THREE_KINGDOMS_SANDORIA2) then
-			if(missionStatus == 3) then
+			if(MissionStatus == 3) then
 				player:startEvent(0x01F6);
-			elseif(missionStatus == 8) then
+			elseif(MissionStatus == 8) then
 				player:startEvent(0x01F8);
 			else
 				player:showText(npc,HALVER_OFFSET+279);
@@ -150,11 +155,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",2);
 		player:addKeyItem(LETTER_TO_THE_CONSULS_SANDORIA);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_SANDORIA);
-	elseif(csid == 0x01fb) then
-		finishMissionTimeline(player,1,csid,option);
-	elseif(csid == 533) then
-		finishMissionTimeline(player,1,csid,option);
-	elseif(csid == 534) then
+	elseif(csid == 0x01fb or csid == 533 or csid == 534 or csid == 0x0224) then
 		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x01F6) then
 		player:setVar("MissionStatus",4);
@@ -162,6 +163,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("wildcatSandy_var",player:getVar("wildcatSandy_var") + 65536);
 	elseif(csid == 0x01F8) then
 		player:setVar("MissionStatus",9);
+	elseif(csid == 0x0222) then
+		player:setVar("MissionStatus",1);
 	end
 	
 end;

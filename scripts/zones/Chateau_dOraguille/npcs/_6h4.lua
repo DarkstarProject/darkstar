@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
--- NPC:  Door: Great Hall
--- @zone 233
--- @pos 0 -1 13
+-- Door: Great Hall
+-- Involved in Missions: 3-3, 5-2
+-- @pos 0 -1 13 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
+package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -24,8 +25,12 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(SANDORIA) == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 2) then
+	currentMission = player:getCurrentMission(SANDORIA);
+	
+	if(currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 2) then
 		player:startEvent(0x0219);
+	elseif(currentMission == THE_SHADOW_LORD and player:getVar("MissionStatus") == 4) then
+		player:startEvent(0x003D);
 	else
 		player:startEvent(0x0202);
 	end
@@ -55,6 +60,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",3);
 		player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
+	elseif(csid == 0x003D) then
+		finishMissionTimeline(player,1,csid,option);
 	end
 	
 end;
