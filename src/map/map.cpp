@@ -506,7 +506,12 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 		{
 			ShowInfo("parse: %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr,2), RBUFW(buff,2), SmallPD_Size, PChar->GetName());
 		}
-        PacketParser[SmallPD_Type](map_session_data, PChar, SmallPD_ptr);
+		if(PChar->loc.zone == NULL && SmallPD_Type!=0x0A){
+			ShowWarning("This packet is unexpected from %s - Received 0x0D earlier without matching 0x0A \n",PChar->GetName());
+		}
+		else{
+			PacketParser[SmallPD_Type](map_session_data, PChar, SmallPD_ptr);
+		}
     }
     map_session_data->client_packet_id = SmallPD_Code;
 
