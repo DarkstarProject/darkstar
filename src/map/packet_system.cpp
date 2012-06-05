@@ -1778,7 +1778,9 @@ void SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x05D(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar,data));
+	if(PChar->loc.zone!=NULL){ //e.g. when zoning
+		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar,data));
+	}
 	return;
 }
 
