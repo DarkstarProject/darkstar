@@ -9,6 +9,8 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_ENSPELL,1);
+	target:addMod(MOD_ENSPELL_DMG,effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +25,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:setMod(MOD_ENSPELL_DMG,0);
+	target:setMod(MOD_ENSPELL,0);
 end;

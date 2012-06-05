@@ -10,5 +10,6 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_BLOOD_WEAPON,1,0,30);
+	effect = EFFECT_BLOOD_WEAPON;
+	doEnspell(player,target,nil,effect);
 end;

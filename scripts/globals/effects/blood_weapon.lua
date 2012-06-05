@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_BLOOD_WEAPON
--- 	
+--
+--
 -----------------------------------
 
 -----------------------------------
@@ -9,6 +9,8 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_ENSPELL,16);
+	target:addMod(MOD_ENSPELL_DMG,1);
 end;
 
 -----------------------------------
@@ -23,4 +25,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:setMod(MOD_ENSPELL_DMG,0);
+	target:setMod(MOD_ENSPELL,0);
 end;

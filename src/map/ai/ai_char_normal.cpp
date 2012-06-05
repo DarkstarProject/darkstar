@@ -1966,16 +1966,9 @@ void CAICharNormal::ActionAttack()
 				
 				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage,isBlocked,fstrslot);
 
-				if (Action.reaction != REACTION_EVADE &&
-                    m_PBattleTarget->m_EcoSystem != SYSTEM_UNDEAD &&
-                    m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BLOOD_WEAPON))
+				if (Action.reaction != REACTION_EVADE && m_PChar->getMod(MOD_ENSPELL)>0)
 				{
-					Action.flag = 1;
-					Action.subeffect = SUBEFFECT_BLOOD_WEAPON;
-					Action.submessageID = 167;
-					Action.subparam = m_PChar->addHP(Action.param);
-
-					charutils::UpdateHealth(m_PChar);
+					battleutils::HandleEnspell(m_PChar,m_PBattleTarget,&Action,i);
 				}
 				m_PChar->m_ActionList.push_back(Action);
 			}

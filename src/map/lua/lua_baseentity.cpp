@@ -3737,6 +3737,30 @@ inline int32 CLuaBaseEntity::getMeleeHitDamage(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	RecastList_t::iterator it = PChar->RecastList.begin();
+
+	while(it != PChar->RecastList.end())
+	{
+		Recast_t* recast = *it;
+        if (recast->Type == RECAST_MAGIC || recast->Type == RECAST_ABILITY)
+		{
+            PChar->RecastList.erase(it++);
+            delete recast;
+            continue;
+		}
+		it++;
+    }
+	PChar->pushPacket(new CCharSkillsPacket(PChar));
+
+	return 1;
+}
+
 /************************************************************************
 *                                                                       *
 *  Открываем дверь и автоматически закрываем через 7 секунд             *
@@ -3909,5 +3933,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRACC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,capSkill),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeleeHitDamage),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecasts),
 	{NULL,NULL}
 };

@@ -36,6 +36,28 @@ class CTrait;
 class CWeaponSkill; 
 class CMobSkill;
 
+enum ENSPELL
+{
+	ENSPELL_NONE			= 0,
+	ENSPELL_I_FIRE			= 1,
+	ENSPELL_I_EARTH			= 2,
+	ENSPELL_I_WATER			= 3,
+	ENSPELL_I_WIND			= 4,
+	ENSPELL_I_ICE			= 5,
+	ENSPELL_I_THUNDER		= 6,
+	ENSPELL_I_LIGHT			= 7,
+	ENSPELL_I_DARK			= 8,
+	ENSPELL_II_FIRE			= 9,
+	ENSPELL_II_EARTH		= 10,
+	ENSPELL_II_WATER		= 11,
+	ENSPELL_II_WIND			= 12,
+	ENSPELL_II_ICE			= 13,
+	ENSPELL_II_THUNDER		= 14,
+	ENSPELL_II_LIGHT		= 15,
+	ENSPELL_BLOOD_WEAPON	= 16,
+	ENSPELL_ROLLING_THUNDER = 17,
+	ENSPELL_AUSPICE			= 18
+};
 
 namespace battleutils
 {
@@ -80,7 +102,9 @@ namespace battleutils
 	bool    IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender); 
 	float   GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void    HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
+	void    HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber);
 	uint8	GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender); 
+	uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element); 
 
     uint8	GetEnmityMod(uint8 level, uint8 modType);
 	bool	Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);

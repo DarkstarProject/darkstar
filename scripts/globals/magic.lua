@@ -43,6 +43,49 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
 	
 end
 
+function doEnspell(caster,target,spell,effect)
+	if(target:getStatusEffect(EFFECT_BLOOD_WEAPON) ~= nil) then
+		--no effect!
+		if(spell ~= nil) then
+			spell:setMsg(75);
+		end
+		return;
+	end
+	target:delStatusEffect(EFFECT_ENFIRE);
+	target:delStatusEffect(EFFECT_ENSTONE);
+	target:delStatusEffect(EFFECT_ENWATER);
+	target:delStatusEffect(EFFECT_ENAERO);
+	target:delStatusEffect(EFFECT_ENBLIZZARD);
+	target:delStatusEffect(EFFECT_ENTHUNDER);
+	target:delStatusEffect(EFFECT_ENFIRE_II);
+	target:delStatusEffect(EFFECT_ENSTONE_II);
+	target:delStatusEffect(EFFECT_ENWATER_II);
+	target:delStatusEffect(EFFECT_ENAERO_II);
+	target:delStatusEffect(EFFECT_ENBLIZZARD_II);
+	target:delStatusEffect(EFFECT_ENTHUNDER_II);
+	target:delStatusEffect(EFFECT_ENLIGHT);
+	target:delStatusEffect(EFFECT_ENDARK);
+	
+	if(effect==EFFECT_BLOOD_WEAPON)then
+		target:addStatusEffect(EFFECT_BLOOD_WEAPON,1,0,30);
+		return;
+	end
+	
+	duration = 180;
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+		duration = duration * 3;
+	end
+	--calculate potency
+	magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL) + target:getMod(79 + ENHANCING_MAGIC_SKILL); 
+
+	potency = 3 + ((6*magicskill)/100);
+	if(magicskill>200) then
+		potency = 5 + ((5*magicskill)/100);
+	end
+	target:addStatusEffect(effect,potency,0,duration);
+	spell:setMsg(230);
+end
+
 -----------------------------------
 --	Author: Tenjou
 -- 	Cure Potency Check
