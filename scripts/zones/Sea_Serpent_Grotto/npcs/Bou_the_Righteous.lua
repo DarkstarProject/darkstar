@@ -1,14 +1,16 @@
 -----------------------------------
 --  Area: Sea Serpent Grotto
 --   NPC: Bou the Righteous
---  Type: Quest Mob
+--  Type: Involved in the "Sahagin Key Quest"
 -- @zone: 176
 --  @pos: -125.029 46.568 -334.778
 -- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,6 +25,7 @@ end;
 
 function onTrigger(player,npc)
 	player:startEvent(0x006c);
+	player:setVar("SahaginKeyProgress",2);
 end;
 
 -----------------------------------

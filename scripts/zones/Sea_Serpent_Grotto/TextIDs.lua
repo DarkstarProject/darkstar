@@ -16,6 +16,11 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 	  CHEST_ILLUSION = 7258; -- The chest was but an illusion...
 		CHEST_LOCKED = 7259; -- The chest appears to be locked.
 		
+-- Sahagin Key Door Texts
+ SAHAGIN_DOOR_INSIDE	= 7270; -- The door is tightly shut.
+SAHAGIN_DOOR_OUTSIDE	= 7271; -- This door has an oddly shaped keyhole. It looks as if once you enter, you may not be able to get out the way you came in.
+ SAHAGIN_DOOR_TRADED	= 7272; -- The (Sahagin Key) breaks!
+
 -- Secret Door Texts; The first five are the same for each door, with the 6th and 7th being unique
 		 FIRST_CHECK	=	7276; -- You do not see anything out of the ordinary.	
 		SECOND_CHECK	=	7277; -- You do not see anything out of the ordinary...
