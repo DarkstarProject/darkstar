@@ -472,8 +472,20 @@ void CAIPetDummy::ActionEngage()
 		ActionFall();
 		return;
 	}
+	bool hasClaim = false;
+	if(m_PBattleTarget->m_OwnerID.id == m_PPet->PMaster->id){hasClaim=true;}
+	if(m_PBattleTarget->m_OwnerID.id==NULL){hasClaim=true;}
+	if(m_PPet->PMaster->PParty != NULL){
+		for (uint8 i = 0; i < m_PPet->PMaster->PParty->members.size(); ++i)
+		{
+			if (m_PPet->PMaster->PParty->members[i]->id == m_PBattleTarget->m_OwnerID.id)
+			{
+				hasClaim = true;
+			}
+		}
+	}
 
-	if(m_PBattleTarget->m_OwnerID.id == m_PPet->PMaster->id || m_PBattleTarget->m_OwnerID.id==NULL){
+	 if(hasClaim){
 		m_PPet->animation = ANIMATION_ATTACK;
 		m_ActionType = ACTION_ATTACK;
 		m_LastActionTime = m_Tick - 4000;
@@ -483,6 +495,8 @@ void CAIPetDummy::ActionEngage()
 		if(m_PPet->PMaster->objtype == TYPE_PC){
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CMessageBasicPacket(((CCharEntity*)m_PPet->PMaster),
 				((CCharEntity*)m_PPet->PMaster),0,0,12));
+			m_ActionType = ACTION_DISENGAGE;
+			return; 
 		}
 	}
 }
