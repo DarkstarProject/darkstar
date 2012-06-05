@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
--- NPC:  Mythril Beastcoin Door
+-- NPC:  Sahagin Key Door
 -- @zone 176
 -- @pos 40 8.6 20.012
 -----------------------------------
