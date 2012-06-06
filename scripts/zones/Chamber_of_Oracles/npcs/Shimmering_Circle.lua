@@ -1,16 +1,15 @@
 -----------------------------------
 -- Area: Chamber of Oracles
 -- NPC:  Shimmering Circle
--- @zone 168
--- @pos -220 0 12
+-- @pos -220 0 12 168
 -------------------------------------
 package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
+require("scripts/globals/status");
 require("scripts/globals/bcnm");
+require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Chamber_of_Oracles/TextIDs");
 
@@ -18,11 +17,11 @@ require("scripts/zones/Chamber_of_Oracles/TextIDs");
 	-- 7D00 : BC menu
 	-- Param 4 is a bitmask for the choice of battlefields in the menu:
 	
-	--- 0: Through the Quicksand Caves
-	--- 1: Legion XI Comitatensis
-	--- 2: Shattering Stars (Samurai)
-	--- 3: Shattering Stars (Ninja)
-	--- 4: Shattering Stars (Dragoon)
+	--- 1/0: Through the Quicksand Caves
+	--- 2/1: Legion XI Comitatensis
+	--- 4/2: Shattering Stars (Samurai)
+	--- 8/3: Shattering Stars (Ninja)
+	--- 16/4: Shattering Stars (Dragoon)
 	--- Cactuar Suave
 	--- Eye of the Storm
 	--- The Scarlet King
@@ -42,6 +41,7 @@ require("scripts/zones/Chamber_of_Oracles/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
@@ -57,9 +57,10 @@ function onTrade(player,npc,trade)
 				player:setVar(tostring(pZone) .. "_onTrade",trade:getItem());
 			end
 		else
-			player:messageSpecial(7155);
+			player:messageSpecial(YOU_CANNOT_ENTER_THE_BATTLEFIELD);
 		end
 	end
+	
 end;
 
 -----------------------------------
@@ -67,6 +68,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
@@ -75,17 +77,22 @@ function onTrigger(player,npc)
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 
-			-- Nothing
+			if(player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES or player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then
+				bcnmFight = bcnmFight + 1;
+			elseif(player:hasCompletedMission(ZILART,THROUGH_THE_QUICKSAND_CAVES) and hasPartyEffect(EFFECT_BATTLEFIELD)) then
+				bcnmFight = bcnmFight + 1;
+			end
 			
 			if(bcnmFight >= 0) then
 				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
 			end
 		else
-			player:messageSpecial(7155);
+			player:messageSpecial(YOU_CANNOT_ENTER_THE_BATTLEFIELD);
 		end
 	else
 		player:startEvent(0x7d03);
 	end
+	
 end;
 
 -----------------------------------
@@ -93,8 +100,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+printf("onUpdate CSID: %u",csid);
+printf("onUpdate RESULT: %u",option);
 
 	if(csid == 0x7d00) then
 		pZone = player:getZone();
@@ -103,6 +110,7 @@ function onEventUpdate(player,csid,option)
 
 		if(option == 0) then
 			local skip = 0;
+			local bcnmFight = 0;
 			player:setVar(zoneReady,player:getVar(zoneReady)+1);
 			onTradeFight = player:getVar(tostring(pZone) .. "_onTrade")
 
@@ -110,13 +118,8 @@ function onEventUpdate(player,csid,option)
 				if(onTradeFight ~= 0) then
 					bcnmFight = getUpdateFightBCNM(player,pZone,onTradeFight);
 					record = GetServerVariable("[BF]Shattering_Stars_job"..player:getMainJob().."_record");
-				elseif(player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 and player:getVar("MissionStatus") == 10) then
-					record = GetServerVariable("[BF]Mission_2-3_Waughroon_record");
-					player:levelRestriction(25);
-				elseif(player:hasCompletedMission(player:getNation(),5)) then
-					skip = 1;
-					record = GetServerVariable("[BF]Mission_2-3_Waughroon_record");
-					player:levelRestriction(25);
+				elseif(player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES) then
+					record = GetServerVariable("[BF]Mission_Zilart_6_record");
 				end
 				
 				player:updateEvent(2,bcnmFight,0,record,1,skip);
@@ -135,8 +138,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+printf("onFinish CSID: %u",csid);
+printf("onFinish RESULT: %u",option);
 
 	pZone = player:getZone();
 
@@ -145,7 +148,7 @@ function onEventFinish(player,csid,option)
 			player:startEvent(0x7d02);
 		else
 			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
-			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,900,1);
+			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,900);
 			player:setVar("BCNM_Timer", os.time());
 			player:setVar(tostring(pZone) .. "_onTrade",0);
 			player:setVar(tostring(pZone) .. "_Fight",option);
