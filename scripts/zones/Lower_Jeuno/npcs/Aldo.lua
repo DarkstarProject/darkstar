@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Lower Jeuno
 -- NPC:  Aldo
--- Involved in Mission: Magicite
--- @zone 245
--- @pos 20 3 -58
+-- Involved in Mission: Magicite, Return to Delkfutt's Tower (Zilart)
+-- @pos 20 3 -58 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -29,6 +28,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x0098);
 	elseif(player:getCurrentMission(player:getNation()) == 13 and player:getVar("MissionStatus") == 3) then
 		player:startEvent(0x00B7);
+	elseif(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 0) then
+		player:startEvent(0x0068);
 	end
 	
 end; 
@@ -55,6 +56,8 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(SILVER_BELL);
 		player:messageSpecial(KEYITEM_OBTAINED,SILVER_BELL);
 		player:setVar("MissionStatus",3);
+	elseif(csid == 0x0068) then
+		player:setVar("ZilartStatus",1);
 	end
 	
 end;

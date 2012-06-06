@@ -51,7 +51,7 @@ function onTrigger(player,npc)
 	
 	if(npc:getID() == 17453135) then
 		if(getAvailableBattlefield(pZone) ~= 255) then
-			local bcnmFight = 1;
+			local bcnmFight = 0;
 			
 			if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 2 and player:hasKeyItem(SHADOW_FRAGMENT) == false) then
 				bcnmFight = bcnmFight + 1;
@@ -82,7 +82,6 @@ function onEventUpdate(player,csid,option)
 		pZone = player:getZone();
 		zoneReady = tostring(pZone) .. "_Ready";
 		readyField = getAvailableBattlefield(pZone);
-		SetServerVariable("[BF]Mission_5-2_Enter",1);
 
 		if(option == 0) then
 			local skip = 0;
@@ -91,12 +90,14 @@ function onEventUpdate(player,csid,option)
 			onTradeFight = player:getVar(tostring(pZone) .. "_onTrade")
 
 			if(player:getVar(zoneReady) == readyField and readyField ~= 255) then
-				--elseif(player:hasCompletedMission(player:getNation(),14)) then
-			--		skip = 1;
-				--	record = GetServerVariable("[BF]The_Rank_5_Mission_record");
-				--	player:levelRestriction(50);
+				if(player:hasCompletedMission(player:getNation(),15)) then
+					skip = 1;
+					record = GetServerVariable("[BF]Mission_5-2_Throne_Room_record");
+				elseif(player:getCurrentMission(player:getNation()) == 15) then 
+					record = GetServerVariable("[BF]Mission_5-2_Throne_Room_record");
+				end
 				
-				player:updateEvent(2,0,0,record,1,skip);
+				player:updateEvent(2,bcnmFight,0,record,1,skip);
 			else
 				player:updateEvent(0,0,0,0,0,0);
 			end
