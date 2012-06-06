@@ -8969,3 +8969,4 @@ INSERT INTO `item_armor` VALUES (19964, 'death_penalty', 99, 65536, 0, 0, 0, 4, 
 INSERT INTO `item_armor` VALUES (19965, 'kenkonken', 99, 131072, 0, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES (19966, 'terpsichore', 99, 262144, 0, 0, 0, 3, 0);
 INSERT INTO `item_armor` VALUES (19967, 'tupsimati', 99, 524288, 0, 0, 0, 1, 0);
+
