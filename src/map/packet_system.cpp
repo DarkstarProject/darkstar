@@ -2100,7 +2100,13 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			}
             if (PInviter->PParty->GetLeader() == PInviter)
             {
-			    PInviter->PParty->AddMember(PChar);   
+				if(PInviter->PParty->members.size()==6){//someone else accepted invitation
+					PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14));
+					PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
+				}
+				else{
+					PInviter->PParty->AddMember(PChar); 
+				}
             }
 		}
 	}
