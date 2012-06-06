@@ -25,7 +25,11 @@ end;
 function onMobEngaged(mob,target)
 	
 	-- At 50% HP new CS and change mob
-	-- target:startEvent(0x7d04);
+	if(mob:getID() <= 17453059 and mob:getHP() <= (mob:getMaxHP() / 2)) then 
+		target:startEvent(0x7d04);
+		DespawnMob(mob:getID());
+		SpawnMob(mob:getID() + 3);
+	end
 	
 end;
 
@@ -81,8 +85,7 @@ function onEventFinish(player,csid,option)
 			player:addMission(ZILART,THE_NEW_FRONTIER);
 			player:addKeyItem(SHADOW_FRAGMENT);
 			player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
-			player:setVar("MissionStatus",2);
-			SetServerVariable("[BF]Mission_5-2_Enter",0);
+			player:setVar("MissionStatus",3);
 		end
 	end
 	

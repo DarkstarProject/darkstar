@@ -10741,3 +10741,4 @@ INSERT INTO `mob_groups` VALUES ('10886', '996', '155', '960', '0', '0', '82', '
 INSERT INTO `mob_groups` VALUES ('10887', '996', '155', '960', '0', '0', '82', '83');
 INSERT INTO `mob_groups` VALUES ('10888', '996', '155', '960', '0', '0', '82', '83');
 INSERT INTO `mob_groups` VALUES ('10889', '996', '155', '960', '0', '0', '82', '83');
+INSERT INTO `mob_groups` VALUES ('10890', '4593', '165', '0', '128', '0', '60', '60');

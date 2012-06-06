@@ -7,7 +7,7 @@ package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
-require("scripts/globals/settings");
+require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
@@ -45,28 +45,17 @@ end;
 
 function onTrigger(player,npc)
 	
-	-- Temp script------
-	MissionStatus = player:getVar("MissionStatus");
-	currentMission = player:getCurrentMission(player:getNation());
-	if(currentMission == 15 and MissionStatus == 2 and player:hasKeyItem(SHADOW_FRAGMENT) == false) then
-		player:addMission(ZILART,THE_NEW_FRONTIER);
-		player:addKeyItem(SHADOW_FRAGMENT);
-		player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
-		player:setVar("MissionStatus",3);
-	end
-	--------------------
-	
-	--[[pZone = player:getZone();
+	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
 	
 	if(npc:getID() == 17453135) then
 		if(getAvailableBattlefield(pZone) ~= 255) then
-			local bcnmFight = 0;
+			local bcnmFight = 1;
 			
-			if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 1 and player:hasKeyItem(SHADOW_FRAGMENT) == false) then
+			if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 2 and player:hasKeyItem(SHADOW_FRAGMENT) == false) then
 				bcnmFight = bcnmFight + 1;
-			elseif(player:hasPartyEffect() and GetServerVariable("[BF]Mission_5-2_Enter") == 1 and player:hasCompletedMission(player:getNation(),15)) then
+			elseif(player:hasPartyEffect(EFFECT_BATTLEFIELD) and player:hasCompletedMission(player:getNation(),15)) then
 				bcnmFight = bcnmFight + 1;
 			end
 
@@ -78,7 +67,7 @@ function onTrigger(player,npc)
 		end
 	else
 		player:startEvent(0x7d03);
-	end]]
+	end
 end;
 
 -----------------------------------
@@ -97,6 +86,7 @@ function onEventUpdate(player,csid,option)
 
 		if(option == 0) then
 			local skip = 0;
+			local bcnmFight = 0;
 			player:setVar(zoneReady,player:getVar(zoneReady)+1);
 			onTradeFight = player:getVar(tostring(pZone) .. "_onTrade")
 
@@ -106,7 +96,7 @@ function onEventUpdate(player,csid,option)
 				--	record = GetServerVariable("[BF]The_Rank_5_Mission_record");
 				--	player:levelRestriction(50);
 				
-				player:updateEvent(2,bcnmFight,0,record,1,skip);
+				player:updateEvent(2,0,0,record,1,skip);
 			else
 				player:updateEvent(0,0,0,0,0,0);
 			end
@@ -130,7 +120,6 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x7d00 and option ~= 1073741824 and option ~= 0) then
 		if(option == 3) then
 			player:startEvent(0x7d02);
-		-- Rank 5-1
 		elseif(option == 100) then
 			bcnmSpawn(player:getVar(tostring(pZone) .. "_Field"),option,pZone);
 			player:addStatusEffect(EFFECT_BATTLEFIELD,option,0,1800);
