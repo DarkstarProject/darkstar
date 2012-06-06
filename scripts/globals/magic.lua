@@ -169,8 +169,8 @@ weak_HQ = { 0x4494, 0x448e, 0x4492, 0x448c, 0x448A, 0x4490, 0x4498, 0x4496 }
 
 function StaffBonus(caster,spell)
 	
-	staff = caster:getEquipID(1);
-	ele   = 1; -- spell:getElement(); NOT IMPLEMENTED !
+	staff = caster:getEquipID(0);
+	ele   = spell:getElement();
 
 	if(staff == strong_NQ[ele]) then 
 		staff = 1.1;
@@ -200,7 +200,7 @@ end;
 
 function applyResistance(player,spell,target,diff,skill,staff)
 	resist = 1.0;
-	
+	staff = StaffBonus(player,spell);
 	--raw skill + equip skill = total skill
 	magicskill = player:getSkillLevel(skill) + player:getMod(79 + skill); 
 	
@@ -283,7 +283,6 @@ function applyResistance(player,spell,target,diff,skill,staff)
 	elseif(p < 0.05) then
 		p = 0.05;
 	end
-	
 
 	-- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
 	half = (1 - p);
@@ -460,7 +459,8 @@ function addBonuses(caster,spell,target,dmg)
 	--Day of the week / Weather bonus
 	--MB bonus
 	mab = (100+caster:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF)) ;
-	return dmg*mab;
+	staff = StaffBonus(caster,spell);
+	return dmg*mab*staff;
 end
 
 
@@ -498,16 +498,6 @@ else
 	stat_down = 13;
 end;
 return stat_down;
-end;
-
-function getEnspellDmg(caster)
-  Enhancing = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
-  if (Enhancing < 150) then 
-    basedmg = math.sqrt(Enhancing-1);
-  else
-  	basedmg = Enhancing/20 + 5;
-  end;
-  return basedmg;
 end;
 
 function getHelixDuration(caster, target, spell)

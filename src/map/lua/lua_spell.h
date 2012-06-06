@@ -47,6 +47,7 @@ public:
 	}
 
     int32 setMsg(lua_State*);
+	int32 getElement(lua_State*);
 };
 
 #endif

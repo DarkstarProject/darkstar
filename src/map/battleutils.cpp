@@ -774,11 +774,17 @@ float CalculateBaseTP(int delay){
 }
 
 bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender){
-	int skill = PDefender->GetSkill(SKILL_PAR)+PDefender->getMod(MOD_PARRY); //max A-, so need gear+ for 20% parry
-	int max = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel()); //A+ skill
-	int parryrate = 20 * ((double)skill/(double)max);
-	parryrate = cap_value(parryrate,1,20);//20% max parry rate
-	return  (rand()%100 < parryrate);
+	if( PAttacker->GetMJob() == JOB_NIN || PAttacker->GetMJob() == JOB_SAM || 
+		PAttacker->GetMJob() == JOB_THF || PAttacker->GetMJob() == JOB_BST || PAttacker->GetMJob() == JOB_DRG ||
+		PAttacker->GetMJob() == JOB_PLD || PAttacker->GetMJob() == JOB_WAR || PAttacker->GetMJob() == JOB_BRD || 
+		PAttacker->GetMJob() == JOB_DRK || PAttacker->GetMJob() == JOB_RDM || PAttacker->GetMJob() == JOB_COR){
+		int skill = PDefender->GetSkill(SKILL_PAR)+PDefender->getMod(MOD_PARRY); //max A-, so need gear+ for 20% parry
+		int max = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel()); //A+ skill
+		int parryrate = 20 * ((double)skill/(double)max);
+		parryrate = cap_value(parryrate,1,20);//20% max parry rate
+		return  (rand()%100 < parryrate);
+	}
+	return false;
 }
 
 bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){

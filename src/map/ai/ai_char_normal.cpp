@@ -1647,7 +1647,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	}
 
 	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
-		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false,SLOT_MAIN);
+		uint8 damslot = SLOT_MAIN;
+		if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
+			damslot = SLOT_RANGED;
+		}
+		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false,damslot);
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST); //TODO: REMOVE THIS, BOOST EFFECT IN DB IS WRONG, MISSING EFFECTFLAG_DAMAGE
 	}
