@@ -26,7 +26,7 @@ function onTrigger(player,npc)
 	
 	StopWhining = player:getQuestStatus(OUTLANDS,STOP_YOUR_WHINING);
 	
-	if(StopWhining == QUEST_ACCEPTED and player:hasKeyItem(261) == false and player:hasKeyItem(250)) then
+	if(StopWhining == QUEST_ACCEPTED and player:hasKeyItem(261) == false and player:hasKeyItem(260)) then
 		player:messageSpecial(TREE_CHECK);
 		player:addKeyItem(261); --Filled Barrel
 		player:messageSpecial(KEYITEM_OBTAINED,261);
