@@ -2,8 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Naji
 -- Involved in Quests: The doorman (finish), Riding on the Clouds 
--- @zone 237
--- @pos 64 -14 -4
+-- @pos 64 -14 -4 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -38,9 +37,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+	
+	-- TEMP -------------------
+	if(player:getCurrentMission(BASTOK) == 255 and player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK)) then
+		player:addMission(1,14);
+	elseif(player:getCurrentMission(BASTOK) == 255 and player:hasKeyItem(NEW_FEIYIN_SEAL)) then
+		player:addMission(1,14);
+		player:setVar("MissionStatus",10);
+	end	
+	---------------------------
+	
 	if(player:getCurrentMission(BASTOK) ~= 255) then
-		
 		currentMission = player:getCurrentMission(BASTOK);
 		
 		if(currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(ZERUHN_REPORT)) then
@@ -63,6 +70,8 @@ function onTrigger(player,npc)
 			player:startEvent(0x02d0);
 		elseif(currentMission == DARKNESS_RISING and player:getVar("MissionStatus") == 1) then
 			player:startEvent(0x02d1);
+		elseif(player:hasKeyItem(BURNT_SEAL)) then
+			player:startEvent(0x02d2);
 		else
 			player:startEvent(0x02bc);
 		end
@@ -112,11 +121,11 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);
 		player:addKeyItem(NEW_FEIYIN_SEAL);
 		player:messageSpecial(KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
-		player:setVar("MissionStatus",2);
+		player:setVar("MissionStatus",10);
 	elseif(csid == 0x02d0 and option == 1) then
 		player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);
 		player:setVar("MissionStatus",1);
-	elseif(csid == 0x02ca) then
+	elseif(csid == 0x02ca or csid == 0x02d2) then
 		finishMissionTimeline(player,1,csid,option);
 	end
 	

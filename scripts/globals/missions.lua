@@ -31,7 +31,7 @@ INFILTRATE_DAVOI        = 10; -- ± --
 THE_CRYSTAL_SPRING      = 11; -- ± --
 APPOINTMENT_TO_JEUNO    = 12; -- ± --
 MAGICITE_SAN_D_ORIA     = 13; -- ± --
-THE_RUINS_OF_FEI_YIN    = 14; -- ± -- ???
+THE_RUINS_OF_FEI_YIN    = 14; -- ± --
 THE_SHADOW_LORD         = 15; -- ± --
 LEAUTE_S_LAST_WISHES    = 16;
 RANPERRE_S_FINAL_REST   = 17;
@@ -60,7 +60,7 @@ THE_FOUR_MUSKETEERS       = 10; -- ± --
 TO_THE_FORSAKEN_MINES     = 11; -- ± --
 JEUNO_MISSION             = 12; -- ± --
 MAGICITE_BASTOK           = 13; -- ± --
-DARKNESS_RISING           = 14; -- ± -- ??
+DARKNESS_RISING           = 14; -- ± --
 XARCABARD_LAND_OF_TRUTHS  = 15; -- ± --
 RETURN_OF_THE_TALEKEEPER  = 16;
 THE_PIRATE_S_COVE         = 17;
@@ -408,7 +408,7 @@ function getMissionMask(player)
 			--end
 		end
 		if(rank == 5) then
-			--if(player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+			--if(player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(69) == false) then
 				-- 5-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 16384;
 			--end
@@ -686,7 +686,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				11,{0x0406,0},{0x07ee,0},{{4},{14,2}},{0,0},{0,0},{0}, -- MISSION 3-2 (dialog with the guard after trade)
 				11,{0x022c,0},{0,0},{{14,0},{5,400},{12}},{0x03f5,0},{0x07dd,0},{{4},{14,0},{5,400},{7},{12}}, -- MISSION 3-2 (Chalvatot - Guard)
 				12,{0x0027,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Finish (Nelcabrit))
-				13,{0x0024,0},{0,0},{{11,5},{14,0},{13,212},{10,69},{6},{8,10000},{12}},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Nelcabrit))
+				13,{0x0024,0},{0,0},{{11,5},{14,0},{13,212},{10,69},{6},{8,10000},{12},{1,14}},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Nelcabrit))
 				14,{533,0},{0,0},{{10,72},{14,10}},{0,0},{0,0},{0}, -- MISSION 5-1
 				14,{534,0},{0,0},{{9,73},{5,400},{14,0},{13,10},{12}},{0,0},{0,0},{0}, -- MISSION 5-1
 				15,{0x0224,0},{0,0},{{11,6},{14,4}},{0,0},{0,0},{0}, -- MISSION 5-2 (Finish 1st Part (Halver))
@@ -709,8 +709,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				10,{0x000b,0},{0,0},{{14,0},{5,350},{12}},{0,0},{0,0},{0}, -- MISSION 3-1 (Pashhow Marshlands Zone)
 				11,{0x03F2,0},{0,0},{{4},{5,400},{7},{12}},{0x03EE,0},{0,0},{{4},{5,400},{7},{12}}, -- MISSION 3-2
 				12,{0x0026,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},{0,0},{0,0},{0}, -- MISSION 3-3 (Finish (Goggehn))
-				13,{0x0023,0},{0,0},{{11,5},{14,0},{13,212},{10,70},{6},{8,10000},{12}},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Goggehn))
-				14,{0,0},{0,0},{{14,0},{9,73},{5,600},{12}},{0,0},{0,0},{0}, -- MISSION 5-1 (Finish (???))
+				13,{0x0023,0},{0,0},{{11,5},{14,0},{13,212},{10,70},{6},{8,10000},{12},{1,14}},{0,0},{0,0},{0}, -- MISSION 4-1 (Finish (Goggehn))
+				14,{0x02d2,0},{0,0},{{14,0},{9,73},{5,600},{12}},{0,0},{0,0},{0}, -- MISSION 5-1 (Finish (Naji))
 				15,{0x025b,0},{0,0},{{11,6},{14,0},{9,74},{8,20000},{6},{12}},{0,0},{0,0},{0}, -- MISSION 5-2 (Finish (Star Sibyl))
 						};
 		end
@@ -741,7 +741,7 @@ function finishMissionTimeline(player,guard,csid,option)
 						};
 		end
 	end
-
+	
 	for cs = 1, table.getn(timeline), 7 + (dec * 2) do
 		if(csid == timeline[cs + guard][1] and option == timeline[cs + guard][2] or csid == timeline[cs + guard + 3 + dec][1] and option == timeline[cs + guard + 3 + dec][2]) then
 			if(player:hasCompletedMission(nation,timeline[cs])) then
