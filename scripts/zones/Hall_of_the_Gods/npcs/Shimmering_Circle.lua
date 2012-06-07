@@ -22,7 +22,11 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getZPos() < 200) then
-		player:startEvent(0x000a); --Event 3 for the first time.
+		if(player:getCurrentMission(ZILART) == THE_GATE_OF_THE_GODS and player:getVar("ZilartStatus") == 0) then
+			player:startEvent(0x0003); -- First time.
+		else
+			player:startEvent(0x000a);
+		end
 	else
 		player:startEvent(0x000b);
 	end
@@ -45,4 +49,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
+	if(csid == 0x0003) then
+		player:setVar("ZilartStatus",1);
+	end
+	
 end;

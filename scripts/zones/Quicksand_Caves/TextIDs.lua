@@ -19,3 +19,5 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 -- Other dialog
 		 DOOR_LOCKED = 7260; -- The door is firmly shut.
 	   POOL_OF_WATER = 7292; -- It is a pool of water.
+	YOU_FIND_NOTHING = 7295; -- You find nothing.
+ SOMETHING_IS_BURIED = 7300; -- Something is buried in this fallen pillar.
