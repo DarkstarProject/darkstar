@@ -3188,29 +3188,10 @@ inline int32 CLuaBaseEntity::showPosition(lua_State *L)
 				m_PBaseEntity->loc.p.rotation,
 				239));
 
-			CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-			for(uint8 LocationID = 0; LocationID < MAX_CONTAINER_ID; ++LocationID) 
-			{
-				uint8 size = PChar->getStorage(LocationID)->GetSize();
-				ShowDebug("Loc %i Size %i Free Slots %i \n",LocationID,size,PChar->getStorage(LocationID)->GetFreeSlotsCount());
-				for(uint8 slotID = 0; slotID <= size; ++slotID) 
-				{
-					CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
-					if(PItem != NULL) 
-					{
-						if(PItem->getID() == 65262){
-						ShowDebug("DEBUG: Caught de-allocated item %i in slot %i and loc %i \n",PItem->getID(),
-						slotID,LocationID);
-						}
-					}
-				}
-			}
-			ShowDebug("DEBUG: Finished inventory check \n");
-
 			return 0;
 		}
 	}
+
 	lua_pushnil(L);
 	return 1;
 }

@@ -736,11 +736,7 @@ void SendInventory(CCharEntity* PChar)
 			CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
 			if(PItem != NULL) 
 			{
-				if(PItem->getID() == 65262){
-					ShowDebug("charutils::SendInventory Caught de-allocated item %i in slot %i and loc %i \n Server will now close. \n",PItem->getID(),
-						slotID,LocationID);
-				}
-					PChar->pushPacket(new CInventoryItemPacket(PItem, LocationID, slotID));
+				PChar->pushPacket(new CInventoryItemPacket(PItem, LocationID, slotID));
 			}
 		}
 	}
@@ -827,6 +823,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
     }
 
     uint8 SlotID = PChar->getStorage(LocationID)->InsertItem(PItem);
+	if(SlotID==ERROR_SLOTID){delete PItem;}
 
     if (SlotID != ERROR_SLOTID)
     {

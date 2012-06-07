@@ -802,7 +802,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move NULL item from location %u slot %u to location %u slot %u of quan %u \n"CL_RESET, FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
 		}
 		else{
-			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move LOCKED item from location %u slot %u to location %u slot %u of quan %u \n"CL_RESET, FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
+			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move LOCKED item %i from location %u slot %u to location %u slot %u of quan %u \n"CL_RESET, PItem->getID(),FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
 		}
 		return;
 	}
@@ -856,6 +856,17 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             // клиент не позволяет перемещать предмет в полный контейнер. 
             // если мы видим это сообщение, значит данные клиента и сервера различаются
+			// Client thinks that ToLocationID is NOT full, so lets send those packets again and tell them it is!
+			uint8 size = PChar->getStorage(ToLocationID)->GetSize();
+			for(uint8 slotID = 0; slotID <= size; ++slotID) 
+			{
+				CItem* PItem = PChar->getStorage(ToLocationID)->GetItem(slotID);
+				if(PItem != NULL) 
+				{
+					PChar->pushPacket(new CInventoryItemPacket(PItem, ToLocationID, slotID));		
+				}
+			}
+			PChar->pushPacket(new CInventoryFinishPacket());
 
 			ShowError(CL_RED"SmallPacket0x29: Location %u Slot %u is full\n"CL_RESET, ToLocationID,ToSlotID);
 			return;

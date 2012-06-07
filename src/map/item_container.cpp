@@ -103,7 +103,7 @@ uint8 CItemContainer::InsertItem(CItem* PItem)
 	}
 	ShowDebug("ItemContainer: Container is full\n");
 
-	delete PItem;
+	//delete PItem;//todo: what if the item is a valid item??
 	return ERROR_SLOTID;
 }
 
