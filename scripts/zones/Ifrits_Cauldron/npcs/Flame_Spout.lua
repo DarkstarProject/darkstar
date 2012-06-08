@@ -73,7 +73,7 @@ printf("RESULT: %u",option);
 			player:setPos(-176,38,60,124);
 		end
 	elseif(csid == 0x000e and option == 0) then
-		if(player:getZPos() < 187) then
+		if(player:getZPos() > 187) then
 			player:setPos(-340,39,184,63);
 		else
 			player:setPos(-341,39,192,179);
