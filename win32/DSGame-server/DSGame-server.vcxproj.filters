@@ -578,6 +578,12 @@
     <ClInclude Include="..\..\src\map\lua\lua_mobskill.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\instance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\instance_handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1080,6 +1086,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\lua\lua_mobskill.cpp">
       <Filter>Source Files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\instance_handler.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

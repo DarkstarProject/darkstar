@@ -104,9 +104,11 @@ CZone::CZone(uint8 ZoneID, uint8 RegionID)
     m_Transport = 0;
 	m_TreasurePool = 0;
 	m_RegionCheckTime = 0;
+	m_InstanceHandler = NULL;
 
 	LoadZoneLines();
 	LoadZoneSettings();
+	LoadZoneInstances();
 }
 
 /************************************************************************
@@ -285,6 +287,52 @@ void CZone::LoadZoneSettings()
 		}
 	}
 }
+
+/***********************************************************************
+		Loads the zones BCNM instances from the database
+************************************************************************/
+void CZone::LoadZoneInstances() 
+{
+	const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules \
+						    FROM bcnm_info \
+							WHERE zoneId = %u ";
+					  
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
+
+	if (ret == SQL_ERROR || 
+		Sql_NumRows(SqlHandle) == 0) 
+	{
+		switch(m_zoneID){
+		case 139:
+		case 146:
+		case 206:
+		case 144:
+		case 168:
+			ShowError(CL_RED"CZone::LoadZoneInstances: Cannot load zone BCNM instances (%u)\n"CL_RESET, m_zoneID);
+		}
+	} 
+	else 
+	{
+		CInstanceHandler* PInstHand = new CInstanceHandler(m_zoneID);
+
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS){
+			CInstance* PInstance = new CInstance(Sql_GetUIntData(SqlHandle,1));
+			
+			int8* tmpName;
+			Sql_GetData(SqlHandle,0,&tmpName,NULL);
+			PInstance->setBcnmName(tmpName);
+
+			PInstance->setTimeLimit(Sql_GetUIntData(SqlHandle,4));
+			PInstance->setLevelCap(Sql_GetUIntData(SqlHandle,5));
+			PInstance->setDropId(Sql_GetUIntData(SqlHandle,6));
+			PInstance->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle,7);
+
+			//ShowDebug("Added %s \n",tmpName);
+		}
+		m_InstanceHandler = PInstHand;
+	}
+}
+
 
 /************************************************************************
 *																		*

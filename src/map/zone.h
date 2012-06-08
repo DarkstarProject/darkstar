@@ -33,6 +33,7 @@
 
 #include "region.h"
 #include "vana_time.h"
+#include "instance_handler.h"
 
 enum ZONEMISC
 {
@@ -174,11 +175,13 @@ private:
 
     CBaseEntity*    m_Transport;            // указатель на транспорт в зоне
 	CTreasurePool*	m_TreasurePool;			// глобальный TreasuerPool
+	CInstanceHandler* m_InstanceHandler;	// BCNM Instances in this zone
 
 	CTaskMgr::CTask* ZoneTimer;				// указатель на созданный таймер - ZoneServer. необходим для возможности его остановки
 
 	void	LoadZoneLines();				// список zonelines (можно было бы заменить этот метод методом InsertZoneLine)
 	void	LoadZoneSettings();				// настройки зоны
+	void	LoadZoneInstances();			// loads the zones bcnm instances
 };
 
 #endif
