@@ -14,9 +14,9 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
 	
-	power = 1;
-	tic = 0;
-	duration = 30;
+    power = 1;
+    tic = 0;
+    duration = 30;
 	
     isEnfeeble = true;
     typeEffect = EFFECT_PETRIFICATION;
@@ -33,5 +33,5 @@ function OnMobWeaponSkill(target, mob, skill)
     else
         skill:setMsg(MSG_MISS);
     end
-	return typeEffect;
+    return typeEffect;
 end;
