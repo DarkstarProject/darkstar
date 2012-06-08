@@ -62,6 +62,15 @@ end;
 
 function onTrigger(player,npc)
 	
+	-- TEMP -------------------
+	if(player:getCurrentMission(SANDORIA) == 255 and player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
+		player:addMission(0,14);
+	elseif(player:getNation() == 0 and player:getRank() == 5 and player:getCurrentMission(SANDORIA) == 255 and player:hasCompletedMission(0,14) == false) then
+		player:addMission(0,14);
+		player:setVar("MissionStatus",9);
+	end	
+	---------------------------
+	
 	pNation = player:getNation();
 	currentMission = player:getCurrentMission(pNation);
 	MissionStatus = player:getVar("MissionStatus");
@@ -78,11 +87,11 @@ function onTrigger(player,npc)
 		elseif(currentMission == APPOINTMENT_TO_JEUNO and MissionStatus == 0) then
 			player:startEvent(0x01fc);
 		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 9) then
-			player:startEvent(533);
+			player:startEvent(0x0215);
 		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 10) then
 			player:showText(npc,HALVER_OFFSET+334);
 		elseif(currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 12 and player:hasKeyItem(BURNT_SEAL)) then
-			player:startEvent(534);
+			player:startEvent(0x0216);
 		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 0) then
 			player:startEvent(0x0222);
 		elseif(player:hasKeyItem(SHADOW_FRAGMENT) and MissionStatus == 3) then
@@ -155,7 +164,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",2);
 		player:addKeyItem(LETTER_TO_THE_CONSULS_SANDORIA);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_SANDORIA);
-	elseif(csid == 0x01fb or csid == 533 or csid == 534 or csid == 0x0224) then
+	elseif(csid == 0x01fb or csid == 0x0224 or csid == 0x0215 or csid == 0x0216) then
 		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x01F6) then
 		player:setVar("MissionStatus",4);

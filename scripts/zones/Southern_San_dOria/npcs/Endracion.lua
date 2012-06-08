@@ -53,7 +53,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	if(player:getNation() ~= SANDORIA) then
 		player:startEvent(0x03F3); -- for Non-San d'Orians
 	else
@@ -97,6 +97,8 @@ function onEventFinish(player,csid,option)
 --printf("onFinishCSID: %u",csid);
 --printf("onFinishOPTION: %u",option);
 	
-	finishMissionTimeline(player,1,csid,option);
+	if(csid ~= 0x003D) then
+		finishMissionTimeline(player,1,csid,option);
+	end
 
 end;
