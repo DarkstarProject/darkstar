@@ -2,8 +2,7 @@
 -- Area: Ru'Lude Gardens
 -- NPC:  Nelcabrit
 -- Involved in Mission: San d'Oria 3-3, 4-1
--- @zone 243
--- @pos -32 9 -49
+-- @pos -32 9 -49 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -82,7 +81,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
 		player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
 	elseif(csid == 0x0027 or csid == 0x0024) then
-		finishMissionTimeline(player,1,csid,option);
+		finishMissionTimeline(player,3,csid,option);
 	end
 	
 end;

@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
 	elseif(csid == 0x003D) then
-		finishMissionTimeline(player,1,csid,option);
+		finishMissionTimeline(player,3,csid,option);
 	end
 	
 end;

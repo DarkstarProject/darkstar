@@ -2,8 +2,7 @@
 --  Area: Northern San d'Oria
 --  NPC:  Papal Chambers
 --  Finish Mission: The Davoi Report
---  @zone 231
---  @pos 131 -11 122
+--  @pos 131 -11 122 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -52,7 +51,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	
 	if(csid == 0x02b7) then
-		finishMissionTimeline(player,1,csid,option);
+		finishMissionTimeline(player,3,csid,option);
 	end
 	
 end;

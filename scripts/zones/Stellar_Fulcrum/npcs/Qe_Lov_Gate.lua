@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 		if(getAvailableBattlefield(pZone) ~= 255) then
 			local bcnmFight = 0;
 			
-			if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 2) then
+			if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3) then
 				bcnmFight = bcnmFight + 1;
 			elseif(player:hasCompletedMission(ZILART,RETURN_TO_DELKFUTTS_TOWER)) then
 				bcnmFight = bcnmFight + 1;

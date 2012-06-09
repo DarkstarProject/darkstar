@@ -164,8 +164,6 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",2);
 		player:addKeyItem(LETTER_TO_THE_CONSULS_SANDORIA);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_SANDORIA);
-	elseif(csid == 0x01fb or csid == 0x0224 or csid == 0x0215 or csid == 0x0216) then
-		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x01F6) then
 		player:setVar("MissionStatus",4);
 	elseif(csid == 0x022e) then
@@ -174,6 +172,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",9);
 	elseif(csid == 0x0222) then
 		player:setVar("MissionStatus",1);
+	elseif(csid == 0x01fb or csid == 0x0224 or csid == 0x0215 or csid == 0x0216) then
+		finishMissionTimeline(player,3,csid,option);
 	end
 	
 end;

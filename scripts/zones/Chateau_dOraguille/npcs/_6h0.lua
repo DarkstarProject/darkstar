@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0223) then
 		player:setVar("MissionStatus",2);
 	elseif(csid == 0x022a) then
-		finishMissionTimeline(player,1,csid,option);
+		finishMissionTimeline(player,3,csid,option);
 	elseif(csid == 0x0058) then
 		if(player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14095);

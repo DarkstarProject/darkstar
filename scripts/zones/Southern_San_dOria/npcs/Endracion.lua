@@ -97,8 +97,6 @@ function onEventFinish(player,csid,option)
 --printf("onFinishCSID: %u",csid);
 --printf("onFinishOPTION: %u",option);
 	
-	if(csid ~= 0x003D) then
-		finishMissionTimeline(player,1,csid,option);
-	end
+	finishMissionTimeline(player,1,csid,option);
 
 end;

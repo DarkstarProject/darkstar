@@ -94,7 +94,7 @@ function onTrigger(player,npc)
 			
 			elseif((player:getMainLvl() >= 50) and (player:getCurrentMission(player:getNation()) == 14) and (player:getVar("MissionStatus") == 11) and (player:hasKeyItem(BURNT_SEAL) == false)) then
 			bcnmFight = bcnmFight + 1;
-			elseif ((player:getMainLvl() >= 50) and (player:hasPartyEffect()) and (GetServerVariable("[BF]Mission_5-1_Enter") == 1) and (player:hasCompletedMission(player:getNation(),14))) then
+			elseif ((player:getMainLvl() >= 50) and (player:hasPartyEffect(EFFECT_BATTLEFIELD)) and (GetServerVariable("[BF]Mission_5-1_Enter") == 1) and (player:hasCompletedMission(player:getNation(),14))) then
 			bcnmFight = bcnmFight + 1;
 			end
 
