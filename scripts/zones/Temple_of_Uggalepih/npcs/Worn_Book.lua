@@ -58,11 +58,11 @@ function onEventFinish(player,csid,option)
 	
 	book = player:getVar("paintbrushOfSouls_book");
 	
-	if(csid == 0x003d and option == 1 and (book ~= 1 or book ~= 3 or book ~= 5)) then
+	if(csid == 0x003d and option == 1 and (book == 0 or book == 2 or book == 4 or book == 6)) then
 		player:setVar("paintbrushOfSouls_book",book + 1);
-	elseif(csid == 0x003e and option == 1 and (book ~= 2 or book ~= 3 or book ~= 6)) then
+	elseif(csid == 0x003e and option == 1 and (book == 0 or book == 1 or book == 4 or book == 5)) then
 		player:setVar("paintbrushOfSouls_book",book + 2);
-	elseif(csid == 0x003f and option == 1 and (book ~= 4 or book ~= 5 or book ~= 6)) then
+	elseif(csid == 0x003f and option == 1 and (book == 0 or book == 1 or book == 2 or book == 3)) then
 		player:setVar("paintbrushOfSouls_book",book + 4);
 	end
 		
