@@ -1,11 +1,11 @@
 ---------------------------------------------
---  Tail Crush
+--  Dread Dive
 --
---  Description: Smashes a single target with its tail. Additional effect: Poison
+--  Description: Dives into a single target. Additional effect: Knockback + Stun
 --  Type: Physical
 --  Utsusemi/Blink absorb: 1 shadow
 --  Range: Melee
---  Notes:
+--  Notes: Used instead of Gliding Spike by certain notorious monsters.
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -15,12 +15,12 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 
 
-    power = mob:getMainLvl()/10 + 10;
-    tic = 3;
-    duration = 60;
+    power = 1;
+    tic = 0;
+    duration = 6;
 
     isEnfeeble = true;
-    typeEffect = EFFECT_POISON;
+    typeEffect = EFFECT_STUN;
     statmod = MOD_INT;
     accrand = math.random(1,2);
     resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);

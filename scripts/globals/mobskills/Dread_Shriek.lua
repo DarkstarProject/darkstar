@@ -1,26 +1,39 @@
+---------------------------------------------
+--  Dread Shriek
+--
+--  Description: An unsettling shriek paralyzes targets in an area of effect.
+--  Type: Enfeebling
+--  Utsusemi/Blink absorb: Ignores shadows
+--  Range: 10' radial
+--  Notes:
+---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
----------------------------------------------------
 
+---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
-	if(target:getStatusEffect(EFFECT_PARALYSIS) ~= nil) then
-		skill:setMsg(MSG_NO_EFFECT);
-		return EFFECT_PARALYSIS;
-	else
-		isEnfeeble = true;
-		typeEffect = EFFECT_PARALYSIS;
-		statmod = MOD_INT;
-		resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-		if(resist < 0.5) then
-			--resist!
-			skill:setMsg(MSG_MISS);
-			return EFFECT_PARALYSIS;
-		else
-			--land
-			skill:setMsg(MSG_ENFEEB_IS);
-			target:addStatusEffect(EFFECT_PARALYSIS,30,0,60);
-			return EFFECT_PARALYSIS;
-		end
-	end
-end
+
+
+    power = 30;
+    tic = 0;
+    duration = 60;
+
+    isEnfeeble = true;
+    typeEffect = EFFECT_PARALYSIS;
+    statmod = MOD_INT;
+    accrand = math.random(1,2);
+    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+    if(resist > 0.5 and accrand == 1) then
+        if(target:getStatusEffect(typeEffect) == nil) then
+            skill:setMsg(MSG_ENFEEB_IS);
+            target:addStatusEffect(typeEffect,power,tic,duration);
+        else
+            skill:setMsg(MSG_NO_EFFECT);
+        end
+    else
+        skill:setMsg(MSG_MISS);
+    end
+    return typeEffect;
+
+end;

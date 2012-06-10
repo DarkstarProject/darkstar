@@ -1,7 +1,7 @@
 ---------------------------------------------
---  Tail Crush
+--  Scratch
 --
---  Description: Smashes a single target with its tail. Additional effect: Poison
+--  Description: Strikes a single target in the face. Additional effect: Blind
 --  Type: Physical
 --  Utsusemi/Blink absorb: 1 shadow
 --  Range: Melee
@@ -15,12 +15,12 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 
 
-    power = mob:getMainLvl()/10 + 10;
-    tic = 3;
+    power = 18;
+    tic = 0;
     duration = 60;
 
     isEnfeeble = true;
-    typeEffect = EFFECT_POISON;
+    typeEffect = EFFECT_BLINDNESS;
     statmod = MOD_INT;
     accrand = math.random(1,2);
     resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
@@ -29,7 +29,6 @@ function OnMobWeaponSkill(target, mob, skill)
             target:addStatusEffect(typeEffect,power,tic,duration);
         end
     end
-
 
     numhits = 1;
     accmod = 1;
