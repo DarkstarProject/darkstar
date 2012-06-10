@@ -82,7 +82,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);		
 --printf("RESULT: %u",option);		
 	
-	if(option == 1) then		
+	if(csid == 0x000f) then
+		player:setVar("ZilartStatus",2);
+	elseif(option == 1) then		
 		if(player:getVar("option") == 1) then	
 			player:setPos(-28, -48, 80, 111, 157);
 		else	
@@ -91,8 +93,6 @@ function onEventFinish(player,csid,option)
 		player:setVar("option",0);	
 	elseif(option == 0 or option >= 3) then	
 		player:setVar("option",0);
-	elseif(csid == 0x000f) then
-		player:setVar("ZilartStatus",2);
 	end	
 	
 end;		

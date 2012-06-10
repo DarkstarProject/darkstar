@@ -50,7 +50,7 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
-printf("RESULT: %u",option);
+--printf("RESULT: %u",option);
 	
 	if(csid == 0x0002 and option == 0) then
 		player:completeMission(ZILART,WELCOME_TNORG);
