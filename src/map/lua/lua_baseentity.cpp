@@ -3742,6 +3742,86 @@ inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
 	return 1;
 }
 
+/***************************************************************
+  Attempts to register a BCNM instance.
+  INPUT: The BCNM ID to register.
+  OUTPUT: The instance number assigned, or -1 if it's all full.
+  Call on: The Orb trader
+****************************************************************/
+
+inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	if(PChar->loc.zone->m_InstanceHandler->hasFreeInstance(lua_tointeger(L,1))){
+		ShowDebug("Free BCNM Instance found for BCNMID %i \n",lua_tointeger(L,1));
+		int instance = PChar->loc.zone->m_InstanceHandler->registerBcnm(lua_tointeger(L,1),PChar);
+
+		if(instance!=-1){
+			ShowDebug("Registration successful!\n");
+			lua_pushinteger( L,instance);
+		}
+		else{
+			ShowDebug("Unable to register BCNM Instance.\n");
+			lua_pushinteger( L,instance);
+		}
+	}
+	else{
+		ShowDebug("BCNM Registration Failed : No free instances for BCNMID %i \n",lua_tointeger(L,1));
+		lua_pushinteger( L,-1);
+	}
+
+	return 1;
+}
+
+/***************************************************************
+  Attempts to enter a BCNM instance.
+  INPUT: The BCNM ID to enter.
+  OUTPUT: 1 if successful, 0 if not.
+  Call on: Any player. (e.g. non-orb trader in same pt)
+****************************************************************/
+
+inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	uint16 bcnmid = lua_tointeger(L,1);
+	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
+		uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD,0)->GetPower();
+		if(effect_bcnmid == bcnmid){
+			if(PChar->loc.zone->m_InstanceHandler->enterBcnm(bcnmid,PChar)){
+				lua_pushinteger( L,1);
+				return 1;
+			}
+		}
+	}
+	ShowDebug("%s is unable to enter BCNMID %i.\n",PChar->GetName(),bcnmid);
+	lua_pushinteger( L,0);
+	return 1;
+}
+
+/***************************************************************
+  Attempts to leave a BCNM instance.
+  INPUT: The BCNM ID to leave.
+  OUTPUT: 1 if successful, 0 if not.
+  Call on: Anyone who selects "Leave" or "Run Away"
+****************************************************************/
+
+inline int32 CLuaBaseEntity::bcnmLeave(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	lua_pushinteger( L,0);
+	return 1;
+}
+
 /************************************************************************
 *                                                                       *
 *  Открываем дверь и автоматически закрываем через 7 секунд             *
@@ -3915,5 +3995,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,capSkill),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeleeHitDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecasts),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmRegister),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmEnter),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmLeave),
 	{NULL,NULL}
 };

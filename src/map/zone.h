@@ -152,6 +152,8 @@ public:
 	CZone(uint8 ZoneID, uint8 RegionID);
    ~CZone();
 
+   CInstanceHandler* m_InstanceHandler;	// BCNM Instances in this zone
+
 private:
 
 	uint8			m_zoneID;				// ID зоны
@@ -175,7 +177,6 @@ private:
 
     CBaseEntity*    m_Transport;            // указатель на транспорт в зоне
 	CTreasurePool*	m_TreasurePool;			// глобальный TreasuerPool
-	CInstanceHandler* m_InstanceHandler;	// BCNM Instances in this zone
 
 	CTaskMgr::CTask* ZoneTimer;				// указатель на созданный таймер - ZoneServer. необходим для возможности его остановки
 

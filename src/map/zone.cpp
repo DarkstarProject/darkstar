@@ -316,16 +316,24 @@ void CZone::LoadZoneInstances()
 		CInstanceHandler* PInstHand = new CInstanceHandler(m_zoneID);
 
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS){
-			CInstance* PInstance = new CInstance(Sql_GetUIntData(SqlHandle,1));
+			uint8 instance = 1;
+			while(instance<=3){ //3 instances for everything as far as I know
+				CInstance* PInstance = new CInstance(Sql_GetUIntData(SqlHandle,1));
 			
-			int8* tmpName;
-			Sql_GetData(SqlHandle,0,&tmpName,NULL);
-			PInstance->setBcnmName(tmpName);
+				int8* tmpName;
+				Sql_GetData(SqlHandle,0,&tmpName,NULL);
+				PInstance->setBcnmName(tmpName);
 
-			PInstance->setTimeLimit(Sql_GetUIntData(SqlHandle,4));
-			PInstance->setLevelCap(Sql_GetUIntData(SqlHandle,5));
-			PInstance->setDropId(Sql_GetUIntData(SqlHandle,6));
-			PInstance->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle,7);
+				PInstance->setTimeLimit(Sql_GetUIntData(SqlHandle,4));
+				PInstance->setLevelCap(Sql_GetUIntData(SqlHandle,5));
+				PInstance->setDropId(Sql_GetUIntData(SqlHandle,6));
+				PInstance->setMaxParticipants(1);
+				PInstance->setInstanceNumber(instance);
+				PInstance->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle,7);
+
+				PInstHand->storeInstance(PInstance);
+				instance++;
+			}
 
 			//ShowDebug("Added %s \n",tmpName);
 		}

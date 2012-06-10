@@ -41,6 +41,9 @@ public:
 	void	handleInstances(uint32 tick); //called every tick to handle win/lose conditions, locking the bcnm, etc
 	int		registerBcnm(uint16 bcnmid, CCharEntity* PChar); //returns the instance id of the registration, -1 if no free bcnm.
 														//also registers all people in the characters PT, etc.
+
+	bool	enterBcnm(uint16 bcnmid, CCharEntity* PChar); //Enters the BCNM instance if you're registered
+
 	bool	hasFreeInstance(uint16 bcnmid); //returns true if there is a free instance available
 	uint32	pollTimeLeft(uint16 bcnmid); //returns the shortest time left of all 3 instances of the given BCNM ID
 

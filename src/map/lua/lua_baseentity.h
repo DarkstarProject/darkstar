@@ -151,6 +151,10 @@ public:
 	int32 sendMenu(lua_State*);				// Displays a menu (AH,Raise,Tractor,MH etc)
 	int32 sendGuild(lua_State*);			// Sends guild shop menu
 
+	int32 bcnmRegister(lua_State*);			//Attempts to register a bcnm instance
+	int32 bcnmEnter(lua_State*);			//Enter a bcnm instance
+	int32 bcnmLeave(lua_State*);			//Leave a bcnm instance
+
 	int32 getVar(lua_State*);				// Returns a character variable
 	int32 setVar(lua_State*);				// Sets a character variable
 

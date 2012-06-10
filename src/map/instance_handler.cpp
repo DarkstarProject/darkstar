@@ -39,6 +39,19 @@ void CInstanceHandler::storeInstance(CInstance* inst){
 	m_Instances.push_back(inst);
 }
 
+bool CInstanceHandler::enterBcnm(uint16 bcnmid, CCharEntity* PChar){
+	for(int i=0; i<m_Instances.size(); i++){
+		if(m_Instances.at(i)->getID() == bcnmid){
+			if(m_Instances.at(i)->isValidPlayerForBcnm(PChar)){
+				if(m_Instances.at(i)->enterBcnm(PChar)){
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
 int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 	for(int i=0; i<m_Instances.size(); i++){
 		if(m_Instances.at(i)->getID()==id && !m_Instances.at(i)->isReserved()){

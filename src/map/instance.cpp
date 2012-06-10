@@ -25,6 +25,7 @@
 
 #include "charentity.h"
 #include "mobentity.h"
+#include "packets/position.h"
 
 
 CInstance::CInstance(uint16 id){
@@ -104,10 +105,11 @@ bool CInstance::isPlayerInBcnm(CCharEntity* PChar){
 }
 
 bool CInstance::addPlayerToBcnm(CCharEntity* PChar){
-	if(m_PlayerList.size() >= m_MaxParticipants){
+	if(m_PlayerList.size() >= m_MaxParticipants || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
 		return false;
 	}
 	m_PlayerList.push_back(PChar);
+	PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BATTLEFIELD,EFFECT_BATTLEFIELD,this->m_BcnmID,0,0));
 	return true;
 }
 
@@ -115,6 +117,7 @@ bool CInstance::delPlayerFromBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
 			PChar->m_insideBCNM = false;
+			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BATTLEFIELD);
 			m_PlayerList.erase(m_PlayerList.begin()+i);
 			return true;
 		}
@@ -127,6 +130,11 @@ bool CInstance::enterBcnm(CCharEntity* PChar){
 		if(m_PlayerList.at(i)->id == PChar->id){
 			if(PChar->m_insideBCNM){ShowWarning("%s is already inside a BCNM!\n",PChar->GetName());}
 			PChar->m_insideBCNM = true;
+			PChar->loc.p.x = 100;
+			PChar->loc.p.y = 100;
+			PChar->loc.p.z = 100;
+			ShowDebug("Entered ID %i Instance %i \n",this->m_BcnmID,this->m_InstanceNumber);
+			PChar->pushPacket(new CPositionPacket(PChar));
 			return true;
 		}
 	}
