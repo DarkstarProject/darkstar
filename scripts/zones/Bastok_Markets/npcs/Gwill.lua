@@ -20,11 +20,9 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-	if(player:getQuestStatus(BASTOK,THE_RETURN_OF_THE_ADVENTURER) == QUEST_ACCEPTEDCinnamon == true and count == 1) then
-		if(trade:hasItemQty(628,1) and trade:getItemCount() == 1 and player:getFreeSlotsCount() >= 1) then
-			player:startEvent(0x00f3);
-		end	
+	returnOfAdven = player:getQuestStatus(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
+	if(returnOfAdven == QUEST_ACCEPTED and trade:hasItemQty(628,1) and trade:getItemCount() == 1) then
+		player:startEvent(0x00f3);
 	end
 	
 	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 2) then
@@ -78,12 +76,15 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x00f2) then
 		player:addQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
 	elseif(csid == 0x00f3) then
-		player:tradeComplete();
-		player:setTitle(KULATZ_BRIDGE_COMPANION);
-		player:addItem(12498);
-		player:messageSpecial(ITEM_OBTAINED,12498);
-		player:addFame(BASTOK,BAS_FAME*30);
-		player:completeQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
+		if(player:getFreeSlotsCount() >= 1) then
+			player:tradeComplete();
+			player:setTitle(KULATZ_BRIDGE_COMPANION);
+			player:addItem(12498);
+			player:messageSpecial(ITEM_OBTAINED,12498);
+			player:addFame(BASTOK,BAS_FAME*30);
+			player:completeQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12498);
 	end
 	
 end;
