@@ -666,12 +666,12 @@ function finishMissionTimeline(player,guard,csid,option)
 				badoption = {101,1,102,2,104,4,110,10,111,11};
 				for op = 1, table.getn(badoption), 2 do
 					if(option == badoption[op]) then 
-					timeline = {badoption[op+1],{0x03f1,badoption[op]},{0x07d9,badoption[op]},{{1},{2}},{0,0},{0,0},{{1},{2}}}; end
+					timeline = {badoption[op+1],{0x03f1,badoption[op]},{0x07d9,badoption[op]},{0,0},{0,0},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{{1},{2}}}; end
 				end
 			elseif(option == 14) then
-				timeline = {option,{0x03f1,option},{0,0},{{1},{2},{3,"MissionStatus",9}},{0,0},{0,0},{{0},{0}}};
+				timeline = {option,{0x03f1,option},{0x07d9,option},{0,0},{0,0},{{1},{2},{3,"MissionStatus",9}},{0,0},{0,0},{0,0},{0,0},{{0},{0}}};
 			else
-				timeline = {option,{0x03f1,option},{0x07d9,option},{{1},{2}},{0,0},{0,0},{{1},{2}}};
+				timeline = {option,{0x03f1,option},{0x07d9,option},{0,0},{0,0},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{{1},{2}}};
 			end
 		else
 			timeline = {
@@ -697,7 +697,7 @@ function finishMissionTimeline(player,guard,csid,option)
 		end
 	elseif(nation == BASTOK) then
 		if(csid == 0x03E9 and option ~= 1073741824 and option ~= 31) then
-			timeline = {option,{0x03E9,option},{0,0},{{1},{2}},{0,0},{0,0},{{1},{2}}};
+			timeline = {option,{0x03E9,option},{0,0},{0,0},{0,0},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{{1},{2}}};
 		else
 			timeline = {
 				 0,{0x03e8,0},{0,0},{0,0},{0,0},{{1},{2}},{0,0},{0,0},{0,0},{0,0},{0}, -- MISSION 1-1 (First Mission [START])
