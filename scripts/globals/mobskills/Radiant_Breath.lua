@@ -1,32 +1,46 @@
----------------------------------------------------
--- Radiant Breath
----------------------------------------------------
-
+---------------------------------------------
+--  Radiant Breath
+--
+--  Description: Deals light damage to enemies within a fan-shaped area of effect originating from the caster. Additional effect: Slow and Silence.
+--  Type: Magical (Light)
+--  
+--  
+---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
----------------------------------------------------
-
+---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
+
+
+    power = 12;
+    tic = 0;
+    duration = 60;
+
+    isEnfeeble = true;
+    typeEffect = EFFECT_SLOW;
+    statmod = MOD_INT;
+    accrand = math.random(1,2);
+    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+    if(resist > 0.5 and accrand == 1) then
+        if(target:getStatusEffect(typeEffect) == nil) then
+            target:addStatusEffect(typeEffect,power,tic,duration);
+        end
+    end
 	
-	isEnfeeble = true;
-	typeEffect = EFFECT_SILENCE;
-	statmod = MOD_INT;
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_SILENCE) == nil) then
-			target:addStatusEffect(EFFECT_SILENCE,1,0,45);
-		end
-		if(target:getStatusEffect(EFFECT_SLOW) == nil) then
-			target:addStatusEffect(EFFECT_SLOW,10,0,45);
-		end
-	end
+    typeEffect = EFFECT_SILENCE;
+    accrand = math.random(1,2);
+    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+    if(resist > 0.5 and accrand == 1) then
+        if(target:getStatusEffect(typeEffect) == nil) then
+            target:addStatusEffect(typeEffect,power,tic,duration);
+        end
+    end
 	
-	dmgmod = 1;
-	accmod = 1;
-	info = MobMagicalMove(mob,target,skill,mob:getMainLvl()*10*(mob:getHP()/mob:getMaxHP()),accmod,dmgmod,TP_MAB_BONUS,1);
-	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_LIGHT,MOBPARAM_IGNORE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
-	
-end
+    dmgmod = 1;
+    accmod = 1;
+    info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
+    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_LIGHT,MOBPARAM_WIPE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
+end;
