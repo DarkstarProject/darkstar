@@ -41,15 +41,45 @@ CREATE TABLE IF NOT EXISTS `guild_shops` (
 --
 
 -- ---------------------------------
--- 0201
--- Beugungel 
--- Carpenters' Landing
+-- 513 - Woodworking Guild
+--  
+-- 
 -- ---------------------------------
 
-INSERT INTO `guild_shops` VALUES (513, 1657, 75, 75, 240, 150);
-INSERT INTO `guild_shops` VALUES (513, 1021, 312, 312, 240, 120);
-INSERT INTO `guild_shops` VALUES (513, 688, 12, 12, 240, 150);
-INSERT INTO `guild_shops` VALUES (513, 698, 60, 60, 240, 150);
-INSERT INTO `guild_shops` VALUES (513, 696, 330, 330, 180, 135);
-INSERT INTO `guild_shops` VALUES (513, 695, 120, 120, 240, 150);
-INSERT INTO `guild_shops` VALUES (513, 693, 640, 3142, 60, 45);
+INSERT INTO `guild_shops` VALUES (513, 688, 15, 28, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 698, 72, 349, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 696, 330, 699, 180, 135);
+INSERT INTO `guild_shops` VALUES (513, 695, 120, 132, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 693, 640, 3586, 60, 45);
+INSERT INTO `guild_shops` VALUES (513, 705, 7, 18, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 715, 72, 441, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 702, 9600, 11520, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 690, 2045, 10938, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 707, 1723, 9651, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 691, 45, 276, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 708, 45, 276, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 699, 4740, 24016, 240, 150);
+INSERT INTO `guild_shops` VALUES (513, 713, 330, 1672, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 880, 57, 349, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 881, 1941, 13398, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 882, 150, 190, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 884, 4850, 12384, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 885, 25584, 69888, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 888, 84, 114, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 889, 298, 1495, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 893, 760, 4141, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 894, 968, 2952, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 896, 2044, 12166, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 897, 1228, 7993, 240, 150);
+INSERT INTO `guild_shops` VALUES (514, 864, 72, 203, 240, 150);
+
+
+
+
+
+
+
+
+
+
+
