@@ -13,7 +13,7 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	player:sendGuild(513);
+
 end;
 
 -----------------------------------
