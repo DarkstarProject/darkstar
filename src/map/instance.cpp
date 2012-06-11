@@ -23,13 +23,16 @@
 
 #include "instance.h"
 
+#include "../common/timer.h"
 #include "charentity.h"
 #include "mobentity.h"
 #include "packets/position.h"
+#include "packets/message_basic.h"
 
 
 CInstance::CInstance(uint16 id){
 	m_BcnmID = id;
+	locked = false;
 }
 	
 uint16 CInstance::getID(){
@@ -60,6 +63,14 @@ uint16 CInstance::getDropId(){
 	return m_DropId;
 }
 
+uint32 CInstance::getStartTime(){
+	return m_StartTime;
+}
+
+uint32 CInstance::getDeadTime(){
+	return m_AllDeadTime;
+}
+
 const int8* CInstance::getBcnmName(){
 	return m_name.c_str();
 }
@@ -71,6 +82,10 @@ void CInstance::setBcnmName(int8* name){
 
 void CInstance::setTimeLimit(uint32 time){
 	m_TimeLimit = time;
+}
+
+void CInstance::setDeadTime(uint32 time){
+	m_AllDeadTime = time;
 }
 
 void CInstance::setInstanceNumber(uint8 instance){
@@ -104,6 +119,15 @@ bool CInstance::isPlayerInBcnm(CCharEntity* PChar){
 	return false;
 }
 
+void CInstance::pushMessageToAllInBcnm(uint16 msg, uint16 param){
+	for(int i=0; i<m_PlayerList.size(); i++){
+		if(m_PlayerList.at(i)->m_lastBcnmTimePrompt != param){
+			m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(m_PlayerList.at(i),m_PlayerList.at(i),param,0,202));
+			m_PlayerList.at(i)->m_lastBcnmTimePrompt = param;
+		}
+	}
+}
+
 bool CInstance::addPlayerToBcnm(CCharEntity* PChar){
 	if(m_PlayerList.size() >= m_MaxParticipants || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
 		return false;
@@ -118,6 +142,7 @@ bool CInstance::delPlayerFromBcnm(CCharEntity* PChar){
 		if(m_PlayerList.at(i)->id == PChar->id){
 			PChar->m_insideBCNM = false;
 			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BATTLEFIELD);
+			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 			m_PlayerList.erase(m_PlayerList.begin()+i);
 			return true;
 		}
@@ -130,11 +155,20 @@ bool CInstance::enterBcnm(CCharEntity* PChar){
 		if(m_PlayerList.at(i)->id == PChar->id){
 			if(PChar->m_insideBCNM){ShowWarning("%s is already inside a BCNM!\n",PChar->GetName());}
 			PChar->m_insideBCNM = true;
-			PChar->loc.p.x = 100;
-			PChar->loc.p.y = 100;
-			PChar->loc.p.z = 100;
+			int* pos = instanceutils::getInstanceStartPosition(this);
+			if(pos==NULL){
+				ShowWarning("BCNM Entry : Unable to find a starting position for this instance -> %s %i %i \n",
+					PChar->GetName(),this->getID(),this->getInstanceNumber());
+			}
+			else{
+				PChar->loc.p.x = pos[0];
+				PChar->loc.p.y = pos[1];
+				PChar->loc.p.z = pos[2];
+				PChar->loc.p.rotation = pos[3];
+			}
 			ShowDebug("Entered ID %i Instance %i \n",this->m_BcnmID,this->m_InstanceNumber);
 			PChar->pushPacket(new CPositionPacket(PChar));
+			//todo: callback to lua
 			return true;
 		}
 	}
@@ -150,11 +184,47 @@ bool CInstance::isValidPlayerForBcnm(CCharEntity* PChar){
 	return false;
 }
 
+bool CInstance::allPlayersDead(){
+	if(m_PlayerList.size()==0){ShowWarning("instance:allPlayersDead : No players in list!\n");}
+
+	for(int i=0; i<m_PlayerList.size();i++){
+		if(!m_PlayerList.at(i)->isDead()){
+			return false;
+		}
+	}
+	return true;
+}
+
 //==================BCNM FUNCTIONS=====================================================//
 
+void CInstance::lockBcnm(){
+	for(int i=0; i<m_PlayerList.size(); i++){
+		if(!m_PlayerList.at(i)->m_insideBCNM){
+			ShowDebug("Removing %s from the valid players list for BCNMID %i Instance %i \n",m_PlayerList.at(i)->GetName(),
+				this->m_BcnmID,this->m_InstanceNumber);
+			if(this->delPlayerFromBcnm(m_PlayerList.at(i))){i--;}
+		}
+	}
+}
+
 void CInstance::init(){
-	m_PlayerList.clear();
-	m_StartTime = 0;
+	//reload from sql
+	instanceutils::spawnMonstersForBcnm(this);
+	m_StartTime = gettick();
+	m_AllDeadTime = 0;
+}
+
+void CInstance::addEnemy(CMobEntity* PMob){
+	m_EnemyList.push_back(PMob);
+}
+
+bool CInstance::allEnemiesDefeated(){
+	for(int i=0; i<m_EnemyList.size(); i++){
+		if(!m_EnemyList.at(i)->isDead()){
+			return false;
+		}
+	}
+	return true;
 }
 
 bool CInstance::isPlayersFighting(){
@@ -166,24 +236,39 @@ bool CInstance::isPlayersFighting(){
 	return false;
 }
 
-bool CInstance::exceededTimeLimit(uint32 tick){
-	if(tick - m_StartTime > m_TimeLimit){
-		return true;
-	}
-	return false;
-}
-
 bool CInstance::isReserved(){
 	if(m_PlayerList.size()>0){return true;}
 	return false;
 }
 
+void CInstance::cleanup(){
+	ShowDebug("bcnm cleanup id:%i inst:%i \n",this->getID(),this->getInstanceNumber());
+	//wipe enmity from all mobs in list if needed
+	for(int i=0; i<m_EnemyList.size(); i++){
+		m_EnemyList.at(i)->PEnmityContainer->Clear(0);
+		m_EnemyList.at(i)->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+	}
+	//wipe mob list
+	m_EnemyList.clear();
+	locked = false;
+}
 
-bool CInstance::winBcnm(){
+bool CInstance::winBcnm(){ //move everyone to win area
+	//todo: callback to lua
+	for(int i=0; i<m_PlayerList.size(); i++){
+		if(this->delPlayerFromBcnm(m_PlayerList.at(i))){i--;}
+	}
+	cleanup();
 	return true;
 }
 
 bool CInstance::loseBcnm(){
+	//todo: callback to lua
+	for(int i=0; i<m_PlayerList.size(); i++){
+		if(this->delPlayerFromBcnm(m_PlayerList.at(i))){i--;}
+	}
+
+	cleanup();
 	return true;
 }
 

@@ -27,14 +27,13 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 #include <vector>
+#include "instanceutils.h"
 
 enum BCRULES{
-	RULES_DEATH_REMOVE_IMMEDIATELY = 0x04,
-	RULES_DEATH_REMOVE_3MIN = 0x08,
-	RULES_SIZE_SINGLE_PT = 0x10,
-	RULES_SIZE_ALLIANCE = 0x20,
-	RULES_LOSE_EXP_ON_DEATH = 0x40,
-	RULES_ALLOW_SUBJOBS = 0x80
+	RULES_ALLOW_SUBJOBS = 0x01,
+	RULES_LOSE_EXP = 0x02,
+	RULES_REMOVE_3MIN = 0x04,
+	RULES_SPAWN_TREASURE_ON_WIN = 0x08,
 };
 
 class CMobEntity;
@@ -55,6 +54,8 @@ public:
 	uint8       getMaxParticipants();
 	uint8		getLevelCap();
 	uint16		getDropId();
+	uint32		getStartTime();
+	uint32		getDeadTime();
 
 	void		setTimeLimit(uint32 time);
 	void		setBcnmName(int8* name);
@@ -63,6 +64,7 @@ public:
 	void		setMaxParticipants(uint8 max);
 	void		setLevelCap(uint8 cap);
 	void		setDropId(uint16 id);
+	void		setDeadTime(uint32 time);
 	
 	//player related functions
 	bool		isValidPlayerForBcnm(CCharEntity* PChar);
@@ -70,22 +72,27 @@ public:
 	bool		enterBcnm(CCharEntity* PChar);
 	bool		addPlayerToBcnm(CCharEntity* PChar); //true if added
 	bool		delPlayerFromBcnm(CCharEntity* PChar); //true if deleted
+	bool		allPlayersDead(); //true if all players in the bcnm are dead.
+	void		pushMessageToAllInBcnm(uint16 msg, uint16 param);
 
 	//mob related functions
 	//bool		spawnAllEnemies();
 	//bool		resetAllEnemySpawnPositions();
+	void		addEnemy(CMobEntity* PMob);
+	bool		allEnemiesDefeated();
 
 	
 	//handler functions (time/multiple rounds/etc)
-	void		init(); //resets the current state and prepares new state
-	bool		exceededTimeLimit(uint32 tick); //also increments tick
+	void		lockBcnm(); //removes valid players if they arent inside the BCNM. Called when fighting.
+	void		init(); //prepares new BCNM
+	void		cleanup(); //cleans up the existing active BCNM
 	bool		isPlayersFighting(); //true if mob has aggression, used for locking the BCNM
 	bool		winBcnm();
 	bool		loseBcnm();
 	bool		isReserved(); //true if someone has a valid entry for this bcnm
 
 	uint16		m_RuleMask;
-	
+	bool		locked;
 private:
 
 	uint16		m_BcnmID;
@@ -93,6 +100,7 @@ private:
 	uint8       m_ZoneID;
 	uint8		m_InstanceNumber;
 	uint32		m_StartTime;
+	uint32		m_AllDeadTime; //time when every pt member has fallen
 	uint32		m_TimeLimit;
 	uint32		m_DropId;
 	uint8		m_LevelCap;

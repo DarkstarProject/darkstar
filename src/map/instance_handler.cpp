@@ -32,11 +32,97 @@ CInstanceHandler::CInstanceHandler(uint8 zoneid)
 }
 
 void CInstanceHandler::handleInstances(uint32 tick){
+	for(int i=0; i<m_Instances.size(); i++){
+		if(m_Instances.at(i)->isReserved()){ //handle it!
+			CInstance* PInstance = m_Instances.at(i);
+			//handle locking of bcnm when engaged
+			if(!PInstance->locked && PInstance->isPlayersFighting()){
+				PInstance->lockBcnm();
+				PInstance->locked = true;
+				ShowDebug("BCNM %i instance %i : Battlefield has been locked. No more players can enter.\n",PInstance->getID(),PInstance->getInstanceNumber());
+			}
+			//handle death time
+			if(PInstance->allPlayersDead()){//set dead time
+				if(PInstance->getDeadTime()==0){
+					PInstance->setDeadTime(tick);
+					ShowDebug("BCNM %i instance %i : All players have fallen.\n",PInstance->getID(),PInstance->getInstanceNumber());
+				}
+			}
+			else{
+				if(PInstance->getDeadTime()!=0){
+					PInstance->setDeadTime(0); //reset dead time when people are alive
+					ShowDebug("BCNM %i instance %i : Death counter reset as a player is now alive.\n",PInstance->getID(),PInstance->getInstanceNumber());
+				}
+			}
+			//handle time remaining prompts (since its useful!) Prompts every minute
+			if(((tick - PInstance->getStartTime())/1000) % 60 == 0){
+				PInstance->pushMessageToAllInBcnm(202,(PInstance->getTimeLimit()-((tick - PInstance->getStartTime())/1000)));
+			}
+
+			//handle win conditions
+			if(instanceutils::meetsWinningConditions(PInstance,tick)){
+				//check rule mask to see if warp immediately or pop a chest
+				if(PInstance->m_RuleMask & RULES_SPAWN_TREASURE_ON_WIN){
+					//todo: spawn chest
+					ShowDebug("BCNM %i instance %i : Winning conditions met. Spawning chest.\n",PInstance->getID(),PInstance->getInstanceNumber());
+					PInstance->winBcnm();
+				}
+				else{
+					ShowDebug("BCNM %i instance %i : Winning conditions met. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
+					PInstance->winBcnm();
+				}
+			}
+			//handle lose conditions
+			else if(instanceutils::meetsLosingConditions(PInstance,tick)){
+				ShowDebug("BCNM %i instance %i : Losing conditions met. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
+				PInstance->loseBcnm();
+			}
+		}
+	}
+
 	//send 246 with bunrning circle as target (bcnm is full. followed by time remaining)
+
 }
 
 void CInstanceHandler::storeInstance(CInstance* inst){
 	m_Instances.push_back(inst);
+}
+
+bool CInstanceHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar){
+	for(int i=0; i<m_Instances.size(); i++){
+		if(m_Instances.at(i)->getID() == bcnmid){
+			if(m_Instances.at(i)->isPlayerInBcnm(PChar)){
+				if(m_Instances.at(i)->delPlayerFromBcnm(PChar)){
+					int* pos = instanceutils::getLosePosition(m_Instances.at(i));
+					if(pos!=NULL){
+						PChar->loc.p.x = pos[0];
+						PChar->loc.p.y = pos[1];
+						PChar->loc.p.z = pos[2];
+						PChar->loc.p.rotation = pos[3];
+					}
+					if(!m_Instances.at(i)->isReserved()){//no more players in BCNM
+						ShowDebug("Detected no more players in BCNM Instance %i. Cleaning up. \n",
+							m_Instances.at(i)->getInstanceNumber());
+						m_Instances.at(i)->loseBcnm();
+					}
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+bool CInstanceHandler::winBcnm(uint16 bcnmid, CCharEntity* PChar){
+	for(int i=0; i<m_Instances.size(); i++){
+		if(m_Instances.at(i)->getID() == bcnmid){
+			if(m_Instances.at(i)->isPlayerInBcnm(PChar)){
+				m_Instances.at(i)->winBcnm();
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 bool CInstanceHandler::enterBcnm(uint16 bcnmid, CCharEntity* PChar){
@@ -53,6 +139,7 @@ bool CInstanceHandler::enterBcnm(uint16 bcnmid, CCharEntity* PChar){
 }
 
 int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
+	int inst = -1;
 	for(int i=0; i<m_Instances.size(); i++){
 		if(m_Instances.at(i)->getID()==id && !m_Instances.at(i)->isReserved()){
 			switch(m_Instances.at(i)->getMaxParticipants()){
@@ -60,7 +147,7 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 				if(m_Instances.at(i)->addPlayerToBcnm(PChar)){
 					ShowDebug("InstanceHandler ::1 Added %s to the valid players list for BCNM %i Instance %i \n",
 						PChar->GetName(),id,m_Instances.at(i)->getInstanceNumber());
-					return m_Instances.at(i)->getInstanceNumber();
+					inst = m_Instances.at(i)->getInstanceNumber();
 				}
 				break;
 			case 3:
@@ -68,20 +155,20 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 					if(m_Instances.at(i)->addPlayerToBcnm(PChar)){
 						ShowDebug("InstanceHandler ::3 Added %s to the valid players list for BCNM %i Instance %i \n",
 							PChar->GetName(),id,m_Instances.at(i)->getInstanceNumber());
-						return m_Instances.at(i)->getInstanceNumber();
+						inst = m_Instances.at(i)->getInstanceNumber();
 					}
 				}
 				else if(PChar->PParty->members.size() > 3){//too many people in pt for this bcnm, fail.
 					ShowDebug("InstanceHandler ::3 Too many people in party to register BCNM.\n");
 				}
 				else{
-					for(int i=0;i<PChar->PParty->members.size(); i++){
-						if(m_Instances.at(i)->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(i))){
+					for(int j=0;j<PChar->PParty->members.size(); j++){
+						if(m_Instances.at(i)->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))){
 							ShowDebug("InstanceHandler ::3 Added %s to the valid players list for BCNM %i Instance %i \n",
-								PChar->GetName(),id,m_Instances.at(i)->getInstanceNumber());
+								PChar->PParty->members.at(j)->GetName(),id,m_Instances.at(i)->getInstanceNumber());
 						}
 					}
-					return m_Instances.at(i)->getInstanceNumber();
+					inst = m_Instances.at(i)->getInstanceNumber();
 				}
 				break;
 			case 6:
@@ -89,26 +176,38 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 					if(m_Instances.at(i)->addPlayerToBcnm(PChar)){
 						ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
 							PChar->GetName(),id,m_Instances.at(i)->getInstanceNumber());
-						return m_Instances.at(i)->getInstanceNumber();
+						inst = m_Instances.at(i)->getInstanceNumber();
 					}
 				}
 				else{
-					for(int i=0;i<PChar->PParty->members.size(); i++){
-						if(m_Instances.at(i)->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(i))){
+					for(int j=0;j<PChar->PParty->members.size(); j++){
+						if(m_Instances.at(i)->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))){
 							ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
-								PChar->GetName(),id,m_Instances.at(i)->getInstanceNumber());
+								PChar->PParty->members.at(j)->GetName(),id,m_Instances.at(i)->getInstanceNumber());
 						}
 					}
-					return m_Instances.at(i)->getInstanceNumber();
+					inst = m_Instances.at(i)->getInstanceNumber();
 				}
 				break;
 			case 12: ShowDebug("BCNMs for 12 people are not implemented yet.\n"); break;
 			case 18: ShowDebug("BCNMs for 18 people are not implemented yet.\n"); break;
 			default: ShowDebug("Unknown max participants value %i \n",m_Instances.at(i)->getMaxParticipants());
 		}
+			break;
 		}
 	}
-	return -1;
+	if(inst==-1){
+		return -1;
+	}
+	//spawn the monsters for this bcnm
+	for(int i=0; i<m_Instances.size(); i++){
+		if(m_Instances.at(i)->getID() == id && m_Instances.at(i)->getInstanceNumber()==inst){
+			m_Instances.at(i)->init();
+			return inst;
+			//m_Instances.at(i)->
+		}
+	}
+
 }
 
 bool CInstanceHandler::hasFreeInstance(uint16 id){

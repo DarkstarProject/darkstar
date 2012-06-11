@@ -3807,7 +3807,7 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L){
 
 /***************************************************************
   Attempts to leave a BCNM instance.
-  INPUT: The BCNM ID to leave.
+  INPUT: The type of leave (1=RUN AWAY, 2=TREASURE CHEST)
   OUTPUT: 1 if successful, 0 if not.
   Call on: Anyone who selects "Leave" or "Run Away"
 ****************************************************************/
@@ -3815,8 +3815,22 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L){
 inline int32 CLuaBaseEntity::bcnmLeave(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
+		uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD,0)->GetPower();
+		uint8 typeOfExit = lua_tointeger(L,1);
+		if(typeOfExit==1 && PChar->loc.zone->m_InstanceHandler->leaveBcnm(effect_bcnmid,PChar)){
+			ShowDebug("BCNM Leave :: %s left BCNMID %i \n",PChar->GetName(),effect_bcnmid);
+		}
+		else if(typeOfExit==2 && PChar->loc.zone->m_InstanceHandler->winBcnm(effect_bcnmid,PChar)){
+			ShowDebug("BCNM Leave :: Won BCNMID %i \n",effect_bcnmid);
+		}
+	}
+	else{
+		ShowDebug("BCNM Leave :: %s does not have EFFECT_BATTLEFIELD. \n",PChar->GetName());
+	}
 
 	lua_pushinteger( L,0);
 	return 1;

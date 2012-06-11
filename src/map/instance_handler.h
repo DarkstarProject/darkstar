@@ -43,6 +43,8 @@ public:
 														//also registers all people in the characters PT, etc.
 
 	bool	enterBcnm(uint16 bcnmid, CCharEntity* PChar); //Enters the BCNM instance if you're registered
+	bool	leaveBcnm(uint16 bcnmid, CCharEntity* PChar); //Leaves the BCNM instance if you're registered
+	bool	winBcnm(uint16 bcnmid, CCharEntity* PChar); //Wins a BCNM instance (e.g. the player opening the chest)
 
 	bool	hasFreeInstance(uint16 bcnmid); //returns true if there is a free instance available
 	uint32	pollTimeLeft(uint16 bcnmid); //returns the shortest time left of all 3 instances of the given BCNM ID

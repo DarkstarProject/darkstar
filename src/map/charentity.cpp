@@ -92,6 +92,7 @@ CCharEntity::CCharEntity()
 	expChain.chainNumber = 0;
 	expChain.chainTime = 0;
 	m_insideBCNM = false;
+	m_lastBcnmTimePrompt = 0;
 
 	m_EquipFlag = 0;
 	nameflags.flags = 0;

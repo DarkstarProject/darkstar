@@ -293,7 +293,7 @@ void CZone::LoadZoneSettings()
 ************************************************************************/
 void CZone::LoadZoneInstances() 
 {
-	const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules \
+	const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize \
 						    FROM bcnm_info \
 							WHERE zoneId = %u ";
 					  
@@ -324,10 +324,11 @@ void CZone::LoadZoneInstances()
 				Sql_GetData(SqlHandle,0,&tmpName,NULL);
 				PInstance->setBcnmName(tmpName);
 
+				PInstance->setZoneId(m_zoneID);
 				PInstance->setTimeLimit(Sql_GetUIntData(SqlHandle,4));
 				PInstance->setLevelCap(Sql_GetUIntData(SqlHandle,5));
 				PInstance->setDropId(Sql_GetUIntData(SqlHandle,6));
-				PInstance->setMaxParticipants(1);
+				PInstance->setMaxParticipants(Sql_GetUIntData(SqlHandle,8));
 				PInstance->setInstanceNumber(instance);
 				PInstance->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle,7);
 
@@ -795,6 +796,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
 						{
+							//todo: ninjitsu doesnt aggro spellcasting, nor do songs
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						}
@@ -1293,6 +1295,10 @@ void CZone::ZoneServer(uint32 tick)
 		else{
 			++pit;
 		}
+	}
+
+	if(m_InstanceHandler!=NULL){
+		m_InstanceHandler->handleInstances(tick);
 	}
 
     for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)

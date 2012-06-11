@@ -154,7 +154,7 @@ public:
 	campaignlog_t	 m_campaignLog;					// список campaing миссий
 	uint32			 m_rangedDelay;					//ranged attack delay (with timestamp for repeat attacks, hence 32bit)
 	bool			 m_insideBCNM;					//true if user is inside a bcnm
-
+	uint32			 m_lastBcnmTimePrompt;			//the last message prompt in seconds
 	// Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
 	// отображает более ранние миссии выплненными
 

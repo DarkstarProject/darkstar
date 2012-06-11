@@ -133,6 +133,7 @@
     <ClInclude Include="..\..\src\map\grades.h" />
     <ClInclude Include="..\..\src\map\guildutils.h" />
     <ClInclude Include="..\..\src\map\instance.h" />
+    <ClInclude Include="..\..\src\map\instanceutils.h" />
     <ClInclude Include="..\..\src\map\instance_handler.h" />
     <ClInclude Include="..\..\src\map\items\item.h" />
     <ClInclude Include="..\..\src\map\items\item_armor.h" />
@@ -305,6 +306,7 @@
     <ClCompile Include="..\..\src\map\grades.cpp" />
     <ClCompile Include="..\..\src\map\guildutils.cpp" />
     <ClCompile Include="..\..\src\map\instance.cpp" />
+    <ClCompile Include="..\..\src\map\instanceutils.cpp" />
     <ClCompile Include="..\..\src\map\instance_handler.cpp" />
     <ClCompile Include="..\..\src\map\items\item.cpp" />
     <ClCompile Include="..\..\src\map\items\item_armor.cpp" />

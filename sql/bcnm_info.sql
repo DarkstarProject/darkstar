@@ -29,22 +29,22 @@ CREATE TABLE `bcnm_info` (
   `levelCap` smallint(5) unsigned NOT NULL DEFAULT '75',
   `partySize` smallint(5) unsigned NOT NULL DEFAULT '6',
   `lootDropId` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `rules` blob, 
+  `rules` smallint(5) unsigned NOT NULL DEFAULT '0', 
   PRIMARY KEY (`bcnmId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
--- rules blob format (bits): 0000 0 0 0 0 = E D C B A
+-- rules format (bits): 0000 0 0 0 0 = E D C B A
 -- A = allow SJs (1 if yes)
 -- B = lose exp on death (1 if yes)
 -- C = all dead rules (0=remove immediately, 1=remove after 3 min)
 -- D = spawn trasure chest on win (1 if yes)
 -- E = reserved
--- e.g. 00000100 = no sjs, no exp loss, remove player after 3mins
+-- e.g. 00000100 = no sjs, no exp loss, remove player after 3mins = 4
 -- ----------------------------
 -- Records of abilities
 -- ----------------------------
-INSERT INTO `bcnm_info` VALUES ('1', '139', 'maat_horlais', NULL, NULL, '600', '75', '1', '0', 0x04);
-INSERT INTO `bcnm_info` VALUES ('2', '146', 'maat_balgas', NULL, NULL, '600', '75', '1', '0', 0x04);
-INSERT INTO `bcnm_info` VALUES ('3', '206', 'maat_qubia', NULL, NULL, '600', '75', '1', '0', 0x04);
-INSERT INTO `bcnm_info` VALUES ('4', '144', 'maat_waughroon', NULL, NULL, '600', '75', '1', '0', 0x04);
-INSERT INTO `bcnm_info` VALUES ('5', '168', 'maat_oracles', NULL, NULL, '600', '75', '1', '0', 0x04);
+INSERT INTO `bcnm_info` VALUES ('1', '139', 'maat_horlais', NULL, NULL, '600', '75', '1', '0', '4');
+INSERT INTO `bcnm_info` VALUES ('2', '146', 'maat_balgas', NULL, NULL, '600', '75', '1', '0', '4');
+INSERT INTO `bcnm_info` VALUES ('3', '206', 'maat_qubia', NULL, NULL, '600', '75', '1', '0', '4');
+INSERT INTO `bcnm_info` VALUES ('4', '144', 'maat_waughroon', NULL, NULL, '600', '75', '1', '0', '4');
+INSERT INTO `bcnm_info` VALUES ('5', '168', 'maat_oracles', NULL, NULL, '600', '75', '1', '0', '4');
