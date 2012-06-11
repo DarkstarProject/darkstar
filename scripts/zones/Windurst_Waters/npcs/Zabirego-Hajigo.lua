@@ -22,9 +22,9 @@ function onTrigger(player,npc)
 fame = player:getFameLevel(2);
 
 	if (fame == 9) then
-		player:startEvent(Event(0x310));
+		player:startEvent(0x310);
 	else
-		player:startEvent(Event(0x2AF + fame));
+		player:startEvent(0x2AF + fame);
 	end
 end; 
 

@@ -2,9 +2,11 @@
 --  Area: Port Bastok
 --  NPC: Flaco
 --  Fame Checker
+--  @zone: 236
 -----------------------------------
 
 require("scripts/globals/quests");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrade
