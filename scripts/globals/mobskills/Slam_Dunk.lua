@@ -16,14 +16,16 @@ function OnMobWeaponSkill(target, mob, skill)
 	statmod = MOD_INT;
 	mobTP = mob:getTP();
 	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	
 	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_BIND) == nil) then
+		if(target:hasStatusEffect(EFFECT_BIND) == false) then
+			lvlMultiplyer = mob:getMainLvl()/3.75;
 			if(mobTP <= 100) then 
-				bindTime = 30;
+				bindTime = 10 + lvlMultiplyer;
 			elseif(mobTP <= 200) then 
-				bindTime = 40;
+				bindTime = 15 + lvlMultiplyer;
 			else 
-				bindTime = 60; 
+				bindTime = 20 + lvlMultiplyer; 
 			end
 			
 			target:addStatusEffect(EFFECT_BIND,1,0,bindTime);
