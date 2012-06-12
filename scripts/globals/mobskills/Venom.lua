@@ -14,16 +14,16 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
 
-    power = mob:getMainLvl()/5 + 5;
+    power = mob:getMainLvl()/8 + 3;
     tic = 3;
-    duration = 120;
+    duration = 60;
 
     isEnfeeble = true;
     typeEffect = EFFECT_POISON;
     statmod = MOD_INT;
-    accrand = math.random(1,2);
+    accrand = math.random(1,6);
     resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5 and accrand == 1) then
+    if(resist > 0.3 and accrand ~= 1) then
         if(target:getStatusEffect(typeEffect) == nil) then
             target:addStatusEffect(typeEffect,power,tic,duration);
         end
