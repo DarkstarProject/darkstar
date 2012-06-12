@@ -81,10 +81,11 @@ function onEventFinish(player,csid,option)
 			player:setTitle(KULATZ_BRIDGE_COMPANION);
 			player:addItem(12498);
 			player:messageSpecial(ITEM_OBTAINED,12498);
-			player:addFame(BASTOK,BAS_FAME*30);
+			player:addFame(BASTOK,BAS_FAME*80);
 			player:completeQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
 		else
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12498);
+		end
 	end
 	
 end;

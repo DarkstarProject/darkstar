@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
 	final = finalMagicAdjustments(caster,target,spell,dmg);
 	
 	-- Calculate duration.
-	duration = 30;
+	duration = 120;
 	
 	-- Check for Bio.
 	bio = target:getStatusEffect(EFFECT_BIO);
