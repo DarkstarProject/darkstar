@@ -19,7 +19,7 @@ YOUVE_EARNED_CONQUEST_POINTS = 8331; -- You've earned conquest points!
 
 -- Other dialog
   MagicmartFlyer = 532; -- item: Magicmart_flyer
-   FLYER_REFUSED = 8027; -- Your flyer is refused.
+   FLYER_REFUSED = 8043; -- Your flyer is refused.
    FLYER_ALREADY = 8677; -- This person already has a flyer.
   FLYER_ACCEPTED = 8676; -- The flyer is accepted.
 
@@ -38,7 +38,7 @@ ROSEL_MESSAGE    = 8679; -- Rosel looks over curiously for a moment.
 PAUNELIE_DIALOG = 0; -- 1997; -- Like <item> ? -- (linkshell)
 	   
 -- Quest Dialogs
-UNLOCK_PALADIN = 7856; -- You can now become a paladin!
+UNLOCK_PALADIN = 7872; -- You can now become a paladin!
 
 -- Shop Texts
 	   ASHENE_SHOP_DIALOG = 7829; -- Welcome to Helbort's Blades!
@@ -67,3 +67,7 @@ FERDOULEMIONT_SHOP_DIALOG = 8260; -- Hello!
 
 	 POURETTE_OPEN_DIALOG = 8273; -- Derfland produce for sale!
    POURETTE_CLOSED_DIALOG = 8274; -- Listen, adventurer... I can't import from Derfland until the region knows San d'Orian power!
+
+			 CLETAE_DIALOG = 8063; -- Why, hello. All our skins are guild-approved.
+	KUEH_IGUNAHMORI_DIALOG = 8064; -- Good day! We have lots in stock today.
+	

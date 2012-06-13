@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Kopopo
+-- NPC:  Chomo Jinjahl
 -- Guild Merchant NPC: Cooking Guild 
 -- @zone 238
--- @pos -103 -2 74
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 	if (player:sendGuild(525,5,20,7)) then
-		player:showText(npc,KOPOPO_SHOP_DIALOG);
+		player:showText(npc,CHOMOJINJAHL_SHOP_DIALOG);
 	end
 end; 
 

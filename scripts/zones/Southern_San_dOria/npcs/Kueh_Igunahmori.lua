@@ -1,15 +1,17 @@
 -----------------------------------
--- Area: Windurst Waters
--- NPC:  Kopopo
--- Guild Merchant NPC: Cooking Guild 
--- @zone 238
--- @pos -103 -2 74
+-- Area: Southern San d'Oria
+-- NPC: Kueh Igunahmori
+-- Guild Merchant NPC: Leathercrafting Guild 
+-- @zone 230
+-- @pos -189 -8 14
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Waters/TextIDs");
+require("scripts/globals/shop");
+require("scripts/globals/conquest");
+require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,9 +25,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(525,5,20,7)) then
-		player:showText(npc,KOPOPO_SHOP_DIALOG);
-	end
+
+	player:showText(npc,KUEH_IGUNAHMORI_DIALOG);
+
 end; 
 
 -----------------------------------
@@ -45,3 +47,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
+
+
+
+

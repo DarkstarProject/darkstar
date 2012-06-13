@@ -1,10 +1,9 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Cletae
---	Letahercraft guild
--- 	@zone 230
--- 	@pos -189 -8 14
--- guild shops not implemented so is using  a substitue shop
+-- Area: Southern San d'Oria
+-- NPC: Cletae
+-- Guild Merchant NPC: Leathercrafting Guild 
+-- @zone 230
+-- @pos -189 -8 14
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -36,25 +35,7 @@ end;
 
 function onTrigger(player,npc)
 
-	player:showText(npc,CARAUTIA_SHOP_DIALOG);
-
-	stock = {0x3208,11340,1,	--Chain Hose
-			 0x3288,6966,1,		--Greaves
-			 0x3012,10281,1, 	--Kite Shield
-
-			 0x3004,4482,2, 	--Mahogany Shield
-			 0x321a,16552,2, 	--Studded Trousers
-			 0x329a,10054,2, 	--Studded Boots
-
-			 0x3002,544,3,  	--Maple Shield
-			 0x3220,187,3,  	--Bronze Subligar
-			 0x3221,1800,3, 	--Brass Subligar
-			 0x3218,482,3, 		--Leather Trousers
-			 0x32a0,115,3, 		--Bronze Leggings 
-			 0x32a1,1116,3, 	--Brass Leggings
-			 0x3298,302,3} 		--Leather Highboots
-	 
-	showNationShop(player, SANDORIA, stock);
+	player:showText(npc,CLETAE_DIALOG);
 
 end; 
 
