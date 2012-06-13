@@ -20,8 +20,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(LOKHONG_SHOP_DIALOG);
-	player:sendGuild(519,1,23,5);
+	if(player:sendGuild(519,1,23,5)) then
+		player:showText(npc,LOKHONG_SHOP_DIALOG);
+	end
 end; 
 
 -----------------------------------

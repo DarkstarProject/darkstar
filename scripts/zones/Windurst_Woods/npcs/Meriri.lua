@@ -22,7 +22,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00fb);
+	if(player:sendGuild(515,6,21,1)) then
+		player:showText(npc,MERIRI_DIALOG);
+	end
 end;
 
 -----------------------------------
@@ -41,9 +43,5 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if(csid == 0x00fb) then
-		player:sendGuild(515,6,21,0);
-	end
-
 end;
 

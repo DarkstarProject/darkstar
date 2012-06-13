@@ -20,8 +20,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(FISHING_GUILD);
-	player:sendGuild(517,3,18,5);
+	if(player:sendGuild(517,3,18,5)) then
+		player:showText(npc,FISHING_GUILD);
+	end
 end;
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 --	Area: Mhaura
---	NPC: Albin
+--	NPC: Yabby Tanmikey
 --  Guild Merchant NPC: Goldsmithing Guild 
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
@@ -22,8 +22,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(GOLDSMITHING_GUILD);
-	player:sendGuild(523,8,23,4);
+	if(player:sendGuild(523,8,23,4)) then
+		player:showText(npc,GOLDSMITHING_GUILD);
+	end
 end;
 
 -----------------------------------

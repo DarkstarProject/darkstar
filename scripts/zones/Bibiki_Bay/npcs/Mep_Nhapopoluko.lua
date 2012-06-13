@@ -21,8 +21,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, MEP_NHAPOPOLUKO_DIALOG);
-	player:sendGuild(518,1,23,5);
+	if(player:sendGuild(518,1,23,5)) then
+		player:showText(npc, MEP_NHAPOPOLUKO_DIALOG);
+	end
 end;
 
 -----------------------------------

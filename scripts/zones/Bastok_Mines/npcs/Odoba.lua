@@ -21,8 +21,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, ODOBA_SHOP_DIALOG);
-	player:sendGuild(521,8,23,6);
+	if(player:sendGuild(521,8,23,6)) then
+		player:showText(npc, ODOBA_SHOP_DIALOG);
+	end
 end;
 
 -----------------------------------

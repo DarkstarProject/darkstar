@@ -21,8 +21,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,TEERTH_SHOP_DIALOG);
-	player:sendGuild(522,8,23,4);
+	if(player:sendGuild(522,8,23,4)) then
+		player:showText(npc,TEERTH_SHOP_DIALOG);
+	end
 end;
 
 -----------------------------------

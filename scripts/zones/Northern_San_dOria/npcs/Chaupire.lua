@@ -2,6 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC: Chaupire
 -- Guild Merchant NPC: Woodworking Guild 
+-- @zone 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +25,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:sendGuild(513,6,21,1);
+	if(player:sendGuild(513,6,21,0)) then
+		player:showText(npc,CHAUPIRE_SHOP_DIALOG);
+	end
 end; 
 
 -----------------------------------

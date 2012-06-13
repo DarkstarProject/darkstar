@@ -20,8 +20,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(RAJMONDA_SHOP_DIALOG);
-	player:sendGuild(519,1,23,5);
+	if(player:sendGuild(519,1,23,5)) then
+		player:showText(npc,RAJMONDA_SHOP_DIALOG);
+	end
+
 end; 
 
 -----------------------------------

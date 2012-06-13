@@ -21,8 +21,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-		player:messageSpecial(WEAVERS_GUILD);
-		player:sendGuild(515,6,21,0);
+	if(player:sendGuild(515,6,21,0)) then
+		player:showText(npc,WEAVERS_GUILD);
+	end
 end; 
 
 -----------------------------------

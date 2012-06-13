@@ -45,9 +45,8 @@ function onTrigger(player,npc)
 	
 	if(player:getVar("theSandCharmVar") == 3) then 
 		player:startEvent(0x007e,13095); -- During quest "The Sand Charm" - 3rd dialog
-	else
-		player:messageSpecial(GOLDSMITHING_GUILD);
-		player:sendGuild(523,8,23,4);
+	elseif(player:sendGuild(523,8,23,4)) then
+		player:showText(npc,GOLDSMITHING_GUILD);
 	end
 	
 end;

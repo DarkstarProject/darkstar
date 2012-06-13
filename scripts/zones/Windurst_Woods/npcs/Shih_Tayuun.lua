@@ -22,7 +22,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00f4);
+	if(player:sendGuild(514,8,23,3)) then
+		player:showText(npc,SHIH_TAYUUN_DIALOG);
+	end
 end;
 
 -----------------------------------
@@ -41,8 +43,5 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	if(csid == 0x00f4) then
-		player:sendGuild(514,8,23,3);
-	end
 end;
 
