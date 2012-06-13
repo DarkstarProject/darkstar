@@ -34,9 +34,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	player:showText(npc,CLETAE_DIALOG);
-
+	if (player:sendGuild(524,3,18,4)) then
+		player:showText(npc,CLETAE_DIALOG);
+	end
 end; 
 
 -----------------------------------

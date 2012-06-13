@@ -25,9 +25,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	player:showText(npc,KUEH_IGUNAHMORI_DIALOG);
-
+	if (player:sendGuild(524,3,18,4)) then
+		player:showText(npc,KUEH_IGUNAHMORI_DIALOG);
+	end
 end; 
 
 -----------------------------------
