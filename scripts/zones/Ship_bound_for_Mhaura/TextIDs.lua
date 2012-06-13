@@ -7,4 +7,5 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
 -- Shop Texts
-CHHAYA_SHOP_DIALOG = 0;
+ CHHAYA_SHOP_DIALOG = 7255; -- May I offer you items to help you on your journey?
+LOKHONG_SHOP_DIALOG = 7254; -- There's nothing like fishing to pass the time!

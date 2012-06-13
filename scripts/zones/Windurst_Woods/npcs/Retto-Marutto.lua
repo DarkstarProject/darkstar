@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 	if(csid == 0x00f3) then
-		player:sendGuild(514,8,23,4);
+		player:sendGuild(514,8,23,3);
 	end
 end;
 

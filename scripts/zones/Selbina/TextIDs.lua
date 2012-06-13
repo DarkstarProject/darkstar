@@ -21,3 +21,6 @@ CLOTHCRAFT_SHOP_DIALOG = 6923; -- Welcome to the Weavers' Guild salesroom.
 CHUTARMIRE_SHOP_DIALOG = 6926; -- I have items for those who delve in the black arts!
   DOHDJUMA_SHOP_DIALOG = 6922; -- I'm Dohdjuma, and I sell all kinds of things.
   HERMINIA_SHOP_DIALOG = 0; -- 
+		 WEAVERS_GUILD = 6923; -- Welcome to the Weavers' Guild salesroom.
+		 FISHING_GUILD = 6924; -- Welcome to the Fishermen's Guild salesroom.
+

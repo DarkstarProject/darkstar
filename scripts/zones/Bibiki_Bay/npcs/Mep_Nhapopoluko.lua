@@ -1,11 +1,9 @@
 -----------------------------------
---  Area: Bibiki Bay
---   NPC: Mep Nhapopoluko
---  Type: Guild Merchant
+-- Area: Bibiki Bay
+-- NPC: Mep Nhapopoluko
+-- Guild Merchant NPC: Fishing Guild 
 -- @zone: 4
---  @pos: 464.350 -6 752.731
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- @pos: 464.350 -6 752.731
 -----------------------------------
 
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
@@ -24,6 +22,7 @@ end;
 
 function onTrigger(player,npc)
 	player:showText(npc, MEP_NHAPOPOLUKO_DIALOG);
+	player:sendGuild(518,1,23,5);
 end;
 
 -----------------------------------
