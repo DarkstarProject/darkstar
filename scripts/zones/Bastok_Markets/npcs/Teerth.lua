@@ -1,11 +1,9 @@
 -----------------------------------
 --  Area: Bastok Markets
 --  NPC: Teerth
---  Type: Merchant
+--  Guild Merchant NPC: Goldsmithing Guild 
 --  @zone: 235
 --  @pos: -205.190 -7.814 -56.507
---
---  Auto-Script: Requires Verification - Verified standard dialog - thrydwolf 12/8/2011
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -24,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 	player:showText(npc,TEERTH_SHOP_DIALOG);
-	--player:messageSpecial(7368);
+	player:sendGuild(522,8,23,4);
 end;
 
 -----------------------------------

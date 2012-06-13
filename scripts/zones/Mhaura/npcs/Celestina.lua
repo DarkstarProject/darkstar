@@ -3,6 +3,7 @@
 -- NPC:  Celestina
 -- Finish Quest: The Sand Charm
 -- Involved in Quest: Riding on the Clouds
+-- Guild Merchant NPC: Goldsmithing Guild 
 -- @zone 249
 -- @pos -36 -16 72
 -----------------------------------
@@ -44,6 +45,9 @@ function onTrigger(player,npc)
 	
 	if(player:getVar("theSandCharmVar") == 3) then 
 		player:startEvent(0x007e,13095); -- During quest "The Sand Charm" - 3rd dialog
+	else
+		player:messageSpecial(GOLDSMITHING_GUILD);
+		player:sendGuild(523,8,23,4);
 	end
 	
 end;

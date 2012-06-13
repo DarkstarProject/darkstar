@@ -52,8 +52,8 @@ THE_GATE_IS_LOCKED = 11929; -- The gate is locked.
 	EMALIVEULAUX_CLOSED_DIALOG = 12028; -- I'd love to sell you goods imported from the island of Tavnazia, but with the area under foreign control, I can't secure my trade routes...
 EMALIVEULAUX_COP_NOT_COMPLETED = 12026; -- I'd like to start my own business someday, but I just haven't found anything that truly interests me.
 
-             ODOBA_SHOP_DIALOG = 10706; -- Welcome to the Alchemists' Guild! Looking for something specific?
-          MAYMUNAH_SHOP_DIALOG = 10707; -- Welcome to the Alchemists' Guild. How may I help you?
+             ODOBA_SHOP_DIALOG = 10707; -- Welcome to the Alchemists' Guild. How may I help you?
+          MAYMUNAH_SHOP_DIALOG = 10706; -- Welcome to the Alchemists' Guild! Looking for something specific?
 
 -- Weather Dialog
 MARIADOK_DIALOG = 6666; -- Your fate rides on the changing winds of Vana'diel. I can give you insight on the local weather.

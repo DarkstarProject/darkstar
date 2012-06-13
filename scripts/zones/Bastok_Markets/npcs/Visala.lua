@@ -1,11 +1,9 @@
 -----------------------------------
 --  Area: Bastok Markets
---   NPC: Visala
---  Type: Merchant
--- @zone: 235
+--  NPC: Visala
+--  Guild Merchant NPC: Goldsmithing Guild 
+--  @zone: 235
 --  @pos: -202.000 -7.814 -56.823
---
--- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -24,6 +22,7 @@ end;
 
 function onTrigger(player,npc)
 	player:showText(npc, VISALA_SHOP_DIALOG);
+	player:sendGuild(522,8,23,4);
 end;
 
 -----------------------------------
