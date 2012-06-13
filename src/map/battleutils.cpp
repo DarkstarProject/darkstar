@@ -1153,7 +1153,7 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical)  
 {
 	//wholly possible for DEF to be near 0 with the amount of debuffs/effects now.
-    float ratio = PAttacker->ATT() / ((PDefender->DEF()==0) ? 1 : PDefender->DEF());
+    float ratio = (float)PAttacker->ATT() / (float)((PDefender->DEF()==0) ? 1 : PDefender->DEF());
 	float cRatioMax = 0;
 	float cRatioMin = 0;
 
@@ -1169,6 +1169,9 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 			cap = 2.2f;
 			break;
 		}
+	}
+	if(PAttacker->objtype == TYPE_MOB){
+		cap = 2.2f; //simply set for the 2h calc further on
 	}
 
 

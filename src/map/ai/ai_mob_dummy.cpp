@@ -808,7 +808,7 @@ void CAIMobDummy::ActionAttack()
 			}
 			else
 			{
-				if (m_PMob->health.tp >= 100 && rand()%100 > 55 || m_PMob->health.tp == 300 ||
+				if (m_PMob->health.tp >= 100 && rand()%100 > 60 || m_PMob->health.tp == 300 ||
 					m_PMob->health.tp >= 100 && m_PMob->GetHPP()<=25 ) 
 				{
 					m_ActionType = ACTION_MOBABILITY_START;
