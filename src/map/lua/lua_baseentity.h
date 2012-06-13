@@ -154,6 +154,8 @@ public:
 	int32 bcnmRegister(lua_State*);			//Attempts to register a bcnm instance
 	int32 bcnmEnter(lua_State*);			//Enter a bcnm instance
 	int32 bcnmLeave(lua_State*);			//Leave a bcnm instance
+	int32 isInBcnm(lua_State*);				//true if you're INSIDE the bc (not just the status)
+
 
 	int32 getVar(lua_State*);				// Returns a character variable
 	int32 setVar(lua_State*);				// Sets a character variable

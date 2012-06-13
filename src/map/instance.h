@@ -36,6 +36,13 @@ enum BCRULES{
 	RULES_SPAWN_TREASURE_ON_WIN = 0x08,
 };
 
+enum LEAVE_CODE{
+	LEAVE_EXIT = 1,
+	LEAVE_WIN = 2,
+	LEAVE_WARPDC = 3,
+	LEAVE_LOSE = 4
+};
+
 class CMobEntity;
 class CCharEntity;
 

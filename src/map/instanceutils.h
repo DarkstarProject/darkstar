@@ -30,7 +30,6 @@
 class CInstance;
 
 namespace instanceutils{
-	int* getInstanceStartPosition(CInstance* instance); //returns x y z rot in that order
 	int* getLosePosition(CInstance* instance); //returns x y z rot in that order
 	int* getWinPosition(CInstance* instance); //returns x y z rot in that order
 	bool meetsWinningConditions(CInstance* instance, uint32 tick);

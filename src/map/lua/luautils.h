@@ -39,6 +39,7 @@ class CItem;
 class CRegion;
 class CStatusEffect;
 class CMobSkill;
+class CInstance;
 
 namespace luautils
 {
@@ -92,6 +93,11 @@ namespace luautils
     int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
 	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// triggers on mob death
 	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);					// triggers on mob engaging a target
+
+	int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance);				//triggers when enter a bcnm
+	int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode);	//triggers when leaving a bcnm
+																//Code 1=via Circle 2=warp/dc 3=win 4=lose
+	int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance);				//triggers when successfully registered a bcnm
 	
 	int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);// triggers when mob weapon skill is used
 	int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill);// triggers when pet uses an ability

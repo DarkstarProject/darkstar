@@ -28,6 +28,7 @@
 #include "mobentity.h"
 #include "packets/position.h"
 #include "packets/message_basic.h"
+#include "lua/luautils.h"
 
 
 CInstance::CInstance(uint16 id){
@@ -155,20 +156,9 @@ bool CInstance::enterBcnm(CCharEntity* PChar){
 		if(m_PlayerList.at(i)->id == PChar->id){
 			if(PChar->m_insideBCNM){ShowWarning("%s is already inside a BCNM!\n",PChar->GetName());}
 			PChar->m_insideBCNM = true;
-			int* pos = instanceutils::getInstanceStartPosition(this);
-			if(pos==NULL){
-				ShowWarning("BCNM Entry : Unable to find a starting position for this instance -> %s %i %i \n",
-					PChar->GetName(),this->getID(),this->getInstanceNumber());
-			}
-			else{
-				PChar->loc.p.x = pos[0];
-				PChar->loc.p.y = pos[1];
-				PChar->loc.p.z = pos[2];
-				PChar->loc.p.rotation = pos[3];
-			}
 			ShowDebug("Entered ID %i Instance %i \n",this->m_BcnmID,this->m_InstanceNumber);
-			PChar->pushPacket(new CPositionPacket(PChar));
-			//todo: callback to lua
+			//callback to lua
+			luautils::OnBcnmEnter(PChar,this);
 			return true;
 		}
 	}
@@ -253,9 +243,9 @@ void CInstance::cleanup(){
 	locked = false;
 }
 
-bool CInstance::winBcnm(){ //move everyone to win area
-	//todo: callback to lua
+bool CInstance::winBcnm(){ 
 	for(int i=0; i<m_PlayerList.size(); i++){
+		luautils::OnBcnmLeave(m_PlayerList.at(i),this,LEAVE_WIN);
 		if(this->delPlayerFromBcnm(m_PlayerList.at(i))){i--;}
 	}
 	cleanup();
@@ -263,8 +253,8 @@ bool CInstance::winBcnm(){ //move everyone to win area
 }
 
 bool CInstance::loseBcnm(){
-	//todo: callback to lua
 	for(int i=0; i<m_PlayerList.size(); i++){
+		luautils::OnBcnmLeave(m_PlayerList.at(i),this,LEAVE_LOSE);
 		if(this->delPlayerFromBcnm(m_PlayerList.at(i))){i--;}
 	}
 

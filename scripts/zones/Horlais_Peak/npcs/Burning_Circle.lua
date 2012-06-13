@@ -51,6 +51,10 @@ require("scripts/zones/Horlais_Peak/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	if(TradeBCNM(player,player:getZone(),trade))then -- New function handled it
+		return;
+	end
+	
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
@@ -76,6 +80,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	if(EventTriggerBCNM(player,npc))then --New function handled it
+		return;
+	end
+
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
@@ -108,6 +116,10 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
+
+	if(EventUpdateBCNM(player,csid,option))then --New function handled it
+		return;
+	end
 
 	if(csid == 0x7d00) then
 		pZone = player:getZone();
@@ -151,6 +163,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
+	if(EventFinishBCNM(player,csid,option))then --New function handled it
+		return;
+	end
 
 	pZone = player:getZone();
 

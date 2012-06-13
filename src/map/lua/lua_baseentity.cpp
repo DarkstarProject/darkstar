@@ -3779,7 +3779,6 @@ inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L){
 
 /***************************************************************
   Attempts to enter a BCNM instance.
-  INPUT: The BCNM ID to enter.
   OUTPUT: 1 if successful, 0 if not.
   Call on: Any player. (e.g. non-orb trader in same pt)
 ****************************************************************/
@@ -3787,20 +3786,17 @@ inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L){
 inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-	uint16 bcnmid = lua_tointeger(L,1);
+
 	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
 		uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD,0)->GetPower();
-		if(effect_bcnmid == bcnmid){
-			if(PChar->loc.zone->m_InstanceHandler->enterBcnm(bcnmid,PChar)){
-				lua_pushinteger( L,1);
-				return 1;
-			}
+		if(PChar->loc.zone->m_InstanceHandler->enterBcnm(effect_bcnmid,PChar)){
+			lua_pushinteger( L,1);
+			return 1;
 		}
 	}
-	ShowDebug("%s is unable to enter BCNMID %i.\n",PChar->GetName(),bcnmid);
+	ShowDebug("%s is unable to enter.\n",PChar->GetName());
 	lua_pushinteger( L,0);
 	return 1;
 }
@@ -3832,6 +3828,20 @@ inline int32 CLuaBaseEntity::bcnmLeave(lua_State *L){
 		ShowDebug("BCNM Leave :: %s does not have EFFECT_BATTLEFIELD. \n",PChar->GetName());
 	}
 
+	lua_pushinteger( L,0);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::isInBcnm(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	
+	if(PChar->m_insideBCNM){
+		lua_pushinteger( L,1);
+		return 1;
+	}
 	lua_pushinteger( L,0);
 	return 1;
 }
@@ -4012,5 +4022,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmRegister),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmEnter),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmLeave),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBcnm),
 	{NULL,NULL}
 };

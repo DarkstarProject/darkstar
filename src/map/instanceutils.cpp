@@ -28,36 +28,6 @@
 #include "instance.h"
 
 namespace instanceutils{
-
-	/**************************************************************
-	Gets the starting x,y,z,rot for the instance (the place to be
-	warped to by the BCNM). Returns NULL if cannot be resolved.
-	**************************************************************/
-	int* getInstanceStartPosition(CInstance* instance){
-		if(instance==NULL){return NULL;}
-		int position [4] = {0,0,0,0}; 
-		
-		switch(instance->getZoneId()){
-		case 139: //Horlais Peak
-			switch(instance->getInstanceNumber()){
-			case 1:
-				position[0]=-416; position[1]=118; position[2]=-27; position[3]=5;
-				return position;
-				break;
-			}
-			break;
-		case 146: //Balgas Dias
-			break;
-		case 206: //Qu'bia Arena
-			break;
-		case 144: //Waughroon Shrine
-			break;
-		case 168: //Chamber of Oracles
-			break;
-		}
-		return NULL;
-	}
-
 	/***************************************************************
 		Spawns monsters for the given BCNMID/Instance number by
 		looking at bcnm_instance table for mob ids then spawning
@@ -130,7 +100,8 @@ namespace instanceutils{
 	bool meetsLosingConditions(CInstance* instance, uint32 tick){
 		//check for expired duration e.g. >30min
 		if(tick - instance->getStartTime() > instance->getTimeLimit()*1000){
-			ShowDebug("BCNM %i inst:%i - You have exceeded your time limit! \n",instance->getID(),instance->getInstanceNumber());
+			ShowDebug("BCNM %i inst:%i - You have exceeded your time limit! tick %u start %u limit %u \n",instance->getID(),
+				instance->getInstanceNumber(),tick,instance->getStartTime(),instance->getTimeLimit());
 			return true;
 		}
 

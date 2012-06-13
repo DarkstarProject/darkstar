@@ -30,6 +30,7 @@
 
 #include "luautils.h"
 #include "lua_baseentity.h"
+#include "lua_instance.h"
 #include "lua_region.h"
 #include "lua_spell.h"
 #include "lua_statuseffect.h"
@@ -98,6 +99,7 @@ int32 init()
 	Lunar<CLuaTradeContainer>::Register(LuaHandle);
 	Lunar<CLuaZone>::Register(LuaHandle);
 	Lunar<CLuaMobSkill>::Register(LuaHandle);
+	Lunar<CLuaInstance>::Register(LuaHandle);
 
 	ShowMessage("\t\t - "CL_GREEN"[OK]"CL_RESET"\n"); 
 	return 0;
@@ -1623,5 +1625,142 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
+
+/********************************************************************
+	onBcnmEnter - callback when you enter a BCNM via a lua call to bcnmEnter(bcnmid)
+*********************************************************************/
+int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance){
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnBcnmEnter");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(),PInstance->getBcnmName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnBcnmEnter: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnBcnmEnter");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnBcnmEnter: undefined procedure OnBcnmEnter\n");
+		return 0;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+	
+	CLuaInstance LuaInstanceEntity(PInstance);
+	Lunar<CLuaInstance>::push(LuaHandle,&LuaInstanceEntity);
+	
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnBcnmEnter: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/********************************************************************
+	onBcnmLeave - callback when you leave a BCNM via multiple means.
+	The method of leaving is given by the LeaveCode as follows:
+	1 - Leaving via burning circle e.g. "run away"
+	2 - Leaving via warp or d/c
+	3 - Leaving via win
+	4 - Leaving via lose
+	This callback is executed for everyone in the BCNM when they leave
+	so if they leave via win, this will be called for each char.
+*********************************************************************/
+int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode){
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnBcnmLeave");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(),PInstance->getBcnmName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnBcnmLeave: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnBcnmLeave");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnBcnmLeave: undefined procedure OnBcnmLeave\n");
+		return 0;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+	
+	CLuaInstance LuaInstanceEntity(PInstance);
+	Lunar<CLuaInstance>::push(LuaHandle,&LuaInstanceEntity);
+
+	lua_pushinteger(LuaHandle,LeaveCode);
+	
+	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnBcnmLeave: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/********************************************************************
+	onBcnmRegister - callback when you successfully register a BCNM.
+	For example, trading an orb, selecting the battle.
+	Called AFTER assigning BCNM status to all valid characters.
+	This callback is called only for the character initiating the
+	registration, and after CInstance:init() procedure.
+*********************************************************************/
+int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance){
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnBcnmRegister");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(),PInstance->getBcnmName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnBcnmRegister: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnBcnmRegister");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnBcnmRegister: undefined procedure OnBcnmRegister\n");
+		return 0;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+	
+	CLuaInstance LuaInstanceEntity(PInstance);
+	Lunar<CLuaInstance>::push(LuaHandle,&LuaInstanceEntity);
+	
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnBcnmRegister: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
 
 }; // namespace luautils

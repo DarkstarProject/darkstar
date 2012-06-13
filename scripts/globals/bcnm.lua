@@ -1,3 +1,195 @@
+require("scripts/globals/status");
+
+-- NEW SYSTEM BCNM NOTES
+-- The "core" functions TradeBCNM EventUpdateBCNM EventTriggerBCNM EventFinishBCNM all return TRUE if the action performed is covered by the function. This means all the old code will still be executed if the new functions don't support it. This means that there is effectively 'backwards compatibility' with the old system.
+
+--array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
+--e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
+-- DO NOT INCLUDE MAAT FIGHTS
+itemid_bcnmid_map = {139,{1426,1,1429,1,1436,1}, --Horlais Peak
+					 144,{0,0}, --Waughroon Shrine
+					 146,{0,0}, --Balgas Dias
+					 168,{0,0}, --Chamber of Oracles
+					 206,{0,0}}; --Qu'Bia Arena
+					 
+-- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
+-- DO NOT INCLUDE MAAT FIGHTS
+bcnmid_param_map = {139,{0,0}};
+
+
+-- Call this onTrade for burning circles
+function TradeBCNM(player,zone,trade)
+	if(player:hasStatusEffect(EFFECT_BATTLEFIELD))then --cant start a new bc
+		return false;
+	end
+	if(CheckMaatFights(player,zone,trade))then --This function returns true for maat fights
+		return true;
+	end
+	--the following is for orb battles, etc
+	id = ItemToBCNMID(player,zone,trade);
+	
+	if(id == -1)then --no valid BCNMs with this item
+		--todo: display message based on zone text offset
+		player:setVar("trade_bcnmid",0);
+		return false;
+	else --a valid BCNM with this item, start it.
+		mask = GetBattleBitmask(id,zone);
+		if(mask==-1)then --Cannot resolve this BCNMID to an event number, edit bcnmid_param_map!
+			print("Item is for a valid BCNM but cannot find the event parameter to display to client.");
+			player:setVar("trade_bcnmid",0);
+			return false;
+		end
+		player:startEvent(0x7d00,0,0,0,mask,0,0,0,0);
+		return true;
+	end
+end;
+
+function EventTriggerBCNM(player,npc)
+	return false;
+	
+	if(player:hasStatusEffect(EFFECT_BATTLEFIELD))then
+		if(player:isInBcnm()==1)then
+			player:bcnmLeave(1);
+		else
+			--todo: give option of bcnm to enter then enter
+			player:bcnmEnter();
+		end
+	end
+		
+	return true;
+end;
+
+function EventUpdateBCNM(player,csid,option)
+	id = player:getVar("trade_bcnmid"); --this is 0 if the bcnm isnt handled by new functions
+	if(id==0) then
+		return false;
+	end
+	
+	print("UPDATE csid "..csid.." option "..option);
+	
+	if(option==255 and csid==0x7d00)then --Clicked yes, try to register bcnmid
+		--inst = player:bcnmRegister(id);
+		inst = 1;
+		if(inst<0)then
+			player:setVar("bcnm_instanceid",inst);
+			player:setVar("bcnm_instanceid_tick",0);
+			--player:tradeComplete();
+		else 
+			--no free battlefields at the moment!
+			player:setVar("bcnm_instanceid",255);
+			player:setVar("bcnm_instanceid_tick",0);
+		end
+	elseif(option==0 and csid==0x7d00)then --Requesting an Instance
+		-- Increment the instance ticker.
+		-- The client will send a total of THREE EventUpdate packets for each one of the free instances.
+		-- If the first instance is free, it should respond to the first packet
+		-- If the second instance is free, it should respond to the second packet, etc
+		instance = player:getVar("bcnm_instanceid_tick");
+		instance = instance + 1;
+		player:setVar("bcnm_instanceid_tick",instance);
+		
+		if(instance == player:getVar("bcnm_instanceid"))then
+			--respond to this packet
+			player:updateEvent(2,5,0,0,1,0);
+			player:bcnmEnter(id);
+			player:setVar("bcnm_instanceid_tick",0);
+		elseif(player:getVar("bcnm_instanceid")==255)then --none free
+			print("nfa");
+			player:updateEvent(2,5,0,0,1,0);
+			--param1
+			--2=generic enter cs
+			--3=spam increment instance requests
+			--4=cleared to enter but cant while ppl engaged
+			--5=dont meet req, access denied.
+			--6=room max cap
+			--param2 alters the eventfinish option (offset)
+			--param7/8 = does nothing??
+		end
+		--@pos -517 159 -209
+		--@pos -316 112 -103
+		--player:updateEvent(msgid,bcnmFight,0,record,numadventurers,skip); skip=1 to skip anim
+		--msgid 1=wait a little longer, 2=enters
+	end
+	
+	return true;
+end;
+
+function EventFinishBCNM(player,csid,option)
+	--print("FINISH csid "..csid.." option "..option);
+	return false;
+end;
+
+--Returns TRUE if you're trying to do a maat fight, regardless of outcome e.g. if you trade testimony on wrong job, this will return true in order to prevent further execution of TradeBCNM. Returns FALSE if you're not doing a maat fight (in other words, not trading a testimony!!)
+function CheckMaatFights(player,zone,trade)
+	player:setVar("trade_bcnmid",0);
+	--check for maat fights (one maat fight per zone in the db, but >1 mask entries depending on job, so we
+	--need to choose the right one depending on the players job, and make sure the right testimony is traded,
+	--and make sure the level is right!
+	itemid = trade:getItem();
+	job = player:getMainJob();
+	lvl = player:getMainLvl();
+	
+	if(itemid>=1426 and itemid<=1440) then --The traded item IS A TESTIMONY
+		if(lvl<66)then --not high enough level for maat fight :(
+			return true;
+		end
+	
+		if(zone==139)then --Horlais Peak Maat Fight		
+			if(job==1 and itemid==1426) then --WAR
+				player:startEvent(0x7d00,0,0,0,32,0,0,0,0);
+				player:setVar("trade_bcnmid",1);
+			elseif(job==4 and itemid==1429) then --BLM
+				player:startEvent(0x7d00,0,0,0,64,0,0,0,0);
+				player:setVar("trade_bcnmid",1);
+			elseif(job==11 and itemid==1436) then -- RNG
+				player:startEvent(0x7d00,0,0,0,128,0,0,0,0);
+				player:setVar("trade_bcnmid",1);
+			else
+				print("DEBUG: Job/testimony do not match");
+			end
+			return true;
+		end
+	end
+	--if it got this far then its not a testimony
+	return false;
+end;
+
+function GetBattleBitmask(id,zone)
+	--normal sweep for NON MAAT FIGHTS
+	for zoneindex = 1, table.getn(bcnmid_param_map), 2 do
+		if(zone==bcnmid_param_map[zoneindex])then --matched zone
+			for bcnmindex = 1, table.getn(bcnmid_param_map[zoneindex + 1]), 2 do --loop bcnms in this zone
+				if(id==bcnmid_param_map[zoneindex+1][bcnmindex])then --found bcnmid
+					return bcnmid_param_map[zoneindex+1][bcnmindex+1];
+				end
+			end
+		end
+	end
+	return -1;
+end;
+
+function ItemToBCNMID(player,zone,trade)
+	for zoneindex = 1, table.getn(itemid_bcnmid_map), 2 do
+		if(zone==itemid_bcnmid_map[zoneindex])then --matched zone
+			for bcnmindex = 1, table.getn(itemid_bcnmid_map[zoneindex + 1]), 2 do --loop bcnms in this zone
+				if(trade:getItem()==itemid_bcnmid_map[zoneindex+1][bcnmindex])then
+					return itemid_bcnmid_map[zoneindex+1][bcnmindex+1];
+				end
+			end
+		end
+	end
+	return -1;
+end;
+
+
+
+
+------------------------------------------------------------------------------------------------
+--		DEPRECATED BCNM CODE IS BELOW THIS POINT.
+--		DEPRECATED BCNM CODE IS BELOW THIS POINT.
+--		DEPRECATED BCNM CODE IS BELOW THIS POINT.
+------------------------------------------------------------------------------------------------
+
 -----------------------
 -- BCNM Menu
 -----------------------

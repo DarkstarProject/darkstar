@@ -24,6 +24,7 @@
 #include "instance_handler.h"
 #include "charentity.h"
 #include "mobentity.h"
+#include "lua/luautils.h"
 
 
 CInstanceHandler::CInstanceHandler(uint8 zoneid)
@@ -93,13 +94,7 @@ bool CInstanceHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar){
 		if(m_Instances.at(i)->getID() == bcnmid){
 			if(m_Instances.at(i)->isPlayerInBcnm(PChar)){
 				if(m_Instances.at(i)->delPlayerFromBcnm(PChar)){
-					int* pos = instanceutils::getLosePosition(m_Instances.at(i));
-					if(pos!=NULL){
-						PChar->loc.p.x = pos[0];
-						PChar->loc.p.y = pos[1];
-						PChar->loc.p.z = pos[2];
-						PChar->loc.p.rotation = pos[3];
-					}
+					luautils::OnBcnmLeave(PChar,m_Instances.at(i),LEAVE_EXIT);
 					if(!m_Instances.at(i)->isReserved()){//no more players in BCNM
 						ShowDebug("Detected no more players in BCNM Instance %i. Cleaning up. \n",
 							m_Instances.at(i)->getInstanceNumber());
@@ -203,6 +198,7 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 	for(int i=0; i<m_Instances.size(); i++){
 		if(m_Instances.at(i)->getID() == id && m_Instances.at(i)->getInstanceNumber()==inst){
 			m_Instances.at(i)->init();
+			luautils::OnBcnmRegister(PChar,m_Instances.at(i));
 			return inst;
 			//m_Instances.at(i)->
 		}
