@@ -1,11 +1,9 @@
 -----------------------------------
---  Area: Metalworks
---   NPC: Vicious Eye
---  Type: Guild Merchant
+-- Area: Metalworks
+-- NPC: Vicious Eye
+-- Guild Merchant NPC: Blacksmithing Guild 
 -- @zone: 237
---  @pos: -106.132 0.999 -28.757
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- @pos: -106.132 0.999 -28.757
 -----------------------------------
 
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
@@ -23,7 +21,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, VICIOUS_EYE_SHOP_DIALOG);
+	if(player:sendGuild(528,8,23,2)) then
+		player:showText(npc, VICIOUS_EYE_SHOP_DIALOG);
+	end
 end;
 
 -----------------------------------

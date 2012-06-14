@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Northern San d'Oria
 --  NPC: Doggomehr
---  Type: Merchant
+--  Guild Merchant NPC: Blacksmithing Guild 
 --  @zone: 231
 --  @pos: -193.920 3.999 162.027
 --
@@ -22,7 +22,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,DOGGOMEHR_SHOP_DIALOG);
+	if(player:sendGuild(526,8,23,2)) then
+		player:showText(npc,DOGGOMEHR_SHOP_DIALOG);
+	end
 end;
 
 -----------------------------------

@@ -1,11 +1,9 @@
 -----------------------------------
---  Area: Metalworks
---   NPC: Amulya
---  Type: Guild Merchant
+-- Area: Metalworks
+-- NPC: Amulya
+-- Guild Merchant NPC: Blacksmithing Guild 
 -- @zone: 237
---  @pos: -106.093 0.999 -24.564
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- @pos: -106.093 0.999 -24.564
 -----------------------------------
 
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
@@ -23,7 +21,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, AMULYA_SHOP_DIALOG);
+	if(player:sendGuild(528,8,23,2)) then
+		player:showText(npc, AMULYA_SHOP_DIALOG);
+	end
 end;
 
 -----------------------------------
