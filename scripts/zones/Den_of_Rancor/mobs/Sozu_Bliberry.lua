@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Temple of Uggalepih
--- NPC:  Tonberry Harrier
+-- Area: Den of Rancor
+-- NPC:  Sozu Bliberry
 -----------------------------------
 
 -----------------------------------
