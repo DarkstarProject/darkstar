@@ -106,9 +106,17 @@ CZone::CZone(uint8 ZoneID, uint8 RegionID)
 	m_RegionCheckTime = 0;
 	m_InstanceHandler = NULL;
 
+	switch(m_zoneID){ //all bcnm zones
+		case 139:
+		case 146:
+		case 206:
+		case 144:
+		case 168:
+			m_InstanceHandler = new CInstanceHandler(m_zoneID);
+	}
+
 	LoadZoneLines();
 	LoadZoneSettings();
-	LoadZoneInstances();
 }
 
 /************************************************************************
@@ -290,7 +298,7 @@ void CZone::LoadZoneSettings()
 
 /***********************************************************************
 		Loads the zones BCNM instances from the database
-************************************************************************/
+************************************************************************
 void CZone::LoadZoneInstances() 
 {
 	const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize \
@@ -340,7 +348,7 @@ void CZone::LoadZoneInstances()
 		}
 		m_InstanceHandler = PInstHand;
 	}
-}
+}*/
 
 
 /************************************************************************

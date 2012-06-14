@@ -26,8 +26,43 @@
 #include "zoneutils.h"
 #include "instanceutils.h"
 #include "instance.h"
+#include "instance_handler.h"
 
 namespace instanceutils{
+	/***************************************************************
+		Loads the given instance from the database and returns
+		a new Instance object.
+	****************************************************************/
+	CInstance* loadInstance(CInstanceHandler* hand, uint16 bcnmid){
+		const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId \
+						    FROM bcnm_info \
+							WHERE bcnmId = %u";
+					  
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, bcnmid);
+
+		if (ret == SQL_ERROR || 
+		Sql_NumRows(SqlHandle) == 0 ||
+		Sql_NextRow(SqlHandle) != SQL_SUCCESS) 
+		{
+			ShowError("Cannot load instance BCNM:%i \n",bcnmid);
+		} 
+		else 
+		{
+				CInstance* PInstance = new CInstance(hand,Sql_GetUIntData(SqlHandle,1));
+				int8* tmpName;
+				Sql_GetData(SqlHandle,0,&tmpName,NULL);
+				PInstance->setBcnmName(tmpName);
+				PInstance->setTimeLimit(Sql_GetUIntData(SqlHandle,4));
+				PInstance->setLevelCap(Sql_GetUIntData(SqlHandle,5));
+				PInstance->setDropId(Sql_GetUIntData(SqlHandle,6));
+				PInstance->setMaxParticipants(Sql_GetUIntData(SqlHandle,8));
+				PInstance->setZoneId(Sql_GetUIntData(SqlHandle,9));
+				PInstance->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle,7);
+				return PInstance;
+		}
+		return NULL;
+	}
+
 	/***************************************************************
 		Spawns monsters for the given BCNMID/Instance number by
 		looking at bcnm_instance table for mob ids then spawning
@@ -61,6 +96,11 @@ namespace instanceutils{
 				    {
 				        PMob->PBattleAI->SetLastActionTime(0);
 				        PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+
+						if(strcmp(PMob->GetName(),"Maat")==0){//set job based on poppng char job
+						//	PMob->
+						//	ShowDebug("Change maat job to %i \n",instance->getPlayerMainJob());
+						}
 						
 				        PMob->SetDespawnTimer(0); //never despawn
 						ShowDebug("Spawned %s id %i inst %i \n",PMob->GetName(),instance->getID(),instance->getInstanceNumber());
@@ -98,8 +138,9 @@ namespace instanceutils{
 	or when everyone has left, etc.
 	****************************************************************/
 	bool meetsLosingConditions(CInstance* instance, uint32 tick){
-		//check for expired duration e.g. >30min
-		if(tick - instance->getStartTime() > instance->getTimeLimit()*1000){
+		//check for expired duration e.g. >30min. Need the tick>start check as the start can be assigned
+		//after the tick initially due to threading
+		if(tick>instance->getStartTime() && (tick - instance->getStartTime()) > instance->getTimeLimit()*1000){
 			ShowDebug("BCNM %i inst:%i - You have exceeded your time limit! tick %u start %u limit %u \n",instance->getID(),
 				instance->getInstanceNumber(),tick,instance->getStartTime(),instance->getTimeLimit());
 			return true;
@@ -108,6 +149,9 @@ namespace instanceutils{
 		//check for all dead for 3min (or whatever the rule mask says)
 		if(instance->getDeadTime()!=0){
 			if(instance->m_RuleMask & RULES_REMOVE_3MIN){
+			//	if(((tick - instance->getDeadTime())/1000) % 20 == 0){
+			//		instance->pushMessageToAllInBcnm(200,180 - (tick - instance->getDeadTime())/1000);
+			//	}
 				if(tick - instance->getDeadTime() > 180000){
 					ShowDebug("All players from the battlefield %i inst:%i have fallen for 3mins. Removing.\n",
 						instance->getID(),instance->getInstanceNumber());

@@ -28,6 +28,7 @@
 #include "../common/mmo.h"
 	
 class CInstance;
+class CInstanceHandler;
 
 namespace instanceutils{
 	int* getLosePosition(CInstance* instance); //returns x y z rot in that order
@@ -35,6 +36,7 @@ namespace instanceutils{
 	bool meetsWinningConditions(CInstance* instance, uint32 tick);
 	bool meetsLosingConditions(CInstance* instance, uint32 tick);
 	bool spawnMonstersForBcnm(CInstance* instance);
+	CInstance* loadInstance(CInstanceHandler* hand, uint16 bcnmid);
 };
 
 #endif

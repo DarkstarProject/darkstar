@@ -31,8 +31,9 @@
 #include "lua/luautils.h"
 
 
-CInstance::CInstance(uint16 id){
+CInstance::CInstance(CInstanceHandler* hand, uint16 id){
 	m_BcnmID = id;
+	m_Handler = hand;
 	locked = false;
 }
 	
@@ -111,6 +112,14 @@ void CInstance::setDropId(uint16 id){
 
 //========================PLAYER FUNCTIONS=============================================//
 
+uint8 CInstance::getPlayerMainJob(){
+	if(m_PlayerList.size()==0){
+		ShowWarning("instance:getPlayerMainJob - No players in battlefield!\n");
+		return 1;
+	}
+	return m_PlayerList.at(0)->GetMJob();
+}
+
 bool CInstance::isPlayerInBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(PChar->id == m_PlayerList.at(i)->id){
@@ -123,7 +132,7 @@ bool CInstance::isPlayerInBcnm(CCharEntity* PChar){
 void CInstance::pushMessageToAllInBcnm(uint16 msg, uint16 param){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->m_lastBcnmTimePrompt != param){
-			m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(m_PlayerList.at(i),m_PlayerList.at(i),param,0,202));
+			m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(m_PlayerList.at(i),m_PlayerList.at(i),param,0,msg));
 			m_PlayerList.at(i)->m_lastBcnmTimePrompt = param;
 		}
 	}
@@ -241,6 +250,12 @@ void CInstance::cleanup(){
 	//wipe mob list
 	m_EnemyList.clear();
 	locked = false;
+	//delete instance
+	if(m_Handler==NULL){
+		ShowError("Instance handler is NULL from Instance BCNM %i Inst %i \n",m_BcnmID,m_InstanceNumber);
+	}
+	m_Handler->wipeInstance(this);
+	delete this;
 }
 
 bool CInstance::winBcnm(){ 

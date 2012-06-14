@@ -182,7 +182,7 @@ private:
 
 	void	LoadZoneLines();				// список zonelines (можно было бы заменить этот метод методом InsertZoneLine)
 	void	LoadZoneSettings();				// настройки зоны
-	void	LoadZoneInstances();			// loads the zones bcnm instances
+	//void	LoadZoneInstances();			// loads the zones bcnm instances
 };
 
 #endif

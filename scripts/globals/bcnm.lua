@@ -45,7 +45,7 @@ function TradeBCNM(player,zone,trade)
 end;
 
 function EventTriggerBCNM(player,npc)
-	return false;
+	--return false;
 	
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD))then
 		if(player:isInBcnm()==1)then
@@ -68,9 +68,9 @@ function EventUpdateBCNM(player,csid,option)
 	print("UPDATE csid "..csid.." option "..option);
 	
 	if(option==255 and csid==0x7d00)then --Clicked yes, try to register bcnmid
-		--inst = player:bcnmRegister(id);
-		inst = 1;
-		if(inst<0)then
+		inst = player:bcnmRegister(id);
+		--inst = 1;
+		if(inst>0)then
 			player:setVar("bcnm_instanceid",inst);
 			player:setVar("bcnm_instanceid_tick",0);
 			--player:tradeComplete();

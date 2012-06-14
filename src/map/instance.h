@@ -45,12 +45,13 @@ enum LEAVE_CODE{
 
 class CMobEntity;
 class CCharEntity;
+class CInstanceHandler;
 
 class CInstance
 {
 public:
 
-	CInstance(uint16 bcnmid);
+	CInstance(CInstanceHandler* hand, uint16 bcnmid);
     
 	//bcnm related functions
 	uint16		getID();
@@ -80,6 +81,7 @@ public:
 	bool		addPlayerToBcnm(CCharEntity* PChar); //true if added
 	bool		delPlayerFromBcnm(CCharEntity* PChar); //true if deleted
 	bool		allPlayersDead(); //true if all players in the bcnm are dead.
+	uint8		getPlayerMainJob(); //used for Maat fights 
 	void		pushMessageToAllInBcnm(uint16 msg, uint16 param);
 
 	//mob related functions
@@ -101,7 +103,7 @@ public:
 	uint16		m_RuleMask;
 	bool		locked;
 private:
-
+	CInstanceHandler* m_Handler;
 	uint16		m_BcnmID;
 	string_t	m_name;
 	uint8       m_ZoneID;

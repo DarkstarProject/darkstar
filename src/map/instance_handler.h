@@ -49,10 +49,11 @@ public:
 	bool	hasFreeInstance(uint16 bcnmid); //returns true if there is a free instance available
 	uint32	pollTimeLeft(uint16 bcnmid); //returns the shortest time left of all 3 instances of the given BCNM ID
 
-	void	storeInstance(CInstance* inst);
+	void	wipeInstance(CInstance* inst);
 private:
 	uint8					m_ZoneId;
-	std::vector<CInstance*>	m_Instances;
+	uint8					m_MaxInstances; //usually 3
+	CInstance*				m_Instances[3];
 };
 
 #endif

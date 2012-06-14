@@ -30,12 +30,16 @@
 CInstanceHandler::CInstanceHandler(uint8 zoneid)
 {
 	m_ZoneId = zoneid;
+	m_MaxInstances = 3;
+	for(int i=0; i<3;i++){
+		m_Instances[i] = NULL;
+	}
 }
 
 void CInstanceHandler::handleInstances(uint32 tick){
-	for(int i=0; i<m_Instances.size(); i++){
-		if(m_Instances.at(i)->isReserved()){ //handle it!
-			CInstance* PInstance = m_Instances.at(i);
+	for(int i=0; i<m_MaxInstances; i++){
+		if(m_Instances[i]!=NULL){ //handle it!
+			CInstance* PInstance = m_Instances[i];
 			//handle locking of bcnm when engaged
 			if(!PInstance->locked && PInstance->isPlayersFighting()){
 				PInstance->lockBcnm();
@@ -85,20 +89,24 @@ void CInstanceHandler::handleInstances(uint32 tick){
 
 }
 
-void CInstanceHandler::storeInstance(CInstance* inst){
-	m_Instances.push_back(inst);
+void CInstanceHandler::wipeInstance(CInstance* inst){
+	if(inst->getInstanceNumber() <= m_MaxInstances && inst->getInstanceNumber()>0 && 
+		m_Instances[inst->getInstanceNumber()-1] != NULL){
+			ShowDebug("Wiping instance BCNMID: %i Instance %i \n",inst->getID(),inst->getInstanceNumber());
+			m_Instances[inst->getInstanceNumber()-1] = NULL;
+	}
 }
 
 bool CInstanceHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar){
-	for(int i=0; i<m_Instances.size(); i++){
-		if(m_Instances.at(i)->getID() == bcnmid){
-			if(m_Instances.at(i)->isPlayerInBcnm(PChar)){
-				if(m_Instances.at(i)->delPlayerFromBcnm(PChar)){
-					luautils::OnBcnmLeave(PChar,m_Instances.at(i),LEAVE_EXIT);
-					if(!m_Instances.at(i)->isReserved()){//no more players in BCNM
+	for(int i=0; i<m_MaxInstances; i++){
+		if(m_Instances[i]!=NULL && m_Instances[i]->getID() == bcnmid){
+			if(m_Instances[i]->isPlayerInBcnm(PChar)){
+				if(m_Instances[i]->delPlayerFromBcnm(PChar)){
+					luautils::OnBcnmLeave(PChar,m_Instances[i],LEAVE_EXIT);
+					if(!m_Instances[i]->isReserved()){//no more players in BCNM
 						ShowDebug("Detected no more players in BCNM Instance %i. Cleaning up. \n",
-							m_Instances.at(i)->getInstanceNumber());
-						m_Instances.at(i)->loseBcnm();
+							m_Instances[i]->getInstanceNumber());
+						m_Instances[i]->loseBcnm();
 					}
 					return true;
 				}
@@ -109,10 +117,10 @@ bool CInstanceHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar){
 }
 
 bool CInstanceHandler::winBcnm(uint16 bcnmid, CCharEntity* PChar){
-	for(int i=0; i<m_Instances.size(); i++){
-		if(m_Instances.at(i)->getID() == bcnmid){
-			if(m_Instances.at(i)->isPlayerInBcnm(PChar)){
-				m_Instances.at(i)->winBcnm();
+	for(int i=0; i<m_MaxInstances; i++){
+		if(m_Instances[i]!=NULL && m_Instances[i]->getID() == bcnmid){
+			if(m_Instances[i]->isPlayerInBcnm(PChar)){
+				m_Instances[i]->winBcnm();
 				return true;
 			}
 		}
@@ -121,10 +129,10 @@ bool CInstanceHandler::winBcnm(uint16 bcnmid, CCharEntity* PChar){
 }
 
 bool CInstanceHandler::enterBcnm(uint16 bcnmid, CCharEntity* PChar){
-	for(int i=0; i<m_Instances.size(); i++){
-		if(m_Instances.at(i)->getID() == bcnmid){
-			if(m_Instances.at(i)->isValidPlayerForBcnm(PChar)){
-				if(m_Instances.at(i)->enterBcnm(PChar)){
+	for(int i=0; i<m_MaxInstances; i++){
+		if(m_Instances[i]!=NULL && m_Instances[i]->getID() == bcnmid){
+			if(m_Instances[i]->isValidPlayerForBcnm(PChar)){
+				if(m_Instances[i]->enterBcnm(PChar)){
 					return true;
 				}
 			}
@@ -134,81 +142,76 @@ bool CInstanceHandler::enterBcnm(uint16 bcnmid, CCharEntity* PChar){
 }
 
 int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
-	int inst = -1;
-	for(int i=0; i<m_Instances.size(); i++){
-		if(m_Instances.at(i)->getID()==id && !m_Instances.at(i)->isReserved()){
-			switch(m_Instances.at(i)->getMaxParticipants()){
-			case 1:
-				if(m_Instances.at(i)->addPlayerToBcnm(PChar)){
-					ShowDebug("InstanceHandler ::1 Added %s to the valid players list for BCNM %i Instance %i \n",
-						PChar->GetName(),id,m_Instances.at(i)->getInstanceNumber());
-					inst = m_Instances.at(i)->getInstanceNumber();
-				}
-				break;
-			case 3:
-				if(PChar->PParty == NULL){//just add the initiator
-					if(m_Instances.at(i)->addPlayerToBcnm(PChar)){
-						ShowDebug("InstanceHandler ::3 Added %s to the valid players list for BCNM %i Instance %i \n",
-							PChar->GetName(),id,m_Instances.at(i)->getInstanceNumber());
-						inst = m_Instances.at(i)->getInstanceNumber();
-					}
-				}
-				else if(PChar->PParty->members.size() > 3){//too many people in pt for this bcnm, fail.
-					ShowDebug("InstanceHandler ::3 Too many people in party to register BCNM.\n");
-				}
-				else{
-					for(int j=0;j<PChar->PParty->members.size(); j++){
-						if(m_Instances.at(i)->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))){
-							ShowDebug("InstanceHandler ::3 Added %s to the valid players list for BCNM %i Instance %i \n",
-								PChar->PParty->members.at(j)->GetName(),id,m_Instances.at(i)->getInstanceNumber());
-						}
-					}
-					inst = m_Instances.at(i)->getInstanceNumber();
-				}
-				break;
-			case 6:
-				if(PChar->PParty == NULL){//just add the initiator
-					if(m_Instances.at(i)->addPlayerToBcnm(PChar)){
-						ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
-							PChar->GetName(),id,m_Instances.at(i)->getInstanceNumber());
-						inst = m_Instances.at(i)->getInstanceNumber();
-					}
-				}
-				else{
-					for(int j=0;j<PChar->PParty->members.size(); j++){
-						if(m_Instances.at(i)->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))){
-							ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
-								PChar->PParty->members.at(j)->GetName(),id,m_Instances.at(i)->getInstanceNumber());
-						}
-					}
-					inst = m_Instances.at(i)->getInstanceNumber();
-				}
-				break;
-			case 12: ShowDebug("BCNMs for 12 people are not implemented yet.\n"); break;
-			case 18: ShowDebug("BCNMs for 18 people are not implemented yet.\n"); break;
-			default: ShowDebug("Unknown max participants value %i \n",m_Instances.at(i)->getMaxParticipants());
-		}
+	if(!hasFreeInstance(id)){
+		return -1;
+	}
+	CInstance* PInstance = instanceutils::loadInstance(this,id);
+	if(PInstance==NULL){
+		return -1;
+	}
+	for(int i=0; i<m_MaxInstances; i++){
+		if(m_Instances[i]==NULL){
+			PInstance->setInstanceNumber(i+1);
 			break;
 		}
 	}
-	if(inst==-1){
-		return -1;
-	}
-	//spawn the monsters for this bcnm
-	for(int i=0; i<m_Instances.size(); i++){
-		if(m_Instances.at(i)->getID() == id && m_Instances.at(i)->getInstanceNumber()==inst){
-			m_Instances.at(i)->init();
-			luautils::OnBcnmRegister(PChar,m_Instances.at(i));
-			return inst;
-			//m_Instances.at(i)->
+
+	switch(PInstance->getMaxParticipants()){
+	case 1:
+		if(PInstance->addPlayerToBcnm(PChar)){
+			ShowDebug("InstanceHandler ::1 Added %s to the valid players list for BCNM %i Instance %i \n",
+				PChar->GetName(),id,PInstance->getInstanceNumber());
 		}
+		break;
+	case 3:
+		if(PChar->PParty == NULL){//just add the initiator
+			if(PInstance->addPlayerToBcnm(PChar)){
+				ShowDebug("InstanceHandler ::3 Added %s to the valid players list for BCNM %i Instance %i \n",
+					PChar->GetName(),id,PInstance->getInstanceNumber());
+			}
+		}
+			else if(PChar->PParty->members.size() > 3){//too many people in pt for this bcnm, fail.
+				ShowDebug("InstanceHandler ::3 Too many people in party to register BCNM.\n");
+			}
+			else{
+				for(int j=0;j<PChar->PParty->members.size(); j++){
+					if(PInstance->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))){
+						ShowDebug("InstanceHandler ::3 Added %s to the valid players list for BCNM %i Instance %i \n",
+							PChar->PParty->members.at(j)->GetName(),id,PInstance->getInstanceNumber());
+					}
+				}
+			}
+			break;
+		case 6:
+			if(PChar->PParty == NULL){//just add the initiator
+				if(PInstance->addPlayerToBcnm(PChar)){
+					ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
+						PChar->GetName(),id,PInstance->getInstanceNumber());
+				}
+			}
+			else{
+				for(int j=0;j<PChar->PParty->members.size(); j++){
+					if(PInstance->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))){
+						ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
+							PChar->PParty->members.at(j)->GetName(),id,PInstance->getInstanceNumber());
+					}
+				}
+			}
+			break;
+		case 12: ShowDebug("BCNMs for 12 people are not implemented yet.\n"); break;
+		case 18: ShowDebug("BCNMs for 18 people are not implemented yet.\n"); break;
+		default: ShowDebug("Unknown max participants value %i \n",PInstance->getMaxParticipants());
 	}
 
+	m_Instances[PInstance->getInstanceNumber()-1] = PInstance;
+	PInstance->init();
+	luautils::OnBcnmRegister(PChar,PInstance);
+	return PInstance->getInstanceNumber();
 }
 
 bool CInstanceHandler::hasFreeInstance(uint16 id){
-	for(int i=0; i<m_Instances.size(); i++){
-		if(m_Instances.at(i)->getID()==id && !m_Instances.at(i)->isReserved()){
+	for(int i=0; i<m_MaxInstances; i++){
+		if(m_Instances[i] == NULL){
 			return true;
 		}
 	}
