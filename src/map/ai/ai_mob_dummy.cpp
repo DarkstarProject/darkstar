@@ -416,7 +416,7 @@ void CAIMobDummy::ActionAbilityStart()
 		}
 	}
 		//prevent randomly selecting the 2h as a tp move
-		if(m_PMobSkill->getID()==0 && MobSkills.size()==1){//only 2h available, dont use a tp move
+		if(m_PMobSkill->getID()==0 && MobSkills.size()==1){ //only 2h available, dont use a tp move
 			m_PMob->health.tp = 0; 
 			m_ActionType = ACTION_ATTACK;
 		    ActionAttack();
@@ -436,6 +436,12 @@ void CAIMobDummy::ActionAbilityStart()
 	}
 	else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
 		Action.ActionTarget = m_PMob;
+	}
+	else{
+		m_PMob->health.tp = 0; 
+		m_ActionType = ACTION_ATTACK;
+		ActionAttack();
+		return; 
 	}
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
