@@ -6629,7 +6629,7 @@ INSERT INTO `mob_groups` VALUES ('6617', '1983', '121', '0', '128', '0', '40', '
 INSERT INTO `mob_groups` VALUES ('6618', '1984', '121', '0', '128', '0', '40', '45');
 INSERT INTO `mob_groups` VALUES ('6619', '2108', '121', '0', '128', '0', '26', '31');
 INSERT INTO `mob_groups` VALUES ('6620', '2203', '121', '14400', '0', '1884', '56', '57');
-INSERT INTO `mob_groups` VALUES ('6621', '2226', '121', '0', '0', '0', '0', '0');
+INSERT INTO `mob_groups` VALUES ('6621', '2226', '121', '1', '0', '0', '75', '75');
 INSERT INTO `mob_groups` VALUES ('6622', '2397', '121', '330', '2', '2046', '39', '42');
 INSERT INTO `mob_groups` VALUES ('6623', '2405', '121', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('6624', '2442', '121', '330', '1', '2084', '51', '55');
