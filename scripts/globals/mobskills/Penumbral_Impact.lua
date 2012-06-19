@@ -1,5 +1,22 @@
 ---------------------------------------------
--- Penumbral_Impact
+--  Penumbral Impact
 --
---
+--  Description: Deals dark damage to a single target.
+--  Type: Magical
+--  Utsusemi/Blink absorb: Ignores shadows
+--  Range: Melee
+--  Notes:
 ---------------------------------------------
+require("/scripts/globals/settings");
+require("/scripts/globals/status");
+require("/scripts/globals/monstertpmoves");
+
+---------------------------------------------
+function OnMobWeaponSkill(target, mob, skill)
+    dmgmod = math.random(1,4)/10 + .6;
+    accmod = 1;
+    info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*1.5,accmod,dmgmod,TP_NO_EFFECT);
+    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
+end;
