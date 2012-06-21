@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 4558
--- Item: Yagudo Drink
--- Item Effect: Restores 120 MP over 3 minutes
+-- ID: 5575
+-- Item: Yogurt
+-- Item Effect: Restores 60 HP over 180 seconds
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -19,8 +19,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if(target:hasStatusEffect(EFFECT_REFRESH) == false) then
-		target:addStatusEffect(EFFECT_REFRESH,2,3,180);
+	if(target:hasStatusEffect(EFFECT_REGEN) == false) then
+		target:addStatusEffect(EFFECT_REGEN,1,3,180);
 	else
 		target:messageBasic(423);
 	end
