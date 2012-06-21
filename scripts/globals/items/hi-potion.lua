@@ -20,4 +20,5 @@ end;
 
 function onItemUse(target)
         target:addHP(100*ITEM_POWER);
+	target:messageBasic(24,0,100);
 end;

@@ -26,4 +26,5 @@ end;
 function onItemUse(target)
         target:addMP(350*ITEM_POWER);
         target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
+	target:messageBasic(25,0,350*ITEM_POWER);
 end;
