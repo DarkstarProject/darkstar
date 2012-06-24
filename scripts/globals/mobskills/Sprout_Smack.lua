@@ -29,7 +29,7 @@ function OnMobWeaponSkill(target, mob, skill)
             target:addStatusEffect(typeEffect,power,tic,duration);
         end
     end
-
+ end
     numhits = 1;
     accmod = 1;
     dmgmod = 1;

@@ -1,20 +1,18 @@
 -----------------------------------     
--- Blade Ku
+-- Blade Shun
 -- Katana weapon skill  
 -- Skill level: N/A
--- Description: Delivers a five-hit attack. Accuracy varies with TP.
--- In order to obtain Blade: Ku, the quest Bugi Soden must be completed.
--- Will stack with Sneak Attack.
--- Aligned with the Shadow Gorget, Soil Gorget & Light Gorget.
--- Aligned with the Shadow Belt, Soil Belt & Light Belt.
--- Skillchain Properties: Gravitation/Transfixion
--- Modifiers: STR:10% ; DEX:10%
--- 100%TP    200%TP    300%TP   
--- 1.00      1.00      1.00 
---
---         ACC 
--- 100%TP    200%TP    300%TP   
--- ??        ??        ?? 
+-- Description: Delivers a fivefold attack. Attack power varies with TP.
+-- In order to obtain Blade: Shun the quest Martial Mastery must be completed.
+-- This Weapon Skill's first hit fTP is duplicated for all additional hits.
+-- Alignet with the Flame Gorget, Light Gorget & Thunder Gorget.
+-- Alignet with the Flame Belt, Light Belt & Thunder Belt.
+-- Element: None
+-- Skillchain Properties: Fusion/Impaction
+-- Modifiers: DEX:20~100%, depending on merit points ugrades.
+-- Damage Multipliers by TP:
+-- 100%	    200%	  300%
+-- 0.6875	0.6875	  0.6875
 -----------------------------------        
 require("scripts/globals/status");      
 require("scripts/globals/settings");    
@@ -24,8 +22,8 @@ require("scripts/globals/weaponskills");
 function OnUseWeaponSkill(player, target, wsID) 
         
         numHits = 5;
-        ftp100 = 1; ftp200 = 1; ftp300 = 1;
-        str_wsc = 0.1; dex_wsc = 0.1; vit_wsc = 0.0; agi_wsc = 0.0; int_wsc = 0.0; mnd_wsc = 0.0; chr_wsc = 0.0;
+        ftp100 = 0.6875; ftp200 = 0.6875; ftp300 = 0.6875;
+        str_wsc = 0.0; dex_wsc = 0.2; vit_wsc = 0.0; agi_wsc = 0.0; int_wsc = 0.0; mnd_wsc = 0.0; chr_wsc = 0.0;
         crit100 = 0.0; crit200 = 0.0; crit300 = 0.0;
         canCrit = false;
         acc100 = 0.0; acc200= 0.0; acc300= 0.0;

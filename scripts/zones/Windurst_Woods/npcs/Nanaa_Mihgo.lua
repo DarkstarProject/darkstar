@@ -133,17 +133,17 @@ function onEventFinish(player,csid,option)
 		player:setVar("theTenshodoShowdownCS",1);
 		player:addKeyItem(LETTER_FROM_THE_TENSHODO);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_THE_TENSHODO);
-	elseif(csid == 0x00a5 and option == 1) then -- Windurst Mission 2-1
+	elseif(csid == 0x00a5 and option == 1) then -- Windurst Mission 2-1 continuation
 		-- Add the key item for the mission
 		player:addKeyItem(LAPIS_MONOCLE);
 		player:messageSpecial(KEYITEM_OBTAINED,LAPIS_MONOCLE);
 		-- Grab a random value to mark the correct fossil with
-		selections = {17588734,17588738,17588739,17588740,17588742} -- Id's of the fossils that we have to examine
-		random_value = math.random(1,5);
+		selections = {17588734,17588736,17588737,17588738,17588739,17588740} -- Id's of the fossils that we have to examine
+		random_value = math.random(1,6);
 		player:setVar("MissionStatus_randfoss",selections[random_value]);
 		-- Mark the progress
 		player:setVar("MissionStatus",2);
-	elseif(csid == 0x00a9) then -- Windurst Mission 2-1
+	elseif(csid == 0x00a9) then -- Windurst Mission 2-1 continuation
 		player:setVar("MissionStatus",4);
 		player:delKeyItem(LAPIS_MONOCLE);
 		player:delKeyItem(LAPIS_CORAL);

@@ -35,6 +35,7 @@ function onSpellCast(caster,target,spell)
 	
 	-- Do it!
 	if(bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 2) or (DIA_OVERWRITE == 1 and bio:getPower() < 2)) then
+		target:delStatusEffect(EFFECT_DIA);
 		target:addStatusEffect(EFFECT_DIA,2,3,duration,FLAG_ERASABLE);
 		spell:setMsg(2);
 	else

@@ -14,7 +14,7 @@ function onSpellCast(caster,target,spell)
 	-- If your skill level is below 65 your stuck at the minimum
 	local sItem = caster:getEquipID(2);
 	local sLvl = caster:getSkillLevel(40); -- Gets skill level of Singing
-	
+	power=0;
 	-- If your above 64 skill then you get the bonus of 1 more defense for every 4 skill 
 	if (sLvl >= 65 and sLvl <= 121) then 
 		sBoost = math.floor((sLvl - 61)/4); 

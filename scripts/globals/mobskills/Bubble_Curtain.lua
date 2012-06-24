@@ -28,4 +28,5 @@ function OnMobWeaponSkill(target, mob, skill)
     else
         mob:addStatusEffect(typeEffect,power,tic,duration);
     return typeEffect;
+	end
 end;
