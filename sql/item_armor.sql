@@ -2418,7 +2418,7 @@ INSERT INTO `item_armor` VALUES ('13181', 'federation_stables_scarf', '15', '104
 INSERT INTO `item_armor` VALUES ('13182', 'oscar_scarf', '71', '1048575', '0', '0', '0', '512', '0');
 INSERT INTO `item_armor` VALUES ('13183', 'wing_pendant', '7', '1048575', '0', '0', '0', '512', '0');
 INSERT INTO `item_armor` VALUES ('13184', 'white_belt', '1', '2', '0', '0', '0', '1024', '0');
-INSERT INTO `item_armor` VALUES ('13185', 'muscle_belt', '67', '266531', '0', '0', '0', '1024', '0');
+INSERT INTO `item_armor` VALUES ('13185', 'muscle_belt', '67', '266531', '0', '0', '1', '1024', '0');
 INSERT INTO `item_armor` VALUES ('13186', 'black_belt', '70', '2', '0', '0', '0', '1024', '0');
 INSERT INTO `item_armor` VALUES ('13187', 'tiger_belt', '65', '376817', '0', '0', '0', '1024', '0');
 INSERT INTO `item_armor` VALUES ('13188', 'star_sash', '70', '706142', '0', '0', '0', '1024', '0');

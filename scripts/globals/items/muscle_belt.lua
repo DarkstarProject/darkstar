@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 13279
---	Equip: muscle_belt_+1
---  Adds "Regen" Effect +2 every 3 sec
+--	ID: 13185
+--	Equip: muscle_belt
+--  Adds "Regen" Effect +1 every 3 sec when HP <= 50%
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -15,10 +15,10 @@ function onItemCheck(target)
     FiftyPercent = ((target:getMaxHP())*(1/2));
     currentHP = target:getHP();
 
-	if (sItem == 13279 and currentHP <= FiftyPercent) then
-		target:addStatusEffectEx(EFFECT_AUTO_REGEN,0,2,3,0,13279);
+	if (sItem == 13185 and currentHP <= FiftyPercent) then
+		target:addStatusEffectEx(EFFECT_AUTO_REGEN,0,1,3,0,13185);
 	else
-		target:delStatusEffect(EFFECT_AUTO_REGEN,13279);
+		target:delStatusEffect(EFFECT_AUTO_REGEN,13185);
 	end
 end;
 
@@ -29,7 +29,6 @@ end;
 function onEffectGain(target,effect)
 end;
 
-
 -----------------------------------
 -- onEffectTick Action
 -----------------------------------
@@ -39,12 +38,13 @@ function onEffectTick(target,effect)
    currentHP = target:getHP();
    FiftyPercent = ((target:getMaxHP())*(1/2));
    
-   if(sItem == 13279 and currentHP <= FiftyPercent) then
+   if(sItem == 13185 and currentHP <= FiftyPercent) then
         target:addHP(effect:getPower());
    else
-      target:delStatusEffect(EFFECT_AUTO_REGEN,13279);
+      target:delStatusEffect(EFFECT_AUTO_REGEN,13185);
    end
 end;
+
 -----------------------------------
 -- onEffectLose Action
 -----------------------------------
