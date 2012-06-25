@@ -11,10 +11,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
+	sItem = target:getEquipID(10);
     FiftyPercent = ((target:getMaxHP())*(1/2));
     currentHP = target:getHP();
 
-	if (target:getEquipID(10) == 13279 and currentHP <= FiftyPercent) then
+	if (sItem == 13279 and currentHP <= FiftyPercent) then
 		target:addStatusEffectEx(EFFECT_AUTO_REGEN,0,2,3,0,13279);
 	else
 		target:delStatusEffect(EFFECT_AUTO_REGEN,13279);
@@ -32,10 +33,21 @@ end;
 -- onEffectTick Action
 -----------------------------------
 
-function onEffectTick(target,effect)
-	target:addHP(effect:getPower());
-end;
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
+function onEffectTick(target,effect)
+   sItem = target:getEquipID(10);
+   currentHP = target:getHP();
+   FiftyPercent = ((target:getMaxHP())*(1/2));
+   
+   if(sItem == 13279 and currentHP <= FiftyPercent) then
+        target:addHP(effect:getPower());
+   else
+      target:delStatusEffect(EFFECT_AUTO_REGEN,13279);
+   end
+end;
 -----------------------------------
 -- onEffectLose Action
 -----------------------------------
