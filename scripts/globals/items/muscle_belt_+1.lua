@@ -11,8 +11,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	if (target:getEquipID(10) == 13279) then
-		target:addStatusEffectEx(EFFECT_AUTO_REGEN,0,1,3,0,13279);
+    FiftyPercent = ((target:getMaxHP())*(1/2));
+    currentHP = target:getHP();
+
+	if (target:getEquipID(10) == 13279 and currentHP <= FiftyPercent) then
+		target:addStatusEffectEx(EFFECT_AUTO_REGEN,0,2,3,0,13279);
 	else
 		target:delStatusEffect(EFFECT_AUTO_REGEN,13279);
 	end
