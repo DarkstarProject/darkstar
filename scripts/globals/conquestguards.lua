@@ -152,14 +152,15 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 			end
 		end
 		if(item >= 15761 and item <= 15763) then -- All guard can recharge ring - I can't read number of charge atm
-			if(trade:hasItemQty(item,1) and count == 1) then
+			if(trade:hasItemQty(item,1) and trade:getItemCount() == 1) then
 				if(myCP >= XpRing[item - 15760]) then
+					
 					setCP(player,myCP - XpRing[item - 15760]);
 					player:tradeComplete();
 					player:addItem(item);
-					player:messageSpecial(CONQUEST + 58,item,XpRing[item - 15760],RingCharg[(item - 15760)]);
+					player:showText(npc,CONQUEST + 58,item,XpRing[item - 15760],RingCharg[(item - 15760)]);
 				else
-					player:messageSpecial(CONQUEST + 55,item,XpRing[item - 15760]);
+					player:showText(npc,CONQUEST + 55,item,XpRing[item - 15760]);
 				end
 			end
 		end
@@ -275,7 +276,9 @@ function getSupplyAvailable(nation,player)
 	
 	if(mask ~= -1 and mask ~= 4294967295) then
 		for i = 0,18 do 
-			if(GetRegionOwner(i) ~= nation) then
+			if(GetRegionOwner(i) ~= nation or 
+			   i == 16 or 
+			   (i == 18 and player:hasCompletedMission(6,25) == false)) then
 				mask = mask + 2^(i + 5);
 			end
 		end
