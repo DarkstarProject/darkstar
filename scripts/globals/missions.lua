@@ -127,7 +127,70 @@ THE_LAST_VERSE				= 31;
 --  Promathia Missions
 -----------------------------------
 
-
+ANCIENT_FLAMES_BECKON			= 0
+THE_RITES_OF_LIFE               = 1
+BELOW_THE_ARKS                  = 2
+THE_MOTHERCRYSTALS	            = 3
+THE_ISLE_OF_FORGOTTEN_SAINTS	= 4
+AN_INVITATION_WEST	            = 5
+THE_LOST_CITY	                = 6
+DISTANT_BELIEFS	                = 7
+AN_ETERNAL_MELODY	            = 8
+ANCIENT_VOWS	                = 9
+A_TRANSIENT_DREAM               = 10
+THE_CALL_OF_THE_WYRMKING        = 11
+A_VESSEL_WITHOUT_A_CAPTAIN      = 12
+THE_ROAD_FORKS                  = 13
+EMERALD_WATERS                  = 14
+VICISSITUDES	                = 15
+DESCENDANTS_OF_A_LINE_LOST      = 16
+LOUVERANCE                      = 17
+MEMORIES_OF_A_MAIDEN            = 18
+COMEDY_OF_ERRORS_ACT_I          = 19
+COMEDY_OF_ERRORS_ACT_II         = 20
+EXIT_STAGE_LEFT                 = 21
+TENDING_AGED_WOUNDS             = 22
+DARKNESS_NAMED                  = 23
+THE_CRADLES_OF_CHILDREN_LOST    = 24
+SHELTERING_DOUBT                = 25
+THE_SAVAGE                      = 26
+THE_SECRETS_OF_WORSHIP          = 27
+SLANDEROUS_UTTERINGS            = 28
+THE_RETURN_HOME                 = 29
+THE_ENDURING_TUMULT_OF_WAR      = 30
+DESIRES_OF_EMPTINESS            = 31
+THREE_PATHS                     = 32
+PAST_SINS                       = 33
+SOUTHERN_LEGEND                 = 34
+PARTNERS_WITHOUT_FAME           = 35
+A_CENTURY_OF_HARDSHIP           = 36
+DEPARTURES                      = 37
+THE_PURSUIT_OF_PARADISE         = 38
+SPIRAL                          = 39
+BRANDED                         = 40
+PRIDE_AND_HONOR                 = 41
+AND_THE_COMPASS_GUIDES          = 42
+WHERE_MESSENGERS_GATHER         = 43
+ENTANGLEMENT                    = 44
+HEAD_WIND                       = 45
+FLAMES_FOR_THE_DEAD             = 46
+ECHOES_OF_TIME                  = 47
+FOR_WHOM_THE_VERSE_IS_SUNG      = 48
+A_PLACE_TO_RETURN               = 49
+MORE_QUESTIONS_THAN_ANSWERS     = 50
+ONE_TO_BE_FEARED                = 51
+IN_THE_LIGHT_OF_THE_CRYSTAL     = 52
+CHAINS_AND_BONDS                = 53
+FLAMES_IN_THE_DARKNESS          = 54
+FIRE_IN_THE_EYES_OF_MEN         = 55
+CALM_BEFORE_THE_STORM           = 56
+THE_WARRIOR_S_PATH              = 57
+EMPTINESS_BLEEDS                = 58
+GARDEN_OF_ANTIQUITY             = 59
+A_FATE_DECIDED                  = 60
+WHEN_ANGELS_FALL                = 61
+DAWN                            = 62
+THE_LAST_VERSE                  = 63
 
 -----------------------------------
 --  Aht Urhgan Missions
@@ -510,7 +573,7 @@ function getMissionMask(player)
 				-- 5-1 NOTE: This mission will not be listed in the Mission List
 				--first_mission = first_mission + 16384;
 			--end
-			if(player:hasCompletedMission(BASTOK,XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
+			if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) and player:hasCompletedMission(BASTOK,XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
 			end

@@ -100,7 +100,7 @@ function Escape(player, zone)
 	elseif(zone == 65) then 												-- From Mamook
 		player:setPos(-459,-1,-535,191,51); 								-- To Wajaom Woodlands at E-12
 	elseif(zone == 62) then 												-- From Halvung
-		player:setPos(868,-9,179,128,61); 									-- To Mount Zhayolm at L-7
+		player:setPos(868,-10,179,128,61); 									-- To Mount Zhayolm at L-7
 	elseif(zone == 54) then 												-- From Arrapago Reef
 		player:setPos(166,-12,-59,249,79); 									-- To Caedarva Mire Azouph Isle at I-6
 	elseif(zone == 55) then													-- From Ilrusi Atoll

@@ -605,25 +605,25 @@ switch (region): caseof {
 	
 	npc  = {
 	-- 
-		16875816,SANDORIA,	-- Jemmoquel, R.K.
-		16875823,SANDORIA,	-- Chilaumme, R.K.
-		16875819,SANDORIA,	-- flag
-		16875827,SANDORIA,	-- flag
+		16875825,SANDORIA,	-- Jemmoquel, R.K.
+		16875832,SANDORIA,	-- Chilaumme, R.K.
+		16875828,SANDORIA,	-- flag
+		16875836,SANDORIA,	-- flag
 	-- 
-		16875817,BASTOK,	-- Yoram, I.M.
-		16875824,BASTOK,	-- Ghost Talker, I.M. 
-		16875820,BASTOK,	-- flag
-		16875828,BASTOK,	-- flag
+		16875826,BASTOK,	-- Yoram, I.M.
+		16875833,BASTOK,	-- Ghost Talker, I.M. 
+		16875829,BASTOK,	-- flag
+		16875837,BASTOK,	-- flag
 	-- 
-		16875818,WINDURST,	-- Teldo-Moroldo, W.W.
-		16875825,WINDURST,	-- Cotete, W.W.
-		16875821,WINDURST,	-- flag		
-		16875829,WINDURST,	-- flag
+		16875827,WINDURST,	-- Teldo-Moroldo, W.W.
+		16875834,WINDURST,	-- Cotete, W.W.
+		16875830,WINDURST,	-- flag		
+		16875838,WINDURST,	-- flag
 	-- 
-		16875822,BEASTMEN,	-- flag
-        16875830,BEASTMEN,	-- flag
+		16875831,BEASTMEN,	-- flag
+        16875839,BEASTMEN,	-- flag
 	--
-		16875826,OTHER,		-- Jersey
+		16875835,OTHER,		-- Jersey
 	}
   end,
   } 

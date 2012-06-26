@@ -306,7 +306,7 @@ function NzyulIsleStagingPoint(player)
 end;
 
 function toChamberOfPassage(player)
-	if ((getVanaMinute() % 2 ) == 0) then
+	if(math.random(1,2) == 1) then
 		player:setPos(133.4, 1.485, 47.427, 96, 0x32); -- Aht Urhgan Whitegate Chamber of Passage Left {R}
 	else
 		player:setPos(116.67, 1.485, 47.427, 32, 0x32); -- Aht Urhgan Whitegate Chamber of Passage Right {R}		
@@ -314,7 +314,7 @@ function toChamberOfPassage(player)
 end;
 
 function toAhtUrhganWhitegate(player)
-	player:setPos(27.608, -6.000, -124.462, 192, 50);
+	player:setPos(27.608, -6.000, -124.462, 192, 0x32);
 end;
 
 function LebrosCavern1(player)
