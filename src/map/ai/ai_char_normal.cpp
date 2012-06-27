@@ -224,7 +224,7 @@ void CAICharNormal::ActionEngage()
 		{
 			if (distance(m_PChar->loc.p, m_PBattleTarget->loc.p) <= 30)
 			{
-				if ((m_Tick - m_LastActionTime) > m_PChar->m_Weapons[SLOT_MAIN]->getDelay())
+				if ((m_Tick - m_LastMeleeTime) > m_PChar->m_Weapons[SLOT_MAIN]->getDelay())
 				{
                     if (m_PChar->animation == ANIMATION_CHOCOBO)
                     {
@@ -233,7 +233,7 @@ void CAICharNormal::ActionEngage()
                     m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
 
 					m_ActionType = ACTION_ATTACK;
-					m_LastActionTime = m_Tick - m_PChar->m_Weapons[SLOT_MAIN]->getDelay() + 1500;
+					m_LastMeleeTime = m_Tick - m_PChar->m_Weapons[SLOT_MAIN]->getDelay() + 1500;
 
 					m_PChar->status = STATUS_UPDATE;
 					m_PChar->animation = ANIMATION_ATTACK;
@@ -465,7 +465,7 @@ void CAICharNormal::ActionItemUsing()
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getActivationTime())
 	{
         // обновление времени необходимо для правильной работы задержки анимации
-
+        m_LastMeleeTime += (m_Tick - m_LastActionTime);
         m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_ITEM_FINISH;
 
@@ -539,14 +539,13 @@ void CAICharNormal::ActionItemFinish()
 
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getAnimationTime())
 	{
-		if (m_PChar->animation != ANIMATION_ATTACK) m_LastActionTime = 0;
-
 		luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
 
 		delete m_PItemUsable;
 
 		m_PChar->StatusEffectContainer->SaveStatusEffects();
 
+		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PItemUsable = NULL;
 		m_PBattleSubTarget = NULL;
@@ -740,15 +739,17 @@ void CAICharNormal::ActionRangedFinish()
 
 	if (m_PBattleSubTarget->isDead())
 	{
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-		m_PBattleSubTarget = NULL;
-		return;
+        m_LastMeleeTime += (m_Tick - m_LastActionTime);
+        m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+        m_PBattleSubTarget = NULL;
+        return;
 	}
 	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x ||
 		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 218));
 
+        m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PBattleSubTarget = NULL;
 		return;
@@ -769,59 +770,61 @@ void CAICharNormal::ActionRangedFinish()
 		Action.messageID  = 352;
 		Action.flag = 0;
 
-	  if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0)){
-			Action.messageID = 32; 
-			Action.reaction   = REACTION_EVADE;
-			Action.speceffect = SPECEFFECT_NONE;
-	  }
-	  else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)){ //hit!
-		float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
-		if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget)){
-			pdif *= 1.25; //uncapped
-			Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-			Action.messageID = 353;
-		}
+	    if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0)){
+            Action.messageID = 32; 
+            Action.reaction   = REACTION_EVADE;
+            Action.speceffect = SPECEFFECT_NONE;
+        }
+        else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)){ //hit!
+		    float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
+		    if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget)){
+			    pdif *= 1.25; //uncapped
+			    Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+			    Action.messageID = 353;
+		    }
 
-		CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
-		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-		if(PItem->getSkillType()!=SKILL_THR){
-			if(PAmmo!=NULL){
-				damage = PAmmo->getDamage();
-			}
-		}
-		damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
-		Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED);
+		    CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+		    CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+		    if(PItem->getSkillType()!=SKILL_THR){
+			    if(PAmmo!=NULL){
+				    damage = PAmmo->getDamage();
+			    }
+		    }
+		    damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
+		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED);
 
-		if(PItem != NULL){//not a throwing item, check the ammo for dmg/etc
-			battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
-			charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
-		}
+		    if(PItem != NULL){//not a throwing item, check the ammo for dmg/etc
+			    battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
+			    charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
+		    }
 
-		if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){
-			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
-			m_PChar->pushPacket(new CInventoryFinishPacket());
-		}
-	  }
-	  else{//miss
-		  Action.reaction   = REACTION_EVADE;
-	      Action.speceffect = SPECEFFECT_NONE;
-		  Action.messageID  = 354;
+		    if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){
+			    charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+			    m_PChar->pushPacket(new CInventoryFinishPacket());
+		    }
+	    }
+	    else{//miss
+            Action.reaction   = REACTION_EVADE;
+            Action.speceffect = SPECEFFECT_NONE;
+            Action.messageID  = 354;
 
-		  CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-		  if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){
-			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
-			m_PChar->pushPacket(new CInventoryFinishPacket());
-		  }
-		  if(m_PBattleSubTarget->objtype == TYPE_MOB){
-			((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
-			((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
-            ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
-		  }
-	  }
+            CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+            if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){
+			    charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+			    m_PChar->pushPacket(new CInventoryFinishPacket());
+		    }
+            if(m_PBattleSubTarget->objtype == TYPE_MOB){
+			    ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
+			    ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
+                ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
+		    }
+	    }
 
 
-		m_PChar->m_ActionList.push_back(Action);
+        m_PChar->m_ActionList.push_back(Action);
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+
+		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PBattleSubTarget = NULL;
 
@@ -1037,7 +1040,6 @@ void CAICharNormal::ActionMagicCasting()
 	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)cap_value(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
-		if (m_PChar->animation == ANIMATION_ATTACK) m_LastActionTime = m_Tick;
 
 		if (battleutils::IsParalised(m_PChar)) 
 		{
@@ -1049,7 +1051,7 @@ void CAICharNormal::ActionMagicCasting()
 		else if (battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget)) 
 		{
 		    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,106));
-		   m_ActionType = ACTION_MAGIC_INTERRUPT;
+		    m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
 			return;
 		}
@@ -1260,6 +1262,7 @@ void CAICharNormal::ActionMagicFinish()
 		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
 	}
 
+	m_LastMeleeTime += (m_Tick - m_LastActionTime);
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
@@ -1288,6 +1291,7 @@ void CAICharNormal::ActionMagicInterrupt()
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
+	m_LastMeleeTime += (m_Tick - m_LastActionTime);
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
@@ -1791,6 +1795,7 @@ void CAICharNormal::ActionAttack()
 		ActionDisengage();
 		return;
 	}
+
 	if (!IsMobOwner(m_PBattleTarget))
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
@@ -1827,7 +1832,7 @@ void CAICharNormal::ActionAttack()
 		WeaponDelay -= m_PChar->getMod(MOD_MARTIAL_ARTS) * 1000 / 60;
 	}
 
-	if ((m_Tick - m_LastActionTime) > WeaponDelay)
+	if ((m_Tick - m_LastMeleeTime) > WeaponDelay)
 	{
 		if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
 		{
@@ -1847,8 +1852,7 @@ void CAICharNormal::ActionAttack()
 			}
 			return;
 		}
-        m_LastActionTime = (m_LastActionTime >= m_AttackMessageTime) ? m_LastActionTime + WeaponDelay : m_Tick;
-
+        m_LastMeleeTime = (m_LastMeleeTime >= m_AttackMessageTime) ? m_LastMeleeTime + WeaponDelay : m_Tick;
 		if (battleutils::IsParalised(m_PChar)) 
 		{
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,29));
@@ -1976,10 +1980,7 @@ void CAICharNormal::ActionAttack()
 				}
 				m_PChar->m_ActionList.push_back(Action);
 			}
-			//TODO: INEFFICIENT, REPLACE WITH EFFECTFLAG_ATTACK
-			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
-			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST);
+			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 		}
 	}

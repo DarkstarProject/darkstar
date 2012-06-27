@@ -116,6 +116,7 @@ protected:
 	ACTIONTYPE		m_ActionType;			// текущее действие (состояние)
 	uint16			m_ActionTargetID;		// дополнительная цель, участвующая в действии
 	uint32			m_LastActionTime;		// время начала любого действия
+	uint32			m_LastMeleeTime;		// Last time melee hit occurred
 	uint32			m_Tick;					// текущее значение времени
 
 	CSpell*			m_PSpell;				// читаемое заклинание
