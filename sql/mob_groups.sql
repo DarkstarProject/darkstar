@@ -8780,7 +8780,7 @@ INSERT INTO `mob_groups` VALUES ('8768', '4041', '166', '0', '128', '0', '44', '
 INSERT INTO `mob_groups` VALUES ('8769', '4349', '166', '528', '0', '4160', '3', '5');
 INSERT INTO `mob_groups` VALUES ('8770', '38', '167', '0', '128', '16', '52', '54');
 INSERT INTO `mob_groups` VALUES ('8771', '233', '167', '7920', '0', '176', '56', '62');
-INSERT INTO `mob_groups` VALUES ('8772', '461', '167', '1056', '128', '334', '65', '65');
+INSERT INTO `mob_groups` VALUES ('8772', '461', '167', '1056', '0', '334', '65', '65');
 INSERT INTO `mob_groups` VALUES ('8773', '482', '167', '7920', '128', '0', '60', '75');
 INSERT INTO `mob_groups` VALUES ('8774', '908', '167', '1056', '0', '636', '52', '54');
 INSERT INTO `mob_groups` VALUES ('8775', '1118', '167', '7920', '0', '798', '72', '73');

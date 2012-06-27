@@ -331,26 +331,26 @@ switch (region): caseof {
 
 	npc  = {
 	-- 
-		17232196,SANDORIA,	-- Parledaire, R.K.
-		17232203,SANDORIA,	-- Leaufetie, R.K. 
-		17232199,SANDORIA,	-- flag
-		17232207,SANDORIA,	-- flag
+		17232199,SANDORIA,	-- Parledaire, R.K.
+		17232206,SANDORIA,	-- Leaufetie, R.K. 
+		17232202,SANDORIA,	-- flag
+		17232210,SANDORIA,	-- flag
 	-- 
-		17232197,BASTOK,	-- Akane, I.M.
-		17232204,BASTOK,	-- Rattling Rain, I.M. 
-		17232200,BASTOK,	-- flag
-		17232208,BASTOK,	-- flag
+		17232200,BASTOK,	-- Akane, I.M.
+		17232207,BASTOK,	-- Rattling Rain, I.M. 
+		17232203,BASTOK,	-- flag
+		17232211,BASTOK,	-- flag
 	-- 
-		17232198,WINDURST,	-- Ryunchi-Pauchi, W.W.
-		17232205,WINDURST,	-- Chopapa, W.W. 
-		17232201,WINDURST,	-- flag 
-		17232209,WINDURST,	-- flag
+		17232201,WINDURST,	-- Ryunchi-Pauchi, W.W.
+		17232208,WINDURST,	-- Chopapa, W.W. 
+		17232204,WINDURST,	-- flag 
+		17232212,WINDURST,	-- flag
 	-- 
-		17232202,BEASTMEN,	-- flag
-	    17232210,BEASTMEN,	-- flag
-	    17232215,BEASTMEN,	-- flag
+		17232205,BEASTMEN,	-- flag
+	    17232213,BEASTMEN,	-- flag
+	    17232218,BEASTMEN,	-- flag
 	--
-		17232206,OTHER,		-- Gueriette
+		17232209,OTHER,		-- Gueriette
 	}	
   end,
   
