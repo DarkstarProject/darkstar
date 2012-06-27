@@ -2881,19 +2881,29 @@ inline int32 CLuaBaseEntity::hasStatusEffect(lua_State *L)
 
 inline int32 CLuaBaseEntity::delStatusEffect(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
     bool result = false;
 
     if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-	{
-		result = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(
-                     (EFFECT)lua_tointeger(L,1), 
-					 (lua_gettop(L) >= 2 ? (uint16)lua_tointeger(L,2) : 0));
+    {
+        if(lua_gettop(L) >= 2)
+        {
+            /* Delete matching status effect with matching power */
+            result = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(
+                        (EFFECT)lua_tointeger(L,1),
+                        (uint16)lua_tointeger(L,2));
+        }
+        else
+        {
+            /* Delete matching status effect any power */
+            result = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect((EFFECT)lua_tointeger(L,1));
+        }   
     }
-	lua_pushboolean(L, result);
-	return 1;
+
+    lua_pushboolean(L, result);
+    return 1;
 }
 
 //==========================================================//
