@@ -1,6 +1,6 @@
 -----------------------------------
 --
---
+--  EFFECT_BARWATER
 --
 -----------------------------------
 
@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_WATERRES,effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_WATERRES,effect:getPower());
 end;

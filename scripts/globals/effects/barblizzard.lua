@@ -1,6 +1,6 @@
 -----------------------------------
 --
---
+--  EFFECT_BARBLIZZARD
 --
 -----------------------------------
 
@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_ICERES,effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_ICERES,effect:getPower());
 end;
