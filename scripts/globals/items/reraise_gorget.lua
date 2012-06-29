@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4182
---  Scroll of Instant ReRaise
---  Brings you back from the dead~!
+--	ID: 13171
+--	Reraise Gorget
+--  This necklace functions in the same way as the spell Reraise II.
 -----------------------------------------
 
 -----------------------------------------
@@ -11,14 +11,14 @@
 function onItemCheck(target)
 	return 0;
 end;
-
 -----------------------------------------
 -- OnItemUse
 -----------------------------------------
 
 function onItemUse(target)
-	power = 1;
-	duration = 1800;
+	power = 2;
+	duration = 2700;
+	
 	if(target:hasStatusEffect(EFFECT_RERAISE) ==true)then
 		effect = target:getStatusEffect(EFFECT_RERAISE);
 		oPower = effect:getPower();

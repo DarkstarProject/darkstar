@@ -1,8 +1,10 @@
 -----------------------------------------
---	ID: 4182
---  Scroll of Instant ReRaise
---  Brings you back from the dead~!
+-- ID: 5770
+-- Item: Super Reraiser
+-- Item Effect: This potion functions the same way as the spell Reraise.
 -----------------------------------------
+
+require("scripts/globals/status");
 
 -----------------------------------------
 -- OnItemCheck
@@ -17,8 +19,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	power = 1;
-	duration = 1800;
+	power = 3;
+	duration = 3600;
 	if(target:hasStatusEffect(EFFECT_RERAISE) ==true)then
 		effect = target:getStatusEffect(EFFECT_RERAISE);
 		oPower = effect:getPower();
