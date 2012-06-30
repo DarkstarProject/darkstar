@@ -2190,7 +2190,8 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 						PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,0,0,37));
 						continue;
 					}
-					if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
+					if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20 &&
+						PMember->loc.zone == PMob->loc.zone) // Need to move to SIGNET_CHANCE constant
 					{
 						PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
 					}

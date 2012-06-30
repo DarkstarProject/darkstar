@@ -1392,6 +1392,15 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+		if(m_PJobAbility->getID()==45){//call wyvern
+			if(m_PChar->PPet!=NULL){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 315));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+		}
 		if (m_PJobAbility->getID()==157 || m_PJobAbility->getID()==158){//Hasso/Seigan, check for 2h weapon
 			if(!m_PChar->m_Weapons[SLOT_MAIN]->isTwoHanded()){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 307));

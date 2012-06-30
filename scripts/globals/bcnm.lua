@@ -19,7 +19,7 @@ bcnmid_param_map = {139,{0,0}};
 
 -- Call this onTrade for burning circles
 function TradeBCNM(player,zone,trade)
-	-- return false;
+	 return false;
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD))then --cant start a new bc
 		return false;
 	end
@@ -46,7 +46,7 @@ function TradeBCNM(player,zone,trade)
 end;
 
 function EventTriggerBCNM(player,npc)
-	
+	return false;
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
 		if(player:isInBcnm()==1) then
 			player:bcnmLeave(1);
@@ -60,7 +60,7 @@ function EventTriggerBCNM(player,npc)
 end;
 
 function EventUpdateBCNM(player,csid,option)
-	-- return false;
+	 return false;
 	id = player:getVar("trade_bcnmid"); --this is 0 if the bcnm isnt handled by new functions
 	if(id==0) then
 		return false;

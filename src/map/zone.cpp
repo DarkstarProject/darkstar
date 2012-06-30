@@ -35,6 +35,7 @@
 #include "mobutils.h"
 #include "npcentity.h"
 #include "petentity.h"
+#include "spell.h"
 #include "treasure_pool.h"
 #include "vana_time.h"
 #include "zone.h"
@@ -804,9 +805,11 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
 						{
-							//todo: ninjitsu doesnt aggro spellcasting, nor do songs
-							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-							continue;
+							if(PChar->PBattleAI->GetCurrentSpell()->getSpellGroup()!=SPELLGROUP_SONG &&
+								PChar->PBattleAI->GetCurrentSpell()->getSpellGroup()!=SPELLGROUP_NINJUTSU){
+								PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
+								continue;
+							}
 						}
 					}
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_WEAPONSKILL)
