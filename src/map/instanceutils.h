@@ -33,6 +33,7 @@ class CInstanceHandler;
 namespace instanceutils{
 	int* getLosePosition(CInstance* instance); //returns x y z rot in that order
 	int* getWinPosition(CInstance* instance); //returns x y z rot in that order
+	int* getStartPosition(uint8 zoneid); //returns lobby position
 	bool meetsWinningConditions(CInstance* instance, uint32 tick);
 	bool meetsLosingConditions(CInstance* instance, uint32 tick);
 	bool spawnMonstersForBcnm(CInstance* instance);

@@ -89,6 +89,7 @@ public:
 	//bool		resetAllEnemySpawnPositions();
 	void		addEnemy(CMobEntity* PMob);
 	bool		allEnemiesDefeated();
+	bool		isEnemyBelowHPP(uint8 hpp);
 
 	
 	//handler functions (time/multiple rounds/etc)
@@ -102,6 +103,9 @@ public:
 
 	uint16		m_RuleMask;
 	bool		locked;
+	string_t	m_FastestName;
+	uint32		m_FastestTime;
+	uint32		lastTick;
 private:
 	CInstanceHandler* m_Handler;
 	uint16		m_BcnmID;
@@ -113,8 +117,6 @@ private:
 	uint32		m_TimeLimit;
 	uint32		m_DropId;
 	uint8		m_LevelCap;
-	string_t	m_FastestName;
-	uint32		m_FastestTime;
 	uint8		m_MaxParticipants; //1,3,6,12,18,zone
 	CCharEntity* m_CurrentInstanceLeader;
 	std::vector<CMobEntity*> m_EnemyList;

@@ -60,7 +60,7 @@ void CInstanceHandler::handleInstances(uint32 tick){
 				}
 			}
 			//handle time remaining prompts (since its useful!) Prompts every minute
-			if(((tick - PInstance->getStartTime())/1000) % 60 == 0){
+			if(((tick - PInstance->getStartTime())/1000) % 120 == 0){
 				PInstance->pushMessageToAllInBcnm(202,(PInstance->getTimeLimit()-((tick - PInstance->getStartTime())/1000)));
 			}
 
@@ -95,6 +95,28 @@ void CInstanceHandler::wipeInstance(CInstance* inst){
 			ShowDebug("Wiping instance BCNMID: %i Instance %i \n",inst->getID(),inst->getInstanceNumber());
 			m_Instances[inst->getInstanceNumber()-1] = NULL;
 	}
+}
+
+/* Disconnecting from BCNM (including warp)
+This removes the player from the active list and calls the warp/dc callback. Must bear in mind
+that this will be called if you warp BEFORE entering the bcnm (but still have battleifeld status)
+hence it doesn't check if you're "in" the BCNM, it just tries to remove you from the list.
+*/
+bool CInstanceHandler::disconnectFromBcnm(CCharEntity* PChar){ //includes warping
+	for(int i=0; i<m_MaxInstances; i++){
+		if(m_Instances[i]!=NULL){
+			if(m_Instances[i]->delPlayerFromBcnm(PChar)){
+				luautils::OnBcnmLeave(PChar,m_Instances[i],LEAVE_WARPDC);
+				if(!m_Instances[i]->isReserved()){//no more players in BCNM
+					ShowDebug("Detected no more players in BCNM Instance %i. Cleaning up. \n",
+						m_Instances[i]->getInstanceNumber());
+					m_Instances[i]->loseBcnm();
+				}
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 bool CInstanceHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar){
@@ -142,7 +164,7 @@ bool CInstanceHandler::enterBcnm(uint16 bcnmid, CCharEntity* PChar){
 }
 
 int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
-	if(!hasFreeInstance(id)){
+	if(!hasFreeInstance()){
 		return -1;
 	}
 	CInstance* PInstance = instanceutils::loadInstance(this,id);
@@ -170,15 +192,15 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 					PChar->GetName(),id,PInstance->getInstanceNumber());
 			}
 		}
-			else if(PChar->PParty->members.size() > 3){//too many people in pt for this bcnm, fail.
-				ShowDebug("InstanceHandler ::3 Too many people in party to register BCNM.\n");
-			}
 			else{
+				int numRegistered = 0;
 				for(int j=0;j<PChar->PParty->members.size(); j++){
 					if(PInstance->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))){
 						ShowDebug("InstanceHandler ::3 Added %s to the valid players list for BCNM %i Instance %i \n",
 							PChar->PParty->members.at(j)->GetName(),id,PInstance->getInstanceNumber());
+						numRegistered++;
 					}
+					if(numRegistered>=3){break;}
 				}
 			}
 			break;
@@ -209,13 +231,24 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 	return PInstance->getInstanceNumber();
 }
 
-bool CInstanceHandler::hasFreeInstance(uint16 id){
+bool CInstanceHandler::hasFreeInstance(){
 	for(int i=0; i<m_MaxInstances; i++){
 		if(m_Instances[i] == NULL){
 			return true;
 		}
 	}
 	return false;
+}
+
+uint8 CInstanceHandler::findInstanceIDFor(CCharEntity* PChar){
+	for(int i=0; i<m_MaxInstances; i++){
+		if(m_Instances[i] != NULL){
+			if(m_Instances[i]->isValidPlayerForBcnm(PChar)){
+				return m_Instances[i]->getInstanceNumber();
+			}
+		}
+	}
+	return 255;
 }
 
 uint32 CInstanceHandler::pollTimeLeft(uint16 id){

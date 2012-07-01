@@ -84,6 +84,34 @@ inline int32 CLuaInstance::getBcnmID(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaInstance::getTimeInside(lua_State* L){
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	uint32 duration = (m_PLuaInstance->lastTick - m_PLuaInstance->getStartTime())/1000;
+	lua_pushinteger( L, duration);
+	return 1;
+}
+
+inline int32 CLuaInstance::getFastestTime(lua_State* L){
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	
+	lua_pushinteger( L, m_PLuaInstance->m_FastestTime );
+	return 1;
+}
+
+inline int32 CLuaInstance::getFastestPlayer(lua_State* L){
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	
+	lua_pushstring( L, m_PLuaInstance->m_FastestName.c_str() );
+	return 1;
+}
+
+inline int32 CLuaInstance::setAsFastest(lua_State* L){
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	
+	lua_pushinteger( L, 0 );
+	return 1;
+}
+
 
 /************************************************************************
 *																		*
@@ -97,5 +125,8 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
     LUNAR_DECLARE_METHOD(CLuaInstance,getInstanceNumber),
 	LUNAR_DECLARE_METHOD(CLuaInstance,getBcnmID),
 	LUNAR_DECLARE_METHOD(CLuaInstance,getTimeLimit),
+	LUNAR_DECLARE_METHOD(CLuaInstance,getTimeInside),
+	LUNAR_DECLARE_METHOD(CLuaInstance,getFastestTime),
+	LUNAR_DECLARE_METHOD(CLuaInstance,getFastestPlayer),
 	{NULL,NULL}
 }; 

@@ -51,7 +51,7 @@ require("scripts/zones/Horlais_Peak/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(TradeBCNM(player,player:getZone(),trade))then -- New function handled it
+	if(TradeBCNM(player,player:getZone(),trade,npc))then -- New function handled it
 		return;
 	end
 	

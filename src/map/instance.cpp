@@ -35,6 +35,7 @@ CInstance::CInstance(CInstanceHandler* hand, uint16 id){
 	m_BcnmID = id;
 	m_Handler = hand;
 	locked = false;
+	m_FastestTime = 3600;
 }
 	
 uint16 CInstance::getID(){
@@ -139,7 +140,8 @@ void CInstance::pushMessageToAllInBcnm(uint16 msg, uint16 param){
 }
 
 bool CInstance::addPlayerToBcnm(CCharEntity* PChar){
-	if(m_PlayerList.size() >= m_MaxParticipants || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
+	if(m_PlayerList.size() >= m_MaxParticipants || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD) ||
+		PChar->getZone() != m_ZoneID){
 		return false;
 	}
 	m_PlayerList.push_back(PChar);
@@ -277,3 +279,11 @@ bool CInstance::loseBcnm(){
 	return true;
 }
 
+bool CInstance::isEnemyBelowHPP(uint8 hpp){
+	for(int i=0; i<m_EnemyList.size(); i++){
+		if(m_EnemyList.at(i)->GetHPP()>hpp){
+			return false;
+		}
+	}
+	return true;
+}

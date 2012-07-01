@@ -3766,7 +3766,7 @@ inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L){
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	if(PChar->loc.zone->m_InstanceHandler->hasFreeInstance(lua_tointeger(L,1))){
+	if(PChar->loc.zone->m_InstanceHandler->hasFreeInstance()){
 		ShowDebug("Free BCNM Instance found for BCNMID %i \n",lua_tointeger(L,1));
 		int instance = PChar->loc.zone->m_InstanceHandler->registerBcnm(lua_tointeger(L,1),PChar);
 
@@ -3853,6 +3853,39 @@ inline int32 CLuaBaseEntity::isInBcnm(lua_State *L){
 		return 1;
 	}
 	lua_pushinteger( L,0);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getInstanceID(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	
+	uint8 inst = 255;
+
+	if(PChar->loc.zone != NULL && PChar->loc.zone->m_InstanceHandler != NULL){
+		inst = PChar->loc.zone->m_InstanceHandler->findInstanceIDFor(PChar);
+	}
+
+	lua_pushinteger( L,inst);
+	return 1;
+}
+
+//returns 1 if all 3 instances are full. Temp measure until event param struct is found out.
+inline int32 CLuaBaseEntity::isBcnmsFull(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	
+	uint8 full = 1;
+
+	if(PChar->loc.zone!=NULL && PChar->loc.zone->m_InstanceHandler!=NULL &&
+		PChar->loc.zone->m_InstanceHandler->hasFreeInstance()){
+		full = 0;
+	}
+	lua_pushinteger( L,full);
 	return 1;
 }
 
@@ -4033,5 +4066,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmEnter),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmLeave),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBcnm),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBcnmsFull),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstanceID),
 	{NULL,NULL}
 };

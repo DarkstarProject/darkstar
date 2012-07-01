@@ -125,6 +125,13 @@ namespace instanceutils{
 	bool meetsWinningConditions(CInstance* instance, uint32 tick){
 		//handle odd cases e.g. stop fight @ x% HP
 
+		//handle Maat fights
+		if(instance->getID()==1){//maat_horlais
+			if(instance->isEnemyBelowHPP(50)){
+				return true;
+			}
+		}
+
 		//generic cases, kill all mobs
 		if(instance->allEnemiesDefeated()){
 			return true;
@@ -141,10 +148,12 @@ namespace instanceutils{
 		//check for expired duration e.g. >30min. Need the tick>start check as the start can be assigned
 		//after the tick initially due to threading
 		if(tick>instance->getStartTime() && (tick - instance->getStartTime()) > instance->getTimeLimit()*1000){
-			ShowDebug("BCNM %i inst:%i - You have exceeded your time limit! tick %u start %u limit %u \n",instance->getID(),
+			ShowDebug("BCNM %i inst:%i - You have exceeded your time limit!\n",instance->getID(),
 				instance->getInstanceNumber(),tick,instance->getStartTime(),instance->getTimeLimit());
 			return true;
 		}
+
+		instance->lastTick = tick;
 
 		//check for all dead for 3min (or whatever the rule mask says)
 		if(instance->getDeadTime()!=0){
@@ -179,6 +188,17 @@ namespace instanceutils{
 			position[0]=-503; position[1]=158; position[2]=-212; position[3]=131;
 			return position;
 		}
+	}
+
+	int* getStartPosition(uint8 zoneid){
+		int position[4] = {0,0,0,0};
+
+		switch(zoneid){
+		case 139: //Horlais Peak
+			position[0]=-503; position[1]=158; position[2]=-212; position[3]=131;
+			return position;
+		}
+		return NULL;
 	}
 
 	/*************************************************************

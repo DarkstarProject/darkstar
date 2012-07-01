@@ -122,7 +122,12 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 		WBUFB(data,(0x30)-4) = PChar->getZone();				// to zone
 		WBUFB(data,(0x42)-4) = PChar->getZone();				// to zone
 	    WBUFW(data,(0xAA)-4) = 0x01FF;
-	    WBUFB(data,(0xAC)-4) = 0x00;//if 0x01 then pause between zone	// сообщаем клиенту, что он должен начать отправлять 0x15-ые пакеты лишь после полной загрузки
+		if(csid>0){
+			WBUFB(data,(0xAC)-4) = 0x01;
+		}
+		else{
+			WBUFB(data,(0xAC)-4) = 0x00;//if 0x01 then pause between zone	// сообщаем клиенту, что он должен начать отправлять 0x15-ые пакеты лишь после полной загрузки
+		}
 		WBUFB(data,(0xAF)-4) = PChar->loc.zone->CanUseMisc(MISC_MOGMENU);	// флаг, позволяет использовать mog menu за пределами mog house
 	}
 

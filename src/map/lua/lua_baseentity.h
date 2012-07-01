@@ -155,6 +155,8 @@ public:
 	int32 bcnmEnter(lua_State*);			//Enter a bcnm instance
 	int32 bcnmLeave(lua_State*);			//Leave a bcnm instance
 	int32 isInBcnm(lua_State*);				//true if you're INSIDE the bc (not just the status)
+	int32 isBcnmsFull(lua_State*);			//true if all 3 instances are full
+	int32 getInstanceID(lua_State*);			//returns 1 2 or 3 if the player can enter a bcnm with the instance assigned
 
 
 	int32 getVar(lua_State*);				// Returns a character variable

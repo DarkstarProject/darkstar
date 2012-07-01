@@ -44,9 +44,11 @@ public:
 
 	bool	enterBcnm(uint16 bcnmid, CCharEntity* PChar); //Enters the BCNM instance if you're registered
 	bool	leaveBcnm(uint16 bcnmid, CCharEntity* PChar); //Leaves the BCNM instance if you're registered
+	bool	disconnectFromBcnm(CCharEntity* PChar);		//Disconnects/Warps you from a BCNM
 	bool	winBcnm(uint16 bcnmid, CCharEntity* PChar); //Wins a BCNM instance (e.g. the player opening the chest)
 
-	bool	hasFreeInstance(uint16 bcnmid); //returns true if there is a free instance available
+	uint8	findInstanceIDFor(CCharEntity* PChar); //returns 1 2 3 or 255 if non-existent
+	bool	hasFreeInstance(); //returns true if there is a free instance available
 	uint32	pollTimeLeft(uint16 bcnmid); //returns the shortest time left of all 3 instances of the given BCNM ID
 
 	void	wipeInstance(CInstance* inst);

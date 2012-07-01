@@ -13,17 +13,20 @@ itemid_bcnmid_map = {139,{1426,1,1429,1,1436,1}, --Horlais Peak
 					 206,{0,0}}; --Qu'Bia Arena
 					 
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
--- DO NOT INCLUDE MAAT FIGHTS
+-- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!)
+-- bcnmid,paramid,bcnmid,paramid,etc
 bcnmid_param_map = {139,{0,0}};
 
 
 -- Call this onTrade for burning circles
-function TradeBCNM(player,zone,trade)
-	 return false;
+function TradeBCNM(player,zone,trade,npc)
+	-- return false;
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD))then --cant start a new bc
+		player:messageBasic(94,0,0);
 		return false;
 	end
-	if(CheckMaatFights(player,zone,trade))then --This function returns true for maat fights
+	
+	if(CheckMaatFights(player,zone,trade,npc))then --This function returns true for maat fights
 		return true;
 	end
 	--the following is for orb battles, etc
@@ -40,43 +43,60 @@ function TradeBCNM(player,zone,trade)
 			player:setVar("trade_bcnmid",0);
 			return false;
 		end
+		if(player:isBcnmsFull()==1)then --temp measure, this will precheck the instances
+			print("all bcnm instances are currently occupied.");
+			npc:messageBasic(246,0,0); --this wont look right in other languages!
+			return true;
+		end
 		player:startEvent(0x7d00,0,0,0,mask,0,0,0,0);
 		return true;
 	end
 end;
 
 function EventTriggerBCNM(player,npc)
-	return false;
+	--return false;
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
 		if(player:isInBcnm()==1) then
-			player:bcnmLeave(1);
+			player:startEvent(0x7d03); --Run Away or Stay menu
 		else
 			--todo: give option of bcnm to enter then enter
-			player:bcnmEnter();
+			status = player:getStatusEffect(EFFECT_BATTLEFIELD);
+			--TODO: map from the id (power) to the bitmask.
+			if(status:getPower()==1) then --BCNMID==1 for maat_horlais
+				player:startEvent(0x7d00,0,0,0,32,0,0,0,0); --32 is the bitmask
+			end
 		end
 	end
-		
+	
 	return true;
 end;
 
 function EventUpdateBCNM(player,csid,option)
-	 return false;
+	-- return false;
 	id = player:getVar("trade_bcnmid"); --this is 0 if the bcnm isnt handled by new functions
-	if(id==0) then
-		return false;
-	end
 	
 	print("UPDATE csid "..csid.." option "..option);
-	
+	--seen: option 2,3,0 in that order
+	if(csid==0x7d03 and option==2)then --leaving a BCNM the player is currently in.
+		player:bcnmLeave(1);
+		return true;
+	end
 	if(option==255 and csid==0x7d00)then --Clicked yes, try to register bcnmid
+		if(player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
+			player:setVar("bcnm_instanceid_tick",0);
+			player:setVar("bcnm_instanceid",player:getInstanceID()); --returns 255 if non-existent.
+			return true;
+		end
+		
 		inst = player:bcnmRegister(id);
-		--inst = 1;
 		if(inst>0)then
 			player:setVar("bcnm_instanceid",inst);
 			player:setVar("bcnm_instanceid_tick",0);
+			player:updateEvent(0,3,0,0,1,0);
 			--player:tradeComplete();
 		else 
 			--no free battlefields at the moment!
+			print("no free instances");
 			player:setVar("bcnm_instanceid",255);
 			player:setVar("bcnm_instanceid_tick",0);
 		end
@@ -95,8 +115,8 @@ function EventUpdateBCNM(player,csid,option)
 			player:bcnmEnter(id);
 			player:setVar("bcnm_instanceid_tick",0);
 		elseif(player:getVar("bcnm_instanceid")==255)then --none free
-			print("nfa");
-			player:updateEvent(2,5,0,0,1,0);
+			--print("nfa");
+			--player:updateEvent(2,5,0,0,1,0);
 			--param1
 			--2=generic enter cs
 			--3=spam increment instance requests
@@ -116,12 +136,12 @@ function EventUpdateBCNM(player,csid,option)
 end;
 
 function EventFinishBCNM(player,csid,option)
-	--print("FINISH csid "..csid.." option "..option);
-	return false;
+	print("FINISH csid "..csid.." option "..option);
+	return true;
 end;
 
 --Returns TRUE if you're trying to do a maat fight, regardless of outcome e.g. if you trade testimony on wrong job, this will return true in order to prevent further execution of TradeBCNM. Returns FALSE if you're not doing a maat fight (in other words, not trading a testimony!!)
-function CheckMaatFights(player,zone,trade)
+function CheckMaatFights(player,zone,trade,npc)
 	player:setVar("trade_bcnmid",0);
 	--check for maat fights (one maat fight per zone in the db, but >1 mask entries depending on job, so we
 	--need to choose the right one depending on the players job, and make sure the right testimony is traded,
@@ -132,6 +152,12 @@ function CheckMaatFights(player,zone,trade)
 	
 	if(itemid>=1426 and itemid<=1440) then --The traded item IS A TESTIMONY
 		if(lvl<66)then --not high enough level for maat fight :(
+			return true;
+		end
+		
+		if(player:isBcnmsFull()==1)then --temp measure, this will precheck the instances
+			print("all bcnm instances are currently occupied.");
+			npc:messageBasic(246,0,0);
 			return true;
 		end
 	

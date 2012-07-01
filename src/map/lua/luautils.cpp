@@ -53,6 +53,8 @@
 #include "../packets/auction_house.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
+#include "../packets/char.h"
+#include "../packets/menu_raisetractor.h"
 #include "../packets/message_basic.h"
 #include "../packets/uncnown_39.h"
 
@@ -802,6 +804,14 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
+
+	if(PChar->m_event.Script.find("/bcnms/") > 0 && PChar->isDead()){ //for some reason the event doesnt enforce death afterwards
+		PChar->animation = ANIMATION_DEATH;
+		PChar->pushPacket(new CCharUpdatePacket(PChar));
+		PChar->pushPacket(new CRaiseTractorMenuPacket(PChar,TYPE_HOMEPOINT));
+		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar,ENTITY_UPDATE));
+	}
+
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
@@ -1707,6 +1717,10 @@ int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode){
 	Lunar<CLuaInstance>::push(LuaHandle,&LuaInstanceEntity);
 
 	lua_pushinteger(LuaHandle,LeaveCode);
+
+	PChar->m_event.reset();
+    PChar->m_event.Target = PChar;
+	PChar->m_event.Script.insert(0,File);
 	
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
