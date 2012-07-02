@@ -22,7 +22,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	if player:hasKeyItem(267) then
+		player:startEvent(0x0186);
+	else
 	player:startEvent(0x0108);
+	end
 end;
 
 -----------------------------------
