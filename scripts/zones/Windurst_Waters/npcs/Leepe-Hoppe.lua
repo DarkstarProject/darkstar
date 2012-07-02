@@ -27,6 +27,10 @@ function onTrigger(player,npc)
 		elseif(MissionStatus >= 1 and MissionStatus < 3) then
 			player:startEvent(0x008e); -- Keep displaying the instructions
 		end
+	elseif(player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
+		player:startEvent(0x0137);
+	else
+		player:startEvent(0x0159); -- Standard Dialogue?
 	end
 	
 end;
