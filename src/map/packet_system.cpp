@@ -2432,7 +2432,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			{ 
 				map_session_data_t* map_session_data = it->second;
 				CCharEntity* PChar = map_session_data->PChar;
-				if(PChar->id == CharID){
+				if(PChar!=NULL && PChar->id == CharID){
 					PTellRecipient = PChar;
 					break;
 				}
