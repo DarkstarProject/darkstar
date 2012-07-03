@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `bcnm_info`;
 CREATE TABLE `bcnm_info` (
   `bcnmId` smallint(5) unsigned NOT NULL,
   `zoneId` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `name` varchar(15) NOT NULL,
+  `name` varchar(30) NOT NULL,
   `fastestName` varchar(15),
   `fastestTime` smallint(5) unsigned,
   `timeLimit` smallint(5) unsigned NOT NULL DEFAULT '1800',
@@ -44,7 +44,7 @@ CREATE TABLE `bcnm_info` (
 -- Records of abilities (each zone is allotted 32 slots to allow for expansion, thus the large gaps of bcnmIDs between zones)
 -- ----------------------------
 -- Horlais Peak		
-INSERT INTO `bcnm_info` VALUES ('0', '139', 'rank_2_final_mission_horlais', NULL, NULL, '1800', '25', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('0', '139', 'rank_2_mission', NULL, NULL, '1800', '25', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('1', '139', 'tails_of_woe', NULL, NULL, '1800', '40', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('2', '139', 'dismemberment_brigade', NULL, NULL, '1800', '60', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('3', '139', 'the_secret_weapon', NULL, NULL, '1800', '99', '6', '0', '5');
@@ -144,7 +144,7 @@ INSERT INTO `bcnm_info` VALUES ('196', '168', 'shattering_stars', NULL, NULL, '6
 INSERT INTO `bcnm_info` VALUES ('197', '168', 'cactuar_suave', NULL, NULL, '1800', '0', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('198', '168', 'eye_of_the_storm', NULL, NULL, '1800', '0', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('199', '168', 'scarlet_king', NULL, NULL, '1800', '0', '6', '0', '15');
-INSERT INTO `bcnm_info` VALUES ('200', '168', 'roar_a_cat_burglar_bares_her_fangs', NULL, NULL, '1800', '99', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('200', '168', 'cat_burglar_bares_fangs', NULL, NULL, '1800', '99', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('201', '168', 'dragon_scales', NULL, NULL, '600', '99', '1', '0', '6');
 
 -- Full Moon Fountain
@@ -198,7 +198,7 @@ INSERT INTO `bcnm_info` VALUES ('452', '202', 'sugar-coated_directive', NULL, NU
 
 -- Cloister of Frost
 INSERT INTO `bcnm_info` VALUES ('480', '203', 'trial_by_ice', NULL, NULL, '1800', '0', '6', '0', '5');
-INSERT INTO `bcnm_info` VALUES ('481', '203', 'class_reunion', NULL, NULL, '1800', '80', 18', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('481', '203', 'class_reunion', NULL, NULL, '1800', '80', '18', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('482', '203', 'trial-size_trial_by_ice', NULL, NULL, '900', '20', '1', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('483', '203', 'waking_the_beast', NULL, NULL, '1800', '0', '18', '0', '5'); -- Wiki lacks information on individual avatar battles, but not on the final battle
 INSERT INTO `bcnm_info` VALUES ('484', '203', 'sugar-coated_directive', NULL, NULL, '1800', '80', '6', '0', '5');

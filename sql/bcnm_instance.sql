@@ -28,7 +28,7 @@ CREATE TABLE `bcnm_instance` (
 -- ----------------------------
 -- Records of instance
 -- ----------------------------
-I-- Horlais Peak
+-- Horlais Peak
 INSERT INTO `bcnm_instance` VALUES ('0', '1', '17346561');
 INSERT INTO `bcnm_instance` VALUES ('0', '1', '17346562');
 INSERT INTO `bcnm_instance` VALUES ('0', '2', '17346563');
@@ -154,7 +154,7 @@ INSERT INTO `bcnm_instance` VALUES ('256', '3', '17510403');
 INSERT INTO `bcnm_instance` VALUES ('448', '1', '17604610');
 
 -- Cloister of Frost
-INSERT INTO `bcnm_instance` VALUES ('480', '1', '17608705'};
+INSERT INTO `bcnm_instance` VALUES ('480', '1', '17608705');
 
 -- Qu'Bia Arena
 INSERT INTO `bcnm_instance` VALUES ('512', '1', '17620993');
