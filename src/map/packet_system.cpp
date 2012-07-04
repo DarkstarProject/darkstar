@@ -2375,30 +2375,45 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
     else
     {
-		switch(RBUFB(data,(0x04)))
-		{
-			case MESSAGE_SAY:		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6)); break;
-			case MESSAGE_EMOTION:	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data+6)); break;
-			case MESSAGE_SHOUT:		PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT,   data+6)); break;
-			case MESSAGE_LINKSHELL: 
+        if((PChar->getZone() == 131) && (!(PChar->nameflags.flags & FLAG_GM)))
+        {
+            if(RBUFB(data,(0x04)) == MESSAGE_SAY)
             {
-                if (PChar->PLinkshell != NULL)
-                {
-                    PChar->PLinkshell->PushPacket(PChar, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data+6));
-                }
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY, data+6));
             }
-            break;
-			case MESSAGE_PARTY:		
-			{
-				if (PChar->PParty != NULL)
-				{
-					PChar->PParty->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
-				}
-			}
-			break;
-            case MESSAGE_YELL: PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256)); break;
-		}
+            else
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+            }
+        }
+        else
+        {
+            switch(RBUFB(data,(0x04)))
+            {
+                case MESSAGE_SAY:		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6)); break;
+                case MESSAGE_EMOTION:	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data+6)); break;
+                case MESSAGE_SHOUT:		PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT,   data+6)); break;
+                case MESSAGE_LINKSHELL: 
+                {
+                    if (PChar->PLinkshell != NULL)
+                    {
+                        PChar->PLinkshell->PushPacket(PChar, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data+6));
+                    }
+                }
+                break;
+				case MESSAGE_PARTY:		
+                {
+                    if (PChar->PParty != NULL)
+                    {
+                        PChar->PParty->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
+                    }
+                }
+                break;
+                case MESSAGE_YELL: PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256)); break;
+            }
+        }
 	}
+
 	return;
 }
 
@@ -2410,6 +2425,12 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    if((PChar->getZone() == 131) && (!(PChar->nameflags.flags & FLAG_GM)))
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+        return;
+    }
+
     string_t RecipientName = data+5;
 
 	const int8* Query = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charname = '%s' LIMIT 1";
