@@ -20,6 +20,7 @@
 
 ===========================================================================
 */
+#include <string.h>
 
 #include "../../common/showmsg.h"
 #include "../../common/socket.h"

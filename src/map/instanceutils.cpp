@@ -20,6 +20,7 @@
 
 ===========================================================================
 */
+#include <string.h>
 
 #include "charentity.h"
 #include "mobentity.h"
