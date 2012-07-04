@@ -64,6 +64,7 @@ INSERT INTO `item_mods` VALUES (11282, 9, 8);
 INSERT INTO `item_mods` VALUES (11282, 10, -8);
 INSERT INTO `item_mods` VALUES (11282, 11, -8);
 INSERT INTO `item_mods` VALUES (11282, 23, 15);
+INSERT INTO `item_mods` VALUES (11282, 73, 7);
 INSERT INTO `item_mods` VALUES (11283, 1, 41);
 INSERT INTO `item_mods` VALUES (11283, 2, 20);
 INSERT INTO `item_mods` VALUES (11283, 5, 20);
