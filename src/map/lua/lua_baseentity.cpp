@@ -195,6 +195,8 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
 	return 0;
 }
 
+//======================================================//
+
 inline int32 CLuaBaseEntity::petTP(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -574,6 +576,25 @@ inline int32 CLuaBaseEntity::getPreviousZone(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	lua_pushinteger( L, m_PBaseEntity->loc.prevzone );
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*  Проверяем, посещалась ли указанная зона персонажем ранее             *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::isZoneVisited(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	
+    lua_pushboolean( L, hasBit((uint8)lua_tointeger(L,-1), PChar->m_ZonesList, sizeof(PChar->m_ZonesList)));
 	return 1;
 }
 
@@ -3944,6 +3965,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPreviousZone),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isZoneVisited),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRace),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNation),

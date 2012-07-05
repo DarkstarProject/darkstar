@@ -7,8 +7,11 @@
 require("scripts/globals/teleports");
 
 function onItemCheck(target)
---	need to add a check to see if player has been in Bibiki Bay at least once
-return 0;
+result = 0;
+    if (target:isZoneVisited(4) == false) then
+        result = 56;
+    end
+return result;
 end;
 
 function onItemUse(target)
