@@ -1583,7 +1583,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 
 	    float Distance = distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p);
 
-	    if (Distance > m_PWeaponSkill->getRange())
+	    if ((Distance - m_PBattleSubTarget->m_ModelSize) > m_PWeaponSkill->getRange())
 	    {
             WeaponSkillStartError(36);
 		    return;
