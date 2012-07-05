@@ -4,6 +4,28 @@
 -- 	coordinates marked {R} have been obtained by packet capture from retail. Don't change them.
 -----------------------------------
 
+function TidalTalisman(player, zone)
+	if(zone == 241 or zone == 242 or zone == 240 or zone == 239 or zone == 238) then -- Item is used in Windurst
+		player:setPos(0, 3, 2, 64, 243); -- Player/s will end up at Ru'Lude Gardens
+	elseif(zone == 237 or zone == 236 or zone == 235 or zone == 234) then -- Item is used in Bastok
+		player:setPos(0, 3, 2, 64, 243); -- Player/s will end up at Ru'Lude Gardens
+	elseif(zone == 233 or zone == 232 or zone == 231 or zone == 230) then -- Item is used in San d'Oria
+		player:setPos(0, 3, 2, 64, 243); -- Player/s will end up at Ru'Lude Gardens
+	elseif(zone == 243 or zone == 245 or zone == 244) then -- Item is used in Jeuno
+		player:setPos(-33, -8, -71, 97, 250); -- player/s end up in Kazham
+	elseif(zone == 250) then -- Item is used in Kazham
+		player:setPos(0, 3, 2, 64, 243); -- Player/s will end up at Ru'Lude Gardens
+	elseif(zone == 248) then -- Item is used in Selbina
+		player:setPos(0, -8, 59, 62, 248); -- player/s end up at Mhaura
+	elseif(zone == 249) then -- Item is used in Mhaura
+		player:setPos(18, -14, 79, 62, 248); -- player/s end up in Selbina
+	elseif(zone == 50) then -- Item is used in Aht Urhgan Whitegate
+		player:setPos(12, -6, 31, 63, 53) -- player/s end up in Nashmau
+	elseif(zone == 53) then -- Item is used in Nashmu
+		player:setPos(-73, 0, 0, 252, 50); -- player/s ends up at Aht Urahgan Whitegate
+	end;
+end;
+
 function toFeiYin(player)
 	player:setPos(280, 20, 543, 192, 0x6F);
 end;
@@ -464,12 +486,6 @@ function toEscape(player, zone)
 		player:setPos(-401,-8,-197,185,84); 								-- To Batallia Downs (S) F-9
 	elseif(zone == 171) then 												-- From Crawlers' Nest (S)
 		player:setPos(-373,-28,772,218,91); 								-- To Rolanberry Field (S) F-13
-	elseif(zone == 244) then												-- From Upper Jeuno
-		player:setPos(40, 0, 24, 6, 231);									-- To Norther San d'Oria
-	elseif(zone == 245) then												-- From Lower Jeuno
-		player:setPos(79, 0, -67, 211, 234);								-- To Bastok Minds
-	elseif(zone == 246) then												-- From Port Jeuno
-		player:setPos(185, -12, 220, 99, 240)								-- To Port Windurst
 	end;
 end;
 

@@ -1669,7 +1669,7 @@ INSERT INTO `item_usable` VALUES (11277, 0, 'wonder_maillot_+1', 1, 8, 0, 0, 1, 
 INSERT INTO `item_usable` VALUES (11278, 0, 'wonder_top_+1', 1, 8, 0, 0, 1, 30, 72000);
 INSERT INTO `item_usable` VALUES (11279, 0, 'savage_top_+1', 1, 8, 0, 0, 1, 30, 72000);
 INSERT INTO `item_usable` VALUES (11280, 0, 'elder_gilet_+1', 1, 8, 0, 0, 1, 30, 72000);
-INSERT INTO `item_usable` VALUES (11290, 0, 'tidal_talisman', 1, 8, 0, 0, 1, 30, 144000);
+INSERT INTO `item_usable` VALUES (11290, 0, 'tidal_talisman', 1, 8, 0, 0, 1, 30, 72000);
 INSERT INTO `item_usable` VALUES (11320, 0, 'skeleton_robe', 1, 1, 0, 0, 30, 15, 600);
 INSERT INTO `item_usable` VALUES (11403, 0, 'talaria', 1, 5, 0, 0, 1, 15, 1800);
 INSERT INTO `item_usable` VALUES (11490, 0, 'snow_bunny_hat', 1, 1, 0, 0, 10, 30, 86400);
