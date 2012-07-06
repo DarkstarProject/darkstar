@@ -307,17 +307,19 @@ void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag)
 *																		*
 ************************************************************************/
 
-bool CStatusEffectContainer::EraseStatusEffect()
+string_t CStatusEffectContainer::EraseStatusEffect()
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
-		if (m_StatusEffectList.at(i)->GetFlag() == EFFECTFLAG_ERASABLE)
+		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE)
 		{
+            string_t result = m_StatusEffectList.at(i)->GetName();
 			RemoveStatusEffect(i);
-			return true;
+			return result;
 		}
 	}
-	return false;
+
+	return "";
 }
 
 /************************************************************************
@@ -327,17 +329,19 @@ bool CStatusEffectContainer::EraseStatusEffect()
 *																		*
 ************************************************************************/
 
-bool CStatusEffectContainer::DispelStatusEffect()
+string_t CStatusEffectContainer::DispelStatusEffect()
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
-		if (m_StatusEffectList.at(i)->GetFlag() == EFFECTFLAG_DISPELABLE)
+		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE)
 		{
-			RemoveStatusEffect(i);
-			return true;
+            string_t result = m_StatusEffectList.at(i)->GetName();
+            RemoveStatusEffect(i);
+            return result;
 		}
 	}
-	return false;
+
+	return "";
 }
 
 /************************************************************************

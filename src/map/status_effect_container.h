@@ -54,8 +54,9 @@ public:
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие стату-эффекта
 	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие стату-эффекта с уникальным subid
-	bool EraseStatusEffect();			                        // удаляем первый отрицательный эффект
-	bool DispelStatusEffect();	                        		// удаляем первый положительный эффект
+
+	string_t EraseStatusEffect();                               // удаляем первый отрицательный эффект
+	string_t DispelStatusEffect();                              // удаляем первый положительный эффект
 
     CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);
 

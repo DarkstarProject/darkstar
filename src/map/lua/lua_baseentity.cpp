@@ -2994,7 +2994,7 @@ inline int32 CLuaBaseEntity::eraseStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    lua_pushboolean( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->EraseStatusEffect());
+    lua_pushstring( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->EraseStatusEffect().c_str());
     return 1;
 }
 
@@ -3009,7 +3009,7 @@ inline int32 CLuaBaseEntity::dispelStatusEffect(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    lua_pushboolean( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelStatusEffect());
+    lua_pushstring( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelStatusEffect().c_str());
     return 1;
 }
 
