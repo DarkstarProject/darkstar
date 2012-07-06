@@ -66,6 +66,7 @@ namespace battleutils
 	void	LoadWeaponSkillsList(); 
 	void	LoadMobSkillsList();
 	void	LoadEnmityTable();
+    void    LoadSkillChainDamageModifiers();
 
 	uint8	GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16	GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
@@ -83,8 +84,11 @@ namespace battleutils
 	void	FreeAbilitiesList();
 	void    FreeWeaponSkillsList();
 	void	FreeMobSkillsList();
+    void    FreeSkillChainDamageModifiers();
 
-    SUBEFFECT	GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill);
+    SUBEFFECT	   GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill, uint16* outChainCount);
+    SKILLCHAINFLAG GetSkillChainCountFlag(uint16 flags);
+    uint8          GetSkillChainCount(uint16 flags);
 
 	bool	IsParalised(CBattleEntity* PAttacker);
     bool    IsAbsorbByShadow(CBattleEntity* PDefender);
@@ -97,6 +101,7 @@ namespace battleutils
 	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical); 
     uint16  TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot); 
+    uint16  TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, SUBEFFECT effect, uint16 chainCount, uint16 lastSkillDamage);
 	uint32  MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	bool    SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
 	bool    IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender); 

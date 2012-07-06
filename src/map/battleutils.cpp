@@ -52,6 +52,7 @@
 uint16 g_SkillTable[100][12];									// All Skills by level/skilltype
 uint8  g_EnmityTable[100][2];		                            // Holds Enmity Modifier Values
 uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
+uint16 g_SkillChainDamageModifiers[MAX_SKILLCHAIN_LEVEL + 1][MAX_SKILLCHAIN_COUNT + 1]; // Holds damage modifiers for skill chains [chain level][chain count]
 
 CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// Complete Abilities List
 CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skills
@@ -250,6 +251,31 @@ void LoadMobSkillsList()
 	}
 }
 
+void LoadSkillChainDamageModifiers()
+{
+    memset(g_SkillChainDamageModifiers, 0, sizeof(g_SkillChainDamageModifiers));
+
+    const int8* fmtQuery = "SELECT chain_level, chain_count, initial_modifier, magic_burst_modifier \
+                           FROM skillchain_damage_modifiers \
+                           ORDER BY chain_level, chain_count \
+                           LIMIT 15";
+
+    int32 ret = Sql_Query(SqlHandle, fmtQuery);
+
+    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        for (uint32 x = 0; x <= 15 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
+        {
+            uint16 level = (uint16)Sql_GetIntData(SqlHandle, 0);
+            uint16 count = (uint16)Sql_GetIntData(SqlHandle, 1);
+            uint16 value = (uint16)Sql_GetIntData(SqlHandle, 2);
+            g_SkillChainDamageModifiers[level][count] = value;
+        }
+    }
+
+    return;
+}
+
 /************************************************************************
 *	Clear Abilities List												*
 ************************************************************************/
@@ -284,6 +310,11 @@ void FreeMobSkillList()
 	{
 		delete g_PMobSkillList[SkillID];
 	}
+}
+
+void FreeSkillChainDamageModifiers()
+{
+    // These aren't dynamicly allocated at this point so no need to free them.
 }
 
 /************************************************************************
@@ -858,12 +889,12 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender){
 uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ||
-		PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE,0))
+		PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0))
 	{
 		damage = 0;
 	}
 
-    damage = (damage * (100 + PDefender->getMod(MOD_DMG) + PDefender->getMod(MOD_DMGPHYS)))/100;
+    damage = (damage * (100 + PDefender->getMod(MOD_DMG) + PDefender->getMod(MOD_DMGPHYS))) / 100;
 
 	switch(PAttacker->m_Weapons[slot]->getDmgType())
 	{
@@ -879,7 +910,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	if(isBlocked){
 		// reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
 		if(PDefender->objtype == TYPE_PC){
-			charutils::TrySkillUP((CCharEntity*)PDefender,SKILL_SHL,PAttacker->GetMLevel());
+			charutils::TrySkillUP((CCharEntity*)PDefender, SKILL_SHL, PAttacker->GetMLevel());
 			CItemArmor* PItem = (CItemArmor*)((CCharEntity*)PDefender)->getStorage(LOC_INVENTORY)->GetItem(
 											((CCharEntity*)PDefender)->equip[SLOT_SUB]);
 			if(PItem!=NULL && PItem->getID()!=65535 &&  PItem->getShieldSize()>0){
@@ -891,7 +922,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 						break;
 					}
 				}
-				float pdt = 0.5f*(float)shield_def;
+				float pdt = 0.5f * (float)shield_def;
 				switch(PItem->getShieldSize()){
 					case 1: pdt += 22; break; //Bucker 22%
 					case 2: pdt += 40; break; //Round 40%
@@ -900,7 +931,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 					case 5: pdt += 55; break; //Aegis
 				}
 				if(pdt>100){pdt=100;}
-				damage = damage * ((100.0f-(float)pdt)/100.0f);
+				damage = damage * ((100.0f - (float)pdt) / 100.0f);
 			}
 		}
 	}
@@ -911,7 +942,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	}
 
 	if(damage>0 && PDefender->getMod(MOD_STONESKIN) >= damage){
-		PDefender->addModifier(MOD_STONESKIN,-damage);
+		PDefender->addModifier(MOD_STONESKIN, -damage);
 		damage = 0;
 		if(PDefender->getMod(MOD_STONESKIN)==0){
 			//wear off
@@ -943,7 +974,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING &&
             PDefender->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG)
         { //try to interrupt the spell
-            if (TryInterruptSpell(PAttacker,PDefender))
+            if (TryInterruptSpell(PAttacker, PDefender))
             {
 				if(PDefender->objtype == TYPE_PC){
 					CCharEntity* PChar = (CCharEntity*) PDefender;
@@ -958,9 +989,9 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			CItemWeapon* PRange = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
 			CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
 			int delay = 0; uint16 offset = 240;
-			if(PRange!=NULL){delay+=PRange->getDelay();}
-			if(PAmmo!=NULL){delay+=PAmmo->getDelay(); offset+=240;}
-			baseTp = CalculateBaseTP(offset+((delay*60)/1000));
+			if(PRange != NULL) { delay += PRange->getDelay(); }
+			if(PAmmo != NULL) { delay += PAmmo->getDelay(); offset += 240; }
+			baseTp = CalculateBaseTP(offset + ((delay * 60) / 1000));
 		}
 		else if(slot==SLOT_AMMO && PAttacker->objtype == TYPE_PC){
 			//todo: e.g. pebbles
@@ -969,18 +1000,18 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			baseTp = CalculateBaseTP((PAttacker->m_Weapons[slot]->getDelay() * 60) / 1000);
 		}
 
-		PAttacker->addTP(baseTp*(1.0f+0.01f*(float)PAttacker->getMod(MOD_STORETP)));
+		PAttacker->addTP(baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP)));
 		//PAttacker->addTP(20);
 		//account for attacker's subtle blow which reduces the baseTP gain for the defender
-		baseTp = baseTp * ((100.0f -cap_value((float)PAttacker->getMod(MOD_SUBTLE_BLOW),0.0f,50.0f)) / 100.0f);
+		baseTp = baseTp * ((100.0f - cap_value((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
 
 		//mobs hit get basetp+3 whereas pcs hit get basetp/3
 		if(PDefender->objtype == TYPE_PC){
 			//yup store tp counts on hits taken too!
-			PDefender->addTP((baseTp/3) *(1.0f+0.01f*(float)PDefender->getMod(MOD_STORETP)));
+			PDefender->addTP((baseTp / 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
 		}
 		else{
-			PDefender->addTP((baseTp+3) *(1.0f+0.01f*(float)PDefender->getMod(MOD_STORETP)));
+			PDefender->addTP((baseTp + 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
 		}
 
         if (PAttacker->objtype == TYPE_PC)
@@ -1014,7 +1045,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         break;
 		case TYPE_PET:
         {
-			((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender,CHAR_INRANGE,new CEntityUpdatePacket(PDefender,ENTITY_UPDATE));
+			((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
 		}
 		break;
     }
@@ -1515,179 +1546,354 @@ bool EnfeebleHit(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect
 *																		*
 ************************************************************************/
 
-SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill)
+SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill, uint16* outChainCount)
 {
-	CStatusEffect* PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
+    CStatusEffect* PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
 
-	if (PEffect == NULL)
-	{
-        PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN,0,PWeaponSkill->getElement(),0,6));
-		return SUBEFFECT_NONE;
-	}
+    if (PEffect == NULL)
+    {
+        PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PWeaponSkill->getElement() + NO_CHAIN, 0, 6));
+        return SUBEFFECT_NONE;
+    }
     else
     {
         PEffect->SetStartTime(gettick());
 
+        uint16 chainCountMask = battleutils::GetSkillChainCountFlag(PEffect->GetPower());
+
+        if(!(chainCountMask & CHAIN5))
+            chainCountMask = chainCountMask << 1; // Shift left by one to increment the skill chain counter;
+
+        (*outChainCount) = battleutils::GetSkillChainCount(chainCountMask);
+
         if (PEffect->GetPower() & LIGHT)
-	    {
+        {
             if (PEffect->GetPower() & FIRE)
             {
                 if (PWeaponSkill->hasElement(DARK + EARTH)) 
-		        {
-                    PEffect->SetPower(DARK + EARTH);
-			        return SUBEFFECT_GRAVITATION;
-		        }
-		        if (PWeaponSkill->hasElement(THUNDER + WIND)) 
-		        {
-                    PEffect->SetPower(LIGHT + FIRE + THUNDER + WIND);
-			        return SUBEFFECT_LIGHT;
-		        }
+                {
+                    PEffect->SetPower(DARK + EARTH + chainCountMask);
+                    return SUBEFFECT_GRAVITATION;
+                }
+                if (PWeaponSkill->hasElement(THUNDER + WIND)) 
+                {
+                    PEffect->SetPower(LIGHT + FIRE + THUNDER + WIND + chainCountMask);
+                    return SUBEFFECT_LIGHT;
+                }
             }
-		    if (PWeaponSkill->hasElement(EARTH)) 
-		    {
-                PEffect->SetPower(WATER + ICE);
-			    return SUBEFFECT_DISTORTION;
-		    }
-		    if (PWeaponSkill->hasElement(DARK)) 
-		    {
-                PEffect->SetPower(DARK);
-			    return SUBEFFECT_COMPRESSION;
-		    }
-		    if (PWeaponSkill->hasElement(WATER)) 
-		    {
-                PEffect->SetPower(WATER);
-			    return SUBEFFECT_REVERBERATION;
-		    }
+            if (PWeaponSkill->hasElement(EARTH)) 
+            {
+                PEffect->SetPower(WATER + ICE + chainCountMask);
+                return SUBEFFECT_DISTORTION;
+            }
+            if (PWeaponSkill->hasElement(DARK)) 
+            {
+                PEffect->SetPower(DARK + chainCountMask);
+                return SUBEFFECT_COMPRESSION;
+            }
+            if (PWeaponSkill->hasElement(WATER)) 
+            {
+                PEffect->SetPower(WATER + chainCountMask);
+                return SUBEFFECT_REVERBERATION;
+            }
 	    }
-	    if (PEffect->GetPower() & DARK)
-	    {
+        if (PEffect->GetPower() & DARK)
+        {
             if (PEffect->GetPower() & EARTH)
             {
                 if (PWeaponSkill->hasElement(THUNDER + WIND)) 
-		        {
-                    PEffect->SetPower(THUNDER + WIND);
-			        return SUBEFFECT_FRAGMENTATION;
-		        }
-		        if (PWeaponSkill->hasElement(WATER + ICE)) 
-		        {
-                    PEffect->SetPower(THUNDER + WIND + WATER + ICE);
-			        return SUBEFFECT_DARKNESS;
-		        }
+                {
+                    PEffect->SetPower(THUNDER + WIND + chainCountMask);
+                    return SUBEFFECT_FRAGMENTATION;
+                }
+                if (PWeaponSkill->hasElement(WATER + ICE)) 
+                {
+                    PEffect->SetPower(THUNDER + WIND + WATER + ICE + chainCountMask);
+                    return SUBEFFECT_DARKNESS;
+                }
             }
-		    if (PWeaponSkill->hasElement(WIND)) 
-		    {
-                PEffect->SetPower(WIND);
-			    return SUBEFFECT_DETONATION;
-		    }
-		    if (PWeaponSkill->hasElement(LIGHT)) 
-		    {
-                PEffect->SetPower(LIGHT);
-			    return SUBEFFECT_TRANSFIXION;
-		    }
+            if (PWeaponSkill->hasElement(WIND)) 
+            {
+                PEffect->SetPower(WIND + chainCountMask);
+                return SUBEFFECT_DETONATION;
+            }
+            if (PWeaponSkill->hasElement(LIGHT)) 
+            {
+                PEffect->SetPower(LIGHT + chainCountMask);
+                return SUBEFFECT_TRANSFIXION;
+            }
 	    }
-	    if (PEffect->GetPower() & FIRE)
-	    {
-		    if (PWeaponSkill->hasElement(THUNDER)) 
-		    {
-                PEffect->SetPower(LIGHT + FIRE);
-			    return SUBEFFECT_FUSION;
-		    }
-		    if (PWeaponSkill->hasElement(EARTH)) 
-		    {
-                PEffect->SetPower(EARTH);
-			    return SUBEFFECT_SCISSION;
-		    }
+        if (PEffect->GetPower() & FIRE)
+        {
+            if (PWeaponSkill->hasElement(THUNDER)) 
+            {
+                PEffect->SetPower(LIGHT + FIRE + chainCountMask);
+                return SUBEFFECT_FUSION;
+            }
+            if (PWeaponSkill->hasElement(EARTH)) 
+            {
+                PEffect->SetPower(EARTH + chainCountMask);
+                return SUBEFFECT_SCISSION;
+            }
 	    }
-	    if (PEffect->GetPower() & EARTH)
-	    {
-		    if (PWeaponSkill->hasElement(WIND)) 
-		    {
-                PEffect->SetPower(WIND);
-			    return SUBEFFECT_DETONATION;
-		    }
-		    if (PWeaponSkill->hasElement(WATER)) 
-		    {
-                PEffect->SetPower(WATER);
-			    return SUBEFFECT_REVERBERATION;
-		    }
-		    if (PWeaponSkill->hasElement(FIRE)) 
-		    {
-                PEffect->SetPower(FIRE);
-			    return SUBEFFECT_LIQUEFACATION;
-		    }
+        if (PEffect->GetPower() & EARTH)
+        {
+            if (PWeaponSkill->hasElement(WIND)) 
+            {
+                PEffect->SetPower(WIND + chainCountMask);
+                return SUBEFFECT_DETONATION;
+            }
+            if (PWeaponSkill->hasElement(WATER)) 
+            {
+                PEffect->SetPower(WATER + chainCountMask);
+                return SUBEFFECT_REVERBERATION;
+            }
+            if (PWeaponSkill->hasElement(FIRE)) 
+            {
+                PEffect->SetPower(FIRE + chainCountMask);
+                return SUBEFFECT_LIQUEFACATION;
+            }
 	    }
-	    if (PEffect->GetPower() & THUNDER)
-	    {
+        if (PEffect->GetPower() & THUNDER)
+        {
             if (PEffect->GetPower() & WIND &&
                 PWeaponSkill->hasElement(WATER + ICE)) 
             {
-		        PEffect->SetPower(WATER + ICE);
-			    return SUBEFFECT_DISTORTION;
+                PEffect->SetPower(WATER + ICE + chainCountMask);
+                return SUBEFFECT_DISTORTION;
             }
-		    if (PWeaponSkill->hasElement(WIND)) 
-		    {
-                PEffect->SetPower(WIND);
-			    return SUBEFFECT_DETONATION;
-		    }
-		    if (PWeaponSkill->hasElement(FIRE)) 
-		    {
-                PEffect->SetPower(FIRE);
-			    return SUBEFFECT_LIQUEFACATION;
-		    }
-	    }
-	    if (PEffect->GetPower() & WATER)
-	    {
+            if (PWeaponSkill->hasElement(WIND)) 
+            {
+                PEffect->SetPower(WIND + chainCountMask);
+                return SUBEFFECT_DETONATION;
+            }
+            if (PWeaponSkill->hasElement(FIRE)) 
+            {
+                PEffect->SetPower(FIRE + chainCountMask);
+                return SUBEFFECT_LIQUEFACATION;
+            }
+        }
+        if (PEffect->GetPower() & WATER)
+        {
             if (PEffect->GetPower() & ICE &&
                 PWeaponSkill->hasElement(LIGHT + FIRE))
             {
-                PEffect->SetPower(LIGHT + FIRE);
+                PEffect->SetPower(LIGHT + FIRE + chainCountMask);
                 return SUBEFFECT_FUSION;
             }
-		    if (PWeaponSkill->hasElement(ICE)) 
-		    {
-                PEffect->SetPower(ICE);
-			    return SUBEFFECT_INDURATION;
-		    }
-		    if (PWeaponSkill->hasElement(THUNDER)) 
-		    {
-                PEffect->SetPower(THUNDER);
-			    return SUBEFFECT_IMPACTION;
-		    }
-	    }
-	    if (PEffect->GetPower() & WIND)
-	    {
-		    if (PWeaponSkill->hasElement(DARK)) 
-		    {
-                PEffect->SetPower(DARK + EARTH);
-			    return SUBEFFECT_GRAVITATION;
-		    }
-		    if (PWeaponSkill->hasElement(EARTH)) 
-		    {
-                PEffect->SetPower(EARTH);
-			    return SUBEFFECT_SCISSION;
-		    }
-	    }
-	    if (PEffect->GetPower() & ICE)
-	    {
+            if (PWeaponSkill->hasElement(ICE)) 
+            {
+                PEffect->SetPower(ICE + chainCountMask);
+                return SUBEFFECT_INDURATION;
+            }
+            if (PWeaponSkill->hasElement(THUNDER)) 
+            {
+                PEffect->SetPower(THUNDER + chainCountMask);
+                return SUBEFFECT_IMPACTION;
+            }
+        }
+        if (PEffect->GetPower() & WIND)
+        {
+            if (PWeaponSkill->hasElement(DARK)) 
+            {
+                PEffect->SetPower(DARK + EARTH + chainCountMask);
+                return SUBEFFECT_GRAVITATION;
+            }
+            if (PWeaponSkill->hasElement(EARTH)) 
+            {
+                PEffect->SetPower(EARTH + chainCountMask);
+                return SUBEFFECT_SCISSION;
+            }
+        }
+        if (PEffect->GetPower() & ICE)
+        {
             if (PWeaponSkill->hasElement(WATER))
-		    {
-                PEffect->SetPower(THUNDER + WIND);
-			    return SUBEFFECT_FRAGMENTATION;
-		    }
-		    if (PWeaponSkill->hasElement(DARK)) 
-		    {
-                PEffect->SetPower(DARK);
-			    return SUBEFFECT_COMPRESSION;
-		    }
-		    if (PWeaponSkill->hasElement(THUNDER))
-		    {
-                PEffect->SetPower(THUNDER);
-			    return SUBEFFECT_IMPACTION;
-		    }
-	    }
-        PEffect->SetPower(PWeaponSkill->getElement());
+            {
+                PEffect->SetPower(THUNDER + WIND + chainCountMask);
+                return SUBEFFECT_FRAGMENTATION;
+            }
+            if (PWeaponSkill->hasElement(DARK)) 
+            {
+                PEffect->SetPower(DARK + chainCountMask);
+                return SUBEFFECT_COMPRESSION;
+            }
+            if (PWeaponSkill->hasElement(THUNDER))
+            {
+                PEffect->SetPower(THUNDER + chainCountMask);
+                return SUBEFFECT_IMPACTION;
+            }
+        }
+        PEffect->SetPower(PWeaponSkill->getElement() + NO_CHAIN);
+        (*outChainCount) = 0;
     }
+    (*outChainCount) = 0;
     return SUBEFFECT_NONE;;
+}
+
+SKILLCHAINFLAG GetSkillChainCountFlag(uint16 flags)
+{
+    if(flags & CHAIN1) return CHAIN1;
+    if(flags & CHAIN2) return CHAIN2;
+    if(flags & CHAIN3) return CHAIN3;
+    if(flags & CHAIN4) return CHAIN4;
+    if(flags & CHAIN5) return CHAIN5;
+
+    return NO_CHAIN;
+}
+
+uint8 GetSkillChainCount(uint16 flags)
+{
+    if(flags & CHAIN1) return 1;
+    if(flags & CHAIN2) return 2;
+    if(flags & CHAIN3) return 3;
+    if(flags & CHAIN4) return 4;
+    if(flags & CHAIN5) return 5;
+
+    return 0;
+}
+
+uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, SUBEFFECT effect, uint16 chainCount, uint16 lastSkillDamage)
+{
+    DSP_DEBUG_BREAK_IF(PAttacker == NULL);
+    DSP_DEBUG_BREAK_IF(PDefender == NULL);
+    DSP_DEBUG_BREAK_IF(chainCount <= 0 || chainCount > 5);
+
+    // Determine the skill chain level and elemental resistance.
+    uint16 resistance = 0;
+    uint16 chainLevel = 0;
+    switch(effect)
+    {
+        // Level 1 skill chains
+        case SUBEFFECT_LIQUEFACATION:
+            chainLevel = 1;
+            resistance = PDefender->getMod(MOD_FIRERES);
+            break;
+
+        case SUBEFFECT_IMPACTION:
+            chainLevel = 1;
+            resistance = PDefender->getMod(MOD_THUNDERRES);
+            break;
+
+        case SUBEFFECT_DETONATION:
+            chainLevel = 1;
+            resistance = PDefender->getMod(MOD_WINDRES);
+            break;
+
+        case SUBEFFECT_SCISSION:
+            chainLevel = 1;
+            resistance = PDefender->getMod(MOD_EARTHRES);
+            break;
+
+        case SUBEFFECT_REVERBERATION:
+            chainLevel = 1;
+            resistance = PDefender->getMod(MOD_WATERRES);
+            break;
+
+        case SUBEFFECT_INDURATION:
+            chainLevel = 1;
+            resistance = PDefender->getMod(MOD_ICERES);
+            break;
+
+        case SUBEFFECT_COMPRESSION:
+            chainLevel = 1;
+            resistance = PDefender->getMod(MOD_DARKRES);
+            break;
+
+        case SUBEFFECT_TRANSFIXION:
+            chainLevel = 1;
+            resistance = PDefender->getMod(MOD_LIGHTRES);
+            break;
+
+        // Level 2 skill chains
+        case SUBEFFECT_FUSION:
+            chainLevel = 2;
+            resistance = max(PDefender->getMod(MOD_FIRERES), PDefender->getMod(MOD_LIGHTRES));
+            break;
+
+        case SUBEFFECT_FRAGMENTATION:
+            chainLevel = 2;
+            resistance = max(PDefender->getMod(MOD_WINDRES), PDefender->getMod(MOD_THUNDERRES));
+            break;
+
+        case SUBEFFECT_GRAVITATION:
+            chainLevel = 2;
+            resistance = max(PDefender->getMod(MOD_EARTHRES), PDefender->getMod(MOD_DARKRES));
+            break;
+
+        case SUBEFFECT_DISTORTION:
+            chainLevel = 2;
+            resistance = max(PDefender->getMod(MOD_ICERES), PDefender->getMod(MOD_WATERRES));
+            break;
+    
+        // Level 3 skill chains
+        case SUBEFFECT_LIGHT:
+            chainLevel = 3;
+            resistance = max(max(PDefender->getMod(MOD_FIRERES), PDefender->getMod(MOD_WINDRES)), max(PDefender->getMod(MOD_THUNDERRES), PDefender->getMod(MOD_LIGHTRES)));
+            break;
+
+        case SUBEFFECT_DARKNESS:
+            chainLevel = 3;
+            resistance = max(max(PDefender->getMod(MOD_ICERES), PDefender->getMod(MOD_EARTHRES)), max(PDefender->getMod(MOD_WATERRES), PDefender->getMod(MOD_DARKRES)));
+            break;
+    
+        default:
+            DSP_DEBUG_BREAK_IF(true);
+            break;
+    }
+
+    DSP_DEBUG_BREAK_IF(chainLevel <= 0 || chainLevel > 3);
+
+    // Skill chain damage = (Closing Damage) 
+    //                      × (Skill chain Level/Number from Table) 
+    //                      × (1 + Skill chain Bonus ÷ 100) 
+    //                      × (1 + Skill chain Damage + %/100) 
+    //            TODO:     × (1 + Day/Weather bonuses) 
+    //            TODO:     × (1 + Staff Affinity)
+
+    uint32 damage = floor((double)lastSkillDamage
+                          * g_SkillChainDamageModifiers[chainLevel][chainCount] / 1000
+                          * (100 + PAttacker->getMod(MOD_SKILLCHAINBONUS)) / 100
+                          * (100 + PAttacker->getMod(MOD_SKILLCHAINDMG)) / 100);
+
+    damage = damage * resistance / 1000;
+
+    PDefender->addHP(-damage);
+
+    if (PAttacker->PMaster != NULL)
+    {
+        PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+        PDefender->m_OwnerID.targid = PAttacker->PMaster->targid; 
+    }
+    else
+    {
+        PDefender->m_OwnerID.id = PAttacker->id;
+        PDefender->m_OwnerID.targid = PAttacker->targid; 
+    }
+
+    switch (PDefender->objtype)
+    {
+        case TYPE_PC:
+        {
+            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+
+            if(PDefender->animation == ANIMATION_SIT)
+            {
+                PDefender->animation = ANIMATION_NONE;
+                ((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
+            }
+
+            charutils::UpdateHealth((CCharEntity*)PDefender);
+        }
+        break;
+
+        case TYPE_MOB:
+        {
+            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage); 
+        }
+        break;
+    }
+
+    return damage;
 }
 
 }; 

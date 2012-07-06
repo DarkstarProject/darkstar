@@ -31,7 +31,7 @@ enum MODIFIER
 	MOD_NONE				= 0x00,
 
 	MOD_DEF					= 0x01,		// Target's Defense
-	MOD_HP					= 0x02,		// Taget's HP 
+	MOD_HP					= 0x02,		// Target's HP 
 	MOD_HPP					= 0x03,		// HP Percentage
 	MOD_CONVMPTOHP			= 0x04,		// MP -> HP (Cassie Earring)
 	MOD_MP					= 0x05,		// MP +/-
@@ -208,6 +208,8 @@ enum MODIFIER
 	MOD_DELAY				= 0xAB,		// Increase/Decrease Delay (unused... )
 	MOD_RANGED_DELAY		= 0xAC,		// (unused... )
 	MOD_MARTIAL_ARTS		= 0xAD,		// The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT)
+    MOD_SKILLCHAINBONUS     = 0xAE,     // Damage bonus applied to skill chain damage.  Modifier from effects/traits
+    MOD_SKILLCHAINDMG       = 0xAF,     // Damage bonus applied to skill chain damage.  Modifier from gear (multiplicative after effect/traits)
 
 // FOOD!
 

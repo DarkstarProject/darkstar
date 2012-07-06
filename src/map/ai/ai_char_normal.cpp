@@ -1670,7 +1670,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
 			damslot = SLOT_RANGED;
 		}
-		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false,damslot);
+		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot);
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST); //TODO: REMOVE THIS, BOOST EFFECT IN DB IS WRONG, MISSING EFFECTFLAG_DAMAGE
 	}
@@ -1698,7 +1698,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	else{
 		Action.messageID  = 185; //damage ws
 	}
-	Action.flag		  = 0;
+	Action.flag = 0;
 
 	if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
 		Action.speceffect = SPECEFFECT_NONE;
@@ -1714,42 +1714,53 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		}
 	}
 
-	SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill);
-	if (effect != SUBEFFECT_NONE) 
-	{	
-		switch(effect)
-		{
-		    case SUBEFFECT_DARKNESS:
-		    case SUBEFFECT_FRAGMENTATION:
-		    case SUBEFFECT_FUSION:
-			case SUBEFFECT_LIQUEFACATION:
-			case SUBEFFECT_REVERBERATION:
-			case SUBEFFECT_SCISSION:
-			case SUBEFFECT_IMPACTION:
-			{
-			    Action.flag = 1;
-                Action.subeffect    = effect;
-                Action.subparam     = 0;
-                Action.submessageID = 287;
-            }
-			break;
+    // Missed and no-element weapon skills shouldn't trigger skill chains events.
+    if((damage != 0) && (m_PWeaponSkill->getElement() != 0)) 
+    { 
+        uint16 skillChainCount = 0;
+        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill, &skillChainCount);
+
+        if (effect != SUBEFFECT_NONE) 
+        {	
+            uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, effect, skillChainCount, damage);
+
+            switch(effect)
+            {
+            case SUBEFFECT_DARKNESS:
+            case SUBEFFECT_FRAGMENTATION:
+            case SUBEFFECT_FUSION:
+            case SUBEFFECT_LIQUEFACATION:
+            case SUBEFFECT_REVERBERATION:
+            case SUBEFFECT_SCISSION:
+            case SUBEFFECT_IMPACTION:
+                {
+                    Action.flag = 1;
+                    Action.subeffect    = effect;
+                    Action.subparam     = skillChainDamage;
+                    Action.submessageID = 287;
+                }
+                break;
+
             case SUBEFFECT_LIGHT:
-			case SUBEFFECT_GRAVITATION:
-			case SUBEFFECT_DISTORTION:
-			case SUBEFFECT_COMPRESSION:
-			case SUBEFFECT_INDURATION:
-			case SUBEFFECT_TRANSFIXION:
-			case SUBEFFECT_DETONATION:
-			{
-			    Action.flag = 3;
-                Action.subeffect    = SUBEFFECT(effect - 10);
-                Action.subparam     = 0;
-                Action.submessageID = 288;
+            case SUBEFFECT_GRAVITATION:
+            case SUBEFFECT_DISTORTION:
+            case SUBEFFECT_COMPRESSION:
+            case SUBEFFECT_INDURATION:
+            case SUBEFFECT_TRANSFIXION:
+            case SUBEFFECT_DETONATION:
+                {
+                    Action.flag = 3;
+                    Action.subeffect    = SUBEFFECT(effect - 10);
+                    Action.subparam     = skillChainDamage;
+                    Action.submessageID = 288;
+                }
+                break;
             }
-			break;
+
+            Action.submessageID += Action.subeffect * 2;
         }
-        Action.submessageID += Action.subeffect * 2;
     }
+
 	charutils::UpdateHealth(m_PChar);
 
 	m_PChar->m_ActionList.push_back(Action);

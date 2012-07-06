@@ -236,6 +236,15 @@ void LoadZoneList()
 				PMob->setModifier(MOD_HTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,33) * 1000));
 				PMob->setModifier(MOD_IMPACTRES,(uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
 
+                PMob->setModifier(MOD_FIRERES,    (uint16)(Sql_GetFloatData(SqlHandle,35) * 1000));
+                PMob->setModifier(MOD_ICERES,     (uint16)(Sql_GetFloatData(SqlHandle,36) * 1000));
+                PMob->setModifier(MOD_WINDRES,    (uint16)(Sql_GetFloatData(SqlHandle,37) * 1000));
+                PMob->setModifier(MOD_EARTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,38) * 1000));
+                PMob->setModifier(MOD_THUNDERRES, (uint16)(Sql_GetFloatData(SqlHandle,39) * 1000));
+                PMob->setModifier(MOD_WATERRES,   (uint16)(Sql_GetFloatData(SqlHandle,40) * 1000));
+                PMob->setModifier(MOD_LIGHTRES,   (uint16)(Sql_GetFloatData(SqlHandle,41) * 1000));
+                PMob->setModifier(MOD_DARKRES,    (uint16)(Sql_GetFloatData(SqlHandle,42) * 1000));
+
 				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,43);
 				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,44); 
 				PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle,45); 

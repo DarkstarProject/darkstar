@@ -178,6 +178,7 @@ int32 do_init(int32 argc, int8** argv)
 	battleutils::LoadWeaponSkillsList();
 	battleutils::LoadMobSkillsList();
 	battleutils::LoadEnmityTable();
+    battleutils::LoadSkillChainDamageModifiers();
 	petutils::LoadPetList();
 
 	ShowStatus("do_init: loading zones");
@@ -221,6 +222,7 @@ void do_final(void)
 	itemutils::FreeItemList();
 	battleutils::FreeAbilitiesList();
 	battleutils::FreeWeaponSkillsList();
+    battleutils::FreeSkillChainDamageModifiers();
 	
 	petutils::FreePetList();
 	zoneutils::FreeZoneList();
