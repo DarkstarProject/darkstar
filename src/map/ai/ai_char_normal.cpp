@@ -1028,11 +1028,13 @@ void CAICharNormal::ActionMagicCasting()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-    if (m_PBattleSubTarget->isDead() && m_PBattleSubTarget->objtype != TYPE_PC) //todo: so raise can be cast, will need to redo this
-	{
-		m_ActionType = ACTION_MAGIC_INTERRUPT;
-		ActionMagicInterrupt();
-		return;
+	if(m_PSpell->getID() != 12 && m_PSpell->getID() != 13 && m_PSpell->getID() != 140){ //raise ids
+		if (m_PBattleSubTarget->isDead())
+		{
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
 	}
 	if (m_PBattleSubTarget->objtype == TYPE_MOB && !IsMobOwner(m_PBattleSubTarget))
 	{
