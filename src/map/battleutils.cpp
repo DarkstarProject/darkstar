@@ -26,6 +26,7 @@
 
 #include <math.h>
 #include <string.h>
+#include <algorithm>
 
 #include "packets/char_health.h"
 #include "packets/char_update.h"
@@ -1807,33 +1808,33 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
         // Level 2 skill chains
         case SUBEFFECT_FUSION:
             chainLevel = 2;
-            resistance = max(PDefender->getMod(MOD_FIRERES), PDefender->getMod(MOD_LIGHTRES));
+            resistance = std::max(PDefender->getMod(MOD_FIRERES), PDefender->getMod(MOD_LIGHTRES));
             break;
 
         case SUBEFFECT_FRAGMENTATION:
             chainLevel = 2;
-            resistance = max(PDefender->getMod(MOD_WINDRES), PDefender->getMod(MOD_THUNDERRES));
+            resistance = std::max(PDefender->getMod(MOD_WINDRES), PDefender->getMod(MOD_THUNDERRES));
             break;
 
         case SUBEFFECT_GRAVITATION:
             chainLevel = 2;
-            resistance = max(PDefender->getMod(MOD_EARTHRES), PDefender->getMod(MOD_DARKRES));
+            resistance = std::max(PDefender->getMod(MOD_EARTHRES), PDefender->getMod(MOD_DARKRES));
             break;
 
         case SUBEFFECT_DISTORTION:
             chainLevel = 2;
-            resistance = max(PDefender->getMod(MOD_ICERES), PDefender->getMod(MOD_WATERRES));
+            resistance = std::max(PDefender->getMod(MOD_ICERES), PDefender->getMod(MOD_WATERRES));
             break;
     
         // Level 3 skill chains
         case SUBEFFECT_LIGHT:
             chainLevel = 3;
-            resistance = max(max(PDefender->getMod(MOD_FIRERES), PDefender->getMod(MOD_WINDRES)), max(PDefender->getMod(MOD_THUNDERRES), PDefender->getMod(MOD_LIGHTRES)));
+            resistance = std::max(std::max(PDefender->getMod(MOD_FIRERES), PDefender->getMod(MOD_WINDRES)), std::max(PDefender->getMod(MOD_THUNDERRES), PDefender->getMod(MOD_LIGHTRES)));
             break;
 
         case SUBEFFECT_DARKNESS:
             chainLevel = 3;
-            resistance = max(max(PDefender->getMod(MOD_ICERES), PDefender->getMod(MOD_EARTHRES)), max(PDefender->getMod(MOD_WATERRES), PDefender->getMod(MOD_DARKRES)));
+            resistance = std::max(std::max(PDefender->getMod(MOD_ICERES), PDefender->getMod(MOD_EARTHRES)), std::max(PDefender->getMod(MOD_WATERRES), PDefender->getMod(MOD_DARKRES)));
             break;
     
         default:
