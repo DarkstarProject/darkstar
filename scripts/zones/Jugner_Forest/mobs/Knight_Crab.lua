@@ -3,11 +3,14 @@
 -- NPC:  Knight Crab
 -----------------------------------
 
+require("scripts/globals/titles");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
 function OnMobSpawn(mob)
+	SetServerVariable("[POP]King_Arthro",0);
 end;
 
 -----------------------------------

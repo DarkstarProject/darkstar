@@ -8,16 +8,11 @@ package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/bcnm");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Horlais_Peak/TextIDs");
-
-	-- events:
-	-- 7D00 : BC menu
-	-- Param 4 is a bitmask for the choice of battlefields in the menu:
 
 	--- 0: The Rank 2 Final Mission
 	--- 1: Tails of Woe
@@ -38,41 +33,16 @@ require("scripts/zones/Horlais_Peak/TextIDs");
 	--- 16: Today's Horoscope
 	--- 17: Contaminated Colosseum
 
-	-- Param 8 is a flag: 0 : menu, >0 : automatically enter and exit
-
-	-- 7D01 : final BC event.
-	-- param 2: #time record for this mission
-	-- param 3: #clear time in seconds
-	-- param 6: #which mission (linear numbering as above)
-	-- 7D03 : stay/run away
-
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(TradeBCNM(player,player:getZone(),trade,npc))then -- New function handled it
+	
+	if(TradeBCNM(player,player:getZone(),trade,npc))then
 		return;
 	end
 	
-	pZone = player:getZone();
-	player:setVar(tostring(pZone) .. "_Ready",0);
-	player:setVar(tostring(pZone) .. "_Field",0);
-	player:setVar(tostring(pZone) .. "_onTrade",0);
-	
-	if(npc:getID() == 17346795) then
-		if(getAvailableBattlefield(player:getZone()) ~= 255) then
-			
-			bcnmFight = getTradeFightBCNM(player,pZone,trade);
-			
-			if(bcnmFight >= 0) then
-				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
-				player:setVar(tostring(pZone) .. "_onTrade",trade:getItem());
-			end
-		else
-			player:messageSpecial(7155);
-		end
-	end
 end;
 
 -----------------------------------
@@ -80,10 +50,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(EventTriggerBCNM(player,npc))then --New function handled it
-		return;
-	end
-
+	player:setVar("trade_bcnmid",0);
+	
+--	if(EventTriggerBCNM(player,npc))then --New function handled it -- IDK HOW IT WORKS ^^;
+--		return;
+--	end
+	
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
@@ -120,7 +92,7 @@ function onEventUpdate(player,csid,option)
 	if(EventUpdateBCNM(player,csid,option))then --New function handled it
 		return;
 	end
-
+	--[[
 	if(csid == 0x7d00) then
 		pZone = player:getZone();
 		zoneReady = tostring(pZone) .. "_Ready";
@@ -132,11 +104,8 @@ function onEventUpdate(player,csid,option)
 			onTradeFight = player:getVar(tostring(pZone) .. "_onTrade")
 
 			if(player:getVar(zoneReady) == readyField and readyField ~= 255) then
-				if(onTradeFight ~= 0) then
-					bcnmFight = getUpdateFightBCNM(player,pZone,onTradeFight);
-					record = GetServerVariable("[BF]Shattering_Stars_job"..player:getMainJob().."_record");
-				elseif((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
-						player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then
+				if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
+					player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then
 					record = GetServerVariable("[BF]Mission_2-3_Horlais_Peak_record");
 					player:levelRestriction(25);
 				elseif(player:hasCompletedMission(player:getNation(),5)) then
@@ -152,7 +121,7 @@ function onEventUpdate(player,csid,option)
 		elseif(option == 255) then
 			player:setVar(tostring(pZone) .. "_Field",readyField);
 		end
-	end
+	end]]
 	
 end;
 
@@ -163,10 +132,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
+	
 	if(EventFinishBCNM(player,csid,option))then --New function handled it
 		return;
 	end
-
+	--[[
 	pZone = player:getZone();
 
 	if(csid == 0x7d00 and option ~= 1073741824 and option ~= 0) then
@@ -189,5 +159,5 @@ function onEventFinish(player,csid,option)
 		player:levelRestriction(0);
 		player:setVar(tostring(pZone) .. "_Runaway",0)
 	end
-	
+	]]
 end;

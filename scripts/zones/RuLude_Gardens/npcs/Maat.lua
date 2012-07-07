@@ -96,7 +96,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x005c,player:getMainJob()); -- Start Quest "Shattering Stars"
 	elseif(shatteringStars == QUEST_ACCEPTED and LvL >= 66 and mJob <= 15 and player:getVar("maatDefeated") == 0) then
 		player:startEvent(0x005b,player:getMainJob()); -- During Quest "Shattering Stars"
-	elseif(shatteringStars == QUEST_ACCEPTED and LvL >= 66 and mJob <= 15 and player:getVar("maatDefeated") == 1) then
+	elseif(shatteringStars == QUEST_ACCEPTED and LvL >= 66 and mJob <= 15 and player:getVar("maatDefeated") >= 1) then
 		player:startEvent(0x005d); -- Finish Quest "Shattering Stars"
 	else
 		player:showText(npc,10259);
@@ -189,8 +189,8 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x005d) then
 		player:setTitle(STAR_BREAKER);
 		player:levelCap(75);
+		player:setVar("maatCap",player:getVar("maatDefeated"));
 		player:setVar("maatDefeated",0);
-		-- Add variable for maat cap
 		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_75);
 		player:addFame(JEUNO,80);
 		player:completeQuest(JEUNO,SHATTERING_STARS);

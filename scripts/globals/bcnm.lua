@@ -6,7 +6,7 @@ require("scripts/globals/status");
 --array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
 --e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
 -- DO NOT INCLUDE MAAT FIGHTS
-itemid_bcnmid_map = {139,{1426,1,1429,1,1436,1}, --Horlais Peak
+itemid_bcnmid_map = {139,{0,0}, --Horlais Peak
 					 144,{0,0}, --Waughroon Shrine
 					 146,{0,0}, --Balgas Dias
 					 168,{0,0}, --Chamber of Oracles
@@ -15,7 +15,8 @@ itemid_bcnmid_map = {139,{1426,1,1429,1,1436,1}, --Horlais Peak
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
 -- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!)
 -- bcnmid,paramid,bcnmid,paramid,etc
-bcnmid_param_map = {139,{0,0}};
+bcnmid_param_map = {139,{0,0},
+					140,{0,0}};
 
 
 -- Call this onTrade for burning circles
@@ -38,12 +39,12 @@ function TradeBCNM(player,zone,trade,npc)
 		return false;
 	else --a valid BCNM with this item, start it.
 		mask = GetBattleBitmask(id,zone);
-		if(mask==-1)then --Cannot resolve this BCNMID to an event number, edit bcnmid_param_map!
+		if(mask == -1)then --Cannot resolve this BCNMID to an event number, edit bcnmid_param_map!
 			print("Item is for a valid BCNM but cannot find the event parameter to display to client.");
 			player:setVar("trade_bcnmid",0);
 			return false;
 		end
-		if(player:isBcnmsFull()==1)then --temp measure, this will precheck the instances
+		if(player:isBcnmsFull() == 1)then --temp measure, this will precheck the instances
 			print("all bcnm instances are currently occupied.");
 			npc:messageBasic(246,0,0); --this wont look right in other languages!
 			return true;
@@ -56,13 +57,13 @@ end;
 function EventTriggerBCNM(player,npc)
 	--return false;
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
-		if(player:isInBcnm()==1) then
+		if(player:isInBcnm() == 1) then
 			player:startEvent(0x7d03); --Run Away or Stay menu
 		else
 			--todo: give option of bcnm to enter then enter
 			status = player:getStatusEffect(EFFECT_BATTLEFIELD);
 			--TODO: map from the id (power) to the bitmask.
-			if(status:getPower()==1) then --BCNMID==1 for maat_horlais
+			if(status:getPower() == 1) then --BCNMID==1 for maat_horlais
 				player:startEvent(0x7d00,0,0,0,32,0,0,0,0); --32 is the bitmask
 			end
 		end
@@ -77,11 +78,11 @@ function EventUpdateBCNM(player,csid,option)
 	
 	print("UPDATE csid "..csid.." option "..option);
 	--seen: option 2,3,0 in that order
-	if(csid==0x7d03 and option==2)then --leaving a BCNM the player is currently in.
+	if(csid == 0x7d03 and option == 2)then --leaving a BCNM the player is currently in.
 		player:bcnmLeave(1);
 		return true;
 	end
-	if(option==255 and csid==0x7d00)then --Clicked yes, try to register bcnmid
+	if(option == 255 and csid == 0x7d00)then --Clicked yes, try to register bcnmid
 		if(player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
 			player:setVar("bcnm_instanceid_tick",0);
 			player:setVar("bcnm_instanceid",player:getInstanceID()); --returns 255 if non-existent.
@@ -89,7 +90,7 @@ function EventUpdateBCNM(player,csid,option)
 		end
 		
 		inst = player:bcnmRegister(id);
-		if(inst>0)then
+		if(inst > 0)then
 			player:setVar("bcnm_instanceid",inst);
 			player:setVar("bcnm_instanceid_tick",0);
 			player:updateEvent(0,3,0,0,1,0);
@@ -100,7 +101,7 @@ function EventUpdateBCNM(player,csid,option)
 			player:setVar("bcnm_instanceid",255);
 			player:setVar("bcnm_instanceid_tick",0);
 		end
-	elseif(option==0 and csid==0x7d00)then --Requesting an Instance
+	elseif(option == 0 and csid == 0x7d00)then --Requesting an Instance
 		-- Increment the instance ticker.
 		-- The client will send a total of THREE EventUpdate packets for each one of the free instances.
 		-- If the first instance is free, it should respond to the first packet
@@ -111,10 +112,11 @@ function EventUpdateBCNM(player,csid,option)
 		
 		if(instance == player:getVar("bcnm_instanceid"))then
 			--respond to this packet
-			player:updateEvent(2,5,0,0,1,0);
+			mask = GetBattleBitmask(id,player:getZone());
+			player:updateEvent(2,mask,0,0,1,0);
 			player:bcnmEnter(id);
 			player:setVar("bcnm_instanceid_tick",0);
-		elseif(player:getVar("bcnm_instanceid")==255)then --none free
+		elseif(player:getVar("bcnm_instanceid") == 255)then --none free
 			--print("nfa");
 			--player:updateEvent(2,5,0,0,1,0);
 			--param1
@@ -150,32 +152,37 @@ function CheckMaatFights(player,zone,trade,npc)
 	job = player:getMainJob();
 	lvl = player:getMainLvl();
 	
-	if(itemid>=1426 and itemid<=1440) then --The traded item IS A TESTIMONY
-		if(lvl<66)then --not high enough level for maat fight :(
+	if(itemid >= 1426 and itemid <= 1440) then --The traded item IS A TESTIMONY
+		if(lvl < 66)then --not high enough level for maat fight :(
 			return true;
 		end
 		
-		if(player:isBcnmsFull()==1)then --temp measure, this will precheck the instances
+		if(player:isBcnmsFull() == 1)then --temp measure, this will precheck the instances
 			print("all bcnm instances are currently occupied.");
 			npc:messageBasic(246,0,0);
 			return true;
 		end
-	
-		if(zone==139)then --Horlais Peak Maat Fight		
-			if(job==1 and itemid==1426) then --WAR
-				player:startEvent(0x7d00,0,0,0,32,0,0,0,0);
-				player:setVar("trade_bcnmid",1);
-			elseif(job==4 and itemid==1429) then --BLM
-				player:startEvent(0x7d00,0,0,0,64,0,0,0,0);
-				player:setVar("trade_bcnmid",1);
-			elseif(job==11 and itemid==1436) then -- RNG
-				player:startEvent(0x7d00,0,0,0,128,0,0,0,0);
-				player:setVar("trade_bcnmid",1);
-			else
-				print("DEBUG: Job/testimony do not match");
+		
+		--Zone,{item,job,menu,bcnmid,...}
+		maatList = {139,{1426,1,32,5,1429,4,64,6,1436,11,128,7},		-- Horlais Peak [WAR BLM RNG]
+					144,{1430,5,64,70,1431,6,128,71,1434,9,256,72},		-- Waughroon Shrine [RDM THF BST]
+					146,{1427,2,32,101,1428,3,64,102,1440,15,128,103},	-- Balga's Dais [MNK WHM SMN]
+					168,{1437,12,4,194,1438,13,8,195,1439,14,16,196},	-- Chamber of Oracles [SAM NIN DRG]
+					206,{1432,7,32,517,1433,8,64,518,1435,10,128,519} };-- Qu'Bia Arena [PLD DRK BRD]
+		
+		for nb = 1, table.getn(maatList), 2 do
+			if(maatList[nb] == zone) then
+				for nbi = 1, table.getn(maatList[nb + 1]), 4 do
+					if(itemid == maatList[nb + 1][nbi] and job == maatList[nb + 1][nbi + 1]) then
+						player:startEvent(0x7d00,0,0,0,maatList[nb + 1][nbi + 2],0,0,0,0);
+						player:setVar("trade_bcnmid",maatList[nb + 1][nbi + 3]);
+						break;
+					end
+				end
 			end
-			return true;
 		end
+		
+		return true;
 	end
 	--if it got this far then its not a testimony
 	return false;

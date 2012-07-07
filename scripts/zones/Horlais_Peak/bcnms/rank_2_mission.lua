@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Horlais Peak
--- Name: Shattering stars - Maat Fight
+-- Name: Mission Rank 2
 -- @pos -509 158 -211 139
 -----------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/titles");
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Horlais_Peak/TextIDs");
 
@@ -42,7 +42,11 @@ end;
 function OnBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
+		if(player:hasCompletedMission(player:getNation(),5)) then
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+		else
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+		end
 	elseif(leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
@@ -57,12 +61,11 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 	
 	if(csid == 0x7d01) then
-		if(player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
-			player:addItem(4181);
-			player:messageSpecial(ITEM_OBTAINED,4181);
+		if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then
+			player:addKeyItem(KINDRED_CREST);
+			player:messageSpecial(KEYITEM_OBTAINED,KINDRED_CREST);
+			player:setVar("MissionStatus",10);
 		end
-		player:setVar("maatDefeated",player:getMainJob());
-		player:setTitle(MAAT_MASHER);
 	end
 	
 end;
