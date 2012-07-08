@@ -172,7 +172,6 @@ function onEventFinish(player,csid,option)
 		else
 			player:tradeComplete();
 			player:addGil(GIL_RATE*120);
-			player:messageSpecial(GIL_OBTAINED,GIL_RATE*120);
 			player:setVar("Kenapa_Food_var",4); -- If this is NOT the last NPC given food, flag this NPC as completed.
 		end
 	elseif(csid == 0x014b) then
@@ -190,6 +189,7 @@ function onEventFinish(player,csid,option)
 		else
 			player:tradeComplete();
 			player:addGil(GIL_RATE*120);
+			player:messageSpecial(GIL_OBTAINED,GIL_RATE*120); 
 			player:setVar("Kenapa_Food_var",4); -- If this is NOT the last NPC given food, flag this NPC as completed.
 		end
 	elseif  (csid == 0x0038) then  -- Show Off Hat
