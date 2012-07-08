@@ -34,7 +34,7 @@ stock = {0x1221,1165,1,		-- Diaga
 
 	 0x1200,61,3,		-- Cure
 	 0x1207,1363,3,		-- Curaga
-	 0x12E1,180,3,		-- Poisona
+	 0x120e,180,3,		-- Poisona
 	 0x120F,324,3,		-- Paralyna
 	 0x1210,990,3,		-- Blindna
 	 0x11FE,82,3,		-- Dia
