@@ -654,7 +654,7 @@ void LoadInventory(CCharEntity* PChar)
 	}
     else 
     {
-		ShowError(CL_RED"Loading error from char_equip\n"CL_RESET);
+		ShowError(CL_RED"Loading error from char_equip\n" CL_RESET);
 	}
     CheckValidEquipment(PChar);
 	PChar->StatusEffectContainer->LoadStatusEffects();
@@ -791,7 +791,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quanti
 		PItem->setQuantity(quantity);
         return AddItem(PChar, LocationID, PItem);
 	}
-	ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n"CL_RESET, ItemID);
+	ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, ItemID);
 	return ERROR_SLOTID;
 }
 
@@ -834,7 +834,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
 
         if( Sql_Query(SqlHandle, Query, PChar->id, LocationID, SlotID, PItem->getID(), PItem->getQuantity(), PItem->getSignature(), charges) == SQL_ERROR )
         {
-            ShowError(CL_RED"charplugin::AddItem: Cannot insert item to database\n"CL_RESET);
+            ShowError(CL_RED"charplugin::AddItem: Cannot insert item to database\n" CL_RESET);
             PChar->getStorage(LocationID)->InsertItem(NULL, SlotID);
             delete PItem;
             return ERROR_SLOTID;
@@ -844,7 +844,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
     }
     else
     {
-        ShowDebug(CL_CYAN"charplugin::AddItem: Location %i is full\n"CL_RESET, LocationID);
+        ShowDebug(CL_CYAN"charplugin::AddItem: Location %i is full\n" CL_RESET, LocationID);
     }
     return SlotID;
 }
@@ -1141,7 +1141,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 		PChar->equip[equipSlotID] = slotID;
 
 	} else {
-		ShowWarning(CL_YELLOW"Item %i is not equipable in equip slot %i\n"CL_RESET, PItem->getID(), equipSlotID);
+		ShowWarning(CL_YELLOW"Item %i is not equipable in equip slot %i\n" CL_RESET, PItem->getID(), equipSlotID);
 		return false;
 	}
 

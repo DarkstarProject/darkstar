@@ -274,7 +274,7 @@ void CZone::LoadZoneSettings()
 		Sql_NumRows(SqlHandle) == 0 ||
 		Sql_NextRow(SqlHandle) != SQL_SUCCESS) 
 	{
-		ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot loading zone settings (%u)\n"CL_RESET, m_zoneID);
+		ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot loading zone settings (%u)\n" CL_RESET, m_zoneID);
 	} 
 	else 
 	{
@@ -317,7 +317,7 @@ void CZone::LoadZoneInstances()
 		case 206:
 		case 144:
 		case 168:
-			ShowError(CL_RED"CZone::LoadZoneInstances: Cannot load zone BCNM instances (%u)\n"CL_RESET, m_zoneID);
+			ShowError(CL_RED"CZone::LoadZoneInstances: Cannot load zone BCNM instances (%u)\n" CL_RESET, m_zoneID);
 		}
 	} 
 	else 
@@ -418,7 +418,7 @@ void CZone::InsertPET(CBaseEntity* PPet)
 	    }
         if (targid >= 0x800)
         {
-            ShowError(CL_RED"CZone::InsertPET : targid is high (03hX)\n"CL_RESET, targid);
+            ShowError(CL_RED"CZone::InsertPET : targid is high (03hX)\n" CL_RESET, targid);
             return;
         }
         PPet->id = 0x1000000 + (m_zoneID << 12) + targid;
@@ -438,7 +438,7 @@ void CZone::InsertPET(CBaseEntity* PPet)
 		}
 		return;
 	}
-	ShowError(CL_RED"CZone::InsertPET : entity is not pet\n"CL_RESET);
+	ShowError(CL_RED"CZone::InsertPET : entity is not pet\n" CL_RESET);
 }
 
 /************************************************************************
@@ -571,7 +571,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
 
 	m_charList.erase(PChar->targid);
-	ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u> %s\n"CL_RESET, GetName(), m_charList.size(),PChar->GetName());
+	ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u> %s\n" CL_RESET, GetName(), m_charList.size(),PChar->GetName());
 
 	if (ZoneTimer && m_charList.empty())
 	{
@@ -647,7 +647,7 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
     }
     if (PChar->targid >= 0x700)
     {
-        ShowError(CL_RED"CZone::InsertChar : targid is high (03hX)\n"CL_RESET, PChar->targid);
+        ShowError(CL_RED"CZone::InsertChar : targid is high (03hX)\n" CL_RESET, PChar->targid);
         return;
     }
     PChar->loc.zone = this;
@@ -657,7 +657,7 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
     PChar->m_PVPFlag = 0;
 
 	m_charList[PChar->targid] = PChar;
-	ShowDebug(CL_CYAN"CZone:: %s IncreaseZoneCounter <%u> %s \n"CL_RESET, GetName(), m_charList.size(),PChar->GetName());
+	ShowDebug(CL_CYAN"CZone:: %s IncreaseZoneCounter <%u> %s \n" CL_RESET, GetName(), m_charList.size(),PChar->GetName());
 
 	if (!ZoneTimer && !m_charList.empty())
 	{

@@ -128,7 +128,7 @@ bool isRightRecipe(CCharEntity* PChar)
 			// в девятую ячейку записываем id рецепта
 			PChar->Container->setItem(9, Sql_GetUIntData(SqlHandle,0),0xFF,0);
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-			ShowDebug(CL_CYAN"Recipe matches ID %u.\n"CL_RESET, PChar->Container->getItemID(9));
+			ShowDebug(CL_CYAN"Recipe matches ID %u.\n" CL_RESET, PChar->Container->getItemID(9));
 			#endif
 
 			PChar->Container->setItem(10 + 1, (uint16)Sql_GetUIntData(SqlHandle,10), (uint8)Sql_GetUIntData(SqlHandle,14), 0);	// RESULT_SUCCESS
@@ -148,13 +148,13 @@ bool isRightRecipe(CCharEntity* PChar)
 				PChar->Container->setQuantity(skillID-40, skillValue);
 				
 				#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-				ShowDebug(CL_CYAN"Current skill = %u, Recipe skill = %u\n"CL_RESET, currentSkill, skillValue*10);
+				ShowDebug(CL_CYAN"Current skill = %u, Recipe skill = %u\n" CL_RESET, currentSkill, skillValue*10);
 				#endif
 				if (currentSkill < (skillValue*10 - 150))
 				{
 					PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_NOSKILL));
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-					ShowDebug(CL_CYAN"Not enough skill. Synth aborted.\n"CL_RESET);
+					ShowDebug(CL_CYAN"Not enough skill. Synth aborted.\n" CL_RESET);
 					#endif
 					return false;
 				}
@@ -165,15 +165,15 @@ bool isRightRecipe(CCharEntity* PChar)
 
 	PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_BADRECIPE));
 	#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-	ShowDebug(CL_CYAN"Recipe not found. Synth aborted.\n"CL_RESET);
-	ShowDebug(CL_CYAN"Ingredient1 = %u\n"CL_RESET, PChar->Container->getItemID(1));
-	ShowDebug(CL_CYAN"Ingredient2 = %u\n"CL_RESET, PChar->Container->getItemID(2));
-	ShowDebug(CL_CYAN"Ingredient3 = %u\n"CL_RESET, PChar->Container->getItemID(3));
-	ShowDebug(CL_CYAN"Ingredient4 = %u\n"CL_RESET, PChar->Container->getItemID(4));
-	ShowDebug(CL_CYAN"Ingredient5 = %u\n"CL_RESET, PChar->Container->getItemID(5));
-	ShowDebug(CL_CYAN"Ingredient6 = %u\n"CL_RESET, PChar->Container->getItemID(6));
-	ShowDebug(CL_CYAN"Ingredient7 = %u\n"CL_RESET, PChar->Container->getItemID(7));
-	ShowDebug(CL_CYAN"Ingredient8 = %u\n"CL_RESET, PChar->Container->getItemID(8));
+	ShowDebug(CL_CYAN"Recipe not found. Synth aborted.\n" CL_RESET);
+	ShowDebug(CL_CYAN"Ingredient1 = %u\n" CL_RESET, PChar->Container->getItemID(1));
+	ShowDebug(CL_CYAN"Ingredient2 = %u\n" CL_RESET, PChar->Container->getItemID(2));
+	ShowDebug(CL_CYAN"Ingredient3 = %u\n" CL_RESET, PChar->Container->getItemID(3));
+	ShowDebug(CL_CYAN"Ingredient4 = %u\n" CL_RESET, PChar->Container->getItemID(4));
+	ShowDebug(CL_CYAN"Ingredient5 = %u\n" CL_RESET, PChar->Container->getItemID(5));
+	ShowDebug(CL_CYAN"Ingredient6 = %u\n" CL_RESET, PChar->Container->getItemID(6));
+	ShowDebug(CL_CYAN"Ingredient7 = %u\n" CL_RESET, PChar->Container->getItemID(7));
+	ShowDebug(CL_CYAN"Ingredient8 = %u\n" CL_RESET, PChar->Container->getItemID(8));
 	#endif
 	return false;
 }
@@ -241,10 +241,10 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	}
 
 	#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-	ShowDebug(CL_CYAN"Direction = %i\n"CL_RESET, ElementDirection);
-	ShowDebug(CL_CYAN"Day = %i\n"CL_RESET, WeekDay);
-	ShowDebug(CL_CYAN"Moon = %g\n"CL_RESET, MoonPhase);
-	ShowDebug(CL_CYAN"Difficulty = %g\n"CL_RESET, difficult);
+	ShowDebug(CL_CYAN"Direction = %i\n" CL_RESET, ElementDirection);
+	ShowDebug(CL_CYAN"Day = %i\n" CL_RESET, WeekDay);
+	ShowDebug(CL_CYAN"Moon = %g\n" CL_RESET, MoonPhase);
+	ShowDebug(CL_CYAN"Difficulty = %g\n" CL_RESET, difficult);
 	#endif
 	
 	return difficult;
@@ -351,7 +351,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
 			double random = rand() / ((double) RAND_MAX);
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-			ShowDebug(CL_CYAN"Success: %g  Random: %g\n"CL_RESET, success, random);
+			ShowDebug(CL_CYAN"Success: %g  Random: %g\n" CL_RESET, success, random);
 			#endif
 
 			if(random < success) 
@@ -360,7 +360,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 				{
 					random = rand() / ((double) RAND_MAX);
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-					ShowDebug(CL_CYAN"HQ Tier: %i  Random: %g\n"CL_RESET, hqtier, random);
+					ShowDebug(CL_CYAN"HQ Tier: %i  Random: %g\n" CL_RESET, hqtier, random);
 					#endif
 					
 					switch(hqtier) 
@@ -402,31 +402,31 @@ uint8 calcSynthResult(CCharEntity* PChar)
 		case SYNTHESIS_FAIL:
 			result = RESULT_FAIL;
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-			ShowDebug(CL_CYAN"Synth failed.\n"CL_RESET);
+			ShowDebug(CL_CYAN"Synth failed.\n" CL_RESET);
 			#endif
 			break;
 		case SYNTHESIS_SUCCESS:
 			result = RESULT_SUCCESS;
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-			ShowDebug(CL_CYAN"Synth success.\n"CL_RESET);
+			ShowDebug(CL_CYAN"Synth success.\n" CL_RESET);
 			#endif
 			break;
 		case SYNTHESIS_HQ:
 			result = RESULT_HQ;
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-			ShowDebug(CL_CYAN"Synth HQ.\n"CL_RESET);
+			ShowDebug(CL_CYAN"Synth HQ.\n" CL_RESET);
 			#endif
 			break;
 		case SYNTHESIS_HQ2:
 			result = RESULT_HQ;
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-			ShowDebug(CL_CYAN"Synth HQ2.\n"CL_RESET);
+			ShowDebug(CL_CYAN"Synth HQ2.\n" CL_RESET);
 			#endif
 			break;
 		case SYNTHESIS_HQ3:
 			result = RESULT_HQ;
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-			ShowDebug(CL_CYAN"Synth HQ3.\n"CL_RESET);
+			ShowDebug(CL_CYAN"Synth HQ3.\n" CL_RESET);
 			#endif
 			break;
 	}
@@ -479,7 +479,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 			double random = rand() / ((double)RAND_MAX);
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-			ShowDebug(CL_CYAN"Skill up chance: %g  Random: %g\n"CL_RESET, skillUpChance, random);
+			ShowDebug(CL_CYAN"Skill up chance: %g  Random: %g\n" CL_RESET, skillUpChance, random);
 			#endif
 
 			if (random < skillUpChance)
@@ -505,7 +505,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 				{
 					random = rand() / ((double)RAND_MAX);
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-					ShowDebug(CL_CYAN"SkillAmount Tier: %i  Random: %g\n"CL_RESET, satier, random);
+					ShowDebug(CL_CYAN"SkillAmount Tier: %i  Random: %g\n" CL_RESET, satier, random);
 					#endif
 						
 					switch(satier) 
@@ -623,7 +623,7 @@ int32 doSynthFail(CCharEntity* PChar)
 		
 		random = rand() / ((double) RAND_MAX);
 		#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-		ShowDebug(CL_CYAN"Lost Item: %g  Random: %g\n"CL_RESET, lostItem, random);
+		ShowDebug(CL_CYAN"Lost Item: %g  Random: %g\n" CL_RESET, lostItem, random);
 		#endif
 
 		if(random < lostItem) {
@@ -642,7 +642,7 @@ int32 doSynthFail(CCharEntity* PChar)
 				if(lostCount > 0) 
 				{
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-					ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n"CL_RESET, lostCount, invSlotID);
+					ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n" CL_RESET, lostCount, invSlotID);
 					#endif
 					
 					charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(int32)lostCount);
@@ -795,7 +795,7 @@ int32 doSynthResult(CCharEntity* PChar)
 				if (invSlotID != 0xFF)
 				{
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-					ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n"CL_RESET,removeCount,invSlotID);
+					ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n" CL_RESET,removeCount,invSlotID);
 					#endif
 					PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->setSubType(ITEM_UNLOCKED);
 					charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(int32)removeCount); 

@@ -127,7 +127,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 		    return;
         }
     }
-    ShowError(CL_RED"The character with name <%s> isn't found in party\n"CL_RESET, MemberName);
+    ShowError(CL_RED"The character with name <%s> isn't found in party\n" CL_RESET, MemberName);
 }
 
 /************************************************************************
@@ -168,7 +168,7 @@ void CParty::RemoveMemberByName(int8* MemberName)
 			return;
 		} 
 	}
-	ShowError(CL_RED"The character with name <%s> isn't found in party\n"CL_RESET, MemberName);
+	ShowError(CL_RED"The character with name <%s> isn't found in party\n" CL_RESET, MemberName);
 }
 
 /************************************************************************

@@ -105,7 +105,7 @@ int32 hasBit(uint16 value, uint8* BitArray, uint32 size)
 {
 	if (value >= size * 8)
 	{
-		ShowError(CL_RED"hasBit: value (%u) is out of range\n"CL_RESET, value);
+		ShowError(CL_RED"hasBit: value (%u) is out of range\n" CL_RESET, value);
 		return 0;
 	}
 	return (int32)(BitArray[value >> 3] & (1 << (value % 8)));

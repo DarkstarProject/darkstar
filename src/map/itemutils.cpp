@@ -183,7 +183,7 @@ namespace itemutils
 	    {
 		    return g_pItemList[ItemID];
 	    }
-        ShowWarning(CL_CYAN"ItemID %u too big\n"CL_RESET, ItemID);
+        ShowWarning(CL_CYAN"ItemID %u too big\n" CL_RESET, ItemID);
 	    return NULL;
     }	
 
@@ -199,7 +199,7 @@ namespace itemutils
 	    {
 		     return g_pDropList[DropID];
 	    }
-        ShowWarning(CL_CYAN"DropID %u too big\n"CL_RESET, DropID);
+        ShowWarning(CL_CYAN"DropID %u too big\n" CL_RESET, DropID);
 	    return NULL;
     }
 

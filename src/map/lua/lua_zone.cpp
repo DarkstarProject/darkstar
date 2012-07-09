@@ -82,7 +82,7 @@ inline int32 CLuaZone::registerRegion(lua_State *L)
 
 			m_pLuaZone->InsertRegion(Region);
 		} else {
-			ShowWarning(CL_YELLOW"Region cannot be registered. Please check the parameters.\n"CL_RESET);
+			ShowWarning(CL_YELLOW"Region cannot be registered. Please check the parameters.\n" CL_RESET);
 		}
 	}
 	lua_pushnil(L);

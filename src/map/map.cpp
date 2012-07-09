@@ -109,7 +109,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 	ipp |= port64<<32;
 	map_session_list[ipp] = map_session_data;
 
-	ShowInfo(CL_WHITE"mapsession"CL_RESET":"CL_WHITE"%s"CL_RESET":"CL_WHITE"%u"CL_RESET" is coming to world...\n",ip2str(map_session_data->client_addr,NULL),map_session_data->client_port);
+	ShowInfo(CL_WHITE"mapsession" CL_RESET":" CL_WHITE"%s" CL_RESET":" CL_WHITE"%u" CL_RESET" is coming to world...\n",ip2str(map_session_data->client_addr,NULL),map_session_data->client_port);
 	return map_session_data;
 }
 
@@ -129,9 +129,9 @@ int32 do_init(int32 argc, int8** argv)
 
 	map_config_default();
 	map_config_read(MAP_CONF_FILENAME);
-	ShowMessage("\t\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
+	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
  	ShowStatus("do_init: map_config is reading");
-	ShowMessage("\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
+	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
 	luautils::init();
 	CmdHandler.init("conf/commands.conf", luautils::LuaHandle);
@@ -152,21 +152,21 @@ int32 do_init(int32 argc, int8** argv)
     // отчищаем таблицу сессий при старте сервера (временное решение, т.к. в кластере это не будет работать)
     Sql_Query(SqlHandle, "TRUNCATE TABLE accounts_sessions"); 
 
-	ShowMessage("\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
+	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 	ShowStatus("do_init: zlib is reading");
 	zlib_init();
-	ShowMessage("\t\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
+	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
 	ShowStatus("do_init: loading items");
 	itemutils::LoadItemList();
-	ShowMessage("\t\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
+	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
 	// нужно будет написать один метод для инициализации всех данных в battleutils
 	// и один метод для освобождения этих данных
     
 	ShowStatus("do_init: loading spells");
 	spell::LoadSpellList();
-	ShowMessage("\t\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
+	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
 	guildutils::Initialize();
 	charutils::LoadExpTable();
@@ -183,13 +183,13 @@ int32 do_init(int32 argc, int8** argv)
 
 	ShowStatus("do_init: loading zones");
 	zoneutils::LoadZoneList();
-	ShowMessage("\t\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
+	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
 	luautils::OnServerStart();
 
 	ShowStatus("do_init: server is binding with port %u",map_config.usMapPort);
 	map_fd = makeBind_udp(map_config.uiMapIp,map_config.usMapPort);
-	ShowMessage("\t - "CL_GREEN"[OK]"CL_RESET"\n");
+	ShowMessage("\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
     CVanaTime::getInstance()->setCustomOffset(map_config.vanadiel_time_offset);
 
@@ -198,7 +198,7 @@ int32 do_init(int32 argc, int8** argv)
 
 	CREATE(g_PBuff,   int8, map_config.buffer_size + 20);
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
-	ShowStatus("The map-server is "CL_GREEN"ready"CL_RESET" to work...\n");
+	ShowStatus("The map-server is " CL_GREEN"ready" CL_RESET" to work...\n");
     ShowMessage("=======================================================================\n");
 	return 0;
 }
@@ -413,7 +413,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 				Sql_NumRows(SqlHandle) == 0 ||
 				Sql_NextRow(SqlHandle) != SQL_SUCCESS) 
 			{
-				ShowError(CL_RED"recv_parse: Cannot load session_key for charid %u"CL_RESET, CharID);
+				ShowError(CL_RED"recv_parse: Cannot load session_key for charid %u" CL_RESET, CharID);
 			}
 			else
 			{
@@ -592,7 +592,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
     
     if (PacketSize > map_config.buffer_size + 20)
     {
-        ShowFatalError(CL_RED"%Memory manager: PTempBuff is overflowed (%u)\n"CL_RESET, PacketSize);
+        ShowFatalError(CL_RED"%Memory manager: PTempBuff is overflowed (%u)\n" CL_RESET, PacketSize);
     }
 
 	//making total packet
@@ -618,7 +618,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
 	if (*buffsize > 1350)
 	{
-		ShowWarning(CL_YELLOW"send_parse: packet is very big <%u>\n"CL_RESET,*buffsize);
+		ShowWarning(CL_YELLOW"send_parse: packet is very big <%u>\n" CL_RESET,*buffsize);
 	}
 	return 0;
 }
@@ -649,11 +649,11 @@ int32 map_close_session(uint32 tick, CTaskMgr::CTask* PTask)
 		delete map_session_data;
 
 		map_session_list.erase(ipp);
-		ShowDebug(CL_CYAN"map_close_session: session closed\n"CL_RESET);
+		ShowDebug(CL_CYAN"map_close_session: session closed\n" CL_RESET);
 		return 0;
 	}
 	
-	ShowError(CL_RED"map_close_session: cannot close session, session not found\n"CL_RESET);
+	ShowError(CL_RED"map_close_session: cannot close session, session not found\n" CL_RESET);
 	return 1;
 }
 
@@ -688,12 +688,12 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 		    {
 			    if (PChar != NULL) 
 			    {
-				    ShowDebug(CL_CYAN"map_cleanup: %s timed out, session closed\n"CL_RESET, PChar->GetName());
+				    ShowDebug(CL_CYAN"map_cleanup: %s timed out, session closed\n" CL_RESET, PChar->GetName());
 
 				    PChar->status = STATUS_SHUTDOWN;
                     PacketParser[0x00D](map_session_data, PChar, 0);
 			    } else {
-				    ShowWarning(CL_YELLOW"map_cleanup: WHITHOUT CHAR timed out, session closed\n"CL_RESET);
+				    ShowWarning(CL_YELLOW"map_cleanup: WHITHOUT CHAR timed out, session closed\n" CL_RESET);
 
 				    const int8* Query = "DELETE FROM accounts_sessions WHERE client_addr = %u AND client_port = %u";
 				    Sql_Query(SqlHandle, Query, map_session_data->client_addr, map_session_data->client_port);
@@ -732,7 +732,7 @@ void map_helpscreen(int32 flag)
 {
 	ShowMessage("Usage: map-server [options]\n");
 	ShowMessage("Options:\n");
-	ShowMessage(CL_WHITE"  Commands\t\t\tDescription\n"CL_RESET);
+	ShowMessage(CL_WHITE"  Commands\t\t\tDescription\n" CL_RESET);
 	ShowMessage("-----------------------------------------------------------------------------\n");
 	ShowMessage("  --help, --h, --?, /?		Displays this help screen\n");
 	ShowMessage("  --map-config <file>		Load map-server configuration from <file>\n");
@@ -908,7 +908,7 @@ int32 map_config_read(const int8* cfgName)
 		}
 		else
 		{
-			ShowWarning(CL_YELLOW"Unknown setting '%s' in file %s\n"CL_RESET, w1, cfgName);
+			ShowWarning(CL_YELLOW"Unknown setting '%s' in file %s\n" CL_RESET, w1, cfgName);
 		}
 	}
 

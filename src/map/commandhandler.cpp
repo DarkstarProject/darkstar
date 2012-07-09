@@ -106,7 +106,7 @@ bool CCommandHandler::init(const int8* InitCmdInIPath, lua_State* InitLState)
 	}
 	/*pop commands_ini table*/
 	lua_pop(m_LState,1);
-	ShowStatus("cmdhandler::init: initializing...\t\t - "CL_GREEN"[OK]"CL_RESET"\n");
+	ShowStatus("cmdhandler::init: initializing...\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 	return true;
 }
 

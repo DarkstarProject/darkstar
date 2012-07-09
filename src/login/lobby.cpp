@@ -103,7 +103,7 @@ int32 lobbydata_parse(int32 fd)
 	if( RFIFOREST(fd) >= 1 )
 	{
 		unsigned char *buff = session[fd]->rdata;
-		ShowDebug("lobbydata_parse:Incoming Packet:"CL_WHITE"<%x>"CL_RESET" from ip:<%s>\n",RBUFB(buff,0),ip2str(sd->client_addr,NULL));
+		ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,0),ip2str(sd->client_addr,NULL));
 
 		int32 code = RBUFB(buff,0);
 		switch(code)
@@ -112,7 +112,7 @@ int32 lobbydata_parse(int32 fd)
 			{
 				if( RFIFOREST(fd) < 9 )
 				{
-					ShowError("lobbydata_parse:"CL_WHITE"<%s>"CL_RESET" sent less then 9 bytes\n",ip2str(session[fd]->client_addr,NULL));
+					ShowError("lobbydata_parse:" CL_WHITE"<%s>" CL_RESET" sent less then 9 bytes\n",ip2str(session[fd]->client_addr,NULL));
 					do_close_lobbydata(sd,fd);
 					return -1;
 				}
@@ -324,7 +324,7 @@ int32 lobbydata_parse(int32 fd)
 				}
 
 				do_close_tcp(sd->login_lobbyview_fd);
-				ShowStatus("lobbydata_parse: client %s finished work with "CL_GREEN"lobbyview"CL_RESET"\n",ip2str(sd->client_addr,NULL));
+				ShowStatus("lobbydata_parse: client %s finished work with " CL_GREEN"lobbyview" CL_RESET"\n",ip2str(sd->client_addr,NULL));
 				break;
 			}
 		default:
@@ -345,20 +345,20 @@ int32 do_close_lobbydata(login_session_data_t *loginsd,int32 fd)
 {
 	if( loginsd != NULL )
 	{
-		ShowInfo("lobbydata_parse: "CL_WHITE"%s"CL_RESET" shutdown the socket\n",loginsd->login);
+		ShowInfo("lobbydata_parse: " CL_WHITE"%s" CL_RESET" shutdown the socket\n",loginsd->login);
 		if( session_isActive(loginsd->login_lobbyview_fd) )
 		{
 			do_close_tcp(loginsd->login_lobbyview_fd);
 		}
 		erase_loginsd_byaccid(loginsd->accid);
-		ShowInfo("lobbydata_parse: "CL_WHITE"%s"CL_RESET"'s login_session_data is deleted\n",loginsd->login);
+		ShowInfo("lobbydata_parse: " CL_WHITE"%s" CL_RESET"'s login_session_data is deleted\n",loginsd->login);
 		if( session[fd]->session_data )
 			aFree(session[fd]->session_data);
 		do_close_tcp(fd);
 		return 0;
 	}else
 	{
-		ShowInfo("lobbydata_parse: "CL_WHITE"%s"CL_RESET" shutdown the socket\n",ip2str(session[fd]->client_addr,NULL));
+		ShowInfo("lobbydata_parse: " CL_WHITE"%s" CL_RESET" shutdown the socket\n",ip2str(session[fd]->client_addr,NULL));
 		do_close_tcp(fd);
 		return 0;
 	}
@@ -415,7 +415,7 @@ int32 lobbyview_parse(int32 fd)
 	if( RFIFOREST(fd) >= 9)
 	{
 		unsigned char *buff = session[fd]->rdata;
-		ShowDebug("lobbyview_parse:Incoming Packet:"CL_WHITE"<%x>"CL_RESET" from ip:<%s>\n",RBUFB(buff,8),ip2str(sd->client_addr,NULL));
+		ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,8),ip2str(sd->client_addr,NULL));
 		uint8 code = RBUFB(buff,8);
 		switch(code)
 		{
@@ -448,7 +448,7 @@ int32 lobbyview_parse(int32 fd)
 				
 				uint32 CharID = RBUFL(session[fd]->rdata,0x20);
 
-				ShowInfo(CL_WHITE"lobbyview_parse"CL_RESET":attempt to delete char:<"CL_WHITE"%d"CL_RESET"> from ip:<%s>\n",CharID,ip2str(sd->client_addr,NULL));
+				ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n",CharID,ip2str(sd->client_addr,NULL));
 
 				uint8 sendsize = 0x20;
 
@@ -539,7 +539,7 @@ int32 lobbyview_parse(int32 fd)
 //				session[sd->login_lobbydata_fd]->wdata[0]  = 0x15;
 //				session[sd->login_lobbydata_fd]->wdata[1]  = 0x07;
 //				WFIFOSET(sd->login_lobbydata_fd,2);
-				ShowStatus(CL_WHITE"lobbyview_parse"CL_RESET": char <"CL_WHITE"%s"CL_RESET"> was successfully created\n",sd->charname);
+				ShowStatus(CL_WHITE"lobbyview_parse" CL_RESET": char <" CL_WHITE"%s" CL_RESET"> was successfully created\n",sd->charname);
 				/////////////////////////
 				LOBBY_ACTION_DONE(ReservePacket);
 				unsigned char hash[16];
@@ -580,7 +580,7 @@ int32 lobbyview_parse(int32 fd)
 
 				if( Sql_NumRows(SqlHandle) != 0 )
 				{
-					ShowWarning(CL_WHITE"lobbyview_parse:"CL_RESET" character name "CL_WHITE"<%s>"CL_RESET"already taken\n",CharName);
+					ShowWarning(CL_WHITE"lobbyview_parse:" CL_RESET" character name " CL_WHITE"<%s>" CL_RESET"already taken\n",CharName);
 					LOBBBY_ERROR_MESSAGE(ReservePacket);
 					// устанавливаем код ошибки
 
@@ -621,7 +621,7 @@ int32 lobbyview_parse(int32 fd)
 
 int32 do_close_lobbyview(login_session_data_t* sd, int32 fd)
 {
-	ShowInfo(CL_WHITE"lobbyview_parse"CL_RESET": "CL_WHITE"%s"CL_RESET" shutdown the socket\n",sd->login);
+	ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET": " CL_WHITE"%s" CL_RESET" shutdown the socket\n",sd->login);
 	do_close_tcp(fd);
 	return 0;
 }
@@ -683,7 +683,7 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 	if( lobby_createchar_save(loginsd->accid, CharID, &createchar) == -1 )
 		return -1;
 
-	ShowDebug(CL_WHITE"lobby_createchar"CL_RESET": char<"CL_WHITE"%s"CL_RESET"> successfully saved\n",createchar.m_name);
+	ShowDebug(CL_WHITE"lobby_createchar" CL_RESET": char<" CL_WHITE"%s" CL_RESET"> successfully saved\n",createchar.m_name);
 	return 0;
 };
 

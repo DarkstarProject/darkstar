@@ -177,9 +177,9 @@ int32 main (int32 argc, int8 **argv)
 		return 1;
 	}
 
-    ShowMessage(CL_WHITE"========================================================\n\n"CL_RESET);
+    ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
     ShowMessage(CL_WHITE"DSSearch-server\n\n");
-    ShowMessage(CL_WHITE"========================================================\n\n"CL_RESET);
+    ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
 
 	while (true)
 	{
@@ -286,7 +286,7 @@ void search_config_read(const int8* file)
 		}
 		else
 		{
-			ShowWarning(CL_YELLOW"Unknown setting '%s' in file %s\n"CL_RESET, w1, file);
+			ShowWarning(CL_YELLOW"Unknown setting '%s' in file %s\n" CL_RESET, w1, file);
 		}
 	}
 	fclose(fp);

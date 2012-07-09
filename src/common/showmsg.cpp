@@ -682,31 +682,31 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 		case MSG_NONE: // direct printf replacement
 			break;
 		case MSG_STATUS: //Bright Green (To inform about good things)
-			strcat(prefix,CL_GREEN"[Status]"CL_RESET);
+			strcat(prefix,CL_GREEN"[Status]" CL_RESET);
 			break;
 		case MSG_SQL: //Bright Violet (For dumping out anything related with SQL) <- Actually, this is mostly used for SQL errors with the database, as successes can as well just be anything else... [Skotlex]
-			strcat(prefix,CL_MAGENTA"[SQL]"CL_RESET);
+			strcat(prefix,CL_MAGENTA"[SQL]" CL_RESET);
 			break;
 		case MSG_INFORMATION: //Bright White (Variable information)
-			strcat(prefix,CL_WHITE"[Info]"CL_RESET);
+			strcat(prefix,CL_WHITE"[Info]" CL_RESET);
 			break;
 		case MSG_NOTICE: //Bright White (Less than a warning)
-			strcat(prefix,CL_WHITE"[Notice]"CL_RESET);
+			strcat(prefix,CL_WHITE"[Notice]" CL_RESET);
 			break;
 		case MSG_WARNING: //Bright Yellow
-			strcat(prefix,CL_YELLOW"[Warning]"CL_RESET);
+			strcat(prefix,CL_YELLOW"[Warning]" CL_RESET);
 			break;
 		case MSG_DEBUG: //Bright Cyan, important stuff!
-			strcat(prefix,CL_CYAN"[Debug]"CL_RESET);
+			strcat(prefix,CL_CYAN"[Debug]" CL_RESET);
 			break;
 		case MSG_ERROR: //Bright Red  (Regular errors)
-			strcat(prefix,CL_RED"[Error]"CL_RESET);
+			strcat(prefix,CL_RED"[Error]" CL_RESET);
 			break;
 		case MSG_FATALERROR: //Bright Red (Fatal errors, abort(); if possible)
-			strcat(prefix,CL_RED"[Fatal Error]"CL_RESET);
+			strcat(prefix,CL_RED"[Fatal Error]" CL_RESET);
 			break;
 		case MSG_LUASCRIPT: //Bright Cyan
-			strcat(prefix,CL_CYAN"[LUA Script]"CL_RESET);
+			strcat(prefix,CL_CYAN"[LUA Script]" CL_RESET);
 			break;
 		default:
 			ShowError("In function _vShowMessage() -> Invalid flag passed.\n");
@@ -731,7 +731,7 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 	if(strlen(DEBUGLOGPATH) > 0) {
 		fp=fopen(DEBUGLOGPATH,"a");
 		if (fp == NULL)	{
-			FPRINTF(STDERR, CL_RED"[ERROR]"CL_RESET": Could not open '"CL_WHITE"%s"CL_RESET"', access denied.\n", DEBUGLOGPATH);
+			FPRINTF(STDERR, CL_RED"[ERROR]" CL_RESET": Could not open '" CL_WHITE"%s" CL_RESET"', access denied.\n", DEBUGLOGPATH);
 			FFLUSH(STDERR);
 		} else {
 			fprintf(fp,"%s ", prefix);
@@ -741,7 +741,7 @@ int _vShowMessage(MSGTYPE flag,const char *string,va_list ap)
 			fclose(fp);
 		}
 	} else {
-		FPRINTF(STDERR, CL_RED"[ERROR]"CL_RESET": DEBUGLOGPATH not defined!\n");
+		FPRINTF(STDERR, CL_RED"[ERROR]" CL_RESET": DEBUGLOGPATH not defined!\n");
 		FFLUSH(STDERR);
 	}
 #endif

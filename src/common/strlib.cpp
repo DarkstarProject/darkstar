@@ -977,7 +977,7 @@ bool sv_readdb(const char* directory, const char* filename, char delim, int minc
 	}
 
 	fclose(fp);
-	ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n", entries, path);
+	ShowStatus("Done reading '" CL_WHITE"%d" CL_RESET"' entries in '" CL_WHITE"%s" CL_RESET"'.\n", entries, path);
 
 	return true;
 }

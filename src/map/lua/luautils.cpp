@@ -103,7 +103,7 @@ int32 init()
 	Lunar<CLuaMobSkill>::Register(LuaHandle);
 	Lunar<CLuaInstance>::Register(LuaHandle);
 
-	ShowMessage("\t\t - "CL_GREEN"[OK]"CL_RESET"\n"); 
+	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n"); 
 	return 0;
 }
 
@@ -115,9 +115,9 @@ int32 init()
 
 int32 free()
 {
-	ShowStatus(CL_WHITE"luautils::free"CL_RESET":lua free...");
+	ShowStatus(CL_WHITE"luautils::free" CL_RESET":lua free...");
 	lua_close(LuaHandle);
-	ShowMessage("\t - "CL_GREEN"[OK]"CL_RESET"\n");
+	ShowMessage("\t - " CL_GREEN"[OK]" CL_RESET"\n");
 	return 0;
 }
 
@@ -348,7 +348,7 @@ int32 SpawnMob(lua_State* L)
                 }
                 PMob->PBattleAI->CheckCurrentAction(gettick());
             } else {
-                ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n"CL_RESET, PMob->GetName());
+                ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n" CL_RESET, PMob->GetName());
             }
 		    lua_pushstring(L,CLuaBaseEntity::className);
 		    lua_gettable(L,LUA_GLOBALSINDEX);
@@ -359,7 +359,7 @@ int32 SpawnMob(lua_State* L)
 		    lua_pcall(L,2,1,0);
 		    return 1;
         } else {
-            ShowDebug(CL_RED"SpawnMob: mob <%u> not found\n"CL_RESET, mobid);
+            ShowDebug(CL_RED"SpawnMob: mob <%u> not found\n" CL_RESET, mobid);
         }
         return 0;
     }
@@ -419,7 +419,7 @@ int32 GetPlayerByName(lua_State* L)
 		}
 	}
 	else{
-		ShowError(CL_RED"GetPlayerByName :: Input string is not valid."CL_RESET);
+		ShowError(CL_RED"GetPlayerByName :: Input string is not valid." CL_RESET);
 	}
 	lua_pushnil(L);
 	return 1;
@@ -444,7 +444,7 @@ int32 GetMobAction(lua_State* L)
         lua_pushinteger(L, CurrentAction);
         return 1;
     }
-    ShowError(CL_RED"luautils::GetMobAction: mob <%u> was not found\n"CL_RESET, mobid);
+    ShowError(CL_RED"luautils::GetMobAction: mob <%u> was not found\n" CL_RESET, mobid);
     lua_pushnil(L);
     return 1;
 }

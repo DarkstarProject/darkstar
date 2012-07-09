@@ -96,7 +96,7 @@ int32 login_parse(int32 fd)
 		if( login_datacheck(login,3,sizeof(login)) == -1 ||
 			login_datacheck(password,6,sizeof(password)) == -1 )
 		{
-			ShowWarning(CL_WHITE"login_parse"CL_RESET":"CL_WHITE"%s"CL_RESET" send unreadable data\n",ip2str(sd->client_addr,NULL));
+			ShowWarning(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET" send unreadable data\n",ip2str(sd->client_addr,NULL));
 			WBUFB(session[fd]->wdata,0) = LOGIN_ERROR;
 			WFIFOSET(fd,1);
 			do_close_login(sd,fd);
@@ -161,7 +161,7 @@ int32 login_parse(int32 fd)
 				}
 
 				if(numCons>1){
-					ShowInfo("login_parse:"CL_WHITE"<%s>"CL_RESET" has logged in %i times! Removing older logins.\n",login,numCons);
+					ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" has logged in %i times! Removing older logins.\n",login,numCons);
 					for(int j=0; j<(numCons-1); j++){
 						for(login_sd_list_t::iterator i = login_sd_list.begin(); i != login_sd_list.end(); i++ ){
 							if( (*i)->accid == sd->accid ){
@@ -174,12 +174,12 @@ int32 login_parse(int32 fd)
 				}
 				//////
 
-				ShowInfo("login_parse:"CL_WHITE"<%s>"CL_RESET" was connected\n",login,status);
+				ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" was connected\n",login,status);
 				return 0;
 			}else{
 				WBUFB(session[fd]->wdata,0) = LOGIN_ERROR;
 				WFIFOSET(fd,1);
-				ShowWarning("login_parse: unexisting user"CL_WHITE"<%s>"CL_RESET" tried to connect\n",login);
+				ShowWarning("login_parse: unexisting user" CL_WHITE"<%s>" CL_RESET" tried to connect\n",login);
 				do_close_login(sd,fd);
 			}
 			}
@@ -236,12 +236,12 @@ int32 login_parse(int32 fd)
 					return -1;
 				}
 
-				ShowStatus(CL_WHITE"login_parse"CL_RESET": account<"CL_WHITE"%s"CL_RESET"> was created\n",login);
+				ShowStatus(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> was created\n",login);
 				WBUFB(session[fd]->wdata,0) = LOGIN_SUCCESS_CREATE;
 				WFIFOSET(fd,1);
 				do_close_login(sd,fd);
 			}else{
-				ShowWarning(CL_WHITE"login_parse"CL_RESET": account<"CL_WHITE"%s"CL_RESET"> already exists\n",login);
+				ShowWarning(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> already exists\n",login);
 				WBUFB(session[fd]->wdata,0) = LOGIN_ERROR_CREATE;
 				WFIFOSET(fd,1);
 				do_close_login(sd,fd);
@@ -262,7 +262,7 @@ int32 login_parse(int32 fd)
 
 int32 do_close_login(login_session_data_t* loginsd,int32 fd)
 {
-	ShowInfo(CL_WHITE"login_parse"CL_RESET":"CL_WHITE"%s"CL_RESET"shutdown socket...\n",ip2str(loginsd->client_addr,NULL));
+	ShowInfo(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET"shutdown socket...\n",ip2str(loginsd->client_addr,NULL));
 	erase_loginsd(fd);
 	if(session[fd]->session_data)
 		aFree(session[fd]->session_data);

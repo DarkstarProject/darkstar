@@ -73,7 +73,7 @@ CNpcEntity* GetTrigger(uint16 TargID, uint8 ZoneID)
 	g_PTrigger->targid = TargID;
 	g_PTrigger->id = ((4096 + ZoneID) << 12) + TargID;
 
-    ShowWarning(CL_YELLOW"Server need NPC <%u>\n"CL_RESET, g_PTrigger->id);
+    ShowWarning(CL_YELLOW"Server need NPC <%u>\n" CL_RESET, g_PTrigger->id);
 	return g_PTrigger;
 }
 

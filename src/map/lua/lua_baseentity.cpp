@@ -741,7 +741,7 @@ inline int32 CLuaBaseEntity::addQuest(lua_State *L)
 		
 		}
 	}else{
-		ShowError(CL_RED"Lua::addQuest: LogID %i or QuestID %i is invalid\n"CL_RESET, logID, questID);
+		ShowError(CL_RED"Lua::addQuest: LogID %i or QuestID %i is invalid\n" CL_RESET, logID, questID);
 		return -1;
 	}
 		charutils::SaveQuestsList(PChar);
@@ -780,7 +780,7 @@ inline int32 CLuaBaseEntity::delQuest(lua_State *L)
 			charutils::SaveQuestsList(PChar);
 		}
 	}else{
-		ShowError(CL_RED"Lua::delQuest: LogID %i or QuestID %i is invalid\n"CL_RESET, logID, questID);
+		ShowError(CL_RED"Lua::delQuest: LogID %i or QuestID %i is invalid\n" CL_RESET, logID, questID);
 	}
 	
 	lua_pushnil(L);
@@ -808,7 +808,7 @@ inline int32 CLuaBaseEntity::getQuestStatus(lua_State *L)
 		lua_pushinteger( L, (complete != 0 ? 2 : (current != 0 ? 1 : 0)) );
 		return 1;
 	}else{
-		ShowError(CL_RED"Lua::getQuestStatus: LogID %i or QuestID %i is invalid\n"CL_RESET, logID, questID);
+		ShowError(CL_RED"Lua::getQuestStatus: LogID %i or QuestID %i is invalid\n" CL_RESET, logID, questID);
 	}
 	
 	lua_pushnil(L);
@@ -844,7 +844,7 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
 		}
         charutils::SaveQuestsList(PChar);
 	}else{
-		ShowError(CL_RED"Lua::completeQuest: LogID %i or QuestID %i is invalid\n"CL_RESET, logID, questID);
+		ShowError(CL_RED"Lua::completeQuest: LogID %i or QuestID %i is invalid\n" CL_RESET, logID, questID);
 	}
 	
 	lua_pushnil(L);
@@ -875,7 +875,7 @@ inline int32 CLuaBaseEntity::hasCompleteQuest(lua_State *L)
 		lua_pushboolean( L, (complete != 0) );
 		return 1;
 	}
-    ShowError(CL_RED"Lua::hasCompleteQuest: LogID %i or QuestID %i is invalid\n"CL_RESET, logID, questID);
+    ShowError(CL_RED"Lua::hasCompleteQuest: LogID %i or QuestID %i is invalid\n" CL_RESET, logID, questID);
 	lua_pushboolean( L, false );
 	return 1;
 }
@@ -904,7 +904,7 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
 
         if (PChar->m_missionLog[LogID].current != LogID > 2 ? 0 : -1)
         {
-            ShowWarning(CL_YELLOW"Lua::addMission: player has a current mission\n"CL_RESET, LogID);
+            ShowWarning(CL_YELLOW"Lua::addMission: player has a current mission\n" CL_RESET, LogID);
         }
         PChar->m_missionLog[LogID].current = MissionID;
 		PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 1));
@@ -913,7 +913,7 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
     }
     else
     {
-        ShowError(CL_RED"Lua::delMission: LogID %i or Mission %i is invalid\n"CL_RESET, LogID, MissionID);
+        ShowError(CL_RED"Lua::delMission: LogID %i or Mission %i is invalid\n" CL_RESET, LogID, MissionID);
     }
 	return 0;
 }
@@ -956,7 +956,7 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
     }
     else
     {
-        ShowError(CL_RED"Lua::delMission: LogID %i or Mission %i is invalid\n"CL_RESET, LogID, MissionID);
+        ShowError(CL_RED"Lua::delMission: LogID %i or Mission %i is invalid\n" CL_RESET, LogID, MissionID);
     }
 	return 0;
 }
@@ -986,7 +986,7 @@ inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
     }
     else
     {
-        ShowError(CL_RED"Lua::completeMission: LogID %i or Mission %i is invalid\n"CL_RESET, LogID, MissionID);
+        ShowError(CL_RED"Lua::completeMission: LogID %i or Mission %i is invalid\n" CL_RESET, LogID, MissionID);
     }
 	lua_pushboolean( L, complete );
 	return 1;
@@ -1014,7 +1014,7 @@ inline int32 CLuaBaseEntity::getCurrentMission(lua_State *L)
     }
     else
     {
-        ShowError(CL_RED"Lua::completeMission: LogID %i is invalid\n"CL_RESET, LogID);
+        ShowError(CL_RED"Lua::completeMission: LogID %i is invalid\n" CL_RESET, LogID);
     }
 	lua_pushinteger( L, MissionID );
 	return 1;
@@ -1043,7 +1043,7 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
 
         if (PChar->m_missionLog[LogID].current != MissionID)
         {
-            ShowWarning(CL_YELLOW"Lua::completeMission: completion of not current mission\n"CL_RESET, LogID);
+            ShowWarning(CL_YELLOW"Lua::completeMission: completion of not current mission\n" CL_RESET, LogID);
         }
 	    PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
 	    PChar->m_missionLog[LogID].complete[MissionID] = true;
@@ -1054,7 +1054,7 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
     }
     else
     {
-        ShowError(CL_RED"Lua::completeMission: LogID %i or Mission %i is invalid\n"CL_RESET, LogID, MissionID);
+        ShowError(CL_RED"Lua::completeMission: LogID %i or Mission %i is invalid\n" CL_RESET, LogID, MissionID);
     }
 	return 0;
 }
@@ -1685,7 +1685,7 @@ inline int32 CLuaBaseEntity::getEventTarget(lua_State *L)
 
     if (((CCharEntity*)m_PBaseEntity)->m_event.Target == NULL)
     {
-        ShowWarning(CL_YELLOW"EventTarget is empty: %s\n"CL_RESET, m_PBaseEntity->GetName());
+        ShowWarning(CL_YELLOW"EventTarget is empty: %s\n" CL_RESET, m_PBaseEntity->GetName());
     }
     lua_pushstring(L,CLuaBaseEntity::className);
     lua_gettable(L,LUA_GLOBALSINDEX);
@@ -2016,7 +2016,7 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 		
 			if(item == NULL || !(item->getType() & ITEM_CURRENCY)) 
 			{
-				ShowFatalError(CL_RED"lua::getGil : No Gil in currency slot\n"CL_RESET);
+				ShowFatalError(CL_RED"lua::getGil : No Gil in currency slot\n" CL_RESET);
 				return 0;
 			}
 			lua_pushinteger( L, item->getQuantity() );
@@ -2041,7 +2041,7 @@ inline int32 CLuaBaseEntity::addGil(lua_State *L)
 			
 				if(item == NULL || !(item->getType() & ITEM_CURRENCY)) 
 				{
-					ShowFatalError(CL_RED"lua::addGil : No Gil in currency slot\n"CL_RESET);
+					ShowFatalError(CL_RED"lua::addGil : No Gil in currency slot\n" CL_RESET);
 					return 0;
 				}
 
@@ -2070,7 +2070,7 @@ inline int32 CLuaBaseEntity::delGil(lua_State *L)
 			
 				if(item == NULL || !(item->getType() & ITEM_CURRENCY)) 
 				{
-					ShowFatalError(CL_RED"lua::delGil : No Gil in currency slot\n"CL_RESET);
+					ShowFatalError(CL_RED"lua::delGil : No Gil in currency slot\n" CL_RESET);
 					return 0;
 				}
 
@@ -2099,7 +2099,7 @@ inline int32 CLuaBaseEntity::setGil(lua_State *L)
 			
 				if(item == NULL || !(item->getType() & ITEM_CURRENCY)) 
 				{
-					ShowFatalError(CL_RED"lua::setGil : No Gil in currency slot\n"CL_RESET);
+					ShowFatalError(CL_RED"lua::setGil : No Gil in currency slot\n" CL_RESET);
 					return 0;
 				}
 
@@ -2717,7 +2717,7 @@ inline int32 CLuaBaseEntity::sendRaise(lua_State *L)
 
     if (RaiseLevel == 0 || RaiseLevel > 3)
     {
-        ShowDebug(CL_CYAN"lua::sendRaise raise value is not valide!\n"CL_RESET);
+        ShowDebug(CL_CYAN"lua::sendRaise raise value is not valide!\n" CL_RESET);
     }
     else if(PChar->m_hasRaise == 0)
     {
@@ -3297,7 +3297,7 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
 						((CCharEntity*)m_PBaseEntity)->pushPacket(PPacket);
 					}
 				}else{
-					ShowError(CL_RED"CLuaBaseEntity::injectPacket : Cannot open file\n"CL_RESET);
+					ShowError(CL_RED"CLuaBaseEntity::injectPacket : Cannot open file\n" CL_RESET);
 				}
 				return 0;
 			}
@@ -3362,7 +3362,7 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 				petutils::SpawnPet((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,1));
 				return 0;
 			}
-			ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is NULL\n"CL_RESET);
+			ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is NULL\n" CL_RESET);
 		}
 	}
 	return 0;
@@ -3618,7 +3618,7 @@ inline int32 CLuaBaseEntity::getWeaponDmg(lua_State *L)
 			
 	if(weapon == NULL) 
 	{
-	    ShowDebug(CL_CYAN"lua::getWeaponDmg weapon in main slot is null!\n"CL_RESET);
+	    ShowDebug(CL_CYAN"lua::getWeaponDmg weapon in main slot is null!\n" CL_RESET);
 		return 0;
     }
 	lua_pushinteger( L, weapon->getDamage() );
@@ -3634,7 +3634,7 @@ inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
 			
 	if(weapon == NULL) 
 	{
-	    ShowDebug(CL_CYAN"lua::getRangedDmg weapon in ranged slot is null!\n"CL_RESET);
+	    ShowDebug(CL_CYAN"lua::getRangedDmg weapon in ranged slot is null!\n" CL_RESET);
 		return 0;
     }
 	lua_pushinteger( L, weapon->getDamage() );
@@ -3650,7 +3650,7 @@ inline int32 CLuaBaseEntity::getAmmoDmg(lua_State *L)
 			
 	if(weapon == NULL) 
 	{
-	    ShowDebug(CL_CYAN"lua::getAmmoDmg weapon in ammo slot is null!\n"CL_RESET);
+	    ShowDebug(CL_CYAN"lua::getAmmoDmg weapon in ammo slot is null!\n" CL_RESET);
 		return 0;
     }
 	lua_pushinteger( L, weapon->getDamage() );
@@ -3666,7 +3666,7 @@ inline int32 CLuaBaseEntity::getRATT(lua_State *L)
 			
 	if(weapon == NULL) 
 	{
-	    ShowDebug(CL_CYAN"lua::getRATT weapon in ranged slot is null!\n"CL_RESET);
+	    ShowDebug(CL_CYAN"lua::getRATT weapon in ranged slot is null!\n" CL_RESET);
 		return 0;
     }
 
@@ -3683,7 +3683,7 @@ inline int32 CLuaBaseEntity::getRACC(lua_State *L)
 			
 	if(weapon == NULL) 
 	{
-	    ShowDebug(CL_CYAN"lua::getRACC weapon in ranged slot is null!\n"CL_RESET);
+	    ShowDebug(CL_CYAN"lua::getRACC weapon in ranged slot is null!\n" CL_RESET);
 		return 0;
     }
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
@@ -3709,7 +3709,7 @@ inline int32 CLuaBaseEntity::isWeaponTwoHanded(lua_State *L)
 			
 	if(weapon == NULL) 
 	{
-	    ShowDebug(CL_CYAN"lua::getWeaponDmg weapon in main slot is null!\n"CL_RESET);
+	    ShowDebug(CL_CYAN"lua::getWeaponDmg weapon in main slot is null!\n" CL_RESET);
 		return 0;
     }
 	lua_pushinteger( L, weapon->isTwoHanded() );

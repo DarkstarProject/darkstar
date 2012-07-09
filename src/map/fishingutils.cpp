@@ -341,7 +341,7 @@ void StartFishing(CCharEntity* PChar)
 
 	if (MessageOffset == 0)
 	{
-        ShowWarning(CL_YELLOW"Player wants to fish in %s\n"CL_RESET, PChar->loc.zone->GetName());
+        ShowWarning(CL_YELLOW"Player wants to fish in %s\n" CL_RESET, PChar->loc.zone->GetName());
 		PChar->pushPacket(new CReleasePacket(PChar,RELEASE_FISHING));
 		return;
 	}
@@ -391,7 +391,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 {
 	if (PChar->UContainer->GetType() != UCONTAINER_EMPTY)
 	{
-		ShowDebug(CL_CYAN"Player cannot fish! UContainer is not empty\n"CL_RESET);
+		ShowDebug(CL_CYAN"Player cannot fish! UContainer is not empty\n" CL_RESET);
 		return false;
 	}
 

@@ -154,7 +154,7 @@ void PrintPacket(int8* data)
 
 void SmallPacket0x000(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    ShowWarning(CL_YELLOW"parse: Unhandled game packet %03hX from user: %s\n"CL_RESET, (RBUFW(data,0) & 0x1FF), PChar->GetName());
+    ShowWarning(CL_YELLOW"parse: Unhandled game packet %03hX from user: %s\n" CL_RESET, (RBUFW(data,0) & 0x1FF), PChar->GetName());
     return;
 }
 
@@ -166,7 +166,7 @@ void SmallPacket0x000(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0xFFF(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    ShowDebug(CL_CYAN"parse: SmallPacket is not implemented Type<%03hX>\n"CL_RESET, (RBUFW(data,0) & 0x1FF));
+    ShowDebug(CL_CYAN"parse: SmallPacket is not implemented Type<%03hX>\n" CL_RESET, (RBUFW(data,0) & 0x1FF));
     return;
 }
 
@@ -243,7 +243,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
         if (PChar->loc.zone != NULL)
         {
-            ShowWarning(CL_YELLOW"Client cannot receive packet or key is invalid: %s\n"CL_RESET, PChar->GetName());
+            ShowWarning(CL_YELLOW"Client cannot receive packet or key is invalid: %s\n" CL_RESET, PChar->GetName());
         }
 	}
     if (PChar->loc.prevzone == 0 && !firstlogin)
@@ -490,7 +490,7 @@ void SmallPacket0x017(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint32 npcid  = RBUFL(data,(0x08));
 	uint8  type   = RBUFB(data,(0x12));
 
-	ShowError(CL_RED"SmallPacket0x17: Incorrect NPC(%u,%u) type(%u)\n"CL_RESET, targid, npcid, type);
+	ShowError(CL_RED"SmallPacket0x17: Incorrect NPC(%u,%u) type(%u)\n" CL_RESET, targid, npcid, type);
 	return;
 }
 
@@ -709,12 +709,12 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		break;
 		default:
 		{
-			ShowWarning(CL_YELLOW"CLIENT PERFORMING UNHANDLED ACTION %02hX\n"CL_RESET, action);
+			ShowWarning(CL_YELLOW"CLIENT PERFORMING UNHANDLED ACTION %02hX\n" CL_RESET, action);
 			return;
 		}
 		break;
 	}
-	ShowDebug(CL_CYAN"CLIENT %s PERFORMING ACTION %02hX\n"CL_RESET, PChar->GetName(),action);
+	ShowDebug(CL_CYAN"CLIENT %s PERFORMING ACTION %02hX\n" CL_RESET, PChar->GetName(),action);
 	return;
 } 
 
@@ -772,7 +772,7 @@ void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	    }
         return;
     }
-    ShowWarning(CL_YELLOW"SmallPacket0x028: Attempt of removal NULL or LOCKED item from slot %u\n"CL_RESET, slotID);
+    ShowWarning(CL_YELLOW"SmallPacket0x028: Attempt of removal NULL or LOCKED item from slot %u\n" CL_RESET, slotID);
 	return;
 }
 
@@ -799,16 +799,16 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
     if(PItem == NULL || (PItem->getSubType() & ITEM_LOCKED))
 	{
 		if(PItem==NULL){
-			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move NULL item from location %u slot %u to location %u slot %u of quan %u \n"CL_RESET, FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
+			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move NULL item from location %u slot %u to location %u slot %u of quan %u \n" CL_RESET, FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
 		}
 		else{
-			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move LOCKED item %i from location %u slot %u to location %u slot %u of quan %u \n"CL_RESET, PItem->getID(),FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
+			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move LOCKED item %i from location %u slot %u to location %u slot %u of quan %u \n" CL_RESET, PItem->getID(),FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
 		}
 		return;
 	}
 	if(PItem->getQuantity() < quantity) 
 	{
-		ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move too much quantity from location %u slot %u\n"CL_RESET, FromLocationID, FromSlotID);
+		ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move too much quantity from location %u slot %u\n" CL_RESET, FromLocationID, FromSlotID);
 		return;
 	}
 
@@ -868,7 +868,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			}
 			PChar->pushPacket(new CInventoryFinishPacket());
 
-			ShowError(CL_RED"SmallPacket0x29: Location %u Slot %u is full\n"CL_RESET, ToLocationID,ToSlotID);
+			ShowError(CL_RED"SmallPacket0x29: Location %u Slot %u is full\n" CL_RESET, ToLocationID,ToSlotID);
 			return;
 		}
 	}
@@ -893,12 +893,12 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         if (PTarget->TradePending.id == PChar->id)
         {
-            ShowDebug(CL_CYAN"You have already sent a trade request to %s\n"CL_RESET, PTarget->GetName());
+            ShowDebug(CL_CYAN"You have already sent a trade request to %s\n" CL_RESET, PTarget->GetName());
             return;
         }
         if (!PTarget->UContainer->IsContainerEmpty())
         {
-            ShowDebug(CL_CYAN"You cannot trade with %s at this time\n"CL_RESET, PTarget->GetName());
+            ShowDebug(CL_CYAN"You cannot trade with %s at this time\n" CL_RESET, PTarget->GetName());
             return;
         }
         PChar->TradePending.id     = charid;
@@ -949,7 +949,7 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PChar->TradePending.clean();
                     PTarget->TradePending.clean();
 
-                    ShowDebug(CL_CYAN"Trade: UContainer is not empty\n"CL_RESET);
+                    ShowDebug(CL_CYAN"Trade: UContainer is not empty\n" CL_RESET);
                 }
             }
             break;
@@ -1174,7 +1174,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         if (map_config.lightluggage_block == ++PItemContainer->SortingPacket)
         {
-            ShowWarning(CL_YELLOW"lightluggage detected: <%s> will be removed from server\n"CL_RESET, PChar->GetName());
+            ShowWarning(CL_YELLOW"lightluggage detected: <%s> will be removed from server\n" CL_RESET, PChar->GetName());
 
             PChar->status = STATUS_SHUTDOWN;
             PChar->pushPacket(new CServerIPPacket(PChar,1));
@@ -1233,7 +1233,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x03C(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	ShowWarning(CL_YELLOW"SmallPacket0x03C\n"CL_RESET);
+	ShowWarning(CL_YELLOW"SmallPacket0x03C\n" CL_RESET);
 	return;
 }
 
@@ -1295,7 +1295,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint8 boxtype = RBUFB(data,(0x05));
 	uint8 slotID  = RBUFB(data,(0x06));
 
-    ShowDebug(CL_CYAN"DeliveryBox Action (%02hx)\n"CL_RESET, RBUFB(data,(0x04)));
+    ShowDebug(CL_CYAN"DeliveryBox Action (%02hx)\n" CL_RESET, RBUFB(data,(0x04)));
     PrintPacket(data);
 
 	// 0x01 - отправка клиенту старых предметов
@@ -1522,7 +1522,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint16 itemid   = RBUFW(data,(0x0E));
     uint8  quantity = RBUFB(data,(0x10));
 
-    ShowDebug(CL_CYAN"AH Action (%02hx)\n"CL_RESET, RBUFB(data,(0x04)));
+    ShowDebug(CL_CYAN"AH Action (%02hx)\n" CL_RESET, RBUFB(data,(0x04)));
 
     // 0x04 - продажа предмета
     // 0x05 - похоже, что в ответ на этот пакет мы можем открыть список продаж или предложить персонажу подождать немного
@@ -1579,7 +1579,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                    (PItem->getStackSize() == 1 ||
                     PItem->getStackSize() != PItem->getQuantity()))
                 {
-                    ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Incorrect quantity of item\n"CL_RESET);
+                    ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Incorrect quantity of item\n" CL_RESET);
                     return;
                 }
 
@@ -1595,7 +1595,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                               CVanaTime::getInstance()->getSysTime(),
                               price) == SQL_ERROR)
 			    {
-				    ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item to database\n"CL_RESET);
+				    ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item to database\n" CL_RESET);
 				    return;
 			    }
                 charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(int32)(quantity != 0 ? 1 : PItem->getStackSize()));
@@ -1820,7 +1820,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		if (PZoneLine == NULL) // разворачиваем персонажа на 180° и отправляем туда, откуда пришел
 		{
-            ShowError(CL_RED"SmallPacket0x5E: Zone line %u not found\n"CL_RESET, zoneLineID); // в идеале нужно добавить зону и координаты
+            ShowError(CL_RED"SmallPacket0x5E: Zone line %u not found\n" CL_RESET, zoneLineID); // в идеале нужно добавить зону и координаты
 
 			PChar->loc.p.rotation += 128;
 
@@ -1832,7 +1832,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		}else{
 			if (zoneutils::GetZone(PZoneLine->m_toZone)->GetIP() == 0) 	// разворачиваем персонажа на 180° и отправляем туда, откуда пришел
 			{
-				ShowDebug(CL_CYAN"SmallPacket0x5E: Zone %u closed to chars\n"CL_RESET, PZoneLine->m_toZone);
+				ShowDebug(CL_CYAN"SmallPacket0x5E: Zone %u closed to chars\n" CL_RESET, PZoneLine->m_toZone);
 
 				PChar->loc.p.rotation += 128;
 
@@ -1865,7 +1865,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				PChar->loc.p = PZoneLine->m_toPos;
 			}
 		}
-        ShowInfo(CL_WHITE"Zoning from zone %u to zone %u: %s\n"CL_RESET, PChar->getZone(), PChar->loc.destination, PChar->GetName());
+        ShowInfo(CL_WHITE"Zoning from zone %u to zone %u: %s\n" CL_RESET, PChar->getZone(), PChar->loc.destination, PChar->GetName());
 	}
 	PChar->clearPacketList();
 	PChar->pushPacket(new CServerIPPacket(PChar,2));
@@ -2076,7 +2076,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
         break;
 		default:
 		{
-			ShowError(CL_RED"SmallPacket0x071 : unknown byte <%.2X>\n"CL_RESET, RBUFB(data,(0x0A)));
+			ShowError(CL_RED"SmallPacket0x071 : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x0A)));
 		}
 	}
 	return;
@@ -2169,7 +2169,7 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, int8* dat
         break;
 		default:
 		{
-			ShowError(CL_RED"SmallPacket0x077 : changing role packet with unknown byte <%.2X>\n"CL_RESET, RBUFB(data,(0x14)));
+			ShowError(CL_RED"SmallPacket0x077 : changing role packet with unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x14)));
 		}
 	}
 	return;

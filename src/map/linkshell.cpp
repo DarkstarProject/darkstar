@@ -329,7 +329,7 @@ namespace linkshell
 			if (it != LinkshellList.end())
 			{
                 it->second->AddMember(PChar,PItemLinkshell->GetLSType());
-                ShowDebug(CL_CYAN"linkshell:AddOnlineMember <%u>\n"CL_RESET, it->first);
+                ShowDebug(CL_CYAN"linkshell:AddOnlineMember <%u>\n" CL_RESET, it->first);
 			}
         }
         return false;
@@ -351,7 +351,7 @@ namespace linkshell
 			{
 				it->second->DelMember(PChar);
 
-                ShowDebug(CL_CYAN"linkshell:DelOnlineMember <%u>\n"CL_RESET, it->first);
+                ShowDebug(CL_CYAN"linkshell:DelOnlineMember <%u>\n" CL_RESET, it->first);
 			}
         }
         return false;

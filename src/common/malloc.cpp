@@ -660,7 +660,7 @@ static void memmgr_init (void)
 #ifdef LOG_MEMMGR
 	#define SERVER_NAME "DSP"
 	sprintf(memmer_logfile, "log/%s.leaks", SERVER_NAME);
-	ShowStatus("Memory manager initialised: "CL_WHITE"%s"CL_RESET"\n", memmer_logfile);
+	ShowStatus("Memory manager initialised: " CL_WHITE"%s" CL_RESET"\n", memmer_logfile);
 	memset(hash_unfill, 0, sizeof(hash_unfill));
 #endif /* LOG_MEMMGR */
 	return;

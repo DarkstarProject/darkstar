@@ -107,7 +107,7 @@ namespace instanceutils{
 						ShowDebug("Spawned %s id %i inst %i \n",PMob->GetName(),instance->getID(),instance->getInstanceNumber());
 						instance->addEnemy(PMob);
 				    } else {
-				        ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> is alredy spawned\n"CL_RESET, PMob->GetName());
+				        ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> is alredy spawned\n" CL_RESET, PMob->GetName());
 				    }
 				} else {
 				    ShowDebug("SpawnMobForBcnm: mob %u not found\n", mobid);

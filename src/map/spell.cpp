@@ -315,7 +315,7 @@ namespace spell
 	    {
 		    return PSpellList[SpellID];
 	    }
-	    ShowFatalError(CL_RED"SpellID <%u> out of range\n"CL_RESET, SpellID);
+	    ShowFatalError(CL_RED"SpellID <%u> out of range\n" CL_RESET, SpellID);
 	    return NULL;
     }
 

@@ -355,10 +355,10 @@ CAbility* GetAbility(uint16 AbilityID)
 {
 	if (AbilityID < MAX_ABILITY_ID)
 	{
-		//ShowDebug(CL_GREEN"Getting CurrentAbility %u \n"CL_RESET, g_PAbilityList[AbilityID]->getID());
+		//ShowDebug(CL_GREEN"Getting CurrentAbility %u \n" CL_RESET, g_PAbilityList[AbilityID]->getID());
 		return g_PAbilityList[AbilityID];
 	}
-	ShowFatalError(CL_RED"AbilityID <%u> is out of range\n"CL_RESET, AbilityID);
+	ShowFatalError(CL_RED"AbilityID <%u> is out of range\n" CL_RESET, AbilityID);
 	return NULL;
 }
 

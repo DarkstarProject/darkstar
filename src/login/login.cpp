@@ -79,13 +79,13 @@ int32 do_init(int32 argc,char** argv)
 
 
 	login_fd		   = makeListenBind_tcp(login_config.uiLoginAuthIp,login_config.usLoginAuthPort,connect_client_login);
-	ShowStatus("The login-server-auth is "CL_GREEN"ready"CL_RESET" (Server is listening on the port %u).\n\n", login_config.usLoginAuthPort);
+	ShowStatus("The login-server-auth is " CL_GREEN"ready" CL_RESET" (Server is listening on the port %u).\n\n", login_config.usLoginAuthPort);
 
 	login_lobbydata_fd = makeListenBind_tcp(login_config.uiLobbyDataIp,login_config.usLobbyDataPort,connect_client_lobbydata);
-	ShowStatus("The login-server-lobbydata is "CL_GREEN"ready"CL_RESET" (Server is listening on the port %u).\n\n", login_config.usLobbyDataPort);
+	ShowStatus("The login-server-lobbydata is " CL_GREEN"ready" CL_RESET" (Server is listening on the port %u).\n\n", login_config.usLobbyDataPort);
 
 	login_lobbyview_fd = makeListenBind_tcp(login_config.uiLobbyViewIp,login_config.usLobbyViewPort,connect_client_lobbyview);
-	ShowStatus("The login-server-lobbyview is "CL_GREEN"ready"CL_RESET" (Server is listening on the port %u).\n\n", login_config.usLobbyViewPort);
+	ShowStatus("The login-server-lobbyview is " CL_GREEN"ready" CL_RESET" (Server is listening on the port %u).\n\n", login_config.usLobbyViewPort);
 
 	SqlHandle = Sql_Malloc();
 	if( Sql_Connect(SqlHandle,login_config.mysql_login,
@@ -107,7 +107,7 @@ int32 do_init(int32 argc,char** argv)
 		ShowError("do_init: Impossible to optimise tables\n");
 	}
 	
-	ShowStatus("The login-server is "CL_GREEN"ready"CL_RESET" to work...\n");
+	ShowStatus("The login-server is " CL_GREEN"ready" CL_RESET" to work...\n");
 	return 0;
 }
 
@@ -364,7 +364,7 @@ void login_helpscreen(int32 flag)
 {
 	ShowMessage("Usage: login-server [options]\n");
 	ShowMessage("Options:\n");
-	ShowMessage(CL_WHITE"  Commands\t\t\tDescription\n"CL_RESET);
+	ShowMessage(CL_WHITE"  Commands\t\t\tDescription\n" CL_RESET);
 	ShowMessage("-----------------------------------------------------------------------------\n");
 	ShowMessage("  --help, --h, --?, /?		Displays this help screen\n");
 	ShowMessage("  --login-config <file>	Load login-server configuration from <file>\n");
