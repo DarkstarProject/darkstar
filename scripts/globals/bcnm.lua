@@ -15,8 +15,9 @@ itemid_bcnmid_map = {139,{0,0}, --Horlais Peak
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
 -- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!)
 -- bcnmid,paramid,bcnmid,paramid,etc
-bcnmid_param_map = {139,{0,0},
-					140,{0,0}};
+bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
+					140,{32,0,33,1},
+					146,{96,0,101,5,102,6,103,7}};
 
 
 -- Call this onTrade for burning circles
@@ -67,14 +68,19 @@ function EventTriggerBCNM(player,npc)
 				player:startEvent(0x7d00,0,0,0,32,0,0,0,0); --32 is the bitmask
 			end
 		end
+		return true;
 	end
 	
-	return true;
+	return false;
 end;
 
 function EventUpdateBCNM(player,csid,option)
 	-- return false;
 	id = player:getVar("trade_bcnmid"); --this is 0 if the bcnm isnt handled by new functions
+	
+	if(id == 0 and player:getZone() ~= 139) then -- Temp condition for normal bcnm (started with onTrigger)
+		return false;
+	end
 	
 	print("UPDATE csid "..csid.." option "..option);
 	--seen: option 2,3,0 in that order
@@ -113,7 +119,7 @@ function EventUpdateBCNM(player,csid,option)
 		if(instance == player:getVar("bcnm_instanceid"))then
 			--respond to this packet
 			mask = GetBattleBitmask(id,player:getZone());
-			player:updateEvent(2,mask,0,0,1,0);
+			player:updateEvent(2,mask,0,1,1,0); -- Add mask number for the correct entering CS
 			player:bcnmEnter(id);
 			player:setVar("bcnm_instanceid_tick",0);
 		elseif(player:getVar("bcnm_instanceid") == 255)then --none free
@@ -139,7 +145,13 @@ end;
 
 function EventFinishBCNM(player,csid,option)
 	print("FINISH csid "..csid.." option "..option);
-	return true;
+	
+	if(player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
+		return false;
+	else
+		return true;
+	end
+	
 end;
 
 --Returns TRUE if you're trying to do a maat fight, regardless of outcome e.g. if you trade testimony on wrong job, this will return true in order to prevent further execution of TradeBCNM. Returns FALSE if you're not doing a maat fight (in other words, not trading a testimony!!)

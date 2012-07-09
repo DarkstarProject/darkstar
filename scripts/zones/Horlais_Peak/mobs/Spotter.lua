@@ -23,6 +23,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
+	--[[
 	killer:setVar("BCNM_Killed",killer:getVar("BCNM_Killed") + 1);
 	record = GetServerVariable("[BF]Mission_2-3_Horlais_Peak_record");
 	partyMembers = 1;
@@ -41,7 +42,7 @@ function onMobDeath(mob,killer)
 			killer:startEvent(0x7d01,0,record,0,newtimer,partyMembers,0,0);
 		end
 	end
-	
+	]]
 end;
 
 -----------------------------------

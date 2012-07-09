@@ -75,7 +75,7 @@ INSERT INTO `bcnm_info` VALUES ('36', '140', 'toadal_recall', NULL, NULL, '1800'
 INSERT INTO `bcnm_info` VALUES ('37', '140', 'mirror_mirror', NULL, NULL, '900', '40', '3', '0', '7');
 
 -- Waughroon Shrine
-INSERT INTO `bcnm_info` VALUES ('64', '144', 'rank_2_final_mission_waughroon', NULL, NULL, '1800', '25', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('64', '144', 'rank_2_mission', NULL, NULL, '1800', '25', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('65', '144', 'worms_turn', NULL, NULL, '1800', '40', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('66', '144', 'grimshell_shocktroopers', NULL, NULL, '1800', '60', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('67', '144', 'on_my_way', NULL, NULL, '1800', '99', '6', '0', '5');
@@ -99,7 +99,7 @@ INSERT INTO `bcnm_info` VALUES ('84', '144', 'shell_shocked', NULL, NULL, '1800'
 INSERT INTO `bcnm_info` VALUES ('85', '144', 'beyond_infinity', NULL, NULL, '600', '0', '6', '0', '6');
 		
 -- Balga's Dais
-INSERT INTO `bcnm_info` VALUES ('96', '146', 'rank_2_final_mission_balgas', NULL, NULL, '1800', '25', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('96', '146', 'rank_2_mission', NULL, NULL, '1800', '25', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('97', '146', 'steamed_sprouts', NULL, NULL, '1800', '40', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('98', '146', 'divine_punishers', NULL, NULL, '1800', '60', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('99', '146', 'saintly_invitation', NULL, NULL, '1800', '99', '6', '0', '5');
@@ -122,16 +122,16 @@ INSERT INTO `bcnm_info` VALUES ('115', '146', 'avian_apostates', NULL, NULL, '18
 INSERT INTO `bcnm_info` VALUES ('116', '146', 'beyond_infinity', NULL, NULL, '600', '0', '6', '0', '6');
 
 -- Sacrificial Chamber
-INSERT INTO `bcnm_info` VALUES ('128', '146', 'temple_of_uggalepih', NULL, NULL, '1800', '99', '6', '0', '5');
-INSERT INTO `bcnm_info` VALUES ('129', '146', 'jungle_boogymen', NULL, NULL, '1800', '60', '6', '0', '15');
-INSERT INTO `bcnm_info` VALUES ('130', '146', 'amphibian_assault', NULL, NULL, '1800', '60', '6', '0', '15');
-INSERT INTO `bcnm_info` VALUES ('131', '146', 'project_shantottofication', NULL, NULL, '1800', '99', '6', '0', '5');
-INSERT INTO `bcnm_info` VALUES ('132', '146', 'whom_wilt_thou_call', NULL, NULL, '1800', '0', '6', '0', '15');
+INSERT INTO `bcnm_info` VALUES ('128', '163', 'temple_of_uggalepih', NULL, NULL, '1800', '99', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('129', '163', 'jungle_boogymen', NULL, NULL, '1800', '60', '6', '0', '15');
+INSERT INTO `bcnm_info` VALUES ('130', '163', 'amphibian_assault', NULL, NULL, '1800', '60', '6', '0', '15');
+INSERT INTO `bcnm_info` VALUES ('131', '163', 'project_shantottofication', NULL, NULL, '1800', '99', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('132', '163', 'whom_wilt_thou_call', NULL, NULL, '1800', '0', '6', '0', '15');
 
 -- Throne Room
 INSERT INTO `bcnm_info` VALUES ('160', '165', 'shadow_lord_battle', NULL, NULL, '1800', '90', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('161', '165', 'where_two_paths_converge', NULL, NULL, '1800', '90', '6', '0', '5');
-INSERT INTO `bcnm_info` VALUES ('162', '165', 'kindred__spirits', NULL, NULL, '1800', '90', '6', '0', '15');
+INSERT INTO `bcnm_info` VALUES ('162', '165', 'kindred_spirits', NULL, NULL, '1800', '90', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('163', '165', 'survival_of_the_wisest', NULL, NULL, '600', '90', '1', '0', '6');
 INSERT INTO `bcnm_info` VALUES ('164', '165', 'smash_a_malevolent_menace', NULL, NULL, '1800', '90', '6', '0', '5');
 

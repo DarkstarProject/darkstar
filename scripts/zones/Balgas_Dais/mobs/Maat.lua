@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
+	--[[
 	mJob = killer:getMainJob();
 	killer:setVar("maatDefeated",1);
 	record = GetServerVariable("[BF]Shattering_Stars_job"..mJob.."_record");
@@ -36,7 +36,7 @@ function onMobDeath(mob,killer)
 	end
 	
 	killer:startEvent(0x7d01,0,record,0,newtimer,1,bcnmFight,0);
-	
+	]]
 end;
 
 -----------------------------------

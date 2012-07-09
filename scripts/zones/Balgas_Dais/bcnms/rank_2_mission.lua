@@ -1,27 +1,15 @@
 -----------------------------------
 -- Area: Horlais Peak
--- Name: Shattering stars - Maat Fight
--- @pos -509 158 -211 139
+-- Name: Mission Rank 2
+-- @pos 299 -123 345 146
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
+package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
+-------------------------------------
 
-require("scripts/globals/titles");
-require("scripts/globals/quests");
-require("scripts/zones/Horlais_Peak/TextIDs");
+require("scripts/globals/keyitems");
+require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
--- Maat Battle in Horlais Peak
--- EXAMPLE SCRIPT
--- 
--- What should go here:
--- giving key items, playing ENDING cutscenes
---
--- What should NOT go here:
--- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
--- enforcing ANY rules (SJ/number of people/etc), moving
--- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)
@@ -43,7 +31,11 @@ function OnBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
+		if(player:hasCompletedMission(player:getNation(),5)) then
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+		else
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+		end
 	elseif(leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
@@ -58,12 +50,12 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 	
 	if(csid == 0x7d01) then
-		if(player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
-			player:addItem(4181);
-			player:messageSpecial(ITEM_OBTAINED,4181);
+		if(player:hasKeyItem(DARK_KEY)) then
+			player:addKeyItem(KINDRED_CREST);
+			player:messageSpecial(KEYITEM_OBTAINED,KINDRED_CREST);
+			player:setVar("MissionStatus",9);
+			player:delKeyItem(DARK_KEY);
 		end
-		player:setVar("maatDefeated",player:getMainJob());
-		player:setTitle(MAAT_MASHER);
 	end
 	
 end;

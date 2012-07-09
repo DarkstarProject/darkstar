@@ -1,27 +1,16 @@
 -----------------------------------
--- Area: Horlais Peak
+-- Area: Balga's Dais
 -- Name: Shattering stars - Maat Fight
--- @pos -509 158 -211 139
+-- @pos 299 -123 345 146
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
+package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
+-------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Horlais_Peak/TextIDs");
+require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
--- Maat Battle in Horlais Peak
--- EXAMPLE SCRIPT
--- 
--- What should go here:
--- giving key items, playing ENDING cutscenes
---
--- What should NOT go here:
--- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
--- enforcing ANY rules (SJ/number of people/etc), moving
--- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)

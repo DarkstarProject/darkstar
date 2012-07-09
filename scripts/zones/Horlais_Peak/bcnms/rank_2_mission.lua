@@ -7,7 +7,7 @@ package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
+require("scripts/globals/missions");
 require("scripts/zones/Horlais_Peak/TextIDs");
 
 -----------------------------------
@@ -41,6 +41,7 @@ end;
 
 function OnBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
+	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
 		if(player:hasCompletedMission(player:getNation(),5)) then
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
