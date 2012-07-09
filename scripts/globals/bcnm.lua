@@ -13,12 +13,13 @@ itemid_bcnmid_map = {139,{0,0}, --Horlais Peak
 					 206,{0,0}}; --Qu'Bia Arena
 					 
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
--- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!)
+-- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!) hum you sure ?
 -- bcnmid,paramid,bcnmid,paramid,etc
 bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
 					140,{32,0,33,1},
 					144,{64,0,70,6,71,7,72,8},
-					146,{96,0,101,5,102,6,103,7}};
+					146,{96,0,101,5,102,6,103,7},
+					206,{512,0,517,5,518,6,519,7}};
 
 
 -- Call this onTrade for burning circles
