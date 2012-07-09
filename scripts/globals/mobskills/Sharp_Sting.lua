@@ -1,5 +1,27 @@
 ---------------------------------------------
--- Sharp_Sting
+--  Sharp Sting
 --
---
+--  Description: Deals high damage to target in a ranged attack.
+--  Type: Ranged
+--  Utsusemi/Blink absorb: 1 shadow
+--  Range: 10' single
+--  Notes: Appears to be very inaccurate.
 ---------------------------------------------
+
+require("/scripts/globals/settings");
+require("/scripts/globals/status");
+require("/scripts/globals/monstertpmoves");
+
+---------------------------------------------
+
+function OnMobWeaponSkill(target, mob, skill)
+	
+	numhits = 1;
+	accmod = 3;
+	dmgmod = 4;
+	info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_NONE,info.hitslanded);
+	target:delHP(dmg);
+	return dmg;
+	
+end;

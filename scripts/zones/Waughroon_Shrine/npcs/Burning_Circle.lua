@@ -8,67 +8,40 @@ package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
-require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Waughroon_Shrine/TextIDs");
 
-	-- events:
-	-- 7D00 : BC menu
-	-- Param 4 is a bitmask for the choice of battlefields in the menu:
-
 	---- 0: Rank 2 Final Mission for Bastok "The Emissary" and Sandy "Journey Abroad"
-	---- 1: Steamed Sprouts (BCNM 40, Star Orb)
-	---- 2: Divine Punishers (BCNM 60, Moon Orb)
-	---- 3: Saintly Invitation (Windurst mission 6-2)
-	---- 4: Treasure and Tribulations (BCNM 50, Comet Orb)
-	---- 5: Shattering Stars (MNK)
-	---- 6: Shattering Stars (WHM)
-	---- 7: Shattering Stars (SMN)
-	---- 8: Creeping Doom (BCNM 30, Sky Orb)
-	---- 9: Charming Trio (BCNM 20, Cloudy Orb)
-	---- 10: Harem Scarem (BCNM 30, Sky Orb)
-	---- 11: Early Bird Catches the Wyrm (KSNM 99, Themis Orb)
-	---- 12: Royal Succession (BCNM 40, Star Orb)
-	---- 13: Rapid Raptors (BCNM 50, Comet Orb)
-	---- 14: Wild Wild Whiskers (BCNM 60, Moon Orb)
-	---- 15: Season's Greetings (KSNM 30, Clotho Orb)
-	---- 16: Royale Ramble (KSNM 30, Lachesis Orb)
-	---- 17: Moa Constrictors (KSNM 30, Atropos Orb
-
-	-- Param 8 is a flag: 0 : menu, >0 : automatically enter and exit
-
-	-- 7D01 : final BC event.
-	-- param 2: #time record for this mission
-	-- param 3: #clear time in seconds
-	-- param 6: #which mission (linear numbering as above)
-	-- 7D03 : stay/run away
+	---- 1: Worms Turn
+	---- 2: Grimshell Shocktroopers
+	---- 3: On my Way
+	---- 4: Thief in Norg
+	---- 5: 3, 2, 1
+	---- 6: Shattering Stars (RDM)
+	---- 7: Shattering Stars (THF)
+	---- 8: Shattering Stars (BST)
+	---- 9: 
+	---- 10: 
+	---- 11: 
+	---- 12: 
+	---- 13: 
+	---- 14: 
+	---- 15: 
+	---- 16: 
+	---- 17: 
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	pZone = player:getZone();
-	player:setVar(tostring(pZone) .. "_Ready",0);
-	player:setVar(tostring(pZone) .. "_Field",0);
-	player:setVar(tostring(pZone) .. "_onTrade",0);
 	
-	if(npc:getID() == 17367339) then
-		if(getAvailableBattlefield(player:getZone()) ~= 255) then
-			
-			bcnmFight = getTradeFightBCNM(player,pZone,trade);
-			
-			if(bcnmFight >= 0) then
-				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
-				player:setVar(tostring(pZone) .. "_onTrade",trade:getItem());
-			end
-		else
-			player:messageSpecial(7155);
-		end
+	if(TradeBCNM(player,player:getZone(),trade,npc))then
+		return;
 	end
+	
 end;
 
 -----------------------------------
@@ -76,6 +49,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	player:setVar("trade_bcnmid",0);
+	
+	if(EventTriggerBCNM(player,npc))then
+		return;
+	end
+	
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
 	player:setVar(tostring(pZone) .. "_Field",0);
@@ -96,7 +75,7 @@ function onTrigger(player,npc)
 			player:messageSpecial(7155);
 		end
 	else
-		player:startEvent(0x7d03);
+		player:startEvent(0x7d02);
 	end
 end;
 
@@ -107,7 +86,11 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
-
+	
+	if(EventUpdateBCNM(player,csid,option))then
+		return;
+	end
+	
 	if(csid == 0x7d00) then
 		pZone = player:getZone();
 		zoneReady = tostring(pZone) .. "_Ready";
@@ -150,7 +133,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
-
+	
+	if(EventFinishBCNM(player,csid,option))then
+		return;
+	end
+	
 	pZone = player:getZone();
 
 	if(csid == 0x7d00 and option ~= 1073741824 and option ~= 0) then

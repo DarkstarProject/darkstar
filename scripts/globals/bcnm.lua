@@ -17,6 +17,7 @@ itemid_bcnmid_map = {139,{0,0}, --Horlais Peak
 -- bcnmid,paramid,bcnmid,paramid,etc
 bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
 					140,{32,0,33,1},
+					144,{64,0,70,6,71,7,72,8},
 					146,{96,0,101,5,102,6,103,7}};
 
 
@@ -165,7 +166,7 @@ function CheckMaatFights(player,zone,trade,npc)
 	lvl = player:getMainLvl();
 	
 	if(itemid >= 1426 and itemid <= 1440) then --The traded item IS A TESTIMONY
-		if(lvl < 66)then --not high enough level for maat fight :(
+		if(lvl < 66 or player:getVar("maatDefeated") > 0)then --not high enough level for maat fight :( or maat already defeated
 			return true;
 		end
 		

@@ -21,9 +21,9 @@ function OnMobWeaponSkill(target, mob, skill)
     isEnfeeble = true;
     typeEffect = EFFECT_ACCURACY_DOWN;
     statmod = MOD_INT;
-    accrand = math.random(1,2);
+    
     resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5 and accrand == 1) then
+    if(resist > 0.5) then
         if(target:getStatusEffect(typeEffect) == nil) then
             skill:setMsg(MSG_ENFEEB_IS);
             target:addStatusEffect(typeEffect,power,tic,duration);
