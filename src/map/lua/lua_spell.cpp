@@ -69,6 +69,20 @@ inline int32 CLuaSpell::setMsg(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaSpell::getDefaultMessage(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL); 
+    lua_pushinteger(L, m_PLuaSpell->getDefaultMessage());
+    return 1;
+}
+
+inline int32 CLuaSpell::getMagicBurstMessage(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL); 
+    lua_pushinteger(L, m_PLuaSpell->getMagicBurstMessage());
+    return 1;
+}
+
 inline int32 CLuaSpell::getElement(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL);
@@ -86,6 +100,8 @@ const int8 CLuaSpell::className[] = "CSpell";
 Lunar<CLuaSpell>::Register_t CLuaSpell::methods[] = 
 {
     LUNAR_DECLARE_METHOD(CLuaSpell,setMsg),
+    LUNAR_DECLARE_METHOD(CLuaSpell,getDefaultMessage),
+    LUNAR_DECLARE_METHOD(CLuaSpell,getMagicBurstMessage),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getElement),
 	{NULL,NULL}
 }; 

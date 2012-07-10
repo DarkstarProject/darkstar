@@ -1227,6 +1227,7 @@ void CAICharNormal::ActionMagicFinish()
 	{
         CBattleEntity* PTarget = m_PChar->m_ActionList.at(i).ActionTarget;
 
+        m_PSpell->setMessage(m_PSpell->getDefaultMessage());
         m_PChar->m_ActionList.at(i).param = luautils::OnSpellCast(m_PChar, PTarget);
         m_PChar->m_ActionList.at(i).messageID = m_PSpell->getMessage();
 

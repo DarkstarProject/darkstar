@@ -278,14 +278,15 @@ enum TARGETTYPE
 	TARGET_NPC				= 0x40		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
 };
 
-enum SKILLCHAINFLAG // Skill chain flag
-{
+enum SKILLCHAINFLAG    // Skill chain flag
+{                        
     NO_CHAIN = 0x200,  // 0 Skill chains
     CHAIN1   = 0x400,  // 1 Skill chains
     CHAIN2   = 0x800,  // 2 Skill chains
     CHAIN3   = 0x1000, // 3 Skill chains
     CHAIN4   = 0x2000, // 4 Skill chains
     CHAIN5   = 0x4000, // 5 Skill chains
+    CHAIN_MASK = 0x7C00  
 };
 
 #define MAX_SKILLCHAIN_LEVEL (3)

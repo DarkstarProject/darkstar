@@ -31,16 +31,18 @@ CSpell::CSpell(uint16 id)
 {
 	m_ID = id;
 
-	m_mpCost        = 0;
-	m_castTime      = 0;
-	m_recastTime    = 0;
-	m_animation     = 0;
-    m_animationTime = 0;
-    m_skillType     = 0;
-    m_zoneMisc      = 0;
-    m_message       = 0;
-    m_element       = 0;
-	m_spellGroup    = SPELLGROUP_NONE;
+	m_mpCost            = 0;
+	m_castTime          = 0;
+	m_recastTime        = 0;
+	m_animation         = 0;
+    m_animationTime     = 0;
+    m_skillType         = 0;
+    m_zoneMisc          = 0;
+    m_message           = 0;
+    m_DefaultMessage    = 0;
+    m_MagicBurstMessage = 0;
+    m_element           = 0;
+	m_spellGroup        = SPELLGROUP_NONE;
 	
 	memset(m_job, 0, sizeof(m_job));
 }
@@ -206,6 +208,26 @@ void CSpell::setMessage(uint16 message)
     m_message = message;
 }
 
+uint16 CSpell::getDefaultMessage()
+{
+    return m_DefaultMessage;
+}
+
+void CSpell::setDefaultMessage(uint16 message)
+{
+    m_DefaultMessage = message;
+}
+
+uint16 CSpell::getMagicBurstMessage()
+{
+    return m_MagicBurstMessage;
+}
+
+void CSpell::setMagicBurstMessage(uint16 message)
+{
+    m_MagicBurstMessage = message;
+}
+
 uint16 CSpell::getElement()
 {
 	return m_element;
@@ -267,7 +289,7 @@ namespace spell
 	    memset(PSpellList, 0, sizeof(PSpellList));
 
 	    const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
-					         isAOE, base, element, zonemisc, multiplier, message, CE, VE \
+					         isAOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE \
 							 FROM spell_list \
 							 WHERE spellid < %u;";
 
@@ -295,8 +317,10 @@ namespace spell
                 PSpell->setZoneMisc(Sql_GetIntData(SqlHandle,14));
 			    PSpell->setMultiplier(Sql_GetIntData(SqlHandle,15)); 
                 PSpell->setMessage(Sql_GetIntData(SqlHandle,16)); 
-			    PSpell->setCE(Sql_GetIntData(SqlHandle,17));
-			    PSpell->setVE(Sql_GetIntData(SqlHandle,18));
+                PSpell->setDefaultMessage(Sql_GetIntData(SqlHandle,16));
+                PSpell->setMagicBurstMessage(Sql_GetIntData(SqlHandle,17));
+			    PSpell->setCE(Sql_GetIntData(SqlHandle,18));
+			    PSpell->setVE(Sql_GetIntData(SqlHandle,19));
 
 			    PSpellList[PSpell->getID()] = PSpell;
 		    }

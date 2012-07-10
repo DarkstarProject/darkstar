@@ -65,6 +65,8 @@ public:
 	uint16		getElement();
 	float		getMultiplier();
     uint16      getMessage();
+    uint16      getDefaultMessage();
+    uint16      getMagicBurstMessage();
 	uint16		getCE();
 	uint16		getVE();
 	uint16		getModifiedRecast();
@@ -86,6 +88,8 @@ public:
 	void		setElement(uint16 element); 
 	void		setMultiplier(float multiplier);
     void        setMessage(uint16 message);
+    void        setDefaultMessage(uint16 message);
+    void        setMagicBurstMessage(uint16 message);
 	void		setCE(uint16 ce);
 	void		setVE(uint16 ve);
 	void		setModifiedRecast(uint16 mrec);
@@ -110,7 +114,9 @@ private:
 	uint16		m_base;									// spell base damage
 	float		m_multiplier;							// multiplier for upper tier spells
 	uint16		m_element;								// element of spell
-    uint16      m_message;                              // default message id
+    uint16      m_message;                              // message id
+    uint16      m_DefaultMessage;                       // default message id
+    uint16      m_MagicBurstMessage;                    // Message used for magic bursts.
 	uint16		m_CE;									// cumulative enmity of spell
 	uint16		m_VE;									// volatile enmity of spell
 	string_t	m_name;									// spell name

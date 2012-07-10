@@ -26,6 +26,5 @@ function onSpellCast(caster,target,spell)
 	--TODO: CHECK FOR UNDEAD!
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
 	caster:addHP(dmg);
-	spell:setMsg(227); --change msg to 'xxx hp drained from the yyyy.'
 	return dmg;
 end;

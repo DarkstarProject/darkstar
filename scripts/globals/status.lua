@@ -466,6 +466,15 @@ EFFECT_IMMANENCE				= 470
 EFFECT_MIGAWARI					= 471
 EFFECT_HEALING					= 512
 EFFECT_LEAVEGAME				= 513
+EFFECT_SKILLCHAIN               = 514
+
+EFFECT_SKILLCHAIN0              = 0x200
+EFFECT_SKILLCHAIN1              = 0x400
+EFFECT_SKILLCHAIN2              = 0x800
+EFFECT_SKILLCHAIN3              = 0x1000
+EFFECT_SKILLCHAIN4              = 0x2000
+EFFECT_SKILLCHAIN5              = 0x4000
+EFFECT_SKILLCHAINMASK           = 0x7C00
 
 -----------------------------------
 -- These codes are the gateway to directly interacting with the pXI core program with status effects.
@@ -712,8 +721,8 @@ MOD_LIGHT_ARTS_MPCOST	= 0x150
 MOD_LIGHT_ARTS_FASTCAST	= 0x151
 MOD_DARK_ARTS_MPCOST	= 0x152
 MOD_DARK_ARTS_FASTCAST	= 0x153
-MOD_WIDESCAN		= 0x154
-MOD_ENSPELL		= 0x155
-MOD_SPIKES		= 0x156
-MOD_ENSPELL_DMG	= 0x157
-MOD_SPIKES_DMG		= 0x158
+MOD_WIDESCAN            = 0x154
+MOD_ENSPELL             = 0x155
+MOD_SPIKES              = 0x156
+MOD_ENSPELL_DMG         = 0x157
+MOD_SPIKES_DMG          = 0x158
