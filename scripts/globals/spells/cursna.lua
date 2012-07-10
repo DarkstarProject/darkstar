@@ -11,17 +11,33 @@ require("scripts/globals/status");
 
 function onSpellCast(caster,target,spell)
 	
-	curse = target:getStatusEffect(EFFECT_CURSE);
+	curse = target:getStatusEffect(EFFECT_CURSE_I);
+	curse2 = target:getStatusEffect(EFFECT_CURSE_II);
 	bane = target:getStatusEffect(EFFECT_BANE);
 	
-	if(curse ~= nil and bane ~= nil) then
-		target:delStatusEffect(EFFECT_CURSE);
+	if(curse ~= nil and curse2 ~= nil and bane ~= nil) then
+		target:delStatusEffect(EFFECT_CURSE_I);
+		target:delStatusEffect(EFFECT_CURSE_II);
 		target:delStatusEffect(EFFECT_BANE);
-		final = EFFECT_CURSE;
+		final = EFFECT_CURSE_II;
+		spell:setMsg(83);
+	elseif(curse ~= nil and bane ~= nil) then
+		target:delStatusEffect(EFFECT_CURSE_I);
+		target:delStatusEffect(EFFECT_BANE);
+		final = EFFECT_CURSE_I;
+		spell:setMsg(83);
+	elseif(curse2 ~= nil and bane ~= nil) then
+		target:delStatusEffect(EFFECT_CURSE_II);
+		target:delStatusEffect(EFFECT_BANE);
+		final = EFFECT_CURSE_II;
 		spell:setMsg(83);
 	elseif(curse ~= nil) then
-		target:delStatusEffect(EFFECT_CURSE);
-		final = EFFECT_CURSE;
+		target:delStatusEffect(EFFECT_CURSE_I);
+		final = EFFECT_CURSE_I;
+		spell:setMsg(83);
+	elseif(curse2 ~= nil) then
+		target:delStatusEffect(EFFECT_CURSE_II);
+		final = EFFECT_CURSE_II;
 		spell:setMsg(83);
 	elseif(bane ~= nil) then
 		target:delStatusEffect(EFFECT_BANE);
