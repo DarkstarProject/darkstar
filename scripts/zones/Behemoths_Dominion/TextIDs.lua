@@ -8,6 +8,8 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 
 	  SENSE_OF_FOREBODING = 6393; -- You are suddenly overcome with a sense of foreboding...
 THERE_IS_NOTHING_ORDINARY = 6392; -- There is nothing out of the ordinary here
+	  IRREPRESSIBLE_MIGHT = 6396; -- An aura of irrepressible might threatens to overwhelm you...
+
 
 -- ZM4 Dialog
 		ZILART_MONUMENT = 7167; -- Its an ancient Zilart Monument
