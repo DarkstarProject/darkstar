@@ -96,6 +96,7 @@ public:
 	int32 getFreeSlotsCount(lua_State*);	// Gets value of free slots in Entity inventory
 	int32 getRace(lua_State*);				// Gets Race of Entity
 	int32 getNation(lua_State*);			// Gets Nation of Entity
+	int32 setNation(lua_State*);			// Sets Nation of Entity
 
 	int32 addQuest(lua_State*);				// Add Quest to Entity Quest Log
 	int32 delQuest(lua_State*);				// Remove quest from quest log (should be used for debugging only)

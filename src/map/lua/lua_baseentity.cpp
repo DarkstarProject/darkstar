@@ -611,6 +611,28 @@ inline int32 CLuaBaseEntity::getNation(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::setNation(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype == TYPE_PC ) 
+		{
+			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+			{
+				int32 newNation = (int32)lua_tointeger(L, -1);
+				CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+				PChar->profile.nation = newNation;
+				charutils::SaveCharNation(PChar);
+				return 0;
+			}
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getRankPoints(lua_State *L)
 {
 	if( m_PBaseEntity != NULL )
@@ -3969,6 +3991,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRace),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNation),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNation),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addQuest),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delQuest),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getQuestStatus),

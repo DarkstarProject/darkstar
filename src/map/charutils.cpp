@@ -2750,6 +2750,24 @@ void SaveCharStats(CCharEntity* PChar)
 
 /************************************************************************
 *																		*
+*  Saves character nation changes										*
+*																		*
+************************************************************************/
+
+void SaveCharNation(CCharEntity* PChar)
+{
+	const int8* Query = "UPDATE chars \
+				  		 SET nation = %u \
+						 WHERE charid = %u;";
+
+	Sql_Query(SqlHandle, 
+        Query,
+        PChar->profile.nation,
+        PChar->id);
+}
+
+/************************************************************************
+*																		*
 *  Сохраняем текущие уровни профессий персонажа							*
 *																		*
 ************************************************************************/

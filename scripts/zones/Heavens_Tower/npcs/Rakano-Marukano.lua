@@ -8,6 +8,7 @@
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
+require("scripts/globals/conquest");
 -----------------------------------
 
 -----------------------------------
@@ -22,7 +23,20 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x2712, 0, 0, 0, 2);
+	new_nation = WINDURST
+	rank = getNationRank(new_nation)
+	if(rank == 1) then
+		cost = 40000
+	elseif(rank == 2) then
+		cost = 12000 
+	elseif(rank == 3) then
+		cost = 4000
+	end
+	has_gil = 0
+	if(player:getGil() >= cost) then
+		has_gil = 1
+	end
+	player:startEvent(0x2712,0,1,player:getRank(),new_nation,has_gil,cost);
 end;
 
 -----------------------------------
@@ -41,5 +55,9 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	if(csid == 0x2712 and option == 1) then
+		player:setNation(new_nation)
+		player:setGil(player:getGil() - cost);
+	end
 end;
 

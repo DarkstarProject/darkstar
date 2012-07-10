@@ -112,6 +112,7 @@ namespace charutils
 	void	SaveCharInventoryCapacity(CCharEntity* PChar);              // Save Character inventory capacity
 	void	SaveSpells(CCharEntity* PChar);						        // сохраняем выученные заклинания
 	void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
+	void	SaveCharNation(CCharEntity* PChar);							// Sace the character's nation of allegiance.
 	void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа
 };
 
