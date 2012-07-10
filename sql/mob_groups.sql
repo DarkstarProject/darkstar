@@ -7819,7 +7819,7 @@ INSERT INTO `mob_groups` VALUES ('7807', '794', '143', '0', '128', '579', '8', '
 INSERT INTO `mob_groups` VALUES ('7808', '1808', '143', '330', '0', '1579', '11', '18');
 INSERT INTO `mob_groups` VALUES ('7809', '2673', '143', '0', '128', '2299', '3', '5');
 INSERT INTO `mob_groups` VALUES ('7810', '2674', '143', '330', '0', '2300', '14', '16');
-INSERT INTO `mob_groups` VALUES ('7811', '2897', '143', '0', '128', '0', '58', '58');
+INSERT INTO `mob_groups` VALUES ('7811', '2897', '143', '0', '128', '4378', '58', '58');
 INSERT INTO `mob_groups` VALUES ('7812', '2916', '143', '86400', '0', '0', '22', '23');
 INSERT INTO `mob_groups` VALUES ('7813', '2965', '143', '330', '0', '2529', '21', '23');
 INSERT INTO `mob_groups` VALUES ('7814', '2986', '143', '330', '0', '2548', '11', '18');
