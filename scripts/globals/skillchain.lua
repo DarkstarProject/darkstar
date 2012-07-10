@@ -1,5 +1,3 @@
-require("scripts/utils/bit")
-
 EFFECT_SKILLCHAIN0    = 0x200
 EFFECT_SKILLCHAIN1    = 0x400
 EFFECT_SKILLCHAIN2    = 0x800
@@ -56,7 +54,7 @@ end -- function
 -- Returns the number of skill chains that have occured for a given EFFECT_SKILLCHAIN effect
 function getSkillChainCount(resonance)
 	if(resonance) then
-		local chainLength = bit.band(resonance:getPower(), EFFECT_SKILLCHAINMASK);
+		local chainLength = BitwiseAnd(resonance:getPower(), EFFECT_SKILLCHAINMASK);
 	
 		if(chainLength > 0) then -- Chain exists
 			if(chainLength == EFFECT_SKILLCHAIN1) then
@@ -79,7 +77,7 @@ end
 -- Returns a boolean if the spell's element matches the resonace given
 function doesSpellElementMatchResonance(spell, resonance)
 	if(spell and resonance) then
-		return (bit.band(resonance:getPower(), getElementFlag(spell:getElement())) > 0);
+		return (BitwiseAnd(resonance:getPower(), getElementFlag(spell:getElement())) > 0);
 	end
 	
 	return false;

@@ -69,6 +69,7 @@ namespace luautils
 	int32 GetServerVariable(lua_State*);
 	int32 SetServerVariable(lua_State *);
 	int32 OnServerStart();														// triggers when game server starts up
+    int32 BitwiseAnd(lua_State *);
 		
 	int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone
 	int32 OnZoneInitialise(uint8 ZoneID);										// triggers when zone is loaded
@@ -103,6 +104,7 @@ namespace luautils
 	int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill);// triggers when pet uses an ability
 	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob);				// triggers when weapon skill is used
 	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget);				// triggers when job ability is used
+
 };
 
 #endif //- _LUAUTILS_H -

@@ -93,6 +93,7 @@ int32 init()
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
     lua_register(LuaHandle,"SendUncnown0x39Packet",luautils::SendUncnown0x39Packet);
+    lua_register(LuaHandle,"BitwiseAnd",luautils::BitwiseAnd);
 
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
     Lunar<CLuaRegion>::Register(LuaHandle);
@@ -1776,5 +1777,20 @@ int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance){
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
+int32 BitwiseAnd(lua_State* L)
+{
+    if((!lua_isnil(L,1) && lua_isnumber(L,1)) &&
+        (!lua_isnil(L,2) && lua_isnumber(L,2)) )
+    {
+        uint32 lhs = (uint32)lua_tointeger(L,1);
+        uint32 rhs = (uint32)lua_tointeger(L,2);
+
+        lua_pushinteger(L, lhs & rhs);
+        return 1;
+    }
+
+    lua_pushnil(L);
+    return 0;
+}
 
 }; // namespace luautils
