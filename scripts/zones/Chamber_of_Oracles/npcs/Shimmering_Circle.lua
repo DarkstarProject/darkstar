@@ -7,15 +7,9 @@ package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
-require("scripts/globals/status");
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
-require("scripts/globals/quests");
 require("scripts/zones/Chamber_of_Oracles/TextIDs");
-
-	-- events:
-	-- 7D00 : BC menu
-	-- Param 4 is a bitmask for the choice of battlefields in the menu:
 	
 	--- 1/0: Through the Quicksand Caves
 	--- 2/1: Legion XI Comitatensis
@@ -26,15 +20,6 @@ require("scripts/zones/Chamber_of_Oracles/TextIDs");
 	--- Eye of the Storm
 	--- The Scarlet King
 	--- Roar! A Cat Burglar Bares Her Fangs
-	
-
-	-- Param 8 is a flag: 0 : menu, >0 : automatically enter and exit
-
-	-- 7D01 : final BC event.
-	-- param 2: #time record for this mission
-	-- param 3: #clear time in seconds
-	-- param 6: #which mission (linear numbering as above)
-	-- 7D03 : stay/run away
 
 -----------------------------------
 -- onTrade Action
@@ -42,23 +27,8 @@ require("scripts/zones/Chamber_of_Oracles/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	pZone = player:getZone();
-	player:setVar(tostring(pZone) .. "_Ready",0);
-	player:setVar(tostring(pZone) .. "_Field",0);
-	player:setVar(tostring(pZone) .. "_onTrade",0);
-	
-	if(player:getXPos() >= -232 and player:getXPos() <= -210 and player:getZPos() >= 10 and player:getZPos() <= 31) then
-		if(getAvailableBattlefield(player:getZone()) ~= 255) then
-			
-			bcnmFight = getTradeFightBCNM(player,pZone,trade);
-			
-			if(bcnmFight >= 0) then
-				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
-				player:setVar(tostring(pZone) .. "_onTrade",trade:getItem());
-			end
-		else
-			player:messageSpecial(YOU_CANNOT_ENTER_THE_BATTLEFIELD);
-		end
+	if(TradeBCNM(player,player:getZone(),trade,npc))then
+		return;
 	end
 	
 end;
@@ -68,6 +38,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	player:setVar("trade_bcnmid",0);
+	
+	if(EventTriggerBCNM(player,npc))then
+		return;
+	end
 	
 	pZone = player:getZone();
 	player:setVar(tostring(pZone) .. "_Ready",0);
@@ -102,7 +77,11 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
-
+	
+	if(EventUpdateBCNM(player,csid,option))then
+		return;
+	end
+	
 	if(csid == 0x7d00) then
 		pZone = player:getZone();
 		zoneReady = tostring(pZone) .. "_Ready";
@@ -140,7 +119,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
-
+	
+	if(EventFinishBCNM(player,csid,option))then
+		return;
+	end
+	
 	pZone = player:getZone();
 
 	if(csid == 0x7d00 and option ~= 1073741824 and option ~= 0) then
