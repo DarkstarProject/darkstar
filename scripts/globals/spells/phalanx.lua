@@ -13,7 +13,7 @@ function onSpellCast(caster,target,spell)
 	enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
 	final = 0;
 	duration = 180;
-	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster == target) then
+	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;
 	end
 	
