@@ -15,6 +15,14 @@ require("scripts/zones/Behemoths_Dominion/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	-- Trade Savory Shank
+	if(trade:hasItemQty(3342,1) and trade:getItemCount() == 1) then 
+		player:tradeComplete();
+		SpawnMob(17297441,180):updateEnmity(player);
+	end
+	
+
 end;
 
 -----------------------------------
@@ -22,9 +30,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
 	player:messageSpecial(IRREPRESSIBLE_MIGHT);
-	
 end;
 
 -----------------------------------
