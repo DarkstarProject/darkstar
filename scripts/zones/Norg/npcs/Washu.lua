@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
 	
 	if(player:getQuestStatus(OUTLANDS,YOMI_OKURI) == QUEST_ACCEPTED and player:getVar("yomiOkuriCS") == 2) then
 		-- Trade Giant Sheep Meat, Frost Turnip, Bastore Sardine, Hecteyes Eye
-		if(trade:hasItemQty(4372,1) and trade:hasItemQty(4382,1) and trade:hasItemQty(5792,1) and trade:hasItemQty(939,1) and trade:getItemCount() == 4) then 
+		if(trade:hasItemQty(4372,1) and trade:hasItemQty(4382,1) and (trade:hasItemQty(4360,1) or trade:hasItemQty(5792,1)) and trade:hasItemQty(939,1) and trade:getItemCount() == 4) then 
 			player:startEvent(0x0096);
 		end
 	end
