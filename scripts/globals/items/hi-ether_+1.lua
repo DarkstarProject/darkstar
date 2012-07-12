@@ -11,7 +11,15 @@ require("scripts/globals/settings");
 -----------------------------------------
 
 function onItemCheck(target)
-        return 0;
+value = 0;
+mMP = target:getMaxMP();
+cMP = target:getMP();
+
+if (mMP == cMP) then
+	value = 56; -- Does not let player use item if their hp is full
+end
+	
+return value;
 end;
 
 -----------------------------------------
@@ -19,5 +27,17 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-        target:addMP(55*ITEM_POWER);
+	mMP = target:getMaxMP();
+	cMP = target:getMP();
+		
+	dif = mMP - cMP;
+	if(dif > 55) then
+		heal = 55;
+	else
+		heal = dif;
+	end
+	
+	target:addMP(heal*ITEM_POWER);
+	target:messageBasic(25,0,heal);
+	
 end;

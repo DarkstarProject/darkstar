@@ -1,10 +1,9 @@
 -----------------------------------------
--- ID: 4140
--- Item: Pro-Ether
--- Item Effect: Restores 250 MP
+-- ID: 5254
+-- Item: Hyper-Potion
+-- Item Effect: Restores 250 hP
 -----------------------------------------
 
-require("scripts/globals/status");
 require("scripts/globals/settings");
 
 -----------------------------------------
@@ -13,15 +12,15 @@ require("scripts/globals/settings");
 
 function onItemCheck(target)
 result = 0;
-mMP = target:getMaxMP();
-cMP = target:getMP();
+mHP = target:getMaxHP();
+cHP = target:getHP();
 
-if (mMP == cMP) then
+if (mHP == cHP) then
 	result = 56; -- Does not let player use item if their hp is full
+	
 elseif (target:hasStatusEffect(EFFECT_MEDICINE) == true) then
 	result = 111;
 end
-	
 return result;
 end;
 
@@ -30,18 +29,17 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	mMP = target:getMaxMP();
-	cMP = target:getMP();
+	mHP = target:getMaxHP();
+	cHP = target:getHP();
 		
-	dif = mMP - cMP;
+	dif = mHP - cHP;
 	if(dif > 250) then
 		heal = 250;
 	else
 		heal = dif;
 	end
 	
-	target:addMP(heal*ITEM_POWER);
-	target:messageBasic(25,0,heal);
-	target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
-	
+	target:addHP(heal*ITEM_POWER);
+	target:messageBasic(24,0,heal);
+	target:addStatusEffect(EFFECT_MEDICINE,0,0,300);
 end;

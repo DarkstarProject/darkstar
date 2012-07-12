@@ -1,10 +1,9 @@
 -----------------------------------------
--- ID: 4140
--- Item: Pro-Ether
--- Item Effect: Restores 250 MP
+-- ID: 5255
+-- Item: Hyper-Ether
+-- Item Effect: Restores 125 MP
 -----------------------------------------
 
-require("scripts/globals/status");
 require("scripts/globals/settings");
 
 -----------------------------------------
@@ -25,6 +24,7 @@ end
 return result;
 end;
 
+
 -----------------------------------------
 -- OnItemUse
 -----------------------------------------
@@ -34,8 +34,8 @@ function onItemUse(target)
 	cMP = target:getMP();
 		
 	dif = mMP - cMP;
-	if(dif > 250) then
-		heal = 250;
+	if(dif > 125) then
+		heal = 125;
 	else
 		heal = dif;
 	end
@@ -43,5 +43,4 @@ function onItemUse(target)
 	target:addMP(heal*ITEM_POWER);
 	target:messageBasic(25,0,heal);
 	target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
-	
 end;
