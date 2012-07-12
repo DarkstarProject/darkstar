@@ -613,41 +613,26 @@ inline int32 CLuaBaseEntity::getNation(lua_State *L)
 
 inline int32 CLuaBaseEntity::setNation(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC ) 
-		{
-			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
-			{
-				int32 newNation = (int32)lua_tointeger(L, -1);
-				CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-				PChar->profile.nation = newNation;
-				charutils::SaveCharNation(PChar);
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->profile.nation = (uint8)lua_tointeger(L,-1);
+    charutils::SaveCharNation(PChar);
+    return 0;
 }
 
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getRankPoints(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			CCharEntity * PChar = (CCharEntity*)m_PBaseEntity;
-			uint16 rankPoints = 0;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-				rankPoints = PChar->profile.rankpoints;
-				lua_pushinteger( L, rankPoints);
-				return 1;
-		}
-	}
-	lua_pushnil(L);
+	lua_pushinteger( L, ((CCharEntity*)m_PBaseEntity)->profile.rankpoints );
 	return 1;
 }
 
@@ -695,6 +680,8 @@ inline int32 CLuaBaseEntity::addRankPoints(lua_State *L)
 	return 1;
 }
 
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getRank(lua_State *L)
 {
 	if( m_PBaseEntity != NULL )
@@ -712,7 +699,6 @@ inline int32 CLuaBaseEntity::getRank(lua_State *L)
 	lua_pushnil(L);
 	return 1;
 }
-
 
 //==========================================================//
 
@@ -1351,64 +1337,44 @@ inline int32 CLuaBaseEntity::delSpell(lua_State *L)
 
 inline int32 CLuaBaseEntity::getMainJob(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetMJob() );
-			return 1;
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetMJob() );
+    return 1;
 }
 
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getMainLvl(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetMLevel() );
-			return 1;
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetMLevel() );
+    return 1;
 }
 
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getSubJob(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetSJob() );
-			return 1;
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetSJob() );
+    return 1;
 }
 
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getSubLvl(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetSLevel() );
-			return 1;
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetSLevel() );
+    return 1;
 }
 
 /************************************************************************
@@ -1922,31 +1888,26 @@ inline int32 CLuaBaseEntity::setVar(lua_State *L)
 
 inline int32 CLuaBaseEntity::setHomePoint(lua_State *L) 
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if(m_PBaseEntity->objtype == TYPE_PC)
-		{
-			CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-            PChar->profile.home_point.p = PChar->loc.p;
-            PChar->profile.home_point.destination = PChar->getZone();
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->profile.home_point.p = PChar->loc.p;
+    PChar->profile.home_point.destination = PChar->getZone();
 			
-			const int8 *fmtQuery = "UPDATE chars \
-									SET home_zone = %u, home_rot = %u, home_x = %.3f, home_y = %.3f, home_z = %.3f \
-									WHERE charid = %u;";
+	const int8 *fmtQuery = "UPDATE chars \
+                            SET home_zone = %u, home_rot = %u, home_x = %.3f, home_y = %.3f, home_z = %.3f \
+							WHERE charid = %u;";
 
-			Sql_Query(SqlHandle, fmtQuery, 
-                PChar->profile.home_point.destination, 
-                PChar->profile.home_point.p.rotation,
-				PChar->profile.home_point.p.x, 
-                PChar->profile.home_point.p.y, 
-                PChar->profile.home_point.p.z, 
-                PChar->id);
-			return 0;
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+	Sql_Query(SqlHandle, fmtQuery, 
+        PChar->profile.home_point.destination, 
+        PChar->profile.home_point.p.rotation,
+		PChar->profile.home_point.p.x, 
+        PChar->profile.home_point.p.y, 
+        PChar->profile.home_point.p.z, 
+        PChar->id);
+	return 0;
 }
 
 //==========================================================//
@@ -1982,17 +1943,11 @@ inline int32 CLuaBaseEntity::tradeComplete(lua_State *L)
 
 inline int32 CLuaBaseEntity::getTitle(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			uint16 title = ((CCharEntity*)m_PBaseEntity)->profile.title;
-			lua_pushinteger( L, title );
-			return 1;
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    
+	lua_pushinteger( L, ((CCharEntity*)m_PBaseEntity)->profile.title );
+    return 1;
 }
 
 //==========================================================//
@@ -2217,7 +2172,8 @@ inline int32 CLuaBaseEntity::messageBasic(lua_State* L)
 
 //========================================================//
 
-inline int32 CLuaBaseEntity::capSkill(lua_State* L){
+inline int32 CLuaBaseEntity::capSkill(lua_State* L)
+{
 	if( m_PBaseEntity != NULL )
 	{
 		if( m_PBaseEntity->objtype == TYPE_PC )
@@ -2502,13 +2458,10 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
 
 inline int32 CLuaBaseEntity::getAnimation(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		lua_pushinteger(L, m_PBaseEntity->animation);
-		return 1;
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	
+    lua_pushinteger(L, m_PBaseEntity->animation);
+    return 1;
 }
 
 //==========================================================//
@@ -3039,84 +2992,61 @@ inline int32 CLuaBaseEntity::dispelStatusEffect(lua_State *L)
 
 inline int32 CLuaBaseEntity::addMod(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
-				!lua_isnil(L,2) && lua_isnumber(L,2))
-			{
-				((CBattleEntity*)m_PBaseEntity)->addModifier(
-					lua_tointeger(L,1),
-					lua_tointeger(L,2));
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+    
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+    
+    ((CBattleEntity*)m_PBaseEntity)->addModifier(
+		lua_tointeger(L,1),
+        lua_tointeger(L,2));
+    return 0;
 }
 
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getMod(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			if( !lua_isnil(L,1) && lua_isnumber(L,1))
-			{
-				lua_pushinteger(L,((CBattleEntity*)m_PBaseEntity)->getMod(lua_tointeger(L,1))); 
-				return 1;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+    
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    lua_pushinteger(L,((CBattleEntity*)m_PBaseEntity)->getMod(lua_tointeger(L,1))); 
+    return 1;
 }
 
 //==========================================================//
 
 inline int32 CLuaBaseEntity::delMod(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
-				!lua_isnil(L,2) && lua_isnumber(L,2))
-			{
-				((CBattleEntity*)m_PBaseEntity)->delModifier(
-					lua_tointeger(L,1),
-					lua_tointeger(L,2));
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+    
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+    
+    ((CBattleEntity*)m_PBaseEntity)->delModifier(
+		lua_tointeger(L,1),
+        lua_tointeger(L,2));
+    return 0;
 }	
 
+//==========================================================//
 
 inline int32 CLuaBaseEntity::setMod(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype != TYPE_NPC )
-		{
-			if( !lua_isnil(L,1) && lua_isnumber(L,1) &&
-				!lua_isnil(L,2) && lua_isnumber(L,2))
-			{
-				((CBattleEntity*)m_PBaseEntity)->setModifier(
-					lua_tointeger(L,1),
-					lua_tointeger(L,2));
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+    
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+
+    ((CBattleEntity*)m_PBaseEntity)->setModifier(
+		lua_tointeger(L,1),
+        lua_tointeger(L,2));
+    return 0;
 }	
 
 /************************************************************************
@@ -3230,23 +3160,16 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
 
 inline int32 CLuaBaseEntity::showPosition(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageStandardPacket(
-				m_PBaseEntity->loc.p.x,
-				m_PBaseEntity->loc.p.y,
-				m_PBaseEntity->loc.p.z,
-				m_PBaseEntity->loc.p.rotation,
-				239));
-
-			return 0;
-		}
-	}
-
-	lua_pushnil(L);
-	return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageStandardPacket(
+		m_PBaseEntity->loc.p.x,
+		m_PBaseEntity->loc.p.y,
+		m_PBaseEntity->loc.p.z,
+		m_PBaseEntity->loc.p.rotation,
+        239));
+    return 0;
 }
 
 /************************************************************************
@@ -3390,6 +3313,8 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 	return 0;
 }
 
+//==========================================================//
+
 inline int32 CLuaBaseEntity::petAttack(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
@@ -3408,6 +3333,8 @@ inline int32 CLuaBaseEntity::petAttack(lua_State *L)
 	return 0;
 }
 
+//==========================================================//
+
 inline int32 CLuaBaseEntity::petRetreat(lua_State *L)
 {
 	if ( m_PBaseEntity != NULL )
@@ -3422,10 +3349,14 @@ inline int32 CLuaBaseEntity::petRetreat(lua_State *L)
 	return 0;
 }
 
+//==========================================================//
+
 inline int32 CLuaBaseEntity::petStay(lua_State *L)
 {
 	return 0;
 }
+
+//==========================================================//
 
 inline int32 CLuaBaseEntity::petAbility(lua_State *L)
 {
@@ -3480,6 +3411,7 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 			applies it to all on the base entity's enemies hate list
 			FORMAT: phealer:(ptarget,amount)
 ************************************************************************/
+
 inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -3502,8 +3434,11 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 }
 
 /************************************************************************
+
 			Calculates the enmity produced by the input damage
+            
 ************************************************************************/
+
 inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -3524,7 +3459,6 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 
 	return 0;
 }
-
 
 /************************************************************************
 *																		*
@@ -3647,6 +3581,8 @@ inline int32 CLuaBaseEntity::getWeaponDmg(lua_State *L)
 	return 1;
 }
 
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -3662,6 +3598,8 @@ inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
 	lua_pushinteger( L, weapon->getDamage() );
 	return 1;
 }
+
+//==========================================================//
 
 inline int32 CLuaBaseEntity::getAmmoDmg(lua_State *L)
 {
@@ -3679,6 +3617,8 @@ inline int32 CLuaBaseEntity::getAmmoDmg(lua_State *L)
 	return 1;
 }
 
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getRATT(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -3695,6 +3635,8 @@ inline int32 CLuaBaseEntity::getRATT(lua_State *L)
 	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->RATT(weapon->getSkillType()));
 	return 1;
 }
+
+//==========================================================//
 
 inline int32 CLuaBaseEntity::getRACC(lua_State *L)
 {
@@ -3721,6 +3663,8 @@ inline int32 CLuaBaseEntity::getRACC(lua_State *L)
 	lua_pushinteger( L, acc);
 	return 1;
 }
+
+//==========================================================//
 
 inline int32 CLuaBaseEntity::isWeaponTwoHanded(lua_State *L)
 {
@@ -3770,6 +3714,8 @@ inline int32 CLuaBaseEntity::getMeleeHitDamage(lua_State *L)
 	lua_pushinteger( L,-1 );
 	return 1;
 }
+
+//==========================================================//
 
 inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
 {
@@ -3885,6 +3831,8 @@ inline int32 CLuaBaseEntity::bcnmLeave(lua_State *L){
 	return 1;
 }
 
+//==========================================================//
+
 inline int32 CLuaBaseEntity::isInBcnm(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -3898,6 +3846,8 @@ inline int32 CLuaBaseEntity::isInBcnm(lua_State *L){
 	lua_pushinteger( L,0);
 	return 1;
 }
+
+//==========================================================//
 
 inline int32 CLuaBaseEntity::getInstanceID(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -3914,6 +3864,8 @@ inline int32 CLuaBaseEntity::getInstanceID(lua_State *L){
 	lua_pushinteger( L,inst);
 	return 1;
 }
+
+//==========================================================//
 
 //returns 1 if all 3 instances are full. Temp measure until event param struct is found out.
 inline int32 CLuaBaseEntity::isBcnmsFull(lua_State *L){
