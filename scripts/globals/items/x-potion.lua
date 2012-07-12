@@ -26,17 +26,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	mHP = target:getMaxHP();
-	cHP = target:getHP();
-		
-	dif = mHP - cHP;
-	if(dif > 150) then
-		heal = 150;
-	else
-		heal = dif;
-	end
-	
-	target:addHP(heal*ITEM_POWER);
-	target:messageBasic(24,0,heal);
-	
+	target:messageBasic(24,0,target:addHP(150*ITEM_POWER));
 end;

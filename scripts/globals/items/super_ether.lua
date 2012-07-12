@@ -28,18 +28,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	mMP = target:getMaxMP();
-	cMP = target:getMP();
-		
-	dif = mMP - cMP;
-	if(dif > 100) then
-		heal = 100;
-	else
-		heal = dif;
-	end
-	
-	target:addMP(heal*ITEM_POWER);
-	target:messageBasic(25,0,heal);
-
-	
+	target:messageBasic(25,0,target:addMP(100*ITEM_POWER));
 end;

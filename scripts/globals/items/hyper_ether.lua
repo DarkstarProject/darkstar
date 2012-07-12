@@ -30,17 +30,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	mMP = target:getMaxMP();
-	cMP = target:getMP();
-		
-	dif = mMP - cMP;
-	if(dif > 125) then
-		heal = 125;
-	else
-		heal = dif;
-	end
-	
-	target:addMP(heal*ITEM_POWER);
-	target:messageBasic(25,0,heal);
+	target:messageBasic(25,0,target:addMP(125*ITEM_POWER));
 	target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
 end;
