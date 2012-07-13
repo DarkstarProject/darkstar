@@ -797,7 +797,7 @@ void CAICharNormal::ActionRangedFinish()
 			    }
 		    }
 		    damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
-		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED);
+		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, true);
 
 		    if(PItem != NULL){//not a throwing item, check the ammo for dmg/etc
 			    battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
@@ -1648,18 +1648,26 @@ void CAICharNormal::WeaponSkillStartError(uint16 error)
 
 void CAICharNormal::ActionWeaponSkillFinish()
 {
-    DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-    m_LastActionTime = m_Tick;
-    
+	if (m_PBattleSubTarget->isDead())
+	{
+	        m_LastMeleeTime += (m_Tick - m_LastActionTime);
+        	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	        m_PBattleSubTarget = NULL;
+        	return;
+	}
+
+	m_LastActionTime = m_Tick;
+
 	uint16 damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget);
 
 	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI)){
 		m_PChar->addTP(-100);
 	}
 	else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI)){
-		m_PChar->addTP(-100); 
+		m_PChar->addTP(-100);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
 	}
 	else{
@@ -1671,35 +1679,35 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
 			damslot = SLOT_RANGED;
 		}
-		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot);
+		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot, true);
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST); //TODO: REMOVE THIS, BOOST EFFECT IN DB IS WRONG, MISSING EFFECTFLAG_DAMAGE
 	}
-    //if (m_PBattleSubTarget->objtype == TYPE_MOB && m_PBattleSubTarget->isDead())
-    //{
-    //    ((CMobEntity*)m_PBattleSubTarget)->m_DropItemTime = m_PWeaponSkill->getAnimationTime();
-    //}
-	
+
 	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN){
 		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_ELEMENTAL_BREATH;
 		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
 	}
 
 	apAction_t Action;
-    m_PChar->m_ActionList.clear();
+	m_PChar->m_ActionList.clear();
 
 	Action.ActionTarget = m_PBattleSubTarget;
-	Action.reaction   = REACTION_NONE;
+	Action.reaction = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_RECOIL;
-	Action.animation  = m_PWeaponSkill->getAnimationId();
-	Action.param	  = damage;
-	if(damage==0){
+	Action.animation = m_PWeaponSkill->getAnimationId();
+	Action.param = damage;
+	Action.flag = 0;
+
+	if(damage==0)
+	{
+		Action.reaction = REACTION_EVADE;
 		Action.messageID = 188; //but misses
 	}
-	else{
-		Action.messageID  = 185; //damage ws
+	else
+	{
+		Action.messageID = 185; //damage ws
 	}
-	Action.flag = 0;
 
 	if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
 		Action.speceffect = SPECEFFECT_NONE;
@@ -1715,62 +1723,105 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		}
 	}
 
-    // Missed and no-element weapon skills shouldn't trigger skill chains events.
-    if((damage != 0) && (m_PWeaponSkill->getElement() != 0)) 
-    { 
-        uint16 skillChainCount = 0;
-        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill, &skillChainCount);
+	uint16 skillChainCount = 0;
+	SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill, &skillChainCount);
+	if (effect != SUBEFFECT_NONE && Action.param > 0)
+	{
+		uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, effect, skillChainCount, damage);
 
-        if (effect != SUBEFFECT_NONE) 
-        {	
-            uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, effect, skillChainCount, damage);
+		switch(effect)
+		{
+			case SUBEFFECT_DARKNESS:
+			case SUBEFFECT_FRAGMENTATION:
+			case SUBEFFECT_FUSION:
+			case SUBEFFECT_LIQUEFACATION:
+			case SUBEFFECT_REVERBERATION:
+			case SUBEFFECT_SCISSION:
+			case SUBEFFECT_IMPACTION:
+				{
+					Action.flag = 1;
+					Action.subeffect = effect;
+					Action.subparam     = skillChainDamage;
+					Action.submessageID = 287;
+				}
+				break;
 
-            switch(effect)
-            {
-            case SUBEFFECT_DARKNESS:
-            case SUBEFFECT_FRAGMENTATION:
-            case SUBEFFECT_FUSION:
-            case SUBEFFECT_LIQUEFACATION:
-            case SUBEFFECT_REVERBERATION:
-            case SUBEFFECT_SCISSION:
-            case SUBEFFECT_IMPACTION:
-                {
-                    Action.flag = 1;
-                    Action.subeffect    = effect;
-                    Action.subparam     = skillChainDamage;
-                    Action.submessageID = 287;
-                }
-                break;
+			case SUBEFFECT_LIGHT:
+			case SUBEFFECT_GRAVITATION:
+			case SUBEFFECT_DISTORTION:
+			case SUBEFFECT_COMPRESSION:
+			case SUBEFFECT_INDURATION:
+			case SUBEFFECT_TRANSFIXION:
+			case SUBEFFECT_DETONATION:
+				{
+					Action.flag = 3;
+					Action.subeffect = SUBEFFECT(effect - 10);
+					Action.subparam     = skillChainDamage;
+					Action.submessageID = 288;
+				}
+				break;
+		}
+		Action.submessageID += Action.subeffect * 2;
+	}
+	
+	m_PChar->m_ActionList.push_back(Action);
+	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-            case SUBEFFECT_LIGHT:
-            case SUBEFFECT_GRAVITATION:
-            case SUBEFFECT_DISTORTION:
-            case SUBEFFECT_COMPRESSION:
-            case SUBEFFECT_INDURATION:
-            case SUBEFFECT_TRANSFIXION:
-            case SUBEFFECT_DETONATION:
-                {
-                    Action.flag = 3;
-                    Action.subeffect    = SUBEFFECT(effect - 10);
-                    Action.subparam     = skillChainDamage;
-                    Action.submessageID = 288;
-                }
-                break;
-            }
+	m_PChar->m_ActionList.clear();
+	//2 == AoE on Target
+	//4 == Cone on Target (Not supported?)
+	if ( m_PWeaponSkill->getAoe() == 2 || m_PWeaponSkill->getAoe() == 4)
+	{
+		apAction_t AoEAction;
+		
+		AoEAction.reaction = REACTION_HIT;
+		AoEAction.speceffect = SPECEFFECT_RECOIL;
+		AoEAction.animation = m_PWeaponSkill->getAnimationId();		
+		AoEAction.flag = 0;
 
-            Action.submessageID += Action.subeffect * 2;
-        }
-    }
+		if (m_PBattleSubTarget->objtype == TYPE_MOB)
+		{
+			for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 16; ++it)
+			{
+				CBattleEntity* PTarget = (CBattleEntity*)it->second;
+
+				if (m_PBattleSubTarget != PTarget &&
+					!PTarget->isDead() &&
+					IsMobOwner(PTarget) &&					
+					distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
+				{
+					if(m_PWeaponSkill->getAoe() == 4)
+					{
+						if(getangle(m_PBattleSubTarget->loc.p, PTarget->loc.p) >= 45)
+						{
+							continue;
+						}
+					}
+					damage = luautils::OnUseWeaponSkill(m_PChar, PTarget);
+					AoEAction.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, false);
+					if(damage==0)
+					{
+						AoEAction.reaction = REACTION_EVADE;
+						AoEAction.messageID = 188; //but misses
+					}
+					else
+					{
+						AoEAction.messageID = 264; // "xxx takes ### damage." only
+					}
+					((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);					
+					AoEAction.ActionTarget = PTarget;
+					m_PChar->m_ActionList.push_back(AoEAction);
+				}
+			}
+		}
+	}
 
 	charutils::UpdateHealth(m_PChar);
-
-	m_PChar->m_ActionList.push_back(Action);
-	
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	
+
 	m_PWeaponSkill = NULL;
     m_PBattleSubTarget = NULL;
-	m_ActionType = ACTION_ATTACK; 
+	m_ActionType = ACTION_ATTACK;
 }
 
 /************************************************************************
@@ -1999,7 +2050,7 @@ void CAICharNormal::ActionAttack()
 				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PChar,m_PBattleTarget));
 				if(isBlocked && Action.reaction!=REACTION_EVADE){ Action.reaction = REACTION_BLOCK; }
 				
-				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage,isBlocked,fstrslot);
+				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, true);
 
 				if (Action.reaction != REACTION_EVADE && m_PChar->getMod(MOD_ENSPELL)>0)
 				{

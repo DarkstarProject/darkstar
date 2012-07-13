@@ -887,7 +887,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender){
 *																		*
 ************************************************************************/
 
-uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot)
+uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, bool isUserTPGain)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ||
 		PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0))
@@ -1001,7 +1001,10 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			baseTp = CalculateBaseTP((PAttacker->m_Weapons[slot]->getDelay() * 60) / 1000);
 		}
 
-		PAttacker->addTP(baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP)));
+		if(isUserTPGain)
+		{
+			PAttacker->addTP(baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP)));
+		}
 		//PAttacker->addTP(20);
 		//account for attacker's subtle blow which reduces the baseTP gain for the defender
 		baseTp = baseTp * ((100.0f - cap_value((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);

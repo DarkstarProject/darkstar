@@ -899,11 +899,11 @@ void CAIMobDummy::ActionAttack()
 				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
 				if(!isCountered){
-					Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked,SLOT_MAIN);
+					Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, true);
 					m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
 				}
 				else{
-					Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false,SLOT_MAIN);
+					Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, true);
 				}
 
 				m_PMob->m_ActionList.push_back(Action);
