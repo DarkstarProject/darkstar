@@ -14,13 +14,14 @@ NOMAD_MOOGLE_DIALOG = 6544; -- I'm a traveling moogle, kupo. I help adventurers 
 	  WENZEL_DIALOG = 7473; -- My independent survey confirms the town entrance as the preferred location from which adventurers send parcels.
 
 -- Shop Texts
+  HERMINIA_SHOP_DIALOG = 6920; -- Hello there. What can I do for you?
  TORAPIONT_SHOP_DIALOG = 6921; -- Arm yourself before you step outside.
 CLOTHCRAFT_SHOP_DIALOG = 6923; -- Welcome to the Weavers' Guild salesroom.
    FISHING_SHOP_DIALOG = 6924; -- Welcome to the Fishermen's Guild salesroom.
    QUELPIA_SHOP_DIALOG = 6925; -- In need of otherworldly protection?
 CHUTARMIRE_SHOP_DIALOG = 6926; -- I have items for those who delve in the black arts!
   DOHDJUMA_SHOP_DIALOG = 6922; -- I'm Dohdjuma, and I sell all kinds of things.
-  HERMINIA_SHOP_DIALOG = 0; -- 
+
 		 WEAVERS_GUILD = 6923; -- Welcome to the Weavers' Guild salesroom.
 		 FISHING_GUILD = 6924; -- Welcome to the Fishermen's Guild salesroom.
 
