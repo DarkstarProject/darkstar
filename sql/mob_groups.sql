@@ -1,4 +1,4 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
 Source Server         : DarkStar
@@ -9329,7 +9329,7 @@ INSERT INTO `mob_groups` VALUES ('9317', '1270', '181', '0', '128', '0', '75', '
 INSERT INTO `mob_groups` VALUES ('9318', '1798', '181', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('9319', '2993', '181', '0', '128', '0', '75', '75');
 INSERT INTO `mob_groups` VALUES ('9320', '4498', '181', '0', '0', '0', '0', '0');
-INSERT INTO `mob_groups` VALUES ('9321', '81', '182', '0', '0', '51', '300', '0');
+INSERT INTO `mob_groups` VALUES ('9321', '81', '182', '0', '0', '51', '0', '0');
 INSERT INTO `mob_groups` VALUES ('9322', '142', '182', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('9323', '164', '182', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('9324', '395', '182', '0', '0', '0', '0', '0');
@@ -10541,7 +10541,7 @@ INSERT INTO `mob_groups` VALUES ('10686', '4309', '253', '0', '0', '0', '0', '0'
 INSERT INTO `mob_groups` VALUES ('10687', '4403', '253', '0', '0', '4210', '0', '0');
 INSERT INTO `mob_groups` VALUES ('10688', '4493', '253', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('10689', '71', '254', '0', '0', '0', '0', '0');
-INSERT INTO `mob_groups` VALUES ('10690', '83', '254', '0', '0', '52', '300', '0');
+INSERT INTO `mob_groups` VALUES ('10690', '83', '254', '0', '0', '52', '0', '0');
 INSERT INTO `mob_groups` VALUES ('10691', '114', '254', '0', '0', '81', '0', '0');
 INSERT INTO `mob_groups` VALUES ('10692', '270', '254', '0', '0', '196', '0', '0');
 INSERT INTO `mob_groups` VALUES ('10693', '309', '254', '0', '0', '222', '0', '0');
