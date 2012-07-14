@@ -1,0 +1,27 @@
+-----------------------------------
+--
+-- 	EFFECT_THUNDERRES_DOWN
+-----------------------------------
+
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
+
+function onEffectGain(target,effect)
+	target:addMod(MOD_THUNDERRES, -effect:getPower());
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
+
+function onEffectTick(target,effect)
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
+
+function onEffectLose(target,effect)
+	target:delMod(MOD_THUNDERRES, -effect:getPower());
+end;

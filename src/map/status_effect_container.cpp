@@ -210,7 +210,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
     }
 	else
 	{
-		if (PStatusEffect->GetIcon() != 0)
+		if (PStatusEffect->GetIcon() != 0 && ((PStatusEffect->GetFlag() & EFFECTFLAG_NO_LOSS_MESSAGE) == 0))
 		{
 			m_POwner->loc.zone->PushPacket(m_POwner, CHAR_INRANGE, new CMessageBasicPacket(m_POwner, m_POwner, PStatusEffect->GetIcon(), 0, 206));
 		}

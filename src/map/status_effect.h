@@ -43,6 +43,7 @@ enum EFFECTFLAG
     EFFECTFLAG_MAGIC_BEGIN      = 0x0040,     // исчезает перед началом чтения заклинания
     EFFECTFLAG_MAGIC_END        = 0x0080,     // исчезает после прочтения заклинания
   	EFFECTFLAG_ON_ZONE          = 0x0100,
+    EFFECTFLAG_NO_LOSS_MESSAGE  = 0x0200,     // Suppress effect worn off message.
 };
 
 enum EFFECT
@@ -510,6 +511,15 @@ enum EFFECT
 	EFFECT_PERPETUANCE				= 469,
 	EFFECT_IMMANENCE				= 470,
 	EFFECT_MIGAWARI					= 471,
+
+    EFFECT_FIRERES_DOWN             = 490,
+    EFFECT_ICERES_DOWN              = 491,
+    EFFECT_WINDRES_DOWN             = 492,
+    EFFECT_EARTHRES_DOWN            = 493,
+    EFFECT_THUNDERRES_DOWN          = 494,
+    EFFECT_WATERRES_DOWN            = 495,
+    EFFECT_LIGHTRES_DOWN            = 496,
+    EFFECT_DARKRES_DOWN             = 497,
 
 	EFFECT_HEALING					= 512,
 	EFFECT_LEAVEGAME				= 513,
