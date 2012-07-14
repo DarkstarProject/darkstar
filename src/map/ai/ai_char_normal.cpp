@@ -1723,46 +1723,54 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		}
 	}
 
-	uint16 skillChainCount = 0;
-	SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill, &skillChainCount);
-	if (effect != SUBEFFECT_NONE && Action.param > 0)
-	{
-		uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, effect, skillChainCount, damage);
+    // DO NOT REMOVE!  This is here for a reason...
+    // Skill chains should not be affected by MISSED weapon skills or non-elemental 
+    // weapon skills such as: Spirits Within, Spirit Taker, Energy Steal, Energy Drain, Starlight, and Moonlight.
+    if((Action.param > 0) && (m_PWeaponSkill->getElement() != 0)) 
+    {
+        uint16 skillChainCount = 0;
+        // NOTE: GetSkillChainEffect is INSIDE this if statement because it 
+        //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
+        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill, &skillChainCount);
+        if (effect != SUBEFFECT_NONE)
+        {
+	        uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, effect, skillChainCount, damage);
 
-		switch(effect)
-		{
-			case SUBEFFECT_DARKNESS:
-			case SUBEFFECT_FRAGMENTATION:
-			case SUBEFFECT_FUSION:
-			case SUBEFFECT_LIQUEFACATION:
-			case SUBEFFECT_REVERBERATION:
-			case SUBEFFECT_SCISSION:
-			case SUBEFFECT_IMPACTION:
-				{
-					Action.flag = 1;
-					Action.subeffect = effect;
-					Action.subparam     = skillChainDamage;
-					Action.submessageID = 287;
-				}
-				break;
+	        switch(effect)
+	        {
+		        case SUBEFFECT_DARKNESS:
+		        case SUBEFFECT_FRAGMENTATION:
+		        case SUBEFFECT_FUSION:
+		        case SUBEFFECT_LIQUEFACATION:
+		        case SUBEFFECT_REVERBERATION:
+		        case SUBEFFECT_SCISSION:
+		        case SUBEFFECT_IMPACTION:
+		        {
+			        Action.flag = 1;
+			        Action.subeffect = effect;
+			        Action.subparam = skillChainDamage;
+			        Action.submessageID = 287;
+		        }
+		        break;
 
-			case SUBEFFECT_LIGHT:
-			case SUBEFFECT_GRAVITATION:
-			case SUBEFFECT_DISTORTION:
-			case SUBEFFECT_COMPRESSION:
-			case SUBEFFECT_INDURATION:
-			case SUBEFFECT_TRANSFIXION:
-			case SUBEFFECT_DETONATION:
-				{
-					Action.flag = 3;
-					Action.subeffect = SUBEFFECT(effect - 10);
-					Action.subparam     = skillChainDamage;
-					Action.submessageID = 288;
-				}
-				break;
-		}
-		Action.submessageID += Action.subeffect * 2;
-	}
+		        case SUBEFFECT_LIGHT:
+		        case SUBEFFECT_GRAVITATION:
+		        case SUBEFFECT_DISTORTION:
+		        case SUBEFFECT_COMPRESSION:
+		        case SUBEFFECT_INDURATION:
+		        case SUBEFFECT_TRANSFIXION:
+		        case SUBEFFECT_DETONATION:
+		        {
+			        Action.flag = 3;
+			        Action.subeffect = SUBEFFECT(effect - 10);
+			        Action.subparam = skillChainDamage;
+			        Action.submessageID = 288;
+		        }
+		        break;
+	        }
+	        Action.submessageID += Action.subeffect * 2;
+        }
+    }
 	
 	m_PChar->m_ActionList.push_back(Action);
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
