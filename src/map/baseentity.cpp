@@ -29,8 +29,8 @@ CBaseEntity::CBaseEntity()
 {
 	m_TargID = 0;
 
-	speed    = (int)(40 + (int)map_config.speed_mod);
-	speedsub = (int)(40 + (int)map_config.speed_mod);
+	speed    = (int8)(40 + (int8)map_config.speed_mod);
+	speedsub = (int8)(40 + (int8)map_config.speed_mod);
 	
 	animationsub = 0;
 	animation    = ANIMATION_NONE;

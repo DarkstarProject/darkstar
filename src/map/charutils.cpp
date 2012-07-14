@@ -1605,7 +1605,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
         uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), dsp_min(PChar->GetMLevel(),lvl));
 
 		int16  Diff = MaxSkill - CurSkill/10;
-        double SkillUpChance = Diff/5 + 2.5 * (2.0 - log10(1.0 + CurSkill /100));
+        double SkillUpChance = Diff/5 + map_config.skillup_multiplier * (2.0 - log10(1.0 + CurSkill /100));
 
 		double random = rand() / ((double)RAND_MAX);
 
@@ -2372,8 +2372,9 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 {
 	DSP_DEBUG_BREAK_IF(retainPercent > 1.0f || retainPercent < 0.0f);
+	DSP_DEBUG_BREAK_IF(map_config.exp_loss_level > 99 || map_config.exp_loss_level < 1);
 
-	if(PChar->GetMLevel() <= 3)
+	if(PChar->GetMLevel() < map_config.exp_loss_level)
     {
 		return;
 	}

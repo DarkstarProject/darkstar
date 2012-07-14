@@ -474,7 +474,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 		if (charSkill < maxSkill)
 		{
-			double skillUpChance = (synthDiff*(2.6 - (log(1.2 + charSkill/100) + MoonCorrection)))/10;
+			double skillUpChance = (synthDiff*(map_config.craft_multiplier - (log(1.2 + charSkill/100) + MoonCorrection)))/10;
 			skillUpChance = skillUpChance/(1 + (PChar->Container->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
 
 			double random = rand() / ((double)RAND_MAX);

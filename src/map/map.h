@@ -67,7 +67,10 @@ struct map_config_t
     int32  lightluggage_block;      // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
     float  exp_rate;                // множитель получаемого опыта
 	float  exp_retain;				// percentage of normally lost experience to retain upon death
-	int    speed_mod;				// Modifier to add to baseentity speed
+	int8   exp_loss_level;			// Minimum main job level at which a character may lose experience points.
+	int8   speed_mod;				// Modifier to add to baseentity speed
+	float  skillup_multiplier;		// Constant used in the skillup formula that has a strong effect on skill-up rates
+	float  craft_multiplier;		// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
 };
