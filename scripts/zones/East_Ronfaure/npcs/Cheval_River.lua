@@ -40,7 +40,7 @@ function onTrigger(player,npc)
 	if (player:hasItem(602) == true) then
 		player:messageSpecial(BLESSED_WATERSKIN);
 	else
-		player:messageSpecial(NOTHING_ORDINARY);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end;
 	
 end; 

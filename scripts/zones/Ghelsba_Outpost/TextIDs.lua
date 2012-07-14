@@ -7,5 +7,5 @@ ITEM_CANNOT_BE_OBTAINED = 6893; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6899; -- Obtained key item: <keyitem>
 
 -- Quest Dialogs
-YOU_CANNOT_ENTER_THE_BATTLEFIELD = 161; -- You cannot enter the battlefield...
-	YOU_CAN_NOW_BECOME_A_DRAGOON = 7705; -- You can now become a dragoon!
+YOU_CANNOT_ENTER_THE_BATTLEFIELD = 162; -- You cannot enter the battlefield...
+    YOU_CAN_NOW_BECOME_A_DRAGOON = 7705; -- You can now become a dragoon!

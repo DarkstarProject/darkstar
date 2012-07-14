@@ -38,7 +38,7 @@ function onTrigger(player,npc)
 		player:setVar("twentyInPirateYearsCS",4);
 		player:setVar("TsuchigumoKilled",0);
 	else
-		player:messageSpecial(THERE_IS_NOTHING_ORDINARY);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end;

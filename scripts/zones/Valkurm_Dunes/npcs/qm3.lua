@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x000a);
 		end
 	else
-		player:messageSpecial(YOU_FIND_NOTHING_ORDINARY);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end;

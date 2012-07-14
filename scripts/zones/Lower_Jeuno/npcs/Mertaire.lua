@@ -20,7 +20,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 function onTrade(player,npc,trade)
 
 	if(player:getQuestStatus(JEUNO, THE_OLD_MONUMENT) == QUEST_COMPLETED) then
-		if(trade:hasItemQty(POETIC_PARCHMENT,1) == true and trade:getItemCount() == 1) then
+		if(trade:hasItemQty(634,1) == true and trade:getItemCount() == 1) then
 			player:startEvent(0x0065);
 		end
 	end

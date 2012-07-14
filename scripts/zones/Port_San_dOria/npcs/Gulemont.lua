@@ -23,7 +23,7 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 
 	if (player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-		if (trade:hasItemQty(MagicmartFlyer,1) == true and trade:getItemCount() == 1) then
+		if (trade:hasItemQty(532,1) == true and trade:getItemCount() == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end;
 	end;

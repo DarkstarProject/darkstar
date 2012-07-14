@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 		player:addKeyItem(TRIANGULAR_FRIGICITE);
 		player:messageSpecial(KEYITEM_OBTAINED, TRIANGULAR_FRIGICITE);
 	else
-		player:messageSpecial(NOTHING_ORDINARY_HERE);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 		player:setVar("BorealHoundKilled",0);
 	end
 	

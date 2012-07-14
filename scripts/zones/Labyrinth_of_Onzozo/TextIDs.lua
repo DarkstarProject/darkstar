@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
 -- Other Dialogs
-YOU_SEE_NOTHING = 6392; -- There is nothing out of the ordinary here.
+NOTHING_OUT_OF_ORDINARY = 7269; -- There is nothing out of the ordinary here.

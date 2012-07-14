@@ -30,7 +30,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(FORGER_DIALOG);
+	player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------

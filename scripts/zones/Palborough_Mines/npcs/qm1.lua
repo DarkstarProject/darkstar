@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 		player:messageSpecial(SENSE_OF_FOREBODING);
 		SpawnMob(17363318,180):updateEnmity(player);
 	else
-		player:messageSpecial(THERE_IS_NOTHING_ORDINARY);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 end;
 

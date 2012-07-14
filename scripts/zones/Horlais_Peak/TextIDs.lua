@@ -5,12 +5,12 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6378; -- Obtained: <item>
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
-			   ORDINARY = 7674; -- There is nothing out of the ordinary here.
+NOTHING_OUT_OF_ORDINARY = 7691; -- There is nothing out of the ordinary here.
 
 -- Maat dialog
-	 YOU_DECIDED_TO_SHOW_UP = 7610; -- So, you decided to show up...
-LOOKS_LIKE_YOU_WERENT_READY = 7611; -- Looks like you weren't ready for me, were you?
-	  YOUVE_COME_A_LONG_WAY = 7612; -- Hm. That was a mighty fine display ... You've come a long way...
-TEACH_YOU_TO_RESPECT_ELDERS = 7613; -- I'll teach you to respect your elders!
-TAKE_THAT_YOU_WHIPPERSNAPPER = 7614; -- Take that, you whippersnapper!
-THAT_LL_HURT_IN_THE_MORNING = 7616; -- Ungh... That'll hurt in the morning...
+      YOU_DECIDED_TO_SHOW_UP = 7667; -- So, you decided to show up...
+ LOOKS_LIKE_YOU_WERENT_READY = 7668; -- Looks like you weren't ready for me, were you?
+       YOUVE_COME_A_LONG_WAY = 7669; -- Hm. That was a mighty fine display ... You've come a long way...
+ TEACH_YOU_TO_RESPECT_ELDERS = 7670; -- I'll teach you to respect your elders!
+TAKE_THAT_YOU_WHIPPERSNAPPER = 7671; -- Take that, you whippersnapper!
+ THAT_LL_HURT_IN_THE_MORNING = 7673; -- Ungh... That'll hurt in the morning...

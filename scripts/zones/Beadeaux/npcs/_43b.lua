@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 	if(player:getQuestStatus(OTHER_AREAS,THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(TRADERS_SACK) == false) then
 		player:messageSpecial(LOCKED_DOOR_QUADAV_HAS_KEY);
 	else
-		player:messageSpecial(NOTHING_OUT_ORDINARY_HERE);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	return 1;
 end; 

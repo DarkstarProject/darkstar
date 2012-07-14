@@ -7,11 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
 
 -- Conquest
-CONQUEST =  7316; -- "You've earned conquest points!"
-
--- Quest Items
-POETIC_PARCHMENT = 634; -- 
-	   PARCHMENT = 917; -- 
+CONQUEST = 7316; -- You've earned conquest points!
 
 -- Dialog Texts
-FIVEOFSPADES_DIALOG = 7156; 
+FIVEOFSPADES_DIALOG = 7156; -- GiMme★fIvE! FiVe is★A cArdIan★OF WiN-DuRst! FIvE★iS On★pA-tRol!

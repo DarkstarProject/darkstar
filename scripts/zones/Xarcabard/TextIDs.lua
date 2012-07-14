@@ -8,6 +8,6 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
   ALREADY_OBTAINED_TELE = 7202; -- You already possess the gate crystal for this telepoint.
 
 -- Conquest
-CONQUEST =  7214; -- "You've earned conquest points!"
+CONQUEST = 7214; -- You've earned conquest points!
 
-NOTHING_ORDINARY_HERE = 6392; -- There is nothing out of the ordinary here
+NOTHING_OUT_OF_ORDINARY = 7635; -- There is nothing out of the ordinary here.

@@ -3,16 +3,14 @@
 -- General Texts
  ITEM_CANNOT_BE_OBTAINED_1 = 6399; -- You cannot obtain the <item>
  ITEM_CANNOT_BE_OBTAINED_2 = 6400; -- You cannot obtain the item <item> come back again after sorting your inventory
- ITEM_CANNOT_BE_OBTAINED_3 = 6401; -- You cannot obtain the item. Come back after sorting your inventory
+ ITEM_CANNOT_BE_OBTAINED_3 = 6401; -- You cannot obtain the item. Come back after sorting your inventory.
 FULL_INVENTORY_AFTER_TRADE = 6402; -- You cannot obtain the <item>. Try trading again after sorting your inventory
              ITEM_OBTAINED = 6403; -- Obtained: <item>
               GIL_OBTAINED = 6404; -- Obtained <number> gil
           KEYITEM_OBTAINED = 6406; -- Obtained key item: <keyitem>
-			 HOMEPOINT_SET = 24; -- Home point set!
+             HOMEPOINT_SET = 24; -- Home point set!
 
 -- Dialogs
-  MagicmartFlyer = 532;  -- item: Magicmart_flyer
-  
    FLYER_REFUSED = 7102; -- This person isn't interested.
    FLYER_ALREADY = 7103; -- This person already has a flyer.
   FLYER_ACCEPTED = 7104; -- Your flyer is accepted!
@@ -36,8 +34,8 @@ PORTAURE_MESSAGE = 7964; -- Portaure looks over curiously for a moment.
           COULLAVE_SHOP_DIALOG = 7477; -- Can I help you?
         CROUMANGUE_SHOP_DIALOG = 7478; -- Can't fight on an empty stomach. How about some nourishment?
 
-	      VENDAVOQ_OPEN_DIALOG = 7485; -- Vandoolin! Vendavoq vring voods vack vrom Vovalpolos! Vuy! Vuy!
-	    VENDAVOQ_CLOSED_DIALOG = 7486; -- Vandoolin... Vendavoq's vream vo vell voods vrom vometown vf Vovalpolos...
+          VENDAVOQ_OPEN_DIALOG = 7485; -- Vandoolin! Vendavoq vring voods vack vrom Vovalpolos! Vuy! Vuy!
+        VENDAVOQ_CLOSED_DIALOG = 7486; -- Vandoolin... Vendavoq's vream vo vell voods vrom vometown vf Vovalpolos...
 
        BONMAURIEUT_OPEN_DIALOG = 7824; -- My shipment is in! Would you like to see what has just arrived from the Elshimo Uplands?
      BONMAURIEUT_CLOSED_DIALOG = 7821; -- I would like to sell goods from the Elshimo Uplands, but I cannot, as it's under foreign control.
@@ -45,19 +43,18 @@ PORTAURE_MESSAGE = 7964; -- Portaure looks over curiously for a moment.
              MILVA_OPEN_DIALOG = 7480; -- How about some produce from Sarutabaruta?
            MILVA_CLOSED_DIALOG = 7482; -- I want to import produce from Sarutabaruta... But I can't do anything until we control that region!
 
-		      FIVA_OPEN_DIALOG = 7479; -- I've got imports from Kolshushu!
-		    FIVA_CLOSED_DIALOG = 7481; -- I'm trying to sell goods from Kolshushu. But I can't because we don't have enough influence there.
+              FIVA_OPEN_DIALOG = 7479; -- I've got imports from Kolshushu!
+            FIVA_CLOSED_DIALOG = 7481; -- I'm trying to sell goods from Kolshushu. But I can't because we don't have enough influence there.
 
-	  DEGUERENDARS_OPEN_DIALOG = 7487; -- Welcome! Have a look at these rare goods from Tavnazia!
-	DEGUERENDARS_CLOSED_DIALOG = 7488; -- With that other nation in control of the region, there is no way for me to import goods from Tavnazia...
+      DEGUERENDARS_OPEN_DIALOG = 7487; -- Welcome! Have a look at these rare goods from Tavnazia!
+    DEGUERENDARS_CLOSED_DIALOG = 7488; -- With that other nation in control of the region, there is no way for me to import goods from Tavnazia...
 DEGUERENDARS_COP_NOT_COMPLETED = 7489; -- <Sigh> Why must I wait for the Kingdom to issue a permit allowing me to set up shop? How am I to feed my children in the meantime!?
 
+           PATOLLE_OPEN_DIALOG = 7823; -- Hey, ≺Multiple Choice (Player Gender)≻[mister/miss]! How about some specialty goods from Kuzotz?
+         PATOLLE_CLOSED_DIALOG = 7484; -- I'm trying to find goods from Kuzotz. But how can I when it's under foreign control?
 
-	       PATOLLE_OPEN_DIALOG = 7823; -- Hey, <Multiple Choice (Player Gender)>[mister/miss]! How about some specialty goods from Kuzotz?
-	     PATOLLE_CLOSED_DIALOG = 7484; -- I'm trying to find goods from Kuzotz. But how can I when it's under foreign control?
-
-		     NIMIA_OPEN_DIALOG = 7822; -- Hello, friend! Can I interest you in specialty goods from the Elshimo Lowlands?
-	       NIMIA_CLOSED_DIALOG = 7483; -- I can't sell goods from the lowlands of Elshimo because it's under foreign control.
+             NIMIA_OPEN_DIALOG = 7822; -- Hello, friend! Can I interest you in specialty goods from the Elshimo Lowlands?
+           NIMIA_CLOSED_DIALOG = 7483; -- I can't sell goods from the lowlands of Elshimo because it's under foreign control.
 
 
 -- perdiouvilet - Lure of the Wildcat (San d'Oria)

@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 	elseif(player:hasKeyItem(STALACTITE_DEW))then
 		player:messageSpecial(A_SQUIRE_S_TEST_II_DIALOG_III);
 	else
-		player:messageSpecial(NOTHING_FOUND);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 		player:setVar("SquiresTestII",0);
 	end
 	

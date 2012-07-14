@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 		player:setVar("SquiresTestII",os.time());
 		player:messageSpecial(A_SQUIRE_S_TEST_II_DIALOG_I);
 	else
-		player:messageSpecial(NOTHING_FOUND);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end; 

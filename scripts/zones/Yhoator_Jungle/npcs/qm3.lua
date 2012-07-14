@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 			SpawnMob(17285546,150):updateEnmity(player); -- Kappa Biwa
 		end
 	else
-		player:messageSpecial(YOU_SEE_NOTHING);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end;

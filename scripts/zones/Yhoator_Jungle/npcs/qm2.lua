@@ -34,7 +34,7 @@ function onTrigger(player,npc)
 	elseif(StopWhining == QUEST_ACCEPTED and player:hasKeyItem(261) == true) then
 		player:messageSpecial(TREE_FULL); --Already have full barrel
 	else
-		player:messageSpecial(ORDINARY);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 end; 
 		

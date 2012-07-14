@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 		player:addKeyItem(DARKSTEEL_FORMULA);
 		player:messageSpecial(KEYITEM_OBTAINED,DARKSTEEL_FORMULA);
 	else
-		player:messageSpecial(THERE_IS_NOTHING_ORDINARY);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end;

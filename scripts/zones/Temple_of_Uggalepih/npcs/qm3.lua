@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 		SetServerVariable("[TEMP]Respawn_qm3_for_whistle",os.time(t) + 7200); -- 2 hours
 		-- ??? dissapears for 2 hours and reappears on new position
 	else
-		player:messageSpecial(NOTHING_ORDINARY_HERE);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end;

@@ -5,18 +5,14 @@ ITEM_CANNOT_BE_OBTAINED = 6605; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6537; -- Obtained: <item>
            GIL_OBTAINED = 6538; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
-		  HOMEPOINT_SET = 6598; -- Home point set!
+          HOMEPOINT_SET = 6598; -- Home point set!
 
 -- Conquest system
 CONQUEST = 7604; -- You've earned conquest points!
 
--- Quest Items
-GAUSEBIT_GRASS = 534; -- 
- GYSAHL_GREENS = 4545; -- 
-
 -- NPC Texts
-KIRISOMANRISO_DIALOG = 7937; -- Delivering goods to residences everywhere!
-YOU_CAN_NOW_BECOME_A_BEASTMASTER = 7052; -- You can now become a beastmaster
+            KIRISOMANRISO_DIALOG = 7937; -- Delivering goods to residences everywhere!
+YOU_CAN_NOW_BECOME_A_BEASTMASTER = 7052; -- You can now become a beastmaster.
 
 -- Shop Texts
        GLYKE_SHOP_DIALOG = 6842; -- Can I help you?

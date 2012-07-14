@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 	elseif(player:hasKeyItem(MERTAIRES_BRACELET) == true and TrosKilled == 1) then 
 		player:startEvent(0x0008); -- Finish Quest "Painful Memory"
 	else
-		player:messageSpecial(NOTHING_ORDINARY_HERE);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end; 

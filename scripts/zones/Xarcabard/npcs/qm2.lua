@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 		player:addKeyItem(ROUND_FRIGICITE);
 		player:messageSpecial(KEYITEM_OBTAINED, ROUND_FRIGICITE);
 	else
-		player:messageSpecial(NOTHING_ORDINARY_HERE);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 		player:setVar("BorealTigerKilled",0);
 	end
 	

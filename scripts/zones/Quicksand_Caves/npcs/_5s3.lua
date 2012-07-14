@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(DOOR_LOCKED);
+	player:messageSpecial(DOOR_FIRMLY_SHUT);
 	return 1;
 end; 
 

@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 			SpawnMob(17649860,300):updateEnmity(player); -- Ubume
 		end
 	else
-		player:messageSpecial(YOU_SEE_NOTHING);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end;

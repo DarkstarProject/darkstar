@@ -43,7 +43,7 @@ function onTrigger(player,npc)
 	elseif(player:hasKeyItem(TENSHODO_MEMBERS_CARD) == true) then 
 		player:startEvent(0x0069); -- Open the door
 	else
-		player:messageSpecial(DOOR_IS_LOCKED);
+		player:messageSpecial(ITS_LOCKED);
 		return 1;
 	end
 end;

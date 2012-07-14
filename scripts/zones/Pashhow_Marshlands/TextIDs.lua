@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
 
 -- Conquest
-CONQUEST =  7834; -- "You've earned conquest points!"
+CONQUEST = 7834; -- You've earned conquest points!

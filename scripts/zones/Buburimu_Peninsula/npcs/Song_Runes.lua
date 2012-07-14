@@ -21,11 +21,11 @@ function onTrade(player,npc,trade)
 		count = trade:getItemCount();
 		gil = trade:getGil();
 
-		if (trade:hasItemQty(PARCHMENT,1) == true and count == 1 and gil == 0) then
+		if (trade:hasItemQty(917,1) == true and count == 1 and gil == 0) then
 			player:tradeComplete();
 			player:completeQuest(JEUNO,THE_OLD_MONUMENT);
-			player:addItem(POETIC_PARCHMENT,1);
-			player:messageSpecial(ITEM_OBTAINED, POETIC_PARCHMENT);
+			player:addItem(634,1);
+			player:messageSpecial(ITEM_OBTAINED, 634);
 			player:setTitle(RESEARCHER_OF_CLASSICS);
 			player:addFame(BASTOK,BAS_FAME*10);
 			player:addFame(SANDORIA,SAN_FAME*10);

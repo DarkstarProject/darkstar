@@ -7,23 +7,22 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
               GIL_OBTAINED = 6379; -- Obtained <number> gil
           KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
              HOMEPOINT_SET = 6451; -- Home point set!
-            NOT_ENOUGH_GIL = 12372; -- You do not have enough gil.
-                  CONQUEST = 7774; -- You've earned conquest points!
+            NOT_ENOUGH_GIL = 12376; -- You do not have enough gil.
+                  CONQUEST = 7776; -- You've earned conquest points!
              MOGHOUSE_EXIT = 7720; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 
 -- Conquest System
 CONQUEST = 7776; -- You've earned conquest points!
-			 
+       
 -- Mission Dialogs
-	 ORIGINAL_MISSION_OFFSET = 7121;  -- You can consult the ìMissionî section of the main menu...
-	  YOU_ACCEPT_THE_MISSION = 7116; -- You accept the mission
-YOUVE_EARNED_CONQUEST_POINTS = 7776; -- You've earned conquest points!
+ORIGINAL_MISSION_OFFSET = 7121; -- You can consult the ‚ÄúMission‚Äù section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
+ YOU_ACCEPT_THE_MISSION = 7116; -- You have accepted the mission.
 
 -- Dialog Texts
  PAUJEAN_DIALOG_1 = 7422; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea. Just don't do anything I wouldn't...heh heh.
    RONAN_DIALOG_1 = 7231; -- Do something! Isn't there anything you can do to make him come out of his shell?
 POWHATAN_DIALOG_1 = 7045; -- I'm sick and tired of entertaining guests.
-	 UNLOCK_NINJA = 8203; -- You can now become a ninja.
+     UNLOCK_NINJA = 8203; -- You can now become a ninja.
 
 -- Shop Texts
         DENVIHR_SHOP_DIALOG = 7411; -- Ah, interested in my wares, are you? You can only buy these in Bastok, my friend.
@@ -35,27 +34,27 @@ POWHATAN_DIALOG_1 = 7045; -- I'm sick and tired of entertaining guests.
        SUGANDHI_SHOP_DIALOG = 7410; -- Traveler! I am sure my wares will prove useful on your journey. Why don't you buy some?
       VALERIANO_SHOP_DIALOG = 7355; -- Welcome to the Troupe Valeriano. Valeriano, at your service! Have a laugh, then spend some cash! Treats and sweets from exotic lands!
 
-		 EVELYN_OPEN_DIALOG = 7404; -- Hello! Might I interest you in some specialty goods from Gustaberg?
-	   EVELYN_CLOSED_DIALOG = 7350; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Gustaberg, but it's not easy getting stuff from areas that aren't under Bastokan control.
+         EVELYN_OPEN_DIALOG = 7404; -- Hello! Might I interest you in some specialty goods from Gustaberg?
+       EVELYN_CLOSED_DIALOG = 7350; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Gustaberg, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
-		  BELKA_OPEN_DIALOG = 7407; -- Welcome. I've got goods from Derfland. Interested?
-		BELKA_CLOSED_DIALOG = 7352; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Derfland, but it's not easy getting stuff from areas that aren't under Bastokan control.
+          BELKA_OPEN_DIALOG = 7407; -- Welcome. I've got goods from Derfland. Interested?
+        BELKA_CLOSED_DIALOG = 7352; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Derfland, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
-	   ROSSWALD_OPEN_DIALOG = 7408; -- Hello, hello! Everything I have is imported directly from Zulkheim!
-	 ROSSWALD_CLOSED_DIALOG = 7351; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Zulkheim, but it's not easy getting stuff from areas that aren't under Bastokan control.
+       ROSSWALD_OPEN_DIALOG = 7408; -- Hello, hello! Everything I have is imported directly from Zulkheim!
+     ROSSWALD_CLOSED_DIALOG = 7351; -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Zulkheim, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
-		VATTIAN_OPEN_DIALOG = 8136; -- Welcome to my humble establishment. I have a wide variety of specialty goods from Kuzotz.
-	  VATTIAN_CLOSED_DIALOG = 7353; -- I'm trying to start a business selling goods from Kuzotz, but it's not easy getting stuff from areas that aren't under Bastokan control.
+        VATTIAN_OPEN_DIALOG = 8136; -- Welcome to my humble establishment. I have a wide variety of specialty goods from Kuzotz.
+      VATTIAN_CLOSED_DIALOG = 7353; -- I'm trying to start a business selling goods from Kuzotz, but it's not easy getting stuff from areas that aren't under Bastokan control.
 
-	  ZOBYQUHYO_OPEN_DIALOG = 8137; -- Hey therrre! I've got lots of wonderrrful goodies, fresh from the Elshimo Lowlands.
-	ZOBYQUHYO_CLOSED_DIALOG = 8138; -- I'm trrrying to start a business selling goods from the Elshimo Lowlands, but it's not easy getting stuff from areas that aren't under Bastokan contrrrol.
+      ZOBYQUHYO_OPEN_DIALOG = 8137; -- Hey therrre! I've got lots of wonderrrful goodies, fresh from the Elshimo Lowlands.
+    ZOBYQUHYO_CLOSED_DIALOG = 8138; -- I'm trrrying to start a business selling goods from the Elshimo Lowlands, but it's not easy getting stuff from areas that aren't under Bastokan contrrrol.
 
   DHENTEVRYUKOH_OPEN_DIALOG = 8139; -- Welcome! Welcome! Take a wonderrr at these specialty goods from the Elshimo Uplands!
 DHENTEVRYUKOH_CLOSED_DIALOG = 8140; -- I'm trrrying to start a business selling goods from the Elshimo Uplands, but it's not easy transporting goods from areas that aren't under Bastokan contrrrol.
 
-	  BAGNOBROK_OPEN_DIALOG = 8894; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!
-	BAGNOBROK_CLOSED_DIALOG = 8893; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
-	
+      BAGNOBROK_OPEN_DIALOG = 8894; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!
+    BAGNOBROK_CLOSED_DIALOG = 8893; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
+  
 -- Tenshodo shop & quest "Tenshodo membership"
   TENSHODO_SHOP_OPEN_DIALOG = 6629; -- Ah, one of our members. Welcome to the Tenshodo shop.
 

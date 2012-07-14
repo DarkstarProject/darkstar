@@ -26,9 +26,9 @@ function onTrade(player,npc,trade)
 		count = trade:getItemCount();
 		gil = trade:getGil();
 
-        if (trade:hasItemQty(GYSAHL_GREENS,1)) then
+        if (trade:hasItemQty(4545,1)) then
         	player:startEvent(0x004c);
-        elseif (trade:hasItemQty(GAUSEBIT_GRASS,1) and gil == 0 and count == 1) then
+        elseif (trade:hasItemQty(534,1) and gil == 0 and count == 1) then
 			--Check feeding status.
 			feed = player:getVar("ChocobosWounds_Event");
 			feedDay = player:getVar("ChocobosWounds_Day");
@@ -57,7 +57,7 @@ function onTrade(player,npc,trade)
             end
         end
     else
-        if (trade:hasItemQty(GYSAHL_GREENS,1)) then
+        if (trade:hasItemQty(4545,1)) then
      	   player:startEvent(0x0026);
      	end
     end

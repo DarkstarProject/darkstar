@@ -40,7 +40,7 @@ function onTrigger(player,npc)
 		player:addKeyItem(HANDFUL_OF_CRYSTAL_SCALES);
 		player:messageSpecial(KEYITEM_OBTAINED,HANDFUL_OF_CRYSTAL_SCALES);
 	else
-		player:messageSpecial(THERE_IS_NOTHING_ORDINARY);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 end;
 

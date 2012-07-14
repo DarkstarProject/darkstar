@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 	elseif(currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(DELKFUTT_KEY)) then
 		player:startEvent(0x0000);
 	else
-		player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT);
+		player:messageSpecial(DOOR_FIRMLY_SHUT);
 	end
 	
 	return 1;

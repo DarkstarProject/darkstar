@@ -7,7 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 6564; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6570; -- Obtained key item: <keyitem>
 
 -- Other Dialog
-			  TOMBSTONE = 7098; -- Here lies the beloved Queen Leaute. May Her Majesty's soul find Paradise.
+TOMBSTONE = 7098; -- Here lies the beloved Queen Leaute. May Her Majesty's soul find Paradise.
 
 -- Mission dialog
-		  HALVER_OFFSET = 6719; -- The princess is always speaking of your deeds for the Kingdom.
+HALVER_OFFSET = 6719; -- The princess is always speaking of your deeds for the Kingdom. Everyone here is counting on you, ≺Player Name≻.

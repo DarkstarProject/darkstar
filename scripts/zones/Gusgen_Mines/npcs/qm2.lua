@@ -31,7 +31,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(YOU_FIND_NOTHING);
+	player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------

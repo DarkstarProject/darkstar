@@ -19,7 +19,7 @@ require("scripts/zones/Kazham/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if(player:getVar("MissionaryManVar") == 1 and trade:hasItemQty(SLAB_OF_ELSHIMO_MARBLE,1) == true and trade:getItemCount() == 1) then
+	if(player:getVar("MissionaryManVar") == 1 and trade:hasItemQty(1146,1) == true and trade:getItemCount() == 1) then
 		player:startEvent(0x008b); -- Trading elshimo marble
 	end
 end; 
@@ -33,9 +33,9 @@ function onTrigger(player,npc)
 	MissionaryManVar = player:getVar("MissionaryManVar");
 	
 	if(MissionaryMan == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 3) then 
-		player:startEvent(0x0089,0,SLAB_OF_ELSHIMO_MARBLE); -- Start quest "Missionary Man"
+		player:startEvent(0x0089,0,1146); -- Start quest "Missionary Man"
 	elseif(MissionaryMan == QUEST_ACCEPTED and MissionaryManVar == 1) then 
-		player:startEvent(0x008a,0,SLAB_OF_ELSHIMO_MARBLE); -- During quest (before trade marble) "Missionary Man"
+		player:startEvent(0x008a,0,1146); -- During quest (before trade marble) "Missionary Man"
 	elseif(MissionaryMan == QUEST_ACCEPTED and (MissionaryManVar == 2 or MissionaryManVar == 3)) then 
 		player:startEvent(0x008c); -- During quest (after trade marble) "Missionary Man"
 	elseif(MissionaryMan == QUEST_ACCEPTED and MissionaryManVar == 4) then 
@@ -74,12 +74,12 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 	elseif(csid == 0x008d) then 
 		if (player:getFreeSlotsCount() == 0) then 
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,SCROLL_OF_TELEPORT_YHOAT);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4728);
 		else 
 			player:setVar("MissionaryManVar",0);
 			player:delKeyItem(SUBLIME_STATUE_OF_THE_GODDESS);
-			player:addItem(SCROLL_OF_TELEPORT_YHOAT);
-			player:messageSpecial(ITEM_OBTAINED,SCROLL_OF_TELEPORT_YHOAT);
+			player:addItem(4728);
+			player:messageSpecial(ITEM_OBTAINED,4728);
 			player:addFame(WINDURST,WIN_FAME*30);
 			player:completeQuest(OUTLANDS,MISSIONARY_MAN);
 		end

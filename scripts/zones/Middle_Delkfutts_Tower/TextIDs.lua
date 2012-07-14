@@ -7,5 +7,5 @@ ITEM_CANNOT_BE_OBTAINED = 6538; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6544; -- Obtained key item: <keyitem>
 
 -- Quest dialog
-	  SENSE_OF_FOREBODING = 6393; -- You are suddenly overcome with a sense of foreboding...
-THERE_IS_NOTHING_ORDINARY = 6392; -- There is nothing out of the ordinary here
+    SENSE_OF_FOREBODING = 6556; -- You are suddenly overcome with a sense of foreboding...
+NOTHING_OUT_OF_ORDINARY = 7274; -- There is nothing out of the ordinary here.

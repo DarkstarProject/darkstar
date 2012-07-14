@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 		player:addKeyItem(YAGUDO_CREST);
 		player:messageSpecial(KEYITEM_OBTAINED, YAGUDO_CREST);
 	else
-		player:messageSpecial(NOTHING_ORDINARY_HERE);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end;

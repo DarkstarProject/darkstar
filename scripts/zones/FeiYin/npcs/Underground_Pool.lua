@@ -44,10 +44,10 @@ function onTrigger(player,npc)
 				SpawnMob(17613129,300):updateEnmity(player);
 			end
 		else
-			player:messageSpecial(THERE_IS_NOTHING_ORDINARY);
+			player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 		end
 	else
-		player:messageSpecial(THERE_IS_NOTHING_ORDINARY);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end;

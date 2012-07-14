@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 		player:messageSpecial(KEYITEM_OBTAINED,165);
 		player:delKeyItem(164);
 	else
-		player:messageSpecial(ORDINARY);
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 end; 
 

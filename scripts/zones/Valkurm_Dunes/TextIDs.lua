@@ -7,8 +7,8 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
 
 -- Conquest
-CONQUEST =  7288; -- "You've earned conquest points!"
+CONQUEST = 7288; -- You've earned conquest points!
 
 -- Quest Dialog
-YOU_FIND_NOTHING_ORDINARY = 6395; -- You find nothing out of the ordinary here.
-			UNLOCK_BARD = 7269; -- You can now become a bard!
+NOTHING_OUT_OF_ORDINARY = 7649; -- There is nothing out of the ordinary here.
+            UNLOCK_BARD = 7269; -- You can now become a bard!
