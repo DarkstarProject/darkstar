@@ -62,14 +62,14 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
     WBUFW(data,(0x30)-4) = PChar->ATT();
 	WBUFW(data,(0x32)-4) = PChar->DEF();
 
-	WBUFW(data,(0x34)-4) = PChar->getMod(MOD_FIREDEF);
-	WBUFW(data,(0x36)-4) = PChar->getMod(MOD_ICEDEF);
-	WBUFW(data,(0x38)-4) = PChar->getMod(MOD_WINDDEF);
-	WBUFW(data,(0x3A)-4) = PChar->getMod(MOD_EARTHDEF);
-	WBUFW(data,(0x3C)-4) = PChar->getMod(MOD_THUNDERDEF);
-	WBUFW(data,(0x3E)-4) = PChar->getMod(MOD_WATERDEF);
-	WBUFW(data,(0x40)-4) = PChar->getMod(MOD_LIGHTDEF);
-	WBUFW(data,(0x42)-4) = PChar->getMod(MOD_DARKDEF);
+	WBUFW(data,(0x34)-4) = PChar->getMod(MOD_FIRERES);
+	WBUFW(data,(0x36)-4) = PChar->getMod(MOD_ICERES);
+	WBUFW(data,(0x38)-4) = PChar->getMod(MOD_WINDRES);
+	WBUFW(data,(0x3A)-4) = PChar->getMod(MOD_EARTHRES);
+	WBUFW(data,(0x3C)-4) = PChar->getMod(MOD_THUNDERRES);
+	WBUFW(data,(0x3E)-4) = PChar->getMod(MOD_WATERRES);
+	WBUFW(data,(0x40)-4) = PChar->getMod(MOD_LIGHTRES);
+	WBUFW(data,(0x42)-4) = PChar->getMod(MOD_DARKRES);
 
 	WBUFW(data,(0x44)-4) = PChar->profile.title;
 	WBUFB(data,(0x46)-4) = PChar->profile.rank[PChar->profile.nation];

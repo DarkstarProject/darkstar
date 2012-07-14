@@ -8,7 +8,7 @@
 -- Vitality 3
 -- Intelligence 1
 -- Mind -3
--- Earth Def 10
+-- Earth Res 10
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -43,7 +43,7 @@ function onEffectGain(target,effect)
 	target:addMod(MOD_VIT, 3);
 	target:addMod(MOD_INT, 1);
 	target:addMod(MOD_MND, -3);
-	target:addMod(MOD_EARTHDEF, 5);
+	target:addMod(MOD_EARTHRES, 5);
 end;
 
 -----------------------------------------
@@ -56,5 +56,5 @@ function onEffectLose(target,effect)
 	target:delMod(MOD_VIT, 3);
 	target:delMod(MOD_INT, 1);
 	target:delMod(MOD_MND, -3);
-	target:delMod(MOD_EARTHDEF, 5);
+	target:delMod(MOD_EARTHRES, 5);
 end;

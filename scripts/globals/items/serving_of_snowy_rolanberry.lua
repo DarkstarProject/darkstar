@@ -6,7 +6,7 @@
 -- Magic % 18
 -- Magic Cap 60
 -- Intelligence 2
--- Wind Def 5
+-- Wind Res 5
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -39,7 +39,7 @@ function onEffectGain(target,effect)
 	target:addMod(MOD_FOOD_MPP, 18);
 	target:addMod(MOD_FOOD_MP_CAP, 60);
 	target:addMod(MOD_INT, 2);
-	target:addMod(MOD_WATERDEF, 5);
+	target:addMod(MOD_WINDRES, 5);
 end;
 
 -----------------------------------------
@@ -50,5 +50,5 @@ function onEffectLose(target,effect)
 	target:delMod(MOD_FOOD_MPP, 18);
 	target:delMod(MOD_FOOD_MP_CAP, 60);
 	target:delMod(MOD_INT, 2);
-	target:delMod(MOD_WATERDEF, 5);
+	target:delMod(MOD_WINDRES, 5);
 end;
