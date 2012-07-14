@@ -618,6 +618,87 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	if(PAmmo==NULL){return;}
 
 	switch(PAmmo->getID()){
+	case 18700:{ //Wind Arrow
+	//damage doesn't exceed ~67 unless wearing wind staff/iceday/weather
+	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
+	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
+	//is simply AGI with a degree of randomisation
+			Action->subeffect = SUBEFFECT_WIND_DAMAGE;
+			Action->submessageID = 163;
+			Action->flag = 3;
+			//calculate damage
+			uint8 damage = (PAttacker->AGI() - PDefender->AGI())/2;
+			damage = cap_value(damage,0,50);
+			damage += 10; //10~60
+			damage += rand()%8; //10~67 randomised
+			//set damage TODO: handle resist/staff/day
+			Action->subparam  = damage;
+			PDefender->addHP(-damage);
+		}
+		break;
+	case 18699:{ //Earth Arrow
+	//damage doesn't exceed ~67 unless wearing Earth staff/earthsday/weather
+	//there isn't a formula, but VIT affects damage, so this is guesstimated. It seems to be level
+	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
+	//is simply VIT with a degree of randomisation
+			Action->subeffect = SUBEFFECT_EARTH_DAMAGE;
+			Action->submessageID = 163;
+			Action->flag = 1;
+			//calculate damage
+			uint8 damage = (PAttacker->VIT() - PDefender->VIT())/2;
+			damage = cap_value(damage,0,50);
+			damage += 10; //10~60
+			damage += rand()%8; //10~67 randomised
+			//set damage TODO: handle resist/staff/day
+			Action->subparam  = damage;
+			PDefender->addHP(-damage);
+		}
+		break;
+	case 18698:{ //Water Arrow
+	//damage doesn't exceed ~67 unless wearing light staff/iceday/weather
+	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
+	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
+	//is simply MND with a degree of randomisation
+			Action->subeffect = SUBEFFECT_WATER_DAMAGE;
+			Action->submessageID = 163;
+			Action->flag = 1;
+			//calculate damage
+			uint8 damage = (PAttacker->MND() - PDefender->MND())/2;
+			damage = cap_value(damage,0,50);
+			damage += 10; //10~60
+			damage += rand()%8; //10~67 randomised
+			//set damage TODO: handle resist/staff/day
+			Action->subparam  = damage;
+			PDefender->addHP(-damage);
+		}
+		break;
+	case 18158:{//Sleep Arrow
+			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
+				!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
+				!PDefender->isDead()){
+			Action->subeffect = SUBEFFECT_SLEEP;
+			Action->subparam  = EFFECT_SLEEP;
+			Action->submessageID = 160;
+			Action->flag = 3;
+			int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel());
+			duration = cap_value(duration,1,25);
+			PDefender->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration));
+			}
+		}
+		break;
+	case 18157:{ //Poison Arrow
+			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_POISON)){
+				Action->subeffect = SUBEFFECT_POISON;
+				Action->subparam  = EFFECT_POISON;
+				Action->submessageID = 160;
+				Action->flag = 1;
+				//4hp/tick for 30secs
+				PDefender->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_POISON,EFFECT_POISON,4,3,30));
+			}
+		}
+		break;
 	case 18153:{ //Holy Bolt
 	//damage doesn't exceed ~67 unless wearing light staff/lightsday/weather
 	//there isn't a formula, but MND affects damage, so this is guesstimated. It seems to be level
@@ -700,6 +781,60 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			PDefender->StatusEffectContainer->AddStatusEffect(
 					new CStatusEffect(EFFECT_DEFENSE_DOWN,EFFECT_DEFENSE_DOWN,12,0,60));
 			}
+		}
+		break;
+	case 17324:{ //Lightning Arrow
+	//damage doesn't exceed ~67
+	//there isn't a formula. It seems to be level
+	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
+	//is simply DEX with a degree of randomisation
+			Action->subeffect = SUBEFFECT_LIGHTNING_DAMAGE;
+			Action->submessageID = 163;
+			Action->flag = 3;
+			//calculate damage
+			uint8 damage = (PAttacker->DEX() - PDefender->DEX())/2;
+			damage = cap_value(damage,0,50);
+			damage += 10; //10~60
+			damage += rand()%8; //10~67 randomised
+			//set damage TODO: handle resist/staff/day
+			Action->subparam  = damage;
+			PDefender->addHP(-damage);
+		}
+		break;
+	case 17323:{ //Ice Arrow
+	//damage doesn't exceed ~67 unless wearing ice staff/iceday/weather
+	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
+	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
+	//is simply INT with a degree of randomisation
+			Action->subeffect = SUBEFFECT_ICE_DAMAGE;
+			Action->submessageID = 163;
+			Action->flag = 1;
+			//calculate damage
+			uint8 damage = (PAttacker->INT() - PDefender->INT())/2;
+			damage = cap_value(damage,0,50);
+			damage += 10; //10~60
+			damage += rand()%8; //10~67 randomised
+			//set damage TODO: handle resist/staff/day
+			Action->subparam  = damage;
+			PDefender->addHP(-damage);
+		}
+		break;
+	case 17322:{ //Fire Arrow
+	//damage doesn't exceed ~67 unless wearing ice staff/iceday/weather
+	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
+	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
+	//is simply INT with a degree of randomisation
+			Action->subeffect = SUBEFFECT_FIRE_DAMAGE;
+			Action->submessageID = 163;
+			Action->flag = 3;
+			//calculate damage
+			uint8 damage = (PAttacker->INT() - PDefender->INT())/2;
+			damage = cap_value(damage,0,50);
+			damage += 10; //10~60
+			damage += rand()%8; //10~67 randomised
+			//set damage TODO: handle resist/staff/day
+			Action->subparam  = damage;
+			PDefender->addHP(-damage);
 		}
 		break;
 	}
