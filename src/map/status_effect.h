@@ -512,14 +512,7 @@ enum EFFECT
 	EFFECT_IMMANENCE				= 470,
 	EFFECT_MIGAWARI					= 471,
 
-    EFFECT_FIRERES_DOWN             = 490,
-    EFFECT_ICERES_DOWN              = 491,
-    EFFECT_WINDRES_DOWN             = 492,
-    EFFECT_EARTHRES_DOWN            = 493,
-    EFFECT_THUNDERRES_DOWN          = 494,
-    EFFECT_WATERRES_DOWN            = 495,
-    EFFECT_LIGHTRES_DOWN            = 496,
-    EFFECT_DARKRES_DOWN             = 497,
+    EFFECT_NINJUTSU_ELE_DEBUFF      = 490,
 
 	EFFECT_HEALING					= 512,
 	EFFECT_LEAVEGAME				= 513,
@@ -547,6 +540,8 @@ public:
 	uint16 	GetSubID();
     uint16  GetIcon();
 	uint16	GetPower();
+    uint16  GetSubPower();
+    uint16  GetTier();
 	uint16	GetFlag();
 
 	uint32	GetTickTime();
@@ -558,6 +553,8 @@ public:
     void    SetFlag(uint16 Flag);
     void    SetIcon(uint16 Icon);
 	void	SetPower(uint16 Power);
+    void    SetSubPower(uint16 subPower);
+    void    SetTier(uint16 tier);
 	void	SetDuration(uint32 Duration);
     void    SetOwner(CBattleEntity* Owner);
 
@@ -579,7 +576,10 @@ public:
 		 uint16 power, 
 		 uint32 tick, 
 		 uint32 duration,
-		 uint16 subid = 0);
+		 uint16 subid = 0,
+         uint16 subPower = 0,
+         uint16 tier = 0);
+
    ~CStatusEffect();
 
 private:
@@ -590,6 +590,8 @@ private:
 	uint16		m_SubID;				// дополнительный тип эффекта
     uint16      m_Icon;                 // иконка эффекта
 	uint16		m_Power;				// сила эффекта
+    uint16		m_SubPower;				// Secondary power of the effect
+    uint16      m_Tier;                 // Tier of the effect
 	uint16		m_Flag;					// флаг эффекта (условия его исчезновения)
 
 	uint32		m_TickTime;				// время повторения эффекта (млс)

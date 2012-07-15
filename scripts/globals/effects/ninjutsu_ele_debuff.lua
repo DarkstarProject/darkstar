@@ -1,6 +1,7 @@
 -----------------------------------
+-- Ninjutsu Elemental Debuff
+-- Reduces a targets given elemental resistance
 --
--- 	EFFECT_EARTHRES_DOWN
 -----------------------------------
 
 -----------------------------------
@@ -8,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_EARTHRES, -effect:getPower());
+	target:addMod(effect:getSubPower(), effect:getPower());
 end;
 
 -----------------------------------
@@ -23,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_EARTHRES, -effect:getPower());
+	target:delMod(effect:getSubPower(), effect:getPower());
 end;

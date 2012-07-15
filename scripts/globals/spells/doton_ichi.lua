@@ -11,7 +11,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-
+	
 	dmg = calculateMagicDamage(10,1,caster,spell,target,NINJUTSU_SKILL,MOD_INT,false);
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getMod(MOD_INT)-target:getMod(MOD_INT),NINJUTSU_SKILL,1.0);
@@ -24,6 +24,8 @@ function onSpellCast(caster,target,spell)
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
 	
+	handleNinjutsuDebuff(caster, target, spell, 20, 15, MOD_WINDRES);
+
 	return final;
 	
 end;

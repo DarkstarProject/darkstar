@@ -578,3 +578,40 @@ end;
 function getHelixDuration(caster, target, spell)
     return math.random(45, 90);
 end;
+
+function handleThrenody(caster, target, spell, basePower, baseDuration, modifier)
+	-- Process resitances
+	staff = StaffBonus(caster, spell);
+	print("staff=" .. staff);
+	dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
+	print("dCHR=" .. dCHR);
+	resm = applyResistance(caster, spell, target, dCHR, SINGING_SKILL, staff);
+	print("rsem=" .. resm);
+	
+	if(resm < 0.5) then
+		print("resm resist");
+		spell:setMsg(85);
+		return EFFECT_THRENODY;
+	end
+
+	-- Remove previous Threnody
+	target:delStatusEffect(EFFECT_THRENODY);
+
+	-- TODO: Check equipment bounses, increase duration/power
+	power = basePower;
+	duration = baseDuration;
+
+	-- Set spell message and apply status effect
+	target:addStatusEffect(EFFECT_THRENODY, power, 0, duration, 0, modifier, 0);
+
+	return EFFECT_THRENODY;
+end;
+
+function handleNinjutsuDebuff(caster, target, spell, basePower, baseDuration, modifier)
+	-- Remove previous
+	target:delStatusEffect(EFFECT_NINJUTSU_ELE_DEBUFF);
+	-- Add new
+	target:addStatusEffect(EFFECT_NINJUTSU_ELE_DEBUFF, basePower, 0, baseDuration, 0, modifier, 0);
+	
+	return EFFECT_NINJUTSU_ELE_DEBUFF;
+end;

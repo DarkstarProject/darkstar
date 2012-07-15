@@ -77,6 +77,22 @@ inline int32 CLuaStatusEffect::getPower(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaStatusEffect::getSubPower(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+
+    lua_pushinteger( L, m_PLuaStatusEffect->GetSubPower() );
+    return 1;
+}
+
+inline int32 CLuaStatusEffect::getTier(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+
+    lua_pushinteger( L, m_PLuaStatusEffect->GetTier() );
+    return 1;
+}
+
 //======================================================//
 
 inline int32 CLuaStatusEffect::getDuration(lua_State* L)
@@ -163,6 +179,26 @@ inline int32 CLuaStatusEffect::setPower(lua_State* L)
 	return 0;
 }
 
+inline int32 CLuaStatusEffect::setSubPower(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    m_PLuaStatusEffect->SetSubPower( lua_tointeger(L,1) );
+    return 0;
+}
+
+inline int32 CLuaStatusEffect::setTier(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    m_PLuaStatusEffect->SetTier( lua_tointeger(L,1) );
+    return 0;
+}
+
 //======================================================//
 
 inline int32 CLuaStatusEffect::setDuration(lua_State* L)
@@ -220,5 +256,9 @@ Lunar<CLuaStatusEffect>::Register_t CLuaStatusEffect::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getTickCount),
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,resetStartTime),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,addMod),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,getSubPower),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,setSubPower),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,getTier),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,setTier),
 	{NULL,NULL}
 }; 

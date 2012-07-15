@@ -50,6 +50,8 @@ public:
 	int32 getType(lua_State*);
 	int32 getSubType(lua_State*);
 	int32 getPower(lua_State*);
+    int32 getSubPower(lua_State*);
+    int32 getTier(lua_State*);
 	int32 getDuration(lua_State*);
 	int32 getStartTime(lua_State*);
 	int32 getLastTick(lua_State*);
@@ -57,6 +59,8 @@ public:
 	
     int32 setIcon(lua_State*);
 	int32 setPower(lua_State*);
+    int32 setSubPower(lua_State*);
+    int32 setTier(lua_State*);
 	int32 setDuration(lua_State*);
 
     int32 resetStartTime(lua_State*);
