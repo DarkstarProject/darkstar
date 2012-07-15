@@ -54,7 +54,7 @@ public:
 	CTCPRequestPacket(SOCKET* socket);
    ~CTCPRequestPacket();
 
-	int8* GetData();
+	uint8* GetData();
 	int32 GetSize();
 	uint8 GetPacketType();
 	
@@ -64,7 +64,7 @@ public:
 
 private:
 
-    int8*   m_data;
+    uint8*   m_data;
     int32   m_size;
     SOCKET* m_socket;
 

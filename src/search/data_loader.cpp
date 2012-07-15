@@ -139,29 +139,57 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategry(uint8 AHCategoryID)
 *                                                                       *
 ************************************************************************/
 
-uint32 CDataLoader::GetPlayersCount()
+uint32 CDataLoader::GetPlayersCount(uint8 jobid)
 {
-	if( Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions") != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            return Sql_GetUIntData(SqlHandle, 0);
-        }
-    }
+	if(jobid > 0 && jobid < 21){
+		if( Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions LEFT JOIN char_stats USING (charid) WHERE mjob = %u",jobid) 
+			!= SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+		{
+			if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		    {
+		        return Sql_GetUIntData(SqlHandle, 0);
+		    }
+		}
+	}
+	else{
+		if( Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions") != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+		{
+			if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		    {
+		        return Sql_GetUIntData(SqlHandle, 0);
+		    }
+		}
+	}
     return 0;
 }
 
 /************************************************************************
 *                                                                       *
 *  Список найденных персонажей в игровом мире                           *
-*                                                                       *
+*          Job ID is 0 for none specified.                              *
 ************************************************************************/
 
-std::list<SearchEntity*> CDataLoader::GetPlayersList()
+std::list<SearchEntity*> CDataLoader::GetPlayersList(uint8 jobid)
 {
     std::list<SearchEntity*> PlayersList;
+	int32 ret = SQL_ERROR;
 
-    const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
+	if(jobid!=0){
+		ShowMessage("Filter by job %u \n",jobid);
+		const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
+                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
+                            FROM accounts_sessions \
+                            LEFT JOIN chars USING (charid) \
+                            LEFT JOIN char_look USING (charid) \
+                            LEFT JOIN char_stats USING (charid) \
+                            LEFT JOIN char_jobs USING(charid) \
+							WHERE mjob = %u \
+                            ORDER BY charname ASC \
+                            LIMIT 20";
+		ret = Sql_Query(SqlHandle, fmtQuery,jobid);
+	}
+	else{
+		const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
                             war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
                             FROM accounts_sessions \
                             LEFT JOIN chars USING (charid) \
@@ -170,8 +198,8 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList()
                             LEFT JOIN char_jobs USING(charid) \
                             ORDER BY charname ASC \
                             LIMIT 20";
-
-    int32 ret = Sql_Query(SqlHandle, fmtQuery);
+		ret = Sql_Query(SqlHandle, fmtQuery);
+	}
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{

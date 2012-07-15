@@ -78,12 +78,12 @@ public:
 	CDataLoader();
    ~CDataLoader();
 
-    uint32 GetPlayersCount();
+    uint32 GetPlayersCount(uint8 jobid);
 
     std::vector<ahHistory*>  GetAHItemHystory(uint16 ItemID, bool stack);
     std::list<SearchEntity*> GetPartyList(uint32 PartyID);
     std::list<SearchEntity*> GetLinkshellList(uint32 LinkshellID);
-    std::list<SearchEntity*> GetPlayersList();
+    std::list<SearchEntity*> GetPlayersList(uint8 jobid);
 	std::vector<ahItem*>     GetAHItemsToCategry(uint8 AHCategoryID);
 
 private:

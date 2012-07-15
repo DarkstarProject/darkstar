@@ -75,7 +75,7 @@ CTCPRequestPacket::~CTCPRequestPacket()
 *																		*
 ************************************************************************/
 
-int8* CTCPRequestPacket::GetData()
+uint8* CTCPRequestPacket::GetData()
 {
 	return m_data;
 }
@@ -118,7 +118,7 @@ int32 CTCPRequestPacket::ReceiveFromSocket()
 		return 0;
 	}
     delete[] m_data; 
-    m_data = new int8[m_size];
+    m_data = new uint8[m_size];
 
     memcpy(&m_data[0], &recvbuf[0], m_size);
 	WBUFL(key,(16)) = RBUFL(m_data,(m_size-4));

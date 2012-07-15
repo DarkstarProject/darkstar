@@ -311,24 +311,28 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 		delete PTCPRequest;
 		return 0;
 	}
-	PrintPacket(PTCPRequest->GetData(), PTCPRequest->GetSize());
+	PrintPacket((int8*)PTCPRequest->GetData(), PTCPRequest->GetSize());
 	ShowMessage("PacketType %u\n", PTCPRequest->GetPacketType());
-
+	
 	switch(PTCPRequest->GetPacketType()) 
 	{
 		case TCP_SEARCH:
+			ShowMessage("Search \n");
 		case TCP_SEARCH_ALL:
         {
+			ShowMessage("Search all\n");
             HandleSearchRequest(PTCPRequest);
         }
         break;
         case TCP_SEARCH_COMMENT:
 		{
+			ShowMessage("Search comment \n");
             HandleSearchComment(PTCPRequest);
 		}
 		break;
 		case TCP_GROUP_LIST:
 		{
+			ShowMessage("Search group\n");
 			HandleGroupListRequest(PTCPRequest);
 		}
 		break;
@@ -437,17 +441,18 @@ void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
 
 void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 {                        
+	uint16 jobbytes = (uint16) ((PTCPRequest->GetData()[18] << 8) | PTCPRequest->GetData()[19]);
+	uint8 jobid = ((jobbytes>>5)&0x1F);
     CDataLoader* PDataLoader = new CDataLoader();
-    std::list<SearchEntity*> SearchList = PDataLoader->GetPlayersList();
-
-    CSearchListPacket* PSearchPacket = new CSearchListPacket(PDataLoader->GetPlayersCount());
+    std::list<SearchEntity*> SearchList = PDataLoader->GetPlayersList(jobid);
+    CSearchListPacket* PSearchPacket = new CSearchListPacket(PDataLoader->GetPlayersCount(jobid));
 
     for (std::list<SearchEntity*>::iterator it = SearchList.begin(); it != SearchList.end(); ++it)
     {
         PSearchPacket->AddPlayer(*it);
     }
 
-    PrintPacket((int8*)PSearchPacket->GetData(), PSearchPacket->GetSize());
+    //PrintPacket((int8*)PSearchPacket->GetData(), PSearchPacket->GetSize());
     PTCPRequest->SendToSocket(PSearchPacket->GetData(), PSearchPacket->GetSize());
 
     delete PSearchPacket;
