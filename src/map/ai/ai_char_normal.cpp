@@ -2080,9 +2080,12 @@ void CAICharNormal::ActionAttack()
 
 void CAICharNormal::ActionRaiseMenuSelection() 
 {	
+    // TODO: Moghancement Experience needs to be factored in here somewhere.
 	DSP_DEBUG_BREAK_IF(m_PChar->m_hasRaise == 0 || m_PChar->m_hasRaise > 3);
 
     m_PChar->animation = ANIMATION_NONE; 	
+
+    double ratioReturned = 0.0f;
 
     apAction_t Action;
     m_PChar->m_ActionList.clear();
@@ -2092,16 +2095,19 @@ void CAICharNormal::ActionRaiseMenuSelection()
     {
 		Action.animation = 511; 
 		m_PChar->addHP(m_PChar->GetMaxHP()*0.1); 
+        ratioReturned = 0.50f;
 	}
 	else if(m_PChar->m_hasRaise == 2)
     {
 		Action.animation = 512;
 		m_PChar->addHP(m_PChar->GetMaxHP()*0.25); 
+        ratioReturned = (m_PChar->GetMLevel() <= 50) ? 0.50f : 0.75f;
 	}
 	else if(m_PChar->m_hasRaise == 3)
     {
 		Action.animation = 496;
 		m_PChar->addHP(m_PChar->GetMaxHP()*0.5); 
+        ratioReturned = (m_PChar->GetMLevel() <= 50) ? 0.50f : 0.90f;
 	}
     Action.reaction   = REACTION_NONE;
     Action.speceffect = SPECEFFECT_RAISE;
@@ -2124,7 +2130,18 @@ void CAICharNormal::ActionRaiseMenuSelection()
 	charutils::UpdateHealth(m_PChar);
     m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));	
 
-	//todo: regain lost EXP
+    uint16 expLost = m_PChar->GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(m_PChar->jobs.job[m_PChar->GetMJob()]) * 8 ) / 100 : 2400;
+    uint16 xpNeededToLevel = charutils::GetExpNEXTLevel(m_PChar->jobs.job[m_PChar->GetMJob()]) - m_PChar->jobs.exp[m_PChar->GetMJob()];
 
-	m_ActionType = ACTION_NONE; 												
+    if(xpNeededToLevel < expLost)
+    {
+        // Player probably leveled down when they died.  Give they xp for the next level.
+        expLost = m_PChar->GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(m_PChar->jobs.job[m_PChar->GetMJob()] + 1) * 8 ) / 100 : 2400;
+    }
+
+    uint16 xpReturned = expLost * ratioReturned;
+
+    charutils::AddExperiencePoints(m_PChar, m_PChar, xpReturned);
+
+	m_ActionType = ACTION_NONE;
 }
