@@ -63,12 +63,15 @@ function EventTriggerBCNM(player,npc)
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
 		if(player:isInBcnm() == 1) then
 			player:startEvent(0x7d03); --Run Away or Stay menu
-		else
-			--todo: give option of bcnm to enter then enter
+		else --You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
 			status = player:getStatusEffect(EFFECT_BATTLEFIELD);
-			--TODO: map from the id (power) to the bitmask.
-			if(status:getPower() == 1) then --BCNMID==1 for maat_horlais
-				player:startEvent(0x7d00,0,0,0,32,0,0,0,0); --32 is the bitmask
+			playerbcnmid = status:getPower();
+			playermask = GetBattleBitmask(playerbcnmid,player:getZone());
+			if(playermask~=-1) then
+				--This gives players who did not trade to go in the option of entering the fight
+				player:startEvent(0x7d00,0,0,0,playermask,0,0,0,0);
+			else
+				player:messageBasic(94,0,0);
 			end
 		end
 		return true;
@@ -81,10 +84,6 @@ function EventUpdateBCNM(player,csid,option)
 	-- return false;
 	id = player:getVar("trade_bcnmid"); --this is 0 if the bcnm isnt handled by new functions
 	
-	if(id == 0 and player:getZone() ~= 139) then -- Temp condition for normal bcnm (started with onTrigger)
-		return false;
-	end
-	
 	print("UPDATE csid "..csid.." option "..option);
 	--seen: option 2,3,0 in that order
 	if(csid == 0x7d03 and option == 2)then --leaving a BCNM the player is currently in.
@@ -93,6 +92,8 @@ function EventUpdateBCNM(player,csid,option)
 	end
 	if(option == 255 and csid == 0x7d00)then --Clicked yes, try to register bcnmid
 		if(player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
+			--You're entering a bcnm but you already had the battlefield effect, so you want to go to the
+			--instance that your battlefield effect represents.
 			player:setVar("bcnm_instanceid_tick",0);
 			player:setVar("bcnm_instanceid",player:getInstanceID()); --returns 255 if non-existent.
 			return true;
