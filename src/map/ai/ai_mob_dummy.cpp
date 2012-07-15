@@ -219,15 +219,33 @@ void CAIMobDummy::ActionDropItems()
                 charutils::DistributeExperiencePoints(PChar, m_PMob);
 
                 DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
-		
+
 			    if (DropList != NULL && DropList->size())
 			    {
+					uint8 highestTH = PChar->getMod(MOD_TREASURE_HUNTER);
+
+					//get highest Treasure Hunter in pt
+					if(PChar->PParty != NULL){
+						for(uint8 i = 0; i < PChar->PParty->members.size(); i++){
+							if(PChar->PParty->members.at(i)->getMod(MOD_TREASURE_HUNTER) > highestTH){
+								highestTH = PChar->PParty->members.at(i)->getMod(MOD_TREASURE_HUNTER);
+							}
+						}
+					}
+
                     for(uint8 i = 0; i < DropList->size(); ++i)
 				    {
-                        if(rand()%100 < DropList->at(i).DropRate) 
-					    {
-                            PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, m_PMob); 
-					    }		
+						//highestTH is the number of 'extra chances' at an item. If the item is obtained, then break out.
+						uint8 tries = 0;
+						while(tries < 1+highestTH)
+						{
+							if(rand()%100 < DropList->at(i).DropRate) 
+							{
+								PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, m_PMob); 
+								break;
+							}
+							tries++;
+						}		
 				    }
 					//check for gil (beastmen drop gil, some NMs drop gil)
 					if(m_PMob->m_EcoSystem == SYSTEM_BEASTMEN || m_PMob->m_Type & MOBTYPE_NOTORIOUS)
