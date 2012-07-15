@@ -9,6 +9,5 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	print("Fire Threnody\n");
 	return handleThrenody(caster, target, spell, 50, 60, MOD_FIRERES);
 end;
