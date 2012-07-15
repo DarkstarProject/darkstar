@@ -157,9 +157,9 @@ INSERT INTO `bcnm_instance` VALUES ('448', '1', '17604610');
 INSERT INTO `bcnm_instance` VALUES ('480', '1', '17608705');
 
 -- Qu'Bia Arena
-INSERT INTO `bcnm_instance` VALUES ('512', '1', '17620993');
-INSERT INTO `bcnm_instance` VALUES ('512', '1', '17620994');
-INSERT INTO `bcnm_instance` VALUES ('512', '1', '17620995');
+INSERT INTO `bcnm_instance` VALUES ('512', '1', '17621007');
+INSERT INTO `bcnm_instance` VALUES ('512', '1', '17621008');
+INSERT INTO `bcnm_instance` VALUES ('512', '1', '17621009');
 INSERT INTO `bcnm_instance` VALUES ('512', '2', '17621000');
 INSERT INTO `bcnm_instance` VALUES ('512', '2', '17621001');
 INSERT INTO `bcnm_instance` VALUES ('512', '2', '17621002');

@@ -15,12 +15,18 @@ itemid_bcnmid_map = {139,{0,0}, --Horlais Peak
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
 -- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!) hum you sure ?
 -- bcnmid,paramid,bcnmid,paramid,etc
+-- The BCNMID is found via the database.
+-- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
+-- 1,2,4,8,16,32,64,128,256,512...
+-- E.g.
+-- Qu'Bia Arena Bitmask:
+-- 1=Rank 5 mission, 2=Come into my parlour, 4=E-vase-ive Action, etc...
 bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
 					140,{32,0,33,1},
 					144,{64,0,70,6,71,7,72,8},
 					146,{96,0,101,5,102,6,103,7},
 					168,{192,0,194,2,195,3,196,4},
-					206,{512,0,517,5,518,6,519,7}};
+					206,{512,1,517,5,518,6,519,7}};
 
 
 -- Call this onTrade for burning circles
@@ -75,6 +81,10 @@ function EventTriggerBCNM(player,npc)
 			end
 		end
 		return true;
+	else
+		if (checkNonTradeBCNM(player,npc)) then
+			return true;
+		end
 	end
 	
 	return false;
@@ -231,7 +241,24 @@ function ItemToBCNMID(player,zone,trade)
 	return -1;
 end;
 
-
+-- E.g. mission checks go here, you must know the right bcnmid for the mission you want to code.
+--      You also need to know the bitmask (event param) which should be put in bcnmid_param_map
+function checkNonTradeBCNM(player,npc)
+	--EXAMPLE: Mission 5-1 in Qu'Bia Arena
+	if(player:getZone()==206) then --also need to check if Mission 5-1 is active
+		mask = GetBattleBitmask(512,206); --bcnmid=512
+		if(mask==-1) then --something went wrong
+			print("BCNMID/Mask pair not found");
+		else
+			print("BCNMID found with mask "..mask);
+			player:startEvent(0x7d00,0,0,0,mask,0,0,0,0);
+			-- Remember to store the BCNMID for EventUpdate/Finish!
+			player:setVar("trade_bcnmid",512);
+			return true;
+		end
+	end
+	return false;
+end;
 
 
 ------------------------------------------------------------------------------------------------
