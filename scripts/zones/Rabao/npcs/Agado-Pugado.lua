@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
 			elseif(option == 6) then 
 				player:addSpell(301); -- Garuda Spell
-				player:messageSpecial(GARUDA_UNLOCKED,303); 
+				player:messageSpecial(GARUDA_UNLOCKED,0,0,3); 
 			else
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item

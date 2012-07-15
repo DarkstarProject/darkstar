@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
 			elseif(option == 6) then 
 				player:addSpell(302); -- Avatar
-				player:messageSpecial(SHIVA_UNLOCKED,302); --Currently Bugged to say Ifrit, but will give Shiva spell
+				player:messageSpecial(SHIVA_UNLOCKED,0,0,4);
 			else
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item

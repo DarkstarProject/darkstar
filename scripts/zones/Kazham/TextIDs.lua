@@ -9,6 +9,8 @@ ITEM_CANNOT_BE_OBTAINED = 10517; -- You cannot obtain the item <item> come back 
      
 -- Quest Dialog
 NOMAD_MOOGLE_DIALOG = 10499; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
+	 IFRIT_UNLOCKED = 10431; -- You are now able to summon Ifrit.
+
 
 -- Shop Texts
 GHEMISENTERILO_SHOP_DIALOG = 9961; -- Can you really get everything that you want on the mainland?

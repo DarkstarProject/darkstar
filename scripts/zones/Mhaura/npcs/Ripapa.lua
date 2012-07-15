@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
 			elseif(option == 6) then 
 				player:addSpell(303); -- Ramuh Spell
-				player:messageSpecial(RAMUH_UNLOCKED,303); 
+				player:messageSpecial(RAMUH_UNLOCKED,0,0,5); 
 			else
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item

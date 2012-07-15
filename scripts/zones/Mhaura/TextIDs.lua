@@ -13,6 +13,8 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
   GOLDSMITHING_GUILD = 7048; -- Everything you need for your goldsmithing needs!
       SMITHING_GUILD = 7049; -- Welcome to the Blacksmiths' Guild salesroom!
  NOMAD_MOOGLE_DIALOG = 6705; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
+   	  RAMUH_UNLOCKED = 7262; -- You are now able to summon Ramuh.
+
 
 -- Shop Texts
       GRAINE_SHOP_DIALOG = 7044; -- Hello there, I'm Graine the armorer. I've got just what you need!

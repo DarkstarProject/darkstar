@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
 			elseif(option == 6) then 
 				player:addSpell(298); -- Ifrit Spell
-				player:messageSpecial(IFRIT_UNLOCKED,298); 
+				player:messageSpecial(IFRIT_UNLOCKED,0,0,0); 
 			else
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item

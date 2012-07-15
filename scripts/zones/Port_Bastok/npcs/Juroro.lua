@@ -99,7 +99,7 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gils
 			elseif(option == 6) then 
 				player:addSpell(299); -- Avatar Titan Spell
-				player:messageSpecial(TITAN_UNLOCKED,299);
+				player:messageSpecial(TITAN_UNLOCKED,0,0,1);
 			else
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item

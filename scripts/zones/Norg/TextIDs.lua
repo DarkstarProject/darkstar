@@ -13,7 +13,9 @@ NOMAD_MOOGLE_DIALOG = 10453; -- I'm a traveling moogle, kupo. I help adventurers
      SPASIJA_DIALOG = 10265; -- Hiya! I can deliver packages to anybody, anywhere, anytime. What do you say?
     PALEILLE_DIALOG = 10266; -- We can deliver parcels to any residence in Vana'diel.
       FOUIVA_DIALOG = 10477; -- Oi 'av naw business wi' de likes av you.
+ LEVIATHAN_UNLOCKED = 10385; -- You are now able to summon Leviathan.
 
+	  
 YOU_CAN_NOW_BECOME_A_SAMURAI = 10114; -- You accept the Mumeito from Gilgamesh. You can now become a samurai.
    CARRYING_TOO_MUCH_ALREADY = 10115; -- I wish to give you your reward, but you seem to be carrying too much already. Come back when you have more room in your pack.
 

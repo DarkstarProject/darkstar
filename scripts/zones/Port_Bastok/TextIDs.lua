@@ -23,6 +23,7 @@ ORIGINAL_MISSION_OFFSET = 7121; -- You can consult the “Mission” section of 
    RONAN_DIALOG_1 = 7231; -- Do something! Isn't there anything you can do to make him come out of his shell?
 POWHATAN_DIALOG_1 = 7045; -- I'm sick and tired of entertaining guests.
      UNLOCK_NINJA = 8203; -- You can now become a ninja.
+   TITAN_UNLOCKED = 8308; -- You are now able to summon Titan
 
 -- Shop Texts
         DENVIHR_SHOP_DIALOG = 7411; -- Ah, interested in my wares, are you? You can only buy these in Bastok, my friend.
