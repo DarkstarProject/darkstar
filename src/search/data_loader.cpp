@@ -225,8 +225,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
                             LEFT JOIN char_stats USING (charid) \
                             LEFT JOIN char_jobs USING(charid) \
 							WHERE charname IS NOT NULL \
-                            ORDER BY charname ASC \
-                            LIMIT 20";
+                            ORDER BY charname ASC";
 		ret = Sql_Query(SqlHandle, fmtQuery);
 	}
 
