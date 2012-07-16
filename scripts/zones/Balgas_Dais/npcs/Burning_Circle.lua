@@ -66,7 +66,7 @@ function onEventUpdate(player,csid,option)
 	if(EventUpdateBCNM(player,csid,option))then
 		return;
 	end
-
+	
 end;
 
 -----------------------------------

@@ -25,6 +25,7 @@ bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
 					140,{32,0,33,1},
 					144,{64,0,70,6,71,7,72,8},
 					146,{96,0,101,5,102,6,103,7},
+					163,{128,0},
 					168,{192,0,194,2,195,3,196,4},
 					206,{512,0,517,5,518,6,519,7}};
 
@@ -269,6 +270,16 @@ function checkNonTradeBCNM(player,npc)
 			mask = GetBattleBitmask(96,Zone,1);
 			player:setVar("trade_bcnmid",96);
 		end 
+	elseif(Zone == 163) then -- Sacrificial Chamber
+		if(player:hasKeyItem(SACRIFICIAL_CHAMBER_KEY)) then -- Zilart Mission 4
+			mask = GetBattleBitmask(128,Zone,1);
+			player:setVar("trade_bcnmid",128);
+		end
+	elseif(Zone == 168) then -- Chamber of Oracles
+		if(player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES or player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then -- Zilart Mission 6
+			mask = GetBattleBitmask(192,Zone,1);
+			player:setVar("trade_bcnmid",192);
+		end
 	elseif(Zone == 206) then -- Qu'Bia Arena
 		if(player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1
 			mask = GetBattleBitmask(512,Zone,1); -- bcnmid/zone/mode

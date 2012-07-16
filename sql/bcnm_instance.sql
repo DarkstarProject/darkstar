@@ -107,15 +107,12 @@ INSERT INTO `bcnm_instance` VALUES ('103', '3', '17375268');
 INSERT INTO `bcnm_instance` VALUES ('128', '1', '17444865');
 INSERT INTO `bcnm_instance` VALUES ('128', '1', '17444866');
 INSERT INTO `bcnm_instance` VALUES ('128', '1', '17444867');
-INSERT INTO `bcnm_instance` VALUES ('128', '1', '17444868');
 INSERT INTO `bcnm_instance` VALUES ('128', '2', '17444870');
 INSERT INTO `bcnm_instance` VALUES ('128', '2', '17444871');
 INSERT INTO `bcnm_instance` VALUES ('128', '2', '17444872');
-INSERT INTO `bcnm_instance` VALUES ('128', '2', '17444873');
 INSERT INTO `bcnm_instance` VALUES ('128', '3', '17444875');
 INSERT INTO `bcnm_instance` VALUES ('128', '3', '17444876');
 INSERT INTO `bcnm_instance` VALUES ('128', '3', '17444877');
-INSERT INTO `bcnm_instance` VALUES ('128', '3', '17444878');
 
 -- Throne Room
 INSERT INTO `bcnm_instance` VALUES ('160', '1', '17453057');
