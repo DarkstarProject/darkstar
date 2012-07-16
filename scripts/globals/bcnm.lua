@@ -17,16 +17,15 @@ itemid_bcnmid_map = {139,{0,0}, --Horlais Peak
 -- bcnmid,paramid,bcnmid,paramid,etc
 -- The BCNMID is found via the database.
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
--- 1,2,4,8,16,32,64,128,256,512...
--- E.g.
--- Qu'Bia Arena Bitmask:
--- 1=Rank 5 mission, 2=Come into my parlour, 4=E-vase-ive Action, etc...
+-- 0,1,2,3,4,5,...
 bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
 					140,{32,0,33,1},
 					144,{64,0,70,6,71,7,72,8},
 					146,{96,0,101,5,102,6,103,7},
 					163,{128,0},
+					165,{160,0},
 					168,{192,0,194,2,195,3,196,4},
+					179,{256,0},
 					206,{512,0,517,5,518,6,519,7}};
 
 
@@ -83,7 +82,7 @@ function EventTriggerBCNM(player,npc)
 		end
 		return true;
 	else
-		if (checkNonTradeBCNM(player,npc)) then
+		if(checkNonTradeBCNM(player,npc)) then
 			return true;
 		end
 	end
@@ -285,10 +284,20 @@ function checkNonTradeBCNM(player,npc)
 			mask = GetBattleBitmask(128,Zone,1);
 			player:setVar("trade_bcnmid",128);
 		end
+	elseif(Zone == 165) then -- Throne Room
+		if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 2) then -- Mission 5-2
+			mask = GetBattleBitmask(160,Zone,1);
+			player:setVar("trade_bcnmid",160);
+		end
 	elseif(Zone == 168) then -- Chamber of Oracles
 		if(player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES or player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then -- Zilart Mission 6
 			mask = GetBattleBitmask(192,Zone,1);
 			player:setVar("trade_bcnmid",192);
+		end
+	elseif(Zone == 179) then -- Stellar Fulcrum
+		if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3) then -- Zilart Mission 8
+			mask = GetBattleBitmask(256,Zone,1);
+			player:setVar("trade_bcnmid",256);
 		end
 	elseif(Zone == 206) then -- Qu'Bia Arena
 		if(player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1
