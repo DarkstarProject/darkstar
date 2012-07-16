@@ -108,13 +108,45 @@ CZone::CZone(uint8 ZoneID, uint8 RegionID)
 	m_InstanceHandler = NULL;
 
 	switch(m_zoneID){ //all bcnm zones
+		case 6:
+		case 8:
+		case 10:
+		case 13:
+		case 17:
+		case 19:
+		case 21:
+		case 23:
+		case 29:
+		case 30:
+		case 31:
+		case 32:
+		case 35:
+		case 36:
+		case 57:
+		case 64:
+		case 67:
+		case 78:
 		case 139:
+		case 140:
 		case 146:
 		case 206:
 		case 144:
 		case 168:
 		case 163:
+		case 165:
+		case 170:
 		case 141:
+		case 179:
+		case 180:
+		case 181:
+		case 156:
+		case 182:
+		case 201:
+		case 202:
+		case 203:
+		case 207:
+		case 209:
+		case 211:
 			m_InstanceHandler = new CInstanceHandler(m_zoneID);
 	}
 

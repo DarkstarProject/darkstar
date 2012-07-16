@@ -225,6 +225,12 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 		default: ShowDebug("Unknown max participants value %i \n",PInstance->getMaxParticipants());
 	}
 
+	if(!PInstance->isReserved()){//no player met the criteria for entering, so revoke the previous permission.
+		ShowDebug("No player has met the requirements for entering the BCNM.\n");
+		delete PInstance;
+		return -1;
+	}
+
 	m_Instances[PInstance->getInstanceNumber()-1] = PInstance;
 	PInstance->init();
 	luautils::OnBcnmRegister(PChar,PInstance);
