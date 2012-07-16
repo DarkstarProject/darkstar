@@ -24,7 +24,7 @@ function onSpellCast(caster,target,spell)
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
 	
-	handleNinjutsuDebuff(caster, target, spell, 20, 15, MOD_WATERRES);
+	handleNinjutsuDebuff(caster, target, spell, 30, 15, MOD_WATERRES);
 
 	return final;
 	

@@ -23,7 +23,9 @@ function onSpellCast(caster,target,spell)
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
-	
+
+	handleNinjutsuDebuff(caster, target, spell, 30, 15, MOD_THUNDERRES);
+
 	return final;
 	
 end;

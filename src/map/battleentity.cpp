@@ -62,6 +62,16 @@ CBattleEntity::CBattleEntity()
 	m_modStat[MOD_PIERCERES] = 1000;
 	m_modStat[MOD_HTHRES]	 = 1000;
 	m_modStat[MOD_IMPACTRES] = 1000;
+
+    m_modStat[MOD_FIRERES]    = 0;
+    m_modStat[MOD_ICERES]     = 0;
+    m_modStat[MOD_WINDRES]    = 0;
+    m_modStat[MOD_EARTHRES]   = 0;
+    m_modStat[MOD_THUNDERRES] = 0;
+    m_modStat[MOD_WATERRES]   = 0;
+    m_modStat[MOD_LIGHTRES]   = 0;
+    m_modStat[MOD_DARKRES]    = 0;
+
 }
 
 CBattleEntity::~CBattleEntity()

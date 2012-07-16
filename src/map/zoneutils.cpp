@@ -236,14 +236,14 @@ void LoadZoneList()
 				PMob->setModifier(MOD_HTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,33) * 1000));
 				PMob->setModifier(MOD_IMPACTRES,(uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
 
-                PMob->setModifier(MOD_FIRERES,    (uint16)(Sql_GetFloatData(SqlHandle,35) * 1000));
-                PMob->setModifier(MOD_ICERES,     (uint16)(Sql_GetFloatData(SqlHandle,36) * 1000));
-                PMob->setModifier(MOD_WINDRES,    (uint16)(Sql_GetFloatData(SqlHandle,37) * 1000));
-                PMob->setModifier(MOD_EARTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,38) * 1000));
-                PMob->setModifier(MOD_THUNDERRES, (uint16)(Sql_GetFloatData(SqlHandle,39) * 1000));
-                PMob->setModifier(MOD_WATERRES,   (uint16)(Sql_GetFloatData(SqlHandle,40) * 1000));
-                PMob->setModifier(MOD_LIGHTRES,   (uint16)(Sql_GetFloatData(SqlHandle,41) * 1000));
-                PMob->setModifier(MOD_DARKRES,    (uint16)(Sql_GetFloatData(SqlHandle,42) * 1000));
+                PMob->setModifier(MOD_FIRERES,    (int16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -1000)); // These are stored as floating percentages 
+                PMob->setModifier(MOD_ICERES,     (int16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -1000)); // and need to be adjusted into modifier units.
+                PMob->setModifier(MOD_WINDRES,    (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -1000)); // Higher RES = lower damage.  
+                PMob->setModifier(MOD_EARTHRES,   (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -1000)); // Negatives signify increased damage.
+                PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -1000)); // Positives signify reduced damage.
+                PMob->setModifier(MOD_WATERRES,   (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -1000)); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
+                PMob->setModifier(MOD_LIGHTRES,   (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -1000)); // (1.25 - 1) * -1000 = -250 RES
+                PMob->setModifier(MOD_DARKRES,    (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -1000)); // (0.50 - 1) * -1000 = 500 RES
 
 				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,43);
 				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,44); 

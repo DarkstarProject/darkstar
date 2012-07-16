@@ -1215,7 +1215,7 @@ uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	int32 damage = INT < 0 ? base + INT : base + (INT * M); 
 	
     damage = damage * (100 - (10 * PAttacker->m_ActionList.size() / 2)) / 100;
-	damage = damage * (1000 + PDefender->getMod(MOD_FIRERES + PSpell->getElement())) / 1000;
+	damage = damage * (1000 - PDefender->getMod(MOD_FIRERES + PSpell->getElement())) / 1000;
 	
 	PDefender->addHP(-damage);
 	
@@ -1994,7 +1994,7 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
                           * (100 + PAttacker->getMod(MOD_SKILLCHAINBONUS)) / 100
                           * (100 + PAttacker->getMod(MOD_SKILLCHAINDMG)) / 100);
 
-    damage = damage * resistance / 1000;
+    damage = damage * (1000 - resistance) / 1000;
 
     PDefender->addHP(-damage);
 
