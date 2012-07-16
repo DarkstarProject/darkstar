@@ -33,4 +33,14 @@ struct search_config_t
     const int8* mysql_database;     // mysql database -> default dspdb
 };
 
+struct search_req
+{
+	uint8 zoneid;
+	uint8 jobid;
+	uint8 minlvl;
+	uint8 maxlvl;
+	string_t name;
+	uint8 nameLen;
+};
+
 extern search_config_t search_config;

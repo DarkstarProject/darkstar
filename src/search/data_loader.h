@@ -30,6 +30,7 @@
 #include <vector>
 
 struct Sql_t;
+struct search_req;
 
 struct ahItem 
 {
@@ -78,12 +79,12 @@ public:
 	CDataLoader();
    ~CDataLoader();
 
-    uint32 GetPlayersCount(uint8 jobid);
+    uint32 GetPlayersCount(search_req sr);
 
     std::vector<ahHistory*>  GetAHItemHystory(uint16 ItemID, bool stack);
     std::list<SearchEntity*> GetPartyList(uint32 PartyID);
     std::list<SearchEntity*> GetLinkshellList(uint32 LinkshellID);
-    std::list<SearchEntity*> GetPlayersList(uint8 jobid);
+    std::list<SearchEntity*> GetPlayersList(search_req sr, int* count);
 	std::vector<ahItem*>     GetAHItemsToCategry(uint8 AHCategoryID);
 
 private:

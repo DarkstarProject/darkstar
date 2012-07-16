@@ -35,6 +35,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <sstream>
 
 #include "data_loader.h"
 #include "search.h"
@@ -47,6 +48,10 @@
 #include "packets/search_list.h"
 
 #define DEFAULT_BUFLEN	1024
+#define CODE_LVL 17
+#define CODE_JOB 13
+#define CODE_ZONE 20
+#define CODE_ZONE_ALL 16
 
 struct SearchCommInfo
 {
@@ -64,6 +69,8 @@ extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
 extern void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest);
+extern search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket);
+extern std::string toStr(int number);
 
 search_config_t search_config;
 
@@ -302,7 +309,7 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 {
 	SearchCommInfo CommInfo = *((SearchCommInfo*)lpParam);
 
-	ShowMessage("TCP connection from client with port: %u\n", htons(CommInfo.port));
+	//ShowMessage("TCP connection from client with port: %u\n", htons(CommInfo.port));
 	
 	CTCPRequestPacket* PTCPRequest = new CTCPRequestPacket(&CommInfo.socket);
 
@@ -311,16 +318,15 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 		delete PTCPRequest;
 		return 0;
 	}
-	PrintPacket((int8*)PTCPRequest->GetData(), PTCPRequest->GetSize());
-	ShowMessage("PacketType %u\n", PTCPRequest->GetPacketType());
+	//PrintPacket((int8*)PTCPRequest->GetData(), PTCPRequest->GetSize());
+	ShowMessage("= = = = = = = \nType: %u Size: %u \n",PTCPRequest->GetPacketType(),PTCPRequest->GetSize());
 	
 	switch(PTCPRequest->GetPacketType()) 
 	{
 		case TCP_SEARCH:
-			ShowMessage("Search \n");
 		case TCP_SEARCH_ALL:
         {
-			ShowMessage("Search all\n");
+			ShowMessage("Search \n");
             HandleSearchRequest(PTCPRequest);
         }
         break;
@@ -440,12 +446,14 @@ void HandleSearchComment(CTCPRequestPacket* PTCPRequest)
 ************************************************************************/
 
 void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
-{                        
-	uint16 jobbytes = (uint16) ((PTCPRequest->GetData()[18] << 8) | PTCPRequest->GetData()[19]);
-	uint8 jobid = ((jobbytes>>5)&0x1F);
+{   
+	search_req sr = _HandleSearchRequest(PTCPRequest,NULL);
+	int totalCount = 0;
+
     CDataLoader* PDataLoader = new CDataLoader();
-    std::list<SearchEntity*> SearchList = PDataLoader->GetPlayersList(jobid);
-    CSearchListPacket* PSearchPacket = new CSearchListPacket(PDataLoader->GetPlayersCount(jobid));
+    std::list<SearchEntity*> SearchList = PDataLoader->GetPlayersList(sr,&totalCount);
+	//PDataLoader->GetPlayersCount(sr)
+    CSearchListPacket* PSearchPacket = new CSearchListPacket(totalCount);
 
     for (std::list<SearchEntity*>::iterator it = SearchList.begin(); it != SearchList.end(); ++it)
     {
@@ -540,7 +548,7 @@ void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
 *                                                                       *
 ************************************************************************/
 
-void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
+search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 {
 	// суть в том, чтобы заполнить некоторую структуру, на основании которой будет создан запрос к базе
 	// результат поиска в базе отправляется клиенту
@@ -552,13 +560,18 @@ void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 	unsigned char areaCount = 0;
 
 	uint8 name[16];
+	uint8 nameLen = 0;
+	uint8 minLvl = 0;
+	uint8 maxLvl = 0;
+	uint8 jobid = 0;
+	uint8 zoneid = 0;
 
 	uint8* data = (uint8*)PTCPRequest->GetData();
 	uint8  size = RBUFB(data,(0x10));
 
 	uint16 workloadBits = size * 8;
 
-	ShowMessage("Received a search packet with size %u byte\n", size);
+	//ShowMessage("Received a search packet with size %u byte\n", size);
 	
 	while(bitOffset < workloadBits)
 	{
@@ -599,7 +612,7 @@ void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 						bitOffset=workloadBits;
 						break;
 					}
-					uint8 nameLen = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,5);
+					nameLen = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,5);
 					name[nameLen]='\0';
 					
 					bitOffset+=5;
@@ -609,9 +622,9 @@ void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 						name[i] = (char)unpackBitsLE(&data[0x11],bitOffset,7);
 						bitOffset+=7;
 					}	
-					printf("SEARCH::Name Entry Found. (%s).\n",name);
+					//printf("SEARCH::Name Entry Found. (%s).\n",name);
 				}
-				printf("SEARCH::SortByName: %s.\n",(sortDescending == 0 ? "ascending" : "descending"));
+				//printf("SEARCH::SortByName: %s.\n",(sortDescending == 0 ? "ascending" : "descending"));
 				//packetData.sortDescendingByName=sortDescending;
 				break;
 			}			
@@ -619,16 +632,17 @@ void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 			{
 				if (isPresent == 0) //no more Area entries
 				{
-					printf("SEARCH::Area List End found.\n");
+					//printf("SEARCH::Area List End found.\n");
 				}
 				else // 8 Bit = 1 Byte per Area Code
 				{
+					bitOffset+=2;
 					unsigned char areas[10];
 					areas[areaCount] = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,8);
 					areaCount++;
 					bitOffset+=8;
-
-					printf("SEARCH::Area List Entry found(%2X)!\n",areas[areaCount-1]);
+					zoneid = areas[areaCount-1];
+				//	printf("SEARCH::Area List Entry found(%2X)!\n",areas[areaCount-1]);
 				}
 				break;
 			}
@@ -649,11 +663,11 @@ void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 				{
 					unsigned char job = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,5);
 					bitOffset+=5;
-
-					printf("SEARCH::Job Entry found. (%2X) Sorting: (%s).\n",job,(sortDescending==0x00)?"ascending":"descending");
+					jobid = job;
+					//printf("SEARCH::Job Entry found. (%2X) Sorting: (%s).\n",job,(sortDescending==0x00)?"ascending":"descending");
 				}
 				//packetData.sortDescendingByJob=sortDescending;
-				printf("SEARCH::SortByJob: %s.\n",(sortDescending==0x00)?"ascending":"descending");
+				//printf("SEARCH::SortByJob: %s.\n",(sortDescending==0x00)?"ascending":"descending");
 				break;
 			}
 			case SEARCH_LEVEL: //Level- 16 bit
@@ -664,11 +678,12 @@ void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 					bitOffset+=8;
 					unsigned char toLvl = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,8);
 					bitOffset+=8;
-
-					printf("SEARCH::Level Entry found. (%d - %d) Sorting: (%s).\n",fromLvl,toLvl,(sortDescending==0x00)?"ascending":"descending");
+					minLvl = fromLvl;
+					maxLvl = toLvl;
+					//printf("SEARCH::Level Entry found. (%d - %d) Sorting: (%s).\n",fromLvl,toLvl,(sortDescending==0x00)?"ascending":"descending");
 				}
 				//packetData.sortDescendingByLevel=sortDescending;
-				printf("SEARCH::SortByLevel: %s.\n",(sortDescending==0x00)?"ascending":"descending");
+				//printf("SEARCH::SortByLevel: %s.\n",(sortDescending==0x00)?"ascending":"descending");
 				break;
 			}
 			case SEARCH_RACE: //Race - 4 bit
@@ -759,5 +774,18 @@ void _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 	}
 	printf("\n");
 
+	ShowMessage("Name: %s Zone: %u Job: %u Lvls: %u ~ %u \n",(nameLen>0 ? name : 0),zoneid,jobid,minLvl,maxLvl);
+
+	search_req sr;
+	sr.jobid = jobid;
+	sr.maxlvl = maxLvl;
+	sr.minlvl = minLvl;
+	sr.zoneid = zoneid;
+	sr.nameLen = nameLen;
+	if(nameLen>0){
+		sr.name.insert(0,(int8*)name);
+	}
+
+	return sr;
 	// не обрабатываем последние биты, что мешает в одну кучу например "/blacklist delete Name" и "/sea all Name"
 }

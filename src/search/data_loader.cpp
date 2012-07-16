@@ -139,8 +139,9 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategry(uint8 AHCategoryID)
 *                                                                       *
 ************************************************************************/
 
-uint32 CDataLoader::GetPlayersCount(uint8 jobid)
+uint32 CDataLoader::GetPlayersCount(search_req sr)
 {
+	uint8 jobid = sr.jobid;
 	if(jobid > 0 && jobid < 21){
 		if( Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions LEFT JOIN char_stats USING (charid) WHERE mjob = %u",jobid) 
 			!= SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
@@ -169,24 +170,51 @@ uint32 CDataLoader::GetPlayersCount(uint8 jobid)
 *          Job ID is 0 for none specified.                              *
 ************************************************************************/
 
-std::list<SearchEntity*> CDataLoader::GetPlayersList(uint8 jobid)
+std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 {
     std::list<SearchEntity*> PlayersList;
+	bool shouldFilter = false;
+	uint8 filters = 0;
+	std::string filterQry = "";
+	if(sr.jobid > 0 && sr.jobid < 21){ 
+		filterQry.append(" mjob = %u "); 
+		filters |= 0x01;
+		shouldFilter = true;
+	}
+	if(sr.zoneid > 0) { 
+		if(filters==1){
+			filterQry.append("AND pos_zone = %u ");
+		}
+		else{
+			filterQry.append("pos_zone = %u ");
+		}
+		filters |= 0x02;
+		shouldFilter = true;
+	}
 	int32 ret = SQL_ERROR;
 
-	if(jobid!=0){
-		ShowMessage("Filter by job %u \n",jobid);
-		const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
+	if(shouldFilter){
+		std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
                             war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
                             FROM accounts_sessions \
                             LEFT JOIN chars USING (charid) \
                             LEFT JOIN char_look USING (charid) \
                             LEFT JOIN char_stats USING (charid) \
                             LEFT JOIN char_jobs USING(charid) \
-							WHERE mjob = %u \
-                            ORDER BY charname ASC \
-                            LIMIT 20";
-		ret = Sql_Query(SqlHandle, fmtQuery,jobid);
+							WHERE charname IS NOT NULL AND ";
+		fmtQuery.append(filterQry);
+		fmtQuery.append("ORDER BY charname ASC");
+
+		if(filters==1){//just job
+			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.jobid);
+		}
+		else if(filters==2){ //just zone
+			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.zoneid);	
+		}
+		else if(filters==3){ //zone and job
+			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.jobid,sr.zoneid);
+		}
+
 	}
 	else{
 		const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
@@ -196,6 +224,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(uint8 jobid)
                             LEFT JOIN char_look USING (charid) \
                             LEFT JOIN char_stats USING (charid) \
                             LEFT JOIN char_jobs USING(charid) \
+							WHERE charname IS NOT NULL \
                             ORDER BY charname ASC \
                             LIMIT 20";
 		ret = Sql_Query(SqlHandle, fmtQuery);
@@ -203,6 +232,8 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(uint8 jobid)
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
+		int totalResults = 0; //gives ALL matching criteria (total)
+		int visibleResults = 0; //capped at first 20
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 		{
             SearchEntity* PPlayer = new SearchEntity;
@@ -234,9 +265,41 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(uint8 jobid)
 
             PPlayer->flags2 = PPlayer->flags1;
 
-            PlayersList.push_back(PPlayer);
+			if(sr.minlvl >0 && sr.maxlvl >= sr.minlvl){ //filter by level
+				if(PPlayer->mlvl < sr.minlvl || PPlayer->mlvl > sr.maxlvl){
+					continue;
+				}
+			}
+			if(sr.nameLen>0){ //filter by name
+				string_t dbname;
+				dbname.insert(0,(int8*)PPlayer->name);
+				if(sr.nameLen > dbname.length()){//can't be this name, too long
+					continue;
+				}
+				bool validName = true;
+				for(int i=0;i<sr.nameLen; i++){
+					//convert to lowercase for both
+					if(tolower(sr.name[i]) != tolower(PPlayer->name[i])){
+						validName = false;
+						break;
+					}
+				}
+				if(!validName){
+					continue;
+				}
+			}
+			if(visibleResults<20){
+				PlayersList.push_back(PPlayer);
+				visibleResults++;
+			}
+			totalResults++;
         }
+		if(totalResults>0){
+			*count = totalResults;
+		}
+		ShowMessage("Found %i results, displaying %i. \n",totalResults,visibleResults);
     }
+	
     return PlayersList;
 }
 
