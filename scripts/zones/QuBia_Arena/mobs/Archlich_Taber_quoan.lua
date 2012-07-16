@@ -4,24 +4,13 @@
 -- Mission 5-1 BCNM Fight
 -----------------------------------
 
+
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
 function OnMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob,killer)
-	-- Despawn Warriors from this specific BCNM
-	self = mob:getID();
-
-	for i = self+1, self+6, 1 do
-		DespawnMob(i);
-	end
 end;
 
 -----------------------------------
@@ -42,22 +31,22 @@ function onMobEngaged(mob,target)
 	for i = self+3, self+6, 1 do
 		SpawnMob(i):updateEnmity(target);
 	end
+	
 end;
 
 -----------------------------------
--- onEventUpdate
+-- onMobDeath
 -----------------------------------
 
-function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
-end;
+function onMobDeath(mob,killer)
+	
+	killer:setTitle(ARCHMAGE_ASSASSIN);
+	
+	-- Despawn Warriors from this specific BCNM
+	self = mob:getID();
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+	for i = self+1, self+6, 1 do
+		DespawnMob(i);
+	end
+	
 end;

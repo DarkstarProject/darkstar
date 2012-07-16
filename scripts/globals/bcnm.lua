@@ -13,7 +13,7 @@ itemid_bcnmid_map = {139,{0,0}, --Horlais Peak
 					 206,{0,0}}; --Qu'Bia Arena
 					 
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
--- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!) hum you sure ?
+-- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!)
 -- bcnmid,paramid,bcnmid,paramid,etc
 -- The BCNMID is found via the database.
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
@@ -26,7 +26,7 @@ bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
 					144,{64,0,70,6,71,7,72,8},
 					146,{96,0,101,5,102,6,103,7},
 					168,{192,0,194,2,195,3,196,4},
-					206,{512,1,517,5,518,6,519,7}};
+					206,{512,0,517,5,518,6,519,7}};
 
 
 -- Call this onTrade for burning circles
@@ -48,7 +48,7 @@ function TradeBCNM(player,zone,trade,npc)
 		player:setVar("trade_bcnmid",0);
 		return false;
 	else --a valid BCNM with this item, start it.
-		mask = GetBattleBitmask(id,zone);
+		mask = GetBattleBitmask(id,zone,1);
 		if(mask == -1)then --Cannot resolve this BCNMID to an event number, edit bcnmid_param_map!
 			print("Item is for a valid BCNM but cannot find the event parameter to display to client.");
 			player:setVar("trade_bcnmid",0);
@@ -72,7 +72,7 @@ function EventTriggerBCNM(player,npc)
 		else --You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
 			status = player:getStatusEffect(EFFECT_BATTLEFIELD);
 			playerbcnmid = status:getPower();
-			playermask = GetBattleBitmask(playerbcnmid,player:getZone());
+			playermask = GetBattleBitmask(playerbcnmid,player:getZone(),1);
 			if(playermask~=-1) then
 				--This gives players who did not trade to go in the option of entering the fight
 				player:startEvent(0x7d00,0,0,0,playermask,0,0,0,0);
@@ -132,7 +132,7 @@ function EventUpdateBCNM(player,csid,option)
 		
 		if(instance == player:getVar("bcnm_instanceid"))then
 			--respond to this packet
-			mask = GetBattleBitmask(id,player:getZone());
+			mask = GetBattleBitmask(id,player:getZone(),2);
 			player:updateEvent(2,mask,0,1,1,0); -- Add mask number for the correct entering CS
 			player:bcnmEnter(id);
 			player:setVar("bcnm_instanceid_tick",0);
@@ -214,13 +214,17 @@ function CheckMaatFights(player,zone,trade,npc)
 	return false;
 end;
 
-function GetBattleBitmask(id,zone)
+function GetBattleBitmask(id,zone,mode)
 	--normal sweep for NON MAAT FIGHTS
 	for zoneindex = 1, table.getn(bcnmid_param_map), 2 do
 		if(zone==bcnmid_param_map[zoneindex])then --matched zone
 			for bcnmindex = 1, table.getn(bcnmid_param_map[zoneindex + 1]), 2 do --loop bcnms in this zone
 				if(id==bcnmid_param_map[zoneindex+1][bcnmindex])then --found bcnmid
-					return bcnmid_param_map[zoneindex+1][bcnmindex+1];
+					if(mode == 1) then
+						return 2^bcnmid_param_map[zoneindex+1][bcnmindex+1]; -- for trigger (mode 1): 1,2,4,8,16,32,...
+					else
+						return bcnmid_param_map[zoneindex+1][bcnmindex+1]; -- for update (mode 2): 0,1,2,3,4,5,6,...
+					end
 				end
 			end
 		end
@@ -244,20 +248,45 @@ end;
 -- E.g. mission checks go here, you must know the right bcnmid for the mission you want to code.
 --      You also need to know the bitmask (event param) which should be put in bcnmid_param_map
 function checkNonTradeBCNM(player,npc)
-	--EXAMPLE: Mission 5-1 in Qu'Bia Arena
-	if(player:getZone()==206) then --also need to check if Mission 5-1 is active
-		mask = GetBattleBitmask(512,206); --bcnmid=512
-		if(mask==-1) then --something went wrong
-			print("BCNMID/Mask pair not found");
-		else
-			print("BCNMID found with mask "..mask);
-			player:startEvent(0x7d00,0,0,0,mask,0,0,0,0);
-			-- Remember to store the BCNMID for EventUpdate/Finish!
-			player:setVar("trade_bcnmid",512);
-			return true;
+	
+	local mask = 0;
+	Zone = player:getZone();
+	
+	if(Zone == 139) then -- Horlais Peak
+		if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
+			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then -- Mission 2-3
+			mask = GetBattleBitmask(0,Zone,1);
+			player:setVar("trade_bcnmid",0);
+		end
+	elseif(Zone == 144) then -- Waughroon Shrine
+		if((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or 
+			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") == 10) then -- Mission 2-3
+			mask = GetBattleBitmask(64,Zone,1);
+			player:setVar("trade_bcnmid",64);
+		end
+	elseif(Zone == 146) then -- Balga's Dais
+		if(player:hasKeyItem(DARK_KEY)) then -- Mission 2-3
+			mask = GetBattleBitmask(96,Zone,1);
+			player:setVar("trade_bcnmid",96);
+		end 
+	elseif(Zone == 206) then -- Qu'Bia Arena
+		if(player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1
+			mask = GetBattleBitmask(512,Zone,1); -- bcnmid/zone/mode
+			player:setVar("trade_bcnmid",512); -- Remember to store the BCNMID for EventUpdate/Finish!
 		end
 	end
-	return false;
+	
+	if(mask == -1) then
+		print("BCNMID/Mask pair not found"); -- something went wrong
+		return true;
+	elseif(mask ~= 0) then
+		player:startEvent(0x7d00,0,0,0,mask,0,0,0,0);
+		print("BCNMID found with mask "..mask);
+		return true;
+	else
+		return false;
+	end
+	
 end;
 
 

@@ -9,7 +9,6 @@ package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Horlais_Peak/TextIDs");
@@ -50,35 +49,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:setVar("trade_bcnmid",0);
 	
 	if(EventTriggerBCNM(player,npc))then
 		return;
 	end
 	
-	pZone = player:getZone();
-	player:setVar(tostring(pZone) .. "_Ready",0);
-	player:setVar(tostring(pZone) .. "_Field",0);
-	player:setVar(tostring(pZone) .. "_onTrade",0);
-	
-	if(npc:getID() == 17346795) then
-		if(getAvailableBattlefield(pZone) ~= 255) then
-			local bcnmFight = 0;
-
-			if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
-				player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then
-				bcnmFight = bcnmFight + 1;
-			end
-
-			if(bcnmFight >= 0) then
-				player:startEvent(0x7d00,0,0,0,bcnmFight,0,0,0,0);
-			end
-		else
-			player:messageSpecial(7155);
-		end
-	else
-		player:startEvent(0x7d03);
-	end
 end;
 
 -----------------------------------

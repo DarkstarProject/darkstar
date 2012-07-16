@@ -6,13 +6,6 @@ function OnMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, killer)
-end;
-
------------------------------------
 -- onMobEngaged
 -----------------------------------
 
@@ -33,3 +26,9 @@ function onMobEngaged(mob,target)
 	GetMobByID(Lich):updateEnmity(attacker);
 end;
 
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer)
+end;

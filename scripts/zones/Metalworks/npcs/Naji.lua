@@ -38,15 +38,6 @@ end;
 
 function onTrigger(player,npc)
 	
-	-- TEMP -------------------
-	if(player:getCurrentMission(BASTOK) == 255 and player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK)) then
-		player:addMission(1,14);
-	elseif(player:getCurrentMission(BASTOK) == 255 and player:hasKeyItem(NEW_FEIYIN_SEAL)) then
-		player:addMission(1,14);
-		player:setVar("MissionStatus",10);
-	end	
-	---------------------------
-	
 	if(player:getCurrentMission(BASTOK) ~= 255) then
 		currentMission = player:getCurrentMission(BASTOK);
 		

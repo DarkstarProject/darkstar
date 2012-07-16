@@ -1,16 +1,15 @@
 -----------------------------------
--- Area: Qu'Bia Arena
--- NPC:  Mission Rank 5
--- @pos -221 -24 19 206
+-- Area: Waughroon Shrine
+-- Name: Mission Rank 2
+-- @pos -345 104 -260 144
 -----------------------------------
-package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
------------------------------------
+package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
+-------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/QuBia_Arena/TextIDs");
+require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
-require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)
@@ -30,31 +29,34 @@ end;
 
 function OnBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
+	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if(player:hasKeyItem(NEW_FEIYIN_SEAL)) then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
-		else -- Gives skip dialogue if previously completed
+		if(player:hasCompletedMission(player:getNation(),5)) then
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+		else
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
 		end
 	elseif(leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
+	
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-        
+	
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-        
+	
 	if(csid == 0x7d01) then
-		if(player:hasKeyItem(NEW_FEIYIN_SEAL)) then
-			player:addKeyItem(BURNT_SEAL);
-			player:messageSpecial(KEYITEM_OBTAINED,BURNT_SEAL);
-			player:setVar("MissionStatus",12);
-			player:delKeyItem(NEW_FEIYIN_SEAL);
-		end;
-	end;
+		if((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or 
+		player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and 
+		player:getVar("MissionStatus") == 10) then
+			player:addKeyItem(KINDRED_CREST);
+			player:messageSpecial(KEYITEM_OBTAINED,KINDRED_CREST);
+			player:setVar("MissionStatus",11);
+		end
+	end
 	
 end;
