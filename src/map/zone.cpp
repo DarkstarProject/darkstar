@@ -113,6 +113,8 @@ CZone::CZone(uint8 ZoneID, uint8 RegionID)
 		case 206:
 		case 144:
 		case 168:
+		case 163:
+		case 141:
 			m_InstanceHandler = new CInstanceHandler(m_zoneID);
 	}
 
