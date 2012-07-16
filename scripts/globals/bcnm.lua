@@ -259,6 +259,16 @@ function checkNonTradeBCNM(player,npc)
 			mask = GetBattleBitmask(0,Zone,1);
 			player:setVar("trade_bcnmid",0);
 		end
+	elseif(Zone == 140) then -- Ghelsba Outpost
+		MissionStatus = player:getVar("MissionStatus");
+		sTcCompleted = player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)
+		if(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and (sTcCompleted and MissionStatus <= 2 or sTcCompleted == false and MissionStatus == 2)) then -- Sandy Mission 1-3
+			mask = GetBattleBitmask(32,Zone,1);
+			player:setVar("trade_bcnmid",32);
+		elseif(player:hasKeyItem(DRAGON_CURSE_REMEDY)) then -- DRG Flag Quest
+			mask = GetBattleBitmask(33,Zone,1);
+			player:setVar("trade_bcnmid",33);
+		end
 	elseif(Zone == 144) then -- Waughroon Shrine
 		if((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or 
 			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") == 10) then -- Mission 2-3
