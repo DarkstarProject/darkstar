@@ -3,19 +3,16 @@
 --  Description: Stuns target. Chance of stunning varies with TP. 
 --  Type: Physical
 ---------------------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
 
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
-require("scripts/zones/Horlais_Peak/TextIDs");
 
 ---------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
 	
-	target:showText(mob,TAKE_THAT_YOU_WHIPPERSNAPPER);
+	if(target:getID() < 1000000) then target:showText(mob,TAKE_THAT_YOU_WHIPPERSNAPPER); end
 	
 	isEnfeeble = true;
 	typeEffect = EFFECT_STUN;

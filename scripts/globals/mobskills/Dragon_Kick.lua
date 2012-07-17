@@ -11,7 +11,7 @@ require("/scripts/globals/monstertpmoves");
 
 function OnMobWeaponSkill(target, mob, skill)
 	
-	target:showText(mob,TAKE_THAT_YOU_WHIPPERSNAPPER);
+	if(target:getID() < 1000000) then target:showText(mob,TAKE_THAT_YOU_WHIPPERSNAPPER); end
 	
     numhits = 1;
 	accmod = 1;
