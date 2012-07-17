@@ -3920,17 +3920,12 @@ inline int32 CLuaBaseEntity::openDoor(lua_State *L)
 
 inline int32 CLuaBaseEntity::getCP(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 			
-			lua_pushinteger( L, PChar->RegionPoints[PChar->profile.nation] );
-			return 1;
-		}
-	}
-	lua_pushnil(L);
+	lua_pushinteger( L, PChar->RegionPoints[PChar->profile.nation] );
 	return 1;
 }
 
@@ -3942,7 +3937,7 @@ inline int32 CLuaBaseEntity::addCP(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 	
-	int32 cp = (int32)lua_tointeger(L, -1);
+	int32 cp = (int32)lua_tointeger(L,1);
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
 	PChar->RegionPoints[PChar->profile.nation] += cp;
@@ -3952,19 +3947,79 @@ inline int32 CLuaBaseEntity::addCP(lua_State *L)
 	return 0;
 }
 
+//==========================================================//
+
 inline int32 CLuaBaseEntity::delCP(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 	
-	int32 cp = (int32)lua_tointeger(L, -1);
+	int32 cp = (int32)lua_tointeger(L,1);
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
 	PChar->RegionPoints[PChar->profile.nation] -= cp;
 	charutils::SaveCharPoints(PChar);
 	PChar->pushPacket(new CConquestPacket(PChar));
 		
+	return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getNationTeleport(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	
+	int32 nation = (int32)lua_tointeger(L,1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	
+	if(nation == 0)
+	{
+		lua_pushinteger( L, PChar->nationtp.sandoria );
+		return 1;
+	}
+	else if(nation == 1)
+	{
+		lua_pushinteger( L, PChar->nationtp.bastok );
+		return 1;
+	}
+	else if(nation == 2)
+	{
+		lua_pushinteger( L, PChar->nationtp.bastok );
+		return 1;
+	}
+	else
+	{
+		ShowDebug(CL_CYAN"lua::getNationTeleport no region with this number!\n" CL_RESET);
+		return 0;
+	}
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1) || lua_isnil(L,2) || !lua_isnumber(L,2));
+	
+	int32 nation = (int32)lua_tointeger(L,1);
+	int32 newTP = (int32)lua_tointeger(L,2);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	if(nation == 0)		 PChar->nationtp.sandoria += newTP;
+	else if(nation == 1) PChar->nationtp.bastok += newTP;
+	else if(nation == 2) PChar->nationtp.windurst += newTP;
+	else
+	{
+		ShowDebug(CL_CYAN"lua::getNationTeleport no region with this number!\n" CL_RESET);
+		return 0;
+	}
+
+	charutils::SaveCharPoints(PChar);
 	return 0;
 }
 
@@ -4129,5 +4184,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delCP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addNationTeleport),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
 	{NULL,NULL}
 };

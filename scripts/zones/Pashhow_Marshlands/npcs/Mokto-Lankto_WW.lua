@@ -2,14 +2,12 @@
 -- Area: Pashhow Marshlands
 -- NPC:  Mokto-Lankto, W.W.
 -- Outpost Conquest Guards
--- @zone 109
--- @pos 470.843 23.465 415.520
+-- @pos 470.843 23.465 415.520 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
@@ -75,12 +73,11 @@ function onEventFinish(player,csid,option)
 		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 	elseif(option == 2) then
 		player:delKeyItem(getSupplyKey(region));
-		addCP(player,supplyReward[region + 1])
+		player:addCP(supplyReward[region + 1])
 		player:messageSpecial(CONQUEST); -- "You've earned conquest points!"
 		if(hasOutpost(player, region+5) == 0) then
-			supply_quests = player:getVar("supplyQuest_WINDURST");
-			supply_quests = supply_quests + 2^(region+5);
-			player:setVar("supplyQuest_WINDURST",supply_quests);
+			supply_quests = 2^(region+5);
+			player:addNationTeleport(guardnation,supply_quests);
 			player:setVar("supplyQuest_region",0);
 		end
 	elseif(option == 4) then

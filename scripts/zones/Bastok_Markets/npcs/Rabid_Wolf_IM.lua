@@ -12,8 +12,7 @@
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -------------------------------------
-
-require("scripts/globals/settings");
+
 require("scripts/globals/conquestguards");
 require("scripts/zones/Bastok_Markets/TextIDs");
 
@@ -48,7 +47,7 @@ function onTrigger(player,npc)
 		Menu2 = getExForceAvailable(guardnation,player);
 		Menu3 = conquestRanking();
 		Menu4 = getSupplyAvailable(guardnation,player);
-		Menu5 = player:getVar("supplyQuest_BASTOK");
+		Menu5 = player:getNationTeleport(guardnation);
 		Menu6 = getArg6(player);
 		Menu7 = player:getCP();
 		Menu8 = getRewardExForce(guardnation,player);

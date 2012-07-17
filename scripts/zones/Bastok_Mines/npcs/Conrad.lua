@@ -8,8 +8,7 @@
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
+
 require("scripts/globals/conquestguards");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
@@ -30,7 +29,7 @@ end;
 function onTrigger(player,npc)
 	
 	if(guardnation == player:getNation()) then
-		player:startEvent(csid,0,0,0,0,0,0,player:getMainLvl(),1073741823 - player:getVar("supplyQuest_BASTOK"));
+		player:startEvent(csid,0,0,0,0,0,0,player:getMainLvl(),1073741823 - player:getNationTeleport(guardnation));
 	else
 		player:startEvent(csid,0,0,0,0,0,1,0,0);
 	end
@@ -46,7 +45,7 @@ function onEventUpdate(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	loca = option - 1073741824;
-	player:updateEvent(player:getGil(),OP_TeleFee(player,loca),getCP(player),OP_TeleFee(player,loca));
+	player:updateEvent(player:getGil(),OP_TeleFee(player,loca),player:getCP(),OP_TeleFee(player,loca));
 	
 end;
 

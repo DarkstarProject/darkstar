@@ -2,14 +2,12 @@
 -- Area: North Gustaberg
 -- NPC:  Kuuwari-Aori, W.W.
 -- Outpost Conquest Guards
--- @zone 106
--- @pos -584.687 39.107 54.281
+-- @pos -584.687 39.107 54.281 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/conquestguards");
 require("scripts/zones/North_Gustaberg/TextIDs");
 
@@ -75,12 +73,11 @@ function onEventFinish(player,csid,option)
 		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 	elseif(option == 2) then
 		player:delKeyItem(getSupplyKey(region));
-		addCP(player,supplyReward[region + 1])
+		player:addCP(supplyReward[region + 1])
 		player:messageSpecial(CONQUEST); -- "You've earned conquest points!"
 		if(hasOutpost(player, region+5) == 0) then
-			supply_quests = player:getVar("supplyQuest_WINDURST");
-			supply_quests = supply_quests + 2^(region+5);
-			player:setVar("supplyQuest_WINDURST",supply_quests);
+			supply_quests = 2^(region+5);
+			player:addNationTeleport(guardnation,supply_quests);
 			player:setVar("supplyQuest_region",0);
 		end
 	elseif(option == 4) then

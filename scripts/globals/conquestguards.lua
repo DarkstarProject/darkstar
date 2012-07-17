@@ -368,11 +368,11 @@ function hasOutpost(player, region)
 	local bit = {};
 	
 	if(nation == BASTOK) then
-		supply_quests = player:getVar("supplyQuest_BASTOK");
+		supply_quests = player:getNationTeleport(BASTOK);
 	elseif(nation == SANDORIA) then
-		supply_quests = player:getVar("supplyQuest_SANDORIA");
+		supply_quests = player:getNationTeleport(SANDORIA);
 	elseif(nation == WINDURST) then
-		supply_quests = player:getVar("supplyQuest_WINDURST");
+		supply_quests = player:getNationTeleport(WINDURST);
 	end;
 	
 	for i = 23,5,-1 do 

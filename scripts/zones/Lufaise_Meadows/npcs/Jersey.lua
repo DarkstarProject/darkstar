@@ -9,7 +9,6 @@ package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/conquestguards");
 require("scripts/zones/Lufaise_Meadows/TextIDs");
@@ -41,7 +40,7 @@ function onTrigger(player,npc)
 		nation = 0;
 	end
 	
-	player:startEvent(csid,nation,OP_TeleFee(player,region),getCP(player),OP_TeleFee(player,region),0,0,0,0);
+	player:startEvent(csid,nation,OP_TeleFee(player,region),player:getCP(),OP_TeleFee(player,region),0,0,0,0);
 	
 end;
 
@@ -53,7 +52,7 @@ function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("OPTION: %u",option);
 	
-	player:updateEvent(player:getGil(),OP_TeleFee(player,region),getCP(player),OP_TeleFee(player,region));
+	player:updateEvent(player:getGil(),OP_TeleFee(player,region),player:getCP(),OP_TeleFee(player,region));
 	
 end;
 
