@@ -804,6 +804,18 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		else{
 			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move LOCKED item %i from location %u slot %u to location %u slot %u of quan %u \n" CL_RESET, PItem->getID(),FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
 		}
+		
+		uint8 size = PChar->getStorage(FromLocationID)->GetSize();
+		for(uint8 slotID = 0; slotID <= size; ++slotID) 
+		{
+			CItem* PItem = PChar->getStorage(FromLocationID)->GetItem(slotID);
+			if(PItem != NULL) 
+			{
+				PChar->pushPacket(new CInventoryItemPacket(PItem, FromLocationID, slotID));		
+			}
+		}
+		PChar->pushPacket(new CInventoryFinishPacket());
+
 		return;
 	}
 	if(PItem->getQuantity() < quantity) 
