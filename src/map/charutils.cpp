@@ -55,6 +55,7 @@
 #include "packets/message_debug.h"
 #include "packets/message_standard.h"
 #include "packets/quest_mission_log.h"
+#include "packets/conquest_map.h"
 
 #include "ability.h"
 #include "battleutils.h"
@@ -68,6 +69,7 @@
 #include "trait.h"
 #include "weapon_skill.h"
 #include "zoneutils.h"
+#include "conquest_system.h"
 
 /************************************************************************
 *																		*
@@ -514,6 +516,27 @@ void LoadChar(CCharEntity* PChar)
 		}
 	}
 
+	fmtQuery = "SELECT sandoria_cp, bastok_cp, windurst_cp, sandoria_supply, bastok_supply, windurst_supply  \
+				FROM char_points \
+				WHERE charid = %u;";
+
+	ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+
+	if (ret != SQL_ERROR && 
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		PChar->RegionPoints[0] = (uint16)Sql_GetIntData(SqlHandle, 0);
+		PChar->RegionPoints[1] = (uint16)Sql_GetIntData(SqlHandle, 1);
+		PChar->RegionPoints[2] = (uint16)Sql_GetIntData(SqlHandle, 2);
+		PChar->nationtp.sandoria = (uint16)Sql_GetIntData(SqlHandle, 3);
+		PChar->nationtp.bastok = (uint16)Sql_GetIntData(SqlHandle, 4);
+		PChar->nationtp.windurst = (uint16)Sql_GetIntData(SqlHandle, 5);
+		//PChar->RegionPoints[3] = (uint16)Sql_GetIntData(SqlHandle, 6);
+		//PChar->nationtp.ahturhgan = (uint16)Sql_GetIntData(SqlHandle, 7);
+		//PChar->RegionPoints[4] = (uint16)Sql_GetIntData(SqlHandle, 8); //Zeni Point
+	}
+
 	BuildingCharSkillsTable(PChar);
 	BuildingCharAbilityTable(PChar);
 	BuildingCharTraitsTable(PChar);
@@ -694,7 +717,6 @@ void SendQuestMissionLog(CCharEntity* PChar)
 
 	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x01));
 	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x02));
-
 	// Treasures of Aht Urhgan
 	// Wings of the Goddess Missions
 
@@ -2477,7 +2499,13 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
 	}
 
     PChar->jobs.exp[PChar->GetMJob()] += exp;
-
+	// Conquest point
+	if(conquest::GetRegionOwner(conquest::GetCurrentRegion(PChar->getZone())) == PChar->profile.nation)
+	{
+		PChar->RegionPoints[PChar->profile.nation] += ((exp/100)*10); // 10%
+		PChar->pushPacket(new CConquestPacket(PChar));
+	}
+	
     if (PChar->jobs.exp[PChar->GetMJob()] >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]))
     {
         if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai)
@@ -2509,6 +2537,7 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
             SaveCharStats(PChar);
             SaveCharJob(PChar, PChar->GetMJob());
             SaveCharExp(PChar, PChar->GetMJob());
+			SaveCharPoints(PChar);
 
             PChar->pushPacket(new CCharJobsPacket(PChar));
             PChar->pushPacket(new CCharUpdatePacket(PChar));
@@ -2859,6 +2888,29 @@ void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
 
 	Sql_Query(SqlHandle,fmtQuery,PChar->id,SkillID,PChar->RealSkills.skill[SkillID],PChar->RealSkills.rank[SkillID],
 		PChar->RealSkills.skill[SkillID],PChar->RealSkills.rank[SkillID]);
+}
+
+/************************************************************************
+*																		*
+*  Conquest Point / Nation TP, ...										*
+*																		*
+************************************************************************/
+
+void SaveCharPoints(CCharEntity* PChar)
+{
+	const int8* Query = "UPDATE char_points \
+				  		SET sandoria_cp = %u, bastok_cp = %u, windurst_cp = %u, sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u \
+						 WHERE charid = %u;";
+
+	Sql_Query(SqlHandle, 
+        Query,
+        PChar->RegionPoints[0],
+		PChar->RegionPoints[1],
+		PChar->RegionPoints[2],
+        PChar->nationtp.sandoria, 
+		PChar->nationtp.bastok,
+		PChar->nationtp.windurst, 
+		PChar->id);
 }
 
 uint8 checkMultiHits(CCharEntity* PChar, uint16 weaponid){

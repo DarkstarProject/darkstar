@@ -112,7 +112,7 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 	-- Nation:	-- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno)
 	-- Type: 	1: city, 2: foreign, 3: outpost, 4: border
 	
-	local myCP = getCP(player);
+	local myCP = player:getCP();
 	local item = trade:getItem();
 	local AddPoints = 0;
 	
@@ -139,7 +139,8 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 					
 				if(player:getRank() ~= 1 and player:getRankPoints() < 4000) then
 					if(AddPoints + player:getRankPoints() >= 4000) then
-						setCP(player,myCP + (AddPoints + player:getRankPoints()) - 4000);
+						newpoint = (AddPoints + player:getRankPoints()) - 4000;
+						player:addCP(newpoint);
 						player:setRankPoints(4000);
 						player:showText(npc,CONQUEST + 44);
 					else
@@ -155,7 +156,7 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 			if(trade:hasItemQty(item,1) and trade:getItemCount() == 1) then
 				if(myCP >= XpRing[item - 15760]) then
 					
-					setCP(player,myCP - XpRing[item - 15760]);
+					player:delCP(XpRing[item - 15760]);
 					player:tradeComplete();
 					player:addItem(item);
 					player:showText(npc,CONQUEST + 58,item,XpRing[item - 15760],RingCharg[(item - 15760)]);

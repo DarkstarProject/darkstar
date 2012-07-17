@@ -326,6 +326,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     charutils::SaveCharStats(PChar);
 	charutils::SaveCharPosition(PChar);
 	charutils::SaveCharExp(PChar, PChar->GetMJob());
+	charutils::SaveCharPoints(PChar);
 
 	if (PChar->status == STATUS_SHUTDOWN)
 	{

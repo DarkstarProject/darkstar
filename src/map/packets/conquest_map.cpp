@@ -60,7 +60,6 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 
 	WBUFB(data,(0x8C)-4) = conquest::GetNexTally();
     WBUFL(data,(0x90)-4) = PChar->RegionPoints[PChar->profile.nation];
-
 	WBUFB(data,(0x9C)-4) = 0x01;
 
 	uint8 packet[] = 
@@ -69,5 +68,5 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
     };
 	memcpy(data+(0xA0)-4, &packet, 16);
 
-  //WBUFL(data,(0xB0)-4) = PChar->GetImperialStandingPoints();
+	//WBUFL(data,(0xB0)-4) = PChar->GetImperialStandingPoints();
 }

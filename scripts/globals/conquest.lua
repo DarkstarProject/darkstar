@@ -36,30 +36,6 @@ ELSHIMOLOWLANDS = 14;
      MOVALPOLOS = 17;
        TAVNAZIA = 18;
 
------------------------------------------------------------------
--- getCP(player) returns a player's conquest points. 
------------------------------------------------------------------
-
-function getCP(player)
-	return player:getVar("CP");
-end;
-
------------------------------------------------------------------
--- add_CP(player, amount) adds to a player's conquest points.
------------------------------------------------------------------
-
-function addCP(player,amount)
-	player:setVar("CP",player:getVar("CP") + amount);
-end;
-
------------------------------------------------------------------
--- setCP(player) sets player's conquest points. 
------------------------------------------------------------------
-
-function setCP(player,amount)
-	player:setVar("CP",amount);
-end;
-
 -----------------------------------
 -- Nation rank in conquest
 -----------------------------------

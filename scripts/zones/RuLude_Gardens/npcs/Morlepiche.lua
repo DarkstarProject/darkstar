@@ -36,7 +36,7 @@ function onTrigger(player,npc)
 	Menu1 = getArg1(guardnation,player);
 	Menu3 = conquestRanking();
 	Menu6 = getArg6(player);
-	Menu7 = getCP(player);
+	Menu7 = player:getCP();
 	
 	player:startEvent(0x7ffb,Menu1,0,Menu3,0,0,Menu6,Menu7,0); 
 	
@@ -65,7 +65,7 @@ function onEventUpdate(player,csid,option)
 		for Item = 1,size,3 do
 			if(option == inventory[Item]) then
 				CPVerify = 1;
-				if(getCP(player) >= inventory[Item + 1]) then
+				if(player:getCP() >= inventory[Item + 1]) then
 					CPVerify = 0;
 				end;
 				
@@ -90,12 +90,11 @@ function onEventFinish(player,csid,option)
 		player:delStatusEffect(EFFECT_SIGNET);
 		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 	elseif(option >= 32768 and option <= 32944) then
-		myCP = getCP(player);
 		for Item = 1,size,3 do
 			if(option == inventory[Item]) then
 				if(player:getFreeSlotsCount() >= 1) then
-					PlayerCP = myCP - inventory[Item + 1];
-					setCP(player,PlayerCP);
+					itemCP = inventory[Item + 1];
+					player:delCP(itemCP);
 					player:addItem(inventory[Item + 2],1);
 					player:messageSpecial(ITEM_OBTAINED,inventory[Item + 2]);
 				else

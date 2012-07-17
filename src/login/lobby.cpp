@@ -744,5 +744,12 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 	{
 		return -1;
 	}
+
+	fmtQuery = "INSERT INTO char_points(charid) VALUES(%u);";
+
+	if( Sql_Query(SqlHandle,fmtQuery,charid) == SQL_ERROR )
+	{
+		return -1;
+	}
 	return 0;
 }

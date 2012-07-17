@@ -64,6 +64,7 @@
 #include "../packets/server_ip.h"
 #include "../packets/shop_items.h"
 #include "../packets/shop_menu.h"
+#include "../packets/conquest_map.h"
 
 #include "../battleutils.h"
 #include "../charutils.h"
@@ -3104,6 +3105,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     charutils::SaveCharStats(PChar);
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     charutils::SaveCharExp(PChar, PChar->GetMJob());
+	charutils::SaveCharPoints(PChar);
 	charutils::UpdateHealth(PChar);
 
     PChar->pushPacket(new CCharJobsPacket(PChar));
@@ -3150,6 +3152,7 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
     charutils::SaveCharStats(PChar);
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     charutils::SaveCharExp(PChar, PChar->GetMJob());
+	charutils::SaveCharPoints(PChar);
 
     PChar->pushPacket(new CCharJobsPacket(PChar));
     PChar->pushPacket(new CCharStatsPacket(PChar));
@@ -3915,6 +3918,58 @@ inline int32 CLuaBaseEntity::openDoor(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::getCP(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype == TYPE_PC )
+		{
+			CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+			
+			lua_pushinteger( L, PChar->RegionPoints[PChar->profile.nation] );
+			return 1;
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addCP(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	
+	int32 cp = (int32)lua_tointeger(L, -1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->RegionPoints[PChar->profile.nation] += cp;
+	charutils::SaveCharPoints(PChar);
+	PChar->pushPacket(new CConquestPacket(PChar));
+		
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::delCP(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	
+	int32 cp = (int32)lua_tointeger(L, -1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->RegionPoints[PChar->profile.nation] -= cp;
+	charutils::SaveCharPoints(PChar);
+	PChar->pushPacket(new CConquestPacket(PChar));
+		
+	return 0;
+}
+
+//==========================================================//
+
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
 
 Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] = 
@@ -4071,5 +4126,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBcnm),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBcnmsFull),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstanceID),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delCP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCP),
 	{NULL,NULL}
 };

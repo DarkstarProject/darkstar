@@ -22,11 +22,7 @@ function onMobDeathEx(mob,killer)
 		if(SwordKills < 100) then
 			killer:setVar("Blade_of_Darkness_SwordKills", SwordKills + 1);	
 		end
-	end
-
-	-- CP is 10% of the XP points
-	addCP(killer,15);
-	
+	end	
 	if(killer:getCurrentMission(WINDURST) == A_TESTING_TIME) then
 		if(killer:hasCompletedMission(WINDURST,A_TESTING_TIME) and killer:getZone() == 118) then
 			killer:setVar("testingTime_crea_count",killer:getVar("testingTime_crea_count") + 1);

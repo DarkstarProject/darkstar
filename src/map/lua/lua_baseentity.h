@@ -239,6 +239,10 @@ public:
 
     int32 openDoor(lua_State*);             // открываем дверь
 	int32 resetRecasts(lua_State*);         // Reset recasts for the caller
+
+	int32 addCP(lua_State*);				// Add CP
+	int32 getCP(lua_State*);				// Get CP
+	int32 delCP(lua_State*);				// Delete CP
 };
 
 #endif

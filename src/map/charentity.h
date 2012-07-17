@@ -119,6 +119,17 @@ struct Recast_t
     uint8      RecastID;
 };
 
+struct NationTP_t
+{
+	uint32		sandoria;
+	uint32		bastok;
+	uint32		windurst;
+	uint8		ahturhgan;
+	uint8		pastsandoria;
+	uint8		pastbastok;
+	uint8		pastwindurst;
+};
+
 class CBasicPacket;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
@@ -163,7 +174,8 @@ public:
 	uint16			 m_mkeCurrent;					// текущая миссия A Moogle Kupo d'Etat
 	uint16			 m_asaCurrent;					// текущая миссия A Shantotto Ascension
 
-    uint32           RegionPoints[4];               // concuest points, imperial standing points etc
+    uint32           RegionPoints[5];               // conquest points, imperial standing points etc
+	NationTP_t		 nationtp;						// supply tp, runic portal, campaign tp,...
 
     uint8            GetGender();                   // узнаем пол персонажа
 

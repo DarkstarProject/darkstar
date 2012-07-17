@@ -50,7 +50,7 @@ function onTrigger(player,npc)
 		Menu4 = getSupplyAvailable(guardnation,player);
 		Menu5 = player:getVar("supplyQuest_BASTOK");
 		Menu6 = getArg6(player);
-		Menu7 = getCP(player);
+		Menu7 = player:getCP();
 		Menu8 = getRewardExForce(guardnation,player);
 		
 		player:startEvent(0x7ff9,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
@@ -70,7 +70,7 @@ function onEventUpdate(player,csid,option)
 		for Item = 1,size,3 do
 			if(option == inventory[Item]) then
 				CPVerify = 1;
-				if(getCP(player) >= inventory[Item + 1]) then
+				if(player:getCP() >= inventory[Item + 1]) then
 					CPVerify = 0;
 				end;
 				
@@ -95,20 +95,19 @@ function onEventFinish(player,csid,option)
 		player:delStatusEffect(EFFECT_SIGNET);
 		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 	elseif(option >= 32768 and option <= 32944) then
-		myCP = getCP(player);
 		for Item = 1,size,3 do
 			if(option == inventory[Item]) then
 				if(player:getFreeSlotsCount() >= 1) then
 					if(player:getNation() == guardnation) then
-						PlayerCP = myCP - inventory[Item + 1];
+						itemCP = inventory[Item + 1];
 					else
 						if(inventory[Item + 1] <= 8000) then
-							PlayerCP = myCP - inventory[Item + 1] * 2;
+							itemCP = inventory[Item + 1] * 2;
 						else
-							PlayerCP = myCP - inventory[Item + 1] + 8000;
+							itemCP = inventory[Item + 1] + 8000;
 						end;
 					end;
-					setCP(player,PlayerCP);
+					player:delCP(itemCP);
 					player:addItem(inventory[Item + 2],1);
 					player:messageSpecial(ITEM_OBTAINED,inventory[Item + 2]);
 				else
