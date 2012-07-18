@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function OnMobEngaged(mob,target)
-	target:showText(mob,YOU_DECIDED_TO_SHOW_UP);
+	-- target:showText(mob,YOU_DECIDED_TO_SHOW_UP);
 	printf("Maat Balga Dais works");
 	-- When he take damage: target:showText(mob,THAT_LL_HURT_IN_THE_MORNING);
 	-- He use dragon kick or tackle: target:showText(mob,TAKE_THAT_YOU_WHIPPERSNAPPER);
