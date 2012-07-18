@@ -1898,7 +1898,7 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
     DSP_DEBUG_BREAK_IF(chainCount <= 0 || chainCount > 5);
 
     // Determine the skill chain level and elemental resistance.
-    uint16 resistance = 0;
+    int16 resistance = 0;
     uint16 chainLevel = 0;
     switch(effect)
     {
