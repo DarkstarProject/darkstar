@@ -6,11 +6,12 @@ require("scripts/globals/status");
 --array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
 --e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
 -- DO NOT INCLUDE MAAT FIGHTS
-itemid_bcnmid_map = {139,{0,0}, --Horlais Peak
-					 144,{0,0}, --Waughroon Shrine
-					 146,{0,0}, --Balgas Dias
-					 168,{0,0}, --Chamber of Oracles
-					 206,{0,0}}; --Qu'Bia Arena
+itemid_bcnmid_map = {139,{0,0}, -- Horlais Peak
+					 144,{0,0}, -- Waughroon Shrine
+					 146,{0,0}, -- Balgas Dias
+					 168,{0,0}, -- Chamber of Oracles
+					 203,{1545,482}, -- Cloister of Frost
+					 206,{0,0}}; -- Qu'Bia Arena
 					 
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
 -- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!)
@@ -26,6 +27,7 @@ bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
 					165,{160,0},
 					168,{192,0,194,2,195,3,196,4},
 					179,{256,0},
+					203,{480,0,482,2},
 					206,{512,0,517,5,518,6,519,7}};
 
 
@@ -49,6 +51,7 @@ function TradeBCNM(player,zone,trade,npc)
 		return false;
 	else --a valid BCNM with this item, start it.
 		mask = GetBattleBitmask(id,zone,1);
+		
 		if(mask == -1)then --Cannot resolve this BCNMID to an event number, edit bcnmid_param_map!
 			print("Item is for a valid BCNM but cannot find the event parameter to display to client.");
 			player:setVar("trade_bcnmid",0);
@@ -237,7 +240,18 @@ function ItemToBCNMID(player,zone,trade)
 		if(zone==itemid_bcnmid_map[zoneindex])then --matched zone
 			for bcnmindex = 1, table.getn(itemid_bcnmid_map[zoneindex + 1]), 2 do --loop bcnms in this zone
 				if(trade:getItem()==itemid_bcnmid_map[zoneindex+1][bcnmindex])then
-					return itemid_bcnmid_map[zoneindex+1][bcnmindex+1];
+					item = trade:getItem();
+					
+					-- Job/lvl condition for smn battle lvl20
+					if(item >= 1544 and item <= 1549 and player:getMainJob() == 15 and player:getMainLvl() >= 20) then 
+						player:tradeComplete();
+						player:setVar("trade_bcnmid",itemid_bcnmid_map[zoneindex+1][bcnmindex+1]);
+						return itemid_bcnmid_map[zoneindex+1][bcnmindex+1];
+					-- Item without condition
+					elseif(item < 1544 and item > 1549) then
+						player:setVar("trade_bcnmid",itemid_bcnmid_map[zoneindex+1][bcnmindex+1]);
+						return itemid_bcnmid_map[zoneindex+1][bcnmindex+1];
+					end						
 				end
 			end
 		end
@@ -298,6 +312,11 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3) then -- Zilart Mission 8
 			mask = GetBattleBitmask(256,Zone,1);
 			player:setVar("trade_bcnmid",256);
+		end
+	elseif(Zone == 203) then -- Cloister of Frost
+		if(player:hasKeyItem(TUNING_FORK_OF_ICE)) then -- Trial by Ice
+			mask = GetBattleBitmask(480,Zone,1);
+			player:setVar("trade_bcnmid",480);
 		end
 	elseif(Zone == 206) then -- Qu'Bia Arena
 		if(player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1

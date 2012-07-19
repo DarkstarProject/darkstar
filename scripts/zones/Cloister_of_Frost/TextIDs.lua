@@ -8,6 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 
 -- Quest dialog
 YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7156; -- You cannot enter the battlefield...
+   SHIVA_UNLOCKED = 7507; -- You are now able to summon Shiva.
 
 -- ZM4 Dialog
       ZILART_MONUMENT = 7599; -- Its an ancient Zilart Monument
