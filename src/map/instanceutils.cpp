@@ -198,6 +198,18 @@ namespace instanceutils{
 		case 139: //Horlais Peak
 			position[0]=-503; position[1]=158; position[2]=-212; position[3]=131;
 			return position;
+		case 144: //Waug. Shrine
+			position[0]=-361; position[1]=100; position[2]=-260; position[3]=131;
+			return position;
+		case 146: //Balgas Dias
+			position[0]=317; position[1]=-126; position[2]=380; position[3]=131;
+			return position;
+		case 165: //Throne Room
+			position[0]=114; position[1]=-8; position[2]=0; position[3]=131;
+			return position;
+		case 206: //QuBia Arena
+			position[0]=-241; position[1]=-26; position[2]=20; position[3]=131;
+			return position;
 		}
 		return NULL;
 	}
