@@ -147,16 +147,29 @@ INSERT INTO `bcnm_instance` VALUES ('256', '1', '17510401');
 INSERT INTO `bcnm_instance` VALUES ('256', '2', '17510402');
 INSERT INTO `bcnm_instance` VALUES ('256', '3', '17510403');
 
+-- Cloister of Gales
+INSERT INTO `bcnm_instance` VALUES ('416', '1', '17600513');
+INSERT INTO `bcnm_instance` VALUES ('416', '2', '17600514');
+INSERT INTO `bcnm_instance` VALUES ('416', '3', '17600515');
+INSERT INTO `bcnm_instance` VALUES ('418', '1', '17600519');
+INSERT INTO `bcnm_instance` VALUES ('418', '2', '17600520');
+INSERT INTO `bcnm_instance` VALUES ('418', '3', '17600521');
+
 -- Cloister of Storms
-INSERT INTO `bcnm_instance` VALUES ('448', '1', '17604610');
+INSERT INTO `bcnm_instance` VALUES ('448', '1', '17604609');
+INSERT INTO `bcnm_instance` VALUES ('448', '2', '17604610');
+INSERT INTO `bcnm_instance` VALUES ('448', '3', '17604611');
+INSERT INTO `bcnm_instance` VALUES ('450', '1', '17604618');
+INSERT INTO `bcnm_instance` VALUES ('450', '2', '17604619');
+INSERT INTO `bcnm_instance` VALUES ('450', '3', '17604620');
 
 -- Cloister of Frost
-INSERT INTO `bcnm_instance` VALUES ('480', '1', '17608726');
-INSERT INTO `bcnm_instance` VALUES ('480', '2', '17608727');
-INSERT INTO `bcnm_instance` VALUES ('480', '3', '17608728');
-INSERT INTO `bcnm_instance` VALUES ('482', '1', '17608705');
-INSERT INTO `bcnm_instance` VALUES ('482', '2', '17608706');
-INSERT INTO `bcnm_instance` VALUES ('482', '3', '17608707');
+INSERT INTO `bcnm_instance` VALUES ('480', '1', '17608705');
+INSERT INTO `bcnm_instance` VALUES ('480', '2', '17608706');
+INSERT INTO `bcnm_instance` VALUES ('480', '3', '17608707');
+INSERT INTO `bcnm_instance` VALUES ('482', '1', '17608726');
+INSERT INTO `bcnm_instance` VALUES ('482', '2', '17608727');
+INSERT INTO `bcnm_instance` VALUES ('482', '3', '17608728');
 
 -- Qu'Bia Arena
 INSERT INTO `bcnm_instance` VALUES ('512', '1', '17621007');
@@ -180,6 +193,24 @@ INSERT INTO `bcnm_instance` VALUES ('519', '3', '17621064');
 
 -- Cloister of Flames
 INSERT INTO `bcnm_instance` VALUES ('544', '1', '17625089');
+INSERT INTO `bcnm_instance` VALUES ('544', '2', '17625090');
+INSERT INTO `bcnm_instance` VALUES ('544', '3', '17625091');
+INSERT INTO `bcnm_instance` VALUES ('545', '1', '17625092');
+INSERT INTO `bcnm_instance` VALUES ('545', '2', '17625093');
+INSERT INTO `bcnm_instance` VALUES ('545', '3', '17625094');
 
 -- Cloister of Tremors
 INSERT INTO `bcnm_instance` VALUES ('576', '1', '17633281');
+INSERT INTO `bcnm_instance` VALUES ('576', '2', '17633282');
+INSERT INTO `bcnm_instance` VALUES ('576', '3', '17633283');
+INSERT INTO `bcnm_instance` VALUES ('578', '1', '17633287');
+INSERT INTO `bcnm_instance` VALUES ('578', '2', '17633288');
+INSERT INTO `bcnm_instance` VALUES ('578', '3', '17633289');
+
+-- Cloister of Tides
+INSERT INTO `bcnm_instance` VALUES ('608', '1', '17641473');
+INSERT INTO `bcnm_instance` VALUES ('608', '2', '17641474');
+INSERT INTO `bcnm_instance` VALUES ('608', '3', '17641475');
+INSERT INTO `bcnm_instance` VALUES ('609', '1', '17641476');
+INSERT INTO `bcnm_instance` VALUES ('609', '2', '17641477');
+INSERT INTO `bcnm_instance` VALUES ('609', '3', '17641478');

@@ -10,8 +10,13 @@ itemid_bcnmid_map = {139,{0,0}, -- Horlais Peak
 					 144,{0,0}, -- Waughroon Shrine
 					 146,{0,0}, -- Balgas Dias
 					 168,{0,0}, -- Chamber of Oracles
+					 201,{1546,418}, -- Cloister of Gales
+					 202,{1548,450}, -- Cloister of Storms
 					 203,{1545,482}, -- Cloister of Frost
-					 206,{0,0}}; -- Qu'Bia Arena
+					 206,{0,0}, -- Qu'Bia Arena
+					 207,{1544,545}, -- Cloister of Flames
+					 209,{1547,578}, -- Cloister of Tremors
+					 211,{1549,609}}; -- Cloister of Tides
 					 
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
 -- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!)
@@ -27,8 +32,13 @@ bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
 					165,{160,0},
 					168,{192,0,194,2,195,3,196,4},
 					179,{256,0},
+					201,{416,0,418,2},
+					202,{448,0,450,2},
 					203,{480,0,482,2},
-					206,{512,0,517,5,518,6,519,7}};
+					206,{512,0,517,5,518,6,519,7}, 
+					207,{544,0,545,1},
+					209,{576,0,578,2},
+					211,{608,0,609,1}};
 
 
 -- Call this onTrade for burning circles
@@ -313,6 +323,16 @@ function checkNonTradeBCNM(player,npc)
 			mask = GetBattleBitmask(256,Zone,1);
 			player:setVar("trade_bcnmid",256);
 		end
+	elseif(Zone == 201) then -- Cloister of Gales
+		if(player:hasKeyItem(TUNING_FORK_OF_WIND)) then -- Trial by Wind
+			mask = GetBattleBitmask(416,Zone,1);
+			player:setVar("trade_bcnmid",416);
+		end
+	elseif(Zone == 202) then -- Cloister of Storms
+		if(player:hasKeyItem(TUNING_FORK_OF_LIGHTNING)) then -- Trial by Lightning
+			mask = GetBattleBitmask(448,Zone,1);
+			player:setVar("trade_bcnmid",448);
+		end
 	elseif(Zone == 203) then -- Cloister of Frost
 		if(player:hasKeyItem(TUNING_FORK_OF_ICE)) then -- Trial by Ice
 			mask = GetBattleBitmask(480,Zone,1);
@@ -322,6 +342,21 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1
 			mask = GetBattleBitmask(512,Zone,1); -- bcnmid/zone/mode
 			player:setVar("trade_bcnmid",512); -- Remember to store the BCNMID for EventUpdate/Finish!
+		end
+	elseif(Zone == 207) then -- Cloister of Flames
+		if(player:hasKeyItem(TUNING_FORK_OF_FIRE)) then -- Trial by Fire
+			mask = GetBattleBitmask(544,Zone,1);
+			player:setVar("trade_bcnmid",544);
+		end
+	elseif(Zone == 209) then -- Cloister of Tremors
+		if(player:hasKeyItem(TUNING_FORK_OF_EARTH)) then -- Trial by Earth
+			mask = GetBattleBitmask(576,Zone,1);
+			player:setVar("trade_bcnmid",576);
+		end
+	elseif(Zone == 211) then -- Cloister of Tides
+		if(player:hasKeyItem(TUNING_FORK_OF_WATER)) then -- Trial by Water
+			mask = GetBattleBitmask(608,Zone,1);
+			player:setVar("trade_bcnmid",608);
 		end
 	end
 	
