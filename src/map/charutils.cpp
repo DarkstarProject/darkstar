@@ -1507,6 +1507,11 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 	{
 		CAbility* PAbility = *it;
 
+		if(PAbility->getID()==45 && PChar->GetSJob()==JOB_DRG) {
+			//DRG Call Wyvern isn't available to /DRG, which is unique among JAs.
+			break;
+		}
+
 		if (PChar->GetSLevel() >= PAbility->getLevel())
 		{
 			if (PAbility->getLevel() != 0)

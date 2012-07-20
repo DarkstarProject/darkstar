@@ -325,6 +325,32 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 		target:delStatusEffect(EFFECT_BLINK);
 	end
 	
+	--handle Third Eye using shadowbehav as a guide
+	teye = target:getStatusEffect(EFFECT_THIRD_EYE);
+	if(teye ~= nil and skilltype==MOBSKILL_PHYSICAL) then --T.Eye only procs when active with PHYSICAL stuff
+		if(shadowbehav == MOBPARAM_WIPE_SHADOWS) then --e.g. aoe moves
+			target:delStatusEffect(EFFECT_THIRD_EYE);
+		elseif(shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --it can be absorbed by shadows
+			--third eye doesnt care how many shadows, so attempt to anticipate, but reduce
+			--chance of anticipate based on previous successful anticipates.
+			prevAnt = teye:getPower();
+			if(prevAnt == 0) then
+				--100% proc
+				teye:setPower(1);
+				skill:setMsg(30);
+				return 0;
+			end
+			if( (math.random()*100) < (80-(prevAnt*10)) ) then
+				--anticipated!
+				teye:setPower(prevAnt+1);
+				skill:setMsg(30);
+				return 0;
+			end
+			target:delStatusEffect(EFFECT_THIRD_EYE);
+		end
+	end
+	
+	
 	--TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
 	
 	--handling phalanx

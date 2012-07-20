@@ -1,7 +1,7 @@
 -----------------------------------
--- Ability: Third Eye
+-- Ability: Seigan
 -----------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
@@ -10,5 +10,9 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_THIRD_EYE,0,0,30); --power keeps track of procs
+	if(target:isWeaponTwoHanded()) then
+		target:delStatusEffect(EFFECT_HASSO);
+		target:delStatusEffect(EFFECT_SEIGAN);
+		target:addStatusEffect(EFFECT_SEIGAN,0,0,300);
+	end
 end;

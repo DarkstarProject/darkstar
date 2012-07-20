@@ -1532,6 +1532,68 @@ bool IsParalised(CBattleEntity* PAttacker)
 	return (rand()%100 < cap_value(PAttacker->getMod(MOD_PARALYZE) - PAttacker->getMod(MOD_PARALYZERES), 0, 100));
 }
 
+/*****************************************************************************
+Returns true if the Third Eye anticipates the attacks. Must specify various
+parameters including if the effect should 100% be removed (e.g. in the case of AoE)
+by setting forceRemove to true. Must also specify the ignore boolean, which is true
+to ignore the effects of Third Eye (but NOT try to remove).
+******************************************************************************/
+bool IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore)
+{
+	if(ignore){
+		return false;
+	}
+
+	if(PDefender->GetMJob() != JOB_SAM && PDefender->GetSJob() != JOB_SAM){
+		//faster check than via hasStatusEffect
+		return false;
+	}
+	if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_THIRD_EYE)){
+		return false;
+	}
+
+	CStatusEffect* effect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_THIRD_EYE,0);
+	if(effect == NULL) { //shouldn't occur but checking anyway
+		return false;
+	}
+	if(forceRemove){
+		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
+		return false;
+	}
+	
+	//power stores how many times this effect has anticipated
+	uint8 pastAnticipations = effect->GetPower();
+
+	if(pastAnticipations>7){
+		//max 7 anticipates!
+		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
+		return false;
+	}
+
+	bool hasSeigan = PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN,0);
+
+	if(!hasSeigan && pastAnticipations == 0){
+		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
+		return true;
+	}
+	else if(!hasSeigan){
+		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
+		return false;
+	}
+	else{ //do have seigan, decay anticipations correctly (guesstimated)
+		//5-6 anticipates is a 'lucky' streak, going to assume 15% decay per proc, with a 100% base w/ Seigan
+		if(rand()%100 < (100-(pastAnticipations*15))){
+			//increment power and don't remove
+			effect->SetPower(effect->GetPower()+1);
+			return true;
+		}
+		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
+		return false;
+	}
+
+	return false;
+}
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
