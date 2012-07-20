@@ -368,6 +368,9 @@ void LoadAvatarStats(CPetEntity* PChar)
 void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 {
 	DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
+	if(PMaster->GetMJob()!=JOB_DRG && PetID == PETID_WYVERN) {
+		return;
+	}
 
 	PETTYPE petType = PETTYPE_JUGPET;
 	if(PetID<=20){
@@ -396,6 +399,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 			PPet->SetMLevel(1);
 		}
 		LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
+		PPet->setModifier(MOD_DMGPHYS,-50); //-50% PDT
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f/60.0f)));
 		if(PetID==PETID_FENRIR){
 			PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0*(280.0f/60.0f)));

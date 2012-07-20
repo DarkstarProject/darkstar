@@ -1031,7 +1031,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	}
 
     damage = (damage * (100 + PDefender->getMod(MOD_DMG) + PDefender->getMod(MOD_DMGPHYS))) / 100;
-
+	
 	switch(PAttacker->m_Weapons[slot]->getDmgType())
 	{
 		case DAMAGE_CROSSBOW:
