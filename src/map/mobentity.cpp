@@ -47,7 +47,7 @@ CMobEntity::CMobEntity()
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
 	m_Element = 0;  
 	PEnmityContainer = new CEnmityContainer();
-
+	PEnmityContainer->setEnmityHolder(this);
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 }
 

@@ -46,6 +46,10 @@ CEnmityContainer::~CEnmityContainer()
     Clear();
 }
 
+void CEnmityContainer::setEnmityHolder(CBattleEntity* holder) {
+	m_EnmityHolder = holder;
+}
+
 /************************************************************************
 *                                                                       *
 *  Clear Enmity List                                                    *
@@ -194,10 +198,15 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
 {
 	Damage = (Damage < 1 ? 1 : Damage);
 
-	uint16 mod = battleutils::GetEnmityMod(PEntity->GetMLevel(), 1);
 
-	uint16 CE =  80 / mod * Damage;
-	uint16 VE = 240 / mod * Damage;
+	uint16 mod = battleutils::GetEnmityMod(PEntity->GetMLevel(), 1); //default fallback
+
+	if(m_EnmityHolder != NULL) {//use the correct mod value
+		mod = battleutils::GetEnmityMod(m_EnmityHolder->GetMLevel(), 1);
+	}
+
+	uint16 CE =  (80 / mod) * Damage;
+	uint16 VE = (240 / mod) * Damage;
 
 	UpdateEnmity(PEntity, CE, VE); 
 }
@@ -229,10 +238,11 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 	{
 		EnmityObject_t* PEnmityObject = it->second;
 
+		//Should lose 60/sec, and this is called twice a sec, hence 30.
 		PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;
 
 		uint32 Enmity = PEnmityObject->CE + PEnmityObject->VE;
-
+		
 		if (Enmity >= HighestEnmity)
 		{
 			HighestEnmity = Enmity;

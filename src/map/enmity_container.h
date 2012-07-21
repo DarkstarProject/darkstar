@@ -50,6 +50,7 @@ public:
     CBattleEntity*	GetHighestEnmity();			// Decays VE and gets target with highest enmity
 
 	void	Clear(uint32 EntityID = 0);			// Removes Entries from list
+	void	setEnmityHolder(CBattleEntity* holder);
     void	AddBaseEnmity(CBattleEntity* PEntity);
 	void	UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE);
 	void	UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
@@ -59,7 +60,7 @@ public:
 	bool    HasTargetID(uint16 TargetID); //true if ID is in the container
 
 private:
-
+	CBattleEntity* m_EnmityHolder; //usually a monster
 	EnmityList_t	m_EnmityList;
 };
 

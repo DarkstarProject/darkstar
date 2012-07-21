@@ -392,9 +392,10 @@ bool CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID)
 
 uint8 GetEnmityMod(uint8 level, uint8 modType)
 {
-    DSP_DEBUG_BREAK_IF(level >= 100);
     DSP_DEBUG_BREAK_IF(modType >= 2);
-    
+ 
+	if(level>=100) { level = 99; }
+
 	return g_EnmityTable[level][modType];
 }
 
