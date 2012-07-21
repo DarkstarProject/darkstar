@@ -53,7 +53,7 @@ void CWeaponSkill::setJob(int8* jobs)
 	memcpy(&m_Job[1], jobs, 20);
 }
 
-void CWeaponSkill::setSkillLevel(uint8 level)
+void CWeaponSkill::setSkillLevel(uint16 level)
 {
 	m_Skilllevel = level;
 }
@@ -104,7 +104,7 @@ uint8 CWeaponSkill::getJob(JOBTYPE job)
 	return m_Job[job];
 }
 
-uint8 CWeaponSkill::getSkillLevel()
+uint16 CWeaponSkill::getSkillLevel()
 {
 	return m_Skilllevel;
 }

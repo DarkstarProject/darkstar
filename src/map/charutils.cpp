@@ -1421,7 +1421,7 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 	for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
 	{
 		CWeaponSkill* PSkill = *it;
-		
+
 		if ((PChar->RealSkills.skill[skill]/10) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0))
 		{
 			addWeaponSkill(PChar, PSkill->getID());

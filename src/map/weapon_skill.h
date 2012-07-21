@@ -40,7 +40,7 @@ public:
     
 	uint16		getID();
 	uint8		getJob(JOBTYPE JobID);
-	uint8		getSkillLevel();
+	uint16		getSkillLevel();
 	uint8		getRange();
 	uint8       getElement();
 	
@@ -50,7 +50,7 @@ public:
 
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);
-	void		setSkillLevel(uint8 level);
+	void		setSkillLevel(uint16 level);
 	void		setRange(uint8 range);
 	void		setElement(uint8 element);
 	void		setAoe(uint8 aoe);
@@ -67,7 +67,7 @@ private:
 	uint16		m_ID;
 	uint8       m_TypeID;
 	uint8		m_Job[MAX_JOBTYPE]; 
-	uint8		m_Skilllevel;
+	uint16		m_Skilllevel;
 	uint8       m_AnimationId;
 	uint8       m_Element;
 	uint8		m_Range;
