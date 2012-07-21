@@ -28,6 +28,7 @@
 #include "battleentity.h"
 #include "charutils.h"
 #include "conquest_system.h"
+#include "jailutils.h"
 #include "map.h"
 #include "party.h"
 #include "treasure_pool.h"
@@ -499,7 +500,8 @@ void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* p
 	{
         if (members.at(i) != PPartyMember && 
             members.at(i)->status != STATUS_DISAPPEAR &&
-            members.at(i)->getZone() != ZONE_MORDION_GAOL)
+            (members.at(i)->objtype == TYPE_PC && 
+             !jailutils::InPrison((CCharEntity*)members.at(i))))
 		{
 			if (ZoneID == 0 || members.at(i)->getZone() == ZoneID)
 			{

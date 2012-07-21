@@ -9,7 +9,7 @@
 -----------------------------------
 ZONE_MORDION_GAOL = 131
 
-function onTrigger(player, target)
+function onTrigger(gm, target)
 	--printf("@pardon by %d", player:getID());
 	--printf("Parameters: %s", target);
 	

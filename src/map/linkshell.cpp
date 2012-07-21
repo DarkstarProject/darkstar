@@ -37,6 +37,7 @@
 #include "itemutils.h"
 #include "linkshell.h"
 #include "items/item_linkshell.h"
+#include "jailutils.h"
 #include "map.h"
 
 /************************************************************************
@@ -269,7 +270,7 @@ void CLinkshell::PushPacket(CCharEntity* PChar, CBasicPacket* packet)
 	{
         if (members.at(i) != PChar &&
             members.at(i)->status != STATUS_DISAPPEAR &&
-            members.at(i)->getZone() != ZONE_MORDION_GAOL)
+            !jailutils::InPrison(members.at(i)))
 		{
             members.at(i)->pushPacket(new CBasicPacket(*packet));
 		}

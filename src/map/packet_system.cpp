@@ -39,6 +39,7 @@
 #include "charutils.h"
 #include "fishingutils.h"
 #include "itemutils.h"
+#include "jailutils.h"
 #include "linkshell.h"
 #include "map.h"
 #include "mobentity.h"
@@ -904,6 +905,13 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     if ((PTarget != NULL) && (PTarget->id == charid))
     {
+        if(jailutils::InPrison(PChar) || jailutils::InPrison(PTarget))
+        {
+            // If either player is in prison don't allow the trade.
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+            return;
+        }
+
         if (PTarget->TradePending.id == PChar->id)
         {
             ShowDebug(CL_CYAN"You have already sent a trade request to %s\n" CL_RESET, PTarget->GetName());
@@ -1802,6 +1810,12 @@ void SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x05D(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    if(jailutils::InPrison(PChar))
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+        return;
+    }
+
 	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar,data));
 	return;
 }
@@ -1976,6 +1990,13 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	if (PChar->id == charid)
 		return;
 
+    if(jailutils::InPrison(PChar))
+    {
+        // Initiator is in prison.  Send error message.
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+        return;
+    }
+
     if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
     {
         // если targid персонажа клиенту не известен, то получаем его из таблицы активных сессий
@@ -1994,7 +2015,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			targid, 
 			conquest::GetCurrentRegion(PChar->getZone()));
 
-	    if (PInvitee != NULL)
+	    if (PInvitee != NULL && !jailutils::InPrison(PInvitee))
 	    {
 		    if (PInvitee->PParty != NULL)
 		    {
@@ -2299,6 +2320,13 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    if(jailutils::InPrison(PChar))
+    {
+        // Prevent crafting in prison
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+        return;
+    }
+
 	PChar->Container->Clean();
 
 	uint32 ItemID    = RBUFL(data,(0x06));
@@ -2388,7 +2416,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
     else
     {
-        if((PChar->getZone() == ZONE_MORDION_GAOL) && (!(PChar->nameflags.flags & FLAG_GM)))
+        if(jailutils::InPrison(PChar))
         {
             if(RBUFB(data,(0x04)) == MESSAGE_SAY)
             {
@@ -2438,7 +2466,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if((PChar->getZone() == ZONE_MORDION_GAOL) && (!(PChar->nameflags.flags & FLAG_GM)))
+    if(jailutils::InPrison(PChar))
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
         return;
@@ -2477,7 +2505,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		if (PTellRecipient != NULL &&
 			PTellRecipient->id == CharID &&
 			PTellRecipient->status != STATUS_DISAPPEAR &&
-            (PTellRecipient->getZone() != ZONE_MORDION_GAOL || (PTellRecipient->nameflags.flags & FLAG_GM)))
+            !jailutils::InPrison(PTellRecipient))
 		{
 			if (PTellRecipient->nameflags.flags & FLAG_AWAY)
 			{
@@ -2749,6 +2777,12 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
 	uint32 id     = RBUFL(data,(0x04));
 	uint16 targid = RBUFW(data,(0x08));
+
+    if(jailutils::InPrison(PChar))
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+        return;
+    }
 
 	CBaseEntity* PEntity = PChar->loc.zone->GetEntity(targid, TYPE_MOB | TYPE_PC);
 
