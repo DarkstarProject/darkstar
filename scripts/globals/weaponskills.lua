@@ -35,6 +35,8 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 		critrate = fTP(attacker:getTP(),crit100,crit200,crit300);
 		--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
 		nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
+		nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100);
+		
 		if(nativecrit > 0.2) then --caps!
 			nativecrit = 0.2;
 		elseif(nativecrit < 0.05) then
