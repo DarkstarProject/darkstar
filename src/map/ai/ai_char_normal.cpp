@@ -1046,8 +1046,13 @@ void CAICharNormal::ActionMagicCasting()
 	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)cap_value(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
-
-		if (battleutils::IsParalised(m_PChar)) 
+		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)){
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,18));
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
+		else if (battleutils::IsParalised(m_PChar)) 
 		{
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,29));
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
