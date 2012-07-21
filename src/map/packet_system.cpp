@@ -2388,7 +2388,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
     else
     {
-        if((PChar->getZone() == 131) && (!(PChar->nameflags.flags & FLAG_GM)))
+        if((PChar->getZone() == ZONE_MORDION_GAOL) && (!(PChar->nameflags.flags & FLAG_GM)))
         {
             if(RBUFB(data,(0x04)) == MESSAGE_SAY)
             {
@@ -2414,7 +2414,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     }
                 }
                 break;
-				case MESSAGE_PARTY:		
+				case MESSAGE_PARTY:
                 {
                     if (PChar->PParty != NULL)
                     {
@@ -2438,7 +2438,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if((PChar->getZone() == 131) && (!(PChar->nameflags.flags & FLAG_GM)))
+    if((PChar->getZone() == ZONE_MORDION_GAOL) && (!(PChar->nameflags.flags & FLAG_GM)))
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
         return;
@@ -2476,7 +2476,8 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		if (PTellRecipient != NULL &&
 			PTellRecipient->id == CharID &&
-			PTellRecipient->status != STATUS_DISAPPEAR)
+			PTellRecipient->status != STATUS_DISAPPEAR &&
+            (PTellRecipient->getZone() != ZONE_MORDION_GAOL || (PTellRecipient->nameflags.flags & FLAG_GM)))
 		{
 			if (PTellRecipient->nameflags.flags & FLAG_AWAY)
 			{

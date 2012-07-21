@@ -25,6 +25,7 @@
 
 #include "../battleutils.h"
 #include "../charutils.h"
+#include "../conquest_system.h"
 #include "../map.h"
 #include "../mobutils.h"
 #include "../petutils.h"
@@ -75,7 +76,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 {
 	m_Tick = tick;
 
-    if((m_ActionType != ACTION_NONE) && (m_PChar->getZone() == 131) && (!(m_PChar->nameflags.flags & FLAG_GM)))
+    if((m_ActionType != ACTION_NONE) && (m_PChar->getZone() == ZONE_MORDION_GAOL) && (!(m_PChar->nameflags.flags & FLAG_GM)))
     {
         Reset();
         m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 316));

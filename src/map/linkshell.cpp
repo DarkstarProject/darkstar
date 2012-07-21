@@ -33,6 +33,7 @@
 #include "packets/message_system.h"
 
 #include "charutils.h"
+#include "conquest_system.h"
 #include "itemutils.h"
 #include "linkshell.h"
 #include "items/item_linkshell.h"
@@ -267,7 +268,8 @@ void CLinkshell::PushPacket(CCharEntity* PChar, CBasicPacket* packet)
     for (uint32 i = 0; i < members.size(); ++i)
 	{
         if (members.at(i) != PChar &&
-            members.at(i)->status != STATUS_DISAPPEAR)
+            members.at(i)->status != STATUS_DISAPPEAR &&
+            members.at(i)->getZone() != ZONE_MORDION_GAOL)
 		{
             members.at(i)->pushPacket(new CBasicPacket(*packet));
 		}

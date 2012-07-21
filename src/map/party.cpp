@@ -27,6 +27,7 @@
 
 #include "battleentity.h"
 #include "charutils.h"
+#include "conquest_system.h"
 #include "map.h"
 #include "party.h"
 #include "treasure_pool.h"
@@ -497,7 +498,8 @@ void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* p
 	for (uint32 i = 0; i < members.size(); ++i)
 	{
         if (members.at(i) != PPartyMember && 
-            members.at(i)->status != STATUS_DISAPPEAR)
+            members.at(i)->status != STATUS_DISAPPEAR &&
+            members.at(i)->getZone() != ZONE_MORDION_GAOL)
 		{
 			if (ZoneID == 0 || members.at(i)->getZone() == ZoneID)
 			{
