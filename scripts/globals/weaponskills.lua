@@ -245,6 +245,9 @@ function cRatio(ratio,atk_lvl,def_lvl)
 		cratiomax = 1.2 * ratio;
 	end
 	cratio = {};
+	if(cratiomin < 0) then 
+		cratiomin = 0;
+	end
 	cratio[1] = cratiomin;
 	cratio[2] = cratiomax;
 	return cratio;
@@ -291,6 +294,9 @@ function cCritRatio(rratio,atk_lvl,def_lvl)
 	end
 	
 	critratio = {};
+	if(cratiomin < 0) then 
+		cratiomin = 0;
+	end
 	critratio[1] = cratiomin;
 	critratio[2] = cratiomax;
 	return critratio;
