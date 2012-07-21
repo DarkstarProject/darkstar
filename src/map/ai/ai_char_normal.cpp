@@ -1406,6 +1406,13 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+		if(m_PJobAbility->getID()==64 && m_PChar->PPet==NULL){ //Spirit Link
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+		}
 		if(m_PJobAbility->getID()==45){//call wyvern
 			if(m_PChar->PPet!=NULL){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 315));
@@ -1521,10 +1528,15 @@ void CAICharNormal::ActionJobAbilityFinish()
 		Action.param      = 0;
 		Action.flag       = 0; 
 		Action.messageID  = 0;
-
-        m_PChar->m_ActionList.push_back(Action);
         
-        luautils::OnUseAbility(m_PChar, m_PBattleSubTarget);	
+        uint16 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget);
+
+		if(m_PJobAbility->getID() == 50 || m_PJobAbility->getID() == 51 || m_PJobAbility->getID() == 66) {//chi blast/jump/high jump
+			Action.param = value;
+			Action.messageID = 110;
+		}
+
+		m_PChar->m_ActionList.push_back(Action);
 
         if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
         {

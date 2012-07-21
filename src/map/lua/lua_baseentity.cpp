@@ -72,6 +72,7 @@
 #include "../map.h"
 #include "../mobentity.h"
 #include "../npcentity.h"
+#include "../petentity.h"
 #include "../petutils.h"
 #include "../spell.h"
 #include "../trade_container.h"
@@ -209,6 +210,40 @@ inline int32 CLuaBaseEntity::petTP(lua_State *L)
 		((CBattleEntity*)m_PBaseEntity)->PPet->health.tp = lua_tointeger(L,-1);
 	}
 	return 0;
+}
+
+//======================================================//
+
+inline int32 CLuaBaseEntity::petAddHP(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	if(((CBattleEntity*)m_PBaseEntity)->PPet!=NULL){
+		int amount = lua_tointeger(L,-1);
+		CPetEntity* mPPet = (CPetEntity*)(((CBattleEntity*)m_PBaseEntity)->PPet);
+		mPPet->addHP(amount);
+		mPPet->loc.zone->PushPacket(mPPet,CHAR_INRANGE,new CEntityUpdatePacket(mPPet,ENTITY_UPDATE));
+	}
+	return 0;
+}
+
+//======================================================//
+
+inline int32 CLuaBaseEntity::petGetTP(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	if(((CBattleEntity*)m_PBaseEntity)->PPet != NULL){
+		lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->PPet->health.tp );
+	}
+	else{
+		lua_pushinteger( L, 0);
+	}
+	return 1;
 }
 
 //======================================================//
@@ -4186,5 +4221,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addNationTeleport),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petGetTP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAddHP),
 	{NULL,NULL}
 };
