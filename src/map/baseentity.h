@@ -120,6 +120,8 @@ public:
 	uint8			animationsub;		// дополнительный параметры анимации
 	uint8			speed;				// скорость передвижения
 	uint8			speedsub;			// подолнительный параметр скорости передвижения
+	uint32			HPmodifier;			// HP in Database (mob_groups)
+	uint32			MPmodifier;			// MP in Database (mob_groups)
 
 	const int8*		GetName();			// имя сущности
 	uint8			getZone();			// текущая зона

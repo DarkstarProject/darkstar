@@ -176,13 +176,13 @@ void LoadZoneList()
 		// загружаем MOBs из базы и добавляем их в зону
 
 		fmtQuery = "SELECT name, mobid, pos_rot, pos_x, pos_y, pos_z, \
-					respawntime, spawntype, dropid, minLevel, maxLevel, \
+					respawntime, spawntype, dropid, HP, MP, minLevel, maxLevel, \
 					modelid, mJob, sJob, cmbSkill, cmbDelay, behavior, links, mobType, \
 					systemid, mobsize, speed, \
 					STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 					Slash, Pierce, H2H, Impact, \
 					Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-					mob_pools.familyid, name_prefix, unknown\
+					mob_pools.familyid, name_prefix, unknown \
 					FROM mob_groups, mob_pools, mob_spawn_points, mob_family_system \
 					WHERE mob_groups.poolid = mob_pools.poolid \
 					AND mob_groups.groupid = mob_spawn_points.groupid \
@@ -211,44 +211,47 @@ void LoadZoneList()
 				PMob->m_SpawnType   = (SPAWNTYPE)Sql_GetUIntData(SqlHandle,7);
 				PMob->m_DropID		= Sql_GetUIntData(SqlHandle,8);
 
-				PMob->m_minLevel = (uint8)Sql_GetIntData(SqlHandle, 9);
-				PMob->m_maxLevel = (uint8)Sql_GetIntData(SqlHandle,10);
+				PMob->HPmodifier = (uint32)Sql_GetIntData(SqlHandle,9);
+				PMob->MPmodifier = (uint32)Sql_GetIntData(SqlHandle,10);
 
-				memcpy(&PMob->look,Sql_GetData(SqlHandle,11),20);
+				PMob->m_minLevel = (uint8)Sql_GetIntData(SqlHandle,11);
+				PMob->m_maxLevel = (uint8)Sql_GetIntData(SqlHandle,12);
 
-				PMob->SetMJob(Sql_GetIntData(SqlHandle,12));
-				PMob->SetSJob(Sql_GetIntData(SqlHandle,13));
+				memcpy(&PMob->look,Sql_GetData(SqlHandle,13),22);
 
-				PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle,14));
-				PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle,15) * 1000)/60);
+				PMob->SetMJob(Sql_GetIntData(SqlHandle,14));
+				PMob->SetSJob(Sql_GetIntData(SqlHandle,15));
 
-				PMob->m_Behaviour  = (uint16)Sql_GetIntData(SqlHandle,16);
-                PMob->m_Link       = (uint8)Sql_GetIntData(SqlHandle,17);
-				PMob->m_Type       = (uint8)Sql_GetIntData(SqlHandle,18);
-				PMob->m_EcoSystem  = (ECOSYSTEM)Sql_GetIntData(SqlHandle,19);
-				PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlHandle,20);
+				PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle,16));
+				PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle,17) * 1000)/60);
+
+				PMob->m_Behaviour  = (uint16)Sql_GetIntData(SqlHandle,18);
+                PMob->m_Link       = (uint8)Sql_GetIntData(SqlHandle,19);
+				PMob->m_Type       = (uint8)Sql_GetIntData(SqlHandle,20);
+				PMob->m_EcoSystem  = (ECOSYSTEM)Sql_GetIntData(SqlHandle,21);
+				PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlHandle,22);
 				
-				PMob->speed    = (uint8)Sql_GetIntData(SqlHandle,21);
-				PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle,21);
+				PMob->speed    = (uint8)Sql_GetIntData(SqlHandle,23);
+				PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle,23);
 
-				PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle,31) * 1000));
-				PMob->setModifier(MOD_PIERCERES,(uint16)(Sql_GetFloatData(SqlHandle,32) * 1000));
-				PMob->setModifier(MOD_HTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,33) * 1000));
-				PMob->setModifier(MOD_IMPACTRES,(uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
+				PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle,33) * 1000));
+				PMob->setModifier(MOD_PIERCERES,(uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
+				PMob->setModifier(MOD_HTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,35) * 1000));
+				PMob->setModifier(MOD_IMPACTRES,(uint16)(Sql_GetFloatData(SqlHandle,36) * 1000));
 
-                PMob->setModifier(MOD_FIRERES,    (int16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -1000)); // These are stored as floating percentages 
-                PMob->setModifier(MOD_ICERES,     (int16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -1000)); // and need to be adjusted into modifier units.
-                PMob->setModifier(MOD_WINDRES,    (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -1000)); // Higher RES = lower damage.  
-                PMob->setModifier(MOD_EARTHRES,   (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -1000)); // Negatives signify increased damage.
-                PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -1000)); // Positives signify reduced damage.
-                PMob->setModifier(MOD_WATERRES,   (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -1000)); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
-                PMob->setModifier(MOD_LIGHTRES,   (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -1000)); // (1.25 - 1) * -1000 = -250 RES
-                PMob->setModifier(MOD_DARKRES,    (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -1000)); // (0.50 - 1) * -1000 = 500 RES
+                PMob->setModifier(MOD_FIRERES,    (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -1000)); // These are stored as floating percentages 
+                PMob->setModifier(MOD_ICERES,     (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -1000)); // and need to be adjusted into modifier units.
+                PMob->setModifier(MOD_WINDRES,    (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -1000)); // Higher RES = lower damage.  
+                PMob->setModifier(MOD_EARTHRES,   (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -1000)); // Negatives signify increased damage.
+                PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -1000)); // Positives signify reduced damage.
+                PMob->setModifier(MOD_WATERRES,   (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -1000)); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
+                PMob->setModifier(MOD_LIGHTRES,   (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -1000)); // (1.25 - 1) * -1000 = -250 RES
+                PMob->setModifier(MOD_DARKRES,    (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -1000)); // (0.50 - 1) * -1000 = 500 RES
 
-				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,43);
-				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,44); 
-				PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle,45); 
-				PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle,46); 
+				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,45);
+				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,46); 
+				PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle,47); 
+				PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle,48); 
 				PMob->PBattleAI = new CAIMobDummy(PMob);
 				PMob->PBattleAI->SetCurrentAction(PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE);
 

@@ -98,7 +98,18 @@ uint16 GetBase(CMobEntity * PMob, uint8 rank)
 
 void CalculateStats(CMobEntity * PMob)
 {
-	PMob->health.maxhp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
+	if(PMob->HPmodifier == 0){
+		PMob->health.maxhp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
+		if(PMob->m_Type & MOBTYPE_NOTORIOUS){
+			PMob->health.maxhp *= 2.5;
+			if(PMob->GetMLevel()>75){
+				PMob->health.maxhp *= 2.5;
+			}
+		}
+	} else {
+		PMob->health.maxhp = PMob->HPmodifier;
+		//printf("HP: %u \n",PMob->health.maxhp);
+	}
     
 	switch(PMob->GetMJob()){
 	case JOB_PLD:
@@ -108,19 +119,20 @@ void CalculateStats(CMobEntity * PMob)
 	case JOB_DRK:
 	case JOB_BLU:
 	case JOB_SCH:
-		PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
+		if(PMob->MPmodifier == 0){
+			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
+			if(PMob->m_Type & MOBTYPE_NOTORIOUS){
+			PMob->health.maxmp *= 2.5;
+				if(PMob->GetMLevel()>75){
+					PMob->health.maxmp *= 2.5;
+				}
+			}
+		} else {
+			PMob->health.maxmp = PMob->MPmodifier;
+		}
 		break;
 	}
-
-	if(PMob->m_Type & MOBTYPE_NOTORIOUS){
-		PMob->health.maxmp *= 2.5;
-		PMob->health.maxhp *= 2.5;
-		if(PMob->GetMLevel()>75){
-			PMob->health.maxmp *= 2.5;
-			PMob->health.maxhp *= 2.5;
-		}
-	}
-
+	
     PMob->UpdateHealth();
 
 	PMob->health.tp = 0;
