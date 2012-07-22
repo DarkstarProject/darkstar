@@ -214,6 +214,7 @@ public:
 	uint32			 m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
 	uint8			 m_LevelRestriction;			// ограничение уровня персонажа
     uint16           m_Costum;                      // карнавальный костюм персонажа (модель)
+	uint32			 m_AHHistoryTimestamp;			// Timestamp when last asked to view history
 
     uint8            m_PVPFlag;                     // pvp
 	uint8			 m_hasTractor;					// checks if player has tractor already

@@ -93,6 +93,7 @@ CCharEntity::CCharEntity()
 	expChain.chainTime = 0;
 	m_insideBCNM = false;
 	m_lastBcnmTimePrompt = 0;
+	m_AHHistoryTimestamp = 0;
 
 	m_EquipFlag = 0;
 	nameflags.flags = 0;

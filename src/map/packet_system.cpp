@@ -1532,8 +1532,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 *																		*
 *  Все действия с Auction House                                         *
 *																		*
-************************************************************************/					
-static uint8 test = 0xf5;
+************************************************************************/
 void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
 	uint8  action   = RBUFB(data,(0x04));
@@ -1571,9 +1570,15 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         break;
         case 0x05: 
         { 
-            // TODO: необходим таймер последного запроса статуса продаж; открывать список не чаще раза в 5 секунд
-
-            PChar->pushPacket(new CAuctionHousePacket(action));
+			uint32 curTick = gettick();
+			if(curTick - PChar->m_AHHistoryTimestamp > 5000){
+				PChar->m_AHHistoryTimestamp = curTick;
+				PChar->pushPacket(new CAuctionHousePacket(action));
+			}
+			else{
+				PChar->pushPacket(new CAuctionHousePacket(action, 246, 0, 0)); //try again in a little while msg
+				break;
+			}
 		} 
         //break;
         case 0x0A: 
