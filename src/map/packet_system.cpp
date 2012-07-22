@@ -1575,16 +1575,25 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             PChar->pushPacket(new CAuctionHousePacket(action));
 		} 
-        break;
+        //break;
         case 0x0A: 
         { 
-            // TODO: в идеале, хорошо было бы загружать продаваемые предметы в универсальный контейнер персонажа
-            
-            // ограничение клиента игры на 7 одновременно продаваемых предмета
+			uint8 totalItemsOnAh = 0;
+			const int8* fmtQuery = "SELECT COUNT(*) FROM auction_house WHERE seller = %u and sale = 0;";
+			int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+			if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0){
+				if (Sql_NextRow(SqlHandle) == SQL_SUCCESS){
+					totalItemsOnAh = Sql_GetUIntData(SqlHandle, 0);
+				}
+			}
 
-            for (int8 slot = 0; slot < 5; ++slot)
+			if(totalItemsOnAh > 7){
+				totalItemsOnAh = 7;
+			}
+
+            for (int8 slot = 0; slot < totalItemsOnAh; slot++)
             {
-                PChar->pushPacket(new CAuctionHousePacket(0x0C, slot));
+                PChar->pushPacket(new CAuctionHousePacket(0x0C, slot,PChar));
             }
 		}
         break;
@@ -1604,6 +1613,19 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     return;
                 }
 
+				uint8 totalItemsOnAh = 0;
+				const int8* totQuery = "SELECT COUNT(*) FROM auction_house WHERE seller = %u and sale = 0;";
+				int32 tret = Sql_Query(SqlHandle, totQuery, PChar->id);
+				if(tret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0){
+					if (Sql_NextRow(SqlHandle) == SQL_SUCCESS){
+						totalItemsOnAh = Sql_GetUIntData(SqlHandle, 0);
+					}
+				}
+				if(totalItemsOnAh >= 7){
+					ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Unable to put up more than 7 items\n" CL_RESET);
+				    return;
+				}
+
                 const int8* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) \
 									    VALUES(%u,%u,%u,'%s',%u,%u)";
 
@@ -1620,6 +1642,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				    return;
 			    }
                 charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(int32)(quantity != 0 ? 1 : PItem->getStackSize()));
+				//TODO: Display put up msg
             }
 		} 
         break;
@@ -1687,14 +1710,55 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
         } 
         break;
-        case 0x0C: 
-        {
-		
+        case 0x0C: //removing item from ah
+        {/*
+			//check user has invent space
+			if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, 0, 0));
+            }
+            else
+            {
+				const int8* delQuery = "DELETE FROM auction_house WHERE seller = %u AND itemid = %u AND sale = 0 LIMIT 1;";
+
+				const int8* fmtQuery = "SELECT itemid, stack FROM auction_house WHERE seller = %u and sale=0;";
+				int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+				if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+				{
+					uint8 count = 0;
+					while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+					{
+						if(count == slotid){
+							uint16 delitemid = (uint16)Sql_GetUIntData(SqlHandle,0); 
+							uint16 delitemstack = (uint16)Sql_GetUIntData(SqlHandle,1); 
+							const int8* fmtQuery = "SELECT itemid FROM auction_house WHERE seller = %u and sale=0;";
+							int32 delret = Sql_Query(SqlHandle, delQuery, PChar->id,delitemid);
+							if(delret != SQL_ERROR){
+								//add the item back to the users invent
+								CItem* PDelItem = itemutils::GetItemPointer(delitemid);
+								if(PDelItem != NULL){
+									uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, delitemid, 
+										(delitemstack == 0 ? PDelItem->getStackSize() : 1));
+
+									if (SlotID != ERROR_SLOTID)
+									{
+		                                PChar->pushPacket(new CAuctionHousePacket(action, 0x02, delitemid, 0));
+						                PChar->pushPacket(new CInventoryFinishPacket());
+			                        }
+				                    return;
+								}
+							}
+							break;
+						}
+						count++;
+					}
+				}
+			}*/
 		}
         break;
 		case 0x0D: 
         {
-            PChar->pushPacket(new CAuctionHousePacket(action, slotid));
+            PChar->pushPacket(new CAuctionHousePacket(action, slotid,PChar));
 		} 
         break;
 	}

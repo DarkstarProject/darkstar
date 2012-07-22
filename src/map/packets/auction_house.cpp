@@ -67,7 +67,8 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quant
 	WBUFB(data,(0x30)-4) = AUCTION_ID;                                      
 }
 
-CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot) 
+//e.g. client history, client probes a slot number which you give the correct itemid+price
+CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot, CCharEntity* PChar) 
 {
     this->type = 0x4C;
     this->size = 0x1E;
@@ -77,17 +78,33 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot)
     WBUFB(data,(0x06)-4) = IsAuctionOpen;
     
 
-    if (slot < 5)
+    if (slot < 7)
     {
         WBUFB(data,(0x14)-4) = 0x03;
-        WBUFB(data,(0x16)-4) = 0x01;	            // значение меняется, назначение неизвестно
+        WBUFB(data,(0x16)-4) = 0x01;	            // значение меняется, назначение неизвестно UNKNOWN
 
-        WBUFW(data,(0x28)-4) = 877;             // id продаваемого предмета
-        WBUFB(data,(0x2A)-4) = 1;               // количество предметов
-        WBUFB(data,(0x2B)-4) = 0x02;            // количество предметов            
-        WBUFL(data,(0x2C)-4) = 1000;            // цена продажи
+		const int8* fmtQuery = "SELECT itemid, price FROM auction_house WHERE seller = %u and sale=0;";
 
-        WBUFB(data,(0x30)-4) = AUCTION_ID;
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+			uint8 count = 0;
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    {
+				if(count == slot){
+					WBUFW(data,(0x28)-4) = (uint16)Sql_GetUIntData(SqlHandle,0);             // id продаваемого предмета  item id
+					WBUFB(data,(0x2A)-4) = 1;               // количество предметов stack size
+					WBUFB(data,(0x2B)-4) = 0x02;            // количество предметов stack size?            
+					WBUFL(data,(0x2C)-4) = (uint32)Sql_GetUIntData(SqlHandle,1);            // цена продажи price
+
+					WBUFB(data,(0x30)-4) = AUCTION_ID;
+					break;
+				}
+				count++;
+			}
+		}
+        
     }
 }
 
