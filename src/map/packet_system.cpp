@@ -1574,6 +1574,23 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			if(curTick - PChar->m_AHHistoryTimestamp > 5000){
 				PChar->m_AHHistoryTimestamp = curTick;
 				PChar->pushPacket(new CAuctionHousePacket(action));
+				PChar->m_ah_history.clear();
+				//A single SQL query for the player's AH history which is stored in a Char Entity struct + vector.
+				const int8* fmtQuery = "SELECT itemid, price, stack FROM auction_house WHERE seller = %u and sale=0 LIMIT 7;";
+				int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+				if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+				{
+					while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+					{
+						AuctionHistory_t ah;
+						ah.itemid = (uint16)Sql_GetUIntData(SqlHandle,0);
+						ah.price = (uint32)Sql_GetUIntData(SqlHandle,1);
+						ah.stack = (uint8)Sql_GetUIntData(SqlHandle,2);
+						ah.status = 0;
+						PChar->m_ah_history.push_back(ah);
+					}
+				}
+				ShowDebug("%s has %i items up on the AH. \n",PChar->GetName(),PChar->m_ah_history.size());
 			}
 			else{
 				PChar->pushPacket(new CAuctionHousePacket(action, 246, 0, 0)); //try again in a little while msg
@@ -1583,18 +1600,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         //break;
         case 0x0A: 
         { 
-			uint8 totalItemsOnAh = 0;
-			const int8* fmtQuery = "SELECT COUNT(*) FROM auction_house WHERE seller = %u and sale = 0;";
-			int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-			if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0){
-				if (Sql_NextRow(SqlHandle) == SQL_SUCCESS){
-					totalItemsOnAh = Sql_GetUIntData(SqlHandle, 0);
-				}
-			}
-
-			if(totalItemsOnAh > 7){
-				totalItemsOnAh = 7;
-			}
+			uint8 totalItemsOnAh = PChar->m_ah_history.size();
 
             for (int8 slot = 0; slot < totalItemsOnAh; slot++)
             {
@@ -1619,15 +1625,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     return;
                 }
 
-				uint8 totalItemsOnAh = 0;
-				const int8* totQuery = "SELECT COUNT(*) FROM auction_house WHERE seller = %u and sale = 0;";
-				int32 tret = Sql_Query(SqlHandle, totQuery, PChar->id);
-				if(tret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0){
-					if (Sql_NextRow(SqlHandle) == SQL_SUCCESS){
-						totalItemsOnAh = Sql_GetUIntData(SqlHandle, 0);
-					}
-				}
-				if(totalItemsOnAh >= 7){
+				if(PChar->m_ah_history.size() >= 7){
 					ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Unable to put up more than 7 items\n" CL_RESET);
 					PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
 				    return;
@@ -1651,7 +1649,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			    }
                 charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(int32)(quantity != 0 ? 1 : PItem->getStackSize()));
 				PChar->pushPacket(new CAuctionHousePacket(action, 1, 0, 0)); //merchandise put up on auction msg
-				PChar->pushPacket(new CAuctionHousePacket(0x0C, totalItemsOnAh,PChar)); //inform history of slot
+				PChar->pushPacket(new CAuctionHousePacket(0x0C, PChar->m_ah_history.size(),PChar)); //inform history of slot
             }
 		} 
         break;

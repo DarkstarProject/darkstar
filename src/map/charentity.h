@@ -130,6 +130,14 @@ struct NationTP_t
 	uint8		pastwindurst;
 };
 
+struct AuctionHistory_t
+{
+	uint16		itemid;
+	uint8		stack;
+	uint32		price;
+	uint8		status; //e.g. if sold/not sold/on market
+};
+
 class CBasicPacket;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
@@ -152,6 +160,7 @@ public:
 	bazaar_t		 bazaar;						// все данные, необходимые для таботы bazaar
 	uint16			 m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
 	uint8			 equip[17];						// экипировка персонажа
+	std::vector<AuctionHistory_t> m_ah_history;		// AH history list
 
 	uint8			 m_ZonesList[32];				// список посещенных персонажем зон
 	uint8			 m_SpellList[96];				// список изученных заклинаний
