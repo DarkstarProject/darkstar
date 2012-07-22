@@ -83,7 +83,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot, CCharEntity* 
         WBUFB(data,(0x14)-4) = 0x03;
         WBUFB(data,(0x16)-4) = 0x01;	            // значение меняется, назначение неизвестно UNKNOWN
 
-		const int8* fmtQuery = "SELECT itemid, price FROM auction_house WHERE seller = %u and sale=0;";
+		const int8* fmtQuery = "SELECT itemid, price, stack FROM auction_house WHERE seller = %u and sale=0;";
 
 		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 
@@ -94,7 +94,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot, CCharEntity* 
 		    {
 				if(count == slot){
 					WBUFW(data,(0x28)-4) = (uint16)Sql_GetUIntData(SqlHandle,0);             // id продаваемого предмета  item id
-					WBUFB(data,(0x2A)-4) = 1;               // количество предметов stack size
+					WBUFB(data,(0x2A)-4) = 1 - (uint8)Sql_GetUIntData(SqlHandle,2);               // количество предметов stack size
 					WBUFB(data,(0x2B)-4) = 0x02;            // количество предметов stack size?            
 					WBUFL(data,(0x2C)-4) = (uint32)Sql_GetUIntData(SqlHandle,1);            // цена продажи price
 
