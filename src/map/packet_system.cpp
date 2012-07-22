@@ -1533,7 +1533,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 *  Все действия с Auction House                                         *
 *																		*
 ************************************************************************/					
-
+static uint8 test = 0xf5;
 void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
 	uint8  action   = RBUFB(data,(0x04));
@@ -1610,6 +1610,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PItem->getStackSize() != PItem->getQuantity()))
                 {
                     ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Incorrect quantity of item\n" CL_RESET);
+					PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                     return;
                 }
 
@@ -1623,6 +1624,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				}
 				if(totalItemsOnAh >= 7){
 					ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Unable to put up more than 7 items\n" CL_RESET);
+					PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
 				    return;
 				}
 
@@ -1639,10 +1641,12 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                               price) == SQL_ERROR)
 			    {
 				    ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item to database\n" CL_RESET);
+					PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
 				    return;
 			    }
                 charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(int32)(quantity != 0 ? 1 : PItem->getStackSize()));
-				//TODO: Display put up msg
+				PChar->pushPacket(new CAuctionHousePacket(action, 1, 0, 0)); //merchandise put up on auction msg
+				PChar->pushPacket(new CAuctionHousePacket(0x0C, totalItemsOnAh,PChar)); //inform history of slot
             }
 		} 
         break;
@@ -1711,11 +1715,13 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         } 
         break;
         case 0x0C: //removing item from ah
-        {/*
+        {
+			
+			/*
 			//check user has invent space
 			if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
             {
-                PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, 0, 0));
+                PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, 0, 0)); //invent full, unable to remove msg
             }
             else
             {
@@ -1743,6 +1749,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 									if (SlotID != ERROR_SLOTID)
 									{
 		                                PChar->pushPacket(new CAuctionHousePacket(action, 0x02, delitemid, 0));
+										PChar->pushPacket(new CAuctionHousePacket(action, 0, 0, 0)); //remove from history
 						                PChar->pushPacket(new CInventoryFinishPacket());
 			                        }
 				                    return;
@@ -1753,6 +1760,8 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						count++;
 					}
 				}
+				//let client know something went wrong
+				PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, 0, 0)); //invent full, unable to remove msg
 			}*/
 		}
         break;
