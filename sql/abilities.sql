@@ -281,3 +281,12 @@ INSERT INTO `abilities` VALUES ('581', 'aero_iv', '15', '60', '4', '60', '173', 
 INSERT INTO `abilities` VALUES ('582', 'predator_claws', '15', '70', '4', '60', '173', '164', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('583', 'wind_blade', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');
 -- INSERT INTO `abilities` VALUES ('584', 'aerial_blast', '15', '1', '4', '60', '173', '0', '18', '0', '1', '60');
+
+INSERT INTO `abilities` VALUES ('544', 'rock_throw', '15', '1', '4', '60', '173', '10', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('545', 'stone_ii', '15', '10', '4', '60', '173', '24', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('546', 'rock_buster', '15', '21', '4', '60', '173', '39', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('547', 'megalith_throw', '15', '35', '4', '60', '173', '62', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('548', 'earten_ward', '15', '46', '1', '60', '174', '92', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('549', 'stone_iv', '15', '60', '4', '60', '173', '118', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('550', 'mountain_buster', '15', '70', '4', '60', '173', '164', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('551', 'geocrush', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');

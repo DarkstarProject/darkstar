@@ -723,6 +723,16 @@ INSERT INTO `mob_skill` VALUES (617,37,571,'Predator_Claws', 0, 10.0, 582, 2000,
 INSERT INTO `mob_skill` VALUES (618,37,572,'Wind_Blade', 0, 10.0, 583, 2000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (619,37,573,'Aerial_Blast', 1, 10.0, 584, 2000, 4, 0);
 
+-- Titan
+INSERT INTO `mob_skill` VALUES (593,45,539,'Rock_Throw', 0, 12.0, 544, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (594,45,540,'Stone_II', 0, 10.0, 545, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (595,45,541,'Rock_Buster', 0, 10.0, 546, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (596,45,542,'Megalith_Throw', 0, 17.0, 547, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (597,45,543,'Earthen_Ward', 1, 10.0, 548, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (598,45,544,'Stone_IV', 0, 10.0, 549, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (599,45,545,'Mountain_Buster', 0, 10.0, 550, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (600,45,546,'Geocrush', 0, 10.0, 551, 2000, 4, 0);
+
 -- --------------------------------------
 -- NM
 -- --------------------------------------
