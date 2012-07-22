@@ -1745,15 +1745,14 @@ void CAICharNormal::ActionWeaponSkillFinish()
     // DO NOT REMOVE!  This is here for a reason...
     // Skill chains should not be affected by MISSED weapon skills or non-elemental 
     // weapon skills such as: Spirits Within, Spirit Taker, Energy Steal, Energy Drain, Starlight, and Moonlight.
-    if((Action.param > 0) && (m_PWeaponSkill->getElement() != 0)) 
+    if((Action.param > 0) && (m_PWeaponSkill->getPrimarySkillchain() != 0)) 
     {
-        uint16 skillChainCount = 0;
         // NOTE: GetSkillChainEffect is INSIDE this if statement because it 
         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill, &skillChainCount);
+        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill);
         if (effect != SUBEFFECT_NONE)
         {
-	        uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, effect, skillChainCount, damage);
+	        uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, damage);
 
 	        switch(effect)
 	        {

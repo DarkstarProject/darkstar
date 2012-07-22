@@ -537,7 +537,7 @@ void CStatusEffectContainer::LoadStatusEffects()
 {
     DSP_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
 
-	const int8* Query = "SELECT effectid, icon, power, tick, duration, subid \
+	const int8* Query = "SELECT effectid, icon, power, tick, duration, subid, subpower, tier \
 						 FROM char_effects \
 						 WHERE charid = %u;";
 
@@ -553,7 +553,9 @@ void CStatusEffectContainer::LoadStatusEffects()
 				(uint16)Sql_GetUIntData(SqlHandle,2),
 				(uint32)Sql_GetUIntData(SqlHandle,3),
 				(uint32)Sql_GetUIntData(SqlHandle,4),
-				(uint16)Sql_GetUIntData(SqlHandle,5));
+				(uint16)Sql_GetUIntData(SqlHandle,5),
+                (uint16)Sql_GetUIntData(SqlHandle,6),
+                (uint16)Sql_GetUIntData(SqlHandle,7));
 
 			AddStatusEffect(PStatusEffect);
 		}
@@ -576,7 +578,7 @@ void CStatusEffectContainer::SaveStatusEffects()
 	{
 		if (m_StatusEffectList.at(i)->GetDuration() != 0)
 		{
-			const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid) VALUES(%u,%u,%u,%u,%u,%u,%u);";
+			const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
 
 			Sql_Query(SqlHandle, Query,
 				m_POwner->id,
@@ -585,7 +587,9 @@ void CStatusEffectContainer::SaveStatusEffects()
 				m_StatusEffectList.at(i)->GetPower(),
 				m_StatusEffectList.at(i)->GetTickTime() / 1000,
 			   (m_StatusEffectList.at(i)->GetDuration() + m_StatusEffectList.at(i)->GetStartTime() - gettick()) / 1000,
-				m_StatusEffectList.at(i)->GetSubID());
+				m_StatusEffectList.at(i)->GetSubID(),
+                m_StatusEffectList.at(i)->GetSubPower(),
+                m_StatusEffectList.at(i)->GetTier());
 		}
 	}
 }

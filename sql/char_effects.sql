@@ -1,11 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 3.3.8
--- http://www.phpmyadmin.net
---
--- Serveur: localhost
--- Généré le : Sam 04 Février 2012 à 19:43
--- Version du serveur: 6.0.0
--- Version de PHP: 5.2.9-2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,7 +8,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donn�es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -34,5 +26,7 @@ CREATE TABLE IF NOT EXISTS `char_effects` (
   `tick` int(10) unsigned NOT NULL DEFAULT '0',
   `duration` int(10) unsigned NOT NULL DEFAULT '0',
   `subid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `subpower` smallint(5) NOT NULL DEFAULT '0',
+  `tier` smallint(5) unsigned NOT NULL DEFAULT '0',
   KEY `charid` (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

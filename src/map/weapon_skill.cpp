@@ -33,7 +33,9 @@ CWeaponSkill::CWeaponSkill(uint16 id)
 	m_Skilllevel  = 0; 
 	m_TypeID      = 0;
 	m_Range       = 0;
-	m_Element     = 0;
+	m_PrimarySkillchain   = SC_NONE;
+    m_SecondarySkillchain = SC_NONE;
+    m_TertiarySkillchain  = SC_NONE;
 
 	memset(m_Job, 0, sizeof(m_Job));
 }
@@ -65,7 +67,22 @@ const int8* CWeaponSkill::getName()
 
 void CWeaponSkill::setElement(uint8 element)
 {
-	m_Element = element;
+    m_Element = element;
+}
+
+void CWeaponSkill::setPrimarySkillchain(uint8 skillchain)
+{
+	m_PrimarySkillchain = skillchain;
+}
+
+void CWeaponSkill::setSecondarySkillchain(uint8 skillchain)
+{
+    m_SecondarySkillchain = skillchain;
+}
+
+void CWeaponSkill::setTertiarySkillchain(uint8 skillchain)
+{
+    m_TertiarySkillchain = skillchain;
 }
 
 void CWeaponSkill::setName(int8* name)
@@ -132,4 +149,19 @@ uint8 CWeaponSkill::getRange()
 bool CWeaponSkill::hasElement(uint8 elements)
 {
 	return (m_Element & elements) == elements;
+}
+
+uint8 CWeaponSkill::getPrimarySkillchain()
+{
+    return m_PrimarySkillchain;
+}
+
+uint8 CWeaponSkill::getSecondarySkillchain()
+{
+    return m_SecondarySkillchain;
+}
+
+uint8 CWeaponSkill::getTertiarySkillchain()
+{
+    return m_TertiarySkillchain;
 }

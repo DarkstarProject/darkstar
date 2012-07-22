@@ -278,18 +278,31 @@ enum TARGETTYPE
 	TARGET_NPC				= 0x40		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
 };
 
-enum SKILLCHAINFLAG    // Skill chain flag
-{                        
-    NO_CHAIN = 0x200,  // 0 Skill chains
-    CHAIN1   = 0x400,  // 1 Skill chains
-    CHAIN2   = 0x800,  // 2 Skill chains
-    CHAIN3   = 0x1000, // 3 Skill chains
-    CHAIN4   = 0x2000, // 4 Skill chains
-    CHAIN5   = 0x4000, // 5 Skill chains
-    CHAIN_MASK = 0x7C00  
+enum SKILLCHAIN_ELEMENT
+{
+    SC_NONE          =  0, // Lv0 None
+    
+    SC_TRANSFIXION   =  1, // Lv1 Light
+    SC_COMPRESSION   =  2, // Lv1 Dark
+    SC_LIQUEFACTION  =  3, // Lv1 Fire
+    SC_SCISSION      =  4, // Lv1 Earth
+    SC_REVERBERATION =  5, // Lv1 Water
+    SC_DETONATION    =  6, // Lv1 Wind
+    SC_INDURATION    =  7, // Lv1 Ice
+    SC_IMPACTION     =  8, // Lv1 Thunder
+
+    SC_GRAVITATION   =  9, // Lv2 Dark & Earth
+    SC_DISTORTION    = 10, // Lv2 Water & Ice 
+    SC_FUSION        = 11, // Lv2 Fire & Light
+    SC_FRAGMENTATION = 12, // Lv2 Wind & Thunder
+    
+    SC_LIGHT         = 13, // Lv3 Fire, Light, Wind, Thunder
+    SC_DARKNESS      = 14, // Lv3 Dark, Earth, Water, Ice
+    SC_LIGHT_II      = 15, // Lv4 Light
+    SC_DARKNESS_II   = 16, // Lv4 Darkness
 };
 
-#define MAX_SKILLCHAIN_LEVEL (3)
+#define MAX_SKILLCHAIN_LEVEL (4)
 #define MAX_SKILLCHAIN_COUNT (5)
 
 struct apAction_t

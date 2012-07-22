@@ -1,4 +1,4 @@
-require("scripts/globals/skillchain")
+require("scripts/globals/magicburst")
 
      DIVINE_MAGIC_SKILL = 32;
     HEALING_MAGIC_SKILL = 33;
@@ -251,9 +251,9 @@ function applyResistance(player,spell,target,diff,skill,staff)
     
     -- Magic Burst accuracy bonus
     -- TODO: Figure out some solid numbers regarding what the accuracy bonus should be.
-    burstLevel = getMagicBurstLevel(spell, target);
+    local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
     
-    if(burstLevel > 0) then
+    if(skillchainTier > 0) then
 		 p = (p + 0.25);
     end
     
@@ -471,18 +471,18 @@ function calculateMagicBurstAndBonus(caster, spell, target)
     local burst = 1.0;
     local burstBonus = 1.0;
     
-    local burstLevel = getMagicBurstLevel(spell, target);
+    local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
     
-    if(burstLevel > 0) then
-		if(burstLevel == 1) then
+    if(skillchainTier > 0) then
+		if(skillchainCount == 1) then
 			burst = 1.3;
-		elseif(burstLevel == 2) then
+		elseif(skillchainCount == 2) then
 			burst = 1.35;
-		elseif(burstLevel == 3) then
+		elseif(skillchainCount == 3) then
 			 burst = 1.40;
-		elseif(burstLevel == 4) then
+		elseif(skillchainCount == 4) then
 			burst = 1.45;
-		elseif(burstLevel == 5) then
+		elseif(skillchainCount == 5) then
 			burst = 1.50;
 		else
 			-- Something strange is going on if this occurs.
