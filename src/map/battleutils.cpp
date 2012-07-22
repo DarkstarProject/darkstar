@@ -1911,8 +1911,6 @@ SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSki
 
         if(skillchain != SC_NONE)
         {
-            ShowInfo("Skillchain linked: %d\n", skillchain);
-
             PEffect->SetStartTime(gettick());
             PEffect->SetTier(GetSkillchainTier((SKILLCHAIN_ELEMENT)skillchain));
             PEffect->SetPower(skillchain);
@@ -1921,7 +1919,6 @@ SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSki
             return (SUBEFFECT)GetSkillchainSubeffect((SKILLCHAIN_ELEMENT)skillchain);
         }
 
-        ShowInfo("Replacing resonance!\n");
         PEffect->SetStartTime(gettick());
         PEffect->SetTier(0);
         PEffect->SetPower(PWeaponSkill->getID());
@@ -2024,9 +2021,6 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
                           * (100 + PAttacker->getMod(MOD_SKILLCHAINDMG)) / 100);
 
     damage = damage * (1000 - resistance) / 1000;
-
-    ShowInfo("Dealing skill chain damage: lastSkillDamage[%d] skillchain[%d] resistance[%d] chainLevel[%d] chainCount[%d] damage[%d]\n", 
-                                          lastSkillDamage,    skillchain,    resistance,    chainLevel,    chainCount,    damage);
 
     PDefender->addHP(-damage);
 
