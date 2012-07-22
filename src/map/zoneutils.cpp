@@ -272,6 +272,13 @@ void LoadZoneList()
 		            case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
 		            case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
 	            }
+				//DA and TA
+				if(PMob->GetMJob()==JOB_WAR && PMob->m_minLevel >= 25 || PMob->GetSJob()==JOB_WAR && PMob->m_minLevel >= 50){
+					PMob->addModifier(MOD_DOUBLE_ATTACK,15);
+				}
+				if(PMob->GetMJob()==JOB_THF && PMob->m_minLevel >= 55){
+					PMob->addModifier(MOD_TRIPLE_ATTACK,7);
+				}
 				PZone->InsertMOB(PMob);
 			}
 		}

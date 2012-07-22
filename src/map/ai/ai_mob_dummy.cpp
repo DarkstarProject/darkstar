@@ -851,84 +851,99 @@ void CAIMobDummy::ActionAttack()
 				Action.messageID  = 15;
 				Action.flag		  = 0;
 
-				uint16 damage = 0;
-				bool isCountered = false;
-				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
-				{
-					Action.messageID = 32; 
+				uint8 numAttacks = 1;
+				if(rand()%100 < m_PMob->getMod(MOD_TRIPLE_ATTACK)){
+					numAttacks+=2;
 				}
-				else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
-				{
-					if (isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40) && battleutils::IsParried(m_PMob,m_PBattleTarget)) 
-					{
-                        Action.messageID = 70;
-						Action.reaction   = REACTION_PARRY;
-						Action.speceffect = SPECEFFECT_NONE;
-						if(m_PBattleTarget->objtype == TYPE_PC && rand()%2==0){//less chance to skill
-							charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_PAR,m_PBattleTarget->GetMLevel());
-						}
-					}
-                    else if (battleutils::IsAbsorbByShadow(m_PBattleTarget)) 
-					{
-                        Action.messageID = 0;
-                        m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
-					}
-					else if (battleutils::IsAnticipated(m_PBattleTarget,false,false)) 
-					{
-                        Action.messageID = 30;
-					}
-					else
-					{
-						Action.reaction   = REACTION_HIT;
-						Action.speceffect = SPECEFFECT_HIT;
-						Action.messageID  = 1;
+				else if(rand()%100 < m_PMob->getMod(MOD_DOUBLE_ATTACK)){
+					numAttacks++;
+				}
 
-						//counter check (rate AND your hit rate makes it land, else its just a regular hit)
-						if(rand()%100 < m_PBattleTarget->getMod(MOD_COUNTER) && rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob)){
-							//countered! can crit but no message or new animation, just more damage
-							isCountered = true;
-							Action.messageID = 33; //counter msg
-							Action.reaction   = REACTION_NONE;
+				for(uint8 i=0; i<numAttacks; i++){
+					if(m_PBattleTarget->isDead()){
+						break;
+					}
+
+					uint16 damage = 0;
+					bool isCountered = false;
+					if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
+					{
+						Action.messageID = 32; 
+					}
+					else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
+					{
+						if (isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40) && battleutils::IsParried(m_PMob,m_PBattleTarget)) 
+						{
+							Action.messageID = 70;
+							Action.reaction   = REACTION_PARRY;
 							Action.speceffect = SPECEFFECT_NONE;
-							
-							bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob) );
-
-							float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical); 
-							damage = (uint16)((m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
-						}
-						else{
-							bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) );
-							if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0)){isCritical=true;}
-							
-							float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget,isCritical); 
-							
-							if(isCritical)
-							{
-								Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-								Action.messageID  = 67;
+							if(m_PBattleTarget->objtype == TYPE_PC && rand()%2==0){//less chance to skill
+								charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_PAR,m_PBattleTarget->GetMLevel());
 							}
-							damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);	
+						}
+						else if (battleutils::IsAbsorbByShadow(m_PBattleTarget)) 
+						{
+							Action.messageID = 0;
+							m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
+						}
+						else if (battleutils::IsAnticipated(m_PBattleTarget,false,false)) 
+						{
+							Action.messageID = 30;
+						}
+						else
+						{
+							Action.reaction   = REACTION_HIT;
+							Action.speceffect = SPECEFFECT_HIT;
+							Action.messageID  = 1;
+
+							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
+							if(rand()%100 < m_PBattleTarget->getMod(MOD_COUNTER) && rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob)){
+								//countered! can crit but no message or new animation, just more damage
+								isCountered = true;
+								Action.messageID = 33; //counter msg
+								Action.reaction   = REACTION_NONE;
+								Action.speceffect = SPECEFFECT_NONE;
+							
+								bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob) );
+
+								float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical); 
+								damage = (uint16)((m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
+							}
+							else{
+								bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget) );
+								if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0)){isCritical=true;}
+							
+								float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget,isCritical); 
+							
+								if(isCritical)
+								{
+									Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+									Action.messageID  = 67;
+								}
+								damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);	
+							}
 						}
 					}
-				}
-				if (m_PBattleTarget->objtype == TYPE_PC && !isCountered)
-				{
-					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
-				}
+					if (m_PBattleTarget->objtype == TYPE_PC && !isCountered)
+					{
+						charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
+					}
 
-				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PMob,m_PBattleTarget));
-				if(isBlocked && !isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40)){isBlocked=false;}
-				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
+					bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PMob,m_PBattleTarget));
+					if(isBlocked && !isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40)){isBlocked=false;}
+					if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
-				if(!isCountered){
-					Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, true);
-					m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
-				}
-				else{
-					Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, true);
-				}
+					if(!isCountered){
+						Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, true);
+						m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
+					}
+					else{
+						Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, true);
+					}
 
-				m_PMob->m_ActionList.push_back(Action);
+					m_PMob->m_ActionList.push_back(Action);
+
+				} //end attack for
 				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 			}
             m_LastActionTime = m_Tick;
