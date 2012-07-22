@@ -4060,6 +4060,27 @@ inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::isBehind(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
+
+	CBattleEntity* PAttacker = (CBattleEntity*)m_PBaseEntity;
+	CBattleEntity* PDefender = (CBattleEntity*)PLuaBaseEntity->GetBaseEntity();
+
+	uint8 isbehind = 0;
+
+	if(abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23){
+		isbehind = 1;
+	}
+
+	lua_pushinteger( L,isbehind);
+	return 1;
+}
+
+//==========================================================//
+
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
 
 Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] = 
@@ -4223,5 +4244,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petGetTP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAddHP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBehind),
 	{NULL,NULL}
 };

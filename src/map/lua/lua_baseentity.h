@@ -238,6 +238,7 @@ public:
 	int32 getWeaponDmg(lua_State*);			// gets the current equipped weapons' DMG rating
 	int32 isWeaponTwoHanded(lua_State*);
 	int32 getMeleeHitDamage(lua_State*);    // gets the damage of a single hit vs the specified mob
+	int32 isBehind(lua_State*);				// true if you're behind the input target
 
     int32 openDoor(lua_State*);             // открываем дверь
 	int32 resetRecasts(lua_State*);         // Reset recasts for the caller

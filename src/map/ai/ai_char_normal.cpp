@@ -2050,7 +2050,14 @@ void CAICharNormal::ActionAttack()
 						Action.messageID  = 1;
 					}
 
-                    damage = (uint16)(((PWeapon->getDamage() + battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+					uint16 bonusDMG = 0;
+					if(m_PChar->GetMJob() == JOB_THF && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
+						abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23){
+						bonusDMG = m_PChar->DEX();
+					}
+
+					damage = (uint16)(((PWeapon->getDamage() + bonusDMG + 
+						battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 
 					//TODO: use an alternative to HasStatusEffect. Performance is maximised by the job check FIRST
 					//		so the if loop will fail and HasStatusEffect will not execute. Souleater has no effect <10HP.

@@ -28,6 +28,12 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	ccmin = 0;
 	ccmax = 0;
 	hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
+	isSneakValid = attacker:hasStatusEffect(EFFECT_SNEAK_ATTACK);
+	if(isSneakValid and attacker:isBehind(target)==0)then
+		isSneakValid = false;
+	end
+	attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
+	
 	ccritratio = 0;
 	critrate = 0;
 	if(canCrit) then --work out critical hit ratios, by +1ing 
@@ -64,16 +70,21 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	end
 	
 	local hitslanded = 0; --used for debug
-	if (firsthit <= hitrate) then
+	if (firsthit <= hitrate or isSneakValid) then
 		if(canCrit) then
 			local double critchance = math.random();
-			if(critchance <= critrate or hasMightyStrikes) then --crit hit!
+			if(critchance <= critrate or hasMightyStrikes or isSneakValid) then --crit hit!
 				local double cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
 				cpdif = cpdif/1000; 
 				finaldmg = dmg * cpdif;
+				if(isSneakValid and attacker:getMainJob()==6) then --have to add on DEX bonus if on THF main
+					finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif);
+				end
 			else
 				finaldmg = dmg * pdif;
 			end
+		elseif(isSneakValid and attacker:getMainJob()==6) then --have to add on DEX bonus if on THF main
+			finaldmg = dmg * pdif + (attacker:getStat(MOD_DEX) * ftp * pdif);
 		else
 			finaldmg = dmg * pdif;
 		end
