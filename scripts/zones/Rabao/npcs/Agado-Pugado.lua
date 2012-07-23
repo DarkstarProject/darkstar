@@ -1,13 +1,12 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Agado-Pugado
+-- NPC:  Agado-Pugado
 -- Starts and Finishes Quest: Trial by Wind
--- @Zone 247
+-- @pos -17 7 -10 247
+-----------------------------------
+package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-
-require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
@@ -103,7 +102,7 @@ function onEventFinish(player,csid,option)
 			player:setTitle(HEIR_OF_THE_GREAT_WIND);
 			player:delKeyItem(323); --Whisper of Gales, as a trade for the above rewards
 			player:setVar("TrialByWind_date", os.date("%j")); -- %M for next minute, %j for next day
-			player:addFame(OUTLANDS,30);
+			player:addFame(RABAO,30);
 			player:completeQuest(OUTLANDS,TRIAL_BY_WIND);
 		end
 	end

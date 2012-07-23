@@ -544,6 +544,7 @@ TRIAL_SIZE_TRIAL_BY_FIRE        = 15;
 
 THE_SAHAGINS_KEY				= 128; -- ± --
 FORGE_YOUR_DESTINY				= 129; -- ± --
+
 BLACK_MARKET					= 130;
 MAMA_MIA 						= 131;
 STOP_YOUR_WHINING				= 132; -- + --
@@ -574,10 +575,10 @@ OPEN_SESAME						= 165;
 
 DONT_FORGET_THE_ANTIDOTE		= 192; -- ± --
 THE_MISSING_PIECE				= 193;
-TRIAL_BY_WIND					= 194;
+TRIAL_BY_WIND					= 194; -- ± --
 THE_KUFTAL_TOUR					= 195;
 THE_IMMORTAL_LU_SHANG			= 196; -- ± --
-TRIAL_SIZE_TRIAL_BY_WIND		= 197;
+TRIAL_SIZE_TRIAL_BY_WIND		= 197; -- ± --
 CHASING_DREAMS					= 199;			-- CoP Quest
 THE_SEARCH_FOR_GOLDMANE			= 200;			-- CoP Quest
 INDOMITABLE_SPIRIT				= 201; -- ± --
@@ -586,6 +587,8 @@ INDOMITABLE_SPIRIT				= 201; -- ± --
 --  Aht Urhgan
 -----------------------------------
 
+KEEPING_NOTES                	= 0;
+ARTS_AND_CRAFTS					= 1;
 
 -----------------------------------
 --  Crystal War
