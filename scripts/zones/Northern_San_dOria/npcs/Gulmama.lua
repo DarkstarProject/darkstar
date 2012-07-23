@@ -10,7 +10,6 @@ package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
@@ -28,10 +27,11 @@ end;
 function onTrigger(player,npc)
 	
 	TrialByIce = player:getQuestStatus(SANDORIA,TRIAL_BY_ICE);
+	Fame = player:getFameLevel(SANDORIA)
 	WhisperOfFrost = player:hasKeyItem(WHISPER_OF_FROST);
 	realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 	
-	if((TrialByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= player:getVar("TrialByIce_date"))) then 
+	if((TrialByIce == QUEST_AVAILABLE and Fame >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= player:getVar("TrialByIce_date"))) then 
 		player:startEvent(0x02c2,0,TUNING_FORK_OF_ICE); -- Start and restart quest "Trial by ice"
 	elseif(TrialByIce == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_ICE) == false and WhisperOfFrost == false) then 
 		player:startEvent(0x02ce,0,TUNING_FORK_OF_ICE); -- Defeat against Shiva : Need new Fork

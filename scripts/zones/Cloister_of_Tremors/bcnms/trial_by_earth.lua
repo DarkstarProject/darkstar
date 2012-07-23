@@ -1,14 +1,14 @@
 -----------------------------------
--- Area: Cloister of Frost
--- Name: Trial-size Trial by Ice
--- @pos 558 0 596 203
+-- Area: Cloister of Tremors
+-- Name: Trial by Earth
+-- @pos -539 1 -493 209
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
+package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Frost/TextIDs");
+require("scripts/zones/Cloister_of_Tremors/TextIDs");
 
 -----------------------------------
 
@@ -32,9 +32,12 @@ function OnBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+		if(player:hasCompleteQuest(BASTOK,TRIAL_BY_EARTH)) then
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+		else
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+		end
 	elseif(leavecode == 4) then
-		player:setVar("TrialSizeIce_date",tonumber(os.date("%j"))); -- If you loose, you need to wait 1 real day
 		player:startEvent(0x7d02);
 	end
 	
@@ -48,17 +51,9 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 	
 	if(csid == 0x7d01) then
-		if(player:hasSpell(302) == false) then
-		player:addSpell(302); -- Shiva
-		player:messageSpecial(SHIVA_UNLOCKED,0,0,4);
-		end
-		if(player:hasItem(4181) == false) then
-			player:addItem(4181);
-			player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
-		end
-		player:setVar("TrialSizeIce_date", 0);
-		player:addFame(SANDORIA,SAN_FAME*30);
-		player:completeQuest(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE);
+		player:delKeyItem(TUNING_FORK_OF_EARTH);
+		player:addKeyItem(WHISPER_OF_TREMORS);
+		player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_TREMORS);
 	end
 	
 end;

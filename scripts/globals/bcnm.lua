@@ -176,6 +176,10 @@ function EventFinishBCNM(player,csid,option)
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
 		return false;
 	else
+		id = player:getVar("trade_bcnmid");
+		if(id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609) then
+			player:tradeComplete();
+		end
 		return true;
 	end
 	
@@ -254,7 +258,6 @@ function ItemToBCNMID(player,zone,trade)
 					
 					-- Job/lvl condition for smn battle lvl20
 					if(item >= 1544 and item <= 1549 and player:getMainJob() == 15 and player:getMainLvl() >= 20) then 
-						player:tradeComplete();
 						player:setVar("trade_bcnmid",itemid_bcnmid_map[zoneindex+1][bcnmindex+1]);
 						return itemid_bcnmid_map[zoneindex+1][bcnmindex+1];
 					-- Item without condition

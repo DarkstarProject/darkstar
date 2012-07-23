@@ -1,16 +1,14 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Juroro
+-- NPC:  Juroro
 -- Starts and Finishes Quest: Trial by Earth
--- @zone 236
--- @pos 32 7 -41
+-- @pos 32 7 -41 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
 
@@ -31,9 +29,8 @@ function onTrigger(player,npc)
 	Fame = player:getFameLevel(BASTOK); 
 	WhisperOfTremors = player:hasKeyItem(WHISPER_OF_TREMORS);
 	realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-	starttime = player:getVar("TrialByEarth_date");
 	
-	if((TrialByEarth == QUEST_AVAILABLE and Fame >= 6) or (TrialByEarth == QUEST_COMPLETED and realday ~= starttime)) then 
+	if((TrialByEarth == QUEST_AVAILABLE and Fame >= 6) or (TrialByEarth == QUEST_COMPLETED and realday ~= player:getVar("TrialByEarth_date"))) then 
 		player:startEvent(0x00f9,0,TUNING_FORK_OF_EARTH); -- Start and restart quest "Trial by Earth"
 	elseif(TrialByEarth == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_EARTH) == false and WhisperOfTremors == false) then 
 		player:startEvent(0x011c,0,TUNING_FORK_OF_EARTH); -- Defeat against Titan : Need new Fork
