@@ -95,8 +95,8 @@ void CBattleEntity::UpdateHealth()
 {
     int32 dif = (getMod(MOD_CONVMPTOHP) - getMod(MOD_CONVHPTOMP));
 
-    health.modmp = (health.maxmp + getMod(MOD_MP)) * (100 + getMod(MOD_MPP)) / 100;
-    health.modhp = (health.maxhp + getMod(MOD_HP)) * (100 + getMod(MOD_HPP)) / 100;
+    health.modmp = ((health.maxmp + getMod(MOD_MP)) * (100 + getMod(MOD_MPP)) / 100) + std::min<int16>((health.maxmp * m_modStat[MOD_FOOD_MPP] / 100), m_modStat[MOD_FOOD_MP_CAP]);
+    health.modhp = ((health.maxhp + getMod(MOD_HP)) * (100 + getMod(MOD_HPP)) / 100) + std::min<int16>((health.maxhp * m_modStat[MOD_FOOD_HPP] / 100), m_modStat[MOD_FOOD_HP_CAP]);
 
     dif = (health.modmp - 0) <  dif ?  (health.modmp - 0) : dif;
     dif = (health.modhp - 1) < -dif ? -(health.modhp - 1) : dif;
@@ -241,14 +241,16 @@ uint16 CBattleEntity::ATT()
 {
     uint32 ATT = 8 + m_modStat[MOD_ATT] + STR() / 2;
 
-    return ((100 + m_modStat[MOD_ATTP]) * ATT)/100 + dsp_min(((100 + m_modStat[MOD_FOOD_ATTP]) * ATT)/100, m_modStat[MOD_FOOD_ATT_CAP]);
+    return ATT + (ATT * m_modStat[MOD_ATTP] / 100) +
+           std::min<int16>((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
 }
 
 uint16 CBattleEntity::RATT(uint8 skill)
 {
     uint32 ATT = 8 + GetSkill(skill) + m_modStat[MOD_RATT] + STR() / 2;
 
-    return ((100 + m_modStat[MOD_RATTP]) * ATT)/100 + dsp_min(((100 + m_modStat[MOD_FOOD_RATTP]) * ATT)/100, m_modStat[MOD_FOOD_RATT_CAP]);
+    return ATT + (ATT * m_modStat[MOD_RATTP] / 100) + 
+           std::min<int16>((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
 }
 
 uint16 CBattleEntity::DEF()
@@ -258,7 +260,8 @@ uint16 CBattleEntity::DEF()
 	}
     uint32 DEF = 8 + m_modStat[MOD_DEF] + VIT() / 2;
 
-    return ((100 + m_modStat[MOD_DEFP]) * DEF)/100 + dsp_min(((100 + m_modStat[MOD_FOOD_DEFP]) * DEF)/100, m_modStat[MOD_FOOD_DEF_CAP]);
+    return DEF + (DEF * m_modStat[MOD_DEFP] / 100) +
+           std::min<int16>((DEF * m_modStat[MOD_FOOD_DEFP] / 100), m_modStat[MOD_FOOD_DEF_CAP]);
 }
 
 /************************************************************************
