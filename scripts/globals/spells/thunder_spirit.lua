@@ -10,6 +10,6 @@ require("scripts/globals/pets");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	caster:spawnPet(PET_THUNDERSPIRIT);
+	caster:spawnPet(PET_THUNDER_SPIRIT);
 	return 0;
 end;
