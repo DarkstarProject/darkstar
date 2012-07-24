@@ -239,15 +239,15 @@ uint16 CBattleEntity::CHR()
 
 uint16 CBattleEntity::ATT()
 {
-    uint32 ATT = 8 + m_modStat[MOD_ATT] + STR() / 2;
+    int32 ATT = 8 + m_modStat[MOD_ATT] + STR() / 2;
 
     return ATT + (ATT * m_modStat[MOD_ATTP] / 100) +
-           std::min<int16>((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+        std::min<int16>((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
 }
 
 uint16 CBattleEntity::RATT(uint8 skill)
 {
-    uint32 ATT = 8 + GetSkill(skill) + m_modStat[MOD_RATT] + STR() / 2;
+    int32 ATT = 8 + GetSkill(skill) + m_modStat[MOD_RATT] + STR() / 2;
 
     return ATT + (ATT * m_modStat[MOD_RATTP] / 100) + 
            std::min<int16>((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
@@ -258,7 +258,7 @@ uint16 CBattleEntity::DEF()
 	if(this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE,0)){
 		return VIT()/2;
 	}
-    uint32 DEF = 8 + m_modStat[MOD_DEF] + VIT() / 2;
+    int32 DEF = 8 + m_modStat[MOD_DEF] + VIT() / 2;
 
     return DEF + (DEF * m_modStat[MOD_DEFP] / 100) +
            std::min<int16>((DEF * m_modStat[MOD_FOOD_DEFP] / 100), m_modStat[MOD_FOOD_DEF_CAP]);
