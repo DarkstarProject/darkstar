@@ -61,10 +61,8 @@ function Escape(player, zone)
 		player:setPos(280,20,568,61,111); 									-- To Beaucedine Glacier at J-4
 	elseif(zone == 197) then 												-- From Crawlers' Nest
 		player:setPos(-372,-28,-772,0,110); 								-- To Rolanberry Fields at F-13
-	elseif(zone == 153) then 												-- From The Boyahda Tree
+	elseif(zone == 153 or zone == 154) then 								-- From The Boyahda Tree or Dragon's Aery
 		player:setPos(508,2,-577,133,121); 									-- To The Sanctuary of Zi'Tah at K-12
-	elseif(zone == 154) then												-- From Dragon's Aery
-		player:setPos(213,0,-179,240,121)									-- To The Sanctuary of Zi'Tah at 
 	elseif(zone == 200) then 												-- From Garlaige Citadel
 		player:setPos(-104,-24,-408,189,120); 								-- To Sauromugue Champaign at H-10
 	elseif(zone == 213) then 												-- From Labyrinth of Onzozo
