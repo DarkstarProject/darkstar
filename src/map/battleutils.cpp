@@ -1914,7 +1914,7 @@ SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSki
             PEffect->SetStartTime(gettick());
             PEffect->SetTier(GetSkillchainTier((SKILLCHAIN_ELEMENT)skillchain));
             PEffect->SetPower(skillchain);
-            PEffect->SetSubPower(std::min(PEffect->GetSubPower() + 1, 5)); // Linked, limited to 5
+            PEffect->SetSubPower(dsp_min(PEffect->GetSubPower() + 1, 5)); // Linked, limited to 5
 
             return (SUBEFFECT)GetSkillchainSubeffect((SKILLCHAIN_ELEMENT)skillchain);
         }
@@ -1972,7 +1972,7 @@ uint16 GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity*
         case SC_FRAGMENTATION:
         case SC_GRAVITATION:
         case SC_DISTORTION:
-            return std::min(PDefender->getMod(resistances[element][0]), PDefender->getMod(resistances[element][1]));
+            return dsp_min(PDefender->getMod(resistances[element][0]), PDefender->getMod(resistances[element][1]));
             break;
 
         // Level 3 & 4 skill chains
@@ -1980,9 +1980,9 @@ uint16 GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity*
         case SC_LIGHT_II:
         case SC_DARKNESS:
         case SC_DARKNESS_II:
-            return std::min(std::min(PDefender->getMod(resistances[element][0]), 
+            return dsp_min(dsp_min(PDefender->getMod(resistances[element][0]), 
                                      PDefender->getMod(resistances[element][1])), 
-                            std::min(PDefender->getMod(resistances[element][2]), 
+                            dsp_min(PDefender->getMod(resistances[element][2]), 
                                      PDefender->getMod(resistances[element][3])));
             break;
 
