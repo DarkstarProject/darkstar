@@ -146,9 +146,9 @@
     <ClInclude Include="..\..\src\map\items\item_usable.h" />
     <ClInclude Include="..\..\src\map\items\item_weapon.h" />
     <ClInclude Include="..\..\src\map\itemutils.h" />
-	<ClInclude Include="..\..\src\map\item_container.h" />
-	<ClInclude Include="..\..\src\map\jailutils.h" />
-	<ClInclude Include="..\..\src\map\linkshell.h" />
+    <ClInclude Include="..\..\src\map\item_container.h" />
+    <ClInclude Include="..\..\src\map\jailutils.h" />
+    <ClInclude Include="..\..\src\map\linkshell.h" />
     <ClInclude Include="..\..\src\map\lua\luautils.h" />
     <ClInclude Include="..\..\src\map\lua\lua_baseentity.h" />
     <ClInclude Include="..\..\src\map\lua\lua_instance.h" />
@@ -321,8 +321,8 @@
     <ClCompile Include="..\..\src\map\items\item_usable.cpp" />
     <ClCompile Include="..\..\src\map\items\item_weapon.cpp" />
     <ClCompile Include="..\..\src\map\itemutils.cpp" />
-	<ClCompile Include="..\..\src\map\item_container.cpp" />
-	<ClCompile Include="..\..\src\map\jailutils.cpp" />
+    <ClCompile Include="..\..\src\map\item_container.cpp" />
+    <ClCompile Include="..\..\src\map\jailutils.cpp" />
     <ClCompile Include="..\..\src\map\linkshell.cpp" />
     <ClCompile Include="..\..\src\map\lua\luautils.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_baseentity.cpp" />
