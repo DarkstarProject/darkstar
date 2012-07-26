@@ -516,7 +516,7 @@ void LoadChar(CCharEntity* PChar)
 		}
 	}
 
-	fmtQuery = "SELECT sandoria_cp, bastok_cp, windurst_cp, sandoria_supply, bastok_supply, windurst_supply  \
+	fmtQuery = "SELECT sandoria_cp, bastok_cp, windurst_cp, sandoria_supply, bastok_supply, windurst_supply \
 				FROM char_points \
 				WHERE charid = %u;";
 
@@ -526,15 +526,12 @@ void LoadChar(CCharEntity* PChar)
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-		PChar->RegionPoints[0] = (uint16)Sql_GetIntData(SqlHandle, 0);
-		PChar->RegionPoints[1] = (uint16)Sql_GetIntData(SqlHandle, 1);
-		PChar->RegionPoints[2] = (uint16)Sql_GetIntData(SqlHandle, 2);
-		PChar->nationtp.sandoria = (uint16)Sql_GetIntData(SqlHandle, 3);
-		PChar->nationtp.bastok = (uint16)Sql_GetIntData(SqlHandle, 4);
-		PChar->nationtp.windurst = (uint16)Sql_GetIntData(SqlHandle, 5);
-		//PChar->RegionPoints[3] = (uint16)Sql_GetIntData(SqlHandle, 6);
-		//PChar->nationtp.ahturhgan = (uint16)Sql_GetIntData(SqlHandle, 7);
-		//PChar->RegionPoints[4] = (uint16)Sql_GetIntData(SqlHandle, 8); //Zeni Point
+		PChar->RegionPoints[0] = (uint32)Sql_GetIntData(SqlHandle, 0);
+		PChar->RegionPoints[1] = (uint32)Sql_GetIntData(SqlHandle, 1);
+		PChar->RegionPoints[2] = (uint32)Sql_GetIntData(SqlHandle, 2);
+		PChar->nationtp.sandoria = (uint32)Sql_GetIntData(SqlHandle, 3);
+		PChar->nationtp.bastok = (uint32)Sql_GetIntData(SqlHandle, 4);
+		PChar->nationtp.windurst = (uint32)Sql_GetIntData(SqlHandle, 5);
 	}
 
 	BuildingCharSkillsTable(PChar);
