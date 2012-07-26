@@ -242,6 +242,7 @@ public:
 	int32 isBehind(lua_State*);				// true if you're behind the input target
 
     int32 openDoor(lua_State*);             // открываем дверь
+	int32 hideNPC(lua_State*);              // hide an NPC
 	int32 resetRecasts(lua_State*);         // Reset recasts for the caller
 
 	int32 addCP(lua_State*);				// Add CP
