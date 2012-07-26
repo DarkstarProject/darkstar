@@ -1135,8 +1135,18 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		else if(slot==SLOT_AMMO && PAttacker->objtype == TYPE_PC){
 			//todo: e.g. pebbles
 		}
-		else{
-			baseTp = CalculateBaseTP((PAttacker->m_Weapons[slot]->getDelay() * 60) / 1000);
+		else
+        {
+            int16 delay = ((PAttacker->m_Weapons[slot]->getDelay() * 60) / 1000);
+            float ratio = 1.0f;
+                
+            if((PAttacker->m_Weapons[slot]->getDmgType() == DAMAGE_HTH))
+            {
+                delay -= PAttacker->getMod(MOD_MARTIAL_ARTS);
+                ratio = 2.0f;
+            }
+
+            baseTp = CalculateBaseTP(delay) / ratio;
 		}
 
 		PAttacker->addTP(tpMultiplier*(baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP))));
