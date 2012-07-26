@@ -1,12 +1,12 @@
 -----------------------------------------
--- ID: 4525
--- Item: pumpkin_pie+1
+-- ID: 4447
+-- Item: pumpkin_pie_+1
 -- Food Effect: 60Min, All Races
 -----------------------------------------
--- MP +45
--- Intelligence +4
+-- Magic 45
+-- Intelligence 4
 -- Charisma -1
--- MP Recovered While Healing +1  
+-- MP Recovered While Healing 1
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,0,0,3600,4525);
+	target:addStatusEffect(EFFECT_FOOD,0,0,3600,4447);
 end;
 
 -----------------------------------

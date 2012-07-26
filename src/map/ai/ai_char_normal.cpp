@@ -799,7 +799,7 @@ void CAICharNormal::ActionRangedFinish()
 			    }
 		    }
 		    damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
-		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, true);
+		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 1);
 
 		    if(PItem != NULL){//not a throwing item, check the ammo for dmg/etc
 			    battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
@@ -1679,8 +1679,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	}
 
 	m_LastActionTime = m_Tick;
-
-	uint16 damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget);
+	uint16 tpHitsLanded = 0;
+	uint16 extraHitsLanded = 0;
+	uint16 damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
 
 	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI)){
 		m_PChar->addTP(-100);
@@ -1698,10 +1699,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
 			damslot = SLOT_RANGED;
 		}
-		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot, true);
+		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot, tpHitsLanded);
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST); //TODO: REMOVE THIS, BOOST EFFECT IN DB IS WRONG, MISSING EFFECTFLAG_DAMAGE
 	}
+
+	m_PChar->addTP(extraHitsLanded);
 
 	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN){
 		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_ELEMENTAL_BREATH;
@@ -1823,8 +1826,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
 							continue;
 						}
 					}
-					damage = luautils::OnUseWeaponSkill(m_PChar, PTarget);
-					AoEAction.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, false);
+					damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
+					AoEAction.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0);
 					if(damage==0)
 					{
 						AoEAction.reaction = REACTION_EVADE;
@@ -1993,6 +1996,7 @@ void CAICharNormal::ActionAttack()
 	
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			uint8 fstrslot = SLOT_MAIN;
+			bool zanshin = false;
 			for (uint32 i = 0; i < (numattacksLeftHand + numattacksRightHand); ++i) 
 			{
 				if (i != 0)
@@ -2021,6 +2025,15 @@ void CAICharNormal::ActionAttack()
 				Action.animation  = (i < numattacksRightHand ? 0 : 1);
 				Action.flag	= 0;
 
+				uint8 hitRate = 0;
+				if (zanshin)
+				{
+					hitRate = battleutils::GetHitRateAccOffset(m_PChar,m_PBattleTarget, 34);
+				}
+				else 
+				{
+					hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget);
+				}
 				// сначала вычисляем вероятность попадания по монстру
 				// затем нужно вычислить вероятность нанесения критического удара
 				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
@@ -2029,7 +2042,7 @@ void CAICharNormal::ActionAttack()
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 				}
-				else if ( rand()%100 < battleutils::GetHitRate(m_PChar,m_PBattleTarget) )
+				else if ( rand()%100 < hitRate)
 				{
 					bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget)) ;
 
@@ -2072,18 +2085,29 @@ void CAICharNormal::ActionAttack()
 					}
 
 					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
+					zanshin = false;
 				}
 				else
 				{
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
+					if ( !zanshin && rand()%100 < m_PChar->getMod(MOD_ZANSHIN) && (( i == 0 && numattacksRightHand == 1 ) || (i == numattacksRightHand && numattacksLeftHand == 1)) )
+					{
+						zanshin = true;
+						if ( i > numattacksRightHand ) {numattacksLeftHand++;}
+						else {numattacksRightHand++;}
+					}
+					else
+					{
+						zanshin = false;
+					}
 				}
 
 				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PChar,m_PBattleTarget));
 				if(isBlocked && Action.reaction!=REACTION_EVADE){ Action.reaction = REACTION_BLOCK; }
 				
-				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, true);
+				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1);
 
 				if (Action.reaction != REACTION_EVADE && m_PChar->getMod(MOD_ENSPELL)>0)
 				{

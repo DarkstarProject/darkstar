@@ -10,6 +10,7 @@
 -- performance of the actual WS (rand numbers, etc)
 
 function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,  canCrit,crit100,crit200,crit300,  acc100,acc200,acc300,   atkmulti)
+
 	--get fstr
 	fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getWeaponDmg());
 	
@@ -52,7 +53,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	end
 	
 	
-	dmg = base * ftp;  
+	local dmg = base * ftp;  
 	
 	--Applying pDIF
 	local double pdif = math.random((cratio[1]*1000),(cratio[2]*1000)); 
@@ -69,7 +70,8 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 		hitrate = hr;
 	end
 	
-	local hitslanded = 0; --used for debug
+	local tpHitsLanded = 0;
+	local tpHits = 0;
 	if (firsthit <= hitrate or isSneakValid) then
 		if(canCrit) then
 			local double critchance = math.random();
@@ -88,16 +90,45 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 		else
 			finaldmg = dmg * pdif;
 		end
-		hitslanded = 1;
+		tpHitsLanded = 1;
 	end
+	tpHits = 1;
 	
-	if(numHits>1) then
+	if(attacker:getOffhandDmg() > 0) then
+
+		local chance = math.random();
+		if (chance<=hitrate) then --it hit
+			pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
+			pdif = pdif/1000; --multiplier set.
+			if(canCrit) then
+				critchance = math.random();
+				if(critchance <= critrate or hasMightyStrikes) then --crit hit!
+					cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
+					cpdif = cpdif/1000; 
+					finaldmg = finaldmg + base * cpdif;
+				else
+					finaldmg = finaldmg + base * pdif;
+				end
+			else
+				finaldmg = finaldmg + base * pdif; --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+			end
+			tpHitsLanded = tpHitsLanded + 1;
+		end
+		numHits = numHits + 1;
+		tpHits = tpHits + 1;
+	end	
+	
+	numHits = getMultiAttacks(attacker, numHits);
+	
+	local extraHitsLanded = 0;
+	
+	if(numHits>tpHits) then
 		if(acc100==0) then
 			--work out acc since we actually need it now
 			hitrate = getHitRate(attacker,target,true);
 		end
 		
-		hitsdone = 1;
+		hitsdone = tpHits;
 		while (hitsdone < numHits) do 
 			chance = math.random();
 			if (chance<=hitrate) then --it hit
@@ -115,14 +146,14 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 				else
 					finaldmg = finaldmg + base * pdif; --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
 				end
-				hitslanded = hitslanded + 1;
+				extraHitsLanded = extraHitsLanded + 1;
 			end
 			hitsdone = hitsdone + 1;
 		end
 	end
 	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 	
-	return finaldmg;
+	return finaldmg, tpHitsLanded, extraHitsLanded;
 end;
 
 function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
@@ -441,7 +472,7 @@ return alpha;
 		hitrate = hr;
 	end
 	
-	local hitslanded = 0; --used for debug
+	local tpHitsLanded = 0; 
 	if (firsthit <= hitrate) then
 		if(canCrit) then
 			local double critchance = math.random();
@@ -455,9 +486,10 @@ return alpha;
 		else
 			finaldmg = dmg * pdif;
 		end
-		hitslanded = 1;
+		tpHitsLanded = 1;
 	end
 	
+	local extraHitsLanded = 0;
 	if(numHits>1) then
 		if(acc100==0) then
 			--work out acc since we actually need it now
@@ -482,12 +514,47 @@ return alpha;
 				else
 					finaldmg = finaldmg + base * pdif; --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
 				end
-				hitslanded = hitslanded + 1;
+				extraHitsLanded = extraHitsLanded + 1;
 			end
 			hitsdone = hitsdone + 1;
 		end
 	end
-	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
+	--print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 	
-	return finaldmg;
+	return finaldmg, tpHitsLanded, extraHitsLanded;
+end;
+
+function getMultiAttacks(attacker, numHits)
+	local bonusHits = 0;
+	local tripleChances = 1;
+	local doubleRate = attacker:getMod(MOD_DOUBLE_ATTACK)/100;
+	local tripleRate = attacker:getMod(MOD_TRIPLE_ATTACK)/100;
+
+	--triple only procs on first hit, or first two hits if dual wielding
+	if(attacker:getOffhandDmg() > 0) then
+		tripleChances = 2;
+	end
+	
+	for i = 1, numHits, 1 do
+		chance = math.random();
+		if (chance < tripleRate and i <= tripleChances) then
+			bonusHits = bonusHits + 2;
+		else 
+			--have to check if triples are possible, or else double attack chance
+			-- gets accidentally increased by triple chance (since it can only proc on 1 or 2)
+			if (i <= tripleChances) then
+				if (chance < tripleRate + doubleRate) then
+					bonusHits = bonusHits + 1;
+				end
+			else 
+				if (chance < doubleRate) then
+					bonusHits = bonusHits + 1;
+				end
+			end
+		end
+	end
+	if ((numHits + bonusHits ) > 8) then
+		return 8;
+	end
+	return numHits + bonusHits;
 end;

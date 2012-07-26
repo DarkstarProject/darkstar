@@ -36,7 +36,15 @@ function OnUseWeaponSkill(attacker, target, wsID)
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	atkMulti = 1;
 
-	damage = doPhysicalWeaponskill(attacker,target, numHits, str_mod, dex_mod, vit_mod, agi_mod, int_mod, mnd_mod, chr_mod, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, atkMulti);
+	damage, tpHits, extraHits = doPhysicalWeaponskill(attacker,target, numHits, str_mod, dex_mod, vit_mod, agi_mod, int_mod, mnd_mod, chr_mod, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, atkMulti);
 
-	return damage;
+	if( attacker:hasStatusEffect(EFFECT_FOOTWORK) == true) then
+		damage = damage + 18;
+	end
+
+	if( attacker:getEquipID(8) == 14128 ) then
+		damage =damage + 25;
+	end
+
+	return tpHits, extraHits, damage;
 end

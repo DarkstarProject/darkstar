@@ -32,6 +32,6 @@ function OnUseWeaponSkill(player, target, wsID)
 		
 	damage = math.floor(D + WSC);
 	
-	return damage
+	return 1, 0, damage;
 		
 end		

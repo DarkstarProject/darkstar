@@ -3625,6 +3625,29 @@ inline int32 CLuaBaseEntity::getWeaponDmg(lua_State *L)
 	return 1;
 }
 
+
+/************************************************************************
+*                                                                       *
+*  Gets the current offhand weapon's base DMG; used for WS calcs        *
+*                                                                       *   
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getOffhandDmg(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_SUB];
+			
+	if(weapon == NULL) 
+	{
+	    ShowDebug(CL_CYAN"lua::getOffhandDmg weapon in main slot is null!\n" CL_RESET);
+		return 0;
+    }
+	lua_pushinteger( L, weapon->getDamage() );
+	return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
@@ -4220,6 +4243,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openDoor),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromCure),

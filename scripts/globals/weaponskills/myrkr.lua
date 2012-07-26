@@ -7,5 +7,5 @@ require("scripts/globals/weaponskills");
 
 function OnUseWeaponSkill(attacker, target, wsID)
 	ftpmp = fTP(attacker:getTP(),0.2,0.4,0.6);
-	return (ftpmp*attacker:getMaxMP());
+	return 1, 0, (ftpmp*attacker:getMaxMP());
 end

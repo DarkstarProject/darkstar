@@ -9,5 +9,5 @@ function OnUseWeaponSkill(attacker, target, wsID)
 	lvl = attacker:getSkillLevel(11); --get club skill
 	damage = (lvl-10)/9;
 	damagemod = damage * (attacker:getTP()/100);
-	return damagemod;
+	return 1, 0, damagemod;
 end

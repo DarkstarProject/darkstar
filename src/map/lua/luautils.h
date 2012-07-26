@@ -102,7 +102,7 @@ namespace luautils
 	
 	int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);// triggers when mob weapon skill is used
 	int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill);// triggers when pet uses an ability
-	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob);				// triggers when weapon skill is used
+	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded);				// triggers when weapon skill is used
 	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget);				// triggers when job ability is used
 
 };

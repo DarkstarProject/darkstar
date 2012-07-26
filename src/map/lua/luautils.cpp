@@ -1348,7 +1348,7 @@ int32 OnMobSpawn(CBaseEntity* PMob)
 *                                                                       *
 ************************************************************************/
 
-int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob) 
+int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded) 
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -1386,6 +1386,8 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob)
         lua_pop(LuaHandle, 1);
 		return 0;
 	}
+	(*tpHitsLanded) = lua_tonumber(LuaHandle, -3);
+	(*extraHitsLanded) = lua_tonumber(LuaHandle, -2);
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 

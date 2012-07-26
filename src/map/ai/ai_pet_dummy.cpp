@@ -595,7 +595,7 @@ void CAIPetDummy::ActionAttack()
 				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PPet,m_PBattleTarget));
 				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
-                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, true);
+                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1);
 
 				m_PPet->m_ActionList.push_back(Action);
 

@@ -1025,7 +1025,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender){
 *																		*
 ************************************************************************/
 
-uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, bool isUserTPGain)
+uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ||
 		PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0))
@@ -1139,10 +1139,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			baseTp = CalculateBaseTP((PAttacker->m_Weapons[slot]->getDelay() * 60) / 1000);
 		}
 
-		if(isUserTPGain)
-		{
-			PAttacker->addTP(baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP)));
-		}
+		PAttacker->addTP(tpMultiplier*(baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP))));
 		//PAttacker->addTP(20);
 		//account for attacker's subtle blow which reduces the baseTP gain for the defender
 		baseTp = baseTp * ((100.0f - cap_value((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
@@ -1274,6 +1271,32 @@ uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     {
 		int32 defendereva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PDefender->AGI()/2;
 		int32 attackeracc = (PAttacker->getMod(MOD_ACC) * (100 + PAttacker->getMod(MOD_ACCP)))/100 + PAttacker->DEX()/2;
+		
+		hitrate = hitrate + (attackeracc - defendereva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
+
+		hitrate = cap_value(hitrate, 20, 95);
+    }
+	return (uint8)hitrate;
+}
+
+/************************************************************************
+*																		*
+*  Calculate Probability attack will hit with accuracy offset			*
+*																		*
+************************************************************************/
+
+uint8 GetHitRateAccOffset(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint32 accuracy) 
+{
+    int32 hitrate = 75;
+
+    if (PAttacker->objtype == TYPE_PC && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
+    {
+		hitrate = 100; //attack with SA active cannot miss
+	}
+    else
+    {
+		int32 defendereva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PDefender->AGI()/2;
+		int32 attackeracc = ((PAttacker->getMod(MOD_ACC) + accuracy) * (100 + PAttacker->getMod(MOD_ACCP)))/100 + PAttacker->DEX()/2;
 		
 		hitrate = hitrate + (attackeracc - defendereva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
