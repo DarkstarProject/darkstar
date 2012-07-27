@@ -15,3 +15,6 @@ CHEST_UNLOCKED = 7197; -- You unlock the chest!
   CHEST_MOOGLE = 7202; -- You cannot open the chest while participating in the moogle event.
 CHEST_ILLUSION = 7203; -- The chest was but an illusion...
   CHEST_LOCKED = 7204; -- The chest appears to be locked.
+
+-- Mining
+MINING_IS_POSSIBLE_HERE = 7183; -- Mining is possible here if you have <item>

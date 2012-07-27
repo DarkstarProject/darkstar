@@ -22,3 +22,5 @@ ALTAR_COMPLETED = 7183; -- You have already made an offering today.
  ALTAR_OFFERING = 7185; -- You place your offering of <item> on the altar.
  ALTAR_STANDARD = 7186; -- It is an altar for offerings.
 
+-- Mining
+MINING_IS_POSSIBLE_HERE = 7202; -- Mining is possible here if you have <item>

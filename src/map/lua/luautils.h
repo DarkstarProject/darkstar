@@ -65,6 +65,7 @@ namespace luautils
 	int32 VanadielDayOfTheMonth(lua_State*);									// Gets day of the month (Feb 6 = Day 6)
 	int32 VanadielYear(lua_State*);												// Gets the current Vanadiel Year
 	int32 VanadielMonth(lua_State*);											// Gets the current Vanadiel Month 
+	int32 VanadielDayElement(lua_State*);										// Gets element of the day (0: fire, ...)
 	int32 StartElevator(lua_State*); 
 	int32 GetServerVariable(lua_State*);
 	int32 SetServerVariable(lua_State *);
