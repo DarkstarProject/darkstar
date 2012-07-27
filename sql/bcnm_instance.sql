@@ -164,12 +164,12 @@ INSERT INTO `bcnm_instance` VALUES ('450', '2', '17604619');
 INSERT INTO `bcnm_instance` VALUES ('450', '3', '17604620');
 
 -- Cloister of Frost
-INSERT INTO `bcnm_instance` VALUES ('480', '1', '17600513');
-INSERT INTO `bcnm_instance` VALUES ('480', '2', '17600514');
-INSERT INTO `bcnm_instance` VALUES ('480', '3', '17600515');
-INSERT INTO `bcnm_instance` VALUES ('482', '1', '17600519');
-INSERT INTO `bcnm_instance` VALUES ('482', '2', '17600520');
-INSERT INTO `bcnm_instance` VALUES ('482', '3', '17600521');
+INSERT INTO `bcnm_instance` VALUES ('480', '1', '17608705');
+INSERT INTO `bcnm_instance` VALUES ('480', '2', '17608706');
+INSERT INTO `bcnm_instance` VALUES ('480', '3', '17608707');
+INSERT INTO `bcnm_instance` VALUES ('482', '1', '17608726');
+INSERT INTO `bcnm_instance` VALUES ('482', '2', '17608727');
+INSERT INTO `bcnm_instance` VALUES ('482', '3', '17608728');
 
 -- Qu'Bia Arena
 INSERT INTO `bcnm_instance` VALUES ('512', '1', '17621007');
