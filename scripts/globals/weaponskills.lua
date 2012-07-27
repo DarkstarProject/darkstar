@@ -93,8 +93,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 		tpHitsLanded = 1;
 	end
 	tpHits = 1;
-	
-	if(attacker:getOffhandDmg() > 0) then
+	if(attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1) then
 
 		local chance = math.random();
 		if (chance<=hitrate) then --it hit

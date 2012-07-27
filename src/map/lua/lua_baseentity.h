@@ -239,6 +239,7 @@ public:
 	int32 getOffhandDmg(lua_State*);		// gets the current equipped offhand's DMG rating (used in WS calcs)
 	int32 isWeaponTwoHanded(lua_State*);
 	int32 getMeleeHitDamage(lua_State*);    // gets the damage of a single hit vs the specified mob
+	int32 getWeaponSkillType(lua_State*);   // gets the type of weapon equipped
 	int32 isBehind(lua_State*);				// true if you're behind the input target
 
     int32 openDoor(lua_State*);             // открываем дверь

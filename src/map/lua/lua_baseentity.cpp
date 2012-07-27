@@ -3648,6 +3648,35 @@ inline int32 CLuaBaseEntity::getOffhandDmg(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Gets the skill type of weapon in slot								*
+*                                                                       *   
+************************************************************************/
+inline int32 CLuaBaseEntity::getWeaponSkillType(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	if( !lua_isnil(L,1) && lua_isstring(L,1) )
+	{
+		uint8 SLOT = (uint8)lua_tointeger(L,1);
+		if (SLOT > 1) 
+		{
+			lua_pushinteger(L,0);
+			return 1;
+		}
+		CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT];
+		if(weapon == NULL) 
+		{
+		    ShowDebug(CL_CYAN"lua::getOffhandDmg weapon in main slot is null!\n" CL_RESET);
+			return 0;
+		}
+		lua_pushinteger( L, weapon->getSkillType() );
+		return 1;
+	}
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
@@ -4271,6 +4300,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromCure),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isWeaponTwoHanded),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillType),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRATT),
