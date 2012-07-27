@@ -8,3 +8,6 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 
 -- Conquest
 CONQUEST = 7162; -- You've earned conquest points!
+
+-- Logging
+LOGGING_IS_POSSIBLE_HERE = 7538; -- Logging is possible here if you have <item>

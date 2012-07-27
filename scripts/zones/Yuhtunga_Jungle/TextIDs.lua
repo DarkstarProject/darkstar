@@ -9,6 +9,9 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 -- Conquest
 CONQUEST = 7162; -- You've earned conquest points!
 
+-- Logging
+LOGGING_IS_POSSIBLE_HERE = 7634; -- Logging is possible here if you have <item>
+
 -- ZM4 Dialog
       ZILART_MONUMENT = 7617; -- Its an ancient Zilart Monument
 ALREADY_OBTAINED_FRAG = 7614; -- You have already obtained this monuments...

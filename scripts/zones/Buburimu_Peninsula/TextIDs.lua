@@ -9,5 +9,8 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
 -- Conquest
 CONQUEST = 7316; -- You've earned conquest points!
 
+-- Logging
+LOGGING_IS_POSSIBLE_HERE = 7300; -- Logging is possible here if you have <item>
+
 -- Dialog Texts
 FIVEOFSPADES_DIALOG = 7156; -- GiMme★fIvE! FiVe is★A cArdIan★OF WiN-DuRst! FIvE★iS On★pA-tRol!
