@@ -1137,7 +1137,11 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		}
 		else
         {
-            int16 delay = ((PAttacker->m_Weapons[slot]->getDelay() * 60) / 1000);
+            int16 delay = ((PAttacker->m_Weapons[SLOT_MAIN]->getDelay() * 60) / 1000);
+			if(PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 && PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4){
+				delay += PAttacker->m_Weapons[SLOT_SUB]->getDelay() * 60 / 1000;
+				delay = delay * (1 - (float)PAttacker->getMod(MOD_DUAL_WIELD) / 100.0f ) / 2;
+			}
             float ratio = 1.0f;
                 
             if((PAttacker->m_Weapons[slot]->getDmgType() == DAMAGE_HTH))
