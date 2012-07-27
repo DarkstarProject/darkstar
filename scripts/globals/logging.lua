@@ -156,7 +156,7 @@ function getNewPositionNPC(player,npc,zone)
 	
 	for u = 1, table.getn(npcid), 2 do
 		if(npcid[u] == zone) then
-			nbNPC = table.getn((npcid[u + 1]);
+			nbNPC = table.getn(npcid[u + 1]);
 			while newnpcid == npc:getID() do
 				newnpcid = math.random(1,nbNPC);
 				newnpcid = npcid[u + 1][newnpcid];
