@@ -550,7 +550,7 @@ void CAICharNormal::ActionItemFinish()
         luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
 
         // AoE effect
-        if(m_PItemUsable->getAoE() == 1)
+        if(m_PItemUsable->getAoE() == 1 && m_PBattleSubTarget->PParty != NULL)
         {
             for (std::vector<CBattleEntity*>::const_iterator itr = m_PBattleSubTarget->PParty->members.begin(); 
                  itr != m_PBattleSubTarget->PParty->members.end() && m_PChar->m_ActionList.size() < 6; ++itr)

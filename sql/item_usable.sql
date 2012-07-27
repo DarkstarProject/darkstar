@@ -53,7 +53,7 @@ INSERT INTO `item_usable` VALUES (4108, 0, 'lightning_cluster', 1, 1, 43, 0, 0, 
 INSERT INTO `item_usable` VALUES (4109, 0, 'water_cluster', 1, 1, 39, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4110, 0, 'light_cluster', 1, 1, 41, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4111, 0, 'dark_cluster', 1, 1, 44, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (4112, 0, 'potion', 1, 1, 30, 0, 0, 0, 0, 1);
+INSERT INTO `item_usable` VALUES (4112, 0, 'potion', 1, 1, 30, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4113, 0, 'potion_+1', 1, 1, 30, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4114, 0, 'potion_+2', 1, 1, 30, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4115, 0, 'potion_+3', 1, 1, 30, 0, 0, 0, 0, 0);
@@ -1326,7 +1326,7 @@ INSERT INTO `item_usable` VALUES (5568, 0, 'apkallu_egg', 1, 1, 0, 0, 0, 0, 0, 0
 INSERT INTO `item_usable` VALUES (5569, 0, 'puk_egg', 1, 1, 0, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5570, 0, 'cup_of_chai', 1, 1, 0, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5571, 0, 'slice_of_karakul_meat', 1, 1, 0, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (5572, 0, 'irmik_helvasi', 1, 1, 0, 0, 0, 0, 0, 1);
+INSERT INTO `item_usable` VALUES (5572, 0, 'irmik_helvasi', 1, 1, 0, 0, 0, 0, 0, 		;
 INSERT INTO `item_usable` VALUES (5573, 0, 'irmik_helvasi_+1', 1, 1, 0, 0, 0, 0, 0, 1);
 INSERT INTO `item_usable` VALUES (5574, 0, 'dried_date_+1', 1, 1, 0, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5575, 0, 'bowl_of_yogurt', 1, 1, 0, 0, 0, 0, 0, 0);
