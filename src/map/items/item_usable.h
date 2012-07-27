@@ -44,6 +44,7 @@ public:
 	uint8	getValidTarget();
 	uint32	getReuseDelay();
 	uint32	getLastUseTime();
+    uint16  getAoE();
 
 	void	setUseDelay(uint8 UseDelay);
 	void	setCurrentCharges(uint8 CurrCharges);
@@ -54,7 +55,8 @@ public:
 	void	setValidTarget(uint8 ValidTarget);
 	void	setReuseDelay(uint32 ReuseDelay);
 	void	setLastUseTime(uint32 LastUseTime);
-	
+	void    setAoE(uint16 AoE);
+
 private:
 
 	uint8	m_UseDelay;
@@ -66,6 +68,7 @@ private:
 	uint8	m_ValidTarget;
 	uint32	m_ReuseDelay;
 	uint32	m_LastUseTime;
+    uint16  m_AoE;
 };
 
 #endif

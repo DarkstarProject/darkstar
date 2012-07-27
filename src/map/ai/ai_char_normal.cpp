@@ -547,7 +547,24 @@ void CAICharNormal::ActionItemFinish()
 
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getAnimationTime())
 	{
-		luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
+        luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
+
+        // AoE effect
+        if(m_PItemUsable->getAoE() == 1)
+        {
+            for (std::vector<CBattleEntity*>::const_iterator itr = m_PBattleSubTarget->PParty->members.begin(); 
+                 itr != m_PBattleSubTarget->PParty->members.end() && m_PChar->m_ActionList.size() < 6; ++itr)
+            {
+                CBattleEntity* PTarget = (CBattleEntity*)*itr;
+
+                if(m_PBattleSubTarget != PTarget &&
+                   !PTarget->isDead() &&
+                   distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
+                {
+                    luautils::OnItemUse(PTarget, m_PItemUsable);
+                }
+            }
+        }
 
 		delete m_PItemUsable;
 
@@ -1805,7 +1822,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		
 		AoEAction.reaction = REACTION_HIT;
 		AoEAction.speceffect = SPECEFFECT_RECOIL;
-		AoEAction.animation = m_PWeaponSkill->getAnimationId();		
+		AoEAction.animation = m_PWeaponSkill->getAnimationId();
 		AoEAction.flag = 0;
 
 		if (m_PBattleSubTarget->objtype == TYPE_MOB)

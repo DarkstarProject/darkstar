@@ -38,6 +38,7 @@ CItemUsable::CItemUsable(uint16 id) : CItem(id)
 	m_ValidTarget	 = 0;
 	m_ReuseDelay	 = 0;
 	m_LastUseTime	 = 0;
+    m_AoE            = 0;
 }
 
 CItemUsable::~CItemUsable()
@@ -132,4 +133,14 @@ void CItemUsable::setValidTarget(uint8 ValidTarget)
 uint8 CItemUsable::getValidTarget() 
 {
 	return m_ValidTarget;
+}
+
+uint16 CItemUsable::getAoE()
+{ 
+    return m_AoE; 
+}
+
+void CItemUsable::setAoE(uint16 AoE) 
+{ 
+    m_AoE = AoE; 
 }
