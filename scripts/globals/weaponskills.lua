@@ -72,7 +72,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	
 	local tpHitsLanded = 0;
 	local tpHits = 0;
-	if (firsthit <= hitrate or isSneakValid or math.random() < attacker:getMod(MOD_ZANSHIN)) then
+	if (firsthit <= hitrate or isSneakValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then
 		if(canCrit) then
 			local double critchance = math.random();
 			if(critchance <= critrate or hasMightyStrikes or isSneakValid) then --crit hit!
@@ -96,7 +96,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	if(attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1) then
 
 		local chance = math.random();
-		if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)) then --it hit
+		if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then --it hit
 			pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
 			pdif = pdif/1000; --multiplier set.
 			if(canCrit) then
@@ -130,7 +130,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 		hitsdone = tpHits;
 		while (hitsdone < numHits) do 
 			chance = math.random();
-			if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)) then --it hit
+			if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then --it hit
 				pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
 				pdif = pdif/1000; --multiplier set.
 				if(canCrit) then
