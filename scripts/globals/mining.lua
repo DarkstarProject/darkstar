@@ -36,7 +36,7 @@ drop = {11,{0x0676,0.1155,0x0282,0.2300,0x0280,0.3415,0x0281,0.4530,0x02E0,0.559
 -- Define array of Colored Rocks, Do not reorder this array or rocks.
 rocks = {0x0301,0x0302,0x0303,0x0304,0x0305,0x0306,0x0308,0x0307};
 
-function startMining(player,zone,npc,trade)
+function startMining(player,zone,npc,trade,csid)
 	
 	math.randomseed(os.time());
 	
@@ -51,7 +51,7 @@ function startMining(player,zone,npc,trade)
 			full = 0;
 		end
 		
-		player:startEvent(0x000B,item,broke,full);
+		player:startEvent(csid,item,broke,full);
 		
 		if(item ~= 0 and full == 0) then
 			player:addItem(item);

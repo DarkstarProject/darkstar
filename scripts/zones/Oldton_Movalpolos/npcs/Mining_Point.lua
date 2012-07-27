@@ -13,7 +13,7 @@ require("scripts/zones/Oldton_Movalpolos/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startMining(player,player:getZone(),npc,trade);
+	startMining(player,player:getZone(),npc,trade,0x000B);
 end;
 
 -----------------------------------

@@ -13,7 +13,7 @@ require("scripts/zones/East_Ronfaure/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startLogging(player,player:getZone(),npc,trade);
+	startLogging(player,player:getZone(),npc,trade,0x0385);
 end;
 
 -----------------------------------

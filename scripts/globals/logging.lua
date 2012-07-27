@@ -42,7 +42,7 @@ drop = {2,{0x1198,0.0900,0x02B0,0.1800,0x02BA,0.2700,0x039B,0.3600,0x02B7,0.4500
 		124,{0x02BE,0.0120,0x02BC,0.0520,0x03AC,0.0920,0x039B,0.1620,0x0390,0.3070,0x02B1,0.4780,0x02B0,0.7290,0x02D1,0.9800,0x04D5,1.0000},
 		140,{0x02B9,0.0530,0x02B2,0.1060,0x02B7,0.2050,0x02B3,0.4400,0x02BA,0.6950,0x02B0,1.0000}};
 
-function startLogging(player,zone,npc,trade)
+function startLogging(player,zone,npc,trade,csid)
 	
 	math.randomseed(os.time());
 	
@@ -57,7 +57,7 @@ function startLogging(player,zone,npc,trade)
 			full = 0;
 		end
 		
-		player:startEvent(0x0385,item,broke,full);
+		player:startEvent(csid,item,broke,full);
 		
 		if(item ~= 0 and full == 0) then
 			player:addItem(item);

@@ -13,7 +13,7 @@ require("scripts/zones/Newton_Movalpolos/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startMining(player,player:getZone(),npc,trade);
+	startMining(player,player:getZone(),npc,trade,0x000A);
 end;
 
 -----------------------------------
