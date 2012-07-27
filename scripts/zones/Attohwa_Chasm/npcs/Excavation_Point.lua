@@ -1,39 +1,23 @@
 -----------------------------------
--- Area: Maze of Shakhrami
--- NPC:  Excavation Point
--- Used in Quest: The Holy Crest
--- @pos 234 0 -110 198
+--  Area: Attohwa Chasm
+--  NPC:  Excavation Point
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
+package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
+-------------------------------------
 
 require("scripts/globals/excavation");
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+require("scripts/zones/Attohwa_Chasm/TextIDs");
 
 -----------------------------------
--- onTrade Action
+-- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-	if(player:getVar("TheHolyCrest_Event") == 3 and player:hasItem(1159) == false) then
-		if(trade:hasItemQty(605,1) and trade:getItemCount() == 1) then
-			if(player:getFreeSlotsCount(0) >= 1) then
-				player:tradeComplete();
-				player:addItem(1159);
-				player:messageSpecial(ITEM_OBTAINED, 1159); -- Wyvern Egg
-			else
-			   player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1159); -- Wyvern Egg
-			end
-		end
-	else
-		startExcavation(player,player:getZone(),npc,trade,0x003C);
-	end
-	
+	startExcavation(player,player:getZone(),npc,trade,0x000A);
 end;
 
 -----------------------------------
--- onTrigger Action
+-- onTrigger
 -----------------------------------
 
 function onTrigger(player,npc)

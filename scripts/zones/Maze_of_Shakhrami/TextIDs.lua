@@ -8,3 +8,6 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 NOTHING_OUT_OF_ORDINARY = 7313; -- There is nothing out of the ordinary here.
          NOTHING_FOSSIL = 6995; -- It looks like a rock with fossils embedded in it. Nothing out of the ordinary.
        FOSSIL_EXTRACTED = 6996; -- A large fossil has been excavated from here. The hole where it once sat is covered in something sticky.
+
+-- Mining
+MINING_IS_POSSIBLE_HERE = 7304; -- Mining is possible here if you have <item>
