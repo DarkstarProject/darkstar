@@ -802,7 +802,7 @@ void CAICharNormal::ActionRangedFinish()
         }
         else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)){ //hit!
 		    float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
-		    if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget)){
+		    if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true)){
 			    pdif *= 1.25; //uncapped
 			    Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 			    Action.messageID = 353;
@@ -2061,7 +2061,8 @@ void CAICharNormal::ActionAttack()
 				}
 				else if ( rand()%100 < hitRate)
 				{
-					bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget)) ;
+                    bool ignoreSneakAttack = (i != 0); // Sneak attack critical effect should only be given on the first swing.
+					bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, ignoreSneakAttack));
 
 					float DamageRatio = battleutils::GetDamageRatio(m_PChar,m_PBattleTarget,isCritical); 
 
@@ -2080,12 +2081,11 @@ void CAICharNormal::ActionAttack()
 					}
 
 					uint16 bonusDMG = 0;
-					if(m_PChar->GetMJob() == JOB_THF && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
+					if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakAttack) &&
 						abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23){
 						bonusDMG = m_PChar->DEX();
 					}
 
-					m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK_ATTACK);
 
 					damage = (uint16)(((PWeapon->getDamage() + bonusDMG + 
 						battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));

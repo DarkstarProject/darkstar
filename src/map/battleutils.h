@@ -100,7 +100,7 @@ namespace battleutils
 	int32	GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID);
 	uint8	GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint8	GetHitRateAccOffset(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint32 accuracy); 
-	uint8	GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+	uint8	GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakAttack);
 	uint8   GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender);
 	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical); 
     uint16  TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender);

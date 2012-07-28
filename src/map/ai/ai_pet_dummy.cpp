@@ -573,7 +573,7 @@ void CAIPetDummy::ActionAttack()
 						Action.speceffect = SPECEFFECT_HIT;
 						Action.messageID  = 1;
 
-						bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget) );
+						bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false) );
 						float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget,isCritical); 
 
 						if(isCritical)

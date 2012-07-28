@@ -1325,14 +1325,14 @@ uint8 GetHitRateAccOffset(CBattleEntity* PAttacker, CBattleEntity* PDefender, ui
 *																		*
 ************************************************************************/
 
-uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakAttack)
 {
 	int32 crithitrate = 5;
 	if(PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0) || 
 		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES)){
 			return 100;
 	}
-	else if (PAttacker->objtype == TYPE_PC && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
+	else if (PAttacker->objtype == TYPE_PC && (!ignoreSneakAttack) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
 	{	
         // TODO: WRONG CALCULATION OF A POSITION OF THE CHARACTER
 

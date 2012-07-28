@@ -2495,7 +2495,7 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
 		else PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
 		PChar->expChain.chainNumber++;
 	}
-	else
+	else if(exp > 0)
 	{	
 		PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
 	}

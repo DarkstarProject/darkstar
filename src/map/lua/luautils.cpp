@@ -90,6 +90,7 @@ int32 init()
 	lua_register(LuaHandle,"VanadielYear",luautils::VanadielYear);
 	lua_register(LuaHandle,"VanadielMonth",luautils::VanadielMonth);
 	lua_register(LuaHandle,"VanadielDayElement",luautils::VanadielDayElement);
+    lua_register(LuaHandle,"SetVanadielTimeOffset",luautils::SetVanadielTimeOffset);
 	lua_register(LuaHandle,"RunElevator",luautils::StartElevator);
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
@@ -333,6 +334,21 @@ int32 VanadielDayElement(lua_State* L)
 {
 	lua_pushinteger(L, 0);
 	return 1;
+}
+
+int32 SetVanadielTimeOffset(lua_State* L)
+{
+    if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+    {
+        uint32 offset = (uint32)lua_tointeger(L,1);
+
+        CVanaTime::getInstance()->setCustomOffset(offset);
+
+        lua_pushboolean(L, true);
+        return 1;
+    }
+    lua_pushnil(L);
+    return 0;
 }
 
 /************************************************************************

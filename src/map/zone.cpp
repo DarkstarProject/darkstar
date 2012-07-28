@@ -1134,6 +1134,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_FOG)
 				{
+                    PMob->SetDespawnTimer(0);
                     PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 				}
 			}
@@ -1147,8 +1148,16 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
                 if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
                 {
-                    PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
-					PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+                    if(PMob->m_OwnerID.id != 0)
+                    {
+                        // Mob is engaged with something, don't despawn it.
+                        PMob->SetDespawnTimer(1);
+                    }
+                    else
+                    {
+                        PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
+                        PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+                    } // if PMob->m_TargID != 0
                 }
 			}
 		}
@@ -1163,8 +1172,16 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
 				{
-                    PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
-					PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+                    if(PMob->m_OwnerID.id != 0)
+                    {
+                        // Mob is engaged with something, don't despawn it.
+                        PMob->SetDespawnTimer(1);
+                    }
+                    else
+                    {
+                        PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
+					    PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+                    } // if PMob->m_TargID != 0
 				}
 			}
 		}
@@ -1179,8 +1196,16 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
                 if (PMob->m_SpawnType ==  SPAWNTYPE_FOG)
                 {
-                    PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
-					PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+                    if(PMob->m_OwnerID.id != 0)
+                    {
+                        // Mob is engaged with something, don't despawn it.
+                        PMob->SetDespawnTimer(1);
+                    }
+                    else
+                    {
+                        PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
+					    PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+                    } // if PMob->m_TargID != 0
                 }
 			}
 		}
@@ -1200,6 +1225,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
 				{
+                    PMob->SetDespawnTimer(0);
 					PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 				}
 			}
@@ -1213,6 +1239,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
 				{
+                    PMob->SetDespawnTimer(0);
 					PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 				}
 			}
