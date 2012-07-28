@@ -2126,8 +2126,16 @@ void CAICharNormal::ActionAttack()
 				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PChar,m_PBattleTarget));
 				if(isBlocked && Action.reaction!=REACTION_EVADE){ Action.reaction = REACTION_BLOCK; }
 				
-				Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1);
-
+				if (Action.reaction == REACTION_HIT)
+				{
+					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1);
+				}
+				else
+				{
+					Action.param = 0;
+					((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmity(m_PChar, 0, 0);
+				}
+				
 				if (Action.reaction != REACTION_EVADE && m_PChar->getMod(MOD_ENSPELL)>0)
 				{
 					battleutils::HandleEnspell(m_PChar,m_PBattleTarget,&Action,i);
