@@ -2163,19 +2163,19 @@ void CAICharNormal::ActionRaiseMenuSelection()
     {
 		Action.animation = 511; 
 		m_PChar->addHP(m_PChar->GetMaxHP()*0.1); 
-        ratioReturned = 0.50f;
+        ratioReturned = 0.50f * (1 - map_config.exp_retain);
 	}
 	else if(m_PChar->m_hasRaise == 2)
     {
 		Action.animation = 512;
 		m_PChar->addHP(m_PChar->GetMaxHP()*0.25); 
-        ratioReturned = (m_PChar->GetMLevel() <= 50) ? 0.50f : 0.75f;
+        ratioReturned = ((m_PChar->GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
 	}
 	else if(m_PChar->m_hasRaise == 3)
     {
 		Action.animation = 496;
 		m_PChar->addHP(m_PChar->GetMaxHP()*0.5); 
-        ratioReturned = (m_PChar->GetMLevel() <= 50) ? 0.50f : 0.90f;
+        ratioReturned = ((m_PChar->GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
 	}
     Action.reaction   = REACTION_NONE;
     Action.speceffect = SPECEFFECT_RAISE;
