@@ -600,6 +600,9 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	{
 		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 		PCurrentMob->PEnmityContainer->Clear(PChar->id);
+		if(PCurrentMob->m_OwnerID.id == PChar->id){
+			PCurrentMob->m_OwnerID.clean();
+		}
 	}
 
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
