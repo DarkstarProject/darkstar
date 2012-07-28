@@ -2083,6 +2083,7 @@ void CAICharNormal::ActionAttack()
 					if(m_PChar->GetMJob() == JOB_THF && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
 						abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23){
 						bonusDMG = m_PChar->DEX();
+                        //m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK_ATTACK);
 					}
 
 					damage = (uint16)(((PWeapon->getDamage() + bonusDMG + 
