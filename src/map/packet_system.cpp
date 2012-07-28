@@ -1015,11 +1015,38 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* dat
                         }
                         else
                         {
+							// Cancel an exchange if a rare item in the exchange is owned by the recipient
                             for (uint8 slotid = 0; slotid <= 8; ++slotid)
                             {
                                 CItem* PItem = PTarget->UContainer->GetItem(slotid);
+								
+								if (PItem != NULL)
+								{
+									
+									if (PItem->getFlag() & ITEM_FLAG_RARE)
+									{
+										if (PChar->getStorage(LOC_INVENTORY)->SearchItem(PItem->getID()) != ERROR_SLOTID)
+										{
+											PChar->pushPacket(new CTradeActionPacket(PTarget, 1));
+											PTarget->pushPacket(new CTradeActionPacket(PChar, 1));
+											PChar->pushPacket(new CMessageStandardPacket(PTarget, PItem->getID(), 0, 220));
+											
+											PChar->TradePending.clean();
+											PChar->UContainer->Clean();
 
-                                if (PItem != NULL)
+											PTarget->TradePending.clean();
+											PTarget->UContainer->Clean();
+											
+											return;
+										}
+									}
+								}
+                            }
+							for (uint8 slotid = 0; slotid <= 8; ++slotid)
+                            {
+                                CItem* PItem = PTarget->UContainer->GetItem(slotid);
+								
+								if (PItem != NULL)
                                 {
                                     if (PItem->getStackSize() == 1)
                                     {
@@ -1084,8 +1111,8 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-        // обмен редкими предметами временно недоступен
-        if (PItem != NULL && PItem->getID() == itemID && !(PItem->getFlag() & ITEM_FLAG_RARE))
+        // exchange of exclusive items is disabled
+        if (PItem != NULL && PItem->getID() == itemID && !(PItem->getFlag() & ITEM_FLAG_EX))
         {
             // если количество предметов равно нулю, то удаляем предмет из контейнера
             PItem->setReserve(quantity);
