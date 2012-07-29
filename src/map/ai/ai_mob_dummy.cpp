@@ -877,7 +877,7 @@ void CAIMobDummy::ActionAttack()
 							Action.messageID = 70;
 							Action.reaction   = REACTION_PARRY;
 							Action.speceffect = SPECEFFECT_NONE;
-							if(m_PBattleTarget->objtype == TYPE_PC && rand()%2==0){//less chance to skill
+							if(m_PBattleTarget->objtype == TYPE_PC){//less chance to skill
 								charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_PAR,m_PBattleTarget->GetMLevel());
 							}
 						}
