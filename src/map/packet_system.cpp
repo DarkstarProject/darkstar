@@ -1111,8 +1111,8 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-        // exchange of exclusive items is disabled
-        if (PItem != NULL && PItem->getID() == itemID && !(PItem->getFlag() & ITEM_FLAG_EX))
+        // We used to disable Rare/Ex items being added to the container, but that is handled properly elsewhere now
+        if (PItem != NULL && PItem->getID() == itemID)
         {
             // если количество предметов равно нулю, то удаляем предмет из контейнера
             PItem->setReserve(quantity);
