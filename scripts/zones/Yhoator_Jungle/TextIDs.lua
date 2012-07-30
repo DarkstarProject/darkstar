@@ -12,6 +12,7 @@ CONQUEST = 7162; -- You've earned conquest points!
 
 -- Logging
 LOGGING_IS_POSSIBLE_HERE = 7599; -- Logging is possible here if you have <item>
+HARVESTING_IS_POSSIBLE_HERE = 7606; -- Harvesting is possible here if you have <item>
 
 -- Other dialog
              TREE_CHECK = 7613; -- The hole in this tree is filled with a sweet-smelling liquid.

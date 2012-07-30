@@ -61,10 +61,10 @@ function startLogging(player,zone,npc,trade,csid)
 		
 		if(item ~= 0 and full == 0) then
 			player:addItem(item);
-			player:setVar("["..zone.."]".."Logging",player:getVar("["..zone.."]".."Logging") + 1);
+			SetServerVariable("[LOGGING]Zone "..zone,GetServerVariable("[LOGGING]Zone "..zone) + 1);
 		end
 		
-		if(player:getVar("["..zone.."]".."Logging") >= 3) then
+		if(GetServerVariable("[LOGGING]Zone "..zone) >= 3) then
 			getNewPositionNPC(player,npc,zone);
 		end
 	else
@@ -167,6 +167,6 @@ function getNewPositionNPC(player,npc,zone)
 	
 	npc:setStatus(2);
 	GetNPCByID(newnpcid):setStatus(0);
-	player:setVar("["..zone.."]".."Logging",0);
+	SetServerVariable("[LOGGING]Zone "..zone,0);
 	
 end

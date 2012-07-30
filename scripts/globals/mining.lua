@@ -55,10 +55,10 @@ function startMining(player,zone,npc,trade,csid)
 		
 		if(item ~= 0 and full == 0) then
 			player:addItem(item);
-			player:setVar("["..zone.."]".."Mining",player:getVar("["..zone.."]".."Mining") + 1);
+			SetServerVariable("[MINING]Zone "..zone,GetServerVariable("[MINING]Zone "..zone) + 1);
 		end
 		
-		if(player:getVar("["..zone.."]".."Mining") >= 3) then
+		if(GetServerVariable("[MINING]Zone "..zone) >= 3) then
 			getNewPositionNPC(player,npc,zone);
 		end
 	else
@@ -170,6 +170,6 @@ function getNewPositionNPC(player,npc,zone)
 	
 	npc:setStatus(2);
 	GetNPCByID(newnpcid):setStatus(0);
-	player:setVar("["..zone.."]".."Mining",0);
+	SetServerVariable("[MINING]Zone "..zone,0);
 	
 end

@@ -45,10 +45,10 @@ function startExcavation(player,zone,npc,trade,csid)
 		
 		if(item ~= 0 and full == 0) then
 			player:addItem(item);
-			player:setVar("["..zone.."]".."Excavation",player:getVar("["..zone.."]".."Excavation") + 1);
+			SetServerVariable("[EXCAVATION]Zone "..zone,GetServerVariable("[EXCAVATION]Zone "..zone) + 1);
 		end
 		
-		if(player:getVar("["..zone.."]".."Excavation") >= 3) then
+		if(GetServerVariable("[EXCAVATION]Zone "..zone) >= 3) then
 			getNewPositionNPC(player,npc,zone);
 		end
 	else
@@ -148,6 +148,6 @@ function getNewPositionNPC(player,npc,zone)
 	
 	npc:setStatus(2);
 	GetNPCByID(newnpcid):setStatus(0);
-	player:setVar("["..zone.."]".."Excavation",0);
+	SetServerVariable("[EXCAVATION]Zone "..zone,0);
 	
 end

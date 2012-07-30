@@ -11,6 +11,7 @@ CONQUEST = 7162; -- You've earned conquest points!
 
 -- Logging
 LOGGING_IS_POSSIBLE_HERE = 7634; -- Logging is possible here if you have <item>
+HARVESTING_IS_POSSIBLE_HERE = 7641; -- Harvesting is possible here if you have <item>
 
 -- ZM4 Dialog
       ZILART_MONUMENT = 7617; -- Its an ancient Zilart Monument

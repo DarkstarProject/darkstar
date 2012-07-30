@@ -14,6 +14,9 @@ REGIME_CANCELED = 10081; -- Training regime canceled.
 -- Conquest
 CONQUEST = 7390; -- You've earned conquest points!
 
+-- Harvesting
+HARVESTING_IS_POSSIBLE_HERE = 7374; -- Harvesting is possible here if you have <item>
+
 -- NPC Dialog
 
 KOLAPO_OILAPO_DIALOG = 7325; -- Hi-diddly-diddly! This is the gateway to Windurst! The grasslands you're on now are known as West Sarutabaruta.
