@@ -866,20 +866,20 @@ void CAIMobDummy::ActionAttack()
 
 					uint16 damage = 0;
 					bool isCountered = false;
+                    bool isParried = false;
+                    bool isGuarded = false;
 					if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
 					{
 						Action.messageID = 32; 
 					}
 					else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
 					{
-						if (isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40) && battleutils::IsParried(m_PMob,m_PBattleTarget)) 
+						if (battleutils::IsParried(m_PMob, m_PBattleTarget)) 
 						{
+                            isParried = true;
 							Action.messageID = 70;
 							Action.reaction   = REACTION_PARRY;
 							Action.speceffect = SPECEFFECT_NONE;
-							if(m_PBattleTarget->objtype == TYPE_PC){//less chance to skill
-								charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_PAR,m_PBattleTarget->GetMLevel());
-							}
 						}
 						else if (battleutils::IsAbsorbByShadow(m_PBattleTarget)) 
 						{
@@ -920,24 +920,63 @@ void CAIMobDummy::ActionAttack()
 									Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 									Action.messageID  = 67;
 								}
+
+                                // Guard
+                                if(battleutils::IsGuarded(m_PMob, m_PBattleTarget))
+                                {
+                                    isGuarded = true;
+                                    //Action.messageID = 0;
+                                    Action.reaction = REACTION_NONE;
+                                    Action.speceffect = SPECEFFECT_NONE;
+                                    DamageRatio -= 1.0f; // Guard lowers pDif by 1.0
+                                }
+
 								damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);	
+
+                                //  Guard skill up
+                                if(m_PBattleTarget->objtype == TYPE_PC && isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0))
+                                {
+                                    if(battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0);
+                                    {
+                                        charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_GRD, m_PBattleTarget->GetMLevel());
+                                    }
+                                } // Guard skill up
 							}
 						}
+
+                        // Parry skill up
+                        if(m_PBattleTarget->objtype == TYPE_PC && isParried || ((map_config.newstyle_skillups & NEWSTYLE_PARRY) > 0))
+                        {
+                            if(battleutils::GetParryRate(m_PMob, m_PBattleTarget) > 0)
+                            {
+                                charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_PAR,m_PBattleTarget->GetMLevel());
+                            }
+                        } // Parry skill up
 					}
-					if (m_PBattleTarget->objtype == TYPE_PC && !isCountered)
+					if (m_PBattleTarget->objtype == TYPE_PC && !isCountered && !isParried)
 					{
 						charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
 					}
 
-					bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PMob,m_PBattleTarget));
-					if(isBlocked && !isFaceing(m_PBattleTarget->loc.p, m_PMob->loc.p, 40)){isBlocked=false;}
+                    bool isBlocked = battleutils::IsBlocked(m_PMob, m_PBattleTarget);
 					if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
-					if(!isCountered){
+					if(!isCountered)
+                    {
 						Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, 1);
 						m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
+
+                        // Block skill up
+                        if(m_PBattleTarget->objtype == TYPE_PC && isBlocked || ((map_config.newstyle_skillups & NEWSTYLE_BLOCK) > 0))
+                        {
+                            if(battleutils::GetBlockRate(m_PMob, m_PBattleTarget) > 0)
+                            {
+                                charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_SHL, m_PMob->GetMLevel());    
+                            }
+                        } // Block skill up
 					}
-					else{
+					else
+                    {
 						Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1);
 					}
 

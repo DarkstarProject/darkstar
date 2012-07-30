@@ -943,18 +943,34 @@ float CalculateBaseTP(int delay){
 	return x;
 }
 
-bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender){
-	if( PAttacker->GetMJob() == JOB_NIN || PAttacker->GetMJob() == JOB_SAM || 
-		PAttacker->GetMJob() == JOB_THF || PAttacker->GetMJob() == JOB_BST || PAttacker->GetMJob() == JOB_DRG ||
-		PAttacker->GetMJob() == JOB_PLD || PAttacker->GetMJob() == JOB_WAR || PAttacker->GetMJob() == JOB_BRD || 
-		PAttacker->GetMJob() == JOB_DRK || PAttacker->GetMJob() == JOB_RDM || PAttacker->GetMJob() == JOB_COR){
-		int skill = PDefender->GetSkill(SKILL_PAR)+PDefender->getMod(MOD_PARRY); //max A-, so need gear+ for 20% parry
-		int max = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel()); //A+ skill
-		int parryrate = 20 * ((double)skill/(double)max);
-		parryrate = cap_value(parryrate,1,20);//20% max parry rate
-		return  (rand()%100 < parryrate);
-	}
-	return false;
+bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+{
+    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
+    {
+        return (rand() % 100 < battleutils::GetParryRate(PAttacker, PDefender));
+    }
+
+    return false;
+}
+
+bool IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+{
+    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
+    {
+        return(rand() % 100 < battleutils::GetGuardRate(PAttacker, PDefender));
+    }
+    
+    return false;
+}
+
+bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+{
+    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
+    {
+        return(rand() % 100 < battleutils::GetBlockRate(PAttacker, PDefender));    
+    }
+
+    return false;   
 }
 
 bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
@@ -1003,11 +1019,14 @@ has to be, else a Lv75 PLD with 0 skill would never be able to skillup
 as they need to be HIT to skillup, meaning they can't really lvl up on
 low level monsters as they miss too much. Presuming a min cap of -10%.
 ************************************************************************/
-uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender){
-	if(PDefender->objtype == TYPE_PC){
+uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
+{
+	if(PDefender->objtype == TYPE_PC)
+    {
 		CCharEntity* PChar = (CCharEntity*)PDefender;
 		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
-		if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5){
+		if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5)
+        {
 			float chance = ((5-PItem->getShieldSize())*10.0f)+ //base
 				dsp_max(((float)(PChar->GetSkill(SKILL_SHL)+PChar->getMod(MOD_SHIELD)-GetMaxSkill(SKILL_SHL,JOB_PLD,PAttacker->GetMLevel()))/4.6f),-10);
 			//TODO: HANDLE OCHAIN
@@ -1016,7 +1035,47 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender){
 			return cap_value(chance,5,65);
 		}
 	}
+
 	return 0;
+}
+
+uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+{
+    CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
+
+    if(PWeapon != NULL && PWeapon->getID() != 0 && PWeapon->getID() != 65535 &&
+       PWeapon->getSkillType() != SKILL_H2H)
+    {
+        if( PDefender->GetMJob() == JOB_NIN || PDefender->GetMJob() == JOB_SAM || 
+            PDefender->GetMJob() == JOB_THF || PDefender->GetMJob() == JOB_BST || PDefender->GetMJob() == JOB_DRG ||
+            PDefender->GetMJob() == JOB_PLD || PDefender->GetMJob() == JOB_WAR || PDefender->GetMJob() == JOB_BRD || 
+            PDefender->GetMJob() == JOB_DRK || PDefender->GetMJob() == JOB_RDM || PDefender->GetMJob() == JOB_COR)
+        {
+            int skill = PDefender->GetSkill(SKILL_PAR) + PDefender->getMod(MOD_PARRY); //max A-, so need gear+ for 20% parry
+            int max = GetMaxSkill(SKILL_SHL, JOB_PLD, PDefender->GetMLevel()); //A+ skill
+            int chance = 20 * ((double)skill / (double)max);
+            return cap_value(chance, 1, 20);//20% max parry rate
+        }
+    }
+
+    return 0;
+}
+
+uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+{
+    CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
+
+    // Defender must have no weapon equipped, or a hand to hand weapon equipped to guard
+    if(PWeapon == NULL || PWeapon->getID() == 0 || PWeapon->getID() == 65535 || 
+        PWeapon->getSkillType() == SKILL_H2H)
+    {
+        int skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD);
+        int max = GetMaxSkill(SKILL_SHL, JOB_PLD, PDefender->GetMLevel());
+        int chance = 20 * ((double)skill / (double)max);
+        return cap_value(chance, 1, 20);
+    }
+
+    return 0;
 }
 
 /************************************************************************
@@ -1049,7 +1108,6 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	if(isBlocked){
 		// reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
 		if(PDefender->objtype == TYPE_PC){
-			charutils::TrySkillUP((CCharEntity*)PDefender, SKILL_SHL, PAttacker->GetMLevel());
 			CItemArmor* PItem = (CItemArmor*)((CCharEntity*)PDefender)->getStorage(LOC_INVENTORY)->GetItem(
 											((CCharEntity*)PDefender)->equip[SLOT_SUB]);
 			if(PItem!=NULL && PItem->getID()!=65535 &&  PItem->getShieldSize()>0){
@@ -2096,6 +2154,38 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
     }
 
     return damage;
+}
+
+CItemArmor* GetEntityArmor(CBattleEntity* Entity, SLOTTYPE Slot)
+{
+    DSP_DEBUG_BREAK_IF(Slot < SLOT_HEAD || Slot > SLOT_LINK);
+
+    if(Entity->objtype == TYPE_PC)
+    {
+        return (CItemArmor*)(((CCharEntity*)Entity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)Entity)->equip[Slot]));
+    }
+    else if(Entity->objtype == TYPE_NPC)
+    {
+        return NULL;
+    }
+
+    return NULL;
+}
+
+CItemWeapon* GetEntityWeapon(CBattleEntity* Entity, SLOTTYPE Slot)
+{
+    DSP_DEBUG_BREAK_IF(Slot < SLOT_MAIN || Slot > SLOT_AMMO);
+
+    if(Entity->objtype == TYPE_PC)
+    {
+        return (CItemWeapon*)(((CCharEntity*)Entity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)Entity)->equip[Slot]));
+    }
+    else if(Entity->objtype == TYPE_NPC)
+    {
+        return (CItemWeapon*)(((CMobEntity*)Entity)->m_Weapons[Slot]);
+    }
+
+    return NULL;
 }
 
 }; 

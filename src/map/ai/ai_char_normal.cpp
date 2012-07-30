@@ -2123,7 +2123,7 @@ void CAICharNormal::ActionAttack()
 					}
 				}
 
-				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PChar,m_PBattleTarget));
+                bool isBlocked = battleutils::IsBlocked(m_PChar, m_PBattleTarget);
 				if(isBlocked && Action.reaction!=REACTION_EVADE){ Action.reaction = REACTION_BLOCK; }
 				
 				if (Action.reaction == REACTION_HIT)

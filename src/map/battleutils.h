@@ -101,14 +101,19 @@ namespace battleutils
 	uint8	GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint8	GetHitRateAccOffset(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint32 accuracy); 
 	uint8	GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakAttack);
-	uint8   GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender);
+	uint8   GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+    uint8   GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+    uint8   GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical); 
     uint16  TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier); 
     uint16  TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint16 lastSkillDamage);
 	uint32  MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	bool    SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
-	bool    IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender); 
+	bool    IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+    bool    IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+    bool    IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+
 	float   GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void    HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
 	void    HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber);
@@ -121,6 +126,9 @@ namespace battleutils
 	bool	isValidSelfTargetWeaponskill(int wsid);
 	bool	TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float	CalculateBaseTP(int delay, int stp);
+
+    CItemWeapon* GetEntityWeapon(CBattleEntity* Entity, SLOTTYPE Slot);
+    CItemArmor* GetEntityArmor(CBattleEntity* Entity, SLOTTYPE Slot);
 };
 
 #endif

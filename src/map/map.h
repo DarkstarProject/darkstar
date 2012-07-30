@@ -39,6 +39,14 @@
 #include "zone.h"
 #include "commandhandler.h"
 
+enum SKILLUP_STYLE
+{
+    NEWSTYLE_NONE  = 0,
+    NEWSTYLE_PARRY = 1,
+    NEWSTYLE_BLOCK = 2,
+    NEWSTYLE_GUARD = 4,
+    NEWSTYLE_ALL   = 7
+};
 
 /************************************************************************
 *																		*
@@ -73,6 +81,7 @@ struct map_config_t
 	float  craft_multiplier;		// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
+    uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
 };
 
 /************************************************************************
