@@ -10,6 +10,7 @@ itemid_bcnmid_map = {139,{0,0}, -- Horlais Peak
 					 144,{0,0}, -- Waughroon Shrine
 					 146,{0,0}, -- Balgas Dias
 					 168,{0,0}, -- Chamber of Oracles
+					 170,{0,0}, -- Full Moon Fountain
 					 201,{1546,418}, -- Cloister of Gales
 					 202,{1548,450}, -- Cloister of Storms
 					 203,{1545,482}, -- Cloister of Frost
@@ -31,6 +32,7 @@ bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
 					163,{128,0},
 					165,{160,0},
 					168,{192,0,194,2,195,3,196,4},
+					170,{224,0},
 					179,{256,0},
 					201,{416,0,418,2},
 					202,{448,0,450,2},
@@ -320,6 +322,11 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES or player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then -- Zilart Mission 6
 			mask = GetBattleBitmask(192,Zone,1);
 			player:setVar("trade_bcnmid",192);
+		end
+	elseif(Zone == 170) then -- Full Moon Fountain
+		if(player:hasKeyItem(MOON_BAUBLE)) then -- The Moonlit Path
+			mask = GetBattleBitmask(224,Zone,1);
+			player:setVar("trade_bcnmid",224);
 		end
 	elseif(Zone == 179) then -- Stellar Fulcrum
 		if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3) then -- Zilart Mission 8

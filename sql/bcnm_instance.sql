@@ -142,6 +142,11 @@ INSERT INTO `bcnm_instance` VALUES ('196', '2', '17465363');
 INSERT INTO `bcnm_instance` VALUES ('196', '3', '17465364');
 INSERT INTO `bcnm_instance` VALUES ('196', '3', '17465365');
 
+-- Full Moon Fountain
+INSERT INTO `bcnm_instance` VALUES ('224', '1', '17473537');
+INSERT INTO `bcnm_instance` VALUES ('224', '2', '17473538');
+INSERT INTO `bcnm_instance` VALUES ('224', '3', '17473539');
+
 -- Stellar Fulcrum
 INSERT INTO `bcnm_instance` VALUES ('256', '1', '17510401');
 INSERT INTO `bcnm_instance` VALUES ('256', '2', '17510402');

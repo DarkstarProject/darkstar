@@ -28,7 +28,13 @@ function onTrade(player,npc,trade)
 			player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
 		end
 	end
-	
+	if(trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == WINDURST and player:getRank() >= 2 and player:hasKeyItem(PORTAL_CHARM) == false) then -- Trade Rolanberry
+		if(player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS)) then
+			player:startEvent(0x0123); -- Qualifies for the reward immediately
+		else
+			player:startEvent(0x0124); -- Kupipi owes you the portal charm later
+		end
+	end
 end;
 
 -----------------------------------
@@ -100,9 +106,12 @@ function onTrigger(player,npc)
 			player:startEvent(0x0067,0,0,STARWAY_STAIRWAY_BAUBLE);
 		elseif(currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
 			player:startEvent(0x0068);
+		elseif(player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1 ) then
+			player:startEvent(0x0125); -- Kupipi repays your favor
 		else
 			player:startEvent(0x00fb);
 		end
+	
 	else
 		player:startEvent(0x00fb);
 	end
@@ -152,6 +161,17 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,STARWAY_STAIRWAY_BAUBLE);
 	elseif(csid == 0x0065) then
 		finishMissionTimeline(player,1,csid,option);
+	
+	elseif(csid ==0x0123) then -- All condition met, grant Portal Charm
+		player:addKeyItem(PORTAL_CHARM);
+		player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
+	elseif(csid ==0x0124) then -- Traded rolanberry, but not all conditions met
+		player:setVar("OwesPortalCharm",1);
+	elseif(csid ==0x0125) then -- Traded rolanberry before, and all conditions are now met
+		player:setVar("OwesPortalCharm",0);
+		player:addKeyItem(PORTAL_CHARM);
+		player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
 	end
+	
 	
 end;
