@@ -830,19 +830,15 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
     }
     if (PItem->getFlag() & ITEM_FLAG_RARE)
     {
-        for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
+        if (HasItem(PChar, PItem->getID()))
         {
-            if (PChar->getStorage(LocID)->SearchItem(PItem->getID()) != ERROR_SLOTID)
-            {
-                PChar->pushPacket(new CMessageStandardPacket(PChar, PItem->getID(), 0, 220));
-                delete PItem;
-                return ERROR_SLOTID;
-            }
+            PChar->pushPacket(new CMessageStandardPacket(PChar, PItem->getID(), 0, 220));
+            delete PItem;
+            return ERROR_SLOTID;
         }
     }
 
     uint8 SlotID = PChar->getStorage(LocationID)->InsertItem(PItem);
-	if(SlotID==ERROR_SLOTID){delete PItem;}
 
     if (SlotID != ERROR_SLOTID)
     {
@@ -864,8 +860,27 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
     else
     {
         ShowDebug(CL_CYAN"charplugin::AddItem: Location %i is full\n" CL_RESET, LocationID);
+        delete PItem;
     }
     return SlotID;
+}
+
+/************************************************************************
+*                                                                       *
+*  Проверяем наличие предмета у персонажа                               *
+*                                                                       *
+************************************************************************/
+
+bool HasItem(CCharEntity* PChar, uint16 ItemID)
+{
+    for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
+	{
+		if (PChar->getStorage(LocID)->SearchItem(ItemID) != ERROR_SLOTID)
+		{
+			return true;
+		}
+	}
+    return false;
 }
 
 /************************************************************************
@@ -919,6 +934,58 @@ uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quan
 		}
 	}
 	return ItemID;
+}
+
+/************************************************************************
+*                                                                       *
+*  Проверяем возможность обмена между персонажами                       *
+*                                                                       *
+************************************************************************/
+
+bool CanTrade(CCharEntity* PChar, CCharEntity* PTarget)
+{
+    if (PTarget->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() < PChar->UContainer->GetItemsCount())
+    {
+        return false;
+    }
+    for (uint8 slotid = 0; slotid <= 8; ++slotid)
+    {
+        CItem* PItem = PChar->UContainer->GetItem(slotid);
+								
+	    if (PItem != NULL && PItem->getFlag() & ITEM_FLAG_RARE)
+	    {
+            if (HasItem(PTarget, PItem->getID()))
+		    {
+			    return false;							
+		    }
+	    }
+    }
+    return true;
+}
+
+/************************************************************************
+*                                                                       *
+*  Совершаем обмен между персонажами                                    *
+*                                                                       *
+************************************************************************/
+
+void DoTrade(CCharEntity* PChar, CCharEntity* PTarget)
+{
+    for (uint8 slotid = 0; slotid <= 8; ++slotid)
+    {
+        CItem* PItem = PChar->UContainer->GetItem(slotid);
+								
+	    if (PItem != NULL)
+        {
+            if (PItem->getStackSize() == 1)
+            {
+                AddItem(PTarget, LOC_INVENTORY, itemutils::GetItem(PItem));
+            } else {
+                AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
+            }
+            UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
+        }
+    }
 }
 
 /************************************************************************

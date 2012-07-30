@@ -546,7 +546,9 @@ inline int32 CLuaBaseEntity::hasItem(lua_State *L)
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-	uint16 itemID = (uint16)lua_tointeger(L,1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	uint16 ItemID = (uint16)lua_tointeger(L,1);
 		
 	if( !lua_isnil(L,2) && lua_isnumber(L,2) )
 	{
@@ -555,22 +557,10 @@ inline int32 CLuaBaseEntity::hasItem(lua_State *L)
 		locationID = (uint8)lua_tointeger(L,2);
 		locationID = (locationID < MAX_CONTAINER_ID ? locationID : LOC_INVENTORY);
 
-		uint8 slotID = ((CCharEntity*)m_PBaseEntity)->getStorage(locationID)->SearchItem(itemID);
-
-		lua_pushboolean( L, (slotID != ERROR_SLOTID) );
+		lua_pushboolean( L, PChar->getStorage(locationID)->SearchItem(ItemID) != ERROR_SLOTID );
 		return 1;
 	}
-
-	for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
-	{
-		if (((CCharEntity*)m_PBaseEntity)->getStorage(LocID)->SearchItem(itemID) != ERROR_SLOTID)
-		{
-			lua_pushboolean( L, true );
-			return 1;
-		}
-	}
-
-	lua_pushboolean( L, false );
+    lua_pushboolean( L, charutils::HasItem(PChar, ItemID) );
 	return 1;
 }
 

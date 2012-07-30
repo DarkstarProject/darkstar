@@ -63,8 +63,12 @@ namespace charutils
 	void    BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID);
 
 	bool	hasInvalidJugPetAmmo(CCharEntity* PChar);
+    
+    void    DoTrade(CCharEntity* PChar, CCharEntity* PTarget);
+    bool    CanTrade(CCharEntity* PChar, CCharEntity* PTarget);
 
 	void	CheckWeaponSkill(CCharEntity* PChar, uint8 skill);
+    bool    HasItem(CCharEntity* PChar, uint16 ItemID);
     uint8   AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem);
 	uint8	AddItem(CCharEntity* PChar, uint8 LocationID, uint16 itemID, uint32 quantity = 1, bool silence = false);
 	uint32	UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity);
