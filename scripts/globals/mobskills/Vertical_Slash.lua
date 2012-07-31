@@ -31,7 +31,6 @@ function OnMobWeaponSkill(target, mob, skill)
     else
         skill:setMsg(MSG_MISS);
     end
-    return typeEffect;
 
     numhits = 1;
     accmod = 2;
