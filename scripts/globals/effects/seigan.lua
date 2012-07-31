@@ -9,6 +9,8 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_COUNTER,(target:getMod(MOD_ZANSHIN)/4));
+	target:addMod(MOD_FASTCAST,-50);	
 end;
 
 -----------------------------------
@@ -23,4 +25,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_COUNTER,(target:getMod(MOD_ZANSHIN)/4));
+	target:delMod(MOD_FASTCAST,-50);	
 end;

@@ -261,8 +261,8 @@ INSERT INTO `abilities` VALUES ('228', 'enlightenment', '20', '75', '1', '600', 
 INSERT INTO `abilities` VALUES ('229', 'afflatus_solace', '3', '40', '1', '60', '29', '216', '20', '0', '1', '80');
 INSERT INTO `abilities` VALUES ('230', 'afflatus_misery', '3', '40', '1', '60', '30', '217', '20', '0', '1', '80');
 INSERT INTO `abilities` VALUES ('231', 'composure', '5', '50', '1', '300', '50', '215', '20', '0', '1', '80');
-INSERT INTO `abilities` VALUES ('232', 'yonin', '13', '40', '1', '300', '146', '218', '20', '0', '1', '600');
-INSERT INTO `abilities` VALUES ('233', 'innin', '13', '40', '1', '300', '147', '219', '20', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('232', 'yonin', '13', '40', '1', '180', '146', '218', '20', '0', '1', '600');
+INSERT INTO `abilities` VALUES ('233', 'innin', '13', '40', '1', '180', '147', '219', '20', '0', '1', '60');
 -- bprage=173 ward=174
 -- INSERT INTO `abilities` VALUES ('502', 'searing_light', '15', '1', '4', '60', '173', '0', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('496', 'healing_ruby', '15', '1', '3', '60', '174', '6', '18', '0', '1', '60');

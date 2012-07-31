@@ -1489,6 +1489,11 @@ void CAICharNormal::ActionJobAbilityFinish()
     {
 		Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", CVanaTime::getInstance()->getSysTime() - 1009810800, m_PChar->id);
     }
+
+	if (m_PJobAbility->getID() == 46 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN)) //third eye + seigan
+	{
+		Recast->RecastTime = Recast->RecastTime / 2;
+	}
     
     m_PChar->RecastList.push_back(Recast);
     m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
