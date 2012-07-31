@@ -6,9 +6,6 @@
 package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/zones/VeLugannon_Palace/TextIDs");
 
 -----------------------------------
@@ -17,7 +14,7 @@ require("scripts/zones/VeLugannon_Palace/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(16575,1) and trade:getItemCount() == 1) then -- Trade Curtana
+	if(GetMobAction(17502568) == 0 and trade:hasItemQty(16575,1) and trade:getItemCount() == 1) then -- Trade Curtana
 		player:tradeComplete();
 		SpawnMob(17502568,180):updateEnmity(player);
 	end

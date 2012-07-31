@@ -1,10 +1,7 @@
 -----------------------------------
--- Area: Ru'Aun Gardens
--- NPC:  Seiryu
+-- Area: The Shrine of Ru'Avitau
+-- NPC:  Ullikummi
 -----------------------------------
------------------------------------
-
-require("scripts/zones/RuAun_Gardens/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -18,6 +15,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:showText(mob,SKY_GOD_OFFSET + 10);
-	GetNPCByID(17310050):hideNPC(900);
+	GetNPCByID(17506694):hideNPC(900);
 end;

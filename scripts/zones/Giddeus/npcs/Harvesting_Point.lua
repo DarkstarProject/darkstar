@@ -1,32 +1,27 @@
 -----------------------------------
--- Area: The Shrine of Ru'Avitau
--- NPC:  ??? (Spawn Ullikummi)
--- @pos 739 -99 -581 178
+--  Area: Giddeus
+--  NPC:  Harvesting Point
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
+package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
+-------------------------------------
 
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
+require("scripts/globals/harvesting");
+require("scripts/zones/Giddeus/TextIDs");
 
 -----------------------------------
--- onTrade Action
+-- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if(GetMobAction(17506418) == 0 and trade:hasItemQty(2388,1) and trade:getItemCount() == 1) then -- Trade Diorite
-		player:tradeComplete();
-		SpawnMob(17506418,180):updateEnmity(player);
-	end
-	
+	startHarvesting(player,player:getZone(),npc,trade,0x0046);
 end;
 
 -----------------------------------
--- onTrigger Action
+-- onTrigger
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(NOTHING_ORDINARY_HERE);
+	player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
 end;
 
 -----------------------------------

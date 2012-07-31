@@ -15,7 +15,8 @@ require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade seal of genbu, seal of seiryu, seal of byakko, seal of suzaku
-	if(trade:hasItemQty(1404,1) and trade:hasItemQty(1405,1) and trade:hasItemQty(1406,1) and trade:hasItemQty(1407,1) and trade:getItemCount() == 4) then 
+	if(GetMobAction(17506670) == 0 and trade:hasItemQty(1404,1) and trade:hasItemQty(1405,1) and 
+	trade:hasItemQty(1406,1) and trade:hasItemQty(1407,1) and trade:getItemCount() == 4) then 
 		player:tradeComplete();
 		SpawnMob(17506670,180):updateEnmity(player);
 		player:showText(npc,KIRIN_OFFSET);
