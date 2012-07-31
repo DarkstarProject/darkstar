@@ -29,6 +29,12 @@ function OnUseWeaponSkill(player, target, wsID)
 	atkmulti = 1;
 	damage, tpHits, extraHits = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
 	
+	if damage > 0 then
+		tp = player:getTP();
+		duration = (tp/100 * 60);
+		target:addStatusEffect(EFFECT_MAGIC_DEF_DOWN, 10, 0, duration);
+	end		
+	
 	return tpHits, extraHits, damage;
 	
 end	

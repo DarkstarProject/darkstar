@@ -9,7 +9,7 @@
 -----------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/weaponskills");
-function OnUseWeaponSkill(attacker, target, wsID)
+function OnUseWeaponSkill(player, target, wsID)
 	numHits = 4;
 	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function
 	ftp100 = 0.875; ftp200 = 0.875; ftp300 = 0.875;
@@ -23,9 +23,12 @@ function OnUseWeaponSkill(attacker, target, wsID)
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	atkmulti = 1;
 	
-	damage, tpHits, extraHits = doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,  canCrit,crit100,crit200,crit300,  acc100,acc200,acc300,   atkmulti);
+	damage, tpHits, extraHits = doPhysicalWeaponskill(player,target, numHits,  str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,  canCrit,crit100,crit200,crit300,  acc100,acc200,acc300,   atkmulti);
 	
-	--TODO: Add silence effect based on TP.
-	
+	if damage > 0 then
+		tp = player:getTP();
+		duration = (tp/100 * 30) + 30;
+		target:addStatusEffect(EFFECT_SILENCE, 1, 0, duration);
+	end	
 	return tpHits, extraHits, damage;
 end
