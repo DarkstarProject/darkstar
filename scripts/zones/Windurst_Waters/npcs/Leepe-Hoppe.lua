@@ -121,11 +121,11 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(WHISPER_OF_FROST);
 		player:delKeyItem(WHISPER_OF_STORMS);
 		player:delQuest(OUTLANDS,TRIAL_BY_FIRE);
-		player:delQuest(OUTLANDS,TRIAL_BY_EARTH);
+		player:delQuest(BASTOK,TRIAL_BY_EARTH);
 		player:delQuest(OUTLANDS,TRIAL_BY_WATER);
 		player:delQuest(OUTLANDS,TRIAL_BY_WIND);
-		player:delQuest(OUTLANDS,TRIAL_BY_ICE);
-		player:delQuest(OUTLANDS,TRIAL_BY_LIGHTNING);
+		player:delQuest(SANDORIA,TRIAL_BY_ICE);
+		player:delQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
 	elseif(csid == 0x034e) then -- Turn-in event
 		player:setTitle(HEIR_OF_THE_NEW_MOON);
 		player:delKeyItem(WHISPER_OF_THE_MOON);
