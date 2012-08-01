@@ -1021,7 +1021,7 @@ low level monsters as they miss too much. Presuming a min cap of -10%.
 ************************************************************************/
 uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 {
-	if(PDefender->objtype == TYPE_PC)
+    if(PDefender->objtype == TYPE_PC && battleutils::IsEngauged(PDefender))
     {
 		CCharEntity* PChar = (CCharEntity*)PDefender;
 		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
@@ -1044,7 +1044,7 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
 
     if(PWeapon != NULL && PWeapon->getID() != 0 && PWeapon->getID() != 65535 &&
-       PWeapon->getSkillType() != SKILL_H2H)
+       PWeapon->getSkillType() != SKILL_H2H && battleutils::IsEngauged(PDefender))
     {
         if( PDefender->GetMJob() == JOB_NIN || PDefender->GetMJob() == JOB_SAM || 
             PDefender->GetMJob() == JOB_THF || PDefender->GetMJob() == JOB_BST || PDefender->GetMJob() == JOB_DRG ||
@@ -1067,7 +1067,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
     // Defender must have no weapon equipped, or a hand to hand weapon equipped to guard
     if(PWeapon == NULL || PWeapon->getID() == 0 || PWeapon->getID() == 65535 || 
-        PWeapon->getSkillType() == SKILL_H2H)
+        PWeapon->getSkillType() == SKILL_H2H  && battleutils::IsEngauged(PDefender))
     {
         int skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD);
         int max = GetMaxSkill(SKILL_SHL, JOB_PLD, PDefender->GetMLevel());
@@ -1168,6 +1168,32 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
     if (damage > 0)
     {
+        switch (PDefender->objtype)
+        {
+        case TYPE_PC:
+            {
+                PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+                battleutils::MakeEntityStandUp(PDefender);
+                charutils::UpdateHealth((CCharEntity*)PDefender);
+            }
+            break;
+        case TYPE_MOB:
+            {
+                PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+                if (PDefender->PMaster == NULL)
+                {
+                    PDefender->addTP(TP);
+                }
+                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
+            }
+            break;
+        case TYPE_PET:
+            {
+                ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
+            }
+            break;
+        }
+
         if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING &&
             PDefender->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG)
         { //try to interrupt the spell
@@ -1230,39 +1256,10 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
             charutils::UpdateHealth((CCharEntity*)PAttacker);
         }
     }
-    switch (PDefender->objtype)
-    {
-        case TYPE_PC:
-	    {
-		   PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
-		    if(PDefender->animation == ANIMATION_SIT)
-		    {
-			    PDefender->animation = ANIMATION_NONE;
-                ((CCharEntity*)PDefender)->pushPacket(new CCharUpdatePacket((CCharEntity*)PDefender));
-            }
-            charutils::UpdateHealth((CCharEntity*)PDefender);
-	    }
-        break;
-        case TYPE_MOB:
-        {
-			PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-            if (PDefender->PMaster == NULL)
-            {
-                PDefender->addTP(TP);
-            }
-            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
-        }
-        break;
-		case TYPE_PET:
-        {
-			((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
-		}
-		break;
-    }
     if (PAttacker->objtype == TYPE_PC)
     {
-        PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
+        PAttacker->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
     }
 	return damage;
 }
@@ -2156,15 +2153,15 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
     return damage;
 }
 
-CItemArmor* GetEntityArmor(CBattleEntity* Entity, SLOTTYPE Slot)
+CItemArmor* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot)
 {
     DSP_DEBUG_BREAK_IF(Slot < SLOT_HEAD || Slot > SLOT_LINK);
 
-    if(Entity->objtype == TYPE_PC)
+    if(PEntity->objtype == TYPE_PC)
     {
-        return (CItemArmor*)(((CCharEntity*)Entity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)Entity)->equip[Slot]));
+        return (CItemArmor*)(((CCharEntity*)PEntity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)PEntity)->equip[Slot]));
     }
-    else if(Entity->objtype == TYPE_NPC)
+    else if(PEntity->objtype == TYPE_NPC)
     {
         return NULL;
     }
@@ -2172,20 +2169,56 @@ CItemArmor* GetEntityArmor(CBattleEntity* Entity, SLOTTYPE Slot)
     return NULL;
 }
 
-CItemWeapon* GetEntityWeapon(CBattleEntity* Entity, SLOTTYPE Slot)
+CItemWeapon* GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot)
 {
     DSP_DEBUG_BREAK_IF(Slot < SLOT_MAIN || Slot > SLOT_AMMO);
 
-    if(Entity->objtype == TYPE_PC)
+    if(PEntity->objtype == TYPE_PC)
     {
-        return (CItemWeapon*)(((CCharEntity*)Entity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)Entity)->equip[Slot]));
+        return (CItemWeapon*)(((CCharEntity*)PEntity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)PEntity)->equip[Slot]));
     }
-    else if(Entity->objtype == TYPE_NPC)
+    else if(PEntity->objtype == TYPE_NPC)
     {
-        return (CItemWeapon*)(((CMobEntity*)Entity)->m_Weapons[Slot]);
+        return (CItemWeapon*)(((CMobEntity*)PEntity)->m_Weapons[Slot]);
     }
 
     return NULL;
+}
+
+void MakeEntityStandUp(CBattleEntity* PEntity)
+{
+    DSP_DEBUG_BREAK_IF(PEntity == NULL);
+
+    switch(PEntity->objtype)
+    {
+        case TYPE_PC: 
+        {
+            CCharEntity* PPlayer = ((CCharEntity*)PEntity);
+
+            if(PPlayer->animation == ANIMATION_HEALING)
+            {
+                PPlayer->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+                PPlayer->animation = ANIMATION_NONE;
+                PPlayer->pushPacket(new CCharUpdatePacket(PPlayer));
+            }
+
+            break;
+        }    
+
+        default: 
+            break;
+    }
+
+    return;
+}
+
+bool IsEngauged(CBattleEntity* PEntity)
+{
+    DSP_DEBUG_BREAK_IF(PEntity == NULL);
+
+    return (PEntity->animation != ANIMATION_HEALING &&
+            PEntity->PBattleAI != NULL &&
+            PEntity->PBattleAI->GetBattleTarget() != NULL);
 }
 
 }; 

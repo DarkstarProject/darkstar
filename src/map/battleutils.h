@@ -127,8 +127,11 @@ namespace battleutils
 	bool	TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float	CalculateBaseTP(int delay, int stp);
 
-    CItemWeapon* GetEntityWeapon(CBattleEntity* Entity, SLOTTYPE Slot);
-    CItemArmor* GetEntityArmor(CBattleEntity* Entity, SLOTTYPE Slot);
+    CItemWeapon* GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot);
+    CItemArmor* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot);
+
+    void MakeEntityStandUp(CBattleEntity* PEntity);
+    bool IsEngauged(CBattleEntity* PEntity);
 };
 
 #endif

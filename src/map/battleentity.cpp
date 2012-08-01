@@ -181,6 +181,11 @@ int32 CBattleEntity::addHP(int32 hp)
 
 	// если количество жизней достигает нуля, то сущность умирает
 
+    if(hp > 0)
+    {
+        battleutils::MakeEntityStandUp(this);
+    }
+
 	if (health.hp == 0)
 	{
 		PBattleAI->SetCurrentAction(ACTION_FALL);
