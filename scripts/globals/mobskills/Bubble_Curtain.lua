@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
     tic = 0;
     duration = 60;
 
-    typeEffect = EFFECT_MAGIC_DEF_BOOST;
+    typeEffect = EFFECT_SHELL;
     skill:setMsg(MSG_BUFF);
     if(mob:hasStatusEffect(typeEffect) == true) then
         oldEffect = mob:getStatusEffect(typeEffect);

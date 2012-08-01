@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	power = 30;
+	power = 19;
 	duration = 1800;
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;
