@@ -34,12 +34,10 @@ function onTrigger(player,npc)
 	
 	-- The Moonlit Path and Other Fenrir Stuff!
 	elseif(moonlitPath == QUEST_AVAILABLE and 
-		player:getQuestStatus(OUTLANDS,TRIAL_BY_FIRE) == QUEST_COMPLETED and 
-		player:getQuestStatus(BASTOK,TRIAL_BY_EARTH) == QUEST_COMPLETED and 
-		player:getQuestStatus(OUTLANDS,TRIAL_BY_WATER) == QUEST_COMPLETED and 
-		player:getQuestStatus(OUTLANDS,TRIAL_BY_WIND) == QUEST_COMPLETED and 
-		player:getQuestStatus(SANDORIA,TRIAL_BY_ICE) == QUEST_COMPLETED and 
-		player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING) == QUEST_COMPLETED) then -- Fenrir flag event
+		player:getFameLevel(WINDURST) >= 6 and 
+		player:getFameLevel(SANDORIA) >= 6 and 
+		player:getFameLevel(BASTOK) >= 6 and 
+		player:getFameLevel(NORG) >= 4) then -- Fenrir flag event
 		
 		player:startEvent(0x034a,0,1125);
 	elseif(moonlitPath == QUEST_ACCEPTED) then 
@@ -122,6 +120,12 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(WHISPER_OF_GALES);
 		player:delKeyItem(WHISPER_OF_FROST);
 		player:delKeyItem(WHISPER_OF_STORMS);
+		player:delQuest(OUTLANDS,TRIAL_BY_FIRE);
+		player:delQuest(OUTLANDS,TRIAL_BY_EARTH);
+		player:delQuest(OUTLANDS,TRIAL_BY_WATER);
+		player:delQuest(OUTLANDS,TRIAL_BY_WIND);
+		player:delQuest(OUTLANDS,TRIAL_BY_ICE);
+		player:delQuest(OUTLANDS,TRIAL_BY_LIGHTNING);
 	elseif(csid == 0x034e) then -- Turn-in event
 		player:setTitle(HEIR_OF_THE_NEW_MOON);
 		player:delKeyItem(WHISPER_OF_THE_MOON);
