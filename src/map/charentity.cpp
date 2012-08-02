@@ -55,6 +55,7 @@ CCharEntity::CCharEntity()
     memset(& equip, 0, sizeof(equip));
 	memset(& RealSkills,   0, sizeof(RealSkills));
     memset(& RegionPoints, 0, sizeof(RegionPoints));
+    memset(& nationtp, 0, sizeof(nationtp));
 
 	memset(& m_SpellList, 0, sizeof(m_SpellList));
 	memset(& m_ZonesList, 0, sizeof(m_ZonesList));
