@@ -89,7 +89,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x012f); -- Standard converstation
 			end
 		end
-	elseif(FoodForThought == QUEST_COMPLETED and OvernightDelivery == QUEST_AVAILABLE and needToZone == false and (HourOfTheDay >= 7 and HourOfTheDay < 24) and pFame >= 2 and KenapaOvernight ~= 256) then
+	elseif(FoodForThought == QUEST_COMPLETED and OvernightDelivery == QUEST_AVAILABLE and needToZone == false and (HourOfTheDay >= 7 and HourOfTheDay < 24) and pFame >= 1 and KenapaOvernight ~= 256) then
 		if(KenapaOvernight == 0) then
 			player:startEvent(0x0150);
 		elseif(KenapaOvernight == 1) then
@@ -115,7 +115,7 @@ function onTrigger(player,npc)
 		elseif(KenapaOvernight == 7) then
 			player:startEvent(0x0157); -- Reminder for Overnight Delivery #4
 		end
-	elseif(OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == true and HourOfTheDay <= 6 or HourOfTheDay >= 18) then
+	elseif(OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == true and (HourOfTheDay <= 6 or HourOfTheDay >= 18)) then
 		if(VanadielDayOfTheYear() == KenapaOvernightDay and (KenapaOvernightHour <= 24 or KenapaOvernightHour < 6)) then
 			player:startEvent(0x015c); -- Brought the key item back inside the time frame; got the item and returned it on the same day
 		elseif(VanadielDayOfTheYear() == KenapaOvernightDay + 1 and KenapaOvernightHour <= 24) then
@@ -140,6 +140,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x012f); -- Standard converstation
 		end
 	end	
+	
 end; 
 
 -----------------------------------
