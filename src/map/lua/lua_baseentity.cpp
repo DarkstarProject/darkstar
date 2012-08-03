@@ -1910,6 +1910,128 @@ inline int32 CLuaBaseEntity::setVar(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*																		*
+*  Set a single bit as part of a bitmask in a database variable 		*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setMaskBit(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isboolean(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-3) || !lua_isstring(L,-3));
+
+	const int8* varname =  lua_tostring(L,-3);
+	int32 bit = (int32)lua_tointeger(L,-2);
+	bool state = ( lua_toboolean(L,-1) == 0 ? false : true );
+	
+	const int8* pullQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
+
+	int32 ret = Sql_Query(SqlHandle,pullQuery,m_PBaseEntity->id, varname);
+	
+	int32 value = 0;
+
+	if (ret != SQL_ERROR && 
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		value = (int32)Sql_GetIntData(SqlHandle,0); 
+	}
+	
+	if(state == true)
+	{
+		value |= (1<<bit);
+	}
+	else
+	{
+		value &= ~(1<<bit);
+	}
+	
+	const int8* fmtQuery = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
+	
+	Sql_Query(SqlHandle,fmtQuery,m_PBaseEntity->id, varname, value, value);
+	
+	lua_pushnil(L);
+	return 1;
+}
+
+/************************************************************************
+*																		*
+*  Get a single bit from a bitmask in a database variable 				*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getMaskBit(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
+
+	bool value = false;
+
+	const int8* varname  = lua_tostring(L, -2); 
+	int32 bit = (int32)lua_tointeger(L,-1);
+	const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
+
+	int32 ret = Sql_Query(SqlHandle,fmtQuery,m_PBaseEntity->id, varname);
+
+	if (ret != SQL_ERROR && 
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		value = (int32)Sql_GetIntData(SqlHandle,0) & (1 << bit);
+	}
+
+	lua_pushboolean(L, value);
+	return 1;
+}
+
+/************************************************************************
+*																		*
+*  Returns true if var of the specified size contains only set bits		*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::isMaskFull(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
+
+	int32 value = 0;
+	bool condition = true;
+
+	const int8* varname  = lua_tostring(L, -2); 
+	int32 size = (int32)lua_tointeger(L,-1);
+	const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
+
+	int32 ret = Sql_Query(SqlHandle,fmtQuery,m_PBaseEntity->id, varname);
+
+	if (ret != SQL_ERROR && 
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		value = (int32)Sql_GetIntData(SqlHandle,0);
+		for(int32 i=0; i<size-1 && condition == true; i++)
+		{
+			if(!!(value & (1 << i)) == 0)
+				condition = false;
+		}
+	}
+
+	lua_pushboolean(L, condition);
+	return 1;
+}
+
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::setHomePoint(lua_State *L) 
@@ -4214,6 +4336,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,levelRestriction),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVar),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMaskBit),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaskBit),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMaskFull),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,release),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEvent),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEvent),
