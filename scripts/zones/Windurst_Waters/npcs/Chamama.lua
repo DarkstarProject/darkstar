@@ -62,6 +62,7 @@ gil				    = trade:getGil();
 			end
 		end
 	end
+	
 end; 
 
 -----------------------------------
@@ -69,7 +70,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
 InspectorsGadget = player:getQuestStatus(WINDURST,INSPECTOR_S_GADGET);
 ThePromise       = player:getQuestStatus(WINDURST,THE_PROMISE);
 InAPickle		 = player:getQuestStatus(WINDURST,IN_A_PICKLE);
@@ -90,7 +90,7 @@ NeedToZone		 = player:needToZone();
 		end
 	elseif (InspectorsGadget == QUEST_ACCEPTED) then
 		FakeMoustache = player:hasKeyItem(95);
-		
+		printf("mustach check");
 		if (FakeMoustache == true) then
 			player:startEvent(0x0229);
 		else
@@ -140,11 +140,13 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x0228) then
 		player:tradeComplete();
 		player:addKeyItem(95);
+		player:messageSpecial(KEYITEM_OBTAINED,95);
 	elseif (csid == 0x031d) then
 		player:setVar("ThePromise",1);
 	elseif (csid == 0x031f) then
 		player:tradeComplete();
 		player:addKeyItem(271);
+		player:messageSpecial(KEYITEM_OBTAINED,271);
 	elseif (csid == 0x028e and option == 1) then  -- IN A PICKLE + RARAB TAIL: Quest Begin
 		player:addQuest(WINDURST,IN_A_PICKLE);
 	elseif (csid == 0x0293) then  -- IN A PICKLE: Quest Turn In (1st Time)
