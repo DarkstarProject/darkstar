@@ -76,6 +76,25 @@ float distance(position_t A, position_t B)
 *																		*
 ************************************************************************/
 
+int32 intpow32(int32 base, int32 exponent)
+{
+	int32 power = 1;
+	while (exponent)
+	{
+		if (exponent & 1)
+			power *= base;
+		exponent >>= 1;
+		base *= base;
+	}
+	return power;
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
 uint8 getangle(position_t A, position_t B)
 {
 	uint8 angle = (uint8)(atanf(( B.z - A.z ) / ( B.x - A.x )) * -40.58451048843f);

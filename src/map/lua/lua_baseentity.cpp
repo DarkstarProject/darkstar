@@ -2007,7 +2007,7 @@ inline int32 CLuaBaseEntity::isMaskFull(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
 
 	int32 value = 0;
-	bool condition = true;
+	bool condition = false;
 
 	const int8* varname  = lua_tostring(L, -2); 
 	int32 size = (int32)lua_tointeger(L,-1);
@@ -2020,13 +2020,10 @@ inline int32 CLuaBaseEntity::isMaskFull(lua_State *L)
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
 		value = (int32)Sql_GetIntData(SqlHandle,0);
-		for(int32 i=0; i<size-1 && condition == true; i++)
-		{
-			if(!!(value & (1 << i)) == 0)
-				condition = false;
-		}
 	}
-
+	
+	condition = (value == intpow32(2, size)-1);
+		
 	lua_pushboolean(L, condition);
 	return 1;
 }

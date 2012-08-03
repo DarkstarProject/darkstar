@@ -33,6 +33,7 @@
 int32 checksum(uint8* buf,uint32 buflen,char checkhash[16]);
 
 float distance(position_t A, position_t B);						// расстояние между двумя точками
+int32 intpow32(int32 base, int32 exponent);						// Exponential power of integers
 uint8 getangle(position_t A, position_t B);						// А - основная сущность, B - цель сущности (проекция вектора на OX)
 bool  isFaceing(position_t A, position_t B, uint8 coneAngle);	// А - основная сущность, B - цель сущности
 
