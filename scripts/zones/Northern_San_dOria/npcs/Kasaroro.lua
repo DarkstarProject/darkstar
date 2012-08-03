@@ -32,6 +32,7 @@ end;
 
 function onTrigger(player,npc)
 	
+	pNation = player:getNation();
 	currentMission = player:getCurrentMission(pNation);
 	MissionStatus = player:getVar("MissionStatus");
 	
