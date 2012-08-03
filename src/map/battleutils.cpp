@@ -32,6 +32,7 @@
 #include "packets/char_update.h"
 #include "packets/entity_update.h"
 #include "packets/message_basic.h"
+#include "packets/inventory_finish.h"
 
 #include "ability.h"
 #include "charutils.h"
@@ -44,6 +45,8 @@
 #include "mobentity.h"
 #include "petentity.h"
 #include "enmity_container.h"
+#include "abilities.h"
+#include "items.h"
 
 
 /************************************************************************
@@ -362,6 +365,38 @@ CAbility* GetAbility(uint16 AbilityID)
 	}
 	ShowFatalError(CL_RED"AbilityID <%u> is out of range\n" CL_RESET, AbilityID);
 	return NULL;
+}
+
+CAbility* GetTwoHourAbility(JOBTYPE JobID)
+{
+    DSP_DEBUG_BREAK_IF(JobID < JOB_WAR || JobID > JOB_SCH);
+
+    switch(JobID)
+    {
+        case JOB_WAR: return g_PAbilityList[ABILITY_MIGHTY_STRIKES]; break;
+        case JOB_MNK: return g_PAbilityList[ABILITY_HUNDRED_FISTS]; break;
+        case JOB_WHM: return g_PAbilityList[ABILITY_BENEDICTION]; break;
+        case JOB_BLM: return g_PAbilityList[ABILITY_MANAFONT]; break;
+        case JOB_RDM: return g_PAbilityList[ABILITY_CHAINSPELL]; break;
+        case JOB_THF: return g_PAbilityList[ABILITY_PERFECT_DODGE]; break;
+        case JOB_PLD: return g_PAbilityList[ABILITY_INVINCIBLE]; break;
+        case JOB_DRK: return g_PAbilityList[ABILITY_BLOOD_WEAPON]; break;
+        case JOB_BST: return g_PAbilityList[ABILITY_FAMILIAR]; break;
+        case JOB_BRD: return g_PAbilityList[ABILITY_SOUL_VOICE]; break;
+        case JOB_RNG: return g_PAbilityList[ABILITY_EAGLE_EYE_SHOT]; break;
+        case JOB_SAM: return g_PAbilityList[ABILITY_MEIKYO_SHISUI]; break;
+        case JOB_NIN: return g_PAbilityList[ABILITY_MIJIN_GAKURE]; break;
+        case JOB_DRG: return g_PAbilityList[ABILITY_SPIRIT_SURGE]; break;
+        case JOB_SMN: return g_PAbilityList[ABILITY_ASTRAL_FLOW]; break;
+        case JOB_BLU: return g_PAbilityList[ABILITY_AZURE_LORE]; break;
+        case JOB_COR: return g_PAbilityList[ABILITY_WILD_CARD]; break;
+        case JOB_PUP: return g_PAbilityList[ABILITY_OVERDRIVE]; break;
+        case JOB_DNC: return g_PAbilityList[ABILITY_TRANCE]; break;
+        case JOB_SCH: return g_PAbilityList[ABILITY_TABULA_RASA]; break;
+        default: return NULL; break;
+    }
+
+    return NULL;
 }
 
 /************************************************************************
@@ -2219,6 +2254,83 @@ bool IsEngauged(CBattleEntity* PEntity)
     return (PEntity->animation != ANIMATION_HEALING &&
             PEntity->PBattleAI != NULL &&
             PEntity->PBattleAI->GetBattleTarget() != NULL);
+}
+
+bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
+{
+    DSP_DEBUG_BREAK_IF(PEntity == NULL || PSpell == NULL);
+
+    uint8 SlotID = 0;
+
+    switch(PEntity->objtype)
+    {
+    case TYPE_NPC: return true; break;
+
+    case TYPE_PC:
+    {
+        CCharEntity* PChar = ((CCharEntity*)PEntity);
+
+        uint16 toolID = PSpell->getMPCost();
+
+        if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)) &&
+            PChar->GetMJob() == JOB_NIN)
+        {
+            switch(toolID)
+            {
+                case ITEM_UCHITAKE: 
+                case ITEM_TSURARA: 
+                case ITEM_KAWAHORI_OGI: 
+                case ITEM_MAKIBISHI: 
+                case ITEM_HIRAISHIN: 
+                case ITEM_MIZU_DEPPO:
+                    toolID = ITEM_INOSHISHINOFUDA;
+                    break;
+
+                case ITEM_RYUNO:
+                case ITEM_MOKUJIN:
+                case ITEM_SANJAKU_TENUGUI:
+                case ITEM_KABENRO:
+                case ITEM_SHINOBI_TABI:
+                case ITEM_SHIHEI:
+                    toolID = ITEM_SHIKANOFUDA;
+                    break;
+
+                case ITEM_SOSHI:
+                case ITEM_KODOKU:
+                case ITEM_KAGINAWA:
+                case ITEM_JUSATSU:
+                case ITEM_SAIRUI_RAN:
+                case ITEM_JINKO:
+                    toolID = ITEM_CHONOFUDA;
+                    break;
+
+                default: return false; break;
+            } // switch toolID
+
+            if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)))
+            {
+                return false;
+            }
+        }
+        else if(toolID == ERROR_SLOTID)
+        {
+            return false;
+        }
+
+        // Should only make it to this point if a ninja tool was found.
+        if(ConsumeTool && rand() % 100 > PChar->getMod(MOD_NINJA_TOOL))
+        {
+            charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
+            PChar->pushPacket(new CInventoryFinishPacket());
+        }
+
+        break;
+    } // end case;
+
+    default: false; break;
+    }
+
+    return true;
 }
 
 }; 

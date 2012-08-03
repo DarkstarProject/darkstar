@@ -79,6 +79,8 @@ namespace battleutils
 	std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
 	std::vector<CMobSkill*>  GetMobSkillsByFamily(uint16 FamilyID);
 
+    CAbility* GetTwoHourAbility(JOBTYPE JobID);
+
 	bool	CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID);
 
 	void	FreeAbilitiesList();
@@ -132,6 +134,8 @@ namespace battleutils
 
     void MakeEntityStandUp(CBattleEntity* PEntity);
     bool IsEngauged(CBattleEntity* PEntity);
+
+    bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool);
 };
 
 #endif

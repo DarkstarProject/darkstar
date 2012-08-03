@@ -53,7 +53,7 @@
 #include "../packets/message_basic.h"
 #include "../packets/menu_raisetractor.h"
 #include "ai_char_normal.h"
-
+#include "../abilities.h"
 /************************************************************************
 *																		*
 *  Инициализируем владельца интеллекта (может добавить проверку на		*
@@ -117,6 +117,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 	while(it != m_PChar->RecastList.end())
 	{
 		Recast_t* recast = *it;
+
 		if (m_Tick >= (recast->TimeStamp + recast->RecastTime))
 		{
             m_PChar->RecastList.erase(it++);
@@ -952,11 +953,11 @@ void CAICharNormal::ActionMagicStart()
 		}
 		if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
 		{
-			if (m_PChar->getStorage(LOC_INVENTORY)->SearchItem(m_PSpell->getMPCost()) == ERROR_SLOTID)
-			{
+            if(!battleutils::HasNinjaTool(m_PChar, m_PSpell, false))
+            {
                 MagicStartError(35);
-				return;
-			}
+                return;
+            }
 		} 
 		else 
 		{
@@ -1117,24 +1118,14 @@ void CAICharNormal::ActionMagicCasting()
 
 		if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
 		{
-			uint8 SlotID = m_PChar->getStorage(LOC_INVENTORY)->SearchItem(m_PSpell->getMPCost());
-
-			if (SlotID != ERROR_SLOTID)
-			{
-				if (rand()%100 > m_PChar->getMod(MOD_NINJA_TOOL))
-				{
-					charutils::UpdateItem(m_PChar, LOC_INVENTORY, SlotID, -1);
-					m_PChar->pushPacket(new CInventoryFinishPacket());
-				}
-			} 
-            else 
+            if(!battleutils::HasNinjaTool(m_PChar, m_PSpell, true))
             {
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,35));
+                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, m_PSpell->getID(), 0, 35));
 
-				m_ActionType = ACTION_MAGIC_INTERRUPT;
-				ActionMagicInterrupt();
-				return;
-			}
+                m_ActionType = ACTION_MAGIC_INTERRUPT;
+                ActionMagicInterrupt();
+                return;
+            }
 		} 
         else 
         {
@@ -1381,7 +1372,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
-		if(m_PJobAbility->getID() >= 496){//blood pact
+		if(m_PJobAbility->getID() >= ABILITY_HEALING_RUBY){//blood pact
 			if(m_PChar->health.mp < m_PJobAbility->getAnimationID()){ //not enough mp for BP
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 87));
 			    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1390,7 +1381,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
-		if (m_PJobAbility->getID()==69)//Call Beast, check ammo slot
+		if (m_PJobAbility->getID() == ABILITY_CALL_BEAST)//Call Beast, check ammo slot
 		{
 			if(charutils::hasInvalidJugPetAmmo(m_PChar)){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 337));
@@ -1407,7 +1398,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
-		if (m_PJobAbility->getID()==56){//Sic, check pet TP
+		if (m_PJobAbility->getID() == ABILITY_SIC){//Sic, check pet TP
 			if(m_PChar->PPet!=NULL && m_PChar->PPet->health.tp<100){ 
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 575));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1423,14 +1414,14 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
-		if(m_PJobAbility->getID()==64 && m_PChar->PPet==NULL){ //Spirit Link
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
+		if(m_PJobAbility->getID() == ABILITY_SPIRIT_LINK && m_PChar->PPet == NULL){
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PJobAbility = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
 		}
-		if(m_PJobAbility->getID()==45){//call wyvern
+		if(m_PJobAbility->getID() == ABILITY_CALL_WYVERN){
 			if(m_PChar->PPet!=NULL){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 315));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1439,7 +1430,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
-		if (m_PJobAbility->getID()==157 || m_PJobAbility->getID()==158){//Hasso/Seigan, check for 2h weapon
+		if (m_PJobAbility->getID() == ABILITY_HASSO || m_PJobAbility->getID() == ABILITY_SEIGAN){
 			if(!m_PChar->m_Weapons[SLOT_MAIN]->isTwoHanded()){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 307));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1487,10 +1478,10 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     if (m_PJobAbility->getLevel() == 0)
     {
-		Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", CVanaTime::getInstance()->getSysTime() - 1009810800, m_PChar->id);
+		Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", m_Tick, m_PChar->id);
     }
 
-	if (m_PJobAbility->getID() == 46 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN)) //third eye + seigan
+	if (m_PJobAbility->getID() == ABILITY_THIRD_EYE && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
 	{
 		Recast->RecastTime = Recast->RecastTime / 2;
 	}
@@ -1500,7 +1491,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     apAction_t Action;
 	m_PChar->m_ActionList.clear();
-	if(m_PJobAbility->getID()>=496){//bp
+	if(m_PJobAbility->getID() >= ABILITY_HEALING_RUBY){
 		if(m_PChar->PPet!=NULL){//is a bp - dont display msg and notify pet
 			Action.animation  = 94; //assault anim
 			Action.ActionTarget = m_PBattleSubTarget;
@@ -1553,7 +1544,7 @@ void CAICharNormal::ActionJobAbilityFinish()
         
         uint16 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget);
 
-		if(m_PJobAbility->getID() == 50 || m_PJobAbility->getID() == 51 || m_PJobAbility->getID() == 66) {//chi blast/jump/high jump
+		if(m_PJobAbility->getID() == ABILITY_CHI_BLAST || m_PJobAbility->getID() == ABILITY_JUMP || m_PJobAbility->getID() == ABILITY_HIGH_JUMP) {
 			Action.param = value;
 			Action.messageID = 110;
 		}
@@ -1563,7 +1554,7 @@ void CAICharNormal::ActionJobAbilityFinish()
         if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
         {
             // во время pvp целью могут быт персонажи, монстры и их питомцы
-			if (m_PBattleSubTarget->objtype == TYPE_MOB && m_PJobAbility->getID()!=72 && m_PJobAbility->getID()!=53) 
+			if (m_PBattleSubTarget->objtype == TYPE_MOB && m_PJobAbility->getID() != ABILITY_ASSAULT && m_PJobAbility->getID() != ABILITY_FIGHT) 
 				//assault(72)/fight(53) doesnt generate hate directly
             {
                 ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
@@ -1573,17 +1564,17 @@ void CAICharNormal::ActionJobAbilityFinish()
         }
 	}
 
-	if(m_PJobAbility->getID()==69){ //Call Beast
+	if(m_PJobAbility->getID() == ABILITY_CALL_BEAST){
 		charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
 		m_PChar->pushPacket(new CInventoryFinishPacket());
 	}
-	if(m_PJobAbility->getID()==56 && m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_JUGPET){//Sic
+	if(m_PJobAbility->getID() == ABILITY_SIC && m_PChar->PPet != NULL && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_JUGPET){//Sic
 		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_SIC;
 		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
 	}
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	if(m_PJobAbility->getID()<496){
+	if(m_PJobAbility->getID() < ABILITY_HEALING_RUBY){
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
 	}
 	m_PJobAbility = NULL;
