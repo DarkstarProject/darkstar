@@ -33,32 +33,38 @@ end;
 function onTrigger(player,npc)
 	
 	pNation = player:getNation();
-	currentMission = player:getCurrentMission(pNation);
-	MissionStatus = player:getVar("MissionStatus");
+	if(pNation == WINDURST) then
+		currentMission = player:getCurrentMission(pNation);
+		MissionStatus = player:getVar("MissionStatus");
 	
-	if(currentMission == THE_THREE_KINGDOMS) then
-		if(MissionStatus == 2) then
-			player:startEvent(0x0222);
-		elseif(MissionStatus == 6) then
-			player:showText(npc,KASARORO_DIALOG + 7);
-		elseif(MissionStatus == 7) then
-			player:startEvent(0x0223);
-		elseif(MissionStatus == 11) then
-			player:showText(npc,KASARORO_DIALOG + 20);
-		end
-	elseif(currentMission == THE_THREE_KINGDOMS_SANDORIA) then
-		if(MissionStatus == 3) then
-			player:showText(npc,KASARORO_DIALOG);
-		elseif(MissionStatus == 4) then
-			player:startEvent(0x0225);
-		elseif(MissionStatus == 5) then
-			player:startEvent(0x0226); -- done with Sandy first path, now go to bastok
-		end
-	elseif(currentMission == THE_THREE_KINGDOMS_SANDORIA2) then
-		if(MissionStatus == 8) then
-			player:showText(npc,KASARORO_DIALOG);
-		elseif(MissionStatus == 10) then
-			player:startEvent(0x0227);
+		if(currentMission == THE_THREE_KINGDOMS) then
+			if(MissionStatus == 2) then
+				player:startEvent(0x0222);
+			elseif(MissionStatus == 6) then
+				player:showText(npc,KASARORO_DIALOG + 7);
+			elseif(MissionStatus == 7) then
+				player:startEvent(0x0223);
+			elseif(MissionStatus == 11) then
+				player:showText(npc,KASARORO_DIALOG + 20);
+			end
+		elseif(currentMission == THE_THREE_KINGDOMS_SANDORIA) then
+			if(MissionStatus == 3) then
+				player:showText(npc,KASARORO_DIALOG);
+			elseif(MissionStatus == 4) then
+				player:startEvent(0x0225);
+			elseif(MissionStatus == 5) then
+				player:startEvent(0x0226); -- done with Sandy first path, now go to bastok
+			end
+		elseif(currentMission == THE_THREE_KINGDOMS_SANDORIA2) then
+			if(MissionStatus == 8) then
+				player:showText(npc,KASARORO_DIALOG);
+			elseif(MissionStatus == 10) then
+				player:startEvent(0x0227);
+			end
+		elseif(player:hasCompletedMission(WINDURST,THE_THREE_KINGDOMS)) then
+			player:startEvent(0x025c);
+		else
+			player:startEvent(0x0224);
 		end
 	else
 		player:startEvent(0x0224);
