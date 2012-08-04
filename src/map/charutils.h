@@ -121,6 +121,7 @@ namespace charutils
 	void	SaveCharPoints(CCharEntity* PChar);							// Conquest point, Nation TP
 
     uint32  AddExpBonus(CCharEntity* PChar, uint32 exp);
+    void    ResetAllTwoHours();
 };
 
 #endif

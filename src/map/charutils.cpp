@@ -3065,4 +3065,10 @@ uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
     return exp;
 }
 
+void ResetAllTwoHours()
+{
+    const int8* fmtQuery = "UPDATE char_stats SET 2h = 0 WHERE 2h <> 0";
+    Sql_Query(SqlHandle,fmtQuery);
+}
+
 } // namespace charutils
