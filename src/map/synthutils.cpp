@@ -660,7 +660,10 @@ int32 doSynthFail(CCharEntity* PChar)
 
     if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
     {
-        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CSynthMessagePacket(PChar, SYNTH_FAIL));
+        // Don't send this packet to the zone it does funky stuff.
+        //PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CSynthMessagePacket(PChar, SYNTH_FAIL));
+
+        PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_FAIL));
     }
     else
     {
@@ -860,7 +863,10 @@ int32 doSynthResult(CCharEntity* PChar)
 		PChar->pushPacket(new CInventoryFinishPacket());
         if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
         {
-            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
+            // Don't send this packet to the zone it does funky stuff.
+            //PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
+
+            PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
         }
         else
         {
