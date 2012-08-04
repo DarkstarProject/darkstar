@@ -3325,7 +3325,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			charutils::CheckEquipLogic(PChar, SCRIPT_CHANGESJOB, prevsjob);
 		}
 
-		charutils::CheckValidEquipment(PChar);
+		charutils::RemoveAllEquipment(PChar);
 		charutils::CalculateStats(PChar);
 		charutils::BuildingCharSkillsTable(PChar);
         charutils::BuildingCharTraitsTable(PChar);

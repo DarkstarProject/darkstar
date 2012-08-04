@@ -122,6 +122,8 @@ namespace charutils
 
     uint32  AddExpBonus(CCharEntity* PChar, uint32 exp);
     void    ResetAllTwoHours();
+
+    void    RemoveAllEquipment(CCharEntity* PChar);
 };
 
 #endif

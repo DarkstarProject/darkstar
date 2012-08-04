@@ -1439,14 +1439,33 @@ void CheckValidEquipment(CCharEntity* PChar)
                 (PItem->getReqLvl() <= PChar->GetMLevel()) && 
                 (PItem->getEquipSlotId() & (1 << slotID)))
 			{
-				continue;
+                continue;
 			}
-            UnequipItem(PChar, slotID);
-		}
+            UnequipItem(PChar, slotID);		
+        }
         PChar->pushPacket(new CEquipPacket(0, slotID));
 	}
 	PChar->pushPacket(new CCharAppearancePacket(PChar));
 	SaveCharEquip(PChar);
+}
+
+void RemoveAllEquipment(CCharEntity* PChar)
+{
+    CItemArmor* PItem  = NULL;
+
+    for(uint8 slotID = 0; slotID < 16; ++slotID)
+    {
+        PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
+
+        if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+        {
+            UnequipItem(PChar, slotID);
+        }
+        PChar->pushPacket(new CEquipPacket(0, slotID));
+    }
+
+    PChar->pushPacket(new CCharAppearancePacket(PChar));
+    SaveCharEquip(PChar);
 }
 
 /************************************************************************
