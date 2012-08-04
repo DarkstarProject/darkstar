@@ -658,9 +658,15 @@ int32 doSynthFail(CCharEntity* PChar)
 			break;
 	}
 
-	PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_FAIL));
+    if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
+    {
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CSynthMessagePacket(PChar, SYNTH_FAIL));
+    }
+    else
+    {
+        PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_FAIL));
+    }
 
-	//zoneutils::GetZone(PChar->GetZone())->pushPacket(PChar, CHAR_INRANGE, new CSynthResultPacket(PChar, SYNTH_FAIL));
 	return 0;
 }
 
@@ -757,8 +763,17 @@ int32 startSynth(CCharEntity* PChar)
 	}
 
 	PChar->animation = ANIMATION_SYNTH;
-	PChar->pushPacket(new CCharUpdatePacket(PChar));	
-    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthAnimationPacket(PChar,effect,result));  
+	PChar->pushPacket(new CCharUpdatePacket(PChar));
+
+    if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
+    {
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthAnimationPacket(PChar,effect,result));  
+    }
+    else
+    {
+        PChar->pushPacket(new CSynthAnimationPacket(PChar, effect, result));
+    }
+    
 	return 0;
 }
 
@@ -843,9 +858,14 @@ int32 doSynthResult(CCharEntity* PChar)
 		}
 
 		PChar->pushPacket(new CInventoryFinishPacket());
-		PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
-
-		//zoneutils::GetZone(PChar->GetZone())->pushPacket(PChar, CHAR_INRANGE, new CSynthResultPacket(PChar, SYNTH_SUCCESS, itemID, quantity));
+        if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
+        {
+            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
+        }
+        else
+        {
+            PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
+        }
 	}
 
 	doSynthSkillUp(PChar);
