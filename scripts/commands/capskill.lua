@@ -45,6 +45,8 @@ function onTrigger(player,skill)
 		player:capSkill(35);
 	elseif(skill=="elemental") then
 		player:capSkill(36);
+	elseif(skill=="divine") then
+		player:capSkill(32);
 	elseif(skill=="dark") then
 		player:capSkill(37);
 	elseif(skill=="summoning") then
