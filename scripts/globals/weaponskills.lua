@@ -22,7 +22,11 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 		 attacker:getStat(MOD_CHR) * chr_wsc) * getAlpha(attacker:getMainLvl());
 		 
 	--Applying fTP multiplier
-	ftp = fTP(attacker:getTP(),ftp100,ftp200,ftp300);
+	tp = attacker:getTP();
+	if attacker:hasStatusEffect(EFFECT_SEKKANOKI) then
+		tp = 100;
+	end
+	ftp = fTP(tp,ftp100,ftp200,ftp300);
 	
 	--get cratio min and max
 	cratio = cRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF)),attacker:getMainLvl(),target:getMainLvl());

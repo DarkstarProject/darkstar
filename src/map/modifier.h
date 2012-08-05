@@ -321,6 +321,9 @@ enum MODIFIER
 
 // Dragoon
 // Summoner
+
+	MOD_AVATAR_PERPETUATION = 0x15A,  //stores the MP/tick reduction from gear
+
 // Blue Mage
 
 	MOD_BLUE_POINTS			= 0x135,	// Tracks extra blue points
@@ -365,14 +368,17 @@ enum MODIFIER
 	MOD_LIGHT_ARTS_FASTCAST	= 0x151,
 	MOD_DARK_ARTS_MPCOST	= 0x152,
 	MOD_DARK_ARTS_FASTCAST	= 0x153,
+
 	MOD_WIDESCAN			= 0x154,
 	MOD_ENSPELL				= 0x155, //stores the type of enspell active (0 if nothing)
 	MOD_SPIKES				= 0x156, //store the type of spike spell active (0 if nothing)
-	MOD_ENSPELL_DMG		= 0x157, //stores the base damage of the enspell before reductions
-	MOD_SPIKES_DMG			= 0x158 //stores the base damage of the spikes before reductions
+	MOD_ENSPELL_DMG			= 0x157, //stores the base damage of the enspell before reductions
+	MOD_SPIKES_DMG			= 0x158, //stores the base damage of the spikes before reductions
+
+	MOD_TP_BONUS			= 0x159 //stores the amount of bonus TP to apply to weaponskills
 };
 
-#define MAX_MODIFIER		  0x159
+#define MAX_MODIFIER		  0x161
 
 
 /************************************************************************

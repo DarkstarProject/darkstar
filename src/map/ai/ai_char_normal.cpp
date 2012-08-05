@@ -1690,12 +1690,53 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	        m_PBattleSubTarget = NULL;
         	return;
 	}
-
+	//apply TP Bonus
+	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
+	//remove TP Bonus from offhand weapon
+	if(m_PChar->equip[SLOT_SUB] != 0){
+		std::vector<CModifier*>::iterator modIterator;
+		std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_SUB]))->modList;
+		for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++){
+			if((*modIterator)->getModID() == MOD_TP_BONUS){
+				bonusTp = bonusTp - (*modIterator)->getModAmount();
+			}
+		}
+	}
+	//if ranged WS, remove TP bonus from mainhand weapon
+	if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){
+		if(m_PChar->equip[SLOT_MAIN] != 0){
+			std::vector<CModifier*>::iterator modIterator;
+			std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_MAIN]))->modList;
+			for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++){
+				if((*modIterator)->getModID() == MOD_TP_BONUS){
+					bonusTp = bonusTp - (*modIterator)->getModAmount();
+				}
+			}
+		}
+	} else {
+	//if melee WS, remove TP bonus from ranged weapon
+		if(m_PChar->equip[SLOT_RANGED] != 0){
+			std::vector<CModifier*>::iterator modIterator;
+			std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]))->modList;
+			for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++){
+				if((*modIterator)->getModID() == MOD_TP_BONUS){
+					bonusTp = bonusTp - (*modIterator)->getModAmount();
+				}
+			}
+		}
+	}
+	if(bonusTp+m_PChar->health.tp > 300){
+		bonusTp = 300 - m_PChar->health.tp;
+		m_PChar->health.tp = 300;
+	} else {
+		m_PChar->addTP(bonusTp);
+	}
+	float wsTP = m_PChar->health.tp;
 	m_LastActionTime = m_Tick;
 	uint16 tpHitsLanded = 0;
 	uint16 extraHitsLanded = 0;
 	uint16 damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
-
+	m_PChar->addTP(-bonusTp);
 	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI)){
 		m_PChar->addTP(-100);
 	}
@@ -1718,7 +1759,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	}
 
 	m_PChar->addTP(extraHitsLanded);
-
+	float afterWsTP = m_PChar->health.tp;
 	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN){
 		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_ELEMENTAL_BREATH;
 		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
@@ -1839,7 +1880,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
 							continue;
 						}
 					}
+					m_PChar->health.tp = wsTP;
 					damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
+					m_PChar->health.tp = afterWsTP;
 					AoEAction.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0);
 					if(damage==0)
 					{
