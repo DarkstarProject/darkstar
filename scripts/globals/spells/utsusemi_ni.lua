@@ -13,12 +13,12 @@ function onSpellCast(caster,target,spell)
 	effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
 	if (effect == nil) then
 		if caster:getMainJob() == 13 then
-			target:addStatusEffectEx(EFFECT_COPY_IMAGE,EFFECT_COPY_IMAGE_4,4,0,300);
+			target:addStatusEffectEx(EFFECT_COPY_IMAGE,EFFECT_COPY_IMAGE_4,4,0,900);
 			target:setMod(MOD_UTSUSEMI, 4);
 			spell:setMsg(230);
 			return EFFECT_COPY_IMAGE;
 		else
-			target:addStatusEffectEx(EFFECT_COPY_IMAGE,EFFECT_COPY_IMAGE_3,3,0,300);
+			target:addStatusEffectEx(EFFECT_COPY_IMAGE,EFFECT_COPY_IMAGE_3,3,0,900);
 			target:setMod(MOD_UTSUSEMI, 3);
 			spell:setMsg(230);
 			return EFFECT_COPY_IMAGE;
