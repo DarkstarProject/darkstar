@@ -844,12 +844,6 @@ void CAIMobDummy::ActionAttack()
                 m_PMob->m_ActionList.clear();
 
 				Action.ActionTarget = m_PBattleTarget;
-				Action.reaction   = REACTION_EVADE;
-				Action.speceffect = SPECEFFECT_NONE;
-				Action.animation  = 0;
-				Action.param	  = 0;
-				Action.messageID  = 15;
-				Action.flag		  = 0;
 
 				uint8 numAttacks = 1;
 				if(rand()%100 < m_PMob->getMod(MOD_TRIPLE_ATTACK)){
@@ -860,6 +854,12 @@ void CAIMobDummy::ActionAttack()
 				}
 
 				for(uint8 i=0; i<numAttacks; i++){
+					Action.reaction   = REACTION_EVADE;
+					Action.speceffect = SPECEFFECT_NONE;
+					Action.animation  = 0;
+					Action.param	  = 0;
+					Action.messageID  = 15;
+					Action.flag		  = 0;
 					if(m_PBattleTarget->isDead()){
 						break;
 					}
