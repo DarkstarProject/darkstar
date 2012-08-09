@@ -340,7 +340,7 @@ int32 SetVanadielTimeOffset(lua_State* L)
 {
     if( !lua_isnil(L,1) && lua_isnumber(L,1) )
     {
-        uint32 offset = (uint32)lua_tointeger(L,1);
+        int32 offset = (int32)lua_tointeger(L,1);
 
         CVanaTime::getInstance()->setCustomOffset(offset);
 
