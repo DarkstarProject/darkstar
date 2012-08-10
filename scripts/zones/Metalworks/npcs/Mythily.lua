@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Metalworks
 -- NPC: Mythily
--- Standard Info NPC
+-- Type: Immigration NPC
+-- @pos: 94 -20 -8 237
 -----------------------------------
 
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
@@ -21,19 +22,26 @@ end;
 
 function onTrigger(player,npc)
 	new_nation = BASTOK
+	old_nation = player:getNation()
 	rank = getNationRank(new_nation)
-	if(rank == 1) then
-		cost = 40000
-	elseif(rank == 2) then
-		cost = 12000 
-	elseif(rank == 3) then
-		cost = 4000
+	if(old_nation ~= new_nation and (player:getCurrentMission(old_nation) == 0 or player:getCurrentMission(old_nation) == 255)) then
+		if(rank == 1) then
+			cost = 40000
+		elseif(rank == 2) then
+			cost = 12000 
+		elseif(rank == 3) then
+		end
+		has_gil = 0
+			cost = 4000
+		if(player:getGil() >= cost) then
+			has_gil = 1
+		end
+		player:startEvent(0x0168,0,1,player:getRank(),new_nation,has_gil,cost);
+	elseif(old_nation == new_nation) then
+		player:startEvent(0x0170,0,0,0,old_nation);
+	elseif(player:getVar("MissionStatus") ~= 0) then
+		player:startEvent(0x0169,0,0,0,new_nation);
 	end
-	has_gil = 0
-	if(player:getGil() >= cost) then
-		has_gil = 1
-	end
-	player:startEvent(0x0168,0,1,player:getRank(),new_nation,has_gil,cost);
 end; 
 
 -----------------------------------

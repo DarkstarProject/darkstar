@@ -24,19 +24,26 @@ end;
 
 function onTrigger(player,npc)
 	new_nation = WINDURST
+	old_nation = player:getNation()
 	rank = getNationRank(new_nation)
-	if(rank == 1) then
-		cost = 40000
-	elseif(rank == 2) then
-		cost = 12000 
-	elseif(rank == 3) then
-		cost = 4000
+	if(old_nation ~= new_nation and (player:getCurrentMission(old_nation) == 0 or player:getCurrentMission(old_nation) == 255)) then
+		if(rank == 1) then
+			cost = 40000
+		elseif(rank == 2) then
+			cost = 12000 
+		elseif(rank == 3) then
+			cost = 4000
+		end
+		has_gil = 0
+		if(player:getGil() >= cost) then
+			has_gil = 1
+		end
+		player:startEvent(0x2712,0,1,player:getRank(),new_nation,has_gil,cost);
+	elseif(old_nation == new_nation) then
+		player:startEvent(0x2714,0,0,0,old_nation);
+	elseif(player:getCurrentMission(old_nation) ~= 0) then
+		player:startEvent(0x2713,0,0,0,new_nation);
 	end
-	has_gil = 0
-	if(player:getGil() >= cost) then
-		has_gil = 1
-	end
-	player:startEvent(0x2712,0,1,player:getRank(),new_nation,has_gil,cost);
 end;
 
 -----------------------------------
