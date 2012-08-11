@@ -2264,73 +2264,76 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
 
     switch(PEntity->objtype)
     {
-    case TYPE_NPC: return true; break;
+    case TYPE_NPC: 
+        return true; 
+        break;
 
-    case TYPE_PC:
-    {
-        CCharEntity* PChar = ((CCharEntity*)PEntity);
-
-        uint16 toolID = PSpell->getMPCost();
-
-        if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)) &&
-            PChar->GetMJob() == JOB_NIN)
+        case TYPE_PC:
         {
-            switch(toolID)
+            CCharEntity* PChar = ((CCharEntity*)PEntity);
+
+            uint16 toolID = PSpell->getMPCost();
+
+            if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)) &&
+                PChar->GetMJob() == JOB_NIN)
             {
-                case ITEM_UCHITAKE: 
-                case ITEM_TSURARA: 
-                case ITEM_KAWAHORI_OGI: 
-                case ITEM_MAKIBISHI: 
-                case ITEM_HIRAISHIN: 
-                case ITEM_MIZU_DEPPO:
-                    toolID = ITEM_INOSHISHINOFUDA;
-                    break;
+                switch(toolID)
+                {
+                    case ITEM_UCHITAKE: 
+                    case ITEM_TSURARA: 
+                    case ITEM_KAWAHORI_OGI: 
+                    case ITEM_MAKIBISHI: 
+                    case ITEM_HIRAISHIN: 
+                    case ITEM_MIZU_DEPPO:
+                        toolID = ITEM_INOSHISHINOFUDA;
+                        break;
 
-                case ITEM_RYUNO:
-                case ITEM_MOKUJIN:
-                case ITEM_SANJAKU_TENUGUI:
-                case ITEM_KABENRO:
-                case ITEM_SHINOBI_TABI:
-                case ITEM_SHIHEI:
-                    toolID = ITEM_SHIKANOFUDA;
-                    break;
+                    case ITEM_RYUNO:
+                    case ITEM_MOKUJIN:
+                    case ITEM_SANJAKU_TENUGUI:
+                    case ITEM_KABENRO:
+                    case ITEM_SHINOBI_TABI:
+                    case ITEM_SHIHEI:
+                        toolID = ITEM_SHIKANOFUDA;
+                        break;
 
-                case ITEM_SOSHI:
-                case ITEM_KODOKU:
-                case ITEM_KAGINAWA:
-                case ITEM_JUSATSU:
-                case ITEM_SAIRUI_RAN:
-                case ITEM_JINKO:
-                    toolID = ITEM_CHONOFUDA;
-                    break;
+                    case ITEM_SOSHI:
+                    case ITEM_KODOKU:
+                    case ITEM_KAGINAWA:
+                    case ITEM_JUSATSU:
+                    case ITEM_SAIRUI_RAN:
+                    case ITEM_JINKO:
+                        toolID = ITEM_CHONOFUDA;
+                        break;
 
-                default: return false; break;
-            } // switch toolID
+                    default: return false; break;
+                } // switch toolID
 
-            if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)))
+                if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)))
+                {
+                    return false;
+                }
+            }
+            else if(SlotID == ERROR_SLOTID)
             {
                 return false;
             }
-        }
-        else if(toolID == ERROR_SLOTID)
-        {
-            return false;
-        }
 
-        // Should only make it to this point if a ninja tool was found.
-        if(ConsumeTool && rand() % 100 > PChar->getMod(MOD_NINJA_TOOL))
-        {
-            charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
-            PChar->pushPacket(new CInventoryFinishPacket());
-        }
+            // Should only make it to this point if a ninja tool was found.
+            if(ConsumeTool && rand() % 100 > PChar->getMod(MOD_NINJA_TOOL))
+            {
+                charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
+                PChar->pushPacket(new CInventoryFinishPacket());
+            }
 
-        break;
-    } // end case;
+            return true;
+            break;
+        } // end case;
 
-    default: false; break;
-    }
-
-    return true;
+        default: 
+            return false; 
+            break;
+    } // end switch
 }
 
 }; 
