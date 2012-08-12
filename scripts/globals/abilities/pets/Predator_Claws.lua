@@ -9,35 +9,21 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
+	numhits = 1;
+	accmod = 1;
+	dmgmod = 10;
+	
 	totaldamage = 0;
-	numhits = 3;
+	damage = MobPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
 	
-	damage = pet:getMeleeHitDamage(target,95);
-	if(damage>=0) then
-		totaldamage = totaldamage + damage*10;
-	else
-		numhits = numhits - 1;
-	end
-	damage2 = pet:getMeleeHitDamage(target);
-	if(damage2>0) then
-		totaldamage = totaldamage + damage2*2;
-	else
-		numhits = numhits - 1;
-	end
-	damage3 = pet:getMeleeHitDamage(target);
-	if(damage3>0) then
-		totaldamage = totaldamage + damage3*2;
-	else
-		numhits = numhits - 1;
-	end
+	numhits = 2;
+	accmod = 1;
+	dmgmod = 2;
 	
-	if(numhits==0) then
-		--all hits missed!
-		skill:setMsg(324);
-		return 0;
-	end
+	totaldamage = 0;
+	damage2 = MobPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
 	
-	totaldamage = MobFinalAdjustments(totaldamage,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,numhits);
+	totaldamage = MobFinalAdjustments((damage.dmg + damage2.dmg),pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,numhits);
 	target:delHP(totaldamage);
 	target:updateEnmityFromDamage(pet,totaldamage);
 	
