@@ -375,10 +375,19 @@ enum MODIFIER
 	MOD_ENSPELL_DMG			= 0x157, //stores the base damage of the enspell before reductions
 	MOD_SPIKES_DMG			= 0x158, //stores the base damage of the spikes before reductions
 
-	MOD_TP_BONUS			= 0x159 //stores the amount of bonus TP to apply to weaponskills
+	MOD_TP_BONUS			= 0x159, 
+
+	MOD_FIRE_AFFINITY		= 0x15B, //stores the amount of elemental affinity (elemental staves mostly)
+	MOD_EARTH_AFFINITY		= 0x15C,
+	MOD_WATER_AFFINITY		= 0x15D,
+	MOD_ICE_AFFINITY		= 0x15E,
+	MOD_THUNDER_AFFINITY	= 0x15F,
+	MOD_WIND_AFFINITY		= 0x160,
+	MOD_LIGHT_AFFINITY		= 0x161,
+	MOD_DARK_AFFINITY		= 0x162
 };
 
-#define MAX_MODIFIER		  0x161
+#define MAX_MODIFIER		  0x163
 
 
 /************************************************************************

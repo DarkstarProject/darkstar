@@ -1678,6 +1678,7 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
     {
         CTrait* PTrait = PChar->TraitList.at(i);
         PChar->delModifier(PTrait->getMod(), PTrait->getValue());
+		PChar->StatusEffectContainer->DelStatusEffect((EFFECT)PTrait->getEffect());
     }
     PChar->TraitList.clear();
 	memset(&PChar->m_TraitList, 0, sizeof(PChar->m_TraitList));
@@ -1694,6 +1695,9 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 
             PChar->TraitList.push_back(PTrait);
             PChar->addModifier(PTrait->getMod(), PTrait->getValue());
+			if (PTrait->getEffect() == 234 || PTrait->getEffect() == 233){
+				PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect((EFFECT)PTrait->getEffect(), 0, PTrait->getValue(), 3, 0));
+			}
 		}
 	}
 
@@ -1707,6 +1711,9 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 
             PChar->TraitList.push_back(PTrait);
             PChar->addModifier(PTrait->getMod(), PTrait->getValue());
+			if (PTrait->getEffect() == 234 || PTrait->getEffect() == 233){
+				PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect((EFFECT)PTrait->getEffect(), 0, PTrait->getValue(), 3, 0));
+			}
 		}
 	}
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));

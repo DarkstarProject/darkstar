@@ -217,6 +217,8 @@ public:
 
 	int32 addExp(lua_State*);				// Add to Character Experience
 
+	int32 getPetElement(lua_State*);
+	int32 getPetName(lua_State*);
 	int32 spawnPet(lua_State*);				// Calls Pet
 	int32 despawnPet(lua_State*);			// Despawns Pet
 	int32 petAttack(lua_State*);			// Despawns Pet

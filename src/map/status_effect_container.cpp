@@ -155,7 +155,10 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect)
         luautils::OnEffectGain(m_POwner, PStatusEffect);
 
         m_POwner->addModifiers(&PStatusEffect->modList);
-        m_POwner->UpdateHealth();
+		if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
+		{
+			m_POwner->UpdateHealth();
+		}
 
 		m_StatusEffectList.push_back(PStatusEffect);
 
@@ -170,7 +173,10 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect)
             }
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
-            PChar->pushPacket(new CCharHealthPacket(PChar));
+			if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
+			{
+				PChar->pushPacket(new CCharHealthPacket(PChar));
+			}
             PChar->pushPacket(new CCharSyncPacket(PChar));
         }
 	}

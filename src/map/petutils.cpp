@@ -58,6 +58,7 @@ struct Pet_t
 	uint32		time;		// время существования (будет использоваться для задания длительности статус эффекта)
 
 	uint8		mJob;
+	uint8		m_Element;
 };
 
 std::vector<Pet_t*> g_PPetList;
@@ -75,7 +76,7 @@ void LoadPetList()
 {
 	FreePetList();
 
-	const int8* fmtQuery = "SELECT pet_list.name, modelid, minLevel, maxLevel, time, mobsize, systemid, mob_pools.familyid, mob_pools.mJob \
+	const int8* fmtQuery = "SELECT pet_list.name, modelid, minLevel, maxLevel, time, mobsize, systemid, mob_pools.familyid, mob_pools.mJob, pet_list.element \
 						    FROM pet_list, mob_pools, mob_family_system \
 							WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
@@ -95,6 +96,7 @@ void LoadPetList()
 			Pet->EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle,6);
 			Pet->m_Family = (uint16)Sql_GetIntData(SqlHandle,7);
 			Pet->mJob = (uint8)Sql_GetIntData(SqlHandle,8);
+			Pet->m_Element = (uint8)Sql_GetIntData(SqlHandle, 9);
 
 			g_PPetList.push_back(Pet);
 		}
@@ -386,6 +388,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 	PPet->name = g_PPetList.at(PetID)->name;
 	PPet->m_Family = g_PPetList.at(PetID)->m_Family;
 	PPet->SetMJob(g_PPetList.at(PetID)->mJob);
+	PPet->m_Element = g_PPetList.at(PetID)->m_Element;
 
 	if(PPet->getPetType()==PETTYPE_AVATAR){
 		if(PMaster->GetMJob()==JOB_SMN){

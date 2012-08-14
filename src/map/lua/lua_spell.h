@@ -50,6 +50,7 @@ public:
     int32 getDefaultMessage(lua_State*);
     int32 getMagicBurstMessage(lua_State*);
 	int32 getElement(lua_State*);
+	int32 getID(lua_State*);
 };
 
 #endif

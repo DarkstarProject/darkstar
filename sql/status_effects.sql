@@ -505,6 +505,7 @@ INSERT INTO `status_effects` VALUES (486, 'counter_boost', 32);
 INSERT INTO `status_effects` VALUES (487, 'endrain', 32);
 INSERT INTO `status_effects` VALUES (488, 'enaspir', 32);
 INSERT INTO `status_effects` VALUES (489, 'afterglow', 32);
+INSERT INTO `status_effects` VALUES (491, 'avatar', 32);
 INSERT INTO `status_effects` VALUES (512, 'healing', 48);
 INSERT INTO `status_effects` VALUES (513, 'leavegame', 48);
 INSERT INTO `status_effects` VALUES (514, 'skillchain', 32);

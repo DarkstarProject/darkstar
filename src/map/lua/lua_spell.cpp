@@ -90,6 +90,13 @@ inline int32 CLuaSpell::getElement(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaSpell::getID(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL);
+	lua_pushinteger(L,m_PLuaSpell->getID());
+	return 1;
+}
+
 /************************************************************************
 *																		*
 *  Инициализация методов в lua											*
@@ -103,5 +110,6 @@ Lunar<CLuaSpell>::Register_t CLuaSpell::methods[] =
     LUNAR_DECLARE_METHOD(CLuaSpell,getDefaultMessage),
     LUNAR_DECLARE_METHOD(CLuaSpell,getMagicBurstMessage),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getElement),
+	LUNAR_DECLARE_METHOD(CLuaSpell, getID),
 	{NULL,NULL}
 }; 

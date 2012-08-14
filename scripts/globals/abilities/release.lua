@@ -11,4 +11,5 @@ require("scripts/globals/status");
 
 function OnUseAbility(player, target, ability)
 	target:despawnPet();
+	target:delStatusEffect(EFFECT_AVATAR);
 end;

@@ -4,6 +4,7 @@
 -----------------------------------------
 
 require("scripts/globals/pets");
+require("scripts/globals/summon");
 
 -----------------------------------------
 -- OnSpellCast
@@ -11,5 +12,7 @@ require("scripts/globals/pets");
 
 function onSpellCast(caster,target,spell)
 	caster:spawnPet(PET_AIR_SPIRIT);
+	cost = avatarPerpetuation(caster, spell)
+	caster:addStatusEffectEx(EFFECT_AVATAR, 0, cost, 3, 0);
 	return 0;
 end;

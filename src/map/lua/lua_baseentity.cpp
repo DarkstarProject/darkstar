@@ -3442,6 +3442,39 @@ inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::getPetElement(lua_State *L)
+{
+	if ( m_PBaseEntity != NULL )
+	{
+		if ( m_PBaseEntity->objtype != TYPE_NPC )
+		{
+			if(((CBattleEntity*)m_PBaseEntity)->PPet){
+				lua_pushinteger(L, ((CPetEntity*)((CBattleEntity*)m_PBaseEntity)->PPet)->m_Element);
+			} else {
+				lua_pushinteger(L, 0);
+			}
+			return 1;
+		}
+	}
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::getPetName(lua_State *L)
+{
+	if ( m_PBaseEntity != NULL )
+	{
+		if ( m_PBaseEntity->objtype != TYPE_NPC )
+		{
+			if(((CBattleEntity*)m_PBaseEntity)->PPet){
+				lua_pushstring(L, (((CBattleEntity*)m_PBaseEntity)->PPet)->name.c_str());
+			}
+			return 1;
+		}
+	}
+	return 0;
+}
+
+
 /************************************************************************
 *																		*
 *  Сущность призывает питомца											*
@@ -4389,6 +4422,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetElement),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAttack),
