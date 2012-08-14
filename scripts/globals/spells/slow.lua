@@ -22,12 +22,10 @@ function onSpellCast(caster,target,spell)
 	if(power > 30) then
 		power = 30;
 	end
-	
 	power = power * -1;
 	
 	--Duration, including resistance.
 	duration = 120 * applyResistance(caster,spell,target,dMND,35,staff);
-	
 	if(100 * math.random() >= target:getMod(MOD_SLOWRES)) then
 		if(duration >= 60) then --Do it!
 			--Try to erase a weaker slow or haste.
@@ -58,13 +56,15 @@ function onSpellCast(caster,target,spell)
 					spell:setMsg(75);
 				end
 			else
-				target:addStatusEffect(EFFECT_SLOW,1,0,duration);
+				target:addStatusEffect(EFFECT_SLOW,power,0,duration);
 --				if(spell:isAOE() == false) then
 					spell:setMsg(237);
 --				else
 --					spell:setMsg(267);
 --				end
 			end
+			print(power);
+			print(target:getMod(MOD_HASTE));
 		else
 --			if(spell:isAOE() == false) then
 				spell:setMsg(85);
