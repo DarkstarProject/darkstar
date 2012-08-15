@@ -60,7 +60,7 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, CItem* PItem, uint8 count, 
     WBUFB(data,(0x0C)-4) = message;	                        // сообщение об ошибке, либо 0x01 в случае успеха
     WBUFB(data,(0x0D)-4) = count;                           // общее количество предметов, которые мы передадим в delivery box
 
-    if ((action != 0x0A && action != 0x0B) || message > 1)
+    if ((action != 0x0A && action != 0x0B && action != 0x09) || message > 1)
     {
         WBUFB(data,(0x10)-4) = 0x0B;	                        // назначение неизвестно
         memcpy(data + 0x14-4, PItem->getSender(), 15);      // имя отправителя или название аукциона. Если имя начинается на AH, то клиент отключает кнопку "вернуть"	

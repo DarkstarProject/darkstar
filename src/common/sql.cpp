@@ -575,3 +575,69 @@ void Sql_Free(Sql_t* self)
 		aFree(self);
 	}
 }
+
+bool Sql_SetAutoCommit(Sql_t* self, bool value)
+{
+    uint8 val = (value) ? 1 : 0;
+
+    //if( self && mysql_autocommit(&self->handle, val) == 0)
+    if( self && Sql_Query(self, "SET @@autocommit = %u", val) != SQL_ERROR)
+    {
+        return true;
+    }
+
+    ShowFatalError("Sql_SetAutoCommit: SQL_ERROR\n");
+    return false;
+}
+
+bool Sql_GetAutoCommit(Sql_t* self)
+{
+    if( self )
+    {
+        int32 ret = Sql_Query(self, "SELECT @@autocommit;");
+
+        if( ret != SQL_ERROR && 
+           Sql_NumRows(self) > 0 && 
+           Sql_NextRow(self) == SQL_SUCCESS )
+        {
+            return (Sql_GetUIntData(self, 0) == 1);
+        }
+    }
+
+    ShowFatalError("Sql_GetAutoCommit: SQL_ERROR\n");
+    return false;
+}
+
+bool Sql_TransactionStart(Sql_t* self)
+{
+    if( self && Sql_Query(self, "START TRANSACTION;") != SQL_ERROR)
+    {
+        return true;
+    }
+
+    ShowFatalError("Sql_TransactionStart: SQL_ERROR\n");
+    return false;
+}
+
+bool Sql_TransactionCommit(Sql_t* self)
+{
+    if( self && mysql_commit(&self->handle) == 0)
+    {
+        return true;
+    }
+
+    ShowFatalError("Sql_TransactionCommit: SQL_ERROR\n");
+    return false;
+}
+
+bool Sql_TransactionRollback(Sql_t* self)
+{
+    //if( self && mysql_rollback(&self->handle) == 0)
+    if( self && Sql_Query(self, "ROLLBACK;") != SQL_ERROR)
+    {
+        return true;
+    }
+
+    ShowFatalError("Sql_TransactionRollback: SQL_ERROR\n");
+    return false;
+}

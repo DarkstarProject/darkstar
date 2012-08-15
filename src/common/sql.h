@@ -181,6 +181,13 @@ void Sql_ShowDebug_(Sql_t* self, const char* debug_file, const unsigned long deb
 void Sql_Free(Sql_t* self);
 
 
+bool Sql_GetAutoCommit(Sql_t* self);
+bool Sql_SetAutoCommit(Sql_t* self, bool value);
+
+bool Sql_TransactionStart(Sql_t* self);
+bool Sql_TransactionCommit(Sql_t* self);
+bool Sql_TransactionRollback(Sql_t* self);
+
 #endif
 
 //											End level									//
