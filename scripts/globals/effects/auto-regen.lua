@@ -16,6 +16,8 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+	print('sdfsdf');
+	target:addHP(effect:getPower());
 end;
 
 -----------------------------------

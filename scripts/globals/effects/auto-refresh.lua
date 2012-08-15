@@ -16,11 +16,6 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	element = target:getPetElement();
-	print(element);
-	if element == nil then
-		print('dfsdfs');
-	end
 	target:addMP(effect:getPower());
 end;
 
