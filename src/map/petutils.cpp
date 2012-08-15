@@ -407,7 +407,10 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 		if(PetID==PETID_FENRIR){
 			PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0*(280.0f/60.0f)));
 		}
-		PPet->m_Weapons[SLOT_MAIN]->setDamage(1+floor(PPet->GetMLevel()*0.74f));
+		PPet->m_Weapons[SLOT_MAIN]->setDamage(floor(PPet->GetMLevel()*0.74f));
+		if(PetID==PETID_CARBUNCLE){
+			PPet->m_Weapons[SLOT_MAIN]->setDamage(floor(PPet->GetMLevel()*0.67f));
+		}
 		//Set B+ weapon skill (assumed capped for level derp)
 		//attack is madly high for avatars (roughly x2)
 		PPet->setModifier(MOD_ATT, 2*battleutils::GetMaxSkill(SKILL_CLB,JOB_WHM,PPet->GetMLevel()));

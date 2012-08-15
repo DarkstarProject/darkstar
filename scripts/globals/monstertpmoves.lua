@@ -75,12 +75,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	if(dstr < -10) then
 		dstr = -10;
 	end
-	
 	lvluser = mob:getMainLvl();
 	lvltarget = target:getMainLvl();
 	acc = mob:getMod(MOD_ACC);
 	eva = target:getMod(MOD_EVA);
-	
 	--apply WSC
 	local base = mob:getWeaponDmg() + dstr; --todo: change to include WSC
 	if(base < 1) then
@@ -111,16 +109,15 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	end
 	if (hitrate < 20) then
 		hitrate = 20;
-	end	
+	end
 	
 	--work out the base damage for a single hit
 	hitdamage = (base + lvldiff);
 	if(hitdamage < 1) then
 		hitdamage = 1;
 	end
-	
 	hitdamage = hitdamage * dmgmod;
-	
+
 	--work out min and max cRatio
 	if(ratio<1) then
 		maxRatio = 1.5 * ratio;
@@ -131,9 +128,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		minRatio = ratio ;
 	end
 	--apply ftp (assumes 1~3 scalar linear mod)
-	hitdamage = hitdamage * (skill:getTP()/100);
-			
-
+	if(tpeffect==TP_DMG_BONUS) then
+		hitdamage = hitdamage * fTP(skill:getTP(), mtp100, mtp200, mtp300);
+	end
+	
 	--Applying pDIF
 	local double pdif = 0; 
 
@@ -145,13 +143,12 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	--first hit is 95%
 	local double chance = math.random();
-		if ((chance*100)<=95) then
-			pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
-			pdif = pdif/1000; --multiplier set.
-			finaldmg = finaldmg + hitdamage * pdif; 
-			hitslanded = hitslanded + 1;
-		end
-	
+	if ((chance*100)<=95) then
+		pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
+		pdif = pdif/1000; --multiplier set.
+		finaldmg = finaldmg + hitdamage * pdif; 
+		hitslanded = hitslanded + 1;
+	end
 	while (hitsdone < numberofhits) do 
 		chance = math.random();
 		if ((chance*100)<=hitrate) then --it hit
@@ -386,3 +383,16 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	
 	return dmg;
 end
+
+function fTP(tp,ftp1,ftp2,ftp3)
+	if(tp<100) then
+		tp=100;
+	end
+	if(tp>=100 and tp<200) then
+		return ftp1 + ( ((ftp2-ftp1)/100) * (tp-100));
+	elseif(tp>=200 and tp<=300) then
+		--generate a straight line between ftp2 and ftp3 and find point @ tp
+		return ftp2 + ( ((ftp3-ftp2)/100) * (tp-200));
+	end
+	return 1; --no ftp mod
+end;
