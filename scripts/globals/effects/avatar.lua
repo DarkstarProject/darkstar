@@ -29,9 +29,8 @@ function onEffectTick(target,effect)
 		if target:getEquipID(4) == 16154 and target:getPetName() == 'Garuda' then
 			power = power - 2;
 		end
-
 		strong = {MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_ICE_AFFINITY, MOD_THUNDER_AFFINITY, MOD_LIGHT_AFFINITY, MOD_DARK_AFFINITY}
-		weak = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_WARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY}
+		weak = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY}
 		affinity = target:getMod(strong[element]) - target:getMod(weak[element]);
 		if affinity > 0 then
 			power = power - affinity - 1;
@@ -47,7 +46,6 @@ function onEffectTick(target,effect)
 			power = 0;
 		end
 		target:delMP(power);
-		
 		if target:getMP() == 0 then
 			target:despawnPet();
 			target:delStatusEffect(EFFECT_AVATAR);
