@@ -1223,7 +1223,7 @@ void CAICharNormal::ActionMagicFinish()
 	    }
 	    else if (m_PBattleSubTarget->objtype == TYPE_MOB)
 	    {
-		    for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin();  it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 16; ++it)
+		    for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin();  it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 8; ++it)
 		    {
 			    CBattleEntity* PTarget = (CBattleEntity*)it->second;
             
@@ -1864,7 +1864,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 		if (m_PBattleSubTarget->objtype == TYPE_MOB)
 		{
-			for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 16; ++it)
+			for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 8; ++it)
 			{
 				CBattleEntity* PTarget = (CBattleEntity*)it->second;
 
