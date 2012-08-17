@@ -127,7 +127,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x01ee) then
 		player:tradeComplete();
 		player:addGil(GIL_RATE*200);
-		player:addFame(NORG,NORG_FAME*8);
+		player:addFame(NORG,NORG_FAME*30);
 	elseif(csid == 0x01f0) then
 		player:addQuest(WINDURST,THE_TENSHODO_SHOWDOWN);
 		player:setVar("theTenshodoShowdownCS",1);

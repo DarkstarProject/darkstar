@@ -3,10 +3,10 @@
 -- NPC: Gray Wolf
 -- Standard Info NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-require("scripts/zones/Bastok_Mines/TextIDs");
+-----------------------------------
 
+require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -21,11 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-currentMission = player:hasCurrentMission();
-
-player:startEvent(0x0013);
-
+	player:startEvent(0x0013);
 end; 
 
 

@@ -3,13 +3,6 @@
 -- Name: Mission Rank 2
 -- @pos -345 104 -260 144
 -----------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
--------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/zones/Balgas_Dais/TextIDs");
-
------------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)

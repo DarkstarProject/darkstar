@@ -9,6 +9,9 @@ package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Waughroon_Shrine/TextIDs");
 

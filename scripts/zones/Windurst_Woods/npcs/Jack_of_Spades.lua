@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 0x271a) then
-		player:tradeComlete();
+		player:tradeComplete();
 		player:addGil(GIL_RATE*50);
 	end 
 end;
