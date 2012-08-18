@@ -25,8 +25,18 @@
 #define _CAIMOBDUMMY_H
 
 #include "../../common/cbasetypes.h"
+#include "../../common/mmo.h"
+
+#include <vector>
 
 #include "ai_general.h"
+
+enum AOERANGE
+{
+    AOE_PARTY = 0x01,
+    AOE_ALLIANCE = 0x02,
+    AOE_ZONE = 0x04
+};
 
 /************************************************************************
 *																		*
@@ -64,6 +74,8 @@ protected:
 	void ActionAttack();
     void ActionSleep();
 	void processTwoHour();
+
+    std::vector<CBattleEntity*> GetAdditionalTargets(AOERANGE AoeRange, position_t radiusAround, float radius);
 };
 
 #endif

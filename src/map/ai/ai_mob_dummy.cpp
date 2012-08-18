@@ -41,6 +41,7 @@
 #include "../packets/entity_update.h"
 #include "../packets/fade_out.h"
 #include "../packets/message_basic.h"
+#include "../alliance.h"
 
 
 /************************************************************************
@@ -222,7 +223,7 @@ void CAIMobDummy::ActionDropItems()
 
 			    if (DropList != NULL && DropList->size())
 			    {
-					uint8 highestTH = PChar->getMod(MOD_TREASURE_HUNTER);
+					uint16 highestTH = PChar->getMod(MOD_TREASURE_HUNTER);
 
 					//get highest Treasure Hunter in pt
 					if(PChar->PParty != NULL){
@@ -422,7 +423,7 @@ void CAIMobDummy::ActionAbilityStart()
 	m_PMobSkill = MobSkills.at(rand() % MobSkills.size());
 
 	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS){
-		for(int i=0;i<MobSkills.size();i++){
+		for(uint16 i=0;i<MobSkills.size();i++){
 			if(MobSkills[i]->getID() == 0){ //TWO-HOUR
 				if(m_PMob->GetHPP() <= 50 && m_PMob->m_SkillStatus==0){//<50% HP and not used skill
 					m_PMobSkill = MobSkills[i];
@@ -540,8 +541,12 @@ void CAIMobDummy::ActionAbilityFinish()
 		//AOE=1 means the circle is around the MONSTER
 		//AOE=2 means the circle is around the BATTLE TARGET
 		//AOE=4 means conal (breath)
-		if(m_PMobSkill->getAoe()==1 || m_PMobSkill->getAoe()==2){ //to handle both types of aoe
-			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){//aoe on the  players
+		if(m_PMobSkill->getAoe() == 1 || m_PMobSkill->getAoe() == 2)
+        { 
+            //to handle both types of aoe
+			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY)
+            {
+                //aoe on the  players
 				//hit the target + the target's PT/alliance
 				apAction_t Action;
 
@@ -555,44 +560,43 @@ void CAIMobDummy::ActionAbilityFinish()
 				Action.flag		  = 0;
 				m_PMob->m_ActionList.push_back(Action);	
 
-				if(m_PBattleTarget->objtype==TYPE_PC){
-					CCharEntity* m_PChar = (CCharEntity*)m_PBattleTarget;
-					if(m_PChar->PParty != NULL){
-						//determine the type of circle
-						position_t radiusAround = m_PMob->loc.p;
-						if(m_PMobSkill->getAoe()==2){//radius around TARGET not the monster
-							radiusAround = m_PBattleTarget->loc.p;
-						}
+                //determine the type of circle
+                position_t radiusAround = m_PMob->loc.p;
 
-						for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
-						{
-							CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-							
+                if(m_PMobSkill->getAoe() == 2)
+                {
+                    //radius around TARGET not the monster
+                    radiusAround = m_PBattleTarget->loc.p;
+                }
 
-							if(!PTarget->isDead() && PTarget!=m_PBattleTarget &&
-							PTarget->getZone() == m_PChar->getZone() &&
-							distance(radiusAround, PTarget->loc.p) <= m_PMobSkill->getDistance())
-							{
-								Action.ActionTarget = PTarget;
-								Action.param	  = luautils::OnMobWeaponSkill(PTarget, m_PMob,m_PMobSkill);
-								Action.messageID  = m_PMobSkill->getMsg();
+                // TODO: AOERANGE needs to be dynamic, some monsters can hit an entire alliance, or anything within range.
+                std::vector<CBattleEntity*> targets = GetAdditionalTargets(AOE_PARTY, radiusAround, m_PMobSkill->getDistance());
 
-								//handle aoe damage text
-								if(Action.messageID == 185){
-									Action.messageID = 264; //just the damage value needed
-								}
+                for (uint32 i = 0; i < targets.size(); i++)
+                {
+                    Action.ActionTarget = targets.at(i);
+        			Action.param	    = luautils::OnMobWeaponSkill(targets.at(i), m_PMob, m_PMobSkill);
+        			Action.messageID    = m_PMobSkill->getMsg();
 
-								m_PMob->m_ActionList.push_back(Action);	
-							}
-						}
-					}
-				}
-			}
-			else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //aoe on the enemy (e.g. aoe cure)
+        			//handle aoe damage text
+        			if(Action.messageID == 185)
+                    {
+        				Action.messageID = 264; //just the damage value needed
+        			}
+
+        			m_PMob->m_ActionList.push_back(Action);	
+                }
+				
+			} // Valid Target
+			else if(m_PMobSkill->getValidTargets() == TARGET_SELF)
+            { 
+                //aoe on the enemy (e.g. aoe cure)
 				//TODO: hit self and all targets of the same family? pt?
 			}
 		}
-		else{//single target moves
+		else
+        {
+            //single target moves
 			apAction_t Action;
 			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){
 				Action.ActionTarget = m_PBattleTarget;
@@ -936,7 +940,7 @@ void CAIMobDummy::ActionAttack()
                                 //  Guard skill up
                                 if(m_PBattleTarget->objtype == TYPE_PC && isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0))
                                 {
-                                    if(battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0);
+                                    if(battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0)
                                     {
                                         charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_GRD, m_PBattleTarget->GetMLevel());
                                     }
@@ -1006,3 +1010,113 @@ void CAIMobDummy::ActionAttack()
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
+std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange, position_t radiusAround, float radius)
+{
+    DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+    //ShowInfo("Getting Additional Targets\n");
+
+    std::vector<CBattleEntity*> results;
+
+    CParty* PParty = NULL;    
+    CAlliance* PAlliance = NULL;
+    CZone* PZone = NULL;
+
+    switch(m_PBattleTarget->objtype)
+    {
+        case TYPE_PC: // Use player's info
+        {
+            //ShowInfo("Target: PC\n");
+            //PZone = m_PBattleTarget->loc.zone; // TODO: Zone wide aoe not implemented
+            //PAlliance = ((CCharEntity*)m_PBattleTarget)->PAlliance; // TODO: Alliances not implemented
+            PParty = ((CCharEntity*)m_PBattleTarget)->PParty;
+            break;
+        }
+
+        case TYPE_PET: // Use owner's info
+        {
+            //ShowInfo("Target: Pet\n");
+            if(m_PBattleTarget->PMaster)
+            {
+                if(m_PBattleTarget->PMaster->objtype == TYPE_PC)
+                {
+                    // Pet has an owner, and the owner is a player.
+                    //PZone = m_PBattleTarget->PMaster->loc.zone; // TODO: Zone wide aoe not implemented
+                    //PAlliance = ((CCharEntity*)m_PBattleTarget->PMaster)->PAlliance; // TODO: Alliances not implemented
+                    PParty = ((CCharEntity*)m_PBattleTarget->PMaster)->PParty;
+                }
+                else
+                {
+                    // TODO: AoEs initiated from a monster to a monster's or npc's pet.
+                }
+            }
+            break;
+        }
+
+        default: // TODO: NPC as an AoE target?
+        {
+            //ShowInfo("Target: Else\n");
+            break;
+        }
+    }
+
+    // TODO: Implement zone wide AoEs
+    //if(AoeRange & AOE_ZONE > 0 && PZone != NULL)
+    //{
+    //    ShowInfo("Adding Zone\n");
+    //    // When checking the entire zone there is no need to check alliance, party, owner, etc.
+    //    for(uint16 i = 0; i < PZone->m_charList.size; i++) // m_charList is private.
+    //    {
+    //        results.push_back((CBattleEntity*)PZone->m_charList[i]);
+    //    }
+    //}
+    // TODO: Implement alliances
+    //else if(AoeRange & AOE_ALLIANCE > 0 && PAlliance != NULL)
+    //{
+    //    ShowInfo("Adding Alliance\n");
+    //    // When checking the alliance there is no need to check party, owner, etc.
+    //    for(uint16 i = 0; i < PAlliance->members.size(); i++)
+    //    {
+    //        results.push_back(PAlliance->members[i]);
+    //    }
+    //}
+    /*else*/ if(((AoeRange & AOE_PARTY) > 0) && PParty != NULL)
+    {
+        //ShowInfo("Adding Party\n");
+
+        // When checking the party there is no need to check owner, etc.
+        for(uint16 i = 0; i < PParty->members.size(); i++)
+        {
+            results.push_back(PParty->members[i]);
+        }
+    }
+    else if(m_PBattleTarget->PMaster && m_PBattleTarget->PMaster->objtype == TYPE_PC)
+    {
+        //ShowInfo("Adding Owner\n");
+
+        // When all else fails at least check the master
+        results.push_back(m_PBattleTarget->PMaster);
+    }
+
+    // Prune entities that aren't in range/zone/alive/etc
+    for (std::vector<CBattleEntity*>::const_iterator itr = results.begin(); itr != results.end();)
+    {
+        CBattleEntity* PTarget = (*itr);
+
+        //ShowInfo("Checking Target: %d %s\n", PTarget->id, PTarget->GetName());
+
+        if((PTarget->isDead()) ||
+            PTarget == m_PBattleTarget ||
+            PTarget->getZone() != m_PBattleTarget->getZone() ||
+            distance(radiusAround, PTarget->loc.p) > radius)
+        {
+            //ShowInfo("Removed");
+            itr = results.erase(itr);
+        }
+        else
+        {
+            itr++;
+        }
+    }
+
+    return results;
+}
