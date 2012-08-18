@@ -121,7 +121,6 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 	eva = target:getMod(MOD_EVA);
 	
 	local base = avatar:getWeaponDmg() + fstr;
-	print(base);
 	local ratio = avatar:getStat(MOD_ATT)/target:getStat(MOD_DEF);
 	
 	lvldiff = lvluser - lvltarget;
@@ -145,7 +144,6 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 		base = 1;
 	end
 	hitdamage = base * dmgmod1;
-	print(hitdamage);
 	subsequenthitdamage = base * dmgmodsubsequent;
 	if(ratio<=1) then
 		maxRatio = 1;
@@ -165,9 +163,8 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 	end
 	
 	if(tpeffect==TP_DMG_BONUS) then
-		hitdamage = hitdamage * fTP(skill:getTP(), mtp100, mtp200, mtp300);
+		hitdamage = hitdamage * avatarFTP(skill:getTP(), mtp100, mtp200, mtp300);
 	end
-	print(hitdamage);
 	--Applying pDIF
 	local double pdif = 0; 
 
@@ -207,7 +204,6 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 		finaldmg = finaldmg + hitdamage * pdif;
 		hitslanded = hitslanded + 1;
 	end
-	print(pdif);
 	while (hitsdone < numberofhits) do
 		chance = math.random();
 		if ((chance*100)<=hitrate) then
@@ -362,7 +358,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 	return dmg;
 end;
 
-function fTP(tp,ftp1,ftp2,ftp3)
+function avatarFTP(tp,ftp1,ftp2,ftp3)
 	if(tp<100) then
 		tp=100;
 	end
