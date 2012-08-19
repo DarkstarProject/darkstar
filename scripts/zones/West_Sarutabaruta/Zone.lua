@@ -5,9 +5,9 @@
 -----------------------------------
 
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
+require("scripts/zones/West_Sarutabaruta/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/West_Sarutabaruta/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -21,7 +21,8 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	cs = -1;
+   wc = player:getWeather();
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-374.008,-23.712,63.289,213);
 	end	
@@ -29,14 +30,14 @@ function onZoneIn(player,prevZone)
 		colors = player:getVar("ICanHearARainbow");
 		o = (tonumber(colors) % 4 >= 2);
 		cs = 0x0030;
-		if (o == false) then	
+		if (o == false and wc < 4) then	
 			player:setVar("ICanHearARainbow_Weather",1);
 			player:setVar("ICanHearARainbow",colors+2);
-		else	
+		else
 			cs = -1;
 		end	
-	end		
-	return cs;		
+	end
+	return cs;
 end;			
 
 -----------------------------------			

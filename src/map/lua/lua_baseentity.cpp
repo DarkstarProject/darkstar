@@ -65,6 +65,7 @@
 #include "../packets/shop_items.h"
 #include "../packets/shop_menu.h"
 #include "../packets/conquest_map.h"
+#include "../packets/weather.h"
 
 #include "../battleutils.h"
 #include "../charutils.h"
@@ -77,7 +78,7 @@
 #include "../spell.h"
 #include "../trade_container.h"
 #include "../zoneutils.h"
-
+#include "../weatherutils.h"
 
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
@@ -622,6 +623,86 @@ inline int32 CLuaBaseEntity::isZoneVisited(lua_State *L)
 	
     lua_pushboolean( L, hasBit((uint8)lua_tointeger(L,-1), PChar->m_ZonesList, sizeof(PChar->m_ZonesList)));
 	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*															            *
+*                                                                       *
+************************************************************************/
+inline int32 CLuaBaseEntity::getWeather(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	CZone* PZone = zoneutils::GetZone(PChar->getZone());
+
+	WEATHER weather = PZone->GetWeather();
+
+	switch(weather) 
+    {
+		case WEATHER_NONE:				lua_pushinteger(L, 0); break;
+		case WEATHER_SUNSHINE:			lua_pushinteger(L, 1); break;
+		case WEATHER_CLOUDS:			lua_pushinteger(L, 2); break;
+		case WEATHER_FOG:				lua_pushinteger(L, 3); break;
+		case WEATHER_HOT_SPELL:			lua_pushinteger(L, 4); break;
+		case WEATHER_HEAT_WAVE:			lua_pushinteger(L, 5); break;
+		case WEATHER_RAIN:				lua_pushinteger(L, 6); break;
+		case WEATHER_SQUALL:			lua_pushinteger(L, 7); break;
+		case WEATHER_DUST_STORM:		lua_pushinteger(L, 8); break;
+		case WEATHER_SAND_STORM:		lua_pushinteger(L, 9); break;
+		case WEATHER_WIND:				lua_pushinteger(L, 10); break;
+		case WEATHER_GALES:				lua_pushinteger(L, 11); break;
+		case WEATHER_SNOW:				lua_pushinteger(L, 12); break;
+		case WEATHER_BLIZZARDS:			lua_pushinteger(L, 13); break;
+		case WEATHER_THUNDER:			lua_pushinteger(L, 14); break;
+		case WEATHER_THUNDERSTORMS:		lua_pushinteger(L, 15); break;
+		case WEATHER_AURORAS:			lua_pushinteger(L, 16); break;
+		case WEATHER_STELLAR_GLARE:		lua_pushinteger(L, 17); break;
+		case WEATHER_GLOOM:				lua_pushinteger(L, 18); break;
+		case WEATHER_DARKNESS:			lua_pushinteger(L, 19); break;
+        default: lua_pushnil(L);
+    }
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::setWeather(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	CZone* PZone = zoneutils::GetZone(PChar->getZone());
+	WEATHER weather;
+
+	switch((uint16)lua_tointeger(L,1)) 
+    {
+		case 0: weather  = WEATHER_NONE; break;
+		case 1: weather  = WEATHER_SUNSHINE; break;
+		case 2: weather  = WEATHER_CLOUDS; break;
+		case 3: weather  = WEATHER_FOG; break;
+		case 4: weather  = WEATHER_HOT_SPELL; break;
+		case 5: weather  = WEATHER_HEAT_WAVE; break;
+		case 6: weather  = WEATHER_RAIN; break;
+		case 7: weather  = WEATHER_SQUALL; break;
+		case 8: weather  = WEATHER_DUST_STORM; break;
+		case 9: weather  = WEATHER_SAND_STORM; break;
+		case 10: weather = WEATHER_WIND; break;
+		case 11: weather = WEATHER_GALES;  break;
+		case 12: weather = WEATHER_SNOW;  break;
+		case 13: weather = WEATHER_BLIZZARDS;  break;
+		case 14: weather = WEATHER_THUNDER; break;
+		case 15: weather = WEATHER_THUNDERSTORMS; break;
+		case 16: weather = WEATHER_AURORAS; break;
+		case 17: weather = WEATHER_STELLAR_GLARE; break;
+		case 18: weather = WEATHER_GLOOM; break;
+		case 19: weather = WEATHER_DARKNESS; break;
+        default: weather = WEATHER_NONE;
+    }
+
+	weatherutils::ImplementWeather(PZone, weather);
+
+	return 0;
 }
 
 //==========================================================//
@@ -4328,6 +4409,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPreviousZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isZoneVisited),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeather),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setWeather),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRace),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNation),

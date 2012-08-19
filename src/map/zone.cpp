@@ -106,6 +106,7 @@ CZone::CZone(uint8 ZoneID, uint8 RegionID)
 	m_TreasurePool = 0;
 	m_RegionCheckTime = 0;
 	m_InstanceHandler = NULL;
+	m_weather = WEATHER_NONE;
 
 	switch(m_zoneID){ //all bcnm zones
 		case 6:
@@ -218,10 +219,24 @@ uint16 CZone::GetTax()
 {
 	return m_tax;
 }
+WEATHER CZone::GetWeather()
+{
+	return m_weather;
+}
+
+void CZone::SetWeather(WEATHER weatherCondition)
+{
+	m_weather = weatherCondition;
+}
 
 const int8* CZone::GetName()
 {
 	return m_zoneName.c_str();
+}
+
+EntityList_t CZone::GetPCs()
+{
+	return m_charList;
 }
 
 uint8 CZone::GetSoloBattleMusic()
@@ -297,8 +312,10 @@ void CZone::LoadZoneLines()
 
 void CZone::LoadZoneSettings() 
 {
-	const int8* fmtQuery = "SELECT name, zoneip, zoneport, music, battlesolo, battlemulti, tax, misc \
-						    FROM zone_settings \
+	const int8* fmtQuery = "SELECT settings.name, settings.zoneip, settings.zoneport, settings.music, \
+						    settings.battlesolo, settings.battlemulti, settings.tax, settings.misc, weather.default \
+							FROM zone_settings AS settings \
+							LEFT JOIN zone_weather AS weather USING (zoneid) \
 							WHERE zoneid = %u \
 							LIMIT 1";
 					  
@@ -308,7 +325,7 @@ void CZone::LoadZoneSettings()
 		Sql_NumRows(SqlHandle) == 0 ||
 		Sql_NextRow(SqlHandle) != SQL_SUCCESS) 
 	{
-		ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot loading zone settings (%u)\n" CL_RESET, m_zoneID);
+		ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot load zone settings (%u)\n" CL_RESET, m_zoneID);
 	} 
 	else 
 	{
@@ -323,6 +340,34 @@ void CZone::LoadZoneSettings()
 		m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,5);		// party battle music
 		m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);			// tax for bazaar
 		m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
+
+		if(Sql_GetUIntData(SqlHandle,8) != NULL)
+		{
+			WEATHER weatherTypes [20] = 
+			{
+				WEATHER_NONE,
+				WEATHER_SUNSHINE,
+				WEATHER_CLOUDS,
+				WEATHER_FOG,
+				WEATHER_HOT_SPELL,
+				WEATHER_HEAT_WAVE,
+				WEATHER_RAIN,
+				WEATHER_SQUALL,
+				WEATHER_DUST_STORM,
+				WEATHER_SAND_STORM,
+				WEATHER_WIND,
+				WEATHER_GALES,
+				WEATHER_SNOW,
+				WEATHER_BLIZZARDS,
+				WEATHER_THUNDER,
+				WEATHER_THUNDERSTORMS,
+				WEATHER_AURORAS,
+				WEATHER_STELLAR_GLARE,
+				WEATHER_GLOOM,
+				WEATHER_DARKNESS
+			};	
+			m_weather = weatherTypes[(uint8)Sql_GetUIntData(SqlHandle,8)];
+		}
 
 		if (m_miscMask & MISC_TREASURE)
 		{
@@ -733,7 +778,7 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 	{
 		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
 		PChar->PTreasurePool->AddMember(PChar);
-	}
+	}	
 }
 
 /************************************************************************
@@ -986,6 +1031,9 @@ void CZone::SpawnPCs(CCharEntity* PChar)
 	{
 		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 		SpawnIDList_t::iterator PC = PChar->SpawnPCList.find(PCurrentChar->id);
+
+		WEATHER currentWeather = GetWeather();
+		PCurrentChar->pushPacket(new CWeatherPacket(0, currentWeather));
 
 		if (PChar != PCurrentChar)
 		{

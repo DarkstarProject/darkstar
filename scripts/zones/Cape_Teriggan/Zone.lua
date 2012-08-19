@@ -21,19 +21,24 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	cs = -1;
+   wc = player:getWeather();
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(315.644,-1.517,-60.633,108);
 	end	
 	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125,0)) then	
 		colors = player:getVar("ICanHearARainbow");
+		o = (tonumber(colors) % 4 >= 2);
 		r = (tonumber(colors) % 2 >= 1);
 		g = (tonumber(colors) % 16 >= 8);
-		cs = 0x0002;	
-		if (r == false) then	
+		cs = 0x0002;
+       if (o == false and wc < 4) then
+	        player:setVar("ICanHearARainbow_Weather",1);
+	        player:setVar("ICanHearARainbow",colors+2);
+		elseif (r == false and (wc == 4 or wc == 5)) then
 			player:setVar("ICanHearARainbow_Weather",4);
 			player:setVar("ICanHearARainbow",colors+1);
-		elseif (g == false) then	
+		elseif (g == false and (wc == 10 or wc == 11)) then
 			player:setVar("ICanHearARainbow_Weather",10);
 			player:setVar("ICanHearARainbow",colors+8);
 		else	

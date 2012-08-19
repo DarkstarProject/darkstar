@@ -272,6 +272,7 @@
     <ClInclude Include="..\..\src\map\universal_container.h" />
     <ClInclude Include="..\..\src\map\vana_time.h" />
     <ClInclude Include="..\..\src\map\weapon_skill.h" />
+    <ClInclude Include="..\..\src\map\weatherutils.h" />
     <ClInclude Include="..\..\src\map\zone.h" />
     <ClInclude Include="..\..\src\map\zoneutils.h" />
     <ClInclude Include="resource.h" />
@@ -447,6 +448,7 @@
     <ClCompile Include="..\..\src\map\universal_container.cpp" />
     <ClCompile Include="..\..\src\map\vana_time.cpp" />
     <ClCompile Include="..\..\src\map\weapon_skill.cpp" />
+    <ClCompile Include="..\..\src\map\weatherutils.cpp" />
     <ClCompile Include="..\..\src\map\zone.cpp" />
     <ClCompile Include="..\..\src\map\zoneutils.cpp" />
   </ItemGroup>

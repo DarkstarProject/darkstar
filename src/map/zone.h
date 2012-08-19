@@ -34,6 +34,7 @@
 #include "region.h"
 #include "vana_time.h"
 #include "instance_handler.h"
+#include "packets\weather.h"
 
 enum ZONEMISC
 {
@@ -107,7 +108,10 @@ public:
 	uint32			GetIP();
 	uint16			GetPort();
 	uint16			GetTax();
+	WEATHER			GetWeather();
+	void			SetWeather(WEATHER weatherCondition);
 	const int8*		GetName();
+	EntityList_t	GetPCs();
 	uint8			GetSoloBattleMusic();
 	uint8			GetPartyBattleMusic();
 	uint8			GetBackgroundMusic();
@@ -161,6 +165,7 @@ private:
 	string_t		m_zoneName;				// имя зоны
 	uint16			m_zonePort;				// порт зоны
 	uint32			m_zoneIP;				// IP зоны
+	WEATHER			m_weather;
 
 	uint16			m_tax;					// налог в bazaar 
 	uint16			m_miscMask;				// битовое поле, описывающее возможности использования в зоне определенных умений

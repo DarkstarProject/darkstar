@@ -49,6 +49,7 @@
 #include "transport.h"
 #include "vana_time.h"
 #include "zoneutils.h"
+#include "weatherutils.h"
 
 #include "ai/ai_char_gm.h"
 #include "ai/ai_char_normal.h"
@@ -201,6 +202,8 @@ int32 do_init(int32 argc, int8** argv)
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
 	ShowStatus("The map-server is " CL_GREEN"ready" CL_RESET" to work...\n");
     ShowMessage("=======================================================================\n");
+
+	weatherutils::UpdateZoneWeather();
 	return 0;
 }
 

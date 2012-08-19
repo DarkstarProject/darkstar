@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -21,34 +21,15 @@
 ===========================================================================
 */
 
-#include "../common/showmsg.h"
+#ifndef _WEATHERUTILS_H
+#define _WEATHERUTILS_H
 
-#include "guildutils.h"
-#include "time_server.h"
-#include "transport.h"
-#include "vana_time.h"
-#include "zoneutils.h"
-#include "weatherutils.h"
+#include "../common/cbasetypes.h"
 
-
-int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
+namespace weatherutils
 {
-	TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
+	void UpdateZoneWeather();
+	void ImplementWeather(CZone* currentZone, WEATHER weatherType);
+};
 
-	if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
-	{
-		weatherutils::UpdateZoneWeather();
-	}
-
-    if (VanadielTOTD != TIME_NONE)
-	{
-		zoneutils::TOTDCharnge(VanadielTOTD);
-
-        if (VanadielTOTD == TIME_MIDNIGHT)
-        {
-            guildutils::UpdateGuildsStock();
-        }
-	}
-	CTransportHandler::getInstance()->TransportTimer();
-	return 0;
-}
+#endif

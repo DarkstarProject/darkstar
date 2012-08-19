@@ -20,8 +20,9 @@ end;
 -- onZoneIn		
 -----------------------------------		
 
-function onZoneIn(player,prevZone)		
-	cs = -1;	
+function onZoneIn(player,prevZone)
+	cs = -1;
+	wc = player:getWeather();
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(299.997,-5.838,-622.998,190);
 	end	
@@ -31,13 +32,13 @@ function onZoneIn(player,prevZone)
 		o = (tonumber(colors) % 8 >= 4);
 		b = (tonumber(colors) % 32 >= 16);	
 		cs = 0x0002;	
-		if (r == false) then	
+		if (r == false and (wc == 4 or wc == 5)) then
 			player:setVar("ICanHearARainbow_Weather",4);
 			player:setVar("ICanHearARainbow",colors+1);
-		elseif (o == false) then	
+		elseif (o == false and wc < 4) then
 			player:setVar("ICanHearARainbow_Weather",1);
 			player:setVar("ICanHearARainbow",colors+2);
-		elseif (b == false) then	
+		elseif (b == false and (wc == 6 or wc == 7)) then	
 			player:setVar("ICanHearARainbow_Weather",6);
 			player:setVar("ICanHearARainbow",colors+16);
 		else	
