@@ -1067,6 +1067,7 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
     //    for(uint16 i = 0; i < PZone->m_charList.size; i++) // m_charList is private.
     //    {
     //        results.push_back((CBattleEntity*)PZone->m_charList[i]);
+    //        // TODO: Add entity's pet
     //    }
     //}
     // TODO: Implement alliances
@@ -1077,6 +1078,7 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
     //    for(uint16 i = 0; i < PAlliance->members.size(); i++)
     //    {
     //        results.push_back(PAlliance->members[i]);
+    //        // TODO: Add entity's pet
     //    }
     //}
     /*else*/ if(((AoeRange & AOE_PARTY) > 0) && PParty != NULL)
@@ -1087,15 +1089,28 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
         for(uint16 i = 0; i < PParty->members.size(); i++)
         {
             results.push_back(PParty->members[i]);
+
+            if(PParty->members[i]->PPet)
+                results.push_back(PParty->members[i]->PPet);
         }
     }
-    else if(m_PBattleTarget->PMaster && m_PBattleTarget->PMaster->objtype == TYPE_PC)
+    else // Solo
     {
-        //ShowInfo("Adding Owner\n");
+        if(m_PBattleTarget->PMaster)
+        {
+            //ShowInfo("Adding Owner\n");
 
-        // When all else fails at least check the master
-        results.push_back(m_PBattleTarget->PMaster);
+            // When all else fails at least check the master
+            results.push_back(m_PBattleTarget->PMaster);
+        }
+
+        if(m_PBattleTarget->PPet)
+        {
+            //ShowInfo("Adding Pet\n");
+            results.push_back(m_PBattleTarget->PPet);
+        }
     }
+
 
     // Prune entities that aren't in range/zone/alive/etc
     for (std::vector<CBattleEntity*>::const_iterator itr = results.begin(); itr != results.end();)
