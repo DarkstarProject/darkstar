@@ -113,7 +113,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 	returninfo = {};
 	
 	--Damage = (D+fSTR) * dmgmod * PDIF
-	fstr = fSTR(avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
+	fstr = avatarFSTR(avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
 	
 	lvluser = avatar:getMainLvl();
 	lvltarget = target:getMainLvl();
@@ -222,7 +222,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 end;
 
 --Given the attacker's str and the mob's vit, fSTR is calculated
-function fSTR(atk_str,def_vit)
+function avatarFSTR(atk_str,def_vit)
 	local dSTR = atk_str - def_vit;
 	if (dSTR >= 12) then
 		fSTR2 = ((dSTR+4)/2);
