@@ -1,3 +1,5 @@
+require("scripts/globals/status")
+
 SC_NONE          =  0 -- Lv0 None
 SC_TRANSFIXION   =  1 -- Lv1 Light
 SC_COMPRESSION   =  2 -- Lv1 Dark
@@ -46,7 +48,7 @@ end
 function FormMagicBurst(spell, target)
     local resonance = target:getStatusEffect(EFFECT_SKILLCHAIN);
 
-    if(resonance ~= nill and resonance:getTier() > 0) then -- Resonance exists, ignore it if its tier 0
+    if(resonance ~= nil and resonance:getTier() > 0) then -- Resonance exists, ignore it if its tier 0
 		if(doesSpellElementMatchResonance(spell, resonance) == true) then
 			return resonance:getTier(), resonance:getSubPower();
 		end

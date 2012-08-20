@@ -1,4 +1,5 @@
 require("scripts/globals/magicburst")
+require("scripts/globals/status")
 
      DIVINE_MAGIC_SKILL = 32;
     HEALING_MAGIC_SKILL = 33;
@@ -202,108 +203,66 @@ end;
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
 function applyResistance(player,spell,target,diff,skill,staff)
+   
     resist = 1.0;
-    staff = StaffBonus(player,spell);
-    --raw skill + equip skill = total skill
-    magicskill = player:getSkillLevel(skill) + player:getMod(79 + skill); 
-    
-    --else -- monster macc baseline.
-    --    moblvl = player:getMainLvl();
-    --    if(moblvl <= 83) then
-    --        magicskill = getSkillLvl(7,moblvl);
-    --    else
-    --        magicskill = getSkillLvl(4,moblvl);
-    --    end
-    --end
+   
+	magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
+	
+	if diff > 10 then
+		magicacc = magicacc + 10 + (diff - 10)/2;
+	else
+		magicacc = magicacc + diff;
+	end
 
-    macc = 50 + player:getMod(MOD_MACC);
-    
-    --todo: weather
-    --todo: day
-    --todo: klimaform
-    
-    -- Elemental Seal doubles the accuracy.
     if(player:getStatusEffect(EFFECT_ELEMENTAL_SEAL) ~= nil) then
-        macc = macc * 2;
-    -- Dark Seal doubles the accuracy of dark magic spells. (needs confirmation)
+        magicacc = magicacc + 256;
     elseif(player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
-        macc = macc * 2;
+        magicacc = magicacc + 256;
     end
-
-    -- Baseline p.
-    p = (macc / 100); -- Reasonable assumption based on 50% base magic accuracy.
-    p = (p + (magicskill / 100));
-    
-    -- Adjust for staff bonus.
-    if(staff == 0.85) then 
-        p = (p - 0.3); 
-        -- print("Magic accuracy weakened by HQ staff.");
-    elseif(staff == 0.90) then 
-        p = (p - 0.2);
-        -- print("Magic accuracy weakened by staff.");
-    elseif(staff == 1.10) then
-        p = (p + 0.2);
-        -- print("Magic accuracy enhanced by staff.");
-    elseif(staff == 1.15) then
-        p = (p + 0.3); 
-        -- print("Magic accuracy enhanced by HQ staff.");
-    end
-    
-    -- Magic Burst accuracy bonus
-    -- TODO: Figure out some solid numbers regarding what the accuracy bonus should be.
+	
+	staffBonus = StaffBonus(player, spell);
+	magicacc = magicacc + (staffBonus-1) * 200;
+	
     local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
     
     if(skillchainTier > 0) then
-		 p = (p + 0.25);
+		magicacc = (magicacc + 25);
     end
-    
-    -- Adjust for dINT, or the applicable d.  Possible higher tiers.
-    if(diff <= 10) then
-        p = (p + (diff / 200));
-    else
-        p = (p + ((diff - 10) / 100));
-    end
-
-    -- Reduce for magic evasion.  Will assume a C-level skill for this.  HNMs probably have a B-level skill or above, though.
-    moblvl = target:getMainLvl();
+	
+	defenseMod = {MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES};
+	
+	magiceva = target:getMod(MOD_MEVA) + target:getMod(defenseMod[spell:getElement()]);
+	
+	moblvl = target:getMainLvl();
     if(moblvl <= 83) then
-        meva = getSkillLvl(7,moblvl);
+        magiceva = magiceva + getSkillLvl(7,moblvl);
     else
-        meva = getSkillLvl(4,moblvl);
+        magiceva = magiceva + getSkillLvl(4,moblvl);
     end
-    
-    meva = meva + target:getMod(MOD_MEVA);
-    --todo: add on extra meva from fire resist etc (need getElement() method for spells)
-    p = (p - (meva / 100));
+	
+	p = (magicacc - magiceva)/2;
 
-    -- Adjust for alpha.  Kegsay: this seems to be semi-linear branching from your level.
-    level = player:getMainLvl();
-    moblvl = target:getMainLvl();
-    alpha = 100;
-    if(level >= moblvl) then
-        alpha = alpha + (5 * (level - moblvl));
-    else
-        alpha = alpha - (10 * (moblvl - level));
-    end
-    
-    p = (p * (alpha/100));
+	if p > 50 then
+		p = 50 + (p - 50)*2;
+	end
 
-    -- Adjust p to be within bounds.
-    if(p > 0.95) then
-        p = 0.95;
-    elseif(p < 0.05) then
-        p = 0.05;
+    if(p > 95) then
+        p = 95;
+    elseif(p < 5) then
+        p = 5;
     end
+
+	p = p / 100;
 
     -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
     half = (1 - p);
     quart = ((1 - p)^2);
     eighth = ((1 - p)^3);
     sixteenth = ((1 - p)^4);
-    --print("HALF:",half);
-    --print("QUART:",quart);
-    --print("EIGHTH:",eighth);
-    --print("SIXTEENTH:",sixteenth);
+    -- print("HALF:",half);
+    -- print("QUART:",quart);
+    -- print("EIGHTH:",eighth);
+    -- print("SIXTEENTH:",sixteenth);
 
     resvar = math.random();
     
@@ -320,7 +279,7 @@ function applyResistance(player,spell,target,diff,skill,staff)
     elseif(resvar <= half) then
         resist = 0.5;
         --printf("Spell resisted to 1/2.  Threshold = %u",half);
-    elseif(resvar <= p) then
+    else
         resist = 1.0;
         --printf("1.0");
     end

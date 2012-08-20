@@ -239,14 +239,23 @@ void LoadZoneList()
 				PMob->setModifier(MOD_HTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,35) * 1000));
 				PMob->setModifier(MOD_IMPACTRES,(uint16)(Sql_GetFloatData(SqlHandle,36) * 1000));
 
-                PMob->setModifier(MOD_FIRERES,    (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -1000)); // These are stored as floating percentages 
-                PMob->setModifier(MOD_ICERES,     (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -1000)); // and need to be adjusted into modifier units.
-                PMob->setModifier(MOD_WINDRES,    (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -1000)); // Higher RES = lower damage.  
-                PMob->setModifier(MOD_EARTHRES,   (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -1000)); // Negatives signify increased damage.
-                PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -1000)); // Positives signify reduced damage.
-                PMob->setModifier(MOD_WATERRES,   (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -1000)); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
-                PMob->setModifier(MOD_LIGHTRES,   (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -1000)); // (1.25 - 1) * -1000 = -250 RES
-                PMob->setModifier(MOD_DARKRES,    (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -1000)); // (0.50 - 1) * -1000 = 500 RES
+                PMob->setModifier(MOD_FIREDEF,    (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -1000)); // These are stored as floating percentages 
+                PMob->setModifier(MOD_ICEDEF,     (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -1000)); // and need to be adjusted into modifier units.
+                PMob->setModifier(MOD_WINDDEF,    (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -1000)); // Higher DEF = lower damage.  
+                PMob->setModifier(MOD_EARTHDEF,   (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -1000)); // Negatives signify increased damage.
+                PMob->setModifier(MOD_THUNDERDEF, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -1000)); // Positives signify reduced damage.
+                PMob->setModifier(MOD_WATERDEF,   (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -1000)); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
+                PMob->setModifier(MOD_LIGHTDEF,   (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -1000)); // (1.25 - 1) * -1000 = -250 DEF
+                PMob->setModifier(MOD_DARKDEF,    (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -1000)); // (0.50 - 1) * -1000 = 500 DEF
+
+                PMob->setModifier(MOD_FIRERES,    (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100)); // These are stored as floating percentages 
+                PMob->setModifier(MOD_ICERES,     (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -100)); // and need to be adjusted into modifier units.
+                PMob->setModifier(MOD_WINDRES,    (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -100)); // Higher RES = lower damage.  
+                PMob->setModifier(MOD_EARTHRES,   (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100)); // Negatives signify lower resist chance.
+                PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100)); // Positives signify increased resist chance.
+                PMob->setModifier(MOD_WATERRES,   (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100)); 
+                PMob->setModifier(MOD_LIGHTRES,   (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -100)); // (1.25 - 1) * -1000 = -250 RES
+                PMob->setModifier(MOD_DARKRES,    (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -100)); // (0.50 - 1) * -1000 = 500 RES
 
 				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,45);
 				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,46); 
