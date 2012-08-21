@@ -71,9 +71,8 @@ function onEventFinish(player,csid,option)
 		player:unlockJob(8);
 		player:setTitle(DARK_SIDER);
 		player:setVar("ZeruhnMines_Zeid_CS", 0);
-		player:setVar("Blade_of_Darkness_SwordKills", 0);
-		player:completeQuest(BASTOK, BLADE_OF_DARKNESS);
 		player:messageSpecial(YOU_CAN_NOW_BECOME_A_DARK_KNIGHT);
+		player:completeQuest(BASTOK, BLADE_OF_DARKNESS);
 	elseif(csid == 0x0078) then	
 		player:setVar("MissionStatus",2);
 		player:setPos(-297, 1, 96, 1);

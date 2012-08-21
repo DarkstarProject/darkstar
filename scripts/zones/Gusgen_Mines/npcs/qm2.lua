@@ -2,12 +2,14 @@
 -- Area: Gusgen Mines
 -- NPC:  qm2 (???)
 -- Involved In Mission: Bastok 3-2
--- @zone 196
--- @pos 206 -60 -101
+-- @pos 206 -60 -101 196
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Gusgen_Mines/TextIDs");
 
@@ -21,6 +23,12 @@ function onTrade(player,npc,trade)
 		if(trade:hasItemQty(4358,1) and trade:getItemCount() == 1) then -- Trade Hare Meat
 			player:tradeComplete();
 			SpawnMob(17580038,300):updateEnmity(player);
+		end
+	end
+	if(player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and player:getVar("Blade_of_Darkness_SwordKills") >= 200) then
+		if(trade:hasItemQty(16607,1) and trade:getItemCount() == 1) then -- Trade Chaosbringer
+			player:tradeComplete();
+			player:startEvent(0x000a);
 		end
 	end
 	
@@ -50,4 +58,17 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if (csid == 0x0010) then
+		if (player:getFreeSlotsCount() > 0) then	
+			player:addItem(16637);
+			player:setTitle(BLACK_DEATH);
+			player:setVar("Blade_of_Darkness_SwordKills", 0);
+			player:messageSpecial(ITEM_OBTAINED,16637);
+			player:delKeyItem(LETTER_FROM_ZEID);
+			player:completeQuest(BASTOK,BLADE_OF_DEATH);
+		else	
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16637);
+		end
+	end
+	
 end;
