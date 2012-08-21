@@ -3563,6 +3563,7 @@ INSERT INTO `mob_droplist` VALUES ('644', '0', '940', '1');
 INSERT INTO `mob_droplist` VALUES ('644', '0', '940', '1');
 INSERT INTO `mob_droplist` VALUES ('644', '0', '940', '1');
 INSERT INTO `mob_droplist` VALUES ('644', '0', '940', '2');
+INSERT INTO `mob_droplist` VALUES ('644', '2', '1098','10');
 INSERT INTO `mob_droplist` VALUES ('645', '4', '846', '0');
 INSERT INTO `mob_droplist` VALUES ('645', '0', '846', '6');
 INSERT INTO `mob_droplist` VALUES ('646', '0', '15898', '10');
