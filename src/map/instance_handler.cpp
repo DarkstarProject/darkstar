@@ -25,6 +25,7 @@
 #include "charentity.h"
 #include "mobentity.h"
 #include "lua/luautils.h"
+#include "alliance.h"
 
 
 CInstanceHandler::CInstanceHandler(uint8 zoneid)
@@ -221,7 +222,30 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 			}
 			break;
 		case 12: ShowDebug("BCNMs for 12 people are not implemented yet.\n"); break;
-		case 18: ShowDebug("BCNMs for 18 people are not implemented yet.\n"); break;
+
+		case 18: 
+			if(PChar->PParty == NULL){//just add the initiator
+				if(PInstance->addPlayerToBcnm(PChar)){
+					ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
+						PChar->GetName(),id,PInstance->getInstanceNumber());
+				}
+			}
+			else{
+				if(PChar->PParty->m_PAlliance != NULL)
+				{
+					for(int a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+					{
+						for(int j=0;j<PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); j++){
+							if(PInstance->addPlayerToBcnm((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(j))){
+								ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
+									PChar->PParty->m_PAlliance->partyList.at(a)->members.at(j)->GetName(),id,PInstance->getInstanceNumber());
+							}
+						}
+					}
+				}
+			}
+			break;
+
 		default: ShowDebug("Unknown max participants value %i \n",PInstance->getMaxParticipants());
 	}
 

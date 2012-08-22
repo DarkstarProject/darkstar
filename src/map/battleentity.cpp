@@ -158,6 +158,10 @@ uint16 CBattleEntity::addTP(float tp)
 	{
 		TPMulti = map_config.mob_tp_multiplier;
 	}
+	else if(objtype == TYPE_PET)
+	{
+		TPMulti = map_config.mob_tp_multiplier * 3;
+	}
 	
 	float cap = cap_value(health.tp + (tp * TPMulti),0,300);
 	tp = health.tp - cap;

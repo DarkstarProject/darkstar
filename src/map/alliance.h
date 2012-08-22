@@ -28,27 +28,32 @@
 
 #include <vector>
 
+class CBasicPacket;
+class CBattleEntity;
 class CCharEntity;
 class CParty;
 
+
 //it's assumed here that the alliance leader is the party leader of the lead party. sounds confusing, but it's logical.
-class CAlliance 
+class CAlliance
 {
 public:
-	CAlliance(void);
-	~CAlliance(void);
 
-	CParty * getMainParty();
-	int setMainParty(CParty * aLeader);
-	int addParty(CParty * party);
-	int removeParty(CParty * party);
-	int dissolveAlliance(void);
-	unsigned int partyCount(void);
+	CAlliance(CBattleEntity* PEntity);
+
+	uint32  m_AllianceID;
+	CParty* getMainParty();
+	void setMainParty(CParty * aLeader);
+	void addParty(CParty * party);
+	void removeParty(CParty * party);
+	void dissolveAlliance(void);
+	uint32 partyCount(void);
+
 	std::vector<CParty*> partyList; //list of parties in alliance
 
 private:
 
-	CParty * aLeader;		      		//alliance lead party
+	CParty* aLeader;		      		//alliance lead party
 };
 
 #endif

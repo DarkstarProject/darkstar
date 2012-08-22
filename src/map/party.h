@@ -31,6 +31,7 @@
 class CBasicPacket;
 class CBattleEntity;
 class CCharEntity;
+class CAlliance;
 
 enum PARTYTYPE
 {
@@ -79,6 +80,10 @@ public:
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
 
     void PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
+	
+	CAlliance* m_PAlliance;
+	//int32	m_AlliancePosition;
+
 
     // ВНИМАНИЕ: НЕ ИЗМЕНЯТЬ ЗНАЧЕНИЯ СПИСКА ВНЕ КЛАССА ГРУППЫ
 
@@ -86,12 +91,14 @@ public:
 
 private:
 
+	
     uint32    m_PartyID;                                // уникальный ID группы
     PARTYTYPE m_PartyType;                              // тип существ, составляющих группу
 	
 	CBattleEntity* m_PLeader;                           // лидер группы
 	CBattleEntity* m_PSyncTarget;                       // цель синхронизации уровней
 	CBattleEntity* m_PQuaterMaster;                     // владелец сокровищ
+
 
 	void SetLeader(CBattleEntity* PEntity);             // устанавливаем лидера группы
 	void SetSyncTarget(CBattleEntity* PEntity);         // устанавливаем цель синхронизации уровней

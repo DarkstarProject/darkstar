@@ -34,6 +34,7 @@
 
 #include "lua/luautils.h"
 
+#include "alliance.h"
 #include "packets/automaton_update.h"
 #include "packets/char_abilities.h"
 #include "packets/char_appearance.h"
@@ -1971,10 +1972,22 @@ void UpdateHealth(CCharEntity* PChar)
     DSP_DEBUG_BREAK_IF(PChar->objtype != TYPE_PC);
 
     if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
+
 	if (PChar->PParty != NULL)
 	{	
-        PChar->PParty->PushPacket(PChar, PChar->getZone(), new CCharHealthPacket(PChar));
+		if (PChar->PParty->m_PAlliance == NULL)
+		{
+			PChar->PParty->PushPacket(PChar, PChar->getZone(), new CCharHealthPacket(PChar));
+		
+		}else if (PChar->PParty->m_PAlliance != NULL)
+				{
+					for (int32 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+					{
+						((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(PChar, PChar->getZone(), new CCharHealthPacket(PChar));
+					}
+				}
 	}
+
     PChar->pushPacket(new CCharHealthPacket(PChar));
 }
 
@@ -2548,19 +2561,53 @@ bool hasInvalidJugPetAmmo(CCharEntity* PChar){
 	}
 	
 	switch(PItem->getID()){
-	case 17876: //crab familiar
-	case 17864: //sheep
-	case 17860: //hare
-	case 17882: //homonculus
-	case 17870: //tiger
-	case 17885: //flytrap
-	case 17866: //lizard
-	case 17880: //funguar
-	case 17887: //eft
-	case 17862: //mayfly
-	case 17872: //beetle
-	case 17891: //antlion
-	case 17889: //diremite
+	case 17860: // Hare Familiar
+	case 17861: // Keeneared Steffi
+	case 17862: // Mayfly Familiar
+	case 17863: // Shellbuster Orob
+	case 17864: // Sheep Familiar
+	case 17865: // Lullaby Melodia
+	case 17866: // Lizard Familiar
+	case 17867: // Coldblood Como
+	case 17868: // Flowerpot Bill
+	case 17869: // Flowerpot Ben
+	case 17870: // Tiger Familiar
+	case 17871: // Saber Siravarde
+	case 17872: // Beetle Familiar
+	case 17873: // Panzer Galahad
+	case 17874: // Crafty Clyvonne
+	case 17875: // Bloodclaw Shasra
+	case 17876: // Crab Familiar
+	case 17877: // Courier Carrie
+	case 17878: // Lucky Lulush
+	case 17879: // Fatso Fargann
+	case 17880: // Funguar Familiar
+	case 17881: // Discreet Louise
+	case 17882: // Homunculus
+	case 17883: // Swift Sieghard
+	case 17884: // Amigo Sabotender
+	case 17885: // Flytrap Familiar
+	case 17886: // Voracious Audrey
+	case 17887: // Eft Familiar
+	case 17888: // Ambusher Allie
+	case 17889: // Mite Familiar
+	case 17890: // Lifedrinker Lars
+	case 17891: // Antlion Familiar
+	case 17892: // Chopsuey Chucky
+	case 17893: // Dipper Yuly
+	case 17894: // Flowerpot Merle
+	case 17895: // Nursery Nazuna
+	case 17896: // Mailbuster Cetas
+	case 17897: // Audacious Anna
+	case 17898: // Presto Julio
+	case 17899: // Bugeyed Broncha
+	case 17900: // Gooey Gerard
+	case 17901: // Gorefang Hobs
+	case 17902: // Faithful Falcorr
+	case 17903: // Crude Raphie
+	case 17904: // Dapper Mac
+	case 17905: // Slippery Silas
+	case 17906: // Turbid Toloi 
 		return false;
 	}
 	return true;

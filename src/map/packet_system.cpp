@@ -33,6 +33,7 @@
 
 #include <string.h>
 
+#include "alliance.h"
 #include "packet_system.h"
 #include "conquest_system.h"
 #include "battleutils.h"
@@ -280,6 +281,8 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		PChar->PParty->ReloadParty();
 	}
+
+
 	// TODO: в MogHouse TreasurePool сейчас не создается, по этому необходима проверка
 	if (PChar->PTreasurePool != NULL)
 	{
@@ -2120,15 +2123,34 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	    if (PInvitee != NULL && !jailutils::InPrison(PInvitee))
 	    {
+			//make sure intvitee isn't dead and that they dont already have an invite pending
+			if (PInvitee->isDead() || PInvitee->InvitePending.id != 0)
+		    {
+			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
+			    return;
+		    }
+
+
+			//check to see if user is adding a party leader for alliance
+			if (PInvitee->PParty != NULL)// && PChar->Party != NULL
+		    {
+				if (PInvitee->PParty->GetLeader() == PInvitee)
+				{
+					//make sure invitee does not already have alliance
+					if (PInvitee->PParty->m_PAlliance == NULL)
+					{
+						//party is not already in alliance so add them
+						PInvitee->InvitePending.id = PChar->id;
+						PInvitee->InvitePending.targid = PChar->targid;
+						PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
+						return;
+					}
+				}
+			}
+
 		    if (PInvitee->PParty != NULL)
 		    {
 			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 12));
-			    return;
-		    }
-		    if (PInvitee->isDead() ||
-			    PInvitee->InvitePending.id != 0)
-		    {
-			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
 			    return;
 		    }
 
@@ -2154,6 +2176,35 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+	//alliance - party leader dispands dropping the party from the alliance
+	if (PChar->PParty != NULL)
+	{
+		if (PChar->PParty->m_PAlliance != NULL)
+		{
+			if (PChar->PParty->m_PAlliance->getMainParty() != PChar->PParty)
+			{
+				if (PChar->PParty->GetLeader() == PChar)
+				{
+						//if there are only 2 parties then dissolve alliance
+						if (PChar->PParty->m_PAlliance->partyCount() == 2)
+						{
+							PChar->PParty->m_PAlliance->dissolveAlliance();
+							return;
+						}
+					PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+					return;
+				}
+			
+			}else if(PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
+			{//alliance leader dissolve alliance
+				PChar->PParty->m_PAlliance->dissolveAlliance();
+				return;
+			}
+		}
+	}
+	
+	
+	//normal party member disband
 	if (PChar->PParty != NULL)
 	{
 		PChar->PParty->RemoveMember(PChar);
@@ -2238,9 +2289,47 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		if (InviteAnswer == 0)
 		{
+			//invitee declined invite
 			PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 11));
+			PChar->InvitePending.clean();
+			return;
 		}
-        else if (PChar->PParty == NULL)
+
+		//check for alliance invite
+		if (PChar->PParty != NULL && PInviter->PParty != NULL)
+		{
+			//both invitee and and inviter are party leaders
+			if(PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
+			{
+				
+				//the inviter already has an alliance and wants to add another party - only add if they have room for another party
+				if(PInviter->PParty->GetLeader() == PInviter && PInviter->PParty->m_PAlliance != NULL)
+				{
+					if(PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
+					{
+						//break if alliance is full
+						if(PInviter->PParty->m_PAlliance->partyCount() == 3)  return;
+							
+							
+						//alliance is not full, add the new party
+						PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+						PChar->InvitePending.clean();
+						return;
+					}
+				}
+				
+
+				//party leaders have no alliance - create a new one!
+				CAlliance* PAlliance = new CAlliance(PInviter);
+				PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+				PChar->InvitePending.clean();
+				return;
+			}
+		}
+
+
+		//the rest is for a standard party invitation
+        if (PChar->PParty == NULL)
 		{
 			if (PInviter->PParty == NULL)
 			{
@@ -2270,6 +2359,24 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x076(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+	//alliance
+	if (PChar->PParty != NULL)
+	{
+		if (PChar->PParty->m_PAlliance != NULL)
+		{
+			for (int32 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+			{
+					
+				for (int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++a)
+				{
+					PChar->PParty->m_PAlliance->partyList.at(i)->ReloadPartyMembers((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(i)->members.at(a));
+				}
+			}
+		return;
+		}
+	}
+
+	//normal party - no alliance
 	if (PChar->PParty != NULL)
 	{
 		PChar->PParty->ReloadPartyMembers(PChar);
@@ -2549,8 +2656,18 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     if (PChar->PParty != NULL)
                     {
-                        PChar->PParty->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
-                    }
+						if (PChar->PParty->m_PAlliance == NULL)
+						{
+							PChar->PParty->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
+						
+						}else if(PChar->PParty->m_PAlliance != NULL)
+							{
+								for (int32 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+								{
+									PChar->PParty->m_PAlliance->partyList.at(i)->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
+								}
+							}
+					}
                 }
                 break;
                 case MESSAGE_YELL: PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256)); break;
@@ -2772,6 +2889,31 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0D2(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+	//alliance
+	if (PChar->PParty != NULL)
+	{
+		if (PChar->PParty->m_PAlliance != NULL)
+		{
+			for (int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+			{
+				for (int32 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
+				{
+					CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
+
+					if (PPartyMember->getZone() == PChar->getZone())
+					{
+						PChar->pushPacket(new CPartyMapPacket(PPartyMember));
+					}
+				}
+			}
+
+		return;
+		}
+	} 
+
+
+
+	//normal party - no alliance
 	if (PChar->PParty != NULL)
 	{
 		for (int32 i = 0; i < PChar->PParty->members.size(); ++i) 
@@ -3729,7 +3871,7 @@ void PacketParserInitialize()
     PacketParser[0x0AD] = &SmallPacket0x0AD;
     PacketParser[0x0B5] = &SmallPacket0x0B5;
     PacketParser[0x0B6] = &SmallPacket0x0B6;
-    PacketParser[0x0BE] = &SmallPacket0xFFF;	// not implemented
+    PacketParser[0x0BE] = &SmallPacket0x0BE;	//  merit packet
     PacketParser[0x0C3] = &SmallPacket0x0C3;
     PacketParser[0x0C4] = &SmallPacket0x0C4;
     PacketParser[0x0CB] = &SmallPacket0xFFF;	// not implemented

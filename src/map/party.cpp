@@ -23,8 +23,9 @@
 
 #include "../common/showmsg.h"
 
+#include <vector>
 #include <string.h>
-
+#include "alliance.h"
 #include "battleentity.h"
 #include "charutils.h"
 #include "conquest_system.h"
@@ -55,12 +56,15 @@ CParty::CParty(CBattleEntity* PEntity)
     m_PartyType = PEntity->objtype == TYPE_PC ? PARTY_PCS : PARTY_MOBS;
 
     m_PLeader       = NULL;
+	m_PAlliance		= NULL;
 	m_PSyncTarget 	= NULL;
 	m_PQuaterMaster = NULL;
+
 
 	AddMember(PEntity);
 	SetLeader(PEntity);
 }
+
 
 /************************************************************************
 *																		*
@@ -74,6 +78,7 @@ void CParty::DisbandParty()
 	SetQuaterMaster(NULL);
 
 	m_PLeader = NULL;
+	m_PAlliance	= NULL;
 
     if (m_PartyType == PARTY_PCS)
     {
@@ -281,7 +286,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
     {
         DSP_DEBUG_BREAK_IF(PEntity->objtype != TYPE_PC);
 
-        CCharEntity* PChar = (CCharEntity*)PEntity;
+        CCharEntity* PChar = (CCharEntity*)PEntity; 
 
 	    ReloadParty();
 	    ReloadTreasurePool(PChar);
@@ -347,6 +352,8 @@ CBattleEntity* CParty::GetQuaterMaster()
 	return m_PQuaterMaster;
 }
 
+
+
 /************************************************************************
 *                                                                       *
 *  Получаем список флагов персонажа                                     *
@@ -360,8 +367,22 @@ uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 
     uint16 Flags = 0;
 
+	if (PEntity->PParty->m_PAlliance != NULL)
+	{
+		if (PEntity == m_PLeader && PEntity->PParty->m_PAlliance->getMainParty() == PEntity->PParty)    
+			Flags |= ALLIANCE_LEADER;
+
+		if (PEntity->PParty->m_PAlliance->partyList.size() > 1)
+			if (PEntity->PParty->m_PAlliance->partyList.at(1) == PEntity->PParty)
+				Flags += PARTY_SECOND;
+
+		if (PEntity->PParty->m_PAlliance->partyList.size() > 2)
+			if (PEntity->PParty->m_PAlliance->partyList.at(2) == PEntity->PParty)
+				Flags += PARTY_THIRD;
+	}
+    
     if (PEntity == m_PLeader)       Flags |= PARTY_LEADER;
-    if (PEntity == m_PQuaterMaster) Flags |= PARTY_QM;
+	if (PEntity == m_PQuaterMaster) Flags |= PARTY_QM;
     if (PEntity == m_PSyncTarget)   Flags |= PARTY_SYNC;
 
     return Flags;
@@ -375,17 +396,43 @@ uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 
 void CParty::ReloadParty() 
 {
-    for (int32 i = 0; i < members.size(); ++i) 
-	{
-        CCharEntity* PChar = (CCharEntity*)members.at(i);
 
-        PChar->pushPacket(new CPartyDefinePacket(this));
-        for (uint8 y = 0; y < members.size(); ++y)
-        {
-            PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)members.at(y), y, PChar->getZone()));
-        }
-    }
+	//alliance
+	if (this->m_PAlliance != NULL)
+	{
+		CAlliance* ourAlliance = this->m_PAlliance;
+
+		for (int32 a = 0; a < ourAlliance->partyList.size(); ++a)
+		{
+				for (int32 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i) 
+				{
+					CCharEntity* PChar = (CCharEntity*)ourAlliance->partyList.at(a)->members.at(i);
+
+					PChar->pushPacket(new CPartyDefinePacket(ourAlliance->partyList.at(a)));
+						for (uint8 y = 0; y < ourAlliance->partyList.at(a)->members.size(); ++y)
+						{
+							PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)ourAlliance->partyList.at(a)->members.at(y),y, PChar->getZone()));
+						}
+				}
+		}
+	return;
+	}
+
+
+	//regular party
+	for (int32 i = 0; i < members.size(); ++i) 
+	{
+		CCharEntity* PChar = (CCharEntity*)members.at(i);
+
+		PChar->pushPacket(new CPartyDefinePacket(this));
+			for (uint8 y = 0; y < members.size(); ++y)
+			{
+				PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)members.at(y), y, PChar->getZone()));
+			}
+	}
+
 }
+
 
 /************************************************************************
 *																		*
@@ -396,6 +443,25 @@ void CParty::ReloadParty()
 
 void CParty::ReloadPartyMembers(CCharEntity* PChar) 
 {
+
+	if(PChar->PParty != NULL)
+	{
+		if(PChar->PParty->m_PAlliance != NULL)
+		{
+			CAlliance* ourAlliance = PChar->PParty->m_PAlliance;
+
+			for (int32 a = 0; a < ourAlliance->partyList.size(); ++a)
+			{
+				for (int32 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i)
+				{
+					PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)ourAlliance->partyList.at(a)->members.at(i), i, PChar->getZone()));
+				}
+			}
+			return;
+		}
+	}
+
+	//normal party - no alliance	
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
@@ -414,29 +480,66 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
 void CParty::ReloadTreasurePool(CCharEntity* PChar)
 {
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
+	//cant have this for alliance
+	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
 	if (PChar->PTreasurePool != NULL &&
 		PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE)
 		return;
 
-	for (uint32 i = 0; i < members.size(); ++i) 
-	{
-        CCharEntity* PPartyMember = (CCharEntity*)members.at(i);
 
-        if (PPartyMember != PChar &&
-            PPartyMember->PTreasurePool != NULL &&
-			PPartyMember->getZone() == PChar->getZone())
-		{			
-			if (PChar->PTreasurePool != NULL)
+	//alliance
+	if(PChar->PParty != NULL)
+	{
+		if (PChar->PParty->m_PAlliance != NULL)
+		{
+			for (int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
 			{
-				PChar->PTreasurePool->DelMember(PChar);
+				for (uint32 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
+				{
+					CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
+
+					if (PPartyMember != PChar &&
+						PPartyMember->PTreasurePool != NULL &&
+						PPartyMember->getZone() == PChar->getZone())
+					{			
+						if (PChar->PTreasurePool != NULL)
+						{
+							PChar->PTreasurePool->DelMember(PChar);
+						}
+						PChar->PTreasurePool = PPartyMember->PTreasurePool;
+						PChar->PTreasurePool->AddMember(PChar);
+						return;
+					}
+				}
+	
 			}
-			PChar->PTreasurePool = PPartyMember->PTreasurePool;
-			PChar->PTreasurePool->AddMember(PChar);
-			return;
 		}
 	}
+
+	//regular party
+	if (PChar->PParty->m_PAlliance == NULL)
+	{
+		for (uint32 i = 0; i < members.size(); ++i) 
+		{
+			CCharEntity* PPartyMember = (CCharEntity*)members.at(i);
+
+			if (PPartyMember != PChar &&
+				PPartyMember->PTreasurePool != NULL &&
+				PPartyMember->getZone() == PChar->getZone())
+			{			
+				if (PChar->PTreasurePool != NULL)
+				{
+					PChar->PTreasurePool->DelMember(PChar);
+				}
+				PChar->PTreasurePool = PPartyMember->PTreasurePool;
+				PChar->PTreasurePool->AddMember(PChar);
+				return;
+			}
+		}
+	}
+
+
 	if (PChar->PTreasurePool == NULL)
 	{
 		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);

@@ -27,13 +27,46 @@
 
 #include "../charentity.h"
 #include "../party.h"
+#include "../alliance.h"
 
 
 CPartyDefinePacket::CPartyDefinePacket(CParty* PParty) 
 {
 	this->type = 0xC8;
 	this->size = 0x7C;
+	int nextPosition = 1;
+	
 
+	//party is an alliance do the double loop
+	if (PParty != NULL)
+	{
+		if (PParty->m_PAlliance!= NULL)
+		{
+			CAlliance* ourAlliance = PParty->m_PAlliance;
+
+			for (int32 a = 0; a < ourAlliance->partyList.size(); ++a)
+			{
+
+						for (int32 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i) 
+						{
+							CBattleEntity* PChar = ourAlliance->partyList.at(a)->members.at(i);
+
+							WBUFL(data,12*nextPosition+(0x08)-4) = PChar->id;
+							WBUFW(data,12*nextPosition+(0x0C)-4) = PChar->targid;
+							WBUFW(data,12*nextPosition+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
+							WBUFB(data,12*nextPosition+(0x10)-4) = PChar->getZone();
+							nextPosition++;
+						}
+				
+			}
+			return;
+		}
+	}
+
+	
+
+
+	//regular party
 	if (PParty != NULL)
 	{
 		DSP_DEBUG_BREAK_IF(PParty->members.size() > 6);
@@ -48,4 +81,7 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 			WBUFB(data,12*i+(0x10)-4) = PChar->getZone();
 		}
 	}
+
+
+
 }

@@ -38,6 +38,7 @@
 #include "lua_trade_container.h"
 #include "lua_zone.h"
 
+#include "../alliance.h"
 #include "../ability.h"
 #include "../baseentity.h"
 #include "../battleentity.h"
@@ -1296,34 +1297,73 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 
 	if (PChar->PParty != NULL)
 	{
-	    for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
-	    {
-            if (PChar->PParty->members[i] == PChar ||
-                PChar->PParty->members[i]->getZone() != PChar->getZone()) 
-                continue;
+		if (PChar->PParty->m_PAlliance == NULL)
+		{
+			for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
+			{
+				if (PChar->PParty->members[i] == PChar ||
+					PChar->PParty->members[i]->getZone() != PChar->getZone()) 
+					continue;
 
-            ((CCharEntity*)PChar->PParty->members[i])->m_event.reset();
-            ((CCharEntity*)PChar->PParty->members[i])->m_event.Target = PMob;
-	        ((CCharEntity*)PChar->PParty->members[i])->m_event.Script.insert(0,File);
+				((CCharEntity*)PChar->PParty->members[i])->m_event.reset();
+				((CCharEntity*)PChar->PParty->members[i])->m_event.Target = PMob;
+				((CCharEntity*)PChar->PParty->members[i])->m_event.Script.insert(0,File);
 
-            lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
-		    if (lua_isnil(LuaHandle,-1))
-		    {
-			    ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
-			    return -1;
-		    }
-            CLuaBaseEntity LuaKillerEntity(PChar->PParty->members[i]);
+				lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
+				if (lua_isnil(LuaHandle,-1))
+				{
+					ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
+					return -1;
+				}
+				CLuaBaseEntity LuaKillerEntity(PChar->PParty->members[i]);
 
-		    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-		    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+				Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+				Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
 
-		    if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
-		    {
-			    ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
-                lua_pop(LuaHandle, 1);
-			    return -1;
-		    }
-	    }
+				if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+				{
+					ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
+					lua_pop(LuaHandle, 1);
+					return -1;
+				}
+			}
+		
+		}else if (PChar->PParty->m_PAlliance != NULL)
+				{
+
+					for (int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+					{
+						for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+						{
+							if (PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i) == PChar || PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getZone() != PChar->getZone()) 
+								continue;
+
+							((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.reset();
+							((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.Target = PMob;
+							((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.Script.insert(0,File);
+
+							lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
+							if (lua_isnil(LuaHandle,-1))
+							{
+								ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
+								return -1;
+							}
+							CLuaBaseEntity LuaKillerEntity(PChar->PParty->m_PAlliance->partyList.at(a)->members[i]);
+
+							Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+							Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+
+							if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+							{
+								ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
+								lua_pop(LuaHandle, 1);
+								return -1;
+							}
+						}
+					}
+
+
+				}
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }

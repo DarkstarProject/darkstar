@@ -28,6 +28,7 @@
 #include "enmity_container.h"
 #include "battleutils.h" 
 #include "charentity.h"
+#include "alliance.h"
 
 
 /************************************************************************
@@ -140,15 +141,33 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 
 	if (PChar->PParty != NULL)
 	{
-		for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
-        {
-            CBattleEntity* PTarget = (CBattleEntity*)PChar->PParty->members[i];
-            if (distance(PChar->loc.p, PTarget->loc.p) <= 40)
-            {
-                AddBaseEnmity(PTarget);
-            }
-        }
+		if (PChar->PParty->m_PAlliance == NULL)
+		{
+			for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
+			{
+				CBattleEntity* PTarget = (CBattleEntity*)PChar->PParty->members[i];
+				if (distance(PChar->loc.p, PTarget->loc.p) <= 40)
+				{
+					AddBaseEnmity(PTarget);
+				}
+			}
+		}else if (PChar->PParty->m_PAlliance != NULL)
+				{
+					for (int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+					{
+							for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+							{
+								CBattleEntity* PTarget = (CBattleEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i];
+									if (distance(PChar->loc.p, PTarget->loc.p) <= 40)
+									{
+										AddBaseEnmity(PTarget);
+									}
+							}
+					}
+				}	
+
 	}
+
 }
 
 bool CEnmityContainer::HasTargetID(uint16 TargetID){

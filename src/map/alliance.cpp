@@ -22,171 +22,180 @@
 */
 
 #include "alliance.h"
-#include "party.h"
+#include "../common/showmsg.h"
+
+#include <string.h>
+
+#include "battleentity.h"
 #include "charutils.h"
+#include "conquest_system.h"
+#include "jailutils.h"
+#include "map.h"
+#include "party.h"
+#include "treasure_pool.h"
 
-CAlliance::CAlliance(void) 
+#include "packets/char_sync.h"
+#include "packets/char_update.h"
+#include "packets/menu_config.h"
+#include "packets/party_define.h"
+#include "packets/party_member_update.h"
+
+CAlliance::CAlliance(CBattleEntity* PEntity) 
 {
-	this->aLeader = NULL;
+	DSP_DEBUG_BREAK_IF(PEntity->PParty == NULL);
+
+    m_AllianceID   = PEntity->PParty->GetPartyID();
+
+	//will need to deal with these
+	//m_PSyncTarget 	= NULL;
+//	m_PQuaterMaster = NULL;
+
+
+	addParty(PEntity->PParty);
+	this->aLeader = PEntity->PParty;
+
 }
 
-CAlliance::~CAlliance(void) 
-{
 
+
+void CAlliance::dissolveAlliance(void) 
+{
+	//first kick out the third party if it exsists
+	if (this->partyCount() == 3)
+		this->removeParty(this->partyList.at(2));
+
+		//kick out the second party
+		this->removeParty(this->partyList.at(1));
+
+		CParty* party = this->partyList.at(0);
+		this->partyList.clear();
+
+		party->m_PAlliance = NULL;
+			 
+	party->ReloadParty();
+
+	delete this;
 }
 
-int CAlliance::dissolveAlliance(void) 
-{
-	/*	
-	
-	//kick all of the parties out
-	for (int i=0;i<(int)partyList.size();i++) {
-		partyList[i]->setAlliance(NULL);
-		//Drops the treasure pool
-		partyList[i]->dropTreasurePool();
-		partyList[i]->rebuildTreasurePool();
-	}
-	//Send the party updates once everyone is removed
-	for (int i=0;i<(int)partyList.size();i++) {
-		//Send the removal updates... THERE -HAS- TO BE A BETTER WAY THAN THIS
 
-		this->unlockAllianceList();
-		//Redefine the party removing the alliances
-		//partyList[i]->getLeader()->insertPacket(CHAR_INPARTY_SELF,CDefinePartyPacket(partyList[i]));
-
-		PushPacketList(partyList[i]->getLeader(),CHAR_INPARTY_SELF,CDefinePartyPacket(partyList[i]));
-		this->lockAllianceList();
-
-		//Loop through every party
-		for (int x=0;x<(int)partyList.size();x++) {
-			// ignoring your own party
-			if (x != i) {
-				partyList[i]->lockPartyList();
-				//Remove the other parties members from your display
-				for (int y=0;y<(int)partyList[i]->memberCount();y++) {
-					partyList[x]->reloadParty(partyList[i]->members[y],true);
-				}
-				partyList[i]->unlockPartyList();
-			}
-		}
-	}
-	//Empty the alliance
-	partyList.clear();
-	this->unlockAllianceList();
-	*/
-	return 0;
-}
-
-unsigned int CAlliance::partyCount(void) 
+uint32 CAlliance::partyCount(void) 
 {	
 	if (!partyList.empty()) return (unsigned int) partyList.size();
 	return 0;
 }
 
-int CAlliance::removeParty(CParty * party) 
+void CAlliance::removeParty(CParty * party) 
 {
-	/*
 	//Verify that the main party is not being dropped.
-	if ( party != this->getMainParty() ) {
-		//Remove the party from the alliance
-		party->setAlliance(NULL);
-		//Drop the parties treasure pool
-		party->dropTreasurePool();
-		//Rebuild the treasure pool for the party
-		party->rebuildTreasurePool();
-		//Send the single party definition for everyone in the leaving party
-		//party->getLeader()->insertPacket(CHAR_INALLIANCE_SELF,CDefinePartyPacket(party));
-		PushPacketList(party->getLeader(),CHAR_INALLIANCE_SELF,CDefinePartyPacket(party));
-		this->lockAllianceList();
-		for (unsigned int x = 0; x < this->partyList.size(); x++) {
-			//Check to see if the member is the one we are removing
-			if (party == this->partyList.at(x)) {
-				//Match found, shift down the inAlliance numbers 
-				for (unsigned int y = (x+1); y < this->partyList.size(); y++) {
-					//Is this member a valid pointer?
-					if (this->partyList.at(y) != NULL) {
-						//Valid party, do a quick refresh of the alliance index
-						this->partyList.at(y)->inAlliance--;
-						//Lock the party members list
-						party->lockPartyList();
-						for (unsigned int z = 0; z < party->memberCount(); z++) {
-							//Remove the old alliance party information from the leaving party
-							this->partyList[x]->reloadParty(party->members[z], true);
-						}
-						//unlock the party members
-						party->unlockPartyList();
-					}
-				}
-				//Erase the party out of the party list
-				this->partyList.erase(this->partyList.begin()+x,this->partyList.begin()+x+1);
-				//Quickly unlock the list
-				this->unlockAllianceList();
-				//Now that the leaving party is fully removed from the alliance, we can update the remaining parties
-				//this->getMainParty()->getLeader()->insertPacket(CHAR_INALLIANCE_SELF,CDefinePartyPacket(this->getMainParty()));
+	if ( party != this->getMainParty() ) 
+	{
 
-				PushPacketList(this->getMainParty()->getLeader(),CHAR_INALLIANCE_SELF,CDefinePartyPacket(this->getMainParty()));
-				//Lock the party list to update the remaining parties
-				this->lockAllianceList();
-				for (unsigned int y = 0; y < this->partyList.size(); y++) {
-					//Update every party member in the parties that are not being dropped about the removal
-					this->partyList[y]->lockPartyList();
-					for (unsigned int z = 0; z < this->partyList[y]->memberCount(); z++) {
-						//party is being removed, update partyList[y]->members[z] of the removal
-						party->reloadParty(this->partyList[y]->members[z],true);
-					}
-					this->partyList[y]->unlockPartyList();
-				}
-				break;
-			} else if (this->partyList[x] != NULL) {
-				//Update every party member in the party that is being dropped about the removal
-				party->lockPartyList();
-				for (unsigned int z = 0; z < party->memberCount(); z++) {
-					//Remove the old alliance party information from the leaving party
-					this->partyList[x]->reloadParty(party->members[z], true);
-				}
-				party->unlockPartyList();
+		CAlliance* alliance = party->m_PAlliance;
+
+		//delete the party from the alliance list
+		for (uint32 i = 0; i < party->m_PAlliance->partyList.size(); ++i) 
+		{
+			if (party == party->m_PAlliance->partyList.at(i)) 
+				party->m_PAlliance->partyList.erase(partyList.begin()+i);
+		}
+
+		party->m_PAlliance = NULL;
+
+		//update the remaining members of the alliance to show the party left
+		if (alliance != NULL)
+		{
+			for (uint32 i = 0; i < alliance->partyList.size(); ++i) 
+			{
+				alliance->partyList.at(i)->ReloadParty();
 			}
 		}
-		this->unlockAllianceList();
-	}
-	*/
-	return 0;
+
+		//remove party members from the alliance treasure pool
+	    for (uint32 i = 0; i < party->members.size(); ++i) 
+	    {
+			CCharEntity* PChar = (CCharEntity*)party->members.at(i);
+			PChar->PTreasurePool->DelMember(PChar);
+			//PChar->PTreasurePool = NULL;
+		}
+
+		CCharEntity* PChar = (CCharEntity*)party->GetLeader();
+		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_PARTY);
+		PChar->PTreasurePool->AddMember(PChar);
+        PChar->PTreasurePool->UpdatePool(PChar);
+
+	    for (uint32 i = 0; i < party->members.size(); ++i) 
+	    {
+		    CCharEntity* PChar = (CCharEntity*)party->members.at(i);
+			party->ReloadPartyMembers((CCharEntity*)party->members.at(i));
+
+				if (PChar->PParty->GetLeader() != PChar)
+				{
+					//crash is here on disband
+					PChar->PTreasurePool = ((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool;
+					((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->AddMember(PChar);
+					((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->UpdatePool(PChar);
+					//PChar->PParty->ReloadTreasurePool(PChar);
+				}
+
+		}
+	 }
+	party->ReloadParty();
+      //  Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", 0, m_PartyID);
 }
 
-int CAlliance::addParty(CParty * party) 
+void CAlliance::addParty(CParty * party) 
 {
+	party->m_PAlliance = this;
+	partyList.push_back(party);
+	
 	/*
-	if (this->partyCount() < 3) {
-		this->lockAllianceList();
-		partyList.push_back(party);
-		this->unlockAllianceList();
-		party->dropTreasurePool();
-		party->setAlliance(this);
-		party->inAlliance = this->partyCount();
-		party->rebuildTreasurePool();
+	if (this->partyCount() > 1)
+	{
+		//add the new party to the leading party's treasure pool
+		for (int32 i = 0; i < party->members.size(); ++i) 
+		{
+			CCharEntity* PChar = (CCharEntity*)party->members.at(i);
+			PChar->PTreasurePool->DelMember(PChar);
+			PChar->PTreasurePool = NULL;
+
+			PChar->PTreasurePool = ((CCharEntity*)PChar->PParty->m_PAlliance->getMainParty()->GetLeader())->PTreasurePool;
+			((CCharEntity*)PChar->PParty->m_PAlliance->getMainParty()->GetLeader())->PTreasurePool->AddMember(PChar);
+			((CCharEntity*)PChar->PParty->m_PAlliance->getMainParty()->GetLeader())->PTreasurePool->UpdatePool(PChar);
+			PChar->PParty->ReloadTreasurePool(PChar);
+		}
 	}
 	*/
-	return 0;
+
+	for (int32 a = 0; a < this->partyList.size(); ++a) 
+	{
+		this->partyList.at(a)->ReloadParty();
+		
+			for (int32 i = 0; i < this->partyList.at(a)->members.size(); ++i)
+			{
+				CCharEntity* PChar = (CCharEntity*)this->partyList.at(a)->members.at(i);
+				this->partyList.at(a)->ReloadTreasurePool(PChar);
+				charutils::SaveCharStats(PChar);
+			}
+	}
+
 }
 
-CParty * CAlliance::getMainParty(void) 
+
+
+
+
+CParty* CAlliance::getMainParty() 
 {	
-	/*
-	if (this->aLeader != NULL)
-		return this->aLeader;
-	else
-	*/
-		return 0;
+		return aLeader;
 }
 
 //Assigns a party leader for the party
-int CAlliance::setMainParty(CParty * aLeader) 
+void CAlliance::setMainParty(CParty * aLeader) 
 {
-	/*
+	
 	//Having no leader is bad so lets check if the pointer is not null.
 	if (aLeader != NULL) {
 		this->aLeader = aLeader;
 	}
-	*/
-	return 0;
+	
 }

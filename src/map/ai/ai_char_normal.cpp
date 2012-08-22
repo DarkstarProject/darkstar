@@ -39,6 +39,7 @@
 #include "../petentity.h"
 #include "../ai/ai_pet_dummy.h"
 #include "../lua/luautils.h"
+#include "../alliance.h"
 
 #include "../packets/action.h"
 #include "../packets/char.h"
@@ -197,6 +198,27 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 	{
 		return true;
 	}
+
+
+
+	if (m_PChar->PParty != NULL) 
+	{
+		if (m_PChar->PParty->m_PAlliance != NULL) 
+		{
+			for (int32 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
+			{
+				for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+				{
+					if (m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id == PBattleTarget->m_OwnerID.id)
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+
+
 	if (m_PChar->PParty != NULL) 
 	{
 		for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
@@ -1933,6 +1955,24 @@ void CAICharNormal::ActionAttack()
                 {
                     if (m_PChar->PParty != NULL) 
 	                {
+						if ( m_PChar->PParty->m_PAlliance != NULL)
+						{
+							for (int32 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
+							{
+								for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+								{
+										if (PTarget->m_OwnerID.id == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id ||
+										   (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]))
+										{
+											m_PBattleTarget = PTarget;
+											m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+											return;
+										}
+								}
+							}
+						}
+
+
 		                for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
 		                {
 			                if (PTarget->m_OwnerID.id == m_PChar->PParty->members[i]->id ||

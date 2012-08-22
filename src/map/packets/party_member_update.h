@@ -28,6 +28,7 @@
 
 #include "basic.h"
 
+
 /************************************************************************
 *																		*
 *  																		*
@@ -35,6 +36,7 @@
 ************************************************************************/
 
 class CCharEntity;
+class CAlliance;
 
 class CPartyMemberUpdatePacket : public CBasicPacket
 {

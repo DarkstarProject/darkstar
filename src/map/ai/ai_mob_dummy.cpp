@@ -32,6 +32,7 @@
 #include "../status_effect.h"
 #include "../petentity.h"
 #include "../zone.h"
+#include "../alliance.h"
 
 #include "ai_mob_dummy.h"
 
@@ -41,7 +42,6 @@
 #include "../packets/entity_update.h"
 #include "../packets/fade_out.h"
 #include "../packets/message_basic.h"
-#include "../alliance.h"
 
 
 /************************************************************************
@@ -223,13 +223,29 @@ void CAIMobDummy::ActionDropItems()
 
 			    if (DropList != NULL && DropList->size())
 			    {
-					uint16 highestTH = PChar->getMod(MOD_TREASURE_HUNTER);
+					uint8 highestTH = PChar->getMod(MOD_TREASURE_HUNTER);
 
-					//get highest Treasure Hunter in pt
+					//get highest Treasure Hunter in pt - if no alliance
 					if(PChar->PParty != NULL){
-						for(uint8 i = 0; i < PChar->PParty->members.size(); i++){
-							if(PChar->PParty->members.at(i)->getMod(MOD_TREASURE_HUNTER) > highestTH){
-								highestTH = PChar->PParty->members.at(i)->getMod(MOD_TREASURE_HUNTER);
+						if(PChar->PParty->m_PAlliance == NULL){
+							for(uint8 i = 0; i < PChar->PParty->members.size(); i++){
+								if(PChar->PParty->members.at(i)->getMod(MOD_TREASURE_HUNTER) > highestTH){
+									highestTH = PChar->PParty->members.at(i)->getMod(MOD_TREASURE_HUNTER);
+								}
+							}
+						}
+					}
+
+					//get highest Treasure Hunter in pt - if alliance
+					if(PChar->PParty != NULL){
+						if(PChar->PParty->m_PAlliance != NULL){
+							for(int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+							{
+								for(uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); i++){
+									if(PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getMod(MOD_TREASURE_HUNTER) > highestTH){
+										highestTH = PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getMod(MOD_TREASURE_HUNTER);
+									}
+								}
 							}
 						}
 					}
@@ -423,7 +439,7 @@ void CAIMobDummy::ActionAbilityStart()
 	m_PMobSkill = MobSkills.at(rand() % MobSkills.size());
 
 	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS){
-		for(uint16 i=0;i<MobSkills.size();i++){
+		for(int i=0;i<MobSkills.size();i++){
 			if(MobSkills[i]->getID() == 0){ //TWO-HOUR
 				if(m_PMob->GetHPP() <= 50 && m_PMob->m_SkillStatus==0){//<50% HP and not used skill
 					m_PMobSkill = MobSkills[i];
@@ -541,12 +557,8 @@ void CAIMobDummy::ActionAbilityFinish()
 		//AOE=1 means the circle is around the MONSTER
 		//AOE=2 means the circle is around the BATTLE TARGET
 		//AOE=4 means conal (breath)
-		if(m_PMobSkill->getAoe() == 1 || m_PMobSkill->getAoe() == 2)
-        { 
-            //to handle both types of aoe
-			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY)
-            {
-                //aoe on the  players
+		if(m_PMobSkill->getAoe()==1 || m_PMobSkill->getAoe()==2){ //to handle both types of aoe
+			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){//aoe on the  players
 				//hit the target + the target's PT/alliance
 				apAction_t Action;
 
@@ -560,43 +572,76 @@ void CAIMobDummy::ActionAbilityFinish()
 				Action.flag		  = 0;
 				m_PMob->m_ActionList.push_back(Action);	
 
-                //determine the type of circle
-                position_t radiusAround = m_PMob->loc.p;
+				if(m_PBattleTarget->objtype==TYPE_PC){
+					CCharEntity* m_PChar = (CCharEntity*)m_PBattleTarget;
+					if(m_PChar->PParty != NULL)
+					{
+						if(m_PChar->PParty->m_PAlliance == NULL)
+						{
+							//determine the type of circle
+							position_t radiusAround = m_PMob->loc.p;
+							if(m_PMobSkill->getAoe()==2){//radius around TARGET not the monster
+								radiusAround = m_PBattleTarget->loc.p;
+							}
 
-                if(m_PMobSkill->getAoe() == 2)
-                {
-                    //radius around TARGET not the monster
-                    radiusAround = m_PBattleTarget->loc.p;
-                }
+							for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
+							{
+								CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+							
+								if(!PTarget->isDead() && PTarget!=m_PBattleTarget && PTarget->getZone() == m_PChar->getZone() &&
+								distance(radiusAround, PTarget->loc.p) <= m_PMobSkill->getDistance())
+								{
+									Action.ActionTarget = PTarget;
+									Action.param	  = luautils::OnMobWeaponSkill(PTarget, m_PMob,m_PMobSkill);
+									Action.messageID  = m_PMobSkill->getMsg();
 
-                // TODO: AOERANGE needs to be dynamic, some monsters can hit an entire alliance, or anything within range.
-                std::vector<CBattleEntity*> targets = GetAdditionalTargets(AOE_PARTY, radiusAround, m_PMobSkill->getDistance());
+									//handle aoe damage text
+									if(Action.messageID == 185){
+										Action.messageID = 264; //just the damage value needed
+									}
+									m_PMob->m_ActionList.push_back(Action);	
+								}
+							}
+						
+						}else if(m_PChar->PParty->m_PAlliance != NULL){
+								//ability will hit everyone in the alliance if they are in range
 
-                for (uint32 i = 0; i < targets.size(); i++)
-                {
-                    Action.ActionTarget = targets.at(i);
-        			Action.param	    = luautils::OnMobWeaponSkill(targets.at(i), m_PMob, m_PMobSkill);
-        			Action.messageID    = m_PMobSkill->getMsg();
+								//determine the type of circle
+								position_t radiusAround = m_PMob->loc.p;
+								if(m_PMobSkill->getAoe()==2){//radius around TARGET not the monster
+									radiusAround = m_PBattleTarget->loc.p;
+								}
 
-        			//handle aoe damage text
-        			if(Action.messageID == 185)
-                    {
-        				Action.messageID = 264; //just the damage value needed
-        			}
+								for (int32 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
+								{
+									for (uint32 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); i++)
+									{
+										CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i];
+							
+												if(!PTarget->isDead() && PTarget!=m_PBattleTarget && PTarget->getZone() == m_PChar->getZone() &&
+												distance(radiusAround, PTarget->loc.p) <= m_PMobSkill->getDistance())
+												{
+													Action.ActionTarget = PTarget;
+													Action.param	  = luautils::OnMobWeaponSkill(PTarget, m_PMob,m_PMobSkill);
+													Action.messageID  = m_PMobSkill->getMsg();
 
-        			m_PMob->m_ActionList.push_back(Action);	
-                }
-				
-			} // Valid Target
-			else if(m_PMobSkill->getValidTargets() == TARGET_SELF)
-            { 
-                //aoe on the enemy (e.g. aoe cure)
+													//handle aoe damage text
+													if(Action.messageID == 185){
+														Action.messageID = 264; //just the damage value needed
+													}
+													m_PMob->m_ActionList.push_back(Action);	
+												}
+									}
+								}
+							}
+						}
+				}
+			}
+			else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //aoe on the enemy (e.g. aoe cure)
 				//TODO: hit self and all targets of the same family? pt?
 			}
 		}
-		else
-        {
-            //single target moves
+		else{//single target moves
 			apAction_t Action;
 			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){
 				Action.ActionTarget = m_PBattleTarget;
