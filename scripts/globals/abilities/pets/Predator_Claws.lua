@@ -9,7 +9,7 @@ require("/scripts/globals/summon");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	numhits = 1;
+	numhits = 3;
 	accmod = 1;
 	dmgmod = 10;
 	dmgmodsubsequent = 2;
@@ -18,6 +18,5 @@ function OnPetAbility(target, pet, skill)
 	totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,numhits);
 	target:delHP(totaldamage);
 	target:updateEnmityFromDamage(pet,totaldamage);
-	
 	return totaldamage;
 end
