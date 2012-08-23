@@ -2324,7 +2324,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                         PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,0,0,37));
                         continue;
                     }
-                    if (PMob->m_Type & MOBTYPE_NORMAL)
+                    if (PMob->m_Type == MOBTYPE_NORMAL)
 					{
 						if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20 &&
                         PMember->loc.zone == PMob->loc.zone) // Need to move to SIGNET_CHANCE constant
@@ -2482,10 +2482,13 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
             PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,37));
             return;
         }
-        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
-        {
-            PChar->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
-        }
+        if (PMob->m_Type == MOBTYPE_NORMAL)
+		{
+			if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
+			{
+				PChar->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
+			}
+		}
         AddExperiencePoints(PChar, PMob, exp, baseexp, chainactive);
     }
 }
