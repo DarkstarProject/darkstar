@@ -249,6 +249,7 @@ public:
 	int32 getMeleeHitDamage(lua_State*);    // gets the damage of a single hit vs the specified mob
 	int32 getWeaponSkillType(lua_State*);   // gets the type of weapon equipped
 	int32 isBehind(lua_State*);				// true if you're behind the input target
+	int32 getStealItem(lua_State*);			// gets ItemID of droplist steal item from mob
 
     int32 openDoor(lua_State*);             // открываем дверь
 	int32 hideNPC(lua_State*);              // hide an NPC

@@ -69,6 +69,7 @@
 
 #include "../battleutils.h"
 #include "../charutils.h"
+#include "../itemutils.h"
 #include "../guildutils.h"
 #include "../map.h"
 #include "../mobentity.h"
@@ -2225,6 +2226,16 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 			lua_pushinteger( L, item->getQuantity() );
 			return 1;
 		}
+		else if(m_PBaseEntity->objtype == TYPE_MOB)
+		{
+			// TODO: Mobs should have a gil pool, until implemented mob can be mugged unlimited times.
+			CMobEntity * PMob = (CMobEntity*)m_PBaseEntity;
+			if(PMob->m_EcoSystem == SYSTEM_BEASTMEN || PMob->m_Type & MOBTYPE_NOTORIOUS)
+			{
+				lua_pushinteger(L, (PMob->GetMLevel() * ((PMob->m_Type & MOBTYPE_NOTORIOUS) ? 10 : 1)));
+				return 1;
+			}
+		}
 	}
 	lua_pushnil(L);
 	return 1;
@@ -4376,6 +4387,27 @@ inline int32 CLuaBaseEntity::isBehind(lua_State *L){
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	DropList_t* DropList = itemutils::GetDropList(((CMobEntity*)m_PBaseEntity)->m_DropID);
+	if (DropList != NULL && DropList->size())
+	{
+		for(uint8 i = 0; i < DropList->size(); ++i)
+		{
+			if (DropList->at(i).DropType == 2)
+			{
+				lua_pushinteger( L,DropList->at(i).ItemID);
+				return 1;
+			}
+		}
+	}
+
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -4552,5 +4584,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAddHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBehind),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
 	{NULL,NULL}
 };
