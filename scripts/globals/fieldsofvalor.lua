@@ -2,11 +2,8 @@ package.loaded["scripts/globals/conquestguards"] = nil;
 require("/scripts/globals/settings");
 require("scripts/globals/conquestguards");
 
--- The player can be MAX_MOB_LVL_DIFF levels above the monster and still complete Regimes.
--- Increase to make it so Lv99s can get EXP off Lv10 regimes. 
--- Normal value = 15.
-
-MAX_MOB_LEVEL_DIFF = 100; 
+PLAYER_ABOVE_MOBLEVEL_DIFF = 16;  -- Limit for Weaker Monsters than the Player Character
+PLAYER_BELOW_MOBLEVEL_DIFF = 16;  -- Limit for Stronger Monsters than the Player Character
 
 --require("/scripts/globals/spell_definitions");
 
@@ -511,7 +508,7 @@ end
 function checkRegime(killer,mob,rid,index)
 
 	if(killer:getVar("fov_regimeid") == rid) then --player is doing this regime
-		if(killer:getMainLvl() - MAX_MOB_LEVEL_DIFF <= mob:getMainLvl()) then --should really have a killer:givesExp(mob) boolean function
+		if ((killer:getMainLvl()-mob:getMainLvl() <= PLAYER_ABOVE_MOBLEVEL_DIFF and killer:getMainLvl()-mob:getMainLvl() >= 0) or (mob:getMainLvl()-killer:getMainLvl() <= PLAYER_BELOW_MOBLEVEL_DIFF and mob:getMainLvl()-killer:getMainLvl() >= 0)) then --should really have a killer:givesExp(mob) boolean function
             --get the number of mobs needed/killed
             local needed = killer:getVar("fov_numneeded"..index);
             local killed = killer:getVar("fov_numkilled"..index);
