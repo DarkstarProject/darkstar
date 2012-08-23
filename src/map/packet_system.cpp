@@ -2218,31 +2218,19 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x070(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-
 	//this is where alliance leader can dissolve alliance completely
-	if (PChar->PParty != NULL)
+	if (PChar->PParty != NULL && PChar->PParty->GetLeader() == PChar)
 	{
-		if (PChar->PParty->m_PAlliance != NULL)
+		if (PChar->PParty->m_PAlliance != NULL && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
 		{
-			if (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-			{
-				if (PChar->PParty->GetLeader() == PChar)
-				{
-					//dissolve the entire alliance
-					PChar->PParty->m_PAlliance->dissolveAlliance();
-					return;
-				}
-			}
+			//dissolve the entire alliance
+			PChar->PParty->m_PAlliance->dissolveAlliance();
 		}
-	}
-
-
-
-
-	if (PChar->PParty != NULL &&
-		PChar->PParty->GetLeader() == PChar) 
-	{
-		PChar->PParty->DisbandParty();
+		else
+		{
+			//just dissolve party
+			PChar->PParty->DisbandParty();
+		}
 	}
 	return;
 }
