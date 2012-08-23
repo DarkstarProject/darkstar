@@ -34,6 +34,7 @@
 #include <string.h>
 
 #include "alliance.h"
+#include "party.h"
 #include "packet_system.h"
 #include "conquest_system.h"
 #include "battleutils.h"
@@ -2176,6 +2177,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+
 	//alliance - party leader dispands dropping the party from the alliance
 	if (PChar->PParty != NULL)
 	{
@@ -2195,10 +2197,6 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					return;
 				}
 			
-			}else if(PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-			{//alliance leader dissolve alliance
-				PChar->PParty->m_PAlliance->dissolveAlliance();
-				return;
 			}
 		}
 	}
@@ -2220,6 +2218,27 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x070(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+
+	//this is where alliance leader can dissolve alliance completely
+	if (PChar->PParty != NULL)
+	{
+		if (PChar->PParty->m_PAlliance != NULL)
+		{
+			if (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
+			{
+				if (PChar->PParty->GetLeader() == PChar)
+				{
+					//dissolve the entire alliance
+					PChar->PParty->m_PAlliance->dissolveAlliance();
+					return;
+				}
+			}
+		}
+	}
+
+
+
+
 	if (PChar->PParty != NULL &&
 		PChar->PParty->GetLeader() == PChar) 
 	{
