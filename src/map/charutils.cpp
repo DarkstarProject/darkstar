@@ -1717,6 +1717,7 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 			}
 		}
 	}
+	PChar->addModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PChar->GetMLevel()));
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 

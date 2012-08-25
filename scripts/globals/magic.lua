@@ -205,47 +205,69 @@ end;
 function applyResistance(player,spell,target,diff,skill,staff)
    
     resist = 1.0;
-   
+    magicaccbonus = 0;
+	--get the base acc (just skill plus magic acc mod)
 	magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
 	
+	--difference in int/mnd 
 	if diff > 10 then
 		magicacc = magicacc + 10 + (diff - 10)/2;
 	else
 		magicacc = magicacc + diff;
 	end
-
+	--add acc for ele/dark seal
     if(player:getStatusEffect(EFFECT_ELEMENTAL_SEAL) ~= nil) then
-        magicacc = magicacc + 256;
+        magicaccbonus = magicaccbonus + 256;
     elseif(player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
-        magicacc = magicacc + 256;
+        magicaccbonus = magicaccbonus + 256;
     end
-	
+	--add acc for staves
 	staffBonus = StaffBonus(player, spell);
-	magicacc = magicacc + (staffBonus-1) * 200;
+	magicaccbonus = magicaccbonus + (staffBonus-1) * 200;
 	
     local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
-    
+    --add acc for skillchains
     if(skillchainTier > 0) then
-		magicacc = (magicacc + 25);
+		magicaccbonus = magicaccbonus + 25;
     end
 	
-	defenseMod = {MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES};
+	resistMod = {MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES};
+	defenseMod = {MOD_FIREDEF, MOD_EARTHDEF, MOD_WATERDEF, MOD_WINDDEF, MOD_ICEDEF, MOD_THUNDERDEF, MOD_LIGHTDEF, MOD_DARKDEF};
+	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
+	magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[spell:getElement()]) + target:getMod(defenseMod[spell:getElement()])/10;
 	
-	magiceva = target:getMod(MOD_MEVA) + target:getMod(defenseMod[spell:getElement()]);
-	
-	moblvl = target:getMainLvl();
-    if(moblvl <= 83) then
-        magiceva = magiceva + getSkillLvl(7,moblvl);
-    else
-        magiceva = magiceva + getSkillLvl(4,moblvl);
-    end
-	
-	p = (magicacc - magiceva)/2;
+	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
+	multiplier = 0;
+	if player:getMainLvl() < 40 then
+		multiplier = 100 / 120;
+	else
+		multiplier = 100 / (player:getMainLvl() * 3);
+	end;
+	p = (magicacc * multiplier) - (magiceva * 0.45);
+	magicaccbonus = magicaccbonus / 2;
+	--add magicacc bonus
+	p = p + magicaccbonus;
+	print(magicacc);
+	print(magiceva);
+	print(magicaccbonus);
 
-	if p > 50 then
-		p = 50 + (p - 50)*2;
+	
+	--double any acc over 50 if it's over 50
+	if p > 5 then
+		p = 5 + (p - 5) * 2;
 	end
+	
+	--add a flat bonus that won't get doubled in the previous step
+	p = p + 45;
 
+	--add a scaling bonus or penalty based on difference of targets level from caster
+	leveldiff = player:getMainLvl() - target:getMainLvl();
+	if leveldiff < 0 then
+		p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
+	else
+		p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
+	end
+	--cap accuracy
     if(p > 95) then
         p = 95;
     elseif(p < 5) then
@@ -259,10 +281,10 @@ function applyResistance(player,spell,target,diff,skill,staff)
     quart = ((1 - p)^2);
     eighth = ((1 - p)^3);
     sixteenth = ((1 - p)^4);
-    -- print("HALF:",half);
-    -- print("QUART:",quart);
-    -- print("EIGHTH:",eighth);
-    -- print("SIXTEENTH:",sixteenth);
+    print("HALF:",half);
+    print("QUART:",quart);
+    print("EIGHTH:",eighth);
+    print("SIXTEENTH:",sixteenth);
 
     resvar = math.random();
     
@@ -369,7 +391,7 @@ function getSkillLvl(rank,level)
         elseif(rank == 6) then --C+ Rated Skill
             skill = (((level-70)*3)+215);
         elseif(rank == 7) then --C Rated Skill
-            skill = (((level-70)*2.25)+212);
+            skill = (((level-70)*2.6)+212);
         elseif(rank == 8) then --C- Rated Skill
             skill = (((level-70)*2.00)+210);
         elseif(rank == 9) then --D Rated Skill

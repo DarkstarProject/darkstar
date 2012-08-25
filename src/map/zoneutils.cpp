@@ -254,8 +254,8 @@ void LoadZoneList()
                 PMob->setModifier(MOD_EARTHRES,   (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100)); // Negatives signify lower resist chance.
                 PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100)); // Positives signify increased resist chance.
                 PMob->setModifier(MOD_WATERRES,   (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100)); 
-                PMob->setModifier(MOD_LIGHTRES,   (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -100)); // (1.25 - 1) * -1000 = -250 RES
-                PMob->setModifier(MOD_DARKRES,    (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -100)); // (0.50 - 1) * -1000 = 500 RES
+                PMob->setModifier(MOD_LIGHTRES,   (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -100)); 
+                PMob->setModifier(MOD_DARKRES,    (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -100)); 
 
 				PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,45);
 				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,46); 

@@ -217,6 +217,12 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->stats.MND *= 1.5;
 		PMob->stats.CHR *= 1.5;
 	}
+	//natural magic evasion
+	if(PMob->GetMLevel()<=83){
+		PMob->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PMob->GetMLevel()));
+	} else {
+		PMob->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_SWD, JOB_WAR, PMob->GetMLevel()));
+	}
 }
 
 }; // namespace mobutils

@@ -458,6 +458,8 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 		PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_H2H,JOB_WAR,PPet->GetMLevel()));
 		PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_H2H,JOB_WAR,PPet->GetMLevel()));
 	}
+	//set C magic evasion
+	PPet->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE,JOB_RDM,PPet->GetMLevel()));
 	PPet->health.tp = 0;
     PPet->UpdateHealth();
 	PPet->PetSkills = battleutils::GetMobSkillsByFamily(PPet->m_Family);
