@@ -11,6 +11,8 @@
 -- X Increased defense and evasion against attacks from your auto-attack target 
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------

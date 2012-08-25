@@ -9,6 +9,8 @@
 -- Dia 3: Power of 3. Results in reduced defense of ~15.4%  (79/512) and 3 hp/tick damage.
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
