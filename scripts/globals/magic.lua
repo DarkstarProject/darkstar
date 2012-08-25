@@ -247,9 +247,9 @@ function applyResistance(player,spell,target,diff,skill,staff)
 	magicaccbonus = magicaccbonus / 2;
 	--add magicacc bonus
 	p = p + magicaccbonus;
-	print(magicacc);
-	print(magiceva);
-	print(magicaccbonus);
+	-- print(magicacc);
+	-- print(magiceva);
+	-- print(magicaccbonus);
 
 	
 	--double any acc over 50 if it's over 50
@@ -281,10 +281,10 @@ function applyResistance(player,spell,target,diff,skill,staff)
     quart = ((1 - p)^2);
     eighth = ((1 - p)^3);
     sixteenth = ((1 - p)^4);
-    print("HALF:",half);
-    print("QUART:",quart);
-    print("EIGHTH:",eighth);
-    print("SIXTEENTH:",sixteenth);
+    -- print("HALF:",half);
+    -- print("QUART:",quart);
+    -- print("EIGHTH:",eighth);
+    -- print("SIXTEENTH:",sixteenth);
 
     resvar = math.random();
     
