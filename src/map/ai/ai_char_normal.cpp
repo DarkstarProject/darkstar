@@ -2161,6 +2161,7 @@ void CAICharNormal::ActionAttack()
 
 					uint16 bonusDMG = 0;
 					if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakAttack) &&
+						m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
 						abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23){
 						bonusDMG = m_PChar->DEX();
 					}
