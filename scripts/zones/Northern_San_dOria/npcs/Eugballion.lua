@@ -6,7 +6,6 @@
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/globals/conquest");
@@ -17,16 +16,14 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
+	-- "Flyers for Regine" conditional script
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
+	
 end;
 
 -----------------------------------
@@ -34,9 +31,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	RegionOwner = GetRegionOwner(QUFIM);
-
-	if (RegionOwner ~= SANDORIA) then 
+	
+	if(GetRegionOwner(QUFIMISLAND) ~= SANDORIA) then 
 		player:showText(npc,EUGBALLION_CLOSED_DIALOG);
 	else
 		player:showText(npc,EUGBALLION_OPEN_DIALOG);
@@ -45,6 +41,7 @@ function onTrigger(player,npc)
 				  
 		showShop(player,SANDORIA,stock);
 	end
+	
 end; 
 
 -----------------------------------
@@ -64,6 +61,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-
