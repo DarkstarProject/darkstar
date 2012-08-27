@@ -224,32 +224,6 @@ void CAIMobDummy::ActionDropItems()
 			    if (DropList != NULL && DropList->size())
 			    {
 					uint8 highestTH = m_PMob->m_THLvl;
-					//uint8 highestTH = PChar->getMod(MOD_TREASURE_HUNTER);
-
-					//get highest Treasure Hunter in pt - if no alliance
-					//if(PChar->PParty != NULL){
-					//	if(PChar->PParty->m_PAlliance == NULL){
-					//		for(uint8 i = 0; i < PChar->PParty->members.size(); i++){
-					//			if(PChar->PParty->members.at(i)->getMod(MOD_TREASURE_HUNTER) > highestTH){
-					//				highestTH = PChar->PParty->members.at(i)->getMod(MOD_TREASURE_HUNTER);
-					//			}
-					//		}
-					//	}
-					//}
-
-					//get highest Treasure Hunter in pt - if alliance
-					//if(PChar->PParty != NULL){
-					//	if(PChar->PParty->m_PAlliance != NULL){
-					//		for(int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
-					//		{
-					//			for(uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); i++){
-					//				if(PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getMod(MOD_TREASURE_HUNTER) > highestTH){
-					//					highestTH = PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getMod(MOD_TREASURE_HUNTER);
-					//				}
-					//			}
-					//		}
-					//	}
-					//}
 
                     for(uint8 i = 0; i < DropList->size(); ++i)
 				    {

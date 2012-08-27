@@ -875,10 +875,11 @@ void CAICharNormal::ActionRangedFinish()
 
 		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-		if (((CMobEntity*)m_PBattleSubTarget)->m_HiPCLvl < m_PChar->GetMLevel()) ((CMobEntity*)m_PBattleSubTarget)->m_HiPCLvl = m_PChar->GetMLevel();
+		CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
+		if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
 		if ((m_PChar->GetMJob()==JOB_THF && m_PChar->GetMLevel() > 14) || (m_PChar->GetSJob()==JOB_THF && m_PChar->GetSLevel() > 29))
 		{
-			if (((CMobEntity*)m_PBattleSubTarget)->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) ((CMobEntity*)m_PBattleSubTarget)->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
+			if (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
 		}
 		m_PBattleSubTarget = NULL;
 		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots        
@@ -1313,7 +1314,8 @@ void CAICharNormal::ActionMagicFinish()
 
 	m_LastMeleeTime += (m_Tick - m_LastActionTime);
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	if (((CMobEntity*)m_PBattleSubTarget)->m_HiPCLvl < m_PChar->GetMLevel()) ((CMobEntity*)m_PBattleSubTarget)->m_HiPCLvl = m_PChar->GetMLevel();
+	CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
+	if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
 }
@@ -1947,10 +1949,11 @@ void CAICharNormal::ActionAttack()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 	
-	if (((CMobEntity*)m_PBattleTarget)->m_HiPCLvl < m_PChar->GetMLevel()) ((CMobEntity*)m_PBattleTarget)->m_HiPCLvl = m_PChar->GetMLevel();
+	CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
+	if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
 	if ((m_PChar->GetMJob()==JOB_THF && m_PChar->GetMLevel() > 14) || (m_PChar->GetSJob()==JOB_THF && m_PChar->GetSLevel() > 29))
 	{
-		if (((CMobEntity*)m_PBattleTarget)->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) ((CMobEntity*)m_PBattleTarget)->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
+		if (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
 	}
 	if (m_PBattleTarget->isDead())
 	{
