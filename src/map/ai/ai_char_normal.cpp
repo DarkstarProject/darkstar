@@ -877,9 +877,11 @@ void CAICharNormal::ActionRangedFinish()
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
 		if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
-		if ((m_PChar->GetMJob()==JOB_THF && m_PChar->GetMLevel() > 14) || (m_PChar->GetSJob()==JOB_THF && m_PChar->GetSLevel() > 29))
+		if (charutils::hasTrait(m_PChar, TRAIT_TREASURE_HUNTER))
 		{
-			if (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
+			if (Monster->m_THLvl = 0) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
+			else if (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
+			if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
 		}
 		m_PBattleSubTarget = NULL;
 		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots        
@@ -1951,9 +1953,11 @@ void CAICharNormal::ActionAttack()
 	
 	CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
 	if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
-	if ((m_PChar->GetMJob()==JOB_THF && m_PChar->GetMLevel() > 14) || (m_PChar->GetSJob()==JOB_THF && m_PChar->GetSLevel() > 29))
+	if (charutils::hasTrait(m_PChar, TRAIT_TREASURE_HUNTER))
 	{
-		if (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
+		if (Monster->m_THLvl = 0) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
+			else if (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
+			if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
 	}
 	if (m_PBattleTarget->isDead())
 	{

@@ -74,6 +74,9 @@ struct map_config_t
     int32  vanadiel_time_offset;    // смещение игрового времени относительно реального времени
     int32  lightluggage_block;      // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
     float  exp_rate;                // множитель получаемого опыта
+	uint8  thf_in_party_for_drops;	// if 1 thf has to be in party for drops and within exp distance from mob
+	uint8  exp_party_gap_penalties;	// if 1 Party Gap Penalties will apply
+	uint8  fov_party_gap_penalties;	// if 1 FOV Pages Party Gap Panalties will apply 
 	float  exp_retain;				// percentage of normally lost experience to retain upon death
 	int8   exp_loss_level;			// Minimum main job level at which a character may lose experience points.
 	int8   speed_mod;				// Modifier to add to baseentity speed

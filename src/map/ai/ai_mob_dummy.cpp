@@ -33,6 +33,7 @@
 #include "../petentity.h"
 #include "../zone.h"
 #include "../alliance.h"
+#include "../map.h"
 
 #include "ai_mob_dummy.h"
 
@@ -223,8 +224,40 @@ void CAIMobDummy::ActionDropItems()
 
 			    if (DropList != NULL && DropList->size())
 			    {
+					bool thf_in_party = true;
 					uint8 highestTH = m_PMob->m_THLvl;
-
+					if (map_config.thf_in_party_for_drops = 1);
+					{
+						thf_in_party = false;
+						if(PChar->PParty->m_PAlliance = NULL && PChar->PParty != NULL)
+						{
+							if(PChar->PParty->m_PAlliance == NULL)
+							{
+								for(uint8 i = 0; i < PChar->PParty->members.size(); i++)
+								{
+									CCharEntity* thPChar = (CCharEntity*)PChar->PParty->members[i];
+									if (distance(thPChar->loc.p, m_PMob->loc.p) < 100 && (charutils::hasTrait(thPChar, TRAIT_TREASURE_HUNTER)))
+										thf_in_party = true;
+								}
+							}
+						}
+						if(PChar->PParty != NULL)
+						{
+							if(PChar->PParty->m_PAlliance != NULL)
+							{
+								for(int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+								{
+									for(uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList[a]->members.size(); i++)
+									{
+										CCharEntity* thPChar = (CCharEntity*)PChar->PParty->m_PAlliance->partyList[a]->members[i];
+										if (distance(thPChar->loc.p, m_PMob->loc.p) < 100 && (charutils::hasTrait(thPChar, TRAIT_TREASURE_HUNTER)))
+											thf_in_party = true;
+									}
+								}
+							}
+						}
+					}
+					if (!thf_in_party) highestTH = 0;
                     for(uint8 i = 0; i < DropList->size(); ++i)
 				    {
 						//highestTH is the number of 'extra chances' at an item. If the item is obtained, then break out.
