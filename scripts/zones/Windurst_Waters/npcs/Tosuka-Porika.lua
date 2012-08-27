@@ -42,9 +42,7 @@ function onTrigger(player,npc)
 	Fame = player:getFameLevel(WINDURST);
 	
 	-- Start Past Reflexion in First -----------
-	if(player:needToZone() == false and bookwormStatus == QUEST_AVAILABLE and WindyMission ~= LOST_FOR_WORDS and glyphStatus == QUEST_COMPLETED and Fame >= 2) then
-		player:startEvent(0x0183); -- Start Quest "Early Bird Catches the Bookworm"
-	elseif(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
+	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
 		MissionStatus = player:getVar("MissionStatus");
 		if(MissionStatus == 0) then
 			player:startEvent(0x00a0); -- First CS for Mission 2-1
@@ -53,6 +51,8 @@ function onTrigger(player,npc)
 		elseif(MissionStatus == 6) then
 			player:startEvent(0x00a8); -- Finish Mission 2-1
 		end
+	elseif(bookwormStatus == QUEST_AVAILABLE and glyphStatus == QUEST_COMPLETED and Fame >= 2 and player:needToZone() == false) then
+		player:startEvent(0x0183); -- Start Quest "Early Bird Catches the Bookworm"
 	elseif(bookwormStatus == QUEST_ACCEPTED) then
 		player:startEvent(0x0184); -- During Quest "Early Bird Catches the Bookworm"
 	elseif(player:getQuestStatus(WINDURST,HAT_IN_HAND) == QUEST_ACCEPTED or player:getVar("QuestHatInHand_var2") == 1) then
@@ -63,7 +63,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x0037); -- Show Off Hat
 		end
 	-- Book is A_SONG_OF_LOVE, Keyitem ID = 126
-	elseif(chasingStatus  == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and WindyMission ~= THE_JESTER_WHOD_BE_KING and Fame >= 3 and player:needToZone() == false) then
+	elseif(chasingStatus == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and WindyMission ~= THE_JESTER_WHOD_BE_KING and Fame >= 3 and player:needToZone() == false) then
 		player:startEvent(0x0193); --  Add initial cutscene
 	elseif(chasingStatus == QUEST_ACCEPTED and player:getVar("CHASING_TALES_TRACK_BOOK") > 0) then
 		player:startEvent(0x019c);
@@ -103,7 +103,6 @@ function onEventFinish(player,csid,option)
 		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x0183 and option == 0) then -- Early Bird Gets The Bookworm
 		player:addQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
-		
 	elseif(csid == 0x0193 and option == 0) then
 	    player:addQuest(WINDURST,CHASING_TALES);
 		

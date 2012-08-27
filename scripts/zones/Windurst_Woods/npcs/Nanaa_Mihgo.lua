@@ -42,8 +42,8 @@ end;
 function onTrigger(player,npc)
 	
 	-- Check for Missions first (priority?)
-	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
-		MissionStatus = player:getVar("MissionStatus");
+	MissionStatus = player:getVar("MissionStatus");
+	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS and MissionStatus > 0 and MissionStatus < 5) then
 		if(MissionStatus == 1) then
 			player:startEvent(0x00a5,0,LAPIS_CORAL,LAPIS_MONOCLE);
 		elseif(MissionStatus == 2) then
