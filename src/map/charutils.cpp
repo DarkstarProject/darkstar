@@ -2139,6 +2139,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                 pcinzone++;
             }
         }
+		if (PMob->m_HiPCLvl > maxlevel) maxlevel = PMob->m_HiPCLvl;
         baseexp = GetRealExp(maxlevel, PMob->GetMLevel());
         if (baseexp != 0)
         {

@@ -36,6 +36,7 @@
 #include "../vana_time.h"
 #include "../zone.h"
 #include "../charentity.h"
+#include "../mobentity.h"
 #include "../petentity.h"
 #include "../ai/ai_pet_dummy.h"
 #include "../lua/luautils.h"
@@ -874,8 +875,12 @@ void CAICharNormal::ActionRangedFinish()
 
 		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		if (((CMobEntity*)m_PBattleSubTarget)->m_HiPCLvl < m_PChar->GetMLevel()) ((CMobEntity*)m_PBattleSubTarget)->m_HiPCLvl = m_PChar->GetMLevel();
+		if ((m_PChar->GetMJob()==JOB_THF && m_PChar->GetMLevel() > 14) || (m_PChar->GetSJob()==JOB_THF && m_PChar->GetSLevel() > 29))
+		{
+			if (((CMobEntity*)m_PBattleSubTarget)->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) ((CMobEntity*)m_PBattleSubTarget)->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
+		}
 		m_PBattleSubTarget = NULL;
-
 		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots        
 	}
 }
@@ -1308,6 +1313,7 @@ void CAICharNormal::ActionMagicFinish()
 
 	m_LastMeleeTime += (m_Tick - m_LastActionTime);
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	if (((CMobEntity*)m_PBattleSubTarget)->m_HiPCLvl < m_PChar->GetMLevel()) ((CMobEntity*)m_PBattleSubTarget)->m_HiPCLvl = m_PChar->GetMLevel();
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
 }
@@ -1940,7 +1946,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
 void CAICharNormal::ActionAttack() 
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
-
+	
+	if (((CMobEntity*)m_PBattleTarget)->m_HiPCLvl < m_PChar->GetMLevel()) ((CMobEntity*)m_PBattleTarget)->m_HiPCLvl = m_PChar->GetMLevel();
+	if ((m_PChar->GetMJob()==JOB_THF && m_PChar->GetMLevel() > 14) || (m_PChar->GetSJob()==JOB_THF && m_PChar->GetSLevel() > 29))
+	{
+		if (((CMobEntity*)m_PBattleTarget)->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) ((CMobEntity*)m_PBattleTarget)->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
+	}
 	if (m_PBattleTarget->isDead())
 	{
         if (m_PChar->m_hasAutoTarget && m_PBattleTarget->objtype == TYPE_MOB) // Auto-Target
