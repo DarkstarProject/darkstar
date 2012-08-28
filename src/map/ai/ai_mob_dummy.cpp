@@ -226,13 +226,14 @@ void CAIMobDummy::ActionDropItems()
 			    {
 					bool thf_in_party = true;
 					uint8 highestTH = m_PMob->m_THLvl;
-					if (map_config.thf_in_party_for_drops = 1);
+					if (map_config.thf_in_party_for_drops == 1)
 					{
-						thf_in_party = false;
+						
 						if(PChar->PParty != NULL)
 						{
 							if(PChar->PParty->m_PAlliance == NULL)
 							{
+								thf_in_party = false;
 								for(uint8 i = 0; i < PChar->PParty->members.size(); i++)
 								{
 									CCharEntity* thPChar = (CCharEntity*)PChar->PParty->members[i];
@@ -245,6 +246,7 @@ void CAIMobDummy::ActionDropItems()
 						{
 							if(PChar->PParty->m_PAlliance != NULL)
 							{
+								thf_in_party = false;
 								for(int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
 								{
 									for(uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList[a]->members.size(); i++)
