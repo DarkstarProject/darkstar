@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS `item_usable` (
 --
 -- Contenu de la table `item_usable`
 --
-
 INSERT INTO `item_usable` VALUES (4096, 0, 'fire_crystal', 1, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4097, 0, 'ice_crystal', 1, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4098, 0, 'wind_crystal', 1, 0, 0, 0, 0, 0, 0, 0);
@@ -1663,6 +1662,7 @@ INSERT INTO `item_usable` VALUES (11278, 0, 'wonder_top_+1', 1, 8, 0, 0, 1, 30, 
 INSERT INTO `item_usable` VALUES (11279, 0, 'savage_top_+1', 1, 8, 0, 0, 1, 30, 72000, 0);
 INSERT INTO `item_usable` VALUES (11280, 0, 'elder_gilet_+1', 1, 8, 0, 0, 1, 30, 72000, 0);
 INSERT INTO `item_usable` VALUES (11290, 0, 'tidal_talisman', 1, 8, 0, 0, 1, 30, 72000, 1);
+INSERT INTO `item_usable` VALUES (10250, 0, 'Moogle_Suit', 1, 8, 0, 0, 1, 30, 86400, 0);
 INSERT INTO `item_usable` VALUES (11320, 0, 'skeleton_robe', 1, 1, 0, 0, 30, 15, 600, 0);
 INSERT INTO `item_usable` VALUES (11403, 0, 'talaria', 1, 5, 0, 0, 1, 15, 1800, 0);
 INSERT INTO `item_usable` VALUES (11490, 0, 'snow_bunny_hat', 1, 1, 0, 0, 10, 30, 86400, 0);

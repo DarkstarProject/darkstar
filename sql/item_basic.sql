@@ -33,6 +33,8 @@ CREATE TABLE `item_basic` (
 -- ----------------------------
 -- Records of item_basic
 -- ----------------------------
+INSERT INTO `item_basic` VALUES ('10250', 'moogle_suit', 'moogle_suit', '1', '2080', '0', '0', '0');
+INSERT INTO `item_basic` VALUES ('10429', 'moogle_masque', 'moogle_masque', '1', '2080', '0', '0', '0');
 INSERT INTO `item_basic` VALUES ('1', 'pile_of_chocobo_bedding', 'chocobo_bedding', '1', '24640', '0', '0', '198');
 INSERT INTO `item_basic` VALUES ('2', 'simple_bed', 'simple_bed', '1', '32', '34', '0', '391');
 INSERT INTO `item_basic` VALUES ('3', 'oak_bed', 'oak_bed', '1', '32', '34', '0', '1403');

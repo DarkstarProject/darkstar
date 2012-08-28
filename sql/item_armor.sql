@@ -28,6 +28,8 @@ CREATE TABLE `item_armor` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
+INSERT INTO `item_armor` VALUES ('10250', 'Moogle_suit', '1', '1048575', '0', '0', '3', '32', '0');
+INSERT INTO `item_armor` VALUES ('10429', 'moogle_masque', '1', '1048575', '0', '0', '0', '16', '0');
 INSERT INTO `item_armor` VALUES ('10450', 'ogiers_surcoat', '99', '10689', '325', '0', '0', '32', '0');
 INSERT INTO `item_armor` VALUES ('10451', 'athoss_tabard', '99', '496674', '326', '0', '0', '32', '0');
 INSERT INTO `item_armor` VALUES ('10452', 'rubeus_jacket', '99', '541212', '0', '0', '0', '32', '0');
