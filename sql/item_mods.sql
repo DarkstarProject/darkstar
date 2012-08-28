@@ -14764,7 +14764,12 @@ INSERT INTO `item_mods` (`itemId`, `modId`, `value`) VALUES
 	(11581, 26, -4),
 	(11582, 8, 7),
 	(11582, 25, -3),
-	(11582, 26, -3);
+	(11582, 26, -3),
+	(16480, 303, 1),
+	(10695, 303, 2),
+	(14914, 303, 1),
+	(15107, 303, 1),
+	(11149, 303, 1);		
 /*!40000 ALTER TABLE `item_mods` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
