@@ -9,6 +9,6 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-	target:addStatusEffect(EFFECT_AFFLATUS_SOLACE,8,0,180);
+	target:addStatusEffect(EFFECT_AFFLATUS_SOLACE,8,0,7200);
 	--target:updateEnmity(target,1,80);
 end;
