@@ -229,7 +229,7 @@ void CAIMobDummy::ActionDropItems()
 					if (map_config.thf_in_party_for_drops = 1);
 					{
 						thf_in_party = false;
-						if(PChar->PParty->m_PAlliance = NULL && PChar->PParty != NULL)
+						if(PChar->PParty != NULL)
 						{
 							if(PChar->PParty->m_PAlliance == NULL)
 							{
