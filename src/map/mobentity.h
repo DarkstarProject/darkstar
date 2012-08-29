@@ -94,6 +94,7 @@ public:
 	uint8       m_Element;  
 	uint8       m_HiPCLvl;              // Highest Level of Player Character that hit the Monster
 	uint8       m_THLvl;                // Highest Level of Treasure Hunter that apply to drops
+	uint32		m_THPCID;               // ID of last PC that hit the NPC and apply TH onto the NPC
 	uint16		m_Family;
 	uint8		m_SkillStatus;			//status of skills (used 2h/used epic tp move/etc)
 

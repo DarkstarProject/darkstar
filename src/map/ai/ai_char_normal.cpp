@@ -879,9 +879,13 @@ void CAICharNormal::ActionRangedFinish()
 		if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
 		if (charutils::hasTrait(m_PChar, TRAIT_TREASURE_HUNTER))
 		{
-			if (Monster->m_THLvl == 0) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
-				else if (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
-				if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
+			if (Monster->m_THLvl == 0) 
+			{
+				Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
+				Monster->m_THPCID = m_PChar->id;
+			}
+			else if ((Monster->m_THPCID != m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
+			if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
 		}
 		m_PBattleSubTarget = NULL;
 		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots        
@@ -1955,8 +1959,12 @@ void CAICharNormal::ActionAttack()
 	if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
 	if (charutils::hasTrait(m_PChar, TRAIT_TREASURE_HUNTER))
 	{
-		if (Monster->m_THLvl == 0) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
-			else if (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER)) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
+		if (Monster->m_THLvl == 0) 
+			{
+				Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
+				Monster->m_THPCID = m_PChar->id;
+			}
+			else if ((Monster->m_THPCID != m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
 			if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
 	}
 	if (m_PBattleTarget->isDead())
@@ -2180,9 +2188,11 @@ void CAICharNormal::ActionAttack()
 					uint16 bonusDMG = 0;
 					if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakAttack) &&
 						m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
-						abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23){
-						bonusDMG = m_PChar->DEX();
-					}
+						abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23)
+						{
+							bonusDMG = m_PChar->DEX();
+							if(rand()%100 < 4) Monster->m_THLvl +=1;
+						}
 
 
 					damage = (uint16)(((PWeapon->getDamage() + bonusDMG + 

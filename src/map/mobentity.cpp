@@ -48,6 +48,7 @@ CMobEntity::CMobEntity()
 	m_Element = 0; 
 	m_HiPCLvl = 0;
 	m_THLvl = 0;
+	m_THPCID = 0;
 	PEnmityContainer = new CEnmityContainer();
 	PEnmityContainer->setEnmityHolder(this);
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
