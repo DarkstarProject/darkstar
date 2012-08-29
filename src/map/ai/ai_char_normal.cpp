@@ -885,6 +885,7 @@ void CAICharNormal::ActionRangedFinish()
 				Monster->m_THPCID = m_PChar->id;
 			}
 			else if ((Monster->m_THPCID != m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
+			else if ((Monster->m_THPCID == m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
 			if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
 		}
 		m_PBattleSubTarget = NULL;
@@ -1965,6 +1966,7 @@ void CAICharNormal::ActionAttack()
 				Monster->m_THPCID = m_PChar->id;
 			}
 			else if ((Monster->m_THPCID != m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
+			else if ((Monster->m_THPCID == m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
 			if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
 	}
 	if (m_PBattleTarget->isDead())
