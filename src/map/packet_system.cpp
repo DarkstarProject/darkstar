@@ -1061,7 +1061,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
-        // We used to disable Rare/Ex items being added to the container, but that is handled properly elsewhere now
+        // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
         if (PItem != NULL && PItem->getID() == itemID)
         {
             // если количество предметов равно нулю, то удаляем предмет из контейнера

@@ -49,9 +49,10 @@ CMobEntity::CMobEntity()
 	m_HiPCLvl = 0;
 	m_THLvl = 0;
 	m_THPCID = 0;
-	PEnmityContainer = new CEnmityContainer();
-	PEnmityContainer->setEnmityHolder(this);
+
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
+
+    PEnmityContainer = new CEnmityContainer(this);
 }
 
 CMobEntity::~CMobEntity()
@@ -59,17 +60,29 @@ CMobEntity::~CMobEntity()
 	delete PEnmityContainer;
 }
 
+/************************************************************************
+*                                                                       *
+*  Время исчезновения монстра в секундах                                *
+*                                                                       *
+************************************************************************/
+
 uint32 CMobEntity::GetDespawnTimer()
 {
 	return m_DespawnTimer;
 }
 
-bool CMobEntity::CanDeaggro()
-{
-	return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
-}
-
 void CMobEntity::SetDespawnTimer(uint32 duration)
 {
 	m_DespawnTimer = (duration > 0 ? (duration * 1000) + gettick() : duration);
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+bool CMobEntity::CanDeaggro()
+{
+	return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
 }

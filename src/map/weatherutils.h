@@ -28,7 +28,6 @@
 
 namespace weatherutils
 {
-	void UpdateZoneWeather();
 	void ImplementWeather(CZone* currentZone, WEATHER weatherType);
 };
 

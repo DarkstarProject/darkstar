@@ -111,7 +111,6 @@ public:
 	WEATHER			GetWeather();
 	void			SetWeather(WEATHER weatherCondition);
 	const int8*		GetName();
-	EntityList_t	GetPCs();
 	uint8			GetSoloBattleMusic();
 	uint8			GetPartyBattleMusic();
 	uint8			GetBackgroundMusic();
@@ -136,11 +135,11 @@ public:
 	void			InsertNPC(CBaseEntity* PNpc);									// добавляем в зону npc
 	void			InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
 	void			InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
-	void			DeletePET(CBaseEntity* PPet);			//derefs the pet's ID from this zone
+	void			DeletePET(CBaseEntity* PPet);       	                        //derefs the pet's ID from this zone
 
 	void			GenerateCureEnmity(CBattleEntity* PSource,CBattleEntity* PTarget,uint16 amount);
     void            FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
-	CCharEntity*	FindPlayerInZone(char* name);									//finds the player if exists in zone
+	CCharEntity*	FindPlayerInZone(char* name);									// finds the player if exists in zone
     void            TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
 
 	void			InsertRegion(CRegion* Region);									// добавляем в зону активную область
@@ -154,9 +153,8 @@ public:
 	void			ZoneServerRegion(uint32 tick);
 
 	CZone(uint8 ZoneID, uint8 RegionID);
-   ~CZone();
 
-   CInstanceHandler* m_InstanceHandler;	// BCNM Instances in this zone
+    CInstanceHandler* m_InstanceHandler;	// BCNM Instances in this zone
 
 private:
 
@@ -164,7 +162,8 @@ private:
     uint8           m_regionID;             // id области
 	string_t		m_zoneName;				// имя зоны
 	uint16			m_zonePort;				// порт зоны
-	uint32			m_zoneIP;				// IP зоны
+	uint32			m_zoneIP;               // IP зоны
+
 	WEATHER			m_weather;
 
 	uint16			m_tax;					// налог в bazaar 
@@ -186,7 +185,9 @@ private:
 	CTaskMgr::CTask* ZoneTimer;				// указатель на созданный таймер - ZoneServer. необходим для возможности его остановки
 
 	void	LoadZoneLines();				// список zonelines (можно было бы заменить этот метод методом InsertZoneLine)
+    void    LoadZoneWeather();              // погода
 	void	LoadZoneSettings();				// настройки зоны
+
 	//void	LoadZoneInstances();			// loads the zones bcnm instances
 };
 

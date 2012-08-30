@@ -29,99 +29,16 @@
 #include "charutils.h"
 #include "weatherutils.h"
 #include "mobutils.h"
-//#include "battleutils.h"
 
 namespace weatherutils
 {
-/************************************************************************
-*																		*
-*  determines what weather conditions each zone qualifies for			*
-*  and what the current weather condition should be						*
-*																		*
-************************************************************************/
-void UpdateZoneWeather()
-{
-	CZone* currentZone;
-	const int8* fmtQuery;
-	int32 ret;
-	int32 weatherFrequency = 0;
-	int32 weatherChange = 0;
-	WEATHER weatherType = WEATHER_NONE;
-	WEATHER weatherTypes [20] = {WEATHER_NONE,
-								 WEATHER_SUNSHINE,
-								 WEATHER_CLOUDS,
-								 WEATHER_FOG,
-								 WEATHER_HOT_SPELL,
-								 WEATHER_HEAT_WAVE,
-								 WEATHER_RAIN,
-								 WEATHER_SQUALL,
-								 WEATHER_DUST_STORM,
-								 WEATHER_SAND_STORM,
-								 WEATHER_WIND,
-								 WEATHER_GALES,
-								 WEATHER_SNOW,
-								 WEATHER_BLIZZARDS,
-								 WEATHER_THUNDER,
-								 WEATHER_THUNDERSTORMS,
-								 WEATHER_AURORAS,
-								 WEATHER_STELLAR_GLARE,
-								 WEATHER_GLOOM,
-								 WEATHER_DARKNESS};	
-
-	//lookup possible weather for each zone
-    for(int32 zoneid = 0; zoneid < 256; zoneid++)    
-	{
-		weatherType = WEATHER_NONE;
-		currentZone = zoneutils::GetZone(zoneid);
-
-		fmtQuery = "SELECT weather.none,weather.sunshine,weather.clouds,weather.fog,weather.hot_spell, \
-					weather.heat_wave,weather.rain,weather.squall,weather.dust_storm,weather.sand_storm, \
-					weather.wind,weather.gales,weather.snow,weather.blizzards,weather.thunder, \
-					weather.thunder_storms,weather.auroras,weather.stellar_glares,weather.gloom,weather.darkness, \
-					weather.shared, weather.static \
-					FROM zone_weather AS weather \
-					WHERE zoneid = %u LIMIT 1";
-
-		ret = Sql_Query(SqlHandle, fmtQuery, currentZone->GetID());
-
-		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			//skip zones with static weather
-			if ((uint8)Sql_GetIntData(SqlHandle,21) == 0)
-			{
-				//set weather for shared zones
-				if((uint8)Sql_GetIntData(SqlHandle,20) != 0)
-				{
-					weatherType = zoneutils::GetZone((uint8)Sql_GetIntData(SqlHandle,20))->GetWeather();
-				}
-				else
-				{
-					//cycle through all weathers
-					for(int32 w = 1; w < 19; w++)
-					{
-						//generate a new random chance for each weather condidtion
-						weatherChange = rand()%100+1;
-						weatherFrequency = (int32)Sql_GetIntData(SqlHandle,w);				
-
-						if(weatherFrequency >= weatherChange)
-						{
-							weatherType = weatherTypes[w];
-						}
-					}
-					//call ImplementWeather to update players and spawn/despawn mobs					
-				}
-				ImplementWeather(currentZone, weatherType);
-			}
-		}
-    }
-	ShowDebug(CL_CYAN"UpdateWeather Finished\n"CL_RESET);
-}
 /************************************************************************
 *																		*
 *   if required, updates the weather for each player in the zone		*
 *   and spawns/despawns the elemental mobs based on the weather			*
 *																		*
 ************************************************************************/
+
 void ImplementWeather(CZone* currentZone, WEATHER weatherType)
 {	
 	//exit if weatherType matches current weather
@@ -130,16 +47,11 @@ void ImplementWeather(CZone* currentZone, WEATHER weatherType)
 
 	CMobEntity* PMob;
 	const int8* elementalName = "None";
-	
-	EntityList_t charList = currentZone->GetPCs();
+
 	currentZone->SetWeather(weatherType);
 
-	//update each player in the zone with the current weather
-	for (EntityList_t::const_iterator it = charList.begin() ; it != charList.end() ; ++it)
-	{
-		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-		PCurrentChar->pushPacket(new CWeatherPacket(1, weatherType));
-	}
+    //update each player in the zone with the current weather
+    currentZone->PushPacket(NULL, CHAR_INZONE, new CWeatherPacket(1, weatherType));
 
 	//lookup all elemental mobs for the current zone
 	const int8* fmtQuery = "SELECT mobs.mobid \
@@ -199,22 +111,12 @@ void ImplementWeather(CZone* currentZone, WEATHER weatherType)
 				//despawn incorrect elemental type
 				if ( strcmp(PMob->GetName(), elementalName) != 0 )
 				{
-					if(PMob->m_OwnerID.id != 0)
-					{
-						PMob->SetDespawnTimer(1);
-					}
-					else
-					{
-						PMob->PBattleAI->SetLastActionTime(gettick() - 1200000);
-						PMob->m_SpawnType = (SPAWNTYPE)4;
-						PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
-					}
+                    PMob->SetDespawnTimer(1);
 				}
 				//spawn corrent element type
 				else
 				{
 					PMob->SetDespawnTimer(0);
-					PMob->m_SpawnType = (SPAWNTYPE)0;
 					PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 				}
 			}

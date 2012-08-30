@@ -37,7 +37,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 
 	if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
 	{
-		weatherutils::UpdateZoneWeather();
+		zoneutils::UpdateWeather();
 	}
 
     if (VanadielTOTD != TIME_NONE)

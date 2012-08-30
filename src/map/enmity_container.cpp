@@ -37,18 +37,14 @@
 *                                                                       *
 ************************************************************************/
 
-CEnmityContainer::CEnmityContainer()
+CEnmityContainer::CEnmityContainer(CBattleEntity* holder)
 {
-
+    m_EnmityHolder = holder;
 }
 
 CEnmityContainer::~CEnmityContainer()
 {
     Clear();
-}
-
-void CEnmityContainer::setEnmityHolder(CBattleEntity* holder) {
-	m_EnmityHolder = holder;
 }
 
 /************************************************************************

@@ -29,6 +29,7 @@
 
 #include "battleutils.h"
 #include "charutils.h"
+#include "conquest_system.h"
 #include "enmity_container.h"
 #include "itemutils.h"
 #include "map.h"
@@ -108,92 +109,16 @@ CZone::CZone(uint8 ZoneID, uint8 RegionID)
 	m_InstanceHandler = NULL;
 	m_weather = WEATHER_NONE;
 
-	switch(m_zoneID){ //all bcnm zones
-		case 6:
-		case 8:
-		case 10:
-		case 13:
-		case 17:
-		case 19:
-		case 21:
-		case 23:
-		case 29:
-		case 30:
-		case 31:
-		case 32:
-		case 35:
-		case 36:
-		case 57:
-		case 64:
-		case 67:
-		case 78:
-		case 139:
-		case 140:
-		case 146:
-		case 206:
-		case 144:
-		case 168:
-		case 163:
-		case 165:
-		case 170:
-		case 141:
-		case 179:
-		case 180:
-		case 181:
-		case 156:
-		case 182:
-		case 201:
-		case 202:
-		case 203:
-		case 207:
-		case 209:
-		case 211:
-			m_InstanceHandler = new CInstanceHandler(m_zoneID);
-	}
-
 	LoadZoneLines();
+    LoadZoneWeather();
 	LoadZoneSettings();
 }
 
 /************************************************************************
-*																		*
-*  Деструктор															*
-*																		*
-*  На самом деле в удалении элементов зоны нет необходимости, так как	*
-*  данный класс уничтожается лишь при завершении работы сервера			*	 
-*																		*
+*                                                                       *
+*  Функции доступа к полям класса                                       *	 
+*                                                                       *
 ************************************************************************/
-
-CZone::~CZone()
-{
-	while(!m_zoneLineList.empty())
-	{
-		delete m_zoneLineList.front();
-		m_zoneLineList.pop_front();
-	}
-	while(!m_regionList.empty())
-	{
-		delete m_regionList.front();
-		m_regionList.pop_front();
-	}
-	while(!m_npcList.empty())
-	{
-		delete m_npcList.begin()->second;
-		m_npcList.erase(m_npcList.begin());
-	}
-	while(!m_mobList.empty())
-	{
-		delete m_mobList.begin()->second;
-		m_mobList.erase(m_mobList.begin());
-	}
-	while(!m_petList.empty())
-	{
-		delete m_petList.begin()->second;
-		m_petList.erase(m_petList.begin());
-	}
-    delete m_Transport;
-	delete m_TreasurePool;
-}
 
 uint8 CZone::GetID()
 {
@@ -219,6 +144,7 @@ uint16 CZone::GetTax()
 {
 	return m_tax;
 }
+
 WEATHER CZone::GetWeather()
 {
 	return m_weather;
@@ -232,11 +158,6 @@ void CZone::SetWeather(WEATHER weatherCondition)
 const int8* CZone::GetName()
 {
 	return m_zoneName.c_str();
-}
-
-EntityList_t CZone::GetPCs()
-{
-	return m_charList;
 }
 
 uint8 CZone::GetSoloBattleMusic()
@@ -305,44 +226,42 @@ void CZone::LoadZoneLines()
 }
 
 /************************************************************************
-*																		*
-*  Загружаем настройки зоны из базы										*	 
-*																		*
+*                                                                       *
+*  Загружаем параметры погоды                                           *	 
+*                                                                       *
 ************************************************************************/
 
-void CZone::LoadZoneSettings() 
-{
-	const int8* fmtQuery = "SELECT settings.name, settings.zoneip, settings.zoneport, settings.music, \
-						    settings.battlesolo, settings.battlemulti, settings.tax, settings.misc, weather.default \
-							FROM zone_settings AS settings \
-							LEFT JOIN zone_weather AS weather USING (zoneid) \
-							WHERE zoneid = %u \
-							LIMIT 1";
-					  
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
+void CZone::LoadZoneWeather() 
+{	
+    const int8* Query = 
+        "SELECT                      \
+          weather.none,              \
+          weather.sunshine,          \
+          weather.clouds,            \
+          weather.fog,               \
+          weather.hot_spell,         \
+          weather.heat_wave,         \
+          weather.rain,              \
+          weather.squall,            \
+          weather.dust_storm,        \
+          weather.sand_storm,        \
+          weather.wind,              \
+          weather.gales,             \
+          weather.snow,              \
+          weather.blizzards,         \
+          weather.thunder,           \
+          weather.thunder_storms,    \
+          weather.auroras,           \
+          weather.stellar_glares,    \
+          weather.gloom,             \
+          weather.darkness,          \
+          weather.shared,            \
+          weather.static             \
+        FROM zone_weather as weather \
+        WHERE zoneid = %u LIMIT 1";
 
-	if (ret == SQL_ERROR || 
-		Sql_NumRows(SqlHandle) == 0 ||
-		Sql_NextRow(SqlHandle) != SQL_SUCCESS) 
-	{
-		ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot load zone settings (%u)\n" CL_RESET, m_zoneID);
-	} 
-	else 
-	{
-		int8* tmpName;
-		Sql_GetData(SqlHandle,0,&tmpName,NULL);
-		m_zoneName.insert(0,tmpName);
-
-		m_zoneIP   = (uint32)Sql_GetUIntData(SqlHandle,1);
-		m_zonePort = (uint16)Sql_GetUIntData(SqlHandle,2);
-		m_zoneMusic.m_song   = (uint8)Sql_GetUIntData(SqlHandle,3);		// background music
-		m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,4);		// solo battle music
-		m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,5);		// party battle music
-		m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);			// tax for bazaar
-		m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
-
-		if(Sql_GetUIntData(SqlHandle,8) != NULL)
-		{
+    /*if(Sql_GetUIntData(SqlHandle,8) != NULL)
+    {
 			WEATHER weatherTypes [20] = 
 			{
 				WEATHER_NONE,
@@ -367,18 +286,119 @@ void CZone::LoadZoneSettings()
 				WEATHER_DARKNESS
 			};	
 			m_weather = weatherTypes[(uint8)Sql_GetUIntData(SqlHandle,8)];
-		}
+    }*/
+
+    if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR && 
+        Sql_NumRows(SqlHandle) != 0 && 
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+
+    }
+    else
+    {
+        ShowFatalError(CL_RED"CZone::LoadZoneWeather: Cannot load zone weather (%u)\n" CL_RESET, m_zoneID);
+    }
+}
+
+/************************************************************************
+*																		*
+*  Загружаем настройки зоны из базы										*	 
+*																		*
+************************************************************************/
+
+void CZone::LoadZoneSettings() 
+{
+    const int8* Query = 
+        "SELECT             \
+          name,             \
+          zoneip,           \
+          zoneport,         \
+          music,            \
+          battlesolo,       \
+          battlemulti,      \
+          tax,              \
+          misc              \
+        FROM zone_settings  \
+        WHERE zoneid = %u   \
+        LIMIT 1";
+
+    if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR && 
+        Sql_NumRows(SqlHandle) != 0 && 
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        m_zoneName.insert(0, Sql_GetData(SqlHandle,0));
+
+		m_zoneIP   = (uint32)Sql_GetUIntData(SqlHandle,1);
+		m_zonePort = (uint16)Sql_GetUIntData(SqlHandle,2);
+		m_zoneMusic.m_song   = (uint8)Sql_GetUIntData(SqlHandle,3);		// background music
+		m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,4);		// solo battle music
+		m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,5);		// party battle music
+		m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);			// tax for bazaar
+		m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
 
 		if (m_miscMask & MISC_TREASURE)
 		{
 			m_TreasurePool = new CTreasurePool(TREASUREPOOL_ZONE);
 		}
-	}
+
+        // if zone is Instance
+
+        switch(m_zoneID) //all bcnm zones
+        { 
+		    case 6:	
+		    case 8:	
+		    case 10:
+		    case 13:
+		    case 17:
+		    case 19:
+		    case 21:
+		    case 23:
+		    case 29:
+		    case 30:
+		    case 31:
+		    case 32:
+		    case 35:
+		    case 36:
+		    case 57:
+		    case 64:
+		    case 67:
+		    case 78:
+		    case 139:
+		    case 140:
+		    case 146:
+		    case 144:
+		    case 168:
+		    case 163:
+		    case 165:
+		    case 170:
+		    case 141:
+		    case 179:
+		    case 180:
+		    case 181:
+		    case 156:
+		    case 182:
+		    case 201:
+		    case 202:
+		    case 203:
+            case 206:
+		    case 207:
+		    case 209:
+		    case 211:
+			    m_InstanceHandler = new CInstanceHandler(m_zoneID);
+	    }
+    }
+    else
+    {
+        ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot load zone settings (%u)\n" CL_RESET, m_zoneID);
+    }
 }
 
-/***********************************************************************
-		Loads the zones BCNM instances from the database
-************************************************************************
+/************************************************************************
+*                                                                       *
+*  Loads the zones BCNM instances from the database                     *
+*                                                                       *
+*************************************************************************
+
 void CZone::LoadZoneInstances() 
 {
 	const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize \
@@ -429,7 +449,6 @@ void CZone::LoadZoneInstances()
 		m_InstanceHandler = PInstHand;
 	}
 }*/
-
 
 /************************************************************************
 *																		*
@@ -1196,16 +1215,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
                 if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
                 {
-                    if(PMob->m_OwnerID.id != 0)
-                    {
-                        // Mob is engaged with something, don't despawn it.
-                        PMob->SetDespawnTimer(1);
-                    }
-                    else
-                    {
-                        PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
-                        PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
-                    } // if PMob->m_TargID != 0
+                    PMob->SetDespawnTimer(1);
                 }
 			}
 		}
@@ -1220,16 +1230,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
 				if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
 				{
-                    if(PMob->m_OwnerID.id != 0)
-                    {
-                        // Mob is engaged with something, don't despawn it.
-                        PMob->SetDespawnTimer(1);
-                    }
-                    else
-                    {
-                        PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
-					    PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
-                    } // if PMob->m_TargID != 0
+                    PMob->SetDespawnTimer(1);
 				}
 			}
 		}
@@ -1244,16 +1245,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
                 if (PMob->m_SpawnType ==  SPAWNTYPE_FOG)
                 {
-                    if(PMob->m_OwnerID.id != 0)
-                    {
-                        // Mob is engaged with something, don't despawn it.
-                        PMob->SetDespawnTimer(1);
-                    }
-                    else
-                    {
-                        PMob->PBattleAI->SetLastActionTime(gettick() - 12000);
-					    PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
-                    } // if PMob->m_TargID != 0
+                    PMob->SetDespawnTimer(1);
                 }
 			}
 		}
@@ -1303,7 +1295,8 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 	}
 }
 
-CCharEntity* CZone::FindPlayerInZone(char* name){
+CCharEntity* CZone::FindPlayerInZone(char* name)
+{
 	if(m_charList.empty()){
 		return NULL;
 	}

@@ -43,6 +43,7 @@ namespace zoneutils
 	void LoadZoneList();                                                            // загружаем список зон
 	void FreeZoneList();                                                            // освобождаем список зон
 
+    void UpdateWeather();                                                           // обновляем погоду в зонах
 	void TOTDCharnge(TIMETYPE TOTD);                                                // реакция мира на смену времени суток
 
 	CZone*		 GetZone(uint8 ZoneID);							                    // получаем указатель на зону
