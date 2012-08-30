@@ -37,6 +37,9 @@ namespace instanceutils{
 	bool meetsWinningConditions(CInstance* instance, uint32 tick);
 	bool meetsLosingConditions(CInstance* instance, uint32 tick);
 	bool spawnMonstersForBcnm(CInstance* instance);
+	bool spawnTreasureForBcnm(CInstance* instance);
+	//void getHighestTHforBcnm(CInstance* instance); apparently not used in bcnm
+	void getChestItems(CInstance* instance);
 	CInstance* loadInstance(CInstanceHandler* hand, uint16 bcnmid);
 };
 

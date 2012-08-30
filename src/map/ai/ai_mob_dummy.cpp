@@ -230,7 +230,7 @@ void CAIMobDummy::ActionDropItems()
 					{
 						
 						if(PChar->PParty != NULL)
-						{
+						{	//no alliance
 							if(PChar->PParty->m_PAlliance == NULL)
 							{
 								thf_in_party = false;
@@ -240,24 +240,24 @@ void CAIMobDummy::ActionDropItems()
 									if (distance(thPChar->loc.p, m_PMob->loc.p) < 100 && (charutils::hasTrait(thPChar, TRAIT_TREASURE_HUNTER)))
 										thf_in_party = true;
 								}
-							}
-						}
-						if(PChar->PParty != NULL)
-						{
-							if(PChar->PParty->m_PAlliance != NULL)
-							{
-								thf_in_party = false;
-								for(int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
-								{
-									for(uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList[a]->members.size(); i++)
+							}else{//alliance
+									thf_in_party = false;
+									for(uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
 									{
-										CCharEntity* thPChar = (CCharEntity*)PChar->PParty->m_PAlliance->partyList[a]->members[i];
-										if (distance(thPChar->loc.p, m_PMob->loc.p) < 100 && (charutils::hasTrait(thPChar, TRAIT_TREASURE_HUNTER)))
+										for(uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList[a]->members.size(); i++)
+										{
+											CCharEntity* thPChar = (CCharEntity*)PChar->PParty->m_PAlliance->partyList[a]->members[i];
+											if (distance(thPChar->loc.p, m_PMob->loc.p) < 100 && (charutils::hasTrait(thPChar, TRAIT_TREASURE_HUNTER)))
 											thf_in_party = true;
+										}
 									}
-								}
+							
+								 }
 							}
-						}
+
+
+							
+						
 					}
 					if (!thf_in_party) highestTH = 0;
                     for(uint8 i = 0; i < DropList->size(); ++i)
@@ -625,9 +625,9 @@ void CAIMobDummy::ActionAbilityFinish()
 									radiusAround = m_PBattleTarget->loc.p;
 								}
 
-								for (int32 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
+								for (uint8 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
 								{
-									for (uint32 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); i++)
+									for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); i++)
 									{
 										CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i];
 							

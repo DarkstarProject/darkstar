@@ -1331,7 +1331,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		}else if (PChar->PParty->m_PAlliance != NULL)
 				{
 
-					for (int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+					for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
 					{
 						for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
 						{

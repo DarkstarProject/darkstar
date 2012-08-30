@@ -45,6 +45,7 @@ enum LEAVE_CODE{
 
 class CMobEntity;
 class CCharEntity;
+class CBaseEntity;
 class CInstanceHandler;
 
 class CInstance
@@ -61,6 +62,7 @@ public:
 	uint8       getInstanceNumber();
 	uint8       getMaxParticipants();
 	uint8		getLevelCap();
+	uint8		m_THLvl;
 	uint16		getDropId();
 	uint32		getStartTime();
 	uint32		getDeadTime();
@@ -83,7 +85,14 @@ public:
 	bool		allPlayersDead(); //true if all players in the bcnm are dead.
 	uint8		getPlayerMainJob(); //used for Maat fights 
 	void		pushMessageToAllInBcnm(uint16 msg, uint16 param);
-
+	
+	//spawning chests + loot
+	void		addNpc(CBaseEntity* PNpc);
+	bool		spawnTreasureChest();
+	bool		treasureChestSpawned;  
+	void		getHighestTHforBcnm();
+	void		OpenChestinBcnm();
+		
 	//mob related functions
 	//bool		spawnAllEnemies();
 	//bool		resetAllEnemySpawnPositions();
@@ -106,6 +115,10 @@ public:
 	string_t	m_FastestName;
 	uint32		m_FastestTime;
 	uint32		lastTick;
+
+	std::vector<CCharEntity*> m_PlayerList;
+	std::vector<CBaseEntity*> m_NpcList;
+
 private:
 	CInstanceHandler* m_Handler;
 	uint16		m_BcnmID;
@@ -120,7 +133,7 @@ private:
 	uint8		m_MaxParticipants; //1,3,6,12,18,zone
 	CCharEntity* m_CurrentInstanceLeader;
 	std::vector<CMobEntity*> m_EnemyList;
-	std::vector<CCharEntity*> m_PlayerList;
+	// std::vector<CCharEntity*> m_PlayerList;
 
 };
 

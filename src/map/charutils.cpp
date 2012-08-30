@@ -1982,7 +1982,7 @@ void UpdateHealth(CCharEntity* PChar)
 		
 		}else if (PChar->PParty->m_PAlliance != NULL)
 				{
-					for (int32 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+					for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
 					{
 						((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(PChar, PChar->getZone(), new CCharHealthPacket(PChar));
 					}

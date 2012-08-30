@@ -50,7 +50,7 @@ public:
 	uint8	findInstanceIDFor(CCharEntity* PChar); //returns 1 2 3 or 255 if non-existent
 	bool	hasFreeInstance(); //returns true if there is a free instance available
 	uint32	pollTimeLeft(uint16 bcnmid); //returns the shortest time left of all 3 instances of the given BCNM ID
-
+	void	openTreasureChest(CCharEntity* PChar);
 	void	wipeInstance(CInstance* inst);
 private:
 	uint8					m_ZoneId;

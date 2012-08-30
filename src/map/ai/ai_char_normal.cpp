@@ -206,7 +206,7 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 	{
 		if (m_PChar->PParty->m_PAlliance != NULL) 
 		{
-			for (int32 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
+			for (uint8 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
 			{
 				for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
 				{
@@ -216,18 +216,14 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 					}
 				}
 			}
-		}
-	}
-
-
-	if (m_PChar->PParty != NULL) 
-	{
-		for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
-		{
-			if (m_PChar->PParty->members[i]->id == PBattleTarget->m_OwnerID.id)
-			{
-				return true;
-			}
+		}else{//no alliance
+				for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
+				{
+					if (m_PChar->PParty->members[i]->id == PBattleTarget->m_OwnerID.id)
+					{
+						return true;
+					}
+				}
 		}
 	}
 	return false;
@@ -1985,7 +1981,7 @@ void CAICharNormal::ActionAttack()
 	                {
 						if ( m_PChar->PParty->m_PAlliance != NULL)
 						{
-							for (int32 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
+							for (uint8 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
 							{
 								for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
 								{

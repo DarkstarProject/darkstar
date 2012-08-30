@@ -160,8 +160,8 @@ public:
 	int32 bcnmLeave(lua_State*);			//Leave a bcnm instance
 	int32 isInBcnm(lua_State*);				//true if you're INSIDE the bc (not just the status)
 	int32 isBcnmsFull(lua_State*);			//true if all 3 instances are full
-	int32 getInstanceID(lua_State*);			//returns 1 2 or 3 if the player can enter a bcnm with the instance assigned
-
+	int32 getInstanceID(lua_State*);		//returns 1 2 or 3 if the player can enter a bcnm with the instance assigned
+	int32 getBCNMloot(lua_State*);			//triggers if the player opens the chest inside bcnm
 
 	int32 getVar(lua_State*);				// Returns a character variable
 	int32 setVar(lua_State*);				// Sets a character variable
@@ -242,7 +242,9 @@ public:
 	int32 getContainerSize(lua_State*);	    // Gets the current capacity of a container
 	int32 changeContainerSize(lua_State*);  // Increase/Decreases container size
 	int32 setLevel(lua_State*);				// sets the character's level
+	int32 setsLevel(lua_State*);				// sets the character's level
 	int32 changeJob(lua_State*);			// changes the job of a char (testing only!)
+	int32 changesJob(lua_State*);			// changes the sub job of a char (testing only!)
 	int32 getWeaponDmg(lua_State*);			// gets the current equipped weapons' DMG rating
 	int32 getOffhandDmg(lua_State*);		// gets the current equipped offhand's DMG rating (used in WS calcs)
 	int32 isWeaponTwoHanded(lua_State*);

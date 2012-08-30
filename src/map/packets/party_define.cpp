@@ -44,10 +44,10 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 		{
 			CAlliance* ourAlliance = PParty->m_PAlliance;
 
-			for (int32 a = 0; a < ourAlliance->partyList.size(); ++a)
+			for (uint8 a = 0; a < ourAlliance->partyList.size(); ++a)
 			{
 
-						for (int32 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i) 
+						for (uint8 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i) 
 						{
 							CBattleEntity* PChar = ourAlliance->partyList.at(a)->members.at(i);
 
@@ -57,31 +57,23 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 							WBUFB(data,12*nextPosition+(0x10)-4) = PChar->getZone();
 							nextPosition++;
 						}
-				
 			}
 			return;
-		}
+
+		}else{//regular party
+				DSP_DEBUG_BREAK_IF(PParty->members.size() > 6);
+
+				for (uint8 i = 0; i < PParty->members.size(); ++i) 
+				{
+					CBattleEntity* PChar = PParty->members.at(i);
+
+					WBUFL(data,12*i+(0x08)-4) = PChar->id;
+					WBUFW(data,12*i+(0x0C)-4) = PChar->targid;
+					WBUFW(data,12*i+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
+					WBUFB(data,12*i+(0x10)-4) = PChar->getZone();
+				}
+			 }
 	}
-
-	
-
-
-	//regular party
-	if (PParty != NULL)
-	{
-		DSP_DEBUG_BREAK_IF(PParty->members.size() > 6);
-
-		for (int32 i = 0; i < PParty->members.size(); ++i) 
-		{
-			CBattleEntity* PChar = PParty->members.at(i);
-
-			WBUFL(data,12*i+(0x08)-4) = PChar->id;
-			WBUFW(data,12*i+(0x0C)-4) = PChar->targid;
-			WBUFW(data,12*i+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
-			WBUFB(data,12*i+(0x10)-4) = PChar->getZone();
-		}
-	}
-
 
 
 }

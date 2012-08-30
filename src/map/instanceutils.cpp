@@ -24,10 +24,16 @@
 
 #include "charentity.h"
 #include "mobentity.h"
+#include "party.h"
+#include "charutils.h"
+#include "alliance.h"
 #include "zoneutils.h"
+#include "itemutils.h"
 #include "instanceutils.h"
 #include "instance.h"
 #include "instance_handler.h"
+#include "packets/entity_update.h"
+
 
 namespace instanceutils{
 	/***************************************************************
@@ -102,7 +108,6 @@ namespace instanceutils{
 						//	PMob->
 						//	ShowDebug("Change maat job to %i \n",instance->getPlayerMainJob());
 						}
-						
 				        PMob->SetDespawnTimer(0); //never despawn
 						ShowDebug("Spawned %s id %i inst %i \n",PMob->GetName(),instance->getID(),instance->getInstanceNumber());
 						instance->addEnemy(PMob);
@@ -117,6 +122,49 @@ namespace instanceutils{
 		}
 		return false;
 	}
+
+
+
+	/***************************************************************
+		Spawns treasure chest/armory crate, what ever on winning bcnm
+	****************************************************************/
+	bool spawnTreasureForBcnm(CInstance* instance){
+		DSP_DEBUG_BREAK_IF(instance==NULL);
+
+		//get ids from DB
+		const int8* fmtQuery = "SELECT npcId \
+						    FROM bcnm_treasure_chests \
+							WHERE bcnmId = %u AND instanceNumber = %u";
+					  
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getID(), instance->getInstanceNumber());
+
+		if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0) 
+		{
+			ShowError("spawnTreasureForBcnm : SQL error - Cannot find any npc IDs for BCNMID %i Instance %i \n",
+				instance->getID(), instance->getInstanceNumber());
+		}
+		else
+		{
+			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+			{
+				uint32 npcid = Sql_GetUIntData(SqlHandle,0);
+				CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcid, TYPE_NPC);
+					if (PNpc != NULL)
+					{
+						PNpc->status = STATUS_NORMAL;
+						instance->addNpc(PNpc);
+						ShowDebug(CL_CYAN"Spawned %s id %i inst %i \n",PNpc->status,PNpc->id,instance->getInstanceNumber());
+				    }else
+						{
+						ShowDebug(CL_CYAN"spawnTreasureForBcnm: <%s> is already spawned\n" CL_RESET, PNpc->GetName());
+						}
+			}
+			return true;
+		}
+		return false;
+	}
+
+
 
 	/**************************************************************
 	Called by ALL BCNMs to check winning conditions every tick. This
@@ -227,5 +275,50 @@ namespace instanceutils{
 			return position;
 		}
 	}
+
+	
+	//Just seen on forum that TH does not effect bcnm
+	/*************************************************************
+	Get highest TH from the instance
+	****************************************************************
+	void getHighestTHforBcnm(CInstance* instance){
+		instance->m_THLvl = 0;
+		for (uint8 a = 0; a < instance->m_PlayerList.size(); ++a)
+			{
+				CCharEntity* PChar = instance->m_PlayerList.at(a);
+						if (charutils::hasTrait(PChar, TRAIT_TREASURE_HUNTER))
+						{
+							if (instance->m_THLvl == 0) instance->m_THLvl = PChar->getMod(MOD_TREASURE_HUNTER);
+							else if (instance->m_THLvl < PChar->getMod(MOD_TREASURE_HUNTER)) instance->m_THLvl = PChar->getMod(MOD_TREASURE_HUNTER)+1;
+							if (instance->m_THLvl > 12) instance->m_THLvl = 12;
+						}
+		    }
+	}
+	*/
+
+
+
+	/*************************************************************
+	Get loot from the armoury crate
+	****************************************************************/
+
+	void getChestItems(CInstance* instance){
+		DropList_t* DropList = itemutils::GetDropList(instance->getDropId());
+
+		if (DropList != NULL && DropList->size())
+		{
+			for(uint8 i = 0; i < DropList->size(); ++i)
+			{
+				if(rand()%100 < DropList->at(i).DropRate) 
+				{
+					instance->m_PlayerList.at(0)->PTreasurePool->AddItemFromChest(DropList->at(i).ItemID, instance->m_NpcList.at(0)); 
+					break;
+				}
+			}	
+		}
+	//user opened chest, complete bcnm
+	instance->winBcnm();
+	}
+	
 
 };

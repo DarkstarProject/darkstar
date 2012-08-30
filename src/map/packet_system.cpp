@@ -2198,14 +2198,9 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				}
 			
 			}
-		}
-	}
-	
-	
-	//normal party member disband
-	if (PChar->PParty != NULL)
-	{
-		PChar->PParty->RemoveMember(PChar);
+		}else{//normal party member disband
+			 PChar->PParty->RemoveMember(PChar);
+			 }
 	}
 	return;
 }
@@ -2371,10 +2366,10 @@ void SmallPacket0x076(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		if (PChar->PParty->m_PAlliance != NULL)
 		{
-			for (int32 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+			for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
 			{
 					
-				for (int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++a)
+				for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++a)
 				{
 					PChar->PParty->m_PAlliance->partyList.at(i)->ReloadPartyMembers((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(i)->members.at(a));
 				}
@@ -2667,9 +2662,8 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						{
 							PChar->PParty->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
 						
-						}else if(PChar->PParty->m_PAlliance != NULL)
-							{
-								for (int32 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+						}else{ //alliance party chat
+								for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
 								{
 									PChar->PParty->m_PAlliance->partyList.at(i)->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
 								}
@@ -2901,9 +2895,9 @@ void SmallPacket0x0D2(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		if (PChar->PParty->m_PAlliance != NULL)
 		{
-			for (int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+			for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
 			{
-				for (int32 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
+				for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
 				{
 					CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 
@@ -2913,30 +2907,22 @@ void SmallPacket0x0D2(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					}
 				}
 			}
-
 		return;
-		}
+		
+		}else{  //normal party - no alliance
+				for (int32 i = 0; i < PChar->PParty->members.size(); ++i) 
+				{
+					CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->members.at(i);
+
+					if (PPartyMember->getZone() == PChar->getZone())
+					{
+						PChar->pushPacket(new CPartyMapPacket(PPartyMember));
+					}
+				}
+				return;
+			 }
 	} 
-
-
-
-	//normal party - no alliance
-	if (PChar->PParty != NULL)
-	{
-		for (int32 i = 0; i < PChar->PParty->members.size(); ++i) 
-		{
-			CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->members.at(i);
-
-			if (PPartyMember->getZone() == PChar->getZone())
-			{
-				PChar->pushPacket(new CPartyMapPacket(PPartyMember));
-			}
-		}
-	} 
-	else 
-	{
-		PChar->pushPacket(new CPartyMapPacket(PChar));
-	}
+	PChar->pushPacket(new CPartyMapPacket(PChar));
 	return;
 }
 

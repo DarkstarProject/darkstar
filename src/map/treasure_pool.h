@@ -72,6 +72,7 @@ public:
 	TREASUREPOOLTYPE GetPoolType();
 
 	uint8 AddItem(uint16 ItemID, CMobEntity*);
+	uint8 AddItemFromChest(uint16 ItemID, CBaseEntity*);
 
 	void LotItem(uint8 SlotID, uint16 Lot);
 	void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);

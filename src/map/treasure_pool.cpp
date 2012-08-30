@@ -178,6 +178,62 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CMobEntity* PMob)
 	return m_count;
 }
 
+
+
+
+/************************************************************************
+*                                                                       *
+*  Добавляем предмет в хранилище										*
+*                                                                       *
+************************************************************************/
+
+uint8 CTreasurePool::AddItemFromChest(uint16 ItemID, CBaseEntity* PNpc)
+{	
+	uint8  SlotID;
+	uint8  FreeSlotID;
+	uint32 oldest = -1;
+    
+	for (SlotID = 0; SlotID < 10; ++SlotID) 
+	{	
+		if (m_PoolItems[SlotID].ID == 0) 
+		{
+			FreeSlotID = SlotID;
+			break;
+		} 
+		else 
+		{
+			if (m_PoolItems[SlotID].TimeStamp < oldest) 
+			{
+				FreeSlotID = SlotID;
+				oldest = m_PoolItems[SlotID].TimeStamp;
+			}
+		}
+	}
+	if (SlotID == 10)
+	{
+		m_PoolItems[FreeSlotID].TimeStamp = 0;
+		CheckTreasureItem(gettick(), FreeSlotID);
+	}
+
+    m_count++;
+    m_PoolItems[FreeSlotID].ID = ItemID;
+	m_PoolItems[FreeSlotID].TimeStamp = gettick() - 2500;
+	
+	for (uint32 i = 0; i < members.size(); ++i)
+	{
+		members[i]->pushPacket(new CTreasureFindItemPacket(&m_PoolItems[FreeSlotID], PNpc));
+	}
+    if (m_TreasurePoolType == TREASUREPOOL_SOLO)
+    {
+        CheckTreasureItem(gettick(), FreeSlotID);
+    }
+	return m_count;
+}
+
+
+
+
+
 /************************************************************************
 *                                                                       *
 *                                                                       *

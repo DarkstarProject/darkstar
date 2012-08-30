@@ -493,9 +493,9 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 	{
 		if (PChar->PParty->m_PAlliance != NULL)
 		{
-			for (int32 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+			for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
 			{
-				for (uint32 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
+				for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
 				{
 					CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 

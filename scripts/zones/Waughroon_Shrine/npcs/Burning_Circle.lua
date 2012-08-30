@@ -24,15 +24,20 @@ require("scripts/zones/Waughroon_Shrine/TextIDs");
 	---- 6: Shattering Stars (RDM)
 	---- 7: Shattering Stars (THF)
 	---- 8: Shattering Stars (BST)
-	---- 9: 
-	---- 10: 
-	---- 11: 
-	---- 12: 
-	---- 13: 
-	---- 14: 
-	---- 15: 
-	---- 16: 
-	---- 17: 
+	---- 9: Birds of the feather
+	---- 10: Crustacean Conundrum
+	---- 11: Grove Gardians
+	---- 12: The Hills are alive
+	---- 13: Royal Jelly
+	---- 14: The Final Bout
+	---- 15: Up in arms
+	---- 16: Copy Cat
+	---- 17: Operation Desert Swarm
+	---- 18: Prehistoric Pigeons
+	---- 19: The Palborough Project
+	---- 20: Shell Shocked
+	---- 21: Beyond infinity
+
 
 -----------------------------------
 -- onTrade Action

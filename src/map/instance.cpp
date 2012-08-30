@@ -26,6 +26,7 @@
 #include "../common/timer.h"
 #include "charentity.h"
 #include "mobentity.h"
+#include "baseentity.h"
 #include "packets/position.h"
 #include "packets/message_basic.h"
 #include "lua/luautils.h"
@@ -36,6 +37,7 @@ CInstance::CInstance(CInstanceHandler* hand, uint16 id){
 	m_Handler = hand;
 	locked = false;
 	m_FastestTime = 3600;
+	treasureChestSpawned = false;
 }
 	
 uint16 CInstance::getID(){
@@ -226,6 +228,10 @@ void CInstance::addEnemy(CMobEntity* PMob){
 	m_EnemyList.push_back(PMob);
 }
 
+void CInstance::addNpc(CBaseEntity* PNpc){
+	m_NpcList.push_back(PNpc);
+}
+
 bool CInstance::allEnemiesDefeated(){
 	for(int i=0; i<m_EnemyList.size(); i++){
 		if(!m_EnemyList.at(i)->isDead()){
@@ -258,6 +264,14 @@ void CInstance::cleanup(){
 	}
 	//wipe mob list
 	m_EnemyList.clear();
+
+	//make chest vanish (if any)
+	for(int i=0; i<m_NpcList.size(); i++){
+	m_NpcList.at(i)->status = STATUS_DISAPPEAR;
+	}
+	//wipe npc list
+	m_NpcList.clear();
+
 	locked = false;
 	//delete instance
 	if(m_Handler==NULL){
@@ -275,6 +289,20 @@ bool CInstance::winBcnm(){
 	cleanup();
 	return true;
 }
+
+bool CInstance::spawnTreasureChest(){ 
+	instanceutils::spawnTreasureForBcnm(this);
+	return true;
+}
+
+void CInstance::OpenChestinBcnm(){
+	instanceutils::getChestItems(this);
+}
+
+/* apparently not used in bcnm
+void CInstance::getHighestTHforBcnm(){
+	instanceutils::getHighestTHforBcnm(this);
+}*/
 
 bool CInstance::loseBcnm(){
 	for(int i=0; i<m_PlayerList.size(); i++){

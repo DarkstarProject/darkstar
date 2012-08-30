@@ -93,7 +93,7 @@ void CAlliance::removeParty(CParty * party)
 		CAlliance* alliance = party->m_PAlliance;
 
 		//delete the party from the alliance list
-		for (uint32 i = 0; i < party->m_PAlliance->partyList.size(); ++i) 
+		for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i) 
 		{
 			if (party == party->m_PAlliance->partyList.at(i)) 
 				party->m_PAlliance->partyList.erase(partyList.begin()+i);
@@ -104,14 +104,14 @@ void CAlliance::removeParty(CParty * party)
 		//update the remaining members of the alliance to show the party left
 		if (alliance != NULL)
 		{
-			for (uint32 i = 0; i < alliance->partyList.size(); ++i) 
+			for (uint8 i = 0; i < alliance->partyList.size(); ++i) 
 			{
 				alliance->partyList.at(i)->ReloadParty();
 			}
 		}
 
 		//remove party members from the alliance treasure pool
-	    for (uint32 i = 0; i < party->members.size(); ++i) 
+	    for (uint8 i = 0; i < party->members.size(); ++i) 
 	    {
 			CCharEntity* PChar = (CCharEntity*)party->members.at(i);
 			PChar->PTreasurePool->DelMember(PChar);
@@ -123,7 +123,7 @@ void CAlliance::removeParty(CParty * party)
 		PChar->PTreasurePool->AddMember(PChar);
         PChar->PTreasurePool->UpdatePool(PChar);
 
-	    for (uint32 i = 0; i < party->members.size(); ++i) 
+	    for (uint8 i = 0; i < party->members.size(); ++i) 
 	    {
 		    CCharEntity* PChar = (CCharEntity*)party->members.at(i);
 			party->ReloadPartyMembers((CCharEntity*)party->members.at(i));
@@ -147,7 +147,6 @@ void CAlliance::addParty(CParty * party)
 {
 	party->m_PAlliance = this;
 	partyList.push_back(party);
-	
 	/*
 	if (this->partyCount() > 1)
 	{
@@ -165,12 +164,11 @@ void CAlliance::addParty(CParty * party)
 		}
 	}
 	*/
-
-	for (int32 a = 0; a < this->partyList.size(); ++a) 
+	for (uint8 a = 0; a < this->partyList.size(); ++a) 
 	{
 		this->partyList.at(a)->ReloadParty();
 		
-			for (int32 i = 0; i < this->partyList.at(a)->members.size(); ++i)
+			for (uint8 i = 0; i < this->partyList.at(a)->members.size(); ++i)
 			{
 				CCharEntity* PChar = (CCharEntity*)this->partyList.at(a)->members.at(i);
 				this->partyList.at(a)->ReloadTreasurePool(PChar);

@@ -69,9 +69,14 @@ void CInstanceHandler::handleInstances(uint32 tick){
 			if(instanceutils::meetsWinningConditions(PInstance,tick)){
 				//check rule mask to see if warp immediately or pop a chest
 				if(PInstance->m_RuleMask & RULES_SPAWN_TREASURE_ON_WIN){
-					//todo: spawn chest
+					//spawn chest
+					if(PInstance->treasureChestSpawned == false)
+					{
 					ShowDebug("BCNM %i instance %i : Winning conditions met. Spawning chest.\n",PInstance->getID(),PInstance->getInstanceNumber());
-					PInstance->winBcnm();
+					PInstance->spawnTreasureChest();
+					//PInstance->getHighestTHforBcnm(); apparently not used in bcnm
+					PInstance->treasureChestSpawned = true;
+					}
 				}
 				else{
 					ShowDebug("BCNM %i instance %i : Winning conditions met. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
@@ -224,25 +229,31 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 		case 12: ShowDebug("BCNMs for 12 people are not implemented yet.\n"); break;
 
 		case 18: 
-			if(PChar->PParty == NULL){//just add the initiator
+			if(PChar->PParty == NULL){//1 player entering 18 man bcnm
 				if(PInstance->addPlayerToBcnm(PChar)){
 					ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
 						PChar->GetName(),id,PInstance->getInstanceNumber());
 				}
-			}
-			else{
+			}else{//alliance entering 18 man bcnm
 				if(PChar->PParty->m_PAlliance != NULL)
 				{
-					for(int a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+					for(uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
 					{
-						for(int j=0;j<PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); j++){
+						for(uint8 j=0;j<PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); j++){
 							if(PInstance->addPlayerToBcnm((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(j))){
 								ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
 									PChar->PParty->m_PAlliance->partyList.at(a)->members.at(j)->GetName(),id,PInstance->getInstanceNumber());
 							}
 						}
 					}
-				}
+				}else{//single party entering 18 man bcnm
+						for(uint8 j=0;j<PChar->PParty->members.size(); j++){
+							if(PInstance->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))){
+								ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
+									PChar->PParty->members.at(j)->GetName(),id,PInstance->getInstanceNumber());
+							}
+						}
+					 }
 			}
 			break;
 
@@ -283,4 +294,15 @@ uint8 CInstanceHandler::findInstanceIDFor(CCharEntity* PChar){
 
 uint32 CInstanceHandler::pollTimeLeft(uint16 id){
 	return 0;
+}
+
+void CInstanceHandler::openTreasureChest(CCharEntity* PChar){
+		for(int i=0; i<m_MaxInstances; i++){
+		if(m_Instances[i] != NULL){
+			if(m_Instances[i]->isValidPlayerForBcnm(PChar)){
+				CInstance* PInstance = m_Instances[i];
+				PInstance->OpenChestinBcnm();
+			}
+		}
+	}
 }
