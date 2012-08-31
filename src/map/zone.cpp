@@ -60,7 +60,7 @@
 /************************************************************************
 *																		*
 *  Cервер для обработки активности сущностей (по серверу на зону) без	*
-*  активных областей													*	 
+*  активных областей													*
 *																		*
 ************************************************************************/
 
@@ -108,6 +108,7 @@ CZone::CZone(uint8 ZoneID, uint8 RegionID)
 	m_RegionCheckTime = 0;
 	m_InstanceHandler = NULL;
 	m_Weather = WEATHER_NONE;
+    m_WeatherChangeTime = 0;
 
 	LoadZoneLines();
     LoadZoneWeather();
@@ -148,6 +149,11 @@ uint16 CZone::GetTax()
 WEATHER CZone::GetWeather()
 {
 	return m_Weather;
+}
+
+uint32 CZone::GetWeatherChangeTime()
+{
+    return m_WeatherChangeTime;
 }
 
 const int8* CZone::GetName()
@@ -647,7 +653,8 @@ void CZone::SetWeather(WEATHER weather)
             if (PCurrentMob->m_Element == Element)
 			{
                 PCurrentMob->SetDespawnTimer(0);
-				PCurrentMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);   
+                PCurrentMob->PBattleAI->SetLastActionTime(0);
+				PCurrentMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 			}
 			else 
 			{
@@ -656,7 +663,7 @@ void CZone::SetWeather(WEATHER weather)
         }
     }
     m_Weather = weather;
-    PushPacket(NULL, CHAR_INZONE, new CWeatherPacket(1, weather));
+    PushPacket(NULL, CHAR_INZONE, new CWeatherPacket(CVanaTime::getInstance()->getSysTime()- 1009810800, weather));
 }
 
 /************************************************************************
@@ -1124,9 +1131,6 @@ void CZone::SpawnPCs(CCharEntity* PChar)
 		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 		SpawnIDList_t::iterator PC = PChar->SpawnPCList.find(PCurrentChar->id);
 
-		WEATHER currentWeather = GetWeather();
-		PCurrentChar->pushPacket(new CWeatherPacket(0, currentWeather));
-
 		if (PChar != PCurrentChar)
 		{
 			if(distance(PChar->loc.p, PCurrentChar->loc.p) < 50) 
@@ -1467,17 +1471,25 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
 	PChar->pushPacket(new CWideScanPacket(WIDESCAN_BEGIN));
 	for (EntityList_t::const_iterator it = m_npcList.begin() ; it != m_npcList.end() ; ++it)
 	{
-		if(distance(PChar->loc.p, (it->second)->loc.p) < radius) 
-		{
-			PChar->pushPacket(new CWideScanPacket(PChar,it->second)); // потом добавлю условие на статус и видимость имени
-		}
+        CNpcEntity* PNpc = (CNpcEntity*)it->second;
+        if(PNpc->status == STATUS_NORMAL && PNpc->namevis == 0)
+        {
+		    if(distance(PChar->loc.p, PNpc->loc.p) < radius) 
+		    {
+			    PChar->pushPacket(new CWideScanPacket(PChar, PNpc));
+		    }
+        }
 	}
 	for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
 	{
-		if(distance(PChar->loc.p, (it->second)->loc.p) < radius) 
-		{
-			PChar->pushPacket(new CWideScanPacket(PChar,it->second));
-		}
+        CMobEntity* PMob = (CMobEntity*)it->second;
+        if(PMob->status != STATUS_DISAPPEAR)
+        {
+		    if(distance(PChar->loc.p, PMob->loc.p) < radius) 
+		    {
+			    PChar->pushPacket(new CWideScanPacket(PChar, PMob));
+		    }
+        }
 	}
 	PChar->pushPacket(new CWideScanPacket(WIDESCAN_END));
 }

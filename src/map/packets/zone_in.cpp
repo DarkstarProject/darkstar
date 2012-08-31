@@ -31,6 +31,12 @@
 #include "../vana_time.h"
 #include "../zoneutils.h"
 
+/************************************************************************
+*                                                                       *
+*  Кривое решение для вычисления ID MogHouse                            *
+*  Возможно необходим переход на uint16 формат зоны                     * 
+*                                                                       *
+************************************************************************/
 
 uint16 GetMogHouseID(CCharEntity * PChar)
 {
@@ -56,6 +62,12 @@ uint16 GetMogHouseID(CCharEntity * PChar)
 	}
 	return 0x0100;
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       * 
+*                                                                       *
+************************************************************************/
 
 CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid) 
 {
@@ -99,10 +111,14 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	WBUFB(data,(0x5C)-4) = PChar->loc.zone->GetPartyBattleMusic();
 
 	WBUFW(data,(0x60)-4) = PChar->loc.boundary;
+    WBUFW(data,(0x68)-4) = PChar->loc.zone->GetWeather();
+    WBUFL(data,(0x6A)-4) = PChar->loc.zone->GetWeatherChangeTime();
+  //WBUFL(data,(0x6C)-4) = PChar->loc.zone->GetWeather();
+  //WBUFL(data,(0x70)-4) = PChar->loc.zone->GetWeatherChangeTime();
 
 	if(csid != -1) 
 	{
-	  //WBUFB(data,(0x1F)-4) = 4;								// animation
+	  //WBUFB(data,(0x1F)-4) = 4;								// предположительно animation
 	  //WBUFB(data,(0x20)-4) = 2;
 
 		WBUFB(data,(0x40)-4) = PChar->getZone();
@@ -113,21 +129,16 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	if (PChar->getZone() == 0) 
 	{
 		WBUFB(data,(0x80)-4) = 1;
-		WBUFB(data,(0x30)-4) = PChar->loc.prevzone;				// form zone
-		WBUFB(data,(0x42)-4) = PChar->loc.prevzone;				// from zone
-	    WBUFW(data,(0xAA)-4) = GetMogHouseID(PChar);			// Mog House id
-		WBUFB(data,(0xAE)-4) = PChar->profile.mhflag;			// Mog House leaving flag
+		WBUFB(data,(0x30)-4) = PChar->loc.prevzone;             // form zone
+		WBUFB(data,(0x42)-4) = PChar->loc.prevzone;             // from zone
+	    WBUFW(data,(0xAA)-4) = GetMogHouseID(PChar);            // Mog House id
+		WBUFB(data,(0xAE)-4) = PChar->profile.mhflag;           // Mog House leaving flag
 	} else {
 		WBUFB(data,(0x80)-4) = 2;										
-		WBUFB(data,(0x30)-4) = PChar->getZone();				// to zone
-		WBUFB(data,(0x42)-4) = PChar->getZone();				// to zone
+		WBUFB(data,(0x30)-4) = PChar->getZone();                // to zone
+		WBUFB(data,(0x42)-4) = PChar->getZone();                // to zone
 	    WBUFW(data,(0xAA)-4) = 0x01FF;
-		if(csid>0){
-			WBUFB(data,(0xAC)-4) = 0x01;
-		}
-		else{
-			WBUFB(data,(0xAC)-4) = 0x00;//if 0x01 then pause between zone	// сообщаем клиенту, что он должен начать отправлять 0x15-ые пакеты лишь после полной загрузки
-		}
+        WBUFB(data,(0xAC)-4) = csid > 0 ? 0x01 : 0x00;          //if 0x01 then pause between zone
 		WBUFB(data,(0xAF)-4) = PChar->loc.zone->CanUseMisc(MISC_MOGMENU);	// флаг, позволяет использовать mog menu за пределами mog house
 	}
 

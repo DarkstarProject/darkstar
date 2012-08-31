@@ -30,9 +30,9 @@ CREATE TABLE `bcnm_treasure_chests` (
 -- ----------------------------
 -- Horlais Peak
 
---INSERT INTO `bcnm_treasure_chests` VALUES ('11', '1', '17346717');
---INSERT INTO `bcnm_treasure_chests` VALUES ('11', '2', '17346719');
---INSERT INTO `bcnm_treasure_chests` VALUES ('11', '3', '17346721');
+-- INSERT INTO `bcnm_treasure_chests` VALUES ('11', '1', '17346717');
+-- INSERT INTO `bcnm_treasure_chests` VALUES ('11', '2', '17346719');
+-- INSERT INTO `bcnm_treasure_chests` VALUES ('11', '3', '17346721');
 
 -- Ghelsba Outpost
 
@@ -46,9 +46,9 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('76', '3', '17367109');
 
 -- Balga's Dais
 
---INSERT INTO `bcnm_treasure_chests` VALUES ('107', '1', '17375386');
---INSERT INTO `bcnm_treasure_chests` VALUES ('107', '2', '17375388');
---INSERT INTO `bcnm_treasure_chests` VALUES ('107', '3', '17375390');
+-- INSERT INTO `bcnm_treasure_chests` VALUES ('107', '1', '17375386');
+-- INSERT INTO `bcnm_treasure_chests` VALUES ('107', '2', '17375388');
+-- INSERT INTO `bcnm_treasure_chests` VALUES ('107', '3', '17375390');
 
 -- Sacrificial Chamber
 

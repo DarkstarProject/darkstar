@@ -110,6 +110,7 @@ public:
 	uint16			GetPort();
 	uint16			GetTax();
 	WEATHER			GetWeather();
+    uint32          GetWeatherChangeTime();
 	const int8*		GetName();
 	uint8			GetSoloBattleMusic();
 	uint8			GetPartyBattleMusic();
@@ -167,6 +168,7 @@ private:
 	uint32			m_zoneIP;               // IP зоны
       
 	WEATHER			m_Weather;              // текущая погода
+    uint32          m_WeatherChangeTime;    // время начала текущей погоды
     bool            m_IsStaticWeather;      // погода в зоне никогда не меняется
 
 	uint16			m_tax;					// налог в bazaar 
