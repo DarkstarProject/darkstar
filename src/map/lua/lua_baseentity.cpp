@@ -4367,7 +4367,7 @@ inline int32 CLuaBaseEntity::addPlayerToDynamis(lua_State *L)
 	return 1;
 }
 
-inline int32 isInDynamis(lua_State *L)
+inline int32 CLuaBaseEntity::isInDynamis(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
@@ -4375,9 +4375,9 @@ inline int32 isInDynamis(lua_State *L)
 	int Pzone = PChar->getZone();
 
 	if(Pzone > 184 && Pzone < 189 ||  Pzone > 133 && Pzone < 136){
-		lua_pushboolean(L, true));
+		lua_pushboolean(L, true);
 	}else{
-		lua_pushboolean(L, false));
+		lua_pushboolean(L, false);
 	}
 	return 1;
 }
