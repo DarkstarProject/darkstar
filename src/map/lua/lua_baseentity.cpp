@@ -3904,6 +3904,16 @@ inline int32 CLuaBaseEntity::getID(lua_State *L)
 	return 1;
 }
 
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getName(lua_State *L)
+{
+	if(m_PBaseEntity != NULL){
+		lua_pushstring( L, m_PBaseEntity->GetName() );
+	}
+	return 1;
+}
+
 /************************************************************************
 *                                                                       *
 *  Gets the current weapon's base DMG; used for WS calcs                *
@@ -4139,7 +4149,7 @@ inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
 }
 
 /***************************************************************
-  Attempts to register a BCNM instance.
+  Attempts to register a BCNM or Dynamis instance.
   INPUT: The BCNM ID to register.
   OUTPUT: The instance number assigned, or -1 if it's all full.
   Call on: The Orb trader
@@ -4151,11 +4161,19 @@ inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L){
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	int instance = 0;
 
 	if(PChar->loc.zone->m_InstanceHandler->hasFreeInstance()){
-		ShowDebug("Free BCNM Instance found for BCNMID %i \n",lua_tointeger(L,1));
-		int instance = PChar->loc.zone->m_InstanceHandler->registerBcnm(lua_tointeger(L,1),PChar);
-
+		int Pzone = PChar->getZone();
+		if(Pzone > 184 && Pzone < 189 || Pzone > 133 && Pzone < 136){
+			ShowDebug("Free Dynamis Instance found for BCNMID %i \n",lua_tointeger(L,1));
+			instance = PChar->loc.zone->m_InstanceHandler->registerDynamis(lua_tointeger(L,1),PChar);
+		}
+		else{
+			ShowDebug("Free BCNM Instance found for BCNMID %i \n",lua_tointeger(L,1));
+			instance = PChar->loc.zone->m_InstanceHandler->registerBcnm(lua_tointeger(L,1),PChar);
+		}
+		
 		if(instance!=-1){
 			ShowDebug("Registration successful!\n");
 			lua_pushinteger( L,instance);
@@ -4174,7 +4192,7 @@ inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L){
 }
 
 /***************************************************************
-  Attempts to enter a BCNM instance.
+  Attempts to enter a BCNM or Dynamis instance.
   OUTPUT: 1 if successful, 0 if not.
   Call on: Any player. (e.g. non-orb trader in same pt)
 ****************************************************************/
@@ -4184,12 +4202,24 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
-		uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD,0)->GetPower();
-		if(PChar->loc.zone->m_InstanceHandler->enterBcnm(effect_bcnmid,PChar)){
-			lua_pushinteger( L,1);
-			return 1;
+	
+	int Pzone = PChar->getZone();
+	if(Pzone > 184 && Pzone < 189 || Pzone > 133 && Pzone < 136){
+		if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS)){
+			uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DYNAMIS,0)->GetPower();
+			if(PChar->loc.zone->m_InstanceHandler->enterBcnm(effect_bcnmid,PChar)){
+				lua_pushinteger( L,1);
+				return 1;
+			}
+		}
+	}
+	else{
+		if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
+			uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD,0)->GetPower();
+			if(PChar->loc.zone->m_InstanceHandler->enterBcnm(effect_bcnmid,PChar)){
+				lua_pushinteger( L,1);
+				return 1;
+			}
 		}
 	}
 	ShowDebug("%s is unable to enter.\n",PChar->GetName());
@@ -4299,6 +4329,56 @@ inline int32 CLuaBaseEntity::isBcnmsFull(lua_State *L){
 		full = 0;
 	}
 	lua_pushinteger( L,full);
+	return 1;
+}
+
+// Add time on your dynamis instance
+inline int32 CLuaBaseEntity::addTimeToDynamis(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	
+	PChar->loc.zone->m_InstanceHandler->dynamisMessage(448,lua_tointeger(L,1));
+
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::addPlayerToDynamis(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	int instance = PChar->loc.zone->m_InstanceHandler->dynamisAddPlayer(lua_tointeger(L,1),PChar);
+
+	if(instance!=-1){
+		ShowDebug("Registration successful!\n");
+		lua_pushinteger( L,instance);
+	}
+	else{
+		ShowDebug("Unable to register BCNM Instance.\n");
+		lua_pushinteger( L,-1);
+	}
+
+	return 1;
+}
+
+inline int32 isInDynamis(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	int Pzone = PChar->getZone();
+
+	if(Pzone > 184 && Pzone < 189 ||  Pzone > 133 && Pzone < 136){
+		lua_pushboolean(L, true));
+	}else{
+		lua_pushboolean(L, false));
+	}
 	return 1;
 }
 
@@ -4505,7 +4585,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 {
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,warp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),				
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),	
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getName),	
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),				
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delHP),
@@ -4677,5 +4758,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBCNMloot),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToDynamis),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToDynamis),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInDynamis),
 	{NULL,NULL}
 };

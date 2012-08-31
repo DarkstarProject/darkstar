@@ -356,6 +356,10 @@ void CZone::LoadZoneSettings()
 		    case 179:
 		    case 180:
 		    case 181:
+			case 185:
+			case 186:
+			case 187:
+			case 188:
 		    case 156:
 		    case 182:
 		    case 201:
@@ -690,6 +694,26 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	//remove bcnm status
 	if(m_InstanceHandler!=NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
 		if(m_InstanceHandler->disconnectFromBcnm(PChar)){
+			ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n",PChar->GetName());
+		}
+
+		if(PChar->loc.destination==0){ //this player is disconnecting/logged out, so move them to the entrance
+			//move depending on zone
+			int* pos = instanceutils::getStartPosition(m_zoneID);
+			if(pos!=NULL){
+				PChar->loc.p.x = pos[0];
+				PChar->loc.p.y = pos[1];
+				PChar->loc.p.z = pos[2];
+				PChar->loc.p.rotation = pos[3];
+				charutils::SaveCharPosition(PChar);
+			}
+			else{
+				ShowWarning("%s has disconnected from the BCNM but cannot move them to the lobby as the lobby position is unknown!\n",PChar->GetName());
+			}
+		}
+	}
+	else if(m_InstanceHandler!=NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS)){
+		if(m_InstanceHandler->disconnectFromDynamis(PChar)){
 			ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n",PChar->GetName());
 		}
 

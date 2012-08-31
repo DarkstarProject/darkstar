@@ -60,6 +60,10 @@ uint8 CInstance::getMaxParticipants(){
 	return m_MaxParticipants;
 }
 
+uint8 CInstance::getMaxPlayerInBCNM(){
+	return m_PlayerList.size();
+}
+
 uint8 CInstance::getLevelCap(){
 	return m_LevelCap;
 }
@@ -321,4 +325,52 @@ bool CInstance::isEnemyBelowHPP(uint8 hpp){
 		}
 	}
 	return true;
+}
+
+//========================DYNAMIS FUNCTIONS=============================================//
+
+//
+bool CInstance::addPlayerToDynamis(CCharEntity* PChar){
+	//split to get the reason for debugging
+	if(m_PlayerList.size() >= m_MaxParticipants){
+		ShowDebug("Cannot add %s to Dynamis list, max size reached.\n",PChar->GetName());return false;
+	}
+	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
+		ShowDebug("Cannot add %s to Dynamis list, they have BC effect.\n",PChar->GetName());return false;
+	}
+	if(PChar->getZone() != m_ZoneID){
+		ShowDebug("Cannot add %s to Dynamis list, not in right zone.\n",PChar->GetName());return false;
+	}
+
+	m_PlayerList.push_back(PChar);
+	PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_DYNAMIS,EFFECT_DYNAMIS,this->m_BcnmID,0,0));
+	return true;
+}
+
+//Add time on dynamis instance
+void CInstance::addTimeLimit(uint32 time){
+	m_TimeLimit += time;
+}
+
+bool CInstance::finishDynamis(){
+	for(int i=0; i<m_PlayerList.size(); i++){
+		luautils::OnBcnmLeave(m_PlayerList.at(i),this,LEAVE_LOSE);
+		if(this->delPlayerFromDynamis(m_PlayerList.at(i))){i--;}
+	}
+
+	cleanup();
+	return true;
+}
+
+bool CInstance::delPlayerFromDynamis(CCharEntity* PChar){
+	for(int i=0; i<m_PlayerList.size(); i++){
+		if(m_PlayerList.at(i)->id == PChar->id){
+			PChar->m_insideBCNM = false;
+			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_DYNAMIS);
+			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+			m_PlayerList.erase(m_PlayerList.begin()+i);
+			return true;
+		}
+	}
+	return false;
 }

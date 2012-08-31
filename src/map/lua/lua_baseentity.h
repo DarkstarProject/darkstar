@@ -50,6 +50,7 @@ public:
 	int32 leavegame(lua_State*);			// Character leaving game
 
 	int32 getID(lua_State *L);				// Gets Entity Id
+	int32 getName(lua_State *L);			// Gets Entity Name
 
 	int32 getHP(lua_State*);				// Returns Entity Health
 	int32 addHP(lua_State*);				// Modify hp of Entity +/-
@@ -155,13 +156,17 @@ public:
 	int32 sendMenu(lua_State*);				// Displays a menu (AH,Raise,Tractor,MH etc)
 	int32 sendGuild(lua_State*);			// Sends guild shop menu
 
-	int32 bcnmRegister(lua_State*);			//Attempts to register a bcnm instance
-	int32 bcnmEnter(lua_State*);			//Enter a bcnm instance
+	int32 bcnmRegister(lua_State*);			//Attempts to register a bcnm instance (used by Dynamis and BCNM)
+	int32 bcnmEnter(lua_State*);			//Enter a bcnm instance (used by Dynamis and BCNM)
 	int32 bcnmLeave(lua_State*);			//Leave a bcnm instance
 	int32 isInBcnm(lua_State*);				//true if you're INSIDE the bc (not just the status)
 	int32 isBcnmsFull(lua_State*);			//true if all 3 instances are full
 	int32 getInstanceID(lua_State*);		//returns 1 2 or 3 if the player can enter a bcnm with the instance assigned
 	int32 getBCNMloot(lua_State*);			//triggers if the player opens the chest inside bcnm
+
+	int32 addPlayerToDynamis(lua_State*);	//Add player to the Dynamis
+	int32 addTimeToDynamis(lua_State*);		//Add time to the Dynamis
+	int32 isInDynamis(lua_State*);			//If player is in Dynamis return true else false
 
 	int32 getVar(lua_State*);				// Returns a character variable
 	int32 setVar(lua_State*);				// Sets a character variable

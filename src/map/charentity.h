@@ -183,7 +183,7 @@ public:
 	uint16			 m_mkeCurrent;					// текущая миссия A Moogle Kupo d'Etat
 	uint16			 m_asaCurrent;					// текущая миссия A Shantotto Ascension
 
-    uint32           RegionPoints[5];               // conquest points, imperial standing points etc
+    uint32           RegionPoints[15];               // conquest points, imperial standing points etc
 	NationTP_t		 nationtp;						// supply tp, runic portal, campaign tp,...
 
     uint8            GetGender();                   // узнаем пол персонажа

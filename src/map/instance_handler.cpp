@@ -31,9 +31,16 @@
 CInstanceHandler::CInstanceHandler(uint8 zoneid)
 {
 	m_ZoneId = zoneid;
-	m_MaxInstances = 3;
-	for(int i=0; i<3;i++){
-		m_Instances[i] = NULL;
+	//Dynamis zone (need to add COP dyna zone)
+	if(m_ZoneId > 184 && m_ZoneId < 189 ||  m_ZoneId > 133 && m_ZoneId < 136){
+		m_MaxInstances = 1;
+		m_Instances[0] = NULL;
+	}
+	else{
+		m_MaxInstances = 3;
+		for(int i=0; i<3;i++){
+			m_Instances[i] = NULL;
+		}
 	}
 }
 
@@ -41,52 +48,90 @@ void CInstanceHandler::handleInstances(uint32 tick){
 	for(int i=0; i<m_MaxInstances; i++){
 		if(m_Instances[i]!=NULL){ //handle it!
 			CInstance* PInstance = m_Instances[i];
-			//handle locking of bcnm when engaged
-			if(!PInstance->locked && PInstance->isPlayersFighting()){
-				PInstance->lockBcnm();
-				PInstance->locked = true;
-				ShowDebug("BCNM %i instance %i : Battlefield has been locked. No more players can enter.\n",PInstance->getID(),PInstance->getInstanceNumber());
-			}
-			//handle death time
-			if(PInstance->allPlayersDead()){//set dead time
-				if(PInstance->getDeadTime()==0){
-					PInstance->setDeadTime(tick);
-					ShowDebug("BCNM %i instance %i : All players have fallen.\n",PInstance->getID(),PInstance->getInstanceNumber());
-				}
-			}
-			else{
-				if(PInstance->getDeadTime()!=0){
-					PInstance->setDeadTime(0); //reset dead time when people are alive
-					ShowDebug("BCNM %i instance %i : Death counter reset as a player is now alive.\n",PInstance->getID(),PInstance->getInstanceNumber());
-				}
-			}
-			//handle time remaining prompts (since its useful!) Prompts every minute
-			if(((tick - PInstance->getStartTime())/1000) % 120 == 0){
-				PInstance->pushMessageToAllInBcnm(202,(PInstance->getTimeLimit()-((tick - PInstance->getStartTime())/1000)));
-			}
+			int instzone = PInstance->getZoneId();
 
-			//handle win conditions
-			if(instanceutils::meetsWinningConditions(PInstance,tick)){
-				//check rule mask to see if warp immediately or pop a chest
-				if(PInstance->m_RuleMask & RULES_SPAWN_TREASURE_ON_WIN){
-					//spawn chest
-					if(PInstance->treasureChestSpawned == false)
-					{
-					ShowDebug("BCNM %i instance %i : Winning conditions met. Spawning chest.\n",PInstance->getID(),PInstance->getInstanceNumber());
-					PInstance->spawnTreasureChest();
-					//PInstance->getHighestTHforBcnm(); apparently not used in bcnm
-					PInstance->treasureChestSpawned = true;
+			//Dynamis zone (need to add COP Dyna)
+			if(instzone > 184 && instzone < 189 || instzone > 133 && instzone < 136){
+				//handle death time
+				if(PInstance->allPlayersDead()){//set dead time
+					if(PInstance->getDeadTime()==0){
+						PInstance->setDeadTime(tick);
+						ShowDebug("Dynamis %i instance %i : All players have fallen.\n",PInstance->getID(),PInstance->getInstanceNumber());
 					}
 				}
 				else{
-					ShowDebug("BCNM %i instance %i : Winning conditions met. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
-					PInstance->winBcnm();
+					if(PInstance->getDeadTime()!=0){
+						PInstance->setDeadTime(0); //reset dead time when people are alive
+						ShowDebug("Dynamis %i instance %i : Death counter reset as a player is now alive.\n",PInstance->getID(),PInstance->getInstanceNumber());
+					}
+				}
+				
+				//handle time remaining prompts (since its useful!) Prompts every minute
+				int Tremaining = (tick - PInstance->getStartTime())/1000;
+
+				//New message (in yellow) at the end of dynamis (5min before the end)
+				if((Tremaining % 60) == 0 && (PInstance->getTimeLimit() - Tremaining) <= 300){
+					PInstance->pushMessageToAllInBcnm(449,((PInstance->getTimeLimit()-Tremaining)/60));
+				}
+				else{
+					if(((tick - PInstance->getStartTime())/1000) % 60 == 0){
+						PInstance->pushMessageToAllInBcnm(202,(PInstance->getTimeLimit()-Tremaining));
+					}
+				}
+				//if the time is finished, exiting dynamis
+				if(instanceutils::meetsLosingConditions(PInstance,tick)){
+					ShowDebug("Dynamis %i instance %i : Dynamis is finished. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
+					PInstance->finishDynamis();
 				}
 			}
-			//handle lose conditions
-			else if(instanceutils::meetsLosingConditions(PInstance,tick)){
-				ShowDebug("BCNM %i instance %i : Losing conditions met. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
-				PInstance->loseBcnm();
+			else{
+				//handle locking of bcnm when engaged
+				if(!PInstance->locked && PInstance->isPlayersFighting()){
+					PInstance->lockBcnm();
+					PInstance->locked = true;
+					ShowDebug("BCNM %i instance %i : Battlefield has been locked. No more players can enter.\n",PInstance->getID(),PInstance->getInstanceNumber());
+				}
+				//handle death time
+				if(PInstance->allPlayersDead()){//set dead time
+					if(PInstance->getDeadTime()==0){
+						PInstance->setDeadTime(tick);
+						ShowDebug("BCNM %i instance %i : All players have fallen.\n",PInstance->getID(),PInstance->getInstanceNumber());
+					}
+				}
+				else{
+					if(PInstance->getDeadTime()!=0){
+						PInstance->setDeadTime(0); //reset dead time when people are alive
+						ShowDebug("BCNM %i instance %i : Death counter reset as a player is now alive.\n",PInstance->getID(),PInstance->getInstanceNumber());
+					}
+				}
+				//handle time remaining prompts (since its useful!) Prompts every minute
+				if(((tick - PInstance->getStartTime())/1000) % 60 == 0){
+					PInstance->pushMessageToAllInBcnm(202,(PInstance->getTimeLimit()-((tick - PInstance->getStartTime())/1000)));
+				}
+
+				//handle win conditions
+				if(instanceutils::meetsWinningConditions(PInstance,tick)){
+					//check rule mask to see if warp immediately or pop a chest
+					if(PInstance->m_RuleMask & RULES_SPAWN_TREASURE_ON_WIN){
+						//spawn chest
+						if(PInstance->treasureChestSpawned == false)
+						{
+						ShowDebug("BCNM %i instance %i : Winning conditions met. Spawning chest.\n",PInstance->getID(),PInstance->getInstanceNumber());
+						PInstance->spawnTreasureChest();
+						//PInstance->getHighestTHforBcnm(); apparently not used in bcnm
+						PInstance->treasureChestSpawned = true;
+						}
+					}
+					else{
+						ShowDebug("BCNM %i instance %i : Winning conditions met. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
+						PInstance->winBcnm();
+					}
+				}
+				//handle lose conditions
+				else if(instanceutils::meetsLosingConditions(PInstance,tick)){
+					ShowDebug("BCNM %i instance %i : Losing conditions met. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
+					PInstance->loseBcnm();
+				}
 			}
 		}
 	}
@@ -231,7 +276,7 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 		case 18: 
 			if(PChar->PParty == NULL){//1 player entering 18 man bcnm
 				if(PInstance->addPlayerToBcnm(PChar)){
-					ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
+					ShowDebug("InstanceHandler ::18 Added %s to the valid players list for BCNM %i Instance %i \n",
 						PChar->GetName(),id,PInstance->getInstanceNumber());
 				}
 			}else{//alliance entering 18 man bcnm
@@ -241,7 +286,7 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 					{
 						for(uint8 j=0;j<PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); j++){
 							if(PInstance->addPlayerToBcnm((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(j))){
-								ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
+								ShowDebug("InstanceHandler ::18 Added %s to the valid players list for BCNM %i Instance %i \n",
 									PChar->PParty->m_PAlliance->partyList.at(a)->members.at(j)->GetName(),id,PInstance->getInstanceNumber());
 							}
 						}
@@ -249,7 +294,7 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 				}else{//single party entering 18 man bcnm
 						for(uint8 j=0;j<PChar->PParty->members.size(); j++){
 							if(PInstance->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))){
-								ShowDebug("InstanceHandler ::6 Added %s to the valid players list for BCNM %i Instance %i \n",
+								ShowDebug("InstanceHandler ::18 Added %s to the valid players list for BCNM %i Instance %i \n",
 									PChar->PParty->members.at(j)->GetName(),id,PInstance->getInstanceNumber());
 							}
 						}
@@ -305,4 +350,72 @@ void CInstanceHandler::openTreasureChest(CCharEntity* PChar){
 			}
 		}
 	}
+}
+
+//========================DYNAMIS FUNCTIONS=============================================//
+
+int CInstanceHandler::registerDynamis(uint16 id, CCharEntity* PChar){
+	if(!hasFreeInstance()){
+		return -1;
+	}
+	CInstance* PInstance = instanceutils::loadInstance(this,id);
+	if(PInstance==NULL){
+		return -1;
+	}
+	for(int i=0; i<m_MaxInstances; i++){
+		if(m_Instances[i]==NULL){
+			PInstance->setInstanceNumber(i+1);
+			break;
+		}
+	}
+
+	if(PInstance->addPlayerToDynamis(PChar)){
+		ShowDebug("InstanceHandler ::1 Added %s to the valid players list for Dynamis %i Instance %i \n",
+			PChar->GetName(),id,PInstance->getInstanceNumber());
+	}
+
+
+	m_Instances[PInstance->getInstanceNumber()-1] = PInstance;
+	PInstance->init();
+	luautils::OnBcnmRegister(PChar,PInstance);
+	return PInstance->getInstanceNumber();
+}
+
+int CInstanceHandler::dynamisAddPlayer(uint16 dynaid, CCharEntity* PChar){
+	
+	if(m_Instances[0]->addPlayerToDynamis(PChar)){
+		ShowDebug("InstanceHandler ::Registration for Dynamis by %s succeeded \n",PChar->GetName());
+	}
+
+	return 1;
+}
+
+int CInstanceHandler::dynamisMessage(uint16 Param1, uint16 Param2){
+	
+	CInstance* PInstance = m_Instances[0];
+
+	PInstance->addTimeLimit(Param2*60);
+	PInstance->pushMessageToAllInBcnm(Param1,Param2);
+
+	return 1;
+}
+
+/* Disconnecting from Dynamis (including warp)
+This removes the player from the active list and calls the warp/dc callback. Must bear in mind
+that this will be called if you warp BEFORE entering the dyna (but still have dynamis status)
+hence it doesn't check if you're "in" the BCNM, it just tries to remove you from the list.
+*/
+bool CInstanceHandler::disconnectFromDynamis(CCharEntity* PChar){ //includes warping
+	if(m_Instances[0]!=NULL){
+		if(m_Instances[0]->delPlayerFromDynamis(PChar)){
+			luautils::OnBcnmLeave(PChar,m_Instances[0],LEAVE_WARPDC);
+			if(!m_Instances[0]->isReserved()){//no more players in BCNM
+				ShowDebug("Detected no more players in Dynamis Instance %i. Cleaning up. \n",
+				m_Instances[0]->getInstanceNumber());
+				m_Instances[0]->finishDynamis();
+			}
+			return true;
+		}
+	}
+	return false;
 }

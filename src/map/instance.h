@@ -61,6 +61,7 @@ public:
 	uint8		getZoneId();
 	uint8       getInstanceNumber();
 	uint8       getMaxParticipants();
+	uint8		getMaxPlayerInBCNM();
 	uint8		getLevelCap();
 	uint8		m_THLvl;
 	uint16		getDropId();
@@ -109,6 +110,12 @@ public:
 	bool		winBcnm();
 	bool		loseBcnm();
 	bool		isReserved(); //true if someone has a valid entry for this bcnm
+
+	//Dynamis functions
+	bool		addPlayerToDynamis(CCharEntity* PChar);
+	void		addTimeLimit(uint32 time);
+	bool		finishDynamis();
+	bool		delPlayerFromDynamis(CCharEntity* PChar);
 
 	uint16		m_RuleMask;
 	bool		locked;

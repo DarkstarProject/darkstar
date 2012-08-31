@@ -43,6 +43,7 @@ CREATE TABLE `bcnm_info` (
 -- ----------------------------
 -- Records of abilities (each zone is allotted 32 slots to allow for expansion, thus the large gaps of bcnmIDs between zones)
 -- ----------------------------
+
 -- Horlais Peak		
 INSERT INTO `bcnm_info` VALUES ('0', '139', 'rank_2_mission', NULL, NULL, '1800', '25', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('1', '139', 'tails_of_woe', NULL, NULL, '1800', '40', '6', '0', '15');
@@ -357,3 +358,6 @@ INSERT INTO `bcnm_info` VALUES ('1184', '78', 'rider_cometh', NULL, NULL, '900',
 
 -- Abyssea - Empyreal Paradox (we lack useful flags to set for this one)
 -- INSERT INTO `bcnm_info` VALUES ('1248', '255', 'wyrm_god
+
+-- Dynamis
+INSERT INTO `bcnm_info` VALUES ('1280', '186', 'dynamis_bastok', NULL, NULL, '3600', '0', '18', '0', '7');

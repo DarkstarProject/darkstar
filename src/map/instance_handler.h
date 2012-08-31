@@ -52,6 +52,13 @@ public:
 	uint32	pollTimeLeft(uint16 bcnmid); //returns the shortest time left of all 3 instances of the given BCNM ID
 	void	openTreasureChest(CCharEntity* PChar);
 	void	wipeInstance(CInstance* inst);
+	
+	//Dynamis Functions
+	int		registerDynamis(uint16 id, CCharEntity* PChar);
+	int		dynamisAddPlayer(uint16 dynaid, CCharEntity* PChar); //Add a player to the dynamis instance
+	int		dynamisMessage(uint16 Param1, uint16 Param2); //Add message on dynamis param1: messageid, param2: parameter
+	bool	disconnectFromDynamis(CCharEntity* PChar);
+
 private:
 	uint8					m_ZoneId;
 	uint8					m_MaxInstances; //usually 3

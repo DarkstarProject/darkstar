@@ -150,7 +150,8 @@ void CAIMobDummy::ActionEngage()
 
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 	
-	if (m_PBattleTarget!=NULL && m_PMob->m_OwnerID.id == m_PBattleTarget->id){
+	//Delete this conditons, else OnMobEngaged doesn't work if the mob link
+	if (m_PBattleTarget!=NULL && m_PBattleTarget->objtype != TYPE_PET){ //&& m_PMob->m_OwnerID.id == m_PBattleTarget->id){
 		luautils::OnMobEngaged(m_PMob,m_PBattleTarget);
 	}
 

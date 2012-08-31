@@ -246,3 +246,6 @@ INSERT INTO `bcnm_instance` VALUES ('608', '3', '17641475');
 INSERT INTO `bcnm_instance` VALUES ('609', '1', '17641476');
 INSERT INTO `bcnm_instance` VALUES ('609', '2', '17641477');
 INSERT INTO `bcnm_instance` VALUES ('609', '3', '17641478');
+
+-- Dynamis (Fake NPC)
+INSERT INTO `bcnm_instance` VALUES ('1280', '1', '17539306');
