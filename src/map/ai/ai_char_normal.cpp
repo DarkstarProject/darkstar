@@ -2240,22 +2240,6 @@ void CAICharNormal::ActionAttack()
 
 
 
-
-					//trick attack agi bonus for thf main job
-					if(m_PChar->GetMJob() == JOB_THF && (!ignoreTrickAttack) &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
-					{
-						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-						if(taChar != NULL) bonusDMG = m_PChar->AGI();
-					}
-
-					//check if other jobs have trick attack active to change enmity lateron
-					if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && (!ignoreTrickAttack))
-					{
-						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-					}
-
-
-
 					damage = (uint16)(((PWeapon->getDamage() + bonusDMG + 
 						battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 
