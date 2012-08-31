@@ -27,7 +27,7 @@
 #include "itemutils.h"
 
 #define MAX_ITEMID  20000
-#define MAX_DROPID  4500
+#define MAX_DROPID  6000//4500 - change to 6000 for bcnm loots
 
 CItem *		g_pItemList[MAX_ITEMID];    // глобальный массив указателей на игровые предметы
 DropList_t* g_pDropList[MAX_DROPID];    // глобальный массив списков выпадающих предметов
@@ -315,7 +315,7 @@ namespace itemutils
 		    }
 	    }
 
-	    ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, type, rate FROM mob_droplist WHERE dropid < %u", MAX_DROPID);
+	    ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, type, rate, bcnmGroupId FROM mob_droplist WHERE dropid < %u", MAX_DROPID);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
@@ -333,6 +333,7 @@ namespace itemutils
                 DropItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
                 DropItem.DropType = (uint8)Sql_GetIntData(SqlHandle,2);
                 DropItem.DropRate = (uint8)Sql_GetIntData(SqlHandle,3);
+				DropItem.BcnmGroupId = (uint8)Sql_GetIntData(SqlHandle,4);
 
                 g_pDropList[DropID]->push_back(DropItem);
 		    }

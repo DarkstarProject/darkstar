@@ -276,27 +276,6 @@ namespace instanceutils{
 		}
 	}
 
-	
-	//Just seen on forum that TH does not effect bcnm
-	/*************************************************************
-	Get highest TH from the instance
-	****************************************************************
-	void getHighestTHforBcnm(CInstance* instance){
-		instance->m_THLvl = 0;
-		for (uint8 a = 0; a < instance->m_PlayerList.size(); ++a)
-			{
-				CCharEntity* PChar = instance->m_PlayerList.at(a);
-						if (charutils::hasTrait(PChar, TRAIT_TREASURE_HUNTER))
-						{
-							if (instance->m_THLvl == 0) instance->m_THLvl = PChar->getMod(MOD_TREASURE_HUNTER);
-							else if (instance->m_THLvl < PChar->getMod(MOD_TREASURE_HUNTER)) instance->m_THLvl = PChar->getMod(MOD_TREASURE_HUNTER)+1;
-							if (instance->m_THLvl > 12) instance->m_THLvl = 12;
-						}
-		    }
-	}
-	*/
-
-
 
 	/*************************************************************
 	Get loot from the armoury crate
@@ -307,14 +286,35 @@ namespace instanceutils{
 
 		if (DropList != NULL && DropList->size())
 		{
-			for(uint8 i = 0; i < DropList->size(); ++i)
-			{
-				if(rand()%100 < DropList->at(i).DropRate) 
+			//get the number of loot groups for the bcnm
+			const int8* fmtQuery = "SELECT MAX(bcnmGroupId) \
+						    FROM mob_droplist \
+							JOIN bcnm_info ON bcnm_info.LootDropId = mob_droplist.dropId \
+							WHERE bcnm_info.LootDropId = %u LIMIT 1";
+					  
+			int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getDropId());
+
+			if (ret == SQL_ERROR ||	Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS){
+				ShowError("SQL error occured \n");
+			} 
+			else {
+
+				int8 numberOflootGroups = Sql_GetUIntData(SqlHandle,0);
+				uint8 attempts = 0;
+
+				while(numberOflootGroups >= 0)
 				{
-					instance->m_PlayerList.at(0)->PTreasurePool->AddItemFromChest(DropList->at(i).ItemID, instance->m_NpcList.at(0)); 
-					break;
+					//pick 1 drop per bcnm loot group
+					for(uint8 i = 0; i < DropList->size(); ++i)
+					{
+						if(rand()%100 < DropList->at(i).DropRate && numberOflootGroups == DropList->at(i).BcnmGroupId && numberOflootGroups >= 0)
+						{
+							instance->m_PlayerList.at(0)->PTreasurePool->AddItemFromChest(DropList->at(i).ItemID, instance->m_NpcList.at(0)); 
+							numberOflootGroups--;
+						}
+					}
 				}
-			}	
+			}
 		}
 	//user opened chest, complete bcnm
 	instance->winBcnm();

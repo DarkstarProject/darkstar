@@ -41,6 +41,7 @@ struct DropItem_t
 	uint16 ItemID;
 	uint8  DropType;
 	uint8  DropRate;
+	uint8  BcnmGroupId;
 };
 
 typedef std::vector<DropItem_t> DropList_t;

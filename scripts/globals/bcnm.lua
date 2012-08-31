@@ -6,9 +6,9 @@ require("scripts/globals/status");
 --array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
 --e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
 -- DO NOT INCLUDE MAAT FIGHTS
-itemid_bcnmid_map = {139,{0,0}, -- Horlais Peak
-					 144,{1166,68}, -- Waughroon Shrine
-					 146,{0,0}, -- Balgas Dias
+itemid_bcnmid_map = {139,{1553,11}, -- Horlais Peak
+					 144,{1166,68,1178,81,1553,76}, -- Waughroon Shrine
+					 146,{1553,107}, -- Balgas Dias
 					 168,{0,0}, -- Chamber of Oracles
 					 170,{0,0}, -- Full Moon Fountain
 					 201,{1546,418}, -- Cloister of Gales
@@ -25,10 +25,10 @@ itemid_bcnmid_map = {139,{0,0}, -- Horlais Peak
 -- The BCNMID is found via the database.
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
 -- 0,1,2,3,4,5,...
-bcnmid_param_map = {139,{0,0,5,5,6,6,7,7},
+bcnmid_param_map = {139,{0,0,5,5,6,6,7,7,11,11},
 					140,{32,0,33,1},
-					144,{64,0,68,4,70,6,71,7,72,8},
-					146,{96,0,101,5,102,6,103,7},
+					144,{64,0,68,4,70,6,71,7,72,8,81,17,76,12},
+					146,{96,0,101,5,102,6,103,7,107,11},
 					163,{128,0},
 					165,{160,0},
 					168,{192,0,194,2,195,3,196,4},
@@ -179,7 +179,7 @@ function EventFinishBCNM(player,csid,option)
 		return false;
 	else
 		id = player:getVar("trade_bcnmid");
-		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609) then
+		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 81 or id == 76 or id == 107 or id == 11) then
 			player:tradeComplete();
 		end
 		return true;
@@ -265,6 +265,12 @@ function ItemToBCNMID(player,zone,trade)
 					-- AF3 SAM condition
 					elseif(item == 1166 and player:getVar("aThiefinNorgCS") == 6) then
 						questTimelineOK = 1;
+					elseif(item == 1178) then
+						questTimelineOK = 1;
+					-- KSNM30	
+					elseif(item == 1553) then
+						questTimelineOK = 1;
+					-- KSNM99						
 					end
 					
 					if(questTimelineOK == 1) then
