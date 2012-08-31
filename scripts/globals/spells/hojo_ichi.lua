@@ -14,11 +14,11 @@ require("scripts/globals/magic");
 function onSpellCast(caster,target,spell)
 	
 	dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-	staff = StaffBonus(caster,spell);
+	bonus = AffinityBonus(caster,spell);
 	--Power for Hojo is a flat 14.5% reduction
 	power = 14.5;
 	--Duration and Resistance calculation
-	duration = 300 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,staff);
+	duration = 300 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
 	--Calculates the resist chance from Resist Blind trait
 	if(math.random(0,100) >= target:getMod(MOD_SLOWRES)) then
 		-- Spell succeeds if a 1 or 1/2 resist check is achieved

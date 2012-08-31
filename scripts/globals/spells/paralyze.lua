@@ -37,8 +37,8 @@ function onSpellCast(caster,target,spell)
 		if(target:getStatusEffect(EFFECT_PARALYSIS) ~= nil) then --effect already on, do nothing
 			spell:setMsg(75);
 		else
-			staff = StaffBonus(caster, spell);
-			resist = applyResistance(caster,spell,target,dMND,35,staff);
+			bonus = AffinityBonus(caster, spell);
+			resist = applyResistance(caster,spell,target,dMND,35,bonus);
 			printf("resist : %u",resist);
 			if(resist == 1) then -- Full hit, no duration penalty
 				target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration);

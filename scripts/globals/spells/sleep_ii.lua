@@ -9,11 +9,11 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
 	duration = 90;
-	staff = StaffBonus(caster, spell);
+	bonus = AffinityBonus(caster, spell);
 	pINT = caster:getStat(MOD_INT);
 	mINT = target:getStat(MOD_INT);
 	dINT = (pINT - mINT);
-	resm = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,staff);
+	resm = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
 	if(resm < 0.5) then
 		spell:setMsg(85);--resist message
 		return EFFECT_SLEEP_II;

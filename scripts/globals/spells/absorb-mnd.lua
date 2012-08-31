@@ -16,9 +16,9 @@ function onSpellCast(caster,target,spell)
 	if(target:getStatusEffect(EFFECT_MND_DOWN) ~= nil) or (caster:getStatusEffect(EFFECT_MND_BOOST) ~=nil) then
 		spell:setMsg(75); -- no effect
 	else		
-		staff = StaffBonus(caster,spell);
+		bonus = AffinityBonus(caster,spell);
 		dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-		resist = applyResistance(caster,spell,target,dINT,37,staff);
+		resist = applyResistance(caster,spell,target,dINT,37,bonus);
 		if(resist <= 0.125) then
 			spell:setMsg(85);
 		else

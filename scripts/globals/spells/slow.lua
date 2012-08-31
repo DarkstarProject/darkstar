@@ -15,7 +15,7 @@ require("scripts/globals/magic");
 function onSpellCast(caster,target,spell)
 	
 	dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-	staff = StaffBonus(caster,spell);
+	bonus = AffinityBonus(caster,spell);
 	
 	--Power.
 	power = math.floor((100 / 1024) * (150 + dMND * 2))
@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
 	power = power * -1;
 	
 	--Duration, including resistance.
-	duration = 120 * applyResistance(caster,spell,target,dMND,35,staff);
+	duration = 120 * applyResistance(caster,spell,target,dMND,35,bonus);
 	if(100 * math.random() >= target:getMod(MOD_SLOWRES)) then
 		if(duration >= 60) then --Do it!
 			--Try to erase a weaker slow or haste.

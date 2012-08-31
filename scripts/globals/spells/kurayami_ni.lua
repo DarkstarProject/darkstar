@@ -13,9 +13,9 @@ function onSpellCast(caster,target,spell)
 	
 	-- Base Stats
 	dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-	staff = StaffBonus(caster,spell);
+	bonus = AffinityBonus(caster,spell);
 	--Duration Calculation
-	duration = 180 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,staff);
+	duration = 180 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
 	--Kurayami base power is 30 and is not affected by resistaces.
 	power = 30;
 	

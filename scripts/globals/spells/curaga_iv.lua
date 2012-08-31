@@ -36,8 +36,8 @@ function onSpellCast(caster,target,spell)
 	cure = (math.floor(power / 2)) / (rate) + constant;
 	--printf("CURE: %u",cure);
 
-	--Adjust bonus for staff.
-	staff = StaffBonus(caster,spell);
+	--Adjust bonus for bonus.
+	bonus = AffinityBonus(caster,spell);
 
 	--Check for cure potency equipment.
 	potency = curePotency(caster);
@@ -46,7 +46,7 @@ function onSpellCast(caster,target,spell)
 	--print("Total day/weather bonus:",day);
 
 	--Final amount to heal the target with.
-	final = cure * staff * day * (1 + potency) * CURE_POWER;
+	final = cure * bonus * day * (1 + potency) * CURE_POWER;
 
 	--Raise the amount above the minimum hard cap.
 	if(final < 450) then
