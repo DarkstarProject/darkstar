@@ -388,13 +388,13 @@ elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
         --values taken from Shell scripts by Tenjou.
         local def = 0;
         if (player:getMainLvl()<37) then --before shell 2, give shell 1
-            def=10;
+            def=-24;
         elseif (player:getMainLvl()>=37 and player:getMainLvl()<57) then --after s2, before s3
-            def=16;
+            def=-36;
         elseif (player:getMainLvl()>=57 and player:getMainLvl()<68) then --after s3, before s4
-            def=23;
+            def=-48;
         elseif (player:getMainLvl()>=68) then --after s4
-            def=28;
+            def=-56;
         end
         --Add shell
         player:addStatusEffect(EFFECT_SHELL,def,0,1800);

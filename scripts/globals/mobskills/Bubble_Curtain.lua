@@ -15,7 +15,7 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 
 
-    power = 50;
+    power = -128;
     tic = 0;
     duration = 60;
 

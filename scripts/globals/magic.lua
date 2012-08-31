@@ -1,16 +1,47 @@
 require("scripts/globals/magicburst")
 require("scripts/globals/status")
 
-     DIVINE_MAGIC_SKILL = 32;
-    HEALING_MAGIC_SKILL = 33;
-  ENHANCING_MAGIC_SKILL = 34;
- ENFEEBLING_MAGIC_SKILL = 35;
-  ELEMENTAL_MAGIC_SKILL = 36;
-       DARK_MAGIC_SKILL = 37;
-         NINJUTSU_SKILL = 39;
-          SINGING_SKILL = 40; 
+	DIVINE_MAGIC_SKILL	 	= 32;
+    HEALING_MAGIC_SKILL 	= 33;
+	ENHANCING_MAGIC_SKILL 	= 34;
+	ENFEEBLING_MAGIC_SKILL 	= 35;
+	ELEMENTAL_MAGIC_SKILL 	= 36;
+    DARK_MAGIC_SKILL 		= 37;
+    NINJUTSU_SKILL 			= 39;
+    SINGING_SKILL			= 40; 
 
-
+	WEATHER_NONE			= 0;
+	WEATHER_SUNSHINE		= 1;
+	WEATHER_CLOUDS			= 2;
+	WEATHER_FOG				= 3;
+	WEATHER_HOT_SPELL		= 4;
+	WEATHER_HEAT_WAVE		= 5;
+	WEATHER_RAIN			= 6;
+	WEATHER_SQUALL			= 7;
+	WEATHER_DUST_STORM		= 8;
+	WEATHER_SAND_STORM		= 9;
+	WEATHER_WIND			= 10;
+	WEATHER_GALES			= 11;
+	WEATHER_SNOW			= 12;
+	WEATHER_BLIZZARDS		= 13;
+	WEATHER_THUNDER			= 14;
+	WEATHER_THUNDERSTORMS	= 15;
+	WEATHER_AURORAS			= 16;
+	WEATHER_STELLAR_GLARE	= 17;
+	WEATHER_GLOOM			= 18;
+	WEATHER_DARKNESS		= 19;
+	
+	singleWeatherStrong = {WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_RAIN, WEATHER_WIND, WEATHER_SNOW, WEATHER_THUNDER, WEATHER_AURORAS, WEATHER_GLOOM};
+	doubleWeatherStrong = {WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_SQUALL, WEATHER_GALES, WEATHER_BLIZZARDS, WEATHER_THUNDERSTORMS, WEATHER_STELLAR_GLARE, WEATHER_DARKNESS};
+	singleWeatherWeak = {WEATHER_RAIN, WEATHER_WIND, WEATHER_THUNDER, WEATHER_SNOW, WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_GLOOM, WEATHER_AURORAS};
+	doubleWeatherWeak = {WEATHER_SQUALL, WEATHER_GALES, WEATHER_THUNDERSTORMS, WEATHER_BLIZZARDS, WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_DARKNESS, WEATHER_STELLAR_GLARE};
+	elementalObi = {15435, 15438, 15440, 15437, 15436, 15439, 15441, 15442};
+	spellAcc = {MOD_FIREACC, MOD_EARTHACC, MOD_WATERACC, MOD_WINDACC, MOD_ICEACC, MOD_THUNDERACC, MOD_LIGHTACC, MOD_DARKACC};
+	strongAffinity = {MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_ICE_AFFINITY, MOD_THUNDER_AFFINITY, MOD_LIGHT_AFFINITY, MOD_DARK_AFFINITY};
+	weakAffinity = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY};
+	resistMod = {MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES};
+	defenseMod = {MOD_FIREDEF, MOD_EARTHDEF, MOD_WATERDEF, MOD_WINDDEF, MOD_ICEDEF, MOD_THUNDERDEF, MOD_LIGHTDEF, MOD_DARKDEF};
+	
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
 --Calculates magic damage using the standard magic damage calc.
 --Does NOT handle resistance.
@@ -164,35 +195,24 @@ return c;
 --     Returns the staff bonus for the caster and spell. 
 -----------------------------------
 
--- NQ/HQ staves that strengthen/weaken the index element
-strong_NQ = { 0x4489, 0x448f, 0x4493, 0x448d, 0x448b, 0x4491, 0x4495, 0x4497 }
-strong_HQ = { 0x448A, 0x4490, 0x4494, 0x448e, 0x448c, 0x4492, 0x4496, 0x4498 }
+-- affinities that strengthen/weaken the index element
 
-weak_NQ = { 0x4493, 0x448d, 0x4491, 0x448b, 0x4489, 0x448f, 0x4497, 0x4495 }
-weak_HQ = { 0x4494, 0x448e, 0x4492, 0x448c, 0x448A, 0x4490, 0x4498, 0x4496 }
 
-function StaffBonus(caster,spell)
+function AffinityBonus(caster,spell)
     
-    staff = caster:getEquipID(0);
-    ele   = spell:getElement();
+	bonus = 1.00;
+	
+    ele = spell:getElement();
 
-    if(staff == strong_NQ[ele]) then 
-        staff = 1.1;
-        --print("Element enhanced by staff.");
-    elseif(staff == strong_HQ[ele]) then
-        staff = 1.15;
-        --print("Element enhanced by HQ staff.");
-    elseif(staff == weak_NQ[ele]) then
-        staff = 0.9;
-        --print("Element weakened by staff.");
-    elseif(staff == weak_HQ[ele]) then
-        staff = 0.85;
-        --print("Element weakened by HQ staff.");
-    else
-        staff = 1.0;
-    end
-
-    return staff;
+    affinity = caster:getMod(strongAffinity[ele]) - caster:getMod(weakAffinity[ele]);
+	
+	if affinity > 0 then
+		bonus = bonus + 0.05 + 0.05 * affinity;
+	elseif affinity < 0 then
+		bonus = bonus - 0.05 + 0.05 * affinity;
+	end
+	
+    return bonus;
 
 end;
 
@@ -222,8 +242,8 @@ function applyResistance(player,spell,target,diff,skill,staff)
         magicaccbonus = magicaccbonus + 256;
     end
 	--add acc for staves
-	staffBonus = StaffBonus(player, spell);
-	magicaccbonus = magicaccbonus + (staffBonus-1) * 200;
+	affinityBonus = AffinityBonus(player, spell);
+	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
 	
     local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
     --add acc for skillchains
@@ -231,8 +251,6 @@ function applyResistance(player,spell,target,diff,skill,staff)
 		magicaccbonus = magicaccbonus + 25;
     end
 	
-	resistMod = {MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES};
-	defenseMod = {MOD_FIREDEF, MOD_EARTHDEF, MOD_WATERDEF, MOD_WINDDEF, MOD_ICEDEF, MOD_THUNDERDEF, MOD_LIGHTDEF, MOD_DARKDEF};
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
 	magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[spell:getElement()]) + target:getMod(defenseMod[spell:getElement()])/10;
 	
@@ -504,21 +522,63 @@ function calculateMagicBurstAndBonus(caster, spell, target)
     return burst, burstBonus;
 end
 
--- USED FOR DAMAGING MAGICAL SPELLS. Stages 4,5,6,7,8 of Calculating Magic Damage on Wiki
 function addBonuses(caster, spell, target, dmg)
-    --TODO:
-    --Day of the week / Weather bonus
-    mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF)) ;
-    staff = StaffBonus(caster, spell);
+	ele = spell:getElement();
+	
+	affinityBonus = AffinityBonus(caster, spell);
+	dmg = math.floor(dmg * affinityBonus);
+	
+	speciesReduction = target:getMod(defenseMod[ele]);
+	speciesReduction = 1.00 - (speciesReduction/1000);
+	dmg = math.floor(dmg * speciesReduction);
+	
+	dayWeatherBonus = 1.00;
+	
+	if caster:getWeather() == singleWeatherStrong[ele] then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	elseif caster:getWeather() == singleWeatherWeak[ele] then
+		if math.random() < 0.33 then
+			dayWeatherBonus = dayWeatherBonus - 0.10;
+		end
+	end
+	if caster:getWeather() == doubleWeatherStrong[ele] then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+			dayWeatherBonus = dayWeatherBonus + 0.25;
+		elseif caster:getWeather() == doubleWeatherWeak[ele] then
+			if math.random() < 0.33 then
+				dayWeatherBonus = dayWeatherBonus - 0.25;
+			end
+		end
+	end
+	--todo: day bonus
+	dmg = math.floor(dmg * dayWeatherBonus);
+	
     burst, burstBonus = calculateMagicBurstAndBonus(caster, spell, target);
     
     if(burst > 1.0) then
 		spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
 	end
 	
-	--printf("bonuses: %f, %f, %f, %f, %f", dmg, burst, burstBonus, mab, staff);
-
-    return (dmg * burst * burstBonus * mab * staff);
+	dmg = math.floor(dmg * burst);
+	
+    mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF)) ;
+	
+	dmg = math.floor(dmg * mab);
+	
+	magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
+	
+	dmg = math.floor(dmg * magicDmgMod);
+	
+	-- print(affinityBonus);
+	-- print(speciesReduction);
+	-- print(dayWeatherBonus);
+	-- print(burst);
+	-- print(mab);
+	-- print(magicDmgMod);
+	
+    return dmg;
 end
 
 ---------------------------------------------------------------------
@@ -562,7 +622,7 @@ end;
 
 function handleThrenody(caster, target, spell, basePower, baseDuration, modifier)
 	-- Process resitances
-	staff = StaffBonus(caster, spell);
+	staff = AffinityBonus(caster, spell);
 	print("staff=" .. staff);
 	dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
 	print("dCHR=" .. dCHR);

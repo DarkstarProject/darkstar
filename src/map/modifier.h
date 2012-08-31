@@ -195,7 +195,7 @@ enum MODIFIER
 	MOD_DMG					= 0xA0,	// Damage Multiplier 
 	MOD_DMGPHYS				= 0xA1,	// Physical Damage Multiplier
 	MOD_DMGBREATH			= 0xA2,	// Breath Damage Multiplier
-	MOD_DMGMAGIC			= 0xA3, // Magic Damage Multiplier
+	MOD_DMGMAGIC			= 0xA3, // Magic Damage Multiplier - 256 base! (value of -24 means -24/256 magic damage taken)
 	MOD_DMGRANGE			= 0xA4,	// Range Damage Multiplier
 
 	MOD_CRITHITRATE			= 0xA5, // Raises chance to crit

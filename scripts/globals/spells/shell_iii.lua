@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	power = 19;
+	power = -48;
 	duration = 1800;
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;
@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
 	if(target:hasStatusEffect(EFFECT_SHELL) == true) then
 		effect = target:getStatusEffect(EFFECT_SHELL);
 		cPower = effect:getPower();
-		if(cPower > 30) then
+		if(cPower < -48) then
 			spell:setMsg(75); -- no effect
 		else
 			target:delStatusEffect(EFFECT_SHELL);
