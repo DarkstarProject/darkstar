@@ -384,10 +384,15 @@ enum MODIFIER
 	MOD_THUNDER_AFFINITY	= 0x15F,
 	MOD_WIND_AFFINITY		= 0x160,
 	MOD_LIGHT_AFFINITY		= 0x161,
-	MOD_DARK_AFFINITY		= 0x162
+	MOD_DARK_AFFINITY		= 0x162,
+
+// Special Modifier
+
+	MOD_ADDS_WEAPONSKILL	 = 0x163,
+	MOD_ADDS_WEAPONSKILL_DYN = 0x164
 };
 
-#define MAX_MODIFIER		  0x163
+#define MAX_MODIFIER		  0x165
 
 
 /************************************************************************

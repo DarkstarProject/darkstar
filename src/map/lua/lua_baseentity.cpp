@@ -4372,9 +4372,8 @@ inline int32 CLuaBaseEntity::isInDynamis(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-	int Pzone = PChar->getZone();
 
-	if(Pzone > 184 && Pzone < 189 ||  Pzone > 133 && Pzone < 136){
+	if(PChar->isInDynamis()){
 		lua_pushboolean(L, true);
 	}else{
 		lua_pushboolean(L, false);

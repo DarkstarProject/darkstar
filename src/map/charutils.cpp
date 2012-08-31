@@ -1507,31 +1507,65 @@ void CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param)
 void BuildingCharWeaponSkills(CCharEntity* PChar)
 {
 	memset(& PChar->m_WeaponSkills, 0, sizeof(PChar->m_WeaponSkills)); 
-		
+
 	JOBTYPE curMainJob = PChar->GetMJob();
 	JOBTYPE curSubJob  = PChar->GetSJob();
 
-	uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
-	
-	std::list<CWeaponSkill*> WeaponSkillList = battleutils::GetWeaponSkills(skill);
+	CItemWeapon* PItem;
+	int16 wsIDs[3] = { 0 };
+	int16 wsDynIDs[3] = { 0 };
 
+	bool isInDynamis = PChar->isInDynamis();
+
+	for (int i = 0; i < 3; ++i)
+	{
+		if (PChar->equip[i])
+		{
+			PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[i]);
+
+			for(std::vector<CModifier*>::iterator it = PItem->modList.begin(); it !=  PItem->modList.end(); ++it)
+			{
+				if((*it)->getModID() == MOD_ADDS_WEAPONSKILL)
+				{
+					wsIDs[i] = (*it)->getModAmount();
+					break;
+				}
+				if((*it)->getModID() == MOD_ADDS_WEAPONSKILL_DYN)
+				{
+					wsDynIDs[i] = (*it)->getModAmount();
+					break;
+				}
+			}
+		}
+	}
+
+	//add in melee ws
+	uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
+	std::list<CWeaponSkill*>& WeaponSkillList = battleutils::GetWeaponSkills(skill);
 	for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
 	{
 		CWeaponSkill* PSkill = *it;
 
-		if (PChar->GetSkill(skill) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0))
+		if (PChar->GetSkill(skill) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0)
+			|| PSkill->getID() == wsIDs[SLOT_MAIN] || PSkill->getID() == wsIDs[SLOT_SUB]
+			|| isInDynamis && (PSkill->getID() == wsDynIDs[SLOT_MAIN] || PSkill->getID() == wsDynIDs[SLOT_SUB]))
 		{
 			addWeaponSkill(PChar, PSkill->getID());
 		}
 	}
-	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
-	if(PItem != NULL && (PItem->getType() & ITEM_WEAPON) && PItem->getSkillType()!=SKILL_THR){ //add in ranged ws
-		skill = PItem->getSkillType();
-		std::list<CWeaponSkill*> WeaponSkillList = battleutils::GetWeaponSkills(skill);
+	
+	//add in ranged ws
+	PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+	if(PItem != NULL && (PItem->getType() & ITEM_WEAPON) && PItem->getSkillType()!=SKILL_THR)
+	{ 
+		skill = PChar->m_Weapons[SLOT_RANGED]->getSkillType();
+		std::list<CWeaponSkill*>& WeaponSkillList = battleutils::GetWeaponSkills(skill);
 		for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
 		{
 			CWeaponSkill* PSkill = *it;
-			if (PChar->GetSkill(skill) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0))
+			if (PChar->GetSkill(skill) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob (curSubJob) > 0)
+				|| PSkill->getID() == wsIDs[SLOT_RANGED]
+				|| isInDynamis && (PSkill->getID() == wsDynIDs[SLOT_MAIN] || PSkill->getID() == wsDynIDs[SLOT_SUB]))
 			{
 				addWeaponSkill(PChar, PSkill->getID());
 			}

@@ -356,6 +356,7 @@ public:
 	uint16          RATT(uint8 skill);
 
 	bool		    isDead();					// проверяем, мертва ли сущность
+	bool			isInDynamis();
 
 	JOBTYPE		    GetMJob();					// главная профессия
 	JOBTYPE		    GetSJob();					// дополнительная профессия

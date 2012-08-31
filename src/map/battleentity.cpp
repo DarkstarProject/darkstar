@@ -85,6 +85,12 @@ bool CBattleEntity::isDead()
 	return (health.hp <= 0 || status == STATUS_DISAPPEAR);
 }
 
+bool CBattleEntity::isInDynamis()
+{
+	uint8 Pzone = getZone();
+	return (Pzone > 184 && Pzone < 189 ||  Pzone > 133 && Pzone < 136);
+}
+
 /************************************************************************
 *                                                                       *
 *  Пересчитываем максимальные значения hp и mp с учетом модификаторов   *
