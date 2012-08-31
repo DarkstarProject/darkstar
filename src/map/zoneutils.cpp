@@ -33,7 +33,6 @@
 #include "map.h"
 #include "mobentity.h"
 #include "npcentity.h"
-#include "weatherutils.h"
 #include "zoneutils.h"
 
 
@@ -67,75 +66,36 @@ void TOTDCharnge(TIMETYPE TOTD)
 
 void UpdateWeather()
 {
-	const int8* Query;
-	int32 weatherFrequency = 0;
-	int32 weatherChange = 0;
-	WEATHER weatherType = WEATHER_NONE;
+	uint8 WeatherFrequency = 0;
+	uint8 WeatherChange = 0;
 
-	//lookup possible weather for each zone
+	WEATHER WeatherType = WEATHER_NONE;
+
     for(int32 ZoneID = 0; ZoneID < 256; ZoneID++)    
 	{
-		weatherType = WEATHER_NONE;
+		WeatherType = WEATHER_NONE;
 
-        Query =    
-            "SELECT                         \
-              weather.none,                 \
-              weather.sunshine,             \
-              weather.clouds,               \
-              weather.fog,                  \
-              weather.hot_spell,            \
-              weather.heat_wave,            \
-              weather.rain,                 \
-              weather.squall,               \
-              weather.dust_storm,           \
-              weather.sand_storm,           \
-              weather.wind,                 \
-              weather.gales,                \
-              weather.snow,                 \
-              weather.blizzards,            \
-              weather.thunder,              \
-              weather.thunder_storms,       \
-              weather.auroras,              \
-              weather.stellar_glares,       \
-              weather.gloom,                \
-              weather.darkness,             \
-              weather.shared,               \
-              weather.static                \
-            FROM zone_weather AS weather    \
-            WHERE zoneid = %u               \
-            LIMIT 1";
-
-		if (Sql_Query(SqlHandle, Query, ZoneID) != SQL_ERROR && 
-            Sql_NumRows(SqlHandle) != 0 && 
-            Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			//skip zones with static weather
-			if ((uint8)Sql_GetIntData(SqlHandle,21) == 0)
+		//set weather for shared zones
+		//if((uint8)Sql_GetIntData(SqlHandle,20) != 0)
+		//{
+		//	WeatherType = g_PZoneList[(uint8)Sql_GetIntData(SqlHandle,20)]->GetWeather();
+		//}
+		//else
+		//{
+			//cycle through all weathers
+			for(int32 w = 0; w < MAX_WEATHER_ID; w++)
 			{
-				//set weather for shared zones
-				if((uint8)Sql_GetIntData(SqlHandle,20) != 0)
-				{
-					weatherType = g_PZoneList[(uint8)Sql_GetIntData(SqlHandle,20)]->GetWeather();
-				}
-				else
-				{
-					//cycle through all weathers
-					for(int32 w = 1; w < 19; w++)
-					{
-						//generate a new random chance for each weather condidtion
-						weatherChange = rand()%100+1;
-						weatherFrequency = (int32)Sql_GetIntData(SqlHandle,w);				
+				//generate a new random chance for each weather condidtion
+				WeatherChange = rand()%100+1;
+                WeatherFrequency = g_PZoneList[ZoneID]->m_WeatherFrequency[w];				
 
-						if(weatherFrequency >= weatherChange)
-						{
-							weatherType = (WEATHER)w;
-						}
-					}
-					//call ImplementWeather to update players and spawn/despawn mobs					
+				if(WeatherFrequency >= WeatherChange)
+				{
+					WeatherType = (WEATHER)w;
 				}
-				weatherutils::ImplementWeather(g_PZoneList[ZoneID], weatherType);
 			}
-		}
+		//}
+        g_PZoneList[ZoneID]->SetWeather(WeatherType);
     }
 	ShowDebug(CL_CYAN"UpdateWeather Finished\n"CL_RESET);
 }

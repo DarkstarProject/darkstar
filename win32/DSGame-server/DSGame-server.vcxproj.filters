@@ -593,9 +593,6 @@
     <ClInclude Include="..\..\src\map\jailutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\weatherutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1112,9 +1109,6 @@
       <Filter>Source Files\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\jailutils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\weatherutils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

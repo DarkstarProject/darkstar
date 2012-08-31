@@ -49,7 +49,6 @@
 #include "transport.h"
 #include "vana_time.h"
 #include "zoneutils.h"
-#include "weatherutils.h"
 
 #include "ai/ai_char_gm.h"
 #include "ai/ai_char_normal.h"

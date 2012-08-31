@@ -107,7 +107,7 @@ CZone::CZone(uint8 ZoneID, uint8 RegionID)
 	m_TreasurePool = 0;
 	m_RegionCheckTime = 0;
 	m_InstanceHandler = NULL;
-	m_weather = WEATHER_NONE;
+	m_Weather = WEATHER_NONE;
 
 	LoadZoneLines();
     LoadZoneWeather();
@@ -147,12 +147,7 @@ uint16 CZone::GetTax()
 
 WEATHER CZone::GetWeather()
 {
-	return m_weather;
-}
-
-void CZone::SetWeather(WEATHER weatherCondition)
-{
-	m_weather = weatherCondition;
+	return m_Weather;
 }
 
 const int8* CZone::GetName()
@@ -254,55 +249,41 @@ void CZone::LoadZoneWeather()
           weather.auroras,           \
           weather.stellar_glares,    \
           weather.gloom,             \
-          weather.darkness,          \
-          weather.shared,            \
-          weather.static             \
+          weather.darkness           \
         FROM zone_weather as weather \
-        WHERE zoneid = %u LIMIT 1";
-
-    /*if(Sql_GetUIntData(SqlHandle,8) != NULL)
-    {
-			WEATHER weatherTypes [20] = 
-			{
-				WEATHER_NONE,
-				WEATHER_SUNSHINE,
-				WEATHER_CLOUDS,
-				WEATHER_FOG,
-				WEATHER_HOT_SPELL,
-				WEATHER_HEAT_WAVE,
-				WEATHER_RAIN,
-				WEATHER_SQUALL,
-				WEATHER_DUST_STORM,
-				WEATHER_SAND_STORM,
-				WEATHER_WIND,
-				WEATHER_GALES,
-				WEATHER_SNOW,
-				WEATHER_BLIZZARDS,
-				WEATHER_THUNDER,
-				WEATHER_THUNDERSTORMS,
-				WEATHER_AURORAS,
-				WEATHER_STELLAR_GLARE,
-				WEATHER_GLOOM,
-				WEATHER_DARKNESS
-			};	
-			m_weather = weatherTypes[(uint8)Sql_GetUIntData(SqlHandle,8)];
-    }*/
+        WHERE zoneid = %u            \
+        LIMIT 1";
 
     if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR && 
         Sql_NumRows(SqlHandle) != 0 && 
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
+        uint16 Frequency = 0;
 
+        for (uint8 i = 0; i < MAX_WEATHER_ID; ++i)
+        {
+            m_WeatherFrequency[i] = (uint8)Sql_GetIntData(SqlHandle,i);
+
+            if (!m_IsStaticWeather)
+            {
+                m_IsStaticWeather = m_WeatherFrequency[i] == 100;
+            }
+            Frequency += m_WeatherFrequency[i];
+        }
+        if (Frequency != 100)
+        {
+            //ShowWarning(CL_YELLOW"Total Weather Frequency is %u for zone %u\n" CL_RESET, Frequency, m_zoneID);
+        }
     }
     else
     {
-        ShowFatalError(CL_RED"CZone::LoadZoneWeather: Cannot load zone weather (%u)\n" CL_RESET, m_zoneID);
+        //ShowFatalError(CL_RED"CZone::LoadZoneWeather: Cannot load zone weather (%u)\n" CL_RESET, m_zoneID);
     }
 }
 
 /************************************************************************
 *																		*
-*  Загружаем настройки зоны из базы										*	 
+*  Загружаем настройки зоны из базы										*
 *																		*
 ************************************************************************/
 
@@ -553,8 +534,6 @@ void CZone::InsertRegion(CRegion* Region)
 	}
 }
 
-
-
 /************************************************************************
 *                                                                       *
 *  Ищем группу для монстра. Для монстров, объединенных в группу         *
@@ -604,6 +583,76 @@ void CZone::TransportDepart(CBaseEntity* PTransportNPC)
             luautils::OnTransportEvent(PCurrentChar, PTransportNPC->loc.prevzone);
         }
     }
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/					
+
+void CZone::SetWeather(WEATHER weather)
+{
+	if (m_Weather == weather)
+		return;
+
+	uint8 Element = 0;
+
+	switch(weather)
+	{
+		case WEATHER_HOT_SPELL:
+		case WEATHER_HEAT_WAVE:
+			Element = 1; //"Fire_Elemental";
+			break;
+		case WEATHER_RAIN:
+		case WEATHER_SQUALL:
+			Element = 6; //"Water_Elemental";
+			break;
+		case WEATHER_DUST_STORM:
+		case WEATHER_SAND_STORM:
+			Element = 4; //"Earth_Elemental";
+			break;
+		case WEATHER_WIND:
+		case WEATHER_GALES:
+			Element = 3; //"Air_Elemental";
+			break;
+		case WEATHER_SNOW:
+		case WEATHER_BLIZZARDS:
+			Element = 2; //"Ice_Elemental";
+			break;
+		case WEATHER_THUNDER:
+		case WEATHER_THUNDERSTORMS:
+			Element = 5; //"Thunder_Elemental";
+			break;
+		case WEATHER_AURORAS:
+		case WEATHER_STELLAR_GLARE:
+			Element = 7; //"Light_Elemental";
+			break;
+		case WEATHER_GLOOM:
+		case WEATHER_DARKNESS:
+			Element = 8; //"Dark_Elemental";
+			break;
+	}
+
+    for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
+	{
+		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+
+        if (PCurrentMob->m_EcoSystem == SYSTEM_ELEMENTAL)
+        {
+            if (PCurrentMob->m_Element == Element)
+			{
+                PCurrentMob->SetDespawnTimer(0);
+				PCurrentMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);   
+			}
+			else 
+			{
+				PCurrentMob->SetDespawnTimer(1);
+			}
+        }
+    }
+    m_Weather = weather;
+    PushPacket(NULL, CHAR_INZONE, new CWeatherPacket(1, weather));
 }
 
 /************************************************************************
@@ -1295,19 +1344,25 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 	}
 }
 
-CCharEntity* CZone::FindPlayerInZone(char* name)
-{
-	if(m_charList.empty()){
-		return NULL;
-	}
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
-	for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-	{
-		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-		if(strcmp(PCurrentChar->GetName(),name)==0){
-			return PCurrentChar;
-		}
-	}
+CCharEntity* CZone::FindPlayerInZone(int8* name)
+{
+	if(!m_charList.empty())
+    {
+	    for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+	    {
+		    CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+		    if(strcmp(PCurrentChar->GetName(),name)==0)
+            {
+			    return PCurrentChar;
+		    }
+	    }
+    }
 	return NULL;
 }
 

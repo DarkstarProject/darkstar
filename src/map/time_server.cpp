@@ -28,7 +28,6 @@
 #include "transport.h"
 #include "vana_time.h"
 #include "zoneutils.h"
-#include "weatherutils.h"
 
 
 int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)

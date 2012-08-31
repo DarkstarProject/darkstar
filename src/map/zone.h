@@ -34,6 +34,7 @@
 #include "region.h"
 #include "vana_time.h"
 #include "instance_handler.h"
+
 #include "packets\weather.h"
 
 enum ZONEMISC
@@ -109,16 +110,17 @@ public:
 	uint16			GetPort();
 	uint16			GetTax();
 	WEATHER			GetWeather();
-	void			SetWeather(WEATHER weatherCondition);
 	const int8*		GetName();
 	uint8			GetSoloBattleMusic();
 	uint8			GetPartyBattleMusic();
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
 
+    CCharEntity*    FindPlayerInZone(int8* name);                                   // finds the player if exists in zone
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
 
 	bool			CanUseMisc(uint16 misc);
+    void            SetWeather(WEATHER weatherCondition);
 
 	void			SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
 	void			SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
@@ -135,11 +137,10 @@ public:
 	void			InsertNPC(CBaseEntity* PNpc);									// добавляем в зону npc
 	void			InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
 	void			InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
-	void			DeletePET(CBaseEntity* PPet);       	                        //derefs the pet's ID from this zone
+	void			DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
 
 	void			GenerateCureEnmity(CBattleEntity* PSource,CBattleEntity* PTarget,uint16 amount);
     void            FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
-	CCharEntity*	FindPlayerInZone(char* name);									// finds the player if exists in zone
     void            TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
 
 	void			InsertRegion(CRegion* Region);									// добавляем в зону активную область
@@ -148,6 +149,7 @@ public:
 	void			PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
 
 	uint32			m_RegionCheckTime;												// время последней проверки регионов
+    uint8           m_WeatherFrequency[MAX_WEATHER_ID];                             // вероятность появления каждого типа погоды
 
 	void			ZoneServer(uint32 tick);
 	void			ZoneServerRegion(uint32 tick);
@@ -163,8 +165,9 @@ private:
 	string_t		m_zoneName;				// имя зоны
 	uint16			m_zonePort;				// порт зоны
 	uint32			m_zoneIP;               // IP зоны
-
-	WEATHER			m_weather;
+      
+	WEATHER			m_Weather;              // текущая погода
+    bool            m_IsStaticWeather;      // погода в зоне никогда не меняется
 
 	uint16			m_tax;					// налог в bazaar 
 	uint16			m_miscMask;				// битовое поле, описывающее возможности использования в зоне определенных умений

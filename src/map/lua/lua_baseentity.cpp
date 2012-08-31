@@ -79,7 +79,6 @@
 #include "../spell.h"
 #include "../trade_container.h"
 #include "../zoneutils.h"
-#include "../weatherutils.h"
 
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
@@ -667,42 +666,19 @@ inline int32 CLuaBaseEntity::getWeather(lua_State *L)
 	return 1;
 }
 
+//==========================================================//
+
 inline int32 CLuaBaseEntity::setWeather(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-	CZone* PZone = zoneutils::GetZone(PChar->getZone());
-	WEATHER weather;
+	uint8 weather = (uint8)lua_tointeger(L,1);
 
-	switch((uint16)lua_tointeger(L,1)) 
+    if (weather < MAX_WEATHER_ID)
     {
-		case 0: weather  = WEATHER_NONE; break;
-		case 1: weather  = WEATHER_SUNSHINE; break;
-		case 2: weather  = WEATHER_CLOUDS; break;
-		case 3: weather  = WEATHER_FOG; break;
-		case 4: weather  = WEATHER_HOT_SPELL; break;
-		case 5: weather  = WEATHER_HEAT_WAVE; break;
-		case 6: weather  = WEATHER_RAIN; break;
-		case 7: weather  = WEATHER_SQUALL; break;
-		case 8: weather  = WEATHER_DUST_STORM; break;
-		case 9: weather  = WEATHER_SAND_STORM; break;
-		case 10: weather = WEATHER_WIND; break;
-		case 11: weather = WEATHER_GALES;  break;
-		case 12: weather = WEATHER_SNOW;  break;
-		case 13: weather = WEATHER_BLIZZARDS;  break;
-		case 14: weather = WEATHER_THUNDER; break;
-		case 15: weather = WEATHER_THUNDERSTORMS; break;
-		case 16: weather = WEATHER_AURORAS; break;
-		case 17: weather = WEATHER_STELLAR_GLARE; break;
-		case 18: weather = WEATHER_GLOOM; break;
-		case 19: weather = WEATHER_DARKNESS; break;
-        default: weather = WEATHER_NONE;
+        zoneutils::GetZone(m_PBaseEntity->getZone())->SetWeather((WEATHER)weather);
     }
-
-	weatherutils::ImplementWeather(PZone, weather);
-
 	return 0;
 }
 
