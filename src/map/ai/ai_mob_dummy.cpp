@@ -1025,7 +1025,7 @@ void CAIMobDummy::ActionAttack()
 
 					if(!isCountered)
                     {
-						Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, 1);
+						Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, 1, NULL);
 						m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
 
                         // Block skill up
@@ -1039,7 +1039,7 @@ void CAIMobDummy::ActionAttack()
 					}
 					else
                     {
-						Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1);
+						Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL);
 					}
 
 					m_PMob->m_ActionList.push_back(Action);

@@ -108,7 +108,7 @@ namespace battleutils
     uint8   GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical); 
     uint16  TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier); 
+	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar); 
     uint16  TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint16 lastSkillDamage);
 	uint32  MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	bool    SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
@@ -134,7 +134,7 @@ namespace battleutils
 
     void MakeEntityStandUp(CBattleEntity* PEntity);
     bool IsEngauged(CBattleEntity* PEntity);
-
+	CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob);
     bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool);
 };
 

@@ -38,6 +38,8 @@
 #include "charutils.h"
 #include "battleutils.h"
 #include "map.h"
+#include "party.h"
+#include "alliance.h"
 #include "spell.h"
 #include "trait.h" 
 #include "weapon_skill.h"
@@ -1119,7 +1121,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 *																		*
 ************************************************************************/
 
-uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier)
+uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ||
 		PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0))
@@ -1219,7 +1221,11 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
                 {
                     PDefender->addTP(TP);
                 }
-                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
+					if(taChar == NULL){
+						((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
+					}else{
+						((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
+					}
             }
             break;
         case TYPE_PET:
@@ -2335,5 +2341,49 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
             break;
     } // end switch
 }
+
+
+
+
+
+CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob)
+{					
+	if (taUser->PParty != NULL){
+		if (taUser->PParty->m_PAlliance != NULL){
+			for(uint8 a = 0; a < taUser->PParty->m_PAlliance->partyList.size(); ++a){
+					for(uint8 i = 0; i < taUser->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i){
+						if(abs(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.rotation - taUser->loc.p.rotation) < 23 &&
+						abs(PMob->loc.p.rotation - taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.rotation) < 23){
+									
+							float distancePartyChar = distance(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p,PMob->loc.p);
+							float distanceTaChar = distance(taUser->loc.p,PMob->loc.p);
+								
+								//is the party char closer to the mob than the TA user?
+								if(distancePartyChar < distanceTaChar){
+									return taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i);
+								}
+						}
+					}
+			}
+		}else{//no alliance
+			for(uint8 i = 0; i < taUser->PParty->members.size(); ++i){
+				if(abs(taUser->PParty->members.at(i)->loc.p.rotation - taUser->loc.p.rotation) < 23 &&
+				abs(PMob->loc.p.rotation - taUser->PParty->members.at(i)->loc.p.rotation) < 23){
+
+					float distancePartyChar = distance(taUser->PParty->members.at(i)->loc.p,PMob->loc.p);
+					float distanceTaChar = distance(taUser->loc.p,PMob->loc.p);
+						//is the party char closer to the mob than the TA user?
+						if(distancePartyChar < distanceTaChar){
+							return taUser->PParty->members.at(i);
+						}
+					}
+			}
+		}
+	}
+//no Trick attack party member available
+return NULL;
+}
+
+
 
 }; 

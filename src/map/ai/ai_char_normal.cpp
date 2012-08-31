@@ -836,7 +836,7 @@ void CAICharNormal::ActionRangedFinish()
 			    }
 		    }
 		    damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
-		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 1);
+		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 1, NULL);
 
 		    if(PItem != NULL){//not a throwing item, check the ammo for dmg/etc
 			    battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
@@ -1781,12 +1781,30 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		m_PChar->health.tp = 0;
 	}
 
+
+	//incase a TA party member is available
+	CBattleEntity* taChar = NULL;
+
+	//trick attack agi bonus for thf main job
+	if(m_PChar->GetMJob() == JOB_THF &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+	{
+	taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
+	if(taChar != NULL) damage += m_PChar->AGI();
+	}
+
+	//check if other jobs have trick attack active to change enmity lateron
+	if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+	{
+	taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
+	}
+
+
 	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
 		uint8 damslot = SLOT_MAIN;
 		if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
 			damslot = SLOT_RANGED;
 		}
-		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot, tpHitsLanded);
+		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot, tpHitsLanded, taChar);
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST); //TODO: REMOVE THIS, BOOST EFFECT IN DB IS WRONG, MISSING EFFECTFLAG_DAMAGE
 	}
@@ -1916,7 +1934,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 					m_PChar->health.tp = wsTP;
 					damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
 					m_PChar->health.tp = afterWsTP;
-					AoEAction.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0);
+					AoEAction.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar);
 					if(damage==0)
 					{
 						AoEAction.reaction = REACTION_EVADE;
@@ -2097,6 +2115,8 @@ void CAICharNormal::ActionAttack()
 			uint32 numattacksLeftHand = 0;
 			uint32 numKickAttacks = 0;
 
+			CBattleEntity* taChar = NULL;
+
 			uint16 subType = m_PChar->m_Weapons[SLOT_SUB]->getDmgType();
 			
 			if ((subType > 0 && subType < 4))//sub weapon is equipped!
@@ -2105,9 +2125,11 @@ void CAICharNormal::ActionAttack()
 			}
 			else if(m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH){ //h2h equipped!
 				numattacksLeftHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
+				if(m_PChar->GetMJob() == JOB_MNK)
+					numKickAttacks = ((rand()%100 < m_PChar->getMod(MOD_KICK_ATTACK)) ? 1 : 0);
 			}
 
-			uint32 numattacksRightHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
+			uint8 numattacksRightHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
 
 			//cap it, cannot have >8 hits per attack round!
 			if(numattacksRightHand+numattacksLeftHand > 8){
@@ -2117,7 +2139,7 @@ void CAICharNormal::ActionAttack()
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			uint8 fstrslot = SLOT_MAIN;
 			bool zanshin = false;
-			for (uint32 i = 0; i < (numattacksLeftHand + numattacksRightHand); ++i) 
+			for (uint8 i = 0; i < (numattacksLeftHand + numattacksRightHand + numKickAttacks); ++i) 
 			{
 				if (i != 0)
 				{
@@ -2142,7 +2164,15 @@ void CAICharNormal::ActionAttack()
 				//	2 - правая нога (только H2H) 
 				//	3 - левая нога  (только H2H)
 
-				Action.animation  = (i < numattacksRightHand ? 0 : 1);
+				//Action.animation  = (i < numattacksRightHand ? 0 : 1);
+				if(i < numattacksRightHand){
+				Action.animation = 0;//attack with left
+				}else if(i >= numattacksLeftHand + numattacksRightHand){
+				Action.animation = 2;//kick attack left
+				}else{
+				Action.animation = 1;//attack with right
+				}
+
 				Action.flag	= 0;
 
 				uint8 hitRate = 0;
@@ -2165,6 +2195,7 @@ void CAICharNormal::ActionAttack()
 				else if ( rand()%100 < hitRate)
 				{
                     bool ignoreSneakAttack = (i != 0); // Sneak attack critical effect should only be given on the first swing.
+					bool ignoreTrickAttack = (i != 0);
 					bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, ignoreSneakAttack));
 
 					float DamageRatio = battleutils::GetDamageRatio(m_PChar,m_PBattleTarget,isCritical); 
@@ -2191,6 +2222,38 @@ void CAICharNormal::ActionAttack()
 							bonusDMG = m_PChar->DEX();
 							if(rand()%100 < 4) Monster->m_THLvl +=1;
 						}
+
+
+
+					//trick attack agi bonus for thf main job
+					if(m_PChar->GetMJob() == JOB_THF && (!ignoreTrickAttack) &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+					{
+						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
+						if(taChar != NULL) bonusDMG = m_PChar->AGI();
+					}
+
+					//check if other jobs have trick attack active to change enmity lateron
+					if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && (!ignoreTrickAttack))
+					{
+						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
+					}
+
+
+
+
+					//trick attack agi bonus for thf main job
+					if(m_PChar->GetMJob() == JOB_THF && (!ignoreTrickAttack) &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+					{
+						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
+						if(taChar != NULL) bonusDMG = m_PChar->AGI();
+					}
+
+					//check if other jobs have trick attack active to change enmity lateron
+					if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && (!ignoreTrickAttack))
+					{
+						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
+					}
+
 
 
 					damage = (uint16)(((PWeapon->getDamage() + bonusDMG + 
@@ -2234,7 +2297,7 @@ void CAICharNormal::ActionAttack()
 				
 				if (Action.reaction == REACTION_HIT)
 				{
-					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1);
+					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar);
 				}
 				else
 				{
