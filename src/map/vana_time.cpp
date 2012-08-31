@@ -92,6 +92,11 @@ uint32 CVanaTime::getSysTime()
 	return (uint32)(time(NULL) + m_customOffset * 2.4f);
 }
 
+uint32 CVanaTime::getVanaTime()
+{
+    return getSysTime() - 1009810800;
+}
+
 int32 CVanaTime::getCustomOffset()
 {
 	return m_customOffset;

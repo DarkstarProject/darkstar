@@ -503,7 +503,7 @@ void CAICharNormal::ActionItemUsing()
 			{
 				m_PItemUsable->setCurrentCharges(m_PItemUsable->getCurrentCharges() - 1);
 			}
-			m_PItemUsable->setLastUseTime(CVanaTime::getInstance()->getSysTime() - 1009810800);
+            m_PItemUsable->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
 			m_PChar->pushPacket(new CInventoryItemPacket(m_PItemUsable, m_PItemUsable->getLocationID(), m_PItemUsable->getSlotID()));
 						
 			const int8* fmtQuery = "UPDATE char_inventory \

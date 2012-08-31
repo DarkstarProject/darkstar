@@ -192,7 +192,7 @@ void CTransportHandler::TransportTimer()
             PTransport->PTransportNPC->animation = PTransport->AnimationArrive;
             PTransport->PTransportNPC->loc = PTransport->Dock;
 
-            WBUFL(&PTransport->PTransportNPC->name[0],4) = CVanaTime::getInstance()->getSysTime() - 1009810800;
+            WBUFL(&PTransport->PTransportNPC->name[0],4) = CVanaTime::getInstance()->getVanaTime();
 
             PTransport->Dock.zone->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_SPAWN));
         }
@@ -218,7 +218,7 @@ void CTransportHandler::TransportTimer()
                 PTransport->PTransportNPC->animation = PTransport->AnimationDepart;
                 PTransport->PTransportNPC->loc.boundary = PTransport->Dock.boundary;
 
-                WBUFL(&PTransport->PTransportNPC->name[0],4) = CVanaTime::getInstance()->getSysTime() - 1009810800;
+                WBUFL(&PTransport->PTransportNPC->name[0],4) = CVanaTime::getInstance()->getVanaTime();
 
                 PTransport->Dock.zone->TransportDepart(PTransport->PTransportNPC);
                 PTransport->Dock.zone->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE)); 
@@ -290,12 +290,10 @@ void CTransportHandler::startElevator(int32 elevatorID)
 
 void CTransportHandler::startElevator(Elevator_t * elevator)
 {
-	uint32 timestamp = CVanaTime::getInstance()->getSysTime() - 1009810800;
-
 	elevator->Elevator->animation ^= 1; 
 	
 	elevator->Elevator->name[8] = 8;
-	WBUFL(&elevator->Elevator->name[0],4) = timestamp;
+    WBUFL(&elevator->Elevator->name[0],4) = CVanaTime::getInstance()->getVanaTime();
   
 	if ((elevator->LowerDoor != NULL) && (elevator->UpperDoor != NULL)) 
 	{

@@ -60,7 +60,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 
             if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
             {
-                uint32 currentTime = CVanaTime::getInstance()->getSysTime() - 1009810800;
+                uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
 			    uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
 
 			    WBUFB(data,(0x12)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 

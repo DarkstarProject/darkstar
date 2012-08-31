@@ -89,10 +89,8 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	WBUFB(data,(0x1E)-4) = PChar->GetHPP();
 	WBUFB(data,(0x1F)-4) = PChar->animation;
 
-	uint32 time  = CVanaTime::getInstance()->getSysTime(); 
-
-	WBUFL(data,(0x38)-4) = time;
-	WBUFL(data,(0x3C)-4) = time - 1009810800;
+	WBUFL(data,(0x38)-4) = CVanaTime::getInstance()->getSysTime();
+    WBUFL(data,(0x3C)-4) = CVanaTime::getInstance()->getVanaTime();
 
 	WBUFB(data,(0x44)-4) = PChar->look.face;
 	WBUFB(data,(0x45)-4) = PChar->look.race;

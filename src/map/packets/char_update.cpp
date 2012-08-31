@@ -87,7 +87,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	WBUFB(data,(0x3D)-4) = 0xA0;
 	WBUFB(data,(0x3E)-4) = 0x03;
 
-	WBUFL(data,(0x40)-4) = CVanaTime::getInstance()->getSysTime() - 1009810800;
+    WBUFL(data,(0x40)-4) = CVanaTime::getInstance()->getVanaTime();
     WBUFW(data,(0x44)-4) = PChar->m_Costum;
 
 	if (PChar->animation == ANIMATION_FISHING_START)

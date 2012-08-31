@@ -663,7 +663,9 @@ void CZone::SetWeather(WEATHER weather)
         }
     }
     m_Weather = weather;
-    PushPacket(NULL, CHAR_INZONE, new CWeatherPacket(CVanaTime::getInstance()->getSysTime()- 1009810800, weather));
+    m_WeatherChangeTime = CVanaTime::getInstance()->getVanaTime();
+
+    PushPacket(NULL, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather));
 }
 
 /************************************************************************

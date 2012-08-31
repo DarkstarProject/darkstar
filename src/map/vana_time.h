@@ -69,6 +69,7 @@ public:
 	uint32	 getWeekday();
 	uint32	 getMoonPhase();
 	uint32	 getSysTime();
+    uint32   getVanaTime();
 	int32	 getCustomOffset();
 
 	void	 setCustomOffset(int32 offset);

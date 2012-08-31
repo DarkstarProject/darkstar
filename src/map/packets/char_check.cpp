@@ -58,7 +58,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 				if (PItem->getSubType() & ITEM_CHARGED)
 				{
-					uint32 currentTime = CVanaTime::getInstance()->getSysTime() - 1009810800;
+                    uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
 					uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
 
 					WBUFB(data,(size*2+0x04)-4) = 0x01;													

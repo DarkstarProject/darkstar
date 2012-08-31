@@ -47,7 +47,7 @@ CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 SlotID, uint16 Tax)
 
 	    if (PItem->getSubType() & ITEM_CHARGED)
 	    {
-		    uint32 currentTime = CVanaTime::getInstance()->getSysTime() - 1009810800;
+            uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
 		    uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
 
 		    WBUFB(data,(0x11)-4) = 0x01;													    // флаг ITEM_CHARGED
