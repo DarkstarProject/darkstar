@@ -2157,21 +2157,25 @@ void CAICharNormal::ActionAttack()
 				}
 				uint16 damage = 0;
 
-				//todo: kick attacks
-				// во время физической атаки:
-				//	0 - правая рука 
-				//	1 - левая рука 
-				//	2 - правая нога (только H2H) 
-				//	3 - левая нога  (только H2H)
-
-				//Action.animation  = (i < numattacksRightHand ? 0 : 1);
-				if(i < numattacksRightHand){
-				Action.animation = 0;//attack with left
-				}else if(i >= numattacksLeftHand + numattacksRightHand){
-				Action.animation = 2;//kick attack left
+				if(m_PChar->GetMJob() == JOB_MNK && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK)){
+					//TODO: footwork changes dmg and weapoin delay - for now just change animation
+						if(i < numattacksRightHand){
+							Action.animation = 2;//kick right leg
+						}else if(i >= numattacksLeftHand + numattacksRightHand){
+							Action.animation = 2;//kick right leg
+						}else{
+							Action.animation = 3;//kick left leg
+						}			
 				}else{
-				Action.animation = 1;//attack with right
+						if(i < numattacksRightHand){
+							Action.animation = 0;//attack right hand
+						}else if(i >= numattacksLeftHand + numattacksRightHand){
+							Action.animation = 2;//kick right leg
+						}else{
+							Action.animation = 1;//attack left hand
+						}				
 				}
+
 
 				Action.flag	= 0;
 
