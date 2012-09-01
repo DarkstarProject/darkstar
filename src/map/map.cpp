@@ -36,10 +36,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "ability.h"
 #include "battleutils.h"
 #include "charutils.h"
-#include "itemutils.h"
 #include "guildutils.h"
+#include "itemutils.h"
 #include "linkshell.h"
 #include "map.h"
 #include "packet_system.h"
@@ -175,7 +176,7 @@ int32 do_init(int32 argc, int8** argv)
     traits::LoadTraitsList();
     effects::LoadEffectsParameters();
 	battleutils::LoadSkillTable();
-	battleutils::LoadAbilitiesList();
+	ability::LoadAbilitiesList();
 	battleutils::LoadWeaponSkillsList();
 	battleutils::LoadMobSkillsList();
 	battleutils::LoadEnmityTable();
@@ -221,7 +222,6 @@ void do_final(void)
 	aFree((void*)map_config.mysql_database);
 
 	itemutils::FreeItemList();
-	battleutils::FreeAbilitiesList();
 	battleutils::FreeWeaponSkillsList();
     battleutils::FreeSkillChainDamageModifiers();
 	

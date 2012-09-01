@@ -28,14 +28,12 @@
 #include <vector>
 #include <math.h>
 
-#include "charentity.h"
-#include "map.h"
-#include "petentity.h"
-#include "petutils.h"
-#include "charutils.h"
-#include "zoneutils.h"
 #include "battleutils.h"
+#include "charutils.h"
 #include "grades.h"
+#include "map.h"
+#include "petutils.h"
+#include "zoneutils.h"
 
 #include "ai/ai_pet_dummy.h"
 
@@ -76,11 +74,22 @@ void LoadPetList()
 {
 	FreePetList();
 
-	const int8* fmtQuery = "SELECT pet_list.name, modelid, minLevel, maxLevel, time, mobsize, systemid, mob_pools.familyid, mob_pools.mJob, pet_list.element \
-						    FROM pet_list, mob_pools, mob_family_system \
-							WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
+	const int8* Query = 
+        "SELECT\
+          pet_list.name,\
+          modelid,\
+          minLevel,\
+          maxLevel,\
+          time,\
+          mobsize,\
+          systemid,\
+          mob_pools.familyid,\
+          mob_pools.mJob,\
+          pet_list.element\
+        FROM pet_list, mob_pools, mob_family_system \
+        WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
-	if( Sql_Query(SqlHandle,fmtQuery) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	if( Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 		{

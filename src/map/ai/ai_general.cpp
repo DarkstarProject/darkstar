@@ -286,7 +286,7 @@ void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
 	if (m_ActionType != ACTION_JOBABILITY_START   &&
 		m_ActionType != ACTION_JOBABILITY_FINISH)
 	{
-		m_PJobAbility = battleutils::GetAbility(JobAbilityID);
+		m_PJobAbility = ability::GetAbility(JobAbilityID);
 	}
 }
 

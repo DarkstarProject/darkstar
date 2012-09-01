@@ -27,35 +27,36 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
+#include "petentity.h"
+
 enum PETID
 {
-	PETID_FIRESPIRIT = 0,
-	PETID_ICESPIRIT = 1,
-	PETID_AIRSPIRIT = 2,
-	PETID_EARTHSPIRIT = 3,
-	PETID_THUNDERSPIRIT = 4,
-	PETID_WATERSPIRIT = 5,
-	PETID_LIGHTSPIRIT = 6,
-	PETID_DARKSPIRIT = 7,
-	PETID_CARBUNCLE = 8,
-	PETID_FENRIR = 9,
-	PETID_IFRIT = 10,
-	PETID_TITAN = 11,
-	PETID_LEVIATHAN = 12,
-	PETID_GARUDA = 13,
-	PETID_SHIVA = 14,
-	PETID_RAMUH = 15,
-	PETID_DIABOLOS = 16,
-	PETID_ALEXANDER = 17,
-	PETID_ODIN = 18,
-	PETID_ATOMOS = 19,
-	PETID_CAIT_SITH = 20,
-	PETID_WYVERN = 48
+    PETID_FIRESPIRIT    = 0,
+    PETID_ICESPIRIT     = 1,
+    PETID_AIRSPIRIT     = 2,
+    PETID_EARTHSPIRIT   = 3,
+    PETID_THUNDERSPIRIT = 4,
+    PETID_WATERSPIRIT   = 5,
+    PETID_LIGHTSPIRIT   = 6,
+    PETID_DARKSPIRIT    = 7,
+    PETID_CARBUNCLE     = 8,
+    PETID_FENRIR        = 9,
+    PETID_IFRIT         = 10,
+    PETID_TITAN         = 11,
+    PETID_LEVIATHAN     = 12,
+    PETID_GARUDA        = 13,
+    PETID_SHIVA         = 14,
+    PETID_RAMUH         = 15,
+    PETID_DIABOLOS      = 16,
+    PETID_ALEXANDER     = 17,
+    PETID_ODIN          = 18,
+    PETID_ATOMOS        = 19,
+    PETID_CAIT_SITH     = 20,
+    PETID_WYVERN        = 48
 };
 
 
 class CBattleEntity;
-class CPetEntity;
 
 namespace petutils
 {

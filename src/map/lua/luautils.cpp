@@ -423,21 +423,23 @@ int32 DespawnMob(lua_State* L)
 }
 
 /************************************************************************
-*																		*
-*			Gets a player object via the player's name.					*
-*				Used for GM commands ONLY.								*
+*                                                                       *
+*  Gets a player object via the player's name. Used for GM commands.    *
+*                                                                       *
 ************************************************************************/
+
 int32 GetPlayerByName(lua_State* L) 
 {
 	if( !lua_isnil(L,-1) && lua_isstring(L,-1))
 	{
-		size_t namelen = lua_objlen(L,-1);
-		char* name = (char*)lua_tolstring(L, -1,&namelen);
+		int8* name = (int8*)lua_tolstring(L,-1,NULL);
 
 		for (uint16 zone = 0; zone < 256; ++zone)
         {
 			CCharEntity* PTargetChar = zoneutils::GetZone(zone)->FindPlayerInZone(name);
-			if(PTargetChar!=NULL){
+
+			if (PTargetChar != NULL)
+            {
 				lua_pushstring(L,CLuaBaseEntity::className);
 				lua_gettable(L,LUA_GLOBALSINDEX);
 				lua_pushstring(L,"new");
@@ -449,9 +451,7 @@ int32 GetPlayerByName(lua_State* L)
 			}
 		}
 	}
-	else{
-		ShowError(CL_RED"GetPlayerByName :: Input string is not valid." CL_RESET);
-	}
+    ShowError(CL_RED"GetPlayerByName :: Input string is not valid." CL_RESET);
 	lua_pushnil(L);
 	return 1;
 }

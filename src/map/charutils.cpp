@@ -496,7 +496,7 @@ void LoadChar(CCharEntity* PChar)
         uint32 recastTimestamp = (uint32)Sql_GetIntData(SqlHandle, 8);
 
         Recast_t* PTwoHourRecast = new Recast_t;
-        CAbility* PAbility = battleutils::GetTwoHourAbility(PChar->GetMJob());
+        CAbility* PAbility = ability::GetTwoHourAbility(PChar->GetMJob());
 
         PTwoHourRecast->Type = RECAST_ABILITY;
         PTwoHourRecast->ID = PAbility->getID();
@@ -1586,12 +1586,12 @@ void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 Pe
 	}
 
 	if(PChar->GetMJob() == JOB_SMN || PChar->GetSJob() == JOB_SMN){
-		std::list<CAbility*> AbilitiesList;
-		AbilitiesList = battleutils::GetAbilities(JOB_SMN);
+		std::vector<CAbility*> AbilitiesList;
+		AbilitiesList = ability::GetAbilities(JOB_SMN);
 		
-		for (std::list<CAbility*>::iterator it = AbilitiesList.begin(); it != AbilitiesList.end(); ++it)
+        for (int32 i = 0; i < AbilitiesList.size(); ++i)
 		{
-			CAbility* PAbility = *it;
+			CAbility* PAbility = AbilitiesList.at(i);
 
 			if (PPet->GetMLevel() >= PAbility->getLevel() && PetID>=8 && PetID<=15) //carby/fen/ele avatars NOT diabolos
 			{
@@ -1614,15 +1614,15 @@ void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 Pe
 
 void BuildingCharAbilityTable(CCharEntity* PChar)
 {
-	std::list<CAbility*> AbilitiesList;
+	std::vector<CAbility*> AbilitiesList;
 
 	memset(& PChar->m_Abilities, 0, sizeof(PChar->m_Abilities));
 
-	AbilitiesList = battleutils::GetAbilities(PChar->GetMJob());
+	AbilitiesList = ability::GetAbilities(PChar->GetMJob());
 
-	for (std::list<CAbility*>::iterator it = AbilitiesList.begin(); it != AbilitiesList.end(); ++it)
+    for (int32 i = 0; i < AbilitiesList.size(); ++i)
 	{
-		CAbility* PAbility = *it;
+		CAbility* PAbility = AbilitiesList.at(i);
 
 		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496)
 		{
@@ -1632,13 +1632,14 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 		}
 	}
 
-	AbilitiesList = battleutils::GetAbilities(PChar->GetSJob());
+	AbilitiesList = ability::GetAbilities(PChar->GetSJob());
 
-	for (std::list<CAbility*>::iterator it = AbilitiesList.begin(); it != AbilitiesList.end(); ++it)
+	for (int32 i = 0; i < AbilitiesList.size(); ++i)
 	{
-		CAbility* PAbility = *it;
+		CAbility* PAbility = AbilitiesList.at(i);
 
-		if(PAbility->getID()==45 && PChar->GetSJob()==JOB_DRG) {
+		if(PAbility->getID() == ABILITY_CALL_WYVERN && PChar->GetSJob() == JOB_DRG) 
+        {
 			//DRG Call Wyvern isn't available to /DRG, which is unique among JAs.
 			break;
 		}
@@ -3182,8 +3183,7 @@ uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
 
 void ResetAllTwoHours()
 {
-    const int8* fmtQuery = "UPDATE char_stats SET 2h = 0 WHERE 2h <> 0";
-    Sql_Query(SqlHandle,fmtQuery);
+    Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = 0");
 }
 
 } // namespace charutils

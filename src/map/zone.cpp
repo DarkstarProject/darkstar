@@ -289,6 +289,7 @@ void CZone::LoadZoneWeather()
     }
     else
     {
+        memset(&m_WeatherFrequency, 0, sizeof(m_WeatherFrequency));
         ShowFatalError(CL_RED"CZone::LoadZoneWeather: Cannot load zone weather (%u)\n" CL_RESET, m_zoneID);
     }
 }

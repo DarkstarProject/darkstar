@@ -23,6 +23,8 @@
 
 #include "../../common/utils.h"
 
+#include "../ability.h"
+#include "../alliance.h"
 #include "../battleutils.h"
 #include "../charutils.h"
 #include "../conquest_system.h"
@@ -31,16 +33,11 @@
 #include "../mobutils.h"
 #include "../petutils.h"
 #include "../spell.h"
-#include "../weapon_skill.h"
-#include "../ability.h"
 #include "../vana_time.h"
+#include "../weapon_skill.h"
 #include "../zone.h"
-#include "../charentity.h"
-#include "../mobentity.h"
-#include "../petentity.h"
-#include "../ai/ai_pet_dummy.h"
+
 #include "../lua/luautils.h"
-#include "../alliance.h"
 
 #include "../packets/action.h"
 #include "../packets/char.h"
@@ -54,8 +51,10 @@
 #include "../packets/lock_on.h"
 #include "../packets/message_basic.h"
 #include "../packets/menu_raisetractor.h"
+
 #include "ai_char_normal.h"
-#include "../abilities.h"
+#include "ai_pet_dummy.h"
+
 /************************************************************************
 *																		*
 *  Инициализируем владельца интеллекта (может добавить проверку на		*

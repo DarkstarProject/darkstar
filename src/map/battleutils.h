@@ -62,7 +62,6 @@ enum ENSPELL
 namespace battleutils
 {
 	void	LoadSkillTable();
-	void	LoadAbilitiesList();
 	void	LoadWeaponSkillsList(); 
 	void	LoadMobSkillsList();
 	void	LoadEnmityTable();
@@ -71,19 +70,12 @@ namespace battleutils
 	uint8	GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16	GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
 
-	CAbility*     GetAbility(uint16 AbilityID);
 	CWeaponSkill* GetWeaponSkill(uint16 WSkillID);
 	CMobSkill*    GetMobSkill(uint16 SkillID);
 
-	std::list<CAbility*>     GetAbilities(JOBTYPE JobID);
 	std::list<CWeaponSkill*> GetWeaponSkills(uint8 skill);
 	std::vector<CMobSkill*>  GetMobSkillsByFamily(uint16 FamilyID);
 
-    CAbility* GetTwoHourAbility(JOBTYPE JobID);
-
-	bool	CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID);
-
-	void	FreeAbilitiesList();
 	void    FreeWeaponSkillsList();
 	void	FreeMobSkillsList();
     void    FreeSkillChainDamageModifiers();

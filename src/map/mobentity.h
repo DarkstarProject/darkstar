@@ -82,6 +82,8 @@ public:
 
 	uint8		m_minLevel;		        // минимально-возможный  уровень монстра
 	uint8		m_maxLevel;		        // максимально-возможный уровень монстра
+    uint32      HPmodifier;             // HP in Database (mob_groups)
+    uint32      MPmodifier;             // MP in Database (mob_groups)
 	
 	uint8		m_Type;			        // тип монстра
     uint8       m_Link;                 // взаимопомощь монстрам своего семейства
@@ -96,10 +98,10 @@ public:
 	uint8       m_THLvl;                // Highest Level of Treasure Hunter that apply to drops
 	uint32		m_THPCID;               // ID of last PC that hit the NPC and apply TH onto the NPC
 	uint16		m_Family;
-	uint8		m_SkillStatus;			//status of skills (used 2h/used epic tp move/etc)
+	uint8		m_SkillStatus;			// status of skills (used 2h/used epic tp move/etc)
 
-	uint32		m_unknown; //includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
-	uint8		m_name_prefix; //The ding bats VS Ding bats
+    uint32      m_unknown;              // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+    uint8       m_name_prefix;          // The ding bats VS Ding bats
 	CEnmityContainer* PEnmityContainer;	// система ненависти монстров
 
     bool   CanDeaggro();

@@ -47,7 +47,6 @@
 #include "mobentity.h"
 #include "petentity.h"
 #include "enmity_container.h"
-#include "abilities.h"
 #include "items.h"
 
 
@@ -60,11 +59,9 @@ uint8  g_EnmityTable[100][2];		                            // Holds Enmity Modif
 uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
 uint16 g_SkillChainDamageModifiers[MAX_SKILLCHAIN_LEVEL + 1][MAX_SKILLCHAIN_COUNT + 1]; // Holds damage modifiers for skill chains [chain level][chain count]
 
-CAbility*	  g_PAbilityList[MAX_ABILITY_ID];					// Complete Abilities List
 CWeaponSkill* g_PWeaponSkillList[MAX_WEAPONSKILL_ID];			// Holds all Weapon skills
 CMobSkill*    g_PMobSkillList[MAX_MOBSKILL_ID];					// List of mob skills
 
-std::list<CAbility*>     g_PAbilitiesList[MAX_JOBTYPE];			// Abilities List By Job Type
 std::list<CWeaponSkill*> g_PWeaponSkillsList[MAX_SKILLTYPE];	// Holds Weapon skills by type
 std::vector<CMobSkill*>  g_PMobFamilySkills[MAX_MOB_FAMILY];	// Mob Skills By Family
 
@@ -135,45 +132,6 @@ void LoadSkillTable()
 			{
 				g_SkillRanks[SkillID][y] = cap_value((uint16)Sql_GetIntData(SqlHandle,y), 0, 11);
 			}
-		}
-	}
-}
-
-/************************************************************************
-*  Load Abilities from Database											*
-************************************************************************/
-
-void LoadAbilitiesList()
-{
-	memset(g_PAbilityList,0,sizeof(g_PAbilityList));
-
-	const int8* fmtQuery = "SELECT abilityId, name, job, level, validTarget, recastTime, animation, `range`, isAOE, recastId, CE, VE \
-							FROM abilities \
-                            WHERE job > 0 AND job < %u AND abilityId < %u \
-							ORDER BY job, level ASC";
-
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_JOBTYPE, MAX_ABILITY_ID);
-
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
-		{
-			CAbility* PAbility = new CAbility(Sql_GetIntData(SqlHandle,0));
-		
-			PAbility->setName(Sql_GetData(SqlHandle,1));
-			PAbility->setJob((JOBTYPE)Sql_GetIntData(SqlHandle,2));
-			PAbility->setLevel(Sql_GetIntData(SqlHandle,3));
-			PAbility->setValidTarget(Sql_GetIntData(SqlHandle,4));
-			PAbility->setRecastTime(Sql_GetIntData(SqlHandle,5));
-			PAbility->setAnimationID(Sql_GetIntData(SqlHandle,6));
-			PAbility->setRange(Sql_GetIntData(SqlHandle,7));
-			PAbility->setAOE(Sql_GetIntData(SqlHandle,8));
-			PAbility->setRecastId(Sql_GetIntData(SqlHandle,9));
-			PAbility->setCE(Sql_GetIntData(SqlHandle,10));
-			PAbility->setVE(Sql_GetIntData(SqlHandle,11));
-
-			g_PAbilityList[PAbility->getID()] = PAbility;
-			g_PAbilitiesList[PAbility->getJob()].push_back(PAbility);
 		}
 	}
 }
@@ -285,19 +243,6 @@ void LoadSkillChainDamageModifiers()
 }
 
 /************************************************************************
-*	Clear Abilities List												*
-************************************************************************/
-
-void FreeAbilitiesList()
-{
-	for(int32 AbilityID = 0; AbilityID < MAX_ABILITY_ID; ++AbilityID)
-	{
-		delete g_PAbilityList[AbilityID];
-	}
-}
-
-
-/************************************************************************
 *  Clear Weapon Skills List												*
 ************************************************************************/
 
@@ -350,75 +295,6 @@ bool isValidSelfTargetWeaponskill(int wsid){
 	case 173: //dagan
 	case 190: //myrkr
 		return true;
-	}
-	return false;
-}
-
-/************************************************************************
-*	Get Ability By ID													*
-************************************************************************/
-
-CAbility* GetAbility(uint16 AbilityID)
-{
-	if (AbilityID < MAX_ABILITY_ID)
-	{
-		//ShowDebug(CL_GREEN"Getting CurrentAbility %u \n" CL_RESET, g_PAbilityList[AbilityID]->getID());
-		return g_PAbilityList[AbilityID];
-	}
-	ShowFatalError(CL_RED"AbilityID <%u> is out of range\n" CL_RESET, AbilityID);
-	return NULL;
-}
-
-CAbility* GetTwoHourAbility(JOBTYPE JobID)
-{
-    DSP_DEBUG_BREAK_IF(JobID < JOB_WAR || JobID > JOB_SCH);
-
-    switch(JobID)
-    {
-        case JOB_WAR: return g_PAbilityList[ABILITY_MIGHTY_STRIKES]; break;
-        case JOB_MNK: return g_PAbilityList[ABILITY_HUNDRED_FISTS]; break;
-        case JOB_WHM: return g_PAbilityList[ABILITY_BENEDICTION]; break;
-        case JOB_BLM: return g_PAbilityList[ABILITY_MANAFONT]; break;
-        case JOB_RDM: return g_PAbilityList[ABILITY_CHAINSPELL]; break;
-        case JOB_THF: return g_PAbilityList[ABILITY_PERFECT_DODGE]; break;
-        case JOB_PLD: return g_PAbilityList[ABILITY_INVINCIBLE]; break;
-        case JOB_DRK: return g_PAbilityList[ABILITY_BLOOD_WEAPON]; break;
-        case JOB_BST: return g_PAbilityList[ABILITY_FAMILIAR]; break;
-        case JOB_BRD: return g_PAbilityList[ABILITY_SOUL_VOICE]; break;
-        case JOB_RNG: return g_PAbilityList[ABILITY_EAGLE_EYE_SHOT]; break;
-        case JOB_SAM: return g_PAbilityList[ABILITY_MEIKYO_SHISUI]; break;
-        case JOB_NIN: return g_PAbilityList[ABILITY_MIJIN_GAKURE]; break;
-        case JOB_DRG: return g_PAbilityList[ABILITY_SPIRIT_SURGE]; break;
-        case JOB_SMN: return g_PAbilityList[ABILITY_ASTRAL_FLOW]; break;
-        case JOB_BLU: return g_PAbilityList[ABILITY_AZURE_LORE]; break;
-        case JOB_COR: return g_PAbilityList[ABILITY_WILD_CARD]; break;
-        case JOB_PUP: return g_PAbilityList[ABILITY_OVERDRIVE]; break;
-        case JOB_DNC: return g_PAbilityList[ABILITY_TRANCE]; break;
-        case JOB_SCH: return g_PAbilityList[ABILITY_TABULA_RASA]; break;
-        default: return NULL; break;
-    }
-
-    return NULL;
-}
-
-/************************************************************************
-*	Get Abilities By JobID												*
-************************************************************************/
-
-std::list<CAbility*> GetAbilities(JOBTYPE JobID)
-{
-	return g_PAbilitiesList[JobID];
-}
-
-/************************************************************************
-*	Function may not be needed											*
-************************************************************************/
-
-bool CanUseAbility(CBattleEntity* PAttacker, uint16 AbilityID)
-{
-	if (GetAbility(AbilityID) != NULL)
-	{
-		//...
 	}
 	return false;
 }

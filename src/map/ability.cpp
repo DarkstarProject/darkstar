@@ -151,3 +151,132 @@ uint16 CAbility::getVE()
 {
 	return m_VE;
 }
+
+/************************************************************************
+*                                                                       *
+*  Реализация namespase для работы со способностями                     *
+*                                                                       *
+************************************************************************/
+
+namespace ability
+{
+    CAbility* PAbilityList[MAX_ABILITY_ID];                     // Complete Abilities List
+    std::vector<CAbility*> PAbilitiesList[MAX_JOBTYPE];			// Abilities List By Job Type
+
+    /************************************************************************
+    *                                                                       *
+    *  Load Abilities from Database                                         *
+    *                                                                       *
+    ************************************************************************/
+
+    void LoadAbilitiesList()
+    {
+	    memset(PAbilityList,0,sizeof(PAbilityList));
+
+	    const int8* Query = 
+            "SELECT         \
+              abilityId,    \
+              name,         \
+              job,          \
+              level,        \
+              validTarget,  \
+              recastTime,   \
+              animation,    \
+              `range`,      \
+              isAOE,        \
+              recastId,     \
+              CE,           \
+              VE            \
+            FROM abilities  \
+            WHERE job > 0 AND job < %u AND abilityId < %u \
+            ORDER BY job, level ASC";
+
+	    int32 ret = Sql_Query(SqlHandle, Query, MAX_JOBTYPE, MAX_ABILITY_ID);
+
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    {
+			    CAbility* PAbility = new CAbility(Sql_GetIntData(SqlHandle,0));
+		
+			    PAbility->setName(Sql_GetData(SqlHandle,1));
+			    PAbility->setJob((JOBTYPE)Sql_GetIntData(SqlHandle,2));
+			    PAbility->setLevel(Sql_GetIntData(SqlHandle,3));
+			    PAbility->setValidTarget(Sql_GetIntData(SqlHandle,4));
+			    PAbility->setRecastTime(Sql_GetIntData(SqlHandle,5));
+			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,6));
+			    PAbility->setRange(Sql_GetIntData(SqlHandle,7));
+			    PAbility->setAOE(Sql_GetIntData(SqlHandle,8));
+			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,9));
+			    PAbility->setCE(Sql_GetIntData(SqlHandle,10));
+			    PAbility->setVE(Sql_GetIntData(SqlHandle,11));
+
+			    PAbilityList[PAbility->getID()] = PAbility;
+			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);
+		    }
+	    }
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Get Ability By ID                                                    *
+    *                                                                       *
+    ************************************************************************/
+
+    CAbility* GetAbility(uint16 AbilityID)
+    {
+	    if (AbilityID < MAX_ABILITY_ID)
+	    {
+		    return PAbilityList[AbilityID];
+	    }
+	    ShowFatalError(CL_RED"AbilityID <%u> is out of range\n" CL_RESET, AbilityID);
+	    return NULL;
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Получаем основную способность профессии                              *
+    *                                                                       *
+    ************************************************************************/
+
+    CAbility* GetTwoHourAbility(JOBTYPE JobID)
+    {
+        DSP_DEBUG_BREAK_IF(JobID < JOB_WAR || JobID > JOB_SCH);
+
+        switch(JobID)
+        {
+            case JOB_WAR: return PAbilityList[ABILITY_MIGHTY_STRIKES]; break;
+            case JOB_MNK: return PAbilityList[ABILITY_HUNDRED_FISTS]; break;
+            case JOB_WHM: return PAbilityList[ABILITY_BENEDICTION]; break;
+            case JOB_BLM: return PAbilityList[ABILITY_MANAFONT]; break;
+            case JOB_RDM: return PAbilityList[ABILITY_CHAINSPELL]; break;
+            case JOB_THF: return PAbilityList[ABILITY_PERFECT_DODGE]; break;
+            case JOB_PLD: return PAbilityList[ABILITY_INVINCIBLE]; break;
+            case JOB_DRK: return PAbilityList[ABILITY_BLOOD_WEAPON]; break;
+            case JOB_BST: return PAbilityList[ABILITY_FAMILIAR]; break;
+            case JOB_BRD: return PAbilityList[ABILITY_SOUL_VOICE]; break;
+            case JOB_RNG: return PAbilityList[ABILITY_EAGLE_EYE_SHOT]; break;
+            case JOB_SAM: return PAbilityList[ABILITY_MEIKYO_SHISUI]; break;
+            case JOB_NIN: return PAbilityList[ABILITY_MIJIN_GAKURE]; break;
+            case JOB_DRG: return PAbilityList[ABILITY_SPIRIT_SURGE]; break;
+            case JOB_SMN: return PAbilityList[ABILITY_ASTRAL_FLOW]; break;
+            case JOB_BLU: return PAbilityList[ABILITY_AZURE_LORE]; break;
+            case JOB_COR: return PAbilityList[ABILITY_WILD_CARD]; break;
+            case JOB_PUP: return PAbilityList[ABILITY_OVERDRIVE]; break;
+            case JOB_DNC: return PAbilityList[ABILITY_TRANCE]; break;
+            case JOB_SCH: return PAbilityList[ABILITY_TABULA_RASA]; break;
+        }
+        return NULL;
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Get Abilities By JobID                                               *
+    *                                                                       *
+    ************************************************************************/
+
+    std::vector<CAbility*> GetAbilities(JOBTYPE JobID)
+    {
+	    return PAbilitiesList[JobID];
+    }
+};
