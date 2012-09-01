@@ -120,6 +120,7 @@ public:
     CCharEntity*    FindPlayerInZone(int8* name);                                   // finds the player if exists in zone
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
 
+    bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
 	bool			CanUseMisc(uint16 misc);
     void            SetWeather(WEATHER weatherCondition);
 
@@ -169,7 +170,7 @@ private:
       
 	WEATHER			m_Weather;              // текущая погода
     uint32          m_WeatherChangeTime;    // время начала текущей погоды
-    bool            m_IsStaticWeather;      // погода в зоне никогда не меняется
+    bool            m_IsWeatherStatic;      // погода в зоне никогда не меняется
 
 	uint16			m_tax;					// налог в bazaar 
 	uint16			m_miscMask;				// битовое поле, описывающее возможности использования в зоне определенных умений

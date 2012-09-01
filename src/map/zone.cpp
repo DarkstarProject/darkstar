@@ -181,6 +181,11 @@ bool CZone::CanUseMisc(uint16 misc)
 	return (m_miscMask & misc) == misc;
 }
 
+bool CZone::IsWeatherStatic()
+{
+    return m_IsWeatherStatic;
+}
+
 zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
 {	
 	for(zoneLineList_t::const_iterator  i = m_zoneLineList.begin();
@@ -266,15 +271,16 @@ void CZone::LoadZoneWeather()
     {
         uint16 Frequency = 0;
 
-        for (uint8 i = 0; i < MAX_WEATHER_ID; ++i)
+        for (uint8 weather = 0; weather < MAX_WEATHER_ID; ++weather)
         {
-            m_WeatherFrequency[i] = (uint8)Sql_GetIntData(SqlHandle,i);
+            m_WeatherFrequency[weather] = (uint8)Sql_GetIntData(SqlHandle,weather);
 
-            if (!m_IsStaticWeather)
+            if (m_WeatherFrequency[weather] == 100)
             {
-                m_IsStaticWeather = m_WeatherFrequency[i] == 100;
+                m_IsWeatherStatic = true;
+                SetWeather((WEATHER)weather);
             }
-            Frequency += m_WeatherFrequency[i];
+            Frequency += m_WeatherFrequency[weather];
         }
         if (Frequency != 100)
         {
@@ -283,7 +289,7 @@ void CZone::LoadZoneWeather()
     }
     else
     {
-        //ShowFatalError(CL_RED"CZone::LoadZoneWeather: Cannot load zone weather (%u)\n" CL_RESET, m_zoneID);
+        ShowFatalError(CL_RED"CZone::LoadZoneWeather: Cannot load zone weather (%u)\n" CL_RESET, m_zoneID);
     }
 }
 

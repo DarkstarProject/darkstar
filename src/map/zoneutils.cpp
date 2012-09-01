@@ -64,40 +64,32 @@ void TOTDCharnge(TIMETYPE TOTD)
 *																		*
 ************************************************************************/
 
+// TOTO: общая погода для нескольких зон
+
 void UpdateWeather()
 {
-	uint8 WeatherFrequency = 0;
-	uint8 WeatherChange = 0;
+    uint8 WeatherChange = 0;
+    uint8 WeatherFrequency = 0;
 
-	WEATHER WeatherType = WEATHER_NONE;
+    for (int32 ZoneID = 0; ZoneID < 256; ZoneID++)    
+    {
+        if (!g_PZoneList[ZoneID]->IsWeatherStatic())
+        {
+            WeatherFrequency = 0;
+            WeatherChange = rand()%100;
+			    
+            for (uint8 weather = 0; weather < MAX_WEATHER_ID; ++weather)
+            {
+                WeatherFrequency += g_PZoneList[ZoneID]->m_WeatherFrequency[weather];				
 
-    for(int32 ZoneID = 0; ZoneID < 256; ZoneID++)    
-	{
-		WeatherType = WEATHER_NONE;
-
-		//set weather for shared zones
-		//if((uint8)Sql_GetIntData(SqlHandle,20) != 0)
-		//{
-		//	WeatherType = g_PZoneList[(uint8)Sql_GetIntData(SqlHandle,20)]->GetWeather();
-		//}
-		//else
-		//{
-			//cycle through all weathers
-			for(int32 w = 0; w < MAX_WEATHER_ID; w++)
-			{
-				//generate a new random chance for each weather condidtion
-				WeatherChange = rand()%100+1;
-                WeatherFrequency = g_PZoneList[ZoneID]->m_WeatherFrequency[w];				
-
-				if(WeatherFrequency >= WeatherChange)
-				{
-					WeatherType = (WEATHER)w;
-				}
-			}
-		//}
-        g_PZoneList[ZoneID]->SetWeather(WeatherType);
+                if (WeatherFrequency > WeatherChange)
+                {
+                    g_PZoneList[ZoneID]->SetWeather((WEATHER)weather); break;
+                }
+            }
+        }
     }
-	ShowDebug(CL_CYAN"UpdateWeather Finished\n"CL_RESET);
+    ShowDebug(CL_CYAN"UpdateWeather Finished\n"CL_RESET);
 }
 
 /************************************************************************
