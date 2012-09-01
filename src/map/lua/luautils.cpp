@@ -327,13 +327,13 @@ int32 VanadielMinute(lua_State* L)
 
 /************************************************************************
 *																		*
-*	Return Vanadiel Day element FOR NOW RETURN 0												*
+*	Return Vanadiel Day element											*
 *																		*
 ************************************************************************/
 
 int32 VanadielDayElement(lua_State* L)
 {
-	lua_pushinteger(L, 0);
+	lua_pushinteger(L, CVanaTime::getInstance()->getWeekday());
 	return 1;
 }
 

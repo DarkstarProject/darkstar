@@ -31,11 +31,23 @@ require("scripts/globals/status")
 	WEATHER_GLOOM			= 18;
 	WEATHER_DARKNESS		= 19;
 	
+	FIRESDAY		= 0;
+	EARTHSDAY		= 1;
+	WATERSDAY		= 2;
+	WINDSDAY		= 3;
+	ICEDAY			= 4;
+	LIGHTNINGDAY	= 5;
+	LIGHTSDAY		= 6;
+	DARKSDAY		= 7;
+	
+	dayStrong = {FIRESDAY, EARTHSDAY, WATERSDAY, WINDSDAY, ICEDAY, LIGHTNINGDAY, LIGHTSDAY, DARKSDAY};
+	dayWeak = {WATERSDAY, WINDSDAY, LIGHTNINGDAY, ICEDAY, FIRESDAY, EARTHSDAY, DARKSDAY, LIGHTSDAY};
 	singleWeatherStrong = {WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_RAIN, WEATHER_WIND, WEATHER_SNOW, WEATHER_THUNDER, WEATHER_AURORAS, WEATHER_GLOOM};
 	doubleWeatherStrong = {WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_SQUALL, WEATHER_GALES, WEATHER_BLIZZARDS, WEATHER_THUNDERSTORMS, WEATHER_STELLAR_GLARE, WEATHER_DARKNESS};
 	singleWeatherWeak = {WEATHER_RAIN, WEATHER_WIND, WEATHER_THUNDER, WEATHER_SNOW, WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_GLOOM, WEATHER_AURORAS};
 	doubleWeatherWeak = {WEATHER_SQUALL, WEATHER_GALES, WEATHER_THUNDERSTORMS, WEATHER_BLIZZARDS, WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_DARKNESS, WEATHER_STELLAR_GLARE};
 	elementalObi = {15435, 15438, 15440, 15437, 15436, 15439, 15441, 15442};
+	elementalObiWeak = {15440, 15437, 15439, 15436, 15435, 15438, 15442, 15441};
 	spellAcc = {MOD_FIREACC, MOD_EARTHACC, MOD_WATERACC, MOD_WINDACC, MOD_ICEACC, MOD_THUNDERACC, MOD_LIGHTACC, MOD_DARKACC};
 	strongAffinity = {MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_ICE_AFFINITY, MOD_THUNDER_AFFINITY, MOD_LIGHT_AFFINITY, MOD_DARK_AFFINITY};
 	weakAffinity = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY};
@@ -539,20 +551,37 @@ function addBonuses(caster, spell, target, dmg)
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif caster:getWeather() == singleWeatherWeak[ele] then
-		if math.random() < 0.33 then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
-	end
-	if caster:getWeather() == doubleWeatherStrong[ele] then
+	elseif caster:getWeather() == doubleWeatherStrong[ele] then
 		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
-		elseif caster:getWeather() == doubleWeatherWeak[ele] then
-			if math.random() < 0.33 then
-				dayWeatherBonus = dayWeatherBonus - 0.25;
-			end
+		end
+	elseif caster:getWeather() == doubleWeatherWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
-	--todo: day bonus
+	
+	if VanadielDayElement() == dayStrong[ele] then
+		local legs = caster:getEquipID(7);
+		if legs == 15120 or legs == 15583 then
+			dayWeatherBonus = dayWeatherBonus + 0.05;
+		end
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	elseif VanadielDayElement() == dayWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	end
+		
+	if dayWeatherBonus > 1.35 then
+		dayWeatherBonus = 1.35;
+	end
+	
 	dmg = math.floor(dmg * dayWeatherBonus);
 	
     burst, burstBonus = calculateMagicBurstAndBonus(caster, spell, target);
