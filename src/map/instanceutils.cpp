@@ -300,7 +300,9 @@ namespace instanceutils{
 			else {
 
 				int8 numberOflootGroups = Sql_GetUIntData(SqlHandle,0);
-				uint8 attempts = 0;
+
+				//randomly shuffle the loot before picking process
+				std::random_shuffle(DropList->begin(), DropList->end()); 
 
 				while(numberOflootGroups >= 0)
 				{
