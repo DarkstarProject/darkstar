@@ -303,17 +303,20 @@ void CZone::LoadZoneWeather()
 void CZone::LoadZoneSettings() 
 {
     const int8* Query = 
-        "SELECT             \
-          name,             \
-          zoneip,           \
-          zoneport,         \
-          music,            \
-          battlesolo,       \
-          battlemulti,      \
-          tax,              \
-          misc              \
-        FROM zone_settings  \
-        WHERE zoneid = %u   \
+        "SELECT \
+          zone.name, \
+          zone.zoneip, \
+          zone.zoneport, \
+          zone.music, \
+          zone.battlesolo, \
+          zone.battlemulti, \
+          zone.tax, \
+          zone.misc, \
+          bcnm.name \
+        FROM zone_settings AS zone \
+        LEFT JOIN bcnm_info AS bcnm \
+        USING (zoneid) \
+        WHERE zoneid = %u \
         LIMIT 1";
 
     if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR && 
@@ -330,123 +333,20 @@ void CZone::LoadZoneSettings()
 		m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);			// tax for bazaar
 		m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
 
-		if (m_miscMask & MISC_TREASURE)
-		{
-			m_TreasurePool = new CTreasurePool(TREASUREPOOL_ZONE);
-		}
-
-        // if zone is Instance
-
-        switch(m_zoneID) //all bcnm zones
+        if (Sql_GetData(SqlHandle,8) != NULL) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         { 
-		    case 6:	
-		    case 8:	
-		    case 10:
-		    case 13:
-		    case 17:
-		    case 19:
-		    case 21:
-		    case 23:
-		    case 29:
-		    case 30:
-		    case 31:
-		    case 32:
-		    case 35:
-		    case 36:
-		    case 57:
-		    case 64:
-		    case 67:
-		    case 78:
-		    case 139:
-		    case 140:
-		    case 146:
-		    case 144:
-		    case 168:
-		    case 163:
-		    case 165:
-		    case 170:
-		    case 141:
-		    case 179:
-		    case 180:
-		    case 181:
-			case 185:
-			case 186:
-			case 187:
-			case 188:
-		    case 156:
-		    case 182:
-		    case 201:
-		    case 202:
-		    case 203:
-            case 206:
-		    case 207:
-		    case 209:
-		    case 211:
-			    m_InstanceHandler = new CInstanceHandler(m_zoneID);
+            m_InstanceHandler = new CInstanceHandler(m_zoneID);
 	    }
+        if (m_miscMask & MISC_TREASURE)
+		{
+            m_TreasurePool = new CTreasurePool(TREASUREPOOL_ZONE);
+		}
     }
     else
     {
         ShowFatalError(CL_RED"CZone::LoadZoneSettings: Cannot load zone settings (%u)\n" CL_RESET, m_zoneID);
     }
 }
-
-/************************************************************************
-*                                                                       *
-*  Loads the zones BCNM instances from the database                     *
-*                                                                       *
-*************************************************************************
-
-void CZone::LoadZoneInstances() 
-{
-	const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize \
-						    FROM bcnm_info \
-							WHERE zoneId = %u ";
-					  
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
-
-	if (ret == SQL_ERROR || 
-		Sql_NumRows(SqlHandle) == 0) 
-	{
-		switch(m_zoneID){
-		case 139:
-		case 146:
-		case 206:
-		case 144:
-		case 168:
-			ShowError(CL_RED"CZone::LoadZoneInstances: Cannot load zone BCNM instances (%u)\n" CL_RESET, m_zoneID);
-		}
-	} 
-	else 
-	{
-		CInstanceHandler* PInstHand = new CInstanceHandler(m_zoneID);
-
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS){
-			uint8 instance = 1;
-			while(instance<=3){ //3 instances for everything as far as I know
-				CInstance* PInstance = new CInstance(Sql_GetUIntData(SqlHandle,1));
-			
-				int8* tmpName;
-				Sql_GetData(SqlHandle,0,&tmpName,NULL);
-				PInstance->setBcnmName(tmpName);
-
-				PInstance->setZoneId(m_zoneID);
-				PInstance->setTimeLimit(Sql_GetUIntData(SqlHandle,4));
-				PInstance->setLevelCap(Sql_GetUIntData(SqlHandle,5));
-				PInstance->setDropId(Sql_GetUIntData(SqlHandle,6));
-				PInstance->setMaxParticipants(Sql_GetUIntData(SqlHandle,8));
-				PInstance->setInstanceNumber(instance);
-				PInstance->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle,7);
-
-				PInstHand->storeInstance(PInstance);
-				instance++;
-			}
-
-			//ShowDebug("Added %s \n",tmpName);
-		}
-		m_InstanceHandler = PInstHand;
-	}
-}*/
 
 /************************************************************************
 *																		*

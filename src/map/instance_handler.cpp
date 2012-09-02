@@ -21,27 +21,29 @@
 ===========================================================================
 */
 
-#include "instance_handler.h"
-#include "charentity.h"
-#include "mobentity.h"
-#include "lua/luautils.h"
+#include <string.h>
+
 #include "alliance.h"
+#include "charentity.h"
+#include "instance_handler.h"
+#include "mobentity.h"
+
+#include "lua/luautils.h"
 
 
 CInstanceHandler::CInstanceHandler(uint8 zoneid)
 {
 	m_ZoneId = zoneid;
-	//Dynamis zone (need to add COP dyna zone)
-	if(m_ZoneId > 184 && m_ZoneId < 189 ||  m_ZoneId > 133 && m_ZoneId < 136){
+	
+	if (m_ZoneId > 184 && m_ZoneId < 189 ||  m_ZoneId > 133 && m_ZoneId < 136) //Dynamis zone (need to add COP dyna zone)
+    {
 		m_MaxInstances = 1;
-		m_Instances[0] = NULL;
 	}
-	else{
+	else
+    {
 		m_MaxInstances = 3;
-		for(int i=0; i<3;i++){
-			m_Instances[i] = NULL;
-		}
 	}
+    memset(&m_Instances, 0, sizeof(m_Instances));
 }
 
 void CInstanceHandler::handleInstances(uint32 tick){
