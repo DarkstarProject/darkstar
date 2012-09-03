@@ -329,7 +329,17 @@ bool CInstance::isEnemyBelowHPP(uint8 hpp){
 
 //========================DYNAMIS FUNCTIONS=============================================//
 
-//
+//Create dynamis unique ID for player can't cheat by leaving a dynamis before the end and enter the next
+void CInstance::setDynaUniqueID(){
+	m_DynaUniqueID = m_BcnmID + m_StartTime;
+	printf("uniqueid core: %u",m_DynaUniqueID);
+}
+
+uint16 CInstance::getDynaUniqueID(){
+	return m_DynaUniqueID;
+}
+
+//Add player to dynamis
 bool CInstance::addPlayerToDynamis(CCharEntity* PChar){
 	//split to get the reason for debugging
 	if(m_PlayerList.size() >= m_MaxParticipants){

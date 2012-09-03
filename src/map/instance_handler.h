@@ -54,6 +54,7 @@ public:
 	void	wipeInstance(CInstance* inst);
 	
 	//Dynamis Functions
+	int		getUniqueDynaID(uint16 id);
 	int		registerDynamis(uint16 id, CCharEntity* PChar);
 	int		dynamisAddPlayer(uint16 dynaid, CCharEntity* PChar); //Add a player to the dynamis instance
 	int		dynamisMessage(uint16 Param1, uint16 Param2); //Add message on dynamis param1: messageid, param2: parameter

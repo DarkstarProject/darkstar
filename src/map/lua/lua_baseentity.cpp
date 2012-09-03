@@ -4332,6 +4332,18 @@ inline int32 CLuaBaseEntity::isBcnmsFull(lua_State *L){
 	return 1;
 }
 
+// Return unique ID for Dynamis
+inline int32 CLuaBaseEntity::getDynamisUniqueID(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	lua_pushinteger( L, PChar->loc.zone->m_InstanceHandler->getUniqueDynaID(lua_tointeger(L,1)));
+
+	return 1;
+}
+
 // Add time on your dynamis instance
 inline int32 CLuaBaseEntity::addTimeToDynamis(lua_State *L)
 {
@@ -4805,6 +4817,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBCNMloot),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDynamisUniqueID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToDynamis),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToDynamis),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInDynamis),

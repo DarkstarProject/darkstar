@@ -164,6 +164,7 @@ public:
 	int32 getInstanceID(lua_State*);		//returns 1 2 or 3 if the player can enter a bcnm with the instance assigned
 	int32 getBCNMloot(lua_State*);			//triggers if the player opens the chest inside bcnm
 
+	int32 getDynamisUniqueID(lua_State*);	//Get unique Dynamis ID
 	int32 addPlayerToDynamis(lua_State*);	//Add player to the Dynamis
 	int32 addTimeToDynamis(lua_State*);		//Add time to the Dynamis
 	int32 isInDynamis(lua_State*);			//If player is in Dynamis return true else false

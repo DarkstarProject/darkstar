@@ -35,13 +35,23 @@ end;
 
 -- Finish 8: enter
 --player:startEvent(0x00c8,2,0,0,3,64,VIAL_OF_SHROUDED_SAND,4236,4237,0);
+
 function onTrigger(player,npc)
 	
---	if(player:getVar("Dynamis_Status") == 1) then
---		player:startEvent(0x00CB); -- cs with Cornelia
---	elseif(player:hasKeyItem(VIAL_OF_SHROUDED_SAND) and player:getVar("dynaWait1Day") ~= tonumber(os.date("%j"))) then
-		player:startEvent(0x00c9,2);
---	end
+	if(player:getVar("Dynamis_Status") == 1) then
+		player:startEvent(0x00CB); -- cs with Cornelia
+	elseif(player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
+		realDay = tonumber(os.date("%j"))
+		dynaWaitxDay = player:getVar("dynaWait1Day");
+		if(player:getMainLvl() < 65) then
+			player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,65);
+		elseif(dynaWaitxDay ~= realDay or (dynaWaitxDay == realDay and player:getVar("DynaBastokID") == GetServerVariable("[DynaBastok]UniqueID"))) then
+			player:startEvent(0x00c9,2);
+		else
+			dayRemaining = 24 - tonumber(os.date("%H"));
+			player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,2);
+		end
+	end
 	
 end; 
 

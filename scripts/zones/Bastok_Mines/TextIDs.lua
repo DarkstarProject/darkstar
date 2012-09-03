@@ -14,6 +14,10 @@ CONQUEST = 10901; -- You've earned conquest points!
 -- Mission Dialogs
 ORIGINAL_MISSION_OFFSET = 6439; -- You can consult the “Mission” section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
  YOU_ACCEPT_THE_MISSION = 6434; -- You have accepted the mission.
+ 
+ -- Dynamis dialogs
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 11516; -- Players who have not reached level <number> are prohibited from entering Dynamis.
+	  YOU_CANNOT_ENTER_DYNAMIS = 11514; -- You cannot enter Dynamis - Bastok for x day (Vana'diel time)
 
 -- Dialog Texts
   VIRNAGE_DIALOG_1 = 10778; -- They stayed in a citadel on the Sauromugue Champaign. The paint may be there still! I have heard people here say you are a great adventurer. Please, help the Goddess in Her hour of need!

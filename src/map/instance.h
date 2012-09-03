@@ -112,6 +112,8 @@ public:
 	bool		isReserved(); //true if someone has a valid entry for this bcnm
 
 	//Dynamis functions
+	void		setDynaUniqueID();
+	uint16		getDynaUniqueID();
 	bool		addPlayerToDynamis(CCharEntity* PChar);
 	void		addTimeLimit(uint32 time);
 	bool		finishDynamis();
@@ -138,6 +140,7 @@ private:
 	uint32		m_DropId;
 	uint8		m_LevelCap;
 	uint8		m_MaxParticipants; //1,3,6,12,18,zone
+	uint16		m_DynaUniqueID; // create unique ID for dynamis
 	CCharEntity* m_CurrentInstanceLeader;
 	std::vector<CMobEntity*> m_EnemyList;
 	// std::vector<CCharEntity*> m_PlayerList;

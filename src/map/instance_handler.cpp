@@ -356,6 +356,12 @@ void CInstanceHandler::openTreasureChest(CCharEntity* PChar){
 
 //========================DYNAMIS FUNCTIONS=============================================//
 
+int CInstanceHandler::getUniqueDynaID(uint16 id){
+	
+	CInstance* PInstance = m_Instances[0];
+	return PInstance->getDynaUniqueID();
+}
+
 int CInstanceHandler::registerDynamis(uint16 id, CCharEntity* PChar){
 	if(!hasFreeInstance()){
 		return -1;
@@ -375,10 +381,10 @@ int CInstanceHandler::registerDynamis(uint16 id, CCharEntity* PChar){
 		ShowDebug("InstanceHandler ::1 Added %s to the valid players list for Dynamis %i Instance %i \n",
 			PChar->GetName(),id,PInstance->getInstanceNumber());
 	}
-
-
+	
 	m_Instances[PInstance->getInstanceNumber()-1] = PInstance;
 	PInstance->init();
+	PInstance->setDynaUniqueID();
 	luautils::OnBcnmRegister(PChar,PInstance);
 	return PInstance->getInstanceNumber();
 }
@@ -412,8 +418,8 @@ bool CInstanceHandler::disconnectFromDynamis(CCharEntity* PChar){ //includes war
 		if(m_Instances[0]->delPlayerFromDynamis(PChar)){
 			luautils::OnBcnmLeave(PChar,m_Instances[0],LEAVE_WARPDC);
 			if(!m_Instances[0]->isReserved()){//no more players in BCNM
-				ShowDebug("Detected no more players in Dynamis Instance %i. Cleaning up. \n",
-				m_Instances[0]->getInstanceNumber());
+				ShowDebug("Detected no more players in Dynamis Instance %i. Cleaning up. \n",m_Instances[0]->getInstanceNumber());
+				luautils::OnBcnmLeave(PChar,m_Instances[0],LEAVE_LOSE);
 				m_Instances[0]->finishDynamis();
 			}
 			return true;
