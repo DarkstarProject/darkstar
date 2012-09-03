@@ -268,6 +268,9 @@ public:
 
 	int32 addNationTeleport(lua_State*);	// Add new teleport: addNationTeleport(nation,number)
 	int32 getNationTeleport(lua_State*);	// Get teleport you can use by nation: getNationTeleport(nation)
+	int32 checkDistance(lua_State*);		// Check Distacnce and returns distance number
+	int32 checkBaseExp(lua_State*);			// Check if Monster gives base expirence
+	int32 checkSoloPartyAlliance(lua_State*);	// Check if Player is in Party or Alliance 0=Solo 1=Party 2=Alliance
 };
 
 #endif

@@ -508,7 +508,8 @@ end
 function checkRegime(killer,mob,rid,index)
 
 	if(killer:getVar("fov_regimeid") == rid) then --player is doing this regime
-		if ((killer:getMainLvl()-mob:getMainLvl() <= PLAYER_ABOVE_MOBLEVEL_DIFF and killer:getMainLvl()-mob:getMainLvl() >= 0) or (mob:getMainLvl()-killer:getMainLvl() <= PLAYER_BELOW_MOBLEVEL_DIFF and mob:getMainLvl()-killer:getMainLvl() >= 0)) then --should really have a killer:givesExp(mob) boolean function
+		if ((killer:checkSoloPartyAlliance() < 2) and (mob:checkBaseExp()) and (killer:checkDistance(mob) < 100)) then
+		--if ((killer:getMainLvl()-mob:getMainLvl() <= PLAYER_ABOVE_MOBLEVEL_DIFF and killer:getMainLvl()-mob:getMainLvl() >= 0) or (mob:getMainLvl()-killer:getMainLvl() <= PLAYER_BELOW_MOBLEVEL_DIFF and mob:getMainLvl()-killer:getMainLvl() >= 0)) then
             --get the number of mobs needed/killed
             local needed = killer:getVar("fov_numneeded"..index);
             local killed = killer:getVar("fov_numkilled"..index);

@@ -286,8 +286,10 @@ void CAIMobDummy::ActionDropItems()
 							  >= 75 = Kindred Crests ID=2955
 							  >= 90 = High Kindred Crests ID=2956
 					*/
+					uint8 Pzone = PChar->getZone();
 					if(charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 &&
-						rand()%100 < 40 && m_PMob->m_Type == MOBTYPE_NORMAL){ //exp-yielding monster and drop is successful
+						rand()%100 < 40 && m_PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && 
+						Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255))){ //exp-yielding monster and drop is successful
 						//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
 
 						//RULES: Only 1 kind may drop per mob

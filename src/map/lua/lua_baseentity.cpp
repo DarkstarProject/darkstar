@@ -4578,6 +4578,54 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::checkDistance(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
+
+	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
+	CBattleEntity* PMob = (CBattleEntity*)PLuaBaseEntity->GetBaseEntity();
+
+	float calcdistance = distance(PBattle->loc.p, PMob->loc.p);
+
+	lua_pushnumber( L,calcdistance);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::checkBaseExp(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+
+	bool isbaseexp = false;
+	uint32 baseexp = charutils::GetRealExp(PMob->m_HiPCLvl, PMob->GetMLevel());
+	if (baseexp != 0) isbaseexp = true;
+
+	lua_pushboolean( L,isbaseexp);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::checkSoloPartyAlliance(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	uint8 SoloPartyAlliance = 0;
+	if (PChar->PParty != NULL) 
+	{
+		SoloPartyAlliance = 1;
+		if (PChar->PParty->m_PAlliance != NULL) SoloPartyAlliance = 2;
+	}
+
+	lua_pushinteger( L,SoloPartyAlliance);
+	return 1;
+}
+
+//==========================================================//
+
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
 
 Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] = 
@@ -4760,5 +4808,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToDynamis),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToDynamis),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInDynamis),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkDistance),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkBaseExp),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),
 	{NULL,NULL}
 };

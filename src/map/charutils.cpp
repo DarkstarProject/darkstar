@@ -2361,7 +2361,8 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                         PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,0,0,37));
                         continue;
                     }
-                    if (PMob->m_Type == MOBTYPE_NORMAL)
+					uint8 Pzone = PMember->getZone();
+                    if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
 					{
 						if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20 &&
                         PMember->loc.zone == PMob->loc.zone) // Need to move to SIGNET_CHANCE constant
@@ -2369,7 +2370,12 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 							PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
 						}
 					}
-                    AddExperiencePoints(PMember, PMob, exp, baseexp, chainactive);
+					if (PChar->PParty != NULL && PChar->PParty->m_PAlliance != NULL && PMob->m_Type == MOBTYPE_NORMAL) 
+					{
+						if ((Pzone > 38 && Pzone < 43) || (Pzone > 133 && Pzone < 136) || (Pzone > 184 && Pzone < 189)) AddExperiencePoints(PMember, PMob, exp, 1, false);
+						else AddExperiencePoints(PMember, PMob, 1, 1, false);
+					}
+                    else AddExperiencePoints(PMember, PMob, exp, baseexp, chainactive);
                 }
             }
         }
@@ -2519,7 +2525,8 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
             PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,37));
             return;
         }
-        if (PMob->m_Type == MOBTYPE_NORMAL)
+		uint8 Pzone = PChar->getZone();
+        if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
 		{
 			if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
 			{
