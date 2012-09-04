@@ -109,6 +109,7 @@ CZone::CZone(uint8 ZoneID, uint8 RegionID)
 	m_InstanceHandler = NULL;
 	m_Weather = WEATHER_NONE;
     m_WeatherChangeTime = 0;
+    m_IsWeatherStatic = 0;
 
 	LoadZoneLines();
     LoadZoneWeather();
@@ -586,8 +587,10 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 {
     DSP_DEBUG_BREAK_IF(PChar == NULL);
     DSP_DEBUG_BREAK_IF(PChar->loc.zone != this);
+
 	//remove pets
-	if(PChar->PPet!=NULL){
+	if(PChar->PPet != NULL)
+    {
 		charutils::BuildingCharPetAbilityTable(PChar,(CPetEntity*)PChar->PPet,0);//blank the pet commands
 		PChar->PPet->status = STATUS_DISAPPEAR;
 		PChar->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
@@ -608,7 +611,8 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	}
 
 	//remove bcnm status
-	if(m_InstanceHandler!=NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
+	if(m_InstanceHandler != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
+    {
 		if(m_InstanceHandler->disconnectFromBcnm(PChar)){
 			ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n",PChar->GetName());
 		}
@@ -628,7 +632,8 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 			}
 		}
 	}
-	else if(m_InstanceHandler!=NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS)){
+	else if(m_InstanceHandler != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS))
+    {
 		if(m_InstanceHandler->disconnectFromDynamis(PChar)){
 			ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n",PChar->GetName());
 		}
