@@ -86,11 +86,12 @@ uint32 CAlliance::partyCount(void)
 
 void CAlliance::removeParty(CParty * party) 
 {
-	//Verify that the main party is not being dropped.
-	if ( party != this->getMainParty() ) 
-	{
-
 		CAlliance* alliance = party->m_PAlliance;
+		bool mainPartyDisbanding = false;
+
+		//if main party then pass alliance lead to the next (d/c fix)
+		if(alliance->getMainParty() == party){
+			mainPartyDisbanding = true;}
 
 		//delete the party from the alliance list
 		for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i) 
@@ -104,6 +105,12 @@ void CAlliance::removeParty(CParty * party)
 		//update the remaining members of the alliance to show the party left
 		if (alliance != NULL)
 		{
+			//if main party was removed then pass alliance leader
+			if(mainPartyDisbanding == true){
+				alliance->aLeader = alliance->partyList.at(0);
+				alliance->partyList.at(0)->GetMemberFlags(alliance->partyList.at(0)->GetLeader());
+			}
+
 			for (uint8 i = 0; i < alliance->partyList.size(); ++i) 
 			{
 				alliance->partyList.at(i)->ReloadParty();
@@ -115,7 +122,6 @@ void CAlliance::removeParty(CParty * party)
 	    {
 			CCharEntity* PChar = (CCharEntity*)party->members.at(i);
 			PChar->PTreasurePool->DelMember(PChar);
-			//PChar->PTreasurePool = NULL;
 		}
 
 		CCharEntity* PChar = (CCharEntity*)party->GetLeader();
@@ -130,15 +136,12 @@ void CAlliance::removeParty(CParty * party)
 
 				if (PChar->PParty->GetLeader() != PChar)
 				{
-					//crash is here on disband
 					PChar->PTreasurePool = ((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool;
 					((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->AddMember(PChar);
 					((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->UpdatePool(PChar);
-					//PChar->PParty->ReloadTreasurePool(PChar);
 				}
 
 		}
-	 }
 	party->ReloadParty();
       //  Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", 0, m_PartyID);
 }
@@ -147,23 +150,7 @@ void CAlliance::addParty(CParty * party)
 {
 	party->m_PAlliance = this;
 	partyList.push_back(party);
-	/*
-	if (this->partyCount() > 1)
-	{
-		//add the new party to the leading party's treasure pool
-		for (int32 i = 0; i < party->members.size(); ++i) 
-		{
-			CCharEntity* PChar = (CCharEntity*)party->members.at(i);
-			PChar->PTreasurePool->DelMember(PChar);
-			PChar->PTreasurePool = NULL;
 
-			PChar->PTreasurePool = ((CCharEntity*)PChar->PParty->m_PAlliance->getMainParty()->GetLeader())->PTreasurePool;
-			((CCharEntity*)PChar->PParty->m_PAlliance->getMainParty()->GetLeader())->PTreasurePool->AddMember(PChar);
-			((CCharEntity*)PChar->PParty->m_PAlliance->getMainParty()->GetLeader())->PTreasurePool->UpdatePool(PChar);
-			PChar->PParty->ReloadTreasurePool(PChar);
-		}
-	}
-	*/
 	for (uint8 a = 0; a < this->partyList.size(); ++a) 
 	{
 		this->partyList.at(a)->ReloadParty();
