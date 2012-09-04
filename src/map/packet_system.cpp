@@ -39,6 +39,7 @@
 #include "conquest_system.h"
 #include "battleutils.h"
 #include "charutils.h"
+#include "petutils.h"
 #include "fishingutils.h"
 #include "itemutils.h"
 #include "jailutils.h"
@@ -2193,15 +2194,20 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 							PChar->PParty->m_PAlliance->dissolveAlliance();
 							return;
 						}
+					//remove 1 party from alliance
 					PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
 					return;
 				}
 			
 			}
-		}else{//normal party member disband
-			 PChar->PParty->RemoveMember(PChar);
-			 }
+		}
 	}
+
+	//normal party member disband
+	if (PChar->PParty != NULL){
+	PChar->PParty->RemoveMember(PChar);
+	}
+
 	return;
 }
 
@@ -2366,24 +2372,27 @@ void SmallPacket0x076(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		if (PChar->PParty->m_PAlliance != NULL)
 		{
+			PChar->PParty->ReloadPartyMembers(PChar);
+
 			for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
 			{
-					
-				for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++a)
+				if(PChar->PParty->m_PAlliance->partyList.at(i) != PChar->PParty)
 				{
-					PChar->PParty->m_PAlliance->partyList.at(i)->ReloadPartyMembers((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(i)->members.at(a));
+					for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++a)
+					{
+						PChar->PParty->m_PAlliance->partyList.at(i)->ReloadPartyMembers((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(i)->members.at(a));
+					}
 				}
 			}
 		return;
+
+		}else{
+			//normal party - no alliance
+			PChar->PParty->ReloadPartyMembers(PChar);
+			return;
 		}
 	}
 
-	//normal party - no alliance
-	if (PChar->PParty != NULL)
-	{
-		PChar->PParty->ReloadPartyMembers(PChar);
-	}
-	return;
 }
 
 /************************************************************************
