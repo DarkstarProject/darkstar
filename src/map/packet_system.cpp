@@ -338,8 +338,36 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		if (PChar->PParty != NULL)
 		{
-            // удаляем персонажа из группы
+			if(PChar->PParty->m_PAlliance != NULL)
+			{
+				if(PChar->PParty->GetLeader() == PChar)
+				{
+					if(PChar->PParty->members.size() == 1)
+					{
+						if(PChar->PParty->m_PAlliance->partyList.size() == 2)
+						{
+							PChar->PParty->m_PAlliance->dissolveAlliance();
+						}
+						else if(PChar->PParty->m_PAlliance->partyList.size() == 3)
+						{ 
+							PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+						}
+					}
+					else
+					{	//party leader logged off - will pass party lead
+						PChar->PParty->RemoveMember(PChar);
+					}
+				}
+				else
+				{	//not party leader - just drop from party
+					PChar->PParty->RemoveMember(PChar);
+				}
+			}
+			else
+			{
+            //normal party - just drop group
 			PChar->PParty->RemoveMember(PChar);
+			}
 		}
         if (PChar->PLinkshell != NULL) 
         {

@@ -42,14 +42,11 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 	{
 		if (PParty->m_PAlliance!= NULL)
 		{
-			CAlliance* ourAlliance = PParty->m_PAlliance;
-
-			for (uint8 a = 0; a < ourAlliance->partyList.size(); ++a)
+			for (uint8 a = 0; a < PParty->m_PAlliance->partyList.size(); ++a)
 			{
-
-						for (uint8 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i) 
+						for (uint8 i = 0; i < PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
 						{
-							CBattleEntity* PChar = ourAlliance->partyList.at(a)->members.at(i);
+							CBattleEntity* PChar = PParty->m_PAlliance->partyList.at(a)->members.at(i);
 
 							WBUFL(data,12*nextPosition+(0x08)-4) = PChar->id;
 							WBUFW(data,12*nextPosition+(0x0C)-4) = PChar->targid;
