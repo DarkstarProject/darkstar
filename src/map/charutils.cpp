@@ -2692,7 +2692,7 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
 		PChar->RegionPoints[PChar->profile.nation] += ((exp/100)*10); // 10%
 		PChar->pushPacket(new CConquestPacket(PChar));
 	}
-	
+
     if (PChar->jobs.exp[PChar->GetMJob()] >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]))
     {
         if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai)
@@ -2736,8 +2736,14 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
 
             UpdateHealth(PChar);
             PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PMob, PChar->jobs.job[PChar->GetMJob()], 0, 9));
+			PChar->pushPacket(new CCharStatsPacket(PChar));
+			return;
         }
     }
+	SaveCharStats(PChar);
+    SaveCharJob(PChar, PChar->GetMJob());
+    SaveCharExp(PChar, PChar->GetMJob());
+	SaveCharPoints(PChar);
     PChar->pushPacket(new CCharStatsPacket(PChar));
 }
 
