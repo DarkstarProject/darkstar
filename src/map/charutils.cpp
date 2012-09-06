@@ -2186,14 +2186,18 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                 CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
                 if(PMember->getZone() == PMob->getZone())
                 {
-                    if (maxlevel > 50 || maxlevel > (PMember->GetMLevel()+7))
-                    {
-                        exp = (float)baseexp*(float)((float)(PMember->GetMLevel())/(float)(maxlevel));
-                    }
-                    else
-                    {
-                        exp = (float)baseexp*(float)((float)(GetExpNEXTLevel(PMember->GetMLevel()))/(float)(GetExpNEXTLevel(maxlevel)));
-                    }
+                    if (map_config.exp_party_gap_penalties == 1)
+					{
+						if (maxlevel > 50 || maxlevel > (PMember->GetMLevel()+7))
+						{
+							exp = (float)baseexp*(float)((float)(PMember->GetMLevel())/(float)(maxlevel));
+						}
+						else
+						{
+							exp = (float)baseexp*(float)((float)(GetExpNEXTLevel(PMember->GetMLevel()))/(float)(GetExpNEXTLevel(maxlevel)));
+						}
+					}
+					else exp = baseexp;
                     if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) || PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION))
                     {
                         switch(pcinzone)

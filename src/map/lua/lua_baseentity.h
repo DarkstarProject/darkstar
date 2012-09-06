@@ -272,6 +272,7 @@ public:
 	int32 checkDistance(lua_State*);		// Check Distacnce and returns distance number
 	int32 checkBaseExp(lua_State*);			// Check if Monster gives base expirence
 	int32 checkSoloPartyAlliance(lua_State*);	// Check if Player is in Party or Alliance 0=Solo 1=Party 2=Alliance
+	int32 checkExpPoints(lua_State*);		// Exp points penalty for Player vs Max High Player Gap in party
 };
 
 #endif

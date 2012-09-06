@@ -2,9 +2,6 @@ package.loaded["scripts/globals/conquestguards"] = nil;
 require("/scripts/globals/settings");
 require("scripts/globals/conquestguards");
 
-PLAYER_ABOVE_MOBLEVEL_DIFF = 16;  -- Limit for Weaker Monsters than the Player Character
-PLAYER_BELOW_MOBLEVEL_DIFF = 16;  -- Limit for Stronger Monsters than the Player Character
-
 --require("/scripts/globals/spell_definitions");
 
 
@@ -509,7 +506,6 @@ function checkRegime(killer,mob,rid,index)
 
 	if(killer:getVar("fov_regimeid") == rid) then --player is doing this regime
 		if ((killer:checkSoloPartyAlliance() < 2) and (mob:checkBaseExp()) and (killer:checkDistance(mob) < 100)) then
-		--if ((killer:getMainLvl()-mob:getMainLvl() <= PLAYER_ABOVE_MOBLEVEL_DIFF and killer:getMainLvl()-mob:getMainLvl() >= 0) or (mob:getMainLvl()-killer:getMainLvl() <= PLAYER_BELOW_MOBLEVEL_DIFF and mob:getMainLvl()-killer:getMainLvl() >= 0)) then
             --get the number of mobs needed/killed
             local needed = killer:getVar("fov_numneeded"..index);
             local killed = killer:getVar("fov_numkilled"..index);
@@ -529,7 +525,8 @@ function checkRegime(killer,mob,rid,index)
                     if(k1==fov_info.n1 and k2==fov_info.n2 and k3==fov_info.n3 and k4==fov_info.n4) then
                         --complete regime
                         killer:messageBasic(FOV_MSG_COMPLETED_REGIME);
-                        reward = getRegimeReward(rid);
+                        newreward = getRegimeReward(rid);
+                        reward = killer:checkExpPoints(mob, newreward);
                         tabs = killer:getVar("tabs");
                         tabs = tabs+math.floor((reward/10));
                         killer:setVar("tabs",tabs);

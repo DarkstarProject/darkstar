@@ -4636,6 +4636,37 @@ inline int32 CLuaBaseEntity::checkSoloPartyAlliance(lua_State *L){
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::checkExpPoints(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+
+	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
+	float baseexp = (float)lua_tonumber(L,2);
+	float exp = 0;
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	CMobEntity* PMob = (CMobEntity*)PLuaBaseEntity->GetBaseEntity();
+	uint8 charlvl = PChar->GetMLevel();
+	uint8 maxlevel = PMob->m_HiPCLvl;
+	
+	if (map_config.fov_party_gap_penalties == 1)
+	{
+		if (maxlevel > 50 || maxlevel > (charlvl+7))
+		{
+			exp = (float)baseexp*(float)((float)(charlvl)/(float)(maxlevel));
+		}
+		else
+		{
+			exp = (float)baseexp*(float)((float)(charutils::GetExpNEXTLevel(charlvl))/(float)(charutils::GetExpNEXTLevel(maxlevel)));
+		}
+	}
+	else exp = baseexp;
+
+	lua_pushnumber( L,exp);
+	return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -4824,5 +4855,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkDistance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkBaseExp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkExpPoints),
 	{NULL,NULL}
 };
