@@ -30,6 +30,7 @@
 #include "packets/position.h"
 #include "packets/message_basic.h"
 #include "lua/luautils.h"
+#include "zoneutils.h"
 
 
 CInstance::CInstance(CInstanceHandler* hand, uint16 id){
@@ -368,8 +369,44 @@ bool CInstance::finishDynamis(){
 		if(this->delPlayerFromDynamis(m_PlayerList.at(i))){i--;}
 	}
 
-	cleanup();
+	cleanupDynamis();
 	return true;
+}
+
+void CInstance::cleanupDynamis(){
+	ShowDebug("Dynamis cleanup id:%i \n",this->getID());
+
+	//get all mob of this dyna zone
+	const int8* fmtQuery = "SELECT msp.mobid \
+						    FROM mob_spawn_points msp \
+							LEFT JOIN mob_groups mg ON mg.groupid = msp.groupid \
+							WHERE zoneid = %u";
+					  
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, this->getZoneId());
+
+	if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0) {
+		ShowError("Dynamis cleanup : SQL error - Cannot find any ID for Dyna %i \n",this->getID());
+	}else{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			uint32 mobid = Sql_GetUIntData(SqlHandle,0);
+			CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+			if(PMob->GetXPos() != 0.000){
+				PMob->PEnmityContainer->Clear(0);
+				PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+			}
+		}
+	}
+
+	//wipe mob list
+	m_EnemyList.clear();
+
+	//delete instance
+	if(m_Handler==NULL){
+		ShowError("Instance handler is NULL from Dynamis Instance %i \n",m_BcnmID);
+	}
+	m_Handler->wipeInstance(this);
+	delete this;
 }
 
 bool CInstance::delPlayerFromDynamis(CCharEntity* PChar){

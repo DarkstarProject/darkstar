@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  Vanguard Beasttender + Vanguard's Scorpion
+-- NPC:  Gu'Dha Effigy
+-- Mega Boss
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Bastok/TextIDs"] = nil;
 -----------------------------------

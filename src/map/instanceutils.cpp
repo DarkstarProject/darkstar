@@ -109,10 +109,10 @@ namespace instanceutils{
 						//	ShowDebug("Change maat job to %i \n",instance->getPlayerMainJob());
 						}
 				        PMob->SetDespawnTimer(0); //never despawn
-						ShowDebug("Spawned %s id %i inst %i \n",PMob->GetName(),instance->getID(),instance->getInstanceNumber());
+						ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,instance->getID(),instance->getInstanceNumber());
 						instance->addEnemy(PMob);
 				    } else {
-				        ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> is alredy spawned\n" CL_RESET, PMob->GetName());
+				        ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> (%u) is alredy spawned\n" CL_RESET, PMob->GetName(), PMob->id);
 				    }
 				} else {
 				    ShowDebug("SpawnMobForBcnm: mob %u not found\n", mobid);

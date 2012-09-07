@@ -30,7 +30,7 @@ cs = -1;
 			if(inst == 1)then
 				player:bcnmEnter(1280);
 			else
-				player:setPos(112.000,0.994,-72.000,127,0xEA);
+				 return player:setPos(112.000,0.994,-72.000,127,0xEA);
 			end
 		else
 			player:bcnmEnter(1280);
@@ -41,7 +41,7 @@ cs = -1;
 		if(inst == 1)then
 			player:bcnmEnter(1280);
 		else
-			player:setPos(112.000,0.994,-72.000,127,0xEA);
+			return player:setPos(112.000,0.994,-72.000,127,0xEA);
 		end
 	end
 	

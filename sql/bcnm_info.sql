@@ -359,5 +359,10 @@ INSERT INTO `bcnm_info` VALUES ('1184', '78', 'rider_cometh', NULL, NULL, '900',
 -- Abyssea - Empyreal Paradox (we lack useful flags to set for this one)
 -- INSERT INTO `bcnm_info` VALUES ('1248', '255', 'wyrm_god
 
--- Dynamis
+-- Dynamis (dyna + city)
 INSERT INTO `bcnm_info` VALUES ('1280', '186', 'dynamis_bastok', NULL, NULL, '3600', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1281', '185', 'dynamis_sandoria', NULL, NULL, '3600', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1282', '187', 'dynamis_windurst', NULL, NULL, '3600', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1283', '188', 'dynamis_jeuno', NULL, NULL, '3600', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1284', '134', 'dynamis_beaucedine', NULL, NULL, '3600', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1285', '135', 'dynamis_xarcabard', NULL, NULL, '3600', '0', '18', '0', '7');

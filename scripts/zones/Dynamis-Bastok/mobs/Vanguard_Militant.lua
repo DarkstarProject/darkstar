@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  Gi'Pha Manameister
--- Boss Trigger for Gu'Dha Effigy
+-- NPC:  Vanguard Militant
 -----------------------------------
 
 -----------------------------------
@@ -24,12 +23,8 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	SetServerVariable("[DynaBastok]Boss_Trigger",GetServerVariable("[DynaBastok]Boss_Trigger") + 1);
-	
-	-- If 3 boss trigger is killer -> pop the boss
-	if(GetServerVariable("[DynaBastok]Boss_Trigger") == 7) then
-		SpawnMob(17539073);
-		SetServerVariable("[DynaBastok]Boss_Trigger",0);
+	if(mob:getID() == 17539301) then
+		killer:addTimeToDynamis(10);
 	end
 	
 end;

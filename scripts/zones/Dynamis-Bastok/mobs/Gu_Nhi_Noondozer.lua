@@ -24,5 +24,4 @@ end;
 
 function onMobDeath(mob,killer)
 	killer:addTimeToDynamis(30);
-	SetServerVariable("[DynaBastok]Already_Killed",GetServerVariable("[DynaBastok]Already_Killed") + 16);
 end;

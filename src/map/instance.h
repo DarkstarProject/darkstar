@@ -117,6 +117,7 @@ public:
 	bool		addPlayerToDynamis(CCharEntity* PChar);
 	void		addTimeLimit(uint32 time);
 	bool		finishDynamis();
+	void		cleanupDynamis();
 	bool		delPlayerFromDynamis(CCharEntity* PChar);
 
 	uint16		m_RuleMask;
