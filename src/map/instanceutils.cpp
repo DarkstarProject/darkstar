@@ -322,5 +322,46 @@ namespace instanceutils{
 	instance->winBcnm();
 	}
 	
+	bool spawnSecondPartDynamis(CInstance* instance){
+		DSP_DEBUG_BREAK_IF(instance==NULL);
 
+		//get ids from DB
+		const int8* fmtQuery = "SELECT monsterId \
+								FROM bcnm_instance \
+								WHERE bcnmId = %u AND instanceNumber = 2";
+					  
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getID());
+
+		if (ret == SQL_ERROR || 
+			Sql_NumRows(SqlHandle) == 0) 
+		{
+			ShowError("spawnSecondPartDynamis : SQL error - Cannot find any monster IDs for Dynamis %i \n",
+				instance->getID(), instance->getInstanceNumber());
+		}
+		else{
+			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS){
+				uint32 mobid = Sql_GetUIntData(SqlHandle,0);
+				CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+				if (PMob != NULL)
+				{
+				    if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
+				        PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
+				    {
+				        PMob->PBattleAI->SetLastActionTime(0);
+				        PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+
+				        PMob->SetDespawnTimer(0); //never despawn
+						ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,instance->getID(),instance->getInstanceNumber());
+						instance->addEnemy(PMob);
+				    } else {
+				        ShowDebug(CL_CYAN"spawnSecondPartDynamis: <%s> (%u) is alredy spawned\n" CL_RESET, PMob->GetName(), PMob->id);
+				    }
+				} else {
+				    ShowDebug("spawnSecondPartDynamis: mob %u not found\n", mobid);
+				}
+			}
+			return true;
+		}
+		return false;
+	}
 };

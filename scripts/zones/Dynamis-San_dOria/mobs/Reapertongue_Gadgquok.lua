@@ -1,0 +1,38 @@
+-----------------------------------
+-- Area: Dynamis San d'Oria
+-- NPC:  Reapertongue Gadgquok
+-- Boss Trigger for Overlord's Tombstone
+-----------------------------------
+
+-----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
+function OnMobSpawn(mob)
+end;
+
+-----------------------------------
+-- onMobEngaged
+-----------------------------------
+
+function onMobEngaged(mob,target)
+end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+	
+	SetServerVariable("[DynaSandoria]Boss_Trigger",GetServerVariable("[DynaSandoria]Boss_Trigger") + 2);
+	SpawnMob(17535003); -- 036
+	SpawnMob(17535383); -- 143
+	SpawnMob(17535384); -- 144
+	
+	-- If 2 boss trigger is killer -> pop the boss
+	if(GetServerVariable("[DynaSandoria]Boss_Trigger") == 3) then
+		SpawnMob(17534977);
+		SetServerVariable("[DynaSandoria]Boss_Trigger",0);
+	end
+	
+end;

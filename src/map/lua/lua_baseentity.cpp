@@ -4357,6 +4357,18 @@ inline int32 CLuaBaseEntity::addTimeToDynamis(lua_State *L)
 	return 1;
 }
 
+//Launch dynamis mob part 2 (when mega boss is defeated)
+inline int32 CLuaBaseEntity::launchDynamisSecondPart(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	
+	PChar->loc.zone->m_InstanceHandler->launchDynamisSecondPart();
+
+	return 1;
+}
+
 inline int32 CLuaBaseEntity::addPlayerToDynamis(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -4851,6 +4863,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDynamisUniqueID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToDynamis),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToDynamis),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,launchDynamisSecondPart),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInDynamis),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkDistance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkBaseExp),

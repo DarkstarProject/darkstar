@@ -167,6 +167,7 @@ public:
 	int32 getDynamisUniqueID(lua_State*);	//Get unique Dynamis ID
 	int32 addPlayerToDynamis(lua_State*);	//Add player to the Dynamis
 	int32 addTimeToDynamis(lua_State*);		//Add time to the Dynamis
+	int32 launchDynamisSecondPart(lua_State*);//Spawn Mob part 2 when mega boss is defeated
 	int32 isInDynamis(lua_State*);			//If player is in Dynamis return true else false
 
 	int32 getVar(lua_State*);				// Returns a character variable

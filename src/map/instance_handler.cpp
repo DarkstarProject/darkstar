@@ -80,6 +80,7 @@ void CInstanceHandler::handleInstances(uint32 tick){
 						PInstance->pushMessageToAllInBcnm(202,(PInstance->getTimeLimit()-Tremaining));
 					}
 				}
+
 				//if the time is finished, exiting dynamis
 				if(instanceutils::meetsLosingConditions(PInstance,tick)){
 					ShowDebug("Dynamis %i instance %i : Dynamis is finished. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
@@ -406,6 +407,10 @@ int CInstanceHandler::dynamisMessage(uint16 Param1, uint16 Param2){
 	PInstance->pushMessageToAllInBcnm(Param1,Param2);
 
 	return 1;
+}
+
+void CInstanceHandler::launchDynamisSecondPart(){
+	instanceutils::spawnSecondPartDynamis(m_Instances[0]);
 }
 
 /* Disconnecting from Dynamis (including warp)

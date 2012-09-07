@@ -391,10 +391,8 @@ void CInstance::cleanupDynamis(){
 		{
 			uint32 mobid = Sql_GetUIntData(SqlHandle,0);
 			CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-			if(PMob->GetXPos() != 0.000){
-				PMob->PEnmityContainer->Clear(0);
-				PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
-			}
+			PMob->PEnmityContainer->Clear(0);
+			PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
 		}
 	}
 

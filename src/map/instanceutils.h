@@ -42,6 +42,8 @@ namespace instanceutils{
 	//void getHighestTHforBcnm(CInstance* instance); apparently not used in bcnm
 	void getChestItems(CInstance* instance);
 	CInstance* loadInstance(CInstanceHandler* hand, uint16 bcnmid);
+
+	bool spawnSecondPartDynamis(CInstance* instance);
 };
 
 #endif
