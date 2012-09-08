@@ -36,7 +36,7 @@ function onMobEngaged(mob,target)
 				
 				if(spawnList[nb + 1][nbi] <= 20) then
 					
-					mobList = getListDynaMob(spawnList[nb + 1][nbi]);
+					mobList = getListDynaMob(target,spawnList[nb + 1][nbi]);
 					for nbo = 1, table.getn(mobList), 1 do
 						
 						if(GetMobAction(mobList[nbo]) == 0) then
