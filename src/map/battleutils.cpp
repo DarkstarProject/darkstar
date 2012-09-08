@@ -758,7 +758,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
 uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	int acc = 0;
-	uint8 hitrate = 75;
+	int hitrate = 75;
 	if(PAttacker->objtype == TYPE_PC){
 		CCharEntity* PChar = (CCharEntity*)PAttacker;
 		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
@@ -778,8 +778,8 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 
 	int eva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PDefender->AGI()/2;
 	hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
-	hitrate = cap_value(hitrate, 20, 95);
-	return hitrate;
+	uint8 finalhitrate = cap_value(hitrate, 20, 95);
+	return finalhitrate;
 }
 
 //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
