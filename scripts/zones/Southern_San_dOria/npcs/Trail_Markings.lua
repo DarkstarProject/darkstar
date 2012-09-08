@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Bastok Mines
+-- Area:Southern San d'Oria
 -- NPC:  Trail Markings
--- Dynamis-Bastok Enter
+-- Dynamis-San d'Oria Enter
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

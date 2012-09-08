@@ -24,7 +24,11 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	SetServerVariable("[DynaBastok]Boss_Trigger",GetServerVariable("[DynaBastok]Boss_Trigger") + 1);
+	bossTrigger = GetServerVariable("[DynaBastok]Boss_Trigger");
+	
+	if(bossTrigger == 0 or bossTrigger == 2 or bossTrigger == 4 or bossTrigger == 6) then
+		SetServerVariable("[DynaBastok]Boss_Trigger",bossTrigger + 1);
+	end
 	
 	-- If 3 boss trigger is killer -> pop the boss
 	if(GetServerVariable("[DynaBastok]Boss_Trigger") == 7) then
