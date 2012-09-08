@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Dynamis-Bastok/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Bastok/TextIDs");
 
 -----------------------------------
@@ -29,7 +30,10 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	killer:addTimeToDynamis(30); -- Add + 30min
+	if(alreadyReceived(killer,8) == false) then
+		killer:addTimeToDynamis(30); -- Add + 30min
+		addDynamisList(killer,128);
+	end
 	
 	if(killer:hasKeyItem(HYDRA_CORPS_EYEGLASS) = false)then
 		killer:addKeyItem(HYDRA_CORPS_EYEGLASS);

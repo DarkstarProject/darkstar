@@ -3,6 +3,8 @@
 -- NPC:  Vanguard Vindicator
 -----------------------------------
 
+require("scripts/globals/dynamis");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -23,8 +25,9 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	if(mob:getID() == 17539300) then
+	if(mob:getID() == 17539300 and alreadyReceived(killer,7) == false) then
 		killer:addTimeToDynamis(10);
+		addDynamisList(killer,64);
 	end
 	
 end;

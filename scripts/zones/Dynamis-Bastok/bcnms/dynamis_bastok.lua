@@ -8,7 +8,7 @@ function OnBcnmRegister(player,instance)
 	
 	SetServerVariable("[DynaBastok]UniqueID",player:getDynamisUniqueID(1280));
 	SetServerVariable("[DynaBastok]Boss_Trigger",0);
-	SetServerVariable("[DynaBastok]Already_Killed",0);
+	SetServerVariable("[DynaBastok]Already_Received",0);
 	
 end;
 

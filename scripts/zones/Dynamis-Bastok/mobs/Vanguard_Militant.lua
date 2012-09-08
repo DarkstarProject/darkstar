@@ -3,6 +3,8 @@
 -- NPC:  Vanguard Militant
 -----------------------------------
 
+require("scripts/globals/dynamis");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -23,8 +25,9 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	if(mob:getID() == 17539301) then
+	if(mob:getID() == 17539301 and alreadyReceived(killer,6) == false) then
 		killer:addTimeToDynamis(10);
+		addDynamisList(killer,32);
 	end
 	
 end;
