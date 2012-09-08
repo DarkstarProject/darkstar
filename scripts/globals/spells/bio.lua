@@ -16,6 +16,9 @@ function onSpellCast(caster,target,spell)
 	--calculate raw damage
 	basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
 	dmg = calculateMagicDamage(basedmg,1,caster,spell,target,DARK_MAGIC_SKILL,MOD_INT,false);
+	if dmg > 2 then
+		dmg = 2;
+	end
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getMod(MOD_INT)-target:getMod(MOD_INT),DARK_MAGIC_SKILL,1.0);
 	--get the resisted damage
@@ -24,6 +27,7 @@ function onSpellCast(caster,target,spell)
 	dmg = addBonuses(caster,spell,target,dmg);
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
+
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
 	

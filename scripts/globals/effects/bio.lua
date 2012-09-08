@@ -11,8 +11,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	res = 3 * effect:getPower() * (26/512);	-- target:getDef() au lieu du 3
-	target:addMod(MOD_ATT,-res);
+	res = (effect:getPower() * (26/512)) * 100;	-- Bio 1 is 27/512, Bio 2 is 52/512. This is roughly accurate.
+	target:addMod(MOD_ATTP,-res);
 end;
 
 -----------------------------------
@@ -44,6 +44,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	res = 3 * effect:getPower() * (26/512);	-- target:getDef() au lieu du 3
-	target:delMod(MOD_ATT,-res);
+	res = (effect:getPower() * (26/512)) * 100;	-- Bio 1 is 27/512, Bio 2 is 52/512. This is roughly accurate.
+	target:delMod(MOD_ATTP,-res);
 end;

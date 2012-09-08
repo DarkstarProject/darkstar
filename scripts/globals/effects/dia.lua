@@ -17,7 +17,7 @@ require("scripts/globals/status");
 
 function onEffectGain(target,effect)
 	power = effect:getPower();
-	x = ((27 * power - power * 2 + power + 1) / 512) * 100;
+	x = (((26 * power) + 1) / 512) * 100;
 	target:addMod(MOD_DEFP,-x);
 end;
 
@@ -51,6 +51,6 @@ end;
 
 function onEffectLose(target,effect)
 	power = effect:getPower();
-	x = ((27 * power - power * 2 + power + 1) / 512) * 100;
+	x = (((26 * power) + 1) / 512) * 100; --Simplified
 	target:delMod(MOD_DEFP,-x);
 end;
