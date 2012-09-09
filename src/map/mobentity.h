@@ -65,6 +65,12 @@ enum BEHAVIOUR
 	BEHAVIOUR_AGGRO_JOBABILITY	= 0x80,
 };
 
+enum IMMUNITY
+{
+	IMMUNITY_NONE	= 0x00,
+	IMMUNITY_SLEEP	= 0x01,
+};
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -88,6 +94,7 @@ public:
 	uint8		m_Type;			        // тип монстра
     uint8       m_Link;                 // взаимопомощь монстрам своего семейства
 	uint16		m_Behaviour;	        // поведение монстра в различных ситуациях
+	uint32		m_Immunity;				// Immunity to a type of spell
 	SPAWNTYPE	m_SpawnType;	        // условие появления монстра 
 
 	uint8		m_CallForHelp;	        // в перспективе желательно объединить эту переменную с CNpc->unknown 

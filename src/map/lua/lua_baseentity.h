@@ -205,8 +205,10 @@ public:
 	int32 sendTractor(lua_State*);			// send tractor request to char
 
 	int32 updateEnmity(lua_State*);			// Adds Enmity to player for specified mob
-	int32 updateEnmityFromDamage(lua_State*);			// Adds Enmity to player for specified mob for the damage specified
+	int32 updateEnmityFromDamage(lua_State*);// Adds Enmity to player for specified mob for the damage specified
 	int32 updateEnmityFromCure(lua_State*);
+
+	int32 hasImmunity(lua_State*);			// Check if the mob has immunity for a type of spell (list at mobentity.h)
 
 	int32 addStatusEffect(lua_State*);		// Adds status effect to character
     int32 addStatusEffectEx(lua_State*);	// Adds status effect to character
@@ -270,6 +272,7 @@ public:
 
 	int32 addNationTeleport(lua_State*);	// Add new teleport: addNationTeleport(nation,number)
 	int32 getNationTeleport(lua_State*);	// Get teleport you can use by nation: getNationTeleport(nation)
+
 	int32 checkDistance(lua_State*);		// Check Distacnce and returns distance number
 	int32 checkBaseExp(lua_State*);			// Check if Monster gives base expirence
 	int32 checkSoloPartyAlliance(lua_State*);	// Check if Player is in Party or Alliance 0=Solo 1=Party 2=Alliance

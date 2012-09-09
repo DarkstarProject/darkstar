@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
 		return EFFECT_SLEEP_II;
 	end
 	
-	if(target:hasStatusEffect(EFFECT_SLEEP_II)) then
+	if(target:hasImmunity(1) or target:hasStatusEffect(EFFECT_SLEEP_II)) then
 		--No effect
 		spell:setMsg(75);
 	else

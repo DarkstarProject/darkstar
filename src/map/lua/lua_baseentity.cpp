@@ -3754,6 +3754,29 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 }
 
 /************************************************************************
+	Check if the mob has immunity for this type of spell
+	list at mobentity.h
+	return true if he has immunity, else false
+************************************************************************/
+
+inline int32 CLuaBaseEntity::hasImmunity(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	CMobEntity* PMob = ((CMobEntity*)m_PBaseEntity);
+
+	if(PMob->m_Immunity == (uint32)lua_tointeger(L,1)){
+		lua_pushboolean(L, true);
+	}else{
+		lua_pushboolean(L, false);
+	}
+	
+	return 1;
+}
+
+/************************************************************************
 			Calculates the enmity produced by the input cure and
 			applies it to all on the base entity's enemies hate list
 			FORMAT: phealer:(ptarget,amount)
@@ -4871,5 +4894,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkBaseExp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkExpPoints),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasImmunity),
 	{NULL,NULL}
 };
