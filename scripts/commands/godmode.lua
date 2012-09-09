@@ -15,6 +15,8 @@ function onTrigger(player,target)
 		player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,0);
 		player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
 		player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
+		player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
+		player:addStatusEffect(EFFECT_MANAFONT,1,0,0);		
 		player:addStatusEffect(EFFECT_SNEAK_ATTACK,1,0,0);
 		player:addStatusEffect(EFFECT_REGAIN,100,1,0);
 	else
@@ -23,6 +25,8 @@ function onTrigger(player,target)
 		player:delStatusEffect(EFFECT_PERFECT_DODGE);
 		player:delStatusEffect(EFFECT_MIGHTY_STRIKES);
 		player:delStatusEffect(EFFECT_HUNDRED_FISTS);
+		player:delStatusEffect(EFFECT_CHAINSPELL);
+		player:delStatusEffect(EFFECT_MANAFONT);
 		player:delStatusEffect(EFFECT_SNEAK_ATTACK);
 		player:delStatusEffect(EFFECT_REGAIN);
 	end

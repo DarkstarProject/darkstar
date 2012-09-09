@@ -3284,6 +3284,7 @@ inline int32 CLuaBaseEntity::addExp(lua_State *L)
     return 0;
 }
 
+
 /************************************************************************
 *                                                                       *
 *  GM command @changeJOB !!! FOR DEBUG ONLY !!!                         *
@@ -3331,7 +3332,6 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*  GM command @setlevel !!! FOR DEBUG ONLY !!!                          *
 *  GM command @changesJOB !!! FOR DEBUG ONLY !!!                        *
 *                                                                       *
 ************************************************************************/
@@ -3394,6 +3394,7 @@ inline int32 CLuaBaseEntity::setsLevel(lua_State *L)
 
 	//PChar->jobs.exp[PChar->GetSJob()] = 0;
 	PChar->jobs.job[PChar->GetSJob()] = (uint8)lua_tointeger(L,1);
+	PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
 	charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
@@ -3440,6 +3441,7 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
 	PChar->SetMLevel((uint8)lua_tointeger(L,1));
 	PChar->jobs.exp[PChar->GetMJob()] = 0;
 	PChar->jobs.job[PChar->GetMJob()] = (uint8)lua_tointeger(L,1);
+	PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
 	charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
