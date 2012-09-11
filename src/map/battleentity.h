@@ -302,6 +302,12 @@ enum SKILLCHAIN_ELEMENT
     SC_DARKNESS_II   = 16, // Lv4 Darkness
 };
 
+enum IMMUNITY
+{
+	IMMUNITY_NONE	= 0x00,
+	IMMUNITY_SLEEP	= 0x01,
+};
+
 #define MAX_SKILLCHAIN_LEVEL (4)
 #define MAX_SKILLCHAIN_COUNT (5)
 
@@ -343,6 +349,7 @@ public:
 	health_t	    health;						// hp,mp,tp
 	stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
 	skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
+	uint32			m_Immunity;
 
     uint16          STR();
     uint16          DEX();                      
@@ -357,6 +364,7 @@ public:
 
 	bool		    isDead();					// проверяем, мертва ли сущность
 	bool			isInDynamis();
+	bool			hasImmunity(uint32 imID);
 
 	JOBTYPE		    GetMJob();					// главная профессия
 	JOBTYPE		    GetSJob();					// дополнительная профессия

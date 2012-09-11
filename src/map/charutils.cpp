@@ -2562,6 +2562,7 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 
 	//apply retention percent
 	exploss = exploss*(1-retainPercent);
+	exploss = exploss * map_config.exp_rate;
 	
 	//loses xxx exp message
 	PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exploss, 0, 10));

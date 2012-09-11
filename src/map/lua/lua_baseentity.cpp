@@ -3765,9 +3765,7 @@ inline int32 CLuaBaseEntity::hasImmunity(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-	CMobEntity* PMob = ((CMobEntity*)m_PBaseEntity);
-
-	if(PMob->m_Immunity == (uint32)lua_tointeger(L,1)){
+	if(((CBattleEntity*)m_PBaseEntity)->hasImmunity((uint32)lua_tointeger(L,1))){
 		lua_pushboolean(L, true);
 	}else{
 		lua_pushboolean(L, false);

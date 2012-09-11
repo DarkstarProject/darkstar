@@ -91,6 +91,16 @@ bool CBattleEntity::isInDynamis()
 	return (Pzone > 184 && Pzone < 189 ||  Pzone > 133 && Pzone < 136);
 }
 
+// return true if the mob has immunity
+bool CBattleEntity::hasImmunity(uint32 imID)
+{
+	if(objtype == TYPE_MOB){
+		IMMUNITY mobImmunity = (IMMUNITY)imID;
+		return (m_Immunity == mobImmunity);
+	}
+	return false;
+}
+
 /************************************************************************
 *                                                                       *
 *  Пересчитываем максимальные значения hp и mp с учетом модификаторов   *
