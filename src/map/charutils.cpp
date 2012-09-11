@@ -2690,13 +2690,8 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
 	}
 
     PChar->jobs.exp[PChar->GetMJob()] += exp;
-	// Conquest point
-	if(conquest::GetRegionOwner(conquest::GetCurrentRegion(PChar->getZone())) == PChar->profile.nation)
-	{
-		PChar->RegionPoints[PChar->profile.nation] += ((exp/100)*10); // 10%
-		PChar->pushPacket(new CConquestPacket(PChar));
-	}
-
+    conquest::AddConquestPoints(PChar, exp);
+    
     if (PChar->jobs.exp[PChar->GetMJob()] >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]))
     {
         if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai)

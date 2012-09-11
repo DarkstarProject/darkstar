@@ -322,12 +322,21 @@ enum REGIONTYPE
 	REGION_UNKNOWN			= 255
 };
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+class CCharEntity;
 
 namespace conquest
 {
-	uint8 GetBalance();
-	uint8 GetNexTally();
-    uint8 GetRegionOwner(REGIONTYPE RegionID);
+	uint8  GetBalance();
+	uint8  GetNexTally();
+    uint8  GetRegionOwner(REGIONTYPE RegionID);
+
+    uint32 AddConquestPoints(CCharEntity* PChar, uint32 exp);
 
 	REGIONTYPE GetCurrentRegion(uint8 ZoneID);
 };

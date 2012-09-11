@@ -22,6 +22,7 @@
 */
 
 #include "conquest_system.h"
+#include "charentity.h"
 #include "vana_time.h"
 
 /************************************************************************
@@ -53,6 +54,31 @@ namespace conquest
     {
 	    uint32 currData = CVanaTime::getInstance()->getDate() / 1440;
 	    return (uint8)(175 - ((currData - 85)%175));
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Добавляем персонажу conquest points, основываясь на полученном опыте *
+    *                                                                       *
+    ************************************************************************/
+
+    // TODO: необходимо учитывать добавленные очки для еженедельного подсчета conquest
+
+    uint32 AddConquestPoints(CCharEntity* PChar, uint32 exp)
+    {
+        // ВНИМЕНИЕ: не нужно отправлять персонажу CConquestPacket, 
+        // т.к. клиент сам запрашивает этот пакет через фиксированный промежуток времени
+
+        REGIONTYPE region = GetCurrentRegion(PChar->getZone());
+
+        if(region != REGION_UNKNOWN)
+        {
+            // 10% if region control is player's nation 
+            // 15% otherwise
+            
+            PChar->RegionPoints[PChar->profile.nation] += exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
+        }
+        return 0; // added conquest points (пока не вижу в этом определенного смысла)
     }
 
     /************************************************************************
