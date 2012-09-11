@@ -143,7 +143,6 @@ void CAlliance::removeParty(CParty * party)
 
 		}
 	party->ReloadParty();
-      //  Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", 0, m_PartyID);
 }
 
 void CAlliance::addParty(CParty * party) 
@@ -154,15 +153,13 @@ void CAlliance::addParty(CParty * party)
 	for (uint8 a = 0; a < this->partyList.size(); ++a) 
 	{
 		this->partyList.at(a)->ReloadParty();
-		
-			for (uint8 i = 0; i < this->partyList.at(a)->members.size(); ++i)
-			{
-				CCharEntity* PChar = (CCharEntity*)this->partyList.at(a)->members.at(i);
-				this->partyList.at(a)->ReloadTreasurePool(PChar);
-				charutils::SaveCharStats(PChar);
-			}
 	}
-
+		
+	for (uint8 i = 0; i < party->members.size(); ++i)
+	{
+		party->ReloadTreasurePool((CCharEntity*)party->members.at(i));
+		charutils::SaveCharStats((CCharEntity*)party->members.at(i));
+	}
 }
 
 

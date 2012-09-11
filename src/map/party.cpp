@@ -84,7 +84,7 @@ void CParty::DisbandParty()
     {
         PushPacket(NULL, 0, new CPartyDefinePacket(NULL));
 
-	    for (uint32 i = 0; i < members.size(); ++i) 
+	    for (uint8 i = 0; i < members.size(); ++i) 
 	    {
 		    CCharEntity* PChar = (CCharEntity*)members.at(i);
 
@@ -402,9 +402,9 @@ void CParty::ReloadParty()
 	{
 		CAlliance* ourAlliance = this->m_PAlliance;
 
-		for (int32 a = 0; a < ourAlliance->partyList.size(); ++a)
+		for (uint8 a = 0; a < ourAlliance->partyList.size(); ++a)
 		{
-				for (int32 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i) 
+				for (uint8 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i) 
 				{
 					CCharEntity* PChar = (CCharEntity*)ourAlliance->partyList.at(a)->members.at(i);
 
@@ -420,7 +420,7 @@ void CParty::ReloadParty()
 
 
 	//regular party
-	for (int32 i = 0; i < members.size(); ++i) 
+	for (uint8 i = 0; i < members.size(); ++i) 
 	{
 		CCharEntity* PChar = (CCharEntity*)members.at(i);
 
@@ -450,9 +450,9 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
 		{
 			CAlliance* ourAlliance = PChar->PParty->m_PAlliance;
 
-			for (int32 a = 0; a < ourAlliance->partyList.size(); ++a)
+			for (uint8 a = 0; a < ourAlliance->partyList.size(); ++a)
 			{
-				for (int32 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i)
+				for (uint8 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i)
 				{
 					PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)ourAlliance->partyList.at(a)->members.at(i), i, PChar->getZone()));
 				}
@@ -465,7 +465,7 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
-    for (int32 i = 0; i < members.size(); ++i) 
+    for (uint8 i = 0; i < members.size(); ++i) 
 	{
         PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)members.at(i), i, PChar->getZone()));
     }
@@ -480,12 +480,10 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
 void CParty::ReloadTreasurePool(CCharEntity* PChar)
 {
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
-	//cant have this for alliance
-	//DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
-	if (PChar->PTreasurePool != NULL &&
-		PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE)
+	if (PChar->PTreasurePool != NULL && PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE){
 		return;
+	}
 
 
 	//alliance
@@ -499,9 +497,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 				{
 					CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 
-					if (PPartyMember != PChar &&
-						PPartyMember->PTreasurePool != NULL &&
-						PPartyMember->getZone() == PChar->getZone())
+					if (PPartyMember != PChar && PPartyMember->PTreasurePool != NULL &&	PPartyMember->getZone() == PChar->getZone())
 					{			
 						if (PChar->PTreasurePool != NULL)
 						{
@@ -513,32 +509,26 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 					}
 				}
 	
-			}
-		}
+			}//regular party
+		}else if (PChar->PParty->m_PAlliance == NULL){
+					for (uint8 i = 0; i < members.size(); ++i){
+						CCharEntity* PPartyMember = (CCharEntity*)members.at(i);
+
+						if (PPartyMember != PChar &&
+							PPartyMember->PTreasurePool != NULL &&
+							PPartyMember->getZone() == PChar->getZone())
+						{			
+							if (PChar->PTreasurePool != NULL)
+							{
+								PChar->PTreasurePool->DelMember(PChar);
+							}
+							PChar->PTreasurePool = PPartyMember->PTreasurePool;
+							PChar->PTreasurePool->AddMember(PChar);
+							return;
+						}
+					}
+				}						
 	}
-
-	//regular party
-	if (PChar->PParty->m_PAlliance == NULL)
-	{
-		for (uint32 i = 0; i < members.size(); ++i) 
-		{
-			CCharEntity* PPartyMember = (CCharEntity*)members.at(i);
-
-			if (PPartyMember != PChar &&
-				PPartyMember->PTreasurePool != NULL &&
-				PPartyMember->getZone() == PChar->getZone())
-			{			
-				if (PChar->PTreasurePool != NULL)
-				{
-					PChar->PTreasurePool->DelMember(PChar);
-				}
-				PChar->PTreasurePool = PPartyMember->PTreasurePool;
-				PChar->PTreasurePool->AddMember(PChar);
-				return;
-			}
-		}
-	}
-
 
 	if (PChar->PTreasurePool == NULL)
 	{

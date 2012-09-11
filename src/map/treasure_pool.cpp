@@ -85,7 +85,11 @@ void CTreasurePool::AddMember(CCharEntity* PChar)
 	if (m_TreasurePoolType == TREASUREPOOL_SOLO && members.size() > 1)
 	{
 		m_TreasurePoolType = TREASUREPOOL_PARTY;
+	}else if (m_TreasurePoolType == TREASUREPOOL_PARTY && members.size() > 6)
+	{
+		m_TreasurePoolType = TREASUREPOOL_ALLIANCE;
 	}
+
 }
 
 /************************************************************************

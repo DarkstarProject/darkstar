@@ -223,7 +223,7 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 						return true;
 					}
 				}
-		}
+			 }
 	}
 	return false;
 }
@@ -2024,8 +2024,7 @@ void CAICharNormal::ActionAttack()
                                 return;
 			                }
 		                }
-	                }
-                    else if (PTarget->m_OwnerID.id == m_PChar->id ||
+	                }else if (PTarget->m_OwnerID.id == m_PChar->id ||
                             (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar))
                     {
                         m_PBattleTarget = PTarget;

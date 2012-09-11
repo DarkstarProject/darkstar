@@ -2010,7 +2010,7 @@ void UpdateHealth(CCharEntity* PChar)
     if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
 	if (PChar->PParty != NULL)
-	{	
+	{
 		if (PChar->PParty->m_PAlliance == NULL)
 		{
 			PChar->PParty->PushPacket(PChar, PChar->getZone(), new CCharHealthPacket(PChar));
