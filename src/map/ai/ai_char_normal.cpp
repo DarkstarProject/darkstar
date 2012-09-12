@@ -2110,8 +2110,8 @@ void CAICharNormal::ActionAttack()
             m_PChar->m_ActionList.clear();
 
 			Action.ActionTarget = m_PBattleTarget;
-			uint32 numattacksLeftHand = 0;
-			uint32 numKickAttacks = 0;
+			uint8 numattacksLeftHand = 0;
+			uint8 numKickAttacks = 0;
 
 			CBattleEntity* taChar = NULL;
 
@@ -2297,7 +2297,7 @@ void CAICharNormal::ActionAttack()
 				}
 				m_PChar->m_ActionList.push_back(Action);
 			}
-            DSP_DEBUG_BREAK_IF(m_PChar->m_ActionList.size > 16);
+            DSP_DEBUG_BREAK_IF(m_PChar->m_ActionList.size() > 16);
             
 			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
