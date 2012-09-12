@@ -2818,6 +2818,26 @@ inline int32 CLuaBaseEntity::canUseCostume(lua_State *L)
     return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Проверяем, может ли персонаж использовать chocobo                    *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::canUseChocobo(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if (m_PBaseEntity->animation == ANIMATION_CHOCOBO || charutils::hasKeyItem((CCharEntity*)m_PBaseEntity, 138)) //keyitem CHOCOBO_LICENSE
+    {
+        lua_pushinteger(L, 445);
+        return 1;
+    }
+    lua_pushinteger(L, (m_PBaseEntity->loc.zone->CanUseMisc(MISC_CHOCOBO) ? 0 : 316));
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::setStatus(lua_State *L)
@@ -4810,6 +4830,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,speed),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseCostume),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatus),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPVPFlag),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendRaise),
