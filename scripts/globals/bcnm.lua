@@ -1,10 +1,11 @@
 require("scripts/globals/status");
 
 -- NEW SYSTEM BCNM NOTES
--- The "core" functions TradeBCNM EventUpdateBCNM EventTriggerBCNM EventFinishBCNM all return TRUE if the action performed is covered by the function. This means all the old code will still be executed if the new functions don't support it. This means that there is effectively 'backwards compatibility' with the old system.
+-- The "core" functions TradeBCNM EventUpdateBCNM EventTriggerBCNM EventFinishBCNM all return TRUE if the action performed is covered by the function. 
+-- This means all the old code will still be executed if the new functions don't support it. This means that there is effectively 'backwards compatibility' with the old system.
 
---array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
---e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
+-- array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
+-- e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
 -- DO NOT INCLUDE MAAT FIGHTS
 itemid_bcnmid_map = {139,{1553,11}, -- Horlais Peak
 					 144,{1166,68,1178,81,1553,76}, -- Waughroon Shrine
