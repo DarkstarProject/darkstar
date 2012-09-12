@@ -2297,6 +2297,8 @@ void CAICharNormal::ActionAttack()
 				}
 				m_PChar->m_ActionList.push_back(Action);
 			}
+            DSP_DEBUG_BREAK_IF(m_PChar->m_ActionList.size > 16);
+            
 			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 		}
