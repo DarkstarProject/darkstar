@@ -49,6 +49,8 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 	this->type = 0x28;
 	this->size = 0x12;
 
+    DSP_DEBUG_BREAK_IF(PEntity->m_ActionList.size() > 16);
+
 	WBUFL(data,(0x05)-4) = PEntity->id;
 
 	ACTIONTYPE ActionType = PEntity->PBattleAI->GetCurrentAction();
