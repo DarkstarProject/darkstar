@@ -2829,7 +2829,7 @@ inline int32 CLuaBaseEntity::canUseChocobo(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    if (m_PBaseEntity->animation == ANIMATION_CHOCOBO || charutils::hasKeyItem((CCharEntity*)m_PBaseEntity, 138)) //keyitem CHOCOBO_LICENSE
+    if (m_PBaseEntity->animation == ANIMATION_CHOCOBO || !charutils::hasKeyItem((CCharEntity*)m_PBaseEntity, 138)) //keyitem CHOCOBO_LICENSE
     {
         lua_pushinteger(L, 445);
         return 1;
