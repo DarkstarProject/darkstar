@@ -98,7 +98,12 @@ namespace instanceutils{
 				CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 				if (PMob != NULL)
 				{
-				    if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
+				    // This condition is needed for some mob at dynamis, else he don't pop
+					if(PMob->PBattleAI->GetCurrentAction() == ACTION_FADE_OUT){
+						PMob->PBattleAI->SetLastActionTime(0);
+				        PMob->PBattleAI->SetCurrentAction(ACTION_NONE);
+					}
+					if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
 				        PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
 				    {
 				        PMob->PBattleAI->SetLastActionTime(0);
