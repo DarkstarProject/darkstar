@@ -34,43 +34,42 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 {
 	this->type = 0xC8;
 	this->size = 0x7C;
-	int nextPosition = 1;
-	
 
 	//party is an alliance do the double loop
 	if (PParty != NULL)
 	{
 		if (PParty->m_PAlliance!= NULL)
 		{
+            uint8 offset = 0;
+            
 			for (uint8 a = 0; a < PParty->m_PAlliance->partyList.size(); ++a)
 			{
-						for (uint8 i = 0; i < PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
-						{
-							CBattleEntity* PChar = PParty->m_PAlliance->partyList.at(a)->members.at(i);
-
-							WBUFL(data,12*nextPosition+(0x08)-4) = PChar->id;
-							WBUFW(data,12*nextPosition+(0x0C)-4) = PChar->targid;
-							WBUFW(data,12*nextPosition+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
-							WBUFB(data,12*nextPosition+(0x10)-4) = PChar->getZone();
-							nextPosition++;
-						}
-			}
-			return;
-
-		}else{//regular party
-				DSP_DEBUG_BREAK_IF(PParty->members.size() > 6);
-
-				for (uint8 i = 0; i < PParty->members.size(); ++i) 
+				for (uint8 i = 0; i < PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
 				{
-					CBattleEntity* PChar = PParty->members.at(i);
-
-					WBUFL(data,12*i+(0x08)-4) = PChar->id;
-					WBUFW(data,12*i+(0x0C)-4) = PChar->targid;
-					WBUFW(data,12*i+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
-					WBUFB(data,12*i+(0x10)-4) = PChar->getZone();
+					CBattleEntity* PChar = PParty->m_PAlliance->partyList.at(a)->members.at(i);
+                    
+					WBUFL(data,12*offset+(0x08)-4) = PChar->id;
+					WBUFW(data,12*offset+(0x0C)-4) = PChar->targid;
+                    WBUFW(data,12*offset+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
+					WBUFB(data,12*offset+(0x10)-4) = PChar->getZone();
+                    
+					offset++;
 				}
-			 }
+			}
+		}
+        else //regular party
+        {
+			DSP_DEBUG_BREAK_IF(PParty->members.size() > 6);
+
+			for (uint8 i = 0; i < PParty->members.size(); ++i) 
+			{
+				CBattleEntity* PChar = PParty->members.at(i);
+
+				WBUFL(data,12*i+(0x08)-4) = PChar->id;
+				WBUFW(data,12*i+(0x0C)-4) = PChar->targid;
+				WBUFW(data,12*i+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
+				WBUFB(data,12*i+(0x10)-4) = PChar->getZone();
+			}
+        }
 	}
-
-
 }
