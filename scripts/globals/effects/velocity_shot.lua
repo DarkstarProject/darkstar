@@ -1,6 +1,6 @@
 -----------------------------------
 --
---
+--	EFFECT_VELOCITY_SHOT
 --
 -----------------------------------
 
@@ -9,6 +9,10 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_ATTP,-15);
+	target:addMod(MOD_DELAY,15);
+	target:addMod(MOD_RATTP,15);
+	target:addMod(MOD_RANGED_DELAY,-15);
 end;
 
 -----------------------------------
@@ -23,4 +27,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_ATTP,-15);
+	target:delMod(MOD_DELAY,15);
+	target:delMod(MOD_RATTP,15);
+	target:delMod(MOD_RANGED_DELAY,-15);
 end;

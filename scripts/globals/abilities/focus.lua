@@ -10,5 +10,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-   player:addStatusEffect(EFFECT_FOCUS,1,0,120);
+	local sLegs = player:getEquipID(4);
+	local power = 20
+	if(sLegs == 12512 or sLegs == 15226) then
+		power = power + 10;
+	end
+   player:addStatusEffect(EFFECT_FOCUS,power,0,120);
 end;
