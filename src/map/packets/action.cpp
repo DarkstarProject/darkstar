@@ -292,6 +292,8 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 
 	for (uint32 i = 0; i < PEntity->m_ActionList.size(); ++i)
 	{
+        DSP_DEBUG_BREAK_IF(i > 16);
+        
 		apAction_t Action = PEntity->m_ActionList.at(i);
 
 		if (Action.ActionTarget != NULL)
