@@ -10,16 +10,10 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
-	if(target:getStatusEffect(EFFECT_BLINDNESS) ~= nil) then
-		target:delStatusEffect(EFFECT_BLINDNESS);
+	if (target:delStatusEffect(EFFECT_BLINDNESS)) then
 		spell:setMsg(83);
 	else
 		spell:setMsg(75);
 	end
-	
-	-- mob = target:getTarget();
-	-- mob:updateEnmity(caster,150,1);
 	return EFFECT_BLINDNESS;
-	
 end;

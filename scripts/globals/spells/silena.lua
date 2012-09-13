@@ -10,16 +10,10 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
-	if(target:getStatusEffect(EFFECT_SILENCE) ~= nil) then
-		target:delStatusEffect(EFFECT_SILENCE);
+	if (target:delStatusEffect(EFFECT_SILENCE)) then
 		spell:setMsg(83);
 	else
 		spell:setMsg(75);
 	end
-	
-	-- mob = target:getTarget();
-	-- mob:updateEnmity(caster,150,1);
 	return EFFECT_SILENCE;
-	
 end;

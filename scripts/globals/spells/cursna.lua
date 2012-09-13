@@ -46,9 +46,5 @@ function onSpellCast(caster,target,spell)
 	else
 		spell:setMsg(75);
 	end
-	
-	-- mob = target:getTarget();
-	-- mob:updateEnmity(caster,150,1);
-	return final;
-	
+	return final;	
 end;

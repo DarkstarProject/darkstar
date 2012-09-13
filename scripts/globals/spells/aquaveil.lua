@@ -13,9 +13,7 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
 	
-	if(target:getStatusEffect(EFFECT_AQUAVEIL) ~= nil) then
-		target:delStatusEffect(EFFECT_AQUAVEIL);
-	end
+	target:delStatusEffect(EFFECT_AQUAVEIL);
 		
 	-- duration is said to be based on enhancing skill with max 5 minutes, but I could find no
 	-- tests that quantify the relationship so I'm using 5 minutes for now.
@@ -26,16 +24,14 @@ function onSpellCast(caster,target,spell)
 		duration = duration * 3;
 	end
 		
-	target:addStatusEffect(EFFECT_AQUAVEIL,AQUAVEIL_INTERR_RATE,0,duration,FLAG_DISPELABLE);
+	target:addStatusEffect(EFFECT_AQUAVEIL,AQUAVEIL_INTERR_RATE,0,duration);
 	--Adjust message for multiple targets.
 --	if(spell:isAOE() == false) then
 		spell:setMsg(230);
 --	else
 --		spell:setMsg(266);
 --	end
-		
-	--target:updateEnmity(caster,300,1);
-	
+
 	return EFFECT_AQUAVEIL;
 	
 end;

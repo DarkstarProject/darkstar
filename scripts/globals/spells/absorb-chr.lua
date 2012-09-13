@@ -13,7 +13,7 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
 	
-	if(target:getStatusEffect(EFFECT_CHR_DOWN) ~= nil) or (caster:getStatusEffect(EFFECT_CHR_BOOST) ~=nil) then
+	if(target:hasStatusEffect(EFFECT_CHR_DOWN) or caster:hasStatusEffect(EFFECT_CHR_BOOST)) then
 		spell:setMsg(75); -- no effect
 	else		
 		bonus = AffinityBonus(caster,spell);
@@ -23,12 +23,9 @@ function onSpellCast(caster,target,spell)
 			spell:setMsg(85);
 		else
 			spell:setMsg(335);
-			target:updateEnmity(caster,640,1);
 			caster:addStatusEffect(EFFECT_CHR_BOOST,ABSORB_SPELL_AMOUNT*resist, ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE); -- caster gains CHR
 			target:addStatusEffect(EFFECT_CHR_DOWN,ABSORB_SPELL_AMOUNT*resist, ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASBLE);    -- target loses CHR
 		end
 	end
-	
 	return EFFECT_CHR_DOWN;
-	
 end;

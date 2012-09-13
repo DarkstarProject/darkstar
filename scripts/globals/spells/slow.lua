@@ -79,8 +79,6 @@ function onSpellCast(caster,target,spell)
 --			spell:setMsg(284);
 --		end
 	end
-	
-	target:updateEnmity(caster,320,1);
-	
+
 	return EFFECT_SLOW;
 end;

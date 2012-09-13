@@ -3761,6 +3761,7 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
+  //DSP_DEBUG_BREAK_IF(lua_gettop(L) > 1);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 
 	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);

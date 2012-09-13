@@ -13,7 +13,7 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
 	
-	if(target:getStatusEffect(EFFECT_MND_DOWN) ~= nil) or (caster:getStatusEffect(EFFECT_MND_BOOST) ~=nil) then
+	if(target:hasStatusEffect(EFFECT_MND_DOWN) or caster:getStatusEffect(EFFECT_MND_BOOST)) then
 		spell:setMsg(75); -- no effect
 	else		
 		bonus = AffinityBonus(caster,spell);
@@ -23,12 +23,9 @@ function onSpellCast(caster,target,spell)
 			spell:setMsg(85);
 		else
 			spell:setMsg(334);
-			target:updateEnmity(caster,640,1);
 			caster:addStatusEffect(EFFECT_MND_BOOST,ABSORB_SPELL_AMOUNT*resist, ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE); -- caster gains MND
 			target:addStatusEffect(EFFECT_MND_DOWN,ABSORB_SPELL_AMOUNT*resist, ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASBLE);    -- target loses MND
 		end
 	end
-	
 	return EFFECT_MND_DOWN;
-	
 end;

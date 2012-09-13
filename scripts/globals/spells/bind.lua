@@ -58,7 +58,6 @@ function onSpellCast(caster,target,spell)
 --		end
 	end
 	
-	target:updateEnmity(caster,320,1);
 	
 	return EFFECT_BIND;
 

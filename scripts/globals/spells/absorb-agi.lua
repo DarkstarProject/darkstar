@@ -13,7 +13,7 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
 	
-	if(target:getStatusEffect(EFFECT_AGI_DOWN) ~= nil) or (caster:getStatusEffect(EFFECT_AGI_BOOST) ~=nil) then
+	if(target:hasStatusEffect(EFFECT_AGI_DOWN) or caster:hasStatusEffect(EFFECT_AGI_BOOST)) then
 		spell:setMsg(75); -- no effect
 	else		
 		bonus = AffinityBonus(caster,spell);
@@ -23,12 +23,9 @@ function onSpellCast(caster,target,spell)
 			spell:setMsg(85);
 		else
 			spell:setMsg(332);
-			target:updateEnmity(caster,640,1);
 			caster:addStatusEffect(EFFECT_AGI_BOOST,ABSORB_SPELL_AMOUNT*resist, ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE); -- caster gains AGI
 			target:addStatusEffect(EFFECT_AGI_DOWN,ABSORB_SPELL_AMOUNT*resist, ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASBLE);    -- target loses AGI
 		end
 	end
-	
 	return EFFECT_AGI_DOWN;
-	
 end;

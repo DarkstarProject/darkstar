@@ -42,7 +42,6 @@ function onSpellCast(caster,target,spell)
 				end;
 				spell:setMsg(237);
 				duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist);
-				target:updateEnmity(caster,300,1);
 				target:addStatusEffect(EFFECT_BURN,DOT, 3, ELEMENTAL_DEBUFF_DURATION,FLAG_ERASBLE);
 			end;
 		end;
