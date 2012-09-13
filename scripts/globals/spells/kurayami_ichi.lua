@@ -24,7 +24,7 @@ function onSpellCast(caster,target,spell)
 		if(duration >= 80) then
 			-- Erases a weaker blind and applies the stronger one
 			if(target:getStatusEffect(EFFECT_BLINDNESS) ~= nil) then
-				if(target:getStatusEffect(EFFECT_BLINDNESS) < power) then
+				if((target:getStatusEffect(EFFECT_BLINDNESS)):getPower() < power) then
 					target:delStatusEffect(EFFECT_BLINDNESS);	
 					target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration);
 					spell:setMsg(267);
