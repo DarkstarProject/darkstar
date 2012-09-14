@@ -26,7 +26,7 @@ function onEffectTick(target,effect)
 	if (healtime > 1) then
 		if (not(target:hasStatusEffect(EFFECT_DISEASE))) then
 			if (target:getContinentID() == 1 and target:hasStatusEffect(EFFECT_SIGNET)) then 
-				target:addHP(10+(3*math.floor(target:getMainLvl()/10))+(healtime-1)*(1+math.floor(target:getMaxHP()/300))+(target:getMod(MOD_HPHEAL)));
+				target:addHP(10+(3*math.floor(target:getMainLvl()/10))+(healtime-2)*(1+math.floor(target:getMaxHP()/300))+(target:getMod(MOD_HPHEAL)));
 			else
 				target:setTP(target:getTP()-10);
 				target:addHP(10+(healtime-2)+(target:getMod(MOD_HPHEAL)));
