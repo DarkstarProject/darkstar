@@ -2149,7 +2149,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         CCharEntity* PInvitee = zoneutils::GetCharFromRegion(
 			charid, 
 			targid, 
-			conquest::GetCurrentRegion(PChar->getZone()));
+            PChar->loc.zone->GetRegionID());
 
 	    if (PInvitee != NULL && !jailutils::InPrison(PInvitee))
 	    {
@@ -2317,7 +2317,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
     CCharEntity* PInviter = zoneutils::GetCharFromRegion(
         PChar->InvitePending.id,
         PChar->InvitePending.targid, 
-        conquest::GetCurrentRegion(PChar->getZone()));
+        PChar->loc.zone->GetRegionID());
 
 	if (PInviter != NULL) 
 	{

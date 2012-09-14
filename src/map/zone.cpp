@@ -29,7 +29,6 @@
 
 #include "battleutils.h"
 #include "charutils.h"
-#include "conquest_system.h"
 #include "enmity_container.h"
 #include "itemutils.h"
 #include "map.h"
@@ -97,12 +96,13 @@ int32 zone_server_region(uint32 tick, CTaskMgr::CTask* PTask)
 *																		*
 ************************************************************************/
 
-CZone::CZone(uint8 ZoneID, uint8 RegionID)
+CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
 {
 	ZoneTimer = NULL;
 
 	m_zoneID = ZoneID;
     m_regionID = RegionID;
+    m_continentID = ContinentID;
     m_Transport = 0;
 	m_TreasurePool = 0;
 	m_RegionCheckTime = 0;
@@ -122,14 +122,19 @@ CZone::CZone(uint8 ZoneID, uint8 RegionID)
 *                                                                       *
 ************************************************************************/
 
-uint8 CZone::GetID()
+ZONEID CZone::GetID()
 {
 	return m_zoneID;
 }
 
-uint8 CZone::GetRegionID()
+REGIONTYPE CZone::GetRegionID()
 {
     return m_regionID;
+}
+
+CONTINENTTYPE CZone::GetContinentID()
+{
+    return m_continentID;
 }
 
 uint32 CZone::GetIP()
