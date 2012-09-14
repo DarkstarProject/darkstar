@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -21,41 +21,35 @@
 ===========================================================================
 */
 
-#ifndef _JAILUTILS_H
-#define _JAILUTILS_H
+#ifndef _CAICHARPRISONER_H
+#define _CAICHARPRISONER_H
 
 #include "../../common/cbasetypes.h"
 
-/*
-TODO: Add functions that can:
-    * Jail or pardon on-line players.  (Currently handled in script.)
-    * Jail or pardon off-line players.
-    * Check the prison status of players. (on-line and off-line)
-    * Ban or allow account access. (on-line and off-line)
-    * Set duration of jail/ban sentences.
-
-TODO: Common actions/procedures/needs include:
-    * Set/Check char_var to indicate being character being jailed.
-    * Set/Check accounts_banned to indicate account being banned.
-    * Set/Check jail/ban sentence duration.
-    * Moving character to and from Mordion Gaol. (on-line and off-line)
-        - Off-line players could be moved upon login.
-*/
+#include "ai_general.h"
 
 /************************************************************************
 *                                                                       *
-*                                                                       *
+*  AI поведения персонажа, заключенного под стражу                      *
 *                                                                       *
 ************************************************************************/
 
 class CCharEntity;
 
-namespace jailutils
+class CAICharPrisoner : public CAIGeneral
 {
-    bool InPrison(CCharEntity* PChar);
+public:
 
-    void Add(CCharEntity* PChar);
-    void Del(CCharEntity* PChar);
+	virtual void CheckCurrentAction(uint32 tick);
+
+	CAICharPrisoner(CCharEntity* PChar);
+
+protected:
+
+	CCharEntity* m_PChar;	
+
+	void ActionFall();	
+	void ActionDeath();
 };
 
 #endif

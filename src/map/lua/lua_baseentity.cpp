@@ -521,21 +521,16 @@ using delStatusEffect, so it's a lot faster.
 inline int32 CLuaBaseEntity::wakeUp(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	switch(m_PBaseEntity->objtype){
-	case TYPE_PC:
-	case TYPE_MOB:
-		CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
-		if(PEntity->PBattleAI->GetCurrentAction()==ACTION_SLEEP){
-			//wake them up!
-			PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP);
-			PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP_II);
-		}
-		break;
-	}
-	
-
-	return 1;
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+    if(PEntity->PBattleAI->GetCurrentAction() == ACTION_SLEEP)
+    {
+        //wake them up!
+        PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP);
+        PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP_II);
+    }
+	return 0;
 }
 
 //==========================================================//

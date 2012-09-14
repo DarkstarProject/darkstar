@@ -56,7 +56,7 @@ function onSpellCast(caster,target,spell)
 		final = 10;
 	end;
 
-	if(caster:getStatusEffect(EFFECT_AFFLATUS_SOLACE) ~= nil) and (target:getStatusEffect(EFFECT_STONESKIN) == nil) then
+	if(caster:hasStatusEffect(EFFECT_AFFLATUS_SOLACE) and target:hasStatusEffect(EFFECT_STONESKIN)) then
 	  Afflatus_Stoneskin = math.floor(final / 4);
 	  if(Afflatus_Stoneskin > 300) then
 		  Afflatus_Stoneskin = 300;
@@ -79,7 +79,7 @@ function onSpellCast(caster,target,spell)
 	
 	-- Do it!
 	if(target:getRank() ~= nil) then
-		if(caster:getStatusEffect(EFFECT_DIVINE_SEAL) ~= nil) then
+		if(caster:hasStatusEffect(EFFECT_DIVINE_SEAL)) then
 			final = final * 2;
 		end
 		target:addHP(final);

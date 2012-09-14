@@ -52,8 +52,8 @@ public:
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой 
 	bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);
 
-    bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие стату-эффекта
-	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие стату-эффекта с уникальным subid
+    bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
+	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
 
 	string_t EraseStatusEffect();                               // удаляем первый отрицательный эффект
 	string_t DispelStatusEffect();                              // удаляем первый положительный эффект

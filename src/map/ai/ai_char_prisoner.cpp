@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -21,41 +21,39 @@
 ===========================================================================
 */
 
-#ifndef _JAILUTILS_H
-#define _JAILUTILS_H
+#include "ai_char_prisoner.h"
 
-#include "../../common/cbasetypes.h"
+#include "../charentity.h"
 
-/*
-TODO: Add functions that can:
-    * Jail or pardon on-line players.  (Currently handled in script.)
-    * Jail or pardon off-line players.
-    * Check the prison status of players. (on-line and off-line)
-    * Ban or allow account access. (on-line and off-line)
-    * Set duration of jail/ban sentences.
-
-TODO: Common actions/procedures/needs include:
-    * Set/Check char_var to indicate being character being jailed.
-    * Set/Check accounts_banned to indicate account being banned.
-    * Set/Check jail/ban sentence duration.
-    * Moving character to and from Mordion Gaol. (on-line and off-line)
-        - Off-line players could be moved upon login.
-*/
+#include "../packets/message_basic.h"
 
 /************************************************************************
-*                                                                       *
-*                                                                       *
+*                                                                       *  
+*  Инициализируем владельца интеллекта                                  *
 *                                                                       *
 ************************************************************************/
 
-class CCharEntity;
-
-namespace jailutils
+CAICharPrisoner::CAICharPrisoner(CCharEntity* PChar)
 {
-    bool InPrison(CCharEntity* PChar);
+    DSP_DEBUG_BREAK_IF(PChar == NULL);
+    DSP_DEBUG_BREAK_IF(PChar->objtype != TYPE_PC);
 
-    void Add(CCharEntity* PChar);
-    void Del(CCharEntity* PChar);
-};
+    m_PChar = PChar;
+}
 
-#endif
+/************************************************************************
+*                                                                       *
+*  Основная часть интеллекта - главный цикл                             *
+*                                                                       *
+************************************************************************/
+
+void CAICharPrisoner::CheckCurrentAction(uint32 tick)
+{
+    m_Tick = tick;
+    
+    if(m_ActionType != ACTION_NONE)
+    {
+        Reset();
+        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 316));
+    }
+}
