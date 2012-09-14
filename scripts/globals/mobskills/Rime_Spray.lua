@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	isEnfeeble = true;
 	typeEffect = EFFECT_FROST;
 	statmod = MOD_INT;
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
 		target:addStatusEffect(EFFECT_FROST,15,3,120);
 	end

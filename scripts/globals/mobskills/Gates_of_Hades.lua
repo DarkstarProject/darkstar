@@ -20,7 +20,7 @@ function OnMobWeaponSkill(target, mob, skill)
     typeEffect = EFFECT_BURN;
     statmod = MOD_INT;
     accrand = math.random(1,8);
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 		
     if(resist > 0.5 and accrand ~= 1) then
 		if(resist >= 1) then  -- Added just incase resist number retuns a value higher then .9.

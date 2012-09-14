@@ -18,7 +18,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_ACCURACY_DOWN;
 	statmod = MOD_INT;
 	accrand = math.random(1,2);
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5 and accrand == 1) then
 		if(target:getStatusEffect(EFFECT_ACCURACY_DOWN) == nil) then
 			target:addStatusEffect(EFFECT_ACCURACY_DOWN,50,0,120);

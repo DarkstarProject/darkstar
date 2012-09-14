@@ -710,7 +710,7 @@ INSERT INTO `mob_skill` VALUES (652,34,607,'Shining_Ruby', 1, 10.0, 498, 2000, 1
 INSERT INTO `mob_skill` VALUES (653,34,608,'Glittering_Ruby', 1, 10.0, 499, 2000, 1, 0);
 INSERT INTO `mob_skill` VALUES (654,34,609,'Meteorite', 0, 10.0, 500, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (655,34,610,'Healing_Ruby_II', 1, 10.0, 501, 2000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (656,34,611,'Searing_Light', 1, 10.0, 502, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (656,34,611,'Searing_Light', 1, 10.0, 502, 2000, 4, 0);
 
 -- Garuda
 INSERT INTO `mob_skill` VALUES (611,37,565,'Claw', 0, 10.0, 576, 2000, 4, 0);
@@ -721,7 +721,18 @@ INSERT INTO `mob_skill` VALUES (615,37,567,'Aerial_Armor', 1, 10.0, 580, 2000, 1
 INSERT INTO `mob_skill` VALUES (616,37,570,'Aero_IV', 0, 10.0, 581, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (617,37,571,'Predator_Claws', 0, 10.0, 582, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (618,37,572,'Wind_Blade', 0, 10.0, 583, 2000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (619,37,573,'Aerial_Blast', 1, 10.0, 584, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (619,37,573,'Aerial_Blast', 1, 10.0, 584, 2000, 4, 0);
+
+-- Ifrit
+INSERT INTO `mob_skill` VALUES (584,38,526,'Punch', 0, 10.0, 528, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (585,38,527,'Fire_II', 0, 10.0, 529, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (586,38,528,'Burning_Strike', 0, 10.0, 530, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (587,38,529,'Double_Punch', 0, 10.0, 531, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (588,38,530,'Crimson_Howl', 1, 10.0, 532, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (589,38,531,'Fire_IV', 0, 10.0, 533, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (590,38,532,'Flaming_Crush', 0, 10.0, 534, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (591,38,533,'Meteor_Strike', 0, 10.0, 535, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (592,38,534,'Inferno', 1, 10.0, 536, 2000, 4, 0);
 
 -- Titan
 INSERT INTO `mob_skill` VALUES (593,45,539,'Rock_Throw', 0, 12.0, 544, 2000, 4, 0);
@@ -732,6 +743,8 @@ INSERT INTO `mob_skill` VALUES (597,45,543,'Earthen_Ward', 1, 10.0, 548, 2000, 1
 INSERT INTO `mob_skill` VALUES (598,45,544,'Stone_IV', 0, 10.0, 549, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (599,45,545,'Mountain_Buster', 0, 10.0, 550, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (600,45,546,'Geocrush', 0, 10.0, 551, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (601,45,547,'Earthen_Fury', 1, 10.0, 552, 2000, 4, 0);
+
 
 -- --------------------------------------
 -- NM

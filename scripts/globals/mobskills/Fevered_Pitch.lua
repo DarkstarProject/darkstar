@@ -15,7 +15,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	isEnfeeble = true;
 	typeEffect = EFFECT_DEFENSE_DOWN;
 	statmod = MOD_INT;
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
 		if(target:getStatusEffect(EFFECT_DEFENSE_DOWN) == nil) then
 			target:addStatusEffect(EFFECT_DEFENSE_DOWN,30,0,90);
@@ -25,7 +25,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	isEnfeeble = true;
 	typeEffect = EFFECT_STUN;
 	statmod = MOD_INT;
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
 		if(target:getStatusEffect(EFFECT_STUN) == nil) then
 			target:addStatusEffect(EFFECT_STUN,1,0,7);

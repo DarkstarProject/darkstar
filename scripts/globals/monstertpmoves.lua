@@ -1,3 +1,7 @@
+require("scripts/globals/magic");
+require("scripts/globals/magicburst")
+require("scripts/globals/status")
+
 -- Foreword: A lot of this is good estimating since the FFXI playerbase has not found all of info for individual moves.
 --			What is known is that they roughly follow player Weaponskill calculations (pDIF, dMOD, ratio, etc) so this is what
 --			this set of functions emulates.
@@ -268,13 +272,203 @@ end
 --effect = EFFECT_WHATEVER if enfeeble
 --statmod = the stat to account for resist (INT,MND,etc) e.g. MOD_INT
 --This determines how much the monsters ability resists on the player.
--- >= 0.5 means it lands, < 0.5 means it doesnt.
-function applyPlayerResistance(mob,skill,target,isEnfeeble,effect,statmod)
-	resist = 1.0;
+--TODO: update all mob moves to use the new function
+function applyPlayerResistance(mob,spell,target,diff,skill,element)
+    resist = 1.0;
+    magicaccbonus = 0;
+	--get the base acc (just skill plus magic acc mod)
+	magicacc = getSkillLvl(1, mob:getMainLvl());
 	
-	return resist;
+	--difference in int/mnd 
+	if diff > 10 then
+		magicacc = magicacc + 10 + (diff - 10)/2;
+	else
+		magicacc = magicacc + diff;
+	end
+	--add acc for ele/dark seal
+    if(mob:getStatusEffect(EFFECT_ELEMENTAL_SEAL) ~= nil) then
+        magicaccbonus = magicaccbonus + 256;
+    elseif(mob:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
+        magicaccbonus = magicaccbonus + 256;
+    end
+	
+    local skillchainTier, skillchainCount = MobFormMagicBurst(element, target);
+    --add acc for skillchains
+    if(skillchainTier > 0) then
+		magicaccbonus = magicaccbonus + 25;
+    end
+	
+	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
+	magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[element]) + target:getMod(defenseMod[element])/10;
+	
+	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
+	multiplier = 0;
+	if mob:getMainLvl() < 40 then
+		multiplier = 100 / 120;
+	else
+		multiplier = 100 / (mob:getMainLvl() * 3);
+	end;
+	p = (magicacc * multiplier) - (magiceva * 0.45);
+	magicaccbonus = magicaccbonus / 2;
+	--add magicacc bonus
+	p = p + magicaccbonus;
+	-- print(magicacc);
+	-- print(magiceva);
+	-- print(magicaccbonus);
+
+	
+	--double any acc over 50 if it's over 50
+	if p > 5 then
+		p = 5 + (p - 5) * 2;
+	end
+	
+	--add a flat bonus that won't get doubled in the previous step
+	p = p + 45;
+
+	--add a scaling bonus or penalty based on difference of targets level from caster
+	leveldiff = mob:getMainLvl() - target:getMainLvl();
+	if leveldiff < 0 then
+		p = p - (25 * ( (mob:getMainLvl()) / 75 )) + leveldiff;
+	else
+		p = p + (25 * ( (mob:getMainLvl()) / 75 )) + leveldiff;
+	end
+	--cap accuracy
+    if(p > 95) then
+        p = 95;
+    elseif(p < 5) then
+        p = 5;
+    end
+
+	p = p / 100;
+
+    -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
+    half = (1 - p);
+    quart = ((1 - p)^2);
+    eighth = ((1 - p)^3);
+    sixteenth = ((1 - p)^4);
+    -- print("HALF:",half);
+    -- print("QUART:",quart);
+    -- print("EIGHTH:",eighth);
+    -- print("SIXTEENTH:",sixteenth);
+
+    resvar = math.random();
+    
+    -- Determine final resist based on which thresholds have been crossed.
+    if(resvar <= sixteenth) then
+        resist = 0.0625;
+        --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
+    elseif(resvar <= eighth) then
+        resist = 0.125;
+        --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
+    elseif(resvar <= quart) then
+        resist = 0.25;
+        --printf("Spell resisted to 1/4.  Threshold = %u",quart);
+    elseif(resvar <= half) then
+        resist = 0.5;
+        --printf("Spell resisted to 1/2.  Threshold = %u",half);
+    else
+        resist = 1.0;
+        --printf("1.0");
+    end
+    
+    return resist;
 	
 end;
+
+function mobAddBonuses(caster, spell, target, dmg, ele)
+		
+	speciesReduction = target:getMod(defenseMod[ele]);
+	speciesReduction = 1.00 - (speciesReduction/1000);
+	dmg = math.floor(dmg * speciesReduction);
+	
+	dayWeatherBonus = 1.00;
+	
+	if caster:getWeather() == singleWeatherStrong[ele] then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	elseif caster:getWeather() == singleWeatherWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+			dayWeatherBonus = dayWeatherBonus - 0.10;
+		end
+	elseif caster:getWeather() == doubleWeatherStrong[ele] then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+			dayWeatherBonus = dayWeatherBonus + 0.25;
+		end
+	elseif caster:getWeather() == doubleWeatherWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+			dayWeatherBonus = dayWeatherBonus - 0.25;
+		end
+	end
+	
+	if VanadielDayElement() == dayStrong[ele] then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	elseif VanadielDayElement() == dayWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	end
+		
+	if dayWeatherBonus > 1.35 then
+		dayWeatherBonus = 1.35;
+	end
+	
+	dmg = math.floor(dmg * dayWeatherBonus);
+	
+    burst, burstBonus = calculateMobMagicBurstAndBonus(caster, ele, target);
+    
+	-- not sure what to do for this yet
+    -- if(burst > 1.0) then
+		-- spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
+	-- end
+	
+	dmg = math.floor(dmg * burst);
+	
+    mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF)) ;
+	
+	dmg = math.floor(dmg * mab);
+	
+	magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
+	
+	dmg = math.floor(dmg * magicDmgMod);
+	
+	-- print(affinityBonus);
+	-- print(speciesReduction);
+	-- print(dayWeatherBonus);
+	-- print(burst);
+	-- print(mab);
+	-- print(magicDmgMod);
+	
+    return dmg;
+end
+
+function calculateMobMagicBurstAndBonus(caster, ele, target)
+
+    local burst = 1.0;
+    
+    local skillchainTier, skillchainCount = MobFormMagicBurst(ele, target);
+    
+    if(skillchainTier > 0) then
+		if(skillchainCount == 1) then
+			burst = 1.3;
+		elseif(skillchainCount == 2) then
+			burst = 1.35;
+		elseif(skillchainCount == 3) then
+			 burst = 1.40;
+		elseif(skillchainCount == 4) then
+			burst = 1.45;
+		elseif(skillchainCount == 5) then
+			burst = 1.50;
+		else
+			-- Something strange is going on if this occurs.
+			burst = 1.0; 
+		end
+    end
+
+    return burst, burstBonus;
+end
 
 function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
 	--Handle shadows depending on shadow behaviour / skilltype

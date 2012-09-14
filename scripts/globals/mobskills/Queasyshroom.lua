@@ -22,7 +22,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	statmod = MOD_INT;
 	poisrand = math.random(1,2);
 	mobTP = mob:getTP();
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5 and poisrand == 1) then
 		if(target:getStatusEffect(EFFECT_POISON) == nil) then
 			if(mobTP <= 100) then 

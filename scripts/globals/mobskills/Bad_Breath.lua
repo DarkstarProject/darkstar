@@ -15,7 +15,7 @@ function OnMobWeaponSkill(target, mob, skill)
     isEnfeeble = true;
     typeEffect = EFFECT_SLOW;
     statmod = MOD_INT;
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
     if(resist > 0.5) then
         if(target:getStatusEffect(typeEffect) == nil) then
             skill:setMsg(MSG_ENFEEB_IS);
@@ -28,7 +28,7 @@ function OnMobWeaponSkill(target, mob, skill)
     end
 
     typeEffect2 = EFFECT_POISON;
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect2,statmod);
+    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect2,statmod);
     if(resist > 0.5) then
         if(target:getStatusEffect(typeEffect2) == nil) then
             skill:setMsg(MSG_ENFEEB_IS);
@@ -41,7 +41,7 @@ function OnMobWeaponSkill(target, mob, skill)
     end
 
 	typeEffect3 = EFFECT_SILENCE;
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect3,statmod);
+    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect3,statmod);
     if(resist > 0.5) then
         if(target:getStatusEffect(typeEffect3) == nil) then
             skill:setMsg(MSG_ENFEEB_IS);
@@ -54,7 +54,7 @@ function OnMobWeaponSkill(target, mob, skill)
     end
 
 	typeEffect4 = EFFECT_PARALYSIS;
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect4,statmod);
+    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect4,statmod);
     if(resist > 0.5) then
         if(target:getStatusEffect(typeEffect4) == nil) then
             skill:setMsg(MSG_ENFEEB_IS);
@@ -67,7 +67,7 @@ function OnMobWeaponSkill(target, mob, skill)
     end
 
 	typeEffect6 = EFFECT_BIND;
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect6,statmod);
+    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect6,statmod);
     if(resist > 0.5) then
         if(target:getStatusEffect(typeEffect6) == nil) then
             skill:setMsg(MSG_ENFEEB_IS);
@@ -80,7 +80,7 @@ function OnMobWeaponSkill(target, mob, skill)
     end
 
 	typeEffect7 = EFFECT_BLINDNESS;
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect7,statmod);
+    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect7,statmod);
     if(resist > 0.5) then
         if(target:getStatusEffect(typeEffect7) == nil) then
             skill:setMsg(MSG_ENFEEB_IS);
@@ -93,7 +93,7 @@ function OnMobWeaponSkill(target, mob, skill)
     end
 	
 	typeEffect5 = EFFECT_WEIGHT;
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect5,statmod);
+    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect5,statmod);
     if(resist > 0.5) then
         if(target:getStatusEffect(typeEffect5) == nil) then
             skill:setMsg(MSG_ENFEEB_IS);

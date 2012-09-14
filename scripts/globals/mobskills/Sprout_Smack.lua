@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
     typeEffect = EFFECT_SLOW;
     statmod = MOD_INT;
     accrand = math.random(1,2);
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
     if(resist > 0.5 and accrand == 1) then
 		if(resist >.7) then
 			duration = duration - ((resist -.7)* 10) * math.random(1,5);

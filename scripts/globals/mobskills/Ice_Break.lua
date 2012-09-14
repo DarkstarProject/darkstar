@@ -14,7 +14,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	isEnfeeble = true;
 	typeEffect = EFFECT_BIND;
 	statmod = MOD_INT;
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
 		if(target:hasStatusEffect(EFFECT_BIND) == nil) then
 			target:addStatusEffect(EFFECT_BIND,1,0,60);

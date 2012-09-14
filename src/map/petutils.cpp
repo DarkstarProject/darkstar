@@ -412,6 +412,15 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 		}
 		LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
 		PPet->setModifier(MOD_DMGPHYS,-50); //-50% PDT
+		if(PPet->GetMLevel() >= 70){
+			PPet->setModifier(MOD_MATT, 32);
+		} else if (PPet->GetMLevel() >= 50){
+			PPet->setModifier(MOD_MATT, 28);
+		} else if (PPet->GetMLevel() >= 30){
+			PPet->setModifier(MOD_MATT, 24);
+		} else if (PPet->GetMLevel() >= 10){
+			PPet->setModifier(MOD_MATT, 20);
+		}
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f/60.0f)));
 		if(PetID==PETID_FENRIR){
 			PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0*(280.0f/60.0f)));

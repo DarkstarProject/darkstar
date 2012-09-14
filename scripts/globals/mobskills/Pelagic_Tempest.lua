@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
    isEnfeeble = true;
 	typeEffect = EFFECT_SHOCK;
 	statmod = MOD_INT;
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
 		if(target:getStatusEffect(EFFECT_SHOCK) == nil) then
 			target:addStatusEffect(EFFECT_SHOCK,28,3,180);
@@ -28,7 +28,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	
 	typeEffect = EFFECT_TERROR;
 	statmod = MOD_INT;
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.5) then
 		if(target:getStatusEffect(EFFECT_TERROR) == nil) then
 			target:addStatusEffect(EFFECT_TERROR,1,0,180);

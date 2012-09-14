@@ -15,7 +15,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_BIND;
 	statmod = MOD_INT;
 	mobTP = mob:getTP();
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	
 	if(resist > 0.5) then
 		if(target:hasStatusEffect(EFFECT_BIND) == false) then

@@ -18,7 +18,7 @@ function OnMobWeaponSkill(target, mob, skill)
     typeEffect = EFFECT_DEX_DOWN;
     statmod = MOD_INT;
     
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
     if(resist > 0.5) then
         if(target:getStatusEffect(typeEffect) == nil) then
             target:addStatusEffect(typeEffect,50,0,duration);
