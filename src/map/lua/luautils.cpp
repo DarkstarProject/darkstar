@@ -1515,7 +1515,7 @@ int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobS
 *																		*
 ************************************************************************/
 
-int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill) 
+int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster) 
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -1547,8 +1547,11 @@ int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill
 
 	CLuaMobSkill LuaMobSkill(PMobSkill);
 	Lunar<CLuaMobSkill>::push(LuaHandle,&LuaMobSkill);
+
+	CLuaBaseEntity LuaMasterEntity(PMobMaster);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMasterEntity);
 	
-	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
+	if( lua_pcall(LuaHandle,4,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnPetAbility: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
