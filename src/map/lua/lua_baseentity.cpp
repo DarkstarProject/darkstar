@@ -603,6 +603,20 @@ inline int32 CLuaBaseEntity::getPreviousZone(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  Узнаем континент, на котором находится сущность                      *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getContinentID(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    lua_pushinteger( L, m_PBaseEntity->loc.zone->GetContinentID() );
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
 *  Проверяем, посещалась ли указанная зона персонажем ранее             *
 *                                                                       *
 ************************************************************************/
@@ -4751,6 +4765,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPreviousZone),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContinentID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isZoneVisited),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeather),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setWeather),

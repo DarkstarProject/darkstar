@@ -81,6 +81,7 @@ public:
     int32 setPos(lua_State*);				// Set Entity position (zone,x,y,z)
 	int32 getZone(lua_State*);				// Get Entity zone	
     int32 getPreviousZone(lua_State*);      // Get Entity previous zone
+    int32 getContinentID(lua_State*);       // узнаем континент, на котором находится сущность
     int32 isZoneVisited(lua_State*);        // true если указанная зона посещалась персонажем ранее
 	int32 getWeather(lua_State*);			// Get Weather condition
 	int32 setWeather(lua_State*);			// Set Weather condition (GM COMMAND)

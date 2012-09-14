@@ -520,7 +520,7 @@ REGIONTYPE GetCurrentRegion(uint8 ZoneID)
 
 CONTINENTTYPE GetCurrentContinent(uint8 ZoneID)
 {
-    return OTHER_AREAS;
+    return GetCurrentRegion(ZoneID) != REGION_UNKNOWN ? THE_MIDDLE_LANDS : OTHER_AREAS;
 }
 
 /************************************************************************
