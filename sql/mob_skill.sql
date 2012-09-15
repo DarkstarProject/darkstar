@@ -703,26 +703,6 @@ INSERT INTO `mob_skill` VALUES (0,149,432,'Two_Hour', 1, 15.0, 2000, 10, 4, 0);
 -- AVATAR
 -- --------------------------------------
 
--- Carbuncle
-INSERT INTO `mob_skill` VALUES (650,34,605,'Healing_Ruby', 0, 10.0, 496, 2000, 2, 0);
-INSERT INTO `mob_skill` VALUES (651,34,606,'Poison_Nails', 0, 10.0, 497, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (652,34,607,'Shining_Ruby', 1, 10.0, 498, 2000, 1, 0);
-INSERT INTO `mob_skill` VALUES (653,34,608,'Glittering_Ruby', 1, 10.0, 499, 2000, 1, 0);
-INSERT INTO `mob_skill` VALUES (654,34,609,'Meteorite', 0, 10.0, 500, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (655,34,610,'Healing_Ruby_II', 1, 10.0, 501, 2000, 1, 0);
-INSERT INTO `mob_skill` VALUES (656,34,611,'Searing_Light', 1, 10.0, 502, 2000, 4, 0);
-
--- Garuda
-INSERT INTO `mob_skill` VALUES (611,37,565,'Claw', 0, 10.0, 576, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (612,37,566,'Aero_II', 0, 10.0, 577, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (613,37,569,'Whispering_Wind', 1, 10.0, 578, 2000, 1, 0);
-INSERT INTO `mob_skill` VALUES (614,37,568,'Hastega', 1, 10.0, 579, 2000, 1, 0);
-INSERT INTO `mob_skill` VALUES (615,37,567,'Aerial_Armor', 1, 10.0, 580, 2000, 1, 0);
-INSERT INTO `mob_skill` VALUES (616,37,570,'Aero_IV', 0, 10.0, 581, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (617,37,571,'Predator_Claws', 0, 10.0, 582, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (618,37,572,'Wind_Blade', 0, 10.0, 583, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (619,37,573,'Aerial_Blast', 1, 10.0, 584, 2000, 4, 0);
-
 -- Ifrit
 INSERT INTO `mob_skill` VALUES (584,38,526,'Punch', 0, 10.0, 528, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (585,38,527,'Fire_II', 0, 10.0, 529, 2000, 4, 0);
@@ -744,6 +724,37 @@ INSERT INTO `mob_skill` VALUES (598,45,544,'Stone_IV', 0, 10.0, 549, 2000, 4, 0)
 INSERT INTO `mob_skill` VALUES (599,45,545,'Mountain_Buster', 0, 10.0, 550, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (600,45,546,'Geocrush', 0, 10.0, 551, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (601,45,547,'Earthen_Fury', 1, 10.0, 552, 2000, 4, 0);
+
+-- Garuda
+INSERT INTO `mob_skill` VALUES (611,37,565,'Claw', 0, 10.0, 576, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (612,37,566,'Aero_II', 0, 10.0, 577, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (613,37,569,'Whispering_Wind', 1, 10.0, 578, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (614,37,568,'Hastega', 1, 10.0, 579, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (615,37,567,'Aerial_Armor', 1, 10.0, 580, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (616,37,570,'Aero_IV', 0, 10.0, 581, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (617,37,571,'Predator_Claws', 0, 10.0, 582, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (618,37,572,'Wind_Blade', 0, 10.0, 583, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (619,37,573,'Aerial_Blast', 1, 10.0, 584, 2000, 4, 0);
+
+-- Shiva
+INSERT INTO `mob_skill` VALUES (620,44,578,'Axe_Kick', 0, 10.0, 592, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (621,44,579,'Blizzard_II', 0, 10.0, 593, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (622,44,580,'Frost_Armor', 1, 10.0, 594, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (623,44,581,'Sleepga', 1, 10.0, 595, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (624,44,582,'Double_Slap', 0, 10.0, 596, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (625,44,583,'Blizzard_IV', 0, 10.0, 597, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (626,44,584,'Rush', 0, 10.0, 598, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (627,44,585,'Heavenly_Strike', 0, 10.0, 599, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (628,44,586,'Diamond_Dust', 1, 10.0, 600, 2000, 4, 0);
+
+-- Carbuncle
+INSERT INTO `mob_skill` VALUES (650,34,605,'Healing_Ruby', 0, 10.0, 496, 2000, 2, 0);
+INSERT INTO `mob_skill` VALUES (651,34,606,'Poison_Nails', 0, 10.0, 497, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (652,34,607,'Shining_Ruby', 1, 10.0, 498, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (653,34,608,'Glittering_Ruby', 1, 10.0, 499, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (654,34,609,'Meteorite', 0, 10.0, 500, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (655,34,610,'Healing_Ruby_II', 1, 10.0, 501, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (656,34,611,'Searing_Light', 1, 10.0, 502, 2000, 4, 0);
 
 
 -- --------------------------------------

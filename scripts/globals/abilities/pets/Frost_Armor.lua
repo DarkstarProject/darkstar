@@ -9,12 +9,9 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	duration = 180 + summoner:getMod(MOD_SUMMONING);
-	if duration > 350 then
-		duration = 350
-	end;
-	target:delStatusEffect(EFFECT_HASTE);
-	target:addStatusEffect(EFFECT_HASTE,15,0,duration);
+	duration = 90 + 3 * summoner:getMod(MOD_SUMMONING);
+	target:delStatusEffect(EFFECT_ICE_SPIKES);
+	target:addStatusEffect(EFFECT_ICE_SPIKES,15,0,duration);
 	skill:setMsg(MSG_BUFF);
-	return EFFECT_HASTE;
+	return EFFECT_ICE_SPIKES;
 end

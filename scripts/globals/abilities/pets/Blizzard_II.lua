@@ -1,5 +1,5 @@
 ---------------------------------------------------
--- Stone 4
+-- Aero 2
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -11,13 +11,13 @@ require("/scripts/globals/magic");
 
 function OnPetAbility(target, pet, skill)
 	--calculate raw damage
-	dmg = calculateMagicDamage(381,2,pet,skill,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
+	dmg = calculateMagicDamage(155,1,pet,skill,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
 	--get resist multiplier (1x if no resist)
-	resist = applyPlayerResistance(pet,skill,target,pet:getMod(MOD_INT)-target:getMod(MOD_INT),ELEMENTAL_MAGIC_SKILL, 2);
+	resist = applyPlayerResistance(pet,skill,target,pet:getMod(MOD_INT)-target:getMod(MOD_INT),ELEMENTAL_MAGIC_SKILL, 5);
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-	dmg = mobAddBonuses(pet,skill,target,dmg, 2);
+	dmg = mobAddBonuses(pet,skill,target,dmg, 5);
 	--add on TP bonuses
 	tp = pet:getTP();
 	if tp < 100 then

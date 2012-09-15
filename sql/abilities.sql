@@ -301,3 +301,13 @@ INSERT INTO `abilities` VALUES ('581', 'aero_iv', '15', '60', '4', '60', '173', 
 INSERT INTO `abilities` VALUES ('582', 'predator_claws', '15', '70', '4', '60', '173', '164', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('583', 'wind_blade', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('584', 'aerial_blast', '15', '1', '4', '60', '173', '0', '18', '1', '1', '60');
+
+INSERT INTO `abilities` VALUES ('592', 'axe_kick', '15', '1', '4', '60', '173', '10', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('593', 'blizzard_ii', '15', '10', '4', '60', '173', '24', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('594', 'frost_armor', '15', '28', '1', '60', '174', '63', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('595', 'sleepga', '15', '39', '4', '60', '174', '56', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('596', 'double_slap', '15', '50', '4', '60', '173', '96', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('597', 'blizzard_iv', '15', '60', '4', '60', '173', '118', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('598', 'rush', '15', '70', '4', '60', '173', '164', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('599', 'heavenly_strike', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('600', 'diamond_dust', '15', '1', '4', '60', '173', '0', '18', '0', '1', '60');

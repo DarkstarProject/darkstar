@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
 		spell:setMsg(85);--resist message
 		return EFFECT_SLEEP_I;
 	end
-	
+	duration = duration * resm;
 	if(target:hasImmunity(1) or target:hasStatusEffect(EFFECT_SLEEP_II) or target:hasStatusEffect(EFFECT_SLEEP_I)) then
 		--No effect
 		spell:setMsg(75);

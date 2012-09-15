@@ -1,31 +1,28 @@
 -----------------------------------------
--- Spell: Sleep I
+-- Sleepga
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/monstertpmoves");
+
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
 
-function onSpellCast(caster,target,spell)
+function OnPetAbility(target, pet, skill)
 	duration = 60;
-	bonus = AffinityBonus(caster, spell);
-	pINT = caster:getStat(MOD_INT);
-	mINT = target:getStat(MOD_INT);
-	dINT = (pINT - mINT);
-	resm = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
+	resm = applyPlayerResistance(pet,skill,target,pet:getMod(MOD_INT)-target:getMod(MOD_INT),ELEMENTAL_MAGIC_SKILL, 5);
 	if(resm < 0.5) then
-		spell:setMsg(85);--resist message
+		skill:setMsg(MSG_RESIST);--resist message
 		return EFFECT_SLEEP_I;
 	end
-	
 	duration = duration * resm;
-	
 	if(target:hasImmunity(1) or target:hasStatusEffect(EFFECT_SLEEP_II) or target:hasStatusEffect(EFFECT_SLEEP_I)) then
 		--No effect
-		spell:setMsg(75);
+		skill:setMsg(MSG_NO_EFFECT);
 	else
-		spell:setMsg(237);
+		skill:setMsg(MSG_ENFEEB);
+		
 		target:addStatusEffect(EFFECT_SLEEP_I,1,0,duration);
 	end
 	

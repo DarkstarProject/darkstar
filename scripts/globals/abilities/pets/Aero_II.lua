@@ -18,6 +18,12 @@ function OnPetAbility(target, pet, skill)
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	dmg = mobAddBonuses(pet,skill,target,dmg, 4);
+	--add on TP bonuses
+	tp = pet:getTP();
+	if tp < 100 then
+		tp = 100;
+	end
+	dmg = dmg * tp / 100;
 	--add in final adjustments
 	dmg = finalMagicAdjustments(pet,target,skill,dmg);
 	return dmg;
