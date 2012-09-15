@@ -1264,7 +1264,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 *                                                                       *
 ************************************************************************/
 
-CCharEntity* CZone::FindPlayerInZone(int8* name)
+CCharEntity* CZone::GetCharByName(int8* name)
 {
 	if(!m_charList.empty())
     {

@@ -125,14 +125,32 @@ CBaseEntity* GetEntity(uint32 ID, uint8 filter)
 
 /************************************************************************
 *                                                                       *
+*  Получаем указатель на персонажа по имени                             *
+*                                                                       *
+************************************************************************/
+
+CCharEntity* GetCharByName(int8* name)
+{
+    for(int32 ZoneID = 0; ZoneID < 256; ZoneID++)
+    {
+        CCharEntity* PChar = g_PZoneList[ZoneID]->GetCharByName(name);
+
+        if (PChar != NULL)
+        {
+		    return PChar;
+		}
+    }
+    return NULL;
+}
+
+/************************************************************************
+*                                                                       *
 *  Получаем указатель на CCharEntity по id и targid                     *
 *                                                                       *
 ************************************************************************/
 
 CCharEntity* GetCharFromRegion(uint32 charid, uint16 targid, uint8 RegionID)
 {
-    CCharEntity* PChar = NULL;
-
     for(int32 ZoneID = 0; ZoneID < 256; ZoneID++)
 	{
         if (g_PZoneList[ZoneID]->GetRegionID() == RegionID)
@@ -141,12 +159,11 @@ CCharEntity* GetCharFromRegion(uint32 charid, uint16 targid, uint8 RegionID)
             
             if (PEntity != NULL && PEntity->id == charid)
             {
-                PChar = (CCharEntity*)PEntity;
-                break;
+                return (CCharEntity*)PEntity;
             }
         }
     }
-    return PChar;
+    return NULL;
 }
 
 /************************************************************************

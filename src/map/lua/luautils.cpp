@@ -434,21 +434,18 @@ int32 GetPlayerByName(lua_State* L)
 	{
 		int8* name = (int8*)lua_tolstring(L,-1,NULL);
 
-		for (uint16 zone = 0; zone < 256; ++zone)
-        {
-			CCharEntity* PTargetChar = zoneutils::GetZone(zone)->FindPlayerInZone(name);
+		CCharEntity* PTargetChar = zoneutils::GetCharByName(name);
 
-			if (PTargetChar != NULL)
-            {
-				lua_pushstring(L,CLuaBaseEntity::className);
-				lua_gettable(L,LUA_GLOBALSINDEX);
-				lua_pushstring(L,"new");
-				lua_gettable(L,-2);
-				lua_insert(L,-2);
-				lua_pushlightuserdata(L,(void*)PTargetChar);
-				lua_pcall(L,2,1,0);
-				return 1;
-			}
+		if (PTargetChar != NULL)
+        {
+			lua_pushstring(L,CLuaBaseEntity::className);
+			lua_gettable(L,LUA_GLOBALSINDEX);
+			lua_pushstring(L,"new");
+			lua_gettable(L,-2);
+			lua_insert(L,-2);
+			lua_pushlightuserdata(L,(void*)PTargetChar);
+			lua_pcall(L,2,1,0);
+			return 1;
 		}
 	}
     ShowError(CL_RED"GetPlayerByName :: Input string is not valid." CL_RESET);
