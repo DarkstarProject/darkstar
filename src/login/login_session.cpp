@@ -44,7 +44,7 @@ login_session_data_t *find_loginsd_byip(uint32 ip)
 	//////// 19/03/2012 Fix for 1 IP -> Many Accounts
 	// Simply increases "serviced" by 1 every time a login is returned via an IP address.
 	// The result is the illusion of independancy (though really it's not!)
-	int minserv = 1000; 
+	unsigned int minserv = 1000; 
 	int multiple_ip_count = 0;
 	for(login_sd_list_t::iterator i = login_sd_list.begin(); 
 		i != login_sd_list.end();

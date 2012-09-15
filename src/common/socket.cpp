@@ -444,8 +444,8 @@ static int access_denynum  = 0;
 static int access_debug    = 0;
 //--
 static int ddos_count      = 10;
-static int ddos_interval   = 3*1000;
-static int ddos_autoreset  = 10*60*1000;
+static unsigned int ddos_interval   = 3*1000;
+static unsigned int ddos_autoreset  = 10*60*1000;
 
 /// Connection history, an array of linked lists.
 /// The array's index for any ip is ip&0xFFFF

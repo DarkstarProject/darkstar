@@ -125,7 +125,11 @@
 #	define CALLOC(m,n,file,line,func)	calloc((m),(n))
 #	define CALLOCA(m,n,file,line,func)	calloc((m),(n))
 #	define REALLOC(p,n,file,line,func)	realloc((p),(n))
-#	define STRDUP(p,file,line,func)		strdup(p)
+#	ifdef WIN32
+#		define STRDUP(p,file,line,func)		_strdup(p)
+#	else
+#		define STRDUP(p,file,line,func)		strdup(p)
+#	endif
 #	define FREE(p,file,line,func)		free(p)
 
 #endif

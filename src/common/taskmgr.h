@@ -35,10 +35,7 @@ template<class _Ty>
 {	// functor for operator>
 	bool operator()(const _Ty& _Left, const _Ty& _Right) const
 	{	// apply operator> to operands
-		if ((*_Left) > (*_Right))
-			return true;
-		else if( (*_Left) < (*_Right) )
-			return false;
+		return (_Left >= _Right);
 	}
 };
 
