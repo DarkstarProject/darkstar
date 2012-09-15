@@ -44,7 +44,7 @@ local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
 				player:startEvent(0x00fd,GIL_RATE*1200);
 				player:completeQuest(WINDURST,MANDRAGORA_MAD);
 			-- FourLeafBud
-			elseif(trade:hasItemQty(4369,1) then
+			elseif(trade:hasItemQty(4369,1)) then
 				player:tradeComplete();
 				player:addFame(WINDURST,WIN_FAME*10);
 				player:addGil(GIL_RATE*120);
