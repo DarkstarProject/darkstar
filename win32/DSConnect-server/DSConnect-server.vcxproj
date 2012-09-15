@@ -31,6 +31,7 @@
     <ClInclude Include="..\..\src\login\login.h" />
     <ClInclude Include="..\..\src\login\login_auth.h" />
     <ClInclude Include="..\..\src\login\login_session.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\common\blowfish.cpp" />
@@ -50,6 +51,12 @@
     <ClCompile Include="..\..\src\login\login.cpp" />
     <ClCompile Include="..\..\src\login\login_auth.cpp" />
     <ClCompile Include="..\..\src\login\login_session.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\icons\connectserver.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}</ProjectGuid>

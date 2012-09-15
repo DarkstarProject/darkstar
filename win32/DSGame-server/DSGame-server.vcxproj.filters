@@ -1128,5 +1128,11 @@
     <None Include="..\..\documentation\ZoneIDs.txt">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\..\icons\gameserver.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
   </ItemGroup>
 </Project>

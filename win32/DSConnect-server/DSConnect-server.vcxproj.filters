@@ -77,6 +77,9 @@
     <ClInclude Include="..\..\src\common\zlib.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\login\account.cpp">
@@ -130,5 +133,11 @@
     <ClCompile Include="..\..\src\common\zlib.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\icons\connectserver.ico" />
   </ItemGroup>
 </Project>

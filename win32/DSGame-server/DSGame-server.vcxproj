@@ -456,6 +456,10 @@
     <None Include="..\..\documentation\message.log" />
     <None Include="..\..\documentation\MessageSystemIDs.log" />
     <None Include="..\..\documentation\ZoneIDs.txt" />
+    <None Include="..\..\icons\gameserver.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

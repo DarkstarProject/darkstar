@@ -52,6 +52,13 @@
     <ClInclude Include="..\..\src\search\packets\search_list.h" />
     <ClInclude Include="..\..\src\search\search.h" />
     <ClInclude Include="..\..\src\search\tcp_request.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\icons\searchserver.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5C763F9B-F332-434F-9EE6-B64B15E1E520}</ProjectGuid>

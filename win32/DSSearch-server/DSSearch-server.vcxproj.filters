@@ -142,5 +142,14 @@
     <ClInclude Include="..\..\src\search\packets\linkshell_list.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\icons\searchserver.ico" />
   </ItemGroup>
 </Project>
