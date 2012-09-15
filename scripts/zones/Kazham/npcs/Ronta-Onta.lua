@@ -2,8 +2,7 @@
 -- Area: Kazham
 -- NPC:  Ronta-Onta
 -- Starts and Finishes Quest: Trial by Fire
--- @zone 250
--- @pos 100.370 -14.999 -97.676
+-- @pos 100 -15 -97 250
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
@@ -103,9 +102,9 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item
 			end
 			player:setTitle(HEIR_OF_THE_GREAT_FIRE);
-			player:delKeyItem(320); --Whisper of Flames, as a trade for the above rewards
+			player:delKeyItem(WHISPER_OF_FLAMES);
 			player:setVar("TrialByFire_date", os.date("%j")); -- %M for next minute, %j for next day
-			player:addFame(OUTLANDS,WIN_FAME*30);
+			player:addFame(KAZHAM,WIN_FAME*30);
 			player:completeQuest(OUTLANDS,TRIAL_BY_FIRE);
 		end
 	end

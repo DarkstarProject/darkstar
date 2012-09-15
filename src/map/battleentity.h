@@ -349,7 +349,7 @@ public:
 	health_t	    health;						// hp,mp,tp
 	stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
 	skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
-	uint32			m_Immunity;
+	IMMUNITY		m_Immunity;
 
     uint16          STR();
     uint16          DEX();                      

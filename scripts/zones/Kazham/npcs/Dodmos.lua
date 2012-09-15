@@ -7,11 +7,13 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Kazham/TextIDs");
+
 -----------------------------------
 
 -----------------------------------
