@@ -198,9 +198,6 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 	{
 		return true;
 	}
-
-
-
 	if (m_PChar->PParty != NULL) 
 	{
 		if (m_PChar->PParty->m_PAlliance != NULL) 
@@ -215,15 +212,17 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 					}
 				}
 			}
-		}else{//no alliance
-				for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
+		}
+        else //no alliance
+        {
+			for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
+			{
+				if (m_PChar->PParty->members[i]->id == PBattleTarget->m_OwnerID.id)
 				{
-					if (m_PChar->PParty->members[i]->id == PBattleTarget->m_OwnerID.id)
-					{
-						return true;
-					}
+					return true;
 				}
-			 }
+			}
+		}
 	}
 	return false;
 }
@@ -239,12 +238,6 @@ void CAICharNormal::ActionEngage()
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0)
     DSP_DEBUG_BREAK_IF(m_PBattleTarget != NULL);
 
-    if (m_PChar->animation == ANIMATION_HEALING)
-    {
-        m_ActionTargetID = 0;
-        m_ActionType = ACTION_NONE;
-        return;
-    }
 	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY))
 	{
 		if(IsMobOwner(m_PBattleTarget))
@@ -257,7 +250,10 @@ void CAICharNormal::ActionEngage()
                     {
                         m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
                     }
-                    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+                    else if (m_PChar->animation == ANIMATION_HEALING)
+                    {
+                        m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+                    }
 
 					m_ActionType = ACTION_ATTACK;
 					m_LastMeleeTime = m_Tick - m_PChar->m_Weapons[SLOT_MAIN]->getDelay() + 1500;
@@ -316,10 +312,14 @@ void CAICharNormal::ActionChangeBattleTarget()
 					m_PBattleTarget = PBattleTarget;
 						
 					m_PChar->pushPacket(new CLockOnPacket(m_PChar,m_PBattleTarget));
-				}else{
+				}
+                else
+                {
 					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
 				}
-			}else{
+			}
+            else
+            {
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,12));
 			}
 		}
@@ -568,26 +568,20 @@ void CAICharNormal::ActionItemFinish()
 	{
         luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
 
-        // AoE effect
-        if(m_PItemUsable->getAoE() == 1 && m_PBattleSubTarget->PParty != NULL)
+        // party AoE effect
+        if (m_PItemUsable->getAoE() == 1 && m_PBattleSubTarget->PParty != NULL) 
         {
-            for (std::vector<CBattleEntity*>::const_iterator itr = m_PBattleSubTarget->PParty->members.begin(); 
-                 itr != m_PBattleSubTarget->PParty->members.end() && m_PChar->m_ActionList.size() < 6; ++itr)
+            for (uint8 i = 0; i < m_PBattleSubTarget->PParty->members.size(); ++i)
             {
-                CBattleEntity* PTarget = (CBattleEntity*)*itr;
+                CBattleEntity* PTarget = m_PBattleSubTarget->PParty->members.at(i);
 
-                if(m_PBattleSubTarget != PTarget &&
-                   !PTarget->isDead() &&
-                   distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
+                if (m_PBattleSubTarget != PTarget && !PTarget->isDead() && distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
                 {
                     luautils::OnItemUse(PTarget, m_PItemUsable);
                 }
             }
         }
-
 		delete m_PItemUsable;
-
-		m_PChar->StatusEffectContainer->SaveStatusEffects();
 
 		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -947,6 +941,9 @@ void CAICharNormal::ActionMagicStart()
 			return;
         }
     }
+
+    DSP_DEBUG_BREAK_IF(m_PChar->loc.zone == NULL);
+
 	if(m_PChar->loc.zone==NULL){ //crash occured on the next if (CanUseMisc) because zone was null.
 		//Can't really explain how that's possible, possibly timing the spell as you zone..?
 		//Either way, this check is required now.
@@ -1096,7 +1093,8 @@ void CAICharNormal::ActionMagicCasting()
 	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)cap_value(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
-		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)){
+		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
+        {
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,18));
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
@@ -1986,7 +1984,7 @@ void CAICharNormal::ActionAttack()
 	{
         if (m_PChar->m_hasAutoTarget && m_PBattleTarget->objtype == TYPE_MOB) // Auto-Target
 	    {
-		    for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin();  it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 16; ++it)
+		    for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin();  it != m_PChar->SpawnMOBList.end(); ++it)
 		    {
 			    CBattleEntity* PTarget = (CBattleEntity*)it->second;
             
@@ -1996,35 +1994,37 @@ void CAICharNormal::ActionAttack()
                 {
                     if (m_PChar->PParty != NULL) 
 	                {
-						if ( m_PChar->PParty->m_PAlliance != NULL)
+						if (m_PChar->PParty->m_PAlliance != NULL)
 						{
 							for (uint8 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
 							{
 								for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
 								{
-										if (PTarget->m_OwnerID.id == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id ||
-										   (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]))
-										{
-											m_PBattleTarget = PTarget;
-											m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-											return;
-										}
+									if (PTarget->m_OwnerID.id == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id ||
+										(PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]))
+									{
+										m_PBattleTarget = PTarget;
+										m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+										return;
+									}
 								}
 							}
 						}
-
-
-		                for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
-		                {
-			                if (PTarget->m_OwnerID.id == m_PChar->PParty->members[i]->id ||
-                               (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->members[i]))
-			                {
-                                m_PBattleTarget = PTarget;
-				                m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-                                return;
-			                }
-		                }
-	                }else if (PTarget->m_OwnerID.id == m_PChar->id ||
+                        else
+                        {
+		                    for (uint8 i = 0; i < m_PChar->PParty->members.size(); ++i)
+		                    {
+			                    if (PTarget->m_OwnerID.id == m_PChar->PParty->members[i]->id ||
+                                   (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->members[i]))
+			                    {
+                                    m_PBattleTarget = PTarget;
+				                    m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+                                    return;
+			                    }
+		                    }
+                        }
+	                }
+                    else if (PTarget->m_OwnerID.id == m_PChar->id ||
                             (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar))
                     {
                         m_PBattleTarget = PTarget;

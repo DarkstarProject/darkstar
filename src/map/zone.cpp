@@ -1313,7 +1313,7 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 					}
 				}
 			}
-				break;
+			break;
 			case CHAR_INSHOUT :
 			{
 				for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
@@ -1328,7 +1328,7 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 					}
 				}
 			}
-				break;
+			break;
 			case CHAR_INZONE :
 			{
 				for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
@@ -1340,7 +1340,7 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 					}
 				}
 			}
-				break;
+			break;
 		}
 	}
 	delete packet;
