@@ -82,92 +82,92 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 
 void CAIPetDummy::ActionAbilityStart()
 {
-if(m_PPet->getPetType()==PETTYPE_JUGPET){
-	if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=100 && m_PBattleTarget!=NULL){ //choose random tp move
-		m_MasterCommand = MASTERCOMMAND_NONE;
-		if(m_PPet->PetSkills.size()>0){
-			m_PMobSkill = m_PPet->PetSkills.at(rand() % m_PPet->PetSkills.size());
-			preparePetAbility(m_PBattleTarget);
-			return;
-		}
-	}
-}
-else if(m_PPet->getPetType()==PETTYPE_AVATAR){
-	for(int i=0; i<m_PPet->PetSkills.size(); i++){
-		if(m_PPet->PetSkills[i]->getAnimationTime() == m_MasterCommand){
-			m_PMobSkill = m_PPet->PetSkills[i];
+	if(m_PPet->getPetType()==PETTYPE_JUGPET){
+		if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=100 && m_PBattleTarget!=NULL){ //choose random tp move
 			m_MasterCommand = MASTERCOMMAND_NONE;
-			preparePetAbility(m_PPet);
-			return;
+			if(m_PPet->PetSkills.size()>0){
+				m_PMobSkill = m_PPet->PetSkills.at(rand() % m_PPet->PetSkills.size());
+				preparePetAbility(m_PBattleTarget);
+				return;
+			}
 		}
 	}
-	m_MasterCommand = MASTERCOMMAND_NONE;
-}
-else if(m_PPet->getPetType()==PETTYPE_WYVERN){
-	if(m_MasterCommand==MASTERCOMMAND_ELEMENTAL_BREATH && (m_PPet->GetMJob()==JOB_DRG || m_PPet->GetMJob()==JOB_RDM)){
+	else if(m_PPet->getPetType()==PETTYPE_AVATAR){
+		for(int i=0; i<m_PPet->PetSkills.size(); i++){
+			if(m_PPet->PetSkills[i]->getAnimationTime() == m_MasterCommand){
+				m_PMobSkill = m_PPet->PetSkills[i];
+				m_MasterCommand = MASTERCOMMAND_NONE;
+				preparePetAbility(m_PPet);
+				return;
+			}
+		}
 		m_MasterCommand = MASTERCOMMAND_NONE;
-		//offensive or multipurpose wyvern
-		if(m_PPet->PBattleAI->GetBattleTarget()!=NULL){ //prepare elemental breaths
-			int skip = rand()%6;
-			int hasSkipped = 0;
-			for(int i=0; i<m_PPet->PetSkills.size(); i++){
-				if(m_PPet->PetSkills[i]->getValidTargets() == TARGET_ENEMY){
-					if(hasSkipped == skip){
-						m_PMobSkill = m_PPet->PetSkills[i];
-						break;
-					}
-					else{
-						hasSkipped++;
+	}
+	else if(m_PPet->getPetType()==PETTYPE_WYVERN){
+		if(m_MasterCommand==MASTERCOMMAND_ELEMENTAL_BREATH && (m_PPet->GetMJob()==JOB_DRG || m_PPet->GetMJob()==JOB_RDM)){
+			m_MasterCommand = MASTERCOMMAND_NONE;
+			//offensive or multipurpose wyvern
+			if(m_PPet->PBattleAI->GetBattleTarget()!=NULL){ //prepare elemental breaths
+				int skip = rand()%6;
+				int hasSkipped = 0;
+				for(int i=0; i<m_PPet->PetSkills.size(); i++){
+					if(m_PPet->PetSkills[i]->getValidTargets() == TARGET_ENEMY){
+						if(hasSkipped == skip){
+							m_PMobSkill = m_PPet->PetSkills[i];
+							break;
+						}
+						else{
+							hasSkipped++;
+						}
 					}
 				}
+				preparePetAbility(m_PBattleTarget);
+				return;
 			}
-			preparePetAbility(m_PBattleTarget);
-			return;
 		}
-	}
-	else if(m_MasterCommand==MASTERCOMMAND_HEALING_BREATH && (m_PPet->GetMJob()==JOB_WHM || m_PPet->GetMJob()==JOB_RDM)){
-		m_MasterCommand = MASTERCOMMAND_NONE;
-		m_PBattleSubTarget = NULL;
-		//TODO: CHECK FOR STATUS EFFECTS FOR REMOVE- BREATH (higher priority than healing breaths)
+		else if(m_MasterCommand==MASTERCOMMAND_HEALING_BREATH && (m_PPet->GetMJob()==JOB_WHM || m_PPet->GetMJob()==JOB_RDM)){
+			m_MasterCommand = MASTERCOMMAND_NONE;
+			m_PBattleSubTarget = NULL;
+			//TODO: CHECK FOR STATUS EFFECTS FOR REMOVE- BREATH (higher priority than healing breaths)
 
-	//	if(m_PPet->PMaster->PParty==NULL){//solo with master-kun
-			if(m_PPet->PMaster->GetHPP() <= 33 && m_PPet->GetMJob()==JOB_WHM){//healer wyvern 
-				m_PBattleSubTarget = m_PPet->PMaster;
-			}
-			else if(m_PPet->PMaster->GetHPP() <= 25 && m_PPet->GetMJob()==JOB_RDM){//hybrid wyvern
-				m_PBattleSubTarget = m_PPet->PMaster;
-			}
-	//	}
-	//	else{ //group play
-	//		//for( int i=0; i<
-	//	}
-		if(m_PBattleSubTarget != NULL){ //target to heal
-			//get highest breath for wyverns level
-			m_PMobSkill = NULL;
-			for(int i=0; i<m_PPet->PetSkills.size(); i++){
-				if(m_PPet->PetSkills[i]->getValidTargets() == TARGET_PLAYER_PARTY){
-					if(m_PPet->PetSkills[i]->getID()==638 && 
-						m_PPet->PMaster->GetMLevel() < 20){ //can only using hb1
-							m_PMobSkill = m_PPet->PetSkills[i];
-							break;
-					}
-					else if(m_PPet->PetSkills[i]->getID()==639 &&
-						m_PPet->PMaster->GetMLevel() < 40){ //can only using hb2
-							m_PMobSkill = m_PPet->PetSkills[i];
-							break;
-					}
-					else if(m_PPet->PetSkills[i]->getID()==640 &&
-						m_PPet->PMaster->GetMLevel() >= 40){ //can only using hb3
-							m_PMobSkill = m_PPet->PetSkills[i];
-							break;
+		//	if(m_PPet->PMaster->PParty==NULL){//solo with master-kun
+				if(m_PPet->PMaster->GetHPP() <= 33 && m_PPet->GetMJob()==JOB_WHM){//healer wyvern 
+					m_PBattleSubTarget = m_PPet->PMaster;
+				}
+				else if(m_PPet->PMaster->GetHPP() <= 25 && m_PPet->GetMJob()==JOB_RDM){//hybrid wyvern
+					m_PBattleSubTarget = m_PPet->PMaster;
+				}
+		//	}
+		//	else{ //group play
+		//		//for( int i=0; i<
+		//	}
+			if(m_PBattleSubTarget != NULL){ //target to heal
+				//get highest breath for wyverns level
+				m_PMobSkill = NULL;
+				for(int i=0; i<m_PPet->PetSkills.size(); i++){
+					if(m_PPet->PetSkills[i]->getValidTargets() == TARGET_PLAYER_PARTY){
+						if(m_PPet->PetSkills[i]->getID()==638 && 
+							m_PPet->PMaster->GetMLevel() < 20){ //can only using hb1
+								m_PMobSkill = m_PPet->PetSkills[i];
+								break;
+						}
+						else if(m_PPet->PetSkills[i]->getID()==639 &&
+							m_PPet->PMaster->GetMLevel() < 40){ //can only using hb2
+								m_PMobSkill = m_PPet->PetSkills[i];
+								break;
+						}
+						else if(m_PPet->PetSkills[i]->getID()==640 &&
+							m_PPet->PMaster->GetMLevel() >= 40){ //can only using hb3
+								m_PMobSkill = m_PPet->PetSkills[i];
+								break;
+						}
 					}
 				}
+				preparePetAbility(m_PBattleSubTarget);
+				return;
 			}
-			preparePetAbility(m_PBattleSubTarget);
-			return;
 		}
 	}
-}
 	m_ActionType = ACTION_ATTACK;
 	ActionAttack();
 }
@@ -286,7 +286,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 		Action.param	  = luautils::OnMobWeaponSkill(Action.ActionTarget, m_PPet,m_PMobSkill);
 	}
 	else{
-		Action.param	  = luautils::OnPetAbility(Action.ActionTarget, m_PPet,m_PMobSkill);
+		Action.param	  = luautils::OnPetAbility(Action.ActionTarget, m_PPet,m_PMobSkill, m_PPet->PMaster);
 	}
 	Action.subparam   = m_PMobSkill->getID() + 256;
 	Action.messageID  = m_PMobSkill->getMsg();
@@ -320,7 +320,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 			//call the script for each member hit
 			for (uint32 i = 1; i < m_PPet->m_ActionList.size(); ++i){
 				CBattleEntity* PTarget = m_PPet->m_ActionList.at(i).ActionTarget;
-				m_PPet->m_ActionList.at(i).param = luautils::OnPetAbility(PTarget, m_PPet,m_PMobSkill);
+				m_PPet->m_ActionList.at(i).param = luautils::OnPetAbility(PTarget, m_PPet,m_PMobSkill, m_PPet->PMaster);
 				m_PPet->m_ActionList.at(i).messageID = m_PMobSkill->getMsg();
 				if(m_PMobSkill->getMsg()==186){m_PPet->m_ActionList.at(i).messageID=280;} //gains effect of
 				if(m_PMobSkill->getMsg()==238){m_PPet->m_ActionList.at(i).messageID=263;} //recovers xx HP
@@ -356,7 +356,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 			//call the script for each monster hit
 			for (uint32 i = 1; i < m_PPet->m_ActionList.size(); ++i){
 				CBattleEntity* PTarget = m_PPet->m_ActionList.at(i).ActionTarget;
-				m_PPet->m_ActionList.at(i).param = luautils::OnPetAbility(PTarget, m_PPet,m_PMobSkill);
+				m_PPet->m_ActionList.at(i).param = luautils::OnPetAbility(PTarget, m_PPet,m_PMobSkill, m_PPet->PMaster);
 				m_PPet->m_ActionList.at(i).messageID = m_PMobSkill->getMsg();
 				if(m_PMobSkill->getMsg()==2){m_PPet->m_ActionList.at(i).messageID=264;} //takes xxx damage
 				if(m_PMobSkill->getMsg()==243){m_PPet->m_ActionList.at(i).messageID=278;} //gains effect of
