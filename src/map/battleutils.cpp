@@ -2260,6 +2260,32 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 return NULL;
 }
 
+/************************************************************************
+*                                                                       *
+*  Adds enmity to PSource for all the MOB targets who have              *
+*  PTarget on their enmity list.                                        *
+*                                                                       *
+************************************************************************/
+
+void GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 amount)
+{
+	DSP_DEBUG_BREAK_IF(PSource == NULL);
+	DSP_DEBUG_BREAK_IF(PTarget == NULL);
+    DSP_DEBUG_BREAK_IF(amount < 0);
+	DSP_DEBUG_BREAK_IF(PSource->objtype != TYPE_PC);
+	
+	CCharEntity* PChar = (CCharEntity*)PSource;
+	
+    for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin();  it != PChar->SpawnMOBList.end(); ++it)
+    {
+		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+		
+		if(PCurrentMob->PEnmityContainer->HasTargetID(PTarget->id))
+        {
+            PCurrentMob->PEnmityContainer->UpdateEnmityFromCure(PChar, PTarget->GetMLevel(), amount,(amount == 65535)); //true for "cure v"
+		}
+	}
+}
 
 
 }; 

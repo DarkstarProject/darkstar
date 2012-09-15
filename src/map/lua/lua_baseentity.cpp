@@ -3825,7 +3825,7 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
     if (PEntity != NULL && 
         PEntity->GetBaseEntity()->objtype == TYPE_PC)//TODO: Handle people curing skeletons
 	{
-		m_PBaseEntity->loc.zone->GenerateCureEnmity((CBattleEntity*)m_PBaseEntity,(CBattleEntity*)PEntity->GetBaseEntity(),amount);
+		battleutils::GenerateCureEnmity((CBattleEntity*)m_PBaseEntity, (CBattleEntity*)PEntity->GetBaseEntity(), amount);
 	}
 
 	return 0;

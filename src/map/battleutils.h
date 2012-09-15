@@ -120,6 +120,7 @@ namespace battleutils
 	bool	isValidSelfTargetWeaponskill(int wsid);
 	bool	TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float	CalculateBaseTP(int delay, int stp);
+    void    GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 amount);
 
     CItemWeapon* GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot);
     CItemArmor* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot);

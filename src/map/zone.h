@@ -446,7 +446,6 @@ public:
 	void			InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
 	void			DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
 
-	void			GenerateCureEnmity(CBattleEntity* PSource,CBattleEntity* PTarget,uint16 amount);
     void            FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
     void            TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
 
