@@ -65,7 +65,7 @@ ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
 	elseif (TruthJusticeOnionWay == QUEST_COMPLETED) then
 		player:startEvent(0x017f);
 	elseif (TruthJusticeOnionWay == QUEST_ACCEPTED) then
-		player:startEvent(0x0177);
+		player:startEvent(0x0178);
 	else
 		player:startEvent(0x016d);
 	end

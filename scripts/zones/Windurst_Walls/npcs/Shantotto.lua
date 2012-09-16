@@ -2,6 +2,7 @@
 --	Area: Windurst Walls
 --	NPC:  Shantotto
 --	Working 100%
+-- CSID's misisng in autoEventID please check the old forums under resources for all of shantotto's csid's. I found them all manually.
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -26,17 +27,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:delQuest(WINDURST,CURSES_FOILED_AGAIN_1);
-
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 	foiledAgain = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_1);
 	
 	if(foiledAgain == QUEST_AVAILABLE) then
@@ -61,6 +51,17 @@ function onEventUpdate(player,csid,option)
 		player:startEvent(0xa4);
 	end
 	
+
+end;
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+
 end;
 
 -----------------------------------
