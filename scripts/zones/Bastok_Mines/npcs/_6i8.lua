@@ -25,6 +25,9 @@ function onTrigger(player,npc)
 	
 	if(player:getQuestStatus(OUTLANDS,A_THIEF_IN_NORG) == QUEST_ACCEPTED and player:getVar("aThiefinNorgCS") == 3) then
 		player:startEvent(0x00ba);
+		return -1
+	else
+		return 0
 	end
 	
 end; 
