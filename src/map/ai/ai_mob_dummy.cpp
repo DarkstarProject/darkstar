@@ -1186,7 +1186,7 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
             distance(radiusAround, PTarget->loc.p) > radius)
         {
             //ShowInfo("Removed");
-            itr = results.erase(itr);
+            results.erase(itr++);
         }
         else
         {

@@ -35,7 +35,7 @@
 #include "vana_time.h"
 #include "instance_handler.h"
 
-#include "packets\weather.h"
+#include "packets/weather.h"
 
 enum ZONEID : uint8
 {

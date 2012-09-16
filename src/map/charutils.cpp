@@ -1541,7 +1541,7 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 
 	//add in melee ws
 	uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
-	std::list<CWeaponSkill*>& WeaponSkillList = battleutils::GetWeaponSkills(skill);
+	std::list<CWeaponSkill*>&& WeaponSkillList = battleutils::GetWeaponSkills(skill);
 	for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
 	{
 		CWeaponSkill* PSkill = *it;
@@ -1559,7 +1559,7 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 	if(PItem != NULL && (PItem->getType() & ITEM_WEAPON) && PItem->getSkillType()!=SKILL_THR)
 	{ 
 		skill = PChar->m_Weapons[SLOT_RANGED]->getSkillType();
-		std::list<CWeaponSkill*>& WeaponSkillList = battleutils::GetWeaponSkills(skill);
+		std::list<CWeaponSkill*>&& WeaponSkillList = battleutils::GetWeaponSkills(skill);
 		for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
 		{
 			CWeaponSkill* PSkill = *it;
