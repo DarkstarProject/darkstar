@@ -1174,7 +1174,7 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
 
 
     // Prune entities that aren't in range/zone/alive/etc
-    for (std::vector<CBattleEntity*>::const_iterator itr = results.begin(); itr != results.end();)
+    for (std::vector<CBattleEntity*>::iterator itr = results.begin(); itr != results.end();)
     {
         CBattleEntity* PTarget = (*itr);
 
