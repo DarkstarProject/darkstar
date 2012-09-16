@@ -35,11 +35,7 @@ template<class _Ty>
 {	// functor for operator>
 	bool operator()(const _Ty& _Left, const _Ty& _Right) const
 	{	// apply operator> to operands
-<<<<<<< .mine
 		return ((*_Left) > (*_Right));
-=======
-		return (_Left >= _Right);
->>>>>>> .r1756
 	}
 };
 
