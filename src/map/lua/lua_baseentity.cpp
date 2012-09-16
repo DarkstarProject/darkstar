@@ -4215,7 +4215,9 @@ inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L){
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 	int instance = 0;
-
+	
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
+	
 	if(PChar->loc.zone->m_InstanceHandler->hasFreeInstance()){
 		int Pzone = PChar->getZone();
 		if(Pzone > 184 && Pzone < 189 || Pzone > 133 && Pzone < 136){
@@ -4255,6 +4257,7 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
 	
 	int Pzone = PChar->getZone();
 	if(Pzone > 184 && Pzone < 189 || Pzone > 133 && Pzone < 136){
@@ -4293,6 +4296,8 @@ inline int32 CLuaBaseEntity::bcnmLeave(lua_State *L){
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
+
 	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
 		uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD,0)->GetPower();
 		uint8 typeOfExit = lua_tointeger(L,1);
@@ -4334,6 +4339,7 @@ inline int32 CLuaBaseEntity::getInstanceID(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
 	
 	uint8 inst = 255;
 
@@ -4353,6 +4359,7 @@ inline int32 CLuaBaseEntity::getBCNMloot(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
 	
 	uint8 inst = 255;
 
@@ -4374,6 +4381,7 @@ inline int32 CLuaBaseEntity::isBcnmsFull(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
 	
 	uint8 full = 1;
 
@@ -4392,6 +4400,8 @@ inline int32 CLuaBaseEntity::getDynamisUniqueID(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 	
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
+
 	lua_pushinteger( L, PChar->loc.zone->m_InstanceHandler->getUniqueDynaID(lua_tointeger(L,1)));
 
 	return 1;
@@ -4404,6 +4414,7 @@ inline int32 CLuaBaseEntity::addTimeToDynamis(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
 	
 	PChar->loc.zone->m_InstanceHandler->dynamisMessage(448,lua_tointeger(L,1));
 
@@ -4416,6 +4427,7 @@ inline int32 CLuaBaseEntity::launchDynamisSecondPart(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
 	
 	PChar->loc.zone->m_InstanceHandler->launchDynamisSecondPart();
 
@@ -4429,6 +4441,7 @@ inline int32 CLuaBaseEntity::addPlayerToDynamis(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
 
 	int instance = PChar->loc.zone->m_InstanceHandler->dynamisAddPlayer(lua_tointeger(L,1),PChar);
 
