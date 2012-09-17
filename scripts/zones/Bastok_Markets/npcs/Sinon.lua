@@ -3,11 +3,11 @@
 -- NPC: Sinon
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-package.loaded["scripts/globals/armorstorage"] = nil;
-require("scripts/globals/armorstorage");
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/quests");
+require("scripts/globals/armorstorage");
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 Deposit = 0x018b;

@@ -3,10 +3,10 @@
 -- NPC: Meuxtajean
 -- Standard Info NPC
 -----------------------------------
-
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/quests");
 require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------

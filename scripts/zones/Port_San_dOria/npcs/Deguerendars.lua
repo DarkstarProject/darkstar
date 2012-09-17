@@ -4,12 +4,12 @@
 --	Only sells when San d'Oria contrls Tavnazian Archipelago
 --	Only available to those with CoP Ch. 4.1 or higher
 -----------------------------------
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------

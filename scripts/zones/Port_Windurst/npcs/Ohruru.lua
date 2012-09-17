@@ -8,13 +8,13 @@
 --  @zone = 240
 --  @pos = -108 -5 94
 -----------------------------------
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/status");
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------

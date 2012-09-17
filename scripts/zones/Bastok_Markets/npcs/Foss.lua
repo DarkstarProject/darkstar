@@ -3,12 +3,12 @@
 -- NPC: Foss
 -- Starts & Finishes Repeatable Quest: Buckets of Gold
 -----------------------------------
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------

@@ -5,12 +5,12 @@
 --  @zone 104
 --  @pos  105 1 382
 -----------------------------------
+package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 require("scripts/zones/Jugner_Forest/TextIDs");
 
 -----------------------------------

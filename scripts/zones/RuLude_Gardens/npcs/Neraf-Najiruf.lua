@@ -5,11 +5,11 @@
 -- @zone 243
 -- @pos -36 2 60
 -----------------------------------
+package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------

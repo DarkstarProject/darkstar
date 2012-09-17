@@ -3,11 +3,11 @@
 -- NPC: qm1
 -- Continues Quests: Past Perfect
 -----------------------------------
+package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 -----------------------------------

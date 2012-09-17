@@ -3,12 +3,14 @@
 -- NPC: Mhoji Roccoruh
 -- Map Seller NPC
 -----------------------------------
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/port_windurst/textids");
 require("scripts/globals/keyitems");
+require("scripts/zones/Port_Windurst/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

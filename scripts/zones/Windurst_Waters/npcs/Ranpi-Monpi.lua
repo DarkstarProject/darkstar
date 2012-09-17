@@ -6,13 +6,13 @@
 --  @zone = 238
 --  @pos = -116 -3 52  (outside the shop he is in)
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");	
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------

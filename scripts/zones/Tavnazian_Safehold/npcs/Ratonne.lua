@@ -3,11 +3,11 @@
 -- NPC: Ratonne
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-package.loaded["scripts/globals/armorstorage"] = nil;
-require("scripts/globals/armorstorage");
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/quests");
+require("scripts/globals/armorstorage");
 require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 Deposit = 0x01fe;

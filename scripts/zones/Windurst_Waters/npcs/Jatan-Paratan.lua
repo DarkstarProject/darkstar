@@ -6,13 +6,13 @@
 --  @zone = 238
 --  @pos = -59 -4 22
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");	
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
@@ -21,7 +21,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onTrade(player,npc,trade)
 	wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
-	if (wonderingstatus == 1 and trade:hasItemQty(718,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1 and player:getVar("QuestWonderingMin_var") == 1) then
+	if (wonderingstatus == 1 and trade:hasItemQty(718,1) == true and trade:getItemCount() == 1 and player:getVar("QuestWonderingMin_var") == 1) then
 		player:startEvent(0x027e); 				-- WONDERING_MINSTREL: Quest Finish
 	end
 end;      

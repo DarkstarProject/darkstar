@@ -3,11 +3,11 @@
 -- NPC: Signpost
 -- Involved in Quest: The Signpost Marks the Spot
 -----------------------------------
+package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/keyitems");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 -----------------------------------

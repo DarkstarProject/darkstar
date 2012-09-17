@@ -6,7 +6,6 @@
 --  @pos = 133 -5 167
 -----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 

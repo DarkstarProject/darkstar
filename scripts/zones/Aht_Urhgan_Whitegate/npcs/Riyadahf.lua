@@ -3,12 +3,14 @@
 -- NPC: Riyadahf
 -- Map Seller NPC
 -----------------------------------
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Aht_Urhgan_Whitegate/textids");
 require("scripts/globals/keyitems");
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -73,8 +75,8 @@ gil = 0;
 	   player:addKeyItem(option);
 	   player:messageSpecial(KEYITEM_OBTAINED,keyItem); 
 	else
-	   player:messageSpecial(0220);
-    	end
+	   player:messageSpecial(220); -- ???
+    end
   end
 end;
 

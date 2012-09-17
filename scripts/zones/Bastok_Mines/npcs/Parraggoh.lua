@@ -3,11 +3,11 @@
 -- NPC: Parraggoh
 -- Finishes Quest: Beauty and the Galka
 -----------------------------------
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------

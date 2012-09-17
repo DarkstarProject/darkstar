@@ -6,11 +6,11 @@
 -- @zone 235
 -- @pos -175 2 -135
 -----------------------------------
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------

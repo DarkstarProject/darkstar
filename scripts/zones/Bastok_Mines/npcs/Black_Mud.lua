@@ -3,12 +3,12 @@
 -- NPC: Black Mud
 -- Starts & Finishes Quest: Drachenfall
 -----------------------------------
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------

@@ -3,14 +3,13 @@
 -- NPC: Miene
 -- NPC for Quest "The Pickpocket"
 -----------------------------------
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Port_San_dOria/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action

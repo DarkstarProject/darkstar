@@ -3,11 +3,11 @@
 -- NPC: Benita
 -- Starts Quest: The Wisdom Of Elders
 -----------------------------------
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------

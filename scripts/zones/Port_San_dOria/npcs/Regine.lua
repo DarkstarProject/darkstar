@@ -3,11 +3,11 @@
 --	NPC:  Regine
 --	Standard Merchant NPC
 -----------------------------------
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------

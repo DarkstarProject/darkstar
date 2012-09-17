@@ -3,12 +3,14 @@
 -- NPC: Pehki Machumaht
 -- Map Seller NPC
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/windurst_woods/textids");
 require("scripts/globals/keyitems");
+require("scripts/zones/Windurst_Woods/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

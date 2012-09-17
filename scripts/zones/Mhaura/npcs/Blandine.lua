@@ -5,11 +5,11 @@
 -- @zone 249
 -- @pos 23 -7 41
 -----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------

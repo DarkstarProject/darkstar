@@ -3,12 +3,12 @@
 --  NPC: ???
 --  Involved in Quest: I Can Hear A Rainbow
 -----------------------------------
+package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------

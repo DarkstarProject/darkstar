@@ -3,11 +3,11 @@
 -- NPC: Tesch_Garanjy
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/globals/quests"] = nil;
-require("scripts/globals/quests");
-package.loaded["scripts/globals/armorstorage"] = nil;
-require("scripts/globals/armorstorage");
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/quests");
+require("scripts/globals/armorstorage");
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 Deposit = 0x272b;

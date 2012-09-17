@@ -3,11 +3,11 @@
 --	NPC:  Zelman
 --	Involved In Quest: Groceries
 -----------------------------------
+package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 require("scripts/zones/Zeruhn_Mines/TextIDs");
 
 -----------------------------------

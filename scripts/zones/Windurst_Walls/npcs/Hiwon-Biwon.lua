@@ -4,12 +4,12 @@
 --  Involved In Quest: Making Headlines
 --	Working 100%
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------

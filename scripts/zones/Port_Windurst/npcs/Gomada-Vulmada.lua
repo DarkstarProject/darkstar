@@ -2,11 +2,11 @@
 -- Area: Port Windurst
 -- NPC: Gomada-Vulmada
 -----------------------------------
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------

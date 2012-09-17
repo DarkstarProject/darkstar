@@ -7,13 +7,13 @@
 --  @zone = 115
 --  @pos = 154 -41 330
 -----------------------------------
+package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/status");
-package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 require("scripts/zones/West_Sarutabaruta/TextIDs");
 
 -----------------------------------

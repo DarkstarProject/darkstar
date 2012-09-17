@@ -3,11 +3,11 @@
 -- NPC: Monument
 -- Continues Quest: Hearts of Mythril
 -----------------------------------
+package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 require("scripts/zones/North_Gustaberg/TextIDs");
 
 -----------------------------------

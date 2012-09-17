@@ -5,12 +5,12 @@
 -- @zone 248
 -- @pos -11 -11 -6
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------

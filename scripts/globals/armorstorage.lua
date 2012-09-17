@@ -3,7 +3,6 @@
 --  Armor Storage
 --
 -----------------------------------
-package.loaded["scripts/globals/keyitems"] = nil;
 require("scripts/globals/keyitems");
 
 -- Initialize StorageArray

@@ -3,12 +3,14 @@
 -- NPC: Ashu Bolkhomo
 -- Map Seller NPC
 -----------------------------------
+package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Rabao/textids");
 require("scripts/globals/keyitems");
+require("scripts/zones/Rabao/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

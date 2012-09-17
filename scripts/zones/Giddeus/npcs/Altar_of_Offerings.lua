@@ -6,13 +6,13 @@
 --  @zone = 145
 --  @pos = -137 17 177
 -----------------------------------
+package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
+-----------------------------------
 
-package.loaded["scripts/globals/quests"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");	
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 require("scripts/zones/Giddeus/TextIDs");
 
 -----------------------------------
