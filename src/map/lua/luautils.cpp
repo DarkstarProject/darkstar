@@ -91,6 +91,7 @@ int32 init()
 	lua_register(LuaHandle,"VanadielYear",luautils::VanadielYear);
 	lua_register(LuaHandle,"VanadielMonth",luautils::VanadielMonth);
 	lua_register(LuaHandle,"VanadielDayElement",luautils::VanadielDayElement);
+	lua_register(LuaHandle,"VanadielMoonPhase",luautils::VanadielMoonPhase);
     lua_register(LuaHandle,"SetVanadielTimeOffset",luautils::SetVanadielTimeOffset);
 	lua_register(LuaHandle,"RunElevator",luautils::StartElevator);
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
@@ -336,6 +337,19 @@ int32 VanadielDayElement(lua_State* L)
 	lua_pushinteger(L, CVanaTime::getInstance()->getWeekday());
 	return 1;
 }
+
+/************************************************************************
+*																		*
+*	Return Moon Phase													*
+*																		*
+************************************************************************/
+
+int32 VanadielMoonPhase(lua_State* L)
+{
+	lua_pushinteger(L, CVanaTime::getInstance()->getMoonPhase());
+	return 1;
+}
+
 
 int32 SetVanadielTimeOffset(lua_State* L)
 {

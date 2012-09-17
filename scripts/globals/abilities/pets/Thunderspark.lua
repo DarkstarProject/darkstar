@@ -1,5 +1,5 @@
 ---------------------------------------------------
--- Flaming Crush M=10, 2, 2? (STILL don't know)
+-- Thunderspark M=whatever
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -11,20 +11,25 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	numhits = 3;
+	numhits = 1;
 	accmod = 1;
-	dmgmod = 10;
-	dmgmodsubsequent = 2;
+	dmgmod = 6;
 	
 	totaldamage = 0;
 	damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,dmgmodsubsequent,TP_NO_EFFECT,1,2,3);
 	--get resist multiplier (1x if no resist)
-	resist = applyPlayerResistance(pet,skill,target,pet:getMod(MOD_INT)-target:getMod(MOD_INT),ELEMENTAL_MAGIC_SKILL, 1);
+	resist = applyPlayerResistance(pet,skill,target,pet:getMod(MOD_INT)-target:getMod(MOD_INT),ELEMENTAL_MAGIC_SKILL, 6);
 	--get the resisted damage
 	damage.dmg = damage.dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	damage.dmg = mobAddBonuses(pet,spell,target,damage.dmg,1);
+	tp = pet:getTP();
+	if tp < 100 then
+		tp = 100;
+	end
+	damage.dmg = damage.dmg * tp / 100;
 	totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,numhits);
+	target:addStatusEffect(EFFECT_PARALYZE, 15, 0, 30);
 	target:delHP(totaldamage);
 	target:updateEnmityFromDamage(pet,totaldamage);
 	

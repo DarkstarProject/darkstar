@@ -13,9 +13,9 @@ function OnPetAbility(target, pet, skill)
 	if duration > 350 then
 		duration = 350;
 	end;
-	target:delStatusEffect(EFFECT_HASTE);
 	target:delStatusEffect(EFFECT_SLOW);
-	target:addStatusEffect(EFFECT_HASTE,15,0,duration);
+	target:delStatusEffect(EFFECT_HASTE);
+	target:addStatusEffect(EFFECT_SLOW,30,0,duration);
 	skill:setMsg(MSG_BUFF);
 	return EFFECT_HASTE;
 end

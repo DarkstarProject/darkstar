@@ -703,6 +703,17 @@ INSERT INTO `mob_skill` VALUES (0,149,432,'Two_Hour', 1, 15.0, 2000, 10, 4, 0);
 -- AVATAR
 -- --------------------------------------
 
+-- Fenrir
+INSERT INTO `mob_skill` VALUES (575,36,513,'Moonlit_Charge', 0, 10.0, 512, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (576,36,514,'Crescent_Fang', 0, 10.0, 513, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (577,36,515,'Lunar_Cry', 0, 10.0, 514, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (578,36,516,'Ecliptic_Growl', 1, 10.0, 516, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (579,36,517,'Lunar_Roar', 1, 10.0, 515, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (580,36,518,'Eclipse_Bite', 0, 10.0, 518, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (581,36,519,'Ecliptic_Howl', 1, 10.0, 517, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (582,36,550,'Lunar_Bay', 0, 10.0, 519, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (583,36,521,'Howling_Moon', 1, 10.0, 520, 2000, 4, 0);
+
 -- Ifrit
 INSERT INTO `mob_skill` VALUES (584,38,526,'Punch', 0, 10.0, 528, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (585,38,527,'Fire_II', 0, 10.0, 529, 2000, 4, 0);
@@ -725,6 +736,17 @@ INSERT INTO `mob_skill` VALUES (599,45,545,'Mountain_Buster', 0, 10.0, 550, 2000
 INSERT INTO `mob_skill` VALUES (600,45,546,'Geocrush', 0, 10.0, 551, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (601,45,547,'Earthen_Fury', 1, 10.0, 552, 2000, 4, 0);
 
+-- Leviathan
+INSERT INTO `mob_skill` VALUES (602,40,552,'Barracuda_Dive', 0, 10.0, 560, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (603,40,553,'Water_II', 0, 10.0, 561, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (604,40,554,'Tail_Whip', 0, 10.0, 562, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (605,40,555,'Spring_Water', 1, 10.0, 563, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (606,40,556,'Slowga', 1, 10.0, 564, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (607,40,557,'Water_IV', 0, 10.0, 565, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (608,40,558,'Spinning_Dive', 0, 10.0, 566, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (609,40,559,'Grand_Fall', 0, 10.0, 567, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (610,40,560,'Tidal_Wave', 1, 10.0, 568, 2000, 4, 0);
+
 -- Garuda
 INSERT INTO `mob_skill` VALUES (611,37,565,'Claw', 0, 10.0, 576, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (612,37,566,'Aero_II', 0, 10.0, 577, 2000, 4, 0);
@@ -746,6 +768,17 @@ INSERT INTO `mob_skill` VALUES (625,44,583,'Blizzard_IV', 0, 10.0, 597, 2000, 4,
 INSERT INTO `mob_skill` VALUES (626,44,584,'Rush', 0, 10.0, 598, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (627,44,585,'Heavenly_Strike', 0, 10.0, 599, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (628,44,586,'Diamond_Dust', 1, 10.0, 600, 2000, 4, 0);
+
+-- Ramuh
+INSERT INTO `mob_skill` VALUES (629,43,591,'Shock_Strike', 0, 10.0, 608, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (630,43,592,'Thunder_II', 0, 10.0, 609, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (631,43,593,'Rolling_Thunder', 1, 10.0, 610, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (632,43,594,'Thunderspark', 1, 10.0, 611, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (633,43,595,'Lightning_Armor', 1, 10.0, 612, 2000, 1, 0);
+INSERT INTO `mob_skill` VALUES (634,43,596,'Thunder_IV', 0, 10.0, 613, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (635,43,597,'Chaotic_Strike', 0, 10.0, 614, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (636,43,598,'Thunderstorm', 0, 10.0, 615, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (637,43,599,'Judgment_Bolt', 1, 10.0, 616, 2000, 4, 0);
 
 -- Carbuncle
 INSERT INTO `mob_skill` VALUES (650,34,605,'Healing_Ruby', 0, 10.0, 496, 2000, 2, 0);

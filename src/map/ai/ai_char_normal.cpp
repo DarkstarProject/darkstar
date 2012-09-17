@@ -1515,6 +1515,14 @@ void CAICharNormal::ActionJobAbilityFinish()
 	{
 		Recast->RecastTime = Recast->RecastTime / 2;
 	}
+	if(m_PJobAbility->getID() >= ABILITY_HEALING_RUBY){
+		if(m_PChar->getMod(MOD_BP_DELAY) > 15){
+			Recast->RecastTime = Recast->RecastTime - 15000;
+		}else{
+			Recast->RecastTime = Recast->RecastTime - m_PChar->getMod(MOD_BP_DELAY) * 1000;
+		}
+	}
+
     
     m_PChar->RecastList.push_back(Recast);
     m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
@@ -1530,7 +1538,13 @@ void CAICharNormal::ActionJobAbilityFinish()
 			Action.param      = 0;
 			Action.flag       = 0; 
 			Action.messageID  = 0;
-			m_PChar->addMP(-m_PJobAbility->getAnimationID());
+			if(m_PJobAbility->getID() == ABILITY_SEARING_LIGHT || m_PJobAbility->getID() == ABILITY_AERIAL_BLAST || m_PJobAbility->getID() == ABILITY_EARTHEN_FURY){
+				if(m_PChar->health.mp >= m_PChar->GetMLevel() * 2){
+					m_PChar->addMP(-m_PChar->GetMLevel() * 2);
+				}
+			} else {
+				m_PChar->addMP(-m_PJobAbility->getAnimationID());
+			}
 			m_PChar->m_ActionList.push_back(Action);
 			m_PChar->PPet->PBattleAI->SetBattleSubTarget(m_PBattleSubTarget);
 			((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = m_PJobAbility->getID();

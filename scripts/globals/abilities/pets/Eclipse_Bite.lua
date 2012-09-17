@@ -1,5 +1,5 @@
 ---------------------------------------------------
--- Claw M=3.5
+-- Eclipse Bite M=8 subsequent hits M=2
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -9,15 +9,14 @@ require("/scripts/globals/summon");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	numhits = 1;
+	numhits = 3;
 	accmod = 1;
-	dmgmod = 3.5;
-	
+	dmgmod = 8;
+	dmgmodsubsequent = 2;
 	totaldamage = 0;
-	damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,0,TP_NO_EFFECT,1,2,3);
-	totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,numhits);
+	damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,dmgmodsubsequent,TP_NO_EFFECT,1,2,3);
+	totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,numhits);
 	target:delHP(totaldamage);
 	target:updateEnmityFromDamage(pet,totaldamage);
-	
 	return totaldamage;
 end

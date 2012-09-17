@@ -272,6 +272,16 @@ INSERT INTO `abilities` VALUES ('500', 'meteorite', '15', '55', '4', '60', '173'
 INSERT INTO `abilities` VALUES ('501', 'healing_ruby_ii', '15', '65', '1', '60', '174', '124', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('502', 'searing_light', '15', '1', '4', '60', '173', '0', '18', '1', '1', '60');
 
+INSERT INTO `abilities` VALUES ('512', 'moonlit_charge', '15', '5', '4', '60', '173', '17', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('513', 'crescent_fang', '15', '10', '4', '60', '173', '19', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('514', 'lunar_cry', '15', '21', '4', '60', '174', '41', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('515', 'lunar_roar', '15', '32', '4', '60', '174', '27', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('516', 'ecliptic_growl', '15', '43', '1', '60', '174', '46', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('517', 'ecliptic_howl', '15', '54', '1', '60', '174', '57', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('518', 'eclipse_bite', '15', '65', '4', '60', '173', '109', '18', '0', '1', '60');
+-- INSERT INTO `abilities` VALUES ('519', 'lunar_bay', '15', '75', '4', '60', '173', '174', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('520', 'howling_moon', '15', '1', '4', '60', '173', '0', '18', '1', '1', '60');
+
 INSERT INTO `abilities` VALUES ('528', 'punch', '15', '1', '4', '60', '173', '9', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('529', 'fire_ii', '15', '10', '4', '60', '173', '24', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('530', 'burning_strike', '15', '23', '4', '60', '173', '48', '18', '0', '1', '60');
@@ -292,6 +302,16 @@ INSERT INTO `abilities` VALUES ('550', 'mountain_buster', '15', '70', '4', '60',
 INSERT INTO `abilities` VALUES ('551', 'geocrush', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('552', 'earthen_fury', '15', '1', '4', '60', '173', '0', '18', '1', '1', '60');
 
+INSERT INTO `abilities` VALUES ('560', 'barracuda_dive', '15', '1', '4', '60', '173', '8', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('561', 'water_ii', '15', '10', '4', '60', '173', '24', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('562', 'tail_whip', '15', '26', '4', '60', '173', '49', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('564', 'slowga', '15', '33', '4', '60', '174', '48', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('563', 'spring_water', '15', '47', '1', '60', '174', '99', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('565', 'water_iv', '15', '60', '4', '60', '173', '118', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('566', 'spinning_dive', '15', '70', '4', '60', '173', '164', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('567', 'grand_fall', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('568', 'tidal_wave', '15', '1', '4', '60', '173', '0', '18', '1', '1', '60');
+
 INSERT INTO `abilities` VALUES ('576', 'claw', '15', '1', '4', '60', '173', '7', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('577', 'aero_ii', '15', '10', '4', '60', '173', '24', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('578', 'whispering_wind', '15', '36', '1', '60', '174', '119', '18', '0', '1', '60');
@@ -311,3 +331,13 @@ INSERT INTO `abilities` VALUES ('597', 'blizzard_iv', '15', '60', '4', '60', '17
 INSERT INTO `abilities` VALUES ('598', 'rush', '15', '70', '4', '60', '173', '164', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('599', 'heavenly_strike', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('600', 'diamond_dust', '15', '1', '4', '60', '173', '0', '18', '0', '1', '60');
+
+INSERT INTO `abilities` VALUES ('608', 'shock_strike', '15', '1', '4', '60', '173', '6', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('609', 'thunder_ii', '15', '10', '4', '60', '173', '24', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('611', 'thunderspark', '15', '19', '4', '60', '173', '38', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('610', 'rolling_thunder', '15', '31', '1', '60', '174', '52', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('612', 'lightning_armor', '15', '42', '1', '60', '174', '91', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('613', 'thunder_iv', '15', '60', '4', '60', '173', '118', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('614', 'chaotic_strike', '15', '70', '4', '60', '173', '164', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('615', 'thunderstorm', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');
+INSERT INTO `abilities` VALUES ('616', 'judgment_bolt', '15', '1', '4', '60', '173', '0', '18', '0', '1', '60');

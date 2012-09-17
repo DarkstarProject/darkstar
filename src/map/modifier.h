@@ -323,6 +323,7 @@ enum MODIFIER
 // Summoner
 
 	MOD_AVATAR_PERPETUATION = 0x15A,  //stores the MP/tick reduction from gear
+	MOD_BP_DELAY			= 0x165,  //stores blood pact delay reduction
 
 // Blue Mage
 
@@ -392,7 +393,7 @@ enum MODIFIER
 	MOD_ADDS_WEAPONSKILL_DYN = 0x164
 };
 
-#define MAX_MODIFIER		  0x165
+#define MAX_MODIFIER		  0x166
 
 
 /************************************************************************
