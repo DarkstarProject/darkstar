@@ -2,11 +2,9 @@
 -- Area: Dynamis San d'Oria
 -- NPC:  Overlord's Tombstone
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-San_dOria/TextIDs"] = nil;
------------------------------------
 
-require("scripts/globals/keyitems");
-require("scripts/zones/Dynamis-San_dOria/TextIDs");
+require("scripts/globals/titles");
+require("scripts/globals/dynamis");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -36,11 +34,16 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	if(killer:hasKeyItem(HYDRA_CORPS_COMMAND_SCEPTER) == false)then
-		killer:addKeyItem(HYDRA_CORPS_COMMAND_SCEPTER);
-		killer:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_COMMAND_SCEPTER);
+	if(alreadyReceived(killer,8) == false) then
+		addDynamisList(killer,128);
+		
+		killer:setTitle(DYNAMISSAN_DORIA_INTERLOPER); -- Add title
+		
+		npc = GetNPCByID(17535220); -- Spawn ???
+		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
+		npc:setStatus(0);
+		
+		killer:launchDynamisSecondPart(); -- Spawn dynamis second part
 	end
-	
-	--killer:launchDynamisSecondPart();
 	
 end;

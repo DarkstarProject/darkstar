@@ -3,12 +3,9 @@
 -- NPC:  Gu'Dha Effigy
 -- Mega Boss
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Bastok/TextIDs"] = nil;
------------------------------------
 
-require("scripts/globals/keyitems");
+require("scripts/globals/titles");
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Bastok/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -31,13 +28,17 @@ end;
 function onMobDeath(mob,killer)
 	
 	if(alreadyReceived(killer,8) == false) then
-		killer:addTimeToDynamis(30); -- Add + 30min
 		addDynamisList(killer,128);
-	end
-	
-	if(killer:hasKeyItem(HYDRA_CORPS_EYEGLASS) = false)then
-		killer:addKeyItem(HYDRA_CORPS_EYEGLASS);
-		killer:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_EYEGLASS);
+		
+		killer:addTimeToDynamis(30); -- Add + 30min
+		
+		killer:setTitle(DYNAMISBASTOK_INTERLOPER); -- Add title
+		
+		npc = GetNPCByID(17539319); -- Spawn ???
+		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
+		npc:setStatus(0);
+		
+		killer:launchDynamisSecondPart(); -- Spawn dynamis second part
 	end
 	
 end;

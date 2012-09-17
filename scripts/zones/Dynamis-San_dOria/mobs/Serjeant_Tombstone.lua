@@ -34,8 +34,7 @@ function onMobEngaged(mob,target)
 			for nbi = 1, table.getn(spawnList[nb + 1]), 1 do
 				if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
 				
-				if(spawnList[nb + 1][nbi] <= 20) then
-					
+				if(spawnList[nb + 1][nbi] <= 20) then -- Spawn normal Mob
 					mobList = getListDynaMob(target,spawnList[nb + 1][nbi]);
 					for nbo = 1, table.getn(mobList), 1 do
 						
@@ -51,8 +50,7 @@ function onMobEngaged(mob,target)
 							break;
 						end
 					end
-				elseif(spawnList[nb + 1][nbi] > 20) then
-					-- Spawn NM
+				elseif(spawnList[nb + 1][nbi] > 20) then -- Spawn NM
 					SpawnMob(spawnList[nb + 1][nbi]):updateEnmity(target);
 					GetMobByID(spawnList[nb + 1][nbi]):setPos(X,Y,Z);
 					MJob = GetMobByID(spawnList[nb + 1][nbi]):getMainJob();
@@ -111,9 +109,9 @@ function onMobDeath(mob,killer)
 		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
 	-- Special
 	elseif(mobID == 17535352) then
-		SpawnMob(17535353);
+		SpawnMob(17535353); -- 112 spawn 113 when defeated
 	elseif(mobID == 17535354) then
-		SpawnMob(17535355);
+		SpawnMob(17535355); -- 114 spawn 115 when defeated
 	end
 	
 end;

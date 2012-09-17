@@ -33,7 +33,7 @@ function onMobDeath(mob,killer)
 		SpawnMob(17535382); -- 142
 	end
 	
-	-- If 2 boss trigger is killer -> pop the boss
+	-- If 2 boss trigger is killed -> pop the boss
 	if(GetServerVariable("[DynaSandoria]Boss_Trigger") == 3) then
 		SpawnMob(17534977);
 		SetServerVariable("[DynaSandoria]Boss_Trigger",4);
