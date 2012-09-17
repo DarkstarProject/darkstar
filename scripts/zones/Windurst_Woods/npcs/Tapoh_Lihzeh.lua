@@ -18,6 +18,8 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 function onTrade(player,npc,trade)
 
 PayingLipService = player:getQuestStatus(WINDURST,PAYING_LIP_SERVICE);
+chocobilious = player:getQuestStatus(WINDURST,CHOCOBILIOUS);
+chocoVar = player:getVar("ChocobiliousQuest");
 
 	if (PayingLipService >= QUEST_ACCEPTED) then
 		count = trade:getItemCount();
@@ -29,6 +31,14 @@ PayingLipService = player:getQuestStatus(WINDURST,PAYING_LIP_SERVICE);
 		elseif (RemiShell == true and count == 2) then
 			player:startEvent(0x01df,0,912,1016,0,0);
 		end
+		
+	elseif (chocobilious == QUEST_ACCEPTED and chocoVar == 1) then
+		if(trade:getItemCount() == 1 and trade:hasItemQty(938,1)) then
+			player:startEvent(0x00e5,0,938); 
+			player:setVar("ChocobiliousQuest",2)
+		end
+			
+		
 	end
 	
 end;
@@ -40,11 +50,22 @@ end;
 function onTrigger(player,npc)
 
 PayingLipService = player:getQuestStatus(WINDURST,PAYING_LIP_SERVICE);
-
-	if (PayingLipService == QUEST_ACCEPTED) then
+chocobilious = player:getQuestStatus(WINDURST,CHOCOBILIOUS);
+chocoVar = player:getVar("ChocobiliousQuest");
+	
+	if (chocobilious == QUEST_ACCEPTED and chocoVar == 2) then
+		player:startEvent(0x00e6); -- after trading	
+	elseif (chocobilious == QUEST_ACCEPTED and chocoVar == 1) then
+		player:startEvent(0x00e4,0,938); -- after first talk
+	elseif (chocobilious == QUEST_ACCEPTED) then
+		player:startEvent(0x00e3,0,938); -- first talk
+		player:setVar("ChocobiliousQuest",1)
+		
+	elseif (PayingLipService == QUEST_ACCEPTED) then
 		player:startEvent(0x01de,0,912,1016,GIL_RATE*150,GIL_RATE*200);
 	elseif (PayingLipService == QUEST_AVAILABLE) then
 		player:startEvent(0x01dd,0,912,1016,GIL_RATE*150,GIL_RATE*200);
+		
 	else
 		player:startEvent(0x01b5);
 	end
@@ -89,6 +110,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);		
 		end
 		player:tradeComplete();
+		
 		
 	end;
 
