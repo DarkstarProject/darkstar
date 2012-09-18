@@ -25,14 +25,15 @@ end;
 function onTrigger(player,npc)
 	DreadbugTimer = player:getVar("DreadbugNM_Timer");
 	MyDay = VanadielDayOfTheYear();
+	aBoysDream = player:getQuestStatus(SANDORIA, A_BOY_S_DREAM);
 	
-	if(MyDay ~= DreadbugTimer) then
+	if(MyDay ~= DreadbugTimer and aBoysDream == QUEST_ACTIVE) then
 		spawnTime = player:getVar("NM_Spawned");
 		canSpawn = (os.time() - spawnTime) > 30;
 		
 		if(canSpawn) then
 			SpawnMob(17584425,168):updateEnmity(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
-			player:setVar("NM_Spawned",os.time()+180);
+			player:setVar("DreadbugNM_Timer",os.time()+180);
 			player:messageSpecial(SENSE_OF_FOREBODING);
 		else
 			player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);
