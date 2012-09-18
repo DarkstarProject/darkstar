@@ -20,7 +20,7 @@ end;
 
 function onEffectTick(target,effect)
 	-- the effect loses strengh of 1 every 3 ticks depending on the source of the boost
-	boostSTR_effect_size = effect:getPower();
+	local boostSTR_effect_size = effect:getPower();
 	if(boostSTR_effect_size > 0) then
 		effect:setPower(boostSTR_effect_size - 1)
 		target:delMod(MOD_STR,1); 
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	boostSTR_effect_size = effect:getPower();
+	local boostSTR_effect_size = effect:getPower();
 	if(boostSTR_effect_size > 0) then
-		target:delMod(MOD_STR,effect:getPower());
+		target:delMod(MOD_STR,boostSTR_effect_size);
 	end
 end;

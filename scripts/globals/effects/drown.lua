@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	skin = target:getMod(MOD_STONESKIN);
+	local skin = target:getMod(MOD_STONESKIN);
     if(skin>0) then
         if(skin >= effect:getPower()) then --absorb all damage
             target:delMod(MOD_STONESKIN,effect:getPower());

@@ -16,8 +16,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	power = effect:getPower();
-	x = (((26 * power) + 1) / 512) * 100;
+	local power = effect:getPower();
+	local x = (((26 * power) + 1) / 512) * 100;
 	target:addMod(MOD_DEFP,-x);
 end;
 
@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	skin = target:getMod(MOD_STONESKIN);
+	local skin = target:getMod(MOD_STONESKIN);
     if(skin>0) then
         if(skin >= effect:getPower()) then --absorb all damage
             target:delMod(MOD_STONESKIN,effect:getPower());
@@ -50,7 +50,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	power = effect:getPower();
-	x = (((26 * power) + 1) / 512) * 100; --Simplified
+	local power = effect:getPower();
+	local x = (((26 * power) + 1) / 512) * 100; --Simplified
 	target:delMod(MOD_DEFP,-x);
 end;

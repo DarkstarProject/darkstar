@@ -23,7 +23,7 @@ end;
 
 function onEffectTick(target,effect)
 	-- the effect restore agility of 1 every 3 ticks.
-	downAGI_effect_size = effect:getPower()
+	local downAGI_effect_size = effect:getPower()
 	if(downAGI_effect_size > 0) then
 		effect:setPower(downAGI_effect_size - 1)
 		target:delMod(MOD_AGI,-1);
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	downAGI_effect_size = effect:getPower()
+	local downAGI_effect_size = effect:getPower()
 	if(downAGI_effect_size > 0) then
-		target:delMod(MOD_AGI,-effect:getPower());
+		target:delMod(MOD_AGI,downAGI_effect_size);
 	end
 end;

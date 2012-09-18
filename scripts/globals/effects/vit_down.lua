@@ -23,7 +23,7 @@ end;
 
 function onEffectTick(target,effect)
 	-- the effect restore vitality of 1 every 3 ticks.
-	downVIT_effect_size = effect:getPower()
+	local downVIT_effect_size = effect:getPower()
 	if(downVIT_effect_size > 0) then
 		effect:setPower(downVIT_effect_size - 1)
 		target:delMod(MOD_VIT,-1);
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	downVIT_effect_size = effect:getPower()
+	local downVIT_effect_size = effect:getPower()
 	if(downVIT_effect_size > 0) then
-		target:delMod(MOD_VIT,-effect:getPower());
+		target:delMod(MOD_VIT,-downVIT_effect_size);
 	end
 end;

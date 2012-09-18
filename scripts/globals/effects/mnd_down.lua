@@ -23,7 +23,7 @@ end;
 
 function onEffectTick(target,effect)
 	-- the effect restore mind of 1 every 3 ticks.
-	downMND_effect_size = effect:getPower()
+	local downMND_effect_size = effect:getPower()
 	if(downMND_effect_size > 0) then
 		effect:setPower(downMND_effect_size - 1)
 		target:delMod(MOD_MND,-1);
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	downMND_effect_size = effect:getPower()
+	local downMND_effect_size = effect:getPower()
 	if(downMND_effect_size > 0) then
-		target:delMod(MOD_MND,-effect:getPower());
+		target:delMod(MOD_MND,-downMND_effect_size);
 	end
 end;

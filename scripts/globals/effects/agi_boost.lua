@@ -20,7 +20,7 @@ end;
 
 function onEffectTick(target,effect)
 	-- the effect loses agility of 1 every 3 ticks depending on the source of the agi boost
-	boostAGI_effect_size = effect:getPower();
+	local boostAGI_effect_size = effect:getPower();
 	if(boostAGI_effect_size > 0) then
 		effect:setPower(boostAGI_effect_size - 1)
 		target:delMod(MOD_AGI,1); 
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	boostAGI_effect_size = effect:getPower();
+	local boostAGI_effect_size = effect:getPower();
 	if(boostAGI_effect_size > 0) then
-		target:delMod(MOD_AGI,effect:getPower());
+		target:delMod(MOD_AGI,boostAGI_effect_size);
 	end
 end;

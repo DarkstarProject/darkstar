@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	tick = effect:getLastTick();
+	local tick = effect:getLastTick();
 	if (tick < 4 and tick ~= 0) then
 		target:messageBasic(251, effect:getType());
 	end

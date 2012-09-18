@@ -23,7 +23,7 @@ end;
 
 function onEffectTick(target,effect)
 	-- the effect restore intelligence of 1 every 3 ticks.
-	downINT_effect_size = effect:getPower()
+	local downINT_effect_size = effect:getPower()
 	if(downINT_effect_size > 0) then
 		effect:setPower(downINT_effect_size - 1)
 		target:delMod(MOD_INT,-1);
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	downINT_effect_size = effect:getPower()
+	local downINT_effect_size = effect:getPower()
 	if(downINT_effect_size > 0) then
-		target:delMod(MOD_INT,-effect:getPower());
+		target:delMod(MOD_INT,-downINT_effect_size);
 	end
 end;

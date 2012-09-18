@@ -20,7 +20,7 @@ end;
 
 function onEffectTick(target,effect)
 	-- the effect loses mind of 1 every 3 ticks depending on the source of the boost
-	boostMND_effect_size = effect:getPower();
+	local boostMND_effect_size = effect:getPower();
 	if(boostMND_effect_size > 0) then
 		effect:setPower(boostMND_effect_size - 1)
 		target:delMod(MOD_MND,1); 
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	boostMND_effect_size = effect:getPower();
+	local boostMND_effect_size = effect:getPower();
 	if(boostMND_effect_size > 0) then
-		target:delMod(MOD_MND,effect:getPower());
+		target:delMod(MOD_MND,boostMND_effect_size);
 	end
 end;

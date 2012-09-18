@@ -20,7 +20,7 @@ end;
 
 function onEffectTick(target,effect)
 	-- the effect loses Charism of 1 every 3 ticks depending on the source of the boost
-	boostCHR_effect_size = effect:getPower();
+	local boostCHR_effect_size = effect:getPower();
 	if(boostCHR_effect_size > 0) then
 		effect:setPower(boostCHR_effect_size - 1)
 		target:delMod(MOD_AGI,1); 
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	boostCHR_effect_size = effect:getPower();
+	local boostCHR_effect_size = effect:getPower();
 	if(boostCHR_effect_size > 0) then
-		target:delMod(MOD_CHR,effect:getPower());
+		target:delMod(MOD_CHR,boostCHR_effect_size);
 	end
 end;

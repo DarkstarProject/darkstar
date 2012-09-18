@@ -23,7 +23,7 @@ end;
 
 function onEffectTick(target,effect)
 	-- the effect restore strengh of 1 every 3 ticks.
-	downSTR_effect_size = effect:getPower()
+	local downSTR_effect_size = effect:getPower()
 	if(downSTR_effect_size > 0) then
 		effect:setPower(downSTR_effect_size - 1)
 		target:delMod(MOD_STR,-1);
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	downSTR_effect_size = effect:getPower()
+	local downSTR_effect_size = effect:getPower()
 	if(downSTR_effect_size > 0) then
-		target:delMod(MOD_STR,-effect:getPower());
+		target:delMod(MOD_STR,-downSTR_effect_size);
 	end
 end;

@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	res = (effect:getPower() * (26/512)) * 100;	-- Bio 1 is 27/512, Bio 2 is 52/512. This is roughly accurate.
+	local res = (effect:getPower() * (26/512)) * 100;	-- Bio 1 is 27/512, Bio 2 is 52/512. This is roughly accurate.
 	target:addMod(MOD_ATTP,-res);
 end;
 
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	skin = target:getMod(MOD_STONESKIN);
+	local skin = target:getMod(MOD_STONESKIN);
     if(skin>0) then
         if(skin >= effect:getPower()) then --absorb all damage
             target:delMod(MOD_STONESKIN,effect:getPower());
@@ -44,6 +44,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	res = (effect:getPower() * (26/512)) * 100;	-- Bio 1 is 27/512, Bio 2 is 52/512. This is roughly accurate.
+	local res = (effect:getPower() * (26/512)) * 100;	-- Bio 1 is 27/512, Bio 2 is 52/512. This is roughly accurate.
 	target:delMod(MOD_ATTP,-res);
 end;
