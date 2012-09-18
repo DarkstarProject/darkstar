@@ -20,17 +20,18 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Blackmail" quest status
-   Black = player:getQuestStatus(SANDORIA,BLACKMAIL);
-   --TRADE BLACKMAIL
-   if (player:getQuestStatus(SANDORIA,BLACKMAIL) >= 1) then
-      count = trade:getItemCount();
-      carta = trade:hasItemQty(530, 1);
-      gil = trade:getGil();
-      if (carta == 1 and count == 1 and gil == 0) then
-	player:startEvent(0x0288);
-      end
-   end
+
+	Black = player:getQuestStatus(SANDORIA,BLACKMAIL);
+	questState = player:getVar("BlackMailQuest");
+
+	if (Black == QUEST_ACCEPTED and questState == 2 or Black == QUEST_COMPLETED) then
+		count = trade:getItemCount();
+		carta = trade:hasItemQty(530, 1);
+		
+		if (carta == true and count == 1) then
+			player:startEvent(0x0288,0,530); --648
+		end
+   	end
 end;
 
 -----------------------------------
@@ -42,25 +43,30 @@ function onTrigger(player,npc)
 	-- "Blackmail" quest status
 	blackMail = player:getQuestStatus(SANDORIA, BLACKMAIL);
 	envelope = player:hasKeyItem(SUSPICIOUS_ENVELOPE);
-	word = player:hasKeyItem(KEY_ITEM318);
 	sanFame = player:getFameLevel(SANDORIA);
-	sanRank = player:getRank(SANDORIA);
+	homeRank = player:getRank(player:getNation());
+	questState = player:getVar("BlackMailQuest");
 	
-	if(sanFame >= 3 and sanRank >= 3) then
-		if(blackMail == QUEST_AVAILABLE and envelope == false and word == false) then
-			player:startEvent(0x0283);
-		elseif(envelope) then  
-			player:startEvent(0x0285);
-		elseif(blackMail == QUEST_AVAILABLE and word) then
-			player:startEvent(0x0286);
-			player:delKeyItem(SEALED_IRON_BOX);
-		elseif(blackMail == QUEST_ACCEPTED) then
-			player:startEvent(0x0281);
-		elseif(blackMail == QUEST_COMPLETED) then
-			player:startEvent(0x0287);
-		end
+
+	if(blackMail == QUEST_AVAILABLE and sanFame >= 3 and homeRank >= 3) then
+		player:startEvent(0x0283); -- 643 gives me letter
+	elseif(blackMail == QUEST_ACCEPTED and envelope == true) then  
+		player:startEvent(0x0285);  -- 645 recap, take envelope!
+		
+	elseif(blackMail == QUEST_ACCEPTED and questState == 1) then
+		player:startEvent(0x0286,0,530); --646  after giving letter to H, needs param
+		
+		
+	elseif(blackMail == QUEST_ACCEPTED and questState == 2) then
+		player:startEvent(0x0287,0,530); --647 recap of 646
+		
 	else
-		player:startEvent(0x0282);
+		if(player:needToZone() ==true) then
+			player:startEvent(0x0282); --642 Quiet!
+		else
+			player:startEvent(0x0281); --641 -- Quiet! leave me alone
+			player:needToZone(true);
+		end
 	end	
 	
 end; 
@@ -86,6 +92,8 @@ function onEventFinish(player,csid,option)
 		player:addQuest(SANDORIA,BLACKMAIL);
 		player:addKeyItem(SUSPICIOUS_ENVELOPE);
 		player:messageSpecial(KEYITEM_OBTAINED,SUSPICIOUS_ENVELOPE);
+	elseif(csid == 0x0286 and option == 1) then
+		player:setVar("BlackMailQuest",2);
 	elseif(csid == 0x0288) then
 		player:tradeComplete();
 		player:addGil(GIL_RATE*900);

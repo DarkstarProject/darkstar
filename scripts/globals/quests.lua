@@ -69,8 +69,8 @@ A_JOB_FOR_THE_CONSORTIUM        = 67;
 TROUBLE_AT_THE_SLUICE           = 68; -- + --
 THE_MERCHANT_S_BIDDING          = 69; -- ± -- 
 UNEXPECTED_TREASURE             = 70;
-BLACKMAIL                       = 71;
-THE_SETTING_SUN                 = 72;
+BLACKMAIL                       = 71; -- + --
+THE_SETTING_SUN                 = 72; -- + --
 
 DISTANT_LOYALTIES               = 74;
 THE_RIVALRY                     = 75; -- ± --

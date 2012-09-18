@@ -61,6 +61,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+
 	
 	-- TEMP -------------------
 	if(player:getCurrentMission(SANDORIA) == 255 and player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
@@ -70,12 +71,19 @@ function onTrigger(player,npc)
 		player:setVar("MissionStatus",9);
 	end	
 	---------------------------
-	
+	-- Blackmail quest
+	blackMail = player:getQuestStatus(SANDORIA, BLACKMAIL);
+	 
+	if(blackMail == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE) ==true) then
+		player:startEvent(0x0225 );
+		player:setVar("BlackMailQuest",1);
+		player:delKeyItem(SUSPICIOUS_ENVELOPE);
+------------------------------		
 	pNation = player:getNation();
 	currentMission = player:getCurrentMission(pNation);
 	MissionStatus = player:getVar("MissionStatus");
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and alreadyCheckedNPC(player,17) == false) then
+	elseif(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and alreadyCheckedNPC(player,17) == false) then
 		player:startEvent(0x022e);
 	elseif(pNation == SANDORIA) then
 		if(currentMission == JOURNEY_ABROAD and MissionStatus == 0) then
@@ -130,6 +138,7 @@ function onTrigger(player,npc)
 				player:showText(npc,HALVER_OFFSET+279);
 			end
 		end
+
 	else
 		player:showText(npc,HALVER_OFFSET+1092);
 	end
