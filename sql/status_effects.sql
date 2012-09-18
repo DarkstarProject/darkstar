@@ -11,8 +11,9 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for status_effects
 -- ----------------------------
-CREATE TABLE `status_effects` (
-  `id` smallint(5) unsigned NOT NULL,
+DROP TABLE IF EXISTS `status_effects`;
+CREATE TABLE IF NOT EXISTS `status_effects` ( 
+`id` smallint(5) unsigned NOT NULL,
   `name` varchar(50) NOT NULL,
   `flags` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
