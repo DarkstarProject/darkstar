@@ -2106,27 +2106,15 @@ void MakeEntityStandUp(CBattleEntity* PEntity)
 {
     DSP_DEBUG_BREAK_IF(PEntity == NULL);
 
-    switch(PEntity->objtype)
-    {
-        case TYPE_PC: 
+    if (PEntity->objtype == TYPE_PC)
+    {    
+        CCharEntity* PPlayer = ((CCharEntity*)PEntity);
+
+        if (PPlayer->animation == ANIMATION_HEALING)
         {
-            CCharEntity* PPlayer = ((CCharEntity*)PEntity);
-
-            if(PPlayer->animation == ANIMATION_HEALING)
-            {
-                PPlayer->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-                PPlayer->animation = ANIMATION_NONE;
-                PPlayer->pushPacket(new CCharUpdatePacket(PPlayer));
-            }
-
-            break;
-        }    
-
-        default: 
-            break;
-    }
-
-    return;
+            PPlayer->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+        }
+    }    
 }
 
 bool IsEngauged(CBattleEntity* PEntity)
@@ -2218,41 +2206,47 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
     } // end switch
 }
 
-
-
-
-
 CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob)
 {					
-	if (taUser->PParty != NULL){
-		if (taUser->PParty->m_PAlliance != NULL){
-			for(uint8 a = 0; a < taUser->PParty->m_PAlliance->partyList.size(); ++a){
-					for(uint8 i = 0; i < taUser->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i){
-						if(abs(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.rotation - taUser->loc.p.rotation) < 23 &&
-						abs(PMob->loc.p.rotation - taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.rotation) < 23){
+	if (taUser->PParty != NULL)
+    {
+		if (taUser->PParty->m_PAlliance != NULL)
+        {
+			for(uint8 a = 0; a < taUser->PParty->m_PAlliance->partyList.size(); ++a)
+            {
+				for(uint8 i = 0; i < taUser->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+                {
+					if (abs(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.rotation - taUser->loc.p.rotation) < 23 &&
+					    abs(PMob->loc.p.rotation - taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.rotation) < 23)
+                    {
 									
-							float distancePartyChar = distance(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p,PMob->loc.p);
-							float distanceTaChar = distance(taUser->loc.p,PMob->loc.p);
+						float distancePartyChar = distance(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p,PMob->loc.p);
+						float distanceTaChar = distance(taUser->loc.p,PMob->loc.p);
 								
-								//is the party char closer to the mob than the TA user?
-								if(distancePartyChar < distanceTaChar){
-									return taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i);
-								}
+						//is the party char closer to the mob than the TA user?
+						if(distancePartyChar < distanceTaChar)
+                        {
+							return taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 						}
 					}
+				}
 			}
 		}else{//no alliance
-			for(uint8 i = 0; i < taUser->PParty->members.size(); ++i){
+			for(uint8 i = 0; i < taUser->PParty->members.size(); ++i)
+            {
 				if(abs(taUser->PParty->members.at(i)->loc.p.rotation - taUser->loc.p.rotation) < 23 &&
-				abs(PMob->loc.p.rotation - taUser->PParty->members.at(i)->loc.p.rotation) < 23){
+				abs(PMob->loc.p.rotation - taUser->PParty->members.at(i)->loc.p.rotation) < 23)
+                {
 
 					float distancePartyChar = distance(taUser->PParty->members.at(i)->loc.p,PMob->loc.p);
 					float distanceTaChar = distance(taUser->loc.p,PMob->loc.p);
-						//is the party char closer to the mob than the TA user?
-						if(distancePartyChar < distanceTaChar){
-							return taUser->PParty->members.at(i);
-						}
+
+					//is the party char closer to the mob than the TA user?
+					if(distancePartyChar < distanceTaChar)
+                    {
+						return taUser->PParty->members.at(i);
 					}
+				}
 			}
 		}
 	}

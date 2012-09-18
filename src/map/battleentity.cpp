@@ -157,15 +157,15 @@ int32 CBattleEntity::GetMaxMP()
 }
 
 /************************************************************************
-*																		*
-*  Изменяем количество TP сущности										*
+*                                                                       *
+*  Изменяем количество TP сущности	                                    *
+*                                                                       *
 ************************************************************************/
 
 uint16 CBattleEntity::addTP(float tp)
 {
-	DSP_DEBUG_BREAK_IF((objtype != TYPE_PC) && (objtype != TYPE_MOB) && (objtype != TYPE_PET));
-	
 	float TPMulti = 1.0;
+
 	if(objtype == TYPE_PC)
 	{
 		TPMulti = map_config.player_tp_multiplier;
@@ -179,7 +179,7 @@ uint16 CBattleEntity::addTP(float tp)
 		TPMulti = map_config.mob_tp_multiplier * 3;
 	}
 	
-	float cap = cap_value(health.tp + (tp * TPMulti),0,300);
+	float cap = cap_value(health.tp + (tp * TPMulti), 0, 300);
 	tp = health.tp - cap;
 	health.tp = cap;
 	return abs(tp);

@@ -207,8 +207,9 @@ inline int32 CLuaBaseEntity::petTP(lua_State *L)
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-	if(((CBattleEntity*)m_PBaseEntity)->PPet!=NULL && lua_tointeger(L,-1)>=0 && lua_tointeger(L,-1)<=300){
-		((CBattleEntity*)m_PBaseEntity)->PPet->health.tp = lua_tointeger(L,-1);
+	if(((CBattleEntity*)m_PBaseEntity)->PPet != NULL)
+    {
+        ((CBattleEntity*)m_PBaseEntity)->PPet->addTP(lua_tointeger(L,-1));
 	}
 	return 0;
 }
