@@ -1,24 +1,16 @@
 /*
-Navicat MySQL Data Transfer
-
-Source Server         : DarkStar
-Source Server Version : 50515
-Source Host           : localhost:3306
-Source Database       : dspdb
-
-Target Server Type    : MYSQL
-Target Server Version : 50515
-File Encoding         : 65001
-
-Date: 2011-10-28 20:17:52
+MySQL Data Transfer
+Source Host: localhost
+Source Database: dspdb
+Target Host: localhost
+Target Database: dspdb
+Date: 9/17/2012 6:42:26 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
 -- ----------------------------
--- Table structure for `abilities`
+-- Table structure for abilities
 -- ----------------------------
-DROP TABLE IF EXISTS `abilities`;
 CREATE TABLE `abilities` (
   `abilityId` smallint(5) unsigned NOT NULL,
   `name` tinytext,
@@ -36,7 +28,7 @@ CREATE TABLE `abilities` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
 -- ----------------------------
--- Records of abilities
+-- Records 
 -- ----------------------------
 INSERT INTO `abilities` VALUES ('0', 'mighty_strikes', '1', '0', '1', '7200', '0', '33', '20', '0', '1', '300');
 INSERT INTO `abilities` VALUES ('1', 'hundred_fists', '2', '0', '1', '7200', '0', '34', '20', '0', '1', '300');
@@ -102,7 +94,7 @@ INSERT INTO `abilities` VALUES ('60', 'trick_attack', '6', '30', '1', '60', '66'
 INSERT INTO `abilities` VALUES ('61', 'weapon_bash', '8', '20', '4', '300', '88', '201', '20', '0', '1', '900');
 INSERT INTO `abilities` VALUES ('62', 'reward', '9', '12', '1', '90', '103', '84', '18', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('63', 'cover', '7', '35', '2', '180', '76', '86', '20', '0', '0', '35');
-INSERT INTO `abilities` VALUES ('64', 'spirit_link', '14', '25', '1', '180', '162', '196', '20', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('64', 'spirit_link', '14', '25', '1', '90', '162', '196', '20', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('66', 'chi_blast', '2', '41', '4', '180', '18', '92', '20', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('67', 'convert', '5', '40', '1', '600', '49', '88', '20', '0', '1', '80');
 INSERT INTO `abilities` VALUES ('68', 'accomplice', '6', '65', '2', '300', '69', '220', '20', '0', '0', '0');
@@ -263,7 +255,6 @@ INSERT INTO `abilities` VALUES ('230', 'afflatus_misery', '3', '40', '1', '60', 
 INSERT INTO `abilities` VALUES ('231', 'composure', '5', '50', '1', '300', '50', '215', '20', '0', '1', '80');
 INSERT INTO `abilities` VALUES ('232', 'yonin', '13', '40', '1', '180', '146', '218', '20', '0', '1', '600');
 INSERT INTO `abilities` VALUES ('233', 'innin', '13', '40', '1', '180', '147', '219', '20', '0', '1', '60');
--- bprage=173 ward=174
 INSERT INTO `abilities` VALUES ('496', 'healing_ruby', '15', '1', '3', '60', '174', '6', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('497', 'poison_nails', '15', '5', '4', '60', '173', '11', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('498', 'shining_ruby', '15', '24', '1', '60', '174', '44', '18', '0', '1', '60');
@@ -271,7 +262,6 @@ INSERT INTO `abilities` VALUES ('499', 'glittering_ruby', '15', '44', '1', '60',
 INSERT INTO `abilities` VALUES ('500', 'meteorite', '15', '55', '4', '60', '173', '108', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('501', 'healing_ruby_ii', '15', '65', '1', '60', '174', '124', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('502', 'searing_light', '15', '1', '4', '60', '173', '0', '18', '1', '1', '60');
-
 INSERT INTO `abilities` VALUES ('512', 'moonlit_charge', '15', '5', '4', '60', '173', '17', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('513', 'crescent_fang', '15', '10', '4', '60', '173', '19', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('514', 'lunar_cry', '15', '21', '4', '60', '174', '41', '18', '0', '1', '60');
@@ -291,7 +281,6 @@ INSERT INTO `abilities` VALUES ('533', 'fire_iv', '15', '60', '4', '60', '173', 
 INSERT INTO `abilities` VALUES ('534', 'flaming_crush', '15', '70', '4', '60', '173', '164', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('535', 'meteor_strike', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('536', 'inferno', '15', '1', '4', '60', '173', '0', '18', '1', '1', '60');
-
 INSERT INTO `abilities` VALUES ('544', 'rock_throw', '15', '1', '4', '60', '173', '10', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('545', 'stone_ii', '15', '10', '4', '60', '173', '24', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('546', 'rock_buster', '15', '21', '4', '60', '173', '39', '18', '0', '1', '60');
@@ -301,7 +290,6 @@ INSERT INTO `abilities` VALUES ('549', 'stone_iv', '15', '60', '4', '60', '173',
 INSERT INTO `abilities` VALUES ('550', 'mountain_buster', '15', '70', '4', '60', '173', '164', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('551', 'geocrush', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('552', 'earthen_fury', '15', '1', '4', '60', '173', '0', '18', '1', '1', '60');
-
 INSERT INTO `abilities` VALUES ('560', 'barracuda_dive', '15', '1', '4', '60', '173', '8', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('561', 'water_ii', '15', '10', '4', '60', '173', '24', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('562', 'tail_whip', '15', '26', '4', '60', '173', '49', '18', '0', '1', '60');
@@ -321,7 +309,6 @@ INSERT INTO `abilities` VALUES ('581', 'aero_iv', '15', '60', '4', '60', '173', 
 INSERT INTO `abilities` VALUES ('582', 'predator_claws', '15', '70', '4', '60', '173', '164', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('583', 'wind_blade', '15', '75', '4', '60', '173', '182', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('584', 'aerial_blast', '15', '1', '4', '60', '173', '0', '18', '1', '1', '60');
-
 INSERT INTO `abilities` VALUES ('592', 'axe_kick', '15', '1', '4', '60', '173', '10', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('593', 'blizzard_ii', '15', '10', '4', '60', '173', '24', '18', '0', '1', '60');
 INSERT INTO `abilities` VALUES ('594', 'frost_armor', '15', '28', '1', '60', '174', '63', '18', '0', '1', '60');

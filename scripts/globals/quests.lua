@@ -38,7 +38,7 @@ THE_SWEETEST_THINGS             = 8;  -- + --
 THE_VICASQUE_S_SERMON           = 9;  -- + --
 A_SQUIRE_S_TEST                 = 10; -- + --
 GRAVE_CONCERNS                  = 11; -- ± --
-THE_BRUGAIRE_CONSORTIUM         = 12; -- ± --
+THE_BRUGAIRE_CONSORTIUM         = 12; -- + --
 
 LIZARD_SKINS                    = 15; -- + --
 FLYERS_FOR_REGINE               = 16; -- + --

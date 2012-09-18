@@ -241,6 +241,8 @@ public:
 	int32 petTP(lua_State*);
 	int32 petAddHP(lua_State*);
 	int32 petGetTP(lua_State*);
+	int32 petGetHP(lua_State*);
+	int32 petGetMaxHP(lua_State*);
 
 	int32 wakeUp(lua_State*);				//wakes target if necessary
 	int32 needToZone(lua_State*);			// Check if player has zoned since the flag has been raised

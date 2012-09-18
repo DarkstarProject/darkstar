@@ -249,6 +249,38 @@ inline int32 CLuaBaseEntity::petGetTP(lua_State* L)
 
 //======================================================//
 
+inline int32 CLuaBaseEntity::petGetHP(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	if(((CBattleEntity*)m_PBaseEntity)->PPet != NULL){
+		lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->PPet->health.hp );
+	}
+	else{
+		lua_pushinteger( L, 0);
+	}
+	return 1;
+}
+
+//======================================================//
+
+inline int32 CLuaBaseEntity::petGetMaxHP(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	if(((CBattleEntity*)m_PBaseEntity)->PPet != NULL){
+		lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->PPet->GetMaxHP() );
+	}
+	else{
+		lua_pushinteger( L, 0);
+	}
+	return 1;
+}
+
+//======================================================//
+
 inline int32 CLuaBaseEntity::getMP(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -4924,6 +4956,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petGetTP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAddHP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petGetHP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petGetMaxHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBehind),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),

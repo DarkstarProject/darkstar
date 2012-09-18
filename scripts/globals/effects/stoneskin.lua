@@ -1,7 +1,7 @@
 -----------------------------------
---
---
---
+--  Stoneskin
+--  
+--  Absorbs a certain amount of damage from physical and magical attacks.
 -----------------------------------
 
 -----------------------------------
