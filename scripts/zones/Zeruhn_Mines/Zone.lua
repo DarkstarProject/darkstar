@@ -3,8 +3,9 @@
 -- Zone: Zeruhn_Mines (172)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/zones/Zeruhn_Mines/TextIDs");
 
@@ -23,15 +24,13 @@ function onZoneIn(player,prevZone)
 	cs = -1;			
 	if (prevZone == 143) then			
 		cs = 0x0096;		
-		local bladeDarkness = player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS);
-		local bladeDeath = player:getQuestStatus(BASTOK,BLADE_OF_DEATH)
-		if (bladeDarkness == QUEST_ACCEPTED) then		
+		if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED) then		
 			if (player:getVar("ZeruhnMines_Zeid_CS") == 0) then	
 				cs = 0x0082;
 			elseif (player:hasItem(16607) == false) then	
 				cs = 0x0083;
 			end	
-		elseif (bladeDeath == QUEST_ACCEPTED) then
+		elseif (player:getQuestStatus(BASTOK,BLADE_OF_DEATH) == QUEST_ACCEPTED) then
 			if (player:hasItem(16607) == false) then	
 				cs = 0x0083;
 			end		

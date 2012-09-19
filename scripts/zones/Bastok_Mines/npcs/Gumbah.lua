@@ -25,12 +25,11 @@ end;
 function onTrigger(player,npc)
 
 	local bladeDarkness = player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS);
-	local bladeDeath = player:getQuestStatus(BASTOK,BLADE_OF_DEATH)
-	
+
 	if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and  bladeDarkness == QUEST_AVAILABLE) then
 		--DARK KNIGHT QUEST
 		player:startEvent(0x0063);
-	elseif(bladeDarkness == QUEST_COMPLETED and bladeDeath == QUEST_AVAILABLE) then	
+	elseif(bladeDarkness == QUEST_COMPLETED and player:getQuestStatus(BASTOK,BLADE_OF_DEATH) == QUEST_AVAILABLE) then	
 		player:startEvent(0x0082);
 	else 
 		--DEFAULT 
@@ -57,7 +56,6 @@ function onEventFinish(player,csid,option)
 
 	if (csid == 0x0063) then
 		player:addQuest(BASTOK, BLADE_OF_DARKNESS);
-		
 	elseif (csid == 0x0082) then
 		player:addQuest(BASTOK, BLADE_OF_DEATH);
 		player:addKeyItem(LETTER_FROM_ZEID);
