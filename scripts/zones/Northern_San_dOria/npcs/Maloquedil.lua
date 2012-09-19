@@ -6,13 +6,11 @@
 -- @pos 35 0 60
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
@@ -54,7 +52,7 @@ function onTrigger(player,npc)
 	warding = player:getQuestStatus(SANDORIA,WARDING_VAMPIRES);
 	fame = player:getFameLevel(SANDORIA);
 		
-	if(warding == QUEST_AVAILABLE and fame <= 3) then --Quest available for fame superior or equal to 3
+	if(warding == QUEST_AVAILABLE and fame >= 3) then --Quest available for fame superior or equal to 3
 		player:startEvent(0x0018);
 	elseif(warding == QUEST_ACCEPTED) then --Quest accepted, and he just tell me where to get item.
 		player:startEvent(0x0016);
@@ -85,18 +83,16 @@ function onEventFinish(player,csid,option)
 
 	if(csid == 0x0018 and option == 1) then
 		player:addQuest(SANDORIA,WARDING_VAMPIRES);
-		
 	elseif(csid == 0x0017) then
 		player:tradeComplete();
-		player:setTitle(43);
+		player:setTitle(VAMPIRE_HUNTER_DMINUS);
 		player:addGil(GIL_RATE*900);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
 		if(player:getQuestStatus(SANDORIA,WARDING_VAMPIRES) == QUEST_ACCEPTED) then
 			player:addFame(SANDORIA,SAN_FAME*30);
-			player:completeQuest(SANDORIA,THE_MERCHANT_S_BIDDING);
+			player:completeQuest(SANDORIA,WARDING_VAMPIRES);
 		else
 			player:addFame(SANDORIA,SAN_FAME*5);
-			
 		end
 	end
 end;
