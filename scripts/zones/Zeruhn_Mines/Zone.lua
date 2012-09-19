@@ -23,13 +23,18 @@ function onZoneIn(player,prevZone)
 	cs = -1;			
 	if (prevZone == 143) then			
 		cs = 0x0096;		
-		local Blades = player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS);		
-		if (Blades == QUEST_ACCEPTED) then		
+		local bladeDarkness = player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS);
+		local bladeDeath = player:getQuestStatus(BASTOK,BLADE_OF_DEATH)
+		if (bladeDarkness == QUEST_ACCEPTED) then		
 			if (player:getVar("ZeruhnMines_Zeid_CS") == 0) then	
 				cs = 0x0082;
 			elseif (player:hasItem(16607) == false) then	
 				cs = 0x0083;
 			end	
+		elseif (bladeDeath == QUEST_ACCEPTED) then
+			if (player:hasItem(16607) == false) then	
+				cs = 0x0083;
+			end		
 		end		
 	elseif ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then			
 		player:setPos(-270.707,14.159,-20.268,0);		
