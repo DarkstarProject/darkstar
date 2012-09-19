@@ -14,8 +14,8 @@ function OnUseAbility(player, target, ability)
 	local vit = player:getStat(MOD_VIT);
 	local multi = 2;
 	
-	local main = player:getEquipID(1);
-	local hand = player:getEquipID(7);
+	local body = player:getEquipID(4);
+	local hand = player:getEquipID(6);
 	
 	if(player:hasStatusEffect(EFFECT_POISON)) then
 		player:delStatusEffect(EFFECT_POISON);
@@ -23,7 +23,7 @@ function OnUseAbility(player, target, ability)
 	if(player:hasStatusEffect(EFFECT_BLINDNESS)) then
 		player:delStatusEffect(EFFECT_BLINDNESS);
 	end
-	if((main == 12639) or (main == 14474)) then -- Temple Cyclas (+1) equipped
+	if((body == 12639) or (body == 14474)) then -- Temple Cyclas (+1) equipped
 		if(player:hasStatusEffect(EFFECT_PARALYSIS)) then
 			player:delStatusEffect(EFFECT_PARALYSIS);
 		end
