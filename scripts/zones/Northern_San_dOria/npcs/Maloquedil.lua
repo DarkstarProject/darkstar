@@ -6,6 +6,7 @@
 -- @pos 35 0 60
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -27,7 +28,7 @@ function onTrade(player,npc,trade)
 		end
 	end
 	
-	if(player:getQuestStatus(SANDORIA,MIRROR_MIRROR) == QUEST_COMPLETED or player:getVar("QuestVampireVar") == 1) then
+	if(player:getQuestStatus(SANDORIA,WARDING_VAMPIRES) ~= QUEST_AVAILABLE) then
 		if(trade:hasItemQty(1018,2) and trade:getItemCount() == 2) then -- Trade Shaman Garlic
 			player:startEvent(0x0017);
 		end
@@ -50,16 +51,17 @@ end;
 
 function onTrigger(player,npc)
 	
-	mirrorMirror = player:getQuestStatus(SANDORIA,MIRROR_MIRROR);
-	
-	if(mirrorMirror == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
+	warding = player:getQuestStatus(SANDORIA,WARDING_VAMPIRES);
+	fame = player:getFameLevel(SANDORIA);
+		
+	if(warding == QUEST_AVAILABLE and fame <= 3) then --Quest available for fame superior or equal to 3
 		player:startEvent(0x0018);
-	elseif(player:getVar("QuestVampireVar") == 1) then
+	elseif(warding == QUEST_ACCEPTED) then --Quest accepted, and he just tell me where to get item.
 		player:startEvent(0x0016);
-	elseif(mirrorMirror == QUEST_COMPLETED) then
+	elseif(warding == QUEST_COMPLETED) then --Since the quest is repeatable, he tells me where to find (again) the items.
 		player:startEvent(0x0016);
 	else
-		player:startEvent(0x0015);
+		player:startEvent(0x0015); 
 	end	
 	
 end; 
@@ -82,23 +84,19 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x0018 and option == 1) then
-		player:addQuest(SANDORIA,MIRROR_MIRROR);
-		player:setVar("QuestVampireVar",1);
+		player:addQuest(SANDORIA,WARDING_VAMPIRES);
+		
 	elseif(csid == 0x0017) then
-		if(player:getVar("QuestVampireVar") == 1) then
-			player:tradeComplete();
-			player:setTitle(43);
-			player:addGil(GIL_RATE*900);
-			player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
-			player:setVar("QuestVampireVar",0);
+		player:tradeComplete();
+		player:setTitle(43);
+		player:addGil(GIL_RATE*900);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
+		if(player:getQuestStatus(SANDORIA,WARDING_VAMPIRES) == QUEST_ACCEPTED) then
 			player:addFame(SANDORIA,SAN_FAME*30);
-			player:completeQuest(SANDORIA,MIRROR_MIRROR);
+			player:completeQuest(SANDORIA,THE_MERCHANT_S_BIDDING);
 		else
-			player:tradeComplete();
-			player:addGil(GIL_RATE*900);
-			player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
 			player:addFame(SANDORIA,SAN_FAME*5);
+			
 		end
 	end
-	
 end;

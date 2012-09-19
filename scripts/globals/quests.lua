@@ -49,7 +49,7 @@ TO_CURE_A_COUGH                 = 20; -- + --
 
 TIGER_S_TEETH                   = 23; -- ± --
 
-UNDYING_FLAMES                  = 26;
+UNDYING_FLAMES                  = 26; -- ± --
 A_PURCHASE_OF_ARMS              = 27; -- + --
 
 A_KNIGHT_S_TEST                 = 29; -- + --
@@ -77,7 +77,7 @@ THE_RIVALRY                     = 75; -- ± --
 THE_COMPETITION                 = 76; -- ± --
 STARTING_A_FLAME                = 77; -- ± --
 FEAR_OF_THE_DARK                = 78;
-WARDING_VAMPIRES                = 79;
+WARDING_VAMPIRES                = 79; -- ± --
 SLEEPLESS_NIGHTS                = 80; -- ± --
 LUFET_S_LAKE_SALT               = 81; -- ± --
 HEALING_THE_LAND                = 82; -- ± --
