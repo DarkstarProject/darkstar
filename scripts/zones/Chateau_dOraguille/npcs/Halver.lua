@@ -5,8 +5,8 @@
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos 2 0 0 233
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
+package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -30,60 +30,30 @@ function onTrade(player,npc,trade)
 end;
 
 -----------------------------------
--- alreadyCheckedNPC
------------------------------------
-
-function alreadyCheckedNPC(player,number)
-	
-	local wildcatSandy = player:getVar("wildcatSandy_var");
-	local bit = {};
-	
-	for i = 19,0,-1 do 
-		twop = 2^i;
-		if(wildcatSandy >= twop) then
-			bit[i+1] = 1;
-			wildcatSandy = wildcatSandy - twop;
-		else
-			bit[i+1] = 0;
-		end;
-	end;
-		
-	if(bit[number] == 0) then
-		return false;
-	else
-		return true;
-	end
-	
-end;
-
------------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
 
+    pNation = player:getNation();
+	currentMission = player:getCurrentMission(pNation);
+	MissionStatus = player:getVar("MissionStatus");
 	
 	-- TEMP -------------------
 	if(player:getCurrentMission(SANDORIA) == 255 and player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
 		player:addMission(0,14);
-	elseif(player:getNation() == 0 and player:getRank() == 5 and player:getCurrentMission(SANDORIA) == 255 and player:hasCompletedMission(0,14) == false) then
+	elseif(pNation == 0 and player:getRank() == 5 and player:getCurrentMission(SANDORIA) == 255 and player:hasCompletedMission(0,14) == false) then
 		player:addMission(0,14);
 		player:setVar("MissionStatus",9);
 	end	
 	---------------------------
 	-- Blackmail quest
-	blackMail = player:getQuestStatus(SANDORIA, BLACKMAIL);
-	 
-	if(blackMail == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE) ==true) then
+	if(player:getQuestStatus(SANDORIA, BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE)) then
 		player:startEvent(0x0225 );
 		player:setVar("BlackMailQuest",1);
 		player:delKeyItem(SUSPICIOUS_ENVELOPE);
-------------------------------		
-	pNation = player:getNation();
-	currentMission = player:getCurrentMission(pNation);
-	MissionStatus = player:getVar("MissionStatus");
-	
-	elseif(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and alreadyCheckedNPC(player,17) == false) then
+    ------------------------------		
+	elseif(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit("wildcatSandy_var",17) == false) then
 		player:startEvent(0x022e);
 	elseif(pNation == SANDORIA) then
 		if(currentMission == JOURNEY_ABROAD and MissionStatus == 0) then
@@ -176,7 +146,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x01F6) then
 		player:setVar("MissionStatus",4);
 	elseif(csid == 0x022e) then
-		player:setVar("wildcatSandy_var",player:getVar("wildcatSandy_var") + 65536);
+		player:setMaskBit("wildcatSandy_var",17);
 	elseif(csid == 0x01F8) then
 		player:setVar("MissionStatus",9);
 	elseif(csid == 0x0222) then
