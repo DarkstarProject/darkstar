@@ -72,7 +72,6 @@ namespace luautils
 	int32 GetServerVariable(lua_State*);
 	int32 SetServerVariable(lua_State *);
 	int32 OnServerStart();														// triggers when game server starts up
-    int32 BitwiseAnd(lua_State *);
 		
 	int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone
 	int32 OnZoneInitialise(uint8 ZoneID);										// triggers when zone is loaded

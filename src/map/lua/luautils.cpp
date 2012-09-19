@@ -97,7 +97,6 @@ int32 init()
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
     lua_register(LuaHandle,"SendUncnown0x39Packet",luautils::SendUncnown0x39Packet);
-    lua_register(LuaHandle,"BitwiseAnd",luautils::BitwiseAnd);
 
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
     Lunar<CLuaRegion>::Register(LuaHandle);
@@ -1308,7 +1307,40 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 
 	if (PChar->PParty != NULL)
 	{
-		if (PChar->PParty->m_PAlliance == NULL)
+        if (PChar->PParty->m_PAlliance != NULL)
+		{
+			for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+			{
+				for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+				{
+					if (PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i) == PChar || PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getZone() != PChar->getZone()) 
+						continue;
+
+					((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.reset();
+					((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.Target = PMob;
+					((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.Script.insert(0,File);
+
+					lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
+					if (lua_isnil(LuaHandle,-1))
+					{
+						ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
+						return -1;
+					}
+					CLuaBaseEntity LuaKillerEntity(PChar->PParty->m_PAlliance->partyList.at(a)->members[i]);
+
+					Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+					Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+
+					if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+					{
+						ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
+						lua_pop(LuaHandle, 1);
+						return -1;
+					}
+				}
+			}
+		}
+        else
 		{
 			for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
 			{
@@ -1338,43 +1370,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 					return -1;
 				}
 			}
-		
-		}else if (PChar->PParty->m_PAlliance != NULL)
-				{
-
-					for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
-					{
-						for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
-						{
-							if (PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i) == PChar || PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getZone() != PChar->getZone()) 
-								continue;
-
-							((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.reset();
-							((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.Target = PMob;
-							((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.Script.insert(0,File);
-
-							lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
-							if (lua_isnil(LuaHandle,-1))
-							{
-								ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
-								return -1;
-							}
-							CLuaBaseEntity LuaKillerEntity(PChar->PParty->m_PAlliance->partyList.at(a)->members[i]);
-
-							Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-							Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
-
-							if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
-							{
-								ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
-								lua_pop(LuaHandle, 1);
-								return -1;
-							}
-						}
-					}
-
-
-				}
+		}
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
@@ -1860,22 +1856,6 @@ int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance){
 		return 0;
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
-}
-
-int32 BitwiseAnd(lua_State* L)
-{
-    if((!lua_isnil(L,1) && lua_isnumber(L,1)) &&
-        (!lua_isnil(L,2) && lua_isnumber(L,2)) )
-    {
-        uint32 lhs = (uint32)lua_tointeger(L,1);
-        uint32 rhs = (uint32)lua_tointeger(L,2);
-
-        lua_pushinteger(L, lhs & rhs);
-        return 1;
-    }
-
-    lua_pushnil(L);
-    return 0;
 }
 
 }; // namespace luautils

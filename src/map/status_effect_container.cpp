@@ -526,8 +526,10 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     StatusEffect->SetFlag(effects::EffectsParams[StatusEffect->GetStatusID()].Flag);
 
 	//todo: find a better place to put this?
-	if(StatusEffect->GetStatusID()==EFFECT_SLEEP || StatusEffect->GetStatusID()==EFFECT_SLEEP_II){
-		if(m_POwner->objtype==TYPE_PC || m_POwner->objtype==TYPE_MOB){
+	if(StatusEffect->GetStatusID() == EFFECT_SLEEP || StatusEffect->GetStatusID() == EFFECT_SLEEP_II)
+    {
+		if(m_POwner->objtype == TYPE_PC || m_POwner->objtype == TYPE_MOB)
+        {
 			m_POwner->PBattleAI->SetCurrentAction(ACTION_SLEEP);
 		}
 	}
