@@ -146,7 +146,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x01F6) then
 		player:setVar("MissionStatus",4);
 	elseif(csid == 0x022e) then
-		player:setMaskBit("wildcatSandy_var",17);
+		player:setMaskBit("wildcatSandy_var",17,true);
 	elseif(csid == 0x01F8) then
 		player:setVar("MissionStatus",9);
 	elseif(csid == 0x0222) then
