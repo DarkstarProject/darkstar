@@ -9,10 +9,12 @@
 --
 -- Auto-Script: Requires Verification. Verfied standard dialog - thrydwolf 12/8/2011
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
+-----------------------------------
+
+require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -20,16 +22,11 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 
-	
 	if (player:getQuestStatus(BASTOK,BREAKING_STONES) ~= QUEST_AVAILABLE) then
-	
-		if (trade:hasItemQty(553,1) == true and trade:getItemCount() == 1) then
+		if (trade:hasItemQty(553,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0065);
-			player:tradeComplete();
 		end
-
 	end
-
 end;
 
 -----------------------------------
@@ -38,7 +35,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if (player:getQuestStatus(BASTOK,BREAKING_STONES) == QUEST_AVAILABLE and player:getFameLevel(BASTOK) <=2) then
+	if (player:getQuestStatus(BASTOK,BREAKING_STONES) == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 2) then
 		player:startEvent(0x0064);
 	else
 		player:startEvent(0x006e);
@@ -62,16 +59,14 @@ function onEventFinish(player,csid,option)
 	 --printf("CSID: %u",csid);
 	 --printf("RESULT: %u",option);
 	
-	if (csid == 100 and option == 0) then
+	if (csid == 0x0064 and option == 0) then
 		player:addQuest(BASTOK,BREAKING_STONES);
 	end
 	if (csid == 0x0065) then
-		if(player:getQuestStatus(BASTOK,BREAKING_STONES) == QUEST_ACCEPTED) then
-			player:completeQuest(BASTOK,BREAKING_STONES);
-		end
-		player:messageSpecial(GIL_OBTAINED,400);
-		player:addGil(400);
+        player:tradeComplete();
+        player:addGil(GIL_RATE*400);
+        player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
+		player:completeQuest(BASTOK,BREAKING_STONES);
 	end
-		
 end;
 

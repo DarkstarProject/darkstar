@@ -10,10 +10,11 @@
 -- 
 -- Only spawns if the weather is SUNNY
 -----------------------------------
-
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
-require("scripts/zones/Dangruf_Wadi/TextIDs");
+-----------------------------------
+
 require("scripts/globals/quests");
+require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -27,7 +28,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-		
 	if (player:getQuestStatus(BASTOK,BREAKING_STONES) ~= QUEST_ACCEPTED) then
 		player:startEvent(0x006E);
 	end
@@ -52,11 +52,8 @@ function onEventFinish(player,csid,option)
 	 
 	if (csid == 0x006E and option == 0) then
 		if (player:getFreeSlotsCount() > 0) then
-			if (player:hasItem(553 == false) then
-				player:addItem(553,1);
+			if (player:addItem(553)) then
 				player:messageSpecial(ITEM_OBTAINED,553);
-			else
-				player:addItem(553,1); -- Triggers the "You cannot obtain more then one of this item" message.
 			end
 		else
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,553);
