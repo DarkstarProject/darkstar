@@ -13,8 +13,10 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED and player:getVar("QuestMakingTheGrade_prog") == 0 and trade:hasItemQty(544,1) == true and trade:getItemCount() == 1 and trade:getGil() == 0) then
-		player:startEvent(0x01c7); -- Quest Progress: Test Papers Shown and told to deliver them to principal
+	if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED and player:getVar("QuestMakingTheGrade_prog") == 0) then
+		if(trade:hasItemQty(544,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then
+			player:startEvent(0x01c7); -- Quest Progress: Test Papers Shown and told to deliver them to principal
+		end
 	end
 end;
 
@@ -24,26 +26,25 @@ end;
 
 function onTrigger(player,npc)
 
-teacherstatus = player:getQuestStatus(WINDURST,TEACHER_S_PET);
-gradestatus = player:getQuestStatus(WINDURST,MAKING_THE_GRADE);
-qLetSleepingDogsLie = player:getQuestStatus(WINDURST,LET_SLEEPING_DOGS_LIE);
-	if (teacherstatus == QUEST_COMPLETED and gradestatus == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >=3 and qLetSleepingDogsLie ~= QUEST_ACCEPTED) then
-		player:startEvent(0x01ba); -- Quest Start
-	elseif (gradestatus == QUEST_ACCEPTED) then
-		prog = player:getVar("QuestMakingTheGrade_prog");
+	local gradestatus = player:getQuestStatus(WINDURST,MAKING_THE_GRADE);
+	local prog = player:getVar("QuestMakingTheGrade_prog");
 		-- 1 = answers found
 		-- 2 = gave test answers to principle
 		-- 3 = spoke to chomoro
+
+	if (player:getQuestStatus(WINDURST,TEACHER_S_PET) == QUEST_COMPLETED and gradestatus == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >=3 and player:getQuestStatus(WINDURST,LET_SLEEPING_DOGS_LIE) ~= QUEST_ACCEPTED) then
+		player:startEvent(0x01ba); -- Quest Start
+	elseif (gradestatus == QUEST_ACCEPTED) then
+
 		if (prog == 0) then
 				player:startEvent(0x01bb); -- Get Test Sheets Reminder
-		elseif (prog == 1 or prog == 2) then
+		elseif (prog == 1) then
 			player:startEvent(0x01c8); -- Deliver Test Sheets Reminder
-		elseif (prog == 3) then
+		elseif (prog == 2 or prog == 3) then
 			player:startEvent(0x01ca); -- Quest Finish	
 		end
-	elseif (gradestatus == QUEST_COMPLETED and player:getVar("QuestMakingTheGrade_prog") > 0) then
+	elseif (gradestatus == QUEST_COMPLETED and player:needToZone() == true) then
 		player:startEvent(0x01cb); -- After Quest
-		player:setVar("QuestMakingTheGrade_prog",0);
 	else
 		player:startEvent(0x1a7); -- Standard Conversation
 	end

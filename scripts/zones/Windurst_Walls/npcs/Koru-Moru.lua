@@ -21,14 +21,13 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	qStarStruck = player:getQuestStatus(WINDURST,STAR_STRUCK);
-	count = trade:getItemCount();
+	local qStarStruck = player:getQuestStatus(WINDURST,STAR_STRUCK);
+	local count = trade:getItemCount();
 
 	if(player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-		hasTestAnswers = trade:hasItemQty(544,1);
-		if(hasTestAnswers and count == 1) then
-			prog = player:getVar("QuestMakingTheGrade_prog");
-			if(prog == 1) then 
+
+		if(trade:hasItemQty(544,1) and count == 1) then
+			if(player:getVar("QuestMakingTheGrade_prog") == 1) then 
 				player:startEvent(0x011d); -- MAKING THE GRADE: Turn in Test Answer & Told to go back to Fuepepe & Chomoro
 			else
 				player:startEvent(0x011f); -- MAKING THE GRADE: Have test answers but not talked/given to Fuepepe
@@ -65,10 +64,10 @@ end;
 
 function onTrigger(player,npc)
 
-	qStarStruck = player:getQuestStatus(WINDURST,STAR_STRUCK);
+	local qStarStruck = player:getQuestStatus(WINDURST,STAR_STRUCK);
 
 	if(player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-		prog = player:getVar("QuestMakingTheGrade_prog");
+		local prog = player:getVar("QuestMakingTheGrade_prog");
 		if(prog == 0 and player:hasItem(544)) then
 			player:startEvent(0x011f); -- MAKING THE GRADE: Have test answers but not talked/given to Fuepepe
 		elseif(prog == 1) then
