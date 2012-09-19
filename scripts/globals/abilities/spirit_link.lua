@@ -18,7 +18,7 @@ if(petCurrentHP ~= petMaxHP) then -- Cannot use ability if pets hp is at 100% (u
 	local drainpct = math.random(25,35) / 100;
 	local playerHP = player:getHP();
 	local playerMaxHP = player:getMaxHP();
-	local drainamount = drainpct * playerMaxHP;
+	local drainamount = drainpct * playerHP;
 	
 	if (player:hasStatusEffect(EFFECT_STONESKIN)) then
 		local skin = player:getMod(MOD_STONESKIN);
