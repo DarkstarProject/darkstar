@@ -363,13 +363,13 @@ elseif(option==FOV_MENU_PROTECT) then --Chose Protect, removes all other protect
         --Work out how much def to give (highest tier dependant on level)
         local def = 0;
         if (player:getMainLvl()<27) then --before protect 2, give protect 1
-            def=10;
+            def=15;
         elseif (player:getMainLvl()>=27 and player:getMainLvl()<47) then --after p2, before p3
-            def=25;
-        elseif (player:getMainLvl()>=47 and player:getMainLvl()<63) then --after p3, before p4
             def=40;
+        elseif (player:getMainLvl()>=47 and player:getMainLvl()<63) then --after p3, before p4
+            def=75;
         elseif (player:getMainLvl()>=63) then --after p4
-            def=55;
+            def=120;
         end
         --Add protect
         player:addStatusEffect(EFFECT_PROTECT,def,0,1800);
