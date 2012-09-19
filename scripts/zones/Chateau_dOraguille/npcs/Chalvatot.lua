@@ -17,10 +17,16 @@ require("scripts/zones/Chateau_dOraguille/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
+	local count = trade:getItemCount();
 	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
+		if(trade:hasItemQty(532,1) and count == 1) then -- Trade Magicmart_flyer
 			player:messageSpecial(FLYER_REFUSED);
+		end
+	elseif (player:getQuestStatus(SANDORIA,HER_MAKESTY_S_GARDEN) == QUEST_ACCEPTED) then
+
+		if (trade:hasItemQty(533,1) and count == 1) then
+				player:startEvent(0x0053);
+		
 		end
 	end
 	
@@ -58,9 +64,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	local herMajestysGarden = player:getQuestStatus(SANDORIA,HER_MAKESTY_S_GARDEN);
 	
 	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and alreadyCheckedNPC(player,20) == false) then
 		player:startEvent(0x0231);
+	elseif (herMajestysGarden == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 4) then
+		player:startEvent(0x0054);
+	elseif (herMajestysGarden == QUEST_ACCEPTED) then
+		player:startEvent(0x0052);
 	elseif(player:getCurrentMission(SANDORIA) == THE_CRYSTAL_SPRING and player:getVar("MissionStatus") == 3) then
 		player:startEvent(0x022c);
 	else
@@ -90,6 +101,15 @@ function onEventFinish(player,csid,option)
 		finishMissionTimeline(player,3,csid,option);
 	elseif(csid == 0x0231) then
 		player:setVar("wildcatSandy_var",player:getVar("wildcatSandy_var") + 524288);
+	elseif (csid == 0x0054 and option == 1) then
+		player:addQuest(SANDORIA,HER_MAKESTY_S_GARDEN);
+	elseif (csid == 0x0053) then
+		player:tradeComplete();
+		player:completeQuest(SANDORIA,HER_MAKESTY_S_GARDEN);
+		player:addKeyItem(390);
+		player:messageSpecial(KEYITEM_OBTAINED,390);
+		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,390);
+		
 	end
 	
 end;
