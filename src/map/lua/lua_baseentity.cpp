@@ -2024,24 +2024,14 @@ inline int32 CLuaBaseEntity::setMaskBit(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isboolean(L,-1));
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-3) || !lua_isstring(L,-3));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-4) || !lua_isnumber(L,-4));
 
 	const int8* varname =  lua_tostring(L,-3);
 	int32 bit = (int32)lua_tointeger(L,-2);
 	bool state = ( lua_toboolean(L,-1) == 0 ? false : true );
 	
-	const int8* pullQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
-
-	int32 ret = Sql_Query(SqlHandle,pullQuery,m_PBaseEntity->id, varname);
-	
-	int32 value = 0;
-
-	if (ret != SQL_ERROR && 
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		value = (int32)Sql_GetIntData(SqlHandle,0); 
-	}
-	
+	int32 value = (int32)lua_tointeger(L,-4);
+		
 	if(state == true)
 	{
 		value |= (1<<bit);
@@ -2055,7 +2045,7 @@ inline int32 CLuaBaseEntity::setMaskBit(lua_State *L)
 	
 	Sql_Query(SqlHandle,fmtQuery,m_PBaseEntity->id, varname, value, value);
 	
-	lua_pushnil(L);
+	lua_pushinteger(L, value);
 	return 1;
 }
 
@@ -2071,22 +2061,10 @@ inline int32 CLuaBaseEntity::getMaskBit(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
-	bool value = false;
-
-	const int8* varname  = lua_tostring(L, -2); 
 	int32 bit = (int32)lua_tointeger(L,-1);
-	const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
-
-	int32 ret = Sql_Query(SqlHandle,fmtQuery,m_PBaseEntity->id, varname);
-
-	if (ret != SQL_ERROR && 
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		value = (int32)Sql_GetIntData(SqlHandle,0) & (1 << bit);
-	}
+	bool value = (int32)lua_tointeger(L,-2) & (1 << bit);
 
 	lua_pushboolean(L, value);
 	return 1;
@@ -2104,26 +2082,15 @@ inline int32 CLuaBaseEntity::isMaskFull(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
-	int32 value = 0;
 	bool condition = false;
-
-	const int8* varname  = lua_tostring(L, -2); 
+	
+	int32 value = (int32)lua_tointeger(L,-2);
 	int32 size = (int32)lua_tointeger(L,-1);
-	const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
-
-	int32 ret = Sql_Query(SqlHandle,fmtQuery,m_PBaseEntity->id, varname);
-
-	if (ret != SQL_ERROR && 
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		value = (int32)Sql_GetIntData(SqlHandle,0);
-	}
 	
 	condition = (value == intpow32(2, size)-1);
-		
+	
 	lua_pushboolean(L, condition);
 	return 1;
 }
