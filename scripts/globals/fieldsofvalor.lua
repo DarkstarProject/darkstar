@@ -364,11 +364,11 @@ elseif(option==FOV_MENU_PROTECT) then --Chose Protect, removes all other protect
         local def = 0;
         if (player:getMainLvl()<27) then --before protect 2, give protect 1
             def=15;
-        elseif (player:getMainLvl()>=27 and player:getMainLvl()<47) then --after p2, before p3
+        elseif (player:getMainLvl()<47) then --after p2, before p3
             def=40;
-        elseif (player:getMainLvl()>=47 and player:getMainLvl()<63) then --after p3, before p4
+        elseif (player:getMainLvl()<63) then --after p3, before p4
             def=75;
-        elseif (player:getMainLvl()>=63) then --after p4
+        else --after p4
             def=120;
         end
         --Add protect
@@ -386,11 +386,11 @@ elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
         local def = 0;
         if (player:getMainLvl()<37) then --before shell 2, give shell 1
             def=-24;
-        elseif (player:getMainLvl()>=37 and player:getMainLvl()<57) then --after s2, before s3
+        elseif (player:getMainLvl()<57) then --after s2, before s3
             def=-36;
-        elseif (player:getMainLvl()>=57 and player:getMainLvl()<68) then --after s3, before s4
+        elseif (player:getMainLvl()<68) then --after s3, before s4
             def=-48;
-        elseif (player:getMainLvl()>=68) then --after s4
+        else --after s4
             def=-56;
         end
         --Add shell
