@@ -11,10 +11,8 @@ require("scripts/globals/status");
 
 function OnUseAbility(player, target, ability)
 
-	local drainpct = math.random(25,35) / 100;
 	local playerHP = player:getHP();
-	local playerMaxHP = player:getMaxHP();
-	local drainamount = drainpct * playerHP;
+	local drainamount = (math.random(25,35) / 100) * playerHP;
 	
 	if (player:hasStatusEffect(EFFECT_STONESKIN)) then
 		local skin = player:getMod(MOD_STONESKIN);
@@ -23,30 +21,49 @@ function OnUseAbility(player, target, ability)
 			if(skin == drainamount) then 
 				player:delStatusEffect(EFFECT_STONESKIN);
 			else
-				player:delMod(MOD_STONESKIN,drainamount);
+				local effect = player:getStatusEffect(EFFECT_STONESKIN);
+				effect:setPower(effect:getPower() - drainamount); -- fixes the status effeect so when it ends it uses the new power instead of old
+				player:delMod(MOD_STONESKIN,drainamount); --removes the amount from the mod
+				
 			end
-		elseif((skin + playerHP) <= drainamount) then
-			drainamount = playerHP - 1 + skin;
-			player:delStatusEffect(EFFECT_STONESKIN);
-			player:setHP(1);
 		else
 			player:delStatusEffect(EFFECT_STONESKIN);
 			player:delHP((drainamount-skin));
 		end
-	elseif(playerHP < drainamount) then --using this will kill you, so use up to 1HP
-		drainamount = player:getHP() - 1;
-		player:setHP(1);
+
 	else
 		player:delHP(drainamount);
 	end
-	healPet = drainamount * 2;
+	
+	local pet = player:getPet();	
+	local healPet = drainamount * 2;
+	local petTP = pet:getTP();
+	
 	if(player:getEquipID(4)==15238) then
 		healPet = healPet + 15;
 	end
-	player:petAddHP(healPet); --add the hp to pet
 	
-	local petTP = player:petGetTP();
+	pet:addHP(healPet); --add the hp to pet	
 	player:addTP(petTP/2); --add half pet tp to you
-	player:petTP(petTP/2); -- remove half tp from pet
+	pet:delTP(petTP/2); -- remove half tp from pet
+
+	
+	if(pet:hasStatusEffect(EFFECT_POISON)) then
+		pet:delStatusEffect(EFFECT_POISON);
+	end
+	-- Check for sleep crashes server
+	--if(pet:hasStatusEffect(EFFECT_SLEEP)) then
+	--	pet:delStatusEffect(EFFECT_SLEEP);
+	--end
+	
+	if(pet:hasStatusEffect(EFFECT_PARALYSIS)) then
+		pet:delStatusEffect(EFFECT_PARALYSIS);
+	end
+
+	if(pet:hasStatusEffect(EFFECT_DOOM)) then
+		if(math.random(1,2) == 1) then
+			pet:delStatusEffect(EFFECT_DOOM);
+		end
+	end
 	
 end;
