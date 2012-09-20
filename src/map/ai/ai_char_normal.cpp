@@ -1444,12 +1444,20 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
-		if(m_PJobAbility->getID() == ABILITY_SPIRIT_LINK && m_PChar->PPet == NULL){
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PJobAbility = NULL;
-			m_PBattleSubTarget = NULL;
-			return;
+		if(m_PJobAbility->getID() == ABILITY_SPIRIT_LINK){ 
+			if(m_PChar->PPet == NULL){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}else if(m_PChar->PPet->health.hp == m_PChar->PPet->health.maxhp && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II)){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 87));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
 		}
 		if(m_PJobAbility->getID() == ABILITY_CALL_WYVERN){
 			if(m_PChar->PPet!=NULL){
