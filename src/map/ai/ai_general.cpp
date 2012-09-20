@@ -50,6 +50,7 @@ CAIGeneral::CAIGeneral()
 void CAIGeneral::Reset()
 {
     m_Tick = 0;
+	m_StartBattle = NULL;
 	m_ActionType = ACTION_NONE;
 	m_ActionTargetID = 0;
 	m_LastActionTime = 0;

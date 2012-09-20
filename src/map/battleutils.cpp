@@ -604,7 +604,8 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 		}
 		break;
 	case 18157:{ //Poison Arrow
-			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_POISON)){
+			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_POISON) && 
+				PDefender->hasImmunity(256) == false){
 				Action->subeffect = SUBEFFECT_POISON;
 				Action->subparam  = EFFECT_POISON;
 				Action->submessageID = 160;
@@ -651,7 +652,8 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 		}
 		break;
 	case 18152:{ //Venom Bolt
-			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_POISON)){
+			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_POISON) && 
+				PDefender->hasImmunity(256) == false){
 				Action->subeffect = SUBEFFECT_POISON;
 				Action->subparam  = EFFECT_POISON;
 				Action->submessageID = 160;
@@ -663,7 +665,8 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 		}
 		break;
 	case 18150:{//Blind Bolt
-			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BLINDNESS)){
+			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BLINDNESS) && 
+				PDefender->hasImmunity(64) == false){
 				Action->subeffect = SUBEFFECT_BLIND;
 				Action->subparam  = EFFECT_BLINDNESS;
 				Action->submessageID = 160;

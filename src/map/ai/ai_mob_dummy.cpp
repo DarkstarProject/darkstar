@@ -381,7 +381,10 @@ void CAIMobDummy::ActionFadeOut()
 	{
 		m_PMob->status = STATUS_DISAPPEAR;
         m_PMob->PEnmityContainer->Clear();
-
+		if(m_PMob->hasRageMode()){
+			m_PMob->delRageMode(); // Delete the rage mode if the mob disengage
+	   }
+		m_StartBattle = NULL;
         m_ActionType   = m_PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE;
 	}
 }
@@ -828,12 +831,20 @@ void CAIMobDummy::ActionSleep()
 void CAIMobDummy::ActionAttack() 
 {
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+	
+	if(m_StartBattle == NULL){
+		m_StartBattle = m_Tick;
+	}
 
-	if (m_PBattleTarget == NULL)
-	{
-        m_ActionType = ACTION_DISENGAGE;
+	if(m_PBattleTarget == NULL){
+       if(m_PMob->hasRageMode()){
+			m_PMob->delRageMode(); // Delete the rage mode if the mob disengage
+	   }
+		m_ActionType = ACTION_DISENGAGE;
+		m_StartBattle = NULL;
 		return; 
 	}
+
     if (m_PBattleTarget->isDead() || 
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
 		m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID())
@@ -1068,6 +1079,12 @@ void CAIMobDummy::ActionAttack()
     {
 		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
 	}
+
+	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS && (m_Tick - m_StartBattle) % 3000 == 0) // launch OnMobFight every 3 sec
+	{
+		luautils::OnMobFight(m_PMob,m_PBattleTarget);
+	}
+	
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 

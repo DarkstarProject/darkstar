@@ -94,8 +94,9 @@ namespace luautils
 	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget);			// triggered when casting a spell
 
     int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
+	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);				// triggers on mob engaging a target
+	int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget);					// Сalled every 3 sec when a player fight monster
 	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// triggers on mob death
-	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);					// triggers on mob engaging a target
 
 	int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance);				//triggers when enter a bcnm
 	int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode);	//triggers when leaving a bcnm

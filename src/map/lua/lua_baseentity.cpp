@@ -3746,6 +3746,34 @@ inline int32 CLuaBaseEntity::hasImmunity(lua_State *L)
 }
 
 /************************************************************************
+	Get the time in second of the battle
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getBattleTime(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	lua_pushinteger(L, ((CBattleEntity*)m_PBaseEntity)->GetBattleTime());
+	
+	return 1;
+}
+
+/************************************************************************
+	Add the rage mode for a mob (stat x10)
+************************************************************************/
+
+inline int32 CLuaBaseEntity::rageMode(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	((CBattleEntity*)m_PBaseEntity)->addRageMode();
+	
+	return 1;
+}
+
+/************************************************************************
 			Calculates the enmity produced by the input cure and
 			applies it to all on the base entity's enemies hate list
 			FORMAT: phealer:(ptarget,amount)
@@ -4877,5 +4905,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkExpPoints),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasImmunity),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
 	{NULL,NULL}
 };

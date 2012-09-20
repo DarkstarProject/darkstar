@@ -304,8 +304,17 @@ enum SKILLCHAIN_ELEMENT
 
 enum IMMUNITY
 {
-	IMMUNITY_NONE	= 0x00,
-	IMMUNITY_SLEEP	= 0x01,
+	IMMUNITY_NONE		= 0x00,
+	IMMUNITY_SLEEP		= 0x01,
+	IMMUNITY_GRAVITY	= 0x02,
+	IMMUNITY_BIND		= 0x04,
+	IMMUNITY_STUN		= 0x08,
+	IMMUNITY_SILENCE	= 0x10, // 16
+	IMMUNITY_PARALYZE	= 0x20, // 32
+	IMMUNITY_BLIND		= 0x40, // 64
+	IMMUNITY_SLOW		= 0x80, // 128
+	IMMUNITY_POISON		= 0x100, // 256
+	IMMUNITY_ELEGY		= 0x200, // 512
 };
 
 #define MAX_SKILLCHAIN_LEVEL (4)
@@ -349,7 +358,7 @@ public:
 	health_t	    health;						// hp,mp,tp
 	stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
 	skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
-	IMMUNITY		m_Immunity;
+	IMMUNITY		m_Immunity;					// Mob immunity
 
     uint16          STR();
     uint16          DEX();                      
@@ -365,6 +374,12 @@ public:
 	bool		    isDead();					// проверяем, мертва ли сущность
 	bool			isInDynamis();
 	bool			hasImmunity(uint32 imID);
+
+	uint32			GetBattleTime();			
+
+	bool			hasRageMode();				// If the mob has the rage mode: true
+	void			addRageMode();				// Rage mode ON: stat x10
+	void			delRageMode();				// Rage mode OFF: stat /10
 
 	JOBTYPE		    GetMJob();					// главная профессия
 	JOBTYPE		    GetSJob();					// дополнительная профессия
@@ -421,6 +436,7 @@ private:
 	JOBTYPE		m_sjob;						// дополнительная профессия
 	uint8		m_mlvl;						// ТЕКУЩИЙ уровень главной профессии
 	uint8		m_slvl;						// ТЕКУЩИЙ уровень дополнительной профессии
+	uint8		m_rageMode;					// Mode rage 1:yes 0: no
 
 	int16		m_modStat[MAX_MODIFIER];	// массив модификаторов
 };
