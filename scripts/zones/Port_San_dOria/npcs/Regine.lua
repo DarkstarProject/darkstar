@@ -16,18 +16,14 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 -- "Flyers for Regine" conditional script
-count = trade:getItemCount();
-MagicFlyer  = trade:hasItemQty(532,1);
-MagicParcel = trade:hasItemQty(0x0251,1);
+	local count = trade:getItemCount();
 
-	if (MagicFlyer == true and count == 1) then
-		FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-		if (FlyerForRegine == 1) then
+	if (trade:hasItemQty(532,1) == true and count == 1) then
+		if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
-	elseif (MagicParcel == true and count == 1) then
-		TheBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
-		if (TheBrugaireConsortium == 1) then
+	elseif (trade:hasItemQty(593,1) == true and count == 1) then
+		if (player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM) == 1) then
 			player:tradeComplete();
 			player:startEvent(0x0217);
 			player:setVar("TheBrugaireConsortium-Parcels", 11);

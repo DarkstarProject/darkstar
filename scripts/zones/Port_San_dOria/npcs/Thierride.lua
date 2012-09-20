@@ -20,28 +20,25 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	count = trade:getItemCount();
-	PubParcel = trade:hasItemQty(595,1);
-	
+	local count = trade:getItemCount();
 	if (player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_ACCEPTED) then
-		if (trade:hasItemQty(4358, 5) and trade:getItemCount() == 5) then
+		if (trade:hasItemQty(4358, 5) and count == 5) then
 			player:startEvent(0x0210);
 		else
 			player:startEvent(0x020e);
-		end;
-	else
-		player:startEvent(0x0211);
+		end
+
 		
-	elseif (PubParcel == true and count == 1) then
-		TheBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
-		if (TheBrugaireConsortium == 1) then
+	elseif (player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(595,1) == true and count == 1) then
 			player:tradeComplete(); 
 			player:startEvent(0x021b);
 			player:setVar("TheBrugaireConsortium-Parcels", 31);
 		end
+	else
+		player:startEvent(0x0211);
 	end
-	end;
-	
+
 end;
 
 -----------------------------------
