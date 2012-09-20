@@ -240,6 +240,7 @@ public:
 	int32 petAbility(lua_State*);
 	int32 petTP(lua_State*);
 	int32 petAddHP(lua_State*);
+	int32 getPet(lua_State*);
 	int32 petGetTP(lua_State*);
 	int32 petGetHP(lua_State*);
 	int32 petGetMaxHP(lua_State*);

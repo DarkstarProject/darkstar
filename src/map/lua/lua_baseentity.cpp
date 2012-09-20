@@ -200,6 +200,29 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
 
 //======================================================//
 
+inline int32 CLuaBaseEntity::getPet(lua_State* L)
+{
+	if(((CBattleEntity*)m_PBaseEntity)->PPet != NULL)
+	{
+		//uint32 petid = (uint32);
+
+		CBaseEntity* PPet = ((CBattleEntity*)m_PBaseEntity)->PPet;
+
+		lua_pushstring(L,CLuaBaseEntity::className);
+		lua_gettable(L,LUA_GLOBALSINDEX);
+		lua_pushstring(L,"new");
+		lua_gettable(L,-2);
+		lua_insert(L,-2);
+		lua_pushlightuserdata(L,(void*)PPet);
+		lua_pcall(L,2,1,0);
+		return 1;
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+//======================================================//
+
 inline int32 CLuaBaseEntity::petTP(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -4885,6 +4908,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petRetreat),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petStay),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAbility),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petTP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
