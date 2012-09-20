@@ -2,6 +2,7 @@
 -- Ability: Call Beast
 -----------------------------------
 
+require("scripts/globals/common");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
@@ -11,53 +12,53 @@ require("scripts/globals/status");
 
 function OnUseAbility(player, target, ability)
 	--TODO: Look at ammo slot for jug pet type etc
-	val = player:getEquipID(3);
-	if(val==17860) then player:spawnPet(22);--Hare Familiar ok
-	elseif(val==17861) then player:spawnPet(37); -- Keeneared Steffi OK
-	elseif(val==17862) then player:spawnPet(31); -- Mayfly Familiar ok
-	elseif(val==17863) then player:spawnPet(41); -- Shellbuster Orob OK
-	elseif(val==17864) then player:spawnPet(21); -- Sheep Familiar OK
-	elseif(val==17865) then player:spawnPet(36); -- Lullaby Melodia OK
-	elseif(val==17866) then player:spawnPet(30); -- Lizard Familiar ok
-	elseif(val==17867) then player:spawnPet(40); -- Coldblood Como OK
-	elseif(val==17868) then player:spawnPet(28); -- Flowerpot Bill OK
-	elseif(val==17869) then player:spawnPet(38); -- Flowerpot Ben OK
-	elseif(val==17870) then player:spawnPet(27); -- Tiger Familiar OK
-	elseif(val==17871) then player:spawnPet(39); -- Saber Siravarde OK
-	elseif(val==17872) then player:spawnPet(33); -- Beetle Familiar OK
-	elseif(val==17873) then player:spawnPet(45); -- Panzer Galahad OK
-	elseif(val==17874) then player:spawnPet(49); -- Crafty Clyvonne OK
-	elseif(val==17875) then player:spawnPet(50); -- Bloodclaw Shasra OK
-	elseif(val==17876) then player:spawnPet(23); -- Crab Familiar OK
-	elseif(val==17877) then player:spawnPet(24); -- Courier Carrie Skin NONOK
-	elseif(val==17878) then player:spawnPet(51); -- Lucky Lulush OK
-	elseif(val==17879) then player:spawnPet(52); -- Fatso Fargann OK
-	elseif(val==17880) then player:spawnPet(32); -- Funguar Familiar OK
-	elseif(val==17881) then player:spawnPet(53); -- Discreet Louise OK
-	elseif(val==17882) then player:spawnPet(25); -- Homunculus OK
-	elseif(val==17883) then player:spawnPet(54); -- Swift Sieghard OK
-	elseif(val==17884) then player:spawnPet(47); -- Amigo Sabotender OK
-	elseif(val==17885) then player:spawnPet(26); -- Flytrap Familiar OK
-	elseif(val==17886) then player:spawnPet(42); -- Voracious Audrey OK
-	elseif(val==17887) then player:spawnPet(29); -- Eft Familiar OK
-	elseif(val==17888) then player:spawnPet(43); -- Ambusher Allie OK
-	elseif(val==17889) then player:spawnPet(35); -- Mite Familiar OK
-	elseif(val==17890) then player:spawnPet(44); -- Lifedrinker Lars OK
-	elseif(val==17891) then player:spawnPet(34); -- Antlion Familiar OK
-	elseif(val==17892) then player:spawnPet(46); -- Chopsuey Chucky OK
-	elseif(val==17893) then player:spawnPet(55); -- Dipper Yuly OK
-	elseif(val==17894) then player:spawnPet(56); -- Flowerpot Merle OK
-	elseif(val==17895) then player:spawnPet(57); -- Nursery Nazuna OK
-	elseif(val==17896) then player:spawnPet(58); -- Mailbuster Cetas OK
-	elseif(val==17897) then player:spawnPet(59); -- Audacious Anna OK
-	elseif(val==17898) then player:spawnPet(60); -- Presto Julio OK
-	elseif(val==17899) then player:spawnPet(61); -- Bugeyed Broncha OK
-	elseif(val==17900) then player:spawnPet(62); -- Gooey Gerard OK
-	elseif(val==17901) then player:spawnPet(63); -- Gorefang Hobs OK
-	elseif(val==17902) then player:spawnPet(64); -- Faithful Falcorr OK
-	elseif(val==17903) then player:spawnPet(65); -- Crude Raphie OK
-	elseif(val==17904) then player:spawnPet(66); -- Dapper Mac OK
-	elseif(val==17905) then player:spawnPet(67); -- Slippery Silas OK
-	elseif(val==17906) then player:spawnPet(68); -- Turbid Toloi
-	end
+	switch(player:getEquipID(3)) : caseof{
+		[17860] = function (x) player:spawnPet(22) end, -- Hare Familiar ok
+		[17861] = function (x) player:spawnPet(37) end, -- Keeneared Steffi OK
+		[17862] = function (x) player:spawnPet(31) end, -- Mayfly Familiar ok
+		[17863] = function (x) player:spawnPet(41) end, -- Shellbuster Orob OK
+		[17864] = function (x) player:spawnPet(21) end, -- Sheep Familiar OK
+		[17865] = function (x) player:spawnPet(36) end, -- Lullaby Melodia OK
+		[17866] = function (x) player:spawnPet(30) end, -- Lizard Familiar ok
+		[17867] = function (x) player:spawnPet(40) end, -- Coldblood Como OK
+		[17868] = function (x) player:spawnPet(28) end, -- Flowerpot Bill OK
+		[17869] = function (x) player:spawnPet(38) end, -- Flowerpot Ben OK
+		[17870] = function (x) player:spawnPet(27) end, -- Tiger Familiar OK
+		[17871] = function (x) player:spawnPet(39) end, -- Saber Siravarde OK
+		[17872] = function (x) player:spawnPet(33) end, -- Beetle Familiar OK
+		[17873] = function (x) player:spawnPet(45) end, -- Panzer Galahad OK
+		[17874] = function (x) player:spawnPet(49) end, -- Crafty Clyvonne OK
+		[17875] = function (x) player:spawnPet(50) end, -- Bloodclaw Shasra OK
+		[17876] = function (x) player:spawnPet(23) end, -- Crab Familiar OK
+		[17877] = function (x) player:spawnPet(24) end, -- Courier Carrie Skin NONOK
+		[17878] = function (x) player:spawnPet(51) end, -- Lucky Lulush OK
+		[17879] = function (x) player:spawnPet(52) end, -- Fatso Fargann OK
+		[17880] = function (x) player:spawnPet(32) end, -- Funguar Familiar OK
+		[17881] = function (x) player:spawnPet(53) end, -- Discreet Louise OK
+		[17882] = function (x) player:spawnPet(25) end, -- Homunculus OK
+		[17883] = function (x) player:spawnPet(54) end, -- Swift Sieghard OK
+		[17884] = function (x) player:spawnPet(47) end, -- Amigo Sabotender OK
+		[17885] = function (x) player:spawnPet(26) end, -- Flytrap Familiar OK
+		[17886] = function (x) player:spawnPet(42) end, -- Voracious Audrey OK
+		[17887] = function (x) player:spawnPet(29) end, -- Eft Familiar OK
+		[17888] = function (x) player:spawnPet(43) end, -- Ambusher Allie OK
+		[17889] = function (x) player:spawnPet(35) end, -- Mite Familiar OK
+		[17890] = function (x) player:spawnPet(44) end, -- Lifedrinker Lars OK
+		[17891] = function (x) player:spawnPet(34) end, -- Antlion Familiar OK
+		[17892] = function (x) player:spawnPet(46) end, -- Chopsuey Chucky OK
+		[17893] = function (x) player:spawnPet(55) end, -- Dipper Yuly OK
+		[17894] = function (x) player:spawnPet(56) end, -- Flowerpot Merle OK
+		[17895] = function (x) player:spawnPet(57) end, -- Nursery Nazuna OK
+		[17896] = function (x) player:spawnPet(58) end, -- Mailbuster Cetas OK
+		[17897] = function (x) player:spawnPet(59) end, -- Audacious Anna OK
+		[17898] = function (x) player:spawnPet(60) end, -- Presto Julio OK
+		[17899] = function (x) player:spawnPet(61) end, -- Bugeyed Broncha OK
+		[17900] = function (x) player:spawnPet(62) end, -- Gooey Gerard OK
+		[17901] = function (x) player:spawnPet(63) end, -- Gorefang Hobs OK
+		[17902] = function (x) player:spawnPet(64) end, -- Faithful Falcorr OK
+		[17903] = function (x) player:spawnPet(65) end, -- Crude Raphie OK
+		[17904] = function (x) player:spawnPet(66) end, -- Dapper Mac OK
+		[17905] = function (x) player:spawnPet(67) end, -- Slippery Silas OK
+		[17906] = function (x) player:spawnPet(68) end, -- Turbid Toloi
+	}
 end;
