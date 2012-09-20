@@ -20,19 +20,17 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	local skin = target:getMod(MOD_STONESKIN);
-    if(skin>0) then
-        if(skin >= effect:getPower()) then --absorb all damage
-            target:delMod(MOD_STONESKIN,effect:getPower());
-            if(target:getMod(MOD_STONESKIN)==0) then
-                target:delStatusEffect(EFFECT_STONESKIN);
-            end
-        else --absorbs some damage then wear
-            target:delMod(MOD_STONESKIN,skin);
-            target:delStatusEffect(EFFECT_STONESKIN);
+	if(target:hasStatusEffect(EFFECT_STONESKIN)) then
+		local skin = target:getMod(MOD_STONESKIN);
+		local dmg = effect:getPower();
+		if(skin >= dmg) then --absorb all damage
+			target:delMod(MOD_STONESKIN,effect:getPower());
+		else
+			target:delStatusEffect(EFFECT_STONESKIN);
+			target:delHP(dmg - skin);
 			target:wakeUp();
-			target:delHP(effect:getPower() - skin);
-        end
+		end
+
 	else
 		target:delHP(effect:getPower());
 		target:wakeUp();
