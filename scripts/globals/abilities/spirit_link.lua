@@ -47,23 +47,13 @@ function OnUseAbility(player, target, ability)
 	player:addTP(petTP/2); --add half pet tp to you
 	pet:delTP(petTP/2); -- remove half tp from pet
 
+    pet:delStatusEffect(EFFECT_POISON);
+    pet:delStatusEffect(EFFECT_SLEEP_I);
+    pet:delStatusEffect(EFFECT_SLEEP_II);
+	pet:delStatusEffect(EFFECT_PARALYSIS);
 	
-	if(pet:hasStatusEffect(EFFECT_POISON)) then
-		pet:delStatusEffect(EFFECT_POISON);
-	end
-	-- Check for sleep crashes server
-	--if(pet:hasStatusEffect(EFFECT_SLEEP)) then
-	--	pet:delStatusEffect(EFFECT_SLEEP);
-	--end
-	
-	if(pet:hasStatusEffect(EFFECT_PARALYSIS)) then
-		pet:delStatusEffect(EFFECT_PARALYSIS);
-	end
-
-	if(pet:hasStatusEffect(EFFECT_DOOM)) then
-		if(math.random(1,2) == 1) then
-			pet:delStatusEffect(EFFECT_DOOM);
-		end
+	if(math.random(1,2) == 1) then
+		pet:delStatusEffect(EFFECT_DOOM);
 	end
 	
 end;
