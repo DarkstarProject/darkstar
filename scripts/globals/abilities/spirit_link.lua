@@ -11,10 +11,6 @@ require("scripts/globals/status");
 
 function OnUseAbility(player, target, ability)
 
-local petCurrentHP = player:petGetHP();
-local petMaxHP = player:petGetMaxHP();
-if(petCurrentHP ~= petMaxHP) then -- Cannot use ability if pets hp is at 100% (unless you have the merit to carry over status effects, which is not implemented at this time)
-
 	local drainpct = math.random(25,35) / 100;
 	local playerHP = player:getHP();
 	local playerMaxHP = player:getMaxHP();
@@ -48,12 +44,9 @@ if(petCurrentHP ~= petMaxHP) then -- Cannot use ability if pets hp is at 100% (u
 		healPet = healPet + 15;
 	end
 	player:petAddHP(healPet); --add the hp to pet
+	
 	local petTP = player:petGetTP();
 	player:addTP(petTP/2); --add half pet tp to you
 	player:petTP(petTP/2); -- remove half tp from pet
 	
-
-else
-	-- As-is there is no way to prevent the ability from being used, probably has to be done in the core.At least with this it will not make the player lose hp and heal the wyvern for 0.
-end
 end;
