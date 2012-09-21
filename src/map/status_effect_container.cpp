@@ -317,7 +317,8 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
-		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE)
+		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE &&
+            m_StatusEffectList.at(i)->GetDuration() == 0)
 		{
             EFFECT result = m_StatusEffectList.at(i)->GetStatusID();
 			RemoveStatusEffect(i);
@@ -338,7 +339,8 @@ EFFECT CStatusEffectContainer::DispelStatusEffect()
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
-		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE)
+        if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE && 
+            m_StatusEffectList.at(i)->GetDuration() == 0)
 		{
             EFFECT result = m_StatusEffectList.at(i)->GetStatusID();
             RemoveStatusEffect(i);
