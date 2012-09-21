@@ -174,6 +174,7 @@ public:
 
 	int32 getVar(lua_State*);				// Returns a character variable
 	int32 setVar(lua_State*);				// Sets a character variable
+	int32 addVar(lua_State*);				// Sets a value to a character variable
 	
 	int32 setMaskBit(lua_State*);			// Sets a single bit in a character variable
 	int32 getMaskBit(lua_State*);			// Retrieves a single bit in a character variable

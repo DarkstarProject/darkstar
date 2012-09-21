@@ -1953,6 +1953,37 @@ inline int32 CLuaBaseEntity::setVar(lua_State *L)
 
 /************************************************************************
 *																		*
+*																		*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addVar(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
+
+	const int8* varname =  lua_tostring(L,-2); 
+	int32 value = (int32)lua_tointeger(L,-1); 
+			
+	if (value == 0)
+	{
+		return 0;
+	}
+
+	//This won't throw an error if you misspell a variable name!
+	const int8* fmtQuery = "UPDATE char_vars SET value = value + %i WHERE charid = %u AND varname = '%s';";
+	
+	Sql_Query(SqlHandle,fmtQuery,value,m_PBaseEntity->id, varname);
+		
+	lua_pushnil(L);
+	return 1;
+}
+
+/************************************************************************
+*																		*
 *  Set a single bit as part of a bitmask in a database variable 		*
 *																		*
 ************************************************************************/
