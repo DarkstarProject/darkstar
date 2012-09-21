@@ -360,6 +360,7 @@ void LoadMOBList(CZone* PZone)
 				PMob->addModifier(MOD_TRIPLE_ATTACK,7);
 			}
 			PZone->InsertMOB(PMob);
+			luautils::OnMobInitialise(PMob);
 		}
 	}
 }

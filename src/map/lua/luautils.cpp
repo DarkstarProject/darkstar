@@ -1190,6 +1190,49 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 }
 
 /************************************************************************
+*  OnMobInitialise                                                      *
+*  Used for passive trait                                               *
+*                                                                       *
+************************************************************************/
+
+int32 OnMobInitialise(CBaseEntity* PMob) 
+{       
+    DSP_DEBUG_BREAK_IF(PMob == NULL);
+
+    int8 File[255];
+    memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onMobInitialize");
+
+    snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+    if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+    {
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobInitialize");
+    if( lua_isnil(LuaHandle,-1) )
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaMobEntity(PMob);
+    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+
+
+    if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+    {
+        ShowError("luautils::onMobInitialize: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/************************************************************************
 *																		*
 *  Сalled when a monster engages a target for the first time			*
 *		Added by request (for doing stuff when mobs first engage)		*
