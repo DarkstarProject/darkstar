@@ -313,19 +313,18 @@ void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag)
 *																		*
 ************************************************************************/
 
-string_t CStatusEffectContainer::EraseStatusEffect()
+EFFECT CStatusEffectContainer::EraseStatusEffect()
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
 		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE)
 		{
-            string_t result = m_StatusEffectList.at(i)->GetName();
+            EFFECT result = m_StatusEffectList.at(i)->GetStatusID();
 			RemoveStatusEffect(i);
 			return result;
 		}
 	}
-
-	return "";
+	return EFFECT_NONE;
 }
 
 /************************************************************************
@@ -335,19 +334,18 @@ string_t CStatusEffectContainer::EraseStatusEffect()
 *																		*
 ************************************************************************/
 
-string_t CStatusEffectContainer::DispelStatusEffect()
+EFFECT CStatusEffectContainer::DispelStatusEffect()
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
 		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE)
 		{
-            string_t result = m_StatusEffectList.at(i)->GetName();
+            EFFECT result = m_StatusEffectList.at(i)->GetStatusID();
             RemoveStatusEffect(i);
             return result;
 		}
 	}
-
-	return "";
+	return EFFECT_NONE;
 }
 
 /************************************************************************

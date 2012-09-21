@@ -3157,7 +3157,7 @@ inline int32 CLuaBaseEntity::eraseStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    lua_pushstring( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->EraseStatusEffect().c_str());
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->EraseStatusEffect());
     return 1;
 }
 
@@ -3172,7 +3172,7 @@ inline int32 CLuaBaseEntity::dispelStatusEffect(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    lua_pushstring( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelStatusEffect().c_str());
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelStatusEffect());
     return 1;
 }
 
@@ -4794,6 +4794,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,levelRestriction),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVar),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMaskBit),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaskBit),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMaskFull),
