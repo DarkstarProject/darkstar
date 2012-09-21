@@ -1719,6 +1719,7 @@ INSERT INTO `item_usable` VALUES (14663, 0, 'teleport_ring_mea', 1, 8, 79, 5, 10
 INSERT INTO `item_usable` VALUES (14664, 0, 'teleport_ring_vahzl', 1, 8, 79, 5, 10, 30, 86400, 0);
 INSERT INTO `item_usable` VALUES (14665, 0, 'teleport_ring_yhoat', 1, 8, 79, 5, 10, 30, 86400, 0);
 INSERT INTO `item_usable` VALUES (14666, 0, 'teleport_ring_altep', 1, 8, 79, 5, 10, 30, 86400, 0);
+INSERT INTO `item_usable` VALUES (14671, 0, 'allied_ring', 1, 3, 76, 0, 5, 15, 129600, 0);
 INSERT INTO `item_usable` VALUES (14672, 0, 'tavnazian_ring', 1, 8, 79, 5, 1, 30, 86400, 0);
 INSERT INTO `item_usable` VALUES (14677, 0, 'sanation_ring', 1, 3, 0, 0, 20, 30, 1800, 0);
 INSERT INTO `item_usable` VALUES (14678, 0, 'assassins_ring', 1, 3, 0, 0, 20, 30, 1800, 0);
