@@ -44,7 +44,6 @@ public:
 	virtual void CheckCurrentAction(uint32 tick);
 
 	CAICharNormal(CCharEntity* PChar);
-	virtual ~CAICharNormal() {};
 
 protected:
 

@@ -50,7 +50,7 @@ CAIGeneral::CAIGeneral()
 void CAIGeneral::Reset()
 {
     m_Tick = 0;
-	m_StartBattle = NULL;
+	m_StartBattle = 0;
 	m_ActionType = ACTION_NONE;
 	m_ActionTargetID = 0;
 	m_LastActionTime = 0;
@@ -74,6 +74,17 @@ void CAIGeneral::Reset()
 ACTIONTYPE CAIGeneral::GetCurrentAction()
 {
 	return m_ActionType;
+}
+
+/************************************************************************
+*                                                                       *
+*  Get the time of the battle                                           *
+*                                                                       *
+************************************************************************/
+
+uint32 CAIGeneral::GetBattleTime()
+{
+	return ((m_Tick - m_StartBattle) / 1000);
 }
 
 /************************************************************************
@@ -142,6 +153,8 @@ void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 		{
 			if (m_ActionType == ACTION_NONE)
 			{
+                m_StartBattle = m_Tick;
+
 				m_ActionType = Action;
 				m_ActionTargetID = TargetID;
 			}

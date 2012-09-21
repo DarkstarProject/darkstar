@@ -49,6 +49,7 @@ CMobEntity::CMobEntity()
 	m_HiPCLvl = 0;
 	m_THLvl = 0;
 	m_THPCID = 0;
+    m_RageMode = 0;
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
@@ -85,4 +86,45 @@ void CMobEntity::SetDespawnTimer(uint32 duration)
 bool CMobEntity::CanDeaggro()
 {
 	return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
+}
+
+/************************************************************************
+*                                                                       *
+*  RAGE MODE                                                            *
+*                                                                       *
+************************************************************************/
+
+bool CMobEntity::hasRageMode()
+{
+	return m_RageMode;
+}
+
+void CMobEntity::addRageMode()
+{
+    if (!m_RageMode)
+    {
+	    stats.AGI *= 10;
+	    stats.CHR *= 10;
+	    stats.DEX *= 10;
+	    stats.INT *= 10;
+	    stats.MND *= 10;
+	    stats.STR *= 10;
+	    stats.VIT *= 10;
+    }
+	m_RageMode = true;
+}
+
+void CMobEntity::delRageMode()
+{
+    if (m_RageMode)
+    {
+	    stats.AGI /= 10;
+	    stats.CHR /= 10;
+	    stats.DEX /= 10;
+	    stats.INT /= 10;
+	    stats.MND /= 10;
+	    stats.STR /= 10;
+	    stats.VIT /= 10;
+    }
+	m_RageMode = false;
 }

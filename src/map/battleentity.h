@@ -375,12 +375,6 @@ public:
 	bool			isInDynamis();
 	bool			hasImmunity(uint32 imID);
 
-	uint32			GetBattleTime();			
-
-	bool			hasRageMode();				// If the mob has the rage mode: true
-	void			addRageMode();				// Rage mode ON: stat x10
-	void			delRageMode();				// Rage mode OFF: stat /10
-
 	JOBTYPE		    GetMJob();					// главная профессия
 	JOBTYPE		    GetSJob();					// дополнительная профессия
 	uint8		    GetMLevel();				// уровень главной профессии
@@ -436,7 +430,6 @@ private:
 	JOBTYPE		m_sjob;						// дополнительная профессия
 	uint8		m_mlvl;						// ТЕКУЩИЙ уровень главной профессии
 	uint8		m_slvl;						// ТЕКУЩИЙ уровень дополнительной профессии
-	uint8		m_rageMode;					// Mode rage 1:yes 0: no
 
 	int16		m_modStat[MAX_MODIFIER];	// массив модификаторов
 };

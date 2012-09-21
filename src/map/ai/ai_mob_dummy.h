@@ -52,8 +52,8 @@ class CAIMobDummy : public CAIGeneral
 public:
 
 	virtual void CheckCurrentAction(uint32 tick);
+
 	CAIMobDummy(CMobEntity* PMob);
-	virtual ~CAIMobDummy() {};
 	
 protected:
 

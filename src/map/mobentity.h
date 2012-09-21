@@ -104,16 +104,21 @@ public:
     uint8       m_name_prefix;          // The ding bats VS Ding bats
 	CEnmityContainer* PEnmityContainer;	// система ненависти монстров
 
-    bool   CanDeaggro();
-    uint32 GetDespawnTimer();
-    void   SetDespawnTimer(uint32 duration);
+    bool        hasRageMode();          // If the mob has the rage mode: true
+    void        addRageMode();          // Rage mode ON:  stat x10
+    void        delRageMode();          // Rage mode OFF: stat /10
+
+    bool        CanDeaggro();
+    uint32      GetDespawnTimer();
+    void        SetDespawnTimer(uint32 duration);
 
     CMobEntity();
    ~CMobEntity();
 
 private:
 
-    uint32       m_DespawnTimer;        // Despawn Timer to despawn mob after set duration
+    bool        m_RageMode;             // Mode rage
+    uint32      m_DespawnTimer;         // Despawn Timer to despawn mob after set duration
 
 };
 

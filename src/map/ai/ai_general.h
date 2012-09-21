@@ -98,6 +98,8 @@ public:
 	CWeaponSkill*	GetCurrentWeaponSkill();
 	CMobSkill*		GetCurrentMobSkill();
 
+    uint32          GetBattleTime();
+
 	void			SetBattleTarget(CBattleEntity* PEntity); //used for pets mainly
 	void			SetBattleSubTarget(CBattleEntity* PEntity); //used for pets mainly
 	void			SetCurrentSpell(uint16 SpellID);
@@ -109,10 +111,10 @@ public:
 	virtual void	CheckCurrentAction(uint32 tick) = 0;
 
 	CAIGeneral();
-	virtual ~CAIGeneral() {};
 
-	uint32			m_Tick;					// текущее значение времени
-	uint32			m_StartBattle;			// Battle start time
+private:
+
+    //uint32			m_StartBattle;			// Battle start time
 
 protected:
 
@@ -120,6 +122,8 @@ protected:
 	uint16			m_ActionTargetID;		// дополнительная цель, участвующая в действии
 	uint32			m_LastActionTime;		// время начала любого действия
 	uint32			m_LastMeleeTime;		// Last time melee hit occurred
+    uint32			m_Tick;					// текущее значение времени
+    uint32			m_StartBattle;			// Battle start time
 
 	CSpell*			m_PSpell;				// читаемое заклинание
 	CItemUsable*	m_PItemUsable;			// используемый предмет

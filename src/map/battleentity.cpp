@@ -101,46 +101,6 @@ bool CBattleEntity::hasImmunity(uint32 imID)
 	return false;
 }
 
-// Get the time of the battle
-uint32 CBattleEntity::GetBattleTime()
-{
-	return ((PBattleAI->m_Tick - PBattleAI->m_StartBattle) / 1000);
-}
-
-//RAGE MODE -----------
-
-bool CBattleEntity::hasRageMode()
-{
-	if(m_rageMode == 1){
-		return true;
-	}
-	return false;
-}
-
-void CBattleEntity::addRageMode()
-{
-	stats.AGI *= 10;
-	stats.CHR *= 10;
-	stats.DEX *= 10;
-	stats.INT *= 10;
-	stats.MND *= 10;
-	stats.STR *= 10;
-	stats.VIT *= 10;
-	m_rageMode = 1;
-}
-
-void CBattleEntity::delRageMode()
-{
-	stats.AGI /= 10;
-	stats.CHR /= 10;
-	stats.DEX /= 10;
-	stats.INT /= 10;
-	stats.MND /= 10;
-	stats.STR /= 10;
-	stats.VIT /= 10;
-	m_rageMode = 0;
-}
-
 /************************************************************************
 *                                                                       *
 *  Пересчитываем максимальные значения hp и mp с учетом модификаторов   *

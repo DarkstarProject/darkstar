@@ -171,6 +171,7 @@ void CAIMobDummy::ActionDisengage()
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
 
+    m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
 	m_PMob->m_CallForHelp = 0;
 	m_PMob->animation = ANIMATION_NONE;
@@ -381,11 +382,8 @@ void CAIMobDummy::ActionFadeOut()
 	{
 		m_PMob->status = STATUS_DISAPPEAR;
         m_PMob->PEnmityContainer->Clear();
-		if(m_PMob->hasRageMode()){
-			m_PMob->delRageMode(); // Delete the rage mode if the mob disengage
-	   }
-		m_StartBattle = NULL;
-        m_ActionType   = m_PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE;
+
+        m_ActionType  = m_PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE;
 	}
 }
 
@@ -421,9 +419,10 @@ void CAIMobDummy::ActionSpawn()
 		{ 
 			level += rand()%(m_PMob->m_maxLevel - m_PMob->m_minLevel); 
 		}
-						
+	    
 		m_PMob->SetMLevel(level);
 		m_PMob->SetSLevel(level);//calculated in function
+        m_PMob->delRageMode();
 
 		mobutils::CalculateStats(m_PMob);
 
@@ -814,7 +813,8 @@ void CAIMobDummy::processTwoHour(){
 
 void CAIMobDummy::ActionSleep()
 {
-    if (!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II))
+    if (!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && 
+        !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II))
     {
 		m_ActionType = ACTION_ATTACK;
     }
@@ -831,17 +831,10 @@ void CAIMobDummy::ActionSleep()
 void CAIMobDummy::ActionAttack() 
 {
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
-	
-	if(m_StartBattle == NULL){
-		m_StartBattle = m_Tick;
-	}
 
-	if(m_PBattleTarget == NULL){
-       if(m_PMob->hasRageMode()){
-			m_PMob->delRageMode(); // Delete the rage mode if the mob disengage
-	   }
+	if(m_PBattleTarget == NULL)
+    {   
 		m_ActionType = ACTION_DISENGAGE;
-		m_StartBattle = NULL;
 		return; 
 	}
 

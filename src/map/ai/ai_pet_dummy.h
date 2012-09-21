@@ -43,7 +43,7 @@ public:
 	virtual void CheckCurrentAction(uint32 tick);
 
 	CAIPetDummy(CPetEntity* PPet);
-	virtual ~CAIPetDummy() {}; 
+	
 	uint16	m_MasterCommand; //used for avatars/wyverns atm
 
 protected:

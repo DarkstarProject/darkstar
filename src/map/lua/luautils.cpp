@@ -1246,10 +1246,10 @@ int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
 *																		*
 ************************************************************************/
 
-int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget) 
+int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
 {	
-	DSP_DEBUG_BREAK_IF(PTarget == NULL || PMob == NULL);
-    CCharEntity* PChar = (CCharEntity*)PTarget;
+    DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
+    DSP_DEBUG_BREAK_IF(PTarget == NULL || PTarget->objtype == TYPE_NPC);
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 	CLuaBaseEntity LuaKillerEntity(PTarget);
@@ -1261,10 +1261,6 @@ int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
     lua_setglobal(LuaHandle, "onMobFight");
 
 	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
-
-    PChar->m_event.reset();
-    PChar->m_event.Target = PMob;
-	PChar->m_event.Script.insert(0,File);
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{

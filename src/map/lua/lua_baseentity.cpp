@@ -3736,31 +3736,29 @@ inline int32 CLuaBaseEntity::hasImmunity(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-	if(((CBattleEntity*)m_PBaseEntity)->hasImmunity((uint32)lua_tointeger(L,1))){
-		lua_pushboolean(L, true);
-	}else{
-		lua_pushboolean(L, false);
-	}
-	
+    lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->hasImmunity((uint32)lua_tointeger(L,1)));	
 	return 1;
 }
 
 /************************************************************************
-	Get the time in second of the battle
+*                                                                       *
+*  Get the time in second of the battle                                 *
+*                                                                       *
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getBattleTime(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	lua_pushinteger(L, ((CBattleEntity*)m_PBaseEntity)->GetBattleTime());
-	
+    lua_pushinteger(L, ((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetBattleTime());
 	return 1;
 }
 
 /************************************************************************
-	Add the rage mode for a mob (stat x10)
+*                                                                       *
+*  Add the rage mode for a mob (stat x10)                               *
+*                                                                       *
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::rageMode(lua_State *L)
@@ -3768,9 +3766,8 @@ inline int32 CLuaBaseEntity::rageMode(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-	((CBattleEntity*)m_PBaseEntity)->addRageMode();
-	
-	return 1;
+	((CMobEntity*)m_PBaseEntity)->addRageMode();
+	return 0;
 }
 
 /************************************************************************
@@ -3801,9 +3798,9 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 }
 
 /************************************************************************
-
-			Calculates the enmity produced by the input damage
-            
+*                                                                       *
+*  Calculates the enmity produced by the input damage                   *
+*                                                                       *
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
@@ -3916,7 +3913,11 @@ inline int32 CLuaBaseEntity::takeMagicDamage(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Get Entity's id                                                      *
+*                                                                       *   
+************************************************************************/
 
 inline int32 CLuaBaseEntity::getID(lua_State *L)
 {
@@ -3926,13 +3927,17 @@ inline int32 CLuaBaseEntity::getID(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Get Entity's name                                                    *
+*                                                                       *   
+************************************************************************/
 
 inline int32 CLuaBaseEntity::getName(lua_State *L)
 {
-	if(m_PBaseEntity != NULL){
-		lua_pushstring( L, m_PBaseEntity->GetName() );
-	}
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    lua_pushstring( L, m_PBaseEntity->GetName() );
 	return 1;
 }
 
