@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -17,6 +18,10 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
+	
+	if(mob:hasStatusEffect(EFFECT_REGAIN) == false) then
+		mob:addStatusEffect(EFFECT_REGAIN,25,3,0); -- Regain Effect
+	end
 	
 	if(mob:getBattleTime() == 3600) then
 		mob:rageMode();

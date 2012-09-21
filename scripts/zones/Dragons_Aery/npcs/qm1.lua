@@ -15,7 +15,7 @@ require("scripts/zones/Dragons_Aery/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Cup of Sweet Tea
-	if(trade:hasItemQty(3340,1) and trade:getItemCount() == 1) then 
+	if(GetMobAction(17408019) == 0 and trade:hasItemQty(3340,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17408019,180):updateEnmity(player);
 	end
