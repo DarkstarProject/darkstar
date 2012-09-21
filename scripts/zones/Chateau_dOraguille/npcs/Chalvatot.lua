@@ -10,6 +10,7 @@ package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Chateau_dOraguille/TextIDs");
