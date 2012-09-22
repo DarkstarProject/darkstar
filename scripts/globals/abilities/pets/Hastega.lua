@@ -8,7 +8,7 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnPetAbility(target, pet, skill)
+function OnPetAbility(target, pet, skill, summoner)
 	duration = 180 + summoner:getMod(MOD_SUMMONING);
 	if duration > 350 then
 		duration = 350;

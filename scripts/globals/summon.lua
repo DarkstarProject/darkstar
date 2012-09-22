@@ -1,5 +1,6 @@
 
 require("scripts/globals/common");
+require("scripts/globals/status");
 
 SUMMONING_MAGIC_SKILL = 38
 
