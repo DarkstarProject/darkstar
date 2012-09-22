@@ -27,10 +27,12 @@
 #include "itemutils.h"
 
 #define MAX_ITEMID  20000
-#define MAX_DROPID  6000//4500 - change to 6000 for bcnm loots
+#define MAX_DROPID  4500
+#define MAX_LOOTID  20
 
 CItem *		g_pItemList[MAX_ITEMID];    // глобальный массив указателей на игровые предметы
 DropList_t* g_pDropList[MAX_DROPID];    // глобальный массив списков выпадающих предметов
+LootList_t* g_pLootList[MAX_LOOTID];
 
 /************************************************************************
 *                                                                       *
@@ -205,6 +207,22 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
+    *                                                                       *
+    *                                                                       *
+    ************************************************************************/
+
+    LootList_t* GetLootList(uint16 LootID)
+    {
+	    if (LootID < MAX_LOOTID)
+	    {
+		     return g_pLootList[LootID];
+	    }
+        ShowWarning(CL_CYAN"LootID %u too big\n" CL_RESET, LootID);
+	    return NULL;
+    }
+
+    /************************************************************************
+    *                                                                       *
     *  Загружаем базу предметов                                             *
     *                                                                       *
     ************************************************************************/
@@ -315,7 +333,7 @@ namespace itemutils
 		    }
 	    }
 
-	    ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, type, rate, bcnmGroupId FROM mob_droplist WHERE dropid < %u", MAX_DROPID);
+	    ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, type, rate FROM mob_droplist WHERE dropid < %u;", MAX_DROPID);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
@@ -333,11 +351,34 @@ namespace itemutils
                 DropItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
                 DropItem.DropType = (uint8)Sql_GetIntData(SqlHandle,2);
                 DropItem.DropRate = (uint8)Sql_GetIntData(SqlHandle,3);
-				DropItem.BcnmGroupId = (uint8)Sql_GetIntData(SqlHandle,4);
-
+				
                 g_pDropList[DropID]->push_back(DropItem);
 		    }
 	    }
+		
+		//Handles loot from BCNM chests and other NPCs that drop things into the loot pool instead of adding them directly to the inventory
+		ret = Sql_Query(SqlHandle, "SELECT LootDropId, itemId, rolls, lootGroupId FROM bcnm_loot WHERE LootDropId < %u;", MAX_LOOTID);
+
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    {
+			    uint16 LootID  = (uint16)Sql_GetUIntData(SqlHandle,0);
+
+                if (g_pLootList[LootID] == 0)
+                {
+                    g_pLootList[LootID] = new LootList_t;
+                }
+
+                LootItem_t LootItem;
+
+                LootItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
+                LootItem.Rolls = (uint16)Sql_GetIntData(SqlHandle,2);
+				LootItem.LootGroupId = (uint8)Sql_GetIntData(SqlHandle,3);
+				
+                g_pLootList[LootID]->push_back(LootItem);
+		    }
+		}
     }
 
     /************************************************************************

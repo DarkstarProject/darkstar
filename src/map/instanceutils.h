@@ -40,6 +40,8 @@ namespace instanceutils{
 	bool spawnTreasureForBcnm(CInstance* instance);
 
 	//void getHighestTHforBcnm(CInstance* instance); apparently not used in bcnm
+	uint8 getMaxLootGroups(CInstance* instance); //returns maximum number of loot groups for a BCNM instance
+	uint16 getRollsPerGroup(CInstance* instance, uint8 groupID); //returns the maximum number of "rolls" in a given group
 	void getChestItems(CInstance* instance);
 	CInstance* loadInstance(CInstanceHandler* hand, uint16 bcnmid);
 

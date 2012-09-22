@@ -64,7 +64,7 @@ public:
 	uint8		getMaxPlayerInBCNM();
 	uint8		getLevelCap();
 	uint8		m_THLvl;
-	uint16		getDropId();
+	uint16		getLootId();
 	uint32		getStartTime();
 	uint32		getDeadTime();
 
@@ -74,7 +74,7 @@ public:
 	void		setInstanceNumber(uint8 instance);
 	void		setMaxParticipants(uint8 max);
 	void		setLevelCap(uint8 cap);
-	void		setDropId(uint16 id);
+	void		setLootId(uint16 id);
 	void		setDeadTime(uint32 time);
 	
 	//player related functions
@@ -138,7 +138,7 @@ private:
 	uint32		m_StartTime;
 	uint32		m_AllDeadTime; //time when every pt member has fallen
 	uint32		m_TimeLimit;
-	uint32		m_DropId;
+	uint32		m_LootId;
 	uint8		m_LevelCap;
 	uint8		m_MaxParticipants; //1,3,6,12,18,zone
 	uint16		m_DynaUniqueID; // create unique ID for dynamis

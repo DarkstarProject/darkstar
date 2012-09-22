@@ -69,8 +69,8 @@ uint8 CInstance::getLevelCap(){
 	return m_LevelCap;
 }
 
-uint16 CInstance::getDropId(){
-	return m_DropId;
+uint16 CInstance::getLootId(){
+	return m_LootId;
 }
 
 uint32 CInstance::getStartTime(){
@@ -114,8 +114,8 @@ void CInstance::setLevelCap(uint8 cap){
 	m_LevelCap = cap;
 }
 
-void CInstance::setDropId(uint16 id){
-	m_DropId = id;
+void CInstance::setLootId(uint16 id){
+	m_LootId = id;
 }
 
 //========================PLAYER FUNCTIONS=============================================//

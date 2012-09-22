@@ -61,7 +61,7 @@ namespace instanceutils{
 				PInstance->setBcnmName(tmpName);
 				PInstance->setTimeLimit(Sql_GetUIntData(SqlHandle,4));
 				PInstance->setLevelCap(Sql_GetUIntData(SqlHandle,5));
-				PInstance->setDropId(Sql_GetUIntData(SqlHandle,6));
+				PInstance->setLootId(Sql_GetUIntData(SqlHandle,6));
 				PInstance->setMaxParticipants(Sql_GetUIntData(SqlHandle,8));
 				PInstance->setZoneId(Sql_GetUIntData(SqlHandle,9));
 				PInstance->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle,7);
@@ -282,47 +282,72 @@ namespace instanceutils{
 	}
 
 
+	uint8 getMaxLootGroups(CInstance* instance){
+		const int8* fmtQuery = "SELECT MAX(lootGroupId) \
+						FROM bcnm_loot \
+						JOIN bcnm_info ON bcnm_info.LootDropId = bcnm_loot.LootDropId \
+						WHERE bcnm_info.LootDropId = %u LIMIT 1";
+				  
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getLootId());
+		if (ret == SQL_ERROR ||	Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS){
+				ShowError("SQL error occured \n");
+				return 0;
+			} 
+			else {
+				return (uint8)Sql_GetUIntData(SqlHandle,0);
+			}
+	}
+	
+	uint16 getRollsPerGroup(CInstance* instance, uint8 groupID){
+		const int8* fmtQuery = "SELECT SUM(CASE \
+			WHEN LootDropID = %u \
+			AND lootGroupId = %u \
+			THEN rolls  \
+			ELSE 0 END) \
+			FROM bcnm_loot;";
+	  
+		int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getLootId(), groupID);
+		if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS){
+			ShowError("SQL error occured \n");
+			return 0;
+		} 
+		else {
+			return (uint16)Sql_GetUIntData(SqlHandle,0);
+		}
+	}
+
 	/*************************************************************
 	Get loot from the armoury crate
 	****************************************************************/
 
 	void getChestItems(CInstance* instance){
-		DropList_t* DropList = itemutils::GetDropList(instance->getDropId());
-
-		if (DropList != NULL && DropList->size())
+		LootList_t* LootList = itemutils::GetLootList(instance->getLootId());
+		if (LootList == NULL)
 		{
-			//get the number of loot groups for the bcnm
-			const int8* fmtQuery = "SELECT MAX(bcnmGroupId) \
-						    FROM mob_droplist \
-							JOIN bcnm_info ON bcnm_info.LootDropId = mob_droplist.dropId \
-							WHERE bcnm_info.LootDropId = %u LIMIT 1";
-					  
-			int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getDropId());
+			ShowError("BCNM Chest opened with no valid loot list!");
+			return;
+		}
+		
+		for (uint8 group = 0; group <= getMaxLootGroups(instance); ++group)
+		{
+			uint16 maxRolls = getRollsPerGroup(instance,group);
+			uint16 groupRoll = (uint16)rand()%maxRolls;
+			uint16 itemRolls = 0;
 
-			if (ret == SQL_ERROR ||	Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS){
-				ShowError("SQL error occured \n");
-			} 
-			else {
-
-				int8 numberOflootGroups = Sql_GetUIntData(SqlHandle,0);
-
-				//randomly shuffle the loot before picking process
-				std::random_shuffle(DropList->begin(), DropList->end()); 
-
-				while(numberOflootGroups >= 0)
+			for (uint8 item = 0; item < LootList->size(); ++item)
+			{
+				if (group == LootList->at(item).LootGroupId)
 				{
-					//pick 1 drop per bcnm loot group
-					for(uint8 i = 0; i < DropList->size(); ++i)
+					itemRolls += LootList->at(item).Rolls;
+					if (groupRoll <= itemRolls)
 					{
-						if(rand()%100 < DropList->at(i).DropRate && numberOflootGroups == DropList->at(i).BcnmGroupId && numberOflootGroups >= 0)
-						{
-							instance->m_PlayerList.at(0)->PTreasurePool->AddItemFromChest(DropList->at(i).ItemID, instance->m_NpcList.at(0)); 
-							numberOflootGroups--;
-						}
+						instance->m_PlayerList.at(0)->PTreasurePool->AddItemFromChest(LootList->at(item).ItemID, instance->m_NpcList.at(0));
+						break;
 					}
 				}
 			}
 		}
+
 	//user opened chest, complete bcnm
 	instance->winBcnm();
 	}

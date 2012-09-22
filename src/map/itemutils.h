@@ -41,10 +41,17 @@ struct DropItem_t
 	uint16 ItemID;
 	uint8  DropType;
 	uint8  DropRate;
-	uint8  BcnmGroupId;
+};
+
+struct LootItem_t
+{
+	uint16 ItemID;
+	uint16  Rolls;
+	uint8 LootGroupId;
 };
 
 typedef std::vector<DropItem_t> DropList_t;
+typedef std::vector<LootItem_t> LootList_t;
 
 /************************************************************************
 *                                                                       *
@@ -62,6 +69,7 @@ namespace itemutils
 	CItem*	GetItemPointer(uint16 ItemID);
 
 	DropList_t* GetDropList(uint16 DropID);
+	LootList_t* GetLootList(uint16 LootDropID);
 };
 
 #endif
