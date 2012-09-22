@@ -2271,8 +2271,15 @@ void CAICharNormal::ActionAttack()
 					//		so the if loop will fail and HasStatusEffect will not execute. Souleater has no effect <10HP.
 					if(m_PChar->GetMJob()==JOB_DRK && m_PChar->health.hp>=10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)){
 						//lost 10% current hp, converted to damage (displayed as just a strong regular hit)
-						damage = damage + m_PChar->health.hp*0.1;
-						m_PChar->addHP(-0.1*m_PChar->health.hp);
+						float drainPercent = 0.1;
+						CItem* PItemHead = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_HEAD]);
+						CItem* PItemBody = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_BODY]);
+						CItem* PItemLegs = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_LEGS]);
+						if(PItemHead->getID() == 12516 || PItemHead->getID() == 15232 || PItemBody->getID() == 14409 || PItemLegs->getID() == 15370){
+							drainPercent = 0.12;
+						}
+						damage = damage + m_PChar->health.hp*drainPercent;
+						m_PChar->addHP(-drainPercent*m_PChar->health.hp);
 					}
 					else if(m_PChar->GetSJob()==JOB_DRK &&m_PChar->health.hp>=10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)){
 						//lose 10% Current HP, only HALF (5%) converted to damage	

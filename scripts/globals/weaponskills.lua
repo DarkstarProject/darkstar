@@ -84,15 +84,15 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 				cpdif = cpdif/1000; 
 				finaldmg = dmg * cpdif;
 				if(isSneakValid and attacker:getMainJob()==6) then --have to add on DEX bonus if on THF main
-					finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif);
+					finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif) + souleaterBonus(attacker);
 				end
 			else
 				finaldmg = dmg * pdif;
 			end
 		elseif(isSneakValid and attacker:getMainJob()==6) then --have to add on DEX bonus if on THF main
-			finaldmg = dmg * pdif + (attacker:getStat(MOD_DEX) * ftp * pdif);
+			finaldmg = dmg * pdif + (attacker:getStat(MOD_DEX) * ftp * pdif) + souleaterBonus(attacker);
 		else
-			finaldmg = dmg * pdif;
+			finaldmg = dmg * pdif + souleaterBonus(attacker);
 		end
 		tpHitsLanded = 1;
 	end
@@ -108,12 +108,12 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 				if(critchance <= critrate or hasMightyStrikes) then --crit hit!
 					cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
 					cpdif = cpdif/1000; 
-					finaldmg = finaldmg + base * cpdif;
+					finaldmg = finaldmg + base * cpdif + souleaterBonus(attacker);
 				else
-					finaldmg = finaldmg + base * pdif;
+					finaldmg = finaldmg + base * pdif + souleaterBonus(attacker);
 				end
 			else
-				finaldmg = finaldmg + base * pdif; --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+				finaldmg = finaldmg + base * pdif + souleaterBonus(attacker); --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
 			end
 			tpHitsLanded = tpHitsLanded + 1;
 		end
@@ -142,12 +142,12 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 					if(critchance <= critrate or hasMightyStrikes) then --crit hit!
 						cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
 						cpdif = cpdif/1000; 
-						finaldmg = finaldmg + base * cpdif;
+						finaldmg = finaldmg + base * cpdif + souleaterBonus(attacker);
 					else
-						finaldmg = finaldmg + base * pdif;
+						finaldmg = finaldmg + base * pdif + souleaterBonus(attacker);
 					end
 				else
-					finaldmg = finaldmg + base * pdif; --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+					finaldmg = finaldmg + base * pdif + souleaterBonus(attacker); --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
 				end
 				extraHitsLanded = extraHitsLanded + 1;
 			end
@@ -155,8 +155,29 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 		end
 	end
 	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
-	
+	if attacker:hasStatusEffect(EFFECT_SOULEATER) and attacker:getHP() > 10 then
+		local percent = 0.1;
+		if attacker:getEquipID(4) == 12516 or attacker:getEquipID(4) == 15232 or attacker:getEquipID(5) == 14409 or attacker:getEquipID(7) == 15370 then
+			percent = 0.12;
+		end
+		attacker:delHP((tpHitsLanded+extraHitsLanded)*percent*attacker:getHP());
+	end
 	return finaldmg, tpHitsLanded, extraHitsLanded;
+end;
+
+function souleaterBonus(attacker)
+	if attacker:hasStatusEffect(EFFECT_SOULEATER) then
+		local health = attacker:getHP();
+		if health > 10 then
+			local percent = 0.1;
+			if attacker:getEquipID(4) == 12516 or attacker:getEquipID(4) == 15232 or attacker:getEquipID(5) == 14409 or attacker:getEquipID(7) == 15370 then
+				percent = 0.12;
+			end
+			return health*percent;
+		end
+	else
+		return 0;
+	end
 end;
 
 function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
