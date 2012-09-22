@@ -32,26 +32,23 @@ function onTrigger(player,npc)
 		MomTheAdventurer = player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER);
 		questStatus = player:getVar("MomTheAdventurer_Event");
 
-		if (MomTheAdventurer ~= 2 and questStatus == 0) then
+		if (MomTheAdventurer ~= QUEST_COMPLETED and questStatus == 0) then
 			player:startEvent(0x00e6);
-		elseif (MomTheAdventurer >= 1 and questStatus == 2) then
+		elseif (MomTheAdventurer >= QUEST_ACCEPTED and questStatus == 2) then
 			if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH)) then
 				player:startEvent(0x00ea);
 			else
 				player:startEvent(0x00e9);
 			end
-		elseif (MomTheAdventurer == 2) then
+		elseif (MomTheAdventurer == QUEST_COMPLETED) then
 			if (player:needToZone()) then
 				player:startEvent(0x007f);
 			else
 				player:startEvent(0x00e6);
 			end
 		end
-	elseif (pFame >= 2) then
-		SignPost = player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
-
-		if (SignPost == 0) then
-			player:setVar("MomTheAdventurer_Event",0);
+	elseif(pFame >= 2) then
+		if(player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT) == QUEST_AVAILABLE) then
 			player:startEvent(0x00eb);
 		else
 			player:startEvent(0x007f);
@@ -106,7 +103,8 @@ function onEventFinish(player,csid,option)
 			player:addFame(BASTOK,BAS_FAME*8)
 		end
 	elseif (csid == 0x00eb and option == 0) then
-		player:addQuest(BASTOK,BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
+		player:addQuest(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
+		player:setVar("MomTheAdventurer_Event",0);
    end
    
 end;
