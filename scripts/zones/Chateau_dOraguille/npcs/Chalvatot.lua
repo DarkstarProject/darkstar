@@ -2,11 +2,11 @@
 -- Area: Chateau d'Oraguille
 -- NPC:  Chalvatot
 -- Finish Mission "The Crystal Spring"
+-- Start & Finishes Quests: Her Majesty's Garden
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos -105 0 72 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 	
 	local herMajestysGarden = player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN);
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit("wildcatSandy_var",19) == false) then
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),19) == false) then
 		player:startEvent(0x0231);
 	elseif(player:getCurrentMission(SANDORIA) == THE_CRYSTAL_SPRING and player:getVar("MissionStatus") == 3) then
 		player:startEvent(0x022c);
@@ -75,15 +75,15 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x022c) then
 		finishMissionTimeline(player,3,csid,option);
 	elseif(csid == 0x0231) then
-		player:setMaskBit("wildcatSandy_var",19,true);
+		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",19,true);
 	elseif(csid == 0x0054 and option == 1) then
-		player:addQuest(SANDORIA,HER_MAKESTY_S_GARDEN);
+		player:addQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
 	elseif(csid == 0x0053) then
 		player:tradeComplete();
 		player:addKeyItem(MAP_OF_THE_NORTHLANDS_AREA);
 		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_NORTHLANDS_AREA);
 		player:addFame(SANDORIA,SAN_FAME*30);
-		player:completeQuest(SANDORIA,HER_MAKESTY_S_GARDEN);
+		player:completeQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
 	end
 	
 end;
