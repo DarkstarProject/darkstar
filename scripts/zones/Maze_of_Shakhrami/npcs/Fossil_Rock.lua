@@ -6,7 +6,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/settings");
+require("scripts/globals/missions");
+require("scripts/globals/quests");
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 -----------------------------------
@@ -21,27 +23,37 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	local xPos = player:getXPos();
+	local yPos = player:getYPos();
+	local zPos = player:getZPos();
 	
 	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
 		MissionStatus = player:getVar("MissionStatus");
 		if(MissionStatus >= 2) then
-			-- Get the value of the randomly selected fossil
-			random_value = player:getVar("MissionStatus_randfoss");
-			npc_id = npc:getID();
+			if(xPos <= 22 and xPos >= 14 and yPos <= 20 and yPos >= 18 and zPos <= 189 and zPos >= 179) then -- there are two fossil rocks this ensures the right one is hit
+				-- Get the value of the randomly selected fossil
+				random_value = player:getVar("MissionStatus_randfoss");
+				npc_id = npc:getID();
 			
-			if(npc_id == random_value) then
-				if(MissionStatus == 2) then
-					player:setVar("MissionStatus",3);
-					player:setVar("MissionStatus_randfoss",0);
-					player:addKeyItem(LAPIS_CORAL);
-					player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
+				if(npc_id == random_value) then
+					if(MissionStatus == 2) then
+						player:setVar("MissionStatus",3);
+						player:setVar("MissionStatus_randfoss",0);
+						player:addKeyItem(LAPIS_CORAL);
+						player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
+					else
+						-- Already removed the fossil
+						player:messageSpecial(FOSSIL_EXTRACTED);
+					end
 				else
-					-- Already removed the fossil
-					player:messageSpecial(FOSSIL_EXTRACTED);
+					player:messageSpecial(NOTHING_FOSSIL);
 				end
-			else
-				player:messageSpecial(NOTHING_FOSSIL);
 			end
+		end
+	
+	elseif(player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and GetMobAction(17588225) == 0 and player:hasItem(16511) == false) then
+		if(xPos <= -88 and xPos >= -94 and yPos <= 17 and yPos >= 14 and zPos <= -99 and zPos >= -109) then
+			SpawnMob(17588225);
 		end
 	end
 	

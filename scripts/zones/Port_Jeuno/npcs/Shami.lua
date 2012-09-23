@@ -223,6 +223,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("ShamiBeastmensSeal",beastmensSeals - 20);
 				player:addItem(1551);
 				player:messageSpecial(ITEM_OBTAINED,1551);
+				player:setVar("CloudyOrbIsCracked",0);
 			elseif(player:hasItem(1551))then
 				player:addItem(1551);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
 			else
@@ -234,6 +235,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("ShamiBeastmensSeal",beastmensSeals - 30);
 				player:addItem(1552);
 				player:messageSpecial(ITEM_OBTAINED,1552);
+				player:setVar("SkyOrbIsCracked",0);
 			elseif(player:hasItem(1552))then
 				player:addItem(1552);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
 			else
@@ -244,6 +246,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("ShamiBeastmensSeal",beastmensSeals - 40);
 				player:addItem(1131);
 				player:messageSpecial(ITEM_OBTAINED,1131);
+				player:setVar("StarOrbIsCracked",0);
 			elseif(player:hasItem(1131) == true)then
 				player:addItem(1131);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
 			else
@@ -254,6 +257,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("ShamiBeastmensSeal",beastmensSeals - 50);
 				player:addItem(1177);
 				player:messageSpecial(ITEM_OBTAINED,1177);
+				player:setVar("CometOrbIsCracked",0);
 			elseif(player:hasItem(1177))then
 				player:addItem(1177);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
 			else
@@ -264,6 +268,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("ShamiBeastmensSeal",beastmensSeals - 60);
 				player:addItem(1130);
 				player:messageSpecial(ITEM_OBTAINED,1130);
+				player:setVar("MoonOrbIsCracked",0);
 			elseif(player:hasItem(1130)) then
 				player:addItem(1130);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
 			else
@@ -277,6 +282,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("ShamiKindredsSeal",kindredsSeal - 30);
 				player:addItem(1180);
 				player:messageSpecial(ITEM_OBTAINED,1180);
+				player:setVar("AtroposOrbIsCracked",0);
 			elseif(player:hasItem(1180))then
 				player:addItem(1180);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
 			else
@@ -288,6 +294,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("ShamiKindredsSeal",kindredsSeal - 30);
 				player:addItem(1175);
 				player:messageSpecial(ITEM_OBTAINED,1175);
+				player:setVar("ClothoOrbIsCracked",0);
 			elseif(player:hasItem(1175))then
 				player:addItem(1175);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
 			else
@@ -298,6 +305,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("ShamiKindredsSeal",kindredsSeal - 30);
 				player:addItem(1178);
 				player:messageSpecial(ITEM_OBTAINED,1178);
+				player:setVar("LachesisOrbIsCracked",0);
 			elseif(player:hasItem(1178) == true)then
 				player:addItem(1178);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
 			else
@@ -308,6 +316,7 @@ function onEventFinish(player,csid,option)
 				player:setVar("ShamiKindredsSeal",kindredsSeal - 99);
 				player:addItem(1553);
 				player:messageSpecial(ITEM_OBTAINED,1553);
+				player:setVar("ThemisOrbIsCracked",0);
 			elseif(player:hasItem(1553))then
 				player:addItem(1553);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
 			else

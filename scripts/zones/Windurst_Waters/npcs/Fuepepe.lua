@@ -78,7 +78,8 @@ function onEventFinish(player,csid,option)
 			player:addFame(WINDURST,WIN_FAME*75);
 			player:addItem(4855);
 			player:messageSpecial(ITEM_OBTAINED,4855);
-			player:setVar("QuestMakingTheGrade_prog",3);
+			player:setVar("QuestMakingTheGrade_prog",0);
+			player:needToZone(true);
 		end
 	end	
 end;

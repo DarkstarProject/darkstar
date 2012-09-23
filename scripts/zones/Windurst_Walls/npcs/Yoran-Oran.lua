@@ -71,11 +71,25 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
-	if(MandragoraMad == QUEST_AVAILABLE) then
+	local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
+	local blastFromPast = player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST);
+	
+	if(blastFromPast == QUEST_ACCEPTED) then
+		local blastPastProg = player:getVar("BlastFromThePast_Prog");
+		if(blastPastProg == 1) then
+			player:startEvent(0x00dd);
+			player:setVar("BlastFromThePast_Prog",2);
+		elseif(blastPastProg == 2) then	
+			player:startEvent(0x00de);
+		end
+	elseif(blastFromPast == QUEST_COMPLETED and player:needToZone() == true) then
+		player:startEvent(0x00df);	
+		
+	elseif(MandragoraMad == QUEST_AVAILABLE) then
 		player:startEvent(0x00f9);
 	elseif(MandragoraMad == QUEST_ACCEPTED) then
 		player:startEvent(0x0100);
+
 	else
 		player:startEvent(0x00f5);
 	end
