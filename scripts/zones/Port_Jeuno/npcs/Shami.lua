@@ -163,7 +163,7 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
-printf("RESULT: %u",option);
+--printf("RESULT: %u",option);
 	local beastmensSeals = player:getVar("ShamiBeastmensSeal");
 	local kindredsSeal = player:getVar("ShamiKindredsSeal");
 	local KindredsCrest = player:getVar("ShamiKindredsCrest");
