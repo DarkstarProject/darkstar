@@ -9,6 +9,7 @@ package.loaded["scripts/globals/conquest"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/conquest");
+require("scripts/globals/status");
 
 -----------------------------------
 --
@@ -17,7 +18,7 @@ require("scripts/globals/conquest");
 function onMobDeathEx(mob,killer)
 	
 	-- DRK quest - Blade Of Darkness
-	if(killer:getEquipID(0) == 16607) then
+	if(killer:getEquipID(SLOT_MAIN) == 16607) then
 		local SwordKills = killer:getVar("Blade_of_Darkness_SwordKills"); 
 		if(SwordKills < 200) then
 			killer:setVar("Blade_of_Darkness_SwordKills", SwordKills + 1);	

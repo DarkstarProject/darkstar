@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
@@ -26,7 +27,7 @@ function onTrigger(player,npc)
 
   WelcometoBastok = player:getQuestStatus(BASTOK,WELCOME_TO_BASTOK);
 
-  if (WelcometoBastok == QUEST_ACCEPTED and player:getVar("WelcometoBastok_Event") ~= 1 and player:getEquipID(1) == 12415) then -- Shell Shield
+  if (WelcometoBastok == QUEST_ACCEPTED and player:getVar("WelcometoBastok_Event") ~= 1 and player:getEquipID(SLOT_SUB) == 12415) then -- Shell Shield
     player:startEvent(0x0034);
   else
   	player:startEvent(0x008c);

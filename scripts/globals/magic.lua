@@ -140,22 +140,22 @@ end
 -----------------------------------
 function curePotency(caster)
 c = 0;
-main = caster:getEquipID(1);
-sub = caster:getEquipID(2);
-range = caster:getEquipID(3);
-ammo = caster:getEquipID(4);
-head = caster:getEquipID(5);
-body = caster:getEquipID(6);
-hand = caster:getEquipID(7);
-leg = caster:getEquipID(8);
-foot = caster:getEquipID(9);
-neck = caster:getEquipID(10);
-waist = caster:getEquipID(11);
-ear1 = caster:getEquipID(12);
-ear2 = caster:getEquipID(13);
-ring1 = caster:getEquipID(14);
-ring2 = caster:getEquipID(15);
-back = caster:getEquipID(16);
+main = caster:getEquipID(SLOT_MAIN);
+sub = caster:getEquipID(SLOT_SUB);
+range = caster:getEquipID(SLOT_RANGED);
+ammo = caster:getEquipID(SLOT_AMMO);
+head = caster:getEquipID(SLOT_HEAD);
+body = caster:getEquipID(SLOT_BODY);
+hand = caster:getEquipID(SLOT_HANDS);
+leg = caster:getEquipID(SLOT_LEGS);
+foot = caster:getEquipID(SLOT_FEET);
+neck = caster:getEquipID(SLOT_NECK);
+waist = caster:getEquipID(SLOT_WAIST);
+ear1 = caster:getEquipID(SLOT_EAR1);
+ear2 = caster:getEquipID(SLOT_EAR2);
+ring1 = caster:getEquipID(SLOT_RING1);
+ring2 = caster:getEquipID(SLOT_RING2);
+back = caster:getEquipID(SLOT_BACK);
 
 if (main == 0x443a or sub == 0x443a) then
     c = (c+0.01);
@@ -475,9 +475,9 @@ function adjustForTarget(target,dmg)
 end
 
 function calculateMagicBurstAndBonus(caster, spell, target)
-    local hand  = caster:getEquipID(7);
-    local ear1  = caster:getEquipID(12);
-    local ear2  = caster:getEquipID(13);
+    local hand  = caster:getEquipID(SLOT_HANDS);
+    local ear1  = caster:getEquipID(SLOT_EAR1);
+    local ear2  = caster:getEquipID(SLOT_EAR2);
 
     local burst = 1.0;
     local burstBonus = 1.0;
@@ -547,19 +547,19 @@ function addBonuses(caster, spell, target, dmg)
 	dayWeatherBonus = 1.00;
 	
 	if caster:getWeather() == singleWeatherStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif caster:getWeather() == singleWeatherWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
 	elseif caster:getWeather() == doubleWeatherStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
 		end
 	elseif caster:getWeather() == doubleWeatherWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
@@ -569,11 +569,11 @@ function addBonuses(caster, spell, target, dmg)
 		if legs == 15120 or legs == 15583 then
 			dayWeatherBonus = dayWeatherBonus + 0.05;
 		end
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif VanadielDayElement() == dayWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	end

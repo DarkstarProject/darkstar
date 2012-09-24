@@ -10,7 +10,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-	local sLegs = player:getEquipID(5);
+	local sLegs = player:getEquipID(SLOT_LEGS);
 	local power = 20
 	if(sLegs == 14090 or sLegs == 15353) then
 		power = power + 10;

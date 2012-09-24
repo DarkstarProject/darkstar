@@ -9,9 +9,10 @@
 -- Delivers a twofold attack. Damage varies with TP.
 -------------------------------
 
-require("/scripts/globals/settings");
-require("/scripts/globals/weaponskills");
+require("scripts/globals/settings");
+require("scripts/globals/status");
 require("scripts/globals/weaponskills");
+
 function OnUseWeaponSkill(attacker, target, wsID)
 	
 	--number of normal hits for ws
@@ -42,7 +43,7 @@ function OnUseWeaponSkill(attacker, target, wsID)
 		damage = damage + 18;
 	end
 
-	if( attacker:getEquipID(8) == 14128 ) then
+	if( attacker:getEquipID(SLOT_FEET) == 14128 ) then
 		damage =damage + 25;
 	end
 

@@ -12,7 +12,7 @@ require("scripts/globals/status");
 
 function onItemCheck(target, totd)
 
-main = target:getEquipID(0);
+main = target:getEquipID(SLOT_MAIN);
 	
 	if (main == 18075) then
 		if (VanadielTOTD() ~= 3) then

@@ -2,7 +2,6 @@
 -- Ability: Chakra
 -----------------------------------
  
-require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
@@ -14,8 +13,8 @@ function OnUseAbility(player, target, ability)
 	local vit = player:getStat(MOD_VIT);
 	local multi = 2;
 	
-	local body = player:getEquipID(4);
-	local hand = player:getEquipID(6);
+	local body = player:getEquipID(SLOT_BODY);
+	local hand = player:getEquipID(SLOT_HANDS);
 	
 	if(player:hasStatusEffect(EFFECT_POISON)) then
 		player:delStatusEffect(EFFECT_POISON);

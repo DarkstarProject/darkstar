@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
@@ -25,7 +26,7 @@ end;
 function onTrigger(player,npc)
 
   GuestofHauteur = player:getQuestStatus(BASTOK,GUEST_OF_HAUTEUR);
-  itemEquipped = player:getEquipID(0);
+  itemEquipped = player:getEquipID(SLOT_MAIN);
 
   if (GuestofHauteur == QUEST_ACCEPTED and player:getVar("GuestofHauteur_Event") ~= 1 and (itemEquipped == 17045 or itemEquipped == 17426)) then -- Maul / Replica Maul
     player:startEvent(0x39);

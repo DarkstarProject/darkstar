@@ -13,7 +13,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	if (target:getEquipID(0) ~= 18067) then
+	if (target:getEquipID(SLOT_MAIN) ~= 18067) then
 		target:delStatusEffect(EFFECT_ACCURACY_BOOST,18067);
 	end
 	return 0;

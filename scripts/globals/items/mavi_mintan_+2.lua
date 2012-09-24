@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	if (target:getEquipID(5) == 11099) then
+	if (target:getEquipID(SLOT_BODY) == 11099) then
 		target:addStatusEffectEx(EFFECT_AUTO_REFRESH,0,1,3,0,11099);
 	else
 		target:delStatusEffect(EFFECT_AUTO_REFRESH,11099);

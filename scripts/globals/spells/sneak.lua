@@ -4,6 +4,7 @@
 -- Duration is random number between 30 seconds and 5 minutes
 -----------------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------------
@@ -13,7 +14,7 @@ require("scripts/globals/status");
 function onSpellCast(caster,target,spell)
 	if (target:hasStatusEffect(EFFECT_SNEAK) == false) then
 		
-		duration = math.random(30, 300);
+		local duration = math.random(30, 300);
 		duration = math.random(30, 300);
 		duration = math.random(30, 300);
 		if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
@@ -23,11 +24,11 @@ function onSpellCast(caster,target,spell)
 		if (target:getMainLvl() < 20) then
 			duration = duration * target:getMainLvl() / 20; -- level adjustment
 		end
-		if (target:getEquipID(15) == 13692) then -- skulker's cape
+		if (target:getEquipID(SLOT_BACK) == 13692) then -- skulker's cape
 			duration = duration * 1.5;
 		end
 		spell:setMsg(0);
-		target:addStatusEffect(EFFECT_SNEAK,0,10,math.floor(duration));
+		target:addStatusEffect(EFFECT_SNEAK,0,10,(math.floor(duration) * SNEAK_INVIS_DURATION_MULTIPLIER));
 	else
 		spell:setMsg(75); -- no effect.
 	end

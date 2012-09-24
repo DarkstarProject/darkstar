@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	if (target:getEquipID(9) == 15540) then
+	if (target:getEquipID(SLOT_NECK) == 15540) then
 		target:addStatusEffectEx(EFFECT_AUTO_REGEN,0,1,3,0,15540);
 	else
 		target:delStatusEffect(EFFECT_AUTO_REGEN,15540);

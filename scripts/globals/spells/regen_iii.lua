@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
 	
 	hp = 20; 
 	
-	body = caster:getEquipID(5);
+	body = caster:getEquipID(SLOT_BODY);
 	if (body == 15089 or body == 14502) then
 		hp = hp+3;
 	end

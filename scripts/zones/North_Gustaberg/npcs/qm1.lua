@@ -9,6 +9,7 @@
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/zones/North_Gustaberg/TextIDs");
 
@@ -51,8 +52,8 @@ npc = player:getEventTarget();
 
 	if (csid == 0x000a and option == 0) then
 
-		mainweapon = player:getEquipID(0x00);
-		subweapon = player:getEquipID(0x01);
+		mainweapon = player:getEquipID(SLOT_MAIN);
+		subweapon = player:getEquipID(SLOT_SUB);
 		currentJob = player:getMainJob();
 
 		if (mainweapon == 0 and subweapon == 0 and currentJob ~= 3) then

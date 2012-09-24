@@ -385,29 +385,29 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 	dayWeatherBonus = 1.00;
 	
 	if caster:getWeather() == singleWeatherStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif caster:getWeather() == singleWeatherWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
 	elseif caster:getWeather() == doubleWeatherStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
 		end
 	elseif caster:getWeather() == doubleWeatherWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
 	
 	if VanadielDayElement() == dayStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif VanadielDayElement() == dayWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(10) == elementalObiWeak[ele] then
+		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	end

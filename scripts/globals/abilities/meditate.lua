@@ -2,7 +2,6 @@
 -- Ability: Meditate
 -----------------------------------
  
-require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
@@ -10,15 +9,15 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-	amount = 12;
+	local amount = 12;
 	if(player:getMainJob()==12) then
 		amount = 20;
 	end
 	--TODO: Meditate doesnt actually give an icon, it's not regain as such.
 	local tick = 15;
 	local extratick = 0;
-	local sHands = target:getEquipID(6);
-	local sHead = target:getEquipID(4);
+	local sHands = target:getEquipID(SLOT_HANDS);
+	local sHead = target:getEquipID(SLOT_HEAD);
 	if (sHands == 15113 or sHands == 14920) then
 		extratick = 1;
 	end
@@ -31,5 +30,5 @@ function OnUseAbility(player, target, ability)
 		extratick = math.random(2,3);
 	end
 	tick = tick + (extratick * 3);
-	player:addStatusEffect(EFFECT_REGAIN,20,3,tick);
+	player:addStatusEffect(EFFECT_REGAIN,amount,3,tick);
 end;

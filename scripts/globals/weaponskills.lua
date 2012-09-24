@@ -8,6 +8,7 @@
 -- applications of accuracy mods ('Accuracy varies with TP.')
 -- applications of damage mods ('Damage varies with TP.')
 -- performance of the actual WS (rand numbers, etc)
+require("scripts/globals/status");
 
 function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,  canCrit,crit100,crit200,crit300,  acc100,acc200,acc300,   atkmulti)
 
@@ -157,7 +158,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 	if attacker:hasStatusEffect(EFFECT_SOULEATER) and attacker:getHP() > 10 then
 		local percent = 0.1;
-		if attacker:getEquipID(4) == 12516 or attacker:getEquipID(4) == 15232 or attacker:getEquipID(5) == 14409 or attacker:getEquipID(7) == 15370 then
+		if attacker:getEquipID(SLOT_HEAD) == 12516 or attacker:getEquipID(SLOT_HEAD) == 15232 or attacker:getEquipID(SLOT_BODY) == 14409 or attacker:getEquipID(SLOT_LEGS) == 15370 then
 			percent = 0.12;
 		end
 		attacker:delHP((tpHitsLanded+extraHitsLanded)*percent*attacker:getHP());
@@ -170,7 +171,7 @@ function souleaterBonus(attacker)
 		local health = attacker:getHP();
 		if health > 10 then
 			local percent = 0.1;
-			if attacker:getEquipID(4) == 12516 or attacker:getEquipID(4) == 15232 or attacker:getEquipID(5) == 14409 or attacker:getEquipID(7) == 15370 then
+			if attacker:getEquipID(SLOT_HEAD) == 12516 or attacker:getEquipID(SLOT_HEAD) == 15232 or attacker:getEquipID(SLOT_BODY) == 14409 or attacker:getEquipID(SLOT_LEGS) == 15370 then
 				percent = 0.12;
 			end
 			return health*percent;

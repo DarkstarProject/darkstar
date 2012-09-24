@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	sItem = target:getEquipID(10);
+	sItem = target:getEquipID(SLOT_WAIST);
     FiftyPercent = ((target:getMaxHP())*(1/2));
     currentHP = target:getHP();
 
@@ -35,7 +35,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-   sItem = target:getEquipID(10);
+   sItem = target:getEquipID(SLOT_WAIST);
    currentHP = target:getHP();
    FiftyPercent = ((target:getMaxHP())*(1/2));
    

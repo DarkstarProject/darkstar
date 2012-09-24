@@ -10,6 +10,7 @@ package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
@@ -39,8 +40,8 @@ end;
 function onTrigger(player,npc)
 
 	BrygidTheStylist = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST);
-	body = player:getEquipID(0x05);
-	legs = player:getEquipID(0x07);
+	body = player:getEquipID(SLOT_BODY);
+	legs = player:getEquipID(SLOT_LEGS);
 
 	if(BrygidTheStylist == QUEST_ACCEPTED and body == 12600 and legs == 12832) then
 		player:startEvent(0x0137);

@@ -14,7 +14,7 @@ require("scripts/globals/status");
 -- (I.E. 18:00-06:00 and Level 13, 26, 39, 52, 65, 78 and 91.) 
 
 function onItemCheck(target, totd)
-	if (target:getEquipID(5) == 11301 and totd ~= 4) then
+	if (target:getEquipID(SLOT_BODY) == 11301 and totd ~= 4) then
 		if (totd == 0 and (VanadielTOTD() == 3 or VanadielTOTD() == 7 or VanadielTOTD() == 8)) or totd == 7) then
 			target:addStatusEffectEx(EFFECT_AUTO_REFRESH,0,1,3,0,11301);
 		end

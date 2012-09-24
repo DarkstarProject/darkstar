@@ -4,13 +4,15 @@
 --	Able to cast "Impact"
 -----------------------------------------
 
+require("script/globals/status");
+
 -----------------------------------------
 -- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
 
-body = target:getEquipID(5);
+body = target:getEquipID(SLOT_BODY);
 
 	if (body == 11363) then
 		target:addSpell(503);

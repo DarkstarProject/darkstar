@@ -10,7 +10,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-	local sHands = player:getEquipID(6);
+	local sHands = player:getEquipID(SLOT_HANDS);
 	local power = 12.5
 	if(sHands == 13962 or sHands == 14891) then
 		power = power + 5.5;
@@ -18,8 +18,7 @@ function OnUseAbility(player, target, ability)
 	
 	if(player:hasStatusEffect(EFFECT_BOOST) == true) then
 		local effect = player:getStatusEffect(EFFECT_BOOST);
-		newPower = effect:getPower() + power;
-		effect:setPower(newPower);
+		effect:setPower(effect:getPower() + power);
 		player:addMod(MOD_ATTP,power);
 	else
 		player:addStatusEffect(EFFECT_BOOST,power,1,180);

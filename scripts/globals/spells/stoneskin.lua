@@ -28,16 +28,16 @@ function onSpellCast(caster,target,spell)
 		pAbs = 350;
 	end
 	-- equipment mods
-	if (caster:getEquipID(9) == 13177) then -- stone gorget
+	if (caster:getEquipID(SLOT_NECK) == 13177) then -- stone gorget
 		pEquipMods = pEquipMods + 30;
 	end
-	if (caster:getEquipID(6) == 15034) then -- stone mufflers
+	if (caster:getEquipID(SLOT_HANDS) == 15034) then -- stone mufflers
 		pEquipMods = pEquipMods + 30;
 	end
-	if (caster:getEquipID(10) == 15960) then -- siegel sash
+	if (caster:getEquipID(SLOT_WAIST) == 15960) then -- siegel sash
 		pEquipMods = pEquipMods + 20;
 	end
-	if (caster:getEquipID(7) == 11949) then -- haven hose
+	if (caster:getEquipID(SLOT_LEGS) == 11949) then -- haven hose
 		pEquipMods = pEquipMods + 20;
 	end
 	

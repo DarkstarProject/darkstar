@@ -16,7 +16,7 @@ function onItemCheck(target,prevzone)
 
 	if (target:getNation() == 2) then 
 	
-		body = target:getEquipID(5);
+		body = target:getEquipID(SLOT_BODY);
 		zone = target:getZone();
 
 		if (zone >= 238 and zone <= 242) then

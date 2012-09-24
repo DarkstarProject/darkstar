@@ -23,10 +23,10 @@ function onEffectTick(target,effect)
 	if element == nil or element == 0 then
 		target:delStatusEffect(EFFECT_AVATAR);
 	else
-		if target:getEquipID(6) == 14062 and target:getPetName() == 'Carbuncle' then
+		if target:getEquipID(SLOT_HANDS) == 14062 and target:getPetName() == 'Carbuncle' then
 			power = math.floor(power/2);
 		end
-		if target:getEquipID(4) == 16154 and target:getPetName() == 'Garuda' then
+		if target:getEquipID(SLOT_HEAD) == 16154 and target:getPetName() == 'Garuda' then
 			power = power - 2;
 		end
 		strong = {MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_ICE_AFFINITY, MOD_THUNDER_AFFINITY, MOD_LIGHT_AFFINITY, MOD_DARK_AFFINITY}

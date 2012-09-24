@@ -2,7 +2,6 @@
 -- Ability: Spirit Link
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
@@ -39,7 +38,7 @@ function OnUseAbility(player, target, ability)
 	local healPet = drainamount * 2;
 	local petTP = pet:getTP();
 	
-	if(player:getEquipID(4)==15238) then
+	if(player:getEquipID(SLOT_HEAD)==15238) then
 		healPet = healPet + 15;
 	end
 	

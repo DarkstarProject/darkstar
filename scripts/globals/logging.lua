@@ -6,6 +6,7 @@
 -------------------------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/status");
 
 -------------------------------------------------
 -- npcid and drop by zone
@@ -88,9 +89,9 @@ function hatchetBreak(player,trade)
 	-- Begin Gear Bonus
 	--------------------
 	
-	Body = player:getEquipID(6);
-	Hands = player:getEquipID(7);
-	Legs = player:getEquipID(8);
+	Body = player:getEquipID(SLOT_BODY);
+	Hands = player:getEquipID(SLOT_HANDS);
+	Legs = player:getEquipID(SLOT_LEGS);
 
 	if(Body == 14374 or Body == 14375) then
 		hatchetbreak = hatchetbreak + 0.073;

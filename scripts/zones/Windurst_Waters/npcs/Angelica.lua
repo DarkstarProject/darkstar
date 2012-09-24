@@ -9,6 +9,7 @@
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
@@ -53,7 +54,7 @@ function onTrigger(player,npc)
 	elseif (posestatus == QUEST_ACCEPTED) then
 		starttime = player:getVar("QuestAPoseByOtherName_time");
 		if ((starttime + 600) >= os.time()) then
-			if (player:getEquipID(5) == player:getVar("QuestAPoseByOtherName_equip")) then
+			if (player:getEquipID(SLOT_BODY) == player:getVar("QuestAPoseByOtherName_equip")) then
 				player:startEvent(0x0060); 	------------------------------------------  QUEST FINISH 
 			else
 				player:startEvent(0x005d,0,0,0,player:getVar("QuestAPoseByOtherName_equip"));-- QUEST REMINDER

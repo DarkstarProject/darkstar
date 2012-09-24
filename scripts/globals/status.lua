@@ -739,3 +739,24 @@ MOD_THUNDER_AFFINITY	= 0x15F
 MOD_WIND_AFFINITY		= 0x160
 MOD_LIGHT_AFFINITY		= 0x161
 MOD_DARK_AFFINITY		= 0x162
+
+-----------------------------------
+-- Slot Definitions
+-----------------------------------
+
+SLOT_MAIN 		= 0
+SLOT_SUB		= 1
+SLOT_RANGED		= 2
+SLOT_AMMO		= 3
+SLOT_HEAD		= 4
+SLOT_BODY		= 5
+SLOT_HANDS		= 6
+SLOT_LEGS		= 7
+SLOT_FEET		= 8
+SLOT_NECK		= 9
+SLOT_WAIST		= 10
+SLOT_EAR1		= 11
+SLOT_EAR2		= 12
+SLOT_RING1		= 13
+SLOT_RING2		= 14
+SLOT_BACK		= 15

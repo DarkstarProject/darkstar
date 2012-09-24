@@ -15,7 +15,7 @@ require("scripts/globals/status");
 function onItemCheck(target)
 
 	TP = target:getTP();
-	body = target:getEquipID(5);
+	body = target:getEquipID(SLOT_BODY);
 
 	if(body == 11312) then
 		if (TP >= 100) then

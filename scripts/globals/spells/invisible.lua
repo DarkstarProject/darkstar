@@ -4,6 +4,7 @@
 -- Duration is random number between 30 seconds and 5 minutes
 -----------------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------------
@@ -13,7 +14,7 @@ require("scripts/globals/status");
 function onSpellCast(caster,target,spell)
 	if (target:hasStatusEffect(EFFECT_INVISIBLE) == false) then
 		
-		duration = math.random(30, 300);
+		local duration = math.random(30, 300);
 		duration = math.random(30, 300);
 		duration = math.random(30, 300);
 
@@ -29,7 +30,7 @@ function onSpellCast(caster,target,spell)
 		end
 
 		spell:setMsg(0);
-		target:addStatusEffect(EFFECT_INVISIBLE,0,10,math.floor(duration));
+		target:addStatusEffect(EFFECT_INVISIBLE,0,10,(math.floor(duration) * SNEAK_INVIS_DURATION_MULTIPLIER));
 	else
 		spell:setMsg(75); -- no effect.
 	end

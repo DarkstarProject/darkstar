@@ -2,7 +2,6 @@
 -- Ability: Focus			 	 		 
 -----------------------------------
  
-require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
@@ -10,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-	local sLegs = player:getEquipID(4);
+	local sLegs = player:getEquipID(SLOT_LEGS);
 	local power = 20
 	if(sLegs == 12512 or sLegs == 15226) then
 		power = power + 10;

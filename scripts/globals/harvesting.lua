@@ -6,6 +6,7 @@
 -------------------------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/status");
 
 -------------------------------------------------
 -- npcid and drop by zone
@@ -77,9 +78,9 @@ function sickleBreak(player,trade)
 	--------------------
 	-- Begin Gear Bonus
 	--------------------
-	Body = player:getEquipID(6);
-	Legs = player:getEquipID(8);
-	Feet = player:getEquipID(9);
+	Body = player:getEquipID(SLOT_BODY);
+	Legs = player:getEquipID(SLOT_LEGS);
+	Feet = player:getEquipID(SLOT_FEET);
 	
 	if(Body == 14374 or Body == 14375) then
 		sicklebreak = sicklebreak + 0.073;
