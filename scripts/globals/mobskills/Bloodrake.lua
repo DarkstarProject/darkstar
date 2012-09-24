@@ -13,14 +13,13 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
-
-    numhits = 1;
-    accmod = 1;
-    dmgmod = .8;
-    info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-    target:delHP(dmg);
-    mob:addHP(dmg);
-    skill:setMsg(MSG_DRAIN_HP);
-    return dmg;
+	local numhits = 1;
+	local accmod = 1;
+	local dmgmod = .8;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
+	target:delHP(dmg);
+	mob:addHP(dmg);
+	skill:setMsg(MSG_DRAIN_HP);
+	return dmg;
 end;

@@ -12,36 +12,36 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
+	local statmod = MOD_INT;
+	local typeEffect = EFFECT_MAGIC_DEF_DOWN;
+	local accrand = 3;
+	local resist = ;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		accrand = math.random(1,3);
+		if(accrand ~= 1) then
+			resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
+			if(resist > 0.5) then
+				target:addStatusEffect(typeEffect,30,0,60);--power=30;tic=0;duration=60;
+			end
+		end
+	end
 
-    power = 30;
-    tic = 0;
-    duration = 60;
+	typeEffect = EFFECT_DEFENSE_DOWN;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		accrand = math.random(1,3);
+		if(accrand ~= 1) then
+			resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
+			if(resist > 0.5) then
+				target:addStatusEffect(typeEffect,30,0,60);--power=30;tic=0;duration=60;
+			end
+		end
+	end
 
-    isEnfeeble = true;
-    typeEffect = EFFECT_MAGIC_DEF_DOWN;
-    statmod = MOD_INT;
-    accrand = math.random(1,3);
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5 and accrand ~= 1) then
-        if(target:getStatusEffect(typeEffect) == nil) then
-            target:addStatusEffect(typeEffect,power,tic,duration);
-        end
-    end
-
-    typeEffect = EFFECT_DEFENSE_DOWN;
-    accrand = math.random(1,3);
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5 and accrand ~= 1) then
-        if(target:getStatusEffect(typeEffect) == nil) then
-            target:addStatusEffect(typeEffect,power,tic,duration);
-        end
-    end
-	
-    numhits = 1;
-    accmod = 1;
-    dmgmod = 2;
-    info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
-    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
-    target:delHP(dmg);
-    return dmg;
+	local numhits = 1;
+	local accmod = 1;
+	local dmgmod = 2;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
+	target:delHP(dmg);
+	return dmg;
 end;

@@ -14,20 +14,20 @@ require("scripts/globals/magic");
 
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
-    numhits = 1;
-    accmod = 1;
-    dmgmod = 1;
-    info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    fivePercent = ((target:getMaxHP()/100)*5);
-    currentHP = target:getHP();
-    if(currentHP > fivePercent and info.dmg > 0) then
-    	dmg = currentHP - fivePercent;
-    else
-    	dmg = 0;
-    end
-    dmg = MobFinalAdjustments(dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
+	local numhits = 1;
+	local accmod = 1;
+	local dmgmod = 1;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+	local fivePercent = ((target:getMaxHP()/100)*5);
+	local currentHP = target:getHP();
+	if(currentHP > fivePercent and info.dmg > 0) then
+		local dmg = currentHP - fivePercent;
+	else
+		local dmg = 0;
+	end
+	local dmg = MobFinalAdjustments(dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
 
-    target:delHP(dmg);
-    mob:updateEnmity(target,-300,1); -- no way to remove entity from enmity table currently as Clear() does not work.
-    return dmg;
+	target:delHP(dmg);
+	mob:updateEnmity(target,-300,1); -- no way to remove entity from enmity table currently as Clear() does not work.
+	return dmg;
 end;

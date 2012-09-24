@@ -15,44 +15,40 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
+	local power = 1;
+	local tic = 0;
+	local duration = 120;
 
-    power = 1;
-    tic = 0;
-    duration = 120;
+	local statmod = MOD_INT;
+	local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,7);
+	if(resist > 0.5) then
+		if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
+			target:addStatusEffect(EFFECT_PARALYSIS,40,tic,duration);
+		end
+		if(target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
+			target:addStatusEffect(EFFECT_BLINDNESS,40,tic,duration);
+		end
+		if(target:hasStatusEffect(EFFECT_POISON) == false) then
+			target:addStatusEffect(EFFECT_POISON,power,10,duration);
+		end
+		if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
+			target:addStatusEffect(EFFECT_PLAGUE,power,tic,duration);
+		end
+		if(target:hasStatusEffect(EFFECT_BIND) == false) then
+			target:addStatusEffect(EFFECT_BIND,power,tic,duration);
+		end
+		if(target:hasStatusEffect(EFFECT_SILENCE) == false) then
+			target:addStatusEffect(EFFECT_SILENCE,power,tic,duration);
+		end
+		if(target:hasStatusEffect(EFFECT_SLOW) == false) then
+			target:addStatusEffect(EFFECT_SLOW,40,tic,duration);
+		end
+	end
 
-    isEnfeeble = true;
-    statmod = MOD_INT;
-    
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5) then
-        if(target:getStatusEffect(EFFECT_PARALYSIS) == nil) then
-            target:addStatusEffect(EFFECT_PARALYSIS,40,tic,duration);
-        end
-		if(target:getStatusEffect(EFFECT_BLINDNESS) == nil) then
-            target:addStatusEffect(EFFECT_BLINDNESS,40,tic,duration);
-        end
-		if(target:getStatusEffect(EFFECT_POISON) == nil) then
-            target:addStatusEffect(EFFECT_POISON,power,10,duration);
-        end
-		if(target:getStatusEffect(EFFECT_PLAGUE) == nil) then
-            target:addStatusEffect(EFFECT_PLAGUE,power,tic,duration);
-        end
-		if(target:getStatusEffect(EFFECT_BIND) == nil) then
-            target:addStatusEffect(EFFECT_BIND,power,tic,duration);
-        end
-		if(target:getStatusEffect(EFFECT_SILENCE) == nil) then
-            target:addStatusEffect(EFFECT_SILENCE,power,tic,duration);
-        end
-		if(target:getStatusEffect(EFFECT_SLOW) == nil) then
-            target:addStatusEffect(EFFECT_SLOW,40,tic,duration);
-        end
-    end
-	
-    dmgmod = 1;
-    accmod = 1;
-    info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
-    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
-    target:delHP(dmg);
-	
-    return dmg;
+	local dmgmod = 1;
+	local accmod = 1;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
+	target:delHP(dmg);
+	return dmg;
 end;

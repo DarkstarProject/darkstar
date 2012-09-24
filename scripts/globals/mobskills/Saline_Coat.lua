@@ -12,12 +12,9 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
 	skill:setMsg(MSG_BUFF);
-	if(mob:getStatusEffect(EFFECT_MAGIC_DEF_BOOST) ~= nil) then
-		mob:delStatusEffect(EFFECT_MAGIC_DEF_BOOST);
-	end
-	mob:addStatusEffect(EFFECT_MAGIC_DEF_BOOST,50,0,60);
-	return EFFECT_MAGIC_DEF_BOOST;
-
+	local typeEffect = EFFECT_MAGIC_DEF_BOOST;
+	mob:delStatusEffect(typeEffect);
+	mob:addStatusEffect(typeEffect,50,0,60);
+	return typeEffect;
 end;

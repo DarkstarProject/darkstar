@@ -12,13 +12,10 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
-	base = math.random(4,10);
+	local base = math.random(4,10);
 	skill:setMsg(MSG_BUFF);
-	if(mob:getStatusEffect(EFFECT_BLINK) ~= nil) then
-		mob:delStatusEffect(EFFECT_BLINK);
-	end
-	mob:addStatusEffect(EFFECT_BLINK,base,0,180);
-	return EFFECT_BLINK;
-	
-end
+	local typeEffect = EFFECT_BLINK;
+	mob:delStatusEffect(typeEffect);
+	mob:addStatusEffect(typeEffect,base,0,180);
+	return typeEffect;
+end;

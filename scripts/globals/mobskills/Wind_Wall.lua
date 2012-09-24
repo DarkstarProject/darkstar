@@ -13,18 +13,12 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
-
-
-    power = 50;
-    tic = 0;
-    duration = 60;
-
-    typeEffect = EFFECT_EVASION_BOOST;
-    if(mob:hasStatusEffect(typeEffect) == true) then
-	    skill:setMsg(MSG_NO_EFFECT);
-    else
-        mob:addStatusEffect(typeEffect,power,tic,duration);
-	    skill:setMsg(MSG_BUFF);
-    end
-    return typeEffect;
+	local typeEffect = EFFECT_EVASION_BOOST;
+	if(mob:hasStatusEffect(typeEffect) == true) then
+		skill:setMsg(MSG_NO_EFFECT);
+	else
+		mob:addStatusEffect(typeEffect,50,0,60);--power=50;tic=0;duration=60;
+		skill:setMsg(MSG_BUFF);
+	end
+	return typeEffect;
 end;

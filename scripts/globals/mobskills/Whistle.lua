@@ -13,20 +13,17 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
+	local power = mob:getMainLvl()/10 * 3.75 + 5;
+	local duration = 60;
 
-
-    power = mob:getMainLvl()/10 * 3.75 + 5;
-    tic = 0;
-    duration = 60;
-
-    typeEffect = EFFECT_AGI_BOOST;
-    skill:setMsg(MSG_BUFF);
-    if(mob:hasStatusEffect(typeEffect) == true) then
-        oldEffect = mob:getStatusEffect(typeEffect);
-        oldEffect:setPower(power);
-        oldEffect:setDuration(duration);
-    else
-        mob:addStatusEffect(typeEffect,power,tic,duration);
+	local typeEffect = EFFECT_AGI_BOOST;
+	skill:setMsg(MSG_BUFF);
+	if(mob:hasStatusEffect(typeEffect) == true) then
+		local oldEffect = mob:getStatusEffect(typeEffect);
+		oldEffect:setPower(power);
+		oldEffect:setDuration(duration);
+	else
+		mob:addStatusEffect(typeEffect,power,0,duration);
 	end
-    return typeEffect;
+	return typeEffect;
 end;

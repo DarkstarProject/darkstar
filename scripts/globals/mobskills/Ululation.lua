@@ -5,23 +5,19 @@
 ---------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
-	isEnfeeble = true;
-	typeEffect = EFFECT_PARALYSIS;
-	statmod = MOD_INT;
-	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_PARALYSIS) == nil) then
+	local typeEffect = EFFECT_PARALYSIS;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
+		if(resist > 0.5) then
 			skill:setMsg(MSG_ENFEEB_IS);
-			randy = math.random(40,70);
-			target:addStatusEffect(EFFECT_PARALYSIS,randy,0,120); -- 40-60%
+			local randy = math.random(40,70);
+			target:addStatusEffect(typeEffect,randy,0,120); -- 40-60%
 		else
-			skill:setMsg(MSG_NO_EFFECT); -- no effect
+			skill:setMsg(MSG_MISS); -- resist !
 		end
 	else
-		skill:setMsg(MSG_MISS); -- resist !
+		skill:setMsg(MSG_NO_EFFECT); -- no effect
 	end
-	
-	return EFFECT_PARALYSIS;
-	
+	return typeEffect;
 end

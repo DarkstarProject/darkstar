@@ -287,9 +287,9 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
 		magicacc = magicacc + diff;
 	end
 	--add acc for ele/dark seal
-    if(mob:getStatusEffect(EFFECT_ELEMENTAL_SEAL) ~= nil) then
+    if(mob:hasStatusEffect(EFFECT_ELEMENTAL_SEAL) == true and skill ~= 0) then
         magicaccbonus = magicaccbonus + 256;
-    elseif(mob:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
+    elseif(mob:hasStatusEffect(EFFECT_DARK_SEAL) == true and skill == DARK_MAGIC_SKILL) then
         magicaccbonus = magicaccbonus + 256;
     end
 	
@@ -371,7 +371,6 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
         resist = 1.0;
         --printf("1.0");
     end
-    
     return resist;
 	
 end;

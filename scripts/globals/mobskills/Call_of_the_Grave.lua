@@ -15,25 +15,18 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-
-    power = 50;
-    tic = 0;
-    duration = 180;
-
-    isEnfeeble = true;
-    typeEffect = EFFECT_INT_DOWN;
-    statmod = MOD_INT;
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5) then
-        if(target:getStatusEffect(typeEffect) == nil) then
-            skill:setMsg(MSG_ENFEEB_IS);
-            target:addStatusEffect(typeEffect,power,tic,duration);
-        else
-            skill:setMsg(MSG_NO_EFFECT);
-        end
-    else
-        skill:setMsg(MSG_MISS);
-    end
-	
-    return typeEffect;
+	local typeEffect = EFFECT_INT_DOWN;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,1);
+		if(resist > 0.5) then
+			skill:setMsg(MSG_ENFEEB_IS);
+			target:addStatusEffect(typeEffect,50,0,180);--power=50;tic=0;duration=180;
+		else
+			skill:setMsg(MSG_MISS);
+		end
+	else
+		skill:setMsg(MSG_NO_EFFECT);
+	end
+	return typeEffect;
 end;

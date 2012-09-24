@@ -15,28 +15,25 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
-    isEnfeeble = true;
-    typeEffect = EFFECT_ACCURACY_DOWN;
-    statmod = MOD_INT;
-    
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5) then
-        if(target:getStatusEffect(typeEffect) == nil) then
-            skill:setMsg(MSG_ENFEEB_IS);
-            target:addStatusEffect(typeEffect,50,0,120);
-        else
-            skill:setMsg(MSG_NO_EFFECT);
-        end
-    else
-        skill:setMsg(MSG_MISS);
-    end
+	local typeEffect = EFFECT_ACCURACY_DOWN;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
+		if(resist > 0.5) then
+			skill:setMsg(MSG_ENFEEB_IS);
+			target:addStatusEffect(typeEffect,50,0,120);--power=50;tic=0;duration=120;
+		else
+			skill:setMsg(MSG_MISS);
+		end
+	else
+		skill:setMsg(MSG_NO_EFFECT);
+	end
 
-    numhits = 1;
-    accmod = 2;
-    dmgmod = 3;
-    info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_1_SHADOW);
-    target:delHP(dmg);
-    return dmg;
+	local numhits = 1;
+	local accmod = 2;
+	local dmgmod = 3;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_1_SHADOW);
+	target:delHP(dmg);
+	return dmg;
 end;

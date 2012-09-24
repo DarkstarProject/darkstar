@@ -13,29 +13,26 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
-
-	cTime = VanadielHour();
-	Power = 8;
-	if(12 <= cTime) then
-		power = power + (cTime - 11);
+	local typeEffect = EFFECT_BIO;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local accrand = math.random(1,2);
+		if(accrand == 1) then
+			local statmod = MOD_INT;
+			local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+			if(resist > 0.5) then
+				local cTime = VanadielHour();
+				if(12 <= cTime) then
+					local power = 8 + (cTime - 11);
+				end
+				target:addStatusEffect(typeEffect,power,3,30);--tic=3;duration=30;
+			end
+		end
 	end
-    tic = 3;
-    duration = 30;
 
-    isEnfeeble = true;
-    typeEffect = EFFECT_BIO;
-    statmod = MOD_INT;
-    accrand = math.random(1,2);
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5 and accrand == 1) then
-        if(target:getStatusEffect(typeEffect) == nil) then
-            target:addStatusEffect(typeEffect,power,tic,duration);
-        end
-    end
-    dmgmod = .9;
-    accmod = 1;
-    info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*1.5,accmod,dmgmod,TP_NO_EFFECT);
-    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
-    target:delHP(dmg);
-    return dmg;
+	local dmgmod = .9;
+	local accmod = 1;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*1.5,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+	target:delHP(dmg);
+	return dmg;
 end;

@@ -10,12 +10,9 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
 	skill:setMsg(MSG_BUFF);
-	if(mob:getStatusEffect(EFFECT_HASTE) ~= nil) then
-		mob:delStatusEffect(EFFECT_HASTE);
-	end
-	mob:addStatusEffect(EFFECT_HASTE,10,0,240);
-	return EFFECT_HASTE;
-	
+	local typeEffect = EFFECT_HASTE;
+	mob:delStatusEffect(typeEffect);
+	mob:addStatusEffect(typeEffect,10,0,240);
+	return typeEffect;
 end

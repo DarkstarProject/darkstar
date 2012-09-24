@@ -10,34 +10,29 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
-	isEnfeeble = true;
-	typeEffect = EFFECT_BIND;
-	statmod = MOD_INT;
-	mobTP = mob:getTP();
-	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	
-	if(resist > 0.5) then
-		if(target:hasStatusEffect(EFFECT_BIND) == false) then
-			lvlMultiplyer = mob:getMainLvl()/3.75;
+	local typeEffect = EFFECT_BIND;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
+		if(resist > 0.5) then
+			local mobTP = mob:getTP();
+			local duration = mob:getMainLvl()/3.75;
 			if(mobTP <= 100) then 
-				bindTime = 10 + lvlMultiplyer;
+				local duration = 10 + duration;
 			elseif(mobTP <= 200) then 
-				bindTime = 15 + lvlMultiplyer;
+				local duration = 15 + duration;
 			else 
-				bindTime = 20 + lvlMultiplyer; 
+				local duration = 20 + duration; 
 			end
-			
-			target:addStatusEffect(EFFECT_BIND,1,0,bindTime);
+			target:addStatusEffect(typeEffect,1,0,duration);
 		end
 	end
-	
-	numhits = 1;
-	accmod = 1;
-	dmgmod = 1;
-	info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_1_SHADOW);
+
+	local numhits = 1;
+	local accmod = 1;
+	local dmgmod = 1;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_1_SHADOW);
 	target:delHP(dmg);
 	return dmg;
-	
-end
+end;

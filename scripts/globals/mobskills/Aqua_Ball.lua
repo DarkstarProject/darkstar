@@ -10,22 +10,19 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
-	isEnfeeble = true;
-	typeEffect = EFFECT_STR_DOWN;
-	statmod = MOD_INT;
-	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_STR_DOWN) == nil) then
-			target:addStatusEffect(EFFECT_STR_DOWN,50,0,180); -- -50%
+	local typeEffect = EFFECT_STR_DOWN;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
+		if(resist > 0.5) then
+			target:addStatusEffect(typeEffect,50,0,180); --power=50;tic=0;duration=180
 		end
 	end
-	
-	dmgmod = 1;
-	accmod = 1;
-	info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 4,accmod,dmgmod,TP_MAB_BONUS,1);
-	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
+
+	local dmgmod = 1;
+	local accmod = 1;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 4,accmod,dmgmod,TP_MAB_BONUS,1);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;
-	
-end
+end;

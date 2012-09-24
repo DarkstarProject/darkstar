@@ -15,32 +15,30 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-   
-   isEnfeeble = true;
-	typeEffect = EFFECT_SHOCK;
-	statmod = MOD_INT;
-	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_SHOCK) == nil) then
-			target:addStatusEffect(EFFECT_SHOCK,28,3,180);
+	local typeEffect = EFFECT_SHOCK;
+	local statmod = MOD_INT;
+	local resist = 1;
+	if(target:hasStatusEffect(typeEffect) == false) then
+	resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,6);
+		if(resist > 0.5) then
+			target:addStatusEffect(typeEffect,28,3,180);
 		end
 	end
-	
+
 	typeEffect = EFFECT_TERROR;
-	statmod = MOD_INT;
-	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_TERROR) == nil) then
-			target:addStatusEffect(EFFECT_TERROR,1,0,180);
+	if(target:hasStatusEffect(typeEffect) == false) then
+		statmod = MOD_INT;
+		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+		if(resist > 0.5) then
+			target:addStatusEffect(typeEffect,1,0,180);
 		end
 	end
-   
-	numhits = 1;
-    accmod = 2;
-    dmgmod = 3;
-    info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
-    target:delHP(dmg);
-	
-    return dmg;
+
+	local numhits = 1;
+	local accmod = 2;
+	local dmgmod = 3;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
+	target:delHP(dmg);
+	return dmg;
 end;

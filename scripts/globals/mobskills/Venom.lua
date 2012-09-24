@@ -13,26 +13,23 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
+	local typeEffect = EFFECT_POISON;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local accrand = math.random(1,6);
+		if(accrand ~= 1) then
+			local statmod = MOD_INT;
+			local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
+			if(resist > 0.3) then
+				local power = mob:getMainLvl()/8 + 3;
+				target:addStatusEffect(typeEffect,power,3,60);--tic=3;duration=60;
+			end
+		end
+	end
 
-    power = mob:getMainLvl()/8 + 3;
-    tic = 3;
-    duration = 60;
-
-    isEnfeeble = true;
-    typeEffect = EFFECT_POISON;
-    statmod = MOD_INT;
-    accrand = math.random(1,6);
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.3 and accrand ~= 1) then
-        if(target:getStatusEffect(typeEffect) == nil) then
-            target:addStatusEffect(typeEffect,power,tic,duration);
-        end
-    end
-
-    dmgmod = .6;
-    accmod = 1;
-    info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2,accmod,dmgmod,TP_NO_EFFECT);
-    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
-    target:delHP(dmg);
-    return dmg;
+	local dmgmod = .6;
+	local accmod = 1;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
+	target:delHP(dmg);
+	return dmg;
 end;

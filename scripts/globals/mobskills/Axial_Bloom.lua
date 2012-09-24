@@ -13,36 +13,28 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
+	local typeEffect = EFFECT_BIND;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
+		if(resist > 0.5) then
+			local mobTP = skill:getTP();
+			local duration = 25;
+			if(mobTP <= 100) then
+				duration = duration + 5;
+			elseif(mobTP <= 200) then
+				duration = duration + 10;
+			elseif(mobTP <= 300) then
+				duration = duration + 15;
+			end
 
-
-    power = 1;
-    tic = 0;
-	
-	if(skill:getTP()<=100) then
-		tpBonus = 5;
-	elseif(skill:getTP() <=200) then
-		tpBonus = 10;
-	elseif(skill:getTP() <= 300) then
-		tpBonus = 15;
+			skill:setMsg(MSG_ENFEEB_IS);
+			target:addStatusEffect(typeEffect,1,0,duration);--power=1;tic=0;
+		else
+			skill:setMsg(MSG_MISS);
+		end
+	else
+		skill:setMsg(MSG_NO_EFFECT);
 	end
-	
-    duration = 25 + tpBonus;
-
-    isEnfeeble = true;
-    typeEffect = EFFECT_BIND;
-    statmod = MOD_INT;
-    
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5) then
-        if(target:getStatusEffect(typeEffect) == nil) then
-            skill:setMsg(MSG_ENFEEB_IS);
-            target:addStatusEffect(typeEffect,power,tic,duration);
-        else
-            skill:setMsg(MSG_NO_EFFECT);
-        end
-    else
-        skill:setMsg(MSG_MISS);
-    end
-    return typeEffect;
-
+	return typeEffect;
 end;

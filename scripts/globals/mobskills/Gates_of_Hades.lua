@@ -15,29 +15,26 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
-
-    isEnfeeble = true;
-    typeEffect = EFFECT_BURN;
-    statmod = MOD_INT;
-    accrand = math.random(1,8);
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-		
-    if(resist > 0.5 and accrand ~= 1) then
-		if(resist >= 1) then  -- Added just incase resist number retuns a value higher then .9.
-			resist = .9;
+	local typeEffect = EFFECT_BURN;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local accrand = math.random(1,8);
+		if(accrand ~= 1) then
+			local statmod = MOD_INT;
+			local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,1);
+			if(resist > 0.5) then
+				if(resist >= 1) then  -- Added just incase resist number retuns a value higher then .9.
+					resist = .9;
+				end
+				local power = ((resist * 10) - 5) * math.random(1,2) + 19; -- makes dot damage between 20 - 28, based off resistance and random variable.
+				target:addStatusEffect(typeEffect,power,3,60);--tic=3;duration=60;
+			end
 		end
-	    power = ((resist * 10) - 5) * math.random(1,2) + 19; -- makes dot damage between 20 - 28, based off resistance and random variable.
-		tic = 3;
-		duration = 60;
-		
-        if(target:getStatusEffect(typeEffect) == nil) then
-            target:addStatusEffect(typeEffect,power,tic,duration);
-        end
-    end
-    dmgmod = 1;
-    accmod = 1;
-    info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
-    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
-    target:delHP(dmg);
-    return dmg;
+	end
+
+	local dmgmod = 1;
+	local accmod = 1;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
+	target:delHP(dmg);
+	return dmg;
 end;

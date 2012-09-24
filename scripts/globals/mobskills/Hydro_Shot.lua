@@ -10,32 +10,28 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
-	isEnfeeble = true;
-	typeEffect = EFFECT_ENMITY_DOWN;
-	statmod = MOD_MND;
-	mobTP = mob:getTP();
-	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_ENMITY_DOWN) == nil) then
+	local typeEffect = EFFECT_ENMITY_DOWN;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local statmod = MOD_MND;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,7);
+		if(resist > 0.5) then
+			local mobTP = mob:getTP();
 			if(mobTP <= 100) then 
-				enmityTime = 15;
+				local duration = 15;
 			elseif(mobTP <= 200) then 
-				enmityTime = 30;
+				local duration = 30;
 			else 
-				enmityTime = 45; 
+				local duration = 45; 
 			end
-			
-			target:addStatusEffect(EFFECT_ENMITY_DOWN,30,0,enmityTime);
+			target:addStatusEffect(typeEffect,30,0,duration);
 		end
 	end
-	
-	numhits = 1;
-	accmod = 1;
-	dmgmod = 1;
-	info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
-	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
+
+	local numhits = 1;
+	local accmod = 1;
+	local dmgmod = 1;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 	target:delHP(dmg);
 	return dmg;
-	
-end
+end;

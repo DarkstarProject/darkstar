@@ -11,13 +11,14 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
-	m = math.random(1,4)+6;
-	base = (mob:getMaxHP()/100)* m;
-	if(mob:getHP()+base > mob:getMaxHP()) then
-		base = mob:getMaxHP() - mob:getHP(); --cap it
+	local m = math.random(1,4)+6;
+	local base = (mob:getMaxHP()/100)* m;
+	local mobHP = mob:getHP();
+	local mobMaxHP = mob:getMaxHP();
+	if(mobHP+base > mobMaxHP) then
+		base = mobMaxHP - mobHP; --cap it
 	end
 	skill:setMsg(MSG_SELF_HEAL);
 	mob:addHP(base);
 	return base;
-
 end;

@@ -13,35 +13,28 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobWeaponSkill(target, mob, skill)
+	local message = MSG_MISS;
+	local typeEffect = EFFECT_BLINDNESS;
+	if(target:hasStatusEffect(typeEffect) == true) then
+		local accrand = math.random(1,2);
+		if(accrand == 1) then
+			local statmod = MOD_INT;
+			local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+			if(resist > 0.5) then
+				message = MSG_ENFEEB_IS;
+				target:addStatusEffect(typeEffect,15,0,60);--power=15;tic=0;duration=60;
+			end
+		end
+	else
+		message = MSG_NO_EFFECT;
+	end
+	skill:setMsg(message);
 
-
-    power = 15;
-    tic = 0;
-    duration = 60;
-
-    isEnfeeble = true;
-    typeEffect = EFFECT_BLINDNESS;
-    statmod = MOD_INT;
-    accrand = math.random(1,2);
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5 and accrand == 1) then
-        if(target:getStatusEffect(typeEffect) == nil) then
-            skill:setMsg(MSG_ENFEEB_IS);
-            target:addStatusEffect(typeEffect,power,tic,duration);
-        else
-            skill:setMsg(MSG_NO_EFFECT);
-        end
-    else
-        skill:setMsg(MSG_MISS);
-    end
-
-
-    numhits = math.random(2,3);
-    accmod = 1;
-    dmgmod = .5;
-    info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
-    target:delHP(dmg);
-    return dmg;
-
+	local numhits = math.random(2,3);
+	local accmod = 1;
+	local dmgmod = .5;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
+	target:delHP(dmg);
+	return dmg;
 end;

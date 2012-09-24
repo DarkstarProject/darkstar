@@ -14,25 +14,23 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-    power = 25;
-    tic = 0;
-    duration = 30;
+	local typeEffect = EFFECT_SLOW;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local accrand = math.random(1,2);
+		if(accrand == 1) then
+			local statmod = MOD_INT;
+			local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
+			if(resist > 0.5) then
+				target:addStatusEffect(typeEffect,25,0,30);--power=25;tic=0;duration=30;
+			end
+		end
+	end
 
-    isEnfeeble = true;
-    typeEffect = EFFECT_SLOW;
-    statmod = MOD_INT;
-    accrand = math.random(1,2);
-    resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-    if(resist > 0.5 and accrand == 1) then
-        if(target:getStatusEffect(typeEffect) == nil) then
-            target:addStatusEffect(typeEffect,power,tic,duration);
-        end
-    end
-    numhits = 3;
-    accmod = 1;
-    dmgmod = .8;
-    info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
-    target:delHP(dmg);
-    return dmg;
-end
+	local numhits = 3;
+	local accmod = 1;
+	local dmgmod = .8;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
+	target:delHP(dmg);
+	return dmg;
+end;

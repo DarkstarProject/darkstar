@@ -12,23 +12,20 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
-	isEnfeeble = true;
-	typeEffect = EFFECT_STUN;
-	statmod = MOD_INT;
-	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.5) then
-		if(target:getStatusEffect(EFFECT_STUN) == nil) then
-			target:addStatusEffect(EFFECT_STUN,1,0,7);
+	local typeEffect = EFFECT_STUN;
+	if(target:hasStatusEffect(typeEffect) == false) then
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,6);
+		if(resist > 0.5) then
+			target:addStatusEffect(typeEffect,1,0,7);--power=1;tic=0;duration=7;
 		end
 	end
-	
-	numhits = 1;
-	accmod = 2;
-	dmgmod = 3;
-	info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
-	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_3_SHADOW);
+
+	local numhits = 1;
+	local accmod = 2;
+	local dmgmod = 3;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_3_SHADOW);
 	target:delHP(dmg);
 	return dmg;
-	
 end;

@@ -11,13 +11,10 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobWeaponSkill(target, mob, skill)
-	
 	skill:setMsg(MSG_BUFF);
-	if(mob:getStatusEffect(EFFECT_BLAZE_SPIKES) ~= nil) then
-		mob:delStatusEffect(EFFECT_BLAZE_SPIKES);
-	end
-	randy = math.random(40,60);
-	mob:addStatusEffect(EFFECT_BLAZE_SPIKES,randy,0,180);
-	return EFFECT_BLAZE_SPIKES;
-	
-end
+	local typeEffect = EFFECT_BLAZE_SPIKES;
+	mob:delStatusEffect(typeEffect);
+	local randy = math.random(40,60);
+	mob:addStatusEffect(typeEffect,randy,0,180);
+	return typeEffect;
+end;
