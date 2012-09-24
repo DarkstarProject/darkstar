@@ -8,8 +8,7 @@
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
+require("scripts/globals/quests");
 require("scripts/zones/Giddeus/TextIDs");
 
 -----------------------------------
@@ -22,7 +21,6 @@ function onTrade(player,npc,trade)
 			player:startEvent(0x0037);
 		end
 	end
-
 end;
 
 -----------------------------------
