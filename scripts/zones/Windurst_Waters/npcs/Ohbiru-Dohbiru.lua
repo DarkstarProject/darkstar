@@ -19,13 +19,16 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	FoodForThought = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
-	turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
+	local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
+	local count = trade:getItemCount();
 	
-	if (FoodForThought == QUEST_ACCEPTED) then
-		OhbiruFood = player:getVar("Ohbiru_Food_var"); 
-		count = trade:getItemCount();
-		gil = trade:getGil();
+	if(player:getQuestStatus(WINDURST,WATER_WAY_TO_GO) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(4351,1) and count == 1) then
+			player:startEvent(0x0163,900);
+		end
+	elseif (player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
+		local OhbiruFood = player:getVar("Ohbiru_Food_var"); 
+		
 		if (trade:hasItemQty(4493,1) == true and trade:hasItemQty(4408,1) == true and trade:hasItemQty(624,1) == true and count == 3 and OhbiruFood ~= 2) then -- Traded all 3 items & Didn't ask for order
 			rand = math.random(1,2);
 			if (rand == 1) then
@@ -37,13 +40,13 @@ function onTrade(player,npc,trade)
 			player:startEvent(0x0142,440);
 		end	
 	elseif(turmoil == QUEST_ACCEPTED) then
-		if(trade:getItemCount() == 3 and gil == 0 and trade:hasItemQty(906,3) == true) then --Check that all 3 items have been traded
+		if(count == 3 and trade:getGil() == 0 and trade:hasItemQty(906,3) == true) then --Check that all 3 items have been traded
 			player:startEvent(0x0317);
 		else 
 			player:startEvent(0x0312,4500,267,906); -- Reminder of needed items
 		end
 	elseif(turmoil == QUEST_COMPLETED) then
-		if(trade:getItemCount() == 3 and trade:getGil () == 0 and trade:hasItemQty(906,3) == true) then --Check that all 3 items have been traded
+		if(count == 3 and trade:getGil () == 0 and trade:hasItemQty(906,3) == true) then --Check that all 3 items have been traded
 			player:startEvent(0x0317);
 		else
 			player:startEvent(0x031b,4500,0,906); -- Reminder of needed items for repeated quest
@@ -58,18 +61,33 @@ end;
 function onTrigger(player,npc)
 	-- Check for Missions first (priority?)
 	-- If the player has started the mission or not
-	pfame = player:getFameLevel(WINDURST);
-	turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
-	FoodForThought = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
-	needToZone = player:needToZone();
-	OhbiruFood = player:getVar("Ohbiru_Food_var"); -- Variable to track progress of Ohbiru-Dohbiru in Food for Thought
-
+	local pfame = player:getFameLevel(WINDURST);
+	local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
+	local FoodForThought = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
+	local needToZone = player:needToZone();
+	local OhbiruFood = player:getVar("Ohbiru_Food_var"); -- Variable to track progress of Ohbiru-Dohbiru in Food for Thought
+	local waterWayToGo = player:getQuestStatus(WINDURST,WATER_WAY_TO_GO);
+	local overnightDelivery = player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY);
+	
+	
 	if(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
 		if(player:getVar("ohbiru_dohbiru_talk") == 1) then
 			player:startEvent(0x8f);
 		else
 			player:startEvent(0x90);
 		end
+	elseif(waterWayToGo == QUEST_COMPLETED and needToZone) then
+		player:startEvent(0x0164,0,4351);
+		
+	elseif(waterWayToGo == QUEST_ACCEPTED) then
+		if(player:hasItem(504) == false and player:hasItem(4351) == false) then
+			player:startEvent(0x0162);
+		else
+			player:startEvent(0x0161);
+		end
+	elseif(waterWayToGo == QUEST_AVAILABLE and overnightDelivery == QUEST_COMPLETED and pfame >= 3) then
+		player:startEvent(0x0160,0,4351);
+		
 	elseif(FoodForThought == QUEST_AVAILABLE and OhbiruFood == 0) then
 		player:startEvent(0x0134); -- Hungry; mentions the experiment. First step in quest for this NPC.
 		player:setVar("Ohbiru_Food_var",1);
@@ -84,7 +102,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x0144); -- Reminds player to check on friends if he has been given his food.
 	elseif(FoodForThought == QUEST_COMPLETED and needToZone == true) then
 		player:startEvent(0x0158); -- Post Food for Thought Dialogue	
-	elseif(player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY) == QUEST_COMPLETED) then
+	elseif(overnightDelivery == QUEST_COMPLETED) then
 		player:startEvent(0x015f); -- Post Overnight Delivery Dialogue
 	--
 	-- Begin Toraimarai Turmoil Section	
@@ -95,6 +113,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x0312,4500,267,906); -- Reminder of needed items
 	elseif(turmoil == QUEST_COMPLETED) then
 		player:startEvent(0x031b,4500,0,906); -- Allows player to initiate repeat of Toraimarai Turmoil
+
 	else
 		player:startEvent(0x0158);
 	end
@@ -170,6 +189,22 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*4500);
 		player:addFame(WINDURST,WIN_FAME*50);
 		player:tradeComplete();
+	elseif(csid == 0x0160 and option == 0 or csid == 0x0162) then
+		if(player:getFreeSlotsCount() >= 1) then
+			if(player:getQuestStatus(WINDURST,WATER_WAY_TO_GO) == QUEST_AVAILABLE) then
+				player:addQuest(WINDURST,WATER_WAY_TO_GO);
+			end
+			player:addItem(504);
+			player:messageSpecial(ITEM_OBTAINED,504);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,504);
+		end
+	elseif(csid == 0x0163) then
+		player:addGil(GIL_RATE*900);
+		player:completeQuest(WINDURST,WATER_WAY_TO_GO);
+		player:addFame(WINDURST,WIN_FAME*40);
+		player:tradeComplete();		
+		player:needToZone(true);
 	end
 end;
 
