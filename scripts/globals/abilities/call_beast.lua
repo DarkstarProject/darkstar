@@ -11,7 +11,7 @@ require("scripts/globals/status");
 
 function OnUseAbility(player, target, ability)
 	--TODO: Look at ammo slot for jug pet type etc
-	switch(player:getEquipID(SLOT_RANGED)) : caseof{
+	switch(player:getEquipID(SLOT_AMMO)) : caseof{
 		[17860] = function (x) player:spawnPet(22) end, -- Hare Familiar ok
 		[17861] = function (x) player:spawnPet(37) end, -- Keeneared Steffi OK
 		[17862] = function (x) player:spawnPet(31) end, -- Mayfly Familiar ok
