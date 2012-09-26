@@ -13,7 +13,7 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 	local message = MSG_MISS;
 	local typeEffect = EFFECT_SILENCE;
-	if(target:hasStatusEffect(typeEffect) == true) then
+	if(target:hasStatusEffect(typeEffect) == false) then
 		local accrand = math.random(1,2);
 		if(accrand == 1) then
 			local statmod = MOD_INT;
