@@ -18,7 +18,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local duration = 240;
 
 	local typeEffect = EFFECT_WARCRY;
-	local skill:setMsg(MSG_BUFF);
+	skill:setMsg(MSG_BUFF);
 	if(mob:hasStatusEffect(typeEffect) == true) then
 		local oldEffect = mob:getStatusEffect(typeEffect);
 		oldEffect:setPower(power);
