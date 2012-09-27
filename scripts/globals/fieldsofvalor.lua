@@ -399,7 +399,7 @@ elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
 elseif (option==FOV_MENU_RERAISE) then --Reraise chosen.
 	--Decrease tabs
 	local tabs = player:getVar("tabs");
-    if (tags >= 10) then
+    if (tabs >= 10) then
         player:setVar("tabs",tabs-10);
         --Remove any other RR
         player:delStatusEffect(EFFECT_RERAISE);
