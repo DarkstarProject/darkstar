@@ -25,6 +25,13 @@ function OnPetAbility(target, pet, skill)
 	else
 		buffvalue = 1;
 	end
+	target:delStatusEffect(EFFECT_STR_BOOST);
+	target:delStatusEffect(EFFECT_DEX_BOOST);
+	target:delStatusEffect(EFFECT_VIT_BOOST);
+	target:delStatusEffect(EFFECT_AGI_BOOST);
+	target:delStatusEffect(EFFECT_MND_BOOST);
+	target:delStatusEffect(EFFECT_CHR_BOOST);
+	
 	target:addStatusEffect(EFFECT_STR_BOOST,buffvalue,0,180);
 	target:addStatusEffect(EFFECT_DEX_BOOST,buffvalue,0,180);
 	target:addStatusEffect(EFFECT_VIT_BOOST,buffvalue,0,180);

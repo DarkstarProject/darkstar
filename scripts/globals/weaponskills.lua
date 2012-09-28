@@ -171,8 +171,11 @@ function souleaterBonus(attacker)
 		local health = attacker:getHP();
 		if health > 10 then
 			local percent = 0.1;
+			if attacker:getMainJob() ~= 8 then
+				percent = percent / 2;
+			end
 			if attacker:getEquipID(SLOT_HEAD) == 12516 or attacker:getEquipID(SLOT_HEAD) == 15232 or attacker:getEquipID(SLOT_BODY) == 14409 or attacker:getEquipID(SLOT_LEGS) == 15370 then
-				percent = 0.12;
+				percent = percent + 0.02;
 			end
 			return health*percent;
 		end
