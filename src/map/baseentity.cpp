@@ -23,14 +23,15 @@
 #include <string.h>
 
 #include "baseentity.h"
+#include "map.h"
 #include "zone.h"
 
 CBaseEntity::CBaseEntity() 
 {
 	m_TargID = 0;
 
-	speed    = (int8)(40 + (int8)map_config.speed_mod);
-	speedsub = (int8)(40 + (int8)map_config.speed_mod);
+	speed    = 40 + map_config.speed_mod;
+	speedsub = 40 + map_config.speed_mod;
 	
 	animationsub = 0;
 	animation    = ANIMATION_NONE;
