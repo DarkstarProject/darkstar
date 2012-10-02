@@ -1952,9 +1952,9 @@ inline int32 CLuaBaseEntity::setVar(lua_State *L)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*  Увеличиваем/уменьшаем значение временной переменной                  *
+*                                                                       *
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addVar(lua_State *L)
@@ -1967,19 +1967,16 @@ inline int32 CLuaBaseEntity::addVar(lua_State *L)
 
 	const int8* varname =  lua_tostring(L,-2); 
 	int32 value = (int32)lua_tointeger(L,-1); 
-			
-	if (value == 0)
-	{
-		return 0;
-	}
 
-	//This won't throw an error if you misspell a variable name!
-	const int8* fmtQuery = "UPDATE char_vars SET value = value + %i WHERE charid = %u AND varname = '%s';";
+	const int8* Query = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = value + %i;";
 	
-	Sql_Query(SqlHandle,fmtQuery,value,m_PBaseEntity->id, varname);
+	Sql_Query(SqlHandle, Query,
+        m_PBaseEntity->id, 
+        varname, 
+        value, 
+        value);
 		
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 /************************************************************************
@@ -1996,7 +1993,6 @@ inline int32 CLuaBaseEntity::setMaskBit(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isboolean(L,-1));
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-3) || !lua_isstring(L,-3));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-4) || !lua_isnumber(L,-4));
 
 	const int8* varname =  lua_tostring(L,-3);
 	int32 bit = (int32)lua_tointeger(L,-2);
@@ -2006,11 +2002,11 @@ inline int32 CLuaBaseEntity::setMaskBit(lua_State *L)
 		
 	if(state == true)
 	{
-		value |= (1<<bit);
+		value |= (1<<bit); // добавляем
 	}
 	else
 	{
-		value &= ~(1<<bit);
+		value &= ~(1<<bit); // удаляем
 	}
 	
 	const int8* fmtQuery = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
@@ -2035,10 +2031,11 @@ inline int32 CLuaBaseEntity::getMaskBit(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
-	int16 bit = (int16)lua_tointeger(L,-1);
-	bool value = (int32)lua_tointeger(L,-2) & (1 << bit);
+	uint8 bit = (uint8)lua_tointeger(L,-1);
 
-	lua_pushboolean(L, value);
+    DSP_DEBUG_BREAK_IF(bit >= 32);
+
+	lua_pushboolean(L, (uint32)lua_tointeger(L,-2) & (1 << bit));
 	return 1;
 }
 
@@ -2054,17 +2051,14 @@ inline int32 CLuaBaseEntity::countMaskBits(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
-	int16 size = (int16)lua_tointeger(L,-1);
-	int16 count = 0;
-	int32 value = (int32)lua_tointeger(L,-2);
-	for(int16 i = 0; i < size; i++) {
-		if(value & (1 << i)) {
-			count++;
-		}
+	uint8  count = 0;
+	uint32 value = (uint32)lua_tointeger(L,-1);
+
+	for (uint8 bit = 0; bit < 32; bit++) 
+    {
+		if (value & (1 << bit)) count++;
 	}
-	
 	lua_pushinteger(L, count);
 	return 1;
 }
