@@ -2035,10 +2035,37 @@ inline int32 CLuaBaseEntity::getMaskBit(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
 
-	int32 bit = (int32)lua_tointeger(L,-1);
+	int16 bit = (int16)lua_tointeger(L,-1);
 	bool value = (int32)lua_tointeger(L,-2) & (1 << bit);
 
 	lua_pushboolean(L, value);
+	return 1;
+}
+
+/************************************************************************
+*																		*
+*  Counts the number of "true" bits in a bitmask from a variable 		*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::countMaskBits(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+
+	int16 size = (int16)lua_tointeger(L,-1);
+	int16 count = 0;
+	int32 value = (int32)lua_tointeger(L,-2);
+	for(int16 i = 0; i < size; i++) {
+		if(value & (1 << i)) {
+			count++;
+		}
+	}
+	
+	lua_pushinteger(L, count);
 	return 1;
 }
 
@@ -2059,7 +2086,7 @@ inline int32 CLuaBaseEntity::isMaskFull(lua_State *L)
 	bool condition = false;
 	
 	int32 value = (int32)lua_tointeger(L,-2);
-	int32 size = (int32)lua_tointeger(L,-1);
+	int16 size = (int16)lua_tointeger(L,-1);
 	
 	condition = (value == intpow32(2, size)-1);
 	
@@ -4828,6 +4855,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMaskBit),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaskBit),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,countMaskBits),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMaskFull),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,release),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEvent),

@@ -178,6 +178,7 @@ public:
 	
 	int32 setMaskBit(lua_State*);			// Sets a single bit in a character variable
 	int32 getMaskBit(lua_State*);			// Retrieves a single bit in a character variable
+	int32 countMaskBits(lua_State*);		// Retrieves number of true bits in a character variable
 	int32 isMaskFull(lua_State*);			// Checks if a bitmask stored in a character varable of a specified size contains all set bits
 
 	int32 setHomePoint(lua_State*);			// Sets character's homepoint  
