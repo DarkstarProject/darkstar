@@ -4615,7 +4615,7 @@ inline int32 CLuaBaseEntity::getNationTeleport(lua_State *L)
 	}
 	else if(nation == 2)
 	{
-		lua_pushinteger( L, PChar->nationtp.bastok );
+		lua_pushinteger( L, PChar->nationtp.windurst );
 		return 1;
 	}
 	else
