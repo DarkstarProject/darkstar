@@ -46,6 +46,9 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('76', '3', '17367109');
 
 -- Balga's Dais
 
+INSERT INTO `bcnm_treasure_chests` VALUES ('105', '1', '17375272');
+INSERT INTO `bcnm_treasure_chests` VALUES ('105', '2', '17375276'); 
+INSERT INTO `bcnm_treasure_chests` VALUES ('105', '3', '17375280');
 -- INSERT INTO `bcnm_treasure_chests` VALUES ('107', '1', '17375386');
 -- INSERT INTO `bcnm_treasure_chests` VALUES ('107', '2', '17375388');
 -- INSERT INTO `bcnm_treasure_chests` VALUES ('107', '3', '17375390');

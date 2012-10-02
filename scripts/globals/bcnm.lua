@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -- DO NOT INCLUDE MAAT FIGHTS
 itemid_bcnmid_map = {139,{1553,11}, -- Horlais Peak
 					 144,{1166,68,1178,81,1553,76}, -- Waughroon Shrine
-					 146,{1553,107}, -- Balgas Dias
+					 146,{1553,107,1551,105}, -- Balgas Dias
 					 168,{0,0}, -- Chamber of Oracles
 					 170,{0,0}, -- Full Moon Fountain
 					 201,{1546,418}, -- Cloister of Gales
@@ -29,7 +29,7 @@ itemid_bcnmid_map = {139,{1553,11}, -- Horlais Peak
 bcnmid_param_map = {139,{0,0,5,5,6,6,7,7,11,11},
 					140,{32,0,33,1},
 					144,{64,0,68,4,70,6,71,7,72,8,81,17,76,12},
-					146,{96,0,101,5,102,6,103,7,107,11},
+					146,{96,0,101,5,102,6,103,7,107,11,105,9},
 					163,{128,0},
 					165,{160,0},
 					168,{192,0,194,2,195,3,196,4},
@@ -180,8 +180,8 @@ function EventFinishBCNM(player,csid,option)
 		return false;
 	else
 		id = player:getVar("trade_bcnmid");
-		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 81 or id == 76 or id == 107 or id == 11) then
-			player:tradeComplete();
+		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 81 or id == 76 or id == 107 or id == 11 or id == 105) then
+			player:tradeComplete(); -- Removes the item, eventually need to remove orbs from this list and set bitmask on vraible to cracked instead of removing orb!!!
 		end
 		return true;
 	end
@@ -266,6 +266,9 @@ function ItemToBCNMID(player,zone,trade)
 					-- AF3 SAM condition
 					elseif(item == 1166 and player:getVar("aThiefinNorgCS") == 6) then
 						questTimelineOK = 1;
+					elseif(item == 1551) then
+						questTimelineOK = 1;
+					-- BCNM20 
 					elseif(item == 1178) then
 						questTimelineOK = 1;
 					-- KSNM30	
