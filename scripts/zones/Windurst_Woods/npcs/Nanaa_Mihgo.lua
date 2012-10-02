@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
    
 	if(trade:hasItemQty(498,4) and trade:getItemCount() == 4) then -- Trade Yagudo Necklace x4
 		
-		MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
+		local MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
 		
 		if(MihgosAmigo == QUEST_ACCEPTED) then	
 			player:startEvent(0x0058,GIL_RATE*200);
@@ -126,6 +126,7 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(WINDURST,MIHGO_S_AMIGO);
 	elseif(csid == 0x01ee) then
 		player:tradeComplete();
+		player:setTitle(CAT_BURGLAR_GROUPIE);
 		player:addGil(GIL_RATE*200);
 		player:addFame(NORG,NORG_FAME*30);
 	elseif(csid == 0x01f0) then

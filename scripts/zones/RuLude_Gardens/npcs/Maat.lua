@@ -20,19 +20,18 @@ require("scripts/zones/RuLude_Gardens/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
+	local tradeCount = trade:getItemCount();
 	if(player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
 		-- Trade Bomb Coal / Exoray Mold / Ancient Papyrus
-		if(trade:hasItemQty(1090,1) and trade:hasItemQty(1089,1) and trade:hasItemQty(1088,1) and trade:getItemCount() == 3) then
+		if(trade:hasItemQty(1090,1) and trade:hasItemQty(1089,1) and trade:hasItemQty(1088,1) and tradeCount == 3) then
 			player:startEvent(0x0051); -- Finish Quest "In Defiant Challenge"
 		end
 	end
-	
-	mJob = player:getMainJob();
-	
-	if(player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getMainLvl() >= 66) then
-		if(trade:hasItemQty(1425 + mJob,1) and trade:getItemCount() == 1 and mJob <= 15) then
-			player:startEvent(0x0040); -- Teleport to battlefield for "Shattering Stars"
+
+	if(player:getQuestStatus(JEUNO,SHATTERING_STARS) ~= QUEST_AVAILABLE and player:getMainLvl() >= 66) then
+		local mJob = player:getMainJob();
+		if(trade:hasItemQty(1425 + mJob,1) and tradeCount == 1 and mJob <= 15) then
+			player:startEvent(0x0040,mJob); -- Teleport to battlefield for "Shattering Stars"
 		end
 	end
 	
@@ -44,13 +43,13 @@ end;
 
 function onTrigger(player,npc)
 	
-	LvL = player:getMainLvl();
-	mJob = player:getMainJob();
-	inDefiantChallenge = player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE);
-	atopTheHighestMountains = player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
-	whenceBlowsTheWind = player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND);
-	ridingOnTheClouds = player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS);
-	shatteringStars = player:getQuestStatus(JEUNO,SHATTERING_STARS);
+	local LvL = player:getMainLvl();
+	local mJob = player:getMainJob();
+	local inDefiantChallenge = player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE);
+	local atopTheHighestMountains = player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
+	local whenceBlowsTheWind = player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND);
+	local ridingOnTheClouds = player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS);
+	local shatteringStars = player:getQuestStatus(JEUNO,SHATTERING_STARS);
 	
 	if(player:getVar("BeatAroundTheBushin") == 5) then
 		player:startEvent(0x0075);
@@ -180,7 +179,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x005c) then
 		player:addQuest(JEUNO,SHATTERING_STARS);
 	elseif(csid == 0x0040 and option == 1) then
-		mJob = player:getMainJob();
+		local mJob = player:getMainJob();
 			if(mJob == 2 or mJob == 3 or mJob == 15) then	player:setPos(299.316,-123.591,353.760,66,146);
 		elseif(mJob == 1 or mJob == 4 or mJob == 11) then	player:setPos(-511.459,159.004,-210.543,10,139);
 		elseif(mJob == 7 or mJob == 8 or mJob == 10) then 	player:setPos(-225.146,-24.250,20.057,255,206);
