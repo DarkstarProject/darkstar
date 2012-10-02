@@ -2,12 +2,12 @@
 -- Area: Balgas_Dais
 -- Name: early bird catches the wyrm
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
+package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
+-------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT

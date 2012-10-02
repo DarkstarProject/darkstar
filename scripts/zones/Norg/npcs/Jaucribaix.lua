@@ -19,21 +19,21 @@ require("scripts/zones/Norg/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
+	local count = trade:getItemCount();
 	if(player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(1153,1) and trade:hasItemQty(1152,1) and trade:getItemCount() == 2) then -- Trade Sacred branch and Bomb Steel
+		if(trade:hasItemQty(1153,1) and trade:hasItemQty(1152,1) and count == 2) then -- Trade Sacred branch and Bomb Steel
 			player:startEvent(0x001b);
 		end
 	end
 	
 	if(player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED) then
-		if(player:hasKeyItem(HANDFUL_OF_CRYSTAL_SCALES) and trade:hasItemQty(17809,1) and trade:getItemCount() == 1) then -- Trade Mumeito
+		if(player:hasKeyItem(HANDFUL_OF_CRYSTAL_SCALES) and trade:hasItemQty(17809,1) and count == 1) then -- Trade Mumeito
 			player:startEvent(0x008d);
 		end
 	end
 	
 	if(player:getQuestStatus(OUTLANDS,A_THIEF_IN_NORG) == QUEST_ACCEPTED) then
-		if(player:hasKeyItem(CHARRED_HELM) and trade:hasItemQty(823,1) and trade:getItemCount() == 1) then -- Trade Gold Thread
+		if(player:hasKeyItem(CHARRED_HELM) and trade:hasItemQty(823,1) and count == 1) then -- Trade Gold Thread
 			player:startEvent(0x00a2);
 		end
 	end
@@ -46,18 +46,18 @@ end;
 
 function onTrigger(player,npc)
 	
-	ForgeYourDestiny = player:getQuestStatus(OUTLANDS, FORGE_YOUR_DESTINY);
-	theSacredKatana = player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA);
-	yomiOkuri = player:getQuestStatus(OUTLANDS,YOMI_OKURI);
-	aThiefinNorg = player:getQuestStatus(OUTLANDS,A_THIEF_IN_NORG);
+	local ForgeYourDestiny = player:getQuestStatus(OUTLANDS, FORGE_YOUR_DESTINY);
+	local theSacredKatana = player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA);
+	local yomiOkuri = player:getQuestStatus(OUTLANDS,YOMI_OKURI);
+	local aThiefinNorg = player:getQuestStatus(OUTLANDS,A_THIEF_IN_NORG);
 	
-	mLvl = player:getMainLvl();
-	mJob = player:getMainJob();
+	local mLvl = player:getMainLvl();
+	local mJob = player:getMainJob();
 
 	if(player:getMainLvl() >= 30 and ForgeYourDestiny == QUEST_AVAILABLE) then
 		player:startEvent(0x0019,1153,1152); -- Sacred branch, Bomb Steel
 	elseif(ForgeYourDestiny == QUEST_ACCEPTED) then
-		swordTimer = player:getVar("ForgeYourDestiny_timer");
+		local swordTimer = player:getVar("ForgeYourDestiny_timer");
 		
 		if(swordTimer > os.time()) then
 			player:startEvent(0x001c,(swordTimer - os.time())/144);	
@@ -85,8 +85,8 @@ function onTrigger(player,npc)
 			player:startEvent(0x0092); -- Start Quest "Yomi Okuri"
 		end
 	elseif(yomiOkuri == QUEST_ACCEPTED) then
-		yomiOkuriCS = player:getVar("yomiOkuriCS");
-		yomotsuFeather = player:hasKeyItem(YOMOTSU_FEATHER);
+		local yomiOkuriCS = player:getVar("yomiOkuriCS");
+		local yomotsuFeather = player:hasKeyItem(YOMOTSU_FEATHER);
 		if(yomiOkuriCS <= 3 and yomotsuFeather == false) then 
 			player:startEvent(0x0093);
 		elseif(yomotsuFeather) then 
@@ -107,7 +107,8 @@ function onTrigger(player,npc)
 			player:startEvent(0x009e); -- Start Quest "A Thief in Norg!?"
 		end
 	elseif(aThiefinNorg == QUEST_ACCEPTED) then
-		aThiefinNorgCS = player:getVar("aThiefinNorgCS");
+		local aThiefinNorgCS = player:getVar("aThiefinNorgCS");
+
 		if(aThiefinNorgCS < 5) then
 			player:startEvent(0x009f);
 		elseif(aThiefinNorgCS == 5) then
