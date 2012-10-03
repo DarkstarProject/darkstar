@@ -22,9 +22,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	OutlandsFame = player:getFameLevel(5);
-	
-	player:startEvent(0x0039 + (OutlandsFame - 1));
+
+	player:startEvent(0x0039 + (player:getFameLevel(4) - 1));
 end;
 
 -----------------------------------
