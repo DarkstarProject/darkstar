@@ -22,10 +22,10 @@ function OnMobWeaponSkill(target, mob, skill)
 				message = MSG_ENFEEB_IS;
 				target:addStatusEffect(typeEffect,50,0,120);--power=50;tic=0;duration=120;
 			end
+		end
 	else
 		message = MSG_NO_EFFECT;
 	end
 	skill:setMsg(message);
 	return typeEffect;
-end
 end;
