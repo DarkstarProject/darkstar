@@ -138,6 +138,12 @@ struct AuctionHistory_t
 	uint8		status; //e.g. if sold/not sold/on market
 };
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 class CBasicPacket;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
@@ -159,8 +165,8 @@ public:
 	search_t		 search;						// данные и комментарий, отображаемые в окне поиска
 	bazaar_t		 bazaar;						// все данные, необходимые для таботы bazaar
 	uint16			 m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
+    uint16           m_EquipBlock;                  // заблокированные ячейки экипировки
 	uint8			 equip[17];						// экипировка персонажа
-	std::vector<AuctionHistory_t> m_ah_history;		// AH history list
 
 	uint8			 m_ZonesList[32];				// список посещенных персонажем зон
 	uint8			 m_SpellList[96];				// список изученных заклинаний
@@ -172,9 +178,10 @@ public:
 	missionlog_t	 m_missionLog[6];				// список миссий
 	assaultlog_t	 m_assaultLog;					// список assault миссий
 	campaignlog_t	 m_campaignLog;					// список campaing миссий
-	uint32			 m_rangedDelay;					//ranged attack delay (with timestamp for repeat attacks, hence 32bit)
-	bool			 m_insideBCNM;					//true if user is inside a bcnm
-	uint32			 m_lastBcnmTimePrompt;			//the last message prompt in seconds
+	uint32			 m_rangedDelay;					// ranged attack delay (with timestamp for repeat attacks, hence 32bit)
+	bool			 m_insideBCNM;					// true if user is inside a bcnm
+	uint32			 m_lastBcnmTimePrompt;			// the last message prompt in seconds
+
 	// Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
 	// отображает более ранние миссии выплненными
 
@@ -230,6 +237,8 @@ public:
 	uint8			 m_hasRaise;					// checks if player has raise already
     uint8            m_hasAutoTarget;               // возможность использования AutoTarget функции
 	position_t		 m_StartActionPos;				// позиция начала действия (использование предмета, начало стрельбы, позиция tractor)
+
+    std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)
 
 	 CCharEntity();									// конструктор
 	~CCharEntity();									// деструктор

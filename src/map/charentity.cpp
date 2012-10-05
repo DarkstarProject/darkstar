@@ -96,7 +96,8 @@ CCharEntity::CCharEntity()
 	m_lastBcnmTimePrompt = 0;
 	m_AHHistoryTimestamp = 0;
 
-	m_EquipFlag = 0;
+	m_EquipFlag  = 0;
+    m_EquipBlock = 0;
 	nameflags.flags = 0;
 
     BazaarID.clean();

@@ -916,7 +916,7 @@ uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quan
 	if ((int32)PItem->getQuantity() + quantity < 0)
 	{
 		ShowDebug("UpdateItem: Trying to move too much quantity\n");
-		quantity = -(int32)PItem->getQuantity();
+		return 0;
 	}
 
 	uint32 ItemID = PItem->getID();
@@ -926,11 +926,12 @@ uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quan
 
 	if (newQuantity > 0 || (PItem->getType() & ITEM_CURRENCY)) 
     {
-		const int8* fmtQuery = "UPDATE char_inventory \
-								SET quantity = %u \
-								WHERE charid = %u AND location = %u AND slot = %u;";
+		const int8* Query = 
+            "UPDATE char_inventory "
+            "SET quantity = %u "
+            "WHERE charid = %u AND location = %u AND slot = %u;";
 
-		if (Sql_Query(SqlHandle,fmtQuery,newQuantity,PChar->id,LocationID,slotID) != SQL_ERROR)
+		if (Sql_Query(SqlHandle, Query, newQuantity, PChar->id, LocationID, slotID) != SQL_ERROR)
 		{
 			PItem->setQuantity(newQuantity);
 			PChar->pushPacket(new CInventoryModifyPacket(LocationID,slotID,newQuantity));
@@ -938,9 +939,9 @@ uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quan
 	}
     else if (newQuantity == 0) 
     {
-		const int8* fmtQuery = "DELETE FROM char_inventory WHERE charid = %u AND location = %u AND slot = %u;";
+		const int8* Query = "DELETE FROM char_inventory WHERE charid = %u AND location = %u AND slot = %u;";
 
-		if (Sql_Query(SqlHandle,fmtQuery,PChar->id,LocationID,slotID) != SQL_ERROR)
+		if (Sql_Query(SqlHandle, Query, PChar->id, LocationID, slotID) != SQL_ERROR)
 		{
 			PChar->getStorage(LocationID)->InsertItem(NULL, slotID);
 			PChar->pushPacket(new CInventoryItemPacket(NULL, LocationID, slotID));
@@ -1018,7 +1019,9 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 		return false;
 	}
 
-	if (!(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) || (PItem->getReqLvl() > PChar->GetMLevel()))
+    if ((PChar->m_EquipBlock & (1 << equipSlotID)) ||
+       !(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) || 
+        (PItem->getReqLvl() > PChar->GetMLevel()))
 		return false;
 
 	UnequipItem(PChar,equipSlotID);

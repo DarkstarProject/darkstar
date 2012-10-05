@@ -193,6 +193,8 @@ public:
 	int32 setGil(lua_State*);				// sets gil to value
 
 	int32 getEquipID(lua_State*);			// Gets the Item Id of the item in specified slot
+    int32 lockEquipSlot(lua_State*);        // блокируем ячейку экипировки
+    int32 unlockEquipSlot(lua_State*);      // снимаем блокировку с ячейки экипировки
 
 	int32 createShop(lua_State*);			// Prepare the container for work of shop ??
 	int32 addShopItem(lua_State*);			// Adds item to shop container (16 max)

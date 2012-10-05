@@ -246,30 +246,30 @@ void CZone::LoadZoneLines()
 void CZone::LoadZoneWeather() 
 {	
     const int8* Query = 
-        "SELECT                      \
-          weather.none,              \
-          weather.sunshine,          \
-          weather.clouds,            \
-          weather.fog,               \
-          weather.hot_spell,         \
-          weather.heat_wave,         \
-          weather.rain,              \
-          weather.squall,            \
-          weather.dust_storm,        \
-          weather.sand_storm,        \
-          weather.wind,              \
-          weather.gales,             \
-          weather.snow,              \
-          weather.blizzards,         \
-          weather.thunder,           \
-          weather.thunder_storms,    \
-          weather.auroras,           \
-          weather.stellar_glares,    \
-          weather.gloom,             \
-          weather.darkness           \
-        FROM zone_weather as weather \
-        WHERE zoneid = %u            \
-        LIMIT 1";
+        "SELECT "
+          "weather.none,"
+          "weather.sunshine,"
+          "weather.clouds,"
+          "weather.fog,"
+          "weather.hot_spell,"
+          "weather.heat_wave,"
+          "weather.rain,"
+          "weather.squall,"
+          "weather.dust_storm,"
+          "weather.sand_storm,"
+          "weather.wind,"
+          "weather.gales,"
+          "weather.snow,"
+          "weather.blizzards,"
+          "weather.thunder,"
+          "weather.thunder_storms,"
+          "weather.auroras,"
+          "weather.stellar_glares,"
+          "weather.gloom,"
+          "weather.darkness "
+        "FROM zone_weather as weather "
+        "WHERE zoneid = %u "           
+        "LIMIT 1";
 
     if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR && 
         Sql_NumRows(SqlHandle) != 0 && 
@@ -309,21 +309,21 @@ void CZone::LoadZoneWeather()
 void CZone::LoadZoneSettings() 
 {
     const int8* Query = 
-        "SELECT \
-          zone.name, \
-          zone.zoneip, \
-          zone.zoneport, \
-          zone.music, \
-          zone.battlesolo, \
-          zone.battlemulti, \
-          zone.tax, \
-          zone.misc, \
-          bcnm.name \
-        FROM zone_settings AS zone \
-        LEFT JOIN bcnm_info AS bcnm \
-        USING (zoneid) \
-        WHERE zoneid = %u \
-        LIMIT 1";
+        "SELECT "
+          "zone.name,"
+          "zone.zoneip,"
+          "zone.zoneport,"
+          "zone.music,"
+          "zone.battlesolo,"
+          "zone.battlemulti,"
+          "zone.tax,"
+          "zone.misc,"
+          "bcnm.name "
+        "FROM zone_settings AS zone "
+        "LEFT JOIN bcnm_info AS bcnm "
+        "USING (zoneid) "
+        "WHERE zoneid = %u "
+        "LIMIT 1";
 
     if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR && 
         Sql_NumRows(SqlHandle) != 0 && 

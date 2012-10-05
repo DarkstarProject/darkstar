@@ -3597,35 +3597,83 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
 
 inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 {
-	if ( m_PBaseEntity != NULL )
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	uint8 SLOT = (uint8)lua_tointeger(L,1);
+
+    DSP_DEBUG_BREAK_IF(SLOT > 15);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT]);
+
+    if((PItem != NULL) && (PItem->getType() & ITEM_ARMOR)) 
 	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			if( !lua_isnil(L,1) && lua_isstring(L,1) )
-			{
-				uint8 SLOT = (uint8)lua_tointeger(L,1);
-
-				if (SLOT > 15) 
-				{
-					lua_pushinteger(L,0);
-					return 1;
-				}
-
-				CItem* PItem = ((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PBaseEntity)->equip[SLOT]);
-
-				if((PItem != NULL) && (PItem->getType() & ITEM_ARMOR)) 
-				{
-					lua_pushinteger(L,PItem->getID()); 
-					return 1;
-				}
-				lua_pushinteger(L,0); 
-				return 1;
-			}
-		}
-	}
-	lua_pushnil(L);
+	    lua_pushinteger(L,PItem->getID()); 
+		return 1;
+    }
+	lua_pushinteger(L,0); 
 	return 1;
 }
+
+/************************************************************************
+*                                                                       *
+*  блокируем ячейку экипировки                                          *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::lockEquipSlot(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    uint8 SLOT = (uint8)lua_tointeger(L,1);
+
+    DSP_DEBUG_BREAK_IF(SLOT > 15);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    charutils::UnequipItem(PChar, SLOT);
+    
+    PChar->m_EquipBlock |= 1 << SLOT;
+    PChar->pushPacket(new CCharJobsPacket(PChar));
+
+    if (PChar->status == STATUS_NORMAL) PChar->status == STATUS_UPDATE;
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Cнимаем блокировку с ячейки экипировки                               *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::unlockEquipSlot(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    uint8 SLOT = (uint8)lua_tointeger(L,1);
+
+    DSP_DEBUG_BREAK_IF(SLOT > 15);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->m_EquipBlock &= ~(1 << SLOT);
+    PChar->pushPacket(new CCharJobsPacket(PChar));
+
+    if (PChar->status == STATUS_NORMAL) PChar->status == STATUS_UPDATE;
+    return 0;
+}
+
+//==========================================================//
 
 inline int32 CLuaBaseEntity::getPetElement(lua_State *L)
 {
@@ -3644,6 +3692,8 @@ inline int32 CLuaBaseEntity::getPetElement(lua_State *L)
 	return 0;
 }
 
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getPetName(lua_State *L)
 {
 	if ( m_PBaseEntity != NULL )
@@ -3658,7 +3708,6 @@ inline int32 CLuaBaseEntity::getPetName(lua_State *L)
 	}
 	return 0;
 }
-
 
 /************************************************************************
 *																		*
@@ -4906,6 +4955,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,lockEquipSlot),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockEquipSlot),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetElement),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),

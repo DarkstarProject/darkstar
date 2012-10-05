@@ -25,7 +25,6 @@
 #define _CENMITYCONTAINER_H
 
 #include "../common/cbasetypes.h"
-#include "charentity.h"
 #include <map>
 
 
@@ -39,6 +38,7 @@ struct EnmityObject_t
 typedef std::map<uint32,EnmityObject_t*> EnmityList_t;
 
 class CBattleEntity;
+class CCharEntity;
 
 class CEnmityContainer
 {
