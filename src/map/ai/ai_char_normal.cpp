@@ -2153,7 +2153,8 @@ void CAICharNormal::ActionAttack()
 
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			uint8 fstrslot = SLOT_MAIN;
-			bool zanshin = false;
+			//bool zanshin = false;
+
 			for (uint8 i = 0; i < (numattacksLeftHand + numattacksRightHand + numKickAttacks); ++i) 
 			{
 				if (i != 0)
@@ -2195,14 +2196,14 @@ void CAICharNormal::ActionAttack()
 				Action.flag	= 0;
 
 				uint8 hitRate = 0;
-				if (zanshin)
-				{
-					hitRate = battleutils::GetHitRateAccOffset(m_PChar,m_PBattleTarget, 34);
-				}
-				else 
-				{
+				//if (zanshin)
+				//{
+				//	hitRate = battleutils::GetHitRateAccOffset(m_PChar,m_PBattleTarget, 34);
+				//}
+				//else 
+				//{
 					hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget);
-				}
+				//}
 				// сначала вычисляем вероятность попадания по монстру
 				// затем нужно вычислить вероятность нанесения критического удара
 				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
@@ -2283,23 +2284,23 @@ void CAICharNormal::ActionAttack()
 					}
 
 					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
-					zanshin = false;
+					//zanshin = false;
 				}
 				else
 				{
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
-					if ( !zanshin && rand()%100 < m_PChar->getMod(MOD_ZANSHIN) && (( i == 0 && numattacksRightHand == 1 ) || (i == numattacksRightHand && numattacksLeftHand == 1)) )
-					{
-						zanshin = true;
-						if ( i > numattacksRightHand ) {numattacksLeftHand++;}
-						else {numattacksRightHand++;}
-					}
-					else
-					{
-						zanshin = false;
-					}
+					//if ( !zanshin && rand()%100 < m_PChar->getMod(MOD_ZANSHIN) && (( i == 0 && numattacksRightHand == 1 ) || (i == numattacksRightHand && numattacksLeftHand == 1)) )
+					//{
+					//	zanshin = true;
+					//	if ( i > numattacksRightHand ) {numattacksLeftHand++;}
+					//	else {numattacksRightHand++;}
+					//}
+					//else
+					//{
+					//	zanshin = false;
+					//}
 				}
 
                 bool isBlocked = battleutils::IsBlocked(m_PChar, m_PBattleTarget);
