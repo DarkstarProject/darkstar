@@ -60,8 +60,7 @@ function onEventUpdate(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if (csid == 0x00e6 and option == 10) then
-		if (player:getGil() >= 500000) then
-			player:delGil(500000);
+		if (player:delGil(500000)) then
 			player:addKeyItem(AIRSHIP_PASS);
 			player:updateEvent(1,0);
 		end

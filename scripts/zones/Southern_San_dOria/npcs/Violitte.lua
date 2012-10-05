@@ -8,7 +8,6 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -24,33 +23,31 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-mapVar = 0;
-
+    local mapVar = 0;
 	if player:hasKeyItem(MAP_OF_THE_SANDORIA_AREA) then
-		   mapVar = mapVar + 4;
+		mapVar = mapVar + 4;
 	end
 	if player:hasKeyItem(MAP_OF_THE_BASTOK_AREA) then
-		   mapVar = mapVar + 8;
+		mapVar = mapVar + 8;
 	end
 	if player:hasKeyItem(MAP_OF_THE_WINDURST_AREA) then
-		   mapVar = mapVar + 16;
+		mapVar = mapVar + 16;
 	end
 	if player:hasKeyItem(MAP_OF_THE_JEUNO_AREA) then
-		  mapVar = mapVar + 32;
+		mapVar = mapVar + 32;
 	end
 	if player:hasKeyItem(MAP_OF_ORDELLES_CAVES) then
-		   mapVar = mapVar + 64;
+		mapVar = mapVar + 64;
 	end
 	if player:hasKeyItem(MAP_OF_GHELSBA) then
-		   mapVar = mapVar +  128;
+		mapVar = mapVar + 128;
 	end
 	if player:hasKeyItem(MAP_OF_DAVOI) then
-		   mapVar = mapVar +  256;
+		mapVar = mapVar + 256;
 	end
 	if player:hasKeyItem(MAP_OF_CARPENTERS_LANDING) then
-		   mapVar = mapVar +  512;
+		mapVar = mapVar + 512;
 	end
-
     player:startEvent(0x0253, mapVar);
 end;
 
@@ -59,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -68,36 +65,34 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-keyItem = option;
-gil = 0;
-
-  if (csid==0x0253 and option ~= 1073741824) then
-	if option == MAP_OF_THE_SANDORIA_AREA then
-		gil = 200;
- 	elseif option == MAP_OF_THE_BASTOK_AREA then
-		gil = 200;
-	elseif option == MAP_OF_THE_WINDURST_AREA then
-		gil = 200;
-	elseif option == MAP_OF_THE_JEUNO_AREA then
-		gil = 600;
-	elseif option == MAP_OF_ORDELLES_CAVES then
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+    if (csid == 0x0253 and option ~= 1073741824) then
+        local gil = 0;
+        if option == MAP_OF_THE_SANDORIA_AREA then
+            gil = 200;
+        elseif option == MAP_OF_THE_BASTOK_AREA then
+            gil = 200;
+        elseif option == MAP_OF_THE_WINDURST_AREA then
+            gil = 200;
+        elseif option == MAP_OF_THE_JEUNO_AREA then
+            gil = 600;
+        elseif option == MAP_OF_ORDELLES_CAVES then
      		gil = 600;
-	elseif option == MAP_OF_GHELSBA then
+        elseif option == MAP_OF_GHELSBA then
 	    	gil = 600;
-	elseif option == MAP_OF_DAVOI then
-	 	gil = 3000;
-	elseif option == MAP_OF_CARPENTERS_LANDING then
-		gil = 3000;
-	end
-
-	if (gil > 0 and player:getGil() > gil) then
-	   player:setGil(player:getGil() - gil);
-	   player:addKeyItem(option);
-	   player:messageSpecial(KEYITEM_OBTAINED,keyItem);
-	else
-	   player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
+        elseif option == MAP_OF_DAVOI then
+            gil = 3000;
+        elseif option == MAP_OF_CARPENTERS_LANDING then
+            gil = 3000;
+        end
+        if (gil > 0 and player:delGil(gil)) then
+            player:addKeyItem(option);
+            player:messageSpecial(KEYITEM_OBTAINED,option); 
+        else
+            player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
+        end
     end
-  end
 end;
 
 

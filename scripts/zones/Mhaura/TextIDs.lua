@@ -6,6 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
           HOMEPOINT_SET = 6424; -- Home point set!
+    NOT_HAVE_ENOUGH_GIL = 0; -- You do not have enough gil
          DO_NOT_POSSESS = 7643; -- You do not possess <keyitem>. You were not permitted to board the ship...
      
 -- Quest Dialog

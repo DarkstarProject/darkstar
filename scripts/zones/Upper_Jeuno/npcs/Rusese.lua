@@ -70,12 +70,11 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x2710 and option ~= 0x40000000) then
 		for i = 1, #Maps, 2 do
 			if (Maps[i] == option) then
-				if (player:getGil() >= Maps[i+1]) then
+				if (player:delGil(Maps[i+1])) then
 					player:addKeyItem(option);
-					player:delGil(Maps[i+1]);
 					player:messageSpecial(KEYITEM_OBTAINED,option);
 				else
-					player:messageSpecial(6542);
+					player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
 				end
 				break;
 			end

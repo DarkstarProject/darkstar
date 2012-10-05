@@ -66,8 +66,9 @@ function onEventFinish(player,csid,option)
 	if(option == 1) then
 		ShowOPVendorShop(player);
 	elseif(option == 2) then
-		player:delGil(OP_TeleFee(player,region));
-		toHomeNation(player);
+        if (player:delGil(OP_TeleFee(player,region))) then
+            toHomeNation(player);
+        end
 	end
 	
 end;

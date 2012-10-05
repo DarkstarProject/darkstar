@@ -6,6 +6,7 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
              ITEM_OBTAINED = 6378; -- Obtained: <item>
               GIL_OBTAINED = 6379; -- Obtained <number> gil
           KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
+       NOT_HAVE_ENOUGH_GIL = 0; -- You do not have enough gil
             ITEMS_OBTAINED = 6384; -- You obtain <number> <item>!
              HOMEPOINT_SET = 6424; -- Home point set!
 

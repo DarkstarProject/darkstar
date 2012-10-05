@@ -6,7 +6,7 @@ FULL_INVENTORY_AFTER_TRADE = 10960; -- You cannot obtain the <item>. Try trading
              ITEM_OBTAINED = 10961; -- Obtained: <item>
               GIL_OBTAINED = 10962; -- Obtained <number> gil
           KEYITEM_OBTAINED = 10964; -- Obtained key item: <keyitem>
-                    NO_GIL = 12481; -- You do not have enough gil.
+       NOT_HAVE_ENOUGH_GIL = 12481; -- You do not have enough gil
              HOMEPOINT_SET = 11007; -- Home point set!
 
 -- Conquest System

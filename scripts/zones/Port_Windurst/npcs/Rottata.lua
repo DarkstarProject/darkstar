@@ -57,8 +57,9 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(option >= 5 and option <= 23) then
-		player:delGil(OP_TeleFee(player,option));
-		toOutpost(player,option);
+		if (player:delGil(OP_TeleFee(player,option))) then
+            toOutpost(player,option);
+        end
 	end
 	
 end;

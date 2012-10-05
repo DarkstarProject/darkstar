@@ -46,8 +46,7 @@ function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 0x012c) then
-		if (player:getGil() >= 148000) then
-			player:delGil(148000);
+		if (player:delGil(148000)) then
 			player:addKeyItem(AIRSHIP_PASS_FOR_KAZHAM);
 			player:updateEvent(0,1);
 		end

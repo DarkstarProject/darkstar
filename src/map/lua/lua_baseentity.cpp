@@ -2248,32 +2248,33 @@ inline int32 CLuaBaseEntity::addGil(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*  Отнимаем указанное количество gil у персонажа                        *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::delGil(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
-	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
-			{
-				CItem * item = ((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(0);
-			
-				if(item == NULL || !(item->getType() & ITEM_CURRENCY)) 
-				{
-					ShowFatalError(CL_RED"lua::delGil : No Gil in currency slot\n" CL_RESET);
-					return 0;
-				}
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-				int32 gil = (int32)lua_tointeger(L, -1);
+    bool result = false;
 
-				charutils::UpdateItem((CCharEntity*)m_PBaseEntity, LOC_INVENTORY, 0, -gil);
-				return 0;
-			}
-		}
-	}
-	lua_pushnil(L);
+	CItem* PItem = ((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(0);
+		
+    if (PItem != NULL && (PItem->getType() & ITEM_CURRENCY))
+    {
+        int32 gil = (int32)lua_tointeger(L, -1);
+	    result = charutils::UpdateItem((CCharEntity*)m_PBaseEntity, LOC_INVENTORY, 0, -gil) == 0xFFFF;
+    }
+    else
+    {
+        ShowFatalError(CL_RED"lua::delGil : No Gil in currency slot\n" CL_RESET);
+    }
+    lua_pushboolean(L, result);
 	return 1;
 }
 

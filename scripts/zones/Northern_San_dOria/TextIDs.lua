@@ -6,6 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6564; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6568; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6570; -- Obtained key item: <keyitem>
           HOMEPOINT_SET = 188; -- Home point set!
+    NOT_HAVE_ENOUGH_GIL = 0; -- You do not have enough gil
           MOGHOUSE_EXIT = 12210; -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
 
 -- Conquest System

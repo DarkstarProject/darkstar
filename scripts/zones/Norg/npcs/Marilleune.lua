@@ -43,17 +43,17 @@ function onEventFinish(player,csid,option)
 --print("CSID:",csid);
 --print("OPTION:",option);
 
-price = 100;
-level = player:getMainLvl();
+    local price = 100;
 
 	if (csid == 0x0083 and option == 0) then
-		if (level >= 20) then
-			player:addStatusEffect(EFFECT_CHOCOBO,1,0,1800);
-		else
-			player:addStatusEffect(EFFECT_CHOCOBO,1,0,900);
-		end
-		player:delGil(price);
-		player:setPos(-456,17,-348,0,0x7b);
+        if (player:delGil(price)) then
+            if (player:getMainLvl() >= 20) then
+                player:addStatusEffect(EFFECT_CHOCOBO,1,0,1800);
+            else
+                player:addStatusEffect(EFFECT_CHOCOBO,1,0,900);
+            end
+            player:setPos(-456,17,-348,0,0x7b);
+        end
 	end
 
 end;

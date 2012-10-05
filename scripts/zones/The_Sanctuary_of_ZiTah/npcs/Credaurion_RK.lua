@@ -83,9 +83,7 @@ function onEventFinish(player,csid,option)
 			player:setVar("supplyQuest_region",0);
 		end
 	elseif(option == 4) then
-		SetHPGil = giltosetHP(guardnation,player);
-		if(player:getGil() >= SetHPGil) then
-			player:delGil(SetHPGil);
+		if(player:delGil(giltosetHP(guardnation,player))) then
 			player:setHomePoint();
 			player:messageSpecial(CONQUEST + 94); -- "Your home point has been set."
 		else

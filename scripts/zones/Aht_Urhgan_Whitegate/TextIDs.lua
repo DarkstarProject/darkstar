@@ -5,6 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 212; -- You cannot obtain the item <item> come back ag
           ITEM_OBTAINED = 215; -- Obtained: <item>
            GIL_OBTAINED = 216; -- Obtained <number> gil
        KEYITEM_OBTAINED = 218; -- Obtained key item: <keyitem>
+    NOT_HAVE_ENOUGH_GIL = 0; -- You do not have enough gil
           HOMEPOINT_SET = 1272; -- Home point set!
 
 -- Shop Texts

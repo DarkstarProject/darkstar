@@ -13,6 +13,7 @@ require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    zone:registerRegion(1, -90,17,45, -84,19,51);  -- map 4 NW porter 
 	zone:registerRegion(1, 17,-90,45, -85,18,51);  -- map 4 NW porter 
 	zone:registerRegion(2, -90,17,-10, -85,18,-5);  -- map 4 SW porter 
 	zone:registerRegion(3, -34,17,-10, -30,18,-5);  -- map 4 SE porter 

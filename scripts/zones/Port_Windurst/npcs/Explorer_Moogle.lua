@@ -49,22 +49,19 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
+    local price = 300;
+
 	if (csid == 0x0356) then
-		if (option == 1) then		
+		if (option == 1 and player:delGil(price)) then		
 			toExplorerMoogle(player,231);
-			player:delGil(300);
-		elseif (option == 2) then	
+		elseif (option == 2 and player:delGil(price)) then	
 			toExplorerMoogle(player,234);
-			player:delGil(300);
-		elseif (option == 3) then	
+		elseif (option == 3 and player:delGil(price)) then	
 			toExplorerMoogle(player,240);
-			player:delGil(300);
-		elseif (option == 4) then	
+		elseif (option == 4 and player:delGil(price)) then	
 			toExplorerMoogle(player,248);
-			player:delGil(300);
-		elseif (option == 5) then	
+		elseif (option == 5 and player:delGil(price)) then	
 			toExplorerMoogle(player,249);
-			player:delGil(300);
 		end
 	end
 end;

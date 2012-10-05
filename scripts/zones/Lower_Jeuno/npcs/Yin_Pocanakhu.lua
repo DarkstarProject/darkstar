@@ -48,9 +48,8 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if(csid == 0x00dc and option == 0 and player:getGil() >= 1000) then
+	if(csid == 0x00dc and option == 0 and player:delGil(1000)) then
 		player:startEvent(0x00dd);
-		player:delGil(1000);
 		player:setVar("BorghertzHandsFirstTime",0);
 		player:setVar("BorghertzCS",1);
 	end

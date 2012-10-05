@@ -4,15 +4,13 @@
 --  Type: Quest Giver
 -- @zone: 237
 --  @pos: -50.858 1.777 -31.141
---
--- 
 -----------------------------------
-
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Metalworks/TextIDs");
+
 require("scripts/globals/settings")
 require("scripts/globals/quests");
+require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -55,19 +53,16 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	 --printf("CSID: %u",csid);
-	 --printf("RESULT: %u",option);
-	 if (csid == 0x022A) then
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
+	
+    if (csid == 0x022A) then
 		player:addQuest(BASTOK,STARDUST);
-	 elseif (csid == 0x022B) then
-		if (starDust == QUEST_ACCEPTED) then
-			player:completeQuest(BASTOK,STARDUST);
-		end
-		player:tradeComplete();
+    elseif (csid == 0x022B) then
+        player:tradeComplete();
+        player:addGil(300);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
-		player:addGil(300);
+        player:completeQuest(BASTOK,STARDUST);
 	end
-		
-		
 end;
 

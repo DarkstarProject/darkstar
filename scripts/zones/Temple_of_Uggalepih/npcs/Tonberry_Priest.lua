@@ -22,9 +22,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	killCount = player:getVar("EVERYONES_GRUDGE_KILLS");
+	local killCount = player:getVar("EVERYONES_GRUDGE_KILLS");
 	if(killCount >= 1) then
-		payment = 250 * ((killCount/20)+1);
+		local payment = 250 * ((killCount/20)+1);
 		player:startEvent(0x0042,0,payment);
 	end
 end;
@@ -46,8 +46,9 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 	if (csid == 0x0042 and option == 1) then
-		player:delGil(payment);
-		player:setVar("EVERYONES_GRUDGE_KILLS",0);
+		if (player:delGil(250 * ((player:getVar("EVERYONES_GRUDGE_KILLS")/20)+1))) then
+            player:setVar("EVERYONES_GRUDGE_KILLS",0);
+        end
 	end
 end;
 
