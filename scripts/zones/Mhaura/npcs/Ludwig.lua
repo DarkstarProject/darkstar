@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(option);
             player:messageSpecial(KEYITEM_OBTAINED,option); 
         else
-            player:messageSpecial(0); -- ???
+            player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
         end
     end
 end;
