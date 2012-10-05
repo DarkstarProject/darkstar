@@ -2151,11 +2151,6 @@ void CAICharNormal::ActionAttack()
 
 			uint8 numattacksRightHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
 
-			//cap it, cannot have >8 hits per attack round!
-			if(numattacksRightHand+numattacksLeftHand > 8){
-				numattacksRightHand -= numattacksRightHand+numattacksLeftHand - 8;
-			}
-	
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			uint8 fstrslot = SLOT_MAIN;
 			bool zanshin = false;
@@ -2326,7 +2321,6 @@ void CAICharNormal::ActionAttack()
 				}
 				m_PChar->m_ActionList.push_back(Action);
 			}
-            DSP_DEBUG_BREAK_IF(m_PChar->m_ActionList.size() > 16);
             
 			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));

@@ -3172,7 +3172,7 @@ uint8 checkMultiHits(CCharEntity* PChar, uint16 weaponid){
 			}
 		}
 	}
-	return num;
+	return dsp_min(8,num);
 }
 
 uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
