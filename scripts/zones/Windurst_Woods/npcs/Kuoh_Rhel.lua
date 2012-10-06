@@ -28,15 +28,13 @@ end;
 
 function onTrigger(player,npc)
 	--player:delQuest(WINDURST,CHOCOBILIOUS);
-	chocobilious = player:getQuestStatus(WINDURST,CHOCOBILIOUS);
-	wFame = player:getFameLevel(WINDURST);
-	chocoVar = player:getVar("ChocobiliousQuest");
+	local chocobilious = player:getQuestStatus(WINDURST,CHOCOBILIOUS);
 	
-	if (chocobilious == QUEST_AVAILABLE and wFame >= 2) then 
+	if (chocobilious == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then 
 		player:startEvent(0x00e0); -- Start quest
 	elseif (chocobilious == QUEST_COMPLETED and player:needToZone() == true) then
 		player:startEvent(0x00e8); -- Quest complete
-	elseif (chocobilious == QUEST_ACCEPTED and chocoVar == 2) then
+	elseif (chocobilious == QUEST_ACCEPTED and player:getVar("ChocobiliousQuest") == 2) then
 		player:startEvent(0x00e7); -- Talked to Tapoh
 	elseif (chocobilious == QUEST_ACCEPTED) then
 		player:startEvent(0x00e1); -- Post quest accepted

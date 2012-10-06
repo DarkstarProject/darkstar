@@ -16,28 +16,19 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-PayingLipService = player:getQuestStatus(WINDURST,PAYING_LIP_SERVICE);
-chocobilious = player:getQuestStatus(WINDURST,CHOCOBILIOUS);
-chocoVar = player:getVar("ChocobiliousQuest");
-
-	if (PayingLipService >= QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		BeeHiveChip = trade:hasItemQty(912,3);
-		RemiShell   = trade:hasItemQty(1016,2);
-		
-		if (BeeHiveChip == true and count == 3) then
-			player:startEvent(0x01df,0,912,1016,0,1);
-		elseif (RemiShell == true and count == 2) then
-			player:startEvent(0x01df,0,912,1016,0,0);
-		end
-		
-	elseif (chocobilious == QUEST_ACCEPTED and chocoVar == 1) then
-		if(trade:getItemCount() == 1 and trade:hasItemQty(938,1)) then
+	local count = trade:getItemCount();
+	if (player:getQuestStatus(WINDURST,CHOCOBILIOUS) == QUEST_ACCEPTED and player:getVar("ChocobiliousQuest") == 1) then
+		if(count == 1 and trade:hasItemQty(938,1)) then
 			player:startEvent(0x00e5,0,938); 
 			player:setVar("ChocobiliousQuest",2)
 		end
-			
+	elseif (player:getQuestStatus(WINDURST,PAYING_LIP_SERVICE) >= QUEST_ACCEPTED) then
+	
+		if (trade:hasItemQty(912,3) and count == 3) then
+			player:startEvent(0x01df,0,912,1016,0,1);
+		elseif (trade:hasItemQty(1016,2) and count == 2) then
+			player:startEvent(0x01df,0,912,1016,0,0);
+		end
 		
 	end
 	
@@ -49,9 +40,9 @@ end;
 
 function onTrigger(player,npc)
 
-PayingLipService = player:getQuestStatus(WINDURST,PAYING_LIP_SERVICE);
-chocobilious = player:getQuestStatus(WINDURST,CHOCOBILIOUS);
-chocoVar = player:getVar("ChocobiliousQuest");
+	local PayingLipService = player:getQuestStatus(WINDURST,PAYING_LIP_SERVICE);
+	local chocobilious = player:getQuestStatus(WINDURST,CHOCOBILIOUS);
+	local chocoVar = player:getVar("ChocobiliousQuest");
 	
 	if (chocobilious == QUEST_ACCEPTED and chocoVar == 2) then
 		player:startEvent(0x00e6); -- after trading	
