@@ -325,6 +325,8 @@ namespace instanceutils{
 		if (LootList == NULL)
 		{
 			ShowError("BCNM Chest opened with no valid loot list!");
+			//no loot available for bcnm. End bcnm.
+			instance->winBcnm();
 			return;
 		}
 		
