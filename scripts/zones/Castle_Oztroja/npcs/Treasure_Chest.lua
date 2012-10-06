@@ -23,14 +23,14 @@ TreasureMinLvL = 33;
 
 function onTrade(player,npc,trade)
 
-	key = trade:hasItemQty(1035,1); 		-- Treasure Key
-	sk = trade:hasItemQty(1115,1);			-- Skeleton Key
-	lk = trade:hasItemQty(1023,1);			-- Living Key
-	ttk = trade:hasItemQty(1022,1);			-- Thief's Tools
-	questItemNeeded = 0;
+	--trade:hasItemQty(1035,1); 		-- Treasure Key
+	--trade:hasItemQty(1115,1);			-- Skeleton Key
+	--trade:hasItemQty(1023,1);			-- Living Key
+	--trade:hasItemQty(1022,1);			-- Thief's Tools
+	local questItemNeeded = 0;
 	
 	-- Player traded a key.
-	if((key or sk or lk or ttk) and trade:getItemCount() == 1) then 
+	if((trade:hasItemQty(1035,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		
 		-- IMPORTANT ITEM: AF1 BST QUEST -----------
 		if(player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and 
@@ -39,7 +39,7 @@ function onTrade(player,npc,trade)
 		end
 		--------------------------------------
 		
-		pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
+		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
 		
 		if(pack[2] ~= nil) then
 			player:messageSpecial(pack[2]);
@@ -49,15 +49,14 @@ function onTrade(player,npc,trade)
 		end
 		
 		if(success ~= -2) then
-			diceroll = math.random(); -- 0 or 1
 			player:tradeComplete();
 			
-			if(diceroll <= success) then
+			if(math.random() <= success) then
 				-- Succeded to open the coffer
 				player:messageSpecial(CHEST_UNLOCKED);
 				
 				if(questItemNeeded == 1) then
-					player:addKeyItem(13121);
+					player:addItem(13121);
 					player:messageSpecial(ITEM_OBTAINED,13121); -- Beast collar
 				else
 					player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
