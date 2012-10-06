@@ -28,7 +28,7 @@
 
 #define MAX_ITEMID  20000
 #define MAX_DROPID  4500
-#define MAX_LOOTID  20
+#define MAX_LOOTID  1300 //was 20, changed to hold 1000+ bcnm loot id's
 
 CItem *		g_pItemList[MAX_ITEMID];    // глобальный массив указателей на игровые предметы
 DropList_t* g_pDropList[MAX_DROPID];    // глобальный массив списков выпадающих предметов
