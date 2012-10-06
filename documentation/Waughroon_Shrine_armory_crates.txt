@@ -6,9 +6,9 @@ armory crates
 17367101 - hills are alive
 17367105 - hills are alive
 17367109 - hills are alive
-17367113
-17367117
-17367121
+17367113 - prehostoric pigeons
+17367117 - prehostoric pigeons
+17367121 - prehostoric pigeons
 17367138
 17367155
 17367172

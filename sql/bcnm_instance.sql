@@ -106,6 +106,18 @@ INSERT INTO `bcnm_instance` VALUES ('81', '3', '17367283');
 INSERT INTO `bcnm_instance` VALUES ('76', '1', '17367230');
 INSERT INTO `bcnm_instance` VALUES ('76', '2', '17367232');
 INSERT INTO `bcnm_instance` VALUES ('76', '3', '17367234');
+INSERT INTO `bcnm_instance` VALUES ('82', '1', '17367287');
+INSERT INTO `bcnm_instance` VALUES ('82', '1', '17367288');
+INSERT INTO `bcnm_instance` VALUES ('82', '1', '17367289');
+INSERT INTO `bcnm_instance` VALUES ('82', '1', '17367290');
+INSERT INTO `bcnm_instance` VALUES ('82', '2', '17367292');
+INSERT INTO `bcnm_instance` VALUES ('82', '2', '17367293');
+INSERT INTO `bcnm_instance` VALUES ('82', '2', '17367294');
+INSERT INTO `bcnm_instance` VALUES ('82', '2', '17367295');
+INSERT INTO `bcnm_instance` VALUES ('82', '3', '17367297');
+INSERT INTO `bcnm_instance` VALUES ('82', '3', '17367298');
+INSERT INTO `bcnm_instance` VALUES ('82', '3', '17367299');
+INSERT INTO `bcnm_instance` VALUES ('82', '3', '17367300');
 
 -- Balga's Dais
 INSERT INTO `bcnm_instance` VALUES ('96', '1', '17375233');
