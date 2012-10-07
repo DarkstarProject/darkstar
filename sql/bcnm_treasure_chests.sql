@@ -52,6 +52,9 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('82', '3', '17367121');
 INSERT INTO `bcnm_treasure_chests` VALUES ('105', '1', '17375272');
 INSERT INTO `bcnm_treasure_chests` VALUES ('105', '2', '17375276'); 
 INSERT INTO `bcnm_treasure_chests` VALUES ('105', '3', '17375280');
+INSERT INTO `bcnm_treasure_chests` VALUES ('107', '1', '17375282');
+INSERT INTO `bcnm_treasure_chests` VALUES ('107', '2', '17375284'); 
+INSERT INTO `bcnm_treasure_chests` VALUES ('107', '3', '17375286');
 
 -- Sacrificial Chamber
 
