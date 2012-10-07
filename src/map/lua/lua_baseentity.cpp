@@ -36,6 +36,7 @@
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
 #include "../packets/char_jobs.h"
+#include "../packets/char_equip.h"
 #include "../packets/char_health.h"
 #include "../packets/char_skills.h"
 #include "../packets/char_spells.h"
@@ -3641,6 +3642,8 @@ inline int32 CLuaBaseEntity::lockEquipSlot(lua_State *L)
     charutils::UnequipItem(PChar, SLOT);
     
     PChar->m_EquipBlock |= 1 << SLOT;
+    PChar->pushPacket(new CCharAppearancePacket(PChar));
+    PChar->pushPacket(new CEquipPacket(0, SLOT));
     PChar->pushPacket(new CCharJobsPacket(PChar));
 
     if (PChar->status == STATUS_NORMAL) PChar->status == STATUS_UPDATE;
