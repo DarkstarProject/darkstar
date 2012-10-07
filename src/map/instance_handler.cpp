@@ -34,8 +34,10 @@
 CInstanceHandler::CInstanceHandler(uint8 zoneid)
 {
 	m_ZoneId = zoneid;
-	
-	if (m_ZoneId > 184 && m_ZoneId < 189 ||  m_ZoneId > 133 && m_ZoneId < 136) //Dynamis zone (need to add COP dyna zone)
+
+	//Dynamis zone (need to add COP dyna zone)  
+	//added ghelsba outpost here, 1 instance only
+	if (m_ZoneId > 184 && m_ZoneId < 189 ||  m_ZoneId > 133 && m_ZoneId < 136 || m_ZoneId == 140) 
     {
 		m_MaxInstances = 1;
 	}

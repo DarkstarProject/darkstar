@@ -8,6 +8,7 @@ require("scripts/globals/status");
 -- e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
 -- DO NOT INCLUDE MAAT FIGHTS
 itemid_bcnmid_map = {139,{1553,11}, -- Horlais Peak
+					 140,{1551,34}, -- Ghelsba Outpost
 					 144,{1166,68,1178,81,1553,76,1180,82}, -- Waughroon Shrine
 					 146,{1553,107,1551,105}, -- Balgas Dias
 					 168,{0,0}, -- Chamber of Oracles
@@ -27,7 +28,7 @@ itemid_bcnmid_map = {139,{1553,11}, -- Horlais Peak
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
 -- 0,1,2,3,4,5,...
 bcnmid_param_map = {139,{0,0,5,5,6,6,7,7,11,11},
-					140,{32,0,33,1},
+					140,{32,0,33,1,34,2},
 					144,{64,0,68,4,70,6,71,7,72,8,81,17,76,12,82,18},
 					146,{96,0,101,5,102,6,103,7,107,11,105,9},
 					163,{128,0},
@@ -180,7 +181,7 @@ function EventFinishBCNM(player,csid,option)
 		return false;
 	else
 		id = player:getVar("trade_bcnmid");
-		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 81 or id == 76 or id == 107 or id == 11 or id == 105 or id == 82) then
+		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 81 or id == 76 or id == 107 or id == 11 or id == 105 or id == 82 or id == 34) then
 			player:tradeComplete(); -- Removes the item, eventually need to remove orbs from this list and set bitmask on vraible to cracked instead of removing orb!!!
 		end
 		return true;

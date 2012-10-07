@@ -155,8 +155,10 @@ namespace instanceutils{
 				uint32 npcid = Sql_GetUIntData(SqlHandle,0);
 				CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcid, TYPE_NPC);
 					if (PNpc != NULL)
-					{
+					{						
 						PNpc->status = STATUS_NORMAL;
+						PNpc->animation = 0;
+						PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_SPAWN));
 						instance->addNpc(PNpc);
 						ShowDebug(CL_CYAN"Spawned %s id %i inst %i \n",PNpc->status,PNpc->id,instance->getInstanceNumber());
 				    }else
@@ -353,6 +355,9 @@ namespace instanceutils{
 	//user opened chest, complete bcnm
 	instance->winBcnm();
 	}
+
+
+
 	
 	bool spawnSecondPartDynamis(CInstance* instance){
 		DSP_DEBUG_BREAK_IF(instance==NULL);

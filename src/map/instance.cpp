@@ -27,6 +27,8 @@
 #include "charentity.h"
 #include "mobentity.h"
 #include "baseentity.h"
+#include "packets/fade_out.h"
+#include "packets/entity_update.h"
 #include "packets/position.h"
 #include "packets/message_basic.h"
 #include "lua/luautils.h"
@@ -272,7 +274,10 @@ void CInstance::cleanup(){
 
 	//make chest vanish (if any)
 	for(int i=0; i<m_NpcList.size(); i++){
-	m_NpcList.at(i)->status = STATUS_DISAPPEAR;
+	m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CFadeOutPacket(m_NpcList.at(i)));
+	m_NpcList.at(i)->animation = ANIMATION_DEATH;
+	m_NpcList.at(i)->status = STATUS_UPDATE;
+	m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CEntityUpdatePacket(m_NpcList.at(i), ENTITY_UPDATE));
 	}
 	//wipe npc list
 	m_NpcList.clear();

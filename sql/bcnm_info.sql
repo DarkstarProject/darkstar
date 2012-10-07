@@ -70,7 +70,7 @@ INSERT INTO `bcnm_info` VALUES ('20', '139', 'beyond_infinity', NULL, NULL, '600
 -- Ghelsba Outpost
 INSERT INTO `bcnm_info` VALUES ('32', '140', 'save_the_children', NULL, NULL, '600', '0', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('33', '140', 'holy_crest', NULL, NULL, '600', '75', '6', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('34', '140', 'wings_of_fury', NULL, NULL, '900', '20', '3', '0', '15');
+INSERT INTO `bcnm_info` VALUES ('34', '140', 'wings_of_fury', NULL, NULL, '900', '20', '3', '34', '15');
 INSERT INTO `bcnm_info` VALUES ('35', '140', 'petrifying_pair', NULL, NULL, '900', '30', '3', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('36', '140', 'toadal_recall', NULL, NULL, '1800', '30', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('37', '140', 'mirror_mirror', NULL, NULL, '900', '40', '3', '0', '7');
