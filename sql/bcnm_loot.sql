@@ -156,7 +156,7 @@ INSERT INTO `bcnm_loot` VALUES ('81', '823', '26', '4');
 INSERT INTO `bcnm_loot` VALUES ('81', '1465', '11', '4');
 INSERT INTO `bcnm_loot` VALUES ('81', '4173', '37', '4');
 INSERT INTO `bcnm_loot` VALUES ('81', '700', '101', '4');
-INSERT INTO `bcnm_loot` VALUES ('81', '653', '0', '4');--this is "zero" on ffxiclopedia???
+INSERT INTO `bcnm_loot` VALUES ('81', '653', '0', '4');-- this is "zero" on ffxiclopedia???
 INSERT INTO `bcnm_loot` VALUES ('81', '644', '52', '4');
 INSERT INTO `bcnm_loot` VALUES ('81', '703', '116', '4');
 INSERT INTO `bcnm_loot` VALUES ('81', '844', '15', '4');
