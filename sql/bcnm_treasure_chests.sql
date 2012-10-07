@@ -30,7 +30,9 @@ CREATE TABLE `bcnm_treasure_chests` (
 -- ----------------------------
 
 -- Horlais Peak
-
+INSERT INTO `bcnm_treasure_chests` VALUES ('11', '1', '17346597');
+INSERT INTO `bcnm_treasure_chests` VALUES ('11', '2', '17346601');
+INSERT INTO `bcnm_treasure_chests` VALUES ('11', '3', '17346605');
 
 -- Ghelsba Outpost
 INSERT INTO `bcnm_treasure_chests` VALUES ('34', '1', '17350932');
