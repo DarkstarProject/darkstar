@@ -564,10 +564,21 @@ void LoadChar(CCharEntity* PChar)
 
 void LoadInventory(CCharEntity* PChar) 
 {
-	const int8* Query = "SELECT itemid, location, slot, quantity, bazaar, signature, currCharges, lastUseTime, linkshellid, color \
-                         FROM char_inventory \
-                         LEFT JOIN linkshells ON signature = name \
-                         WHERE charid = %u";
+	const int8* Query = 
+        "SELECT "
+          "itemid," 
+          "location," 
+          "slot,"
+          "quantity,"
+          "bazaar,"
+          "signature,"
+          "currCharges,"
+          "lastUseTime,"
+          "linkshellid,"
+          "color "
+        "FROM char_inventory "
+        "LEFT JOIN linkshells ON signature = name "
+        "WHERE charid = %u";
 
 	int32 ret = Sql_Query(SqlHandle, Query, PChar->id);
 
@@ -637,41 +648,24 @@ void LoadInventory(CCharEntity* PChar)
 					luautils::OnItemCheck(PChar, PItem);
 					PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
 				}
-				
 				if ((i == SLOT_MAIN) && (PItem->getType() & ITEM_WEAPON))
 				{
-					PChar->m_Weapons[SLOT_MAIN]->setID(((CItemWeapon*)PItem)->getID());
-					PChar->m_Weapons[SLOT_MAIN]->setDelay(((CItemWeapon*)PItem)->getDelay());
-					PChar->m_Weapons[SLOT_MAIN]->setDamage(((CItemWeapon*)PItem)->getDamage());
-					PChar->m_Weapons[SLOT_MAIN]->setDmgType(((CItemWeapon*)PItem)->getDmgType());
-					PChar->m_Weapons[SLOT_MAIN]->setSkillType(((CItemWeapon*)PItem)->getSkillType()); 
+                    PChar->m_Weapons[SLOT_MAIN] = (CItemWeapon*)PItem;
 
 					PChar->addModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 					PChar->addModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 				}
 				if ((i == SLOT_SUB) && (PItem->getType() & ITEM_WEAPON))
 				{
-					PChar->m_Weapons[SLOT_SUB]->setID(((CItemWeapon*)PItem)->getID());
-					PChar->m_Weapons[SLOT_SUB]->setDelay(((CItemWeapon*)PItem)->getDelay());
-					PChar->m_Weapons[SLOT_SUB]->setDamage(((CItemWeapon*)PItem)->getDamage());
-					PChar->m_Weapons[SLOT_SUB]->setDmgType(((CItemWeapon*)PItem)->getDmgType());
-					PChar->m_Weapons[SLOT_SUB]->setSkillType(((CItemWeapon*)PItem)->getSkillType()); 
+                    PChar->m_Weapons[SLOT_SUB] = (CItemWeapon*)PItem;
 				}
 				if ((i == SLOT_RANGED) && (PItem->getType() & ITEM_WEAPON))
 				{
-					PChar->m_Weapons[SLOT_RANGED]->setID(((CItemWeapon*)PItem)->getID());
-					PChar->m_Weapons[SLOT_RANGED]->setDelay(((CItemWeapon*)PItem)->getDelay());
-					PChar->m_Weapons[SLOT_RANGED]->setDamage(((CItemWeapon*)PItem)->getDamage());
-					PChar->m_Weapons[SLOT_RANGED]->setDmgType(((CItemWeapon*)PItem)->getDmgType());
-					PChar->m_Weapons[SLOT_RANGED]->setSkillType(((CItemWeapon*)PItem)->getSkillType()); 
+                    PChar->m_Weapons[SLOT_RANGED] = (CItemWeapon*)PItem;
 				}
 				if ((i == SLOT_AMMO) && (PItem->getType() & ITEM_WEAPON))
 				{
-					PChar->m_Weapons[SLOT_AMMO]->setID(((CItemWeapon*)PItem)->getID());
-					PChar->m_Weapons[SLOT_AMMO]->setDelay(((CItemWeapon*)PItem)->getDelay());
-					PChar->m_Weapons[SLOT_AMMO]->setDamage(((CItemWeapon*)PItem)->getDamage());
-					PChar->m_Weapons[SLOT_AMMO]->setDmgType(((CItemWeapon*)PItem)->getDmgType());
-					PChar->m_Weapons[SLOT_AMMO]->setSkillType(((CItemWeapon*)PItem)->getSkillType()); 
+                    PChar->m_Weapons[SLOT_AMMO] = (CItemWeapon*)PItem;
 				}
 			}
 		}
@@ -1005,6 +999,113 @@ void DoTrade(CCharEntity* PChar, CCharEntity* PTarget)
 
 /************************************************************************
 *																		*
+*  Снимаем с персонажа экипированный предмет без обновления внешного	*
+*  вида. Используется как вспомогательная функция в связке с другими	*
+*																		*
+************************************************************************/
+
+void UnequipItem(CCharEntity* PChar, uint8 equipSlotID) // private
+{
+	CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[equipSlotID]);
+
+	if((PItem != NULL) && (PItem->getType() & ITEM_ARMOR)) 
+	{
+		switch(((CItemArmor*)PItem)->getRemoveSlotId()) 
+		{
+			case SLOT_HEAD:  PChar->look.head  = 0; break;
+			case SLOT_HANDS: PChar->look.hands = 0; break;
+			case SLOT_FEET:  PChar->look.feet  = 0; break;
+		}
+		
+		uint8 slotID = PChar->equip[equipSlotID];
+		//todo: issues as item 0 reference is being handled as a real equipment piece
+		//      thought to be source of nin bug
+		PChar->equip[equipSlotID] = 0;
+
+		if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
+		{
+			PChar->m_EquipFlag = 0;
+			luautils::OnItemCheck(PChar, PItem);
+
+			for(uint8 i = 0; i < 16; ++i) 
+			{
+				CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[i]);
+
+				if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+				{
+					PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
+				}
+			}
+		}
+
+		PItem->setSubType(ITEM_UNLOCKED);
+		
+		PChar->delModifiers(&((CItemArmor*)PItem)->modList);
+
+		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
+		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
+
+		switch(equipSlotID)
+		{
+			case SLOT_HEAD:   PChar->look.head  = 0; break;
+			case SLOT_BODY:   PChar->look.body  = 0; break;
+			case SLOT_HANDS:  PChar->look.hands = 0; break;
+			case SLOT_LEGS:   PChar->look.legs  = 0; break;
+			case SLOT_FEET:   PChar->look.feet  = 0; break;
+			case SLOT_SUB:	  
+            {
+				PChar->look.sub = 0; 
+				PChar->m_Weapons[SLOT_MAIN] = (PChar->GetMJob() == JOB_MNK ? 
+                    itemutils::GetUnarmedH2HItem() : 
+                    itemutils::GetUnarmedItem());
+            }
+			break;
+			case SLOT_AMMO:
+			case SLOT_RANGED:
+			{
+				if (PChar->equip[SLOT_RANGED] == 0)
+				{
+					PChar->look.ranged = 0;
+				}
+				PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
+			}
+		    break;
+			case SLOT_MAIN:
+			{
+				if (PItem->getType() & ITEM_WEAPON) 
+				{
+					if (((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
+					{
+						PChar->look.sub = 0;
+					}
+					PChar->delModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
+					PChar->delModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
+				}
+
+				PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
+				if ((PItem != NULL) && (PItem->getType() & ITEM_WEAPON))
+				{
+					UnequipItem(PChar, SLOT_SUB);
+				}
+
+				if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
+				{
+					PChar->PBattleAI->SetLastActionTime(gettick());
+				}
+
+				PChar->look.main = 0;
+                PChar->m_Weapons[SLOT_MAIN] = (PChar->GetMJob() == JOB_MNK ? 
+                    itemutils::GetUnarmedH2HItem() : 
+                    itemutils::GetUnarmedItem());
+			}
+			break;
+		}
+	}
+}
+
+/************************************************************************
+*																		*
 *  Пытаемся экипировать предмет с соблюдением всех условий	 			*
 *																		*
 ************************************************************************/
@@ -1052,7 +1153,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						case SKILL_STF:
 						{
 							CItemArmor* armor = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
-							if ((armor != NULL) && (armor->getType() & ITEM_ARMOR) && !(armor->getType() & ITEM_WEAPON))
+							if ((armor != NULL) && (armor->getType() & ITEM_ARMOR))
 							{
 								UnequipItem(PChar,SLOT_SUB);
 							}
@@ -1061,19 +1162,16 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 								PChar->look.sub = PItem->getModelId() + 0x1000;
 							}
 						}
-							break;
+						break;
 					}
 					if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
 					{
 						PChar->PBattleAI->SetLastActionTime(gettick());
 					}
-
-					PChar->m_Weapons[SLOT_MAIN]->setID(((CItemWeapon*)PItem)->getID());
-					PChar->m_Weapons[SLOT_MAIN]->setDelay(((CItemWeapon*)PItem)->getDelay());
-					PChar->m_Weapons[SLOT_MAIN]->setDamage(((CItemWeapon*)PItem)->getDamage());
-					PChar->m_Weapons[SLOT_MAIN]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
-					PChar->m_Weapons[SLOT_MAIN]->setSkillType(((CItemWeapon*)PItem)->getSkillType());
-					if(!PChar->m_Weapons[SLOT_MAIN]->isTwoHanded()){
+                    PChar->m_Weapons[SLOT_MAIN] = (CItemWeapon*)PItem;
+					
+					if (!PChar->m_Weapons[SLOT_MAIN]->isTwoHanded())
+                    {
 						PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HASSO);
 						PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEIGAN);
 					}
@@ -1082,7 +1180,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				}
 				PChar->look.main = PItem->getModelId();
 			}
-				break;
+			break;
 			case SLOT_SUB:
 			{
 				CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
@@ -1092,7 +1190,9 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 					{
 						return false;
 					}
-				}else{
+				}
+                else
+                {
 					switch (weapon->getSkillType())
 					{
 						case SKILL_H2H:
@@ -1113,16 +1213,10 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 								PChar->pushPacket(new CCharAppearancePacket(PChar));
 								return false;
 							}
-							
-							PChar->m_Weapons[SLOT_SUB]->setType(ITEM_WEAPON);	
-							PChar->m_Weapons[SLOT_SUB]->setID(((CItemWeapon*)PItem)->getID());
-							PChar->m_Weapons[SLOT_SUB]->setDelay(((CItemWeapon*)PItem)->getDelay());
-							PChar->m_Weapons[SLOT_SUB]->setDamage(((CItemWeapon*)PItem)->getDamage());
-							PChar->m_Weapons[SLOT_SUB]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
-							PChar->m_Weapons[SLOT_SUB]->setSkillType(((CItemWeapon*)PItem)->getSkillType());
+							PChar->m_Weapons[SLOT_SUB] = (CItemWeapon*)PItem;
 
 						}
-							break;
+						break;
 						default:
 						{
 							if (!(PItem->getType() & ITEM_WEAPON))
@@ -1134,7 +1228,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				}
 				PChar->look.sub = PItem->getModelId();
 			}
-				break;
+			break;
 			case SLOT_RANGED:
 			{
 				if (PItem->getType() & ITEM_WEAPON)
@@ -1147,17 +1241,11 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 							UnequipItem(PChar,SLOT_AMMO);
 						}
 					}
-					PChar->m_Weapons[SLOT_RANGED]->setType(ITEM_WEAPON);	
-					PChar->m_Weapons[SLOT_RANGED]->setID(((CItemWeapon*)PItem)->getID());
-					PChar->m_Weapons[SLOT_RANGED]->setDelay(((CItemWeapon*)PItem)->getDelay());
-					PChar->m_Weapons[SLOT_RANGED]->setDamage(((CItemWeapon*)PItem)->getDamage());
-					PChar->m_Weapons[SLOT_RANGED]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
-					PChar->m_Weapons[SLOT_RANGED]->setSkillType(((CItemWeapon*)PItem)->getSkillType());
+                    PChar->m_Weapons[SLOT_RANGED] = (CItemWeapon*)PItem;
 				}
 				PChar->look.ranged = PItem->getModelId();
-				
 			}
-				break;
+			break;
 			case SLOT_AMMO:
 			{
 				if (PItem->getType() & ITEM_WEAPON)
@@ -1174,17 +1262,10 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 					{
 						PChar->look.ranged = PItem->getModelId();
 					}
-					if(PChar->m_Weapons[SLOT_AMMO]!=NULL){
-						PChar->m_Weapons[SLOT_AMMO]->setType(ITEM_WEAPON);	
-						PChar->m_Weapons[SLOT_AMMO]->setID(((CItemWeapon*)PItem)->getID());
-						PChar->m_Weapons[SLOT_AMMO]->setDelay(((CItemWeapon*)PItem)->getDelay());
-						PChar->m_Weapons[SLOT_AMMO]->setDamage(((CItemWeapon*)PItem)->getDamage());
-						PChar->m_Weapons[SLOT_AMMO]->setDmgType(((CItemWeapon*)PItem)->getDmgType());	
-						PChar->m_Weapons[SLOT_AMMO]->setSkillType(((CItemWeapon*)PItem)->getSkillType());
-					}
+					PChar->m_Weapons[SLOT_AMMO] = (CItemWeapon*)PItem;
 				}
 			}
-				break;
+			break;
 			case SLOT_HEAD: 
 			{
 				CItemArmor* armor = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_BODY]);
@@ -1197,57 +1278,61 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				}
 				PChar->look.head = PItem->getModelId();
 			}
-				break;
+			break;
 			case SLOT_BODY:
 			{
-				if (PItem->getRemoveSlotId() == SLOT_HANDS){
+				if (PItem->getRemoveSlotId() == SLOT_HANDS)
+                {
 					PChar->look.hands = 157;
 				}
 				PChar->look.body = PItem->getModelId();
 			}
-				break;
+			break;
 			case SLOT_HANDS: 
 			{
 				CItemArmor* armor = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_BODY]);
 				if ((armor != NULL) && (armor->getType() & ITEM_ARMOR))
 				{
 					uint8 removeSlotID = armor->getRemoveSlotId();
-					if(removeSlotID == SLOT_HANDS) {
+					if(removeSlotID == SLOT_HANDS) 
+                    {
 						UnequipItem(PChar,SLOT_BODY);
 					}
 				}
 				PChar->look.hands = PItem->getModelId();
 			}
-				break;
+			break;
 			case SLOT_LEGS:
 			{
-				if(PItem->getRemoveSlotId() == SLOT_FEET) {
+				if(PItem->getRemoveSlotId() == SLOT_FEET) 
+                {
 					PChar->look.feet = 157;
 				}
 				PChar->look.legs = PItem->getModelId();
 			}
-				break;
+			break;
 			case SLOT_FEET: 
 			{
 				CItemArmor* armor = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LEGS]);
 				if ((armor != NULL) && (armor->getType() & ITEM_ARMOR))
 				{
 					uint8 removeSlotID = armor->getRemoveSlotId();
-					if (removeSlotID == SLOT_FEET) {
+					if (removeSlotID == SLOT_FEET) 
+                    {
 						UnequipItem(PChar, SLOT_LEGS);
 					}
 				}
 				PChar->look.feet = PItem->getModelId();
 			}
-				break;
+			break;
 		}
 		PChar->equip[equipSlotID] = slotID;
-
-	} else {
+	} 
+    else 
+    {
 		ShowWarning(CL_YELLOW"Item %i is not equipable in equip slot %i\n" CL_RESET, PItem->getID(), equipSlotID);
 		return false;
 	}
-
 	return true;
 }
 
@@ -1307,118 +1392,6 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
     PChar->UpdateHealth();
 	PChar->pushPacket(new CCharHealthPacket(PChar));
 
-    // TODO: зачем нам это делать при смене экипировки, отличной от оружия ?
-	BuildingCharWeaponSkills(PChar);
-	SaveCharEquip(PChar);
-}
-
-/************************************************************************
-*																		*
-*  Снимаем с персонажа экипированный предмет без обновления внешного	*
-*  вида. Используется как вспомогательная функция в связке с другими	*
-*																		*
-************************************************************************/
-
-void UnequipItem(CCharEntity* PChar, uint8 equipSlotID) 
-{
-	CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[equipSlotID]);
-
-	if((PItem != NULL) && (PItem->getType() & ITEM_ARMOR)) 
-	{
-		switch(((CItemArmor*)PItem)->getRemoveSlotId()) 
-		{
-			case SLOT_HEAD:  PChar->look.head  = 0; break;
-			case SLOT_HANDS: PChar->look.hands = 0; break;
-			case SLOT_FEET:  PChar->look.feet  = 0; break;
-		}
-		
-		uint8 slotID = PChar->equip[equipSlotID];
-		//todo: issues as item 0 reference is being handled as a real equipment piece
-		//      thought to be source of nin bug
-		PChar->equip[equipSlotID] = 0;
-
-		if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
-		{
-			PChar->m_EquipFlag = 0;
-			luautils::OnItemCheck(PChar, PItem);
-
-			for(uint8 i = 0; i < 16; ++i) 
-			{
-				CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[i]);
-
-				if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
-				{
-					PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
-				}
-			}
-		}
-
-		PItem->setSubType(ITEM_UNLOCKED);
-		
-		PChar->delModifiers(&((CItemArmor*)PItem)->modList);
-
-		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
-		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
-
-		switch(equipSlotID)
-		{
-			case SLOT_HEAD:   PChar->look.head   = 0; break;
-			case SLOT_BODY:   PChar->look.body   = 0; break;
-			case SLOT_HANDS:  PChar->look.hands  = 0; break;
-			case SLOT_LEGS:   PChar->look.legs   = 0; break;
-			case SLOT_FEET:   PChar->look.feet   = 0; break;
-			case SLOT_SUB:	  
-				PChar->look.sub    = 0; 
-				PChar->m_Weapons[SLOT_SUB]->setDelay(8000);
-				PChar->m_Weapons[SLOT_SUB]->setDamage(0);
-				PChar->m_Weapons[SLOT_SUB]->setID(0);
-				PChar->m_Weapons[SLOT_SUB]->setDmgType(DAMAGE_NONE);
-                PChar->m_Weapons[SLOT_SUB]->setSkillType((PChar->GetMJob() == JOB_MNK ? SKILL_H2H : 0));
-				break;
-			case SLOT_AMMO:
-			case SLOT_RANGED:
-			{
-				if (PChar->equip[SLOT_RANGED] == 0)
-				{
-					PChar->look.ranged = 0;
-				}
-				PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
-			}
-		    break;
-			case SLOT_MAIN:
-			{
-				if (PItem->getType() & ITEM_WEAPON) 
-				{
-					if (((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
-					{
-						PChar->look.sub = 0;
-					}
-					PChar->delModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
-					PChar->delModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
-				}
-
-				PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
-
-				if ((PItem != NULL) && (PItem->getType() & ITEM_WEAPON))
-				{
-					UnequipItem(PChar, SLOT_SUB);
-				}
-
-				if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
-				{
-					PChar->PBattleAI->SetLastActionTime(gettick());
-				}
-
-				PChar->look.main = 0;
-				PChar->m_Weapons[SLOT_MAIN]->setDelay(8000);
-				PChar->m_Weapons[SLOT_MAIN]->setDamage(0);
-				PChar->m_Weapons[SLOT_MAIN]->setDmgType(DAMAGE_NONE);
-                PChar->m_Weapons[SLOT_MAIN]->setSkillType((PChar->GetMJob() == JOB_MNK ? SKILL_H2H : 0));
-			}
-			break;
-		}
-	}
-
 	BuildingCharWeaponSkills(PChar);
 	SaveCharEquip(PChar);
 }
@@ -1450,6 +1423,8 @@ void CheckValidEquipment(CCharEntity* PChar)
         PChar->pushPacket(new CEquipPacket(0, slotID));
 	}
 	PChar->pushPacket(new CCharAppearancePacket(PChar));
+
+    BuildingCharWeaponSkills(PChar);
 	SaveCharEquip(PChar);
 }
 
@@ -1467,8 +1442,9 @@ void RemoveAllEquipment(CCharEntity* PChar)
         }
         PChar->pushPacket(new CEquipPacket(0, slotID));
     }
-
     PChar->pushPacket(new CCharAppearancePacket(PChar));
+
+    BuildingCharWeaponSkills(PChar);
     SaveCharEquip(PChar);
 }
 

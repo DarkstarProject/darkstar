@@ -55,7 +55,9 @@ CCharEntity::CCharEntity()
     memset(& equip, 0, sizeof(equip));
 	memset(& RealSkills,   0, sizeof(RealSkills));
     memset(& RegionPoints, 0, sizeof(RegionPoints));
-    memset(& nationtp, 0, sizeof(nationtp));
+    memset(& nationtp,  0, sizeof(nationtp));
+    memset(& expChain,  0, sizeof(expChain));
+    memset(& nameflags, 0, sizeof(nameflags));
 
 	memset(& m_SpellList, 0, sizeof(m_SpellList));
 	memset(& m_ZonesList, 0, sizeof(m_ZonesList));
@@ -90,15 +92,12 @@ CCharEntity::CCharEntity()
     m_hasAutoTarget    = 1;
 	m_InsideRegionID   = 0;
 	m_LevelRestriction = 0;
-	expChain.chainNumber = 0;
-	expChain.chainTime = 0;
 	m_insideBCNM = false;
 	m_lastBcnmTimePrompt = 0;
 	m_AHHistoryTimestamp = 0;
 
 	m_EquipFlag  = 0;
     m_EquipBlock = 0;
-	nameflags.flags = 0;
 
     BazaarID.clean();
     TradePending.clean();
@@ -139,28 +138,24 @@ bool CCharEntity::isPacketListEmpty()
 	return PacketList.empty();
 }
 
-int32 CCharEntity::clearPacketList() 
+void CCharEntity::clearPacketList() 
 {
 	while(!PacketList.empty())
 	{
-	   CBasicPacket *PPacket = popPacket();
-	   if( PPacket )
-	       delete PPacket;
+	   delete popPacket();
 	}
-	return 0;
 }
 
-int32 CCharEntity::pushPacket(CBasicPacket* packet) 
+void CCharEntity::pushPacket(CBasicPacket* packet) 
 {
 	PacketList.push_back(packet);
-	return 0;
 }
 
 CBasicPacket* CCharEntity::popPacket() 
 {
-	CBasicPacket* copiedPacket = PacketList.front();
+	CBasicPacket* PPacket = PacketList.front();
 	PacketList.pop_front();
-	return copiedPacket;
+	return PPacket;
 }
 
 /************************************************************************

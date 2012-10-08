@@ -94,6 +94,7 @@ enum JOBTYPE
 
 enum SKILLTYPE
 {
+    SKILL_NON           = 0,
 	SKILL_H2H			= 1,
 	SKILL_DAG			= 2,
 	SKILL_SWD			= 3,

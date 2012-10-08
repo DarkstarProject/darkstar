@@ -29,7 +29,6 @@
 
 #include "battleentity.h"
 #include "battleutils.h"
-#include "../common/timer.h"
 
 CBattleEntity::CBattleEntity() 
 {

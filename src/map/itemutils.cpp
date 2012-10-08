@@ -23,16 +23,20 @@
 
 #include <string.h>
 
+#include "battleentity.h"
 #include "map.h"
 #include "itemutils.h"
 
 #define MAX_ITEMID  20000
 #define MAX_DROPID  4500
-#define MAX_LOOTID  1300 //was 20, changed to hold 1000+ bcnm loot id's
+#define MAX_LOOTID  1300
 
 CItem *		g_pItemList[MAX_ITEMID];    // глобальный массив указателей на игровые предметы
 DropList_t* g_pDropList[MAX_DROPID];    // глобальный массив списков выпадающих предметов
 LootList_t* g_pLootList[MAX_LOOTID];
+
+CItemWeapon* PUnarmedItem;
+CItemWeapon* PUnarmedH2HItem;
 
 /************************************************************************
 *                                                                       *
@@ -187,7 +191,23 @@ namespace itemutils
 	    }
         ShowWarning(CL_CYAN"ItemID %u too big\n" CL_RESET, ItemID);
 	    return NULL;
-    }	
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *                                                                       *
+    *                                                                       *
+    ************************************************************************/
+
+    CItemWeapon* GetUnarmedItem()
+    {
+        return PUnarmedItem;
+    }
+
+    CItemWeapon* GetUnarmedH2HItem()
+    {
+        return PUnarmedH2HItem;
+    }
 
     /************************************************************************
     *                                                                       *
@@ -390,6 +410,7 @@ namespace itemutils
 	    }
 		
 		//Handles loot from BCNM chests and other NPCs that drop things into the loot pool instead of adding them directly to the inventory
+
 		ret = Sql_Query(SqlHandle, "SELECT LootDropId, itemId, rolls, lootGroupId FROM bcnm_loot WHERE LootDropId < %u;", MAX_LOOTID);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
@@ -412,6 +433,17 @@ namespace itemutils
                 g_pLootList[LootID]->push_back(LootItem);
 		    }
 		}
+
+
+        PUnarmedItem = new CItemWeapon(0);
+
+		PUnarmedItem->setDmgType(DAMAGE_NONE);
+        PUnarmedItem->setSkillType(SKILL_NON);
+
+        PUnarmedH2HItem = new CItemWeapon(0);
+
+        PUnarmedItem->setDmgType(DAMAGE_HTH);
+        PUnarmedItem->setSkillType(SKILL_H2H);
     }
 
     /************************************************************************

@@ -34,10 +34,10 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
 {
 	setType(ITEM_WEAPON);
 
-	m_skillType = SKILL_H2H;
+	m_skillType = SKILL_NON;
 	m_damage	= 0;
     m_effect    = 0;
-	m_dmgType	= DAMAGE_HTH;
+	m_dmgType	= DAMAGE_NONE;
 	m_delay		= 8000;
     m_maxHit    = 0;
     m_twoHanded = false;

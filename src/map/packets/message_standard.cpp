@@ -41,7 +41,7 @@ CMessageStandardPacket::CMessageStandardPacket(uint16 MessageID)
 CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint32 param1, uint16 MessageID)
 {
 	this->type = 0x09;
-	this->size = 0x10;
+	this->size = 0x12;
 
 	WBUFW(data,(0x0A)-4) = MessageID;
 

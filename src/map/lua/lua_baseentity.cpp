@@ -3639,7 +3639,7 @@ inline int32 CLuaBaseEntity::lockEquipSlot(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    charutils::UnequipItem(PChar, SLOT);
+    charutils::EquipItem(PChar, 0, SLOT);
     
     PChar->m_EquipBlock |= 1 << SLOT;
     PChar->pushPacket(new CCharAppearancePacket(PChar));

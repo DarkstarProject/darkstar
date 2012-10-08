@@ -196,8 +196,8 @@ public:
     uint8            GetGender();                   // узнаем пол персонажа
 
 	int32			 firstPacketSize();				// размер первого пакета в PacketList
-	int32			 clearPacketList();				// отчистка PacketList
-	int32			 pushPacket(CBasicPacket*);		// добавление копии пакета в PacketList
+    void             clearPacketList();             // отчистка PacketList
+    void             pushPacket(CBasicPacket*);     // добавление копии пакета в PacketList
 	bool			 isPacketListEmpty();			// проверка размера PacketList
 	CBasicPacket*	 popPacket();					// получение первого пакета из PacketList
 

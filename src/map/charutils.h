@@ -75,7 +75,6 @@ namespace charutils
 	void	CheckValidEquipment(CCharEntity* PChar);
 	void	CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param);
 	void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
-	void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID);
     void    UpdateHealth(CCharEntity* PChar);
 	uint8   checkMultiHits(CCharEntity* PChar, uint16 weaponid); //returns the number of hits for multihit weapons if applicable
 
