@@ -70,9 +70,9 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	    {
 		    lscolor_t LSColor = linkshell->GetLSColor();
 		
-		    WBUFB(data,(0x31)-4) = LSColor.R << 4;
-		    WBUFB(data,(0x32)-4) = LSColor.G << 4;
-		    WBUFB(data,(0x33)-4) = LSColor.B << 4;
+		    WBUFB(data,(0x31)-4) = (LSColor.R << 4) + 15;
+		    WBUFB(data,(0x32)-4) = (LSColor.G << 4) + 15;
+		    WBUFB(data,(0x33)-4) = (LSColor.B << 4) + 15;
 	    }
     }
 	if (PChar->PPet != NULL)

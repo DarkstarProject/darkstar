@@ -2802,7 +2802,10 @@ void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* dat
     if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
     {
         CItemLinkshell* PItemLinkPearl = new CItemLinkshell(*PItemLinkshell);
-		if(PItemLinkPearl->GetLSType()==LSTYPE_PEARLSACK || PItemLinkPearl->GetLSType()==LSTYPE_LINKSHELL){
+
+		if (PItemLinkPearl->GetLSType() == LSTYPE_PEARLSACK || 
+            PItemLinkPearl->GetLSType() == LSTYPE_LINKSHELL)
+        {
 			PItemLinkPearl->setID(515);
 			PItemLinkPearl->setSubType(ITEM_UNLOCKED);
 

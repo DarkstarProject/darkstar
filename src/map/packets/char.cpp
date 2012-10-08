@@ -85,9 +85,9 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 			    {
 				    lscolor_t LSColor = linkshell->GetLSColor();
 		
-				    WBUFB(data,(0x24)-4) = LSColor.R << 4;
-				    WBUFB(data,(0x25)-4) = LSColor.G << 4;
-				    WBUFB(data,(0x26)-4) = LSColor.B << 4;
+				    WBUFB(data,(0x24)-4) = (LSColor.R << 4) + 15;
+				    WBUFB(data,(0x25)-4) = (LSColor.G << 4) + 15;
+				    WBUFB(data,(0x26)-4) = (LSColor.B << 4) + 15;
 			    }
             }
             WBUFB(data,(0x27)-4) = PChar->m_PVPFlag;
