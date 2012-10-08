@@ -198,8 +198,23 @@ uint8 CItemWeapon::getHitCount()
 		    else if(distribution < 90){ num+=3; break; }
 		    else{ num+=4; break; }
 		    break;
-        case 6: break;
-        case 7: break;
+        case 6: // cdf = 10,30,50,70,90,100
+            if(distribution < 10){ break; }
+		    else if(distribution < 30){num+=1; break; }
+		    else if(distribution < 50){num+=2; break; }
+		    else if(distribution < 70){num+=3; break; }
+		    else if(distribution < 90){num+=4; break; }
+		    else{ num+=5; break; }
+            break;
+        case 7: // cdf = 5,20,45,70,85,95,100
+            if(distribution < 5){ break; }
+		    else if(distribution < 20){num+=1; break; }
+		    else if(distribution < 45){num+=2; break; }
+		    else if(distribution < 70){num+=3; break; }
+		    else if(distribution < 85){num+=4; break; }
+		    else if(distribution < 95){num+=5; break; }
+		    else{ num+=6; break; }
+            break;
         case 8: // cdf = 5,20,45,70,85,95,98,100
 		    if(distribution < 5){ break; }
 		    else if(distribution < 20){num+=1; break; }
