@@ -3,9 +3,9 @@ armory crates
 17346597 - horns of war
 17346601 - horns of war
 17346605 - horns of war
-17346608
-17346611
-17346614
+17346608 - Double Dragonian
+17346611 - Double Dragonian
+17346614 - Double Dragonian
 17346624
 17346634
 17346644
