@@ -70,7 +70,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 			    WBUFL(data,(0x19)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;   // таймер задержки использования
             }
 		}
-        memcpy(data+(0x1D)-4, PItem->getSignature(), cap_value(strlen(PItem->getSignature()), 0, 12));
+        memcpy(data+(0x1D)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 12));
 
 		switch (PItem->getType()) 
 		{
@@ -97,7 +97,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
                 WBUFW(data,(0x17)-4) = ((CItemLinkshell*)PItem)->GetLSRawColor();
                 WBUFB(data,(0x19)-4) = ((CItemLinkshell*)PItem)->GetLSType();
 
-                memcpy(data+(0x1A)-4, PItem->getSignature(), cap_value(strlen(PItem->getSignature()), 0, 15));
+                memcpy(data+(0x1A)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 15));
             }
 			break;
 		}

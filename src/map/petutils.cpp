@@ -260,14 +260,14 @@ void LoadAvatarStats(CPetEntity* PChar)
 	uint8 race = 0;					//Human
 	
 	// Расчет прироста HP от main job
-	int32 mainLevelOver30 = cap_value(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
+	int32 mainLevelOver30 = dsp_cap(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
 	int32 mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59 );			// Первый режим рассчета до 60 уровня (Используется так же и для MP)
-	int32 mainLevelOver60To75 = cap_value(mlvl - 60, 0, 15);		// Второй режим расчета после 60 уровня
+	int32 mainLevelOver60To75 = dsp_cap(mlvl - 60, 0, 15);		// Второй режим расчета после 60 уровня
 	int32 mainLevelOver75 = (mlvl < 75 ? 0 : mlvl - 75);			// Третий режим расчета после 75 уровня
 
 	//Расчет бонусного количества HP
 	int32 mainLevelOver10 = (mlvl < 10 ? 0 : mlvl - 10);			// +2HP на каждом уровне после 10
-	int32 mainLevelOver50andUnder60 = cap_value(mlvl - 50, 0, 10);	// +2HP на каждом уровне в промежутке от 50 до 60 уровня
+	int32 mainLevelOver50andUnder60 = dsp_cap(mlvl - 50, 0, 10);	// +2HP на каждом уровне в промежутке от 50 до 60 уровня
 	int32 mainLevelOver60 = (mlvl < 60 ? 0 : mlvl - 60);
 
 	// Расчет raceStat jobStat bonusStat sJobStat

@@ -77,7 +77,7 @@ uint32 CItemUsable::getLastUseTime()
 
 void CItemUsable::setCurrentCharges(uint8 CurrCharges)
 {
-	m_CurrCharges = cap_value(CurrCharges, 0, m_MaxCharges);
+	m_CurrCharges = dsp_cap(CurrCharges, 0, m_MaxCharges);
 }
 
 uint8 CItemUsable::getCurrentCharges()

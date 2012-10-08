@@ -267,6 +267,7 @@ typedef char bool;
 
 #define dsp_max(a,b) (((a) > (b)) ? (a) : (b))
 #define dsp_min(a,b) (((a) < (b)) ? (a) : (b))
+#define dsp_cap(a, min, max) ((a >= max) ? max : (a <= min) ? min : a)	// caps values to min/max
 
 //////////////////////////////////////////////////////////////////////////
 // should not happen

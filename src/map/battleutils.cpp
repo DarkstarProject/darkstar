@@ -126,11 +126,11 @@ void LoadSkillTable()
 	{
 		for (uint32 x = 0; x < MAX_SKILLTYPE && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
 		{
-			uint8 SkillID = cap_value((uint8)Sql_GetIntData(SqlHandle,0), 0, MAX_SKILLTYPE-1);
+			uint8 SkillID = dsp_cap((uint8)Sql_GetIntData(SqlHandle,0), 0, MAX_SKILLTYPE-1);
 
 			for (uint32 y = 1; y < MAX_JOBTYPE; ++y) 
 			{
-				g_SkillRanks[SkillID][y] = cap_value((uint16)Sql_GetIntData(SqlHandle,y), 0, 11);
+				g_SkillRanks[SkillID][y] = dsp_cap((uint16)Sql_GetIntData(SqlHandle,y), 0, 11);
 			}
 		}
 	}
@@ -528,7 +528,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	uint8 chance = 95;
 	if(PDefender->GetMLevel() > PAttacker->GetMLevel()){
 		chance -= 5*(PDefender->GetMLevel() - PAttacker->GetMLevel());
-		chance = cap_value(chance,5,95);
+		chance = dsp_cap(chance,5,95);
 	}
 	if(rand()%100 >= chance){return;}
 	if(PAmmo==NULL){return;}
@@ -544,7 +544,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->flag = 3;
 			//calculate damage
 			uint8 damage = (PAttacker->AGI() - PDefender->AGI())/2;
-			damage = cap_value(damage,0,50);
+			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
@@ -562,7 +562,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->flag = 1;
 			//calculate damage
 			uint8 damage = (PAttacker->VIT() - PDefender->VIT())/2;
-			damage = cap_value(damage,0,50);
+			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
@@ -580,7 +580,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->flag = 1;
 			//calculate damage
 			uint8 damage = (PAttacker->MND() - PDefender->MND())/2;
-			damage = cap_value(damage,0,50);
+			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
@@ -597,7 +597,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->submessageID = 160;
 			Action->flag = 3;
 			int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel());
-			duration = cap_value(duration,1,25);
+			duration = dsp_cap(duration,1,25);
 			PDefender->StatusEffectContainer->AddStatusEffect(
 					new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration));
 			}
@@ -626,7 +626,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->flag = 3;
 			//calculate damage
 			uint8 damage = (PAttacker->MND() - PDefender->MND())/2;
-			damage = cap_value(damage,0,50);
+			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
@@ -642,7 +642,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->flag = 3;
 			int damage = (PAttacker->INT() - PDefender->INT())/2;
 			damage += (PAttacker->GetMLevel() - PDefender->GetMLevel());
-			damage = cap_value(damage,0,50);
+			damage = dsp_cap(damage,0,50);
 			damage += PAttacker->GetMLevel()/2;
 			damage += rand()%20; //At 75 -> 37~56 low or 87~106 high
 			Action->subparam  = damage;
@@ -685,7 +685,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->submessageID = 160;
 			Action->flag = 3;
 			int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel());
-			duration = cap_value(duration,1,25);
+			duration = dsp_cap(duration,1,25);
 			PDefender->StatusEffectContainer->AddStatusEffect(
 					new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration));
 			}
@@ -712,7 +712,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->flag = 3;
 			//calculate damage
 			uint8 damage = (PAttacker->DEX() - PDefender->DEX())/2;
-			damage = cap_value(damage,0,50);
+			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
@@ -730,7 +730,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->flag = 1;
 			//calculate damage
 			uint8 damage = (PAttacker->INT() - PDefender->INT())/2;
-			damage = cap_value(damage,0,50);
+			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
@@ -748,7 +748,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->flag = 3;
 			//calculate damage
 			uint8 damage = (PAttacker->INT() - PDefender->INT())/2;
-			damage = cap_value(damage,0,50);
+			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
@@ -781,7 +781,7 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 
 	int eva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PDefender->AGI()/2;
 	hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
-	uint8 finalhitrate = cap_value(hitrate, 20, 95);
+	uint8 finalhitrate = dsp_cap(hitrate, 20, 95);
 	return finalhitrate;
 }
 
@@ -948,7 +948,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 			//TODO: HANDLE OCHAIN
 			if(PItem->getShieldSize()==5){return 65;}//aegis, presume capped? need info.
 			//65% cap
-			return cap_value(chance,5,65);
+			return dsp_cap(chance,5,65);
 		}
 	}
 
@@ -970,7 +970,7 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
             int skill = PDefender->GetSkill(SKILL_PAR) + PDefender->getMod(MOD_PARRY); //max A-, so need gear+ for 20% parry
             int max = GetMaxSkill(SKILL_SHL, JOB_PLD, PDefender->GetMLevel()); //A+ skill
             int chance = 20 * ((double)skill / (double)max);
-            return cap_value(chance, 1, 20);//20% max parry rate
+            return dsp_cap(chance, 1, 20);//20% max parry rate
         }
     }
 
@@ -988,7 +988,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
         int skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD);
         int max = GetMaxSkill(SKILL_SHL, JOB_PLD, PDefender->GetMLevel());
         int chance = 20 * ((double)skill / (double)max);
-        return cap_value(chance, 1, 20);
+        return dsp_cap(chance, 1, 20);
     }
 
     return 0;
@@ -1160,7 +1160,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		PAttacker->addTP(tpMultiplier*(baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP))));
 		//PAttacker->addTP(20);
 		//account for attacker's subtle blow which reduces the baseTP gain for the defender
-		baseTp = baseTp * ((100.0f - cap_value((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
+		baseTp = baseTp * ((100.0f - dsp_cap((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
 
 		//mobs hit get basetp+3 whereas pcs hit get basetp/3
 		if(PDefender->objtype == TYPE_PC){
@@ -1263,7 +1263,7 @@ uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 		
 		hitrate = hitrate + (attackeracc - defendereva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
-		hitrate = cap_value(hitrate, 20, 95);
+		hitrate = dsp_cap(hitrate, 20, 95);
     }
 	return (uint8)hitrate;
 }
@@ -1289,7 +1289,7 @@ uint8 GetHitRateAccOffset(CBattleEntity* PAttacker, CBattleEntity* PDefender, ui
 		
 		hitrate = hitrate + (attackeracc - defendereva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
-		hitrate = cap_value(hitrate, 20, 95);
+		hitrate = dsp_cap(hitrate, 20, 95);
     }
 	return (uint8)hitrate;
 }
@@ -1321,10 +1321,10 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ig
 		int32 attackerdex = PAttacker->DEX();
 		int32 defenderagi = PDefender->AGI();
 
-		int32 dDEX = cap_value(attackerdex - defenderagi,0,50);
+		int32 dDEX = dsp_cap(attackerdex - defenderagi,0,50);
 
 		crithitrate += (dDEX * 30) / 100 + PAttacker->getMod(MOD_CRITHITRATE) + PDefender->getMod(MOD_ENEMYCRITRATE);
-		crithitrate  = cap_value(crithitrate,0,100);
+		crithitrate  = dsp_cap(crithitrate,0,100);
 	}
 	return (uint8)crithitrate;
 }
@@ -1360,7 +1360,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 	}
 
 
-	ratio = cap_value(ratio,0,cap);
+	ratio = dsp_cap(ratio,0,cap);
 	//2hs have more of a 'buffer' (0.2 more) for level correction than 1hs
 	float cRatio = ratio;
 	if(PAttacker->objtype == TYPE_PC) 
@@ -1371,7 +1371,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 		}
 	}
 	//but its still capped
-	cRatio = cap_value(cRatio,0,2);
+	cRatio = dsp_cap(cRatio,0,2);
 
 	if(cap==2.0f){//1h weapon algorithm source: PChan @ BG (aka reliable)
 		if((0 <= cRatio) && (cRatio < 0.5)) {
@@ -1544,7 +1544,7 @@ bool SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
 
 bool IsParalised(CBattleEntity* PAttacker)
 {
-	return (rand()%100 < cap_value(PAttacker->getMod(MOD_PARALYZE) - PAttacker->getMod(MOD_PARALYZERES), 0, 100));
+	return (rand()%100 < dsp_cap(PAttacker->getMod(MOD_PARALYZE) - PAttacker->getMod(MOD_PARALYZERES), 0, 100));
 }
 
 /*****************************************************************************

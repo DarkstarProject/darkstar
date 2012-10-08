@@ -232,19 +232,51 @@ namespace itemutils
 	    memset(g_pItemList,0,sizeof(g_pItemList));
 	    memset(g_pDropList,0,sizeof(g_pDropList));
 
-	    const int8* fmtQuery = "SELECT b.itemId, b.name, b.stackSize, b.flags, b.aH, b.BaseSell, \
-								       u.subid, u.validTargets, u.activation, u.animation, u.animationTime, u.maxCharges, u.useDelay, u.reuseDelay, u.aoe, \
-								       a.level, a.jobs, a.MId, a.shieldSize, a.scriptType, a.slot, a.rslot, \
-								       w.skill, w.delay, w.dmg, w.dmgType, \
-								       f.storage, f.moghancement, f.element, f.aura \
-							    FROM item_basic AS b \
-							    LEFT JOIN item_usable AS u USING (itemId) \
-							    LEFT JOIN item_armor  AS a USING (itemId) \
-							    LEFT JOIN item_weapon AS w USING (itemId) \
-							    LEFT JOIN item_furnishing AS f USING (itemId) \
-							    WHERE itemId < %u;";
+	    const int8* Query =    
+            "SELECT "
+                "b.itemId,"         //  0
+                "b.name,"           //  1
+                "b.stackSize,"      //  2
+                "b.flags,"          //  3
+                "b.aH,"             //  4
+                "b.BaseSell,"       //  5
 
-	    int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_ITEMID);
+			    "u.subid,"          //  6
+                "u.validTargets,"   //  7
+                "u.activation,"     //  8
+                "u.animation,"      //  9
+                "u.animationTime,"  // 10
+                "u.maxCharges,"     // 11
+                "u.useDelay,"       // 12
+                "u.reuseDelay,"     // 13
+                "u.aoe,"            // 14
+								       
+                "a.level,"          // 15
+                "a.jobs,"           // 16
+                "a.MId,"            // 17
+                "a.shieldSize,"     // 18
+                "a.scriptType,"     // 19
+                "a.slot,"           // 20
+                "a.rslot,"          // 21
+
+			    "w.skill,"          // 22
+                "w.delay,"          // 23
+                "w.dmg,"            // 24
+                "w.dmgType,"        // 25
+                "w.hit,"            // 26
+								       
+                "f.storage,"        // 27
+                "f.moghancement,"   // 28
+                "f.element,"        // 29
+                "f.aura "           // 30
+		    "FROM item_basic AS b "
+		    "LEFT JOIN item_usable AS u USING (itemId) "
+		    "LEFT JOIN item_armor  AS a USING (itemId) "
+		    "LEFT JOIN item_weapon AS w USING (itemId) "
+		    "LEFT JOIN item_furnishing AS f USING (itemId) "
+		    "WHERE itemId < %u;";
+
+	    int32 ret = Sql_Query(SqlHandle, Query, MAX_ITEMID);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
@@ -302,13 +334,14 @@ namespace itemutils
 					    ((CItemWeapon*)PItem)->setDelay((Sql_GetIntData(SqlHandle,23)*1000)/60);
 					    ((CItemWeapon*)PItem)->setDamage(Sql_GetUIntData(SqlHandle,24));
 					    ((CItemWeapon*)PItem)->setDmgType(Sql_GetUIntData(SqlHandle,25));
+                        ((CItemWeapon*)PItem)->setMaxHit(Sql_GetUIntData(SqlHandle,26));
 				    }
 				    if (PItem->getType() & ITEM_FURNISHING)
 				    {
-					    ((CItemFurnishing*)PItem)->setStorage(Sql_GetUIntData(SqlHandle,26));
-					    ((CItemFurnishing*)PItem)->setMoghancement(Sql_GetUIntData(SqlHandle,27));
-					    ((CItemFurnishing*)PItem)->setElement(Sql_GetUIntData(SqlHandle,28));
-					    ((CItemFurnishing*)PItem)->setAura(Sql_GetUIntData(SqlHandle,29));
+					    ((CItemFurnishing*)PItem)->setStorage(Sql_GetUIntData(SqlHandle,27));
+					    ((CItemFurnishing*)PItem)->setMoghancement(Sql_GetUIntData(SqlHandle,28));
+					    ((CItemFurnishing*)PItem)->setElement(Sql_GetUIntData(SqlHandle,29));
+					    ((CItemFurnishing*)PItem)->setAura(Sql_GetUIntData(SqlHandle,30));
 				    }
 				    g_pItemList[PItem->getID()] = PItem;
 			    }

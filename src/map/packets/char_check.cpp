@@ -69,7 +69,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 					WBUFL(data,(size*2+0x0C)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		
 				}
 
-				memcpy(data+(size*2+0x10)-4, PItem->getSignature(), cap_value(strlen(PItem->getSignature()), 0, 12));
+				memcpy(data+(size*2+0x10)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 12));
 
 				this->size += 0x0E;
 				count++;
@@ -113,7 +113,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
             WBUFW(data,(0x0E)-4) = PLinkshell->getID();
             WBUFW(data,(0x10)-4) = PLinkshell->GetLSRawColor();
 
-	        memcpy(data+(0x14)-4, PLinkshell->getSignature(), cap_value(strlen(PLinkshell->getSignature()), 0, 15));
+	        memcpy(data+(0x14)-4, PLinkshell->getSignature(), dsp_cap(strlen(PLinkshell->getSignature()), 0, 15));
         }
     }
 	if ((PChar->nameflags.flags & FLAG_GM) || !(PTarget->nameflags.flags & FLAG_ANON)) 

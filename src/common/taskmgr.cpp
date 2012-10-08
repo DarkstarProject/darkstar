@@ -87,7 +87,7 @@ uint32 CTaskMgr::DoTimer(uint32 tick)
 			}
 				break;
 		}
-		diff = cap_value(diff, 50, 1000);
+		diff = dsp_cap(diff, 50, 1000);
 	}
 	return diff;
 }

@@ -106,8 +106,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
         PEnmity->second->VE += VE;
 
         //Check for cap limit 
-        PEnmity->second->CE = cap_value(PEnmity->second->CE, 1, 10000);
-        PEnmity->second->VE = cap_value(PEnmity->second->VE, 1, 10000);
+        PEnmity->second->CE = dsp_cap(PEnmity->second->CE, 1, 10000);
+        PEnmity->second->VE = dsp_cap(PEnmity->second->VE, 1, 10000);
     }
     else 
     {

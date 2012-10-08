@@ -192,5 +192,5 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 
 void CCharEntity::SetName(int8* name)
 {
-	this->name.insert(0, name, cap_value(strlen((const int8*)name), 0, 15));
+	this->name.insert(0, name, dsp_cap(strlen((const int8*)name), 0, 15));
 }

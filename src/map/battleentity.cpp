@@ -120,8 +120,8 @@ void CBattleEntity::UpdateHealth()
     health.modhp += dif;
     health.modmp -= dif;
 
-    health.hp = cap_value(health.hp, 0, health.modhp);
-    health.mp = cap_value(health.mp, 0, health.modmp);
+    health.hp = dsp_cap(health.hp, 0, health.modhp);
+    health.mp = dsp_cap(health.mp, 0, health.modmp);
 }
 
 /************************************************************************
@@ -179,7 +179,7 @@ uint16 CBattleEntity::addTP(float tp)
 		TPMulti = map_config.mob_tp_multiplier * 3;
 	}
 	
-	float cap = cap_value(health.tp + (tp * TPMulti), 0, 300);
+	float cap = dsp_cap(health.tp + (tp * TPMulti), 0, 300);
 	tp = health.tp - cap;
 	health.tp = cap;
 	return abs(tp);
@@ -195,7 +195,7 @@ int32 CBattleEntity::addHP(int32 hp)
 {
 	if (status == STATUS_NORMAL) status = STATUS_UPDATE;
 
-    int32 cap = cap_value(health.hp + hp, 0, GetMaxHP());
+    int32 cap = dsp_cap(health.hp + hp, 0, GetMaxHP());
 	hp = health.hp - cap;
 	health.hp = cap;
 
@@ -215,7 +215,7 @@ int32 CBattleEntity::addHP(int32 hp)
 
 int32 CBattleEntity::addMP(int32 mp)
 {
-	int32 cap = cap_value(health.mp + mp, 0, GetMaxMP());
+	int32 cap = dsp_cap(health.mp + mp, 0, GetMaxMP());
 	mp = health.mp - cap;
 	health.mp = cap;
 	return abs(mp);
@@ -331,9 +331,9 @@ void CBattleEntity::SetSJob(uint8 sjob)
 
 void CBattleEntity::SetMLevel(uint8 mlvl)
 {
-	m_modStat[MOD_DEF] -= m_mlvl + cap_value(m_mlvl-50,0,10);
+	m_modStat[MOD_DEF] -= m_mlvl + dsp_cap(m_mlvl-50,0,10);
 	m_mlvl = (mlvl == 0 ? 1 : mlvl);
-	m_modStat[MOD_DEF] += m_mlvl + cap_value(m_mlvl-50,0,10);
+	m_modStat[MOD_DEF] += m_mlvl + dsp_cap(m_mlvl-50,0,10);
 }
 
 void CBattleEntity::SetSLevel(uint8 slvl)

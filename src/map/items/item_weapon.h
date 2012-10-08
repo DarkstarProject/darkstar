@@ -41,6 +41,7 @@ public:
 	uint16	getDamage();
 	uint16	getDmgType();
     uint8   getAdditionalEffect();
+    uint8   getHitCount();
 
     bool    isTwoHanded();
 
@@ -49,6 +50,7 @@ public:
 	void	setDamage(uint16 damage);
 	void	setDmgType(uint16 dmgType);
     void    setAdditionalEffect(uint8 effect);
+    void    setMaxHit(uint8 hit);
 	
 private:
 
@@ -57,6 +59,7 @@ private:
 	int16	m_delay; //can be -ve e.g. ammo/ranged weapons
 	uint16	m_dmgType;
     uint8   m_effect;
+    uint8   m_maxHit;
 
     bool    m_twoHanded;
 };

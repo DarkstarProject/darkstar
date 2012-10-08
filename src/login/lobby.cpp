@@ -150,7 +150,7 @@ int32 lobbydata_parse(int32 fd)
 				LOBBY_A1_RESERVEPACKET(ReservePacket);
 
 				//server's name that shows in lobby menu
-                memcpy(ReservePacket+60, login_config.servername, cap_value(strlen(login_config.servername), 0, 15));
+                memcpy(ReservePacket+60, login_config.servername, dsp_cap(strlen(login_config.servername), 0, 15));
 
 				//Подготовка пространства в пакете для информации о 16 игровых персонажах
 				for(int j = 0; j<16; ++j) 
@@ -492,7 +492,7 @@ int32 lobbyview_parse(int32 fd)
 		case 0x24:
 			{
 				LOBBY_024_RESERVEPACKET(ReservePacket);
-				memcpy(ReservePacket+36, login_config.servername, cap_value(strlen(login_config.servername), 0, 15));
+				memcpy(ReservePacket+36, login_config.servername, dsp_cap(strlen(login_config.servername), 0, 15));
 
 				unsigned char Hash[16];
 
