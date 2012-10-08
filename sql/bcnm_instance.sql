@@ -53,6 +53,9 @@ INSERT INTO `bcnm_instance` VALUES ('15', '2', '17346738');
 INSERT INTO `bcnm_instance` VALUES ('15', '2', '17346739');
 INSERT INTO `bcnm_instance` VALUES ('15', '3', '17346741');
 INSERT INTO `bcnm_instance` VALUES ('15', '3', '17346742');
+INSERT INTO `bcnm_instance` VALUES ('17', '1', '17346750');
+INSERT INTO `bcnm_instance` VALUES ('17', '2', '17346752');
+INSERT INTO `bcnm_instance` VALUES ('17', '3', '17346754');
 
 -- Ghelsba Outpost
 INSERT INTO `bcnm_instance` VALUES ('32', '1', '17350662');

@@ -406,3 +406,55 @@ INSERT INTO `bcnm_loot` VALUES ('15', '844', '260', '6');
 INSERT INTO `bcnm_loot` VALUES ('15', '837', '96', '6');
 INSERT INTO `bcnm_loot` VALUES ('15', '1132', '288', '6');
 INSERT INTO `bcnm_loot` VALUES ('15', '1110', '41', '6');
+INSERT INTO `bcnm_loot` VALUES ('17', '837', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('17', '17827', '217', '1');
+INSERT INTO `bcnm_loot` VALUES ('17', '17451', '174', '1');
+INSERT INTO `bcnm_loot` VALUES ('17', '17793', '333', '1');
+INSERT INTO `bcnm_loot` VALUES ('17', '17589', '174', '1');
+INSERT INTO `bcnm_loot` VALUES ('17', '13402', '101', '2');
+INSERT INTO `bcnm_loot` VALUES ('17', '19027', '43', '2');
+INSERT INTO `bcnm_loot` VALUES ('17', '920', '275', '2');
+INSERT INTO `bcnm_loot` VALUES ('17', '1013', '275', '2');
+INSERT INTO `bcnm_loot` VALUES ('17', '19025', '203', '2');
+INSERT INTO `bcnm_loot` VALUES ('17', '19026', '116', '2');
+INSERT INTO `bcnm_loot` VALUES ('17', '655', '159', '3');
+INSERT INTO `bcnm_loot` VALUES ('17', '747', '290', '3');
+INSERT INTO `bcnm_loot` VALUES ('17', '13182', '406', '3');
+INSERT INTO `bcnm_loot` VALUES ('17', '15325', '159', '4');
+INSERT INTO `bcnm_loot` VALUES ('17', '14872', '217', '4');
+INSERT INTO `bcnm_loot` VALUES ('17', '15181', '145', '4');
+INSERT INTO `bcnm_loot` VALUES ('17', '15387', '159', '4');
+INSERT INTO `bcnm_loot` VALUES ('17', '887', '101', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '645', '29', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '902', '29', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '702', '29', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '737', '101', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '823', '29', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '1465', '29', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '700', '43', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '644', '29', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '703', '58', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '738', '14', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '830', '58', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '895', '14', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '4174', '58', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '4175', '29', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '866', '72', '5');
+INSERT INTO `bcnm_loot` VALUES ('17', '1110', '87', '6');
+INSERT INTO `bcnm_loot` VALUES ('17', '658', '14', '6');
+INSERT INTO `bcnm_loot` VALUES ('17', '836', '29', '6');
+INSERT INTO `bcnm_loot` VALUES ('17', '837', '43', '6');
+INSERT INTO `bcnm_loot` VALUES ('17', '942', '174', '6');
+INSERT INTO `bcnm_loot` VALUES ('17', '844', '246', '6');
+INSERT INTO `bcnm_loot` VALUES ('17', '1132', '159', '6');
+
+
+
+
+
+
+
+
+
+
+

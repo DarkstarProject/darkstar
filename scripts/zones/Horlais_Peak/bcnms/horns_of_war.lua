@@ -3,12 +3,12 @@
 -- Name: horns of war
 -- KSNM99
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
+package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+require("scripts/zones/Horlais_Peak/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT

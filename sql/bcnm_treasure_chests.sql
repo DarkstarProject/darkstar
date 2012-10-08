@@ -36,6 +36,9 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('11', '3', '17346605');
 INSERT INTO `bcnm_treasure_chests` VALUES ('15', '1', '17346608');
 INSERT INTO `bcnm_treasure_chests` VALUES ('15', '2', '17346611');
 INSERT INTO `bcnm_treasure_chests` VALUES ('15', '3', '17346614');
+INSERT INTO `bcnm_treasure_chests` VALUES ('17', '1', '17346624');
+INSERT INTO `bcnm_treasure_chests` VALUES ('17', '2', '17346634');
+INSERT INTO `bcnm_treasure_chests` VALUES ('17', '3', '17346644');
 
 -- Ghelsba Outpost
 INSERT INTO `bcnm_treasure_chests` VALUES ('34', '1', '17350932');

@@ -6,9 +6,9 @@ armory crates
 17346608 - Double Dragonian
 17346611 - Double Dragonian
 17346614 - Double Dragonian
-17346624
-17346634
-17346644
+17346624 - Contaminated Colosseum
+17346634 - Contaminated Colosseum
+17346644 - Contaminated Colosseum
 17346653
 17346662
 17346671
