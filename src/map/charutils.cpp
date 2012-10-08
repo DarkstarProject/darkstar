@@ -134,20 +134,20 @@ void CalculateStats(CCharEntity* PChar)
 	
 	// Расчет прироста HP от main job
 
-	int32 mainLevelOver30 = cap_value(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
-	int32 mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59 );			// Первый режим рассчета до 60 уровня (Используется так же и для MP)
-	int32 mainLevelOver60To75 = cap_value(mlvl - 60, 0, 15);		// Второй режим расчета после 60 уровня
+	int32 mainLevelOver30 = dsp_cap(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
+	int32 mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59 );		// Первый режим рассчета до 60 уровня (Используется так же и для MP)
+	int32 mainLevelOver60To75 = dsp_cap(mlvl - 60, 0, 15);		// Второй режим расчета после 60 уровня
 	int32 mainLevelOver75 = (mlvl < 75 ? 0 : mlvl - 75);			// Третий режим расчета после 75 уровня
 
 	//Расчет бонусного количества HP
 	
 	int32 mainLevelOver10 = (mlvl < 10 ? 0 : mlvl - 10);			// +2HP на каждом уровне после 10
-	int32 mainLevelOver50andUnder60 = cap_value(mlvl - 50, 0, 10);	// +2HP на каждом уровне в промежутке от 50 до 60 уровня
+	int32 mainLevelOver50andUnder60 = dsp_cap(mlvl - 50, 0, 10);	// +2HP на каждом уровне в промежутке от 50 до 60 уровня
 	int32 mainLevelOver60 = (mlvl < 60 ? 0 : mlvl - 60);
 
 	// Расчет прироста HP от дополнительной профессии
 
-	int32 subLevelOver10 = cap_value(slvl - 10, 0, 20);				// +1HP на каждый уровень после 10 (/2)
+	int32 subLevelOver10 = dsp_cap(slvl - 10, 0, 20);				// +1HP на каждый уровень после 10 (/2)
 	int32 subLevelOver30 = (slvl < 30 ? 0 : slvl - 30);				// +1HP на каждый уровень после 30
 
 	// Расчет raceStat jobStat bonusStat sJobStat
@@ -2087,7 +2087,7 @@ uint32 GetRealExp(uint8 charlvl, uint8 moblvl)
 
 	if ((charlvl > 0) && (charlvl < 100)) 
 	{
-		return g_ExpTable[cap_value(levelDif,0,49)][(charlvl-1)/5];
+		return g_ExpTable[dsp_cap(levelDif,0,49)][(charlvl-1)/5];
 	}
 	return 0;
 }
@@ -3182,7 +3182,7 @@ uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
         int16 percentage = PChar->getMod(MOD_DEDICATION);
         int16 cap = PChar->getMod(MOD_DEDICATION_CAP);
 
-        int16 dedication = cap_value(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getMod(MOD_DEDICATION_CAP));
+        int16 dedication = dsp_cap(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getMod(MOD_DEDICATION_CAP));
 
         PChar->setModifier(MOD_DEDICATION_CAP, PChar->getMod(MOD_DEDICATION_CAP) - dedication);
 

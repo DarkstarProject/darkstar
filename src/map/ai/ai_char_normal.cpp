@@ -1090,7 +1090,7 @@ void CAICharNormal::ActionMagicCasting()
 		return;
 	}
 	
-	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)cap_value(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
+	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
 		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
@@ -1197,8 +1197,8 @@ void CAICharNormal::ActionMagicFinish()
         Recast->Type = RECAST_MAGIC;
 	    Recast->ID = m_PSpell->getID();
 	    Recast->TimeStamp  = m_Tick;
-	    Recast->RecastTime = (float)m_PSpell->getRecastTime() * ((100.0f-cap_value((float)m_PChar->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
-		Recast->RecastTime = Recast->RecastTime * ((100.0f-cap_value((float)m_PChar->getMod(MOD_HASTE),0.0f,25.0f))/100.0f);
+	    Recast->RecastTime = (float)m_PSpell->getRecastTime() * ((100.0f-dsp_cap((float)m_PChar->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
+		Recast->RecastTime = Recast->RecastTime * ((100.0f-dsp_cap((float)m_PChar->getMod(MOD_HASTE),0.0f,25.0f))/100.0f);
 		//needed so the client knows of the reduced recast time!
 		m_PSpell->setModifiedRecast(Recast->RecastTime);
 

@@ -28,7 +28,6 @@
 #include "../common/mmo.h"
 
 
-#define cap_value(a, min, max) ((a >= max) ? max : (a <= min) ? min : a)	// caps values to min/max
 
 int32 checksum(uint8* buf,uint32 buflen,char checkhash[16]);
 
