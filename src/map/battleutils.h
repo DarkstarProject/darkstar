@@ -30,11 +30,12 @@
 
 #include "battleentity.h"
 
-class CSpell;
 class CAbility;
+class CItemWeapon;
+class CMobSkill;
+class CSpell;
 class CTrait;
 class CWeaponSkill; 
-class CMobSkill;
 
 enum ENSPELL
 {
@@ -95,6 +96,7 @@ namespace battleutils
 	uint8	GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint8	GetHitRateAccOffset(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint32 accuracy); 
 	uint8	GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakAttack);
+    uint8   CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon);
 	uint8   GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8   GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8   GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);

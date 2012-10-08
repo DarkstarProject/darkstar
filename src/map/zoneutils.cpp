@@ -290,6 +290,7 @@ void LoadMOBList(CZone* PZone)
 			PMob->SetMJob(Sql_GetIntData(SqlHandle,14));
 			PMob->SetSJob(Sql_GetIntData(SqlHandle,15));
 
+            PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
 			PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle,16));
 			PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle,17) * 1000)/60);
 			

@@ -914,13 +914,7 @@ void CAIMobDummy::ActionAttack()
 
 				Action.ActionTarget = m_PBattleTarget;
 
-				uint8 numAttacks = 1;
-				if(rand()%100 < m_PMob->getMod(MOD_TRIPLE_ATTACK)){
-					numAttacks+=2;
-				}
-				else if(rand()%100 < m_PMob->getMod(MOD_DOUBLE_ATTACK)){
-					numAttacks++;
-				}
+                uint8 numAttacks = battleutils::CheckMultiHits(m_PMob, m_PMob->m_Weapons[SLOT_MAIN]);
 
 				for(uint8 i=0; i<numAttacks; i++){
 					Action.reaction   = REACTION_EVADE;

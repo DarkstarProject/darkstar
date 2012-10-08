@@ -1460,6 +1460,27 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 		}
 	}
 }
+
+/************************************************************************
+*                                                                       *
+*  Returns the number of hits for multihit weapons if applicable        *
+*                                                                       *
+************************************************************************/
+
+uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
+{
+	uint8 num = PWeapon->getHitCount() + ((rand()%100 < PEntity->getMod(MOD_TRIPLE_ATTACK)) ? 2 : ((rand()%100 < PEntity->getMod(MOD_DOUBLE_ATTACK)) ? 1 : 0));
+
+	if(PEntity->GetMJob() == JOB_SAM)
+	{
+		if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
+		{
+			if(rand()%100 < PEntity->getMod(MOD_ZANSHIN)/4) num++;
+		}
+	}
+	return dsp_min(num, 8);
+}
+
 /*****************************************************************************
 	Handles song buff effects. Returns true if the song has been handled
 	or false if the song effect has not been implemented. This is used in

@@ -2141,15 +2141,15 @@ void CAICharNormal::ActionAttack()
 			
 			if ((subType > 0 && subType < 4))//sub weapon is equipped!
 			{ 
-				numattacksLeftHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_SUB]->getID());
+				numattacksLeftHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_SUB]);
 			}
 			else if(m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH){ //h2h equipped!
-				numattacksLeftHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
+				numattacksLeftHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]);
 				if(m_PChar->GetMJob() == JOB_MNK)
 					numKickAttacks = ((rand()%100 < m_PChar->getMod(MOD_KICK_ATTACK)) ? 1 : 0);
 			}
 
-			uint8 numattacksRightHand = charutils::checkMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]->getID());
+			uint8 numattacksRightHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]);
 
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			uint8 fstrslot = SLOT_MAIN;
