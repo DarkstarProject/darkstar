@@ -32,3 +32,6 @@ SARCOPHAGUS_CANNOT_BE_OPENED = 7354; -- It is a stone sarcophagus with the lid s
 
 -- Quest "Acting in Good Faith"
 SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7337; -- The spirit incense emits a putrid odor and burns up. Your attempt this time has failed
+
+-- Quest "Blue Ribbon Blues"
+RETURN_RIBBON_TO_HER = 7281; -- You can hear a voice from somewhere....return...ribbon to...her...
