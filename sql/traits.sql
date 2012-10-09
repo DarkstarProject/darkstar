@@ -185,7 +185,7 @@ INSERT INTO `traits` VALUES(51, 'resist blind', 12, 65, 0, 243, 0);
 INSERT INTO `traits` VALUES(14, 'store tp', 12, 70, 0, 73, 5);
 INSERT INTO `traits` VALUES(85, 'ikishoten', 12, 75, 0, 0, 0);
 INSERT INTO `traits` VALUES(86, 'overwhelm', 12, 75, 0, 0, 0);
-INSERT INTO `traits` VALUES(22, 'stealth', 13, 5, 0, 0, 0);
+INSERT INTO `traits` VALUES(22, 'stealth', 13, 5, 0, 358, 3);
 INSERT INTO `traits` VALUES(18, 'dual wield', 13, 10, 0, 259, 10);
 INSERT INTO `traits` VALUES(57, 'resist bind', 13, 10, 0, 247, 0);
 INSERT INTO `traits` VALUES(67, 'subtle blow', 13, 15, 0, 289, 5);

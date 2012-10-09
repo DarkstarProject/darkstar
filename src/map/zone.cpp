@@ -833,6 +833,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 
             // проверка ночного/дневного сна монстров уже учтена в проверке CurrentAction, т.к. во сне монстры не ходят ^^
 
+            CurrentDistance += PChar->getMod(MOD_STEALTH);
+
             if (PCurrentMob->m_Behaviour != BEHAVIOUR_NONE &&
                 PCurrentMob->PMaster == NULL &&
 				PCurrentMob->PBattleAI->GetCurrentAction() == ACTION_ROAMING &&
@@ -842,8 +844,6 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 				   (PChar->animation == ANIMATION_HEALING ||
 				   (int8)(PChar->GetMLevel() - PCurrentMob->GetMLevel()) < 10))
 				{
-                    //CurrentDistance += PChar->getMod(MOD_STEALTH);
-
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && 
                       !(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
                         PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
@@ -894,8 +894,9 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
 						{
-							if(PChar->PBattleAI->GetCurrentSpell()->getSpellGroup()!=SPELLGROUP_SONG &&
-								PChar->PBattleAI->GetCurrentSpell()->getSpellGroup()!=SPELLGROUP_NINJUTSU){
+							if (PChar->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG &&
+								PChar->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_NINJUTSU)
+                            {
 								PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 								continue;
 							}
@@ -903,7 +904,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					}
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_WEAPONSKILL)
 					{
-						if (PChar->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_START)
+						if (PChar->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
@@ -911,7 +912,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					}
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_JOBABILITY)
 					{
-						if (PChar->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_START)
+						if (PChar->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
 						{
                             PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;

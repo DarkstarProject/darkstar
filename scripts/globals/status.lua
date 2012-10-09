@@ -739,6 +739,7 @@ MOD_THUNDER_AFFINITY	= 0x15F
 MOD_WIND_AFFINITY		= 0x160
 MOD_LIGHT_AFFINITY		= 0x161
 MOD_DARK_AFFINITY		= 0x162
+MOD_STEALTH             = 0x166
 
 -----------------------------------
 -- Slot Definitions

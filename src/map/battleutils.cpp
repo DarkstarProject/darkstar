@@ -2121,28 +2121,28 @@ bool IsEngauged(CBattleEntity* PEntity)
             PEntity->PBattleAI->GetBattleTarget() != NULL);
 }
 
+/************************************************************************
+*                                                                       *
+*  Для всех сущностей, за исключением персонажей, по умолчанию true     *
+*                                                                       *
+************************************************************************/
+
 bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
 {
     DSP_DEBUG_BREAK_IF(PEntity == NULL || PSpell == NULL);
 
-    uint8 SlotID = 0;
-
-    switch(PEntity->objtype)
+    if (PEntity->objtype == TYPE_PC)
     {
-    case TYPE_NPC: 
-        return true; 
-        break;
+        CCharEntity* PChar = ((CCharEntity*)PEntity);
 
-        case TYPE_PC:
+        uint8  SlotID = 0;
+        uint16 toolID = PSpell->getMPCost();
+
+        if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)))
         {
-            CCharEntity* PChar = ((CCharEntity*)PEntity);
-
-            uint16 toolID = PSpell->getMPCost();
-
-            if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)) &&
-                PChar->GetMJob() == JOB_NIN)
+            if (PChar->GetMJob() == JOB_NIN)
             {
-                switch(toolID)
+                switch (toolID)
                 {
                     case ITEM_UCHITAKE: 
                     case ITEM_TSURARA: 
@@ -2171,34 +2171,27 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
                         toolID = ITEM_CHONOFUDA;
                         break;
 
-                    default: return false; break;
-                } // switch toolID
-
+                    default: return false;
+                } 
                 if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)))
                 {
                     return false;
                 }
             }
-            else if(SlotID == ERROR_SLOTID)
+            else
             {
                 return false;
             }
+        }
+        // Should only make it to this point if a ninja tool was found.
 
-            // Should only make it to this point if a ninja tool was found.
-            if(ConsumeTool && rand() % 100 > PChar->getMod(MOD_NINJA_TOOL))
-            {
-                charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
-                PChar->pushPacket(new CInventoryFinishPacket());
-            }
-
-            return true;
-            break;
-        } // end case;
-
-        default: 
-            return false; 
-            break;
-    } // end switch
+        if(ConsumeTool && rand() % 100 > PChar->getMod(MOD_NINJA_TOOL))
+        {
+            charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
+            PChar->pushPacket(new CInventoryFinishPacket());
+        }
+    }
+    return true;
 }
 
 CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob)

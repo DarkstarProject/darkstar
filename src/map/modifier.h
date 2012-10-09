@@ -316,6 +316,7 @@ enum MODIFIER
 
 // Ninja
 
+    MOD_STEALTH             = 0x166,
 	MOD_UTSUSEMI			= 0x133,	// Everyone's favorite --tracks shadows.
 	MOD_NINJA_TOOL			= 0x134,	// Percent chance to not use a tool.
 
@@ -393,7 +394,7 @@ enum MODIFIER
 	MOD_ADDS_WEAPONSKILL_DYN = 0x164
 };
 
-#define MAX_MODIFIER		  0x166
+#define MAX_MODIFIER	       0x167
 
 
 /************************************************************************
