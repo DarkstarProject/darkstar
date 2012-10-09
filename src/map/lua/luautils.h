@@ -25,21 +25,22 @@
 #define _LUAUTILS_H
 
 #include "../../common/cbasetypes.h"
-#include "../battleutils.h"
+
 /************************************************************************
 *																		*
 *																		*
 *																		*
 ************************************************************************/
 
+class CAbility;
 class CBaseEntity;
 class CBattleEntity;
 class CCharEntity;
+class CInstance;
 class CItem;
+class CMobSkill;
 class CRegion;
 class CStatusEffect;
-class CMobSkill;
-class CInstance;
 
 namespace luautils
 {
@@ -107,7 +108,7 @@ namespace luautils
 	int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);// triggers when mob weapon skill is used
 	int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PPetMaster);// triggers when pet uses an ability
 	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded);				// triggers when weapon skill is used
-	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget);				// triggers when job ability is used
+	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAblility);				// triggers when job ability is used
 
 };
 

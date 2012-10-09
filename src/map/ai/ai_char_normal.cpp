@@ -1537,8 +1537,13 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     apAction_t Action;
 	m_PChar->m_ActionList.clear();
-	if(m_PJobAbility->getID() >= ABILITY_HEALING_RUBY){
-		if(m_PChar->PPet!=NULL){//is a bp - dont display msg and notify pet
+
+    // TODO: бардак. тоже выкинуть отсюда
+
+	if (m_PJobAbility->getID() >= ABILITY_HEALING_RUBY)
+    {
+		if (m_PChar->PPet!=NULL) //is a bp - dont display msg and notify pet
+        {
 			Action.animation  = 94; //assault anim
 			Action.ActionTarget = m_PBattleSubTarget;
 			Action.reaction   = REACTION_NONE;
@@ -1546,16 +1551,19 @@ void CAICharNormal::ActionJobAbilityFinish()
 			Action.param      = 0;
 			Action.flag       = 0; 
 			Action.messageID  = 0;
+
 			if(m_PJobAbility->getID() == ABILITY_SEARING_LIGHT || m_PJobAbility->getID() == ABILITY_AERIAL_BLAST || m_PJobAbility->getID() == ABILITY_EARTHEN_FURY){
 				if(m_PChar->health.mp >= m_PChar->GetMLevel() * 2){
 					m_PChar->addMP(-m_PChar->GetMLevel() * 2);
 				}
 			} else {
-				m_PChar->addMP(-m_PJobAbility->getAnimationID());
+				m_PChar->addMP(-m_PJobAbility->getAnimationID()); // TODO: ...
 			}
 			m_PChar->m_ActionList.push_back(Action);
 			m_PChar->PPet->PBattleAI->SetBattleSubTarget(m_PBattleSubTarget);
-			((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = m_PJobAbility->getID();
+
+			((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = m_PJobAbility->getID(); // TODO: не допустимый подход
+
 			m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
 			charutils::UpdateHealth(m_PChar);
 		}
@@ -1570,36 +1578,31 @@ void CAICharNormal::ActionJobAbilityFinish()
                 PTarget->getZone() == m_PChar->getZone() &&
                 distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
 			{
+                uint16 value = luautils::OnUseAbility(m_PChar, PTarget, m_PJobAbility);
+
 				Action.ActionTarget = PTarget;
 				Action.reaction   = REACTION_NONE;
 				Action.speceffect = SPECEFFECT_NONE;
 				Action.animation  = m_PJobAbility->getAnimationID();
-				Action.param	  = 0;
-				Action.messageID  = 0;
+				Action.param	  = value;
+                Action.messageID  = m_PJobAbility->getMessage();
 				Action.flag		  = 0;
 
-				m_PChar->m_ActionList.push_back(Action);	
-				
-				luautils::OnUseAbility(m_PChar, PTarget);	
+				m_PChar->m_ActionList.push_back(Action);		
 			}
 		}
 	}
     else
 	{
+        uint16 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, m_PJobAbility);
+
 		Action.ActionTarget = m_PBattleSubTarget;
 		Action.reaction   = REACTION_NONE;
 		Action.speceffect = SPECEFFECT_RECOIL;
 		Action.animation  = m_PJobAbility->getAnimationID();
-		Action.param      = 0;
-		Action.flag       = 0; 
-		Action.messageID  = 0;
-        
-        uint16 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget);
-
-		if(m_PJobAbility->getID() == ABILITY_CHI_BLAST || m_PJobAbility->getID() == ABILITY_JUMP || m_PJobAbility->getID() == ABILITY_HIGH_JUMP) {
-			Action.param = value;
-			Action.messageID = 110;
-		}
+		Action.param      = value; 
+        Action.messageID  = m_PJobAbility->getMessage();
+        Action.flag       = 0;
 
 		m_PChar->m_ActionList.push_back(Action);
 
@@ -1615,6 +1618,8 @@ void CAICharNormal::ActionJobAbilityFinish()
             }
         }
 	}
+
+    // TODO: все перенести в скрипты, т.к. система позволяет получать указатель на питомца
 
 	if(m_PJobAbility->getID() == ABILITY_CALL_BEAST){
 		charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
@@ -1678,6 +1683,8 @@ void CAICharNormal::ActionWeaponSkillStart()
             WeaponSkillStartError(5);
 		    return;
 	    }
+        // TODO: проверка на профессию, т.к. только Ranger может выполнять WS оружием AMMO
+
 		if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
 			CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 			if(PAmmo==NULL || !(PAmmo->getType() & ITEM_WEAPON)){//incorrect or non-existent ammo
@@ -1685,14 +1692,15 @@ void CAICharNormal::ActionWeaponSkillStart()
 				return;
 			}
 		}
-
         m_ActionType = ACTION_WEAPONSKILL_FINISH;
         ActionWeaponSkillFinish();
         return;
     }
 
-	if (m_PBattleSubTarget == m_PChar){
-		if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
+	if (m_PBattleSubTarget == m_PChar)
+    {
+		if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
+        {
 			m_ActionType = ACTION_WEAPONSKILL_FINISH;
 			ActionWeaponSkillFinish();
 			return;

@@ -29,6 +29,7 @@
 #include <string.h>
 
 #include "luautils.h"
+#include "lua_ability.h"
 #include "lua_baseentity.h"
 #include "lua_instance.h"
 #include "lua_region.h"
@@ -41,7 +42,7 @@
 #include "../alliance.h"
 #include "../ability.h"
 #include "../baseentity.h"
-#include "../battleentity.h"
+#include "../battleutils.h"
 #include "../charentity.h"
 #include "../conquest_system.h"
 #include "../map.h"
@@ -1664,7 +1665,7 @@ int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill
 *                                                                       *
 ************************************************************************/
 
-int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget) 
+int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility) 
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -1672,8 +1673,7 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget)
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "OnUseAbility");
 
-	CAbility* ability = PChar->PBattleAI->GetCurrentJobAbility();
-	snprintf(File, sizeof(File), "scripts/globals/abilities/%s.lua", ability->getName());
+	snprintf(File, sizeof(File), "scripts/globals/abilities/%s.lua", PAbility->getName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -1694,8 +1694,11 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget)
 	
 	CLuaBaseEntity LuaMobEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-	
-	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+
+    CLuaAbility LuaAbility(PAbility);
+	Lunar<CLuaAbility>::push(LuaHandle,&LuaAbility);
+
+	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnUseAbility: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);

@@ -109,8 +109,6 @@ uint8 CAbility::getValidTarget()
 	return m_validTarget;
 }
 
-
-
 const int8* CAbility::getName()
 {
 	return m_name.c_str();
@@ -154,6 +152,22 @@ uint16 CAbility::getVE()
 
 /************************************************************************
 *                                                                       *
+*  Получаем/Устанавливаем сообщение способности                         *
+*                                                                       *
+************************************************************************/
+
+uint16 CAbility::getMessage()
+{
+    return m_message;
+}
+
+void CAbility::setMessage(uint16 message)
+{
+    m_message = message;
+}
+
+/************************************************************************
+*                                                                       *
 *  Реализация namespase для работы со способностями                     *
 *                                                                       *
 ************************************************************************/
@@ -171,25 +185,28 @@ namespace ability
 
     void LoadAbilitiesList()
     {
+        // TODO: добавить поле message в таблицу
+
 	    memset(PAbilityList,0,sizeof(PAbilityList));
 
 	    const int8* Query = 
-            "SELECT         \
-              abilityId,    \
-              name,         \
-              job,          \
-              level,        \
-              validTarget,  \
-              recastTime,   \
-              animation,    \
-              `range`,      \
-              isAOE,        \
-              recastId,     \
-              CE,           \
-              VE            \
-            FROM abilities  \
-            WHERE job > 0 AND job < %u AND abilityId < %u \
-            ORDER BY job, level ASC";
+            "SELECT "
+              "abilityId,"
+              "name,"
+              "job,"
+              "level,"
+              "validTarget,"
+              "recastTime,"
+              "animation,"
+            //"message, "
+              "`range`,"
+              "isAOE,"
+              "recastId,"
+              "CE,"
+              "VE "           
+            "FROM abilities  "
+            "WHERE job > 0 AND job < %u AND abilityId < %u "
+            "ORDER BY job, level ASC";
 
 	    int32 ret = Sql_Query(SqlHandle, Query, MAX_JOBTYPE, MAX_ABILITY_ID);
 
@@ -210,6 +227,7 @@ namespace ability
 			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,9));
 			    PAbility->setCE(Sql_GetIntData(SqlHandle,10));
 			    PAbility->setVE(Sql_GetIntData(SqlHandle,11));
+                PAbility->setMessage(0);
 
 			    PAbilityList[PAbility->getID()] = PAbility;
 			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);

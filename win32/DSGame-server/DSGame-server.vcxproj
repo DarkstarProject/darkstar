@@ -151,6 +151,7 @@
     <ClInclude Include="..\..\src\map\jailutils.h" />
     <ClInclude Include="..\..\src\map\linkshell.h" />
     <ClInclude Include="..\..\src\map\lua\luautils.h" />
+    <ClInclude Include="..\..\src\map\lua\lua_ability.h" />
     <ClInclude Include="..\..\src\map\lua\lua_baseentity.h" />
     <ClInclude Include="..\..\src\map\lua\lua_instance.h" />
     <ClInclude Include="..\..\src\map\lua\lua_mobskill.h" />
@@ -327,6 +328,7 @@
     <ClCompile Include="..\..\src\map\jailutils.cpp" />
     <ClCompile Include="..\..\src\map\linkshell.cpp" />
     <ClCompile Include="..\..\src\map\lua\luautils.cpp" />
+    <ClCompile Include="..\..\src\map\lua\lua_ability.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_baseentity.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_instance.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_mobskill.cpp" />
