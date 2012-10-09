@@ -849,8 +849,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
                         PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
                         PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE)))
 					{
-                        if (CurrentDistance < 15 &&
-							isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
+                        if (CurrentDistance < 15 && isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
@@ -876,7 +875,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					}
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT)
 					{
-						if (CurrentDistance < 15)
+						if (CurrentDistance < 15 && isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;

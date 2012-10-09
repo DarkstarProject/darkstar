@@ -99,14 +99,15 @@ int32 init()
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
     lua_register(LuaHandle,"SendUncnown0x39Packet",luautils::SendUncnown0x39Packet);
 
+    Lunar<CLuaAbility>::Register(LuaHandle);
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
+    Lunar<CLuaInstance>::Register(LuaHandle);
+    Lunar<CLuaMobSkill>::Register(LuaHandle);
     Lunar<CLuaRegion>::Register(LuaHandle);
 	Lunar<CLuaSpell>::Register(LuaHandle);
 	Lunar<CLuaStatusEffect>::Register(LuaHandle);
 	Lunar<CLuaTradeContainer>::Register(LuaHandle);
 	Lunar<CLuaZone>::Register(LuaHandle);
-	Lunar<CLuaMobSkill>::Register(LuaHandle);
-	Lunar<CLuaInstance>::Register(LuaHandle);
 
 	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n"); 
 	return 0;

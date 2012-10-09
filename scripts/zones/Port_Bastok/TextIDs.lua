@@ -7,7 +7,7 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
               GIL_OBTAINED = 6379; -- Obtained <number> gil
           KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
              HOMEPOINT_SET = 6451; -- Home point set!
-       NOT_HAVE_ENOUGH_GIL = 12481; -- You do not have enough gil
+       NOT_HAVE_ENOUGH_GIL = 6624; -- You don't have enough money.
                   CONQUEST = 7776; -- You've earned conquest points!
              MOGHOUSE_EXIT = 7720; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 

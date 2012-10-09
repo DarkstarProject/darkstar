@@ -9,6 +9,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
+	local power = 0;
 	local duration = 30;
 	local sHead = player:getEquipID(SLOT_HEAD)
 	if(sHead == 15072 or sHead == 15245) then
@@ -17,9 +18,9 @@ function OnUseAbility(player, target, ability)
 		duration = duration + 20;
 	end
 	if player:getMainJob() == 1 then
-		local power = math.floor((player:getMainLvl()/4)+4.75)/256;
+		power = math.floor((player:getMainLvl()/4)+4.75)/256;
 	else
-		local power = math.floor((player:getSubLvl()/4)+4.75)/256;
+		power = math.floor((player:getSubLvl()/4)+4.75)/256;
 	end
 	power = power * 100;
 	target:addStatusEffect(EFFECT_WARCRY,power,0,30);

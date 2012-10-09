@@ -2,6 +2,8 @@
 -- Area: Port Bastok
 -- NPC: Rex
 -- Map Seller NPC
+-- @zone 236
+-- @pos 52 -2 -4
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

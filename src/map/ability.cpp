@@ -197,8 +197,9 @@ namespace ability
               "level,"
               "validTarget,"
               "recastTime,"
+              "message1, "
+              "message2, "
               "animation,"
-            //"message, "
               "`range`,"
               "isAOE,"
               "recastId,"
@@ -221,13 +222,14 @@ namespace ability
 			    PAbility->setLevel(Sql_GetIntData(SqlHandle,3));
 			    PAbility->setValidTarget(Sql_GetIntData(SqlHandle,4));
 			    PAbility->setRecastTime(Sql_GetIntData(SqlHandle,5));
-			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,6));
-			    PAbility->setRange(Sql_GetIntData(SqlHandle,7));
-			    PAbility->setAOE(Sql_GetIntData(SqlHandle,8));
-			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,9));
-			    PAbility->setCE(Sql_GetIntData(SqlHandle,10));
-			    PAbility->setVE(Sql_GetIntData(SqlHandle,11));
-                PAbility->setMessage(0);
+                PAbility->setMessage(Sql_GetIntData(SqlHandle,6));
+              //PAbility->setMessage(Sql_GetIntData(SqlHandle,7));
+			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,8));
+			    PAbility->setRange(Sql_GetIntData(SqlHandle,9));
+			    PAbility->setAOE(Sql_GetIntData(SqlHandle,10));
+			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,11));
+			    PAbility->setCE(Sql_GetIntData(SqlHandle,12));
+			    PAbility->setVE(Sql_GetIntData(SqlHandle,13));
 
 			    PAbilityList[PAbility->getID()] = PAbility;
 			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);
