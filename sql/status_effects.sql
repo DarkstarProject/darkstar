@@ -134,7 +134,7 @@ INSERT INTO `status_effects` VALUES ('112', 'barvirus', '32');
 INSERT INTO `status_effects` VALUES ('113', 'reraise', '32');
 INSERT INTO `status_effects` VALUES ('114', 'cover', '32');
 INSERT INTO `status_effects` VALUES ('115', 'unlimited_shot', '32');
-INSERT INTO `status_effects` VALUES ('116', 'phalanx', '32');
+INSERT INTO `status_effects` VALUES ('116', 'phalanx', '33');
 INSERT INTO `status_effects` VALUES ('117', 'warding_circle', '32');
 INSERT INTO `status_effects` VALUES ('118', 'ancient_circle', '32');
 INSERT INTO `status_effects` VALUES ('119', 'str_boost', '32');
