@@ -91,7 +91,7 @@ INSERT INTO `bcnm_info` VALUES ('75', '144', 'grove_guardians', NULL, NULL, '180
 INSERT INTO `bcnm_info` VALUES ('76', '144', 'hills_are_alive', NULL, NULL, '1800', '0', '18', '76', '15');
 INSERT INTO `bcnm_info` VALUES ('77', '144', 'royal_jelly', NULL, NULL, '900', '40', '3', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('78', '144', 'final_bout', NULL, NULL, '180', '50', '3', '0', '15'); -- time is not a typo...the limit is really 3 minutes
-INSERT INTO `bcnm_info` VALUES ('79', '144', 'up_in_arms', NULL, NULL, '900', '60', '3', '0', '15');
+INSERT INTO `bcnm_info` VALUES ('79', '144', 'up_in_arms', NULL, NULL, '900', '60', '3', '79', '15');
 INSERT INTO `bcnm_info` VALUES ('80', '144', 'copycat', NULL, NULL, '1800', '0', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('81', '144', 'operation_desert_swarm', NULL, NULL, '1800', '0', '6', '81', '15');
 INSERT INTO `bcnm_info` VALUES ('82', '144', 'prehistoric_pigeons', NULL, NULL, '1800', '0', '6', '0', '15');

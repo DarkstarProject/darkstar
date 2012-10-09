@@ -448,14 +448,36 @@ INSERT INTO `bcnm_loot` VALUES ('17', '837', '43', '6');
 INSERT INTO `bcnm_loot` VALUES ('17', '942', '174', '6');
 INSERT INTO `bcnm_loot` VALUES ('17', '844', '246', '6');
 INSERT INTO `bcnm_loot` VALUES ('17', '1132', '159', '6');
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO `bcnm_loot` VALUES ('79', '793', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('79', '792', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('79', '1311', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('79', '14666', '447', '3');
+INSERT INTO `bcnm_loot` VALUES ('79', '14662', '487', '3');
+INSERT INTO `bcnm_loot` VALUES ('79', '13175', '494', '4');
+INSERT INTO `bcnm_loot` VALUES ('79', '13176', '449', '4');
+INSERT INTO `bcnm_loot` VALUES ('79', '791', '51', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '801', '32', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '654', '39', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '702', '21', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '4173', '32', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '745', '55', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '784', '62', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '653', '81', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '802', '56', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '797', '195', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '652', '58', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '803', '38', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '773', '11', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '4175', '21', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '771', '15', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '805', '26', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '769', '21', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '700', '17', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '770', '9', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '810', '62', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '774', '11', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '775', '11', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '772', '11', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '776', '9', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '15185', '55', '6');
+INSERT INTO `bcnm_loot` VALUES ('79', '17440', '13', '5');
