@@ -300,10 +300,13 @@ function getArg6(player)
 	local output = player:getRank();
 	local nation = player:getNation();
 	
-	if(nation == BASTOK) then
+	if(nation == SANDORIA) then
+		return output;
+	elseif(nation == BASTOK) then
 		return output + 32;
 	elseif(nation == WINDURST) then
 		return output + 64;
+
 	end
 	
 end;
