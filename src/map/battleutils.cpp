@@ -1002,8 +1002,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar)
 {
-	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE) ||
-		PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0))
+	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0))
 	{
 		damage = 0;
 	}
@@ -1049,23 +1048,20 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		}
 	}
 
-	damage = damage - PDefender->getMod(MOD_PHALANX);
-	if(damage<0){
-		damage = 0;
-	}
+	damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX),0);
 
-	if(damage>0 && PDefender->getMod(MOD_STONESKIN) >= damage){
-		PDefender->addModifier(MOD_STONESKIN, -damage);
-		damage = 0;
-		if(PDefender->getMod(MOD_STONESKIN)==0){
-			//wear off
+    if (damage > 0 && PDefender->getMod(MOD_STONESKIN) > 0)
+    {
+        int16 absorb = dsp_cap(PDefender->getMod(MOD_STONESKIN), 0, damage);
+
+        PDefender->delModifier(MOD_STONESKIN, absorb);
+
+        if(PDefender->getMod(MOD_STONESKIN) == 0)
+        {
 			PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_STONESKIN);
 		}
-	}
-	else if(damage>0 && PDefender->getMod(MOD_STONESKIN)>0 && PDefender->getMod(MOD_STONESKIN) < damage){
-		damage = damage - PDefender->getMod(MOD_STONESKIN);
-		PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_STONESKIN);
-	}
+        damage -= absorb;
+    }
 
     PDefender->addHP(-damage);
 
@@ -1086,28 +1082,28 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     {
         switch (PDefender->objtype)
         {
-        case TYPE_PC:
+            case TYPE_PC:
             {
                 PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
                 battleutils::MakeEntityStandUp(PDefender);
                 charutils::UpdateHealth((CCharEntity*)PDefender);
             }
             break;
-        case TYPE_MOB:
+            case TYPE_MOB:
             {
                 PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
                 if (PDefender->PMaster == NULL)
                 {
                     PDefender->addTP(TP);
                 }
-					if(taChar == NULL){
-						((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
-					}else{
-						((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
-					}
+				if(taChar == NULL){
+					((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
+				}else{
+					((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
+				}
             }
             break;
-        case TYPE_PET:
+            case TYPE_PET:
             {
                 ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
             }
