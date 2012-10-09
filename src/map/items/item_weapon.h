@@ -43,6 +43,7 @@ public:
     uint8   getAdditionalEffect();
     uint8   getHitCount();
 
+    bool    isRanged();
     bool    isTwoHanded();
 
 	void	setSkillType(uint8 skillType);
@@ -56,11 +57,12 @@ private:
 
 	uint8	m_skillType;
 	uint16	m_damage;
-	int16	m_delay; //can be -ve e.g. ammo/ranged weapons
+	int16	m_delay;    //can be -ve e.g. ammo/ranged weapons
 	uint16	m_dmgType;
     uint8   m_effect;
     uint8   m_maxHit;
 
+    bool    m_ranged;
     bool    m_twoHanded;
 };
 

@@ -40,6 +40,7 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
 	m_dmgType	= DAMAGE_NONE;
 	m_delay		= 8000;
     m_maxHit    = 0;
+    m_ranged    = false;
     m_twoHanded = false;
 }
 
@@ -47,7 +48,18 @@ CItemWeapon::~CItemWeapon() {}
 
 /************************************************************************
 *                                                                       *
+*  Оружие для атаки с дистанции (Range)                                 *
 *                                                                       *
+************************************************************************/
+
+bool CItemWeapon::isRanged()
+{
+    return m_ranged;
+}
+
+/************************************************************************
+*                                                                       *
+*  Двуручное оружие                                                     *
 *                                                                       *
 ************************************************************************/
 
@@ -74,7 +86,11 @@ void CItemWeapon::setSkillType(uint8 skillType)
 	    case SKILL_STF:
             m_twoHanded = true;
 		break;
-        default: m_twoHanded = false;
+        case SKILL_ARC:
+        case SKILL_MRK:
+        case SKILL_THR:
+            m_ranged = true;
+        break;
 	}
 	m_skillType = skillType;
 }
