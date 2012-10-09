@@ -63,6 +63,9 @@ public:
 	uint8	getShieldSize();
 	uint16	getEquipSlotId();
 	uint8	getRemoveSlotId();
+    uint8   getShieldAbsorption();
+
+    bool    IsShield();
 
 	void	setReqLvl(uint8 lvl);
 	void	setJobs(uint32 jobs);
@@ -71,6 +74,8 @@ public:
 	void	setScriptType(uint16 isScripted);
 	void	setEquipSlotId(uint16 equipSlot);
 	void	setRemoveSlotId(uint8 removSlot);
+
+    void    addModifier(CModifier* modifier);
 
 	std::vector<CModifier*> modList;			// список модификаторов
 	
@@ -81,6 +86,7 @@ private:
 	uint16	m_modelID;
 	uint16	m_scriptType;
 	uint8	m_shieldSize;
+    uint8   m_absorption;
 	uint16	m_equipSlotID;
 	uint8	m_removeSlotID;
 };

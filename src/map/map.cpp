@@ -161,7 +161,7 @@ int32 do_init(int32 argc, int8** argv)
 	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
 	ShowStatus("do_init: loading items");
-	itemutils::LoadItemList();
+    itemutils::Initialize();
 	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
 	// нужно будет написать один метод для инициализации всех данных в battleutils

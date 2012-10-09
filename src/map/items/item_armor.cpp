@@ -35,6 +35,7 @@ CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
 	m_scriptType   = 0;
 	m_reqLvl       = 255;
 	m_equipSlotID  = 255;
+    m_absorption   = 0;
 }
 
 CItemArmor::~CItemArmor()
@@ -104,6 +105,28 @@ void CItemArmor::setRemoveSlotId(uint8 removSlot)
 
 /************************************************************************
 *																		*
+*  Процент урона, блокируемого щитом                                    *
+*																		*
+************************************************************************/
+
+uint8 CItemArmor::getShieldAbsorption()
+{
+    return m_absorption;
+}
+
+/************************************************************************
+*																		*
+*  Проверяем, является ли проедмет щитом                                *
+*																		*
+************************************************************************/
+
+bool CItemArmor::IsShield()
+{
+    return m_shieldSize > 0;
+}
+
+/************************************************************************
+*																		*
 *  Проверяем необходимость выполнения скрипта для экипировки при		*
 *  возникновении какого-либо из событий (экипировка, смена зоны и т.п.)	*
 *																		*
@@ -120,4 +143,31 @@ uint16 CItemArmor::getScriptType()
 void CItemArmor::setScriptType(uint16 ScriptType)
 {
 	m_scriptType = ScriptType;
+}
+
+/************************************************************************
+*                                                                       *
+*  Добавляем модификатор к предмету                                     *
+*                                                                       *
+************************************************************************/
+
+void CItemArmor::addModifier(CModifier* modifier)
+{
+    if (IsShield() && modifier->getModID() == MOD_DEF)
+    {
+        // reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
+
+		int16 pdt = modifier->getModAmount() / 2;
+
+		switch(m_shieldSize)
+        {
+			case 1: pdt += 22; break; // Bucker 22%
+			case 2: pdt += 40; break; // Round  40%
+			case 3: pdt += 50; break; // Kite   50%
+			case 4: pdt += 55; break; // Tower  55%
+			case 5: pdt += 60; break; // Aegis  60%
+		}
+        m_absorption = dsp_min(pdt,100);
+    }
+    modList.push_back(modifier);
 }

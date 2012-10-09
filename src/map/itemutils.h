@@ -61,7 +61,7 @@ typedef std::vector<LootItem_t> LootList_t;
 
 namespace itemutils
 {
-	void	LoadItemList();
+	void	Initialize();
 	void	FreeItemList();
 
     CItem*  GetItem(CItem* PItem);

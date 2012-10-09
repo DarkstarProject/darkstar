@@ -381,12 +381,21 @@ namespace itemutils
 			    if ((g_pItemList[ItemID] != NULL) &&
 				    (g_pItemList[ItemID]->getType() & ITEM_ARMOR))
 			    {
-				    ((CItemArmor*)g_pItemList[ItemID])->modList.push_back(new CModifier(modID,value));
+                    ((CItemArmor*)g_pItemList[ItemID])->addModifier(new CModifier(modID,value));
 			    }
 		    }
 	    }
+    }
 
-	    ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, type, rate FROM mob_droplist WHERE dropid < %u;", MAX_DROPID);
+    /************************************************************************
+    *                                                                       *
+    *  Загружаем списки предметов, выпадающих из монстров                   *
+    *                                                                       *
+    ************************************************************************/
+
+    void LoadDropList()
+    {
+        int32 ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, type, rate FROM mob_droplist WHERE dropid < %u;", MAX_DROPID);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
@@ -408,10 +417,18 @@ namespace itemutils
                 g_pDropList[DropID]->push_back(DropItem);
 		    }
 	    }
-		
-		//Handles loot from BCNM chests and other NPCs that drop things into the loot pool instead of adding them directly to the inventory
+    }
 
-		ret = Sql_Query(SqlHandle, "SELECT LootDropId, itemId, rolls, lootGroupId FROM bcnm_loot WHERE LootDropId < %u;", MAX_LOOTID);
+    /************************************************************************
+    *                                                                       *
+    *  Handles loot from BCNM chests and other NPCs that drop things into   *
+    *  the loot pool instead of adding them directly to the inventory       *
+    *                                                                       *
+    ************************************************************************/
+
+    void LoadLootList()
+    {
+		int32 ret = Sql_Query(SqlHandle, "SELECT LootDropId, itemId, rolls, lootGroupId FROM bcnm_loot WHERE LootDropId < %u;", MAX_LOOTID);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
@@ -433,7 +450,19 @@ namespace itemutils
                 g_pLootList[LootID]->push_back(LootItem);
 		    }
 		}
+    }
 
+    /************************************************************************
+    *                                                                       *
+    *  Инициализация системы игровых предметов                              *
+    *                                                                       *
+    ************************************************************************/
+
+    void Initialize()
+    {
+        LoadItemList();
+        LoadDropList();
+        LoadLootList();
 
         PUnarmedItem = new CItemWeapon(0);
 

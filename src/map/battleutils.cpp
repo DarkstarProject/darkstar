@@ -1019,35 +1019,10 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(MOD_HTHRES)))	 / 1000; break;
 	}
 
-	//apply block
-	if(isBlocked){
-		// reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
-		if(PDefender->objtype == TYPE_PC){
-			CItemArmor* PItem = (CItemArmor*)((CCharEntity*)PDefender)->getStorage(LOC_INVENTORY)->GetItem(
-											((CCharEntity*)PDefender)->equip[SLOT_SUB]);
-			if(PItem!=NULL && PItem->getID()!=65535 &&  PItem->getShieldSize()>0){
-				//get def amount (todo: find a better way?)
-				uint8 shield_def = 0;
-				for(int i=0; i<PItem->modList.size(); i++){
-					if(PItem->modList[i]->getModID()==MOD_DEF){
-						shield_def = PItem->modList[i]->getModAmount();
-						break;
-					}
-				}
-				float pdt = 0.5f * (float)shield_def;
-				switch(PItem->getShieldSize()){
-					case 1: pdt += 22; break; //Bucker 22%
-					case 2: pdt += 40; break; //Round 40%
-					case 3: pdt += 50; break; //Kite 50%
-					case 4: pdt += 55; break; //Tower 55%
-					case 5: pdt += 55; break; //Aegis
-				}
-				if(pdt>100){pdt=100;}
-				damage = damage * ((100.0f - (float)pdt) / 100.0f);
-			}
-		}
+    if (isBlocked && PDefender->m_Weapons[SLOT_SUB]->IsShield())
+    {
+        damage = (damage * PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption()) / 100;
 	}
-
 	damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX),0);
 
     if (damage > 0 && PDefender->getMod(MOD_STONESKIN) > 0)
