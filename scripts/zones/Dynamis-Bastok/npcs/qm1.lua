@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(HYDRA_CORPS_EYEGLASS) = false)then
+	if(player:hasKeyItem(HYDRA_CORPS_EYEGLASS) == false) then
 		player:addKeyItem(HYDRA_CORPS_EYEGLASS);
 		player:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_EYEGLASS);
 	end

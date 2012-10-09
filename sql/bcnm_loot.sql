@@ -119,7 +119,8 @@ INSERT INTO `bcnm_loot` VALUES ('105', '827', '270', '2');
 INSERT INTO `bcnm_loot` VALUES ('105', '18171', '145', '2');
 INSERT INTO `bcnm_loot` VALUES ('105', '824', '295', '2');
 INSERT INTO `bcnm_loot` VALUES ('105', '826', '260', '2');
-INSERT INTO `bcnm_loot` VALUES ('105', '18209', '100', '3');  -- Should be zero to one group
+INSERT INTO `bcnm_loot` VALUES ('105', '18209', '100', '3');
+INSERT INTO `bcnm_loot` VALUES ('105', '0', '100', '3');
 INSERT INTO `bcnm_loot` VALUES ('105', '924', '100', '4');
 INSERT INTO `bcnm_loot` VALUES ('105', '924', '100', '5');
 INSERT INTO `bcnm_loot` VALUES ('105', '18170', '235', '6');
