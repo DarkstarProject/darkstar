@@ -261,7 +261,7 @@ enum ZONEID : uint8
 	ZONE_218                          = 218,
 	ZONE_SHIP_BOUND_FOR_SELBINA       = 220,
 	ZONE_SHIP_BOUND_FOR_MHAURA        = 221,
-	ZONE_222                          = 222,
+	ZONE_PROVENANCE                   = 222,
 	ZONE_SAN_DORIA_JEUNO_AIRSHIP      = 223,
 	ZONE_BASTOK_JEUNO_AIRSHIP         = 224,
 	ZONE_WINDURST_JEUNO_AIRSHIP       = 225,
