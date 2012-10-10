@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 16249
---	Elixir Tank
---	When used, you will obtain one Elixir
+--	ID: 13688
+--	Hi-Potion Tank
+--	When used, you will obtain one Hi-Potion
 -----------------------------------------
 
 -----------------------------------------
@@ -21,5 +21,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addItem(4145,1);
+	target:addItem(4116,1);
 end;
