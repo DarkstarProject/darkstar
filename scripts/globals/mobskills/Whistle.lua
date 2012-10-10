@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_AGI_BOOST;
 	skill:setMsg(MSG_BUFF);
 	if(mob:hasStatusEffect(typeEffect) == true) then
-		local oldEffect = mob:getStatusEffect(typeEffect);
+		oldEffect = mob:getStatusEffect(typeEffect);
 		oldEffect:setPower(power);
 		oldEffect:setDuration(duration);
 	else

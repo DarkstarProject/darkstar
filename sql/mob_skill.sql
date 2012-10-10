@@ -85,7 +85,7 @@ INSERT INTO `mob_skill` VALUES (17,242,17,'Claw_Cyclone', 4, 7.0, 2000, 1500, 4,
 INSERT INTO `mob_skill` VALUES (24,80,24,'Sonic_Wave', 4, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (25,80,25,'Stomping', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (28,80,28,'Cold_Stare', 4, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (29,80,29,'Whistle', 1, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (29,80,29,'Whistle', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (30,80,30,'Berserk', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (31,80,31,'Healing_Breeze', 1, 15.0, 2000, 1500, 2, 0);
 
