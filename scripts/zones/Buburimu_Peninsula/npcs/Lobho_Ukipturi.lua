@@ -39,7 +39,7 @@ function onTrigger(player,npc)
 		nation = 0;
 	end
 	
-	player:startEvent(csid,nation,OP_TeleFee(player,region),player:getCP(),OP_TeleFee(player,region),0,0,0,0);
+	player:startEvent(csid,nation,OP_TeleFee(player,region),0,OP_TeleFee(player,region),player:getCP(),0,0,0);
 	
 end;
 
@@ -66,6 +66,9 @@ function onEventFinish(player,csid,option)
 		if (player:delGil(OP_TeleFee(player,region))) then
             toHomeNation(player);
         end
+	elseif(option == 6) then
+		player:delCP(OP_TeleFee(player,region));
+        toHomeNation(player);
 	end
 	
 end;
