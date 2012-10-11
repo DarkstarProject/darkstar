@@ -9,3 +9,10 @@ ITEM_CANNOT_BE_OBTAINED = 7371; -- You cannot obtain the item <item> come back a
 
 -- Mining
 MINING_IS_POSSIBLE_HERE = 7347; -- Mining is possible here if you have <item>
+
+-- ??? that spawns NM Yara Ma Yha Who
+  SPROUT_LOOKING_BETTER = 7467; -- The sprout is looking better.
+SPROUT_DOES_NOT_NEED_WATER = 7465; -- The sprout does not need any more water now.
+SPROUT_LOOKS_WITHERED = 7463; -- There is something sprouting from the ground here.It looks a little withered.
+REPULSIVE_CREATURE_EMERGES = 7464; -- A repulsive creature emerges from the ground!
+NOTHING_HAPPENS = 7466; -- Nothing happens.

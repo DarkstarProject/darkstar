@@ -1,12 +1,12 @@
 -----------------------------------
---  Area: Oldton Movalpolos
+--  Area: Tahrongi Canyon
 --  NPC:  Excavation Point
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
+package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/excavation");
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
+require("scripts/zones/Tahrongi_Canyon/TextIDs");
 
 -----------------------------------
 -- onTrade
