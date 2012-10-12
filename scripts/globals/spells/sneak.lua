@@ -15,8 +15,6 @@ function onSpellCast(caster,target,spell)
 	if (target:hasStatusEffect(EFFECT_SNEAK) == false) then
 		
 		local duration = math.random(30, 300);
-		duration = math.random(30, 300);
-		duration = math.random(30, 300);
 		if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 			duration = duration * 3;
 		end
