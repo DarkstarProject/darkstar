@@ -60,14 +60,21 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 
             if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
             {
-                uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
-			    uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
+			    WBUFB(data,(0x12)-4) = ((CItemUsable*)PItem)->getCurrentCharges();              // количество оставшихся зарядов
 
-			    WBUFB(data,(0x12)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 
-			    WBUFB(data,(0x14)-4) = (nextUseTime > currentTime ? 0x90 : 0xD0); 
+                if (((CItemUsable*)PItem)->getReuseTime() == 0)
+                {
+                    WBUFB(data,(0x14)-4) = 0xD0;
+                }
+                else
+                {
+                    WBUFB(data,(0x14)-4) = 0x90;
 
-                WBUFL(data,(0x15)-4) = nextUseTime;                                          // таймер следующего использования
-			    WBUFL(data,(0x19)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;   // таймер задержки использования
+                    uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
+
+                    WBUFL(data,(0x15)-4) = ((CItemUsable*)PItem)->getNextUseTime();             // таймер следующего использования
+                    WBUFL(data,(0x19)-4) = ((CItemUsable*)PItem)->getUseDelay() + CurrentTime;  // таймер задержки использования
+                }
             }
 		}
         memcpy(data+(0x1D)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 12));

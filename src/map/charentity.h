@@ -34,6 +34,7 @@
 #include "battleentity.h"
 #include "item_container.h"
 #include "linkshell.h"
+#include "recast_container.h"
 #include "trade_container.h"
 #include "trait.h"
 #include "treasure_pool.h"
@@ -103,22 +104,6 @@ struct expChain_t
 	uint32 chainTime;
 };
 
-enum RECASTTYPE
-{
-    RECAST_ITEM,
-    RECAST_MAGIC,
-    RECAST_ABILITY,
-};
-
-struct Recast_t 
-{
-    uint16     ID;
-    RECASTTYPE Type;
-    uint32     TimeStamp;
-    uint32     RecastTime;
-    uint8      RecastID;
-};
-
 struct NationTP_t
 {
 	uint32		sandoria;
@@ -149,94 +134,93 @@ class CBasicPacket;
 typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32,CBaseEntity*> SpawnIDList_t;
 typedef std::vector<EntityID_t> BazaarList_t;
-typedef std::list<Recast_t*> RecastList_t;
 
 class CCharEntity : public CBattleEntity 
 {
 public:
 
-	jobs_t			 jobs;							// доступрые профессии персонажа
-	keyitems_t		 keys;							// таблица ключевых предметов
-	event_t			 m_event;						// структура для запуска событый
-	skills_t		 RealSkills;					// структура всех реальных умений персонажа, с точностью до 0.1 и не ограниченных уровнем
-	nameflags_t		 nameflags;						// флаги перед именем персонажа
-	profile_t		 profile;						// профиль персонажа (все, что связывает города и персонажа)
-	expChain_t		 expChain;						// Exp Chains 
-	search_t		 search;						// данные и комментарий, отображаемые в окне поиска
-	bazaar_t		 bazaar;						// все данные, необходимые для таботы bazaar
-	uint16			 m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
-    uint16           m_EquipBlock;                  // заблокированные ячейки экипировки
-	uint8			 equip[17];						// экипировка персонажа
+	jobs_t			  jobs;							// доступрые профессии персонажа
+	keyitems_t		  keys;							// таблица ключевых предметов
+	event_t			  m_event;						// структура для запуска событый
+	skills_t		  RealSkills;					// структура всех реальных умений персонажа, с точностью до 0.1 и не ограниченных уровнем
+	nameflags_t		  nameflags;                    // флаги перед именем персонажа
+	profile_t		  profile;						// профиль персонажа (все, что связывает города и персонажа)
+	expChain_t		  expChain;						// Exp Chains 
+	search_t		  search;						// данные и комментарий, отображаемые в окне поиска
+	bazaar_t		  bazaar;						// все данные, необходимые для таботы bazaar
+	uint16			  m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
+    uint16            m_EquipBlock;                 // заблокированные ячейки экипировки
+	uint8			  equip[17];                    // экипировка персонажа
 
-	uint8			 m_ZonesList[32];				// список посещенных персонажем зон
-	uint8			 m_SpellList[96];				// список изученных заклинаний
-	uint8			 m_Abilities[38];				// список текущих способностей
-	uint8			 m_TraitList[16];				// список постянно активных способностей в виде битовой маски
-    uint8            m_PetCommands[32];             // список доступных команд питомцу
-	uint8            m_WeaponSkills[32];  
-	questlog_t		 m_questLog[MAX_QUESTAREA];		// список всех квестов
-	missionlog_t	 m_missionLog[6];				// список миссий
-	assaultlog_t	 m_assaultLog;					// список assault миссий
-	campaignlog_t	 m_campaignLog;					// список campaing миссий
-	uint32			 m_rangedDelay;					// ranged attack delay (with timestamp for repeat attacks, hence 32bit)
-	bool			 m_insideBCNM;					// true if user is inside a bcnm
-	uint32			 m_lastBcnmTimePrompt;			// the last message prompt in seconds
+	uint8			  m_ZonesList[32];				// список посещенных персонажем зон
+	uint8			  m_SpellList[96];				// список изученных заклинаний
+	uint8			  m_Abilities[38];				// список текущих способностей
+	uint8			  m_TraitList[16];				// список постянно активных способностей в виде битовой маски
+    uint8             m_PetCommands[32];            // список доступных команд питомцу
+	uint8             m_WeaponSkills[32];  
+	questlog_t		  m_questLog[MAX_QUESTAREA];    // список всех квестов
+	missionlog_t	  m_missionLog[6];				// список миссий
+	assaultlog_t	  m_assaultLog;					// список assault миссий
+	campaignlog_t	  m_campaignLog;                // список campaing миссий
+	uint32			  m_rangedDelay;                // ranged attack delay (with timestamp for repeat attacks, hence 32bit)
+	bool			  m_insideBCNM;					// true if user is inside a bcnm
+	uint32			  m_lastBcnmTimePrompt;			// the last message prompt in seconds
 
 	// Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
 	// отображает более ранние миссии выплненными
 
-	uint16			 m_copCurrent;					// текущая миссия Chains of Promathia
-	uint16			 m_acpCurrent;					// текущая миссия A Crystalline Prophecy
-	uint16			 m_mkeCurrent;					// текущая миссия A Moogle Kupo d'Etat
-	uint16			 m_asaCurrent;					// текущая миссия A Shantotto Ascension
+	uint16			  m_copCurrent;					// текущая миссия Chains of Promathia
+	uint16			  m_acpCurrent;					// текущая миссия A Crystalline Prophecy
+	uint16			  m_mkeCurrent;					// текущая миссия A Moogle Kupo d'Etat
+	uint16			  m_asaCurrent;					// текущая миссия A Shantotto Ascension
 
-    uint32           RegionPoints[15];               // conquest points, imperial standing points etc
-	NationTP_t		 nationtp;						// supply tp, runic portal, campaign tp,...
+    uint32            RegionPoints[15];             // conquest points, imperial standing points etc
+	NationTP_t		  nationtp;						// supply tp, runic portal, campaign tp,...
 
-    uint8            GetGender();                   // узнаем пол персонажа
+    uint8             GetGender();                  // узнаем пол персонажа
 
-	int32			 firstPacketSize();				// размер первого пакета в PacketList
-    void             clearPacketList();             // отчистка PacketList
-    void             pushPacket(CBasicPacket*);     // добавление копии пакета в PacketList
-	bool			 isPacketListEmpty();			// проверка размера PacketList
-	CBasicPacket*	 popPacket();					// получение первого пакета из PacketList
+	int32			  firstPacketSize();            // размер первого пакета в PacketList
+    void              clearPacketList();            // отчистка PacketList
+    void              pushPacket(CBasicPacket*);    // добавление копии пакета в PacketList
+	bool			  isPacketListEmpty();          // проверка размера PacketList
+	CBasicPacket*	  popPacket();                  // получение первого пакета из PacketList
 
-    CLinkshell*      PLinkshell;                    // linkshell, в которой общается персонаж
-	CTreasurePool*	 PTreasurePool;					// сокровища, добытые с монстров
+    CLinkshell*       PLinkshell;                   // linkshell, в которой общается персонаж
+	CTreasurePool*	  PTreasurePool;                // сокровища, добытые с монстров
+    CRecastContainer* PRecastContainer;             // 
 
-	CItemContainer*  PGuildShop;					// текущий магазин гильдии, в котором персонаж производит закупки
-	CItemContainer*	 getStorage(uint8 LocationID);	// получение указателя на соответствующее хранилище
+	CItemContainer*   PGuildShop;					// текущий магазин гильдии, в котором персонаж производит закупки
+	CItemContainer*	  getStorage(uint8 LocationID);	// получение указателя на соответствующее хранилище
 
-	CTradeContainer* Container;						// универсальный контейнер для обмена, синтеза, магазина и т.д.
-	CUContainer*	 UContainer;					// новый универсальный контейнер для обмена, синтеза, магазина и т.д.
+	CTradeContainer*  Container;                    // универсальный контейнер для обмена, синтеза, магазина и т.д.
+	CUContainer*	  UContainer;					// новый универсальный контейнер для обмена, синтеза, магазина и т.д.
 	
-	CBaseEntity*	 PWideScanTarget;				// wide scane цель
+	CBaseEntity*	  PWideScanTarget;				// wide scane цель
 
-	SpawnIDList_t	 SpawnPCList;					// список видимых персонажей
-	SpawnIDList_t	 SpawnMOBList;					// список видимых монстров
-	SpawnIDList_t	 SpawnPETList;					// список видимых питомцев
-	SpawnIDList_t	 SpawnNPCList;					// список видимых npc
+	SpawnIDList_t	  SpawnPCList;					// список видимых персонажей
+	SpawnIDList_t	  SpawnMOBList;					// список видимых монстров
+	SpawnIDList_t	  SpawnPETList;					// список видимых питомцев
+	SpawnIDList_t	  SpawnNPCList;					// список видимых npc
 
-	RecastList_t	 RecastList;					// recast list for spells, abilities and items
-    TraitList_t      TraitList;                     // список постянно активных способностей в виде указателей
+    TraitList_t       TraitList;                    // список постянно активных способностей в виде указателей
 
-	void			 SetName(int8* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
+	void			  SetName(int8* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
 
-    EntityID_t       TradePending;                  // ID персонажа, предлагающего обмен
-	EntityID_t       InvitePending;					// ID персонажа, отправившего приглашение в группу
-    EntityID_t       BazaarID;                      // Pointer to the bazaar we are browsing.
-	BazaarList_t	 BazaarCustomers;               // Array holding the IDs of the current customers
+    EntityID_t        TradePending;                 // ID персонажа, предлагающего обмен
+	EntityID_t        InvitePending;                // ID персонажа, отправившего приглашение в группу
+    EntityID_t        BazaarID;                     // Pointer to the bazaar we are browsing.
+	BazaarList_t	  BazaarCustomers;              // Array holding the IDs of the current customers
 
-	uint32			 m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
-	uint8			 m_LevelRestriction;			// ограничение уровня персонажа
-    uint16           m_Costum;                      // карнавальный костюм персонажа (модель)
-	uint32			 m_AHHistoryTimestamp;			// Timestamp when last asked to view history
+	uint32			  m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
+	uint8			  m_LevelRestriction;			// ограничение уровня персонажа
+    uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
+	uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
 
-    uint8            m_PVPFlag;                     // pvp
-	uint8			 m_hasTractor;					// checks if player has tractor already
-	uint8			 m_hasRaise;					// checks if player has raise already
-    uint8            m_hasAutoTarget;               // возможность использования AutoTarget функции
-	position_t		 m_StartActionPos;				// позиция начала действия (использование предмета, начало стрельбы, позиция tractor)
+    uint8             m_PVPFlag;                    // pvp
+	uint8			  m_hasTractor;					// checks if player has tractor already
+	uint8			  m_hasRaise;					// checks if player has raise already
+    uint8             m_hasAutoTarget;              // возможность использования AutoTarget функции
+	position_t		  m_StartActionPos;				// позиция начала действия (использование предмета, начало стрельбы, позиция tractor)
 
     std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)
 
@@ -245,15 +229,15 @@ public:
 
 private:
 
-	CItemContainer*  m_Inventory;
-	CItemContainer*  m_Mogsafe;
-	CItemContainer*  m_Storage;
-	CItemContainer*	 m_Tempitems;
-	CItemContainer*  m_Moglocker;
-	CItemContainer*	 m_Mogsatchel;
-	CItemContainer*	 m_Mogsack;
+	CItemContainer*   m_Inventory;
+	CItemContainer*   m_Mogsafe;
+	CItemContainer*   m_Storage;
+	CItemContainer*	  m_Tempitems;
+	CItemContainer*   m_Moglocker;
+	CItemContainer*	  m_Mogsatchel;
+	CItemContainer*	  m_Mogsack;
 
-	PacketList_t     PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
+	PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
 };
 
 #endif

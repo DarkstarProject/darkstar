@@ -261,6 +261,7 @@
     <ClInclude Include="..\..\src\map\party.h" />
     <ClInclude Include="..\..\src\map\petentity.h" />
     <ClInclude Include="..\..\src\map\petutils.h" />
+    <ClInclude Include="..\..\src\map\recast_container.h" />
     <ClInclude Include="..\..\src\map\region.h" />
     <ClInclude Include="..\..\src\map\spell.h" />
     <ClInclude Include="..\..\src\map\status_effect.h" />
@@ -438,6 +439,7 @@
     <ClCompile Include="..\..\src\map\party.cpp" />
     <ClCompile Include="..\..\src\map\petentity.cpp" />
     <ClCompile Include="..\..\src\map\petutils.cpp" />
+    <ClCompile Include="..\..\src\map\recast_container.cpp" />
     <ClCompile Include="..\..\src\map\region.cpp" />
     <ClCompile Include="..\..\src\map\spell.cpp" />
     <ClCompile Include="..\..\src\map\status_effect.cpp" />

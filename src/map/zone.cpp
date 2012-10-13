@@ -1420,9 +1420,13 @@ void CZone::ZoneServer(uint32 tick)
     {
         CCharEntity* PChar = (CCharEntity*)it->second;
 
-        PChar->StatusEffectContainer->CheckEffects(tick);
-        PChar->PBattleAI->CheckCurrentAction(tick);
-        PChar->PTreasurePool->CheckItems(tick);
+        if (PChar->status != STATUS_SHUTDOWN)
+        {
+            PChar->PRecastContainer->Check(tick);
+            PChar->StatusEffectContainer->CheckEffects(tick);
+            PChar->PBattleAI->CheckCurrentAction(tick);
+            PChar->PTreasurePool->CheckItems(tick);
+        }
     }
 }
 
@@ -1456,8 +1460,10 @@ void CZone::ZoneServerRegion(uint32 tick)
     for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
     {
         CCharEntity* PChar = (CCharEntity*)it->second;
+
         if (PChar->status != STATUS_SHUTDOWN)
         {
+            PChar->PRecastContainer->Check(tick);
             PChar->StatusEffectContainer->CheckEffects(tick);
             PChar->PBattleAI->CheckCurrentAction(tick);
             PChar->PTreasurePool->CheckItems(tick);

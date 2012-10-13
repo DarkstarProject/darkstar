@@ -315,20 +315,8 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		PChar->animation = ANIMATION_NONE;
 	}
-
-    RecastList_t::iterator it = PChar->RecastList.begin();
-
-	while(it != PChar->RecastList.end())
-	{
-		Recast_t* recast = *it;
-        if (recast->Type == RECAST_MAGIC)
-		{
-            PChar->RecastList.erase(it++);
-            delete recast;
-            continue;
-		}
-		it++;
-    }
+    PChar->PRecastContainer->Del(RECAST_MAGIC);
+    
     charutils::SaveCharStats(PChar);
 	charutils::SaveCharPosition(PChar);
 	charutils::SaveCharExp(PChar, PChar->GetMJob());
@@ -1154,8 +1142,7 @@ void SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	CItemUsable* PItem = (CItemUsable*)PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-	if ((PItem != NULL) && 
-		(PItem->getType() & ITEM_USABLE))
+	if ((PItem != NULL) && (PItem->getType() & ITEM_USABLE))
 	{
 		if (PItem->getType() & ITEM_ARMOR)
 		{
@@ -1631,33 +1618,38 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 0x05: 
         { 
 			uint32 curTick = gettick();
-			if(curTick - PChar->m_AHHistoryTimestamp > 5000){
+
+			if(curTick - PChar->m_AHHistoryTimestamp > 5000)
+            {
+                PChar->m_ah_history.clear();
 				PChar->m_AHHistoryTimestamp = curTick;
 				PChar->pushPacket(new CAuctionHousePacket(action));
-				PChar->m_ah_history.clear();
-				//A single SQL query for the player's AH history which is stored in a Char Entity struct + vector.
-				const int8* fmtQuery = "SELECT itemid, price, stack FROM auction_house WHERE seller = %u and sale=0 LIMIT 7;";
-				int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+				// A single SQL query for the player's AH history which is stored in a Char Entity struct + vector.
+				const int8* Query = "SELECT itemid, price, stack FROM auction_house WHERE seller = %u and sale=0 LIMIT 7;";
+
+				int32 ret = Sql_Query(SqlHandle, Query, PChar->id);
+
 				if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 				{
 					while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 					{
 						AuctionHistory_t ah;
-						ah.itemid = (uint16)Sql_GetUIntData(SqlHandle,0);
-						ah.price = (uint32)Sql_GetUIntData(SqlHandle,1);
-						ah.stack = (uint8)Sql_GetUIntData(SqlHandle,2);
+						ah.itemid = (uint16)Sql_GetIntData(SqlHandle,0);
+						ah.price  = (uint32)Sql_GetUIntData(SqlHandle,1);
+						ah.stack  = (uint8)Sql_GetIntData(SqlHandle,2);
 						ah.status = 0;
 						PChar->m_ah_history.push_back(ah);
 					}
 				}
 				ShowDebug("%s has %i items up on the AH. \n",PChar->GetName(),PChar->m_ah_history.size());
 			}
-			else{
-				PChar->pushPacket(new CAuctionHousePacket(action, 246, 0, 0)); //try again in a little while msg
+			else
+            {
+				PChar->pushPacket(new CAuctionHousePacket(action, 246, 0, 0)); // try again in a little while msg
 				break;
 			}
-		} 
-        //break;
+		}
         case 0x0A: 
         { 
 			uint8 totalItemsOnAh = PChar->m_ah_history.size();
@@ -1684,8 +1676,8 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                     return;
                 }
-
-				if(PChar->m_ah_history.size() >= 7){
+				if (PChar->m_ah_history.size() >= 7)
+                {
 					ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Unable to put up more than 7 items\n" CL_RESET);
 					PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
 				    return;
@@ -1708,6 +1700,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				    return;
 			    }
                 charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(int32)(quantity != 0 ? 1 : PItem->getStackSize()));
+
 				PChar->pushPacket(new CAuctionHousePacket(action, 1, 0, 0)); //merchandise put up on auction msg
 				PChar->pushPacket(new CAuctionHousePacket(0x0C, PChar->m_ah_history.size(),PChar)); //inform history of slot
             }
@@ -1853,6 +1846,7 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint8 equipSlotID = RBUFB(data,(0x05));
 	
 	charutils::EquipItem(PChar, slotID, equipSlotID);
+    charutils::SaveCharEquip(PChar);
 	return;
 }
 
@@ -3554,7 +3548,8 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			charutils::CheckEquipLogic(PChar, SCRIPT_CHANGESJOB, prevsjob);
 		}
 
-		charutils::RemoveAllEquipment(PChar);
+		charutils::RemoveAllEquipment(PChar); // TODO: разобраться, зачем
+
 		charutils::CalculateStats(PChar);
 		charutils::BuildingCharSkillsTable(PChar);
         charutils::BuildingCharTraitsTable(PChar);

@@ -112,21 +112,6 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
-
-    RecastList_t::iterator it = m_PChar->RecastList.begin();
-
-	while(it != m_PChar->RecastList.end())
-	{
-		Recast_t* recast = *it;
-
-		if (m_Tick >= (recast->TimeStamp + recast->RecastTime))
-		{
-            m_PChar->RecastList.erase(it++);
-            delete recast;
-            continue;
-		}
-		it++;
-    }
 }
 
 /************************************************************************
@@ -505,19 +490,24 @@ void CAICharNormal::ActionItemUsing()
             m_PItemUsable->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
 			m_PChar->pushPacket(new CInventoryItemPacket(m_PItemUsable, m_PItemUsable->getLocationID(), m_PItemUsable->getSlotID()));
 						
-			const int8* fmtQuery = "UPDATE char_inventory \
-									SET currCharges = %u, lastUseTime = %u \
-									WHERE charid = %u AND location = %u AND slot = %u;";
+			const int8* Query = 
+                "UPDATE char_inventory "
+                "SET currCharges = %u, lastUseTime = %u "
+                "WHERE charid = %u AND location = %u AND slot = %u;";
 
 			Sql_Query(
 				SqlHandle,
-				fmtQuery,
+				Query,
 				m_PItemUsable->getCurrentCharges(),
 				m_PItemUsable->getLastUseTime(),
 				m_PChar->id,
 				m_PItemUsable->getLocationID(),
 				m_PItemUsable->getSlotID());
 
+            if (m_PItemUsable->getCurrentCharges() != 0)
+            {
+                m_PChar->PRecastContainer->Add(RECAST_ITEM, m_PItemUsable->getSlotID(), m_PItemUsable->getReuseTime());
+            }
 			m_PItemUsable = new CItemUsable(*m_PItemUsable);
 		}
 		else // разблокируем все предметы, кроме экипирвоки
@@ -808,12 +798,14 @@ void CAICharNormal::ActionRangedFinish()
 		Action.messageID  = 352;
 		Action.flag = 0;
 
-	    if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0)){
+	    if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
+        {
             Action.messageID = 32; 
             Action.reaction   = REACTION_EVADE;
             Action.speceffect = SPECEFFECT_NONE;
         }
-        else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)){ //hit!
+        else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)) // hit!
+        { 
 		    float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 		    if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true)){
 			    pdif *= 1.25; //uncapped
@@ -836,34 +828,36 @@ void CAICharNormal::ActionRangedFinish()
 			    charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
 		    }
 
-		    if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){
-			    charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
-			    m_PChar->pushPacket(new CInventoryFinishPacket());
-		    }
 	    }
-	    else{//miss
+	    else //miss
+        {
             Action.reaction   = REACTION_EVADE;
             Action.speceffect = SPECEFFECT_NONE;
             Action.messageID  = 354;
 
-            CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-            if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){
-			    charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
-			    m_PChar->pushPacket(new CInventoryFinishPacket());
-		    }
             if(m_PBattleSubTarget->objtype == TYPE_MOB){
 			    ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
 			    ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
                 ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
 		    }
 	    }
-
+        CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+        if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE))
+        {
+            // TODO: charutils написать метод для обновления AMMO, чтобы корректно снимать предмет перед удалением
+			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1); 
+			m_PChar->pushPacket(new CInventoryFinishPacket());
+		}
 
         m_PChar->m_ActionList.push_back(Action);
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+
+        // TODO: что это ? ....
+        // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
+
 		CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
 		if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
 		if (charutils::hasTrait(m_PChar, TRAIT_TREASURE_HUNTER))
@@ -933,15 +927,12 @@ void CAICharNormal::ActionMagicStart()
         MagicStartError(49);
 		return;
 	}
-    for(RecastList_t::iterator it = m_PChar->RecastList.begin(); it != m_PChar->RecastList.end(); ++it)
+    if (m_PChar->PRecastContainer->Has(RECAST_MAGIC, m_PSpell->getID()))
     {
-        if ((*it)->Type == RECAST_MAGIC && (*it)->ID == m_PSpell->getID())
-        {
-            MagicStartError(18);
-			return;
-        }
+        MagicStartError(18);
+        return;
     }
-
+    
     DSP_DEBUG_BREAK_IF(m_PChar->loc.zone == NULL);
 
 	if(m_PChar->loc.zone==NULL){ //crash occured on the next if (CanUseMisc) because zone was null.
@@ -1192,28 +1183,17 @@ void CAICharNormal::ActionMagicFinish()
 
     if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
     {
-	    Recast_t* Recast = new Recast_t;
-	
-        Recast->Type = RECAST_MAGIC;
-	    Recast->ID = m_PSpell->getID();
-	    Recast->TimeStamp  = m_Tick;
-	    Recast->RecastTime = (float)m_PSpell->getRecastTime() * ((100.0f-dsp_cap((float)m_PChar->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
-		Recast->RecastTime = Recast->RecastTime * ((100.0f-dsp_cap((float)m_PChar->getMod(MOD_HASTE),0.0f,25.0f))/100.0f);
+	    uint32 RecastTime = (float)m_PSpell->getRecastTime() * ((100.0f-dsp_cap((float)m_PChar->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
+		RecastTime = RecastTime * ((100.0f-dsp_cap((float)m_PChar->getMod(MOD_HASTE),0.0f,25.0f))/100.0f);
 		//needed so the client knows of the reduced recast time!
-		m_PSpell->setModifiedRecast(Recast->RecastTime);
+		m_PSpell->setModifiedRecast(RecastTime);
 
-	    m_PChar->RecastList.push_back(Recast);
+        m_PChar->PRecastContainer->Add(RECAST_MAGIC, m_PSpell->getID(), RecastTime);
     }
-	else{ //chainspell does have a small delay between casts sadly!
-		Recast_t* Recast = new Recast_t;
-	
-        Recast->Type = RECAST_MAGIC;
-	    Recast->ID = m_PSpell->getID();
-	    Recast->TimeStamp  = m_Tick;
-	    Recast->RecastTime = 2000;
-		m_PSpell->setModifiedRecast(Recast->RecastTime);
-
-	    m_PChar->RecastList.push_back(Recast);
+	else //chainspell does have a small delay between casts sadly!
+    {
+		m_PSpell->setModifiedRecast(2000);
+        m_PChar->PRecastContainer->Add(RECAST_MAGIC, m_PSpell->getID(), 2000);
 	}
 
 	apAction_t Action;
@@ -1361,20 +1341,16 @@ void CAICharNormal::ActionJobAbilityStart()
     DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
-    for(RecastList_t::iterator it = m_PChar->RecastList.begin(); it != m_PChar->RecastList.end(); ++it)
+    if (m_PChar->PRecastContainer->Has(RECAST_ABILITY, m_PJobAbility->getRecastId()))
     {
-        if ((*it)->Type == RECAST_ABILITY && 
-            (*it)->ID == m_PJobAbility->getID())
-        {
-            m_ActionTargetID = 0;
+        m_ActionTargetID = 0;
 
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 87));
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 87));
 
-            m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PJobAbility = NULL;
-			m_PBattleSubTarget = NULL;
-			return;
-        }
+        m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PJobAbility = NULL;
+		m_PBattleSubTarget = NULL;
+		return;
     }
     if (GetValidTarget(&m_PBattleSubTarget, m_PJobAbility->getValidTarget()))
 	{
@@ -1507,32 +1483,25 @@ void CAICharNormal::ActionJobAbilityFinish()
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
 	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
 
-    Recast_t* Recast = new Recast_t;
-    Recast->Type       = RECAST_ABILITY;
-	Recast->ID         = m_PJobAbility->getID();
-	Recast->RecastTime = m_PJobAbility->getRecastTime() * 1000;
-	Recast->RecastID   = m_PJobAbility->getRecastId(); 
-    Recast->TimeStamp  = m_Tick;
-
     if (m_PJobAbility->getLevel() == 0)
     {
 		Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", m_Tick, m_PChar->id);
     }
 
+    uint32 RecastTime = m_PJobAbility->getRecastTime() * 1000;
+
 	if (m_PJobAbility->getID() == ABILITY_THIRD_EYE && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
 	{
-		Recast->RecastTime = Recast->RecastTime / 2;
+		RecastTime /= 2;
 	}
 	if(m_PJobAbility->getID() >= ABILITY_HEALING_RUBY){
 		if(m_PChar->getMod(MOD_BP_DELAY) > 15){
-			Recast->RecastTime = Recast->RecastTime - 15000;
+			RecastTime -= 15000;
 		}else{
-			Recast->RecastTime = Recast->RecastTime - m_PChar->getMod(MOD_BP_DELAY) * 1000;
+			RecastTime -= m_PChar->getMod(MOD_BP_DELAY) * 1000;
 		}
 	}
-
-    
-    m_PChar->RecastList.push_back(Recast);
+    m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime);
     m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 
     apAction_t Action;
@@ -1640,9 +1609,9 @@ void CAICharNormal::ActionJobAbilityFinish()
 }
 
 /************************************************************************
-*																		*
-*		Start the weapon skill											*
-*																		*
+*                                                                       *
+*  Start the weapon skill                                               *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionWeaponSkillStart()
@@ -1683,17 +1652,16 @@ void CAICharNormal::ActionWeaponSkillStart()
             WeaponSkillStartError(5);
 		    return;
 	    }
-        // TODO: проверка на профессию, т.к. только Ranger может выполнять WS оружием AMMO
-
-		if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
-			CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-			if(PAmmo==NULL || !(PAmmo->getType() & ITEM_WEAPON)){//incorrect or non-existent ammo
-				WeaponSkillStartError(216);
+        if (m_PWeaponSkill->getJob(JOB_RNG) != 0) // ranged WS IDs
+        {
+            if (!m_PChar->m_Weapons[SLOT_AMMO]->isRanged() || 
+                !m_PChar->m_Weapons[SLOT_RANGED]->isRanged())
+            {
+				WeaponSkillStartError(216); // You do not have an appropriate ranged weapon equipped
 				return;
 			}
 		}
         m_ActionType = ACTION_WEAPONSKILL_FINISH;
-        ActionWeaponSkillFinish();
         return;
     }
 
@@ -1702,7 +1670,6 @@ void CAICharNormal::ActionWeaponSkillStart()
 		if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
         {
 			m_ActionType = ACTION_WEAPONSKILL_FINISH;
-			ActionWeaponSkillFinish();
 			return;
 		}
 	}
@@ -1868,7 +1835,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		Action.messageID = 224; //restores mp msg
 		m_PChar->addMP(damage);
 	}
-
 	if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
 		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 		if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){

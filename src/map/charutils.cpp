@@ -493,18 +493,16 @@ void LoadChar(CCharEntity* PChar)
 
         PChar->bazaar.message.insert(0,Sql_GetData(SqlHandle,7)); 
 
-        uint32 recastTimestamp = (uint32)Sql_GetIntData(SqlHandle, 8);
+        // 2H recast time
 
-        Recast_t* PTwoHourRecast = new Recast_t;
         CAbility* PAbility = ability::GetTwoHourAbility(PChar->GetMJob());
 
-        PTwoHourRecast->Type = RECAST_ABILITY;
-        PTwoHourRecast->ID = PAbility->getID();
-        PTwoHourRecast->RecastTime = PAbility->getRecastTime() * 1000;
-        PTwoHourRecast->RecastID = PAbility->getRecastId();
-        PTwoHourRecast->TimeStamp = recastTimestamp;
+        uint32 RecastTime = (uint32)Sql_GetUIntData(SqlHandle, 8) + PAbility->getRecastTime() * 1000;
 
-        PChar->RecastList.push_back(PTwoHourRecast);
+        if (RecastTime > gettick())
+        {
+            PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
+        }
 	}
 
 	fmtQuery = "SELECT skillid, value, rank \
@@ -618,9 +616,27 @@ void LoadInventory(CCharEntity* PChar)
 		}
 	}
 
-	Query = "SELECT main, sub, ranged, ammo, head, body, hands, legs, feet, neck, waist, ear1, ear2, ring1, ring2, back, link \
-			 FROM char_equip \
-	         WHERE charid = %u;";
+	Query = 
+        "SELECT "
+          "main,"
+          "sub,"
+          "ranged,"
+          "ammo,"
+          "head,"
+          "body,"
+          "hands,"
+          "legs,"
+          "feet,"
+          "neck,"
+          "waist,"
+          "ear1,"
+          "ear2,"
+          "ring1,"
+          "ring2,"
+          "back,"
+          "link "
+        "FROM char_equip "
+        "WHERE charid = %u;";
 
 	ret = Sql_Query(SqlHandle, Query, PChar->id);
 
@@ -630,44 +646,7 @@ void LoadInventory(CCharEntity* PChar)
 	{
 		for (int32 i = 0; i < 16; ++i)
 		{
-            uint8 SlotID = (uint8)Sql_GetIntData(SqlHandle, i);
-
-			CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
-
-			if ((PItem != NULL) && 
-				(PItem->getType() & ITEM_ARMOR) &&
-			   !(PItem->getSubType() & ITEM_LOCKED))
-			{
-				PItem->setSubType(ITEM_LOCKED);
-
-                PChar->equip[i] = SlotID;
-				PChar->addModifiers(&((CItemArmor*)PItem)->modList);
-
-				if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
-				{
-					luautils::OnItemCheck(PChar, PItem);
-					PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
-				}
-				if ((i == SLOT_MAIN) && (PItem->getType() & ITEM_WEAPON))
-				{
-                    PChar->m_Weapons[SLOT_MAIN] = (CItemWeapon*)PItem;
-
-					PChar->addModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
-					PChar->addModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
-				}
-				if ((i == SLOT_SUB) && (PItem->getType() & ITEM_WEAPON))
-				{
-                    PChar->m_Weapons[SLOT_SUB] = (CItemWeapon*)PItem;
-				}
-				if ((i == SLOT_RANGED) && (PItem->getType() & ITEM_WEAPON))
-				{
-                    PChar->m_Weapons[SLOT_RANGED] = (CItemWeapon*)PItem;
-				}
-				if ((i == SLOT_AMMO) && (PItem->getType() & ITEM_WEAPON))
-				{
-                    PChar->m_Weapons[SLOT_AMMO] = (CItemWeapon*)PItem;
-				}
-			}
+            EquipItem(PChar, (uint8)Sql_GetIntData(SqlHandle, i), i);
 		}
         uint8 SlotID = (uint8)Sql_GetIntData(SqlHandle, SLOT_LINK);
 
@@ -684,9 +663,7 @@ void LoadInventory(CCharEntity* PChar)
     {
 		ShowError(CL_RED"Loading error from char_equip\n" CL_RESET);
 	}
-    CheckValidEquipment(PChar);
 	PChar->StatusEffectContainer->LoadStatusEffects();
-    PChar->UpdateHealth();
 }
 
 /************************************************************************
@@ -1037,7 +1014,10 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID) // private
 				}
 			}
 		}
-
+        if (PItem->getSubType() & ITEM_CHARGED)
+		{
+            PChar->PRecastContainer->Del(RECAST_ITEM, PItem->getSlotID()); // при снятии предмета с таймером удаляем запись о нем из RecastList
+		}
 		PItem->setSubType(ITEM_UNLOCKED);
 		
 		PChar->delModifiers(&((CItemArmor*)PItem)->modList);
@@ -1354,46 +1334,46 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 	} 
 	else 
 	{
-		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
-        if (PItem != NULL)
-        {
-		    if (PItem->getType() & ITEM_ARMOR)
-		    {
-			    if (!(PItem->getSubType() & ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID)) 
-			    {
-				    if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
-				    {
-					    luautils::OnItemCheck(PChar, PItem);
-					    PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
-				    }
-				    PItem->setSubType(ITEM_LOCKED);
+		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
 
-				    PChar->addModifiers(&((CItemArmor*)PItem)->modList);
+		if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+		{
+			if (!(PItem->getSubType() & ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID)) 
+			{
+				if (PItem->getScriptType() & SCRIPT_EQUIP)
+				{
+					luautils::OnItemCheck(PChar, PItem);
+					PChar->m_EquipFlag |= PItem->getScriptType();
+				}
+                if ((PItem->getType() & ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
+		        {
+                    PItem->setAssignTime(CVanaTime::getInstance()->getVanaTime());
+                    PChar->PRecastContainer->Add(RECAST_ITEM, slotID, PItem->getReuseTime());
 
-				    PChar->status = STATUS_UPDATE;
-				    PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
-				    PChar->pushPacket(new CCharAppearancePacket(PChar));
-				    PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NODROP));
-				    PChar->pushPacket(new CCharUpdatePacket(PChar));
-			    } 
-		    }
-            // TODO: позднее нужно будет добавить логику recast item
-            if ((PItem->getType() & ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
-		    {
-			    PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, slotID));
-	            PChar->pushPacket(new CInventoryFinishPacket());
-		    }
+                    // не забываем обновить таймер при экипировке предмета
+
+			        PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, slotID));
+	                PChar->pushPacket(new CInventoryFinishPacket());
+		        }
+				PItem->setSubType(ITEM_LOCKED);
+
+				PChar->addModifiers(&PItem->modList);
+
+				PChar->status = STATUS_UPDATE;
+				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
+				PChar->pushPacket(new CCharAppearancePacket(PChar));
+				PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NODROP));
+				PChar->pushPacket(new CCharUpdatePacket(PChar));
+			}
         }
 	}
     if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED)
     {
         PChar->health.tp = 0;
+        BuildingCharWeaponSkills(PChar);
     }
     PChar->UpdateHealth();
 	PChar->pushPacket(new CCharHealthPacket(PChar));
-
-	BuildingCharWeaponSkills(PChar);
-	SaveCharEquip(PChar);
 }
 
 /************************************************************************
@@ -1550,7 +1530,6 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 			}
 		}
 	}
-
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 

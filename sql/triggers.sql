@@ -45,5 +45,6 @@ BEGIN
 	DELETE FROM `char_titles`     WHERE `charid` = OLD.charid;
 	DELETE FROM `char_inventory`  WHERE `charid` = OLD.charid;
 	DELETE FROM `char_vars`       WHERE `charid` = OLD.charid;
+	DELETE FROM `char_points`     WHERE `charid` = OLD.charid;
 END $$
 

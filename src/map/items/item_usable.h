@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -42,8 +42,10 @@ public:
 	uint16	getAnimationTime();
 	uint16	getActivationTime();
 	uint8	getValidTarget();
+    uint32  getReuseTime();
 	uint32	getReuseDelay();
 	uint32	getLastUseTime();
+    uint32  getNextUseTime();
     uint16  getAoE();
 
 	void	setUseDelay(uint8 UseDelay);
@@ -55,19 +57,21 @@ public:
 	void	setValidTarget(uint8 ValidTarget);
 	void	setReuseDelay(uint32 ReuseDelay);
 	void	setLastUseTime(uint32 LastUseTime);
+    void    setAssignTime(uint32 VanaTime);
 	void    setAoE(uint16 AoE);
 
 private:
 
-	uint8	m_UseDelay;
-	uint8	m_CurrCharges;
-	uint8	m_MaxCharges;
+	uint8	m_UseDelay;         // задержка использования после экипировки 
+	uint8	m_CurrCharges;      // текущее количество зарядов предмета
+	uint8	m_MaxCharges;       // максимальное количество зарядов предмета
 	uint16	m_Animation;
-	uint16	m_AnimationTime;
-	uint16	m_ActivationTime;
+	uint16	m_AnimationTime;    // время анимации для правильного отображения сообщения (эффектов)
+	uint16	m_ActivationTime;   // время активации предмета во время использования
 	uint8	m_ValidTarget;
-	uint32	m_ReuseDelay;
-	uint32	m_LastUseTime;
+	uint32	m_ReuseDelay;       // задержка между использованием предмета
+	uint32	m_LastUseTime;      // время последнего использования
+    uint32  m_AssignTime;       // время экипировки предмета
     uint16  m_AoE;
 };
 

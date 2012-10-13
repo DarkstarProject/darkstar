@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -25,6 +25,8 @@
 
 #include "item_usable.h"
 
+#include "../vana_time.h"
+
 CItemUsable::CItemUsable(uint16 id) : CItem(id)
 {
 	setType(ITEM_USABLE);
@@ -38,6 +40,7 @@ CItemUsable::CItemUsable(uint16 id) : CItem(id)
 	m_ValidTarget	 = 0;
 	m_ReuseDelay	 = 0;
 	m_LastUseTime	 = 0;
+    m_AssignTime     = 0;
     m_AoE            = 0;
 }
 
@@ -73,6 +76,11 @@ void CItemUsable::setLastUseTime(uint32 LastUseTime)
 uint32 CItemUsable::getLastUseTime()
 {
 	return m_LastUseTime;
+}
+
+uint32 CItemUsable::getNextUseTime()
+{
+    return m_LastUseTime + m_ReuseDelay;
 }
 
 void CItemUsable::setCurrentCharges(uint8 CurrCharges)
@@ -143,4 +151,29 @@ uint16 CItemUsable::getAoE()
 void CItemUsable::setAoE(uint16 AoE) 
 { 
     m_AoE = AoE; 
+}
+
+/************************************************************************
+*																		*
+*  Время экипировки предмета (VanaTime)                                 *
+*																		*
+************************************************************************/
+
+void CItemUsable::setAssignTime(uint32 VanaTime)
+{
+    m_AssignTime = VanaTime;
+}
+
+/************************************************************************
+*																		*
+*  Оставшееся время до следующего использования предмета                *
+*																		*
+************************************************************************/
+
+uint32 CItemUsable::getReuseTime()
+{
+    uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
+    uint32 ReuseTime   = dsp_max(m_AssignTime + m_UseDelay, m_LastUseTime + m_ReuseDelay);
+
+    return (ReuseTime > CurrentTime ? (ReuseTime - CurrentTime) * 1000 : 0);
 }

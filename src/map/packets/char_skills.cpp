@@ -23,7 +23,6 @@
 
 #include "../../common/socket.h"
 #include "../../common/timer.h"
-#include "../../common/utils.h"
 
 #include <string.h>
 
@@ -39,24 +38,24 @@ CCharSkillsPacket::CCharSkillsPacket(CCharEntity* PChar)
 
 	uint8 count = 0; 
 
-    for (RecastList_t::iterator it = PChar->RecastList.begin(); it != PChar->RecastList.end(); ++it)
-    {
-        Recast_t* recast = *it;
-        if (recast->Type == RECAST_ABILITY)
-        {
-		    uint32 time = (recast->RecastTime - (gettick() - recast->TimeStamp)) / 1000;
+    RecastList_t* RecastList = PChar->PRecastContainer->GetRecastList(RECAST_ABILITY);
 
-		    if(recast->RecastID != 0) 
-		    {
-                WBUFL(data,(0x08 + count*4)-4) = time;
-                WBUFB(data,(0x0B + count*4)-4) = recast->RecastID;
-			    count++;
-		    } 
-		    else
-		    {
-                WBUFL(data,(0x04)-4) = time;  // 2h ability (recast id is 0)
-		    }
-        }
+    for (uint16 i = 0; i < RecastList->size(); ++i) 
+	{
+        Recast_t* recast = RecastList->at(i);
+
+		uint32 time = (recast->RecastTime - (gettick() - recast->TimeStamp)) / 1000;
+
+		if(recast->ID != 0) 
+		{
+            WBUFL(data,(0x08 + count*4)-4) = time;
+            WBUFB(data,(0x0B + count*4)-4) = recast->ID;
+			count++;
+		} 
+		else
+		{
+            WBUFL(data,(0x04)-4) = time;  // 2h ability (recast id is 0)
+		}
     }
 	memcpy(data+(0x80)-4, &PChar->WorkingSkills, 128);
 }

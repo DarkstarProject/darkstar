@@ -106,6 +106,8 @@ CCharEntity::CCharEntity()
     PLinkshell = NULL;
 	PTreasurePool = NULL;
 	PWideScanTarget = NULL;
+
+    PRecastContainer = new CRecastContainer(this);
 }
 
 CCharEntity::~CCharEntity()
@@ -114,6 +116,8 @@ CCharEntity::~CCharEntity()
 
 	delete Container;
 	delete UContainer;
+    delete PRecastContainer;
+
 	delete m_Inventory;
 	delete m_Mogsafe;
 	delete m_Storage;

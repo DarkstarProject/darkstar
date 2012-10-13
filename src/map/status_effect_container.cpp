@@ -545,9 +545,18 @@ void CStatusEffectContainer::LoadStatusEffects()
 {
     DSP_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
 
-	const int8* Query = "SELECT effectid, icon, power, tick, duration, subid, subpower, tier \
-						 FROM char_effects \
-						 WHERE charid = %u;";
+	const int8* Query = 
+        "SELECT "
+          "effectid,"
+          "icon,"
+          "power,"
+          "tick,"
+          "duration,"
+          "subid,"
+          "subpower,"
+          "tier "
+        "FROM char_effects "
+        "WHERE charid = %u;";
 
 	int32 ret = Sql_Query(SqlHandle, Query, m_POwner->id);
 
@@ -568,6 +577,7 @@ void CStatusEffectContainer::LoadStatusEffects()
 			AddStatusEffect(PStatusEffect);
 		}
 	}
+    m_POwner->UpdateHealth(); // после загрузки эффектов пересчитываем максимальное количество HP/MP
 }
 
 /************************************************************************
