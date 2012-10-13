@@ -85,7 +85,7 @@ function onEventFinish(player,csid,option)
 		player:addGil(GIL_RATE*150);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*150);
 		player:completeQuest(SANDORIA, A_TASTE_FOR_MEAT);
-		player:setTitle(RABBITER);
+		player:addTitle(RABBITER);
 		player:setVar("aTasteForMeat", 1);
 	end;
 	

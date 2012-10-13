@@ -18,5 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(TEMENOS_LIBERATOR);
+	killer:addTitle(TEMENOS_LIBERATOR);
 end;

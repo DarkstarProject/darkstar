@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(CACTROT_DESACELERADOR);
+	killer:addTitle(CACTROT_DESACELERADOR);
 end;

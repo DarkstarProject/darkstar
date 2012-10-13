@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(WYRM_ASTONISHER);
+	killer:addTitle(WYRM_ASTONISHER);
 end;

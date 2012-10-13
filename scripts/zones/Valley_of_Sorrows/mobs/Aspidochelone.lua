@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(ASPIDOCHELONE_SINKER);
+	killer:addTitle(ASPIDOCHELONE_SINKER);
 end;

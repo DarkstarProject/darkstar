@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4731);
 		else
-			player:setTitle(PILGRIM_TO_DEM);
+			player:addTitle(PILGRIM_TO_DEM);
 			player:delKeyItem(LETTER_FROM_VIRNAGE);
 			player:addItem(4731);
 			player:messageSpecial(ITEM_OBTAINED,4731); -- Scroll of Teleport-Dem
@@ -87,7 +87,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4732);
 		else
-			player:setTitle(PILGRIM_TO_MEA);
+			player:addTitle(PILGRIM_TO_MEA);
 			player:delKeyItem(GANTINEUXS_LETTER);
 			player:addItem(4732);
 			player:messageSpecial(ITEM_OBTAINED,4732); -- Scroll of Teleport-Mea
@@ -102,7 +102,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4730);
 		else
-			player:setTitle(PILGRIM_TO_HOLLA);
+			player:addTitle(PILGRIM_TO_HOLLA);
 			player:addItem(4730);
 			player:messageSpecial(ITEM_OBTAINED,4730); -- Scroll of Teleport-Holla
 			player:needToZone(true);

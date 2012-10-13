@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 -- print(bc finish csid ..csid.. and option ..option);
 	
 	if(csid == 0x7d01 and option ~= 0) then -->= 2147483648 and option <= 2147483679) then
-		player:setTitle(HEIR_TO_THE_HOLY_CREST);
+		player:addTitle(HEIR_TO_THE_HOLY_CREST);
 		player:delKeyItem(DRAGON_CURSE_REMEDY);
 		player:unlockJob(14);
 		player:messageSpecial(YOU_CAN_NOW_BECOME_A_DRAGOON);

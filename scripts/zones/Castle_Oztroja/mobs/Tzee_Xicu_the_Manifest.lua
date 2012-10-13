@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(DEITY_DEBUNKER);
+	killer:addTitle(DEITY_DEBUNKER);
 end;

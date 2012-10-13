@@ -91,6 +91,10 @@ namespace charutils
 	int32	addAbility(CCharEntity* PChar, uint16 AbilityID);	        // добавляем ключевой предмет
 	int32	delAbility(CCharEntity* PChar, uint16 AbilityID);	        // улаляем ключевой предмет
 
+    int32   hasTitle(CCharEntity* PChar, uint16 Title);
+    int32   addTitle(CCharEntity* PChar, uint16 Title);
+    int32   delTitle(CCharEntity* PChar, uint16 Title);
+
 	int32	hasPetAbility(CCharEntity* PChar, uint16 AbilityID);	        //same as Ability but for pet commands (e.g. Healing Ruby)
 	int32	addPetAbility(CCharEntity* PChar, uint16 AbilityID);	        
 	int32	delPetAbility(CCharEntity* PChar, uint16 AbilityID);
@@ -113,6 +117,7 @@ namespace charutils
 	void	SaveKeyItems(CCharEntity* PChar);					        // сохраняем ключевые предметы
 	void	SaveCharInventoryCapacity(CCharEntity* PChar);              // Save Character inventory capacity
 	void	SaveSpells(CCharEntity* PChar);						        // сохраняем выученные заклинания
+    void    SaveTitles(CCharEntity* PChar);						        // сохраняем заслуженные звания
 	void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
 	void	SaveCharNation(CCharEntity* PChar);							// Sace the character's nation of allegiance.
 	void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа

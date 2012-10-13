@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0299) then
 		player:addQuest(WINDURST,MAKING_HEADLINES);
 	elseif (csid == 0x029e or csid == 0x02a2) then
-		player:setTitle(EDITORS_HATCHET_MAN);
+		player:addTitle(EDITORS_HATCHET_MAN);
 		player:addGil(GIL_RATE*560);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*560);	
 		player:delKeyItem(WINDURST_WOODS_SCOOP);

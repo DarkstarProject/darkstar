@@ -18,5 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(LIFTER_OF_SHADOWS);
+	killer:addTitle(LIFTER_OF_SHADOWS);
 end;

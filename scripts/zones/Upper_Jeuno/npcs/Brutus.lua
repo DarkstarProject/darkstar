@@ -113,7 +113,7 @@ function onEventFinish(player,csid,option)
     	player:setVar("ChocobosWounds_Event",1);
     elseif(csid == 0x0046) then
     	player:addQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
-		player:setTitle(ANIMAL_TRAINER);
+		player:addTitle(ANIMAL_TRAINER);
 		player:unlockJob(9); -- Beastmaster
 		player:messageSpecial(YOU_CAN_NOW_BECOME_A_BEASTMASTER);
 		player:addFame(JEUNO,30);

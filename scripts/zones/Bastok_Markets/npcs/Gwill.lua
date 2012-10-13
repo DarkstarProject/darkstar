@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x00f3) then
 		if(player:getFreeSlotsCount() >= 1) then
 			player:tradeComplete();
-			player:setTitle(KULATZ_BRIDGE_COMPANION);
+			player:addTitle(KULATZ_BRIDGE_COMPANION);
 			player:addItem(12498);
 			player:messageSpecial(ITEM_OBTAINED,12498);
 			player:addFame(BASTOK,BAS_FAME*80);

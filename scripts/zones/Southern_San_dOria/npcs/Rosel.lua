@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,RECEIPT_FOR_THE_PRINCE);
 	-- Rosel the Armorer, finished quest, recieve 200gil
 	elseif(csid == 0x020f) then
-		player:setTitle(ENTRANCE_DENIED);
+		player:addTitle(ENTRANCE_DENIED);
 		player:addGil(GIL_RATE*200);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
 		player:addFame(SANDORIA,SAN_FAME*30);

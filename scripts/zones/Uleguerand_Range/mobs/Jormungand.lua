@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(WORLD_SERPENT_SLAYER);
+	killer:addTitle(WORLD_SERPENT_SLAYER);
 end;

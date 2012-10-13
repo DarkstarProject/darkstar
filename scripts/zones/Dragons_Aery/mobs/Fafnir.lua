@@ -31,5 +31,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(FAFNIR_SLAYER);
+	killer:addTitle(FAFNIR_SLAYER);
 end;

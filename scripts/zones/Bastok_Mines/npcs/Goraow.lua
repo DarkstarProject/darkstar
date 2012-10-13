@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x006b) then
 		Vengeful = player:getQuestStatus(BASTOK, VENGEFUL_WRATH);
 		if (Vengeful == QUEST_ACCEPTED) then
-			player:setTitle(95);
+			player:addTitle(95);
 			player:addFame(BASTOK,BAS_FAME*120);
 		else
 			player:addFame(BASTOK,BAS_FAME*8);

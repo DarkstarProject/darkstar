@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(OUTLANDS,THE_IMMORTAL_LU_SHANG);
 	elseif(csid == 0x004e) then
 		player:tradeComplete();
-		player:setTitle(265);
+		player:addTitle(265);
 		player:addItem(17386); -- Lu Shang's Fishing Rod
 		player:messageSpecial(ITEM_OBTAINED, 17386); 
 		player:completeQuest(OUTLANDS,THE_IMMORTAL_LU_SHANG);
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
 		if(player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17011); 
 		else
-			player:setTitle(265);
+			player:addTitle(265);
 			player:addItem(17011); -- Ebisu Fishing Rod
 			player:messageSpecial(ITEM_OBTAINED, 17011); 
 			player:completeQuest(OUTLANDS,201);

@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17041);
 		else 
-			player:setTitle(EXORCIST_IN_TRAINING);
+			player:addTitle(EXORCIST_IN_TRAINING);
 			player:addGil(GIL_RATE*3000);
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
 			player:addItem(17041);

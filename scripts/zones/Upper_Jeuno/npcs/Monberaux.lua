@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
 		player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 4);
 	elseif(csid == 0x0021 and option == 0 or csid == 0x0022 and option == 0) then 
-		player:setTitle(TWOS_COMPANY);
+		player:addTitle(TWOS_COMPANY);
 		player:setVar("theLostCardianVar",0);
 		player:addGil(GIL_RATE*2100);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);

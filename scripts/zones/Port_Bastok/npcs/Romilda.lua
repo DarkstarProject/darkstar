@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x80) then
 		player:addQuest(BASTOK,TILL_DEATH_DO_US_PART);
 	elseif (csid == 0x81) then
-		player:setTitle(QIJIS_RIVAL);
+		player:addTitle(QIJIS_RIVAL);
 		player:addGil(GIL_RATE*2000);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*2000);
 		player:addFame(BASTOK,BAS_FAME*160);

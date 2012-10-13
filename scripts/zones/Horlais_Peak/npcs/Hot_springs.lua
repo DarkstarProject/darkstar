@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
 		player:addItem(4949); -- Scroll of Jubaku: Ichi
 		player:messageSpecial(ITEM_OBTAINED, 4949); 
 		player:addFame(OUTLANDS,NORG_FAME*75);
-		player:setTitle(270);
+		player:addTitle(270);
 		player:completeQuest(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
 	end
 end;

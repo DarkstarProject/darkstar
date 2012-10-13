@@ -18,5 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(NIGHTMARE_AWAKENER);
+	killer:addTitle(NIGHTMARE_AWAKENER);
 end;

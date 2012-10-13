@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(OVERLORD_OVERTHROWER);
+	killer:addTitle(OVERLORD_OVERTHROWER);
 end;

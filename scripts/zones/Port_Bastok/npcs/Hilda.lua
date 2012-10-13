@@ -102,7 +102,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17170);
 		else
-			player:setTitle(STEAMING_SHEEP_REGULAR);
+			player:addTitle(STEAMING_SHEEP_REGULAR);
 			player:delKeyItem(127);
 			player:setVar("TheUsual_Event",0);
 			player:addItem(17170);

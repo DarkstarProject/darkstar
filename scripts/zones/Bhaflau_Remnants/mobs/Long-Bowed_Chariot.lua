@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(COMET_CHARIOTEER);
+	killer:addTitle(COMET_CHARIOTEER);
 end;

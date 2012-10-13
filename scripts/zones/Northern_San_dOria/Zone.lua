@@ -99,7 +99,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0239) then	
 		player:setPos(0,0,-13,192,0xe9);
 	elseif(csid == 0x0031) then	
-		player:setTitle(PARAGON_OF_RED_MAGE_EXCELLENCE);
+		player:addTitle(PARAGON_OF_RED_MAGE_EXCELLENCE);
 		player:addItem(12513);
 		player:messageSpecial(ITEM_OBTAINED, 12513); -- Warlock's Chapeau
 		player:setVar("peaceForTheSpiritCS",0);

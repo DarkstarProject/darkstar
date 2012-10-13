@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("AyameAndKaede_Event", 3);
 	elseif(csid == 0x00f6) then
 		player:delKeyItem(SEALED_DAGGER);
-		player:setTitle(SHADOW_WALKER);
+		player:addTitle(SHADOW_WALKER);
 		player:unlockJob(13);
 		player:messageSpecial(UNLOCK_NINJA); -- You can now become a Ninja
 		player:setVar("AyameAndKaede_Event", 0);

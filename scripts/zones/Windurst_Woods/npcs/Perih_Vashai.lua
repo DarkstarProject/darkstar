@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
 			player:delKeyItem(OLD_TIGERS_FANG);
 			player:setVar("TheFangedOne_Event",0);
 			player:setVar("TheFangedOne_Died",0);
-			player:setTitle(THE_FANGED_ONE);
+			player:addTitle(THE_FANGED_ONE);
 			player:addItem(13117);
 			player:messageSpecial(ITEM_OBTAINED,13117);
 			player:unlockJob(11);

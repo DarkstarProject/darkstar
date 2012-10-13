@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(BEHEMOTH_DETHRONER);
+	killer:addTitle(BEHEMOTH_DETHRONER);
 end;

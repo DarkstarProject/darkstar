@@ -140,7 +140,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0040) then
         player:addKeyItem(CHOCOBO_LICENSE);
         player:messageSpecial(KEYITEM_OBTAINED, CHOCOBO_LICENSE);
-        player:setTitle(CHOCOBO_TRAINER);
+        player:addTitle(CHOCOBO_TRAINER);
         player:setVar("ChocobosWounds_Event", 0);
         player:setVar("ChocobosWounds_Day", 0);
         player:setVar("ChocobosWounds_Year",0);

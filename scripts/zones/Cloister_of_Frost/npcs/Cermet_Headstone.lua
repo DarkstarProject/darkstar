@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
 		if(player:hasKeyItem(FIRE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and 
 		   player:hasKeyItem(WIND_FRAGMENT) and player:hasKeyItem(LIGHTNING_FRAGMENT) and player:hasKeyItem(LIGHT_FRAGMENT)) then
 			player:messageSpecial(FOUND_ALL_FRAGS,ICE_FRAGMENT);
-			player:setTitle(BEARER_OF_THE_EIGHT_PRAYERS);
+			player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
 			player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
 			player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
 		else

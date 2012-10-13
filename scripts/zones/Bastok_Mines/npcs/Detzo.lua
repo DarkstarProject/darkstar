@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x005d) then
 		player:addQuest(BASTOK,RIVALS);
 	elseif (csid == 0x005e) then
-		player:setTitle(CONTEST_RIGGER);		
+		player:addTitle(CONTEST_RIGGER);		
 		player:addItem(13571);
 		player:messageSpecial(ITEM_OBTAINED,13571);
 		player:addFame(BASTOK,BAS_FAME*30);

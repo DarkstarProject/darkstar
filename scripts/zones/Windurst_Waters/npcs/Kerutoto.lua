@@ -141,7 +141,7 @@ function onEventFinish(player,csid,option)
 		if(player:getVar("Kerutoto_Food_var") == 2 and player:getVar("Kenapa_Food_var") == 4 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
 			player:addGil(GIL_RATE*440);
 			player:tradeComplete();
-			player:setTitle(FAST_FOOD_DELIVERER);
+			player:addTitle(FAST_FOOD_DELIVERER);
 			player:addFame(WINDURST,WIN_FAME*100);
 			player:needToZone(true);
 			player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
@@ -180,7 +180,7 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(WINDURST,BLUE_RIBBON_BLUES);
 		player:setVar("BlueRibbonBluesProg",0);
 		player:addFame(WINDURST,WIN_FAME*140);
-		player:setTitle(GHOSTIE_BUSTER);
+		player:addTitle(GHOSTIE_BUSTER);
 		player:needToZone(true);
 	end
 	

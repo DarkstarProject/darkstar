@@ -37,7 +37,7 @@ function onMobDeath(mob,killer)
 	if(alreadyReceived(killer,8) == false) then
 		addDynamisList(killer,128);
 		
-		killer:setTitle(DYNAMISSAN_DORIA_INTERLOPER); -- Add title
+		killer:addTitle(DYNAMISSAN_DORIA_INTERLOPER); -- Add title
 		
 		npc = GetNPCByID(17535220); -- Spawn ???
 		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());

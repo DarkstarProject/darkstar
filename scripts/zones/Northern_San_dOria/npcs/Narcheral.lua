@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12640); -- Healer's Briault
 		else
-			player:setTitle(PARAGON_OF_WHITE_MAGE_EXCELLENCE);
+			player:addTitle(PARAGON_OF_WHITE_MAGE_EXCELLENCE);
 			player:setVar("pieujesDecisionCS",0);
 			player:addItem(12640);
 			player:messageSpecial(ITEM_OBTAINED,12640); -- Healer's Briault

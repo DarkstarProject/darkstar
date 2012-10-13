@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
 		if (PayingLipService == QUEST_ACCEPTED) then
 			player:completeQuest(WINDURST,PAYING_LIP_SERVICE);
 			player:addFame(WINDURST,WIN_FAME*60);
-			player:setTitle(KISSER_MAKEUPPER);
+			player:addTitle(KISSER_MAKEUPPER);
 		else
 			player:addFame(WINDURST,WIN_FAME*8);
 		end

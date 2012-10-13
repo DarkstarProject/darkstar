@@ -18,6 +18,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(XOLOTL_XTRAPOLATOR);	
+	killer:addTitle(XOLOTL_XTRAPOLATOR);	
 
 end;

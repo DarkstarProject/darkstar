@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(BOROKA_BELEAGUERER);
+	killer:addTitle(BOROKA_BELEAGUERER);
 end;

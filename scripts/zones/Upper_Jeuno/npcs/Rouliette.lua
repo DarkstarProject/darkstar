@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0024 and player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_AVAILABLE) then 
 		player:addQuest(JEUNO,CANDLE_MAKING);
 	elseif(csid == 0x0025) then 
-		player:setTitle(BELIEVER_OF_ALTANA);
+		player:addTitle(BELIEVER_OF_ALTANA);
 		player:addKeyItem(HOLY_CANDLE);
 		player:messageSpecial(KEYITEM_OBTAINED,HOLY_CANDLE);
 		player:addFame(JEUNO,30);

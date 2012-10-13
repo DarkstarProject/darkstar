@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,206);
 		else
 			player:completeQuest(WINDURST,A_POSE_BY_ANY_OTHER_NAME)
-			player:setTitle(SUPER_MODEL);
+			player:addTitle(SUPER_MODEL);
 			player:addItem(206);
 			player:messageSpecial(ITEM_OBTAINED,206);
 			player:addKeyItem(ANGELICAS_AUTOGRAPH);
@@ -113,7 +113,7 @@ function onEventFinish(player,csid,option)
 		end
 	elseif (csid == 0x0066) then  ---------------------- QUEST FAILURE
 		player:delQuest(WINDURST,A_POSE_BY_ANY_OTHER_NAME);
-		player:setTitle(LOWER_THAN_THE_LOWEST_TUNNEL_WORM);
+		player:addTitle(LOWER_THAN_THE_LOWEST_TUNNEL_WORM);
 		player:setVar("QuestAPoseByOtherName_time",0);
 		player:setVar("QuestAPoseByOtherName_equip",0);
 		player:setVar("QuestAPoseByOtherName_prog",0);

@@ -35,7 +35,7 @@ CrepyCrawlies = player:getQuestStatus(WINDURST,CREEPY_CRAWLIES);
 			player:tradeComplete();
 			player:addGil(GIL_RATE*600);
 			player:completeQuest(WINDURST,CREEPY_CRAWLIES);
-			player:setTitle(CRAWLER_CULLER);
+			player:addTitle(CRAWLER_CULLER);
 
 			player:startEvent(0x014f,GIL_RATE*600,816,938,1156);
 		end

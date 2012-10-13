@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(MOON_CHARIOTEER);
+	killer:addTitle(MOON_CHARIOTEER);
 end;

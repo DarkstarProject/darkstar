@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(ORCUS_TROPHY_HUNTER);
+	killer:addTitle(ORCUS_TROPHY_HUNTER);
 end;

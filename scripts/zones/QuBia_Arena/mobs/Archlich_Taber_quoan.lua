@@ -40,7 +40,7 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	killer:setTitle(ARCHMAGE_ASSASSIN);
+	killer:addTitle(ARCHMAGE_ASSASSIN);
 	
 	-- Despawn Warriors from this specific BCNM
 	self = mob:getID();

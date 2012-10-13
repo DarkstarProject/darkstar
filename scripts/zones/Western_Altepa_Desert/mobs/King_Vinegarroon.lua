@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(VINEGAR_EVAPORATOR);
+	killer:addTitle(VINEGAR_EVAPORATOR);
 end;

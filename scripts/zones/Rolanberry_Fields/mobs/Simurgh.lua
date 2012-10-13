@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(SIMURGH_POACHER);
+	killer:addTitle(SIMURGH_POACHER);
 end;

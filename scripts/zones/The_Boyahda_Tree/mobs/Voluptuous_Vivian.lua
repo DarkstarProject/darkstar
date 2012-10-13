@@ -18,5 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(THE_VIVISECTOR);
+	killer:addTitle(THE_VIVISECTOR);
 end;

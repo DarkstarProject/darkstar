@@ -29,5 +29,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(CASSIENOVA);
+	killer:addTitle(CASSIENOVA);
 end;

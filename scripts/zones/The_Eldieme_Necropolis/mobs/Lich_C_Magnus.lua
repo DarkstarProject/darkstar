@@ -17,7 +17,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(LICH_BANISHER);
+	killer:addTitle(LICH_BANISHER);
 	if(killer:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES) == QUEST_ACCEPTED) then
 		killer:setVar("Lich_C_Magnus_Died",1);
 	end

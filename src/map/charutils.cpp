@@ -300,7 +300,7 @@ void LoadChar(CCharEntity* PChar)
 
 	const int8* fmtQuery = "SELECT charname, pos_zone, pos_prevzone, pos_rot, pos_x, pos_y, pos_z, boundary, \
 								   home_zone, home_rot, home_x, home_y, home_z, nation, quests, keyitems, \
-								   spells, zones, inventory, safe, storage, locker, satchel, sack, \
+								   spells, titles, zones, inventory, safe, storage, locker, satchel, sack, \
 								   missions, rankSandoria, rankBastok, rankWindurst, rankPoints, \
 								   fameSandoria, fameBastok, fameWindurst, fameNorg \
 							FROM chars \
@@ -338,7 +338,7 @@ void LoadChar(CCharEntity* PChar)
 
 		length = 0;
 		int8* missions = NULL;
-		Sql_GetData(SqlHandle,24,&missions,&length);
+		Sql_GetData(SqlHandle,25,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
 		length = 0;
@@ -351,29 +351,34 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,16,&spells,&length);
 		memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
 
+        length = 0;
+		int8* titles = NULL;
+		Sql_GetData(SqlHandle,17,&titles,&length);
+		memcpy(PChar->m_TitleList, titles, (length > sizeof(PChar->m_TitleList) ? sizeof(PChar->m_TitleList) : length));
+
 		length = 0;
 		int8* zones = NULL;
-		Sql_GetData(SqlHandle,17,&zones,&length);
+		Sql_GetData(SqlHandle,18,&zones,&length);
 		memcpy(PChar->m_ZonesList, zones, (length > sizeof(PChar->m_ZonesList) ? sizeof(PChar->m_ZonesList) : length));
 
-		PChar->getStorage(LOC_INVENTORY)->SetSize((uint8)Sql_GetIntData(SqlHandle,18)); 
-		PChar->getStorage(LOC_MOGSAFE)->SetSize((uint8)Sql_GetIntData(SqlHandle,19)); 
-		PChar->getStorage(LOC_STORAGE)->SetSize((uint8)Sql_GetIntData(SqlHandle,20));
+		PChar->getStorage(LOC_INVENTORY)->SetSize((uint8)Sql_GetIntData(SqlHandle,19)); 
+		PChar->getStorage(LOC_MOGSAFE)->SetSize((uint8)Sql_GetIntData(SqlHandle,20)); 
+		PChar->getStorage(LOC_STORAGE)->SetSize((uint8)Sql_GetIntData(SqlHandle,21));
 		PChar->getStorage(LOC_TEMPITEMS)->SetSize(18); 
-		PChar->getStorage(LOC_MOGLOCKER)->SetSize((uint8)Sql_GetIntData(SqlHandle,21)); 
-		PChar->getStorage(LOC_MOGSATCHEL)->SetSize((uint8)Sql_GetIntData(SqlHandle,22)); 
-		PChar->getStorage(LOC_MOGSACK)->SetSize((uint8)Sql_GetIntData(SqlHandle,23));
+		PChar->getStorage(LOC_MOGLOCKER)->SetSize((uint8)Sql_GetIntData(SqlHandle,22)); 
+		PChar->getStorage(LOC_MOGSATCHEL)->SetSize((uint8)Sql_GetIntData(SqlHandle,23)); 
+		PChar->getStorage(LOC_MOGSACK)->SetSize((uint8)Sql_GetIntData(SqlHandle,24));
 
-        PChar->profile.rank[0] = (uint8)Sql_GetIntData(SqlHandle,25);
-		PChar->profile.rank[1] = (uint8)Sql_GetIntData(SqlHandle,26);
-		PChar->profile.rank[2] = (uint8)Sql_GetIntData(SqlHandle,27);
+        PChar->profile.rank[0] = (uint8)Sql_GetIntData(SqlHandle,26);
+		PChar->profile.rank[1] = (uint8)Sql_GetIntData(SqlHandle,27);
+		PChar->profile.rank[2] = (uint8)Sql_GetIntData(SqlHandle,28);
 		
-		PChar->profile.rankpoints = Sql_GetUIntData(SqlHandle,28);
+		PChar->profile.rankpoints = Sql_GetUIntData(SqlHandle,29);
 
-		PChar->profile.fame[0] =  (uint16)Sql_GetIntData(SqlHandle,29);  //Sandoria
-		PChar->profile.fame[1] =  (uint16)Sql_GetIntData(SqlHandle,30);  //Bastok
-		PChar->profile.fame[2] =  (uint16)Sql_GetIntData(SqlHandle,31);  //Windurst
-		PChar->profile.fame[3] =  (uint16)Sql_GetIntData(SqlHandle,32);  //Norg
+		PChar->profile.fame[0] =  (uint16)Sql_GetIntData(SqlHandle,30);  //Sandoria
+		PChar->profile.fame[1] =  (uint16)Sql_GetIntData(SqlHandle,31);  //Bastok
+		PChar->profile.fame[2] =  (uint16)Sql_GetIntData(SqlHandle,32);  //Windurst
+		PChar->profile.fame[3] =  (uint16)Sql_GetIntData(SqlHandle,33);  //Norg
 	}
 
 	fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged \
@@ -1873,6 +1878,27 @@ int32 delSpell(CCharEntity* PChar, uint16 SpellID)
 }
 
 /************************************************************************
+*                                                                       *
+*  Методы для работы со званиями                                        *
+*                                                                       *
+************************************************************************/
+
+int32 hasTitle(CCharEntity* PChar, uint16 Title)
+{
+	return hasBit(Title, PChar->m_TitleList, sizeof(PChar->m_TitleList));
+}
+
+int32 addTitle(CCharEntity* PChar, uint16 Title)
+{
+	return addBit(Title, PChar->m_TitleList, sizeof(PChar->m_TitleList));
+}
+
+int32 delTitle(CCharEntity* PChar, uint16 Title)
+{
+	return delBit(Title, PChar->m_TitleList, sizeof(PChar->m_TitleList));
+}
+
+/************************************************************************
 *																		*
 *  Методы для работы с основными способностями							*
 *																		*
@@ -2836,6 +2862,25 @@ void SaveSpells(CCharEntity* PChar)
 	Sql_EscapeStringLen(SqlHandle,spells,(const int8*)PChar->m_SpellList,sizeof(PChar->m_SpellList));
 
 	Sql_Query(SqlHandle,fmtQuery,spells,PChar->id);
+}
+
+/************************************************************************
+*                                                                       *
+*  Сохраняем список званий                                              *
+*                                                                       *
+************************************************************************/
+
+void SaveTitles(CCharEntity* PChar)
+{
+	const int8* Query = "UPDATE chars JOIN char_stats USING(charid) SET titles = '%s', title = %u WHERE charid = %u";
+
+	int8 titles[sizeof(PChar->m_TitleList)*2+1];
+	Sql_EscapeStringLen(SqlHandle,titles,(const int8*)PChar->m_TitleList,sizeof(PChar->m_TitleList));
+
+    Sql_Query(SqlHandle,Query,
+        titles,
+        PChar->profile.title,
+        PChar->id);
 }
 
 /************************************************************************

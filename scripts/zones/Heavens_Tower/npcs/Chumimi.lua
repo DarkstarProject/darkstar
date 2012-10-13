@@ -87,11 +87,11 @@ function onEventFinish(player,csid,option)
 			choosetitle = player:getVar("theThreeMagiSupport");
 			
 			if(choosetitle == 3) then
-				player:setTitle(PROFESSOR_KORUMORU_SUPPORTER);
+				player:addTitle(PROFESSOR_KORUMORU_SUPPORTER);
 			elseif(choosetitle == 2) then
-				player:setTitle(DOCTOR_SHANTOTTO_SUPPORTER);
+				player:addTitle(DOCTOR_SHANTOTTO_SUPPORTER);
 			else
-				player:setTitle(DOCTOR_YORANORAN_SUPPORTER);
+				player:addTitle(DOCTOR_YORANORAN_SUPPORTER);
 			end
 			
 			player:tradeComplete();

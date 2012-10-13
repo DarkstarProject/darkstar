@@ -157,7 +157,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("ForgeYourDestiny_timer", os.time() + 10368); --Add 3 game days
 	elseif(csid == 0x001d) then
 		player:tradeComplete();
-		player:setTitle(BUSHIDO_BLADE);
+		player:addTitle(BUSHIDO_BLADE);
 		player:addItem(17809);
 		player:messageSpecial(YOU_CAN_NOW_BECOME_A_SAMURAI, 17809); -- You can now become a samurai
 		player:unlockJob(12); -- Samurai Job Unlocked
@@ -230,7 +230,7 @@ function onEventFinish(player,csid,option)
 		else
 			player:addItem(13868);
 			player:messageSpecial(ITEM_OBTAINED,13868); -- 	Myochin Kabuto
-			player:setTitle(PARAGON_OF_SAMURAI_EXCELLENCE);
+			player:addTitle(PARAGON_OF_SAMURAI_EXCELLENCE);
 			player:setVar("aThiefinNorgCS",0);
 			player:setVar("Wait1DayForAThiefinNorg2_date",0);
 			player:addFame(OUTLANDS,NORG_FAME*AF3_FAME);

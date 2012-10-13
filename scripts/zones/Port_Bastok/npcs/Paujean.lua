@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
 		player:addFame(3,NORG_FAME*125);
 		player:addItem(13201);
 		player:messageSpecial(ITEM_OBTAINED,13201);
-		player:setTitle(PURPLE_BELT);
+		player:addTitle(PURPLE_BELT);
 	end
 	
 end;

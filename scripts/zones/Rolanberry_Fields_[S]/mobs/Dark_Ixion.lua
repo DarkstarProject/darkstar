@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(IXION_HORNBREAKER);
+	killer:addTitle(IXION_HORNBREAKER);
 end;

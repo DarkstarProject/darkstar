@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(BEHEMOTHS_BANE);
+	killer:addTitle(BEHEMOTHS_BANE);
 end;

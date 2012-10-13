@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
 --printf("onFinish RESULT: %u",option);
 	
 	if(csid == 0x0001) then
-		player:setTitle(LIGHTWEAVER);
+		player:addTitle(LIGHTWEAVER);
 		player:setVar("ZilartStatus",0);
 		player:addKeyItem(PRISMATIC_FRAGMENT);
 		player:messageSpecial(KEYITEM_OBTAINED,PRISMATIC_FRAGMENT);

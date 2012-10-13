@@ -27,6 +27,6 @@ function onMobDeath(mob,killer)
 		end
 	end
 
-	killer:setTitle(WARCHIEF_WRECKER);
+	killer:addTitle(WARCHIEF_WRECKER);
 	
 end;

@@ -177,7 +177,7 @@ function CharCreate(player)
 	player:addItem(0x218);
 
 	--SET TITLE
-	player:setTitle(NEW_ADVENTURER); 
+	player:addTitle(NEW_ADVENTURER); 
 
 end;
 

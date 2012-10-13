@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(13183);
 			player:messageSpecial(ITEM_OBTAINED, 13183);
 			player:addFame(SANDORIA,SAN_FAME*30);
-			player:setTitle(THE_PURE_ONE);
+			player:addTitle(THE_PURE_ONE);
 			player:completeQuest(SANDORIA,WATER_OF_THE_CHEVAL);
 		end;
 	elseif (csid == 0x01f8) then

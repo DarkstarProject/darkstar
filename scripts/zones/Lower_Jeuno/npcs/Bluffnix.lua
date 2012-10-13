@@ -98,9 +98,9 @@ function onEventFinish(player,csid,option)
 		end
 	elseif (csid == 0x0049) then
 		if (gobbieBag == 5) then
-			player:setTitle(GREEDALOX);
+			player:addTitle(GREEDALOX);
 		elseif (gobbieBag == 10) then
-			player:setTitle(GRAND_GREEDALOX);
+			player:addTitle(GRAND_GREEDALOX);
 		end
 		
 		player:changeContainerSize(0,5);

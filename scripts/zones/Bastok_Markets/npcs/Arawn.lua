@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,STAMP_SHEET);
     elseif (csid == 0x00e2) then
         if (player:getFreeSlotsCount(0) >= 1) then
-            player:setTitle(STAMPEDER);
+            player:addTitle(STAMPEDER);
             player:addItem(13081);
             player:messageSpecial(ITEM_OBTAINED,13081); -- Leather Gorget
             player:delKeyItem(STAMP_SHEET);

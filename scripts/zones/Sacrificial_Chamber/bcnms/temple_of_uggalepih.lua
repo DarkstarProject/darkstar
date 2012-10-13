@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 	
 	if(csid == 0x7d01) then
-		player:setTitle(BEARER_OF_THE_WISEWOMANS_HOPE);
+		player:addTitle(BEARER_OF_THE_WISEWOMANS_HOPE);
 		if(player:hasKeyItem(SACRIFICIAL_CHAMBER_KEY)) then
 			player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
 			player:addKeyItem(DARK_FRAGMENT);

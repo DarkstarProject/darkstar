@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
 		if(player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12720);
 		else
-			player:setTitle(BRYGIDAPPROVED);
+			player:addTitle(BRYGIDAPPROVED);
 			player:addItem(12720);
 			player:messageSpecial(ITEM_OBTAINED,12720);
 			player:addFame(BASTOK,BAS_FAME*30);

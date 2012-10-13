@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(17349);
 			player:messageSpecial(ITEM_OBTAINED,17349);
 			player:addFame(WINDURST,WIN_FAME*75);
-			player:setTitle(DOWN_PIPER_PIPEUPPERER);
+			player:addTitle(DOWN_PIPER_PIPEUPPERER);
 			player:needToZone(true);
 			player:setVar("QuestWonderingMin_var",0);
 		end

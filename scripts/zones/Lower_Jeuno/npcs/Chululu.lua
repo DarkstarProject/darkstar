@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
 			end
 		end
 	elseif(csid == 0x00c8) then
-		player:setTitle(CARD_COLLECTOR);
+		player:addTitle(CARD_COLLECTOR);
 		player:addFame(JEUNO,30);
 		player:tradeComplete();
 		player:completeQuest(JEUNO,COLLECT_TARUT_CARDS);

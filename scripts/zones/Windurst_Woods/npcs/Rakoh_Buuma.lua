@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
 	finishMissionTimeline(player,1,csid,option);
 	
 	if(csid == 0x0079 and option == 1) then
-		player:setTitle(NEW_BUUMAS_BOOMERS_RECRUIT);
+		player:addTitle(NEW_BUUMAS_BOOMERS_RECRUIT);
 	elseif(csid == 0x0072 and (option == 12 or option == 15)) then
 		player:addKeyItem(STAR_CRESTED_SUMMONS);
 		player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);

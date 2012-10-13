@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
 			player:completeQuest(JEUNO,THE_OLD_MONUMENT);
 			player:addItem(634,1);
 			player:messageSpecial(ITEM_OBTAINED, 634);
-			player:setTitle(RESEARCHER_OF_CLASSICS);
+			player:addTitle(RESEARCHER_OF_CLASSICS);
 			player:addFame(BASTOK,BAS_FAME*10);
 			player:addFame(SANDORIA,SAN_FAME*10);
 			player:addFame(WINDURST,WIN_FAME*10);

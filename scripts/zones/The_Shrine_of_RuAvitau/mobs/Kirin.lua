@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(KIRIN_CAPTIVATOR);
+	killer:addTitle(KIRIN_CAPTIVATOR);
 	killer:showText(mob,KIRIN_OFFSET + 1);
 	GetNPCByID(17506693):hideNPC(900);
 end;

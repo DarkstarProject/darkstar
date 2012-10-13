@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(WINDURST,MAKING_AMENS);
 	elseif (csid == 0x011c) then
 		player:delKeyItem(128);
-		player:setTitle(HAKKURURINKURUS_BENEFACTOR);
+		player:addTitle(HAKKURURINKURUS_BENEFACTOR);
 		player:addGil(GIL_RATE*6000);
 		player:messageSpecial(GIL_OBTAINED, 6000);
 		player:completeQuest(WINDURST,MAKING_AMENS);

@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(JEUNO,NORTHWARD);
 	elseif(csid == 0x003d) then 
 		player:completeQuest(JEUNO,NORTHWARD);
-		player:setTitle(ENVOY_TO_THE_NORTH);
+		player:addTitle(ENVOY_TO_THE_NORTH);
 		player:addKeyItem(MAP_OF_CASTLE_ZVAHL);
 		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_CASTLE_ZVAHL);
 		player:addFame(JEUNO,30);

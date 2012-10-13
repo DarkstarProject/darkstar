@@ -129,14 +129,14 @@ function onEventFinish(player,csid,option)
 		else
 			player:addItem(17391);
 			player:messageSpecial(ITEM_OBTAINED, 17391); -- Willow Fishing Rod
-			player:setTitle(LOST_CHILD_OFFICER);
+			player:addTitle(LOST_CHILD_OFFICER);
 			player:setVar("QuestfatherAndSonVar",0);
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA,FATHER_AND_SON);
 		end
 	elseif(csid == 0x003d) then
 		player:setVar("returnedAilbecheRod",1);
-		player:setTitle(FAMILY_COUNSELOR);
+		player:addTitle(FAMILY_COUNSELOR);
 		player:tradeComplete();
 	-- "Sharpening the Sword"
 	elseif((csid == 0x002d or csid == 0x002b) and option == 1) then

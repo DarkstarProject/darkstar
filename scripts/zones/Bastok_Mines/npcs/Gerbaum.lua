@@ -78,7 +78,7 @@ MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
 		if (MineSweep == 1) then
 			player:completeQuest(BASTOK,MINESWEEPER);
 			player:addFame(BASTOK,BAS_FAME*75);
-			player:setTitle(ZERUHN_SWEEPER);
+			player:addTitle(ZERUHN_SWEEPER);
 		else
 			player:addFame(BASTOK,BAS_FAME*8);
 		end

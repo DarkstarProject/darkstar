@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `chars` (
   `quests` blob,
   `keyitems` blob,
   `spells` blob,
+  `titles` blob,
   `zones` blob,
   `inventory` tinyint(2) unsigned NOT NULL DEFAULT '30',
   `safe` tinyint(2) unsigned NOT NULL DEFAULT '50',

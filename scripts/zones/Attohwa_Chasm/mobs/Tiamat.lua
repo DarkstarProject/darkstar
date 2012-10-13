@@ -35,5 +35,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(TIAMAT_TROUNCER);
+	killer:addTitle(TIAMAT_TROUNCER);
 end;

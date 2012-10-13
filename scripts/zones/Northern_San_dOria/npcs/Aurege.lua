@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
 	elseif (exitTheGambler == QUEST_COMPLETED and player:hasKeyItem(MAP_OF_KING_RANPERRES_TOMB) == false) then
            player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_KING_RANPERRES_TOMB);
            player:addKeyItem(MAP_OF_KING_RANPERRES_TOMB);
-	   player:setTitle(DAYBREAK_GAMBLER);
+	   player:addTitle(DAYBREAK_GAMBLER);
            player:addFame(SANDORIA,SAN_FAME*30);
 	end
 end;

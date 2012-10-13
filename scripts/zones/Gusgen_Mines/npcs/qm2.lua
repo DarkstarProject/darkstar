@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x000a) then
 		if (player:getFreeSlotsCount() > 0) then	
 			player:addItem(16637);
-			player:setTitle(BLACK_DEATH);
+			player:addTitle(BLACK_DEATH);
 			player:setVar("Blade_of_Darkness_SwordKills", 0);
 			player:messageSpecial(ITEM_OBTAINED,16637);
 			player:delKeyItem(LETTER_FROM_ZEID);

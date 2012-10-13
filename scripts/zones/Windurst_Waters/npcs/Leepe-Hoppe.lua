@@ -127,7 +127,7 @@ function onEventFinish(player,csid,option)
 		player:delQuest(SANDORIA,TRIAL_BY_ICE);
 		player:delQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
 	elseif(csid == 0x034e) then -- Turn-in event
-		player:setTitle(HEIR_OF_THE_NEW_MOON);
+		player:addTitle(HEIR_OF_THE_NEW_MOON);
 		player:delKeyItem(WHISPER_OF_THE_MOON);
 		player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
 		player:addFame(WINDURST,30);
@@ -159,7 +159,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(KEYITEM_OBTAINED,DARK_MANA_ORB);
 		end
 	elseif(csid == 0x0352) then -- Repeat turn-in event
-		player:setTitle(HEIR_OF_THE_NEW_MOON);
+		player:addTitle(HEIR_OF_THE_NEW_MOON);
 		player:delKeyItem(WHISPER_OF_THE_MOON);
 		player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
 		player:addFame(WINDURST,30);

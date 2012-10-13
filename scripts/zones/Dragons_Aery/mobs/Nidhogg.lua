@@ -29,5 +29,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(NIDHOGG_SLAYER);
+	killer:addTitle(NIDHOGG_SLAYER);
 end;

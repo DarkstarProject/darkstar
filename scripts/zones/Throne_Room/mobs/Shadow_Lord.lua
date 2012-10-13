@@ -33,5 +33,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	killer:setTitle(SHADOW_BANISHER);
+	killer:addTitle(SHADOW_BANISHER);
 end;

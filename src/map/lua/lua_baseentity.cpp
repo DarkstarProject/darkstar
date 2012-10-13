@@ -1195,7 +1195,7 @@ inline int32 CLuaBaseEntity::hasKeyItem(lua_State *L)
 			{
 				uint16 KeyItemID = (uint16)lua_tointeger(L, -1);
 
-				lua_pushboolean( L, (charutils::hasKeyItem((CCharEntity*)m_PBaseEntity,KeyItemID) == 0 ? false : true));
+				lua_pushboolean( L, (charutils::hasKeyItem((CCharEntity*)m_PBaseEntity,KeyItemID) != 0));
 				return 1;
 			}
 		}
@@ -1340,7 +1340,7 @@ inline int32 CLuaBaseEntity::hasSpell(lua_State *L)
     
     uint16 SpellID = (uint16)lua_tointeger(L,-1);
 
-    lua_pushboolean(L, (charutils::hasSpell((CCharEntity*)m_PBaseEntity, SpellID) == 0 ? false : true));
+    lua_pushboolean(L, (charutils::hasSpell((CCharEntity*)m_PBaseEntity, SpellID) != 0));
     return 1;
 }
 
@@ -2145,7 +2145,30 @@ inline int32 CLuaBaseEntity::tradeComplete(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::hasTitle(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    
+    uint16 TitleID = (uint16)lua_tointeger(L,-1);
+
+    lua_pushboolean(L, (charutils::hasTitle((CCharEntity*)m_PBaseEntity, TitleID) != 0));
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::getTitle(lua_State *L)
 {
@@ -2156,35 +2179,90 @@ inline int32 CLuaBaseEntity::getTitle(lua_State *L)
     return 1;
 }
 
-//==========================================================//
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
-inline int CLuaBaseEntity::setTitle(lua_State *L)
+inline int32 CLuaBaseEntity::setTitle(lua_State *L)
 {
-	if( m_PBaseEntity != NULL )
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint16 TitleID = (uint16)lua_tointeger(L,-1);
+
+    if (charutils::hasTitle(PChar, TitleID) != 0)
+    {
+        PChar->profile.title = TitleID;
+        PChar->pushPacket(new CCharStatsPacket(PChar));
+
+        charutils::SaveTitles(PChar);
+    }
+    else
+    {
+        ShowDebug(CL_CYAN"%s don't have title %u\n" CL_RESET, PChar->GetName(), TitleID);
+    }
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Добавляем персонажу новое звание                                     *
+*                                                                       *
+************************************************************************/
+
+inline int CLuaBaseEntity::addTitle(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint16 TitleID = (uint16)lua_tointeger(L,-1);
+
+    PChar->profile.title = TitleID;
+    PChar->pushPacket(new CCharStatsPacket(PChar));
+
+    charutils::addTitle(PChar, TitleID);
+    charutils::SaveTitles(PChar);
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Удаляем у персонажа звание (DEBUG ONLY)                              *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::delTitle(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	uint16 TitleID = (uint16)lua_tointeger(L,-1);
+
+	if (charutils::delTitle(PChar, TitleID)) 
 	{
-		if( m_PBaseEntity->objtype == TYPE_PC )
-		{
-			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
-			{
-				CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+        if (PChar->profile.title == TitleID)
+        {
+            PChar->profile.title = 0;
+        }
+		PChar->pushPacket(new CCharStatsPacket(PChar));
 
-				uint16 title = (uint16)lua_tointeger(L, -1);
-
-				if (PChar->profile.title != title)
-				{
-					PChar->profile.title = title;
-
-					Sql_Query(SqlHandle,"UPDATE char_stats SET title = %u WHERE charid = %u;", title, PChar->id);
-					Sql_Query(SqlHandle,"INSERT IGNORE INTO char_titles(charid,title) VALUE(%u,%u);", PChar->id, title);
-
-					PChar->pushPacket(new CCharStatsPacket(PChar));
-				}
-				return 0;
-			}
-		}
+        charutils::SaveTitles(PChar);
 	}
-	lua_pushnil(L);
-	return 1;
+	return 0;
 }
 
 //==========================================================//
@@ -4906,7 +4984,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendGuild),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHomePoint),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,tradeComplete),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTitle),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTitle),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTitle),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delTitle),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setTitle),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGil),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addGil),

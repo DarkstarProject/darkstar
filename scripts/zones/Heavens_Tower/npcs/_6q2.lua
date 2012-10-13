@@ -80,7 +80,7 @@ printf("RESULT: %u",option);
 	elseif(csid == 0x00D6) then
 		player:setVar("MissionStatus",2);
 		player:delKeyItem(STAR_CRESTED_SUMMONS);
-		player:setTitle(STARORDAINED_WARRIOR);
+		player:addTitle(STARORDAINED_WARRIOR);
 	elseif(csid == 0x00C0 or csid == 0x00D8) then
 		finishMissionTimeline(player,1,csid,option);
 	end

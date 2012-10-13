@@ -129,7 +129,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(JEUNO,IN_DEFIANT_CHALLENGE);
 	elseif(csid == 0x0051) then
 		player:tradeComplete();
-		player:setTitle(HORIZON_BREAKER);
+		player:addTitle(HORIZON_BREAKER);
 		player:levelCap(55);
 		player:addFame(JEUNO,30);
 		player:completeQuest(JEUNO,IN_DEFIANT_CHALLENGE);
@@ -137,7 +137,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0052 and option == 1) then
 		player:addQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
 	elseif(csid == 0x0054) then
-		player:setTitle(SUMMIT_BREAKER);
+		player:addTitle(SUMMIT_BREAKER);
 		player:delKeyItem(ROUND_FRIGICITE);
 		player:delKeyItem(SQUARE_FRIGICITE);
 		player:delKeyItem(TRIANGULAR_FRIGICITE);
@@ -149,7 +149,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0055 and option == 1) then
 		player:addQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
 	elseif(csid == 0x0057) then
-		player:setTitle(SKY_BREAKER);
+		player:addTitle(SKY_BREAKER);
 		player:delKeyItem(ORCISH_CREST);
 		player:delKeyItem(QUADAV_CREST);
 		player:delKeyItem(YAGUDO_CREST);
@@ -167,7 +167,7 @@ function onEventFinish(player,csid,option)
 			player:setVar("ridingOnTheClouds_4",0);
 		end
 	elseif(csid == 0x005a) then
-		player:setTitle(CLOUD_BREAKER);
+		player:addTitle(CLOUD_BREAKER);
 		player:delKeyItem(SMILING_STONE);
 		player:delKeyItem(SCOWLING_STONE);
 		player:delKeyItem(SOMBER_STONE);
@@ -186,7 +186,7 @@ function onEventFinish(player,csid,option)
 		elseif(mJob == 5 or mJob == 6 or mJob == 9) then  	player:setPos(-349.899,104.213,-260.150,0,144);
 		elseif(mJob == 12 or mJob == 13 or mJob == 14) then player:setPos(-220.084,-0.645,4.442,191,168); end
 	elseif(csid == 0x005d) then
-		player:setTitle(STAR_BREAKER);
+		player:addTitle(STAR_BREAKER);
 		player:levelCap(75);
 		player:setVar("maatCap",player:getVar("maatDefeated"));
 		player:setVar("maatDefeated",0);

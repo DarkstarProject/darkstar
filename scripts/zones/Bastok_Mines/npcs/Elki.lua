@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(0x17);
 		player:messageSpecial(KEYITEM_OBTAINED,0x17);
 	elseif (csid == 0x002a) then
-		player:setTitle(84);
+		player:addTitle(84);
 		player:addItem(12840);
 		player:messageSpecial(ITEM_OBTAINED,12840);
 		player:completeQuest(BASTOK,HEARTS_OF_MYTHRIL);

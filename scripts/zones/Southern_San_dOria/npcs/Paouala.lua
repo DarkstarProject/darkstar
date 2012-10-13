@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(SANDORIA,SLEEPLESS_NIGHTS);
 	elseif(csid == 0x0054) then
 		player:tradeComplete();
-		player:setTitle(SHEEPS_MILK_DELIVERER);
+		player:addTitle(SHEEPS_MILK_DELIVERER);
 		player:addGil(GIL_RATE*5000);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*5000);
 		player:addFame(SANDORIA,SAN_FAME*30);

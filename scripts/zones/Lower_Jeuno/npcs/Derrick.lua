@@ -111,7 +111,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("saveTheClockTowerVar",0);
 		player:setVar("saveTheClockTowerNPCz1",0);
 		player:setVar("saveTheClockTowerNPCz2",0);
-		player:setTitle(CLOCK_TOWER_PRESERVATIONIST);
+		player:addTitle(CLOCK_TOWER_PRESERVATIONIST);
 		player:addFame(JEUNO,30);
 		player:tradeComplete(trade);
 		player:completeQuest(JEUNO,SAVE_THE_CLOCK_TOWER);

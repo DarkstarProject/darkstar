@@ -102,7 +102,7 @@ function onEventFinish(player,csid,option)
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item
 			end
-			player:setTitle(HEIR_OF_THE_GREAT_ICE);
+			player:addTitle(HEIR_OF_THE_GREAT_ICE);
 			player:delKeyItem(324); --Whisper of Frost, as a trade for the above rewards
 			player:setVar("TrialByIce_date", os.date("%j")); -- %M for next minute, %j for next day
 			player:addFame(SANDORIA,SAN_FAME*30);

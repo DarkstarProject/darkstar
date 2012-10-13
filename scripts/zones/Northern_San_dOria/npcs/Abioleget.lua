@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
 		player:addItem(13465);
 		player:messageSpecial(6567, 13465);
 		player:addFame(SANDORIA,SAN_FAME*30);
-		player:setTitle(THE_BENEVOLENT_ONE);
+		player:addTitle(THE_BENEVOLENT_ONE);
 		player:setVar("sermonQuestVar",0);
 		player:completeQuest(SANDORIA,THE_VICASQUE_S_SERMON );
 	elseif (csid == 0x024D) then	

@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0270) then
 		player:tradeComplete();
 		player:setVar("OfferingWaterOK",0);
-		player:setTitle(ROYAL_GRAVE_KEEPER);
+		player:addTitle(ROYAL_GRAVE_KEEPER);
 		player:addGil(GIL_RATE*560);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*560)
 		player:addFame(SANDORIA,SAN_FAME*30);

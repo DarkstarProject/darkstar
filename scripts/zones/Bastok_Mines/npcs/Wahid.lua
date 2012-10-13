@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
 		player:addFame(BASTOK,BAS_FAME*120);
 		player:addGil(150);
 		player:messageSpecial(GIL_OBTAINED,150);
-		player:setTitle(TEARJERKER);
+		player:addTitle(TEARJERKER);
 		player:setVar("SirensTear",0);
 	end
 end;

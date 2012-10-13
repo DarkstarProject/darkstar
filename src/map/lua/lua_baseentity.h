@@ -184,7 +184,10 @@ public:
 	int32 setHomePoint(lua_State*);			// Sets character's homepoint  
 	int32 tradeComplete(lua_State*);		// Complete trade with an npc
 
+    int32 hasTitle(lua_State*);
 	int32 getTitle(lua_State*);				// Gets character's title
+    int32 addTitle(lua_State*);
+    int32 delTitle(lua_State*);
 	int32 setTitle(lua_State*);				// Sets character's title
 
 	int32 getGil(lua_State*);				// Gets character's gil amount

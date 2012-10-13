@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then	
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12638); -- Fighter's Lorica
 		else	
-			player:setTitle(PARAGON_OF_WARRIOR_EXCELLENCE);
+			player:addTitle(PARAGON_OF_WARRIOR_EXCELLENCE);
 			player:addItem(12638);
 			player:messageSpecial(ITEM_OBTAINED, 12638); -- Fighter's Lorica
 			player:setVar("theTalekeeperGiftCS",0);

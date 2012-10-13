@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(TROLL_SUBJUGATOR);
+	killer:addTitle(TROLL_SUBJUGATOR);
 end;

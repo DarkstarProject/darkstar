@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(291);    -- Permanent Tonberry key
 		player:messageSpecial(KEYITEM_OBTAINED,291);
 		player:setVar("EveryonesGrudgeStarted",0);
-		player:setTitle(HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES);
+		player:addTitle(HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES);
 	end
 end;
 

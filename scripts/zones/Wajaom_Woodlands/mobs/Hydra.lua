@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(HYDRA_HEADHUNTER);
+	killer:addTitle(HYDRA_HEADHUNTER);
 end;

@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x002d) then
 		player:setVar("EleventhsHour",0);
 		player:delKeyItem(OLD_TOOLBOX);
-		player:setTitle(PURSUER_OF_THE_TRUTH);
+		player:addTitle(PURSUER_OF_THE_TRUTH);
 		player:addItem(16629);
 		player:messageSpecial(ITEM_OBTAINED,16629);
 		player:addFame(BASTOK,BAS_FAME*30);

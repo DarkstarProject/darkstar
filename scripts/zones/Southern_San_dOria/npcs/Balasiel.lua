@@ -114,7 +114,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0269) then
         if(player:getFreeSlotsCount(0) >= 1) then
         	player:tradeComplete();
-			player:setTitle(KNIGHT_IN_TRAINING);
+			player:addTitle(KNIGHT_IN_TRAINING);
 			player:addItem(16565);
 			player:messageSpecial(ITEM_OBTAINED, 16565); -- Spatha
 			player:addFame(SANDORIA,SAN_FAME*30);
@@ -126,7 +126,7 @@ function onEventFinish(player,csid,option)
     	player:addQuest(SANDORIA,A_SQUIRE_S_TEST_II);
 	elseif(csid == 0x0272) then
 		player:tradeComplete();
-		player:setTitle(SPELUNKER);
+		player:addTitle(SPELUNKER);
 		player:delKeyItem(STALACTITE_DEW);
 		player:addKeyItem(SQUIRE_CERTIFICATE);
 		player:messageSpecial(KEYITEM_OBTAINED, SQUIRE_CERTIFICATE);
@@ -147,7 +147,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("KnightsTest_Event",0);
 	elseif(csid == 0x0274) then
 		if(player:getFreeSlotsCount(0) >= 1) then
-			player:setTitle(TRIED_AND_TESTED_KNIGHT);
+			player:addTitle(TRIED_AND_TESTED_KNIGHT);
 			player:delKeyItem(KNIGHTS_SOUL);
 			player:delKeyItem(BOOK_OF_TASKS);
 			player:delKeyItem(BOOK_OF_THE_WEST);

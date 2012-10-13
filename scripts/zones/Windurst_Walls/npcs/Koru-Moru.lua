@@ -146,7 +146,7 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(WINDURST,BLAST_FROM_THE_PAST);
 		player:addItem(17030);
 		player:messageSpecial(ITEM_OBTAINED,17030);
-		player:setTitle(Fossilized_Sea_Farer)
+		player:addTitle(Fossilized_Sea_Farer)
 		player:addFame(WINDURST,WIN_FAME*30);
 		player:needToZone(true);
 	end

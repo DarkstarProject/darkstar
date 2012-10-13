@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0000) then 
 		player:addQuest(JEUNO,CHILD_S_PLAY);
 	elseif(csid == 0x0001) then 
-		player:setTitle(TRADER_OF_MYSTERIES);
+		player:addTitle(TRADER_OF_MYSTERIES);
 		player:addKeyItem(WONDER_MAGIC_SET);
 		player:messageSpecial(KEYITEM_OBTAINED,WONDER_MAGIC_SET);
 		player:addFame(JEUNO,30);

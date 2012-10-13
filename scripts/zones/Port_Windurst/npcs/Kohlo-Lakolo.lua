@@ -218,7 +218,7 @@ function onEventFinish(player,csid,option)
 		if (FreeSlots >= 1) then
 			player:completeQuest(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);
 			player:addFame(WINDURST,WIN_FAME*75);
-			player:setTitle(STAR_ONION_BRIGADE_MEMBER);
+			player:addTitle(STAR_ONION_BRIGADE_MEMBER);
 			player:tradeComplete();
 			player:addItem(13093);
 			player:messageSpecial(ITEM_OBTAINED,13093);
@@ -245,7 +245,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x0182 or csid == 0x0190) then
 		player:completeQuest(WINDURST,KNOW_ONE_S_ONIONS);
 		player:addFame(WINDURST,WIN_FAME*80);
-		player:setTitle(SOB_SUPER_HERO);	
+		player:addTitle(SOB_SUPER_HERO);	
 		player:setVar("KnowOnesOnions",0);
 		player:setVar("KnowOnesOnionsTime",0);
 		player:needToZone(true);
@@ -257,7 +257,7 @@ function onEventFinish(player,csid,option)
 		if (FreeSlots >= 1) then
 			player:completeQuest(WINDURST,INSPECTOR_S_GADGET);
 			player:addFame(WINDURST,WIN_FAME*90);
-			player:setTitle(FAKEMOUSTACHED_INVESTIGATOR);	
+			player:addTitle(FAKEMOUSTACHED_INVESTIGATOR);	
 			player:addItem(13204);
 			player:messageSpecial(ITEM_OBTAINED,13204);
 			player:needToZone(true);
@@ -278,7 +278,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x01b0 or csid == 0x01b1) then
 		player:completeQuest(WINDURST,ONION_RINGS);
 		player:addFame(WINDURST,WIN_FAME*100);
-		player:setTitle(STAR_ONION_BRIGADIER);	
+		player:addTitle(STAR_ONION_BRIGADIER);	
 		player:delKeyItem(130);		
 		player:setVar("OnionRingsTime",0);
 		player:needToZone(true);

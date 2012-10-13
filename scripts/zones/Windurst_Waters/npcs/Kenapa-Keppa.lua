@@ -164,7 +164,7 @@ function onEventFinish(player,csid,option)
 			player:addGil(GIL_RATE*120);
 			player:tradeComplete();
 			player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
-			player:setTitle(FAST_FOOD_DELIVERER);
+			player:addTitle(FAST_FOOD_DELIVERER);
 			player:addFame(WINDURST,WIN_FAME*100);
 			player:needToZone(true);
 			player:setVar("Kerutoto_Food_var",0);		-- ------------------------------------------
@@ -181,7 +181,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*120); 
 			player:tradeComplete();
 			player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
-			player:setTitle(FAST_FOOD_DELIVERER);
+			player:addTitle(FAST_FOOD_DELIVERER);
 			player:addFame(WINDURST,WIN_FAME*100);
 			player:needToZone(true);
 			player:setVar("Kerutoto_Food_var",0);		-- ------------------------------------------

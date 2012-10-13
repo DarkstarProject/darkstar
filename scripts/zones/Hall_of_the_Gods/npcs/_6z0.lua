@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x0001 and player:getCurrentMission(ZILART) == THE_TEMPLE_OF_DESOLATION) then
-		player:setTitle(SEALER_OF_THE_PORTAL_OF_THE_GODS);
+		player:addTitle(SEALER_OF_THE_PORTAL_OF_THE_GODS);
 		player:completeMission(ZILART,THE_TEMPLE_OF_DESOLATION);
 		player:addMission(ZILART,THE_HALL_OF_THE_GODS);
 	elseif(csid == 0x0004) then

@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13186);
 		else
-			player:setTitle(BLACK_BELT);
+			player:addTitle(BLACK_BELT);
 			player:addItem(13186);
 			player:messageSpecial(ITEM_OBTAINED,13186);
 			player:setVar("BeatAroundTheBushin",0);

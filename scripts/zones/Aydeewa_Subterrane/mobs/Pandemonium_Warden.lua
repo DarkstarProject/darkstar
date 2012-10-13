@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(PANDEMONIUM_QUELLER);
+	killer:addTitle(PANDEMONIUM_QUELLER);
 end;

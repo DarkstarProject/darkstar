@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
 		else
 			player:addItem(132);
 			player:messageSpecial(ITEM_OBTAINED,132);
-			player:setTitle(THREESTAR_PURVEYOR);
+			player:addTitle(THREESTAR_PURVEYOR);
 			player:setVar("QUEST_EXPERTISE_STATE_var",0); --done cooking
 			player:setVar("QuestHNIVCCompDay_var",0); -- completition day of unending chase
 			player:setVar("QuestHNIVCCompYear_var",0);

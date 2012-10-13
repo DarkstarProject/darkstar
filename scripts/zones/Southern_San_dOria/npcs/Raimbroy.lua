@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("theSweetestThings", 0);
 	elseif(csid == 0x0217) then
 		player:tradeComplete();
-		player:setTitle(APIARIST);
+		player:addTitle(APIARIST);
 		player:addGil(GIL_RATE*400);
 		if(player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS) == QUEST_ACCEPTED) then
 			player:addFame(SANDORIA,SAN_FAME*30);

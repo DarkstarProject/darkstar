@@ -33,7 +33,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 			player:tradeComplete();
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:addGil(GIL_RATE*600);
-			player:setTitle(BEAN_CUISINE_SALTER);
+			player:addTitle(BEAN_CUISINE_SALTER);
 			player:completeQuest(SANDORIA,LUFET_S_LAKE_SALT);
 			player:startEvent(0x000b);
 		end

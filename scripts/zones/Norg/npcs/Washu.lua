@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(4952); -- Scroll of Hojo: Ichi
 			player:messageSpecial(ITEM_OBTAINED,4952); -- Scroll of Hojo: Ichi
 			player:addFame(OUTLANDS,NORG_FAME*75);
-			player:setTitle(APPRENTICE_SOMMELIER);
+			player:addTitle(APPRENTICE_SOMMELIER);
 			player:completeQuest(OUTLANDS,STOP_YOUR_WHINING);
 		end
 	end

@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(VERTHANDI_ENSNARER);
+	killer:addTitle(VERTHANDI_ENSNARER);
 end;

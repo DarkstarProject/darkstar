@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
 			player:tradeComplete();
 			player:addItem(4853);
 			player:messageSpecial(ITEM_OBTAINED, 17386);
-			player:setTitle(CARP_DIEM);
+			player:addTitle(CARP_DIEM);
 			player:addKeyItem(TESTIMONIAL);
 			player:messageSpecial(KEYITEM_OBTAINED,TESTIMONIAL);
 			player:setVar("theCompetitionFishCountVar",0);

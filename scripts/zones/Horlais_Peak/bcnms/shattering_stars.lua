@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,4181);
 		end
 		player:setVar("maatDefeated",player:getMainJob());
-		player:setTitle(MAAT_MASHER);
+		player:addTitle(MAAT_MASHER);
 	end
 	
 end;

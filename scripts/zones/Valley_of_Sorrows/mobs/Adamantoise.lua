@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(TORTOISE_TORTURER);
+	killer:addTitle(TORTOISE_TORTURER);
 end;

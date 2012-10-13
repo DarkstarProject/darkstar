@@ -102,7 +102,7 @@ function onEventFinish(player,csid,option)
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item
 			end
-			player:setTitle(HEIR_OF_THE_GREAT_WATER);
+			player:addTitle(HEIR_OF_THE_GREAT_WATER);
 			player:delKeyItem(WHISPER_OF_TIDES); --Whisper of Tides, as a trade for the above rewards
 			player:setVar("TrialByWater_date", os.date("%j")); -- %M for next minute, %j for next day
 			player:addFame(NORG,NORG_FAME*30);

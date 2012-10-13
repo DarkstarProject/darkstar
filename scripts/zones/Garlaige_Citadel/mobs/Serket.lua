@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(SERKET_BREAKER);
+	killer:addTitle(SERKET_BREAKER);
 end;

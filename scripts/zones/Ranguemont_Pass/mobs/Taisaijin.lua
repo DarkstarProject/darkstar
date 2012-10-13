@@ -18,6 +18,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(BYEBYE_TAISAI);	
+	killer:addTitle(BYEBYE_TAISAI);	
 
 end;

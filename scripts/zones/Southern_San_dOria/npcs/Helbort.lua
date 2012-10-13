@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17090); -- Elm Staff
 		else
-			player:setTitle(ARMS_TRADER);
+			player:addTitle(ARMS_TRADER);
 			player:delKeyItem(WEAPONS_RECEIPT);
 			player:addItem(17090); 
 			player:messageSpecial(ITEM_OBTAINED,17090); -- Elm Staff

@@ -720,7 +720,7 @@ function finishMissionTimeline(player,guard,csid,option)
 	-- 10: player:addKeyItem(number); player:messageSpecial(KEYITEM_OBTAINED,number);
 	-- 11: player:setRank(number);
 	-- 12: player:completeMission(nation,mission);
-	-- 13: player:setTitle(number);
+	-- 13: player:addTitle(number);
 	-- 14: player:setVar("MissionStatus",value);
 	
 	if(nation == SANDORIA) then
@@ -829,7 +829,7 @@ function finishMissionTimeline(player,guard,csid,option)
 					[10] = function (x) player:addKeyItem(messList[2]); player:messageSpecial(KEYITEM_OBTAINED,messList[2]); end,
 					[11] = function (x) player:setRank(messList[2]); end,
 					[12] = function (x) player:completeMission(nation,timeline[cs]); end, 
-					[13] = function (x) player:setTitle(messList[2]); end, 
+					[13] = function (x) player:addTitle(messList[2]); end, 
 					[14] = function (x) player:setVar("MissionStatus",messList[2]); end, 
 				}
 			end

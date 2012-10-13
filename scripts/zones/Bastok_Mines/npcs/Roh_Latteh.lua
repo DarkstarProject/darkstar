@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
         if (freeInventory > 0) then
             player:completeQuest(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
             player:delKeyItem(PAINTING_OF_A_WINDMILL);
-            player:setTitle(TREASURE_SCAVENGER);
+            player:addTitle(TREASURE_SCAVENGER);
             player:addFame(BASTOK,BAS_FAME*50);
             player:addItem(12601);
             player:messageSpecial(ITEM_OBTAINED,12601); -- Linen Robe

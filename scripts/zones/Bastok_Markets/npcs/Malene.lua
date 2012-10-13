@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
 		end
 	elseif (csid == 0x68) then
 		player:tradeComplete();
-		player:setTitle(CRAB_CRUSHER);			
+		player:addTitle(CRAB_CRUSHER);			
 		player:addGil(GIL_RATE*500);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*500);	
 		

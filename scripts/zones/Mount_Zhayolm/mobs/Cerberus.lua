@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(CERBERUS_MUZZLER);
+	killer:addTitle(CERBERUS_MUZZLER);
 end;

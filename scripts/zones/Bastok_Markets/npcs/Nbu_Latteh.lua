@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option)
 		end
 		
 		player:delKeyItem(LETTER_FROM_ROH_LATTEH);
-		player:setTitle(RINGBEARER);
+		player:addTitle(RINGBEARER);
 		player:addGil(GIL_RATE*gilReward);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*gilReward);
 		player:setVar("MomTheAdventurer_Event",0);

@@ -18,5 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(ROC_STAR);
+	killer:addTitle(ROC_STAR);
 end;

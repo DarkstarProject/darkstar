@@ -128,7 +128,7 @@ function onEventFinish(player,csid,option)
 		if(freeSlots ~= 0)then
 			player:addItem(0x3001);
 			player:messageSpecial(ITEM_OBTAINED,0x3001);
-			player:setTitle(COURIER_EXTRAORDINAIRE);
+			player:addTitle(COURIER_EXTRAORDINAIRE);
 			player:completeQuest(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:setVar("TheBrugaireConsortium-Parcels",0);

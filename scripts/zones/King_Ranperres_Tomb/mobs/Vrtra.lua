@@ -17,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setTitle(VRTRA_VANQUISHER);
+	killer:addTitle(VRTRA_VANQUISHER);
 end;
