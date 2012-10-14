@@ -46,11 +46,11 @@ CInventorySizePacket::CInventorySizePacket(CCharEntity* PChar)
 	WBUFB(data,(0x09)-4) = 1 + PChar->getStorage(LOC_MOGSATCHEL)->GetSize();
 	WBUFB(data,(0x0A)-4) = 1 + PChar->getStorage(LOC_MOGSACK)->GetSize();
 
-	WBUFB(data,(0x14)-4) = 1 + PChar->getStorage(LOC_INVENTORY)->GetSize();
-	WBUFB(data,(0x16)-4) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetSize();
-	WBUFB(data,(0x18)-4) = 1 + PChar->getStorage(LOC_STORAGE)->GetSize();
-	WBUFB(data,(0x1A)-4) = 1 + PChar->getStorage(LOC_TEMPITEMS)->GetSize();
-	WBUFB(data,(0x1C)-4) = 1 + PChar->getStorage(LOC_MOGLOCKER)->GetSize();
-	WBUFB(data,(0x1E)-4) = 1 + PChar->getStorage(LOC_MOGSATCHEL)->GetSize();
-	WBUFB(data,(0x20)-4) = 1 + PChar->getStorage(LOC_MOGSACK)->GetSize();
+	WBUFW(data,(0x14)-4) = 1 + PChar->getStorage(LOC_INVENTORY)->GetBuff();
+	WBUFW(data,(0x16)-4) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetBuff();
+    WBUFW(data,(0x18)-4) = 1 + PChar->getStorage(LOC_STORAGE)->GetBuff();
+	WBUFW(data,(0x1A)-4) = 1 + PChar->getStorage(LOC_TEMPITEMS)->GetBuff();
+	WBUFW(data,(0x1C)-4) = 1 + PChar->getStorage(LOC_MOGLOCKER)->GetBuff();
+	WBUFW(data,(0x1E)-4) = 1 + PChar->getStorage(LOC_MOGSATCHEL)->GetBuff();
+	WBUFW(data,(0x20)-4) = 1 + PChar->getStorage(LOC_MOGSACK)->GetBuff();
 }

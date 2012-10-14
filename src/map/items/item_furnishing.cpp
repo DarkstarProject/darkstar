@@ -44,7 +44,7 @@ CItemFurnishing::~CItemFurnishing()
 
 void CItemFurnishing::setStorage(uint8 storage)
 {
-	m_storage = storage;
+	m_storage = dsp_min(storage,80);
 }
 
 uint8 CItemFurnishing::getStorage()

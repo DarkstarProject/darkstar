@@ -298,13 +298,43 @@ void CalculateStats(CCharEntity* PChar)
 void LoadChar(CCharEntity* PChar)
 {
 
-	const int8* fmtQuery = "SELECT charname, pos_zone, pos_prevzone, pos_rot, pos_x, pos_y, pos_z, boundary, \
-								   home_zone, home_rot, home_x, home_y, home_z, nation, quests, keyitems, \
-								   spells, titles, zones, inventory, safe, storage, locker, satchel, sack, \
-								   missions, rankSandoria, rankBastok, rankWindurst, rankPoints, \
-								   fameSandoria, fameBastok, fameWindurst, fameNorg \
-							FROM chars \
-							WHERE charid = %u;";
+	const int8* fmtQuery = 
+        "SELECT "
+          "charname,"       //  0
+          "pos_zone,"       //  1
+          "pos_prevzone,"   //  2
+          "pos_rot,"        //  3
+          "pos_x,"          //  4
+          "pos_y,"          //  5
+          "pos_z,"          //  6
+          "boundary,"       //  7
+          "home_zone,"      //  8
+          "home_rot,"       //  9
+          "home_x,"         // 10
+          "home_y,"         // 11
+          "home_z,"         // 12
+          "nation,"         // 13
+          "quests,"         // 14
+          "keyitems,"       // 15
+          "spells,"         // 16
+          "titles,"         // 17
+          "zones,"          // 18
+          "inventory,"      // 19
+          "safe,"           // 20
+          "locker,"         // 21
+          "satchel,"        // 22
+          "sack,"           // 23
+          "missions,"       // 24
+          "rankSandoria,"   // 25
+          "rankBastok,"     // 26
+          "rankWindurst,"   // 27
+          "rankPoints,"     // 28
+          "fameSandoria,"   // 29
+          "fameBastok,"     // 30
+          "fameWindurst,"   // 31
+          "fameNorg "       // 32
+        "FROM chars "
+        "WHERE charid = %u";
 
 	int32 ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
 
@@ -338,7 +368,7 @@ void LoadChar(CCharEntity* PChar)
 
 		length = 0;
 		int8* missions = NULL;
-		Sql_GetData(SqlHandle,25,&missions,&length);
+		Sql_GetData(SqlHandle,24,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
 		length = 0;
@@ -361,24 +391,23 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,18,&zones,&length);
 		memcpy(PChar->m_ZonesList, zones, (length > sizeof(PChar->m_ZonesList) ? sizeof(PChar->m_ZonesList) : length));
 
-		PChar->getStorage(LOC_INVENTORY)->SetSize((uint8)Sql_GetIntData(SqlHandle,19)); 
-		PChar->getStorage(LOC_MOGSAFE)->SetSize((uint8)Sql_GetIntData(SqlHandle,20)); 
-		PChar->getStorage(LOC_STORAGE)->SetSize((uint8)Sql_GetIntData(SqlHandle,21));
-		PChar->getStorage(LOC_TEMPITEMS)->SetSize(18); 
-		PChar->getStorage(LOC_MOGLOCKER)->SetSize((uint8)Sql_GetIntData(SqlHandle,22)); 
-		PChar->getStorage(LOC_MOGSATCHEL)->SetSize((uint8)Sql_GetIntData(SqlHandle,23)); 
-		PChar->getStorage(LOC_MOGSACK)->SetSize((uint8)Sql_GetIntData(SqlHandle,24));
+        PChar->getStorage(LOC_INVENTORY)->AddBuff((uint8)Sql_GetIntData(SqlHandle,19)); 
+		PChar->getStorage(LOC_MOGSAFE)->AddBuff((uint8)Sql_GetIntData(SqlHandle,20)); 
+		PChar->getStorage(LOC_TEMPITEMS)->AddBuff(18); 
+		PChar->getStorage(LOC_MOGLOCKER)->AddBuff((uint8)Sql_GetIntData(SqlHandle,21)); 
+		PChar->getStorage(LOC_MOGSATCHEL)->AddBuff((uint8)Sql_GetIntData(SqlHandle,22)); 
+		PChar->getStorage(LOC_MOGSACK)->AddBuff((uint8)Sql_GetIntData(SqlHandle,23));
 
-        PChar->profile.rank[0] = (uint8)Sql_GetIntData(SqlHandle,26);
-		PChar->profile.rank[1] = (uint8)Sql_GetIntData(SqlHandle,27);
-		PChar->profile.rank[2] = (uint8)Sql_GetIntData(SqlHandle,28);
+        PChar->profile.rank[0] = (uint8)Sql_GetIntData(SqlHandle,25);
+		PChar->profile.rank[1] = (uint8)Sql_GetIntData(SqlHandle,26);
+		PChar->profile.rank[2] = (uint8)Sql_GetIntData(SqlHandle,27);
 		
-		PChar->profile.rankpoints = Sql_GetUIntData(SqlHandle,29);
+		PChar->profile.rankpoints = Sql_GetUIntData(SqlHandle,28);
 
-		PChar->profile.fame[0] =  (uint16)Sql_GetIntData(SqlHandle,30);  //Sandoria
-		PChar->profile.fame[1] =  (uint16)Sql_GetIntData(SqlHandle,31);  //Bastok
-		PChar->profile.fame[2] =  (uint16)Sql_GetIntData(SqlHandle,32);  //Windurst
-		PChar->profile.fame[3] =  (uint16)Sql_GetIntData(SqlHandle,33);  //Norg
+		PChar->profile.fame[0] =  (uint16)Sql_GetIntData(SqlHandle,29);  //Sandoria
+		PChar->profile.fame[1] =  (uint16)Sql_GetIntData(SqlHandle,30);  //Bastok
+		PChar->profile.fame[2] =  (uint16)Sql_GetIntData(SqlHandle,31);  //Windurst
+		PChar->profile.fame[3] =  (uint16)Sql_GetIntData(SqlHandle,32);  //Norg
 	}
 
 	fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged \
@@ -578,10 +607,17 @@ void LoadInventory(CCharEntity* PChar)
           "currCharges,"
           "lastUseTime,"
           "linkshellid,"
-          "color "
+          "color,"
+          "locked,"
+          "col," 	
+          "row,"
+          "level,"
+          "rotation "
         "FROM char_inventory "
         "LEFT JOIN linkshells ON signature = name "
-        "WHERE charid = %u";
+        "LEFT JOIN char_furnishings USING (charid, slot) "
+        "WHERE charid = %u "
+        "ORDER BY location ASC";
 
 	int32 ret = Sql_Query(SqlHandle, Query, PChar->id);
 
@@ -615,6 +651,20 @@ void LoadInventory(CCharEntity* PChar)
                 {
                     ((CItemLinkshell*)PItem)->SetLSID(Sql_GetUIntData(SqlHandle,8));
                     ((CItemLinkshell*)PItem)->SetLSColor(Sql_GetIntData(SqlHandle,9));
+                }
+                if (PItem->getType() & ITEM_FURNISHING && PItem->getLocationID() == LOC_MOGSAFE)
+                {
+                    if (Sql_GetIntData(SqlHandle,10) != 0) // способ узнать, что предмет действительно установлен
+                    {
+                        ((CItemFurnishing*)PItem)->setSubType(ITEM_LOCKED);
+
+                        ((CItemFurnishing*)PItem)->setCol(Sql_GetIntData(SqlHandle,11));
+		                ((CItemFurnishing*)PItem)->setRow(Sql_GetIntData(SqlHandle,12));
+		                ((CItemFurnishing*)PItem)->setLevel(Sql_GetIntData(SqlHandle,13));
+		                ((CItemFurnishing*)PItem)->setRotation(Sql_GetIntData(SqlHandle,14));
+
+                        PChar->getStorage(LOC_STORAGE)->AddBuff(((CItemFurnishing*)PItem)->getStorage());
+                    }
                 }
 				PChar->getStorage(PItem->getLocationID())->InsertItem(PItem, PItem->getSlotID());
 			}
@@ -871,6 +921,49 @@ bool HasItem(CCharEntity* PChar, uint16 ItemID)
 		}
 	}
     return false;
+}
+
+/************************************************************************
+*                                                                       *
+*  Перемещаем предмет в указанную ячейки или первую пустую              *
+*                                                                       *
+************************************************************************/
+
+uint8 MoveItem(CCharEntity* PChar, uint8 LocationID, uint8 SlotID, uint8 NewSlotID)
+{
+    CItemContainer* PItemContainer = PChar->getStorage(LocationID);
+
+    if (PItemContainer->GetFreeSlotsCount() != 0)
+    {
+        if (NewSlotID == ERROR_SLOTID) 
+	    {
+            NewSlotID = PItemContainer->InsertItem(PItemContainer->GetItem(SlotID));
+        }
+        else
+        {
+            if (PItemContainer->GetItem(NewSlotID) != NULL) NewSlotID = ERROR_SLOTID;
+        }
+	    if (NewSlotID != ERROR_SLOTID)
+	    {
+		    const int8* Query = 
+                "UPDATE char_inventory "
+                "SET slot = %u "
+                "WHERE charid = %u AND location = %u AND slot = %u";
+
+		    if (Sql_Query(SqlHandle, Query, NewSlotID, PChar->id, LocationID, SlotID) != SQL_ERROR &&
+			    Sql_AffectedRows(SqlHandle) != 0)
+		    {
+			    PItemContainer->InsertItem(NULL, SlotID);
+
+			    PChar->pushPacket(new CInventoryItemPacket(NULL, LocationID, SlotID));
+			    PChar->pushPacket(new CInventoryItemPacket(PItemContainer->GetItem(NewSlotID), LocationID, NewSlotID));
+                return NewSlotID;
+		    }
+            PItemContainer->InsertItem(NULL, NewSlotID); // отменяем все изменения контейнера
+        }
+    }
+    ShowError(CL_RED"charutils::MoveItem: item can't be moved\n" CL_RESET);
+    return ERROR_SLOTID;
 }
 
 /************************************************************************
@@ -2818,14 +2911,19 @@ void SaveMissionsList(CCharEntity* PChar)
 
 void SaveCharInventoryCapacity(CCharEntity* PChar)
 {
-	const int8* fmtQuery = "UPDATE chars \
-                            SET inventory = '%u', safe = '%u', storage = '%u', locker = '%u', satchel = '%u', sack = '%u' \
-                            WHERE charid = %u;";
+	const int8* Query = 
+        "UPDATE chars "
+        "SET "
+          "inventory = %u,"
+          "safe = %u,"
+          "locker = %u," 
+          "satchel = %u,"
+          "sack = %u "
+        "WHERE charid = %u";
 	
-	Sql_Query(SqlHandle, fmtQuery,
+	Sql_Query(SqlHandle, Query,
         PChar->getStorage(LOC_INVENTORY)->GetSize(),
         PChar->getStorage(LOC_MOGSAFE)->GetSize(),
-		PChar->getStorage(LOC_STORAGE)->GetSize(),
         PChar->getStorage(LOC_MOGLOCKER)->GetSize(),
         PChar->getStorage(LOC_MOGSATCHEL)->GetSize(),
 		PChar->getStorage(LOC_MOGSACK)->GetSize(),

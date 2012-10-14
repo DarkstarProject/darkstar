@@ -35,15 +35,16 @@ CREATE TRIGGER char_delete
 	BEFORE DELETE ON chars
 	FOR EACH ROW
 BEGIN
-	DELETE FROM `char_exp`        WHERE `charid` = OLD.charid;
-	DELETE FROM `char_jobs`       WHERE `charid` = OLD.charid;
-	DELETE FROM `char_equip`      WHERE `charid` = OLD.charid;
-	DELETE FROM `char_effects`    WHERE `charid` = OLD.charid;
-	DELETE FROM `char_look`       WHERE `charid` = OLD.charid;
-	DELETE FROM `char_stats`      WHERE `charid` = OLD.charid;
-	DELETE FROM `char_skills`     WHERE `charid` = OLD.charid;
-	DELETE FROM `char_inventory`  WHERE `charid` = OLD.charid;
-	DELETE FROM `char_vars`       WHERE `charid` = OLD.charid;
-	DELETE FROM `char_points`     WHERE `charid` = OLD.charid;
+	DELETE FROM `char_exp`         WHERE `charid` = OLD.charid;
+	DELETE FROM `char_jobs`        WHERE `charid` = OLD.charid;
+	DELETE FROM `char_equip`       WHERE `charid` = OLD.charid;
+	DELETE FROM `char_effects`     WHERE `charid` = OLD.charid;
+	DELETE FROM `char_look`        WHERE `charid` = OLD.charid;
+	DELETE FROM `char_stats`       WHERE `charid` = OLD.charid;
+	DELETE FROM `char_skills`      WHERE `charid` = OLD.charid;
+	DELETE FROM `char_inventory`   WHERE `charid` = OLD.charid;
+	DELETE FROM `char_furnishings` WHERE `charid` = OLD.charid;
+	DELETE FROM `char_vars`        WHERE `charid` = OLD.charid;
+	DELETE FROM `char_points`      WHERE `charid` = OLD.charid;
 END $$
 

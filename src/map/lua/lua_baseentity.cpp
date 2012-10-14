@@ -4062,12 +4062,18 @@ inline int32 CLuaBaseEntity::changeContainerSize(lua_State *L)
 	{
         uint8 LocationID = (uint8)lua_tointeger(L,1);
 
-		CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
+        if (LocationID < MAX_CONTAINER_ID)
+        {
+		    CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
 
-		uint8 size = PChar->getStorage(LocationID)->GetSize();
-		PChar->getStorage(LocationID)->SetSize(size + lua_tointeger(L,2));
-		PChar->pushPacket(new CInventorySizePacket(PChar));
-		charutils::SaveCharInventoryCapacity(PChar);
+		    PChar->getStorage(LocationID)->AddBuff(lua_tointeger(L,2));
+		    PChar->pushPacket(new CInventorySizePacket(PChar));
+		    charutils::SaveCharInventoryCapacity(PChar);
+        }
+        else
+        {
+            ShowError(CL_RED"CLuaBaseEntity::changeContainerSize: bad container id (%u)\n", LocationID);
+        }
 	}
 	return 0; 
 }

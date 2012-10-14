@@ -3464,16 +3464,29 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		{
 			rotation = (col >= 2 ? 3 : 1);
 		}
+        const int8* Query = NULL;
 
-		// обновляем данные в базе
-
-		PItem->setCol(col);
-		PItem->setRow(row);
-		PItem->setLevel(level);
-		PItem->setRotation(rotation);
+		if (PItem->getSubType() & ITEM_LOCKED)
+        {
+			Query = "UPDATE char_furnishings SET col = %u, row = %u, level = %u, rotation = %u WHERE slot = %u AND charid = %u";
+		}
+        else
+        {
+			Query = "INSERT INTO char_furnishings (col, row, level, rotation, slot, charid) values(%u, %u, %u, %u, %u, %u)";							  
+		}
+        if (Sql_Query(SqlHandle, Query, col, row, level, rotation, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+		{
+		    PItem->setCol(col);
+		    PItem->setRow(row);
+		    PItem->setLevel(level);
+		    PItem->setRotation(rotation);
 	
-		PItem->setSubType(ITEM_LOCKED);
+		    PItem->setSubType(ITEM_LOCKED);
 
+            PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
+
+            PChar->pushPacket(new CInventorySizePacket(PChar));
+		}
 		PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_MOGSAFE, slotID));
 		PChar->pushPacket(new CInventoryFinishPacket());
 	}
@@ -3494,26 +3507,58 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		return;
 	}
+
+    uint8  slotID = RBUFB(data,(0x06));
 	
-	uint8  slotID = RBUFB(data,(0x06));
-	
-	CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(LOC_MOGSAFE)->GetItem(slotID);
+    CItemContainer* PItemContainer = PChar->getStorage(LOC_MOGSAFE);
+
+	CItemFurnishing* PItem = (CItemFurnishing*)PItemContainer->GetItem(slotID);
 	
 	if (PItem != NULL &&
 		PItem->getID() == ItemID &&
 		PItem->getType() & ITEM_FURNISHING) 
 	{	
-		// удаляем данные из базы
-			
-		PItem->setCol(0);
-		PItem->setRow(0);
-		PItem->setLevel(0);
-		PItem->setRotation(0);
-		
-		PItem->setSubType(ITEM_UNLOCKED);
+        // TODO: удаление мебели может никак не повлиять на размер хранилища, если сумма Storage превышала 80 ячеек
 
-		PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_MOGSAFE, slotID));
-		PChar->pushPacket(new CInventoryFinishPacket());
+        PItemContainer = PChar->getStorage(LOC_STORAGE);
+
+        uint8 RemovedSize = PItemContainer->GetSize() - dsp_min(PItemContainer->GetSize(), PItemContainer->GetBuff() - PItem->getStorage());
+
+        if (PItemContainer->GetFreeSlotsCount() >= RemovedSize)
+        {
+		    const int8* Query = "DELETE FROM char_furnishings WHERE slot = %u AND charid = %u";
+
+            if (Sql_Query(SqlHandle, Query, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+		    {
+		        PItem->setCol(0);
+		        PItem->setRow(0);
+		        PItem->setLevel(0);
+		        PItem->setRotation(0);
+
+                PItem->setSubType(ITEM_UNLOCKED);
+
+                // пробегаться по предметам нужно лишь в случае, если новый размер контейнера изменится
+
+                uint8 NewSize = PItemContainer->GetSize() - RemovedSize;
+
+                for (uint8 SlotID = PItemContainer->GetSize(); SlotID > NewSize; --SlotID)
+                {
+                    if (PItemContainer->GetItem(SlotID) != NULL)
+                    {
+                        charutils::MoveItem(PChar, LOC_STORAGE, SlotID, ERROR_SLOTID);
+                    }
+                }
+                PChar->getStorage(LOC_STORAGE)->AddBuff(-(int8)PItem->getStorage());
+
+                PChar->pushPacket(new CInventorySizePacket(PChar));
+            }
+            PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_MOGSAFE, PItem->getSlotID()));
+		    PChar->pushPacket(new CInventoryFinishPacket());
+        }
+        else
+        {
+            ShowError(CL_RED"SmallPacket0x0FB: furnishing can't be removed\n" CL_RESET);
+        }
 	}
 	return;
 }

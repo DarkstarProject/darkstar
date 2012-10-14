@@ -57,8 +57,11 @@ public:
    ~CItemContainer();
 
 	uint16	GetID();
+    uint16  GetBuff();                              // планируемый размер хранилища (размер без ограничений)
 	uint8	GetSize();
 	uint8	GetFreeSlotsCount();					// количество свободных ячеек в хранилище
+    uint8   AddBuff(int8 buff);                     // планируемый размер хранилища (размер без ограничений)
+    uint8   AddSize(int8 size);                     // увеличиваем/уменьшаем размер контейнера
 	uint8	SetSize(uint8 size);
 	uint8	SearchItem(uint16 ItemID);				// поиск предмета в хранилище
 
@@ -73,6 +76,7 @@ public:
 private:
 
 	uint16	m_id;
+    uint16  m_buff;
 	uint8	m_size;
     uint8   m_count;
 

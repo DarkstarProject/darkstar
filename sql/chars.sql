@@ -59,7 +59,6 @@ CREATE TABLE IF NOT EXISTS `chars` (
   `zones` blob,
   `inventory` tinyint(2) unsigned NOT NULL DEFAULT '30',
   `safe` tinyint(2) unsigned NOT NULL DEFAULT '50',
-  `storage` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `locker` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `satchel` tinyint(2) unsigned NOT NULL DEFAULT '30',
   `sack` tinyint(2) unsigned NOT NULL DEFAULT '30',

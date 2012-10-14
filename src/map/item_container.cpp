@@ -37,6 +37,7 @@ CItemContainer::CItemContainer(uint16 LocationID)
     SortingPacket   = 0;
     LastSortingTime = 0;
 
+    m_buff  = 0;
 	m_size  = 0;
     m_count = 0;
 
@@ -66,14 +67,35 @@ uint8 CItemContainer::GetFreeSlotsCount()
     return m_size - m_count;
 }
 
-// функция не доработана, советую ей не пользоваться для уменьшения размера хранилища
+/************************************************************************
+*                                                                       *
+*  Установка размера контейнера                                         *
+*                                                                       *
+************************************************************************/
+
+uint16 CItemContainer::GetBuff()
+{
+    return m_buff;
+}
+
+uint8 CItemContainer::AddBuff(int8 buff)
+{
+    m_buff += buff;
+    return SetSize(dsp_min(m_buff, 80)); // ограничение в 80 ячеек для персонажа
+}
+
+/************************************************************************
+*                                                                       *
+*  Установка размера контейнера                                         *
+*                                                                       *
+************************************************************************/
+
+// контейнер не несет ответственности за то, что предметы могут остаться за пределами размера
 
 uint8 CItemContainer::SetSize(uint8 size) 
 {
 	if (size <= MAX_CONTAINER_SIZE) 
 	{
-		// TODO: при уменьшении размера контейнера необходимо производить перемещение предметов, оказавшихся за пределами нового размера
-
 		if (size >= m_count)
 		{
 			m_size = size;
@@ -83,6 +105,36 @@ uint8 CItemContainer::SetSize(uint8 size)
 	ShowDebug(CL_CYAN"ItemContainer <%u>: Bad new container size %u\n" CL_RESET, m_id, size);
 	return -1;
 }
+
+/************************************************************************
+*                                                                       *
+*  Увеличиваем/уменьшаем размер контейнера                              *
+*                                                                       *
+************************************************************************/
+
+// контейнер не несет ответственности за то, что предметы могут остаться за пределами размера
+
+uint8 CItemContainer::AddSize(int8 size)
+{
+    uint8 newsize = m_size + size;
+
+    if (newsize <= MAX_CONTAINER_SIZE) 
+	{
+		if (newsize >= m_count)
+		{
+			m_size = newsize;
+			return m_size;
+		}
+	}
+	ShowDebug(CL_CYAN"ItemContainer <%u>: Bad new container size %u\n" CL_RESET, m_id, newsize);
+	return -1;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 uint8 CItemContainer::InsertItem(CItem* PItem)
 {
@@ -135,6 +187,12 @@ uint8 CItemContainer::InsertItem(CItem* PItem, uint8 SlotID)
 	return ERROR_SLOTID;
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 CItem* CItemContainer::GetItem(uint8 SlotID)
 {
 	if (SlotID <= m_size)
@@ -143,6 +201,12 @@ CItem* CItemContainer::GetItem(uint8 SlotID)
 	}
 	return NULL;
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 uint8 CItemContainer::SearchItem(uint16 ItemID)
 {
