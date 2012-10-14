@@ -13,9 +13,9 @@ require("scripts/globals/Treasure");
 require("scripts/globals/quests");
 require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 
-TreasureType = "Coffer";
-TreasureLvL = 53;
-TreasureMinLvL = 43;
+local TreasureType = "Coffer";
+local TreasureLvL = 53;
+local TreasureMinLvL = 43;
 
 -----------------------------------
 -- onTrade Action
@@ -23,33 +23,31 @@ TreasureMinLvL = 43;
 
 function onTrade(player,npc,trade)
 
-	key = trade:hasItemQty(1059,1); 		-- Treasure Key
-	sk = trade:hasItemQty(1115,1);			-- Skeleton Key
-	lk = trade:hasItemQty(1023,1);			-- Living Key
-	ttk = trade:hasItemQty(1022,1);			-- Thief's Tools
-	questItemNeeded = 0;
+	-- trade:hasItemQty(1059,1); 		-- Treasure Key
+	-- trade:hasItemQty(1115,1);			-- Skeleton Key
+	-- trade:hasItemQty(1023,1);			-- Living Key
+	-- trade:hasItemQty(1022,1);			-- Thief's Tools
+	local questItemNeeded = 0;
 	
 	-- Player traded a key.
-	if((key or sk or lk or ttk) and trade:getItemCount() == 1) then 
+	if((trade:hasItemQty(1059,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		
 		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
-		mJob = player:getMainJob();
-		zone = player:getZone();
-		AFHandsActivated = player:getVar("BorghertzAlreadyActiveWithJob");
-		oldGauntlets = player:hasKeyItem(OLD_GAUNTLETS);
+		local mJob = player:getMainJob();
+		local zone = player:getZone();
+		local AFHandsActivated = player:getVar("BorghertzAlreadyActiveWithJob");
 		
 		if(player:hasKeyItem(MAP_OF_THE_SEA_SERPENT_GROTTO) == false) then
 			questItemNeeded = 3;
 		end
 		
-		if(AFHandsActivated == 15 and oldGauntlets == false) then 
+		if(AFHandsActivated == 15 and player:hasKeyItem(OLD_GAUNTLETS) == false) then 
 			questItemNeeded = 1;
 		else
-			listAF = getAFbyZone(zone);
+			local listAF = getAFbyZone(zone);
 			
 			for nb = 1,table.getn(listAF),3 do
-				QHANDS = player:getQuestStatus(JEUNO,listAF[nb + 1]);
-				if(QHANDS ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
+				if(player:getQuestStatus(JEUNO,listAF[nb + 1]) ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
 					questItemNeeded = 2;
 					break
 				end
@@ -57,8 +55,8 @@ function onTrade(player,npc,trade)
 		end
 		--------------------------------------
 		
-		pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
-		
+		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
+		local success = 0;
 		if(pack[2] ~= nil) then
 			player:messageSpecial(pack[2]);
 			success = pack[1];
@@ -67,10 +65,9 @@ function onTrade(player,npc,trade)
 		end
 		
 		if(success ~= -2) then
-			diceroll = math.random(); -- 0 or 1
 			player:tradeComplete();
 			
-			if(diceroll <= success) then
+			if(math.random() <= success) then
 				-- Succeded to open the coffer
 				player:messageSpecial(CHEST_UNLOCKED);
 				

@@ -13,9 +13,9 @@ require("scripts/globals/Treasure");
 require("scripts/globals/quests");
 require("scripts/zones/Castle_Oztroja/TextIDs");
 
-TreasureType = "Chest";
-TreasureLvL = 43;
-TreasureMinLvL = 33;
+local TreasureType = "Chest";
+local TreasureLvL = 43;
+local TreasureMinLvL = 33;
 
 -----------------------------------
 -- onTrade Action
@@ -32,6 +32,7 @@ function onTrade(player,npc,trade)
 	-- Player traded a key.
 	if((trade:hasItemQty(1035,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		
+		local zone = player:getZone();
 		-- IMPORTANT ITEM: AF1 BST QUEST -----------
 		if(player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and 
 		   player:getVar("scatIntoShadowCS") == 1 and player:hasItem(13121) == false) then 
@@ -40,7 +41,7 @@ function onTrade(player,npc,trade)
 		--------------------------------------
 		
 		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
-		
+		local success = 0;
 		if(pack[2] ~= nil) then
 			player:messageSpecial(pack[2]);
 			success = pack[1];
