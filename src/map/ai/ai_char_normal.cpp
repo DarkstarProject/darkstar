@@ -1652,7 +1652,7 @@ void CAICharNormal::ActionWeaponSkillStart()
             WeaponSkillStartError(5);
 		    return;
 	    }
-        if (m_PWeaponSkill->getJob(JOB_RNG) != 0) // ranged WS IDs
+        if( 218 >= m_PWeaponSkill->getID() && m_PWeaponSkill->getID() >= 192 ) // ranged WS IDs
         {
             if (!m_PChar->m_Weapons[SLOT_AMMO]->isRanged() || 
                 !m_PChar->m_Weapons[SLOT_RANGED]->isRanged())
