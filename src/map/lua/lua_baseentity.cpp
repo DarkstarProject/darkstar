@@ -4798,6 +4798,25 @@ inline int32 CLuaBaseEntity::isBehind(lua_State *L){
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::isFacing(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
+
+	CBattleEntity* PAttacker = (CBattleEntity*)m_PBaseEntity;
+	CBattleEntity* PDefender = (CBattleEntity*)PLuaBaseEntity->GetBaseEntity();
+
+	uint8 isfacing = 0;
+
+	if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40)){
+		isfacing = 1;
+	}
+
+	lua_pushinteger( L,isfacing);
+	return 1;
+}
+
 inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
