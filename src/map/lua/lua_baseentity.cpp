@@ -4754,6 +4754,8 @@ inline int32 CLuaBaseEntity::getNationTeleport(lua_State *L)
 
 //==========================================================//
 
+// TODO: зачем это ?
+
 inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -4798,24 +4800,30 @@ inline int32 CLuaBaseEntity::isBehind(lua_State *L){
 	return 1;
 }
 
-inline int32 CLuaBaseEntity::isFacing(lua_State *L){
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::isFacing(lua_State *L)
+{
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 
 	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
 
-	CBattleEntity* PAttacker = (CBattleEntity*)m_PBaseEntity;
-	CBattleEntity* PDefender = (CBattleEntity*)PLuaBaseEntity->GetBaseEntity();
+    DSP_DEBUG_BREAK_IF(PLuaBaseEntity == NULL);
 
-	uint8 isfacing = 0;
-
-	if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40)){
-		isfacing = 1;
-	}
-
-	lua_pushinteger( L,isfacing);
-	return 1;
+    lua_pushboolean( L, isFaceing(m_PBaseEntity->loc.p, PLuaBaseEntity->GetBaseEntity()->loc.p, 40));
+    return 1;
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 {
@@ -4823,6 +4831,7 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
 	DropList_t* DropList = itemutils::GetDropList(((CMobEntity*)m_PBaseEntity)->m_DropID);
+
 	if (DropList != NULL && DropList->size())
 	{
 		for(uint8 i = 0; i < DropList->size(); ++i)
@@ -4834,7 +4843,6 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 			}
 		}
 	}
-
 	return 0;
 }
 
