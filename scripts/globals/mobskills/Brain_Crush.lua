@@ -20,12 +20,11 @@ function OnMobWeaponSkill(target, mob, skill)
 		local mobTP = mob:getTP();
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
 		if(resist > 0.5) then
+			local silenceTime = 60; 
 			if(mobTP <= 100) then 
-				local silenceTime = 30;
+				silenceTime = 30;
 			elseif(mobTP <= 200) then 
-				local silenceTime = 40;
-			else 
-				local silenceTime = 60; 
+				silenceTime = 40;
 			end
 			target:addStatusEffect(typeEffect,1,0,silenceTime);
 		end
