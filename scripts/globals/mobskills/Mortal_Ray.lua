@@ -17,7 +17,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_DOOM;
-	if(target:hasStatusEffect(typeEffect) == false) then
+	if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
 		if(resist > 0.5) then

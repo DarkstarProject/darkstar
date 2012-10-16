@@ -19,7 +19,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PETRIFICATION;
-	if(target:hasStatusEffect(typeEffect) == false) then
+	if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
 		if(resist > 0.5) then

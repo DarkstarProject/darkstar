@@ -19,7 +19,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local message = MSG_MISS;
 	local typeEffect = EFFECT_PARALYSIS;
-	if(target:hasStatusEffect(typeEffect) == false) then
+	if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
 		local accrand = math.random(1,2);
 		if(accrand == 1) then
 			local statmod = MOD_INT;
