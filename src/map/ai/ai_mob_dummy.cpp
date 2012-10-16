@@ -460,15 +460,25 @@ void CAIMobDummy::ActionAbilityStart()
 	for(int i=0;i<MobSkills.size();i++){
 		m_PMobSkill = MobSkills.at(i);
 		if(luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob,m_PMobSkill) == 0){ //A script says that the move in question is valid
-			valid = true;
-			break;
+			if(distance(m_PBattleTarget->loc.p, m_PMob->loc.p) <= m_PMobSkill->getDistance()) {
+				valid = true;
+				break;
+			}
 		}
 	}
 	
-	if(!valid) { //No valid moves exist in the container, but they may become valid later, so keep the TP and continue attacking
-		m_ActionType = ACTION_ATTACK;
-        ActionAttack();
-		return;
+	if(!valid) { //No valid moves exist in the container, but they may become valid later, so keep the TP
+		if(distance(m_PBattleTarget->loc.p, m_PMob->loc.p) <= m_PMob->m_ModelSize) //mob is in melee range, so attack
+		{
+			m_ActionType = ACTION_ATTACK;
+			ActionAttack();
+			return;
+		}
+		else //mob is outside of melee range, so pursue
+		{
+			battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
+			return;
+		}
 	}
 	
 	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS){
@@ -1079,6 +1089,13 @@ void CAIMobDummy::ActionAttack()
 	}
 	else
     {
+		if (m_PMob->health.tp >= 100 && rand()%100 > 60 || m_PMob->health.tp == 300 ||
+			m_PMob->health.tp >= 100 && m_PMob->GetHPP()<=25 ) 
+		{
+			m_ActionType = ACTION_MOBABILITY_START;
+			ActionAbilityStart();
+			return;
+		}
 		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
 	}
 
