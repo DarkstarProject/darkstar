@@ -454,8 +454,23 @@ void CAIMobDummy::ActionAbilityStart()
     m_LastActionTime = m_Tick;
 
 	//TODO: Choose TP move sensibly (if no enemies in range, dont choose a damaging move, etc)
-	m_PMobSkill = MobSkills.at(rand() % MobSkills.size());
-
+	std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
+	
+	bool valid = false; //Assume no valid moves exist
+	for(int i=0;i<MobSkills.size();i++){
+		m_PMobSkill = MobSkills.at(i);
+		if(luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob,m_PMobSkill) == 0){ //A script says that the move in question is valid
+			valid = true;
+			break;
+		}
+	}
+	
+	if(!valid) { //No valid moves exist in the container, but they may become valid later, so keep the TP and continue attacking
+		m_ActionType = ACTION_ATTACK;
+        ActionAttack();
+		return;
+	}
+	
 	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS){
 		for(int i=0;i<MobSkills.size();i++){
 			if(MobSkills[i]->getID() == 0){ //TWO-HOUR

@@ -4,6 +4,10 @@
 --
 ---------------------------------------------
 
+function OnMobSkillCheck(target,mob,skill)
+	return 0;
+end;
+
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PARALYSIS;
 	if(target:hasStatusEffect(typeEffect) == false) then

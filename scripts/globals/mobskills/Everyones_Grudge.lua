@@ -9,6 +9,10 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
+function OnMobSkillCheck(target,mob,skill)
+	return 0;
+end;
+
 function OnMobWeaponSkill(target, mob, skill)
 	local realDmg = 5 * target:getVar("EVERYONES_GRUDGE_KILLS"); -- Damage is 5 times the amount you have killed 
 	local mobID = mob:getID();

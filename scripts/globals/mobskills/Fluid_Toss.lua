@@ -13,6 +13,10 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
+function OnMobSkillCheck(target,mob,skill)
+	return 0;
+end;
+
 function OnMobWeaponSkill(target, mob, skill)
 	if(target:hasStatusEffect(EFFECT_POISON) == false) then
 		target:addStatusEffect(EFFECT_POISON,5,100,20);--power=5;tick=100;duration=20;

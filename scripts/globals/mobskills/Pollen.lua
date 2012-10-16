@@ -9,6 +9,10 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
+function OnMobSkillCheck(target,mob,skill)
+	return 0;
+end;
+
 function OnMobWeaponSkill(target, mob, skill)
 	local m = math.random(1,4)+3; -- Sets multiplier to 4-7
 	local mobHP = mob:getHP();

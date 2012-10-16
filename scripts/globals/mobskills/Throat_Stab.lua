@@ -13,6 +13,10 @@ require("/scripts/globals/monstertpmoves");
 require("scripts/globals/magic");
 
 ---------------------------------------------
+function OnMobSkillCheck(target,mob,skill)
+	return 0;
+end;
+
 function OnMobWeaponSkill(target, mob, skill)
 	local numhits = 1;
 	local accmod = 1;

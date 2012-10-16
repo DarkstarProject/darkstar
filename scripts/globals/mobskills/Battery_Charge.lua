@@ -10,6 +10,10 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
+function OnMobSkillCheck(target,mob,skill)
+	return 0;
+end;
+
 function OnMobWeaponSkill(target, mob, skill)
 	skill:setMsg(MSG_BUFF);
 	local typeEffect = EFFECT_REFRESH

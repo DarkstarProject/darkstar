@@ -11,6 +11,10 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
+function OnMobSkillCheck(target,mob,skill)
+	return 0;
+end;
+
 function OnMobWeaponSkill(target, mob, skill)
 	local base = math.random(4,10);
 	skill:setMsg(MSG_BUFF);
