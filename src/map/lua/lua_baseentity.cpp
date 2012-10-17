@@ -4790,16 +4790,7 @@ inline int32 CLuaBaseEntity::isBehind(lua_State *L){
 
 	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
 
-	CBattleEntity* PAttacker = (CBattleEntity*)m_PBaseEntity;
-	CBattleEntity* PDefender = (CBattleEntity*)PLuaBaseEntity->GetBaseEntity();
-
-	uint8 isbehind = 0;
-
-	if(abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23){
-		isbehind = 1;
-	}
-
-	lua_pushinteger( L,isbehind);
+	lua_pushboolean( L,(abs(PLuaBaseEntity->GetBaseEntity()->loc.p.rotation - m_PBaseEntity->loc.p.rotation) < 23));
 	return 1;
 }
 

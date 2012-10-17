@@ -35,7 +35,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	ccmax = 0;
 	hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
 	isSneakValid = attacker:hasStatusEffect(EFFECT_SNEAK_ATTACK);
-	if(isSneakValid and attacker:isBehind(target)==0)then
+	if(isSneakValid and attacker:isBehind(target))then
 		isSneakValid = false;
 	end
 	attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
