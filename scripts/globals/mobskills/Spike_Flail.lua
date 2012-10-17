@@ -10,6 +10,9 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
+	if(target:isBehind(mob) == false) then
+		return 1;
+	end
 	return 0;
 end;
 
