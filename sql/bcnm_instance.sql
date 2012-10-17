@@ -67,6 +67,10 @@ INSERT INTO `bcnm_instance` VALUES ('34', '1', '17350930');
 INSERT INTO `bcnm_instance` VALUES ('34', '1', '17350931');
 INSERT INTO `bcnm_instance` VALUES ('35', '1', '17350934');
 INSERT INTO `bcnm_instance` VALUES ('35', '1', '17350933');
+INSERT INTO `bcnm_instance` VALUES ('36', '1', '17350936');
+INSERT INTO `bcnm_instance` VALUES ('36', '1', '17350937');
+INSERT INTO `bcnm_instance` VALUES ('36', '1', '17350938');
+INSERT INTO `bcnm_instance` VALUES ('36', '1', '17350939');
 
 -- Waughroon Shrine
 INSERT INTO `bcnm_instance` VALUES ('64', '1', '17367041');

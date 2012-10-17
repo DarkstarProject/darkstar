@@ -8,7 +8,7 @@ require("scripts/globals/status");
 -- e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
 -- DO NOT INCLUDE MAAT FIGHTS
 itemid_bcnmid_map = {139,{1553,11,1175,15,1180,17}, -- Horlais Peak
-					 140,{1551,34,1552,35}, -- Ghelsba Outpost
+					 140,{1551,34,1552,35,1552,36}, -- Ghelsba Outpost
 					 144,{1166,68,1178,81,1553,76,1180,82,1130,79}, -- Waughroon Shrine
 					 146,{1553,107,1551,105}, -- Balgas Dias
 					 168,{0,0}, -- Chamber of Oracles
@@ -28,7 +28,7 @@ itemid_bcnmid_map = {139,{1553,11,1175,15,1180,17}, -- Horlais Peak
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
 -- 0,1,2,3,4,5,...
 bcnmid_param_map = {139,{0,0,5,5,6,6,7,7,11,11,15,15,17,17},
-					140,{32,0,33,1,34,2,35,3},
+					140,{32,0,33,1,34,2,35,3,36,4},
 					144,{64,0,68,4,70,6,71,7,72,8,81,17,76,12,82,18,79,15},
 					146,{96,0,101,5,102,6,103,7,107,11,105,9},
 					163,{128,0},
@@ -57,6 +57,7 @@ function TradeBCNM(player,zone,trade,npc)
 		return true;
 	end
 	--the following is for orb battles, etc
+
 	id = ItemToBCNMID(player,zone,trade);
 	
 	if(id == -1)then --no valid BCNMs with this item
@@ -181,7 +182,7 @@ function EventFinishBCNM(player,csid,option)
 		return false;
 	else
 		id = player:getVar("trade_bcnmid");
-		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 81 or id == 76 or id == 107 or id == 11 or id == 105 or id == 82 or id == 34 or id == 15 or id == 17 or id == 79 or id == 35) then
+		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 81 or id == 76 or id == 107 or id == 11 or id == 105 or id == 82 or id == 34 or id == 15 or id == 17 or id == 79 or id == 35 or id == 36) then
 			player:tradeComplete(); -- Removes the item, eventually need to remove orbs from this list and set bitmask on vraible to cracked instead of removing orb!!!
 		end
 		return true;
@@ -240,7 +241,7 @@ function GetBattleBitmask(id,zone,mode)
 	for zoneindex = 1, table.getn(bcnmid_param_map), 2 do
 		if(zone==bcnmid_param_map[zoneindex])then --matched zone
 			for bcnmindex = 1, table.getn(bcnmid_param_map[zoneindex + 1]), 2 do --loop bcnms in this zone
-				if(id==bcnmid_param_map[zoneindex+1][bcnmindex])then --found bcnmid
+				if(id==bcnmid_param_map[zoneindex+1][bcnmindex])then --found bcnmid				
 					if(mode == 1) then
 						return 2^bcnmid_param_map[zoneindex+1][bcnmindex+1]; -- for trigger (mode 1): 1,2,4,8,16,32,...
 					else
@@ -293,7 +294,8 @@ function ItemToBCNMID(player,zone,trade)
 					if(questTimelineOK == 1) then
 						player:setVar("trade_bcnmid",itemid_bcnmid_map[zoneindex+1][bcnmindex+1]);
 						return itemid_bcnmid_map[zoneindex+1][bcnmindex+1];
-					end					
+					end							
+			
 				end
 			end
 		end
