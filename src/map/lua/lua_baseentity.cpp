@@ -3677,23 +3677,26 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
 inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-	uint8 SLOT = (uint8)lua_tointeger(L,1);
-
-    DSP_DEBUG_BREAK_IF(SLOT > 15);
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT]);
-
-    if((PItem != NULL) && (PItem->getType() & ITEM_ARMOR)) 
+	if(m_PBaseEntity->objtype == TYPE_PC)
 	{
-	    lua_pushinteger(L,PItem->getID()); 
-		return 1;
-    }
+		uint8 SLOT = (uint8)lua_tointeger(L,1);
+
+		DSP_DEBUG_BREAK_IF(SLOT > 15);
+
+		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT]);
+
+		if((PItem != NULL) && (PItem->getType() & ITEM_ARMOR)) 
+		{
+			lua_pushinteger(L,PItem->getID()); 
+			return 1;
+		}
+	}
 	lua_pushinteger(L,0); 
 	return 1;
 }
@@ -5110,7 +5113,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addNationTeleport),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBehind),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFacing),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBCNMloot),
