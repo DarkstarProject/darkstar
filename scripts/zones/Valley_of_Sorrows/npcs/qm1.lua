@@ -18,6 +18,10 @@ function onTrade(player,npc,trade)
 	if(trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17301538,180):updateEnmity(player);
+	-- Trade Clump of Red Pondweed
+	if(trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then 
+		player:tradeComplete();
+		SpawnMob(17301537,180):updateEnmity(player);
 	end
 	
 end;

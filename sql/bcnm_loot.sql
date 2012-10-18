@@ -107,6 +107,7 @@ INSERT INTO `bcnm_loot` VALUES ('76', '722', '79', '9');
 INSERT INTO `bcnm_loot` VALUES ('76', '1446', '257', '9');
 INSERT INTO `bcnm_loot` VALUES ('76', '703', '337', '9');
 INSERT INTO `bcnm_loot` VALUES ('76', '831', '149', '9');
+INSERT INTO `bcnm_loot` VALUES ('76', '3343', '1', '10');
 INSERT INTO `bcnm_loot` VALUES ('105', '1603', '100', '0');
 INSERT INTO `bcnm_loot` VALUES ('105', '915', '250', '1');
 INSERT INTO `bcnm_loot` VALUES ('105', '4112', '300', '1');

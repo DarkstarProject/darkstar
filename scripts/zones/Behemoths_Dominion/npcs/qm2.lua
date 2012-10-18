@@ -20,6 +20,10 @@ function onTrade(player,npc,trade)
 	if(trade:hasItemQty(3342,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17297441,180):updateEnmity(player);
+	-- Trade Beastly Shank
+	elseif(trade:hasItemQty(3341,1) and trade:getItemCount() == 1) then 
+		player:tradeComplete();
+		SpawnMob(17297440,180):updateEnmity(player);
 	end
 	
 

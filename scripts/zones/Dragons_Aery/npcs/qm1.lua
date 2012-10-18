@@ -18,6 +18,10 @@ function onTrade(player,npc,trade)
 	if(GetMobAction(17408019) == 0 and trade:hasItemQty(3340,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17408019,180):updateEnmity(player);
+	-- Trade Cup of Honey Wine
+	if(GetMobAction(17408019) == 0 and trade:hasItemQty(3339,1) and trade:getItemCount() == 1) then 
+		player:tradeComplete();
+		SpawnMob(17408018,180):updateEnmity(player);
 	end
 	
 end;
