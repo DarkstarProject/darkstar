@@ -75,6 +75,7 @@ class CMobEntity : public CBattleEntity
 {
 public:
 
+    bool        m_AllowRespawn;         // монстру разрешено возрождаться
 	uint32		m_RespawnTime;	        // отрезок времени, через который монстр возрождается после смерти
     uint32      m_DropItemTime;         // время анимации смерти монстра
 
@@ -102,6 +103,7 @@ public:
 
     uint32      m_unknown;              // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
     uint8       m_name_prefix;          // The ding bats VS Ding bats
+
 	CEnmityContainer* PEnmityContainer;	// система ненависти монстров
 
     bool        hasRageMode();          // If the mob has the rage mode: true

@@ -1165,6 +1165,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 				if (PMob->m_SpawnType == SPAWNTYPE_FOG)
 				{
                     PMob->SetDespawnTimer(0);
+                    PMob->m_AllowRespawn = true;
                     PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 				}
 			}
@@ -1179,6 +1180,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
                 if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
                 {
                     PMob->SetDespawnTimer(1);
+                    PMob->m_AllowRespawn = false;
                 }
 			}
 		}
@@ -1194,6 +1196,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 				if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
 				{
                     PMob->SetDespawnTimer(1);
+                    PMob->m_AllowRespawn = false;
 				}
 			}
 		}
@@ -1209,6 +1212,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
                 if (PMob->m_SpawnType ==  SPAWNTYPE_FOG)
                 {
                     PMob->SetDespawnTimer(1);
+                    PMob->m_AllowRespawn = false;
                 }
 			}
 		}
@@ -1229,6 +1233,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 				if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
 				{
                     PMob->SetDespawnTimer(0);
+                    PMob->m_AllowRespawn = true;
 					PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 				}
 			}
@@ -1243,6 +1248,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 				if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
 				{
                     PMob->SetDespawnTimer(0);
+                    PMob->m_AllowRespawn = true;
 					PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 				}
 			}

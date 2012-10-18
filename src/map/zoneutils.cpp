@@ -332,7 +332,11 @@ void LoadMOBList(CZone* PZone)
 			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle,48); 
 			PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle,49); 
 			PMob->PBattleAI = new CAIMobDummy(PMob);
-			PMob->PBattleAI->SetCurrentAction(PMob->m_SpawnType == SPAWNTYPE_NORMAL ? ACTION_SPAWN : ACTION_NONE);
+
+            if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
+            {
+                PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+            }
 
             // Killer Effect
             switch (PMob->m_EcoSystem)

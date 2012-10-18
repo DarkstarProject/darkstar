@@ -37,6 +37,7 @@ CMobEntity::CMobEntity()
 	m_minLevel = 1;
 	m_maxLevel = 1;
 
+    m_AllowRespawn = 0;
 	m_CallForHelp  = 0;
     m_DespawnTimer = 0;
     m_DropItemTime = 0;

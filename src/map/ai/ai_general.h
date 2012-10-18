@@ -85,6 +85,7 @@ class CBattleEntity;
 class CAbility;
 class CWeaponSkill;
 class CMobSkill;
+
 class CAIGeneral
 {
 public:
