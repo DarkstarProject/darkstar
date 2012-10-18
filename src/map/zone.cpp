@@ -516,62 +516,52 @@ void CZone::TransportDepart(CBaseEntity* PTransportNPC)
 
 void CZone::SetWeather(WEATHER weather)
 {
+    DSP_DEBUG_BREAK_IF(weather >= MAX_WEATHER_ID);
+
 	if (m_Weather == weather)
 		return;
 
-	uint8 Element = 0;
+    static uint8 Element[] = 
+    {
+        0,  //WEATHER_NONE
+	    0,  //WEATHER_SUNSHINE
+	    0,  //WEATHER_CLOUDS
+	    0,  //WEATHER_FOG
+	    1,  //WEATHER_HOT_SPELL
+	    1,  //WEATHER_HEAT_WAVE
+	    6,  //WEATHER_RAIN
+	    6,  //WEATHER_SQUALL
+	    4,  //WEATHER_DUST_STORM
+	    4,  //WEATHER_SAND_STORM
+	    3,  //WEATHER_WIND
+	    3,  //WEATHER_GALES
+	    2,  //WEATHER_SNOW
+	    2,  //WEATHER_BLIZZARDS
+	    5,  //WEATHER_THUNDER
+	    5,  //WEATHER_THUNDERSTORMS
+	    7,  //WEATHER_AURORAS
+	    7,  //WEATHER_STELLAR_GLARE
+	    8,  //WEATHER_GLOOM
+	    8,  //WEATHER_DARKNESS
+    };
 
-	switch(weather)
-	{
-		case WEATHER_HOT_SPELL:
-		case WEATHER_HEAT_WAVE:
-			Element = 1; //"Fire_Elemental";
-			break;
-		case WEATHER_RAIN:
-		case WEATHER_SQUALL:
-			Element = 6; //"Water_Elemental";
-			break;
-		case WEATHER_DUST_STORM:
-		case WEATHER_SAND_STORM:
-			Element = 4; //"Earth_Elemental";
-			break;
-		case WEATHER_WIND:
-		case WEATHER_GALES:
-			Element = 3; //"Air_Elemental";
-			break;
-		case WEATHER_SNOW:
-		case WEATHER_BLIZZARDS:
-			Element = 2; //"Ice_Elemental";
-			break;
-		case WEATHER_THUNDER:
-		case WEATHER_THUNDERSTORMS:
-			Element = 5; //"Thunder_Elemental";
-			break;
-		case WEATHER_AURORAS:
-		case WEATHER_STELLAR_GLARE:
-			Element = 7; //"Light_Elemental";
-			break;
-		case WEATHER_GLOOM:
-		case WEATHER_DARKNESS:
-			Element = 8; //"Dark_Elemental";
-			break;
-	}
-
-    for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
+    for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 	{
 		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
         if (PCurrentMob->m_EcoSystem == SYSTEM_ELEMENTAL)
         {
-            if (PCurrentMob->m_Element == Element)
+            if (PCurrentMob->m_Element == Element[weather])
 			{
                 PCurrentMob->SetDespawnTimer(0);
+                PCurrentMob->m_AllowRespawn = true;
                 PCurrentMob->PBattleAI->SetLastActionTime(0);
 				PCurrentMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 			}
 			else 
 			{
 				PCurrentMob->SetDespawnTimer(1);
+                PCurrentMob->m_AllowRespawn = false;
 			}
         }
     }
