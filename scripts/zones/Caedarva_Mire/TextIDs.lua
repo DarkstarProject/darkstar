@@ -11,4 +11,3 @@ LOGGING_IS_POSSIBLE_HERE = 7280; -- Logging is possible here if you have <item>
 
 -- Other Texts
 NOTHING_HAPPENS = 7266; -- Nothing happens...
-

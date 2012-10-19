@@ -1,20 +1,26 @@
 -----------------------------------
---  Area: Caedarva Mire
---   NPC: Nasheefa
---  Type: Alzadaal Undersea Ruins
--- @zone: 79
---  @pos: -440.998 0.107 -740.015
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Caedarva Mire
+-- NPC:  Nasheefa
+-- Type: Alzadaal Undersea Ruins
+-- @pos -440.998 0.107 -740.015 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/globals/keyitems");
+require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(trade:getItemCount() == 1 and trade:hasItemQty(2185,1)) then -- Silver
+		player:tradeComplete();
+		player:startEvent(0x00b7);
+	end
+	
 end;
 
 -----------------------------------
@@ -22,7 +28,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00b6);
+	
+	if(player:getXPos() < -440) then
+		player:startEvent(0x00be);
+	else
+		player:startEvent(0x00b6);
+	end
+	
 end;
 
 -----------------------------------
@@ -30,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +51,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	
+	if(csid == 0x00b7) then
+		player:setPos(-220,-4,475,64,72);
+	end
+	
 end;
-

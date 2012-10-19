@@ -1,13 +1,11 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Tyamah
--- Type: Alzadaal Undersea Ruins
--- @pos 320.003 0.124 -700.011 79
+-- NPC:  ??? (Spawn Verdelet(ZNM T2))
+-- @pos 417 -19 -69 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/keyitems");
 require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
@@ -16,9 +14,9 @@ require("scripts/zones/Caedarva_Mire/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:getItemCount() == 1 and trade:hasItemQty(2185,1)) then -- Silver
+	if(trade:hasItemQty(2599,1) and trade:getItemCount() == 1) then -- Trade Mint Drop
 		player:tradeComplete();
-		player:startEvent(0x00a3);
+		SpawnMob(17101202,180):updateEnmity(player);
 	end
 	
 end;
@@ -28,13 +26,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:getXPos() > 320) then
-		player:startEvent(0x00a4);
-	else
-		player:startEvent(0x00a2);
-	end
-	
+	player:messageSpecial(NOTHING_HAPPENS);
 end;
 
 -----------------------------------
@@ -53,9 +45,4 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-	
-	if(csid == 0x00a3) then
-		player:setPos(-20,-4,835,64,72);
-	end
-	
 end;

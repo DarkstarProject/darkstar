@@ -1,26 +1,16 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Tyamah
--- Type: Alzadaal Undersea Ruins
--- @pos 320.003 0.124 -700.011 79
------------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
+-- NPC:  Engraved Tablet
+-- @pos 763 -9 638 79
 -----------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if(trade:getItemCount() == 1 and trade:hasItemQty(2185,1)) then -- Silver
-		player:tradeComplete();
-		player:startEvent(0x00a3);
-	end
-	
 end;
 
 -----------------------------------
@@ -29,10 +19,10 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getXPos() > 320) then
-		player:startEvent(0x00a4);
+	if(player:hasKeyItem(CYAN_DEEP_SALT)) then
+		player:startEvent(0x0130);
 	else
-		player:startEvent(0x00a2);
+		player:startEvent(0x0132);
 	end
 	
 end;
@@ -54,8 +44,8 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 	
-	if(csid == 0x00a3) then
-		player:setPos(-20,-4,835,64,72);
+	if(csid == 0x0130 and option == 1) then
+		player:delKeyItem(CYAN_DEEP_SALT);
 	end
 	
 end;
