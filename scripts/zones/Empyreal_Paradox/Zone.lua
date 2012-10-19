@@ -3,9 +3,10 @@
 -- Zone: Empyreal_Paradox
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
 require("scripts/zones/Empyreal_Paradox/TextIDs");
 
 -----------------------------------
@@ -13,6 +14,7 @@ require("scripts/zones/Empyreal_Paradox/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+	zone:registerRegion(1, 538, -2, -501,  542, 0, -497); -- to The Garden of Ru'hmet
 end;
 
 -----------------------------------
@@ -30,6 +32,19 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
+	
+	switch (region:GetRegionID()): caseof
+	{
+		[1] = function (x) player:startEvent(0x0064); end,
+	}
+	
+end;
+
+-----------------------------------	
+-- onRegionLeave	
+-----------------------------------	
+
+function onRegionLeave(player,region)	
 end;
 
 -----------------------------------
@@ -48,7 +63,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
+	if(csid == 0x0064 and option == 1) then
+		player:setPos(-420,-1,379.900,62,0x23);
+	end
+	
 end;
-
-
-
