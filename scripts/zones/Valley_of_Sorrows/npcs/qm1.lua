@@ -15,11 +15,11 @@ require("scripts/zones/Valley_of_Sorrows/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Clump of Red Pondweed
-	if(trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then 
+	if(GetMobAction(17301538) == 0 and trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17301538,180):updateEnmity(player);
 	-- Trade Clump of Red Pondweed
-	if(trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then 
+	elseif(GetMobAction(17301537) == 0 and trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17301537,180):updateEnmity(player);
 	end

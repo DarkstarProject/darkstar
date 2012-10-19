@@ -17,11 +17,11 @@ require("scripts/zones/Behemoths_Dominion/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade Savory Shank
-	if(trade:hasItemQty(3342,1) and trade:getItemCount() == 1) then 
+	if(GetMobAction(17297441) == 0 and trade:hasItemQty(3342,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17297441,180):updateEnmity(player);
 	-- Trade Beastly Shank
-	elseif(trade:hasItemQty(3341,1) and trade:getItemCount() == 1) then 
+	elseif(GetMobAction(17297440) == 0 and trade:hasItemQty(3341,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17297440,180):updateEnmity(player);
 	end
