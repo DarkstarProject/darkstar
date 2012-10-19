@@ -1,15 +1,14 @@
 -----------------------------------
 --  Area: Ru'Lude Gardens
---   NPC: Nomad Moogle
+--  NPC:  Nomad Moogle
 --  Type: Adventurer's Assistant
--- @zone: 243
---  @pos: 10.012 1.453 121.883
---
--- Auto-Script: Requires Verification
+--  @pos 10.012 1.453 121.883 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
@@ -24,7 +23,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x2797);
+
+	if(player:hasKeyItem(LIMIT_BREAKER) == false and player:getMainLvl() >= 75) then
+		player:startEvent(0x2798);
+	else
+		player:startEvent(0x005E);
+	end
+
 end;
 
 -----------------------------------
@@ -32,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -41,7 +46,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	
+	if(csid == 0x2798) then
+		player:addKeyItem(LIMIT_BREAKER);
+		player:messageSpecial(KEYITEM_OBTAINED,LIMIT_BREAKER);
+	end
+	
 end;
-
