@@ -860,13 +860,13 @@ INSERT INTO `mob_skill` VALUES (697,263,655,'Dragon_Breath', 4, 40.0, 2000, 1500
 -- anim 765 = seismostomp
 
 -- Gurfurlur the Menacing (326)
-INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
 
 -- --------------------------------------
 -- MAAT
