@@ -29,18 +29,13 @@ function OnUseWeaponSkill(player, target, wsID)
 	acc100 = 0.0; acc200= 0.0; acc300= 0.0;
 	atkmulti = 1.375;
 	damage, tpHits, extraHits = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
-	
-if damage > 0 then
-tp = player:getTP();
 
-
-duration=(tp/100*30)+90;
-
-
-
-target:addStatusEffect(EFFECT_ACCURACY_DOWN, 1, 0,duration);
-end
-
+	if damage > 0 then
+		tp = player:getTP();
+		duration=(tp/100*30)+90;
+		if(target:hasStatusEffect(EFFECT_ACCURACY_DOWN) == false) then
+			target:addStatusEffect(EFFECT_ACCURACY_DOWN, 1, 0,duration);
+		end
+	end
 	return tpHits, extraHits, damage;
-	
 end	

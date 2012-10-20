@@ -35,10 +35,18 @@ function OnUseWeaponSkill(player, target, wsID)
 	if damage > 0 then
 		tp = player:getTP();
 		duration = (tp/100 * 30) + 60;
-		target:addStatusEffect(EFFECT_DEFENSE_DOWN, 12.5, 0, duration);	
-		target:addStatusEffect(EFFECT_ATTACK_DOWN, 12.5, 0, duration);	
-		target:addStatusEffect(EFFECT_EVASION_DOWN, 20, 0, duration);	
-		target:addStatusEffect(EFFECT_ACCURACY_DOWN, 20, 0, duration);	
+		if(target:hasStatusEffect(EFFECT_DEFENSE_DOWN) == false) then
+			target:addStatusEffect(EFFECT_DEFENSE_DOWN, 12.5, 0, duration);
+		end
+		if(target:hasStatusEffect(EFFECT_ATTACK_DOWN) == false) then
+			target:addStatusEffect(EFFECT_ATTACK_DOWN, 12.5, 0, duration);
+		end
+		if(target:hasStatusEffect(EFFECT_EVASION_DOWN) == false) then
+			target:addStatusEffect(EFFECT_EVASION_DOWN, 20, 0, duration);
+		end
+		if(target:hasStatusEffect(EFFECT_ACCURACY_DOWN) == false) then
+			target:addStatusEffect(EFFECT_ACCURACY_DOWN, 20, 0, duration);
+		end
 	end
 	return tpHits, extraHits, damage;
 	

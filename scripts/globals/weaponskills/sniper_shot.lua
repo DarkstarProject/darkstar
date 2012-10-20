@@ -27,7 +27,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	atkmulti = 1;
 	damage, tpHits, extraHits = doRangedWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
 
-	if damage > 0 then
+	if damage > 0 and (target:hasStatusEffect(EFFECT_INT_DOWN) == false) then
 		target:addStatusEffect(EFFECT_INT_DOWN, 10, 0, 140);
 	end	
 	

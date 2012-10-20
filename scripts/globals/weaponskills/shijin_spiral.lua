@@ -31,7 +31,9 @@ function OnUseWeaponSkill(player, target, wsID)
 	if damage > 0 then
 		tp = player:getTP();
 		duration = (tp/100) + 4;
-		target:addStatusEffect(EFFECT_PLAGUE, 5, 0, duration);
+		if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
+			target:addStatusEffect(EFFECT_PLAGUE, 5, 0, duration);
+		end
 	end	
 	
 	return tpHits, extraHits, damage;

@@ -31,7 +31,9 @@ function OnUseWeaponSkill(player, target, wsID)
 	if damage > 0 then
 		tp = player:getTP();
 		duration = (tp/100 * 15) + 75;
-		target:addStatusEffect(EFFECT_POISON, 1, 0, duration);
+		if(target:hasStatusEffect(EFFECT_POISON) == false) then
+			target:addStatusEffect(EFFECT_POISON, 1, 0, duration);
+		end
 	end	
 	
 	return tpHits, extraHits, damage;
