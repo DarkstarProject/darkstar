@@ -30,8 +30,8 @@ function onSpellCast(caster,target,spell)
 	potency = (multiplier * (pMND + dMND)) / 10;
 	--printf("Duration : %u",duration);
 	--printf("Potency : %u",potency);
-	if(target:getStatusEffect(EFFECT_PARALYSIS) ~= nil) then --effect already on, do nothing
-			spell:setMsg(75);
+	if(target:hasStatusEffect(EFFECT_PARALYSIS)) then --effect already on, do nothing
+		spell:setMsg(75);
 	elseif(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
 		bonus = AffinityBonus(caster, spell);
 		resist = applyResistance(caster,spell,target,dMND,35,bonus);
