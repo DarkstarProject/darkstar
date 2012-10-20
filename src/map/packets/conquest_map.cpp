@@ -68,5 +68,5 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
     };
 	memcpy(data+(0xA0)-4, &packet, 16);
 
-	//WBUFL(data,(0xB0)-4) = PChar->GetImperialStandingPoints();
+	WBUFL(data,(0xB0)-4) = PChar->RegionPoints[3];
 }

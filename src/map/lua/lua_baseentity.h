@@ -279,6 +279,10 @@ public:
 	int32 addCP(lua_State*);				// Add CP
 	int32 getCP(lua_State*);				// Get CP
 	int32 delCP(lua_State*);				// Delete CP
+	
+	int32 addPoint(lua_State*);				// Add other point
+	int32 getPoint(lua_State*);				// Get other point
+	int32 delPoint(lua_State*);				// Delete other point
 
 	int32 addNationTeleport(lua_State*);	// Add new teleport: addNationTeleport(nation,number)
 	int32 getNationTeleport(lua_State*);	// Get teleport you can use by nation: getNationTeleport(nation)

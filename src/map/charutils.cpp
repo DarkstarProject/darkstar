@@ -562,7 +562,10 @@ void LoadChar(CCharEntity* PChar)
 		}
 	}
 
-	fmtQuery = "SELECT sandoria_cp, bastok_cp, windurst_cp, sandoria_supply, bastok_supply, windurst_supply \
+	fmtQuery = "SELECT sandoria_cp, bastok_cp, windurst_cp, sandoria_supply, bastok_supply, windurst_supply, \
+					   imperial_standing, runic_portal, leujaoam_assault_point, mamool_assault_point, \
+					   lebros_assault_point, periqia_assault_point, ilrusi_assault_point, nyzul_isle_assault_point, \
+					   zeni_point, allied_notes \
 				FROM char_points \
 				WHERE charid = %u;";
 
@@ -578,6 +581,16 @@ void LoadChar(CCharEntity* PChar)
 		PChar->nationtp.sandoria = (uint32)Sql_GetUIntData(SqlHandle, 3);
 		PChar->nationtp.bastok   = (uint32)Sql_GetUIntData(SqlHandle, 4);
 		PChar->nationtp.windurst = (uint32)Sql_GetUIntData(SqlHandle, 5);
+		PChar->RegionPoints[3] = (uint32)Sql_GetIntData(SqlHandle, 6);
+		PChar->nationtp.ahturhgan = (uint16)Sql_GetIntData(SqlHandle, 7);
+		PChar->RegionPoints[4] = (uint32)Sql_GetIntData(SqlHandle, 8); //leujaoam_assault_point
+		PChar->RegionPoints[5] = (uint32)Sql_GetIntData(SqlHandle, 9); //mamool_assault_point
+		PChar->RegionPoints[6] = (uint32)Sql_GetIntData(SqlHandle, 10); //lebros_assault_point
+		PChar->RegionPoints[7] = (uint32)Sql_GetIntData(SqlHandle, 11); //periqia_assault_point
+		PChar->RegionPoints[8] = (uint32)Sql_GetIntData(SqlHandle, 12); //ilrusi_assault_point
+		PChar->RegionPoints[9] = (uint32)Sql_GetIntData(SqlHandle, 13); //nyzul_isle_assault_point
+		PChar->RegionPoints[10] = (uint32)Sql_GetIntData(SqlHandle, 14); //zeni_point
+		PChar->RegionPoints[11] = (uint32)Sql_GetIntData(SqlHandle, 15); //allied_notes
 	}
 
 	BuildingCharSkillsTable(PChar);
@@ -2770,6 +2783,13 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
     PChar->jobs.exp[PChar->GetMJob()] += exp;
     conquest::AddConquestPoints(PChar, exp);
     
+	//Add IS + ZENI when you kill a monster in TOAU Zone (10%) NEED TO CHANGE THAT
+	if(PChar->getZone() >= 48 && PChar->getZone() <= 79)
+	{
+		PChar->RegionPoints[3] += ((exp/100)*10); // 10%
+		PChar->RegionPoints[10] += ((exp/100)*10); // 10%
+		PChar->pushPacket(new CConquestPacket(PChar));
+	}
     if (PChar->jobs.exp[PChar->GetMJob()] >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]))
     {
         if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai)
@@ -3193,8 +3213,11 @@ void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
 void SaveCharPoints(CCharEntity* PChar)
 {
 	const int8* Query = "UPDATE char_points \
-				  		SET sandoria_cp = %u, bastok_cp = %u, windurst_cp = %u, sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u \
-						 WHERE charid = %u;";
+				  		SET sandoria_cp = %u, bastok_cp = %u, windurst_cp = %u, sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u, \
+							imperial_standing = %u, runic_portal = %u, leujaoam_assault_point = %u, mamool_assault_point = %u, \
+							lebros_assault_point = %u, periqia_assault_point = %u, ilrusi_assault_point = %u, \
+							nyzul_isle_assault_point = %u, zeni_point = %u, allied_notes = %u \
+						WHERE charid = %u;";
 
 	Sql_Query(SqlHandle, 
         Query,
@@ -3204,6 +3227,16 @@ void SaveCharPoints(CCharEntity* PChar)
         PChar->nationtp.sandoria, 
 		PChar->nationtp.bastok,
 		PChar->nationtp.windurst, 
+		PChar->RegionPoints[3], 
+		PChar->nationtp.ahturhgan, 
+		PChar->RegionPoints[4], 
+		PChar->RegionPoints[5], 
+		PChar->RegionPoints[6], 
+		PChar->RegionPoints[7], 
+		PChar->RegionPoints[8], 
+		PChar->RegionPoints[9], 
+		PChar->RegionPoints[10], 
+		PChar->RegionPoints[11], 
 		PChar->id);
 }
 
