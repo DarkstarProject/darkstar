@@ -568,6 +568,16 @@ inline int32 CLuaBaseEntity::getZone(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::getCurrentRegion(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	lua_pushinteger( L, zoneutils::GetCurrentRegion(m_PBaseEntity->getZone()) );
+	return 1;
+}
+
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getPreviousZone(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -5011,6 +5021,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getYPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentRegion),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPreviousZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContinentID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isZoneVisited),

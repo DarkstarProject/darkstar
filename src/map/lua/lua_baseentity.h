@@ -80,6 +80,7 @@ public:
 	int32 getZPos(lua_State*);				// Get Entity Z position
     int32 setPos(lua_State*);				// Set Entity position (zone,x,y,z)
 	int32 getZone(lua_State*);				// Get Entity zone	
+	int32 getCurrentRegion(lua_State*);		// Get Entity conquest region
     int32 getPreviousZone(lua_State*);      // Get Entity previous zone
     int32 getContinentID(lua_State*);       // узнаем континент, на котором находится сущность
     int32 isZoneVisited(lua_State*);        // true если указанная зона посещалась персонажем ранее
