@@ -296,6 +296,7 @@ enum MODIFIER
 
 // Thief
 
+    MOD_STEAL               = 0x12A,    // Increase/Decrease THF Steal chance
 	MOD_TRIPLE_ATTACK		= 0x12E,	// Percent chance
 	MOD_TREASURE_HUNTER     = 0x12F,	// Percent chance
 
