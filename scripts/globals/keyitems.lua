@@ -1252,6 +1252,7 @@ JOB_GESTURE_PUPPETMASTER        = 1755;
 JOB_GESTURE_DANCER              = 1756;
 JOB_GESTURE_SCHOLAR             = 1757;
 MAGIAN_LEARNERS_LOG             = 1767;
+POUCH_OF_WEIGHTED_STONES        = 1846;
 FROG_FISHING                    = 1976;
 SERPENT_RUMORS                  = 1977;
 MOOCHING                        = 1978;
