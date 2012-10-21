@@ -1002,26 +1002,35 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar)
 {
-	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0))
+	if(PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_FORMLESS_STRIKES))
 	{
-		damage = 0;
+		uint8 formlessMod = 70;
+		//TODO: Add an additional 5 to formlessMod per merit in Formless Strikes
+		damage = damage * formlessMod /100;
 	}
-
-    damage = (damage * (100 + PDefender->getMod(MOD_DMG) + PDefender->getMod(MOD_DMGPHYS))) / 100;
+	else
+	{
+		if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0))
+		{
+			damage = 0;
+		}
 	
-	switch(PAttacker->m_Weapons[slot]->getDmgType())
-	{
-		case DAMAGE_CROSSBOW:
-		case DAMAGE_GUN:
-		case DAMAGE_PIERCING: damage = (damage * (PDefender->getMod(MOD_PIERCERES))) / 1000; break;
-		case DAMAGE_SLASHING: damage = (damage * (PDefender->getMod(MOD_SLASHRES)))	 / 1000; break;
-		case DAMAGE_IMPACT:	  damage = (damage * (PDefender->getMod(MOD_IMPACTRES))) / 1000; break;
-		case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(MOD_HTHRES)))	 / 1000; break;
-	}
+		damage = (damage * (100 + PDefender->getMod(MOD_DMG) + PDefender->getMod(MOD_DMGPHYS))) / 100;
+		
+		switch(PAttacker->m_Weapons[slot]->getDmgType())
+		{
+			case DAMAGE_CROSSBOW:
+			case DAMAGE_GUN:
+			case DAMAGE_PIERCING: damage = (damage * (PDefender->getMod(MOD_PIERCERES))) / 1000; break;
+			case DAMAGE_SLASHING: damage = (damage * (PDefender->getMod(MOD_SLASHRES)))	 / 1000; break;
+			case DAMAGE_IMPACT:	  damage = (damage * (PDefender->getMod(MOD_IMPACTRES))) / 1000; break;
+			case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(MOD_HTHRES)))	 / 1000; break;
+		}
 
-    if (isBlocked && PDefender->m_Weapons[SLOT_SUB]->IsShield())
-    {
-        damage = (damage * PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption()) / 100;
+		if (isBlocked && PDefender->m_Weapons[SLOT_SUB]->IsShield())
+		{
+			damage = (damage * PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption()) / 100;
+		}
 	}
 	damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX),0);
 
