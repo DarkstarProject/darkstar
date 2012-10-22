@@ -80,7 +80,7 @@ enum MERIT_CATEGORY
 	MCATEGORY_COR_2			=	0x0C00,
 	MCATEGORY_PUP_2			=	0x0C40,
 	MCATEGORY_DNC_2			=	0x0C80,
-	MCATEGORY_SHC_2			=	0x0CC0,
+	MCATEGORY_SCH_2			=	0x0CC0,
 };
 
 /************************************************************************
