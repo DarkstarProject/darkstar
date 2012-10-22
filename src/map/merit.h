@@ -61,7 +61,6 @@ enum MERIT_CATEGORY
 	MCATEGORY_SCH_1			=	0x0640,
 	//???					=	0x0680,
 	//???					=	0x06C0,
-
 	MCATEGORY_WAR_2			=	0x0800,
 	MCATEGORY_MNK_2			=	0x0840,
 	MCATEGORY_WHM_2			=	0x0880,
@@ -81,7 +80,7 @@ enum MERIT_CATEGORY
 	MCATEGORY_COR_2			=	0x0C00,
 	MCATEGORY_PUP_2			=	0x0C40,
 	MCATEGORY_DNC_2			=	0x0C80,
-	MCATEGORY_PUP_2			=	0x0CC0,
+	MCATEGORY_SHC_2			=	0x0CC0,
 };
 
 /************************************************************************
@@ -107,6 +106,55 @@ struct Merit_t
     uint16 id;      // id мерита
     uint8  next;    // необходимое количество меритов для следующего усиления
     uint8  count;   // текущее количество усилений
+};
+
+struct MeritPoints_t
+{
+    Merit_t HP_MP[2];
+    Merit_t ATTRIBUTES[7];
+    Merit_t COMBAT[19];
+    Merit_t MAGIC[12];
+    Merit_t OTHERS[5];
+    Merit_t WAR_1[5];
+    Merit_t MNK_1[5]; 
+    Merit_t WHM_1[5]; 
+    Merit_t BLM_1[7]; 
+    Merit_t RDM_1[7]; 
+    Merit_t THF_1[5]; 
+    Merit_t PLD_1[5]; 
+    Merit_t DRK_1[5]; 
+    Merit_t BST_1[5]; 
+    Merit_t BRD_1[5]; 
+    Merit_t RNG_1[5]; 
+    Merit_t SAM_1[5]; 
+    Merit_t NIN_1[7]; 
+    Merit_t DRG_1[5]; 
+    Merit_t SMN_1[5]; 
+    Merit_t BLU_1[5]; 
+    Merit_t COR_1[5]; 
+    Merit_t PUP_1[5]; 
+    Merit_t DNC_1[4]; 
+    Merit_t SCH_1[4]; 
+    Merit_t WAR_2[4]; 
+    Merit_t MNK_2[4]; 
+    Merit_t WHM_2[4]; 
+    Merit_t BLM_2[6]; 
+    Merit_t RDM_2[6]; 
+    Merit_t THF_2[4]; 
+    Merit_t PLD_2[4]; 
+    Merit_t DRK_2[4]; 
+    Merit_t BST_2[4]; 
+    Merit_t BRD_2[4]; 
+    Merit_t RNG_2[4]; 
+    Merit_t SAM_2[4]; 
+    Merit_t NIN_2[8]; 
+    Merit_t DRG_2[4]; 
+    Merit_t SMN_2[6]; 
+    Merit_t BLU_2[4]; 
+    Merit_t COR_2[4]; 
+    Merit_t PUP_2[4]; 
+    Merit_t DNC_2[4]; 
+    Merit_t SCH_2[6]; 
 };
 
 #endif
