@@ -602,6 +602,9 @@
     <ClInclude Include="..\..\src\map\recast_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\merit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1127,6 +1130,9 @@
       <Filter>Source Files\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\recast_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\merit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

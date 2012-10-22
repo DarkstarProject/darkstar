@@ -161,6 +161,7 @@
     <ClInclude Include="..\..\src\map\lua\lua_trade_container.h" />
     <ClInclude Include="..\..\src\map\lua\lua_zone.h" />
     <ClInclude Include="..\..\src\map\map.h" />
+    <ClInclude Include="..\..\src\map\merit.h" />
     <ClInclude Include="..\..\src\map\mobentity.h" />
     <ClInclude Include="..\..\src\map\mobskill.h" />
     <ClInclude Include="..\..\src\map\mobutils.h" />
@@ -339,6 +340,7 @@
     <ClCompile Include="..\..\src\map\lua\lua_trade_container.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_zone.cpp" />
     <ClCompile Include="..\..\src\map\map.cpp" />
+    <ClCompile Include="..\..\src\map\merit.cpp" />
     <ClCompile Include="..\..\src\map\mobentity.cpp" />
     <ClCompile Include="..\..\src\map\mobskill.cpp" />
     <ClCompile Include="..\..\src\map\mobutils.cpp" />
