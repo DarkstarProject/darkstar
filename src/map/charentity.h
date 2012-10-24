@@ -34,6 +34,7 @@
 #include "battleentity.h"
 #include "item_container.h"
 #include "linkshell.h"
+#include "merit.h"
 #include "recast_container.h"
 #include "trade_container.h"
 #include "trait.h"
@@ -188,6 +189,7 @@ public:
 
     CLinkshell*       PLinkshell;                   // linkshell, в которой общается персонаж
 	CTreasurePool*	  PTreasurePool;                // сокровища, добытые с монстров
+    CMeritPoints*     PMeritPoints;                 // 
     CRecastContainer* PRecastContainer;             // 
 
 	CItemContainer*   PGuildShop;					// текущий магазин гильдии, в котором персонаж производит закупки

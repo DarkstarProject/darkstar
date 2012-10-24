@@ -108,6 +108,7 @@ CCharEntity::CCharEntity()
 	PTreasurePool = NULL;
 	PWideScanTarget = NULL;
 
+    PMeritPoints = new CMeritPoints();
     PRecastContainer = new CRecastContainer(this);
 }
 
