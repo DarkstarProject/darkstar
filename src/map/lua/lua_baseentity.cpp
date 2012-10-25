@@ -4902,12 +4902,13 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 		{
 			if (DropList->at(i).DropType == 2)
 			{
-				lua_pushinteger( L,DropList->at(i).ItemID);
+				lua_pushinteger(L, DropList->at(i).ItemID);
 				return 1;
 			}
 		}
 	}
-	return 0;
+    lua_pushinteger(L, 0);
+	return 1;
 }
 
 //==========================================================//

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Sam 31 Décembre 2011 à 22:01
+-- Généré le : Dim 21 Octobre 2012 à 13:32
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -42,26 +42,13 @@ CREATE TABLE IF NOT EXISTS `chars` (
   `home_x` float(7,3) NOT NULL DEFAULT '0.000',
   `home_y` float(7,3) NOT NULL DEFAULT '0.000',
   `home_z` float(7,3) NOT NULL DEFAULT '0.000',
-  `nation` tinyint(1) unsigned NOT NULL,
-  `rankPoints` int(10) unsigned NOT NULL DEFAULT '0',
-  `rankSandoria` tinyint(2) unsigned NOT NULL DEFAULT '1',
-  `rankBastok` tinyint(2) unsigned NOT NULL DEFAULT '1',
-  `rankWindurst` tinyint(2) unsigned NOT NULL DEFAULT '1',
-  `fameSandoria` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `fameBastok` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `fameWindurst` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `fameNorg` smallint(5) unsigned NOT NULL DEFAULT '0',
   `missions` blob,
   `quests` blob,
   `keyitems` blob,
   `spells` blob,
   `titles` blob,
   `zones` blob,
-  `inventory` tinyint(2) unsigned NOT NULL DEFAULT '30',
-  `safe` tinyint(2) unsigned NOT NULL DEFAULT '50',
-  `locker` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `satchel` tinyint(2) unsigned NOT NULL DEFAULT '30',
-  `sack` tinyint(2) unsigned NOT NULL DEFAULT '30',
+  `playtime` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`),
   FULLTEXT KEY `charname` (`charname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

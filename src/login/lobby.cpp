@@ -695,59 +695,23 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 
 int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 {
-	const int8* fmtQuery = "INSERT INTO chars(charid,accid,charname,pos_zone,pos_prevzone,nation)\
-						   VALUES(%u,%u,'%s',%u,%u,%u);";
+	const int8* Query = "INSERT INTO chars(charid,accid,charname,pos_zone,nation) VALUES(%u,%u,'%s',%u,%u);";
 
-	if( Sql_Query(SqlHandle,fmtQuery,charid,accid,createchar->m_name,createchar->m_zone,0,createchar->m_nation) == SQL_ERROR )
+	if( Sql_Query(SqlHandle,Query,charid,accid,createchar->m_name,createchar->m_zone,createchar->m_nation) == SQL_ERROR )
 	{
 		return -1;
 	}
 
-	fmtQuery = "INSERT INTO char_equip(charid) VALUES(%u);";
+	Query = "INSERT INTO char_look(charid,face,race,size) VALUES(%u,%u,%u,%u);";
 
-	if( Sql_Query(SqlHandle,fmtQuery,charid) == SQL_ERROR )
+	if( Sql_Query(SqlHandle,Query,charid,createchar->m_look.face,createchar->m_look.race,createchar->m_look.size) == SQL_ERROR )
 	{
 		return -1;
 	}
 
-	fmtQuery = "INSERT INTO char_jobs(charid) VALUES(%u);";
-
-	if( Sql_Query(SqlHandle,fmtQuery,charid) == SQL_ERROR )
-	{
-		return -1;
-	}
-
-	fmtQuery = "INSERT INTO char_exp(charid) VALUES(%u);";
-
-	if( Sql_Query(SqlHandle,fmtQuery,charid) == SQL_ERROR )
-	{
-		return -1;
-	}
-
-	fmtQuery = "INSERT INTO char_inventory(charid,location,slot,itemId,signature) VALUES(%u,0,0,65535,'');";
-
-	if( Sql_Query(SqlHandle,fmtQuery,charid) == SQL_ERROR )
-	{
-		return -1;
-	}
+	Query = "INSERT INTO char_stats(charid,mjob) VALUES(%u,%u);";
 	
-	fmtQuery = "INSERT INTO char_look(charid,face,race,size) VALUES(%u,%u,%u,%u);";
-
-	if( Sql_Query(SqlHandle,fmtQuery,charid,createchar->m_look.face,createchar->m_look.race,createchar->m_look.size) == SQL_ERROR )
-	{
-		return -1;
-	}
-
-	fmtQuery = "INSERT INTO char_stats(charid,mjob, hp, mp) VALUES(%u,%u, 50, 50);";
-	
-	if( Sql_Query(SqlHandle, fmtQuery, charid, createchar->m_mjob) == SQL_ERROR )
-	{
-		return -1;
-	}
-
-	fmtQuery = "INSERT INTO char_points(charid) VALUES(%u);";
-
-	if( Sql_Query(SqlHandle,fmtQuery,charid) == SQL_ERROR )
+	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR )
 	{
 		return -1;
 	}

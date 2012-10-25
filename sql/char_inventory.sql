@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Ven 24 Juin 2011 à 08:04
+-- GÃ©nÃ©rÃ© le : Dim 21 Octobre 2012 Ã  17:19
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnÃ©es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -28,12 +28,17 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 DROP TABLE IF EXISTS `char_inventory`;
 CREATE TABLE IF NOT EXISTS `char_inventory` (
   `charid` int(10) unsigned NOT NULL,
-  `location` tinyint(1) unsigned NOT NULL,
-  `slot` tinyint(2) unsigned NOT NULL,
-  `itemId` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `location` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `slot` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `itemId` smallint(5) unsigned NOT NULL DEFAULT '65535',
   `quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  `locked` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `col` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `row` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `level` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `rotation` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `bazaar` int(8) unsigned NOT NULL DEFAULT '0',
-  `signature` varchar(15) DEFAULT NULL,
+  `signature` varchar(15) NOT NULL DEFAULT '',
   `currCharges` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `lastUseTime` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`,`slot`,`location`)

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Dim 29 Janvier 2012 à 22:17
+-- Généré le : Dim 21 Octobre 2012 à 17:24
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -28,8 +28,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 DROP TABLE IF EXISTS `char_stats`;
 CREATE TABLE IF NOT EXISTS `char_stats` (
   `charid` int(10) unsigned NOT NULL,
-  `hp` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `mp` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `hp` smallint(4) unsigned NOT NULL DEFAULT '50',
+  `mp` smallint(4) unsigned NOT NULL DEFAULT '50',
   `nameflags` int(10) unsigned NOT NULL DEFAULT '0',
   `mhflag` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `mjob` tinyint(2) unsigned NOT NULL DEFAULT '0',

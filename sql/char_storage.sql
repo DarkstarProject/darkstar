@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Dim 14 Octobre 2012 à 09:37
+-- Généré le : Dim 21 Octobre 2012 à 13:34
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -22,17 +22,16 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `char_furnishings`
+-- Structure de la table `char_storage`
 --
 
-DROP TABLE IF EXISTS `char_furnishings`;
-CREATE TABLE IF NOT EXISTS `char_furnishings` (
+DROP TABLE IF EXISTS `char_storage`;
+CREATE TABLE IF NOT EXISTS `char_storage` (
   `charid` int(10) unsigned NOT NULL,
-  `slot` tinyint(2) unsigned NOT NULL,
-  `locked` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  `col` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `row` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `level` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `rotation` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`charid`,`slot`)
+  `inventory` tinyint(2) unsigned NOT NULL DEFAULT '30',
+  `safe` tinyint(2) unsigned NOT NULL DEFAULT '50',
+  `locker` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `satchel` tinyint(2) unsigned NOT NULL DEFAULT '30',
+  `sack` tinyint(2) unsigned NOT NULL DEFAULT '30',
+  PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

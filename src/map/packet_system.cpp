@@ -3464,16 +3464,16 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		{
 			rotation = (col >= 2 ? 3 : 1);
 		}
-        const int8* Query = NULL;
+        const int8* Query = 
+            "UPDATE char_inventory "
+            "SET "
+              "locked = 1,"
+              "col = %u,"
+              "row = %u,"
+              "level = %u,"
+              "rotation = %u "
+            "WHERE location = 1 AND slot = %u AND charid = %u";
 
-		if (PItem->getSubType() & ITEM_LOCKED)
-        {
-			Query = "UPDATE char_furnishings SET col = %u, row = %u, level = %u, rotation = %u WHERE slot = %u AND charid = %u";
-		}
-        else
-        {
-			Query = "INSERT INTO char_furnishings (col, row, level, rotation, slot, charid) values(%u, %u, %u, %u, %u, %u)";							  
-		}
         if (Sql_Query(SqlHandle, Query, col, row, level, rotation, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
 		{
 		    PItem->setCol(col);
@@ -3526,7 +3526,15 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         if (PItemContainer->GetFreeSlotsCount() >= RemovedSize)
         {
-		    const int8* Query = "DELETE FROM char_furnishings WHERE slot = %u AND charid = %u";
+            const int8* Query = 
+                "UPDATE char_inventory "
+                "SET "
+                  "locked = 0,"
+                  "col = 0,"
+                  "row = 0,"
+                  "level = 0,"
+                  "rotation = 0 "
+                "WHERE location = 1 AND slot = %u AND charid = %u";
 
             if (Sql_Query(SqlHandle, Query, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
 		    {
