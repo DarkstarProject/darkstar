@@ -33,7 +33,7 @@
 
 // массив больше на одно значение, заполняемое нулем
 
-#if define ABYSSEA_EXPANSION
+#ifdef ABYSSEA_EXPANSION
 static uint8 upgrade[8][16] =
 {
     {1,2,3,4,5,5,5,5,5,7,7,7,9,9,9},
@@ -136,7 +136,7 @@ CMeritPoints::CMeritPoints()
 
         for (uint8 t = 0; t < count[i]; ++t)
         {
-            merits[m++].id = (i + 1) * 0x40 + t * 2;
+            merits[m++].id = ((i + 1) << 6) + (t << 1);
         }
     }
     LoadingCharMerits();
@@ -162,7 +162,7 @@ void CMeritPoints::LoadingCharMerits()
 Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
 {
     DSP_DEBUG_BREAK_IF(merit >= MCATEGORY_COUNT);
-    DSP_DEBUG_BREAK_IF(((merit & 0x3F) >> 1) >= count[merit/0x40]);
+    DSP_DEBUG_BREAK_IF(((merit & 0x3F) >> 1) >= count[merit >> 6]);
 
-    return &Categories[merit/0x40][(merit & 0x3F) >> 1];
+    return &Categories[merit >> 6][(merit & 0x3F) >> 1];
 }
