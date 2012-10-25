@@ -59,65 +59,74 @@ static uint8 upgrade[8][9] =
 };
 #endif
 
+#define MAX_LIMIT_POINTS  10000 // количество опыта для получения одного merit
+#define MAX_MERIT_POINTS  20    // максимальное количество неиспользованных merit 
+
 /************************************************************************
 *                                                                       *
 *  Количество элементов в каждой из категорий                           *
 *                                                                       *
 ************************************************************************/
 
-static const uint8 count[] =
+struct MeritCategoryInfo_t
 {
-    2,  //MCATEGORY_HP_MP      
-    7,  //MCATEGORY_ATTRIBUTES 
-    19, //MCATEGORY_COMBAT 
-    12, //MCATEGORY_MAGIC 
-    5,  //MCATEGORY_OTHERS 
-    5,  //MCATEGORY_WAR_1 
-    5,  //MCATEGORY_MNK_1 
-    5,  //MCATEGORY_WHM_1 
-    7,  //MCATEGORY_BLM_1 
-    7,  //MCATEGORY_RDM_1 
-    5,  //MCATEGORY_THF_1 
-    5,  //MCATEGORY_PLD_1 
-    5,  //MCATEGORY_DRK_1 
-    5,  //MCATEGORY_BST_1 
-    5,  //MCATEGORY_BRD_1 
-    5,  //MCATEGORY_RNG_1 
-    5,  //MCATEGORY_SAM_1 
-    7,  //MCATEGORY_NIN_1 
-    4,  //MCATEGORY_DRG_1 
-    5,  //MCATEGORY_SMN_1 
-    5,  //MCATEGORY_BLU_1 
-    5,  //MCATEGORY_COR_1 
-    5,  //MCATEGORY_PUP_1 
-    4,  //MCATEGORY_DNC_1 
-    4,  //MCATEGORY_SCH_1 
-    0,  //MCATEGORY_UNK_0 
-    0,  //MCATEGORY_UNK_1 
-    0,  //MCATEGORY_UNK_2 
-    0,  //MCATEGORY_UNK_3 
-    0,  //MCATEGORY_UNK_4 
-    0,  //MCATEGORY_UNK_5 
-    4,  //MCATEGORY_WAR_2 
-    4,  //MCATEGORY_MNK_2 
-    4,  //MCATEGORY_WHM_2 
-    6,  //MCATEGORY_BLM_2 
-    6,  //MCATEGORY_RDM_2 
-    4,  //MCATEGORY_THF_2 
-    4,  //MCATEGORY_PLD_2 
-    4,  //MCATEGORY_DRK_2 
-    4,  //MCATEGORY_BST_2 
-    4,  //MCATEGORY_BRD_2 
-    4,  //MCATEGORY_RNG_2 
-    4,  //MCATEGORY_SAM_2 
-    8,  //MCATEGORY_NIN_2 
-    4,  //MCATEGORY_DRG_2 
-    6,  //MCATEGORY_SMN_2 
-    4,  //MCATEGORY_BLU_2 
-    4,  //MCATEGORY_COR_2 
-    4,  //MCATEGORY_PUP_2 
-    4,  //MCATEGORY_DNC_2 
-    6,  //MCATEGORY_SHC_2 
+    uint8 x;    // TODO: good name // количество элементов в группе
+    uint8 y;    // TODO: good name // максимальное количество points, которые можно вложить в группу
+};
+
+static const MeritCategoryInfo_t count[] =
+{
+    {2,15},  //MCATEGORY_HP_MP      
+    {7,12},  //MCATEGORY_ATTRIBUTES 
+    {19,32}, //MCATEGORY_COMBAT 
+    {12,24}, //MCATEGORY_MAGIC 
+    {5,10},  //MCATEGORY_OTHERS 
+    {5,0},   //MCATEGORY_WAR_1 
+    {5,0},   //MCATEGORY_MNK_1 
+    {5,0},   //MCATEGORY_WHM_1 
+    {7,0},   //MCATEGORY_BLM_1 
+    {7,0},   //MCATEGORY_RDM_1 
+    {5,0},   //MCATEGORY_THF_1 
+    {5,0},   //MCATEGORY_PLD_1 
+    {5,0},   //MCATEGORY_DRK_1 
+    {5,0},   //MCATEGORY_BST_1 
+    {5,0},   //MCATEGORY_BRD_1 
+    {5,0},   //MCATEGORY_RNG_1 
+    {5,0},   //MCATEGORY_SAM_1 
+    {7,0},   //MCATEGORY_NIN_1 
+    {4,0},   //MCATEGORY_DRG_1 
+    {5,0},   //MCATEGORY_SMN_1 
+    {5,0},   //MCATEGORY_BLU_1 
+    {5,0},   //MCATEGORY_COR_1 
+    {5,0},   //MCATEGORY_PUP_1 
+    {4,0},   //MCATEGORY_DNC_1 
+    {4,0},   //MCATEGORY_SCH_1 
+    {0,0},   //MCATEGORY_UNK_0 
+    {0,0},   //MCATEGORY_UNK_1 
+    {0,0},   //MCATEGORY_UNK_2 
+    {0,0},   //MCATEGORY_UNK_3 
+    {0,0},   //MCATEGORY_UNK_4 
+    {0,0},   //MCATEGORY_UNK_5 
+    {4,0},   //MCATEGORY_WAR_2 
+    {4,0},   //MCATEGORY_MNK_2 
+    {4,0},   //MCATEGORY_WHM_2 
+    {6,0},   //MCATEGORY_BLM_2 
+    {6,0},   //MCATEGORY_RDM_2 
+    {4,0},   //MCATEGORY_THF_2 
+    {4,0},   //MCATEGORY_PLD_2 
+    {4,0},   //MCATEGORY_DRK_2 
+    {4,0},   //MCATEGORY_BST_2 
+    {4,0},   //MCATEGORY_BRD_2 
+    {4,0},   //MCATEGORY_RNG_2 
+    {4,0},   //MCATEGORY_SAM_2 
+    {8,0},   //MCATEGORY_NIN_2 
+    {4,0},   //MCATEGORY_DRG_2 
+    {6,0},   //MCATEGORY_SMN_2 
+    {4,0},   //MCATEGORY_BLU_2 
+    {4,0},   //MCATEGORY_COR_2 
+    {4,0},   //MCATEGORY_PUP_2 
+    {4,0},   //MCATEGORY_DNC_2 
+    {6,0},   //MCATEGORY_SHC_2 
 };
 
 /************************************************************************
@@ -134,7 +143,7 @@ CMeritPoints::CMeritPoints()
     {
         Categories[i] = &merits[m];
 
-        for (uint8 t = 0; t < count[i]; ++t)
+        for (uint8 t = 0; t < count[i].x; ++t)
         {
             merits[m++].id = ((i + 1) << 6) + (t << 1);
         }
@@ -150,7 +159,42 @@ CMeritPoints::CMeritPoints()
 
 void CMeritPoints::LoadingCharMerits()
 {
+    m_LimitPoints = 0;
+    m_MeritPoints = 0;
     return;
+}
+
+/************************************************************************
+*                                                                       *
+*  Получаем текущие limit points                                        *
+*                                                                       *
+************************************************************************/
+
+uint16 CMeritPoints::GetLimitPoints()
+{
+    return m_LimitPoints;
+}
+
+/************************************************************************
+*                                                                       *
+*  Получаем текущие merit points                                        *
+*                                                                       *
+************************************************************************/
+
+uint8 CMeritPoints::GetMeritPoints()
+{
+    return m_MeritPoints;
+}
+
+/************************************************************************
+*                                                                       *
+*  Добавляем персонажу limit points                                     *
+*                                                                       *
+************************************************************************/
+
+void CMeritPoints::AddLimitPoints(uint16 points)
+{
+    // TODO: ...
 }
 
 /************************************************************************
@@ -162,7 +206,7 @@ void CMeritPoints::LoadingCharMerits()
 Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
 {
     DSP_DEBUG_BREAK_IF(merit >= MCATEGORY_COUNT);
-    DSP_DEBUG_BREAK_IF(((merit & 0x3F) >> 1) >= count[merit >> 6]);
+    DSP_DEBUG_BREAK_IF(((merit & 0x3F) >> 1) >= count[merit >> 6].x);
 
     return &Categories[merit >> 6][(merit & 0x3F) >> 1];
 }

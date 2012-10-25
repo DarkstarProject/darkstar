@@ -602,6 +602,9 @@
     <ClInclude Include="..\..\src\map\recast_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\items.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\merit.h">
       <Filter>Header Files</Filter>
     </ClInclude>

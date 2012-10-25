@@ -37,8 +37,8 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 	WBUFB(data,(0x04)-4) = 0x02;
 	WBUFB(data,(0x06)-4) = 0x08;
 
-	WBUFW(data,(0x08)-4) = 0x0000;												// количество limits points (9999 максимум)
-    WBUFB(data,(0x0A)-4) = 0x00; 												// количество merit points  (20 максимум)
+    WBUFW(data,(0x08)-4) = PChar->PMeritPoints->GetLimitPoints();
+    WBUFB(data,(0x0A)-4) = PChar->PMeritPoints->GetMeritPoints();
 
 	if (PChar->GetMLevel() >= 75 && charutils::hasKeyItem(PChar, 606))			// keyitem Limit Breaker
 	{
