@@ -38,9 +38,9 @@ class CCharEntity;
 
 class CMeritPointsCacegoriesPacket : public CBasicPacket
 {
-public:
+    public:
 
-	CMeritPointsCacegoriesPacket(CCharEntity* PChar);
+	CMeritPointsCacegoriesPacket(CCharEntity* PChar, uint8 type);
 };
 
 #endif

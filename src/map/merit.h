@@ -89,6 +89,7 @@ enum MERIT_CATEGORY
     MCATEGORY_DNC_2      = 0x0C80,
     MCATEGORY_SCH_2      = 0x0CC0,
 
+    MCATEGORY_START      = 0x0040,
     MCATEGORY_COUNT      = 0x0D00,
 };
 

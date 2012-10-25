@@ -96,6 +96,7 @@
 #include "packets/linkshell_message.h"
 #include "packets/menu_config.h"
 #include "packets/menu_merit.h"
+#include "packets/merit_points_categories.h"
 #include "packets/message_basic.h"
 #include "packets/message_debug.h"
 #include "packets/message_standard.h"
@@ -395,6 +396,11 @@ void SmallPacket0x00F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
 	PChar->pushPacket(new CCharSyncPacket(PChar));
 	PChar->pushPacket(new CBazaarMessagePacket(PChar));
+    
+    PChar->pushPacket(new CMeritPointsCacegoriesPacket(PChar, 0));
+    PChar->pushPacket(new CMeritPointsCacegoriesPacket(PChar, 1));
+    PChar->pushPacket(new CMeritPointsCacegoriesPacket(PChar, 2));
+    PChar->pushPacket(new CMeritPointsCacegoriesPacket(PChar, 3));
 
 	charutils::SendInventory(PChar);
 	return;
@@ -2773,13 +2779,35 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 }
 
 /************************************************************************
-*																		*
-*  Меняем режим	получения опыта между Exp и Limit Points				*
-*																		*
+*                                                                       *
+*  Меняем режим	получения опыта и усиливаем/ослабляем merits            *
+*                                                                       *
 ************************************************************************/					
 
 void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    uint8 operation = RBUFB(data,0x05);
+
+    switch(RBUFB(data,(0x04)))
+    {
+        case 2: // изменение mode
+        {
+            if (Sql_Query(SqlHandle, "UPDATE char_exp SET mode = %u WHERE charid = %u", operation, PChar->id) != SQL_ERROR)
+            {
+                // TODO: change exp mode
+
+                PChar->pushPacket(new CMenuMeritPacket(PChar));
+            }
+        }
+        break;
+        case 3: // изменение merit
+        {
+            MERIT_TYPE merit = (MERIT_TYPE)(RBUFW(data,(0x06)) << 1);
+
+            // TODO: update merit info
+        }
+        break;
+    }
 	return;
 }
 

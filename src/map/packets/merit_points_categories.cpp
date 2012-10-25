@@ -30,12 +30,11 @@
 
 #include "../charentity.h"
 
-
-CMeritPointsCacegoriesPacket::CMeritPointsCacegoriesPacket(CCharEntity* PChar)
-{
-	this->type = 0x8C;
-	this->size = 0x80;
-}
+/************************************************************************
+*                                                                       *
+*  Примечание                                                           *
+*                                                                       *
+************************************************************************/
 
 /*
 пакет, содержащий информацию об примененных меритах и количестве, необходимом для следующего усиления
@@ -55,6 +54,39 @@ struct
 начало категории кратно 0x40 далее идет прибавление id значения. все id кратны двум
 
 количество необходимых меритов для следующего усиления передаются персонажу только при входе в moghouse
+*/
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+#define MAX_MERITS_IN_PACKET  62
+
+CMeritPointsCacegoriesPacket::CMeritPointsCacegoriesPacket(CCharEntity* PChar, uint8 type)
+{
+	this->type = 0x8C;
+	this->size = 0x80;
+
+    uint16 offset = type * MAX_MERITS_IN_PACKET;
+    uint16 count  = dsp_min(sizeof(Merit_t) * MAX_MERITS_IN_PACKET, dsp_max(sizeof(PChar->PMeritPoints->merits) - offset, 0));
+
+    memcpy(data+(0x08)-4, PChar->PMeritPoints->merits + offset, count);
+
+    if (PChar->getZone() != 0)
+    {
+        for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
+        {
+            (*(Merit_t*)(data+(0x08)-4 + sizeof(Merit_t) * i)).next = 0; // обнуляем значение next у всех merit
+        }
+    }
+    WBUFB(data,(0x04)-4) = 0x3D;
+}
+
+
+
+/*
 
 0x00 0x40 - HP/MP
 	Max HP (+10 per upgrade) 
@@ -345,49 +377,4 @@ struct
 	Equanimity (Dark Arts Stratagem (requires two charges). Your next black magic spell will generate less enmity.) 
 	Enlightenment (Optimizes both white and black magic capabilities and allows access to both addenda for your next spell. Recast: 10min.) 
 	Stormsurge (Storm-type spells grant a bonus to attributes associated with their element. Initial bonus value: +3.)
-
-HP/MP
-[1→2→3→4→5→5→5→5]
-[1→2→3→4→5→5→5→5→5→7→7→7→9→9→9]
-
-Attributes
-[3→6→9→9→9]
-[3→6→9→9→9→12→12→12→12→15→15→15]
-
-Weapon Skills
-[1→2→3→3→3→3→3→3]
-[1→2→3→3→3→3→3→3]
-
-Defensive Skills
-[1→2→3→3]
-[1→2→3→3]
-
-Magic Skills
-[1→2→3→3→3→3→3→3]
-[1→2→3→3→3→3→3→3]
-
-Others
-[1→2→3→4]
-[1→2→3→4→5]
-
-Group 1
-[1→2→3→4→5]
-[1→2→3→4→5]
-
-Group 2
-[3→4→5→5→5]
-[3→4→5→5→5]
-
-Упорядоченные данные можно записать в массив.
-0 означает, что в эту категорию больше нельзя добавлять мериты
-
-[1→2→3→4→5→5→5→5→0]
-[3→6→9→9→9→0→0→0→0]
-[1→2→3→3→3→3→3→3→0]
-[1→2→3→3→0→0→0→0→0]
-[1→2→3→3→3→3→3→3→0]
-[1→2→3→4→0→0→0→0→0]
-[1→2→3→4→5→0→0→0→0]
-[3→4→5→5→5→0→0→0→0]
-
 */

@@ -118,6 +118,7 @@ CCharEntity::~CCharEntity()
 
 	delete Container;
 	delete UContainer;
+    delete PMeritPoints;
     delete PRecastContainer;
 
 	delete m_Inventory;
