@@ -70,63 +70,67 @@ static uint8 upgrade[8][9] =
 
 struct MeritCategoryInfo_t
 {
-    uint8 x;    // TODO: good name // количество элементов в группе
-    uint8 y;    // TODO: good name // максимальное количество points, которые можно вложить в группу
+    uint8 MaxMerits;    // количество элементов в группе
+    uint8 MaxPoints;    // максимальное количество points, которые можно вложить в группу
+    uint8 UpgradeID;    // индекс группы в массиве upgrade
 };
 
 static const MeritCategoryInfo_t count[] =
 {
-    {2,15},  //MCATEGORY_HP_MP      
-    {7,12},  //MCATEGORY_ATTRIBUTES 
-    {19,32}, //MCATEGORY_COMBAT 
-    {12,24}, //MCATEGORY_MAGIC 
-    {5,10},  //MCATEGORY_OTHERS 
-    {5,0},   //MCATEGORY_WAR_1 
-    {5,0},   //MCATEGORY_MNK_1 
-    {5,0},   //MCATEGORY_WHM_1 
-    {7,0},   //MCATEGORY_BLM_1 
-    {7,0},   //MCATEGORY_RDM_1 
-    {5,0},   //MCATEGORY_THF_1 
-    {5,0},   //MCATEGORY_PLD_1 
-    {5,0},   //MCATEGORY_DRK_1 
-    {5,0},   //MCATEGORY_BST_1 
-    {5,0},   //MCATEGORY_BRD_1 
-    {5,0},   //MCATEGORY_RNG_1 
-    {5,0},   //MCATEGORY_SAM_1 
-    {7,0},   //MCATEGORY_NIN_1 
-    {4,0},   //MCATEGORY_DRG_1 
-    {5,0},   //MCATEGORY_SMN_1 
-    {5,0},   //MCATEGORY_BLU_1 
-    {5,0},   //MCATEGORY_COR_1 
-    {5,0},   //MCATEGORY_PUP_1 
-    {4,0},   //MCATEGORY_DNC_1 
-    {4,0},   //MCATEGORY_SCH_1 
-    {0,0},   //MCATEGORY_UNK_0 
-    {0,0},   //MCATEGORY_UNK_1 
-    {0,0},   //MCATEGORY_UNK_2 
-    {0,0},   //MCATEGORY_UNK_3 
-    {0,0},   //MCATEGORY_UNK_4 
-    {0,0},   //MCATEGORY_UNK_5 
-    {4,0},   //MCATEGORY_WAR_2 
-    {4,0},   //MCATEGORY_MNK_2 
-    {4,0},   //MCATEGORY_WHM_2 
-    {6,0},   //MCATEGORY_BLM_2 
-    {6,0},   //MCATEGORY_RDM_2 
-    {4,0},   //MCATEGORY_THF_2 
-    {4,0},   //MCATEGORY_PLD_2 
-    {4,0},   //MCATEGORY_DRK_2 
-    {4,0},   //MCATEGORY_BST_2 
-    {4,0},   //MCATEGORY_BRD_2 
-    {4,0},   //MCATEGORY_RNG_2 
-    {4,0},   //MCATEGORY_SAM_2 
-    {8,0},   //MCATEGORY_NIN_2 
-    {4,0},   //MCATEGORY_DRG_2 
-    {6,0},   //MCATEGORY_SMN_2 
-    {4,0},   //MCATEGORY_BLU_2 
-    {4,0},   //MCATEGORY_COR_2 
-    {4,0},   //MCATEGORY_PUP_2 
-    {4,0},   //MCATEGORY_DNC_2 
-    {6,0},   //MCATEGORY_SHC_2 
+    {2,15,0},  //MCATEGORY_HP_MP      
+    {7,12,1},  //MCATEGORY_ATTRIBUTES 
+    {19,32,2}, //MCATEGORY_COMBAT 
+    {12,24,4}, //MCATEGORY_MAGIC 
+    {5,10,5},  //MCATEGORY_OTHERS 
+
+    {5,0,6},   //MCATEGORY_WAR_1 
+    {5,0,6},   //MCATEGORY_MNK_1 
+    {5,0,6},   //MCATEGORY_WHM_1 
+    {7,0,6},   //MCATEGORY_BLM_1 
+    {7,0,6},   //MCATEGORY_RDM_1 
+    {5,0,6},   //MCATEGORY_THF_1 
+    {5,0,6},   //MCATEGORY_PLD_1 
+    {5,0,6},   //MCATEGORY_DRK_1 
+    {5,0,6},   //MCATEGORY_BST_1 
+    {5,0,6},   //MCATEGORY_BRD_1 
+    {5,0,6},   //MCATEGORY_RNG_1 
+    {5,0,6},   //MCATEGORY_SAM_1 
+    {7,0,6},   //MCATEGORY_NIN_1 
+    {4,0,6},   //MCATEGORY_DRG_1 
+    {5,0,6},   //MCATEGORY_SMN_1 
+    {5,0,6},   //MCATEGORY_BLU_1 
+    {5,0,6},   //MCATEGORY_COR_1 
+    {5,0,6},   //MCATEGORY_PUP_1 
+    {4,0,6},   //MCATEGORY_DNC_1 
+    {4,0,6},   //MCATEGORY_SCH_1 
+
+    {0,0,0},   //MCATEGORY_UNK_0 
+    {0,0,0},   //MCATEGORY_UNK_1 
+    {0,0,0},   //MCATEGORY_UNK_2 
+    {0,0,0},   //MCATEGORY_UNK_3 
+    {0,0,0},   //MCATEGORY_UNK_4 
+    {0,0,0},   //MCATEGORY_UNK_5 
+
+    {4,0,7},   //MCATEGORY_WAR_2 
+    {4,0,7},   //MCATEGORY_MNK_2 
+    {4,0,7},   //MCATEGORY_WHM_2 
+    {6,0,7},   //MCATEGORY_BLM_2 
+    {6,0,7},   //MCATEGORY_RDM_2 
+    {4,0,7},   //MCATEGORY_THF_2 
+    {4,0,7},   //MCATEGORY_PLD_2 
+    {4,0,7},   //MCATEGORY_DRK_2 
+    {4,0,7},   //MCATEGORY_BST_2 
+    {4,0,7},   //MCATEGORY_BRD_2 
+    {4,0,7},   //MCATEGORY_RNG_2 
+    {4,0,7},   //MCATEGORY_SAM_2 
+    {8,0,7},   //MCATEGORY_NIN_2 
+    {4,0,7},   //MCATEGORY_DRG_2 
+    {6,0,7},   //MCATEGORY_SMN_2 
+    {4,0,7},   //MCATEGORY_BLU_2 
+    {4,0,7},   //MCATEGORY_COR_2 
+    {4,0,7},   //MCATEGORY_PUP_2 
+    {4,0,7},   //MCATEGORY_DNC_2 
+    {6,0,7},   //MCATEGORY_SHC_2 
 };
 
 /************************************************************************
@@ -143,7 +147,7 @@ CMeritPoints::CMeritPoints()
     {
         Categories[i] = &merits[m];
 
-        for (uint8 t = 0; t < count[i].x; ++t)
+        for (uint8 t = 0; t < count[i].MaxMerits; ++t)
         {
             merits[m++].id = ((i + 1) << 6) + (t << 1);
         }
@@ -206,7 +210,7 @@ void CMeritPoints::AddLimitPoints(uint16 points)
 Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
 {
     DSP_DEBUG_BREAK_IF(merit >= MCATEGORY_COUNT);
-    DSP_DEBUG_BREAK_IF(((merit & 0x3F) >> 1) >= count[merit >> 6].x);
+    DSP_DEBUG_BREAK_IF(((merit & 0x3F) >> 1) >= count[merit >> 6].MaxMerits);
 
     return &Categories[merit >> 6][(merit & 0x3F) >> 1];
 }
