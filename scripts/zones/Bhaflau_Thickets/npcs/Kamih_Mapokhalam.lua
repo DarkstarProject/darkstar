@@ -3,8 +3,10 @@
 -- NPC: Kamih Mapokhalam
 -- 
 -----------------------------------
-
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/keyitems");
 require("scripts/zones/Bhaflau_Thickets/TextIDs");
 
 -----------------------------------
@@ -13,23 +15,19 @@ require("scripts/zones/Bhaflau_Thickets/TextIDs");
 
 function onTrade(player,npc,trade)
 
-SilverCoin  = 2158;
-MythrilCoin = 2186;
+	count = trade:getItemCount();
 
-count = trade:getItemCount();
-
-	if (count == 1 and trade:hasItemQty(SilverCoin,1)) then
+	if(count == 1 and trade:hasItemQty(2185,1)) then -- Silver
 		player:tradeComplete();
 		player:startEvent(0x0079);
-	elseif (count == 3 and trade:hasItemQty(MythrilCoin,3)) then
-		if (player:hasKeyItem(1865)) then
+	elseif(count == 3 and trade:hasItemQty(2186,3)) then -- Mythril
+		if(player:hasKeyItem(MAP_OF_ALZADAAL_RUINS)) then
 			player:startEvent(0x0093); 
 		else
-			player:tradeComplete();
-			player:addKeyItem(1865);
 			player:startEvent(0x0092);
 		end
 	end
+	
 end; 
 
 -----------------------------------
@@ -37,7 +35,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getZPos() < 597) then
+	if(player:getZPos() < 597) then
 		player:startEvent(0x0078);
 	else
 		player:startEvent(0x007A);
@@ -60,12 +58,13 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x0079) then
+	
+	if(csid == 0x0079) then
 		player:setPos(325,-4,-620,0,72);
-	elseif (csid == 0x0092) then
-		player:specialMessage(KEYITEM_OBTAINED,1865);
+	elseif(csid == 0x0092) then
+		player:tradeComplete();
+		player:addKeyItem(MAP_OF_ALZADAAL_RUINS);
+		player:specialMessage(KEYITEM_OBTAINED,MAP_OF_ALZADAAL_RUINS);
 	end
+	
 end;
-
-
-

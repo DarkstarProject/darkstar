@@ -229,6 +229,26 @@ function toAltepaDesert(player) -- Teleport to ??? for DRG AF1
 	player:setPos(115.859,-7.916,-74.276,8076,0x72);
 end;
 
+-- Swirling Vortex
+
+function toLufaiseMeadows(player) -- Teleport Valkurm Dunes > Lufaise Meadows
+	player:setPos(459,8,3,56,0x18);
+end;
+
+function toValkurmDunes(player) -- Teleport Lufaise Meadows > Valkurm Dunes
+	player:setPos(418,0,-202,82,0x67);
+end;
+
+function toMisareauxCoast(player) -- Teleport Qufim Island > Misareaux Coast
+	player:setPos(-115,-32,219,2,0x19);
+end;
+
+function toQufimIsland(player) -- Teleport Misareaux Coast > Qufim Island
+	player:setPos(-438,-13,340,134,0x7E);
+end;
+
+-- -----------------
+
 function toCampaignDestination(player, option)
 	if (option == 1) then 
 		player:setPos(205.973,-23.5875,-206.606, 167, 0x89); -- Xarcabard [S] {R}

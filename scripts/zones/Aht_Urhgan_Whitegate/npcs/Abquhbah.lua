@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Abquhbah
+-- NPC:  Abquhbah
 -- Standard Info NPC
 -----------------------------------
 
@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x00FE);
+	player:startEvent(0x00FE);
 end; 
 
 -----------------------------------
@@ -36,6 +36,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

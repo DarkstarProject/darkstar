@@ -1,13 +1,8 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---   NPC: Atiza
---  Type: Standard NPC
--- @zone: 50
---  @pos: 5.195 -1 98.966
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-- Area: Aht Urhgan Whitegate
+-- NPC:  Atiza
+-- Admits players to the dock in Aht Urhgan
+-- @pos 5.195 -1 98.966 50
 -----------------------------------
 
 -----------------------------------
@@ -22,7 +17,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00df);
+	player:startEvent(0x00df,player:getGil(),100);
 end;
 
 -----------------------------------
@@ -30,8 +25,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +34,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	
+	if(csid == 0x00df and option == 333) then
+		player:delGil(100);
+	end
+	
 end;
-

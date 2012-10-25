@@ -1,14 +1,12 @@
 -----------------------------------
 --  Area: Wajaom Woodlands
---   NPC: Watisa
+--  NPC:  Watisa
 --  Type: Chocobo Renter
--- @zone: 51
---  @pos: -201.028 -11 93.200
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -201 -11 93 51
 -----------------------------------
-package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
------------------------------------
+
+require("scripts/globals/status");
+require("scripts/globals/keyitems");
 
 -----------------------------------
 -- onTrade Action
@@ -22,7 +20,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0009);
+	
+	price = 100;
+	gil = player:getGil();
+
+	if(player:hasKeyItem(CHOCOBO_LICENSE) and player:getMainLvl() >= 20) then
+		player:startEvent(0x000a,price,gil);
+	else
+		player:startEvent(0x0009,price,gil);
+	end
+	
 end;
 
 -----------------------------------
@@ -30,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +46,19 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-end;
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
+	
+	price = 100;
+	level = player:getMainLvl();
 
+	if(csid == 0x0009 and option == 0) then
+		if(level >= 20) then
+			player:addStatusEffect(EFFECT_CHOCOBO,1,0,1800);
+		else
+			player:addStatusEffect(EFFECT_CHOCOBO,1,0,900);
+		end
+		player:delGil(price);
+	end
+	
+end;

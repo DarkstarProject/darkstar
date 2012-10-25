@@ -1,14 +1,14 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---   NPC: Ryo
---  Type: Quest
--- @zone: 50
---  @pos: -127.086 0.999 22.693
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Aht Urhgan Whitegate
+-- NPC:  Ryo
+-- Type: ZNM
+-- @pos -127.086 0.999 22.693 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/globals/besieged");
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -30,8 +30,15 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("updateCSID: %u",csid);
+--printf("updateRESULT: %u",option);
+	
+	if(option == 300) then
+		player:updateEvent(player:getPoint(ZENI),0);
+	else
+		player:updateEvent(0,0);
+	end
+	
 end;
 
 -----------------------------------
@@ -39,7 +46,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("finishCSID: %u",csid);
+--printf("finishRESULT: %u",option);
 end;
-

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Abda Lurabda
+-- NPC:  Abda Lurabda
 -- Standard Info NPC
 -----------------------------------
 
@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0101);
+	player:startEvent(0x0101);
 end; 
 
 -----------------------------------
@@ -36,6 +36,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

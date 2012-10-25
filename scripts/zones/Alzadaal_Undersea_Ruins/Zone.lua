@@ -13,7 +13,7 @@ require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
 -----------------------------------	
 
 function onInitialize(zone)	
-	zone:registerRegion(1, -323, -2, 483,-329, 0, 489);  -- map 1 SE porter
+	zone:registerRegion(1, -329, -2, 483,-323, 0, 489);  -- map 1 SE porter
 	zone:registerRegion(2, -477, -2, 631,-471, 0, 636);  -- map 1 NW porter
 	zone:registerRegion(3,  110, -2,-556, 116, 0,-551);  -- map 2 west porter (white)
 	zone:registerRegion(4,   30, -2, 750,  36, 0, 757);  -- map 3 west porter (blue)

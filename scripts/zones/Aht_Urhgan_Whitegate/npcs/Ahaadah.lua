@@ -1,13 +1,7 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---   NPC: Ahaadah
---  Type: Standard NPC
--- @zone: 50
---  @pos: -70.243 -6.999 105.246
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-- Area: Aht Urhgan Whitegate
+-- NPC:  Ahaadah
+-- @pos -70 -6 105 50
 -----------------------------------
 
 -----------------------------------
@@ -22,7 +16,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0366);
+	player:startEvent(0x0366); -- or 0x0001
 end;
 
 -----------------------------------
@@ -30,8 +24,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +33,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
-
