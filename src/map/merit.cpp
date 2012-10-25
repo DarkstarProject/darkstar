@@ -45,6 +45,8 @@ static uint8 upgrade[8][16] =
     {1,2,3,4,5},
     {3,4,5,5,5},
 };
+#define MAX_LIMIT_POINTS  10000 // количество опыта для получения одного merit
+#define MAX_MERIT_POINTS  30    // максимальное количество неиспользованных merit
 #else
 static uint8 upgrade[8][9] =
 {
@@ -57,10 +59,34 @@ static uint8 upgrade[8][9] =
     {1,2,3,4,5},
     {3,4,5,5,5},
 };
-#endif
-
 #define MAX_LIMIT_POINTS  10000 // количество опыта для получения одного merit
-#define MAX_MERIT_POINTS  20    // максимальное количество неиспользованных merit 
+#define MAX_MERIT_POINTS  10    // максимальное количество неиспользованных merit
+#endif 
+
+// TODO: скорее всего придется все это перенести в базу
+
+/************************************************************************
+*                                                                       *
+*  Ограничение количества усилений metir                                *
+*                                                                       *
+************************************************************************/
+
+static uint8 cap[100] =
+{   
+    0,                  //0     0
+    0,0,0,0,0,0,0,0,0,  //1-9   0 
+    1,1,1,1,1,1,1,1,1,  //10-19 1 
+    2,2,2,2,2,2,2,2,2,  //20-29 2 
+    3,3,3,3,3,3,3,3,3,  //30-39 3 
+    4,4,4,4,4,4,4,4,4,  //40-49 4 
+    5,5,5,5,5,          //50-54 5 
+    6,6,6,6,6,          //55-59 6 
+    7,7,7,7,7,          //60-64 7 
+    8,8,8,8,8,          //65-69 8
+    8,8,8,8,8,8,8,8,8,  //70-79 8
+    8,8,8,8,8,8,8,8,8,  //80-89 8
+    8,8,8,8,8,8,8,8,8,  //90-99 8
+};
 
 /************************************************************************
 *                                                                       *
@@ -83,54 +109,54 @@ static const MeritCategoryInfo_t count[] =
     {12,24,4}, //MCATEGORY_MAGIC 
     {5,10,5},  //MCATEGORY_OTHERS 
 
-    {5,0,6},   //MCATEGORY_WAR_1 
-    {5,0,6},   //MCATEGORY_MNK_1 
-    {5,0,6},   //MCATEGORY_WHM_1 
-    {7,0,6},   //MCATEGORY_BLM_1 
-    {7,0,6},   //MCATEGORY_RDM_1 
-    {5,0,6},   //MCATEGORY_THF_1 
-    {5,0,6},   //MCATEGORY_PLD_1 
-    {5,0,6},   //MCATEGORY_DRK_1 
-    {5,0,6},   //MCATEGORY_BST_1 
-    {5,0,6},   //MCATEGORY_BRD_1 
-    {5,0,6},   //MCATEGORY_RNG_1 
-    {5,0,6},   //MCATEGORY_SAM_1 
-    {7,0,6},   //MCATEGORY_NIN_1 
-    {4,0,6},   //MCATEGORY_DRG_1 
-    {5,0,6},   //MCATEGORY_SMN_1 
-    {5,0,6},   //MCATEGORY_BLU_1 
-    {5,0,6},   //MCATEGORY_COR_1 
-    {5,0,6},   //MCATEGORY_PUP_1 
-    {4,0,6},   //MCATEGORY_DNC_1 
-    {4,0,6},   //MCATEGORY_SCH_1 
+    {5,10,6},   //MCATEGORY_WAR_1 
+    {5,10,6},   //MCATEGORY_MNK_1 
+    {5,10,6},   //MCATEGORY_WHM_1 
+    {7,10,6},   //MCATEGORY_BLM_1 
+    {7,10,6},   //MCATEGORY_RDM_1 
+    {5,10,6},   //MCATEGORY_THF_1 
+    {5,10,6},   //MCATEGORY_PLD_1 
+    {5,10,6},   //MCATEGORY_DRK_1 
+    {5,10,6},   //MCATEGORY_BST_1 
+    {5,10,6},   //MCATEGORY_BRD_1 
+    {5,10,6},   //MCATEGORY_RNG_1 
+    {5,10,6},   //MCATEGORY_SAM_1 
+    {7,10,6},   //MCATEGORY_NIN_1 
+    {4,10,6},   //MCATEGORY_DRG_1 
+    {5,10,6},   //MCATEGORY_SMN_1 
+    {5,10,6},   //MCATEGORY_BLU_1 
+    {5,10,6},   //MCATEGORY_COR_1 
+    {5,10,6},   //MCATEGORY_PUP_1 
+    {4,10,6},   //MCATEGORY_DNC_1 
+    {4,10,6},   //MCATEGORY_SCH_1 
 
-    {0,0,0},   //MCATEGORY_UNK_0 
-    {0,0,0},   //MCATEGORY_UNK_1 
-    {0,0,0},   //MCATEGORY_UNK_2 
-    {0,0,0},   //MCATEGORY_UNK_3 
-    {0,0,0},   //MCATEGORY_UNK_4 
-    {0,0,0},   //MCATEGORY_UNK_5 
+    {0,0,0},    //MCATEGORY_UNK_0 
+    {0,0,0},    //MCATEGORY_UNK_1 
+    {0,0,0},    //MCATEGORY_UNK_2 
+    {0,0,0},    //MCATEGORY_UNK_3 
+    {0,0,0},    //MCATEGORY_UNK_4 
+    {0,0,0},    //MCATEGORY_UNK_5 
 
-    {4,0,7},   //MCATEGORY_WAR_2 
-    {4,0,7},   //MCATEGORY_MNK_2 
-    {4,0,7},   //MCATEGORY_WHM_2 
-    {6,0,7},   //MCATEGORY_BLM_2 
-    {6,0,7},   //MCATEGORY_RDM_2 
-    {4,0,7},   //MCATEGORY_THF_2 
-    {4,0,7},   //MCATEGORY_PLD_2 
-    {4,0,7},   //MCATEGORY_DRK_2 
-    {4,0,7},   //MCATEGORY_BST_2 
-    {4,0,7},   //MCATEGORY_BRD_2 
-    {4,0,7},   //MCATEGORY_RNG_2 
-    {4,0,7},   //MCATEGORY_SAM_2 
-    {8,0,7},   //MCATEGORY_NIN_2 
-    {4,0,7},   //MCATEGORY_DRG_2 
-    {6,0,7},   //MCATEGORY_SMN_2 
-    {4,0,7},   //MCATEGORY_BLU_2 
-    {4,0,7},   //MCATEGORY_COR_2 
-    {4,0,7},   //MCATEGORY_PUP_2 
-    {4,0,7},   //MCATEGORY_DNC_2 
-    {6,0,7},   //MCATEGORY_SHC_2 
+    {4,10,7},   //MCATEGORY_WAR_2 
+    {4,10,7},   //MCATEGORY_MNK_2 
+    {4,10,7},   //MCATEGORY_WHM_2 
+    {6,10,7},   //MCATEGORY_BLM_2 
+    {6,10,7},   //MCATEGORY_RDM_2 
+    {4,10,7},   //MCATEGORY_THF_2 
+    {4,10,7},   //MCATEGORY_PLD_2 
+    {4,10,7},   //MCATEGORY_DRK_2 
+    {4,10,7},   //MCATEGORY_BST_2 
+    {4,10,7},   //MCATEGORY_BRD_2 
+    {4,10,7},   //MCATEGORY_RNG_2 
+    {4,10,7},   //MCATEGORY_SAM_2 
+    {8,10,7},   //MCATEGORY_NIN_2 
+    {4,10,7},   //MCATEGORY_DRG_2 
+    {6,10,7},   //MCATEGORY_SMN_2 
+    {4,10,7},   //MCATEGORY_BLU_2 
+    {4,10,7},   //MCATEGORY_COR_2 
+    {4,10,7},   //MCATEGORY_PUP_2 
+    {4,10,7},   //MCATEGORY_DNC_2 
+    {6,10,7},   //MCATEGORY_SHC_2 
 };
 
 /************************************************************************
@@ -198,7 +224,13 @@ uint8 CMeritPoints::GetMeritPoints()
 
 void CMeritPoints::AddLimitPoints(uint16 points)
 {
-    // TODO: ...
+    m_LimitPoints += points;
+
+    if (m_LimitPoints >= MAX_LIMIT_POINTS)
+    {
+        m_MeritPoints = dsp_min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, MAX_MERIT_POINTS);
+        m_LimitPoints = m_LimitPoints % MAX_LIMIT_POINTS;
+    }
 }
 
 /************************************************************************
@@ -213,4 +245,17 @@ Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
     DSP_DEBUG_BREAK_IF(((merit & 0x3F) >> 1) >= count[merit >> 6].MaxMerits);
 
     return &Categories[merit >> 6][(merit & 0x3F) >> 1];
+}
+
+/************************************************************************
+*                                                                       *
+*  Получаем текущее значение указанного merit                           *
+*                                                                       *
+************************************************************************/
+
+int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit)
+{
+    uint8 level = 75; // TODO: уровень персонажа
+
+    return dsp_min(GetMerit(merit)->count, cap[level]) /* коэффициент */; // TODO: умножаем текущее количество усилений на коэффициент
 }

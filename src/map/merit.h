@@ -459,18 +459,20 @@ class CMeritPoints
 
         uint16   GetLimitPoints();
         uint8    GetMeritPoints();
+        int32    GetMeritValue(MERIT_TYPE merit);
 
         void     AddLimitPoints(uint16 points);
 
         Merit_t  merits[240];
-        Merit_t* GetMerit(MERIT_TYPE merit);
 
     private:
 
-        uint16   m_LimitPoints; // max 9999
-        uint8    m_MeritPoints; // max 20
+        uint16   m_LimitPoints;
+        uint8    m_MeritPoints;
 
         void     LoadingCharMerits();
+
+        Merit_t* GetMerit(MERIT_TYPE merit);
         Merit_t* Categories[MCATEGORY_COUNT/64-1];
 };
 
