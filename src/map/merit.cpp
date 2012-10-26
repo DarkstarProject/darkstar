@@ -108,54 +108,54 @@ static const MeritCategoryInfo_t count[] =
     {12,24,4}, //MCATEGORY_MAGIC 
     {5,10,5},  //MCATEGORY_OTHERS 
 
-    {5,10,6},   //MCATEGORY_WAR_1 
-    {5,10,6},   //MCATEGORY_MNK_1 
-    {5,10,6},   //MCATEGORY_WHM_1 
-    {7,10,6},   //MCATEGORY_BLM_1 
-    {7,10,6},   //MCATEGORY_RDM_1 
-    {5,10,6},   //MCATEGORY_THF_1 
-    {5,10,6},   //MCATEGORY_PLD_1 
-    {5,10,6},   //MCATEGORY_DRK_1 
-    {5,10,6},   //MCATEGORY_BST_1 
-    {5,10,6},   //MCATEGORY_BRD_1 
-    {5,10,6},   //MCATEGORY_RNG_1 
-    {5,10,6},   //MCATEGORY_SAM_1 
-    {7,10,6},   //MCATEGORY_NIN_1 
-    {4,10,6},   //MCATEGORY_DRG_1 
-    {5,10,6},   //MCATEGORY_SMN_1 
-    {5,10,6},   //MCATEGORY_BLU_1 
-    {5,10,6},   //MCATEGORY_COR_1 
-    {5,10,6},   //MCATEGORY_PUP_1 
-    {4,10,6},   //MCATEGORY_DNC_1 
-    {4,10,6},   //MCATEGORY_SCH_1 
+    {5,10,6},  //MCATEGORY_WAR_1 
+    {5,10,6},  //MCATEGORY_MNK_1 
+    {5,10,6},  //MCATEGORY_WHM_1 
+    {7,10,6},  //MCATEGORY_BLM_1 
+    {7,10,6},  //MCATEGORY_RDM_1 
+    {5,10,6},  //MCATEGORY_THF_1 
+    {5,10,6},  //MCATEGORY_PLD_1 
+    {5,10,6},  //MCATEGORY_DRK_1 
+    {5,10,6},  //MCATEGORY_BST_1 
+    {5,10,6},  //MCATEGORY_BRD_1 
+    {5,10,6},  //MCATEGORY_RNG_1 
+    {5,10,6},  //MCATEGORY_SAM_1 
+    {7,10,6},  //MCATEGORY_NIN_1 
+    {5,10,6},  //MCATEGORY_DRG_1 
+    {5,10,6},  //MCATEGORY_SMN_1 
+    {5,10,6},  //MCATEGORY_BLU_1 
+    {5,10,6},  //MCATEGORY_COR_1 
+    {5,10,6},  //MCATEGORY_PUP_1 
+    {4,10,6},  //MCATEGORY_DNC_1 
+    {4,10,6},  //MCATEGORY_SCH_1 
 
-    {0,0,0},    //MCATEGORY_UNK_0 
-    {0,0,0},    //MCATEGORY_UNK_1 
-    {0,0,0},    //MCATEGORY_UNK_2 
-    {0,0,0},    //MCATEGORY_UNK_3 
-    {0,0,0},    //MCATEGORY_UNK_4 
-    {0,0,0},    //MCATEGORY_UNK_5 
+    {0,0,0},   //MCATEGORY_UNK_0 
+    {0,0,0},   //MCATEGORY_UNK_1 
+    {0,0,0},   //MCATEGORY_UNK_2 
+    {0,0,0},   //MCATEGORY_UNK_3 
+    {0,0,0},   //MCATEGORY_UNK_4 
+    {0,0,0},   //MCATEGORY_UNK_5 
 
-    {4,10,7},   //MCATEGORY_WAR_2 
-    {4,10,7},   //MCATEGORY_MNK_2 
-    {4,10,7},   //MCATEGORY_WHM_2 
-    {6,10,7},   //MCATEGORY_BLM_2 
-    {6,10,7},   //MCATEGORY_RDM_2 
-    {4,10,7},   //MCATEGORY_THF_2 
-    {4,10,7},   //MCATEGORY_PLD_2 
-    {4,10,7},   //MCATEGORY_DRK_2 
-    {4,10,7},   //MCATEGORY_BST_2 
-    {4,10,7},   //MCATEGORY_BRD_2 
-    {4,10,7},   //MCATEGORY_RNG_2 
-    {4,10,7},   //MCATEGORY_SAM_2 
-    {8,10,7},   //MCATEGORY_NIN_2 
-    {4,10,7},   //MCATEGORY_DRG_2 
-    {6,10,7},   //MCATEGORY_SMN_2 
-    {4,10,7},   //MCATEGORY_BLU_2 
-    {4,10,7},   //MCATEGORY_COR_2 
-    {4,10,7},   //MCATEGORY_PUP_2 
-    {4,10,7},   //MCATEGORY_DNC_2 
-    {6,10,7},   //MCATEGORY_SHC_2 
+    {4,10,7},  //MCATEGORY_WAR_2 
+    {4,10,7},  //MCATEGORY_MNK_2 
+    {4,10,7},  //MCATEGORY_WHM_2 
+    {6,10,7},  //MCATEGORY_BLM_2 
+    {6,10,7},  //MCATEGORY_RDM_2 
+    {4,10,7},  //MCATEGORY_THF_2 
+    {4,10,7},  //MCATEGORY_PLD_2 
+    {4,10,7},  //MCATEGORY_DRK_2 
+    {4,10,7},  //MCATEGORY_BST_2 
+    {4,10,7},  //MCATEGORY_BRD_2 
+    {4,10,7},  //MCATEGORY_RNG_2 
+    {4,10,7},  //MCATEGORY_SAM_2 
+    {8,10,7},  //MCATEGORY_NIN_2 
+    {4,10,7},  //MCATEGORY_DRG_2 
+    {6,10,7},  //MCATEGORY_SMN_2 
+    {4,10,7},  //MCATEGORY_BLU_2 
+    {4,10,7},  //MCATEGORY_COR_2 
+    {4,10,7},  //MCATEGORY_PUP_2 
+    {4,10,7},  //MCATEGORY_DNC_2 
+    {6,10,7},  //MCATEGORY_SHC_2 
 };
 
 /************************************************************************
@@ -255,9 +255,7 @@ Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
 *                                                                       *
 ************************************************************************/
 
-int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit)
+int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, uint8 lvl)
 {
-    uint8 level = 75; // TODO: уровень персонажа
-
-    return dsp_min(GetMerit(merit)->count, cap[level]) /* коэффициент */; // TODO: умножаем текущее количество усилений на коэффициент
+    return dsp_min(GetMerit(merit)->count, cap[lvl]) /* коэффициент */; // TODO: умножаем текущее количество усилений на коэффициент
 }

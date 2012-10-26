@@ -461,11 +461,11 @@ class CMeritPoints
 
         uint16   GetLimitPoints();
         uint8    GetMeritPoints();
-        int32    GetMeritValue(MERIT_TYPE merit);
+        int32    GetMeritValue(MERIT_TYPE merit, uint8 lvl);
 
         void     AddLimitPoints(uint16 points);
 
-        Merit_t  merits[240];
+        Merit_t  merits[241];
 
     private:
 
