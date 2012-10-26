@@ -465,6 +465,7 @@ class CMeritPoints
 
         void     AddLimitPoints(uint16 points);					//automatically adds merit points > 10000
 		void	 SetLimitPoints(uint16 points);					//used for loading player limit points on login
+		void	 SetMeritPoints(uint16 points);					//used for loading player merit points on login
 		uint16	 GetMaxMerits();
 
         Merit_t  merits[241];

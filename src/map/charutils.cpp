@@ -462,7 +462,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->look.ranged	= (uint16)Sql_GetIntData(SqlHandle,10);
 	}
 
-	fmtQuery = "SELECT unlocked, genkai, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
+	fmtQuery = "SELECT unlocked, genkai, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, meritpoints \
 				FROM char_jobs \
 				WHERE charid = %u;";
 
@@ -495,6 +495,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.job[JOB_PUP] = (uint8)Sql_GetIntData(SqlHandle,19);
 		PChar->jobs.job[JOB_DNC] = (uint8)Sql_GetIntData(SqlHandle,20);
 		PChar->jobs.job[JOB_SCH] = (uint8)Sql_GetIntData(SqlHandle,21);
+		PChar->PMeritPoints->SetMeritPoints((uint8)Sql_GetIntData(SqlHandle,22));
 	}
 
 	fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, limits \
@@ -3236,6 +3237,9 @@ void SaveCharJob(CCharEntity* PChar, JOBTYPE job)
     DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
 
     const int8* fmtQuery;
+
+	fmtQuery = "UPDATE char_jobs SET meritpoints = %u WHERE charid = %u LIMIT 1";
+	Sql_Query(SqlHandle, fmtQuery, PChar->PMeritPoints->GetMeritPoints(), PChar->id);
 	
     switch (job)
 	{
