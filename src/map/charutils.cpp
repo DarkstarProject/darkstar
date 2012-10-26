@@ -2917,10 +2917,10 @@ void SaveQuestsList(CCharEntity* PChar)
           "quests = '%s' "
         "WHERE charid = %u;" 
         "UPDATE char_profile SET "
-          "fameSandoria = %u,"
-          "fameBastok = %u,"
-          "fameWindurst = %u,"
-          "fameNorg = %u "
+          "fame_sandoria = %u,"
+          "fame_bastok = %u,"  
+          "fame_windurst = %u,"
+          "fame_norg = %u " 
         "WHERE charid = %u;";
 
 	int8 questslist[sizeof(PChar->m_questLog)*2+1];
@@ -2949,10 +2949,10 @@ void SaveMissionsList(CCharEntity* PChar)
           "missions = '%s' "
         "WHERE charid = %u;"
         "UPDATE char_profile SET "
-          "rankPoints = %u,"
-          "rankSandoria = %u,"
-          "rankBastok = %u," 
-          "rankWindurst = %u "
+          "rank_points = %u,"
+          "rank_sandoria = %u,"
+          "rank_bastok = %u,"
+          "rank_windurst = %u "
         "WHERE charid = %u;";
 
 	int8 missionslist[sizeof(PChar->m_missionLog)*2+1];
