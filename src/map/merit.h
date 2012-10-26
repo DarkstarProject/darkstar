@@ -463,7 +463,9 @@ class CMeritPoints
         uint8    GetMeritPoints();
         int32    GetMeritValue(MERIT_TYPE merit, uint8 lvl);
 
-        void     AddLimitPoints(uint16 points);
+        void     AddLimitPoints(uint16 points);					//automatically adds merit points > 10000
+		void	 SetLimitPoints(uint16 points);					//used for loading player limit points on login
+		uint16	 GetMaxMerits();
 
         Merit_t  merits[241];
 

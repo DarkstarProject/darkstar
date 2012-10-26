@@ -35,6 +35,7 @@
 #include "lua/luautils.h"
 
 #include "alliance.h"
+#include "merit.h"
 #include "packets/automaton_update.h"
 #include "packets/char_abilities.h"
 #include "packets/char_appearance.h"
@@ -527,7 +528,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.exp[JOB_PUP] = (uint16)Sql_GetIntData(SqlHandle, 18);
 		PChar->jobs.exp[JOB_DNC] = (uint16)Sql_GetIntData(SqlHandle, 19);
 		PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle, 20);
-
+		PChar->PMeritPoints->SetLimitPoints((uint16)Sql_GetIntData(SqlHandle, 21));
 	}
 
 	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h \
@@ -2796,19 +2797,64 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
 {
 	if (PChar->isDead()) return;
 	exp = exp * map_config.exp_rate;
+	bool onLimitMode = false;
+
+	//Incase player de-levels to 74 on the field
+	if(PChar->MeritMode == true && PChar->GetMLevel() > 74) 
+		onLimitMode = true;
+
 
     if (baseexp > 100 && isexpchain) 
 	{
-		if (PChar->expChain.chainNumber != 0) PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, PChar->expChain.chainNumber, 253));
-		else PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
+		if (PChar->expChain.chainNumber != 0) 
+		{
+			if (onLimitMode)
+				PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, PChar->expChain.chainNumber, 372));
+			else
+				PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, PChar->expChain.chainNumber, 253));
+		}
+		else
+		{
+			if (onLimitMode)
+			{
+				PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 371));
+			}
+			else
+			{
+				PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
+			}
+		}
 		PChar->expChain.chainNumber++;
 	}
 	else if(exp > 0)
 	{	
-		PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
+		if (onLimitMode) 
+			PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 371));
+		else
+			PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
 	}
 
-    PChar->jobs.exp[PChar->GetMJob()] += exp;
+
+	if (onLimitMode == true) 
+	{
+		uint16 currentLimitPoints = PChar->PMeritPoints->GetLimitPoints();
+		
+		//add limit points
+		PChar->PMeritPoints->AddLimitPoints(exp);
+
+		//check for new merit point to display message
+		if ((currentLimitPoints + exp) > 10000 && PChar->PMeritPoints->GetMeritPoints() < PChar->PMeritPoints->GetMaxMerits())
+		{
+			PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PMob, PChar->PMeritPoints->GetMeritPoints(), 0, 368));
+		}
+	}
+	else
+	{
+		//add normal exp
+		PChar->jobs.exp[PChar->GetMJob()] += exp;
+	}
+
+
     conquest::AddConquestPoints(PChar, exp);
     
 	//Add IS + ZENI when you kill a monster in TOAU Zone (10%) NEED TO CHANGE THAT
@@ -2818,7 +2864,10 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
 		PChar->RegionPoints[10] += ((exp/100)*10); // 10%
 		PChar->pushPacket(new CConquestPacket(PChar));
 	}
-    if (PChar->jobs.exp[PChar->GetMJob()] >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]))
+
+	
+	//player levels up
+    if (PChar->jobs.exp[PChar->GetMJob()] >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && onLimitMode == false)
     {
         if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai)
         {
@@ -2865,11 +2914,17 @@ void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint
 			return;
         }
     }
+
 	SaveCharStats(PChar);
     SaveCharJob(PChar, PChar->GetMJob());
     SaveCharExp(PChar, PChar->GetMJob());
 	SaveCharPoints(PChar);
     PChar->pushPacket(new CCharStatsPacket(PChar));
+
+	if(onLimitMode)
+	{
+		PChar->pushPacket(new CMenuMeritPacket(PChar));
+	}
 }
 
 /************************************************************************
@@ -3220,6 +3275,9 @@ void SaveCharExp(CCharEntity* PChar, JOBTYPE job)
 
 	const int8* fmtQuery;
 	
+	fmtQuery = "UPDATE char_exp SET limits = %u WHERE charid = %u LIMIT 1";
+	Sql_Query(SqlHandle, fmtQuery, PChar->PMeritPoints->GetLimitPoints(), PChar->id);
+
     switch (job)
 	{
 		case JOB_WAR: fmtQuery = "UPDATE char_exp SET war = %u WHERE charid = %u LIMIT 1"; break;

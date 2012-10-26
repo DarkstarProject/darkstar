@@ -2796,7 +2796,6 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			{
 				if (Sql_Query(SqlHandle, "UPDATE char_exp SET mode = %u WHERE charid = %u", operation, PChar->id) != SQL_ERROR)
 				{	
-
 					PChar->MeritMode = operation;
 					PChar->pushPacket(new CMenuMeritPacket(PChar));
 				}
