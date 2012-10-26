@@ -3587,7 +3587,7 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*  GM command @changesJOB !!! FOR DEBUG ONLY !!!                        *
+*  GM command @setMerits !!! FOR DEBUG ONLY !!!                         *
 *                                                                       *
 ************************************************************************/
 
