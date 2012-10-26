@@ -100,6 +100,8 @@ CCharEntity::CCharEntity()
 	m_EquipFlag  = 0;
     m_EquipBlock = 0;
 
+	MeritMode = false;
+
     BazaarID.clean();
     TradePending.clean();
     InvitePending.clean();

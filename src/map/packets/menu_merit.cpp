@@ -42,7 +42,11 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 
 	if (PChar->GetMLevel() >= 75 && charutils::hasKeyItem(PChar, 606))			// keyitem Limit Breaker
 	{
-		WBUFB(data,(0x0B)-4) = 0x20; 											// режим (0xE0 limit pints, 0x20 exp points)
+		if (PChar->MeritMode == true){
+			WBUFB(data,(0x0B)-4) = 0xE0; 										// режим (0xE0 limit pints, 0x20 exp points)
+		} else{
+			WBUFB(data,(0x0B)-4) = 0x20;
+		}
 	}
 }
 

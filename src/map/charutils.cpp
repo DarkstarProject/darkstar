@@ -496,7 +496,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.job[JOB_SCH] = (uint8)Sql_GetIntData(SqlHandle,21);
 	}
 
-	fmtQuery = "SELECT war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, limits \
+	fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, limits \
 				FROM char_exp \
 				WHERE charid = %u;";
 
@@ -506,26 +506,28 @@ void LoadChar(CCharEntity* PChar)
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-		PChar->jobs.exp[JOB_WAR] = (uint16)Sql_GetIntData(SqlHandle, 0);
-		PChar->jobs.exp[JOB_MNK] = (uint16)Sql_GetIntData(SqlHandle, 1);
-		PChar->jobs.exp[JOB_WHM] = (uint16)Sql_GetIntData(SqlHandle, 2);
-		PChar->jobs.exp[JOB_BLM] = (uint16)Sql_GetIntData(SqlHandle, 3);
-		PChar->jobs.exp[JOB_RDM] = (uint16)Sql_GetIntData(SqlHandle, 4);
-		PChar->jobs.exp[JOB_THF] = (uint16)Sql_GetIntData(SqlHandle, 5);
-		PChar->jobs.exp[JOB_PLD] = (uint16)Sql_GetIntData(SqlHandle, 6);
-		PChar->jobs.exp[JOB_DRK] = (uint16)Sql_GetIntData(SqlHandle, 7);
-		PChar->jobs.exp[JOB_BST] = (uint16)Sql_GetIntData(SqlHandle, 8);
-		PChar->jobs.exp[JOB_BRD] = (uint16)Sql_GetIntData(SqlHandle, 9);
-		PChar->jobs.exp[JOB_RNG] = (uint16)Sql_GetIntData(SqlHandle,10);
-		PChar->jobs.exp[JOB_SAM] = (uint16)Sql_GetIntData(SqlHandle,11);
-		PChar->jobs.exp[JOB_NIN] = (uint16)Sql_GetIntData(SqlHandle,12);
-		PChar->jobs.exp[JOB_DRG] = (uint16)Sql_GetIntData(SqlHandle,13);
-		PChar->jobs.exp[JOB_SMN] = (uint16)Sql_GetIntData(SqlHandle,14);
-		PChar->jobs.exp[JOB_BLU] = (uint16)Sql_GetIntData(SqlHandle,15);
-		PChar->jobs.exp[JOB_COR] = (uint16)Sql_GetIntData(SqlHandle,16);
-		PChar->jobs.exp[JOB_PUP] = (uint16)Sql_GetIntData(SqlHandle,17);
-		PChar->jobs.exp[JOB_DNC] = (uint16)Sql_GetIntData(SqlHandle,18);
-		PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle,19);
+		PChar->MeritMode = (uint8)Sql_GetIntData(SqlHandle,0);
+		PChar->jobs.exp[JOB_WAR] = (uint16)Sql_GetIntData(SqlHandle, 1);
+		PChar->jobs.exp[JOB_MNK] = (uint16)Sql_GetIntData(SqlHandle, 2);
+		PChar->jobs.exp[JOB_WHM] = (uint16)Sql_GetIntData(SqlHandle, 3);
+		PChar->jobs.exp[JOB_BLM] = (uint16)Sql_GetIntData(SqlHandle, 4);
+		PChar->jobs.exp[JOB_RDM] = (uint16)Sql_GetIntData(SqlHandle, 5);
+		PChar->jobs.exp[JOB_THF] = (uint16)Sql_GetIntData(SqlHandle, 6);
+		PChar->jobs.exp[JOB_PLD] = (uint16)Sql_GetIntData(SqlHandle, 7);
+		PChar->jobs.exp[JOB_DRK] = (uint16)Sql_GetIntData(SqlHandle, 8);
+		PChar->jobs.exp[JOB_BST] = (uint16)Sql_GetIntData(SqlHandle, 9);
+		PChar->jobs.exp[JOB_BRD] = (uint16)Sql_GetIntData(SqlHandle, 10);
+		PChar->jobs.exp[JOB_RNG] = (uint16)Sql_GetIntData(SqlHandle, 11);
+		PChar->jobs.exp[JOB_SAM] = (uint16)Sql_GetIntData(SqlHandle, 12);
+		PChar->jobs.exp[JOB_NIN] = (uint16)Sql_GetIntData(SqlHandle, 13);
+		PChar->jobs.exp[JOB_DRG] = (uint16)Sql_GetIntData(SqlHandle, 14);
+		PChar->jobs.exp[JOB_SMN] = (uint16)Sql_GetIntData(SqlHandle, 15);
+		PChar->jobs.exp[JOB_BLU] = (uint16)Sql_GetIntData(SqlHandle, 16);
+		PChar->jobs.exp[JOB_COR] = (uint16)Sql_GetIntData(SqlHandle, 17);
+		PChar->jobs.exp[JOB_PUP] = (uint16)Sql_GetIntData(SqlHandle, 18);
+		PChar->jobs.exp[JOB_DNC] = (uint16)Sql_GetIntData(SqlHandle, 19);
+		PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle, 20);
+
 	}
 
 	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h \

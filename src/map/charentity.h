@@ -190,6 +190,8 @@ public:
     CLinkshell*       PLinkshell;                   // linkshell, в которой общается персонаж
 	CTreasurePool*	  PTreasurePool;                // сокровища, добытые с монстров
     CMeritPoints*     PMeritPoints;                 // 
+	bool			  MeritMode;					//If true then player is meriting
+
     CRecastContainer* PRecastContainer;             // 
 
 	CItemContainer*   PGuildShop;					// текущий магазин гильдии, в котором персонаж производит закупки
