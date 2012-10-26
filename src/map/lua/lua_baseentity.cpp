@@ -3585,6 +3585,32 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
 }
 
 
+/************************************************************************
+*                                                                       *
+*  GM command @changesJOB !!! FOR DEBUG ONLY !!!                        *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setMerits(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->PMeritPoints->SetMeritPoints((uint8)lua_tointeger(L,1));
+
+    charutils::SaveCharJob(PChar, PChar->GetMJob());
+
+    PChar->pushPacket(new CMenuMeritPacket(PChar));
+
+	return 0;
+}
+
+
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::showPosition(lua_State *L)
@@ -5150,6 +5176,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setsLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changesJob),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMerits),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openDoor),

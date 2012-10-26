@@ -263,6 +263,7 @@ public:
 	int32 setLevel(lua_State*);				// sets the character's level
 	int32 setsLevel(lua_State*);				// sets the character's level
 	int32 changeJob(lua_State*);			// changes the job of a char (testing only!)
+	int32 setMerits(lua_State*);			// set merits (testing only!)
 	int32 changesJob(lua_State*);			// changes the sub job of a char (testing only!)
 	int32 getWeaponDmg(lua_State*);			// gets the current equipped weapons' DMG rating
 	int32 getOffhandDmg(lua_State*);		// gets the current equipped offhand's DMG rating (used in WS calcs)
