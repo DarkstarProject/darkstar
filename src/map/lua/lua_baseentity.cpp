@@ -5179,6 +5179,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addNationTeleport),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBehind),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFacing),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBCNMloot),
