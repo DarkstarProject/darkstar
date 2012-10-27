@@ -107,7 +107,7 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategry(uint8 AHCategoryID)
                             LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid \
                             WHERE aH = %u \
                             GROUP BY item_basic.itemid \
-                            ORDER BY item_armor.level DESC, item_weapon.dmg DESC, item_basic.sortname ASC";
+                            ORDER BY item_armor.level DESC, item_weapon.dmg DESC, item_basic.sortname DESC";
 
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, AHCategoryID);
 
@@ -194,13 +194,14 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 	int32 ret = SQL_ERROR;
 
 	if(shouldFilter){
-		std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
+		std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
                             war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
                             FROM accounts_sessions \
                             LEFT JOIN chars USING (charid) \
                             LEFT JOIN char_look USING (charid) \
                             LEFT JOIN char_stats USING (charid) \
                             LEFT JOIN char_jobs USING(charid) \
+							LEFT JOIN char_profile USING(charid) \
 							WHERE charname IS NOT NULL AND ";
 		fmtQuery.append(filterQry);
 		fmtQuery.append("ORDER BY charname ASC");
@@ -217,13 +218,14 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 
 	}
 	else{
-		const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
+		const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
                             war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
                             FROM accounts_sessions \
                             LEFT JOIN chars USING (charid) \
                             LEFT JOIN char_look USING (charid) \
                             LEFT JOIN char_stats USING (charid) \
                             LEFT JOIN char_jobs USING(charid) \
+							LEFT JOIN char_profile USING(charid) \
 							WHERE charname IS NOT NULL \
                             ORDER BY charname ASC";
 		ret = Sql_Query(SqlHandle, fmtQuery);
@@ -312,13 +314,14 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
 {
     std::list<SearchEntity*> PartyList;
 
-    const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
+    const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
                          war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
                          FROM accounts_sessions \
                          LEFT JOIN chars USING (charid) \
                          LEFT JOIN char_look USING (charid) \
                          LEFT JOIN char_stats USING (charid) \
                          LEFT JOIN char_jobs USING(charid) \
+						 LEFT JOIN char_profile USING(charid) \
                          WHERE partyid = %u \
                          ORDER BY charname ASC \
                          LIMIT 18";
@@ -372,13 +375,14 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
 std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 {
     std::list<SearchEntity*> LinkshellList;
-	const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rankSandoria, rankBastok, rankWindurst, race, nameflags, mjob, sjob, \
+	const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
                             war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, linkshellid, linkshellrank \
                             FROM accounts_sessions \
                             LEFT JOIN chars USING (charid) \
                             LEFT JOIN char_look USING (charid) \
                             LEFT JOIN char_stats USING (charid) \
                             LEFT JOIN char_jobs USING(charid) \
+							LEFT JOIN char_profile USING(charid) \
 							WHERE linkshellid = %u \
                             ORDER BY charname ASC \
                             LIMIT 20";
