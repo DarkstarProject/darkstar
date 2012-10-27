@@ -2192,6 +2192,8 @@ INSERT INTO `item_weapon` VALUES (18622, 'warmages_pole_+1', 12, 0, 1, 390, 78);
 INSERT INTO `item_weapon` VALUES (18623, 'chtonic_staff', 12, 0, 1, 356, 45);
 INSERT INTO `item_weapon` VALUES (18624, 'numen_staff', 12, 0, 1, 366, 51);
 INSERT INTO `item_weapon` VALUES (18625, 'gerras_staff', 12, 0, 1, 366, 75);
+INSERT INTO `item_weapon` VALUES (18632, 'iridal_staff', 12, 0, 1, 366, 40);
+INSERT INTO `item_weapon` VALUES (18633, 'chatoyant_staff', 12, 0, 1, 356, 45);
 INSERT INTO `item_weapon` VALUES (18637, 'spharai', 1, 4, 1, 326, 43);
 INSERT INTO `item_weapon` VALUES (18638, 'mandau', 2, 1, 1, 176, 46);
 INSERT INTO `item_weapon` VALUES (18639, 'excalibur', 3, 0, 1, 233, 60);

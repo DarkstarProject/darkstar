@@ -5398,7 +5398,7 @@ INSERT INTO `item_armor` VALUES(16150, 'saurian_helm', 73, 44497, 6, 0, 0, 16, 0
 INSERT INTO `item_armor` VALUES(16151, 'leonine_mask', 75, 266531, 33, 0, 0, 16, 0);
 INSERT INTO `item_armor` VALUES(16152, 'hissho_hachimaki', 71, 6146, 141, 0, 0, 16, 0);
 INSERT INTO `item_armor` VALUES(16153, 'reikyo_hairpin', 72, 1048575, 0, 0, 0, 16, 0);
-INSERT INTO `item_armor` VALUES(16154, 'karura_hachigane', 73, 16384, 4, 0, 0, 16, 0);
+INSERT INTO `item_armor` VALUES(16154, 'karura_hachigane', 73, 16384, 4, 0, 5, 16, 0);
 INSERT INTO `item_armor` VALUES(16155, 'aurum_armet', 72, 8641, 139, 0, 0, 16, 0);
 INSERT INTO `item_armor` VALUES(16156, 'oracles_cap', 72, 16908, 143, 0, 0, 16, 0);
 INSERT INTO `item_armor` VALUES(16157, 'enkidus_cap', 72, 498722, 56, 0, 0, 16, 0);
@@ -7778,6 +7778,8 @@ INSERT INTO `item_armor` VALUES(18622, 'warmages_pole_+1', 87, 540686, 0, 0, 0, 
 INSERT INTO `item_armor` VALUES(18623, 'chtonic_staff', 88, 1048575, 0, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES(18624, 'numen_staff', 79, 541471, 0, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES(18625, 'gerras_staff', 99, 540680, 0, 0, 0, 1, 0);
+INSERT INTO `item_armor` VALUES(18632, 'iridal_staff', 51, 1048575, 601, 0, 0, 1, 0);
+INSERT INTO `item_armor` VALUES(18633, 'chatoyant_staff', 51, 1048575, 601, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES(18637, 'spharai', 85, 2, 511, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES(18638, 'mandau', 85, 560, 0, 0, 0, 3, 0);
 INSERT INTO `item_armor` VALUES(18639, 'excalibur', 85, 80, 0, 0, 0, 3, 0);

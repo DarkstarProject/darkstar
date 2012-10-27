@@ -12846,6 +12846,8 @@ INSERT INTO `item_basic` VALUES ('18622', 'warmages_pole_+1', '', '1', '2048', '
 INSERT INTO `item_basic` VALUES ('18623', 'chtonic_staff', '', '1', '63568', '0', '1', '0');
 INSERT INTO `item_basic` VALUES ('18624', 'numen_staff', '', '1', '34816', '99', '0', '0');
 INSERT INTO `item_basic` VALUES ('18625', 'gerras_staff', '', '1', '63568', '99', '0', '0');
+INSERT INTO `item_basic` VALUES ('18632', 'iridal_staff', '', '1', '2080', '12', '0', '9613');
+INSERT INTO `item_basic` VALUES ('18633', 'chatoyant_staff', '', '1', '2080', '12', '0', '10403');
 INSERT INTO `item_basic` VALUES ('18637', 'spharai', '', '1', '63552', '0', '1', '0');
 INSERT INTO `item_basic` VALUES ('18638', 'mandau', '', '1', '63552', '0', '1', '0');
 INSERT INTO `item_basic` VALUES ('18639', 'excalibur', '', '1', '63552', '0', '1', '0');

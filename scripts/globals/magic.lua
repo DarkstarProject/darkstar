@@ -547,7 +547,13 @@ function addBonuses(caster, spell, target, dmg)
 	dayWeatherBonus = 1.00;
 	
 	if caster:getWeather() == singleWeatherStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+		-- Iridescence
+		if caster:getEquipID(SLOT_MAIN) == 18632 or caster:getEquipID(SLOT_MAIN) == 18633 then
+			if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+				dayWeatherBonus = dayWeatherBonus + 0.10;
+			end
+		end
+		elseif math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif caster:getWeather() == singleWeatherWeak[ele] then
@@ -555,7 +561,13 @@ function addBonuses(caster, spell, target, dmg)
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
 	elseif caster:getWeather() == doubleWeatherStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+		-- Iridescence
+		if caster:getEquipID(SLOT_MAIN) == 18632 or caster:getEquipID(SLOT_MAIN) == 18633 then
+			if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+				dayWeatherBonus = dayWeatherBonus + 0.25;
+			end
+		end
+		elseif math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
 		end
 	elseif caster:getWeather() == doubleWeatherWeak[ele] then
