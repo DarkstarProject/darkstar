@@ -552,7 +552,6 @@ function addBonuses(caster, spell, target, dmg)
 			if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
 				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
-		end
 		elseif math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
@@ -566,7 +565,6 @@ function addBonuses(caster, spell, target, dmg)
 			if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
 				dayWeatherBonus = dayWeatherBonus + 0.25;
 			end
-		end
 		elseif math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
 		end
