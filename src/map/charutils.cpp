@@ -462,7 +462,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->look.ranged	= (uint16)Sql_GetIntData(SqlHandle,10);
 	}
 
-	fmtQuery = "SELECT unlocked, genkai, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, meritpoints \
+	fmtQuery = "SELECT unlocked, genkai, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
 				FROM char_jobs \
 				WHERE charid = %u;";
 
@@ -495,10 +495,9 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.job[JOB_PUP] = (uint8)Sql_GetIntData(SqlHandle,19);
 		PChar->jobs.job[JOB_DNC] = (uint8)Sql_GetIntData(SqlHandle,20);
 		PChar->jobs.job[JOB_SCH] = (uint8)Sql_GetIntData(SqlHandle,21);
-		PChar->PMeritPoints->SetMeritPoints((uint8)Sql_GetIntData(SqlHandle,22));
 	}
 
-	fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, limits \
+	fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, merits, limits \
 				FROM char_exp \
 				WHERE charid = %u;";
 
@@ -529,7 +528,9 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.exp[JOB_PUP] = (uint16)Sql_GetIntData(SqlHandle, 18);
 		PChar->jobs.exp[JOB_DNC] = (uint16)Sql_GetIntData(SqlHandle, 19);
 		PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle, 20);
-		PChar->PMeritPoints->SetLimitPoints((uint16)Sql_GetIntData(SqlHandle, 21));
+
+        PChar->PMeritPoints->SetMeritPoints((uint16)Sql_GetIntData(SqlHandle, 21));
+		PChar->PMeritPoints->SetLimitPoints((uint16)Sql_GetIntData(SqlHandle, 22));
 	}
 
 	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h \
@@ -2947,11 +2948,19 @@ void SetLevelRestriction(CCharEntity* PChar, uint8 lvl)
 
 void SaveCharPosition(CCharEntity* PChar)
 {
-	const int8* fmtQuery = "UPDATE chars \
-							SET pos_zone = %u, pos_prevzone = %u, pos_rot = %u, pos_x = %.3f, pos_y = %.3f, pos_z = %.3f, boundary = %u \
-							WHERE charid = %u;";
+	const int8* Query = 
+        "UPDATE chars "
+        "SET "
+          "pos_zone = %u,"
+          "pos_prevzone = %u,"
+          "pos_rot = %u,"
+          "pos_x = %.3f,"
+          "pos_y = %.3f,"
+          "pos_z = %.3f,"
+          "boundary = %u "
+        "WHERE charid = %u;";
 
-    Sql_Query(SqlHandle, fmtQuery,
+    Sql_Query(SqlHandle, Query,
         PChar->getZone(),
         PChar->loc.prevzone,
         PChar->loc.p.rotation,
@@ -2971,10 +2980,10 @@ void SaveCharPosition(CCharEntity* PChar)
 void SaveQuestsList(CCharEntity* PChar)
 {
 	const int8* Query = 
-        "UPDATE chars SET "
-          "quests = '%s' "
-        "WHERE charid = %u;" 
-        "UPDATE char_profile SET "
+        "UPDATE chars "
+        "LEFT JOIN char_profile USING(charid) "
+        "SET "
+          "quests = '%s', "
           "fame_sandoria = %u,"
           "fame_bastok = %u,"  
           "fame_windurst = %u,"
@@ -3003,10 +3012,10 @@ void SaveQuestsList(CCharEntity* PChar)
 void SaveMissionsList(CCharEntity* PChar)
 {
 	const int8* Query = 
-        "UPDATE chars SET "
-          "missions = '%s' "
-        "WHERE charid = %u;"
-        "UPDATE char_profile SET "
+        "UPDATE chars "
+        "LEFT JOIN char_profile USING(charid) "
+        "SET "
+          "missions = '%s',"
           "rank_points = %u,"
           "rank_sandoria = %u,"
           "rank_bastok = %u,"
@@ -3099,10 +3108,10 @@ void SaveSpells(CCharEntity* PChar)
 void SaveTitles(CCharEntity* PChar)
 {
 	const int8* Query = 
-        "UPDATE chars SET "
-          "titles = '%s' "
-        "WHERE charid = %u;"
-        "UPDATE char_stats SET "
+        "UPDATE chars "
+        "LEFT JOIN char_stats USING(charid) "
+        "SET "
+          "titles = '%s',"
           "title = %u "
         "WHERE charid = %u";
 
@@ -3237,9 +3246,6 @@ void SaveCharJob(CCharEntity* PChar, JOBTYPE job)
     DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
 
     const int8* fmtQuery;
-
-	fmtQuery = "UPDATE char_jobs SET meritpoints = %u WHERE charid = %u LIMIT 1";
-	Sql_Query(SqlHandle, fmtQuery, PChar->PMeritPoints->GetMeritPoints(), PChar->id);
 	
     switch (job)
 	{
@@ -3277,35 +3283,36 @@ void SaveCharExp(CCharEntity* PChar, JOBTYPE job)
 {
     DSP_DEBUG_BREAK_IF(job == JOB_NON || job >= MAX_JOBTYPE);
 
-	const int8* fmtQuery;
-	
-	fmtQuery = "UPDATE char_exp SET limits = %u WHERE charid = %u LIMIT 1";
-	Sql_Query(SqlHandle, fmtQuery, PChar->PMeritPoints->GetLimitPoints(), PChar->id);
+	const int8* Query;
 
     switch (job)
 	{
-		case JOB_WAR: fmtQuery = "UPDATE char_exp SET war = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_MNK: fmtQuery = "UPDATE char_exp SET mnk = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_WHM: fmtQuery = "UPDATE char_exp SET whm = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_BLM: fmtQuery = "UPDATE char_exp SET blm = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_RDM: fmtQuery = "UPDATE char_exp SET rdm = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_THF: fmtQuery = "UPDATE char_exp SET thf = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_PLD: fmtQuery = "UPDATE char_exp SET pld = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_DRK: fmtQuery = "UPDATE char_exp SET drk = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_BST: fmtQuery = "UPDATE char_exp SET bst = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_BRD: fmtQuery = "UPDATE char_exp SET brd = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_RNG: fmtQuery = "UPDATE char_exp SET rng = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_SAM: fmtQuery = "UPDATE char_exp SET sam = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_NIN: fmtQuery = "UPDATE char_exp SET nin = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_DRG: fmtQuery = "UPDATE char_exp SET drg = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_SMN: fmtQuery = "UPDATE char_exp SET smn = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_BLU: fmtQuery = "UPDATE char_exp SET blu = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_COR: fmtQuery = "UPDATE char_exp SET cor = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_PUP: fmtQuery = "UPDATE char_exp SET pup = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_DNC: fmtQuery = "UPDATE char_exp SET dnc = %u WHERE charid = %u LIMIT 1"; break;
-		case JOB_SCH: fmtQuery = "UPDATE char_exp SET sch = %u WHERE charid = %u LIMIT 1"; break;
+		case JOB_WAR: Query = "UPDATE char_exp SET war = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_MNK: Query = "UPDATE char_exp SET mnk = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_WHM: Query = "UPDATE char_exp SET whm = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_BLM: Query = "UPDATE char_exp SET blm = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_RDM: Query = "UPDATE char_exp SET rdm = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_THF: Query = "UPDATE char_exp SET thf = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_PLD: Query = "UPDATE char_exp SET pld = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_DRK: Query = "UPDATE char_exp SET drk = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_BST: Query = "UPDATE char_exp SET bst = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_BRD: Query = "UPDATE char_exp SET brd = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_RNG: Query = "UPDATE char_exp SET rng = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_SAM: Query = "UPDATE char_exp SET sam = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_NIN: Query = "UPDATE char_exp SET nin = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_DRG: Query = "UPDATE char_exp SET drg = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_SMN: Query = "UPDATE char_exp SET smn = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_BLU: Query = "UPDATE char_exp SET blu = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_COR: Query = "UPDATE char_exp SET cor = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_PUP: Query = "UPDATE char_exp SET pup = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_DNC: Query = "UPDATE char_exp SET dnc = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+		case JOB_SCH: Query = "UPDATE char_exp SET sch = %u, merits = %u, limits = %u WHERE charid = %u"; break;
 	}
-    Sql_Query(SqlHandle, fmtQuery, PChar->jobs.exp[job], PChar->id);
+    Sql_Query(SqlHandle, Query, 
+        PChar->jobs.exp[job], 
+        PChar->PMeritPoints->GetMeritPoints(),
+        PChar->PMeritPoints->GetLimitPoints(),
+        PChar->id);
 }
 
 /************************************************************************
@@ -3318,12 +3325,22 @@ void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
 {
 	DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
 
-	const int8* fmtQuery = "INSERT INTO char_skills \
-							SET charid = %u, skillid = %u, value = %u, rank = %u \
-							ON DUPLICATE KEY UPDATE value = %u, rank = %u;";
+	const int8* Query = 
+        "INSERT INTO char_skills "
+        "SET "
+          "charid = %u,"
+          "skillid = %u,"
+          "value = %u,"
+          "rank = %u "
+        "ON DUPLICATE KEY UPDATE value = %u, rank = %u;";
 
-	Sql_Query(SqlHandle,fmtQuery,PChar->id,SkillID,PChar->RealSkills.skill[SkillID],PChar->RealSkills.rank[SkillID],
-		PChar->RealSkills.skill[SkillID],PChar->RealSkills.rank[SkillID]);
+	Sql_Query(SqlHandle, Query,
+        PChar->id,
+        SkillID,
+        PChar->RealSkills.skill[SkillID],
+        PChar->RealSkills.rank[SkillID],
+		PChar->RealSkills.skill[SkillID],
+        PChar->RealSkills.rank[SkillID]);
 }
 
 /************************************************************************

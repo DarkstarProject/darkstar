@@ -3615,7 +3615,6 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
     return 0;
 }
 
-
 /************************************************************************
 *                                                                       *
 *  GM command @setMerits !!! FOR DEBUG ONLY !!!                         *
@@ -3633,14 +3632,11 @@ inline int32 CLuaBaseEntity::setMerits(lua_State *L)
 
 	PChar->PMeritPoints->SetMeritPoints((uint8)lua_tointeger(L,1));
 
-    charutils::SaveCharJob(PChar, PChar->GetMJob());
-
     PChar->pushPacket(new CMenuMeritPacket(PChar));
 
+    charutils::SaveCharExp(PChar, PChar->GetMJob());
 	return 0;
 }
-
-
 
 //==========================================================//
 

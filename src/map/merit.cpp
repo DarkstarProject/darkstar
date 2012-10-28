@@ -158,6 +158,9 @@ static const MeritCategoryInfo_t count[] =
     {6,10,7},  //MCATEGORY_SHC_2 
 };
 
+#define GetMeritCategory(merit) ((merit >> 6) - 1)      // получаем категорию из merit
+#define GetMeritID(merit) ((merit & 0x3F) >> 1)         // получаем смещение в категории из merit
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -178,20 +181,8 @@ CMeritPoints::CMeritPoints()
             merits[m++].id = ((i + 1) << 6) + (t << 1);
         }
     }
-    LoadingCharMerits();
-}
-
-/************************************************************************
-*                                                                       *
-*  Загружаем текущие merits персонажа                                   *
-*                                                                       *
-************************************************************************/
-
-void CMeritPoints::LoadingCharMerits()
-{
     m_LimitPoints = 0;
     m_MeritPoints = 0;
-    return;
 }
 
 /************************************************************************
@@ -241,7 +232,7 @@ void CMeritPoints::AddLimitPoints(uint16 points)
 
 void CMeritPoints::SetLimitPoints(uint16 points)
 {
-    m_LimitPoints = points;
+    m_LimitPoints = dsp_min(points, MAX_LIMIT_POINTS);
 }
 
 /************************************************************************
@@ -252,7 +243,7 @@ void CMeritPoints::SetLimitPoints(uint16 points)
 
 void CMeritPoints::SetMeritPoints(uint16 points)
 {
-    m_MeritPoints = points;
+    m_MeritPoints = dsp_min(points, MAX_MERIT_POINTS);
 }
 
 /************************************************************************
@@ -263,7 +254,7 @@ void CMeritPoints::SetMeritPoints(uint16 points)
 
 uint16 CMeritPoints::GetMaxMerits()
 {
-    return MAX_MERIT_POINTS;
+    return MAX_MERIT_POINTS; // TODO: удалить
 }
 
 /************************************************************************
@@ -277,9 +268,9 @@ Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
     DSP_DEBUG_BREAK_IF(merit <  MCATEGORY_START);
     DSP_DEBUG_BREAK_IF(merit >= MCATEGORY_COUNT);
 
-    DSP_DEBUG_BREAK_IF(((merit & 0x3F) >> 1) >= count[merit >> 6].MaxMerits);
+    DSP_DEBUG_BREAK_IF((GetMeritID(merit)) >= count[GetMeritCategory(merit)].MaxMerits);
 
-    return &Categories[(merit >> 6)-1][(merit & 0x3F) >> 1];
+    return &Categories[GetMeritCategory(merit)][GetMeritID(merit)];
 }
 
 /************************************************************************
