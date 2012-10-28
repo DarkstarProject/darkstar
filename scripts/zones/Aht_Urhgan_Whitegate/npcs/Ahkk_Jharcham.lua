@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0009) then
 		player:addQuest(AHT_URHGAN,KEEPING_NOTES);
-	else(csid == 0x000B) then
+	elseif(csid == 0x000B) then
 		player:moghouseFlag(16);
 		player:completeQuest(AHT_URHGAN,KEEPING_NOTES);
 	end
