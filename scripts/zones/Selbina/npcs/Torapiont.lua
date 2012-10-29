@@ -5,8 +5,6 @@
 -----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
-require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -21,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
 	
-player:showText(npc,TORAPIONT_SHOP_DIALOG);
+player:showText(npc,TextID_Selbina.TORAPIONT_SHOP_DIALOG);
 
 stock = {0x401B,11491,		--Claws
 	 0x4043,7727,		--Mythril Dagger

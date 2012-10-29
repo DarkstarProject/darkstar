@@ -5,11 +5,8 @@
 -- @zone 248
 -- @pos 61 -15 10
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -68,7 +65,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("theTenshodoShowdownCS",4);
 		player:delKeyItem(TENSHODO_ENVELOPE);
 		player:addKeyItem(SIGNED_ENVELOPE);
-		player:messageSpecial(KEYITEM_OBTAINED,SIGNED_ENVELOPE);
+		player:messageSpecial(TextID_Selbina.KEYITEM_OBTAINED,SIGNED_ENVELOPE);
 	end
 
 end;

@@ -9,7 +9,6 @@ package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -93,7 +92,7 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:unlockJob(0);
 		player:setVar("IsacioElderMemVar", 0);
-		player:messageSpecial(SUBJOB_UNLOCKED);
+		player:messageSpecial(TextID_Selbina.SUBJOB_UNLOCKED);
 		player:completeQuest(OTHER_AREAS, ELDER_MEMORIES);
 	end
 	

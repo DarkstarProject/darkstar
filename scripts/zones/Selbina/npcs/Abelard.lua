@@ -7,13 +7,10 @@
 --  quickly earn gil. However, as this is not a legitimate concern on private servers players may
 --  complete this quest even with no fame.
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 
@@ -135,25 +132,25 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() > 0) then
 			player:addQuest(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
 			player:addItem(571);
-			player:messageSpecial(ITEM_OBTAINED,571);
+			player:messageSpecial(TextID_Selbina.ITEM_OBTAINED,571);
 			player:setVar("anExplorer-ClayTablets",0);
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,571);
+			player:messageSpecial(TextID_Selbina.ITEM_CANNOT_BE_OBTAINED,571);
 		end
 	elseif (csid == 0x002a and option == 100) then	
 		if (player:getFreeSlotsCount() > 0) then
 			player:addItem(571);
-			player:messageSpecial(ITEM_OBTAINED,571);
+			player:messageSpecial(TextID_Selbina.ITEM_OBTAINED,571);
 			player:setVar("anExplorer-CurrentTablet",0);
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,571);
+			player:messageSpecial(TextID_Selbina.ITEM_CANNOT_BE_OBTAINED,571);
 		end
 	elseif (csid == 0x002c) then
 		if (player:getFreeSlotsCount() > 0) then
 			player:addItem(571);
-			player:messageSpecial(ITEM_OBTAINED,571);
+			player:messageSpecial(TextID_Selbina.ITEM_OBTAINED,571);
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,571);
+			player:messageSpecial(TextID_Selbina.ITEM_CANNOT_BE_OBTAINED,571);
 		end
 	elseif (csid == 0x0029 or csid == 0x002e or csid == 0x002f) then 
 		local currtab = player:getVar("anExplorer-CurrentTablet");
@@ -163,7 +160,7 @@ function onEventFinish(player,csid,option)
 			if (ZoneID[zone] == currtab) then
 				player:tradeComplete();
 				player:addGil(GIL_RATE*ZoneID[zone+1]);
-				player:messageSpecial(GIL_OBTAINED,GIL_RATE*ZoneID[zone+1]);
+				player:messageSpecial(TextID_Selbina.GIL_OBTAINED,GIL_RATE*ZoneID[zone+1]);
 				player:setVar("anExplorer-CurrentTablet",0);
 				break;
 			end
@@ -174,14 +171,14 @@ function onEventFinish(player,csid,option)
 		end
 		if (option == 100) then
 			player:addItem(571);
-			player:messageSpecial(ITEM_OBTAINED,571);
+			player:messageSpecial(TextID_Selbina.ITEM_OBTAINED,571);
 		end
 		if (option == 110) then
 			player:setVar("anExplorer-CurrentTablet",-1);
 		end
 		if ((tablets % (2*0x7fff)) >= 0x7fff and keyitem == false) then
 			player:addKeyItem(MAP_OF_THE_CRAWLERS_NEST);
-			player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_CRAWLERS_NEST);
+			player:messageSpecial(TextID_Selbina.KEYITEM_OBTAINED,MAP_OF_THE_CRAWLERS_NEST);
 		end
 	end
 end;

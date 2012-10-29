@@ -4,10 +4,8 @@
 -- Guild Merchant NPC: Clothcrafting Guild 
 -- @zone 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 
 require("scripts/globals/settings");
-require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -22,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
 	if(player:sendGuild(515,6,21,0)) then
-		player:showText(npc,WEAVERS_GUILD);
+		player:showText(npc,TextID_Selbina.CLOTHCRAFT_SHOP_DIALOG);
 	end
 end; 
 

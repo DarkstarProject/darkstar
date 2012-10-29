@@ -4,8 +4,6 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
-require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -44,7 +42,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 if (option == 0) then
 	player:setHomePoint();
-	player:messageSpecial(HOMEPOINT_SET);
+	player:messageSpecial(TextID_Selbina.HOMEPOINT_SET);
 end
 end;
 

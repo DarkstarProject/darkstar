@@ -5,8 +5,6 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
-require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -20,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,NOMAD_MOOGLE_DIALOG);
+	player:showText(npc,TextID_Selbina.NOMAD_MOOGLE_DIALOG);
 	player:sendMenu(1);
 end;
 

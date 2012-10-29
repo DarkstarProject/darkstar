@@ -5,8 +5,6 @@
 -----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
-require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -21,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
 	
-player:showText(npc,DOHDJUMA_SHOP_DIALOG);
+player:showText(npc,TextID_Selbina.DOHDJUMA_SHOP_DIALOG);
 
 stock = {0x0263,36,	--Rye Flour
 	 0x1393,233,	--Scroll of Sheepfoe Mambo

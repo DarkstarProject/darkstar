@@ -4,7 +4,6 @@
 -- Guild Merchant NPC: Fishing Guild 
 -- @zone 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Selbina/TextIDs");
@@ -22,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 	if(player:sendGuild(520,3,18,5)) then
-		player:showText(npc,FISHING_GUILD);
+		player:showText(npc,TextID_Selbina.FISHING_SHOP_DIALOG);
 	end
 end; 
 

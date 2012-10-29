@@ -5,13 +5,10 @@
 -- @zone 248
 -- @pos -19 -2 -16
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
