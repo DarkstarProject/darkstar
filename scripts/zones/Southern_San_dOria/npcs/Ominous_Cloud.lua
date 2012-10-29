@@ -1,13 +1,12 @@
 -----------------------------------
---  Area: Windurst Woods
+--  Area: Southern Sandoria
 --   NPC: Ominous Cloud
 --  Type: Traveling Merchant NPC
--- @zone: 241
---  @pos: -20.632 -3.939 -40.554
+--  @zone: 230
+--  @pos: -41.550 1.999 -2.845
 --
--- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 -----------------------------------
@@ -151,7 +150,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x02ba);
+	player:startEvent(0x02f7);
 end;
 
 -----------------------------------
