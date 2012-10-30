@@ -2814,7 +2814,10 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			{
 				uint16 meritId = PChar->PMeritPoints->GetMeritIndex(merit);
 				PChar->PMeritPoints->merits[meritId].count++;
-				PChar->PMeritPoints->SetMeritPoints(PChar->PMeritPoints->GetMeritPoints()-1);
+
+				//remove the correct amount of merits
+				Merit_t* MeritCost = PChar->PMeritPoints->GetMerit(merit);
+				PChar->PMeritPoints->SetMeritPoints(PChar->PMeritPoints->GetMeritPoints() - MeritCost->next);
 			}
 			else if (operation == 0)
 			{
