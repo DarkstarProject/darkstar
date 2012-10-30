@@ -2995,7 +2995,7 @@ void SaveQuestsList(CCharEntity* PChar)
 
 	Sql_Query(SqlHandle, Query,
         questslist,
-        PChar->id,
+     //   PChar->id,
         PChar->profile.fame[0],
         PChar->profile.fame[1],
         PChar->profile.fame[2],
@@ -3027,7 +3027,7 @@ void SaveMissionsList(CCharEntity* PChar)
 
 	Sql_Query(SqlHandle,Query,
         missionslist,
-        PChar->id,
+   //     PChar->id,
         PChar->profile.rankpoints,
 		PChar->profile.rank[0],
         PChar->profile.rank[1], 
