@@ -321,7 +321,8 @@ void LoadChar(CCharEntity* PChar)
           "titles,"         // 17
           "zones,"          // 18
           "missions,"       // 19
-          "playtime "       // 20
+          "playtime,"       // 20
+		  "merits "			// 21
         "FROM chars "
         "WHERE charid = %u";
 
@@ -380,7 +381,10 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,19,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
-        
+        length = 0;
+		int8* merits = NULL;
+		Sql_GetData(SqlHandle,21,&merits,&length);
+		memcpy(PChar->PMeritPoints->merits, merits, (length > sizeof(PChar->PMeritPoints->merits) ? sizeof(PChar->PMeritPoints->merits) : length));
 	}
 
     fmtQuery = 
@@ -3001,6 +3005,27 @@ void SaveQuestsList(CCharEntity* PChar)
         PChar->profile.fame[3],
         PChar->id);
 }
+
+/************************************************************************
+*																		*
+*  Save Character Merits												*
+*																		*
+************************************************************************/
+
+void SaveCharMerits(CCharEntity* PChar)
+{
+	const int8* Query = 
+        "UPDATE chars "
+        "SET "
+        "merits = '%s' "
+        "WHERE charid = %u;";
+	
+	int8 merits[sizeof(PChar->PMeritPoints->merits)*2+1];
+	Sql_EscapeStringLen(SqlHandle,merits,(const int8*)PChar->PMeritPoints->merits,sizeof(PChar->PMeritPoints->merits));
+
+	Sql_Query(SqlHandle,Query, merits, PChar->id);
+}
+
 
 /************************************************************************
 *																		*

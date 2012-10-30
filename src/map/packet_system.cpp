@@ -2804,11 +2804,36 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
         break;
         case 3: // изменение merit
         {
+			//get the merit that player selected
             MERIT_TYPE merit = (MERIT_TYPE)(RBUFW(data,(0x06)) << 1);
 
-            // TODO: update merit info
+			//operation 1 = Add Upgrade, also removes merit point.
+			//operation 2 = Remove Upgrade.
+
+			if (operation == 1)
+			{
+				uint16 meritId = PChar->PMeritPoints->GetMeritIndex(merit);
+				PChar->PMeritPoints->merits[meritId].count++;
+				PChar->PMeritPoints->SetMeritPoints(PChar->PMeritPoints->GetMeritPoints()-1);
+			}
+			else if (operation == 0)
+			{
+				uint16 meritId = PChar->PMeritPoints->GetMeritIndex(merit);
+				PChar->PMeritPoints->merits[meritId].count--;
+			}
+
+			//update changes to client
+			PChar->pushPacket(new CMeritPointsCacegoriesPacket(PChar, 0));
+			PChar->pushPacket(new CMeritPointsCacegoriesPacket(PChar, 1));
+			PChar->pushPacket(new CMeritPointsCacegoriesPacket(PChar, 2));
+			PChar->pushPacket(new CMeritPointsCacegoriesPacket(PChar, 3));
+			PChar->pushPacket(new CMenuMeritPacket(PChar));
+			charutils::SaveCharExp(PChar, PChar->GetMJob());
+			charutils::SaveCharMerits(PChar);
         }
         break;
+
+
     }
 	return;
 }

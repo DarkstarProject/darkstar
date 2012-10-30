@@ -447,12 +447,18 @@ struct Merit_t
     uint8  count;   // текущее количество усилений
 };
 
+
+struct Merit_I
+{
+	uint16 index;
+	uint16 id;
+};
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
 *                                                                       *
 ************************************************************************/
-
 class CMeritPoints
 {
     public:
@@ -468,14 +474,19 @@ class CMeritPoints
 		void	 SetMeritPoints(uint16 points);					// used for loading player merit points on login
 		uint16	 GetMaxMerits();
 
+		Merit_I  mIndexies[241];
+		uint16  GetMeritIndex(MERIT_TYPE merit);
+
         Merit_t  merits[241];
+        Merit_t* GetMerit(MERIT_TYPE merit);	
 
     private:
+
 
         uint16   m_LimitPoints;
         uint8    m_MeritPoints;
 
-        Merit_t* GetMerit(MERIT_TYPE merit);
+		Merit_I* MeritIndexes[MCATEGORY_COUNT/64-1];
         Merit_t* Categories[MCATEGORY_COUNT/64-1];
 };
 

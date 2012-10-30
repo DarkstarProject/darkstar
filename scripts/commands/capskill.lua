@@ -55,6 +55,10 @@ function onTrigger(player,skill)
 		player:capSkill(39);
 	elseif(skill=="singing") then
 		player:capSkill(40);
+	elseif(skill=="string") then
+		player:capSkill(41);
+	elseif(skill=="wind") then
+		player:capSkill(42);
 	else
 		print("Unknown skill type: "..skill);
 	end

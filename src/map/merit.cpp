@@ -179,7 +179,10 @@ CMeritPoints::CMeritPoints()
         {
             merits[m].next = upgrade[count[i].UpgradeID][0];
             merits[m++].id = ((i + 1) << 6) + (t << 1);
-        }
+        
+			mIndexies[m-1].index = m-1;
+			mIndexies[m-1].id = merits[m-1].id;
+		}
     }
     m_LimitPoints = 0;
     m_MeritPoints = 0;
@@ -271,6 +274,25 @@ Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
     DSP_DEBUG_BREAK_IF((GetMeritID(merit)) >= count[GetMeritCategory(merit)].MaxMerits);
 
     return &Categories[GetMeritCategory(merit)][GetMeritID(merit)];
+}
+
+/************************************************************************
+*                                                                       *
+*  merit merit index 0 1 2 3 4 5 . . .		                            *
+*                                                                       *
+************************************************************************/
+
+uint16 CMeritPoints::GetMeritIndex(MERIT_TYPE merit)
+{
+	Merit_t* PMerit = &Categories[GetMeritCategory(merit)][GetMeritID(merit)];
+
+	for (uint16 i = 0; i < sizeof(mIndexies)/sizeof(int); ++i)
+	{
+		if (PMerit->id == mIndexies[i].id)
+		{
+			return mIndexies[i].index;
+		}
+	}
 }
 
 /************************************************************************
