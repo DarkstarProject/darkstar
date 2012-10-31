@@ -1449,7 +1449,33 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 
 uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 {
-	uint8 num = PWeapon->getHitCount() + ((rand()%100 < PEntity->getMod(MOD_TRIPLE_ATTACK)) ? 2 : ((rand()%100 < PEntity->getMod(MOD_DOUBLE_ATTACK)) ? 1 : 0));
+	uint8 num = PWeapon->getHitCount();
+
+	uint8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
+	uint8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
+
+	//check for merit upgrades
+	if (PEntity->objtype == TYPE_PC)
+	{
+		CCharEntity* PChar = (CCharEntity*)PEntity;
+
+		//merit chance only applies if player has the job trait
+		if (charutils::hasTrait(PChar, TRAIT_TRIPLE_ATTACK)) {
+			tripleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_TRIPLE_ATTACK_RATE,PEntity->GetMLevel());
+		}
+		if (charutils::hasTrait(PChar, TRAIT_DOUBLE_ATTACK)) {
+			doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE,PEntity->GetMLevel());
+		}
+	}
+
+	if (rand()%100 <= tripleAttack)
+	{		
+		num +=2; 
+	}
+	else if (rand()%100 <= doubleAttack) 
+	{
+		num +=1;
+	}
 
 	if(PEntity->GetMJob() == JOB_SAM)
 	{

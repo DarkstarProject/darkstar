@@ -2117,10 +2117,14 @@ void CAICharNormal::ActionAttack()
 			{ 
 				numattacksLeftHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_SUB]);
 			}
-			else if(m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH){ //h2h equipped!
+			if(m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH){ //h2h equipped!
 				numattacksLeftHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]);
 				if(m_PChar->GetMJob() == JOB_MNK)
-					numKickAttacks = ((rand()%100 < m_PChar->getMod(MOD_KICK_ATTACK)) ? 1 : 0);
+				{
+					uint8 kickAttackChance = m_PChar->getMod(MOD_KICK_ATTACK);
+					kickAttackChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE,m_PChar->GetMLevel());
+					numKickAttacks = ((rand()%100 <= kickAttackChance) ? 1 : 0);
+				}
 			}
 
 			uint8 numattacksRightHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]);
