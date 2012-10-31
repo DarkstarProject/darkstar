@@ -875,6 +875,10 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.exp_rate = atof(w2);
         }
+        else if (strcmp(w1,"exp_loss_rate") == 0)
+        {
+            map_config.exp_loss_rate = atof(w2);
+        }
 		else if (strcmp(w1,"thf_in_party_for_drops") == 0)
         {
             map_config.thf_in_party_for_drops = atof(w2);

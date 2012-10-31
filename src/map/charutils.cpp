@@ -2687,7 +2687,7 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 
 	//apply retention percent
 	exploss = exploss*(1-retainPercent);
-	exploss = exploss * map_config.exp_rate;
+	exploss = exploss * map_config.exp_loss_rate;
 	
 	//loses xxx exp message
 	PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exploss, 0, 10));
@@ -2803,6 +2803,7 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 {
 	if (PChar->isDead()) return;
 	exp = exp * map_config.exp_rate;
+	uint16 currentExp = PChar->jobs.exp[PChar->GetMJob()];
 	bool onLimitMode = false;
 
 	//Incase player de-levels to 74 on the field
@@ -2873,7 +2874,7 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 
 	
 	//player levels up
-    if (PChar->jobs.exp[PChar->GetMJob()] >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && onLimitMode == false)
+    if ((currentExp + exp) >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && onLimitMode == false)
     {
         if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai)
         {
