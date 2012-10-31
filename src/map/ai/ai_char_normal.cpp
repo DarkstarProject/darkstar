@@ -2374,7 +2374,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
 
     uint16 xpReturned = expLost * ratioReturned;
 
-    charutils::AddExperiencePoints(m_PChar, m_PChar, xpReturned);
+    charutils::AddExperiencePoints(true, m_PChar, m_PChar, xpReturned);
 
 	m_ActionType = ACTION_NONE;
 }

@@ -2501,10 +2501,10 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 					}
 					if (PChar->PParty != NULL && PChar->PParty->m_PAlliance != NULL && PMob->m_Type == MOBTYPE_NORMAL) 
 					{
-						if ((Pzone > 38 && Pzone < 43) || (Pzone > 133 && Pzone < 136) || (Pzone > 184 && Pzone < 189)) AddExperiencePoints(PMember, PMob, exp, 1, false);
-						else AddExperiencePoints(PMember, PMob, 1, 1, false);
+						if ((Pzone > 38 && Pzone < 43) || (Pzone > 133 && Pzone < 136) || (Pzone > 184 && Pzone < 189)) AddExperiencePoints(false, PMember, PMob, exp, 1, false);
+						else AddExperiencePoints(false, PMember, PMob, 1, 1, false);
 					}
-                    else AddExperiencePoints(PMember, PMob, exp, baseexp, chainactive);
+                    else AddExperiencePoints(false, PMember, PMob, exp, baseexp, chainactive);
                 }
             }
         }
@@ -2662,7 +2662,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 				PChar->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
 			}
 		}
-        AddExperiencePoints(PChar, PMob, exp, baseexp, chainactive);
+        AddExperiencePoints(false, PChar, PMob, exp, baseexp, chainactive);
     }
 }
 
@@ -2799,14 +2799,14 @@ bool hasInvalidJugPetAmmo(CCharEntity* PChar){
 *                                                                       *
 ************************************************************************/
 
-void AddExperiencePoints(CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint32 baseexp, bool isexpchain)
+void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint32 baseexp, bool isexpchain)
 {
 	if (PChar->isDead()) return;
 	exp = exp * map_config.exp_rate;
 	bool onLimitMode = false;
 
 	//Incase player de-levels to 74 on the field
-	if(PChar->MeritMode == true && PChar->GetMLevel() > 74) 
+	if(PChar->MeritMode == true && PChar->GetMLevel() > 74 && expFromRaise == false) 
 		onLimitMode = true;
 
 
