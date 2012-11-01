@@ -22,11 +22,11 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `pet_list`
+-- Structure de la table 'merits'
 --
 
 DROP TABLE IF EXISTS `merits`;
-CREATE TABLE IF NOT EXISTS `pet_list` (
+CREATE TABLE IF NOT EXISTS `merits` (
   `meritid` smallint(5) unsigned NOT NULL,
   `name` char(25) NOT NULL,
   `value` smallint(5) NOT NULL DEFAULT '0',
