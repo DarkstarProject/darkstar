@@ -18,13 +18,15 @@ require("scripts/globals/common");
 --See chocoprice.lua to adjust chocobo stables.
 --require("scripts/globals/chocoprice");
 
+-- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; --The initial level cap for new players.  There seems to be a hardcap of 255.
-MAX_LEVEL = 75; -- Level max of the server
+MAX_LEVEL = 75; -- Level max of the server, works by disabling Maat quests.
 START_GIL = 10; --Amount of gil given to newly created characters.
-START_INVENTORY = 30; --Amount of EXTRA slots beyond 30 to be given to a character.  Do not set above 80!
+START_INVENTORY = 30; --Starting inventory and satchel size.  Ignores values < 30.  Do not set above 80!
 OPENING_CUTSCENE_ENABLE = 0; --Set to 1 to enable opening cutscenes, 0 to disable.
 SUBJOB_QUEST_LEVEL = 18; --Minimum level to accept either subjob quest.  Set to 0 to start the game with subjobs unlocked.
 ADVANCED_JOB_LEVEL = 30; --Minimum level to accept advanced job quests.  Set to 0 to start the game with advanced jobs.
+ALL_MAPS = 0; -- Set to 1 to give starting characters all the maps.
 
 SHOP_PRICE = 1.000; --Multiplies prices in NPC shops.
 GIL_RATE   = 1.000; --Multiplies gil earned from quests.  Won't always display in game.
@@ -76,14 +78,7 @@ RELIC_1ST_UPGRADE_WAIT_TIME = 100;   -- wait time for 1st relic upgrade (stage 1
 RELIC_2ND_UPGRADE_WAIT_TIME = 100;   -- wait time for 2nd relic upgrade (stage 2 -> stage 3) in seconds. 604800s = 1 RL week.
 RELIC_3RD_UPGRADE_WAIT_TIME = 100;   -- wait time for 3rd relic upgrade (stage 3 -> stage 4) in seconds. 295200s = 82 hours.
 
-ALL_MAPS = 0; --Set to 1 to give starting characters all the maps.
-JINX_MODE_2005 = 0; --Set to 1 to give starting characters swimsuits from 2005.
-JINX_MODE_2008 = 0; --Set to 1 to give starting characters swimsuits from 2008.
-SUMMERFEST = 0; --Set to 1 to give starting characters Far East dress.
-CHRISTMAS = 0; --Set to 1 to give starting characters Christmas dress.
-HALLOWEEN = 0; --Set to 1 to give starting characters Halloween dress.
-
---QUEST/MISSION SPECIFIC SETTINGS
+-- QUEST/MISSION SPECIFIC SETTINGS
 WSNM_LEVEL = 70; -- Min Level to get WSNM Quests
 WSNM_SKILL_LEVEL = 240;
 AF1_QUEST_LEVEL = 40; -- Minimum level to start AF1 quest
@@ -91,21 +86,22 @@ AF2_QUEST_LEVEL = 50; -- Minimum level to start AF2 quest
 AF1_FAME = 20; -- base fame for completing an AF1 quest
 AF2_FAME = 40; -- base fame for completing an AF2 quest
 AF3_FAME = 60; -- base fame for completing an AF3 quest
-DEBUG_MODE = 1; -- Set to 1 to activate auto-warping to the next location (only supported by certain missions / quests).
+DEBUG_MODE = 0; -- Set to 1 to activate auto-warping to the next location (only supported by certain missions / quests).
 QM_RESET_TIME = 300; -- Default time (in seconds) you have from killing ???-pop mission NMs to click again and get key item, until ??? resets.
 
---FIELDS OF VALOR SETTINGS
+-- FIELDS OF VALOR SETTINGS
 REGIME_WAIT = 1; --Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
+FIELD_MANUALS = 1; -- Enables Fields of Valor manuals
 LOW_LEVEL_REGIME = 0; --Allow people to kill regime targets even if they give no exp, allowing people to farm regime targets at 75 in low level areas.
 
---JOB ABILITY/TRAIT SPECIFIC SETTINGS
+-- JOB ABILITY/TRAIT SPECIFIC SETTINGS
 SCAVENGE_RATE = 0.1; --The chance of obtaining an item when you use the Ranger job ability Scavenge.  Do not set above 1!
 STATUS_RESIST_MULTIPLIER = 10; -- Sets the strength of status resist traits. 
-CIRCLE_DURATION = 600; -- Sets the duration of circle effects, in seconds. Retail is 60 seconds.
+CIRCLE_DURATION = 300; -- Sets the duration of circle effects, in seconds. Retail is 5 minutes.
 CIRCLE_KILLER_EFFECT = 20; -- Intimidation percentage granted by circle effects. (made up number)
 KILLER_EFFECT = 10; -- Intimidation percentage from killer job traits. 
 
---SPELL SPECIFIC SETTINGS
+-- SPELL SPECIFIC SETTINGS
 MILK_OVERWRITE = 1;	--Set to 1 to allow Milk and Regen to overwrite each other.  Default is 1.
 JUICE_OVERWRITE = 1; --Set to 1 to allow Juice and Refresh to overwrite each other.  Default is 1.
 DIA_OVERWRITE = 1; --Set to 1 to allow Bio to overwrite same tier Dia.  Default is 1.
@@ -127,12 +123,19 @@ ABSORB_SPELL_AMOUNT = 8; -- how much of a stat gets absorbed by DRK absorb spell
 ABSORB_SPELL_TICK = 9; -- duration of 1 absorb spell tick
 SNEAK_INVIS_DURATION_MULTIPLIER = 1; -- multiplies duration of sneak,invis,deodorize to reduce player torture. 1 = retail behavior. MUST BE INTEGER.
 
---CELEBRATIONS
-EXPLORER_MOOGLE = 1;
+-- CELEBRATIONS
+EXPLORER_MOOGLE = 1; -- Enables Explorer Moogle teleports
 EXPLORER_MOOGLE_LEVELCAP = 10;
+JINX_MODE_2005 = 0; -- Set to 1 to give starting characters swimsuits from 2005.  Ex: Hume Top
+JINX_MODE_2008 = 0; -- Set to 1 to give starting characters swimsuits from 2008.  Ex: Custom Top
+JINX_MODE_2012 = 0; -- Set to 1 to give starting characters swimsuits from 2012.  Ex: Marine Top
+SUMMERFEST_2004 = 0; -- Set to 1 to give starting characters Far East dress from 2004.  Ex: Onoko Yukata
+SUNBREEZE_2009 = 0; -- Set to 1 to give starting characters Far East dress from 2009.  Ex: Otokogusa Yukata
+SUNBREEZE_2011 = 0; -- Set to 1 to give starting characters Far East dress from 2011.  Ex: Hikogami Yukata
+CHRISTMAS = 0; -- Set to 1 to give starting characters Christmas dress.
+HALLOWEEN = 0; -- Set to 1 to give starting characters Halloween items.
 
 --MISC
-FIELD_MANUALS = 1;
 HOMEPOINT_HEAL = 0; --Set to 1 if you want Home Points to heal you like in single-player Final Fantasy games.
 RIVERNE_PORTERS = 120; -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
-LANTERNS_STAY_LIT = 1200; -- time in seconds that lanterns in the Den of Rancor stay lit. 
+LANTERNS_STAY_LIT = 1200; -- time in seconds that lanterns in the Den of Rancor stay lit.

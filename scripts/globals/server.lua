@@ -4,10 +4,14 @@
 -- 
 -----------------------------------
 
-require("scripts/globals/mobs");
-require("scripts/globals/titles");
 require("scripts/globals/conquest");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
+require("scripts/globals/mobs");
+require("scripts/globals/quests");
 require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- OnServerStart
@@ -31,8 +35,10 @@ end;
 
 function CharCreate(player)
 
+	local race = player:getRace();
+
 	-- ADD RACE SPECIFIC STARTGEAR
-	switch(player:getRace()) : caseof
+	switch(race) : caseof
 	{
 		-- HUME MALE
  		[1]	= function (x)
@@ -144,27 +150,27 @@ function CharCreate(player)
  	switch (player:getNation()) : caseof
 	{
  		-- SANDY CITIZEN
-		[0x00] = function (x)
-			if ((player:getRace() == 0x03) or (player:getRace() == 0x04))
+		[0] = function (x)
+			if ((race == 3) or (race == 4))
 				then player:addItem(0x34B7);
 			end;
-			player:addKeyItem(0x181);
+			player:addKeyItem(MAP_OF_THE_SANDORIA_AREA);
 		end,
 
  		-- BASTOK CITIZEN
-		[0x01] = function (x)
-			if (((player:getRace() == 0x01) or (player:getRace() == 0x02) or (player:getRace() == 0x08)))
+		[1] = function (x)
+			if (((race == 1) or (race == 2) or (race == 8)))
 				then player:addItem(0x34B9);
 			end;
-			player:addKeyItem(0x182);
+			player:addKeyItem(MAP_OF_THE_BASTOK_AREA);
 		end,
 
  		-- WINDY CITIZEN
-	 	[0x02] = function(x)
-			if (((player:getRace() == 0x05) or (player:getRace() == 0x06) or (player:getRace() == 0x07)))
+	 	[2] = function(x)
+			if (((race == 5) or (race == 6) or (race == 7)))
 				then player:addItem(0x34B8);
 			end;
-			player:addKeyItem(0x183);
+			player:addKeyItem(MAP_OF_THE_WINDURST_AREA);
  		end,
 
 		default = function (x) end,

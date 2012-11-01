@@ -386,3 +386,16 @@ end;
 function toRuLudeGardens(player)
 	player:setPos(0.000, 9.000, -38.670, -67, 243);
 end;
+
+-----------------------------------
+--  debugTeleport
+-----------------------------------
+
+function debugTeleport(player,npcid)
+	if (DEBUG_MODE == 1) then
+		local npc = GetNPCByID(npcid);
+		if (npc ~= nil) then
+			player:setPos(npc:getXPos(), npc:getYPos(), npc:getZPos(), 0, npc:getZone());
+		end
+	end
+end;
