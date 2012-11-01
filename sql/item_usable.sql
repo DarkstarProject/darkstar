@@ -1652,6 +1652,14 @@ INSERT INTO `item_usable` VALUES (6058, 287, 'klimaform_schema', 1, 1, 12, 5, 0,
 INSERT INTO `item_usable` VALUES (6059, 308, 'animus_augeo_schema', 1, 1, 11, 5, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (6060, 309, 'animus_minuo_schema', 1, 1, 11, 5, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (6061, 495, 'adloquium_schema', 1, 1, 11, 5, 0, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (10264, 0, 'marine_gilet_+1', 1, 8, 0, 0, 1, 30, 86400, 0);
+INSERT INTO `item_usable` VALUES (10265, 0, 'marine_top_+1', 1, 8, 0, 0, 1, 30, 86400, 0);
+INSERT INTO `item_usable` VALUES (10266, 0, 'woodsy_gilet_+1', 1, 8, 0, 0, 1, 30, 86400, 0);
+INSERT INTO `item_usable` VALUES (10267, 0, 'woodsy_top_+1', 1, 8, 0, 0, 1, 30, 86400, 0);
+INSERT INTO `item_usable` VALUES (10268, 0, 'creek_maillot_+1', 1, 8, 0, 0, 1, 30, 86400, 0);
+INSERT INTO `item_usable` VALUES (10269, 0, 'creek_top_+1', 1, 8, 0, 0, 1, 30, 86400, 0);
+INSERT INTO `item_usable` VALUES (10270, 0, 'river_top_+1', 1, 8, 0, 0, 1, 30, 86400, 0);
+INSERT INTO `item_usable` VALUES (10271, 0, 'dune_gilet_+1', 1, 8, 0, 0, 1, 30, 86400, 0);
 INSERT INTO `item_usable` VALUES (10875, 0, 'snowman_cap', 1, 1, 0, 0, 1, 30, 3600, 0);
 INSERT INTO `item_usable` VALUES (11273, 0, 'custom_gilet_+1', 1, 8, 0, 0, 1, 30, 72000, 0);
 INSERT INTO `item_usable` VALUES (11274, 0, 'custom_top_+1', 1, 8, 0, 0, 1, 30, 72000, 0);

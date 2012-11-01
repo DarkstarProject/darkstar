@@ -33,8 +33,6 @@ CREATE TABLE `item_basic` (
 -- ----------------------------
 -- Records of item_basic
 -- ----------------------------
-INSERT INTO `item_basic` VALUES ('10250', 'moogle_suit', 'moogle_suit', '1', '2080', '0', '0', '0');
-INSERT INTO `item_basic` VALUES ('10429', 'moogle_masque', 'moogle_masque', '1', '2080', '0', '0', '0');
 INSERT INTO `item_basic` VALUES ('1', 'pile_of_chocobo_bedding', 'chocobo_bedding', '1', '24640', '0', '0', '198');
 INSERT INTO `item_basic` VALUES ('2', 'simple_bed', 'simple_bed', '1', '32', '34', '0', '391');
 INSERT INTO `item_basic` VALUES ('3', 'oak_bed', 'oak_bed', '1', '32', '34', '0', '1403');
@@ -5113,6 +5111,40 @@ INSERT INTO `item_basic` VALUES ('8675', 'mana_conserver', '', '1', '0', '99', '
 INSERT INTO `item_basic` VALUES ('8676', 'mana_tank_ii', '', '1', '0', '99', '0', '0');
 INSERT INTO `item_basic` VALUES ('8677', 'smoke_screen', '', '1', '0', '99', '0', '0');
 INSERT INTO `item_basic` VALUES ('8678', 'economizer', '', '1', '0', '99', '0', '0');
+INSERT INTO `item_basic` VALUES ('10250', 'moogle_suit', 'moogle_suit', '1', '2080', '0', '0', '0');
+INSERT INTO `item_basic` VALUES ('10256', 'marine_gilet', 'marine_gilet', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10257', 'marine_top', 'marine_top', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10258', 'woodsy_gilet', 'woodsy_gilet', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10259', 'woodsy_top', 'woodsy_top', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10260', 'creek_maillot', 'creek_maillot', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10261', 'creek_top', 'creek_top', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10262', 'river_top', 'river_top', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10263', 'dune_gilet', 'dune_gilet', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10264', 'marine_gilet_+1', 'marine_gilet_+1', '1', '64592', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10265', 'marine_top_+1', 'marine_top_+1', '1', '64592', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10266', 'woodsy_gilet_+1', 'woodsy_gilet_+1', '1', '64592', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10267', 'woodsy_top_+1', 'woodsy_top_+1', '1', '64592', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10268', 'creek_maillot_+1', 'creek_maillot_+1', '1', '64592', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10269', 'creek_top_+1', 'creek_top_+1', '1', '64592', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10270', 'river_top_+1', 'river_top_+1', '1', '64592', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10271', 'dune_gilet_+1', 'dune_gilet_+1', '1', '64592', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10330', 'marine_boxers', 'marine_boxers', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10331', 'marine_shorts', 'marine_shorts', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10332', 'woodsy_boxers', 'woodsy_boxers', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10333', 'woodsy_shorts', 'woodsy_shorts', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10334', 'creek_boxers', 'creek_boxers', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10335', 'creek_shorts', 'creek_shorts', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10336', 'river_shorts', 'river_shorts', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10337', 'dune_boxers', 'dune_boxers', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10338', 'marine_boxers_+1', 'marine_boxers_+1', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10339', 'marine_shorts_+1', 'marine_shorts_+1', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10340', 'woodsy_boxers_+1', 'woodsy_boxers_+1', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10341', 'woodsy_shorts_+1', 'woodsy_shorts_+1', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10342', 'creek_boxers_+1', 'creek_boxers_+1', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10343', 'creek_shorts_+1', 'creek_shorts_+1', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10344', 'river_shorts_+1', 'river_shorts_+1', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10345', 'dune_boxers_+1', 'dune_boxers_+1', '1', '63568', '0', '1', '0');
+INSERT INTO `item_basic` VALUES ('10429', 'moogle_masque', 'moogle_masque', '1', '2080', '0', '0', '0');
 INSERT INTO `item_basic` VALUES ('10450', 'ogiers_surcoat', 'ogiers_surcoat', '1', '63568', '99', '0', '0');
 INSERT INTO `item_basic` VALUES ('10451', 'athoss_tabard', 'athoss_tabard', '1', '63568', '99', '0', '0');
 INSERT INTO `item_basic` VALUES ('10452', 'rubeus_jacket', 'rubeus_jacket', '1', '63568', '99', '0', '0');
