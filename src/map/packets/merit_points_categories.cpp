@@ -81,6 +81,14 @@ CMeritPointsCacegoriesPacket::CMeritPointsCacegoriesPacket(CCharEntity* PChar, u
             (*(Merit_t*)(data+(0x08)-4 + sizeof(Merit_t) * i)).next = 0; // обнуляем значение next у всех merit
         }
     }
+	else
+	{
+        for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
+        {
+			(*(Merit_t*)(data+(0x08)-4 + sizeof(Merit_t) * i)).next = 
+				PChar->PMeritPoints->GetNextMeritUpgrade(PChar->PMeritPoints->merits[i+offset].id/64-1 , PChar->PMeritPoints->merits[i+offset].count );
+        }
+	}
     WBUFB(data,(0x04)-4) = 0x3D;
 }
 

@@ -22,7 +22,7 @@
 */
 
 #include "merit.h"
-
+#include "../common/showmsg.h"
 #include <string.h>
 
 /************************************************************************
@@ -50,14 +50,14 @@ static uint8 upgrade[8][16] =
 #else
 static uint8 upgrade[8][9] =
 {
-    {1,2,3,4,5,5,5,5},
-    {3,6,9,9,9},
-    {1,2,3,3,3,3,3,3},
-    {1,2,3,3},
-    {1,2,3,3,3,3,3,3},
-    {1,2,3,4},
-    {1,2,3,4,5},
-    {3,4,5,5,5},
+    {1,2,3,4,5,5,5,5},			// HP-MP
+    {3,6,9,9,9},				// Attributes
+    {1,2,3,3,3,3,3,3},			// Weapon Skills	
+    {1,2,3,3},					// Defensive Skills 
+    {1,2,3,3,3,3,3,3},			// Magic Skills	
+    {1,2,3,4},					// Others
+    {1,2,3,4,5},				// Job Group 1
+    {3,4,5,5,5},				// Job Group 2
 };
 #define MAX_LIMIT_POINTS  10000 // количество опыта для получения одного merit
 #define MAX_MERIT_POINTS  10    // максимальное количество неиспользованных merit
@@ -278,7 +278,7 @@ Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
 
 /************************************************************************
 *                                                                       *
-*  merit merit index 0 1 2 3 4 5 . . .		                            *
+*  merit index 0 1 2 3 4 5 . . .			                            *
 *                                                                       *
 ************************************************************************/
 
@@ -293,6 +293,22 @@ uint16 CMeritPoints::GetMeritIndex(MERIT_TYPE merit)
 			return mIndexies[i].index;
 		}
 	}
+}
+
+
+/************************************************************************
+*                                                                       *
+*  get next merit upgrade					                            *
+*                                                                       *
+************************************************************************/
+
+uint16 CMeritPoints::GetNextMeritUpgrade(uint16 catId, uint16 MeritCount)
+{
+	//TODO: find a better way of doing this.
+	//Defence and Combat skills share the same Catogory yet have different maxmerits
+	if (catId == 3) catId = 4;
+
+	return upgrade[count[catId].UpgradeID][MeritCount];
 }
 
 /************************************************************************

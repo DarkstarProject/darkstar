@@ -465,29 +465,30 @@ class CMeritPoints
 
         CMeritPoints();
 
-        uint16   GetLimitPoints();
-        uint8    GetMeritPoints();
-        int32    GetMeritValue(MERIT_TYPE merit, uint8 lvl);
+        uint16		GetLimitPoints();
+        uint8		GetMeritPoints();
+        int32		GetMeritValue(MERIT_TYPE merit, uint8 lvl);
 
-        void     AddLimitPoints(uint16 points);					// automatically adds merit points > 10000
-		void	 SetLimitPoints(uint16 points);					// used for loading player limit points on login
-		void	 SetMeritPoints(uint16 points);					// used for loading player merit points on login
-		uint16	 GetMaxMerits();
+        void		AddLimitPoints(uint16 points);					// automatically adds merit points > 10000
+		void		SetLimitPoints(uint16 points);					// used for loading player limit points on login
+		void		SetMeritPoints(uint16 points);					// used for loading player merit points on login
+		uint16		GetMaxMerits();
 
-		Merit_I  mIndexies[241];
-		uint16  GetMeritIndex(MERIT_TYPE merit);
+		Merit_I		mIndexies[241];
+		uint16		GetMeritIndex(MERIT_TYPE merit);
 
-        Merit_t  merits[241];
-        Merit_t* GetMerit(MERIT_TYPE merit);	
+		uint16		GetNextMeritUpgrade(uint16 catId, uint16 count);
+        
+		Merit_t		merits[241];
+        Merit_t*	GetMerit(MERIT_TYPE merit);	
 
     private:
 
+        uint16		m_LimitPoints;
+        uint8		m_MeritPoints;
 
-        uint16   m_LimitPoints;
-        uint8    m_MeritPoints;
-
-		Merit_I* MeritIndexes[MCATEGORY_COUNT/64-1];
-        Merit_t* Categories[MCATEGORY_COUNT/64-1];
+		Merit_I*	MeritIndexes[MCATEGORY_COUNT/64-1];
+        Merit_t*	Categories[MCATEGORY_COUNT/64-1];
 };
 
 #endif
