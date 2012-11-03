@@ -504,8 +504,15 @@ end
 
 function checkRegime(killer,mob,rid,index)
 
+	partyType = killer:checkSoloPartyAlliance();
+
+	if(killer:checkFovAllianceAllowed() == 1) then
+		partyType = 1;
+	end
+print("the number is " .. killer:checkFovAllianceAllowed() .. "!");
+
 	if(killer:getVar("fov_regimeid") == rid) then --player is doing this regime
-		if ((killer:checkSoloPartyAlliance() < 2) and (mob:checkBaseExp()) and (killer:checkDistance(mob) < 100)) then
+		if ((partyType < 2) and (mob:checkBaseExp()) and (killer:checkDistance(mob) < 100)) then
             --get the number of mobs needed/killed
             local needed = killer:getVar("fov_numneeded"..index);
             local killed = killer:getVar("fov_numkilled"..index);

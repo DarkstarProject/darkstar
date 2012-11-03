@@ -5043,6 +5043,18 @@ inline int32 CLuaBaseEntity::checkExpPoints(lua_State *L){
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::checkFovAllianceAllowed(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	uint8 FovAlliance = map_config.fov_allow_alliance;
+
+	lua_pushinteger( L,FovAlliance);
+	return 1;
+}
+
+
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -5247,6 +5259,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkBaseExp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkExpPoints),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkFovAllianceAllowed),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasImmunity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
