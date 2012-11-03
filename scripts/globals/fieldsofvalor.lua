@@ -509,7 +509,7 @@ function checkRegime(killer,mob,rid,index)
 	if(killer:checkFovAllianceAllowed() == 1) then
 		partyType = 1;
 	end
-print("the number is " .. killer:checkFovAllianceAllowed() .. "!");
+
 
 	if(killer:getVar("fov_regimeid") == rid) then --player is doing this regime
 		if ((partyType < 2) and (mob:checkBaseExp()) and (killer:checkDistance(mob) < 100)) then
