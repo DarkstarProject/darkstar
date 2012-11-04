@@ -500,7 +500,7 @@ class CMeritPoints
 
         Merit_t     merits[MERITS_COUNT];
 
-        Merit_t*    MeritPointer(MERIT_TYPE merit);
+        Merit_t*    GetMeritPointer(MERIT_TYPE merit);
         Merit_t*    Categories[MCATEGORY_COUNT/64-1];
 };
 

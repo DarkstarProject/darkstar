@@ -285,7 +285,7 @@ bool CMeritPoints::IsMeritExist(MERIT_TYPE merit)
 
 const Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
 {
-    return MeritPointer(merit);
+    return GetMeritPointer(merit);
 }
 
 /************************************************************************
@@ -294,7 +294,7 @@ const Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
 *                                                                       *
 ************************************************************************/
 
-Merit_t* CMeritPoints::MeritPointer(MERIT_TYPE merit)
+Merit_t* CMeritPoints::GetMeritPointer(MERIT_TYPE merit)
 {
     DSP_DEBUG_BREAK_IF(!IsMeritExist(merit));
 
@@ -320,9 +320,14 @@ const Merit_t* CMeritPoints::GetMerits()
 
 void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
 {
-    Merit_t* PMerit = MeritPointer(merit);
+    Merit_t* PMerit = GetMeritPointer(merit);
 
-    PMerit->next = upgrade[count[GetMeritCategory(merit)].UpgradeID][++PMerit->count];
+    if (m_MeritPoints >= PMerit->next)
+    {
+        m_MeritPoints -= PMerit->next;
+
+        PMerit->next = upgrade[count[GetMeritCategory(merit)].UpgradeID][++PMerit->count];
+    }
 }
 
 /************************************************************************
@@ -333,9 +338,12 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
 
 void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 {
-    Merit_t* PMerit = MeritPointer(merit);
+    Merit_t* PMerit = GetMeritPointer(merit);
 
-    PMerit->next = upgrade[count[GetMeritCategory(merit)].UpgradeID][--PMerit->count];
+    if (PMerit->count > 0)
+    {
+        PMerit->next = upgrade[count[GetMeritCategory(merit)].UpgradeID][--PMerit->count];
+    }
 }
 
 /************************************************************************
