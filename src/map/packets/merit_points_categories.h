@@ -26,6 +26,8 @@
 
 #include "../../common/cbasetypes.h"
 
+#include "../merit.h"
+
 #include "basic.h"
 
 /************************************************************************
@@ -36,11 +38,16 @@
 
 class CCharEntity;
 
-class CMeritPointsCacegoriesPacket : public CBasicPacket
+class CMeritPointsCategoriesPacket : public CBasicPacket
 {
     public:
 
-	CMeritPointsCacegoriesPacket(CCharEntity* PChar, uint8 type);
+	CMeritPointsCategoriesPacket(CCharEntity* PChar);
+    CMeritPointsCategoriesPacket(CCharEntity* PChar, MERIT_TYPE merit);
+
+    private:
+
+    void MeritPointsCategoriesPacket(CCharEntity* PChar, uint8 offset);
 };
 
 #endif

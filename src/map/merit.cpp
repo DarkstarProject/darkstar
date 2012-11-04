@@ -21,9 +21,10 @@
 ===========================================================================
 */
 
-#include "merit.h"
-#include "../common/showmsg.h"
 #include <string.h>
+
+#include "merit.h"
+
 
 /************************************************************************
 *                                                                       *
@@ -34,33 +35,35 @@
 // массив больше на одно значение, заполняемое нулем
 
 #ifdef ABYSSEA_EXPANSION
-static uint8 upgrade[8][16] =
+static uint8 upgrade[9][16] =
 {
-    {1,2,3,4,5,5,5,5,5,7,7,7,9,9,9},
-    {3,6,9,9,9,12,12,12,12,15,15,15},
-    {1,2,3,3,3,3,3,3},
-    {1,2,3,3},
-    {1,2,3,3,3,3,3,3},
-    {1,2,3,4,5},
-    {1,2,3,4,5},
-    {3,4,5,5,5},
+    {1,2,3,4,5,5,5,5,5,7,7,7,9,9,9},    // HP-MP
+    {3,6,9,9,9,12,12,12,12,15,15,15},   // Attributes
+    {1,2,3,3,3,3,3,3},                  // Combat Skills
+    {1,2,3,3},                          // Defensive Skills 
+    {1,2,3,3,3,3,3,3},                  // Magic Skills
+    {1,2,3,4,5},                        // Others
+    {1,2,3,4,5},                        // Job Group 1
+    {3,4,5,5,5},                        // Job Group 2
+    {10,15,20,25,30},                   // Weapon Skills
 };
-#define MAX_LIMIT_POINTS  10000 // количество опыта для получения одного merit
-#define MAX_MERIT_POINTS  30    // максимальное количество неиспользованных merit
+#define MAX_LIMIT_POINTS  10000         // количество опыта для получения одного merit
+#define MAX_MERIT_POINTS  30            // максимальное количество неиспользованных merit
 #else
-static uint8 upgrade[8][9] =
+static uint8 upgrade[9][9] =
 {
-    {1,2,3,4,5,5,5,5},			// HP-MP
-    {3,6,9,9,9},				// Attributes
-    {1,2,3,3,3,3,3,3},			// Weapon Skills	
-    {1,2,3,3},					// Defensive Skills 
-    {1,2,3,3,3,3,3,3},			// Magic Skills	
-    {1,2,3,4},					// Others
-    {1,2,3,4,5},				// Job Group 1
-    {3,4,5,5,5},				// Job Group 2
+    {1,2,3,4,5,5,5,5},			        // HP-MP
+    {3,6,9,9,9},				        // Attributes
+    {1,2,3,3,3,3,3,3},			        // Combat Skills	
+    {1,2,3,3},					        // Defensive Skills 
+    {1,2,3,3,3,3,3,3},			        // Magic Skills	
+    {1,2,3,4},					        // Others
+    {1,2,3,4,5},				        // Job Group 1
+    {3,4,5,5,5},				        // Job Group 2
+    {0},                               // Weapon Skills
 };
-#define MAX_LIMIT_POINTS  10000 // количество опыта для получения одного merit
-#define MAX_MERIT_POINTS  10    // максимальное количество неиспользованных merit
+#define MAX_LIMIT_POINTS  10000         // количество опыта для получения одного merit
+#define MAX_MERIT_POINTS  10            // максимальное количество неиспользованных merit
 #endif 
 
 // TODO: скорее всего придется все это перенести в базу
@@ -73,18 +76,18 @@ static uint8 upgrade[8][9] =
 
 static uint8 cap[100] =
 {   
-    0,0,0,0,0,0,0,0,0,0, //0-9   0 
-    1,1,1,1,1,1,1,1,1,1, //10-19 1 
-    2,2,2,2,2,2,2,2,2,2, //20-29 2 
-    3,3,3,3,3,3,3,3,3,3, //30-39 3 
-    4,4,4,4,4,4,4,4,4,4, //40-49 4 
-    5,5,5,5,5,           //50-54 5 
-    6,6,6,6,6,           //55-59 6 
-    7,7,7,7,7,           //60-64 7 
-    8,8,8,8,8,           //65-69 8
-    8,8,8,8,8,8,8,8,8,8, //70-79 8
-    8,8,8,8,8,8,8,8,8,8, //80-89 8
-    8,8,8,8,8,8,8,8,8,8, //90-99 8
+    0,0,0,0,0,0,0,0,0,0,    // 0-9   0 
+    1,1,1,1,1,1,1,1,1,1,    // 10-19 1 
+    2,2,2,2,2,2,2,2,2,2,    // 20-29 2 
+    3,3,3,3,3,3,3,3,3,3,    // 30-39 3 
+    4,4,4,4,4,4,4,4,4,4,    // 40-49 4 
+    5,5,5,5,5,              // 50-54 5 
+    6,6,6,6,6,              // 55-59 6 
+    7,7,7,7,7,              // 60-64 7 
+    8,8,8,8,8,              // 65-69 8
+    8,8,8,8,8,8,8,8,8,8,    // 70-79 8
+    8,8,8,8,8,8,8,8,8,8,    // 80-89 8
+    8,8,8,8,8,8,8,8,8,8,    // 90-99 8
 };
 
 /************************************************************************
@@ -129,12 +132,13 @@ static const MeritCategoryInfo_t count[] =
     {4,10,6},  //MCATEGORY_DNC_1 
     {4,10,6},  //MCATEGORY_SCH_1 
 
-    {0,0,0},   //MCATEGORY_UNK_0 
+    {14,15,8}, //MCATEGORY_WS
+
+    {0,0,0},   //MCATEGORY_UNK_0
     {0,0,0},   //MCATEGORY_UNK_1 
     {0,0,0},   //MCATEGORY_UNK_2 
     {0,0,0},   //MCATEGORY_UNK_3 
     {0,0,0},   //MCATEGORY_UNK_4 
-    {0,0,0},   //MCATEGORY_UNK_5 
 
     {4,10,7},  //MCATEGORY_WAR_2 
     {4,10,7},  //MCATEGORY_MNK_2 
@@ -159,7 +163,7 @@ static const MeritCategoryInfo_t count[] =
 };
 
 #define GetMeritCategory(merit) ((merit >> 6) - 1)      // получаем категорию из merit
-#define GetMeritID(merit) ((merit & 0x3F) >> 1)         // получаем смещение в категории из merit
+#define GetMeritID(merit)       ((merit & 0x3F) >> 1)   // получаем смещение в категории из merit
 
 /************************************************************************
 *                                                                       *
@@ -179,9 +183,6 @@ CMeritPoints::CMeritPoints()
         {
             merits[m].next = upgrade[count[i].UpgradeID][0];
             merits[m++].id = ((i + 1) << 6) + (t << 1);
-        
-			mIndexies[m-1].index = m-1;
-			mIndexies[m-1].id = merits[m-1].id;
 		}
     }
     m_LimitPoints = 0;
@@ -216,15 +217,25 @@ uint8 CMeritPoints::GetMeritPoints()
 *                                                                       *
 ************************************************************************/
 
-void CMeritPoints::AddLimitPoints(uint16 points)
+// true - если merit был добавлен
+
+bool CMeritPoints::AddLimitPoints(uint16 points)
 {
     m_LimitPoints += points;
 
     if (m_LimitPoints >= MAX_LIMIT_POINTS)
     {
-        m_MeritPoints = dsp_min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, MAX_MERIT_POINTS);
+        uint8 MeritPoints = dsp_min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, MAX_MERIT_POINTS);
+
         m_LimitPoints = m_LimitPoints % MAX_LIMIT_POINTS;
+
+        if (m_MeritPoints != MeritPoints)
+        {
+            m_MeritPoints = MeritPoints;
+            return true;
+        }
     }
+    return false;
 }
 
 /************************************************************************
@@ -235,7 +246,7 @@ void CMeritPoints::AddLimitPoints(uint16 points)
 
 void CMeritPoints::SetLimitPoints(uint16 points)
 {
-    m_LimitPoints = dsp_min(points, MAX_LIMIT_POINTS);
+    m_LimitPoints = dsp_min(points, MAX_LIMIT_POINTS - 1);
 }
 
 /************************************************************************
@@ -251,13 +262,30 @@ void CMeritPoints::SetMeritPoints(uint16 points)
 
 /************************************************************************
 *                                                                       *
-*  get max avaiable merits		                                        *
+*  Проверяем наличие merit. Необходимо использовать лишь в случае       *
+*  получения meritid от персонажа                                       *
 *                                                                       *
 ************************************************************************/
 
-uint16 CMeritPoints::GetMaxMerits()
+bool CMeritPoints::IsMeritExist(MERIT_TYPE merit)
 {
-    return MAX_MERIT_POINTS; // TODO: удалить
+    if (merit <  MCATEGORY_START) return false;
+    if (merit >= MCATEGORY_COUNT) return false;
+
+    if ((GetMeritID(merit)) >= count[GetMeritCategory(merit)].MaxMerits) return false;
+
+    return true;
+}
+
+/************************************************************************
+*                                                                       *
+*  Получаем указатель на искомый const merit                            *
+*                                                                       *
+************************************************************************/
+
+const Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
+{
+    return MeritPointer(merit);
 }
 
 /************************************************************************
@@ -266,35 +294,49 @@ uint16 CMeritPoints::GetMaxMerits()
 *                                                                       *
 ************************************************************************/
 
-Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
+Merit_t* CMeritPoints::MeritPointer(MERIT_TYPE merit)
 {
-    DSP_DEBUG_BREAK_IF(merit <  MCATEGORY_START);
-    DSP_DEBUG_BREAK_IF(merit >= MCATEGORY_COUNT);
-
-    DSP_DEBUG_BREAK_IF((GetMeritID(merit)) >= count[GetMeritCategory(merit)].MaxMerits);
+    DSP_DEBUG_BREAK_IF(!IsMeritExist(merit));
 
     return &Categories[GetMeritCategory(merit)][GetMeritID(merit)];
 }
 
 /************************************************************************
 *                                                                       *
-*  merit index 0 1 2 3 4 5 . . .			                            *
+*  Получаем указател на массив merits                                   *
 *                                                                       *
 ************************************************************************/
 
-uint16 CMeritPoints::GetMeritIndex(MERIT_TYPE merit)
+const Merit_t* CMeritPoints::GetMerits()
 {
-	Merit_t* PMerit = &Categories[GetMeritCategory(merit)][GetMeritID(merit)];
-
-	for (uint16 i = 0; i < sizeof(mIndexies)/sizeof(int); ++i)
-	{
-		if (PMerit->id == mIndexies[i].id)
-		{
-			return mIndexies[i].index;
-		}
-	}
+    return merits;
 }
 
+/************************************************************************
+*                                                                       *
+*  Add upgrade, also removes merit point                                *
+*                                                                       *
+************************************************************************/
+
+void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
+{
+    Merit_t* PMerit = MeritPointer(merit);
+
+    PMerit->next = upgrade[count[GetMeritCategory(merit)].UpgradeID][++PMerit->count];
+}
+
+/************************************************************************
+*                                                                       *
+*  Remove upgrade                                                       *
+*                                                                       *
+************************************************************************/
+
+void CMeritPoints::LowerMerit(MERIT_TYPE merit)
+{
+    Merit_t* PMerit = MeritPointer(merit);
+
+    PMerit->next = upgrade[count[GetMeritCategory(merit)].UpgradeID][--PMerit->count];
+}
 
 /************************************************************************
 *                                                                       *
@@ -302,14 +344,10 @@ uint16 CMeritPoints::GetMeritIndex(MERIT_TYPE merit)
 *                                                                       *
 ************************************************************************/
 
-uint16 CMeritPoints::GetNextMeritUpgrade(uint16 catId, uint16 MeritCount)
-{
-	//TODO: find a better way of doing this.
-	//Defence and Combat skills share the same Catogory yet have different maxmerits
-	if (catId == 3) catId = 4;
-
-	return upgrade[count[catId].UpgradeID][MeritCount];
-}
+//uint16 CMeritPoints::GetNextMeritUpgrade(uint16 catId, uint16 MeritCount)
+//{
+//	return upgrade[count[catId].UpgradeID][MeritCount];
+//}
 
 /************************************************************************
 *                                                                       *

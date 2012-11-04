@@ -2844,14 +2844,9 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 
 	if (onLimitMode == true) 
 	{
-		uint16 currentLimitPoints = PChar->PMeritPoints->GetLimitPoints();
-		
 		//add limit points
-		PChar->PMeritPoints->AddLimitPoints(exp);
-
-		//check for new merit point to display message
-		if ((currentLimitPoints + exp) > 10000 && PChar->PMeritPoints->GetMeritPoints() < PChar->PMeritPoints->GetMaxMerits())
-		{
+		if (PChar->PMeritPoints->AddLimitPoints(exp))
+        {
 			PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PMob, PChar->PMeritPoints->GetMeritPoints(), 0, 368));
 		}
 	}

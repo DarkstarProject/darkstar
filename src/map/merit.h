@@ -61,12 +61,13 @@ enum MERIT_CATEGORY
     MCATEGORY_DNC_1      = 0x0600,
     MCATEGORY_SCH_1      = 0x0640,
 
-    MCATEGORY_UNK_0      = 0x0680,
-    MCATEGORY_UNK_1      = 0x06C0,
-    MCATEGORY_UNK_2      = 0x0700,
-    MCATEGORY_UNK_3      = 0x0740,
-    MCATEGORY_UNK_4      = 0x0780,
-    MCATEGORY_UNK_5      = 0x07C0,
+    MCATEGORY_WS         = 0x0680,
+
+    MCATEGORY_UNK_0      = 0x06C0,
+    MCATEGORY_UNK_1      = 0x0700,
+    MCATEGORY_UNK_2      = 0x0740,
+    MCATEGORY_UNK_3      = 0x0780,
+    MCATEGORY_UNK_4      = 0x07C0,
 
     MCATEGORY_WAR_2      = 0x0800,
     MCATEGORY_MNK_2      = 0x0840,
@@ -300,6 +301,21 @@ enum MERIT_TYPE
     MERIT_HELIX_MAGIC_ACC_ATT       = MCATEGORY_SCH_1 + 0x04,
     MERIT_MAX_SUBLIMATION           = MCATEGORY_SCH_1 + 0x06,
 
+    //WEAPON SKILLS
+    MERIT_SHIJIN_SPIRAL             = MCATEGORY_WS + 0x00,
+    MERIT_EXENTERATOR               = MCATEGORY_WS + 0x02,
+    MERIT_REQUIESCAT                = MCATEGORY_WS + 0x04,
+    MERIT_RESOLUTION                = MCATEGORY_WS + 0x06,
+    MERIT_RUINATOR                  = MCATEGORY_WS + 0x08,
+    MERIT_UPHEAVAL                  = MCATEGORY_WS + 0x0A,
+    MERIT_ENTROPY                   = MCATEGORY_WS + 0x0C,
+    MERIT_STARDIVER                 = MCATEGORY_WS + 0x0E,
+    MERIT_BLADE_SHUN                = MCATEGORY_WS + 0x10,
+    MERIT_TACHI_SHOHA               = MCATEGORY_WS + 0x12,
+    MERIT_REALMRAZER                = MCATEGORY_WS + 0x14,
+    MERIT_SHATTERSOUL               = MCATEGORY_WS + 0x16,
+    MERIT_APEX_ARROW                = MCATEGORY_WS + 0x18,
+    MERIT_LAST_STAND                = MCATEGORY_WS + 0x1A,
 
     //WAR 2
     MERIT_WARRIORS_CHARGE           = MCATEGORY_WAR_2 + 0x00,
@@ -434,6 +450,8 @@ enum MERIT_TYPE
     MERIT_STORMSURGE                = MCATEGORY_SCH_2 + 0x0A,
 };
 
+#define MERITS_COUNT  305  // 5 полных пакетов по 61 элементу
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -447,48 +465,43 @@ struct Merit_t
     uint8  count;   // текущее количество усилений
 };
 
-
-struct Merit_I
-{
-	uint16 index;
-	uint16 id;
-};
-
 /************************************************************************
 *                                                                       *
 *                                                                       *
 *                                                                       *
 ************************************************************************/
+
 class CMeritPoints
 {
     public:
 
         CMeritPoints();
 
-        uint16		GetLimitPoints();
-        uint8		GetMeritPoints();
-        int32		GetMeritValue(MERIT_TYPE merit, uint8 lvl);
+        uint16      GetLimitPoints();
+        uint8       GetMeritPoints();
+        int32       GetMeritValue(MERIT_TYPE merit, uint8 lvl);
 
-        void		AddLimitPoints(uint16 points);					// automatically adds merit points > 10000
-		void		SetLimitPoints(uint16 points);					// used for loading player limit points on login
-		void		SetMeritPoints(uint16 points);					// used for loading player merit points on login
-		uint16		GetMaxMerits();
-
-		Merit_I		mIndexies[241];
-		uint16		GetMeritIndex(MERIT_TYPE merit);
-
-		uint16		GetNextMeritUpgrade(uint16 catId, uint16 count);
+        bool        AddLimitPoints(uint16 points);                  // automatically adds merit points > 10000
+        bool        IsMeritExist(MERIT_TYPE merit);                 // проверяем существование merit
         
-		Merit_t		merits[241];
-        Merit_t*	GetMerit(MERIT_TYPE merit);	
+        void        RaiseMerit(MERIT_TYPE merit);                   // add upgrade
+        void        LowerMerit(MERIT_TYPE merit);                   // del upgrade
+
+        void        SetLimitPoints(uint16 points);                  // used for loading player limit points on login
+        void        SetMeritPoints(uint16 points);                  // used for loading player merit points on login
+
+        const Merit_t* GetMerits();
+        const Merit_t* GetMerit(MERIT_TYPE merit);
 
     private:
 
-        uint16		m_LimitPoints;
-        uint8		m_MeritPoints;
+        uint16      m_LimitPoints;
+        uint8       m_MeritPoints;
 
-		Merit_I*	MeritIndexes[MCATEGORY_COUNT/64-1];
-        Merit_t*	Categories[MCATEGORY_COUNT/64-1];
+        Merit_t     merits[MERITS_COUNT];
+
+        Merit_t*    MeritPointer(MERIT_TYPE merit);
+        Merit_t*    Categories[MCATEGORY_COUNT/64-1];
 };
 
 #endif

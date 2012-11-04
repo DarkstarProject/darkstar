@@ -58,21 +58,52 @@ struct
 
 /************************************************************************
 *                                                                       *
+*  Отправляем персонажу информацию о всех merit (5 пакетов)             *
+*                                                                       *
+************************************************************************/
+
+#define MAX_MERITS_IN_PACKET  61
+
+CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar)
+{
+    this->type = 0x8C;
+	this->size = 0x80;
+
+    WBUFB(data,(0x04)-4) = MAX_MERITS_IN_PACKET; 
+
+    for (uint8 i = 0; i < 4; ++i)
+    {
+        MeritPointsCategoriesPacket(PChar, i * MAX_MERITS_IN_PACKET);
+
+        PChar->pushPacket(new CBasicPacket(*this));
+    }
+    MeritPointsCategoriesPacket(PChar, 5 * MAX_MERITS_IN_PACKET);
+}
+
+/************************************************************************
+*                                                                       *
+*  Отправляем персонажу информуцию об одном merit                       *
+*                                                                       *
+************************************************************************/
+
+CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar, MERIT_TYPE merit)
+{
+    this->type = 0x8C;
+	this->size = 0x08;
+
+    WBUFB(data,(0x04)-4) = 1;
+    WBUFL(data,(0x08)-4) = *(uint32*)PChar->PMeritPoints->GetMerit(merit);
+}
+
+/************************************************************************
+*                                                                       *
 *                                                                       *
 *                                                                       *
 ************************************************************************/
 
-#define MAX_MERITS_IN_PACKET  62
-
-CMeritPointsCacegoriesPacket::CMeritPointsCacegoriesPacket(CCharEntity* PChar, uint8 type)
+void CMeritPointsCategoriesPacket::MeritPointsCategoriesPacket(CCharEntity* PChar, uint8 offset)
 {
-	this->type = 0x8C;
-	this->size = 0x80;
-
-    uint16 offset = type * MAX_MERITS_IN_PACKET;
-    uint16 count  = dsp_min(sizeof(Merit_t) * MAX_MERITS_IN_PACKET, dsp_max(sizeof(PChar->PMeritPoints->merits) - offset, 0));
-
-    memcpy(data+(0x08)-4, PChar->PMeritPoints->merits + offset, count);
+    memcpy(data+(0x08)-4, PChar->PMeritPoints->GetMerits() + offset, MAX_MERITS_IN_PACKET * sizeof(Merit_t));
 
     if (PChar->getZone() != 0)
     {
@@ -81,18 +112,15 @@ CMeritPointsCacegoriesPacket::CMeritPointsCacegoriesPacket(CCharEntity* PChar, u
             (*(Merit_t*)(data+(0x08)-4 + sizeof(Merit_t) * i)).next = 0; // обнуляем значение next у всех merit
         }
     }
-	else
-	{
-        for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
-        {
-			(*(Merit_t*)(data+(0x08)-4 + sizeof(Merit_t) * i)).next = 
-				PChar->PMeritPoints->GetNextMeritUpgrade(PChar->PMeritPoints->merits[i+offset].id/64-1 , PChar->PMeritPoints->merits[i+offset].count );
-        }
-	}
-    WBUFB(data,(0x04)-4) = 0x3D;
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
+// TODO: не помню, зачем я сунул это сюда ((
 
 /*
 

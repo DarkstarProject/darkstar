@@ -176,6 +176,8 @@ public:
 	uint16			  m_mkeCurrent;					// текущая миссия A Moogle Kupo d'Etat
 	uint16			  m_asaCurrent;					// текущая миссия A Shantotto Ascension
 
+    // TODO: половина этого массива должна храниться в char_vars, а не здесь, т.к. эта информация не отображается в интерфейсе клиента и сервер не проводит с ними никаких операций
+
     uint32            RegionPoints[15];             // conquest points, imperial standing points etc
 	NationTP_t		  nationtp;						// supply tp, runic portal, campaign tp,...
 
