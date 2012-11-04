@@ -111,6 +111,7 @@ public:
 	int32 getRATT(lua_State*);				// Get total r.attack
 	int32 getRACC(lua_State*);				// Get total r.acc
 	int32 capSkill(lua_State*);				// Caps the given skill id for the job you're on (GM COMMAND)
+	int32 capAllSkills(lua_State*);			// Caps All skills, GM command
 
 	int32 getMaxHP(lua_State*);				// Get max hp of entity
 	int32 getMaxMP(lua_State*);				// Get max mp of entity

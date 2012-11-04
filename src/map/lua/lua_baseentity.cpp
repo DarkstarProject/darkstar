@@ -2550,6 +2550,51 @@ inline int32 CLuaBaseEntity::capSkill(lua_State* L)
 	return 1;
 }
 
+
+//========================================================//
+
+inline int32 CLuaBaseEntity::capAllSkills(lua_State* L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype == TYPE_PC )
+		{
+			uint8 skill = lua_tointeger(L, -1);
+			CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+			for (uint8 i = 1; i < 43; ++i)
+			{
+				const int8* Query = "INSERT INTO char_skills "
+								"SET "
+								"charid = %u,"
+								"skillid = %u,"
+								"value = %u,"
+								"rank = %u "
+								"ON DUPLICATE KEY UPDATE value = %u, rank = %u;";
+
+								Sql_Query(SqlHandle, Query,
+								PChar->id,
+								i,
+								3000,
+								PChar->RealSkills.rank[i],
+								3000,
+								PChar->RealSkills.rank[i]);
+
+				uint16 maxSkill = 10*battleutils::GetMaxSkill((SKILLTYPE)i, PChar->GetMJob(),PChar->GetMLevel());
+				PChar->RealSkills.skill[i] = maxSkill; //set to capped
+				PChar->WorkingSkills.skill[i] = maxSkill/10;
+				PChar->WorkingSkills.skill[i] |= 0x8000; //set blue capped flag
+			}
+			charutils::CheckWeaponSkill(PChar, skill);
+			PChar->pushPacket(new CCharSkillsPacket(PChar));
+			return 0;
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::messageSystem(lua_State* L)
@@ -5228,6 +5273,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRATT),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRACC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,capSkill),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,capAllSkills),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addAllSpells),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeleeHitDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecasts),
