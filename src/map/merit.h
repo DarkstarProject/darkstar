@@ -139,7 +139,7 @@ enum MERIT_TYPE
     //MAGIC SKILLS
     MERIT_DIVINE                    = MCATEGORY_MAGIC + 0x00,
     MERIT_HEALING                   = MCATEGORY_MAGIC + 0x02,
-    MERIT_ENCHANCING                = MCATEGORY_MAGIC + 0x04,
+    MERIT_ENHANCING                 = MCATEGORY_MAGIC + 0x04,
     MERIT_ENFEEBLING                = MCATEGORY_MAGIC + 0x06,
     MERIT_ELEMENTAL                 = MCATEGORY_MAGIC + 0x08,
     MERIT_DARK                      = MCATEGORY_MAGIC + 0x0A,
