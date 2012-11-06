@@ -210,7 +210,7 @@ INSERT INTO `merits` VALUES(1288, 'summoning_magic_cast_time', 5, 5, 16384);
 -- blu 1
 INSERT INTO `merits` VALUES(1344, 'chain_affinity_recast', 5, 4, 32768);
 INSERT INTO `merits` VALUES(1346, 'burst_affinity_recast', 5, 4, 32768);
-INSERT INTO `merits` VALUES(1348, 'monster_correlation', 5, 4, 32768); --no info on this one 4 just a guess
+INSERT INTO `merits` VALUES(1348, 'monster_correlation', 5, 4, 32768); -- no info on this one 4 just a guess
 INSERT INTO `merits` VALUES(1350, 'physical_potency', 5, 2, 32768);
 INSERT INTO `merits` VALUES(1352, 'magical_accuracy', 5, 2, 32768);
 
