@@ -3930,183 +3930,99 @@ void PacketParserInitialize()
 {
     for (uint16 i = 0; i < 512; ++i)
     {
+        PacketSize[i]   = 0;
         PacketParser[i] = &SmallPacket0x000;
     }
-    PacketParser[0x00A] = &SmallPacket0x00A;
-    PacketParser[0x00C] = &SmallPacket0x00C;
-    PacketParser[0x00D] = &SmallPacket0x00D;
-    PacketParser[0x00F] = &SmallPacket0x00F;
-    PacketParser[0x011] = &SmallPacket0x011;
-    PacketParser[0x015] = &SmallPacket0x015;
-    PacketParser[0x016] = &SmallPacket0x016;
-    PacketParser[0x017] = &SmallPacket0x017;
-    PacketParser[0x01A] = &SmallPacket0x01A;
-    PacketParser[0x01B] = &SmallPacket0x01B;
-    PacketParser[0x01C] = &SmallPacket0x01C;
-    PacketParser[0x028] = &SmallPacket0x028;
-    PacketParser[0x029] = &SmallPacket0x029;
-    PacketParser[0x032] = &SmallPacket0x032;
-    PacketParser[0x033] = &SmallPacket0x033;
-    PacketParser[0x034] = &SmallPacket0x034;
-    PacketParser[0x036] = &SmallPacket0x036;
-    PacketParser[0x037] = &SmallPacket0x037;
-    PacketParser[0x03A] = &SmallPacket0x03A;
-    PacketParser[0x03C] = &SmallPacket0x03C;
-    PacketParser[0x041] = &SmallPacket0x041;
-    PacketParser[0x042] = &SmallPacket0x042;
-    PacketParser[0x04B] = &SmallPacket0x04B;
-    PacketParser[0x04D] = &SmallPacket0x04D;
-    PacketParser[0x04E] = &SmallPacket0x04E;
-    PacketParser[0x050] = &SmallPacket0x050;
-    PacketParser[0x059] = &SmallPacket0x059;
-    PacketParser[0x05A] = &SmallPacket0x05A;
-    PacketParser[0x05B] = &SmallPacket0x05B;
-    PacketParser[0x05C] = &SmallPacket0x05C;
-    PacketParser[0x05D] = &SmallPacket0x05D;
-    PacketParser[0x05E] = &SmallPacket0x05E;
-    PacketParser[0x060] = &SmallPacket0x060;
-    PacketParser[0x061] = &SmallPacket0x061;
-    PacketParser[0x063] = &SmallPacket0x063;
-    PacketParser[0x064] = &SmallPacket0x064;
-    PacketParser[0x066] = &SmallPacket0x066;
-    PacketParser[0x06E] = &SmallPacket0x06E;
-    PacketParser[0x06F] = &SmallPacket0x06F;
-    PacketParser[0x070] = &SmallPacket0x070;
-    PacketParser[0x071] = &SmallPacket0x071;
-    PacketParser[0x074] = &SmallPacket0x074;
-    PacketParser[0x076] = &SmallPacket0x076;
-    PacketParser[0x077] = &SmallPacket0x077;
-    PacketParser[0x078] = &SmallPacket0x078;
-    PacketParser[0x083] = &SmallPacket0x083;
-    PacketParser[0x084] = &SmallPacket0x084;
-    PacketParser[0x085] = &SmallPacket0x085;
-    PacketParser[0x096] = &SmallPacket0x096;
-    PacketParser[0x0A0] = &SmallPacket0xFFF;	// not implemented
-    PacketParser[0x0A1] = &SmallPacket0xFFF;	// not implemented
-    PacketParser[0x0A2] = &SmallPacket0x0A2;
-    PacketParser[0x0AA] = &SmallPacket0xFFF;	// not implemented
-    PacketParser[0x0AB] = &SmallPacket0x0AB;
-    PacketParser[0x0AC] = &SmallPacket0xFFF;	// not implemented
-    PacketParser[0x0AD] = &SmallPacket0x0AD;
-    PacketParser[0x0B5] = &SmallPacket0x0B5;
-    PacketParser[0x0B6] = &SmallPacket0x0B6;
-    PacketParser[0x0BE] = &SmallPacket0x0BE;	//  merit packet
-    PacketParser[0x0C3] = &SmallPacket0x0C3;
-    PacketParser[0x0C4] = &SmallPacket0x0C4;
-    PacketParser[0x0CB] = &SmallPacket0xFFF;	// not implemented
-    PacketParser[0x0D2] = &SmallPacket0x0D2;
-    PacketParser[0x0D3] = &SmallPacket0x0D3;
-    PacketParser[0x0D4] = &SmallPacket0xFFF;	// not implemented
-    PacketParser[0x0DB] = &SmallPacket0x0DB;
-    PacketParser[0x0DC] = &SmallPacket0x0DC;
-    PacketParser[0x0DD] = &SmallPacket0x0DD;
-    PacketParser[0x0DE] = &SmallPacket0x0DE;
-    PacketParser[0x0E0] = &SmallPacket0x0E0;
-    PacketParser[0x0E1] = &SmallPacket0x0E1;
-    PacketParser[0x0E2] = &SmallPacket0x0E2;
-    PacketParser[0x0E7] = &SmallPacket0x0E7;
-    PacketParser[0x0E8] = &SmallPacket0x0E8;
-    PacketParser[0x0EA] = &SmallPacket0x0EA;
-    PacketParser[0x0F1] = &SmallPacket0x0F1;
-    PacketParser[0x0F2] = &SmallPacket0x0F2;
-    PacketParser[0x0F4] = &SmallPacket0x0F4;
-    PacketParser[0x0F5] = &SmallPacket0x0F5;
-    PacketParser[0x0F6] = &SmallPacket0x0F6;
-    PacketParser[0x0FA] = &SmallPacket0x0FA;
-    PacketParser[0x0FB] = &SmallPacket0x0FB;
-    PacketParser[0x100] = &SmallPacket0x100;
-    PacketParser[0x102] = &SmallPacket0xFFF;	// not implemented
-    PacketParser[0x104] = &SmallPacket0x104;
-    PacketParser[0x105] = &SmallPacket0x105;
-    PacketParser[0x106] = &SmallPacket0x106;
-    PacketParser[0x109] = &SmallPacket0x109;
-    PacketParser[0x10A] = &SmallPacket0x10A;
-    PacketParser[0x10B] = &SmallPacket0x10B;
-}
-
-/************************************************************************
-*																		*
-*	Tests incoming packets for the correct size prior to processing		*
-*																		*
-************************************************************************/
-
-bool ProcessPacket(uint16 size, uint16 type)
-{	
-	switch(type)
-	{
-		case 0x05A:
-		case 0x061:
-		case 0x104:
-			if(size == 0x02) return true;
-			break;
-		case 0x00D:
-		case 0x016:
-		case 0x03A:
-		case 0x050:
-		case 0x085:
-		case 0x0E7:
-		case 0x0E8:
-		case 0x0F4:
-		case 0x100:
-			if(size == 0x04) return true;
-			break;
-		case 0x028:
-		case 0x029:
-		case 0x032:
-		case 0x033:
-		case 0x034:
-		case 0x06E:
-		case 0x084:
-		case 0x0DD:
-		case 0x105:
-		case 0x106:
-		case 0x10A:
-			if(size == 0x06) return true;
-			break;
-		case 0x01A:
-		case 0x05D:
-		case 0x083:
-			if(size == 0x08) return true;
-			break;
-		case 0x037:
-		case 0x05B:
-		case 0x066:
-		case 0x0DC:
-			if(size == 0x0A) return true;
-			break;
-		case 0x04B:
-		case 0x05E:
-		case 0x0C4:
-			if(size == 0x0C) return true;
-			break;
-		case 0x015:
-			if(size == 0x10) return true;
-			break;
-		case 0x096:
-			if(size == 0x12) return true;
-			break;
-		case 0x04E:
-			if(size == 0x1E) return true;
-			break;
-		case 0x036:
-			if(size == 0x20) return true;
-			break;
-		case 0x064:
-			if(size == 0x26) return true;
-			break;
-		case 0x00A:
-			if(size == 0x2E) return true;
-			break;
-		case 0x0DE:
-			if(size == 0x40) return true;
-			break;
-		case 0x0E0:
-			if(size == 0x4C) return true;
-			break;
-		default:
-			return true;
-	}
-	return false;
+    PacketSize[0x00A] = 0x2E; PacketParser[0x00A] = &SmallPacket0x00A;
+    PacketSize[0x00C] = 0x00; PacketParser[0x00C] = &SmallPacket0x00C;
+    PacketSize[0x00D] = 0x04; PacketParser[0x00D] = &SmallPacket0x00D;
+    PacketSize[0x00F] = 0x00; PacketParser[0x00F] = &SmallPacket0x00F;
+    PacketSize[0x011] = 0x00; PacketParser[0x011] = &SmallPacket0x011;
+    PacketSize[0x015] = 0x10; PacketParser[0x015] = &SmallPacket0x015;
+    PacketSize[0x016] = 0x04; PacketParser[0x016] = &SmallPacket0x016;
+    PacketSize[0x017] = 0x00; PacketParser[0x017] = &SmallPacket0x017;
+    PacketSize[0x01A] = 0x08; PacketParser[0x01A] = &SmallPacket0x01A;
+    PacketSize[0x01B] = 0x00; PacketParser[0x01B] = &SmallPacket0x01B;
+    PacketSize[0x01C] = 0x00; PacketParser[0x01C] = &SmallPacket0x01C;
+    PacketSize[0x028] = 0x06; PacketParser[0x028] = &SmallPacket0x028;
+    PacketSize[0x029] = 0x06; PacketParser[0x029] = &SmallPacket0x029;
+    PacketSize[0x032] = 0x06; PacketParser[0x032] = &SmallPacket0x032;
+    PacketSize[0x033] = 0x06; PacketParser[0x033] = &SmallPacket0x033;
+    PacketSize[0x034] = 0x06; PacketParser[0x034] = &SmallPacket0x034;
+    PacketSize[0x036] = 0x20; PacketParser[0x036] = &SmallPacket0x036;
+    PacketSize[0x037] = 0x0A; PacketParser[0x037] = &SmallPacket0x037;
+    PacketSize[0x03A] = 0x04; PacketParser[0x03A] = &SmallPacket0x03A;
+    PacketSize[0x03C] = 0x00; PacketParser[0x03C] = &SmallPacket0x03C;
+    PacketSize[0x041] = 0x00; PacketParser[0x041] = &SmallPacket0x041;
+    PacketSize[0x042] = 0x00; PacketParser[0x042] = &SmallPacket0x042;
+    PacketSize[0x04B] = 0x0C; PacketParser[0x04B] = &SmallPacket0x04B;
+    PacketSize[0x04D] = 0x00; PacketParser[0x04D] = &SmallPacket0x04D;
+    PacketSize[0x04E] = 0x1E; PacketParser[0x04E] = &SmallPacket0x04E;
+    PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
+    PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
+    PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;
+    PacketSize[0x05B] = 0x0A; PacketParser[0x05B] = &SmallPacket0x05B;
+    PacketSize[0x05C] = 0x00; PacketParser[0x05C] = &SmallPacket0x05C;
+    PacketSize[0x05D] = 0x08; PacketParser[0x05D] = &SmallPacket0x05D;
+    PacketSize[0x05E] = 0x0C; PacketParser[0x05E] = &SmallPacket0x05E;
+    PacketSize[0x060] = 0x00; PacketParser[0x060] = &SmallPacket0x060;
+    PacketSize[0x061] = 0x02; PacketParser[0x061] = &SmallPacket0x061;
+    PacketSize[0x063] = 0x00; PacketParser[0x063] = &SmallPacket0x063;
+    PacketSize[0x064] = 0x26; PacketParser[0x064] = &SmallPacket0x064;
+    PacketSize[0x066] = 0x0A; PacketParser[0x066] = &SmallPacket0x066;
+    PacketSize[0x06E] = 0x06; PacketParser[0x06E] = &SmallPacket0x06E;
+    PacketSize[0x06F] = 0x00; PacketParser[0x06F] = &SmallPacket0x06F;
+    PacketSize[0x070] = 0x00; PacketParser[0x070] = &SmallPacket0x070;
+    PacketSize[0x071] = 0x00; PacketParser[0x071] = &SmallPacket0x071;
+    PacketSize[0x074] = 0x00; PacketParser[0x074] = &SmallPacket0x074;
+    PacketSize[0x076] = 0x00; PacketParser[0x076] = &SmallPacket0x076;
+    PacketSize[0x077] = 0x00; PacketParser[0x077] = &SmallPacket0x077;
+    PacketSize[0x078] = 0x00; PacketParser[0x078] = &SmallPacket0x078;
+    PacketSize[0x083] = 0x08; PacketParser[0x083] = &SmallPacket0x083;
+    PacketSize[0x084] = 0x06; PacketParser[0x084] = &SmallPacket0x084;
+    PacketSize[0x085] = 0x04; PacketParser[0x085] = &SmallPacket0x085;
+    PacketSize[0x096] = 0x12; PacketParser[0x096] = &SmallPacket0x096;
+    PacketSize[0x0A0] = 0x00; PacketParser[0x0A0] = &SmallPacket0xFFF;	// not implemented
+    PacketSize[0x0A1] = 0x00; PacketParser[0x0A1] = &SmallPacket0xFFF;	// not implemented
+    PacketSize[0x0A2] = 0x00; PacketParser[0x0A2] = &SmallPacket0x0A2;
+    PacketSize[0x0AA] = 0x00; PacketParser[0x0AA] = &SmallPacket0xFFF;	// not implemented
+    PacketSize[0x0AB] = 0x00; PacketParser[0x0AB] = &SmallPacket0x0AB;
+    PacketSize[0x0AC] = 0x00; PacketParser[0x0AC] = &SmallPacket0xFFF;	// not implemented
+    PacketSize[0x0AD] = 0x00; PacketParser[0x0AD] = &SmallPacket0x0AD;
+    PacketSize[0x0B5] = 0x00; PacketParser[0x0B5] = &SmallPacket0x0B5;
+    PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &SmallPacket0x0B6;
+    PacketSize[0x0BE] = 0x00; PacketParser[0x0BE] = &SmallPacket0x0BE;	//  merit packet
+    PacketSize[0x0C3] = 0x00; PacketParser[0x0C3] = &SmallPacket0x0C3;
+    PacketSize[0x0C4] = 0x0C; PacketParser[0x0C4] = &SmallPacket0x0C4;
+    PacketSize[0x0CB] = 0x00; PacketParser[0x0CB] = &SmallPacket0xFFF;	// not implemented
+    PacketSize[0x0D2] = 0x00; PacketParser[0x0D2] = &SmallPacket0x0D2;
+    PacketSize[0x0D3] = 0x00; PacketParser[0x0D3] = &SmallPacket0x0D3;
+    PacketSize[0x0D4] = 0x00; PacketParser[0x0D4] = &SmallPacket0xFFF;	// not implemented
+    PacketSize[0x0DB] = 0x00; PacketParser[0x0DB] = &SmallPacket0x0DB;
+    PacketSize[0x0DC] = 0x0A; PacketParser[0x0DC] = &SmallPacket0x0DC;
+    PacketSize[0x0DD] = 0x06; PacketParser[0x0DD] = &SmallPacket0x0DD;
+    PacketSize[0x0DE] = 0x40; PacketParser[0x0DE] = &SmallPacket0x0DE;
+    PacketSize[0x0E0] = 0x4C; PacketParser[0x0E0] = &SmallPacket0x0E0;
+    PacketSize[0x0E1] = 0x00; PacketParser[0x0E1] = &SmallPacket0x0E1;
+    PacketSize[0x0E2] = 0x00; PacketParser[0x0E2] = &SmallPacket0x0E2;
+    PacketSize[0x0E7] = 0x04; PacketParser[0x0E7] = &SmallPacket0x0E7;
+    PacketSize[0x0E8] = 0x04; PacketParser[0x0E8] = &SmallPacket0x0E8;
+    PacketSize[0x0EA] = 0x00; PacketParser[0x0EA] = &SmallPacket0x0EA;
+    PacketSize[0x0F1] = 0x00; PacketParser[0x0F1] = &SmallPacket0x0F1;
+    PacketSize[0x0F2] = 0x00; PacketParser[0x0F2] = &SmallPacket0x0F2;
+    PacketSize[0x0F4] = 0x04; PacketParser[0x0F4] = &SmallPacket0x0F4;
+    PacketSize[0x0F5] = 0x00; PacketParser[0x0F5] = &SmallPacket0x0F5;
+    PacketSize[0x0F6] = 0x00; PacketParser[0x0F6] = &SmallPacket0x0F6;
+    PacketSize[0x0FA] = 0x00; PacketParser[0x0FA] = &SmallPacket0x0FA;
+    PacketSize[0x0FB] = 0x00; PacketParser[0x0FB] = &SmallPacket0x0FB;
+    PacketSize[0x100] = 0x04; PacketParser[0x100] = &SmallPacket0x100;
+    PacketSize[0x102] = 0x00; PacketParser[0x102] = &SmallPacket0xFFF;	// not implemented
+    PacketSize[0x104] = 0x02; PacketParser[0x104] = &SmallPacket0x104;
+    PacketSize[0x105] = 0x06; PacketParser[0x105] = &SmallPacket0x105;
+    PacketSize[0x106] = 0x06; PacketParser[0x106] = &SmallPacket0x106;
+    PacketSize[0x109] = 0x00; PacketParser[0x109] = &SmallPacket0x109;
+    PacketSize[0x10A] = 0x06; PacketParser[0x10A] = &SmallPacket0x10A;
+    PacketSize[0x10B] = 0x00; PacketParser[0x10B] = &SmallPacket0x10B;
 }
 
 /************************************************************************
