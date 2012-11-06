@@ -499,26 +499,28 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 	{
 		SmallPD_Size = (RBUFB(SmallPD_ptr,1) & 0x0FE);
 		SmallPD_Type = (RBUFW(SmallPD_ptr,0) & 0x1FF);
-
+		
 		// если код текущего пакета меньше либо равен последнему полученному
 		// или больше глобального то игнорируем пакет
-
-		if ((RBUFW(SmallPD_ptr,2) <= map_session_data->client_packet_id) ||
-			(RBUFW(SmallPD_ptr,2) >  SmallPD_Code))
-        {
-			continue;
-        }
-        if (SmallPD_Type != 0x15) 
+		if(ProcessPacket(SmallPD_Size,SmallPD_Type))
 		{
-			ShowInfo("parse: %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr,2), RBUFW(buff,2), SmallPD_Size, PChar->GetName());
+			if ((RBUFW(SmallPD_ptr,2) <= map_session_data->client_packet_id) ||
+				(RBUFW(SmallPD_ptr,2) >  SmallPD_Code))
+			{
+				continue;
+			}
+			if (SmallPD_Type != 0x15) 
+			{
+				ShowInfo("parse: %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr,2), RBUFW(buff,2), SmallPD_Size, PChar->GetName());
+			}
+			if(PChar->loc.zone == NULL && SmallPD_Type!=0x0A){
+				ShowWarning("This packet is unexpected from %s - Received 0x0D earlier without matching 0x0A \n",PChar->GetName());
+			}
+			else{
+				PacketParser[SmallPD_Type](map_session_data, PChar, SmallPD_ptr);
+			}
 		}
-		if(PChar->loc.zone == NULL && SmallPD_Type!=0x0A){
-			ShowWarning("This packet is unexpected from %s - Received 0x0D earlier without matching 0x0A \n",PChar->GetName());
-		}
-		else{
-			PacketParser[SmallPD_Type](map_session_data, PChar, SmallPD_ptr);
-		}
-    }
+	}
     map_session_data->client_packet_id = SmallPD_Code;
 
 	// здесь мы проверяем, получил ли клиент предыдущий пакет

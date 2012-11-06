@@ -34,5 +34,6 @@ extern void (*PacketParser[512])(map_session_data_t*, CCharEntity*, int8*);
 
 void PrintPacket(int8* data);
 void PacketParserInitialize();
+bool ProcessPacket(uint16 size, uint16 type);
 
 #endif

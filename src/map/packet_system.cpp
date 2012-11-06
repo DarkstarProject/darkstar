@@ -4026,6 +4026,91 @@ void PacketParserInitialize()
 
 /************************************************************************
 *																		*
+*	Tests incoming packets for the correct size prior to processing		*
+*																		*
+************************************************************************/
+
+bool ProcessPacket(uint16 size, uint16 type)
+{	
+	switch(type)
+	{
+		case 0x05A:
+		case 0x061:
+		case 0x104:
+			if(size == 0x02) return true;
+			break;
+		case 0x00D:
+		case 0x016:
+		case 0x03A:
+		case 0x050:
+		case 0x085:
+		case 0x0E7:
+		case 0x0E8:
+		case 0x0F4:
+		case 0x100:
+			if(size == 0x04) return true;
+			break;
+		case 0x028:
+		case 0x029:
+		case 0x032:
+		case 0x033:
+		case 0x034:
+		case 0x06E:
+		case 0x084:
+		case 0x0DD:
+		case 0x105:
+		case 0x106:
+		case 0x10A:
+			if(size == 0x06) return true;
+			break;
+		case 0x01A:
+		case 0x05D:
+		case 0x083:
+			if(size == 0x08) return true;
+			break;
+		case 0x037:
+		case 0x05B:
+		case 0x066:
+		case 0x0DC:
+			if(size == 0x0A) return true;
+			break;
+		case 0x04B:
+		case 0x05E:
+		case 0x0C4:
+			if(size == 0x0C) return true;
+			break;
+		case 0x015:
+			if(size == 0x10) return true;
+			break;
+		case 0x096:
+			if(size == 0x12) return true;
+			break;
+		case 0x04E:
+			if(size == 0x1E) return true;
+			break;
+		case 0x036:
+			if(size == 0x20) return true;
+			break;
+		case 0x064:
+			if(size == 0x26) return true;
+			break;
+		case 0x00A:
+			if(size == 0x2E) return true;
+			break;
+		case 0x0DE:
+			if(size == 0x40) return true;
+			break;
+		case 0x0E0:
+			if(size == 0x4C) return true;
+			break;
+		default:
+			return true;
+	}
+	return false;
+}
+
+/************************************************************************
+*																		*
 *																 		*
 *																		*
 ************************************************************************/
