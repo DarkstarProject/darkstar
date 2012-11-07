@@ -3063,7 +3063,7 @@ void SaveMissionsList(CCharEntity* PChar)
 void SaveCharInventoryCapacity(CCharEntity* PChar)
 {
 	const int8* Query = 
-        "UPDATE chars_storage "
+        "UPDATE char_storage "
         "SET "
           "inventory = %u,"
           "safe = %u,"
