@@ -121,6 +121,7 @@
 #include "packets/zone_visited.h"
 #include "packets/menu_raisetractor.h"
 
+uint8 PacketSize[512];
 void (*PacketParser[512])(map_session_data_t*, CCharEntity*, int8*);
 
 /************************************************************************

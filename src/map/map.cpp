@@ -72,7 +72,6 @@ uint32 map_amntplayers = 0;				// map amnt unique players
 
 map_config_t map_config;				// map server settings
 map_session_list_t map_session_list;
-uint8 PacketSize[512];
 CCommandHandler CmdHandler;
 
 /************************************************************************
@@ -500,7 +499,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 		SmallPD_Size = (RBUFB(SmallPD_ptr,1) & 0x0FE);
 		SmallPD_Type = (RBUFW(SmallPD_ptr,0) & 0x1FF);
 
-		if(PacketSize[SmallPD_Type] == SmallPD_Size) // Tests incoming packets for the correct size prior to processing
+		if(PacketSize[SmallPD_Type] == SmallPD_Size || PacketSize[SmallPD_Type] == 0) // Tests incoming packets for the correct size prior to processing
 		{
             // если код текущего пакета меньше либо равен последнему полученному
 		    // или больше глобального то игнорируем пакет
