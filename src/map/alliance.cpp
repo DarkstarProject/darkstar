@@ -121,7 +121,12 @@ void CAlliance::removeParty(CParty * party)
 	    for (uint8 i = 0; i < party->members.size(); ++i) 
 	    {
 			CCharEntity* PChar = (CCharEntity*)party->members.at(i);
-			PChar->PTreasurePool->DelMember(PChar);
+			PChar->PTreasurePool->DelMember(PChar); 
+
+            // BUG GS_10-30-2012_11-50: PChar in ResidentArea dont have TreasurePool
+            // TODO:
+            // нужно разделить класс czone на базовый и наследников. уже нарисовались: Standard, Rezident, Instance и Dinamis
+            // у каждой из указанных зон особое поведение
 		}
 
 		CCharEntity* PChar = (CCharEntity*)party->GetLeader();

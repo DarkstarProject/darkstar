@@ -21,6 +21,10 @@
 ===========================================================================
 */
 
+// TODO:
+// нужно разделить класс czone на базовый и наследников. уже нарисовались: Standard, Rezident, Instance и Dinamis
+// у каждой из указанных зон особое поведение
+
 #include "../common/showmsg.h"
 #include "../common/timer.h"
 #include "../common/utils.h"
@@ -392,8 +396,10 @@ void CZone::InsertNPC(CBaseEntity* PNpc)
 	}
 }
 
-void CZone::DeletePET(CBaseEntity* PPet){
-	if(PPet!=NULL){
+void CZone::DeletePET(CBaseEntity* PPet)
+{
+	if(PPet != NULL)
+    {
 		m_petList.erase(PPet->targid);
 	}
 }
@@ -1385,7 +1391,7 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
 
 void CZone::ZoneServer(uint32 tick)
 {
-	for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
+	for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end() ; ++it)
 	{
 		CMobEntity* PMob = (CMobEntity*)it->second;
 
@@ -1408,11 +1414,12 @@ void CZone::ZoneServer(uint32 tick)
 		}
 	}
 
-	if(m_InstanceHandler!=NULL){
+	if(m_InstanceHandler != NULL)
+    {
 		m_InstanceHandler->handleInstances(tick);
 	}
 
-    for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+    for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
     {
         CCharEntity* PChar = (CCharEntity*)it->second;
 
