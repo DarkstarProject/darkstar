@@ -72,7 +72,7 @@ uint32 map_amntplayers = 0;				// map amnt unique players
 
 map_config_t map_config;				// map server settings
 map_session_list_t map_session_list;
-
+uint8 PacketSize[512];
 CCommandHandler CmdHandler;
 
 /************************************************************************
