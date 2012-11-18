@@ -18,6 +18,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:setVar("DreadbugNM_Timer",VanadielDayOfTheYear());
-	killer:setVar("NM_Spawned",0);
+
 end;
