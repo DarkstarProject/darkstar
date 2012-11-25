@@ -28,10 +28,13 @@ require("scripts/zones/Ghelsba_Outpost/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if(TradeBCNM(player,player:getZone(),trade,npc))then
-		return;
+
+
+   	if(TradeBCNM(player,player:getZone(),trade,npc))then
+	    return;
 	end
+
+
 	
 end;
 
@@ -42,9 +45,18 @@ end;
 function onTrigger(player,npc)
 
 	
-	if(EventTriggerBCNM(player,npc))then
-		return;
-	end
+   if(player:hasKeyItem(ORCISH_HUT_KEY)) then
+         if(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then   
+            player:startEvent(0x0003);   
+         else      
+            player:startEvent(0x0037);      
+         end      
+      else      
+         if(EventTriggerBCNM(player,npc))then      
+            return;      
+         end
+      end
+
 	
 end;
 
@@ -70,8 +82,13 @@ function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
 	
+   if(csid == 0x0003 or csid == 0x0037) then
+      player:delKeyItem(ORCISH_HUT_KEY);
+      player:setVar("MissionStatus",4);
+   else
 	if(EventFinishBCNM(player,csid,option))then
 		return;
 	end
+   end
 	
 end;
