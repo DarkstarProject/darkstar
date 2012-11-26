@@ -2294,7 +2294,7 @@ void CAICharNormal::ActionAttack()
 					((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmity(m_PChar, 0, 0);
 				}
 				
-				if (Action.reaction != REACTION_EVADE && m_PChar->getMod(MOD_ENSPELL)>0)
+				if (Action.reaction != REACTION_EVADE)
 				{
 					battleutils::HandleEnspell(m_PChar,m_PBattleTarget,&Action,i);
 				}

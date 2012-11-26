@@ -400,121 +400,191 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* 
 
 	//TODO: run on test server for a bit, revert back to 1 hand if buggy.
 
-	switch(PAttacker->getMod(MOD_ENSPELL)){
-	case ENSPELL_I_FIRE:
-		Action->subeffect = SUBEFFECT_FIRE_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 3;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,FIRE);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_I_EARTH:
-		Action->subeffect = SUBEFFECT_EARTH_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 1;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,EARTH);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_I_WATER:
-		Action->subeffect = SUBEFFECT_WATER_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 1;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,WATER);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_I_WIND:
-		Action->subeffect = SUBEFFECT_WIND_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 3;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,WIND);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_I_ICE:
-		Action->subeffect = SUBEFFECT_ICE_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 1;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,ICE);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_I_THUNDER:
-		Action->subeffect = SUBEFFECT_LIGHTNING_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 3;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,THUNDER);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_I_LIGHT:
-		Action->subeffect = SUBEFFECT_LIGHT_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 3;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,LIGHT);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_I_DARK:
-		Action->subeffect = SUBEFFECT_DARKNESS_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 1;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,DARK);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_BLOOD_WEAPON:
-		Action->subeffect = SUBEFFECT_BLOOD_WEAPON;
-		Action->submessageID = 167;
-		Action->flag = 1;
-		Action->subparam = PAttacker->addHP(Action->param);
-		if(PAttacker->objtype == TYPE_PC){
-			charutils::UpdateHealth((CCharEntity*)PAttacker);
+
+
+	// Enspell overwrites weapon effects
+
+	 if (PAttacker->getMod(MOD_ENSPELL) > 0) 
+	 {
+		switch(PAttacker->getMod(MOD_ENSPELL))
+		{
+			case ENSPELL_I_FIRE:
+				Action->subeffect = SUBEFFECT_FIRE_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 3;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,FIRE);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_I_EARTH:
+				Action->subeffect = SUBEFFECT_EARTH_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 1;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,EARTH);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_I_WATER:
+				Action->subeffect = SUBEFFECT_WATER_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 1;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,WATER);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_I_WIND:
+				Action->subeffect = SUBEFFECT_WIND_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 3;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,WIND);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_I_ICE:
+				Action->subeffect = SUBEFFECT_ICE_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 1;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,ICE);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_I_THUNDER:
+				Action->subeffect = SUBEFFECT_LIGHTNING_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 3;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,THUNDER);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_I_LIGHT:
+				Action->subeffect = SUBEFFECT_LIGHT_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 3;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,LIGHT);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_I_DARK:
+				Action->subeffect = SUBEFFECT_DARKNESS_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 1;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,DARK);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_BLOOD_WEAPON:
+				Action->subeffect = SUBEFFECT_BLOOD_WEAPON;
+				Action->submessageID = 167;
+				Action->flag = 1;
+				Action->subparam = PAttacker->addHP(Action->param);
+				if(PAttacker->objtype == TYPE_PC){
+					charutils::UpdateHealth((CCharEntity*)PAttacker);
+				}
+				return;
+			case ENSPELL_II_FIRE:
+				if(hitNumber>0){break;}//only main hand hit (no da/multihit) works for enspell 2s
+				Action->subeffect = SUBEFFECT_FIRE_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 3;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,FIRE);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_II_EARTH:
+				if(hitNumber>0){break;}
+				Action->subeffect = SUBEFFECT_EARTH_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 1;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,EARTH);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_II_WATER:
+				if(hitNumber>0){break;}
+				Action->subeffect = SUBEFFECT_WATER_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 1;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,WATER);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_II_WIND:
+				if(hitNumber>0){break;}
+				Action->subeffect = SUBEFFECT_WIND_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 3;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,WIND);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_II_ICE:
+				if(hitNumber>0){break;}
+				Action->subeffect = SUBEFFECT_ICE_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 1;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,ICE);
+				PDefender->addHP(-Action->subparam);
+				return;
+			case ENSPELL_II_THUNDER:
+				if(hitNumber>0){break;}
+				Action->subeffect = SUBEFFECT_LIGHTNING_DAMAGE;
+				Action->submessageID = 163;
+				Action->flag = 3;
+				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,THUNDER);
+				PDefender->addHP(-Action->subparam);
+				return;
 		}
-		break;
-	case ENSPELL_II_FIRE:
-		//if(hitNumber>0){return;}//only main hand hit (no da/multihit) works for enspell 2s
-		Action->subeffect = SUBEFFECT_FIRE_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 3;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,FIRE);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_II_EARTH:
-		if(hitNumber>0){return;}
-		Action->subeffect = SUBEFFECT_EARTH_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 1;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,EARTH);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_II_WATER:
-		if(hitNumber>0){return;}
-		Action->subeffect = SUBEFFECT_WATER_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 1;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,WATER);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_II_WIND:
-		if(hitNumber>0){return;}
-		Action->subeffect = SUBEFFECT_WIND_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 3;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,WIND);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_II_ICE:
-		if(hitNumber>0){return;}
-		Action->subeffect = SUBEFFECT_ICE_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 1;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,ICE);
-		PDefender->addHP(-Action->subparam);
-		break;
-	case ENSPELL_II_THUNDER:
-		if(hitNumber>0){return;}
-		Action->subeffect = SUBEFFECT_LIGHTNING_DAMAGE;
-		Action->submessageID = 163;
-		Action->flag = 3;
-		Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,THUNDER);
-		PDefender->addHP(-Action->subparam);
-		break;
 	}
+
+
+
+	// no enspells active, check weapon additional effects 
+	CItemWeapon* PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_MAIN]);
+
+	if (Action->animation == 1)
+		PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_SUB]);
+
+
+	//calculation based on kegsays bloody arrow, could use some corrections!
+	uint8 chance = 95;
+	if (PDefender->GetMLevel() > PAttacker->GetMLevel())
+	{
+		chance -= 5*(PDefender->GetMLevel() - PAttacker->GetMLevel());
+		chance = dsp_cap(chance,5,95);
+	}
+
+	if (rand()%100 >= chance || PWeapon==NULL)
+		return;
+
+
+	switch(PWeapon->getID())
+	{
+		//all HP drain weapons
+		case 16827:
+		case 16528:
+		case 16824:
+		case 17651:
+		case 16556:
+		case 16609:
+		case 16580:
+		case 17646:
+		case 16777:
+		case 16791:
+		case 16846:
+		case 16881:
+		case 17561:
+		case 17562:
+		case 17778:
+		case 17779:
+		case 17576:
+		case 17510:
+			Action->subeffect = SUBEFFECT_HP_DRAIN;
+			Action->submessageID = 161;
+			Action->flag = 3;
+			int damage = (PAttacker->INT() - PDefender->INT())/2;
+			damage += (PWeapon->getReqLvl() - PDefender->GetMLevel());
+			damage = dsp_cap(damage,0,50);
+			damage += PAttacker->GetMLevel()/2;
+			damage += rand()%20; //At 75 -> 37~56 low or 87~106 high
+			Action->subparam  = damage;
+			PDefender->addHP(-damage);
+			PAttacker->addHP(damage);
+			charutils::UpdateHealth(PAttacker);
+			break;
+	}
+
+
+
+
+
 }
 
 /************************************************************************
