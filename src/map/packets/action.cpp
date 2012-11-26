@@ -317,10 +317,11 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		{
 			// all subeffect 9 bit
 			// flag 2 subeffect 10 bit
-			bitOffset = packBitsBE(data, Action.subeffect,		bitOffset,  9);		// анимация эффекта, точный размер не известен (эффектов не так уж и много, около десяти)
+			bitOffset = packBitsBE(data, Action.subeffect,		bitOffset, 9);		// анимация эффекта, точный размер не известен (эффектов не так уж и много, около десяти)
 			bitOffset = packBitsBE(data, Action.subparam,		bitOffset, 16);		// параметр сообщения (урон)
 			bitOffset += 1;
 			bitOffset = packBitsBE(data, Action.submessageID,	bitOffset, 10);		// сообщение
+			bitOffset += 1;															// extra off set needed for multi hit enspells ect
 		}
 		ActionNum++;
 	}

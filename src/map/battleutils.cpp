@@ -396,7 +396,9 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
 
 void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action,uint8 hitNumber){
 	//DEBUG: REMOVE WHEN ACTION PACKET ISSUE IS RESOLVED (multi hits do not display correctly)
-	if(hitNumber>0){return;}
+	//if(hitNumber>0){return;}
+
+	//TODO: run on test server for a bit, revert back to 1 hand if buggy.
 
 	switch(PAttacker->getMod(MOD_ENSPELL)){
 	case ENSPELL_I_FIRE:
@@ -465,7 +467,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* 
 		}
 		break;
 	case ENSPELL_II_FIRE:
-		if(hitNumber>0){return;}//only main hand hit (no da/multihit) works for enspell 2s
+		//if(hitNumber>0){return;}//only main hand hit (no da/multihit) works for enspell 2s
 		Action->subeffect = SUBEFFECT_FIRE_DAMAGE;
 		Action->submessageID = 163;
 		Action->flag = 3;
