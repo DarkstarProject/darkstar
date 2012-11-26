@@ -715,5 +715,32 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 	{
 		return -1;
 	}
+
+	
+	// people reported char creation errors, here is a fix.
+
+	Query = "INSERT INTO char_equip(charid) VALUES(%u);";
+	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
+
+	Query = "INSERT INTO char_exp(charid) VALUES(%u);";
+	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
+
+	Query = "INSERT INTO char_jobs(charid) VALUES(%u);";
+	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
+
+	Query = "INSERT INTO char_points(charid) VALUES(%u);";
+	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
+
+	Query = "INSERT INTO char_profile(charid) VALUES(%u);";
+	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
+
+	Query = "INSERT INTO char_storage(charid) VALUES(%u);";
+	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
+
+	Query = "INSERT INTO char_inventory(charid) VALUES(%u);";
+	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
+
+	
+
 	return 0;
 }
