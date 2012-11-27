@@ -130,6 +130,7 @@ namespace battleutils
     void MakeEntityStandUp(CBattleEntity* PEntity);
     bool IsEngauged(CBattleEntity* PEntity);
 	CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob);
+	uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNumber);
     bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool);
 };
 

@@ -821,6 +821,7 @@ void CAICharNormal::ActionRangedFinish()
 			    }
 		    }
 		    damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
+			damage = battleutils::CheckForDamageMultiplier(PItem,damage,0);
 		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 1, NULL);
 
 		    if(PItem != NULL){//not a throwing item, check the ammo for dmg/etc
@@ -2286,6 +2287,7 @@ void CAICharNormal::ActionAttack()
 				
 				if (Action.reaction == REACTION_HIT)
 				{
+					damage = battleutils::CheckForDamageMultiplier(PWeapon,damage,i);
 					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar);
 				}
 				else

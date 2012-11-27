@@ -388,6 +388,57 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
 	}
 }
 
+
+/************************************************************************
+*                                                                       *
+*  Handles damage multiplier, relic weapons ect				            *
+*                                                                       *
+************************************************************************/
+
+uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNumber)
+{
+	if (PWeapon==NULL || hitNumber >= 1)
+		return damage;
+
+
+	switch (PWeapon->getID())
+	{
+		//relic weapons have 16% (ffxiclopedia) chance to do x times damage, cannot proc with weapon skills
+		//2.5 times damage
+		case 18264:
+		case 18276:
+		case 18282:
+		case 18288:
+		case 18300:
+		case 18318:
+		case 18330:
+			if (rand()%100 > 16) return damage;
+			return (damage = (damage * (float)2.5));
+			break;
+
+		// 3 times damage
+		case 18270:
+		case 18312:
+		case 18324:
+		case 18336:
+		case 18348:
+			if (rand()%100 >= 16) return damage;
+			return (damage = (damage * 3));
+			break;
+
+		// 2 times damage
+		case 18294:
+		case 18306:
+			if (rand()%100 >= 16) return damage;
+			return (damage = (damage * 3));
+			break;
+	}
+
+
+
+}
+
+
 /************************************************************************
 *                                                                       *
 *  Handles Enspell effect and damage						            *
