@@ -1256,9 +1256,12 @@ int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
 
 	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-    PChar->m_event.reset();
-    PChar->m_event.Target = PMob;
-	PChar->m_event.Script.insert(0,File);
+	if(PTarget->objtype != TYPE_PET)
+	{
+		PChar->m_event.reset();
+		PChar->m_event.Target = PMob;
+		PChar->m_event.Script.insert(0,File);
+	}
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
