@@ -400,7 +400,7 @@ uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNu
 	if (PWeapon==NULL || hitNumber >= 1)
 		return damage;
 
-	return damage;
+	uint32 originalDamage = damage;
 
 	switch (PWeapon->getID())
 	{
@@ -413,7 +413,7 @@ uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNu
 		case 18300:
 		case 18318:
 		case 18330:
-			if (rand()%100 > 16) return damage;
+			if (rand()%100 > 16) return originalDamage;
 			return (damage = (damage * (float)2.5));
 			break;
 
@@ -423,15 +423,19 @@ uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNu
 		case 18324:
 		case 18336:
 		case 18348:
-			if (rand()%100 >= 16) return damage;
+			if (rand()%100 >= 16) return originalDamage;
 			return (damage = (damage * 3));
 			break;
 
 		// 2 times damage
 		case 18294:
 		case 18306:
-			if (rand()%100 >= 16) return damage;
+			if (rand()%100 >= 16) return originalDamage;
 			return (damage = (damage * 3));
+			break;
+
+		default:
+			return originalDamage;			// just to be sure
 			break;
 	}
 
