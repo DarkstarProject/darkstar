@@ -127,6 +127,7 @@ namespace battleutils
     CItemWeapon* GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot);
     CItemArmor* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot);
 
+	uint32 HandleSpecialPhysicalDamageReduction(CCharEntity* PAttacker, uint32 damage, apAction_t* Action);
     void MakeEntityStandUp(CBattleEntity* PEntity);
     bool IsEngauged(CBattleEntity* PEntity);
 	CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob);

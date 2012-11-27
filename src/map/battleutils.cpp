@@ -446,18 +446,43 @@ uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNu
 
 /************************************************************************
 *                                                                       *
+*  Handles damage reduction gear							            *
+*                                                                       *
+************************************************************************/
+
+uint32 HandleSpecialPhysicalDamageReduction(CCharEntity* PChar, uint32 damage, apAction_t* Action)
+{
+	// check for special damage reducing gear
+	CItemArmor* PArmor = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_BACK]);
+
+	uint32 originalDamage = damage;
+
+	switch(PArmor->getID())
+	{
+		//shadow mantle 10% chance to annual damage
+		case 13658:
+			if (rand()%100 > 100) return originalDamage;
+			damage = 0;
+			break;
+
+
+		default:
+			return originalDamage;
+	}
+
+	return damage;
+
+}
+
+
+/************************************************************************
+*                                                                       *
 *  Handles Enspell effect and damage						            *
 *                                                                       *
 ************************************************************************/
 
-void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action,uint8 hitNumber){
-	//DEBUG: REMOVE WHEN ACTION PACKET ISSUE IS RESOLVED (multi hits do not display correctly)
-	//if(hitNumber>0){return;}
-
-	//TODO: run on test server for a bit, revert back to 1 hand if buggy.
-
-
-
+void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action,uint8 hitNumber)
+{
 	// Enspell overwrites weapon effects
 
 	 if (PAttacker->getMod(MOD_ENSPELL) > 0) 
@@ -529,8 +554,10 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* 
 					charutils::UpdateHealth((CCharEntity*)PAttacker);
 				}
 				return;
+
+			// No DA or multihit works for enspell II - Retail behaviour
 			case ENSPELL_II_FIRE:
-				if(hitNumber>0){break;}//only main hand hit (no da/multihit) works for enspell 2s
+				if(hitNumber>0){break;}
 				Action->subeffect = SUBEFFECT_FIRE_DAMAGE;
 				Action->submessageID = 163;
 				Action->flag = 3;
@@ -582,28 +609,19 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* 
 
 
 
+
 	// no enspells active, check weapon additional effects 
 	CItemWeapon* PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_MAIN]);
 
 	if (Action->animation == 1)
 		PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_SUB]);
-
-
-	//calculation based on kegsays bloody arrow, could use some corrections!
+	
 	uint8 chance = 95;
-	if (PDefender->GetMLevel() > PAttacker->GetMLevel())
-	{
-		chance -= 5*(PDefender->GetMLevel() - PAttacker->GetMLevel());
-		chance = dsp_cap(chance,5,95);
-	}
-
-	if (rand()%100 >= chance || PWeapon==NULL)
-		return;
-
-
+	int damage = (PAttacker->INT() - PDefender->INT())/2;
+	
 	switch(PWeapon->getID())
 	{
-		//all HP drain weapons
+		//Additional Effect: HP drain Weapons
 		case 16827:
 		case 16528:
 		case 16824:
@@ -622,10 +640,19 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* 
 		case 17779:
 		case 17576:
 		case 17510:
+			//calculation based on kegsays bloody arrow
+			// seems over powered but according to forum a lvl46 thf gets 40hp drain per hit..
+			if (PDefender->GetMLevel() > PAttacker->GetMLevel())
+			{
+				chance -= 5*(PDefender->GetMLevel() - PAttacker->GetMLevel());
+				chance = dsp_cap(chance,5,95);
+			}
+			if (rand()%100 >= chance || PWeapon==NULL) return;
+
 			Action->subeffect = SUBEFFECT_HP_DRAIN;
 			Action->submessageID = 161;
 			Action->flag = 3;
-			int damage = (PAttacker->INT() - PDefender->INT())/2;
+
 			damage += (PWeapon->getReqLvl() - PDefender->GetMLevel());
 			damage = dsp_cap(damage,0,50);
 			damage += PAttacker->GetMLevel()/2;
@@ -634,7 +661,21 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* 
 			PDefender->addHP(-damage);
 			PAttacker->addHP(damage);
 			charutils::UpdateHealth(PAttacker);
-			break;
+			return;
+
+
+		//Additional Effect: Dispel Weapons (10% chance needs verifying)
+		case 16942:
+		case 16944:
+		case 16950:
+		case 16951:
+		case 18330:
+			if (rand()%100 > 10) return;
+			PDefender->StatusEffectContainer->DispelStatusEffect();
+			return;
+
+		default:
+			return;
 	}
 
 
