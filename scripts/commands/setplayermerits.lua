@@ -1,7 +1,7 @@
 -----------------------------------
---	[Command name]: give gil to player
+--	[Command name]: give merits to player
 --	[Author      ]: link
---	[Description ]: (@givegil Link 100) will give 100 gill to link
+--	[Description ]: (@setplayermerits Link 10) will set links merit points to 10 
 -----------------------------------
 
 -----------------------------------
@@ -10,5 +10,5 @@
 
 function onTrigger(player,target,quantity)
 	pc = GetPlayerByName(target);
-	pc:addGil(quantity);
+	pc:setMerits(quantity);
 end;

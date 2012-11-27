@@ -397,7 +397,7 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
 
 uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNumber)
 {
-	if (PWeapon==NULL || hitNumber >= 1)
+	if (PWeapon==NULL)
 		return damage;
 
 	uint32 originalDamage = damage;

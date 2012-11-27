@@ -15,26 +15,3 @@ function onTrigger(player,target,itemID,quantity)
 	pc = GetPlayerByName(target);
 	pc:addItem(itemID,quantity);
 end;
-
---function onTrigger(player,target)
-
-
------------------------------------
--- onEventUpdate Action
------------------------------------
-
-function onEventUpdate(player,csid,option)
---print("CS : onEventUpdate");
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
-
-function onEventFinish(player,csid,option)
---print("CS : onEventFinish");
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
