@@ -21,3 +21,4 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
       GRAINE_SHOP_DIALOG = 7044; -- Hello there, I'm Graine the armorer. I've got just what you need!
 PIKINIMIKINI_SHOP_DIALOG = 7046; -- Hi, I'm Pikini-Mikini, Mhaura's item seller. I've got the wares, so size doesn't matter!
 RUNITOMONITO_SHOP_DIALOG = 7045; -- Hi! Welcome! I'm Runito-Monito, and weapons is my middle name!
+  TYAPADOLIH_SHOP_DIALOG = 7047; -- Welcome, strrranger! Tya Padolih's the name, and dealin' in magic is my game!
