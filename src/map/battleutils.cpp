@@ -400,6 +400,7 @@ uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNu
 	if (PWeapon==NULL || hitNumber >= 1)
 		return damage;
 
+	return damage;
 
 	switch (PWeapon->getID())
 	{
