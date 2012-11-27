@@ -6,10 +6,12 @@
 require("scripts/globals/titles");
 
 -----------------------------------
--- onMobSpawn Action
+-- OnMobInitialise Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobInitialize(mob)
+	mob:addStatusEffect(EFFECT_REGEN,25,3,0);
+	mob:addStatusEffect(EFFECT_MAGIC_DEF_BOOST,50,0,0);
 end;
 
 -----------------------------------
