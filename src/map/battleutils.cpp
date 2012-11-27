@@ -461,7 +461,7 @@ uint32 HandleSpecialPhysicalDamageReduction(CCharEntity* PChar, uint32 damage, a
 	{
 		//shadow mantle 10% chance to annual damage
 		case 13658:
-			if (rand()%100 > 100) return originalDamage;
+			if (rand()%100 > 10) return originalDamage;
 			damage = 0;
 			break;
 
