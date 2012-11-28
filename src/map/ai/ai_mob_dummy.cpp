@@ -982,8 +982,15 @@ void CAIMobDummy::ActionAttack()
 							Action.speceffect = SPECEFFECT_HIT;
 							Action.messageID  = 1;
 
+							uint8 meritCounter = 0;
+							if (m_PBattleTarget->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER))
+							{
+								if (m_PBattleTarget->GetMJob() == JOB_MNK || m_PBattleTarget->GetMJob() == JOB_PUP) 
+									meritCounter = ((CCharEntity*)m_PBattleTarget)->PMeritPoints->GetMeritValue(MERIT_COUNTER_RATE,m_PBattleTarget->GetMLevel());
+							}
+
 							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
-							if(rand()%100 < m_PBattleTarget->getMod(MOD_COUNTER) && rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob)){
+							if(rand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) && rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob)){
 								//countered! can crit but no message or new animation, just more damage
 								isCountered = true;
 								Action.messageID = 33; //counter msg
@@ -994,6 +1001,9 @@ void CAIMobDummy::ActionAttack()
 
 								float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical); 
 								damage = (uint16)((m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
+								
+								Action.subparam = (damage * 2);
+								Action.flag = 2;
 							}
 							else{
 								bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget,false) );

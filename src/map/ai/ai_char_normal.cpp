@@ -853,7 +853,13 @@ void CAICharNormal::ActionRangedFinish()
 		    }
 	    }
         CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-        if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE))
+
+		uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
+
+		if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
+			recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
+
+		if(PAmmo!=NULL && rand()%100 > recycleChance)
         {
             // TODO: charutils написать метод для обновления AMMO, чтобы корректно снимать предмет перед удалением
 			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1); 

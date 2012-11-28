@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
@@ -94,7 +94,7 @@ INSERT INTO `merits` VALUES(320, 'enmity_increase', 4, 1, 1048575);
 INSERT INTO `merits` VALUES(322, 'enmity_decrease', 4, 1, 1048575);
 INSERT INTO `merits` VALUES(324, 'crit_hit_rate', 4, 1, 1048575);
 INSERT INTO `merits` VALUES(326, 'enemy_crit_rate', 4, 1, 1048575);
-INSERT INTO `merits` VALUES(328, 'spell_interuption_rate', 4, 1, 1048575);
+INSERT INTO `merits` VALUES(328, 'spell_interuption_rate', 4, 2, 1048575);
 
 -- war 1
 INSERT INTO `merits` VALUES(384, 'beserk_recast', 5, 10, 1);
@@ -107,7 +107,7 @@ INSERT INTO `merits` VALUES(392, 'double_attack_rate', 5, 1, 1);
 INSERT INTO `merits` VALUES(448, 'focus_recast', 5, 10, 2);
 INSERT INTO `merits` VALUES(450, 'dodge_recast', 5, 10, 2);
 INSERT INTO `merits` VALUES(452, 'chakra_recast', 5, 10, 2);
-INSERT INTO `merits` VALUES(454, 'counter_rate', 5, 10, 2);
+INSERT INTO `merits` VALUES(454, 'counter_rate', 5, 1, 2);
 INSERT INTO `merits` VALUES(456, 'kick_attack_rate', 5, 1, 2);
 
 -- whm 1

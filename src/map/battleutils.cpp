@@ -1059,34 +1059,53 @@ bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 }
 
 bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
-	int base = 40; //Reasonable assumption for the time being.
+	
+	//Reasonable assumption for the time being.
+	int base = 40; 
 	int diff = PAttacker->GetMLevel() - PDefender->GetMLevel();
 	float check = base + diff;
+	uint8 meritReduction = 0;
 
 	if(PDefender->objtype==TYPE_PC) { //Check player's skill.  
 		//For mobs, we can assume their skill is capped at their level, so this term is 1 anyway.
-		CCharEntity* PChar = (CCharEntity*) PDefender;
+		CCharEntity* PChar = (CCharEntity*)PDefender;
 		float skill = PChar->GetSkill(PChar->PBattleAI->GetCurrentSpell()->getSkillType());
 		if(skill <= 0) {
 			skill = 1;
 		}
 			
-		float cap = GetMaxSkill((SKILLTYPE)PChar->PBattleAI->GetCurrentSpell()->getSkillType(),
-			PChar->GetMJob(),PChar->GetMLevel());
-		if(skill > cap) {
-			skill = cap;
+		float cap = GetMaxSkill((SKILLTYPE)PChar->PBattleAI->GetCurrentSpell()->getSkillType(), PChar->GetMJob(), PChar->GetMLevel());
+
+		//if cap is 0 then player is using a spell from their subjob 
+		if (cap == 0)
+		{
+			cap = GetMaxSkill((SKILLTYPE)PChar->PBattleAI->GetCurrentSpell()->getSkillType(), PChar->GetSJob(), 
+				PChar->GetSLevel()); // << this might be GetMLevel, however this leaves no chance of avoiding interuption
 		}
+
+		if(skill > cap)
+			skill = cap;
+		
 		float ratio = (float)cap/skill;
 		check *= ratio;
-	} 
 
-	float aquaveil = ((float)((100.0f - (float)PDefender->getMod(MOD_SPELLINTERRUPT))/100.0f));
+		//prevent from spilling over 100 - resulting in players never being interupted
+		if (check > 100) check = 100;
+
+		//apply any merit reduction
+		meritReduction = ((CCharEntity*)PDefender)->PMeritPoints->GetMeritValue(MERIT_SPELL_INTERUPTION_RATE,PDefender->GetMLevel());
+	}
+
+	float aquaveil = ((float)((100.0f - (meritReduction + (float)PDefender->getMod(MOD_SPELLINTERRUPT)))/100.0f));
 	check *= aquaveil;
+	uint8 chance = rand()%100;
 
-	if(rand()%100 < check)  {
-		//Mark for interruption.
+	if(chance < check)  
+	{
+		//Interrupt the spell cast.
 		return true;
 	}
+
 	return false;
 }
 
@@ -1467,6 +1486,10 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ig
 	}
 	else
 	{
+		//apply merit mods
+		if (PAttacker->objtype == TYPE_PC) crithitrate += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_CRIT_HIT_RATE,PAttacker->GetMLevel());
+		if (PDefender->objtype == TYPE_PC) crithitrate -= ((CCharEntity*)PDefender)->PMeritPoints->GetMeritValue(MERIT_ENEMY_CRIT_RATE,PDefender->GetMLevel());
+
 		int32 attackerdex = PAttacker->DEX();
 		int32 defenderagi = PDefender->AGI();
 
