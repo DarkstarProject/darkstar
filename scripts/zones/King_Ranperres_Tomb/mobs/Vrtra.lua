@@ -6,7 +6,7 @@
 require("scripts/globals/titles");
 
 -----------------------------------
--- OnMobInitialise Action
+-- OnMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
