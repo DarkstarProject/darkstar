@@ -648,7 +648,17 @@ void CAICharNormal::ActionRangedStart()
 		uint8 SkillType = PItem->getSkillType();
 		//ranged weapon delay is stored in the db as offset from 240 for some reason. Also, getDelay incorrectly
 		//returns the delay /60 - for ranged weapons it is /110 hence the calculation below.
+
 		m_PChar->m_rangedDelay = ((240+((PItem->getDelay()*60)/1000))*1000)/110; //literal time in ms until shot fired
+
+		if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
+		{
+			uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE,m_PChar->GetMLevel()));
+			if (rand()%100 < chance)
+				m_PChar->m_rangedDelay = 0;
+		}
+
+
 
 		switch (SkillType)
 		{
