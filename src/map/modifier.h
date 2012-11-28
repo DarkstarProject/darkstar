@@ -392,7 +392,13 @@ enum MODIFIER
 // Special Modifier
 
 	MOD_ADDS_WEAPONSKILL	 = 0x163,
-	MOD_ADDS_WEAPONSKILL_DYN = 0x164
+	MOD_ADDS_WEAPONSKILL_DYN = 0x164,
+
+
+// missing modifiers
+
+	MOD_RAPID_SHOT			 = 0x165
+
 };
 
 #define MAX_MODIFIER	       0x167
