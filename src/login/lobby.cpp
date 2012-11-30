@@ -716,6 +716,8 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 		return -1;
 	}
 
+
+
 	
 	// people reported char creation errors, here is a fix.
 
@@ -743,11 +745,17 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 			ON DUPLICATE KEY UPDATE charid = charid;";
 	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
 
-	Query = "INSERT INTO char_inventory(charid) VALUES(%u) \
-			ON DUPLICATE KEY UPDATE charid = charid;";
+
+
+	//hot fix 
+	Query = "DELETE FROM char_inventory WHERE charid = %u";
+	if( Sql_Query(SqlHandle, Query, charid) == SQL_ERROR ) return -1;
+
+	Query = "INSERT INTO char_inventory(charid) VALUES(%u);"; 
 	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR ) return -1;
 
-	
+
+
 
 	return 0;
 }
