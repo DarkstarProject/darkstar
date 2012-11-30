@@ -41,7 +41,7 @@ public:
 	uint16	getDamage();
 	uint16	getDmgType();
     uint8   getAdditionalEffect();
-    uint8   getHitCount();
+    uint8   getHitCount(uint8 checkMobHits);
 
     bool    isRanged();
     bool    isTwoHanded();

@@ -183,12 +183,15 @@ void CItemWeapon::setMaxHit(uint8 hit)
 *                                                                       *
 ************************************************************************/
 
-uint8 CItemWeapon::getHitCount()
+uint8 CItemWeapon::getHitCount(uint8 checkMobHits)
 {
     int num = 1;
     int distribution = rand()%100;
 
-    switch (m_maxHit)
+	uint8 hits = m_maxHit;
+	if (checkMobHits != NULL) hits = checkMobHits;
+
+    switch (hits)
     {
         case 0: break;
         case 1: break;

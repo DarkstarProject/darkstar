@@ -1657,7 +1657,8 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 
 uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 {
-	uint8 num = PWeapon->getHitCount();
+	//checking players weapon hit count
+	uint8 num = PWeapon->getHitCount(NULL);
 
 	uint8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
 	uint8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
@@ -1675,6 +1676,20 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 			doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE,PEntity->GetMLevel());
 		}
 	}
+
+	else if (PEntity->objtype == TYPE_MOB)
+	{
+		//check for unique mobs
+		switch (PEntity->id)
+		{
+			case 17498522:// Charybdis 2-6
+				num = (2 + PWeapon->getHitCount(5));
+
+			default:
+				break;
+		}
+	}
+
 
 	if (rand()%100 <= tripleAttack)
 	{		
