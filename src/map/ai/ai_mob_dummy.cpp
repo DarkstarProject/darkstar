@@ -861,6 +861,15 @@ void CAIMobDummy::ActionAttack()
 		return; 
 	}
 
+
+	// mob should not attack another mob with no master
+	if(m_PBattleTarget != NULL && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster == NULL)
+	{
+		m_PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+		m_PMob->PEnmityContainer->Clear();
+	}
+
+
     if (m_PBattleTarget->isDead() || 
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
 		m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID())

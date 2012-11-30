@@ -397,8 +397,8 @@ enum MODIFIER
 
 // missing modifiers
 
-	MOD_RAPID_SHOT			 = 0x165
-
+	MOD_RAPID_SHOT			 = 0x165,
+	MOD_CHARM				 = 0x166
 };
 
 #define MAX_MODIFIER	       0x167

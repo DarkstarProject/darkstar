@@ -119,9 +119,16 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
 
         m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEntity->id, PEnmityObject));
 
-		if(PEntity->objtype == TYPE_PET && PEntity->PMaster!=NULL){ //add master to the enmity list
+		//add master to the enmity list
+		if(PEntity->objtype == TYPE_PET && PEntity->PMaster!=NULL){ 
 			UpdateEnmity(PEntity->PMaster,0,0);
 		}
+
+		//add master to the enmity list (charmed mob)
+		if(PEntity->objtype == TYPE_MOB && PEntity->PMaster!=NULL && PEntity->PMaster->objtype == TYPE_PC){ 
+			UpdateEnmity(PEntity->PMaster,0,0);
+		}
+
     }
 }
 

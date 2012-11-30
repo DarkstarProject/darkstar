@@ -3963,12 +3963,6 @@ inline int32 CLuaBaseEntity::petRetreat(lua_State *L)
 	return 0;
 }
 
-//==========================================================//
-
-inline int32 CLuaBaseEntity::petStay(lua_State *L)
-{
-	return 0;
-}
 
 //==========================================================//
 
@@ -5099,6 +5093,47 @@ inline int32 CLuaBaseEntity::checkFovAllianceAllowed(lua_State *L){
 }
 
 
+/************************************************************************
+*																		*
+*  Charm a monster														*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::charmPet(lua_State *L)
+{
+	if ( m_PBaseEntity != NULL )
+	{
+		if ( m_PBaseEntity->objtype != TYPE_MOB )
+		{
+				CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
+				battleutils::tryToCharm((CBattleEntity*)m_PBaseEntity, (CBattleEntity*)PEntity->GetBaseEntity());
+				return 0;
+		}
+	}
+	return 0;
+}
+
+
+/************************************************************************
+*																		*
+*  Makes your pet stay put												*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::petStay(lua_State *L)
+{
+	if ( m_PBaseEntity != NULL )
+	{
+		if ( m_PBaseEntity->objtype != TYPE_MOB )
+		{
+				petutils::MakePetStay((CBattleEntity*)m_PBaseEntity);
+				return 0;
+		}
+	}
+	return 0;
+}
+
+
 
 //==========================================================//
 
@@ -5242,6 +5277,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockEquipSlot),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetElement),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetName),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,charmPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAttack),

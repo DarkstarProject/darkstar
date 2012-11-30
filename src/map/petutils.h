@@ -67,6 +67,7 @@ namespace petutils
 	void	DespawnPet(CBattleEntity* PMaster);
 	void	AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget);
 	void	RetreatToMaster(CBattleEntity* PMaster);
+	void	MakePetStay(CBattleEntity* PMaster);
 };
 
 #endif

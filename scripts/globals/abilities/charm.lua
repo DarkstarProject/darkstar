@@ -1,14 +1,15 @@
 -----------------------------------
--- Ability: Velocity Shot
+-- Ability: Charm a monster
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/pets");
 
 -----------------------------------
 -- OnUseAbility
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_VELOCITY_SHOT,1,0,300);
+	player:charmPet(target);
 end;

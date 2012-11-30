@@ -1436,6 +1436,13 @@ void CAICharNormal::ActionJobAbilityStart()
 				m_PBattleSubTarget = NULL;
 				return;
 			}
+			else if(m_PChar->PPet->GetHPP() == 0){//prevent player having an undead pet
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 87));
+			    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
 		}
 		if(m_PJobAbility->getID() == ABILITY_SPIRIT_LINK){ 
 			if(m_PChar->PPet == NULL){
@@ -1461,6 +1468,38 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+
+		if(m_PJobAbility->getID() == ABILITY_CHARM){
+			
+			// player already has a pet
+			if(m_PChar->PPet!=NULL){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 315));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+			// Pet already has a master
+			if(m_PBattleSubTarget->PMaster != NULL){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 235));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+		}
+
+		if(m_PJobAbility->getID() == ABILITY_FIGHT){
+			//cannot use fight on your own or pet or another players pet
+			if(m_PBattleSubTarget == m_PChar->PPet || (m_PBattleSubTarget->PMaster != NULL && m_PBattleSubTarget->PMaster->objtype == TYPE_PC) ){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 446));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}	
+		}
+
 		if (m_PJobAbility->getID() == ABILITY_HASSO || m_PJobAbility->getID() == ABILITY_SEIGAN){
 			if(!m_PChar->m_Weapons[SLOT_MAIN]->isTwoHanded()){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 307));
@@ -1615,6 +1654,12 @@ void CAICharNormal::ActionJobAbilityFinish()
 		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_SIC;
 		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
 	}
+
+	if(m_PJobAbility->getID() == ABILITY_SIC && m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_MOB){//Sic charmed mob
+		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_SIC;
+		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+	}
+
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 	if(m_PJobAbility->getID() < ABILITY_HEALING_RUBY){
@@ -1980,6 +2025,14 @@ void CAICharNormal::ActionAttack()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 	
+	//disengage if player has charmed the mob
+	if (m_PChar->PPet != NULL && m_PChar->PPet == m_PBattleTarget)
+	{
+		m_PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+		return;
+	}
+
+
 	CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
 	if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
 	if (charutils::hasTrait(m_PChar, TRAIT_TREASURE_HUNTER))

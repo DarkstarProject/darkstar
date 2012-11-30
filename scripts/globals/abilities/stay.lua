@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability: Velocity Shot
+-- Ability: Leave
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -10,5 +10,5 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_VELOCITY_SHOT,1,0,300);
+	player:petStay();
 end;

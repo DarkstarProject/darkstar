@@ -71,6 +71,8 @@ CBattleEntity::CBattleEntity()
     m_modStat[MOD_LIGHTRES]   = 0;
     m_modStat[MOD_DARKRES]    = 0;
 
+	charmTime = 0;
+	isCharmed = false;
 }
 
 CBattleEntity::~CBattleEntity()

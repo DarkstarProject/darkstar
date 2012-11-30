@@ -29,6 +29,7 @@
 #include "../petentity.h"
 #include "../zone.h"
 #include "../mobskill.h"
+#include "../petutils.h"
 
 #include "../lua/luautils.h"
 
@@ -37,6 +38,7 @@
 #include "../packets/char_update.h"
 #include "../packets/pet_sync.h"
 #include "../packets/message_basic.h"
+#include "../mobentity.h"
 
 #include "ai_pet_dummy.h"
 
@@ -61,6 +63,14 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 {
 	m_Tick = tick;
 
+
+	//uncharm any pets if time is up
+	if(tick > m_PPet->charmTime && m_PPet->isCharmed)
+	{
+		petutils::DespawnPet(m_PPet->PMaster);
+		return;
+	}
+
 	switch(m_ActionType)
 	{
 		case ACTION_NONE:							break;
@@ -82,6 +92,20 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 
 void CAIPetDummy::ActionAbilityStart()
 {
+	if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC){
+		if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=100 && m_PBattleTarget!=NULL){
+			m_MasterCommand = MASTERCOMMAND_NONE;
+			CMobEntity* PMob = (CMobEntity*)m_PPet->PMaster->PPet;
+			std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(PMob->m_Family);
+				if(MobSkills.size()>0){
+				m_PMobSkill = MobSkills.at(rand() % MobSkills.size());
+				preparePetAbility(m_PBattleTarget);
+				return;
+			}
+		}
+	}
+
+
 	if(m_PPet->getPetType()==PETTYPE_JUGPET){
 		if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=100 && m_PBattleTarget!=NULL){ //choose random tp move
 			m_MasterCommand = MASTERCOMMAND_NONE;
@@ -200,23 +224,35 @@ void CAIPetDummy::ActionAbilityUsing()
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL && m_PMobSkill->getValidTargets()==TARGET_ENEMY && m_PPet->getPetType()!=PETTYPE_AVATAR);
 
-	if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
-		m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PPet->getZone()){
-		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-		ActionAbilityInterrupt();
-		return;
+	if (m_PPet->objtype == TYPE_MOB)
+	{
+		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
+			m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PPet->getZone()){
+			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+			ActionAbilityInterrupt();
+			return;
+		}
 	}
-	else if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead() ||
-		m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
-		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-		ActionAbilityInterrupt();
-		return;
-	}
-	else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && m_PBattleSubTarget->isDead() ||
-		m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
-		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-		ActionAbilityInterrupt();
-		return;
+	else
+	{
+		if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
+			m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PPet->getZone()){
+			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+			ActionAbilityInterrupt();
+			return;
+		}
+		else if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead() ||
+			m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
+			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+			ActionAbilityInterrupt();
+			return;
+		}
+		else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && m_PBattleSubTarget->isDead() ||
+			m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
+			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+			ActionAbilityInterrupt();
+			return;
+		}
 	}
 
 	//TODO: Any checks whilst the pet is preparing.
@@ -226,33 +262,48 @@ void CAIPetDummy::ActionAbilityUsing()
 	if ((m_Tick - m_LastActionTime) > m_PMobSkill->getActivationTime())
     {
 		//Range check
-		if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
-			m_PBattleTarget!=m_PPet && 
-			distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
+		if (m_PPet->objtype == TYPE_MOB)
+		{	
+			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget!=m_PPet && 
+				distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
-			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-			//too far away message
-			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 78));
-			ActionAbilityInterrupt();
-			return;
+				m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+				//too far away message
+				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 78));
+				ActionAbilityInterrupt();
+				return;
+			}
 		}
-		else if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
-			m_PBattleSubTarget!=m_PPet && 
-			distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
+		else
+		{
+			if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
+				m_PBattleTarget!=m_PPet && 
+				distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
-			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-			//too far away message
-			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, 0, 78));
-			ActionAbilityInterrupt();
-			return;
-		}
-		else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && 
-			distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
-			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-			//too far away message
-			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, 0, 78));
-			ActionAbilityInterrupt();
-			return;
+				m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+				//too far away message
+				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 78));
+				ActionAbilityInterrupt();
+				return;
+			}
+			else if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
+				m_PBattleSubTarget!=m_PPet && 
+				distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
+
+				m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+				//too far away message
+				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, 0, 78));
+				ActionAbilityInterrupt();
+				return;
+			}
+			else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && 
+				distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
+				m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+				//too far away message
+				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, 0, 78));
+				ActionAbilityInterrupt();
+				return;
+			}
 		}
 		m_PMobSkill->setTP(m_PPet->health.tp);
 		m_LastActionTime = m_Tick;
@@ -266,27 +317,45 @@ void CAIPetDummy::ActionAbilityFinish(){
     m_PPet->m_ActionList.clear();
 	
 	apAction_t Action;
-	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PPet->getPetType()!=PETTYPE_AVATAR){
-		Action.ActionTarget = m_PBattleTarget;
+
+	if (m_PPet->objtype == TYPE_MOB)
+	{
+		if (m_PMobSkill->getValidTargets() == TARGET_SELF)
+			Action.ActionTarget = m_PPet;
+
+		else if (m_PMobSkill->getValidTargets() == TARGET_ENEMY)
+			Action.ActionTarget = m_PBattleTarget;
+
+		else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY)
+			Action.ActionTarget = m_PPet->PMaster;
 	}
-	else if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PPet->getPetType()==PETTYPE_AVATAR){
-		Action.ActionTarget = m_PBattleSubTarget;
+	else
+	{
+		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PPet->getPetType()!=PETTYPE_AVATAR){
+			Action.ActionTarget = m_PBattleTarget;
+		}
+		else if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PPet->getPetType()==PETTYPE_AVATAR){
+			Action.ActionTarget = m_PBattleSubTarget;
+		}
+		else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY){
+			Action.ActionTarget = m_PBattleSubTarget;
+		}
+		else if(m_PMobSkill->getValidTargets() == TARGET_SELF){
+			Action.ActionTarget = m_PPet;
+		}
 	}
-	else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY){
-		Action.ActionTarget = m_PBattleSubTarget;
-	}
-	else if(m_PMobSkill->getValidTargets() == TARGET_SELF){
-		Action.ActionTarget = m_PPet;
-	}
+
+
+
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
 
-	if(m_PPet->getPetType()==PETTYPE_JUGPET){
-		Action.param	  = luautils::OnMobWeaponSkill(Action.ActionTarget, m_PPet,m_PMobSkill);
+	if(m_PPet->getPetType()==PETTYPE_JUGPET || m_PPet->objtype == TYPE_MOB){
+		Action.param = luautils::OnMobWeaponSkill(Action.ActionTarget, m_PPet,m_PMobSkill);
 	}
 	else{
-		Action.param	  = luautils::OnPetAbility(Action.ActionTarget, m_PPet,m_PMobSkill, m_PPet->PMaster);
+		Action.param = luautils::OnPetAbility(Action.ActionTarget, m_PPet,m_PMobSkill, m_PPet->PMaster);
 	}
 	Action.subparam   = m_PMobSkill->getID() + 256;
 	Action.messageID  = m_PMobSkill->getMsg();
@@ -295,7 +364,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 	m_PPet->m_ActionList.push_back(Action);
 
 	//check for aoe moves (buffs)
-	if (m_PMobSkill->getAoe()==1 && m_PPet->getPetType()==PETTYPE_AVATAR){ //aoe
+	if (m_PMobSkill->getAoe()==1 && m_PPet->getPetType()==PETTYPE_AVATAR || m_PPet->objtype == TYPE_MOB){ //aoe
 		if(m_PMobSkill->getValidTargets() == TARGET_SELF){//on the masters pt
 			//add effect on master (solo play)
 			if (m_PPet->PMaster->PParty==NULL && !m_PPet->PMaster->isDead() 
@@ -509,6 +578,14 @@ void CAIPetDummy::ActionAttack()
 		return;
 	}
 
+
+	//if 2 bsts are in party, make sure their pets cannot fight eachother
+	if (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster != NULL && m_PBattleTarget->PMaster->objtype == TYPE_PC)
+	{
+		m_PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+	}
+
+
 	//wyvern behaviour
 	if(m_PPet->getPetType()==PETTYPE_WYVERN && m_PPet->PMaster->PBattleAI->GetBattleTarget()==NULL){
 		m_PBattleTarget = NULL;
@@ -633,13 +710,20 @@ void CAIPetDummy::ActionDisengage()
 
 void CAIPetDummy::ActionFall()
 {
-	//TODO: Charmed pets do not die when their master kicks the bucket - so need a check for type of pet. PETTYPE_CHARMEDMOB
+	//Charmed pets do not die when their master kicks the bucket
+	if(m_PPet->GetHPP() != 0 && m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC){
+		petutils::DespawnPet(m_PPet->PMaster);
+		return;
+	}
+
+
     m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 
 	if(m_PPet->PMaster->objtype == TYPE_PC && distance(m_PPet->loc.p, m_PPet->PMaster->loc.p) >= 50){
 		//master won't get this fall packet, so send it directly
 		((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 	}
+
 	m_LastActionTime = m_Tick;
 	m_PPet->health.hp = 0;
 	m_ActionType = ACTION_DEATH;
@@ -649,6 +733,15 @@ void CAIPetDummy::ActionDeath()
 {
 	if(m_Tick-m_LastActionTime > 3000){
 		m_PPet->status = STATUS_DISAPPEAR;
+
+		//a charmed pet was killed
+		if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC)
+		{
+			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));
+			petutils::DespawnPet(m_PPet->PMaster);
+			return;
+		}
+
 		if(m_PPet->PMaster!=NULL){
 			if(m_PPet->PMaster->objtype == TYPE_PC && distance(m_PPet->loc.p, m_PPet->PMaster->loc.p) >= 50){
 				//master won't get this despawn packet, so send it directly
@@ -665,6 +758,8 @@ void CAIPetDummy::ActionDeath()
 		if(m_PPet->getPetType() == PETTYPE_AVATAR){
 			m_PPet->PMaster->StatusEffectContainer->DelStatusEffect(EFFECT_AVATAR);
 		}
+
+
 		m_PPet->PMaster = NULL;
 		m_ActionType = ACTION_NONE;
 	}

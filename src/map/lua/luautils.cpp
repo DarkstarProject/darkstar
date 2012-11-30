@@ -1243,7 +1243,9 @@ int32 OnMobInitialise(CBaseEntity* PMob)
 int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget) 
 {	
 	DSP_DEBUG_BREAK_IF(PTarget == NULL || PMob == NULL);
-    CCharEntity* PChar = (CCharEntity*)PTarget;
+
+
+	CCharEntity* PChar = (CCharEntity*)PTarget;
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 	CLuaBaseEntity LuaKillerEntity(PTarget);
@@ -1256,7 +1258,7 @@ int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
 
 	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-	if(PTarget->objtype != TYPE_PET)
+	if(PTarget->objtype != TYPE_PET && PTarget->objtype != TYPE_MOB)
 	{
 		PChar->m_event.reset();
 		PChar->m_event.Target = PMob;

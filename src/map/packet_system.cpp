@@ -317,6 +317,12 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		PChar->animation = ANIMATION_NONE;
 	}
+
+	// uncharm pet on zone
+	if (PChar->PPet != NULL && PChar->PPet->objtype == TYPE_MOB)
+		petutils::DespawnPet(PChar);
+
+
     PChar->PRecastContainer->Del(RECAST_MAGIC);
     
     charutils::SaveCharStats(PChar);

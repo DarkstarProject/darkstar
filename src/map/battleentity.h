@@ -372,6 +372,9 @@ public:
     uint16          ATT();
 	uint16          RATT(uint8 skill);
 
+	uint32			charmTime;					// to hold the time entity is charmed
+	bool			isCharmed;					// is the battle entity charmed?
+
 	bool		    isDead();					// проверяем, мертва ли сущность
 	bool			isInDynamis();
 	bool			hasImmunity(uint32 imID);

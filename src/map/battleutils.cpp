@@ -48,7 +48,9 @@
 #include "petentity.h"
 #include "enmity_container.h"
 #include "items.h"
-
+#include "packets/pet_sync.h"
+#include "packets/char_sync.h"
+#include "ai/ai_pet_dummy.h"
 
 /************************************************************************
 *	lists used in battleutils											*
@@ -1244,8 +1246,15 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     }
     else
     {
-        PDefender->m_OwnerID.id = PAttacker->id;
-        PDefender->m_OwnerID.targid = PAttacker->targid; 
+		if(PAttacker->objtype == TYPE_MOB && PAttacker->PMaster == NULL)
+		{
+			//uncharmed mob still attacking another mob - dont allow 2 mobs to go purple
+		}
+		else
+		{
+			PDefender->m_OwnerID.id = PAttacker->id;
+			PDefender->m_OwnerID.targid = PAttacker->targid;
+		}
     }
 
     float TP = 0;
@@ -1273,6 +1282,13 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 				}else{
 					((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
 				}
+
+				//if the mob is charmed by player
+				if(PDefender->PMaster != NULL && PDefender->PMaster->objtype == TYPE_PC)
+				{
+					((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
+				}
+
             }
             break;
             case TYPE_PET:
@@ -2495,6 +2511,212 @@ void GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 a
 		}
 	}
 }
+
+
+
+
+
+
+/************************************************************************
+*                                                                       *
+*	Entity charms another		                                        *
+*                                                                       *
+************************************************************************/
+
+void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
+{
+	//Gear with Charm + does not affect the success rate of Charm, but increases the duration of the Charm. 
+	//Each +1 to Charm increases the duration of charm by 5%; +20 Charm doubles the duration of charm.
+ 
+	//Too Weak			30 Minutes 
+	//Easy Prey			20 Minutes 
+	//Decent Challenge	10 Minutes 
+	//Even Match		3.0 Minutes 
+	//Tough				1.5 Minutes 
+	//VT				1 minute	guess
+	//IT				30 seconds	guess
+
+	uint32 CharmTime = 0;
+	uint32 base = 0;		
+
+
+	// player charming mob
+	if (PVictim->objtype == TYPE_MOB && PCharmer->objtype == TYPE_PC)
+	{
+		//Bind uncharmable mobs for 5 seconds
+		if(PVictim->m_EcoSystem == SYSTEM_BEASTMEN || PVictim->m_EcoSystem == SYSTEM_ARCANA){
+			((CMobEntity*)PVictim)->PEnmityContainer->UpdateEnmity(PCharmer, 0, 0);
+			PVictim->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_BIND,EFFECT_BIND,1,0,5));
+			return;
+		}
+
+		// cannot charm NM
+		if (((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS){
+			((CMobEntity*)PVictim)->PEnmityContainer->UpdateEnmity(PCharmer, 0, 0);
+			return;
+		}
+		else
+		{
+			// mob is charmable
+			uint16 baseExp = charutils::GetRealExp(PCharmer->GetMLevel(),PVictim->GetMLevel());
+
+			if(baseExp >= 400) {//IT
+				CharmTime = 22500;
+				base = 90;
+			} else if(baseExp >= 240) {//VT
+				CharmTime = 45000;
+				base = 75;
+			} else if(baseExp >= 120) {//T
+				CharmTime = 90000;
+				base = 60;
+			} else if(baseExp == 100) {//EM
+				CharmTime = 180000;
+				base = 40;
+			} else if(baseExp >=  75) {//DC
+				CharmTime = 600000;
+				base = 30;
+			} else if(baseExp >=  15) {//EP
+				CharmTime = 1200000; 
+				base = 20;
+			} else if(baseExp ==   0) {//TW
+				CharmTime = 1800000;
+				base = 10;
+			}
+		}
+
+		//apply charm time extension from gear
+		uint8 charmModValue = (PCharmer->getMod(MOD_CHARM));
+
+		float extraCharmTime = (float)(CharmTime*(charmModValue * 0.5f)/10);
+		CharmTime += extraCharmTime;
+
+
+		if (TryCharm(PCharmer, PVictim, base) == false)
+		{
+			//player failed to charm mob - agro mob
+			((CMobEntity*)PVictim)->PEnmityContainer->UpdateEnmity(PCharmer, 0, 0);
+			return;
+		}
+	}
+
+	else if (PVictim->objtype == TYPE_PC)
+	{
+		//TODO: calculate time mob charms player for and work out a reliable base
+		base = 50;
+
+		//mob failed to charm player
+		if (TryCharm(PCharmer, PVictim, base) == false)
+		{
+			return;
+		}				
+	}
+
+
+	//Charm is a success - take control of charmed Entity
+	PVictim->isCharmed = true;
+
+	PVictim->PMaster = PCharmer;
+	PCharmer->PPet = PVictim;
+	
+
+
+	if (PVictim->objtype == TYPE_MOB)
+	{
+		//make the mob disengage
+		if(PCharmer->PPet->PBattleAI != NULL && PCharmer->PPet->PBattleAI->GetCurrentAction() == ACTION_ENGAGE){
+			PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+		}
+	
+
+		//clear the victims emnity list
+		((CMobEntity*)PVictim)->PEnmityContainer->Clear();
+
+		//cancel the mobs mobBattle ai
+		PCharmer->PPet->PBattleAI = NULL;
+
+		//set the mobs ai to petAi
+		PCharmer->PPet->PBattleAI = new CAIPetDummy((CPetEntity*)PVictim);
+		PCharmer->PPet->PBattleAI->SetLastActionTime(gettick());
+		PCharmer->PPet->charmTime = gettick() + CharmTime;
+		PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+
+		charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer,(CPetEntity*)PVictim,PVictim->id);
+		((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
+		((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
+		PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE, new CEntityUpdatePacket(PVictim, ENTITY_UPDATE));
+	}
+
+	else if (PVictim->objtype == TYPE_PC)
+	{
+		//TODO: mob take control of player
+	}
+
+}
+
+
+
+
+bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base){
+	
+	//---------------------------------------------------------
+	//	chance of charm is based on:
+	//	-CHR - both entities
+	//	-Victims M level
+	//  -charmers BST level (not main level)
+	//
+	//  -75 with a BST SJ lvl10 will struggle on EP
+	//	-75 with a BST SJ lvl75 will not - thats player has bst leveled to 75 and is using it as SJ
+	//---------------------------------------------------------
+
+
+	uint8 charmerBSTlevel = 0;
+
+		if (PCharmer->objtype == TYPE_PC)
+			charmerBSTlevel = ((CCharEntity*)PCharmer)->jobs.job[JOB_BST];
+
+		else if (PCharmer->objtype == TYPE_MOB)
+			charmerBSTlevel = PCharmer->GetMLevel();
+
+	
+	float check = base;
+
+	float levelRatio = (float)(PVictim->GetMLevel())/charmerBSTlevel;
+	check *= levelRatio;
+
+	float chrRatio = (float)PVictim->CHR() / PCharmer->CHR();
+	check *= chrRatio;
+
+
+	//check for hidden effect items (maybe use another modifier for hidden effects)
+	if (PCharmer->objtype == TYPE_PC)
+	{
+		CCharEntity* PChar = (CCharEntity*)PCharmer;
+		CItemWeapon* PWeapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
+
+		float hiddenEffect = 0;
+
+		switch (PWeapon->getID())
+		{
+			case 17557:	hiddenEffect = 10; break; //light staff 10%
+			case 17558:	hiddenEffect = 15; break; //apollo staff 15%
+		}
+
+		float StaffMods = ((float)((100.0f - hiddenEffect)/100.0f));
+		check *= StaffMods;
+	}
+
+
+	//cap chance at 95%
+	if(check < 5) check = 5;
+
+	if(check < rand()%100) 
+		return true;
+	
+	return false;
+}
+
+
 
 
 }; 

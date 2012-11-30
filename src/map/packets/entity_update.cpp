@@ -104,17 +104,43 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				break;
 				case TYPE_MOB:
 				{
-					WBUFB(data,(0x1E)-4) = ((CMobEntity*)PEntity)->GetHPP();
-					WBUFL(data,(0x21)-4) = ((CMobEntity*)PEntity)->m_unknown; 
-					WBUFB(data,(0x21)-4)|= ((CMobEntity*)PEntity)->m_CallForHelp;
-					WBUFB(data,(0x27)-4) = ((CMobEntity*)PEntity)->m_name_prefix;
-                    WBUFL(data,(0x2C)-4) = ((CMobEntity*)PEntity)->m_OwnerID.id;
-					//set bit0 to 1 to make HP bars invisible e.g. Yilgeban, another bit somewhere controls mob targetability
-					//WBUFB(data,(0x22)-4) = 0; 
-
-					if (((CMobEntity*)PEntity)->PMaster != NULL)
+					if(((CMobEntity*)PEntity)->PMaster == NULL)
 					{
-						WBUFB(data,(0x27)-4) = 0x08; //todo: may need |= 
+						WBUFB(data,(0x1E)-4) = ((CMobEntity*)PEntity)->GetHPP();
+						WBUFL(data,(0x21)-4) = ((CMobEntity*)PEntity)->m_unknown; 
+						WBUFB(data,(0x21)-4) |= ((CMobEntity*)PEntity)->m_CallForHelp;
+						WBUFB(data,(0x27)-4) = ((CMobEntity*)PEntity)->m_name_prefix;
+						WBUFL(data,(0x2C)-4) = ((CMobEntity*)PEntity)->m_OwnerID.id;
+						//set bit0 to 1 to make HP bars invisible e.g. Yilgeban, another bit somewhere controls mob targetability
+						//WBUFB(data,(0x22)-4) = 0; 
+
+						if (((CMobEntity*)PEntity)->PMaster != NULL)
+							WBUFB(data,(0x27)-4) = 0x08; //todo: may need |= 
+					}
+					else
+					{
+						//charmed mob
+						if(((CMobEntity*)PEntity)->PMaster->objtype = TYPE_PC)
+						{
+							if(((CPetEntity*)PEntity)->PBattleAI->GetCurrentAction()==ACTION_FALL)
+							{
+									WBUFB(data,(0x0A)-4) = 0x07;
+									WBUFB (data,(0x21)-4) = 0x99;
+									//WBUFB (data,(0x27)-4) = 0x28;
+									WBUFW(data,(0x1A)-4) = 0x00;
+									WBUFW(data,(0x1B)-4) = 0x00;
+									WBUFB (data,(0x1E)-4) = 0x00; //0% HP
+									WBUFB (data,(0x1F)-4) = ANIMATION_DEATH; //death anim
+									WBUFB (data,(0x20)-4) = STATUS_NORMAL;
+							}
+							else
+							{
+									this->size = 0x24;
+									WBUFB (data,(0x1E)-4) = ((CPetEntity*)PEntity)->GetHPP();
+									WBUFB (data,(0x27)-4) = 0x08;
+									memcpy(data+(0x34)-4, PEntity->GetName(),(PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
+							}
+						}
 					}
 				}
 				break;

@@ -286,6 +286,7 @@ public:
 
 	int32 getPetElement(lua_State*);
 	int32 getPetName(lua_State*);
+	int32 charmPet(lua_State*);				// Charms Pet
 	int32 spawnPet(lua_State*);				// Calls Pet
 	int32 despawnPet(lua_State*);			// Despawns Pet
 	int32 petAttack(lua_State*);			// Despawns Pet

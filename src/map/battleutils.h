@@ -133,6 +133,8 @@ namespace battleutils
 	CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob);
 	uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNumber);
     bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool);
+	bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base);
+	void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim);
 };
 
 #endif

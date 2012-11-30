@@ -34,8 +34,10 @@
 #include "map.h"
 #include "petutils.h"
 #include "zoneutils.h"
+#include "mobentity.h"
 
 #include "ai/ai_pet_dummy.h"
+#include "ai/ai_mob_dummy.h"
 
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
@@ -522,7 +524,36 @@ void DespawnPet(CBattleEntity* PMaster)
 		break;
 		case TYPE_MOB:
 		{
-			// освобождаем монстра из под контроля
+				if(PMaster->objtype == TYPE_PC){
+
+					CMobEntity* PMob = (CMobEntity*)PMaster->PPet;
+					CCharEntity* PChar = (CCharEntity*)PMaster;
+
+					if(PMob->PBattleAI != NULL && PMob->PBattleAI->GetBattleTarget() != NULL && PMob->PBattleAI->GetBattleTarget()->objtype == TYPE_MOB){
+						((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->Clear();
+						((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
+					}
+
+					//clear the ex-charmed mobs enmity and 
+					PMob->PEnmityContainer->Clear();
+
+					// charm time is up, mob attacks player now
+					if (!PMob->GetHPP() == 0 && !PMob->PMaster->GetHPP() == 0)
+						PMob->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
+
+					PMob->isCharmed = false;
+					PMob->charmTime = NULL;
+					PMob->PMaster = NULL;
+					PMob->PBattleAI = NULL;
+					PMob->PBattleAI = new CAIMobDummy(PMob);
+					PMob->m_OwnerID.clean();
+					PMob->PBattleAI->SetLastActionTime(gettick());
+					PMob->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+					PChar->PPet = NULL;
+					PChar->pushPacket(new CCharUpdatePacket(PChar));
+					PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CEntityUpdatePacket(PMob, ENTITY_UPDATE));
+				}
+
 		}
 		break;
 		case TYPE_PC:
@@ -532,5 +563,14 @@ void DespawnPet(CBattleEntity* PMaster)
 		break;
 	}
 }
+
+
+
+void MakePetStay(CBattleEntity* PMaster)
+{
+	if(PMaster->PPet != NULL)
+		PMaster->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+}
+
 
 }; // namespace petutils
