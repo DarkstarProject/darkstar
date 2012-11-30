@@ -9439,34 +9439,34 @@ INSERT INTO mob_groups VALUES ('9425', '4194', '186', '0', '128', '3960', '0', '
 INSERT INTO mob_groups VALUES ('9426', '4196', '186', '0', '128', '3970', '0', '0', '75', '80');
 INSERT INTO mob_groups VALUES ('9427', '4197', '186', '0', '128', '3975', '0', '0', '75', '80');
 INSERT INTO mob_groups VALUES ('9428', '4499', '186', '0', '128', '0', '0', '0', '75', '75');
-INSERT INTO mob_groups VALUES ('9429', '294', '187', '0', '0', '210', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9430', '295', '187', '0', '0', '211', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9431', '1864', '187', '0', '0', '1617', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9432', '2437', '187', '0', '0', '2077', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9433', '2464', '187', '0', '0', '2107', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9434', '2550', '187', '0', '0', '2193', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9435', '2777', '187', '0', '0', '2398', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9436', '4070', '187', '0', '0', '3644', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9437', '4137', '187', '0', '0', '3711', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9438', '4141', '187', '0', '0', '3731', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9439', '4148', '187', '0', '0', '3762', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9440', '4157', '187', '0', '0', '3805', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9441', '4159', '187', '0', '0', '3815', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9442', '4167', '187', '0', '0', '3855', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9443', '4168', '187', '0', '0', '3860', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9444', '4169', '187', '0', '0', '3865', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9445', '4171', '187', '0', '0', '3875', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9446', '4175', '187', '0', '0', '3895', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9447', '4176', '187', '0', '0', '3900', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9448', '4180', '187', '0', '0', '3920', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9449', '4181', '187', '0', '0', '3925', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9450', '4183', '187', '0', '0', '3935', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9451', '4185', '187', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9452', '4186', '187', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9453', '4190', '187', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9454', '4198', '187', '0', '0', '3980', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9455', '4384', '187', '0', '0', '4195', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9456', '4399', '187', '0', '0', '4206', '0', '0', '0', '0');
+INSERT INTO mob_groups VALUES ('9429', '294', '187', '0', '128', '210', '0', '0', '70', '70'); -- Avatar_Icon
+INSERT INTO mob_groups VALUES ('9430', '295', '187', '0', '128', '211', '0', '0', '70', '70'); -- Avatar_Idol
+INSERT INTO mob_groups VALUES ('9431', '1864', '187', '0', '128', '1617', '0', '0', '75', '80'); -- Haa_Pevi_the_Stentorian
+INSERT INTO mob_groups VALUES ('9432', '2437', '187', '0', '128', '2077', '0', '0', '75', '80'); -- Loo_Hepe_the_Eyepiercer
+INSERT INTO mob_groups VALUES ('9433', '2464', '187', '0', '128', '2107', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9434', '2550', '187', '0', '128', '2193', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9435', '2777', '187', '0', '128', '2398', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9436', '4070', '187', '0', '128', '3644', '60000', '0', '85', '85'); -- Tzee_Xicu_Idol
+INSERT INTO mob_groups VALUES ('9437', '4137', '187', '0', '128', '3711', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9438', '4141', '187', '0', '128', '3731', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9439', '4148', '187', '0', '128', '3762', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9440', '4157', '187', '0', '128', '3805', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9441', '4159', '187', '0', '128', '3815', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9442', '4167', '187', '0', '128', '3855', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9443', '4168', '187', '0', '128', '3860', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9444', '4169', '187', '0', '128', '3865', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9445', '4171', '187', '0', '128', '3875', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9446', '4175', '187', '0', '128', '3895', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9447', '4176', '187', '0', '128', '3900', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9448', '4180', '187', '0', '128', '3920', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9449', '4181', '187', '0', '128', '3925', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9450', '4183', '187', '0', '128', '3935', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9451', '4185', '187', '0', '128', '0', '0', '0', '67', '72');
+INSERT INTO mob_groups VALUES ('9452', '4186', '187', '0', '128', '0', '0', '0', '60', '64');
+INSERT INTO mob_groups VALUES ('9453', '4190', '187', '0', '128', '0', '0', '0', '60', '64');
+INSERT INTO mob_groups VALUES ('9454', '4198', '187', '0', '128', '3980', '0', '0', '75', '80');
+INSERT INTO mob_groups VALUES ('9455', '4384', '187', '0', '128', '4195', '0', '0', '75', '80'); -- Wuu_Qoho_the_Razorclaw
+INSERT INTO mob_groups VALUES ('9456', '4399', '187', '0', '128', '4206', '0', '0', '75', '80'); -- Xoo_Kaza_the_Solemn
 INSERT INTO mob_groups VALUES ('9457', '194', '188', '0', '0', '150', '0', '0', '0', '0');
 INSERT INTO mob_groups VALUES ('9458', '336', '188', '0', '0', '236', '0', '0', '0', '0');
 INSERT INTO mob_groups VALUES ('9459', '449', '188', '0', '0', '322', '0', '0', '0', '0');
