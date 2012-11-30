@@ -888,6 +888,11 @@ void CAICharNormal::ActionRangedFinish()
 			else if ((Monster->m_THPCID == m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
 			if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
 		}
+
+		// to catch high damage bugs
+		if (damage > 4000)
+			ShowError(CL_RED"Warning: %s did 4000+ ranged damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
+
 		m_PBattleSubTarget = NULL;
 		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots        
 	}
@@ -2007,6 +2012,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		}
 	}
 
+
+	// to catch high damage bugs
+	if (damage > 4000)
+		ShowError(CL_RED"Warning: %s did 4000+ weaponskill damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
+
 	charutils::UpdateHealth(m_PChar);
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
@@ -2370,6 +2380,12 @@ void CAICharNormal::ActionAttack()
 					battleutils::HandleEnspell(m_PChar,m_PBattleTarget,&Action,i);
 				}
 				m_PChar->m_ActionList.push_back(Action);
+
+
+				// to catch high damage bugs
+				if (damage > 4000)
+					ShowError(CL_RED"Warning: %s did 4000+ melee damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
+
 
                 if (m_PChar->m_ActionList.size() == 8) break;
 			}
