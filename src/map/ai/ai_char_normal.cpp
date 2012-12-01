@@ -2042,6 +2042,13 @@ void CAICharNormal::ActionAttack()
 		return;
 	}
 
+	//disengage if another player has charmed the mob
+	if (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster != NULL && m_PBattleTarget->PMaster->objtype == TYPE_PC)
+	{
+		m_PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+		return;
+	}
+
 
 	CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
 	if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();

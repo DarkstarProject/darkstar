@@ -534,7 +534,7 @@ void DespawnPet(CBattleEntity* PMaster)
 						((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
 					}
 
-					//clear the ex-charmed mobs enmity and 
+					//clear the ex-charmed mobs enmity
 					PMob->PEnmityContainer->Clear();
 
 					// charm time is up, mob attacks player now
