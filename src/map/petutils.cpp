@@ -548,7 +548,13 @@ void DespawnPet(CBattleEntity* PMaster)
 					PMob->PBattleAI = new CAIMobDummy(PMob);
 					PMob->m_OwnerID.clean();
 					PMob->PBattleAI->SetLastActionTime(gettick());
-					PMob->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+
+					if (PMob->GetHPP() == 0)
+						PMob->PBattleAI->SetCurrentAction(ACTION_FALL);			
+					else
+						PMob->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+
+
 					PChar->PPet = NULL;
 					PChar->pushPacket(new CCharUpdatePacket(PChar));
 					PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CEntityUpdatePacket(PMob, ENTITY_UPDATE));

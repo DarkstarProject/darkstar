@@ -866,7 +866,7 @@ void CAIMobDummy::ActionAttack()
 	if(m_PBattleTarget != NULL && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster == NULL)
 	{
 		m_PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
-		m_PMob->PEnmityContainer->Clear();
+		//m_PMob->PEnmityContainer->Clear();
 	}
 
 
