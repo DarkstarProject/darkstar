@@ -51,7 +51,7 @@ public:
     void DelStatusEffectsByFlag(uint16 flag);                   // удаляем все эффекты с указанным типом
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой 
 	bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);
-	void CStatusEffectContainer::KillAllStatusEffect();
+	void KillAllStatusEffect();
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
 	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid

@@ -191,7 +191,7 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect)
 
 void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
 {
-	CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
+    CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
 
     luautils::OnEffectLose(m_POwner, PStatusEffect);
 
