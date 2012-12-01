@@ -191,7 +191,7 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect)
 
 void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
 {
-    CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
+	CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
 
     luautils::OnEffectLose(m_POwner, PStatusEffect);
 
@@ -270,6 +270,31 @@ bool CStatusEffectContainer::DelStatusEffectWithPower(EFFECT StatusID, uint16 po
 		}
 	}
 	return false;
+}
+
+/************************************************************************
+*																		*
+*  Deletes all non-permanent status effects without sending messages 	*
+*																		*
+************************************************************************/
+void CStatusEffectContainer::KillAllStatusEffect()
+{
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+	{
+		CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
+
+		if( PStatusEffect->GetDuration() != 0){
+
+			luautils::OnEffectLose(m_POwner, PStatusEffect);
+
+			m_POwner->delModifiers(&PStatusEffect->modList);
+			m_POwner->UpdateHealth();
+	
+			m_StatusEffectList.erase(m_StatusEffectList.begin() + i);
+
+			delete PStatusEffect;
+		}
+	}
 }
 
 /************************************************************************

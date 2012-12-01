@@ -353,7 +353,7 @@ void CAIMobDummy::ActionDeath()
 	{
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
-		//TODO! wipe status container 
+		m_PMob->StatusEffectContainer->KillAllStatusEffect();
 	}
     else if (!m_PMob->isDead())
     {
