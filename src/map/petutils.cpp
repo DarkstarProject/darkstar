@@ -35,6 +35,7 @@
 #include "petutils.h"
 #include "zoneutils.h"
 #include "mobentity.h"
+#include "ability.h"
 
 #include "ai/ai_pet_dummy.h"
 #include "ai/ai_mob_dummy.h"
@@ -529,6 +530,8 @@ void DespawnPet(CBattleEntity* PMaster)
 					CMobEntity* PMob = (CMobEntity*)PMaster->PPet;
 					CCharEntity* PChar = (CCharEntity*)PMaster;
 
+
+					// mobs charm wears off whist fighting another mob. Both mobs now attack player since mobs are no longer enemies
 					if(PMob->PBattleAI != NULL && PMob->PBattleAI->GetBattleTarget() != NULL && PMob->PBattleAI->GetBattleTarget()->objtype == TYPE_MOB){
 						((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->Clear();
 						((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
@@ -545,6 +548,13 @@ void DespawnPet(CBattleEntity* PMaster)
 					}
 					else
 					{
+						PMob->m_OwnerID.clean();
+					}
+
+					//master using leave command
+					if (PMaster->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH && PMaster->PBattleAI->GetCurrentJobAbility()->getID() == 55 || PChar->loc.zoning)
+					{
+						PMob->PEnmityContainer->Clear();
 						PMob->m_OwnerID.clean();
 					}
 

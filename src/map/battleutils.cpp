@@ -2602,9 +2602,11 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 
 		//apply charm time extension from gear
 		uint8 charmModValue = (PCharmer->getMod(MOD_CHARM));
-
 		float extraCharmTime = (float)(CharmTime*(charmModValue * 0.5f)/10);
 		CharmTime += extraCharmTime;
+
+		//randomize charm time
+		CharmTime += (float)(CharmTime*(((rand()%50)-25) * 0.1f)/10);
 
 
 		if (TryCharm(PCharmer, PVictim, base) == false)

@@ -382,6 +382,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         PChar->loc.zone->DecreaseZoneCounter(PChar);
     }
+
 	PChar->status = STATUS_DISAPPEAR;
     PChar->PBattleAI->Reset();
 	return;

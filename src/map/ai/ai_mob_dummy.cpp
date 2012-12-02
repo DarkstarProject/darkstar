@@ -866,7 +866,6 @@ void CAIMobDummy::ActionAttack()
 	if(m_PBattleTarget != NULL && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster == NULL)
 	{
 		m_PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
-		//m_PMob->PEnmityContainer->Clear();
 	}
 
 
@@ -1000,7 +999,7 @@ void CAIMobDummy::ActionAttack()
 
 							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
 							if(rand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) && rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob)){
-								//countered! can crit but no message or new animation, just more damage
+								//countered! can crit but new animation
 								isCountered = true;
 								Action.messageID = 33; //counter msg
 								Action.reaction   = REACTION_NONE;
