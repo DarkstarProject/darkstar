@@ -92,16 +92,21 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 
 void CAIPetDummy::ActionAbilityStart()
 {
-	if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC){
-		if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=100 && m_PBattleTarget!=NULL){
+	if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC)
+	{
+		if(m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp>=100 && m_PBattleTarget != NULL)
+		{
 			m_MasterCommand = MASTERCOMMAND_NONE;
 			CMobEntity* PMob = (CMobEntity*)m_PPet->PMaster->PPet;
 			std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(PMob->m_Family);
-				if(MobSkills.size()>0){
+
+			if(MobSkills.size() > 0)
+			{
 				m_PMobSkill = MobSkills.at(rand() % MobSkills.size());
 				preparePetAbility(m_PBattleTarget);
 				return;
 			}
+			return;
 		}
 	}
 
