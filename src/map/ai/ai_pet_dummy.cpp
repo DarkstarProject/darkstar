@@ -585,7 +585,7 @@ void CAIPetDummy::ActionAttack()
 
 
 	//if 2 bsts are in party, make sure their pets cannot fight eachother
-	if (m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster != NULL && m_PBattleTarget->PMaster->objtype == TYPE_PC)
+	if (m_PBattleTarget != NULL && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster != NULL && m_PBattleTarget->PMaster->objtype == TYPE_PC)
 	{
 		m_PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 	}
