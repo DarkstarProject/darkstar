@@ -602,10 +602,10 @@
     <ClInclude Include="..\..\src\map\recast_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\items.h">
+    <ClInclude Include="..\..\src\map\merit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\merit.h">
+    <ClInclude Include="..\..\src\map\merit_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1136,6 +1136,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\merit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\merit_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

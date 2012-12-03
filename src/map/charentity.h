@@ -31,6 +31,7 @@
 #include <list>
 #include <deque>
 
+#include "merit_list.h"
 #include "battleentity.h"
 #include "item_container.h"
 #include "linkshell.h"
@@ -98,6 +99,13 @@ struct profile_t
 	uint32	   rankpoints;	    // очки ранга в трех государствах
 	location_t home_point;		// точка возрождения персонажа
 };
+
+
+struct AppliedMerits
+{
+	uint8  count;
+};
+
 
 struct expChain_t
 {
@@ -228,6 +236,8 @@ public:
 	uint8			  m_hasRaise;					// checks if player has raise already
     uint8             m_hasAutoTarget;              // возможность использования AutoTarget функции
 	position_t		  m_StartActionPos;				// позиция начала действия (использование предмета, начало стрельбы, позиция tractor)
+	  
+	uint8			  m_AppliedMerits[MERITS_COUNT]; // contains char applied merits
 
     std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)
 

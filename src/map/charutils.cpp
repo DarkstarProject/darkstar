@@ -381,10 +381,12 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,19,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
-        //length = 0;
-		//int8* merits = NULL;
-		//Sql_GetData(SqlHandle,21,&merits,&length);
-		//memcpy(PChar->PMeritPoints->merits, merits, (length > sizeof(PChar->PMeritPoints->merits) ? sizeof(PChar->PMeritPoints->merits) : length));
+
+        length = 0;
+		int8* merits = NULL;
+		Sql_GetData(SqlHandle,21,&merits,&length);
+		memcpy(PChar->m_AppliedMerits, merits, (length > sizeof(PChar->m_AppliedMerits) ? sizeof(PChar->m_AppliedMerits) : length));
+	    PChar->PMeritPoints = new CMeritPoints(PChar);	
 	}
 
     fmtQuery = 
@@ -3010,16 +3012,22 @@ void SaveQuestsList(CCharEntity* PChar)
 
 void SaveCharMerits(CCharEntity* PChar)
 {
-	//const int8* Query = 
-    //    "UPDATE chars "
-    //    "SET "
-    //    "merits = '%s' "
-    //    "WHERE charid = %u;";
-	//
-	//int8 merits[sizeof(PChar->PMeritPoints->merits)*2+1];
-	//Sql_EscapeStringLen(SqlHandle,merits,(const int8*)PChar->PMeritPoints->merits,sizeof(PChar->PMeritPoints->merits));
-    //
-	//Sql_Query(SqlHandle,Query, merits, PChar->id);
+	for (uint16 i = 0; i < MERITS_COUNT; ++i) 
+	{
+		Merit_t* PMerit = (Merit_t*)PChar->PMeritPoints->GetMerits();
+		PChar->m_AppliedMerits[i] = PMerit[i].count;
+	}
+
+	const int8* Query = 
+        "UPDATE chars "
+        "SET "
+        "merits = '%s' "
+        "WHERE charid = %u;";
+	
+	int8 merits[sizeof(PChar->m_AppliedMerits)*2+1];
+	Sql_EscapeStringLen(SqlHandle,merits,(const int8*)PChar->m_AppliedMerits,sizeof(PChar->m_AppliedMerits));
+    
+	Sql_Query(SqlHandle,Query, merits, PChar->id);
 }
 
 

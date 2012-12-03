@@ -25,6 +25,8 @@
 #define _CMERIT_H
 
 #include "../common/cbasetypes.h"
+#include "merit_list.h"
+
 
 /************************************************************************
 *                                                                       *
@@ -452,6 +454,8 @@ enum MERIT_TYPE
 
 #define MERITS_COUNT  305  // 5 полных пакетов по 61 элементу
 
+
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -470,12 +474,14 @@ struct Merit_t
 *                                                                       *
 *                                                                       *
 ************************************************************************/
+class CCharEntity;
+
 
 class CMeritPoints
 {
     public:
 
-        CMeritPoints();
+        CMeritPoints(CCharEntity* PChar);
 
         uint16      GetLimitPoints();
         uint8       GetMeritPoints();
@@ -484,8 +490,8 @@ class CMeritPoints
         bool        AddLimitPoints(uint16 points);                  // automatically adds merit points > 10000
         bool        IsMeritExist(MERIT_TYPE merit);                 // проверяем существование merit
         
-        void        RaiseMerit(MERIT_TYPE merit);                   // add upgrade
-        void        LowerMerit(MERIT_TYPE merit);                   // del upgrade
+        void        RaiseMerit(MERIT_TYPE merit); // add upgrade
+        void        LowerMerit(MERIT_TYPE merit); // del upgrade
 
         void        SetLimitPoints(uint16 points);                  // used for loading player limit points on login
         void        SetMeritPoints(uint16 points);                  // used for loading player merit points on login
@@ -498,7 +504,7 @@ class CMeritPoints
         uint16      m_LimitPoints;
         uint8       m_MeritPoints;
 
-        Merit_t     merits[MERITS_COUNT];
+		Merit_t     merits[MERITS_COUNT];
 
         Merit_t*    GetMeritPointer(MERIT_TYPE merit);
         Merit_t*    Categories[MCATEGORY_COUNT/64-1];

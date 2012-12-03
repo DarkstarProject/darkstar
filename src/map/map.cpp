@@ -36,6 +36,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "merit_list.h"
 #include "alliance.h"
 #include "party.h"
 #include "ability.h"
@@ -178,6 +179,7 @@ int32 do_init(int32 argc, int8** argv)
     effects::LoadEffectsParameters();
 	battleutils::LoadSkillTable();
 	ability::LoadAbilitiesList();
+	meritEntries::LoadMeritList();
 	battleutils::LoadWeaponSkillsList();
 	battleutils::LoadMobSkillsList();
 	battleutils::LoadEnmityTable();
@@ -714,6 +716,12 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 								}
 						}
 					}
+
+
+					// uncharm pet if player d/c
+					if (PChar->PPet != NULL && PChar->PPet->objtype == TYPE_MOB)
+						petutils::DespawnPet(PChar);
+
 
 				    ShowDebug(CL_CYAN"map_cleanup: %s timed out, session closed\n" CL_RESET, PChar->GetName());
 

@@ -24,146 +24,8 @@
 #include <string.h>
 
 #include "merit.h"
-
-
-/************************************************************************
-*                                                                       *
-*  Две версии значений - до abyssea и после                             *
-*                                                                       *
-************************************************************************/
-
-// массив больше на одно значение, заполняемое нулем
-
-#ifdef ABYSSEA_EXPANSION
-static uint8 upgrade[9][16] =
-{
-    {1,2,3,4,5,5,5,5,5,7,7,7,9,9,9},    // HP-MP
-    {3,6,9,9,9,12,12,12,12,15,15,15},   // Attributes
-    {1,2,3,3,3,3,3,3},                  // Combat Skills
-    {1,2,3,3},                          // Defensive Skills 
-    {1,2,3,3,3,3,3,3},                  // Magic Skills
-    {1,2,3,4,5},                        // Others
-    {1,2,3,4,5},                        // Job Group 1
-    {3,4,5,5,5},                        // Job Group 2
-    {10,15,20,25,30},                   // Weapon Skills
-};
-#define MAX_LIMIT_POINTS  10000         // количество опыта для получения одного merit
-#define MAX_MERIT_POINTS  30            // максимальное количество неиспользованных merit
-#else
-static uint8 upgrade[9][9] =
-{
-    {1,2,3,4,5,5,5,5},			        // HP-MP
-    {3,6,9,9,9},				        // Attributes
-    {1,2,3,3,3,3,3,3},			        // Combat Skills	
-    {1,2,3,3},					        // Defensive Skills 
-    {1,2,3,3,3,3,3,3},			        // Magic Skills	
-    {1,2,3,4},					        // Others
-    {1,2,3,4,5},				        // Job Group 1
-    {3,4,5,5,5},				        // Job Group 2
-    {0},                               // Weapon Skills
-};
-#define MAX_LIMIT_POINTS  10000         // количество опыта для получения одного merit
-#define MAX_MERIT_POINTS  10            // максимальное количество неиспользованных merit
-#endif 
-
-// TODO: скорее всего придется все это перенести в базу
-
-/************************************************************************
-*                                                                       *
-*  Ограничение количества усилений metir                                *
-*                                                                       *
-************************************************************************/
-
-static uint8 cap[100] =
-{   
-    0,0,0,0,0,0,0,0,0,0,    // 0-9   0 
-    1,1,1,1,1,1,1,1,1,1,    // 10-19 1 
-    2,2,2,2,2,2,2,2,2,2,    // 20-29 2 
-    3,3,3,3,3,3,3,3,3,3,    // 30-39 3 
-    4,4,4,4,4,4,4,4,4,4,    // 40-49 4 
-    5,5,5,5,5,              // 50-54 5 
-    6,6,6,6,6,              // 55-59 6 
-    7,7,7,7,7,              // 60-64 7 
-    8,8,8,8,8,              // 65-69 8
-    8,8,8,8,8,8,8,8,8,8,    // 70-79 8
-    8,8,8,8,8,8,8,8,8,8,    // 80-89 8
-    8,8,8,8,8,8,8,8,8,8,    // 90-99 8
-};
-
-/************************************************************************
-*                                                                       *
-*  Количество элементов в каждой из категорий                           *
-*                                                                       *
-************************************************************************/
-
-struct MeritCategoryInfo_t
-{
-    uint8 MaxMerits;    // количество элементов в группе
-    uint8 MaxPoints;    // максимальное количество points, которые можно вложить в группу
-    uint8 UpgradeID;    // индекс группы в массиве upgrade
-};
-
-static const MeritCategoryInfo_t count[] =
-{
-    {2,15,0},  //MCATEGORY_HP_MP      
-    {7,12,1},  //MCATEGORY_ATTRIBUTES 
-    {19,32,2}, //MCATEGORY_COMBAT 
-    {12,24,4}, //MCATEGORY_MAGIC 
-    {5,10,5},  //MCATEGORY_OTHERS 
-
-    {5,10,6},  //MCATEGORY_WAR_1 
-    {5,10,6},  //MCATEGORY_MNK_1 
-    {5,10,6},  //MCATEGORY_WHM_1 
-    {7,10,6},  //MCATEGORY_BLM_1 
-    {7,10,6},  //MCATEGORY_RDM_1 
-    {5,10,6},  //MCATEGORY_THF_1 
-    {5,10,6},  //MCATEGORY_PLD_1 
-    {5,10,6},  //MCATEGORY_DRK_1 
-    {5,10,6},  //MCATEGORY_BST_1 
-    {5,10,6},  //MCATEGORY_BRD_1 
-    {5,10,6},  //MCATEGORY_RNG_1 
-    {5,10,6},  //MCATEGORY_SAM_1 
-    {7,10,6},  //MCATEGORY_NIN_1 
-    {5,10,6},  //MCATEGORY_DRG_1 
-    {5,10,6},  //MCATEGORY_SMN_1 
-    {5,10,6},  //MCATEGORY_BLU_1 
-    {5,10,6},  //MCATEGORY_COR_1 
-    {5,10,6},  //MCATEGORY_PUP_1 
-    {4,10,6},  //MCATEGORY_DNC_1 
-    {4,10,6},  //MCATEGORY_SCH_1 
-
-    {14,15,8}, //MCATEGORY_WS
-
-    {0,0,0},   //MCATEGORY_UNK_0
-    {0,0,0},   //MCATEGORY_UNK_1 
-    {0,0,0},   //MCATEGORY_UNK_2 
-    {0,0,0},   //MCATEGORY_UNK_3 
-    {0,0,0},   //MCATEGORY_UNK_4 
-
-    {4,10,7},  //MCATEGORY_WAR_2 
-    {4,10,7},  //MCATEGORY_MNK_2 
-    {4,10,7},  //MCATEGORY_WHM_2 
-    {6,10,7},  //MCATEGORY_BLM_2 
-    {6,10,7},  //MCATEGORY_RDM_2 
-    {4,10,7},  //MCATEGORY_THF_2 
-    {4,10,7},  //MCATEGORY_PLD_2 
-    {4,10,7},  //MCATEGORY_DRK_2 
-    {4,10,7},  //MCATEGORY_BST_2 
-    {4,10,7},  //MCATEGORY_BRD_2 
-    {4,10,7},  //MCATEGORY_RNG_2 
-    {4,10,7},  //MCATEGORY_SAM_2 
-    {8,10,7},  //MCATEGORY_NIN_2 
-    {4,10,7},  //MCATEGORY_DRG_2 
-    {6,10,7},  //MCATEGORY_SMN_2 
-    {4,10,7},  //MCATEGORY_BLU_2 
-    {4,10,7},  //MCATEGORY_COR_2 
-    {4,10,7},  //MCATEGORY_PUP_2 
-    {4,10,7},  //MCATEGORY_DNC_2 
-    {6,10,7},  //MCATEGORY_SHC_2 
-};
-
-#define GetMeritCategory(merit) ((merit >> 6) - 1)      // получаем категорию из merit
-#define GetMeritID(merit)       ((merit & 0x3F) >> 1)   // получаем смещение в категории из merit
+#include "merit_list.h"
+#include "charentity.h"
 
 /************************************************************************
 *                                                                       *
@@ -171,7 +33,7 @@ static const MeritCategoryInfo_t count[] =
 *                                                                       *
 ************************************************************************/
 
-CMeritPoints::CMeritPoints()
+CMeritPoints::CMeritPoints(CCharEntity* PChar)
 {
     memset(merits, 0, sizeof(merits));
 
@@ -181,7 +43,9 @@ CMeritPoints::CMeritPoints()
 
         for (uint8 t = 0; t < count[i].MaxMerits; ++t)
         {
-            merits[m].next = upgrade[count[i].UpgradeID][0];
+			merits[m].count = PChar->m_AppliedMerits[m];
+			merits[m].next = upgrade[count[i].UpgradeID][merits[m].count];
+            //merits[m].next = upgrade[count[i].UpgradeID][0];
             merits[m++].id = ((i + 1) << 6) + (t << 1);
 		}
     }
@@ -312,6 +176,7 @@ const Merit_t* CMeritPoints::GetMerits()
     return merits;
 }
 
+
 /************************************************************************
 *                                                                       *
 *  Add upgrade, also removes merit point                                *
@@ -346,6 +211,7 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
     }
 }
 
+
 /************************************************************************
 *                                                                       *
 *  get next merit upgrade					                            *
@@ -357,6 +223,8 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 //	return upgrade[count[catId].UpgradeID][MeritCount];
 //}
 
+
+
 /************************************************************************
 *                                                                       *
 *  Получаем текущее значение указанного merit                           *
@@ -365,5 +233,13 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 
 int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, uint8 lvl)
 {
-    return dsp_min(GetMerit(merit)->count, cap[lvl]) /* коэффициент */; // TODO: умножаем текущее количество усилений на коэффициент
+	uint8 meritValue = dsp_min(GetMeritPointer(merit)->count, cap[lvl]);  
+
+	MeritEntry* MeritEntry = meritEntries::GetMeritEntry(merit);
+
+	meritValue *= MeritEntry->m_value;
+
+	return meritValue;
+
+	/* коэффициент */; // TODO: умножаем текущее количество усилений на коэффициент
 }
