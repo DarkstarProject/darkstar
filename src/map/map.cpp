@@ -36,9 +36,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "merit_list.h"
 #include "alliance.h"
-#include "party.h"
 #include "ability.h"
 #include "battleutils.h"
 #include "charutils.h"
@@ -46,7 +44,9 @@
 #include "itemutils.h"
 #include "linkshell.h"
 #include "map.h"
+#include "merit_list.h"
 #include "packet_system.h"
+#include "party.h"
 #include "petutils.h"
 #include "spell.h"
 #include "time_server.h"
@@ -436,6 +436,8 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
 			charutils::LoadChar(PChar);
 			charutils::LoadInventory(PChar);
+            
+            luautils::OnGameIn(PChar);
 
             PChar->status = STATUS_DISAPPEAR;
 

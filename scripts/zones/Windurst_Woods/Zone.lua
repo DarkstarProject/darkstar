@@ -27,7 +27,6 @@ function onZoneIn(player,prevZone)
 		if (OPENING_CUTSCENE_ENABLE == 1) then	
 			cs = 0x016F;
 		end	
-		CharCreate(player);	
 		player:setPos(0,0,-50,0);	
 		player:setHomePoint();	
 	end		

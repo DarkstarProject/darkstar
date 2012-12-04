@@ -584,6 +584,50 @@ int32 OnZoneInitialise(uint8 ZoneID)
 *																		*
 ************************************************************************/
 
+int32 OnGameIn(CCharEntity* PChar)
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+	lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onGameIn");
+
+	snprintf(File, sizeof(File), "scripts/globals/player.lua");
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnGameIn: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+   
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onGameIn");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnGameIn: undefined procedure onGameIn\n");
+		return -1;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+  
+	lua_pushboolean(LuaHandle, PChar->loc.prevzone == 0); // first login
+  
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnGameIn: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/************************************************************************
+*																		*
+*  Выполняем скрипт при входе персонажа в зону							*
+*																		*
+************************************************************************/
+
 int32 OnZoneIn(CCharEntity* PChar)
 {
 	int8 File[255];
