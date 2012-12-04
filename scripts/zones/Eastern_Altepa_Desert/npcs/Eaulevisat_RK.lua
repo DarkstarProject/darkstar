@@ -2,13 +2,12 @@
 -- Area: Eastern Altepa desert
 -- NPC:  Eaulevisat, R.K.
 -- Outpost Conquest Guards
--- @zone 114
--- @pos -257 8 -249
--------------------------------------
-package.loaded["scripts/zones/Eastern_Altepa_desert/TextIDs"] = nil;
+-- @pos -257 8 -249 114
+------------------------------------
+package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 package.loaded["scripts/globals/conquestguards"] = nil;
 --------------------------------------
-
+
 require("scripts/globals/conquestguards");
 require("scripts/zones/Eastern_Altepa_desert/TextIDs");
 
