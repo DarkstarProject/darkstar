@@ -5,11 +5,11 @@
 -- Map2 Position: http://images4.wikia.nocookie.net/__cb20090312005155/ffxi/images/3/31/Jeu2.jpg
 -- Vanguard Position: http://faranim.livejournal.com/39860.html
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Windurst/TextIDs"] = nil;
+package.loaded["scripts/zones/Dynamis-Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Windurst/TextIDs");
+require("scripts/zones/Dynamis-Jeuno/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -72,28 +72,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	printf("mobid %u",mob:getID());
+	
 	mobID = mob:getID();
-	-- Time Bonus (30min): 002
-	if(mobID == 17547531 and alreadyReceived(killer,1) == false) then
-		killer:addTimeToDynamis(30);
-		addDynamisList(killer,1);
-	-- Time Bonus (30min): 004
-	elseif(mobID == 17547533 and alreadyReceived(killer,2) == false) then
-		killer:addTimeToDynamis(30);
-		addDynamisList(killer,2);
-	-- Time Bonus (30min): 029
-	elseif(mobID == 17547558 and alreadyReceived(killer,3) == false) then
-		killer:addTimeToDynamis(30);
-		addDynamisList(killer,4);
-	-- Time Bonus (30min): 045
-	elseif(mobID == 17547574 and alreadyReceived(killer,4) == false) then
-		killer:addTimeToDynamis(30);
-		addDynamisList(killer,8);
+	
 	-- HP Bonus: 005 011 016 023 026 031 040 057 063 065 068 077 079 080 082 083 084 093 102 119 | 123 126 128 
-	elseif(mobID == 17547534 or mobID == 17547540 or mobID == 17547545 or mobID == 17547552 or mobID == 17547555 or mobID == 17547560 or mobID == 17547569 or mobID == 17547586 or
-		   mobID == 17547592 or mobID == 17547594 or mobID == 17547597 or mobID == 17547606 or mobID == 17547608 or mobID == 17547609 or mobID == 17547612 or mobID == 17547613 or 
-		   mobID == 17547622 or mobID == 17547631 or mobID == 17547647 or mobID == 17547651 or mobID == 17547654 or mobID == 17547656) then 
+	if(mobID == 17547534 or mobID == 17547540 or mobID == 17547545 or mobID == 17547552 or mobID == 17547555 or mobID == 17547560 or mobID == 17547569 or mobID == 17547586 or
+	   mobID == 17547592 or mobID == 17547594 or mobID == 17547597 or mobID == 17547606 or mobID == 17547608 or mobID == 17547609 or mobID == 17547612 or mobID == 17547613 or 
+	   mobID == 17547622 or mobID == 17547631 or mobID == 17547647 or mobID == 17547651 or mobID == 17547654 or mobID == 17547656) then 
 		killer:addHP(2000);
 		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
 	-- MP Bonus: 009 012 017 024 025 030 039 044 056 062 064 067 076 078 081 082 085 094 095 101 118 | 122 127 129 150
