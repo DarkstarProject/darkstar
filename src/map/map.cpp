@@ -44,7 +44,6 @@
 #include "itemutils.h"
 #include "linkshell.h"
 #include "map.h"
-#include "merit_list.h"
 #include "packet_system.h"
 #include "party.h"
 #include "petutils.h"
