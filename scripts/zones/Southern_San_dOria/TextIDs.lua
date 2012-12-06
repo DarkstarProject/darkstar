@@ -16,9 +16,10 @@ CONQUEST = 8347; -- You've earned conquest points!
 ORIGINAL_MISSION_OFFSET = 7075; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
  YOU_ACCEPT_THE_MISSION = 7064; -- You accept the mission.
  
-  -- Dynamis dialogs
-PLAYERS_HAVE_NOT_REACHED_LEVEL = 7279; -- Players who have not reached level <number> are prohibited from entering Dynamis.
+-- Dynamis dialogs
 	  YOU_CANNOT_ENTER_DYNAMIS = 7277; -- You cannot enter Dynamis - San d'Oria for x day (Vana'diel time)
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 7279; -- Players who have not reached level <number> are prohibited from entering Dynamis.
+  UNUSUAL_ARRANGEMENT_BRANCHES = 7289; -- There is an unusual arrangement of branches here.
 
 -- Other dialog
    FLYER_REFUSED = 8043; -- Your flyer is refused.

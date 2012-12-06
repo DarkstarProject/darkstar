@@ -1,12 +1,15 @@
 -----------------------------------
--- Area:Southern San d'Oria
+-- Area: Southern San d'Oria
 -- NPC:  Trail Markings
 -- Dynamis-San d'Oria Enter
+-- @pos 139 -2 122 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+require("scripts/globals/dynamis");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -20,42 +23,34 @@ end;
 -- onTrigger Action
 -----------------------------------
 
--- 0x00c8
--- 1st digit: [1]sandoria [2]bastok [3]windurst [4]jeuno [5]beaucedine [6]xarcabard
--- 4th digit: number of day between 2 dyna
--- 5th digit: number of player allowed
--- 6th digit: keyitem needed
--- 7th digit: Timeless Hourglass
--- 8th digit: Perpetual Hourglass
-
--- 0x02ad
--- 1st digit: [1]sandoria [2]bastok [3]windurst [4]jeuno [5]beaucedine [6]xarcabard
--- 3rd digit: time ? 
--- 8rd digit: Perpetual Hourglass
-
--- Finish 8: enter
---player:startEvent(0x00c8,2,0,0,3,64,VIAL_OF_SHROUDED_SAND,4236,4237,0);
-
 function onTrigger(player,npc)
 	
 	if(player:getVar("Dynamis_Status") == 1) then
 		player:startEvent(0x02AE); -- cs with Cornelia
+	elseif(player:getVar("DynaSandoria_Win") == 1) then
+		player:startEvent(0x02ba,HYDRA_CORPS_COMMAND_SCEPTER); -- Win CS
 	elseif(player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
-		realDay = tonumber(os.date("%j"))
-		dynaWaitxDay = player:getVar("dynaWait1Day");
-		if(player:getMainLvl() < 65) then
-			player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,65);
-		elseif(dynaWaitxDay ~= realDay or (dynaWaitxDay == realDay and player:getVar("DynaSandoriaID") == GetServerVariable("[DynaSandoria]UniqueID"))) then
-			player:startEvent(0x02ad,1);
+		local firstDyna = 0;
+		local realDay = tonumber(os.date("%j"))
+		local dynaWaitxDay = player:getVar("dynaWaitxDay");
+		
+		if(checkFirstDyna(player,1)) then  -- First Dyna-San d'oria => CS
+			firstDyna = 1; 
+		end
+		
+		if(player:getMainLvl() < DYNA_LEVEL_MIN) then
+			player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
+		elseif((dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME) < realDay or (dynaWaitxDay == realDay and player:getVar("DynamisID") == GetServerVariable("[DynaSandoria]UniqueID"))) then
+			player:startEvent(0x02ad,1,firstDyna,0,BETWEEN_2DYNA_WAIT_TIME,64,VIAL_OF_SHROUDED_SAND,4236,4237,0);
 		else
-			dayRemaining = 24 - tonumber(os.date("%H"));
+			dayRemaining = (BETWEEN_2DYNA_WAIT_TIME * 24) - tonumber(os.date("%H"));
 			player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,1);
 		end
+	else
+		player:messageSpecial(UNUSUAL_ARRANGEMENT_BRANCHES);
 	end
 	
-end; 
-
--- 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -78,7 +73,13 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(VIAL_OF_SHROUDED_SAND);
 		player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_SHROUDED_SAND);
 		player:setVar("Dynamis_Status",0);
+	elseif(csid == 0x02ba) then
+		player:setVar("DynaSandoria_Win",0);
 	elseif(csid == 0x02ad and option == 0) then
+		if(checkFirstDyna(player,1)) then
+			player:setVar("Dynamis_Status",player:getVar("Dynamis_Status") + 2);
+		end
+		
 		player:setPos(161.838,-2.000,161.673,93,0xb9);
 	end
 	

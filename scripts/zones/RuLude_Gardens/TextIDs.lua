@@ -16,6 +16,11 @@ SOVEREIGN_WITHOUT_AN_APPOINTMENT = 10081; -- Nobody sees the sovereign without a
 -- Mission Dialog
 WINDURST_EMBASSY = 10008; -- It reads, “Restricted Area.”
 
+-- Dynamis dialogs
+	  YOU_CANNOT_ENTER_DYNAMIS = 11116; -- You cannot enter Dynamis - Bastok for x day (Vana'diel time)
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 11118; -- Players who have not reached level <number> are prohibited from entering Dynamis.
+	UNUSUAL_ARRANGEMENT_LEAVES = 11131; -- There is an unusual arrangement of leaves on the ground.
+
 -- Quest Dialog
 YOUR_LEVEL_LIMIT_IS_NOW_60 = 10281; -- Your level limit is now 60.
 YOUR_LEVEL_LIMIT_IS_NOW_65 = 10290; -- Your level limit is now 65.

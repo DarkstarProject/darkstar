@@ -2,11 +2,14 @@
 -- Area: Windurst Walls
 -- NPC:  Trail Markings
 -- Dynamis-Windurst Enter
+-- @pos -216 0 -94 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+require("scripts/globals/dynamis");
 require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------
@@ -20,41 +23,34 @@ end;
 -- onTrigger Action
 -----------------------------------
 
--- 0x00c8
--- 1st digit: [1]sandoria [2]bastok [3]windurst [4]jeuno [5]beaucedine [6]xarcabard
--- 4th digit: number of day between 2 dyna
--- 5th digit: number of player allowed
--- 6th digit: keyitem needed
--- 7th digit: Timeless Hourglass
--- 8th digit: Perpetual Hourglass
-
--- 0x00c9
--- 1st digit: [1]sandoria [2]bastok [3]windurst [4]jeuno [5]beaucedine [6]xarcabard
--- 3rd digit: time ? 
--- 8rd digit: Perpetual Hourglass
-
--- Finish 8: enter
---player:startEvent(0x00c8,2,0,0,3,64,VIAL_OF_SHROUDED_SAND,4236,4237,0);
-
 function onTrigger(player,npc)
 	
 	if(player:getVar("Dynamis_Status") == 1) then
-		player:startEvent(0x00CB); -- cs with Cornelia
+		player:startEvent(0x01c7); -- cs with Cornelia
+	elseif(player:getVar("DynaWindurst_Win") == 1) then
+		player:startEvent(0x01d1,HYDRA_CORPS_LANTERN); -- Win CS
 	elseif(player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
-		realDay = tonumber(os.date("%j"))
-		dynaWaitxDay = player:getVar("dynaWait1Day");
-		if(player:getMainLvl() < 65) then
-			player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,65);
-		elseif(dynaWaitxDay ~= realDay or (dynaWaitxDay == realDay and player:getVar("DynaWindurstID") == GetServerVariable("[DynaWindurst]UniqueID"))) then
-			player:startEvent(0x01c4,3);
+		local firstDyna = 0;
+		local realDay = tonumber(os.date("%j"))
+		local dynaWaitxDay = player:getVar("dynaWaitxDay");
+		
+		if(checkFirstDyna(player,3)) then  -- First Dyna-Windurst => CS
+			firstDyna = 1; 
+		end
+		
+		if(player:getMainLvl() < DYNA_LEVEL_MIN) then
+			player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
+		elseif((dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME) < realDay or (dynaWaitxDay == realDay and player:getVar("DynamisID") == GetServerVariable("[DynaWindurst]UniqueID"))) then
+			player:startEvent(0x01c4,3,firstDyna,0,BETWEEN_2DYNA_WAIT_TIME,64,VIAL_OF_SHROUDED_SAND,4236,4237,0);
 		else
-			dayRemaining = 24 - tonumber(os.date("%H"));
+			dayRemaining = (BETWEEN_2DYNA_WAIT_TIME * 24) - tonumber(os.date("%H"));
 			player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,3);
 		end
+	else
+		player:messageSpecial(STRANDS_OF_GRASS_HERE);
 	end
 	
-end; 
--- 0x01c3  0x01c4  0x01c5  0x01c6  0x01c7  0x01c8  0x01c9  0x01ca  0x01cb  0x01cc  0x01cd  0x01ce  0x01cf  0x01d0  0x01d1  0x01d2  0x01d3  0x01d4
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -73,11 +69,17 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 -- printf("finishRESULT: %u",option);
 	
-	if(csid == 0x00CB) then
+	if(csid == 0x01c7) then
 		player:addKeyItem(VIAL_OF_SHROUDED_SAND);
 		player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_SHROUDED_SAND);
 		player:setVar("Dynamis_Status",0);
+	elseif(csid == 0x01d1) then
+		player:setVar("DynaWindurst_Win",0);
 	elseif(csid == 0x01c4 and option == 0) then
+		if(checkFirstDyna(player,3)) then
+			player:setVar("Dynamis_Status",player:getVar("Dynamis_Status") + 8);
+		end
+		
 		player:setPos(-221.988,1.000,-120.184,0,0xbb);
 	end
 	
