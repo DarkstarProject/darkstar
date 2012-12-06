@@ -35,7 +35,7 @@
 #include "lua/luautils.h"
 
 #include "alliance.h"
-#include "merit.h"
+
 #include "packets/automaton_update.h"
 #include "packets/char_abilities.h"
 #include "packets/char_appearance.h"
@@ -380,14 +380,11 @@ void LoadChar(CCharEntity* PChar)
 		int8* missions = NULL;
 		Sql_GetData(SqlHandle,19,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
-
-
-        length = 0;
-		int8* merits = NULL;
-		Sql_GetData(SqlHandle,21,&merits,&length);
-		memcpy(PChar->m_AppliedMerits, merits, (length > sizeof(PChar->m_AppliedMerits) ? sizeof(PChar->m_AppliedMerits) : length));
-	    PChar->PMeritPoints = new CMeritPoints(PChar);	
 	}
+
+
+	PChar->PMeritPoints = new CMeritPoints(PChar);
+
 
     fmtQuery = 
         "SELECT "
@@ -503,6 +500,8 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.job[JOB_SCH] = (uint8)Sql_GetIntData(SqlHandle,21);
 	}
 
+
+
 	fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, merits, limits \
 				FROM char_exp \
 				WHERE charid = %u;";
@@ -538,6 +537,9 @@ void LoadChar(CCharEntity* PChar)
         PChar->PMeritPoints->SetMeritPoints((uint16)Sql_GetIntData(SqlHandle, 21));
 		PChar->PMeritPoints->SetLimitPoints((uint16)Sql_GetIntData(SqlHandle, 22));
 	}
+
+
+
 
 	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h \
 				FROM char_stats \
@@ -3002,32 +3004,6 @@ void SaveQuestsList(CCharEntity* PChar)
         PChar->profile.fame[2],
         PChar->profile.fame[3],
         PChar->id);
-}
-
-/************************************************************************
-*																		*
-*  Save Character Merits												*
-*																		*
-************************************************************************/
-
-void SaveCharMerits(CCharEntity* PChar)
-{
-	for (uint16 i = 0; i < MERITS_COUNT; ++i) 
-	{
-		Merit_t* PMerit = (Merit_t*)PChar->PMeritPoints->GetMerits();
-		PChar->m_AppliedMerits[i] = PMerit[i].count;
-	}
-
-	const int8* Query = 
-        "UPDATE chars "
-        "SET "
-        "merits = '%s' "
-        "WHERE charid = %u;";
-	
-	int8 merits[sizeof(PChar->m_AppliedMerits)*2+1];
-	Sql_EscapeStringLen(SqlHandle,merits,(const int8*)PChar->m_AppliedMerits,sizeof(PChar->m_AppliedMerits));
-    
-	Sql_Query(SqlHandle,Query, merits, PChar->id);
 }
 
 

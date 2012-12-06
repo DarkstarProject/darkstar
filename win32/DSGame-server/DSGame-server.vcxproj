@@ -278,7 +278,6 @@
     <ClInclude Include="..\..\src\map\weapon_skill.h" />
     <ClInclude Include="..\..\src\map\zone.h" />
     <ClInclude Include="..\..\src\map\zoneutils.h" />
-    <ClInclude Include="..\..\src\map\merit_list.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -458,7 +457,6 @@
     <ClCompile Include="..\..\src\map\weapon_skill.cpp" />
     <ClCompile Include="..\..\src\map\zone.cpp" />
     <ClCompile Include="..\..\src\map\zoneutils.cpp" />
-    <ClCompile Include="..\..\src\map\merit_list.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\documentation\message.log" />

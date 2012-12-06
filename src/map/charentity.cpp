@@ -110,10 +110,6 @@ CCharEntity::CCharEntity()
 	PTreasurePool = NULL;
 	PWideScanTarget = NULL;
 
-	for (uint16 i = 0; i < MERITS_COUNT; ++i) 
-		m_AppliedMerits[i] = 0;
-
-
     PRecastContainer = new CRecastContainer(this);
 }
 

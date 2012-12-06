@@ -29,6 +29,7 @@
 #include <list>
 
 #include "battleentity.h"
+#include "merit.h"
 
 class CAbility;
 class CItemWeapon;

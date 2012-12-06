@@ -71,7 +71,7 @@ CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar)
 
     WBUFB(data,(0x04)-4) = MAX_MERITS_IN_PACKET; 
 
-    for (uint8 i = 0; i < 4; ++i)
+    for (uint8 i = 0; i < 5; ++i)
     {
         MeritPointsCategoriesPacket(PChar, i * MAX_MERITS_IN_PACKET);
 
@@ -92,7 +92,7 @@ CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar, M
 	this->size = 0x08;
 
     WBUFB(data,(0x04)-4) = 1;
-    WBUFL(data,(0x08)-4) = *(uint32*)PChar->PMeritPoints->GetMerit(merit);
+	memcpy(data+(0x08)-4, &PChar->PMeritPoints->GetMerit(merit)->data, sizeof(uint32));
 }
 
 /************************************************************************
@@ -101,18 +101,24 @@ CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar, M
 *                                                                       *
 ************************************************************************/
 
+
 void CMeritPointsCategoriesPacket::MeritPointsCategoriesPacket(CCharEntity* PChar, uint8 offset)
 {
-    memcpy(data+(0x08)-4, PChar->PMeritPoints->GetMerits() + offset, MAX_MERITS_IN_PACKET * sizeof(Merit_t));
+
+    for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
+    {
+		memcpy(data+(0x08)-4 + sizeof(uint32) * i, &PChar->PMeritPoints->GetMeritByIndex(offset + i)->data, sizeof(uint32));
+    }
 
     if (PChar->getZone() != 0)
     {
         for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
         {
-            (*(Merit_t*)(data+(0x08)-4 + sizeof(Merit_t) * i)).next = 0; // обнуляем значение next у всех merit
+			(*(Merit_t*)(data+(0x08)-4 + sizeof(uint32) * i)).data.next = 0; // обнуляем значение next у всех merit
         }
     }
 }
+
 
 /************************************************************************
 *                                                                       *

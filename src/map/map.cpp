@@ -178,8 +178,8 @@ int32 do_init(int32 argc, int8** argv)
     traits::LoadTraitsList();
     effects::LoadEffectsParameters();
 	battleutils::LoadSkillTable();
+	meritNameSpace::LoadMeritsList();
 	ability::LoadAbilitiesList();
-	meritEntries::LoadMeritList();
 	battleutils::LoadWeaponSkillsList();
 	battleutils::LoadMobSkillsList();
 	battleutils::LoadEnmityTable();

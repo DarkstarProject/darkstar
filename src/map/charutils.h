@@ -31,6 +31,7 @@
 
 class CPetEntity;
 class CMobEntity;
+class CMeritPoints;
 
 namespace charutils
 {
@@ -123,7 +124,6 @@ namespace charutils
 	void	SaveCharNation(CCharEntity* PChar);							// Sace the character's nation of allegiance.
 	void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа
 	void	SaveCharPoints(CCharEntity* PChar);							// Conquest point, Nation TP
-	void	SaveCharMerits(CCharEntity* PChar);							// save char merit upgrades
 
     uint32  AddExpBonus(CCharEntity* PChar, uint32 exp);
     void    ResetAllTwoHours();

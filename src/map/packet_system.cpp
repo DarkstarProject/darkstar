@@ -2820,7 +2820,7 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			        PChar->pushPacket(new CMeritPointsCategoriesPacket(PChar, merit));
 
 			        charutils::SaveCharExp(PChar, PChar->GetMJob());
-			        charutils::SaveCharMerits(PChar);
+					PChar->PMeritPoints->SaveMeritPoints(PChar->id);
                 }
             }
             break;
