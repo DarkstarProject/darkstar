@@ -21,31 +21,40 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
-
-	if(player:isBcnmsFull() == 1) then
-		if(player:hasStatusEffect(EFFECT_DYNAMIS) == false) then
-			inst = player:addPlayerToDynamis(1282);
+	
+	cs = -1;
+	
+	local realDay = tonumber(os.date("%j"))
+	local dynaWaitxDay = player:getVar("dynaWaitxDay");
+	
+	if((dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME) < realDay or (dynaWaitxDay == realDay and player:getVar("DynamisID") == GetServerVariable("[DynaWindurst]UniqueID"))) then
+		if(player:isBcnmsFull() == 1) then
+			if(player:hasStatusEffect(EFFECT_DYNAMIS) == false) then
+				inst = player:addPlayerToDynamis(1282);
+				
+				if(inst == 1)then
+					player:bcnmEnter(1282);
+				else
+					 cs = 0;
+				end
+			else
+				player:bcnmEnter(1282);
+			end
+		else
+			inst = player:bcnmRegister(1282);
 			
 			if(inst == 1)then
 				player:bcnmEnter(1282);
 			else
-				 return player:setPos(-217.000,1.000,-119.000,94,0xEF);
+				cs = 0;
 			end
-		else
-			player:bcnmEnter(1282);
 		end
 	else
-		inst = player:bcnmRegister(1282);
-		
-		if(inst == 1)then
-			player:bcnmEnter(1282);
-		else
-			return player:setPos(-217.000,1.000,-119.000,94,0xEF);
-		end
+		cs = 0;
 	end
 
-return cs;
+	return cs;
+	
 end;
 
 -----------------------------------
@@ -71,7 +80,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
+	if(csid == 0) then
+		player:setPos(-217.000,1.000,-119.000,94,0xEF);
+	end
+	
 end;
-
-
-

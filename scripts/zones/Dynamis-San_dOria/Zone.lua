@@ -3,9 +3,10 @@
 -- Zone: Dynamis-San_dOria
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Dynamis-San_dOria/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Dynamis-San_dOria/TextIDs"] = nil;
 require("scripts/zones/Dynamis-San_dOria/TextIDs");
 
 -----------------------------------
@@ -20,31 +21,40 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
-
-	if(player:isBcnmsFull() == 1) then
-		if(player:hasStatusEffect(EFFECT_DYNAMIS) == false) then
-			inst = player:addPlayerToDynamis(1281);
+	
+	cs = -1;
+	
+	local realDay = tonumber(os.date("%j"))
+	local dynaWaitxDay = player:getVar("dynaWaitxDay");
+	
+	if((dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME) < realDay or (dynaWaitxDay == realDay and player:getVar("DynamisID") == GetServerVariable("[DynaSandoria]UniqueID"))) then
+		if(player:isBcnmsFull() == 1) then
+			if(player:hasStatusEffect(EFFECT_DYNAMIS) == false) then
+				inst = player:addPlayerToDynamis(1281);
+				
+				if(inst == 1)then
+					player:bcnmEnter(1281);
+				else
+					 cs = 0;
+				end
+			else
+				player:bcnmEnter(1281);
+			end
+		else
+			inst = player:bcnmRegister(1281);
 			
 			if(inst == 1)then
 				player:bcnmEnter(1281);
 			else
-				 return player:setPos(161.000,-2.000,161.000,94,0xE6);
+				cs = 0;
 			end
-		else
-			player:bcnmEnter(1281);
 		end
 	else
-		inst = player:bcnmRegister(1281);
-		
-		if(inst == 1)then
-			player:bcnmEnter(1281);
-		else
-			return player:setPos(161.000,-2.000,161.000,94,0xE6);
-		end
+		cs = 0;
 	end
 
-return cs;
+	return cs;
+	
 end;
 
 -----------------------------------
@@ -70,7 +80,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
+	if(csid == 0) then
+		player:setPos(161.000,-2.000,161.000,94,0xE6);
+	end
+	
 end;
-
-
-

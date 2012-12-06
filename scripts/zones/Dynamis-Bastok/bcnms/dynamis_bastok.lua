@@ -15,8 +15,8 @@ end;
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function OnBcnmEnter(player,instance)
 	
-	player:setVar("DynaBastokID",GetServerVariable("[DynaBastok]UniqueID"));
-	player:setVar("dynaWait1Day",os.date("%j"));
+	player:setVar("DynamisID",GetServerVariable("[DynaBastok]UniqueID"));
+	player:setVar("dynaWaitxDay",os.date("%j"));
 	
 end;
 
@@ -25,14 +25,14 @@ end;
 -- 4=Finish he dynamis
 
 function OnBcnmLeave(player,instance,leavecode)
- print("leave code "..leavecode);
+--print("leave code "..leavecode);
 	
 	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
 		player:setPos(116.000,0.994,-72.000,127,0xEA);
 	end
 	if(leavecode == 4) then
 		GetNPCByID(17539319):setStatus(2);
-		player:setVar("DynaBastokID",0);
+		SetServerVariable("[DynaBastok]UniqueID",0);
 	end
 	
 end;

@@ -385,6 +385,36 @@ function getListDynaMob(player,thismob)
 end;
 
 --------------------------------------------------		
+-- checkFirstDyna
+-- true if the first dyna
+--------------------------------------------------
+ 
+function checkFirstDyna(player,number)
+	
+	local dynaVar = 0;
+	local bit = {};
+	
+	dynaVar = player:getVar("Dynamis_Status");
+
+	for i = 7,0,-1 do 		
+		twop = 2^i; 		
+		if(dynaVar >= twop) then 		
+			bit[i+1] = 1; 		
+			dynaVar = dynaVar - twop; 		
+		else 		
+			bit[i+1] = 0; 		
+		end; 
+		--printf("bit %u: %u\n",i,bit[i+1]); 
+	end; 		
+	--printf("received %u",bit[number+1]); 		
+	if(bit[number+1] == 0) then 		
+		return true; 		
+	else 		
+		return false; 		
+	end 		
+end;
+
+--------------------------------------------------		
 -- alreadyReceived
 -- I use this function for TE and Boss Trigger 		
 --------------------------------------------------

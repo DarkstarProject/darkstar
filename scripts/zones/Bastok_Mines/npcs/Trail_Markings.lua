@@ -2,11 +2,14 @@
 -- Area: Bastok Mines
 -- NPC:  Trail Markings
 -- Dynamis-Bastok Enter
+-- @pos 99 1 -67 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+require("scripts/globals/dynamis");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
@@ -20,59 +23,34 @@ end;
 -- onTrigger Action
 -----------------------------------
 
--- 0x00c8
--- 1st digit: [1]sandoria [2]bastok [3]windurst [4]jeuno [5]beaucedine [6]xarcabard
--- 4th digit: number of day between 2 dyna
--- 5th digit: number of player allowed
--- 6th digit: keyitem needed
--- 7th digit: Timeless Hourglass
--- 8th digit: Perpetual Hourglass
-
--- 0x00c9
--- 1st digit: [1]sandoria [2]bastok [3]windurst [4]jeuno [5]beaucedine [6]xarcabard
--- 3rd digit: time ? 
--- 8rd digit: Perpetual Hourglass
-
--- Finish 8: enter
---player:startEvent(0x00c8,2,0,0,3,64,VIAL_OF_SHROUDED_SAND,4236,4237,0);
-
 function onTrigger(player,npc)
 	
 	if(player:getVar("Dynamis_Status") == 1) then
 		player:startEvent(0x00CB); -- cs with Cornelia
+	elseif(player:getVar("DynaBastok_Win") == 1) then
+		player:startEvent(0x00d7,HYDRA_CORPS_EYEGLASS); -- Win CS
 	elseif(player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
-		realDay = tonumber(os.date("%j"))
-		dynaWaitxDay = player:getVar("dynaWait1Day");
-		if(player:getMainLvl() < 65) then
-			player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,65);
-		elseif(dynaWaitxDay ~= realDay or (dynaWaitxDay == realDay and player:getVar("DynaBastokID") == GetServerVariable("[DynaBastok]UniqueID"))) then
-			player:startEvent(0x00c9,2);
+		local firstDyna = 0;
+		local realDay = tonumber(os.date("%j"))
+		local dynaWaitxDay = player:getVar("dynaWaitxDay");
+		
+		if(checkFirstDyna(player,2)) then  -- First Dyna-Bastok => CS
+			firstDyna = 1; 
+		end
+		
+		if(player:getMainLvl() < DYNA_LEVEL_MIN) then
+			player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
+		elseif((dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME) < realDay or (dynaWaitxDay == realDay and player:getVar("DynamisID") == GetServerVariable("[DynaBastok]UniqueID"))) then
+			player:startEvent(0x00c9,2,firstDyna,0,BETWEEN_2DYNA_WAIT_TIME,64,VIAL_OF_SHROUDED_SAND,4236,4237,0);
 		else
-			dayRemaining = 24 - tonumber(os.date("%H"));
+			dayRemaining = (BETWEEN_2DYNA_WAIT_TIME * 24) - tonumber(os.date("%H"));
 			player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,2);
 		end
+	else
+		player:messageSpecial(UNUSUAL_ARRANGEMENT_PEBBLES);
 	end
 	
-end; 
-
--- 0x00c8 Menu creation du perpetual et information
--- 0x00c9 Menu entrer dans dyna
--- 0x00ca CS explication de comment obtenir le sablier (longue)
--- 0x00cb CS explication de comment obtenir le sablier (courte)
--- 0x00cc pareil
--- 0x00cd pareil
--- 0x00d0 cs corneilia/francmage qui impregne le sablier
--- 0x00d1 cs corneilia/ulrich
--- 0x00d2 cs corneilia/iru-kuiru
--- 0x00d3 
--- 0x00d4 
--- 0x00d5 
--- 0x00d6 
--- 0x00d7 
--- 0x00d8 
--- 0x00d9 
--- 0x00da 
--- 0x00db
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -95,7 +73,13 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(VIAL_OF_SHROUDED_SAND);
 		player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_SHROUDED_SAND);
 		player:setVar("Dynamis_Status",0);
+	elseif(csid == 0x00d7) then
+		player:setVar("DynaBastok_Win",0);
 	elseif(csid == 0x00c9 and option == 0) then
+		if(checkFirstDyna(player,2)) then
+			player:setVar("Dynamis_Status",player:getVar("Dynamis_Status") + 4);
+		end
+		
 		player:setPos(116.482,0.994,-72.121,128,0xba);
 	end
 	

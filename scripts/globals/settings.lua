@@ -73,10 +73,13 @@ COFFER_MIN_ILLUSION_TIME = 1800;  -- 30 minutes
 CHEST_MAX_ILLUSION_TIME  = 3600;  -- 1 hour
 CHEST_MIN_ILLUSION_TIME  = 1800;  -- 30 minutes
 
-TIMELESS_HOURGLASS_COST = 500000;    -- cost of the timeless hourglass for Dynamis.
-RELIC_1ST_UPGRADE_WAIT_TIME = 100;   -- wait time for 1st relic upgrade (stage 1 -> stage 2) in seconds. 86400s = 1 RL day.
-RELIC_2ND_UPGRADE_WAIT_TIME = 100;   -- wait time for 2nd relic upgrade (stage 2 -> stage 3) in seconds. 604800s = 1 RL week.
-RELIC_3RD_UPGRADE_WAIT_TIME = 100;   -- wait time for 3rd relic upgrade (stage 3 -> stage 4) in seconds. 295200s = 82 hours.
+-- DYNAMIS SETTINGS
+	BETWEEN_2DYNA_WAIT_TIME = 1;		-- wait time between 2 dynamis (in real day) min: 1 day
+			 DYNA_LEVEL_MIN = 65;		-- level min for entering in dynamis
+	TIMELESS_HOURGLASS_COST = 500000;   -- cost of the timeless hourglass for Dynamis.
+RELIC_1ST_UPGRADE_WAIT_TIME = 100;   	-- wait time for 1st relic upgrade (stage 1 -> stage 2) in seconds. 86400s = 1 RL day.
+RELIC_2ND_UPGRADE_WAIT_TIME = 100;   	-- wait time for 2nd relic upgrade (stage 2 -> stage 3) in seconds. 604800s = 1 RL week.
+RELIC_3RD_UPGRADE_WAIT_TIME = 100;   	-- wait time for 3rd relic upgrade (stage 3 -> stage 4) in seconds. 295200s = 82 hours.
 
 -- QUEST/MISSION SPECIFIC SETTINGS
 WSNM_LEVEL = 70; -- Min Level to get WSNM Quests

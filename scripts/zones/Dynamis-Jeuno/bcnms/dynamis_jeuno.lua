@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Windurst
--- Name: Dynamis Windurst
+-- Area: Dynamis Jeuno
+-- Name: Dynamis Jeuno
 -----------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
@@ -15,8 +15,8 @@ end;
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function OnBcnmEnter(player,instance)
 	
-	player:setVar("DynaJeunoID",GetServerVariable("[DynaJeuno]UniqueID"));
-	player:setVar("dynaWait1Day",os.date("%j"));
+	player:setVar("DynamisID",GetServerVariable("[DynaJeuno]UniqueID"));
+	player:setVar("dynaWaitxDay",os.date("%j"));
 	
 end;
 
@@ -25,14 +25,14 @@ end;
 -- 4=Finish he dynamis
 
 function OnBcnmLeave(player,instance,leavecode)
- print("leave code "..leavecode);
+--print("leave code "..leavecode);
 	
 	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
 		player:setPos(48.930,10.002,-71.032,195,0xF3);
 	end
 	if(leavecode == 4) then
 		GetNPCByID(17547506):setStatus(2);
-		player:setVar("DynaJeunoID",0);
+		SetServerVariable("[DynaJeuno]UniqueID",0);
 	end
 	
 end;
