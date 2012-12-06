@@ -243,6 +243,26 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			session->client_port,
 			PChar->id);
 
+
+		// set new characters merits to zero on char creation
+		if (firstlogin)
+		{
+			fmtQuery =  "UPDATE chars SET merits = '%s' WHERE charid = %u";
+
+			int8 points[MERITS_COUNT*2+1];
+			int8 MeritCounts[MERITS_COUNT];
+
+			for (uint16 i = 0; i < MERITS_COUNT; ++i)
+			{
+				MeritCounts[i] = 0;
+			}
+			Sql_EscapeStringLen(SqlHandle, points, (const int8*)MeritCounts, MERITS_COUNT);
+			Sql_Query(SqlHandle, fmtQuery, points, PChar->id);
+		}
+
+
+
+
 		PChar->status = STATUS_NORMAL;
 	}
 	else
