@@ -35,15 +35,16 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	ccmax = 0;
 	hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
 	isSneakValid = attacker:hasStatusEffect(EFFECT_SNEAK_ATTACK);
-	if(isSneakValid and attacker:isBehind(target))then
+	if(isSneakValid and not attacker:isBehind(target))then
 		isSneakValid = false;
 	end
 	attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
 	
 	ccritratio = 0;
 	critrate = 0;
+	ccritratio = cCritRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
+
 	if(canCrit) then --work out critical hit ratios, by +1ing 
-		ccritratio = cCritRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
 		critrate = fTP(attacker:getTP(),crit100,crit200,crit300);
 		--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
 		nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
@@ -67,7 +68,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	--First hit has 95% acc always. Second hit + affected by hit rate.
 	local double firsthit = math.random();
 	local finaldmg = 0;
-	hitrate = 0.95; --first hit only
+	hitrate = getHitRate(attacker,target,true);
 	if(acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
@@ -78,7 +79,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	local tpHitsLanded = 0;
 	local tpHits = 0;
 	if (firsthit <= hitrate or isSneakValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then
-		if(canCrit) then
+		if(canCrit or isSneakValid) then
 			local double critchance = math.random();
 			if(critchance <= critrate or hasMightyStrikes or isSneakValid) then --crit hit!
 				local double cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
@@ -90,8 +91,6 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 			else
 				finaldmg = dmg * pdif;
 			end
-		elseif(isSneakValid and attacker:getMainJob()==6) then --have to add on DEX bonus if on THF main
-			finaldmg = dmg * pdif + (attacker:getStat(MOD_DEX) * ftp * pdif) + souleaterBonus(attacker);
 		else
 			finaldmg = dmg * pdif + souleaterBonus(attacker);
 		end
@@ -101,7 +100,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	if(attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1) then
 
 		local chance = math.random();
-		if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then --it hit
+		if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid) then --it hit
 			pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
 			pdif = pdif/1000; --multiplier set.
 			if(canCrit) then
@@ -127,10 +126,6 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	local extraHitsLanded = 0;
 	
 	if(numHits>tpHits) then
-		if(acc100==0) then
-			--work out acc since we actually need it now
-			hitrate = getHitRate(attacker,target,true);
-		end
 		
 		hitsdone = tpHits;
 		while (hitsdone < numHits) do 
