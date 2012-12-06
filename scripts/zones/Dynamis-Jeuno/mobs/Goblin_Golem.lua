@@ -19,16 +19,12 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	if(alreadyReceived(killer,8) == false) then
-		addDynamisList(killer,128);
-		
-		killer:addTitle(DYNAMISJEUNO_INTERLOPER); -- Add title
-		
-		npc = GetNPCByID(17547506); -- Spawn ???
-		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
-		npc:setStatus(0);
-		
-		killer:launchDynamisSecondPart(); -- Spawn dynamis second part
-	end
+	killer:addTitle(DYNAMISJEUNO_INTERLOPER); -- Add title
+	
+	npc = GetNPCByID(17547506); -- Spawn ???
+	npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
+	npc:setStatus(0);
+	
+	killer:launchDynamisSecondPart(); -- Spawn dynamis second part
 	
 end;
