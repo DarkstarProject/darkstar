@@ -247,21 +247,8 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		// set new characters merits to zero on char creation
 		if (firstlogin)
 		{
-			fmtQuery =  "UPDATE chars SET merits = '%s' WHERE charid = %u";
-
-			int8 points[MERITS_COUNT*2+1];
-			int8 MeritCounts[MERITS_COUNT];
-
-			for (uint16 i = 0; i < MERITS_COUNT; ++i)
-			{
-				MeritCounts[i] = 0;
-			}
-			Sql_EscapeStringLen(SqlHandle, points, (const int8*)MeritCounts, MERITS_COUNT);
-			Sql_Query(SqlHandle, fmtQuery, points, PChar->id);
+			PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
 		}
-
-
-
 
 		PChar->status = STATUS_NORMAL;
 	}
@@ -2840,7 +2827,7 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			        PChar->pushPacket(new CMeritPointsCategoriesPacket(PChar, merit));
 
 			        charutils::SaveCharExp(PChar, PChar->GetMJob());
-					PChar->PMeritPoints->SaveMeritPoints(PChar->id);
+					PChar->PMeritPoints->SaveMeritPoints(PChar->id, false);
                 }
             }
             break;

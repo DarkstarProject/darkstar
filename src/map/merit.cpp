@@ -214,11 +214,9 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
 
     const int8* Query = "SELECT merits FROM chars WHERE charid = %u";
 
-	if (Sql_Query(SqlHandle, Query, charid) != SQL_ERROR && 
-        Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	if (Sql_Query(SqlHandle, Query, charid) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-       size_t length = 0;
+	   size_t length = 0;
        int8*  points = 0;
 
        Sql_GetData(SqlHandle, 0, &points, &length);
@@ -244,9 +242,19 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
 			   merits[i].data.next = upgrade[merits[i].upgradeid][merits[i].data.count];
            }
            return;
+
        }
+	   else if(length == 0)
+	   {
+		   //merits were not set to zero on char creation for this character, set them now
+		   ShowError(CL_RED"MeritSystem: char %u was create before merit overhaul, resetting their merits." CL_RESET, charid);
+		   SaveMeritPoints(charid,true);
+		   return;
+	   }
     }
-    ShowError(CL_RED"MeritSystem: can't load merits for charid %u" CL_RESET, charid);
+
+	ShowError(CL_RED"MeritSystem: can't load merits for charid %u" CL_RESET, charid);
+
 }
 
 /************************************************************************
@@ -255,7 +263,7 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
 *                                                                       *
 ************************************************************************/
 
-void CMeritPoints::SaveMeritPoints(uint32 charid)
+void CMeritPoints::SaveMeritPoints(uint32 charid, bool resetingMerits)
 {
 	const int8* Query =  "UPDATE chars SET merits = '%s' WHERE charid = %u";
 
@@ -264,7 +272,10 @@ void CMeritPoints::SaveMeritPoints(uint32 charid)
 
     for (uint16 i = 0; i < MERITS_COUNT; ++i)
     {
-        MeritCounts[i] = merits[i].data.count;
+		if (resetingMerits)
+			MeritCounts[i] = 0;
+		else
+			MeritCounts[i] = merits[i].data.count;
     }
 
 	Sql_EscapeStringLen(SqlHandle, points, (const int8*)MeritCounts, MERITS_COUNT);

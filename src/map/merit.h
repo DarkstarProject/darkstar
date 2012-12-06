@@ -545,7 +545,7 @@ class CMeritPoints
 		const Merit_t* GetMeritByIndex(uint16 index);				// get merit index, 0,1,2,3,4 and so on
 
 		void LoadMeritPoints(uint32 charid);						// load char applied merits
-		void SaveMeritPoints(uint32 charid);						// save char applied merits
+		void SaveMeritPoints(uint32 charid, bool resetingMerits);	// save char applied merits
 
     private:
 
