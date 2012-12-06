@@ -50,10 +50,10 @@ INSERT INTO `merits` VALUES(66, 'max_mp', 8, 10, 1048575, 0, 0);
 INSERT INTO `merits` VALUES(128, 'str', 5, 1, 1048575, 1, 1);
 INSERT INTO `merits` VALUES(130, 'dex', 5, 1, 1048575, 1, 1);
 INSERT INTO `merits` VALUES(132, 'vit', 5, 1, 1048575, 1, 1);
-INSERT INTO `merits` VALUES(136, 'agi', 5, 1, 1048575, 1, 1);
-INSERT INTO `merits` VALUES(138, 'int', 5, 1, 1048575, 1, 1);
-INSERT INTO `merits` VALUES(140, 'mnd', 5, 1, 1048575, 1, 1);
-INSERT INTO `merits` VALUES(142, 'chr', 5, 1, 1048575, 1, 1);
+INSERT INTO `merits` VALUES(134, 'agi', 5, 1, 1048575, 1, 1);
+INSERT INTO `merits` VALUES(136, 'int', 5, 1, 1048575, 1, 1);
+INSERT INTO `merits` VALUES(138, 'mnd', 5, 1, 1048575, 1, 1);
+INSERT INTO `merits` VALUES(140, 'chr', 5, 1, 1048575, 1, 1);
 
 -- combat skills (applicable jobs taken from ffxiclopedia)
 INSERT INTO `merits` VALUES(192, 'h2h', 8, 2, 397347, 2, 2);
