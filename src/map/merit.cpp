@@ -247,7 +247,6 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
 	   else if(length == 0)
 	   {
 		   //merits were not set to zero on char creation for this character, set them now
-		   ShowError(CL_RED"MeritSystem: char %u was create before merit overhaul, resetting their merits." CL_RESET, charid);
 		   SaveMeritPoints(charid,true);
 		   return;
 	   }
@@ -281,6 +280,11 @@ void CMeritPoints::SaveMeritPoints(uint32 charid, bool resetingMerits)
 	Sql_EscapeStringLen(SqlHandle, points, (const int8*)MeritCounts, MERITS_COUNT);
 
 	Sql_Query(SqlHandle, Query, points, charid);
+
+
+	// reload merit points if they were reset
+	if (resetingMerits)
+		LoadMeritPoints(charid);
 }
 
 /************************************************************************
