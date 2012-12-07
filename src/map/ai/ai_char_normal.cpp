@@ -1455,6 +1455,18 @@ void CAICharNormal::ActionJobAbilityStart()
 				m_PBattleSubTarget = NULL;
 				return;
 			}
+
+			else if(m_PChar->PPet->objtype == TYPE_MOB){//crash fix, dont use sic if pet(charmed) has no tp moves
+				std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(((CMobEntity*)m_PChar->PPet)->m_Family);
+				if(MobSkills.size() == 0){
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 336));
+					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+					m_PJobAbility = NULL;
+					m_PBattleSubTarget = NULL;
+					return;
+				}
+			}
+
 		}
 		if(m_PJobAbility->getID() == ABILITY_SPIRIT_LINK){ 
 			if(m_PChar->PPet == NULL){
