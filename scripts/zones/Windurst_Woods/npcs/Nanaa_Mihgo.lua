@@ -62,7 +62,6 @@ function onTrigger(player,npc)
 		LvL = player:getMainLvl();
 		Job = player:getMainJob();
 		
-		AF_BYPASS = (Job ~= 6 or Job == 6 and LvL < 40);
 		
 		-- Optional CS of the quest "Crying Over Onions"
 		if(CryingOverOnionsVar == 1) then
