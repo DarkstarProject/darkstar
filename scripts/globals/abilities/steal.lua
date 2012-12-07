@@ -44,11 +44,9 @@ function OnUseAbility(player, target, ability)
 		local stolen = target:getStealItem();
 	
 		if (checkThfAfQuest(player, target) == true) then
-			stolen = 4569;	
-		else
-			player:addItem(stolen);		
+			stolen = 4569;		
 		end
-		
+		player:addItem(stolen);
 		player:messageBasic(125,41,stolen);
 	else
 		player:messageBasic(153,41);
@@ -65,7 +63,6 @@ function checkThfAfQuest(player, target)
 	if(player:getVar("theTenshodoShowdownCS") == 3) then
     		for key, value in pairs(validThfQuestMobs) do
         		if value == targid then 
-				print("the number is ");
 				return true
 				end
 	end
