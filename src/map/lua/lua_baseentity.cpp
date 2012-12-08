@@ -467,6 +467,8 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 	return 0;
 }
 
+
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::addItem(lua_State *L)

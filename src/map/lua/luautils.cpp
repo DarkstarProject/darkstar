@@ -80,6 +80,7 @@ int32 init()
 	lua_register(LuaHandle,"GetNPCByID",luautils::GetNPCByID);
 	lua_register(LuaHandle,"GetMobByID",luautils::GetMobByID);
     lua_register(LuaHandle,"GetRegionOwner", luautils::GetRegionOwner);
+	lua_register(LuaHandle,"setMobPos",luautils::setMobPos);
 	lua_register(LuaHandle,"SpawnMob",luautils::SpawnMob);
 	lua_register(LuaHandle,"DespawnMob",luautils::DespawnMob);
 	lua_register(LuaHandle,"GetPlayerByName",luautils::GetPlayerByName);
@@ -436,6 +437,47 @@ int32 DespawnMob(lua_State* L)
 	lua_pushnil(L);
 	return 1;
 }
+
+
+/************************************************************************
+*                                                                       *
+*  set a mobs position			                                        *
+*                                                                       *
+************************************************************************/
+
+int32 setMobPos(lua_State *L)
+{
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+	{
+		uint32 mobid = (uint32)lua_tointeger(L,1);
+		
+        CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+        if (PMob != NULL)
+        {
+			//if mob is in battle, do not warp it
+			if (PMob->m_OwnerID.id == 0 && PMob->PBattleAI->GetCurrentAction() != ACTION_ATTACK)
+			{
+				if( !lua_isnil(L,2) && lua_isnumber(L,2) )
+					PMob->loc.p.x = (float) lua_tonumber(L,2);
+
+				if( !lua_isnil(L,3) && lua_isnumber(L,3) )
+					PMob->loc.p.y = (float) lua_tonumber(L,3);
+
+				if( !lua_isnil(L,4) && lua_isnumber(L,4) )
+					PMob->loc.p.z = (float) lua_tonumber(L,4);
+
+				if( !lua_isnil(L,5) && lua_isnumber(L,5) )
+					PMob->loc.p.rotation = (uint8) lua_tointeger(L,5);
+            } 
+			else 
+			{
+                ShowDebug(CL_CYAN"setMobPos: <%s> is currently in battle, will not warp it!\n" CL_RESET, PMob->GetName());
+				return 1;
+			} 
+		}
+	}
+}
+
 
 /************************************************************************
 *                                                                       *

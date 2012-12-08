@@ -10,6 +10,11 @@
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/globals/keyitems");
+require("scripts/zones/Windurst_Woods/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -22,7 +27,24 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x004d);
+
+	thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
+	thickAsThievesCS = player:getVar("thickAsThievesCS");
+	
+	if(thickAsThieves == QUEST_ACCEPTED) then
+		player:startEvent(0x01FA);
+			if (thickAsThievesCS == 1) then
+				player:setVar("thickAsThievesCS",2);
+			elseif (thickAsThievesCS == 3) then
+				player:setVar("thickAsThievesCS",4);
+				rand1 = math.random(2,7);
+				player:setVar("thickAsThievesGrapplingCS",rand1);
+				player:setVar("thickAsThievesGamblingCS",1);
+			end
+	else
+		player:startEvent(0x004d); -- standard cs
+	end
+	
 end;
 
 -----------------------------------

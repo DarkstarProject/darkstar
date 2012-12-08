@@ -55,6 +55,7 @@ namespace luautils
 	int32 GetNPCByID(lua_State*);												// Returns NPC By Id
 	int32 GetMobByID(lua_State*);												// Returns Mob By Id
     int32 GetRegionOwner(lua_State*);										    // узнаем страну, владеющую текущим регионом
+	int32 setMobPos(lua_State *L);												// set a mobs position (only if mob is not in combat)
 	int32 SpawnMob(lua_State*);													// Spawn Mob By Mob Id - NMs, BCNM...
 	int32 DespawnMob(lua_State*);												// Despawn (Fade Out) Mob By Id
 	int32 GetPlayerByName(lua_State*);											// Gets Player ref from a name supplied

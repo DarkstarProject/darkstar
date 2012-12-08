@@ -1859,8 +1859,9 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->status != STATUS_UPDATE)
 		return;
 
-	uint8 slotID      = RBUFB(data,(0x04));
-	uint8 equipSlotID = RBUFB(data,(0x05));
+	uint8 slotID      = RBUFB(data,(0x04));		// inventory slot
+	uint8 equipSlotID = RBUFB(data,(0x05));		// charequip slot
+
 	
 	charutils::EquipItem(PChar, slotID, equipSlotID);
     charutils::SaveCharEquip(PChar);

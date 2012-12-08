@@ -58,6 +58,10 @@ function onTrigger(player,npc)
 		MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
 		theTenshodoShowdown = player:getQuestStatus(WINDURST,THE_TENSHODO_SHOWDOWN);
 		theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS");
+		thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
+		thickAsThievesCS = player:getVar("thickAsThievesCS");
+		thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
+		thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
 		
 		LvL = player:getMainLvl();
 		Job = player:getMainJob();
@@ -90,9 +94,20 @@ function onTrigger(player,npc)
 			player:startEvent(0x01f2); -- During Quest "The Tenshodo Showdown" (after cs at tensho HQ)
 		elseif(Job == 6 and LvL < 50 and theTenshodoShowdown == QUEST_COMPLETED) then 
 			player:startEvent(0x01f0); -- Standard dialog after "The Tenshodo Showdown"
+
+			
+		-- Quest "Thick as Thieves"
+		elseif(Job == 6 and LvL >= 50 and thickAsThieves == QUEST_AVAILABLE and theTenshodoShowdown == QUEST_COMPLETED) then 
+			player:startEvent(0x01f8); -- Start Quest "Thick as Thieves"
+		elseif(thickAsThievesCS >= 1 and thickAsThievesCS <= 4 and thickAsThievesGamblingCS <= 7 and thickAsThievesGrapplingCS <= 7) then 
+			player:startEvent(0x01f9,0,GANG_WHEREABOUTS_NOTE); -- During Quest "Thick as Thieves" (before completing grappling+gambling sidequests)
+		elseif(thickAsThievesGamblingCS == 8 and thickAsThievesGrapplingCS ==8) then
+			player:startEvent(0x01fc);	-- complete quest "as thick as thieves"
 		else
 			player:startEvent(0x004c); -- Standard dialog
 		end
+
+
 	end
 	
 end;
@@ -133,6 +148,29 @@ function onEventFinish(player,csid,option)
 		player:setVar("theTenshodoShowdownCS",1);
 		player:addKeyItem(LETTER_FROM_THE_TENSHODO);
 		player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_THE_TENSHODO);
+	elseif(csid == 0x01f8 and option == 1) then  -- start quest "as thick as thieves"
+		player:addQuest(WINDURST,AS_THICK_AS_THIEVES);
+		player:setVar("thickAsThievesCS",1);
+		player:addKeyItem(GANG_WHEREABOUTS_NOTE);
+		player:addKeyItem(FIRST_FORGED_ENVELOPE);
+		player:addKeyItem(SECOND_FORGED_ENVELOPE);		
+		player:messageSpecial(KEYITEM_OBTAINED,GANG_WHEREABOUTS_NOTE);	
+		player:messageSpecial(KEYITEM_OBTAINED,FIRST_FORGED_ENVELOPE);	
+		player:messageSpecial(KEYITEM_OBTAINED,SECOND_FORGED_ENVELOPE);
+	elseif(csid == 0x01fc) then	-- complete quest "as thick as thieves"
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12514);
+		else 
+		player:addItem(12514);
+		player:messageSpecial(ITEM_OBTAINED,12514);
+		player:completeQuest(WINDURST,AS_THICK_AS_THIEVES);		
+		player:setVar("thickAsThievesCS",0);		
+		player:setVar("thickAsThievesGrapplingCS",0);	
+		player:setVar("thickAsThievesGamblingCS",0);			
+		player:delKeyItem(GANG_WHEREABOUTS_NOTE);
+		player:delKeyItem(FIRST_SIGNED_FORGED_ENVELOPE);
+		player:delKeyItem(SECOND_SIGNED_FORGED_ENVELOPE);
+		end
 	elseif(csid == 0x00a5 and option == 1) then -- Windurst Mission 2-1 continuation
 		-- Add the key item for the mission
 		player:addKeyItem(LAPIS_MONOCLE);
