@@ -36,12 +36,10 @@ function onTrade(player,npc,trade)
 		local mJob = player:getMainJob();
 		local zone = player:getZone();
 		local AFHandsActivated = player:getVar("BorghertzAlreadyActiveWithJob");
-		
+		local listAF = getAFbyZone(zone);
 		if(AFHandsActivated == 6 and player:hasKeyItem(OLD_GAUNTLETS) == false) then 
 			questItemNeeded = 1;
 		else
-			local listAF = getAFbyZone(zone);
-			
 			for nb = 1,table.getn(listAF),3 do
 				if(player:getQuestStatus(JEUNO,listAF[nb + 1]) ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
 					questItemNeeded = 2;
