@@ -187,8 +187,10 @@ void CalculateStats(CCharEntity* PChar)
 			subLevelOver30 + subLevelOver10;
 		sJobStat = sJobStat / 2;
 	}
-	
-	PChar->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat);
+
+
+	uint16 MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_HP, PChar->GetMLevel());
+	PChar->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat + MeritBonus);
 	
 	//Начало расчера MP
 
@@ -229,10 +231,11 @@ void CalculateStats(CCharEntity* PChar)
 		sJobStat = (grade::GetMPScale(grade,0) + grade::GetMPScale(grade,scaleTo60Column) * (slvl - 1)) / 2;
 	}
 
-	PChar->health.maxmp = (int16)(raceStat + jobStat + sJobStat); // результат расчета MP
+	MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MP, PChar->GetMLevel());
+	PChar->health.maxmp = (int16)(raceStat + jobStat + sJobStat + MeritBonus); // результат расчета MP
 
 	//add in evasion from skill
-	int16 evaskill = PChar->GetSkill(SKILL_EVA);
+	int16 evaskill = (PChar->GetSkill(SKILL_EVA));
 
 	int16 eva = evaskill;
 	if(evaskill>200){ //Evasion skill is 0.9 evasion post-200
@@ -283,8 +286,11 @@ void CalculateStats(CCharEntity* PChar)
 			sJobStat = 0;
 		}
 
+		// get each merit bonus stat, str,dex,vit and so on...
+		MeritBonus = PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(StatIndex), PChar->GetMLevel());
+
 		// Вывод значения
-		WBUFW(&PChar->stats,counter) = (uint16)(raceStat + jobStat + sJobStat);
+		WBUFW(&PChar->stats,counter) = (uint16)(raceStat + jobStat + sJobStat + MeritBonus);
 		counter += 2;
 	}
 }
@@ -1773,23 +1779,33 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
 void BuildingCharSkillsTable(CCharEntity* PChar)
 {
+	uint16 meritIndex = 8;		// h2h starts at 8
+	uint16 meritBonus = 0;		// value provided by merit 
+
 	for (int32 i = 0; i < 48; ++i) 
 	{
 		uint16 MaxMSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PChar->GetMJob(),PChar->GetMLevel());
 		uint16 MaxSSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PChar->GetSJob(),PChar->GetSLevel());
 
+		//ignore these indexes when calculating merits
+		if (i < 13 || i > 24)
+		{
+			meritBonus = PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(meritIndex), PChar->GetMLevel());
+			meritIndex++;
+		}
+
 		PChar->WorkingSkills.rank[i] = battleutils::GetSkillRank((SKILLTYPE)i,PChar->GetMJob());
 
 		if (MaxMSkill != 0)
 		{
-			PChar->WorkingSkills.skill[i] = (PChar->RealSkills.skill[i]/10 > MaxMSkill ? MaxMSkill + 0x8000 : PChar->RealSkills.skill[i]/10);
+			PChar->WorkingSkills.skill[i] = meritBonus+ (PChar->RealSkills.skill[i]/10 > MaxMSkill ? MaxMSkill + 0x8000 : PChar->RealSkills.skill[i]/10);
 		}
 		else if (MaxSSkill != 0)
 		{
 			PChar->WorkingSkills.skill[i] = (PChar->RealSkills.skill[i]/10 > MaxSSkill ? MaxSSkill + 0x8000 : PChar->RealSkills.skill[i]/10);
 		}
 		else
-		{		
+		{
 			PChar->WorkingSkills.skill[i] = 0x8000;
 		}
 	}

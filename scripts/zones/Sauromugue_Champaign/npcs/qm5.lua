@@ -20,13 +20,6 @@ require("scripts/zones/Sauromugue_Champaign/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-	if(thickAsThievesGrapplingCS == 6) then
-		if(trade:hasItemQty(17474,1) and trade:getItemCount() == 1) then -- Trade grapel
-			player:startEvent(0x0002); -- complete grappling part of the quest			
-		end
-	end
-
 end;
 
 -----------------------------------
@@ -61,13 +54,4 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-	
-	if(csid == 0x0002) then
-		player:setVar("thickAsThievesGrapplingCS",8);
-		player:delKeyItem(FIRST_FORGED_ENVELOPE);
-		player:addKeyItem(FIRST_SIGNED_FORGED_ENVELOPE);
-		player:messageSpecial(KEYITEM_OBTAINED,FIRST_SIGNED_FORGED_ENVELOPE);
-		player:tradeComplete();
-	end
-	
 end;

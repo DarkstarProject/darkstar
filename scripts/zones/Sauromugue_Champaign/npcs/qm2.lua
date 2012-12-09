@@ -21,7 +21,9 @@ require("scripts/zones/Sauromugue_Champaign/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(thickAsThievesGrapplingCS == 3) then
+	thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
+
+	if(thickAsThievesGrapplingCS >= 2 and thickAsThievesGrapplingCS <= 7) then
 		if(trade:hasItemQty(17474,1) and trade:getItemCount() == 1) then -- Trade grapel
 			player:startEvent(0x0002); -- complete grappling part of the quest			
 		end

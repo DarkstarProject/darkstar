@@ -487,6 +487,15 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, uint8 lvl)
 	return meritValue;
 }
 
+int32 CMeritPoints::GetMeritValue(Merit_t* merit, uint8 lvl)
+{
+	uint8 meritValue = dsp_min(merit->data.count, cap[lvl]);  
+
+	meritValue *= merit->value;
+
+	return meritValue;
+}
+
 /************************************************************************
 *                                                                       *
 *  Реализация namespase для работы с Linkshells                         *

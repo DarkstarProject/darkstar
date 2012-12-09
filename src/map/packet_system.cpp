@@ -2829,6 +2829,26 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 			        charutils::SaveCharExp(PChar, PChar->GetMJob());
 					PChar->PMeritPoints->SaveMeritPoints(PChar->id, false);
+
+			        charutils::CalculateStats(PChar);
+					charutils::CheckValidEquipment(PChar);
+
+					charutils::BuildingCharSkillsTable(PChar);
+					charutils::BuildingCharAbilityTable(PChar);
+					charutils::BuildingCharTraitsTable(PChar);
+					charutils::BuildingCharWeaponSkills(PChar);
+
+					PChar->UpdateHealth();
+					PChar->addHP(PChar->GetMaxHP());
+					PChar->addMP(PChar->GetMaxMP());
+					PChar->pushPacket(new CCharUpdatePacket(PChar));
+					PChar->pushPacket(new CCharHealthPacket(PChar));
+					PChar->pushPacket(new CCharStatsPacket(PChar));
+					PChar->pushPacket(new CCharSkillsPacket(PChar));
+					PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+					PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
+					PChar->pushPacket(new CCharSyncPacket(PChar));
+
                 }
             }
             break;

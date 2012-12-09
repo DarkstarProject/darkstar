@@ -1868,15 +1868,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	//trick attack agi bonus for thf main job
 	if(m_PChar->GetMJob() == JOB_THF &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
 	{
-	taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-	if(taChar != NULL) damage += m_PChar->AGI();
+		taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
+		if(taChar != NULL) damage += m_PChar->AGI();
 	}
 
 	//check if other jobs have trick attack active to change enmity lateron
 	if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
-	{
-	taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-	}
+		taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
 
 
 	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
