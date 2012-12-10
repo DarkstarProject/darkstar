@@ -2441,11 +2441,19 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
                 return false;
             }
         }
-        // Should only make it to this point if a ninja tool was found.
 
-        if(ConsumeTool && rand() % 100 > PChar->getMod(MOD_NINJA_TOOL))
+        // Should only make it to this point if a ninja tool was found.
+		
+		uint16 meritBonus = 0;
+
+		if (charutils::hasTrait(PChar, TRAIT_NINJA_TOOL_EXPERT))
+			meritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_NINJA_TOOL_EXPERTISE,PChar->GetMLevel());
+
+		uint16 chance = (PChar->getMod(MOD_NINJA_TOOL) + meritBonus);
+
+        if(ConsumeTool && rand() % 100 > chance)
         {
-            charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
+			charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
             PChar->pushPacket(new CInventoryFinishPacket());
         }
     }
