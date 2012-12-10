@@ -305,8 +305,9 @@ public:
 	
 	int32 getContainerSize(lua_State*);	    // Gets the current capacity of a container
 	int32 changeContainerSize(lua_State*);  // Increase/Decreases container size
+	int32 resetPlayer(lua_State*);			// if player is stuck, GM command @resetPlayer name
 	int32 setLevel(lua_State*);				// sets the character's level
-	int32 setsLevel(lua_State*);				// sets the character's level
+	int32 setsLevel(lua_State*);			// sets the character's level
 	int32 changeJob(lua_State*);			// changes the job of a char (testing only!)
 	int32 setMerits(lua_State*);			// set merits (testing only!)
 	int32 changesJob(lua_State*);			// changes the sub job of a char (testing only!)

@@ -490,6 +490,67 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 	return 1;
 }
 
+
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1));
+
+	const int8* charName  = lua_tostring(L, -1); 
+	uint32 id = 0;
+
+
+	// char will not be logged in so get the id manually
+	const int8* Query = "SELECT charid FROM chars WHERE charname = '%s';";
+	int32 ret = Sql_Query(SqlHandle,Query,charName);
+
+	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		id = (int32)Sql_GetIntData(SqlHandle,0); 
+
+
+	// could not get player from database
+	if (id == 0){
+		ShowDebug("Could not get the character from database.\n");
+		return 1;
+	}
+
+	// delete the account session
+	Query = "DELETE FROM accounts_sessions WHERE charid = %u;";
+	Sql_Query(SqlHandle, Query, id);
+
+
+
+	// send the player to lower jeuno
+	Query = 
+        "UPDATE chars "
+        "SET "
+          "pos_zone = %u,"
+          "pos_prevzone = %u,"
+          "pos_rot = %u,"
+          "pos_x = %.3f,"
+          "pos_y = %.3f,"
+          "pos_z = %.3f,"
+          "boundary = %u "
+        "WHERE charid = %u;";
+
+    Sql_Query(SqlHandle, Query,
+        245,		// lower jeuno
+        122,		// prev zone
+        86,			// rotation
+        33.464f,	// x
+        -5.000f,	// y
+		69.162f,	// z
+        0,			//boundary,
+        id);
+
+	ShowDebug("Player reset was successful.\n");
+
+	return 1;
+}
+
+
 /*****************************************************
 wakeUp - Wakes the calling entity if necessary.
 Should only be used onTick for DoTs. This checks the
@@ -5250,6 +5311,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAnimation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,AnimationSub),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,speed),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseCostume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
