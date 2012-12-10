@@ -17,8 +17,10 @@ CHEST_ILLUSION = 7275; -- The chest was but an illusion...
   CHEST_LOCKED = 7276; -- The chest appears to be locked.
 
 -- Dialog Texts
-   YOU_FIND_NOTHING = 7237; -- You find nothing special.
-SENSE_OF_FOREBODING = 6552; -- You are suddenly overcome with a sense of foreboding...
+		YOU_FIND_NOTHING = 7237; -- You find nothing special.
+	 SENSE_OF_FOREBODING = 6552; -- You are suddenly overcome with a sense of foreboding...
+   PRESENCE_FROM_CEILING = 7239; -- You Sence a presence from te ceiling
+       HEAT_FROM_CEILING = 7240; -- You feel a terrible heat from ceiling 
 
 -- Door dialog
 OPEN_WITH_THE_RIGHT_KEY = 7221; -- You might be able to open it with the right key.

@@ -9894,7 +9894,7 @@ INSERT INTO mob_groups VALUES ('9880', '38', '200', '924', '0', '17', '0', '0', 
 INSERT INTO mob_groups VALUES ('9881', '407', '200', '924', '0', '283', '0', '0', '47', '49');
 INSERT INTO mob_groups VALUES ('9882', '512', '200', '924', '0', '376', '0', '0', '41', '44');
 INSERT INTO mob_groups VALUES ('9883', '689', '200', '924', '0', '504', '0', '0', '56', '58');
-INSERT INTO mob_groups VALUES ('9884', '692', '200', '0', '128', '507', '0', '0', '63', '63');
+INSERT INTO mob_groups VALUES ('9884', '692', '200', '0', '128', '507', '3500', '0', '63', '63');
 INSERT INTO mob_groups VALUES ('9885', '731', '200', '924', '0', '531', '0', '0', '46', '48');
 INSERT INTO mob_groups VALUES ('9886', '744', '200', '924', '0', '544', '0', '0', '44', '45');
 INSERT INTO mob_groups VALUES ('9887', '980', '200', '924', '0', '0', '0', '0', '47', '49');

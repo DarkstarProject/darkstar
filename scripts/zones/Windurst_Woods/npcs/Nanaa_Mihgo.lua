@@ -54,14 +54,22 @@ function onTrigger(player,npc)
 			player:startEvent(0x00aa);
 		end
 	else
+		
 		CryingOverOnionsVar = player:getVar("CryingOverOnions");
 		MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
-		theTenshodoShowdown = player:getQuestStatus(WINDURST,THE_TENSHODO_SHOWDOWN);
+		
+		theTenshodoShowdown = player:getQuestStatus(WINDURST,THE_TENSHODO_SHOWDOWN); -- THF af quest
 		theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS");
-		thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
+		
+		thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES); -- THF af quest
 		thickAsThievesCS = player:getVar("thickAsThievesCS");
 		thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
 		thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
+		
+		hittingTheMarquisate = player:getQuestStatus(WINDURST,HITTING_THE_MARQUISATE); -- THF af quest
+		hittingTheMarquisateYatnielCS = player:getVar("hittingTheMarquisateYatnielCS");
+		hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
+		hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS");				
 		
 		LvL = player:getMainLvl();
 		Job = player:getMainJob();
@@ -85,7 +93,7 @@ function onTrigger(player,npc)
 		elseif(AF_BYPASS and MihgosAmigo == QUEST_COMPLETED) then
 			player:startEvent(0x0059);
 		
-		-- Quest "The Tenshodo Showdown"
+		-- Quest "The Tenshodo Showdown" THF af
 		elseif(Job == 6 and LvL >= 40 and theTenshodoShowdown == QUEST_AVAILABLE) then 
 			player:startEvent(0x01f0); -- Start Quest "The Tenshodo Showdown"
 		elseif(theTenshodoShowdownCS == 1) then 
@@ -96,18 +104,30 @@ function onTrigger(player,npc)
 			player:startEvent(0x01f0); -- Standard dialog after "The Tenshodo Showdown"
 
 			
-		-- Quest "Thick as Thieves"
+		-- Quest "Thick as Thieves" THF af
 		elseif(Job == 6 and LvL >= 50 and thickAsThieves == QUEST_AVAILABLE and theTenshodoShowdown == QUEST_COMPLETED) then 
 			player:startEvent(0x01f8); -- Start Quest "Thick as Thieves"
 		elseif(thickAsThievesCS >= 1 and thickAsThievesCS <= 4 and thickAsThievesGamblingCS <= 7 and thickAsThievesGrapplingCS <= 7) then 
 			player:startEvent(0x01f9,0,GANG_WHEREABOUTS_NOTE); -- During Quest "Thick as Thieves" (before completing grappling+gambling sidequests)
 		elseif(thickAsThievesGamblingCS == 8 and thickAsThievesGrapplingCS ==8) then
 			player:startEvent(0x01fc);	-- complete quest "as thick as thieves"
+			
+			
+		-- Quest "Hitting The Marquisate" THF af
+		elseif(Job == 6 and LvL >= 50 and thickAsThieves == QUEST_COMPLETED and hittingTheMarquisate == QUEST_AVAILABLE) then 
+			player:startEvent(0x0200); -- Start Quest "Hitting The Marquisate"	
+		elseif(hittingTheMarquisateYatnielCS == 3 and hittingTheMarquisateHagainCS == 9) then
+			player:startEvent(0x0204); -- finish first part of "Hitting The Marquisate"	
+		elseif(hittingTheMarquisateNanaaCS == 1) then
+			player:startEvent(0x0205); -- during second part of "Hitting The Marquisate"				
 		else
 			player:startEvent(0x004c); -- Standard dialog
 		end
 
 
+		
+		
+		
 	end
 	
 end;
@@ -171,6 +191,16 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(FIRST_SIGNED_FORGED_ENVELOPE);
 		player:delKeyItem(SECOND_SIGNED_FORGED_ENVELOPE);
 		end
+	elseif(csid == 0x0200) then  -- start quest "hitting The Marquisate "
+		player:addQuest(WINDURST,HITTING_THE_MARQUISATE);
+		player:setVar("hittingTheMarquisateYatnielCS",1);
+		player:setVar("hittingTheMarquisateHagainCS",1);
+		player:addKeyItem(CAT_BURGLARS_NOTE);		
+		player:messageSpecial(KEYITEM_OBTAINED,CAT_BURGLARS_NOTE);	
+	elseif(csid == 0x0204) then  -- end first part of "hitting The Marquisate "		
+		player:setVar("hittingTheMarquisateNanaaCS",1);			
+		player:setVar("hittingTheMarquisateYatnielCS",0);	
+		player:setVar("hittingTheMarquisateHagainCS",0);	
 	elseif(csid == 0x00a5 and option == 1) then -- Windurst Mission 2-1 continuation
 		-- Add the key item for the mission
 		player:addKeyItem(LAPIS_MONOCLE);
