@@ -242,9 +242,11 @@ typedef int32 intptr;
 #endif
 
 
-// keyword replacement in windows
+// keyword replacement in windows for MSVC versions lower than 11 (2012)
 #ifdef _WIN32
+#if defined(_MSC_VER) && _MSC_VER < 1700
 #define inline __inline
+#endif
 #endif
 
 ///////////////////////////////
