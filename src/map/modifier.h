@@ -398,17 +398,21 @@ enum MODIFIER
 // missing modifiers
 
 	MOD_RAPID_SHOT			 = 0x167,
-	MOD_CHARM				 = 0x168
+	MOD_CHARM				 = 0x168,
+	MOD_JUMP_TP_BONUS		 = 0x169,
+	MOD_JUMP_ATT_BONUS		 = 0x16A
 
-	//SPARE_MOD_1			 = 0x169
-	//SPARE_MOD_2			 = 0x16A
-	//SPARE_MOD_3			 = 0x16B
-	//SPARE_MOD_4			 = 0x16C
-	//SPARE_MOD_5			 = 0x16D
-	//SPARE_MOD_6			 = 0x16F
+	//SPARE_MOD_2			 = 0x16B
+	//SPARE_MOD_3			 = 0x16C
+	//SPARE_MOD_4			 = 0x16D
+	//SPARE_MOD_5			 = 0x16F
+	//SPARE_MOD_6			 = 0x170
+	//SPARE_MOD_7			 = 0x171
+	//SPARE_MOD_8			 = 0x172
+	//SPARE_MOD_9			 = 0x173
 };
 
-#define MAX_MODIFIER	       0x169
+#define MAX_MODIFIER	       0x16B
 
 
 /************************************************************************

@@ -1190,7 +1190,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 *																		*
 ************************************************************************/
 
-uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar)
+uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim)
 {
 	if(PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_FORMLESS_STRIKES))
 	{
@@ -1341,24 +1341,26 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
             baseTp = CalculateBaseTP(delay) / ratio;
 		}
 
-		PAttacker->addTP(tpMultiplier*(baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP))));
-		//PAttacker->addTP(20);
-		//account for attacker's subtle blow which reduces the baseTP gain for the defender
-		baseTp = baseTp * ((100.0f - dsp_cap((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
 
-		//mobs hit get basetp+3 whereas pcs hit get basetp/3
-		if(PDefender->objtype == TYPE_PC){
-			//yup store tp counts on hits taken too!
-			PDefender->addTP((baseTp / 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
-		}
-		else{
-			PDefender->addTP((baseTp + 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
+		if (giveTPtoVictim == true)
+		{
+			PAttacker->addTP(tpMultiplier*(baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP))));
+			//PAttacker->addTP(20);
+			//account for attacker's subtle blow which reduces the baseTP gain for the defender
+			baseTp = baseTp * ((100.0f - dsp_cap((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
+
+			//mobs hit get basetp+3 whereas pcs hit get basetp/3
+			if(PDefender->objtype == TYPE_PC){
+				//yup store tp counts on hits taken too!
+				PDefender->addTP((baseTp / 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
+			}
+			else{
+				PDefender->addTP((baseTp + 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
+			}
 		}
 
         if (PAttacker->objtype == TYPE_PC)
-        {
             charutils::UpdateHealth((CCharEntity*)PAttacker);
-        }
     }
 
     if (PAttacker->objtype == TYPE_PC)
@@ -1523,10 +1525,10 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ig
 *																		*
 ************************************************************************/
 
-float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical)  
+float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 ATTmultiplier)  
 {
 	//wholly possible for DEF to be near 0 with the amount of debuffs/effects now.
-    float ratio = (float)PAttacker->ATT() / (float)((PDefender->DEF()==0) ? 1 : PDefender->DEF());
+    float ratio = (float)(PAttacker->ATT() * ATTmultiplier) / (float)((PDefender->DEF()==0) ? 1 : PDefender->DEF());
 	float cRatioMax = 0;
 	float cRatioMin = 0;
 
@@ -2536,6 +2538,150 @@ void GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 a
 }
 
 
+
+/************************************************************************
+*                                                                       *
+*	Effect from soul eater		                                        *
+*                                                                       *
+************************************************************************/
+uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint16 damage)
+{
+	// Souleater has no effect <10HP.
+	if(m_PChar->GetMJob()==JOB_DRK && m_PChar->health.hp>=10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER))
+	{
+		//lost 10% current hp, converted to damage (displayed as just a strong regular hit)
+		float drainPercent = 0.1;
+		CItem* PItemHead = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_HEAD]);
+		CItem* PItemBody = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_BODY]);
+		CItem* PItemLegs = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_LEGS]);
+		if(PItemHead->getID() == 12516 || PItemHead->getID() == 15232 || PItemBody->getID() == 14409 || PItemLegs->getID() == 15370){
+		drainPercent = 0.12;
+	}
+		damage = damage + m_PChar->health.hp*drainPercent;
+		m_PChar->addHP(-drainPercent*m_PChar->health.hp);
+	}
+		else if(m_PChar->GetSJob()==JOB_DRK &&m_PChar->health.hp>=10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)){
+		//lose 10% Current HP, only HALF (5%) converted to damage	
+		damage = damage + m_PChar->health.hp*0.05;
+		m_PChar->addHP(-0.1*m_PChar->health.hp);
+	}
+	return damage;
+}
+
+
+
+/************************************************************************
+*                                                                       *
+*	Jump DRG Job ability		                                        *
+*                                                                       *
+************************************************************************/
+
+uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
+{
+
+	// target has perfect dodge - do not go any further
+	if (PVictim->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
+		return 0;
+
+
+	// super jump - not implemented yet
+	if (tier == 3)
+	{
+		/*  TODO:
+			super jump does no damage, 
+			it removes 99% of enmity from target
+			super jump will end here.
+		*/
+		return 0;
+	}
+
+
+	// multihit's just multiply jump damage 
+	uint16 subType = PAttacker->m_Weapons[SLOT_SUB]->getDmgType();
+	uint8 numattacksLeftHand = 0;
+
+	//sub weapon is equipped
+	if ((subType > 0 && subType < 4))
+		numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_SUB]);
+
+	//h2h equipped
+	if(PAttacker->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH) 
+		numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_MAIN]);
+
+	// normal multi hit from left hand
+	uint8 numattacksRightHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_MAIN]);
+
+
+	CItemWeapon* PWeapon = PAttacker->m_Weapons[SLOT_MAIN];
+	uint8 fstrslot = SLOT_MAIN;
+
+	uint8 hitrate = battleutils::GetHitRate(PAttacker, PVictim);
+	uint16 totalDamage = 0;
+	uint16 damageForRound = 0;
+	bool hitTarget = false;
+
+		// Loop number of hits
+		for (uint8 i = 0; i < (numattacksLeftHand + numattacksRightHand); ++i) 
+		{
+			if (i != 0)
+			{
+				if (PVictim->isDead())
+					break;
+					
+					if (PAttacker->m_Weapons[SLOT_MAIN]->getDmgType() != DAMAGE_HTH && i>=numattacksRightHand)
+					{
+						PWeapon = PAttacker->m_Weapons[SLOT_SUB];
+						fstrslot = SLOT_SUB;
+					}
+			}
+
+			if(rand()%100 < hitrate)
+			{
+				// successful hit, add damage
+				uint8 AttMultipler = 1;
+
+				if (PAttacker->objtype == TYPE_PC)
+					AttMultipler = PAttacker->getMod(MOD_JUMP_ATT_BONUS) == 0 ? 1 : PAttacker->getMod(MOD_JUMP_ATT_BONUS); 
+
+				float DamageRatio = battleutils::GetDamageRatio(PAttacker, PVictim, false, AttMultipler); 
+				damageForRound = (uint16)((PAttacker->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(PAttacker,PVictim,SLOT_MAIN)) * DamageRatio);	
+				
+				// bonus applies to jump only, not high jump
+				if (tier == 1)
+					damageForRound += damageForRound * ( PAttacker->VIT() / (256+1) );
+
+				hitTarget = true;
+			}
+			
+			// incase player has gungnir^^ (or any other damage increases weapons)
+			damageForRound += battleutils::CheckForDamageMultiplier(PWeapon,damageForRound,i);
+
+
+			totalDamage += damageForRound;
+		}
+
+
+	//check for soul eater
+	if (PAttacker->objtype == TYPE_PC)
+		totalDamage += battleutils::doSoulEaterEffect((CCharEntity*)PAttacker, totalDamage);	
+
+	// bonus jump tp is added even if damage is 0, will not add if jump misses
+	if (PAttacker->objtype == TYPE_PC && hitTarget)
+		PAttacker->addTP((float)(PAttacker->getMod(MOD_JUMP_TP_BONUS) / (float)10));
+
+
+	// if damage is 0 then jump missed
+	if (totalDamage == 0) 
+		return 0;
+
+	// try skill up (CharEntity only)
+	if (PAttacker->objtype == TYPE_PC)
+		charutils::TrySkillUP((CCharEntity*)PAttacker, (SKILLTYPE)PWeapon->getSkillType(), PVictim->GetMLevel());
+
+	// jump + high jump doesn't give any tp to victim
+	battleutils::TakePhysicalDamage(PAttacker, PVictim, totalDamage, false, fstrslot, 1, NULL, false);
+	return totalDamage;
+}
 
 
 

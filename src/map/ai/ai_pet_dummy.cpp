@@ -656,7 +656,7 @@ void CAIPetDummy::ActionAttack()
 						Action.messageID  = 1;
 
 						bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false) );
-						float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget,isCritical); 
+						float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget,isCritical, 1); 
 
 						if(isCritical)
 						{
@@ -677,7 +677,7 @@ void CAIPetDummy::ActionAttack()
 				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PPet,m_PBattleTarget));
 				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
-                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL);
+                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
 
 				m_PPet->m_ActionList.push_back(Action);
 

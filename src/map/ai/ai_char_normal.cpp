@@ -832,7 +832,7 @@ void CAICharNormal::ActionRangedFinish()
 		    }
 		    damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
 			damage = battleutils::CheckForDamageMultiplier(PItem,damage,0);
-		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 1, NULL);
+		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 1, NULL, true);
 
 		    if(PItem != NULL){//not a throwing item, check the ammo for dmg/etc
 			    battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
@@ -1653,7 +1653,34 @@ void CAICharNormal::ActionJobAbilityFinish()
         Action.messageID  = m_PJobAbility->getMessage();
         Action.flag       = 0;
 
+
+
+		// handle jump abilities
+		if(m_PJobAbility->getID() == ABILITY_JUMP){
+			Action.param = battleutils::jumpAbility(m_PChar, m_PBattleSubTarget, 1);
+			if (Action.param == 0)
+			{
+				Action.messageID = 0;
+				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 324));
+			}
+		}
+		else if(m_PJobAbility->getID() == ABILITY_HIGH_JUMP){
+			Action.param = battleutils::jumpAbility(m_PChar, m_PBattleSubTarget, 2);
+			if (Action.param == 0)
+			{
+				Action.messageID = 0;
+				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 324));
+			}
+		}
+		else if(m_PJobAbility->getID() == ABILITY_SUPER_JUMP){
+			// super jump does no dmg but changes hate?? TODO anyways
+			Action.messageID = 0;
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 324));
+		}
+
+
 		m_PChar->m_ActionList.push_back(Action);
+
 
         if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
         {
@@ -1667,6 +1694,8 @@ void CAICharNormal::ActionJobAbilityFinish()
             }
         }
 	}
+
+
 
     // TODO: все перенести в скрипты, т.к. система позволяет получать указатель на питомца
 
@@ -1686,9 +1715,14 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-	if(m_PJobAbility->getID() < ABILITY_HEALING_RUBY){
+
+	// Message "player uses..."  for most abilities
+	if(m_PJobAbility->getID() < ABILITY_HEALING_RUBY && 
+		m_PJobAbility->getID() != ABILITY_JUMP && m_PJobAbility->getID() != ABILITY_HIGH_JUMP && m_PJobAbility->getID() != ABILITY_SUPER_JUMP)
+	{
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
 	}
+
 	m_PJobAbility = NULL;
     m_PBattleSubTarget = NULL;
     m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1882,7 +1916,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
 			damslot = SLOT_RANGED;
 		}
-		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot, tpHitsLanded, taChar);
+		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot, tpHitsLanded, taChar, true);
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST); //TODO: REMOVE THIS, BOOST EFFECT IN DB IS WRONG, MISSING EFFECTFLAG_DAMAGE
 	}
@@ -2011,7 +2045,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 					m_PChar->health.tp = wsTP;
 					damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
 					m_PChar->health.tp = afterWsTP;
-					AoEAction.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar);
+					AoEAction.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar, true);
 					if(damage==0)
 					{
 						AoEAction.reaction = REACTION_EVADE;
@@ -2300,7 +2334,7 @@ void CAICharNormal::ActionAttack()
 					bool ignoreTrickAttack = (i != 0);
 					bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, ignoreSneakAttack));
 
-					float DamageRatio = battleutils::GetDamageRatio(m_PChar,m_PBattleTarget,isCritical); 
+					float DamageRatio = battleutils::GetDamageRatio(m_PChar, m_PBattleTarget, isCritical, 1); 
 
 					if (isCritical)
 					{
@@ -2336,34 +2370,14 @@ void CAICharNormal::ActionAttack()
 
 					//check if other jobs have trick attack active to change enmity lateron
 					if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && (!ignoreTrickAttack))
-					{
 						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-					}
-
-
 
 					damage = (uint16)(((PWeapon->getDamage() + bonusDMG + 
 						battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 
-					//TODO: use an alternative to HasStatusEffect. Performance is maximised by the job check FIRST
-					//		so the if loop will fail and HasStatusEffect will not execute. Souleater has no effect <10HP.
-					if(m_PChar->GetMJob()==JOB_DRK && m_PChar->health.hp>=10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)){
-						//lost 10% current hp, converted to damage (displayed as just a strong regular hit)
-						float drainPercent = 0.1;
-						CItem* PItemHead = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_HEAD]);
-						CItem* PItemBody = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_BODY]);
-						CItem* PItemLegs = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_LEGS]);
-						if(PItemHead->getID() == 12516 || PItemHead->getID() == 15232 || PItemBody->getID() == 14409 || PItemLegs->getID() == 15370){
-							drainPercent = 0.12;
-						}
-						damage = damage + m_PChar->health.hp*drainPercent;
-						m_PChar->addHP(-drainPercent*m_PChar->health.hp);
-					}
-					else if(m_PChar->GetSJob()==JOB_DRK &&m_PChar->health.hp>=10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)){
-						//lose 10% Current HP, only HALF (5%) converted to damage	
-						damage = damage + m_PChar->health.hp*0.05;
-						m_PChar->addHP(-0.1*m_PChar->health.hp);
-					}
+
+					// do soul eater effect
+					damage += battleutils::doSoulEaterEffect(m_PChar, damage);
 
 					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
 					zanshin = false;
@@ -2391,7 +2405,7 @@ void CAICharNormal::ActionAttack()
 				if (Action.reaction == REACTION_HIT)
 				{
 					damage = battleutils::CheckForDamageMultiplier(PWeapon,damage,i);
-					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar);
+					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar, true);
 				}
 				else
 				{

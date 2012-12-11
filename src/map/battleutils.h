@@ -101,9 +101,9 @@ namespace battleutils
 	uint8   GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8   GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8   GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical); 
+	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 ATTmultiplier); 
     uint16  TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar); 
+	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim); 
     uint16  TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint16 lastSkillDamage);
 	uint32  MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 	bool    SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
@@ -136,6 +136,8 @@ namespace battleutils
     bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool);
 	bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base);
 	void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim);
+	uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint16 damage);
+	uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier);
 };
 
 #endif
