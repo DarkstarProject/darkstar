@@ -298,17 +298,31 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 	{
 		switch (PEntity->PBattleAI->GetCurrentJobAbility()->getID())
 		{
-			case 25:	//Steal
-			case 50:	//Jump
-			case 51:	//High Jump
-			case 52:	//Super Jump
+			//WS animations
+			case 25:	// Steal
+			case 50:	// Jump
+			case 51:	// High Jump
+			case 52:	// Super Jump
 				ActionTypeNumber -= 3;
 				break;
+
+			//Magic animations
+			case 174:	// waltz 1
+			case 175:	// waltz 2
+			case 176:	// waltz 3
+			case 177:	// waltz 4
+			case 168:	// samba 1
+			case 169:	// samba 2
+			case 170:	// samba 3
+				ActionTypeNumber += 8;
+				break;
+
 			default: 
 				ActionTypeNumber = ActionType;
 				break;
 		}
 	}
+
 
 
 
