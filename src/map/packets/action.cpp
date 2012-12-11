@@ -287,7 +287,32 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 	uint32 ActionNum = 0;
 	uint32 bitOffset = 50;
 
-	bitOffset = packBitsBE(data, ActionType, bitOffset, 4);
+
+	uint8 ActionTypeNumber = ActionType;
+
+
+	//will probably move this to database, new column, animationtype?
+	
+	//override ability animations, 
+	if (ActionType == ACTION_JOBABILITY_FINISH)
+	{
+		switch (PEntity->PBattleAI->GetCurrentJobAbility()->getID())
+		{
+			case 25:	//Steal
+			case 50:	//Jump
+			case 51:	//High Jump
+			case 52:	//Super Jump
+				ActionTypeNumber -= 3;
+				break;
+			default: 
+				ActionTypeNumber = ActionType;
+				break;
+		}
+	}
+
+
+
+	bitOffset = packBitsBE(data, ActionTypeNumber, bitOffset, 4);
 	bitOffset += 64; 
 
 	for (uint32 i = 0; i < PEntity->m_ActionList.size(); ++i)
