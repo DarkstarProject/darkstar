@@ -336,6 +336,13 @@ bool CMeritPoints::AddLimitPoints(uint16 points)
 
     if (m_LimitPoints >= MAX_LIMIT_POINTS)
     {
+		//check if player has reached cap
+		if (m_MeritPoints == MAX_MERIT_POINTS)
+		{
+			m_LimitPoints = MAX_LIMIT_POINTS -1;
+			return false;
+		}
+
         uint8 MeritPoints = dsp_min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, MAX_MERIT_POINTS);
 
         m_LimitPoints = m_LimitPoints % MAX_LIMIT_POINTS;
