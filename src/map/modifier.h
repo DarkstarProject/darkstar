@@ -304,11 +304,15 @@ enum MODIFIER
 // Dark Knight
 // Beastmaster
 
+	MOD_CHARM				= 0x168,	// extends the charm time only, no effect of charm chance	
 	MOD_TAME				= 0x130,	// Additional percent chance to charm
 
 // Bard
+
+
 // Ranger
 
+	MOD_RAPID_SHOT			= 0x167,	// Percent chance to proc rapid shot
 	MOD_RECYCLE				= 0x131,	// Percent chance to recycle
 
 // Samurai
@@ -322,6 +326,11 @@ enum MODIFIER
 	MOD_NINJA_TOOL			= 0x134,	// Percent chance to not use a tool.
 
 // Dragoon
+
+	MOD_JUMP_TP_BONUS				= 0x169,	// bonus tp player receives when using jump (must be divided by 10)
+	MOD_JUMP_ATT_BONUS				= 0x16A,	// ATT% bonus for jump + high jump
+	MOD_HIGH_JUMP_ENMITY_REDUCTION	= 0x16B,	// for gear that reduces more enmity from high jump
+
 // Summoner
 
 	MOD_AVATAR_PERPETUATION = 0x15A,  //stores the MP/tick reduction from gear
@@ -359,6 +368,7 @@ enum MODIFIER
 	MOD_BUST				= 0x14C,	// # of busts
 
 // Puppetmaster
+
 // Dancer
 
 	MOD_FINISHING_MOVES		= 0x14D,	// Tracks # of finishing moves
@@ -392,27 +402,25 @@ enum MODIFIER
 // Special Modifier
 
 	MOD_ADDS_WEAPONSKILL	 = 0x163,
-	MOD_ADDS_WEAPONSKILL_DYN = 0x164,
+	MOD_ADDS_WEAPONSKILL_DYN = 0x164
 
 
-// missing modifiers
+//  use these for new modifiers
 
-	MOD_RAPID_SHOT			 = 0x167,
-	MOD_CHARM				 = 0x168,
-	MOD_JUMP_TP_BONUS		 = 0x169,
-	MOD_JUMP_ATT_BONUS		 = 0x16A
+	//SPARE_MOD				 = 0x16C
+	//SPARE_MOD				 = 0x16D
+	//SPARE_MOD				 = 0x16F
+	//SPARE_MOD				 = 0x170
+	//SPARE_MOD				 = 0x171
+	//SPARE_MOD				 = 0x172
+	//SPARE_MOD				 = 0x173
+	//SPARE_MOD				 = 0x174
+	//SPARE_MOD				 = 0x175
+	//SPARE_MOD				 = 0x176
 
-	//SPARE_MOD_2			 = 0x16B
-	//SPARE_MOD_3			 = 0x16C
-	//SPARE_MOD_4			 = 0x16D
-	//SPARE_MOD_5			 = 0x16F
-	//SPARE_MOD_6			 = 0x170
-	//SPARE_MOD_7			 = 0x171
-	//SPARE_MOD_8			 = 0x172
-	//SPARE_MOD_9			 = 0x173
 };
 
-#define MAX_MODIFIER	       0x16B
+#define MAX_MODIFIER	       0x16C
 
 
 /************************************************************************

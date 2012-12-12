@@ -2581,21 +2581,16 @@ uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint16 damage)
 uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 {
 
+	// super jump - remove 99% of enmity
+	if (tier == 3 && PVictim->objtype == TYPE_MOB)
+	{
+		((CMobEntity*)PVictim)->PEnmityContainer->LowerEnmityByPercent(PAttacker , 99);
+		return 0;
+	}
+
 	// target has perfect dodge - do not go any further
 	if (PVictim->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
 		return 0;
-
-
-	// super jump - not implemented yet
-	if (tier == 3)
-	{
-		/*  TODO:
-			super jump does no damage, 
-			it removes 99% of enmity from target
-			super jump will end here.
-		*/
-		return 0;
-	}
 
 
 	// multihit's just multiply jump damage 
@@ -2675,6 +2670,19 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	// if damage is 0 then jump missed
 	if (totalDamage == 0) 
 		return 0;
+
+
+	// high jump removes %50 emnity + more from any gear mods
+	if (tier == 2 && PVictim->objtype == TYPE_MOB)
+	{
+		uint16 enmityReduction = PAttacker->getMod(MOD_HIGH_JUMP_ENMITY_REDUCTION) + 50;
+
+		// cap it
+		if (enmityReduction > 100) enmityReduction = 100;
+
+		((CMobEntity*)PVictim)->PEnmityContainer->LowerEnmityByPercent(PAttacker , enmityReduction);
+	}
+
 
 	// try skill up (CharEntity only)
 	if (PAttacker->objtype == TYPE_PC)

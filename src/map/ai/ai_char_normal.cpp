@@ -1655,8 +1655,11 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 
 
-		// handle jump abilities
-		if(m_PJobAbility->getID() == ABILITY_JUMP){
+		// handle jump abilities---
+
+		// Jump
+		if(m_PJobAbility->getID() == ABILITY_JUMP)
+		{
 			Action.param = battleutils::jumpAbility(m_PChar, m_PBattleSubTarget, 1);
 			if (Action.param == 0)
 			{
@@ -1664,7 +1667,9 @@ void CAICharNormal::ActionJobAbilityFinish()
 				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 324));
 			}
 		}
-		else if(m_PJobAbility->getID() == ABILITY_HIGH_JUMP){
+		// High Jump
+		else if(m_PJobAbility->getID() == ABILITY_HIGH_JUMP)
+		{
 			Action.param = battleutils::jumpAbility(m_PChar, m_PBattleSubTarget, 2);
 			if (Action.param == 0)
 			{
@@ -1672,10 +1677,12 @@ void CAICharNormal::ActionJobAbilityFinish()
 				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 324));
 			}
 		}
-		else if(m_PJobAbility->getID() == ABILITY_SUPER_JUMP){
-			// super jump does no dmg but changes hate?? TODO anyways
+		// Super Jump
+		else if(m_PJobAbility->getID() == ABILITY_SUPER_JUMP)
+		{
+			battleutils::jumpAbility(m_PChar, m_PBattleSubTarget, 3);
 			Action.messageID = 0;
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 324));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 100));
 		}
 
 

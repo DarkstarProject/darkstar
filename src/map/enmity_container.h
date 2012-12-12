@@ -57,6 +57,7 @@ public:
 	void	UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
 	void	AddPartyEnmity(CCharEntity* PChar);
 	bool    HasTargetID(uint16 TargetID); //true if ID is in the container
+	void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent);
 
 private:
 	

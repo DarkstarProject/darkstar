@@ -212,6 +212,29 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 
 /************************************************************************
 *                                                                       *
+*    Lower enmity by percent %                                          *
+*                                                                       *
+************************************************************************/
+
+void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent)
+{
+	EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
+
+    if( PEnmity != m_EnmityList.end() && 
+       !m_EnmityList.key_comp()(PEntity->id, PEnmity->first))
+	{
+		float mod = ((float)(percent)/100.0f); 
+
+		int32 value = (float)(PEnmity->second->CE * mod);
+        PEnmity->second->CE -= (value < 0 ? 0 : value); 
+
+		value = (float)(PEnmity->second->VE * mod);
+		PEnmity->second->VE -= (value < 0 ? 0 : value); 
+    }
+}
+
+/************************************************************************
+*                                                                       *
 *                                                                       *
 *                                                                       *
 ************************************************************************/
