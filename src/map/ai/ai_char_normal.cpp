@@ -890,8 +890,8 @@ void CAICharNormal::ActionRangedFinish()
 		}
 
 		// to catch high damage bugs
-		if (damage > 4000)
-			ShowError(CL_RED"Warning: %s did 4000+ ranged damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
+		if (damage > 8000)
+			ShowError(CL_RED"Warning: %s did 8000+ ranged damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
 
 		m_PBattleSubTarget = NULL;
 		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots        
@@ -2065,8 +2065,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 
 	// to catch high damage bugs
-	if (damage > 4000)
-		ShowError(CL_RED"Warning: %s did 4000+ weaponskill damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
+	if (damage > 8000)
+		ShowError(CL_RED"Warning: %s did 8000+ weaponskill damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
 
 	charutils::UpdateHealth(m_PChar);
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
@@ -2421,8 +2421,8 @@ void CAICharNormal::ActionAttack()
 
 
 				// to catch high damage bugs
-				if (damage > 4000)
-					ShowError(CL_RED"Warning: %s did 4000+ melee damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
+				if (damage > 8000)
+					ShowError(CL_RED"Warning: %s did 8000+ melee damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
 
 
                 if (m_PChar->m_ActionList.size() == 8) break;

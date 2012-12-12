@@ -20,6 +20,28 @@ function onGameIn(player, firstlogin)
     if (firstlogin) then
         CharCreate(player);
     end;
+
+
+
+    if (player:getVar("GodMode") == 1) then
+	player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);
+		
+	player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,0);
+		
+	player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
+		
+	player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
+		
+	player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
+		
+	player:addStatusEffect(EFFECT_MANAFONT,1,0,0);		
+		
+	player:addStatusEffect(EFFECT_SNEAK_ATTACK,1,0,0);
+		
+	player:addStatusEffect(EFFECT_REGAIN,100,1,0);
+    end
+
+
     -- player:addStatusEffect(EFFECT_REGEN,1,3,0);
 end;
 

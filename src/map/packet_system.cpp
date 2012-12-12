@@ -2798,39 +2798,41 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->getZone() == 0) // все операции обрабатываются только в moghouse
+
+    uint8 operation = RBUFB(data,0x05);
+
+    switch(RBUFB(data,(0x04)))
     {
-        uint8 operation = RBUFB(data,0x05);
-
-        switch(RBUFB(data,(0x04)))
+        case 2: // изменение mode
+        {				
+			// TODO: you can switch mode anywhere except in besieged & under level restriction
+		    if (Sql_Query(SqlHandle, "UPDATE char_exp SET mode = %u WHERE charid = %u", operation, PChar->id) != SQL_ERROR)
+			{	
+			    PChar->MeritMode = operation;
+			    PChar->pushPacket(new CMenuMeritPacket(PChar));
+			}
+        }
+        break;
+        case 3: // изменение merit
         {
-            case 2: // изменение mode
-            {				
-			    if (Sql_Query(SqlHandle, "UPDATE char_exp SET mode = %u WHERE charid = %u", operation, PChar->id) != SQL_ERROR)
-			    {	
-				    PChar->MeritMode = operation;
-				    PChar->pushPacket(new CMenuMeritPacket(PChar));
-			    }
-            }
-            break;
-            case 3: // изменение merit
-            {
-                MERIT_TYPE merit = (MERIT_TYPE)(RBUFW(data,(0x06)) << 1);
+			if (PChar->getZone() == 0) // все операции обрабатываются только в moghouse
+			{
+				MERIT_TYPE merit = (MERIT_TYPE)(RBUFW(data,(0x06)) << 1);
 
-                if (PChar->PMeritPoints->IsMeritExist(merit)) // проверяем присланный персонажем id
-                {
-                    switch (operation)
-                    {
-                        case 0: PChar->PMeritPoints->LowerMerit(merit); break;
-                        case 1: PChar->PMeritPoints->RaiseMerit(merit); break;
-                    }
-                    PChar->pushPacket(new CMenuMeritPacket(PChar));
-			        PChar->pushPacket(new CMeritPointsCategoriesPacket(PChar, merit));
+				if (PChar->PMeritPoints->IsMeritExist(merit)) // проверяем присланный персонажем id
+				{
+					switch (operation)
+					{
+						case 0: PChar->PMeritPoints->LowerMerit(merit); break;
+						case 1: PChar->PMeritPoints->RaiseMerit(merit); break;
+					}
+					PChar->pushPacket(new CMenuMeritPacket(PChar));
+					PChar->pushPacket(new CMeritPointsCategoriesPacket(PChar, merit));
 
-			        charutils::SaveCharExp(PChar, PChar->GetMJob());
+					charutils::SaveCharExp(PChar, PChar->GetMJob());
 					PChar->PMeritPoints->SaveMeritPoints(PChar->id, false);
 
-			        charutils::CalculateStats(PChar);
+					charutils::CalculateStats(PChar);
 					charutils::CheckValidEquipment(PChar);
 
 					charutils::BuildingCharSkillsTable(PChar);
@@ -2848,11 +2850,10 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 					PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
 					PChar->pushPacket(new CCharSyncPacket(PChar));
-
-                }
+				}
             }
-            break;
         }
+        break;
     }
 	return;
 }
