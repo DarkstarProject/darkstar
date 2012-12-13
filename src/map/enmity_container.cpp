@@ -216,8 +216,9 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent)
+void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver)
 {
+
 	EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
     if( PEnmity != m_EnmityList.end() && 
@@ -225,11 +226,22 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
 	{
 		float mod = ((float)(percent)/100.0f); 
 
-		int32 value = (float)(PEnmity->second->CE * mod);
-        PEnmity->second->CE -= (value < 0 ? 0 : value); 
+		int32 CEValue = (float)(PEnmity->second->CE * mod);
+        PEnmity->second->CE -= (CEValue < 0 ? 0 : CEValue); 
 
-		value = (float)(PEnmity->second->VE * mod);
-		PEnmity->second->VE -= (value < 0 ? 0 : value); 
+		int32 VEValue = (float)(PEnmity->second->VE * mod);
+		PEnmity->second->VE -= (VEValue < 0 ? 0 : VEValue); 
+
+
+		// transfer hate if HateReceiver not null
+		if (HateReceiver != NULL)
+		{
+			UpdateEnmity(HateReceiver,0,0);
+			EnmityList_t::iterator PEnmityReceiver = m_EnmityList.lower_bound(HateReceiver->id);
+			PEnmityReceiver->second->CE += CEValue;
+			PEnmityReceiver->second->VE += VEValue;
+		}
+
     }
 }
 

@@ -330,6 +330,18 @@ CBattleEntity* CAIGeneral::GetBattleTarget()
 	return m_PBattleTarget;
 }
 
+
+/************************************************************************
+*																		*
+*  get battle sub target												*
+*																		*
+************************************************************************/
+
+CBattleEntity* CAIGeneral::GetBattleSubTarget()
+{
+	return m_PBattleSubTarget;
+}
+
 /************************************************************************
 *                                                                       *
 *	Gets Mob Skill														*

@@ -95,6 +95,7 @@ public:
 	ACTIONTYPE		GetCurrentAction();
 	CSpell*			GetCurrentSpell();
 	CBattleEntity*	GetBattleTarget();
+	CBattleEntity*  GetBattleSubTarget();
 	CAbility*		GetCurrentJobAbility();
 	CWeaponSkill*	GetCurrentWeaponSkill();
 	CMobSkill*		GetCurrentMobSkill();

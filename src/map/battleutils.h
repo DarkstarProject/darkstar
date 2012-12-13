@@ -138,6 +138,7 @@ namespace battleutils
 	void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim);
 	uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint16 damage);
 	uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier);
+	void TransferEnmity(CBattleEntity* CharHateReceiver, CBattleEntity* CharHateGiver, CMobEntity* PMob, uint8 percentToTransfer);
 };
 
 #endif

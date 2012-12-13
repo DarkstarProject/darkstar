@@ -2540,6 +2540,20 @@ void GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 a
 }
 
 
+/************************************************************************
+*                                                                       *
+*	Transfer Enmity (used with ACCOMPLICE & COLLABORATOR ability type)  *
+*                                                                       *
+************************************************************************/
+
+void TransferEnmity(CBattleEntity* CharHateReceiver, CBattleEntity* CharHateGiver, CMobEntity* PMob, uint8 percentToTransfer)
+{
+	//CBaseEntity* PMob = CharHateGiver->loc.zone->GetEntity(mobID, TYPE_MOB);
+
+	((CMobEntity*)PMob)->PEnmityContainer->LowerEnmityByPercent(CharHateGiver , percentToTransfer, CharHateReceiver);		
+}
+
+
 
 /************************************************************************
 *                                                                       *
@@ -2584,7 +2598,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	// super jump - remove 99% of enmity
 	if (tier == 3 && PVictim->objtype == TYPE_MOB)
 	{
-		((CMobEntity*)PVictim)->PEnmityContainer->LowerEnmityByPercent(PAttacker , 99);
+		((CMobEntity*)PVictim)->PEnmityContainer->LowerEnmityByPercent(PAttacker , 99, NULL);
 		return 0;
 	}
 
@@ -2680,7 +2694,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 		// cap it
 		if (enmityReduction > 100) enmityReduction = 100;
 
-		((CMobEntity*)PVictim)->PEnmityContainer->LowerEnmityByPercent(PAttacker , enmityReduction);
+		((CMobEntity*)PVictim)->PEnmityContainer->LowerEnmityByPercent(PAttacker , enmityReduction, NULL);
 	}
 
 

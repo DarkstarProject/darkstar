@@ -1524,6 +1524,29 @@ void CAICharNormal::ActionJobAbilityStart()
 			}	
 		}
 
+		// enmity transfer abilities
+		if (m_PJobAbility->getID() == ABILITY_ACCOMPLICE || m_PJobAbility->getID() == ABILITY_COLLABORATOR){
+			if(m_PBattleSubTarget == m_PChar ||							// if target is self
+				m_PBattleSubTarget->objtype != TYPE_PC ||				// if target is not a player)	
+				m_PBattleSubTarget == NULL)								// if target is null											
+			{
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 155)); // must specify valid target to use.....
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+			if(m_PBattleSubTarget->PBattleAI->GetBattleTarget() == NULL)	// if party member is not engaged to any mob	
+			{
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88)); // unable to use ability
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+		}
+		
+
 		if (m_PJobAbility->getID() == ABILITY_HASSO || m_PJobAbility->getID() == ABILITY_SEIGAN){
 			if(!m_PChar->m_Weapons[SLOT_MAIN]->isTwoHanded()){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 307));
@@ -1684,6 +1707,13 @@ void CAICharNormal::ActionJobAbilityFinish()
 			Action.messageID = 0;
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 100));
 		}
+
+
+		// handle enmity transfer abilities
+		if (m_PJobAbility->getID() == ABILITY_ACCOMPLICE)
+			battleutils::TransferEnmity(m_PChar, m_PBattleSubTarget, (CMobEntity*)m_PBattleSubTarget->PBattleAI->GetBattleTarget(), 50);
+		else if (m_PJobAbility->getID() == ABILITY_COLLABORATOR)
+			battleutils::TransferEnmity(m_PChar, m_PBattleSubTarget, (CMobEntity*)m_PBattleSubTarget->PBattleAI->GetBattleTarget(), 25);
 
 
 		m_PChar->m_ActionList.push_back(Action);
