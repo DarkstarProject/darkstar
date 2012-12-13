@@ -304,7 +304,6 @@ enum MODIFIER
 // Dark Knight
 // Beastmaster
 
-	MOD_CHARM				= 0x168,	// extends the charm time only, no effect of charm chance	
 	MOD_TAME				= 0x130,	// Additional percent chance to charm
 
 // Bard
@@ -326,11 +325,6 @@ enum MODIFIER
 	MOD_NINJA_TOOL			= 0x134,	// Percent chance to not use a tool.
 
 // Dragoon
-
-	MOD_JUMP_TP_BONUS				= 0x169,	// bonus tp player receives when using jump (must be divided by 10)
-	MOD_JUMP_ATT_BONUS				= 0x16A,	// ATT% bonus for jump + high jump
-	MOD_HIGH_JUMP_ENMITY_REDUCTION	= 0x16B,	// for gear that reduces more enmity from high jump
-
 // Summoner
 
 	MOD_AVATAR_PERPETUATION = 0x15A,  //stores the MP/tick reduction from gear
@@ -402,8 +396,12 @@ enum MODIFIER
 // Special Modifier
 
 	MOD_ADDS_WEAPONSKILL	 = 0x163,
-	MOD_ADDS_WEAPONSKILL_DYN = 0x164
+	MOD_ADDS_WEAPONSKILL_DYN = 0x164,
 
+	MOD_CHARM						= 0x168,	// extends the charm time only, no effect of charm chance	
+	MOD_JUMP_TP_BONUS				= 0x169,	// bonus tp player receives when using jump (must be divided by 10)
+	MOD_JUMP_ATT_BONUS				= 0x16A,	// ATT% bonus for jump + high jump
+	MOD_HIGH_JUMP_ENMITY_REDUCTION	= 0x16B		// for gear that reduces more enmity from high jump
 
 //  use these for new modifiers
 
