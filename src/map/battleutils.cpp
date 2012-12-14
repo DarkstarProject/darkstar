@@ -957,26 +957,35 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 }
 
 //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
-float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender){
+float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+{
 	//get ranged attack value
 	uint16 rAttack = 1;
-	if(PAttacker->objtype == TYPE_PC){
+	if(PAttacker->objtype == TYPE_PC)
+	{
 		CCharEntity* PChar = (CCharEntity*)PAttacker;
 		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
-		if (PItem != NULL && (PItem->getType() & ITEM_WEAPON)){
+
+		if (PItem != NULL && (PItem->getType() & ITEM_WEAPON))
+		{
 			rAttack = PChar->RATT(PItem->getSkillType());
 		}
-		else{
+		else
+		{
 			PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+
 			if (PItem == NULL || !(PItem->getType() & ITEM_WEAPON) || (PItem->getSkillType() != SKILL_THR)){
 				ShowDebug("battleutils::GetRangedPDIF Cannot find a valid ranged weapon to calculate PDIF for. \n");
 			}
-			else{
+			else
+			{
 				rAttack = PChar->RATT(PItem->getSkillType());
 			}
 		}
 	}
-	else{//assume mobs capped
+	else
+	{
+		//assume mobs capped
 		rAttack = battleutils::GetMaxSkill(SKILL_ARC,JOB_RNG,PAttacker->GetMLevel());
 	}
 
@@ -987,21 +996,26 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	if(PDefender->GetMLevel() > PAttacker->GetMLevel()){
 		ratio -= 0.025f * (PDefender->GetMLevel() - PAttacker->GetMLevel());
 	}
+
 	if(ratio < 0) { ratio = 0; }
 	if(ratio > 3) { ratio = 3; }
 
 	//calculate min/max PDIF
 	float minPdif = 0;
 	float maxPdif = 0;
-	if(ratio < 0.9){
+
+	if(ratio < 0.9)
+	{
 		minPdif = ratio;
 		maxPdif = (10.0f/9.0f) * ratio;
 	}
-	else if(ratio <= 1.1){
+	else if(ratio <= 1.1)
+	{
 		minPdif = 1;
 		maxPdif = 1;
 	}
-	else if(ratio <= 3){
+	else if(ratio <= 3)
+	{
 		minPdif = (-3.0f/19.0f) + ((20.0f/19.0f) * ratio);
 		maxPdif = ratio;
 	}
@@ -2583,6 +2597,66 @@ uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint16 damage)
 	}
 	return damage;
 }
+
+
+/************************************************************************
+*                                                                       *
+*	get barrage shot count		                                        *
+*                                                                       *
+************************************************************************/
+
+uint8 getBarrageShotCount(CCharEntity* PChar)
+{
+	/*
+	Ranger level 30, four shots. 
+	Ranger level 50, five shots. 
+	Ranger level 75, six shots. 
+	Ranger level 90, seven shots. 
+	Ranger level 99, eight shots. 
+	*/
+
+	// only archery + marksmanship can use barrage
+	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+
+	if(PItem->getSkillType() != 25 && PItem->getSkillType() != 26)
+		return 0;
+
+
+
+
+	uint8 lvl = PChar->jobs.job[10];		// Get Ranger level of char
+	uint8 shotCount = 0;					// the total number of extra hits
+
+	if (PChar->GetSJob() == JOB_RNG)		// if rng is sub then use the sub level
+		lvl = PChar->GetSLevel();
+
+	// Hunters bracers+1 will add an extra shot
+	CItemArmor* PItemHands = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HANDS]);
+
+
+	if (PItemHands->getID() == 14900)
+		shotCount ++;
+
+	if		(lvl < 30)	return 0;
+	else if (lvl < 50)	shotCount += 3;  
+	else if (lvl < 75)	shotCount += 4;
+	else if (lvl < 90)	shotCount += 5;
+	else if (lvl < 99)	shotCount += 6;
+	else if (lvl >= 99) shotCount += 7;
+
+
+	// make sure we have enough ammo for all these shots
+	CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+	uint8 ammoQty = PAmmo->getQuantity();
+
+	if (ammoQty < shotCount)
+	{
+		shotCount = ammoQty-1;
+	}
+
+	return shotCount;
+}
+
 
 
 

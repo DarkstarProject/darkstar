@@ -782,21 +782,23 @@ void CAICharNormal::ActionRangedFinish()
         m_PBattleSubTarget = NULL;
         return;
 	}
-	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x ||
-		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
-	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 218));
 
+	// check if player moved during Range attack wait
+	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x || m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 218)); // "You move and interrupt your aim."
         m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PBattleSubTarget = NULL;
 		return;
 	}
 
+
 	if ((m_Tick - m_LastActionTime) > m_PChar->m_rangedDelay) 
 	{
 		m_LastActionTime = m_Tick;
 		uint16 damage = 0;
+		uint16 totalDamage = 0;
 
 		apAction_t Action;
         m_PChar->m_ActionList.clear();
@@ -808,66 +810,112 @@ void CAICharNormal::ActionRangedFinish()
 		Action.messageID  = 352;
 		Action.flag = 0;
 
-	    if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
-        {
-            Action.messageID = 32; 
-            Action.reaction   = REACTION_EVADE;
-            Action.speceffect = SPECEFFECT_NONE;
-        }
-        else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)) // hit!
-        { 
-		    float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
-		    if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true)){
-			    pdif *= 1.25; //uncapped
-			    Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-			    Action.messageID = 353;
-		    }
 
-		    CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
-		    CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-		    if(PItem->getSkillType()!=SKILL_THR){
-			    if(PAmmo!=NULL){
-				    damage = PAmmo->getDamage();
-			    }
-		    }
-		    damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
-			damage = battleutils::CheckForDamageMultiplier(PItem,damage,0);
-		    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 1, NULL, true);
 
-		    if(PItem != NULL){//not a throwing item, check the ammo for dmg/etc
-			    battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
-			    charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
-		    }
+		uint8 hitCount = 1;			// 1 hit by default
+		bool hitOccured = false;	// track if player hit mob at all
 
-	    }
-	    else //miss
-        {
-            Action.reaction   = REACTION_EVADE;
-            Action.speceffect = SPECEFFECT_NONE;
-            Action.messageID  = 354;
 
-            if(m_PBattleSubTarget->objtype == TYPE_MOB){
-			    ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
-			    ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
-                ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
-		    }
-	    }
-        CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+		// if barrage is detected, getBarrageShotCount also checks for ammo count
+		if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0))
+			hitCount += battleutils::getBarrageShotCount(m_PChar);
 
-		uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
+		// loop for barrage hits, if a miss occurs, the loop will end
+		for (uint8 i = 0; i < hitCount; ++i)
+		{
+				if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
+				{
+					Action.messageID = 32; 
+					Action.reaction   = REACTION_EVADE;
+					Action.speceffect = SPECEFFECT_NONE;
+					i = hitCount; // end barrage, shot missed
+				}
+				else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)) // hit!
+				{
+					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 
-		if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
-			recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
+					if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
+					{
+						pdif *= 1.25; //uncapped
+						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+						Action.messageID = 353;
+					}
 
-		if(PAmmo!=NULL && rand()%100 > recycleChance)
-        {
-            // TODO: charutils написать метод для обновления AMMO, чтобы корректно снимать предмет перед удалением
-			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1); 
-			m_PChar->pushPacket(new CInventoryFinishPacket());
+					CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+					CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+
+					if(PItem->getSkillType()!=SKILL_THR)
+					{
+						if(PAmmo!=NULL)
+							damage = PAmmo->getDamage();
+					}
+					
+					// at least 1 hit occured
+					hitOccured = true;
+
+					damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
+					damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+
+
+					if(PItem != NULL)
+					{
+						//not a throwing item, check the ammo for dmg/etc
+						battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
+						charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
+					}
+
+				}
+				else //miss
+				{
+					Action.reaction   = REACTION_EVADE;
+					Action.speceffect = SPECEFFECT_NONE;
+					Action.messageID  = 354;
+
+					if(m_PBattleSubTarget->objtype == TYPE_MOB)
+					{
+						((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
+						((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
+						((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
+					}
+
+					i = hitCount; // end barrage, shot missed
+				}
+
+
+				// check for recycle chance
+				CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+				uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
+
+				if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
+					recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
+
+				if(PAmmo!=NULL && rand()%100 > recycleChance)
+				{
+					// TODO: charutils написать метод для обновления AMMO, чтобы корректно снимать предмет перед удалением
+					charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1); 
+					m_PChar->pushPacket(new CInventoryFinishPacket());
+				}
+
+				totalDamage += damage;
+		}
+
+		// if a hit did occur (even without barrage)
+		if (hitOccured == true)
+		{
+			// any misses with barrage cause remaing shots to miss, meaning we must check Action.reaction
+			if (Action.reaction == REACTION_EVADE && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE))
+			{
+				Action.messageID  = 352;
+				Action.reaction   = REACTION_HIT;
+				Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+			}
+
+			Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, SLOT_RANGED, 1, NULL, true);			
 		}
 
         m_PChar->m_ActionList.push_back(Action);
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+
 
 		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -876,7 +924,12 @@ void CAICharNormal::ActionRangedFinish()
         // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
 
 		CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
-		if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
+		if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) 
+		{
+			Monster->m_HiPCLvl = m_PChar->GetMLevel();
+		}
+
+
 		if (charutils::hasTrait(m_PChar, TRAIT_TREASURE_HUNTER))
 		{
 			if (Monster->m_THLvl == 0) 
@@ -886,7 +939,9 @@ void CAICharNormal::ActionRangedFinish()
 			}
 			else if ((Monster->m_THPCID != m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
 			else if ((Monster->m_THPCID == m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
-			if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
+			
+			if (Monster->m_THLvl > 12) 
+				Monster->m_THLvl = 12;
 		}
 
 		// to catch high damage bugs
@@ -894,7 +949,12 @@ void CAICharNormal::ActionRangedFinish()
 			ShowError(CL_RED"Warning: %s did 8000+ ranged damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
 
 		m_PBattleSubTarget = NULL;
-		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots        
+		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots
+
+
+		// remove barrage effect if present
+		if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0))
+			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE,0);
 	}
 }
 
