@@ -2624,7 +2624,7 @@ uint8 getBarrageShotCount(CCharEntity* PChar)
 
 
 
-	uint8 lvl = PChar->jobs.job[10];		// Get Ranger level of char
+	uint8 lvl = PChar->jobs.job[JOB_RNG];		// Get Ranger level of char
 	uint8 shotCount = 0;					// the total number of extra hits
 
 	if (PChar->GetSJob() == JOB_RNG)		// if rng is sub then use the sub level
