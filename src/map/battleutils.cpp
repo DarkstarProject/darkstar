@@ -2701,6 +2701,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	uint8 fstrslot = SLOT_MAIN;
 
 	uint8 hitrate = battleutils::GetHitRate(PAttacker, PVictim);
+	uint8 realHits = 0;			// to store the real number of hit for tp multipler	
 	uint16 totalDamage = 0;
 	uint16 damageForRound = 0;
 	bool hitTarget = false;
@@ -2736,6 +2737,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 					damageForRound += damageForRound * ( PAttacker->VIT() / (256+1) );
 
 				hitTarget = true;
+				realHits++;
 			}
 			
 			// incase player has gungnir^^ (or any other damage increases weapons)
@@ -2777,7 +2779,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 		charutils::TrySkillUP((CCharEntity*)PAttacker, (SKILLTYPE)PWeapon->getSkillType(), PVictim->GetMLevel());
 
 	// jump + high jump doesn't give any tp to victim
-	battleutils::TakePhysicalDamage(PAttacker, PVictim, totalDamage, false, fstrslot, 1, NULL, false);
+	battleutils::TakePhysicalDamage(PAttacker, PVictim, totalDamage, false, fstrslot, realHits, NULL, false);
 	return totalDamage;
 }
 

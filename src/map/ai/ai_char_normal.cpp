@@ -813,6 +813,7 @@ void CAICharNormal::ActionRangedFinish()
 
 
 		uint8 hitCount = 1;			// 1 hit by default
+		uint8 realHits = 0;			// to store the real number of hit for tp multipler
 		bool hitOccured = false;	// track if player hit mob at all
 
 
@@ -852,6 +853,7 @@ void CAICharNormal::ActionRangedFinish()
 					
 					// at least 1 hit occured
 					hitOccured = true;
+					realHits ++;
 
 					damage = (damage + PItem->getDamage() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
 					damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
@@ -910,7 +912,7 @@ void CAICharNormal::ActionRangedFinish()
 				Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 			}
 
-			Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, SLOT_RANGED, 1, NULL, true);			
+			Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, SLOT_RANGED, realHits, NULL, true);			
 		}
 
         m_PChar->m_ActionList.push_back(Action);
