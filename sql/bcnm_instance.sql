@@ -289,6 +289,29 @@ INSERT INTO `bcnm_instance` VALUES ('609', '1', '17641476');
 INSERT INTO `bcnm_instance` VALUES ('609', '2', '17641477');
 INSERT INTO `bcnm_instance` VALUES ('609', '3', '17641478');
 
+-- LaLoff Amphitheater
+INSERT INTO `bcnm_instance` VALUES ('293', '1', '17514497'); -- DM 1
+INSERT INTO `bcnm_instance` VALUES ('293', '1', '17514500');
+INSERT INTO `bcnm_instance` VALUES ('293', '1', '17514509');
+INSERT INTO `bcnm_instance` VALUES ('293', '1', '17514512');
+INSERT INTO `bcnm_instance` VALUES ('293', '1', '17514515');
+INSERT INTO `bcnm_instance` VALUES ('293', '1', '17514518');
+INSERT INTO `bcnm_instance` VALUES ('293', '1', '17514503');
+INSERT INTO `bcnm_instance` VALUES ('293', '2', '17514498'); -- DM 2
+INSERT INTO `bcnm_instance` VALUES ('293', '2', '17514501');
+INSERT INTO `bcnm_instance` VALUES ('293', '2', '17514504');
+INSERT INTO `bcnm_instance` VALUES ('293', '2', '17514510');
+INSERT INTO `bcnm_instance` VALUES ('293', '2', '17514513');
+INSERT INTO `bcnm_instance` VALUES ('293', '2', '17514516');
+INSERT INTO `bcnm_instance` VALUES ('293', '2', '17514519');
+INSERT INTO `bcnm_instance` VALUES ('293', '3', '17514499'); -- DM 2
+INSERT INTO `bcnm_instance` VALUES ('293', '3', '17514502');
+INSERT INTO `bcnm_instance` VALUES ('293', '3', '17514505');
+INSERT INTO `bcnm_instance` VALUES ('293', '3', '17514511');
+INSERT INTO `bcnm_instance` VALUES ('293', '3', '17514514');
+INSERT INTO `bcnm_instance` VALUES ('293', '3', '17514517');
+INSERT INTO `bcnm_instance` VALUES ('293', '3', '17514520');
+
 -- Dynamis 
 -- instanceNumber 1: spawn statue when player register the dynamis
 -- instanceNumber 2: spawn statue when the mega boss is defeated

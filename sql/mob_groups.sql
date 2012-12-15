@@ -9318,14 +9318,16 @@ INSERT INTO mob_groups VALUES ('9304', '4006', '179', '0', '128', '0', '0', '0',
 INSERT INTO mob_groups VALUES ('9305', '4249', '179', '0', '128', '0', '0', '0', '60', '60');
 INSERT INTO mob_groups VALUES ('9306', '4493', '179', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO mob_groups VALUES ('9307', '4498', '179', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9308', '235', '180', '0', '128', '0', '0', '0', '75', '75');
-INSERT INTO mob_groups VALUES ('9309', '236', '180', '0', '128', '0', '0', '0', '75', '75');
-INSERT INTO mob_groups VALUES ('9310', '237', '180', '0', '128', '0', '0', '0', '75', '75');
-INSERT INTO mob_groups VALUES ('9311', '238', '180', '0', '128', '0', '0', '0', '75', '75');
-INSERT INTO mob_groups VALUES ('9312', '239', '180', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9313', '240', '180', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9314', '241', '180', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO mob_groups VALUES ('9315', '242', '180', '0', '128', '0', '0', '0', '75', '75');
+
+INSERT INTO mob_groups VALUES ('9308', '235', '180', '0', '128', '0', '10000', '1000', '75', '75');	-- Ark_Angel_EV DM 1
+INSERT INTO mob_groups VALUES ('9309', '236', '180', '0', '128', '0', '10000', '1000', '75', '75'); -- Ark_Angel_GK DM 1
+INSERT INTO mob_groups VALUES ('9310', '237', '180', '0', '128', '0', '10000', '1000', '75', '75'); -- Ark_Angel_HM DM 1
+INSERT INTO mob_groups VALUES ('9311', '238', '180', '0', '128', '0', '10000', '1000', '75', '75'); -- Ark_Angel_MR DM 1
+INSERT INTO mob_groups VALUES ('9312', '239', '180', '0', '0', '0', '0', '0', '0', '0'); -- Ark_Angel_s_Mandragora not implemented
+INSERT INTO mob_groups VALUES ('9313', '240', '180', '0', '128', '0', '2500', '0', '75', '75'); -- Ark_Angel_s_Tiger DM 1
+INSERT INTO mob_groups VALUES ('9314', '241', '180', '0', '128', '0', '2500', '0', '75', '75'); -- Ark_Angel_s_Wyvern DM 1
+INSERT INTO mob_groups VALUES ('9315', '242', '180', '0', '128', '0', '10000', '1000', '75', '75'); -- Ark_Angel_TT DM 1
+
 INSERT INTO mob_groups VALUES ('9316', '1158', '181', '0', '128', '0', '0', '0', '75', '75');
 INSERT INTO mob_groups VALUES ('9317', '1270', '181', '0', '128', '0', '0', '0', '75', '75');
 INSERT INTO mob_groups VALUES ('9318', '1798', '181', '0', '0', '0', '0', '0', '0', '0');

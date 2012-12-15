@@ -13,6 +13,7 @@ itemid_bcnmid_map = {139,{1553,11,1175,15,1180,17}, -- Horlais Peak
 					 146,{1553,107,1551,105}, -- Balgas Dias
 					 168,{0,0}, -- Chamber of Oracles
 					 170,{0,0}, -- Full Moon Fountain
+					 180,{1550,293}, -- LaLoff Amphitheater
 					 201,{1546,418}, -- Cloister of Gales
 					 202,{1548,450}, -- Cloister of Storms
 					 203,{1545,482}, -- Cloister of Frost
@@ -36,6 +37,7 @@ bcnmid_param_map = {139,{0,0,5,5,6,6,7,7,11,11,15,15,17,17},
 					168,{192,0,194,2,195,3,196,4},
 					170,{224,0},
 					179,{256,0},
+					180,{293,5},
 					201,{416,0,418,2},
 					202,{448,0,450,2},
 					203,{480,0,482,2},
@@ -182,7 +184,7 @@ function EventFinishBCNM(player,csid,option)
 		return false;
 	else
 		id = player:getVar("trade_bcnmid");
-		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 81 or id == 76 or id == 107 or id == 11 or id == 105 or id == 82 or id == 34 or id == 15 or id == 17 or id == 79 or id == 35 or id == 36) then
+		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 81 or id == 76 or id == 107 or id == 11 or id == 105 or id == 82 or id == 34 or id == 15 or id == 17 or id == 79 or id == 35 or id == 36 or id == 293) then
 			player:tradeComplete(); -- Removes the item, eventually need to remove orbs from this list and set bitmask on vraible to cracked instead of removing orb!!!
 		end
 		return true;
@@ -288,7 +290,10 @@ function ItemToBCNMID(player,zone,trade)
 					-- KSNM30						
 					elseif(item == 1553) then
 						questTimelineOK = 1;
-					-- KSNM99						
+					-- KSNM99
+					elseif(item == 1550) then
+						questTimelineOK = 1;
+					-- Divine Might						
 					end
 					
 					if(questTimelineOK == 1) then
@@ -361,7 +366,7 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3) then -- Zilart Mission 8
 			mask = GetBattleBitmask(256,Zone,1);
 			player:setVar("trade_bcnmid",256);
-		end
+		end	
 	elseif(Zone == 201) then -- Cloister of Gales
 		if(player:hasKeyItem(TUNING_FORK_OF_WIND)) then -- Trial by Wind
 			mask = GetBattleBitmask(416,Zone,1);
