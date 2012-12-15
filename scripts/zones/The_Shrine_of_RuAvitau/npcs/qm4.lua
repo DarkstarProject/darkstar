@@ -21,12 +21,14 @@ end;
 function onTrigger(player,npc)
 
 	if(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("DivineMight") == 0) then				-- Start divine might
-		player:startEvent(0x0035,917,1408,1550);
+		player:startEvent(0x0035,917,1408,1550);	
 	elseif(player:hasCompletedMission(ZILART,ARK_ANGELS) == true and player:getVar("DivineMight") == 0) then	-- Player wants to repeat Divine might
 		player:startEvent(0x0035,917,1408,1550);
 	elseif(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("DivineMight") == 1) then			-- CS during Divine might
 		player:startEvent(0x0036,917,1408,1550);
 	elseif(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("DivineMight") == 2) then			-- CS when player has completed Divine might
+		player:startEvent(0x0037,14739,14740,14741,14742,14743);	
+	elseif(player:hasCompletedMission(ZILART,ARK_ANGELS) == true and player:getVar("DivineMight") == 2) then			-- CS when player has completed Divine might (repeating quest)
 		player:startEvent(0x0037,14739,14740,14741,14742,14743);	
 	end
 	

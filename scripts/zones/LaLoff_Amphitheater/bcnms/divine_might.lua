@@ -12,7 +12,7 @@
 --	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0); -- elvan	
 --	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0); -- galka	
 --	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,5,0); -- divine might
-
+--	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,6,0); -- skip ending cs
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
@@ -38,9 +38,9 @@ function OnBcnmLeave(player,instance,leavecode)
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
 	
 		if(player:hasCompletedMission(ZILART,ARK_ANGELS)) then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);		-- winning CS
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,6,1);		-- winning CS
 		else
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);		-- winning CS (allow player to skip)
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,6,0);		-- winning CS (allow player to skip)
 		end
 		
 	elseif(leavecode == 4) then

@@ -35,6 +35,7 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 --	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0); -- elvan	
 --	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0); -- galka	
 --	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,5,0); -- divine might
+--	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,6,0); -- skip ending cs
 
 -----------------------------------
 -- onTrade Action
@@ -53,7 +54,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-			
 	if(EventTriggerBCNM(player,npc))then
 		return;
 	end
