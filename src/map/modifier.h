@@ -311,7 +311,7 @@ enum MODIFIER
 
 // Ranger
 
-	MOD_RAPID_SHOT			= 0x167,	// Percent chance to proc rapid shot
+
 	MOD_RECYCLE				= 0x131,	// Percent chance to recycle
 
 // Samurai
@@ -320,7 +320,6 @@ enum MODIFIER
 
 // Ninja
 
-    MOD_STEALTH             = 0x166,
 	MOD_UTSUSEMI			= 0x133,	// Everyone's favorite --tracks shadows.
 	MOD_NINJA_TOOL			= 0x134,	// Percent chance to not use a tool.
 
@@ -328,7 +327,7 @@ enum MODIFIER
 // Summoner
 
 	MOD_AVATAR_PERPETUATION = 0x15A,  //stores the MP/tick reduction from gear
-	MOD_BP_DELAY			= 0x165,  //stores blood pact delay reduction
+
 
 // Blue Mage
 
@@ -393,10 +392,14 @@ enum MODIFIER
 	MOD_LIGHT_AFFINITY		= 0x161,
 	MOD_DARK_AFFINITY		= 0x162,
 
-// Special Modifier
+// Special Modifier+
 
 	MOD_ADDS_WEAPONSKILL	 = 0x163,
 	MOD_ADDS_WEAPONSKILL_DYN = 0x164,
+
+	MOD_BP_DELAY			= 0x165,  //stores blood pact delay reduction
+	MOD_STEALTH             = 0x166,
+	MOD_RAPID_SHOT			= 0x167,	// Percent chance to proc rapid shot
 
 	MOD_CHARM						= 0x168,	// extends the charm time only, no effect of charm chance	
 	MOD_JUMP_TP_BONUS				= 0x169,	// bonus tp player receives when using jump (must be divided by 10)

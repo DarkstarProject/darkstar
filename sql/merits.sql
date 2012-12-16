@@ -93,11 +93,11 @@ INSERT INTO `merits` VALUES(276, 'wind', 8, 2, 512, 4, 3);
 INSERT INTO `merits` VALUES(278, 'blue', 8, 2, 32768, 4, 3);
 
 -- others
-INSERT INTO `merits` VALUES(320, 'enmity_increase', 4, 1, 1048575, 5, 4);
-INSERT INTO `merits` VALUES(322, 'enmity_decrease', 4, 1, 1048575, 5, 4);
-INSERT INTO `merits` VALUES(324, 'crit_hit_rate', 4, 1, 1048575, 5, 4);
-INSERT INTO `merits` VALUES(326, 'enemy_crit_rate', 4, 1, 1048575, 5, 4);
-INSERT INTO `merits` VALUES(328, 'spell_interuption_rate', 4, 2, 1048575, 5, 4);
+INSERT INTO `merits` VALUES(320, 'enmity_increase', 5, 1, 1048575, 5, 4);
+INSERT INTO `merits` VALUES(322, 'enmity_decrease', 5, 1, 1048575, 5, 4);
+INSERT INTO `merits` VALUES(324, 'crit_hit_rate', 5, 1, 1048575, 5, 4);
+INSERT INTO `merits` VALUES(326, 'enemy_crit_rate', 5, 1, 1048575, 5, 4);
+INSERT INTO `merits` VALUES(328, 'spell_interuption_rate', 5, 2, 1048575, 5, 4);
 
 -- war 1
 INSERT INTO `merits` VALUES(384, 'beserk_recast', 5, 10, 1, 6, 5);
