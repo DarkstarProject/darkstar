@@ -1981,7 +1981,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	m_LastActionTime = m_Tick;
 	uint16 tpHitsLanded = 0;
 	uint16 extraHitsLanded = 0;
-	uint16 damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
+	uint16 damage = 0;
+	damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
 	m_PChar->addTP(-bonusTp);
 	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI)){
 		m_PChar->addTP(-100);

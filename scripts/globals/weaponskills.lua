@@ -446,13 +446,22 @@ return alpha;
  function doRangedWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,  canCrit,crit100,crit200,crit300,  acc100,acc200,acc300,   atkmulti)
 	--get fstr
 	fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getRangedDmg());
-	
+
 	--apply WSC
 	local base = attacker:getRangedDmg() + attacker:getAmmoDmg() + fstr + 
 		(attacker:getStat(MOD_STR) * str_wsc + attacker:getStat(MOD_DEX) * dex_wsc + 
 		 attacker:getStat(MOD_VIT) * vit_wsc + attacker:getStat(MOD_AGI) * agi_wsc + 
 		 attacker:getStat(MOD_INT) * int_wsc + attacker:getStat(MOD_MND) * mnd_wsc + 
 		 attacker:getStat(MOD_CHR) * chr_wsc) * getAlpha(attacker:getMainLvl());
+		 
+	-- The Ranger bug is comming from the 'base' variable and calculation above. 
+	-- base is normally around 69.651.  When bug hits it jumps to 7269.651.	 
+	-- print ammo and range damage when bug is detected
+	if (base > 2000) then
+		print("RANGER BUG INFO: weaponDmg is = " .. attacker:getRangedDmg() .. "!"); 
+		print("RANGER BUG INFO: ammoDmg is = " .. attacker:getAmmoDmg() .. "!"); 
+		print("RANGER BUG INFO: getAlpha is = " .. getAlpha(attacker:getMainLvl()) .. "!"); 	
+	end
 		 
 	--Applying fTP multiplier
 	ftp = fTP(attacker:getTP(),ftp100,ftp200,ftp300);
