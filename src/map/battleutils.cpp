@@ -2754,8 +2754,10 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 
 	// bonus jump tp is added even if damage is 0, will not add if jump misses
 	if (PAttacker->objtype == TYPE_PC && hitTarget)
-		PAttacker->addTP((float)(PAttacker->getMod(MOD_JUMP_TP_BONUS) / (float)10));
-
+	{
+		int mod = PAttacker->getMod(MOD_JUMP_TP_BONUS);
+		PAttacker->addTP( ((float)(mod)/(float)10));
+	}
 
 	// if damage is 0 then jump missed
 	if (totalDamage == 0) 

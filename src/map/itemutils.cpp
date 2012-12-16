@@ -378,8 +378,7 @@ namespace itemutils
 			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
 			    int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-			    if ((g_pItemList[ItemID] != NULL) &&
-				    (g_pItemList[ItemID]->getType() & ITEM_ARMOR))
+			    if ((g_pItemList[ItemID] != NULL) && (g_pItemList[ItemID]->getType() & ITEM_ARMOR))
 			    {
                     ((CItemArmor*)g_pItemList[ItemID])->addModifier(new CModifier(modID,value));
 			    }
