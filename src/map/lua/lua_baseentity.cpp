@@ -4500,7 +4500,7 @@ inline int32 CLuaBaseEntity::getMeleeHitDamage(lua_State *L)
 	}
 
 	if(rand()%100 < hitrate){
-		float DamageRatio = battleutils::GetDamageRatio(PAttacker, PDefender, false, 1); 
+		float DamageRatio = battleutils::GetDamageRatio(PAttacker, PDefender, false, 0); 
 		int damage = (uint16)((PAttacker->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(PAttacker,PDefender,SLOT_MAIN)) * DamageRatio);	
 		lua_pushinteger( L,damage );
 		return 1;

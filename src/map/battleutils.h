@@ -101,7 +101,7 @@ namespace battleutils
 	uint8   GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8   GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8   GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 ATTmultiplier); 
+	float	GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent); 
     uint16  TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint16	TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim); 
     uint16  TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint16 lastSkillDamage);

@@ -1541,10 +1541,15 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ig
 *																		*
 ************************************************************************/
 
-float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 ATTmultiplier)  
+float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent)  
 {
+	// used to apply a % of attack bonus
+	float attPercentBonus = 0;
+	if (bonusAttPercent >= 1)
+		attPercentBonus = (float)(PAttacker->ATT() * bonusAttPercent / 100);
+
 	//wholly possible for DEF to be near 0 with the amount of debuffs/effects now.
-    float ratio = (float)(PAttacker->ATT() * ATTmultiplier) / (float)((PDefender->DEF()==0) ? 1 : PDefender->DEF());
+    float ratio = (float)(PAttacker->ATT() + attPercentBonus) / (float)((PDefender->DEF()==0) ? 1 : PDefender->DEF());
 	float cRatioMax = 0;
 	float cRatioMin = 0;
 
@@ -2724,24 +2729,28 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 			if(rand()%100 < hitrate)
 			{
 				// successful hit, add damage
-				uint8 AttMultipler = 1;
+				uint8 AttMultiplerPercent = 0;
 
+				// get jump attack bonus from gear
 				if (PAttacker->objtype == TYPE_PC)
-					AttMultipler = PAttacker->getMod(MOD_JUMP_ATT_BONUS) == 0 ? 1 : PAttacker->getMod(MOD_JUMP_ATT_BONUS); 
+					AttMultiplerPercent = PAttacker->getMod(MOD_JUMP_ATT_BONUS); 
 
-				float DamageRatio = battleutils::GetDamageRatio(PAttacker, PVictim, false, AttMultipler); 
+				float DamageRatio = battleutils::GetDamageRatio(PAttacker, PVictim, false, AttMultiplerPercent); 
 				damageForRound = (uint16)((PAttacker->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(PAttacker,PVictim,SLOT_MAIN)) * DamageRatio);	
 				
 				// bonus applies to jump only, not high jump
 				if (tier == 1)
-					damageForRound += damageForRound * ( PAttacker->VIT() / (256+1) );
+				{
+					float jumpBonus = ( (PAttacker->VIT() / (float)256)+1 );
+					damageForRound = damageForRound * jumpBonus;
+				}
 
 				hitTarget = true;
 				realHits++;
 			}
 			
 			// incase player has gungnir^^ (or any other damage increases weapons)
-			damageForRound += battleutils::CheckForDamageMultiplier(PWeapon,damageForRound,i);
+			damageForRound = battleutils::CheckForDamageMultiplier(PWeapon,damageForRound,i);
 
 
 			totalDamage += damageForRound;
@@ -2750,7 +2759,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 
 	//check for soul eater
 	if (PAttacker->objtype == TYPE_PC)
-		totalDamage += battleutils::doSoulEaterEffect((CCharEntity*)PAttacker, totalDamage);	
+		totalDamage = battleutils::doSoulEaterEffect((CCharEntity*)PAttacker, totalDamage);	
 
 	// bonus jump tp is added even if damage is 0, will not add if jump misses
 	if (PAttacker->objtype == TYPE_PC && hitTarget)

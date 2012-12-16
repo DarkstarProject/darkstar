@@ -2433,7 +2433,7 @@ void CAICharNormal::ActionAttack()
 					bool ignoreTrickAttack = (i != 0);
 					bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, ignoreSneakAttack));
 
-					float DamageRatio = battleutils::GetDamageRatio(m_PChar, m_PBattleTarget, isCritical, 1); 
+					float DamageRatio = battleutils::GetDamageRatio(m_PChar, m_PBattleTarget, isCritical, 0); 
 
 					if (isCritical)
 					{
@@ -2476,7 +2476,7 @@ void CAICharNormal::ActionAttack()
 
 
 					// do soul eater effect
-					damage += battleutils::doSoulEaterEffect(m_PChar, damage);
+					damage = battleutils::doSoulEaterEffect(m_PChar, damage);
 
 					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
 					zanshin = false;
