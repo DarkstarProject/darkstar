@@ -2451,6 +2451,7 @@ void CAICharNormal::ActionAttack()
 					}
 
 					uint16 bonusDMG = 0;
+
 					if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakAttack) &&
 						m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
 						abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23)
@@ -2465,7 +2466,7 @@ void CAICharNormal::ActionAttack()
 					if(m_PChar->GetMJob() == JOB_THF && (!ignoreTrickAttack) &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
 					{
 						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-						if(taChar != NULL) bonusDMG = m_PChar->AGI();
+						if(taChar != NULL) bonusDMG += m_PChar->AGI();
 					}
 
 					//check if other jobs have trick attack active to change enmity lateron
