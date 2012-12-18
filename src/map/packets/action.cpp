@@ -314,6 +314,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			case 168:	// samba 1
 			case 169:	// samba 2
 			case 170:	// samba 3
+			case 179:	// divine waltz
 				ActionTypeNumber += 8;
 				break;
 
