@@ -2293,13 +2293,19 @@ void CAICharNormal::ActionAttack()
 		return;
 	}
 
+
 	uint16 WeaponDelay = (m_PChar->m_Weapons[SLOT_MAIN]->getDelay() * (100 - m_PChar->getMod(MOD_HASTE))) / 100;
-	if(m_PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0 && m_PChar->m_Weapons[SLOT_SUB]->getDmgType() < 4){
+
+	if (m_PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0 && 
+		m_PChar->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
+		m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() != DAMAGE_HTH)
+	{
 		WeaponDelay += (m_PChar->m_Weapons[SLOT_SUB]->getDelay() * (100 - m_PChar->getMod(MOD_HASTE))) / 100;
 		//apply dual wield delay reduction
 		WeaponDelay = WeaponDelay * ((100.0f - (float)m_PChar->getMod(MOD_DUAL_WIELD))/100.0f);
 	}
 	
+
 	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
 	{
 		WeaponDelay = 1700;
@@ -2472,6 +2478,7 @@ void CAICharNormal::ActionAttack()
 					//check if other jobs have trick attack active to change enmity lateron
 					if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && (!ignoreTrickAttack))
 						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
+
 
 					damage = (uint16)(((PWeapon->getDamage() + bonusDMG + 
 						battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));

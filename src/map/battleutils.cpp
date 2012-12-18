@@ -1340,13 +1340,18 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		else
         {
             int16 delay = ((PAttacker->m_Weapons[SLOT_MAIN]->getDelay() * 60) / 1000);
-			if(PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 && PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4){
+
+			if (PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 && 
+				PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4 && 
+				PAttacker->m_Weapons[slot]->getDmgType() != DAMAGE_HTH)
+			{
 				delay += PAttacker->m_Weapons[SLOT_SUB]->getDelay() * 60 / 1000;
 				delay = delay * (1 - (float)PAttacker->getMod(MOD_DUAL_WIELD) / 100.0f ) / 2;
 			}
+
             float ratio = 1.0f;
                 
-            if((PAttacker->m_Weapons[slot]->getDmgType() == DAMAGE_HTH))
+            if(PAttacker->m_Weapons[slot]->getDmgType() == DAMAGE_HTH)
             {
                 delay -= PAttacker->getMod(MOD_MARTIAL_ARTS);
                 ratio = 2.0f;
@@ -1643,32 +1648,41 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 
 int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID) 
 {
-	int32 rank = PAttacker->m_Weapons[SlotID]->getDamage() / 9; 
+	int32 rank = 0;
+
+	if (PAttacker->m_Weapons[SlotID]->getDmgType() == DAMAGE_HTH)
+		rank = PAttacker->m_Weapons[SlotID]->getDamage() + 3 / 9; 		
+	else
+		rank = PAttacker->m_Weapons[SlotID]->getDamage() / 9; 
+
 
 	float dif = PAttacker->STR() - PDefender->VIT();
 
 	int32 fstr = 1.95 + 0.195 * dif;
 
-	if(SlotID==SLOT_RANGED){ //different caps than melee weapons
+	if(SlotID==SLOT_RANGED)
+	{ 
+		//different caps than melee weapons
 		fstr /= 2; //fSTR2
-		if(fstr <= (-rank*2)){
+		if(fstr <= (-rank*2))
 			return (-rank*2);
-		}
-		if((fstr > (-rank*2)) && (fstr <= (2*(rank + 8)))) {
+		
+		if((fstr > (-rank*2)) && (fstr <= (2*(rank + 8)))) 
 			return fstr;
-		} else {
+
+		else 
 			return 2*(rank + 8);
-		}
 	}
-	else{
-		if(fstr <= (-rank)) {
+	else
+	{
+		// everything else
+		if(fstr <= (-rank)) 
 			return (-rank);
-		}
-		if((fstr > (-rank)) && (fstr <= rank + 8)) {
+
+		if((fstr > (-rank)) && (fstr <= rank + 8)) 
 			return fstr;
-		} else {
+		else 
 			return rank + 8;
-		}
 	}
 }
 

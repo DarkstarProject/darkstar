@@ -2303,6 +2303,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
                 {
+					// TODO: can currently use command to kick sack holders
 					if(PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL || PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK){
 						PChar->PLinkshell->RemoveMemberByName(data+0x0C);
 					}
