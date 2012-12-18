@@ -5959,7 +5959,7 @@ INSERT INTO mob_groups VALUES ('5943', '1744', '107', '330', '0', '1503', '0', '
 INSERT INTO mob_groups VALUES ('5944', '1829', '107', '1', '0', '0', '0', '0', '1', '1');
 INSERT INTO mob_groups VALUES ('5945', '2000', '107', '330', '0', '1710', '0', '0', '1', '1');
 INSERT INTO mob_groups VALUES ('5946', '2372', '107', '330', '0', '2016', '0', '0', '5', '8');
-INSERT INTO mob_groups VALUES ('5947', '2384', '107', '18000', '0', '2036', '0', '0', '10', '11');
+INSERT INTO mob_groups VALUES ('5947', '2384', '107', '18000', '128', '2036', '0', '0', '10', '11');
 INSERT INTO mob_groups VALUES ('5948', '2547', '107', '330', '0', '2187', '0', '0', '2', '6');
 INSERT INTO mob_groups VALUES ('5949', '2722', '107', '0', '128', '2333', '0', '0', '7', '8');
 INSERT INTO mob_groups VALUES ('5950', '3058', '107', '330', '0', '2717', '0', '0', '5', '8');

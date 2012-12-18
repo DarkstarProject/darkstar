@@ -100,6 +100,10 @@ int32 init()
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
     lua_register(LuaHandle,"SendUncnown0x39Packet",luautils::SendUncnown0x39Packet);
 
+	lua_register(LuaHandle,"GetMobRespawnTime",luautils::GetMobRespawnTime);
+	lua_register(LuaHandle,"DeterMob",luautils::DeterMob);
+	lua_register(LuaHandle,"UpdateNMSpawnPoint",luautils::UpdateNMSpawnPoint);
+
     Lunar<CLuaAbility>::Register(LuaHandle);
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
     Lunar<CLuaInstance>::Register(LuaHandle);
@@ -373,7 +377,6 @@ int32 SetVanadielTimeOffset(lua_State* L)
 *  Spawn a mob using mob ID.											*
 *                                                                       *
 ************************************************************************/
-
 int32 SpawnMob(lua_State* L)
 {
 	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
@@ -386,13 +389,20 @@ int32 SpawnMob(lua_State* L)
             if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
                 PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
             {
-                PMob->PBattleAI->SetLastActionTime(0);
-                PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-
                 if( !lua_isnil(L,2) && lua_isnumber(L,2))
                 {
                     PMob->SetDespawnTimer((uint32)lua_tointeger(L,2)); 
                 }
+
+                if( !lua_isnil(L,3) && lua_isnumber(L,3))
+                {
+                  PMob->m_RespawnTime = (uint32)lua_tointeger(L,3) * 1000;
+                  PMob->PBattleAI->SetLastActionTime(gettick() - 1000);
+                } else {
+                  PMob->PBattleAI->SetLastActionTime(0);
+                }
+
+                PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
                 PMob->PBattleAI->CheckCurrentAction(gettick());
             } else {
                 ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n" CL_RESET, PMob->GetName());
@@ -2090,6 +2100,93 @@ int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance){
 		return 0;
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+/************************************************************************
+*                                                                       *
+* Set SpawnType of mob to scripted (128) or normal (0) usind mob id     *
+*                                                                       *
+************************************************************************/
+int32 DeterMob(lua_State* L)
+{
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) ) {
+		uint32 mobid = (uint32)lua_tointeger(L,1);
+		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+
+		if (PMob != NULL) {	
+			if( !lua_isnil(L,2) && lua_isboolean(L,2) ) {
+				if ( lua_toboolean(L,2) == 0 ) {
+				  PMob->m_AllowRespawn = true; // Do not deter the mob, allow mob to respawn
+				} else {
+				  PMob->m_AllowRespawn = false; // Deter the mob, do not allow mob to respawn
+				}
+				ShowDebug(CL_RED"DeterMob: Mob <%u> AllowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
+			return 1;
+			} else {
+			ShowDebug(CL_RED"DeterMob: Boolean parameter not given, mob <%u> SpawnType unchanged.\n" CL_RESET, mobid);
+			}
+		} else {
+			ShowDebug(CL_RED"DeterMob: mob <%u> not found\n" CL_RESET, mobid);
+		}
+		return 0;
+  }
+  lua_pushnil(L);
+  return 1;
+}
+
+/************************************************************************
+*                                                                       *
+* Update the NM spawn point to a new point, retrieved from the database *
+*                                                                       *
+************************************************************************/
+int32 UpdateNMSpawnPoint(lua_State* L)
+{
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) ) {
+		uint32 mobid = (uint32)lua_tointeger(L,1);
+		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+
+		if (PMob != NULL) {	
+		  int32 r = rand()%50;
+		  int32 ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
+
+		  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {	
+			PMob->m_SpawnPoint.rotation = rand() % 360;
+			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,0);
+			PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,1);
+			PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle,2);
+			ShowDebug(CL_RED"UpdateNMSpawnPoint: After %i - %f, %f, %f, %i\n" CL_RESET, r, PMob->m_SpawnPoint.x,PMob->m_SpawnPoint.y,PMob->m_SpawnPoint.z,PMob->m_SpawnPoint.rotation);
+		  } else {
+			ShowDebug(CL_RED"UpdateNMSpawnPoint: SQL error or NM <%u> not found in nmspawnpoints table.\n" CL_RESET, mobid);
+		  }
+		} else {
+			ShowDebug(CL_RED"UpdateNMSpawnPoint: mob <%u> not found\n" CL_RESET, mobid);
+		}
+		return 0;
+  }
+  lua_pushnil(L);
+  return 1;
+}
+
+
+/************************************************************************
+*                                                                       *
+*  Get Mob Respawn Time in seconds by Mob ID.                                      *
+*                                                                       *
+************************************************************************/
+int32 GetMobRespawnTime(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    
+    uint32 mobid = (uint32)lua_tointeger(L,-1);
+    CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+    
+    if (PMob != NULL) {
+        uint32 RespawnTime = (uint32)PMob->m_RespawnTime / 1000; 
+        lua_pushinteger(L, RespawnTime);
+        return 1;
+    }
+    ShowError(CL_RED"luautils::GetMobAction: mob <%u> was not found\n" CL_RESET, mobid);
+    lua_pushnil(L);
+    return 1;
 }
 
 }; // namespace luautils

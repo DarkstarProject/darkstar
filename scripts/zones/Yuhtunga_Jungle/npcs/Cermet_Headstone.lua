@@ -24,7 +24,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
+	printf("zilart: %i",player:getCurrentMission(ZILART));
 	if(player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
 		-- if requirements are met and 15 mins have passed since mobs were last defeated, spawn them
 		if(player:hasKeyItem(FIRE_FRAGMENT) == false and GetServerVariable("[ZM4]Fire_Headstone_Active") < os.time()) then
