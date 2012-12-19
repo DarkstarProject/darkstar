@@ -1645,8 +1645,8 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 					PChar->SetMLevel(NewMLevel);
 					PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
-					charutils::CalculateStats(PChar);
 					charutils::BuildingCharSkillsTable(PChar);
+					charutils::CalculateStats(PChar);
 					charutils::CheckValidEquipment(PChar);
 
 					if (PChar->status == STATUS_NORMAL)
@@ -3554,11 +3554,9 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
 	PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L,1));
 	PChar->SetMJob((uint8)lua_tointeger(L,1));
 
-
-
+    charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
-    charutils::BuildingCharSkillsTable(PChar);
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
     charutils::BuildingCharWeaponSkills(PChar);
@@ -3602,9 +3600,10 @@ inline int32 CLuaBaseEntity::changesJob(lua_State *L)
 	PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L,1));
 	PChar->SetSJob((uint8)lua_tointeger(L,1));
 
+
+    charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
-    charutils::BuildingCharSkillsTable(PChar);
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
     charutils::BuildingCharWeaponSkills(PChar);
@@ -3650,9 +3649,10 @@ inline int32 CLuaBaseEntity::setsLevel(lua_State *L)
 	PChar->jobs.job[PChar->GetSJob()] = (uint8)lua_tointeger(L,1);
 	PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
+
+    charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
-    charutils::BuildingCharSkillsTable(PChar);
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
     charutils::BuildingCharWeaponSkills(PChar);

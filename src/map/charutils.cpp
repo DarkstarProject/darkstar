@@ -234,14 +234,16 @@ void CalculateStats(CCharEntity* PChar)
 	MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MP, PChar->GetMLevel());
 	PChar->health.maxmp = (int16)(raceStat + jobStat + sJobStat + MeritBonus); // результат расчета MP
 
+
 	//add in evasion from skill
-	int16 evaskill = (PChar->GetSkill(SKILL_EVA));
+	int16 evaskill = (PChar->GetSkill(SKILL_EVA)); // << already has merit value added to it at this point
 
 	int16 eva = evaskill;
 	if(evaskill>200){ //Evasion skill is 0.9 evasion post-200
 		eva = 200 + (evaskill-200)*0.9;
 	}
 	PChar->setModifier(MOD_EVA,eva);
+
 
 	//Начало расчета характеристик
 	
@@ -1236,6 +1238,9 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID) // private
                     itemutils::GetUnarmedItem());
 			}
 			break;
+		
+		BuildingCharSkillsTable(PChar);
+		CalculateStats(PChar);
 		}
 	}
 }
@@ -1528,6 +1533,10 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
         PChar->health.tp = 0;
         BuildingCharWeaponSkills(PChar);
     }
+
+	BuildingCharSkillsTable(PChar);
+	CalculateStats(PChar);
+
     PChar->UpdateHealth();
 	PChar->pushPacket(new CCharHealthPacket(PChar));
 }
@@ -1559,6 +1568,7 @@ void CheckValidEquipment(CCharEntity* PChar)
         PChar->pushPacket(new CEquipPacket(0, slotID));
 	}
 	PChar->pushPacket(new CCharAppearancePacket(PChar));
+
 
     BuildingCharWeaponSkills(PChar);
 	SaveCharEquip(PChar);
@@ -1779,7 +1789,7 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
 void BuildingCharSkillsTable(CCharEntity* PChar)
 {
-	uint16 meritIndex = 8;		// h2h starts at 8
+	uint16 meritIndex = 8;		// h2h merit index starts at 8
 	uint16 meritBonus = 0;		// value provided by merit 
 
 	for (int32 i = 0; i < 48; ++i) 
@@ -1798,7 +1808,8 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
 
 		if (MaxMSkill != 0)
 		{
-			PChar->WorkingSkills.skill[i] = meritBonus+ (PChar->RealSkills.skill[i]/10 > MaxMSkill ? MaxMSkill + 0x8000 : PChar->RealSkills.skill[i]/10);
+			uint32 lol = PChar->getMod(i+79);
+			PChar->WorkingSkills.skill[i] = meritBonus + PChar->getMod(i+79) + (PChar->RealSkills.skill[i]/10 > MaxMSkill ? MaxMSkill + 0x8000 : PChar->RealSkills.skill[i]/10);
 		}
 		else if (MaxSSkill != 0)
 		{
@@ -2722,10 +2733,10 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 		PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
         PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
+        BuildingCharSkillsTable(PChar);
         CalculateStats(PChar);
         CheckValidEquipment(PChar);
 
-        BuildingCharSkillsTable(PChar);
         BuildingCharAbilityTable(PChar);
         BuildingCharTraitsTable(PChar);
         BuildingCharWeaponSkills(PChar);
@@ -2906,8 +2917,8 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
                 PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
                 PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
-                CalculateStats(PChar);
                 BuildingCharSkillsTable(PChar);
+                CalculateStats(PChar);
                 BuildingCharAbilityTable(PChar);
                 BuildingCharTraitsTable(PChar);
                 BuildingCharWeaponSkills(PChar);

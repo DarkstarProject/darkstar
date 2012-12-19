@@ -2833,10 +2833,11 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					charutils::SaveCharExp(PChar, PChar->GetMJob());
 					PChar->PMeritPoints->SaveMeritPoints(PChar->id, false);
 
-					charutils::CalculateStats(PChar);
-					charutils::CheckValidEquipment(PChar);
+
 
 					charutils::BuildingCharSkillsTable(PChar);
+					charutils::CalculateStats(PChar);
+					charutils::CheckValidEquipment(PChar);
 					charutils::BuildingCharAbilityTable(PChar);
 					charutils::BuildingCharTraitsTable(PChar);
 					charutils::BuildingCharWeaponSkills(PChar);
@@ -3679,8 +3680,9 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		charutils::RemoveAllEquipment(PChar); // TODO: разобраться, зачем
 
-		charutils::CalculateStats(PChar);
+
 		charutils::BuildingCharSkillsTable(PChar);
+		charutils::CalculateStats(PChar);
         charutils::BuildingCharTraitsTable(PChar);
 		charutils::BuildingCharAbilityTable(PChar);
         charutils::BuildingCharWeaponSkills(PChar);
