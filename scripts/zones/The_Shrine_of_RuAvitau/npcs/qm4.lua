@@ -49,13 +49,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+printf("CSID: %u",csid);
+printf("RESULT: %u",option);
 
 	if(csid == 0x0035) then
 		player:setVar("DivineMight",1);
 
-	elseif(csid == 0x0037 and option ~= 0) then
+	elseif(csid == 0x0037 and option == 1) then
 		if(player:getFreeSlotsCount() >= 1) then
 			player:addItem(14739);
 			player:messageSpecial(ITEM_OBTAINED,14739);
@@ -65,55 +65,55 @@ function onEventFinish(player,csid,option)
 					player:addMission(ZILART,THE_SEALED_SHRINE);
 				end
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14739);
 		end
-	elseif(csid == 0x0037 and option ~= 1) then
+	elseif(csid == 0x0037 and option == 2) then
 		if(player:getFreeSlotsCount() >= 1) then
 			player:addItem(14740);
-			player:messageSpecial(ITEM_OBTAINED,14739);
+			player:messageSpecial(ITEM_OBTAINED,14740);
 			player:setVar("DivineMight",0);
 				if(player:getCurrentMission(ZILART) == ARK_ANGELS) then
 					player:completeMission(ZILART,ARK_ANGELS);
 					player:addMission(ZILART,THE_SEALED_SHRINE);
 				end
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14740);
 		end;
-	elseif(csid == 0x0037 and option ~= 2) then
+	elseif(csid == 0x0037 and option == 3) then
 		if(player:getFreeSlotsCount() >= 1) then
 			player:addItem(14741);
-			player:messageSpecial(ITEM_OBTAINED,14739);
+			player:messageSpecial(ITEM_OBTAINED,14741);
 			player:setVar("DivineMight",0);
 				if(player:getCurrentMission(ZILART) == ARK_ANGELS) then
 					player:completeMission(ZILART,ARK_ANGELS);
 					player:addMission(ZILART,THE_SEALED_SHRINE);
 				end
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14741);
 		end;
-	elseif(csid == 0x0037 and option ~= 3) then
+	elseif(csid == 0x0037 and option == 4) then
 		if(player:getFreeSlotsCount() >= 1) then
 			player:addItem(14742);
-			player:messageSpecial(ITEM_OBTAINED,14739);
+			player:messageSpecial(ITEM_OBTAINED,14742);
 			player:setVar("DivineMight",0);
 				if(player:getCurrentMission(ZILART) == ARK_ANGELS) then
 					player:completeMission(ZILART,ARK_ANGELS);
 					player:addMission(ZILART,THE_SEALED_SHRINE);
 				end
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14742);
 		end;
-	elseif(csid == 0x0037 and option ~= 4) then
+	elseif(csid == 0x0037 and option == 5) then
 		if(player:getFreeSlotsCount() >= 1) then
 			player:addItem(14743);
-			player:messageSpecial(ITEM_OBTAINED,14739);
+			player:messageSpecial(ITEM_OBTAINED,14743);
 			player:setVar("DivineMight",0);
 				if(player:getCurrentMission(ZILART) == ARK_ANGELS) then
 					player:completeMission(ZILART,ARK_ANGELS);
 					player:addMission(ZILART,THE_SEALED_SHRINE);
 				end
 		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14743);
 		end
 	end
 
