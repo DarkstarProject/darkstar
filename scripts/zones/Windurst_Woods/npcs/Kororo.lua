@@ -32,10 +32,12 @@ function onTrigger(player,npc)
 
 local C2000 = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_2000); -- 	previous quest in line
 local AGreetingCardian = player:getQuestStatus(WINDURST,A_GREETING_CARDIAN);
+local LPB = player:getQuestStatus(WINDURST,LEGENDARY_PLAN_B);
 local AGCcs = player:getVar("AGreetingCardian_Event");
 local AGCtime = player:getVar("AGreetingCardian_timer");
-
-	if (C2000 == QUEST_COMPLETED and AGreetingCardian == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 3) then
+	
+	-- A Greeting Cardian 
+	if (C2000 == QUEST_COMPLETED and AGreetingCardian == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 3) then
 		player:startEvent(0x0128); -- A Greeting Cardian quest start
 	elseif (AGreetingCardian == QUEST_ACCEPTED and AGCcs == 3) then
 		if(player:needToZone() or tonumber(os.date("%j")) == AGCtime)then
@@ -45,6 +47,11 @@ local AGCtime = player:getVar("AGreetingCardian_timer");
 		end
 	elseif (AGreetingCardian == QUEST_ACCEPTED and AGCcs == 5) then
 		player:startEvent(0x012f); -- A Greeting Cardian finish
+	
+	-- Might be Legendary Plan B, most likely Lost Chick related. 
+	-- only activates before LPB completes so leaving it in as is for now
+	elseif (LPB == QUEST_ACCEPTED) then
+		player:startEvent(0x0138,0,529,940,858); 
 	
 	else
 		player:startEvent(0x0115); --standard dialog
@@ -68,6 +75,7 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 	
+	-- A Greeting Cardian
 	if(csid == 0x0128) then
 		player:addQuest(WINDURST,A_GREETING_CARDIAN);
 		player:setVar("AGreetingCardian_Event",2);
@@ -83,8 +91,9 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED, 13330); -- Tourmaline Earring
 			player:addFame(WINDURST,WIN_FAME*30);
 			player:completeQuest(WINDURST,A_GREETING_CARDIAN);
-			player:setVar("AGreetingCardian_Event",0);
-			player:setVar("AGreetingCardian_timer",0); 
+			player:needToZone(true); -- zone before starting Legendary Plan B
+			player:setVar("AGreetingCardian_timer",0);
+			player:setVar("AGreetingCardian_Event",0); -- finish cleanup of A Greeting Cardian variables
 		end
 	end
 end;
