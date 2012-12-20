@@ -2119,7 +2119,7 @@ int32 DeterMob(lua_State* L)
 				} else {
 				  PMob->m_AllowRespawn = false; // Deter the mob, do not allow mob to respawn
 				}
-				ShowDebug(CL_RED"DeterMob: Mob <%u> AllowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
+				//ShowDebug(CL_RED"DeterMob: Mob <%u> AllowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
 			return 1;
 			} else {
 			ShowDebug(CL_RED"DeterMob: Boolean parameter not given, mob <%u> SpawnType unchanged.\n" CL_RESET, mobid);
@@ -2153,7 +2153,7 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,0);
 			PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,1);
 			PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle,2);
-			ShowDebug(CL_RED"UpdateNMSpawnPoint: After %i - %f, %f, %f, %i\n" CL_RESET, r, PMob->m_SpawnPoint.x,PMob->m_SpawnPoint.y,PMob->m_SpawnPoint.z,PMob->m_SpawnPoint.rotation);
+			//ShowDebug(CL_RED"UpdateNMSpawnPoint: After %i - %f, %f, %f, %i\n" CL_RESET, r, PMob->m_SpawnPoint.x,PMob->m_SpawnPoint.y,PMob->m_SpawnPoint.z,PMob->m_SpawnPoint.rotation);
 		  } else {
 			ShowDebug(CL_RED"UpdateNMSpawnPoint: SQL error or NM <%u> not found in nmspawnpoints table.\n" CL_RESET, mobid);
 		  }

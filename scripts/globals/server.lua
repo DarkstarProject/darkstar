@@ -26,6 +26,14 @@ function onServerStart()
         SetFieldManual();
     end
 	SetRegionalConquestOverseers()
+  
+  -- Charybdis PH alternates, remove one
+  DespawnMob(17498518);
+  
+  -- Timed Spawns
+  -- Mysticmaker Profblix (5-30 minutes)
+  UpdateNMSpawnPoint(17649693);
+  SpawnMob(17649693, '', math.random((300),(1800))) 
 	
 end;
 
