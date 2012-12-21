@@ -10,5 +10,5 @@
 -----------------------------------
 
 function onTrigger(player,target)
-	pc:resetPlayer(target);
+	player:resetPlayer(target);
 end;
