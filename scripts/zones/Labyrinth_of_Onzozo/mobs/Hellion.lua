@@ -1,6 +1,6 @@
 ----------------------------------	
 -- Area: Labyrinth of Onzozo
---   NM: Narasimha
+--   NM: Hellion
 -----------------------------------	
   
 -----------------------------------	
@@ -9,13 +9,13 @@
 	
 function onMobDeath(mob,killer)	
   
-  -- Set Narasimha's Window Open Time
-  wait = math.random((6),(10)) * 3600
-  SetServerVariable("[POP]Narasimha", os.time(t) + wait); -- 6-10 hours
+  -- Set Hellion's Window Open Time
+  wait = math.random((2),(4)) * 3600
+  SetServerVariable("[POP]Hellion", os.time(t) + wait); -- 2-4 hours
   
   -- Set PH back to normal, then set to respawn spawn
-  PH = GetServerVariable("[PH]Narasimha");
-  SetServerVariable("[PH]Narasimha", 0);
+  PH = GetServerVariable("[PH]Hellion");
+  SetServerVariable("[PH]Hellion", 0);
   DeterMob(PH, false);
   SpawnMob(PH, '', GetMobRespawnTime(PH));
   

@@ -1,6 +1,6 @@
 ----------------------------------	
 -- Area: Labyrinth of Onzozo
---   NM: Narasimha
+--   NM: Peg Powler
 -----------------------------------	
   
 -----------------------------------	
@@ -9,13 +9,13 @@
 	
 function onMobDeath(mob,killer)	
   
-  -- Set Narasimha's Window Open Time
-  wait = math.random((6),(10)) * 3600
-  SetServerVariable("[POP]Narasimha", os.time(t) + wait); -- 6-10 hours
+  -- Set Peg Powler's Window Open Time
+  wait = math.random((2),(16)) * 3600
+  SetServerVariable("[POP]Peg_Powler", os.time(t) + wait); -- 2-16 hours
   
   -- Set PH back to normal, then set to respawn spawn
-  PH = GetServerVariable("[PH]Narasimha");
-  SetServerVariable("[PH]Narasimha", 0);
+  PH = GetServerVariable("[PH]Peg_Powler");
+  SetServerVariable("[PH]Peg_Powler", 0);
   DeterMob(PH, false);
   SpawnMob(PH, '', GetMobRespawnTime(PH));
   

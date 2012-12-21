@@ -5,7 +5,6 @@
 -----------------------------------	
 
 require("/scripts/zones/Labyrinth_of_Onzozo/MobIDs");
--- printf("PH:%u:%u",Mysticmaker_Profblix,Mysticmaker_Profblix);
 	
 -----------------------------------	
 -- onMobDeath	
@@ -18,12 +17,23 @@ function onMobDeath(mob,killer)
   
     ToD = GetServerVariable("[POP]Lord_of_Onzozo");
     if (ToD <= os.time(t) and GetMobAction(Lord_of_Onzozo) == 0) then
-      if (math.random((1),(25)) >= 5) then
+      if (math.random((1),(25)) == 5) then
         UpdateNMSpawnPoint(Lord_of_Onzozo);
         SpawnMob(Lord_of_Onzozo, "", GetMobRespawnTime(mob));
         SetServerVariable("[PH]Lord_of_Onzozo", mob);
         DeterMob(mob, true);
       end
     end
-  end
+  elseif (Peg_Powler_PH[mob] ~= nil) then
+  
+    ToD = GetServerVariable("[POP]Peg_Powler");
+    if (ToD <= os.time(t) and GetMobAction(Peg_Powler) == 0) then
+      if (math.random((1),(25)) >= 5) then
+        UpdateNMSpawnPoint(Peg_Powler);
+        SpawnMob(Peg_Powler, "", GetMobRespawnTime(mob));
+        SetServerVariable("[PH]Peg_Powler", mob);
+        DeterMob(mob, true);
+      end
+    end
+  end;
 end;	
