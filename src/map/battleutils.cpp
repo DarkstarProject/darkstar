@@ -1964,7 +1964,7 @@ bool IsAbsorbByShadow(CBattleEntity* PDefender)
 
 bool IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
-	uint16 KillerEffect = 0;
+	int16 KillerEffect = 0;
 
 	switch (PAttacker->m_EcoSystem)
 	{
