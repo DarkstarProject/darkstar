@@ -1193,9 +1193,13 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID) // private
 			case SLOT_SUB:	  
             {
 				PChar->look.sub = 0; 
-				PChar->m_Weapons[SLOT_MAIN] = (PChar->GetMJob() == JOB_MNK ? 
-                    itemutils::GetUnarmedH2HItem() : 
-                    itemutils::GetUnarmedItem());
+
+				//if (PChar->GetMJob() == JOB_MNK)
+				//	PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();
+				//else
+				//	PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedItem(); 
+			
+				PChar->m_Weapons[SLOT_SUB] = itemutils::GetUnarmedItem();			// << equips "nothing" in the sub slot to prevent multi attack exploit
             }
 			break;
 			case SLOT_AMMO:
