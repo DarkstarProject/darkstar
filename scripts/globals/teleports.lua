@@ -387,9 +387,9 @@ function toRuLudeGardens(player)
 	player:setPos(0.000, 9.000, -38.670, -67, 243);
 end;
 
------------------------------------
---  debugTeleport
------------------------------------
+function toWajaomLaypoint(player)  -- Wajaom Woodlands Laypoint
+	player:setPos(-200,-10,80,125,0x33);
+end;
 
 function debugTeleport(player,npcid)
 	if (DEBUG_MODE == 1) then
