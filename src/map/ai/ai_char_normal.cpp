@@ -1873,6 +1873,15 @@ void CAICharNormal::ActionWeaponSkillStart()
 	    }
         if( 218 >= m_PWeaponSkill->getID() && m_PWeaponSkill->getID() >= 192 ) // ranged WS IDs
         {
+			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+
+			if (PItem == NULL || 
+			  !(PItem->getType() & ITEM_WEAPON))
+			{
+				WeaponSkillStartError(216); // You do not have an appropriate ranged weapon equipped
+				return;
+			}
+
             if (!m_PChar->m_Weapons[SLOT_AMMO]->isRanged() || 
                 !m_PChar->m_Weapons[SLOT_RANGED]->isRanged())
             {
@@ -2053,10 +2062,23 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		Action.messageID = 224; //restores mp msg
 		m_PChar->addMP(damage);
 	}
-	if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
+
+	if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218)
+	{
+		//ranged WS IDs
 		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-		if(PAmmo!=NULL && rand()%100 > m_PChar->getMod(MOD_RECYCLE)){
-			charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+
+		if(PAmmo!=NULL && rand()%100 > (m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel())) )
+		{
+			if ( (PAmmo->getQuantity()-1) < 1 ) // ammo will run out after this shot, make sure we remove it from equip
+			{
+				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+				charutils::UnequipItem(m_PChar,SLOT_AMMO);
+			}
+			else
+			{
+				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+			}
 			m_PChar->pushPacket(new CInventoryFinishPacket());
 		}
 	}

@@ -77,6 +77,8 @@ namespace charutils
 	void	CheckValidEquipment(CCharEntity* PChar);
 	void	CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param);
 	void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
+	void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID);
+
     void    UpdateHealth(CCharEntity* PChar);
 
 	int32	hasKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // проверяем наличие ключевого предмета

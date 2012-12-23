@@ -1139,7 +1139,7 @@ void DoTrade(CCharEntity* PChar, CCharEntity* PTarget)
 *																		*
 ************************************************************************/
 
-void UnequipItem(CCharEntity* PChar, uint8 equipSlotID) // private
+void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 {
 	CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[equipSlotID]);
 
@@ -1192,13 +1192,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID) // private
 			case SLOT_FEET:   PChar->look.feet  = 0; break;
 			case SLOT_SUB:	  
             {
-				PChar->look.sub = 0; 
-
-				//if (PChar->GetMJob() == JOB_MNK)
-				//	PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();
-				//else
-				//	PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedItem(); 
-			
+				PChar->look.sub = 0; 			
 				PChar->m_Weapons[SLOT_SUB] = itemutils::GetUnarmedItem();			// << equips "nothing" in the sub slot to prevent multi attack exploit
             }
 			break;
@@ -1812,7 +1806,6 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
 
 		if (MaxMSkill != 0)
 		{
-			uint32 lol = PChar->getMod(i+79);
 			PChar->WorkingSkills.skill[i] = meritBonus + PChar->getMod(i+79) + (PChar->RealSkills.skill[i]/10 > MaxMSkill ? MaxMSkill + 0x8000 : PChar->RealSkills.skill[i]/10);
 		}
 		else if (MaxSSkill != 0)
