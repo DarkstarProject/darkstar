@@ -1875,19 +1875,17 @@ void CAICharNormal::ActionWeaponSkillStart()
         {
 			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
-			if (PItem == NULL || 
-			  !(PItem->getType() & ITEM_WEAPON))
+			// before allowing ranged weapon skill...
+			if (PItem == NULL ||								// check item is not null
+			  !(PItem->getType() & ITEM_WEAPON) ||				
+			  !m_PChar->m_Weapons[SLOT_AMMO]->isRanged() ||		// make sure ammo item is a ranged item
+              !m_PChar->m_Weapons[SLOT_RANGED]->isRanged() ||	// make sure range weapon is a range weapon
+			  m_PChar->equip[SLOT_AMMO] == 0)					// make sure ammo is equiped (the ammo qty checks the inventory slot and not the ammo slot)
 			{
 				WeaponSkillStartError(216); // You do not have an appropriate ranged weapon equipped
 				return;
 			}
 
-            if (!m_PChar->m_Weapons[SLOT_AMMO]->isRanged() || 
-                !m_PChar->m_Weapons[SLOT_RANGED]->isRanged())
-            {
-				WeaponSkillStartError(216); // You do not have an appropriate ranged weapon equipped
-				return;
-			}
 		}
         m_ActionType = ACTION_WEAPONSKILL_FINISH;
         return;
@@ -2070,7 +2068,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 		if(PAmmo!=NULL && rand()%100 > (m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel())) )
 		{
-			if ( (PAmmo->getQuantity()-1) < 1 ) // ammo will run out after this shot, make sure we remove it from equip
+			if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
 			{
 				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
 				charutils::UnequipItem(m_PChar,SLOT_AMMO);

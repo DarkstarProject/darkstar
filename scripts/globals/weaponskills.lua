@@ -454,15 +454,6 @@ return alpha;
 		 attacker:getStat(MOD_INT) * int_wsc + attacker:getStat(MOD_MND) * mnd_wsc + 
 		 attacker:getStat(MOD_CHR) * chr_wsc) * getAlpha(attacker:getMainLvl());
 		 
-	-- The Ranger bug is comming from the 'base' variable and calculation above. 
-	-- base is normally around 69.651.  When bug hits it jumps to 7269.651.	 
-	-- print ammo and range damage when bug is detected
-	if (base > 2000) then
-		print("RANGER BUG INFO: weaponDmg is = " .. attacker:getRangedDmg() .. "!"); 
-		print("RANGER BUG INFO: ammoDmg is = " .. attacker:getAmmoDmg() .. "!"); 
-		print("RANGER BUG INFO: getAlpha is = " .. getAlpha(attacker:getMainLvl()) .. "!"); 	
-	end
-		 
 	--Applying fTP multiplier
 	ftp = fTP(attacker:getTP(),ftp100,ftp200,ftp300);
 	
