@@ -35,6 +35,10 @@ CREATE TABLE `char_points` (
   `ilrusi_assault_point` int(10) NOT NULL DEFAULT '0',
   `nyzul_isle_assault_point` int(10) NOT NULL DEFAULT '0',
   `zeni_point` int(15) NOT NULL DEFAULT '0',
+  `maw` int(10) NOT NULL DEFAULT '0',
+  `past_sandoria_tp` int(10) NOT NULL DEFAULT '0',
+  `past_bastok_tp` int(10) NOT NULL DEFAULT '0',
+  `past_windurst_tp` int(10) NOT NULL DEFAULT '0',
   `allied_notes` int(15) NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

@@ -304,6 +304,12 @@ void LoadMOBList(CZone* PZone)
 			PMob->speed    = (uint8)Sql_GetIntData(SqlHandle,24);
 			PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle,24);
 
+			if(PMob->speed != 0)
+			{
+				PMob->speed += map_config.speed_mod;
+				PMob->speedsub += map_config.speed_mod;
+			}
+
 			PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
 			PMob->setModifier(MOD_PIERCERES,(uint16)(Sql_GetFloatData(SqlHandle,35) * 1000));
 			PMob->setModifier(MOD_HTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,36) * 1000));

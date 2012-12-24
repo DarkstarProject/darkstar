@@ -489,9 +489,6 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 	lua_pushboolean( L, (SlotID != 0xFF) );
 	return 1;
 }
-
-
-
 //==========================================================//
 
 inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
@@ -4952,30 +4949,19 @@ inline int32 CLuaBaseEntity::getNationTeleport(lua_State *L)
 	int32 nation = (int32)lua_tointeger(L,1);
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 	
-	if(nation == 0)
+	switch(nation) 
 	{
-		lua_pushinteger( L, PChar->nationtp.sandoria );
-		return 1;
-	}
-	else if(nation == 1)
-	{
-		lua_pushinteger( L, PChar->nationtp.bastok );
-		return 1;
-	}
-	else if(nation == 2)
-	{
-		lua_pushinteger( L, PChar->nationtp.windurst );
-		return 1;
-	}
-	else if(nation == 3)
-	{
-		lua_pushinteger( L, PChar->nationtp.ahturhgan );
-		return 1;
-	}
-	else
-	{
-		ShowDebug(CL_CYAN"lua::getNationTeleport no region with this number!\n" CL_RESET);
-		return 0;
+		case 0: lua_pushinteger( L, PChar->nationtp.sandoria ); return 1; break;
+		case 1: lua_pushinteger( L, PChar->nationtp.bastok ); return 1; break;
+		case 2: lua_pushinteger( L, PChar->nationtp.windurst ); return 1; break;
+		case 3: lua_pushinteger( L, PChar->nationtp.ahturhgan ); return 1; break;
+		case 4: lua_pushinteger( L, PChar->nationtp.maw ); return 1; break;
+		case 5: lua_pushinteger( L, PChar->nationtp.pastsandoria ); return 1; break;
+		case 6: lua_pushinteger( L, PChar->nationtp.pastbastok ); return 1; break;
+		case 7: lua_pushinteger( L, PChar->nationtp.pastwindurst ); return 1; break;
+		default : 
+			ShowDebug(CL_CYAN"lua::getNationTeleport no region with this number!\n" CL_RESET);
+			return 0;
 	}
 }
 
@@ -4993,14 +4979,19 @@ inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
 	int32 newTP = (int32)lua_tointeger(L,2);
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	if(nation == 0)		 PChar->nationtp.sandoria += newTP;
-	else if(nation == 1) PChar->nationtp.bastok += newTP;
-	else if(nation == 2) PChar->nationtp.windurst += newTP;
-	else if(nation == 3) PChar->nationtp.ahturhgan += newTP;
-	else
+	switch(nation) 
 	{
-		ShowDebug(CL_CYAN"lua::getNationTeleport no region with this number!\n" CL_RESET);
-		return 0;
+		case 0: PChar->nationtp.sandoria += newTP; break;
+		case 1: PChar->nationtp.bastok += newTP; break;
+		case 2: PChar->nationtp.windurst += newTP; break;
+		case 3: PChar->nationtp.ahturhgan += newTP; break;
+		case 4: PChar->nationtp.maw += newTP; break;
+		case 5: PChar->nationtp.pastsandoria += newTP; break;
+		case 6: PChar->nationtp.pastbastok += newTP; break;
+		case 7: PChar->nationtp.pastwindurst += newTP; break;
+		default : 
+			ShowDebug(CL_CYAN"lua::addNationTeleport no region with this number!\n" CL_RESET);
+			return 0;
 	}
 
 	charutils::SaveCharPoints(PChar);
@@ -5410,5 +5401,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasImmunity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getReceived),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setReceived),
 	{NULL,NULL}
 };

@@ -613,7 +613,7 @@ void LoadChar(CCharEntity* PChar)
 	fmtQuery = "SELECT sandoria_cp, bastok_cp, windurst_cp, sandoria_supply, bastok_supply, windurst_supply, \
 					   imperial_standing, runic_portal, leujaoam_assault_point, mamool_assault_point, \
 					   lebros_assault_point, periqia_assault_point, ilrusi_assault_point, nyzul_isle_assault_point, \
-					   zeni_point, allied_notes \
+					   zeni_point, maw, past_sandoria_tp, past_bastok_tp, past_windurst_tp, allied_notes \
 				FROM char_points \
 				WHERE charid = %u;";
 
@@ -623,22 +623,30 @@ void LoadChar(CCharEntity* PChar)
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-		PChar->RegionPoints[0]   = (uint32)Sql_GetUIntData(SqlHandle, 0);
-		PChar->RegionPoints[1]   = (uint32)Sql_GetUIntData(SqlHandle, 1);
-		PChar->RegionPoints[2]   = (uint32)Sql_GetUIntData(SqlHandle, 2);
-		PChar->nationtp.sandoria = (uint32)Sql_GetUIntData(SqlHandle, 3);
-		PChar->nationtp.bastok   = (uint32)Sql_GetUIntData(SqlHandle, 4);
-		PChar->nationtp.windurst = (uint32)Sql_GetUIntData(SqlHandle, 5);
-		PChar->RegionPoints[3] = (uint32)Sql_GetIntData(SqlHandle, 6);
-		PChar->nationtp.ahturhgan = (uint16)Sql_GetIntData(SqlHandle, 7);
-		PChar->RegionPoints[4] = (uint32)Sql_GetIntData(SqlHandle, 8); //leujaoam_assault_point
-		PChar->RegionPoints[5] = (uint32)Sql_GetIntData(SqlHandle, 9); //mamool_assault_point
-		PChar->RegionPoints[6] = (uint32)Sql_GetIntData(SqlHandle, 10); //lebros_assault_point
-		PChar->RegionPoints[7] = (uint32)Sql_GetIntData(SqlHandle, 11); //periqia_assault_point
-		PChar->RegionPoints[8] = (uint32)Sql_GetIntData(SqlHandle, 12); //ilrusi_assault_point
-		PChar->RegionPoints[9] = (uint32)Sql_GetIntData(SqlHandle, 13); //nyzul_isle_assault_point
-		PChar->RegionPoints[10] = (uint32)Sql_GetIntData(SqlHandle, 14); //zeni_point
-		PChar->RegionPoints[11] = (uint32)Sql_GetIntData(SqlHandle, 15); //allied_notes
+		//Conquest
+		PChar->RegionPoints[0]   = (uint32)Sql_GetUIntData(SqlHandle, 0);		// San d'oria Conquest point
+		PChar->RegionPoints[1]   = (uint32)Sql_GetUIntData(SqlHandle, 1);		// Bastok Conquest point
+		PChar->RegionPoints[2]   = (uint32)Sql_GetUIntData(SqlHandle, 2);		// Windurst Conquest point
+		PChar->nationtp.sandoria = (uint32)Sql_GetUIntData(SqlHandle, 3);		// San d'oria Supply teleport
+		PChar->nationtp.bastok   = (uint32)Sql_GetUIntData(SqlHandle, 4);		// Bastok Supply teleport
+		PChar->nationtp.windurst = (uint32)Sql_GetUIntData(SqlHandle, 5);		// Windurst Supply teleport
+		//Aht Urghan
+		PChar->RegionPoints[3] = (uint32)Sql_GetIntData(SqlHandle, 6);			// Imperial standing point
+		PChar->nationtp.ahturhgan = (uint16)Sql_GetIntData(SqlHandle, 7);		// Runic portal
+		PChar->RegionPoints[4] = (uint32)Sql_GetIntData(SqlHandle, 8);			// leujaoam_assault_point
+		PChar->RegionPoints[5] = (uint32)Sql_GetIntData(SqlHandle, 9);			// mamool_assault_point
+		PChar->RegionPoints[6] = (uint32)Sql_GetIntData(SqlHandle, 10);			// lebros_assault_point
+		PChar->RegionPoints[7] = (uint32)Sql_GetIntData(SqlHandle, 11);			// periqia_assault_point
+		PChar->RegionPoints[8] = (uint32)Sql_GetIntData(SqlHandle, 12);			// ilrusi_assault_point
+		PChar->RegionPoints[9] = (uint32)Sql_GetIntData(SqlHandle, 13);			// nyzul_isle_assault_point
+		PChar->RegionPoints[10] = (uint32)Sql_GetIntData(SqlHandle, 14);		// Zeni point
+		//Wings of the Goddess
+		PChar->nationtp.maw = (uint32)Sql_GetIntData(SqlHandle, 15);			// Maw
+		PChar->nationtp.pastsandoria = (uint32)Sql_GetUIntData(SqlHandle, 16);	// San d'oria Past teleport
+		PChar->nationtp.pastbastok   = (uint32)Sql_GetUIntData(SqlHandle, 17);	// Bastok Past teleport
+		PChar->nationtp.pastwindurst = (uint32)Sql_GetUIntData(SqlHandle, 18);	// Windurst Past teleport
+		PChar->RegionPoints[11] = (uint32)Sql_GetIntData(SqlHandle, 19);		// Allied notes
+		//TODO: abyssea, bcnm, kcnm, ...
 	}
 
 	BuildingCharSkillsTable(PChar);
