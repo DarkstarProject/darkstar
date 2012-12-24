@@ -84,8 +84,7 @@ function onSpellCast(caster,target,spell)
 		end
 		target:addHP(final);
 	else
-		harm = 1;--cureResist(target:getFamily());
-		if(harm < 0) then
+		if(target:isUndead()) then
 			spell:setMsg(2);
 			if(mobfinal < 0) then
 				mobfinal = mobfinal * -1;
@@ -96,6 +95,7 @@ function onSpellCast(caster,target,spell)
 			final = 0;
 		end
 	end
+	
 	caster:updateEnmityFromCure(target,65535); --65535 is the special code for "cure v enmity generation"
 	return final;
 	

@@ -265,6 +265,7 @@ public:
 	int32 hasImmunity(lua_State*);			// Check if the mob has immunity for a type of spell (list at mobentity.h)
 	int32 getBattleTime(lua_State*);		// Get the time in second of the battle
 	int32 rageMode(lua_State*);				// Add rage mode
+	int32 isUndead(lua_State*);				// True if mob is undead
 
 	int32 addStatusEffect(lua_State*);		// Adds status effect to character
     int32 addStatusEffectEx(lua_State*);	// Adds status effect to character

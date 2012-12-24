@@ -4122,6 +4122,27 @@ inline int32 CLuaBaseEntity::rageMode(lua_State *L)
 }
 
 /************************************************************************
+*																		*
+*  Check if the mob is an undead										*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::isUndead(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	if(((CMobEntity*)m_PBaseEntity)->m_EcoSystem == SYSTEM_UNDEAD)
+	{
+		lua_pushboolean(L, true);
+		return 1;
+	}
+
+	lua_pushboolean(L, false);
+	return 1;
+}
+
+/************************************************************************
 			Calculates the enmity produced by the input cure and
 			applies it to all on the base entity's enemies hate list
 			FORMAT: phealer:(ptarget,amount)
@@ -5419,6 +5440,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkFovAllianceAllowed),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasImmunity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isUndead),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
 	{NULL,NULL}
 };
