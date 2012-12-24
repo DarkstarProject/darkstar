@@ -483,7 +483,7 @@ uint32 HandleSpecialPhysicalDamageReduction(CCharEntity* PChar, uint32 damage, a
 *                                                                       *
 ************************************************************************/
 
-void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action,uint8 hitNumber)
+void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber)
 {
 	// Enspell overwrites weapon effects
 
@@ -610,16 +610,11 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* 
 	}
 
 
-
-
 	// no enspells active, check weapon additional effects 
 	CItemWeapon* PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_MAIN]);
 
 	if (Action->animation == 1)
 		PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_SUB]);
-	
-	uint8 chance = 95;
-	int damage = (PAttacker->INT() - PDefender->INT())/2;
 	
 	switch(PWeapon->getID())
 	{
@@ -642,26 +637,14 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* 
 		case 17779:
 		case 17576:
 		case 17510:
-			//calculation based on kegsays bloody arrow
-			// seems over powered but according to forum a lvl46 thf gets 40hp drain per hit..
-			if (PDefender->GetMLevel() > PAttacker->GetMLevel())
-			{
-				chance -= 5*(PDefender->GetMLevel() - PAttacker->GetMLevel());
-				chance = dsp_cap(chance,5,95);
-			}
-			if (rand()%100 >= chance || PWeapon==NULL) return;
+			//30 % chance to drain, will heal 30% of damage done 
+			if (rand()%100 >= 30 || PWeapon==NULL) return;
 
 			Action->subeffect = SUBEFFECT_HP_DRAIN;
 			Action->submessageID = 161;
 			Action->flag = 3;
-
-			damage += (PWeapon->getReqLvl() - PDefender->GetMLevel());
-			damage = dsp_cap(damage,0,50);
-			damage += PAttacker->GetMLevel()/2;
-			damage += rand()%20; //At 75 -> 37~56 low or 87~106 high
-			Action->subparam  = damage;
-			PDefender->addHP(-damage);
-			PAttacker->addHP(damage);
+			Action->subparam  = (float)(Action->param * 0.3f);
+			PAttacker->addHP(Action->subparam);
 			charutils::UpdateHealth(PAttacker);
 			return;
 
