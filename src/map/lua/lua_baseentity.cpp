@@ -4887,7 +4887,11 @@ inline int32 CLuaBaseEntity::delCP(lua_State *L)
 	return 0;
 }
 
-//==========================================================//
+/************************************************************************
+* player:getPoint(pointID) : return the player's number point			*
+* pointID: conquest(0~2) imperial(3) assault(4~9) zeni(10)...			*
+*  full list in charutils.cpp											*
+************************************************************************/
 
 inline int32 CLuaBaseEntity::getPoint(lua_State *L)
 {
@@ -4902,7 +4906,11 @@ inline int32 CLuaBaseEntity::getPoint(lua_State *L)
 	return 1;
 }
 
-//==========================================================//
+/************************************************************************
+* player:addPoint(pointID,number) : add number point to player			*
+* pointID: conquest(0~2) imperial(3) assault(4~9) zeni(10)...			*
+*  full list in charutils.cpp											*
+************************************************************************/
 
 inline int32 CLuaBaseEntity::addPoint(lua_State *L)
 {
@@ -4920,7 +4928,11 @@ inline int32 CLuaBaseEntity::addPoint(lua_State *L)
 	return 0;
 }
 
-//==========================================================//
+/************************************************************************
+* player:delPoint(pointID,number) : del number point to player			*
+* pointID: conquest(0~2) imperial(3) assault(4~9) zeni(10)...			*
+*  full list in charutils.cpp											*
+************************************************************************/
 
 inline int32 CLuaBaseEntity::delPoint(lua_State *L)
 {
@@ -4938,7 +4950,11 @@ inline int32 CLuaBaseEntity::delPoint(lua_State *L)
 	return 0;
 }
 
-//==========================================================//
+/************************************************************************
+* player:getNationTeleport(tpID) : return the player's teleport			*
+* tpID: supply(0~2) runic(3) maw(4) past(5~7)...						*
+*  full list in charutils.cpp											*
+************************************************************************/
 
 inline int32 CLuaBaseEntity::getNationTeleport(lua_State *L)
 {
@@ -4965,9 +4981,12 @@ inline int32 CLuaBaseEntity::getNationTeleport(lua_State *L)
 	}
 }
 
-//==========================================================//
-
-// TODO: зачем это ?
+/************************************************************************
+* player:addNationTeleport(tpID,number) : add tp to a player variable	*
+* tpID: supply(0~2) runic(3) maw(4) past(5~7)...						*
+* number: 1,2,4,8,16,32,64,...											*
+*  full list in charutils.cpp											*
+************************************************************************/
 
 inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
 {
@@ -5401,7 +5420,5 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasImmunity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getReceived),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setReceived),
 	{NULL,NULL}
 };
