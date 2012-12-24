@@ -812,6 +812,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
         SpawnIDList_t::iterator MOB = PChar->SpawnMOBList.lower_bound(PCurrentMob->id);
 
 		float CurrentDistance = distance(PChar->loc.p, PCurrentMob->loc.p);
+		float VerticalDistance = abs(PCurrentMob->loc.p.y - PChar->loc.p.y);
 
 		if (PCurrentMob->status == STATUS_UPDATE &&
 			CurrentDistance < 50) 
@@ -838,7 +839,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 			{
 				if (PChar->animation != ANIMATION_CHOCOBO &&
 				   (PChar->animation == ANIMATION_HEALING ||
-				   (int8)(PChar->GetMLevel() - PCurrentMob->GetMLevel()) < 10))
+				   (int8)(PChar->GetMLevel() - PCurrentMob->GetMLevel()) < 10) &&
+				   (VerticalDistance < 8))
 				{
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && 
                       !(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
