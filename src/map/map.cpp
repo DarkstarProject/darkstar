@@ -649,7 +649,7 @@ int32 map_close_session(uint32 tick, CTaskMgr::CTask* PTask)
 {
 	map_session_data_t* map_session_data = (map_session_data_t*)PTask->m_data;
 
-	if (map_session_data != NULL)
+	if (map_session_data != NULL && map_session_data->PChar != NULL)
 	{
 		Sql_Query(SqlHandle,"DELETE FROM accounts_sessions WHERE charid = %u",map_session_data->PChar->id);
 
