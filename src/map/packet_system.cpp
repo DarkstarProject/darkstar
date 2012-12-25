@@ -3117,8 +3117,6 @@ void SmallPacket0x0DB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 *  177 - <target> seems It seems to have low evasion.					*
 *  178 - <target> seems It seems to have low evasion and defense.		*
 *																		*
-*  Логическая ошибка использовать опыт для определения сложности боя	*
-*  Необходимы условия, основанные на разницах уровней					*
 *																		*
 ************************************************************************/					
 
@@ -3150,87 +3148,36 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			}
             else
             {
-
 				uint32 baseExp  = charutils::GetRealExp(PChar->GetMLevel(),PTarget->GetMLevel());
-				uint16 charEva  = (PChar->getMod(MOD_EVA) * (100 + PChar->getMod(MOD_EVAP)))/100 + PChar->AGI()/2;
+				uint16 charEva  = PChar->EVA();
 				uint16 charDef  = PChar->DEF();
-				uint16 mobEva   = (PTarget->getMod(MOD_EVA) * (100 + PTarget->getMod(MOD_EVAP)))/100 + PTarget->AGI()/2;
+				uint16 mobEva   = PTarget->EVA();
 				uint16 mobDef   = PTarget->DEF();
 
-				if(baseExp >= 400) 
-				{
-					if(mobDef > charDef && mobEva > charEva)       { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 170)); }
-					else if(mobDef == charDef && mobEva > charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 171)); }					else if(mobDef < charDef && mobEva > charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 172)); }
-					else if(mobDef > charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 173)); }
-					else if(mobDef < charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 175)); }
-					else if(mobDef > charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 176)); }
-					else if(mobDef == charDef && mobEva < charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 177)); }
-					else if(mobDef < charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 178)); }
-					else { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x46, 174)); }
+                uint8 MessageValue = 0;
 
-				} else if(baseExp >= 240) {
-					if(mobDef > charDef && mobEva > charEva)       { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 170)); }
-					else if(mobDef == charDef && mobEva > charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 171)); }
-					else if(mobDef < charDef && mobEva > charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 172)); }
-					else if(mobDef > charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 173)); }
-					else if(mobDef < charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 175)); }
-					else if(mobDef > charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 176)); }
-					else if(mobDef == charDef && mobEva < charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 177)); }
-					else if(mobDef < charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 178)); }
-					else { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x45, 174)); }
- 				} else if(baseExp >= 120) {
-					if(mobDef > charDef && mobEva > charEva)       { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 170)); }
-					else if(mobDef == charDef && mobEva > charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 171)); }
-					else if(mobDef < charDef && mobEva > charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 172)); }
-					else if(mobDef > charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 173)); }
-					else if(mobDef < charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 175)); }
-					else if(mobDef > charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 176)); }
-					else if(mobDef == charDef && mobEva < charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 177)); }
-					else if(mobDef < charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 178)); }
-					else { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x44, 174)); }
- 				} else if(baseExp == 100) {
-					if(mobDef > charDef && mobEva > charEva)       { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 170)); }
-					else if(mobDef == charDef && mobEva > charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 171)); }
-					else if(mobDef < charDef && mobEva > charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 172)); }
-					else if(mobDef > charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 173)); }
-					else if(mobDef < charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 175)); }
-					else if(mobDef > charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 176)); }
-					else if(mobDef == charDef && mobEva < charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 177)); }
-					else if(mobDef < charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 178)); }
-					else { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x43, 174)); }
- 				} else if(baseExp >=  75) {
-					if(mobDef > charDef && mobEva > charEva)       { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 170)); }
-					else if(mobDef == charDef && mobEva > charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 171)); }
-					else if(mobDef < charDef && mobEva > charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 172)); }
-					else if(mobDef > charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 173)); }
-					else if(mobDef < charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 175)); }
-					else if(mobDef > charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 176)); }
-					else if(mobDef == charDef && mobEva < charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 177)); }
-					else if(mobDef < charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 178)); }
-					else { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x42, 174)); }
- 				} else if(baseExp >=  15) {
-					if(mobDef > charDef && mobEva > charEva)       { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 170)); }
-					else if(mobDef == charDef && mobEva > charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 171)); }
-					else if(mobDef < charDef && mobEva > charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 172)); }
-					else if(mobDef > charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 173)); }
-					else if(mobDef < charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 175)); }
-					else if(mobDef > charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 176)); }
-					else if(mobDef == charDef && mobEva < charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 177)); }
-					else if(mobDef < charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 178)); }
-					else { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x41, 174)); }
- 				} else if(baseExp ==   0) {
-                    if(mobDef > charDef && mobEva > charEva)       { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 170)); }
-					else if(mobDef == charDef && mobEva > charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 171)); }
-					else if(mobDef < charDef && mobEva > charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 172)); }
-					else if(mobDef > charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 173)); }
-					else if(mobDef < charDef && mobEva == charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 175)); }
-					else if(mobDef > charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 176)); }
-					else if(mobDef == charDef && mobEva < charEva) { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 177)); }
-					else if(mobDef < charDef && mobEva < charEva)  { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 178)); }
-					else { PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 174)); }
-				}
+                // TODO: Логическая ошибка использовать exp для определения сложности боя
+                // необходимы условия, основанные на разницах уровня
+                // не стоит забывать, что эта разница увеличивается с ростом уровня персонажа
 
-			}
+				if      (baseExp >= 400) MessageValue = 0x46;
+				else if (baseExp >= 240) MessageValue = 0x45;
+ 				else if (baseExp >= 120) MessageValue = 0x44;
+ 				else if (baseExp == 100) MessageValue = 0x43;
+ 				else if (baseExp >=  75) MessageValue = 0x42;
+ 				else if (baseExp >=  15) MessageValue = 0x41;
+ 				else if (baseExp ==   0) MessageValue = 0x40;
+
+                if      (mobDef >  charDef && mobEva >  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 170));
+                else if (mobDef == charDef && mobEva >  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 171));
+				else if (mobDef <  charDef && mobEva >  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 172));
+				else if (mobDef >  charDef && mobEva == charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 173));
+				else if (mobDef <  charDef && mobEva == charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 175));
+				else if (mobDef >  charDef && mobEva <  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 176));
+				else if (mobDef == charDef && mobEva <  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 177));
+				else if (mobDef <  charDef && mobEva <  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 178));
+				else                                             PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0x40, 174));
+            }
 		}
 		break;
 		case TYPE_PC:
@@ -3244,7 +3191,6 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		}
 		break;
 	}
-
 	return;
 }
 

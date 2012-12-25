@@ -279,6 +279,11 @@ uint16 CBattleEntity::RATT(uint8 skill)
         dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
 }
 
+uint16 CBattleEntity::ACC()
+{
+    return dsp_max(0, (m_modStat[MOD_ACC] * (100 + m_modStat[MOD_ACCP])) / 100 + DEX() / 2);
+}
+
 uint16 CBattleEntity::DEF()
 {
 	if(this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE,0)){
@@ -288,6 +293,11 @@ uint16 CBattleEntity::DEF()
 
     return DEF + (DEF * m_modStat[MOD_DEFP] / 100) +
         dsp_min((DEF * m_modStat[MOD_FOOD_DEFP] / 100), m_modStat[MOD_FOOD_DEF_CAP]);
+}
+
+uint16  CBattleEntity::EVA()
+{
+    return dsp_max(0, (m_modStat[MOD_EVA] * (100 + m_modStat[MOD_EVAP])) / 100 + AGI() / 2);
 }
 
 /************************************************************************

@@ -933,7 +933,7 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 		return 95;
 	}
 
-	int eva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PDefender->AGI()/2;
+	int eva = PDefender->EVA();
 	hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 	uint8 finalhitrate = dsp_cap(hitrate, 20, 95);
 	return finalhitrate;
@@ -1448,10 +1448,7 @@ uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	}
     else
     {
-		int32 defendereva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PDefender->AGI()/2;
-		int32 attackeracc = (PAttacker->getMod(MOD_ACC) * (100 + PAttacker->getMod(MOD_ACCP)))/100 + PAttacker->DEX()/2;
-		
-		hitrate = hitrate + (attackeracc - defendereva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
+		hitrate = hitrate + (PAttacker->ACC() - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
 		hitrate = dsp_cap(hitrate, 20, 95);
     }
@@ -1474,10 +1471,9 @@ uint8 GetHitRateAccOffset(CBattleEntity* PAttacker, CBattleEntity* PDefender, ui
 	}
     else
     {
-		int32 defendereva = (PDefender->getMod(MOD_EVA) * (100 + PDefender->getMod(MOD_EVAP)))/100 + PDefender->AGI()/2;
 		int32 attackeracc = ((PAttacker->getMod(MOD_ACC) + accuracy) * (100 + PAttacker->getMod(MOD_ACCP)))/100 + PAttacker->DEX()/2;
 		
-		hitrate = hitrate + (attackeracc - defendereva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
+		hitrate = hitrate + (attackeracc - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
 		hitrate = dsp_cap(hitrate, 20, 95);
     }

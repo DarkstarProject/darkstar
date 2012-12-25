@@ -370,6 +370,8 @@ public:
     uint16          CHR();
     uint16          DEF();
     uint16          ATT();
+    uint16          ACC();
+    uint16          EVA();
 	uint16          RATT(uint8 skill);
 
 	uint32			charmTime;					// to hold the time entity is charmed
