@@ -340,15 +340,21 @@ void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag)
 
 EFFECT CStatusEffectContainer::EraseStatusEffect()
 {
+	std::vector<uint16>	erasableList;
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
 		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE &&
-            m_StatusEffectList.at(i)->GetDuration() == 0)
+            m_StatusEffectList.at(i)->GetDuration() > 0)
 		{
-            EFFECT result = m_StatusEffectList.at(i)->GetStatusID();
-			RemoveStatusEffect(i);
-			return result;
+            erasableList.push_back(i);
 		}
+	}
+	if (!erasableList.empty())
+	{
+		uint16 rndIdx = rand() % erasableList.size();
+		EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
+		RemoveStatusEffect(erasableList.at(rndIdx));
+		return result;
 	}
 	return EFFECT_NONE;
 }
@@ -362,15 +368,21 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
 
 EFFECT CStatusEffectContainer::DispelStatusEffect()
 {
-	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+	std::vector<uint16>	dispelableList;
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i) 
 	{
-        if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE && 
-            m_StatusEffectList.at(i)->GetDuration() == 0)
+		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE && 
+			m_StatusEffectList.at(i)->GetDuration() > 0)
 		{
-            EFFECT result = m_StatusEffectList.at(i)->GetStatusID();
-            RemoveStatusEffect(i);
-            return result;
+			dispelableList.push_back(i);
 		}
+	}
+	if (!dispelableList.empty())
+	{
+		uint16 rndIdx = rand() % dispelableList.size();
+		EFFECT result = m_StatusEffectList.at(dispelableList.at(rndIdx))->GetStatusID();
+		RemoveStatusEffect(dispelableList.at(rndIdx));
+		return result;
 	}
 	return EFFECT_NONE;
 }
