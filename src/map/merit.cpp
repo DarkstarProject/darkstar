@@ -238,8 +238,8 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
 				   catNumber++;   
 			   }
 
-               merits[i].data.count = points[i];
-			   merits[i].data.next = upgrade[merits[i].upgradeid][merits[i].data.count];
+               merits[i].count = points[i];
+			   merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
            }
            return;
 
@@ -274,7 +274,7 @@ void CMeritPoints::SaveMeritPoints(uint32 charid, bool resetingMerits)
 		if (resetingMerits)
 			MeritCounts[i] = 0;
 		else
-			MeritCounts[i] = merits[i].data.count;
+			MeritCounts[i] = merits[i].count;
     }
 
 	Sql_EscapeStringLen(SqlHandle, points, (const int8*)MeritCounts, MERITS_COUNT);
@@ -443,12 +443,12 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
 {
     Merit_t* PMerit = GetMeritPointer(merit);
 
-    if (m_MeritPoints >= PMerit->data.next)
+    if (m_MeritPoints >= PMerit->next)
     {
-        m_MeritPoints -= PMerit->data.next;
+        m_MeritPoints -= PMerit->next;
 
-		PMerit->data.next = upgrade[PMerit->upgradeid][PMerit->data.count+1];
-		PMerit->data.count++;
+		PMerit->next = upgrade[PMerit->upgradeid][PMerit->count+1];
+		PMerit->count++;
     }
 }
 
@@ -462,9 +462,9 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 {
     Merit_t* PMerit = GetMeritPointer(merit);
 
-    if (PMerit->data.count > 0)
+    if (PMerit->count > 0)
     {
-        PMerit->data.next = upgrade[meritCatInfo[GetMeritCategory(merit)].UpgradeID][--PMerit->data.count];
+        PMerit->next = upgrade[meritCatInfo[GetMeritCategory(merit)].UpgradeID][--PMerit->count];
     }
 }
 
@@ -487,7 +487,7 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 
 int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, uint8 lvl)
 {
-	uint8 meritValue = dsp_min(GetMeritPointer(merit)->data.count, cap[lvl]);  
+	uint8 meritValue = dsp_min(GetMeritPointer(merit)->count, cap[lvl]);  
 
 	meritValue *= GetMeritPointer(merit)->value;
 
@@ -496,7 +496,7 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, uint8 lvl)
 
 int32 CMeritPoints::GetMeritValue(Merit_t* merit, uint8 lvl)
 {
-	uint8 meritValue = dsp_min(merit->data.count, cap[lvl]);  
+	uint8 meritValue = dsp_min(merit->count, cap[lvl]);  
 
 	meritValue *= merit->value;
 
@@ -541,13 +541,13 @@ namespace meritNameSpace
 		    {
                 Merit_t Merit = {0};								// creat a new merit template.
 
-				Merit.data.id		= Sql_GetUIntData(SqlHandle,0);		// set data from db.
+				Merit.id		= Sql_GetUIntData(SqlHandle,0);		// set data from db.
                 Merit.value		= Sql_GetUIntData(SqlHandle,1);
                 Merit.jobs		= Sql_GetUIntData(SqlHandle,2);
                 Merit.upgrade	= Sql_GetUIntData(SqlHandle,3);
 				Merit.upgradeid = Sql_GetUIntData(SqlHandle,4);
 				Merit.catid		= Sql_GetUIntData(SqlHandle,5);	
-				Merit.data.next      = upgrade[Merit.upgradeid][0];
+				Merit.next      = upgrade[Merit.upgradeid][0];
 
 				GMeritsTemplate[index] = Merit;						// get merit template from database.
 

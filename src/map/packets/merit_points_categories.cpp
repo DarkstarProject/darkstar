@@ -92,7 +92,7 @@ CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar, M
 	this->size = 0x08;
 
     WBUFB(data,(0x04)-4) = 1;
-	memcpy(data+(0x08)-4, &PChar->PMeritPoints->GetMerit(merit)->data, sizeof(uint32));
+    WBUFL(data,(0x08)-4) = PChar->PMeritPoints->GetMerit(merit)->data;
 }
 
 /************************************************************************
@@ -114,7 +114,7 @@ void CMeritPointsCategoriesPacket::MeritPointsCategoriesPacket(CCharEntity* PCha
     {
         for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
         {
-			(*(Merit_t*)(data+(0x08)-4 + sizeof(uint32) * i)).data.next = 0; // обнуляем значение next у всех merit
+            (*(Merit_t*)(data+(0x08)-4 + sizeof(uint32) * i)).next = 0; // обнуляем значение next у всех merit
         }
     }
 }

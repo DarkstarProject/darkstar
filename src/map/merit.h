@@ -476,14 +476,13 @@ struct Merit_t
 {
     union 
     {        
-
         struct 
         {
             uint16 id;      // id мерита
             uint8  next;    // необходимое количество меритов для следующего усиления
             uint8  count;   // текущее количество усилений
-        }data;        // информация для отправки персонажу
-		
+        };
+        uint32 data;        // информация для отправки персонажу
     };
 
     uint32 value;           // коэффициент изменения параметра, привязанного к merit
@@ -492,26 +491,6 @@ struct Merit_t
 	uint8  upgradeid;		// which set of upgrade values the merit will use
 	uint8  catid;			// cat which merit belongs to
 };
-
-
-/*
-struct Merit_t
-{
-    uint16 id;      // id мерита
-    uint8  next;    // необходимое количество меритов для следующего усиления
-    uint8  count;   // текущее количество усилений
-};
-
-struct Merit_template
-{
-    uint16 id;				// id мерита
-    uint32 value;           // коэффициент изменения параметра, привязанного к merit
-    uint8  upgrade;         // максимальное количество усилений для данного merit
-    uint32 jobs;            // маска профессий, для которых merit работает
-	uint8  upgradeid;		// which set of upgrade values the merit will use
-	uint8  catid;			// cat which merit belongs to
-};
-*/
 
 /************************************************************************
 *                                                                       *
