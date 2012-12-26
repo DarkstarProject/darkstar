@@ -306,6 +306,8 @@ void CalculateStats(CCharEntity* PChar)
 
 void LoadChar(CCharEntity* PChar)
 {
+	uint8 meritPoints = 0;
+	uint16 limitPoints = 0;
 
 	const int8* fmtQuery = 
         "SELECT "
@@ -389,9 +391,6 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,19,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 	}
-
-
-	PChar->PMeritPoints = new CMeritPoints(PChar);
 
 
     fmtQuery = 
@@ -541,9 +540,8 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.exp[JOB_PUP] = (uint16)Sql_GetIntData(SqlHandle, 18);
 		PChar->jobs.exp[JOB_DNC] = (uint16)Sql_GetIntData(SqlHandle, 19);
 		PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle, 20);
-
-        PChar->PMeritPoints->SetMeritPoints((uint16)Sql_GetIntData(SqlHandle, 21));
-		PChar->PMeritPoints->SetLimitPoints((uint16)Sql_GetIntData(SqlHandle, 22));
+        meritPoints = (uint16)Sql_GetIntData(SqlHandle, 21);
+		limitPoints = (uint16)Sql_GetIntData(SqlHandle, 22);
 	}
 
 
@@ -648,6 +646,10 @@ void LoadChar(CCharEntity* PChar)
 		PChar->RegionPoints[11] = (uint32)Sql_GetIntData(SqlHandle, 19);		// Allied notes
 		//TODO: abyssea, bcnm, kcnm, ...
 	}
+
+	PChar->PMeritPoints = new CMeritPoints(PChar);
+	PChar->PMeritPoints->SetMeritPoints(meritPoints);
+	PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
 	BuildingCharSkillsTable(PChar);
 	BuildingCharAbilityTable(PChar);
