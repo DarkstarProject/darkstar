@@ -1046,7 +1046,7 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
     uint8 LogID     = (uint8)lua_tointeger(L,1);
     uint8 MissionID = (uint8)lua_tointeger(L,2);
 
-    if (LogID < 6 && MissionID < 64)
+    if (LogID < 10 && MissionID < 64)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -1083,7 +1083,7 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
     uint8 LogID     = (uint8)lua_tointeger(L,1);
     uint8 MissionID = (uint8)lua_tointeger(L,2);
 
-    if (LogID < 6 && MissionID < 64)
+    if (LogID < 10 && MissionID < 64)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -1128,7 +1128,7 @@ inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
 
     bool complete = false;
 
-    if (LogID < 6 && MissionID < 64)
+    if (LogID < 10 && MissionID < 64)
     {
         complete = ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].complete[MissionID];
     }
@@ -1185,7 +1185,7 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
     uint8 LogID     = (uint8)lua_tointeger(L,1);
     uint8 MissionID = (uint8)lua_tointeger(L,2);
 
-    if (LogID < 6 && MissionID < 64)
+    if (LogID < 10 && MissionID < 64)
     {
 	    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -3548,6 +3548,8 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
+	PChar->resetPetZoningInfo();
+
 	PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L,1));
 	PChar->SetMJob((uint8)lua_tointeger(L,1));
 
@@ -3978,7 +3980,7 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 		{
 			if( !lua_isnil(L,1) && lua_isstring(L,1) )
 			{
-				petutils::SpawnPet((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,1));
+				petutils::SpawnPet((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,1), false);
 				return 0;
 			}
 			ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is NULL\n" CL_RESET);

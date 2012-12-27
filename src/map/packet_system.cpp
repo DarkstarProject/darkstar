@@ -300,6 +300,32 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		PChar->PTreasurePool->UpdatePool(PChar);
 	}
     PChar->loc.zone->SpawnTransport(PChar);
+
+
+
+	// respawn any pets from last zone
+	if (PChar->petZoningInfo.respawnPet == true) 
+	{
+		// only repawn pet in valid zones and al zahbi (for beseiged)
+		if (PChar->loc.zone->CanUseMisc(MISC_PET) == true || PChar->loc.zone->GetID() == 48)
+		{
+			switch (PChar->petZoningInfo.petType)
+			{
+				case PETTYPE_PUPPET:
+				case PETTYPE_JUGPET:
+				case PETTYPE_WYVERN:
+					petutils::SpawnPet(PChar, PChar->petZoningInfo.petID, true);
+					break;
+
+				default:
+					break;
+			}
+			// reset the petZoning info
+			PChar->resetPetZoningInfo();
+		}
+	}
+
+
 	return;
 } 
 
@@ -314,6 +340,7 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+
     session->blowfish.status = BLOWFISH_WAITING;
 
     PChar->TradePending.clean();
@@ -324,10 +351,6 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		PChar->animation = ANIMATION_NONE;
 	}
-
-	// uncharm pet on zone
-	if (PChar->PPet != NULL && PChar->PPet->objtype == TYPE_MOB)
-		petutils::DespawnPet(PChar);
 
 
     PChar->PRecastContainer->Del(RECAST_MAGIC);
@@ -1894,6 +1917,7 @@ void SmallPacket0x05A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	// пакет не на своем месте, возможно 0x0F
 	PChar->pushPacket(new CStopDownloadingPacket(PChar)); 
+
 	return;
 }
 
@@ -1976,6 +2000,38 @@ void SmallPacket0x05D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+
+	// handle pets on zone
+	if (PChar->PPet != NULL) 
+	{
+		CPetEntity* PPet = (CPetEntity*)PChar->PPet;
+
+		if (PPet->objtype == TYPE_MOB)
+		{
+			// uncharm a charmed mob
+			petutils::DespawnPet(PChar);
+		}
+		else if (PPet->objtype == TYPE_PET)
+		{
+			switch (PPet->getPetType())
+			{
+				case PETTYPE_JUGPET:
+				case PETTYPE_PUPPET:
+				case PETTYPE_WYVERN: 
+					PChar->petZoningInfo.petHP = PPet->health.hp;
+					PChar->petZoningInfo.petTP = PPet->health.tp;
+					PChar->petZoningInfo.respawnPet = true;
+					PChar->petZoningInfo.petType = PPet->getPetType();
+					petutils::DespawnPet(PChar);
+					break;
+
+				default:
+					break;
+			}
+		}
+	}
+
+
 	uint32 zoneLineID = RBUFL(data,(0x04));
 	uint8  town		  = RBUFB(data,(0x16)); // используются при выходе из mog house
 	uint8  zone		  = RBUFB(data,(0x17)); // используются при выходе из mog house
@@ -3673,6 +3729,8 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		if ((mjob > 0x00) && (mjob < MAX_JOBTYPE)) 
 		{
+			PChar->resetPetZoningInfo();
+
 			PChar->SetMJob(mjob);
 			PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
 			PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);

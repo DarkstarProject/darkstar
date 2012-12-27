@@ -111,6 +111,12 @@ CCharEntity::CCharEntity()
 	PWideScanTarget = NULL;
 
     PRecastContainer = new CRecastContainer(this);
+
+	petZoningInfo.respawnPet = false;
+	petZoningInfo.petID = 0;
+	petZoningInfo.petType = PETTYPE_AVATAR;			// dummy data, the bool tells us to respawn if required
+	petZoningInfo.petHP = 0;
+	petZoningInfo.petTP = 0;
 }
 
 CCharEntity::~CCharEntity()
@@ -152,6 +158,15 @@ void CCharEntity::clearPacketList()
 	{
 	   delete popPacket();
 	}
+}
+
+void CCharEntity::resetPetZoningInfo()
+{
+	// reset the petZoning info
+	petZoningInfo.petHP = 0;
+	petZoningInfo.petTP = 0;
+	petZoningInfo.respawnPet = false;
+	petZoningInfo.petType = PETTYPE_AVATAR;
 }
 
 void CCharEntity::pushPacket(CBasicPacket* packet) 

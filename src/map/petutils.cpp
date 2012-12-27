@@ -379,12 +379,15 @@ void LoadAvatarStats(CPetEntity* PChar)
 *																		*
 ************************************************************************/
 
-void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
+void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 {
 	DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
 	if(PMaster->GetMJob()!=JOB_DRG && PetID == PETID_WYVERN) {
 		return;
 	}
+
+	if (PMaster->objtype == TYPE_PC)
+		((CCharEntity*)PMaster)->petZoningInfo.petID = PetID;
 
 	PETTYPE petType = PETTYPE_JUGPET;
 	if(PetID<=20){
@@ -502,6 +505,15 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID)
 		((CCharEntity*)PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)PMaster));
 		((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
 	}
+
+
+	// apply stats from previous zone if this pet is being transfered
+	if (spawningFromZone == true)
+	{
+		PPet->health.tp = ((CCharEntity*)PMaster)->petZoningInfo.petTP;
+		PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;		
+	}
+
 }
 
 /************************************************************************

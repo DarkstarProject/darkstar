@@ -63,7 +63,7 @@ namespace petutils
 	void	LoadPetList();
 	void	FreePetList();
 
-	void	SpawnPet(CBattleEntity* PMaster, uint32 PetID);
+	void	SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
 	void	DespawnPet(CBattleEntity* PMaster);
 	void	AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget);
 	void	RetreatToMaster(CBattleEntity* PMaster);

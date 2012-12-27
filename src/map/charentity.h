@@ -34,6 +34,7 @@
 #include "battleentity.h"
 #include "item_container.h"
 #include "linkshell.h"
+#include "petentity.h"
 
 #include "recast_container.h"
 #include "trade_container.h"
@@ -118,6 +119,16 @@ struct NationTP_t
 	uint8		pastwindurst;
 };
 
+
+struct PetInfo_t
+{
+	bool		respawnPet;		// used for spawning pet on zone
+	uint8		petID;			// id as in wyvern(48) , carbuncle(8) ect..	
+	PETTYPE		petType;		// type of pet being transfered
+	int32		petHP;			// pets hp
+	float		petTP;			// pets tp
+};
+
 struct AuctionHistory_t
 {
 	uint16		itemid;
@@ -163,12 +174,14 @@ public:
     uint8             m_PetCommands[32];            // список доступных команд питомцу
 	uint8             m_WeaponSkills[32];  
 	questlog_t		  m_questLog[MAX_QUESTAREA];    // список всех квестов
-	missionlog_t	  m_missionLog[6];				// список миссий
+	missionlog_t	  m_missionLog[7];				// список миссий
 	assaultlog_t	  m_assaultLog;					// список assault миссий
 	campaignlog_t	  m_campaignLog;                // список campaing миссий
 	uint32			  m_rangedDelay;                // ranged attack delay (with timestamp for repeat attacks, hence 32bit)
 	bool			  m_insideBCNM;					// true if user is inside a bcnm
 	uint32			  m_lastBcnmTimePrompt;			// the last message prompt in seconds
+	PetInfo_t		  petZoningInfo;				// used to repawn dragoons pets ect on zone		
+	void			  resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
 
 	// Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
 	// отображает более ранние миссии выплненными
