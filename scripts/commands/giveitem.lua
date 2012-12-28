@@ -12,6 +12,14 @@
 -----------------------------------
 
 function onTrigger(player,target,itemID,quantity)
+
 	pc = GetPlayerByName(target);
-	pc:addItem(itemID,quantity);
+
+	if (pc:getFreeSlotsCount() == 0) then 
+		pc:messageSpecial(ITEM_CANNOT_BE_OBTAINED,itemID);
+	else 
+		pc:addItem(itemID,quantity);
+		pc:messageSpecial(ITEM_OBTAINED,itemID);
+	end
+
 end;
