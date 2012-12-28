@@ -34,6 +34,10 @@ function onServerStart()
   -- Mysticmaker Profblix (5-30 minutes)
   UpdateNMSpawnPoint(17649693);
   SpawnMob(17649693, '', math.random((300),(1800))) 
+  
+  -- Bune (5-60 minutes)
+  UpdateNMSpawnPoint(17645578);
+  SpawnMob(17645578, '', math.random((300),(3600))) 
 	
 end;
 
