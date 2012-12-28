@@ -347,7 +347,7 @@ INSERT INTO `merits` VALUES(2694, 'recycle', 5, 5, 1024, 7, 41);
 INSERT INTO `merits` VALUES(2752, 'shikikoyo', 5, 12, 2048, 7, 42);
 INSERT INTO `merits` VALUES(2754, 'blade_bash', 5, 5, 2048, 7, 42); -- Each additional merit lowers its recast by 0:02:30, with a maximum of 4 additional merits for a 0:05:00 recast time. 
 INSERT INTO `merits` VALUES(2756, 'ikishoten', 5, 3, 2048, 7, 42);
-INSERT INTO `merits` VALUES(2758, 'overwhelm', 5, 5, 2048, 7, 42); -- increases 5 > 5 > 5 > 2 > 2
+INSERT INTO `merits` VALUES(2758, 'overwhelm', 5, 1, 2048, 7, 42); -- increases 5 > 5 > 5 > 2 > 2
 
 -- nin 2
 INSERT INTO `merits` VALUES(2816, 'sange', 5, 25, 4096, 7, 43);

@@ -1938,52 +1938,75 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	if (m_PBattleSubTarget->isDead())
 	{
-	        m_LastMeleeTime += (m_Tick - m_LastActionTime);
-        	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	        m_PBattleSubTarget = NULL;
-        	return;
+		m_LastMeleeTime += (m_Tick - m_LastActionTime);
+        m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	    m_PBattleSubTarget = NULL;
+        return;
 	}
+
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
+
 	//remove TP Bonus from offhand weapon
-	if(m_PChar->equip[SLOT_SUB] != 0){
+	if (m_PChar->equip[SLOT_SUB] != 0)
+	{
 		std::vector<CModifier*>::iterator modIterator;
 		std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_SUB]))->modList;
-		for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++){
+
+		for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
+		{
 			if((*modIterator)->getModID() == MOD_TP_BONUS){
 				bonusTp = bonusTp - (*modIterator)->getModAmount();
 			}
 		}
 	}
+
 	//if ranged WS, remove TP bonus from mainhand weapon
-	if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){
-		if(m_PChar->equip[SLOT_MAIN] != 0){
+	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 218)
+	{
+		if(m_PChar->equip[SLOT_MAIN] != 0)
+		{
 			std::vector<CModifier*>::iterator modIterator;
 			std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_MAIN]))->modList;
-			for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++){
-				if((*modIterator)->getModID() == MOD_TP_BONUS){
+
+			for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
+			{
+				if((*modIterator)->getModID() == MOD_TP_BONUS)
+				{
 					bonusTp = bonusTp - (*modIterator)->getModAmount();
 				}
 			}
 		}
-	} else {
-	//if melee WS, remove TP bonus from ranged weapon
-		if(m_PChar->equip[SLOT_RANGED] != 0){
+	} 
+	else 
+	{
+		//if melee WS, remove TP bonus from ranged weapon
+		if(m_PChar->equip[SLOT_RANGED] != 0)
+		{
 			std::vector<CModifier*>::iterator modIterator;
 			std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]))->modList;
-			for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++){
-				if((*modIterator)->getModID() == MOD_TP_BONUS){
+
+			for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
+			{
+				if((*modIterator)->getModID() == MOD_TP_BONUS)
+				{
 					bonusTp = bonusTp - (*modIterator)->getModAmount();
 				}
 			}
 		}
 	}
-	if(bonusTp+m_PChar->health.tp > 300){
+
+	if(bonusTp + m_PChar->health.tp > 300)
+	{
 		bonusTp = 300 - m_PChar->health.tp;
 		m_PChar->health.tp = 300;
-	} else {
+	} 
+	else 
+	{
 		m_PChar->addTP(bonusTp);
 	}
+
+
 	float wsTP = m_PChar->health.tp;
 	m_LastActionTime = m_Tick;
 	uint16 tpHitsLanded = 0;
@@ -1991,14 +2014,19 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	uint16 damage = 0;
 	damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
 	m_PChar->addTP(-bonusTp);
-	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI)){
+
+
+	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+	{
 		m_PChar->addTP(-100);
 	}
-	else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI)){
+	else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
+	{
 		m_PChar->addTP(-100);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
 	}
-	else{
+	else
+	{
 		m_PChar->health.tp = 0;
 	}
 
@@ -2007,22 +2035,29 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	CBattleEntity* taChar = NULL;
 
 	//trick attack agi bonus for thf main job
-	if(m_PChar->GetMJob() == JOB_THF &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+	if (m_PChar->GetMJob() == JOB_THF &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
 	{
 		taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
 		if(taChar != NULL) damage += m_PChar->AGI();
 	}
 
 	//check if other jobs have trick attack active to change enmity lateron
-	if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+	if (taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
 		taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
 
 
-	if(!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
+	if (!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
+	{
 		uint8 damslot = SLOT_MAIN;
-		if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218){//ranged WS IDs
+		if (m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218)
+		{	
+			//ranged WS IDs
 			damslot = SLOT_RANGED;
 		}
+
+		// add overwhelm damage bonus
+		damage = battleutils::getOverWhelmDamageBonus(m_PChar, m_PBattleSubTarget, damage);
+
 		damage = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, damslot, tpHitsLanded, taChar, true);
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST); //TODO: REMOVE THIS, BOOST EFFECT IN DB IS WRONG, MISSING EFFECTFLAG_DAMAGE
@@ -2030,7 +2065,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	m_PChar->addTP(extraHitsLanded);
 	float afterWsTP = m_PChar->health.tp;
-	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN){
+
+	if (m_PChar->PPet != NULL && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+	{
 		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_ELEMENTAL_BREATH;
 		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
 	}
@@ -2045,7 +2082,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.param = damage;
 	Action.flag = 0;
 
-	if(damage==0)
+
+	if(damage == 0)
 	{
 		Action.reaction = REACTION_EVADE;
 		Action.messageID = 188; //but misses
@@ -2055,13 +2093,15 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		Action.messageID = 185; //damage ws
 	}
 
-	if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID())){
+	if (battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
+	{
 		Action.speceffect = SPECEFFECT_NONE;
 		Action.messageID = 224; //restores mp msg
 		m_PChar->addMP(damage);
 	}
 
-	if(m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218)
+
+	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 218)
 	{
 		//ranged WS IDs
 		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
@@ -2162,11 +2202,14 @@ void CAICharNormal::ActionWeaponSkillFinish()
 							continue;
 						}
 					}
+
 					m_PChar->health.tp = wsTP;
 					damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
 					m_PChar->health.tp = afterWsTP;
+
 					AoEAction.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar, true);
-					if(damage==0)
+
+					if (damage == 0)
 					{
 						AoEAction.reaction = REACTION_EVADE;
 						AoEAction.messageID = 188; //but misses
@@ -2175,6 +2218,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 					{
 						AoEAction.messageID = 264; // "xxx takes ### damage." only
 					}
+
 					((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);					
 					AoEAction.ActionTarget = PTarget;
 					m_PChar->m_ActionList.push_back(AoEAction);
