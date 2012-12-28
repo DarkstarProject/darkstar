@@ -1190,10 +1190,13 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim)
 {
 	if(PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_FORMLESS_STRIKES))
-	{
+	{		
 		uint8 formlessMod = 70;
-		//TODO: Add an additional 5 to formlessMod per merit in Formless Strikes
-		damage = damage * formlessMod /100;
+
+		if (PAttacker->objtype == TYPE_PC)
+			formlessMod += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_FORMLESS_STRIKES, PAttacker->GetMLevel());
+
+		damage = damage * formlessMod / 100;
 	}
 	else
 	{
