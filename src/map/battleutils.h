@@ -141,6 +141,7 @@ namespace battleutils
 	uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier);
 	void TransferEnmity(CBattleEntity* CharHateReceiver, CBattleEntity* CharHateGiver, CMobEntity* PMob, uint8 percentToTransfer);
 	uint8 getBarrageShotCount(CCharEntity* PChar);
+	uint8 getStoreTPbonusFromMerit(CBattleEntity* PEntity);
 
 };
 

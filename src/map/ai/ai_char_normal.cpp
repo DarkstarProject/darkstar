@@ -2566,14 +2566,30 @@ void CAICharNormal::ActionAttack()
 				}
 				else
 				{
+					// player misses the target
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
-					if ( !zanshin && rand()%100 < m_PChar->getMod(MOD_ZANSHIN) && (( i == 0 && numattacksRightHand == 1 ) || (i == numattacksRightHand && numattacksLeftHand == 1)) )
+
+					uint8 zanshinChance = 0;
+
+					if (!zanshin && charutils::hasTrait(m_PChar, TRAIT_ZANSHIN))
+					{
+						zanshinChance = (m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar->GetMLevel()));
+					}
+
+					if (!zanshin && rand()%100 < zanshinChance && (( i == 0 && numattacksRightHand == 1 ) || (i == numattacksRightHand && numattacksLeftHand == 1)) )
 					{
 						zanshin = true;
-						if ( i > numattacksRightHand ) {numattacksLeftHand++;}
-						else {numattacksRightHand++;}
+
+						if (i > numattacksRightHand) 
+						{
+							numattacksLeftHand++;
+						}
+						else 
+						{
+							numattacksRightHand++;
+						}
 					}
 					else
 					{

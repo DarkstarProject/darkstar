@@ -1345,23 +1345,25 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 
 		// add to to attacker
-		PAttacker->addTP(tpMultiplier*(baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP))));
+		PAttacker->addTP( tpMultiplier * (baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP))) + getStoreTPbonusFromMerit(PAttacker));
 
 		if (giveTPtoVictim == true)
 		{
-			//PAttacker->addTP(20);
 			//account for attacker's subtle blow which reduces the baseTP gain for the defender
 			baseTp = baseTp * ((100.0f - dsp_cap((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
 
 			//mobs hit get basetp+3 whereas pcs hit get basetp/3
-			if(PDefender->objtype == TYPE_PC){
+			if(PDefender->objtype == TYPE_PC)
+			{
 				//yup store tp counts on hits taken too!
-				PDefender->addTP((baseTp / 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
+				PDefender->addTP((baseTp / 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)) + getStoreTPbonusFromMerit(PAttacker));
 			}
-			else{
+			else
+			{
 				PDefender->addTP((baseTp + 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
 			}
 		}
+
 
         if (PAttacker->objtype == TYPE_PC)
             charutils::UpdateHealth((CCharEntity*)PAttacker);
@@ -2598,6 +2600,24 @@ uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint16 damage)
 
 
 
+/************************************************************************
+*                                                                       *
+*	Samurai get merit storeTP value                                     *
+*                                                                       *
+************************************************************************/
+uint8 getStoreTPbonusFromMerit(CBattleEntity* PEntity)
+{
+	if (PEntity->objtype == TYPE_PC)
+	{
+		if (((CCharEntity*)PEntity)->GetMJob() == JOB_SAM || ((CCharEntity*)PEntity)->GetSJob() == JOB_SAM)
+		{
+			return ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_STORE_TP_EFFECT, PEntity->GetMLevel());
+		}
+	}
+	return 0;
+}
+
+
 
 /************************************************************************
 *                                                                       *
@@ -2613,7 +2633,7 @@ uint16 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, u
 			// must be facing mob
 			if(abs(PDefender->loc.p.rotation - m_PChar->loc.p.rotation) > 90)
 			{
-				uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM,m_PChar->GetMLevel());
+				uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar->GetMLevel());
 
 				switch (meritCount)
 				{
