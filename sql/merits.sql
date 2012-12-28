@@ -100,28 +100,28 @@ INSERT INTO `merits` VALUES(326, 'enemy_crit_rate', 5, 1, 1048575, 5, 4);
 INSERT INTO `merits` VALUES(328, 'spell_interuption_rate', 5, 2, 1048575, 5, 4);
 
 -- war 1
-INSERT INTO `merits` VALUES(384, 'beserk_recast', 5, 10, 1, 6, 5);
+INSERT INTO `merits` VALUES(384, 'beserk_recast', 5, 10, 1, 6, 5); -- 45
 INSERT INTO `merits` VALUES(386, 'defender_recast', 5, 6, 1, 6, 5);
 INSERT INTO `merits` VALUES(388, 'warcry_recast', 5, 10, 1, 6, 5);
 INSERT INTO `merits` VALUES(390, 'aggressor_recast', 5, 10, 1, 6, 5);
 INSERT INTO `merits` VALUES(392, 'double_attack_rate', 5, 1, 1, 6, 5);
 
 -- mnk 1
-INSERT INTO `merits` VALUES(448, 'focus_recast', 5, 10, 2, 6, 6);
+INSERT INTO `merits` VALUES(448, 'focus_recast', 5, 10, 2, 6, 6); -- 50
 INSERT INTO `merits` VALUES(450, 'dodge_recast', 5, 10, 2, 6, 6);
 INSERT INTO `merits` VALUES(452, 'chakra_recast', 5, 10, 2, 6, 6);
 INSERT INTO `merits` VALUES(454, 'counter_rate', 5, 1, 2, 6, 6);
 INSERT INTO `merits` VALUES(456, 'kick_attack_rate', 5, 1, 2, 6, 6);
 
 -- whm 1
-INSERT INTO `merits` VALUES(512, 'divine_seal_recast', 5, 20, 4, 6, 7);
+INSERT INTO `merits` VALUES(512, 'divine_seal_recast', 5, 20, 4, 6, 7); -- 55
 INSERT INTO `merits` VALUES(514, 'cure_cast_time', 5, 4, 4, 6, 7);
 INSERT INTO `merits` VALUES(516, 'bar_spell_effect', 5, 2, 4, 6, 7);
 INSERT INTO `merits` VALUES(518, 'banish_effect', 5, 2, 4, 6, 7);
 INSERT INTO `merits` VALUES(520, 'regen_effect', 5, 1, 4, 6, 7);
 
 -- blm 1
-INSERT INTO `merits` VALUES(576, 'elemental_seal_recast', 5, 20, 8, 6, 8);
+INSERT INTO `merits` VALUES(576, 'elemental_seal_recast', 5, 20, 8, 6, 8); -- 60
 INSERT INTO `merits` VALUES(578, 'fire_magic_potency', 5, 2, 8, 6, 8);
 INSERT INTO `merits` VALUES(580, 'ice_magic_potency', 5, 2, 8, 6, 8);
 INSERT INTO `merits` VALUES(582, 'wind_magic_potency', 5, 2, 8, 6, 8);
@@ -130,7 +130,7 @@ INSERT INTO `merits` VALUES(586, 'lightning_magic_potency', 5, 2, 8, 6, 8);
 INSERT INTO `merits` VALUES(588, 'water_magic_potency', 5, 2, 8, 6, 8);
 
 -- rdm 1
-INSERT INTO `merits` VALUES(640, 'convert_recast', 5, 20, 16, 6, 9);
+INSERT INTO `merits` VALUES(640, 'convert_recast', 5, 20, 16, 6, 9); -- 67
 INSERT INTO `merits` VALUES(642, 'fire_magic_accuracy', 5, 3, 16, 6, 9);
 INSERT INTO `merits` VALUES(644, 'ice_magic_accuracy', 5, 3, 16, 6, 9);
 INSERT INTO `merits` VALUES(646, 'wind_magic_accuracy', 5, 3, 16, 6, 9);
@@ -139,56 +139,56 @@ INSERT INTO `merits` VALUES(650, 'lightning_magic_accuracy', 5, 3, 16, 6, 9);
 INSERT INTO `merits` VALUES(652, 'water_magic_accuracy', 5, 3, 16, 6, 9);
 
 -- thf 1
-INSERT INTO `merits` VALUES(704, 'flee_recast', 5, 10, 32, 6, 10);
+INSERT INTO `merits` VALUES(704, 'flee_recast', 5, 10, 32, 6, 10); -- 74
 INSERT INTO `merits` VALUES(706, 'hide_recast', 5, 10, 32, 6, 10);
 INSERT INTO `merits` VALUES(708, 'sneak_attack_recast', 5, 2, 32, 6, 10);
 INSERT INTO `merits` VALUES(710, 'trick_attack_recast', 5, 2, 32, 6, 10);
 INSERT INTO `merits` VALUES(712, 'triple_attack_rate', 5, 1, 32, 6, 10);
 
 -- pld 1
-INSERT INTO `merits` VALUES(768, 'shield_bash_recast', 5, 6, 64, 6, 11);
+INSERT INTO `merits` VALUES(768, 'shield_bash_recast', 5, 6, 64, 6, 11); -- 79
 INSERT INTO `merits` VALUES(770, 'holy_circle_recast', 5, 10, 64, 6, 11);
 INSERT INTO `merits` VALUES(772, 'sentinel_recast', 5, 10, 64, 6, 11);
 INSERT INTO `merits` VALUES(774, 'cover_effect_length', 5, 4, 64, 6, 11);
 INSERT INTO `merits` VALUES(776, 'rampart_recast', 5, 10, 64, 6, 11);
 
 -- drk 1
-INSERT INTO `merits` VALUES(832, 'souleater_recast', 5, 12, 128, 6, 12);
+INSERT INTO `merits` VALUES(832, 'souleater_recast', 5, 12, 128, 6, 12); -- 84
 INSERT INTO `merits` VALUES(834, 'arcane_circle_recast', 5, 10, 128, 6, 12);
 INSERT INTO `merits` VALUES(836, 'last_resort_recast', 5, 10, 128, 6, 12);
 INSERT INTO `merits` VALUES(838, 'last_resort_effect', 5, 2, 128, 6, 12);
 INSERT INTO `merits` VALUES(840, 'weapon_bash_effect', 5, 6, 128, 6, 12);
 
 -- bst 1
-INSERT INTO `merits` VALUES(896, 'killer_effects', 5, 1, 256, 6, 13);
+INSERT INTO `merits` VALUES(896, 'killer_effects', 5, 1, 256, 6, 13); -- 89
 INSERT INTO `merits` VALUES(898, 'reward_recast', 5, 3, 256, 6, 13);
 INSERT INTO `merits` VALUES(900, 'call_beast_recast', 5, 10, 256, 6, 13);
 INSERT INTO `merits` VALUES(902, 'sic_recast', 5, 2, 256, 6, 13);
 INSERT INTO `merits` VALUES(904, 'tame_recast', 5, 20, 256, 6, 13);
 
 -- brd 1
-INSERT INTO `merits` VALUES(960, 'lullaby_recast', 5, 1, 512, 6, 14);
+INSERT INTO `merits` VALUES(960, 'lullaby_recast', 5, 1, 512, 6, 14); --94
 INSERT INTO `merits` VALUES(962, 'finale_recast', 5, 1, 512, 6, 14);
 INSERT INTO `merits` VALUES(964, 'minne_effect', 5, 1, 512, 6, 14);
 INSERT INTO `merits` VALUES(966, 'minuet_effect', 5, 1, 512, 6, 14);
 INSERT INTO `merits` VALUES(968, 'madrigal_effect', 5, 1, 512, 6, 14);
 
 -- rng 1
-INSERT INTO `merits` VALUES(1024, 'scavenge_recast', 5, 10, 1024, 6, 15);
+INSERT INTO `merits` VALUES(1024, 'scavenge_recast', 5, 10, 1024, 6, 15); -- 99
 INSERT INTO `merits` VALUES(1026, 'camouflage_recast', 5, 10, 1024, 6, 15);
 INSERT INTO `merits` VALUES(1028, 'sharpshot_recast', 5, 10, 1024, 6, 15);
 INSERT INTO `merits` VALUES(1030, 'unlimited_shot_recast', 5, 6, 1024, 6, 15);
 INSERT INTO `merits` VALUES(1032, 'rapid_shot_rate', 5, 1, 1024, 6, 15);
 
 -- sam 1
-INSERT INTO `merits` VALUES(1088, 'third_eye_recast', 5, 2, 2048, 6, 16);
+INSERT INTO `merits` VALUES(1088, 'third_eye_recast', 5, 2, 2048, 6, 16); -- 104
 INSERT INTO `merits` VALUES(1090, 'warding_circle_recast', 5, 10, 2048, 6, 16);
 INSERT INTO `merits` VALUES(1092, 'store_tp_effect', 5, 2, 2048, 6, 16);
 INSERT INTO `merits` VALUES(1094, 'meditate_recast', 5, 6, 2048, 6, 16);
 INSERT INTO `merits` VALUES(1096, 'zashin_attack_rate', 5, 1, 2048, 6, 16);
 
 -- nin 1
-INSERT INTO `merits` VALUES(1152, 'subtle_blow_effect', 5, 1, 4096, 6, 17);
+INSERT INTO `merits` VALUES(1152, 'subtle_blow_effect', 5, 1, 4096, 6, 17); -- 109
 INSERT INTO `merits` VALUES(1154, 'katon_effect', 5, 2, 4096, 6, 17);
 INSERT INTO `merits` VALUES(1156, 'hyoton_effect', 5, 2, 4096, 6, 17);
 INSERT INTO `merits` VALUES(1158, 'huton_effect', 5, 2, 4096, 6, 17);
@@ -197,54 +197,54 @@ INSERT INTO `merits` VALUES(1162, 'raiton_effect', 5, 2, 4096, 6, 17);
 INSERT INTO `merits` VALUES(1164, 'suiton_effect', 5, 2, 4096, 6, 17);
 
 -- drg 1
-INSERT INTO `merits` VALUES(1216, 'ancient_circle_recast', 5, 10, 8192, 6, 18);
+INSERT INTO `merits` VALUES(1216, 'ancient_circle_recast', 5, 10, 8192, 6, 18); -- 116
 INSERT INTO `merits` VALUES(1218, 'jump_recast', 5, 2, 8192, 6, 18);
 INSERT INTO `merits` VALUES(1220, 'high_jump_recast', 5, 4, 8192, 6, 18);
 INSERT INTO `merits` VALUES(1222, 'super_jump_recast', 5, 6, 8192, 6, 18);
-INSERT INTO `merits` VALUES(1224, 'spirit_link_recast', 5, 3, 8192, 6, 18);
+INSERT INTO `merits` VALUES(1224, 'spirit_link_recast', 5, 3, 8192, 6, 18); -- 120
 
 -- smn 1
-INSERT INTO `merits` VALUES(1280, 'avatar_physical_accuracy', 5, 3, 16384, 6, 19);
+INSERT INTO `merits` VALUES(1280, 'avatar_physical_accuracy', 5, 3, 16384, 6, 19); -- 121
 INSERT INTO `merits` VALUES(1282, 'avatar_physical_attack', 5, 2, 16384, 6, 19);
 INSERT INTO `merits` VALUES(1284, 'avatar_magical_accuracy', 5, 3, 16384, 6, 19);
 INSERT INTO `merits` VALUES(1286, 'avatar_magical_attack', 5, 2, 16384, 6, 19);
 INSERT INTO `merits` VALUES(1288, 'summoning_magic_cast_time', 5, 5, 16384, 6, 19);
 
 -- blu 1
-INSERT INTO `merits` VALUES(1344, 'chain_affinity_recast', 5, 4, 32768, 6, 20);
+INSERT INTO `merits` VALUES(1344, 'chain_affinity_recast', 5, 4, 32768, 6, 20); -- 126
 INSERT INTO `merits` VALUES(1346, 'burst_affinity_recast', 5, 4, 32768, 6, 20);
 INSERT INTO `merits` VALUES(1348, 'monster_correlation', 5, 4, 32768, 6, 20); -- no info on this one 4 just a guess
 INSERT INTO `merits` VALUES(1350, 'physical_potency', 5, 2, 32768, 6, 20);
-INSERT INTO `merits` VALUES(1352, 'magical_accuracy', 5, 2, 32768, 6, 20);
+INSERT INTO `merits` VALUES(1352, 'magical_accuracy', 5, 2, 32768, 6, 20); -- 130
 
 -- cor 1
-INSERT INTO `merits` VALUES(1408, 'phantom_roll_recast', 5, 2, 65536, 6, 21);
+INSERT INTO `merits` VALUES(1408, 'phantom_roll_recast', 5, 2, 65536, 6, 21); -- 131
 INSERT INTO `merits` VALUES(1410, 'quick_draw_recast', 5, 2, 65536, 6, 21);
 INSERT INTO `merits` VALUES(1412, 'quick_draw_accuracy', 5, 2, 65536, 6, 21);
 INSERT INTO `merits` VALUES(1414, 'random_deal_recast', 5, 40, 65536, 6, 21);
 INSERT INTO `merits` VALUES(1416, 'bust_duration', 5, 10, 65536, 6, 21);
 
 -- pup 1
-INSERT INTO `merits` VALUES(1472, 'automation_melee_skill', 5, 2, 131072, 6, 22);
+INSERT INTO `merits` VALUES(1472, 'automation_melee_skill', 5, 2, 131072, 6, 22); -- 136
 INSERT INTO `merits` VALUES(1474, 'automation_ranged_skill', 5, 2, 131072, 6, 22);
 INSERT INTO `merits` VALUES(1476, 'automation_magic_skill', 5, 2, 131072, 6, 22);
 INSERT INTO `merits` VALUES(1478, 'activate_recast', 5, 40, 131072, 6, 22);
-INSERT INTO `merits` VALUES(1480, 'repair_recast', 5, 6, 131072, 6, 22);
+INSERT INTO `merits` VALUES(1480, 'repair_recast', 5, 6, 131072, 6, 22); -- 140
 
 -- dnc 1
-INSERT INTO `merits` VALUES(1536, 'step_accuracy', 5, 3, 262144, 6, 23);
+INSERT INTO `merits` VALUES(1536, 'step_accuracy', 5, 3, 262144, 6, 23); -- 141
 INSERT INTO `merits` VALUES(1538, 'haste_samba_effect', 5, 1, 262144, 6, 23);
 INSERT INTO `merits` VALUES(1540, 'reverse_flourish_effect', 5, 3, 262144, 6, 23);
 INSERT INTO `merits` VALUES(1542, 'building_flourish_effect', 5, 2, 262144, 6, 23); -- building_flourish_effect applies >>> building flourish accuracy + 2%, attack power + 1%, crit hit rate 1% per point 
 
 -- sch 1
-INSERT INTO `merits` VALUES(1600, 'grimoire_recast', 5, 2, 524288, 6, 24);
+INSERT INTO `merits` VALUES(1600, 'grimoire_recast', 5, 2, 524288, 6, 24); -- 145
 INSERT INTO `merits` VALUES(1602, 'modus_veritas_duration', 5, 3, 524288, 6, 24); -- modus_veritas_duration applies >>> magic accuracy 3, magic attack 2 per point 
 INSERT INTO `merits` VALUES(1604, 'helix_magic_acc_att', 5, 3, 524288, 6, 24);
 INSERT INTO `merits` VALUES(1606, 'max_sublimation', 5, 10, 524288, 6, 24); 
 
 -- weapon skills
-INSERT INTO `merits` VALUES(1664, 'shijin_spiral', 1, 1, 131074, 0, 25);
+INSERT INTO `merits` VALUES(1664, 'shijin_spiral', 1, 1, 131074, 0, 25); -- 149
 INSERT INTO `merits` VALUES(1666, 'exenterator', 1, 1, 333617, 0, 25);
 INSERT INTO `merits` VALUES(1668, 'requiescat', 1, 1, 113361, 0, 25);
 INSERT INTO `merits` VALUES(1670, 'resolution', 1, 1, 193, 0, 25);

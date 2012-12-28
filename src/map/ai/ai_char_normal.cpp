@@ -1653,7 +1653,17 @@ void CAICharNormal::ActionJobAbilityFinish()
 		Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", m_Tick, m_PChar->id);
     }
 
-    uint32 RecastTime = m_PJobAbility->getRecastTime() * 1000;
+
+	// get any available merit recast reduction
+	uint8 meritRecastReduction = 0;
+
+	if (((CAbility*)m_PJobAbility)->getMeritModID() > 0)
+	{
+		meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((Merit_t*)m_PChar->PMeritPoints->GetMeritByIndex(m_PJobAbility->getMeritModID()), m_PChar->GetMLevel());
+	}
+
+    uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction) * 1000;
+
 
 	if (m_PJobAbility->getID() == ABILITY_THIRD_EYE && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
 	{

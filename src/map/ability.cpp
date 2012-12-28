@@ -44,6 +44,11 @@ void CAbility::setJob(JOBTYPE Job)
 	m_Job = Job;
 }
 
+void CAbility::setMeritModID(uint16 value)
+{
+	m_meritModID = value;
+}
+
 JOBTYPE	CAbility::getJob()
 {
 	return m_Job;
@@ -97,6 +102,11 @@ void CAbility::setRecastTime(uint16 recastTime)
 uint16 CAbility::getRecastTime()
 {
 	return m_recastTime;
+}
+
+uint16 CAbility::getMeritModID()
+{
+	return m_meritModID;
 }
 
 void CAbility::setValidTarget(uint8 validTarget)
@@ -204,7 +214,8 @@ namespace ability
               "isAOE,"
               "recastId,"
               "CE,"
-              "VE "           
+              "VE, "
+              "meritModID "
             "FROM abilities  "
             "WHERE job > 0 AND job < %u AND abilityId < %u "
             "ORDER BY job, level ASC";
@@ -230,6 +241,7 @@ namespace ability
 			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,11));
 			    PAbility->setCE(Sql_GetIntData(SqlHandle,12));
 			    PAbility->setVE(Sql_GetIntData(SqlHandle,13));
+			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,14));
 
 			    PAbilityList[PAbility->getID()] = PAbility;
 			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);

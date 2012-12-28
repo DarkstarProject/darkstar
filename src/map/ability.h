@@ -353,6 +353,8 @@ public:
 	uint16		getRecastId();
 	uint16		getCE();
 	uint16		getVE();
+	uint16		getMeritModID();
+
 
 	void		setID(uint16 id);
 	void		setJob(JOBTYPE Job);
@@ -366,6 +368,7 @@ public:
 	void		setRecastId(uint16 recastId); 
 	void		setCE(uint16 CE);
 	void		setVE(uint16 VE);
+	void        setMeritModID(uint16 value);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -384,6 +387,7 @@ private:
 	uint16		m_recastId;
 	uint16		m_CE;
 	uint16		m_VE;
+	uint16		m_meritModID;
 	string_t	m_name;
 };
 
