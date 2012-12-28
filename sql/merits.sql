@@ -167,7 +167,7 @@ INSERT INTO `merits` VALUES(902, 'sic_recast', 5, 2, 256, 6, 13);
 INSERT INTO `merits` VALUES(904, 'tame_recast', 5, 20, 256, 6, 13);
 
 -- brd 1
-INSERT INTO `merits` VALUES(960, 'lullaby_recast', 5, 1, 512, 6, 14); --94
+INSERT INTO `merits` VALUES(960, 'lullaby_recast', 5, 1, 512, 6, 14); -- 94
 INSERT INTO `merits` VALUES(962, 'finale_recast', 5, 1, 512, 6, 14);
 INSERT INTO `merits` VALUES(964, 'minne_effect', 5, 1, 512, 6, 14);
 INSERT INTO `merits` VALUES(966, 'minuet_effect', 5, 1, 512, 6, 14);
