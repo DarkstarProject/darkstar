@@ -404,11 +404,12 @@ enum MODIFIER
 	MOD_CHARM						= 0x168,	// extends the charm time only, no effect of charm chance	
 	MOD_JUMP_TP_BONUS				= 0x169,	// bonus tp player receives when using jump (must be divided by 10)
 	MOD_JUMP_ATT_BONUS				= 0x16A,	// ATT% bonus for jump + high jump
-	MOD_HIGH_JUMP_ENMITY_REDUCTION	= 0x16B		// for gear that reduces more enmity from high jump
+	MOD_HIGH_JUMP_ENMITY_REDUCTION	= 0x16B,	// for gear that reduces more enmity from high jump
+
+	MOD_REWARD_HP_BONUS		= 0x16C				// Percent to add to reward HP healed. (364)
 
 //  use these for new modifiers
 
-	//SPARE_MOD				 = 0x16C
 	//SPARE_MOD				 = 0x16D
 	//SPARE_MOD				 = 0x16F
 	//SPARE_MOD				 = 0x170
@@ -421,7 +422,7 @@ enum MODIFIER
 
 };
 
-#define MAX_MODIFIER	       0x16C
+#define MAX_MODIFIER	       0x16D
 
 
 /************************************************************************

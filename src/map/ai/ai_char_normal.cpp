@@ -1429,7 +1429,7 @@ void CAICharNormal::ActionJobAbilityStart()
     {
         m_ActionTargetID = 0;
 
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 87));
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 94)); //was 87 "Unable to use job ability".
 
         m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PJobAbility = NULL;
@@ -1488,6 +1488,38 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+		if (m_PJobAbility->getID() == ABILITY_REWARD)//Reward
+		{
+			CItem* PItem = m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+ 
+			// check player has a pet
+			if (m_PChar->PPet != NULL)
+			{
+				// check player has a buscuit!
+				if (PItem != NULL && (PItem->getID() >= 17016 && PItem->getID() <= 17023))
+				{
+					m_PBattleSubTarget = m_PChar->PPet;
+				}
+				else
+				{
+					//unable to use that item
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 347));
+					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+					m_PJobAbility = NULL;
+					m_PBattleSubTarget = NULL;
+					return;
+				}
+			}
+			else
+			{
+				// player has no pet, cancel
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+       	}
 		if (m_PJobAbility->getID() == ABILITY_SIC){//Sic, check pet TP
 			if(m_PChar->PPet!=NULL && m_PChar->PPet->health.tp<100){ 
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 575));
@@ -1528,7 +1560,6 @@ void CAICharNormal::ActionJobAbilityStart()
 					return;
 				}
 			}
-
 		}
 		if(m_PJobAbility->getID() == ABILITY_SPIRIT_LINK){ 
 			if(m_PChar->PPet == NULL){
@@ -1676,6 +1707,15 @@ void CAICharNormal::ActionJobAbilityFinish()
 			RecastTime -= m_PChar->getMod(MOD_BP_DELAY) * 1000;
 		}
 	}
+	if(m_PJobAbility->getID() == ABILITY_REWARD){
+		CItem* PItem = m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_HEAD]);
+		if(PItem->getID() == 15157 || PItem->getID() == 16104){
+			//TODO: Transform this into an item MOD_REWARD_RECAST perhaps ?
+			//The Bison Warbonnet & Khimaira Bonnet reduces recast time by 10 seconds.
+			RecastTime -= (10 *1000);   // remove 10 seconds
+		}
+	}
+
     m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime);
     m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 
@@ -1748,8 +1788,6 @@ void CAICharNormal::ActionJobAbilityFinish()
         Action.messageID  = m_PJobAbility->getMessage();
         Action.flag       = 0;
 
-
-
 		// handle jump abilities---
 
 		// Jump
@@ -1780,7 +1818,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 100));
 		}
 
-
 		// handle enmity transfer abilities
 		if (m_PJobAbility->getID() == ABILITY_ACCOMPLICE)
 			battleutils::TransferEnmity(m_PChar, m_PBattleSubTarget, (CMobEntity*)m_PBattleSubTarget->PBattleAI->GetBattleTarget(), 50);
@@ -1790,6 +1827,19 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 		m_PChar->m_ActionList.push_back(Action);
 
+
+		if(m_PJobAbility->getID() == ABILITY_REWARD){
+
+			m_PChar->PPet->UpdateHealth();
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, value, 102));
+			
+			//Reward gives enmity to the pet and not the Beastmaster.
+			CBattleEntity* PTarget = m_PChar->PPet->PBattleAI->GetBattleTarget();
+			if(PTarget != NULL && PTarget->objtype == TYPE_MOB)
+			{
+				((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromCure(m_PChar->PPet,m_PChar->PPet->GetMLevel(), value, false);
+			}
+		}
 
         if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
         {
@@ -1804,11 +1854,9 @@ void CAICharNormal::ActionJobAbilityFinish()
         }
 	}
 
-
-
     // TODO: все перенести в скрипты, т.к. система позволяет получать указатель на питомца
 
-	if(m_PJobAbility->getID() == ABILITY_CALL_BEAST){
+	if(m_PJobAbility->getID() == ABILITY_CALL_BEAST || m_PJobAbility->getID() == ABILITY_REWARD){
 		charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
 		m_PChar->pushPacket(new CInventoryFinishPacket());
 	}
@@ -1821,7 +1869,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_SIC;
 		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
 	}
-
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 

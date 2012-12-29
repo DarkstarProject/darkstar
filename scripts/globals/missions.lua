@@ -104,38 +104,38 @@ MOON_READING                  = 23;
 --  Zilart Missions
 -----------------------------------
 
-THE_NEW_FRONTIER			= 0;  -- ± --
-WELCOME_TNORG				= 4;  -- ± --
-KAZAMS_CHIEFTAINESS			= 6;  -- ± --
+THE_NEW_FRONTIER		= 0;  -- ± --
+WELCOME_TNORG			= 4;  -- ± --
+KAZAMS_CHIEFTAINESS		= 6;  -- ± --
 THE_TEMPLE_OF_UGGALEPIH		= 8;  -- ± --
 HEADSTONE_PILGRIMAGE		= 10; -- ± --
 THROUGH_THE_QUICKSAND_CAVES	= 12; -- ± --
 THE_CHAMBER_OF_ORACLES		= 14; -- ± --
 RETURN_TO_DELKFUTTS_TOWER	= 16; -- ± --
-ROMAEVE						= 18; -- ± --
+ROMAEVE				= 18; -- ± --
 THE_TEMPLE_OF_DESOLATION	= 20; -- ± --
 THE_HALL_OF_THE_GODS		= 22; -- ± --
 THE_MITHRA_AND_THE_CRYSTAL	= 23; -- ± --
 THE_GATE_OF_THE_GODS		= 24; -- ± --
-ARK_ANGELS					= 26;
-THE_SEALED_SHRINE			= 27;
-THE_CELESTIAL_NEXUS			= 28;
-AWAKENING					= 30;
-THE_LAST_VERSE				= 31;
+ARK_ANGELS			= 26;
+THE_SEALED_SHRINE		= 27;
+THE_CELESTIAL_NEXUS		= 28;
+AWAKENING			= 30;
+THE_LAST_VERSE			= 31;
 
 -----------------------------------
 --  Promathia Missions
 -----------------------------------
 
-ANCIENT_FLAMES_BECKON			= 0
+ANCIENT_FLAMES_BECKON		= 0
 THE_RITES_OF_LIFE               = 1
 BELOW_THE_ARKS                  = 2
-THE_MOTHERCRYSTALS	            = 3
+THE_MOTHERCRYSTALS	        = 3
 THE_ISLE_OF_FORGOTTEN_SAINTS	= 4
-AN_INVITATION_WEST	            = 5
+AN_INVITATION_WEST	        = 5
 THE_LOST_CITY	                = 6
 DISTANT_BELIEFS	                = 7
-AN_ETERNAL_MELODY	            = 8
+AN_ETERNAL_MELODY	        = 8
 ANCIENT_VOWS	                = 9
 A_TRANSIENT_DREAM               = 10
 THE_CALL_OF_THE_WYRMKING        = 11
@@ -217,7 +217,7 @@ PASSING_GLORY           = 17;
 SWEETS_FOR_THE_SOUL     = 18;
 TEAHOUSE_TUMULT         = 19;
 FINDERS_KEEPERS         = 20;
-SHIELD_OF_DIPLOMACY	    = 21;
+SHIELD_OF_DIPLOMACY	= 21;
 SOCIAL_GRACES           = 22;
 FOILED_AMBITION         = 23;
 PLAYING_THE_PART        = 24;
