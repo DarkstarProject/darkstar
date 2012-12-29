@@ -62,7 +62,7 @@ JEUNO_MISSION             = 12; -- ± --
 MAGICITE_BASTOK           = 13; -- ± --
 DARKNESS_RISING           = 14; -- ± --
 XARCABARD_LAND_OF_TRUTHS  = 15; -- ± --
-RETURN_OF_THE_TALEKEEPER  = 16;
+RETURN_OF_THE_TALEKEEPER  = 16; -- ± --
 THE_PIRATE_S_COVE         = 17;
 THE_FINAL_IMAGE           = 18;
 ON_MY_WAY                 = 19;
@@ -714,7 +714,7 @@ function finishMissionTimeline(player,guard,csid,option)
 	--  4: player:tradeComplete();
 	--  5: player:addRankPoints(number);
 	--  6: player:setRankPoints(0);
-	--  7: player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
+	--  7: player:addPoint(player:getNation(),number); player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS);
 	--  8: player:addGil(GIL_RATE*number); player:messageSpecial(GIL_OBTAINED,GIL_RATE*number);
 	--  9: player:delKeyItem(number);
 	-- 10: player:addKeyItem(number); player:messageSpecial(KEYITEM_OBTAINED,number);
@@ -740,20 +740,20 @@ function finishMissionTimeline(player,guard,csid,option)
 			timeline = {
 				 -- MissionID,{Guard#1 DialogID, option},{Guard#2 DialogID, option},{NPC#1 DialogID, option},{NPC#2 DialogID, option},{function list}
 				 0,{0x03e8,0},{0x07d0,0},{0,0},		{0,0},{{1},{2}}, 													-- MISSION 1-1 (First Mission [START])
-				 0,{0x03fc,0},{0x07e4,0},{0,0},		{0,0},{{4},{5,150},{7},{12}}, 										-- MISSION 1-1
-				 0,{0x03ea,0},{0x07d2,0},{0,0},		{0,0},{{4},{5,150},{7},{12}},										-- MISSION 1-1 [Repeat]
-				 1,{0x03ff,0},{0x07e7,0},{0,0},		{0,0},{{4},{14,0},{5,200},{7},{12}}, 								-- MISSION 1-2
-				 1,{0x03eb,0},{0x07d3,0},{0,0},		{0,0},{{4},{14,0},{5,200},{7},{12}},								-- MISSION 1-2 [Repeat]
+				 0,{0x03fc,0},{0x07e4,0},{0,0},		{0,0},{{4},{5,150},{12}}, 											-- MISSION 1-1
+				 0,{0x03ea,0},{0x07d2,0},{0,0},		{0,0},{{4},{5,150},{12}},											-- MISSION 1-1 [Repeat]
+				 1,{0x03ff,0},{0x07e7,0},{0,0},		{0,0},{{4},{14,0},{5,200},{12}}, 									-- MISSION 1-2
+				 1,{0x03eb,0},{0x07d3,0},{0,0},		{0,0},{{4},{14,0},{5,200},{12}},									-- MISSION 1-2 [Repeat]
 				 2,{0x03ec,0},{0x07d4,0},{0,0},		{0,0},{{11,2},{3,"OptionalCSforSTC",1},{14,0},{6},{8,1000},{12}}, 	-- MISSION 1-3
-				 2,{0x0400,0},{0x07e8,0},{0,0},		{0,0},{{14,0},{5,250},{7},{12}},									-- MISSION 1-3 [Repeat]
-				 3,{0x03ed,0},{0x07d5,0},{0,0},		{0,0},{{9,65},{14,0},{5,300},{7},{12}}, 							-- MISSION 2-1
-				 4,{0,0},	  {0,0},	 {0x02b7,0},{0,0},{{9,44},{14,0},{5,350},{7},{12}}, 							-- MISSION 2-2 (Papal Chambers)
+				 2,{0x0400,0},{0x07e8,0},{0,0},		{0,0},{{14,0},{5,250},{12}},										-- MISSION 1-3 [Repeat]
+				 3,{0x03ed,0},{0x07d5,0},{0,0},		{0,0},{{9,65},{14,0},{5,300},{12}}, 								-- MISSION 2-1
+				 4,{0,0},	  {0,0},	 {0x02b7,0},{0,0},{{9,44},{14,0},{5,350},{12}}, 								-- MISSION 2-2 (Papal Chambers)
 				 5,{0,0},	  {0,0},	 {0x01fb,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}}, 	-- MISSION 2-3 (Halver)
 				10,{0,0},	  {0,0},	 {0x022a,0},{0,0},{{9,237},{14,0},{5,400},{12}}, 								-- MISSION 3-1 (Prince Trion (door))
-				10,{0x03f4,0},{0x07dc,0},{0,0},		{0,0},{{14,0},{5,300},{7},{12}}, 									-- MISSION 3-1 (Guard)[Repeat]
+				10,{0x03f4,0},{0x07dc,0},{0,0},		{0,0},{{14,0},{5,300},{12}}, 										-- MISSION 3-1 (Guard)[Repeat]
 				11,{0x0406,0},{0x07ee,0},{0,0},		{0,0},{{4},{14,2}}, 												-- MISSION 3-2 (dialog with the guard after trade)
 				11,{0,0},	  {0,0},	 {0x022c,0},{0,0},{{14,0},{5,400},{12}}, 										-- MISSION 3-2 (Chalvatot)
-				11,{0x03f5,0},{0x07dd,0},{0,0},		{0,0},{{4},{14,0},{5,400},{7},{12}}, 								-- MISSION 3-2 (Guard)[Repeat]
+				11,{0x03f5,0},{0x07dd,0},{0,0},		{0,0},{{4},{14,0},{5,400},{12}}, 									-- MISSION 3-2 (Guard)[Repeat]
 				12,{0,0},	  {0,0},	 {0x0027,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}}, 							-- MISSION 3-3 (Finish (Nelcabrit))
 				13,{0,0},	  {0,0},	 {0x0024,0},{0,0},{{11,5},{14,0},{13,212},{10,69},{6},{8,10000},{12},{1,14}}, 	-- MISSION 4-1 (Finish (Nelcabrit))
 				14,{0,0},	  {0,0},	 {0x0215,0},{0,0},{{10,72},{14,10}}, 											-- MISSION 5-1 (Finish (Halver))
@@ -773,17 +773,18 @@ function finishMissionTimeline(player,guard,csid,option)
 				 1,{0x01f8,0},{0,0},{0,0},{0,0},{{9,4},{12}}, 															-- MISSION 1-2 (Finish Mission)
 				 2,{0x03F0,0},{0,0},{0,0},{0,0},{{4},{11,2},{8,1000},{12}}, 											-- MISSION 1-3
 				 2,{0x03ED,0},{0,0},{0,0},{0,0},{{4},{8,1000},{12}}, 													-- MISSION 1-3 [Repeat]
-				 3,{0x02c8,0},{0,0},{0,0},{0,0},{{9,12},{14,0},{5,200},{7},{12}}, 										-- MISSION 2-1 (Finish (Ayame))
-				 4,{0x0174,0},{0,0},{0,0},{0,0},{{4},{5,250},{7},{12}}, 												-- MISSION 2-2 (Finish (Alois))
-				 4,{0x0175,0},{0,0},{0,0},{0,0},{{4},{5,250},{7},{12}}, 												-- MISSION 2-2 (Finish (Alois)) [Repeat]
+				 3,{0x02c8,0},{0,0},{0,0},{0,0},{{9,12},{14,0},{5,200},{12}}, 											-- MISSION 2-1 (Finish (Ayame))
+				 4,{0x0174,0},{0,0},{0,0},{0,0},{{4},{5,250},{12}}, 													-- MISSION 2-2 (Finish (Alois))
+				 4,{0x0175,0},{0,0},{0,0},{0,0},{{4},{5,250},{12}}, 													-- MISSION 2-2 (Finish (Alois)) [Repeat]
 				 5,{0x02ca,0},{0,0},{0,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}}, 				-- MISSION 2-3 (Finish (Naji))
 				10,{0x000b,0},{0,0},{0,0},{0,0},{{14,0},{5,350},{12}}, 													-- MISSION 3-1 (Pashhow Marshlands Zone)
-				11,{0x03F2,0},{0,0},{0,0},{0,0},{{4},{5,400},{7},{12}}, 												-- MISSION 3-2
-				11,{0x03EE,0},{0,0},{0,0},{0,0},{{4},{5,400},{7},{12}}, 												-- MISSION 3-2 [Repeat]
+				11,{0x03F2,0},{0,0},{0,0},{0,0},{{4},{5,400},{12}}, 													-- MISSION 3-2
+				11,{0x03EE,0},{0,0},{0,0},{0,0},{{4},{5,400},{12}}, 													-- MISSION 3-2 [Repeat]
 				12,{0x0026,0},{0,0},{0,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}}, 										-- MISSION 3-3 (Finish (Goggehn))
 				13,{0x0023,0},{0,0},{0,0},{0,0},{{11,5},{14,0},{13,212},{10,70},{6},{8,10000},{12},{1,14}}, 			-- MISSION 4-1 (Finish (Goggehn))
 				14,{0x02d2,0},{0,0},{0,0},{0,0},{{14,0},{9,73},{5,600},{12}}, 											-- MISSION 5-1 (Finish (Naji))
-				15,{0x025b,0},{0,0},{0,0},{0,0},{{11,6},{14,0},{9,74},{8,20000},{6},{12}} 								-- MISSION 5-2 (Finish (Naji))
+				15,{0x025b,0},{0,0},{0,0},{0,0},{{11,6},{14,0},{9,74},{8,20000},{6},{12}}, 								-- MISSION 5-2 (Finish (Naji))
+				16,{0x00b6,0},{0,0},{0,0},{0,0},{{14,0},{9,266},{5,650},{12}} 											-- MISSION 6-1 (Finish (Tall Mountain))
 						};
 		end
 	elseif(nation == WINDURST) then
@@ -793,17 +794,17 @@ function finishMissionTimeline(player,guard,csid,option)
 		else
 			timeline = {
 				 0,{0x0079,1},{0x0076,1},{0x0053,1},{0x0060,1},{{1},{2}}, 												-- MISSION 1-1 (First Mission [START])
-				 0,{0x005e,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{5,150},{9,28},{7},{12}}, 						-- MISSION 1-1 (Finish (Hakkuru-Rinkuru))
+				 0,{0x005e,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{5,150},{9,28},{12}}, 							-- MISSION 1-1 (Finish (Hakkuru-Rinkuru))
 				 1,{0x0084,1},{0x0082,1},{0x0068,1},{0x006a,1},{{1},{2}}, 												-- MISSION 1-2 [START]
-				 1,{0x008f,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{5,200},{7},{12}}, 								-- MISSION 1-2 (Finish (Apururu)) [WITHOUT ORB]
-				 1,{0x0091,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{5,250},{7},{12}}, 								-- MISSION 1-2 (Finish (Apururu)) [WITH ORB]
+				 1,{0x008f,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{5,200},{12}}, 									-- MISSION 1-2 (Finish (Apururu)) [WITHOUT ORB]
+				 1,{0x0091,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{5,250},{12}}, 									-- MISSION 1-2 (Finish (Apururu)) [WITH ORB]
 				 2,{0x0095,2},{0x0083,2},{0x006d,2},{0x006f,2},{{1},{2}}, 												-- MISSION 1-3 [START]
 				 2,{0x009A,0},{0x0094,0},{0x0072,0},{0x0074,0},{{11,2},{14,0},{5,300},{8,1000},{12}}, 					-- MISSION 1-3
-				 3,{0x00a8,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{5,350},{7},{12}}, 								-- MISSION 2-1 (Finish (Tosuka-Porika))
-				 4,{0x00C9,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{9,38},{5,400},{7},{12}}, 						-- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed)
-				 4,{0x00CE,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{9,38},{5,400},{7},{12}}, 						-- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed) [Repeat]
-				 4,{0x00C8,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{9,38},{5,250},{7},{12}}, 						-- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed)
-				 4,{0x00D1,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{9,38},{5,250},{7},{12}}, 						-- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed) [Repeat]
+				 3,{0x00a8,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{5,350},{12}}, 									-- MISSION 2-1 (Finish (Tosuka-Porika))
+				 4,{0x00C9,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{9,38},{5,400},{12}}, 							-- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed)
+				 4,{0x00CE,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{9,38},{5,400},{12}}, 							-- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed) [Repeat]
+				 4,{0x00C8,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{9,38},{5,250},{12}}, 							-- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed)
+				 4,{0x00D1,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{9,38},{5,250},{12}}, 							-- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed) [Repeat]
 				 5,{0x0065,0},{0,0},	 {0,0},		{0,0},	   {{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},-- MISSION 2-3 (Finish (Kupipi))
 				10,{0,0},	  {0x0072,0},{0,0},		{0,0},	   {{5,450},{14,0},{12}}, 									-- MISSION 3-1 (Finish (Rhy Epocan))
 				11,{0x0087,0},{0,0},	 {0,0},		{0,0},	   {{5,500},{14,0},{12}}, 									-- MISSION 3-2 (Finish (Zubaba))
@@ -828,7 +829,7 @@ function finishMissionTimeline(player,guard,csid,option)
 					[4] = function (x) player:tradeComplete(); end, 
 					[5] = function (x) if((player:getRankPoints() + messList[2]) > 4000) then player:setRankPoints(4000); else player:addRankPoints(messList[2]); end end, 
 					[6] = function (x) player:setRankPoints(0); end, 
-					[7] = function (x) player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS); end, 
+					[7] = function (x) player:addPoint(player:getNation(),messList[2]); player:messageSpecial(YOUVE_EARNED_CONQUEST_POINTS); end, 
 					[8] = function (x) player:addGil(GIL_RATE*messList[2]); player:messageSpecial(GIL_OBTAINED,GIL_RATE*messList[2]); end, 
 					[9] = function (x) player:delKeyItem(messList[2]); end, 
 					[10] = function (x) player:addKeyItem(messList[2]); player:messageSpecial(KEYITEM_OBTAINED,messList[2]); end,

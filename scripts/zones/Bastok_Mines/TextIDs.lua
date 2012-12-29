@@ -12,8 +12,9 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
 CONQUEST = 10901; -- You've earned conquest points!
        
 -- Mission Dialogs
-ORIGINAL_MISSION_OFFSET = 6439; -- You can consult the “Mission” section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
  YOU_ACCEPT_THE_MISSION = 6434; -- You have accepted the mission.
+ORIGINAL_MISSION_OFFSET = 6439; -- You can consult the “Mission” section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
+EXTENDED_MISSION_OFFSET = 11404; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
  
 -- Dynamis dialogs
 	  YOU_CANNOT_ENTER_DYNAMIS = 11514; -- You cannot enter Dynamis - Bastok for x day (Vana'diel time)

@@ -15,8 +15,9 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
 CONQUEST = 7776; -- You've earned conquest points!
        
 -- Mission Dialogs
-ORIGINAL_MISSION_OFFSET = 7121; -- You can consult the “Mission” section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
  YOU_ACCEPT_THE_MISSION = 7116; -- You have accepted the mission.
+ORIGINAL_MISSION_OFFSET = 7121; -- You can consult the “Mission” section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
+EXTENDED_MISSION_OFFSET = 8241; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Dialog Texts
  PAUJEAN_DIALOG_1 = 7422; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea. Just don't do anything I wouldn't...heh heh.

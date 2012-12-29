@@ -8,11 +8,12 @@
              KEYITEM_OBTAINED = 6436; -- Obtained key item: <keyitem>
 
 -- Mission Dialogs
+	 YOU_ACCEPT_THE_MISSION = 9; -- You have accepted the mission.
     ORIGINAL_MISSION_OFFSET = 14; -- You can consult the “Mission” section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
-     YOU_ACCEPT_THE_MISSION = 9; -- You have accepted the mission.
                   GOOD_LUCK = 7308; -- Good luck on your mission. Bastokers like to do things by the book, so stay out of trouble and follow their rules.
 MISSION_DIALOG_CID_TO_AYAME = 7435; -- Give it to one of his Mythril Musketeers instead. Ayame and Naji should be on guard near the President's Office. Either one will do.
                  ITS_LOCKED = 7846; -- It's locked.
+	EXTENDED_MISSION_OFFSET = 8451; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Shop Texts
       NOGGA_SHOP_DIALOG = 0; -- [UNKNOWN]
