@@ -2,11 +2,10 @@
 -- Area: Metalworks
 -- NPC:  Cid
 -- Starts & Finishes Quest: Cid's Secret, The Usual, Dark Puppet (start)
--- @zone 237
--- @pos -12 -12 1
+-- Involved in Mission: Bastok 7-1
+-- @pos -12 -12 1 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -36,25 +35,29 @@ end;
 
 function onTrigger(player,npc)
 	
-	mLvl = player:getMainLvl();
-	mJob = player:getMainJob();
-	CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
-	LetterKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
+	local CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
+	local LetterKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
+	local currentMission = player:getCurrentMission(BASTOK);
 	
-	if(mJob == 8 and mLvl >= AF2_QUEST_LEVEL and player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
+	if(player:getMainJob() == 8 and player:getMainLvl() >= AF2_QUEST_LEVEL and 
+	   player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
 		player:startEvent(0x02f8); -- Start Quest "Dark Puppet"
-	elseif(player:getCurrentMission(BASTOK) == GEOLOGICAL_SURVEY) then
+	elseif(currentMission == GEOLOGICAL_SURVEY) then
 		if(player:hasKeyItem(RED_ACIDITY_TESTER)) then
 			player:startEvent(0x01f8);
 		elseif(player:hasKeyItem(BLUE_ACIDITY_TESTER) == false) then
 			player:startEvent(0x01f7);
 		end
-	elseif(player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE) then
+	elseif(currentMission == THE_CRYSTAL_LINE) then
 		if(player:hasKeyItem(C_L_REPORTS)) then
 			player:showText(npc,MISSION_DIALOG_CID_TO_AYAME);
 		else
 			player:startEvent(0x01f9);
 		end
+	elseif(currentMission == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 0) then
+		player:startEvent(0x02fb); -- Bastok Mission 7-1
+	elseif(currentMission == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 2) then
+		player:startEvent(0x02fc); -- Bastok Mission 7-1 (with Ki)
 	--Begin Cid's Secret
 	elseif(player:getFameLevel(BASTOK) >= 4 and CidsSecret == QUEST_AVAILABLE) then
 		player:startEvent(0x01fb);
@@ -62,7 +65,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x01fc); --After talking to Hilda, Cid gives information on the item she needs
 	elseif(CidsSecret == QUEST_ACCEPTED and LetterKeyItem == false) then
 		player:startEvent(0x01f6); --Reminder dialogue from Cid if you have not spoken to Hilda
-	elseif(CidsSecret == QUEST_ACCEPTED and LetterKeyItem == true) then
+	elseif(CidsSecret == QUEST_ACCEPTED and LetterKeyItem) then
 		player:startEvent(0x01fd);
 	--End Cid's Secret
     else
@@ -70,6 +73,11 @@ function onTrigger(player,npc)
     end
 	
 end;
+
+-- 0x01f7  0x01f8  0x01f9  0x01fa  0x01f4  0x01f6  0x02d0  0x01fb  0x01fc  0x01fd  0x025b  0x02f3  0x02f8  0x03f2  0x02fb  0x02fc 
+-- 0x030c  0x030e  0x031b  0x031c  0x031d  0x031e  0x031f  0x035d  0x034e  0x0350  0x035e  0x035f  0x0353  0x035a  0x034d  0x034f 
+-- 0x0351  0x0352  0x0354  0x0355  0x0356  0x0357  0x0358  0x0359  0x0364  0x0365  0x0373  0x0374  0x037a  0x037b  0x037c  0x037d 
+-- 0x037e  0x037f  0x0381  0x0382
 
 -----------------------------------
 -- onEventUpdate
@@ -94,7 +102,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x01f7) then
 		player:addKeyItem(BLUE_ACIDITY_TESTER);
 		player:messageSpecial(KEYITEM_OBTAINED, BLUE_ACIDITY_TESTER);
-	elseif(csid == 0x01f8) then
+	elseif(csid == 0x01f8 or csid == 0x02fc) then
 		finishMissionTimeline(player,1,csid,option);
 	elseif(csid == 0x01f9 and option == 0) then
 		if(player:getVar("MissionStatus") == 0) then
@@ -111,6 +119,8 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:addKeyItem(C_L_REPORTS);
 		player:messageSpecial(KEYITEM_OBTAINED, C_L_REPORTS);
+	elseif(csid == 0x02fb) then
+		player:setVar("MissionStatus",1);
     elseif(csid == 0x01fb) then
         player:addQuest(BASTOK,CID_S_SECRET);
     elseif(csid == 0x01fd) then

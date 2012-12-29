@@ -64,7 +64,7 @@ DARKNESS_RISING           = 14; -- ± --
 XARCABARD_LAND_OF_TRUTHS  = 15; -- ± --
 RETURN_OF_THE_TALEKEEPER  = 16; -- ± --
 THE_PIRATE_S_COVE         = 17; -- ± --
-THE_FINAL_IMAGE           = 18;
+THE_FINAL_IMAGE           = 18; -- ± --
 ON_MY_WAY                 = 19;
 THE_CHAINS_THAT_BIND_US   = 20;
 ENTER_THE_TALEKEEPER      = 21;
@@ -104,38 +104,38 @@ MOON_READING                  = 23;
 --  Zilart Missions
 -----------------------------------
 
-THE_NEW_FRONTIER		= 0;  -- ± --
-WELCOME_TNORG			= 4;  -- ± --
-KAZAMS_CHIEFTAINESS		= 6;  -- ± --
+THE_NEW_FRONTIER			= 0;  -- ± --
+WELCOME_TNORG				= 4;  -- ± --
+KAZAMS_CHIEFTAINESS			= 6;  -- ± --
 THE_TEMPLE_OF_UGGALEPIH		= 8;  -- ± --
 HEADSTONE_PILGRIMAGE		= 10; -- ± --
 THROUGH_THE_QUICKSAND_CAVES	= 12; -- ± --
 THE_CHAMBER_OF_ORACLES		= 14; -- ± --
 RETURN_TO_DELKFUTTS_TOWER	= 16; -- ± --
-ROMAEVE				= 18; -- ± --
+ROMAEVE						= 18; -- ± --
 THE_TEMPLE_OF_DESOLATION	= 20; -- ± --
 THE_HALL_OF_THE_GODS		= 22; -- ± --
 THE_MITHRA_AND_THE_CRYSTAL	= 23; -- ± --
 THE_GATE_OF_THE_GODS		= 24; -- ± --
-ARK_ANGELS			= 26;
-THE_SEALED_SHRINE		= 27;
-THE_CELESTIAL_NEXUS		= 28;
-AWAKENING			= 30;
-THE_LAST_VERSE			= 31;
+ARK_ANGELS					= 26;
+THE_SEALED_SHRINE			= 27;
+THE_CELESTIAL_NEXUS			= 28;
+AWAKENING					= 30;
+THE_LAST_VERSE				= 31;
 
 -----------------------------------
 --  Promathia Missions
 -----------------------------------
 
-ANCIENT_FLAMES_BECKON		= 0
+ANCIENT_FLAMES_BECKON			= 0
 THE_RITES_OF_LIFE               = 1
 BELOW_THE_ARKS                  = 2
-THE_MOTHERCRYSTALS	        = 3
+THE_MOTHERCRYSTALS	        	= 3
 THE_ISLE_OF_FORGOTTEN_SAINTS	= 4
-AN_INVITATION_WEST	        = 5
+AN_INVITATION_WEST	       	 	= 5
 THE_LOST_CITY	                = 6
 DISTANT_BELIEFS	                = 7
-AN_ETERNAL_MELODY	        = 8
+AN_ETERNAL_MELODY	        	= 8
 ANCIENT_VOWS	                = 9
 A_TRANSIENT_DREAM               = 10
 THE_CALL_OF_THE_WYRMKING        = 11
@@ -217,7 +217,7 @@ PASSING_GLORY           = 17;
 SWEETS_FOR_THE_SOUL     = 18;
 TEAHOUSE_TUMULT         = 19;
 FINDERS_KEEPERS         = 20;
-SHIELD_OF_DIPLOMACY	= 21;
+SHIELD_OF_DIPLOMACY		= 21;
 SOCIAL_GRACES           = 22;
 FOILED_AMBITION         = 23;
 PLAYING_THE_PART        = 24;
@@ -785,7 +785,9 @@ function finishMissionTimeline(player,guard,csid,option)
 				14,{0x02d2,0},{0,0},{0,0},{0,0},{{14,0},{9,73},{5,600},{12}}, 											-- MISSION 5-1 (Finish (Naji))
 				15,{0x025b,0},{0,0},{0,0},{0,0},{{11,6},{14,0},{9,74},{8,20000},{6},{12}}, 								-- MISSION 5-2 (Finish (Naji))
 				16,{0x00b6,0},{0,0},{0,0},{0,0},{{14,0},{9,266},{5,650},{12}}, 											-- MISSION 6-1 (Finish (Tall Mountain))
-				17,{0x02fa,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,7},{8,40000},{12}} 										-- MISSION 6-2 (Finish (Naji))
+				17,{0x02fa,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,7},{8,40000},{12}}, 									-- MISSION 6-2 (Finish (Naji))
+				18,{0x02fc,0},{0,0},{0,0},{0,0},{{14,0},{9,289},{5,700},{12}}, 											-- MISSION 7-1 (Finish (Cid))
+				19,{0x0000,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,8},{8,60000},{3,"OptionalCSforOMW",1},{12}} 			-- MISSION 7-2 (Finish (Naji))
 						};
 		end
 	elseif(nation == WINDURST) then
