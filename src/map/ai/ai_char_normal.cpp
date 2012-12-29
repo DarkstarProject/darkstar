@@ -651,9 +651,27 @@ void CAICharNormal::ActionRangedStart()
 
 		m_PChar->m_rangedDelay = ((240+((PItem->getDelay()*60)/1000))*1000)/110; //literal time in ms until shot fired
 
+
+		// apply snapshot reduction
+		uint32 SnapShotReductionPercent = 0;
+
+		if (charutils::hasTrait(m_PChar, TRAIT_SNAPSHOT))
+		{
+			// reduction from merits should only apply if the user has the trait
+			SnapShotReductionPercent = m_PChar->PMeritPoints->GetMeritValue(MERIT_SNAPSHOT, m_PChar->GetMLevel());
+		}
+
+		// get any snapshotreduction from gear
+		SnapShotReductionPercent += m_PChar->getMod(MOD_SNAP_SHOT);
+
+		if (SnapShotReductionPercent > 0)
+			m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ( (float)SnapShotReductionPercent / 100));
+
+
+		// do chance for rapid shot
 		if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
 		{
-			uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE,m_PChar->GetMLevel()));
+			uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar->GetMLevel()));
 			if (rand()%100 < chance)
 				m_PChar->m_rangedDelay = 0;
 		}
