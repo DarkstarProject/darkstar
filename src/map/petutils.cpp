@@ -528,6 +528,15 @@ void DespawnPet(CBattleEntity* PMaster)
 
 	CBattleEntity* PPet = PMaster->PPet;
 
+
+	// Crash Fix for null pet, somehow a null pet managed to pass though DSP_DEBUG_BREAK_IF(PMaster->PPet == NULL);
+	// crash occured at switch (PPet->objtype) below
+	if (PPet == NULL)
+	{
+		return;
+	}
+
+
 	switch (PPet->objtype)
 	{
 		case TYPE_PET:
@@ -537,7 +546,8 @@ void DespawnPet(CBattleEntity* PMaster)
 		break;
 		case TYPE_MOB:
 		{
-				if(PMaster->objtype == TYPE_PC){
+				if(PMaster->objtype == TYPE_PC)
+				{
 
 					CMobEntity* PMob = (CMobEntity*)PMaster->PPet;
 					CCharEntity* PChar = (CCharEntity*)PMaster;
