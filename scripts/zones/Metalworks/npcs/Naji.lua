@@ -2,10 +2,10 @@
 -- Area: Metalworks
 -- NPC:  Naji
 -- Involved in Quests: The doorman (finish), Riding on the Clouds 
+-- Involved in Mission: Bastok 6-2
 -- @pos 64 -14 -4 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -39,7 +39,7 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(BASTOK) ~= 255) then
-		currentMission = player:getCurrentMission(BASTOK);
+		local currentMission = player:getCurrentMission(BASTOK);
 		
 		if(currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(ZERUHN_REPORT)) then
 			if(player:seenKeyItem(ZERUHN_REPORT)) then
@@ -63,6 +63,10 @@ function onTrigger(player,npc)
 			player:startEvent(0x02d1);
 		elseif(player:hasKeyItem(BURNT_SEAL)) then
 			player:startEvent(0x02d2);
+		elseif(currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 0) then
+			player:startEvent(0x02f9);
+		elseif(currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 3) then
+			player:startEvent(0x02fa);
 		else
 			player:startEvent(0x02bc);
 		end
@@ -73,6 +77,9 @@ function onTrigger(player,npc)
 	end
 	
 end;
+
+-- 0x02c6  0x02c7  0x02bc  0x02c9  0x02ca  0x02cb  0x02cd  0x02d0  0x02d1  0x02ee  0x03f0  0x03f1  0x02f9
+-- 0x02fa  0x030e  0x0325  0x034d  0x036d  0x03aa  0x03ab  0x03ac  0x03ad  0x03ae  0x03cb  0x03c9  0x03ca
 
 -----------------------------------
 -- onEventUpdate
@@ -116,7 +123,9 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x02d0 and option == 1) then
 		player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);
 		player:setVar("MissionStatus",1);
-	elseif(csid == 0x02ca or csid == 0x02d2) then
+	elseif(csid == 0x02f9) then
+		player:setVar("MissionStatus",1);
+	elseif(csid == 0x02ca or csid == 0x02d2 or csid == 0x02fa) then
 		finishMissionTimeline(player,1,csid,option);
 	end
 	

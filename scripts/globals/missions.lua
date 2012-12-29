@@ -63,7 +63,7 @@ MAGICITE_BASTOK           = 13; -- ± --
 DARKNESS_RISING           = 14; -- ± --
 XARCABARD_LAND_OF_TRUTHS  = 15; -- ± --
 RETURN_OF_THE_TALEKEEPER  = 16; -- ± --
-THE_PIRATE_S_COVE         = 17;
+THE_PIRATE_S_COVE         = 17; -- ± --
 THE_FINAL_IMAGE           = 18;
 ON_MY_WAY                 = 19;
 THE_CHAINS_THAT_BIND_US   = 20;
@@ -784,7 +784,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				13,{0x0023,0},{0,0},{0,0},{0,0},{{11,5},{14,0},{13,212},{10,70},{6},{8,10000},{12},{1,14}}, 			-- MISSION 4-1 (Finish (Goggehn))
 				14,{0x02d2,0},{0,0},{0,0},{0,0},{{14,0},{9,73},{5,600},{12}}, 											-- MISSION 5-1 (Finish (Naji))
 				15,{0x025b,0},{0,0},{0,0},{0,0},{{11,6},{14,0},{9,74},{8,20000},{6},{12}}, 								-- MISSION 5-2 (Finish (Naji))
-				16,{0x00b6,0},{0,0},{0,0},{0,0},{{14,0},{9,266},{5,650},{12}} 											-- MISSION 6-1 (Finish (Tall Mountain))
+				16,{0x00b6,0},{0,0},{0,0},{0,0},{{14,0},{9,266},{5,650},{12}}, 											-- MISSION 6-1 (Finish (Tall Mountain))
+				17,{0x02fa,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,7},{8,40000},{12}} 										-- MISSION 6-2 (Finish (Naji))
 						};
 		end
 	elseif(nation == WINDURST) then

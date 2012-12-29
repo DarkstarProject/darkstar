@@ -24,3 +24,6 @@ ALTAR_COMPLETED = 7183; -- You have already made an offering today.
 
 -- Mining
 MINING_IS_POSSIBLE_HERE = 7202; -- Mining is possible here if you have <item>
+
+-- Other dialog
+NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.

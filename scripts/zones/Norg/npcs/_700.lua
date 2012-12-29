@@ -19,7 +19,8 @@ end;
 
 function onTrigger(player,npc)
 	
-	ZilartMission = player:getCurrentMission(ZILART);
+	local ZilartMission = player:getCurrentMission(ZILART);
+	local currentMission = player:getCurrentMission(BASTOK);
 	
 	if(ZilartMission == WELCOME_TNORG) then
 		player:startEvent(0x0002); -- Zilart Missions 2
@@ -27,6 +28,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x0003); -- Zilart Missions 9
 	elseif(ZilartMission == THE_HALL_OF_THE_GODS) then 
 		player:startEvent(0x00a9); -- Zilart Missions 11
+	elseif(currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x0062); -- Bastok Mission 6-2
 	else
 		player:startEvent(0x0005);
 	end
@@ -34,6 +37,10 @@ function onTrigger(player,npc)
 	return 1;
 	
 end; 
+
+-- 0x00af  0x0005  0x0002  0x0003  0x00a9  0x00ac  0x00ce  0x00eb
+-- 0x00af  0x0000  0x0002  0x0003  0x0004  0x0007  0x0008  0x0009  0x000a  0x0062  0x0063  0x001d  0x000c  0x000d 
+-- 0x0092  0x009e  0x00a4  0x00a9  0x00aa  0x00ab  0x00ac  0x00ad  0x00b0  0x00b1  0x00e8  0x00e9  0x00ea
 
 -----------------------------------
 -- onEventUpdate
@@ -62,6 +69,8 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x00a9 and option == 0) then
 		player:completeMission(ZILART,THE_HALL_OF_THE_GODS);
 		player:addMission(ZILART,THE_MITHRA_AND_THE_CRYSTAL);
+	elseif(csid == 0x0062) then
+		player:setVar("MissionStatus",2);
 	end
 	
 end;
