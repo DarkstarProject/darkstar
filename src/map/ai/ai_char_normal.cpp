@@ -909,10 +909,20 @@ void CAICharNormal::ActionRangedFinish()
 				if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
 					recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
 
-				if(PAmmo!=NULL && rand()%100 > recycleChance)
+				if(PAmmo != NULL && rand()%100 > recycleChance)
 				{
-					// TODO: charutils написать метод для обновления AMMO, чтобы корректно снимать предмет перед удалением
-					charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1); 
+
+					if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
+					{
+						charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+						charutils::UnequipItem(m_PChar,SLOT_AMMO);
+						i = hitCount; // end loop (if barrage), player is out of ammo
+					}
+					else
+					{
+						charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+					}
+
 					m_PChar->pushPacket(new CInventoryFinishPacket());
 				}
 
