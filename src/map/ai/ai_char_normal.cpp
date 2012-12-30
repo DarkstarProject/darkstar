@@ -1548,7 +1548,39 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
        	}
-		if (m_PJobAbility->getID() == ABILITY_SIC){//Sic, check pet TP
+		if (m_PJobAbility->getID() == ABILITY_SNARL)//Snarl
+		{
+			if (m_PChar->PPet != NULL)
+			{
+				if (m_PChar->PPet->PBattleAI->GetBattleTarget() != NULL)
+				{
+					//Has to have a target at the very least.
+					m_PBattleSubTarget = m_PChar->PPet;
+				}
+				else
+				{
+					//574 - <player>'s pet is currently unable to perform that action.
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 574));
+					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+					m_PJobAbility = NULL;
+					m_PBattleSubTarget = NULL;
+					return;
+				}		
+			}
+			else
+			{
+				// player has no pet, cancel
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+		}
+
+		if (m_PJobAbility->getID() == ABILITY_SIC)
+		{
+			//Sic, check pet TP
 			if(m_PChar->PPet!=NULL && m_PChar->PPet->health.tp<100){ 
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 575));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1589,6 +1621,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				}
 			}
 		}
+
 		if(m_PJobAbility->getID() == ABILITY_SPIRIT_LINK){ 
 			if(m_PChar->PPet == NULL){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
@@ -1856,8 +1889,34 @@ void CAICharNormal::ActionJobAbilityFinish()
 		m_PChar->m_ActionList.push_back(Action);
 
 
-		if(m_PJobAbility->getID() == ABILITY_REWARD){
 
+		if (m_PJobAbility->getID() == ABILITY_SNARL)
+		{
+			//Snarl
+			CBattleEntity* PTarget = (CBattleEntity*)m_PBattleSubTarget->PBattleAI->GetBattleTarget();
+
+			if (PTarget != NULL)
+			{
+				switch (PTarget->objtype)
+				{
+				case TYPE_MOB:
+					((CMobEntity*)PTarget)->PEnmityContainer->LowerEnmityByPercent(m_PChar, 100, m_PBattleSubTarget);
+					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 528));  //528 - The <player> uses .. Enmity is transferred to the <player>'s pet.
+					break;
+
+				case TYPE_PET:
+					// pets have no emnity container
+					break;
+
+				case TYPE_PC:
+					PTarget->PBattleAI->SetBattleTarget(m_PBattleSubTarget); //Change target. in prevision of future PvP
+					break;
+				}
+			}
+		}
+
+		if(m_PJobAbility->getID() == ABILITY_REWARD)
+		{
 			m_PChar->PPet->UpdateHealth();
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, value, 102));
 			
@@ -1868,6 +1927,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 				((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromCure(m_PChar->PPet,m_PChar->PPet->GetMLevel(), value, false);
 			}
 		}
+
 
         if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
         {
@@ -1902,7 +1962,11 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 	// Message "player uses..."  for most abilities
 	if(m_PJobAbility->getID() < ABILITY_HEALING_RUBY && 
-		m_PJobAbility->getID() != ABILITY_JUMP && m_PJobAbility->getID() != ABILITY_HIGH_JUMP && m_PJobAbility->getID() != ABILITY_SUPER_JUMP)
+		m_PJobAbility->getID() != ABILITY_JUMP && 
+		m_PJobAbility->getID() != ABILITY_HIGH_JUMP && 
+		m_PJobAbility->getID() != ABILITY_SUPER_JUMP &&
+		m_PJobAbility->getID() != ABILITY_REWARD &&
+		m_PJobAbility->getID() != ABILITY_SNARL)
 	{
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
 	}

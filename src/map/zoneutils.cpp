@@ -306,8 +306,10 @@ void LoadMOBList(CZone* PZone)
 
 			if(PMob->speed != 0)
 			{
-				PMob->speed += map_config.speed_mod;
-				PMob->speedsub += map_config.speed_mod;
+				// This needs correction as mobs run speed is gaining way to much
+
+				//PMob->speed += map_config.speed_mod;
+				//PMob->speedsub += map_config.speed_mod;
 			}
 
 			PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
