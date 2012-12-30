@@ -45,3 +45,6 @@ function hasMawActivated(player,portal)
 	return bit[portal];
 	
 end;
+
+-- TODO:
+-- Past nation teleport

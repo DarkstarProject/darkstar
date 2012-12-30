@@ -318,18 +318,18 @@ function toMaw(player, option)
 		player:setPos(469, 0, 479, 254, 0x58);
 	elseif(option == 12) then	-- North Gustaberg
 		player:setPos(469, 0, 479, 254, 0x6A);
-	--elseif(option == 13) then	-- Jugner Forest [S]
-	--	player:setPos();
-	--elseif(option == 14) then	-- Jugner Forest
-	--	player:setPos();
-	--elseif(option == 15) then	-- Pashhow Marshlands [S]
-	--	player:setPos();
-	--elseif(option == 16) then	-- Pashhow Marshlands
-	--	player:setPos();
-	--elseif(option == 17) then	-- Meriphataud Mountains [S]
-	--	player:setPos();
-	--elseif(option == 18) then	-- Meriphataud Mountains
-	--	player:setPos();
+	elseif(option == 13) then	-- Jugner Forest [S]
+		player:setPos(-117,-8,-519,254,0x52);
+	elseif(option == 14) then	-- Jugner Forest
+		player:setPos(-117,-8,-519,254,0x68);
+	elseif(option == 15) then	-- Pashhow Marshlands [S]
+		player:setPos(418,25,27,105,0x5A);
+	elseif(option == 16) then	-- Pashhow Marshlands
+		player:setPos(418,25,27,105,0x6D);
+	elseif(option == 17) then	-- Meriphataud Mountains [S]
+		player:setPos(597,-32,279,95,0x61);
+	elseif(option == 18) then	-- Meriphataud Mountains
+		player:setPos(597,-32,279,95,0x77);
 	-- Abyessa Maws
 		--Tahrongi Canyon (H-12) 
 		--Konschtat Highlands (I-12) 

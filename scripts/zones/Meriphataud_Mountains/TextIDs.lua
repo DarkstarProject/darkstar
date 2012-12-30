@@ -10,4 +10,5 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
 CONQUEST = 7815; -- You've earned conquest points!
 
 -- General Dialogs
-NOTHING_FOUND = 7406; -- You find nothing.
+  NOTHING_FOUND = 7406; -- You find nothing.
+NOTHING_HAPPENS = 7720; -- Nothing happens...

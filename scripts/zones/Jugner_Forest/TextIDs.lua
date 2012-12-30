@@ -11,3 +11,6 @@ CONQUEST = 7963; -- You've earned conquest points!
 
 -- Logging
 LOGGING_IS_POSSIBLE_HERE = 7812; -- Logging is possible here if you have <item>
+
+-- Other Dialog
+		NOTHING_HAPPENS = 7720; -- Nothing happens...
