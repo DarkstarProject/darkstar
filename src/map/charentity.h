@@ -112,11 +112,11 @@ struct NationTP_t
 	uint32		sandoria;
 	uint32		bastok;
 	uint32		windurst;
-	uint8		ahturhgan;
-	uint8		maw;
-	uint8		pastsandoria;
-	uint8		pastbastok;
-	uint8		pastwindurst;
+	uint32		ahturhgan;
+	uint32		maw;
+	uint32		pastsandoria;
+	uint32		pastbastok;
+	uint32		pastwindurst;
 };
 
 

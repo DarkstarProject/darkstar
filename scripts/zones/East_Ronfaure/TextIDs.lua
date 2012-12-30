@@ -15,4 +15,6 @@ LOGGING_IS_POSSIBLE_HERE = 7403; -- Logging is possible here if you have <item>
       BLESSED_WATERSKIN = 7372; -- To get water, “trade” the waterskin you hold with the river.
      CHEVAL_RIVER_WATER = 7353; -- You fill your waterskin with water from the river. You now have <item>
 NOTHING_OUT_OF_ORDINARY = 6395; -- There is nothing out of the ordinary here.
-  
+ 
+-- Other Dialog
+		NOTHING_HAPPENS = 7248; -- Nothing happens... 

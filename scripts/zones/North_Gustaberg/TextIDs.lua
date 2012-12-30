@@ -10,3 +10,6 @@ ITEM_CANNOT_BE_OBTAINED_TWICE = 6536; -- You cannot obtain the item <item>
   
 -- Conquest
 CONQUEST = 7398; -- You've earned conquest points!
+
+-- Other Dialog
+		NOTHING_HAPPENS = 7283; -- Nothing happens...

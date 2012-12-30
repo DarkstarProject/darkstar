@@ -5017,10 +5017,10 @@ inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1) || lua_isnil(L,2) || !lua_isnumber(L,2));
 	
-	int32 nation = (int32)lua_tointeger(L,1);
-	int32 newTP = (int32)lua_tointeger(L,2);
+	uint16 nation = (uint16)lua_tointeger(L,1);
+	uint32 newTP = (uint32)lua_tointeger(L,2);
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
+	
 	switch(nation) 
 	{
 		case 0: PChar->nationtp.sandoria += newTP; break;

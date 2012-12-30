@@ -23,3 +23,6 @@ KOLAPO_OILAPO_DIALOG = 7325; -- Hi-diddly-diddly! This is the gateway to Windurs
   PAORE_KUORE_DIALOG = 7324; -- Welcome to Windurst! Proceed through this gateway to entaru Port Windurst.
         MAATA_ULAATA = 7326; -- Hello-wello! This is the central tower of the Horutoto Ruins. It's one of the several ancient-wancient magic towers which dot these grasslands.
         IPUPU_DIALOG = 7329; -- I decided to take a little strolly-wolly, but before I realized it, I found myself way out here! Now I am sorta stuck... Woe is me!
+
+-- Other Dialog
+		NOTHING_HAPPENS = 7245; -- Nothing happens...
