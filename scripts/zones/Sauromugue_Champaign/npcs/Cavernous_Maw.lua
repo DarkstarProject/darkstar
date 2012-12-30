@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
@@ -25,9 +26,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(PURE_WHITE_FEATHER) == false) then
+	if(ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) == false) then
 		player:startEvent(0x01f4,2);
-	elseif(hasMawActivated(player,2)) then
+	elseif(ENABLE_WOTG == 1 and hasMawActivated(player,2)) then
 		player:startEvent(0x0388);
 	else
 		player:messageSpecial(NOTHING_HAPPENS);
