@@ -2,7 +2,7 @@
 -- Drakesbane	
 -- Polearm weapon skill	
 -- Skill level: N/A	
--- Delivers a fourfold attack. Chance of critical hit varies with TP. Ryunohige: Aftermath effect varies with TP.	
+-- Delivers a fourfold attack. Chance of params.critical hit varies with TP. Ryunohige: Aftermath effect varies with TP.	
 -- Available only after completing the Unlocking a Myth (Dragoon) quest.	
 -- Aligned with the Flame Gorget & Light Gorget.	
 -- Aligned with the Flame Belt & Light Belt.	
@@ -19,14 +19,15 @@ require("scripts/globals/weaponskills");
 	
 function OnUseWeaponSkill(player, target, wsID)	
 	
-	numHits = 4;
-	ftp100 = 1; ftp200 = 1; ftp300 = 1;
-	str_wsc = 0.5; dex_wsc = 0.0; vit_wsc = 0.0; agi_wsc = 0.0; int_wsc = 0.0; mnd_wsc = 0.0; chr_wsc = 0.0;
-	crit100 = 0.1; crit200 = 0.3; crit300 = 0.5;
-	canCrit = true;
-	acc100 = 0.0; acc200= 0.0; acc300= 0.0;
-	atkmulti = 1;
-	damage, tpHits, extraHits = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
+	local params = {};
+	params.numHits = 4;
+	params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
+	params.str_wsc = 0.5; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+	params.crit100 = 0.1; params.crit200 = 0.3; params.crit300 = 0.5;
+	params.canCrit = true;
+	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
+	params.atkmulti = 1;
+	damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	
 	return tpHits, extraHits, damage;
 	

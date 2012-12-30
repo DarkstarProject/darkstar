@@ -10,44 +10,49 @@
 -- performance of the actual WS (rand numbers, etc)
 require("scripts/globals/status");
 
-function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,  canCrit,crit100,crit200,crit300,  acc100,acc200,acc300,   atkmulti)
-
+--params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
+function doPhysicalWeaponskill(attacker, target, params)
 	--get fstr
-	fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getWeaponDmg());
+	local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getWeaponDmg());
 	
 	--apply WSC
 	local base = attacker:getWeaponDmg() + fstr + 
-		(attacker:getStat(MOD_STR) * str_wsc + attacker:getStat(MOD_DEX) * dex_wsc + 
-		 attacker:getStat(MOD_VIT) * vit_wsc + attacker:getStat(MOD_AGI) * agi_wsc + 
-		 attacker:getStat(MOD_INT) * int_wsc + attacker:getStat(MOD_MND) * mnd_wsc + 
-		 attacker:getStat(MOD_CHR) * chr_wsc) * getAlpha(attacker:getMainLvl());
+		(attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc + 
+		 attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc + 
+		 attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc + 
+		 attacker:getStat(MOD_CHR) * params.chr_wsc) * getAlpha(attacker:getMainLvl());
 		 
 	--Applying fTP multiplier
-	tp = attacker:getTP();
+	local tp = attacker:getTP();
 	if attacker:hasStatusEffect(EFFECT_SEKKANOKI) then
 		tp = 100;
 	end
-	ftp = fTP(tp,ftp100,ftp200,ftp300);
+	local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300);
+	
+	local ignoredDef = 0;
+	if (params.ignoresDef == not nil and params.ignoresDef == true) then
+		ignoredDef = calculatedIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
+	end
 	
 	--get cratio min and max
-	cratio = cRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF)),attacker:getMainLvl(),target:getMainLvl());
-	ccmin = 0;
-	ccmax = 0;
-	hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
-	isSneakValid = attacker:hasStatusEffect(EFFECT_SNEAK_ATTACK);
+	local cratio = cRatio(((attacker:getStat(MOD_ATT) * params.atkmulti) / (target:getStat(MOD_DEF) - ignoredDef)), attacker:getMainLvl(), target:getMainLvl());
+	local ccmin = 0;
+	local ccmax = 0;
+	local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
+	local isSneakValid = attacker:hasStatusEffect(EFFECT_SNEAK_ATTACK);
 	if(isSneakValid and not attacker:isBehind(target))then
 		isSneakValid = false;
 	end
 	attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
 	
-	ccritratio = 0;
-	critrate = 0;
-	ccritratio = cCritRatio( ((attacker:getStat(MOD_ATT)*atkmulti)/target:getStat(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
+	local ccritratio = 0;
+	local critrate = 0;
+	ccritratio = cCritRatio(((attacker:getStat(MOD_ATT) * params.atkmulti) / (target:getStat(MOD_DEF) - ignoredDef)) + 1, attacker:getMainLvl(), target:getMainLvl());
 
-	if(canCrit) then --work out critical hit ratios, by +1ing 
-		critrate = fTP(attacker:getTP(),crit100,crit200,crit300);
+	if(params.canCrit) then --work out critical hit ratios, by +1ing 
+		critrate = fTP(attacker:getTP(),params.crit100,params.crit200,params.crit300);
 		--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
-		nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
+		local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
 		nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100);
 		
 		if(nativecrit > 0.2) then --caps!
@@ -68,18 +73,18 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 	--First hit has 95% acc always. Second hit + affected by hit rate.
 	local double firsthit = math.random();
 	local finaldmg = 0;
-	hitrate = getHitRate(attacker,target,true);
-	if(acc100~=0) then
+	local hitrate = getHitRate(attacker,target,true);
+	if(params.acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
-		hr = accVariesWithTP(getHitRate(attacker,target,false),attacker:getMod(MOD_ACC),attacker:getTP(),acc100,acc200,acc300);
+		hr = accVariesWithTP(getHitRate(attacker,target,false),attacker:getMod(MOD_ACC),attacker:getTP(),params.acc100,params.acc200,params.acc300);
 		hitrate = hr;
 	end
 	
 	local tpHitsLanded = 0;
 	local tpHits = 0;
 	if (firsthit <= hitrate or isSneakValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then
-		if(canCrit or isSneakValid) then
+		if(params.canCrit or isSneakValid) then
 			local double critchance = math.random();
 			if(critchance <= critrate or hasMightyStrikes or isSneakValid) then --crit hit!
 				local double cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
@@ -103,7 +108,7 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 		if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid) then --it hit
 			pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
 			pdif = pdif/1000; --multiplier set.
-			if(canCrit) then
+			if(params.canCrit) then
 				critchance = math.random();
 				if(critchance <= critrate or hasMightyStrikes) then --crit hit!
 					cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
@@ -117,23 +122,22 @@ function doPhysicalWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_ws
 			end
 			tpHitsLanded = tpHitsLanded + 1;
 		end
-		numHits = numHits + 1;
 		tpHits = tpHits + 1;
 	end	
 	
-	numHits = getMultiAttacks(attacker, numHits);
+	local numHits = getMultiAttacks(attacker, params.numHits);
 	
 	local extraHitsLanded = 0;
 	
-	if(numHits>tpHits) then
+	if(numHits>1) then
 		
-		hitsdone = tpHits;
+		local hitsdone = 1;
 		while (hitsdone < numHits) do 
-			chance = math.random();
+			local chance = math.random();
 			if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then --it hit
 				pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
 				pdif = pdif/1000; --multiplier set.
-				if(canCrit) then
+				if(params.canCrit) then
 					critchance = math.random();
 					if(critchance <= critrate or hasMightyStrikes) then --crit hit!
 						cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
@@ -276,6 +280,14 @@ function fTP(tp,ftp1,ftp2,ftp3)
 	return 1; --no ftp mod
 end;
 
+function calculatedIgnoredDef(tp, def, ignore1, ignore2, ignore3)
+	if(tp>=100 and tp <200) then
+		return (ignore1 + ( ((ignore2-ignore1)/100) * (tp-100))*def);
+	elseif(tp>=200 and tp<=300) then
+		return (ignore2 + ( ((ignore3-ignore2)/100) * (tp-200))*def);
+	end
+	return 1; --no def ignore mod
+end
 --Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function cRatio(ratio,atk_lvl,def_lvl)
 	--Level penalty...
@@ -443,32 +455,33 @@ end
 return alpha;
  end; 
  
- function doRangedWeaponskill(attacker,target, numHits,  str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,  canCrit,crit100,crit200,crit300,  acc100,acc200,acc300,   atkmulti)
+ --params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
+ function doRangedWeaponskill(attacker, target, params)
 	--get fstr
-	fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getRangedDmg());
+	local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getRangedDmg());
 
 	--apply WSC
 	local base = attacker:getRangedDmg() + attacker:getAmmoDmg() + fstr + 
-		(attacker:getStat(MOD_STR) * str_wsc + attacker:getStat(MOD_DEX) * dex_wsc + 
-		 attacker:getStat(MOD_VIT) * vit_wsc + attacker:getStat(MOD_AGI) * agi_wsc + 
-		 attacker:getStat(MOD_INT) * int_wsc + attacker:getStat(MOD_MND) * mnd_wsc + 
-		 attacker:getStat(MOD_CHR) * chr_wsc) * getAlpha(attacker:getMainLvl());
+		(attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc + 
+		 attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc + 
+		 attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc + 
+		 attacker:getStat(MOD_CHR) * params.chr_wsc) * getAlpha(attacker:getMainLvl());
 		 
 	--Applying fTP multiplier
-	ftp = fTP(attacker:getTP(),ftp100,ftp200,ftp300);
+	local ftp = fTP(attacker:getTP(),params.ftp100,params.ftp200,params.ftp300);
 	
 	--get cratio min and max
-	cratio = cRatio( ((attacker:getRATT()*atkmulti)/target:getStat(MOD_DEF)),attacker:getMainLvl(),target:getMainLvl());
-	ccmin = 0;
-	ccmax = 0;
-	hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
-	ccritratio = 0;
-	critrate = 0;
-	if(canCrit) then --work out critical hit ratios, by +1ing 
-		ccritratio = cCritRatio( ((attacker:getRATT()*atkmulti)/target:getStat(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
-		critrate = fTP(attacker:getTP(),crit100,crit200,crit300);
+	local cratio = cRatio(((attacker:getRATT() * atkmulti) / (target:getStat(MOD_DEF) - ignoredDef)), attacker:getMainLvl(), target:getMainLvl());
+	local ccmin = 0;
+	local ccmax = 0;
+	local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
+	local ccritratio = 0;
+	local critrate = 0;
+	if(params.canCrit) then --work out critical hit ratios, by +1ing 
+		ccritratio = cCritRatio( ((attacker:getRATT()*params.atkmulti)/target:getStat(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
+		critrate = fTP(attacker:getTP(),params.crit100,params.crit200,params.crit300);
 		--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
-		nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
+		local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
 		if(nativecrit > 0.2) then --caps!
 			nativecrit = 0.2;
 		elseif(nativecrit < 0.05) then
@@ -478,7 +491,7 @@ return alpha;
 	end
 	
 	
-	dmg = base * ftp;  
+	local dmg = base * ftp;  
 	
 	--Applying pDIF
 	local double pdif = math.random((cratio[1]*1000),(cratio[2]*1000)); 
@@ -487,17 +500,17 @@ return alpha;
 	--First hit has 95% acc always. Second hit + affected by hit rate.
 	local double firsthit = math.random();
 	local finaldmg = 0;
-	hitrate = 0.95; --first hit only
-	if(acc100~=0) then
+	local hitrate = 0.95; --first hit only
+	if(params.acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
-		hr = accVariesWithTP(getRangedHitRate(attacker,target,false),attacker:getRACC(),attacker:getTP(),acc100,acc200,acc300);
+		hr = accVariesWithTP(getRangedHitRate(attacker,target,false),attacker:getRACC(),attacker:getTP(),params.acc100,params.acc200,params.acc300);
 		hitrate = hr;
 	end
 	
 	local tpHitsLanded = 0; 
 	if (firsthit <= hitrate) then
-		if(canCrit) then
+		if(params.canCrit) then
 			local double critchance = math.random();
 			if(critchance <= critrate or hasMightyStrikes) then --crit hit!
 				local double cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
@@ -514,7 +527,7 @@ return alpha;
 	
 	local extraHitsLanded = 0;
 	if(numHits>1) then
-		if(acc100==0) then
+		if(params.acc100==0) then
 			--work out acc since we actually need it now
 			hitrate = getRangedHitRate(attacker,target,true);
 		end

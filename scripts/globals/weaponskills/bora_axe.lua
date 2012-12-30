@@ -4,7 +4,7 @@
 -- Skill level: 290
 -- Delivers a single-hit ranged attack at a maximum distance of 15.7'. Chance of binding varies with TP
 -- Bind doesn't always break from hitting mob. 
--- This Weapon Skill's first hit fTP is duplicated for all additional hits
+-- This Weapon Skill's first hit params.ftp is duplicated for all additional hits
 -- Not natively available to RNG 
 -- Aligned with the ?? Gorget. 
 -- Element: Ice	
@@ -21,14 +21,15 @@ require("scripts/globals/weaponskills");
 	
 function OnUseWeaponSkill(player, target, wsID)	
 	
-	numHits = 1;
-	ftp100 = 1.0; ftp200 = 1.0; ftp300 = 1.0;
-	str_wsc = 0.0; dex_wsc = 0.6; vit_wsc = 0.0; agi_wsc = 0.0; int_wsc = 0.0; mnd_wsc = 0.0; chr_wsc = 0.0;
-	crit100 = 0.0; crit200 = 0.0; crit300 = 0.0;
-	canCrit = false;
-	acc100 = 0.0; acc200= 0.0; acc300= 0.0;
-	atkmulti = 3.5;
-	damage, tpHits, extraHits = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
+	local params = {};
+	params.numHits = 1;
+	params.ftp100 = 1.0; params.ftp200 = 1.0; params.ftp300 = 1.0;
+	params.str_wsc = 0.0; params.dex_wsc = 0.6; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
+	params.canCrit = false;
+	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
+	params.atkmulti = 3.5;
+	damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	
 	if damage > 0 and (target:hasStatusEffect(EFFECT_BIND) == false) then
 		target:addStatusEffect(EFFECT_BIND, 1, 0, 20);

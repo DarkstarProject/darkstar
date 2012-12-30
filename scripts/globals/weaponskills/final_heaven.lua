@@ -14,29 +14,30 @@ require("/scripts/globals/weaponskills");
 require("scripts/globals/weaponskills");
 function OnUseWeaponSkill(attacker, target, wsID)
 	
+	local params = {};
 	--number of normal hits for ws
-	numHits = 1;
+	params.numHits = 1;
 
 	--stat-modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc)
-	str_mod = 0.0;		dex_mod = 0.0;
-	vit_mod = 0.6;		agi_mod = 0.0;
-	int_mod = 0.0;		mnd_mod = 0.0;
-	chr_mod = 0.0;
+	params.str_mod = 0.0;		params.dex_mod = 0.0;
+	params.vit_mod = 0.6;		params.agi_mod = 0.0;
+	params.int_mod = 0.0;		params.mnd_mod = 0.0;
+	params.chr_mod = 0.0;
 
-	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function fTP)
-	ftp100 = 3.0; ftp200 = 3.0; ftp300 = 3.0;
+	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function params.ftp)
+	params.ftp100 = 3.0; params.ftp200 = 3.0; params.ftp300 = 3.0;
 
 	--critical modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc)
-	crit100 = 0.0; crit200=0.0; crit300=0.0;
-	canCrit = false;
+	params.crit100 = 0.0; params.crit200=0.0; params.crit300=0.0;
+	params.canCrit = false;
 
 	--accuracy modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc) Keep 0 if ws doesn't have accuracy modification.
-	acc100 = 0.0; acc200=0.0; acc300=0.0;
+	params.acc100 = 0.0; params.acc200=0.0; params.acc300=0.0;
 
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
-	atkMulti = 1;
-	--damage = damage * fTP(attacker:getTP(), ftp100, ftp200, ftp300);
-	damage, tpHits, extraHits = doPhysicalWeaponskill(attacker,target, numHits, str_mod, dex_mod, vit_mod, agi_mod, int_mod, mnd_mod, chr_mod, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, atkMulti);
+	params.atkmulti = 1;
+	--damage = damage * ftp(attacker:getTP(), ftp100, ftp200, ftp300);
+	damage, tpHits, extraHits = doPhysicalWeaponskill(attacker,target, params);
 
 
 

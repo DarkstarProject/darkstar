@@ -2,7 +2,7 @@
 -- Slug Shot	
 -- Marksmanship weapon skill	
 -- Skill Level: 175	
--- Delivers an inaccurate attack that deals quintuple damage. Accuracy varies with TP.	
+-- Delivers an inparams.accurate attack that deals quintuple damage. params.accuracy varies with TP.	
 -- Despite the lack of a STR weaponskill mod, STR is still the most potent stat for increasing this weaponskill's damage to the point at which fSTR2 is capped.	
 -- Aligned with the Aqua Gorget, Light Gorget & Breeze Gorget.	
 -- Aligned with the Aqua Belt, Light Belt & Breeze Belt.	
@@ -19,14 +19,15 @@ require("scripts/globals/weaponskills");
 	
 function OnUseWeaponSkill(player, target, wsID)	
 	
-	numHits = 1;
-	ftp100 = 5; ftp200 = 5; ftp300 = 5;
-	str_wsc = 0.0; dex_wsc = 0.0; vit_wsc = 0.0; agi_wsc = 0.3; int_wsc = 0.0; mnd_wsc = 0.0; chr_wsc = 0.0;
-	crit100 = 0.0; crit200 = 0.0; crit300 = 0.0;
-	canCrit = false;
-	acc100 = 0.8; acc200= 0.9; acc300= 1;
-	atkmulti = 1;
-	damage, tpHits, extraHits = doRangedWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
+	local params = {};
+	params.numHits = 1;
+	params.ftp100 = 5; params.ftp200 = 5; params.ftp300 = 5;
+	params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.3; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
+	params.canCrit = false;
+	params.acc100 = 0.8; params.acc200= 0.9; params.acc300= 1;
+	params.atkmulti = 1;
+	damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 	
 	return tpHits, extraHits, damage;
 	

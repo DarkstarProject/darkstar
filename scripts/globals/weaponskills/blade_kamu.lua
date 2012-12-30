@@ -2,7 +2,7 @@
 -- Blade Kamu	
 -- Katana weapon skill	
 -- Skill Level: N/A	
--- Lowers target's accuracy. Duration of effect varies with TP. Nagi: Aftermath effect varies with TP.	
+-- Lowers target's params.accuracy. Duration of effect varies with TP. Nagi: Aftermath effect varies with TP.	
 -- Effect lasts 60 seconds @ 100 TP, 90 seconds @ 200 TP, and 120 seconds @ 300 TP	
 -- Available only after completing the Unlocking a Myth (Ninja) quest.	
 -- Aligned with the Shadow Gorget, Thunder Gorget & Breeze Gorget.	
@@ -20,14 +20,15 @@ require("scripts/globals/weaponskills");
 	
 function OnUseWeaponSkill(player, target, wsID)	
 	
-	numHits = 1;
-	ftp100 = 1; ftp200 = 1; ftp300 = 1;
-	str_wsc = 0.5; dex_wsc = 0.0; vit_wsc = 0.0; agi_wsc = 0.0; int_wsc = 0.5; mnd_wsc = 0.0; chr_wsc = 0.0;
-	crit100 = 0.0; crit200 = 0.0; crit300 = 0.0;
-	canCrit = false;
-	acc100 = 0.0; acc200= 0.0; acc300= 0.0;
-	atkmulti = 1;
-	damage, tpHits, extraHits = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
+	local params = {};
+	params.numHits = 1;
+	params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
+	params.str_wsc = 0.5; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.5; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
+	params.canCrit = false;
+	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
+	params.atkmulti = 1;
+	damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	if damage > 0 then	
 		tp = player:getTP();
 		duration = (tp/100 * 30) + 30;

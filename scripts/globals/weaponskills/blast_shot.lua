@@ -2,7 +2,7 @@
 -- Blast Shot	
 -- Marksmanship weapon skill	
 -- Skill Level: 200	
--- Delivers a melee-distance ranged attack. Accuracy varies with TP.	
+-- Delivers a melee-distance ranged attack. params.accuracy varies with TP.	
 -- Aligned with the Snow Gorget & Light Gorget.	
 -- Aligned with the Snow Belt & Light Belt.	
 -- Element: None	
@@ -18,14 +18,15 @@ require("scripts/globals/weaponskills");
 	
 function OnUseWeaponSkill(player, target, wsID)	
 	
-	numHits = 1;
-	ftp100 = 2; ftp200 = 2; ftp300 = 2;
-	str_wsc = 0.0; dex_wsc = 0.0; vit_wsc = 0.0; agi_wsc = 0.3; int_wsc = 0.0; mnd_wsc = 0.0; chr_wsc = 0.0;
-	crit100 = 0.0; crit200 = 0.0; crit300 = 0.0;
-	canCrit = false;
-	acc100 = 0.8; acc200= 0.9; acc300= 1;
-	atkmulti = 1;
-	damage, tpHits, extraHits = doRangedWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
+	local params = {};
+	params.numHits = 1;
+	params.ftp100 = 2; params.ftp200 = 2; params.ftp300 = 2;
+	params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.3; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
+	params.canCrit = false;
+	params.acc100 = 0.8; params.acc200= 0.9; params.acc300= 1;
+	params.atkmulti = 1;
+	damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 	
 	return tpHits, extraHits, damage;
 	

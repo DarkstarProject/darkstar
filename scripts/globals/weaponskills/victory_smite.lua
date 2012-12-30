@@ -2,7 +2,7 @@
 -- Victory Smite
 -- Hand-to-Hand Weapon Skill
 -- Skill Level: N/A
--- Description: Delivers a fourfold attack. Chance of critical hit varies with TP.
+-- Description: Delivers a fourfold attack. Chance of params.critical hit varies with TP.
 -- Must have Verethragna (85)/(90)/(95)/(99)/(99-2) or Revenant Fists +1/+2/+3 equipped.
 -- Aligned with the Light Gorget, Breeze Gorget & Thunder Gorget.
 -- Aligned with the Light Belt, Breeze Belt & Thunder Belt.    
@@ -12,7 +12,7 @@
 -- Damage Multipliers by TP:
 -- 100%TP	200%TP	300%TP
 -- 2.25		2.25	2.25
--- Critical Chance added with TP:
+-- params.critical Chance added with TP:
 -- 100%TP	200%TP	300%TP
 -- 10%		25%		45%
 --
@@ -24,13 +24,14 @@ require("scripts/globals/weaponskills");
         
 function OnUseWeaponSkill(player, target, wsID) 
         
-        numHits = 4;
-        ftp100 = 2.25; ftp200 = 2.25; ftp300 = 2.25;
-        str_wsc = 0.6; dex_wsc = 0.0; vit_wsc = 0.0; agi_wsc = 0.0; int_wsc = 0.0; mnd_wsc = 0.0; chr_wsc = 0.0;
-        crit100 = 0.1; crit200 = 0.25; crit300 = 0.45;
-        canCrit = true;
-        acc100 = 0.0; acc200= 0.0; acc300= 0.0;
-        atkmulti = 1;
-        damage, tpHits, extraHits = doPhysicalWeaponskill(player,target,numHits,str_wsc,dex_wsc,vit_wsc,agi_wsc,int_wsc,mnd_wsc,chr_wsc,canCrit,crit100,crit200,crit300,acc100,acc200,acc300,atkmulti);
-        return tpHits, extraHits, damage;
+	local params = {};
+	params.numHits = 4;
+	params.ftp100 = 2.25; params.ftp200 = 2.25; params.ftp300 = 2.25;
+	params.str_wsc = 0.6; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+	params.crit100 = 0.1; params.crit200 = 0.25; params.crit300 = 0.45;
+	params.canCrit = true;
+	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
+	params.atkmulti = 1;
+	damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+	return tpHits, extraHits, damage;
 end     
