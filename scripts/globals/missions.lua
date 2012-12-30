@@ -14,7 +14,7 @@ CAMPAIGN = 8;
 ACP      = 9;
 
 -----------------------------------
---  San d'Oria
+--  San d'Oria (0)
 -----------------------------------
 
 SMASH_THE_ORCISH_SCOUTS = 0;  -- ± --
@@ -43,7 +43,7 @@ BREAKING_BARRIERS       = 22;
 THE_HEIR_TO_THE_LIGHT   = 23;
 
 -----------------------------------
---  Bastok
+--  Bastok (1)
 -----------------------------------
 
 THE_ZERUHN_REPORT         = 0;  -- ± --
@@ -72,7 +72,7 @@ THE_SALT_OF_THE_EARTH     = 22;
 WHERE_TWO_PATHS_CONVERGE  = 23;
 
 -----------------------------------
---  Windurst
+--  Windurst (2)
 -----------------------------------
 
 THE_HORUTOTO_RUINS_EXPERIMENT = 0;  -- ± --
@@ -101,7 +101,7 @@ DOLL_OF_THE_DEAD              = 22;
 MOON_READING                  = 23;
 
 -----------------------------------
---  Zilart Missions
+--  Zilart Missions (3)
 -----------------------------------
 
 THE_NEW_FRONTIER			= 0;  -- ± --
@@ -124,7 +124,7 @@ AWAKENING					= 30;
 THE_LAST_VERSE				= 31;
 
 -----------------------------------
---  Promathia Missions
+--  Promathia Missions (6)
 -----------------------------------
 
 ANCIENT_FLAMES_BECKON			= 0
@@ -193,7 +193,7 @@ DAWN                            = 62
 THE_LAST_VERSE                  = 63
 
 -----------------------------------
---  Aht Urhgan Missions
+--  Aht Urhgan Missions (4)
 -----------------------------------
 
 LAND_OF_SACRED_SERPENTS = 0;
@@ -246,70 +246,166 @@ THE_EMPRESS_CROWNED     = 46;
 ETERNAL_MERCENARY       = 47;
 
 -----------------------------------
---
+--  Wings of the Goddess (5)
 -----------------------------------
 
---jAuriya|Moki:	Old function, will likely be further tested and rewritten later
+CAVERNOUS_MAWS				= 0;
+BACK_TO_THE_BEGINNING		= 1;
+CAIT_SITH					= 2;
+THE_QUEEN_OF_THE_DANCE		= 3;
+WHILE_THE_CAT_IS_AWAY		= 4;
+A_TIMESWEPT_BUTTERFLY		= 5;
+PURPLE,_THE_NEW_BLACK		= 6;
+IN_THE_NAME_OF_THE_FATHER	= 7;
+DANCERS_IN_DISTRESS			= 8;
+DAUGHTER_OF_A_KNIGHT		= 9;
+A_SPOONFUL_OF_SUGAR			= 10;
+AFFAIRS_OF_STATE			= 11;
+BORNE_BY_THE_WIND			= 12;
+A_NATION_ON_THE_BRINK		= 13;
+CROSSROADS_OF_TIME			= 14;
+SANDSWEPT_MEMORIES			= 15;
+NORTHLAND_EXPOSURE			= 16;
+TRAITOR_IN_THE_MIDST		= 17;
+BETRAYAL_AT_BEAUCEDINE		= 18;
+ON_THIN_ICE					= 19;
+PROOF_OF_VALOR				= 20;
+A_SANGUINARY_PRELUDE		= 21;
+DUNGEONS_AND_DANCERS		= 22;
+DISTORTER_OF_TIME			= 23;
+THE_WILL_OF_THE_WORLD		= 24;
+FATE_IN_HAZE				= 25;
+THE_SCENT_OF_BATTLE			= 26;
+ANOTHER_WORLD				= 27;
+A_HAWK_IN_REPOSE			= 28;
+THE_BATTLE_OF_XARCABARD		= 29;
+PRELUDE_TO_A_STORM			= 30;
+STORM_S_CRESCENDO			= 31;
+INTO_THE_BEAST_S_MAW		= 32;
+THE_HUNTER_ENSNARED			= 33;
+FLIGHT_OF_THE_LION			= 34;
+FALL_OF_THE_HAWK			= 35;
+DARKNESS_DESCENDS			= 36;
+ADIEU__LILISETTE			= 37;
+BY_THE_FADING_LIGHT			= 38;
+EDGE_OF_EXISTENCE			= 39;
+HER_MEMORIES				= 40;
+FORGET_ME_NOT				= 41;
+PILLAR_OF_HOPE				= 42;
+GLIMMER_OF_LIFE				= 43;
+TIME_SLIPS_AWAY				= 44;
+WHEN_WILLS_COLLIDE			= 45;
+WHISPERS_OF_DAWN			= 46;
+A_DREAMY_INTERLUDE			= 47;
+CAIT_IN_THE_WOODS			= 48;
+FORK_IN_THE_ROAD			= 49;
+MAIDEN_OF_THE_DUSK			= 50;
+WHERE_IT_ALL_BEGAN			= 51;
+A_TOKEN_OF_TROTH			= 52;
+LEST_WE_FORGET				= 53;
+
+
+-----------------------------------
+--  Assualt (7)
+-----------------------------------
+
+LEUJAOAM_CLEANSING					= 1;
+ORICHALCUM_SURVEY					= 2;
+ESCORT_PROFESSOR_CHANOIX			= 3;
+SHANARHA_GRASS_CONSERVATION			= 4;
+COUNTING_SHEEP						= 5;
+SUPPLIES_RECOVERY					= 6;
+AZURE_EXPERIMENTS					= 7;
+IMPERIAL_CODE						= 8;
+RED_VERSUS_BLUE						= 9;
+BLOODY_RONDO						= 10;
+IMPERIAL_AGENT_RESCUE				= 11;
+PREEMPTIVE_STRIKE					= 12;
+SAGELORD_ELIMINATION				= 13;
+BREAKING_MORALE						= 14;
+THE_DOUBLE_AGENT					= 15;
+IMPERIAL_TREASURE_RETRIEVAL			= 16;
+BLITZKRIEG							= 17;
+MARIDS_IN_THE_MIST					= 18;
+AZURE_AILMENTS						= 19;
+THE_SUSANOO_SHUFFLE					= 20;
+EXCAVATION_DUTY						= 21;
+LEBROS_SUPPLIES						= 22;
+TROLL_FUGITIVES						= 23;
+EVADE_AND_ESCAPE					= 24;
+SIEGEMASTER_ASSASSINATION			= 25;
+APKALLU_BREEDING					= 26;
+WAMOURA_FARM_RAID					= 27;
+EGG_CONSERVATION					= 28;
+OPERATION__BLACK_PEARL				= 29;
+BETTER_THAN_ONE						= 30;
+SEAGULL_GROUNDED					= 31;
+REQUIEM								= 32;
+SAVING_PRIVATE_RYAAF				= 33;
+SHOOTING_DOWN_THE_BARON				= 34;
+BUILDING_BRIDGES					= 35;
+STOP_THE_BLOODSHED					= 36;
+DEFUSE_THE_THREAT					= 37;
+OPERATION__SNAKE_EYES				= 38;
+WAKE_THE_PUPPET						= 39;
+THE_PRICE_IS_RIGHT					= 40;
+GOLDEN_SALVAGE						= 41;
+LAMIA_NO_13							= 42;
+EXTERMINATION						= 43;
+DEMOLITION_DUTY						= 44;
+SEARAT_SALVATION					= 45;
+APKALLU_SEIZURE						= 46;
+LOST_AND_FOUND						= 47;
+DESERTER							= 48;
+DESPERATELY_SEEKING_CEPHALOPODS		= 49;
+BELLEROPHON_S_BLISS					= 50;
+NYZUL_ISLE_INVESTIGATION			= 51;
+NYZUL_ISLE_UNCHARTED_AREA_SURVEY	= 52;
+
+-----------------------------------
+--  Campaign (8)
+-----------------------------------
+
+-----------------------------------
+--  ACP (9)
+-----------------------------------
+A_CRYSTALLINE_PROPHECY	=  0;
+THE_ECHO_AWAKENS		=  1;
+GATHERER_OF_LIGHT		=  3;
+
 function rankPointMath(rank)
 	return 0.372*rank^2 - 1.62*rank + 6.2;
 end
 
---jAuriya|Moki:	Old function as well, I have only uncommented this
 function getMissionRankPoints(player, missionID)
-	if (missionID == 3) then                   	-- mission 2.1
-		crystals = 9;
-	elseif (missionID == 4) then                -- mission 2.2
-		crystals = 17;
-	elseif (missionID == 5) then                -- mission 2.3
-		crystals = 42;
-	elseif (missionID == 10) then               -- mission 3.1
-		crystals = 12;														-- 1 stack needed to unlock
-	elseif (missionID == 11) then               -- mission 3.2
-		crystals = 30;														-- 2.5 stacks needed to unlock (2 stacks of crystals + 3.1 rank points corresponding to half a stack)
-	elseif (missionID == 12) then               -- mission 3.3
-		crystals = 48;														-- 4 stacks to unlock (3.5 stacks + 3.1 rank points corresponding to half a stack)
-	elseif (missionID == 13) then               -- Magicite mission
-		crystals = 36;														-- 3 stacks to unlock
-																							-- 5.1 starts directly after Magicite, no crystals needed
-	elseif (missionID == 15) then               -- mission 5.2 (shadow lord fight)
-		crystals = 44;														-- Mission unlocks at 50% rank bar ~= 44 crystals using the present formula.
-
-	elseif (missionID == 16) then               -- mission 6.1
-		crystals = 36;														-- 3 stacks to unlock
-	elseif (missionID == 17) then               -- mission 6.2
-		crystals = 93;														-- 3 additional stacks to unlock + 3 original stacks + 21 from mission 6.1
-
-	elseif (missionID == 18) then               -- mission 7.1
-		crystals = 45;														-- 45 needed, from http://wiki.ffxiclopedia.org/wiki/The_Final_Image
-																							-- (http://wiki.ffxiclopedia.org/wiki/Prestige_of_the_Papsque says 47 though)
-	elseif (missionID == 19) then               -- mission 7.2
-		crystals = 119;														-- 4 additional stacks needed, plus mission reward of 26
-
-	elseif (missionID == 20) then               -- mission 8.1
-		crystals = 57;														-- 4 3/4 stacks needed
-	elseif (missionID == 21) then               -- mission 8.2
-		crystals = 148;														-- 5 additional stacks needed, plus mission reward of 31,
-
-	elseif (missionID == 22) then               -- mission 9.1
-		crystals = 96;														-- 8 stacks needed (higher value chosen so final rank bar requirement is closer to 90%)
-	elseif (missionID == 23) then               -- mission 9.2
-		crystals = 228;														-- Additional 8 stacks needed, plus mission reward of 36 (87% rank bar)
+	if     (missionID ==  3) then crystals = 9;
+	elseif (missionID ==  4) then crystals = 17;
+	elseif (missionID ==  5) then crystals = 42;
+	elseif (missionID == 10) then crystals = 12;					-- 1 stack needed to unlock
+	elseif (missionID == 11) then crystals = 30;					-- 2.5 stacks needed to unlock (2 stacks of crystals + 3.1 rank points corresponding to half a stack)
+	elseif (missionID == 12) then crystals = 48;					-- 4 stacks to unlock (3.5 stacks + 3.1 rank points corresponding to half a stack)
+	elseif (missionID == 13) then crystals = 36;					-- 3 stacks to unlock
+	-- 5.1 starts directly after Magicite, no crystals needed
+	elseif (missionID == 15) then crystals = 44;					-- Mission unlocks at 50% rank bar ~= 44 crystals using the present formula.
+	elseif (missionID == 16) then crystals = 36;					-- 3 stacks to unlock
+	elseif (missionID == 17) then crystals = 93;					-- 3 additional stacks to unlock + 3 original stacks + 21 from mission 6.1
+	elseif (missionID == 18) then crystals = 45;					-- 45 needed, from http://wiki.ffxiclopedia.org/wiki/The_Final_Image
+	elseif (missionID == 19) then crystals = 119;					-- 4 additional stacks needed, plus mission reward of 26
+	elseif (missionID == 20) then crystals = 57;					-- 4 3/4 stacks needed
+	elseif (missionID == 21) then crystals = 148;					-- 5 additional stacks needed, plus mission reward of 31,
+	elseif (missionID == 22) then crystals = 96;					-- 8 stacks needed (higher value chosen so final rank bar requirement is closer to 90%)
+	elseif (missionID == 23) then crystals = 228;					-- Additional 8 stacks needed, plus mission reward of 36 (87% rank bar)
 	end;
 
 	points_needed = 1024 * (crystals-.25) / (3*rankPointMath(player:getRank()));
-	--printf("Got [%d/%d] for Mission with ID: %d", player:getRankPoints(), points_needed, missionID);
+
 	if(player:getRankPoints() >= points_needed) then
 		return 1;
 	else
 		return 0;
 	end
-	
-	--return (true);
 end;
 
-
---jAuriya|Moki:	Pretty much re-did the entire function, this way it's customizable, for example if
---				someone later would want to run a server that has all missions repeatable, etc
 function getMissionMask(player)
 	rank = player:getRank()
 	nation = player:getNation();  -- 0 = San d'Oria ; 1 = Bastok ; 2 = Windurst
@@ -368,16 +464,12 @@ function getMissionMask(player)
 		end
 		if(rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
-			--if(player:hasCompletedMission(WINDURST,MAGICITE) == false and getMissionRankPoints(player,0) == 1) then
-				-- 4-1 NOTE: This mission will not be listed in the Mission List
-				--first_mission = first_mission + 8192;
-			--end
+			first_mission = first_mission + 8192;
 		end
 		if(rank == 5) then
-			--if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
-				-- 5-1 NOTE: This mission will not be listed in the Mission List
-				--first_mission = first_mission + 16384;
-			--end
+			if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+				first_mission = first_mission + 16384;
+			end
 			if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) and player:hasCompletedMission(WINDURST,THE_SHADOW_AWAITS) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
@@ -465,16 +557,12 @@ function getMissionMask(player)
 		end
 		if(rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
-			--if(player:hasCompletedMission(SANDORIA,MAGICITE_SAN_D_ORIA) == false and getMissionRankPoints(player,0) == 1) then
-				-- 4-1 NOTE: This mission will not be listed in the Mission List
-				--first_mission = first_mission + 8192;
-			--end
+			first_mission = first_mission + 8192;
 		end
 		if(rank == 5) then
-			--if(player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(69) == false) then
-				-- 5-1 NOTE: This mission will not be listed in the Mission List
-				--first_mission = first_mission + 16384;
-			--end
+			if(player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(69) == false) then
+				first_mission = first_mission + 16384;
+			end
 			if(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
@@ -563,16 +651,12 @@ function getMissionMask(player)
 		end
 		if(rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
-			--if(player:hasCompletedMission(BASTOK,MAGICITE_BASTOK) == false and getMissionRankPoints(player,0) == 1) then
-				-- 4-1 NOTE: This mission will not be listed in the Mission List
-				--first_mission = first_mission + 8192;
-			--end
+			first_mission = first_mission + 8192;
 		end
 		if(rank == 5) then
-			--if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
-				-- 5-1 NOTE: This mission will not be listed in the Mission List
-				--first_mission = first_mission + 16384;
-			--end
+			if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
+				first_mission = first_mission + 16384;
+			end
 			if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) and player:hasCompletedMission(BASTOK,XARCABARD_LAND_OF_TRUTHS) == false and getMissionRankPoints(player,15) == 1) then
 				-- 5-2
 				first_mission = first_mission + 32768;
@@ -620,7 +704,8 @@ function getMissionMask(player)
 		mission_mask = 2147483647 - 16384;
 	else	
 		mission_mask = 2147483647 - repeat_mission - first_mission; -- 2^31 -1 - ..
-		end
+	end
+	
 	return mission_mask,repeat_mission;
 end;
 

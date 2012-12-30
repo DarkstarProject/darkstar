@@ -126,9 +126,9 @@ end;
 	
 function toWindurstMissionOverseer(player)
 	which = player:getVar("firstmissionguard");
-	if (which == 1) then
+	if(which == 1) then
 		player:setPos(0, -16, 122, 198, 0xEF); -- Zokima-Rokima in Windurst Walls
-	elseif (which == 2) then
+	elseif(which == 2) then
 		player:setPos(107, -5, -24, 248, 0xF1); -- Rakoh Buuma in Windurst Woods
 	end;
 end;
@@ -250,46 +250,96 @@ end;
 -- -----------------
 
 function toCampaignDestination(player, option)
-	if (option == 1) then 
+	if(option == 1) then 
 		player:setPos(205.973,-23.5875,-206.606, 167, 0x89); -- Xarcabard [S] {R}
-	elseif (option == 2) then
+	elseif(option == 2) then
 		player:setPos(-46.172,-60.1088,-38.487, 16, 0x88); -- Beaucedine Glacier [S] {R}
-	elseif (option == 3) then 
+	elseif(option == 3) then 
 		player:setPos(306.939, -1, -141.567, 173, 0x54); -- Batallia Downs [S] {R}
-	elseif (option == 4) then 
+	elseif(option == 4) then 
 		player:setPos(-4.701, 15.981, 235.996, 160, 0x5B); -- Rolanberry Fields [S] {R}
-	elseif (option == 5) then 
+	elseif(option == 5) then 
 		player:setPos(-64.212, 7.579, -51.292, 192, 0x62); -- Sauromugue Champaign [S] {R}
-	elseif (option == 6) then 
+	elseif(option == 6) then 
 		player:setPos(60.617, -3.952, 56.658, 64, 0x52); -- Jugner Forest [S] {R}
-	elseif (option == 7) then 
+	elseif(option == 7) then 
 		player:setPos(504.088, 24.442, 628.36, 69, 0x5A); -- Pashhow Marshlands [S] {R}
-	elseif (option == 8) then 
+	elseif(option == 8) then 
 		player:setPos(-447.084, 23.433, 586.847, 31, 0x61); -- Meriphataud Mountains [S] {R}
-	elseif (option == 9) then 
+	elseif(option == 9) then 
 		player:setPos(-77.817, -47.234, -302.732, 135, 0x53); -- Vunkerl Inlet [S] {R}
-	elseif (option == 10) then 
+	elseif(option == 10) then 
 		player:setPos(314.335, -36.368, -12.2, 192,0x59); -- Grauberg [S] {R}
-	elseif (option == 11) then 
+	elseif(option == 11) then 
 		player:setPos(141.021, -45, 19.543, 0, 0x60); -- Fort Karugo-Narugo [S] {R} 
-	elseif (option == 12) then
+	elseif(option == 12) then
 		player:setPos(183.297, -19.9714, -240.895, 2, 0x51); -- East Ronfaure [S] {R}
-	elseif (option == 13) then
+	elseif(option == 13) then
 		player:setPos(-441.332, 40, -77.986, 164, 0x58); -- North Gustaberg [S] {R}
-	elseif (option == 14) then
+	elseif(option == 14) then
 		player:setPos(-104.707, -21.838, 258.043, 237, 0x5f);	-- West Sarutabaruta [S] {R}
-	elseif (option == 15) then
+	elseif(option == 15) then
 		player:setPos(-98, 1, -41, 224, 0x50);	-- Southern San d'Oria [S] {approximated from memory}
-	elseif (option == 16) then
+	elseif(option == 16) then
 		player:setPos(-291, -10, -107, 212, 0x57); -- Bastok Markets [S] {appoximated from memory}
-	elseif (option == 17) then 
+	elseif(option == 17) then 
 		player:setPos(-31.442, -5, 129.202, 128, 0x5E); --  Windurst Waters [S} {R}
-	elseif (option == 18) then
+	elseif(option == 18) then
 		player:setPos(-194.095, 0, 30.009, 0, 0xA4); -- Garlaige Citdadel [S] {R}
-	elseif (option == 19) then
+	elseif(option == 19) then
 		player:setPos(59.213, -32.158, -38.022, 64, 0xAB); -- Crawler's Nest [S] {R}
-	elseif (option == 20) then
+	elseif(option == 20) then
 		player:setPos(294.35, -27.5, 19.947, 0, 0xAF); -- The Eldieme Necropolis [S] {R}
+	end;
+end;
+
+function toMaw(player, option)
+	if(option == 1) then 		-- Batallia Downs [S]
+		player:setPos(-48, 0, 437, 52, 0x54);
+	elseif(option == 2) then	-- Batallia Downs
+		player:setPos(-49, 0, 435, 1, 0x69);
+	elseif(option == 3) then	-- Rolanberry Fields [S]
+		player:setPos(-190, -8, 363, 11, 0x5b);
+	elseif(option == 4) then	-- Rolanberry Fields
+		player:setPos(-193, 8, 360, 0, 0x6e);
+	elseif(option == 5) then	-- Sauromugue Champaign [S]
+		player:setPos(372, 9, -228, 27, 0x62);
+	elseif(option == 6) then	-- Sauromugue Champaign
+		player:setPos(370, 8, -228, 0, 0x78);
+	elseif(option == 7) then	-- West Sarutabaruta [S]
+		player:setPos(0, 0, -164, 29, 0x5f);
+	elseif(option == 8) then	-- West Sarutabaruta
+		player:setPos(0, 0, -164, 29, 0x73);
+	elseif(option == 9) then	-- East Ronfaure [S]
+		player:setPos(320, -60, 500, 79, 0x51);
+	elseif(option == 10) then	-- East Ronfaure
+		player:setPos(320, -60, 500, 79, 0x65);
+	elseif(option == 11) then	-- North Gustaberg [S]
+		player:setPos(469, 0, 479, 254, 0x58);
+	elseif(option == 12) then	-- North Gustaberg
+		player:setPos(469, 0, 479, 254, 0x6A);
+	--elseif(option == 13) then	-- Jugner Forest [S]
+	--	player:setPos();
+	--elseif(option == 14) then	-- Jugner Forest
+	--	player:setPos();
+	--elseif(option == 15) then	-- Pashhow Marshlands [S]
+	--	player:setPos();
+	--elseif(option == 16) then	-- Pashhow Marshlands
+	--	player:setPos();
+	--elseif(option == 17) then	-- Meriphataud Mountains [S]
+	--	player:setPos();
+	--elseif(option == 18) then	-- Meriphataud Mountains
+	--	player:setPos();
+	-- Abyessa Maws
+		--Tahrongi Canyon (H-12) 
+		--Konschtat Highlands (I-12) 
+		--La Theine Plateau (E-4) 
+		--Valkurm Dunes (I-9) 
+		--Jugner Forest (J-8) 
+		--Buburimu Peninsula (F-7) 
+		--South Gustaberg (J-10) 
+		--North Gustaberg (G-6) 
+		--Xarcabard (H-8) 
 	end;
 end;
 
@@ -366,15 +416,15 @@ function LeujaoamSanctumExit(player)
 end;
 
 function toExplorerMoogle(player,zone)
-	if (zone == 231) then		
+	if(zone == 231) then		
 		player:setPos(39.4, -0.2, 25, 253, zone);		-- Northern_San_d'Oria
-	elseif (zone == 234) then	
+	elseif(zone == 234) then	
 		player:setPos(76.82, 0, -66.12, 232, zone);		-- Bastok_Mines
-	elseif (zone == 240) then	
+	elseif(zone == 240) then	
 		player:setPos(185.6, -12, 223.5, 96, zone);		-- Port_Windurst
-	elseif (zone == 248) then	
+	elseif(zone == 248) then	
 		player:setPos(14.67, -14.56, 66.69, 96, zone);	-- Selbina
-	elseif (zone == 249) then	
+	elseif(zone == 249) then	
 		player:setPos(2.87, -4, 71.95, 0, zone);		-- Mhaura
 	end
 end;
@@ -392,9 +442,9 @@ function toWajaomLaypoint(player)  -- Wajaom Woodlands Laypoint
 end;
 
 function debugTeleport(player,npcid)
-	if (DEBUG_MODE == 1) then
+	if(DEBUG_MODE == 1) then
 		local npc = GetNPCByID(npcid);
-		if (npc ~= nil) then
+		if(npc ~= nil) then
 			player:setPos(npc:getXPos(), npc:getYPos(), npc:getZPos(), 0, npc:getZone());
 		end
 	end

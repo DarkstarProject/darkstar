@@ -3391,7 +3391,8 @@ void SaveCharPoints(CCharEntity* PChar)
 				  		SET sandoria_cp = %u, bastok_cp = %u, windurst_cp = %u, sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u, \
 							imperial_standing = %u, runic_portal = %u, leujaoam_assault_point = %u, mamool_assault_point = %u, \
 							lebros_assault_point = %u, periqia_assault_point = %u, ilrusi_assault_point = %u, \
-							nyzul_isle_assault_point = %u, zeni_point = %u, allied_notes = %u \
+							nyzul_isle_assault_point = %u, zeni_point = %u, maw = %u, past_sandoria_tp = %u, \
+							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u \
 						WHERE charid = %u;";
 
 	Sql_Query(SqlHandle, 
@@ -3411,6 +3412,10 @@ void SaveCharPoints(CCharEntity* PChar)
 		PChar->RegionPoints[8], 
 		PChar->RegionPoints[9], 
 		PChar->RegionPoints[10], 
+		PChar->nationtp.maw, 
+		PChar->nationtp.pastsandoria, 
+		PChar->nationtp.pastbastok, 
+		PChar->nationtp.pastwindurst, 
 		PChar->RegionPoints[11], 
 		PChar->id);
 }

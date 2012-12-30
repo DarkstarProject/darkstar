@@ -1156,7 +1156,7 @@ inline int32 CLuaBaseEntity::getCurrentMission(lua_State *L)
     uint8  LogID     = (uint8)lua_tointeger(L,1);
     uint8  MissionID = 0;
 
-    if (LogID < 6)
+    if (LogID < 10)
     {
         MissionID = (uint8)((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].current;
     }
