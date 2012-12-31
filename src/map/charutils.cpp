@@ -1758,10 +1758,17 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
 		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496)
 		{
-			addAbility(PChar, PAbility->getID());
+			if (PAbility->getID() != ABILITY_PET_COMMANDS){
+				addAbility(PChar, PAbility->getID());
+			}
 		}else{
 			break;
 		}
+	}
+	
+	//To stop a character with no SJob to receive the traits with job = 0 in the DB.
+	if (PChar->GetSJob() == JOB_NON){
+		return;
 	}
 
 	AbilitiesList = ability::GetAbilities(PChar->GetSJob());

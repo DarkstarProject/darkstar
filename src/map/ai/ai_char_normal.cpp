@@ -1516,6 +1516,17 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+		if (m_PJobAbility->getID() == ABILITY_GAUGE){//Gauge
+			if (m_PChar->PPet != NULL)
+			{
+				// player has a pet, cancel
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 315));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;
+			}
+		}
 		if (m_PJobAbility->getID() == ABILITY_REWARD)//Reward
 		{
 			CItem* PItem = m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
@@ -1914,7 +1925,29 @@ void CAICharNormal::ActionJobAbilityFinish()
 				}
 			}
 		}
+		if(m_PJobAbility->getID() == ABILITY_GAUGE){
+			if(m_PBattleSubTarget != NULL && m_PBattleSubTarget->objtype == TYPE_MOB){
+				if(((CMobEntity*)m_PBattleSubTarget)->m_Type == MOBTYPE_NOTORIOUS || 
+					m_PBattleSubTarget->m_EcoSystem == SYSTEM_BEASTMEN || 
+					m_PBattleSubTarget->m_EcoSystem == SYSTEM_ARCANA)
+				{
+					//NM, Beastman or Arcana, cannot charm at all !
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,210));
+				}else{
+					uint16 baseExp = charutils::GetRealExp(m_PChar->GetMLevel(),m_PBattleSubTarget->GetMLevel());
 
+					if(baseExp >= 400) {//IT
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,211));
+					} else if(baseExp >= 240) {//VT
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,211));
+					} else if(baseExp >= 120) {//T
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,213));
+					} else if(baseExp >= 100) {//EM
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,214));
+					}
+				}
+			}
+		}
 		if(m_PJobAbility->getID() == ABILITY_REWARD)
 		{
 			m_PChar->PPet->UpdateHealth();
@@ -1932,7 +1965,10 @@ void CAICharNormal::ActionJobAbilityFinish()
         if (m_PJobAbility->getValidTarget() & TARGET_ENEMY) 
         {
             // во время pvp целью могут быт персонажи, монстры и их питомцы
-			if (m_PBattleSubTarget->objtype == TYPE_MOB && m_PJobAbility->getID() != ABILITY_ASSAULT && m_PJobAbility->getID() != ABILITY_FIGHT) 
+			if (m_PBattleSubTarget->objtype == TYPE_MOB && 
+				m_PJobAbility->getID() != ABILITY_ASSAULT &&
+				m_PJobAbility->getID() != ABILITY_FIGHT &&
+				m_PJobAbility->getID() != ABILITY_GAUGE) 
 				//assault(72)/fight(53) doesnt generate hate directly
             {
                 ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
@@ -1966,7 +2002,8 @@ void CAICharNormal::ActionJobAbilityFinish()
 		m_PJobAbility->getID() != ABILITY_HIGH_JUMP && 
 		m_PJobAbility->getID() != ABILITY_SUPER_JUMP &&
 		m_PJobAbility->getID() != ABILITY_REWARD &&
-		m_PJobAbility->getID() != ABILITY_SNARL)
+		m_PJobAbility->getID() != ABILITY_SNARL &&
+		m_PJobAbility->getID() != ABILITY_GAUGE)
 	{
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
 	}

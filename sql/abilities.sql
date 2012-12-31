@@ -66,7 +66,7 @@ INSERT INTO `abilities` VALUES ('33', 'souleater', '8', '30', '1', '360', '85', 
 INSERT INTO `abilities` VALUES ('34', 'arcane_circle', '8', '5', '1', '600', '86', '0', '0', '30', '20', '1', '1', '20', '85');
 INSERT INTO `abilities` VALUES ('35', 'last_resort', '8', '15', '1', '300', '87', '0', '0', '12', '20', '0', '1', '1300', '86');
 INSERT INTO `abilities` VALUES ('36', 'charm', '9', '1', '4', '15', '97', '0', '0', '13', '18', '0', '320', '0', '0');
-INSERT INTO `abilities` VALUES ('37', 'gauge', '9', '10', '4', '30', '98', '0', '0', '14', '18', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('37', 'gauge', '9', '10', '4', '30', '98', '0', '0', '14', '23', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('38', 'tame', '9', '30', '4', '600', '99', '0', '0', '15', '18', '0', '0', '0', '93');
 INSERT INTO `abilities` VALUES ('39', 'pet_commands', '9', '1', '1', '0', '0', '0', '0', '0', '18', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('40', 'scavenge', '11', '10', '1', '300', '121', '0', '0', '21', '20', '0', '1', '80', '99');
