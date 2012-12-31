@@ -33,9 +33,9 @@
 
 enum AOERANGE
 {
-    AOE_PARTY = 0x01,
+    AOE_PARTY	 = 0x01,
     AOE_ALLIANCE = 0x02,
-    AOE_ZONE = 0x04
+    AOE_ZONE	 = 0x04
 };
 
 /************************************************************************

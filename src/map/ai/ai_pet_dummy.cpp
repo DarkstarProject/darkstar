@@ -40,6 +40,7 @@
 #include "../packets/message_basic.h"
 #include "../mobentity.h"
 
+#include "../alliance.h"
 #include "ai_pet_dummy.h"
 
 /************************************************************************
@@ -541,39 +542,65 @@ void CAIPetDummy::ActionEngage()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
-	if( m_PPet->PMaster==NULL || m_PPet->PMaster->isDead()){
+	if( m_PPet->PMaster==NULL || m_PPet->PMaster->isDead())
+	{
 		m_ActionType = ACTION_FALL;
 		ActionFall();
 		return;
 	}
+
 	bool hasClaim = false;
-	if(m_PBattleTarget->m_OwnerID.id == m_PPet->PMaster->id){hasClaim=true;}
-	if(m_PBattleTarget->m_OwnerID.id==NULL){hasClaim=true;}
-	if(m_PPet->PMaster->PParty != NULL){
-		for (uint8 i = 0; i < m_PPet->PMaster->PParty->members.size(); ++i)
+
+	if(m_PBattleTarget->m_OwnerID.id == m_PPet->PMaster->id)
+		hasClaim = true;
+
+	if(m_PBattleTarget->m_OwnerID.id == NULL)
+		hasClaim = true;
+
+
+	if(m_PPet->PMaster->PParty != NULL)
+	{
+		// alliance
+		if (m_PPet->PMaster->PParty->m_PAlliance != NULL)
 		{
-			if (m_PPet->PMaster->PParty->members[i]->id == m_PBattleTarget->m_OwnerID.id)
+			for (uint8 a = 0; a < m_PPet->PMaster->PParty->m_PAlliance->partyList.size(); ++a)
 			{
-				hasClaim = true;
+				for (uint8 i = 0; i < m_PPet->PMaster->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+				{
+					if (m_PPet->PMaster->PParty->m_PAlliance->partyList.at(a)->members[i]->id == m_PBattleTarget->m_OwnerID.id)
+						hasClaim = true;
+				}
 			}
 		}
+		else  // party
+			for (uint8 i = 0; i < m_PPet->PMaster->PParty->members.size(); ++i)
+			{
+				if (m_PPet->PMaster->PParty->members[i]->id == m_PBattleTarget->m_OwnerID.id)
+					hasClaim = true;
+			}
 	}
 
-	 if(hasClaim){
+
+	if(hasClaim)
+	{
 		m_PPet->animation = ANIMATION_ATTACK;
 		m_ActionType = ACTION_ATTACK;
 		m_LastActionTime = m_Tick - 4000;
 		ActionAttack();
 	}
-	else{
-		if(m_PPet->PMaster->objtype == TYPE_PC){
+	else
+	{
+		if(m_PPet->PMaster->objtype == TYPE_PC)
+		{
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CMessageBasicPacket(((CCharEntity*)m_PPet->PMaster),
 				((CCharEntity*)m_PPet->PMaster),0,0,12));
 			m_ActionType = ACTION_DISENGAGE;
 			return; 
 		}
 	}
+
 }
+
 
 void CAIPetDummy::ActionAttack()
 {

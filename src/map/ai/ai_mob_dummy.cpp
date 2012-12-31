@@ -586,10 +586,20 @@ void CAIMobDummy::ActionAbilityFinish()
 
         m_PMob->m_ActionList.clear();
 
-		if(m_PMobSkill->getID()==0 && m_PMob->m_SkillStatus==0){//2h
+		if (m_PMobSkill->getID() == 0 && m_PMob->m_SkillStatus == 0) // 2h
+		{
 			processTwoHour();
 			return;
 		}
+
+		// Who will the ability hit?
+		//   0. Solo player
+		//   1. Party
+		//   2. Alliance
+		//	 3. Pet Party
+		//   4. Pet Alliance
+		TARGET_PARTY_TYPE targetPartyType = SOLO_TARGET; // solo by default
+
 
 		//todo: have a separate msg field from this for shadow absorb?
 		m_PMobSkill->setMsg(185); //need this as some skills may be set to "shadows absorb"
@@ -598,98 +608,202 @@ void CAIMobDummy::ActionAbilityFinish()
 		//AOE=1 means the circle is around the MONSTER
 		//AOE=2 means the circle is around the BATTLE TARGET
 		//AOE=4 means conal (breath)
-		if(m_PMobSkill->getAoe()==1 || m_PMobSkill->getAoe()==2){ //to handle both types of aoe
-			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){//aoe on the  players
-				//hit the target + the target's PT/alliance
-				apAction_t Action;
 
-				Action.ActionTarget = m_PBattleTarget;
+		if (m_PMobSkill->getAoe() == 1 || m_PMobSkill->getAoe() == 2) // to handle both types of aoe
+		{
+			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY) // aoe on the players
+			{
+				targetPartyType = battleutils::getAvailableAoeTargets(m_PBattleTarget);
+
+				apAction_t Action;
 				Action.reaction   = REACTION_HIT;
 				Action.speceffect = SPECEFFECT_HIT;
 				Action.animation  = m_PMobSkill->getAnimationID();
-				Action.param	  = luautils::OnMobWeaponSkill(m_PBattleTarget, m_PMob,m_PMobSkill);
 				Action.subparam   = m_PMobSkill->getID() + 256;
 				Action.messageID  = m_PMobSkill->getMsg();
 				Action.flag		  = 0;
-				m_PMob->m_ActionList.push_back(Action);	
 
-				if(m_PBattleTarget->objtype==TYPE_PC){
-					CCharEntity* m_PChar = (CCharEntity*)m_PBattleTarget;
-					if(m_PChar->PParty != NULL)
-					{
-						if(m_PChar->PParty->m_PAlliance == NULL)
+				if(Action.messageID == 185)  //handle aoe damage text
+					Action.messageID = 264;  //just the damage value needed
+
+				//determine the type of circle
+				position_t radiusAround = m_PMob->loc.p;	// AOE 1 (circle on mob)
+
+				if(m_PMobSkill->getAoe() == 2) //radius around TARGET not the monster using the ability
+					radiusAround = m_PBattleTarget->loc.p;
+
+				CBattleEntity* PVictim = m_PBattleTarget;
+
+
+				switch (targetPartyType)
+				{
+
+					case SOLO_TARGET: // single char & maybe a pet
+
+						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround));
 						{
-							//determine the type of circle
-							position_t radiusAround = m_PMob->loc.p;
-							if(m_PMobSkill->getAoe()==2){//radius around TARGET not the monster
-								radiusAround = m_PBattleTarget->loc.p;
-							}
+							Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
+							m_PMob->m_ActionList.push_back(Action);
+						}
 
-							for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
+						if (PVictim->PPet != NULL)
+						{
+							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PPet, &Action, m_PMobSkill, &radiusAround));
 							{
-								CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
-							
-								if(!PTarget->isDead() && PTarget!=m_PBattleTarget && PTarget->getZone() == m_PChar->getZone() &&
-								distance(radiusAround, PTarget->loc.p) <= m_PMobSkill->getDistance())
-								{
-									Action.ActionTarget = PTarget;
-									Action.param	  = luautils::OnMobWeaponSkill(PTarget, m_PMob,m_PMobSkill);
-									Action.messageID  = m_PMobSkill->getMsg();
+								Action.messageID = 264; // Aoe victim: "takes 123 damage"
+								m_PMob->m_ActionList.push_back(Action);
+							}
+						}
+						break;
 
-									//handle aoe damage text
-									if(Action.messageID == 185){
-										Action.messageID = 264; //just the damage value needed
-									}
-									m_PMob->m_ActionList.push_back(Action);	
+
+					case PARTY_TARGET:	// party members and any pets
+
+						for (uint8 i = 0; i < PVictim->PParty->members.size(); ++i)
+						{
+							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround));
+							{
+								if (Action.ActionTarget == PVictim) 
+									Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
+								else
+									Action.messageID = 264; // Aoe victim: "takes 123 damage"
+
+								m_PMob->m_ActionList.push_back(Action);
+							}
+
+							if (PVictim->PParty->members.at(i)->PPet != NULL)
+							{
+								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround));
+								{
+									Action.messageID = 264; // Aoe victim: "takes 123 damage"
+									m_PMob->m_ActionList.push_back(Action);
 								}
 							}
-						
-						}else if(m_PChar->PParty->m_PAlliance != NULL){
-								//ability will hit everyone in the alliance if they are in range
+						}
+						break;
 
-								//determine the type of circle
-								position_t radiusAround = m_PMob->loc.p;
-								if(m_PMobSkill->getAoe()==2){//radius around TARGET not the monster
-									radiusAround = m_PBattleTarget->loc.p;
+
+					case ALLIANCE_TARGET:  // alliance members and any pets
+
+						for (uint8 a = 0; a < PVictim->PParty->m_PAlliance->partyList.size(); ++a)
+						{
+							for (uint8 i = 0; i < PVictim->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+							{
+								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, m_PMobSkill, &radiusAround));
+								{
+									if (Action.ActionTarget == PVictim) 
+										Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
+									else
+										Action.messageID = 264; // Aoe victim: "takes 123 damage"
+									
+									m_PMob->m_ActionList.push_back(Action);
 								}
 
-								for (uint8 a = 0; a < m_PChar->PParty->m_PAlliance->partyList.size(); ++a)
+								if (PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet != NULL)
 								{
-									for (uint8 i = 0; i < m_PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); i++)
+									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround));
 									{
-										CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i];
-							
-												if(!PTarget->isDead() && PTarget!=m_PBattleTarget && PTarget->getZone() == m_PChar->getZone() &&
-												distance(radiusAround, PTarget->loc.p) <= m_PMobSkill->getDistance())
-												{
-													Action.ActionTarget = PTarget;
-													Action.param	  = luautils::OnMobWeaponSkill(PTarget, m_PMob,m_PMobSkill);
-													Action.messageID  = m_PMobSkill->getMsg();
-
-													//handle aoe damage text
-													if(Action.messageID == 185){
-														Action.messageID = 264; //just the damage value needed
-													}
-													m_PMob->m_ActionList.push_back(Action);	
-												}
+										Action.messageID = 264; // Aoe victim: "takes 123 damage"
+										m_PMob->m_ActionList.push_back(Action);
 									}
 								}
 							}
 						}
+						break;
+
+
+					case PET_PARTY_TARGET:  // pet with master in a party
+
+						for (uint8 i = 0; i < PVictim->PMaster->PParty->members.size(); ++i)
+						{
+							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround));
+							{
+								Action.messageID = 264; // Aoe victim: "takes 123 damage"
+								m_PMob->m_ActionList.push_back(Action);
+							}
+
+							if (PVictim->PMaster->PParty->members.at(i)->PPet != NULL)
+							{
+								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround));
+								{
+									if (Action.ActionTarget == PVictim) 
+										Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
+									else
+										Action.messageID = 264; // Aoe victim: "takes 123 damage"
+
+									m_PMob->m_ActionList.push_back(Action);
+								}
+							}
+						}
+						break;
+
+
+					case PET_ALLIANCE_TARGET:  // pet with master in an alliance
+
+						for (uint8 a = 0; a < PVictim->PMaster->PParty->m_PAlliance->partyList.size(); ++a)
+						{
+							for (uint8 i = 0; i < PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+							{
+								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, m_PMobSkill, &radiusAround));
+								{
+									Action.messageID = 264; // Aoe victim: "takes 123 damage"
+									m_PMob->m_ActionList.push_back(Action);
+								}
+
+								if (PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet != NULL)
+								{
+									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround));
+									{
+										if (Action.ActionTarget == PVictim) 
+											Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
+										else
+											Action.messageID = 264; // Aoe victim: "takes 123 damage"
+
+										m_PMob->m_ActionList.push_back(Action);
+									}
+								}
+							}
+						}
+						break;
+
+
+					case PET_AND_MASTER:  // pet with a master
+
+						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround));
+						{
+							Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
+							m_PMob->m_ActionList.push_back(Action);
+						}
+
+						if (PVictim->PMaster != NULL)
+						{
+							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster, &Action, m_PMobSkill, &radiusAround));
+							{
+								Action.messageID = 264; // Aoe victim: "takes 123 damage"
+								m_PMob->m_ActionList.push_back(Action);
+							}
+						}
+						break;
 				}
+			
 			}
-			else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //aoe on the enemy (e.g. aoe cure)
+			else if (m_PMobSkill->getValidTargets() == TARGET_SELF) 	
+			{ 
+				//aoe on the enemy (e.g. aoe cure)
 				//TODO: hit self and all targets of the same family? pt?
 			}
 		}
-		else{//single target moves
+		else
+		{
+			//single target moves
 			apAction_t Action;
-			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){
+
+			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY)
 				Action.ActionTarget = m_PBattleTarget;
-			}
-			else if(m_PMobSkill->getValidTargets() == TARGET_SELF){
+			
+			else if(m_PMobSkill->getValidTargets() == TARGET_SELF)
 				Action.ActionTarget = m_PMob;
-			}
+
 			Action.reaction   = REACTION_HIT;
 			Action.speceffect = SPECEFFECT_HIT;
 			Action.animation  = m_PMobSkill->getAnimationID();
@@ -698,26 +812,32 @@ void CAIMobDummy::ActionAbilityFinish()
 			Action.messageID  = m_PMobSkill->getMsg();
 			Action.flag       = 0;
 	
-			m_PMob->m_ActionList.push_back(Action);
-			
+			m_PMob->m_ActionList.push_back(Action);	
 		}
 
-		if(m_ActionType==ACTION_FALL){//set when you kill the mob in a script, but need
-									//it to be ACTION_MOBABILITY_FINISH for pushing the packet.
-			m_ActionType = ACTION_MOBABILITY_FINISH;
-		}
+
+	if (m_ActionType == ACTION_FALL)
+	{
+		//  set when you kill the mob in a script, but need 
+		//  it to be ACTION_MOBABILITY_FINISH for pushing the packet.
+		m_ActionType = ACTION_MOBABILITY_FINISH;
+	}
+
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-	
 	m_PMob->health.tp = 0; 
 
-	if(m_PMob->isDead()){ //e.g. self-destruct. Needed here AFTER sending the action packets.
+
+	if (m_PMob->isDead()) //e.g. self-destruct. Needed here AFTER sending the action packets.
+	{ 
 		m_ActionType = ACTION_FALL;
 		ActionFall();
 	}
-	else{
+	else
+	{
 		m_ActionType = ACTION_ATTACK;
 	}
+
 }
 
 /************************************************************************
@@ -1127,6 +1247,11 @@ void CAIMobDummy::ActionAttack()
 	
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
+
+
+
+
+
 
 std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange, position_t radiusAround, float radius)
 {

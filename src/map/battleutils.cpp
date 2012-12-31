@@ -34,6 +34,8 @@
 #include "packets/message_basic.h"
 #include "packets/inventory_finish.h"
 
+#include "lua/luautils.h"
+
 #include "ability.h"
 #include "charutils.h"
 #include "battleutils.h"
@@ -51,6 +53,8 @@
 #include "packets/pet_sync.h"
 #include "packets/char_sync.h"
 #include "ai/ai_pet_dummy.h"
+
+
 
 /************************************************************************
 *	lists used in battleutils											*
@@ -483,7 +487,7 @@ uint32 HandleSpecialPhysicalDamageReduction(CCharEntity* PChar, uint32 damage, a
 *                                                                       *
 ************************************************************************/
 
-void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber)
+void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 hitNumber)
 {
 	// Enspell overwrites weapon effects
 
@@ -2988,9 +2992,14 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 
 
 
+/************************************************************************
+*                                                                       *
+*	calculate if charm is successful                                    *
+*                                                                       *
+************************************************************************/
 
-bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base){
-	
+bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base)
+{	
 	//---------------------------------------------------------
 	//	chance of charm is based on:
 	//	-CHR - both entities
@@ -3048,6 +3057,64 @@ bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base){
 	return false;
 }
 
+
+
+/************************************************************************
+*                                                                       *
+*	Get available targets, for mob abilities and spells                 *
+*                                                                       *
+************************************************************************/
+
+TARGET_PARTY_TYPE getAvailableAoeTargets(CBattleEntity* PTarget)
+{
+	switch (PTarget->objtype)
+	{
+		case TYPE_PC:
+			if (PTarget->PParty != NULL)
+				return PTarget->PParty->m_PAlliance != NULL ? ALLIANCE_TARGET : PARTY_TARGET;
+			else
+				return SOLO_TARGET;
+			break;
+
+		case TYPE_PET:
+		case TYPE_MOB:
+			if (PTarget->PMaster->objtype == TYPE_PC)
+			{
+				if (PTarget->PMaster->PParty != NULL)
+					return PTarget->PMaster->PParty->m_PAlliance != NULL ? PET_ALLIANCE_TARGET : PET_PARTY_TARGET;
+				else
+					return PET_AND_MASTER;
+			}
+			else if (PTarget->PMaster->objtype == TYPE_MOB)
+			{
+				//not implemented yet, master is a mob
+			}
+			break;
+	}
+}
+
+
+/************************************************************************
+*                                                                       *
+*	for spamming mob AOE action, abilities & spells                     *
+*                                                                       *
+************************************************************************/
+
+bool handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apAction_t* Action, CMobSkill* PMobSkill, position_t* radiusAround)
+{
+	if (!PTarget->isDead() && 
+		PTarget != PTarget && 
+		PTarget->getZone() == PAttacker->getZone() &&
+		distance(*radiusAround, PTarget->loc.p) <= PMobSkill->getDistance())
+	{
+		return false;
+	}
+
+	Action->ActionTarget = PTarget;
+	Action->param	     = luautils::OnMobWeaponSkill(PTarget, PAttacker, PMobSkill);
+	
+	return true;
+}
 
 
 
