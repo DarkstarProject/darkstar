@@ -470,8 +470,13 @@ return alpha;
 	--Applying fTP multiplier
 	local ftp = fTP(attacker:getTP(),params.ftp100,params.ftp200,params.ftp300);
 	
+		local ignoredDef = 0;
+	if (params.ignoresDef == not nil and params.ignoresDef == true) then
+		ignoredDef = calculatedIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
+	end
+	
 	--get cratio min and max
-	local cratio = cRatio(((attacker:getRATT() * atkmulti) / (target:getStat(MOD_DEF) - ignoredDef)), attacker:getMainLvl(), target:getMainLvl());
+	local cratio = cRatio(((attacker:getRATT() * params.atkmulti) / (target:getStat(MOD_DEF) - ignoredDef)), attacker:getMainLvl(), target:getMainLvl());
 	local ccmin = 0;
 	local ccmax = 0;
 	local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
@@ -524,6 +529,8 @@ return alpha;
 		end
 		tpHitsLanded = 1;
 	end
+	
+	local numHits = params.numHits;
 	
 	local extraHitsLanded = 0;
 	if(numHits>1) then
