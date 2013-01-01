@@ -25,6 +25,10 @@
 #include "charentity.h"
 #include "vana_time.h"
 
+#include "lua\luautils.h"
+
+uint32 g_Conquest[19][6];
+
 /************************************************************************
 *                                                                       *
 *	Реализация namespace conquest                                       *
@@ -34,6 +38,54 @@
 namespace conquest
 {
     /************************************************************************
+    *                                                                       *
+    *	LoadConquestSystem			                                        *
+    *                                                                       *
+    ************************************************************************/
+
+	void LoadConquestSystem()
+	{
+		int8 regNum = 0;
+		const int8* Query =  
+        "SELECT region_id, region_control, sandoria_influence, bastok_influence, windurst_influence, beastmen_influence FROM conquest_system";
+
+		int32 ret = Sql_Query(SqlHandle, Query);
+
+		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0) 
+		{	
+			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+			{
+				g_Conquest[regNum][0] = (uint32)Sql_GetIntData(SqlHandle,0); // Region ID
+				g_Conquest[regNum][1] = (uint32)Sql_GetIntData(SqlHandle,1); // Region Control
+				g_Conquest[regNum][2] = (uint32)Sql_GetIntData(SqlHandle,2); // Influence of sandoria
+				g_Conquest[regNum][3] = (uint32)Sql_GetIntData(SqlHandle,3); // Influence of bastok
+				g_Conquest[regNum][4] = (uint32)Sql_GetIntData(SqlHandle,4); // Influence of windurst
+				g_Conquest[regNum][5] = (uint32)Sql_GetIntData(SqlHandle,5); // Influence of beastmen
+				regNum++;
+			}
+		}
+	}
+
+	/************************************************************************
+    *   UpdateWeekConquest                                                  *
+    *	Update region control		                                        *
+    *   just used by GM command for now                                     *
+    ************************************************************************/
+
+	void UpdateWeekConquest()
+	{
+		LoadConquestSystem();
+		luautils::SetRegionalConquestOverseers();
+		//TODO: 
+		//launch conquest message in all zone (sunday server midnight)
+		//LoadConquestSystem()
+		//change region control with the best influence
+		//reset all influence
+		//luautils::SetRegionalConquestOverseers();
+		//launch end message ?
+	}
+	
+	/************************************************************************
     *                                                                       *
     *	Баланс сил на текущий conquest                                      *
     *                                                                       *
@@ -91,26 +143,42 @@ namespace conquest
     {
         switch (RegionID)
         {
-            case REGION_RONFAURE:        return SANDORIA;
-            case REGION_ZULKHEIM:        return SANDORIA;
-            case REGION_NORVALLEN:       return SANDORIA;
-            case REGION_GUSTABERG:       return BASTOK;
-            case REGION_DERFLAND:        return WINDURST;
-            case REGION_SARUTABARUTA:    return WINDURST;
-            case REGION_KOLSHUSHU:       return WINDURST;
-            case REGION_ARAGONEU:        return SANDORIA;
-            case REGION_FAUREGANDI:      return BASTOK;
-            case REGION_VALDEAUNIA:      return WINDURST;
-            case REGION_QUFIMISLAND:     return BASTOK;
-            case REGION_LITELOR:         return BASTOK;
-            case REGION_KUZOTZ:          return SANDORIA;
-            case REGION_VOLLBOW:         return WINDURST;
-            case REGION_ELSHIMOLOWLANDS: return SANDORIA;
-            case REGION_ELSHIMOUPLANDS:  return WINDURST;
-            case REGION_TULIA:           return WINDURST;
-            case REGION_MOVALPOLOS:      return BEASTMEN;
-            case REGION_TAVNAZIA:        return WINDURST;
+            case REGION_RONFAURE:        return g_Conquest[REGION_RONFAURE][1];
+            case REGION_ZULKHEIM:        return g_Conquest[REGION_ZULKHEIM][1];
+            case REGION_NORVALLEN:       return g_Conquest[REGION_NORVALLEN][1];
+            case REGION_GUSTABERG:       return g_Conquest[REGION_GUSTABERG][1];
+            case REGION_DERFLAND:        return g_Conquest[REGION_DERFLAND][1];
+            case REGION_SARUTABARUTA:    return g_Conquest[REGION_SARUTABARUTA][1];
+            case REGION_KOLSHUSHU:       return g_Conquest[REGION_KOLSHUSHU][1];
+            case REGION_ARAGONEU:        return g_Conquest[REGION_ARAGONEU][1];
+            case REGION_FAUREGANDI:      return g_Conquest[REGION_FAUREGANDI][1];
+            case REGION_VALDEAUNIA:      return g_Conquest[REGION_VALDEAUNIA][1];
+            case REGION_QUFIMISLAND:     return g_Conquest[REGION_QUFIMISLAND][1];
+            case REGION_LITELOR:         return g_Conquest[REGION_LITELOR][1];
+            case REGION_KUZOTZ:          return g_Conquest[REGION_KUZOTZ][1];
+            case REGION_VOLLBOW:         return g_Conquest[REGION_VOLLBOW][1];
+            case REGION_ELSHIMOLOWLANDS: return g_Conquest[REGION_ELSHIMOLOWLANDS][1];
+            case REGION_ELSHIMOUPLANDS:  return g_Conquest[REGION_ELSHIMOUPLANDS][1];
+            case REGION_TULIA:           return g_Conquest[REGION_TULIA][1];
+            case REGION_MOVALPOLOS:      return g_Conquest[REGION_MOVALPOLOS][1];
+            case REGION_TAVNAZIA:        return g_Conquest[REGION_TAVNAZIA][1];
         }
         return NEUTRAL;
     }
+
+	
+	//GetConquestInfluence(region,nation)
+	//AddConquestInfluence(region,nation)
+	//ResetConquestInfluence()
+	//UpdateConquestInfluence()
+
+	//gain/loss influence
+	//Dying in the Outlands decrease your Allegiance influence and increase the influence of the Beastmen hordes instead. 
+	//Gain: XP/CP, Garrison quests, Expeditionary Forces, trade items to Outpost Vendors (influence only) 
+
+	//Region control
+	//0: sandoria
+	//1: bastok
+	//2: windurst
+	//3: beastmen
 };

@@ -44,6 +44,9 @@ class CCharEntity;
 
 namespace conquest
 {
+	void   LoadConquestSystem();
+	void   UpdateWeekConquest();
+
 	uint8  GetBalance();
 	uint8  GetNexTally();
     uint8  GetRegionOwner(REGIONTYPE RegionID);

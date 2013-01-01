@@ -3075,7 +3075,7 @@ inline int32 CLuaBaseEntity::setStatus(lua_State *L)
 		if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 		{
 			m_PBaseEntity->status = (STATUSTYPE)lua_tointeger(L, 1);
-			m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_DESPAWN));
+			m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE));
 			return 0;
 		}
 	}

@@ -79,6 +79,7 @@ int32 init()
 	lua_register(LuaHandle,"print",luautils::print);
 	lua_register(LuaHandle,"GetNPCByID",luautils::GetNPCByID);
 	lua_register(LuaHandle,"GetMobByID",luautils::GetMobByID);
+	lua_register(LuaHandle,"WeekUpdateConquest", luautils::WeekUpdateConquest);
     lua_register(LuaHandle,"GetRegionOwner", luautils::GetRegionOwner);
 	lua_register(LuaHandle,"setMobPos",luautils::setMobPos);
 	lua_register(LuaHandle,"SpawnMob",luautils::SpawnMob);
@@ -228,6 +229,19 @@ int32 GetMobByID(lua_State* L)
 }
 
 /************************************************************************
+*																		*
+* WeekUpdateConquest		*
+*																		*
+************************************************************************/
+
+int32 WeekUpdateConquest(lua_State* L)
+{
+    conquest::UpdateWeekConquest();
+
+    return 0;
+}
+
+/************************************************************************
 *                                                                       *
 *  Узнаем страну, владеющую текущим регионом                            *
 *                                                                       *
@@ -239,6 +253,46 @@ int32 GetRegionOwner(lua_State* L)
 
     lua_pushinteger(L, conquest::GetRegionOwner((REGIONTYPE)lua_tointeger(L,1)));
     return 1;
+}
+
+/************************************************************************
+*																		*
+* SetRegionalConquestOverseers() used for updating conquest guards		*
+*																		*
+************************************************************************/
+
+int32 SetRegionalConquestOverseers()
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "SetRegionalConquestOverseers");
+
+	snprintf(File, sizeof(File), "scripts/globals/conquest.lua");
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::SetRegionalConquestOverseers: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "SetRegionalConquestOverseers");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::SetRegionalConquestOverseers: undefined procedure onServerStart\n");
+		return -1;
+	}
+  
+	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::SetRegionalConquestOverseers: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************
