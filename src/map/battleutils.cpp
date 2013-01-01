@@ -3102,18 +3102,18 @@ TARGET_PARTY_TYPE getAvailableAoeTargets(CBattleEntity* PTarget)
 
 bool handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apAction_t* Action, CMobSkill* PMobSkill, position_t* radiusAround)
 {
-	if (!PTarget->isDead() && 
-		PTarget != PTarget && 
-		PTarget->getZone() == PAttacker->getZone() &&
-		distance(*radiusAround, PTarget->loc.p) <= PMobSkill->getDistance())
+	if (!PTarget->isDead() && PTarget != PTarget && PTarget->getZone() == PAttacker->getZone())
 	{
 		return false;
 	}
 
-	Action->ActionTarget = PTarget;
-	Action->param	     = luautils::OnMobWeaponSkill(PTarget, PAttacker, PMobSkill);
-	
-	return true;
+	if (distance(*radiusAround, PTarget->loc.p) <= PMobSkill->getDistance())
+	{
+		Action->ActionTarget = PTarget;
+		Action->param	     = luautils::OnMobWeaponSkill(PTarget, PAttacker, PMobSkill);
+		return true;
+	}
+	return false;
 }
 
 
