@@ -647,7 +647,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 					case SOLO_TARGET: // single char & maybe a pet
 
-						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround));
+						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround))
 						{
 							Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
 							m_PMob->m_ActionList.push_back(Action);
@@ -655,7 +655,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 						if (PVictim->PPet != NULL)
 						{
-							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PPet, &Action, m_PMobSkill, &radiusAround));
+							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PPet, &Action, m_PMobSkill, &radiusAround))
 							{
 								Action.messageID = 264; // Aoe victim: "takes 123 damage"
 								m_PMob->m_ActionList.push_back(Action);
@@ -668,7 +668,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 						for (uint8 i = 0; i < PVictim->PParty->members.size(); ++i)
 						{
-							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround));
+							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround))
 							{
 								if (Action.ActionTarget == PVictim) 
 									Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
@@ -680,7 +680,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 							if (PVictim->PParty->members.at(i)->PPet != NULL)
 							{
-								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround));
+								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 								{
 									Action.messageID = 264; // Aoe victim: "takes 123 damage"
 									m_PMob->m_ActionList.push_back(Action);
@@ -696,7 +696,7 @@ void CAIMobDummy::ActionAbilityFinish()
 						{
 							for (uint8 i = 0; i < PVictim->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
 							{
-								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, m_PMobSkill, &radiusAround));
+								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, m_PMobSkill, &radiusAround))
 								{
 									if (Action.ActionTarget == PVictim) 
 										Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
@@ -708,7 +708,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 								if (PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet != NULL)
 								{
-									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround));
+									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 									{
 										Action.messageID = 264; // Aoe victim: "takes 123 damage"
 										m_PMob->m_ActionList.push_back(Action);
@@ -723,7 +723,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 						for (uint8 i = 0; i < PVictim->PMaster->PParty->members.size(); ++i)
 						{
-							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround));
+							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround))
 							{
 								Action.messageID = 264; // Aoe victim: "takes 123 damage"
 								m_PMob->m_ActionList.push_back(Action);
@@ -731,7 +731,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 							if (PVictim->PMaster->PParty->members.at(i)->PPet != NULL)
 							{
-								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround));
+								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 								{
 									if (Action.ActionTarget == PVictim) 
 										Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
@@ -751,7 +751,7 @@ void CAIMobDummy::ActionAbilityFinish()
 						{
 							for (uint8 i = 0; i < PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
 							{
-								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, m_PMobSkill, &radiusAround));
+								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, m_PMobSkill, &radiusAround))
 								{
 									Action.messageID = 264; // Aoe victim: "takes 123 damage"
 									m_PMob->m_ActionList.push_back(Action);
@@ -759,7 +759,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 								if (PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet != NULL)
 								{
-									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround));
+									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 									{
 										if (Action.ActionTarget == PVictim) 
 											Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
@@ -776,7 +776,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 					case PET_AND_MASTER:  // pet with a master
 
-						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround));
+						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround))
 						{
 							Action.messageID = 185; // Aoe primary target "weapon uses .. target takes"
 							m_PMob->m_ActionList.push_back(Action);
@@ -784,7 +784,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 						if (PVictim->PMaster != NULL)
 						{
-							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster, &Action, m_PMobSkill, &radiusAround));
+							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster, &Action, m_PMobSkill, &radiusAround))
 							{
 								Action.messageID = 264; // Aoe victim: "takes 123 damage"
 								m_PMob->m_ActionList.push_back(Action);
