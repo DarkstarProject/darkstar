@@ -31,14 +31,8 @@ function onServerStart()
   DespawnMob(17498518);
   
   -- Timed Spawns
-  -- Mysticmaker Profblix (5-30 minutes)
-  UpdateNMSpawnPoint(17649693);
-  SpawnMob(17649693, '', math.random((300),(1800))) 
+  SetTimedSpawns();
   
-  -- Bune (5-60 minutes)
-  UpdateNMSpawnPoint(17645578);
-  SpawnMob(17645578, '', math.random((300),(3600))) 
-	
 end;
 
 -----------------------------------
@@ -98,6 +92,29 @@ function SetFieldManual()
 	while i <= (table.getn(FieldManuals)) do	
 		npc = GetNPCByID(FieldManuals[i]);
 		npc:setStatus(0);
+		i = i + 1;
+	end
+
+end;
+
+----------------------------------
+-- SetTimedSpawns
+----------------------------------
+
+function SetTimedSpawns()
+
+	local NMs  = 
+  {
+    17649693, -- Mysticmaker Profblix 
+    17645578, -- Bune
+    17240413, -- Kreutzet
+    17490234  -- Guivre
+	}
+	
+	i = 1;
+	while i <= (table.getn(NMs)) do
+    UpdateNMSpawnPoint(NMs[i]);
+    SpawnMob(NMs[i], '', math.random((300),(3600))); --5-60 minutes
 		i = i + 1;
 	end
 
