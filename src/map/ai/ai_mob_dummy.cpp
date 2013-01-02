@@ -586,6 +586,13 @@ void CAIMobDummy::ActionAbilityFinish()
 
         m_PMob->m_ActionList.clear();
 
+		// crash fix, a null target made it into CActionPacket
+		if (m_PBattleTarget == NULL)
+		{
+			m_ActionType = ACTION_ATTACK;
+			return;
+		}
+
 		if (m_PMobSkill->getID() == 0 && m_PMob->m_SkillStatus == 0) // 2h
 		{
 			processTwoHour();
