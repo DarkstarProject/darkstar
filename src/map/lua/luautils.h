@@ -97,7 +97,6 @@ namespace luautils
 	int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem);						// triggers when item is used
 	int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param = 0);	// check to see if item can be used
 	int32 CheckForGearSet(CBaseEntity* PTarget);								// check for gear sets
-//	int32 OnZoneOut(CCharEntity* PChar);										// 1 function for all zoning out events
 
 	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget);			// triggered when casting a spell
 

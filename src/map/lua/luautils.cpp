@@ -731,51 +731,6 @@ int32 OnGameIn(CCharEntity* PChar)
 
 /************************************************************************
 *																		*
-*  no char zone , 1 function for all zones								*
-*																		*
-************************************************************************
-
-int32 OnZoneOut(CCharEntity* PChar)
-{
-	int8 File[255];
-	memset(File,0,sizeof(File));
-
-    lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "onZoneOut");
-
-	snprintf(File, sizeof(File), "scripts/globals/player.lua");
-
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		ShowError("luautils::OnZoneOut lol \n");
-        lua_pop(LuaHandle, 1);
-		return 56;
-	}
-
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onZoneOut");
-	if( lua_isnil(LuaHandle,-1) )
-	{
-		ShowError("luautils::OnZoneOut\n");
-		return 56;
-	}
-
-	CLuaBaseEntity LuaBaseEntity(PChar);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-
-	lua_pushboolean(LuaHandle,0);
-	
-	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
-	{
-		ShowError("luautils::OnZoneOut last\n");
-        lua_pop(LuaHandle, 1);
-		return 56;
-	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
-}
-*/
-
-/************************************************************************
-*																		*
 *  Выполняем скрипт при входе персонажа в зону							*
 *																		*
 ************************************************************************/
