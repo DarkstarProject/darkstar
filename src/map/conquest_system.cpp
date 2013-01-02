@@ -25,7 +25,7 @@
 #include "charentity.h"
 #include "vana_time.h"
 
-#include "lua\luautils.h"
+#include "lua/luautils.h"
 
 uint32 g_Conquest[19][6];
 
