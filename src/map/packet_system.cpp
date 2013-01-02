@@ -352,7 +352,6 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		PChar->animation = ANIMATION_NONE;
 	}
 
-
     PChar->PRecastContainer->Del(RECAST_MAGIC);
     
     charutils::SaveCharStats(PChar);
@@ -1888,6 +1887,8 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	
 	charutils::EquipItem(PChar, slotID, equipSlotID);
     charutils::SaveCharEquip(PChar);
+
+	luautils::CheckForGearSet(PChar); // check for gear set on gear change
 	return;
 }
 
@@ -1917,7 +1918,7 @@ void SmallPacket0x05A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	// пакет не на своем месте, возможно 0x0F
 	PChar->pushPacket(new CStopDownloadingPacket(PChar)); 
-
+//	luautils::CheckForGearSet(PChar); // also check for gear set
 	return;
 }
 

@@ -728,6 +728,52 @@ int32 OnGameIn(CCharEntity* PChar)
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
+
+/************************************************************************
+*																		*
+*  no char zone , 1 function for all zones								*
+*																		*
+************************************************************************
+
+int32 OnZoneOut(CCharEntity* PChar)
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onZoneOut");
+
+	snprintf(File, sizeof(File), "scripts/globals/player.lua");
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnZoneOut lol \n");
+        lua_pop(LuaHandle, 1);
+		return 56;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onZoneOut");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnZoneOut\n");
+		return 56;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+
+	lua_pushboolean(LuaHandle,0);
+	
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnZoneOut last\n");
+        lua_pop(LuaHandle, 1);
+		return 56;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+*/
+
 /************************************************************************
 *																		*
 *  Выполняем скрипт при входе персонажа в зону							*
@@ -1239,6 +1285,7 @@ int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param)
         lua_pop(LuaHandle, 1);
 		return 56;
 	}
+
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
@@ -1285,6 +1332,53 @@ int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem)
 	}
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
+
+
+/************************************************************************
+*																		*
+*  check for gear sets  (e.g Set: enhances haste effect)			    *
+*																		*
+************************************************************************/
+
+int32 CheckForGearSet(CBaseEntity* PTarget) 
+{
+
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "checkForGearSet");
+
+	snprintf(File, sizeof(File), "scripts/globals/gear_sets.lua");
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::CheckForGearSet: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 56;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "checkForGearSet");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::CheckForGearSet: undefined procedure checkForGearSet\n");
+		return 56;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PTarget);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+
+	lua_pushinteger(LuaHandle,0);
+	
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::CheckForGearSet: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 56;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
 
 /************************************************************************
 *																		*

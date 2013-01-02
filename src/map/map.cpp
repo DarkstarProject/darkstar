@@ -439,6 +439,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 			charutils::LoadInventory(PChar);
             
             luautils::OnGameIn(PChar);
+			luautils::CheckForGearSet(PChar); // check for gear set on login
 
             PChar->status = STATUS_DISAPPEAR;
 
