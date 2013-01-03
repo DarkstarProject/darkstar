@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Windurst Walls
 -- NPC:  Nanaa Mihgo
--- Starts and Finishes Quest: Mihgo's Amigo (R), The Tenshodo Showdown (start)
+-- Starts and Finishes Quest: Mihgo's Amigo (R), The Tenshodo Showdown (start), Rock Racketeer (start, listed as ROCK_RACKETTER in quests.lua)
 -- Involved In Quest: Crying Over Onions
 -- Involved in Mission 2-1
--- @pos 62 -4 240 241
+-- @zone 241
+-- @pos 62 -4 240
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -60,6 +61,8 @@ function onTrigger(player,npc)
 		
 		theTenshodoShowdown = player:getQuestStatus(WINDURST,THE_TENSHODO_SHOWDOWN); -- THF af quest
 		theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS");
+		RockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETTER);
+		RRvar = player:getVar("rockracketeer_sold");
 		
 		thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES); -- THF af quest
 		thickAsThievesCS = player:getVar("thickAsThievesCS");
@@ -79,19 +82,33 @@ function onTrigger(player,npc)
 		if(CryingOverOnionsVar == 1) then
 			player:startEvent(0x0256);
 			
+		-- Rock Racketeer (listed as ROCK_RACKETTER in quests.lua)
+		elseif(MihgosAmigo == QUEST_COMPLETED and RockRacketeer == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 3) then
+			if(player:needToZone()) then
+				player:startEvent(0x0059); -- Mihgos Amigo complete text
+			else
+			player:startEvent(0x005D); -- quest start
+			end
+		elseif(RockRacketeer == QUEST_ACCEPTED and RRvar == 2) then
+			player:startEvent(0x005F); -- not sold reminder
+		elseif(RockRacketeer == QUEST_ACCEPTED and RRvar == 1) then
+			player:startEvent(0x0062); -- advance quest talk to Varun
+		elseif(RockRacketeer == QUEST_ACCEPTED) then
+			player:startEvent(0x005E); -- quest reminder
+		
+			
 		-- Quest "Mihgo's Amigo"
 		elseif(MihgosAmigo == QUEST_AVAILABLE) then
-			player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
+			CryingOverOnions = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
 			
 			if(CryingOverOnions ~= QUEST_AVAILABLE) then
 				player:startEvent(0x0051); -- Start Quest "Mihgo's Amigo" with quest "Crying Over Onions" Activated
 			else	
 				player:startEvent(0x0050); -- Start Quest "Mihgo's Amigo"
 			end
-		elseif(AF_BYPASS and MihgosAmigo == QUEST_ACCEPTED) then
+		elseif(MihgosAmigo == QUEST_ACCEPTED) then
 			player:startEvent(0x0052);
-		elseif(AF_BYPASS and MihgosAmigo == QUEST_COMPLETED) then
-			player:startEvent(0x0059);
+		
 		
 		-- Quest "The Tenshodo Showdown" THF af
 		elseif(Job == 6 and LvL >= 40 and theTenshodoShowdown == QUEST_AVAILABLE) then 
@@ -101,9 +118,8 @@ function onTrigger(player,npc)
 		elseif(theTenshodoShowdownCS >= 2) then
 			player:startEvent(0x01f2); -- During Quest "The Tenshodo Showdown" (after cs at tensho HQ)
 		elseif(Job == 6 and LvL < 50 and theTenshodoShowdown == QUEST_COMPLETED) then 
-			player:startEvent(0x01f0); -- Standard dialog after "The Tenshodo Showdown"
-
-			
+			player:startEvent(0x01f7); -- Standard dialog after "The Tenshodo Showdown"
+		
 		-- Quest "Thick as Thieves" THF af
 		elseif(Job == 6 and LvL >= 50 and thickAsThieves == QUEST_AVAILABLE and theTenshodoShowdown == QUEST_COMPLETED) then 
 			player:startEvent(0x01f8); -- Start Quest "Thick as Thieves"
@@ -120,8 +136,16 @@ function onTrigger(player,npc)
 			player:startEvent(0x0204); -- finish first part of "Hitting The Marquisate"	
 		elseif(hittingTheMarquisateNanaaCS == 1) then
 			player:startEvent(0x0205); -- during second part of "Hitting The Marquisate"				
+		
+		-- Standard dialog
+		elseif(RockRacketeer == QUEST_COMPLETED) then
+			player:startEvent(0x0063); -- new dialog after Rock Racketeer
+			
+		elseif(MihgosAmigo == QUEST_COMPLETED) then
+			player:startEvent(0x0059); -- new dialog after Mihgo's Amigos
+		
 		else
-			player:startEvent(0x004c); -- Standard dialog
+			player:startEvent(0x004c); -- standard dialog
 		end
 
 

@@ -1,19 +1,13 @@
 -----------------------------------
 --  Area: Windurst Woods
---   NPC: Cha Lebagta
+--  NPC: Cha Lebagta
 --  Type: Standard NPC
--- @zone: 241
+--  @zone: 241
 --  @pos: 58.385 -6.249 216.670
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
+--	Involved in Quests: As Thick as Thieves, Mihgo's Amigo
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
-require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -27,10 +21,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+	
+	MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
 	thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
 	thickAsThievesCS = player:getVar("thickAsThievesCS");
 	
+	-- As Thick As Thieves (THF AF)
 	if(thickAsThieves == QUEST_ACCEPTED) then
 		player:startEvent(0x01FB,0,17474);
 			if (thickAsThievesCS == 1) then
@@ -41,10 +37,17 @@ function onTrigger(player,npc)
 				player:setVar("thickAsThievesGrapplingCS",rand1);
 				player:setVar("thickAsThievesGamblingCS",1);				
 			end
-	else
-		player:startEvent(0x004e); -- standard cs
+	
+	-- Mihgo's Amigo
+	elseif (MihgosAmigo == QUEST_ACCEPTED) then
+		player:startEvent(0x0055,0,498);		-- hint dialog
+	
+	-- standard dialog
+	elseif (MihgosAmigo == QUEST_COMPLETED) then
+		player:startEvent(0x005B,0,498) 		-- new standard dialog after Mihgo's Amigo
+	else	
+		player:startEvent(0x004e);				-- normal dialog
 	end
-
 end;
 
 -----------------------------------

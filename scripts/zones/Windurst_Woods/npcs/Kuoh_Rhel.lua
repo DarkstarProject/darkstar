@@ -1,11 +1,12 @@
 -----------------------------------
 --  Area: Windurst Woods
---   NPC: Kuoh Rhel
+--  NPC: Kuoh Rhel
 --  Type: Standard NPC
--- @zone: 241
+--  @zone: 241
 --  @pos: 131.437 -6 -102.723
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
+--	Starts quests: Chocobilious, In a Stew
+--  Note: In a Stew should only repeat once per conquest tally. The tally is not implemented at time of
+--        writing this quest. Once it is working please feel free to add it in ^^
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -27,10 +28,35 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	--player:delQuest(WINDURST,CHOCOBILIOUS);
-	local chocobilious = player:getQuestStatus(WINDURST,CHOCOBILIOUS);
 	
-	if (chocobilious == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then 
+	chocobilious = player:getQuestStatus(WINDURST,CHOCOBILIOUS);
+	IAS = player:getQuestStatus(WINDURST,IN_A_STEW);
+	IASvar = player:getVar("IASvar");
+	
+	-- In a Stew
+	if (IAS == QUEST_AVAILABLE and chocobilious == QUEST_COMPLETED and player:getFameLevel (WINDURST) >= 3) then
+		if(player:needToZone()) then
+			player:startEvent(0x00E8); -- Post quest dialog from Chocobilious
+		else
+			player:startEvent(0x00EB); -- IAS start
+		end
+	
+	elseif (IASvar == 4 and player:hasKeyItem(RANPIMONPIS_SPECIAL_STEW)) then
+		player:startEvent(0x00EF);	-- IAS turn in
+	
+	elseif (IAS == QUEST_ACCEPTED) then
+		player:startEvent(0x00EC); -- reminder dialog
+	
+	
+	-- Uncomment once conquest tally in place
+	--elseif (IAS == QUEST_COMPLETED) then
+		--player:startEvent(0x00F0); -- new dialog between repeats
+		
+	elseif (IAS == QUEST_COMPLETED) then
+		player:startEvent(0x00EA);	-- start repeat
+	
+	-- Chocobilious
+	elseif (chocobilious == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then 
 		player:startEvent(0x00e0); -- Start quest
 	elseif (chocobilious == QUEST_COMPLETED and player:needToZone() == true) then
 		player:startEvent(0x00e8); -- Quest complete
@@ -39,7 +65,8 @@ function onTrigger(player,npc)
 	elseif (chocobilious == QUEST_ACCEPTED) then
 		player:startEvent(0x00e1); -- Post quest accepted
 	else
-		player:startEvent(0x00de); -- default cs
+	-- Standard dialog
+		player:startEvent(0x00de); 
 	end
 	
 end;
@@ -58,11 +85,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("CSID: %u",csid);
+--printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x00e0 and option == 1) then
+
+	--Chocobilious
+	if (csid == 0x00e0 and option == 1) then			-- Quest start
 		player:addQuest(WINDURST,CHOCOBILIOUS);
-	elseif (csid == 0x00e7) then
+	elseif (csid == 0x00e7) then						-- finish Quest
 		player:completeQuest(WINDURST,CHOCOBILIOUS);
 		player:addFame(WINDURST,WIN_FAME*220);
 		player:addGil(GIL_RATE*1500);
@@ -70,5 +99,20 @@ printf("CSID: %u",csid);
 		player:tradeComplete();
 		player:setVar("ChocobiliousQuest",0)
 		player:needToZone(true); 
+		
+	-- In a Stew
+	elseif (csid == 0x00EB) then
+		player:addQuest(WINDURST,IN_A_STEW);	-- Quest start
+		player:setVar("IASvar",1);
+	elseif (csid == 0x00EF) then
+		player:completeQuest(WINDURST,IN_A_STEW);	-- finish Quest
+		player:setVar("IASvar",0);
+		player:addFame(WINDURST,WIN_FAME*50);
+		player:addGil(GIL_RATE*900);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
+		player:delKeyItem(RANPIMONPIS_SPECIAL_STEW);
+	elseif (csid == 0x0EA and option == 1) then		-- start repeat
+		player:setVar("IASvar",3);
+	
 	end
 end;

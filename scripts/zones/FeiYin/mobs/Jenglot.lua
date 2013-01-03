@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
--- NPC:  Goliath
+-- NPC:  Jenglot
 -----------------------------------
 -----------------------------------
 
@@ -18,6 +18,11 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(GOLIATH_KILLER);	
+	
+	-- Curses, Foiled A-Golem!?
+	if(killer:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
+		killer:delKeyItem(SHANTOTTOS_NEW_SPELL);
+		killer:addKeyItem(SHANTOTTOS_EXSPELL);
+	end
 
 end;
