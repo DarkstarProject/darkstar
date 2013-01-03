@@ -185,8 +185,11 @@ INSERT INTO `bcnm_instance` VALUES ('128', '3', '17444877');
 
 -- Throne Room
 INSERT INTO `bcnm_instance` VALUES ('160', '1', '17453057');
+INSERT INTO `bcnm_instance` VALUES ('160', '1', '17453060');
 INSERT INTO `bcnm_instance` VALUES ('160', '2', '17453058');
+INSERT INTO `bcnm_instance` VALUES ('160', '2', '17453061');
 INSERT INTO `bcnm_instance` VALUES ('160', '3', '17453059');
+INSERT INTO `bcnm_instance` VALUES ('160', '3', '17453062');
 
 -- Chamber of Oracles
 INSERT INTO `bcnm_instance` VALUES ('192', '1', '17465345');

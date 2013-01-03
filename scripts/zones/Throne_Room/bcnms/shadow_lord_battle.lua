@@ -57,6 +57,8 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
 			player:setVar("MissionStatus",3);
 		end
+		-- You will be transported back to the entrance of Castle Zvahl Baileys
+		player:setPos(378.222,-12,-20.299,125,0xA1);
 	end
 	
 end;
