@@ -407,22 +407,26 @@ enum MODIFIER
 	MOD_HIGH_JUMP_ENMITY_REDUCTION	= 0x16B,	// for gear that reduces more enmity from high jump
 
 	MOD_REWARD_HP_BONUS		 = 0x16C,				// Percent to add to reward HP healed. (364)
-	MOD_SNAP_SHOT			 = 0x16D				// Percent reduction to range attack delay
+	MOD_SNAP_SHOT			 = 0x16D,				// Percent reduction to range attack delay
+
+	MOD_MAIN_DMG_RATING		 = 0x16E,		//adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
+	MOD_OFF_DMG_RATING		 = 0x16F,		//adds damage rating to off hand weapon
+	MOD_REGAIN				 = 0x170,		//auto regain TP (from items) | this is multiplied by 10 e.g. 20 is 2% TP
+	MOD_REFRESH				 = 0x171,		//auto refresh from equipment
+	MOD_REGEN				 = 0x172		//auto regen from equipment
 
 //  use these for new modifiers
 	
-	//SPARE_MOD				 = 0x16F
-	//SPARE_MOD				 = 0x170
-	//SPARE_MOD				 = 0x171
-	//SPARE_MOD				 = 0x172
 	//SPARE_MOD				 = 0x173
 	//SPARE_MOD				 = 0x174
 	//SPARE_MOD				 = 0x175
 	//SPARE_MOD				 = 0x176
+	//SPARE_MOD				 = 0x177
+	//SPARE_MOD				 = 0x178
 
 };
 
-#define MAX_MODIFIER	       0x16E
+#define MAX_MODIFIER	       0x173
 
 
 /************************************************************************
