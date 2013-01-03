@@ -33,8 +33,12 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	killer:startEvent(0x7d04);
-	killer:setVar("mobid",mob:getID());
+	if(mob:getID() < 17453060) then
+		killer:startEvent(0x7d04);
+		killer:setVar("mobid",mob:getID());
+	else
+		killer:addTitle(SHADOW_BANISHER);
+	end
 	
 end;
 
@@ -55,19 +59,21 @@ function onEventFinish(player,csid,option)
 --printf("finishCSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	local mobid = player:getVar("mobid");
-	DespawnMob(mobid);
-	player:setVar("mobid",0);
-	
-	if(mobid == 17453057) then
-		player:setPos(-441.596,-167.000,-240.182,122);
-		GetMobByID(mobid+3):setPos(-461.975,-167.7, -239.981, 59);
-	elseif(mobid == 17453058) then
-		player:setPos(-759.148,-407.100,-479.957,128);
-		GetMobByID(mobid+3):setPos(-781.000,-407.000,-477.000,59);
-	else
-		player:setPos(-1079.065,-647.100,-720.023,128);
-		GetMobByID(mobid+3):setPos(-1101.000,-647.000,-716.000,59);
+	if(csid == 0x7d04) then
+		local mobid = player:getVar("mobid");
+		DespawnMob(mobid);
+		player:setVar("mobid",0);
+		
+		if(mobid == 17453057) then
+			player:setPos(-441.596,-167.000,-240.182,122);
+			GetMobByID(mobid+3):setPos(-461.975,-167.7, -239.981, 59);
+		elseif(mobid == 17453058) then
+			player:setPos(-759.148,-407.100,-479.957,128);
+			GetMobByID(mobid+3):setPos(-781.000,-407.000,-477.000,59);
+		else
+			player:setPos(-1079.065,-647.100,-720.023,128);
+			GetMobByID(mobid+3):setPos(-1101.000,-647.000,-716.000,59);
+		end
 	end
 	
 end;
