@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0092) then
 		player:tradeComplete();
 		player:addKeyItem(MAP_OF_ALZADAAL_RUINS);
-		player:specialMessage(KEYITEM_OBTAINED,MAP_OF_ALZADAAL_RUINS);
+		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_ALZADAAL_RUINS);
 	end
 	
 end;

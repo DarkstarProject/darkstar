@@ -70,6 +70,7 @@ function onEventFinish(player,csid,option)
 		if(player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16887);-- Peregrine (DRG AF1)
 		else
+			player:setVar("aCraftsmanWork",0);
 			player:delKeyItem(ALTEPA_POLISHING_STONE);
 			player:addItem(16887); 
 			player:messageSpecial(ITEM_OBTAINED,16887); -- Peregrine (DRG AF1)

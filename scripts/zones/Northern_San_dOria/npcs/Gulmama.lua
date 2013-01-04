@@ -2,13 +2,13 @@
 -- Area: Northern San d'Oria
 -- NPC:  Gulmama
 -- Starts and Finishes Quest: Trial by Ice
--- @zone 231
--- @pos -186 0 107
+-- @pos -186 0 107 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");

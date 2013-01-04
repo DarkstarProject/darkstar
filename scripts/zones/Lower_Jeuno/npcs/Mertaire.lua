@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC: Mertaire
 -- Starts and Finishes Quest: The Old Monument (start only), A Minstrel in Despair, Painful Memory (BARD AF1)
--- @zone 245
--- @pos -17 0 -61
+-- @pos -17 0 -61 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +19,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 function onTrade(player,npc,trade)
 
 	if(player:getQuestStatus(JEUNO, THE_OLD_MONUMENT) == QUEST_COMPLETED) then
-		if(trade:hasItemQty(634,1) == true and trade:getItemCount() == 1) then
+		if(trade:hasItemQty(634,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0065);
 		end
 	end
@@ -33,13 +32,15 @@ end;
 
 function onTrigger(player,npc)
 	
-	painfulMemory = player:getQuestStatus(JEUNO,PAINFUL_MEMORY);
+	local painfulMemory = player:getQuestStatus(JEUNO,PAINFUL_MEMORY);
+	local job = player:getMainJob()
+	local level = player:getMainLvl()
 	
-	if(player:getMainJob() ~= 10 and player:getMainLvl() >= 30) then
+	if(job ~= 10 and level >= ADVANCED_JOB_LEVEL) then
 		if(player:getVar("TheOldMonument_Event") == 0 and player:getQuestStatus(JEUNO,THE_OLD_MONUMENT) == QUEST_AVAILABLE) then
 			player:startEvent(0x0066);
 		end
-	elseif(player:getMainJob() == 10 and player:getMainLvl() >= 40 and painfulMemory == QUEST_AVAILABLE) then 
+	elseif(job == 10 and level >= AF1_QUEST_LEVEL and painfulMemory == QUEST_AVAILABLE) then 
 		if(player:getVar("PainfulMemoryCS") == 0) then 
 			player:startEvent(0x008a); -- Long dialog for "Painful Memory"
 		else

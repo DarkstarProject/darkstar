@@ -54,7 +54,7 @@ function onTrigger(player,npc)
 	local mLvl = player:getMainLvl();
 	local mJob = player:getMainJob();
 
-	if(player:getMainLvl() >= 30 and ForgeYourDestiny == QUEST_AVAILABLE) then
+	if(mLvl >= ADVANCED_JOB_LEVEL and ForgeYourDestiny == QUEST_AVAILABLE) then
 		player:startEvent(0x0019,1153,1152); -- Sacred branch, Bomb Steel
 	elseif(ForgeYourDestiny == QUEST_ACCEPTED) then
 		local swordTimer = player:getVar("ForgeYourDestiny_timer");

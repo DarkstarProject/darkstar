@@ -5,13 +5,14 @@
 --  Type: Enfeebling
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: 10' radial
---  Notes:
 ---------------------------------------------
+
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
+
 function OnMobSkillCheck(target,mob,skill)
 	return 0;
 end;
@@ -19,7 +20,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local message = MSG_MISS;
 	local typeEffect = EFFECT_DISEASE;
-	if(target:hasatusEffect(typeEffect) == false) then
+	if(target:hasStatusEffect(typeEffect) == false) then
 		local accrand = math.random(1,2);
 		if(accrand == 1) then
 			local statmod = MOD_INT;

@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/Treasure");
+require("scripts/globals/treasure");
 require("scripts/zones/Crawlers_Nest/TextIDs");
 
 local TreasureType = "Chest";
@@ -67,8 +67,8 @@ function onTrade(player,npc,trade)
 					-- print("[2]", loot[2]); -- debug
 					
 					if(loot[1]=="gil") then
-						player:addGil(loot[2]);
-						player:messageSpecial(GIL_OBTAINED,loot[2]);
+						player:addGil(loot[2]*GIL_RATE);
+						player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
 					else
 						-- Item
 						player:addItem(loot[2]);

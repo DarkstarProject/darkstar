@@ -4,7 +4,6 @@
 -- @pos -111 -6 0 165
 -------------------------------------
 package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");

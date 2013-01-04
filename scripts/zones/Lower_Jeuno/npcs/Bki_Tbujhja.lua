@@ -58,6 +58,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x0096); -- Finish Quest "The Requiem"
 	elseif(TheRequiem == QUEST_COMPLETED) then 
 		player:startEvent(0x0086); -- Standard dialog after "The Requiem"
+	else
+		player:startEvent(0x00b4);
 	end
 end;
 
