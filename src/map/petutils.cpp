@@ -530,11 +530,11 @@ void DespawnPet(CBattleEntity* PMaster)
 
 	CBattleEntity* PPet = PMaster->PPet;
 
-
-	// Crash Fix for null pet, somehow a null pet managed to pass though DSP_DEBUG_BREAK_IF(PMaster->PPet == NULL);
-	// crash occured at switch (PPet->objtype) below
-	if (PPet == NULL)
+	// mob was not reset properly on death/uncharm
+	if (PMaster->isCharmed)
 	{
+		PMaster->isCharmed = false;
+		PMaster->charmTime = 0;
 		return;
 	}
 
