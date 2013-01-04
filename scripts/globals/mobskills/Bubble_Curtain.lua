@@ -7,11 +7,13 @@
 --  Range: Self
 --  Notes:Nightmare Crabs use an enhanced version that applies a Magic Defense Boost that cannot be dispelled.
 ---------------------------------------------
+
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
+
 function OnMobSkillCheck(target,mob,skill)
 	return 0;
 end;
@@ -21,8 +23,8 @@ function OnMobWeaponSkill(target, mob, skill)
 	skill:setMsg(MSG_BUFF);
 	if(mob:hasStatusEffect(typeEffect) == true) then
 		local oldEffect = mob:getStatusEffect(typeEffect);
-		oldEffect:setPower(power);
-		oldEffect:setDuration(duration);
+		oldEffect:setPower(-128);
+		oldEffect:setDuration(60);
 	else
 		mob:addStatusEffect(typeEffect,-128,0,60);--power=-128;tic=0;duration=60;
 	end

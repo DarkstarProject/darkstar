@@ -464,7 +464,7 @@ function getMissionMask(player)
 		end
 		if(rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
-			first_mission = first_mission + 8192;
+			-- first_mission = first_mission + 8192;
 		end
 		if(rank == 5) then
 			if(player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then
@@ -557,7 +557,7 @@ function getMissionMask(player)
 		end
 		if(rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
-			first_mission = first_mission + 8192;
+			-- first_mission = first_mission + 8192;
 		end
 		if(rank == 5) then
 			if(player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(69) == false) then
@@ -651,7 +651,7 @@ function getMissionMask(player)
 		end
 		if(rank == 4) then
 			-- The mission is triggered by the Ambassador in Jeuno
-			first_mission = first_mission + 8192;
+			-- first_mission = first_mission + 8192;
 		end
 		if(rank == 5) then
 			if(player:hasCompletedMission(BASTOK,DARKNESS_RISING) == false and getMissionRankPoints(player,0) == 1 and mission_status == 0) then

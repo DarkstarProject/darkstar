@@ -16,9 +16,15 @@ function onSpellCast(caster,target,spell)
 	--calculate raw damage
 	basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
 	dmg = calculateMagicDamage(basedmg,2,caster,spell,target,DARK_MAGIC_SKILL,MOD_INT,false);
-	if dmg > 8 then
+	
+	-- Softcaps at 8, should always do at least 1
+	if(dmg > 8) then
 		dmg = 8;
 	end
+	if(dmg < 1) then
+		dmg = 1;
+	end
+	
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getMod(MOD_INT)-target:getMod(MOD_INT),DARK_MAGIC_SKILL,1.0);
 	--get the resisted damage
