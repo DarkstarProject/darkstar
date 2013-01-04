@@ -326,8 +326,10 @@ enum MODIFIER
 // Dragoon
 // Summoner
 
-	MOD_AVATAR_PERPETUATION = 0x15A,  //stores the MP/tick reduction from gear
-
+	MOD_AVATAR_PERPETUATION		= 0x173,  //stores base cost of current avatar
+	MOD_PERPETUATION_REDUCTION	= 0x15A,  //stores the MP/tick reduction from gear
+	MOD_WEATHER_REDUCTION		= 0x174,  //stores perpetuation reduction depending on weather
+	MOD_DAY_REDUCTION			= 0x175,  //stores perpetuation reduction depending on day
 
 // Blue Mage
 
@@ -417,16 +419,13 @@ enum MODIFIER
 
 //  use these for new modifiers
 	
-	//SPARE_MOD				 = 0x173
-	//SPARE_MOD				 = 0x174
-	//SPARE_MOD				 = 0x175
 	//SPARE_MOD				 = 0x176
 	//SPARE_MOD				 = 0x177
 	//SPARE_MOD				 = 0x178
 
 };
 
-#define MAX_MODIFIER	       0x173
+#define MAX_MODIFIER	       0x176
 
 
 /************************************************************************

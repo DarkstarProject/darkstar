@@ -404,6 +404,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	PPet->m_Family = g_PPetList.at(PetID)->m_Family;
 	PPet->SetMJob(g_PPetList.at(PetID)->mJob);
 	PPet->m_Element = g_PPetList.at(PetID)->m_Element;
+	PPet->m_PetID = PetID;
 
 	if(PPet->getPetType()==PETTYPE_AVATAR){
 		if(PMaster->GetMJob()==JOB_SMN){
@@ -442,6 +443,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		//Set E evasion and def
 		PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_THR,JOB_WHM,PPet->GetMLevel()));
 		PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_THR,JOB_WHM,PPet->GetMLevel()));
+		PMaster->addModifier(MOD_AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
 	}
 	else if(PPet->getPetType()==PETTYPE_JUGPET){
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(240.0f/60.0f)));
@@ -542,6 +544,8 @@ void DespawnPet(CBattleEntity* PMaster)
 		case TYPE_PET:
 		{
 			PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
+			if( ((CPetEntity*)PPet)->getPetType() == PETTYPE_AVATAR )
+				PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
 		}
 		break;
 		case TYPE_MOB:
@@ -615,6 +619,113 @@ void MakePetStay(CBattleEntity* PMaster)
 {
 	if(PMaster->PPet != NULL)
 		PMaster->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+}
+
+int16 PerpetuationCost(uint32 id, uint8 level)
+{
+	int16 cost = 0;
+	if (id >= 288 && id <= 295)
+	{
+		if( level < 19 )
+			cost = 1;
+		else if (level < 38 )
+			cost = 2;
+		else if (level < 57 )
+			cost = 3;
+		else if (level < 75 )
+			cost = 4;
+		else if (level < 81 )
+			cost = 5;
+		else if (level < 91 )
+			cost = 6;
+		else
+			cost = 7;
+	}
+	else if (id == 296 )
+	{
+		if (level < 10 )
+			cost = 1;
+		else if (level < 18 )
+			cost = 2;
+		else if (level < 27 )
+			cost = 3;
+		else if (level < 36 )
+			cost = 4;
+		else if (level < 45 )
+			cost = 5;
+		else if (level < 54 )
+			cost = 6;
+		else if (level < 63 )
+			cost = 7;
+		else if (level < 72 )
+			cost = 8;
+		else if (level < 81 )
+			cost = 9;
+		else if (level < 91 )
+			cost = 10;
+		else
+			cost = 11;
+	}
+	else if (id == 297 )
+	{
+		if (level < 8 )
+			cost = 1;
+		else if (level < 15 )
+			cost = 2;
+		else if (level < 22 )
+			cost = 3;
+		else if (level < 30 )
+			cost = 4;
+		else if (level < 37 )
+			cost = 5;
+		else if (level < 45 )
+			cost = 6;
+		else if (level < 51 )
+			cost = 7;
+		else if (level < 59 )
+			cost = 8;
+		else if (level < 66 )
+			cost = 9;
+		else if (level < 73 )
+			cost = 10;
+		else if (level < 81 )
+			cost = 11;
+		else if (level < 91 )
+			cost = 12;
+		else
+			cost = 13;
+	}
+	else if (id <= 304 )
+	{
+		if (level < 10 )
+			cost = 3;
+		else if (level < 19 )
+			cost = 4;
+		else if (level < 28 )
+			cost = 5;
+		else if (level < 38 )
+			cost = 6;
+		else if (level < 47 )
+			cost = 7;
+		else if (level < 56 )
+			cost = 8;
+		else if (level < 65 )
+			cost = 9;
+		else if (level < 68 )
+			cost = 10;
+		else if (level < 71 )
+			cost = 11;
+		else if (level < 74 )
+			cost = 12;
+		else if (level < 81 )
+			cost = 13;
+		else if (level < 91 )
+			cost = 14;
+		else
+			cost = 15;
+	}
+	
+	return cost;
 }
 
 

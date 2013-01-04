@@ -38,7 +38,7 @@ enum LATENT
 	LATENT_TP_UNDER_100				= 6,  //tp under 100 and during WS - PARAM: NONE
 	LATENT_TP_OVER_100				= 7,  //tp over 100 - PARAM: NONE
 	LATENT_SUBJOB					= 8,  //subjob - PARAM: JOBTYPE
-	LATENT_PET_TYPE					= 9,  //pettype - PARAM: PETTYPE
+	LATENT_PET_ID					= 9,  //pettype - PARAM: PETID
 	LATENT_WEAPON_DRAWN				= 10, //weapon drawn - PARAM: HP DRAIN/SEC
 	LATENT_WEAPON_SHEATHED			= 11, //weapon sheathed
 	LATENT_WEAPON_DRAWN_MP_DRAIN	= 12, //weapon drawn - PARAM: MP DRAIN/SEC

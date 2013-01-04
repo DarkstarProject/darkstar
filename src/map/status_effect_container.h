@@ -63,6 +63,7 @@ public:
 
     void UpdateStatusIcons();                                   // пересчитываем иконки эффектов
 	void CheckEffects(uint32 tick);
+	void CheckRegen(uint32 tick);
 
 	void LoadStatusEffects();									// загружаем эффекты персонажа
 	void SaveStatusEffects();									// сохраняем эффекты персонажа
@@ -80,6 +81,7 @@ private:
 	void SetEffectParams(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
 
 	uint32 m_EffectCheckTime;
+	uint32 m_RegenCheckTime;
 
 	std::vector<CStatusEffect*>	m_StatusEffectList;
 };

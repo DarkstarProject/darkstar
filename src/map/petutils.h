@@ -68,6 +68,7 @@ namespace petutils
 	void	AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget);
 	void	RetreatToMaster(CBattleEntity* PMaster);
 	void	MakePetStay(CBattleEntity* PMaster);
+	int16	PerpetuationCost(uint32 id, uint8 level);
 };
 
 #endif

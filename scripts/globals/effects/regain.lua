@@ -7,6 +7,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(368, effect:getPower() * 10);
 end;
 
 -----------------------------------
@@ -14,7 +15,6 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	target:addTP(effect:getPower());
 end;
 
 -----------------------------------
@@ -22,4 +22,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(368, effect:getPower() * 10);
 end;

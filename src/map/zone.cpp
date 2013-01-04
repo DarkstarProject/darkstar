@@ -1431,6 +1431,7 @@ void CZone::ZoneServer(uint32 tick)
             PChar->StatusEffectContainer->CheckEffects(tick);
             PChar->PBattleAI->CheckCurrentAction(tick);
             PChar->PTreasurePool->CheckItems(tick);
+			PChar->StatusEffectContainer->CheckRegen(tick);
         }
     }
 }

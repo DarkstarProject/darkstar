@@ -39,7 +39,6 @@ CTrait::CTrait(uint8 id)
 	
 	m_level  = 0; 
 	m_job    = 0;
-    m_effect = 0;
     m_mod    = 0;
     m_value  = 0;
 }
@@ -96,27 +95,7 @@ uint16 CTrait::getMod()
 
 void CTrait::setMod(uint16 mod)
 {
-    DSP_DEBUG_BREAK_IF(m_effect && mod);
-
     m_mod = mod;
-}
-
-/************************************************************************
-*                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
-
-uint16 CTrait::getEffect()
-{
-    return m_effect;
-}
-
-void CTrait::setEffect(uint16 effect)
-{
-    DSP_DEBUG_BREAK_IF(m_mod && effect);
-
-    m_effect = effect;
 }
 
 /************************************************************************
@@ -153,7 +132,7 @@ namespace traits
 
     void LoadTraitsList()
     {
-	    const int8* Query = "SELECT traitid, job, level, effect, modifier, value \
+	    const int8* Query = "SELECT traitid, job, level, modifier, value \
 							 FROM traits \
                              WHERE traitid < %u \
 							 ORDER BY job, traitid, level ASC";
@@ -168,9 +147,8 @@ namespace traits
 
 			    PTrait->setJob(Sql_GetIntData(SqlHandle,1));
 			    PTrait->setLevel(Sql_GetIntData(SqlHandle,2));
-                PTrait->setEffect(Sql_GetIntData(SqlHandle,3));
-                PTrait->setMod(Sql_GetIntData(SqlHandle,4));
-                PTrait->setValue(Sql_GetIntData(SqlHandle,5));
+                PTrait->setMod(Sql_GetIntData(SqlHandle,3));
+                PTrait->setValue(Sql_GetIntData(SqlHandle,4));
 
 			    PTraitsList[PTrait->getJob()].push_back(PTrait);
 		    }

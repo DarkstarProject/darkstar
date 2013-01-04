@@ -43,6 +43,7 @@ public:
 	PETTYPE getPetType();
 	uint16 m_Family;
 	uint8 m_Element;
+	uint32 m_PetID;
 	std::vector<CMobSkill*> PetSkills;
 private:
 	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc

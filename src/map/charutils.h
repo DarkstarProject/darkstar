@@ -131,6 +131,8 @@ namespace charutils
     void    ResetAllTwoHours();
 
     void    RemoveAllEquipment(CCharEntity* PChar);
+
+	uint8	AvatarPerpetuationReduction(CCharEntity* PChar);
 };
 
 #endif

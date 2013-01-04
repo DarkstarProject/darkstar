@@ -30,5 +30,5 @@ function OnUseAbility(player, target, ability)
 		extratick = math.random(2,3);
 	end
 	tick = tick + (extratick * 3);
-	player:addStatusEffect(EFFECT_REGAIN,amount,3,tick);
+	player:addStatusEffectEx(EFFECT_REGAIN,0,amount,3,tick);
 end;

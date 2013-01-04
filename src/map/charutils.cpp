@@ -72,6 +72,7 @@
 #include "weapon_skill.h"
 #include "zoneutils.h"
 #include "conquest_system.h"
+#include "vana_time.h"
 
 /************************************************************************
 *																		*
@@ -1863,7 +1864,6 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
     {
         CTrait* PTrait = PChar->TraitList.at(i);
         PChar->delModifier(PTrait->getMod(), PTrait->getValue());
-		PChar->StatusEffectContainer->DelStatusEffect((EFFECT)PTrait->getEffect());
     }
     PChar->TraitList.clear();
 	memset(&PChar->m_TraitList, 0, sizeof(PChar->m_TraitList));
@@ -1880,9 +1880,6 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 
             PChar->TraitList.push_back(PTrait);
             PChar->addModifier(PTrait->getMod(), PTrait->getValue());
-			if (PTrait->getEffect() == 234 || PTrait->getEffect() == 233){
-				PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect((EFFECT)PTrait->getEffect(), 0, PTrait->getValue(), 3, 0));
-			}
 		}
 	}
 
@@ -1896,9 +1893,6 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 
             PChar->TraitList.push_back(PTrait);
             PChar->addModifier(PTrait->getMod(), PTrait->getValue());
-			if (PTrait->getEffect() == 234 || PTrait->getEffect() == 233){
-				PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect((EFFECT)PTrait->getEffect(), 0, PTrait->getValue(), 3, 0));
-			}
 		}
 	}
 	PChar->addModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PChar->GetMLevel()));
@@ -3452,6 +3446,39 @@ uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
 void ResetAllTwoHours()
 {
     Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = 0");
+}
+
+uint8	AvatarPerpetuationReduction(CCharEntity* PChar)
+{
+	uint8 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
+
+	MODIFIER strong[8] = {MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_ICE_AFFINITY, MOD_THUNDER_AFFINITY, MOD_LIGHT_AFFINITY, MOD_DARK_AFFINITY};
+	MODIFIER weak[8] = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY};
+
+	int8 element = ((CPetEntity*)(PChar->PPet))->m_Element;
+	int8 affinity = PChar->getMod(strong[element]);
+	
+	if( PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getID() == 18632 )
+		affinity = affinity + 1;
+	else if( PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getID() == 18633 )
+		affinity = affinity + 2;
+
+	if( affinity > 0 )
+		reduction = reduction + affinity + 1;
+	else if( affinity < 0 )
+		reduction = reduction - affinity - 1;
+
+	if( CVanaTime::getInstance()->getWeekday()+1 == element )
+		reduction = reduction + PChar->getMod(MOD_DAY_REDUCTION);
+
+	WEATHER weather = zoneutils::GetZone(PChar->getZone())->GetWeather();
+
+	WEATHER weatherStrong[8] = {WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_RAIN, WEATHER_WIND, WEATHER_SNOW, WEATHER_THUNDER, WEATHER_AURORAS, WEATHER_GLOOM};
+
+	if( weather == weatherStrong[element] || weather == weatherStrong[element]+1 )
+		reduction = reduction + PChar->getMod(MOD_WEATHER_REDUCTION);
+
+	return reduction;
 }
 
 } // namespace charutils

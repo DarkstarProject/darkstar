@@ -133,13 +133,11 @@ public:
     uint8   getJob();
     uint8   getLevel();
     uint16  getMod();
-    uint16  getEffect();
     int16   getValue();
     
     void    setJob(int8 job);
     void    setLevel(uint8 level);
     void    setMod(uint16 mod);
-    void    setEffect(uint16 effect);
     void    setValue(int16 value);
 
 private:
@@ -147,7 +145,6 @@ private:
     uint8   m_id;
     uint8   m_job; 
     uint8   m_level;
-    uint16  m_effect;
     uint16  m_mod;
     int16   m_value;
 };
