@@ -36,8 +36,8 @@ CCharJobsPacket::CCharJobsPacket(CCharEntity * PChar)
 
 	WBUFB(data,(0x04)-4) = PChar->look.race;
 
-	WBUFB(data,(0x08)-4) = PChar->GetMJob();			// подсвечиваем желтым главную профессию
-	WBUFB(data,(0x0B)-4) = PChar->GetSJob();			// подсвечиваем синим дополнительную профессию
+	WBUFB(data,(0x08)-4) = PChar->GetMJob();			    // подсвечиваем желтым главную профессию
+	WBUFB(data,(0x0B)-4) = PChar->GetSJob();			    // подсвечиваем синим дополнительную профессию
 
 	memcpy(data+(0x0C)-4, &PChar->jobs, 20);
     memcpy(data+(0x20)-4, &PChar->stats,14);
@@ -46,8 +46,8 @@ CCharJobsPacket::CCharJobsPacket(CCharEntity * PChar)
     WBUFL(data,(0x3C)-4) = PChar->health.hp;
 	WBUFL(data,(0x40)-4) = PChar->health.mp;
 
-	WBUFL(data,(0x44)-4) = PChar->jobs.unlocked & 1;	// первый бит в unlocked отвечает за дополнительную профессию
+	WBUFL(data,(0x44)-4) = PChar->jobs.unlocked & 1;    // первый бит в unlocked отвечает за дополнительную профессию
 
-    WBUFW(data,(0x60)-4) = PChar->m_EquipBlock;     // заблокированные ячейки экипировки
-  //WBUFW(data,(0x62)-4) =  blok; // битовое поле. занижение физических характеристик, характеристика становится красной и рядом появляется красная стрелка.
+    WBUFW(data,(0x60)-4) = PChar->m_EquipBlock;         // заблокированные ячейки экипировки
+  //WBUFW(data,(0x62)-4) =  blok;                       // битовое поле. занижение физических характеристик, характеристика становится красной и рядом появляется красная стрелка.
 }

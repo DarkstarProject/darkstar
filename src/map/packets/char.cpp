@@ -34,7 +34,7 @@
 CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type) 
 {
 	this->type = 0x0D;
-	this->size = 0x32;
+	this->size = 0x36;
 
 	WBUFL(data,(0x04)-4) = PChar->id;
 	WBUFW(data,(0x08)-4) = PChar->targid;
@@ -100,18 +100,18 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 				WBUFW(data,(0x3C)-4) = PChar->PPet->targid << 3;
 			}
 
-			WBUFB(data,(0x3E)-4) = PChar->look.face;
-			WBUFB(data,(0x3F)-4) = PChar->look.race;
-			WBUFW(data,(0x40)-4) = PChar->look.head   + 0x1000;
-			WBUFW(data,(0x42)-4) = PChar->look.body   + 0x2000;
-			WBUFW(data,(0x44)-4) = PChar->look.hands  + 0x3000;
-			WBUFW(data,(0x46)-4) = PChar->look.legs   + 0x4000;
-			WBUFW(data,(0x48)-4) = PChar->look.feet   + 0x5000;
-			WBUFW(data,(0x4A)-4) = PChar->look.main   + 0x6000;
-			WBUFW(data,(0x4C)-4) = PChar->look.sub    + 0x7000;
-			WBUFW(data,(0x4E)-4) = PChar->look.ranged + 0x8000;
+			WBUFB(data,(0x44)-4) = PChar->look.face;
+			WBUFB(data,(0x45)-4) = PChar->look.race;
+			WBUFW(data,(0x46)-4) = PChar->look.head   + 0x1000;
+			WBUFW(data,(0x48)-4) = PChar->look.body   + 0x2000;
+			WBUFW(data,(0x4A)-4) = PChar->look.hands  + 0x3000;
+			WBUFW(data,(0x4C)-4) = PChar->look.legs   + 0x4000;
+			WBUFW(data,(0x4E)-4) = PChar->look.feet   + 0x5000;
+			WBUFW(data,(0x50)-4) = PChar->look.main   + 0x6000;
+			WBUFW(data,(0x52)-4) = PChar->look.sub    + 0x7000;
+			WBUFW(data,(0x54)-4) = PChar->look.ranged + 0x8000;
 
-			memcpy(data+(0x50)-4, PChar->GetName(), PChar->name.size()); 
+			memcpy(data+(0x56)-4, PChar->GetName(), PChar->name.size()); 
 		}
 		break;
 	}
