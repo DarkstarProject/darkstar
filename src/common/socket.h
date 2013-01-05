@@ -136,6 +136,7 @@ int sSocket(int af, int type, int protocol);
 #define WBUFB(p,pos) (*(uint8*)WBUFP((p),(pos)))
 #define WBUFW(p,pos) (*(uint16*)WBUFP((p),(pos)))
 #define WBUFL(p,pos) (*(uint32*)WBUFP((p),(pos)))
+#define WBUFU(p,pos) (*(uint64*)WBUFP((p),(pos)))
 #define WBUFF(p,pos) (*(float*)WBUFP((p),(pos)))
 
 #define TOB(n) ((uint8)((n)&UINT8_MAX))

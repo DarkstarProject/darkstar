@@ -94,5 +94,5 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	{
 		WBUFB(data,(0x4A)-4) = 0x10;		
 	}
-	WBUFL(data,(0x4C)-4) = PChar->StatusEffectContainer->m_Flags;
+	WBUFU(data,(0x4C)-4) = PChar->StatusEffectContainer->m_Flags;
 }
