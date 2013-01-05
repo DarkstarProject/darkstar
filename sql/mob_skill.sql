@@ -272,7 +272,7 @@ INSERT INTO `mob_skill` VALUES (161,172,161,'Drainkiss', 0, 7.0, 2000, 1500, 4, 
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Random_Kiss', 0, 7.0, 2000, 1500, 4, 0); -- Only used by certain NM
 
 -- Worm
-INSERT INTO `mob_skill` VALUES (168,258,168,'Full-force_Blow', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (168,258,168,'Full-Force_Blow', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (169,258,169,'Gastric_Bomb', 0, 20.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (170,258,170,'Sandspin', 1, 16.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (171,258,171,'Tremors', 1, 18.0, 2000, 1500, 4, 0);
