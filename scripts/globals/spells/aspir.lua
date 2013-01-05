@@ -23,7 +23,11 @@ function onSpellCast(caster,target,spell)
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments
-	--TODO: CHECK FOR UNDEAD!
+	
+	if(target:isUndead()) then
+		spell:setMsg(75); -- No effect
+		return;
+	end
 	
 	if(target:getMP() > dmg) then
 		caster:addMP(dmg);

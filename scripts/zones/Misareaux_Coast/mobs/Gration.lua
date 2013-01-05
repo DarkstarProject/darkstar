@@ -27,5 +27,4 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(FAFNIR_SLAYER);
 end;

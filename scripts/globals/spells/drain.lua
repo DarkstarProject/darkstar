@@ -5,15 +5,17 @@
 
 require("scripts/globals/magic");
 require("scripts/globals/status");
+require("scripts/globals/settings");
 
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
+	
 	--calculate raw damage (unknown function  -> only dark skill though) - using http://www.bluegartr.com/threads/44518-Drain-Calculations
 	-- also have small constant to account for 0 dark skill
-	dmg = 10 + 1.035 * (caster:getSkillLevel(DARK_MAGIC_SKILL) + caster:getMod(79 + DARK_MAGIC_SKILL));
+	dmg = 10 + (1.035 * (caster:getSkillLevel(DARK_MAGIC_SKILL)) + caster:getMod(79 + DARK_MAGIC_SKILL));
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getMod(MOD_INT)-target:getMod(MOD_INT),DARK_MAGIC_SKILL,1.0);
 	--get the resisted damage
@@ -23,8 +25,20 @@ function onSpellCast(caster,target,spell)
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments
-	--TODO: CHECK FOR UNDEAD!
+	if (dmg > (caster:getSkillLevel(DARK_MAGIC_SKILL) + 20)) then
+		dmg = (caster:getSkillLevel(DARK_MAGIC_SKILL) + 20);
+	end
+	
+	if(target:isUndead()) then
+		spell:setMsg(75); -- No effect
+		return;
+	end
+	
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
+	
+	dmg = (dmg * DRAIN_POWER);
+	
 	caster:addHP(dmg);
 	return dmg;
+	
 end;
