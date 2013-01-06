@@ -46,10 +46,6 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 		WBUFL(data,(0x08)-4) = PItem->getCharPrice();
 		WBUFW(data,(0x0C)-4) = PItem->getID();
 
-		if (PItem->getCharPrice() != 0)
-		{
-			WBUFB(data,(0x10)-4) = 0x19;
-		}
 		if (PItem->getSubType() & ITEM_CHARGED)
 		{
             if (PItem->getSubType() & ITEM_LOCKED)
@@ -76,6 +72,10 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
                     WBUFL(data,(0x19)-4) = ((CItemUsable*)PItem)->getUseDelay() + CurrentTime;  // таймер задержки использования
                 }
             }
+		}
+        if (PItem->getCharPrice() != 0)
+		{
+			WBUFB(data,(0x10)-4) = 0x19;
 		}
         memcpy(data+(0x1D)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 12));
 
