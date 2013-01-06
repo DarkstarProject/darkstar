@@ -368,8 +368,8 @@ namespace itemutils
 		    }
 	    }
 	
-	    ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods;");
-
+	    ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods WHERE itemId < %u", MAX_ITEMID); 
+	    
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
