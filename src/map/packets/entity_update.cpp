@@ -176,6 +176,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				}
 				break;
 				case MODEL_EQUIPED:
+                case MODEL_CHOCOBO:
 				{
 					this->size = 0x24;
 

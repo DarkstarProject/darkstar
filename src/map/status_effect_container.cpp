@@ -525,8 +525,15 @@ void CStatusEffectContainer::UpdateStatusIcons()
 
         if (icon != 0)
         {
-            m_Flags |= (((uint64)(icon >= 256)) << (count * 2));
-            m_StatusIcons[count] = icon & 255;
+            if (icon >= 256)
+            {
+                m_Flags |= 1LL << (count * 2);
+            }
+            if (icon >= 512)
+            {
+                m_Flags |= 1LL << (count * 2 + 1);
+            }
+            m_StatusIcons[count] = icon;
 
             if (++count == 32) break;
         }
