@@ -514,13 +514,13 @@ enum EFFECT
 	EFFECT_NINJUTSU_ELE_DEBUFF      = 490,
 	EFFECT_AVATAR					= 491,
 
-	EFFECT_DYNAMIS					= 511,
-	EFFECT_HEALING					= 512,
-	EFFECT_LEAVEGAME				= 513,
-    EFFECT_SKILLCHAIN               = 514,
+	EFFECT_DYNAMIS					= 511, // TODO: > 768
+	EFFECT_HEALING					= 512, // TODO: > 768
+	EFFECT_LEAVEGAME				= 513, // TODO: > 768
+    EFFECT_SKILLCHAIN               = 514, // TODO: > 768
 };
 
-#define MAX_EFFECTID    600
+#define MAX_EFFECTID    800  // 768 real + 32 custom
 
 /************************************************************************
 *																		*

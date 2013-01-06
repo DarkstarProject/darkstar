@@ -27,7 +27,7 @@
 #include "map.h"
 #include "itemutils.h"
 
-#define MAX_ITEMID  20000
+#define MAX_ITEMID  21500
 #define MAX_DROPID  4500
 #define MAX_LOOTID  1300
 
@@ -368,7 +368,7 @@ namespace itemutils
 		    }
 	    }
 	
-	    ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods WHERE itemId < %u", MAX_ITEMID); 
+	    ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
 	    
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
