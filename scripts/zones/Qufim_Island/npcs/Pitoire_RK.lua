@@ -2,14 +2,12 @@
 -- Area: Qufim Island
 -- NPC:  Pitoire, R.K.
 -- Outpost Conquest Guards
--- @zone 126
--- @pos -245.366 -20.344 299.502
+-- @pos -245.366 -20.344 299.502 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Qufim_Island/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

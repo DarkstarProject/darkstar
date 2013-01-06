@@ -2,14 +2,12 @@
 -- Area: Northern San d'Oria
 -- NPC:  Jeanvirgaud
 -- Outpost Teleporter NPC
--- @zone 231
--- @pos 45.559 -0.199 26.300
+-- @pos 45.559 -0.199 26.300 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 guardnation = SANDORIA;
@@ -45,6 +43,7 @@ function onEventUpdate(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	loca = option - 1073741829;
+	printf("loca: %u",loca);
 	player:updateEvent(player:getGil(),OP_TeleFee(player,loca),player:getCP(),OP_TeleFee(player,loca));
 	
 end;

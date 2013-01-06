@@ -5,10 +5,9 @@
 -- @pos 570.732 -2.637 553.508 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Jugner_Forest/TextIDs");
 
 guardnation = WINDURST;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

@@ -5,10 +5,9 @@
 -- @pos 470.843 23.465 415.520 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 guardnation = WINDURST;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

@@ -2,14 +2,12 @@
 -- Area: Yuhtunga Jungle
 -- NPC:  Bammiro, I.M.
 -- Border Conquest Guards
--- @zone 123
--- @pos -241.334 -1 478.602
+-- @pos -241.334 -1 478.602 123
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

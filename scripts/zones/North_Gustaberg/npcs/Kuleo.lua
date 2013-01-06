@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: North Gustaberg
 -- NPC:  Kuleo
--- @zone 106
--- @pos -586 39 61
+-- @pos -586 39 61 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/North_Gustaberg/TextIDs");
 
 region 	= GUSTABERG;

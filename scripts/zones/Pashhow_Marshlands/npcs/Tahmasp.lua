@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
 -- NPC:  Tahmasp
--- @zone 109
--- @pos 464 24 416
+-- @pos 464 24 416 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 region 	= DERFLAND;

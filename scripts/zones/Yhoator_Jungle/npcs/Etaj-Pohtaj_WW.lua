@@ -5,10 +5,9 @@
 -- @pos 200.254 -1 -80.324 124
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 guardnation = WINDURST;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

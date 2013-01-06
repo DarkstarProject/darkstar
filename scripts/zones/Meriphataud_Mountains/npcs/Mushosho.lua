@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
 -- NPC:  Mushosho
--- @zone 119
--- @pos -290 16 415
+-- @pos -290 16 415 119
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
 region 	= ARAGONEU;

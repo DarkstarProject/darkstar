@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Yhoator Jungle
 -- NPC:  Mugha Dovajaiho
--- @zone 124
--- @pos 202 0 -82
+-- @pos 202 0 -82 124
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 region 	= ELSHIMOUPLANDS;

@@ -2,14 +2,12 @@
 -- Area: West Sarutabaruta
 -- NPC:  Ryokei, I.M.
 -- Outpost Conquest Guards
--- @zone 115
--- @pos -11.322 -13.459 317.696
+-- @pos -11.322 -13.459 317.696 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/West_Sarutabaruta/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

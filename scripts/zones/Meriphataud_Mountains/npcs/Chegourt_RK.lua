@@ -2,14 +2,12 @@
 -- Area: Meriphataud Mountains
 -- NPC:  Chegourt, R.K.
 -- Outpost Conquest Guards
--- @zone 119
--- @pos -295 16 418
+-- @pos -295 16 418 119
 -------------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 --------------------------------------
-
-require("scripts/globals/conquestguards");
+
+require("scripts/globals/conquest");
 require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

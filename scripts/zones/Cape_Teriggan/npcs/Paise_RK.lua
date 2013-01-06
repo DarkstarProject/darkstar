@@ -2,14 +2,11 @@
 -- Area: Cape Teriggan
 -- NPC:  Bright Moon
 -- Border Conquest Guards
--- @zone 113
--- @pos 119 0 282
+-- @pos 119 0 282 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
------------------------------------
-
-require("scripts/globals/conquestguards");
+-----------------------------------
+require("scripts/globals/conquest");
 require("scripts/zones/Cape_Teriggan/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

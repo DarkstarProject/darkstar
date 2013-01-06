@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Cape Teriggan
 -- NPC:  Bright Moon
--- @zone 113
--- @pos -185 7 -63
+-- @pos -185 7 -63 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Cape_Teriggan/TextIDs");
 
 region 	= VOLLBOW;

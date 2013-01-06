@@ -2,14 +2,12 @@
 -- Area: West Sarutabaruta
 -- NPC:  Banege, R.K.
 -- Border Conquest Guards
--- @zone 115
--- @pos 399.450 -25.858 727.545
+-- @pos 399.450 -25.858 727.545 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/West_Sarutabaruta/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

@@ -2,15 +2,13 @@
 -- Area: Lufaise Meadows
 -- NPC:  Jersey
 -- Type: Outpost Vendor
--- @zone 24
--- @pos -548.706 -7.197 -53.897
+-- @pos -548.706 -7.197 -53.897 24
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Lufaise_Meadows/TextIDs");
 
 region 	= TAVNAZIA;

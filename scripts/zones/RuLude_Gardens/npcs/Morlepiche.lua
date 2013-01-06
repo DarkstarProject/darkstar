@@ -2,18 +2,12 @@
 -- Area: Rulude Gardens
 -- NPC:  Morlepiche
 -- @pos -95 0 160 243
-
--- X Grant Signet
--- X Recharge Emperor Band, Empress Band, or Chariot Band
--- X Accepts traded Crystals to fill up the Rank bar to open new Missions.
--- X Sells items in exchange for Conquest Points
 -------------------------------------
 package.loaded["scripts/zones/Rulude_Gardens/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Rulude_Gardens/TextIDs");
 
 guardnation = OTHER;	-- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno).

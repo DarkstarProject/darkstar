@@ -2,14 +2,12 @@
 -- Area: Qufim Island
 -- NPC:  Sasa, I.M.
 -- Outpost Conquest Guards
--- @zone 126
--- @pos 
+-- @pos -245.366 -20.344 299.502 126
 -------------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -------------------------------------
-
-require("scripts/globals/conquestguards");
+
+require("scripts/globals/conquest");
 require("scripts/zones/Qufim_Island/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

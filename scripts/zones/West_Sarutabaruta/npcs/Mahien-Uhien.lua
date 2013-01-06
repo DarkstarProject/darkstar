@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: West Sarutabaruta
 -- NPC:  Mahien-Uhien
--- @zone 115
--- @pos -13 -12 311
+-- @pos -13 -12 311 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/West_Sarutabaruta/TextIDs");
 
 region 	= SARUTABARUTA;

@@ -1,13 +1,10 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
 -- NPC:  Gueriette
--- @zone 111
--- @pos -24 -59 -120
+-- @pos -24 -59 -120 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
------------------------------------
-
+-----------------------------------
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Beaucedine_Glacier/TextIDs");

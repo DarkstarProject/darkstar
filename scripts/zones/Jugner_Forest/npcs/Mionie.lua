@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Jugner Forest
 -- NPC:  Mionie
--- @zone 104
--- @pos 54 0 -11
+-- @pos 54 0 -11 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Jugner_Forest/TextIDs");
 
 region 	= NORVALLEN;

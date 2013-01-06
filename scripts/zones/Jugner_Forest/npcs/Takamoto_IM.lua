@@ -2,14 +2,12 @@
 -- Area: Jugner Forest
 -- NPC:  Takamoto, I.M.
 -- Outpost Conquest Guards
--- @zone 104
--- @pos 60.087 -0.602 -11.847
+-- @pos 60.087 -0.602 -11.847 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Jugner_Forest/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

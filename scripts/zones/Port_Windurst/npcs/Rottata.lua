@@ -5,10 +5,9 @@
 -- @pos 193.111 -12.999 215.638 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Port_Windurst/TextIDs");
 
 guardnation = WINDURST;

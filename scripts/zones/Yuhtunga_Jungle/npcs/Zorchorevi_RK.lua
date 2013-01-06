@@ -2,14 +2,12 @@
 -- Area: Yuhtunga Jungle
 -- NPC:  Zorchorevi, R.K.
 -- Outpost Conquest Guards
--- @zone 123
--- @pos -242.487 -1 -402.772
+-- @pos -242.487 -1 -402.772 123
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

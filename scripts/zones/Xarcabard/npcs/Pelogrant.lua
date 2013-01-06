@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Xarcabard
 -- NPC:  Pelogrant
--- @zone 112
--- @pos 210 -22 -201
+-- @pos 210 -22 -201 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Xarcabard/TextIDs");
 
 region 	= VALDEAUNIA;

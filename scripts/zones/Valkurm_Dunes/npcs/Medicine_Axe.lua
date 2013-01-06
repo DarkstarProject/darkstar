@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Valkurm Dunes
 -- NPC:  Medicine Axe
--- @zone 103
--- @pos 144 -7 104
+-- @pos 144 -7 104 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Valkurm_Dunes/TextIDs");
 
 region 	= ZULKHEIM;

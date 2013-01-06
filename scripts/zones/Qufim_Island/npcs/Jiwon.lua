@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Qufim Island
 -- NPC:  Jiwon
--- @zone 126
--- @pos -249 -19 300
+-- @pos -249 -19 300 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Qufim_Island/TextIDs");
 
 region 	= QUFIMISLAND;

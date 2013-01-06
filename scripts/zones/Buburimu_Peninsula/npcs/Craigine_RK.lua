@@ -2,14 +2,12 @@
 -- Area: Buburimu Peninsula
 -- NPC:  Craigine, R.K.
 -- Border Conquest Guards
--- @zone 118
--- @pos -599.903 -41.441 165.776
+-- @pos -599.903 -41.441 165.776 118
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

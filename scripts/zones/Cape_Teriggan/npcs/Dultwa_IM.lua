@@ -5,10 +5,9 @@
 -- @pos 119 0 282 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
-require("scripts/globals/conquestguards");
+
+require("scripts/globals/conquest");
 require("scripts/zones/Cape_Teriggan/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

@@ -1,15 +1,12 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
 -- NPC:  Sowande
--- @zone 114
--- @pos -257 8 -249
+-- @pos -257 8 -249 114
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
------------------------------------
-
+-----------------------------------
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
 region 	= KUZOTZ;

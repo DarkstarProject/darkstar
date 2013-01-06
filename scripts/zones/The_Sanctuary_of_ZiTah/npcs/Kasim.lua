@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: The Sanctuary of Zitah
 -- NPC:  Kasim
--- @zone 121
--- @pos -46 0 -148
+-- @pos -46 0 -148 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_Zitah/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/The_Sanctuary_of_Zitah/TextIDs");
 
 region 	= LITELOR;

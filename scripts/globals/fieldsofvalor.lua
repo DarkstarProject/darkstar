@@ -1,6 +1,6 @@
-package.loaded["scripts/globals/conquestguards"] = nil;
+
 require("/scripts/globals/settings");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 
 --require("/scripts/globals/spell_definitions");
 

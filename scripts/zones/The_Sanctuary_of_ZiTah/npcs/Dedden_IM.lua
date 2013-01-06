@@ -2,14 +2,12 @@
 -- Area: The Sanctuary of Zi'Tah
 -- NPC:  Dedden, I.M.
 -- Border Conquest Guards
--- @zone 121
--- @pos -252.454 -1.958 624.366
+-- @pos -252.454 -1.958 624.366 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

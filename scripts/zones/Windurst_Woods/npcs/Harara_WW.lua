@@ -10,10 +10,9 @@
 --   Start an Expeditionary Force by giving an E.F. region insignia to you. 
 -------------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -------------------------------------
-
-require("scripts/globals/conquestguards");
+
+require("scripts/globals/conquest");
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 guardnation = WINDURST;	-- SANDORIA, BASTOK, WINDURST, JEUNO

@@ -2,14 +2,12 @@
 -- Area: Lufaise Meadows
 -- NPC:  Chilaumme, R.K.
 -- Border Conquest Guards
--- @zone 24
--- @pos 414.659 0.905 -52.417
+-- @pos 414.659 0.905 -52.417 24
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Lufaise_Meadows/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

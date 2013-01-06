@@ -2,14 +2,12 @@
 -- Area: Buburimu Peninsula
 -- NPC:  Ishin, I.M.
 -- Outpost Conquest Guards
--- @zone 118
--- @pos -481.164 -32.858 49.188
+-- @pos -481.164 -32.858 49.188 118
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

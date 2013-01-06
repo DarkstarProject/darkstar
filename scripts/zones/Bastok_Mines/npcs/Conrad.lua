@@ -2,14 +2,12 @@
 -- Area: Bastok Mines
 -- NPC:  Conrad
 -- Outpost Teleporter NPC
--- @zone 234
--- @pos 94.457 -0.375 -66.161
+-- @pos 94.457 -0.375 -66.161 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
-require("scripts/globals/conquestguards");
+
+require("scripts/globals/conquest");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 guardnation = BASTOK;

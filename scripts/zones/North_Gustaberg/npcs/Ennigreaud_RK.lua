@@ -2,14 +2,12 @@
 -- Area: North Gustaberg
 -- NPC:  Ennigreaud, R.K.
 -- Outpost Conquest Guards
--- @zone 106
--- @pos -584.687 39.107 54.281
+-- @pos -584.687 39.107 54.281 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/North_Gustaberg/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

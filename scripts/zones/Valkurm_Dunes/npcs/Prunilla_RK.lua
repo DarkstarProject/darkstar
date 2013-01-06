@@ -2,14 +2,12 @@
 -- Area: Valkurm Dunes
 -- NPC:  Prunilla, R.K.
 -- Border Conquest Guards
--- @zone 103
--- @pos 908.245 -1.171 -411.504
+-- @pos 908.245 -1.171 -411.504 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Valkurm_Dunes/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

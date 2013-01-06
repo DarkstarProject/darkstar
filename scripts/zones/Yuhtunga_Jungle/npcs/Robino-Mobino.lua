@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
 -- NPC:  Robino-Mobino
--- @zone 123
--- @pos -244 0 -401
+-- @pos -244 0 -401 123
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
 region 	= ELSHIMOLOWLANDS;

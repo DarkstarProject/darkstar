@@ -2,14 +2,12 @@
 -- Area: Yhoator Jungle
 -- NPC:  Guddal, I.M.
 -- Border Conquest Guards
--- @zone 124
--- @pos -84.113 -0.449 224.902
+-- @pos -84.113 -0.449 224.902 124
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

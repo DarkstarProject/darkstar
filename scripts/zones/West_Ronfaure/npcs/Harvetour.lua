@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: West Ronfaure
 -- NPC:  Harvetour
--- @zone 100
--- @pos -448 -19 -214
+-- @pos -448 -19 -214 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/West_Ronfaure/TextIDs");
 
 region 	= RONFAURE;

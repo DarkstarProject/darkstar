@@ -2,20 +2,14 @@
 -- Area: Port Jeuno
 -- NPC:  Kochahy-Muwachahy
 -- @pos 40 0 6 246
-
--- X Grant Signet
--- X Recharge Emperor Band, Empress Band, or Chariot Band
--- X Accepts traded Crystals to fill up the Rank bar to open new Missions.
--- X Sells items in exchange for Conquest Points
 -------------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/conquest");
 require("scripts/zones/Port_Jeuno/TextIDs");
-require("scripts/globals/conquestguards");
 
 guardnation = OTHER;	-- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno).
 guardtype	= 1;		-- 1: city, 2: foreign, 3: outpost, 4: border

@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
 -- NPC:  Lobho Ukipturi
--- @zone 118
--- @pos -485 -31 50
+-- @pos -485 -31 50 118
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
-
+
 require("scripts/globals/shop");
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 region 	= KOLSHUSHU;

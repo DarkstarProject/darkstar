@@ -2,14 +2,12 @@
 -- Area: The Sanctuary of Zi'Tah
 -- NPC:  Calliope, I.M.
 -- Outpost Conquest Guards
--- @zone 121
--- @pos -40.079 -0.642 -148.785
+-- @pos -40.079 -0.642 -148.785 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno

@@ -2,14 +2,12 @@
 -- Area: Xarcabard
 -- NPC:  Jeantelas, R.K.
 -- Outpost Conquest Guards
--- @zone 112
--- @pos 207.548 -24.795 -203.694
+-- @pos 207.548 -24.795 -203.694 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
-package.loaded["scripts/globals/conquestguards"] = nil;
 -----------------------------------
 
-require("scripts/globals/conquestguards");
+require("scripts/globals/conquest");
 require("scripts/zones/Xarcabard/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
