@@ -69,6 +69,37 @@ uint16 GetMogHouseID(CCharEntity * PChar)
 *                                                                       *
 ************************************************************************/
 
+uint8 GetMosHouseFlag(CCharEntity* PChar)
+{
+    if ((PChar->loc.prevzone >= 48) && (PChar->loc.prevzone <= 50))
+	{
+		if (PChar->profile.mhflag & 0x10) return 5;
+	}
+	if ((PChar->loc.prevzone >= 230) && (PChar->loc.prevzone <= 232))
+	{
+		if (PChar->profile.mhflag & 0x01) return 1;
+	}
+	if ((PChar->loc.prevzone >= 234) && (PChar->loc.prevzone <= 236))
+	{
+        if (PChar->profile.mhflag & 0x02) return 2;
+	}
+	if ((PChar->loc.prevzone >= 238) && (PChar->loc.prevzone <= 241))
+	{
+		if (PChar->profile.mhflag & 0x04) return 3;
+	}
+	if ((PChar->loc.prevzone >= 243) && (PChar->loc.prevzone <= 246))
+	{
+		if (PChar->profile.mhflag & 0x08) return 4;
+	}
+	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       * 
+*                                                                       *
+************************************************************************/
+
 CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid) 
 {
 	this->type = 0x0A;
@@ -139,7 +170,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 		WBUFB(data,(0x30)-4) = PChar->loc.prevzone;             // form zone
 		WBUFB(data,(0x42)-4) = PChar->loc.prevzone;             // from zone
 	    WBUFW(data,(0xAA)-4) = GetMogHouseID(PChar);            // Mog House id
-		WBUFB(data,(0xAE)-4) = PChar->profile.mhflag;           // Mog House leaving flag
+		WBUFB(data,(0xAE)-4) = GetMosHouseFlag(PChar);          // Mog House leaving flag
 	} else {
 		WBUFB(data,(0x80)-4) = 2;										
 		WBUFB(data,(0x30)-4) = PChar->getZone();                // to zone
@@ -148,8 +179,6 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
         WBUFB(data,(0xAC)-4) = csid > 0 ? 0x01 : 0x00;          //if 0x01 then pause between zone
 		WBUFB(data,(0xAF)-4) = PChar->loc.zone->CanUseMisc(MISC_MOGMENU);	// флаг, позволяет использовать mog menu за пределами mog house
 	}
-
-  //WBUFL(data,(0x98)-4) = PChar->clientip;
 
 	WBUFL(data,(0xA0)-4) = 0x00000000;							// время, проведенное персонажем в игре с момента создания
 	WBUFL(data,(0xA4)-4) = 0x00000000;							// оставшееся время до возрождения после смерти (формат времени неизвестен)
