@@ -992,8 +992,10 @@ void CAIMobDummy::ActionAttack()
 	// mob should not attack another mob with no master
 	if(m_PBattleTarget != NULL && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster == NULL)
 	{
+		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		m_PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 	}
+
 
 
     if (m_PBattleTarget->isDead() || 
