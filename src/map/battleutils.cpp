@@ -3078,17 +3078,26 @@ TARGET_PARTY_TYPE getAvailableAoeTargets(CBattleEntity* PTarget)
 
 		case TYPE_PET:
 		case TYPE_MOB:
-			if (PTarget->PMaster->objtype == TYPE_PC)
+			if (PTarget->PMaster != NULL)
 			{
-				if (PTarget->PMaster->PParty != NULL)
-					return PTarget->PMaster->PParty->m_PAlliance != NULL ? PET_ALLIANCE_TARGET : PET_PARTY_TARGET;
-				else
-					return PET_AND_MASTER;
+				if (PTarget->PMaster->objtype == TYPE_PC)
+				{
+					if (PTarget->PMaster->PParty != NULL)
+						return PTarget->PMaster->PParty->m_PAlliance != NULL ? PET_ALLIANCE_TARGET : PET_PARTY_TARGET;
+					else
+						return PET_AND_MASTER;
+				}
+				else if (PTarget->PMaster->objtype == TYPE_MOB)
+				{
+					//not implemented yet, master is a mob
+				}
 			}
-			else if (PTarget->PMaster->objtype == TYPE_MOB)
+			else
 			{
-				//not implemented yet, master is a mob
+				// the charmed mob was released 
+				return INVALID_MOB_TARGET;
 			}
+
 			break;
 	}
 }

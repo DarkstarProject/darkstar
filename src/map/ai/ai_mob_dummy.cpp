@@ -618,10 +618,12 @@ void CAIMobDummy::ActionAbilityFinish()
 
 		if (m_PMobSkill->getAoe() == 1 || m_PMobSkill->getAoe() == 2) // to handle both types of aoe
 		{
-			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY) // aoe on the players
-			{
+		//	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY) // aoe on the players
+			
 				targetPartyType = battleutils::getAvailableAoeTargets(m_PBattleTarget);
 
+				if (targetPartyType != INVALID_MOB_TARGET)
+				{
 				apAction_t Action;
 				Action.reaction   = REACTION_HIT;
 				Action.speceffect = SPECEFFECT_HIT;
