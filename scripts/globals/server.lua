@@ -103,19 +103,29 @@ end;
 
 function SetTimedSpawns()
 
-	local NMs  = 
+  local NMs  = 
   {
     17649693, -- Mysticmaker Profblix 
     17645578, -- Bune
     17240413, -- Kreutzet
-    17490234  -- Guivre
-	}
-	
-	i = 1;
-	while i <= (table.getn(NMs)) do
+    17490234, -- Guivre
+    17289575, -- King Vinegarroon
+    17244539, -- Cactrot Rapido
+    17244372, -- Centurio_XII-I	
+    17408018, -- Fafnir
+    17596720, -- Serket
+    17596506, -- Old Two-Wings
+    17596507, -- Skewer Sam
+    17269106, -- Roc
+    17297440, -- Behemoth
+    17228242  -- Simurgh
+  }
+
+  i = 1;
+  while i <= (table.getn(NMs)) do
     UpdateNMSpawnPoint(NMs[i]);
-    SpawnMob(NMs[i], '', math.random((300),(3600))); --5-60 minutes
-		i = i + 1;
-	end
+    SpawnMob(NMs[i], '', math.random((900),(10800))); --15-180 minutes
+    i = i + 1;
+  end
 
 end;
