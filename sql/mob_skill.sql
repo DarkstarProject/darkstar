@@ -675,7 +675,7 @@ INSERT INTO `mob_skill` VALUES (1454,166,1182,'Deafening_Tantara', 1, 10.0, 2000
 
 -- Puk
 INSERT INTO `mob_skill` VALUES (1468,198,1199,'White_Wind', 1, 10.0, 2000, 1500, 1, 0);
-INSERT INTO `mob_skill` VALUES (1467,198,1198,'Ill_wind', 1, 16.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (1467,198,1198,'Ill_Wind', 1, 16.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (1466,198,1197,'Zephyr_Mantle', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (1465,198,1196,'Obfuscate', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (1464,198,1195,'Wind_Shear', 1, 10.0, 2000, 1500, 4, 0);

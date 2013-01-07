@@ -38,7 +38,7 @@ function onSpellCast(caster,target,spell)
 	final = finalMagicAdjustments(caster,target,spell,dmg);
 	
 	-- Calculate duration.
-	duration = 120;
+	duration = 60;
 	
 	-- Check for Dia & bio.
 	dia = target:getStatusEffect(EFFECT_DIA);

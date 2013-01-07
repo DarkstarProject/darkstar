@@ -36,7 +36,7 @@ function onSpellCast(caster,target,spell)
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
 	
-	duration = 30;
+	duration = 60;
 	
 	-- Check for Bio.
 	bio = target:getStatusEffect(EFFECT_BIO);
