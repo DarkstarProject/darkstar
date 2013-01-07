@@ -27,7 +27,7 @@
 #include "map.h"
 #include "itemutils.h"
 
-#define MAX_ITEMID  21500
+#define MAX_ITEMID  21503
 #define MAX_DROPID  4500
 #define MAX_LOOTID  1300
 
@@ -78,7 +78,7 @@ namespace itemutils
 	    {
 		    return new CItemArmor(ItemID);
 	    }
-	    if( (ItemID >= 0x4000) && (ItemID <= 0x4DFF) ) 
+	    if( (ItemID >= 0x4000) && (ItemID <= 0x53FF) ) 
 	    {
 		    return new CItemWeapon(ItemID);
 	    }
@@ -124,7 +124,7 @@ namespace itemutils
 		    {
 			    return new CItemArmor(*((CItemArmor*)g_pItemList[ItemID]));
 		    }
-		    if( (ItemID >= 0x4000) && (ItemID <= 0x4DFF) ) 
+		    if( (ItemID >= 0x4000) && (ItemID <= 0x53FF) )
 		    {
 			    return new CItemWeapon(*((CItemWeapon*)g_pItemList[ItemID]));
 		    }
