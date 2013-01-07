@@ -96,19 +96,6 @@ function onTrigger(player,npc)
 		elseif(RockRacketeer == QUEST_ACCEPTED) then
 			player:startEvent(0x005E); -- quest reminder
 		
-			
-		-- Quest "Mihgo's Amigo"
-		elseif(MihgosAmigo == QUEST_AVAILABLE) then
-			CryingOverOnions = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
-			
-			if(CryingOverOnions ~= QUEST_AVAILABLE) then
-				player:startEvent(0x0051); -- Start Quest "Mihgo's Amigo" with quest "Crying Over Onions" Activated
-			else	
-				player:startEvent(0x0050); -- Start Quest "Mihgo's Amigo"
-			end
-		elseif(MihgosAmigo == QUEST_ACCEPTED) then
-			player:startEvent(0x0052);
-		
 		
 		-- Quest "The Tenshodo Showdown" THF af
 		elseif(Job == 6 and LvL >= 40 and theTenshodoShowdown == QUEST_AVAILABLE) then 
@@ -136,7 +123,8 @@ function onTrigger(player,npc)
 			player:startEvent(0x0204); -- finish first part of "Hitting The Marquisate"	
 		elseif(hittingTheMarquisateNanaaCS == 1) then
 			player:startEvent(0x0205); -- during second part of "Hitting The Marquisate"				
-		
+
+			
 		-- Standard dialog
 		elseif(RockRacketeer == QUEST_COMPLETED) then
 			player:startEvent(0x0063); -- new dialog after Rock Racketeer
@@ -144,6 +132,18 @@ function onTrigger(player,npc)
 		elseif(MihgosAmigo == QUEST_COMPLETED) then
 			player:startEvent(0x0059); -- new dialog after Mihgo's Amigos
 		
+		
+		-- Quest "Mihgo's Amigo"
+		elseif(MihgosAmigo == QUEST_AVAILABLE) then
+			CryingOverOnions = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
+			 
+			if(CryingOverOnions == QUEST_AVAILABLE) then
+				player:startEvent(0x0051); -- Start Quest "Mihgo's Amigo" with quest "Crying Over Onions" Activated
+			else	
+				player:startEvent(0x0050); -- Start Quest "Mihgo's Amigo"
+			end
+		elseif(MihgosAmigo == QUEST_ACCEPTED) then
+			player:startEvent(0x0052);
 		else
 			player:startEvent(0x004c); -- standard dialog
 		end
@@ -161,8 +161,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+-- printf("CSID2: %u",csid);
+-- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -170,8 +170,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 	
 	if(csid == 0x0050 or csid == 0x0051) then
 		player:addQuest(WINDURST,MIHGO_S_AMIGO);
