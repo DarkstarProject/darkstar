@@ -717,17 +717,27 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
 		m_RegenCheckTime = tick;
 		m_POwner->addHP(m_POwner->getMod(MOD_REGEN));
-		if( m_POwner->getMod(MOD_AVATAR_PERPETUATION) > 0 ){
+
+
+		if (m_POwner->getMod(MOD_AVATAR_PERPETUATION) > 0)
+		{
 			int8 perpetuation = m_POwner->getMod(MOD_AVATAR_PERPETUATION);
-			if( m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_ASTRAL_FLOW))
+
+			if (m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_ASTRAL_FLOW))
 				perpetuation = 0;
 			else
 			{
-				perpetuation -= charutils::AvatarPerpetuationReduction((CCharEntity*)m_POwner);
-				if( perpetuation < 1 )
-					perpetuation = 1;
+				if (m_POwner->PPet != NULL)
+				{
+					perpetuation -= charutils::AvatarPerpetuationReduction((CCharEntity*)m_POwner);
+
+					if( perpetuation < 1 )
+						perpetuation = 1;
+				}
 			}
+
 			m_POwner->addMP(m_POwner->getMod(MOD_REFRESH) - perpetuation);
+
 			if( m_POwner->health.mp == 0 )
 			{
 				petutils::DespawnPet(m_POwner);
@@ -735,11 +745,17 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
 		}
 		else
+		{
 			m_POwner->addMP(m_POwner->getMod(MOD_REFRESH));
+		}
+
 		m_POwner->addTP(m_POwner->getMod(MOD_REGAIN)/10.0);
+
 		if( m_POwner->status !=  STATUS_DISAPPEAR)
 		{
 			charutils::UpdateHealth((CCharEntity*)m_POwner);
 		}
     }
+
+
 }

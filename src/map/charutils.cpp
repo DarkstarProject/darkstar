@@ -3448,8 +3448,11 @@ void ResetAllTwoHours()
     Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = 0");
 }
 
-uint8	AvatarPerpetuationReduction(CCharEntity* PChar)
+
+
+uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 {
+
 	uint8 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
 
 	MODIFIER strong[8] = {MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_ICE_AFFINITY, MOD_THUNDER_AFFINITY, MOD_LIGHT_AFFINITY, MOD_DARK_AFFINITY};
