@@ -1046,7 +1046,7 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
     uint8 LogID     = (uint8)lua_tointeger(L,1);
     uint8 MissionID = (uint8)lua_tointeger(L,2);
 
-    if (LogID < 10 && MissionID < 64)
+    if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -1083,7 +1083,7 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
     uint8 LogID     = (uint8)lua_tointeger(L,1);
     uint8 MissionID = (uint8)lua_tointeger(L,2);
 
-    if (LogID < 10 && MissionID < 64)
+    if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -1128,7 +1128,7 @@ inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
 
     bool complete = false;
 
-    if (LogID < 10 && MissionID < 64)
+    if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         complete = ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].complete[MissionID];
     }
@@ -1156,7 +1156,7 @@ inline int32 CLuaBaseEntity::getCurrentMission(lua_State *L)
     uint8  LogID     = (uint8)lua_tointeger(L,1);
     uint8  MissionID = 0;
 
-    if (LogID < 10)
+    if (LogID < MAX_MISSIONAREA)
     {
         MissionID = (uint8)((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].current;
     }
@@ -1185,7 +1185,7 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
     uint8 LogID     = (uint8)lua_tointeger(L,1);
     uint8 MissionID = (uint8)lua_tointeger(L,2);
 
-    if (LogID < 10 && MissionID < 64)
+    if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
 	    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -1717,7 +1717,19 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
     if (m_PBaseEntity->animation == ANIMATION_HEALING)
     {
         ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-    }		
+    }
+	if (m_PBaseEntity->animation == ANIMATION_CHOCOBO)
+    {
+		m_PBaseEntity->animation = ANIMATION_NONE;
+		
+        if (m_PBaseEntity->objtype == TYPE_PC)
+		{
+			((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
+		} else {
+            m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE));
+		}
+    }
+
     uint16 EventID = (uint16)lua_tointeger(L,1);
 
     uint32 param0 = 0;

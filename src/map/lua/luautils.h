@@ -77,6 +77,8 @@ namespace luautils
 	int32 GetServerVariable(lua_State*);
 	int32 SetServerVariable(lua_State *);
 	int32 OnServerStart();														// triggers when game server starts up
+
+	int32 OnGameDayAutomatisation();											// Automatic action of NPC every game day
 		
     int32 OnGameIn(CCharEntity* PChar);											//
 	int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone

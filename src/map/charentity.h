@@ -60,6 +60,8 @@ enum QUESTAREA
 
 #define MAX_QUESTAREA	  9      
 #define MAX_QUESTID     256
+#define MAX_MISSIONAREA	  7
+#define MAX_MISSIONID    64
 
 struct jobs_t 
 {
@@ -174,7 +176,7 @@ public:
     uint8             m_PetCommands[32];            // список доступных команд питомцу
 	uint8             m_WeaponSkills[32];  
 	questlog_t		  m_questLog[MAX_QUESTAREA];    // список всех квестов
-	missionlog_t	  m_missionLog[7];				// список миссий
+	missionlog_t	  m_missionLog[MAX_MISSIONAREA];// список миссий
 	assaultlog_t	  m_assaultLog;					// список assault миссий
 	campaignlog_t	  m_campaignLog;                // список campaing миссий
 	uint32			  m_rangedDelay;                // ranged attack delay (with timestamp for repeat attacks, hence 32bit)

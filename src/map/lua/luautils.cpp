@@ -934,9 +934,17 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 
 	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0)) 
 	{  
-		ShowError("luautils::OnEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
-        lua_pop(LuaHandle, 1);
-		return -1;  
+		int8 File[255];
+		memset(File,0,sizeof(File));
+		snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+		
+		if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+		{  
+			ShowError("luautils::OnEventUpdate %s\n", lua_tostring(LuaHandle, -1));
+			ShowError("luautils::OnEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
+			lua_pop(LuaHandle, 1);
+			return -1; 
+		}
 	}
 
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEventUpdate");
@@ -974,9 +982,16 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 
 	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0)) 
 	{  
-		ShowError("luautils::OnEventFinish %s\n", lua_tostring(LuaHandle, -1));
-        lua_pop(LuaHandle, 1);
-		return -1;  
+		int8 File[255];
+		memset(File,0,sizeof(File));
+		snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+		
+		if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+		{
+			ShowError("luautils::OnEventFinish %s\n", lua_tostring(LuaHandle, -1));
+			lua_pop(LuaHandle, 1);
+			return -1; 
+		}
 	}
 
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEventFinish");
@@ -1005,6 +1020,12 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 		PChar->pushPacket(new CRaiseTractorMenuPacket(PChar,TYPE_HOMEPOINT));
 		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar,ENTITY_UPDATE));
 	}
+		
+	if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHOCOBO))
+    {
+		PChar->animation = ANIMATION_CHOCOBO;
+		PChar->pushPacket(new CCharUpdatePacket(PChar));
+    }
 
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
@@ -1712,6 +1733,45 @@ int32 OnMobSpawn(CBaseEntity* PMob)
         return -1;
     }
     return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/************************************************************************
+*	OnGameDayAutomatisation()											*
+*   used for creating action of npc every game day						*
+*																		*
+************************************************************************/
+
+int32 OnGameDayAutomatisation()
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnGameDayAutomatisation");
+
+	snprintf(File, sizeof(File), "scripts/globals/automatisation.lua");
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnGameDayAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnGameDayAutomatisation");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnGameDayAutomatisation: undefined procedure OnGameDayAutomatisation\n");
+		return -1;
+	}
+  
+	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnGameDayAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************

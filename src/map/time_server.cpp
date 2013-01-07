@@ -28,12 +28,13 @@
 #include "transport.h"
 #include "vana_time.h"
 #include "zoneutils.h"
+#include "lua/luautils.h"
 
 
 int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 {
 	TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
-
+	
 	if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
 	{
 		zoneutils::UpdateWeather();
@@ -46,8 +47,10 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
         if (VanadielTOTD == TIME_MIDNIGHT)
         {
             guildutils::UpdateGuildsStock();
+			luautils::OnGameDayAutomatisation();
         }
 	}
+
 	CTransportHandler::getInstance()->TransportTimer();
 	return 0;
 }
