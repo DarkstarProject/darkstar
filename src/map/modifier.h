@@ -192,24 +192,24 @@ enum MODIFIER
 
 // Damage / Crit Damage / Delay
 
-	MOD_DMG					= 0xA0,	// Damage Multiplier 
-	MOD_DMGPHYS				= 0xA1,	// Physical Damage Multiplier
-	MOD_DMGBREATH			= 0xA2,	// Breath Damage Multiplier
-	MOD_DMGMAGIC			= 0xA3, // Magic Damage Multiplier - 256 base! (value of -24 means -24/256 magic damage taken)
-	MOD_DMGRANGE			= 0xA4,	// Range Damage Multiplier
+	MOD_DMG					= 0xA0,				// Damage Multiplier 
+	MOD_DMGPHYS				= 0xA1,				// Physical Damage Multiplier
+	MOD_DMGBREATH			= 0xA2,				// Breath Damage Multiplier
+	MOD_DMGMAGIC			= 0xA3,				// Magic Damage Multiplier - 256 base! (value of -24 means -24/256 magic damage taken)
+	MOD_DMGRANGE			= 0xA4,				// Range Damage Multiplier
 
-	MOD_CRITHITRATE			= 0xA5, // Raises chance to crit
-	MOD_ENEMYCRITRATE		= 0xA6, // Raises chance enemy will crit
+	MOD_CRITHITRATE			= 0xA5,				// Raises chance to crit
+	MOD_ENEMYCRITRATE		= 0xA6,				// Raises chance enemy will crit
 
-	MOD_HASTE				= 0xA7,		// % Percent Haste (and Slow)
-	MOD_SPELLINTERRUPT		= 0xA8,		// % Spell Interruption Rate
-	MOD_MOVE				= 0xA9,		// % Movement Speed
-	MOD_FASTCAST			= 0xAA,		// Increases Spell Cast Time (TRAIT) 
-	MOD_DELAY				= 0xAB,		// Increase/Decrease Delay (unused... )
-	MOD_RANGED_DELAY		= 0xAC,		// (unused... )
-	MOD_MARTIAL_ARTS		= 0xAD,		// The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT)
-    MOD_SKILLCHAINBONUS     = 0xAE,     // Damage bonus applied to skill chain damage.  Modifier from effects/traits
-    MOD_SKILLCHAINDMG       = 0xAF,     // Damage bonus applied to skill chain damage.  Modifier from gear (multiplicative after effect/traits)
+	MOD_HASTE				= 0xA7,				// % Percent Haste (and Slow)
+	MOD_SPELLINTERRUPT		= 0xA8,				// % Spell Interruption Rate
+	MOD_MOVE				= 0xA9,				// % Movement Speed
+	MOD_FASTCAST			= 0xAA,				// Increases Spell Cast Time (TRAIT) 
+	MOD_DELAY				= 0xAB,				// Increase/Decrease Delay (unused... )
+	MOD_RANGED_DELAY		= 0xAC,				// (unused... )
+	MOD_MARTIAL_ARTS		= 0xAD,				// The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT)
+    MOD_SKILLCHAINBONUS     = 0xAE,				// Damage bonus applied to skill chain damage.  Modifier from effects/traits
+    MOD_SKILLCHAINDMG       = 0xAF,				// Damage bonus applied to skill chain damage.  Modifier from gear (multiplicative after effect/traits)
 
 // FOOD!
 
@@ -264,128 +264,107 @@ enum MODIFIER
 
 	MOD_UNKNOWN				= 0xFF,
 
-	MOD_PARALYZE			= 0x101,	// Paralyze -- percent chance to proc
-	MOD_MIJIN_GAKURE		= 0x102,	// Tracks whether or not you used this ability to die.
-	MOD_DUAL_WIELD			= 0x103,	// Percent reduction in dual wield delay.
+	MOD_PARALYZE			= 0x101,			// Paralyze -- percent chance to proc
+	MOD_MIJIN_GAKURE		= 0x102,			// Tracks whether or not you used this ability to die.
+	MOD_DUAL_WIELD			= 0x103,			// Percent reduction in dual wield delay.
 
 // Warrior
-
-	MOD_DOUBLE_ATTACK		= 0x120,	// Percent chance to proc
+	MOD_DOUBLE_ATTACK		= 0x120,			// Percent chance to proc
 
 // Monk
-
-	MOD_SUBTLE_BLOW			= 0x121,	// How much TP to reduce.
-	MOD_COUNTER				= 0x123,	// Percent chance to counter
-	MOD_KICK_ATTACK			= 0x124,	// Percent chance to kick
+	MOD_SUBTLE_BLOW			= 0x121,			// How much TP to reduce.
+	MOD_COUNTER				= 0x123,			// Percent chance to counter
+	MOD_KICK_ATTACK			= 0x124,			// Percent chance to kick
 
 // White Mage
-
-	MOD_AFFLATUS_SOLACE		= 0x125,	// Pool of HP accumulated during Afflatus Solace
-	MOD_AFFLATUS_MISERY		= 0x126,	// Pool of HP accumulated during Afflatus Misery 
+	MOD_AFFLATUS_SOLACE		= 0x125,			// Pool of HP accumulated during Afflatus Solace
+	MOD_AFFLATUS_MISERY		= 0x126,			// Pool of HP accumulated during Afflatus Misery 
 
 // Black Mage
-
-	MOD_CLEAR_MIND			= 0x127,	// Used in conjunction with MOD_HEALMP to increase amount between tics
-	MOD_CONSERVE_MP			= 0x128,	// Percent chance
+	MOD_CLEAR_MIND			= 0x127,			// Used in conjunction with MOD_HEALMP to increase amount between tics
+	MOD_CONSERVE_MP			= 0x128,			// Percent chance
 
 // Red Mage
-
-	MOD_BLINK				= 0x12B,	// Tracks blink shadows
-	MOD_STONESKIN			= 0x12C,	// Tracks stoneskin HP pool
-	MOD_PHALANX				= 0x12D,	// Tracks direct damage reduction
+	MOD_BLINK				= 0x12B,			// Tracks blink shadows
+	MOD_STONESKIN			= 0x12C,			// Tracks stoneskin HP pool
+	MOD_PHALANX				= 0x12D,			// Tracks direct damage reduction
 
 // Thief
-
-    MOD_STEAL               = 0x12A,    // Increase/Decrease THF Steal chance
-	MOD_TRIPLE_ATTACK		= 0x12E,	// Percent chance
-	MOD_TREASURE_HUNTER     = 0x12F,	// Percent chance
+    MOD_STEAL               = 0x12A,			// Increase/Decrease THF Steal chance
+	MOD_TRIPLE_ATTACK		= 0x12E,			// Percent chance
+	MOD_TREASURE_HUNTER     = 0x12F,			// Percent chance
 
 // Paladin
 // Dark Knight
 // Beastmaster
-
-	MOD_TAME				= 0x130,	// Additional percent chance to charm
+	MOD_TAME				= 0x130,			// Additional percent chance to charm
 
 // Bard
-
-
 // Ranger
-
-
-	MOD_RECYCLE				= 0x131,	// Percent chance to recycle
+	MOD_RECYCLE				= 0x131,			// Percent chance to recycle
 
 // Samurai
-
-	MOD_ZANSHIN				= 0x132,	// Percent chance to counter
+	MOD_ZANSHIN				= 0x132,			// Percent chance to counter
 
 // Ninja
-
-	MOD_UTSUSEMI			= 0x133,	// Everyone's favorite --tracks shadows.
-	MOD_NINJA_TOOL			= 0x134,	// Percent chance to not use a tool.
+	MOD_UTSUSEMI			= 0x133,			// Everyone's favorite --tracks shadows.
+	MOD_NINJA_TOOL			= 0x134,			// Percent chance to not use a tool.
 
 // Dragoon
 // Summoner
 
-	MOD_AVATAR_PERPETUATION		= 0x173,  //stores base cost of current avatar
-	MOD_PERPETUATION_REDUCTION	= 0x15A,  //stores the MP/tick reduction from gear
-	MOD_WEATHER_REDUCTION		= 0x174,  //stores perpetuation reduction depending on weather
-	MOD_DAY_REDUCTION			= 0x175,  //stores perpetuation reduction depending on day
-
 // Blue Mage
-
-	MOD_BLUE_POINTS			= 0x135,	// Tracks extra blue points
+	MOD_BLUE_POINTS			= 0x135,			// Tracks extra blue points
 
 // Corsair
+	MOD_DEDICATION			= 0x136,			// % exp gain
+	MOD_DEDICATION_CAP		= 0x137,			// Cap of dedicaiton effect
 
-	MOD_DEDICATION			= 0x136,	// % exp gain
-	MOD_DEDICATION_CAP		= 0x137,	// Cap of dedicaiton effect
-
-	MOD_ROLL_FIGHTERS		= 0x138,	// Tracks totals
-	MOD_ROLL_MONKS			= 0x139,	// Tracks totals
-	MOD_ROLL_HEALERS		= 0x13A,	// Tracks totals
-	MOD_ROLL_WIZARDS		= 0x13B,	// Tracks totals
-	MOD_ROLL_WARLOCKS		= 0x13C,	// Tracks totals
-	MOD_ROLL_ROGUES			= 0x13D,	// Tracks totals
-	MOD_ROLL_GALLANTS		= 0x13E,	// Tracks totals
-	MOD_ROLL_CHAOS			= 0x13F,	// Tracks totals
-	MOD_ROLL_BEAST			= 0x140,	// Tracks totals
-	MOD_ROLL_CHORAL			= 0x141,	// Tracks totals
-	MOD_ROLL_HUNTERS		= 0x142,	// Tracks totals
-	MOD_ROLL_SAMURAI		= 0x143,	// Tracks totals
-	MOD_ROLL_NINJA			= 0x144,	// Tracks totals
-	MOD_ROLL_DRACHEN		= 0x145,	// Tracks totals
-	MOD_ROLL_EVOKERS		= 0x146,	// Tracks totals
-	MOD_ROLL_MAGUS			= 0x147,	// Tracks totals
-	MOD_ROLL_CORSAIRS		= 0x148,	// Tracks totals
-	MOD_ROLL_PUPPET			= 0x149,	// Tracks totals
-	MOD_ROLL_DANCERS		= 0x14A,	// Tracks totals
-	MOD_ROLL_SCHOLARS		= 0x14B,	// Tracks totals
-	MOD_BUST				= 0x14C,	// # of busts
+	MOD_ROLL_FIGHTERS		= 0x138,			// Tracks totals
+	MOD_ROLL_MONKS			= 0x139,			// Tracks totals
+	MOD_ROLL_HEALERS		= 0x13A,			// Tracks totals
+	MOD_ROLL_WIZARDS		= 0x13B,			// Tracks totals
+	MOD_ROLL_WARLOCKS		= 0x13C,			// Tracks totals
+	MOD_ROLL_ROGUES			= 0x13D,			// Tracks totals
+	MOD_ROLL_GALLANTS		= 0x13E,			// Tracks totals
+	MOD_ROLL_CHAOS			= 0x13F,			// Tracks totals
+	MOD_ROLL_BEAST			= 0x140,			// Tracks totals
+	MOD_ROLL_CHORAL			= 0x141,			// Tracks totals
+	MOD_ROLL_HUNTERS		= 0x142,			// Tracks totals
+	MOD_ROLL_SAMURAI		= 0x143,			// Tracks totals
+	MOD_ROLL_NINJA			= 0x144,			// Tracks totals
+	MOD_ROLL_DRACHEN		= 0x145,			// Tracks totals
+	MOD_ROLL_EVOKERS		= 0x146,			// Tracks totals
+	MOD_ROLL_MAGUS			= 0x147,			// Tracks totals
+	MOD_ROLL_CORSAIRS		= 0x148,			// Tracks totals
+	MOD_ROLL_PUPPET			= 0x149,			// Tracks totals
+	MOD_ROLL_DANCERS		= 0x14A,			// Tracks totals
+	MOD_ROLL_SCHOLARS		= 0x14B,			// Tracks totals
+	MOD_BUST				= 0x14C,			// # of busts
 
 // Puppetmaster
-
 // Dancer
-
-	MOD_FINISHING_MOVES		= 0x14D,	// Tracks # of finishing moves
+	MOD_FINISHING_MOVES		= 0x14D,			// Tracks # of finishing moves
 
 // Scholar
-
-	MOD_SUBLIMATION			= 0x14E,	// Pool of MP to draw from after Sublimation charge is complete.
-	MOD_STORMSURGE			= 0x14F,	// Tracks which element storm it is
+	MOD_SUBLIMATION			= 0x14E,			// Pool of MP to draw from after Sublimation charge is complete.
+	MOD_STORMSURGE			= 0x14F,			// Tracks which element storm it is
 	MOD_LIGHT_ARTS_MPCOST	= 0x150,
 	MOD_LIGHT_ARTS_FASTCAST	= 0x151,
 	MOD_DARK_ARTS_MPCOST	= 0x152,
 	MOD_DARK_ARTS_FASTCAST	= 0x153,
 
 	MOD_WIDESCAN			= 0x154,
-	MOD_ENSPELL				= 0x155, //stores the type of enspell active (0 if nothing)
-	MOD_SPIKES				= 0x156, //store the type of spike spell active (0 if nothing)
-	MOD_ENSPELL_DMG			= 0x157, //stores the base damage of the enspell before reductions
-	MOD_SPIKES_DMG			= 0x158, //stores the base damage of the spikes before reductions
+	MOD_ENSPELL				= 0x155,			//stores the type of enspell active (0 if nothing)
+	MOD_SPIKES				= 0x156,			//store the type of spike spell active (0 if nothing)
+	MOD_ENSPELL_DMG			= 0x157,			//stores the base damage of the enspell before reductions
+	MOD_SPIKES_DMG			= 0x158,			//stores the base damage of the spikes before reductions
 
 	MOD_TP_BONUS			= 0x159, 
 
-	MOD_FIRE_AFFINITY		= 0x15B, //stores the amount of elemental affinity (elemental staves mostly)
+	MOD_PERPETUATION_REDUCTION	= 0x15A,		//stores the MP/tick reduction from gear
+
+	MOD_FIRE_AFFINITY		= 0x15B,			//stores the amount of elemental affinity (elemental staves mostly)
 	MOD_EARTH_AFFINITY		= 0x15C,
 	MOD_WATER_AFFINITY		= 0x15D,
 	MOD_ICE_AFFINITY		= 0x15E,
@@ -399,30 +378,38 @@ enum MODIFIER
 	MOD_ADDS_WEAPONSKILL	 = 0x163,
 	MOD_ADDS_WEAPONSKILL_DYN = 0x164,
 
-	MOD_BP_DELAY			 = 0x165,  //stores blood pact delay reduction
+	MOD_BP_DELAY			 = 0x165,			//stores blood pact delay reduction
 	MOD_STEALTH              = 0x166,
-	MOD_RAPID_SHOT			 = 0x167,	// Percent chance to proc rapid shot
+	MOD_RAPID_SHOT			 = 0x167,			// Percent chance to proc rapid shot
 
 	MOD_CHARM						= 0x168,	// extends the charm time only, no effect of charm chance	
 	MOD_JUMP_TP_BONUS				= 0x169,	// bonus tp player receives when using jump (must be divided by 10)
 	MOD_JUMP_ATT_BONUS				= 0x16A,	// ATT% bonus for jump + high jump
 	MOD_HIGH_JUMP_ENMITY_REDUCTION	= 0x16B,	// for gear that reduces more enmity from high jump
 
-	MOD_REWARD_HP_BONUS		 = 0x16C,				// Percent to add to reward HP healed. (364)
-	MOD_SNAP_SHOT			 = 0x16D,				// Percent reduction to range attack delay
+	MOD_REWARD_HP_BONUS		 = 0x16C,			// Percent to add to reward HP healed. (364)
+	MOD_SNAP_SHOT			 = 0x16D,			// Percent reduction to range attack delay
 
-	MOD_MAIN_DMG_RATING		 = 0x16E,		//adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
-	MOD_OFF_DMG_RATING		 = 0x16F,		//adds damage rating to off hand weapon
-	MOD_REGAIN				 = 0x170,		//auto regain TP (from items) | this is multiplied by 10 e.g. 20 is 2% TP
-	MOD_REFRESH				 = 0x171,		//auto refresh from equipment
-	MOD_REGEN				 = 0x172		//auto regen from equipment
+	MOD_MAIN_DMG_RATING		 = 0x16E,			//adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
+	MOD_OFF_DMG_RATING		 = 0x16F,			//adds damage rating to off hand weapon
+	MOD_REGAIN				 = 0x170,			//auto regain TP (from items) | this is multiplied by 10 e.g. 20 is 2% TP
+	MOD_REFRESH				 = 0x171,			//auto refresh from equipment
+	MOD_REGEN				 = 0x172,			//auto regen from equipment
 
-//  use these for new modifiers
+	MOD_AVATAR_PERPETUATION		= 0x173,		//stores base cost of current avatar
+	MOD_WEATHER_REDUCTION		= 0x174,		//stores perpetuation reduction depending on weather
+	MOD_DAY_REDUCTION			= 0x175			//stores perpetuation reduction depending on day
+
+//  Use these for new modifiers. The enumeration
+//  must remain in the order created, by value.
 	
 	//SPARE_MOD				 = 0x176
 	//SPARE_MOD				 = 0x177
 	//SPARE_MOD				 = 0x178
-
+	//SPARE_MOD				 = 0x179
+	//SPARE_MOD				 = 0x17A
+	//SPARE_MOD				 = 0x17B
+	//SPARE_MOD				 = 0x17C
 };
 
 #define MAX_MODIFIER	       0x176
