@@ -298,10 +298,16 @@ enum MODIFIER
 // Dark Knight
 // Beastmaster
 	MOD_TAME				= 0x130,			// Additional percent chance to charm
+	MOD_CHARM				= 0x168,			// extends the charm time only, no effect of charm chance	
+	MOD_REWARD_HP_BONUS		 = 0x16C,			// Percent to add to reward HP healed. (364)
 
 // Bard
+
 // Ranger
 	MOD_RECYCLE				= 0x131,			// Percent chance to recycle
+	MOD_SNAP_SHOT			= 0x16D,			// Percent reduction to range attack delay
+	MOD_RAPID_SHOT			= 0x167,			// Percent chance to proc rapid shot
+	MOD_WIDESCAN			= 0x154,
 
 // Samurai
 	MOD_ZANSHIN				= 0x132,			// Percent chance to counter
@@ -311,7 +317,16 @@ enum MODIFIER
 	MOD_NINJA_TOOL			= 0x134,			// Percent chance to not use a tool.
 
 // Dragoon
+	MOD_JUMP_TP_BONUS				= 0x169,	// bonus tp player receives when using jump (must be divided by 10)
+	MOD_JUMP_ATT_BONUS				= 0x16A,	// ATT% bonus for jump + high jump
+	MOD_HIGH_JUMP_ENMITY_REDUCTION	= 0x16B,	// for gear that reduces more enmity from high jump
+
 // Summoner
+	MOD_AVATAR_PERPETUATION		= 0x173,		//stores base cost of current avatar
+	MOD_WEATHER_REDUCTION		= 0x174,		//stores perpetuation reduction depending on weather
+	MOD_DAY_REDUCTION			= 0x175,			//stores perpetuation reduction depending on day
+	MOD_PERPETUATION_REDUCTION	= 0x15A,		//stores the MP/tick reduction from gear
+	MOD_BP_DELAY			 = 0x165,			//stores blood pact delay reduction
 
 // Blue Mage
 	MOD_BLUE_POINTS			= 0x135,			// Tracks extra blue points
@@ -354,7 +369,7 @@ enum MODIFIER
 	MOD_DARK_ARTS_MPCOST	= 0x152,
 	MOD_DARK_ARTS_FASTCAST	= 0x153,
 
-	MOD_WIDESCAN			= 0x154,
+
 	MOD_ENSPELL				= 0x155,			//stores the type of enspell active (0 if nothing)
 	MOD_SPIKES				= 0x156,			//store the type of spike spell active (0 if nothing)
 	MOD_ENSPELL_DMG			= 0x157,			//stores the base damage of the enspell before reductions
@@ -362,7 +377,6 @@ enum MODIFIER
 
 	MOD_TP_BONUS			= 0x159, 
 
-	MOD_PERPETUATION_REDUCTION	= 0x15A,		//stores the MP/tick reduction from gear
 
 	MOD_FIRE_AFFINITY		= 0x15B,			//stores the amount of elemental affinity (elemental staves mostly)
 	MOD_EARTH_AFFINITY		= 0x15C,
@@ -378,30 +392,15 @@ enum MODIFIER
 	MOD_ADDS_WEAPONSKILL	 = 0x163,
 	MOD_ADDS_WEAPONSKILL_DYN = 0x164,
 
-	MOD_BP_DELAY			 = 0x165,			//stores blood pact delay reduction
 	MOD_STEALTH              = 0x166,
-	MOD_RAPID_SHOT			 = 0x167,			// Percent chance to proc rapid shot
-
-	MOD_CHARM						= 0x168,	// extends the charm time only, no effect of charm chance	
-	MOD_JUMP_TP_BONUS				= 0x169,	// bonus tp player receives when using jump (must be divided by 10)
-	MOD_JUMP_ATT_BONUS				= 0x16A,	// ATT% bonus for jump + high jump
-	MOD_HIGH_JUMP_ENMITY_REDUCTION	= 0x16B,	// for gear that reduces more enmity from high jump
-
-	MOD_REWARD_HP_BONUS		 = 0x16C,			// Percent to add to reward HP healed. (364)
-	MOD_SNAP_SHOT			 = 0x16D,			// Percent reduction to range attack delay
 
 	MOD_MAIN_DMG_RATING		 = 0x16E,			//adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
 	MOD_OFF_DMG_RATING		 = 0x16F,			//adds damage rating to off hand weapon
 	MOD_REGAIN				 = 0x170,			//auto regain TP (from items) | this is multiplied by 10 e.g. 20 is 2% TP
 	MOD_REFRESH				 = 0x171,			//auto refresh from equipment
-	MOD_REGEN				 = 0x172,			//auto regen from equipment
+	MOD_REGEN				 = 0x172			//auto regen from equipment
 
-	MOD_AVATAR_PERPETUATION		= 0x173,		//stores base cost of current avatar
-	MOD_WEATHER_REDUCTION		= 0x174,		//stores perpetuation reduction depending on weather
-	MOD_DAY_REDUCTION			= 0x175			//stores perpetuation reduction depending on day
-
-//  Use these for new modifiers. The enumeration
-//  must remain in the order created, by value.
+//  Use these for new modifiers. 
 	
 	//SPARE_MOD				 = 0x176
 	//SPARE_MOD				 = 0x177
@@ -413,6 +412,7 @@ enum MODIFIER
 };
 
 #define MAX_MODIFIER	       0x176
+
 
 
 /************************************************************************
