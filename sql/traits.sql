@@ -235,10 +235,10 @@ INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '65', '259', '5');	-- Dua
 INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '85', '259', '5');	-- Dual wield V
 
  -- Dual wield Dancer
-INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '20', '259', '10');	-- Dual wield I
-INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '40', '259', '5');	-- Dual wield II
-INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '60', '259', '10');  -- Dual wield III
-INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '80', '259', '5');	-- Dual wield VI
+INSERT INTO `traits` VALUES ('18', 'dual wield', '19', '20', '259', '10');	-- Dual wield I
+INSERT INTO `traits` VALUES ('18', 'dual wield', '19', '40', '259', '5');	-- Dual wield II
+INSERT INTO `traits` VALUES ('18', 'dual wield', '19', '60', '259', '10');  -- Dual wield III
+INSERT INTO `traits` VALUES ('18', 'dual wield', '19', '80', '259', '5');	-- Dual wield VI
 
  -- Dual wield Thief
-INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '83', '259', '10');	-- Dual wield I
+INSERT INTO `traits` VALUES ('18', 'dual wield', '6', '83', '259', '10');	-- Dual wield I
