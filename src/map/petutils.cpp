@@ -135,6 +135,7 @@ void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
 
 	CPetEntity* PPet = (CPetEntity*)PMaster->PPet; 
 	PPet->PBattleAI->SetBattleTarget(PTarget);
+	PPet->PBattleAI->SetCurrentAction(ACTION_ATTACK);
 }
 
 void RetreatToMaster(CBattleEntity* PMaster){
