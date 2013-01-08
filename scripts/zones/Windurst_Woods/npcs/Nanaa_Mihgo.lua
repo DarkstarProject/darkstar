@@ -81,20 +81,6 @@ function onTrigger(player,npc)
 		-- Optional CS of the quest "Crying Over Onions"
 		if(CryingOverOnionsVar == 1) then
 			player:startEvent(0x0256);
-			
-		-- Rock Racketeer (listed as ROCK_RACKETTER in quests.lua)
-		elseif(MihgosAmigo == QUEST_COMPLETED and RockRacketeer == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 3) then
-			if(player:needToZone()) then
-				player:startEvent(0x0059); -- Mihgos Amigo complete text
-			else
-			player:startEvent(0x005D); -- quest start
-			end
-		elseif(RockRacketeer == QUEST_ACCEPTED and RRvar == 2) then
-			player:startEvent(0x005F); -- not sold reminder
-		elseif(RockRacketeer == QUEST_ACCEPTED and RRvar == 1) then
-			player:startEvent(0x0062); -- advance quest talk to Varun
-		elseif(RockRacketeer == QUEST_ACCEPTED) then
-			player:startEvent(0x005E); -- quest reminder
 		
 		
 		-- Quest "The Tenshodo Showdown" THF af
@@ -131,6 +117,22 @@ function onTrigger(player,npc)
 			
 		elseif(MihgosAmigo == QUEST_COMPLETED) then
 			player:startEvent(0x0059); -- new dialog after Mihgo's Amigos
+		
+		
+		
+		-- Rock Racketeer (listed as ROCK_RACKETTER in quests.lua)
+		elseif(MihgosAmigo == QUEST_COMPLETED and RockRacketeer == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 3) then
+			if(player:needToZone()) then
+				player:startEvent(0x0059); -- Mihgos Amigo complete text
+			else
+			player:startEvent(0x005D); -- quest start
+			end
+		elseif(RockRacketeer == QUEST_ACCEPTED and RRvar == 2) then
+			player:startEvent(0x005F); -- not sold reminder
+		elseif(RockRacketeer == QUEST_ACCEPTED and RRvar == 1) then
+			player:startEvent(0x0062); -- advance quest talk to Varun
+		elseif(RockRacketeer == QUEST_ACCEPTED) then
+			player:startEvent(0x005E); -- quest reminder	
 		
 		
 		-- Quest "Mihgo's Amigo"
