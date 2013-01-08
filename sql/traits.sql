@@ -170,14 +170,10 @@ INSERT INTO `traits` VALUES ('14', 'store tp', '12', '70', '73', '5');
 INSERT INTO `traits` VALUES ('85', 'ikishoten', '12', '75', '0', '0');
 INSERT INTO `traits` VALUES ('86', 'overwhelm', '12', '75', '0', '0');
 INSERT INTO `traits` VALUES ('22', 'stealth', '13', '5', '358', '3');
-INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '10', '259', '10');
 INSERT INTO `traits` VALUES ('57', 'resist bind', '13', '10', '247', '0');
 INSERT INTO `traits` VALUES ('67', 'subtle blow', '13', '15', '289', '5');
-INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '25', '259', '5');
 INSERT INTO `traits` VALUES ('57', 'resist bind', '13', '30', '247', '0');
-INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '45', '259', '10');
 INSERT INTO `traits` VALUES ('57', 'resist bind', '13', '50', '247', '0');
-INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '65', '259', '5');
 INSERT INTO `traits` VALUES ('57', 'resist bind', '13', '70', '247', '0');
 INSERT INTO `traits` VALUES ('87', 'ninja tool expert.', '13', '75', '308', '0');
 INSERT INTO `traits` VALUES ('3', 'attack bonus', '14', '10', '23', '10');
@@ -230,3 +226,19 @@ INSERT INTO `traits` VALUES ('59', 'widescan', '11', '60', '340', '50');
 INSERT INTO `traits` VALUES ('59', 'widescan', '9', '20', '340', '100');
 INSERT INTO `traits` VALUES ('59', 'widescan', '9', '40', '340', '50');
 INSERT INTO `traits` VALUES ('59', 'widescan', '9', '60', '340', '50');
+
+ -- Dual wield Ninja
+INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '10', '259', '10');	-- Dual wield I
+INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '25', '259', '5');	-- Dual wield II
+INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '45', '259', '10');  -- Dual wield III
+INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '65', '259', '5');	-- Dual wield VI
+INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '85', '259', '5');	-- Dual wield V
+
+ -- Dual wield Dancer
+INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '20', '259', '10');	-- Dual wield I
+INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '40', '259', '5');	-- Dual wield II
+INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '60', '259', '10');  -- Dual wield III
+INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '80', '259', '5');	-- Dual wield VI
+
+ -- Dual wield Thief
+INSERT INTO `traits` VALUES ('18', 'dual wield', '13', '83', '259', '10');	-- Dual wield I

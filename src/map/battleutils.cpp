@@ -411,35 +411,47 @@ uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNu
 	switch (PWeapon->getID())
 	{
 		//relic weapons have 16% (ffxiclopedia) chance to do x times damage, cannot proc with weapon skills
-		//2.5 times damage
-		case 18264:
-		case 18276:
-		case 18282:
-		case 18288:
-		case 18300:
-		case 18318:
-		case 18330:
+		
+		// Relic: 2.5 times damage
+		case 18264:		// Spharai, h2h
+		case 18276:		// Excalibur, sword
+		case 18282:		// Ragnarok, great sword
+		case 18288:		// Guttler, axe
+		case 18300:		// Gungnir, polearm
+		case 18318:		// Amanomurakumo, great katana
+		case 18330:		// Claustrum, staff
 			if (rand()%100 > 16) return originalDamage;
 			return (damage = (damage * (float)2.5));
 			break;
 
-		// 3 times damage
-		case 18270:
-		case 18312:
-		case 18324:
-		case 18336:
-		case 18348:
+		// Relic: 3 times damage
+		case 18270:		// Mandau, dagger
+		case 18312:		// Kikoku, katana
+		case 18324:		// Mjollnir, club
+		case 18336:		// Annihilator, marksmanship
+		case 18348:		// Yoichinoyumi, archery
 			if (rand()%100 >= 16) return originalDamage;
 			return (damage = (damage * 3));
 			break;
 
-		// 2 times damage
-		case 18294:
-		case 18306:
+		// Relic: 2 times damage
+		case 18294:		// Bravura, great axe
+		case 18306:		// Apocalypse, scythe
 			if (rand()%100 >= 16) return originalDamage;
-			return (damage = (damage * 3));
+			return (damage = (damage * 2));
 			break;
 
+
+		//mythic weapons, same distribution as multi attacking weapons
+
+		// Mythic: 2 time damage
+		case 19001:		// Gastraphetes(lvl75), marksmanship
+		case 19007:		// Death Penalty(lvl75), marksmanship
+			if (rand()%100 < 55) return originalDamage;
+			return (damage = (damage * 2));
+			break;
+
+		
 		default:
 			return originalDamage;			// just to be sure
 			break;
