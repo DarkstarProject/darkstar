@@ -2,13 +2,11 @@
 -- Area: Davoi
 -- NPC:  Storage Hole
 -- Involved in Quest: The Crimson Trial
--- @zone 149
--- @pos -51 4 -217
+-- @pos -51 4 -217 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Davoi/TextIDs");

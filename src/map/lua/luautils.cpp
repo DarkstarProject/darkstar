@@ -1020,12 +1020,6 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 		PChar->pushPacket(new CRaiseTractorMenuPacket(PChar,TYPE_HOMEPOINT));
 		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar,ENTITY_UPDATE));
 	}
-		
-	if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHOCOBO))
-    {
-		PChar->animation = ANIMATION_CHOCOBO;
-		PChar->pushPacket(new CCharUpdatePacket(PChar));
-    }
 
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }

@@ -1718,17 +1718,6 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
     {
         ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
     }
-	if (m_PBaseEntity->animation == ANIMATION_CHOCOBO)
-    {
-		m_PBaseEntity->animation = ANIMATION_NONE;
-		
-        if (m_PBaseEntity->objtype == TYPE_PC)
-		{
-			((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
-		} else {
-            m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE));
-		}
-    }
 
     uint16 EventID = (uint16)lua_tointeger(L,1);
 
