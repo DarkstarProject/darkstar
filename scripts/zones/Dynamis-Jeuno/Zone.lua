@@ -24,10 +24,10 @@ function onZoneIn(player,prevZone)
 	
 	cs = -1;
 	
-	local realDay = tonumber(os.date("%j"))
+	local realDay = os.time();
 	local dynaWaitxDay = player:getVar("dynaWaitxDay");
 	
-	if((dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME) < realDay or (dynaWaitxDay == realDay and player:getVar("DynamisID") == GetServerVariable("[DynaJeuno]UniqueID"))) then
+	if((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay or (dynaWaitxDay == realDay and player:getVar("DynamisID") == GetServerVariable("[DynaJeuno]UniqueID"))) then
 		if(player:isBcnmsFull() == 1) then
 			if(player:hasStatusEffect(EFFECT_DYNAMIS) == false) then
 				inst = player:addPlayerToDynamis(1283);

@@ -16,7 +16,7 @@ end;
 function OnBcnmEnter(player,instance)
 	
 	player:setVar("DynamisID",GetServerVariable("[DynaBastok]UniqueID"));
-	player:setVar("dynaWaitxDay",os.date("%j"));
+	player:setVar("dynaWaitxDay",os.time());
 	
 end;
 

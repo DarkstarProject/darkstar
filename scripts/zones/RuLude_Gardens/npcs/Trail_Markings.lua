@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x272a,HYDRA_CORPS_TACTICAL_MAP); -- Win CS
 	elseif(player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
 		local firstDyna = 0;
-		local realDay = tonumber(os.date("%j"))
+		local realDay = os.time();
 		local dynaWaitxDay = player:getVar("dynaWaitxDay");
 		
 		if(checkFirstDyna(player,4)) then  -- First Dyna-Jeuno => CS
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
 		
 		if(player:getMainLvl() < DYNA_LEVEL_MIN) then
 			player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
-		elseif((dynaWaitxDay + BETWEEN_2DYNA_WAIT_TIME) < realDay or (dynaWaitxDay == realDay and player:getVar("DynamisID") == GetServerVariable("[DynaJeuno]UniqueID"))) then
+		elseif((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay or (dynaWaitxDay == realDay and player:getVar("DynamisID") == GetServerVariable("[DynaJeuno]UniqueID"))) then
 			player:startEvent(0x271c,4,firstDyna,0,BETWEEN_2DYNA_WAIT_TIME,64,VIAL_OF_SHROUDED_SAND,4236,4237,0);
 		else
 			dayRemaining = (BETWEEN_2DYNA_WAIT_TIME * 24) - tonumber(os.date("%H"));
