@@ -183,7 +183,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 				break;
 			}		
 			if(status == 0x02) {
-				generateCompleteMissionPacket(PChar);
+				generateCompleteCopMissionPacket(PChar);
 				logType = MISS_COMPLETE;
 				break;
 			}
@@ -218,7 +218,7 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 	add_on_scenarios +=	PChar->m_asaCurrent << 0x08;
 
 	uint32 chains = 0;
-	chains = PChar->m_copCurrent;
+	chains = PChar->m_missionLog[MISSION_COP-10].current+1;
 	chains = ((chains * 0x08) + 0x60);
 
 	WBUFB(data,(0x04)-4) = PChar->profile.nation;								// Nation
@@ -250,6 +250,13 @@ void CQuestMissionLogPacket::generateCompleteExpMissionPacket(CCharEntity * PCha
 	for(uint8 logID = 0x04; logID <= 0x05; logID++)
 		for(uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
 			data[(questMissionID/8) + ((logID-0x04)*0x08)] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
+}
+
+void CQuestMissionLogPacket::generateCompleteCopMissionPacket(CCharEntity * PChar) 
+{
+	uint8 logID = 0x06;
+	for(uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
+		data[(questMissionID/8) + (logID*0x08)] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
 }
 
 void CQuestMissionLogPacket::generateCompaingUnMissionPacket(CCharEntity * PChar) 

@@ -82,7 +82,7 @@ INSERT INTO `mob_skill` VALUES (10,208,10,'Ram_Charge', 0, 7.0, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (11,208,11,'Rumble', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (12,208,12,'Great_Bleat', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (13,208,13,'Petribreath', 4, 10.0, 2000, 1500, 4, 0);
-
+-- --------------------
 -- Tiger
 INSERT INTO `mob_skill` VALUES (14,242,14,'Roar', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (15,242,15,'Razor_Fang', 0, 7.0, 2000, 1500, 4, 0);
@@ -858,15 +858,6 @@ INSERT INTO `mob_skill` VALUES (697,263,655,'Dragon_Breath', 4, 40.0, 2000, 1500
 -- anim 657 for fire breath attack (in air)
 
 -- anim 765 = seismostomp
-
--- Gurfurlur the Menacing (326)
--- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,326,0,'', 0, 7.0, 2000, 1500, 4, 0);
 
 -- --------------------------------------
 -- MAAT

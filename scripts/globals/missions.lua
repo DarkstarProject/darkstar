@@ -127,10 +127,10 @@ THE_LAST_VERSE				= 31;
 --  Promathia Missions (6)
 -----------------------------------
 
-ANCIENT_FLAMES_BECKON			= 0
-THE_RITES_OF_LIFE               = 1
-BELOW_THE_ARKS                  = 2
-THE_MOTHERCRYSTALS	        	= 3
+ANCIENT_FLAMES_BECKON			= 0  -- ± --
+THE_RITES_OF_LIFE               = 1  -- ± --
+BELOW_THE_ARKS                  = 2  -- ± --
+THE_MOTHERCRYSTALS	        	= 3  -- ± --
 THE_ISLE_OF_FORGOTTEN_SAINTS	= 4
 AN_INVITATION_WEST	       	 	= 5
 THE_LOST_CITY	                = 6

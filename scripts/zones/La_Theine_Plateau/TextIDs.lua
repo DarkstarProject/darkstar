@@ -5,7 +5,10 @@ ITEM_CANNOT_BE_OBTAINED = 7475; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6378; -- Obtained: <item>
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
-  ALREADY_OBTAINED_TELE = 7153; -- You already possess the gate crystal for this telepoint.
+	   
+-- Other Texts
+	   ALREADY_OBTAINED_TELE = 7153; -- You already possess the gate crystal for this telepoint.
+TELEPOINT_HAS_BEEN_SHATTERED = 7681; -- The telepoint has been shattered into a thousand pieces...
 
 -- Quest Dialogs
  UNLOCK_SUMMONER = 7501; -- You can now become a summoner.

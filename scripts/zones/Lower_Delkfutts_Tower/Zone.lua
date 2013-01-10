@@ -6,7 +6,8 @@
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/missions");	
+require("scripts/globals/settings");	
+require("scripts/globals/missions");
 require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");	
 
 -----------------------------------	
@@ -30,13 +31,16 @@ function onZoneIn(player,prevZone)
 	
 	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(460.022,-1.77,-103.442,188);
-	elseif(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") <= 1) then
+	end
+	if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") <= 1) then
 		cs = 0x000f;
+	elseif(prevZone == 126 and player:getCurrentMission(COP) == ANCIENT_FLAMES_BECKON) then
+		cs = 0x0016;
 	end
 	
 	return cs;
 	
-end;		
+end;
 
 -----------------------------------	
 -- onRegionEnter	
@@ -84,15 +88,26 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x000f) then
 		player:setVar("ZilartStatus",2);
-	elseif(option == 1) then		
+	elseif(csid == 0x0004 and option == 1) then		
 		if(player:getVar("option") == 1) then	
 			player:setPos(-28, -48, 80, 111, 157);
 		else	
 			player:setPos(-51, -48, -40, 246, 157);
 		end	
 		player:setVar("option",0);	
-	elseif(option == 0 or option >= 3) then	
+	elseif(csid == 0x0004 and (option == 0 or option >= 3)) then	
 		player:setVar("option",0);
-	end	
-	
+	elseif(csid == 0x0016) then
+		player:startEvent(0x0024);
+	elseif(csid == 0x0024) then
+		player:startEvent(0x0025);
+	elseif(csid == 0x0025) then
+		player:startEvent(0x0026);
+	elseif(csid == 0x0026) then
+         player:startEvent(0x0027);
+	elseif(csid == 0x0027) then	
+		player:completeMission(COP,ANCIENT_FLAMES_BECKON);
+		player:addMission(COP,THE_RITES_OF_LIFE);
+	end
+ 	
 end;		

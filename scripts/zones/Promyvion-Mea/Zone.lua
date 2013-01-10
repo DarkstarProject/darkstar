@@ -3,54 +3,194 @@
 -- Zone: Promyvion-Mea (20)
 --
 -----------------------------------
-
-package.loaded["scripts/zones/Promyvion-Mea/TextIDs"] = nil;
-require("scripts/globals/status");
+ package.loaded["scripts/zones/Promyvion-Mea/TextIDs"] = nil;
+ ----------------------------------
+ 
 require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/missions");
 require("scripts/zones/Promyvion-Mea/TextIDs");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize(zone)
-end;		
+function onInitialize(zone)	
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+	--						-96,0,174,155			-- Level One Start
+	zone:registerRegion(11,-122,-4,197,-117,4,202);		-- Level One Return
+	zone:registerRegion(12,-283,-4,237,-276,4,242);		-- Level One MR
+	 
+	--						-70,0,-233,105			-- Level Two Start
+	zone:registerRegion(21,-1,-4,-121,2,4,-118);		-- Level Two Return
+	zone:registerRegion(22,-82,-4,-42,-78,4,-38);		-- Level Two MR1
+	zone:registerRegion(23,-322,-4,-361,-318,4,-357);	-- Level Two MR2
+	zone:registerRegion(24,-42,-4,-321,-37,4,-317);		-- Level Two MR3
+	zone:registerRegion(25,77,-4,-241,81,4,-238);		-- Level Two MR4
 
+	--						-167,0,172,38			-- Level Three West Start
+	zone:registerRegion(31,-161,-4,158,-157,4,161);		-- Level Three West Return
+	zone:registerRegion(32,-42,-4,-2,-38,4,2);			-- Level Three West MR1  no receptacle
+	zone:registerRegion(33,-241,-4,-42,-238,4,-37);		-- Level Three West MR2
+	zone:registerRegion(34,-321,-4,-42,-318,4,-38);		-- Level Three West MR3
+
+	--						68,0,-76,254			-- Level THREE East Start
+	zone:registerRegion(35,158,-4,-281,161,4,-278);		-- Level Three East Return
+	zone:registerRegion(36,240,-4,-322,244,4,-317);		-- Level Three East MR1 OKK
+	zone:registerRegion(37,198,-4,-2,201,4,2);			-- Level Three East MR2 no receptacle
+	zone:registerRegion(38,358,-4,-41,362,4,-38);		-- Level Three East MR3
+
+	--						-106,0,384,38			-- Level FOUR Start
+	zone:registerRegion(41,-82,-4,358,-78,4,361);		-- Level Four Return
+	
+end;
+
+ -----------------------------------		
+ -- onZoneIn		
+ -----------------------------------		
+ 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(100,-2.059,183.068,192);
-	end	
-	-- ZONE LEVEL RESTRICTION	
-	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);	
-	return cs;	
+cs = -1;	
+
+	if(player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+		player:setPos(-96,0,174,155);
+	end
+
+	if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 2) then
+	    player:completeMission(COP,BELOW_THE_ARKS);
+		player:addMission(COP,THE_MOTHERCRYSTALS); -- start mission 1.3
+		player:setVar("PromathiaStatus",0);
+	end
+	
+	-- First enter in promy mea
+	if(player:getVar("FirstPromyvionMea") == 1)then
+		player:setVar("FirstPromyvionMea",0);
+		cs = 0x0032;
+	end
+	
+	-- ZONE LEVEL RESTRICTION
+	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);
+	
+ 	return cs;	
 end;		
 
 -----------------------------------	
 -- onRegionEnter	
------------------------------------	
-
+-----------------------------------		
+ 
 function onRegionEnter(player,region)	
-end;	
-
+	
+	switch (region:GetRegionID()): caseof
+	{
+		[11] = function (x) player:startEvent(0x002e); end,
+		[12] = function (x) 
+			if(GetMobAction(16859151) == 24) then 
+				player:startEvent(30); 
+			end 
+		end, -- player:setPos(-70,0,-233,105);
+		[21] = function (x) player:startEvent(41); end, -- player:setPos(-96,0,174,155);
+		[22] = function (x)
+			if(GetMobAction(16859198) == 24) then 
+				if(math.random() >= 0.5)then
+					player:startEvent(37); -- player:setPos(-167,0,172,38);						
+				else
+					player:startEvent(33); -- player:setPos(68,0,-76,254);		
+				end
+			end
+		end,
+		[23] = function (x)
+			if(GetMobAction(16859205) == 24) then 
+				if(math.random() >= 0.5)then	
+					player:startEvent(37); -- player:setPos(-167,0,172,38);
+				else
+					player:startEvent(33); -- player:setPos(68,0,-76,254);
+				end
+			end
+		end,
+		[24] = function (x)
+			if(GetMobAction(16859212) == 24) then 
+				if(math.random() >= 0.5)then	
+					player:startEvent(37); -- player:setPos(-167,0,172,38);		
+				else
+					player:startEvent(33); -- player:setPos(68,0,-76,254);
+				end
+			end
+		end,
+		[25] = function (x)
+			if(GetMobAction(16859219) == 24) then 
+				if(math.random() >= 0.5)then	
+					player:startEvent(37); -- player:setPos(-167,0,172,38);
+				else
+					player:startEvent(33); -- player:setPos(68,0,-76,254);
+				end
+			end
+		end,
+		[31] = function (x) player:startEvent(30); end, -- player:setPos(-70,0,-233,105);
+		[32] = function (x) player:startEvent(31); end, -- player:setPos(-106,0,384,38);	
+		[33] = function (x) 
+			if(GetMobAction(16859282) == 24) then 
+				player:startEvent(31); -- player:setPos(-106,0,384,38);
+			end
+		end, 
+		[34] = function (x) 
+			if(GetMobAction(16859273) == 24) then 
+				player:startEvent(31); -- player:setPos(-106,0,384,38);
+			end
+		end,
+		[35] = function (x) player:startEvent(30); end, -- player:setPos(-70,0,-233,105); 
+		[36] = function (x) 
+			if(GetMobAction(16859367) == 24) then
+				player:startEvent(31); -- player:setPos(-106,0,384,38);
+			end
+		end,
+		[37] = function (x) 
+			if(GetMobAction(168592) == 24) then
+				player:startEvent(31); -- player:setPos(-106,0,384,38);
+			end
+		end, 
+		[38] = function (x) 
+			if(GetMobAction(16859358) == 24) then
+				player:startEvent(31); -- player:setPos(-106,0,384,38);
+			end
+		end, 
+		[41] = function (x)
+			if(math.random() >= 0.5)then	
+				player:startEvent(37); -- player:setPos(-167,0,172,38);
+			else
+				player:startEvent(33); -- player:setPos(68,0,-76,254);	
+			end
+		end,
+	}
+	
+ end;
+ 
 -----------------------------------	
--- onEventUpdate	
+-- onRegionLeave	
 -----------------------------------	
 
-function onEventUpdate(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-end;	
+function onRegionLeave(player,region)
+end;
 
------------------------------------	
--- onEventFinish	
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+ 
+function onEventUpdate(player,region)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);	
+end;
+
+-----------------------------------
+-- onEventFinish
 -----------------------------------	
 
 function onEventFinish(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-end;	
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+	
+	if(csid == 0x002e and option == 1) then
+		player:setVar("Stelepoint",6);
+		player:setPos(274 ,-82 ,-62 ,180 ,14); -- -> back to Hall of Transferance
+	end
+	
+ end;

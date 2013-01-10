@@ -23,11 +23,11 @@ end;
 
 function onTrigger(player,npc)
 	
---	if(player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
+	if(player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
 		player:startEvent(0x000c);
---	else
---		player:messageSpecial(AN_EMPTY_LIGHT_SWIRLS);
---	end
+	else
+		player:messageSpecial(AN_EMPTY_LIGHT_SWIRLS);
+	end
 	
 end;
 

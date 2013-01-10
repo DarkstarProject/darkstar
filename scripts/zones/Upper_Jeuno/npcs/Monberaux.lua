@@ -3,8 +3,7 @@
 -- NPC: Monberaux
 -- Starts and Finishes Quest: The Lost Cardian (finish), The kind cardian (start)
 -- Involved in Quests: Save the Clock Tower
--- @zone 244
--- @pos -43 0 -1
+-- @pos -43 0 -1 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -13,6 +12,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
+require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
@@ -35,10 +35,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	TheLostCardien = player:getQuestStatus(JEUNO,THE_LOST_CARDIAN);
-	CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
-	
-	if(CooksPride == QUEST_COMPLETED and TheLostCardien == QUEST_AVAILABLE and player:getVar("theLostCardianVar") == 2) then 
+
+
+	local TheLostCardien = player:getQuestStatus(JEUNO,THE_LOST_CARDIAN);
+	local CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
+		
+	-- COP mission 1-1
+	if(player:getCurrentMission(COP) == THE_RITES_OF_LIFE and  player:getVar("PromathiaStatus") == 1) then
+	    player:startEvent(0x000a);
+	-- COP mission 1-2
+	elseif(player:getCurrentMission(COP) == BELOW_THE_ARKS  and  player:getVar("PromathiaStatus") == 0) then
+	    player:startEvent(0x0009);
+	elseif(CooksPride == QUEST_COMPLETED and TheLostCardien == QUEST_AVAILABLE and player:getVar("theLostCardianVar") == 2) then 
 		player:startEvent(0x0021); -- Long CS & Finish Quest "The Lost Cardian"
 	elseif(CooksPride == QUEST_COMPLETED and TheLostCardien == QUEST_AVAILABLE and player:getVar("theLostCardianVar") == 3) then 
 		player:startEvent(0x0022); -- Shot CS & Finish Quest "The Lost Cardian"
@@ -47,6 +55,7 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x001c); -- Standard dialog
 	end
+	
 end;
 
 -----------------------------------
@@ -65,7 +74,14 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x005b) then 
+	
+    if(csid == 0x000a)then
+		player:setVar("PromathiaStatus",0);
+		player:addKeyItem(MYSTERIOUS_AMULET);
+		player:completeMission(COP,THE_RITES_OF_LIFE);
+		player:addMission(COP,BELOW_THE_ARKS); -- start the mission 1-2
+		player:startEvent(0x00cf);
+	elseif(csid == 0x005b) then 
 		player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
 		player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 4);
 	elseif(csid == 0x0021 and option == 0 or csid == 0x0022 and option == 0) then 
@@ -81,7 +97,5 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0021 and option == 1) then 
 		player:setVar("theLostCardianVar",3);
 	end
+	
 end;
-
-
-

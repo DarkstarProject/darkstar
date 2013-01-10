@@ -7,7 +7,8 @@ ITEM_CANNOT_BE_OBTAINED = 7346; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
   ALREADY_OBTAINED_TELE = 7153; -- You already possess the gate crystal for this telepoint.
 
--- Quest Dialog
-      SIGNPOST_DIALOG_1 = 7319; -- North: Valkurm Dunes South: To Gustaberg
-      SIGNPOST_DIALOG_2 = 7320; -- You see something stuck behind the signpost.
-NOTHING_OUT_OF_ORDINARY = 7432; -- There is nothing out of the ordinary here.
+-- Other texts
+		   SIGNPOST_DIALOG_1 = 7319; -- North: Valkurm Dunes South: To Gustaberg
+		   SIGNPOST_DIALOG_2 = 7320; -- You see something stuck behind the signpost.
+	 NOTHING_OUT_OF_ORDINARY = 7432; -- There is nothing out of the ordinary here.
+TELEPOINT_HAS_BEEN_SHATTERED = 7681; -- The telepoint has been shattered into a thousand pieces...

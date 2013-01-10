@@ -775,3 +775,18 @@ INSERT INTO `bcnm_instance` VALUES ('1283', '2', '17547675');
 INSERT INTO `bcnm_instance` VALUES ('1283', '2', '17547676');
 INSERT INTO `bcnm_instance` VALUES ('1283', '2', '17547677');
 INSERT INTO `bcnm_instance` VALUES ('1283', '2', '17547678');
+
+-- spire of holla
+INSERT INTO `bcnm_instance` VALUES ('768', '1', '16846849');
+INSERT INTO `bcnm_instance` VALUES ('768', '2', '16846850');
+INSERT INTO `bcnm_instance` VALUES ('768', '3', '16846851');
+
+-- spire of dem
+INSERT INTO `bcnm_instance` VALUES ('800', '1', '16855041');
+INSERT INTO `bcnm_instance` VALUES ('800', '2', '16855046');
+INSERT INTO `bcnm_instance` VALUES ('800', '3', '16855051');
+
+-- spire of mea
+INSERT INTO `bcnm_instance` VALUES ('832', '1', '16863233');
+INSERT INTO `bcnm_instance` VALUES ('832', '2', '16863234');
+INSERT INTO `bcnm_instance` VALUES ('832', '3', '16863235');

@@ -7,7 +7,10 @@ require("scripts/globals/status");
 -- array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
 -- e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
 -- DO NOT INCLUDE MAAT FIGHTS
-itemid_bcnmid_map = {139,{1553,11,1175,15,1180,17}, -- Horlais Peak
+itemid_bcnmid_map = {17,{0,0},--spire of holla
+					 19,{0,0},--spire of dem
+					 21,{0,0},--spire of mea
+					 139,{1553,11,1175,15,1180,17}, -- Horlais Peak
 					 140,{1551,34,1552,35,1552,36}, -- Ghelsba Outpost
 					 144,{1166,68,1178,81,1553,76,1180,82,1130,79}, -- Waughroon Shrine
 					 146,{1553,107,1551,105}, -- Balgas Dias
@@ -28,7 +31,10 @@ itemid_bcnmid_map = {139,{1553,11,1175,15,1180,17}, -- Horlais Peak
 -- The BCNMID is found via the database.
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
 -- 0,1,2,3,4,5,...
-bcnmid_param_map = {139,{0,0,5,5,6,6,7,7,11,11,15,15,17,17},
+bcnmid_param_map = {17,{768,0},
+					19,{800,0},
+					21,{832,0},
+					139,{0,0,5,5,6,6,7,7,11,11,15,15,17,17},
 					140,{32,0,33,1,34,2,35,3,36,4},
 					144,{64,0,68,4,70,6,71,7,72,8,81,17,76,12,82,18,79,15},
 					146,{96,0,101,5,102,6,103,7,107,11,105,9},
@@ -45,7 +51,6 @@ bcnmid_param_map = {139,{0,0,5,5,6,6,7,7,11,11,15,15,17,17},
 					207,{544,0,545,1},
 					209,{576,0,578,2},
 					211,{608,0,609,1}};
-
 
 -- Call this onTrade for burning circles
 function TradeBCNM(player,zone,trade,npc)
@@ -315,7 +320,22 @@ function checkNonTradeBCNM(player,npc)
 	local mask = 0;
 	Zone = player:getZone();
 	
-	if(Zone == 139) then -- Horlais Peak
+	if(Zone == 17) then --Spire of Holla
+	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(590)==false) then--light of holla	
+	         mask = GetBattleBitmask(768,Zone,1);
+	         player:setVar("trade_bcnmid",768);
+	    end
+	elseif(Zone == 19) then --Spire of Dem
+	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(591 )==false) then--light of dem	
+	         mask = GetBattleBitmask(800,Zone,1);
+	         player:setVar("trade_bcnmid",800);
+	    end	
+	elseif(Zone == 21) then --Spire of Mea
+	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(592)==false) then--light of mea	
+	         mask = GetBattleBitmask(832,Zone,1);
+	         player:setVar("trade_bcnmid",832);
+	    end
+	elseif(Zone == 139) then -- Horlais Peak
 		if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
 			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then -- Mission 2-3
 			mask = GetBattleBitmask(0,Zone,1);

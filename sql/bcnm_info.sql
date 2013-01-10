@@ -279,17 +279,17 @@ INSERT INTO `bcnm_info` VALUES ('740', '13', 'automaton_assault', NULL, NULL, '9
 INSERT INTO `bcnm_info` VALUES ('741', '13', 'mobline_comedy', NULL, NULL, '900', '0', '6', '0', '15');
 
 -- Spire of Holla
-INSERT INTO `bcnm_info` VALUES ('768', '17', 'ancient_flames_beckon', NULL, NULL, '1800', '0', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('768', '17', 'ancient_flames_beckon', NULL, NULL, '1800', '30', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('769', '17', 'simulant', NULL, NULL, '1800', '30', '18', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('770', '17', 'empty_hopes', NULL, NULL, '900', '0', '6', '0', '5');
 
 -- Spire of Dem
-INSERT INTO `bcnm_info` VALUES ('800', '19', 'ancient_flames_beckon', NULL, NULL, '1800', '0', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('800', '19', 'ancient_flames_beckon', NULL, NULL, '1800', '30', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('801', '19', 'you_are_what_you_eat', NULL, NULL, '1800', '30', '18', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('802', '19', 'empty_dreams', NULL, NULL, '900', '0', '6', '0', '5');
 
 -- Spire of Mea
-INSERT INTO `bcnm_info` VALUES ('832', '21', 'ancient_flames_backon', NULL, NULL, '1800', '0', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('832', '21', 'ancient_flames_backon', NULL, NULL, '1800', '30', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('833', '21', 'playing_host', NULL, NULL, '1800', '30', '18', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('834', '21', 'empty_desires', NULL, NULL, '900', '0', '6', '0', '5');
 

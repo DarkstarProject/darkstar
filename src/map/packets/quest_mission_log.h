@@ -102,6 +102,7 @@ private:
 	void generateCompleteMissionPacket(CCharEntity* PChar);
 	void generateCurrentExpMissionPacket(CCharEntity* PChar); 
 	void generateCompleteExpMissionPacket(CCharEntity* PChar);
+	void generateCompleteCopMissionPacket(CCharEntity* PChar);
 	void generateCompaingUnMissionPacket(CCharEntity* PChar);
 	void generateCompaingDeuxMissionPacket(CCharEntity* PChar);
 	void generateAssaultMissionPacket(CCharEntity* PChar);
