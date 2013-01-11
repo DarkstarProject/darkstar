@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 
 	if(csid == 0x0096 and option == 1) then
-		local locallastp = player:getVar("Stelepoint");
+		local lastp = player:getVar("Stelepoint");
 		
 		if(lastp == 1 or lastp == 2) then
 			player:setPos(152,0 ,-70 ,81 ,18); -- tp to promy dem
