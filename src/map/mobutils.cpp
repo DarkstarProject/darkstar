@@ -40,7 +40,7 @@ namespace mobutils
 *																		*
 ************************************************************************/
 
-uint16 GetWeaponDamage(CMobEntity* PMob) 
+uint16 GetWeaponDamage(CMobEntity* PMob)
 {
 	float MainLevel = PMob->GetMLevel();
 	return (uint16)(MainLevel * (MainLevel < 40 ? 1.4 - MainLevel/100 : 1));
@@ -53,10 +53,10 @@ uint16 GetWeaponDamage(CMobEntity* PMob)
 *																		*
 ************************************************************************/
 
-uint16 GetBaseToRank(uint8 rank, uint16 lvl) 
+uint16 GetBaseToRank(uint8 rank, uint16 lvl)
 {
-	switch (rank) 
-	{	
+	switch (rank)
+	{
 		case 1: return (5+((lvl-1)*50)/100);
 		case 2: return (4+((lvl-1)*45)/100);
 		case 3: return (4+((lvl-1)*40)/100);
@@ -99,18 +99,41 @@ uint16 GetBase(CMobEntity * PMob, uint8 rank)
 void CalculateStats(CMobEntity * PMob)
 {
 	if(PMob->HPmodifier == 0){
-		PMob->health.maxhp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
+		float growth = 1.0575;
+		uint8 lvl = PMob->GetMLevel();
+
+		//give hp boost every 10 levels after 25
+		//special boosts at 25 and 50
+		if(lvl > 75){
+			growth = 1.2675;
+		}else if(lvl > 65){
+			growth = 1.2475;
+		} else if(lvl > 55){
+			growth = 1.2375;
+		} else if(lvl > 50){
+			growth = 1.2075;
+		} else if(lvl > 45){
+			growth = 1.1675;
+		} else if(lvl > 35){
+			growth = 1.1375;
+		} else if(lvl > 25){
+			growth = 1.0975;
+		}
+
+		PMob->health.maxhp = (int16)(18.0 * pow(PMob->GetMLevel(), growth) * PMob->HPstat);
+
 		if(PMob->m_Type & MOBTYPE_NOTORIOUS){
-			PMob->health.maxhp *= 2.5;
+			PMob->health.maxhp *= 2.0;
 			if(PMob->GetMLevel()>75){
 				PMob->health.maxhp *= 2.5;
 			}
 		}
+
 	} else {
 		PMob->health.maxhp = PMob->HPmodifier;
 		//printf("HP: %u \n",PMob->health.maxhp);
 	}
-    
+
 	switch(PMob->GetMJob()){
 	case JOB_PLD:
 	case JOB_WHM:
@@ -120,7 +143,7 @@ void CalculateStats(CMobEntity * PMob)
 	case JOB_BLU:
 	case JOB_SCH:
 		if(PMob->MPmodifier == 0){
-			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
+			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPstat);
 			if(PMob->m_Type & MOBTYPE_NOTORIOUS){
 			PMob->health.maxmp *= 2.5;
 				if(PMob->GetMLevel()>75){
@@ -132,7 +155,7 @@ void CalculateStats(CMobEntity * PMob)
 		}
 		break;
 	}
-	
+
     PMob->UpdateHealth();
 
 	PMob->health.tp = 0;
@@ -141,15 +164,15 @@ void CalculateStats(CMobEntity * PMob)
 
 	PMob->setModifier(MOD_DEF, GetBase(PMob,3));
 	PMob->setModifier(MOD_EVA, GetBase(PMob,3));
-	
+
 	uint16 BaseAttack = 0;
 
 	if(PMob->GetMLevel() <= 30) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 31 / 10); 
+		BaseAttack = (uint16)(PMob->GetMLevel() * 31 / 10);
 	} else if(PMob->GetMLevel() <= 50) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 30 / 10); 
+		BaseAttack = (uint16)(PMob->GetMLevel() * 30 / 10);
 	} else if(PMob->GetMLevel() > 50) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 37 / 10); 
+		BaseAttack = (uint16)(PMob->GetMLevel() * 37 / 10);
 	}
 
 	PMob->setModifier(MOD_ATT, BaseAttack);
@@ -181,7 +204,7 @@ void CalculateStats(CMobEntity * PMob)
 	uint16 sMND = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),7), PMob->GetSLevel());
 	uint16 sCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),8), PMob->GetSLevel());
 
-	if(PMob->GetSLevel() > 15) 
+	if(PMob->GetSLevel() > 15)
 	{
 		sSTR /= 2;
 		sDEX /= 2;
@@ -207,7 +230,7 @@ void CalculateStats(CMobEntity * PMob)
 	PMob->stats.INT = fINT + mINT + sINT;
 	PMob->stats.MND = fMND + mMND + sMND;
 	PMob->stats.CHR = fCHR + mCHR + sCHR;
-	
+
 	if(PMob->m_Type & MOBTYPE_NOTORIOUS){
 		PMob->stats.STR *= 1.5;
 		PMob->stats.DEX *= 1.5;

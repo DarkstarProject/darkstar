@@ -71,16 +71,16 @@ void UpdateWeather()
     uint8 WeatherChange = 0;
     uint8 WeatherFrequency = 0;
 
-    for (int32 ZoneID = 0; ZoneID < 256; ZoneID++)    
+    for (int32 ZoneID = 0; ZoneID < 256; ZoneID++)
     {
         if (!g_PZoneList[ZoneID]->IsWeatherStatic())
         {
             WeatherFrequency = 0;
             WeatherChange = rand()%100;
-			    
+
             for (uint8 weather = 0; weather < MAX_WEATHER_ID; ++weather)
             {
-                WeatherFrequency += g_PZoneList[ZoneID]->m_WeatherFrequency[weather];				
+                WeatherFrequency += g_PZoneList[ZoneID]->m_WeatherFrequency[weather];
 
                 if (WeatherFrequency > WeatherChange)
                 {
@@ -155,8 +155,8 @@ CCharEntity* GetCharFromRegion(uint32 charid, uint16 targid, uint8 RegionID)
 	{
         if (g_PZoneList[ZoneID]->GetRegionID() == RegionID)
         {
-            CBaseEntity* PEntity = g_PZoneList[ZoneID]->GetEntity(targid, TYPE_PC); 
-            
+            CBaseEntity* PEntity = g_PZoneList[ZoneID]->GetEntity(targid, TYPE_PC);
+
             if (PEntity != NULL && PEntity->id == charid)
             {
                 return (CCharEntity*)PEntity;
@@ -174,7 +174,7 @@ CCharEntity* GetCharFromRegion(uint32 charid, uint16 targid, uint8 RegionID)
 
 void LoadNPCList(CZone* PZone)
 {
-    const int8* Query = 
+    const int8* Query =
         "SELECT \
           npcid,\
           name,\
@@ -194,12 +194,12 @@ void LoadNPCList(CZone* PZone)
           name_prefix \
         FROM npc_list \
         WHERE zoneid = %u AND npcid < 100000000;";
-					  
+
     int32 ret = Sql_Query(SqlHandle, Query, PZone->GetID());
 
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0) 
-	{	
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			CNpcEntity* PNpc = new CNpcEntity;
 
@@ -242,15 +242,16 @@ void LoadNPCList(CZone* PZone)
 
 void LoadMOBList(CZone* PZone)
 {
-    const int8* Query =  
+    const int8* Query =
         "SELECT name, mobid, pos_rot, pos_x, pos_y, pos_z, \
-			respawntime, spawntype, dropid, HP, MP, minLevel, maxLevel, \
+			respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
 			modelid, mJob, sJob, cmbSkill, cmbDelay, behavior, links, mobType, immunity, \
 			systemid, mobsize, speed, \
 			STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-			mob_pools.familyid, name_prefix, unknown \
+			mob_pools.familyid, name_prefix, unknown, \
+            (mob_family_system.HP / 100), (mob_family_system.MP / 100) \
 			FROM mob_groups, mob_pools, mob_spawn_points, mob_family_system \
 			WHERE mob_groups.poolid = mob_pools.poolid \
 			AND mob_groups.groupid = mob_spawn_points.groupid \
@@ -260,16 +261,16 @@ void LoadMOBList(CZone* PZone)
 
     int32 ret = Sql_Query(SqlHandle, Query, PZone->GetID());
 
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0) 
-	{	
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			CMobEntity* PMob = new CMobEntity;
 
 			PMob->name.insert(0,Sql_GetData(SqlHandle,0));
 			PMob->id = (uint32)Sql_GetUIntData(SqlHandle,1);
 			PMob->targid = (uint16)PMob->id & 0x0FFF;
-				
+
 			PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlHandle,2);
 			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,3);
 			PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,4);
@@ -293,14 +294,14 @@ void LoadMOBList(CZone* PZone)
             PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
 			PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle,16));
 			PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle,17) * 1000)/60);
-			
+
 			PMob->m_Behaviour  = (uint16)Sql_GetIntData(SqlHandle,18);
             PMob->m_Link       = (uint8)Sql_GetIntData(SqlHandle,19);
 			PMob->m_Type       = (uint8)Sql_GetIntData(SqlHandle,20);
 			PMob->m_Immunity   = (IMMUNITY)Sql_GetIntData(SqlHandle,21);
 			PMob->m_EcoSystem  = (ECOSYSTEM)Sql_GetIntData(SqlHandle,22);
 			PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlHandle,23);
-				
+
 			PMob->speed    = (uint8)Sql_GetIntData(SqlHandle,24);
 			PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle,24);
 
@@ -317,28 +318,33 @@ void LoadMOBList(CZone* PZone)
 			PMob->setModifier(MOD_HTHRES,   (uint16)(Sql_GetFloatData(SqlHandle,36) * 1000));
 			PMob->setModifier(MOD_IMPACTRES,(uint16)(Sql_GetFloatData(SqlHandle,37) * 1000));
 
-            PMob->setModifier(MOD_FIREDEF,    (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -1000)); // These are stored as floating percentages 
+            PMob->setModifier(MOD_FIREDEF,    (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -1000)); // These are stored as floating percentages
             PMob->setModifier(MOD_ICEDEF,     (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -1000)); // and need to be adjusted into modifier units.
-            PMob->setModifier(MOD_WINDDEF,    (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -1000)); // Higher DEF = lower damage.  
+            PMob->setModifier(MOD_WINDDEF,    (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -1000)); // Higher DEF = lower damage.
             PMob->setModifier(MOD_EARTHDEF,   (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -1000)); // Negatives signify increased damage.
             PMob->setModifier(MOD_THUNDERDEF, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -1000)); // Positives signify reduced damage.
             PMob->setModifier(MOD_WATERDEF,   (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -1000)); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
             PMob->setModifier(MOD_LIGHTDEF,   (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -1000)); // (1.25 - 1) * -1000 = -250 DEF
             PMob->setModifier(MOD_DARKDEF,    (int16)((Sql_GetFloatData(SqlHandle, 45) - 1) * -1000)); // (0.50 - 1) * -1000 = 500 DEF
 
-            PMob->setModifier(MOD_FIRERES,    (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -100)); // These are stored as floating percentages 
+            PMob->setModifier(MOD_FIRERES,    (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -100)); // These are stored as floating percentages
             PMob->setModifier(MOD_ICERES,     (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -100)); // and need to be adjusted into modifier units.
-            PMob->setModifier(MOD_WINDRES,    (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100)); // Higher RES = lower damage.  
+            PMob->setModifier(MOD_WINDRES,    (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100)); // Higher RES = lower damage.
             PMob->setModifier(MOD_EARTHRES,   (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100)); // Negatives signify lower resist chance.
             PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100)); // Positives signify increased resist chance.
-            PMob->setModifier(MOD_WATERRES,   (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -100)); 
-            PMob->setModifier(MOD_LIGHTRES,   (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -100)); 
-            PMob->setModifier(MOD_DARKRES,    (int16)((Sql_GetFloatData(SqlHandle, 45) - 1) * -100)); 
+            PMob->setModifier(MOD_WATERRES,   (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -100));
+            PMob->setModifier(MOD_LIGHTRES,   (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -100));
+            PMob->setModifier(MOD_DARKRES,    (int16)((Sql_GetFloatData(SqlHandle, 45) - 1) * -100));
 
 			PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle,46);
-			PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,47); 
-			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle,48); 
-			PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle,49); 
+			PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle,47);
+			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle,48);
+			PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle,49);
+
+            // Setup HP / MP Stat Percentage Boost
+            PMob->HPstat = Sql_GetFloatData(SqlHandle,50);
+            PMob->MPstat = Sql_GetFloatData(SqlHandle,51);
+
 			PMob->PBattleAI = new CAIMobDummy(PMob);
 
             if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
@@ -363,7 +369,7 @@ void LoadMOBList(CZone* PZone)
 		        case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
 		        case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
 	        }
-			
+
             //TODO: traits монстров должны быть аналогичны traits персонажей
             //DA and TA
 			if(PMob->GetMJob()==JOB_WAR && PMob->m_minLevel >= 25 || PMob->GetSJob()==JOB_WAR && PMob->m_minLevel >= 50){
@@ -394,7 +400,7 @@ void LoadZoneList()
 
 		LoadNPCList(PZone);
         LoadMOBList(PZone);
-		
+
 		PZone->ZoneServer(-1);
 		g_PZoneList[ZoneID] = PZone;
 
@@ -414,16 +420,16 @@ void LoadZoneList()
 
 REGIONTYPE GetCurrentRegion(uint8 ZoneID)
 {
-	switch (ZoneID) 
+	switch (ZoneID)
 	{
-		case ZONE_BOSTAUNIEUX_OUBLIETTE: 
+		case ZONE_BOSTAUNIEUX_OUBLIETTE:
 		case ZONE_EAST_RONFAURE:
 		case ZONE_FORT_GHELSBA:
 		case ZONE_GHELSBA_OUTPOST:
 		case ZONE_HORLAIS_PEAK:
 		case ZONE_KING_RANPERRES_TOMB:
 		case ZONE_WEST_RONFAURE:
-		case ZONE_YUGHOTT_GROTTO:	
+		case ZONE_YUGHOTT_GROTTO:
 			return REGION_RONFAURE;
 		case ZONE_GUSGEN_MINES:
 		case ZONE_KONSCHTAT_HIGHLANDS:

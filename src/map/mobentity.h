@@ -37,13 +37,13 @@ enum SPAWNTYPE
 	SPAWNTYPE_FOG			= 0x08,     // 02:00-07:00
 	SPAWNTYPE_MOONPHASE		= 0x10,
 	SPAWNTYPE_LOTTERY		= 0x20,
-	SPAWNTYPE_WINDOWED		= 0x40,     // понятия не имею, что это ^^	
+	SPAWNTYPE_WINDOWED		= 0x40,     // понятия не имею, что это ^^
 	SPAWNTYPE_SCRIPTED		= 0x80
 };
 
 enum MOBTYPE
 {
-	MOBTYPE_NORMAL			= 0x00,		
+	MOBTYPE_NORMAL			= 0x00,
 	MOBTYPE_PCSPAWNED		= 0x01,
 	MOBTYPE_NOTORIOUS		= 0x02,
 	MOBTYPE_FISHED			= 0x04,
@@ -71,7 +71,7 @@ enum BEHAVIOUR
 *                                                                       *
 ************************************************************************/
 
-class CMobEntity : public CBattleEntity 
+class CMobEntity : public CBattleEntity
 {
 public:
 
@@ -85,16 +85,19 @@ public:
 	uint8		m_maxLevel;		        // максимально-возможный уровень монстра
     uint32      HPmodifier;             // HP in Database (mob_groups)
     uint32      MPmodifier;             // MP in Database (mob_groups)
-	
+
+    float       HPstat;                 // HP boost percentage
+    float       MPstat;                 // MP boost percentage
+
 	uint8		m_Type;			        // тип монстра
     uint8       m_Link;                 // взаимопомощь монстрам своего семейства
 	uint16		m_Behaviour;	        // поведение монстра в различных ситуациях
-	SPAWNTYPE	m_SpawnType;	        // условие появления монстра 
+	SPAWNTYPE	m_SpawnType;	        // условие появления монстра
 
-	uint8		m_CallForHelp;	        // в перспективе желательно объединить эту переменную с CNpc->unknown 
+	uint8		m_CallForHelp;	        // в перспективе желательно объединить эту переменную с CNpc->unknown
 
 	position_t	m_SpawnPoint;	        // точка возрождения монстра
-	uint8       m_Element;  
+	uint8       m_Element;
 	uint8       m_HiPCLvl;              // Highest Level of Player Character that hit the Monster
 	uint8       m_THLvl;                // Highest Level of Treasure Hunter that apply to drops
 	uint32		m_THPCID;               // ID of last PC that hit the NPC and apply TH onto the NPC

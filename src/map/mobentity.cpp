@@ -28,7 +28,7 @@
 #include "mobentity.h"
 
 
-CMobEntity::CMobEntity() 
+CMobEntity::CMobEntity()
 {
 	objtype = TYPE_MOB;
 
@@ -36,6 +36,9 @@ CMobEntity::CMobEntity()
 
 	m_minLevel = 1;
 	m_maxLevel = 1;
+
+    HPstat = 1.0;
+    MPstat = 1.0;
 
     m_AllowRespawn = 0;
 	m_CallForHelp  = 0;
@@ -46,7 +49,7 @@ CMobEntity::CMobEntity()
 	m_Behaviour = BEHAVIOUR_NONE;
 	m_SpawnType = SPAWNTYPE_NORMAL;
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
-	m_Element = 0; 
+	m_Element = 0;
 	m_HiPCLvl = 0;
 	m_THLvl = 0;
 	m_THPCID = 0;
