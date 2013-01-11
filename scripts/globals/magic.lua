@@ -71,8 +71,8 @@ HARD_CAP = 120; --guesstimated
 
 function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMultipleTargetReduction)
     
-    dint = player:getStat(atttype) - target:getStat(atttype);
-    dmg = V;
+    local dint = player:getStat(atttype) - target:getStat(atttype);
+    local dmg = V;
     
     if(dint<=0) then --ifdINT penalises, it's always M=1
         dmg = dmg + dint;
@@ -88,7 +88,7 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
     
     return dmg;
     
-end
+end;
 
 function doEnspell(caster,target,spell,effect)
     if(target:getStatusEffect(EFFECT_BLOOD_WEAPON) ~= nil) then
@@ -113,94 +113,139 @@ function doEnspell(caster,target,spell,effect)
     target:delStatusEffect(EFFECT_ENLIGHT);
     target:delStatusEffect(EFFECT_ENDARK);
     
-    if(effect==EFFECT_BLOOD_WEAPON)then
+    if(effect==EFFECT_BLOOD_WEAPON) then
         target:addStatusEffect(EFFECT_BLOOD_WEAPON,1,0,30);
         return;
     end
     
-    duration = 180;
+    local duration = 180;
     if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
     --calculate potency
-    magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL) + target:getMod(79 + ENHANCING_MAGIC_SKILL); 
+    local magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL) + target:getMod(79 + ENHANCING_MAGIC_SKILL); 
 
-    potency = 3 + ((6*magicskill)/100);
+    local potency = 3 + ((6*magicskill)/100);
     if(magicskill>200) then
         potency = 5 + ((5*magicskill)/100);
     end
     target:addStatusEffect(effect,potency,0,duration);
     spell:setMsg(230);
-end
+end;
 
------------------------------------
---    Author: Tenjou
---     Cure Potency Check
---     List of gear which enhances Cure Potency.
------------------------------------
-function curePotency(caster)
-c = 0;
-main = caster:getEquipID(SLOT_MAIN);
-sub = caster:getEquipID(SLOT_SUB);
-range = caster:getEquipID(SLOT_RANGED);
-ammo = caster:getEquipID(SLOT_AMMO);
-head = caster:getEquipID(SLOT_HEAD);
-body = caster:getEquipID(SLOT_BODY);
-hand = caster:getEquipID(SLOT_HANDS);
-leg = caster:getEquipID(SLOT_LEGS);
-foot = caster:getEquipID(SLOT_FEET);
-neck = caster:getEquipID(SLOT_NECK);
-waist = caster:getEquipID(SLOT_WAIST);
-ear1 = caster:getEquipID(SLOT_EAR1);
-ear2 = caster:getEquipID(SLOT_EAR2);
-ring1 = caster:getEquipID(SLOT_RING1);
-ring2 = caster:getEquipID(SLOT_RING2);
-back = caster:getEquipID(SLOT_BACK);
 
-if (main == 0x443a or sub == 0x443a) then
-    c = (c+0.01);
-    --print("Cure enhanced by Dia Wand.");
-end
-if (main == 0x442e or sub == 0x442e) then
-    c = (c+0.05);
-    --print("Cure enhanced by Asklepios.");
-end
-if (main == 0x4999 or sub == 0x4999) then
-    c = (c+0.10);
-    --print("Cure enhanced by Templar Mace.");
-end
-if (main == 17557 or main == 17558 or main == 0x42d4 or main == 0x429b) then
-    c = (c+0.10);
-    --print("Cure enhanced by Staff.");
-end
-if (body == 0x313d) then
-    c = (c+0.10);
-    --print("Cure enhanced by Noble's Tunic.");
-elseif (body == 0x35ce) then
-    c = (c+0.12);
-    --print("Cure enhanced by Aristocrat's Coat.");
-end
-if (ear1 == 0x39d7 or ear2 == 0x39d7) then
-    c = (c+0.05);
-    --print("Cure enhanced by Hospitaler Earring.");
-end
-if (ear1 == 0x3e82 or ear2 == 0x3e82) then
-    c = (c+0.05);
-    --print("Cure enhanced by Roundel Earring.");
-end
-if (ring1 == 0x33e8 or ring2 == 0x33e8) then
-    hp = caster:getHP();
-    maxhp = caster:getMaxHP();
-    ratio = (hp/maxhp);
-    tp = caster:getTP();
-    if (ratio <= 0.75 and tp <= 100) then
-        c = (c+0.10);
-        --print("Cure enhanced by Medicine Ring.");
-    end
-end
---print("Total enhancement: " .. (c+1));
-return c;
- end;
+ ---------------------------------
+ --   Author: ZeDingo
+ --   getCurePower returns the caster's cure power
+ --   getCureFinal returns the final cure amount
+ --   Source: http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
+ ---------------------------------
+ function getCurePower(caster,isBlueMagic)
+	local MND = caster:getMod(MOD_MND);
+	local VIT = caster:getMod(MOD_VIT);
+	local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL) + caster:getMod(MOD_HEALING);
+	local power = math.floor(MND/2) + math.floor(VIT/4) + skill;
+	return power;
+end;
+function getCurePowerOld(caster)
+	local MND = caster:getMod(MOD_MND);
+	local VIT = caster:getMod(MOD_VIT);
+	local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL) + caster:getMod(MOD_HEALING);--it's healing magic skill for the BLU cures as well
+	local power = ((3 * MND) + VIT + (3 * math.floor(skill/5)));
+	return power;
+end;
+function getBaseCure(power,divisor,constant,basepower)
+	return ((power - basepower) / divisor) + constant;
+end; 
+function getBaseCureOld(power,divisor,constant)
+	return (power / 2) / divisor + constant;
+end;
+
+function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
+	if(basecure < minCure) then
+		basecure = minCure;
+	end
+	
+	local potency = 1 + (caster:getMod(MOD_CURE_POTENCY) / 100);
+	if(potency > 1.5) then
+		potency = 1.5;
+	end
+	
+	local dSeal = 1;
+	if (caster:hasStatusEffect(EFFECT_DIVINE_SEAL)) then
+		dSeal = 2;
+	end
+	
+	local rapture = 1;
+	if(isBlueMagic == false) then --rapture doesn't affect BLU cures as they're not white magic
+		if (caster:hasStatusEffect(EFFECT_RAPTURE)) then
+			local equippedHead = caster:getEquipID(SLOT_HEAD);
+			if(equippedHead == 11183) then
+				rapture = 1.55; --savant's bonnet +1
+			elseif(equippedHead == 11083) then
+				rapture = 1.6; --savant's bonnet +2
+			else
+				rapture = 1.5;
+			end
+		end
+	end
+	local dayWeatherBonus = 1;
+	local ele = spell:getElement();
+	
+	local castersWeather = caster:getWeather();
+	local equippedMain = caster:getEquipID(SLOT_MAIN);
+	local equippedWaist = caster:getEquipID(SLOT_WAIST);
+	
+	if(castersWeather == singleWeatherStrong[ele]) then
+		if(equippedMain == 18632 or equippedMain == 18633) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+				dayWeatherBonus = dayWeatherBonus + 0.10;
+			end
+		end
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	elseif(castersWeather == singleWeatherWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+			dayWeatherBonus = dayWeatherBonus - 0.10;
+		end
+	elseif(castersWeather == doubleWeatherStrong[ele]) then
+		if(equippedMain == 18632 or equippedMain == 18633) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+				dayWeatherBonus = dayWeatherBonus + 0.10;
+			end
+		end
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+			dayWeatherBonus = dayWeatherBonus + 0.25;
+		end
+	elseif(castersWeather == doubleWeatherWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+			dayWeatherBonus = dayWeatherBonus - 0.25;
+		end
+	end
+	
+	local dayElement = VanadielDayElement();
+	if(dayElement == dayStrong[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	elseif(dayElement == dayWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+			dayWeatherBonus = dayWeatherBonus - 0.10;
+		end
+	end
+	
+	if(dayWeatherBonus > 1.35) then
+		dayWeatherBonus = 1.35;
+	end
+	
+	local final = math.floor(math.floor(math.floor(math.floor(basecure) * potency) * dayWeatherBonus) * rapture) * dSeal;
+	return final;
+end;
+
+function getCureAsNukeFinal(caster,spell,power,divisor,constant,basepower)
+	return getCureFinal(caster,spell,power,divisor,constant,basepower);
+end;
 
 -----------------------------------
 --    Author: ReaperX
@@ -212,15 +257,15 @@ return c;
 
 function AffinityBonus(caster,spell)
     
-	bonus = 1.00;
+	local bonus = 1.00;
 	
-    ele = spell:getElement();
+    local ele = spell:getElement();
 
-    affinity = caster:getMod(strongAffinity[ele]) - caster:getMod(weakAffinity[ele]);
+    local affinity = caster:getMod(strongAffinity[ele]) - caster:getMod(weakAffinity[ele]);
 	
-	if affinity > 0 then
+	if(affinity > 0) then
 		bonus = bonus + 0.05 + 0.05 * affinity;
-	elseif affinity < 0 then
+	elseif(affinity < 0) then
 		bonus = bonus - 0.05 + 0.05 * affinity;
 	end
 	
@@ -236,13 +281,13 @@ end;
 
 function applyResistance(player,spell,target,diff,skill,staff)
    
-    resist = 1.0;
-    magicaccbonus = 0;
+    local resist = 1.0;
+    local magicaccbonus = 0;
 	--get the base acc (just skill plus magic acc mod)
-	magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
+	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
 	
 	--difference in int/mnd 
-	if diff > 10 then
+	if(diff > 10) then
 		magicacc = magicacc + 10 + (diff - 10)/2;
 	else
 		magicacc = magicacc + diff;
@@ -254,7 +299,7 @@ function applyResistance(player,spell,target,diff,skill,staff)
         magicaccbonus = magicaccbonus + 256;
     end
 	--add acc for staves
-	affinityBonus = AffinityBonus(player, spell);
+	local affinityBonus = AffinityBonus(player, spell);
 	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
 	
     local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
@@ -264,16 +309,16 @@ function applyResistance(player,spell,target,diff,skill,staff)
     end
 	
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-	magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[spell:getElement()]) + target:getMod(defenseMod[spell:getElement()])/10;
+	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[spell:getElement()]) + target:getMod(defenseMod[spell:getElement()])/10;
 	
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
-	multiplier = 0;
+	local multiplier = 0;
 	if player:getMainLvl() < 40 then
 		multiplier = 100 / 120;
 	else
 		multiplier = 100 / (player:getMainLvl() * 3);
 	end;
-	p = (magicacc * multiplier) - (magiceva * 0.45);
+	local p = (magicacc * multiplier) - (magiceva * 0.45);
 	magicaccbonus = magicaccbonus / 2;
 	--add magicacc bonus
 	p = p + magicaccbonus;
@@ -283,7 +328,7 @@ function applyResistance(player,spell,target,diff,skill,staff)
 
 	
 	--double any acc over 50 if it's over 50
-	if p > 5 then
+	if(p > 5) then
 		p = 5 + (p - 5) * 2;
 	end
 	
@@ -291,8 +336,8 @@ function applyResistance(player,spell,target,diff,skill,staff)
 	p = p + 45;
 
 	--add a scaling bonus or penalty based on difference of targets level from caster
-	leveldiff = player:getMainLvl() - target:getMainLvl();
-	if leveldiff < 0 then
+	local leveldiff = player:getMainLvl() - target:getMainLvl();
+	if(leveldiff < 0) then
 		p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
 	else
 		p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
@@ -307,16 +352,16 @@ function applyResistance(player,spell,target,diff,skill,staff)
 	p = p / 100;
 
     -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
-    half = (1 - p);
-    quart = ((1 - p)^2);
-    eighth = ((1 - p)^3);
-    sixteenth = ((1 - p)^4);
+    local half = (1 - p);
+    local quart = ((1 - p)^2);
+    local eighth = ((1 - p)^3);
+    local sixteenth = ((1 - p)^4);
     -- print("HALF:",half);
     -- print("QUART:",quart);
     -- print("EIGHTH:",eighth);
     -- print("SIXTEENTH:",sixteenth);
 
-    resvar = math.random();
+    local resvar = math.random();
     
     -- Determine final resist based on which thresholds have been crossed.
     if(resvar <= sixteenth) then
@@ -353,7 +398,7 @@ end;
 
 function getSkillLvl(rank,level)
     
-    skill = 0; --Failsafe
+    local skill = 0; --Failsafe
     
     if(level <= 50) then --Levels 1-50
         if(rank == 1 or rank == 2) then --A-Rated Skill
@@ -448,7 +493,7 @@ function getSkillLvl(rank,level)
     end
     
     --handling stoneskin
-    skin = target:getMod(MOD_STONESKIN);
+    local skin = target:getMod(MOD_STONESKIN);
     if(skin>0) then
         if(skin >= dmg) then --absorb all damage
             target:delMod(MOD_STONESKIN,dmg);
@@ -467,17 +512,17 @@ function getSkillLvl(rank,level)
     target:updateEnmityFromDamage(caster,dmg);
     target:addTP(10);
     return dmg;
- end
+ end;
  
 function adjustForTarget(target,dmg)
     --e.g. family % reduction
     return dmg;
-end
+end;
 
 function calculateMagicBurstAndBonus(caster, spell, target)
-    local hand  = caster:getEquipID(SLOT_HANDS);
-    local ear1  = caster:getEquipID(SLOT_EAR1);
-    local ear2  = caster:getEquipID(SLOT_EAR2);
+    local equippedHands = caster:getEquipID(SLOT_HANDS);
+    local equippedEar1  = caster:getEquipID(SLOT_EAR1);
+    local equippedEar2  = caster:getEquipID(SLOT_EAR2);
 
     local burst = 1.0;
     local burstBonus = 1.0;
@@ -503,11 +548,11 @@ function calculateMagicBurstAndBonus(caster, spell, target)
 		-- Get burst bonus from gear/spell bonus
 
         -- Sorcerer's Gloves
-        if(hand == 15105 or hand == 14912) then
+        if(equippedHands == 15105 or equippedHands == 14912) then
             burstBonus = burstBonus + 0.05;
         end
         
-        if(ear1 == 15962 or ear2 == 15962) then
+        if(equippedEar1 == 15962 or equippedEar2 == 15962) then
             burstBonus = burstBonus + 0.05;
         end
         
@@ -532,58 +577,64 @@ function calculateMagicBurstAndBonus(caster, spell, target)
     end
 
     return burst, burstBonus;
-end
+end;
 
 function addBonuses(caster, spell, target, dmg)
-	ele = spell:getElement();
+	local ele = spell:getElement();
 	
-	affinityBonus = AffinityBonus(caster, spell);
+	local affinityBonus = AffinityBonus(caster, spell);
 	dmg = math.floor(dmg * affinityBonus);
 	
-	speciesReduction = target:getMod(defenseMod[ele]);
+	local speciesReduction = target:getMod(defenseMod[ele]);
 	speciesReduction = 1.00 - (speciesReduction/1000);
 	dmg = math.floor(dmg * speciesReduction);
 	
-	dayWeatherBonus = 1.00;
+	local dayWeatherBonus = 1.00;
+	local equippedMain = caster:getEquipID(SLOT_MAIN);
+	local equippedWaist = caster:getEquipID(SLOT_WAIST);
+	local weather = caster:getWeather();
 	
-	if caster:getWeather() == singleWeatherStrong[ele] then
+	if(weather == singleWeatherStrong[ele]) then
 		-- Iridescence
-		if caster:getEquipID(SLOT_MAIN) == 18632 or caster:getEquipID(SLOT_MAIN) == 18633 then
-			if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
+		if(equippedMain == 18632 or equippedMain == 18633) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
 				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
-		elseif math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+		end
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
-	elseif caster:getWeather() == singleWeatherWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
+	elseif(caster:getWeather() == singleWeatherWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele]) then
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
-	elseif caster:getWeather() == doubleWeatherStrong[ele] then
+	elseif(weather == doubleWeatherStrong[ele]) then
 		-- Iridescence
-		if caster:getEquipID(SLOT_MAIN) == 18632 or caster:getEquipID(SLOT_MAIN) == 18633 then
-			if math.random() < 0.33 or caster:getEquipID(10) == elementalObi[ele] then
-				dayWeatherBonus = dayWeatherBonus + 0.25;
+		if(equippedMain == 18632 or equippedMain == 186330) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
-		elseif math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+		end
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
 		end
-	elseif caster:getWeather() == doubleWeatherWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
+	elseif(weather == doubleWeatherWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele]) then
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
 	
-	if VanadielDayElement() == dayStrong[ele] then
-		local legs = caster:getEquipID(7);
-		if legs == 15120 or legs == 15583 then
+	local dayElement = VanadielDayElement();
+	if(dayElement == dayStrong[ele]) then
+		local equippedLegs = caster:getEquipID(SLOT_LEGS);
+		if(equippedLegs == 15120 or equippedLegs == 15583) then
 			dayWeatherBonus = dayWeatherBonus + 0.05;
 		end
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
-	elseif VanadielDayElement() == dayWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
+	elseif(dayElement == dayWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele]) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	end
@@ -594,7 +645,7 @@ function addBonuses(caster, spell, target, dmg)
 	
 	dmg = math.floor(dmg * dayWeatherBonus);
 	
-    burst, burstBonus = calculateMagicBurstAndBonus(caster, spell, target);
+    local burst, burstBonus = calculateMagicBurstAndBonus(caster, spell, target);
     
     if(burst > 1.0) then
 		spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
@@ -602,11 +653,11 @@ function addBonuses(caster, spell, target, dmg)
 	
 	dmg = math.floor(dmg * burst);
 	
-    mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF)) ;
+    local mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
 	
 	dmg = math.floor(dmg * mab);
 	
-	magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
+	local magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
 	
 	dmg = math.floor(dmg * magicDmgMod);
 	
@@ -618,7 +669,7 @@ function addBonuses(caster, spell, target, dmg)
 	-- print(magicDmgMod);
 	
     return dmg;
-end
+end;
 
 ---------------------------------------------------------------------
 --    Author: ReaperX
@@ -626,6 +677,7 @@ end
 ---------------------------------------------------------------------
 
 function getElementalDebuffDOT(INT)
+	local DOT = 0;
     if (INT<= 39) then
         DOT = 1;
     elseif (INT <= 69) then
@@ -636,11 +688,12 @@ function getElementalDebuffDOT(INT)
         DOT = 4;
     else 
         DOT = 5;
-    end;
+    end
     return DOT;
 end;
 
 function getElementalDebuffStatDownFromDOT(dot)
+	local stat_down = 0;
     if (dot == 1) then
         stat_down = 5;
     elseif (dot == 2) then
@@ -651,21 +704,32 @@ function getElementalDebuffStatDownFromDOT(dot)
         stat_down = 11;
     else
         stat_down = 13;
-    end;
+    end
     return stat_down;
 end;
 
 function getHelixDuration(caster, target, spell)
-    return math.random(45, 90);
+	--Dark Arts will further increase Helix duration, but testing is ongoing.
+
+	local casterLevel = caster:getMainLvl();
+	local duration = 30; --fallthrough
+	if(casterLevel <= 39) then
+		duration = 30;
+	elseif(casterLevel <= 59) then
+		duration = 60;
+	elseif(casterLevel <= 99) then
+		duration = 90;
+	end
+    return duration;
 end;
 
 function handleThrenody(caster, target, spell, basePower, baseDuration, modifier)
 	-- Process resitances
-	staff = AffinityBonus(caster, spell);
+	local staff = AffinityBonus(caster, spell);
 	print("staff=" .. staff);
-	dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
+	local dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
 	print("dCHR=" .. dCHR);
-	resm = applyResistance(caster, spell, target, dCHR, SINGING_SKILL, staff);
+	local resm = applyResistance(caster, spell, target, dCHR, SINGING_SKILL, staff);
 	print("rsem=" .. resm);
 	
 	if(resm < 0.5) then
@@ -678,8 +742,8 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
 	target:delStatusEffect(EFFECT_THRENODY);
 
 	-- TODO: Check equipment bounses, increase duration/power
-	power = basePower;
-	duration = baseDuration;
+	local power = basePower;
+	local duration = baseDuration;
 
 	-- Set spell message and apply status effect
 	target:addStatusEffect(EFFECT_THRENODY, power, 0, duration, 0, modifier, 0);

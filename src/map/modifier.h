@@ -398,20 +398,22 @@ enum MODIFIER
 	MOD_OFF_DMG_RATING		 = 0x16F,			//adds damage rating to off hand weapon
 	MOD_REGAIN				 = 0x170,			//auto regain TP (from items) | this is multiplied by 10 e.g. 20 is 2% TP
 	MOD_REFRESH				 = 0x171,			//auto refresh from equipment
-	MOD_REGEN				 = 0x172			//auto regen from equipment
+	MOD_REGEN				 = 0x172,			//auto regen from equipment
+	MOD_CURE_POTENCY		 = 0x176,			//% cure potency | bonus from gear is capped at 50
+	MOD_CURE_POTENCY_RCVD	 = 0x177			//% potency of received cure | healer's roll, some items have this
 
 //  Use these for new modifiers. 
 	
-	//SPARE_MOD				 = 0x176
-	//SPARE_MOD				 = 0x177
 	//SPARE_MOD				 = 0x178
 	//SPARE_MOD				 = 0x179
 	//SPARE_MOD				 = 0x17A
 	//SPARE_MOD				 = 0x17B
 	//SPARE_MOD				 = 0x17C
+	//SPARE_MOD				 = 0x17D
+	//SPARE_MOD				 = 0x17E
 };
 
-#define MAX_MODIFIER	       0x176
+#define MAX_MODIFIER	       0x178
 
 
 

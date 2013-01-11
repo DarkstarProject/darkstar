@@ -1,6 +1,7 @@
 -----------------------------------------
--- Spell: Curaga III
--- Restores HP of all party members within area of effect.
+-- Spell: Wild Carrot
+-- Restores target's HP.
+-- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------
 
 require("scripts/globals/settings");
@@ -12,20 +13,20 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	local minCure = 270;
-	
-	local divisor = 0.6666;
-	local constant = 165;
+	local minCure = 120;
+
+	local divisor = 1;
+	local constant = 60;
 	local power = getCurePowerOld(caster);
-	if(power > 460) then
-		divisor = 6.5;
-		constant = 354.6666;
-	elseif(power > 220) then
-		divisor = 2;
-		constant = 275;
+	if(power > 299) then
+		divisor = 15.6666;
+		constant = 170.43;
+	elseif(power > 179) then
+		divisor =  2;
+		constant = 105;
 	end
-	
-	local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,false);
+
+	local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
 
 	final = final + (final * target:getMod(MOD_CURE_POTENCY_RCVD));
 	local diff = (target:getMaxHP() - target:getHP());

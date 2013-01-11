@@ -13,90 +13,95 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
+	local divisor = 0;
+	local constant = 0;
+	local basepower = 0;
+	local power = 0;
+	local basecure = 0;
+	local final = 0;
 
-	--Pull base stats from caster.
-	MND = caster:getStat(MOD_MND);
-	VIT = target:getStat(MOD_VIT);
-	Healing = caster:getSkillLevel(HEALING_MAGIC_SKILL);
-
-	power = ((3 * MND) + (VIT) + (3 * math.floor(Healing / 5)));
-	--printf("MIND: %u",MND);
-	--printf("VIT: %u",VIT);
-	--printf("POWER: %u",power);
-
-	--Rate and Constant are based on which soft caps have been overcome by the caster.
-	rate = 1;
-	constant = 20;
-	if(power > 170) then
-		rate = 35.6666;
-		constant = 87.62;
-	elseif(power > 110) then
-		rate = 2;
-		constant = 47.5;
+	local minCure = 60;
+	if(USE_OLD_CURE_FORMULA == true) then
+		power = getCurePowerOld(caster);
+		divisor = 1;
+		constant = 20;
+		if(power > 170) then
+				divisor = 35.6666;
+				constant = 87.62;
+		elseif(power > 110) then
+				divisor = 2;
+				constant = 47.5;
+		end
+	else
+		power = getCurePower(caster);
+		if(power < 70) then
+			divisor = 1;
+			constant = 60;
+			basepower = 40;
+		elseif(power < 125) then
+			divisor = 5.5;
+			constant = 90;
+			basepower = 70;
+		elseif(power < 200) then
+			divisor = 7.5;
+			constant = 100;
+			basepower = 125;
+		elseif(power < 400) then
+			divisor = 10;
+			constant = 110;
+			basepower = 200;
+		elseif(power < 700) then
+			divisor = 20;
+			constant = 130;
+			basepower = 400;
+		else
+			divisor = 999999;
+			constant = 145;
+			basepower = 0;
+		end
 	end
 
-	--Amount to cure the target with.
-	cure = (math.floor(power / 2)) / (rate) + constant;
-	--printf("CURE: %u",cure);
-
-	--Adjust bonus for bonus.
-	bonus = AffinityBonus(caster,spell);
-
-	--Check for cure potency equipment.
-	potency = curePotency(caster);
-
-	day = 1;--spellDayWeatherBonus(caster, spell, false);
-	--print("Total day/weather bonus:",day);
-
-	--Final amount to heal the target with.
-	final = cure * bonus * day * (1 + potency) * CURE_POWER;
-
-	--Raise the amount above the minimum hard cap.
-	if(final < 60) then
-		final = 60;
-	end;
-
-	if(caster:hasStatusEffect(EFFECT_AFFLATUS_SOLACE) and target:hasStatusEffect(EFFECT_STONESKIN)) then
-	  Afflatus_Stoneskin = math.floor(final / 4);
-	  if(Afflatus_Stoneskin > 300) then
-		  Afflatus_Stoneskin = 300;
-	  end;
-	  --printf("Additional effect on target: Stoneskin");
-	  target:addStatusEffect(EFFECT_STONESKIN,Afflatus_Stoneskin,0,25);
-	end;
-
-	--Check to see ifthe target doesn't need that much healing.
-	maxhp = target:getMaxHP();
-	hp = target:getHP();
-	diff = (maxhp - hp);
-	mobfinal = final;
-	if(final > diff) then
-		final = diff;
-	end
-
-	--Truncate decimal amounts.
-	final = math.floor(final);
-	
-	-- Do it!
 	if(target:getRank() ~= nil) then
-		if(caster:hasStatusEffect(EFFECT_DIVINE_SEAL)) then
-			final = final * 2;
+		if(USE_OLD_CURE_FORMULA == true) then
+			basecure = getBaseCure(power,divisor,constant);
+		else
+			basecure = getBaseCure(power,divisor,constant,basepower);
+		end
+		final = getCureFinal(caster,spell,basecure,minCure,false);
+		if(caster:hasStatusEffect(EFFECT_AFFLATUS_SOLACE) and target:hasStatusEffect(EFFECT_STONESKIN) == false) then
+			local solaceStoneskin = 0;
+			local equippedBody = caster:getEquipID(SLOT_BODY);
+			if(equippedBody == 11186) then
+				solaceStoneskin = math.floor(final * 0.30);
+			elseif(equippedBody == 11086) then
+				solaceStoneskin = math.floor(final * 0.35);
+			else
+				solaceStoneskin = math.floor(final * 0.25);
+			end
+			target:addStatusEffect(EFFECT_STONESKIN,solaceStoneskin,0,25);
+		end;
+		final = final + (final * target:getMod(MOD_CURE_POTENCY_RCVD));
+		local diff = (target:getMaxHP() - target:getHP());
+		if(final > diff) then
+			final = diff;
 		end
 		target:addHP(final);
+		caster:updateEnmityFromCure(target,final);
 	else
 		if(target:isUndead()) then
 			spell:setMsg(2);
-			if(mobfinal < 0) then
-				mobfinal = mobfinal * -1;
-			end
-			target:delHP(mobfinal);
-			final = mobfinal;
+			local dmg = calculateMagicDamage(60,1,caster,spell,target,HEALING_MAGIC_SKILL,MOD_MND,false);
+			local resist = applyResistance(caster,spell,target,caster:getMod(MOD_MND)-target:getMod(MOD_MND),HEALING_MAGIC_SKILL,1.0);
+			dmg = dmg*resist;
+			dmg = addBonuses(caster,spell,target,dmg);
+			dmg = adjustForTarget(target,dmg);
+			dmg = finalMagicAdjustments(caster,target,spell,dmg);
+			final = dmg;
+			target:delHP(final);
+			caster:updateEnmityFromDamage(target,final);
 		else
 			final = 0;
 		end
 	end
-	
-	caster:updateEnmityFromCure(target,final);
 	return final;
-	
 end;
