@@ -274,6 +274,9 @@ public:
 	int32 delStatusEffect(lua_State*);		// Removes Status Effect 
 	int32 eraseStatusEffect(lua_State*);	// Used with "Erase" spell 
 	int32 dispelStatusEffect(lua_State*);	// Used with "Dispel" spell
+	int32 getPartyMember(lua_State* L);		// Get a character entity from another entity's party or alliance
+	int32 getPartySize(lua_State* L);		// Get the size of a party in an entity's alliance
+	int32 getAllianceSize(lua_State* L);	// Get the size of an entity's alliance
 	int32 addPartyEffect(lua_State*);		// Adds Effect to all party members
 	int32 removePartyEffect(lua_State*);	// Removes Effect from all party members
 	int32 hasPartyEffect(lua_State*);		// Has Effect from all party members

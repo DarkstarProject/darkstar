@@ -73,6 +73,7 @@
 #include "../itemutils.h"
 #include "../guildutils.h"
 #include "../map.h"
+#include "../alliance.h"
 #include "../mobentity.h"
 #include "../npcentity.h"
 #include "../petentity.h"
@@ -3228,6 +3229,90 @@ inline int32 CLuaBaseEntity::addStatusEffectEx(lua_State *L)
 	return 0;
 }
 
+/************************************************************************
+*                                                                       *
+*  Gets a party or alliance member relative to the player.    			*
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getPartyMember(lua_State* L) 
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( !lua_isnil(L,-1) && lua_isnumber(L,-1) && !lua_isnil(L,-2) && lua_isnumber(L,-2))
+		{
+			uint8 member = (uint8)lua_tonumber(L,-1);
+			uint8 allianceparty = (uint8)lua_tonumber(L,-2);
+			CBattleEntity* PTargetChar = NULL;
+			
+			if(allianceparty == 0 && member == 0)
+					PTargetChar =((CBattleEntity*)m_PBaseEntity);
+			else if(((CBattleEntity*)m_PBaseEntity)->PParty != NULL)
+			{
+				if(allianceparty == 0 && member <= ((CBattleEntity*)m_PBaseEntity)->PParty->members.size())
+					PTargetChar =((CBattleEntity*)m_PBaseEntity)->PParty->members[member];
+				else if(((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance != NULL && member <= ((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance->partyList.at(allianceparty)->members.size())
+					PTargetChar =((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance->partyList.at(allianceparty)->members[member];
+			}
+			if (PTargetChar != NULL)
+			{
+				lua_pushstring(L,CLuaBaseEntity::className);
+				lua_gettable(L,LUA_GLOBALSINDEX);
+				lua_pushstring(L,"new");
+				lua_gettable(L,-2);
+				lua_insert(L,-2);
+				lua_pushlightuserdata(L,(void*)PTargetChar);
+				lua_pcall(L,2,1,0);
+				return 1;
+			}
+		}
+	}
+    ShowError(CL_RED"Lua::getPartyMember :: Member or Alliance Number is not valid.\n" CL_RESET);
+	lua_pushnil(L);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getPartySize(lua_State* L) 
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( !lua_isnil(L,-1) && lua_isnumber(L,-1))
+		{
+			uint8 allianceparty = (uint8)lua_tonumber(L,-1);
+			uint8 partysize = 1;
+			if( ((CBattleEntity*)m_PBaseEntity)->PParty != NULL)
+			{
+				if( allianceparty == 0)
+					partysize = ((CBattleEntity*)m_PBaseEntity)->PParty->members.size();
+				else if( ((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance != NULL)
+					partysize = ((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance->partyList.at(allianceparty)->members.size();
+			}
+			
+			lua_pushnumber( L,partysize );
+			return 1;
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getAllianceSize(lua_State* L) 
+{
+	if( m_PBaseEntity != NULL )
+	{
+		uint8 alliancesize = 1;
+		if( ((CBattleEntity*)m_PBaseEntity)->PParty != NULL)
+		{
+			if( ((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance != NULL)
+				alliancesize = ((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance->partyList.size();
+		}
+		lua_pushnumber( L,alliancesize );
+		return 1;
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::addPartyEffect(lua_State *L)
@@ -5387,6 +5472,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyMember),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartySize),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllianceSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyEffect),
