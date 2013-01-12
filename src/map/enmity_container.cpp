@@ -253,8 +253,12 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
 
 void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage)
 {
-	Damage = (Damage < 1 ? 1 : Damage);
+	// Crash fix, PEntity was in ACTION_FALL
+	if (PEntity->PBattleAI->GetCurrentAction() == ACTION_FALL)
+		return;
 
+
+	Damage = (Damage < 1 ? 1 : Damage);
 
 	uint16 mod = battleutils::GetEnmityMod(PEntity->GetMLevel(), 1); //default fallback
 
