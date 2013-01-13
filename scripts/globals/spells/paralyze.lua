@@ -28,6 +28,9 @@ function onSpellCast(caster,target,spell)
 	
 	-- Calculate potency.
 	potency = (multiplier * (pMND + dMND)) / 10;
+	if potency > 25 then
+		potency = 25
+	end
 	--printf("Duration : %u",duration);
 	--printf("Potency : %u",potency);
 	if(target:hasStatusEffect(EFFECT_PARALYSIS)) then --effect already on, do nothing

@@ -375,9 +375,21 @@ void LoadMOBList(CZone* PZone)
 			if(PMob->GetMJob()==JOB_WAR && PMob->m_minLevel >= 25 || PMob->GetSJob()==JOB_WAR && PMob->m_minLevel >= 50){
 				PMob->addModifier(MOD_DOUBLE_ATTACK,15);
 			}
+			
+			 //MNK has 100% double attack
+            if(PMob->GetMJob()==JOB_MNK){
+                PMob->addModifier(MOD_DOUBLE_ATTACK,100);
++           }
+
 			if(PMob->GetMJob()==JOB_THF && PMob->m_minLevel >= 55){
 				PMob->addModifier(MOD_TRIPLE_ATTACK,7);
 			}
+			
+			//MNK has 15% triple attack
+			if(PMob->GetMJob()==JOB_MNK && PMob->m_minLevel >= 55){
+                PMob->addModifier(MOD_TRIPLE_ATTACK,15);
+            }
+
 			PZone->InsertMOB(PMob);
 			luautils::OnMobInitialise(PMob);
 		}

@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Foot Kick
--- Deals critical damage. Chance of critical hit varies with TP. 
+-- Deals critical damage. Chance of critical hit varies with TP.
 -- 100% TP: ??? / 200% TP: ??? / 300% TP: ???
 ---------------------------------------------------
 
@@ -17,7 +17,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local numhits = 1;
 	local accmod = 1;
-	local dmgmod = 1;
+	local dmgmod = 3;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_CRIT_VARIES,1,2,3);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 	target:delHP(dmg);

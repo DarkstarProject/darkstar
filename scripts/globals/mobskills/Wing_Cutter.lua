@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Wing Cutter
--- Deals Wind damage to targets in a fan-shaped area of effect. 
+-- Deals Wind damage to targets in a fan-shaped area of effect.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -14,7 +14,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local dmgmod = 1;
+	local dmgmod = 1.2;
 	local accmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 3,accmod,dmgmod,TP_MAB_BONUS,1);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);

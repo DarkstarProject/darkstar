@@ -21,14 +21,11 @@ function OnMobWeaponSkill(target, mob, skill)
 	local message = MSG_MISS;
 	local typeEffect = EFFECT_DISEASE;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		local accrand = math.random(1,2);
-		if(accrand == 1) then
-			local statmod = MOD_INT;
-			local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
-			if(resist > 0.5) then
-				message = MSG_ENFEEB_IS;
-				target:addStatusEffect(typeEffect,1,0,120);--power=1;tic=0;duration=120;
-			end
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+		if(resist > 0.4) then
+			message = MSG_ENFEEB_IS;
+			target:addStatusEffect(typeEffect,1,0,120);--power=1;tic=0;duration=120;
 		end
 	else
 		message = MSG_NO_EFFECT;

@@ -176,10 +176,29 @@ void CalculateStats(CMobEntity * PMob)
 	}
 
 	PMob->setModifier(MOD_ATT, BaseAttack);
+	
+	//MNK attack rate should be lower
+	if(PMob->GetMJob() == JOB_MNK){
+		BaseAttack = (float)BaseAttack*0.4;
+	}
+
 	PMob->setModifier(MOD_ACC, BaseAttack);
 
 	PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
 
+	 
+    //reduce weapon delay of MNK
+    if(PMob->GetMJob()==JOB_MNK){
+        uint16 delay = PMob->m_Weapons[SLOT_MAIN]->getDelay();
+
+	    //reduce delay based on level
+	    //this will remove about 78 delay at level 75
+	    delay -= (((float)PMob->GetMLevel() * 1.05) * 1000) / 60;
+
+		PMob->m_Weapons[SLOT_MAIN]->setDelay(delay);
+    }
+
+	
 	uint16 fSTR = GetBaseToRank(3, PMob->GetMLevel());
 	uint16 fDEX = GetBaseToRank(3, PMob->GetMLevel());
 	uint16 fAGI = GetBaseToRank(3, PMob->GetMLevel());

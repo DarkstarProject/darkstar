@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Sand Breath
--- Deals Earth damage to enemies within a fan-shaped area. Additional effect: Blind 
+-- Deals Earth damage to enemies within a fan-shaped area. Additional effect: Blind
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -23,7 +23,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 
-	local dmgmod = 1;
+	local dmgmod = mob:getHP() / mob:getMaxHP() * 2;
 	local accmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 3,accmod,dmgmod,TP_MAB_BONUS,1);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);

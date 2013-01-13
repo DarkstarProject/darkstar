@@ -3,8 +3,8 @@
 --
 --  Description: Deals damage proportional to HP. Reduces HP to 1 after use. Damage varies with TP.
 --  Type: Physical (Slashing)
---  
---  
+--
+--
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(mob:getHP()>1) then
 		local mobHP = mob:getHP();
 		local hpMod = mobHP/mob:getMaxHP();
-		dmgmod = dmgmod + hpMod/5;
+		dmgmod = dmgmod + hpMod * 13;
 		mob:setHP(1);
 	end
 

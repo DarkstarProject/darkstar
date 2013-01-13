@@ -3,8 +3,8 @@
 --
 --  Description: Deals water damage to enemies within area of effect.
 --  Type: Magical Water (Element)
---  
---  
+--
+--
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -14,8 +14,8 @@ function OnMobSkillCheck(target,mob,skill)
 	return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)    
-	local dmgmod = .7;
+function OnMobWeaponSkill(target, mob, skill)
+	local dmgmod = .8;
 	local accmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);

@@ -2,7 +2,7 @@
 --  Firespit
 --
 --  Description: Deals fire damage to an enemy.
---  Type: Magical (Fire) 
+--  Type: Magical (Fire)
 ---------------------------------------------
 
 require("/scripts/globals/settings");
@@ -16,7 +16,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local dmgmod = 1;
+	local dmgmod = 1.3;
 	local accmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);

@@ -3,8 +3,8 @@
 --
 --  Description: Deals ice damage that lowers Agility and gradually reduces HP of enemies within range.
 --  Type: Magical (Ice)
---  
---  
+--
+--
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		target:addStatusEffect(typeEffect,power,3,120);--tic=3;duration=120;
 	end
 
-	local dmgmod = 1;
+	local dmgmod = 2;
 	local accmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS);

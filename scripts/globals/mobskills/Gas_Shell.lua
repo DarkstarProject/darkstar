@@ -20,15 +20,12 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_POISON;
 	local message = MSG_MISS;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		local accrand = math.random(1,2);
-		if(accrand == 1) then
-			local statmod = MOD_INT;
-			local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
-			if(resist > 0.5) then
-				local power = math.random(23,24);
-				message = MSG_ENFEEB_IS;
-				target:addStatusEffect(typeEffect,power,0,60);
-			end
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
+		if(resist > 0.5) then
+			local power = math.random(23,24);
+			message = MSG_ENFEEB_IS;
+			target:addStatusEffect(typeEffect,power,0,60);
 		end
 	else
 		message = MSG_NO_EFFECT;

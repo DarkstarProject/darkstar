@@ -19,21 +19,18 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_BIO;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		local accrand = math.random(1,2);
-		if(accrand == 1) then
-			local statmod = MOD_INT;
-			local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
-			if(resist > 0.5) then
-				local cTime = VanadielHour();
-				if(12 <= cTime) then
-					local power = 8 + (cTime - 11);
-				end
-				target:addStatusEffect(typeEffect,power,3,30);--tic=3;duration=30;
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+		if(resist > 0.5) then
+			local cTime = VanadielHour();
+			if(12 <= cTime) then
+				local power = 8 + (cTime - 11);
 			end
+			target:addStatusEffect(typeEffect,power,3,30);--tic=3;duration=30;
 		end
 	end
 
-	local dmgmod = .9;
+	local dmgmod = 1.5;
 	local accmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*1.5,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);

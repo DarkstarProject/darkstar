@@ -109,11 +109,11 @@ INSERT INTO `mob_skill` VALUES(33, 188, 33, 'Stone_Throw', 0, 25.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES(36, 188, 36, 'Blank_Gaze', 0, 16.0, 2000, 1500, 4, 0);
 
 -- Mandragora
-INSERT INTO `mob_skill` VALUES (45,178,45,'Dream_Flower', 1, 15.0, 2000, 1500, 4, 0); -- Not used by Lycopodia
+--INSERT INTO `mob_skill` VALUES (45,178,45,'Dream_Flower', 1, 15.0, 2000, 1500, 4, 0); -- Not used by Lycopodia
 INSERT INTO `mob_skill` VALUES (46,178,46,'Wild_Oats', 0, 12.5, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (48,178,48,'Photosynthesis', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (49,178,49,'Leaf_Dagger', 0, 7.0, 2000, 1500, 4, 0); -- 1hp/tick
--- INSERT INTO `mob_skill` VALUES(44, 178, 44, 'Head_Butt', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES(44, 178, 44, 'Head_Butt', 0, 7.0, 1500, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES(50, 178, 50, 'Scream', 1, 15.0, 2000, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES(0, 178, 0, 'Petal_Pirouette', 0, 15.0, 2000, 1500, 4, 0); -- Only used by certain NM
 -- INSERT INTO `mob_skill` VALUES(0, 178, 0, 'Demonic_Flower', 0, 7.0, 2000, 1500, 4, 0); -- Only used by certain NM

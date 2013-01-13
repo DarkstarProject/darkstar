@@ -3,8 +3,8 @@
 --
 --  Description: Delivers an area attack that lowers target's defense and magic defense. Damage varies with TP.
 --  Type: Physical (Piercing)
---  
---  
+--
+--
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -18,26 +18,20 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local statmod = MOD_INT;
 	local typeEffect = EFFECT_MAGIC_DEF_DOWN;
-	local accrand = 3;
 	local resist = ;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		accrand = math.random(1,3);
-		if(accrand ~= 1) then
-			resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
-			if(resist > 0.5) then
-				target:addStatusEffect(typeEffect,30,0,60);--power=30;tic=0;duration=60;
-			end
+		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
+		if(resist > 0.5) then
+			target:addStatusEffect(typeEffect,30,0,60);--power=30;tic=0;duration=60;
 		end
 	end
 
 	typeEffect = EFFECT_DEFENSE_DOWN;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		accrand = math.random(1,3);
-		if(accrand ~= 1) then
-			resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
-			if(resist > 0.5) then
-				target:addStatusEffect(typeEffect,30,0,60);--power=30;tic=0;duration=60;
-			end
+
+		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
+		if(resist > 0.5) then
+			target:addStatusEffect(typeEffect,30,0,60);--power=30;tic=0;duration=60;
 		end
 	end
 

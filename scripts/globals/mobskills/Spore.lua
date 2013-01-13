@@ -3,7 +3,7 @@
 -- Emits a cloud of spores that inflict paralysis.
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Melee?
--- Duration: 9:00 
+-- Duration: 9:00
 ---------------------------------------------------
 
 require("/scripts/globals/settings");

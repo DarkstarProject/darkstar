@@ -3,8 +3,8 @@
 --
 --  Description: Deals earth damage that inflicts multiple status ailments on enemies within a fan-shaped area originating from the caster.
 --  Type: Magical (Earth)
---  
---  
+--
+--
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -107,7 +107,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		skill:setMsg(MSG_NO_EFFECT);
 	end
 
-	local dmgmod = 1;
+	local dmgmod = mob:getHP() / mob:getMaxHP() * 2;
 	local accmod = 1.5;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);

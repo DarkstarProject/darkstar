@@ -27,8 +27,8 @@ function OnMobWeaponSkill(target, mob, skill)
 	local accmod = 1;
 	local cMobHp = mob:getHP();
 	local mMobHp = mob:getMaxHP();
-	local dmgmod = cMobHp/mMobHp * 2;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
+	local dmgmod = cMobHp/mMobHp;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;
