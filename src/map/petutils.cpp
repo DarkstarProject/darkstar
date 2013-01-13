@@ -635,7 +635,7 @@ void MakePetStay(CBattleEntity* PMaster)
 int16 PerpetuationCost(uint32 id, uint8 level)
 {
 	int16 cost = 0;
-	if (id >= 288 && id <= 295)
+	if (id >= 0 && id <= 7)
 	{
 		if( level < 19 )
 			cost = 1;
@@ -652,7 +652,7 @@ int16 PerpetuationCost(uint32 id, uint8 level)
 		else
 			cost = 7;
 	}
-	else if (id == 296 )
+	else if (id == 8 )
 	{
 		if (level < 10 )
 			cost = 1;
@@ -677,7 +677,7 @@ int16 PerpetuationCost(uint32 id, uint8 level)
 		else
 			cost = 11;
 	}
-	else if (id == 297 )
+	else if (id == 9 )
 	{
 		if (level < 8 )
 			cost = 1;
@@ -706,7 +706,7 @@ int16 PerpetuationCost(uint32 id, uint8 level)
 		else
 			cost = 13;
 	}
-	else if (id <= 304 )
+	else if (id <= 15 )
 	{
 		if (level < 10 )
 			cost = 3;
