@@ -379,7 +379,7 @@ void LoadMOBList(CZone* PZone)
 			 //MNK has 100% double attack
             if(PMob->GetMJob()==JOB_MNK){
                 PMob->addModifier(MOD_DOUBLE_ATTACK,100);
-+           }
+           }
 
 			if(PMob->GetMJob()==JOB_THF && PMob->m_minLevel >= 55){
 				PMob->addModifier(MOD_TRIPLE_ATTACK,7);
