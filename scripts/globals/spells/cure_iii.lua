@@ -94,7 +94,7 @@ function onSpellCast(caster,target,spell)
 			dmg = finalMagicAdjustments(caster,target,spell,dmg);
 			final = dmg;
 			target:delHP(final);
-			caster:updateEnmityFromDamage(target,final);
+			target:updateEnmityFromDamage(caster,final);
 		else
 			final = 0;
 		end
