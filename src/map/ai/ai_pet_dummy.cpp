@@ -788,7 +788,7 @@ void CAIPetDummy::ActionDeath()
 			charutils::BuildingCharPetAbilityTable((CCharEntity*)m_PPet->PMaster,m_PPet,0);//blank the pet commands
 		}
 		if(m_PPet->getPetType() == PETTYPE_AVATAR){
-			m_PPet->PMaster->StatusEffectContainer->DelStatusEffect(EFFECT_AVATAR);
+			m_PPet->PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
 		}
 
 
