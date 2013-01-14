@@ -1,42 +1,30 @@
 -----------------------------------
--- Area: Riverne Site #A01
--- NPC:  Unstable Displacement
------------------------------------
-package.loaded["scripts/zones/Riverne-Site_A01/TextIDs"] = nil;
+-- Area: Tavnazian Safehold
+-- NPC: Home Point
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Riverne-Site_A01/TextIDs");
+package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
+require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 -----------------------------------
--- onTrade
+-- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if(trade:hasItemQty(1691,1) and trade:getItemCount() == 1) then -- Trade Giant Scale
-		player:tradeComplete();
-		npc:openDoor(RIVERNE_PORTERS);
-		player:messageSpecial(SD_HAS_GROWN);
-	end	
-	
-end;
+end; 
 
 -----------------------------------
--- onTrigger
+-- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	if(npc:getAnimation() == 8) then
-		player:startEvent(0x13);
-	else
-		player:messageSpecial(SD_VERY_SMALL);
-	end;
-	
-	return 1;
-	
-end;
+if (HOMEPOINT_HEAL == 1) then
+	player:addHP(player:getMaxHP());
+	player:addMP(player:getMaxMP());
+end
+player:startEvent(0x00fa);
+end; 
 
 -----------------------------------
 -- onEventUpdate
@@ -54,4 +42,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+if (option == 0) then	
+	player:setHomePoint();
+	player:messageSpecial(HOMEPOINT_SET);
+end
 end;
+
+
+

@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x4);	
 	elseif(id == base+3) then --  J-7 porter (SE corner)
 		player:startEvent(0x5);
-	elseif(id == base+4) then --  I-8 porter
+	elseif(id == base+4) then -- I-8 porter
 		player:startEvent(0x6);
 	elseif(id == base+6) then --  G-9 porter (to Boroka)
 		player:startEvent(0x8);
@@ -38,37 +38,37 @@ function onTrigger(player,npc)
 		player:startEvent(0xA);
 	elseif(id == base+9) then --  M-8 porter
 		player:startEvent(0xB);
-	elseif(id == base+10) then -- L-7 porter (east)
+	elseif(id == base+10) then --  L-7 porter (east)
 		player:startEvent(0xC);
-	elseif(id == base+11) then -- L-7 porter (nw corner)
+	elseif(id == base+11) then --  L-7 porter (nw corner)
 		player:startEvent(0xD);
-	elseif(id == base+12) then -- J-6 porter
+	elseif(id == base+12) then --  J-6 porter
 		player:startEvent(0xE);
-	elseif(id == base+13) then -- K-6 porter
+	elseif(id == base+13) then --  K-6 porter
 		player:startEvent(0xF);
-	elseif(id == base+14) then -- K-7 porter (SE)
+	elseif(id == base+14) then --  K-7 porter (SE)
 		player:startEvent(0x10);	
-	elseif(id == base+15) then -- K-7 porter (NW)
+	elseif(id == base+15) then --  K-7 porter (NW)
 		player:startEvent(0x11);
-	elseif(id == base+16) then -- J-7 porter (ne corner)
+	elseif(id == base+16) then --  J-7 porter (ne corner)
 		player:startEvent(0x12);
-	elseif(id == base+17) then -- J-7 porter (center)
+	elseif(id == base+17) then --  J-7 porter (center)
 		player:startEvent(0x13);
-	elseif(id == base+18) then -- J-7 porter (nw corner)
+	elseif(id == base+18) then --  J-7 porter (nw corner)
 		player:startEvent(0x14);
-	elseif(id == base+19) then -- I-7 porter (north)
+	elseif(id == base+19) then --  I-7 porter (north)
 		player:startEvent(0x15);
-	elseif(id == base+21) then -- I-7 porter (NW)
+	elseif(id == base+21) then --  I-7 porter (NW)
 		player:startEvent(0x17);
-	elseif(id == base+22) then -- I-7 porter (SW)
+	elseif(id == base+22) then --  I-7 porter (SW)
 		player:startEvent(0x18);
 	elseif(id == base+23) then -- I-7 porter (south)
 		player:startEvent(0x19);
-	elseif(id == base+24) then -- G-7 porter (ne corner)
+	elseif(id == base+24) then --  G-7 porter (ne corner)
 		player:startEvent(0x1A);
 	elseif(id == base+25) then -- F-6 porter (east)
 		player:startEvent(0x1B);
-	elseif(id == base+26) then -- G-7 porter (east)
+	elseif(id == base+26) then --  G-7 porter (east)
 		player:startEvent(0x1C);
 	elseif(id == base+27) then -- F-8 porter (Boroka Island)
 		player:startEvent(0x1D);
@@ -82,7 +82,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x21);		
 	elseif(id == base+34) then -- E-7 porter (west)
 		player:startEvent(0x23);
-	elseif(id == base+35) then -- D-6 porter (exit from Bahamut Island)
+	 elseif(id == base+35) then -- D-6 porter (exit from Bahamut Island)
 		player:startEvent(0x23);
 	elseif(id == base+36) then -- E-7 porter (SW)
 		player:startEvent(0x24);

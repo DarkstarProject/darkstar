@@ -26,22 +26,25 @@ function onTrigger(player,npc)
 	Topaz = GetNPCByID(17289741):getAnimation();
 	Emerald = GetNPCByID(17289742):getAnimation();
 	Sapphire = GetNPCByID(17289743):getAnimation();
-	
+	printf("Ruby: %u",Ruby);
+	printf("Topaz: %u",Topaz);
+	printf("Emerald: %u",Emerald);
+	printf("Sapphire: %u",Sapphire);
 	if(Ruby ~= 8) then
 		GetNPCByID(17289740):setAnimation(8);
 	end
 	
 	if(Emerald == 8 and Sapphire == 8 and Topaz == 8) then
-		rand = math.random(15,30);
-		timeDoor = rand * 60;
+		randT = math.random(15,30);
+		randT = rand * 60;
 		
 		-- Add timer for the door
-		GetNPCByID(17289739):openDoor(timeDoor);
+		GetNPCByID(17289739):openDoor(randT);
 		-- Add same timer for the 4 columns
-		GetNPCByID(17289740):openDoor(timeDoor);
-		GetNPCByID(17289741):openDoor(timeDoor);
-		GetNPCByID(17289742):openDoor(timeDoor);
-		GetNPCByID(17289743):openDoor(timeDoor);
+		GetNPCByID(17289740):openDoor(randT);
+		GetNPCByID(17289741):openDoor(randT);
+		GetNPCByID(17289742):openDoor(randT);
+		GetNPCByID(17289743):openDoor(randT);
 	end
 	
 end; 

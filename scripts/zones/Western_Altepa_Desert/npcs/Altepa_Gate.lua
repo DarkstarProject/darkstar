@@ -20,7 +20,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	return 0;
+--GetNPCByID(17289739):openDoor();
+	--return 0;
 end; 
 
 -----------------------------------

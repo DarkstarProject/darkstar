@@ -163,9 +163,11 @@ function onEventFinish(player,csid,option)
 		finishMissionTimeline(player,1,csid,option);
 	
 	elseif(csid ==0x0123) then -- All condition met, grant Portal Charm
+		player:tradeComplete();
 		player:addKeyItem(PORTAL_CHARM);
 		player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
 	elseif(csid ==0x0124) then -- Traded rolanberry, but not all conditions met
+		player:tradeComplete();
 		player:setVar("OwesPortalCharm",1);
 	elseif(csid ==0x0125) then -- Traded rolanberry before, and all conditions are now met
 		player:setVar("OwesPortalCharm",0);

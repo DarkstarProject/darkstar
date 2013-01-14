@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	--player:startEvent(0x000c); -- Just delete -- to enter at sea
+	--player:startEvent(0x000c);
 end;
 
 -----------------------------------
