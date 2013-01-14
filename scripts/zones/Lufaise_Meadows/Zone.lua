@@ -4,9 +4,8 @@
 --
 -----------------------------------
 
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 require("scripts/globals/settings");
-require("scripts/zones/Lufaise_Meadows/TextIDs");
+require("scripts/globals/missions");
 
 -----------------------------------
 -- onInitialize
@@ -20,12 +19,18 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+cs = -1;	
+	
+	if(player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then	
 		player:setPos(-475.825,-20.461,281.149,11);
-	end	
+	end
+	
+	if(player:getCurrentMission(COP) == THE_ISLE_OF_FORGOTTEN_SAINTS)then
+		cs = 0x006E;
+	end
+	
 	return cs;	
-end;		
+end;
 
 -----------------------------------		
 -- onRegionEnter		
@@ -39,8 +44,8 @@ end;
 -----------------------------------	
 
 function onEventUpdate(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;	
 
 -----------------------------------	
@@ -48,6 +53,12 @@ end;
 -----------------------------------	
 
 function onEventFinish(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-end;	
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+	
+	if(csid == 0x006E) then
+		player:completeMission(COP,THE_ISLE_OF_FORGOTTEN_SAINTS);
+		player:addMission(COP,AN_INVITATION_WEST);
+	end
+	
+end;

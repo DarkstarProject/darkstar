@@ -1,10 +1,13 @@
 -----------------------------------
--- Area: Tavnazian Safehold
--- NPC:  Eliot
--- @pos -103 -26 -49 26
+-- Area: Phomiuna_Aqueducts
+-- NPC:  Oil lamp
+-- @pos -60 -23 60 27
+-----------------------------------
+package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
+require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -18,9 +21,21 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+
+	player:messageSpecial(7166); -- earth lampe
+	GetNPCByID(16888069):openDoor(7);
+
+	local element = VanadielDayElement();
+	--printf("element: %u",element);
 	
-	if(player:hasCompletedMission(COP,SHELTERING_DOUBT)) then
-		player:sendMenu(3);
+	if(element == 3)then  --windday
+		if(GetNPCByID(16888070):getAnimation() == 8)then -- lampe wind open ?
+			GetNPCByID(16888062):openDoor(7);
+		end
+	elseif(element == 2)then  --earthday
+		if(GetNPCByID(16888066):getAnimation() == 8)then -- lampe lightning open ?
+			GetNPCByID(16888062):openDoor(7);
+		end
 	end
 	
 end; 

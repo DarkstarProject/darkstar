@@ -1,7 +1,13 @@
 -----------------------------------
--- Area: Phomiuna Aqueducts
--- NPC:  Oil Lamp
+-- Area: Phomiuna_Aqueducts
+-- NPC:  Oil lamp
+-- @pos -60 -23 60 27
 -----------------------------------
+package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/missions");
+require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
 -- onTrade Action

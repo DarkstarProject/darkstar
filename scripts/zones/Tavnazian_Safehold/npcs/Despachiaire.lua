@@ -1,8 +1,10 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Despachiaire
--- Standard Info NPC
+-- NPC:  Despachiaire
+-- @pos 108 -40 -83 26
 -----------------------------------
+
+require("scripts/globals/missions");
 
 -----------------------------------
 -- onTrade Action
@@ -16,7 +18,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0066);
+	
+	if(player:getCurrentMission(COP) == THE_LOST_CITY and player:getVar("PromathiaStatus") == 0)then
+		player:startEvent(0x0066);
+	else
+		player:startEvent(0x006A);
+	end
+	
 end; 
 
 -----------------------------------
@@ -35,7 +43,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+  
+	if(csid == 0x0066)then
+		player:setVar("PromathiaStatus",1);
+	end
+  
 end;
-
-
-

@@ -1,8 +1,10 @@
 -----------------------------------
---	Area: Tavnazian Safehold
---	NPC:  Senvaleget
---	Working 100%
+-- Area: Tavnazian Safehold
+-- NPC:  Senvaleget
+-- @pos -103 -26 -49 26
 -----------------------------------
+
+require("scripts/globals/missions");
 
 -----------------------------------
 -- onTrade Action
@@ -16,7 +18,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:sendMenu(3);
+	
+	if(player:hasCompletedMission(COP,SHELTERING_DOUBT)) then
+		player:sendMenu(3);
+	end
+	
 end; 
 
 -----------------------------------
@@ -36,6 +42,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

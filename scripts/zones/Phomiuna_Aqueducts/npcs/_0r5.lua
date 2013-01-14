@@ -1,10 +1,13 @@
 -----------------------------------
--- Area: Tavnazian Safehold
--- NPC:  Eliot
--- @pos -103 -26 -49 26
+-- Area: Phomiuna_Aqueducts
+-- NPC: ornate door
+-- @pos -95 -24 60 27
+-----------------------------------
+package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
+require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -18,10 +21,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:hasCompletedMission(COP,SHELTERING_DOUBT)) then
-		player:sendMenu(3);
-	end
+    
+	if(player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 2)then
+        player:startEvent(0x0024);
+    else
+		return -1;
+    end
 	
 end; 
 
@@ -41,4 +46,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
+	if(csid == 0x0024) then
+		player:setVar("PromathiaStatus",3);
+	end
+	
 end;

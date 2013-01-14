@@ -1,16 +1,28 @@
 -----------------------------------
--- Area: Tavnazian Safehold
--- NPC:  Eliot
--- @pos -103 -26 -49 26
+-- Area: Phomiuna_Aqueducts
+-- NPC:  Iron Gate
+-- @pos -65 0 60 27
+-----------------------------------
+package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
+require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(trade:hasItemQty(1660,1) and trade:getItemCount() == 1)then -- Bronze Key
+		player:tradeComplete();
+		GetNPCByID(16888085):openDoor(7);
+	elseif(trade:hasItemQty(1022,1) and trade:getItemCount() == 1 and player:getMainJob() == 6)then -- thief's tool
+		player:tradeComplete();
+		GetNPCByID(16888085):openDoor(7);
+	end
+	
 end; 
 
 -----------------------------------
@@ -18,9 +30,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:hasCompletedMission(COP,SHELTERING_DOUBT)) then
-		player:sendMenu(3);
+   
+	if(player:getXPos() <= -71)then
+		return -1;
+	else
+		return 1;
 	end
 	
 end; 

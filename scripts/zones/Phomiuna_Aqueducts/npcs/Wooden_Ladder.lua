@@ -15,6 +15,8 @@
 -- @pos -200.679 -8.57 60
 -----------------------------------
 
+require("scripts/globals/missions");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -28,8 +30,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	LadderID = npc:getID();
-	Xpos = player:getXPos();
+	local LadderID = npc:getID();
+	local Xpos = player:getXPos();
+	--printf("LadderID: %u",LadderID);
 	
 	if(LadderID == 16888090 and Xpos >= 102) then
 		player:startEvent(0x0015);
@@ -46,7 +49,12 @@ function onTrigger(player,npc)
 	elseif(LadderID == 16888096 and Xpos >= 102) then
 		player:startEvent(0x001b);
 	elseif(LadderID == 16888097 or LadderID == 16888101) then
-		player:startEvent(0x001c);
+	    if(player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 1)then
+			player:setVar("PromathiaStatus",2);
+			player:startEvent(0x0023);
+		else
+			player:startEvent(0x001c);
+		end
 	elseif(LadderID == 16888098) then
 		player:startEvent(0x001d);
 	elseif(LadderID == 16888099) then
