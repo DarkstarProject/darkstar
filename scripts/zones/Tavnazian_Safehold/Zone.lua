@@ -45,7 +45,9 @@ function onRegionEnter(player,region)
 	switch (region:GetRegionID()): caseof
 	{
 		[1] = function (x)
-			player:startEvent(0x0069);
+			if(player:getCurrentMission(COP) == AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 2) then
+				player:startEvent(0x0069);
+			end
 		end,
 	}
 	
