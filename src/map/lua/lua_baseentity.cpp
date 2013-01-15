@@ -629,6 +629,21 @@ inline int32 CLuaBaseEntity::getZone(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Получаем имя зоны, в которой находится персонаж                      *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getZoneName(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->loc.zone == NULL);
+
+    lua_pushstring( L, m_PBaseEntity->loc.zone->GetName() );
+	return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getCurrentRegion(lua_State *L)
@@ -5350,6 +5365,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getYPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZoneName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentRegion),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPreviousZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContinentID),

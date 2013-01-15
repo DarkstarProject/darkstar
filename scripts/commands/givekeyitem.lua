@@ -15,7 +15,12 @@ function onTrigger(player,target,keyID)
 
 	pc = GetPlayerByName(target);
 
-	pc:addKeyItem(keyID);
-	pc:messageSpecial(KEYITEM_OBTAINED,keyID);
+    if (pc ~= nil) then
+        local TextIDs = "scripts/zones/" .. pc:getZoneName() .. "/TextIDs";
+        package.loaded[TextIDs] = nil;
+        require(TextIDs);
 
+        pc:addKeyItem(keyID);
+        pc:messageSpecial(KEYITEM_OBTAINED,keyID);
+    end
 end;
