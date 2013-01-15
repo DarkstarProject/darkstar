@@ -1,34 +1,36 @@
 -----------------------------------
--- Area: Misareaux Coast
--- NPC:  Dilapidated Gate
--- @pos 260 9 -435 25
+-- Area: Tavnazian Safehold
+-- NPC:  walnut door
+-- Involved in mission 2-4
+-- @pos 111 -41 41 26
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
+package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 -----------------------------------
--- onTrade
+-- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 -----------------------------------
--- onTrigger
+-- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(COP) == AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 1)then
-		player:startEvent(0x0005);
+	if(player:getCurrentMission(COP) == AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 0)then
+		player:startEvent(0x0068);
+		return 1;
 	else
-		player:messageSpecial(DOOR_CLOSED);
-	end   
+		return -1;
+	end
 	
-	return 1;
 end;
 
 -----------------------------------
@@ -36,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,11 +47,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 	
-	if(csid == 0x0005)then
-		player:setVar("PromathiaStatus",2);
+	if(csid == 0x0068)then
+		player:setVar("PromathiaStatus",1);
 	end
 	
 end;

@@ -30,7 +30,6 @@ function onZoneIn(player,prevZone)
 		player:setPos(305.377,-36.092,660.435,71);
 	end	
 	-- Check if we are on Windurst Mission 1-2	
-	printf( "prevzone: %d", prevZone);	
 	if(player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER and player:getVar("MissionStatus") == 5 and prevZone == 194) then			
 		cs = 0x0030;	
 	elseif(player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125,0)) then		

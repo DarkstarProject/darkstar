@@ -11,3 +11,4 @@ LOGGING_IS_POSSIBLE_HERE = 7538; -- Logging is possible here if you have <item>
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.
+            DOOR_CLOSED = 7288; -- The door is closed
