@@ -3,6 +3,8 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
  
 function OnUseAbility(player, target, ability)
+	player:delStatusEffect(EFFECT_DRAIN_SAMBA);
+	player:delStatusEffect(EFFECT_ASPIR_SAMBA);
 	player:addStatusEffect(EFFECT_HASTE_SAMBA,1,0,120);
 end; 
  

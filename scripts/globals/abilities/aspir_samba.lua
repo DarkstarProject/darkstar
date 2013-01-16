@@ -3,15 +3,18 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
  
 function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_DRAIN_SAMBA,1,0,120);
+	player:delStatusEffect(EFFECT_HASTE_SAMBA);
+	player:delStatusEffect(EFFECT_DRAIN_SAMBA);
+	player:addStatusEffect(EFFECT_ASPIR_SAMBA,1,0,120);
 end;
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
- function onEffectGain(target,effect)
-	target:addMod(MOD_ENSPELL, 19);
+
+function onEffectGain(target,effect)
+	target:addMod(MOD_ENSPELL, 20);
 	target:addMod(MOD_ENSPELL_DMG, 1);
- end;
+end;
 
 -----------------------------------
 -- onEffectTick Action
@@ -23,8 +26,8 @@ end;
 -----------------------------------
 -- onEffectLose Action
 -----------------------------------
- 
- function onEffectLose(target,effect)
+
+function onEffectLose(target,effect)
 	target:setMod(MOD_ENSPELL,0);
 	target:setMod(MOD_ENSPELL_DMG,0);
- end;
+end;
