@@ -534,15 +534,15 @@ void DespawnPet(CBattleEntity* PMaster)
 
 	// mob was not reset properly on death/uncharm
 	// reset manually
-	if (PMaster->isCharmed && PMaster->objtype == TYPE_MOB)
+	if (PPet->isCharmed && PMaster->objtype == TYPE_MOB)
 	{
-		PMaster->isCharmed = false;
+		PPet->isCharmed = false;
 		PMaster->charmTime = 0;
 
-		PMaster->PBattleAI = NULL;
-		PMaster->PBattleAI = new CAIMobDummy((CMobEntity*)PMaster);
-		PMaster->PBattleAI->SetLastActionTime(gettick());
-		PMaster->PBattleAI->SetCurrentAction(ACTION_FALL);			
+		PPet->PBattleAI = NULL;
+		PPet->PBattleAI = new CAIMobDummy((CMobEntity*)PMaster);
+		PPet->PBattleAI->SetLastActionTime(gettick());
+		PPet->PBattleAI->SetCurrentAction(ACTION_FALL);			
 
 		ShowDebug("An ex charmed mob was not reset properly, Manually resetting it.\n");
 		return;

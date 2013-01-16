@@ -39,6 +39,7 @@
 #include "mobutils.h"
 #include "npcentity.h"
 #include "petentity.h"
+#include "petutils.h"
 #include "spell.h"
 #include "treasure_pool.h"
 #include "vana_time.h"
@@ -593,7 +594,10 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	if(PChar->PPet != NULL)
     {
 		charutils::BuildingCharPetAbilityTable(PChar,(CPetEntity*)PChar->PPet,0);//blank the pet commands
-		PChar->PPet->status = STATUS_DISAPPEAR;
+		if(PChar->PPet->isCharmed)
+			petutils::DespawnPet(PChar);
+		else
+			PChar->PPet->status = STATUS_DISAPPEAR;
 		PChar->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
 		DeletePET(PChar->PPet);//remove the TID for this pet
 		for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
