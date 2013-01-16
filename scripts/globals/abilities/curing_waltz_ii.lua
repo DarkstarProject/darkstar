@@ -28,9 +28,6 @@ function OnUseAbility(player, target, ability)
 	end
 
 	--Reducing TP.
-	local tp = player:getTP();
-	tp = tp - 35;
-	player:setTP(tp);
 
 	--Applying server mods....
 	cure = cure * CURE_POWER;

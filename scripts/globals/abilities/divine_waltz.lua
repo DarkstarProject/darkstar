@@ -27,10 +27,6 @@ function OnUseAbility(player, target, ability)
 		cure = (vit+chr)*0.125+60;
 	end
 
-	--Reducing TP.
-	local tp = player:getTP();
-	tp = tp - 40;
-	player:setTP(tp);
 
 	--Applying server mods....
 	cure = cure * CURE_POWER;

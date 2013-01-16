@@ -1738,6 +1738,142 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA)
+		{
+			if (m_PChar->health.tp<10){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_II)
+		{
+			if (m_PChar->health.tp<25){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_III)
+		{
+			if (m_PChar->health.tp<40){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA)
+		{
+			if (m_PChar->health.tp<10){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA_II)
+		{
+			if (m_PChar->health.tp<25){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_HASTE_SAMBA)
+		{
+			if (m_PChar->health.tp<35){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ)
+		{
+			if (m_PChar->health.tp<20){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_II)
+		{
+			if (m_PChar->health.tp<35){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_III)
+		{
+			if (m_PChar->health.tp<50){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_IV)
+		{
+			if (m_PChar->health.tp<65){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_HEALING_WALTZ)
+		{
+			if (m_PChar->health.tp<20){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_DIVINE_WALTZ)
+		{
+			if (m_PChar->health.tp<40){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_QUICKSTEP)
+		{
+			if (m_PChar->health.tp<10){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_BOX_STEP)
+		{
+			if (m_PChar->health.tp<10){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		if (m_PJobAbility->getID() == ABILITY_STUTTER_STEP)
+		{
+			if (m_PChar->health.tp<20){
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
+				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				m_PJobAbility = NULL;
+				m_PBattleSubTarget = NULL;
+				return;}
+		}
+		
         m_ActionType = ACTION_JOBABILITY_FINISH;
         ActionJobAbilityFinish();
         return;
@@ -1994,6 +2130,66 @@ void CAICharNormal::ActionJobAbilityFinish()
             }
         }
 	}
+		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA)
+		{
+		m_PChar->addTP(-10);
+		}
+		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_II)
+		{
+		m_PChar->addTP(-25);
+		}
+		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_III)
+		{
+		m_PChar->addTP(-40);
+		}
+		if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA)
+		{
+		m_PChar->addTP(-10);
+		}
+		if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA_II)
+		{
+		m_PChar->addTP(-25);
+		}
+		if (m_PJobAbility->getID() == ABILITY_HASTE_SAMBA)
+		{
+		m_PChar->addTP(-35);
+		}
+		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ)
+		{
+		m_PChar->addTP(-20);
+		}
+		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_II)
+		{
+		m_PChar->addTP(-35);
+		}
+		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_III)
+		{
+		m_PChar->addTP(-50);
+		}
+		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_IV)
+		{
+		m_PChar->addTP(-65);
+		}
+		if (m_PJobAbility->getID() == ABILITY_HEALING_WALTZ)
+		{
+		m_PChar->addTP(-20);
+		}
+		if (m_PJobAbility->getID() == ABILITY_DIVINE_WALTZ)
+		{
+		m_PChar->addTP(-40);
+		}
+		if (m_PJobAbility->getID() == ABILITY_QUICKSTEP)
+		{
+		m_PChar->addTP(-10);
+		}
+		if (m_PJobAbility->getID() == ABILITY_BOX_STEP)
+		{
+		m_PChar->addTP(-10);
+		}
+		if (m_PJobAbility->getID() == ABILITY_STUTTER_STEP)
+		{
+		m_PChar->addTP(-10);
+		}
 
     // TODO: все перенести в скрипты, т.к. система позволяет получать указатель на питомца
 
@@ -2806,7 +3002,7 @@ void CAICharNormal::ActionAttack()
 
 				if (Action.reaction != REACTION_EVADE)
 				{
-					battleutils::HandleEnspell(m_PChar,m_PBattleTarget,&Action,i);
+					battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
 				}
 				m_PChar->m_ActionList.push_back(Action);
 
