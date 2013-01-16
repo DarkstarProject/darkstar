@@ -4246,6 +4246,34 @@ inline int32 CLuaBaseEntity::isUndead(lua_State *L)
 }
 
 /************************************************************************
+*	Change skin of a mob												*
+*  	1st number: skinid in mob_change_skin.sql							*
+*	mob:changeSkin(1)						*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::changeSkin(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+
+	const int8* Query = "SELECT skin_model FROM mob_change_skin WHERE skinid = %u";
+    
+	int32 ret = Sql_Query(SqlHandle, Query, lua_tointeger(L,1));
+	
+	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		memcpy(&PMob->look,Sql_GetData(SqlHandle,0),23);
+	}
+
+	m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE));
+
+	return 0;
+}
+
+/************************************************************************
 			Calculates the enmity produced by the input cure and
 			applies it to all on the base entity's enemies hate list
 			FORMAT: phealer:(ptarget,amount)
@@ -5549,5 +5577,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isUndead),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeSkin),
 	{NULL,NULL}
 };

@@ -121,7 +121,7 @@ public:
 	int32 getXPos(lua_State*);				// Get Entity X position
 	int32 getYPos(lua_State*);				// Get Entity Y position
 	int32 getZPos(lua_State*);				// Get Entity Z position
-    int32 setPos(lua_State*);				// Set Entity position (zone,x,y,z)
+    int32 setPos(lua_State*);				// Set Entity position (x,y,z,rot) or (x,y,z,rot,zone)
 	int32 getZone(lua_State*);				// Get Entity zone	
     int32 getZoneName(lua_State*);          // Get Entity zone name
 	int32 getCurrentRegion(lua_State*);		// Get Entity conquest region
@@ -267,6 +267,7 @@ public:
 	int32 getBattleTime(lua_State*);		// Get the time in second of the battle
 	int32 rageMode(lua_State*);				// Add rage mode
 	int32 isUndead(lua_State*);				// True if mob is undead
+	int32 changeSkin(lua_State*);			// Change mob skin
 
 	int32 addStatusEffect(lua_State*);		// Adds status effect to character
     int32 addStatusEffectEx(lua_State*);	// Adds status effect to character
