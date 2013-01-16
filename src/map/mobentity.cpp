@@ -27,7 +27,6 @@
 
 #include "mobentity.h"
 
-
 CMobEntity::CMobEntity()
 {
 	objtype = TYPE_MOB;
@@ -54,6 +53,7 @@ CMobEntity::CMobEntity()
 	m_THLvl = 0;
 	m_THPCID = 0;
     m_RageMode = 0;
+	m_NewSkin = 0;
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
@@ -131,4 +131,43 @@ void CMobEntity::delRageMode()
 	    stats.VIT /= 10;
     }
 	m_RageMode = false;
+}
+
+/************************************************************************
+*                                                                       *
+*  Change Skin of the Mob                                               *
+*                                                                       *
+************************************************************************/
+
+void CMobEntity::setMainSkin(uint32 mobid)
+{
+	if(m_NewSkin)
+	{
+		const int8* Query = "SELECT modelid \
+							 FROM mob_spawn_points, mob_groups, mob_pools \
+							 WHERE mob_spawn_points.mobid = %u \
+							 AND mob_groups.groupid = mob_spawn_points.groupid \
+							 AND mob_groups.poolid = mob_pools.poolid";
+		
+		int32 ret = Sql_Query(SqlHandle, Query, mobid);
+	
+		if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			memcpy(&look,Sql_GetData(SqlHandle,0),23);
+			m_NewSkin = false;
+		}
+	}
+}
+
+void CMobEntity::setNewSkin(uint8 skinid)
+{
+	const int8* Query = "SELECT skin_model FROM mob_change_skin WHERE skinid = %u";
+    
+	int32 ret = Sql_Query(SqlHandle, Query, skinid);
+	
+	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		memcpy(&look,Sql_GetData(SqlHandle,0),23);
+		m_NewSkin = true;
+	}
 }

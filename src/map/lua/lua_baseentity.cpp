@@ -4259,17 +4259,10 @@ inline int32 CLuaBaseEntity::changeSkin(lua_State *L)
 
 	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
 
-	const int8* Query = "SELECT skin_model FROM mob_change_skin WHERE skinid = %u";
-    
-	int32 ret = Sql_Query(SqlHandle, Query, lua_tointeger(L,1));
+	PMob->setNewSkin(lua_tointeger(L,1));
+
+	PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CEntityUpdatePacket(PMob,ENTITY_UPDATE));
 	
-	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		memcpy(&PMob->look,Sql_GetData(SqlHandle,0),23);
-	}
-
-	m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE));
-
 	return 0;
 }
 

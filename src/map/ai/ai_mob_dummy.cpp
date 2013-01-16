@@ -169,6 +169,7 @@ void CAIMobDummy::ActionDisengage()
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
 
+	m_PMob->setMainSkin(m_PMob->id);
     m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
 	m_PMob->m_CallForHelp = 0;
@@ -564,6 +565,7 @@ void CAIMobDummy::ActionAbilityUsing()
 			ActionAbilityInterrupt();
 			return;
 		}
+		
 		m_PMobSkill->setTP(m_PMob->health.tp);
 		m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_MOBABILITY_FINISH;
@@ -640,7 +642,7 @@ void CAIMobDummy::ActionAbilityFinish()
 					radiusAround = m_PBattleTarget->loc.p;
 
 				CBattleEntity* PVictim = m_PBattleTarget;
-				
+
 
 				switch (targetPartyType)
 				{
@@ -996,14 +998,11 @@ void CAIMobDummy::ActionAttack()
 		return; 
 	}
 
-
 	// mob should not attack another mob with no master
 	if(m_PBattleTarget != NULL && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster == NULL)
 	{
-		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		m_PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 	}
-
 
 
     if (m_PBattleTarget->isDead() || 
@@ -1256,8 +1255,8 @@ void CAIMobDummy::ActionAttack()
 		}
 		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
 	}
-
-	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS && (m_Tick - m_StartBattle) % 3000 == 0) // launch OnMobFight every 3 sec
+	
+	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS && (m_Tick - m_StartBattle) % 3000 <= 400) // launch OnMobFight every 3 sec (not everytime at 0 but 0~400)
 	{
 		luautils::OnMobFight(m_PMob,m_PBattleTarget);
 	}

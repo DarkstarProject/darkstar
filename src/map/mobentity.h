@@ -75,43 +75,46 @@ class CMobEntity : public CBattleEntity
 {
 public:
 
-    bool        m_AllowRespawn;         // монстру разрешено возрождаться
-	uint32		m_RespawnTime;	        // отрезок времени, через который монстр возрождается после смерти
-    uint32      m_DropItemTime;         // время анимации смерти монстра
+    bool        m_AllowRespawn;						// монстру разрешено возрождаться
+	uint32		m_RespawnTime;						// отрезок времени, через который монстр возрождается после смерти
+    uint32      m_DropItemTime;						// время анимации смерти монстра
 
-	uint32		m_DropID;		        // номер группы оставляемых монстром предметов после смерти
+	uint32		m_DropID;							// номер группы оставляемых монстром предметов после смерти
 
-	uint8		m_minLevel;		        // минимально-возможный  уровень монстра
-	uint8		m_maxLevel;		        // максимально-возможный уровень монстра
-    uint32      HPmodifier;             // HP in Database (mob_groups)
-    uint32      MPmodifier;             // MP in Database (mob_groups)
+	uint8		m_minLevel;							// минимально-возможный  уровень монстра
+	uint8		m_maxLevel;							// максимально-возможный уровень монстра
+    uint32      HPmodifier;							// HP in Database (mob_groups)
+    uint32      MPmodifier;							// MP in Database (mob_groups)
 
-    float       HPstat;                 // HP boost percentage
-    float       MPstat;                 // MP boost percentage
+    float       HPstat;								// HP boost percentage
+    float       MPstat;								// MP boost percentage
 
-	uint8		m_Type;			        // тип монстра
-    uint8       m_Link;                 // взаимопомощь монстрам своего семейства
-	uint16		m_Behaviour;	        // поведение монстра в различных ситуациях
-	SPAWNTYPE	m_SpawnType;	        // условие появления монстра
+	uint8		m_Type;								// тип монстра
+    uint8       m_Link;								// взаимопомощь монстрам своего семейства
+	uint16		m_Behaviour;						// поведение монстра в различных ситуациях
+	SPAWNTYPE	m_SpawnType;						// условие появления монстра
 
-	uint8		m_CallForHelp;	        // в перспективе желательно объединить эту переменную с CNpc->unknown
+	uint8		m_CallForHelp;						// в перспективе желательно объединить эту переменную с CNpc->unknown
 
-	position_t	m_SpawnPoint;	        // точка возрождения монстра
+	position_t	m_SpawnPoint;						// точка возрождения монстра
 	uint8       m_Element;
-	uint8       m_HiPCLvl;              // Highest Level of Player Character that hit the Monster
-	uint8       m_THLvl;                // Highest Level of Treasure Hunter that apply to drops
-	uint32		m_THPCID;               // ID of last PC that hit the NPC and apply TH onto the NPC
-	uint16		m_Family;
-	uint8		m_SkillStatus;			// status of skills (used 2h/used epic tp move/etc)
+	uint8       m_HiPCLvl;							// Highest Level of Player Character that hit the Monster
+	uint8       m_THLvl;							// Highest Level of Treasure Hunter that apply to drops
+	uint32		m_THPCID;							// ID of last PC that hit the NPC and apply TH onto the NPC
+	uint16		m_Family;	
+	uint8		m_SkillStatus;						// status of skills (used 2h/used epic tp move/etc)
 
-    uint32      m_unknown;              // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
-    uint8       m_name_prefix;          // The ding bats VS Ding bats
+    uint32      m_unknown;							// includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+    uint8       m_name_prefix;						// The ding bats VS Ding bats
 
-	CEnmityContainer* PEnmityContainer;	// система ненависти монстров
+	CEnmityContainer* PEnmityContainer;				// система ненависти монстров
 
-    bool        hasRageMode();          // If the mob has the rage mode: true
-    void        addRageMode();          // Rage mode ON:  stat x10
-    void        delRageMode();          // Rage mode OFF: stat /10
+    bool        hasRageMode();						// If the mob has the rage mode: true
+    void        addRageMode();						// Rage mode ON:  stat x10
+    void        delRageMode();						// Rage mode OFF: stat /10
+
+	void		setMainSkin(uint32 mobid);			// Set base skin for the mob (if mob or player dieing)
+	void		setNewSkin(uint8 skinid);			// Set new skin for the mob
 
     bool        CanDeaggro();
     uint32      GetDespawnTimer();
@@ -123,6 +126,7 @@ public:
 private:
 
     bool        m_RageMode;             // Mode rage
+	bool		m_NewSkin;				// True if skin has changed
     uint32      m_DespawnTimer;         // Despawn Timer to despawn mob after set duration
 
 };
