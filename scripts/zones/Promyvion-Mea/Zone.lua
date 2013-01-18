@@ -51,7 +51,6 @@ end;
  
 function onZoneIn(player,prevZone)		
 cs = -1;	
-
 	if(player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos(-96,0,174,155);
 	end
@@ -62,15 +61,11 @@ cs = -1;
 		player:setVar("PromathiaStatus",0);
 	end
 	
-	-- First enter in promy mea
-	if(player:getVar("FirstPromyvionMea") == 1)then
-		player:setVar("FirstPromyvionMea",0);
-		cs = 0x0032;
+	if  (player:getVar("FirstPromyvionMea") == 1)then
+	cs = 0x0032;	
+	elseif(ENABLE_COP_ZONE_CAP == 1)then
+	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
 	end
-	
-	-- ZONE LEVEL RESTRICTION
-	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);
-	
  	return cs;	
 end;		
 
@@ -84,14 +79,14 @@ function onRegionEnter(player,region)
 	{
 		[11] = function (x) player:startEvent(0x002e); end,
 		[12] = function (x) 
-			if(GetMobAction(16859151) == 24) then 
+			if(GetNPCByID(16859450):getAnimation() == 8) then 
 				player:startEvent(30); 
 			end 
 		end, -- player:setPos(-70,0,-233,105);
 		[21] = function (x) player:startEvent(41); end, -- player:setPos(-96,0,174,155);
 		[22] = function (x)
-			if(GetMobAction(16859198) == 24) then 
-				if(math.random() >= 0.5)then
+			if(GetNPCByID(16859453):getAnimation() == 8) then             
+				if(player:getVar("MemoryReceptacle")==2)then
 					player:startEvent(37); -- player:setPos(-167,0,172,38);						
 				else
 					player:startEvent(33); -- player:setPos(68,0,-76,254);		
@@ -99,8 +94,8 @@ function onRegionEnter(player,region)
 			end
 		end,
 		[23] = function (x)
-			if(GetMobAction(16859205) == 24) then 
-				if(math.random() >= 0.5)then	
+			if(GetNPCByID(16859457):getAnimation() == 8) then 
+				if(player:getVar("MemoryReceptacle") == 2)then	
 					player:startEvent(37); -- player:setPos(-167,0,172,38);
 				else
 					player:startEvent(33); -- player:setPos(68,0,-76,254);
@@ -108,8 +103,8 @@ function onRegionEnter(player,region)
 			end
 		end,
 		[24] = function (x)
-			if(GetMobAction(16859212) == 24) then 
-				if(math.random() >= 0.5)then	
+			if(GetNPCByID(16859458):getAnimation() == 8) then 
+				if(player:getVar("MemoryReceptacle") == 2)then	
 					player:startEvent(37); -- player:setPos(-167,0,172,38);		
 				else
 					player:startEvent(33); -- player:setPos(68,0,-76,254);
@@ -117,8 +112,8 @@ function onRegionEnter(player,region)
 			end
 		end,
 		[25] = function (x)
-			if(GetMobAction(16859219) == 24) then 
-				if(math.random() >= 0.5)then	
+			if(GetNPCByID(16859459):getAnimation() == 8) then 
+				if(player:getVar("MemoryReceptacle") == 2)then	
 					player:startEvent(37); -- player:setPos(-167,0,172,38);
 				else
 					player:startEvent(33); -- player:setPos(68,0,-76,254);
@@ -128,33 +123,33 @@ function onRegionEnter(player,region)
 		[31] = function (x) player:startEvent(30); end, -- player:setPos(-70,0,-233,105);
 		[32] = function (x) player:startEvent(31); end, -- player:setPos(-106,0,384,38);	
 		[33] = function (x) 
-			if(GetMobAction(16859282) == 24) then 
+			if(GetNPCByID(16859452):getAnimation() == 8) then 
 				player:startEvent(31); -- player:setPos(-106,0,384,38);
 			end
 		end, 
 		[34] = function (x) 
-			if(GetMobAction(16859273) == 24) then 
+			if(GetNPCByID(16859451):getAnimation() == 8) then 
 				player:startEvent(31); -- player:setPos(-106,0,384,38);
 			end
 		end,
 		[35] = function (x) player:startEvent(30); end, -- player:setPos(-70,0,-233,105); 
 		[36] = function (x) 
-			if(GetMobAction(16859367) == 24) then
+			if(GetNPCByID(16859460):getAnimation() == 8) then
 				player:startEvent(31); -- player:setPos(-106,0,384,38);
 			end
 		end,
 		[37] = function (x) 
-			if(GetMobAction(168592) == 24) then
+			if(GetNPCByID(16859455):getAnimation() == 8) then
 				player:startEvent(31); -- player:setPos(-106,0,384,38);
 			end
 		end, 
 		[38] = function (x) 
-			if(GetMobAction(16859358) == 24) then
+			if(GetNPCByID(16859456):getAnimation() == 8) then
 				player:startEvent(31); -- player:setPos(-106,0,384,38);
 			end
 		end, 
 		[41] = function (x)
-			if(math.random() >= 0.5)then	
+			if(player:getVar("MemoryReceptacle") == 2)then	
 				player:startEvent(37); -- player:setPos(-167,0,172,38);
 			else
 				player:startEvent(33); -- player:setPos(68,0,-76,254);	
@@ -191,6 +186,14 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x002e and option == 1) then
 		player:setVar("Stelepoint",6);
 		player:setPos(274 ,-82 ,-62 ,180 ,14); -- -> back to Hall of Transferance
+	elseif(csid == 0x0032)then		
+	    player:setVar("FirstPromyvionMea",0);
+	      if(ENABLE_COP_ZONE_CAP == 1)then
+	      player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
+	      end
+    end
+	if (option==1)then
+	player:setVar("MemoryReceptacle",0);
 	end
 	
  end;

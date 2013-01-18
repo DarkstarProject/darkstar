@@ -45,7 +45,6 @@ function onInitialize(zone)
 
 function onZoneIn(player,prevZone)		
 cs = -1;
-	
 	if(player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then	
 		player:setPos(20,-2.1,63.031,192);
 	end
@@ -55,17 +54,13 @@ cs = -1;
 		player:addMission(COP,THE_MOTHERCRYSTALS); -- start mission 1.3
 		player:setVar("PromathiaStatus",0);
 	end
-	
-	-- First enter in promy holla
-	if(player:getVar("FirstPromyvionHolla") == 1)then
-		player:setVar("FirstPromyvionHolla",0);
-		cs = 0x0032;
+		
+	if  (player:getVar("FirstPromyvionHolla") == 1)then
+	cs = 0x0032;	
+	elseif(ENABLE_COP_ZONE_CAP == 1)then
+	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
 	end
-	
-	-- ZONE LEVEL RESTRICTION
-	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);
-	
-	return cs;	
+	return cs;
 end;
 
 -----------------------------------	
@@ -80,22 +75,13 @@ function onRegionEnter(player,region)
 	
 		[1] = function (x) player:startEvent(0x002E); end,
 		[2] = function (x) 
-			if(GetMobAction(16842781) == 24) then 
+			if(GetNPCByID(16843055):getAnimation() == 8) then 
 				player:startEvent(0x0025); 
 			end
 		end,
-		[3] = function (x) 
-			if(GetMobAction(16840000) == 24) then 
-				if(math.random() >= 0.5) then
-					player:startEvent(0x0021);
-				else
-					player:startEvent(0x0022);
-				end
-			end
-		end,
 		[4] = function (x)
-			if(GetMobAction(16842853) == 24) then 
-				if(math.random() >= 0.5) then
+			if(GetNPCByID(16843053):getAnimation() == 8) then 
+				if(player:getVar("MemoryReceptacle") == 2) then
 					player:startEvent(0x0021);
 				else
 					player:startEvent(0x0022);
@@ -103,8 +89,8 @@ function onRegionEnter(player,region)
 			end
 		end,
 		[5] = function (x)
-			if(GetMobAction(16842846) == 24) then 
-				if(math.random() >= 0.5) then
+			if(GetNPCByID(16843052):getAnimation() == 8) then 
+				if(player:getVar("MemoryReceptacle") == 2) then
 					player:startEvent(0x0021);
 				else
 					player:startEvent(0x0022);
@@ -112,8 +98,8 @@ function onRegionEnter(player,region)
 			end
 		end,
 		[6] = function (x)
-			if(GetMobAction(16842839) == 24) then 
-				if(math.random() >= 0.5) then
+			if(GetNPCByID(16843051):getAnimation() == 8) then 
+				if(player:getVar("MemoryReceptacle") == 2) then
 					player:startEvent(0x0021);
 				else
 					player:startEvent(0x0022);
@@ -123,38 +109,38 @@ function onRegionEnter(player,region)
 		[7] = function (x) player:startEvent(0x0029); end,
 		[8] = function (x) player:startEvent(0x002A); end,
 		[9] = function (x) 
-			if(GetMobAction(16842904) == 24) then 
+			if(GetNPCByID(16843050):getAnimation() == 8) then 
 				player:startEvent(0x001E); 
 			end
 		end,
 		[10] = function (x) 
-			if(GetMobAction(16842895) == 24) then 
+			if(GetNPCByID(16843049):getAnimation() == 8) then 
 				player:startEvent(0x001E); 
 			end
 		end,
 		[11] = function (x) 
-			if(GetMobAction(16842886) == 24) then 
+			if(GetNPCByID(16843048):getAnimation() == 8) then 
 				player:startEvent(0x001E); 
 			end
 		end,
 		[12] = function (x)	player:startEvent(0x002A); end,
 		[13] = function (x) 
-			if(GetMobAction(16842956) == 24) then 
+			if(GetNPCByID(16843058):getAnimation() == 8) then 
 				player:startEvent(0x001E); 
 			end
 		end,
 		[14] = function (x) 
-			if(GetMobAction(16842938) == 24) then 
+			if(GetNPCByID(16843056):getAnimation() == 8) then 
 				player:startEvent(0x001E); 
 			end
 		end,
 		[15] = function (x) 
-			if(GetMobAction(16842947) == 24) then 
+			if(GetNPCByID(16843057):getAnimation() == 8) then 
 				player:startEvent(0x001E); 
 			end
 		end,
 		[16] = function (x)
-			if(math.random() >= 0.5) then
+			if(player:getVar("MemoryReceptacle") == 2) then
 				player:startEvent(0x002B);
 			else
 				player:startEvent(0x002C);
@@ -191,6 +177,14 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x002E and option == 1) then
 		player:setVar("Stelepoint",4);
 		player:setPos(274 ,-82 ,-62 ,180 ,14); -- -> back to Hall of Transferance
+	elseif(csid == 0x0032)then		
+	    player:setVar("FirstPromyvionHolla",0);
+	      if(ENABLE_COP_ZONE_CAP == 1)then
+	      player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
+	      end
     end
 	
+	 if (option==1)then
+	player:setVar("MemoryReceptacle",0);
+	end
 end;	
