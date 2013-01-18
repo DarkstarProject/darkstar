@@ -4257,9 +4257,9 @@ inline int32 CLuaBaseEntity::rageMode(lua_State *L)
 inline int32 CLuaBaseEntity::isUndead(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+	DSP_DEBUG_BREAK_IF((m_PBaseEntity->objtype != TYPE_PC) && (m_PBaseEntity->objtype != TYPE_MOB) && (m_PBaseEntity->objtype != TYPE_PET));
 
-	if(((CMobEntity*)m_PBaseEntity)->m_EcoSystem == SYSTEM_UNDEAD)
+	if(((CBattleEntity*)m_PBaseEntity)->m_EcoSystem == SYSTEM_UNDEAD)
 	{
 		lua_pushboolean(L, true);
 		return 1;
