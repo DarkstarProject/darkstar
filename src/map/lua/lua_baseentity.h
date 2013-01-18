@@ -269,6 +269,7 @@ public:
 	int32 rageMode(lua_State*);				// Add rage mode
 	int32 isUndead(lua_State*);				// True if mob is undead
 	int32 changeSkin(lua_State*);			// Change mob skin
+	int32 getSkinID(lua_State*);			// Get Skin ID (0 for base skin)
 
 	int32 addStatusEffect(lua_State*);		// Adds status effect to character
     int32 addStatusEffectEx(lua_State*);	// Adds status effect to character

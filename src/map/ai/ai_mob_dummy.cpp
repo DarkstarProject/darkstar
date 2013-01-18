@@ -169,7 +169,7 @@ void CAIMobDummy::ActionDisengage()
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
 
-	m_PMob->setMainSkin(m_PMob->id);
+	m_PMob->SetMainSkin(m_PMob->id);
     m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
 	m_PMob->m_CallForHelp = 0;

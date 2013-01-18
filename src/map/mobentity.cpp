@@ -54,6 +54,7 @@ CMobEntity::CMobEntity()
 	m_THPCID = 0;
     m_RageMode = 0;
 	m_NewSkin = 0;
+	m_SkinID = 0;
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
@@ -139,7 +140,7 @@ void CMobEntity::delRageMode()
 *                                                                       *
 ************************************************************************/
 
-void CMobEntity::setMainSkin(uint32 mobid)
+void CMobEntity::SetMainSkin(uint32 mobid)
 {
 	if(m_NewSkin)
 	{
@@ -155,11 +156,12 @@ void CMobEntity::setMainSkin(uint32 mobid)
 		{
 			memcpy(&look,Sql_GetData(SqlHandle,0),23);
 			m_NewSkin = false;
+			m_SkinID = 0;
 		}
 	}
 }
 
-void CMobEntity::setNewSkin(uint8 skinid)
+void CMobEntity::SetNewSkin(uint8 skinid)
 {
 	const int8* Query = "SELECT skin_model FROM mob_change_skin WHERE skinid = %u";
     
@@ -169,5 +171,11 @@ void CMobEntity::setNewSkin(uint8 skinid)
 	{
 		memcpy(&look,Sql_GetData(SqlHandle,0),23);
 		m_NewSkin = true;
+		m_SkinID = skinid;
 	}
+}
+
+uint32 CMobEntity::GetSkinID()
+{
+	return m_SkinID;
 }

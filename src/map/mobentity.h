@@ -113,8 +113,9 @@ public:
     void        addRageMode();						// Rage mode ON:  stat x10
     void        delRageMode();						// Rage mode OFF: stat /10
 
-	void		setMainSkin(uint32 mobid);			// Set base skin for the mob (if mob or player dieing)
-	void		setNewSkin(uint8 skinid);			// Set new skin for the mob
+	void		SetMainSkin(uint32 mobid);			// Set base skin for the mob (if mob or player dieing)
+	void		SetNewSkin(uint8 skinid);			// Set new skin for the mob
+	uint32		GetSkinID();						// Get the last skinid (0 for base skin)
 
     bool        CanDeaggro();
     uint32      GetDespawnTimer();
@@ -127,6 +128,7 @@ private:
 
     bool        m_RageMode;             // Mode rage
 	bool		m_NewSkin;				// True if skin has changed
+	uint32		m_SkinID;				// Skinid
     uint32      m_DespawnTimer;         // Despawn Timer to despawn mob after set duration
 
 };

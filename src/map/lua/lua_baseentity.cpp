@@ -4283,11 +4283,26 @@ inline int32 CLuaBaseEntity::changeSkin(lua_State *L)
 
 	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
 
-	PMob->setNewSkin(lua_tointeger(L,1));
+	PMob->SetNewSkin(lua_tointeger(L,1));
 
 	PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CEntityUpdatePacket(PMob,ENTITY_UPDATE));
 	
 	return 0;
+}
+
+/************************************************************************
+*  mob:getSkinID()                                                      *
+*  Get the last Skin of your mob (0 for base)                           *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getSkinID(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->GetSkinID());
+    return 1;
 }
 
 /************************************************************************
@@ -5596,5 +5611,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isUndead),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeSkin),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkinID),
 	{NULL,NULL}
 };
