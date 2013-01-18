@@ -3,8 +3,8 @@
 --
 --  Description: Enhances defense.
 --  Type: Magical (Earth)
---  
---  
+--
+--
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -19,6 +19,8 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(mob:hasStatusEffect(typeEffect) == true) then
 		skill:setMsg(MSG_NO_EFFECT);
 	else
+        mob:delStatusEffect(typeEffect);
+        mob:delStatusEffect(EFFECT_DEFENSE_DOWN);
 		mob:addStatusEffect(typeEffect,100,0,60);--power=100;tic=0;duration=60;
 		skill:setMsg(MSG_BUFF);
 	end

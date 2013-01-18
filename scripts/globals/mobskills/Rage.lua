@@ -5,7 +5,7 @@
 --  Type: Enhancing
 --  Utsusemi/Blink absorb: N/A
 --  Range: Self
---  Notes: 50% Attack Boost.
+--  Notes: 25% Attack UP, -25% defense DOWN
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -17,17 +17,16 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local power = 50;
 	local duration = 60;
 
-	local typeEffect = EFFECT_ATTACK_BOOST;
+	local typeEffect = EFFECT_BERSERK;
 	skill:setMsg(MSG_BUFF);
 	if(mob:hasStatusEffect(typeEffect) == true) then
 		local oldEffect = mob:getStatusEffect(typeEffect);
 		oldEffect:setPower(power);
 		oldEffect:setDuration(duration);
 	else
-		mob:addStatusEffect(typeEffect,power,0,duration);--tic=0;
+		mob:addStatusEffect(typeEffect,1,0,duration);--tic=0;
 	end
 	return typeEffect;
 end;

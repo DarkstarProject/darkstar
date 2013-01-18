@@ -23,7 +23,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local resist = 0
 	if(target:hasStatusEffect(typeEffect) == false) then
 		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			duration = skill:getTP()/100 * math.random(3,5) + 18;
 			target:addStatusEffect(typeEffect,1,0,duration);--power=1;tic=0;
 		end
@@ -32,7 +32,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_WEIGHT;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			duration = skill:getTP()/100 * math.random(3,5) + 18;
 			target:addStatusEffect(typeEffect,1,0,duration);--power=1;tic=0;
 		end

@@ -18,20 +18,21 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local numhits = 1;
-	local accmod = 1;
-	local dmgmod = 1;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local fivePercent = ((target:getMaxHP()/100)*5);
+
 	local currentHP = target:getHP();
-	if(currentHP > fivePercent and info.dmg > 0) then
-		local dmg = currentHP - fivePercent;
+	-- remove all by 5%
+	local stab = currentHP * .95;
+
+	-- if have more hp then 30%, then reduce to 5%
+	if(currentHP / target:getMaxHP() > 0.3) then
+		local dmg = stab;
 	else
-		local dmg = 0;
+		-- else you die
+		local dmg = currentHP;
 	end
 	local dmg = MobFinalAdjustments(dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
 
 	target:delHP(dmg);
-	mob:updateEnmity(target,-300,1); -- no way to remove entity from enmity table currently as Clear() does not work.
+	mob:resetEnmity(target);
 	return dmg;
 end;

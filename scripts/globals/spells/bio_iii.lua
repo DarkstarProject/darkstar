@@ -12,7 +12,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
+
 	--calculate raw damage
 	basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
 	dmg = calculateMagicDamage(basedmg,3,caster,spell,target,DARK_MAGIC_SKILL,MOD_INT,false);
@@ -35,29 +35,29 @@ function onSpellCast(caster,target,spell)
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
-	
+
 	-- Calculate duration.
 	duration = 30; -- +30 sec by merit
-	
+
 	-- Check for Dia.
 	dia = target:getStatusEffect(EFFECT_DIA);
 
 	-- Calculate DoT (rough, though fairly accurate)
 	dotdmg = 4 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
-	
+
 	-- Do it!
 	if(dia == nil or (BIO_OVERWRITE == 0 and dia:getPower() <= 3) or (BIO_OVERWRITE == 1 and dia:getPower() < 3)) then
 		target:delStatusEffect(EFFECT_BIO); -- delete old bio
 		target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE);
 	end
-	
+
 	--Try to kill same tier Dia (default behavior)
 	if(DIA_OVERWRITE == 1 and dia ~= nil) then
 		if(dia:getPower() <= 3) then
 			target:delStatusEffect(EFFECT_DIA);
 		end
 	end
-	
+
 	return final;
-	
+
 end;

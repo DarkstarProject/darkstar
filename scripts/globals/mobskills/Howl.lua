@@ -18,8 +18,8 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local power = 1;
-	local duration = 240;
+	local power = 25;
+	local duration = 180;
 
 	local typeEffect = EFFECT_WARCRY;
 	skill:setMsg(MSG_BUFF);

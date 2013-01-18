@@ -10,7 +10,10 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+    if(target:hasStatusEffect(EFFECT_SLOW) == false) then
+        return 0;
+    end
+    return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
@@ -18,9 +21,10 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(target:hasStatusEffect(typeEffect) == false) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
-		if(resist > 0.5) then
+		if(resist > 0.1) then
 			skill:setMsg(MSG_ENFEEB_IS);
-			target:addStatusEffect(typeEffect,20,0,120);--power=20;tic=0;duration=120;
+            target:delStatusEffect(EFFECT_HASTE)
+			target:addStatusEffect(typeEffect,25,0,120);--power=20;tic=0;duration=120;
 		else
 			skill:setMsg(MSG_MISS); -- resist !
 		end

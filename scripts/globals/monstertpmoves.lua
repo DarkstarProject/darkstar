@@ -6,6 +6,30 @@ require("scripts/globals/status")
 --			What is known is that they roughly follow player Weaponskill calculations (pDIF, dMOD, ratio, etc) so this is what
 --			this set of functions emulates.
 
+-- jobs
+-- some tp moves are only used by certain jobs
+JOB_NON				= 0;
+JOB_WAR				= 1;
+JOB_MNK				= 2;
+JOB_WHM				= 3;
+JOB_BLM				= 4;
+JOB_RDM				= 5;
+JOB_THF				= 6;
+JOB_PLD				= 7;
+JOB_DRK				= 8;
+JOB_BST				= 9;
+JOB_BRD				= 10;
+JOB_RNG				= 11;
+JOB_SAM				= 12;
+JOB_NIN				= 13;
+JOB_DRG				= 14;
+JOB_SMN				= 15;
+JOB_BLU				= 16;
+JOB_COR				= 17;
+JOB_PUP				= 18;
+JOB_DNC				= 19;
+JOB_SCH				= 20;
+
 --skilltype
 MOBSKILL_PHYSICAL = 0;
 MOBSKILL_MAGICAL = 1;
@@ -70,11 +94,11 @@ BOMB_TOSS_HPP = 1;
 -- mtp100/200/300 are the three values for 100% TP, 200% TP, 300% TP just like weaponskills.lua
 -- if TP_ACC_VARIES -> three values are acc %s (1.0 is 100% acc, 0.8 is 80% acc, 1.2 is 120% acc)
 -- if TP_ATK_VARIES -> three values are attack multiplier (1.5x 0.5x etc)
--- if TP_DMG_VARIES -> three values are 
+-- if TP_DMG_VARIES -> three values are
 
 function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mtp100,mtp200,mtp300)
 	returninfo = {};
-	
+
 	--get dstr (bias to monsters, so no fSTR)
 	dstr = mob:getStat(MOD_STR) - target:getStat(MOD_VIT);
 	if(dstr < -10) then
@@ -89,7 +113,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	if(base < 1) then
 		base = 1;
 	end
-	
+
 	--work out and cap ratio
 	ratio = mob:getStat(MOD_ATT)/target:getStat(MOD_DEF);
 	if (ratio>5) then
@@ -98,15 +122,15 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	if (ratio < 0) then
 		ratio = 0;
 	end
-	
+
 	lvldiff = lvluser - lvltarget;
 
 	--work out hit rate for mobs (bias towards them)
 	hitrate = (acc*accmod) - eva;
-	if (lvluser > lvltarget) then 
+	if (lvluser > lvltarget) then
 		hitrate = hitrate + ((lvluser-lvltarget)*5);
 	end
-	if (lvltarget > lvluser) then 
+	if (lvltarget > lvluser) then
 		hitrate = hitrate + ((lvltarget-lvluser)*3);
 	end
 	if (hitrate > 95) then
@@ -115,7 +139,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	if (hitrate < 20) then
 		hitrate = 20;
 	end
-	
+
 	--work out the base damage for a single hit
 	hitdamage = (base + lvldiff);
 	if(hitdamage < 1) then
@@ -136,11 +160,11 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	if(tpeffect==TP_DMG_BONUS) then
 		hitdamage = hitdamage * fTP(skill:getTP(), mtp100, mtp200, mtp300);
 	end
-	
-	--Applying pDIF
-	local double pdif = 0; 
 
-	
+	--Applying pDIF
+	local double pdif = 0;
+
+
 	-- start the hits
 	local double hitchance = math.random();
 	finaldmg = 0;
@@ -151,31 +175,35 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	if ((chance*100)<=95) then
 		pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
 		pdif = pdif/1000; --multiplier set.
-		finaldmg = finaldmg + hitdamage * pdif; 
+		finaldmg = finaldmg + hitdamage * pdif;
 		hitslanded = hitslanded + 1;
 	end
-	while (hitsdone < numberofhits) do 
+	while (hitsdone < numberofhits) do
 		chance = math.random();
 		if ((chance*100)<=hitrate) then --it hit
 			pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
 			pdif = pdif/1000; --multiplier set.
-			finaldmg = finaldmg + hitdamage * pdif; 
+			finaldmg = finaldmg + hitdamage * pdif;
 			hitslanded = hitslanded + 1;
 		end
 		hitsdone = hitsdone + 1;
 	end
-	
+
+	if(hitslanded >= 1 and finaldmg < 1) then
+		finaldmg = 1;
+	end
+
 	returninfo.dmg = finaldmg;
 	returninfo.hitslanded = hitslanded;
-	
-	return returninfo;		
+
+	return returninfo;
 
 end
 
 -- MAGICAL MOVE
 -- Call this on every magical move!
--- mob/target/skill should be passed from OnMobWeaponSkill. 
--- dmg is the base damage (V value), accmod is a multiplier for accuracy (1 default, more than 1 = higher macc for mob), 
+-- mob/target/skill should be passed from OnMobWeaponSkill.
+-- dmg is the base damage (V value), accmod is a multiplier for accuracy (1 default, more than 1 = higher macc for mob),
 -- ditto for dmg mod but more damage >1 (equivalent of M value)
 -- tpeffect is an enum from one of:
 -- 0 = TP_NO_EFFECT
@@ -203,22 +231,22 @@ function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
 	meva = target:getMod(MOD_MEVA);
 	lvluser = mob:getMainLvl();
 	lvltarget = target:getMainLvl();
-	
+
 	if(dint < -10) then
 		dint = -10;
 	end
-	
+
 	damage = dmg + dint;
 	if(damage<1)then
 		damage = 1;
 	end
-	
+
 	if(tpeffect==TP_DMG_BONUS) then
 		damage = damage * ((skill:getTP()*tpvalue)/100);
 	end
-	
+
 	base = damage * mab * dmgmod;
-	
+
 	acc = (macc*accmod) - meva;
 	if(lvluser > lvltarget) then
 		--bonus to acc
@@ -228,7 +256,7 @@ function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
 		--acc penalty
 		acc = acc - 5*(lvltarget-lvluser);
 	end
-	
+
 	--cap acc
 	if(acc>95) then
 		acc = 95;
@@ -237,17 +265,17 @@ function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
 		acc = 5;
 	end
 	acc = acc/100; --between 0-1
-	
+
 	--account for resistances
 	--TODO: acc = acc + (1 - (elementalres/100))
-	
+
 	--thresholds
 	half = 0.4; --(1-acc);
 	quart = 0.2; --((1-acc)^2);
 	eighth = 0.095; --((1-acc)^3);
 	sixteenth = 0.0325; --((1-acc)^4);
 	resvar = math.random();
-	--random resists atm!	
+	--random resists atm!
 
 	--will this spell resist?
 	if (resvar <= sixteenth) then
@@ -261,11 +289,16 @@ function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
 	elseif (resvar <= acc) then
 		resist = 1.0;
 	end
-	
+
 	finaldmg = base * resist;
+
+	if(finaldmg < 1) then
+		finaldmg = 1;
+	end
+
 	returninfo.dmg = finaldmg;
 	return returninfo;
-	
+
 end
 
 --mob version
@@ -279,8 +312,8 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
     magicaccbonus = 0;
 	--get the base acc (just skill plus magic acc mod)
 	magicacc = getSkillLvl(1, mob:getMainLvl());
-	
-	--difference in int/mnd 
+
+	--difference in int/mnd
 	if diff > 10 then
 		magicacc = magicacc + 10 + (diff - 10)/2;
 	else
@@ -292,16 +325,16 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
     elseif(mob:hasStatusEffect(EFFECT_DARK_SEAL) == true and skill == DARK_MAGIC_SKILL) then
         magicaccbonus = magicaccbonus + 256;
     end
-	
+
     local skillchainTier, skillchainCount = MobFormMagicBurst(element, target);
     --add acc for skillchains
     if(skillchainTier > 0) then
 		magicaccbonus = magicaccbonus + 25;
     end
-	
+
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
 	magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[element]) + target:getMod(defenseMod[element])/10;
-	
+
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
 	multiplier = 0;
 	if mob:getMainLvl() < 40 then
@@ -317,12 +350,12 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
 	-- print(magiceva);
 	-- print(magicaccbonus);
 
-	
+
 	--double any acc over 50 if it's over 50
 	if p > 5 then
 		p = 5 + (p - 5) * 2;
 	end
-	
+
 	--add a flat bonus that won't get doubled in the previous step
 	p = p + 45;
 
@@ -353,7 +386,7 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
     -- print("SIXTEENTH:",sixteenth);
 
     resvar = math.random();
-    
+
     -- Determine final resist based on which thresholds have been crossed.
     if(resvar <= sixteenth) then
         resist = 0.0625;
@@ -372,17 +405,17 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
         --printf("1.0");
     end
     return resist;
-	
+
 end;
 
 function mobAddBonuses(caster, spell, target, dmg, ele)
-		
+
 	speciesReduction = target:getMod(defenseMod[ele]);
 	speciesReduction = 1.00 - (speciesReduction/1000);
 	dmg = math.floor(dmg * speciesReduction);
-	
+
 	dayWeatherBonus = 1.00;
-	
+
 	if caster:getWeather() == singleWeatherStrong[ele] then
 		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
@@ -400,7 +433,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
-	
+
 	if VanadielDayElement() == dayStrong[ele] then
 		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
@@ -410,46 +443,46 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	end
-		
+
 	if dayWeatherBonus > 1.35 then
 		dayWeatherBonus = 1.35;
 	end
-	
+
 	dmg = math.floor(dmg * dayWeatherBonus);
-	
+
     burst, burstBonus = calculateMobMagicBurstAndBonus(caster, ele, target);
-    
+
 	-- not sure what to do for this yet
     -- if(burst > 1.0) then
 		-- spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
 	-- end
-	
+
 	dmg = math.floor(dmg * burst);
-	
+
     mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF)) ;
-	
+
 	dmg = math.floor(dmg * mab);
-	
+
 	magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
-	
+
 	dmg = math.floor(dmg * magicDmgMod);
-	
+
 	-- print(affinityBonus);
 	-- print(speciesReduction);
 	-- print(dayWeatherBonus);
 	-- print(burst);
 	-- print(mab);
 	-- print(magicDmgMod);
-	
+
     return dmg;
 end
 
 function calculateMobMagicBurstAndBonus(caster, ele, target)
 
     local burst = 1.0;
-    
+
     local skillchainTier, skillchainCount = MobFormMagicBurst(ele, target);
-    
+
     if(skillchainTier > 0) then
 		if(skillchainCount == 1) then
 			burst = 1.3;
@@ -463,7 +496,7 @@ function calculateMobMagicBurstAndBonus(caster, ele, target)
 			burst = 1.50;
 		else
 			-- Something strange is going on if this occurs.
-			burst = 1.0; 
+			burst = 1.0;
 		end
     end
 
@@ -472,14 +505,14 @@ end
 
 function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
 	--Handle shadows depending on shadow behaviour / skilltype
-	if(shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows. 
+	if(shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
 		targShadows = target:getMod(MOD_UTSUSEMI);
 		shadowType = MOD_UTSUSEMI;
 		if(targShadows==0)then --try blink, as utsusemi always overwrites blink this is okay
 			targShadows = target:getMod(MOD_BLINK);
 			shadowType = MOD_BLINK;
 		end
-		
+
 		if(targShadows>0)then
 		--Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
 			if(targShadows >= shadowbehav) then --no damage, just suck the shadows
@@ -515,7 +548,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 		target:delStatusEffect(EFFECT_COPY_IMAGE);
 		target:delStatusEffect(EFFECT_BLINK);
 	end
-	
+
 	--handle Third Eye using shadowbehav as a guide
 	teye = target:getStatusEffect(EFFECT_THIRD_EYE);
 	if(teye ~= nil and skilltype==MOBSKILL_PHYSICAL) then --T.Eye only procs when active with PHYSICAL stuff
@@ -540,16 +573,16 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 			target:delStatusEffect(EFFECT_THIRD_EYE);
 		end
 	end
-	
-	
+
+
 	--TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
-	
+
 	--handling phalanx
 	dmg = dmg - target:getMod(MOD_PHALANX);
 	if(dmg<0) then
 		return 0;
 	end
-	
+
 	--handle invincible
 	if(target:hasStatusEffect(EFFECT_INVINCIBLE) and skilltype==MOBSKILL_PHYSICAL)then
 		return 0;
@@ -558,7 +591,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	if(target:hasStatusEffect(EFFECT_PERFECT_DODGE) and skilltype==MOBSKILL_PHYSICAL)then
 		return 0;
 	end
-	
+
 	--handling stoneskin
 	skin = target:getMod(MOD_STONESKIN);
 	if(skin>0) then
@@ -574,7 +607,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 			return dmg - skin;
 		end
 	end
-	
+
 	return dmg;
 end
 

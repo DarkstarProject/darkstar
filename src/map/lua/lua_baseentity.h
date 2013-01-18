@@ -117,12 +117,12 @@ public:
 	int32 getMaxMP(lua_State*);				// Get max mp of entity
 
     int32 getStat(lua_State*);				// STR,DEX,VIT,AGI,INT,MND,CHR,ATT,DEF
-	
+
 	int32 getXPos(lua_State*);				// Get Entity X position
 	int32 getYPos(lua_State*);				// Get Entity Y position
 	int32 getZPos(lua_State*);				// Get Entity Z position
     int32 setPos(lua_State*);				// Set Entity position (x,y,z,rot) or (x,y,z,rot,zone)
-	int32 getZone(lua_State*);				// Get Entity zone	
+	int32 getZone(lua_State*);				// Get Entity zone
     int32 getZoneName(lua_State*);          // Get Entity zone name
 	int32 getCurrentRegion(lua_State*);		// Get Entity conquest region
     int32 getPreviousZone(lua_State*);      // Get Entity previous zone
@@ -162,12 +162,12 @@ public:
 
 	int32 getRank(lua_State*);				// Get Current Rank
 	int32 setRank(lua_State*);				// Set Rank
-	
-	int32 getRankPoints(lua_State*);		// Get Current Rank points	
+
+	int32 getRankPoints(lua_State*);		// Get Current Rank points
 	int32 setRankPoints(lua_State*);		// Set Current Rank points
 	int32 addRankPoints(lua_State*);		// Add rank points to existing rank point total
 
-	int32 addKeyItem(lua_State*);			// Add key item to Entity Key Item collection 
+	int32 addKeyItem(lua_State*);			// Add key item to Entity Key Item collection
 	int32 seenKeyItem(lua_State*);			// If Key Item is viewed, add it to the seen key item collection
 	int32 unseenKeyItem(lua_State*);		// Attempt to remove the keyitem from the seen key item collection, only works on logout
 	int32 hasKeyItem(lua_State*);			// Checks Entity key item collection to see if Entity has the key item
@@ -180,12 +180,12 @@ public:
 	int32 canLearnSpell(lua_State*);		// Check to see if character can learn spell, 0 if so
 	int32 delSpell(lua_State*);				// Remove spell from Entity spell list
 
-    int32 addWeaponSkill(lua_State*);       // 
+    int32 addWeaponSkill(lua_State*);       //
     int32 delWeaponSkill(lua_State*);       //
 
 	int32 getMainJob(lua_State*);			// Returns Entity Main Job
 	int32 getMainLvl(lua_State*);			// Gets Entity Main Job Level
-	int32 getSubJob(lua_State*);			// Get Entity Sub Job 
+	int32 getSubJob(lua_State*);			// Get Entity Sub Job
 	int32 getSubLvl(lua_State*);			// Get Entity Sub Job Level
 	int32 unlockJob(lua_State*);			// Unlocks a job for the entity, sets job level to 1
     int32 levelCap(lua_State*);             // genkai
@@ -198,7 +198,7 @@ public:
 
 	int32 release(lua_State*);				// Stops event
 	int32 startEvent(lua_State*);			// Begins Event
-	int32 updateEvent(lua_State*);			// Updates event 
+	int32 updateEvent(lua_State*);			// Updates event
     int32 getEventTarget(lua_State*);       //
 
 	int32 sendMenu(lua_State*);				// Displays a menu (AH,Raise,Tractor,MH etc)
@@ -221,13 +221,13 @@ public:
 	int32 getVar(lua_State*);				// Returns a character variable
 	int32 setVar(lua_State*);				// Sets a character variable
     int32 addVar(lua_State*);               // Increments/decriments/sets a character variable
-	
+
 	int32 setMaskBit(lua_State*);			// Sets a single bit in a character variable
 	int32 getMaskBit(lua_State*);			// Retrieves a single bit in a character variable
 	int32 countMaskBits(lua_State*);		// Retrieves number of true bits in a character variable
 	int32 isMaskFull(lua_State*);			// Checks if a bitmask stored in a character varable of a specified size contains all set bits
 
-	int32 setHomePoint(lua_State*);			// Sets character's homepoint  
+	int32 setHomePoint(lua_State*);			// Sets character's homepoint
 	int32 tradeComplete(lua_State*);		// Complete trade with an npc
 
     int32 hasTitle(lua_State*);
@@ -262,6 +262,7 @@ public:
 	int32 updateEnmity(lua_State*);			// Adds Enmity to player for specified mob
 	int32 updateEnmityFromDamage(lua_State*);// Adds Enmity to player for specified mob for the damage specified
 	int32 updateEnmityFromCure(lua_State*);
+	int32 resetEnmity(lua_State*); //resets enmity to player for specificed mob
 
 	int32 hasImmunity(lua_State*);			// Check if the mob has immunity for a type of spell (list at mobentity.h)
 	int32 getBattleTime(lua_State*);		// Get the time in second of the battle
@@ -272,9 +273,9 @@ public:
 	int32 addStatusEffect(lua_State*);		// Adds status effect to character
     int32 addStatusEffectEx(lua_State*);	// Adds status effect to character
 	int32 hasStatusEffect(lua_State*);		// Checks to see if character has specified effect
-    int32 getStatusEffect(lua_State*);		// 
-	int32 delStatusEffect(lua_State*);		// Removes Status Effect 
-	int32 eraseStatusEffect(lua_State*);	// Used with "Erase" spell 
+    int32 getStatusEffect(lua_State*);		//
+	int32 delStatusEffect(lua_State*);		// Removes Status Effect
+	int32 eraseStatusEffect(lua_State*);	// Used with "Erase" spell
 	int32 dispelStatusEffect(lua_State*);	// Used with "Dispel" spell
 	int32 getPartyMember(lua_State* L);		// Get a character entity from another entity's party or alliance
 	int32 getPartySize(lua_State* L);		// Get the size of a party in an entity's alliance
@@ -307,8 +308,8 @@ public:
     int32 setFlag(lua_State*);
     int32 moghouseFlag(lua_State*);
 	int32 showPosition(lua_State*);			// Display current position of character
-	int32 injectPacket(lua_State*);			// Send the character a packet kept in a file 
-	
+	int32 injectPacket(lua_State*);			// Send the character a packet kept in a file
+
 	int32 getContainerSize(lua_State*);	    // Gets the current capacity of a container
 	int32 changeContainerSize(lua_State*);  // Increase/Decreases container size
 	int32 resetPlayer(lua_State*);			// if player is stuck, GM command @resetPlayer name
@@ -333,7 +334,7 @@ public:
 	int32 addCP(lua_State*);				// Add CP
 	int32 getCP(lua_State*);				// Get CP
 	int32 delCP(lua_State*);				// Delete CP
-	
+
 	int32 addPoint(lua_State*);				// Add other point
 	int32 getPoint(lua_State*);				// Get other point
 	int32 delPoint(lua_State*);				// Delete other point

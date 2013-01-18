@@ -1,7 +1,7 @@
 ---------------------------------------------------
 -- Cold Stare
 -- Silences enemies in a line area of effect.
--- Notes: Only applies when face-to-face with the dhalmel. 
+-- Notes: Only applies when face-to-face with the dhalmel.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			skill:setMsg(MSG_ENFEEB_IS);
 			target:addStatusEffect(typeEffect,1,0,120);
 		else

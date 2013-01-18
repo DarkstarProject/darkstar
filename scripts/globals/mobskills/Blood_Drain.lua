@@ -14,11 +14,18 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local dmgmod = 1;
+	local dmgmod = 1.4;
 	local accmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_MAB_BONUS,1);
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2,accmod,dmgmod,TP_MAB_BONUS,1);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
-	target:delHP(dmg);
-	mob:addHP(dmg);
+
+
+    if(target:isUndead() == false) then
+        target:delHP(dmg);
+        mob:addHP(dmg);
+    else
+        skill:setMsg(MSG_NO_EFFECT);
+    end
+
 	return dmg;
 end;

@@ -20,13 +20,13 @@ function OnMobWeaponSkill(target, mob, skill)
 		local mobTP = mob:getTP();
 
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,6);
-		if(resist > 0.5) then
-			if(mobTP <= 100) then 
+		if(resist > 0.2) then
+			if(mobTP <= 100) then
 				local duration = 60;
-			elseif(mobTP <= 200) then 
+			elseif(mobTP <= 200) then
 				local duration = 90;
-			else 
-				local duration = 120; 
+			else
+				local duration = 120;
 			end
 			target:addStatusEffect(typeEffect,50,0,duration);
 		end
@@ -36,7 +36,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local numhits = 1;
 	local accmod = 1;
-	local dmgmod = 1;
+	local dmgmod = 2.5;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,MOBPARAM_1_SHADOW);
 	target:delHP(dmg);

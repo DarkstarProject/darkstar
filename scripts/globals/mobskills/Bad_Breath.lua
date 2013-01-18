@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local statmod = MOD_INT;
 	local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
 	if(target:hasStatusEffect(typeEffect) == false) then
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			skill:setMsg(MSG_ENFEEB_IS);
 			target:addStatusEffect(typeEffect,15,0,60);--power=15;tic=0;duration=60;
 		else
@@ -32,7 +32,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_POISON;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			skill:setMsg(MSG_ENFEEB_IS);
 			target:addStatusEffect(typeEffect,mob:getMainLvl()/10 + 10,3,60);--power=(moblvl/10)+10;tic=3;duration=60;
 		else
@@ -45,7 +45,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_SILENCE;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			skill:setMsg(MSG_ENFEEB_IS);
 			target:addStatusEffect(typeEffect,1,0,60);--power=1;tic=0;duration=60;
 		else
@@ -58,7 +58,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_PARALYSIS;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			skill:setMsg(MSG_ENFEEB_IS);
 			target:addStatusEffect(typeEffect,18,0,60);--power=18;tic=0;duration=60;
 		else
@@ -71,7 +71,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_BIND;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			skill:setMsg(MSG_ENFEEB_IS);
 			target:addStatusEffect(typeEffect,1,0,30);--power=1;tic=0;duration=30;
 		else
@@ -84,7 +84,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_BLINDNESS;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			skill:setMsg(MSG_ENFEEB_IS);
 			target:addStatusEffect(typeEffect,15,0,60);--power=15;tic=0;duration=60;
 		else
@@ -97,7 +97,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_WEIGHT;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			skill:setMsg(MSG_ENFEEB_IS);
 			target:addStatusEffect(typeEffect,30,0,60);--power=30;tic=0;duration=60;
 		else

@@ -1,9 +1,9 @@
 ---------------------------------------------------
 -- Gastric Bomb
--- Deals Water damage with a long-range acid bomb. Additional effect: Attack Down 
+-- Deals Water damage with a long-range acid bomb. Additional effect: Attack Down
 -- Range: Long range
 -- Notes: Attack Down effect is 50%.
--- Duration: Three minutes 
+-- Duration: Three minutes
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(target:hasStatusEffect(typeEffect) == false) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,50,0,180);--power=50;tic=0;duration=180;
 		end
 	end

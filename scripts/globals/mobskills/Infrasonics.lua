@@ -14,16 +14,16 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	
+
 	isEnfeeble = true;
 	typeEffect = EFFECT_EVASION_DOWN;
 	statmod = MOD_INT;
 	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.5) then
+	if(resist > 0.2) then
 		if(target:getStatusEffect(EFFECT_EVASION_DOWN) == nil) then
 			target:addStatusEffect(EFFECT_EVASION_DOWN,50,0,180); -- 50%
 		end
 	end
-	
+
 
 end

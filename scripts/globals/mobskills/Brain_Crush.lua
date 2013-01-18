@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		local statmod = MOD_INT;
 		local mobTP = mob:getTP();
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			local silenceTime = 60;
 			if(mobTP <= 100) then
 				silenceTime = 30;

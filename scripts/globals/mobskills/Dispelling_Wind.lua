@@ -19,6 +19,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-    -- DISPEL
+    target:dispelStatusEffect();
+    return target:dispelStatusEffect();
 
 end;

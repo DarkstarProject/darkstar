@@ -20,19 +20,19 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(target:hasStatusEffect(typeEffect) == false) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			local mobTP = mob:getTP();
-			if(mobTP <= 100) then 
+			if(mobTP <= 100) then
 				local accDownTime = 30;
-			elseif(mobTP <= 200) then 
+			elseif(mobTP <= 200) then
 				local accDownTime = 60;
-			else 
-				local accDownTime = 90; 
+			else
+				local accDownTime = 90;
 			end
 			target:addStatusEffect(typeEffect,50,0,accDownTime);
 		end
 	end
-    
+
 	local numhits = 1;
 	local accmod = 2;
 	local dmgmod = 3;

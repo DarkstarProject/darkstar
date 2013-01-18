@@ -1,8 +1,8 @@
 ---------------------------------------------------
 -- Tremors
--- Deals Earth damage with a seismic disturbance. Additional effect: DEX Down 
+-- Deals Earth damage with a seismic disturbance. Additional effect: DEX Down
 -- Area of Effect is centered around caster.
--- Utsusemi/Blink absorb: Wipes shadows 
+-- Utsusemi/Blink absorb: Wipes shadows
 -- Duration: Three minutes ?
 ---------------------------------------------------
 
@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(target:hasStatusEffect(typeEffect) == false) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
-		if(resist > 0.5) then
+		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,20,0,180); -- -20 power=20;tic=0;duration=180;
 		end
 	end

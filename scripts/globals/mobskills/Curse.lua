@@ -23,10 +23,10 @@ function OnMobWeaponSkill(target, mob, skill)
 		local statmod = MOD_INT;
 		local duration = 360;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
-		if(resist > 0.7) then
+		if(resist > 0.2) then
 			duration = duration - (duration/3);
 		end
-		if(resist > 0.5) then
+		if(resist > 0.1) then
 			message = MSG_ENFEEB_IS;
 			target:addStatusEffect(typeEffect,1,0,duration);--power=1;tic=0;
 		end
