@@ -2130,66 +2130,25 @@ void CAICharNormal::ActionJobAbilityFinish()
             }
         }
 	}
-		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA)
-		{
-		m_PChar->addTP(-10);
-		}
-		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_II)
-		{
-		m_PChar->addTP(-25);
-		}
-		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_III)
-		{
-		m_PChar->addTP(-40);
-		}
-		if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA)
-		{
-		m_PChar->addTP(-10);
-		}
-		if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA_II)
-		{
-		m_PChar->addTP(-25);
-		}
-		if (m_PJobAbility->getID() == ABILITY_HASTE_SAMBA)
-		{
-		m_PChar->addTP(-35);
-		}
-		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ)
-		{
-		m_PChar->addTP(-20);
-		}
-		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_II)
-		{
-		m_PChar->addTP(-35);
-		}
-		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_III)
-		{
-		m_PChar->addTP(-50);
-		}
-		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_IV)
-		{
-		m_PChar->addTP(-65);
-		}
-		if (m_PJobAbility->getID() == ABILITY_HEALING_WALTZ)
-		{
-		m_PChar->addTP(-20);
-		}
-		if (m_PJobAbility->getID() == ABILITY_DIVINE_WALTZ)
-		{
-		m_PChar->addTP(-40);
-		}
-		if (m_PJobAbility->getID() == ABILITY_QUICKSTEP)
-		{
-		m_PChar->addTP(-10);
-		}
-		if (m_PJobAbility->getID() == ABILITY_BOX_STEP)
-		{
-		m_PChar->addTP(-10);
-		}
-		if (m_PJobAbility->getID() == ABILITY_STUTTER_STEP)
-		{
-		m_PChar->addTP(-10);
-		}
+
+
+	// remove TP from player: Dancer Abilities
+	if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA)				m_PChar->addTP(-10);
+	else if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_II)		m_PChar->addTP(-25);
+	else if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_III)		m_PChar->addTP(-40);
+	else if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA)			m_PChar->addTP(-10);
+	else if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA_II)		m_PChar->addTP(-25);
+	else if (m_PJobAbility->getID() == ABILITY_HASTE_SAMBA)			m_PChar->addTP(-35);
+	else if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ)		m_PChar->addTP(-20);
+	else if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_II)		m_PChar->addTP(-35);
+	else if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_III)	m_PChar->addTP(-50);
+	else if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_IV)		m_PChar->addTP(-65);
+	else if (m_PJobAbility->getID() == ABILITY_HEALING_WALTZ)		m_PChar->addTP(-20);
+	else if (m_PJobAbility->getID() == ABILITY_DIVINE_WALTZ)		m_PChar->addTP(-40);
+	else if (m_PJobAbility->getID() == ABILITY_QUICKSTEP)			m_PChar->addTP(-10);
+	else if (m_PJobAbility->getID() == ABILITY_BOX_STEP)			m_PChar->addTP(-10);
+	else if (m_PJobAbility->getID() == ABILITY_STUTTER_STEP)		m_PChar->addTP(-10);
+
 
     // TODO: все перенести в скрипты, т.к. система позволяет получать указатель на питомца
 
