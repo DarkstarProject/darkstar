@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 	TheFangedOne = player:getQuestStatus(WINDURST,THE_FANGED_ONE);
 
 	if(TheFangedOne ~= QUEST_COMPLETED) then
-		if(TheFangedOne == QUEST_AVAILABLE) then
+		if(TheFangedOne == QUEST_AVAILABLE and player:getMainLvl() >= ADVANCED_JOB_LEVEL) then
 			player:startEvent(0x015f);
 		elseif(TheFangedOne == QUEST_ACCEPTED and player:hasKeyItem(OLD_TIGERS_FANG) == false) then
 			player:startEvent(0x0160);

@@ -1,8 +1,7 @@
 function onTrigger(player,npc)
 
-
-printf("Hi world");
 RunElevator(17);
+GetNPCByID(17388000):setAnimation(8);
 
 
 
@@ -15,5 +14,4 @@ end;
 
 
 function onEventUpdate()
-printf("poopoo");
 end;
