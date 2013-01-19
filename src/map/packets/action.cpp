@@ -311,10 +311,16 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			case 175:	// waltz 2
 			case 176:	// waltz 3
 			case 177:	// waltz 4
-			case 168:	// samba 1
-			case 169:	// samba 2
-			case 170:	// samba 3
+			case 168:	// drain samba 1
+			case 169:	// drain samba 2
+			case 170:	// drain samba 3
+			case 171:	// aspir samba
+			case 172:	// aspir samba 2
+			case 173:	// haste samba
+			case 178:	// healing waltz
 			case 179:	// divine waltz
+			case 180:	// spectral jig
+			case 181:	// chocobo jig
 				ActionTypeNumber += 8;
 				break;
 
@@ -323,6 +329,8 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 				break;
 		}
 	}
+
+
 
 
 
