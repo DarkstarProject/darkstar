@@ -87,6 +87,7 @@ struct map_config_t
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
     uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
+	uint8  max_merit_points;		// global variable, amount of merit points players are allowed
 };
 
 /************************************************************************

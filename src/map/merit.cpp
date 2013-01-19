@@ -49,7 +49,11 @@ static uint8 upgrade[9][16] =
     {10,15,20,25,30},                   // Weapon Skills
 };
 #define MAX_LIMIT_POINTS  10000         // количество опыта для получения одного merit
-#define MAX_MERIT_POINTS  30            // максимальное количество неиспользованных merit
+//#define MAX_MERIT_POINTS  30            // максимальное количество неиспользованных merit
+
+// option to change max points, kept the original above
+#define MAX_MERIT_POINTS  map_config.max_merit_points 
+
 #else
 static uint8 upgrade[9][9] =
 {
@@ -64,7 +68,11 @@ static uint8 upgrade[9][9] =
     {0},                                //8 Weapon Skills
 };
 #define MAX_LIMIT_POINTS  10000         // количество опыта для получения одного merit
-#define MAX_MERIT_POINTS  10            // максимальное количество неиспользованных merit
+//#define MAX_MERIT_POINTS  100         // максимальное количество неиспользованных merit
+
+// option to change max points, kept the original above
+#define MAX_MERIT_POINTS  map_config.max_merit_points 
+
 #endif 
 
 // TODO: скорее всего придется все это перенести в базу

@@ -493,7 +493,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 	int8* PacketData_End   = &buff[*buffsize];
 
 	CCharEntity *PChar = map_session_data->PChar;
-
+	
 	uint16 SmallPD_Size = 0;
 	uint16 SmallPD_Type = 0;
 	uint16 SmallPD_Code = RBUFW(buff,0);
@@ -824,6 +824,7 @@ int32 map_config_default()
     map_config.lightluggage_block   = 4;
 	map_config.max_time_lastupdate  = 60000;
     map_config.newstyle_skillups    = 7;
+    map_config.max_merit_points    = 30;
 	return 0;
 }
 
@@ -987,6 +988,10 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.newstyle_skillups = atoi(w2);
         }
+		else if (strcmp(w1,"max_merit_points") == 0)
+		{
+			map_config.max_merit_points = atoi(w2);
+		}
 		else
 		{
 			ShowWarning(CL_YELLOW"Unknown setting '%s' in file %s\n" CL_RESET, w1, cfgName);
