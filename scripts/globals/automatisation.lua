@@ -26,14 +26,14 @@ function OnGameDayAutomatisation()
 	storageHole:setPos(storHolePos[randPos][1],storHolePos[randPos][2],storHolePos[randPos][3],0);
 	
 	-- Labyrinth of sacrarium
-	local day = VanadielDayElement() + 1;
+	local day = VanadielDayElement() ;
 	local tbl;
 	
-	if(day == 1 or day == 2) then
+	if(day == 3 or day == 7) then
 		tbl = {9,9,8,8,9,9,8,9,8,8,9,8,8,8,9,8,9,8};
-	elseif(day == 3 or day == 4) then
+	elseif(day == 1 or day == 5) then
 		tbl = {9,9,8,9,8,8,8,8,9,9,9,8,9,8,8,8,8,9};
-	elseif(day == 5 or day == 6) then
+	elseif(day == 0 or day == 4) then
 		tbl = {8,9,8,9,8,9,9,8,9,9,8,8,9,8,8,8,8,9};
 	else
 		tbl = {9,8,9,9,8,9,8,8,9,8,8,9,8,9,8,9,8,8};

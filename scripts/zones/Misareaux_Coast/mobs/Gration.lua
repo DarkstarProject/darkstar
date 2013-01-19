@@ -3,7 +3,7 @@
 -- NPC:  Gration
 -----------------------------------
 
-require("scripts/globals/titles");
+
 require("scripts/globals/status");
 
 -----------------------------------
@@ -27,4 +27,8 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
+	local kills = killer:getVar("FOMOR_HATE");
+	if(kills > 1) then
+		killer:setVar("FOMOR_HATE",kills -2);
+	end	
 end;
