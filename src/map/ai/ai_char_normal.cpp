@@ -2177,7 +2177,8 @@ void CAICharNormal::ActionJobAbilityFinish()
 		m_PJobAbility->getID() != ABILITY_SNARL &&
 		m_PJobAbility->getID() != ABILITY_GAUGE)
 	{
-		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
+		if (m_PJobAbility->getMessage() == 0)
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
 	}
 
 	m_PJobAbility = NULL;
