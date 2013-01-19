@@ -2625,7 +2625,12 @@ void CAICharNormal::ActionAttack()
 
 
 	CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
-	if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
+
+
+	if (Monster->m_HiPCLvl < m_PChar->GetMLevel())
+		Monster->m_HiPCLvl = m_PChar->GetMLevel();
+
+
 	if (charutils::hasTrait(m_PChar, TRAIT_TREASURE_HUNTER))
 	{
 		if (Monster->m_THLvl == 0)
@@ -2637,6 +2642,8 @@ void CAICharNormal::ActionAttack()
 			else if ((Monster->m_THPCID == m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
 			if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
 	}
+
+
 	if (m_PBattleTarget->isDead())
 	{
         if (m_PChar->m_hasAutoTarget && m_PBattleTarget->objtype == TYPE_MOB) // Auto-Target
@@ -2685,8 +2692,12 @@ void CAICharNormal::ActionAttack()
                             (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar))
                     {
                         m_PBattleTarget = PTarget;
-                        m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-                        return;
+
+						// lock on to the new, if its not charmed
+						if (!m_PBattleTarget->isCharmed)
+							m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+                        
+						return;
                     }
                 }
 		    }
