@@ -30,7 +30,6 @@ function onZoneIn(player,prevZone)
          local LVLcap = player:getVar("PSOXJA_RESTRICTION_LVL");
 	       if (LVLcap > 0)then
              player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,LVLcap,0,0);-- ZONE LEVEL RESTRICTION
-			player:setVar("PSOXJA_RESTRICTION_LVL",0); 
            end
      end
 	

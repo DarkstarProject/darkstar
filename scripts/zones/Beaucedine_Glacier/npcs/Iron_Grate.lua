@@ -74,7 +74,7 @@ local LVLcap = 0;
    elseif(csid == 0x00CD)then --beaucedine F-7 tower
    player:setPos(-300,-8,203,191,9); --tp to Pso'Xja     
    end
-   if(ENABLE_COP_ZONE_CAP == 1 and LVLcap > 0)then
+   if(ENABLE_COP_ZONE_CAP == 1 )then
      player:setVar("PSOXJA_RESTRICTION_LVL",LVLcap);
    end
   end 
