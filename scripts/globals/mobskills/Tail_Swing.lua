@@ -25,7 +25,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
 
 	local typeEffect = EFFECT_BIND;
-	if(target:hasStatusEffect(typeEffect) == false and info.hitslanded > 0) then
+	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
 		target:addStatusEffect(typeEffect,1,0,30);--power=1;tic=0;duration=30;
 	end
 

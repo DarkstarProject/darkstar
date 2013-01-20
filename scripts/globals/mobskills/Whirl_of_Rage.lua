@@ -14,8 +14,15 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
+
+	local numhits = 1;
+	local accmod = 1;
+	local dmgmod = 1.2;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,math.random(2,3));
+
 	local typeEffect = EFFECT_STUN;
-	if(target:hasStatusEffect(typeEffect) == false) then
+	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,6);
 		if(resist > 0.2) then
@@ -23,11 +30,6 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 
-	local numhits = 1;
-	local accmod = 1;
-	local dmgmod = 1.2;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
 	target:delHP(dmg);
 	return dmg;
 end;

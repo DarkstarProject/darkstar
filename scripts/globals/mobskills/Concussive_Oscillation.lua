@@ -16,10 +16,17 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
+	local numhits = 1;
+	local accmod = 4;
+	local dmgmod = 5;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,math.random(2,3));
+	target:delHP(dmg);
+
 	-- KNOCKBACK
 
 	local typeEffect = EFFECT_WEIGHT;
-	if(target:hasStatusEffect(typeEffect) == false) then
+	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
 		if(resist > 0.2) then
@@ -27,11 +34,5 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 
-	local numhits = 1;
-	local accmod = 4;
-	local dmgmod = 5;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_3_SHADOW);
-	target:delHP(dmg);
 	return dmg;
 end;

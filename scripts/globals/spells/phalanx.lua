@@ -16,7 +16,7 @@ function onSpellCast(caster,target,spell)
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;
 	end
-	
+
 	if(enhskill<=300) then
 		final = (enhskill/10) -2;
 		if(final<0) then
@@ -27,8 +27,12 @@ function onSpellCast(caster,target,spell)
 	else
 		print("Warning: Unknown enhancing magic skill for phalanx.");
 	end
-	
-	if(target:hasStatusEffect(EFFECT_PHALANX)) then 
+
+	if(final>35) then
+		final = 35;
+	end
+
+	if(target:hasStatusEffect(EFFECT_PHALANX)) then
 		oldeffect = target:getStatusEffect(EFFECT_PHALANX);
 		if(oldeffect:getPower()<=final) then --overwrite
 			target:delStatusEffect(EFFECT_PHALANX);
@@ -41,6 +45,6 @@ function onSpellCast(caster,target,spell)
 		target:addStatusEffect(EFFECT_PHALANX,final,0,duration);
 		spell:setMsg(0);
 	end
-	
+
 	return EFFECT_PHALANX;
 end;

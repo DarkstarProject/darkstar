@@ -16,15 +16,6 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_POISON;
-	if(target:hasStatusEffect(typeEffect) == false) then
-			local statmod = MOD_INT;
-			local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
-			if(resist > 0.2) then
-				local power = (mob:getMainLvl()/15) + math.random(2,4) ;
-				target:addStatusEffect(typeEffect,power,3,60);--tic=3;duration=60;
-			end
-	end
 
 	local numhits = 5;
 	local accmod = 1;
@@ -32,5 +23,15 @@ function OnMobWeaponSkill(target, mob, skill)
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_ACC_VARIES,1,2,3);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
 	target:delHP(dmg);
+
+	local typeEffect = EFFECT_POISON;
+	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
+			local statmod = MOD_INT;
+			local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
+			if(resist > 0.2) then
+				local power = (mob:getMainLvl()/15) + math.random(2,4) ;
+				target:addStatusEffect(typeEffect,power,3,60);--tic=3;duration=60;
+			end
+	end
 	return dmg;
 end;

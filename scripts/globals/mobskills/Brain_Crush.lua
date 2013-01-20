@@ -14,8 +14,16 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
+
+	local numhits = 1;
+	local accmod = 1;
+	local dmgmod = 1.5;
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
+	target:delHP(dmg);
+
 	local typeEffect = EFFECT_SILENCE;
-	if(target:hasStatusEffect(typeEffect) == false) then --Let's first see if it's worth the time to do this math, since there's no messages to handle
+	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then --Let's first see if it's worth the time to do this math, since there's no messages to handle
 		local statmod = MOD_INT;
 		local mobTP = mob:getTP();
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
@@ -30,11 +38,5 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 
-	local numhits = 1;
-	local accmod = 1;
-	local dmgmod = 1.5;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
-	target:delHP(dmg);
 	return dmg;
 end;

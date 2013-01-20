@@ -19,16 +19,13 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local numhits = 1;
 	local accmod = 1;
-	local dmgmod = .8;
+	local dmgmod = 1;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
-	skill:setMsg(MSG_DRAIN_HP);
-    if(target:isUndead() == false) then
-        target:delHP(dmg);
-        mob:addHP(dmg);
-    else
-        skill:setMsg(MSG_NO_EFFECT);
+    target:delHP(dmg);
+
+    if(MobPhysicalHit(skill, dmg, target, info.hitslanded) and target:isUndead() == false) then
     end
 
 	return dmg;
