@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	ChocobosWounds = player:getQuestStatus(JEUNO, CHOCOBO_S_WOUNDS)
 
 	if(ChocobosWounds == QUEST_AVAILABLE) then
@@ -44,9 +44,9 @@ function onTrigger(player,npc)
 	elseif(player:needToZone() == false and player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_COMPLETED) then
 		player:startEvent(0x0084);
 	end
-	
+
 	return 1;
-	
+
 end;
 
 -----------------------------------
@@ -83,5 +83,5 @@ function onEventFinish(player,csid,option)
 		   player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13110);
 		end
 	end
-	
+
 end;

@@ -9,30 +9,29 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-    if(target:hasStatusEffect(EFFECT_POISON) == false) then -- This stops Poison from being stacked, since poison doesn't over write itself we can't use delete effect.
-		duration = 30;
-		res = target:getMod(MOD_POISONRES);
-		if(res > 0) then
-			res = 3 * res;
-			duration = duration - res;
-		end	
+    local effect = EFFECT_POISON;
+    local duration = 30;
 
-		cLvl = caster:getMainLvl(); -- This is a temporary fix that allows the spells damage to vary on Lvl since magic skill is broken
-		if(cLvl < 18) then
-			power = 1;
-		end
-	
-		if(cLvl >= 18 and cLvl < 38) then
-			power = 2;
-		end
-		if(cLvl >= 38 and cLvl < 56) then
-			power = 3;		
-		end
-		if(cLvl >= 56) then
-			power = 4;	
-		end
-	
-		target:addStatusEffect(EFFECT_POISON,power,3,duration);
+	local potency = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 25;
+	if potency > 4 then
+		potency = 4;
 	end
-	return 0;
+
+    if(math.random(0,100) >= target:getMod(MOD_POISONRES)) then
+		bonus = AffinityBonus(caster, spell);
+		resist = applyResistance(caster,spell,target,dMND,35,bonus);
+		if(resist == 1) then -- Full hit, no duration penalty
+			target:addStatusEffect(effect,potency,0,duration);
+				spell:setMsg(237);
+		elseif(resist == 0.5) then -- Half duration
+			duration = duration / 2;
+			target:addStatusEffect(effect,potency,0,duration);
+				spell:setMsg(237);
+		else -- resist entirely.
+				spell:setMsg(85);
+		end
+    else
+        spell:setMsg(284);
+    end
+    return effect;
 end;

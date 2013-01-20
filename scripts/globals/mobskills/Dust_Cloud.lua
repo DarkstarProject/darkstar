@@ -11,7 +11,10 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+	if(target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
+		return 0;
+	end
+	return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)

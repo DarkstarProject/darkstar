@@ -19,7 +19,16 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-    target:dispelStatusEffect();
-    return target:dispelStatusEffect();
+    local dis1 = target:dispelStatusEffect();
+    local dis2 = target:dispelStatusEffect();
 
+
+    if(dis1 == EFFECT_NONE and dis2 == EFFECT_NONE) then
+        -- no effect
+        skill:setMsg(MSG_NO_EFFECT); -- no effect
+    else
+        skill:setMsg(MSG_DISPEL);
+    end
+
+    return dis1;
 end;

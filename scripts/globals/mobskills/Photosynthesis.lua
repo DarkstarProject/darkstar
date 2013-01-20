@@ -13,7 +13,12 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+    -- only used during daytime
+    local currentTime = VanadielHour();
+    if(currentTime >= 6 and currentTime <= 18) then
+        return 0;
+    end
+    return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)

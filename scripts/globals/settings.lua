@@ -2,7 +2,7 @@
 -------------   GLOBAL SETTINGS   -------------
 -----------------------------------------------
 
---This is to allow server operators to further customize their servers.  As more features are added to pXI, the list will surely expand.  
+--This is to allow server operators to further customize their servers.  As more features are added to pXI, the list will surely expand.
 --Anything scripted can be customized with proper script editing.
 
 --PLEASE REQUIRE THIS SCRIPT IN ANY SCRIPTS YOU DO: ADD THIS LINE TO THE TOP!!!!
@@ -42,15 +42,15 @@ BAS_FAME   = 1.000; --Multiplies fame earned from Bastok quests.
 WIN_FAME   = 1.000; --Multiplies fame earned from Windurst quests.
 NORG_FAME  = 1.000; --Multiplies fame earned from Norg and Tenshodo quests.
 
-FISHING_GUILD_POINTS 	  = 1.000; --Multiplies guild points earned from fishermans' guild trades.
+FISHING_GUILD_POINTS      = 1.000; --Multiplies guild points earned from fishermans' guild trades.
 WOODWORKING_GUILD_POINTS  = 1.000; --Multiplies guild points earned from carpenters' guild trades.
-SMITHING_GUILD_POINTS 	  = 1.000; --Multiplies guild points earned from blacksmiths' guild trades.
+SMITHING_GUILD_POINTS     = 1.000; --Multiplies guild points earned from blacksmiths' guild trades.
 GOLDSMITHING_GUILD_POINTS = 1.000; --Multiplies guild points earned from goldsmiths' guild trades.
 CLOTHCRAFT_GUILD_POINTS   = 1.000; --Multiplies guild points earned from weavers' guild trades.
 LEATHERCRAFT_GUILD_POINTS = 1.000; --Multiplies guild points earned from tanners' guild trades.
-BONECRAFT_GUILD_POINTS 	  = 1.000; --Multiplies guild points earned from boneworkers' guild trades.
-ALCHEMY_GUILD_POINTS 	  = 1.000; --Multiplies guild points earned from alchemists' guild trades.
-COOKING_GUILD_POINTS 	  = 1.000; --Multiplies guild points earned from culinarians' guild trades.
+BONECRAFT_GUILD_POINTS    = 1.000; --Multiplies guild points earned from boneworkers' guild trades.
+ALCHEMY_GUILD_POINTS      = 1.000; --Multiplies guild points earned from alchemists' guild trades.
+COOKING_GUILD_POINTS      = 1.000; --Multiplies guild points earned from culinarians' guild trades.
 DISABLE_GUILD_CONTRACTS   = 0; --Set to 1 to disable guild contracts, allowing players to accumulate guild points from all guilds at once.
 
 CURE_POWER  = 1.000; --Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
@@ -63,12 +63,12 @@ WEAPON_SKILL_POINTS = 1.000; --Multiplies points earned during weapon unlocking.
 
 HARVESTING_BREAK_CHANCE = 0.33; --% chance for the sickle to break during harvesting.  Set between 0 and 1.
 EXCAVATION_BREAK_CHANCE = 0.33; --% chance for the pickaxe to break during excavation.  Set between 0 and 1.
-LOGGING_BREAK_CHANCE 	= 0.33; --% chance for the hatchet to break during logging.  Set between 0 and 1.
-MINING_BREAK_CHANCE 	= 0.33; --% chance for the pickaxe to break during mining.  Set between 0 and 1.
-HARVESTING_RATE 		= 0.50; --% chance to recieve an item from haresting.  Set between 0 and 1.
-EXCAVATION_RATE 		= 0.50; --% chance to recieve an item from excavation.  Set between 0 and 1.
-LOGGING_RATE 			= 0.50; --% chance to recieve an item from logging.  Set between 0 and 1.
-MINING_RATE 			= 0.50; --% chance to recieve an item from mining.  Set between 0 and 1.
+LOGGING_BREAK_CHANCE    = 0.33; --% chance for the hatchet to break during logging.  Set between 0 and 1.
+MINING_BREAK_CHANCE     = 0.33; --% chance for the pickaxe to break during mining.  Set between 0 and 1.
+HARVESTING_RATE         = 0.50; --% chance to recieve an item from haresting.  Set between 0 and 1.
+EXCAVATION_RATE         = 0.50; --% chance to recieve an item from excavation.  Set between 0 and 1.
+LOGGING_RATE            = 0.50; --% chance to recieve an item from logging.  Set between 0 and 1.
+MINING_RATE             = 0.50; --% chance to recieve an item from mining.  Set between 0 and 1.
 
 -- SE implemented coffer/chest illusion time in order to prevent coffer farming. No-one in the same area can open a chest or coffer for loot (gil, gems & items)
 -- till a random time between MIN_ILLSION_TIME and MAX_ILLUSION_TIME. During this time players can loot keyitem and item related to quests (AF, maps... etc.)
@@ -79,12 +79,12 @@ CHEST_MAX_ILLUSION_TIME  = 3600;  -- 1 hour
 CHEST_MIN_ILLUSION_TIME  = 1800;  -- 30 minutes
 
 -- DYNAMIS SETTINGS
-	BETWEEN_2DYNA_WAIT_TIME = 1;		-- wait time between 2 dynamis (in real day) min: 1 day
-			 DYNA_LEVEL_MIN = 65;		-- level min for entering in dynamis
-	TIMELESS_HOURGLASS_COST = 500000;   -- cost of the timeless hourglass for Dynamis.
-RELIC_1ST_UPGRADE_WAIT_TIME = 100;   	-- wait time for 1st relic upgrade (stage 1 -> stage 2) in seconds. 86400s = 1 RL day.
-RELIC_2ND_UPGRADE_WAIT_TIME = 100;   	-- wait time for 2nd relic upgrade (stage 2 -> stage 3) in seconds. 604800s = 1 RL week.
-RELIC_3RD_UPGRADE_WAIT_TIME = 100;   	-- wait time for 3rd relic upgrade (stage 3 -> stage 4) in seconds. 295200s = 82 hours.
+    BETWEEN_2DYNA_WAIT_TIME = 1;        -- wait time between 2 dynamis (in real day) min: 1 day
+             DYNA_LEVEL_MIN = 65;       -- level min for entering in dynamis
+    TIMELESS_HOURGLASS_COST = 500000;   -- cost of the timeless hourglass for Dynamis.
+RELIC_1ST_UPGRADE_WAIT_TIME = 100;      -- wait time for 1st relic upgrade (stage 1 -> stage 2) in seconds. 86400s = 1 RL day.
+RELIC_2ND_UPGRADE_WAIT_TIME = 100;      -- wait time for 2nd relic upgrade (stage 2 -> stage 3) in seconds. 604800s = 1 RL week.
+RELIC_3RD_UPGRADE_WAIT_TIME = 100;      -- wait time for 3rd relic upgrade (stage 3 -> stage 4) in seconds. 295200s = 82 hours.
 
 -- QUEST/MISSION SPECIFIC SETTINGS
 WSNM_LEVEL = 70; -- Min Level to get WSNM Quests
@@ -104,13 +104,13 @@ LOW_LEVEL_REGIME = 0; --Allow people to kill regime targets even if they give no
 
 -- JOB ABILITY/TRAIT SPECIFIC SETTINGS
 SCAVENGE_RATE = 0.1; --The chance of obtaining an item when you use the Ranger job ability Scavenge.  Do not set above 1!
-STATUS_RESIST_MULTIPLIER = 10; -- Sets the strength of status resist traits. 
+STATUS_RESIST_MULTIPLIER = 10; -- Sets the strength of status resist traits.
 CIRCLE_DURATION = 300; -- Sets the duration of circle effects, in seconds. Retail is 5 minutes.
 CIRCLE_KILLER_EFFECT = 20; -- Intimidation percentage granted by circle effects. (made up number)
-KILLER_EFFECT = 10; -- Intimidation percentage from killer job traits. 
+KILLER_EFFECT = 10; -- Intimidation percentage from killer job traits.
 
 -- SPELL SPECIFIC SETTINGS
-MILK_OVERWRITE = 1;	--Set to 1 to allow Milk and Regen to overwrite each other.  Default is 1.
+MILK_OVERWRITE = 1; --Set to 1 to allow Milk and Regen to overwrite each other.  Default is 1.
 JUICE_OVERWRITE = 1; --Set to 1 to allow Juice and Refresh to overwrite each other.  Default is 1.
 DIA_OVERWRITE = 1; --Set to 1 to allow Bio to overwrite same tier Dia.  Default is 1.
 BIO_OVERWRITE = 0; --Set to 1 to allow Dia to overwrite same tier Bio.  Default is 0.
@@ -148,4 +148,4 @@ HALLOWEEN = 0; -- Set to 1 to give starting characters Halloween items.
 HOMEPOINT_HEAL = 0; --Set to 1 if you want Home Points to heal you like in single-player Final Fantasy games.
 RIVERNE_PORTERS = 120; -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
 LANTERNS_STAY_LIT = 1200; -- time in seconds that lanterns in the Den of Rancor stay lit.
-ENABLE_COP_ZONE_CAP=1; -- enable or disable lvl cap 
+ENABLE_COP_ZONE_CAP=1; -- enable or disable lvl cap

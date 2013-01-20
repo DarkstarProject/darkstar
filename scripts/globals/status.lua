@@ -1,11 +1,11 @@
 -----------------------------------
---	
+--
 -- 	STATUSES AND MODS
--- 	
+--
 -----------------------------------
 
 -----------------------------------
--- These codes represent the actual status effects.  
+-- These codes represent the actual status effects.
 -- They are simply for convenience.
 -----------------------------------
 
@@ -482,10 +482,10 @@ EFFECT_SKILLCHAINMASK           = 0x7C00
 
 -----------------------------------
 -- These codes are the gateway to directly interacting with the pXI core program with status effects.
--- These are NOT the actual status effects such as weakness or silence, 
+-- These are NOT the actual status effects such as weakness or silence,
 -- but rather arbitrary codes chosen to represent different modifiers to the effected characters and mobs.
 --
--- Even if the particular mod is not completely (or at all) implemented yet, you can still script the effects using these codes.  
+-- Even if the particular mod is not completely (or at all) implemented yet, you can still script the effects using these codes.
 --
 -- Example: target:getMod(MOD_STR) will get the sum of STR bonuses/penalties from gear, food, STR Etude, Absorb-STR, and any other STR-related buff/debuff.
 -----------------------------------

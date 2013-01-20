@@ -8,7 +8,7 @@ require("scripts/globals/status")
 	ELEMENTAL_MAGIC_SKILL 	= 36;
     DARK_MAGIC_SKILL 		= 37;
     NINJUTSU_SKILL 			= 39;
-    SINGING_SKILL			= 40; 
+    SINGING_SKILL			= 40;
 
 	WEATHER_NONE			= 0;
 	WEATHER_SUNSHINE		= 1;
@@ -30,7 +30,7 @@ require("scripts/globals/status")
 	WEATHER_STELLAR_GLARE	= 17;
 	WEATHER_GLOOM			= 18;
 	WEATHER_DARKNESS		= 19;
-	
+
 	FIRESDAY		= 0;
 	EARTHSDAY		= 1;
 	WATERSDAY		= 2;
@@ -39,7 +39,7 @@ require("scripts/globals/status")
 	LIGHTNINGDAY	= 5;
 	LIGHTSDAY		= 6;
 	DARKSDAY		= 7;
-	
+
 	dayStrong = {FIRESDAY, EARTHSDAY, WATERSDAY, WINDSDAY, ICEDAY, LIGHTNINGDAY, LIGHTSDAY, DARKSDAY};
 	dayWeak = {WATERSDAY, WINDSDAY, LIGHTNINGDAY, ICEDAY, FIRESDAY, EARTHSDAY, DARKSDAY, LIGHTSDAY};
 	singleWeatherStrong = {WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_RAIN, WEATHER_WIND, WEATHER_SNOW, WEATHER_THUNDER, WEATHER_AURORAS, WEATHER_GLOOM};
@@ -53,7 +53,7 @@ require("scripts/globals/status")
 	weakAffinity = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY};
 	resistMod = {MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES};
 	defenseMod = {MOD_FIREDEF, MOD_EARTHDEF, MOD_WATERDEF, MOD_WINDDEF, MOD_ICEDEF, MOD_THUNDERDEF, MOD_LIGHTDEF, MOD_DARKDEF};
-	
+
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
 --Calculates magic damage using the standard magic damage calc.
 --Does NOT handle resistance.
@@ -70,10 +70,10 @@ SOFT_CAP = 60; --guesstimated
 HARD_CAP = 120; --guesstimated
 
 function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMultipleTargetReduction)
-    
+
     local dint = player:getStat(atttype) - target:getStat(atttype);
     local dmg = V;
-    
+
     if(dint<=0) then --ifdINT penalises, it's always M=1
         dmg = dmg + dint;
     elseif(dint > 0 and dint <= SOFT_CAP) then --The standard calc, most spells hit this
@@ -83,11 +83,11 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
     elseif(dint > 0 and dint > SOFT_CAP and dint >= HARD_CAP) then --After HARD_CAP, INT has no effect.
         dmg = dmg + HARD_CAP*M;
     end
-    
+
     --TODO: Handle multiple target reduction (no LUA methods exist for this yet)
-    
+
     return dmg;
-    
+
 end;
 
 function doEnspell(caster,target,spell,effect)
@@ -112,18 +112,18 @@ function doEnspell(caster,target,spell,effect)
     target:delStatusEffect(EFFECT_ENTHUNDER_II);
     target:delStatusEffect(EFFECT_ENLIGHT);
     target:delStatusEffect(EFFECT_ENDARK);
-    
+
     if(effect==EFFECT_BLOOD_WEAPON) then
         target:addStatusEffect(EFFECT_BLOOD_WEAPON,1,0,30);
         return;
     end
-    
+
     local duration = 180;
     if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
     --calculate potency
-    local magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL) + target:getMod(79 + ENHANCING_MAGIC_SKILL); 
+    local magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL) + target:getMod(79 + ENHANCING_MAGIC_SKILL);
 
     local potency = 3 + ((6*magicskill)/100);
     if(magicskill>200) then
@@ -156,7 +156,7 @@ function getCurePowerOld(caster)
 end;
 function getBaseCure(power,divisor,constant,basepower)
 	return ((power - basepower) / divisor) + constant;
-end; 
+end;
 function getBaseCureOld(power,divisor,constant)
 	return (power / 2) / divisor + constant;
 end;
@@ -165,17 +165,17 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
 	if(basecure < minCure) then
 		basecure = minCure;
 	end
-	
+
 	local potency = 1 + (caster:getMod(MOD_CURE_POTENCY) / 100);
 	if(potency > 1.5) then
 		potency = 1.5;
 	end
-	
+
 	local dSeal = 1;
 	if (caster:hasStatusEffect(EFFECT_DIVINE_SEAL)) then
 		dSeal = 2;
 	end
-	
+
 	local rapture = 1;
 	if(isBlueMagic == false) then --rapture doesn't affect BLU cures as they're not white magic
 		if (caster:hasStatusEffect(EFFECT_RAPTURE)) then
@@ -191,11 +191,11 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
 	end
 	local dayWeatherBonus = 1;
 	local ele = spell:getElement();
-	
+
 	local castersWeather = caster:getWeather();
 	local equippedMain = caster:getEquipID(SLOT_MAIN);
 	local equippedWaist = caster:getEquipID(SLOT_WAIST);
-	
+
 	if(castersWeather == singleWeatherStrong[ele]) then
 		if(equippedMain == 18632 or equippedMain == 18633) then
 			if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
@@ -223,7 +223,7 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
-	
+
 	local dayElement = VanadielDayElement();
 	if(dayElement == dayStrong[ele]) then
 		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
@@ -234,11 +234,11 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
 	end
-	
+
 	if(dayWeatherBonus > 1.35) then
 		dayWeatherBonus = 1.35;
 	end
-	
+
 	local final = math.floor(math.floor(math.floor(math.floor(basecure) * potency) * dayWeatherBonus) * rapture) * dSeal;
 	return final;
 end;
@@ -249,44 +249,44 @@ end;
 
 -----------------------------------
 --    Author: ReaperX
---     Returns the staff bonus for the caster and spell. 
+--     Returns the staff bonus for the caster and spell.
 -----------------------------------
 
 -- affinities that strengthen/weaken the index element
 
 
 function AffinityBonus(caster,spell)
-    
+
 	local bonus = 1.00;
-	
+
     local ele = spell:getElement();
 
     local affinity = caster:getMod(strongAffinity[ele]) - caster:getMod(weakAffinity[ele]);
-	
+
 	if(affinity > 0) then
 		bonus = bonus + 0.05 + 0.05 * affinity;
 	elseif(affinity < 0) then
 		bonus = bonus - 0.05 + 0.05 * affinity;
 	end
-	
+
     return bonus;
 
 end;
 
 -- USED FOR DAMAGING MAGICAL SPELLS. Stage 3 of Calculating Magic Damage on wiki
 -- Reduces damage ifit resists.
--- 
+--
 -- Output:
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
 function applyResistance(player,spell,target,diff,skill,staff)
-   
+
     local resist = 1.0;
     local magicaccbonus = 0;
 	--get the base acc (just skill plus magic acc mod)
 	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
-	
-	--difference in int/mnd 
+
+	--difference in int/mnd
 	if(diff > 10) then
 		magicacc = magicacc + 10 + (diff - 10)/2;
 	else
@@ -301,16 +301,16 @@ function applyResistance(player,spell,target,diff,skill,staff)
 	--add acc for staves
 	local affinityBonus = AffinityBonus(player, spell);
 	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
-	
+
     local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
     --add acc for skillchains
     if(skillchainTier > 0) then
 		magicaccbonus = magicaccbonus + 25;
     end
-	
+
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
 	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[spell:getElement()]) + target:getMod(defenseMod[spell:getElement()])/10;
-	
+
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
 	local multiplier = 0;
 	if player:getMainLvl() < 40 then
@@ -326,12 +326,12 @@ function applyResistance(player,spell,target,diff,skill,staff)
 	-- print(magiceva);
 	-- print(magicaccbonus);
 
-	
+
 	--double any acc over 50 if it's over 50
 	if(p > 5) then
 		p = 5 + (p - 5) * 2;
 	end
-	
+
 	--add a flat bonus that won't get doubled in the previous step
 	p = p + 45;
 
@@ -362,7 +362,7 @@ function applyResistance(player,spell,target,diff,skill,staff)
     -- print("SIXTEENTH:",sixteenth);
 
     local resvar = math.random();
-    
+
     -- Determine final resist based on which thresholds have been crossed.
     if(resvar <= sixteenth) then
         resist = 0.0625;
@@ -380,9 +380,9 @@ function applyResistance(player,spell,target,diff,skill,staff)
         resist = 1.0;
         --printf("1.0");
     end
-    
+
     return resist;
-    
+
 end;
 
 -----------------------------------
@@ -397,9 +397,9 @@ end;
 -----------------------------------
 
 function getSkillLvl(rank,level)
-    
+
     local skill = 0; --Failsafe
-    
+
     if(level <= 50) then --Levels 1-50
         if(rank == 1 or rank == 2) then --A-Rated Skill
             skill = (((level-1)*3)+6);
@@ -475,23 +475,23 @@ function getSkillLvl(rank,level)
             skill = (((level-70)*1.95)+190);
         elseif(rank == 11) then --F Rated Skill
             skill = (((level-70)*2)+179);
-        end    
+        end
     end
-    
+
     return skill;
-    
+
  end;
- 
+
  function finalMagicAdjustments(caster,target,spell,dmg)
     if(dmg<0) then
         dmg = 0;
     end
-    
+
     dmg = dmg - target:getMod(MOD_PHALANX);
     if(dmg<0) then
         dmg = 0;
     end
-    
+
     --handling stoneskin
     local skin = target:getMod(MOD_STONESKIN);
     if(skin>0) then
@@ -507,13 +507,13 @@ function getSkillLvl(rank,level)
             return dmg - skin;
         end
     end
-    
+
     target:delHP(dmg);
     target:updateEnmityFromDamage(caster,dmg);
     target:addTP(10);
     return dmg;
  end;
- 
+
 function adjustForTarget(target,dmg)
     --e.g. family % reduction
     return dmg;
@@ -526,9 +526,9 @@ function calculateMagicBurstAndBonus(caster, spell, target)
 
     local burst = 1.0;
     local burstBonus = 1.0;
-    
+
     local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
-    
+
     if(skillchainTier > 0) then
 		if(skillchainCount == 1) then
 			burst = 1.3;
@@ -542,27 +542,27 @@ function calculateMagicBurstAndBonus(caster, spell, target)
 			burst = 1.50;
 		else
 			-- Something strange is going on if this occurs.
-			burst = 1.0; 
+			burst = 1.0;
 		end
-		
+
 		-- Get burst bonus from gear/spell bonus
 
         -- Sorcerer's Gloves
         if(equippedHands == 15105 or equippedHands == 14912) then
             burstBonus = burstBonus + 0.05;
         end
-        
+
         if(equippedEar1 == 15962 or equippedEar2 == 15962) then
             burstBonus = burstBonus + 0.05;
         end
-        
+
         -- TODO: This should be getting the spell ID, and checking
         --       if it is an Ancient Magic II spell.  Add 0.03
-        --       to burstBonus for each merit the caster has for 
+        --       to burstBonus for each merit the caster has for
         --       the given spell.
-        
+
         -- AM 2 get magic burst bonuses
-        --id = spell:getID(); 
+        --id = spell:getID();
         --if(id == 207 or id == 209 or id == 211 or id == 213 or id == 215 or id == 205) then
         --    if(AM2 Merit 1) then
         --        burstBonus = burstBonus + 0.03;
@@ -581,19 +581,19 @@ end;
 
 function addBonuses(caster, spell, target, dmg)
 	local ele = spell:getElement();
-	
+
 	local affinityBonus = AffinityBonus(caster, spell);
 	dmg = math.floor(dmg * affinityBonus);
-	
+
 	local speciesReduction = target:getMod(defenseMod[ele]);
 	speciesReduction = 1.00 - (speciesReduction/1000);
 	dmg = math.floor(dmg * speciesReduction);
-	
+
 	local dayWeatherBonus = 1.00;
 	local equippedMain = caster:getEquipID(SLOT_MAIN);
 	local equippedWaist = caster:getEquipID(SLOT_WAIST);
 	local weather = caster:getWeather();
-	
+
 	if(weather == singleWeatherStrong[ele]) then
 		-- Iridescence
 		if(equippedMain == 18632 or equippedMain == 18633) then
@@ -623,7 +623,7 @@ function addBonuses(caster, spell, target, dmg)
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
-	
+
 	local dayElement = VanadielDayElement();
 	if(dayElement == dayStrong[ele]) then
 		local equippedLegs = caster:getEquipID(SLOT_LEGS);
@@ -638,36 +638,36 @@ function addBonuses(caster, spell, target, dmg)
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	end
-		
+
 	if dayWeatherBonus > 1.35 then
 		dayWeatherBonus = 1.35;
 	end
-	
+
 	dmg = math.floor(dmg * dayWeatherBonus);
-	
+
     local burst, burstBonus = calculateMagicBurstAndBonus(caster, spell, target);
-    
+
     if(burst > 1.0) then
 		spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
 	end
-	
+
 	dmg = math.floor(dmg * burst);
-	
+
     local mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
-	
+
 	dmg = math.floor(dmg * mab);
-	
+
 	local magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
-	
+
 	dmg = math.floor(dmg * magicDmgMod);
-	
+
 	-- print(affinityBonus);
 	-- print(speciesReduction);
 	-- print(dayWeatherBonus);
 	-- print(burst);
 	-- print(mab);
 	-- print(magicDmgMod);
-	
+
     return dmg;
 end;
 
@@ -686,7 +686,7 @@ function getElementalDebuffDOT(INT)
         DOT = 3;
     elseif (INT <= 149) then
         DOT = 4;
-    else 
+    else
         DOT = 5;
     end
     return DOT;
@@ -731,7 +731,7 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
 	print("dCHR=" .. dCHR);
 	local resm = applyResistance(caster, spell, target, dCHR, SINGING_SKILL, staff);
 	print("rsem=" .. resm);
-	
+
 	if(resm < 0.5) then
 		print("resm resist");
 		spell:setMsg(85);
@@ -756,6 +756,6 @@ function handleNinjutsuDebuff(caster, target, spell, basePower, baseDuration, mo
 	target:delStatusEffect(EFFECT_NINJUTSU_ELE_DEBUFF);
 	-- Add new
 	target:addStatusEffect(EFFECT_NINJUTSU_ELE_DEBUFF, basePower, 0, baseDuration, 0, modifier, 0);
-	
+
 	return EFFECT_NINJUTSU_ELE_DEBUFF;
 end;

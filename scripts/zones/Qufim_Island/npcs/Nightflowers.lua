@@ -14,17 +14,17 @@ require("scripts/zones/Qufim_Island/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	currentTime = VanadielHour();
-	
-	if(currentTime >= 22 or currentTime < 6) then
+
+	if(currentTime >= 22 or currentTime <= 6) then
 		if(player:getQuestStatus(JEUNO,SAVE_MY_SON) == QUEST_ACCEPTED and player:getVar("SaveMySon_Event") == 0) then
 			player:startEvent(0x0000);
 		else
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 	else
 		player:messageSpecial(THESE_WITHERED_FLOWERS);
 	end
-	
+
 end;
 
 -----------------------------------
@@ -56,5 +56,5 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0000) then
 		player:setVar("SaveMySon_Event",1);
 	end
-	
+
 end;

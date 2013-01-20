@@ -13,6 +13,7 @@ CONQUEST = 7604; -- You've earned conquest points!
 
 -- NPC Texts
             KIRISOMANRISO_DIALOG = 7937; -- Delivering goods to residences everywhere!
+            -- this is WRONG
 YOU_CAN_NOW_BECOME_A_BEASTMASTER = 7052; -- You can now become a beastmaster.
 
 -- Shop Texts

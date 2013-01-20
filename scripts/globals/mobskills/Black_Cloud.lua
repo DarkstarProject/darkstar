@@ -29,7 +29,6 @@ function OnMobWeaponSkill(target, mob, skill)
 	else
 		message = MSG_NO_EFFECT;
 	end
-	skill:setMsg(message);
 
 	local dmgmod = 1.5;
 	local accmod = 1;

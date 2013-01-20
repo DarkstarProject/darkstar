@@ -17,19 +17,14 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local message = MSG_MISS;
 	local typeEffect = EFFECT_BLINDNESS;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
 		if(resist > 0.2) then
-			message = MSG_ENFEEB_IS;
 			target:addStatusEffect(typeEffect,15,0,60);--power=15;tic=0;duration=60;
 		end
-	else
-		message = MSG_NO_EFFECT;
 	end
-	skill:setMsg(message);
 
 	local numhits = math.random(2,3);
 	local accmod = 1;

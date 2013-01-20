@@ -10,23 +10,26 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+	if(target:hasStatusEffect(EFFECT_SLOW) == false) then
+		return 0;
+	end
+	return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_SLOW;
 	if(target:hasStatusEffect(typeEffect) == false and target:hasStatusEffect(EFFECT_HASTE) == false) then
-		local statmod = MOD_MND;
+		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,30,0,90);
+			target:delStatusEffect(EFFECT_HASTE)
+			skill:setMsg(MSG_ENFEEB_IS);
+			target:addStatusEffect(typeEffect,30,0,120); -- 30% ?
+		else
+			skill:setMsg(MSG_MISS); -- resist !
 		end
+	else
+		skill:setMsg(MSG_NO_EFFECT); -- no effect
 	end
-
-	local dmgmod = 1;
-	local accmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 3,accmod,dmgmod,TP_MAB_BONUS,1);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
+	return typeEffect;
 end;

@@ -69,6 +69,7 @@ TP_MACC_BONUS = 1;
 TP_MAB_BONUS = 2;
 TP_DMG_BONUS = 3;
 
+MSG_NONE = 0; -- display nothing
 MSG_SELF_HEAL = 238;
 MSG_ENFEEB_IS = 242; --XXX is petrified.
 MSG_ENFEEB = 243; --XXX receives the effect of petrification.
@@ -79,6 +80,9 @@ MSG_DRAIN_TP = 226;
 MSG_NO_EFFECT = 189;
 MSG_MISS = 188;
 MSG_RESIST = 85;
+MSG_EFFECT_DRAINED = 370; -- status effects are drained from <target>.
+MSG_TP_REDUCED = 362; -- tp reduced to
+MSG_DISPEL = 231; -- <target>'s stun effect disappears!
 
 BOMB_TOSS_HPP = 1;
 

@@ -25,15 +25,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
 	saveMySon = player:getQuestStatus(JEUNO,SAVE_MY_SON);
 	wingsOfGold = player:getQuestStatus(JEUNO,WINGS_OF_GOLD);
 	scatIntoShadow = player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW);
-	
+
 	mLvl = player:getMainLvl();
 	mJob = player:getMainJob();
-	
+
 	if(player:getMainLvl() >= 20 and ChocobosWounds ~= QUEST_COMPLETED) then
         chocoFeed = player:getVar("ChocobosWounds_Event");
 
@@ -85,10 +85,10 @@ function onTrigger(player,npc)
 		end
 	elseif(scatIntoShadow == QUEST_COMPLETED) then
 		player:startEvent(0x0097);
-	else 
+	else
 		player:startEvent(0x0014);
     end
-	
+
 end;
 
 -----------------------------------
@@ -122,7 +122,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(JEUNO,WINGS_OF_GOLD);
 		player:setVar("wingsOfGold_shortCS",0);
 	elseif(csid == 0x008a) then
-		if(player:getFreeSlotsCount() < 1) then 
+		if(player:getFreeSlotsCount() < 1) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16680);
 		else
 			player:delKeyItem(GUIDING_BELL);
@@ -141,7 +141,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0090) then
 		player:setVar("scatIntoShadowCS",1);
 	elseif(csid == 0x0087) then
-		if(player:getFreeSlotsCount() < 1) then 
+		if(player:getFreeSlotsCount() < 1) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14097);
 		else
 			player:setVar("scatIntoShadowCS",0);
@@ -151,5 +151,5 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(JEUNO,SCATTERED_INTO_SHADOW);
 		end
     end
-	
+
 end;
