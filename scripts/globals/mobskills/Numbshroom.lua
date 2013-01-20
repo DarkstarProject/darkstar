@@ -23,12 +23,13 @@ function OnMobWeaponSkill(target, mob, skill)
         local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
         if(resist > 0.1) then
             local mobTP = mob:getTP();
+			local duration;
             if(mobTP <= 100) then
-                local duration = 100;
+                duration = 100;
             elseif(mobTP <= 200) then
-                local duration = 140;
+                duration = 140;
             else
-                local duration = 200;
+                duration = 200;
             end
             target:addStatusEffect(typeEffect,35,0,duration);
         end

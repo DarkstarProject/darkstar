@@ -26,12 +26,13 @@ function OnMobWeaponSkill(target, mob, skill)
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
 		if(resist > 0.2) then
 			local mobTP = mob:getTP();
+			local poisontime;
 			if(mobTP <= 100) then
-				local poisontime = 60;
+				poisontime = 60;
 			elseif(mobTP <= 200) then
-				local poisontime = 120;
+				poisontime = 120;
 			else
-				local poisontime = 180;
+				poisontime = 180;
 			end
 			target:addStatusEffect(typeEffect,3,3,poisontime);
 		end
