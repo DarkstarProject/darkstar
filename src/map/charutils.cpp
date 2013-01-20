@@ -684,7 +684,8 @@ void LoadInventory(CCharEntity* PChar)
           "col," 	        // 11
           "row,"            // 12
           "level,"          // 13
-          "rotation "       // 14
+          "rotation, "      // 14
+		  "worn "			// 15
         "FROM char_inventory "
         "LEFT JOIN linkshells ON signature = name "
         "WHERE charid = %u "
@@ -704,6 +705,7 @@ void LoadInventory(CCharEntity* PChar)
 				PItem->setSlotID(Sql_GetUIntData(SqlHandle,2));
 				PItem->setQuantity(Sql_GetUIntData(SqlHandle,3));
 				PItem->setCharPrice(Sql_GetUIntData(SqlHandle,4));
+				PItem->setWornItem(Sql_GetUIntData(SqlHandle,15));
 
 				if (PItem->getCharPrice() != 0)
 				{

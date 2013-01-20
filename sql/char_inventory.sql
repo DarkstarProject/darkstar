@@ -1,32 +1,24 @@
--- phpMyAdmin SQL Dump
--- version 3.3.8
--- http://www.phpmyadmin.net
---
--- Serveur: localhost
--- Généré le : Dim 21 Octobre 2012 à 17:19
--- Version du serveur: 6.0.0
--- Version de PHP: 5.2.9-2
+/*
+Navicat MySQL Data Transfer
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+Source Server         : oo
+Source Server Version : 50136
+Source Host           : localhost:3306
+Source Database       : dspdb
 
+Target Server Type    : MYSQL
+Target Server Version : 50136
+File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+Date: 2013-01-21 00:16:20
+*/
 
---
--- Base de données: `dspdb`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `char_inventory`
---
-
+SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for `char_inventory`
+-- ----------------------------
 DROP TABLE IF EXISTS `char_inventory`;
-CREATE TABLE IF NOT EXISTS `char_inventory` (
+CREATE TABLE `char_inventory` (
   `charid` int(10) unsigned NOT NULL,
   `location` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `slot` tinyint(2) unsigned NOT NULL DEFAULT '0',
@@ -41,5 +33,10 @@ CREATE TABLE IF NOT EXISTS `char_inventory` (
   `signature` varchar(15) NOT NULL DEFAULT '',
   `currCharges` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `lastUseTime` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`charid`,`slot`,`location`)
+  `worn` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`charid`,`location`,`slot`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=28;
+
+-- ----------------------------
+-- Records of char_inventory
+-- ----------------------------

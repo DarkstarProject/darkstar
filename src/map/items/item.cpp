@@ -45,6 +45,7 @@ CItem::CItem(uint16 id)
     m_CharPrice  = 0;
     m_ahCat      = 0;
     m_flag       = 0;
+	m_wornItem	 = 0;
 
     m_slotID     = -1;
     m_locationID = -1;
@@ -311,4 +312,20 @@ uint8 CItem::getSlotID()
 void CItem::setSlotID(uint8 slotID)
 {
 	m_slotID = slotID;
+}
+
+/************************************************************************
+*                                                                       *
+*  Function for BCNM item of Maat Testimony                             *
+*                                                                       *
+************************************************************************/
+	
+void CItem::setWornItem(uint8 mode)
+{
+	m_wornItem = mode;
+}
+
+uint8 CItem::getWornItem()
+{
+	return m_wornItem;
 }

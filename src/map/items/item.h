@@ -93,6 +93,7 @@ public:
 	uint32		getCharPrice();
 	uint8		getLocationID();
 	uint8		getSlotID();
+	uint8		getWornItem();
 
 	void		setID(uint16 );
 	void		setSubID(uint16);
@@ -107,6 +108,7 @@ public:
 	void		setCharPrice(uint32);
 	void		setLocationID(uint8 LocationID);
 	void		setSlotID(uint8 SlotID);
+	void		setWornItem(uint8 mode);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -130,6 +132,7 @@ private:
 	uint32		m_CharPrice;    // стоимость предмета в bazaar
 	uint8		m_ahCat;        // категоряи предмета на укционе
 	uint16		m_flag;
+	uint8		m_wornItem;		// worn item (BCNM item, maat testimony)
 
 	uint8		m_slotID;       // ячейка предмета в хранилище
 	uint8		m_locationID;   // номер хранилища предмета

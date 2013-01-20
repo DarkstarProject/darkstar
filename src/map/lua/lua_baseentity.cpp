@@ -619,6 +619,65 @@ inline int32 CLuaBaseEntity::getFreeSlotsCount(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*  player:createWornItem(item)                                          *
+*  Item cannot be used a second time								    *
+*  For BCNM Item and Testimony (Maat battle)                            *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::createWornItem(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	uint8 slotID = PChar->getStorage(LOC_INVENTORY)->SearchItem((uint16)lua_tointeger(L,1));
+
+	if(slotID != -1)
+	{
+		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
+
+		const int8* Query = 
+				"UPDATE char_inventory "
+				"SET worn = 1 "
+				"WHERE charid = %u AND location = %u AND slot = %u;";
+
+		if (Sql_Query(SqlHandle, Query, PChar->id, PItem->getLocationID(), PItem->getSlotID()) != SQL_ERROR)
+		{
+			PItem->setWornItem(1);
+		}
+	}
+
+	return 0;
+}
+
+/************************************************************************
+*  player:hasWornItem(item)                                             *
+*  return true if player has this worn item				                *
+*  For BCNM Item and Testimony (Maat battle)                            *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::hasWornItem(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	uint8 slotID = PChar->getStorage(LOC_INVENTORY)->SearchItem((uint16)lua_tointeger(L,1));
+
+	if(slotID != -1)
+	{
+		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
+	
+		if(PItem->getWornItem() == 1)
+			lua_pushboolean( L, true );
+		else
+			lua_pushboolean( L, false );
+	}
+
+	return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getZone(lua_State *L)
@@ -5612,5 +5671,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeSkin),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkinID),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,createWornItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasWornItem),
 	{NULL,NULL}
 };
