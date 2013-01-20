@@ -76,6 +76,11 @@ protected:
 	void processTwoHour();
 
     std::vector<CBattleEntity*> GetAdditionalTargets(AOERANGE AoeRange, position_t radiusAround, float radius);
+
+private:
+
+	uint16 aoeMessageID(uint16 id);
+
 };
 
 #endif

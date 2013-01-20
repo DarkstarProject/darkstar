@@ -620,6 +620,17 @@ void CAIMobDummy::ActionAbilityFinish()
 
 		if (m_PMobSkill->getAoe() == 1 || m_PMobSkill->getAoe() == 2) // to handle both types of aoe
 		{
+			apAction_t Action;
+			Action.ActionTarget = m_PMob;
+			Action.reaction   = REACTION_NONE;
+			Action.speceffect = SPECEFFECT_NONE;
+			Action.animation  = m_PMobSkill->getAnimationID();
+			Action.subparam   = m_PMobSkill->getID() + 256;
+			Action.messageID  = 101;
+			Action.flag		  = 0;
+
+			m_PMob->m_ActionList.push_back(Action);	
+
 			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY) // aoe on the players
 			{
 				targetPartyType = battleutils::getAvailableAoeTargets(m_PBattleTarget);
@@ -631,9 +642,6 @@ void CAIMobDummy::ActionAbilityFinish()
 				Action.subparam   = m_PMobSkill->getID() + 256;
 				Action.messageID  = m_PMobSkill->getMsg();
 				Action.flag		  = 0;
-
-				if(Action.messageID == 185)  //handle aoe damage text
-					Action.messageID = 264;  //just the damage value needed
 
 				//determine the type of circle
 				position_t radiusAround = m_PMob->loc.p;	// AOE 1 (circle on mob)
@@ -651,7 +659,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround))
 						{
-							Action.messageID  = m_PMobSkill->getMsg();
+							Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 							m_PMob->m_ActionList.push_back(Action);
 						}
 
@@ -659,9 +667,7 @@ void CAIMobDummy::ActionAbilityFinish()
 						{
 							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PPet, &Action, m_PMobSkill, &radiusAround))
 							{
-								Action.messageID  = m_PMobSkill->getMsg();
-								if (Action.messageID == 185)
-									Action.messageID = 264; // Aoe victim: "takes 123 damage"
+								Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 								m_PMob->m_ActionList.push_back(Action);
 							}
 						}
@@ -675,8 +681,7 @@ void CAIMobDummy::ActionAbilityFinish()
 							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround))
 							{
 								Action.messageID  = m_PMobSkill->getMsg();
-								if (Action.ActionTarget != PVictim && Action.messageID == 185)
-									Action.messageID = 264; // Aoe victim: "takes 123 damage"
+								Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 
 								m_PMob->m_ActionList.push_back(Action);
 							}
@@ -686,8 +691,7 @@ void CAIMobDummy::ActionAbilityFinish()
 								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 								{
 									Action.messageID  = m_PMobSkill->getMsg();
-									if (Action.messageID == 185)
-										Action.messageID = 264; // Aoe victim: "takes 123 damage"
+									Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 									m_PMob->m_ActionList.push_back(Action);
 								}
 							}
@@ -704,8 +708,7 @@ void CAIMobDummy::ActionAbilityFinish()
 								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, m_PMobSkill, &radiusAround))
 								{
 									Action.messageID  = m_PMobSkill->getMsg();
-									if (Action.ActionTarget != PVictim && Action.messageID == 185) 
-										Action.messageID = 264; // Aoe victim: "takes 123 damage"
+									Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 									
 									m_PMob->m_ActionList.push_back(Action);
 								}
@@ -715,8 +718,7 @@ void CAIMobDummy::ActionAbilityFinish()
 									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 									{
 										Action.messageID  = m_PMobSkill->getMsg();
-										if (Action.messageID  == m_PMobSkill->getMsg())
-											Action.messageID = 264; // Aoe victim: "takes 123 damage"
+										Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 										m_PMob->m_ActionList.push_back(Action);
 									}
 								}
@@ -732,8 +734,7 @@ void CAIMobDummy::ActionAbilityFinish()
 							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround))
 							{
 								Action.messageID  = m_PMobSkill->getMsg();
-								if (Action.messageID == 185)
-									Action.messageID = 264; // Aoe victim: "takes 123 damage"
+								Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 								m_PMob->m_ActionList.push_back(Action);
 							}
 
@@ -742,8 +743,7 @@ void CAIMobDummy::ActionAbilityFinish()
 								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 								{
 									Action.messageID  = m_PMobSkill->getMsg();
-									if (Action.ActionTarget != PVictim && Action.messageID == 185) 
-										Action.messageID = 264; // Aoe victim: "takes 123 damage"
+									Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 
 									m_PMob->m_ActionList.push_back(Action);
 								}
@@ -761,8 +761,7 @@ void CAIMobDummy::ActionAbilityFinish()
 								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, m_PMobSkill, &radiusAround))
 								{
 									Action.messageID  = m_PMobSkill->getMsg();
-									if (Action.messageID == 185)
-										Action.messageID = 264; // Aoe victim: "takes 123 damage"
+									Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 									m_PMob->m_ActionList.push_back(Action);
 								}
 
@@ -771,8 +770,7 @@ void CAIMobDummy::ActionAbilityFinish()
 									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 									{
 										Action.messageID  = m_PMobSkill->getMsg();
-										if (Action.ActionTarget != PVictim && Action.messageID == 185) 
-											Action.messageID = 264; // Aoe victim: "takes 123 damage"
+										Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 
 										m_PMob->m_ActionList.push_back(Action);
 									}
@@ -786,7 +784,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround))
 						{
-							Action.messageID  = m_PMobSkill->getMsg();
+							Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 							m_PMob->m_ActionList.push_back(Action);
 						}
 
@@ -795,8 +793,7 @@ void CAIMobDummy::ActionAbilityFinish()
 							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster, &Action, m_PMobSkill, &radiusAround))
 							{
 								Action.messageID  = m_PMobSkill->getMsg();
-								if (Action.messageID == 185)
-									Action.messageID = 264; // Aoe victim: "takes 123 damage"
+								Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 								m_PMob->m_ActionList.push_back(Action);
 							}
 						}
@@ -1394,4 +1391,46 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
     }
 
     return results;
+}
+
+uint16 CAIMobDummy::aoeMessageID(uint16 id)
+{
+	switch(id){
+		case 85:
+			return 284; 
+			break;
+		case 185:
+			return 264;
+			break;
+		case 186:
+			return 266;
+			break;
+		case 187:
+			return 281;
+			break;
+		case 188:
+			return 63;
+			break;
+		case 189:
+			return 283;
+			break;
+		case 225:
+			return 366;
+			break;
+		case 226:
+			return 226; //no message for this... I guess there is no aoe TP drain move
+			break;
+		case 238:
+			return 24;
+			break;
+		case 242:
+			return 277;
+			break;
+		case 243:
+			return 278;
+			break;
+		case 284:
+			return 284; //already the aoe message
+			break;
+	}
 }
