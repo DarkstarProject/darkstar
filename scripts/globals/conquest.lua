@@ -427,10 +427,10 @@ end;
 
 function OP_TeleFee(player,region)
 	
-		if(GetRegionOwner(region) == player:getNation()) then
-			return tpFees[region + 5];
+		if(GetRegionOwner(region - 5) == player:getNation()) then
+			return tpFees[region];
 		else
-			return tpFees[region + 5] * 3;
+			return tpFees[region] * 3;
 		end
 	
 end;

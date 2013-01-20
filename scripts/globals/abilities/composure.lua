@@ -11,5 +11,5 @@ require("scripts/globals/status");
 
 function OnUseAbility(player, target, ability)
 	player:delStatusEffect(EFFECT_COMPOSURE);
-	player:addStatusEffect(EFFECT_COMPOSURE,1,0,5400);
+	player:addStatusEffect(EFFECT_COMPOSURE,1,0,7200);
 end;
