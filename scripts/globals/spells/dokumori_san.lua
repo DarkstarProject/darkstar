@@ -15,7 +15,7 @@ function onSpellCast(caster,target,spell)
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     local bonus = AffinityBonus(caster,spell);
     --Duration Calculation
-    local duration = 240 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
+    local duration = 360 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
     local power = 20;
 
     --Calculates resist chanve from Reist Blind

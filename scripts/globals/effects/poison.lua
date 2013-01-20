@@ -1,7 +1,7 @@
 -----------------------------------
 --
 -- 	EFFECT_POISON
--- 	
+--
 -----------------------------------
 
 require("scripts/globals/status");
@@ -14,8 +14,8 @@ function onEffectGain(target,effect)
     --nRes=1;
 	--cRes = target:getMod(MOD_POISONRES);
     --if(cRes > 0) then
-	--    nRes = cRes + nRes    
-	--end	
+	--    nRes = cRes + nRes
+	--end
     --target:setMod(MOD_POISONRES,nRes,30);
 end;
 

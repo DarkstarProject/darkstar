@@ -18,11 +18,11 @@ function onSpellCast(caster,target,spell)
     --Power for Hojo is a flat 30% reduction
     power = 30;
     --Duration and Resistance calculation
-    duration = 300 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
+    duration = 420 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
     --Calculates the resist chance from Resist Blind trait
     if(math.random(0,100) >= target:getMod(MOD_SLOWRES)) then
         -- Spell succeeds if a 1 or 1/2 resist check is achieved
-        if(duration >= 150) then
+        if(duration >= 210) then
             --Looks for another Slow or Haste effect and replaces it if stronger
             slow = target:getStatusEffect(EFFECT_SLOW);
             haste = target:getStatusEffect(EFFECT_HASTE);

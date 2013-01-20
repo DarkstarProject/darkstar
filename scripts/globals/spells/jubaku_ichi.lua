@@ -32,6 +32,7 @@ function onSpellCast(caster,target,spell)
                     target:addStatusEffect(effect,power,0,duration);
                     spell:setMsg(267);
                 else
+                    -- no effect
                     spell:setMsg(75);
                 end
             else

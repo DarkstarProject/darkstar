@@ -15,13 +15,13 @@ function onSpellCast(caster,target,spell)
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     local bonus = AffinityBonus(caster,spell);
     --Duration Calculation
-    local duration = 180 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
+    local duration = 420 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
     --Kurayami base power is 30 and is not affected by resistaces.
     local power = 35;
 
     --Calculates resist chanve from Reist Blind
     if(math.random(0,100) >= target:getMod(MOD_BLINDRES)) then
-        if(duration >= 80) then
+        if(duration >= 210) then
             -- Erases a weaker blind and applies the stronger one
             local blindness = target:getStatusEffect(EFFECT_BLINDNESS);
             if(blindness ~= nil) then

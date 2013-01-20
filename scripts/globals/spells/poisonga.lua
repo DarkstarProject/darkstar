@@ -1,5 +1,5 @@
 -----------------------------------------
---  Spell: Poison
+--  Spell: Poisonga
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -11,15 +11,15 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
     local effect = EFFECT_POISON;
-    local duration = 120;
+    local duration = 60;
 
     pINT = caster:getStat(MOD_INT);
     mINT = target:getStat(MOD_INT);
 
     dINT = (pINT - mINT);
-    power = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 20 + 1;
-    if power > 10 then
-        power = 10;
+    local power = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 20 + 1;
+    if power > 6 then
+        power = 6;
     end
 
     if(math.random(0,100) >= target:getMod(MOD_POISONRES)) then
