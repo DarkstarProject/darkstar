@@ -62,17 +62,25 @@ CLuaMobSkill::CLuaMobSkill(CMobSkill* PSkill)
 
 inline int32 CLuaMobSkill::setMsg(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL); 
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
     m_PLuaMobSkill->setMsg(lua_tointeger(L,-1));
 	return 0;
 }
 
+inline int32 CLuaMobSkill::getMsg(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+
+    lua_pushinteger( L, m_PLuaMobSkill->getMsg() );
+    return 1;
+}
+
 inline int32 CLuaMobSkill::getID(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
-	
+
 	lua_pushinteger( L, m_PLuaMobSkill->getID() );
 	return 1;
 }
@@ -86,7 +94,7 @@ inline int32 CLuaMobSkill::getID(lua_State* L)
 inline int32 CLuaMobSkill::getTP(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
-	
+
 	lua_pushinteger( L, m_PLuaMobSkill->getTP() );
 	return 1;
 }
@@ -98,10 +106,11 @@ inline int32 CLuaMobSkill::getTP(lua_State* L)
 ************************************************************************/
 
 const int8 CLuaMobSkill::className[] = "CMobSkill";
-Lunar<CLuaMobSkill>::Register_t CLuaMobSkill::methods[] = 
+Lunar<CLuaMobSkill>::Register_t CLuaMobSkill::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaMobSkill,setMsg),
+    LUNAR_DECLARE_METHOD(CLuaMobSkill,getMsg),
 	LUNAR_DECLARE_METHOD(CLuaMobSkill,getID),
 	LUNAR_DECLARE_METHOD(CLuaMobSkill,getTP),
 	{NULL,NULL}
-}; 
+};

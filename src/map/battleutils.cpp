@@ -1009,8 +1009,6 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
             if(rand()%100 <= PDefender->getMod(MOD_WINDRES)){return;}
             //remove defense down
             PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DEFENSE_DOWN);
-            //remove defense up
-            // PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DEFENSE_UP);
 
 		Action->subeffect = SUBEFFECT_DEFENS_DOWN;
 		Action->subparam  = EFFECT_DEFENSE_DOWN;

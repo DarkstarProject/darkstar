@@ -333,8 +333,8 @@ INSERT INTO `mob_skill` VALUES (189,77,189,'Scissor_Guard', 0, 7.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (195,197,195,'Splash_Breath', 4, 12.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (196,197,196,'Screwdriver', 0, 7.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (197,197,197,'Water_Wall', 0, 7.0, 2000, 1000, 1, 0); -- 100% Defense Boost. 1 minute duration
-INSERT INTO `mob_skill` VALUES (198,197,198,'Water Shield', 0, 7.0, 2000, 1000, 1, 0); -- Eva boost
-INSERT INTO `mob_skill` VALUES (194,197,194,'Aqua Ball', 1, 10.0, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (198,197,198,'Water_Shield', 0, 7.0, 2000, 1000, 1, 0); -- Eva boost
+INSERT INTO `mob_skill` VALUES (194,197,194,'Aqua_Ball', 2, 10.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (190,197,190,'Intimidate', 4, 12.0, 2000, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Recoil Dive', 4, 12.0, 2000, 1500, 4, 0); -- Used by Jagils instead of Screwdriver
 
@@ -600,7 +600,7 @@ INSERT INTO `mob_skill` VALUES (74,61,74,'Shuffle', 4, 7.0, 2000, 1500, 4, 0);
 
 -- Sahagin (-72 for anim id)
 INSERT INTO `mob_skill` VALUES (514,213,442,'Jumping_Thrust', 0, 9.5, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (515,213,443,'Hydro_Ball', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (515,213,443,'Hydro_Ball', 4, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (521,213,449,'Hydro_Shot', 0, 10.0, 2000, 3500, 4, 0);
 INSERT INTO `mob_skill` VALUES (524,213,452,'Spinning_Fin', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (518,213,446,'Bubble_Armor', 0, 7.0, 2000, 1500, 1, 0);

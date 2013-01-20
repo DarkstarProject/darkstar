@@ -77,7 +77,7 @@ void LoadPetList()
 {
 	FreePetList();
 
-	const int8* Query = 
+	const int8* Query =
         "SELECT\
           pet_list.name,\
           modelid,\
@@ -88,16 +88,18 @@ void LoadPetList()
           systemid,\
           mob_pools.familyid,\
           mob_pools.mJob,\
-          pet_list.element\
+          pet_list.element,\
+          mob_family_system.HP,\
+          mob_family_system.MP\
         FROM pet_list, mob_pools, mob_family_system \
         WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
 	if( Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			Pet_t* Pet = new Pet_t();
-			
+
 			Pet->name.insert(0,Sql_GetData(SqlHandle,0));
 
 			memcpy(&Pet->look,Sql_GetData(SqlHandle,1),20);
@@ -133,7 +135,7 @@ void FreePetList()
 void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
 	DSP_DEBUG_BREAK_IF(PMaster->PPet==NULL);
 
-	CPetEntity* PPet = (CPetEntity*)PMaster->PPet; 
+	CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
 	PPet->PBattleAI->SetBattleTarget(PTarget);
 	PPet->PBattleAI->SetCurrentAction(ACTION_ATTACK);
 }
@@ -143,9 +145,9 @@ void RetreatToMaster(CBattleEntity* PMaster){
 
 	CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
 	PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
-} 
+}
 
-uint16 GetJugWeaponDamage(CPetEntity* PPet) 
+uint16 GetJugWeaponDamage(CPetEntity* PPet)
 {
 	float MainLevel = PPet->GetMLevel();
 	return (uint16)(MainLevel * (MainLevel < 40 ? 1.4 - MainLevel/100 : 1));
@@ -164,10 +166,10 @@ uint16 GetJugBase(CPetEntity * PMob, uint8 rank)
 	}
 	return 0;
 }
-uint16 GetBaseToRank(uint8 rank, uint16 lvl) 
+uint16 GetBaseToRank(uint8 rank, uint16 lvl)
 {
-	switch (rank) 
-	{	
+	switch (rank)
+	{
 		case 1: return (5+((lvl-1)*50)/100);
 		case 2: return (4+((lvl-1)*45)/100);
 		case 3: return (4+((lvl-1)*40)/100);
@@ -183,7 +185,7 @@ void LoadJugStats(CPetEntity* PMob){
 	//follows monster formulas but jugs have no subjob
 
 	PMob->health.maxhp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
-    
+
 	switch(PMob->GetMJob()){
 	case JOB_PLD:
 	case JOB_WHM:
@@ -205,11 +207,11 @@ void LoadJugStats(CPetEntity* PMob){
 	uint16 BaseAttack = 0;
 
 	if(PMob->GetMLevel() <= 30) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 31 / 10); 
+		BaseAttack = (uint16)(PMob->GetMLevel() * 31 / 10);
 	} else if(PMob->GetMLevel() <= 50) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 30 / 10); 
+		BaseAttack = (uint16)(PMob->GetMLevel() * 30 / 10);
 	} else if(PMob->GetMLevel() > 50) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 37 / 10); 
+		BaseAttack = (uint16)(PMob->GetMLevel() * 37 / 10);
 	}
 
 	PMob->setModifier(MOD_ATT, BaseAttack);
@@ -256,13 +258,13 @@ void LoadAvatarStats(CPetEntity* PChar)
 	int32 scaleOver75Column = 4;	// номер колонки с модификатором после 75 уровня
 	int32 scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
 	int32 scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
-	
+
 	uint8 grade;
-	
+
 	uint8 mlvl = PChar->GetMLevel();
-	JOBTYPE mjob = PChar->GetMJob(); 
+	JOBTYPE mjob = PChar->GetMJob();
 	uint8 race = 0;					//Human
-	
+
 	// Расчет прироста HP от main job
 	int32 mainLevelOver30 = dsp_cap(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
 	int32 mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59 );			// Первый режим рассчета до 60 уровня (Используется так же и для MP)
@@ -278,19 +280,19 @@ void LoadAvatarStats(CPetEntity* PChar)
 	// Расчет по расе
 
 	grade = grade::GetRaceGrades(race,0);
- 
-	raceStat = grade::GetHPScale(grade,baseValueColumn) + 
-		(grade::GetHPScale(grade,scaleTo60Column) * mainLevelUpTo60) + 
-		(grade::GetHPScale(grade,scaleOver30Column) * mainLevelOver30) + 
-		(grade::GetHPScale(grade,scaleOver60Column) * mainLevelOver60To75) + 
+
+	raceStat = grade::GetHPScale(grade,baseValueColumn) +
+		(grade::GetHPScale(grade,scaleTo60Column) * mainLevelUpTo60) +
+		(grade::GetHPScale(grade,scaleOver30Column) * mainLevelOver30) +
+		(grade::GetHPScale(grade,scaleOver60Column) * mainLevelOver60To75) +
 		(grade::GetHPScale(grade,scaleOver75Column) * mainLevelOver75);
 
 	// raceStat = (int32)(statScale[grade][baseValueColumn] + statScale[grade][scaleTo60Column] * (mlvl - 1));
 
 	// Расчет по main job
 	grade = grade::GetJobGrade(mjob,0);
-	
-	jobStat = grade::GetHPScale(grade,baseValueColumn) + 
+
+	jobStat = grade::GetHPScale(grade,baseValueColumn) +
 		(grade::GetHPScale(grade,scaleTo60Column) * mainLevelUpTo60) +
 		(grade::GetHPScale(grade,scaleOver30Column) * mainLevelOver30) +
 		(grade::GetHPScale(grade,scaleOver60Column) * mainLevelOver60To75) +
@@ -305,7 +307,7 @@ void LoadAvatarStats(CPetEntity* PChar)
 	raceStat = 0;
 	jobStat  = 0;
 	sJobStat = 0;
-	
+
 	// Расчет MP расе.
 	grade = grade::GetRaceGrades(race,1);
 
@@ -361,7 +363,7 @@ void LoadAvatarStats(CPetEntity* PChar)
 		if (mainLevelOver60 > 0)
 		{
 			jobStat += grade::GetStatScale(grade,scaleOver60) * mainLevelOver60;
-			
+
 			if (mainLevelOver75 > 0)
 			{
 				jobStat += grade::GetStatScale(grade,scaleOver75) * mainLevelOver75  - (mlvl >= 75 ? 0.01f : 0);
@@ -395,7 +397,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		petType = PETTYPE_AVATAR;
 	}
 	else if(PetID==PETID_WYVERN){
-		petType = PETTYPE_WYVERN; 
+		petType = PETTYPE_WYVERN;
 	}
 	CPetEntity* PPet = new CPetEntity(petType);
 
@@ -514,7 +516,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	if (spawningFromZone == true)
 	{
 		PPet->health.tp = ((CCharEntity*)PMaster)->petZoningInfo.petTP;
-		PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;		
+		PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
 	}
 
 }
@@ -604,7 +606,7 @@ void DespawnPet(CBattleEntity* PMaster)
 					PMob->PBattleAI->SetLastActionTime(gettick());
 
 					if (PMob->GetHPP() == 0)
-						PMob->PBattleAI->SetCurrentAction(ACTION_FALL);			
+						PMob->PBattleAI->SetCurrentAction(ACTION_FALL);
 					else
 						PMob->PBattleAI->SetCurrentAction(ACTION_ROAMING);
 
@@ -735,7 +737,7 @@ int16 PerpetuationCost(uint32 id, uint8 level)
 		else
 			cost = 15;
 	}
-	
+
 	return cost;
 }
 

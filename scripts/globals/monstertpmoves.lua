@@ -78,6 +78,7 @@ MSG_DRAIN_HP = 187;
 MSG_DRAIN_MP = 225;
 MSG_DRAIN_TP = 226;
 MSG_NO_EFFECT = 189;
+MSG_DAMAGE = 185; -- player uses, target takes 10 damage. DEFAULT
 MSG_MISS = 188;
 MSG_RESIST = 85;
 MSG_EFFECT_DRAINED = 370; -- status effects are drained from <target>.
@@ -195,6 +196,13 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	if(hitslanded >= 1 and finaldmg < 1) then
 		finaldmg = 1;
+	end
+
+	-- all hits missed
+	if(hitslanded == 0 or finaldmg == 0) then
+		finaldmg = 0;
+		hitslanded = 0;
+		skill:setMsg(MSG_MISS);
 	end
 
 	returninfo.dmg = finaldmg;
@@ -508,6 +516,12 @@ function calculateMobMagicBurstAndBonus(caster, ele, target)
 end
 
 function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
+
+	-- physical attack missed, skip rest
+	if(skilltype == MOBSKILL_PHYSICAL and dmg == 0) then
+		return 0;
+	end
+
 	--Handle shadows depending on shadow behaviour / skilltype
 	if(shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
 		targShadows = target:getMod(MOD_UTSUSEMI);
@@ -613,7 +627,18 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	end
 
 	return dmg;
-end
+end;
+
+-- returns true if mob attack hit
+-- used to stop tp move status effects
+function MobPhysicalHit(skill, dmg, target, hits)
+	-- if message is not the default. Then there was a miss, shadow taken etc
+	if(skill:getMsg() ~= MSG_DAMAGE) then
+		return false;
+	end
+
+	return true;
+end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
 	if(tp<100) then
