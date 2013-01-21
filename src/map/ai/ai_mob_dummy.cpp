@@ -1123,6 +1123,7 @@ void CAIMobDummy::ActionAttack()
 							Action.speceffect = SPECEFFECT_HIT;
 							Action.messageID  = 1;
 
+							// if victim is a player, get the players counter merits
 							uint8 meritCounter = 0;
 							if (m_PBattleTarget->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER))
 							{
@@ -1130,12 +1131,15 @@ void CAIMobDummy::ActionAttack()
 									meritCounter = ((CCharEntity*)m_PBattleTarget)->PMeritPoints->GetMeritValue(MERIT_COUNTER_RATE,m_PBattleTarget->GetMLevel());
 							}
 
+
 							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
-							if(rand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) && rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob)){
-								//countered! can crit but new animation
+							if (rand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) && 
+								rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
+								charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER))
+							{
 								isCountered = true;
-								Action.messageID = 33; //counter msg
-								Action.reaction   = REACTION_NONE;
+								Action.messageID = 33; //counter msg  32
+								Action.reaction   = REACTION_HIT;
 								Action.speceffect = SPECEFFECT_NONE;
 							
 								bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false) );
@@ -1146,9 +1150,14 @@ void CAIMobDummy::ActionAttack()
 								Action.subparam = (damage * 2);
 								Action.flag = 2;
 							}
-							else{
+							else
+							{
 								bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget,false) );
-								if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0)){isCritical=true;}
+
+								if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0))
+								{
+									isCritical=true;
+								}
 							
 								float DamageRatio = battleutils::GetDamageRatio(m_PMob, m_PBattleTarget,isCritical, 0); 
 							
@@ -1163,7 +1172,7 @@ void CAIMobDummy::ActionAttack()
                                 {
                                     isGuarded = true;
                                     //Action.messageID = 0;
-                                    Action.reaction = REACTION_NONE;
+                                    Action.reaction = REACTION_GUARD;
                                     Action.speceffect = SPECEFFECT_NONE;
                                     DamageRatio -= 1.0f; // Guard lowers pDif by 1.0
                                 }

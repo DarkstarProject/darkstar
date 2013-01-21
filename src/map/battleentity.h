@@ -188,7 +188,8 @@ enum REACTION
 	REACTION_PARRY			= 0x03,		// блокирование оружием (MISS + PARRY)
 	REACTION_BLOCK			= 0x04,		// блокирование щитом
 	REACTION_HIT			= 0x08,		// попадание
-	REACTION_EVADE			= 0x09		// уклонение (MISS + HIT)
+	REACTION_EVADE			= 0x09,		// уклонение (MISS + HIT)
+	REACTION_GUARD			= 0x14,		// mnk guard (20 dec)
 };
 
 enum SPECEFFECT

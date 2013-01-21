@@ -1578,6 +1578,7 @@ void CheckValidEquipment(CCharEntity* PChar)
         }
         PChar->pushPacket(new CEquipPacket(0, slotID));
 	}
+
 	PChar->pushPacket(new CCharAppearancePacket(PChar));
 
 

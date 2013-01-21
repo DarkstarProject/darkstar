@@ -2827,6 +2827,7 @@ void CAICharNormal::ActionAttack()
 						fstrslot = SLOT_SUB;
 					}
 				}
+
 				uint16 damage = 0;
 
 				if(m_PChar->GetMJob() == JOB_MNK && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK)){
@@ -2914,8 +2915,21 @@ void CAICharNormal::ActionAttack()
 						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
 
 
-					damage = (uint16)(((PWeapon->getDamage() + bonusDMG +
-						battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+					if (PWeapon->getDmgType() == DAMAGE_HTH)
+					{
+						// (ffxiclopedia h2h) remove 3 dmg from weapon, DB has an extra 3 for weapon rank
+
+						// get natural h2h damage (h2hSkill*0.11+3)
+						uint16 naturalH2hDmg = (float)(m_PChar->GetSkill(1) * 0.11f)+3;
+
+						damage = (uint16)((( (PWeapon->getDamage()-3) + naturalH2hDmg + bonusDMG +
+								 battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+					}
+					else
+					{
+						damage = (uint16)(((PWeapon->getDamage() + bonusDMG + 
+							battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+					}
 
 
 					// do soul eater effect

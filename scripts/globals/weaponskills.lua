@@ -16,7 +16,15 @@ function doPhysicalWeaponskill(attacker, target, params)
 	local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getWeaponDmg());
 	
 	--apply WSC
-	local base = attacker:getWeaponDmg() + fstr + 
+	local weaponDamage = attacker:getWeaponDmg();
+
+	if (attacker:getWeaponSkillType(0) == 1) then
+		weaponDamage = (attacker:getWeaponDmg()-3) + ((attacker:getSkillLevel(1) * 0.11) + 3);
+	else
+		weaponDamage = attacker:getWeaponDmg();
+	end
+	
+	local base = weaponDamage + fstr + 
 		(attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc + 
 		 attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc + 
 		 attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc + 

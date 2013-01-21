@@ -1797,12 +1797,8 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 
 int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 {
-	int32 rank = 0;
-
-	if (PAttacker->m_Weapons[SlotID]->getDmgType() == DAMAGE_HTH)
-		rank = PAttacker->m_Weapons[SlotID]->getDamage() + 3 / 9;
-	else
-		rank = PAttacker->m_Weapons[SlotID]->getDamage() / 9;
+	// all h2h weapons already have 3 added to thier dmg in database
+	int32 rank = PAttacker->m_Weapons[SlotID]->getDamage() / 9;
 
 
 	float dif = PAttacker->STR() - PDefender->VIT();
