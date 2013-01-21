@@ -1,6 +1,6 @@
 -------------------------------
 -- Auth : Thief
--- Skill: Dragon Kick
+-- Skill: Tornado Kick
 -- Class: H2H Weapon Skill
 -- Level: 225
 -- Mods : STR:37.5% VIT:30%
@@ -20,10 +20,10 @@ function OnUseWeaponSkill(attacker, target, wsID)
 	params.numHits = 2;
 
 	--stat-modifiers (0.0 = 0%, 0.2 = 20%, 0.5 = 50%..etc)
-	params.str_mod = 0.5;		params.dex_mod = 0.0;
-	params.vit_mod = 0.5;		params.agi_mod = 0.0;
-	params.int_mod = 0.0;		params.mnd_mod = 0.0;
-	params.chr_mod = 0.0;
+	params.str_wsc = 0.5;		params.dex_wsc = 0.0;
+	params.vit_wsc = 0.5;		params.agi_wsc = 0.0;
+	params.int_wsc = 0.0;		params.mnd_wsc = 0.0;
+	params.chr_wsc = 0.0;
 
 	--ftp damage mods (for Damage Varies with TP; lines are calculated in the function ftp)
 	params.ftp100 = 2.0; params.ftp200 = 2.75; params.ftp300 = 3.5;

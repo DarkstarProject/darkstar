@@ -77,8 +77,8 @@ INSERT INTO `abilities` VALUES ('44', 'barrage', '11', '30', '1', '300', '125', 
 INSERT INTO `abilities` VALUES ('45', 'call_wyvern', '14', '1', '1', '1200', '163', '0', '0', '94', '20', '0', '1', '300', '0');
 INSERT INTO `abilities` VALUES ('46', 'third_eye', '12', '15', '1', '60', '133', '0', '0', '24', '20', '0', '1', '0', '104');
 INSERT INTO `abilities` VALUES ('47', 'meditate', '12', '30', '1', '180', '134', '0', '0', '25', '20', '0', '320', '0', '107');
-INSERT INTO `abilities` VALUES ('48', 'warding_circle', '12', '5', '1', '600', '135', '0', '0', '32', '20', '1', '1', '20', '105');
-INSERT INTO `abilities` VALUES ('49', 'ancient_circle', '14', '5', '1', '600', '157', '0', '0', '31', '20', '1', '1', '20', '116');
+INSERT INTO `abilities` VALUES ('48', 'warding_circle', '12', '5', '1', '600', '135', '0', '0', '31', '20', '1', '1', '20', '105');
+INSERT INTO `abilities` VALUES ('49', 'ancient_circle', '14', '5', '1', '600', '157', '0', '0', '32', '20', '1', '1', '20', '116');
 INSERT INTO `abilities` VALUES ('50', 'jump', '14', '10', '4', '60', '158', '110', '0', '204', '20', '0', '1000', '1000', '117');
 INSERT INTO `abilities` VALUES ('51', 'high_jump', '14', '35', '4', '120', '159', '110', '0', '209', '20', '0', '0', '0', '118');
 INSERT INTO `abilities` VALUES ('52', 'super_jump', '14', '50', '4', '180', '160', '110', '0', '214', '20', '0', '1000', '1000', '119');

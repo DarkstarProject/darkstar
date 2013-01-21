@@ -16,11 +16,10 @@ function onTrigger(player,target)
 		player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
 		player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
 		player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
-		player:addStatusEffect(EFFECT_MANAFONT,1,0,0);		
-		player:addStatusEffect(EFFECT_SNEAK_ATTACK,1,0,0);
-		player:addStatusEffect(EFFECT_REGAIN,300,1,0);
+		player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
+		player:addStatusEffect(EFFECT_REGAIN,100,1,0);
         player:addStatusEffect(EFFECT_REGEN,500,1,0);
-        player:addStatusEffect(EFFECT_HASTE,300,0,0);
+        player:addStatusEffect(EFFECT_HASTE,30,0,0);
 	else
 		player:setVar("GodMode",0)
 		player:delStatusEffect(EFFECT_INVINCIBLE);

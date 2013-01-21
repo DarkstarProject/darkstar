@@ -53,7 +53,7 @@ INSERT INTO `item_armor` VALUES(10246, 'hexed_domaru_-1', 99, 34304, 0, 0, 0, 32
 INSERT INTO `item_armor` VALUES(10247, 'hexed_jacket_-1', 99, 91400, 0, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES(10248, 'hexed_doublet_-1', 99, 143366, 0, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES(10249, 'hexed_bliaut_-1', 99, 131205, 0, 0, 0, 32, 0);
-INSERT INTO `item_armor` VALUES(10250, 'moogle_suit', 1, 1048575, 307, 0, 3, 32, 0);
+INSERT INTO `item_armor` VALUES(10250, 'moogle_suit', 1, 1048575, 307, 0, 3, 32, 14);
 INSERT INTO `item_armor` VALUES(10251, 'decennial_coat', 1, 1048575, 0, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES(10252, 'decennial_dress', 1, 1048575, 332, 0, 0, 32, 6);
 INSERT INTO `item_armor` VALUES(10253, 'decennial_coat_+1', 1, 1048575, 0, 0, 0, 32, 0);
