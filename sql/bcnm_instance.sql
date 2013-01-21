@@ -790,3 +790,14 @@ INSERT INTO `bcnm_instance` VALUES ('800', '3', '16855051');
 INSERT INTO `bcnm_instance` VALUES ('832', '1', '16863233');
 INSERT INTO `bcnm_instance` VALUES ('832', '2', '16863234');
 INSERT INTO `bcnm_instance` VALUES ('832', '3', '16863235');
+
+-- Monarch Linn
+INSERT INTO `bcnm_instance` VALUES ('960', '1', '16904193');
+INSERT INTO `bcnm_instance` VALUES ('960', '1', '16904194');
+INSERT INTO `bcnm_instance` VALUES ('960', '1', '16904195');
+INSERT INTO `bcnm_instance` VALUES ('960', '2', '16904196');
+INSERT INTO `bcnm_instance` VALUES ('960', '2', '16904197');
+INSERT INTO `bcnm_instance` VALUES ('960', '2', '16904198');
+INSERT INTO `bcnm_instance` VALUES ('960', '3', '16904199');
+INSERT INTO `bcnm_instance` VALUES ('960', '3', '16904200');
+INSERT INTO `bcnm_instance` VALUES ('960', '3', '16904201');

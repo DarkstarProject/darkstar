@@ -97,7 +97,9 @@ function TradeBCNM(player,zone,trade,npc)
 end;
 
 function EventTriggerBCNM(player,npc)
-	--return false;
+	player:setVar("trade_bcnmid",0);
+	player:setVar("trade_itemid",0);
+	
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
 		if(player:isInBcnm() == 1) then
 			player:startEvent(0x7d03); --Run Away or Stay menu
@@ -195,8 +197,8 @@ function EventFinishBCNM(player,csid,option)
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
 		return false;
 	else
-		id = player:getVar("trade_bcnmid");
-		item = player:getVar("trade_itemid");
+		local id = player:getVar("trade_bcnmid");
+		local item = player:getVar("trade_itemid");
 		
 		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 293) then
 			player:tradeComplete(); -- Removes the item
@@ -335,24 +337,24 @@ function checkNonTradeBCNM(player,npc)
 	Zone = player:getZone();
 	
 	if(Zone == 17) then --Spire of Holla
-	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(590)==false) then--light of holla	
-	         mask = GetBattleBitmask(768,Zone,1);
-	         player:setVar("trade_bcnmid",768);
+	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_HOLLA) == false) then -- light of holla	
+	        mask = GetBattleBitmask(768,Zone,1);
+	        player:setVar("trade_bcnmid",768);
 	    end
 	elseif(Zone == 19) then --Spire of Dem
-	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(591 )==false) then--light of dem	
-	         mask = GetBattleBitmask(800,Zone,1);
-	         player:setVar("trade_bcnmid",800);
+	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_DEM) == false) then -- light of dem	
+	        mask = GetBattleBitmask(800,Zone,1);
+	        player:setVar("trade_bcnmid",800);
 	    end	
 	elseif(Zone == 21) then --Spire of Mea
-	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(592)==false) then--light of mea	
-	         mask = GetBattleBitmask(832,Zone,1);
-	         player:setVar("trade_bcnmid",832);
+	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_MEA) == false) then -- light of mea	
+	        mask = GetBattleBitmask(832,Zone,1);
+	        player:setVar("trade_bcnmid",832);
 	    end
 	 elseif(Zone == 31) then --Monarch Linn
-	    if(player:getCurrentMission(COP) ==ANCIENT_VOWS and player:getVar("COPStatus")==2) then  --Ancient Vows bcnm
-	      	         mask = GetBattleBitmask(960,Zone,1);
-	         player:setVar("trade_bcnmid",960);
+	    if(player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then  -- Ancient Vows bcnm
+	      	mask = GetBattleBitmask(960,Zone,1);
+	        player:setVar("trade_bcnmid",960);
 	    end  	    
 	elseif(Zone == 139) then -- Horlais Peak
 		if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 

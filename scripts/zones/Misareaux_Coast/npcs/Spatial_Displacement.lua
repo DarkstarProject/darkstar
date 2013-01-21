@@ -21,7 +21,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0227);
+    
+	if(player:hasCompletedMission(COP,SHELTERING_DOUBT))then      
+		player:startEvent(0x0227); -- acces R site A and B
+	elseif(player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 1)then
+		player:startEvent(0x0008); 
+	else
+		player:startEvent(0x0226); -- acces R site A only	
+	end
+	
 end;
 
 -----------------------------------
@@ -41,9 +49,12 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x227 and option == 1) then
+	if(csid == 0x0008)then
+		player:setVar("PromathiaStatus",2);
+		player:setPos(734,-32,-505,101,0x1E);-- Go to Riverne #A01
+	elseif((csid == 0x0227 or csid == 0x0226) and option == 1) then
 		player:setPos(734,-32,-505,101,0x1E); -- Go to Riverne #A01
-	elseif(csid == 0x227 and option == 2) then
+	elseif(csid == 0x0227 and option == 2) then
 		player:setPos(729,-20,410,88,0x1D); -- Go to Riverne #B01
 	end;
 	
