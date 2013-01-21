@@ -3039,7 +3039,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 	if (PVictim->objtype == TYPE_MOB && PCharmer->objtype == TYPE_PC)
 	{
 		//Bind uncharmable mobs for 5 seconds
-		if(PVictim->m_EcoSystem == SYSTEM_BEASTMEN || PVictim->m_EcoSystem == SYSTEM_ARCANA){
+		if(PVictim->m_EcoSystem == SYSTEM_BEASTMEN || PVictim->m_EcoSystem == SYSTEM_ARCANA || PVictim->m_EcoSystem == SYSTEM_UNCLASSIFIED){
 			((CMobEntity*)PVictim)->PEnmityContainer->UpdateEnmity(PCharmer, 0, 0);
 			PVictim->StatusEffectContainer->AddStatusEffect(
 					new CStatusEffect(EFFECT_BIND,EFFECT_BIND,1,0,5));
