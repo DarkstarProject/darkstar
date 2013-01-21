@@ -16,8 +16,8 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local numhits = 1;
 	local accmod = 1;
-	local dmgmod = math.random(2,5);
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_CRIT_VARIES,1,2,3);
+	local dmgmod = math.random(2,4);
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_CRIT_VARIES,1,1.5,2);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
     -- cap off damage around 600

@@ -1,7 +1,9 @@
 -----------------------------------
 --
--- 	EFFECT_NONE
--- 	
+-- 	Plague
+--Plague is a harmful status effect that reduces a character's TP and MP over time.
+-- Also, causes Steps to only grant One Finishing Move when Main Job is Dancer.
+-- Normal power is 5.
 -----------------------------------
 
 -----------------------------------
@@ -16,6 +18,8 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+    target:delMP(math.ceil(effect:getPower() / 2));
+    target:delTP(effect:getPower());
 end;
 
 -----------------------------------
