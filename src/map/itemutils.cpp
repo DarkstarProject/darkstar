@@ -284,11 +284,12 @@ namespace itemutils
                 "w.dmg,"            // 24
                 "w.dmgType,"        // 25
                 "w.hit,"            // 26
+                "w.unlockable,"     // 27
 								       
-                "f.storage,"        // 27
-                "f.moghancement,"   // 28
-                "f.element,"        // 29
-                "f.aura "           // 30
+                "f.storage,"        // 28
+                "f.moghancement,"   // 29
+                "f.element,"        // 30
+                "f.aura "           // 31
 		    "FROM item_basic AS b "
 		    "LEFT JOIN item_usable AS u USING (itemId) "
 		    "LEFT JOIN item_armor  AS a USING (itemId) "
@@ -355,13 +356,14 @@ namespace itemutils
 					    ((CItemWeapon*)PItem)->setDamage(Sql_GetUIntData(SqlHandle,24));
 					    ((CItemWeapon*)PItem)->setDmgType(Sql_GetUIntData(SqlHandle,25));
                         ((CItemWeapon*)PItem)->setMaxHit(Sql_GetUIntData(SqlHandle,26));
+                        ((CItemWeapon*)PItem)->setUnlockable(Sql_GetUIntData(SqlHandle,27));
 				    }
 				    if (PItem->getType() & ITEM_FURNISHING)
 				    {
-					    ((CItemFurnishing*)PItem)->setStorage(Sql_GetUIntData(SqlHandle,27));
-					    ((CItemFurnishing*)PItem)->setMoghancement(Sql_GetUIntData(SqlHandle,28));
-					    ((CItemFurnishing*)PItem)->setElement(Sql_GetUIntData(SqlHandle,29));
-					    ((CItemFurnishing*)PItem)->setAura(Sql_GetUIntData(SqlHandle,30));
+					    ((CItemFurnishing*)PItem)->setStorage(Sql_GetUIntData(SqlHandle,28));
+					    ((CItemFurnishing*)PItem)->setMoghancement(Sql_GetUIntData(SqlHandle,29));
+					    ((CItemFurnishing*)PItem)->setElement(Sql_GetUIntData(SqlHandle,30));
+					    ((CItemFurnishing*)PItem)->setAura(Sql_GetUIntData(SqlHandle,31));
 				    }
 				    g_pItemList[PItem->getID()] = PItem;
 			    }

@@ -68,6 +68,19 @@ bool CItemWeapon::isTwoHanded()
     return m_twoHanded;
 }
 
+
+/************************************************************************
+*                                                                       *
+*  get unlockable property                                              *
+*                                                                       *
+************************************************************************/
+
+bool CItemWeapon::isUnlockable()
+{
+    return m_unlockable;
+}
+
+
 /************************************************************************
 *                                                                       *
 *   Устанавливаем тип оружия и флаг isTwoHanded                         *
@@ -164,6 +177,18 @@ void CItemWeapon::setAdditionalEffect(uint8 effect)
 uint8 CItemWeapon::getAdditionalEffect()
 {
     return m_effect;
+}
+
+
+/************************************************************************
+*                                                                       *
+*  set unlockable property of weapon			                        *
+*                                                                       *
+************************************************************************/
+
+void CItemWeapon::setUnlockable(bool unlockable)
+{
+    m_unlockable = unlockable;
 }
 
 /************************************************************************

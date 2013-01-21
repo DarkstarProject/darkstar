@@ -45,6 +45,7 @@ public:
 
     bool    isRanged();
     bool    isTwoHanded();
+	bool    isUnlockable();
 
 	void	setSkillType(uint8 skillType);
 	void	setDelay(uint16 delay);
@@ -52,7 +53,8 @@ public:
 	void	setDmgType(uint16 dmgType);
     void    setAdditionalEffect(uint8 effect);
     void    setMaxHit(uint8 hit);
-	
+	void    setUnlockable(bool unlockable);
+
 private:
 
 	uint8	m_skillType;
@@ -61,6 +63,7 @@ private:
 	uint16	m_dmgType;
     uint8   m_effect;
     uint8   m_maxHit;
+	bool	m_unlockable;
 
     bool    m_ranged;
     bool    m_twoHanded;
