@@ -620,17 +620,6 @@ void CAIMobDummy::ActionAbilityFinish()
 
 		if (m_PMobSkill->getAoe() == 1 || m_PMobSkill->getAoe() == 2) // to handle both types of aoe
 		{
-			apAction_t Action;
-			Action.ActionTarget = m_PMob;
-			Action.reaction   = REACTION_NONE;
-			Action.speceffect = SPECEFFECT_NONE;
-			Action.animation  = m_PMobSkill->getAnimationID();
-			Action.subparam   = m_PMobSkill->getID() + 256;
-			Action.messageID  = 101;
-			Action.flag		  = 0;
-
-			m_PMob->m_ActionList.push_back(Action);	
-
 			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY) // aoe on the players
 			{
 				targetPartyType = battleutils::getAvailableAoeTargets(m_PBattleTarget);
@@ -806,6 +795,18 @@ void CAIMobDummy::ActionAbilityFinish()
 				//aoe on the enemy (e.g. aoe cure)
 				//TODO: hit self and all targets of the same family? pt?
 			}
+
+			if (m_ActionType == ACTION_FALL)
+			{
+				//  set when you kill the mob in a script, but need 
+				//  it to be ACTION_MOBABILITY_FINISH for pushing the packet.
+				m_ActionType = ACTION_MOBABILITY_FINISH;
+			}
+
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PMob, m_PMobSkill->getID() + 256, 0, 101));
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+			m_PMob->health.tp = 0; 
+
 		}
 		else
 		{
@@ -827,20 +828,18 @@ void CAIMobDummy::ActionAbilityFinish()
 			Action.flag       = 0;
 	
 			m_PMob->m_ActionList.push_back(Action);	
+
+			if (m_ActionType == ACTION_FALL)
+			{
+				//  set when you kill the mob in a script, but need 
+				//  it to be ACTION_MOBABILITY_FINISH for pushing the packet.
+				m_ActionType = ACTION_MOBABILITY_FINISH;
+			}
+
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+			m_PMob->health.tp = 0; 
+
 		}
-
-
-	if (m_ActionType == ACTION_FALL)
-	{
-		//  set when you kill the mob in a script, but need 
-		//  it to be ACTION_MOBABILITY_FINISH for pushing the packet.
-		m_ActionType = ACTION_MOBABILITY_FINISH;
-	}
-
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-	m_PMob->health.tp = 0; 
-
 
 	if (m_PMob->isDead()) //e.g. self-destruct. Needed here AFTER sending the action packets.
 	{ 
