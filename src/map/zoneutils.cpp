@@ -89,7 +89,7 @@ void UpdateWeather()
             }
         }
     }
-    ShowDebug(CL_CYAN"UpdateWeather Finished\n"CL_RESET);
+    ShowDebug(CL_CYAN"UpdateWeather Finished\n" CL_RESET);
 }
 
 /************************************************************************
