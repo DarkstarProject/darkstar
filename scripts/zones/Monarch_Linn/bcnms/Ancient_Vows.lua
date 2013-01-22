@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
 
 	if(csid == 0x7d01)then
 		player:addTitle(TAVNAZIAN_TRAVELER); 
-		player:setPos(-523,38,-435,253,107); --tp to South Gustaberg
+		player:setPos(694,-5.5,-619,74,107); --tp to South Gustaberg 
 	end
 
 end;
