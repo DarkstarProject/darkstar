@@ -28,7 +28,9 @@ function onTrigger(player,npc)
 		return (set % (2*flag) >= flag)
 	end
 	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
-	if (MakingHeadlines == 1) then
+	if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==9)then
+	           player:startEvent(0x0250);--COP event
+	elseif (MakingHeadlines == 1) then
 		prog = player:getVar("QuestMakingHeadlines_var");
 		-- 	Variable to track if player has talked to 4 NPCs and a door
 		-- 	1 = Kyume
@@ -67,6 +69,8 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(PORT_WINDURST_SCOOP);
 		player:messageSpecial(KEYITEM_OBTAINED,PORT_WINDURST_SCOOP);
 		player:setVar("QuestMakingHeadlines_var",prog+2);
+	elseif (csid == 0x0250)	then
+	        player:setVar("MEMORIES_OF_A_MAIDEN_Status",10);
 	end
 end;
 

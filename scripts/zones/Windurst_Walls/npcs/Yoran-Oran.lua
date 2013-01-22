@@ -13,7 +13,7 @@ package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Windurst_Walls/TextIDs");
-
+require("scripts/globals/keyitems");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -73,8 +73,17 @@ end;
 function onTrigger(player,npc)
 	local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
 	local blastFromPast = player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST);
+	local EMORIES_OF_A_MAIDEN = player:getVar("MEMORIES_OF_A_MAIDEN_Status");
 	
-	if(blastFromPast == QUEST_ACCEPTED) then
+	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 3)then
+	       player:startEvent(0x01D5);
+	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 6 )then
+	       player:startEvent(0x01D6,0,587,0,586);    
+	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:hasKeyItem(MIMEO_FEATHER)==true)then       
+	       player:startEvent(0x01D7);
+    elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 11 )then
+	       player:startEvent(0x01D8); 
+	elseif(blastFromPast == QUEST_ACCEPTED) then
 		local blastPastProg = player:getVar("BlastFromThePast_Prog");
 		if(blastPastProg == 1) then
 			player:startEvent(0x00dd);
@@ -113,5 +122,17 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	if(csid == 0x00f9) then
 		player:addQuest(WINDURST,MANDRAGORA_MAD);
+	elseif(csid == 0x01D5)then
+	  player:setVar("MEMORIES_OF_A_MAIDEN_Status",4);
+	elseif(csid == 0x01D6)then
+	  player:setVar("MEMORIES_OF_A_MAIDEN_Status",7);
+	  player:delKeyItem(581);
+	elseif(csid == 0x01D7)then
+		player:delKeyItem(MIMEO_FEATHER);
+ 		player:delKeyItem(SECOND_MIMEO_FEATHER);
+	    player:delKeyItem(THIRD_MIMEO_FEATHER);
+        player:setVar("MEMORIES_OF_A_MAIDEN_Status",9);
+    elseif(csid == 0x01D8)then	
+        player:setVar("MEMORIES_OF_A_MAIDEN_Status",12);    --end 3-3B: Windurst Route: "Memories of a Maiden"	
 	end
 end;

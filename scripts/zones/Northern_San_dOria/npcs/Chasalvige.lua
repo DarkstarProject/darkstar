@@ -8,7 +8,7 @@
 --  @pos: 96.432 -0.520 134.046
 --
 -----------------------------------
-
+require("scripts/globals/missions");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -21,6 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+  if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 3)then 
+  player:startEvent(0x0026); --COP event
+  else
+  player:startEvent(0x0006); 
+  end
 end;
 
 -----------------------------------
@@ -39,5 +44,8 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	if (csid == 0x0026)then
+	  player:setVar("EMERALD_WATERS_Status",4);
+	end
 end;
 

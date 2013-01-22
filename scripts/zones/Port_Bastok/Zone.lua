@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/globals/server");
 require("scripts/globals/settings");
+require("scripts/globals/missions");
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,7 @@ require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+zone:registerRegion(1,-112,-3,-17,-96,3,-3);--event COP
 end;			
 
 -----------------------------------			
@@ -45,7 +47,23 @@ function onZoneIn(player,prevZone)
 	end			
 	return cs;			
 end;				
+-----------------------------------		
+-- onRegionEnter		
+-----------------------------------		
 
+function onRegionEnter(player,region)
+local regionID =region:GetRegionID();
+--printf("regionID: %u",regionID);
+  if(regionID==1 and player:getCurrentMission(COP) ==THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus")==0)then
+  player:startEvent(0x131);
+  end	
+end;	
+-----------------------------------		
+-- onRegionLeave		
+-----------------------------------		
+
+function onRegionLeave(player,region)	
+end;
 -----------------------------------	
 -- onTransportEvent	
 -----------------------------------	
@@ -77,5 +95,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x7534 and option == 0) then	
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
+	elseif(csid == 0x0131)then
+	player:setVar("PromathiaStatus",1);
 	end
 end;	

@@ -41,7 +41,13 @@ function onZoneIn(player,prevZone)
 			cs = 0x7534;
 		end	
 		player:setVar("PlayerMainJob",0);	
-	end		
+	end
+        if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==1)then --COP MEMORIES_OF_A_MAIDEN--3-3B: Windurst Route
+	        player:setVar("MEMORIES_OF_A_MAIDEN_Status",2);
+	                cs = 0x0367; 
+        end
+
+	
 	return cs;		
 end;			
 

@@ -41,8 +41,11 @@ function onTrigger(player,npc)
 	
 	Fame = player:getFameLevel(WINDURST);
 	
+	if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==10)then
+	           player:startEvent(0x036B);--COP event
+	
 	-- Start Past Reflexion in First -----------
-	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
+	elseif(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
 		MissionStatus = player:getVar("MissionStatus");
 		if(MissionStatus == 0) then
 			player:startEvent(0x00a0); -- First CS for Mission 2-1
@@ -105,7 +108,8 @@ function onEventFinish(player,csid,option)
 		player:addQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
 	elseif(csid == 0x0193 and option == 0) then
 	    player:addQuest(WINDURST,CHASING_TALES);
-		
+	elseif(csid ==0x036B)then
+            player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);	
 	end
 	
 end;

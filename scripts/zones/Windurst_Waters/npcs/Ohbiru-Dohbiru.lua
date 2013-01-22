@@ -22,6 +22,7 @@ function onTrade(player,npc,trade)
 	local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
 	local count = trade:getItemCount();
 	
+	
 	if(player:getQuestStatus(WINDURST,WATER_WAY_TO_GO) == QUEST_ACCEPTED) then
 		if(trade:hasItemQty(4351,1) and count == 1) then
 			player:startEvent(0x0163,900);
@@ -69,8 +70,9 @@ function onTrigger(player,npc)
 	local waterWayToGo = player:getQuestStatus(WINDURST,WATER_WAY_TO_GO);
 	local overnightDelivery = player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY);
 	
-	
-	if(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
+	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==2)then	    
+	                player:startEvent(0x0368);
+	elseif(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
 		if(player:getVar("ohbiru_dohbiru_talk") == 1) then
 			player:startEvent(0x8f);
 		else
@@ -205,6 +207,8 @@ function onEventFinish(player,csid,option)
 		player:addFame(WINDURST,WIN_FAME*40);
 		player:tradeComplete();		
 		player:needToZone(true);
+	elseif(csid == 0x0368) then	
+	player:setVar("MEMORIES_OF_A_MAIDEN_Status",3);
 	end
 end;
 

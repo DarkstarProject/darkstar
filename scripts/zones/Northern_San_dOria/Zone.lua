@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
-
+require("scripts/globals/missions");
 -----------------------------------
 -- onInitialize
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 -- onZoneIn			
 -----------------------------------			
 
-function onZoneIn(player,prevZone)			
+function onZoneIn(player,prevZone)	
 	cs = -1;		
 	-- FIRST LOGIN (START CS)		
 	if(prevZone == 0) then		
@@ -43,7 +43,10 @@ function onZoneIn(player,prevZone)
 	end		
 	-- RDM AF3 CS		
 	if(player:getVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1) then		
-		cs = 0x0031;	
+		cs = 0x0031;
+	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1)then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
+	        player:setVar("EMERALD_WATERS_Status",2);
+            	cs = 0x000E;				 
 	end		
 	return cs;	
 end;		
@@ -103,6 +106,6 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(ITEM_OBTAINED, 12513); -- Warlock's Chapeau
 		player:setVar("peaceForTheSpiritCS",0);
 		player:addFame(SANDORIA,AF3_FAME);
-		player:completeQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);
+		player:completeQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);	 
 	end	
 end;		

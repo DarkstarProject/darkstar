@@ -23,6 +23,11 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 function onTrade(player,npc,trade)
 	if(player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP)~= QUEST_COMPLETED and trade:hasItemQty(548,1) == true and trade:getItemCount() == 1) then 
 		player:startEvent(0x006c); -- Finish Quest (don't need fame or starting quest)
+	elseif(player:hasKeyItem(PSOXJA_PASS)==false and (trade:hasItemQty(1692,1) or trade:hasItemQty(1694,1) or trade:hasItemQty(1693,1)) and trade:getItemCount() == 1)then
+	    --Carmine Chip (Ex) - Snow Lizard or Frost Lizard 
+            --Gray Chip (Ex) - Diremite Stalker (at Tower near Ranguemont), Diremite Assaulter, Diremite 
+            --Cyan Chip (Ex) - Treasure Chest Mimics 
+	        player:startEvent(0x0034);
 	end
 end; 
 
@@ -30,7 +35,7 @@ end;
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)
+function onTrigger(player,npc)        
 	if(player:getFameLevel(JEUNO) >= 3 and player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) == QUEST_AVAILABLE) then 
 		player:startEvent(0x006a,8); -- Start Quest (need fame 3 jeuno)
 	elseif(player:hasKeyItem(TENSHODO_APPLICATION_FORM) == true) then 
@@ -84,6 +89,13 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(ITEM_OBTAINED,548);
 		player:addFame(JEUNO,30);
 		player:completeQuest(JEUNO,TENSHODO_MEMBERSHIP);
+		
+	elseif(csid == 0x0034) then 	
+	        player:tradeComplete();
+		player:addKeyItem(PSOXJA_PASS);
+	        player:messageSpecial(KEYITEM_OBTAINED,PSOXJA_PASS);  
+		player:addGil(500);
+		player:messageSpecial(GIL_OBTAINED,500);	
 	end
 end;
 

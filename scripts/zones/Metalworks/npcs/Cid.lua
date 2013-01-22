@@ -38,8 +38,12 @@ function onTrigger(player,npc)
 	local CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
 	local LetterKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
 	local currentMission = player:getCurrentMission(BASTOK);
-	
-	if(player:getMainJob() == 8 and player:getMainLvl() >= AF2_QUEST_LEVEL and 
+
+	if(player:getCurrentMission(COP) == THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus")==1)then
+	        player:startEvent(0x034D); -- COP event
+	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")== 7 and player:getVar("MEMORIES_OF_A_MAIDEN_Status")== 12)then --two paths are finished ?
+			player:startEvent(0x034F); -- COP event 3.3		
+	elseif(player:getMainJob() == 8 and player:getMainLvl() >= AF2_QUEST_LEVEL and 
 	   player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
 		player:startEvent(0x02f8); -- Start Quest "Dark Puppet"
 	elseif(currentMission == GEOLOGICAL_SURVEY) then
@@ -95,8 +99,33 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if(csid == 0x02f8) then
+	if (csid == 0x034D)then
+	        player:setVar("PromathiaStatus",0);
+	        player:completeMission(COP,THE_CALL_OF_THE_WYRMKING);
+            player:addMission(COP,A_VESSEL_WITHOUT_A_CAPTAIN);				
+	elseif (csid == 0x034F)then 
+	        -- finishing mission 3.3 and all sub missions
+			player:setVar("EMERALD_WATERS_Status",0);
+			player:setVar("MEMORIES_OF_A_MAIDEN_Status",0);
+	        player:completeMission(COP,THE_ROAD_FORKS);
+			player:addMission(COP,EMERALD_WATERS);
+			player:completeMission(COP,EMERALD_WATERS);
+	        player:addMission(COP,VICISSITUDES);
+			player:completeMission(COP,VICISSITUDES);
+			player:addMission(COP,DESCENDANTS_OF_A_LINE_LOST);
+			player:completeMission(COP,DESCENDANTS_OF_A_LINE_LOST);
+			player:addMission(COP,LOUVERANCE);
+			player:completeMission(COP,LOUVERANCE);
+			player:addMission(COP,MEMORIES_OF_A_MAIDEN);
+			player:completeMission(COP,MEMORIES_OF_A_MAIDEN);
+			player:addMission(COP,COMEDY_OF_ERRORS_ACT_I);
+			player:completeMission(COP,COMEDY_OF_ERRORS_ACT_I);
+			player:addMission(COP,COMEDY_OF_ERRORS_ACT_II);
+			player:completeMission(COP,COMEDY_OF_ERRORS_ACT_II);
+			player:addMission(COP,EXIT_STAGE_LEFT);
+			player:completeMission(COP,EXIT_STAGE_LEFT);
+			player:addMission(COP,TENDING_AGED_WOUNDS ); --starting 3.4 COP mission	
+	elseif(csid == 0x02f8) then
 		player:addQuest(BASTOK,DARK_PUPPET);
 		player:setVar("darkPuppetCS",1);
 	elseif(csid == 0x01f7) then

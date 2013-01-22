@@ -13,6 +13,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
+require("scripts/globals/missions");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -38,7 +39,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getVar("BeatAroundTheBushin") == 1) then 
+        if(player:getCurrentMission(COP) ==A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus")==0)then 
+                player:startEvent(0x0056); --COP event	
+	elseif(player:getCurrentMission(COP) ==TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus")==1)then 
+	        player:startEvent(0x0016); --COP event
+	elseif(player:getVar("BeatAroundTheBushin") == 1) then 
 		player:startEvent(0x009b); -- Start Quest "Beat around the Bushin"
 	elseif(player:hasKeyItem(TENSHODO_MEMBERS_CARD) == true) then 
 		player:startEvent(0x0069); -- Open the door
@@ -64,7 +69,15 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x009b) then 
+	if(csid == 0x0056 ) then 
+	        player:setVar("PromathiaStatus",1); 
+                player:startEvent(0x0009);
+	elseif(csid == 0x0016 )then
+	        player:completeMission(COP,TENDING_AGED_WOUNDS);
+		player:addMission(COP,DARKNESS_NAMED);
+		player:setVar("PromathiaStatus",0);
+		player:startEvent(0x000A);
+	elseif(csid == 0x009b) then 
 		player:addQuest(JEUNO,BEAT_AROUND_THE_BUSHIN);
 		player:setVar("BeatAroundTheBushin",2);
 	elseif(csid == 0x009c) then 

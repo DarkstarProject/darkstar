@@ -31,7 +31,9 @@ function onTrigger(player,npc)
 	end
 	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
 	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
-	if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),16) == false) then
+	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==4)then
+	                 player:startEvent(0x0369);
+	elseif ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),16) == false) then
 		player:startEvent(0x003c); -- Show Off Hat
 	elseif (MakingHeadlines == 1) then
 		prog = player:getVar("QuestMakingHeadlines_var");
@@ -80,6 +82,9 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x003c) then  -- Show Off Hat
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+16);
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
+		
+	elseif(csid == 0x0369) then
+		player:setVar("MEMORIES_OF_A_MAIDEN_Status",5);
 	end
 end;
 

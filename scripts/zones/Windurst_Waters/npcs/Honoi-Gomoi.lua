@@ -18,7 +18,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onTrade(player,npc,trade)
 	CryingOverOnionsVar = player:getVar("CryingOverOnions");
-	if (CryingOverOnions == 1) then
+        if (CryingOverOnions == 1) then
 		count = trade:getItemCount();
 		StarSpinel = trade:hasItemQty(1149,1);
 		if (StarSpinel == true and count == 1) then
@@ -40,7 +40,9 @@ function onTrigger(player,npc)
 	NeedToZone = player:needToZone();
 	Fame       = player:getFameLevel(WINDURST);
 	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
-	if ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),2) == false) then
+	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==5)then
+	         player:startEvent(0x036A);  --COP event
+	elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),2) == false) then
 		player:startEvent(0x003b); -- Show Off Hat
 	elseif (WildCard == QUEST_COMPLETED) then
 		player:startEvent(0x030f);
@@ -114,6 +116,10 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x003b) then  -- Show Off Hat
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+2);
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
+	elseif (csid == 0x036A)	then
+	        player:setVar("MEMORIES_OF_A_MAIDEN_Status",6);
+		 player:addKeyItem(581); --Cracked Mimeo Mirror
+		 player:messageSpecial(KEYITEM_OBTAINED,581);
 	end
 end;
 
