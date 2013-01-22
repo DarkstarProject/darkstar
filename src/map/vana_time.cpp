@@ -138,6 +138,23 @@ uint32 CVanaTime::getMoonPhase()
 	return phase;
 }
 
+uint8 CVanaTime::getMoonDirection()
+{
+	int32  phase = 0;
+	uint32 rawtime = this->getSysTime();
+
+	int32  game_days = (int32)(rawtime - VTIME_BASEDATE) / 3456;	
+	double daysmod   = (int32)(game_days - 22) % 84;				
+	
+	if (daysmod == 42 || daysmod == 0){ 
+		return 0; //neither waxing nor waning
+	}else if (daysmod > 42){
+		return 1;	//waning
+	}else {
+		return 2;   //waxing
+	}
+}
+
 TIMETYPE CVanaTime::SyncTime() 
 {
 	timeb SysTime;

@@ -68,6 +68,7 @@ public:
 	uint32	 getMinute();
 	uint32	 getWeekday();
 	uint32	 getMoonPhase();
+	uint8	 getMoonDirection();
 	uint32	 getSysTime();
     uint32   getVanaTime();
 	int32	 getCustomOffset();
