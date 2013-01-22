@@ -14,6 +14,11 @@ require("scripts/zones/PsoXja/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+zone:registerRegion(1,-26,-2,17,-24,2,22);--up enter
+zone:registerRegion(2,-23,-2,17,-20,2,22);--up exit
+zone:registerRegion(3,-21,30,24,-18,34,27); --dowwn enter
+zone:registerRegion(4,-21,30,22,-18,34,24);--dowwn exit
+
 end;
 
 -----------------------------------		
@@ -41,6 +46,25 @@ end;
 -----------------------------------		
 
 function onRegionEnter(player,region)	
+--print(region:GetRegionID());
+ ----------elevator to the Shrouded maw temporary solution
+	switch (region:GetRegionID()): caseof
+	{
+		[1] = function (x)
+		player:setPos(-19,0,20,55);
+		end,
+		[2] = function (x) 
+		player:setPos(-29,0,20,130);
+		end,
+		[3] = function (x)
+		player:setPos(-19,32,20,55);
+		end,
+		[4] = function (x)
+		player:setPos(-19,32,30,55);
+		end,
+	}
+----------------------------------------------------------------
+
 end;	
 -----------------------------------		
 -- onRegionLeave		
