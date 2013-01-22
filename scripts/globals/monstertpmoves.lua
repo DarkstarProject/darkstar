@@ -194,6 +194,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		hitsdone = hitsdone + 1;
 	end
 
+	-- Apply MOD_DMG first, and separately.  For proof of order, see: http://wiki.ffxiclopedia.org/wiki/Sentinel
+	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMG) / 100));
+	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMGPHYS) / 100));
+
 	if(hitslanded >= 1 and finaldmg < 1) then
 		finaldmg = 1;
 	end
@@ -307,6 +311,10 @@ function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
 	if(finaldmg < 1) then
 		finaldmg = 1;
 	end
+
+	-- Apply MOD_DMG first, and separately.  For proof of order, see: http://wiki.ffxiclopedia.org/wiki/Sentinel
+	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMG) / 100));
+	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMGMAGIC) / 100));
 
 	returninfo.dmg = finaldmg;
 	return returninfo;

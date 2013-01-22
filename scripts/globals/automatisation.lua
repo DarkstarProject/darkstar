@@ -58,4 +58,12 @@ function OnGameDayAutomatisation()
 	GetNPCByID(16892118):setAnimation(tbl[17]);
 	GetNPCByID(16892112):setAnimation(tbl[18]); 
 	
+		-- Ro'Maeve Moongates
+	local direction = VanadielMoonDirection();
+	local phase = VanadielMoonPhase();
+	if(((direction == 2 and phase >= 90) or (direction == 1 and phase >= 95)) and GetNPCByID(17277171):getWeather() == 0) then
+		GetNPCByID(17277171):openDoor(432);
+		GetNPCByID(17277172):openDoor(432);
+	end
+	
 end;
