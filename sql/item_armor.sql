@@ -54,9 +54,9 @@ INSERT INTO `item_armor` VALUES(10247, 'hexed_jacket_-1', 99, 91400, 0, 0, 0, 32
 INSERT INTO `item_armor` VALUES(10248, 'hexed_doublet_-1', 99, 143366, 0, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES(10249, 'hexed_bliaut_-1', 99, 131205, 0, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES(10250, 'moogle_suit', 1, 1048575, 307, 0, 3, 32, 14);
-INSERT INTO `item_armor` VALUES(10251, 'decennial_coat', 1, 1048575, 0, 0, 0, 32, 0);
+INSERT INTO `item_armor` VALUES(10251, 'decennial_coat', 1, 1048575, 331, 0, 0, 32, 6);
 INSERT INTO `item_armor` VALUES(10252, 'decennial_dress', 1, 1048575, 332, 0, 0, 32, 6);
-INSERT INTO `item_armor` VALUES(10253, 'decennial_coat_+1', 1, 1048575, 0, 0, 0, 32, 0);
+INSERT INTO `item_armor` VALUES(10253, 'decennial_coat_+1', 1, 1048575, 331, 0, 0, 32, 6);
 INSERT INTO `item_armor` VALUES(10254, 'decennial_dress_+1', 1, 1048575, 332, 0, 0, 32, 6);
 INSERT INTO `item_armor` VALUES(10255, 'matanca_harness', 99, 34304, 0, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES(10256, 'marine_gilet', 1, 1048575, 334, 0, 0, 32, 6);
@@ -214,9 +214,9 @@ INSERT INTO `item_armor` VALUES(10426, 'hexed_bonnet_-1', 99, 91400, 0, 0, 0, 16
 INSERT INTO `item_armor` VALUES(10427, 'hexed_coif_-1', 99, 143366, 0, 0, 0, 16, 0);
 INSERT INTO `item_armor` VALUES(10428, 'hexed_mitra_-1', 99, 131205, 0, 0, 0, 16, 0);
 INSERT INTO `item_armor` VALUES(10429, 'moogle_masque', 1, 1048575, 307, 0, 0, 16, 0);
-INSERT INTO `item_armor` VALUES(10430, 'decennial_crown', 1, 1048575, 0, 0, 0, 16, 0);
+INSERT INTO `item_armor` VALUES(10430, 'decennial_crown', 1, 1048575, 331, 0, 0, 16, 0);
 INSERT INTO `item_armor` VALUES(10431, 'decennial_tiara', 1, 1048575, 332, 0, 0, 16, 0);
-INSERT INTO `item_armor` VALUES(10432, 'decennial_crown_+1', 1, 1048575, 0, 0, 0, 16, 0);
+INSERT INTO `item_armor` VALUES(10432, 'decennial_crown_+1', 1, 1048575, 331, 0, 0, 16, 0);
 INSERT INTO `item_armor` VALUES(10433, 'decennial_tiara_+1', 1, 1048575, 332, 0, 0, 16, 0);
 INSERT INTO `item_armor` VALUES(10434, 'dux_visor', 99, 11124, 336, 0, 0, 16, 0);
 INSERT INTO `item_armor` VALUES(10435, 'dux_visor_+1', 99, 11124, 336, 0, 0, 16, 0);
@@ -376,9 +376,9 @@ INSERT INTO `item_armor` VALUES(10589, 'hexed_hakama_-1', 99, 34304, 0, 0, 0, 12
 INSERT INTO `item_armor` VALUES(10590, 'hexed_kecks_-1', 99, 91400, 0, 0, 0, 128, 0);
 INSERT INTO `item_armor` VALUES(10591, 'hexed_slops_-1', 99, 143366, 0, 0, 0, 128, 0);
 INSERT INTO `item_armor` VALUES(10592, 'hexed_tights_-1', 99, 131205, 0, 0, 0, 128, 0);
-INSERT INTO `item_armor` VALUES(10593, 'decennial_tights', 1, 1048575, 0, 0, 0, 128, 0);
+INSERT INTO `item_armor` VALUES(10593, 'decennial_tights', 1, 1048575, 331, 0, 0, 128, 8);
 INSERT INTO `item_armor` VALUES(10594, 'decennial_hose', 1, 1048575, 332, 0, 0, 128, 8);
-INSERT INTO `item_armor` VALUES(10595, 'decennial_tights_+1', 1, 1048575, 0, 0, 0, 128, 0);
+INSERT INTO `item_armor` VALUES(10595, 'decennial_tights_+1', 1, 1048575, 331, 0, 0, 128, 8);
 INSERT INTO `item_armor` VALUES(10596, 'decennial_hose_+1', 1, 1048575, 332, 0, 0, 128, 8);
 INSERT INTO `item_armor` VALUES(10597, 'akasha_chaps', 99, 143495, 0, 0, 0, 128, 0);
 INSERT INTO `item_armor` VALUES(10598, 'alcedo_cuisses', 99, 48, 0, 0, 0, 128, 0);
