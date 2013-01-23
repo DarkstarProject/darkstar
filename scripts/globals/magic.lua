@@ -496,6 +496,11 @@ function getSkillLvl(rank,level)
         dmg = 0;
     end
 
+    -- handle magic shield
+    if(skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
+        return 0;
+    end
+
     --handling stoneskin
     local skin = target:getMod(MOD_STONESKIN);
     if(skin>0) then

@@ -41,7 +41,7 @@ class CStatusEffectContainer
 {
 public:
 
-	uint64	m_Flags;											// биты переполнения байтов m_StatusIcons (по два бита на каждый эффект)	
+	uint64	m_Flags;											// биты переполнения байтов m_StatusIcons (по два бита на каждый эффект)
 	uint8	m_StatusIcons[32];									// иконки статус-эффектов
 
 	bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
@@ -49,7 +49,7 @@ public:
 	bool DelStatusEffect(EFFECT StatusID);
 	bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
     void DelStatusEffectsByFlag(uint16 flag);                   // удаляем все эффекты с указанным типом
-    void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой 
+    void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
 	bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);
 	void KillAllStatusEffect();
 
@@ -57,7 +57,10 @@ public:
 	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
 
 	EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
+    bool EraseAllStatusEffect(); // erases all status effects
 	EFFECT DispelStatusEffect();                                // удаляем первый положительный эффект
+    bool DispelAllStatusEffect(); // dispels all staus effects
+    CStatusEffect* DrainStatusEffect(); // dispels one effect and returns it
 
     CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);
 

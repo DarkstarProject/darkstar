@@ -820,7 +820,7 @@ INSERT INTO `mob_skill` VALUES (1388,232,878,'Hypothermal_Combustion', 1, 7.0, 2
 -- corse
 INSERT INTO `mob_skill` VALUES (276,74,902,'Envoutement', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (275,74,901,'Silence_Seal', 1, 15.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (275,74,901,'Memento_Mori', 0, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (274,74,900,'Memento_Mori', 0, 7.0, 2000, 1500, 1, 0);
 
 -- --------------------
 -- VALUES POST 1024

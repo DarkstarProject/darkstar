@@ -615,7 +615,17 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	end
 
 
-	--TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
+	if(skilltype == MOBSKILL_PHYSICAL and target:hasStatusEffect(EFFECT_PHYSICAL_SHIELD)) then
+		return 0;
+	end
+
+	if(skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
+		return 0;
+	end
+
+	if(skilltype == MOBSKILL_RANGED and target:hasStatusEffect(EFFECT_ARROW_SHIELD)) then
+		return 0;
+	end
 
 	--handling phalanx
 	dmg = dmg - target:getMod(MOD_PHALANX);

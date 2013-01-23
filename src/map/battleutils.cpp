@@ -628,7 +628,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 				if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE)){break;}
 				else if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
 				{
-					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE)) 
+					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE))
 						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE);
 					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE))
 						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE);
@@ -640,7 +640,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 					if (PAttacker->GetMLevel() >= 65) { Samba = rand()%(delay * 14 / 100) + 15; }
 					if (Samba >= (finaldamage / 2))
 						Samba = finaldamage / 2;
-		
+
 						Action->subeffect = SUBEFFECT_HP_DRAIN;
 						Action->submessageID = 161;
 						Action->flag = 3;
@@ -654,7 +654,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 				if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE)){break;}
 				else if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_SAMBA))
 				{
-					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE)) 
+					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE))
 						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE);
 					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE))
 						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE);
@@ -664,7 +664,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 					if (PAttacker->GetMLevel() <= 59) { Samba = rand()%(delay * 1 / 100) + 1; }
 					if (PAttacker->GetMLevel() >= 60) { Samba = rand()%(delay * 3 / 100) + 1; }
 					if (Samba >= (finaldamage / 4)) { Samba = finaldamage / 4; }
-		
+
 					Action->subeffect = SUBEFFECT_HP_DRAIN;
 					Action->submessageID = 162;
 					Action->flag = 3;
@@ -678,7 +678,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 				if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE)){break;}
 				else if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_SAMBA))
 				{
-					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE)) 
+					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE))
 						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE);
 					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE))
 						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE);
@@ -690,19 +690,19 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 		}
 	}
 	// Generic drain for anyone able to do melee damage to a dazed target
-	delay = delay / 10;	
-				
+	delay = delay / 10;
+
 
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE))
 	{
 		uint8 Samba = 1;
-		
+
 		if (PAttacker->GetMLevel() <= 34) { Samba = rand()%(delay * 3 / 100) + 1; }
 		if (PAttacker->GetMLevel() >=35 || PAttacker->GetMLevel() <= 64) { Samba = rand()%(delay * 8 / 100) + 10; }
 		if (PAttacker->GetMLevel() >= 65) { Samba = rand()%(delay * 14 / 100) + 15; }
 		if (Samba >= (finaldamage / 2))
 			Samba = finaldamage / 2;
-		
+
 		Action->subeffect = SUBEFFECT_HP_DRAIN;
 		Action->submessageID = 161;
 		Action->flag = 3;
@@ -711,7 +711,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 		charutils::UpdateHealth(PAttacker);
 		return;
  	}
-	
+
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE))
 	{
 		uint8 Samba = 1;
@@ -1107,6 +1107,12 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
 float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
+    // return zero if arrow shield active
+    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ARROW_SHIELD, 0))
+    {
+        damage = 0;
+    }
+
 	//get ranged attack value
 	uint16 rAttack = 1;
 	if(PAttacker->objtype == TYPE_PC)
@@ -1365,7 +1371,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	}
 	else
 	{
-		if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0))
+		if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0) || PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_PHYSICAL_SHIELD, 0))
 		{
 			damage = 0;
 		}
@@ -1565,6 +1571,11 @@ uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
     damage = damage * (100 - (10 * PAttacker->m_ActionList.size() / 2)) / 100;
 	damage = damage * (1000 - PDefender->getMod(MOD_FIREDEF + PSpell->getElement())) / 1000;
+
+    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_MAGIC_SHIELD, 0))
+    {
+        damage = 0;
+    }
 
 	PDefender->addHP(-damage);
 
