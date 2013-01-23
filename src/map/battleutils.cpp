@@ -2859,7 +2859,7 @@ uint8 getBarrageShotCount(CCharEntity* PChar)
 	// only archery + marksmanship can use barrage
 	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
 
-	if(PItem->getSkillType() != 25 && PItem->getSkillType() != 26)
+	if(PItem && PItem->getSkillType() != 25 && PItem->getSkillType() != 26)
 		return 0;
 
 
@@ -2875,7 +2875,7 @@ uint8 getBarrageShotCount(CCharEntity* PChar)
 	CItemArmor* PItemHands = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HANDS]);
 
 
-	if (PItemHands->getID() == 14900)
+	if (PItemHands && PItemHands->getID() == 14900)
 		shotCount ++;
 
 	if		(lvl < 30)	return 0;
@@ -2888,11 +2888,10 @@ uint8 getBarrageShotCount(CCharEntity* PChar)
 
 	// make sure we have enough ammo for all these shots
 	CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
-	uint8 ammoQty = PAmmo->getQuantity();
 
-	if (ammoQty < shotCount)
+	if (PAmmo && PAmmo->getQuantity() < shotCount)
 	{
-		shotCount = ammoQty-1;
+		shotCount = PAmmo->getQuantity()-1;
 	}
 
 	return shotCount;
@@ -3218,13 +3217,14 @@ bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base)
 		CItemWeapon* PWeapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
 
 		float hiddenEffect = 0;
-
-		switch (PWeapon->getID())
+		if(PWeapon)
 		{
-			case 17557:	hiddenEffect = 10; break; //light staff 10%
-			case 17558:	hiddenEffect = 15; break; //apollo staff 15%
+			switch (PWeapon->getID())
+			{
+				case 17557:	hiddenEffect = 10; break; //light staff 10%
+				case 17558:	hiddenEffect = 15; break; //apollo staff 15%
+			}
 		}
-
 		float StaffMods = ((float)((100.0f - hiddenEffect)/100.0f));
 		check *= StaffMods;
 	}
