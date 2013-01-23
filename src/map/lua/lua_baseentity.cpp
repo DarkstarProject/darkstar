@@ -637,7 +637,7 @@ inline int32 CLuaBaseEntity::createWornItem(lua_State *L)
 	{
 		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
 
-		const int8* Query = 
+		const int8* Query =
 				"UPDATE char_inventory "
 				"SET worn = 1 "
 				"WHERE charid = %u AND location = %u AND slot = %u;";
@@ -668,7 +668,7 @@ inline int32 CLuaBaseEntity::hasWornItem(lua_State *L)
 	if(slotID != -1)
 	{
 		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
-	
+
 		if(PItem->getWornItem() == 1)
 			lua_pushboolean( L, true );
 		else
@@ -4328,6 +4328,30 @@ inline int32 CLuaBaseEntity::isUndead(lua_State *L)
 	return 1;
 }
 
+ /************************************************************************
+*                                                                      *
+*  Returns true if mob is of passed in type                                *
+*                                                                      *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::isMobType(lua_State *L)
+{
+   DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+   DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+   DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+   CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+   if (PMob->m_Type & lua_tointeger(L,1))
+   {
+       lua_pushboolean(L, true);
+   }
+   else
+   {
+       lua_pushboolean(L, false);
+   }
+   return 1;
+}
+
 /************************************************************************
 *	Change skin of a mob												*
 *  	1st number: skinid in mob_change_skin.sql							*
@@ -4345,7 +4369,7 @@ inline int32 CLuaBaseEntity::changeSkin(lua_State *L)
 	PMob->SetNewSkin(lua_tointeger(L,1));
 
 	PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CEntityUpdatePacket(PMob,ENTITY_UPDATE));
-	
+
 	return 0;
 }
 
@@ -5668,6 +5692,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasImmunity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isUndead),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMobType),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeSkin),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkinID),

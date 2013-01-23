@@ -25,7 +25,7 @@ function OnMobWeaponSkill(target, mob, skill)
         -- no effect
         skill:setMsg(MSG_NO_EFFECT); -- no effect
     else
-        skill:setMsg(MSG_DISPEL);
+        skill:setMsg(MSG_DISAPPEAR);
     end
 
     return dispel;

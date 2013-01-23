@@ -3,8 +3,8 @@
 --
 --  Description: Restores HP for the target party member.
 --  Type: Magical (Light)
---  
---  
+--
+--
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -15,7 +15,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local m = math.random(1,3)+5;
+	local m = math.random(1,3)+8; -- 9% - 12%
 	local base = (mob:getMaxHP()/100)* m;
 	local mobHP = mob:getHP();
 	local mobMaxHP = mob:getMaxHP();

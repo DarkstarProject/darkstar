@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	resist = 1;--applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
 	if(resist > 0.2) then
 		if(target:getStatusEffect(EFFECT_EVASION_DOWN) == nil) then
-			target:addStatusEffect(EFFECT_EVASION_DOWN,50,0,180); -- 50%
+			target:addStatusEffect(EFFECT_EVASION_DOWN,20,0,60); -- 50%
 		end
 	end
 

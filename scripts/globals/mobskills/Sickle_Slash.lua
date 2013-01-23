@@ -22,7 +22,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     -- cap off damage around 600
     if(dmg > 600) then
-        dmg = dmg * 0.8;
+        dmg = dmg * 0.7;
     end
 	target:delHP(dmg);
 	return dmg;

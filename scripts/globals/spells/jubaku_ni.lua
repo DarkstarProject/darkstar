@@ -18,8 +18,8 @@ function onSpellCast(caster,target,spell)
     local bonus = AffinityBonus(caster,spell);
     --Duration Calculation
     local duration = 300 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
-    --Paralyze base power is 25 and is not affected by resistaces.
-    local power = 30;
+    --Paralyze base power is 19.5 and is not affected by resistaces.
+    local power = 18.5;
 
     --Calculates resist chanve from Reist Blind
     if(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
@@ -30,13 +30,13 @@ function onSpellCast(caster,target,spell)
                 if(paralysis:getPower() < power) then
                     target:delStatusEffect(effect);
                     target:addStatusEffect(effect,power,0,duration);
-                    spell:setMsg(267);
+                    spell:setMsg(237);
                 else
                     spell:setMsg(75);
                 end
             else
                 target:addStatusEffect(effect,power,0,duration);
-                spell:setMsg(267);
+                spell:setMsg(237);
             end
         else
             spell:setMsg(85);

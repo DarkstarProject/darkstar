@@ -22,9 +22,10 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
-		if(resist > 0.2) then
+		if(resist > 0.) then
 			skill:setMsg(MSG_ENFEEB_IS);
-			target:addStatusEffect(typeEffect,1,0,60);--power=1;tic=0;duration=180;
+			local power = math.random(10, 20) + mob:getMainLvl()/3;
+			target:addStatusEffect(typeEffect,1,0,power);--power=1;tic=0;duration=180;
 		else
 			skill:setMsg(MSG_MISS); -- resist !
 		end

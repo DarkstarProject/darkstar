@@ -20,8 +20,8 @@ function onSpellCast(caster,target,spell)
 	if(power < 5) then
 		power = 5;
 	end
-	if(power > 20) then
-		power = 20;
+	if(power > 30) then
+		power = 30;
 	end
 
 	-- Duration, including resistance.  Unconfirmed.

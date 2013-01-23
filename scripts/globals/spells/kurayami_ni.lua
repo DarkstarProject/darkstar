@@ -28,13 +28,13 @@ function onSpellCast(caster,target,spell)
 				if(blindness:getPower() < power) then
 					target:delStatusEffect(EFFECT_BLINDNESS);
 					target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration);
-					spell:setMsg(267);
+					spell:setMsg(237);
 				else
 					spell:setMsg(75);
 				end
 			else
 				target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration);
-				spell:setMsg(267);
+				spell:setMsg(237);
 			end
 		else
 			spell:setMsg(85);

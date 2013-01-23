@@ -23,10 +23,10 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 
-	local dmgmod = math.random(2, 3);
-	local accmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 2.5,accmod,dmgmod,TP_MAB_BONUS,1);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
+
+	local dmgmod = MobBreathMove(mob, target, 0.167, 1.875);
+
+	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;
 end;

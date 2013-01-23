@@ -15,12 +15,10 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local numhits = 1;
-	local accmod = 1;
-    local dmgmod = mob:getHP() / mob:getMaxHP() * 8;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
-	local dmg = MobFinalAdjustments(info.
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
+
+    local dmgmod = MobBreathMove(mob, target, 0.2, 0.75);
+
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;
 end

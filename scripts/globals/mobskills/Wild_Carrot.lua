@@ -14,7 +14,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local healPercent = math.random(1,4)+8; -- 9% - 12%
+    local healPercent = math.random(1,4)+6; -- 7% - 10%
     local mobHP = mob:getHP();
     local mobMaxHP = mob:getMaxHP();
     local base = (mobMaxHP/100)* healPercent;

@@ -22,15 +22,16 @@ function OnMobWeaponSkill(target, mob, skill)
 	local currentHP = target:getHP();
 	-- remove all by 5%
 	local stab = currentHP * .95;
+	local damage = 0;
 
 	-- if have more hp then 30%, then reduce to 5%
 	if(currentHP / target:getMaxHP() > 0.3) then
-		local dmg = stab;
+		damage = stab;
 	else
 		-- else you die
-		local dmg = currentHP;
+		damage = currentHP;
 	end
-	local dmg = MobFinalAdjustments(dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
+	local dmg = MobFinalAdjustments(damage,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
 
 	target:delHP(dmg);
 	mob:resetEnmity(target);

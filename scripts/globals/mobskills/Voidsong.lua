@@ -23,7 +23,6 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-    skill:setMsg(MSG_NONE);
     -- this should remove enough
     local dis = target:dispelStatusEffect();
     target:dispelStatusEffect();
@@ -38,8 +37,8 @@ function OnMobWeaponSkill(target, mob, skill)
     if(dis == EFFECT_NONE) then
         skill:setMsg(MSG_NO_EFFECT);
     else
-        skill:setMsg(MSG_DISPEL);
+        skill:setMsg(MSG_DISAPPEAR_NUM);
     end
 
-    return dis;
+    return 1;
 end;

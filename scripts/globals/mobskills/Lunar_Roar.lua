@@ -12,13 +12,22 @@ require("/scripts/globals/monstertpmoves");
 function OnMobWeaponSkill(target, mob, skill)
 
 	local dis = target:dispelStatusEffect();
-	target:dispelStatusEffect();
+	local dis2 = target:dispelStatusEffect();
+    local num = 0;
 
-    if(dis == EFFECT_NONE) then
-        skill:setMsg(MSG_NO_EFFECT);
-    else
-        skill:setMsg(MSG_DISPEL);
+    if(dis ~= EFFECT_NONE) then
+        num = num + 1;
     end
-	return dis;
+
+    if(dis2 ~= EFFECT_NONE) then
+        num = num + 1;
+    end
+
+    skill:setMsg(MSG_DISAPPEAR_NUM);
+    if(num == 0) then
+        skill:setMsg(MSG_NO_EFFECT);
+    end
+
+	return num;
 
 end

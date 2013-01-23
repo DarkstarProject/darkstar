@@ -12,13 +12,13 @@ function OnPetAbility(target, pet, skill)
 	numhits = 1;
 	accmod = 1;
 	dmgmod = 5;
-	
+
 	totaldamage = 0;
 	damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,0,TP_NO_EFFECT,1,2,3);
 	totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,numhits);
-	target:addStatusEffect(EFFECT_PARALYSIS, 15, 0, 30);
+	target:addStatusEffect(EFFECT_PARALYSIS, 22.5, 0, 90);
 	target:delHP(totaldamage);
 	target:updateEnmityFromDamage(pet,totaldamage);
-	
+
 	return totaldamage;
 end

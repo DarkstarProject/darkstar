@@ -21,19 +21,14 @@ function OnMobWeaponSkill(target, mob, skill)
         local statmod = MOD_INT;
         local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
         if(resist > 0.1) then
-            target:addStatusEffect(typeEffect,1,0,45);--tic=3;duration=30;
+            target:addStatusEffect(typeEffect,1,0,math.random(25,45));--tic=3;duration=30;
         end
     end
 
-    local dmgmod = mob:getHP() / mob:getMaxHP() * (mob:getMainLvl()/9);
-    local accmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*math.random(1.5,2.5),accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
 
-    -- most breaths cap off at 500
-    if(dmg > 500) then
-        dmg = dmg * 0.7;
-    end
+    local dmgmod = MobBreathMove(mob, target, 0.2, 2);
+
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
 
     target:delHP(dmg);
     return dmg;

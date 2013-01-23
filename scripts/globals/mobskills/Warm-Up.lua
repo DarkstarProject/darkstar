@@ -24,8 +24,8 @@ function OnMobWeaponSkill(target, mob, skill)
 	mob:delStatusEffect(typeEffect_Acc);
 	mob:delStatusEffect(typeEffect_Eva);
 
-	mob:addStatusEffect(typeEffect_Acc,base,0,30);
-	mob:addStatusEffect(typeEffect_Eva,base,0,30);
+	mob:addStatusEffect(typeEffect_Acc,base,0,180);
+	mob:addStatusEffect(typeEffect_Eva,base,0,180);
 
 	return typeEffect_Acc;
 end;

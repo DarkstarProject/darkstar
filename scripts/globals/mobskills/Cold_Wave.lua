@@ -18,7 +18,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_FROST;
 	if(target:hasStatusEffect(typeEffect) == true) then
 		local power = (mob:getMainLvl()/5 *.6 + 6);
-		target:addStatusEffect(typeEffect,power,3,120);--tic=3;duration=120;
+		target:addStatusEffect(typeEffect,power,3,30);--tic=3;duration=120;
 	end
 
 	local dmgmod = 2;

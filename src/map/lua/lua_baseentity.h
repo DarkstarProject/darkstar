@@ -270,6 +270,7 @@ public:
 	int32 getBattleTime(lua_State*);		// Get the time in second of the battle
 	int32 rageMode(lua_State*);				// Add rage mode
 	int32 isUndead(lua_State*);				// True if mob is undead
+	int32 isMobType(lua_State*);			// True if mob is of type passed to function
 	int32 changeSkin(lua_State*);			// Change mob skin
 	int32 getSkinID(lua_State*);			// Get Skin ID (0 for base skin)
 
@@ -280,6 +281,7 @@ public:
 	int32 delStatusEffect(lua_State*);		// Removes Status Effect
 	int32 eraseStatusEffect(lua_State*);	// Used with "Erase" spell
 	int32 dispelStatusEffect(lua_State*);	// Used with "Dispel" spell
+	int32 drainStatusEffect(lua_State*);    // Used in mob skills to steal effects
 	int32 getPartyMember(lua_State* L);		// Get a character entity from another entity's party or alliance
 	int32 getPartySize(lua_State* L);		// Get the size of a party in an entity's alliance
 	int32 getAllianceSize(lua_State* L);	// Get the size of an entity's alliance

@@ -21,19 +21,13 @@ function OnMobWeaponSkill(target, mob, skill)
         local statmod = MOD_INT;
         local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
         if(resist > 0.1) then
-            target:addStatusEffect(typeEffect,1,0,540);--power=1;tic=0;duration=120;
+            target:addStatusEffect(typeEffect,1,0,300);--power=1;tic=0;duration=120;
         end
     end
 
-    local dmgmod = mob:getHP() / mob:getMaxHP() * 5;
-    local accmod = 1;
+    local dmgmod = MobBreathMove(mob, target, 0.333, 0.625);
 
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
-
-    if(dmg > 500) then
-        dmg = 500;
-    end
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 
     target:delHP(dmg);
     return dmg;

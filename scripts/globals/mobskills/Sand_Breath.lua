@@ -23,10 +23,9 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 
-	local dmgmod = mob:getHP() / mob:getMaxHP() * 2;
-	local accmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 3,accmod,dmgmod,TP_MAB_BONUS,1);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 0.75);
+
+	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;
 end

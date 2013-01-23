@@ -12,6 +12,6 @@ function OnMobWeaponSkill(target, mob, skill)
 	skill:setMsg(MSG_BUFF);
 	local typeEffect = EFFECT_STONESKIN;
 	mob:delStatusEffect(typeEffect);
-	mob:addStatusEffect(typeEffect,base,0,30);
+	mob:addStatusEffect(typeEffect,base,0,300);
 	return typeEffect;
 end;

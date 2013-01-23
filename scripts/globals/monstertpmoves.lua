@@ -30,6 +30,16 @@ JOB_PUP				= 18;
 JOB_DNC				= 19;
 JOB_SCH				= 20;
 
+-- mob types
+-- used in mob:isMobType()
+MOBTYPE_NORMAL			= 0x00;
+MOBTYPE_PCSPAWNED		= 0x01;
+MOBTYPE_NOTORIOUS		= 0x02;
+MOBTYPE_FISHED			= 0x04;
+MOBTYPE_CALLED			= 0x08;
+MOBTYPE_BATTLEFIELD		= 0x10;
+MOBTYPE_EVENT			= 0x20;
+
 --skilltype
 MOBSKILL_PHYSICAL = 0;
 MOBSKILL_MAGICAL = 1;
@@ -81,9 +91,10 @@ MSG_NO_EFFECT = 189;
 MSG_DAMAGE = 185; -- player uses, target takes 10 damage. DEFAULT
 MSG_MISS = 188;
 MSG_RESIST = 85;
-MSG_EFFECT_DRAINED = 370; -- status effects are drained from <target>.
+MSG_EFFECT_DRAINED = 370; -- <num> status effects are drained from <target>.
 MSG_TP_REDUCED = 362; -- tp reduced to
-MSG_DISPEL = 231; -- <target>'s stun effect disappears!
+MSG_DISAPPEAR = 378; -- <target>'s stun effect disappears!
+MSG_DISAPPEAR_NUM = 400; -- <num> of <target>'s effects disappear!
 
 BOMB_TOSS_HPP = 1;
 
@@ -521,7 +532,34 @@ function calculateMobMagicBurstAndBonus(caster, ele, target)
     end
 
     return burst, burstBonus;
-end
+end;
+
+-- Calculates breath damage
+-- mob is a mob reference to get hp and lvl
+-- percent is the percentage to take from HP
+-- base is calculated from main level to create a minimum
+-- Equation: (HP * percent) + (LVL / base)
+function MobBreathMove(mob, target, percent, base)
+	damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
+
+	-- add breath resistence and magic resistence
+	local resist = (target:getMod(MOD_DMGBREATH) + target:getMod(MOD_DMGMAGIC)) / 100;
+
+	-- cap breath reduction at 50%
+	if(resist > 0.5) then
+		resist = 0.5;
+	end
+
+	damage = damage * (1 - resist);
+
+	return damage;
+end;
+
+-- Will steal one effect from target, returns ID of the effect stolen
+-- Returns number of stolen effects. Will be zero if none taken
+function MobStealEffect(mob, target, number)
+	return target:dispelStatusEffect();
+end;
 
 function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
 

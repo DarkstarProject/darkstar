@@ -26,7 +26,7 @@ function OnMobWeaponSkill(target, mob, skill)
         local statmod = MOD_INT;
         local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
         if(resist > 0.1) then
-            target:addStatusEffect(typeEffect,1,0,math.random(10,25));--tic=3;duration=30;
+            target:addStatusEffect(typeEffect,1,0,math.random(15,60));--tic=3;duration=30;
             mob:resetEnmity(target);
         end
     end

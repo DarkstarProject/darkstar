@@ -36,7 +36,7 @@ function OnMobWeaponSkill(target, mob, skill)
 			target:addStatusEffect(EFFECT_POISON,power,10,duration);
 		end
 		if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
-			target:addStatusEffect(EFFECT_PLAGUE,power,tic,duration);
+			target:addStatusEffect(EFFECT_PLAGUE,10,tic,duration);
 		end
 		if(target:hasStatusEffect(EFFECT_BIND) == false) then
 			target:addStatusEffect(EFFECT_BIND,power,tic,duration);
@@ -49,7 +49,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 
-	local dmgmod = 1;
+	local dmgmod = math.random(2,3);
 	local accmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
