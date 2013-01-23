@@ -34,6 +34,7 @@
 #include "modifier.h"
 #include "party.h"
 #include "status_effect_container.h"
+//#include "latent_effect_container.h"
 #include "map.h"
 
 
@@ -381,6 +382,7 @@ public:
 	bool		    isDead();					// проверяем, мертва ли сущность
 	bool			isInDynamis();
 	bool			hasImmunity(uint32 imID);
+	bool			isAsleep();
 
 	JOBTYPE		    GetMJob();					// главная профессия
 	JOBTYPE		    GetSJob();					// дополнительная профессия
@@ -427,6 +429,7 @@ public:
 	CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
 
 	CStatusEffectContainer* StatusEffectContainer;
+	//CLatentEffectContainer* LatentEffectContainer;
 
 	 CBattleEntity();						// конструктор
 	~CBattleEntity();						// деструктор

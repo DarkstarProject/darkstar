@@ -562,7 +562,7 @@ inline int32 CLuaBaseEntity::wakeUp(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
     CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
-    if(PEntity->PBattleAI->GetCurrentAction() == ACTION_SLEEP)
+    if(PEntity->isAsleep())
     {
         //wake them up!
         PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP);

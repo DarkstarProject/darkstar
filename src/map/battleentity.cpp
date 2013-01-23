@@ -56,6 +56,7 @@ CBattleEntity::CBattleEntity()
 	PBattleAI = NULL;
 
 	StatusEffectContainer = new CStatusEffectContainer(this);
+	//LatentEffectContainer = new CLatentEffectContainer(this);
 
 	m_modStat[MOD_SLASHRES]  = 1000;
 	m_modStat[MOD_PIERCERES] = 1000;
@@ -100,6 +101,11 @@ bool CBattleEntity::hasImmunity(uint32 imID)
 		return (m_Immunity == mobImmunity);
 	}
 	return false;
+}
+
+bool CBattleEntity::isAsleep()
+{
+	return (PBattleAI->GetCurrentAction() == ACTION_SLEEP);
 }
 
 /************************************************************************

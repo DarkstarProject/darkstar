@@ -65,7 +65,6 @@
 CAICharNormal::CAICharNormal(CCharEntity* PChar)
 {
 	m_PChar = PChar;
-	m_AttackMessageTime = 0;
 }
 
 /************************************************************************
@@ -109,6 +108,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 		case ACTION_JOBABILITY_START:		ActionJobAbilityStart();	break;
 		case ACTION_JOBABILITY_FINISH:		ActionJobAbilityFinish();	break;
 		case ACTION_RAISE_MENU_SELECTION:	ActionRaiseMenuSelection(); break;
+		case ACTION_SLEEP:					ActionSleep();				break;
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
@@ -814,6 +814,7 @@ void CAICharNormal::ActionRangedFinish()
 
 	if ((m_Tick - m_LastActionTime) > m_PChar->m_rangedDelay)
 	{
+		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_LastActionTime = m_Tick;
 		uint16 damage = 0;
 		uint16 totalDamage = 0;
@@ -953,7 +954,6 @@ void CAICharNormal::ActionRangedFinish()
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 
-		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 
         // TODO: что это ? ....
@@ -2599,6 +2599,25 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	m_ActionType = ACTION_ATTACK;
 }
 
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+void CAICharNormal::ActionSleep()
+{
+    if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && 
+        !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
+		!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) &&
+		!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION))
+    {
+
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+    }
+}
+
 /************************************************************************
 *																		*
 *  Auto Attack															*
@@ -2753,23 +2772,17 @@ void CAICharNormal::ActionAttack()
 	{
 		if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
 		{
-			if ((m_Tick - m_AttackMessageTime) > WeaponDelay)
-			{
-				m_AttackMessageTime = m_Tick;
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,5));
-			}
+			m_LastMeleeTime = m_Tick;
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,5));
 			return;
 		}
 		if (Distance > m_PBattleTarget->m_ModelSize)
 		{
-			if ((m_Tick - m_AttackMessageTime) > WeaponDelay)
-			{
-				m_AttackMessageTime = m_Tick;
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,4));
-			}
+			m_LastMeleeTime = m_Tick;
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,4));
 			return;
 		}
-        m_LastMeleeTime = (m_LastMeleeTime >= m_AttackMessageTime) ? m_LastMeleeTime + WeaponDelay : m_Tick;
+        m_LastMeleeTime = m_Tick;
 		if (battleutils::IsParalised(m_PChar))
 		{
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,29));
@@ -2863,7 +2876,7 @@ void CAICharNormal::ActionAttack()
 				}
 				// сначала вычисляем вероятность попадания по монстру
 				// затем нужно вычислить вероятность нанесения критического удара
-				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
+				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0) && !m_PBattleTarget->isAsleep())
 				{
 					Action.messageID = 32;
 					Action.reaction   = REACTION_EVADE;

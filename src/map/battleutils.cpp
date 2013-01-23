@@ -1194,7 +1194,7 @@ float CalculateBaseTP(int delay){
 
 bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
-    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
+    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40) && !PDefender->isAsleep())
     {
         return (rand() % 100 < battleutils::GetParryRate(PAttacker, PDefender));
     }
@@ -1204,7 +1204,7 @@ bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 bool IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
-    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
+    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40) && !PDefender->isAsleep())
     {
         return(rand() % 100 < battleutils::GetGuardRate(PAttacker, PDefender));
     }
@@ -1214,7 +1214,7 @@ bool IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
-    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
+	if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40) && !PDefender->isAsleep())
     {
         return(rand() % 100 < battleutils::GetBlockRate(PAttacker, PDefender));
     }
