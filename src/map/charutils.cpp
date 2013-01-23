@@ -3463,10 +3463,11 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 
 	int8 element = ((CPetEntity*)(PChar->PPet))->m_Element;
 	int8 affinity = PChar->getMod(strong[element]);
-	
-	if( PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getID() == 18632 )
+	CItemWeapon* mainHand = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
+
+	if( mainHand && mainHand->getID() == 18632 )
 		affinity = affinity + 1;
-	else if( PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getID() == 18633 )
+	else if( mainHand && mainHand->getID() == 18633 )
 		affinity = affinity + 2;
 
 	if( affinity > 0 )
