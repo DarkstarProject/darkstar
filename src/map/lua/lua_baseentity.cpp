@@ -2452,11 +2452,17 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 		{
 			CItem * item = ((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(0);
 
-			if(item == NULL || !(item->getType() & ITEM_CURRENCY))
+			if(item == NULL) //Player has no money
 			{
-				ShowFatalError(CL_RED"lua::getGil : No Gil in currency slot\n" CL_RESET);
+				lua_pushinteger( L, 0 );
+				return 1;
+			}
+			else if(!(item->getType() & ITEM_CURRENCY))
+			{
+				ShowFatalError(CL_RED"lua::getGil : Item in currency slot is not gil!\n" CL_RESET);
 				return 0;
 			}
+			
 			lua_pushinteger( L, item->getQuantity() );
 			return 1;
 		}
