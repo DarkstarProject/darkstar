@@ -12,7 +12,7 @@ function onSpellCast(caster,target,spell)
 	local effect = target:eraseStatusEffect();
 
     if(effect == EFFECT_NONE) then
-        spell:setMsg(MSG_NONE);
+        spell:setMsg(75); -- no effect
     else
         spell:setMsg(83);
     end

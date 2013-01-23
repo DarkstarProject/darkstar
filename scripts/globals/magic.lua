@@ -7,8 +7,12 @@ require("scripts/globals/status")
 	ENFEEBLING_MAGIC_SKILL 	= 35;
 	ELEMENTAL_MAGIC_SKILL 	= 36;
     DARK_MAGIC_SKILL 		= 37;
-    NINJUTSU_SKILL 			= 39;
-    SINGING_SKILL			= 40;
+    NINJUTSU_SKILL          = 39;
+    SUMMENING_SKILL 	    = 38;
+    SINGING_SKILL           = 40;
+    STRING_SKILL            = 41;
+    WIND_SKILL              = 42;
+    BLUE_SKILL			    = 43;
 
 	WEATHER_NONE			= 0;
 	WEATHER_SUNSHINE		= 1;
@@ -759,3 +763,23 @@ function handleNinjutsuDebuff(caster, target, spell, basePower, baseDuration, mo
 
 	return EFFECT_NINJUTSU_ELE_DEBUFF;
 end;
+
+-- Returns true if you can overwrite the effect
+-- Example: canOverwrite(target, EFFECT_SLOW, 25)
+function canOverwrite(target, effect, power, mod)
+    mod = mod or 1;
+
+    local statusEffect = target:getStatusEffect(effect);
+
+    -- effect not found so overwrite
+    if(statusEffect == nil) then
+        return true;
+    end
+
+    -- overwrite if its weaker
+    if(statusEffect:getPower()*mod > power) then
+        return false;
+    end
+
+    return true;
+end

@@ -2,7 +2,7 @@
 -- Spell: Paralyze
 -- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and MND.
 -- Slow's potency is calculated with the formula (150 + dMND*2)/1024, and caps at 300/1024 (~29.3%).
--- And MND of 75 is neccessary to reach the hardcap of Slow. 
+-- And MND of 75 is neccessary to reach the hardcap of Slow.
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -13,23 +13,22 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
+
 	-- Calculate duration.
-	-- Generates rand# from 0.2~1.2 which is then x100 to form the duration (20-120).
-	local double duration = (0.2 + math.random()) * 100; 
-	
+	local double duration = math.random(60, 120);
+
 	-- Grabbing variables for paralyze potency
 	mLVL = caster:getMainLvl();
 	pMND = caster:getStat(MOD_MND);
 	mMND = target:getStat(MOD_MND);
-	
+
 	dMND = (pMND - mMND);
 	multiplier = 150 / mLVL;
-	
+
 	-- Calculate potency.
 	potency = (multiplier * (pMND + dMND)) / 10;
 	if potency > 25 then
-		potency = 25
+		potency = 25;
 	end
 	--printf("Duration : %u",duration);
 	--printf("Potency : %u",potency);
@@ -61,8 +60,8 @@ function onSpellCast(caster,target,spell)
 	--					spell:setMsg(284);
 	--				end
 		end
-		
-		
+
+
 	else -- resist entirely.
 --		if(spell:isAOE() == false) then
 			spell:setMsg(85);
@@ -71,5 +70,5 @@ function onSpellCast(caster,target,spell)
 --		end
 	end
 	return EFFECT_PARALYSIS;
-	
+
 end;
