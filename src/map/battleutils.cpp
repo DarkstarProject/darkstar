@@ -1107,14 +1107,15 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
 float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
-    // return zero if arrow shield active
-    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ARROW_SHIELD, 0))
-    {
-        damage = 0;
-    }
 
 	//get ranged attack value
 	uint16 rAttack = 1;
+    // return zero if arrow shield active
+    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ARROW_SHIELD, 0))
+    {
+        return 0;
+    }
+
 	if(PAttacker->objtype == TYPE_PC)
 	{
 		CCharEntity* PChar = (CCharEntity*)PAttacker;
