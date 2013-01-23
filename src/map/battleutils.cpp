@@ -475,20 +475,21 @@ uint32 HandleSpecialPhysicalDamageReduction(CCharEntity* PChar, uint32 damage, a
 	CItemArmor* PArmor = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_BACK]);
 
 	uint32 originalDamage = damage;
-
-	switch(PArmor->getID())
+	if(PArmor != NULL)
 	{
-		//shadow mantle 10% chance to annual damage
-		case 13658:
-			if (rand()%100 > 10) return originalDamage;
-			damage = 0;
-			break;
+		switch(PArmor->getID())
+		{
+			//shadow mantle 10% chance to annual damage
+			case 13658:
+				if (rand()%100 > 10) return originalDamage;
+				damage = 0;
+				break;
 
 
-		default:
-			return originalDamage;
+			default:
+				return originalDamage;
+		}
 	}
-
 	return damage;
 
 }
@@ -739,58 +740,56 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 
 	if (Action->animation == 1)
 		PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_SUB]);
-
-	switch(PWeapon->getID())
+	if(PWeapon != NULL)
 	{
-		//Additional Effect: HP drain Weapons
-		case 16827:
-		case 16528:
-		case 16824:
-		case 17651:
-		case 16556:
-		case 16609:
-		case 16580:
-		case 17646:
-		case 16777:
-		case 16791:
-		case 16846:
-		case 16881:
-		case 17561:
-		case 17562:
-		case 17778:
-		case 17779:
-		case 17576:
-		case 17510:
-			//30 % chance to drain, will heal 30% of damage done
-			if (rand()%100 >= 30 || PWeapon==NULL) return;
+		switch(PWeapon->getID())
+		{
+			//Additional Effect: HP drain Weapons
+			case 16827:
+			case 16528:
+			case 16824:
+			case 17651:
+			case 16556:
+			case 16609:
+			case 16580:
+			case 17646:
+			case 16777:
+			case 16791:
+			case 16846:
+			case 16881:
+			case 17561:
+			case 17562:
+			case 17778:
+			case 17779:
+			case 17576:
+			case 17510:
+				//30 % chance to drain, will heal 30% of damage done
+				if (rand()%100 >= 30 || PWeapon==NULL) return;
 
-			Action->subeffect = SUBEFFECT_HP_DRAIN;
-			Action->submessageID = 161;
-			Action->flag = 3;
-			Action->subparam  = (float)(Action->param * 0.3f);
-			PAttacker->addHP(Action->subparam);
-			charutils::UpdateHealth(PAttacker);
-			return;
+				Action->subeffect = SUBEFFECT_HP_DRAIN;
+				Action->submessageID = 161;
+				Action->flag = 3;
+				Action->subparam  = (float)(Action->param * 0.3f);
+				PAttacker->addHP(Action->subparam);
+				charutils::UpdateHealth(PAttacker);
+				return;
 
 
-		//Additional Effect: Dispel Weapons (10% chance needs verifying)
-		case 16942:
-		case 16944:
-		case 16950:
-		case 16951:
-		case 18330:
-			if (rand()%100 > 10) return;
-			PDefender->StatusEffectContainer->DispelStatusEffect();
-			return;
+			//Additional Effect: Dispel Weapons (10% chance needs verifying)
+			case 16942:
+			case 16944:
+			case 16950:
+			case 16951:
+			case 18330:
+				if (rand()%100 > 10) return;
+				PDefender->StatusEffectContainer->DispelStatusEffect();
+				return;
 
-		default:
-			return;
+			default:
+				return;
+		}
 	}
-
-
-
-
-
+	return;
 }
 
 /************************************************************************
