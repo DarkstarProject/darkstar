@@ -18,7 +18,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local dmgmod = mob:getWeaponDmg() * 7;
 
-	local dmg = MobFinalAdjustments(,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+	local dmg = MobFinalAdjustments(mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
 
 	target:delHP(dmg);
 
