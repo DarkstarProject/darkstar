@@ -801,3 +801,12 @@ INSERT INTO `bcnm_instance` VALUES ('960', '2', '16904198');
 INSERT INTO `bcnm_instance` VALUES ('960', '3', '16904199');
 INSERT INTO `bcnm_instance` VALUES ('960', '3', '16904200');
 INSERT INTO `bcnm_instance` VALUES ('960', '3', '16904201');
+
+-- The Shrouled Maw
+INSERT INTO `bcnm_instance` VALUES ('704', '1', '16818177');
+INSERT INTO `bcnm_instance` VALUES ('704', '2', '16818184');
+INSERT INTO `bcnm_instance` VALUES ('704', '3', '16818191');
+INSERT INTO `bcnm_instance` VALUES ('706', '1', '16818204');
+INSERT INTO `bcnm_instance` VALUES ('706', '2', '16818211');
+INSERT INTO `bcnm_instance` VALUES ('706', '3', '16818218');
+

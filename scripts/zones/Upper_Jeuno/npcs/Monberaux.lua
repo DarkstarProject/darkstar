@@ -48,7 +48,9 @@ function onTrigger(player,npc)
 	    player:startEvent(0x0009);
 	 -- COP mission 3-5   
 	elseif(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 0) then
-	    player:startEvent(0x0052);    	    
+	    player:startEvent(0x0052); 
+   	elseif(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 3) then
+	    player:startEvent(0x004B); 
 	elseif(CooksPride == QUEST_COMPLETED and TheLostCardien == QUEST_AVAILABLE and player:getVar("theLostCardianVar") == 2) then 
 		player:startEvent(0x0021); -- Long CS & Finish Quest "The Lost Cardian"
 	elseif(CooksPride == QUEST_COMPLETED and TheLostCardien == QUEST_AVAILABLE and player:getVar("theLostCardianVar") == 3) then 
@@ -85,7 +87,11 @@ function onEventFinish(player,csid,option)
 		player:addMission(COP,BELOW_THE_ARKS); -- start the mission 1-2
 		player:startEvent(0x00cf);
 	elseif(csid == 0x0052) then
-                player:setVar("PromathiaStatus",1);
+        player:setVar("PromathiaStatus",1);
+	elseif(csid == 0x004B) then	
+        player:setVar("PromathiaStatus",0);       	
+		player:completeMission(COP,DARKNESS_NAMED);
+		player:addMission(COP,THE_CRADLES_OF_CHILDREN_LOST);
 	elseif(csid == 0x005b) then 
 		player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
 		player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 4);

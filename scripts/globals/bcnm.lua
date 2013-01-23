@@ -7,7 +7,8 @@ require("scripts/globals/status");
 -- array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
 -- e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
 -- DO NOT INCLUDE MAAT FIGHTS
-itemid_bcnmid_map = {17,{0,0},--spire of holla
+itemid_bcnmid_map = {10,{0,0},--The_Shrouded_Maw
+                     17,{0,0},--spire of holla
 					 19,{0,0},--spire of dem
 					 21,{0,0},--spire of mea
 					 31,{0,0},--Monarch Linn
@@ -32,7 +33,8 @@ itemid_bcnmid_map = {17,{0,0},--spire of holla
 -- The BCNMID is found via the database.
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
 -- 0,1,2,3,4,5,...
-bcnmid_param_map = {17,{768,0},
+bcnmid_param_map = {10,{704,0,706,2},
+                    17,{768,0},
 					19,{800,0},
 					21,{832,0},
 					31,{960,0},
@@ -336,7 +338,15 @@ function checkNonTradeBCNM(player,npc)
 	local mask = 0;
 	Zone = player:getZone();
 	
-	if(Zone == 17) then --Spire of Holla
+	if(Zone == 10) then--The_Shrouded_Maw
+	    if(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then--DARKNESS_NAMED
+	         mask = GetBattleBitmask(704,Zone,1);   
+	         player:setVar("trade_bcnmid",704);
+		elseif(player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==true)then --waking_dreams (diabolos avatar quest)
+			 mask = GetBattleBitmask(706,Zone,1);   
+	         player:setVar("trade_bcnmid",706);
+	    end	
+	elseif(Zone == 17) then --Spire of Holla
 	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_HOLLA) == false) then -- light of holla	
 	        mask = GetBattleBitmask(768,Zone,1);
 	        player:setVar("trade_bcnmid",768);

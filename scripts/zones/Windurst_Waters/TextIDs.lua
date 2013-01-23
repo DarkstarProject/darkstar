@@ -44,3 +44,5 @@ NESSRUGETOMALL_SHOP_DIALOG = 11243; -- Welcome to the Rarab Tail Hostelry.
 
    PRESTAPIQ_CLOSED_DIALOG = 10438; -- Goodebyongo! Wingdorsht tooo fhar awayz fhrum mai hormtowne! Dropt arll goodhys whylle ahn trripp!
      PRESTAPIQ_OPEN_DIALOG = 10439; -- Helgohelgo! Me's bhrink goodhys arll ja wayz fhrum hormtowne ovf Morvalporlis!
+-- avatar
+          DIABOLOS_UNLOCKED = 11679;

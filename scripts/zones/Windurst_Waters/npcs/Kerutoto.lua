@@ -58,8 +58,15 @@ function onTrigger(player,npc)
 	local OhbiruFood = player:getVar("Ohbiru_Food_var"); -- Variable to track progress of Ohbiru-Dohbiru in Food for Thought
 	local BlueRibbonBlues = player:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES);
 	local needZone = player:needToZone();
+	local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
+	local waking_dreams = player:getQuestStatus(WINDURST,WAKING_DREAMS)
 	
-	if(BlueRibbonBlues == QUEST_COMPLETED and needZone) then
+	if(player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getVar("Darkness_Named_date"))))then
+	      player:addQuest(WINDURST,WAKING_DREAMS);
+	      player:startEvent(0x0396);
+    elseif(player:hasKeyItem(WHISPER_OF_DREAMS)==true)then
+		 player:startEvent(0x0398,17599,14814,15557,15516); 
+	elseif(BlueRibbonBlues == QUEST_COMPLETED and needZone) then
 		player:startEvent(0x016b);
 	elseif(BlueRibbonBlues == QUEST_ACCEPTED) then
 		local blueRibbonProg = player:getVar("BlueRibbonBluesProg");
@@ -182,6 +189,57 @@ function onEventFinish(player,csid,option)
 		player:addFame(WINDURST,WIN_FAME*140);
 		player:addTitle(GHOSTIE_BUSTER);
 		player:needToZone(true);
+	elseif(csid == 0x0396) then	--diablos start
+	   	    player:addKeyItem(VIAL_OF_DREAM_INCENSE);
+			player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_DREAM_INCENSE); 
+	elseif(csid == 0x0398) then	--diablos reward
+	local item = 0;
+	local addspell = 0;
+		if(option == 1 and player:hasItem(17599)==false) then item = 17599;--diaboloss-pole 	
+		
+		elseif(option == 2 and player:hasItem(14814)==false) then item = 14814;--diaboloss-earring 
+		
+		elseif(option == 3 and player:hasItem(15557)==false) then item = 15557;--diaboloss-ring  
+		
+		elseif(option == 4 and player:hasItem(15516)==false) then item = 15516;--diaboloss-torque
+		
+
+		elseif(option == 5) then 
+				player:addGil(GIL_RATE*15000);
+				player:messageSpecial(GIL_OBTAINED,GIL_RATE*15000); -- Gil
+				player:delKeyItem(WHISPER_OF_DREAMS);
+			    player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
+			    player:completeQuest(WINDURST,WAKING_DREAMS);	
+				
+	    elseif(option == 6 and player:hasSpell(304)==false) then 
+				player:addSpell(304); -- diabolos Spell
+				player:messageSpecial(DIABOLOS_UNLOCKED,0,0,0);
+				addspell=1;
+		end
+		if(addspell==1)then
+			player:delKeyItem(WHISPER_OF_DREAMS);
+			player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
+			player:completeQuest(WINDURST,WAKING_DREAMS);				
+		 elseif (item > 0 and player:getFreeSlotsCount()~=0)then 
+			player:delKeyItem(WHISPER_OF_DREAMS);
+			player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
+			player:completeQuest(WINDURST,WAKING_DREAMS);
+		    player:addItem(item);
+		    player:messageSpecial(ITEM_OBTAINED,item); -- Item
+		 elseif ( option ~= 5 and  (( item == 0 and  addspell==0 ) or (item > 0 and player:getFreeSlotsCount()==0) ) )then		
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+		end
+
+		
 	end
 	
 end;
+
+
+			
+
+
+
+	
+
+		
