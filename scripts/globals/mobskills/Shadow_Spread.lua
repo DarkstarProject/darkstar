@@ -30,19 +30,19 @@ function OnMobWeaponSkill(target, mob, skill)
         end
     end
 
-    -- typeEffect = EFFECT_SLEEP_I;
-    -- if(target:hasStatusEffect(typeEffect) == false) then
-    --     resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
-    --     if(resist > 0.2) then
-    --         target:addStatusEffect(typeEffect,1,0,30);--power=1;tic=0;duration=30;
-    --     end
-    -- end
+    typeEffect = EFFECT_SLEEP_I;
+    if(target:hasStatusEffect(typeEffect) == false) then
+        resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
+        if(resist > 0.2) then
+            target:addStatusEffect(typeEffect,1,0,math.random(15,30));--power=1;tic=0;duration=30;
+        end
+    end
 
     typeEffect = EFFECT_BLINDNESS;
     if(target:hasStatusEffect(typeEffect) == false) then
         resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
         if(resist > 0.2) then
-            target:addStatusEffect(typeEffect,15,0,180);--power=15;tic=0;duration=60;
+            target:addStatusEffect(typeEffect,20,0,180);--power=15;tic=0;duration=60;
         end
     end
 

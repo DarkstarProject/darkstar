@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_NONE
--- 	
+-- 	Magic Shield BLOCKS all magic attacks
+--
 -----------------------------------
 
 -----------------------------------
@@ -9,7 +9,6 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_DEF,50);
 end;
 
 -----------------------------------
@@ -24,5 +23,4 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_DEF,50);
 end;

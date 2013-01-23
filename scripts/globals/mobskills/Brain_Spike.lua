@@ -10,7 +10,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    if(target:hasStatusEffect(EFFECT_PARALYSIS)) then
+    if(mob:isMobType(MOBTYPE_NOTORIOUS) or target:hasStatusEffect(EFFECT_PARALYSIS)) then
         return 1;
     end
     return 0;
