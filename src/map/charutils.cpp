@@ -310,6 +310,8 @@ void LoadChar(CCharEntity* PChar)
 	uint8 meritPoints = 0;
 	uint16 limitPoints = 0;
 
+	LoadCharUnlockedWeapons(PChar);
+
 	const int8* fmtQuery = 
         "SELECT "
           "charname,"       //  0
@@ -332,8 +334,7 @@ void LoadChar(CCharEntity* PChar)
           "titles,"         // 17
           "zones,"          // 18
           "missions,"       // 19
-          "playtime,"       // 20
-		  "merits "			// 21
+		  "playtime "		// 20
         "FROM chars "
         "WHERE charid = %u";
 
@@ -391,6 +392,7 @@ void LoadChar(CCharEntity* PChar)
 		int8* missions = NULL;
 		Sql_GetData(SqlHandle,19,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
+
 	}
 
 
@@ -1191,7 +1193,29 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		}
 		PItem->setSubType(ITEM_UNLOCKED);
 		
-		PChar->delModifiers(&((CItemArmor*)PItem)->modList);
+
+
+		// check if this weapon is unlocked
+		if (equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB || equipSlotID == SLOT_MAIN)
+		{
+			if (((CItemWeapon*)PItem)->isUnlockable() && PChar->unlockedWeapons[((CItemWeapon*)PItem)->getUnlockId()].unlocked)
+			{
+				// weapon is unlockable and char has unlocked it, remove different set of mods
+				// TODO...remove mods of the unlocked version
+			}
+			else
+			{
+				// is weapon, but not unlockable or char has not unlocked it yet
+				PChar->delModifiers(&((CItemArmor*)PItem)->modList);	
+			}
+		}
+		else
+		{
+			// not a weapon
+			PChar->delModifiers(&((CItemArmor*)PItem)->modList);		
+		}
+
+
 
 		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
 		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
@@ -1529,8 +1553,29 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 		        }
 				PItem->setSubType(ITEM_LOCKED);
 
-				PChar->addModifiers(&PItem->modList);
 
+
+				// check if this weapon is unlocked
+				if (equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB || equipSlotID == SLOT_MAIN)
+				{
+					if (((CItemWeapon*)PItem)->isUnlockable() && PChar->unlockedWeapons[((CItemWeapon*)PItem)->getUnlockId()].unlocked)
+					{
+						// weapon is unlockable and char has unlocked it, add different set of mods
+						// TODO...add mods of the unlocked version
+					}
+					else
+					{
+						// is weapon, but not unlockable or char has not unlocked it yet
+						PChar->addModifiers(&PItem->modList);	
+					}
+				}
+				else
+				{
+					// not a weapon
+					PChar->addModifiers(&PItem->modList);	
+				}
+
+				
 				PChar->status = STATUS_UPDATE;
 				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
 				PChar->pushPacket(new CCharAppearancePacket(PChar));
@@ -2982,6 +3027,64 @@ void SetLevelRestriction(CCharEntity* PChar, uint8 lvl)
 
 }
 
+
+/************************************************************************
+*																		*
+*  save char unlocked weapons											*
+*																		*
+************************************************************************/
+
+void SaveCharUnlockedWeapons(CCharEntity* PChar)
+{
+	const int8* Query =  "UPDATE chars SET unlocked_weapons = '%s' WHERE charid = %u";
+
+	int8 points[MAX_UNLOCKABLE_WEAPONS*2+1];
+    int8 UnlockedWeapons[MAX_UNLOCKABLE_WEAPONS];
+
+    for (uint16 i = 0; i < MAX_UNLOCKABLE_WEAPONS; ++i)
+    {
+		UnlockedWeapons[i] = PChar->unlockedWeapons[i].unlocked; 
+    }
+
+	Sql_EscapeStringLen(SqlHandle, points, (const int8*)UnlockedWeapons, MAX_UNLOCKABLE_WEAPONS);
+	Sql_Query(SqlHandle, Query, points, PChar->id);
+
+}
+
+
+/************************************************************************
+*																		*
+*  load char unlocked weapons											*
+*																		*
+************************************************************************/
+
+void LoadCharUnlockedWeapons(CCharEntity* PChar)
+{
+	memcpy(PChar->unlockedWeapons, nameSpaceUnlockableWeapons::g_pWeaponUnlockable, sizeof(PChar->unlockedWeapons));
+
+    const int8* Query = "SELECT unlocked_weapons FROM chars WHERE charid = %u";
+
+	if (Sql_Query(SqlHandle, Query, PChar->id) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		size_t length = 0;
+        int8*  unlocked = 0;
+
+        Sql_GetData(SqlHandle, 0, &unlocked, &length);
+
+        if (length == MAX_UNLOCKABLE_WEAPONS)
+        {
+			for (uint16 i = 0; i < MAX_UNLOCKABLE_WEAPONS; ++i)
+		    {   
+				PChar->unlockedWeapons[i].unlocked = unlocked[i];
+            }
+        }
+
+		loadCharWsPoints(PChar);
+	}
+
+}
+
+
 /************************************************************************
 *																		*
 *  Сохраняем позицию													*
@@ -3487,5 +3590,57 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 
 	return reduction;
 }
+
+
+
+
+
+
+/************************************************************************
+*																		*
+*  get player weapon points	for 1 weapon								*
+*																		*
+************************************************************************/
+
+void loadCharWsPoints(CCharEntity* PChar)
+{
+	int8* fmtQuery = "SELECT itemindex, points " 
+					 "FROM char_weapon_skill_points " 
+					 "WHERE charid = %u "
+					 "ORDER BY itemindex ASC;";
+
+	int32 ret = Sql_Query(SqlHandle,fmtQuery, PChar->id);
+
+	uint8 index = 0;
+
+	while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+	{
+		index  = (uint16)Sql_GetUIntData(SqlHandle,0);
+		PChar->unlockedWeapons[index-1].points = (uint16)Sql_GetUIntData(SqlHandle,1);
+	}
+	
+}
+
+/************************************************************************
+*																		*
+*  set char weapon points, set to zero to delete						*
+*																		*
+************************************************************************/
+
+void saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points)
+{
+	if (points == 0)
+	{
+		Sql_Query(SqlHandle,"DELETE FROM char_weapon_skill_points WHERE itemindex = %u AND charid = '%u' LIMIT 1;", indexid+1, PChar->id);
+		return;
+	}
+
+	const int8* fmtQuery = "INSERT INTO char_weapon_skill_points SET itemindex = %u, charid = %u, points = %u ON DUPLICATE KEY UPDATE points = %u;";
+
+	Sql_Query(SqlHandle,fmtQuery, indexid+1, PChar->id, points);
+}
+
+
+
 
 } // namespace charutils

@@ -641,7 +641,7 @@ void CAIPetDummy::ActionAttack()
 	}
 	else{
 		//try to attack
-		if((m_Tick - m_LastActionTime) > m_PPet->m_Weapons[SLOT_MAIN]->getDelay()){
+		if((m_Tick - m_LastActionTime) > m_PPet->m_Weapons[SLOT_MAIN]->getDelay(m_PPet)){
 			if (battleutils::IsParalised(m_PPet)) 
 			{
 				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CMessageBasicPacket(m_PPet,m_PBattleTarget,0,0,29));
@@ -693,7 +693,7 @@ void CAIPetDummy::ActionAttack()
 							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 							Action.messageID  = 67;
 						}
-						damage = (uint16)((m_PPet->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);	
+						damage = (uint16)((m_PPet->m_Weapons[SLOT_MAIN]->getDamage(m_PPet) + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);	
 					}
 				}
 				if (m_PBattleTarget->objtype == TYPE_PC)

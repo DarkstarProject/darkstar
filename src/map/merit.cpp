@@ -557,7 +557,7 @@ namespace meritNameSpace
 				Merit.catid		= Sql_GetUIntData(SqlHandle,5);	
 				Merit.next      = upgrade[Merit.upgradeid][0];
 
-				GMeritsTemplate[index] = Merit;						// get merit template from database.
+				GMeritsTemplate[index] = Merit;						// add the merit to the array
 
 
 				previousCatIndex = Merit.catid;						// previousCatIndex is set on everyloop to detect a catogory change.

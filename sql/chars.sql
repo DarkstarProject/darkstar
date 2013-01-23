@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `chars` (
   `titles` blob,
   `zones` blob,
   `playtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `unlocked_weapons` blob,
   PRIMARY KEY (`charid`),
   FULLTEXT KEY `charname` (`charname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

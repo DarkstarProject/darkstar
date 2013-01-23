@@ -133,6 +133,11 @@ namespace charutils
     void    RemoveAllEquipment(CCharEntity* PChar);
 
 	uint8	AvatarPerpetuationReduction(CCharEntity* PChar);
+
+	void	SaveCharUnlockedWeapons(CCharEntity* PChar);
+	void	LoadCharUnlockedWeapons(CCharEntity* PChar);
+	void	loadCharWsPoints(CCharEntity* PChar);
+	void	saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points);
 };
 
 #endif

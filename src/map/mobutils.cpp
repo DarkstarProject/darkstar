@@ -189,7 +189,7 @@ void CalculateStats(CMobEntity * PMob)
 	 
     //reduce weapon delay of MNK
     if(PMob->GetMJob()==JOB_MNK){
-        uint16 delay = PMob->m_Weapons[SLOT_MAIN]->getDelay();
+        uint16 delay = PMob->m_Weapons[SLOT_MAIN]->getDelay((CBattleEntity*)PMob);
 
 	    //reduce delay based on level
 	    //this will remove about 78 delay at level 75

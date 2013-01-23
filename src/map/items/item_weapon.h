@@ -37,11 +37,12 @@ public:
 	virtual ~CItemWeapon();
 
 	uint8	getSkillType();
-	int16	getDelay();
-	uint16	getDamage();
+	int16	getDelay(CBattleEntity* user);
+	uint16	getDamage(CBattleEntity* user);
 	uint16	getDmgType();
     uint8   getAdditionalEffect();
     uint8   getHitCount(uint8 checkMobHits);
+	uint16  getUnlockId();
 
     bool    isRanged();
     bool    isTwoHanded();
@@ -53,7 +54,7 @@ public:
 	void	setDmgType(uint16 dmgType);
     void    setAdditionalEffect(uint8 effect);
     void    setMaxHit(uint8 hit);
-	void    setUnlockable(bool unlockable);
+	void    setUnlockable(uint16 unlockId);
 
 private:
 
@@ -63,7 +64,7 @@ private:
 	uint16	m_dmgType;
     uint8   m_effect;
     uint8   m_maxHit;
-	bool	m_unlockable;
+	uint16	m_unlockId;
 
     bool    m_ranged;
     bool    m_twoHanded;

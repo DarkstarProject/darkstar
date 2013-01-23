@@ -13,7 +13,7 @@ CREATE TABLE `item_weapon` (
   `hit` tinyint(1) unsigned NOT NULL default '1',
   `delay` int(10) NOT NULL default '0',
   `dmg` int(10) unsigned NOT NULL default '0',
-  `unlockable` tinyint(1) NOT NULL default '0',
+  `unlock_index` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`itemId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=54 PACK_KEYS=1 CHECKSUM=1;
 
@@ -414,7 +414,7 @@ INSERT INTO `item_weapon` VALUES ('16789', 'darksteel_scythe', '7', '2', '1', '5
 INSERT INTO `item_weapon` VALUES ('16790', 'darksteel_scythe_+1', '7', '2', '1', '513', '90', '0');
 INSERT INTO `item_weapon` VALUES ('16791', 'death_scythe_+1', '7', '2', '1', '513', '98', '0');
 INSERT INTO `item_weapon` VALUES ('16792', 'goshishos_scythe', '7', '2', '1', '480', '80', '0');
-INSERT INTO `item_weapon` VALUES ('16793', 'scythe_of_trials', '7', '2', '1', '480', '82', '1');
+INSERT INTO `item_weapon` VALUES ('16793', 'scythe_of_trials', '7', '2', '1', '480', '82', '2');
 INSERT INTO `item_weapon` VALUES ('16794', 'bone_scythe', '7', '2', '1', '502', '78', '0');
 INSERT INTO `item_weapon` VALUES ('16795', 'bone_scythe_+1', '7', '2', '1', '489', '79', '0');
 INSERT INTO `item_weapon` VALUES ('16796', 'mythril_zaghnal', '7', '2', '1', '480', '58', '0');
@@ -513,7 +513,7 @@ INSERT INTO `item_weapon` VALUES ('16888', 'battle_fork', '8', '1', '1', '396', 
 INSERT INTO `item_weapon` VALUES ('16889', 'battle_fork_+1', '8', '1', '1', '385', '62', '0');
 INSERT INTO `item_weapon` VALUES ('16890', 'obelisk_lance', '8', '1', '1', '492', '57', '0');
 INSERT INTO `item_weapon` VALUES ('16891', 'obelisk_lance_+1', '8', '1', '1', '478', '58', '0');
-INSERT INTO `item_weapon` VALUES ('16892', 'spear_of_trials', '8', '1', '1', '396', '68', '1');
+INSERT INTO `item_weapon` VALUES ('16892', 'spear_of_trials', '8', '1', '1', '396', '68', '16');
 INSERT INTO `item_weapon` VALUES ('16893', 'reserve_captains_lance', '8', '1', '1', '365', '69', '0');
 INSERT INTO `item_weapon` VALUES ('16894', 'ox_tongue_+1', '8', '1', '1', '385', '71', '0');
 INSERT INTO `item_weapon` VALUES ('16895', 'ice_lance_+1', '8', '1', '1', '478', '90', '0');
@@ -573,7 +573,7 @@ INSERT INTO `item_weapon` VALUES ('16948', 'royal_swordsmans_blade_+1', '4', '2'
 INSERT INTO `item_weapon` VALUES ('16949', 'royal_swordsmans_blade_+2', '4', '2', '1', '453', '58', '0');
 INSERT INTO `item_weapon` VALUES ('16950', 'mythril_heart', '4', '2', '1', '480', '80', '0');
 INSERT INTO `item_weapon` VALUES ('16951', 'mythril_heart_+1', '4', '2', '1', '466', '81', '0');
-INSERT INTO `item_weapon` VALUES ('16952', 'sword_of_trials', '4', '2', '1', '444', '74', '1');
+INSERT INTO `item_weapon` VALUES ('16952', 'sword_of_trials', '4', '2', '1', '444', '74', '3');
 INSERT INTO `item_weapon` VALUES ('16953', 'reserve_captains_greatsword', '4', '2', '1', '444', '75', '0');
 INSERT INTO `item_weapon` VALUES ('16954', 'pealing_nagan', '4', '2', '1', '480', '84', '0');
 INSERT INTO `item_weapon` VALUES ('16955', 'nagan_+1', '4', '2', '1', '466', '85', '0');
@@ -819,7 +819,7 @@ INSERT INTO `item_weapon` VALUES ('17203', 'shikar_bow', '25', '1', '1', '300', 
 INSERT INTO `item_weapon` VALUES ('17204', 'mighty_bow', '25', '1', '1', '210', '53', '0');
 INSERT INTO `item_weapon` VALUES ('17205', 'gendawa', '25', '1', '1', '360', '76', '0');
 INSERT INTO `item_weapon` VALUES ('17206', 'gendawa_+1', '25', '1', '1', '342', '77', '0');
-INSERT INTO `item_weapon` VALUES ('17207', 'expunger', '25', '1', '1', '120', '26', '1');
+INSERT INTO `item_weapon` VALUES ('17207', 'expunger', '25', '1', '1', '120', '26', '4');
 INSERT INTO `item_weapon` VALUES ('17208', 'hamayumi', '25', '1', '1', '284', '43', '0');
 INSERT INTO `item_weapon` VALUES ('17209', 'martial_bow', '25', '1', '1', '300', '67', '0');
 INSERT INTO `item_weapon` VALUES ('17210', 'martial_gun', '26', '1', '1', '372', '39', '0');
@@ -887,7 +887,7 @@ INSERT INTO `item_weapon` VALUES ('17271', 'platoon_gun', '26', '1', '1', '360',
 INSERT INTO `item_weapon` VALUES ('17272', 'military_gun', '26', '1', '1', '308', '23', '0');
 INSERT INTO `item_weapon` VALUES ('17273', 'phineus_gun', '26', '0', '1', '600', '49', '0');
 INSERT INTO `item_weapon` VALUES ('17274', 'deluxe_carbine', '26', '1', '1', '360', '32', '0');
-INSERT INTO `item_weapon` VALUES ('17275', 'coffinmaker', '26', '1', '1', '360', '27', '1');
+INSERT INTO `item_weapon` VALUES ('17275', 'coffinmaker', '26', '1', '1', '360', '27', '5');
 INSERT INTO `item_weapon` VALUES ('17276', 'antique_bullet_+1', '26', '1', '1', '9', '61', '0');
 INSERT INTO `item_weapon` VALUES ('17277', 'hedgehog_bomb', '0', '0', '1', '759', '0', '0');
 INSERT INTO `item_weapon` VALUES ('17278', 'gold_bullet', '26', '1', '1', '7', '46', '0');
@@ -1067,7 +1067,7 @@ INSERT INTO `item_weapon` VALUES ('17452', 'bastokan_hammer', '11', '3', '1', '3
 INSERT INTO `item_weapon` VALUES ('17453', 'republic_hammer', '11', '3', '1', '306', '18', '0');
 INSERT INTO `item_weapon` VALUES ('17454', 'asklepios', '11', '3', '1', '288', '21', '0');
 INSERT INTO `item_weapon` VALUES ('17455', 'skirnirs_wand', '11', '3', '1', '216', '17', '0');
-INSERT INTO `item_weapon` VALUES ('17456', 'club_of_trials', '11', '3', '1', '267', '29', '1');
+INSERT INTO `item_weapon` VALUES ('17456', 'club_of_trials', '11', '3', '1', '267', '29', '6');
 INSERT INTO `item_weapon` VALUES ('17457', 'senior_gold_musketeers_rod', '11', '3', '1', '288', '25', '0');
 INSERT INTO `item_weapon` VALUES ('17458', 'reserve_captains_mace', '11', '3', '1', '288', '25', '0');
 INSERT INTO `item_weapon` VALUES ('17459', 'scepter_+1', '11', '3', '1', '280', '27', '0');
@@ -1118,9 +1118,9 @@ INSERT INTO `item_weapon` VALUES ('17503', 'exocets', '1', '4', '1', '531', '13'
 INSERT INTO `item_weapon` VALUES ('17504', 'pagures', '1', '4', '1', '586', '17', '0');
 INSERT INTO `item_weapon` VALUES ('17505', 'narasimhas_cesti', '1', '4', '1', '480', '9', '0');
 INSERT INTO `item_weapon` VALUES ('17506', 'vishnus_cesti', '1', '4', '1', '480', '10', '0');
-INSERT INTO `item_weapon` VALUES ('17507', 'knuckles_of_trials', '1', '4', '1', '576', '19', '1');
+INSERT INTO `item_weapon` VALUES ('17507', 'knuckles_of_trials', '1', '4', '1', '576', '19', '7');
 INSERT INTO `item_weapon` VALUES ('17508', 'master_casters_baghnakhs', '1', '4', '1', '546', '18', '0');
-INSERT INTO `item_weapon` VALUES ('17509', 'destroyers', '1', '4', '1', '528', '8', '1');
+INSERT INTO `item_weapon` VALUES ('17509', 'destroyers', '1', '4', '1', '528', '8', '8');
 INSERT INTO `item_weapon` VALUES ('17510', 'vampiric_claws', '1', '2', '1', '540', '11', '0');
 INSERT INTO `item_weapon` VALUES ('17511', 'indra_katars', '1', '4', '1', '564', '22', '0');
 INSERT INTO `item_weapon` VALUES ('17512', 'hydro_baghnakhs', '1', '4', '1', '540', '7', '0');
@@ -1138,7 +1138,7 @@ INSERT INTO `item_weapon` VALUES ('17523', 'quarterstaff', '12', '3', '1', '402'
 INSERT INTO `item_weapon` VALUES ('17524', 'footmans_staff', '12', '3', '1', '390', '41', '0');
 INSERT INTO `item_weapon` VALUES ('17525', 'ebony_pole_+1', '12', '3', '1', '390', '54', '0');
 INSERT INTO `item_weapon` VALUES ('17526', 'mythic_pole_+1', '12', '3', '1', '390', '56', '0');
-INSERT INTO `item_weapon` VALUES ('17527', 'pole_of_trials', '12', '3', '1', '402', '55', '1');
+INSERT INTO `item_weapon` VALUES ('17527', 'pole_of_trials', '12', '3', '1', '402', '55', '9');
 INSERT INTO `item_weapon` VALUES ('17528', 'astral_signa', '12', '3', '1', '366', '32', '0');
 INSERT INTO `item_weapon` VALUES ('17529', 'sunlight_pole', '12', '3', '1', '402', '46', '0');
 INSERT INTO `item_weapon` VALUES ('17530', 'master_casters_pole', '12', '3', '1', '366', '34', '0');
@@ -1227,7 +1227,7 @@ INSERT INTO `item_weapon` VALUES ('17612', 'beetle_knife', '2', '1', '1', '195',
 INSERT INTO `item_weapon` VALUES ('17613', 'beetle_knife_+1', '2', '1', '1', '190', '21', '0');
 INSERT INTO `item_weapon` VALUES ('17614', 'stun_kukri_+1', '2', '1', '1', '206', '27', '0');
 INSERT INTO `item_weapon` VALUES ('17615', 'chicken_knife', '2', '1', '1', '176', '21', '0');
-INSERT INTO `item_weapon` VALUES ('17616', 'dagger_of_trials', '2', '1', '1', '200', '27', '1');
+INSERT INTO `item_weapon` VALUES ('17616', 'dagger_of_trials', '2', '1', '1', '200', '27', '10');
 INSERT INTO `item_weapon` VALUES ('17617', 'master_casters_knife', '2', '1', '1', '176', '24', '0');
 INSERT INTO `item_weapon` VALUES ('17618', 'kidney_dagger', '2', '1', '1', '183', '18', '0');
 INSERT INTO `item_weapon` VALUES ('17619', 'daylight_dagger', '2', '1', '1', '183', '28', '0');
@@ -1265,7 +1265,7 @@ INSERT INTO `item_weapon` VALUES ('17650', 'nadrs', '3', '2', '1', '236', '18', 
 INSERT INTO `item_weapon` VALUES ('17651', 'dainslaif', '3', '2', '1', '264', '43', '0');
 INSERT INTO `item_weapon` VALUES ('17652', 'joyeuse', '3', '1', '2', '224', '35', '0');
 INSERT INTO `item_weapon` VALUES ('17653', 'hrotti', '3', '2', '1', '277', '48', '0');
-INSERT INTO `item_weapon` VALUES ('17654', 'sapara_of_trials', '3', '2', '1', '236', '38', '1');
+INSERT INTO `item_weapon` VALUES ('17654', 'sapara_of_trials', '3', '2', '1', '236', '38', '11');
 INSERT INTO `item_weapon` VALUES ('17655', 'senior_gold_musketeers_scimitar', '3', '2', '1', '218', '39', '0');
 INSERT INTO `item_weapon` VALUES ('17656', 'verdun_+1', '3', '1', '1', '218', '37', '0');
 INSERT INTO `item_weapon` VALUES ('17657', 'anelace_+1', '3', '2', '1', '227', '40', '0');
@@ -1310,7 +1310,7 @@ INSERT INTO `item_weapon` VALUES ('17695', 'bayards_sword', '3', '2', '1', '240'
 INSERT INTO `item_weapon` VALUES ('17696', 'buzzard_tuck', '3', '2', '1', '224', '23', '0');
 INSERT INTO `item_weapon` VALUES ('17697', 'mighty_talwar', '3', '2', '1', '240', '40', '0');
 INSERT INTO `item_weapon` VALUES ('17698', 'princely_sword', '3', '2', '1', '264', '47', '0');
-INSERT INTO `item_weapon` VALUES ('17699', 'dissector', '3', '2', '1', '231', '23', '1');
+INSERT INTO `item_weapon` VALUES ('17699', 'dissector', '3', '2', '1', '231', '23', '12');
 INSERT INTO `item_weapon` VALUES ('17700', 'durandal', '3', '2', '1', '240', '40', '0');
 INSERT INTO `item_weapon` VALUES ('17701', 'shotel', '3', '2', '1', '288', '30', '0');
 INSERT INTO `item_weapon` VALUES ('17702', 'shotel_+1', '3', '2', '1', '280', '31', '0');
@@ -1383,7 +1383,7 @@ INSERT INTO `item_weapon` VALUES ('17769', 'kororito_+1', '9', '2', '1', '227', 
 INSERT INTO `item_weapon` VALUES ('17770', 'mamushito_+1', '9', '2', '1', '227', '38', '0');
 INSERT INTO `item_weapon` VALUES ('17771', 'anju', '9', '2', '1', '216', '21', '0');
 INSERT INTO `item_weapon` VALUES ('17772', 'zushio', '9', '2', '1', '238', '23', '0');
-INSERT INTO `item_weapon` VALUES ('17773', 'kodachi_of_trials', '9', '2', '1', '227', '33', '1');
+INSERT INTO `item_weapon` VALUES ('17773', 'kodachi_of_trials', '9', '2', '1', '227', '33', '13');
 INSERT INTO `item_weapon` VALUES ('17774', 'shiranui', '9', '2', '1', '227', '37', '0');
 INSERT INTO `item_weapon` VALUES ('17775', 'fukuro', '9', '2', '1', '190', '15', '0');
 INSERT INTO `item_weapon` VALUES ('17776', 'hibari', '9', '2', '1', '190', '13', '0');
@@ -1403,7 +1403,7 @@ INSERT INTO `item_weapon` VALUES ('17789', 'unsho', '9', '2', '1', '201', '31', 
 INSERT INTO `item_weapon` VALUES ('17790', 'unji', '9', '2', '1', '201', '32', '0');
 INSERT INTO `item_weapon` VALUES ('17791', 'rai_kunimitsu', '9', '2', '1', '227', '34', '0');
 INSERT INTO `item_weapon` VALUES ('17792', 'nikkariaoe', '9', '2', '1', '232', '19', '0');
-INSERT INTO `item_weapon` VALUES ('17793', 'senjuinrikio', '9', '2', '1', '227', '25', '1');
+INSERT INTO `item_weapon` VALUES ('17793', 'senjuinrikio', '9', '2', '1', '227', '25', '14');
 INSERT INTO `item_weapon` VALUES ('17794', 'niokiyotsuna', '9', '2', '1', '227', '19', '0');
 INSERT INTO `item_weapon` VALUES ('17795', 'sai', '9', '2', '1', '242', '28', '0');
 INSERT INTO `item_weapon` VALUES ('17796', 'sai_+1', '9', '2', '1', '234', '29', '0');
@@ -1425,7 +1425,7 @@ INSERT INTO `item_weapon` VALUES ('17811', 'katayama_ichimonji', '10', '2', '1',
 INSERT INTO `item_weapon` VALUES ('17812', 'magoroku', '10', '2', '1', '450', '56', '0');
 INSERT INTO `item_weapon` VALUES ('17813', 'soboro_sukehiro', '10', '2', '3', '450', '40', '0');
 INSERT INTO `item_weapon` VALUES ('17814', 'raikiri', '10', '2', '1', '437', '69', '0');
-INSERT INTO `item_weapon` VALUES ('17815', 'tachi_of_trials', '10', '2', '1', '450', '76', '1');
+INSERT INTO `item_weapon` VALUES ('17815', 'tachi_of_trials', '10', '2', '1', '450', '76', '15');
 INSERT INTO `item_weapon` VALUES ('17816', 'kotetsu_+1', '10', '2', '1', '450', '78', '0');
 INSERT INTO `item_weapon` VALUES ('17817', 'shinkotetsu', '10', '2', '1', '436', '79', '0');
 INSERT INTO `item_weapon` VALUES ('17818', 'kanesada_+1', '10', '2', '1', '420', '68', '0');
@@ -1526,7 +1526,7 @@ INSERT INTO `item_weapon` VALUES ('17929', 'bastokan_axe', '5', '2', '1', '268',
 INSERT INTO `item_weapon` VALUES ('17930', 'republic_axe', '5', '2', '1', '260', '15', '0');
 INSERT INTO `item_weapon` VALUES ('17931', 'combat_casters_axe_+1', '5', '2', '1', '272', '34', '0');
 INSERT INTO `item_weapon` VALUES ('17932', 'combat_casters_axe_+2', '5', '2', '1', '264', '35', '0');
-INSERT INTO `item_weapon` VALUES ('17933', 'pick_of_trials', '5', '2', '1', '312', '46', '1');
+INSERT INTO `item_weapon` VALUES ('17933', 'pick_of_trials', '5', '2', '1', '312', '46', '17');
 INSERT INTO `item_weapon` VALUES ('17934', 'reserve_captains_pick', '5', '2', '1', '276', '46', '0');
 INSERT INTO `item_weapon` VALUES ('17935', 'tabarzin_+1', '5', '2', '1', '280', '50', '0');
 INSERT INTO `item_weapon` VALUES ('17936', 'de_saintres_axe', '5', '2', '1', '288', '28', '0');
@@ -1537,7 +1537,7 @@ INSERT INTO `item_weapon` VALUES ('17940', 'military_pick', '5', '2', '1', '260'
 INSERT INTO `item_weapon` VALUES ('17941', 'mighty_pick', '5', '2', '1', '312', '47', '0');
 INSERT INTO `item_weapon` VALUES ('17942', 'tomahawk', '5', '2', '1', '340', '23', '0');
 INSERT INTO `item_weapon` VALUES ('17943', 'tomahawk_+1', '5', '2', '1', '333', '24', '0');
-INSERT INTO `item_weapon` VALUES ('17944', 'retributor', '5', '2', '1', '312', '33', '1');
+INSERT INTO `item_weapon` VALUES ('17944', 'retributor', '5', '2', '1', '312', '33', '18');
 INSERT INTO `item_weapon` VALUES ('17945', 'martial_axe', '5', '2', '1', '276', '46', '0');
 INSERT INTO `item_weapon` VALUES ('17946', 'maneater', '5', '2', '1', '276', '43', '0');
 INSERT INTO `item_weapon` VALUES ('17947', 'garde_pick', '5', '2', '1', '312', '23', '0');
@@ -1598,7 +1598,7 @@ INSERT INTO `item_weapon` VALUES ('18001', 'harpe', '2', '1', '1', '210', '35', 
 INSERT INTO `item_weapon` VALUES ('18002', 'perseuss_harpe', '2', '1', '1', '210', '37', '0');
 INSERT INTO `item_weapon` VALUES ('18003', 'swordbreaker', '2', '1', '1', '200', '27', '0');
 INSERT INTO `item_weapon` VALUES ('18004', 'trailers_kukri', '2', '1', '1', '195', '19', '0');
-INSERT INTO `item_weapon` VALUES ('18005', 'heart_snatcher', '2', '1', '1', '205', '15', '1');
+INSERT INTO `item_weapon` VALUES ('18005', 'heart_snatcher', '2', '1', '1', '205', '15', '19');
 INSERT INTO `item_weapon` VALUES ('18006', 'hoplites_harpe', '2', '1', '1', '210', '32', '0');
 INSERT INTO `item_weapon` VALUES ('18007', 'chiroptera_dagger', '2', '1', '1', '192', '13', '0');
 INSERT INTO `item_weapon` VALUES ('18008', 'hushed_dagger', '2', '1', '1', '188', '6', '0');
@@ -1690,7 +1690,7 @@ INSERT INTO `item_weapon` VALUES ('18093', 'couse', '8', '1', '1', '480', '72', 
 INSERT INTO `item_weapon` VALUES ('18094', 'couse_+1', '8', '1', '1', '461', '73', '0');
 INSERT INTO `item_weapon` VALUES ('18095', 'dispel_couse', '8', '1', '1', '480', '72', '0');
 INSERT INTO `item_weapon` VALUES ('18096', 'heavy_lance', '8', '1', '1', '492', '80', '0');
-INSERT INTO `item_weapon` VALUES ('18097', 'gondo-shizunori', '8', '1', '1', '480', '72', '1');
+INSERT INTO `item_weapon` VALUES ('18097', 'gondo-shizunori', '8', '1', '1', '480', '72', '20');
 INSERT INTO `item_weapon` VALUES ('18098', 'martial_lance', '8', '1', '1', '492', '84', '0');
 INSERT INTO `item_weapon` VALUES ('18099', 'stone-splitter', '8', '1', '1', '396', '66', '0');
 INSERT INTO `item_weapon` VALUES ('18100', 'love_halberd', '8', '1', '1', '396', '60', '0');
@@ -1737,9 +1737,9 @@ INSERT INTO `item_weapon` VALUES ('18140', 'phantom_tathlum', '0', '0', '1', '75
 INSERT INTO `item_weapon` VALUES ('18141', 'ungur_boomerang', '27', '0', '1', '-20', '30', '0');
 INSERT INTO `item_weapon` VALUES ('18142', 'shigeto_bow', '25', '1', '1', '360', '75', '0');
 INSERT INTO `item_weapon` VALUES ('18143', 'shigeto_bow_+1', '25', '1', '1', '342', '76', '0');
-INSERT INTO `item_weapon` VALUES ('18144', 'bow_of_trials', '25', '1', '1', '120', '39', '1');
+INSERT INTO `item_weapon` VALUES ('18144', 'bow_of_trials', '25', '1', '1', '120', '39', '21');
 INSERT INTO `item_weapon` VALUES ('18145', 'master_casters_bow', '25', '1', '1', '300', '77', '0');
-INSERT INTO `item_weapon` VALUES ('18146', 'gun_of_trials', '26', '1', '1', '360', '39', '1');
+INSERT INTO `item_weapon` VALUES ('18146', 'gun_of_trials', '26', '1', '1', '360', '39', '22');
 INSERT INTO `item_weapon` VALUES ('18147', 'culverin_+1', '26', '1', '1', '497', '51', '0');
 INSERT INTO `item_weapon` VALUES ('18148', 'acid_bolt', '26', '1', '1', '-48', '21', '0');
 INSERT INTO `item_weapon` VALUES ('18149', 'sleep_bolt', '26', '1', '1', '48', '1', '0');
@@ -1970,7 +1970,7 @@ INSERT INTO `item_weapon` VALUES ('18374', 'mighty_sword', '4', '2', '1', '444',
 INSERT INTO `item_weapon` VALUES ('18375', 'falx', '4', '2', '1', '430', '42', '0');
 INSERT INTO `item_weapon` VALUES ('18376', 'falx_+1', '4', '2', '1', '421', '43', '0');
 INSERT INTO `item_weapon` VALUES ('18377', 'mercurial_sword', '4', '2', '4', '444', '26', '0');
-INSERT INTO `item_weapon` VALUES ('18378', 'subduer', '4', '2', '1', '444', '72', '1');
+INSERT INTO `item_weapon` VALUES ('18378', 'subduer', '4', '2', '1', '444', '72', '23');
 INSERT INTO `item_weapon` VALUES ('18379', 'vulcan_claymore', '4', '2', '1', '444', '26', '0');
 INSERT INTO `item_weapon` VALUES ('18380', 'martial_sword', '4', '2', '1', '444', '76', '0');
 INSERT INTO `item_weapon` VALUES ('18381', 'prominence_sword', '4', '2', '1', '456', '40', '0');

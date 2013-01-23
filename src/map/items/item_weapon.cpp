@@ -21,8 +21,11 @@
 ===========================================================================
 */
 #include "../battleentity.h"
+#include "../charutils.h"
+#include "../itemutils.h"
 
 #include "item_weapon.h"
+
 
 /************************************************************************
 *                                                                       *
@@ -77,7 +80,7 @@ bool CItemWeapon::isTwoHanded()
 
 bool CItemWeapon::isUnlockable()
 {
-    return m_unlockable;
+	return ( m_unlockId > 0 ? true : false ); 
 }
 
 
@@ -126,9 +129,34 @@ void CItemWeapon::setDelay(uint16 delay)
 	m_delay = delay;
 }
 
-int16 CItemWeapon::getDelay() 
+int16 CItemWeapon::getDelay(CBattleEntity* user) 
 {
+	if (user->objtype == TYPE_PC)
+	{
+		if (m_skillType != SKILL_NON && m_unlockId > 0 && ((CCharEntity*)user)->isWeaponUnlocked(m_unlockId))
+		{
+			return (nameSpaceUnlockableWeapons::g_pWeaponUnlockable[m_unlockId-1].delay *1000 / 60);
+		}
+		else
+		{
+			return m_delay;
+		}
+	}
+	else
+	{
 	return m_delay;
+	}
+}
+
+/************************************************************************
+*                                                                       *
+*  get unlock id		                                                *
+*                                                                       *
+************************************************************************/
+
+uint16 CItemWeapon::getUnlockId()
+{
+	return m_unlockId;
 }
 
 /************************************************************************
@@ -142,9 +170,23 @@ void CItemWeapon::setDamage(uint16 damage)
 	m_damage = damage;
 }
 
-uint16 CItemWeapon::getDamage() 
+uint16 CItemWeapon::getDamage(CBattleEntity* user) 
 {
-	return m_damage;
+	if (user->objtype == TYPE_PC)
+	{
+		if (m_skillType != SKILL_NON && m_unlockId > 0 && ((CCharEntity*)user)->isWeaponUnlocked(m_unlockId))
+		{
+			return nameSpaceUnlockableWeapons::g_pWeaponUnlockable[m_unlockId-1].damage;
+		}
+		else
+		{
+			return m_damage;
+		}
+	}
+	else
+	{
+		return m_damage;
+	}
 }
 
 /************************************************************************
@@ -186,9 +228,9 @@ uint8 CItemWeapon::getAdditionalEffect()
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setUnlockable(bool unlockable)
+void CItemWeapon::setUnlockable(uint16 unlockId)
 {
-    m_unlockable = unlockable;
+    m_unlockId = unlockId;
 }
 
 /************************************************************************

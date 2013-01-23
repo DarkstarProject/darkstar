@@ -1481,28 +1481,42 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
                 PDefender->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);
             }
         }
+
 		float baseTp = 0;
-		if(slot==SLOT_RANGED && PAttacker->objtype == TYPE_PC){
+
+		if(slot==SLOT_RANGED && PAttacker->objtype == TYPE_PC)
+		{
 			CCharEntity* PChar = (CCharEntity*)PAttacker;
 			CItemWeapon* PRange = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
 			CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+
 			int delay = 0; uint16 offset = 240;
-			if(PRange != NULL) { delay += PRange->getDelay(); }
-			if(PAmmo != NULL) { delay += PAmmo->getDelay(); offset += 240; }
+
+			if(PRange != NULL) 
+			{ 
+				delay += PRange->getDelay(PAttacker); 
+			}
+			if(PAmmo != NULL) 
+			{ 
+				delay += PAmmo->getDelay(PAttacker); 
+				offset += 240; 
+			}
+
 			baseTp = CalculateBaseTP(offset + ((delay * 60) / 1000));
 		}
-		else if(slot==SLOT_AMMO && PAttacker->objtype == TYPE_PC){
+		else if (slot==SLOT_AMMO && PAttacker->objtype == TYPE_PC)
+		{
 			//todo: e.g. pebbles
 		}
 		else
         {
-            int16 delay = ((PAttacker->m_Weapons[SLOT_MAIN]->getDelay() * 60) / 1000);
+            int16 delay = ((PAttacker->m_Weapons[SLOT_MAIN]->getDelay(PAttacker) * 60) / 1000);
 
 			if (PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
 				PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
 				PAttacker->m_Weapons[slot]->getDmgType() != DAMAGE_HTH)
 			{
-				delay += PAttacker->m_Weapons[SLOT_SUB]->getDelay() * 60 / 1000;
+				delay += PAttacker->m_Weapons[SLOT_SUB]->getDelay(PAttacker) * 60 / 1000;
 				delay = delay * (1 - (float)PAttacker->getMod(MOD_DUAL_WIELD) / 100.0f ) / 2;
 			}
 
@@ -1809,7 +1823,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 {
 	// all h2h weapons already have 3 added to thier dmg in database
-	int32 rank = PAttacker->m_Weapons[SlotID]->getDamage() / 9;
+	int32 rank = PAttacker->m_Weapons[SlotID]->getDamage(PAttacker) / 9;
 
 
 	float dif = PAttacker->STR() - PDefender->VIT();
@@ -2958,7 +2972,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 					AttMultiplerPercent = PAttacker->getMod(MOD_JUMP_ATT_BONUS);
 
 				float DamageRatio = battleutils::GetDamageRatio(PAttacker, PVictim, false, AttMultiplerPercent);
-				damageForRound = (uint16)((PAttacker->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(PAttacker,PVictim,SLOT_MAIN)) * DamageRatio);
+				damageForRound = (uint16)((PAttacker->m_Weapons[SLOT_MAIN]->getDamage(PAttacker) + battleutils::GetFSTR(PAttacker,PVictim,SLOT_MAIN)) * DamageRatio);
 
 				// bonus applies to jump only, not high jump
 				if (tier == 1)

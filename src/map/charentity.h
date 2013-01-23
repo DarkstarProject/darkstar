@@ -42,6 +42,7 @@
 #include "treasure_pool.h"
 #include "merit.h"
 #include "universal_container.h"
+#include "itemutils.h"
 
 // Quest Areas
 
@@ -70,6 +71,7 @@ struct jobs_t
 	uint16 exp[MAX_JOBTYPE];		// текущее количество опыта для каждой из профессий
 	uint8  genkai;					// максимальный уровень профессий персонажа
 };
+
 
 struct event_t
 {
@@ -245,6 +247,14 @@ public:
 	uint8			  m_hasRaise;					// checks if player has raise already
     uint8             m_hasAutoTarget;              // возможность использования AutoTarget функции
 	position_t		  m_StartActionPos;				// позиция начала действия (использование предмета, начало стрельбы, позиция tractor)
+
+
+
+	bool			  isWeaponUnlocked(uint16 indexid);					// return if weapon is broken
+	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken
+	UnlockedWeapons_t unlockedWeapons[MAX_UNLOCKABLE_WEAPONS];			// chars unlocked weapon status
+
+
 
     std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)
 

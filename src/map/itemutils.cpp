@@ -46,6 +46,7 @@ CItemWeapon* PUnarmedH2HItem;
 
 namespace itemutils
 {
+
     /************************************************************************
     *                                                                       *
     *  Создаем пустой экземпляр предмета по ID (private метод)              *
@@ -284,7 +285,7 @@ namespace itemutils
                 "w.dmg,"            // 24
                 "w.dmgType,"        // 25
                 "w.hit,"            // 26
-                "w.unlockable,"     // 27
+                "w.unlock_index,"   // 27
 								       
                 "f.storage,"        // 28
                 "f.moghancement,"   // 29
@@ -420,6 +421,7 @@ namespace itemutils
 	    }
     }
 
+
     /************************************************************************
     *                                                                       *
     *  Handles loot from BCNM chests and other NPCs that drop things into   *
@@ -506,3 +508,43 @@ namespace itemutils
 	    }
     }
 }; // namespace itemutils
+
+
+
+namespace nameSpaceUnlockableWeapons
+{
+
+	UnlockedWeapons_t g_pWeaponUnlockable[MAX_UNLOCKABLE_WEAPONS] = {0};
+
+
+	/************************************************************************
+    *                                                                       *
+    *  load unlockable weapons from DB					                    *
+    *                                                                       *
+    ************************************************************************/
+
+    void LoadUnlockableWeaponList()
+    {
+        int32 ret = Sql_Query(SqlHandle, "SELECT itemid, delay, dmg, points FROM item_weapon_unlocked WHERE Id < %u;", MAX_UNLOCKABLE_WEAPONS);
+
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+			uint16 index = 0;
+
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+			{
+				UnlockedWeapons_t UnlockedWeapon = {0};
+
+				UnlockedWeapon.itemid = Sql_GetUIntData(SqlHandle,0);
+				UnlockedWeapon.delay = Sql_GetUIntData(SqlHandle,1);
+				UnlockedWeapon.damage = Sql_GetUIntData(SqlHandle,2);
+				UnlockedWeapon.required = Sql_GetUIntData(SqlHandle,3);
+
+				g_pWeaponUnlockable[index] = UnlockedWeapon;
+				index++;
+		    }
+	    }
+
+    }
+
+};
