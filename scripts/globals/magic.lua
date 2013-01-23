@@ -497,7 +497,7 @@ function getSkillLvl(rank,level)
     end
 
     -- handle magic shield
-    if(skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
+    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
         return 0;
     end
 
