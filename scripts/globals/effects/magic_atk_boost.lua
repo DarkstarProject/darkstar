@@ -14,7 +14,7 @@ function onEffectGain(target,effect)
     if(effect:getPower()>100) then
         effect:setPower(50);
     end
-    target:addMod(MOD_MATK,effect:getPower());
+    target:addMod(MOD_MATT,effect:getPower());
 end;
 
 -----------------------------------
@@ -29,5 +29,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MATK,effect:getPower());
+    target:delMod(MOD_MATT,effect:getPower());
 end;
