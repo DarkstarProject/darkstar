@@ -251,22 +251,22 @@ void CAICharNormal::ActionEngage()
 				}
                 else
                 {
-					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,94));
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_WAIT_LONGER));
 				}
 			}
             else
             {
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_TOO_FAR_AWAY));
 			}
 		}
         else
         {
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_ALREADY_CLAIMED));
 		}
 	}
 	else if (m_PBattleTarget != NULL)
 	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,446));
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_CANNOT_ATTACK_TARGET));
 	}
 	m_PBattleTarget = NULL;
 	m_ActionType = ACTION_NONE;

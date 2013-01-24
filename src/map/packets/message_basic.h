@@ -28,6 +28,18 @@
 
 #include "basic.h"
 
+/*
+ * This contains a list of message IDs for this type of packet. They should be used
+ * in the messageID parameter. 
+ */
+enum MSGBASIC_ID : uint16 
+{
+	MSGBASIC_ALREADY_CLAIMED		= 12, /* Cannot attack. Your target is already claimed. */
+	MSGBASIC_TOO_FAR_AWAY			= 78, /* <target> is too far away. */
+	MSGBASIC_WAIT_LONGER			= 94, /* You must wait longer to perform that action. */
+	MSGBASIC_CANNOT_ATTACK_TARGET	= 446 /* You cannot attack that target */
+};
+
 /************************************************************************
 *																		*
 *  																		*
