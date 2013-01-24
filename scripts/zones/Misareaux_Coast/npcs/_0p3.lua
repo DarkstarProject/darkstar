@@ -23,8 +23,9 @@ end;
 function onTrigger(player,npc)
 	
 	local z = player:getZPos();
-	
-	if(player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 0)then
+	if(player:getCurrentMission(COP) == THE_SAVAGE and player:getVar("PromathiaStatus") == 0)then
+	        player:startEvent(0x0008);
+	elseif(player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 0)then
 		player:startEvent(0x0006);
 	elseif(player:hasCompletedMission(COP,AN_ETERNAL_MELODY))then
 		if(z > 330)then
@@ -59,5 +60,8 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0006)then
 		player:setVar("PromathiaStatus",1);
+	elseif(csid == 0x0008 and option == 1)then
+		player:setVar("PromathiaStatus",1);
+		player:setPos(729,-20,410,88,0x1D); -- Go to Riverne #B01
 	end
 end;

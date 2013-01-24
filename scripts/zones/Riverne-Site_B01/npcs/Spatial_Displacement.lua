@@ -3,7 +3,7 @@
 -- NPC:  Spacial Displacement
 -----------------------------------
 
-base = 16900331;
+
 
 -----------------------------------
 -- onTrade
@@ -17,9 +17,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+local base = 16896180;
 	id = npc:getID();
-	
+
 	if(id == base) then --  L-9 porter
 		player:startEvent(0x2);
 	elseif(id == base+1) then --  L-8 porter
@@ -115,7 +115,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x21 and option == 0) then
+	if(csid == 0x21 and option == 1) then
 		player:setPos(10,0,-540,128,0x1F); -- to Monarch Linn
 	elseif(csid == 0xA and option == 1) then
 		player:setPos(-539,-30,360,0,0x19); -- back to Misareaux Coast
