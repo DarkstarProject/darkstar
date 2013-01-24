@@ -24,9 +24,10 @@
 #include "latent_effect_container.h"
 
 #include "latent_effect.h"
+#include "charentity.h"
 #include "battleentity.h"
 
-CLatentEffectContainer::CLatentEffectContainer(CBattleEntity* PEntity)
+CLatentEffectContainer::CLatentEffectContainer(CCharEntity* PEntity)
 	:m_POwner(PEntity)
 {
 	m_LatentEffectList.reserve(32);
@@ -81,8 +82,9 @@ void CLatentEffectContainer::DelLatentEffect(uint8 slot)
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsHP()
+void CLatentEffectContainer::CheckLatentsHP(int32 hp)
 {
+	
 	//TODO: hook into this from anywhere HP changes: might need a real setter method for hp...
 }
 
@@ -93,7 +95,7 @@ void CLatentEffectContainer::CheckLatentsHP()
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsTP()
+void CLatentEffectContainer::CheckLatentsTP(float tp)
 {
 	//TODO: hook into this from anywhere TP changes
 }
@@ -105,9 +107,63 @@ void CLatentEffectContainer::CheckLatentsTP()
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsMP()
+void CLatentEffectContainer::CheckLatentsMP(int32 mp)
 {
 	//TODO: hook into this from anywhere MP changes
+	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
+	{
+		switch(m_LatentEffectList.at(i)->GetConditionsID())
+		{
+			case LATENT_MP_UNDER_PERCENT:
+				if ((float)(mp / m_POwner->health.mp ) <= m_LatentEffectList.at(i)->GetConditionsValue())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+				break;
+			case LATENT_MP_UNDER:
+				if (mp <= m_LatentEffectList.at(i)->GetConditionsValue())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+				break;
+			case LATENT_MP_UNDER_VISIBLE_GEAR:
+				//TODO: figure out if this is actually right
+				CItemArmor* head = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HEAD]));
+				CItemArmor* body = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_BODY]));
+				CItemArmor* hands = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HANDS]));
+				CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
+				CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
+
+				int32 visibleMp = 0;
+				visibleMp += (head ? head->getModifier(MOD_MP) : 0);
+				visibleMp += (body ? body->getModifier(MOD_MP) : 0);
+				visibleMp += (hands ? hands->getModifier(MOD_MP) : 0);
+				visibleMp += (legs ? legs->getModifier(MOD_MP) : 0);
+				visibleMp += (feet ? feet->getModifier(MOD_MP) : 0);
+
+				//TODO: add mp percent too
+				if ((float)( mp / ((m_POwner->health.mp - m_POwner->health.modmp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_MP)->count * 10 ) + 
+					visibleMp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+				break;
+			default:
+				break;
+		}
+	}
 }
 
 /************************************************************************
@@ -136,6 +192,7 @@ void CLatentEffectContainer::CheckLatentsSubjob(uint8 jobId)
 *																		*
 ************************************************************************/
 
+//easy: when animationType changes to ANIMATION_ATTACK or to something else
 void CLatentEffectContainer::CheckLatentsWeaponDraw(bool drawn)
 {
 	if( drawn )
@@ -216,9 +273,22 @@ void CLatentEffectContainer::CheckLatentsStatusEffect()
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsRollSong()
+void CLatentEffectContainer::CheckLatentsRollSong(bool active)
 {
-	
+	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
+	{
+		if( m_LatentEffectList.at(i)->GetConditionsID() == LATENT_SONG_ROLL_ACTIVE)
+		{
+			if( active )
+			{
+				m_LatentEffectList.at(i)->Activate();
+			}
+			else
+			{
+				m_LatentEffectList.at(i)->Deactivate();
+			}
+		}
+	}
 }
 
 /************************************************************************
@@ -228,6 +298,7 @@ void CLatentEffectContainer::CheckLatentsRollSong()
 *																		*
 ************************************************************************/
 
+//probably call this at 00:00 vana time only
 void CLatentEffectContainer::CheckLatentsDay()
 {
 	
@@ -348,9 +419,23 @@ void CLatentEffectContainer::CheckLatentsJobLevel()
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsPetType()
+void CLatentEffectContainer::CheckLatentsPetType(PETTYPE petID)
 {
-	
+	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
+	{
+		if( m_LatentEffectList.at(i)->GetConditionsID() == LATENT_PET_ID)
+		{
+			CLatentEffect* latent = m_LatentEffectList.at(i);
+			if( (PETTYPE)latent->GetConditionsValue() == petID )
+			{
+				latent->Activate();
+			}
+			else
+			{
+				latent->Deactivate();
+			}
+		}
+	}
 }
 
 /************************************************************************
@@ -360,6 +445,7 @@ void CLatentEffectContainer::CheckLatentsPetType()
 *																		*
 ************************************************************************/
 
+//will probably only call this at transition points in the day
 void CLatentEffectContainer::CheckLatentsTime()
 {
 	

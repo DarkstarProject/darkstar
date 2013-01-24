@@ -64,6 +64,7 @@ public:
 	uint16	getEquipSlotId();
 	uint8	getRemoveSlotId();
     uint8   getShieldAbsorption();
+	int16	getModifier(uint16 mod);
 
     bool    IsShield();
 

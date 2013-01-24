@@ -28,6 +28,7 @@
 #include "../common/taskmgr.h"
 
 #include "latent_effect.h"
+#include "petentity.h"
 
 /************************************************************************
 *                                                                       *
@@ -35,24 +36,24 @@
 *                                                                       *
 ************************************************************************/
 
-class CBattleEntity;
+class CCharEntity;
 
 class CLatentEffectContainer
 {
 public:
 
-	void CheckLatentsHP();
-	void CheckLatentsTP();
-	void CheckLatentsMP();
+	void CheckLatentsHP(int32 hp);
+	void CheckLatentsTP(float tp);
+	void CheckLatentsMP(int32 mp);
 	void CheckLatentsSubjob(uint8 jobId);
 	void CheckLatentsWeaponDraw(bool drawn);
 	void CheckLatentsStatusEffect();
-	void CheckLatentsRollSong();
+	void CheckLatentsRollSong(bool active);
 	void CheckLatentsDay();
 	void CheckLatentsPartyMembers(uint8 members);
 	void CheckLatentsPartyAvatar();
 	void CheckLatentsJobLevel();
-	void CheckLatentsPetType();
+	void CheckLatentsPetType(PETTYPE petID);
 	void CheckLatentsTime();
 
 	void AddLatentEffect(CLatentEffect* LatentEffect);
@@ -60,12 +61,12 @@ public:
 
     CLatentEffect* GetLatentEffect(uint8 slot, uint16 modId);
 
-	 CLatentEffectContainer(CBattleEntity* PEntity);
+	 CLatentEffectContainer(CCharEntity* PEntity);
 	~CLatentEffectContainer();
 
 private:
 
-	CBattleEntity* m_POwner;
+	CCharEntity* m_POwner;
 
 	std::vector<CLatentEffect*>	m_LatentEffectList;
 };

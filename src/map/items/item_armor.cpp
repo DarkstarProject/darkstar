@@ -171,3 +171,14 @@ void CItemArmor::addModifier(CModifier* modifier)
     }
     modList.push_back(modifier);
 }
+
+int16 CItemArmor::getModifier(uint16 mod)
+{
+	for (uint16 i = 0; i < modList.size(); ++i)
+	{
+		if (modList.at(i)->getModID() == mod)
+		{
+			return modList.at(i)->getModAmount();
+		}
+	}
+}
