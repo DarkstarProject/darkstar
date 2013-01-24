@@ -178,15 +178,8 @@ uint16 CItemWeapon::getDamage(CBattleEntity* user)
 		{
 			return nameSpaceUnlockableWeapons::g_pWeaponUnlockable[m_unlockId-1].damage;
 		}
-		else
-		{
-			return m_damage;
-		}
 	}
-	else
-	{
-		return m_damage;
-	}
+	return m_damage;
 }
 
 /************************************************************************

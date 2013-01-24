@@ -110,7 +110,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 		tpHitsLanded = 1;
 	end
 	tpHits = 1;
-	if(attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1) then
+	if((attacker: getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1)) then
 
 		local chance = math.random();
 		if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid) then --it hit

@@ -4610,9 +4610,16 @@ inline int32 CLuaBaseEntity::getOffhandDmg(lua_State *L)
 
 	if(weapon == NULL)
 	{
-	    ShowDebug(CL_CYAN"lua::getOffhandDmg weapon in main slot is null!\n" CL_RESET);
+	    ShowDebug(CL_CYAN"lua::getOffhandDmg weapon in offhand slot is null!\n" CL_RESET);
 		return 0;
     }
+	else if((CItemArmor*)weapon->IsShield())
+	{
+	    ShowDebug(CL_CYAN"lua::getOffhandDmg item in offhand slot is a shield!\n" CL_RESET);
+		lua_pushinteger( L, 0 );
+		return 1;
+    }
+
 	lua_pushinteger( L, weapon->getDamage((CBattleEntity*)m_PBaseEntity) );
 	return 1;
 }
