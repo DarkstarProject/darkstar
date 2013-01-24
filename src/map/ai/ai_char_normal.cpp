@@ -1268,7 +1268,7 @@ void CAICharNormal::ActionMagicCasting()
         {
 			if (m_PSpell->getMPCost() > m_PChar->health.mp && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
 			{
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,34));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,MSGBASIC_NOT_ENOUGH_MP));
 
 				m_ActionType = ACTION_MAGIC_INTERRUPT;
 				ActionMagicInterrupt();
@@ -1463,7 +1463,7 @@ void CAICharNormal::ActionJobAbilityStart()
     {
         m_ActionTargetID = 0;
 
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 94)); //was 87 "Unable to use job ability".
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_WAIT_LONGER));
 
         m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PJobAbility = NULL;
@@ -1476,7 +1476,7 @@ void CAICharNormal::ActionJobAbilityStart()
 	    {
             if (!IsMobOwner(m_PBattleSubTarget))
             {
-                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 12));
+                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_CLAIMED));
 
                 m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
                 m_PJobAbility = NULL;
@@ -1488,7 +1488,7 @@ void CAICharNormal::ActionJobAbilityStart()
         {
             if (distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p) > m_PJobAbility->getRange())
             {
-                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 78));
+                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
 
                 m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
@@ -1498,7 +1498,7 @@ void CAICharNormal::ActionJobAbilityStart()
 		}
 		if(m_PJobAbility->getID() >= ABILITY_HEALING_RUBY){//blood pact
 			if(m_PChar->health.mp < m_PJobAbility->getAnimationID()){ //not enough mp for BP
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 87));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
 			    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1508,14 +1508,14 @@ void CAICharNormal::ActionJobAbilityStart()
 		if (m_PJobAbility->getID() == ABILITY_CALL_BEAST)//Call Beast, check ammo slot
 		{
 			if(charutils::hasInvalidJugPetAmmo(m_PChar)){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 337));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_NO_JUG_PET_ITEM));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
 				return;
 			}
 			if(m_PChar->PPet!=NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 315));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_HAS_A_PET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1526,7 +1526,7 @@ void CAICharNormal::ActionJobAbilityStart()
 			if (m_PChar->PPet != NULL)
 			{
 				// player has a pet, cancel
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 315));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_HAS_A_PET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1537,7 +1537,7 @@ void CAICharNormal::ActionJobAbilityStart()
 			if (m_PChar->PPet == NULL)
 			{
 				// player has no pet, cancel
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_REQUIRES_A_PET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1559,7 +1559,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				else
 				{
 					//unable to use that item
-					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 347));
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_MUST_HAVE_FOOD));
 					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 					m_PJobAbility = NULL;
 					m_PBattleSubTarget = NULL;
@@ -1569,7 +1569,7 @@ void CAICharNormal::ActionJobAbilityStart()
 			else
 			{
 				// player has no pet, cancel
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_REQUIRES_A_PET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1588,7 +1588,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				else
 				{
 					//574 - <player>'s pet is currently unable to perform that action.
-					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 574));
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_PET_CANNOT_DO_ACTION));
 					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 					m_PJobAbility = NULL;
 					m_PBattleSubTarget = NULL;
@@ -1598,7 +1598,7 @@ void CAICharNormal::ActionJobAbilityStart()
 			else
 			{
 				// player has no pet, cancel
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_REQUIRES_A_PET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1610,28 +1610,28 @@ void CAICharNormal::ActionJobAbilityStart()
 		{
 			//Sic, check pet TP
 			if(m_PChar->PPet!=NULL && m_PChar->PPet->health.tp<100){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 575));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_PET_NOT_ENOUGH_TP));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
 				return;
 			}
 			else if(m_PChar->PPet==NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_REQUIRES_A_PET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
 				return;
 			}
 			else if(m_PChar->PPet->GetHPP() == 0){//prevent player having an undead pet
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 87));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
 			    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
 				return;
 			}
 			else if(m_PChar->PPet->PBattleAI->GetBattleTarget() == NULL){//Crash fix, prevent pet using ability with no target
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 574));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_PET_CANNOT_DO_ACTION));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1641,7 +1641,7 @@ void CAICharNormal::ActionJobAbilityStart()
 			else if(m_PChar->PPet->objtype == TYPE_MOB){//crash fix, dont use sic if pet(charmed) has no tp moves
 				std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(((CMobEntity*)m_PChar->PPet)->m_Family);
 				if(MobSkills.size() == 0){
-					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 336));
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_NO_EFFECT_ON_PET));
 					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 					m_PJobAbility = NULL;
 					m_PBattleSubTarget = NULL;
@@ -1652,7 +1652,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 		if(m_PJobAbility->getID() == ABILITY_SPIRIT_LINK){
 			if(m_PChar->PPet == NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 215));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_REQUIRES_A_PET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -2178,7 +2178,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 		m_PJobAbility->getID() != ABILITY_GAUGE)
 	{
 		if (m_PJobAbility->getMessage() == 0)
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, 100));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_JA));
 	}
 
 	m_PJobAbility = NULL;
@@ -2201,12 +2201,12 @@ void CAICharNormal::ActionWeaponSkillStart()
 
     if (!charutils::hasWeaponSkill(m_PChar, m_PWeaponSkill->getID()))
     {
-        WeaponSkillStartError(190);
+        WeaponSkillStartError(MSGBASIC_CANNOT_USE_WS);
         return;
     }
     if (m_PChar->health.tp < 100)
     {
-        WeaponSkillStartError(192);
+        WeaponSkillStartError(MSGBASIC_NOT_ENOUGH_TP);
         return;
     }
 
@@ -2214,7 +2214,7 @@ void CAICharNormal::ActionWeaponSkillStart()
     {
         if (!IsMobOwner(m_PBattleSubTarget))
 	    {
-            WeaponSkillStartError(12);
+            WeaponSkillStartError(MSGBASIC_ALREADY_CLAIMED);
 		    return;
 	    }
 
@@ -2222,12 +2222,12 @@ void CAICharNormal::ActionWeaponSkillStart()
 
 	    if ((Distance - m_PBattleSubTarget->m_ModelSize) > m_PWeaponSkill->getRange())
 	    {
-            WeaponSkillStartError(36);
+            WeaponSkillStartError(MSGBASIC_TOO_FAR_AWAY);
 		    return;
 	    }
 	    if (!isFaceing(m_PChar->loc.p, m_PBattleSubTarget->loc.p, 40))
 	    {
-            WeaponSkillStartError(5);
+            WeaponSkillStartError(MSGBASIC_UNABLE_TO_SEE_TARG);
 		    return;
 	    }
         if( 218 >= m_PWeaponSkill->getID() && m_PWeaponSkill->getID() >= 192 ) // ranged WS IDs
@@ -2241,7 +2241,7 @@ void CAICharNormal::ActionWeaponSkillStart()
               !m_PChar->m_Weapons[SLOT_RANGED]->isRanged() ||	// make sure range weapon is a range weapon
 			  m_PChar->equip[SLOT_AMMO] == 0)					// make sure ammo is equiped (the ammo qty checks the inventory slot and not the ammo slot)
 			{
-				WeaponSkillStartError(216); // You do not have an appropriate ranged weapon equipped
+				WeaponSkillStartError(MSGBASIC_NO_RANGED_WEAPON); // You do not have an appropriate ranged weapon equipped
 				return;
 			}
 
@@ -2258,7 +2258,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 			return;
 		}
 	}
-    WeaponSkillStartError(446);
+    WeaponSkillStartError(MSGBASIC_CANNOT_ATTACK_TARGET);
 }
 
 /************************************************************************
@@ -2748,7 +2748,7 @@ void CAICharNormal::ActionAttack()
 
 	if (!IsMobOwner(m_PBattleTarget))
 	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,12));
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_ALREADY_CLAIMED));
 
 		m_ActionType = ACTION_DISENGAGE;
 		ActionDisengage();
@@ -2759,7 +2759,7 @@ void CAICharNormal::ActionAttack()
 
 	if (Distance > 30)
 	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,36));
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_LOSE_SIGHT));
 
 		m_ActionType = ACTION_DISENGAGE;
 		ActionDisengage();
@@ -2793,23 +2793,23 @@ void CAICharNormal::ActionAttack()
 		if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
 		{
 			m_LastMeleeTime = m_Tick;
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,5));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_UNABLE_TO_SEE_TARG));
 			return;
 		}
 		if (Distance > m_PBattleTarget->m_ModelSize)
 		{
 			m_LastMeleeTime = m_Tick;
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,4));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_TARG_OUT_OF_RANGE));
 			return;
 		}
         m_LastMeleeTime = m_Tick;
 		if (battleutils::IsParalised(m_PChar))
 		{
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,29));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_IS_PARALYZED));
 		}
 		else if (battleutils::IsIntimidated(m_PChar, m_PBattleTarget))
 		{
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,106));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_IS_INTIMIDATED));
 		}
 		else
 		{
