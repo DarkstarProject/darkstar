@@ -273,10 +273,8 @@ void CAIPetDummy::ActionAbilityUsing()
 			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget!=m_PPet && 
 				distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
-				m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-				//too far away message
-				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 78));
-				ActionAbilityInterrupt();
+				// Pet's target is too far away (and isn't itself)
+				SendTooFarInterruptMessage(m_PBattleTarget);
 				return;
 			}
 		}
@@ -286,28 +284,23 @@ void CAIPetDummy::ActionAbilityUsing()
 				m_PBattleTarget!=m_PPet && 
 				distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
-				m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-				//too far away message
-				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 78));
-				ActionAbilityInterrupt();
+				// Avatar's target is too far away (and isn't the avatar itself)
+				SendTooFarInterruptMessage(m_PBattleTarget);
 				return;
 			}
 			else if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
 				m_PBattleSubTarget!=m_PPet && 
 				distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
-				m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-				//too far away message
-				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, 0, 78));
-				ActionAbilityInterrupt();
+				// Avatar's sub target is too far away (and isn't the avatar itself)
+				SendTooFarInterruptMessage(m_PBattleSubTarget);
 				return;
 			}
 			else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && 
 				distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
-				m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-				//too far away message
-				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleSubTarget, m_PBattleSubTarget, 0, 0, 78));
-				ActionAbilityInterrupt();
+				
+				// Player in the pet's party is too far away
+				SendTooFarInterruptMessage(m_PBattleSubTarget);
 				return;
 			}
 		}
@@ -816,4 +809,19 @@ void CAIPetDummy::ActionSpawn()
 	{
 		m_ActionType = ACTION_ROAMING;
 	}
+}
+
+/************************************************************************
+*																		*
+*  Sends the too far away message and interrupts the pet from			*
+*  performing its action. Changes to the interrupt state.				*
+*																		*
+************************************************************************/
+
+void CAIPetDummy::SendTooFarInterruptMessage(CBattleEntity* PTarg)
+{
+	m_ActionType = ACTION_MOBABILITY_INTERRUPT;
+	//too far away message = 78
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(PTarg, PTarg, 0, 0, 78));
+	ActionAbilityInterrupt();
 }

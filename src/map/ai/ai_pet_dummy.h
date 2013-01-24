@@ -63,6 +63,10 @@ protected:
 	void ActionAbilityInterrupt();
 	void ActionAbilityFinish();
 	bool WyvernIsHealing(); //true if wyvern is healing
+
+private:
+
+	void SendTooFarInterruptMessage(CBattleEntity* PTarg);
 };
 
 #endif
