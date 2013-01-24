@@ -35,9 +35,21 @@
 enum MSGBASIC_ID : uint16 
 {
 	MSGBASIC_ALREADY_CLAIMED		= 12, /* Cannot attack. Your target is already claimed. */
+	MSGBASIC_IS_INTERRUPTED			= 16, /* The <player>'s casting is interrupted. */
+	MSGBASIC_UNABLE_TO_CAST			= 18, /* Unable to cast spells at this time. */
+	MSGBASIC_IS_PARALYZED			= 29, /* The <player> is paralyzed. */
+	MSGBASIC_NO_NINJA_TOOLS			= 35, /* The <player> lacks the ninja tools to cast (NULL). */
 	MSGBASIC_TOO_FAR_AWAY			= 78, /* <target> is too far away. */
 	MSGBASIC_WAIT_LONGER			= 94, /* You must wait longer to perform that action. */
-	MSGBASIC_CANNOT_ATTACK_TARGET	= 446 /* You cannot attack that target */
+	MSGBASIC_IS_INTIMIDATED			= 106, /* The <player> is intimidated by <target>'s presence. */
+	MSGBASIC_CANNOT_ATTACK_TARGET	= 446, /* You cannot attack that target */
+	/* Items */
+	MSGBASIC_CANNOT_USE_ITEM_ON		= 92, /* Cannot use the <item> on <target>. */
+	MSGBASIC_ITEM_FAILS_TO_ACTIVATE = 62, /* The <item> fails to activate. */
+	/* Ranged */
+	MSGBASIC_NO_RANGED_WEAPON		= 216, /* You do not have an appropriate ranged weapon equipped. */
+	MSGBASIC_CANNOT_SEE				= 217, /* You cannot see <target>. */
+	MSGBASIC_MOVE_AND_INTERRUPT		= 218 /* You move and interrupt your aim. */
 };
 
 /************************************************************************

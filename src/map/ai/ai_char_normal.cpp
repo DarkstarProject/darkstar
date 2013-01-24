@@ -300,12 +300,12 @@ void CAICharNormal::ActionChangeBattleTarget()
 				}
                 else
                 {
-					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,78));
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_TOO_FAR_AWAY));
 				}
 			}
             else
             {
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,12));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_ALREADY_CLAIMED));
 			}
 		}
 	}
@@ -424,7 +424,7 @@ void CAICharNormal::ActionItemStart()
 	{
 		m_ActionType = ACTION_ITEM_INTERRUPT;
 
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PItemUsable->getID(),0,92));
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,m_PItemUsable->getID(),0,MSGBASIC_CANNOT_USE_ITEM_ON));
 		ActionItemInterrupt();
 		return;
 	}
@@ -469,7 +469,7 @@ void CAICharNormal::ActionItemUsing()
 		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
 	{
 		m_ActionType = ACTION_ITEM_INTERRUPT;
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, m_PItemUsable->getID(), 0, 62));
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, m_PItemUsable->getID(), 0, MSGBASIC_ITEM_FAILS_TO_ACTIVATE));
 		ActionItemInterrupt();
 		return;
 	}
@@ -633,7 +633,7 @@ void CAICharNormal::ActionRangedStart()
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
 	if( (m_Tick - m_PChar->m_rangedDelay) < 2400){ //cooldown between shots
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,94));
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_WAIT_LONGER));
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_ActionTargetID = 0;
 		m_PBattleSubTarget = NULL;
@@ -696,7 +696,7 @@ void CAICharNormal::ActionRangedStart()
 			{
 				m_ActionTargetID = 0;
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,216));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
 				return;
 			}
 		}
@@ -709,14 +709,14 @@ void CAICharNormal::ActionRangedStart()
 		{
 			m_ActionTargetID = 0;
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,216));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
 			return;
 		}
 
 		//todo: remove this and actually handle ammo thrown items (e.g. pebbles)
 		m_ActionTargetID = 0;
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,216));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
 			return;
 	}
 
@@ -730,7 +730,7 @@ void CAICharNormal::ActionRangedStart()
 		}
 		if (!isFaceing(m_PChar->loc.p, m_PBattleSubTarget->loc.p, 40))
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,217));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_CANNOT_SEE));
 
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 			m_PBattleSubTarget = NULL;
@@ -738,7 +738,7 @@ void CAICharNormal::ActionRangedStart()
 		}
 		if (!IsMobOwner(m_PBattleSubTarget))
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_ALREADY_CLAIMED));
 
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 			m_PBattleSubTarget = NULL;
@@ -746,7 +746,7 @@ void CAICharNormal::ActionRangedStart()
 		}
 		if (distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p) > 25)
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,78));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_TOO_FAR_AWAY));
 
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 			m_PBattleSubTarget = NULL;
@@ -804,7 +804,7 @@ void CAICharNormal::ActionRangedFinish()
 	// check if player moved during Range attack wait
 	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x || m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
 	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 218)); // "You move and interrupt your aim."
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_MOVE_AND_INTERRUPT));
         m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PBattleSubTarget = NULL;
@@ -1002,7 +1002,7 @@ void CAICharNormal::ActionRangedFinish()
 
 void CAICharNormal::ActionRangedInterrupt()
 {
-	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 216));
+	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_NO_RANGED_WEAPON));
 
 	apAction_t Action;
     m_PChar->m_ActionList.clear();
@@ -1192,7 +1192,7 @@ void CAICharNormal::ActionMagicCasting()
 	}
 	if (m_PBattleSubTarget->objtype == TYPE_MOB && !IsMobOwner(m_PBattleSubTarget))
 	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,12));
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_ALREADY_CLAIMED));
 
 		m_ActionType = ACTION_MAGIC_INTERRUPT;
 		ActionMagicInterrupt();
@@ -1204,21 +1204,21 @@ void CAICharNormal::ActionMagicCasting()
 	{
 		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
         {
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,18));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_UNABLE_TO_CAST));
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
 			return;
 		}
 		else if (battleutils::IsParalised(m_PChar))
 		{
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,29));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_IS_PARALYZED));
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
 			return;
 		}
 		else if (battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget))
 		{
-		    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,106));
+		    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_IS_INTIMIDATED));
 		    m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
 			return;
@@ -1237,7 +1237,7 @@ void CAICharNormal::ActionMagicCasting()
 		if (floorf(m_PChar->m_StartActionPos.x * 10 + 0.5) / 10 != floorf(m_PChar->loc.p.x * 10 + 0.5) / 10 ||
 		floorf(m_PChar->m_StartActionPos.z * 10 + 0.5) / 10 != floorf(m_PChar->loc.p.z * 10 + 0.5) / 10)
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 16));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_IS_INTERRUPTED));
 
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
@@ -1246,7 +1246,7 @@ void CAICharNormal::ActionMagicCasting()
 		if ((m_PBattleSubTarget != m_PChar) &&
 			(distance(m_PChar->loc.p,m_PBattleSubTarget->loc.p) > 21.5))
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,78));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_TOO_FAR_AWAY));
 
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
@@ -1257,7 +1257,7 @@ void CAICharNormal::ActionMagicCasting()
 		{
             if(!battleutils::HasNinjaTool(m_PChar, m_PSpell, true))
             {
-                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, m_PSpell->getID(), 0, 35));
+                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, m_PSpell->getID(), 0, MSGBASIC_NO_NINJA_TOOLS));
 
                 m_ActionType = ACTION_MAGIC_INTERRUPT;
                 ActionMagicInterrupt();
