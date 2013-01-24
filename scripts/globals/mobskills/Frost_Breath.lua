@@ -18,7 +18,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PARALYSIS;
 	if(target:hasStatusEffect(typeEffect) == false) then --Let's first see if it's worth the time to do this math, since there's no messages to handle
-		local statmod = MOD_INT;
+		local statmod = MOD_MND;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,15,0,90);--power=25;tic=0;duration=30;
@@ -27,7 +27,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local dmgmod = MobBreathMove(mob, target, 0.333, 0.625);
 
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS);
+	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;
 end;
