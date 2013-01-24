@@ -31,6 +31,8 @@ cs = -1;
 	
 	if(player:getCurrentMission(COP) == AN_INVITATION_WEST)then
 		cs = 0x0065;
+	elseif(player:getCurrentMission(COP) == THE_CRADLES_OF_CHILDREN_LOST)then
+        cs = 0x006B;	
 	end
 	
 	return cs;	
@@ -77,6 +79,9 @@ function onEventFinish(player,csid,option)
 		player:setVar("PromathiaStatus",0);
 		player:completeMission(COP,AN_ETERNAL_MELODY);
 		player:addMission(COP,ANCIENT_VOWS);
+	elseif(csid == 0x006B) then
+	 	player:completeMission(COP,THE_CRADLES_OF_CHILDREN_LOST);
+		player:addMission(COP,SHELTERING_DOUBT);   
 	end
 	
 end;
