@@ -24,6 +24,8 @@ function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(COP) == AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 1)then
 		player:startEvent(0x0005);
+	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 2)then
+	    player:startEvent(0x0007);
 	else
 		player:messageSpecial(DOOR_CLOSED);
 	end   
@@ -50,6 +52,10 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0005)then
 		player:setVar("PromathiaStatus",2);
+	elseif(csid == 0x0007)then
+		player:setVar("PromathiaStatus",0);
+		player:completeMission(COP,SHELTERING_DOUBT);
+		player:addMission(COP,THE_SAVAGE); 
 	end
 	
 end;
