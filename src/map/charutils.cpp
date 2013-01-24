@@ -2355,7 +2355,7 @@ void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
 			if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
 			{
                 UpdateItem(PMember, LOC_INVENTORY, 0, gilperperson);
-                PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,gilperperson,0,565));
+                PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,gilperperson,0,565));
             }
         }
     }
