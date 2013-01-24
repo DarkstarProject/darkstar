@@ -807,8 +807,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 		chance -= 5*(PDefender->GetMLevel() - PAttacker->GetMLevel());
 		chance = dsp_cap(chance,5,95);
 	}
-	if(rand()%100 >= chance){return;}
-	if(PAmmo==NULL){return;}
+	if(rand()%100 >= chance || PAmmo==NULL || PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ARROW_SHIELD, 0)){return;}
 
 	switch(PAmmo->getID()){
 	case 18700:{ //Wind Arrow

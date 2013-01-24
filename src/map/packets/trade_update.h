@@ -25,6 +25,7 @@
 #define _CTRADEUPDATEPACKET_H
 
 #include "../../common/cbasetypes.h"
+#include <string.h>
 
 #include "basic.h"
 

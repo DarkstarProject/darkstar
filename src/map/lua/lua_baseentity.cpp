@@ -567,6 +567,7 @@ inline int32 CLuaBaseEntity::wakeUp(lua_State *L)
         //wake them up!
         PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP);
         PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP_II);
+        PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_LULLABY);
     }
 	return 0;
 }

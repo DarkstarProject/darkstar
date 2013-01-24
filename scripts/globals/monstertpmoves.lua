@@ -515,8 +515,25 @@ end;
 -- percent is the percentage to take from HP
 -- base is calculated from main level to create a minimum
 -- Equation: (HP * percent) + (LVL / base)
-function MobBreathMove(mob, target, percent, base)
+-- cap is optional, defines a maxiumum damage
+function MobBreathMove(mob, target, percent, base, cap)
 	damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
+
+	if(cap == nil) then
+		-- super cap for high damage mobs
+		if(damage > 1000) then
+			damage = 700 + math.random(500);
+		end
+
+		-- cap max damage
+		if(damage > mob:getHP()/5) then
+			damage = math.floor(mob:getHP()/5);
+		end
+	else
+		if(damage > cap) then
+			damage = cap;
+		end
+	end
 
 	-- add breath resistence and magic resistence
 	local resist = (target:getMod(MOD_DMGBREATH) + target:getMod(MOD_DMGMAGIC)) / 100;
@@ -526,7 +543,7 @@ function MobBreathMove(mob, target, percent, base)
 		resist = 0.5;
 	end
 
-	damage = damage * (1 - resist);
+	damage = damage * (1 + resist);
 
 	return damage;
 end;

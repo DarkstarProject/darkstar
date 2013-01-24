@@ -386,13 +386,18 @@ INSERT INTO `mob_skill` VALUES (186,77,186,'Bubble_Shower', 1, 7.0, 2000, 1000, 
 INSERT INTO `mob_skill` VALUES (192,77,192,'Metallic_Body', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (189,77,189,'Scissor_Guard', 0, 7.0, 2000, 1500, 1, 0); -- +100% defense boost
 
+-- Shadow
+INSERT INTO `mob_skill` VALUES (190,221,190,'Dimensional_Death', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (190,222,190,'Dimensional_Death', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (190,223,190,'Dimensional_Death', 0, 7.0, 2000, 1000, 4, 0);
+
 -- Pugil
 INSERT INTO `mob_skill` VALUES (195,197,195,'Splash_Breath', 4, 12.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (196,197,196,'Screwdriver', 0, 7.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (197,197,197,'Water_Wall', 0, 7.0, 2000, 1000, 1, 0); -- 100% Defense Boost. 1 minute duration
 INSERT INTO `mob_skill` VALUES (198,197,198,'Water_Shield', 0, 7.0, 2000, 1000, 1, 0); -- Eva boost
 INSERT INTO `mob_skill` VALUES (194,197,194,'Aqua_Ball', 2, 10.0, 2000, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (190,197,190,'Intimidate', 4, 12.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (193,197,193,'Intimidate', 4, 12.0, 2000, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Recoil Dive', 4, 12.0, 2000, 1500, 4, 0); -- Used by Jagils instead of Screwdriver
 
 -- Sea Monks (Kraken)
@@ -631,6 +636,19 @@ INSERT INTO `mob_skill` VALUES (407,130,407,'Ice_Roar', 4, 9.0, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (408,130,408,'Impact_Roar', 4, 9.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (409,130,409,'Grand_Slam', 1, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (410,130,410,'Power_Attack', 0, 7.0, 2000, 1800, 4, 0);
+-- Shadow Lord
+INSERT INTO `mob_skill` VALUES (412,224,412,'Kick_Back', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (413,224,413,'Implosion', 1, 16.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (415,224,415,'Umbra_Smash', 1, 12.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (416,224,416,'Giga_Slash', 1, 12.0, 3000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (417,224,417,'Dark_Nova', 1, 12.0, 3000, 1500, 4, 0);
+
+INSERT INTO `mob_skill` VALUES (412,225,412,'Kick_Back', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (413,225,413,'Implosion', 1, 16.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (415,225,415,'Umbra_Smash', 1, 12.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (416,225,416,'Giga_Slash', 1, 12.0, 3000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (417,225,417,'Dark_Nova', 1, 12.0, 3000, 1500, 4, 0);
+
 -- Golem
 INSERT INTO `mob_skill` VALUES (419,135,419,'Heavy_Strike', 0, 7.0, 2000, 1700, 4, 0);
 INSERT INTO `mob_skill` VALUES (420,135,420,'Ice_Break', 1, 15.0, 2000, 1500, 4, 0);
@@ -638,6 +656,7 @@ INSERT INTO `mob_skill` VALUES (421,135,421,'Thunder_Break', 1, 15.0, 2000, 1500
 INSERT INTO `mob_skill` VALUES (422,135,422,'Crystal_Rain', 1, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (423,135,423,'Crystal_Weapon', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (425,135,425,'Crystal_Weapon', 0, 7.0, 2000, 1500, 4, 0);
+
 -- Sapling
 INSERT INTO `mob_skill` VALUES (429,216,429,'Sprout_Spin', 1, 7.0, 2000, 1300, 4, 0);
 INSERT INTO `mob_skill` VALUES (430,216,430,'Slumber_Powder', 1, 10.0, 2000, 1500, 4, 0);
@@ -789,6 +808,11 @@ INSERT INTO `mob_skill` VALUES (260,98,815,'Geist_Wall', 1, 10.0, 2000, 2000, 4,
 INSERT INTO `mob_skill` VALUES (261,98,816,'Numbing_Noise', 4, 9.5, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (262,98,817,'Nimble_Snap', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (263,98,818,'Cyclotail', 1, 10.0, 2000, 1000, 4, 0);
+
+-- Fomors
+-- INSERT INTO `mob_skill` VALUES (253,115,246,'Shackled_Fists', 0, 7.0, 2000, 2000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (254,115,247,'Foxfire', 0, 7.0, 2000, 2000, 4, 0);
+
 -- taurus
 INSERT INTO `mob_skill` VALUES (242,240,851,'Triclip', 0, 7.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (243,240,852,'Back_Swish', 0, 7.0, 2000, 1500, 4, 0);
