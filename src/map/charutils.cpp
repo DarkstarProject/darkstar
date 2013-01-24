@@ -61,6 +61,7 @@
 
 #include "ability.h"
 #include "battleutils.h"
+#include "charentity.h"
 #include "charutils.h"
 #include "grades.h"
 #include "itemutils.h"
@@ -1198,7 +1199,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		// check if this weapon is unlocked
 		if (equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB || equipSlotID == SLOT_MAIN)
 		{
-			if (((CItemWeapon*)PItem)->isUnlockable() && PChar->unlockedWeapons[((CItemWeapon*)PItem)->getUnlockId()].unlocked)
+			if (!((CItemArmor*)PItem)->IsShield() && ((CItemWeapon*)PItem)->isUnlockable() && PChar->unlockedWeapons[((CItemWeapon*)PItem)->getUnlockId()].unlocked)
 			{
 				// weapon is unlockable and char has unlocked it, remove different set of mods
 				// TODO...remove mods of the unlocked version
@@ -1558,7 +1559,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				// check if this weapon is unlocked
 				if (equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB || equipSlotID == SLOT_MAIN)
 				{
-					if (((CItemWeapon*)PItem)->isUnlockable() && PChar->unlockedWeapons[((CItemWeapon*)PItem)->getUnlockId()].unlocked)
+					if (!PItem->IsShield() && ((CItemWeapon*)PItem)->isUnlockable() && PChar->unlockedWeapons[((CItemWeapon*)PItem)->getUnlockId()].unlocked)
 					{
 						// weapon is unlockable and char has unlocked it, add different set of mods
 						// TODO...add mods of the unlocked version
