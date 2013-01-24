@@ -1738,140 +1738,14 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
-		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA)
-		{
-			if (m_PChar->health.tp<10){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_II)
-		{
-			if (m_PChar->health.tp<25){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_III)
-		{
-			if (m_PChar->health.tp<40){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA)
-		{
-			if (m_PChar->health.tp<10){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA_II)
-		{
-			if (m_PChar->health.tp<25){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_HASTE_SAMBA)
-		{
-			if (m_PChar->health.tp<35){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ)
-		{
-			if (m_PChar->health.tp<20){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_II)
-		{
-			if (m_PChar->health.tp<35){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_III)
-		{
-			if (m_PChar->health.tp<50){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_IV)
-		{
-			if (m_PChar->health.tp<65){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_HEALING_WALTZ)
-		{
-			if (m_PChar->health.tp<20){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_DIVINE_WALTZ)
-		{
-			if (m_PChar->health.tp<40){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_QUICKSTEP)
-		{
-			if (m_PChar->health.tp<10){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_BOX_STEP)
-		{
-			if (m_PChar->health.tp<10){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
-		}
-		if (m_PJobAbility->getID() == ABILITY_STUTTER_STEP)
-		{
-			if (m_PChar->health.tp<20){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;}
+
+		// If there's not enough TP for a move, then reject it. If the JA isn't a dance, then this will fail
+		if (battleutils::HasNotEnoughTpForDance(m_PChar, m_PJobAbility)) {
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PJobAbility = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
 		}
 		
         m_ActionType = ACTION_JOBABILITY_FINISH;

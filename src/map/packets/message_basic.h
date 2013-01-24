@@ -34,21 +34,23 @@
  */
 enum MSGBASIC_ID : uint16 
 {
-	MSGBASIC_TARG_OUT_OF_RANGE		= 4, /* <target> is out of range. */
-	MSGBASIC_UNABLE_TO_SEE_TARG		= 5, /* Unable to see <target>. */
 	MSGBASIC_ALREADY_CLAIMED		= 12, /* Cannot attack. Your target is already claimed. */
 	MSGBASIC_IS_INTERRUPTED			= 16, /* The <player>'s casting is interrupted. */
 	MSGBASIC_UNABLE_TO_CAST			= 18, /* Unable to cast spells at this time. */
 	MSGBASIC_UNABLE_TO_USE_JA		= 87, /* Unable to use job ability. */
+	MSGBASIC_UNABLE_TO_USE_JA2		= 88, /* Unable to use job ability. */
 	MSGBASIC_IS_PARALYZED			= 29, /* The <player> is paralyzed. */
 	MSGBASIC_NOT_ENOUGH_MP			= 34, /* The <player> does not have enough MP to cast (NULL). */
 	MSGBASIC_NO_NINJA_TOOLS			= 35, /* The <player> lacks the ninja tools to cast (NULL). */
-	MSGBASIC_LOSE_SIGHT				= 36, /* You lose sight of <target>. */
-	MSGBASIC_TOO_FAR_AWAY			= 78, /* <target> is too far away. */
 	MSGBASIC_WAIT_LONGER			= 94, /* You must wait longer to perform that action. */
 	MSGBASIC_USES_JA				= 100, /* The <player> uses .. */
 	MSGBASIC_IS_INTIMIDATED			= 106, /* The <player> is intimidated by <target>'s presence. */
 	MSGBASIC_CANNOT_ATTACK_TARGET	= 446, /* You cannot attack that target */
+	/* Distance */
+	MSGBASIC_TARG_OUT_OF_RANGE		= 4, /* <target> is out of range. */
+	MSGBASIC_UNABLE_TO_SEE_TARG		= 5, /* Unable to see <target>. */
+	MSGBASIC_LOSE_SIGHT				= 36, /* You lose sight of <target>. */
+	MSGBASIC_TOO_FAR_AWAY			= 78, /* <target> is too far away. */
 	/* Weaponskills */
 	MSGBASIC_CANNOT_USE_WS			= 190, /* The <player> cannot use that weapon ability. */
 	MSGBASIC_NOT_ENOUGH_TP			= 192, /* The <player> does not have enough TP. */

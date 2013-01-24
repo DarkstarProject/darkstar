@@ -2666,6 +2666,65 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
     return true;
 }
 
+
+/* This will return true if you do not have enough TP to do a dance, if PAbility is a dance. If PAbility is not
+ * a dance, this will return false.
+ */
+bool HasNotEnoughTpForDance(CBattleEntity* PEntity, CAbility* PAbility)
+{
+	// TODO: Minor optimisation by doing a range check before switching since the IDs are all grouped together
+
+	switch (PAbility->getID()) {
+	case ABILITY_DRAIN_SAMBA: 
+		if (PEntity->health.tp < 10) { return true; } 
+		break;
+	case ABILITY_DRAIN_SAMBA_II: 
+		if (PEntity->health.tp < 25) { return true; } 
+		break;
+	case ABILITY_DRAIN_SAMBA_III: 
+		if (PEntity->health.tp < 40) { return true; } 
+		break;
+	case ABILITY_ASPIR_SAMBA: 
+		if (PEntity->health.tp < 10) { return true; } 
+		break;
+	case ABILITY_ASPIR_SAMBA_II: 
+		if (PEntity->health.tp < 25) { return true; } 
+		break;
+	case ABILITY_HASTE_SAMBA: 
+		if (PEntity->health.tp < 35) { return true; } 
+		break;
+	case ABILITY_CURING_WALTZ: 
+		if (PEntity->health.tp < 20) { return true; } 
+		break;
+	case ABILITY_CURING_WALTZ_II: 
+		if (PEntity->health.tp < 35) { return true; } 
+		break;
+	case ABILITY_CURING_WALTZ_III: 
+		if (PEntity->health.tp < 50) { return true; } 
+		break;
+	case ABILITY_CURING_WALTZ_IV: 
+		if (PEntity->health.tp < 65) { return true; } 
+		break;
+	case ABILITY_HEALING_WALTZ: 
+		if (PEntity->health.tp < 20) { return true; } 
+		break;
+	case ABILITY_DIVINE_WALTZ: 
+		if (PEntity->health.tp < 40) { return true; } 
+		break;
+	case ABILITY_QUICKSTEP: 
+		if (PEntity->health.tp < 10) { return true; } 
+		break;
+	case ABILITY_BOX_STEP: 
+		if (PEntity->health.tp < 10) { return true; } 
+		break;
+	case ABILITY_STUTTER_STEP: 
+		if (PEntity->health.tp < 20) { return true; } 
+		break;
+	}
+
+	return false;
+}
+
 CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob)
 {
 	if (taUser->PParty != NULL)
