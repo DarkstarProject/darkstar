@@ -27,12 +27,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	TheWonderMagicSet = player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET);
-	CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
-	TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
-	
-	if(TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then 
+	local TheWonderMagicSet = player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET);
+	local CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
+	local TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
+	local WildcatJeuno = player:getVar("WildcatJeuno");
+
+	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == 1 and player:getMaskBit(WildcatJeuno,13) == false) then
+		player:startEvent(10053);
+	elseif(TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then 
 		if(player:getVar("CooksPrideVar") == 0) then
 			player:startEvent(0x00BD); -- Start quest "Cook's pride" Long CS
  		else
@@ -55,7 +57,6 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x0062); -- Standard dialog
 	end
-	
 end; 
 
 -----------------------------------
@@ -92,6 +93,7 @@ function onEventFinish(player,csid,option)
 			player:addFame(JEUNO,30);
 			player:completeQuest(JEUNO,COOK_S_PRIDE);
 		end
+	elseif(csid == 10053) then
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",13,true)
 	end
-	
 end;

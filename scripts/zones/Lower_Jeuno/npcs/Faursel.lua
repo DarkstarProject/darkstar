@@ -17,7 +17,8 @@ require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
 
-	questStatus = player:getQuestStatus(JEUNO,THE_ROAD_TO_AHT_URHGAN);
+	local questStatus = player:getQuestStatus(JEUNO,THE_ROAD_TO_AHT_URHGAN);
+	local questStatusVar = player:getVar("THE_ROAD_TO_AHT_URHGAN");
 
 	if (questStatus == QUEST_ACCEPTED and questStatusVar == 1) then
 
@@ -40,12 +41,12 @@ end;
 
 function onTrigger(player,npc)
 
-	   passDay = player:getVar("THE_ROAD_TO_AHT_URHGAN_Day");
-	  passYear = player:getVar("THE_ROAD_TO_AHT_URHGAN_Year");
-	currentDay = VanadielDayOfTheYear();
-	 passReady = ((passDay < currentDay) or (passDay > currentDay and passYear < VanadielYear()));
-   questStatus = player:getQuestStatus(JEUNO,THE_ROAD_TO_AHT_URHGAN);
-questStatusVar = player:getVar("THE_ROAD_TO_AHT_URHGAN");
+	local passDay = player:getVar("THE_ROAD_TO_AHT_URHGAN_Day");
+	local passYear = player:getVar("THE_ROAD_TO_AHT_URHGAN_Year");
+	local currentDay = VanadielDayOfTheYear();
+	local passReady = ((passDay < currentDay) or (passDay > currentDay and passYear < VanadielYear()));
+	local questStatus = player:getQuestStatus(JEUNO,THE_ROAD_TO_AHT_URHGAN);
+	local questStatusVar = player:getVar("THE_ROAD_TO_AHT_URHGAN");
 
 	if (questStatus == QUEST_AVAILABLE) then
 		player:startEvent(0x274E); -- Offer Quest, First Dialog.
@@ -133,5 +134,4 @@ function onEventFinish(player,csid,option)
 		player:addFame(JEUNO,30);
 		player:tradeComplete();
 	end
-	
 end;

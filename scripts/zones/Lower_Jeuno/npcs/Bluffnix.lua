@@ -21,12 +21,15 @@ function onTrade(player,npc,trade)
 	count = trade:getItemCount();
 	gil = trade:getGil();
 	inventorySize = player:getContainerSize(0);
-    TheGobbieBag = gobQuest(player,inventorySize);
+	TheGobbieBag = gobQuest(player,inventorySize);
 
-    if (count == 4 and gil == 0 and player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 1) then
-		if (trade:hasItemQty(TheGobbieBag[3],1) and trade:hasItemQty(TheGobbieBag[4],1) and trade:hasItemQty(TheGobbieBag[5],1) and trade:hasItemQty(TheGobbieBag[6],1)) then
-			player:startEvent(0x0049, inventorySize+1);
+	if (player:getContainerSize(0) < 80) then
+		if (pFame >= TheGobbieBag[2]) then
+			offer = 1;
 		end
+		player:startEvent(0x002b,inventorySize+1,questStatus,offer);
+	else
+		player:startEvent(0x002b,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
 	end
 end;
 
@@ -56,18 +59,21 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getContainerSize(0) < 80) then
-        pFame = player:getFameLevel(JEUNO);
-        inventorySize = player:getContainerSize(0);
-	    TheGobbieBag = gobQuest(player,inventorySize);
-        questStatus = player:getQuestStatus(JEUNO,TheGobbieBag[1]);
+	local WildcatJeuno = player:getVar("WildcatJeuno");
 
-        offer = 0;
-        if (pFame >= TheGobbieBag[2]) then
-            offer = 1;
-        end
+	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == 1 and player:getMaskBit(WildcatJeuno,12) == false) then
+		player:startEvent(10056);
+	elseif (player:getContainerSize(0) < 80) then
+		pFame = player:getFameLevel(JEUNO);
+		inventorySize = player:getContainerSize(0);
+		TheGobbieBag = gobQuest(player,inventorySize);
+		questStatus = player:getQuestStatus(JEUNO,TheGobbieBag[1]);
 
-        player:startEvent(0x002b,inventorySize+1,questStatus,offer);
+		offer = 0;
+		if (pFame >= TheGobbieBag[2]) then
+			offer = 1;
+		end
+		player:startEvent(0x002b,inventorySize+1,questStatus,offer);
 	else
 		player:startEvent(0x002b,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
 	end
@@ -108,6 +114,7 @@ function onEventFinish(player,csid,option)
 		player:addFame(JEUNO,30);
 		player:tradeComplete();
 		player:completeQuest(JEUNO,TheGobbieBag[1]);
-	
+	elseif(csid == 10056) then
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",12,true)
 	end
 end;

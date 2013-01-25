@@ -125,8 +125,11 @@ function onTrigger(player,npc)
 	local KindredsSeal = player:getVar("ShamiKindredsSeal");
 	local KindredsCrest = player:getVar("ShamiKindredsCrest");
 	local HighKindredsCrest = player:getVar("ShamiHighKindredsCrest");
+	local WildcatJeuno = player:getVar("WildcatJeuno");
 	-- TODO: player:startEvent(0x0142,0,0,0,0,1,0,1) -- First time talking to him WITH  beastmen seal in inventory
-	if(BeastmensSeal + KindredsSeal + KindredsCrest + HighKindredsCrest == 0) then 
+	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == 1 and player:getMaskBit(WildcatJeuno,17) == false) then
+		player:startEvent(317);
+	elseif(BeastmensSeal + KindredsSeal + KindredsCrest + HighKindredsCrest == 0) then 
 		player:startEvent(0x0017); -- Standard dialog ?
 	else
 		player:startEvent(0x0142,(KindredsSeal * 65536) + BeastmensSeal,(HighKindredsCrest * 65536) + KindredsCrest,0,0,1,0,0); -- Standard dialog with menu
@@ -324,8 +327,7 @@ function onEventFinish(player,csid,option)
 			end	
 		end
 -- TODO : Add in orbs for Kindred Crest exhcange (and High Kindred Crest) and find cutscene that tells you where you can bring it.
+	elseif (csid == 317) then
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",17,true)
 	end
 end;
-
-
-

@@ -25,7 +25,7 @@ end;
 function onTrigger(player,npc)
 
 	if(player:hasKeyItem(LIMIT_BREAKER) == false and player:getMainLvl() >= 75) then
-		player:startEvent(0x2798);
+		player:startEvent(0x2797);
 	else
 		player:startEvent(0x005E);
 	end
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 	
-	if(csid == 0x2798) then
+	if(csid == 0x2797) then
 		player:addKeyItem(LIMIT_BREAKER);
 		player:messageSpecial(KEYITEM_OBTAINED,LIMIT_BREAKER);
 	end

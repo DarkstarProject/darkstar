@@ -30,9 +30,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	ChildsPlay = player:getQuestStatus(JEUNO,CHILD_S_PLAY);
-	
-	if(player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET) == QUEST_ACCEPTED and ChildsPlay == QUEST_AVAILABLE) then 
+	local ChildsPlay = player:getQuestStatus(JEUNO,CHILD_S_PLAY);
+	local WildcatJeuno = player:getVar("WildcatJeuno");
+
+	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == 1 and player:getMaskBit(WildcatJeuno,16) == false) then
+		player:startEvent(316);
+	elseif(player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET) == QUEST_ACCEPTED and ChildsPlay == QUEST_AVAILABLE) then 
 		player:startEvent(0x0000); -- Start quest 
 	elseif(ChildsPlay == QUEST_ACCEPTED) then
 		player:startEvent(0x003d); -- mid quest CS
@@ -67,5 +70,7 @@ function onEventFinish(player,csid,option)
 		player:addFame(JEUNO,30);
 		player:tradeComplete(trade);
 		player:completeQuest(JEUNO,CHILD_S_PLAY);
+	elseif(csid == 316) then
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",16,true)
 	end
 end;
