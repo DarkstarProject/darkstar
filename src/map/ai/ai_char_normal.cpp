@@ -1658,7 +1658,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				m_PBattleSubTarget = NULL;
 				return;
 			}else if(m_PChar->PPet->health.hp == m_PChar->PPet->health.maxhp && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II)){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 87));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1667,7 +1667,7 @@ void CAICharNormal::ActionJobAbilityStart()
 		}
 		if(m_PJobAbility->getID() == ABILITY_CALL_WYVERN){
 			if(m_PChar->PPet!=NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 315));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_HAS_A_PET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1679,7 +1679,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 			// player already has a pet
 			if(m_PChar->PPet!=NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 315));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_HAS_A_PET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1687,7 +1687,7 @@ void CAICharNormal::ActionJobAbilityStart()
 			}
 			// Pet already has a master
 			if(m_PBattleSubTarget->PMaster != NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 235));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_THAT_SOMEONES_PET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1698,7 +1698,7 @@ void CAICharNormal::ActionJobAbilityStart()
 		if(m_PJobAbility->getID() == ABILITY_FIGHT){
 			//cannot use fight on your own or pet or another players pet
 			if(m_PBattleSubTarget == m_PChar->PPet || (m_PBattleSubTarget->PMaster != NULL && m_PBattleSubTarget->PMaster->objtype == TYPE_PC) ){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 446));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_CANNOT_ATTACK_TARGET));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1712,7 +1712,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				m_PBattleSubTarget->objtype != TYPE_PC ||				// if target is not a player)
 				m_PBattleSubTarget == NULL)								// if target is null
 			{
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 155)); // must specify valid target to use.....
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_CANNOT_ON_THAT_TARG)); // must specify valid target to use.....
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1720,7 +1720,7 @@ void CAICharNormal::ActionJobAbilityStart()
 			}
 			if(m_PBattleSubTarget->PBattleAI->GetBattleTarget() == NULL)	// if party member is not engaged to any mob
 			{
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 88)); // unable to use ability
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2)); // unable to use ability
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1731,7 +1731,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 		if (m_PJobAbility->getID() == ABILITY_HASSO || m_PJobAbility->getID() == ABILITY_SEIGAN){
 			if(!m_PChar->m_Weapons[SLOT_MAIN]->isTwoHanded()){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 307));
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_NEEDS_2H_WEAPON));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
@@ -1752,7 +1752,7 @@ void CAICharNormal::ActionJobAbilityStart()
         ActionJobAbilityFinish();
         return;
 	}
-    m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,88));
+    m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_UNABLE_TO_USE_JA2));
 
     m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
     m_PJobAbility = NULL;
@@ -1896,7 +1896,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 			if (Action.param == 0)
 			{
 				Action.messageID = 0;
-				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 324));
+				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_BUT_MISSES));
 			}
 		}
 		// High Jump
@@ -1906,7 +1906,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 			if (Action.param == 0)
 			{
 				Action.messageID = 0;
-				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 324));
+				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_BUT_MISSES));
 			}
 		}
 		// Super Jump
@@ -1914,7 +1914,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 		{
 			battleutils::jumpAbility(m_PChar, m_PBattleSubTarget, 3);
 			Action.messageID = 0;
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, 100));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_JA));
 		}
 
 		// handle enmity transfer abilities
@@ -1959,18 +1959,18 @@ void CAICharNormal::ActionJobAbilityFinish()
 					m_PBattleSubTarget->m_EcoSystem == SYSTEM_ARCANA)
 				{
 					//NM, Beastman or Arcana, cannot charm at all !
-					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,210));
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_CANNOT_CHARM));
 				}else{
 					uint16 baseExp = charutils::GetRealExp(m_PChar->GetMLevel(),m_PBattleSubTarget->GetMLevel());
 
 					if(baseExp >= 400) {//IT
-						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,211));
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_VERY_DIFFICULT_CHARM));
 					} else if(baseExp >= 240) {//VT
-						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,211));
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_VERY_DIFFICULT_CHARM));
 					} else if(baseExp >= 120) {//T
-						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,213));
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_MIGHT_BE_ABLE_CHARM));
 					} else if(baseExp >= 100) {//EM
-						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,214));
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_SHOULD_BE_ABLE_CHARM));
 					}
 				}
 			}
@@ -1978,7 +1978,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 		if(m_PJobAbility->getID() == ABILITY_REWARD)
 		{
 			m_PChar->PPet->UpdateHealth();
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, value, 102));
+			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, value, MSGBASIC_USES_RECOVERS_HP));
 
 			//Reward gives enmity to the pet and not the Beastmaster.
 			CBattleEntity* PTarget = m_PChar->PPet->PBattleAI->GetBattleTarget();

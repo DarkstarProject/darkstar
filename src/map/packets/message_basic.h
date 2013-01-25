@@ -44,8 +44,12 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_NO_NINJA_TOOLS			= 35, /* The <player> lacks the ninja tools to cast (NULL). */
 	MSGBASIC_WAIT_LONGER			= 94, /* You must wait longer to perform that action. */
 	MSGBASIC_USES_JA				= 100, /* The <player> uses .. */
+	MSGBASIC_USES_RECOVERS_HP		= 102, /* The <player> uses .. <target> recovers .. HP. */
 	MSGBASIC_IS_INTIMIDATED			= 106, /* The <player> is intimidated by <target>'s presence. */
+	MSGBASIC_CANNOT_ON_THAT_TARG	= 155, /* You cannot perform that action on the specified target. */
 	MSGBASIC_CANNOT_ATTACK_TARGET	= 446, /* You cannot attack that target */
+	MSGBASIC_NEEDS_2H_WEAPON		= 307, /* That action requires a two-handed weapon. */
+	MSGBASIC_USES_BUT_MISSES		= 324, /* The <player> uses .. but misses <target>. */
 	/* Distance */
 	MSGBASIC_TARG_OUT_OF_RANGE		= 4, /* <target> is out of range. */
 	MSGBASIC_UNABLE_TO_SEE_TARG		= 5, /* Unable to see <target>. */
@@ -56,6 +60,7 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_NOT_ENOUGH_TP			= 192, /* The <player> does not have enough TP. */
 	/* Pets */
 	MSGBASIC_REQUIRES_A_PET			= 215, /* That action requires a pet. */
+	MSGBASIC_THAT_SOMEONES_PET		= 235, /* That is someone's pet. */
 	MSGBASIC_ALREADY_HAS_A_PET		= 315, /* The <player> already has a pet. */
 	MSGBASIC_NO_EFFECT_ON_PET		= 336, /* No effect on that pet. */
 	MSGBASIC_NO_JUG_PET_ITEM		= 337, /* You do not have the necessary item equipped to call a beast. */
@@ -68,7 +73,13 @@ enum MSGBASIC_ID : uint16
 	/* Ranged */
 	MSGBASIC_NO_RANGED_WEAPON		= 216, /* You do not have an appropriate ranged weapon equipped. */
 	MSGBASIC_CANNOT_SEE				= 217, /* You cannot see <target>. */
-	MSGBASIC_MOVE_AND_INTERRUPT		= 218 /* You move and interrupt your aim. */
+	MSGBASIC_MOVE_AND_INTERRUPT		= 218, /* You move and interrupt your aim. */
+	/* Charm */
+	MSGBASIC_CANNOT_CHARM			= 210, /* The <player> cannot charm <target>! */
+	MSGBASIC_VERY_DIFFICULT_CHARM	= 211, /* It would be very difficult for the <player> to charm <target>. */
+	MSGBASIC_DIFFICULT_TO_CHARM		= 212, /* It would be difficult for the <player> to charm <target>. */
+	MSGBASIC_MIGHT_BE_ABLE_CHARM	= 213, /* The <player> might be able to charm <target>. */
+	MSGBASIC_SHOULD_BE_ABLE_CHARM	= 214 /* The <player> should be able to charm <target>. */
 };
 
 /************************************************************************
