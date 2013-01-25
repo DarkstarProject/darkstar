@@ -19,7 +19,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x207);
+ if(player:getCurrentMission(COP) == THE_RETURN_HOME and player:getVar("COP_optional_CS_Anoki") == 0)then
+ player:startEvent(0x02D4);
+ elseif(player:getCurrentMission(COP) == THE_RETURN_HOME and player:getVar("COP_optional_CS_Anoki") == 1)then
+ player:startEvent(0x02D8);
+ else
+ player:startEvent(0x207);
+ end
 end;
 
 -----------------------------------
@@ -38,6 +44,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+ if(csid == 0x02D4)then
+  player:setVar("COP_optional_CS_Anoki",1);
+ elseif(csid == 0x02D8)then
+  player:setVar("COP_optional_CS_Anoki",2);
+ end
 end;
 
 

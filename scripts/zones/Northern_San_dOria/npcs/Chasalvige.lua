@@ -23,6 +23,8 @@ end;
 function onTrigger(player,npc)
   if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 3)then 
   player:startEvent(0x0026); --COP event
+  elseif(player:getCurrentMission(COP) == THE_RETURN_HOME and player:getVar("COP_optional_CS_chasalvigne") == 0)then
+  player:startEvent(0x02F9);
   else
   player:startEvent(0x0006); 
   end
@@ -46,6 +48,8 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	if (csid == 0x0026)then
 	  player:setVar("EMERALD_WATERS_Status",4);
+	 elseif(csid == 0x02F9)then
+	  player:setVar("COP_optional_CS_chasalvigne",1);
 	end
 end;
 

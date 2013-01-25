@@ -23,6 +23,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x0066);
 	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 0)then	
 		player:startEvent(0x006C);
+	elseif(player:getCurrentMission(COP) == THE_RETURN_HOME and player:getVar("COP_optional_CS_Despachaire") == 0)then
+        player:startEvent(0x0075);	
 	else
 		player:startEvent(0x006A);
 	end
@@ -48,6 +50,8 @@ function onEventFinish(player,csid,option)
   
 	if(csid == 0x0066 or csid == 0x006C)then
 		player:setVar("PromathiaStatus",1);
+	elseif(csid == 0x0075)then
+	    player:setVar("COP_optional_CS_Despachaire",1);
 	end
   
 end;
