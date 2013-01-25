@@ -34,17 +34,20 @@
  */
 enum MSGBASIC_ID : uint16 
 {
+	MSGBASIC_DEFEATS_TARG			= 6, /* The <player> defeats <target>. */
 	MSGBASIC_ALREADY_CLAIMED		= 12, /* Cannot attack. Your target is already claimed. */
 	MSGBASIC_IS_INTERRUPTED			= 16, /* The <player>'s casting is interrupted. */
 	MSGBASIC_UNABLE_TO_CAST			= 18, /* Unable to cast spells at this time. */
 	MSGBASIC_UNABLE_TO_USE_JA		= 87, /* Unable to use job ability. */
 	MSGBASIC_UNABLE_TO_USE_JA2		= 88, /* Unable to use job ability. */
 	MSGBASIC_IS_PARALYZED			= 29, /* The <player> is paralyzed. */
+	MSGBASIC_SHADOW_ABSORB			= 31, /* .. of <target>'s shadows absorb the damage and disappear. */
 	MSGBASIC_NOT_ENOUGH_MP			= 34, /* The <player> does not have enough MP to cast (NULL). */
 	MSGBASIC_NO_NINJA_TOOLS			= 35, /* The <player> lacks the ninja tools to cast (NULL). */
 	MSGBASIC_UNABLE_TO_CAST_SPELLS  = 49, /* The <player> is unable to cast spells. */
 	MSGBASIC_WAIT_LONGER			= 94, /* You must wait longer to perform that action. */
 	MSGBASIC_USES_JA				= 100, /* The <player> uses .. */
+	MSGBASIC_USES_JA2				= 101, /* The <player> uses .. */
 	MSGBASIC_USES_RECOVERS_HP		= 102, /* The <player> uses .. <target> recovers .. HP. */
 	MSGBASIC_IS_INTIMIDATED			= 106, /* The <player> is intimidated by <target>'s presence. */
 	MSGBASIC_CANNOT_ON_THAT_TARG	= 155, /* You cannot perform that action on the specified target. */

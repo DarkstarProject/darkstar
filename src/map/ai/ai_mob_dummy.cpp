@@ -215,7 +215,7 @@ void CAIMobDummy::ActionDropItems()
 
 			luautils::OnMobDeath(m_PMob, PChar);
 
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0,6));
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0, MSGBASIC_DEFEATS_TARG));
 			
 			if (m_PMob->m_CallForHelp == 0)
 			{
@@ -561,7 +561,7 @@ void CAIMobDummy::ActionAbilityUsing()
 
 			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
 			//too far away message
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 78));
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
 			ActionAbilityInterrupt();
 			return;
 		}
@@ -803,7 +803,7 @@ void CAIMobDummy::ActionAbilityFinish()
 				m_ActionType = ACTION_MOBABILITY_FINISH;
 			}
 
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PMob, m_PMobSkill->getID() + 256, 0, 101));
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PMob, m_PMobSkill->getID() + 256, 0, MSGBASIC_USES_JA2));
 			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 			m_PMob->health.tp = 0; 
 
@@ -1057,11 +1057,11 @@ void CAIMobDummy::ActionAttack()
 		{
 			if (battleutils::IsParalised(m_PMob)) 
 			{
-				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,29));
+				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0, MSGBASIC_IS_PARALYZED));
 			}
 			else if (battleutils::IsIntimidated(m_PMob, m_PBattleTarget)) 
 			{
-				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0,106));
+				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0, MSGBASIC_IS_INTIMIDATED));
 			}
 			else
 			{
@@ -1111,7 +1111,7 @@ void CAIMobDummy::ActionAttack()
 						else if (battleutils::IsAbsorbByShadow(m_PBattleTarget)) 
 						{
 							Action.messageID = 0;
-							m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
+							m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1, MSGBASIC_SHADOW_ABSORB));
 						}
 						else if (battleutils::IsAnticipated(m_PBattleTarget,false,false)) 
 						{
