@@ -42,6 +42,7 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_IS_PARALYZED			= 29, /* The <player> is paralyzed. */
 	MSGBASIC_NOT_ENOUGH_MP			= 34, /* The <player> does not have enough MP to cast (NULL). */
 	MSGBASIC_NO_NINJA_TOOLS			= 35, /* The <player> lacks the ninja tools to cast (NULL). */
+	MSGBASIC_UNABLE_TO_CAST_SPELLS  = 49, /* The <player> is unable to cast spells. */
 	MSGBASIC_WAIT_LONGER			= 94, /* You must wait longer to perform that action. */
 	MSGBASIC_USES_JA				= 100, /* The <player> uses .. */
 	MSGBASIC_USES_RECOVERS_HP		= 102, /* The <player> uses .. <target> recovers .. HP. */
@@ -50,6 +51,7 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_CANNOT_ATTACK_TARGET	= 446, /* You cannot attack that target */
 	MSGBASIC_NEEDS_2H_WEAPON		= 307, /* That action requires a two-handed weapon. */
 	MSGBASIC_USES_BUT_MISSES		= 324, /* The <player> uses .. but misses <target>. */
+	MSGBASIC_CANT_BE_USED_IN_AREA	= 316, /* That action cannot be used in this area. */
 	/* Distance */
 	MSGBASIC_TARG_OUT_OF_RANGE		= 4, /* <target> is out of range. */
 	MSGBASIC_UNABLE_TO_SEE_TARG		= 5, /* Unable to see <target>. */

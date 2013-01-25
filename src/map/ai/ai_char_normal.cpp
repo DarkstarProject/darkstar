@@ -80,7 +80,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
     if((m_ActionType != ACTION_NONE) && jailutils::InPrison(m_PChar))
     {
         Reset();
-        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 316));
+        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_CANT_BE_USED_IN_AREA));
     }
 
 	switch (m_ActionType)
@@ -1226,7 +1226,7 @@ void CAICharNormal::ActionMagicCasting()
 
 		if (!charutils::hasSpell(m_PChar, m_PSpell->getID()))
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,49));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0, MSGBASIC_UNABLE_TO_CAST_SPELLS));
 
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
@@ -1740,7 +1740,7 @@ void CAICharNormal::ActionJobAbilityStart()
 		}
 
 		// If there's not enough TP for a move, then reject it. If the JA isn't a dance, then this will fail
-		if (battleutils::HasNotEnoughTpForDance(m_PChar, m_PJobAbility)) {
+		if (battleutils::HasNotEnoughTpForDance(m_PChar, m_PJobAbility, false)) {
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 			m_PJobAbility = NULL;
@@ -2009,21 +2009,10 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 
 	// remove TP from player: Dancer Abilities
-	if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA)				m_PChar->addTP(-10);
-	else if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_II)		m_PChar->addTP(-25);
-	else if (m_PJobAbility->getID() == ABILITY_DRAIN_SAMBA_III)		m_PChar->addTP(-40);
-	else if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA)			m_PChar->addTP(-10);
-	else if (m_PJobAbility->getID() == ABILITY_ASPIR_SAMBA_II)		m_PChar->addTP(-25);
-	else if (m_PJobAbility->getID() == ABILITY_HASTE_SAMBA)			m_PChar->addTP(-35);
-	else if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ)		m_PChar->addTP(-20);
-	else if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_II)		m_PChar->addTP(-35);
-	else if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_III)	m_PChar->addTP(-50);
-	else if (m_PJobAbility->getID() == ABILITY_CURING_WALTZ_IV)		m_PChar->addTP(-65);
-	else if (m_PJobAbility->getID() == ABILITY_HEALING_WALTZ)		m_PChar->addTP(-20);
-	else if (m_PJobAbility->getID() == ABILITY_DIVINE_WALTZ)		m_PChar->addTP(-40);
-	else if (m_PJobAbility->getID() == ABILITY_QUICKSTEP)			m_PChar->addTP(-10);
-	else if (m_PJobAbility->getID() == ABILITY_BOX_STEP)			m_PChar->addTP(-10);
-	else if (m_PJobAbility->getID() == ABILITY_STUTTER_STEP)		m_PChar->addTP(-10);
+	if (battleutils::HasNotEnoughTpForDance(m_PChar, m_PJobAbility, true)) {
+		// something went wrong if we're here, because the TP is taken away AFTER the check. This indicates they
+		// has enough TP to trigger the move, but now don't, so we should reject it. TODO
+	}
 
 
     // TODO: все перенести в скрипты, т.к. система позволяет получать указатель на питомца
