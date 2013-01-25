@@ -23,13 +23,18 @@ function onTrade(player,npc,trade)
 	inventorySize = player:getContainerSize(0);
 	TheGobbieBag = gobQuest(player,inventorySize);
 
-	if (player:getContainerSize(0) < 80) then
-		if (pFame >= TheGobbieBag[2]) then
-			offer = 1;
+	if (count == 4 and gil == 0 and player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 1) then
+		if (player:getContainerSize(0) < 80) then
+			if (trade:hasItemQty(TheGobbieBag[3],1) and trade:hasItemQty(TheGobbieBag[4],1) and trade:hasItemQty(TheGobbieBag[5],1) and trade:hasItemQty(TheGobbieBag[6],1)) then
+				if (pFame >= TheGobbieBag[2]) then
+					player:startEvent(0x0049, inventorySize+1);
+					offer = 1;
+				end
+			end
+			player:startEvent(0x002b,inventorySize+1,questStatus,offer);
+		else
+			player:startEvent(0x002b,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
 		end
-		player:startEvent(0x002b,inventorySize+1,questStatus,offer);
-	else
-		player:startEvent(0x002b,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
 	end
 end;
 
