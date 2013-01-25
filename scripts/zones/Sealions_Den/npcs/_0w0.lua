@@ -10,7 +10,7 @@ package.loaded["scripts/globals/bcnm"] = nil;
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
 require("scripts/zones/Sealions_Den/TextIDs");
-
+require("scripts/globals/titles");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -28,15 +28,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(EventTriggerBCNM(player,npc))then
-		return 1;
+    if(player:getCurrentMission(COP) == SLANDEROUS_UTTERINGS and player:getVar("PromathiaStatus") == 1)then
+	player:startEvent(0x000D);
+	elseif(EventTriggerBCNM(player,npc))then
+		return 0;
+	elseif(player:hasKeyItem(LIGHT_OF_ALTAIEU) == true) then
+	player:startEvent(0x000C);	
 	end
-	if(player:hasKeyItem(LIGHT_OF_ALTAIEU) == true) then
-	player:startEvent(0x000C)
-	return 1;
-	end
 	
+	return 0;
 end;
 
 -----------------------------------
@@ -63,7 +63,12 @@ function onEventFinish(player,csid,option)
 	if(EventFinishBCNM(player,csid,option)) then
 		return;
 	end
-	if(csid == 0x000c) and option == 1 then 
+	if(csid == 0x000c and option == 1) then 
 	player:setPos(-25,-1 ,-620 ,208 ,33);
+	elseif(csid == 0x000D)then
+	player:setVar("PromathiaStatus",0);
+	player:completeMission(COP,SLANDEROUS_UTTERINGS);
+	player:addMission(COP,THE_RETURN_HOME);
+	player:addTitle(THE_LOST_ONE);
 	end
 	end;

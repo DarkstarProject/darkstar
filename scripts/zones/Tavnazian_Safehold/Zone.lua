@@ -16,6 +16,7 @@ require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 function onInitialize(zone)
 	zone:registerRegion(1, -5, -24, 18, 5, -20, 27);
+	zone:registerRegion(2, 104, -42, -88, 113, -38, -77);
 end;
 
 -----------------------------------		
@@ -51,10 +52,21 @@ function onRegionEnter(player,region)
 				player:startEvent(0x0069);
 			end
 		end,
+		[2] = function (x)
+			if(player:getCurrentMission(COP) == SLANDEROUS_UTTERINGS and player:getVar("PromathiaStatus") == 0) then
+				player:startEvent(0x0070);
+			end
+		end,
+		
 	}
 	
 end;	
 
+-----------------------------------		
+-- onRegionLeave		
+-----------------------------------	
+function onRegionLeave(player,region)
+end;
 -----------------------------------	
 -- onEventUpdate	
 -----------------------------------	
@@ -81,7 +93,9 @@ function onEventFinish(player,csid,option)
 		player:addMission(COP,ANCIENT_VOWS);
 	elseif(csid == 0x006B) then
 	 	player:completeMission(COP,THE_CRADLES_OF_CHILDREN_LOST);
-		player:addMission(COP,SHELTERING_DOUBT);   
+		player:addMission(COP,SHELTERING_DOUBT);  
+	elseif(csid == 0x0070) then	
+	    player:setVar("PromathiaStatus",1);
 	end
 	
 end;

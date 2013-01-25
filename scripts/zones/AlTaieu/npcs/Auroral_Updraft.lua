@@ -71,6 +71,6 @@ if(csid == 0x009B) and option == 1 then
 player:setPos(-25,-1 ,-620 ,208 ,33);
 end
 if(csid == 0x0096) and option == 1 then
-player:setPos(612, 132, 770, 195, 32)
+player:setPos(611, 132, 773, 195, 32)
 end 
 end;
