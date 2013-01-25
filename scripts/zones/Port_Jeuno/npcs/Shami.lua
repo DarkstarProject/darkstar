@@ -280,19 +280,7 @@ function onEventFinish(player,csid,option)
 ----------------------------------------------------------------------------------------------------------------------------
 -------- Begin KSNM orb Handout --------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------	
-		elseif (option == 6 and kindredsSeal >= 30) then  -- Player asked for Atropos Orb
-			if(player:getFreeSlotsCount() >= 1 and player:hasItem(1180) == false) then
-				player:setVar("ShamiKindredsSeal",kindredsSeal - 30);
-				player:addItem(1180);
-				player:messageSpecial(ITEM_OBTAINED,1180);
-				player:setVar("AtroposOrbIsCracked",0);
-			elseif(player:hasItem(1180))then
-				player:addItem(1180);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
-			else
-				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1180);
-			end
-			
-		elseif (option == 7 and kindredsSeal >= 30) then   -- Player asked for Clotho Orb
+		elseif (option == 6 and kindredsSeal >= 30) then   -- Player asked for Clotho Orb
 			if(player:getFreeSlotsCount() >= 1 and player:hasItem(1175) == false) then
 				player:setVar("ShamiKindredsSeal",kindredsSeal - 30);
 				player:addItem(1175);
@@ -303,7 +291,7 @@ function onEventFinish(player,csid,option)
 			else
 				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1175);
 			end		
-		elseif (option == 8 and kindredsSeal >= 30) then   -- Player asked for Lachesis Orb
+		elseif (option == 7 and kindredsSeal >= 30) then   -- Player asked for Lachesis Orb
 			if(player:getFreeSlotsCount() >= 1 and player:hasItem(1178) == false) then
 				player:setVar("ShamiKindredsSeal",kindredsSeal - 30);
 				player:addItem(1178);
@@ -314,7 +302,18 @@ function onEventFinish(player,csid,option)
 			else
 				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1178);
 			end
-		elseif (option == 9 and kindredsSeal >= 99) then   -- Player asked for Themis Orb
+		elseif (option == 8 and kindredsSeal >= 30) then  -- Player asked for Atropos Orb
+			if(player:getFreeSlotsCount() >= 1 and player:hasItem(1180) == false) then
+				player:setVar("ShamiKindredsSeal",kindredsSeal - 30);
+				player:addItem(1180);
+				player:messageSpecial(ITEM_OBTAINED,1180);
+				player:setVar("AtroposOrbIsCracked",0);
+			elseif(player:hasItem(1180))then
+				player:addItem(1180);  -- does not add the item but forces it to send the "you cannot carry anymore of these" message.
+			else
+				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1180);
+			end
+			elseif (option == 9 and kindredsSeal >= 99) then   -- Player asked for Themis Orb
 			if(player:getFreeSlotsCount() >= 1 and player:hasItem(1553) == false) then
 				player:setVar("ShamiKindredsSeal",kindredsSeal - 99);
 				player:addItem(1553);
