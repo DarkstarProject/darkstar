@@ -1966,10 +1966,12 @@ void CAICharNormal::ActionJobAbilityFinish()
 					if(baseExp >= 400) {//IT
 						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_VERY_DIFFICULT_CHARM));
 					} else if(baseExp >= 240) {//VT
-						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_VERY_DIFFICULT_CHARM));
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_DIFFICULT_TO_CHARM));
 					} else if(baseExp >= 120) {//T
 						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_MIGHT_BE_ABLE_CHARM));
 					} else if(baseExp >= 100) {//EM
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_SHOULD_BE_ABLE_CHARM));
+					} else {
 						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_SHOULD_BE_ABLE_CHARM));
 					}
 				}
