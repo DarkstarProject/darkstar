@@ -2770,7 +2770,7 @@ void CAICharNormal::ActionAttack()
 				}
 				// сначала вычисляем вероятность попадания по монстру
 				// затем нужно вычислить вероятность нанесения критического удара
-				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0) && !m_PBattleTarget->isAsleep())
+				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
 				{
 					Action.messageID = 32;
 					Action.reaction   = REACTION_EVADE;
