@@ -558,7 +558,7 @@ CStatusEffect* CStatusEffectContainer::DrainStatusEffect()
         {
             dispelableList.push_back(i);
         }
-
+	}
     if (!dispelableList.empty())
     {
         uint16 rndIdx = rand() % dispelableList.size();
