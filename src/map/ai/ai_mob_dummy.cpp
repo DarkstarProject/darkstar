@@ -98,13 +98,15 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 
 void CAIMobDummy::ActionRoaming() 
 {
+	// If there's someone on our enmity list, go from roaming -> engaging
 	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL)
 	{
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
 	}
-	else if (m_PMob->m_OwnerID.id != 0)
+	else if (m_PMob->m_OwnerID.id != 0) // if we're claimed by someone
 	{
+		// try to resolve the person who owns us
         m_PBattleTarget = (CBattleEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC | TYPE_MOB | TYPE_PET);
 		
         // TODO: возможно необходимо добавлять цели базовое количество ненависти
@@ -146,12 +148,14 @@ void CAIMobDummy::ActionEngage()
 	m_PMob->animation = ANIMATION_ATTACK;
 
 	m_ActionType = ACTION_ATTACK;
-	m_LastActionTime = m_Tick - 1000;
+	m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
 
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 	
 	//Start luautils::OnMobEngaged
-	if (m_PBattleTarget!=NULL) luautils::OnMobEngaged(m_PMob,m_PBattleTarget);
+	if (m_PBattleTarget!=NULL) {
+		luautils::OnMobEngaged(m_PMob,m_PBattleTarget);
+	}
 
 	ActionAttack();
 }
@@ -165,6 +169,7 @@ void CAIMobDummy::ActionEngage()
 
 void CAIMobDummy::ActionDisengage() 
 {
+	// Despawn if we're >20 yalms from our spawn point
 	m_ActionType = (distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 20 ? ACTION_DEATH : ACTION_ROAMING);
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
@@ -413,7 +418,7 @@ void CAIMobDummy::ActionSpawn()
         m_PMob->PEnmityContainer->Clear();
 
 		uint8 level = m_PMob->m_minLevel;
-
+		// Generate a random level between min and max level
 		if (m_PMob->m_maxLevel != m_PMob->m_minLevel)
 		{ 
 			level += rand()%(m_PMob->m_maxLevel - m_PMob->m_minLevel); 
@@ -443,6 +448,7 @@ void CAIMobDummy::ActionAbilityStart()
     std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->m_Family);
 
     // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
+	// We don't have any skills we can use, so let's go back to attacking
     if (MobSkills.size() == 0)
     {
         m_PMob->health.tp = 0; 
@@ -541,6 +547,7 @@ void CAIMobDummy::ActionAbilityUsing()
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
+	// If our target dies or zones whilst readying, then interrupt the TP move.
 	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
 		m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PMob->getZone()){
 		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
@@ -566,7 +573,7 @@ void CAIMobDummy::ActionAbilityUsing()
 			return;
 		}
 		
-		m_PMobSkill->setTP(m_PMob->health.tp);
+		m_PMobSkill->setTP(m_PMob->health.tp); // store the TP the mob currently has as the mob skill TP modifier
 		m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
@@ -640,12 +647,9 @@ void CAIMobDummy::ActionAbilityFinish()
 
 				CBattleEntity* PVictim = m_PBattleTarget;
 
-
 				switch (targetPartyType)
 				{
-
 					case SOLO_TARGET: // single char & maybe a pet
-
 						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround))
 						{
 							Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
@@ -661,10 +665,7 @@ void CAIMobDummy::ActionAbilityFinish()
 							}
 						}
 						break;
-
-
 					case PARTY_TARGET:	// party members and any pets
-
 						for (uint8 i = 0; i < PVictim->PParty->members.size(); ++i)
 						{
 							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround))
@@ -686,10 +687,7 @@ void CAIMobDummy::ActionAbilityFinish()
 							}
 						}
 						break;
-
-
 					case ALLIANCE_TARGET:  // alliance members and any pets
-
 						for (uint8 a = 0; a < PVictim->PParty->m_PAlliance->partyList.size(); ++a)
 						{
 							for (uint8 i = 0; i < PVictim->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
@@ -714,10 +712,7 @@ void CAIMobDummy::ActionAbilityFinish()
 							}
 						}
 						break;
-
-
 					case PET_PARTY_TARGET:  // pet with master in a party
-
 						for (uint8 i = 0; i < PVictim->PMaster->PParty->members.size(); ++i)
 						{
 							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround))
@@ -739,8 +734,6 @@ void CAIMobDummy::ActionAbilityFinish()
 							}
 						}
 						break;
-
-
 					case PET_ALLIANCE_TARGET:  // pet with master in an alliance
 
 						for (uint8 a = 0; a < PVictim->PMaster->PParty->m_PAlliance->partyList.size(); ++a)
@@ -767,10 +760,7 @@ void CAIMobDummy::ActionAbilityFinish()
 							}
 						}
 						break;
-
-
 					case PET_AND_MASTER:  // pet with a master
-
 						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround))
 						{
 							Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
@@ -806,7 +796,6 @@ void CAIMobDummy::ActionAbilityFinish()
 			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PMob, m_PMobSkill->getID() + 256, 0, MSGBASIC_USES_JA2));
 			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 			m_PMob->health.tp = 0; 
-
 		}
 		else
 		{
@@ -988,7 +977,7 @@ void CAIMobDummy::ActionAttack()
 {
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 
-	if(m_PBattleTarget == NULL)
+	if(m_PBattleTarget == NULL) // we have no target, so disengage
     {   
 		m_ActionType = ACTION_DISENGAGE;
 		return; 
@@ -1001,7 +990,7 @@ void CAIMobDummy::ActionAttack()
 		m_PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 	}
 
-
+	// target is dead, on a choco or zoned, so wipe them from our enmity list
     if (m_PBattleTarget->isDead() || 
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
 		m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID())
@@ -1016,17 +1005,20 @@ void CAIMobDummy::ActionAttack()
 	}
 
 	//handle pet behaviour on the targets behalf (faster than in ai_pet_dummy)
-	if(m_PBattleTarget->PPet != NULL && m_PBattleTarget->PPet->PBattleAI->GetBattleTarget()==NULL){
-		if(((CPetEntity*)m_PBattleTarget->PPet)->getPetType()==PETTYPE_AVATAR){
+	// Avatars defend masters by attacking mobs if the avatar isn't attacking anything currently (bodyguard behaviour)
+	if(m_PBattleTarget->PPet != NULL && m_PBattleTarget->PPet->PBattleAI->GetBattleTarget()==NULL) {
+		if(((CPetEntity*)m_PBattleTarget->PPet)->getPetType()==PETTYPE_AVATAR) {
 			m_PBattleTarget->PPet->PBattleAI->SetBattleTarget(m_PMob);
 		}
 	}
+	// Jug pets (and normal charmed pets) will defend themselves from attack only, not their master. (self-preservation behaviour)
 	else if(m_PBattleTarget->objtype == TYPE_PET && m_PBattleTarget->PBattleAI->GetBattleTarget()==NULL){
 		if(((CPetEntity*)m_PBattleTarget)->getPetType()==PETTYPE_JUGPET){
 			m_PBattleTarget->PBattleAI->SetBattleTarget(m_PMob);
 		}
 	}
 
+	// Handle monster linking if they are close enough
     if (m_PMob->PParty != NULL)
     {
         for (uint16 i = 0; i < m_PMob->PParty->members.size(); ++i)
@@ -1065,6 +1057,7 @@ void CAIMobDummy::ActionAttack()
 			}
 			else
 			{
+				// give a 40% chance of a TP move >100% TP under most circumstances. Always use TP if we hit 300%. Always use TP if we're < 25% HP and have >100% TP
 				if (m_PMob->health.tp >= 100 && rand()%100 > 60 || m_PMob->health.tp == 300 ||
 					m_PMob->health.tp >= 100 && m_PMob->GetHPP()<=25 ) 
 				{
@@ -1252,6 +1245,8 @@ void CAIMobDummy::ActionAttack()
 	}
 	else
     {
+		// TODO: Do we really want to do this every tick? We should probably only do this check occasionally, else it's almost
+		// guarenteed that the mob will try to use its TP whilst being out of range (if it has the TP)
 		if (m_PMob->health.tp >= 100 && rand()%100 > 60 || m_PMob->health.tp == 300 ||
 			m_PMob->health.tp >= 100 && m_PMob->GetHPP()<=25 ) 
 		{
@@ -1269,9 +1264,6 @@ void CAIMobDummy::ActionAttack()
 	
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
-
-
-
 
 
 
