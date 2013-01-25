@@ -2884,6 +2884,49 @@ bool hasInvalidJugPetAmmo(CCharEntity* PChar){
 	return true;
 }
 
+/*
+ * Gets the highest Treasure Hunter for the monster PMob being killed by the character PChar. This function
+ * observes config settings and parties/alliances.
+ */
+uint8 GetHighestTreasureHunter(CCharEntity* PChar, CMobEntity* PMob)
+{
+	bool thf_in_party = true;
+	uint8 highestTH = PMob->m_THLvl;
+	if (map_config.thf_in_party_for_drops == 1) {
+		if(PChar->PParty != NULL) { // There's a party	
+			if(PChar->PParty->m_PAlliance == NULL) { // but no alliance
+				thf_in_party = false;
+				for(uint8 i = 0; i < PChar->PParty->members.size(); i++) {
+					CCharEntity* thPChar = (CCharEntity*)PChar->PParty->members[i];
+					// THFs must be within 100 yalms in order for TH to work
+					if (distance(thPChar->loc.p, PMob->loc.p) < 100 && (charutils::hasTrait(thPChar, TRAIT_TREASURE_HUNTER))) {
+						thf_in_party = true;
+						break; // no point continuing to search
+					}
+				}
+			}
+			else{ // alliance
+				thf_in_party = false;
+				for(uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a) {
+					for(uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList[a]->members.size(); i++) {
+						CCharEntity* thPChar = (CCharEntity*)PChar->PParty->m_PAlliance->partyList[a]->members[i];
+						if (distance(thPChar->loc.p, PMob->loc.p) < 100 && (charutils::hasTrait(thPChar, TRAIT_TREASURE_HUNTER))) {
+							thf_in_party = true;
+							break; // no point continuing to search
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if (!thf_in_party) {
+		highestTH = 0;
+	}
+
+	return highestTH;
+}
+
 /************************************************************************
 *                                                                       *
 *  Добавляем очки опытка указанному персонажу                           *
