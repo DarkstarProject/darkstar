@@ -342,23 +342,42 @@ void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag)
 
 EFFECT CStatusEffectContainer::EraseStatusEffect()
 {
-	std::vector<uint16>	erasableList;
-	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
-	{
-		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE &&
+    std::vector<uint16> erasableList;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
-		{
+        {
             erasableList.push_back(i);
-		}
-	}
-	if (!erasableList.empty())
-	{
-		uint16 rndIdx = rand() % erasableList.size();
-		EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
-		RemoveStatusEffect(erasableList.at(rndIdx));
-		return result;
-	}
-	return EFFECT_NONE;
+        }
+    }
+    if (!erasableList.empty())
+    {
+        uint16 rndIdx = rand() % erasableList.size();
+        EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
+        RemoveStatusEffect(erasableList.at(rndIdx));
+        return result;
+    }
+    return EFFECT_NONE;
+}
+
+/*
+Erases all negative status effects
+returns number of erased effects
+*/
+uint8 CStatusEffectContainer::EraseAllStatusEffect()
+{
+    uint8 count = 0;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE &&
+            m_StatusEffectList.at(i)->GetDuration() > 0)
+        {
+            RemoveStatusEffect(i);
+            count++;
+        }
+    }
+    return count;
 }
 
 /************************************************************************
@@ -387,6 +406,25 @@ EFFECT CStatusEffectContainer::DispelStatusEffect()
 		return result;
 	}
 	return EFFECT_NONE;
+}
+
+/*
+Dispels all positive status effects
+returns number of dispelled effects
+*/
+uint8 CStatusEffectContainer::DispelAllStatusEffect()
+{
+    uint8 count = 0;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE &&
+            m_StatusEffectList.at(i)->GetDuration() > 0)
+        {
+            RemoveStatusEffect(i);
+            count++;
+        }
+    }
+    return count;
 }
 
 /************************************************************************
@@ -505,6 +543,33 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint16 S
 }
 
 /************************************************************************
+* Dispels one effect and returns it.
+* Used in mob abilities
+************************************************************************/
+
+CStatusEffect* CStatusEffectContainer::DrainStatusEffect()
+{
+
+    std::vector<uint16> dispelableList;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE &&
+            m_StatusEffectList.at(i)->GetDuration() > 0)
+        {
+            dispelableList.push_back(i);
+        }
+
+    if (!dispelableList.empty())
+    {
+        uint16 rndIdx = rand() % dispelableList.size();
+        CStatusEffect* result = m_StatusEffectList.at(dispelableList.at(rndIdx));
+        RemoveStatusEffect(dispelableList.at(rndIdx));
+        return result;
+    }
+    return 0;
+}
+
+/************************************************************************
 *                                                                       *
 *  Пересчитываем иконки всех эфффектов                                  *
 *                                                                       *
@@ -572,7 +637,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     StatusEffect->SetFlag(effects::EffectsParams[StatusEffect->GetStatusID()].Flag);
 
 	//todo: find a better place to put this?
-	if(StatusEffect->GetStatusID() == EFFECT_SLEEP || StatusEffect->GetStatusID() == EFFECT_SLEEP_II || 
+	if(StatusEffect->GetStatusID() == EFFECT_SLEEP || StatusEffect->GetStatusID() == EFFECT_SLEEP_II ||
 		StatusEffect->GetStatusID() == EFFECT_STUN || StatusEffect->GetStatusID() == EFFECT_PETRIFICATION)
     {
 		if(m_POwner->objtype == TYPE_PC || m_POwner->objtype == TYPE_MOB)

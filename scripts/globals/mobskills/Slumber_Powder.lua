@@ -20,7 +20,7 @@ function OnMobWeaponSkill(target, mob, skill)
         local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
         if(resist > 0.1) then
             skill:setMsg(MSG_ENFEEB_IS);
-            local power = math.random(5, 10) + mob:getMainLvl()/4;
+            local power = math.random(15, 20) + mob:getMainLvl()/4;
             target:addStatusEffect(typeEffect,1,0,power);
         else
             skill:setMsg(MSG_MISS); -- resist !

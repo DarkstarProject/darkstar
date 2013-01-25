@@ -23,22 +23,13 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-    -- this should remove enough
-    local dis = target:dispelStatusEffect();
-    target:dispelStatusEffect();
-    target:dispelStatusEffect();
-    target:dispelStatusEffect();
-    target:dispelStatusEffect();
-    target:dispelStatusEffect();
-    target:dispelStatusEffect();
-    target:dispelStatusEffect();
-    target:dispelStatusEffect();
+    local count = target:dispelAllStatusEffect();
 
-    if(dis == EFFECT_NONE) then
+    if(count == 0) then
         skill:setMsg(MSG_NO_EFFECT);
     else
         skill:setMsg(MSG_DISAPPEAR_NUM);
     end
 
-    return 1;
+    return count;
 end;

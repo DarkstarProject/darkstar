@@ -282,6 +282,8 @@ public:
 	int32 eraseStatusEffect(lua_State*);	// Used with "Erase" spell
 	int32 dispelStatusEffect(lua_State*);	// Used with "Dispel" spell
 	int32 drainStatusEffect(lua_State*);    // Used in mob skills to steal effects
+	int32 dispelAllStatusEffect(lua_State*);    // Dispels all effects and returns number erased
+	int32 eraseAllStatusEffect(lua_State*);    // Erases all effects and returns number erased
 	int32 getPartyMember(lua_State* L);		// Get a character entity from another entity's party or alliance
 	int32 getPartySize(lua_State* L);		// Get the size of a party in an entity's alliance
 	int32 getAllianceSize(lua_State* L);	// Get the size of an entity's alliance

@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Spirit Tap
--- Attempts to absorb one buff from a single target, or otherwise steals HP.
+-- Binary Tap
+-- Attempts to absorb two buffs from a single target, or otherwise steals HP.
 -- Type: Magical
 -- Utsusemi/Blink absorb: Ignores Shadows
 -- Range: Melee
@@ -14,32 +14,40 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
-        return 1;
-    end
     return 0;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
     -- try to drain buff
-    local effect = target:drainStatusEffect();
+    local effect1 = target:drainStatusEffect();
+    local effect2 = target:drainStatusEffect();
 
-    if(effect == nil) then
-        -- time to drain HP. 50-100
-        local power = math.random(0, 51) + 50;
+    if(effect1 == nil) then
+        -- time to drain HP. 100-200
+        local power = math.random(0, 101) + 100;
         local dmg = MobFinalAdjustments(power,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
 
         target:delHP(dmg);
         mob:addHP(dmg);
+
+        return dmg;
     else
-        if(mob:hasStatusEffect(effect:getType()) == false) then
+        local count = 1;
+
+        if(mob:hasStatusEffect(effect1:getType()) == false) then
             -- add to myself
-            mob:addStatusEffect(effect:getType(), effect:getPower(), effect:getTickCount(), effect:getDuration());
+            mob:addStatusEffect(effect1:getType(), effect1:getPower(), effect1:getTickCount(), effect1:getDuration());
+        end
+
+        if(effect2 ~= nil and mob:hasStatusEffect(effect2:getType()) == false) then
+            count = count + 1;
+            -- add to myself
+            mob:addStatusEffect(effect2:getType(), effect2:getPower(), effect2:getTickCount(), effect2:getDuration());
         end
         -- add buff to myself
         skill:setMsg(MSG_EFFECT_DRAINED);
-        return 1;
+        return count;
     end
 
     return dmg;

@@ -21,8 +21,8 @@ function OnMobWeaponSkill(target, mob, skill)
     if(mob:hasStatusEffect(typeEffect) == true) then
         skill:setMsg(MSG_NO_EFFECT);
     else
-        mob:addStatusEffect(typeEffect,50,0,15);--power=25;tic=0;duration=60;
+        mob:addStatusEffect(typeEffect,50,0,15);
         skill:setMsg(MSG_BUFF);
-    end40
+    end
     return typeEffect;
 end;

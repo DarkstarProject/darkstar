@@ -1,35 +1,33 @@
----------------------------------------------------
--- Negative Whirl
--- Deals damage in an area of effect.
--- 100% TP: ??? / 200% TP: ??? / 300% TP: ???
----------------------------------------------------
-
+---------------------------------------------
+--  Negative Whirl
+--
+--  Description: Slow Wipes shadows
+--  Utsusemi/Blink absorb: Ignores shadows
+--  Range: 10' cone
+---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
----------------------------------------------------
-
+---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = math.random(1,2.5);
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,1.5,2);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_WIPE_SHADOWS);
-
     local typeEffect = EFFECT_SLOW;
-    if(target:hasStatusEffect(typeEffect) == false and target:hasStatusEffect(EFFECT_HASTE) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
+    if(target:hasStatusEffect(typeEffect) == false) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
+        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
         if(resist > 0.2) then
-            target:addStatusEffect(typeEffect,30,0,60);--power=10;tic=0;
+            target:addStatusEffect(typeEffect,30,3,120);--tic=3;duration=60;
         end
     end
 
+    local dmgmod = 1 + math.random();
+
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_WIND,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_WIPE_SHADOWS);
     target:delHP(dmg);
     return dmg;
 end;

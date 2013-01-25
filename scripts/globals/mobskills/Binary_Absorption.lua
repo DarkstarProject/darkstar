@@ -1,6 +1,9 @@
 ---------------------------------------------------
--- Empty Cutter
--- Deals damage to a single target.
+-- Binary Absorption
+-- Attempts to absorb one buff from a single target, or otherwise steals HP.
+-- Type: Magical
+-- Utsusemi/Blink absorb: 1 Shadows
+-- Range: Melee
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -14,11 +17,13 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = math.random(2,3)+math.random();
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
+
+    -- time to drain HP. 50-100
+    local power = math.random(0, 101) + 100;
+    local dmg = MobFinalAdjustments(power,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_1_SHADOW);
+
     target:delHP(dmg);
+    mob:addHP(dmg);
+
     return dmg;
 end;

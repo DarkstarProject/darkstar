@@ -2463,7 +2463,7 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 				ShowFatalError(CL_RED"lua::getGil : Item in currency slot is not gil!\n" CL_RESET);
 				return 0;
 			}
-			
+
 			lua_pushinteger( L, item->getQuantity() );
 			return 1;
 		}
@@ -2473,7 +2473,7 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 			CMobEntity * PMob = (CMobEntity*)m_PBaseEntity;
 			if(PMob->m_EcoSystem == SYSTEM_BEASTMEN || PMob->m_Type & MOBTYPE_NOTORIOUS)
 			{
-				lua_pushinteger(L, (PMob->GetMLevel() * ((PMob->m_Type & MOBTYPE_NOTORIOUS) ? 10 : 1)));
+				lua_pushinteger(L, ((float)PMob->GetMLevel() * ((PMob->m_Type & MOBTYPE_NOTORIOUS) ? 10 : 1.6)));
 				return 1;
 			}
 		}
@@ -3603,6 +3603,68 @@ inline int32 CLuaBaseEntity::eraseStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
     lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->EraseStatusEffect());
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*                             *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::dispelAllStatusEffect(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelAllStatusEffect());
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*                               *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::eraseAllStatusEffect(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->EraseAllStatusEffect());
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*                                    *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::drainStatusEffect(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    CStatusEffect* PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DrainStatusEffect();
+
+    if (PStatusEffect == NULL)
+        lua_pushnil(L);
+    else
+    {
+        lua_pop(L,1);
+        lua_pushstring(L, CLuaStatusEffect::className);
+        lua_gettable(L,LUA_GLOBALSINDEX);
+        lua_pushstring(L,"new");
+        lua_gettable(L,-2);
+        lua_insert(L,-2);
+        lua_pushlightuserdata(L,(void*)PStatusEffect);
+    }
+    if( lua_pcall(L,2,1,0) )
+    {
+        return 0;
+    }
     return 1;
 }
 
@@ -5618,7 +5680,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseStatusEffect),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelStatusEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelStatusEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelAllStatusEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseAllStatusEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,drainStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMod),

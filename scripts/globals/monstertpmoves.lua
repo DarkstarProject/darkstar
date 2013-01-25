@@ -30,6 +30,8 @@ MOBPARAM_PIERCE = 3;
 MOBPARAM_H2H = 4;
 
 --skillparam (MAGICAL)
+-- this is totally useless and should be removed
+-- add resistence using ELE_FIRE, see bomb_toss.lua
 MOBPARAM_FIRE = 6;
 MOBPARAM_EARTH = 7;
 MOBPARAM_WATER = 8;
@@ -224,10 +226,10 @@ end
 -- TP_DMG_BONUS and TP=100, tpvalue = 2, assume V=150  --> damage is now 150*(TP*2)/100 = 300
 -- TP_DMG_BONUS and TP=200, tpvalue = 2, assume V=150  --> damage is now 150*(TP*2)/100 = 600
 
-function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
+function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	returninfo = {};
-	resist = 1;
 	--get all the stuff we need
+	resist = 1;
 	dint = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
 	mab = (100+mob:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF)) ;
 	macc = mob:getMod(MOD_MACC);
@@ -248,50 +250,11 @@ function MobMagicalMove(mob,target,skill,dmg,accmod,dmgmod,tpeffect,tpvalue)
 		damage = damage * ((skill:getTP()*tpvalue)/100);
 	end
 
-	base = damage * mab * dmgmod;
+	-- resistence is added last
+	finaldmg = damage * mab * dmgmod;
 
-	acc = (macc*accmod) - meva;
-	if(lvluser > lvltarget) then
-		--bonus to acc
-		acc = acc + 10*(lvluser-lvltarget);
-	end
-	if(lvltarget > lvluser) then
-		--acc penalty
-		acc = acc - 5*(lvltarget-lvluser);
-	end
-
-	--cap acc
-	if(acc>95) then
-		acc = 95;
-	end
-	if(acc<5) then
-		acc = 5;
-	end
-	acc = acc/100; --between 0-1
-
-	--account for resistances
-	--TODO: acc = acc + (1 - (elementalres/100))
-
-	--thresholds
-	half = 0.4; --(1-acc);
-	quart = 0.2; --((1-acc)^2);
-	eighth = 0.095; --((1-acc)^3);
-	sixteenth = 0.0325; --((1-acc)^4);
-	resvar = math.random();
-	--random resists atm!
-
-	--will this spell resist?
-	if (resvar <= sixteenth) then
-		resist = 0.0625;
-	elseif (resvar <= eighth) then
-		resist = 0.125;
-	elseif (resvar <= quart) then
-		resist = 0.25;
-	elseif (resvar <= half) then
-		resist = 0.5;
-	elseif (resvar <= acc) then
-		resist = 1.0;
-	end
+	-- get resistence, give small boost to mobs
+	resist = applyPlayerResistance(mob,skill,target,mob:getMod(MOD_INT)-target:getMod(MOD_INT),0,element);
 
 	finaldmg = base * resist;
 
@@ -340,7 +303,7 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
     end
 
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-	magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[element]) + target:getMod(defenseMod[element])/10;
+	magiceva = (target:getMod(MOD_MEVA) + target:getMod(resistMod[element]) + target:getMod(defenseMod[element]))/10;
 
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
 	multiplier = 0;
@@ -548,12 +511,6 @@ function MobBreathMove(mob, target, percent, base, cap)
 	return damage;
 end;
 
--- Will steal one effect from target, returns ID of the effect stolen
--- Returns number of stolen effects. Will be zero if none taken
-function MobStealEffect(mob, target, number)
-	return target:dispelStatusEffect();
-end;
-
 function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
 
 	-- physical attack missed, skip rest
@@ -636,13 +593,15 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 		return 0;
 	end
 
+	if(skilltype == MOBSKILL_RANGED and target:hasStatusEffect(EFFECT_ARROW_SHIELD)) then
+		return 0;
+	end
+
+	-- handle elemental resistence
 	if(skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
 		return 0;
 	end
 
-	if(skilltype == MOBSKILL_RANGED and target:hasStatusEffect(EFFECT_ARROW_SHIELD)) then
-		return 0;
-	end
 
 	--handling phalanx
 	dmg = dmg - target:getMod(MOD_PHALANX);
