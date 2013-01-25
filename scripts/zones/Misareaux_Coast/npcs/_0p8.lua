@@ -21,7 +21,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if(player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 1)then
+	player:startEvent(0x0009);
+    elseif(player:hasCompletedMission(COP,THE_SAVAGE))then
 	player:startEvent(0x01f6);
+	else
+	player:messageSpecial(DOOR_CLOSED);
+	end
 	return 1;
 end;
 
@@ -41,8 +47,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if(csid == 0x01f6 and option == 1) then
+    if(csid == 0x0009 and option == 1)then
+	    player:setVar("PromathiaStatus",2);
+	    player:setPos(-219,-16,82,64,0x1C);
+	elseif(csid == 0x01f6 and option == 1) then
 		player:setPos(-219,-16,82,64,0x1C); -- Go to Sacrarium
 	end
 	
