@@ -38,8 +38,9 @@ function onTrigger(player,npc)
 	local CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
 	local LetterKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
 	local currentMission = player:getCurrentMission(BASTOK);
-
-	if(player:getCurrentMission(COP) == THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus")==1)then
+    if(player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==0)then
+	        player:startEvent(0x0351); -- COP event
+	elseif(player:getCurrentMission(COP) == THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus")==1)then
 	        player:startEvent(0x034D); -- COP event
 	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")== 7 and player:getVar("MEMORIES_OF_A_MAIDEN_Status")== 12)then --two paths are finished ?
 			player:startEvent(0x034F); -- COP event 3.3		
@@ -99,7 +100,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x034D)then
+    if(csid == 0x0351)then 
+            player:setVar("PromathiaStatus",1);
+	elseif (csid == 0x034D)then
 	        player:setVar("PromathiaStatus",0);
 	        player:completeMission(COP,THE_CALL_OF_THE_WYRMKING);
             player:addMission(COP,A_VESSEL_WITHOUT_A_CAPTAIN);				
