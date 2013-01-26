@@ -49,6 +49,16 @@ function onMobDeath(mob,killer)
 				end
 			end
 		end,
+		[16842860] = function (x)
+		GetNPCByID(16843054):openDoor(180);
+		    if(Distance <4)then 
+				if(rnd == 2) then
+					killer:startEvent(0x0021);
+				else
+					killer:startEvent(0x0022);
+				end
+			end
+		end,
 		[16842853] = function (x) 
 		GetNPCByID(16843053):openDoor(180);
 		    if(Distance <4)then 

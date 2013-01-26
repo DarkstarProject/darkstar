@@ -23,10 +23,8 @@ end;
 function onTrigger(player,npc)
 
 	if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
-		player:setVar("Stelepoint",1); -- promyvion dem
 		player:startEvent(0x0390);  
 	elseif(player:getCurrentMission(COP) > BELOW_THE_ARKS)then
-		player:setVar("Stelepoint",1); -- promyvion dem
 		player:startEvent(0x0065);
 	else
 		player:messageSpecial(TELEPOINT_HAS_BEEN_SHATTERED);
@@ -53,9 +51,9 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0390) then
 		player:setVar("PromathiaStatus",2);
-		player:setPos(274 ,-82 ,-62 ,180 ,14); -- teleport to zone 14
+		player:setPos(-267.194, -40.634, -280.019, 0, 14); -- teleport to zone 14
 	elseif(csid == 0x0065) then 
-		player:setPos(274 ,-82 ,-62 ,180 ,14); -- teleport to zone 14 
+		player:setPos(-267.194, -40.634, -280.019, 0, 14); -- teleport to zone 14 
 	end
 	
 end;

@@ -20,7 +20,7 @@ function onInitialize(zone)
 	zone:registerRegion(1,  78, -4,  78,  82, 4, 82); 		-- exit Promyvion - Holla (J-7)
 	zone:registerRegion(2, -42, -4, 198, -38, 4, 202); 		-- Level 1 MR spawn point (I-6)
 	
-	--zone:registerRegion(3,  -2, -4, -42,   2, 4, -38); 		-- Level 2 MR spawn point (I-9) no receptacle
+	zone:registerRegion(3,  -2, -4, -42,   2, 4, -38); 		-- Level 2 MR spawn point (I-9)
 	zone:registerRegion(4, -162, -4, -202, -157, 4, -198);	-- Level 2 MR spawn point (G-11)
 	zone:registerRegion(5, -282, -4, -42, -278, 4, -38);	-- Level 2 MR spawn point (F-9)
 	zone:registerRegion(6, -240, -4,  38, -237, 4, 41); 	-- Level 2 MR spawn point (F-8)
@@ -77,6 +77,15 @@ function onRegionEnter(player,region)
 		[2] = function (x) 
 			if(GetNPCByID(16843055):getAnimation() == 8) then 
 				player:startEvent(0x0025); 
+			end
+		end,
+		[3] = function (x)
+			if(GetNPCByID(16843054):getAnimation() == 8) then 
+				if(player:getVar("MemoryReceptacle") == 2) then
+					player:startEvent(0x0021);
+				else
+					player:startEvent(0x0022);
+				end
 			end
 		end,
 		[4] = function (x)
@@ -175,16 +184,15 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x002E and option == 1) then
-		player:setVar("Stelepoint",4);
-		player:setPos(274 ,-82 ,-62 ,180 ,14); -- -> back to Hall of Transferance
+		player:setPos(-225.682, -6.4595, 280.002, 131, 14); -- -> back to Hall of Transferance
 	elseif(csid == 0x0032)then		
-	    player:setVar("FirstPromyvionHolla",0);
-	      if(ENABLE_COP_ZONE_CAP == 1)then
-	      player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
-	      end
-    end
+		player:setVar("FirstPromyvionHolla",0);
+		if(ENABLE_COP_ZONE_CAP == 1)then
+			player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
+		end
+	end
 	
-	 if (option==1)then
-	player:setVar("MemoryReceptacle",0);
+	if (option==1)then
+		player:setVar("MemoryReceptacle",0);
 	end
 end;	

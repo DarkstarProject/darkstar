@@ -56,15 +56,15 @@ cs = -1;
 	end
 
 	if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 2) then
-	    player:completeMission(COP,BELOW_THE_ARKS);
+		player:completeMission(COP,BELOW_THE_ARKS);
 		player:addMission(COP,THE_MOTHERCRYSTALS); -- start mission 1.3
 		player:setVar("PromathiaStatus",0);
 	end
 	
 	if  (player:getVar("FirstPromyvionMea") == 1)then
-	cs = 0x0032;	
+		cs = 0x0032;	
 	elseif(ENABLE_COP_ZONE_CAP == 1)then
-	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
+		player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
 	end
  	return cs;	
 end;		
@@ -184,16 +184,15 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x002e and option == 1) then
-		player:setVar("Stelepoint",6);
-		player:setPos(274 ,-82 ,-62 ,180 ,14); -- -> back to Hall of Transferance
+		player:setPos(280, -86, -25, 63, 14); -- -> back to Hall of Transferance
 	elseif(csid == 0x0032)then		
-	    player:setVar("FirstPromyvionMea",0);
-	      if(ENABLE_COP_ZONE_CAP == 1)then
-	      player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
-	      end
-    end
+		player:setVar("FirstPromyvionMea",0);
+			if(ENABLE_COP_ZONE_CAP == 1)then
+				player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
+			end
+	end
 	if (option==1)then
-	player:setVar("MemoryReceptacle",0);
+		player:setVar("MemoryReceptacle",0);
 	end
 	
  end;

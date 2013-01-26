@@ -186,14 +186,13 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x002e and option == 1) then
-		player:setVar("Stelepoint",2);
-		player:setPos(274 ,-82 ,-62 ,180 ,14); -- -> back to Hall of Transferance
-    elseif(csid == 0x0032)then		
-	    player:setVar("FirstPromyvionDem",0);
-	      if(ENABLE_COP_ZONE_CAP == 1)then
-	      player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
-	      end
-    end
+		player:setPos(-225, -46, -280, 130, 14); -- -> back to Hall of Transferance
+	elseif(csid == 0x0032)then		
+		player:setVar("FirstPromyvionDem",0);
+			if(ENABLE_COP_ZONE_CAP == 1)then
+			player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
+			end
+	end
 	
 	 if (option==1)then
 	player:setVar("MemoryReceptacle",0);
