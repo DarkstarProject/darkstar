@@ -10,7 +10,7 @@
 -----------------------------------
 
 function onTrigger(player,target)
-	pc = GetPlayerByName(target)
+	pc = GetPlayerByName(target);
 	if(pc~=nil) then
 		pc:warp();
 	elseif(target==nil) then
