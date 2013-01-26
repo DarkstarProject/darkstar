@@ -24,17 +24,17 @@ function OnMobWeaponSkill(target, mob, skill)
             local mobTP = mob:getTP();
             local duration = mob:getMainLvl()/3.75;
             if(mobTP <= 100) then
-                local duration = 30 + duration;
+                duration = 30 + duration;
             elseif(mobTP <= 200) then
-                local duration = 45 + duration;
+                duration = 45 + duration;
             else
-                local duration = 60 + duration;
+                duration = 60 + duration;
             end
             target:addStatusEffect(typeEffect,25,0,duration);
         end
     end
 
-    local dmgmod = MobBreathMove(mob, target, 0.2, 1.875);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 1.875, ELE_ICE, 500);
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
     return dmg;

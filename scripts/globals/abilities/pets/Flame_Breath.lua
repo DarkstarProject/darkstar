@@ -10,7 +10,7 @@ require("/scripts/globals/monstertpmoves");
 
 function OnPetAbility(target, pet, skill)
 
-    local dmgmod = MobBreathMove(pet, target, 0.182, 0.75);
+    local dmgmod = MobBreathMove(pet, target, 0.182, 0.75, ELE_FIRE);
 
 	dmg = MobFinalAdjustments(dmgmod,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);

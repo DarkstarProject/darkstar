@@ -19,14 +19,14 @@ function OnMobWeaponSkill(target, mob, skill)
 
     local numhits = 1;
     local accmod = 1;
-    local dmgmod = 2.5;
+    local dmgmod = 1.5+math.random();
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
     local typeEffect = EFFECT_SLEEP_I;
     if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
+        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_LIGHTNING);
         if(resist > 0.1) then
             target:addStatusEffect(typeEffect,1,0,math.random(15,25));--tic=3;duration=30;
             mob:resetEnmity(target);

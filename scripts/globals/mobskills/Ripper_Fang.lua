@@ -32,6 +32,7 @@ function OnMobWeaponSkill(target, mob, skill)
             if(resist >.7) then
                 duration = duration - ((resist -.7)* 10) * math.random(1,5);
             end
+            target:delStatusEffect(EFFECT_HASTE);
             target:addStatusEffect(typeEffect,25,0,duration);--power=10;tic=0;
         end
     end

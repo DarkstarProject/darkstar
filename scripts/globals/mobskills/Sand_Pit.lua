@@ -23,11 +23,11 @@ function OnMobWeaponSkill(target, mob, skill)
             local mobTP = mob:getTP();
             local duration = mob:getMainLvl()/3.75;
             if(mobTP <= 100) then
-                local duration = 10 + duration;
+                duration = 10 + duration;
             elseif(mobTP <= 200) then
-                local duration = 15 + duration;
+                duration = 15 + duration;
             else
-                local duration = 20 + duration;
+                duration = 20 + duration;
             end
             message = MSG_ENFEEB_IS;
             target:addStatusEffect(typeEffect,1,0,duration);

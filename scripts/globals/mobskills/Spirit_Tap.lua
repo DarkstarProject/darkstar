@@ -23,7 +23,9 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 
     -- try to drain buff
-    local effect = target:drainStatusEffect();
+    -- TODO fix draintatuseffect
+    -- local effect = target:drainStatusEffect();
+    local effect;
     local dmg = 0;
 
     if(effect ~= nil) then

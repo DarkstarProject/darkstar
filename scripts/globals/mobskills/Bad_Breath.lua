@@ -20,6 +20,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
 	if(target:hasStatusEffect(typeEffect) == false) then
 		if(resist > 0.2) then
+            target:delStatusEffect(EFFECT_HASTE);
 			target:addStatusEffect(typeEffect,25,0,60);--power=15;tic=0;duration=60;
 		end
 	end
@@ -73,7 +74,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 
-	local dmgmod = MobBreathMove(mob, target, 0.125, 3);
+	local dmgmod = MobBreathMove(mob, target, 0.125, 3, ELE_EARTH);
 
 	-- make super strong
     if(mob:isMobType(MOBTYPE_NOTORIOUS)) then

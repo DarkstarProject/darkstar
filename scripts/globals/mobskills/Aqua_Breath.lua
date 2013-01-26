@@ -18,7 +18,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-    local dmgmod = MobBreathMove(mob, target, 0.25, 1.5);
+    local dmgmod = MobBreathMove(mob, target, 0.25, 1.5, ELE_WATER);
 	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;

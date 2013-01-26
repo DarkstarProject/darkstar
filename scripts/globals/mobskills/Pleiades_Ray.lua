@@ -45,6 +45,7 @@ function OnMobWeaponSkill(target, mob, skill)
 			target:addStatusEffect(EFFECT_SILENCE,power,tic,duration);
 		end
 		if(target:hasStatusEffect(EFFECT_SLOW) == false) then
+            target:delStatusEffect(EFFECT_HASTE);
 			target:addStatusEffect(EFFECT_SLOW,40,tic,duration);
 		end
 	end

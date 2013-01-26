@@ -24,7 +24,8 @@ function OnMobWeaponSkill(target, mob, skill)
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
 		if(resist > 0.01) then
 			message = MSG_ENFEEB_IS;
-			target:addStatusEffect(typeEffect,35,0,60);--power=35;tic=0;duration=60;
+            target:delStatusEffect(EFFECT_HASTE);
+			target:addStatusEffect(typeEffect,35,0,120);--power=35;tic=0;duration=60;
 		end
 	else
 		message = MSG_NO_EFFECT;

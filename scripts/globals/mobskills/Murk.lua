@@ -25,6 +25,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     if(target:hasStatusEffect(EFFECT_SLOW) == false) then
         slowed = true;
+        target:delStatusEffect(EFFECT_HASTE);
         target:addStatusEffect(EFFECT_SLOW,50,0,math.random(30,60));
     end
 

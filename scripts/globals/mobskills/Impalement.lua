@@ -22,7 +22,8 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 
     if(target:hasStatusEffect(EFFECT_SLOW) == false) then
-        target:addStatusEffect(EFFECT_SLOW,20,0,math.random(30,60));
+        target:delStatusEffect(EFFECT_HASTE);
+        target:addStatusEffect(EFFECT_SLOW,25,0,math.random(30,60));
     end
 
     local currentHP = target:getHP();

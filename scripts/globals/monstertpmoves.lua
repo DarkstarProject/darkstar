@@ -480,7 +480,7 @@ end;
 -- base is calculated from main level to create a minimum
 -- Equation: (HP * percent) + (LVL / base)
 -- cap is optional, defines a maxiumum damage
-function MobBreathMove(mob, target, percent, base, cap)
+function MobBreathMove(mob, target, percent, base, element, cap)
 	damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
 
 	if(cap == nil) then
@@ -497,6 +497,13 @@ function MobBreathMove(mob, target, percent, base, cap)
 		if(damage > cap) then
 			damage = cap;
 		end
+	end
+
+	-- elemental resistence
+	if(element ~= nil) then
+		-- no skill available, pass nil
+		local resist = applyPlayerResistance(mob,nil,target,mob:getMod(MOD_INT)-target:getMod(MOD_INT),0,element);
+		damage = damage * resist;
 	end
 
 	-- add breath resistence and magic resistence

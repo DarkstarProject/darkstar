@@ -50,6 +50,8 @@ require("scripts/globals/status")
     ELE_WIND        = 4;
     ELE_ICE          = 5;
     ELE_LIGHTNING    = 6;
+    -- added both because monsterstpmoves calls it thunder
+    ELE_THUNDER = 6;
     ELE_LIGHT       = 7;
     ELE_DARK        = 8;
 

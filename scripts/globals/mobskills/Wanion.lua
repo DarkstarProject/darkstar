@@ -33,6 +33,7 @@ function OnMobWeaponSkill(target, mob, skill)
                 lastEffect = effect;
                 local currentEffect = mob:getStatusEffect(effect);
                 skill:setMsg(MSG_ENFEEB_IS);
+                target:delStatusEffect(EFFECT_HASTE);
                 target:addStatusEffect(effect,currentEffect:getPower(),3,120);--power=20;tic=0;duration=120;
             end
         end
