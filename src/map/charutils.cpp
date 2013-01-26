@@ -1622,7 +1622,6 @@ void CheckValidEquipment(CCharEntity* PChar)
 			}
             UnequipItem(PChar, slotID);
         }
-        PChar->pushPacket(new CEquipPacket(0, slotID));
 	}
 
 	PChar->pushPacket(new CCharAppearancePacket(PChar));
@@ -1644,7 +1643,6 @@ void RemoveAllEquipment(CCharEntity* PChar)
         {
             UnequipItem(PChar, slotID);
         }
-        PChar->pushPacket(new CEquipPacket(0, slotID));
     }
     PChar->pushPacket(new CCharAppearancePacket(PChar));
 
