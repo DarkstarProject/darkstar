@@ -34,7 +34,8 @@ namespace mobutils
 {
 	void	CalculateStats(CMobEntity* PMob);
 	uint16	GetWeaponDamage(CMobEntity* PMob); 
-	uint8 checkMultiHits(CMobEntity * PMob,uint32 mobid);
+	uint8   checkMultiHits(CMobEntity * PMob,uint32 mobid);
+	void    GetAvailableSpells(CMobEntity* PMob);
 };
 
 #endif

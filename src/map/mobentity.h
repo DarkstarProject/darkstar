@@ -103,6 +103,8 @@ public:
 	uint32		m_THPCID;							// ID of last PC that hit the NPC and apply TH onto the NPC
 	uint16		m_Family;	
 	uint8		m_SkillStatus;						// status of skills (used 2h/used epic tp move/etc)
+	// std::vector<uint8> m_AvailableSpells;			// the spell IDs that this monster can cast.
+	// uint32     m_SpellsBitmask;					// The spells types bitmask from the mob_pools table
 
     uint32      m_unknown;							// includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
     uint8       m_name_prefix;						// The ding bats VS Ding bats

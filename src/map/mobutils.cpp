@@ -267,4 +267,14 @@ void CalculateStats(CMobEntity * PMob)
 	}
 }
 
+/* Gets the available spells for the specified monster. This looks up the types of spells the monster
+ * can cast based on the bitmask in mob_pools (which has been preloaded into memory). It then resolves
+ * the list of actual spell IDs based on the bits set. This mapping from bitmask > spellids is based
+ * on numerous factors including the type of mob, the level of the mob, etc. The list of spells are
+ * then stored in PMob->m_AvailableSpells
+ */
+void GetAvailableSpells(CMobEntity* PMob) {
+	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells
+}
+
 }; // namespace mobutils

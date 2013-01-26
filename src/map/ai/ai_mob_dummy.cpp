@@ -395,6 +395,7 @@ void CAIMobDummy::ActionSpawn()
         m_PMob->delRageMode();
 
 		mobutils::CalculateStats(m_PMob);
+		mobutils::GetAvailableSpells(m_PMob);
 
 		m_PMob->loc.p = m_PMob->m_SpawnPoint;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
@@ -1002,6 +1003,19 @@ void CAIMobDummy::ActionAttack()
     m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+
+	// Try to spellcast
+	if (CurrentDistance <= 25) { // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
+		if ( (m_Tick - m_LastActionTime) > 10000) { // do a spell every 10 seconds TODO: Use server mods and scripts rather than hardcode
+			// Randomly select a spell from m_PMob->availableSpells and do it.
+			// If the spellid of the chosen spell is 0, this means it is a special spell and we should look up the script.
+			// check for spell blockers e.g. silence
+			// change to ActionMagicCasting
+			// send packets
+			// update action time
+			// return
+		}
+	}
 
 	if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
