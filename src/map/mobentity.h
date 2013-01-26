@@ -65,6 +65,30 @@ enum BEHAVIOUR
 	BEHAVIOUR_AGGRO_JOBABILITY	= 0x80,
 };
 
+struct genericspelltype_t
+{ // These are 1 bit uint8s as the 'bool' type is actually a byte wide :(
+	uint8 tiers:1; // Tier I-V spells for element
+	uint8 enfeebBlm:1; // BLM enfeebling spells for element
+	uint8 enfeebWhm:1; // WHM enfeebling spells for element
+	uint8 buffBlm:1; // BLM enhancing spells for element
+	uint8 buffWhm:1; // WHM enhancing spells for element
+	uint8 heal:1; // Healing spells for element
+	uint8 aoe:1; // AoE spells for element
+};
+
+struct spelltypes_t 
+{
+	genericspelltype_t fire;
+	genericspelltype_t earth;
+	genericspelltype_t water;
+	genericspelltype_t wind;
+	genericspelltype_t ice;
+	genericspelltype_t lightning;
+	genericspelltype_t light;
+	genericspelltype_t dark;
+	uint8 special:1;
+};
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -78,6 +102,7 @@ public:
     bool        m_AllowRespawn;						// монстру разрешено возрождаться
 	uint32		m_RespawnTime;						// отрезок времени, через который монстр возрождается после смерти
     uint32      m_DropItemTime;						// время анимации смерти монстра
+	uint32		m_MagicRecastTime;					// Amount of time between casts.
 
 	uint32		m_DropID;							// номер группы оставляемых монстром предметов после смерти
 
@@ -103,8 +128,8 @@ public:
 	uint32		m_THPCID;							// ID of last PC that hit the NPC and apply TH onto the NPC
 	uint16		m_Family;	
 	uint8		m_SkillStatus;						// status of skills (used 2h/used epic tp move/etc)
-	// std::vector<uint8> m_AvailableSpells;			// the spell IDs that this monster can cast.
-	// uint32     m_SpellsBitmask;					// The spells types bitmask from the mob_pools table
+	std::vector<uint16> m_AvailableSpells;			// the spell IDs that this monster can cast.
+	spelltypes_t     m_SpellsBitmask;					// The spells types bitmask from the mob_pools table
 
     uint32      m_unknown;							// includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
     uint8       m_name_prefix;						// The ding bats VS Ding bats

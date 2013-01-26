@@ -29,6 +29,7 @@
 #include "grades.h"
 #include "mobutils.h"
 #include "modifier.h"
+#include "spell.h"
 
 
 namespace mobutils
@@ -265,6 +266,14 @@ void CalculateStats(CMobEntity * PMob)
 	} else {
 		PMob->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_SWD, JOB_WAR, PMob->GetMLevel()));
 	}
+
+	// cap all magic skills so they play nice with spell scripts
+	for (int i=SKILL_DIV; i <=SKILL_BLU; i++) {
+		uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),PMob->GetMLevel());
+		if (maxSkill != 0) {
+			PMob->WorkingSkills.skill[i] = maxSkill;
+		}
+	}
 }
 
 /* Gets the available spells for the specified monster. This looks up the types of spells the monster
@@ -274,7 +283,76 @@ void CalculateStats(CMobEntity * PMob)
  * then stored in PMob->m_AvailableSpells
  */
 void GetAvailableSpells(CMobEntity* PMob) {
+	// TODO: Use enums rather than hardcode the spell ids...
+
 	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells
+	if (PMob->m_SpellsBitmask.fire.tiers) {
+		for (int i=148; i>=144; i--) {
+			if (spell::CanUseSpell(PMob, i)) { //Fire V -> I
+				PMob->m_AvailableSpells.push_back(i);
+				break; // we've got the highest level we can use, so stop looking for lower ones
+			}
+		}
+	}
+	if (PMob->m_SpellsBitmask.earth.tiers) {
+		for (int i=163; i>=159; i--) {
+			if (spell::CanUseSpell(PMob, i)) { //Stone V -> I
+				PMob->m_AvailableSpells.push_back(i);
+				break; // we've got the highest level we can use, so stop looking for lower ones
+			}
+		}
+	}
+	if (PMob->m_SpellsBitmask.water.tiers) {
+		for (int i=173; i>=169; i--) {
+			if (spell::CanUseSpell(PMob, i)) { //Water V -> I
+				PMob->m_AvailableSpells.push_back(i);
+				break; // we've got the highest level we can use, so stop looking for lower ones
+			}
+		}
+	}
+	if (PMob->m_SpellsBitmask.wind.tiers) {
+		for (int i=158; i>=154; i--) {
+			if (spell::CanUseSpell(PMob, i)) { //Aero V -> I
+				PMob->m_AvailableSpells.push_back(i);
+				break; // we've got the highest level we can use, so stop looking for lower ones
+			}
+		}
+	}
+	if (PMob->m_SpellsBitmask.ice.tiers) {
+		for (int i=153; i>=149; i--) {
+			if (spell::CanUseSpell(PMob, i)) { // Blizzard V -> I
+				PMob->m_AvailableSpells.push_back(i);
+				break; // we've got the highest level we can use, so stop looking for lower ones
+			}
+		}
+	}
+	if (PMob->m_SpellsBitmask.lightning.tiers) {
+		for (int i=168; i>=164; i--) {
+			if (spell::CanUseSpell(PMob, i)) { // Thunder V -> I
+				PMob->m_AvailableSpells.push_back(i);
+				break; // we've got the highest level we can use, so stop looking for lower ones
+			}
+		}
+	}
+	if (PMob->m_SpellsBitmask.light.tiers) {
+		for (int i=30; i>=28; i--) {
+			if (spell::CanUseSpell(PMob, i)) { // Banish III -> I
+				PMob->m_AvailableSpells.push_back(i);
+				break; // we've got the highest level we can use, so stop looking for lower ones
+			}
+		}
+	}
+
+	/* WHM spells may work but I haven't tested it.
+	// TODO: Test this thoroughly
+	if (PMob->m_SpellsBitmask.light.heal) {
+		for (int i=6; i>=1; i--) {
+			if (spell::CanUseSpell(PMob, i)) { // Cure VI -> I
+				PMob->m_AvailableSpells.push_back(i);
+				break; // we've got the highest level we can use, so stop looking for lower ones
+			}
+		}
+	} */
 }
 
 }; // namespace mobutils

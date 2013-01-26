@@ -31,6 +31,7 @@
 #include "../mobutils.h"
 #include "../status_effect.h"
 #include "../petentity.h"
+#include "../spell.h"
 #include "../zone.h"
 #include "../alliance.h"
 #include "../map.h"
@@ -84,6 +85,10 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_MOBABILITY_USING:	  ActionAbilityUsing();     break;
 		case ACTION_MOBABILITY_FINISH:	  ActionAbilityFinish();    break;
         case ACTION_MOBABILITY_INTERRUPT: ActionAbilityInterrupt(); break;
+		case ACTION_MAGIC_START:		  ActionMagicStart();		break;
+		case ACTION_MAGIC_CASTING:		  ActionMagicCasting();		break;
+		case ACTION_MAGIC_INTERRUPT:	  ActionMagicInterrupt();	break;
+		case ACTION_MAGIC_FINISH:		  ActionMagicFinish();		break;
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
@@ -149,6 +154,7 @@ void CAIMobDummy::ActionEngage()
 
 	m_ActionType = ACTION_ATTACK;
 	m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
+	m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime - 1; // Monster always cast on engage if they can.
 
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 	
@@ -934,6 +940,184 @@ void CAIMobDummy::ActionSleep()
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
+void CAIMobDummy::ActionMagicStart() 
+{
+	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+
+	m_PBattleSubTarget = m_PBattleTarget;
+
+	// check valid targets
+	if ( (m_PSpell->getValidTarget() & TARGET_ENEMY) && m_PBattleSubTarget->id == m_PMob->id) {
+		m_ActionType = ACTION_ATTACK;
+		m_LastMagicTime = m_Tick;
+		ShowDebug("Monster Magic Cast on self but spell is enemy...");
+		return;
+	}
+	// TODO: This may work but hasn't been tested.
+	//else if (m_PSpell->getValidTarget() & TARGET_SELF) {
+	//	m_PBattleSubTarget = m_PMob;
+	//}
+
+
+	m_LastActionTime = m_Tick;
+	m_LastMagicTime = m_Tick;
+
+	apAction_t Action;
+    m_PMob->m_ActionList.clear();
+
+	Action.ActionTarget = m_PBattleTarget;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = 0;
+	Action.param	  = m_PSpell->getID();
+	Action.messageID  = 327;
+	Action.flag		  = 0;
+
+	m_PMob->m_ActionList.push_back(Action);
+
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+    m_ActionType = ACTION_MAGIC_CASTING;
+}
+
+void CAIMobDummy::ActionMagicCasting()
+{
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	if (m_PBattleSubTarget->isDead() || m_PBattleSubTarget->getZone() != m_PMob->getZone()) {
+		m_ActionType = ACTION_MAGIC_INTERRUPT;
+		ActionMagicInterrupt();
+		return;
+	}
+
+	if (m_PMob->isDead()) {
+		m_ActionType = ACTION_FALL;
+		ActionFall();
+		return;
+	}
+
+	if (m_Tick - m_LastMagicTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
+        m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+	{
+		if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
+        {
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0,MSGBASIC_UNABLE_TO_CAST));
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
+		else if (battleutils::IsParalised(m_PMob))
+		{
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0,MSGBASIC_IS_PARALYZED));
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
+		else if (battleutils::IsIntimidated(m_PMob, m_PBattleSubTarget))
+		{
+		    m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0,MSGBASIC_IS_INTIMIDATED));
+		    m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
+
+		float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+		if (CurrentDistance > 25) {
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
+
+		m_ActionType = ACTION_MAGIC_FINISH;
+		ActionMagicFinish();
+
+	}
+}
+
+void CAIMobDummy::ActionMagicInterrupt()
+{
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0, MSGBASIC_IS_INTERRUPTED));
+
+	apAction_t Action;
+    m_PMob->m_ActionList.clear();
+
+	Action.ActionTarget = m_PMob;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = m_PSpell->getAnimationID();
+	Action.param	  = 0;
+	Action.messageID  = 0;
+	Action.flag		  = 0;
+
+	m_PMob->m_ActionList.push_back(Action);
+
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+	m_LastMagicTime = m_Tick; // reset this in case the spell is long casting, don't want to immediately recast
+	m_PSpell = NULL;
+	m_PBattleSubTarget = NULL;
+	m_ActionType = ACTION_ATTACK;
+}
+
+void CAIMobDummy::ActionMagicFinish()
+{
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL || m_PSpell == NULL);
+
+	apAction_t Action;
+    m_PMob->m_ActionList.clear();
+
+	Action.ActionTarget = m_PBattleSubTarget;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = m_PSpell->getAnimationID();
+	Action.param      = 0;
+	Action.messageID  = 0;
+	Action.flag		  = 0;
+	m_LastMagicTime = m_Tick; // reset this in case the spell is long casting, don't want to immediately recast
+
+    m_PMob->m_ActionList.push_back(Action);
+
+	for (uint32 i = 0; i < m_PMob->m_ActionList.size(); ++i)
+	{
+        CBattleEntity* PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
+
+        m_PSpell->setMessage(m_PSpell->getDefaultMessage());
+        m_PMob->m_ActionList.at(i).param = luautils::OnSpellCast(m_PMob, PTarget);
+        m_PMob->m_ActionList.at(i).messageID = m_PSpell->getMessage();
+
+		if(m_PMob->m_ActionList.at(i).param>0){ //damage spell which dealt damage, TODO: use a better identifier!
+			if(m_PSpell->getMessage()==2 || m_PSpell->getMessage()==227){//damage or drain hp
+				PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+			}
+		}
+
+		if(i>0 && m_PSpell->getMessage() == 2){ //if its a damage spell msg and is hitting the 2nd+ target
+			m_PMob->m_ActionList.at(i).messageID = 264; //change the id to "xxx takes ### damage." only
+		}
+		if(i>0 && m_PSpell->getMessage() == 237){ //if its a damage spell msg and is hitting the 2nd+ target
+			m_PMob->m_ActionList.at(i).messageID = 278; //change the id to "xxx receives the effect of xxx." only
+		}
+
+        if (PTarget->objtype == TYPE_MOB)
+        {
+            if (PTarget->isDead())
+            {
+                ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
+            }
+            ((CMobEntity*)PTarget)->m_OwnerID.id = m_PMob->id;
+            ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PMob->targid;
+            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PMob, m_PSpell->getCE(), m_PSpell->getVE());
+        }
+    }
+	
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
+	m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+
+	m_PSpell = NULL;
+	m_PBattleSubTarget = NULL;
+}
+
 /************************************************************************
 *																		*
 *  Обычная физическая атака без нанесения какого-либо урона				*
@@ -1006,14 +1190,21 @@ void CAIMobDummy::ActionAttack()
 
 	// Try to spellcast
 	if (CurrentDistance <= 25) { // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
-		if ( (m_Tick - m_LastActionTime) > 10000) { // do a spell every 10 seconds TODO: Use server mods and scripts rather than hardcode
+		if ( (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && m_PMob->m_AvailableSpells.size() > 0) {
 			// Randomly select a spell from m_PMob->availableSpells and do it.
-			// If the spellid of the chosen spell is 0, this means it is a special spell and we should look up the script.
+			uint8 num = rand()%m_PMob->m_AvailableSpells.size();
+			uint16 spellid = m_PMob->m_AvailableSpells[num];
+
+			// TODO: If the spellid of the chosen spell is 0, this means it is a special spell and we should look up the script.
+
 			// check for spell blockers e.g. silence
-			// change to ActionMagicCasting
-			// send packets
-			// update action time
-			// return
+			if(!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)) {
+				// change to ActionMagicStarting
+				m_ActionType = ACTION_MAGIC_START;
+				m_PSpell = spell::GetSpell(spellid);
+                ActionMagicStart();
+				return;
+			}
 		}
 	}
 
@@ -1413,4 +1604,5 @@ uint16 CAIMobDummy::aoeMessageID(uint16 id)
 			return 284; //already the aoe message
 			break;
 	}
+
 }

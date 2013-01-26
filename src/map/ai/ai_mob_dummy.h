@@ -73,6 +73,10 @@ protected:
     void ActionAbilityInterrupt();
 	void ActionAttack();
     void ActionSleep();
+	void ActionMagicStart();
+	void ActionMagicCasting();
+	void ActionMagicInterrupt();
+	void ActionMagicFinish();
 	void processTwoHour();
 
     std::vector<CBattleEntity*> GetAdditionalTargets(AOERANGE AoeRange, position_t radiusAround, float radius);

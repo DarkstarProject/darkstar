@@ -1408,7 +1408,6 @@ inline int32 CLuaBaseEntity::unseenKeyItem(lua_State *L)
 inline int32 CLuaBaseEntity::getSkillLevel(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
@@ -4082,7 +4081,7 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
 inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET && m_PBaseEntity->objtype != TYPE_MOB);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
@@ -4496,11 +4495,17 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+	// TODO: Scripters should check if the target is a monster before calling this, but for now lets do this and
+	// catch it further down.
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PC ); 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 	DSP_DEBUG_BREAK_IF(lua_tointeger(L,2) < 0);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	if (m_PBaseEntity->objtype == TYPE_PC) {
+		return 0;
+	}
 
 	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
 	uint32 damage = lua_tointeger(L,2);
