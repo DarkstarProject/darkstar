@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 		if(GetNPCByID(16888064):getAnimation() == 8)then -- lampe water open ?
 			GetNPCByID(16888062):openDoor(7);
 		end
-	elseif(element == 2)then -- earthday
+	elseif(element == 1)then -- earthday
 		if(GetNPCByID(16888069):getAnimation() == 8)then -- lampe earth open ?
 			GetNPCByID(16888062):openDoor(7);
 		end
