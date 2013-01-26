@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
     mob:delStatusEffect(EFFECT_ARROW_SHIELD);
     mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
     mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-    mob:addStatusEffect(typeEffect,1,0,30);--power=25;tic=0;duration=60;
+    mob:addStatusEffect(typeEffect,1,0,60);--power=25;tic=0;duration=60;
     skill:setMsg(MSG_BUFF);
     return typeEffect;
 end;

@@ -1,6 +1,7 @@
 ---------------------------------------------------
--- Blood Drain
--- Steals an enemy's HP. Ineffective against undead.
+-- Onrush
+-- Deals damage based off TP.
+-- 100% TP: ??? / 250% TP: ??? / 300% TP: ???
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -14,12 +15,11 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local dmgmod = 1.5;
+    local numhits = 1;
     local accmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_MAB_BONUS,1);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_WIPE_SHADOWS);
+    local dmgmod = math.random()*2 + 2;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_H2H,info.hitslanded);
     target:delHP(dmg);
-    mob:addHP(dmg);
-    skill:setMsg(MSG_DRAIN_HP);
     return dmg;
 end;

@@ -20,34 +20,37 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 
     -- try to drain buff
-    local effect1 = target:drainStatusEffect();
-    local effect2 = target:drainStatusEffect();
+    local effectFirst = target:drainStatusEffect();
+    local effectSecond = target:drainStatusEffect();
+    local dmg = 0;
 
-    if(effect1 == nil) then
+    if(effectFirst ~= nil) then
+
+        local count = 1;
+
+        if(mob:hasStatusEffect(effectFirst:getType()) == false) then
+            -- add to myself
+            mob:addStatusEffect(effectFirst:getType(), effectFirst:getPower(), effectFirst:getTickCount(), effectFirst:getDuration());
+        end
+
+        if(effectSecond ~= nil and mob:hasStatusEffect(effectSecond:getType()) == false) then
+            count = count + 1;
+            -- add to myself
+            mob:addStatusEffect(effectSecond:getType(), effectSecond:getPower(), effectSecond:getTickCount(), effectSecond:getDuration());
+        end
+        -- add buff to myself
+        skill:setMsg(MSG_EFFECT_DRAINED);
+
+        dmg = count;
+    else
         -- time to drain HP. 100-200
         local power = math.random(0, 101) + 100;
-        local dmg = MobFinalAdjustments(power,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+        dmg = MobFinalAdjustments(power,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
 
         target:delHP(dmg);
         mob:addHP(dmg);
 
-        return dmg;
-    else
-        local count = 1;
-
-        if(mob:hasStatusEffect(effect1:getType()) == false) then
-            -- add to myself
-            mob:addStatusEffect(effect1:getType(), effect1:getPower(), effect1:getTickCount(), effect1:getDuration());
-        end
-
-        if(effect2 ~= nil and mob:hasStatusEffect(effect2:getType()) == false) then
-            count = count + 1;
-            -- add to myself
-            mob:addStatusEffect(effect2:getType(), effect2:getPower(), effect2:getTickCount(), effect2:getDuration());
-        end
-        -- add buff to myself
-        skill:setMsg(MSG_EFFECT_DRAINED);
-        return count;
+        skill:setMsg(MSG_DRAIN_HP);
     end
 
     return dmg;

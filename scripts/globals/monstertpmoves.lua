@@ -187,6 +187,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMG) / 100));
 	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMGPHYS) / 100));
 
+	-- if an attack landed it must do at least 1 damage
 	if(hitslanded >= 1 and finaldmg < 1) then
 		finaldmg = 1;
 	end
@@ -256,7 +257,7 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	-- get resistence, give small boost to mobs
 	resist = applyPlayerResistance(mob,skill,target,mob:getMod(MOD_INT)-target:getMod(MOD_INT),0,element);
 
-	finaldmg = base * resist;
+	finaldmg = finaldmg * resist;
 
 	if(finaldmg < 1) then
 		finaldmg = 1;
@@ -499,14 +500,25 @@ function MobBreathMove(mob, target, percent, base, cap)
 	end
 
 	-- add breath resistence and magic resistence
-	local resist = (target:getMod(MOD_DMGBREATH) + target:getMod(MOD_DMGMAGIC)) / 100;
+	local dmgMod = target:getMod(MOD_DMG) / 100;
+	local dmgBreath = target:getMod(MOD_DMGBREATH) / 100;
+	local dmgMagic = target:getMod(MOD_DMGMAGIC) / 100;
 
 	-- cap breath reduction at 50%
-	if(resist > 0.5) then
-		resist = 0.5;
+	if(dmgBreath > 0.5) then
+		dmgBreath = 0.5;
+	end
+	if(dmgMod > 0.5) then
+		dmgMod = 0.5;
 	end
 
-	damage = damage * (1 + resist);
+	if(dmgMagic > 0.5) then
+		dmgMagic = 0.5;
+	end
+
+	damage = damage * (1 + dmgMod);
+	damage = damage * (1 + dmgBreath);
+	damage = damage * (1 + dmgMagic);
 
 	return damage;
 end;

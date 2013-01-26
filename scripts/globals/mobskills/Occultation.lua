@@ -1,27 +1,25 @@
 ---------------------------------------------
---  Airy Shield
+--  Occultation
 --
---  Description: Ranged shield
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self
+--  Description: Creates 25 shadows
+--  Type: Magical (Wind)
 ---------------------------------------------
+
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
+
 function OnMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_ARROW_SHIELD;
-
-    mob:delStatusEffect(EFFECT_ARROW_SHIELD);
-    mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
-    mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-    mob:addStatusEffect(typeEffect,1,0,60);--power=25;tic=0;duration=60;
+    local base = math.random(10,25);
     skill:setMsg(MSG_BUFF);
+    local typeEffect = EFFECT_BLINK;
+    mob:delStatusEffect(typeEffect);
+    mob:addStatusEffect(typeEffect,base,0,120);
     return typeEffect;
 end;

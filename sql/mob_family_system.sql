@@ -242,7 +242,7 @@ INSERT INTO `mob_family_system` VALUES (176,'MamoolJa',7,'Beastmen',2,40,100,120
 INSERT INTO `mob_family_system` VALUES (177,'MamoolJaKnight',7,'Beastmen',3,40,120,120,2,1,1,3,3,3,3,3,3,1,1,1,1,1,1.125,1.125,1,1,1,1,1,3);
 INSERT INTO `mob_family_system` VALUES (178,'Mandragora',17,'Plantoid',0,40,107,120,4,2,4,5,3,3,2,3,3,1,1.25,1,1,1.25,1.25,1.25,1,1.25,1,0.875,1.25,4);
 INSERT INTO `mob_family_system` VALUES (179,'Manticore',6,'Beast',1,40,112,130,1,3,3,3,2,2,2,3,3,1,1,1,1,0.5,1,0.5,1,1,1.25,1,1,3);
-INSERT INTO `mob_family_system` VALUES (180,'Marid',6,'Beast',2,40,107,90,1,3,4,3,6,6,5,3,3,1,1,1,1,1,1.125,1,1,1,1,1,1,4);
+INSERT INTO `mob_family_system` VALUES (180,'Marid',6,'Beast',2,40,150,90,1,3,4,3,6,6,5,3,3,1,1,1,1,1,1.125,1,1,1,1,1,1,4);
 INSERT INTO `mob_family_system` VALUES (181,'MemoryReceptacle',12,'Empty',2,0,200,0,1,3,5,4,2,2,5,3,3,2,2,2,2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0);
 INSERT INTO `mob_family_system` VALUES (182,'Merrow',7,'Beastmen',0,40,100,120,3,3,3,2,3,3,2,3,3,1,1,1,1,1,1,1,1,1.125,0.875,1,1,6);
 INSERT INTO `mob_family_system` VALUES (183,'Mimic',3,'Arcana',0,40,90,90,1,3,4,3,6,6,5,3,3,0.5,0.5,0.5,0.5,1,1,1,1,1,1,0.875,1.125,7);

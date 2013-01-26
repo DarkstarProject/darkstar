@@ -130,7 +130,7 @@ INSERT INTO `mob_skill` VALUES (64,186,64,'Sweet_Breath', 4, 7.0, 2000, 2000, 4,
 -- Sabotenders (cactuars)
 INSERT INTO `mob_skill` VALUES (65,212,65,'Needleshot', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (66,212,66,'1000_Needles', 1, 10.0, 2000, 2500, 4, 0);
-INSERT INTO `mob_skill` VALUES (67,212,67,'Photosynthesis', 0, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (68,212,68,'Photosynthesis', 0, 7.0, 2000, 1500, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'2000_Needles', 1, 10.0, 2000, 1500, 4, 0); -- Only used by Nightmare Sabotender
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'4000_Needles', 1, 10.0, 2000, 1500, 4, 0); -- Only used by Nightmare Sabotender
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'10000_Needles', 1, 10.0, 2000, 1500, 4, 0); -- Only used by certain Notorious Monsters
@@ -219,13 +219,32 @@ INSERT INTO `mob_skill` VALUES (964,256,837,'Auroral_Drape', 1, 10.0, 2000, 2500
 -- INSERT INTO `mob_skill` VALUES (970,256,843,'Memory_Of_Lightning', 1, 10.0, 2000, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (971,256,844,'Memory_Of_Water', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (972,256,845,'Memory_Of_Dark', 1, 10.0, 2000, 2000, 4, 0);
+-- Wanderer
+INSERT INTO `mob_skill` VALUES (132,255,857,'Vanity_Dive', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (133,255,858,'Empty_Beleaguer', 1, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (134,255,859,'Mirage', 0, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (135,255,860,'Aura_Of_Persistence', 0, 7.0, 2000, 1500, 1, 0);
+-- Gorger
+INSERT INTO `mob_skill` VALUES (485,137,905,'Quadratic_Continuum', 0, 7.0, 2000, 2500, 4, 0);
+INSERT INTO `mob_skill` VALUES (488,137,906,'Spirit_Absorption', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (491,137,907,'Vanity_Drive', 4, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (494,137,908,'Stygian_Flatus', 1, 15.0, 2000, 1800, 4, 0);
+INSERT INTO `mob_skill` VALUES (496,137,909,'Promyvion_Barrier', 0, 7.0, 2000, 1500, 1, 0);
+-- INSERT INTO `mob_skill` VALUES (499,137,910,'Fission', 0, 7.0, 2000, 2000, 4, 0); -- NM only
+
+INSERT INTO `mob_skill` VALUES (485,138,905,'Quadratic_Continuum', 0, 7.0, 2000, 2500, 4, 0);
+INSERT INTO `mob_skill` VALUES (488,138,906,'Spirit_Absorption', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (491,138,907,'Vanity_Drive', 4, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (494,138,908,'Stygian_Flatus', 1, 15.0, 2000, 1800, 4, 0);
+INSERT INTO `mob_skill` VALUES (496,138,909,'Promyvion_Barrier', 0, 7.0, 2000, 1500, 1, 0);
+-- INSERT INTO `mob_skill` VALUES (499,138,910,'Fission', 0, 7.0, 2000, 2000, 4, 0); -- NM only
+
 -- Craver
 INSERT INTO `mob_skill` VALUES (973,78,919,'Brain_Spike', 0, 9.0, 2000, 1500, 4, 0); -- Regular only
 INSERT INTO `mob_skill` VALUES (974,78,920,'Empty_Thrash', 4, 9.0, 2000, 1500, 4, 0); -- Regular only
 INSERT INTO `mob_skill` VALUES (975,78,921,'Promyvion_Brume', 1, 10.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (976,78,922,'Murk', 1, 10.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (977,78,923,'Material_Fend', 0, 10.0, 2000, 2000, 1, 0);
-
 -- NM Craver
 INSERT INTO `mob_skill` VALUES (978,78,924,'Carousel', 1, 10.0, 2000, 2000, 4, 0); -- NM only
 INSERT INTO `mob_skill` VALUES (979,78,925,'Impalement', 1, 10.0, 2000, 2000, 4, 0); -- NM only
@@ -243,23 +262,11 @@ INSERT INTO `mob_skill` VALUES (995,241,942,'Trinary_Tap', 0, 7.0, 2000, 2500, 4
 -- NM Thinker
 INSERT INTO `mob_skill` VALUES (996,241,943,'Shadow_Spread', 1, 10.0, 2000, 1500, 4, 0); -- NM only
 -- Seether
-INSERT INTO `mob_skill` VALUES (997,220,872,'Vanity_Strike', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (997,220,872,'Vanity_Strike', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (998,220,872,'Wanion', 1, 10.0, 2000, 2500, 4, 0);
 INSERT INTO `mob_skill` VALUES (999,220,873,'Occultation', 0, 7.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1000,220,874,'Empty_Crush', 0, 7.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1002,220,876,'Lamentation', 1, 10.0, 2000, 1500, 4, 0);
--- Wanderer TODO: find animation ids
--- INSERT INTO `mob_skill` VALUES (132,255,876,'Lamentation', 1, 10.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (133,255,876,'Empty_Beleaguer', 1, 10.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (134,255,876,'Mirage', 1, 10.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (135,255,876,'Aura_Of_Persistence', 1, 10.0, 2000, 1500, 4, 0);
--- Gorger TODO find animation ids
--- INSERT INTO `mob_skill` VALUES (485,255,876,'Quadratic_Continuum', 1, 10.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (488,255,876,'Spirit_Absorption', 1, 10.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (491,255,876,'Vanity_Drive', 1, 10.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (494,255,876,'Stygian_Flatus', 1, 10.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (496,255,876,'Promyvion_Barrier', 1, 10.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (499,255,876,'Fission', 1, 10.0, 2000, 1500, 4, 0);
 
 -- Lizard
 INSERT INTO `mob_skill` VALUES (110,174,110,'Tail_Blow', 0, 7.0, 2000, 1500, 4, 0);
@@ -335,10 +342,10 @@ INSERT INTO `mob_skill` VALUES (164,172,164,'TP_Drainkiss', 0, 7.0, 2000, 1500, 
 
 -- Worm
 INSERT INTO `mob_skill` VALUES (168,258,168,'Full-Force_Blow', 0, 7.0, 2000, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (169,258,169,'Gastric_Bomb', 0, 20.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (169,258,169,'Gastric_Bomb', 0, 20.0, 2000, 2500, 4, 0);
 INSERT INTO `mob_skill` VALUES (170,258,170,'Sandspin', 1, 16.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (171,258,171,'Tremors', 1, 18.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (173,258,173,'Sound_Vacuum', 0, 16.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (171,258,171,'Tremors', 1, 18.0, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (173,258,173,'Sound_Vacuum', 0, 16.0, 2000, 1800, 4, 0);
 INSERT INTO `mob_skill` VALUES (172,258,172,'MP_Absorption', 0, 7.0, 2000, 1500, 4, 0);
 
 -- Slime
@@ -491,11 +498,10 @@ INSERT INTO `mob_skill` VALUES (269,175,269,'Battery_Charge', 0, 7.0, 2000, 1500
 INSERT INTO `mob_skill` VALUES (267,175,267,'Mysterious_Light', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (265,175,265,'Spinning_Attack', 4, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (264,175,264,'Double_Ray', 0, 7.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Spectral_Barrier', 0, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (266,175,266,'Spectral_Barrier', 0, 7.0, 2000, 2000, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Mind_Drain', 0, 7.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'', 0, 7.0, 2000, 1500, 4, 0);
 -- Doll
--- INSERT INTO `mob_skill` VALUES (278,83,279,'Kartstrahl', 0, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (278,83,279,'Kartstrahl', 0, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (279,83,279,'Blitzstrahl', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (280,83,280,'Panzerfaust', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (283,83,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0);
@@ -810,15 +816,21 @@ INSERT INTO `mob_skill` VALUES (262,98,817,'Nimble_Snap', 0, 7.0, 2000, 1500, 4,
 INSERT INTO `mob_skill` VALUES (263,98,818,'Cyclotail', 1, 10.0, 2000, 1000, 4, 0);
 
 -- Fomors
+-- INSERT INTO `mob_skill` VALUES (253,115,246,'Aegis_Schism', 0, 7.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (253,115,246,'Barbed_Crescent', 0, 7.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (253,115,246,'Carnal_Nightmare', 1, 10.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (253,115,246,'Dancing_Chains', 1, 10.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (253,115,246,'Netherspikes', 4, 10.0, 2000, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (253,115,246,'Shackled_Fists', 0, 7.0, 2000, 2000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (254,115,247,'Foxfire', 0, 7.0, 2000, 2000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (254,115,247,'Foxfire', 4, 10.0, 2000, 2000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (253,115,246,'Grim_Halo', 1, 10.0, 2000, 2000, 4, 0);
 
 -- taurus
 INSERT INTO `mob_skill` VALUES (242,240,851,'Triclip', 0, 7.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (243,240,852,'Back_Swish', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (244,240,853,'Mow', 1, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (245,240,854,'Frightful_Roar', 1, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (246,240,855,'Mortal_Ray', 4, 7.0, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (246,240,855,'Mortal_Ray', 4, 7.0, 2000, 2500, 4, 0);
 INSERT INTO `mob_skill` VALUES (247,240,856,'Unblessed_Armor', 0, 7.0, 2000, 1500, 1, 0);
 -- cluster
 INSERT INTO `mob_skill` VALUES (313,68,868,'Refueling', 0, 7.0, 2000, 1500, 1, 0);
@@ -845,7 +857,7 @@ INSERT INTO `mob_skill` VALUES (1388,232,878,'Hypothermal_Combustion', 1, 7.0, 2
 INSERT INTO `mob_skill` VALUES (276,74,902,'Envoutement', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (275,74,901,'Silence_Seal', 1, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (274,74,900,'Memento_Mori', 0, 7.0, 2000, 1500, 1, 0);
-
+-- mammet
 -- --------------------
 -- VALUES POST 1024
 -- Take tpid and +256 then -1024 to find the correct param for the packet
@@ -921,7 +933,16 @@ INSERT INTO `mob_skill` VALUES (1524,205,1207,'Leaping_Cleave', 0, 7.0, 2000, 15
 -- INSERT INTO `mob_skill` VALUES (1580,164,0,'Nerve_Gas', 1, 10.0, 2000, 1500, 4, 0);
 
 -- Marid
+INSERT INTO `mob_skill` VALUES (1447,180,1238,'Barrier_Tusk', 0, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (1448,180,1239,'Onrush', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (1449,180,1240,'Stampede', 0, 7.0, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1450,180,1241,'Flailing_Trunk', 4, 7.0, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1451,180,1242,'Voracious_Trunk', 0, 7.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (1452,180,1243,'Proboscis_Shower', 0, 7.0, 2000, 1500, 4, 0); -- NM only
 -- Colibri
+INSERT INTO `mob_skill` VALUES (1443,72,1244,'Pecking_Flurry', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (1444,72,1245,'Snatch_Morsel', 0, 7.0, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1445,72,1246,'Feather_Tickle', 0, 7.0, 2000, 1500, 4, 0);
 -- Ladybug
 INSERT INTO `mob_skill` VALUES (1925,170,1579,'Spiral_Spin', 0, 7.0, 2000, 1500, 4, 0);
 -- Pixie

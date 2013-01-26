@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Parry
--- Enhances defense.
+-- Vanity Dive
+-- Deals damage to a single target.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -14,10 +14,11 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    skill:setMsg(MSG_BUFF);
-    local typeEffect = EFFECT_DEFENSE_BOOST;
-    mob:delStatusEffect(EFFECT_DEFENSE_DOWN);
-    mob:delStatusEffect(typeEffect);
-    mob:addStatusEffect(typeEffect,15,0,120);
-    return typeEffect;
+    local numhits = 1;
+    local accmod = 1;
+    local dmgmod = math.random(2,3)+math.random();
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
+    target:delHP(dmg);
+    return dmg;
 end;

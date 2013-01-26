@@ -26,15 +26,9 @@ function OnMobWeaponSkill(target, mob, skill)
     local effect1 = target:drainStatusEffect();
     local effect2 = target:drainStatusEffect();
     local effect3 = target:drainStatusEffect();
+    local dmg = 0;
 
     if(effect1 == nil) then
-        -- time to drain HP. 150-300
-        local power = math.random(0, 151) + 150;
-        local dmg = MobFinalAdjustments(power,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
-
-        target:delHP(dmg);
-        mob:addHP(dmg);
-    else
         local count = 1;
 
         if(mob:hasStatusEffect(effect1:getType()) == false) then
@@ -55,7 +49,17 @@ function OnMobWeaponSkill(target, mob, skill)
         end
         -- add buff to myself
         skill:setMsg(MSG_EFFECT_DRAINED);
-        return count;
+
+        dmg = count;
+    else
+        -- time to drain HP. 150-300
+        local power = math.random(0, 151) + 150;
+        dmg = MobFinalAdjustments(power,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+
+        target:delHP(dmg);
+        mob:addHP(dmg);
+
+        skill:setMsg(MSG_DRAIN_HP);
     end
 
     return dmg;

@@ -18,6 +18,6 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_DEFENSE_BOOST;
     mob:delStatusEffect(EFFECT_DEFENSE_DOWN);
     mob:delStatusEffect(typeEffect);
-    mob:addStatusEffect(typeEffect,15,0,900);
+    mob:addStatusEffect(typeEffect,15,0,120);
     return typeEffect;
 end;

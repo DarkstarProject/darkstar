@@ -1,7 +1,7 @@
 ---------------------------------------------
---  Airy Shield
+--  Spectral Barrier
 --
---  Description: Ranged shield
+--  Description: Magic shield
 --  Type: Enhancing
 --  Utsusemi/Blink absorb: N/A
 --  Range: Self
@@ -16,7 +16,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_ARROW_SHIELD;
+    local typeEffect = EFFECT_MAGIC_SHIELD;
 
     mob:delStatusEffect(EFFECT_ARROW_SHIELD);
     mob:delStatusEffect(EFFECT_MAGIC_SHIELD);

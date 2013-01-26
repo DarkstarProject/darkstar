@@ -1,10 +1,11 @@
 ---------------------------------------------
---  Airy Shield
+--  Mirage
 --
---  Description: Ranged shield
+--  Description: Enhances evasion.
 --  Type: Enhancing
 --  Utsusemi/Blink absorb: N/A
 --  Range: Self
+--  Notes: Very sharp evasion increase.
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -16,12 +17,12 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_ARROW_SHIELD;
-
-    mob:delStatusEffect(EFFECT_ARROW_SHIELD);
-    mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
-    mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-    mob:addStatusEffect(typeEffect,1,0,60);--power=25;tic=0;duration=60;
-    skill:setMsg(MSG_BUFF);
+    local typeEffect = EFFECT_EVASION_BOOST;
+    if(mob:hasStatusEffect(typeEffect) == true) then
+        skill:setMsg(MSG_NO_EFFECT);
+    else
+        mob:addStatusEffect(typeEffect,20,0,60);--power=25;tic=0;duration=60;
+        skill:setMsg(MSG_BUFF);
+    end
     return typeEffect;
 end;

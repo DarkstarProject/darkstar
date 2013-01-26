@@ -3660,6 +3660,9 @@ inline int32 CLuaBaseEntity::drainStatusEffect(lua_State *L)
         lua_gettable(L,-2);
         lua_insert(L,-2);
         lua_pushlightuserdata(L,(void*)PStatusEffect);
+
+        // delete effect when finished
+        delete PStatusEffect;
     }
     if( lua_pcall(L,2,1,0) )
     {
