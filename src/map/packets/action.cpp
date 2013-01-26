@@ -300,9 +300,15 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		{
 			//WS animations
 			case 25:	// Steal
+			case 29:	// Mug
+			case 30:	// Shield Bash
 			case 50:	// Jump
 			case 51:	// High Jump
 			case 52:	// Super Jump
+			case 61:	// Weapon Bash
+			case 134:	// Tomahawk
+			case 152:	// Blade Bash
+			case 154:	// Angon
 				ActionTypeNumber -= 3;
 				break;
 
