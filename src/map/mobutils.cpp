@@ -292,47 +292,47 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells
 	// Single targe tier spells
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_FIRE] & SPELLTYPE_DAMAGE) {
-		AddHighestAvailableSpell(PMob, 148, 144);  // Fire V -> I
+		AddHighestAvailableSpell(PMob, 148, 144, true);  // Fire V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_EARTH] & SPELLTYPE_DAMAGE) {
-		AddHighestAvailableSpell(PMob, 163, 159); // Stone V -> I
+		AddHighestAvailableSpell(PMob, 163, 159, true); // Stone V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_WATER] & SPELLTYPE_DAMAGE) {
-		AddHighestAvailableSpell(PMob, 173, 169); // Water V -> I
+		AddHighestAvailableSpell(PMob, 173, 169, true); // Water V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_WIND] & SPELLTYPE_DAMAGE) {
-		AddHighestAvailableSpell(PMob, 158, 154); // Aero V -> I
+		AddHighestAvailableSpell(PMob, 158, 154, true); // Aero V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_ICE] & SPELLTYPE_DAMAGE) {
-		AddHighestAvailableSpell(PMob, 153, 149); // Blizzard V -> I
+		AddHighestAvailableSpell(PMob, 153, 149, true); // Blizzard V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHTNING] & SPELLTYPE_DAMAGE) {
-		AddHighestAvailableSpell(PMob, 168, 164); // Thunder V -> I
+		AddHighestAvailableSpell(PMob, 168, 164, true); // Thunder V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_DAMAGE) {
-		AddHighestAvailableSpell(PMob, 30, 28); // Banish III -> I
+		AddHighestAvailableSpell(PMob, 30, 28, true); // Banish III -> I
 	} 
 	//// AoE Spells
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_FIRE] & SPELLTYPE_AOE) {
-		AddHighestAvailableSpell(PMob, 178, 174); // Firaga V -> I
+		AddHighestAvailableSpell(PMob, 178, 174, true); // Firaga V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_EARTH] & SPELLTYPE_AOE) {
-		AddHighestAvailableSpell(PMob, 193, 189); // Stonega V -> I
+		AddHighestAvailableSpell(PMob, 193, 189, true); // Stonega V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_WATER] & SPELLTYPE_AOE) {
-		AddHighestAvailableSpell(PMob, 203, 199); // Waterga V -> I
+		AddHighestAvailableSpell(PMob, 203, 199, true); // Waterga V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_WIND] & SPELLTYPE_AOE) {
-		AddHighestAvailableSpell(PMob, 188, 184); // Aeroga V -> I
+		AddHighestAvailableSpell(PMob, 188, 184, true); // Aeroga V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_ICE] & SPELLTYPE_AOE) {
-		AddHighestAvailableSpell(PMob, 183, 179); // Blizzaga V -> I
+		AddHighestAvailableSpell(PMob, 183, 179, true); // Blizzaga V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHTNING] & SPELLTYPE_AOE) {
-		AddHighestAvailableSpell(PMob, 198, 194); // Thundaga V -> I
+		AddHighestAvailableSpell(PMob, 198, 194, true); // Thundaga V -> I
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_AOE) {
-		AddHighestAvailableSpell(PMob, 42, 38); // Banishga V -> I
+		AddHighestAvailableSpell(PMob, 42, 38, true); // Banishga V -> I
 	} 
 
 	/* WHM spells may work but I haven't tested it.
@@ -347,12 +347,20 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	} */
 }
 
-void AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestId)
+void AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestId, bool ignoreJob)
 {
 	for (int i=highestId; i>=lowestId; i--) {
 		if (spell::CanUseSpell(PMob, i)) {
 			PMob->m_AvailableSpells.push_back(i);
 			break; // we've got the highest level we can use, so stop looking for lower ones
+		}
+		if (ignoreJob) {
+			if (spell::CanUseSpellWith(i, JOB_BLM, PMob->GetMLevel()) ||
+				spell::CanUseSpellWith(i, JOB_RDM, PMob->GetMLevel()) ||
+				spell::CanUseSpellWith(i, JOB_WHM, PMob->GetMLevel())) {
+				PMob->m_AvailableSpells.push_back(i);
+				break;
+			}
 		}
 	}
 }

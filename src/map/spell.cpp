@@ -360,4 +360,17 @@ namespace spell
 	    }
 	    return false;
     }
+
+	// This is a utility method for mobutils, when we want to work out if we can give monsters a spell
+	// but they are on an odd job (e.g. PLDs getting -ga3)
+	bool CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level)
+	{
+		if (GetSpell(spellId) != NULL)
+	    {
+		    uint8 jobMLevel = PSpellList[spellId]->getJob(job);
+
+		    return level > jobMLevel;
+	    }
+	    return false;
+	}
 };

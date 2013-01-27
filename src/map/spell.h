@@ -71,7 +71,6 @@ public:
 	uint16		getVE();
 	uint16		getModifiedRecast();
 
-
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);						
 	void		setMPCost(uint16 MP);
@@ -135,6 +134,7 @@ namespace spell
 
     CSpell* GetSpell(uint16 SpellID);
     bool    CanUseSpell(CBattleEntity* PCaster, uint16 SpellID);
+	bool	CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level);
 };
 
 #endif
