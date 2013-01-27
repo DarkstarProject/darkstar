@@ -870,7 +870,6 @@ void CAIMobDummy::processTwoHour(){
 	case JOB_RDM: 
 		id=4; Action.ActionTarget = m_PMob; Action.messageID=101; 
 		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_CHAINSPELL,0,1,0,60));
-		ShowDebug("Added CS");
 		m_LastMagicTime = 0;
 		break;
 	case JOB_WHM: {

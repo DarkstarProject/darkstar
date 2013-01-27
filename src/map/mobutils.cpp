@@ -287,60 +287,25 @@ void GetAvailableSpells(CMobEntity* PMob) {
 
 	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells
 	if (PMob->m_SpellsBitmask.fire.tiers) {
-		for (int i=148; i>=144; i--) {
-			if (spell::CanUseSpell(PMob, i)) { //Fire V -> I
-				PMob->m_AvailableSpells.push_back(i);
-				break; // we've got the highest level we can use, so stop looking for lower ones
-			}
-		}
+		AddHighestAvailableSpell(PMob, 148, 144);  // Fire V -> I
 	}
 	if (PMob->m_SpellsBitmask.earth.tiers) {
-		for (int i=163; i>=159; i--) {
-			if (spell::CanUseSpell(PMob, i)) { //Stone V -> I
-				PMob->m_AvailableSpells.push_back(i);
-				break; // we've got the highest level we can use, so stop looking for lower ones
-			}
-		}
+		AddHighestAvailableSpell(PMob, 163, 159); // Stone V -> I
 	}
 	if (PMob->m_SpellsBitmask.water.tiers) {
-		for (int i=173; i>=169; i--) {
-			if (spell::CanUseSpell(PMob, i)) { //Water V -> I
-				PMob->m_AvailableSpells.push_back(i);
-				break; // we've got the highest level we can use, so stop looking for lower ones
-			}
-		}
+		AddHighestAvailableSpell(PMob, 173, 169); // Water V -> I
 	}
 	if (PMob->m_SpellsBitmask.wind.tiers) {
-		for (int i=158; i>=154; i--) {
-			if (spell::CanUseSpell(PMob, i)) { //Aero V -> I
-				PMob->m_AvailableSpells.push_back(i);
-				break; // we've got the highest level we can use, so stop looking for lower ones
-			}
-		}
+		AddHighestAvailableSpell(PMob, 158, 154); // Aero V -> I
 	}
 	if (PMob->m_SpellsBitmask.ice.tiers) {
-		for (int i=153; i>=149; i--) {
-			if (spell::CanUseSpell(PMob, i)) { // Blizzard V -> I
-				PMob->m_AvailableSpells.push_back(i);
-				break; // we've got the highest level we can use, so stop looking for lower ones
-			}
-		}
+		AddHighestAvailableSpell(PMob, 153, 149); // Blizzard V -> I
 	}
 	if (PMob->m_SpellsBitmask.lightning.tiers) {
-		for (int i=168; i>=164; i--) {
-			if (spell::CanUseSpell(PMob, i)) { // Thunder V -> I
-				PMob->m_AvailableSpells.push_back(i);
-				break; // we've got the highest level we can use, so stop looking for lower ones
-			}
-		}
+		AddHighestAvailableSpell(PMob, 168, 164); // Thunder V -> I
 	}
 	if (PMob->m_SpellsBitmask.light.tiers) {
-		for (int i=30; i>=28; i--) {
-			if (spell::CanUseSpell(PMob, i)) { // Banish III -> I
-				PMob->m_AvailableSpells.push_back(i);
-				break; // we've got the highest level we can use, so stop looking for lower ones
-			}
-		}
+		AddHighestAvailableSpell(PMob, 30, 28); // Banish III -> I
 	}
 
 	/* WHM spells may work but I haven't tested it.
@@ -353,6 +318,16 @@ void GetAvailableSpells(CMobEntity* PMob) {
 			}
 		}
 	} */
+}
+
+void AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestId)
+{
+	for (int i=highestId; i>=lowestId; i--) {
+		if (spell::CanUseSpell(PMob, i)) {
+			PMob->m_AvailableSpells.push_back(i);
+			break; // we've got the highest level we can use, so stop looking for lower ones
+		}
+	}
 }
 
 }; // namespace mobutils
