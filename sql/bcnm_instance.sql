@@ -791,6 +791,17 @@ INSERT INTO `bcnm_instance` VALUES ('832', '1', '16863233');
 INSERT INTO `bcnm_instance` VALUES ('832', '2', '16863234');
 INSERT INTO `bcnm_instance` VALUES ('832', '3', '16863235');
 
+-- Spire of Vahzl
+INSERT INTO `bcnm_instance` VALUES ('864', '1', '16871425');
+INSERT INTO `bcnm_instance` VALUES ('864', '1', '16871426');
+INSERT INTO `bcnm_instance` VALUES ('864', '1', '16871431');
+INSERT INTO `bcnm_instance` VALUES ('864', '2', '16871432');
+INSERT INTO `bcnm_instance` VALUES ('864', '2', '16871433');
+INSERT INTO `bcnm_instance` VALUES ('864', '2', '16871438');
+INSERT INTO `bcnm_instance` VALUES ('864', '3', '16871439');
+INSERT INTO `bcnm_instance` VALUES ('864', '3', '16871440');
+INSERT INTO `bcnm_instance` VALUES ('864', '3', '16871445');
+
 -- Monarch Linn
 INSERT INTO `bcnm_instance` VALUES ('960', '1', '16904193');
 INSERT INTO `bcnm_instance` VALUES ('960', '1', '16904194');

@@ -11,6 +11,7 @@ itemid_bcnmid_map = {10,{0,0},--The_Shrouded_Maw
                      17,{0,0},--spire of holla
 					 19,{0,0},--spire of dem
 					 21,{0,0},--spire of mea
+					 23,{0,0},--Spire_of_Vahzl
 					 31,{0,0},--Monarch Linn
 					 139,{1553,11,1175,15,1180,17}, -- Horlais Peak
 					 140,{1551,34,1552,35,1552,36}, -- Ghelsba Outpost
@@ -37,6 +38,7 @@ bcnmid_param_map = {10,{704,0,706,2},
                     17,{768,0},
 					19,{800,0},
 					21,{832,0},
+                    23,{864,0},
 					31,{960,0,961,1},
 					139,{0,0,5,5,6,6,7,7,11,11,15,15,17,17},
 					140,{32,0,33,1,34,2,35,3,36,4},
@@ -361,7 +363,12 @@ function checkNonTradeBCNM(player,npc)
 	        mask = GetBattleBitmask(832,Zone,1);
 	        player:setVar("trade_bcnmid",832);
 	    end
-	 elseif(Zone == 31) then --Monarch Linn
+	elseif(Zone == 23) then --Spire of vahzl
+	    if(player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==8) then -- desires of emptiness
+	        mask = GetBattleBitmask(864,Zone,1);
+	        player:setVar("trade_bcnmid",864);
+	    end	
+	elseif(Zone == 31) then --Monarch Linn
 	    if(player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then  -- Ancient Vows bcnm
 	      	mask = GetBattleBitmask(960,Zone,1);
 	        player:setVar("trade_bcnmid",960);
