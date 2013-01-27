@@ -28,7 +28,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
 		
-	tp = player:getTP();
+	local tp = player:getTP(); --why is this here? it doesn't seem to be being used...
 	
 	--Defense ignored is 0%, 35%, 50% as per wiki.bluegartr.com
 	params.ignoresDef = true;
@@ -36,7 +36,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.ignored200 = 0.35;
 	params.ignored300 = 0.5;
 	
-	damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
+	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 		
 	return tpHits, extraHits, damage;
 	

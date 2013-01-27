@@ -167,6 +167,30 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
 
 //======================================================//
 
+inline int32 CLuaBaseEntity::restoreHP(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	if(m_PBaseEntity->animation != ANIMATION_DEATH)
+	{
+		int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(lua_tointeger(L,-1));
+
+		if( result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
+		{
+			charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
+		}
+		lua_pushinteger( L, result );
+		return 1;
+	}
+	lua_pushinteger( L, 0 );
+	return 1;
+}
+
+//======================================================//
+
 inline int32 CLuaBaseEntity::delHP(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -252,6 +276,30 @@ inline int32 CLuaBaseEntity::addMP(lua_State *L)
         charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
 	}
     lua_pushinteger( L, result );
+	return 1;
+}
+
+//======================================================//
+
+inline int32 CLuaBaseEntity::restoreMP(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	if(m_PBaseEntity->animation != ANIMATION_DEATH)
+	{
+		int32 result = ((CBattleEntity*)m_PBaseEntity)->addMP(lua_tointeger(L,-1));
+
+		if( result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
+		{
+			charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
+		}
+		lua_pushinteger( L, result );
+		return 1;
+	}
+	lua_pushinteger( L, 0 );
 	return 1;
 }
 
@@ -5572,10 +5620,12 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addHP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,restoreHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,restoreMP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTP),

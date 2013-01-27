@@ -28,7 +28,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
 	
-	tp = player:getTP();
+	local tp = player:getTP();--why is this here? it doesn't seem to be used...
 	
 	--Defense ignored is 50%, 75%, 100% (guessed)
 	params.ignoredDef = true;
@@ -36,7 +36,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.ignored200 = 0.75;
 	params.ignored300 = 1;
 	
-	damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	
 	return tpHits, extraHits, damage;
 end	

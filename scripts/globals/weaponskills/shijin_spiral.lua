@@ -27,11 +27,11 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
-	damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
 	if damage > 0 then
-		tp = player:getTP();
-		duration = (tp/100) + 4;
+		local tp = player:getTP();
+		local duration = (tp/100) + 4;
 		if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
 			target:addStatusEffect(EFFECT_PLAGUE, 5, 0, duration);
 		end

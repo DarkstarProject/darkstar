@@ -24,7 +24,7 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	bossTrigger = GetServerVariable("[DynaBastok]Boss_Trigger");
+	local bossTrigger = GetServerVariable("[DynaBastok]Boss_Trigger");
 	
 	if(bossTrigger == 0 or bossTrigger == 1 or bossTrigger == 4 or bossTrigger == 5) then
 		SetServerVariable("[DynaBastok]Boss_Trigger",bossTrigger + 2);

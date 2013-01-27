@@ -30,7 +30,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1.5;
-	damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
 	if damage > 0 and (target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
 		target:addStatusEffect(EFFECT_PARALYSIS, 25, 0, 60);

@@ -53,7 +53,7 @@ function onMobEngaged(mob,target)
 					end
 				elseif(mobNBR > 20) then -- Spawn NM
 					SpawnMob(mobNBR);
-					MJob = GetMobByID(mobNBR):getMainJob();
+					local MJob = GetMobByID(mobNBR):getMainJob();
 					if(MJob == 9 or MJob == 14 or MJob == 15) then
 						-- Spawn Pet for BST, DRG, and SMN
 						SpawnMob(mobNBR + 1):updateEnmity(target);
@@ -105,13 +105,13 @@ function onMobDeath(mob,killer)
 	elseif(mobID == 17543492 or mobID == 17543498 or mobID == 17543505 or mobID == 17543508 or mobID == 17543512 or mobID == 17543517 or mobID == 17543393 or mobID == 17543527 or
 		   mobID == 17543532 or mobID == 17543550 or mobID == 17543559 or mobID == 17543564 or mobID == 17543570 or mobID == 17543571 or mobID == 17543576 or mobID == 17543586 or 
 		   mobID == 17543593 or mobID == 17543601 or mobID == 17543608 or mobID == 17543611 or mobID == 17543613) then 
-		killer:addHP(2000);
+		killer:restoreHP(2000);
 		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
 	-- MP Bonus: 008 017 025 030 032 040 045 057 060 072 077 080 086 096 111 118 | 127 131 137 139
 	elseif(mobID == 17543494 or mobID == 17543503 or mobID == 17543305 or mobID == 17543513 or mobID == 17543515 or mobID == 17543392 or mobID == 17543521 or mobID == 17543533 or 
 		   mobID == 17543536 or mobID == 17543548 or mobID == 17543553 or mobID == 17543556 or mobID == 17543562 or mobID == 17543572 or mobID == 17543587 or mobID == 17543594 or
 		   mobID == 17543602 or mobID == 17543606 or mobID == 17543612 or mobID == 17543614) then 
-		killer:addMP(2000);
+		killer:restoreMP(2000);
 		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
 	end
 	

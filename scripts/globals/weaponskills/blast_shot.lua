@@ -26,7 +26,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.8; params.acc200= 0.9; params.acc300= 1;
 	params.atkmulti = 1;
-	damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
+	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 	
 	return tpHits, extraHits, damage;
 	

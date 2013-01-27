@@ -96,10 +96,12 @@ public:
 
 	int32 getHP(lua_State*);				// Returns Entity Health
 	int32 addHP(lua_State*);				// Modify hp of Entity +/-
+	int32 restoreHP(lua_State*);			// Modify hp of Entity, but check if alive first
 	int32 delHP(lua_State*);				// Subtract hp of Entity
 	int32 setHP(lua_State*);				// Set hp of Entity to value
 	int32 getMP(lua_State*);				// Gets MP of Entity
 	int32 addMP(lua_State*);				// Modify mp of Entity +/-
+	int32 restoreMP(lua_State*);			// Modify mp of Entity, but check if alive first
 	int32 delMP(lua_State*);				// Subtract mp of Entity
 	int32 setMP(lua_State*);				// Set mp of Entity to value
 	int32 getTP(lua_State*);				// Get tp of Entity

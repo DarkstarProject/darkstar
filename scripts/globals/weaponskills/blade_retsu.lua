@@ -28,10 +28,10 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
-	damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	if damage > 0 then
-		tp = player:getTP();
-		duration = (tp/100 * 30) + 60;
+		local tp = player:getTP();
+		local duration = (tp/100 * 30) + 60;
 		if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
 			-- paralyze proc based on lvl difference
 			local power = 20 + (player:getMainLvl() - target:getMainLvl())*3;

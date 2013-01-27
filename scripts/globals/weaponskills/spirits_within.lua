@@ -18,9 +18,10 @@ require("scripts/globals/weaponskills");
 -----------------------------------		
 		
 function OnUseWeaponSkill(player, target, wsID)		
-	D = player:getWeaponDmg();	
-	HP = player:getHP();
-	TP = player:getTP();
+	local D = player:getWeaponDmg();	
+	local HP = player:getHP();
+	local TP = player:getTP();
+	local WSC = ;
 		
 	if (TP == 300) then	
 		WSC = HP * 0.46875;
@@ -30,7 +31,7 @@ function OnUseWeaponSkill(player, target, wsID)
 		WSC = HP * ((TP - 100) / (100 / (0.1875 - 0.125)));
 	end	
 		
-	damage = math.floor(D + WSC);
+	local damage = math.floor(D + WSC);
 	
 	return 1, 0, damage;
 		

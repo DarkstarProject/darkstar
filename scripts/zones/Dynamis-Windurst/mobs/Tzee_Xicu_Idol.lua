@@ -39,7 +39,7 @@ function onMobDeath(mob,killer)
 		
 		killer:addTitle(DYNAMISWINDURST_INTERLOPER); -- Add title
 		
-		npc = GetNPCByID(17543476); -- Spawn ???
+		local npc = GetNPCByID(17543476); -- Spawn ???
 		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
 		npc:setStatus(0);
 		

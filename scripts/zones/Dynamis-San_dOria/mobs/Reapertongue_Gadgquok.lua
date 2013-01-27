@@ -24,7 +24,7 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	bossTrigger = GetServerVariable("[DynaSandoria]Boss_Trigger");
+	local bossTrigger = GetServerVariable("[DynaSandoria]Boss_Trigger");
 	
 	if(bossTrigger == 0 or bossTrigger == 1) then
 		SetServerVariable("[DynaSandoria]Boss_Trigger",bossTrigger + 2);

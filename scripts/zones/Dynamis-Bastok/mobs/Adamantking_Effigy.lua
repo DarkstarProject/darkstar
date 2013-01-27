@@ -23,11 +23,11 @@ end;
 
 function onMobEngaged(mob,target)
 	
-	mobID = mob:getID();
-	X = mob:getXPos();
-	Y = mob:getYPos();
-	Z = mob:getZPos();
-	spawnList = bastyList;
+	local mobID = mob:getID();
+	local X = mob:getXPos();
+	local Y = mob:getYPos();
+	local Z = mob:getZPos();
+	local spawnList = bastyList;
 	
 	for nb = 1, table.getn(spawnList), 2 do
 		if(mobID == spawnList[nb]) then
@@ -72,7 +72,7 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	mobID = mob:getID();
+	local mobID = mob:getID();
 	-- Time Bonus: 001 019 041
 	if(mobID == 17539350 and alreadyReceived(killer,1) == false) then
 		killer:addTimeToDynamis(20);
@@ -86,12 +86,12 @@ function onMobDeath(mob,killer)
 	-- HP Bonus: 007 008 025 042 082 085 092
 	elseif(mobID == 17539356 or mobID == 17539357 or mobID == 17539374 or mobID == 17539387 or 
 		   mobID == 17539426 or mobID == 17539429 or mobID == 17539171) then 
-		killer:addHP(2000);
+		killer:restoreHP(2000);
 		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
 	-- MP Bonus: 026 031 038 081 104
 	elseif(mobID == 17539118 or mobID == 17539161 or mobID == 17539383 or 
 		   mobID == 17539425 or mobID == 17539446) then 
-		killer:addMP(2000);
+		killer:restoreMP(2000);
 		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
 	end
 	

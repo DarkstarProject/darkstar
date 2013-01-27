@@ -25,12 +25,12 @@ function OnUseWeaponSkill(player, target, wsID)
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
 	
-	damage, tpHits, extraHits = doPhysicalWeaponskill(player,target, params);
+	local damage, tpHits, extraHits = doPhysicalWeaponskill(player,target, params);
 	if damage > 0 then
-		tp = player:getTP();
-		duration = (tp/100 * 20) - 5;
-		if(target:hasStatusEffect(404) == false) then
-			target:addStatusEffect(404, 10, 0, duration);
+		local tp = player:getTP();
+		local duration = (tp/100 * 20) - 5;
+		if(target:hasStatusEffect(EFFECT_MAGIC_EVASION_DOWN) == false) then
+			target:addStatusEffect(EFFECT_MAGIC_EVASION_DOWN, 10, 0, duration);
 		end
 	end
 	return tpHits, extraHits, damage;

@@ -23,11 +23,11 @@ end;
 
 function onMobEngaged(mob,target)
 	
-	mobID = mob:getID();
-	X = mob:getXPos();
-	Y = mob:getYPos();
-	Z = mob:getZPos();
-	spawnList = sandyList;
+	local mobID = mob:getID();
+	local X = mob:getXPos();
+	local Y = mob:getYPos();
+	local Z = mob:getZPos();
+	local spawnList = sandyList;
 	
 	for nb = 1, table.getn(spawnList), 2 do
 		if(mobID == spawnList[nb]) then
@@ -35,7 +35,7 @@ function onMobEngaged(mob,target)
 				if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
 				
 				if(spawnList[nb + 1][nbi] <= 20) then -- Spawn normal Mob
-					mobList = getListDynaMob(target,spawnList[nb + 1][nbi]);
+					local mobList = getListDynaMob(target,spawnList[nb + 1][nbi]);
 					for nbo = 1, table.getn(mobList), 1 do
 						
 						if(GetMobAction(mobList[nbo]) == 0) then
@@ -53,7 +53,7 @@ function onMobEngaged(mob,target)
 				elseif(spawnList[nb + 1][nbi] > 20) then -- Spawn NM
 					SpawnMob(spawnList[nb + 1][nbi]):updateEnmity(target);
 					GetMobByID(spawnList[nb + 1][nbi]):setPos(X,Y,Z);
-					MJob = GetMobByID(spawnList[nb + 1][nbi]):getMainJob();
+					local MJob = GetMobByID(spawnList[nb + 1][nbi]):getMainJob();
 					if(MJob == 9 or MJob == 14 or MJob == 15) then
 						-- Spawn Pet for BST, DRG, and SMN
 						SpawnMob(spawnList[nb + 1][nbi] + 1):updateEnmity(target);
@@ -100,12 +100,12 @@ function onMobDeath(mob,killer)
 	-- HP Bonus: 012 015 034 044 052 059 072 073 078 081 083 091 097 103 104 107 | 
 	elseif(mobID == 17535261 or mobID == 17535264 or mobID == 17535281 or mobID == 17535290 or mobID == 17535298 or mobID == 17535305 or mobID == 17535317 or mobID == 17535318 or
 		   mobID == 17535323 or mobID == 17535326 or mobID == 17535328 or mobID == 17535336 or mobID == 17535340 or mobID == 17535344 or mobID == 17535345 or mobID == 17535348) then 
-		killer:addHP(2000);
+		killer:restoreHP(2000);
 		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
 	-- MP Bonus: 006 010 014 032 035 038 047 060 062 070 076 079 084 086 092 108 | 
 	elseif(mobID == 17535255 or mobID == 17535259 or mobID == 17535263 or mobID == 17535279 or mobID == 17535282 or mobID == 17535284 or mobID == 17535293 or mobID == 17535306 or 
 		   mobID == 17535307 or mobID == 17535315 or mobID == 17535321 or mobID == 17535324 or mobID == 17535329 or mobID == 17535331 or mobID == 17535337 or mobID == 17535349) then 
-		killer:addMP(2000);
+		killer:restoreMP(2000);
 		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
 	-- Special
 	elseif(mobID == 17535352) then

@@ -34,7 +34,7 @@ function onMobDeath(mob,killer)
 		
 		killer:addTitle(DYNAMISBASTOK_INTERLOPER); -- Add title
 		
-		npc = GetNPCByID(17539319); -- Spawn ???
+		local npc = GetNPCByID(17539319); -- Spawn ???
 		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
 		npc:setStatus(0);
 		
