@@ -387,6 +387,9 @@ void LoadMOBList(CZone* PZone)
 			else if (PMob->GetMJob() == JOB_WHM) {
 				PMob->m_MagicRecastTime = 20000;
 			}
+			else {
+				PMob->m_MagicRecastTime = 30000;
+			}
 			
 
 
