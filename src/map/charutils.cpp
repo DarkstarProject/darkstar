@@ -1413,7 +1413,8 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 					CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
 					if ((weapon != NULL) && (weapon->getType() & ITEM_WEAPON))
 					{
-						if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType())
+						if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType() || 
+							((CItemWeapon*)PItem)->getSubSkillType() != weapon->getSubSkillType())
 						{
 							UnequipItem(PChar,SLOT_AMMO);
 						}
@@ -1430,7 +1431,8 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 					CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
 					if ((weapon != NULL) && (weapon->getType() & ITEM_WEAPON))
 					{
-						if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType())
+						if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType() ||
+							((CItemWeapon*)PItem)->getSubSkillType() != weapon->getSubSkillType())
 						{
 							UnequipItem(PChar,SLOT_RANGED);
 						}

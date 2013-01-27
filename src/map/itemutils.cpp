@@ -352,7 +352,13 @@ namespace itemutils
 				    }
 				    if (PItem->getType() & ITEM_WEAPON)
 				    {
-					    ((CItemWeapon*)PItem)->setSkillType(Sql_GetUIntData(SqlHandle,22));
+						if(Sql_GetUIntData(SqlHandle,22) == 24)
+						{
+							((CItemWeapon*)PItem)->setSkillType(26);
+							((CItemWeapon*)PItem)->setSubSkillType(SUBSKILL_GUN);
+						} else {
+							((CItemWeapon*)PItem)->setSkillType(Sql_GetUIntData(SqlHandle,22));
+						}
 					    ((CItemWeapon*)PItem)->setDelay((Sql_GetIntData(SqlHandle,23)*1000)/60);
 					    ((CItemWeapon*)PItem)->setDamage(Sql_GetUIntData(SqlHandle,24));
 					    ((CItemWeapon*)PItem)->setDmgType(Sql_GetUIntData(SqlHandle,25));

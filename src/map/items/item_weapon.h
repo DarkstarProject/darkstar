@@ -37,6 +37,7 @@ public:
 	virtual ~CItemWeapon();
 
 	uint8	getSkillType();
+	uint8	getSubSkillType();
 	int16	getDelay(CBattleEntity* user);
 	uint16	getDamage(CBattleEntity* user);
 	uint16	getDmgType();
@@ -49,6 +50,7 @@ public:
 	bool    isUnlockable();
 
 	void	setSkillType(uint8 skillType);
+	void	setSubSkillType(uint8 subSkillType);
 	void	setDelay(uint16 delay);
 	void	setDamage(uint16 damage);
 	void	setDmgType(uint16 dmgType);
@@ -59,6 +61,7 @@ public:
 private:
 
 	uint8	m_skillType;
+	uint8	m_subSkillType; //gun vs crossbow, any other exclusives
 	uint16	m_damage;
 	int16	m_delay;    //can be -ve e.g. ammo/ranged weapons
 	uint16	m_dmgType;

@@ -37,14 +37,15 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
 {
 	setType(ITEM_WEAPON);
 
-	m_skillType = SKILL_NON;
-	m_damage	= 0;
-    m_effect    = 0;
-	m_dmgType	= DAMAGE_NONE;
-	m_delay		= 8000;
-    m_maxHit    = 0;
-    m_ranged    = false;
-    m_twoHanded = false;
+	m_skillType		= SKILL_NON;
+	m_subSkillType	= SUBSKILL_XBO;
+	m_damage		= 0;
+    m_effect		= 0;
+	m_dmgType		= DAMAGE_NONE;
+	m_delay			= 8000;
+    m_maxHit		= 0;
+    m_ranged		= false;
+    m_twoHanded		= false;
 }
 
 CItemWeapon::~CItemWeapon() {}
@@ -114,6 +115,23 @@ void CItemWeapon::setSkillType(uint8 skillType)
 uint8 CItemWeapon::getSkillType() 
 {
 	return m_skillType;
+}
+
+/************************************************************************
+*                                                                       *
+*   Set/get sub skillType.  Used for guns vs crossbows and other		*
+*	exclusives									                        *
+*                                                                       *
+************************************************************************/
+
+void CItemWeapon::setSubSkillType(uint8 subSkillType) 
+{
+	m_subSkillType = subSkillType;
+}
+
+uint8 CItemWeapon::getSubSkillType() 
+{
+	return m_subSkillType;
 }
 
 /************************************************************************

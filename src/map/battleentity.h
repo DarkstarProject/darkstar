@@ -109,6 +109,7 @@ enum SKILLTYPE
 	SKILL_CLB			= 11,
 	SKILL_STF			= 12,
 	
+	SKILL_GUN			= 24,
 	SKILL_ARC			= 25,
 	SKILL_MRK			= 26,
 	SKILL_THR			= 27,
@@ -143,6 +144,14 @@ enum SKILLTYPE
 };
 
 #define MAX_SKILLTYPE	64
+
+enum SUBSKILLTYPE
+{
+    SUBSKILL_XBO        = 0,
+	SUBSKILL_GUN		= 1
+};
+
+#define MAX_SUBSKILLTYPE	4
 
 // ячейки экипировки. монстры используют лишь первые четыре, персонаж использует все
 
