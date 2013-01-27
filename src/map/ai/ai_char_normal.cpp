@@ -2498,7 +2498,7 @@ void CAICharNormal::ActionSleep()
 		!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) &&
 		!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION))
     {
-
+		m_PBattleSubTarget = NULL;
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
     }
 }
@@ -2655,19 +2655,17 @@ void CAICharNormal::ActionAttack()
 
 	if ((m_Tick - m_LastMeleeTime) > WeaponDelay)
 	{
+		m_LastMeleeTime = m_Tick;
 		if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
 		{
-			m_LastMeleeTime = m_Tick;
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_UNABLE_TO_SEE_TARG));
 			return;
 		}
 		if (Distance > m_PBattleTarget->m_ModelSize)
 		{
-			m_LastMeleeTime = m_Tick;
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_TARG_OUT_OF_RANGE));
 			return;
 		}
-        m_LastMeleeTime = m_Tick;
 		if (battleutils::IsParalised(m_PChar))
 		{
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_IS_PARALYZED));
