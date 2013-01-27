@@ -1151,6 +1151,18 @@ void CAIMobDummy::ActionMagicFinish()
 	{
         CBattleEntity* PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
 
+		// wipe shadows if needed
+		if (m_PSpell->isAOE()) {
+			PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+			PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
+		}
+		else if (battleutils::IsAbsorbByShadow(PTarget)) {
+			m_PMob->m_ActionList.at(i).messageID = 0;
+			m_PMob->m_ActionList.at(i).param = 1;
+			PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+			continue; // continue to next pt member
+		}
+
         m_PSpell->setMessage(m_PSpell->getDefaultMessage());
         m_PMob->m_ActionList.at(i).param = luautils::OnSpellCast(m_PMob, PTarget);
         m_PMob->m_ActionList.at(i).messageID = m_PSpell->getMessage();
@@ -1166,12 +1178,6 @@ void CAIMobDummy::ActionMagicFinish()
 		}
 		if(i>0 && m_PSpell->getMessage() == 237){ //if its a damage spell msg and is hitting the 2nd+ target
 			m_PMob->m_ActionList.at(i).messageID = 278; //change the id to "xxx receives the effect of xxx." only
-		}
-
-		// wipe shadows if needed
-		if (m_PSpell->isAOE()) {
-			PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
-			PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
 		}
 
         if (PTarget->objtype == TYPE_MOB)
