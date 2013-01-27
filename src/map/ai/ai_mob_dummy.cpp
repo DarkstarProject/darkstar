@@ -853,7 +853,7 @@ void CAIMobDummy::processTwoHour(){
 	Action.param = 0;
 
 	//determine the 2h based on mjob and set the correct target and do the right stuff
-	uint16 id = 0;
+	uint16 id = 0; // this is just the main job - 1
 	switch(m_PMob->GetMJob()){
 	case JOB_WAR: 
 		id=0; Action.ActionTarget = m_PMob; Action.messageID=101; 
@@ -866,6 +866,12 @@ void CAIMobDummy::processTwoHour(){
 	case JOB_THF: 
 		id=5; Action.ActionTarget = m_PMob; Action.messageID=101; 
 		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PERFECT_DODGE,0,1,0,30));
+		break;
+	case JOB_RDM: 
+		id=4; Action.ActionTarget = m_PMob; Action.messageID=101; 
+		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_CHAINSPELL,0,1,0,60));
+		ShowDebug("Added CS");
+		m_LastMagicTime = 0;
 		break;
 	case JOB_WHM: {
 		id=2; Action.ActionTarget = m_PMob; Action.messageID=103; 
@@ -995,8 +1001,8 @@ void CAIMobDummy::ActionMagicCasting()
 		return;
 	}
 
-	if (m_Tick - m_LastMagicTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
-        m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+	if ( ((m_Tick - m_LastMagicTime) >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50))/100.0f)) ||
+        m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0))
 	{
 		if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
         {
@@ -1114,6 +1120,11 @@ void CAIMobDummy::ActionMagicFinish()
 
 	m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 
+	// let's make CSing monsters actually use lots of spells.
+	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0)) {
+		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + m_PSpell->getAnimationTime(); // so the animations look correct.
+	}
+
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
 }
@@ -1188,7 +1199,7 @@ void CAIMobDummy::ActionAttack()
 
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
-	// Try to spellcast
+	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
 	if (CurrentDistance <= 25) { // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
 		if ( (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && m_PMob->m_AvailableSpells.size() > 0) {
 			// Randomly select a spell from m_PMob->availableSpells and do it.

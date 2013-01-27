@@ -757,6 +757,14 @@ INSERT INTO `mob_skill` VALUES (561,267,489,'Dread_Shriek', 1, 15.0, 2000, 1500,
 INSERT INTO `mob_skill` VALUES (562,267,490,'Tail_Crush', 0, 7.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (565,267,493,'Radiant_Breath', 4, 15.0, 2000, 2000, 4, 0);
 
+-- Suzaku
+INSERT INTO `mob_skill` VALUES (143,280,143,'Scratch', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (144,280,144,'Triple_Attack', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (145,280,145,'Gliding_Spike', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (146,280,146,'Feather_Barrier', 0, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (147,280,147,'Stormwind', 1, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (0,280,432,'Two_Hour', 1, 15.0, 2000, 10, 4, 0);
+
 -- Genbu
 INSERT INTO `mob_skill` VALUES (549,277,477,'Head_Butt_Turtle', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (550,277,478,'Tortoise_Stomp', 0, 7.0, 2000, 1500, 4, 0);
