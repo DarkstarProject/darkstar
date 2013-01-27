@@ -29,6 +29,7 @@
 
 #include <vector>
 
+#include "../battleentity.h"
 #include "ai_general.h"
 
 enum AOERANGE
@@ -84,6 +85,7 @@ protected:
 private:
 
 	uint16 aoeMessageID(uint16 id);
+	void AddEntityForAoe(CBattleEntity* entityToAdd, apAction_t Action);
 
 };
 

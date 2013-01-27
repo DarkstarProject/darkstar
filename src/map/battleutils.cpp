@@ -3304,7 +3304,10 @@ bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base)
 *	Get available targets, for mob abilities and spells                 *
 *                                                                       *
 ************************************************************************/
-
+// TODO: The logic in this is too tightly coupled with the return value. E.g. change the logic here will potentially result in 
+// null pointers because we 'assume' that the returned enum means the target (e.g. pets, alliances) exist. Should change this
+// to return a vector with CBattleEntitys of all the targets hit, with the args CBattleEntity source, CBattleEntity target, uint16 radius, 
+// bool isTargetAroundSource, bool includeAlliances -- then we can change everything over to this system.
 TARGET_PARTY_TYPE getAvailableAoeTargets(CBattleEntity* PTarget)
 {
 	switch (PTarget->objtype)

@@ -286,6 +286,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	// TODO: Use enums rather than hardcode the spell ids...
 
 	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells
+	// Single targe tier spells
 	if (PMob->m_SpellsBitmask.fire.tiers) {
 		AddHighestAvailableSpell(PMob, 148, 144);  // Fire V -> I
 	}
@@ -306,6 +307,28 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	}
 	if (PMob->m_SpellsBitmask.light.tiers) {
 		AddHighestAvailableSpell(PMob, 30, 28); // Banish III -> I
+	}
+	//// AoE Spells
+	if (PMob->m_SpellsBitmask.fire.aoe) {
+		AddHighestAvailableSpell(PMob, 178, 174); // Firaga V -> I
+	}
+	if (PMob->m_SpellsBitmask.earth.aoe) {
+		AddHighestAvailableSpell(PMob, 193, 189); // Stonega V -> I
+	}
+	if (PMob->m_SpellsBitmask.water.aoe) {
+		AddHighestAvailableSpell(PMob, 203, 199); // Waterga V -> I
+	}
+	if (PMob->m_SpellsBitmask.wind.aoe) {
+		AddHighestAvailableSpell(PMob, 188, 184); // Aeroga V -> I
+	}
+	if (PMob->m_SpellsBitmask.ice.aoe) {
+		AddHighestAvailableSpell(PMob, 183, 179); // Blizzaga V -> I
+	}
+	if (PMob->m_SpellsBitmask.lightning.aoe) {
+		AddHighestAvailableSpell(PMob, 198, 194); // Thundaga V -> I
+	}
+	if (PMob->m_SpellsBitmask.light.aoe) {
+		AddHighestAvailableSpell(PMob, 42, 38); // Banishga V -> I
 	}
 
 	/* WHM spells may work but I haven't tested it.

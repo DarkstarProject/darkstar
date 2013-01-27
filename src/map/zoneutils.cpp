@@ -380,14 +380,13 @@ void LoadMOBList(CZone* PZone)
 				PMob->m_SpellsBitmask.wind.tiers = 1;
 				PMob->m_SpellsBitmask.ice.tiers = 1;
 				PMob->m_SpellsBitmask.lightning.tiers = 1;
-				PMob->m_SpellsBitmask.dark.tiers = 1;
+				PMob->m_SpellsBitmask.dark.tiers = 1; 
 				PMob->m_SpellsBitmask.fire.aoe = 1;
 				PMob->m_SpellsBitmask.earth.aoe = 1;
 				PMob->m_SpellsBitmask.water.aoe = 1;
 				PMob->m_SpellsBitmask.wind.aoe = 1;
 				PMob->m_SpellsBitmask.ice.aoe = 1;
 				PMob->m_SpellsBitmask.lightning.aoe = 1;
-
 				PMob->m_MagicRecastTime = 15000;
 			}
 			else if (PMob->GetMJob() == JOB_RDM) {
@@ -411,7 +410,7 @@ void LoadMOBList(CZone* PZone)
 				PMob->m_SpellsBitmask.wind.enfeebWhm = 1;
 				PMob->m_SpellsBitmask.ice.enfeebWhm = 1;
 				PMob->m_SpellsBitmask.lightning.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.dark.enfeebWhm = 1;
+				PMob->m_SpellsBitmask.dark.enfeebWhm = 1; 
 
 				PMob->m_MagicRecastTime = 25000;
 			}

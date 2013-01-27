@@ -1082,6 +1082,71 @@ void CAIMobDummy::ActionMagicFinish()
 
     m_PMob->m_ActionList.push_back(Action);
 
+	if (m_PSpell->isAOE()) {
+		TARGET_PARTY_TYPE targetPartyType = battleutils::getAvailableAoeTargets(m_PBattleSubTarget);
+
+		switch (targetPartyType) {
+		case SOLO_TARGET: // confusingly this can also include a pet apparently (?)
+			if (m_PBattleSubTarget->PPet != NULL) {
+				AddEntityForAoe(m_PBattleSubTarget->PPet, Action);
+			}
+			break;
+		case PARTY_TARGET:
+			for (uint8 i = 0; i < m_PBattleSubTarget->PParty->members.size(); ++i) {
+				CBattleEntity* PTarget = m_PBattleSubTarget->PParty->members[i];
+				if(m_PBattleSubTarget != PTarget) { // we've already added the target of the spell, so don't add twice.
+					AddEntityForAoe(PTarget, Action);
+				}
+			}
+			break;
+		case ALLIANCE_TARGET:
+			for (uint8 a = 0; a < m_PBattleSubTarget->PParty->m_PAlliance->partyList.size(); ++a) {
+				for (uint8 i = 0; i < m_PBattleSubTarget->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) {
+					CBattleEntity* PTarget = m_PBattleSubTarget->PParty->m_PAlliance->partyList.at(a)->members.at(i);
+
+					if (m_PBattleSubTarget != PTarget) {
+						// add the member of the alliance
+						AddEntityForAoe(PTarget, Action);
+					}
+
+					if (PTarget->PPet != NULL) {
+						// add the member's pet too
+						AddEntityForAoe(PTarget->PPet, Action);
+					}
+				}
+			}
+			break;
+		case PET_PARTY_TARGET:
+			for (uint8 i = 0; i < m_PBattleSubTarget->PMaster->PParty->members.size(); ++i) {
+				AddEntityForAoe(m_PBattleSubTarget->PMaster->PParty->members.at(i), Action);
+
+				if (m_PBattleSubTarget->PMaster->PParty->members.at(i)->PPet != NULL) {
+					// TODO: Won't this double-hit pets if they're the target?
+					AddEntityForAoe(m_PBattleSubTarget->PMaster->PParty->members.at(i)->PPet, Action);
+				}
+			}
+			break;
+		case PET_ALLIANCE_TARGET:
+			for (uint8 a = 0; a < m_PBattleSubTarget->PParty->m_PAlliance->partyList.size(); ++a) {
+				for (uint8 i = 0; i < m_PBattleSubTarget->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) {
+					CBattleEntity* PTarget = m_PBattleSubTarget->PParty->m_PAlliance->partyList.at(a)->members.at(i);
+					AddEntityForAoe(PTarget, Action);
+
+					if (PTarget->PPet != NULL) {
+						AddEntityForAoe(PTarget->PPet, Action);
+					}
+				}
+			}
+			break;
+		case PET_AND_MASTER:
+			if (m_PBattleSubTarget->PMaster != NULL) {
+				AddEntityForAoe(m_PBattleSubTarget->PMaster, Action);
+			}
+			break;
+		}
+	}
+
+
 	for (uint32 i = 0; i < m_PMob->m_ActionList.size(); ++i)
 	{
         CBattleEntity* PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
@@ -1615,4 +1680,13 @@ uint16 CAIMobDummy::aoeMessageID(uint16 id)
 			break;
 	}
 
+}
+
+void CAIMobDummy::AddEntityForAoe(CBattleEntity* entityToAdd, apAction_t Action) {
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	if (!entityToAdd->isDead() && distance(m_PBattleSubTarget->loc.p, entityToAdd->loc.p) <= 10) {
+	    Action.ActionTarget = entityToAdd;
+	    m_PMob->m_ActionList.push_back(Action);
+	}
 }
