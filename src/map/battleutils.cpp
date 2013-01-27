@@ -1897,11 +1897,11 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 	}
 
 
-	if (rand()%100 <= tripleAttack)
+	if (rand()%100 < tripleAttack)
 	{
 		num +=2;
 	}
-	else if (rand()%100 <= doubleAttack)
+	else if (rand()%100 < doubleAttack)
 	{
 		num +=1;
 	}
