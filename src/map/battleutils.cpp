@@ -1231,7 +1231,13 @@ bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 
 	//Reasonable assumption for the time being.
 	int base = 40;
+
 	int diff = PAttacker->GetMLevel() - PDefender->GetMLevel();
+
+	if (PDefender->objtype == TYPE_MOB) {
+		base = 5;
+	}
+
 	float check = base + diff;
 	uint8 meritReduction = 0;
 
@@ -1268,6 +1274,11 @@ bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	float aquaveil = ((float)((100.0f - (meritReduction + (float)PDefender->getMod(MOD_SPELLINTERRUPT)))/100.0f));
 	check *= aquaveil;
 	uint8 chance = rand()%100;
+
+	// caps, always give a 1% chance of interrupt
+	if (check < 1) {
+		check = 0;
+	}
 
 	if(chance < check)
 	{
