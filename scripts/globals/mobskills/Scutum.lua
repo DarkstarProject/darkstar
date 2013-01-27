@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Scream
--- 15' Reduces MND of players in area of effect.
+-- Scutum
+-- Enhances defense.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -14,14 +14,10 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_MND_DOWN;
-    local statmod = MOD_INT;
-    local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
-    if(resist > 0.2) then
-        skill:setMsg(MSG_ENFEEB_IS);
-        target:addStatusEffect(typeEffect,50,0,120);
-    else
-        skill:setMsg(MSG_MISS); -- resist !
-    end
+    skill:setMsg(MSG_BUFF);
+    local typeEffect = EFFECT_DEFENSE_BOOST;
+    mob:delStatusEffect(EFFECT_DEFENSE_DOWN);
+    mob:delStatusEffect(typeEffect);
+    mob:addStatusEffect(typeEffect,30,0,120);
     return typeEffect;
 end;

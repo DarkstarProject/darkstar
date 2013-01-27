@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Sound Blast
--- 15' Reduces INT of players in area of effect.
+-- Awful Ere
+-- 15' Reduces STR of players in area of effect.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -14,7 +14,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_INT_DOWN;
+    local typeEffect = EFFECT_STR_DOWN;
     local statmod = MOD_INT;
     local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
     if(resist > 0.2) then

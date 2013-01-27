@@ -18,6 +18,13 @@ function onSpellCast(caster,target,spell)
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
+    -- boost ninjitsu damage
+    -- 5% ninjitsu damage
+    local head = caster:getEquipID(SLOT_HEAD);
+    if(head == 15084) then
+        dmg = math.floor(dmg * 1.05);
+    end
+
 	dmg = addBonuses(caster,spell,target,dmg);
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
@@ -27,5 +34,5 @@ function onSpellCast(caster,target,spell)
 	handleNinjutsuDebuff(caster, target, spell, 30, 15, MOD_EARTHRES);
 
 	return final;
-	
+
 end;

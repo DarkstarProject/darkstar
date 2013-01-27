@@ -12,7 +12,10 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    return 0;
+    if(mob:isMobType(MOBTYPE_NOTORIOUS) and mob:getHP()/mob:getMaxHP() < 0.25) then
+        return 0;
+    end
+    return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
@@ -21,9 +24,9 @@ function OnMobWeaponSkill(target, mob, skill)
     local mobID = mob:getID();
 
     if(target:getID() > 100000) then
-        realDmg = 5 * 100;
+        realDmg = 50 * 100;
     else
-        realDmg = 5 * target:getVar("EVERYONES_GRUDGE_KILLS"); -- Damage is 5 times the amount you have killed
+        realDmg = 50 * target:getVar("EVERYONES_GRUDGE_KILLS"); -- Damage is 5 times the amount you have killed
 
         if(mobID == 17428677 or mobID == 17433008 or mobID == 17433006 or mobID == 17433009 or mobID == 17432994 or mobID == 17433007 or mobID == 17428813 or mobID == 17432659 or mobID == 17432846 or mobID == 17428809) then
             realDmg = realDmg * 10;  -- Sets the Multiplyer to 50 for NM's

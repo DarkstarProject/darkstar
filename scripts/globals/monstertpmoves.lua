@@ -243,7 +243,7 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	end
 
 	damage = dmg + dint;
-	if(damage<1)then
+	if(damage<1) then
 		damage = 1;
 	end
 
