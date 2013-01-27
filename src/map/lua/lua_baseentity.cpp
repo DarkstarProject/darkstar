@@ -2717,9 +2717,9 @@ inline int32 CLuaBaseEntity::capAllSkills(lua_State* L)
 								Sql_Query(SqlHandle, Query,
 								PChar->id,
 								i,
-								3000,
+								5000,
 								PChar->RealSkills.rank[i],
-								3000,
+								5000,
 								PChar->RealSkills.rank[i]);
 
 				uint16 maxSkill = 10*battleutils::GetMaxSkill((SKILLTYPE)i, PChar->GetMJob(),PChar->GetMLevel());
