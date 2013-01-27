@@ -251,7 +251,7 @@ void LoadMOBList(CZone* PZone)
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 			mob_pools.familyid, name_prefix, unknown, \
-            (mob_family_system.HP / 100), (mob_family_system.MP / 100) \
+            (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript \
 			FROM mob_groups, mob_pools, mob_spawn_points, mob_family_system \
 			WHERE mob_groups.poolid = mob_pools.poolid \
 			AND mob_groups.groupid = mob_spawn_points.groupid \
@@ -351,6 +351,9 @@ void LoadMOBList(CZone* PZone)
             {
                 PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
             }
+			
+			// Check if we should be looking up scripts for this mob
+			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle,52);
 
 			// Store the spell bitmask. 8 elements with 7 bits per element = 56 bits.
 			// This mask is as follows: (following the "FEW WILL Die" Mnemonic for days of the week)

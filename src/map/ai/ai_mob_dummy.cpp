@@ -1270,15 +1270,27 @@ void CAIMobDummy::ActionAttack()
 			uint8 num = rand()%m_PMob->m_AvailableSpells.size();
 			uint16 spellid = m_PMob->m_AvailableSpells[num];
 
-			// TODO: If the spellid of the chosen spell is 0, this means it is a special spell and we should look up the script.
-
 			// check for spell blockers e.g. silence
 			if(!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)) {
-				// change to ActionMagicStarting
-				m_ActionType = ACTION_MAGIC_START;
-				m_PSpell = spell::GetSpell(spellid);
-                ActionMagicStart();
-				return;
+
+				if (spellid == 0) { // prod the script to give us a spell to cast
+					int chosenSpellId = luautils::OnMonsterMagicPrepare(m_PMob, m_PBattleTarget);
+					if (chosenSpellId > 0) { // covers returning 0 or -1
+						spellid = chosenSpellId;
+					}
+				}
+
+				if (spellid > 0) { // if a spell was chosen, do it.
+					// change to ActionMagicStarting
+					m_ActionType = ACTION_MAGIC_START;
+					m_PSpell = spell::GetSpell(spellid);
+					ActionMagicStart();
+					return;
+				}
+				else {
+					// the script doesn't want to cast a spell at the moment, but it should still be treated as a magic attempt
+					m_LastMagicTime = m_Tick;
+				}
 			}
 		}
 	}

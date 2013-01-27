@@ -102,6 +102,7 @@ namespace luautils
 	int32 CheckForGearSet(CBaseEntity* PTarget);								// check for gear sets
 
 	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget);			// triggered when casting a spell
+	int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);		// triggered when monster wants to use a spell on target
 
     int32 OnMobInitialise(CBaseEntity* PMob);									// Used for passive trait
 	int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn

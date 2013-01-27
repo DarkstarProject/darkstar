@@ -1418,6 +1418,46 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
+int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget) 
+{	
+	DSP_DEBUG_BREAK_IF(PCaster == NULL || PTarget == NULL);
+
+	int8 File[255];
+    memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onMonsterMagicPrepare");
+
+    snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PCaster->loc.zone->GetName(), PCaster->GetName());
+
+    if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+    {
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMonsterMagicPrepare");
+    if( lua_isnil(LuaHandle,-1) )
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaMobEntity(PCaster);
+    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+
+	CLuaBaseEntity LuaTargetEntity(PTarget);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaTargetEntity);
+
+
+    if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+    {
+        ShowError("luautils::onMonsterMagicPrepare: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
 /************************************************************************
 *  OnMobInitialise                                                      *
 *  Used for passive trait                                               *

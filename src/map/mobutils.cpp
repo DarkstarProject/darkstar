@@ -283,6 +283,10 @@ void CalculateStats(CMobEntity * PMob)
  * then stored in PMob->m_AvailableSpells
  */
 void GetAvailableSpells(CMobEntity* PMob) {
+	if (PMob->m_HasSpellScript == 1) {
+		PMob->m_AvailableSpells.push_back(0); // we use spell id = 0 to indicate that its scripted
+	}
+
 	// TODO: Use enums rather than hardcode the spell ids...
 
 	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells

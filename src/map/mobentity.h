@@ -148,6 +148,8 @@ public:
     uint32      GetDespawnTimer();
     void        SetDespawnTimer(uint32 duration);
 
+	uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.
+
     CMobEntity();
    ~CMobEntity();
 
