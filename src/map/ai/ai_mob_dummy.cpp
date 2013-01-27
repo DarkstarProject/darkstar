@@ -1168,6 +1168,12 @@ void CAIMobDummy::ActionMagicFinish()
 			m_PMob->m_ActionList.at(i).messageID = 278; //change the id to "xxx receives the effect of xxx." only
 		}
 
+		// wipe shadows if needed
+		if (m_PSpell->isAOE()) {
+			PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+			PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
+		}
+
         if (PTarget->objtype == TYPE_MOB)
         {
             if (PTarget->isDead())
