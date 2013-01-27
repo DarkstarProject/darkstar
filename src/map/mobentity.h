@@ -65,28 +65,28 @@ enum BEHAVIOUR
 	BEHAVIOUR_AGGRO_JOBABILITY	= 0x80,
 };
 
-struct genericspelltype_t
-{ // These are 1 bit uint8s as the 'bool' type is actually a byte wide :(
-	uint8 tiers:1; // Tier I-V spells for element
-	uint8 enfeebBlm:1; // BLM enfeebling spells for element
-	uint8 enfeebWhm:1; // WHM enfeebling spells for element
-	uint8 buffBlm:1; // BLM enhancing spells for element
-	uint8 buffWhm:1; // WHM enhancing spells for element
-	uint8 heal:1; // Healing spells for element
-	uint8 aoe:1; // AoE spells for element
+enum SPELLTYPE // in-element offset for the spell type bitmask
+{
+	SPELLTYPE_AOE				= 0x01,
+	SPELLTYPE_HEAL				= 0x02,
+	SPELLTYPE_BUFF_WHM			= 0x04,
+	SPELLTYPE_BUFF_BLM			= 0x08,
+	SPELLTYPE_DEBUFF_WHM		= 0x10,
+	SPELLTYPE_DEBUFF_BLM		= 0x20,
+	SPELLTYPE_DAMAGE			= 0x40,
+	SPELLTYPE_RESERVED			= 0x80
 };
 
-struct spelltypes_t 
+enum SPELLTYPE_ELEMENT // Which index in the bitmask for which element
 {
-	genericspelltype_t fire;
-	genericspelltype_t earth;
-	genericspelltype_t water;
-	genericspelltype_t wind;
-	genericspelltype_t ice;
-	genericspelltype_t lightning;
-	genericspelltype_t light;
-	genericspelltype_t dark;
-	uint8 special:1;
+	SPELLTYPE_ELEMENT_FIRE		= 0,
+	SPELLTYPE_ELEMENT_EARTH		= 1,
+	SPELLTYPE_ELEMENT_WATER		= 2,
+	SPELLTYPE_ELEMENT_WIND		= 3,
+	SPELLTYPE_ELEMENT_ICE		= 4,
+	SPELLTYPE_ELEMENT_LIGHTNING	= 5,
+	SPELLTYPE_ELEMENT_LIGHT		= 6,
+	SPELLTYPE_ELEMENT_DARK		= 7
 };
 
 /************************************************************************
@@ -129,7 +129,7 @@ public:
 	uint16		m_Family;	
 	uint8		m_SkillStatus;						// status of skills (used 2h/used epic tp move/etc)
 	std::vector<uint16> m_AvailableSpells;			// the spell IDs that this monster can cast.
-	spelltypes_t     m_SpellsBitmask;					// The spells types bitmask from the mob_pools table
+	string_t      m_SpellTypesBitmask;				// The spells types bitmask from the mob_pools table, 1 byte per element, 8 elements
 
     uint32      m_unknown;							// includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
     uint8       m_name_prefix;						// The ding bats VS Ding bats

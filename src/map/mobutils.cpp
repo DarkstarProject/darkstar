@@ -288,52 +288,52 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	}
 
 	// TODO: Use enums rather than hardcode the spell ids...
-
+	
 	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells
 	// Single targe tier spells
-	if (PMob->m_SpellsBitmask.fire.tiers) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_FIRE] & SPELLTYPE_DAMAGE) {
 		AddHighestAvailableSpell(PMob, 148, 144);  // Fire V -> I
 	}
-	if (PMob->m_SpellsBitmask.earth.tiers) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_EARTH] & SPELLTYPE_DAMAGE) {
 		AddHighestAvailableSpell(PMob, 163, 159); // Stone V -> I
 	}
-	if (PMob->m_SpellsBitmask.water.tiers) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_WATER] & SPELLTYPE_DAMAGE) {
 		AddHighestAvailableSpell(PMob, 173, 169); // Water V -> I
 	}
-	if (PMob->m_SpellsBitmask.wind.tiers) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_WIND] & SPELLTYPE_DAMAGE) {
 		AddHighestAvailableSpell(PMob, 158, 154); // Aero V -> I
 	}
-	if (PMob->m_SpellsBitmask.ice.tiers) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_ICE] & SPELLTYPE_DAMAGE) {
 		AddHighestAvailableSpell(PMob, 153, 149); // Blizzard V -> I
 	}
-	if (PMob->m_SpellsBitmask.lightning.tiers) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHTNING] & SPELLTYPE_DAMAGE) {
 		AddHighestAvailableSpell(PMob, 168, 164); // Thunder V -> I
 	}
-	if (PMob->m_SpellsBitmask.light.tiers) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_DAMAGE) {
 		AddHighestAvailableSpell(PMob, 30, 28); // Banish III -> I
-	}
+	} 
 	//// AoE Spells
-	if (PMob->m_SpellsBitmask.fire.aoe) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_FIRE] & SPELLTYPE_AOE) {
 		AddHighestAvailableSpell(PMob, 178, 174); // Firaga V -> I
 	}
-	if (PMob->m_SpellsBitmask.earth.aoe) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_EARTH] & SPELLTYPE_AOE) {
 		AddHighestAvailableSpell(PMob, 193, 189); // Stonega V -> I
 	}
-	if (PMob->m_SpellsBitmask.water.aoe) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_WATER] & SPELLTYPE_AOE) {
 		AddHighestAvailableSpell(PMob, 203, 199); // Waterga V -> I
 	}
-	if (PMob->m_SpellsBitmask.wind.aoe) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_WIND] & SPELLTYPE_AOE) {
 		AddHighestAvailableSpell(PMob, 188, 184); // Aeroga V -> I
 	}
-	if (PMob->m_SpellsBitmask.ice.aoe) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_ICE] & SPELLTYPE_AOE) {
 		AddHighestAvailableSpell(PMob, 183, 179); // Blizzaga V -> I
 	}
-	if (PMob->m_SpellsBitmask.lightning.aoe) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHTNING] & SPELLTYPE_AOE) {
 		AddHighestAvailableSpell(PMob, 198, 194); // Thundaga V -> I
 	}
-	if (PMob->m_SpellsBitmask.light.aoe) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_AOE) {
 		AddHighestAvailableSpell(PMob, 42, 38); // Banishga V -> I
-	}
+	} 
 
 	/* WHM spells may work but I haven't tested it.
 	// TODO: Test this thoroughly

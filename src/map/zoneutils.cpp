@@ -251,7 +251,7 @@ void LoadMOBList(CZone* PZone)
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 			mob_pools.familyid, name_prefix, unknown, \
-            (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript \
+            (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, castSpellTypes \
 			FROM mob_groups, mob_pools, mob_spawn_points, mob_family_system \
 			WHERE mob_groups.poolid = mob_pools.poolid \
 			AND mob_groups.groupid = mob_spawn_points.groupid \
@@ -355,16 +355,16 @@ void LoadMOBList(CZone* PZone)
 			// Check if we should be looking up scripts for this mob
 			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle,52);
 
-			// Store the spell bitmask. 8 elements with 7 bits per element = 56 bits.
+			// Store the spell bitmask. 8 elements with 8 bits per element = 64 bits.
 			// This mask is as follows: (following the "FEW WILL Die" Mnemonic for days of the week)
-			//  FIRE        EARTH    WATER  WIND  ICE LIGHTNING LIGHT DARK
-			// 0101010     1010101  0101011  .........
+			//  FIRE        EARTH       WATER  WIND  ICE LIGHTNING LIGHT DARK
+			// 00101010     01010101  00101011  .........
 			//
-			// Each element has 7 bits which correspond to:
-			// 0			0			0			0			0			0			0
-			// DMGTiers		EnfeebBLM	EnfeebWHM	BuffBLM		BuffWHM		Heal		AoE
+			// Each element has 8 bits which correspond to:
+			// 0			0				0			0			0			0			0			0
+			// Reserved		DMGTiers		EnfeebBLM	EnfeebWHM	BuffBLM		BuffWHM		Heal		AoE
 			//
-			// reserved = Should be set to 1 always.
+			// Reserved = Not used currently.
 			// DMGTiers = Tier I-V spells, e.g. Aero I-V, Fire I-V, Banish I-V, etc
 			// EnfeebBLM = BLM enfeebles e.g. Choke, Drown, etc
 			// EnfeebWHM = WHM enfeebs e.g. Paralyze, Slow
@@ -372,63 +372,19 @@ void LoadMOBList(CZone* PZone)
 			// BuffWHM = WHM buffs e.g. Stoneskin, Blink
 			// Heal = Should use healing spells or not (Cures, Regens, Drains, etc)
 			// AoE = Should use AoE forms if possible e.g. Thundaga III, Curaga IV
-			// SEE MOBENTITY->SPELLTYPES_T for Struct information
-			
-			// TODO: Actually get this from the SQL rather than fudge it here
+			//
+			// See mobentity.h for Struct information
+
+			// Dump 8 bytes worth of bitmask in
+			PMob->m_SpellTypesBitmask.insert(0,Sql_GetData(SqlHandle,53), 8);
 
 			if (PMob->GetMJob() == JOB_BLM) {
-				PMob->m_SpellsBitmask.fire.tiers = 1;
-				PMob->m_SpellsBitmask.earth.tiers = 1;
-				PMob->m_SpellsBitmask.water.tiers = 1;
-				PMob->m_SpellsBitmask.wind.tiers = 1;
-				PMob->m_SpellsBitmask.ice.tiers = 1;
-				PMob->m_SpellsBitmask.lightning.tiers = 1;
-				PMob->m_SpellsBitmask.dark.tiers = 1; 
-				PMob->m_SpellsBitmask.fire.aoe = 1;
-				PMob->m_SpellsBitmask.earth.aoe = 1;
-				PMob->m_SpellsBitmask.water.aoe = 1;
-				PMob->m_SpellsBitmask.wind.aoe = 1;
-				PMob->m_SpellsBitmask.ice.aoe = 1;
-				PMob->m_SpellsBitmask.lightning.aoe = 1;
 				PMob->m_MagicRecastTime = 15000;
 			}
 			else if (PMob->GetMJob() == JOB_RDM) {
-				PMob->m_SpellsBitmask.fire.tiers = 1;
-				PMob->m_SpellsBitmask.earth.tiers = 1;
-				PMob->m_SpellsBitmask.water.tiers = 1;
-				PMob->m_SpellsBitmask.wind.tiers = 1;
-				PMob->m_SpellsBitmask.ice.tiers = 1;
-				PMob->m_SpellsBitmask.lightning.tiers = 1;
-				PMob->m_SpellsBitmask.dark.tiers = 1;
-				PMob->m_SpellsBitmask.fire.enfeebBlm = 1;
-				PMob->m_SpellsBitmask.earth.enfeebBlm = 1;
-				PMob->m_SpellsBitmask.water.enfeebBlm = 1;
-				PMob->m_SpellsBitmask.wind.enfeebBlm = 1;
-				PMob->m_SpellsBitmask.ice.enfeebBlm = 1;
-				PMob->m_SpellsBitmask.lightning.enfeebBlm = 1;
-				PMob->m_SpellsBitmask.dark.enfeebBlm = 1;
-				PMob->m_SpellsBitmask.fire.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.earth.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.water.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.wind.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.ice.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.lightning.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.dark.enfeebWhm = 1; 
-
 				PMob->m_MagicRecastTime = 25000;
 			}
 			else if (PMob->GetMJob() == JOB_WHM) {
-				PMob->m_SpellsBitmask.fire.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.earth.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.water.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.wind.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.ice.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.lightning.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.light.enfeebWhm = 1;
-				PMob->m_SpellsBitmask.light.heal = 1;
-				PMob->m_SpellsBitmask.light.buffWhm = 1;
-				PMob->m_SpellsBitmask.light.tiers = 1;
-
 				PMob->m_MagicRecastTime = 20000;
 			}
 			
