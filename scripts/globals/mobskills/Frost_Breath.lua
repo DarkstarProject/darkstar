@@ -12,7 +12,11 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+	-- only used in Uleguerand_Range
+	if(mob:getZone() == 5) then
+		return 0;
+	end
+	return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)

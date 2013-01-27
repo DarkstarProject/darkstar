@@ -71,7 +71,7 @@ MSG_MISS = 188;
 MSG_RESIST = 85;
 MSG_EFFECT_DRAINED = 370; -- <num> status effects are drained from <target>.
 MSG_TP_REDUCED = 362; -- tp reduced to
-MSG_DISAPPEAR = 378; -- <target>'s stun effect disappears!
+MSG_DISAPPEAR = 159; -- <target>'s stun effect disappears!
 MSG_DISAPPEAR_NUM = 400; -- <num> of <target>'s effects disappear!
 
 BOMB_TOSS_HPP = 1;
@@ -230,7 +230,7 @@ end
 function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	returninfo = {};
 	--get all the stuff we need
-	resist = 1;
+	local resist = 1;
 	dint = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
 	mab = (100+mob:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF)) ;
 	macc = mob:getMod(MOD_MACC);
@@ -259,13 +259,13 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 
 	finaldmg = finaldmg * resist;
 
-	if(finaldmg < 1) then
-		finaldmg = 1;
-	end
-
 	-- Apply MOD_DMG first, and separately.  For proof of order, see: http://wiki.ffxiclopedia.org/wiki/Sentinel
 	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMG) / 100));
 	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMGMAGIC) / 100));
+
+	if(finaldmg < 1) then
+		finaldmg = 1;
+	end
 
 	returninfo.dmg = finaldmg;
 	return returninfo;

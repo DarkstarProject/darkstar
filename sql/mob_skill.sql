@@ -113,8 +113,8 @@ INSERT INTO `mob_skill` VALUES (45,178,45,'Dream_Flower', 1, 15.0, 2000, 1800, 4
 INSERT INTO `mob_skill` VALUES (46,178,46,'Wild_Oats', 0, 12.5, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (48,178,48,'Photosynthesis', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (49,178,49,'Leaf_Dagger', 0, 7.0, 2000, 1500, 4, 0); -- 1hp/tick
-INSERT INTO `mob_skill` VALUES(44, 178, 44, 'Head_Butt', 0, 7.0, 1500, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES(50, 178, 50, 'Scream', 1, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES(44, 178,44, 'Head_Butt', 0, 7.0, 1500, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES(50, 178,50, 'Scream', 1, 15.0, 2000, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES(0, 178, 0, 'Petal_Pirouette', 0, 15.0, 2000, 1500, 4, 0); -- Only used by certain NM
 -- INSERT INTO `mob_skill` VALUES(0, 178, 0, 'Demonic_Flower', 0, 7.0, 2000, 1500, 4, 0); -- Only used by certain NM
 
@@ -189,6 +189,22 @@ INSERT INTO `mob_skill` VALUES (100,217,100,'Sharp_Strike', 0, 7.0, 2000, 2000, 
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Evasion', 0, 7.0, 2000, 1500, 1, 0); -- NM/HNM only
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Stasis', 0, 7.0, 2000, 1500, 4, 0); -- NM/HNM only
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Hell_Scissors', 0, 7.0, 2000, 1500, 4, 0); -- Campaign NM only
+
+-- DynamisStatue-Orc
+INSERT INTO `mob_skill` VALUES (854,93,761,'Seismostomp', 1, 15.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (855,93,762,'Numbing_Glare', 4, 10.0, 2000, 2000, 4, 0);
+
+-- DynamisStatue-Yagudo
+INSERT INTO `mob_skill` VALUES (854,95,763,'Seismostomp', 1, 15.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (857,95,764,'Tormentful_Glare', 4, 10.0, 2000, 2000, 4, 0);
+
+-- DynamisStatue-Goblin
+INSERT INTO `mob_skill` VALUES (854,92,765,'Seismostomp', 1, 15.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (859,92,766,'Torpid_Glare', 4, 10.0, 2000, 2000, 4, 0);
+
+-- DynamisStatue-Quadav
+INSERT INTO `mob_skill` VALUES (854,94,767,'Seismostomp', 1, 15.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (861,94,768,'Lead_Breath', 4, 10.0, 2000, 2000, 4, 0);
 
 -- Buffalo
 INSERT INTO `mob_skill` VALUES (237,57,846,'Rampant_Gnaw', 0, 7.0, 2000, 1500, 4, 0);
@@ -549,6 +565,10 @@ INSERT INTO `mob_skill` VALUES(335, 133, 335, 'Bomb_Toss', 2, 8.0, 2000, 1500, 4
 INSERT INTO `mob_skill` VALUES(336, 133, 336, 'Bomb_Toss_Suicide', 1, 8.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES(0, 0, 0, 'Goblin-Dice', 0, 7.0, 2000, 1500, 4, 0); -- Only by Vanguard NM and Moblin Fantocciniman.
 -- INSERT INTO `mob_skill` VALUES(0, 0, 0, 'Saucepan', 4, 7.0, 2000, 1500, 4, 0); -- Only by NM
+INSERT INTO `mob_skill` VALUES (826,133,744,'Smokebomb_Dyn', 4, 10.0, 2000, 1500, 4, 0); -- dynamis only
+INSERT INTO `mob_skill` VALUES (828,133,746,'Crispy_Candle_Dyn', 4, 10.0, 2000, 1500, 4, 0); -- dynamis only
+INSERT INTO `mob_skill` VALUES (830,133,748,'Paralysis_Shower_Dyn', 4, 10.0, 2000, 1500, 4, 0); -- dynamis only
+
 -- Orc
 INSERT INTO `mob_skill` VALUES (353,189,353,'Battle_Dance', 1, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (377,189,354,'Howl', 1, 20.0, 2000, 1000, 1, 0);
@@ -797,6 +817,15 @@ INSERT INTO `mob_skill` VALUES (104,59,827,'Flying_Hip_Press', 1, 7.0, 2000, 150
 -- INSERT INTO `mob_skill` VALUES (103,59,826,'Bionic_Boost', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (102,59,825,'Heavy_Whisk', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (101,59,821,'Heavy_Blow', 0, 7.0, 2000, 1500, 4, 0);
+-- Moblin
+INSERT INTO `mob_skill` VALUES (832,184,334,'Goblin_Rush', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (825,184,743,'Frypan', 1, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (826,184,744,'Smokebomb', 4, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (827,184,745,'Smokebomb', 0, 10.0, 2000, 1000, 1, 0); -- fail
+INSERT INTO `mob_skill` VALUES (828,184,746,'Crispy_Candle', 4, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (829,184,747,'Crispy_Candle', 0, 10.0, 2000, 1000, 1, 0); -- fail
+INSERT INTO `mob_skill` VALUES (830,184,748,'Paralysis_Shower', 4, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (831,184,749,'Paralysis_Shower', 0, 10.0, 2000, 1000, 1, 0); -- fail
 -- flytrap
 INSERT INTO `mob_skill` VALUES (178,114,806,'Soporific', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (179,114,807,'Palsy_Pollen', 4, 9.5, 2000, 1500, 4, 0);
@@ -810,19 +839,19 @@ INSERT INTO `mob_skill` VALUES (23,26,813,'Mandibular_Bite', 0, 7.0, 2000, 1500,
 -- INSERT INTO `mob_skill` VALUES (23,26,813,'Quake_Blast', 0, 7.0, 2000, 1500, 4, 0);
 -- eft
 INSERT INTO `mob_skill` VALUES (259,96,814,'Toxic_Spit', 0, 9.5, 2000, 1800, 4, 0);
-INSERT INTO `mob_skill` VALUES (260,96,815,'Geist_Wall', 1, 10.0, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (260,96,815,'Geist_Wall', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (261,96,816,'Numbing_Noise', 4, 9.5, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (262,96,817,'Nimble_Snap', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (263,96,818,'Cyclotail', 1, 10.0, 2000, 1000, 4, 0);
 
 INSERT INTO `mob_skill` VALUES (259,97,814,'Toxic_Spit', 0, 9.5, 2000, 1800, 4, 0);
-INSERT INTO `mob_skill` VALUES (260,97,815,'Geist_Wall', 1, 10.0, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (260,97,815,'Geist_Wall', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (261,97,816,'Numbing_Noise', 4, 9.5, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (262,97,817,'Nimble_Snap', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (263,97,818,'Cyclotail', 1, 10.0, 2000, 1000, 4, 0);
 
 INSERT INTO `mob_skill` VALUES (259,98,814,'Toxic_Spit', 0, 9.5, 2000, 1800, 4, 0);
-INSERT INTO `mob_skill` VALUES (260,98,815,'Geist_Wall', 1, 10.0, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (260,98,815,'Geist_Wall', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (261,98,816,'Numbing_Noise', 4, 9.5, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (262,98,817,'Nimble_Snap', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (263,98,818,'Cyclotail', 1, 10.0, 2000, 1000, 4, 0);
