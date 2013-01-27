@@ -40,7 +40,7 @@ function onRegionEnter(player,region)
 local regionID =region:GetRegionID();
 --printf("regionID: %u",regionID);
   if(regionID==1 and player:getCurrentMission(COP) ==A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus")==1)then
-  player:startEvent(0x0041);
+  player:startEvent(0x0041,player:getNation());
   end	
 end;	
 -----------------------------------		

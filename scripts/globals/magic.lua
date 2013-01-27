@@ -678,7 +678,9 @@ function addBonuses(caster, spell, target, dmg)
 	dmg = math.floor(dmg * mab);
 
 	local magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
+	local dmgMod = (256 + target:getMod(MOD_DMG)) / 256;
 
+	dmg = math.floor(dmg * dmgMod);
 	dmg = math.floor(dmg * magicDmgMod);
 
 	-- print(affinityBonus);
