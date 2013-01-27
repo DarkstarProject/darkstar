@@ -29,6 +29,38 @@
 
 #include "../charentity.h"
 
+/* It seems the 0x44 packet contains extended information about a specific job. For PUPs it's automaton information, for BLUs it's set spell info:
+
+ON ZONE IN MUST SEND A 0x44 packet like:
+
+44 4E 05 00 10 00 00 00 01 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00
+
+possibly offset 0x04 == job this is affecting because 0x10 = 16 = JOBBLU and below there is implementation for 0x12 = 18 = JOB_PUP
+
+offset 0x05 onwards: This is potentially a bitmask (?) of BLU spells set. Sending this will activate the spell setting packets on the client.
+Without this, you won't get them when you try to select spells on the UI.
+
+SPELL SETTING PACKETS = 0x102
+
+unknown:
+abs 0x08 is always 0x10.
+
+only set for add:
+abs 0x04 with the byte.
+
+always set for add/rem:
+abs offset 0x1C is the spell (shifted by 0x200) e.g. spellid 0x02A6 becomes 0xA6
+
+*/
 
 CAutomatonUpdatePacket::CAutomatonUpdatePacket(CCharEntity* PChar)
 {
