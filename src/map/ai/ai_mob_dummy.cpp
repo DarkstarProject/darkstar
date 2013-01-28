@@ -1127,9 +1127,9 @@ void CAIMobDummy::ActionMagicFinish()
 			}
 			break;
 		case PET_ALLIANCE_TARGET:
-			for (uint8 a = 0; a < m_PBattleSubTarget->PParty->m_PAlliance->partyList.size(); ++a) {
-				for (uint8 i = 0; i < m_PBattleSubTarget->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) {
-					CBattleEntity* PTarget = m_PBattleSubTarget->PParty->m_PAlliance->partyList.at(a)->members.at(i);
+			for (uint8 a = 0; a < m_PBattleSubTarget->PMaster->PParty->m_PAlliance->partyList.size(); ++a) {
+				for (uint8 i = 0; i < m_PBattleSubTarget->PMaster->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) {
+					CBattleEntity* PTarget = m_PBattleSubTarget->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 					AddEntityForAoe(PTarget, Action);
 
 					if (PTarget->PPet != NULL) {
