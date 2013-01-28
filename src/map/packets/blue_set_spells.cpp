@@ -29,20 +29,6 @@
 
 #include "../charentity.h"
 
-/* 
-SPELL SETTING PACKETS = 0x102
-
-unknown:
-abs 0x08 is always 0x10.
-
-only set for add:
-abs 0x04 with the byte.
-
-always set for add/rem:
-abs offset 0x1C is the spell (shifted by 0x200) e.g. spellid 0x02A6 becomes 0xA6
-
-*/
-
 CBlueSetSpellsPacket::CBlueSetSpellsPacket(CCharEntity* PChar)
 {
 	this->type = 0x44;
@@ -50,9 +36,6 @@ CBlueSetSpellsPacket::CBlueSetSpellsPacket(CCharEntity* PChar)
 
 	WBUFL(data,(0x04)-4) = JOB_BLU;
 
-	// TODO: This should be loaded from PChar :)
-	uint8 setSpellIds[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x10, 0x01, 0x02, 0x03, 0x04, 0x05, 0x00, 0x00, 0xFF, 0x00, 0x00 };
-
-	memcpy(data+(0x08)-4, &setSpellIds, 20);
+	memcpy(data+(0x08)-4, &PChar->m_SetBlueSpells, 20);
 
 }

@@ -67,6 +67,7 @@ CCharEntity::CCharEntity()
 	memset(& m_TraitList, 0, sizeof(m_TraitList));
     memset(& m_PetCommands,  0, sizeof(m_PetCommands)); 
 	memset(& m_WeaponSkills, 0, sizeof(m_WeaponSkills));
+	memset(& m_SetBlueSpells, 0, sizeof(m_SetBlueSpells));
 
 	memset(& m_questLog,    0, sizeof(m_questLog));
 	memset(& m_missionLog,  0, sizeof(m_missionLog));

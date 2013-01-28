@@ -186,6 +186,7 @@ public:
 	uint32			  m_lastBcnmTimePrompt;			// the last message prompt in seconds
 	PetInfo_t		  petZoningInfo;				// used to repawn dragoons pets ect on zone		
 	void			  resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
+	uint8			  m_SetBlueSpells[20];			// The 0x200 offsetted blue magic spell IDs which the user has set. (1 byte per spell)
 
 	// Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
 	// отображает более ранние миссии выплненными

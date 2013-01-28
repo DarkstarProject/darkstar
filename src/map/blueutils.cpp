@@ -23,6 +23,8 @@
 
 #include "../common/utils.h"
 
+#include "packets/blue_set_spells.h"
+
 #include <math.h>
 
 #include "battleutils.h"
@@ -35,8 +37,22 @@
 namespace blueutils
 {
 
-void SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex) {
+void SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addingSpell) {
+	// for now lets just let them do what they want
 
+	//sanity check
+	if (slotIndex < 20) {
+		if (PSpell != NULL && PSpell->getID() > 0x200) {
+			if (addingSpell) {
+				// Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
+				PChar->m_SetBlueSpells[slotIndex] = PSpell->getID() - 0x200; 
+			}
+			else {
+				PChar->m_SetBlueSpells[slotIndex] = 0x00;
+			}
+			PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
+		}
+	}
 }
 
 void HasEnoughSetPoints(CCharEntity* PChar, CSpell* PSpellToAdd, uint8 slotToPut) {

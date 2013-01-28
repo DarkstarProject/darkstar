@@ -34,6 +34,7 @@
 #include <string.h>
 
 #include "alliance.h"
+#include "blueutils.h"
 #include "party.h"
 #include "packet_system.h"
 #include "conquest_system.h"
@@ -3811,8 +3812,9 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 			if (spellIndex != -1 && spellInQuestion != 0) {
 				CSpell* spell = spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
+				
 				if (spell != NULL) {
-					ShowDebug("User wishes to alter %s in slot %u  toAdd %u \n",spell->getName(), spellIndex, spellToAdd);
+					blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
 				}
 				else {
 					ShowDebug("Cannot resolve spell id \n");

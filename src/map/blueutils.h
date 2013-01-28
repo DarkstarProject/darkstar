@@ -32,7 +32,7 @@
 
 namespace blueutils
 {
-	void	SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex);
+	void	SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addingSpell);
 	void	HasEnoughSetPoints(CCharEntity* PChar, CSpell* PSpellToAdd, uint8 slotToPut);
 };
 
