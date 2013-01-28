@@ -37,8 +37,8 @@ function OnUseAbility(player, target, ability)
 	end
 	local stealMod = player:getMod(MOD_STEAL);
 	
-	if(player:getEquipID(SLOT_RING1) == 13291 and ((player:getHP() / player:getMaxHP() * 100) < 75) and player:getTP() < 100) then stealMod = stealMod +1 end; --Rogue's Ring
-	if(player:getEquipID(SLOT_RING2) == 13291 and ((player:getHP() / player:getMaxHP() * 100) < 75) and player:getTP() < 100) then stealMod = stealMod +1 end; --Rogue's Ring
+	if((player:getEquipID(SLOT_RING1) == 13291 or player:getEquipID(SLOT_RING2) == 13291) and ((player:getHP() / player:getMaxHP() * 100) < 75) and player:getTP() < 100) then stealMod = stealMod +3 end; --Rogue's Ring
+	if(player:getEquipID(SLOT_NECK) == 13112) then stealMod = stealMod +1 end; --Rabbit charm
 
 	if(math.random(100) < (50 + stealMod + thfLevel - target:getMainLvl())) then
 		local stolen = target:getStealItem();
