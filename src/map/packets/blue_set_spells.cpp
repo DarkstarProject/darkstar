@@ -29,26 +29,7 @@
 
 #include "../charentity.h"
 
-/* It seems the 0x44 packet contains extended information about a specific job. For PUPs it's automaton information, for BLUs it's set spell info:
-
-ON ZONE IN MUST SEND A 0x44 packet like:
-
-44 4E 05 00 10 00 00 00 01 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00
-
-possibly offset 0x04 == job this is affecting because 0x10 = 16 = JOBBLU and below there is implementation for 0x12 = 18 = JOB_PUP
-
-offset 0x05 onwards: This is potentially a bitmask (?) of BLU spells set. Sending this will activate the spell setting packets on the client.
-Without this, you won't get them when you try to select spells on the UI.
-
+/* 
 SPELL SETTING PACKETS = 0x102
 
 unknown:
@@ -69,7 +50,8 @@ CBlueSetSpellsPacket::CBlueSetSpellsPacket(CCharEntity* PChar)
 
 	WBUFL(data,(0x04)-4) = JOB_BLU;
 
-	uint8 setSpellIds[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x10, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x10 };
+	// TODO: This should be loaded from PChar :)
+	uint8 setSpellIds[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x10, 0x01, 0x02, 0x03, 0x04, 0x05, 0x00, 0x00, 0xFF, 0x00, 0x00 };
 
 	memcpy(data+(0x08)-4, &setSpellIds, 20);
 

@@ -47,6 +47,7 @@
 #include "map.h"
 #include "mobentity.h"
 #include "npcentity.h"
+#include "spell.h"
 #include "synthutils.h"
 #include "trade_container.h"
 #include "zone.h"
@@ -3792,6 +3793,40 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+	if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU) {
+		// This may be a request to add or remove set spells, so lets check.
+		uint8 mjob = RBUFB(data,(0x08));
+		if (mjob == JOB_BLU) {
+			uint8 spellToAdd = RBUFB(data,(0x04)); // this is non-zero if client wants to add.
+			uint8 spellInQuestion = 0;
+			uint8 spellIndex = -1;
+			// loop all 20 slots and find which index they are playing with
+			for (uint8 i = 0x0C; i <= 0x1F; i++) {
+				if ( RBUFB(data,i) > 0 ) {
+					spellInQuestion = RBUFB(data,i);
+					spellIndex = i - 0x0C;
+					break;
+				}
+			}
+
+			if (spellIndex != -1 && spellInQuestion != 0) {
+				CSpell* spell = spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
+				if (spell != NULL) {
+					ShowDebug("User wishes to alter %s in slot %u  toAdd %u \n",spell->getName(), spellIndex, spellToAdd);
+				}
+				else {
+					ShowDebug("Cannot resolve spell id \n");
+				}
+			}
+			else {
+				ShowDebug("No match found. \n");
+			}
+		}
+		else {
+			ShowDebug("Got 0x102 but it's not for JOB_BLU.");
+		}
+	}
+
 	return;
 }
 
@@ -4131,7 +4166,7 @@ void PacketParserInitialize()
     PacketSize[0x0FA] = 0x00; PacketParser[0x0FA] = &SmallPacket0x0FA;
     PacketSize[0x0FB] = 0x00; PacketParser[0x0FB] = &SmallPacket0x0FB;
     PacketSize[0x100] = 0x04; PacketParser[0x100] = &SmallPacket0x100;
-    PacketSize[0x102] = 0x00; PacketParser[0x102] = &SmallPacket0xFFF;	// not implemented
+    PacketSize[0x102] = 0x50; PacketParser[0x102] = &SmallPacket0x102;	
     PacketSize[0x104] = 0x02; PacketParser[0x104] = &SmallPacket0x104;
     PacketSize[0x105] = 0x06; PacketParser[0x105] = &SmallPacket0x105;
     PacketSize[0x106] = 0x06; PacketParser[0x106] = &SmallPacket0x106;
