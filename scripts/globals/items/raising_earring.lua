@@ -1,10 +1,8 @@
 -----------------------------------------
--- ID: 4162
--- Item: Silencing Potion
--- Item Effect: This potion induces silence.
+--  ID: 16003
+--  Reraise Earring
+--  This earring functions in the same way as the spell Reraise.
 -----------------------------------------
-
-require("scripts/globals/status");
 
 -----------------------------------------
 -- OnItemCheck
@@ -13,16 +11,12 @@ require("scripts/globals/status");
 function onItemCheck(target)
     return 0;
 end;
-
 -----------------------------------------
 -- OnItemUse
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-        target:addStatusEffect(EFFECT_PARALYSIS,15,0,180);
-    else
-        target:messageBasic(423);
-    end
+    duration = 2100;
+        target:delStatusEffect(EFFECT_RERAISE);
+        target:addStatusEffect(EFFECT_RERAISE,1,0,duration);
 end;
-

@@ -1,10 +1,8 @@
 -----------------------------------------
--- ID: 4162
--- Item: Silencing Potion
--- Item Effect: This potion induces silence.
+--  ID: 17040
+--  Warp Cudgel
+--  Transports the user to their Home Point
 -----------------------------------------
-
-require("scripts/globals/status");
 
 -----------------------------------------
 -- OnItemCheck
@@ -19,10 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-        target:addStatusEffect(EFFECT_PARALYSIS,15,0,180);
-    else
-        target:messageBasic(423);
-    end
+    target:warp();
 end;
-

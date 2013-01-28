@@ -1,10 +1,10 @@
 -----------------------------------------
--- ID: 4162
--- Item: Silencing Potion
--- Item Effect: This potion induces silence.
+-- ID: 15170
+-- Item: Blink Band
+-- Item Effect: 3 shadows
 -----------------------------------------
 
-require("scripts/globals/status");
+require("scripts/globals/settings");
 
 -----------------------------------------
 -- OnItemCheck
@@ -19,10 +19,12 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-        target:addStatusEffect(EFFECT_PARALYSIS,15,0,180);
-    else
+
+    if(target:hasStatusEffect(EFFECT_COPY_IMAGE) or target:hasStatusEffect(EFFECT_THIRD_EYE)) then
         target:messageBasic(423);
+    else
+        -- delete old
+        target:delStatusEffect(EFFECT_BLINK);
+        target:addStatusEffect(EFFECT_BLINK, 3, 0, 300);
     end
 end;
-

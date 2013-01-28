@@ -1,10 +1,8 @@
 -----------------------------------------
--- ID: 4162
--- Item: Silencing Potion
--- Item Effect: This potion induces silence.
+--  ID: 15320
+--  Powder Boots
+--  Enchantment: "Flee"
 -----------------------------------------
-
-require("scripts/globals/status");
 
 -----------------------------------------
 -- OnItemCheck
@@ -13,16 +11,11 @@ require("scripts/globals/status");
 function onItemCheck(target)
     return 0;
 end;
-
 -----------------------------------------
 -- OnItemUse
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-        target:addStatusEffect(EFFECT_PARALYSIS,15,0,180);
-    else
-        target:messageBasic(423);
-    end
+    target:delStatusEffect(EFFECT_SNEAK);
+    target:addStatusEffect(EFFECT_SNEAK,1,0,180);
 end;
-

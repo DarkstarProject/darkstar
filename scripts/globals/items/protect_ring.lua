@@ -1,10 +1,10 @@
 -----------------------------------------
--- ID: 4162
--- Item: Silencing Potion
--- Item Effect: This potion induces silence.
+-- ID: 15838
+-- Item: Protect Ring
+-- Item Effect: Protect II
 -----------------------------------------
 
-require("scripts/globals/status");
+require("scripts/globals/settings");
 
 -----------------------------------------
 -- OnItemCheck
@@ -19,10 +19,15 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-        target:addStatusEffect(EFFECT_PARALYSIS,15,0,180);
-    else
+
+    local effect = target:getStatusEffect(EFFECT_PROTECT);
+    local power = 40;
+
+    if(effect ~= nil and effect:getPower() > power) then
         target:messageBasic(423);
+    else
+        -- add effect
+        target:delStatusEffect(EFFECT_PROTECT);
+        target:addStatusEffect(EFFECT_PROTECT, power, 0, 1800);
     end
 end;
-

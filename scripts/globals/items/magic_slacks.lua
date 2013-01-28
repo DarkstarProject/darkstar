@@ -1,10 +1,10 @@
 -----------------------------------------
--- ID: 4162
--- Item: Silencing Potion
--- Item Effect: This potion induces silence.
+-- ID: 15372
+-- Item: Magic Slacks
+-- Item Effect: Restores 30-39 MP
 -----------------------------------------
 
-require("scripts/globals/status");
+require("scripts/globals/settings");
 
 -----------------------------------------
 -- OnItemCheck
@@ -19,10 +19,12 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-        target:addStatusEffect(EFFECT_PARALYSIS,15,0,180);
-    else
-        target:messageBasic(423);
-    end
-end;
+    hpHeal = math.random(30,40);
 
+    dif = target:getMaxMP() - target:getMP();
+    if(hpHeal > dif) then
+        hpHeal = dif;
+    end
+    target:addMP(hpHeal);
+    target:messageBasic(276,0,hpHeal);
+end;

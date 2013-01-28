@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 4162
--- Item: Silencing Potion
--- Item Effect: This potion induces silence.
+-- ID: 18241
+-- Item: Refresh Musk
+-- Item Effect: 60 seconds
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -19,8 +19,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-        target:addStatusEffect(EFFECT_PARALYSIS,15,0,180);
+    if(target:hasStatusEffect(EFFECT_REFRESH) == false) then
+        target:addStatusEffect(EFFECT_REFRESH,1,3,60);
     else
         target:messageBasic(423);
     end

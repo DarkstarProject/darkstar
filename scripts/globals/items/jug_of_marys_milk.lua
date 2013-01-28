@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 4162
--- Item: Silencing Potion
--- Item Effect: This potion induces silence.
+-- ID: 4527
+-- Item: Jug of marys milk
+-- Item Effect: This potion induces sleep.
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -19,8 +19,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-        target:addStatusEffect(EFFECT_PARALYSIS,15,0,180);
+    if(target:hasStatusEffect(EFFECT_SLEEP_I) == false) then
+        target:addStatusEffect(EFFECT_SLEEP_I,1,0,60);
     else
         target:messageBasic(423);
     end

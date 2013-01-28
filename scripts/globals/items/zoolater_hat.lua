@@ -1,10 +1,10 @@
 -----------------------------------------
--- ID: 4162
--- Item: Silencing Potion
--- Item Effect: This potion induces silence.
+-- ID: 15182
+-- Item: Zoolater Hat
+-- Item Effect: Pet gets meditate
 -----------------------------------------
 
-require("scripts/globals/status");
+require("scripts/globals/settings");
 
 -----------------------------------------
 -- OnItemCheck
@@ -19,10 +19,11 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-        target:addStatusEffect(EFFECT_PARALYSIS,15,0,180);
+    local pet = target:getPet();
+
+    if(pet) then
+        pet:addStatusEffect(EFFECT_REGAIN,0, 15, 3, 15);
     else
         target:messageBasic(423);
     end
 end;
-
