@@ -65,7 +65,7 @@ function onSpellCast(caster,target,spell)
 		end
 	end
 
-	if(target:getRank() ~= nil) then
+	if(target:getRank() ~= nil) then -- e.g. is a PC and not a monster (?)
 		if(USE_OLD_CURE_FORMULA == true) then
 			basecure = getBaseCureOld(power,divisor,constant);
 		else
@@ -92,7 +92,7 @@ function onSpellCast(caster,target,spell)
 		target:addHP(final);
 		caster:updateEnmityFromCure(target,final);
 	else
-		if(target:isUndead()) then
+		if(target:isUndead()) then -- e.g. PCs healing skeles for damage (?)
 			spell:setMsg(2);
 			local dmg = calculateMagicDamage(450,1,caster,spell,target,HEALING_MAGIC_SKILL,MOD_MND,false);
 			local resist = applyResistance(caster,spell,target,caster:getMod(MOD_MND)-target:getMod(MOD_MND),HEALING_MAGIC_SKILL,1.0);
@@ -104,7 +104,18 @@ function onSpellCast(caster,target,spell)
 			target:delHP(final);
 			target:updateEnmityFromDamage(caster,final);
 		else
-			final = 0;
+            -- e.g. monsters healing themselves.
+			if(USE_OLD_CURE_FORMULA == true) then
+                basecure = getBaseCureOld(power,divisor,constant);
+            else
+                basecure = getBaseCure(power,divisor,constant,basepower);
+            end
+            final = getCureFinal(caster,spell,basecure,minCure,false);
+            local diff = (target:getMaxHP() - target:getHP());
+            if(final > diff) then
+                final = diff;
+            end
+            target:addHP(final);
 		end
 	end
 	return final;

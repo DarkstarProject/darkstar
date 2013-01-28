@@ -955,13 +955,12 @@ void CAIMobDummy::ActionMagicStart()
 	if ( (m_PSpell->getValidTarget() & TARGET_ENEMY) && m_PBattleSubTarget->id == m_PMob->id) {
 		m_ActionType = ACTION_ATTACK;
 		m_LastMagicTime = m_Tick;
-		ShowDebug("Monster Magic Cast on self but spell is enemy...");
+		ShowDebug("Monster Magic Cast on self but spell is enemy... \n");
 		return;
 	}
-	// TODO: This may work but hasn't been tested.
-	//else if (m_PSpell->getValidTarget() & TARGET_SELF) {
-	//	m_PBattleSubTarget = m_PMob;
-	//}
+	else if (m_PSpell->getValidTarget() & TARGET_SELF) {
+		m_PBattleSubTarget = m_PMob;
+	}
 
 
 	m_LastActionTime = m_Tick;
@@ -970,7 +969,7 @@ void CAIMobDummy::ActionMagicStart()
 	apAction_t Action;
     m_PMob->m_ActionList.clear();
 
-	Action.ActionTarget = m_PBattleTarget;
+	Action.ActionTarget = m_PBattleSubTarget;
 	Action.reaction   = REACTION_NONE;
 	Action.speceffect = SPECEFFECT_NONE;
 	Action.animation  = 0;
@@ -1025,7 +1024,7 @@ void CAIMobDummy::ActionMagicCasting()
 			return;
 		}
 
-		float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+		float CurrentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
 		if (CurrentDistance > 25) {
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
@@ -1151,16 +1150,18 @@ void CAIMobDummy::ActionMagicFinish()
 	{
         CBattleEntity* PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
 
-		// wipe shadows if needed
-		if (m_PSpell->isAOE()) {
-			PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
-			PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
-		}
-		else if (battleutils::IsAbsorbByShadow(PTarget)) {
-			m_PMob->m_ActionList.at(i).messageID = 0;
-			m_PMob->m_ActionList.at(i).param = 1;
-			PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
-			continue; // continue to next pt member
+		if (m_PSpell->getValidTarget() & TARGET_ENEMY) {
+			// wipe shadows if needed
+			if (m_PSpell->isAOE()) {
+				PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+				PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
+			}
+			else if (battleutils::IsAbsorbByShadow(PTarget)) {
+				m_PMob->m_ActionList.at(i).messageID = 0;
+				m_PMob->m_ActionList.at(i).param = 1;
+				PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+				continue; // continue to next pt member
+			}
 		}
 
         m_PSpell->setMessage(m_PSpell->getDefaultMessage());
@@ -1180,7 +1181,7 @@ void CAIMobDummy::ActionMagicFinish()
 			m_PMob->m_ActionList.at(i).messageID = 278; //change the id to "xxx receives the effect of xxx." only
 		}
 
-        if (PTarget->objtype == TYPE_MOB)
+		if (PTarget->objtype == TYPE_MOB && m_PMob->id != PTarget->id)
         {
             if (PTarget->isDead())
             {

@@ -335,16 +335,14 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		AddHighestAvailableSpell(PMob, 42, 38, true); // Banishga V -> I
 	} 
 
-	/* WHM spells may work but I haven't tested it.
-	// TODO: Test this thoroughly
-	if (PMob->m_SpellsBitmask.light.heal) {
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_HEAL) {
 		for (int i=6; i>=1; i--) {
 			if (spell::CanUseSpell(PMob, i)) { // Cure VI -> I
 				PMob->m_AvailableSpells.push_back(i);
 				break; // we've got the highest level we can use, so stop looking for lower ones
 			}
 		}
-	} */
+	} 
 }
 
 void AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestId, bool ignoreJob)

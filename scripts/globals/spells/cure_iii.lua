@@ -96,7 +96,18 @@ function onSpellCast(caster,target,spell)
 			target:delHP(final);
 			target:updateEnmityFromDamage(caster,final);
 		else
-			final = 0;
+			-- e.g. monsters healing themselves.
+			if(USE_OLD_CURE_FORMULA == true) then
+                basecure = getBaseCureOld(power,divisor,constant);
+            else
+                basecure = getBaseCure(power,divisor,constant,basepower);
+            end
+            final = getCureFinal(caster,spell,basecure,minCure,false);
+            local diff = (target:getMaxHP() - target:getHP());
+            if(final > diff) then
+                final = diff;
+            end
+            target:addHP(final);
 		end
 	end
 	return final;
