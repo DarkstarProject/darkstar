@@ -34,7 +34,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	end
 
 	typeEffect = EFFECT_STUN;
-	if(hit and target:hasStatusEffect(typeEffect) == true) then
+	if(hit and target:hasStatusEffect(typeEffect) == false) then
 		--statmod = MOD_INT;
 		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,7);
 		if(resist > 0.2) then

@@ -15,13 +15,17 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_INT_DOWN;
-    local statmod = MOD_INT;
-    local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
-    if(resist > 0.2) then
-        skill:setMsg(MSG_ENFEEB_IS);
-        target:addStatusEffect(typeEffect,50,0,120);
+    if(target:hasStatusEffect(typeEffect) == false) then
+        local statmod = MOD_INT;
+        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
+        if(resist > 0.2) then
+            skill:setMsg(MSG_ENFEEB_IS);
+            target:addStatusEffect(typeEffect,50,0,120);
+        else
+            skill:setMsg(MSG_MISS); -- resist !
+        end
     else
-        skill:setMsg(MSG_MISS); -- resist !
+        skill:setMsg(MSG_NO_EFFECT);
     end
     return typeEffect;
 end;

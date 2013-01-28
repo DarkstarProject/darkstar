@@ -13,9 +13,6 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
-    if(mob:hasStatusEffect(EFFECT_EVASION_BOOST)) then
-        return 1;
-    end
     return 0;
 end;
 

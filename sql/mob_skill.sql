@@ -553,6 +553,8 @@ INSERT INTO `mob_skill` VALUES (301,4,301,'Level_5_Petrify', 1, 15.0, 2000, 1500
 INSERT INTO `mob_skill` VALUES (303,169,303,'Soul_Drain', 0, 7.0, 2000, 1800, 4, 0);
 INSERT INTO `mob_skill` VALUES (304,169,304,'Hecatomb_Wave', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (307,169,307,'Demonic_Howl', 1, 10.0, 2000, 1200, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (892,169,770,'Condemnation', 4, 10.0, 2000, 1500, 4, 0); -- wrong animation
+-- INSERT INTO `mob_skill` VALUES (893,169,781,'Quadrastrike', 0, 7.0, 2000, 2000, 4, 0); -- wrong animation
 -- Goobbue
 INSERT INTO `mob_skill` VALUES (325,136,325,'Blow', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (327,136,327,'Beatdown', 0, 7.0, 2000, 1800, 4, 0);
@@ -581,7 +583,7 @@ INSERT INTO `mob_skill` VALUES (850,327,757,'Dice_Slow', 1, 10.0, 2500, 1500, 4,
 INSERT INTO `mob_skill` VALUES (851,327,758,'Dice_TP_Loss', 1, 10.0, 2500, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (852,327,759,'Dice_Dispel', 1, 10.0, 2500, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (853,327,760,'Dice_Reset', 1, 10.0, 2500, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (853,327,760,'Two_Hour', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (0,327,432,'Two_Hour', 0, 7.0, 2000, 1500, 4, 0);
 
 -- Orc
 INSERT INTO `mob_skill` VALUES (353,189,353,'Battle_Dance', 1, 7.0, 2000, 1500, 4, 0);

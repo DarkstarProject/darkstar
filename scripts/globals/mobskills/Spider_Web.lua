@@ -10,10 +10,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    if(target:hasStatusEffect(EFFECT_SLOW) == false) then
-        return 0;
-    end
-    return 1;
+    return 0;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)

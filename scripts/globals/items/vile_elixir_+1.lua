@@ -21,7 +21,7 @@ cMP = target:getMP();
 if (mHP == cHP and mMP == cMP) then
 	result = 56; -- Does not let player use item if their hp and mp are full
 end
-	
+
 return result;
 end;
 
@@ -32,5 +32,5 @@ end;
 function onItemUse(target)
 	target:addHP((target:getMaxHP()/100)*55);
 	target:addMP((target:getMaxMP()/100)*55);
-	target:messageBasic(026);
+	target:messageBasic(26);
 end;

@@ -11,9 +11,6 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
-    if(target:hasStatusEffect(EFFECT_SILENCE)) then
-        return 1;
-    end
     return 0;
 end;
 

@@ -13,16 +13,18 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_DEX_DOWN;
 
-	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
-	if(resist > 0.2) then
-		target:addStatusEffect(typeEffect,20,0,180); -- -20 power=20;tic=0;duration=180;
+	if(target:hasStatusEffect(EFFECT_ENMITY_DOWN) == false) then
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
+		if(resist > 0.2) then
+			target:addStatusEffect(typeEffect,20,0,180); -- -20 power=20;tic=0;duration=180;
+		end
 	end
 
 	local dmgmod = 1;
