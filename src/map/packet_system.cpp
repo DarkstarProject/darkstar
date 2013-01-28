@@ -62,6 +62,7 @@
 #include "packets/bazaar_item.h"
 #include "packets/bazaar_message.h"
 #include "packets/bazaar_purchase.h"
+#include "packets/blue_set_spells.h"
 #include "packets/campaing_map.h"
 #include "packets/char.h"
 #include "packets/char_abilities.h"
@@ -2137,6 +2138,9 @@ void SmallPacket0x061(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 	PChar->pushPacket(new CCharSkillsPacket(PChar));
 	PChar->pushPacket(new CMenuMeritPacket(PChar));
+	if (PChar->GetMJob() == JOB_BLU) {
+		PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
+	}
 	return;
 }
 
