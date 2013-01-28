@@ -154,10 +154,10 @@ INSERT INTO `mob_family_system` VALUES (88,'Draugar',19,'Undead',0,40,90,140,1,3
 INSERT INTO `mob_family_system` VALUES (89,'Draugar',19,'Undead',0,40,90,140,1,3,4,3,1,5,4,3,3,0.875,0.5,1.125,1.25,1.125,0.875,1,1,1,1,1.125,0.5,8);
 INSERT INTO `mob_family_system` VALUES (90,'Dvergr',9,'Demon',1,40,90,140,6,3,3,3,1,5,4,3,3,1,1,1,1,1,1,1,1,1,1,1,0.875,0);
 INSERT INTO `mob_family_system` VALUES (91,'DvergrSkull',9,'Demon',0,40,92,140,6,3,3,3,1,5,4,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
-INSERT INTO `mob_family_system` VALUES (92,'DynamisStatue-Goblin',18,'Unclassified',3,20,120,120,1,1,4,1,3,3,1,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,0);
-INSERT INTO `mob_family_system` VALUES (93,'DynamisStatue-Orc',18,'Unclassified',3,20,120,100,1,2,1,1,5,3,3,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,0);
-INSERT INTO `mob_family_system` VALUES (94,'DynamisStatue-Quadav',18,'Unclassified',3,20,120,110,1,1,3,2,4,3,3,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,0);
-INSERT INTO `mob_family_system` VALUES (95,'DynamisStatue-Yagudo',18,'Unclassified',3,20,120,120,1,2,5,1,3,4,2,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (92,'DynamisStatue-Goblin',18,'Unclassified',3,20,80,120,1,1,4,1,3,3,1,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (93,'DynamisStatue-Orc',18,'Unclassified',3,20,80,100,1,2,1,1,5,3,3,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (94,'DynamisStatue-Quadav',18,'Unclassified',3,20,80,110,1,1,3,2,4,3,3,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (95,'DynamisStatue-Yagudo',18,'Unclassified',3,20,80,120,1,2,5,1,3,4,2,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (96,'Eft',14,'Lizard',0,40,115,90,1,3,4,3,6,6,5,3,3,1,1,1,1,1.125,1.25,0.875,0.875,0.875,0.875,0.875,0.875,1);
 INSERT INTO `mob_family_system` VALUES (97,'Eft',14,'Lizard',0,40,115,90,1,3,4,3,6,6,5,3,3,1,1,1,1,1,1.25,1,1,1,1,1,1,1);
 INSERT INTO `mob_family_system` VALUES (98,'Eft',14,'Lizard',0,40,115,90,1,3,4,3,6,6,5,3,3,1,1,1,1,1,1.25,1,1,1,1,1,1,1);
@@ -388,6 +388,7 @@ INSERT INTO `mob_family_system` VALUES (323,'Avatar-Leviathan',5,'Avatar',1,40,1
 INSERT INTO `mob_family_system` VALUES (324,'Avatar-Garuda',5,'Avatar',1,40,100,120,3,3,3,3,3,3,3,3,3,1,1,1,1,0.875,1,0.875,0.875,0.875,0.875,0.875,0.875,0);
 INSERT INTO `mob_family_system` VALUES (325,'Avatar-Fenrir',5,'Avatar',1,40,100,120,3,3,3,3,3,3,3,3,3,1,1,1,1,0.875,0.875,0.875,0.875,0.875,0.875,1,0.875,0);
 INSERT INTO `mob_family_system` VALUES (326,'TrollGurfurlur',7,'Beastmen',2,40,120,120,1,2,1,3,3,3,3,3,3,1,1,1,1,0.875,1,1,1,1,1.125,1,1,1);
+INSERT INTO `mob_family_system` VALUES (327,'Goblin',7,'Beastmen',0,40,91,120,1,1,4,1,3,3,1,3,3,1,1,1,1,1,1,1,1,1,1,1.25,1,1);
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

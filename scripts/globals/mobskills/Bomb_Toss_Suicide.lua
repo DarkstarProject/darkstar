@@ -5,7 +5,7 @@ require("/scripts/globals/monstertpmoves");
 
 function OnMobSkillCheck(target,mob,skill)
 	-- notorious monsters shouldn't explode, nor dynamis
-    if(mob:isMobType(MOBTYPE_NOTORIOUS) or mob:isInDynamis()) then
+    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
     	return 1;
     end
 	return math.random(0,1);
