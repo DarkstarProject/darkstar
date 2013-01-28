@@ -36,5 +36,6 @@ function OnUseAbility(player, target, ability)
 	end
 	local recover = (multi * vit);
 	player:setHP((hp + recover));
-	player:messageBasic(24,0,recover); -- <Player> <recovers/recover> <#> HP.
+	
+	return recover;
 end;
