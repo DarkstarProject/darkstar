@@ -8,7 +8,7 @@ package.loaded["scripts/zones/The_Sanctuary_of_Zitah/TextIDs"] = nil;
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/The_Sanctuary_of_Zitah/TextIDs");
+require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
 region 	= LITELOR;
 csid	= 0x7ff4;

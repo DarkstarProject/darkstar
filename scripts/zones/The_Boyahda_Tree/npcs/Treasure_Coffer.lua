@@ -9,7 +9,7 @@ package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/Treasure");
+require("scripts/globals/treasure");
 require("scripts/globals/quests");
 require("scripts/zones/The_Boyahda_Tree/TextIDs");
 

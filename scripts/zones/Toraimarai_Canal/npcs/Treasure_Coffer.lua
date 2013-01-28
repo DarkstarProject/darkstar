@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/Treasure");
+require("scripts/globals/treasure");
 require("scripts/globals/quests");
 require("scripts/zones/Toraimarai_Canal/TextIDs");
 
