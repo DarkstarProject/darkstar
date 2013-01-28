@@ -677,8 +677,18 @@ function addBonuses(caster, spell, target, dmg)
 
 	dmg = math.floor(dmg * mab);
 
+	-- Applies "Damage Taken" and "Magic Damage Taken" mods.
+	-- The formulas look crazy because SE.
+	-- Note that MOD_DMGMAGIC is stored in item_mods in amount/256 format
+
+	local dmgTaken = target:getMod(MOD_DMG);
+	local dmgMod = 1;
+	if (dmgTaken > 0) then
+		dmgMod = dmgMod+(math.floor((dmgTaken/100)*256)/256);
+	else
+		dmgMod = dmgMod+(math.ceil((dmgTaken/100)*256)/256);
+	end
 	local magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
-	local dmgMod = (256 + target:getMod(MOD_DMG)) / 256;
 
 	dmg = math.floor(dmg * dmgMod);
 	dmg = math.floor(dmg * magicDmgMod);

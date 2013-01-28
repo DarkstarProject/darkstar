@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/common");
+require("scripts/globals/missions");
 
 -----------------------------------
 -- convenience constants
@@ -308,7 +309,7 @@ function getSupplyAvailable(nation,player)
 		for i = 0,18 do 
 			if(GetRegionOwner(i) ~= nation or 
 			   i == 16 or 
-			   (i == 18 and player:hasCompletedMission(6,25) == false)) then
+			   (i == 18 and player:hasCompletedMission(COP,SHELTERING_DOUBT) == false)) then
 				mask = mask + 2^(i + 5);
 			end
 		end

@@ -183,14 +183,29 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		hitsdone = hitsdone + 1;
 	end
 
-	-- Apply MOD_DMG first, and separately.  For proof of order, see: http://wiki.ffxiclopedia.org/wiki/Sentinel
-	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMG) / 100));
-	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMGPHYS) / 100));
-
 	-- if an attack landed it must do at least 1 damage
 	if(hitslanded >= 1 and finaldmg < 1) then
 		finaldmg = 1;
 	end
+
+	-- Applies "Damge Taken" and "Physical Damage Taken" mods
+	local dmgTaken = target:getMod(MOD_DMG);
+	local physDmgTaken = target:getMod(MOD_DMGPHYS);
+	local dmgMod = 1;
+	local physMod = 1;
+	if (dmgTaken > 0) then
+		dmgMod = dmgMod+(math.floor((dmgTaken/100)*256)/256);
+	else
+		dmgMod = dmgMod+(math.ceil((dmgTaken/100)*256)/256);
+	end
+	if (physDmgTaken > 0) then
+		physMod = physMod+(math.floor((physDmgTaken/100)*256)/256);
+	else
+		physMod = physMod+(math.ceil((physDmgTaken/100)*256)/256);
+	end
+
+	finaldmg = math.floor(finaldmg * dmgMod);
+	finaldmg = math.floor(finaldmg * physMod);
 
 	-- all hits missed
 	if(hitslanded == 0 or finaldmg == 0) then
@@ -259,13 +274,23 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 
 	finaldmg = finaldmg * resist;
 
-	-- Apply MOD_DMG first, and separately.  For proof of order, see: http://wiki.ffxiclopedia.org/wiki/Sentinel
-	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMG) / 100));
-	finaldmg = finaldmg * (1 + (target:getMod(MOD_DMGMAGIC) / 100));
-
 	if(finaldmg < 1) then
 		finaldmg = 1;
 	end
+
+	-- Applies "Damage Taken" and "Magic Damage Taken" gear
+	-- MDT is stored in amount/256
+	local dmgTaken = target:getMod(MOD_DMG);
+	local dmgMod = 1;
+	if (dmgTaken > 0) then
+		dmgMod = dmgMod+(math.floor((dmgTaken/100)*256)/256);
+	else
+		dmgMod = dmgMod+(math.ceil((dmgTaken/100)*256)/256);
+	end
+	local magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
+
+	finaldmg = finaldmg * dmgMod;
+	finaldmg = finaldmg * magicDmgMod;
 
 	returninfo.dmg = finaldmg;
 	return returninfo;

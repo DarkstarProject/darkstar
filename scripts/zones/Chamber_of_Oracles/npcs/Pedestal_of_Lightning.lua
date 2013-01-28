@@ -22,16 +22,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	local ZilartStatus = player:getVar("ZilartStatus");
 	
 	if(player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then
 		if(player:hasKeyItem(LIGHTNING_FRAGMENT)) then
 			player:delKeyItem(LIGHTNING_FRAGMENT);
-			player:setVar("ZilartStatus",player:getVar("ZilartStatus") + 32);
+			player:setVar("ZilartStatus",ZilartStatus + 32);
 			player:messageSpecial(YOU_PLACE_THE,LIGHTNING_FRAGMENT);
 			
-			if(player:getVar("ZilartStatus") == 255) then
+			if(ZilartStatus == 255) then
 				player:startEvent(0x0001);
 			end
+		elseif (ZilartStatus == 255) then -- Execute cutscene if the player is interrupted.
+			player:startEvent(0x0001);
 		else
 			player:messageSpecial(IS_SET_IN_THE_PEDESTAL,LIGHTNING_FRAGMENT);
 		end
