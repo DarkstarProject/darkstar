@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if (trade:getItemCount() == 1 and trade:hasItemQty(570,1)) then
+	if (trade:getItemCount() == 1 and trade:hasItemQty(571,1)) then
 		player:tradeComplete();
 		player:addItem(570);
 		player:specialMessage(ITEM_OBTAINED,570);
