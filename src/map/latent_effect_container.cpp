@@ -264,12 +264,6 @@ void CLatentEffectContainer::CheckLatentsWeaponDraw(bool drawn)
 				case LATENT_WEAPON_DRAWN_HP_UNDER:
 					//todo: hp drain
 					break;
-				case LATENT_WEAPON_DRAWN_MP_DRAIN:
-					//todo: mp drain
-					break;
-				case LATENT_WEAPON_DRAWN_TP_DRAIN:
-					//todo: tp drain
-					break;
 				case LATENT_WEAPON_SHEATHED:
 					m_LatentEffectList.at(i)->Deactivate();
 				default:
@@ -285,8 +279,6 @@ void CLatentEffectContainer::CheckLatentsWeaponDraw(bool drawn)
 			{
 				case LATENT_WEAPON_DRAWN:
 				case LATENT_WEAPON_DRAWN_HP_UNDER:
-				case LATENT_WEAPON_DRAWN_MP_DRAIN:
-				case LATENT_WEAPON_DRAWN_TP_DRAIN:
 					m_LatentEffectList.at(i)->Deactivate();
 					break;
 				case LATENT_WEAPON_SHEATHED:

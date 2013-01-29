@@ -1541,10 +1541,10 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
             baseTp = CalculateBaseTP(delay) / ratio;
 		}
 
-
+		
 		// add to to attacker
-		PAttacker->addTP( tpMultiplier * (baseTp * (1.0f + 0.01f * (float)PAttacker->getMod(MOD_STORETP))) + getStoreTPbonusFromMerit(PAttacker));
-
+		PAttacker->addTP( tpMultiplier * (baseTp * (1.0f + 0.01f * ((float)PAttacker->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))));
+		
 		if (giveTPtoVictim == true)
 		{
 			//account for attacker's subtle blow which reduces the baseTP gain for the defender
