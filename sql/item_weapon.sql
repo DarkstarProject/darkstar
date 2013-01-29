@@ -3261,7 +3261,7 @@ INSERT INTO `item_weapon` VALUES ('19852', 'yoichinoyumi', '25', '0', '1', '524'
 INSERT INTO `item_weapon` VALUES ('19853', 'verethragna', '1', '0', '1', '291', '45', '0');
 INSERT INTO `item_weapon` VALUES ('19854', 'twashtar', '2', '0', '1', '176', '55', '0');
 INSERT INTO `item_weapon` VALUES ('19855', 'almace', '3', '0', '1', '224', '70', '0');
-INSERT INTO `item_weapon` VALUES ('19856', 'caladbolg', '4', '0', '1', '430', '142', '0');
+INSERT INTO `item_weapon` VALUES ('19856', 'caladbolg', '4', '2', '1', '430', '142', '0');
 INSERT INTO `item_weapon` VALUES ('19857', 'farsha', '5', '0', '1', '276', '86', '0');
 INSERT INTO `item_weapon` VALUES ('19858', 'ukonvasara', '6', '0', '1', '482', '156', '0');
 INSERT INTO `item_weapon` VALUES ('19859', 'redemption', '7', '0', '1', '502', '163', '0');

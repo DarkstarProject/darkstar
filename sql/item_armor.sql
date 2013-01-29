@@ -9457,7 +9457,7 @@ INSERT INTO `item_armor` VALUES(19803, 'adaman_bullet', 98, 1024, 0, 0, 0, 8, 0)
 INSERT INTO `item_armor` VALUES(19805, 'verethragna', 99, 32768, 0, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES(19806, 'twashtar', 99, 65672, 465, 0, 0, 3, 0);
 INSERT INTO `item_armor` VALUES(19807, 'almace', 99, 32848, 467, 0, 0, 3, 0);
-INSERT INTO `item_armor` VALUES(19808, 'caladbolg', 99, 192, 467, 0, 0, 1, 0);
+INSERT INTO `item_armor` VALUES(19808, 'caladbolg', 99, 192, 573, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES(19809, 'farsha', 99, 64, 0, 0, 0, 3, 0);
 INSERT INTO `item_armor` VALUES(19810, 'ukonvasara', 99, 0, 0, 0, 0, 1, 0);
 INSERT INTO `item_armor` VALUES(19811, 'redemption', 99, 32, 0, 0, 0, 1, 0);
