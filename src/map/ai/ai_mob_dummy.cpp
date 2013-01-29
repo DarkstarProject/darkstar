@@ -939,6 +939,10 @@ void CAIMobDummy::ActionSleep()
     if (!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && 
         !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II))
     {
+		//put it in combat if it isn't
+		if( m_PMob->animation == ANIMATION_NONE ){ 
+			m_PMob->animation = ANIMATION_ATTACK;
+		}
 		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
     }
 	//TODO: possibly change this so have ActionBeforeSleep then ActionSleep (send ENTITY_UPDATE once only rather than spam)
