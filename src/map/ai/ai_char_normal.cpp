@@ -2749,13 +2749,21 @@ void CAICharNormal::ActionAttack()
 				Action.flag	= 0;
 
 				uint8 hitRate = 0;
-				if (zanshin)
-				{
-					hitRate = battleutils::GetHitRateAccOffset(m_PChar,m_PBattleTarget, 34);
+				if(i < numattacksRightHand){
+					if (zanshin){
+						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,(uint8)35);
+					}
+					else{
+						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget);
+					}
 				}
-				else
-				{
-					hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget);
+				else if ( i < numattacksLeftHand + numattacksRightHand){
+					if (zanshin){
+						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,true,(uint8)35);
+					}
+					else{
+						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,true);
+					}
 				}
 				// сначала вычисляем вероятность попадания по монстру
 				// затем нужно вычислить вероятность нанесения критического удара

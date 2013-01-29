@@ -3215,8 +3215,8 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
             else
             {
 				uint32 baseExp  = charutils::GetRealExp(PChar->GetMLevel(),PTarget->GetMLevel());
-				uint16 charEva  = PChar->EVA();
-				uint16 charDef  = PChar->DEF();
+				uint16 charAcc  = PChar->ACC(SLOT_MAIN, (uint8)0);
+				uint16 charAtt  = PChar->ATT();
 				uint16 mobEva   = PTarget->EVA();
 				uint16 mobDef   = PTarget->DEF();
 
@@ -3233,16 +3233,24 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
  				else if (baseExp >=  75) MessageValue = 0x42;
  				else if (baseExp >=  15) MessageValue = 0x41;
  				else if (baseExp ==   0) MessageValue = 0x40;
-
-                if      (mobDef >  charDef && mobEva >  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 170));
-                else if (mobDef == charDef && mobEva >  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 171));
-				else if (mobDef <  charDef && mobEva >  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 172));
-				else if (mobDef >  charDef && mobEva == charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 173));
-				else if (mobDef <  charDef && mobEva == charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 175));
-				else if (mobDef >  charDef && mobEva <  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 176));
-				else if (mobDef == charDef && mobEva <  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 177));
-				else if (mobDef <  charDef && mobEva <  charEva) PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 178));
-				else                                             PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 174));
+                if      (mobDef > charAtt && (mobEva - 30) > charAcc) 
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 170));//high eva high def
+                else if ((mobDef * 1.25) > charAtt && mobDef <= charAtt && (mobEva - 30) > charAcc) 
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 171));//high eva
+				else if ((mobDef * 1.25) <= charAtt && (mobEva - 30) > charAcc) 
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 172));//high eva low def
+				else if (mobDef > charAtt && (mobEva - 30) <= charAcc && (mobEva + 10) > charAcc) 
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 173));//high def
+				else if ((mobDef * 1.25) <= charAtt && (mobEva - 30) <= charAcc && (mobEva + 10) > charAcc) 
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 175));//low def
+				else if (mobDef > charAtt && (mobEva + 10) <= charAcc) 
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 176));//low eva high def
+				else if ((mobDef * 1.25) > charAtt && mobDef <= charAtt && (mobEva + 10) <= charAcc) 
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 177));//low eva
+				else if ((mobDef * 1.25) <= charAtt && (mobEva + 10) <= charAcc) 
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 178));//low eva low def
+				else 
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 174));//broke even
             }
 		}
 		break;

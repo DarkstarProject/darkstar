@@ -2710,26 +2710,26 @@ inline int32 CLuaBaseEntity::capSkill(lua_State* L)
 				if(skill < MAX_SKILLTYPE){
 					CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 					CItemWeapon* PItem = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
-
+					/* let's just ignore this part for the moment
 					//remove modifiers if valid
 					if(skill>=1 && skill<=12 && PItem!=NULL && PItem->getSkillType()==skill){
 						PChar->delModifier(MOD_ATT, PChar->GetSkill(skill));
 						PChar->delModifier(MOD_ACC, PChar->GetSkill(skill));
 					}
-
+					*/
 					uint16 maxSkill = 10*battleutils::GetMaxSkill((SKILLTYPE)skill, PChar->GetMJob(),PChar->GetMLevel());
 					PChar->RealSkills.skill[skill] = maxSkill; //set to capped
 					PChar->WorkingSkills.skill[skill] = maxSkill/10;
 					PChar->WorkingSkills.skill[skill] |= 0x8000; //set blue capped flag
 					PChar->pushPacket(new CCharSkillsPacket(PChar));
 					charutils::CheckWeaponSkill(PChar, skill);
-
+					/* and ignore this part
 					//reapply modifiers if valid
 					if(skill>=1 && skill<=12 && PItem!=NULL && PItem->getSkillType()==skill){
 						PChar->addModifier(MOD_ATT, PChar->GetSkill(skill));
 						PChar->addModifier(MOD_ACC, PChar->GetSkill(skill));
 					}
-
+					*/
 					charutils::SaveCharSkills(PChar, skill); //save to db
 					return 0;
 				}

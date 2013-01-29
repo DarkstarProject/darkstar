@@ -1252,8 +1252,6 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 					{
 						PChar->look.sub = 0;
 					}
-					PChar->delModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
-					PChar->delModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 				}
 
 				PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
@@ -1352,8 +1350,6 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HASSO);
 						PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEIGAN);
 					}
-					PChar->addModifier(MOD_ATT, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
-					PChar->addModifier(MOD_ACC, PChar->GetSkill(((CItemWeapon*)PItem)->getSkillType()));
 				}
 				PChar->look.main = PItem->getModelId();
 			}
@@ -2011,12 +2007,13 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 				PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, (CurSkill + SkillAmount)/10, 53));
 
 				CheckWeaponSkill(PChar, SkillID);
-
+				/* ignoring this for now
 				if (SkillID >= 1 && SkillID <= 12)
 				{
 					PChar->addModifier(MOD_ATT, 1);
 					PChar->addModifier(MOD_ACC, 1);
 				}
+				*/
 			}
 			SaveCharSkills(PChar, SkillID);
 		}

@@ -1643,7 +1643,7 @@ uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 *																		*
 ************************************************************************/
 
-uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subWeaponAttack, uint8 offsetAccuracy) //subWeaponAttack is for calculating acc of dual wielded sub weapon
 {
     int32 hitrate = 75;
 
@@ -1653,36 +1653,28 @@ uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	}
     else
     {
-		hitrate = hitrate + (PAttacker->ACC() - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
+		int8 slot = (subWeaponAttack ? SLOT_SUB : SLOT_MAIN);
+		hitrate = hitrate + (PAttacker->ACC(slot,offsetAccuracy) - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
 		hitrate = dsp_cap(hitrate, 20, 95);
     }
 	return (uint8)hitrate;
 }
-
-/************************************************************************
-*																		*
-*  Calculate Probability attack will hit with accuracy offset			*
-*																		*
-************************************************************************/
-
-uint8 GetHitRateAccOffset(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint32 accuracy)
+uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
-    int32 hitrate = 75;
-
-    if (PAttacker->objtype == TYPE_PC && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
-    {
-		hitrate = 100; //attack with SA active cannot miss
-	}
-    else
-    {
-		int32 attackeracc = ((PAttacker->getMod(MOD_ACC) + accuracy) * (100 + PAttacker->getMod(MOD_ACCP)))/100 + PAttacker->DEX()/2;
-
-		hitrate = hitrate + (attackeracc - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
-
-		hitrate = dsp_cap(hitrate, 20, 95);
-    }
-	return (uint8)hitrate;
+	return GetHitRateEx(PAttacker, PDefender, false, 0);
+}
+uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subWeaponAttack)
+{
+	return GetHitRateEx(PAttacker, PDefender, subWeaponAttack, 0);
+}
+uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 offsetAccuracy)
+{
+	return GetHitRateEx(PAttacker, PDefender, false, offsetAccuracy);
+}
+uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subWeaponAttack, uint8 offsetAccuracy)
+{
+	return GetHitRateEx(PAttacker, PDefender, subWeaponAttack, offsetAccuracy);
 }
 
 /************************************************************************

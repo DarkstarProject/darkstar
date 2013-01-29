@@ -108,8 +108,11 @@ namespace battleutils
 	bool			IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore);
 
 	int32				GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID);
+	uint8				GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subWeaponAttack, uint8 offsetAccuracy);
 	uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	uint8				GetHitRateAccOffset(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint32 accuracy); 
+	uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subWeaponAttack);
+	uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 offsetAccuracy);
+	uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subWeaponAttack, uint8 offsetAccuracy);
 	uint8				GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakAttack);
     uint8				CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon);
 	uint8				GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);

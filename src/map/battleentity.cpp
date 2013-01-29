@@ -276,7 +276,9 @@ uint16 CBattleEntity::CHR()
 uint16 CBattleEntity::ATT()
 {
     int32 ATT = 8 + m_modStat[MOD_ATT] + STR() / 2;
-
+	if (this->objtype & TYPE_PC){
+		ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType());
+	}
     return ATT + (ATT * m_modStat[MOD_ATTP] / 100) + 
         dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
 }
@@ -289,9 +291,30 @@ uint16 CBattleEntity::RATT(uint8 skill)
         dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
 }
 
-uint16 CBattleEntity::ACC()
+uint16 CBattleEntity::ACC(uint8 slot, uint8 offsetAccuracy)
 {
-    return dsp_max(0, (m_modStat[MOD_ACC] * (100 + m_modStat[MOD_ACCP])) / 100 + DEX() / 2);
+	if (this->objtype & TYPE_PC){
+		int16 ACC = GetSkill(m_Weapons[slot]->getSkillType());
+		ACC = (ACC > 200 ? (((ACC - 200)*0.9)+200) : ACC);
+		if(slot == SLOT_MAIN && m_Weapons[SLOT_MAIN]->isTwoHanded() == true)
+		{
+			ACC += DEX() * 0.75;
+		}
+		else
+		{
+			ACC += DEX() * 0.5;
+		}
+		ACC = (ACC + m_modStat[MOD_ACC] + offsetAccuracy);
+		ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) + 
+			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]) + DEX() / 2;
+		return dsp_max(0, ACC);
+	}
+	else{
+		int16 ACC = m_modStat[MOD_ACC];
+		ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) + 
+			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]) + DEX() / 2; //food mods here for Snatch Morsel
+		return dsp_max(0, ACC);
+	}
 }
 
 uint16 CBattleEntity::DEF()
