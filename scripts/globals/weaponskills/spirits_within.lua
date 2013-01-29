@@ -21,7 +21,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	local D = player:getWeaponDmg();	
 	local HP = player:getHP();
 	local TP = player:getTP();
-	local WSC = ;
+	local WSC = 0;
 		
 	if (TP == 300) then	
 		WSC = HP * 0.46875;
