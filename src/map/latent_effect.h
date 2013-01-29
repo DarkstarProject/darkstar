@@ -29,10 +29,11 @@
 
 enum LATENT
 {
-	LATENT_HP_UNDER					= 0,  //hp less than or equal to % - PARAM: HP PERCENT
-	LATENT_HP_OVER					= 1,  //hp more than % - PARAM: HP PERCENT
+	LATENT_HP_UNDER_PERCENT			= 0,  //hp less than or equal to % - PARAM: HP PERCENT
+	LATENT_HP_OVER_PERCENT			= 1,  //hp more than % - PARAM: HP PERCENT
 	LATENT_HP_UNDER_TP_UNDER_100	= 2,  //hp less than or equal to %, tp under 100 - PARAM: HP PERCENT
 	LATENT_HP_OVER_TP_UNDER_100		= 3,  //hp more than %, tp over 100 - PARAM: HP PERCENT
+	LATENT_HP_OVER_VISIBLE_GEAR		= 46, //hp more than or equal to %, calculated using HP bonuses from visible gear only 
 	LATENT_MP_UNDER_PERCENT			= 4,  //mp less than or equal to % - PARAM: MP PERCENT
 	LATENT_MP_UNDER					= 5,  //mp less than # - PARAM: MP #
 	LATENT_MP_UNDER_VISIBLE_GEAR	= 45, //mp less than or equal to %, calculated using MP bonuses from visible gear only
@@ -40,9 +41,8 @@ enum LATENT
 	LATENT_TP_OVER_100				= 7,  //tp over 100 - PARAM: NONE
 	LATENT_SUBJOB					= 8,  //subjob - PARAM: JOBTYPE
 	LATENT_PET_ID					= 9,  //pettype - PARAM: PETID
-	LATENT_WEAPON_DRAWN				= 10, //weapon drawn - PARAM: HP DRAIN/SEC
+	LATENT_WEAPON_DRAWN				= 10, //weapon drawn
 	LATENT_WEAPON_SHEATHED			= 11, //weapon sheathed
-	LATENT_WEAPON_DRAWN_MP_DRAIN	= 12, //weapon drawn - PARAM: MP DRAIN/SEC
 	LATENT_STATUS_EFFECT_ACTIVE		= 13, //status effect on player - PARAM: EFFECTID
 	LATENT_NO_FOOD_ACTIVE			= 14, //no food effects active on player
 	LATENT_PARTY_MEMBERS			= 16, //party has members other than self - PARAM: # OF MEMBERS
@@ -66,7 +66,6 @@ enum LATENT
 	LATENT_JOB_LEVEL_ODD			= 41,
 	LATENT_JOB_LEVEL_EVEN			= 42,
 	LATENT_WEAPON_DRAWN_HP_UNDER	= 43, //PARAM: HP PERCENT
-	LATENT_WEAPON_DRAWN_TP_DRAIN	= 44 //TP must be >= to drain to activate latent PARAM: TP DRAIN/TICK
 };
 
 #define MAX_LATENTEFFECTID    50
