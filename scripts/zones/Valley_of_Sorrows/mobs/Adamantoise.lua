@@ -44,7 +44,7 @@ function onMobDeath(mob, killer)
       DeterMob(Adamantoise, true);
     end
   else
-    UpdateNMSpawnPoint(Adamantoise);
+    --UpdateNMSpawnPoint(Adamantoise);
     SpawnMob(Adamantoise, '', math.random((75600),(86400)));
     SetServerVariable("[PH]Aspidochelone", kills + 1);
   end
