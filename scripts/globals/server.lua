@@ -118,7 +118,8 @@ function SetTimedSpawns()
     17596507, -- Skewer Sam
     17269106, -- Roc
     17297440, -- Behemoth
-    17228242  -- Simurgh
+    17228242, -- Simurgh
+	17301537  -- Adamantoise
   }
 
   i = 1;

@@ -13,13 +13,15 @@ require("scripts/zones/Valley_of_Sorrows/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	local Adamantoise = GetMobAction(17301537);
+	local Aspidochelone = GetMobAction(17301538);
 	
 	-- Trade Clump of Red Pondweed
-	if(GetMobAction(17301538) == 0 and trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then 
+	if((Aspidochelone == 0 or Aspidochelone == 24) and trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then -- Check trade, and if mob is ACTION_NONE (0) or waiting to spawn (24)
 		player:tradeComplete();
 		SpawnMob(17301538,180):updateEnmity(player);
 	-- Trade Clump of Red Pondweed
-	elseif(GetMobAction(17301537) == 0 and trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then 
+	elseif((Adamantoise == 0 or Adamantoise == 24) and trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17301537,180):updateEnmity(player);
 	end

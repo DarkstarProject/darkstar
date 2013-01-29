@@ -65,5 +65,8 @@ function OnGameDayAutomatisation()
 		GetNPCByID(17277171):openDoor(432);
 		GetNPCByID(17277172):openDoor(432);
 	end
-	
+
+	-- Can spawn Xolotl?
+	local ToD = GetServerVariable("[POP]Xolotl");
+	DeterMob(16806215, false);
 end;

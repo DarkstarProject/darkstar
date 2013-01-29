@@ -38,7 +38,7 @@ function onMobDeath(mob, killer)
   
   -- Set Behemoth's spawnpoint and respawn time (21-24 hours)
   SetServerVariable("[PH]King_Behemoth", 0);
-  DeterMob(PH, false);
+  DeterMob(17297440, false);
   UpdateNMSpawnPoint(17297440);
   SpawnMob(17297440, '', math.random((75600),(86400)));
   

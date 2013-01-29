@@ -261,7 +261,7 @@ INSERT INTO `mob_groups` VALUES (221,3983,7,330,0,3573,0,0,70,73);
 INSERT INTO `mob_groups` VALUES (222,3996,7,330,0,3585,0,0,70,71);
 INSERT INTO `mob_groups` VALUES (223,4048,7,330,0,3620,0,0,58,59);
 INSERT INTO `mob_groups` VALUES (224,4346,7,0,0,0,0,0,0,0);
-INSERT INTO `mob_groups` VALUES (225,4396,7,86400,1,4205,0,0,80,81);
+INSERT INTO `mob_groups` VALUES (225,4396,7,2304,1,4205,0,0,80,81); -- 16 game hours.  24 real hours handled via DeterMob function.
 INSERT INTO `mob_groups` VALUES (226,4397,7,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (227,4398,7,0,128,0,0,0,72,72);
 INSERT INTO `mob_groups` VALUES (228,247,8,0,128,0,0,0,75,75);
