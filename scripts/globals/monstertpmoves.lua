@@ -66,6 +66,8 @@ MSG_DRAIN_HP = 187;
 MSG_DRAIN_MP = 225;
 MSG_DRAIN_TP = 226;
 MSG_NO_EFFECT = 189;
+MSG_SHADOW = 31;
+MSG_ANTICIPATE = 30;
 MSG_DAMAGE = 185; -- player uses, target takes 10 damage. DEFAULT
 MSG_MISS = 188;
 MSG_RESIST = 85;
@@ -509,7 +511,7 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 	damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
 
 	if(cap == nil) then
-		-- super cap for high damage mobs
+		-- super cap for high health mobs
 		if(damage > 1000) then
 			damage = 700 + math.random(500);
 		end
@@ -562,6 +564,10 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 		return 0;
 	end
 
+	-- set message to damage
+	-- this is for AoE because its only set once
+	skill:setMsg(MSG_DAMAGE);
+
 	--Handle shadows depending on shadow behaviour / skilltype
 	if(shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
 		targShadows = target:getMod(MOD_UTSUSEMI);
@@ -571,22 +577,22 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 			shadowType = MOD_BLINK;
 		end
 
-		if(targShadows>0)then
+		if(targShadows>0) then
 		--Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
 			if(targShadows >= shadowbehav) then --no damage, just suck the shadows
-				skill:setMsg(31);
-				target:setMod(shadowType,(targShadows-shadowbehav));
+				skill:setMsg(MSG_SHADOW);
+				local shadowsLeft = targShadows-shadowbehav;
+				target:setMod(shadowType, shadowsLeft);
 				if(shadowType == MOD_UTSUSEMI) then --update icon
 					effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
 					if(effect ~= nil) then
-						if((targShadows-shadowbehav) == 0) then
+						if(shadowsLeft == 0) then
 							target:delStatusEffect(EFFECT_COPY_IMAGE);
-							target:delStatusEffect(EFFECT_BLINK);
-						elseif((targShadows-shadowbehav) == 1) then
+						elseif(shadowsLeft == 1) then
 							effect:setIcon(EFFECT_COPY_IMAGE);
-						elseif((targShadows-shadowbehav) == 2) then
+						elseif(shadowsLeft == 2) then
 							effect:setIcon(EFFECT_COPY_IMAGE_2);
-						elseif((targShadows-shadowbehav) == 3) then
+						elseif(shadowsLeft == 3) then
 							effect:setIcon(EFFECT_COPY_IMAGE_3);
 						end
 					end
@@ -616,16 +622,15 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 			--third eye doesnt care how many shadows, so attempt to anticipate, but reduce
 			--chance of anticipate based on previous successful anticipates.
 			prevAnt = teye:getPower();
+			skill:setMsg(MSG_ANTICIPATE)
 			if(prevAnt == 0) then
 				--100% proc
 				teye:setPower(1);
-				skill:setMsg(30);
 				return 0;
 			end
 			if( (math.random()*100) < (80-(prevAnt*10)) ) then
 				--anticipated!
 				teye:setPower(prevAnt+1);
-				skill:setMsg(30);
 				return 0;
 			end
 			target:delStatusEffect(EFFECT_THIRD_EYE);
@@ -685,11 +690,7 @@ end;
 -- used to stop tp move status effects
 function MobPhysicalHit(skill, dmg, target, hits)
 	-- if message is not the default. Then there was a miss, shadow taken etc
-	if(skill:getMsg() ~= MSG_DAMAGE) then
-		return false;
-	end
-
-	return true;
+	return skill:getMsg() == MSG_DAMAGE;
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
