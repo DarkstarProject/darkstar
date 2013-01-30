@@ -113,6 +113,8 @@ public:
 	int32 getAmmoDmg(lua_State*);				// Get ammo DMG rating
 	int32 getRATT(lua_State*);				// Get total r.attack
 	int32 getRACC(lua_State*);				// Get total r.acc
+	int32 getACC(lua_State*);				// Get total ACC
+	int32 getEVA(lua_State*);				// Get total EVA
 	int32 capSkill(lua_State*);				// Caps the given skill id for the job you're on (GM COMMAND)
 	int32 capAllSkills(lua_State*);			// Caps All skills, GM command
 

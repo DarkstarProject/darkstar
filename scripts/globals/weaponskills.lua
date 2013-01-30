@@ -207,8 +207,8 @@ function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
 end;
 
 function getHitRate(attacker,target,capHitRate)
-	local int acc = attacker:getMod(MOD_ACC);
-	local int eva = target:getMod(MOD_EVA);
+	local int acc = attacker:getACC();
+	local int eva = target:getEVA();
 	
 	if(attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
 		acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);

@@ -4880,6 +4880,41 @@ inline int32 CLuaBaseEntity::getRACC(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::getACC(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	uint8 slot = SLOT_MAIN;
+	uint8 offsetAccuracy = 0;
+	if((L,1) == 1){
+		slot = SLOT_SUB;
+	}
+	if((L,2) > 0){
+		offsetAccuracy = (L,2);
+	}
+	
+	CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+	uint8 ACC = PEntity->ACC(slot,offsetAccuracy);
+
+	lua_pushinteger(L,ACC);
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getEVA(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+	uint8 EVA = PEntity->EVA();
+
+	lua_pushinteger(L,EVA);
+	return 1;
+}
+
+//==========================================================//
+
 inline int32 CLuaBaseEntity::isWeaponTwoHanded(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -5819,6 +5854,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRATT),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRACC),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getACC),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEVA),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,capSkill),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,capAllSkills),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addAllSpells),
