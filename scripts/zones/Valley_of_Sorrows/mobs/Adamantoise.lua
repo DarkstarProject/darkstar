@@ -34,7 +34,7 @@ function onMobDeath(mob, killer)
 	killer:addTitle(TORTOISE_TORTURER);
 	
   Adamantoise  = mob:getID();
-  Aspidochelone = 17408019; 
+  Aspidochelone = 17301538; 
   ToD     = GetServerVariable("[POP]Aspidochelone");
   kills   = GetServerVariable("[PH]Aspidochelone");
   if (ToD <= os.time(t) and GetMobAction(Aspidochelone) == 0) then
@@ -44,7 +44,7 @@ function onMobDeath(mob, killer)
       DeterMob(Adamantoise, true);
     end
   else
-    --UpdateNMSpawnPoint(Adamantoise);
+    UpdateNMSpawnPoint(Adamantoise);
     SpawnMob(Adamantoise, '', math.random((75600),(86400)));
     SetServerVariable("[PH]Aspidochelone", kills + 1);
   end

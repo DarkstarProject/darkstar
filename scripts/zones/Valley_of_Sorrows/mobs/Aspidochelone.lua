@@ -38,8 +38,9 @@ function onMobDeath(mob, killer)
   SetServerVariable("[POP]Aspidochelone", os.time(t) + wait); -- 3 days
   
   -- Set Adamantoise's spawnpoint and respawn time (21-24 hours)
+  Adamantoise = 17301537;
   SetServerVariable("[PH]Aspidochelone", 0);
-  DeterMob(17301537, false);
-  UpdateNMSpawnPoint(17301537);
-  SpawnMob(17301537, '', math.random((75600),(86400)));
+  DeterMob(Adamantoise, false);
+  UpdateNMSpawnPoint(Adamantoise);
+  SpawnMob(Adamantoise, '', math.random((75600),(86400)));
 end;
