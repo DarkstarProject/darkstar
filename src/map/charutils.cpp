@@ -1194,29 +1194,22 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		}
 		PItem->setSubType(ITEM_UNLOCKED);
 
-
-
-		// check if this weapon is unlocked
-		if (equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB || equipSlotID == SLOT_MAIN)
-		{
-			if (!((CItemArmor*)PItem)->IsShield() && ((CItemWeapon*)PItem)->isUnlockable() && PChar->unlockedWeapons[((CItemWeapon*)PItem)->getUnlockId()].unlocked)
+		if( equipSlotID == SLOT_SUB ){
+			for (uint16 i = 0; i < (((CItemArmor*)PItem)->modList.size()); ++i)
 			{
-				// weapon is unlockable and char has unlocked it, remove different set of mods
-				// TODO...remove mods of the unlocked version
+				if( ((CItemArmor*)PItem)->modList.at(i)->getModID() == MOD_MAIN_DMG_RANK )
+				{
+					PChar->delModifier(MOD_SUB_DMG_RANK,
+					((CItemArmor*)PItem)->modList.at(i)->getModAmount());
+				} else {
+					PChar->delModifier(((CItemArmor*)PItem)->modList.at(i)->getModID(),
+						((CItemArmor*)PItem)->modList.at(i)->getModAmount());
+				}
 			}
-			else
-			{
-				// is weapon, but not unlockable or char has not unlocked it yet
-				PChar->delModifiers(&((CItemArmor*)PItem)->modList);	
-			}
+		} else {
+			PChar->delModifiers(&((CItemArmor*)PItem)->modList);
 		}
-		else
-		{
-			// not a weapon
-			PChar->delModifiers(&((CItemArmor*)PItem)->modList);		
-		}
-
-
+		PChar->LatentEffectContainer->DelLatentEffects(equipSlotID);
 
 		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
 		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
@@ -1552,28 +1545,23 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 		        }
 				PItem->setSubType(ITEM_LOCKED);
 
-
-
-				// check if this weapon is unlocked
-				if (equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB || equipSlotID == SLOT_MAIN)
-				{
-					if (!PItem->IsShield() && ((CItemWeapon*)PItem)->isUnlockable() && PChar->unlockedWeapons[((CItemWeapon*)PItem)->getUnlockId()].unlocked)
+				if( equipSlotID == SLOT_SUB ){
+					for (uint16 i = 0; i < (((CItemArmor*)PItem)->modList.size()); ++i)
 					{
-						// weapon is unlockable and char has unlocked it, add different set of mods
-						// TODO...add mods of the unlocked version
+						if( ((CItemArmor*)PItem)->modList.at(i)->getModID() == MOD_MAIN_DMG_RANK )
+						{
+							PChar->addModifier(MOD_SUB_DMG_RANK,
+							((CItemArmor*)PItem)->modList.at(i)->getModAmount());
+						} else {
+							PChar->addModifier(((CItemArmor*)PItem)->modList.at(i)->getModID(),
+								((CItemArmor*)PItem)->modList.at(i)->getModAmount());
+						}
 					}
-					else
-					{
-						// is weapon, but not unlockable or char has not unlocked it yet
-						PChar->addModifiers(&PItem->modList);	
-					}
+				} else {
+					PChar->addModifiers(&PItem->modList);
 				}
-				else
-				{
-					// not a weapon
-					PChar->addModifiers(&PItem->modList);	
-				}
-
+				PChar->LatentEffectContainer->AddLatentEffects(&PItem->latentList, equipSlotID);
+				PChar->LatentEffectContainer->CheckLatentsEquip();
 				
 				PChar->status = STATUS_UPDATE;
 				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));

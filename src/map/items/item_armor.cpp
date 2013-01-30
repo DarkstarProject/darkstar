@@ -182,3 +182,8 @@ int16 CItemArmor::getModifier(uint16 mod)
 		}
 	}
 }
+
+void CItemArmor::addLatent(CLatentEffect* latent)
+{
+	latentList.push_back(latent);
+}

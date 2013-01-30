@@ -1497,22 +1497,13 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		if(slot==SLOT_RANGED && PAttacker->objtype == TYPE_PC)
 		{
 			CCharEntity* PChar = (CCharEntity*)PAttacker;
-			CItemWeapon* PRange = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
 			CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
 
 			int delay = 0; uint16 offset = 240;
 
-			if(PRange != NULL) 
-			{ 
-				delay += PRange->getDelay(PAttacker); 
-			}
-			if(PAmmo != NULL) 
-			{ 
-				delay += PAmmo->getDelay(PAttacker); 
-				offset += 240; 
-			}
+			delay = PAttacker->GetRangedWeaponDelay();
 
-			baseTp = CalculateBaseTP(offset + ((delay * 60) / 1000));
+			baseTp = CalculateBaseTP((delay * 110) / 1000);
 		}
 		else if (slot==SLOT_AMMO && PAttacker->objtype == TYPE_PC)
 		{
@@ -1520,21 +1511,19 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		}
 		else
         {
-            int16 delay = ((PAttacker->m_Weapons[SLOT_MAIN]->getDelay(PAttacker) * 60) / 1000);
+			int16 delay = PAttacker->GetWeaponDelay(false);
 
 			if (PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
 				PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
 				PAttacker->m_Weapons[slot]->getDmgType() != DAMAGE_HTH)
 			{
-				delay += PAttacker->m_Weapons[SLOT_SUB]->getDelay(PAttacker) * 60 / 1000;
-				delay = delay * (1 - (float)PAttacker->getMod(MOD_DUAL_WIELD) / 100.0f ) / 2;
+				delay = delay / 2;
 			}
 
             float ratio = 1.0f;
 
             if(PAttacker->m_Weapons[slot]->getDmgType() == DAMAGE_HTH)
             {
-                delay -= PAttacker->getMod(MOD_MARTIAL_ARTS);
                 ratio = 2.0f;
             }
 
@@ -1543,7 +1532,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 		
 		// add to to attacker
-		PAttacker->addTP( tpMultiplier * (baseTp * (1.0f + 0.01f * ((float)PAttacker->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))));
+		PAttacker->addTP( tpMultiplier * (baseTp * (1.0f + 0.01f * (float)(PAttacker->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))));
 		
 		if (giveTPtoVictim == true)
 		{
@@ -1554,7 +1543,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			if(PDefender->objtype == TYPE_PC)
 			{
 				//yup store tp counts on hits taken too!
-				PDefender->addTP((baseTp / 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)) + getStoreTPbonusFromMerit(PAttacker));
+				PDefender->addTP((baseTp / 3) * (1.0f + 0.01f * (float)(PDefender->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker))));
 			}
 			else
 			{
@@ -1824,9 +1813,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 
 int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 {
-	// all h2h weapons already have 3 added to thier dmg in database
-	int32 rank = PAttacker->m_Weapons[SlotID]->getDamage(PAttacker) / 9;
-
+	int32 rank = 0;
 
 	float dif = PAttacker->STR() - PDefender->VIT();
 
@@ -1834,6 +1821,7 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 
 	if(SlotID==SLOT_RANGED)
 	{
+		rank = PAttacker->GetRangedWeaponRank();
 		//different caps than melee weapons
 		fstr /= 2; //fSTR2
 		if(fstr <= (-rank*2))
@@ -1847,6 +1835,13 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 	}
 	else
 	{
+		if( SlotID == SLOT_MAIN)
+		{
+			rank = PAttacker->GetMainWeaponRank();
+		} else if( SlotID == SLOT_SUB )
+		{
+			rank = PAttacker->GetSubWeaponRank();
+		}
 		// everything else
 		if(fstr <= (-rank))
 			return (-rank);
@@ -3032,7 +3027,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 					AttMultiplerPercent = PAttacker->getMod(MOD_JUMP_ATT_BONUS);
 
 				float DamageRatio = battleutils::GetDamageRatio(PAttacker, PVictim, false, AttMultiplerPercent);
-				damageForRound = (uint16)((PAttacker->m_Weapons[SLOT_MAIN]->getDamage(PAttacker) + battleutils::GetFSTR(PAttacker,PVictim,SLOT_MAIN)) * DamageRatio);
+				damageForRound = (uint16)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker,PVictim,SLOT_MAIN)) * DamageRatio);
 
 				// bonus applies to jump only, not high jump
 				if (tier == 1)

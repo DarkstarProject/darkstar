@@ -205,8 +205,8 @@ enum MODIFIER
 	MOD_SPELLINTERRUPT		= 0xA8,				// % Spell Interruption Rate
 	MOD_MOVE				= 0xA9,				// % Movement Speed
 	MOD_FASTCAST			= 0xAA,				// Increases Spell Cast Time (TRAIT) 
-	MOD_DELAY				= 0xAB,				// Increase/Decrease Delay (unused... )
-	MOD_RANGED_DELAY		= 0xAC,				// (unused... )
+	MOD_DELAY				= 0xAB,				// Increase/Decrease Delay
+	MOD_RANGED_DELAY		= 0xAC,				// Increase/Decrease Ranged Delay
 	MOD_MARTIAL_ARTS		= 0xAD,				// The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT)
     MOD_SKILLCHAINBONUS     = 0xAE,				// Damage bonus applied to skill chain damage.  Modifier from effects/traits
     MOD_SKILLCHAINDMG       = 0xAF,				// Damage bonus applied to skill chain damage.  Modifier from gear (multiplicative after effect/traits)
@@ -395,25 +395,25 @@ enum MODIFIER
 	MOD_STEALTH              = 0x166,
 
 	MOD_MAIN_DMG_RATING		 = 0x16E,			//adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
-	MOD_OFF_DMG_RATING		 = 0x16F,			//adds damage rating to off hand weapon
+	MOD_SUB_DMG_RATING		 = 0x16F,			//adds damage rating to off hand weapon
 	MOD_REGAIN				 = 0x170,			//auto regain TP (from items) | this is multiplied by 10 e.g. 20 is 2% TP
 	MOD_REFRESH				 = 0x171,			//auto refresh from equipment
 	MOD_REGEN				 = 0x172,			//auto regen from equipment
 	MOD_CURE_POTENCY		 = 0x176,			//% cure potency | bonus from gear is capped at 50
-	MOD_CURE_POTENCY_RCVD	 = 0x177			//% potency of received cure | healer's roll, some items have this
+	MOD_CURE_POTENCY_RCVD	 = 0x177,			//% potency of received cure | healer's roll, some items have this
+	MOD_RANGED_DMG_RATING	 = 0x178,			//adds damage rating to ranged weapon
+	MOD_MAIN_DMG_RANK		 = 0x179,			//adds weapon rank to main weapon (http://wiki.bluegartr.com/bg/Weapon_Rank)
+	MOD_SUB_DMG_RANK		 = 0x17A,			//adds weapon rank to sub weapon
+	MOD_RANGED_DMG_RANK		 = 0x17B			//adds weapon rank to ranged weapon
 
 //  Use these for new modifiers. 
 	
-	//SPARE_MOD				 = 0x178
-	//SPARE_MOD				 = 0x179
-	//SPARE_MOD				 = 0x17A
-	//SPARE_MOD				 = 0x17B
 	//SPARE_MOD				 = 0x17C
 	//SPARE_MOD				 = 0x17D
 	//SPARE_MOD				 = 0x17E
 };
 
-#define MAX_MODIFIER	       0x178
+#define MAX_MODIFIER	       0x17C
 
 
 

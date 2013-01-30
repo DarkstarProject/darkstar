@@ -150,6 +150,8 @@
     <ClInclude Include="..\..\src\map\itemutils.h" />
     <ClInclude Include="..\..\src\map\item_container.h" />
     <ClInclude Include="..\..\src\map\jailutils.h" />
+    <ClInclude Include="..\..\src\map\latent_effect.h" />
+    <ClInclude Include="..\..\src\map\latent_effect_container.h" />
     <ClInclude Include="..\..\src\map\linkshell.h" />
     <ClInclude Include="..\..\src\map\lua\luautils.h" />
     <ClInclude Include="..\..\src\map\lua\lua_ability.h" />
@@ -331,6 +333,8 @@
     <ClCompile Include="..\..\src\map\itemutils.cpp" />
     <ClCompile Include="..\..\src\map\item_container.cpp" />
     <ClCompile Include="..\..\src\map\jailutils.cpp" />
+    <ClCompile Include="..\..\src\map\latent_effect.cpp" />
+    <ClCompile Include="..\..\src\map\latent_effect_container.cpp" />
     <ClCompile Include="..\..\src\map\linkshell.cpp" />
     <ClCompile Include="..\..\src\map\lua\luautils.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_ability.cpp" />

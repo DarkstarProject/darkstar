@@ -1314,7 +1314,7 @@ void CAIMobDummy::ActionAttack()
 
 	if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
-		uint32 WeaponDelay = m_PMob->m_Weapons[SLOT_MAIN]->getDelay(m_PMob);
+		uint32 WeaponDelay = m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
 		if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS,0))
 		{
 			WeaponDelay = 600;
@@ -1413,7 +1413,7 @@ void CAIMobDummy::ActionAttack()
 								bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false) );
 
 								float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical, 0); 
-								damage = (uint16)((m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDamage(m_PBattleTarget) + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
+								damage = (uint16)((m_PBattleTarget->GetMainWeaponDmg() + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
 								
 								Action.subparam = (damage * 2);
 								Action.flag = 2;
@@ -1445,7 +1445,7 @@ void CAIMobDummy::ActionAttack()
                                     DamageRatio -= 1.0f; // Guard lowers pDif by 1.0
                                 }
 
-								damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage(m_PMob) + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);	
+								damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);	
 
                                 //  Guard skill up
                                 if(m_PBattleTarget->objtype == TYPE_PC && isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0))

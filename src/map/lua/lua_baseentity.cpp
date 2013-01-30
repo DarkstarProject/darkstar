@@ -4701,14 +4701,9 @@ inline int32 CLuaBaseEntity::getWeaponDmg(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
+	uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetMainWeaponDmg();
 
-	if(weapon == NULL)
-	{
-	    ShowDebug(CL_CYAN"lua::getWeaponDmg weapon in main slot is null!\n" CL_RESET);
-		return 0;
-    }
-	lua_pushinteger( L, weapon->getDamage((CBattleEntity*)m_PBaseEntity) );
+	lua_pushinteger( L, weapondam );
 	return 1;
 }
 
@@ -4724,21 +4719,44 @@ inline int32 CLuaBaseEntity::getOffhandDmg(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_SUB];
+	uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetSubWeaponDmg();
 
-	if(weapon == NULL)
-	{
-	    ShowDebug(CL_CYAN"lua::getOffhandDmg weapon in offhand slot is null!\n" CL_RESET);
-		return 0;
-    }
-	else if((CItemArmor*)weapon->IsShield())
-	{
-	    ShowDebug(CL_CYAN"lua::getOffhandDmg item in offhand slot is a shield!\n" CL_RESET);
-		lua_pushinteger( L, 0 );
-		return 1;
-    }
+	lua_pushinteger( L, weapondam );
+	return 1;
+}
 
-	lua_pushinteger( L, weapon->getDamage((CBattleEntity*)m_PBaseEntity) );
+/************************************************************************
+*                                                                       *
+*  Gets the current weapon's base DMG; used for WS calcs                *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getWeaponDmgRank(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetMainWeaponRank() * 9;
+
+	lua_pushinteger( L, weapondam );
+	return 1;
+}
+
+
+/************************************************************************
+*                                                                       *
+*  Gets the current offhand weapon's base DMG; used for WS calcs        *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getOffhandDmgRank(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetSubWeaponRank() * 9;
+
+	lua_pushinteger( L, weapondam );
 	return 1;
 }
 
@@ -4763,7 +4781,7 @@ inline int32 CLuaBaseEntity::getWeaponSkillType(lua_State *L)
 		CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT];
 		if(weapon == NULL)
 		{
-		    ShowDebug(CL_CYAN"lua::getOffhandDmg weapon in main slot is null!\n" CL_RESET);
+		    ShowDebug(CL_CYAN"lua::getWeaponSkillType weapon in main slot is null!\n" CL_RESET);
 			return 0;
 		}
 		lua_pushinteger( L, weapon->getSkillType() );
@@ -4778,14 +4796,20 @@ inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_RANGED];
+	uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetRangedWeaponDmg();
 
-	if(weapon == NULL)
-	{
-	    ShowDebug(CL_CYAN"lua::getRangedDmg weapon in ranged slot is null!\n" CL_RESET);
-		return 0;
-    }
-	lua_pushinteger( L, weapon->getDamage((CBattleEntity*)m_PBaseEntity) );
+	lua_pushinteger( L, weapondam);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getRangedDmgForRank(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	uint16 weaponrank = ((CBattleEntity*)m_PBaseEntity)->GetRangedWeaponRank() * 9;
+
+	lua_pushinteger( L, weaponrank);
 	return 1;
 }
 
@@ -4803,7 +4827,7 @@ inline int32 CLuaBaseEntity::getAmmoDmg(lua_State *L)
 	    ShowDebug(CL_CYAN"lua::getAmmoDmg weapon in ammo slot is null!\n" CL_RESET);
 		return 0;
     }
-	lua_pushinteger( L, weapon->getDamage((CBattleEntity*)m_PBaseEntity));
+	lua_pushinteger( L, weapon->getDamage());
 	return 1;
 }
 
@@ -4897,7 +4921,7 @@ inline int32 CLuaBaseEntity::getMeleeHitDamage(lua_State *L)
 
 	if(rand()%100 < hitrate){
 		float DamageRatio = battleutils::GetDamageRatio(PAttacker, PDefender, false, 0);
-		int damage = (uint16)((PAttacker->m_Weapons[SLOT_MAIN]->getDamage(PAttacker) + battleutils::GetFSTR(PAttacker,PDefender,SLOT_MAIN)) * DamageRatio);
+		int damage = (uint16)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker,PDefender,SLOT_MAIN)) * DamageRatio);
 		lua_pushinteger( L,damage );
 		return 1;
 	}
@@ -5783,12 +5807,15 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMerits),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmgRank),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmgRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openDoor),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromCure),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isWeaponTwoHanded),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillType),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmg),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmgForRank),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRATT),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRACC),

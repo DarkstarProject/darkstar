@@ -46,6 +46,7 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
     m_maxHit		= 0;
     m_ranged		= false;
     m_twoHanded		= false;
+	m_unlockId		= 0;
 }
 
 CItemWeapon::~CItemWeapon() {}
@@ -147,23 +148,9 @@ void CItemWeapon::setDelay(uint16 delay)
 	m_delay = delay;
 }
 
-int16 CItemWeapon::getDelay(CBattleEntity* user) 
+int16 CItemWeapon::getDelay() 
 {
-	if (user->objtype == TYPE_PC)
-	{
-		if (m_skillType != SKILL_NON && m_unlockId > 0 && ((CCharEntity*)user)->isWeaponUnlocked(m_unlockId))
-		{
-			return (nameSpaceUnlockableWeapons::g_pWeaponUnlockable[m_unlockId-1].delay *1000 / 60);
-		}
-		else
-		{
-			return m_delay;
-		}
-	}
-	else
-	{
 	return m_delay;
-	}
 }
 
 /************************************************************************
@@ -188,15 +175,8 @@ void CItemWeapon::setDamage(uint16 damage)
 	m_damage = damage;
 }
 
-uint16 CItemWeapon::getDamage(CBattleEntity* user) 
+uint16 CItemWeapon::getDamage() 
 {
-	if (user->objtype == TYPE_PC)
-	{
-		if (m_skillType != SKILL_NON && m_unlockId > 0 && ((CCharEntity*)user)->isWeaponUnlocked(m_unlockId))
-		{
-			return nameSpaceUnlockableWeapons::g_pWeaponUnlockable[m_unlockId-1].damage;
-		}
-	}
 	return m_damage;
 }
 

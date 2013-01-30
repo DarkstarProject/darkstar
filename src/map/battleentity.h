@@ -34,7 +34,6 @@
 #include "modifier.h"
 #include "party.h"
 #include "status_effect_container.h"
-//#include "latent_effect_container.h"
 #include "map.h"
 
 
@@ -409,6 +408,15 @@ public:
     int32           GetMaxMP();                 // максимальное количество mp
     void            UpdateHealth();             // пересчет максимального количества hp и mp, а так же корректировка их текущих значений
 
+	int16			GetWeaponDelay(bool haste);	//returns delay of combined weapons
+	int16			GetRangedWeaponDelay();		//returns delay of ranged weapon + ammo where applicable
+	uint16			GetMainWeaponDmg();			//returns total main hand DMG
+	uint16			GetSubWeaponDmg();			//returns total sub weapon DMG
+	uint16			GetRangedWeaponDmg();		//returns total ranged weapon DMG
+	uint16			GetMainWeaponRank();		//returns total main hand DMG Rank
+	uint16			GetSubWeaponRank();			//returns total sub weapon DMG Rank
+	uint16			GetRangedWeaponRank();		//returns total ranged weapon DMG Rank
+
 	uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
 
 	uint16		    addTP(float tp);			// увеличиваем/уменьшаем количество tp
@@ -438,7 +446,6 @@ public:
 	CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
 
 	CStatusEffectContainer* StatusEffectContainer;
-	//CLatentEffectContainer* LatentEffectContainer;
 
 	 CBattleEntity();						// конструктор
 	~CBattleEntity();						// деструктор

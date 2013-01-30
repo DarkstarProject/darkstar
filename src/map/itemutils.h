@@ -71,8 +71,6 @@ struct UnlockedWeapons_t
 	};
 	uint16	itemid;					// id of the actual weapon
 	uint16	required;				// points required to break
-	uint16  damage;
-	uint16  delay;
 };
 
 

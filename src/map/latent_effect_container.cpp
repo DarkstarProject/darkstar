@@ -50,6 +50,24 @@ CLatentEffectContainer::~CLatentEffectContainer()
 void CLatentEffectContainer::AddLatentEffect(CLatentEffect* LatentEffect)
 {
 	m_LatentEffectList.push_back(LatentEffect);
+	LatentEffect->SetOwner(m_POwner);
+}
+
+void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 slot)
+{
+	for (uint16 i = 0; i < latentList->size(); ++i)
+	{
+		if( latentList->at(i)->GetModValue() == MOD_MAIN_DMG_RATING && slot == SLOT_SUB )
+		{
+			AddLatentEffect(new CLatentEffect(latentList->at(i)->GetConditionsID(), 
+				latentList->at(i)->GetConditionsValue(), slot, MOD_SUB_DMG_RATING,
+				latentList->at(i)->GetModPower()));
+		} else {
+			AddLatentEffect(new CLatentEffect(latentList->at(i)->GetConditionsID(), 
+				latentList->at(i)->GetConditionsValue(), slot, latentList->at(i)->GetModValue(),
+				latentList->at(i)->GetModPower()));
+		}
+	}
 }
 
 /************************************************************************
@@ -58,9 +76,9 @@ void CLatentEffectContainer::AddLatentEffect(CLatentEffect* LatentEffect)
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::DelLatentEffect(uint8 slot)
+void CLatentEffectContainer::DelLatentEffects(uint8 slot)
 {
-	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
+	for (int16 i = m_LatentEffectList.size()-1; i >= 0; --i) 
 	{
 		if (m_LatentEffectList.at(i)->GetSlot() == slot)
 		{
@@ -225,20 +243,43 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
 
 /************************************************************************
 *																		*
-*  Checks all latents that are affected by subjob and activates them if *
-*  the conditions are met.												*
+*  Checks all latents that are affected by anything that only changes	*
+*  on equip																*
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsSubjob(uint8 jobId)
+void CLatentEffectContainer::CheckLatentsEquip()
 {
 	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
 	{
-		if( m_LatentEffectList.at(i)->GetConditionsID() == LATENT_SUBJOB && jobId == m_LatentEffectList.at(i)->GetConditionsValue())
+		switch(m_LatentEffectList.at(i)->GetConditionsID())
 		{
-			m_LatentEffectList.at(i)->Activate();
+			case LATENT_SUBJOB:
+				if( m_POwner->GetSJob() == m_LatentEffectList.at(i)->GetConditionsValue())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				break;
+			case LATENT_WEAPON_BROKEN:
+			{
+				CItemWeapon* PWeaponMain = (m_POwner->equip[SLOT_MAIN] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_MAIN])) : NULL;
+				CItemWeapon* PWeaponSub = (m_POwner->equip[SLOT_SUB] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_SUB])) : NULL;
+				CItemWeapon* PWeaponRanged = (m_POwner->equip[SLOT_RANGED] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_RANGED])) : NULL;
+				if( PWeaponMain && m_POwner->unlockedWeapons[PWeaponMain->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_MAIN )
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				if( PWeaponSub && m_POwner->unlockedWeapons[PWeaponSub->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_SUB)
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				if( PWeaponRanged && m_POwner->unlockedWeapons[PWeaponRanged->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_RANGED)
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				break;
+			}
 		}
-		//Don't need to check to turn them off - changing sub rebuilds everything
 	}
 }
 
@@ -498,4 +539,25 @@ void CLatentEffectContainer::CheckLatentsPetType(PETTYPE petID)
 void CLatentEffectContainer::CheckLatentsTime()
 {
 	
+}
+
+/************************************************************************
+*																		*
+*  Checks all latents that are affected by weapon skill points			*
+*																		*
+************************************************************************/
+
+void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
+{
+	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
+	{
+		if( m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEAPON_BROKEN && m_LatentEffectList.at(i)->GetConditionsValue() == slot)
+		{
+			CItemWeapon* PWeaponMain = (m_POwner->equip[slot] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[slot])) : NULL;
+			if( PWeaponMain && m_POwner->unlockedWeapons[PWeaponMain->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == slot )
+			{
+				m_LatentEffectList.at(i)->Activate();
+			}
+		}
+	}
 }

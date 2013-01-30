@@ -38,8 +38,8 @@ public:
 
 	uint8	getSkillType();
 	uint8	getSubSkillType();
-	int16	getDelay(CBattleEntity* user);
-	uint16	getDamage(CBattleEntity* user);
+	int16	getDelay();
+	uint16	getDamage();
 	uint16	getDmgType();
     uint8   getAdditionalEffect();
     uint8   getHitCount(uint8 checkMobHits);

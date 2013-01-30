@@ -66,6 +66,7 @@ enum LATENT
 	LATENT_JOB_LEVEL_ODD			= 41,
 	LATENT_JOB_LEVEL_EVEN			= 42,
 	LATENT_WEAPON_DRAWN_HP_UNDER	= 43, //PARAM: HP PERCENT
+	LATENT_WEAPON_BROKEN			= 47 
 };
 
 #define MAX_LATENTEFFECTID    50
@@ -89,7 +90,7 @@ public:
 	uint16		GetConditionsValue();
     uint8		GetSlot();
 	uint16		GetModValue();
-    uint16		GetModPower();
+    int16		GetModPower();
     bool		IsActivated();
 	uint16		GetFlag();
 
@@ -99,7 +100,7 @@ public:
     void    SetConditionsValue(uint16 value);
 	void	SetSlot(uint8 slot);
     void    SetModValue(uint16 value);
-	void	SetModPower(uint16 power);
+	void	SetModPower(int16 power);
     void    Activate();
 	void	Deactivate();
     void    SetOwner(CBattleEntity* Owner);
@@ -109,7 +110,7 @@ public:
          uint16 conditionsValue,
 		 uint8 slot, 
 		 uint16 modValue, 
-		 uint32 modPower
+		 int16 modPower
 	);
 
    ~CLatentEffect();

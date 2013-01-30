@@ -56,7 +56,6 @@ CBattleEntity::CBattleEntity()
 	PBattleAI = NULL;
 
 	StatusEffectContainer = new CStatusEffectContainer(this);
-	//LatentEffectContainer = new CLatentEffectContainer(this);
 
 	m_modStat[MOD_SLASHRES]  = 1000;
 	m_modStat[MOD_PIERCERES] = 1000;
@@ -161,6 +160,71 @@ uint8 CBattleEntity::GetMPP()
 int32 CBattleEntity::GetMaxMP()
 {
     return health.modmp;
+}
+
+int16 CBattleEntity::GetWeaponDelay(bool haste)
+{
+	if (StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
+	{
+		return 1700;
+	}
+	uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(MOD_DELAY);
+	if (m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH)
+	{
+		WeaponDelay -= getMod(MOD_MARTIAL_ARTS) * 1000 / 60;
+	} else if (m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
+		m_Weapons[SLOT_SUB]->getDmgType() < 4 )
+	{
+		WeaponDelay += m_Weapons[SLOT_SUB]->getDelay();
+		//apply dual wield delay reduction
+		WeaponDelay = WeaponDelay * ((100.0f - (float)getMod(MOD_DUAL_WIELD))/100.0f);
+	}
+	if( haste )
+	{
+		WeaponDelay = (WeaponDelay * (100 - getMod(MOD_HASTE))) / 100;
+	}
+	return WeaponDelay;
+}
+
+int16 CBattleEntity::GetRangedWeaponDelay()
+{
+	CItemWeapon* PRange = (CItemWeapon*)m_Weapons[SLOT_RANGED];
+	CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
+
+	int delay = 0;
+	if(PRange != NULL) { delay += (((PRange->getDelay()*60)/1000)+240); }
+	if(PAmmo != NULL) { delay += (((PAmmo->getDelay()*60)/1000)+240); }
+	return (((delay-getMod(MOD_RANGED_DELAY))*1000)/110);
+}
+
+uint16 CBattleEntity::GetMainWeaponDmg()
+{
+	return m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RATING);
+}
+
+uint16 CBattleEntity::GetSubWeaponDmg()
+{
+	return m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RATING);
+}
+
+uint16 CBattleEntity::GetRangedWeaponDmg()
+{
+	return m_Weapons[SLOT_RANGED]->getDamage() + getMod(MOD_RANGED_DMG_RATING) + m_Weapons[SLOT_AMMO]->getDamage();
+}
+
+uint16 CBattleEntity::GetMainWeaponRank()
+{
+	return (m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RANK)) / 9;
+}
+
+uint16 CBattleEntity::GetSubWeaponRank()
+{
+	return (m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RANK)) / 9;
+}
+
+uint16 CBattleEntity::GetRangedWeaponRank()
+{
+	return (m_Weapons[SLOT_RANGED]->getDamage() + getMod(MOD_RANGED_DMG_RANK)) / 9;
 }
 
 /************************************************************************

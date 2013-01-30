@@ -229,7 +229,7 @@ void CAICharNormal::ActionEngage()
 		{
 			if (distance(m_PChar->loc.p, m_PBattleTarget->loc.p) <= 30)
 			{
-				if ((m_Tick - m_LastMeleeTime) > m_PChar->m_Weapons[SLOT_MAIN]->getDelay(m_PChar))
+				if ((m_Tick - m_LastMeleeTime) > m_PChar->m_Weapons[SLOT_MAIN]->getDelay())
 				{
                     if (m_PChar->animation == ANIMATION_CHOCOBO)
                     {
@@ -241,7 +241,7 @@ void CAICharNormal::ActionEngage()
                     }
 
 					m_ActionType = ACTION_ATTACK;
-					m_LastMeleeTime = m_Tick - m_PChar->m_Weapons[SLOT_MAIN]->getDelay(m_PChar) + 1500;
+					m_LastMeleeTime = m_Tick - m_PChar->m_Weapons[SLOT_MAIN]->getDelay() + 1500;
 
 					m_PChar->status = STATUS_UPDATE;
 					m_PChar->animation = ANIMATION_ATTACK;
@@ -646,10 +646,9 @@ void CAICharNormal::ActionRangedStart()
 	   (PItem->getType() & ITEM_WEAPON))
 	{
 		uint8 SkillType = PItem->getSkillType();
-		//ranged weapon delay is stored in the db as offset from 240 for some reason. Also, getDelay incorrectly
-		//returns the delay /60 - for ranged weapons it is /110 hence the calculation below.
+		//ranged weapon delay is stored in the db as offset from 240 for some reason. 
 
-		m_PChar->m_rangedDelay = ((240+((PItem->getDelay(m_PChar)*60)/1000))*1000)/110; //literal time in ms until shot fired
+		m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay();
 
 
 		// apply snapshot reduction
@@ -867,20 +866,19 @@ void CAICharNormal::ActionRangedFinish()
 					if(PItem->getSkillType()!=SKILL_THR)
 					{
 						if(PAmmo!=NULL)
-							damage = PAmmo->getDamage(m_PChar);
+							damage = PAmmo->getDamage();
 					}
 
 					// at least 1 hit occured
 					hitOccured = true;
 					realHits ++;
 
-					damage = (damage + PItem->getDamage(m_PChar) + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
+					damage = (damage + m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
 					damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
 
 
 					if(PItem != NULL)
 					{
-						//not a throwing item, check the ammo for dmg/etc
 						charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
 					}
 
@@ -2291,10 +2289,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		{
 			if (m_PChar->addWsPoints(1,PWeapon->getUnlockId()-1))
 			{
-				// weapon is now broken. remove mod's, damage & delay is handled directly elsewhere
-				m_PChar->delModifiers(&((CItemArmor*)PWeapon)->modList);
-
-				// TODO: add mods here of the new 'broken' weapon such as.. 6% crit rate?
+				// weapon is now broken
+				m_PChar->LatentEffectContainer->CheckLatentsWeaponBreak(damslot);
 			}
 		}
 
@@ -2632,26 +2628,7 @@ void CAICharNormal::ActionAttack()
 	}
 
 
-	uint16 WeaponDelay = (m_PChar->m_Weapons[SLOT_MAIN]->getDelay(m_PChar) * (100 - m_PChar->getMod(MOD_HASTE))) / 100;
-
-	if (m_PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
-		m_PChar->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
-		m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() != DAMAGE_HTH)
-	{
-		WeaponDelay += (m_PChar->m_Weapons[SLOT_SUB]->getDelay(m_PChar) * (100 - m_PChar->getMod(MOD_HASTE))) / 100;
-		//apply dual wield delay reduction
-		WeaponDelay = WeaponDelay * ((100.0f - (float)m_PChar->getMod(MOD_DUAL_WIELD))/100.0f);
-	}
-
-
-	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
-	{
-		WeaponDelay = 1700;
-	}
-    else if (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH)
-	{
-		WeaponDelay -= m_PChar->getMod(MOD_MARTIAL_ARTS) * 1000 / 60;
-	}
+	uint16 WeaponDelay = m_PChar->GetWeaponDelay(true);
 
 	if ((m_Tick - m_LastMeleeTime) > WeaponDelay)
 	{
@@ -2826,13 +2803,21 @@ void CAICharNormal::ActionAttack()
 						// get natural h2h damage (h2hSkill*0.11+3)
 						uint16 naturalH2hDmg = (float)(m_PChar->GetSkill(1) * 0.11f)+3;
 
-						damage = (uint16)((( (PWeapon->getDamage(m_PChar)-3) + naturalH2hDmg + bonusDMG +
+						damage = (uint16)((( (m_PChar->GetMainWeaponDmg()-3) + naturalH2hDmg + bonusDMG +
 								 battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+						printf("DMG: %d\n", m_PChar->GetMainWeaponDmg());
 					}
 					else
 					{
-						damage = (uint16)(((PWeapon->getDamage(m_PChar) + bonusDMG + 
-							battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+						if( fstrslot == SLOT_MAIN )
+						{
+							damage = (uint16)(((m_PChar->GetMainWeaponDmg() + bonusDMG + 
+								battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+						} else if( fstrslot == SLOT_SUB )
+						{
+							damage = (uint16)(((m_PChar->GetSubWeaponDmg() + bonusDMG + 
+								battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+						}
 					}
 
 

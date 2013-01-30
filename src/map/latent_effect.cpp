@@ -25,7 +25,7 @@
 
 #include "latent_effect.h"
 
-CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 slot, uint16 modValue, uint32 modPower)
+CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 slot, uint16 modValue, int16 modPower)
 {
 	m_ConditionsID		= conditionsId;
 	m_ConditionsValue	= conditionsValue;
@@ -59,7 +59,7 @@ uint16 CLatentEffect::GetModValue()
 	return m_ModValue;
 }
 
-uint16 CLatentEffect::GetModPower()
+int16 CLatentEffect::GetModPower()
 {
 	return m_ModPower;
 }
@@ -94,21 +94,29 @@ void CLatentEffect::SetModValue(uint16 value)
 	m_ModValue = value;
 }
 
-void CLatentEffect::SetModPower(uint16 power)
+void CLatentEffect::SetModPower(int16 power)
 {
 	m_ModPower = power;
 }
 
 void CLatentEffect::Activate()
 {
-	m_POwner->addModifier(m_ModValue, m_ModPower);
-	m_Activated = true;
+	if( !IsActivated() )
+	{
+		m_POwner->addModifier(m_ModValue, m_ModPower);
+		m_Activated = true;
+		//printf("LATENT ACTIVATED: %d, Current value: %d\n", m_ModValue, m_POwner->getMod(m_ModValue));
+	}
 }
 
 void CLatentEffect::Deactivate()
 {
-	m_POwner->delModifier(m_ModValue, m_ModPower);
-	m_Activated = false;
+	if( IsActivated() )
+	{
+		m_POwner->delModifier(m_ModValue, m_ModPower);
+		m_Activated = false;
+		//printf("LATENT DEACTIVATED: %d\n", m_ModValue);
+	}
 }
 
 void CLatentEffect::SetOwner(CBattleEntity* Owner)

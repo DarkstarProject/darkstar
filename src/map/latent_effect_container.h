@@ -45,7 +45,7 @@ public:
 	void CheckLatentsHP(int32 hp);
 	void CheckLatentsTP(float tp);
 	void CheckLatentsMP(int32 mp);
-	void CheckLatentsSubjob(uint8 jobId);
+	void CheckLatentsEquip();
 	void CheckLatentsWeaponDraw(bool drawn);
 	void CheckLatentsStatusEffect();
 	void CheckLatentsRollSong(bool active);
@@ -55,9 +55,11 @@ public:
 	void CheckLatentsJobLevel();
 	void CheckLatentsPetType(PETTYPE petID);
 	void CheckLatentsTime();
+	void CheckLatentsWeaponBreak(uint8 slot);
 
 	void AddLatentEffect(CLatentEffect* LatentEffect);
-	void DelLatentEffect(uint8 slot);   
+	void AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 slot);
+	void DelLatentEffects(uint8 slot);   
 
     CLatentEffect* GetLatentEffect(uint8 slot, uint16 modId);
 

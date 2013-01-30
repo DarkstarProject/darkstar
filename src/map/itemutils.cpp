@@ -393,6 +393,25 @@ namespace itemutils
 			    }
 		    }
 	    }
+
+	    ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
+	    
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    {
+			    uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle,0);
+			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
+			    int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
+				uint16 latentId = (uint16) Sql_GetIntData(SqlHandle,3);
+				uint16 latentParam = (uint16) Sql_GetIntData(SqlHandle,4);
+
+			    if ((g_pItemList[ItemID] != NULL) && (g_pItemList[ItemID]->getType() & ITEM_ARMOR))
+			    {
+                    ((CItemArmor*)g_pItemList[ItemID])->addLatent(new CLatentEffect((LATENT)latentId, latentParam, 0, modID, value));
+			    }
+		    }
+	    }
     }
 
     /************************************************************************
@@ -531,7 +550,7 @@ namespace nameSpaceUnlockableWeapons
 
     void LoadUnlockableWeaponList()
     {
-        int32 ret = Sql_Query(SqlHandle, "SELECT itemid, delay, dmg, points FROM item_weapon_unlocked WHERE Id < %u;", MAX_UNLOCKABLE_WEAPONS);
+        int32 ret = Sql_Query(SqlHandle, "SELECT itemid, points FROM item_weapon_unlocked WHERE Id < %u;", MAX_UNLOCKABLE_WEAPONS);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
@@ -542,9 +561,7 @@ namespace nameSpaceUnlockableWeapons
 				UnlockedWeapons_t UnlockedWeapon = {0};
 
 				UnlockedWeapon.itemid = Sql_GetUIntData(SqlHandle,0);
-				UnlockedWeapon.delay = Sql_GetUIntData(SqlHandle,1);
-				UnlockedWeapon.damage = Sql_GetUIntData(SqlHandle,2);
-				UnlockedWeapon.required = Sql_GetUIntData(SqlHandle,3);
+				UnlockedWeapon.required = Sql_GetUIntData(SqlHandle,1);
 
 				g_pWeaponUnlockable[index] = UnlockedWeapon;
 				index++;

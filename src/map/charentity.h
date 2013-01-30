@@ -37,6 +37,7 @@
 #include "petentity.h"
 
 #include "recast_container.h"
+#include "latent_effect_container.h"
 #include "trade_container.h"
 #include "trait.h"
 #include "treasure_pool.h"
@@ -215,6 +216,8 @@ public:
 	bool			  MeritMode;					//If true then player is meriting
 
     CRecastContainer* PRecastContainer;             // 
+
+	CLatentEffectContainer* LatentEffectContainer;
 
 	CItemContainer*   PGuildShop;					// текущий магазин гильдии, в котором персонаж производит закупки
 	CItemContainer*	  getStorage(uint8 LocationID);	// получение указателя на соответствующее хранилище

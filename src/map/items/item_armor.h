@@ -32,6 +32,7 @@
 
 #include "../modifier.h"
 #include "../status_effect.h"
+#include "../latent_effect.h"
 
 // типы событий, в которых участвует логика предмета
 
@@ -47,7 +48,6 @@ enum SCRIPTTYPE : uint16
 	SCRIPT_TIME_EVENING	= 0x0040
 	//...
 };
-
 
 class CItemArmor : public CItemUsable
 {
@@ -77,8 +77,9 @@ public:
 	void	setRemoveSlotId(uint8 removSlot);
 
     void    addModifier(CModifier* modifier);
-
+	void	addLatent(CLatentEffect* latent);
 	std::vector<CModifier*> modList;			// список модификаторов
+	std::vector<CLatentEffect*> latentList;  // contains latents
 	
 private:
 

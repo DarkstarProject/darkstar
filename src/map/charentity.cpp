@@ -113,6 +113,7 @@ CCharEntity::CCharEntity()
 	PWideScanTarget = NULL;
 
     PRecastContainer = new CRecastContainer(this);
+	LatentEffectContainer = new CLatentEffectContainer(this);
 
 	petZoningInfo.respawnPet = false;
 	petZoningInfo.petID = 0;

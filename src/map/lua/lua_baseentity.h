@@ -109,6 +109,7 @@ public:
 	int32 delTP(lua_State*);				// Subtract tp of Entity
 	int32 setTP(lua_State*);				// Set tp of Entity to value
 	int32 getRangedDmg(lua_State*);				// Get ranged weapon DMG rating
+	int32 getRangedDmgForRank(lua_State*);		// Get ranged weapond DMG rating used for calculating rank
 	int32 getAmmoDmg(lua_State*);				// Get ammo DMG rating
 	int32 getRATT(lua_State*);				// Get total r.attack
 	int32 getRACC(lua_State*);				// Get total r.acc
@@ -329,6 +330,8 @@ public:
 	int32 changesJob(lua_State*);			// changes the sub job of a char (testing only!)
 	int32 getWeaponDmg(lua_State*);			// gets the current equipped weapons' DMG rating
 	int32 getOffhandDmg(lua_State*);		// gets the current equipped offhand's DMG rating (used in WS calcs)
+	int32 getWeaponDmgRank(lua_State*);		// gets the current equipped weapons' DMG rating for Rank calc
+	int32 getOffhandDmgRank(lua_State*);	// gets the current equipped offhand's DMG rating for Rank calc
 	int32 isWeaponTwoHanded(lua_State*);
 	int32 getMeleeHitDamage(lua_State*);    // gets the damage of a single hit vs the specified mob
 	int32 getWeaponSkillType(lua_State*);   // gets the type of weapon equipped
