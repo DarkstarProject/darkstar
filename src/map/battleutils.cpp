@@ -1527,7 +1527,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
                 ratio = 2.0f;
             }
 
-            baseTp = CalculateBaseTP(delay) / ratio;
+            baseTp = CalculateBaseTP((delay * 60) / 1000) / ratio;
 		}
 
 		
