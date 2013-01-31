@@ -4905,7 +4905,7 @@ inline int32 CLuaBaseEntity::getEVA(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
-	uint8 EVA = PEntity->EVA();
+	uint16 EVA = PEntity->EVA();
 
 	lua_pushinteger(L,EVA);
 	return 1;
