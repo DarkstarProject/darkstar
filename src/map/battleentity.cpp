@@ -394,7 +394,7 @@ uint16 CBattleEntity::ACC(uint8 slot, uint8 offsetAccuracy)
 		}
 		ACC = (ACC + m_modStat[MOD_ACC] + offsetAccuracy);
 		ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) + 
-			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]) + DEX() / 2;
+			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]); // + DEX() / 2; -- Disabled for now, see bug 431
 		return dsp_max(0, ACC);
 	}
 	else{
