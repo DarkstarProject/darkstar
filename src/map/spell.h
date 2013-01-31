@@ -70,6 +70,7 @@ public:
 	uint16		getCE();
 	uint16		getVE();
 	uint16		getModifiedRecast();
+	uint16		getMonsterSkillId();
 
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);						
@@ -92,6 +93,7 @@ public:
 	void		setCE(uint16 ce);
 	void		setVE(uint16 ve);
 	void		setModifiedRecast(uint16 mrec);
+	void		setMonsterSkillId(uint16 skillid);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -120,6 +122,7 @@ private:
 	uint16		m_VE;									// volatile enmity of spell
 	string_t	m_name;									// spell name
 	uint16		m_modifiedRecastTime;					//recast time after modifications
+	uint16		m_monsterSkillId;						// matching skill for a blue spell
 };
 
 /************************************************************************
@@ -132,6 +135,7 @@ namespace spell
 {
     void    LoadSpellList();
 
+	CSpell* GetSpellByMonsterSkillId(uint16 SkillID);
     CSpell* GetSpell(uint16 SpellID);
     bool    CanUseSpell(CBattleEntity* PCaster, uint16 SpellID);
 	bool	CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level);

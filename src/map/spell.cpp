@@ -268,6 +268,16 @@ uint16 CSpell::getModifiedRecast()
 	return m_modifiedRecastTime;
 }
 
+uint16 CSpell::getMonsterSkillId()
+{
+	return m_monsterSkillId;
+}
+
+void CSpell::setMonsterSkillId(uint16 skillid)
+{
+	m_monsterSkillId = skillid;
+}
+
 /************************************************************************
 *                                                                       *
 *  Реализация namespase для работы с заклинаниями                       *
@@ -277,6 +287,7 @@ uint16 CSpell::getModifiedRecast()
 namespace spell
 {
     CSpell* PSpellList[MAX_SPELL_ID]; // список заклинаний
+	std::map<uint16, uint16> PMobSkillToBlueSpell[256]; // maps the skill id (key) to spell id (value).
 
     /************************************************************************
     *                                                                       *
@@ -325,7 +336,43 @@ namespace spell
 			    PSpellList[PSpell->getID()] = PSpell;
 		    }
 	    }
+
+		const int8* blueQuery = "SELECT spellid, mob_skill_id, set_points, trait_category, trait_category_weight \
+							 FROM blue_spell_list;";
+
+	    ret = Sql_Query(SqlHandle, blueQuery);
+
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    {
+				// Sanity check the spell ID
+				uint16 spellId = Sql_GetIntData(SqlHandle,0);
+				if (spellId > MAX_SPELL_ID) {
+					ShowWarning("Tried to load a blue magic spell with ID %u which is higher than the max (%u)\n", spellId, MAX_SPELL_ID);
+					continue;
+				}
+
+				PSpellList[spellId]->setMonsterSkillId(Sql_GetIntData(SqlHandle,1));
+				PMobSkillToBlueSpell->insert(std::make_pair(Sql_GetIntData(SqlHandle,1), spellId));
+			}
+		}
     }
+
+	CSpell* GetSpellByMonsterSkillId(uint16 SkillID) {
+		std::map<uint16,uint16>::iterator it = PMobSkillToBlueSpell->find(SkillID);
+		if (it == PMobSkillToBlueSpell->end()) {
+			return NULL;
+		}
+		else {
+			uint16 spellId = it->second;
+			if (spellId > MAX_SPELL_ID) {
+				ShowError("Resolved spell ID from mob skill %u is out of spell range (%u)\n",SkillID,spellId);
+				return NULL;
+			}
+			return PSpellList[spellId];
+		}
+	}
 
     /************************************************************************
     *                                                                       *

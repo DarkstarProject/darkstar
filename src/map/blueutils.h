@@ -28,12 +28,14 @@
 #include "../common/mmo.h"
 
 #include "charentity.h"
+#include "mobentity.h"
 #include "spell.h"
 
 namespace blueutils
 {
 	void	SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addingSpell);
 	void	HasEnoughSetPoints(CCharEntity* PChar, CSpell* PSpellToAdd, uint8 slotToPut);
+	void	TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob);
 };
 
 #endif

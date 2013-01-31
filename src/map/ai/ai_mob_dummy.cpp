@@ -25,6 +25,7 @@
 #include "../../common/utils.h"
 
 #include "../battleutils.h"
+#include "../blueutils.h"
 #include "../charutils.h"
 #include "../itemutils.h"
 #include "../mobskill.h"
@@ -222,14 +223,14 @@ void CAIMobDummy::ActionDropItems()
 
         if (PChar != NULL && PChar->id == m_PMob->m_OwnerID.id)
 		{
-            // TODO: blu может выучить последнюю использованную монстром специальную атаку m_PMobSkill
-
 			luautils::OnMobDeath(m_PMob, PChar);
 
 			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0, MSGBASIC_DEFEATS_TARG));
 			
 			if (m_PMob->m_CallForHelp == 0)
 			{
+				blueutils::TryLearningSpells(PChar, m_PMob);
+				m_PMob->m_UsedSkillIds.clear();
                 charutils::DistributeExperiencePoints(PChar, m_PMob);
 
                 DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
@@ -580,6 +581,9 @@ void CAIMobDummy::ActionAbilityFinish()
 			processTwoHour();
 			return;
 		}
+
+		// store the skill used
+		m_PMob->m_UsedSkillIds[m_PMobSkill->getID()] = m_PMob->GetMLevel();
 
 		// Who will the ability hit?
 		//   0. Solo player
