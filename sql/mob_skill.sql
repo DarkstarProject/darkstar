@@ -300,7 +300,7 @@ INSERT INTO `mob_skill` VALUES (123,210,123,'Chomp_Rush', 0, 7.0, 2000, 1500, 4,
 INSERT INTO `mob_skill` VALUES (121,210,121,'Frost_Breath', 4, 10.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (124,210,124,'Scythe_Tail', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (120,210,120,'Foul_Breath', 4, 10.0, 2000, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (122,210,122,'Thunderbolt', 4, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (122,210,122,'Thunderbolt_Breath', 4, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (118,210,118,'Ripper_Fang', 0, 7.0, 2000, 1500, 4, 0);
 
 -- Bugard animation ids wrong
@@ -621,13 +621,12 @@ INSERT INTO `mob_skill` VALUES (364,270,364,'Sweep', 1, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (366,55,366,'Helldive', 0, 9.0, 2000, 1700, 4, 0);
 INSERT INTO `mob_skill` VALUES (367,55,367,'Wing_Cutter', 4, 7.0, 2000, 1500, 4, 0);
 -- Behemoth
-INSERT INTO `mob_skill` VALUES (372,51,372,'Wild_Horn', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (373,51,373,'Thunderbolt', 1, 30.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (374,51,374,'Kick_Out', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (372,51,372,'Wild_Horn', 4, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (373,51,373,'Thunderbolt', 1, 40.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (374,51,374,'Kick_Out', 4, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (375,51,375,'Shock_Wave', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (376,51,376,'Flame_Armor', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (377,51,377,'Howl', 0, 7.0, 2000, 1500, 1, 0);
--- INSERT INTO `mob_skill` VALUES (378,51,378,'Meteor', 0, 7.0, 2000, 1500, 1, 0);
 -- Warmachine
 INSERT INTO `mob_skill` VALUES (389,190,389,'Burst', 0, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (390,190,390,'Fire_Arrow', 0, 10.0, 2000, 1500, 4, 0);

@@ -15,7 +15,8 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+	-- blaze spikes not working atm
+	return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
