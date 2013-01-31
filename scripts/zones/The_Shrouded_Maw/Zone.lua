@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
 		player:setPos(-300,-1.5,-220,62);
 	end	
 	if(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 1)then
-	cs =0x0002;
+		cs =0x0002;
 	end
 	return cs;	
 end;		
@@ -54,6 +54,6 @@ function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
 	if(csid == 0x0002)then 
-	player:setVar("PromathiaStatus",2);
+		player:setVar("PromathiaStatus",2);
 	end
 end;	

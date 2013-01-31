@@ -71,7 +71,7 @@ function onTrigger(player,npc)
 	local overnightDelivery = player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY);
 	
 	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==2)then	    
-	                player:startEvent(0x0368);
+		player:startEvent(0x0368);
 	elseif(player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
 		if(player:getVar("ohbiru_dohbiru_talk") == 1) then
 			player:startEvent(0x8f);
@@ -208,7 +208,7 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();		
 		player:needToZone(true);
 	elseif(csid == 0x0368) then	
-	player:setVar("MEMORIES_OF_A_MAIDEN_Status",3);
+		player:setVar("MEMORIES_OF_A_MAIDEN_Status",3);
 	end
 end;
 

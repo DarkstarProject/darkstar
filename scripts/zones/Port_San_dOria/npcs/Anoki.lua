@@ -19,9 +19,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
- if(player:getCurrentMission(COP) == THE_RETURN_HOME and player:getVar("COP_optional_CS_Anoki") == 0)then
+ if(player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Anoki") == 0)then
  player:startEvent(0x02D4);
- elseif(player:getCurrentMission(COP) == THE_RETURN_HOME and player:getVar("COP_optional_CS_Anoki") == 1)then
+ elseif(player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Anoki") == 1)then
  player:startEvent(0x02D8);
  else
  player:startEvent(0x207);

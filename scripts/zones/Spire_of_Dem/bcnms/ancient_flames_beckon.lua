@@ -53,8 +53,7 @@ printf("leavecode: %u",leavecode);
 			
 			if(player:hasKeyItem(LIGHT_OF_MEA) and player:hasKeyItem(LIGHT_OF_HOLLA))then	-- Third promy finished
 				player:setVar("PromyvionAccess",2);
-				player:setVar("PromathiaStatus",0);
-				
+				player:setVar("PromathiaStatus",1);
 				player:startEvent(0x0003,3,1,1,instance:getTimeInside(),1,1,0); 
 			elseif(player:hasKeyItem(LIGHT_OF_MEA) or player:hasKeyItem(LIGHT_OF_HOLLA))then -- Second promy finished
 				player:startEvent(0x0002,1,1,1,instance:getTimeInside(),1,1,0); 
@@ -81,7 +80,7 @@ function onEventFinish(player,csid,option)
 		player:setPos(136 ,19 ,220 ,130 ,108);
 	elseif(csid==0x0003) then
 		player:completeMission(COP,THE_MOTHERCRYSTALS);
-		player:addMission(COP,THE_ISLE_OF_FORGOTTEN_SAINTS);
+		player:addMission(COP,AN_INVITATION_WEST);
 		player:setPos(438 ,0 ,-18 ,11 ,24);
 	end
 

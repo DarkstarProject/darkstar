@@ -21,10 +21,10 @@ function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(COP) == THE_LOST_CITY and player:getVar("PromathiaStatus") == 0)then
 		player:startEvent(0x0066);
-	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 0)then	
+	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 1)then	
 		player:startEvent(0x006C);
-	elseif(player:getCurrentMission(COP) == THE_RETURN_HOME and player:getVar("COP_optional_CS_Despachaire") == 0)then
-        player:startEvent(0x0075);	
+	elseif(player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Despachaire") == 0)then
+        player:startEvent(0x0075);
 	else
 		player:startEvent(0x006A);
 	end
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
   
 	if(csid == 0x0066 or csid == 0x006C)then
-		player:setVar("PromathiaStatus",1);
+		player:setVar("PromathiaStatus",2);
 	elseif(csid == 0x0075)then
 	    player:setVar("COP_optional_CS_Despachaire",1);
 	end

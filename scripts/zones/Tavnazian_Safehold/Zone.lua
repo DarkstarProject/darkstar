@@ -19,32 +19,32 @@ function onInitialize(zone)
 	zone:registerRegion(2, 104, -42, -88, 113, -38, -77);
 end;
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)		
-cs = -1;	
+function onZoneIn(player,prevZone)
+cs = -1;
 	
-	if(player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then	
+	if(player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos(27.971,-14.068,43.735,66);
 	end	
 	
 	if(player:getCurrentMission(COP) == AN_INVITATION_WEST)then
 		cs = 0x0065;
-	elseif(player:getCurrentMission(COP) == THE_CRADLES_OF_CHILDREN_LOST)then
-        cs = 0x006B;	
+	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 0)then
+        cs = 0x006B;
 	end
 	
-	return cs;	
-end;		
+	return cs;
+end;
 
------------------------------------		
--- onRegionEnter		
------------------------------------		
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
 function onRegionEnter(player,region)
-	
+
 	switch (region:GetRegionID()): caseof
 	{
 		[1] = function (x)
@@ -59,31 +59,31 @@ function onRegionEnter(player,region)
 		end,
 		
 	}
-	
-end;	
 
------------------------------------		
--- onRegionLeave		
------------------------------------	
+end;
+
+-----------------------------------
+-- onRegionLeave
+-----------------------------------
 function onRegionLeave(player,region)
 end;
------------------------------------	
--- onEventUpdate	
------------------------------------	
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)	
+function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-end;	
+end;
 
------------------------------------	
--- onEventFinish	
------------------------------------	
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)	
+function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
+
 	if(csid == 0x0065) then
 		player:completeMission(COP,AN_INVITATION_WEST);
 		player:addMission(COP,THE_LOST_CITY);
@@ -92,10 +92,9 @@ function onEventFinish(player,csid,option)
 		player:completeMission(COP,AN_ETERNAL_MELODY);
 		player:addMission(COP,ANCIENT_VOWS);
 	elseif(csid == 0x006B) then
-	 	player:completeMission(COP,THE_CRADLES_OF_CHILDREN_LOST);
-		player:addMission(COP,SHELTERING_DOUBT);  
+		player:setVar("PromathiaStatus",1);
 	elseif(csid == 0x0070) then	
-	    player:setVar("PromathiaStatus",1);
+		player:setVar("PromathiaStatus",1);
 	end
-	
+
 end;

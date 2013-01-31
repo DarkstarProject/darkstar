@@ -30,7 +30,8 @@ function OnBcnmLeave(player,instance,leavecode)
 		player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0);
 		player:setVar("PromathiaStatus",0);
 		player:completeMission(COP,ANCIENT_VOWS);
-		player:addMission(COP,A_TRANSIENT_DREAM);
+		player:addMission(COP,THE_CALL_OF_THE_WYRMKING);
+		player:setVar("VowsDone",1);
 	elseif(leavecode == 4) then
 		player:startEvent(0x7d02);
 	end

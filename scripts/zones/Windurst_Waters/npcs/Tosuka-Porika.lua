@@ -35,14 +35,14 @@ function onTrigger(player,npc)
 	-- 0xa0 (160) = 1st cutscene of Windurst Mission 2-1
 	-- 0xa1 (161) = More info on 2-1, ifyou talk to him right after the previous cutscene again
 	
-	bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
-	glyphStatus = player:getQuestStatus(WINDURST,GLYPH_HANGER);
-	chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
+	local bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
+	local glyphStatus = player:getQuestStatus(WINDURST,GLYPH_HANGER);
+	local chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
 	
-	Fame = player:getFameLevel(WINDURST);
+	local Fame = player:getFameLevel(WINDURST);
 	
 	if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==10)then
-	           player:startEvent(0x036B);--COP event
+		player:startEvent(0x036B);--COP event
 	
 	-- Start Past Reflexion in First -----------
 	elseif(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0193 and option == 0) then
 	    player:addQuest(WINDURST,CHASING_TALES);
 	elseif(csid ==0x036B)then
-            player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);	
+		player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);	
 	end
 	
 end;

@@ -76,13 +76,13 @@ function onTrigger(player,npc)
 	local EMORIES_OF_A_MAIDEN = player:getVar("MEMORIES_OF_A_MAIDEN_Status");
 	
 	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 3)then
-	       player:startEvent(0x01D5);
-	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 6 )then
-	       player:startEvent(0x01D6,0,587,0,586);    
+		player:startEvent(0x01D5);
+	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 6)then
+		player:startEvent(0x01D6,0,587,0,586);
 	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:hasKeyItem(MIMEO_FEATHER)==true)then       
-	       player:startEvent(0x01D7);
-    elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 11 )then
-	       player:startEvent(0x01D8); 
+		player:startEvent(0x01D7);
+	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 11 )then
+		player:startEvent(0x01D8); 
 	elseif(blastFromPast == QUEST_ACCEPTED) then
 		local blastPastProg = player:getVar("BlastFromThePast_Prog");
 		if(blastPastProg == 1) then
@@ -125,14 +125,14 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x01D5)then
 	  player:setVar("MEMORIES_OF_A_MAIDEN_Status",4);
 	elseif(csid == 0x01D6)then
-	  player:setVar("MEMORIES_OF_A_MAIDEN_Status",7);
-	  player:delKeyItem(581);
+		player:setVar("MEMORIES_OF_A_MAIDEN_Status",7);
+		player:delKeyItem(581);
 	elseif(csid == 0x01D7)then
 		player:delKeyItem(MIMEO_FEATHER);
  		player:delKeyItem(SECOND_MIMEO_FEATHER);
-	    player:delKeyItem(THIRD_MIMEO_FEATHER);
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",9);
-    elseif(csid == 0x01D8)then	
-        player:setVar("MEMORIES_OF_A_MAIDEN_Status",12);    --end 3-3B: Windurst Route: "Memories of a Maiden"	
+		player:delKeyItem(THIRD_MIMEO_FEATHER);
+		player:setVar("MEMORIES_OF_A_MAIDEN_Status",9);
+	elseif(csid == 0x01D8)then	
+		player:setVar("MEMORIES_OF_A_MAIDEN_Status",12);    --end 3-3B: Windurst Route: "Memories of a Maiden"
 	end
 end;

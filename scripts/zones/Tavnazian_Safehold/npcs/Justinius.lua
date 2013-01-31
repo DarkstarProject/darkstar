@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 3)then
 		player:startEvent(0x0071);
-	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 1)then	
+	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 2)then	
 	    player:startEvent(0x006D);
 	elseif(player:getCurrentMission(COP) == THE_SAVAGE and player:getVar("PromathiaStatus") == 2) then 	
 	    player:startEvent(0x006E);
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
 		player:completeMission(COP,DISTANT_BELIEFS);
 		player:addMission(COP,AN_ETERNAL_MELODY);
 	elseif(csid == 0x006D)then
-		player:setVar("PromathiaStatus",2);
+		player:setVar("PromathiaStatus",3);
 	elseif(csid == 0x006E)then
 		player:setVar("PromathiaStatus",0);	
 		player:completeMission(COP,THE_SAVAGE);

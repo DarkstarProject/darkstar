@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 	if(player:getCurrentMission(COP) == AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 0)then
 		player:startEvent(0x0068);
 	elseif(player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 0) then 	
-	    player:startEvent(0x006F);	
+	    player:startEvent(0x006F);
 		return 1;
 	else
 		return -1;

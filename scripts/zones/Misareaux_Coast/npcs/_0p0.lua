@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(COP) == AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 1)then
 		player:startEvent(0x0005);
-	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 2)then
+	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 3)then
 	    player:startEvent(0x0007);
 	else
 		player:messageSpecial(DOOR_CLOSED);

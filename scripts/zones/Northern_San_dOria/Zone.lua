@@ -45,8 +45,8 @@ function onZoneIn(player,prevZone)
 	if(player:getVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1) then		
 		cs = 0x0031;
 	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1)then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
-	        player:setVar("EMERALD_WATERS_Status",2);
-            	cs = 0x000E;				 
+		player:setVar("EMERALD_WATERS_Status",2);
+		cs = 0x000E;
 	end		
 	return cs;	
 end;		

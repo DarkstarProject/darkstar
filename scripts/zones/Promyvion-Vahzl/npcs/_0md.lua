@@ -22,7 +22,7 @@ end;
 function onTrigger(player,npc) 
     if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==3)then
 	   SpawnMob(16867333,240):updateEnmity(player);
-	elseif(player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==4)then	
+	elseif(player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==4)then
        player:startEvent(0x0034);   
 	end
 end;

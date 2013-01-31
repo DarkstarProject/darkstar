@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 	elseif(EventTriggerBCNM(player,npc))then
 		return 0;
 	elseif(player:hasKeyItem(LIGHT_OF_ALTAIEU) == true) then
-	player:startEvent(0x000C);	
+	player:startEvent(0x000C);
 	end
 	
 	return 0;
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x000D)then
 	player:setVar("PromathiaStatus",0);
 	player:completeMission(COP,SLANDEROUS_UTTERINGS);
-	player:addMission(COP,THE_RETURN_HOME);
+	player:addMission(COP,THE_ENDURING_TUMULT_OF_WAR);
 	player:addTitle(THE_LOST_ONE);
 	end
 	end;

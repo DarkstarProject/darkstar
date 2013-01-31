@@ -25,7 +25,7 @@ cs = -1;
 		player:setPos(-475.825,-20.461,281.149,11);
 	end
 	
-	if(player:getCurrentMission(COP) == THE_ISLE_OF_FORGOTTEN_SAINTS)then
+	if(player:getCurrentMission(COP) == AN_INVITATION_WEST and player:getVar("PromathiaStatus") == 1) then
 		cs = 0x006E;
 	end
 	
@@ -55,10 +55,7 @@ end;
 function onEventFinish(player,csid,option)	
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if(csid == 0x006E) then
-		player:completeMission(COP,THE_ISLE_OF_FORGOTTEN_SAINTS);
-		player:addMission(COP,AN_INVITATION_WEST);
+	if (csid == 0x0063) then
+		player:setVar("PromathiaStatus",0);
 	end
-	
 end;

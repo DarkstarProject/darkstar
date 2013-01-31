@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
 	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
 	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==4)then
-	                 player:startEvent(0x0369);
+		player:startEvent(0x0369);
 	elseif ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),16) == false) then
 		player:startEvent(0x003c); -- Show Off Hat
 	elseif (MakingHeadlines == 1) then

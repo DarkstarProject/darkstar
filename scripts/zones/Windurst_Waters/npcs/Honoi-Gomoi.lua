@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 	Fame       = player:getFameLevel(WINDURST);
 	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
 	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==5)then
-	         player:startEvent(0x036A);  --COP event
+		player:startEvent(0x036A);  --COP event
 	elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),2) == false) then
 		player:startEvent(0x003b); -- Show Off Hat
 	elseif (WildCard == QUEST_COMPLETED) then
@@ -117,9 +117,9 @@ function onEventFinish(player,csid,option)
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+2);
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
 	elseif (csid == 0x036A)	then
-	        player:setVar("MEMORIES_OF_A_MAIDEN_Status",6);
-		 player:addKeyItem(581); --Cracked Mimeo Mirror
-		 player:messageSpecial(KEYITEM_OBTAINED,581);
+		player:setVar("MEMORIES_OF_A_MAIDEN_Status",6);
+		player:addKeyItem(581); --Cracked Mimeo Mirror
+		player:messageSpecial(KEYITEM_OBTAINED,581);
 	end
 end;
 
