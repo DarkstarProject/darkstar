@@ -183,6 +183,7 @@ int16 CBattleEntity::GetWeaponDelay(bool haste)
 	{
 		WeaponDelay = (WeaponDelay * (100 - getMod(MOD_HASTE))) / 100;
 	}
+	WeaponDelay = WeaponDelay * ((float)(100 + getMod(MOD_DELAYP))/100);
 	return WeaponDelay;
 }
 
@@ -194,7 +195,9 @@ int16 CBattleEntity::GetRangedWeaponDelay()
 	int delay = 0;
 	if(PRange != NULL && PRange->getDamage() != 0) { delay += (((PRange->getDelay()*60)/1000)+240); }
 	if(PAmmo != NULL && PAmmo->getDamage() != 0) { delay += (((PAmmo->getDelay()*60)/1000)+240); }
-	return (((delay-getMod(MOD_RANGED_DELAY))*1000)/110);
+	delay = (((delay-getMod(MOD_RANGED_DELAY))*1000)/110);
+	delay = delay * ((float)(100 + getMod(MOD_RANGED_DELAYP))/100);
+	return delay;
 }
 
 uint16 CBattleEntity::GetMainWeaponDmg()

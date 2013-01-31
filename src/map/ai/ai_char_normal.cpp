@@ -2800,7 +2800,6 @@ void CAICharNormal::ActionAttack()
 
 						damage = (uint16)((( (m_PChar->GetMainWeaponDmg()-3) + naturalH2hDmg + bonusDMG +
 								 battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
-						printf("DMG: %d\n", m_PChar->GetMainWeaponDmg());
 					}
 					else
 					{

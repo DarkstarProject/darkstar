@@ -404,16 +404,20 @@ enum MODIFIER
 	MOD_RANGED_DMG_RATING	 = 0x178,			//adds damage rating to ranged weapon
 	MOD_MAIN_DMG_RANK		 = 0x179,			//adds weapon rank to main weapon (http://wiki.bluegartr.com/bg/Weapon_Rank)
 	MOD_SUB_DMG_RANK		 = 0x17A,			//adds weapon rank to sub weapon
-	MOD_RANGED_DMG_RANK		 = 0x17B			//adds weapon rank to ranged weapon
+	MOD_RANGED_DMG_RANK		 = 0x17B,			//adds weapon rank to ranged weapon
+	MOD_DELAYP				 = 0x17C,			//delay addition percent
+	MOD_RANGED_DELAYP		 = 0x17D			//ranged delay addition percent
 
 //  Use these for new modifiers. 
 	
-	//SPARE_MOD				 = 0x17C
-	//SPARE_MOD				 = 0x17D
+
 	//SPARE_MOD				 = 0x17E
+	//SPARE_MOD				 = 0x17F
+	//SPARE_MOD				 = 0x180
+	//SPARE_MOD				 = 0x181
 };
 
-#define MAX_MODIFIER	       0x17C
+#define MAX_MODIFIER	       0x17E
 
 
 

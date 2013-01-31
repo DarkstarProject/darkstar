@@ -777,6 +777,8 @@ MOD_REGEN				= 0x172
 
 MOD_CURE_POTENCY		= 0x176
 MOD_CURE_POTENCY_RCVD	= 0x177
+MOD_DELAYP				= 0x17C
+MOD_RANGED_DELAYP		= 0x17D
 
 -----------------------------------
 -- Slot Definitions
