@@ -863,11 +863,6 @@ void CAICharNormal::ActionRangedFinish()
 					CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
 					CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
-					if(PItem->getSkillType()!=SKILL_THR)
-					{
-						if(PAmmo!=NULL)
-							damage = PAmmo->getDamage();
-					}
 
 					// at least 1 hit occured
 					hitOccured = true;

@@ -192,39 +192,63 @@ int16 CBattleEntity::GetRangedWeaponDelay()
 	CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
 
 	int delay = 0;
-	if(PRange != NULL) { delay += (((PRange->getDelay()*60)/1000)+240); }
-	if(PAmmo != NULL) { delay += (((PAmmo->getDelay()*60)/1000)+240); }
+	if(PRange != NULL && PRange->getDamage() != 0) { delay += (((PRange->getDelay()*60)/1000)+240); }
+	if(PAmmo != NULL && PAmmo->getDamage() != 0) { delay += (((PAmmo->getDelay()*60)/1000)+240); }
 	return (((delay-getMod(MOD_RANGED_DELAY))*1000)/110);
 }
 
 uint16 CBattleEntity::GetMainWeaponDmg()
 {
-	return m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RATING);
+	if( m_Weapons[SLOT_MAIN] )
+	{
+		return m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RATING);
+	}
 }
 
 uint16 CBattleEntity::GetSubWeaponDmg()
 {
-	return m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RATING);
+	if( m_Weapons[SLOT_SUB] )
+	{
+		return m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RATING);
+	}
 }
 
 uint16 CBattleEntity::GetRangedWeaponDmg()
 {
-	return m_Weapons[SLOT_RANGED]->getDamage() + getMod(MOD_RANGED_DMG_RATING) + m_Weapons[SLOT_AMMO]->getDamage();
+	uint8 dmg = 0;
+	if( m_Weapons[SLOT_RANGED] )
+	{
+		dmg += m_Weapons[SLOT_RANGED]->getDamage() + getMod(MOD_RANGED_DMG_RATING);
+	}
+	if( m_Weapons[SLOT_AMMO] )
+	{
+		dmg += m_Weapons[SLOT_AMMO]->getDamage();
+	}
+	return dmg;
 }
 
 uint16 CBattleEntity::GetMainWeaponRank()
 {
-	return (m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RANK)) / 9;
+	if( m_Weapons[SLOT_MAIN] )
+	{
+		return (m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RANK)) / 9;
+	}
 }
 
 uint16 CBattleEntity::GetSubWeaponRank()
 {
-	return (m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RANK)) / 9;
+	if( m_Weapons[SLOT_SUB] )
+	{
+		return (m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RANK)) / 9;
+	}
 }
 
 uint16 CBattleEntity::GetRangedWeaponRank()
 {
-	return (m_Weapons[SLOT_RANGED]->getDamage() + getMod(MOD_RANGED_DMG_RANK)) / 9;
+	if( m_Weapons[SLOT_RANGED] )
+	{
+		return (m_Weapons[SLOT_RANGED]->getDamage() + getMod(MOD_RANGED_DMG_RANK)) / 9;
+	}
 }
 
 /************************************************************************
