@@ -23,9 +23,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 
     -- try to drain buff
-    -- TODO fix draintatuseffect
-    -- local effect = target:drainStatusEffect();
-    local effect;
+    local effect = target:stealStatusEffect();
     local dmg = 0;
 
     if(effect ~= nil) then
@@ -36,7 +34,7 @@ function OnMobWeaponSkill(target, mob, skill)
         -- add buff to myself
         skill:setMsg(MSG_EFFECT_DRAINED);
 
-        dmg = 1;
+        return 1;
     else
         -- time to drain HP. 50-100
         local power = math.random(0, 51) + 50;

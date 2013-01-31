@@ -20,10 +20,8 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 
     -- try to drain buff
-    -- TODO fix
-    -- local effectFirst = target:drainStatusEffect();
-    -- local effectSecond = target:drainStatusEffect();
-    local effectFirst;
+    local effectFirst = target:stealStatusEffect();
+    local effectSecond = target:stealStatusEffect();
     local dmg = 0;
 
     if(effectFirst ~= nil) then
@@ -35,15 +33,20 @@ function OnMobWeaponSkill(target, mob, skill)
             mob:addStatusEffect(effectFirst:getType(), effectFirst:getPower(), effectFirst:getTickCount(), effectFirst:getDuration());
         end
 
-        if(effectSecond ~= nil and mob:hasStatusEffect(effectSecond:getType()) == false) then
+        if(effectSecond ~= nil) then
             count = count + 1;
-            -- add to myself
-            mob:addStatusEffect(effectSecond:getType(), effectSecond:getPower(), effectSecond:getTickCount(), effectSecond:getDuration());
+            if(mob:hasStatusEffect(effectSecond:getType()) == false) then
+                -- add to myself
+                mob:addStatusEffect(effectSecond:getType(), effectSecond:getPower(), effectSecond:getTickCount(), effectSecond:getDuration());
+            end
+
         end
+
+
         -- add buff to myself
         skill:setMsg(MSG_EFFECT_DRAINED);
 
-        dmg = count;
+        return count;
     else
         -- time to drain HP. 100-200
         local power = math.random(0, 101) + 100;
@@ -53,7 +56,7 @@ function OnMobWeaponSkill(target, mob, skill)
         mob:addHP(dmg);
 
         skill:setMsg(MSG_DRAIN_HP);
+        return dmg;
     end
 
-    return dmg;
 end;

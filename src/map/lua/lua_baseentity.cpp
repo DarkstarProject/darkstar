@@ -3689,18 +3689,17 @@ inline int32 CLuaBaseEntity::eraseAllStatusEffect(lua_State *L)
 *                                                                       *
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::drainStatusEffect(lua_State *L)
+inline int32 CLuaBaseEntity::stealStatusEffect(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    CStatusEffect* PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DrainStatusEffect();
+    CStatusEffect* PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->StealStatusEffect();
 
     if (PStatusEffect == NULL)
         lua_pushnil(L);
     else
     {
-        lua_pop(L,1);
         lua_pushstring(L, CLuaStatusEffect::className);
         lua_gettable(L,LUA_GLOBALSINDEX);
         lua_pushstring(L,"new");
@@ -3708,7 +3707,6 @@ inline int32 CLuaBaseEntity::drainStatusEffect(lua_State *L)
         lua_insert(L,-2);
         lua_pushlightuserdata(L,(void*)PStatusEffect);
 
-        // delete effect when finished
         delete PStatusEffect;
     }
     if( lua_pcall(L,2,1,0) )
@@ -4545,7 +4543,7 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	// TODO: Scripters should check if the target is a monster before calling this, but for now lets do this and
 	// catch it further down.
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET ); 
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET );
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 	DSP_DEBUG_BREAK_IF(lua_tointeger(L,2) < 0);
 
@@ -4892,7 +4890,7 @@ inline int32 CLuaBaseEntity::getACC(lua_State *L)
 	if((L,2) > 0){
 		offsetAccuracy = (L,2);
 	}
-	
+
 	CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
 	uint16 ACC = PEntity->ACC(slot,offsetAccuracy);
 
@@ -5800,7 +5798,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelAllStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseAllStatusEffect),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,drainStatusEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,stealStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMod),

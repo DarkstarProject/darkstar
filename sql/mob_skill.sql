@@ -268,14 +268,14 @@ INSERT INTO `mob_skill` VALUES (979,78,925,'Impalement', 1, 10.0, 2000, 2000, 4,
 INSERT INTO `mob_skill` VALUES (986,241,933,'Empty_Cutter', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (987,241,934,'Negative_Whirl', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (988,241,935,'Stygian_Vapor', 1, 8.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (989,241,936,'Winds_Of_Promyvion', 1, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (989,241,936,'Winds_Of_Promyvion', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (990,241,937,'Spirit_Absorption', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (991,241,938,'Binary_Absorption', 0, 7.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (992,241,939,'Trinary_Absorption', 0, 7.0, 2000, 2500, 4, 0); -- NM only
 INSERT INTO `mob_skill` VALUES (993,241,940,'Spirit_Tap', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (994,241,941,'Binary_Tap', 0, 7.0, 2000, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (995,241,942,'Trinary_Tap', 0, 7.0, 2000, 2500, 4, 0); -- NM only
 -- NM Thinker
+INSERT INTO `mob_skill` VALUES (995,241,942,'Trinary_Tap', 0, 7.0, 2000, 2500, 4, 0); -- NM only
 INSERT INTO `mob_skill` VALUES (996,241,943,'Shadow_Spread', 1, 10.0, 2000, 1500, 4, 0); -- NM only
 -- Seether
 INSERT INTO `mob_skill` VALUES (997,220,872,'Vanity_Strike', 0, 7.0, 2000, 1000, 4, 0);

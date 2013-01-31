@@ -547,7 +547,7 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint16 S
 * Used in mob abilities
 ************************************************************************/
 
-CStatusEffect* CStatusEffectContainer::DrainStatusEffect()
+CStatusEffect* CStatusEffectContainer::StealStatusEffect()
 {
 
     std::vector<uint16> dispelableList;
@@ -563,7 +563,7 @@ CStatusEffect* CStatusEffectContainer::DrainStatusEffect()
     {
         uint16 rndIdx = rand() % dispelableList.size();
 
-        CStatusEffect* oldEffect = m_StatusEffectList[dispelableList.at(rndIdx)];
+        CStatusEffect* oldEffect = m_StatusEffectList.at(dispelableList.at(rndIdx));
 
         //make a copy
         CStatusEffect* whatever = new CStatusEffect(oldEffect->GetStatusID(), oldEffect->GetIcon(), oldEffect->GetPower(), oldEffect->GetTickTime(), oldEffect->GetDuration());
