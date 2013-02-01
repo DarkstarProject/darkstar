@@ -84,6 +84,7 @@ void UpdateWeather()
 
                 if (WeatherChange < WeatherFrequency)
                 {
+
                     g_PZoneList[ZoneID]->SetWeather((WEATHER)weather); break;
                 }
             }

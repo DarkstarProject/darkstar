@@ -22,7 +22,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(target:hasStatusEffect(typeEffect) == false) then
 		local statmod = MOD_INT;
 		local duration = 480;
-		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_DARK);
 		if(resist > 0.5) then
 			duration = duration - (duration/3);
 		end
