@@ -304,14 +304,16 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 				{
 					animOffset++;
 				}
-			case 25:	// Steal
-			case 29:	// Mug
-			case 30:	// Shield Bash
+				break;
 			case 41:    // Shadowbind
 				if( PEntity->m_Weapons[SLOT_RANGED]->getSkillType() == SKILL_MRK)
 				{
 					animOffset++;
 				}
+				break;
+			case 25:	// Steal
+			case 29:	// Mug
+			case 30:	// Shield Bash
 			case 50:	// Jump
 			case 51:	// High Jump
 			case 52:	// Super Jump
