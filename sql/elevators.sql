@@ -41,8 +41,8 @@ INSERT INTO `elevators` VALUES ('5', 'Pso\'Xja - Moving floor - 3', '16814468', 
 INSERT INTO `elevators` VALUES ('6', 'Pso\'Xja - Moving floor - 1', '16814471', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('7', 'Pso\'Xja - Moving floor - 2', '16814474', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('8', 'Pso\'Xja - ', '16814483', '0', '0', '1', '1');
-INSERT INTO `elevators` VALUES ('9', 'Pso\'Xja - ', '16814502', '0', '0', '1', '1');
-INSERT INTO `elevators` VALUES ('10', 'Pso\'Xja - ', '16814505', '0', '0', '1', '1');
+INSERT INTO `elevators` VALUES ('9', 'Pso\'Xja - ', '16814502', '16814503', '16814504', '1', '1');
+INSERT INTO `elevators` VALUES ('10', 'Pso\'Xja - ', '16814505', '16814506', '16814507', '1', '1');
 INSERT INTO `elevators` VALUES ('11', 'Pso\'Xja - ', '16814508', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('12', 'Pso\'Xja - Disappearing tiles - 4', '16814513', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('13', 'Pso\'Xja - Disappearing tiles - 1', '16814514', '0', '0', '1', '1');

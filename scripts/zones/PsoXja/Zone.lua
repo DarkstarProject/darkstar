@@ -14,15 +14,6 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
-zone:registerRegion(1,-26,-2,17,-24,2,22);--up enter
-zone:registerRegion(2,-23,-2,17,-20,2,22);--up exit
-zone:registerRegion(3,-21,30,24,-18,34,27);--dowwn enter
-zone:registerRegion(4,-21,30,22,-18,34,24);--dowwn exit
-
-zone:registerRegion(5,-341,-2,332, -338,2,336);--up enter
-zone:registerRegion(6,-341,-2,336, -338,2,339);--up exit  
-zone:registerRegion(7,-347,47,337, -344,49,341); --dowwn enter
-zone:registerRegion(8,-343,47,337, -341,49,341);--dowwn exit
 end;
 
 -----------------------------------		
@@ -55,34 +46,6 @@ end;
 function onRegionEnter(player,region)
 --print(region:GetRegionID());
 
-	switch (region:GetRegionID()): caseof
-	{ ----------elevator to the Shrouded maw temporary solution
-		[1] = function (x)
-		player:setPos(-19,0,20,55);
-		end,
-		[2] = function (x) 
-		player:setPos(-29,0,20,130);
-		end,
-		[3] = function (x)
-		player:setPos(-19,32,20,55);
-		end,
-		[4] = function (x)
-		player:setPos(-19,32,30,55);
-		end,
-	----------elevator to promyvion vahzl temporary solution
-		[5] = function (x)
-		player:setPos(-340,0,341,175);
-		end,
-		[6] = function (x) 
-		player:setPos(-339,0,330,64);
-		end,
-		[7] = function (x)
-		player:setPos(-340,48,341,175);
-		end,
-		[8] = function (x)
-		player:setPos(-347,48,339,131);
-		end,
-	}
 ----------------------------------------------------------------
 
 end;

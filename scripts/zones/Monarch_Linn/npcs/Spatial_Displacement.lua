@@ -34,7 +34,11 @@ function onTrigger(player,npc)
 	--printf("npcid : %u",npcid);
 	
 	if(npcid == 16904288 or npcid == 16904293) then
-		player:setPos(-507,-8,-384,88,30);
+		if (player:getPreviousZone() == 29) then
+			player:setPos(-534,-20,501,212,29); -- Riverne B
+		else
+			player:setPos(-507,-8,-384,88,30); -- Riverne A
+		end
 	elseif(npcid == 16904292 or npcid == 16904291 or npcid == 16904290)then
 		player:startEvent(0x7d03);  -- leave the battlefield
 	elseif(EventTriggerBCNM(player,npc))then  -- enter the battlefield
