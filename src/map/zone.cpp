@@ -594,25 +594,31 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	if(PChar->PPet != NULL)
     {
 		charutils::BuildingCharPetAbilityTable(PChar,(CPetEntity*)PChar->PPet,0);//blank the pet commands
-		if(PChar->PPet->isCharmed)
+		if(PChar->PPet->isCharmed) {
 			petutils::DespawnPet(PChar);
-		else
-			PChar->PPet->status = STATUS_DISAPPEAR;
-		PChar->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
-		DeletePET(PChar->PPet);//remove the TID for this pet
-		for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-		{
-			//inform other players of the pets removal
-			CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-			SpawnIDList_t::iterator PET = PCurrentChar->SpawnPETList.find(PChar->PPet->id);
-
-			if( PET != PCurrentChar->SpawnPETList.end() )
-			{
-				PCurrentChar->SpawnPETList.erase(PET);
-				PCurrentChar->pushPacket(new CEntityUpdatePacket(PChar->PPet, ENTITY_DESPAWN));
-			}
 		}
-		PChar->PPet = NULL;
+		else {
+			PChar->PPet->status = STATUS_DISAPPEAR;
+		}
+		// It may have been nulled by DespawnPet
+		if(PChar->PPet != NULL) {
+			PChar->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+			DeletePET(PChar->PPet);//remove the TID for this pet
+		
+			for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+			{
+				//inform other players of the pets removal
+				CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+				SpawnIDList_t::iterator PET = PCurrentChar->SpawnPETList.find(PChar->PPet->id);
+
+				if( PET != PCurrentChar->SpawnPETList.end() )
+				{
+					PCurrentChar->SpawnPETList.erase(PET);
+					PCurrentChar->pushPacket(new CEntityUpdatePacket(PChar->PPet, ENTITY_DESPAWN));
+				}
+			}
+			PChar->PPet = NULL;
+		}
 	}
 
 	//remove bcnm status
