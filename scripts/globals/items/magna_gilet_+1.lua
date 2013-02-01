@@ -15,5 +15,5 @@ return result;
 end;
 
 function onItemUse(target)
-	toPurgonorgo(target);
+	toPurgonorgoBibiki(target);
 end;

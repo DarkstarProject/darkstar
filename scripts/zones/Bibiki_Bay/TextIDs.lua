@@ -7,3 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
      
  MEP_NHAPOPOLUKO_DIALOG = 7167; -- Welcome! Fishermen's Guild representative, at your service!
+      NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.

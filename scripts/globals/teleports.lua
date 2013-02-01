@@ -121,8 +121,12 @@ function toZubaba(player)
 end;
 
 function toPurgonorgo(player)
-	player:setPos(522, -3, 545, 65, 0x2C)  -- to Purgonorgo Isle
+	player:setPos(522, -3, 545, 65, 0x2C)  -- to Abdhaljs Purgonorgo Isle
 end;
+
+function toPurgonorgoBibiki(player)
+	player:setPos(-382, -2, -428, 190, 0x04)  -- to Purgonorgo Isle (bibiki bay)
+end;	
 	
 function toWindurstMissionOverseer(player)
 	which = player:getVar("firstmissionguard");
