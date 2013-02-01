@@ -24,8 +24,11 @@
 #include "../common/utils.h"
 
 #include "packets/blue_set_spells.h"
+#include "packets/char_spells.h"
 
 #include <math.h>
+
+#include "packets/message_basic.h"
 
 #include "battleutils.h"
 #include "charutils.h"
@@ -59,7 +62,6 @@ void SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addi
 void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 
 	if (PMob->m_UsedSkillIds.size() == 0) { // minor optimisation.
-		//ShowDebug("Monster used no skills \n");
 		return;
 	}
 
@@ -69,7 +71,6 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 		CSpell* PSpell = spell::GetSpellByMonsterSkillId(i->first);
 		if (PSpell != NULL) {
 			PLearnableSpells.push_back(PSpell);
-			//ShowDebug("Monster used learnable skill %s \n",PSpell->getName());
 		}
 	}
 
@@ -94,7 +95,6 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 	// loop through the list of BLUs and see if they can learn.
 	for (int i=0; i<PBlueMages.size(); i++) {
 		CCharEntity* PBlueMage = PBlueMages[i];
-		//ShowDebug("Found BLU in killing PT %s \n",PBlueMage->GetName());
 
 		if (PBlueMage->isDead()) { // too dead to learn
 			continue;
@@ -108,23 +108,19 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 			CSpell* PSpell = PLearnableSpells[spell];
 
 			if (charutils::hasSpell(PBlueMage, PSpell->getID())) {
-				//ShowDebug("They already know %s \n",PSpell->getName());
 				continue;
 			}
 
 			uint8 learnableLevel = PSpell->getJob(JOB_BLU);
 			if (learnableLevel > 0 && learnableLevel < PBlueMage->GetMLevel()+7) { // TODO: Use blue magic skill check rather than level
 				if (rand()%100 < 50) {
-					//ShowDebug("They should learn %s \n",PSpell->getName());
-					// TODO: Send learn msg and add spell.
-				}
-				else {
-					//ShowDebug("Too bad. Didn't learn. \n");
+					if (charutils::addSpell(PBlueMage, PSpell->getID())) {
+						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, PSpell->getID(), 0, MSGBASIC_LEARNS_SPELL));
+						charutils::SaveSpells(PBlueMage);
+						PBlueMage->pushPacket(new CCharSpellsPacket(PBlueMage));
+					}
 				}
 				break; // only one attempt at learning a spell, regardless of learn or not.
-			}
-			else {
-				//ShowDebug("The spell %s is too high for them to learn. \n",PSpell->getName());
 			}
 		}
 

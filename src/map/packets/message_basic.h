@@ -84,7 +84,9 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_VERY_DIFFICULT_CHARM	= 211, /* It would be very difficult for the <player> to charm <target>. */
 	MSGBASIC_DIFFICULT_TO_CHARM		= 212, /* It would be difficult for the <player> to charm <target>. */
 	MSGBASIC_MIGHT_BE_ABLE_CHARM	= 213, /* The <player> might be able to charm <target>. */
-	MSGBASIC_SHOULD_BE_ABLE_CHARM	= 214 /* The <player> should be able to charm <target>. */
+	MSGBASIC_SHOULD_BE_ABLE_CHARM	= 214, /* The <player> should be able to charm <target>. */
+	/* BLU */
+	MSGBASIC_LEARNS_SPELL			= 419 /* <target> learns (NULL)! */
 };
 
 /************************************************************************
