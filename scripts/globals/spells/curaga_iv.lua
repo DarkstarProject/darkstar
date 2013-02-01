@@ -33,6 +33,8 @@ function onSpellCast(caster,target,spell)
 		final = diff;
 	end
 	target:addHP(final);
+	target:delStatusEffect(EFFECT_SLEEP_I);
+	target:delStatusEffect(EFFECT_SLEEP_II);
 	caster:updateEnmityFromCure(target,final);
 	return final;
 end;

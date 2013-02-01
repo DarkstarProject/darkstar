@@ -293,6 +293,10 @@ int32 CBattleEntity::addHP(int32 hp)
 {
 	if (status == STATUS_NORMAL) status = STATUS_UPDATE;
 
+	if (health.hp == 0 && hp < 0){
+		return 0; //if the entity is already dead, skip the rest to prevent killing it again
+	}
+	
     int32 cap = dsp_cap(health.hp + hp, 0, GetMaxHP());
 	hp = health.hp - cap;
 	health.hp = cap;
