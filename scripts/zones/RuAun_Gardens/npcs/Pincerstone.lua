@@ -20,68 +20,88 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	npcid = npc:getID();
+	local npcid = npc:getID();
+
 	printf("id: %u", npcid);
 	if(npcid == 17310038) then
-		if(os.time() <= GetServerVariable("Main-to-Seiryu-BlueTeleport")) then
+		local portal = GetNPCByID(17310051);
+		if(portal:getAnimation() == 8) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
-			SetServerVariable("Main-to-Seiryu-BlueTeleport",os.time() + 120);
+			GetNPCByID(17310037):openDoor(120);
+			portal:openDoor(120);
 		end
 	elseif(npcid == 17310040) then
-		if(os.time() <= GetServerVariable("Seiryu-to-Main-BlueTeleport")) then
+		local portal = GetNPCByID(17310052);
+		if(portal:getAnimation() == 8) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
-			SetServerVariable("Seiryu-to-Main-BlueTeleport",os.time() + 120);
-		end	
+			GetNPCByID(17310039):openDoor(120);
+			portal:openDoor(120);
+		end
 	elseif(npcid == 17310042) then
-		if(os.time() <= GetServerVariable("Seiryu-to-Genbu-BlueTeleport")) then
+		local portal = GetNPCByID(17310054);
+		if(portal:getAnimation() == 8) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
-			SetServerVariable("Seiryu-to-Genbu-BlueTeleport",os.time() + 120);
+			GetNPCByID(17310041):openDoor(120);
+			portal:openDoor(120);
 		end
 	elseif(npcid == 17310044) then
-		if(os.time() <= GetServerVariable("Genbu-to-Seiryu-BlueTeleport")) then
+		local portal = GetNPCByID(17310055);
+		if(portal:getAnimation() == 8) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
-			SetServerVariable("Genbu-to-Seiryu-BlueTeleport",os.time() + 120);
+			GetNPCByID(17310043):openDoor(120);
+			portal:openDoor(120);
 		end
 	elseif(npcid == 17310046) then
-		if(os.time() <= GetServerVariable("Genbu-to-Byakko-BlueTeleport")) then
+		local portal = GetNPCByID(17310057);
+		if(portal:getAnimation() == 8) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
-			SetServerVariable("Genbu-to-Byakko-BlueTeleport",os.time() + 120);
-		end	
+			GetNPCByID(17310045):openDoor(120);
+			portal:openDoor(120);
+		end
 	elseif(npcid == 17310036) then
-		if(os.time() <= GetServerVariable("Byakko-to-Genbu-BlueTeleport")) then
+		local portal = GetNPCByID(17310058);
+		if(portal:getAnimation() == 8) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
-			SetServerVariable("Byakko-to-Genbu-BlueTeleport",os.time() + 120);
+			GetNPCByID(17310035):openDoor(120);
+			portal:openDoor(120);
 		end
 	elseif(npcid == 17310034) then
-		if(os.time() <= GetServerVariable("Byakko-to-Suzaku-BlueTeleport")) then
+		local portal = GetNPCByID(17310060);
+		if(portal:getAnimation() == 8) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
-			SetServerVariable("Byakko-to-Suzaku-BlueTeleport",os.time() + 120);
+			GetNPCByID(17310033):openDoor(120);
+			portal:openDoor(120);
 		end
 	elseif(npcid == 17310028) then
-		if(os.time() <= GetServerVariable("Suzaku-to-Byakko-BlueTeleport")) then
+		local portal = GetNPCByID(17310061);
+		if(portal:getAnimation() == 8) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
-			SetServerVariable("Suzaku-to-Byakko-BlueTeleport",os.time() + 120);
+			GetNPCByID(17310027):openDoor(120);
+			portal:openDoor(120);
 		end
 	elseif(npcid == 17310030) then
-		if(os.time() <= GetServerVariable("Suzaku-to-Main-BlueTeleport")) then
+		local portal = GetNPCByID(17310063);
+		if(portal:getAnimation() == 8) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
-			SetServerVariable("Suzaku-to-Main-BlueTeleport",os.time() + 120);
+			GetNPCByID(17310029):openDoor(120);
+			portal:openDoor(120);
 		end
 	elseif(npcid == 17310032) then
-		if(os.time() <= GetServerVariable("Main-to-Suzaku-BlueTeleport")) then
+		local portal = GetNPCByID(17310064);
+		if(portal:getAnimation() == 8) then
 			player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
 		else
-			SetServerVariable("Main-to-Suzaku-BlueTeleport",os.time() + 120);
+			GetNPCByID(17310031):openDoor(120);
+			portal:openDoor(120);
 		end
 	end
 	
