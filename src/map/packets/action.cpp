@@ -286,7 +286,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 	uint32 TargetNum = 0;
 	uint32 ActionNum = 0;
 	uint32 bitOffset = 50;
-
+	uint32 animOffset = 0;
 
 	uint8 ActionTypeNumber = ActionType;
 
@@ -299,9 +299,19 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		switch (PEntity->PBattleAI->GetCurrentJobAbility()->getID())
 		{
 			//WS animations
+			case 10:    // Eagle Eye Shot
+				if( PEntity->m_Weapons[SLOT_RANGED]->getSkillType() == SKILL_MRK)
+				{
+					animOffset++;
+				}
 			case 25:	// Steal
 			case 29:	// Mug
 			case 30:	// Shield Bash
+			case 41:    // Shadowbind
+				if( PEntity->m_Weapons[SLOT_RANGED]->getSkillType() == SKILL_MRK)
+				{
+					animOffset++;
+				}
 			case 50:	// Jump
 			case 51:	// High Jump
 			case 52:	// Super Jump
@@ -359,7 +369,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		}
 
 		bitOffset = packBitsBE(data, Action.reaction,   bitOffset,  5);				// физическая реакция на урон
-		bitOffset = packBitsBE(data, Action.animation,  bitOffset, 11);				// анимация специальных эффектов (monster TP animations are 1800+)
+		bitOffset = packBitsBE(data, Action.animation+animOffset,  bitOffset, 11);				// анимация специальных эффектов (monster TP animations are 1800+)
 		bitOffset = packBitsBE(data, Action.speceffect, bitOffset, 10);				// specialEffect					
 		bitOffset = packBitsBE(data, Action.param,	    bitOffset, 16);				// параметр сообщения (урон)
 		bitOffset += 1;
