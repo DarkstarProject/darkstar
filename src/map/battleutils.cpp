@@ -1725,15 +1725,8 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 
 	float cap = 2.0f;
 	if(PAttacker->objtype==TYPE_PC){
-		switch(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()){
-		case SKILL_GAX:
-		case SKILL_GSD:
-		case SKILL_GKT:
-		case SKILL_POL:
-		case SKILL_SYH:
-		case SKILL_STF:
+		if(PAttacker->m_Weapons[SLOT_MAIN]->isTwoHanded()){
 			cap = 2.2f;
-			break;
 		}
 	}
 	if(PAttacker->objtype == TYPE_MOB){
@@ -1804,7 +1797,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 	float pDIF = ((cRatioMax-cRatioMin) * ((float)rand()/RAND_MAX)) + cRatioMin;
 
 	//x1.00 ~ x1.05 final multiplier, giving max value 3*1.05 -> 3.15
-	return pDIF * (1+((0.5f) * ((float)rand()/RAND_MAX)));
+	return pDIF * (1+((0.05f) * ((float)rand()/RAND_MAX)));
 }
 
 /************************************************************************
