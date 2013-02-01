@@ -172,7 +172,7 @@ INSERT INTO `zone_settings` VALUES (124, 0016777343, 54230, 'Yhoator_Jungle', 13
 INSERT INTO `zone_settings` VALUES (125, 0016777343, 54230, 'Western_Altepa_Desert', 171, 191, 191, 0, 0.00, 156);
 INSERT INTO `zone_settings` VALUES (126, 0016777343, 54230, 'Qufim_Island', 0, 101, 103, 0, 0.00, 152);
 INSERT INTO `zone_settings` VALUES (127, 0016777343, 54230, 'Behemoths_Dominion', 0, 101, 103, 0, 0.00, 152);
-INSERT INTO `zone_settings` VALUES (128, 0016777343, 52430, 'Valley_of_Sorrows', 0, 191, 191, 0, 0.00, 152);
+INSERT INTO `zone_settings` VALUES (128, 0016777343, 54230, 'Valley_of_Sorrows', 0, 191, 191, 0, 0.00, 152);
 INSERT INTO `zone_settings` VALUES (129, 0016777343, 54230, 'Ghoyus_Reverie', 0, 216, 216, 0, 0.00, 145);
 INSERT INTO `zone_settings` VALUES (130, 0016777343, 54230, 'RuAun_Gardens', 210, 191, 191, 0, 0.00, 152);
 INSERT INTO `zone_settings` VALUES (131, 0016777343, 54230, 'Mordion_Gaol', 0, 101, 103, 0, 0.00, 0);
