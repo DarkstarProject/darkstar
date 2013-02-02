@@ -127,7 +127,12 @@ function BluePhysicalSpell(caster, target, spell, params)
             pdif = pdif/1000;
         
             -- Apply it to our final D
-            finaldmg = finaldmg + (finalD * pdif);
+            if (hitsdone == 0) then -- only the first hit benefits from multiplier
+                finaldmg = finaldmg + (finalD * pdif);
+            else
+                finaldmg = finaldmg + ((math.floor(D + fStr + WSC)) * pdif); -- same as finalD but without multiplier (it should be 1.0)
+            end
+            
             hitslanded = hitslanded + 1;
             
             -- increment target's TP (10TP per hit landed)
