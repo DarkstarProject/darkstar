@@ -19,7 +19,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)	
-    if (player:getMainLvl() >= 20) then
+    if (target:getMainLvl() >= 20) then
 		target:addStatusEffect(EFFECT_CHOCOBO,0,0,1800);
 	else
 		target:addStatusEffect(EFFECT_CHOCOBO,0,0,900);
