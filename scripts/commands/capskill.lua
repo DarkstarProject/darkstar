@@ -59,6 +59,8 @@ function onTrigger(player,skill)
 		player:capSkill(41);
 	elseif(skill=="wind") then
 		player:capSkill(42);
+    elseif(skill=="blue") then
+		player:capSkill(43);
 	else
 		print("Unknown skill type: "..skill);
 	end
