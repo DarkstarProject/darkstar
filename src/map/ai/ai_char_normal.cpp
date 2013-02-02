@@ -868,7 +868,8 @@ void CAICharNormal::ActionRangedFinish()
 					hitOccured = true;
 					realHits ++;
 
-					damage = (damage + m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
+					damage = (m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
+
 					damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
 
 
@@ -1926,7 +1927,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 		Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
 		Action.animation  = m_PJobAbility->getAnimationID();;
 		Action.messageID  = MSGBASIC_USES_JA_TAKE_DAMAGE;
-		Action.flag = 0;
+		Action.flag = 1;
 
 		bool hitOccured = false;	// track if player hit mob at all
 		if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
@@ -2011,6 +2012,11 @@ void CAICharNormal::ActionJobAbilityFinish()
 		Action.param      = value;
         Action.messageID  = m_PJobAbility->getMessage();
         Action.flag       = 0;
+
+		if( m_PJobAbility->getID() == ABILITY_SHADOWBIND )
+		{
+			Action.flag = 3;
+		}
 
 		// handle jump abilities---
 
