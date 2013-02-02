@@ -1,24 +1,24 @@
------------------------------------	
--- Brainshaker	
--- Club weapon skill	
--- Skill level: 70	
--- Stuns enemy. Duration of stun varies with TP.	
--- Will stack with Sneak Attack.	
--- Aligned with the Aqua Gorget.	
--- Aligned with the Aqua Belt.	
--- Element: None	
--- Modifiers: STR:30%	
--- 100%TP    200%TP    300%TP	
--- 1.00      1.00      1.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function OnUseWeaponSkill(player, target, wsID)	
-	
+-----------------------------------
+-- Brainshaker
+-- Club weapon skill
+-- Skill level: 70
+-- Stuns enemy. Duration of stun varies with TP.
+-- Will stack with Sneak Attack.
+-- Aligned with the Aqua Gorget.
+-- Aligned with the Aqua Belt.
+-- Element: None
+-- Modifiers: STR:30%
+-- 100%TP    200%TP    300%TP
+-- 1.00      1.00      1.00
+-----------------------------------
+
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function OnUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
@@ -28,13 +28,14 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
 	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+
 	if(damage > 0) then
 		local tp = player:getTP();
-		local duration = (tp/100);
+		local duration = (tp/50);
 		if(target:hasStatusEffect(EFFECT_STUN) == false) then
 			target:addStatusEffect(EFFECT_STUN, 1, 0, duration);
 		end
 	end
 	return tpHits, extraHits, damage;
-	
-end	
+
+end

@@ -317,6 +317,7 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
 	else
 		magicacc = magicacc + diff;
 	end
+
 	--add acc for ele/dark seal
     if(mob:hasStatusEffect(EFFECT_ELEMENTAL_SEAL) == true and skill ~= 0) then
         magicaccbonus = magicaccbonus + 256;
@@ -331,7 +332,12 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
     end
 
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-	magiceva = (target:getMod(MOD_MEVA) + target:getMod(resistMod[element]) + target:getMod(defenseMod[element]))/10;
+	local magiceva = target:getMod(MOD_MEVA);
+
+	-- add elemental resistence
+	if(element >= 0) then
+		magiceva = magiceva + target:getMod(resistMod[element]) + target:getMod(defenseMod[element]) / 10;
+	end
 
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
 	multiplier = 0;
@@ -340,18 +346,18 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
 	else
 		multiplier = 100 / (mob:getMainLvl() * 3);
 	end;
-	p = (magicacc * multiplier) - (magiceva * 0.45);
-	magicaccbonus = magicaccbonus / 2;
-	--add magicacc bonus
-	p = p + magicaccbonus;
-	-- print(magicacc);
-	-- print(magiceva);
-	-- print(magicaccbonus);
 
+	-- printf("magicevasion: %f * %f = %f", magiceva, 0.5, magiceva*0.5);
+	-- printf("magicacc: %f * %f = %f", magicacc, mulitplier, magicacc*mulitplier);
+
+	p = (magicacc * mulitplier) - (magiceva * 0.5);
+
+	--add magicacc bonus
+	p = p + magicaccbonus / 2;
 
 	--double any acc over 50 if it's over 50
-	if p > 5 then
-		p = 5 + (p - 5) * 2;
+	if(p > 50) then
+		p = 50 + (p - 50) * 2;
 	end
 
 	--add a flat bonus that won't get doubled in the previous step
@@ -360,10 +366,12 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
 	--add a scaling bonus or penalty based on difference of targets level from caster
 	leveldiff = mob:getMainLvl() - target:getMainLvl();
 	if leveldiff < 0 then
-		p = p - (25 * ( (mob:getMainLvl()) / 75 )) + leveldiff;
+		p = p - (leveldiff * 25 * ( (mob:getMainLvl()) / 75 ));
 	else
-		p = p + (25 * ( (mob:getMainLvl()) / 75 )) + leveldiff;
+		p = p + (leveldiff * 25 * ( (mob:getMainLvl()) / 75 ));
 	end
+
+	-- printf("power: %f", p);
 	--cap accuracy
     if(p > 95) then
         p = 95;
@@ -378,29 +386,29 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
     quart = ((1 - p)^2);
     eighth = ((1 - p)^3);
     sixteenth = ((1 - p)^4);
-    -- print("HALF:",half);
-    -- print("QUART:",quart);
-    -- print("EIGHTH:",eighth);
-    -- print("SIXTEENTH:",sixteenth);
+    -- print("HALF:"..half);
+    -- print("QUART:"..quart);
+    -- print("EIGHTH:"..eighth);
+    -- print("SIXTEENTH:"..sixteenth);
 
     resvar = math.random();
 
     -- Determine final resist based on which thresholds have been crossed.
     if(resvar <= sixteenth) then
         resist = 0.0625;
-        --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
+        printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
     elseif(resvar <= eighth) then
         resist = 0.125;
-        --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
+        printf("Spell resisted to 1/8!  Threshold = %u",eighth);
     elseif(resvar <= quart) then
         resist = 0.25;
-        --printf("Spell resisted to 1/4.  Threshold = %u",quart);
+        printf("Spell resisted to 1/4.  Threshold = %u",quart);
     elseif(resvar <= half) then
         resist = 0.5;
-        --printf("Spell resisted to 1/2.  Threshold = %u",half);
+        printf("Spell resisted to 1/2.  Threshold = %u",half);
     else
         resist = 1.0;
-        --printf("1.0");
+        printf("Not resisted: 1.0");
     end
     return resist;
 

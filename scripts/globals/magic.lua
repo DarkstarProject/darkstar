@@ -343,8 +343,8 @@ function applyResistance(player,spell,target,diff,skill,staff)
 
 
 	--double any acc over 50 if it's over 50
-	if(p > 5) then
-		p = 5 + (p - 5) * 2;
+	if(p > 50) then
+		p = 50 + (p - 50) * 2;
 	end
 
 	--add a flat bonus that won't get doubled in the previous step

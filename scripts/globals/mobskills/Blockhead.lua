@@ -17,7 +17,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	-- Needs Knockback added
 	local numhits = 1;
 	local accmod = 1;
-	local dmgmod = math.random(2,3);
+	local dmgmod = 2 + math.random();
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
 	target:delHP(dmg);

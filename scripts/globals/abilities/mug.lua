@@ -10,8 +10,14 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-    if(math.random()>0.9) then
+    if(math.random()<0.9) then
     	local gil = target:getGil();
+
+        -- is notorious
+        -- all notorious monsters can be mugged
+        if(target:isMobType(2) and gil <= 0) then
+            gil = target:getMainLvl() * 30;
+        end
 
         if(gil <= 0 or gil == nil) then
             player:messageBasic(244);

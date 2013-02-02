@@ -17,9 +17,20 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local numhits = 1;
 	local accmod = 1;
-	local dmgmod = math.random(2,3)+math.random();
+	local dmgmod = 2.3+math.random();
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
+
+    local typeEffect = EFFECT_SLOW;
+    if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
+        local statmod = MOD_INT;
+        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_ICE);
+        if(resist > 0.2) then
+            target:delStatusEffect(EFFECT_HASTE);
+            target:addStatusEffect(typeEffect,25,0,60);--power=25;tic=0;duration=30;
+        end
+    end
+
 	target:delHP(dmg);
 	return dmg;
 end;

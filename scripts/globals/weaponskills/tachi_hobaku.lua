@@ -1,24 +1,24 @@
------------------------------------	
--- Tachi Hobaku	
--- Great Katana weapon skill	
--- Skill Level: 30	
--- Stuns enemy. Chance of stun varies with TP.	
--- Will stack with Sneak Attack.	
--- Aligned with the Snow Gorget.	
--- Aligned with the Snow Belt.	
--- Element: None	
--- Modifiers: STR:30%	
--- 100%TP    200%TP    300%TP	
--- 1.00      1.00      1.00	
------------------------------------	
-	
-require("scripts/globals/status");	
-require("scripts/globals/settings");	
-require("scripts/globals/weaponskills");	
------------------------------------	
-	
-function OnUseWeaponSkill(player, target, wsID)	
-	
+-----------------------------------
+-- Tachi Hobaku
+-- Great Katana weapon skill
+-- Skill Level: 30
+-- Stuns enemy. Chance of stun varies with TP.
+-- Will stack with Sneak Attack.
+-- Aligned with the Snow Gorget.
+-- Aligned with the Snow Belt.
+-- Element: None
+-- Modifiers: STR:30%
+-- 100%TP    200%TP    300%TP
+-- 1.00      1.00      1.00
+-----------------------------------
+
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
+-----------------------------------
+
+function OnUseWeaponSkill(player, target, wsID)
+
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
@@ -29,14 +29,13 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.atkmulti = 1;
 	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
-	if damage > 0 then
-		local tp = player:getTP();
-		local duration = (tp/100);
+	local chance = player:getTP()-100 > math.random()*150;
+	if(damage > 0 and chance) then
 		if(target:hasStatusEffect(EFFECT_STUN) == false) then
-			target:addStatusEffect(EFFECT_STUN, 1, 0, duration);
+			target:addStatusEffect(EFFECT_STUN, 1, 0, 3);
 		end
-	end	
-	
+	end
+
 	return tpHits, extraHits, damage;
-	
-end	
+
+end

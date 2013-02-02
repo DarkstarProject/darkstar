@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Cocoon
--- Enhances defense.
+-- Memento Mori
+-- Enhances Magic Attack.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -18,6 +18,6 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_MAGIC_ATK_BOOST;
     mob:delStatusEffect(EFFECT_MAGIC_ATK_DOWN);
     mob:delStatusEffect(typeEffect);
-    mob:addStatusEffect(typeEffect,20,0,30); -- 50%
+    mob:addStatusEffect(typeEffect,20,0,120); -- 50%
     return typeEffect;
 end;

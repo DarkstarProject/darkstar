@@ -22,7 +22,7 @@ function onItemUse(target)
     local pet = target:getPet();
 
     if(pet) then
-        pet:addStatusEffect(EFFECT_REGAIN,0, 15, 3, 15);
+        pet:addStatusEffect(EFFECT_REGAIN, 15, 3, 15);
     else
         target:messageBasic(423);
     end

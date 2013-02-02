@@ -122,9 +122,8 @@ INSERT INTO `mob_skill` VALUES(50, 178,50, 'Scream', 1, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (60,186,60,'Impale', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (61,186,61,'Vampiric_Lash', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (63,186,63,'Bad_Breath', 4, 7.0, 2000, 2000, 4, 0);
-INSERT INTO `mob_skill` VALUES (64,186,64,'Sweet_Breath', 4, 7.0, 2000, 2000, 4, 0); -- sleep
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Vampiric_Lash', 0, 7.0, 2000, 1500, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Drain_Whip', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (64,186,64,'Sweet_Breath', 4, 7.0, 2000, 2000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,186,0,'Drain_Whip', 0, 7.0, 2000, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Extremely_Bad_Breath', 4, 7.0, 2000, 1500, 4, 0); -- used only by Evil Oscar, Cirrate Christelle, Lividroot Amooshah, Eccentric Eve and Melancholic Moira.
 
 -- Sabotenders (cactuars)
@@ -594,20 +593,20 @@ INSERT INTO `mob_skill` VALUES (349,189,349,'Aerial_Wheel', 0, 7.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (350,189,350,'Shoulder_Attack', 0, 7.0, 2000, 1700, 4, 0);
 INSERT INTO `mob_skill` VALUES (808,189,351,'Jump', 0, 9.5, 2000, 1000, 4, 0);
 -- Quadav
-INSERT INTO `mob_skill` VALUES (355,200,355,'Ore_Toss', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (355,200,355,'Ore_Toss', 0, 10.0, 2000, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (377,200,354,'Howl', 1, 20.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (356,200,356,'Head_Butt', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (357,200,357,'Shell_Bash', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (358,200,358,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0);
 
 -- INSERT INTO `mob_skill` VALUES (377,201,354,'Howl', 1, 20.0, 2000, 1000, 1, 0);
-INSERT INTO `mob_skill` VALUES (355,201,355,'Ore_Toss', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (355,201,355,'Ore_Toss', 0, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (356,201,356,'Head_Butt', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (357,201,357,'Shell_Bash', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (358,201,358,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0);
 
 -- INSERT INTO `mob_skill` VALUES (377,202,354,'Howl', 1, 20.0, 2000, 1000, 1, 0);
-INSERT INTO `mob_skill` VALUES (355,202,355,'Ore_Toss', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (355,202,355,'Ore_Toss', 0, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (356,202,356,'Head_Butt', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (357,202,357,'Shell_Bash', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (358,202,358,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0);
@@ -702,7 +701,7 @@ INSERT INTO `mob_skill` VALUES (425,135,425,'Crystal_Weapon_Water', 1, 15.0, 200
 INSERT INTO `mob_skill` VALUES (426,135,426,'Crystal_Weapon_Wind', 1, 15.0, 2000, 1500, 4, 0);
 
 -- Sapling
-INSERT INTO `mob_skill` VALUES (429,216,429,'Sprout_Spin', 1, 7.0, 2000, 1300, 4, 0);
+INSERT INTO `mob_skill` VALUES (429,216,429,'Sprout_Spin', 1, 15.0, 2000, 1300, 4, 0);
 INSERT INTO `mob_skill` VALUES (430,216,430,'Slumber_Powder', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (431,216,431,'Sprout_Smack', 0, 7.0, 2000, 1500, 4, 0);
 -- Cardian
@@ -913,6 +912,7 @@ INSERT INTO `mob_skill` VALUES (1388,232,878,'Hypothermal_Combustion', 1, 7.0, 2
 INSERT INTO `mob_skill` VALUES (276,74,902,'Envoutement', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (275,74,901,'Silence_Seal', 1, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (274,74,900,'Memento_Mori', 0, 7.0, 2000, 1500, 1, 0);
+-- INSERT INTO `mob_skill` VALUES (274,74,1070,'Final_Retribution', 1, 10.0, 2000, 2000, 4, 0);
 -- mammet
 -- --------------------
 -- VALUES POST 1024

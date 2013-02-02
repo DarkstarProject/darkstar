@@ -99,7 +99,9 @@ uint16 GetBase(CMobEntity * PMob, uint8 rank)
 
 void CalculateStats(CMobEntity * PMob)
 {
+	bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS || PMob->isInDynamis();
 	if(PMob->HPmodifier == 0){
+
 		float growth = 1.0575;
 		uint8 lvl = PMob->GetMLevel();
 
@@ -123,7 +125,7 @@ void CalculateStats(CMobEntity * PMob)
 
 		PMob->health.maxhp = (int16)(18.0 * pow(PMob->GetMLevel(), growth) * PMob->HPstat);
 
-		if(PMob->m_Type & MOBTYPE_NOTORIOUS){
+		if(isNM){
 			PMob->health.maxhp *= 2.0;
 			if(PMob->GetMLevel()>75){
 				PMob->health.maxhp *= 2.5;
@@ -145,7 +147,7 @@ void CalculateStats(CMobEntity * PMob)
 	case JOB_SCH:
 		if(PMob->MPmodifier == 0){
 			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPstat);
-			if(PMob->m_Type & MOBTYPE_NOTORIOUS){
+			if(isNM){
 			PMob->health.maxmp *= 2.5;
 				if(PMob->GetMLevel()>75){
 					PMob->health.maxmp *= 2.5;
@@ -177,7 +179,7 @@ void CalculateStats(CMobEntity * PMob)
 	}
 
 	PMob->setModifier(MOD_ATT, BaseAttack);
-	
+
 	//MNK attack rate should be lower
 	if(PMob->GetMJob() == JOB_MNK){
 		BaseAttack = (float)BaseAttack*0.4;
@@ -187,7 +189,7 @@ void CalculateStats(CMobEntity * PMob)
 
 	PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
 
-	 
+
     //reduce weapon delay of MNK
     if(PMob->GetMJob()==JOB_MNK){
         uint16 delay = PMob->m_Weapons[SLOT_MAIN]->getDelay();
@@ -199,7 +201,7 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_Weapons[SLOT_MAIN]->setDelay(delay);
     }
 
-	
+
 	uint16 fSTR = GetBaseToRank(3, PMob->GetMLevel());
 	uint16 fDEX = GetBaseToRank(3, PMob->GetMLevel());
 	uint16 fAGI = GetBaseToRank(3, PMob->GetMLevel());
@@ -251,7 +253,7 @@ void CalculateStats(CMobEntity * PMob)
 	PMob->stats.MND = fMND + mMND + sMND;
 	PMob->stats.CHR = fCHR + mCHR + sCHR;
 
-	if(PMob->m_Type & MOBTYPE_NOTORIOUS){
+	if(isNM){
 		PMob->stats.STR *= 1.5;
 		PMob->stats.DEX *= 1.5;
 		PMob->stats.VIT *= 1.5;
@@ -288,7 +290,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	}
 
 	// TODO: Use enums rather than hardcode the spell ids...
-	
+
 	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells
 	// Single targe tier spells
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_FIRE] & SPELLTYPE_DAMAGE) {
@@ -311,7 +313,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_DAMAGE) {
 		AddHighestAvailableSpell(PMob, 30, 28, true); // Banish III -> I
-	} 
+	}
 	//// AoE Spells
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_FIRE] & SPELLTYPE_AOE) {
 		AddHighestAvailableSpell(PMob, 178, 174, true); // Firaga V -> I
@@ -333,7 +335,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	}
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_AOE) {
 		AddHighestAvailableSpell(PMob, 42, 38, true); // Banishga V -> I
-	} 
+	}
 
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_HEAL) {
 		for (int i=6; i>=1; i--) {
@@ -342,7 +344,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 				break; // we've got the highest level we can use, so stop looking for lower ones
 			}
 		}
-	} 
+	}
 }
 
 void AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestId, bool ignoreJob)

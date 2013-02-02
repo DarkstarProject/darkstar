@@ -12,19 +12,19 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
+
 	--calculate raw damage
 	basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
 	dmg = calculateMagicDamage(basedmg,1,caster,spell,target,DARK_MAGIC_SKILL,MOD_INT,false);
-	
-	-- Softcaps at 2, should always do at least 1
-	if(dmg > 2) then
-		dmg = 2;
+
+	-- Softcaps at 15, should always do at least 1
+	if(dmg > 15) then
+		dmg = 15;
 	end
 	if(dmg < 1) then
 		dmg = 1;
 	end
-	
+
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getMod(MOD_INT)-target:getMod(MOD_INT),DARK_MAGIC_SKILL,1.0);
 	--get the resisted damage
@@ -36,29 +36,29 @@ function onSpellCast(caster,target,spell)
 
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
-	
+
 	-- Calculate duration.
 	duration = 60;
-	
+
 	-- Check for Dia & bio.
 	dia = target:getStatusEffect(EFFECT_DIA);
 
 	-- Calculate DoT (rough, though fairly accurate)
 	dotdmg = 2 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
-	
+
 	-- Do it!
 	if(BIO_OVERWRITE == 0 or (BIO_OVERWRITE == 1 and dia == nil)) then
 		target:delStatusEffect(EFFECT_BIO); -- delete old bio
 		target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE);
 	end
-	
+
 	--Try to kill same tier Dia (default behavior)
 	if(DIA_OVERWRITE == 1 and dia ~= nil) then
 		if(dia:getPower() == 1) then
 			target:delStatusEffect(EFFECT_DIA);
 		end
 	end
-	
+
 	return final;
-	
+
 end;
