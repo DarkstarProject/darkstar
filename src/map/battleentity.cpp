@@ -389,7 +389,16 @@ uint16 CBattleEntity::RATT(uint8 skill)
 uint16 CBattleEntity::ACC(uint8 slot, uint8 offsetAccuracy)
 {
 	if (this->objtype & TYPE_PC){
-		int16 ACC = GetSkill(m_Weapons[slot]->getSkillType());
+		uint8 skill = m_Weapons[slot]->getSkillType();
+		if (skill == SKILL_NON && slot == SLOT_SUB && m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
+		{
+			skill = SKILL_H2H;
+		}
+		else if (skill == SKILL_NON && slot == SLOT_MAIN && GetSkill(SKILL_H2H) > 0)
+		{
+			skill = SKILL_H2H;
+		}
+		int16 ACC = GetSkill(skill);
 		ACC = (ACC > 200 ? (((ACC - 200)*0.9)+200) : ACC);
 		if(slot == SLOT_MAIN && m_Weapons[SLOT_MAIN]->isTwoHanded() == true)
 		{
