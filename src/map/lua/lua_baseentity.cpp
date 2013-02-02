@@ -32,6 +32,7 @@
 #include "lua_trade_container.h"
 #include "luautils.h"
 
+#include "../packets/action.h"
 #include "../packets/auction_house.h"
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
@@ -5271,6 +5272,49 @@ inline int32 CLuaBaseEntity::openDoor(lua_State *L)
 	return 0;
 }
 
+/************************************************
+ * Just for debugging. Similar to @animatoin.   *
+ * Injects an action packet with the specified  *
+ * parameters. Used for quickly finding anims.  *
+ ************************************************/
+inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	/*
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	uint16 action = (uint16)lua_tointeger(L,1);
+	uint16 anim = (uint16)lua_tointeger(L,2);
+
+	ACTIONTYPE actiontype = ACTION_MAGIC_FINISH;
+	switch (action) {
+	case 3: actiontype = ACTION_WEAPONSKILL_FINISH; break;
+	case 4: actiontype = ACTION_MAGIC_FINISH; break;
+	case 6: actiontype = ACTION_JOBABILITY_FINISH; break;
+	case 11: actiontype = ACTION_MOBABILITY_FINISH; break;
+	}
+
+	apAction_t Action;
+    PChar->m_ActionList.clear();
+
+	Action.ActionTarget = PChar;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = anim;
+	Action.param      = 10;
+	Action.messageID  = 0;
+	Action.flag		  = 0;
+
+	ACTIONTYPE oldAction = PChar->PBattleAI->GetCurrentAction();
+	PChar->PBattleAI->SetCurrentSpell(1);
+	PChar->PBattleAI->SetCurrentAction(actiontype);
+    PChar->m_ActionList.push_back(Action);
+	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CActionPacket(PChar));
+	PChar->PBattleAI->SetCurrentAction(oldAction); */
+
+	return 0;
+}
+
 /************************************************************************
 * can be used by all npc for disappear a certain time					*
 * npc:hideNPC() : disappear for 15sec									*
@@ -5897,5 +5941,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkinID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,createWornItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasWornItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
 	{NULL,NULL}
 };
