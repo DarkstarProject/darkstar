@@ -350,14 +350,14 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
 	-- printf("magicevasion: %f * %f = %f", magiceva, 0.5, magiceva*0.5);
 	-- printf("magicacc: %f * %f = %f", magicacc, mulitplier, magicacc*mulitplier);
 
-	p = (magicacc * mulitplier) - (magiceva * 0.5);
+	p = (magicacc * multiplier) - (magiceva * 0.5);
 
 	--add magicacc bonus
 	p = p + magicaccbonus / 2;
 
 	--double any acc over 50 if it's over 50
-	if(p > 50) then
-		p = 50 + (p - 50) * 2;
+	if(p > 5) then
+		p = 5 + (p - 5) * 2;
 	end
 
 	--add a flat bonus that won't get doubled in the previous step

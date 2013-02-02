@@ -13,13 +13,13 @@ require("/scripts/globals/monstertpmoves");
 function OnPetAbility(target, pet, skill)
 	numhits = 1;
 	accmod = 1;
-	dmgmod = 6;
+	dmgmod = 2 + math.random();
 	dmgmodsubsequent = 1; -- ??
 
 	totaldamage = 0;
 	damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,dmgmodsubsequent,TP_NO_EFFECT,1,2,3);
 	--get resist multiplier (1x if no resist)
-	resist = applyPlayerResistance(pet,skill,target,pet:getMod(MOD_INT)-target:getMod(MOD_INT),ELEMENTAL_MAGIC_SKILL, 6);
+	resist = applyPlayerResistance(pet,skill,target,pet:getMod(MOD_INT)-target:getMod(MOD_INT),ELEMENTAL_MAGIC_SKILL, ELE_THUNDER);
 	--get the resisted damage
 	damage.dmg = damage.dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -30,7 +30,7 @@ function OnPetAbility(target, pet, skill)
 	end
 	damage.dmg = damage.dmg * tp / 100;
 	totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,numhits);
-	target:addStatusEffect(EFFECT_PARALYSIS, 25, 0, 60);
+	target:addStatusEffect(EFFECT_PARALYSIS, 15, 0, 60);
 	target:delHP(totaldamage);
 	target:updateEnmityFromDamage(pet,totaldamage);
 
