@@ -879,7 +879,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
             int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
 
             //randomize sleep duration
-            duration -= rand()%(duration/2);
+            duration -= rand()%((duration+1)/2);
 
 			duration = dsp_cap(duration,1,25);
 			PDefender->StatusEffectContainer->AddStatusEffect(
@@ -992,7 +992,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
 
             //randomize sleep duration
-            duration -= rand()%(duration/2);
+            duration -= rand()%((duration+1)/2);
 
             duration = dsp_cap(duration,1,25);
 
@@ -1531,10 +1531,10 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
             baseTp = CalculateBaseTP((delay * 60) / 1000) / ratio;
 		}
 
-		
+
 		// add to to attacker
 		PAttacker->addTP( tpMultiplier * (baseTp * (1.0f + 0.01f * (float)(PAttacker->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))));
-		
+
 		if (giveTPtoVictim == true)
 		{
 			//account for attacker's subtle blow which reduces the baseTP gain for the defender
@@ -2667,49 +2667,49 @@ bool HasNotEnoughTpForDance(CBattleEntity* PEntity, CAbility* PAbility, bool tak
 	// TODO: Minor optimisation by doing a range check before switching since the IDs are all grouped together
 
 	switch (PAbility->getID()) {
-	case ABILITY_DRAIN_SAMBA: 
+	case ABILITY_DRAIN_SAMBA:
 		if (PEntity->health.tp < 10) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-10); }
 		break;
-	case ABILITY_DRAIN_SAMBA_II: 
+	case ABILITY_DRAIN_SAMBA_II:
 		if (PEntity->health.tp < 25) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-25); }
 		break;
-	case ABILITY_DRAIN_SAMBA_III: 
+	case ABILITY_DRAIN_SAMBA_III:
 		if (PEntity->health.tp < 40) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-40); }
 		break;
-	case ABILITY_ASPIR_SAMBA: 
+	case ABILITY_ASPIR_SAMBA:
 		if (PEntity->health.tp < 10) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-10); }
 		break;
-	case ABILITY_ASPIR_SAMBA_II: 
+	case ABILITY_ASPIR_SAMBA_II:
 		if (PEntity->health.tp < 25) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-25); }
 		break;
-	case ABILITY_HASTE_SAMBA: 
+	case ABILITY_HASTE_SAMBA:
 		if (PEntity->health.tp < 35) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-35); }
 		break;
-	case ABILITY_CURING_WALTZ: 
+	case ABILITY_CURING_WALTZ:
 		if (PEntity->health.tp < 20) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-20); }
 		break;
-	case ABILITY_CURING_WALTZ_II: 
+	case ABILITY_CURING_WALTZ_II:
 		if (PEntity->health.tp < 35) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-35); }
 		break;
-	case ABILITY_CURING_WALTZ_III: 
+	case ABILITY_CURING_WALTZ_III:
 		if (PEntity->health.tp < 50) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-50); }
 		break;
-	case ABILITY_CURING_WALTZ_IV: 
+	case ABILITY_CURING_WALTZ_IV:
 		if (PEntity->health.tp < 65) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-65); }
 		break;
-	case ABILITY_HEALING_WALTZ: 
+	case ABILITY_HEALING_WALTZ:
 		if (PEntity->health.tp < 20) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-20); }
 		break;
-	case ABILITY_DIVINE_WALTZ: 
+	case ABILITY_DIVINE_WALTZ:
 		if (PEntity->health.tp < 40) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-40); }
 		break;
-	case ABILITY_QUICKSTEP: 
+	case ABILITY_QUICKSTEP:
 		if (PEntity->health.tp < 10) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-10); }
 		break;
-	case ABILITY_BOX_STEP: 
+	case ABILITY_BOX_STEP:
 		if (PEntity->health.tp < 10) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-10); }
 		break;
-	case ABILITY_STUTTER_STEP: 
+	case ABILITY_STUTTER_STEP:
 		if (PEntity->health.tp < 20) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-20); }
 		break;
 	}
@@ -3296,9 +3296,9 @@ bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base)
 *	Get available targets, for mob abilities and spells                 *
 *                                                                       *
 ************************************************************************/
-// TODO: The logic in this is too tightly coupled with the return value. E.g. change the logic here will potentially result in 
+// TODO: The logic in this is too tightly coupled with the return value. E.g. change the logic here will potentially result in
 // null pointers because we 'assume' that the returned enum means the target (e.g. pets, alliances) exist. Should change this
-// to return a vector with CBattleEntitys of all the targets hit, with the args CBattleEntity source, CBattleEntity target, uint16 radius, 
+// to return a vector with CBattleEntitys of all the targets hit, with the args CBattleEntity source, CBattleEntity target, uint16 radius,
 // bool isTargetAroundSource, bool includeAlliances -- then we can change everything over to this system.
 TARGET_PARTY_TYPE getAvailableAoeTargets(CBattleEntity* PTarget)
 {
