@@ -300,12 +300,6 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		{
 			//WS animations
 			case 10:    // Eagle Eye Shot
-				if( PEntity->m_Weapons[SLOT_RANGED]->getSkillType() == SKILL_MRK)
-				{
-					animOffset++;
-				}
-				ActionTypeNumber -= 3;
-				break;
 			case 41:    // Shadowbind
 				if( PEntity->m_Weapons[SLOT_RANGED]->getSkillType() == SKILL_MRK)
 				{

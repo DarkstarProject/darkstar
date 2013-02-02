@@ -1174,7 +1174,8 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	}
 
 	//return random number between the two
-	return ((maxPdif-minPdif) * ((float)rand()/RAND_MAX)) + minPdif;
+	float pdif = ((maxPdif-minPdif) * ((float)rand()/RAND_MAX)) + minPdif;
+	return pdif * (1+((0.05f) * ((float)rand()/RAND_MAX)));
 }
 
 float CalculateBaseTP(int delay){

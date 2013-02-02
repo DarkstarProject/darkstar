@@ -1732,6 +1732,55 @@ void CAICharNormal::ActionJobAbilityStart()
 			}
 		}
 
+		if (m_PJobAbility->getID() == ABILITY_EAGLE_EYE_SHOT || m_PJobAbility->getID() == ABILITY_SHADOWBIND){
+			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+
+			if (PItem != NULL &&
+			   (PItem->getType() & ITEM_WEAPON))
+			{
+				switch (PItem->getSkillType())
+				{
+					case SKILL_THR: break;
+					case SKILL_ARC:
+					case SKILL_MRK:
+					{
+						PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+
+						if (PItem != NULL &&
+						   (PItem->getType() & ITEM_WEAPON))
+						{
+							break;
+						}
+					}
+					default:
+					{
+						m_ActionTargetID = 0;
+						m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
+						return;
+					}
+				}
+			}else{
+				PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+
+				if (PItem == NULL ||
+				  !(PItem->getType() & ITEM_WEAPON) ||
+				   (PItem->getSkillType() != SKILL_THR))
+				{
+					m_ActionTargetID = 0;
+					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
+					return;
+				}
+
+				//todo: remove this and actually handle ammo thrown items (e.g. pebbles)
+				m_ActionTargetID = 0;
+					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
+					return;
+			}
+		}
+
 		// If there's not enough TP for a move, then reject it. If the JA isn't a dance, then this will fail
 		if (battleutils::HasNotEnoughTpForDance(m_PChar, m_PJobAbility, false)) {
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
@@ -1867,6 +1916,89 @@ void CAICharNormal::ActionJobAbilityFinish()
 				m_PChar->m_ActionList.push_back(Action);
 			}
 		}
+	}
+	else if (m_PJobAbility->getID() == ABILITY_EAGLE_EYE_SHOT )
+	{
+		uint16 damage = 0;
+
+		Action.ActionTarget = m_PBattleSubTarget;
+		Action.reaction   = REACTION_HIT;		//0x10
+		Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
+		Action.animation  = m_PJobAbility->getAnimationID();;
+		Action.messageID  = MSGBASIC_USES_JA_TAKE_DAMAGE;
+		Action.flag = 0;
+
+		bool hitOccured = false;	// track if player hit mob at all
+		if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
+		{
+			Action.messageID = 32;
+			Action.reaction   = REACTION_EVADE;
+			Action.speceffect = SPECEFFECT_NONE;
+		}
+		else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)) // hit!
+		{
+			float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
+
+			if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
+			{
+				pdif *= 1.25; //uncapped
+				Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+			}
+
+			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+			CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+
+
+			// at least 1 hit occured
+			hitOccured = true;
+
+			damage = (damage + m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif * 5;
+			damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+		}
+		else //miss
+		{
+			Action.reaction   = REACTION_EVADE;
+			Action.speceffect = SPECEFFECT_NONE;
+			Action.messageID  = MSGBASIC_USES_BUT_MISSES;
+
+			if(m_PBattleSubTarget->objtype == TYPE_MOB)
+			{
+				((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
+				((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
+				((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
+			}
+		}
+
+
+		// check for recycle chance
+		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+		uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
+
+		if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
+			recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
+
+		if(PAmmo != NULL && rand()%100 > recycleChance)
+		{
+
+			if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
+			{
+				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+				charutils::UnequipItem(m_PChar,SLOT_AMMO);
+			}
+			else
+			{
+				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+			}
+
+			m_PChar->pushPacket(new CInventoryFinishPacket());
+		}
+
+		// if a hit did occur (even without barrage)
+		if (hitOccured == true)
+		{
+			Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, damage, false, SLOT_RANGED, 0, NULL, true);
+		}
+		m_PChar->m_ActionList.push_back(Action);
 	}
     else
 	{

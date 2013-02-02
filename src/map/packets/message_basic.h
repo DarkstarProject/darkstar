@@ -49,12 +49,13 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_USES_JA				= 100, /* The <player> uses .. */
 	MSGBASIC_USES_JA2				= 101, /* The <player> uses .. */
 	MSGBASIC_USES_RECOVERS_HP		= 102, /* The <player> uses .. <target> recovers .. HP. */
+	MSGBASIC_USES_JA_TAKE_DAMAGE	= 317, /* The <player> uses .. <target> takes .. points of damage. */		
 	MSGBASIC_IS_INTIMIDATED			= 106, /* The <player> is intimidated by <target>'s presence. */
 	MSGBASIC_CANNOT_ON_THAT_TARG	= 155, /* You cannot perform that action on the specified target. */
 	MSGBASIC_CANNOT_ATTACK_TARGET	= 446, /* You cannot attack that target */
 	MSGBASIC_NEEDS_2H_WEAPON		= 307, /* That action requires a two-handed weapon. */
 	MSGBASIC_USES_BUT_MISSES		= 324, /* The <player> uses .. but misses <target>. */
-	MSGBASIC_CANT_BE_USED_IN_AREA	= 316, /* That action cannot be used in this area. */
+	MSGBASIC_CANT_BE_USED_IN_AREA	= 316, /* That action cannot be used in this area. */		
 	/* Distance */
 	MSGBASIC_TARG_OUT_OF_RANGE		= 4, /* <target> is out of range. */
 	MSGBASIC_UNABLE_TO_SEE_TARG		= 5, /* Unable to see <target>. */
