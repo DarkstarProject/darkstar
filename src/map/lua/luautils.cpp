@@ -1937,7 +1937,7 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
-		ShowError("luautils::OnMobSkillCheck: %s\n",lua_tostring(LuaHandle,-1));
+		ShowError("luautils::OnMobSkillCheck (%s): %s\n",PMobSkill->getName(),lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return 56;
 	}
@@ -1945,7 +1945,7 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMobSkillCheck");
 	if( lua_isnil(LuaHandle,-1) )
 	{
-		ShowError("luautils::OnMobSkillCheck: undefined procedure OnMobSkillCheck\n");
+		ShowError("luautils::OnMobSkillCheck (%s): undefined procedure OnMobSkillCheck\n", PMobSkill->getName());
 		return 56;
 	}
 
@@ -1960,7 +1960,7 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
 	
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
-		ShowError("luautils::OnMobSkillCheck: %s\n",lua_tostring(LuaHandle,-1));
+		ShowError("luautils::OnMobSkillCheck (%s): %s\n",PMobSkill->getName(), lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return 56;
 	}
