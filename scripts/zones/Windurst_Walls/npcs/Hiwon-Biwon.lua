@@ -28,11 +28,11 @@ function onTrigger(player,npc)
 		return (set % (2*flag) >= flag)
 	end
 	
-	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
-	CFA2 = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_2);
+	local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
+	local CFA2 = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_2);
 	
 	-- Curses,Foiled ... Again!?
-	if (CFA2 == QUEST_ACCEPTED) then
+	if (CFA2 == QUEST_ACCEPTED and player:hasItem(552) == false) then
 		player:startEvent(0x00B6); -- get Hiwon's hair
 	elseif (CFA2 == QUEST_COMPLETED and MakingHeadlines ~= QUEST_ACCEPTED) then
 		player:startEvent(0x00B9); -- New Dialog after CFA2
@@ -48,8 +48,7 @@ function onTrigger(player,npc)
 		--	16 = Mahogany Door
 		if (testflag(tonumber(prog),4) == false) then
 			if (player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_1) == 1) then
-				rand = math.random(1,2);
-				if (rand == 1) then
+				if (math.random(1,2) == 1) then
 					player:startEvent(0x011b); -- Give scoop while sick
 				else
 					player:startEvent(0x011c); -- Give scoop while sick
@@ -61,7 +60,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x011a); -- "Getting back to the maater at hand-wand..."
 		end
 	else
-		rand = math.random(1,5);
+		local rand = math.random(1,5);
 		if (rand == 1) then
 			print (rand);
 			player:startEvent(0x0131); -- Standard Conversation
@@ -113,7 +112,7 @@ function onEventFinish(player,csid,option)
 		else
 			player:addItem(552);
 			player:messageSpecial(ITEM_OBTAINED,552); -- Hiwon's hair
-			end
+		end
 	end
 end;
 
