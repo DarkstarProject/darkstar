@@ -21,9 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if(player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 1)then
-	player:startEvent(0x0009);
-    elseif(player:hasCompletedMission(COP,THE_SAVAGE))then
+	local currentCoP = player:getCurrentMission(COP);
+	local PromathiaStatus = player:getVar("PromathiaStatus");
+	if(currentCoP == THE_SECRETS_OF_WORSHIP and PromathiaStatus == 1)then
+		player:startEvent(0x0009);
+	elseif(player:hasCompletedMission(COP,THE_SECRETS_OF_WORSHIP) or (currentCoP == THE_SECRETS_OF_WORSHIP and PromathiaStatus >= 2)then
 	player:startEvent(0x01f6);
 	else
 	player:messageSpecial(DOOR_CLOSED);
