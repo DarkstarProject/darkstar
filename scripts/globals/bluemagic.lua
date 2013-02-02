@@ -14,6 +14,31 @@ SPELLTYPE_SPECIAL = 5;
 TPMOD_NONE = 0;
 TPMOD_CRITICAL = 1;
 TPMOD_DAMAGE = 2;
+TPMOD_ACC = 3;
+
+-- The damage type for the spell
+DMGTYPE_BLUNT = 0;
+DMGTYPE_PIERCE = 1;
+DMGTYPE_SLASH = 2;
+DMGTYPE_H2H = 3;
+
+-- The SC the spell makes
+SC_IMPACTION = 0;
+SC_TRANSFIXION = 1;
+SC_DETONATION = 2;
+SC_REVERBERATION = 3;
+SC_SCISSION = 4;
+SC_INDURATION = 5;
+SC_LIQUEFACTION = 6;
+SC_COMPRESSION = 7;
+
+SC_FUSION = 8;
+SC_FRAGMENTATION = 9;
+SC_DISTORTION = 10;
+SC_GRAVITATION = 11;
+
+SC_DARK = 12;
+SC_LIGHT = 13;
 
 -- Get the damage for a blue magic physical spell.
 -- caster - The entity casting the spell.
