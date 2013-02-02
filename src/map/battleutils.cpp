@@ -878,8 +878,12 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->flag = 3;
             int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
 
+            if(duration <= 0){
+                duration = 1;
+            }
+
             //randomize sleep duration
-            duration -= rand()%((duration+1)/2);
+            duration -= rand()%(duration/2);
 
 			duration = dsp_cap(duration,1,25);
 			PDefender->StatusEffectContainer->AddStatusEffect(
@@ -991,8 +995,12 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			Action->flag = 3;
 			int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
 
+            if(duration <= 0){
+                duration = 1;
+            }
+
             //randomize sleep duration
-            duration -= rand()%((duration+1)/2);
+            duration -= rand()%(duration/2);
 
             duration = dsp_cap(duration,1,25);
 
