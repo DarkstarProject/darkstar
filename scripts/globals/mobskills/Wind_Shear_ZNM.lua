@@ -34,7 +34,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,1,0,180);--power=1;tic=0;duration=180;
+			target:addStatusEffect(typeEffect,50,0,120*resist);--power=1;tic=0;duration=180;
 		end
 	end
 

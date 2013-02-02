@@ -20,15 +20,14 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_DIA;
     if(target:hasStatusEffect(typeEffect) == false) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
+        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
         if(resist > 0.2) then
-            target:addStatusEffect(typeEffect,3,3,60);--tic=3;duration=60;
+            target:addStatusEffect(typeEffect,3,3,60*resist);--tic=3;duration=60;
         end
     end
 
     local dmgmod = 1.5 + math.random();
-    local accmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2,accmod,dmgmod,TP_NO_EFFECT);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2,ELE_WATER,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_WIPE_SHADOWS);
     target:delHP(dmg);
     return dmg;

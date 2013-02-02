@@ -274,11 +274,18 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	-- get resistence, give small boost to mobs
 	resist = applyPlayerResistance(mob,skill,target,mob:getMod(MOD_INT)-target:getMod(MOD_INT),0,element);
 
-	finaldmg = finaldmg * resist;
+	-- get elemental damage reduction
+	local defense = 1;
+	if(element >= 0) then
+		defense = 1 - (target:getMod(resistMod[element]) + target:getMod(defenseMod[element])) / 256;
 
-	if(finaldmg < 1) then
-		finaldmg = 1;
+		-- max defense is 50%
+		if(defense > 0.5) then
+			defense = 0.5;
+		end
 	end
+
+	finaldmg = finaldmg * resist * defense;
 
 	-- Applies "Damage Taken" and "Magic Damage Taken" gear
 	-- MDT is stored in amount/256
@@ -293,6 +300,10 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 
 	finaldmg = finaldmg * dmgMod;
 	finaldmg = finaldmg * magicDmgMod;
+
+	if(finaldmg < 1) then
+		finaldmg = 1;
+	end
 
 	returninfo.dmg = finaldmg;
 	return returninfo;
@@ -336,7 +347,7 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
 
 	-- add elemental resistence
 	if(element >= 0) then
-		magiceva = magiceva + target:getMod(resistMod[element]) + target:getMod(defenseMod[element]) / 10;
+		magiceva = magiceva + target:getMod(resistMod[element]) + target:getMod(defenseMod[element]);
 	end
 
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)

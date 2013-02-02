@@ -20,7 +20,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PETRIFICATION;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_DARK);
 		if(resist > 0.2) then
 			local power = math.random(30, 60) + mob:getMainLvl()/3;
 			target:addStatusEffect(typeEffect,1,0,power);--power=1;tic=0;duration=180;
@@ -29,7 +29,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local dmgmod = 1;
 	local accmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,accmod,dmgmod,TP_NO_EFFECT);
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,ELE_DARK,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
 	mob:resetEnmity(target);

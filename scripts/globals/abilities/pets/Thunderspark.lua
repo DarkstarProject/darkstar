@@ -13,7 +13,7 @@ require("/scripts/globals/monstertpmoves");
 function OnPetAbility(target, pet, skill)
 	numhits = 1;
 	accmod = 1;
-	dmgmod = 2 + math.random();
+	dmgmod = 2;
 	dmgmodsubsequent = 1; -- ??
 
 	totaldamage = 0;

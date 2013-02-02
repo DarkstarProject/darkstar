@@ -319,7 +319,7 @@ INSERT INTO `mob_family_system` VALUES (251,'Uragnite',2,'Aquan',1,40,120,90,2,5
 INSERT INTO `mob_family_system` VALUES (252,'Vampyr',19,'Undead',1,40,100,120,1,3,3,4,3,6,6,3,3,1,1,1,1,1,1,1,1,1,1,1,1,8);
 INSERT INTO `mob_family_system` VALUES (253,'Wamoura',20,'Vermin',1,40,90,90,1,3,4,3,6,6,5,3,3,1,1,1,1,0.5,1.125,1,1,1,1,1,1,1);
 INSERT INTO `mob_family_system` VALUES (254,'Wamouracampa',20,'Vermin',1,40,90,90,1,3,4,3,6,6,5,3,3,1,1,1,1,0.875,1.125,1,1,1,1,1,1,1);
-INSERT INTO `mob_family_system` VALUES (255,'Wanderer',12,'Empty',0,40,10,90,1,3,4,3,6,6,5,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (255,'Wanderer',12,'Empty',0,40,20,90,1,3,4,3,6,6,5,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (256,'Weeper',12,'Empty',0,50,110,90,2,2,4,3,6,6,5,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (257,'Wivre',14,'Lizard',3,40,120,90,2,5,1,6,6,3,3,3,3,1,1,1,1,1,1.125,1.125,1,1,1,1,1,4);
 INSERT INTO `mob_family_system` VALUES (258,'Worm',1,'Amorph',0,0,70,180,6,3,6,3,2,3,4,3,3,1,1,1,1,1,1,1.25,0.875,1,1,1.25,0.875,4);

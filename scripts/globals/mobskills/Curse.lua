@@ -28,7 +28,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 		if(resist > 0.1) then
 			message = MSG_ENFEEB_IS;
-			target:addStatusEffect(typeEffect,30,0,duration);--power=1;tic=0;
+			target:addStatusEffect(typeEffect,25,0,duration);--power=1;tic=0;
 		end
 	else
 		message = MSG_NO_EFFECT;

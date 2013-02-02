@@ -144,6 +144,12 @@ function doEnspell(caster,target,spell,effect)
     if(magicskill>200) then
         potency = 5 + ((5*magicskill)/100);
     end
+
+    -- enhancing sword
+    if(target:getEquipID(SLOR_MAIN) == 16605) then
+        potency = potency + 5;
+    end
+
     target:addStatusEffect(effect,potency,0,duration);
     spell:setMsg(230);
 end;
@@ -324,7 +330,7 @@ function applyResistance(player,spell,target,diff,skill,staff)
     end
 
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[spell:getElement()]) + target:getMod(defenseMod[spell:getElement()])/10;
+	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[spell:getElement()]);
 
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
 	local multiplier = 0;

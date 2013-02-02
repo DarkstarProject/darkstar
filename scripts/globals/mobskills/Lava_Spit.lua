@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Lava_Spit
--- Deals Fire damage to enemies within an area of effect. 
+-- Deals Fire damage to enemies within an area of effect.
 --
 ---------------------------------------------
 
@@ -16,8 +16,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local dmgmod = 1;
-	local accmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 10,accmod,dmgmod,TP_MAB_BONUS,1);
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 10,ELE_FIRE,dmgmod,TP_MAB_BONUS,1);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;

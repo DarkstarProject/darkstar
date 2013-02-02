@@ -491,7 +491,7 @@ INSERT INTO `mob_skill` VALUES (230,86,230,'Whip_Tongue', 0, 7.0, 2000, 1500, 4,
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Infernal_Pestilence', 4, 10.0, 2000, 1500, 4, 0); -- Only used by certain NM
 
 -- Bombs
-INSERT INTO `mob_skill` VALUES (253,56,253,'Self-Destruct', 1, 15.0, 2000, 4000, 4, 0);
+INSERT INTO `mob_skill` VALUES (253,56,253,'Self-Destruct', 1, 15.0, 2000, 3000, 4, 0);
 INSERT INTO `mob_skill` VALUES (254,56,254,'Berserk', 0, 7.0, 2000, 1500, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Heat_Wave', 1, 15.0, 2000, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Vulcanian_Impact', 0, 7.0, 2000, 1500, 4, 0);
@@ -514,13 +514,13 @@ INSERT INTO `mob_skill` VALUES (267,175,267,'Mysterious_Light', 1, 10.0, 2000, 1
 INSERT INTO `mob_skill` VALUES (265,175,265,'Spinning_Attack', 4, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (264,175,264,'Double_Ray', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (266,175,266,'Spectral_Barrier', 0, 7.0, 2000, 2000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Mind_Drain', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (268,175,268,'Mind_Drain', 0, 7.0, 2000, 1500, 4, 0);
 -- Doll
 INSERT INTO `mob_skill` VALUES (278,83,279,'Kartstrahl', 0, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (279,83,279,'Blitzstrahl', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (280,83,280,'Panzerfaust', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (283,83,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (287,83,287,'Meltdown', 1, 15.0, 2000, 4000, 4, 0);
+INSERT INTO `mob_skill` VALUES (287,83,287,'Meltdown', 1, 15.0, 2000, 3500, 4, 0);
 INSERT INTO `mob_skill` VALUES (285,83,285,'Gravity_Field', 2, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (281,83,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0);
 
@@ -528,7 +528,7 @@ INSERT INTO `mob_skill` VALUES (278,84,279,'Kartstrahl', 0, 15.0, 2000, 1500, 4,
 INSERT INTO `mob_skill` VALUES (279,84,279,'Blitzstrahl', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (280,84,280,'Panzerfaust', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (283,84,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (287,84,287,'Meltdown', 1, 15.0, 2000, 4000, 4, 0);
+INSERT INTO `mob_skill` VALUES (287,84,287,'Meltdown', 1, 15.0, 2000, 3500, 4, 0);
 INSERT INTO `mob_skill` VALUES (285,84,285,'Gravity_Field', 2, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (281,84,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0);
 
@@ -536,7 +536,7 @@ INSERT INTO `mob_skill` VALUES (278,85,279,'Kartstrahl', 0, 15.0, 2000, 1500, 4,
 INSERT INTO `mob_skill` VALUES (279,85,279,'Blitzstrahl', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (280,85,280,'Panzerfaust', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (283,85,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (287,85,287,'Meltdown', 1, 15.0, 2000, 4000, 4, 0);
+INSERT INTO `mob_skill` VALUES (287,85,287,'Meltdown', 1, 15.0, 2000, 3500, 4, 0);
 INSERT INTO `mob_skill` VALUES (285,85,285,'Gravity_Field', 2, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (281,85,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0);
 -- Ahriman
@@ -907,7 +907,7 @@ INSERT INTO `mob_skill` VALUES (1316,251,862,'Venom_Shell', 1, 10.0, 2000, 1500,
 INSERT INTO `mob_skill` VALUES (1391,232,875,'Berserk', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (1389,232,876,'Freeze_Rush', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (1390,232,877,'Cold_Wave', 4, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (1388,232,878,'Hypothermal_Combustion', 1, 7.0, 2000, 4000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1388,232,878,'Hypothermal_Combustion', 1, 7.0, 2000, 3000, 4, 0);
 -- corse
 INSERT INTO `mob_skill` VALUES (276,74,902,'Envoutement', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (275,74,901,'Silence_Seal', 1, 15.0, 2000, 1500, 4, 0);
@@ -1369,7 +1369,7 @@ INSERT INTO `mob_skill` VALUES (390,298,390,'Heavy_Stomp', 1, 10.0, 2000, 1500, 
 -- INSERT INTO `mob_skill` VALUES (0,299,0,'Xenoglossia', 0, 7.0, 2000, 1500, 1, 0);
 
 -- Reacton (300)
-INSERT INTO `mob_skill` VALUES (253,300,253,'Self-Destruct', 1, 7.0, 2000, 4000, 4, 0);
+INSERT INTO `mob_skill` VALUES (253,300,253,'Self-Destruct', 1, 7.0, 2000, 3000, 4, 0);
 INSERT INTO `mob_skill` VALUES (254,300,254,'Berserk', 0, 7.0, 2000, 1500, 1, 0);
 
 -- Verdelet (301)

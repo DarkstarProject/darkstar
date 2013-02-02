@@ -19,10 +19,14 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local dmgmod = 1;
-	local accmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*6,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
-	target:delHP(dmg);
+    local dmgmod = 1;
+    if(mob:getHP()~=0) then
+        BOMB_TOSS_HPP = mob:getHP()/mob:getMaxHP();
+    end
+
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*25*BOMB_TOSS_HPP,ELE_DARK,dmgmod,TP_MAB_BONUS,1);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+    mob:setHP(0);
+    target:delHP(dmg);
 	return dmg;
 end;

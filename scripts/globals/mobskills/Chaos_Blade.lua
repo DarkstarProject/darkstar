@@ -29,7 +29,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_CURSE_I;
     if(target:hasStatusEffect(typeEffect) == false) then
         local duration = math.random(1,2)*30 + 420;
-        target:addStatusEffect(typeEffect,30,0,duration);--power=1;tic=0;
+        target:addStatusEffect(typeEffect,25,0,duration);--power=1;tic=0;
     end
 
     return dmg;

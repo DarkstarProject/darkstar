@@ -17,13 +17,16 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_FROST;
 	if(target:hasStatusEffect(typeEffect) == true) then
-		local power = (mob:getMainLvl()/5 *.6 + 6);
-		target:addStatusEffect(typeEffect,power,3,30);--tic=3;duration=120;
+		local statmod = MOD_INT;
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_ICE);
+		if(resist > 0.2) then
+			local power = (mob:getMainLvl()/5 *.6 + 6);
+			target:addStatusEffect(typeEffect,power,3,30);--tic=3;duration=120;
+		end
 	end
 
 	local dmgmod = 2;
-	local accmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_ICE,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;

@@ -19,7 +19,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	duration = 2100;
+	duration = 3600;
 		target:delStatusEffect(EFFECT_RERAISE);
 		target:addStatusEffect(EFFECT_RERAISE,1,0,duration);
 end;

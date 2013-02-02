@@ -14,12 +14,11 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	
+
 	dmgmod = 1;
-	accmod = 3;
-	info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 6,accmod,dmgmod,TP_NO_EFFECT,1);
+	info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 6,ELE_WATER,dmgmod,TP_NO_EFFECT,1);
 	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;
-	
+
 end

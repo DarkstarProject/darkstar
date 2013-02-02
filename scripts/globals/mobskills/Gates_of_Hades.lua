@@ -22,7 +22,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_BURN;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,1);
+		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_FIRE);
 		if(resist > 0.2) then
 			if(resist >= 1) then  -- Added just incase resist number retuns a value higher then .9.
 				resist = .9;
@@ -32,9 +32,8 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 
-	local dmgmod = 1.2;
-	local accmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,accmod,dmgmod,TP_NO_EFFECT);
+	local dmgmod = 1.5;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_FIRE,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;

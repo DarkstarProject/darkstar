@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_BLINDNESS;
     if(target:hasStatusEffect(typeEffect) == false) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
+        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_DARK);
         if(resist > 0.1) then
             target:addStatusEffect(typeEffect,25,0,240);--tic=3;duration=30;
         end
