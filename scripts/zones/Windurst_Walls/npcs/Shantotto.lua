@@ -70,7 +70,7 @@ function onTrigger(player,npc)
 	
 		
 	-- Curses,Foiled...Again!?
-	elseif (foiledAgain == QUEST_COMPLETED and CFA2 == QUEST_AVAILABLE and player:getFameLevel (WINDURST) <= 2 and player:getMainLvl() <= 5 and CFAtimer == 1) then
+	elseif (foiledAgain == QUEST_COMPLETED and CFA2 == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 2 and player:getMainLvl() >= 5 and CFAtimer == 1) then
 		player:startEvent(0x00B4,0,0,0,0,928,880,17316,940);		-- Quest Start
 	elseif (CFA2 == QUEST_ACCEPTED) then
 		player:startEvent(0x00B5,0,0,0,0,0,0,17316,940);  -- Reminder dialog
@@ -155,6 +155,26 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,17116);
 			player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_2);
 			player:needToZone(true);
+			player:addFame(WINDURST,WIN_FAME*90);
+		end
+		
+	elseif(csid == 0x0154) then
+		if(option == 1) then
+			player:addQuest(WINDURST,CURSES_FOILED_A_GOLEM);
+		else
+			player:setTitle(TOTAL_LOSER);
+		end
+		
+	elseif(csid == 0x0156) then
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4870); 
+		else
+			player:completeQuest(WINDURST,CURSES_FOILED_A_GOLEM);
+			player:setVar("foiledagolemdeliverycomplete",0);
+			player:addItem(4870);
+			player:messageSpecial(ITEM_OBTAINED,4870);
+			player:setTitle(DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH);
+			player:addFame(WINDURST,WIN_FAME*120);
 		end
 	end		
 end;

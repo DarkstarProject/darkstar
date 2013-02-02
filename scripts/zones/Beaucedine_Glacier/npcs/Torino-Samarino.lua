@@ -26,17 +26,17 @@ end;
 
 function onTrigger(player,npc)
 
-FoiledAGolem = player:getQuestStatus(WINDURST,CURSES_FOILED_A_GOLEM);
+	local FoiledAGolem = player:getQuestStatus(WINDURST,CURSES_FOILED_A_GOLEM);
 	
 	-- Curses, Foiled A_Golem!?
 	
 	if(player:hasKeyItem(SHANTOTTOS_EXSPELL) and FoiledAGolem == QUEST_ACCEPTED) then
 		player:startEvent(0x006C); -- key item taken, wait one game day for new spell
 	elseif(player:getVar("golemwait") == 1 and FoiledAGolem == QUEST_ACCEPTED) then
-		gDay = VanadielDayOfTheYear();
-		gYear = VanadielYear();
-		dFinished = player:getVar("golemday");
-		yFinished = player:getVar("golemyear");
+		local gDay = VanadielDayOfTheYear();
+		local gYear = VanadielYear();
+		local dFinished = player:getVar("golemday");
+		local yFinished = player:getVar("golemyear");
 		if(gDay == dFinished and gYear == yFinished) then
 			player:startEvent(0x0071); -- re-write reminder
 		elseif(gDay == dFinished + 1 and gYear == yFinished) then
