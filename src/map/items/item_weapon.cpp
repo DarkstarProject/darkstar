@@ -43,6 +43,7 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
     m_effect		= 0;
 	m_dmgType		= DAMAGE_NONE;
 	m_delay			= 8000;
+	m_baseDelay		= 8000;		//this should only be needed for mobs (specifically mnks)
     m_maxHit		= 0;
     m_ranged		= false;
     m_twoHanded		= false;
@@ -153,6 +154,23 @@ int16 CItemWeapon::getDelay()
 	return m_delay;
 }
 
+/************************************************************************
+*																		*
+*  Set/get the un-adjusted delay of the weapon							*
+*  This is to fix delay adjustments of mobs and is not intended for		*
+*  use outside of zoneutils/mobutils									* 
+*																		*
+************************************************************************/
+
+void CItemWeapon::setBaseDelay(uint16 delay)
+{
+	m_baseDelay = delay;
+}
+
+int16 CItemWeapon::getBaseDelay()
+{
+	return m_baseDelay;
+}
 /************************************************************************
 *                                                                       *
 *  get unlock id		                                                *

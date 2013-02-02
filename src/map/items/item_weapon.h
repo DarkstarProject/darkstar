@@ -39,6 +39,7 @@ public:
 	uint8	getSkillType();
 	uint8	getSubSkillType();
 	int16	getDelay();
+	int16	getBaseDelay();
 	uint16	getDamage();
 	uint16	getDmgType();
     uint8   getAdditionalEffect();
@@ -52,6 +53,7 @@ public:
 	void	setSkillType(uint8 skillType);
 	void	setSubSkillType(uint8 subSkillType);
 	void	setDelay(uint16 delay);
+	void	setBaseDelay(uint16 delay); //should ONLY be set by zoneutils!
 	void	setDamage(uint16 damage);
 	void	setDmgType(uint16 dmgType);
     void    setAdditionalEffect(uint8 effect);
@@ -64,6 +66,7 @@ private:
 	uint8	m_subSkillType; //gun vs crossbow, any other exclusives
 	uint16	m_damage;
 	int16	m_delay;    //can be -ve e.g. ammo/ranged weapons
+	int16	m_baseDelay;
 	uint16	m_dmgType;
     uint8   m_effect;
     uint8   m_maxHit;
