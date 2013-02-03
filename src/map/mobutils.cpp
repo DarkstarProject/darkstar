@@ -99,7 +99,7 @@ uint16 GetBase(CMobEntity * PMob, uint8 rank)
 
 void CalculateStats(CMobEntity * PMob)
 {
-	bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS || PMob->isInDynamis();
+	bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS;
 	if(PMob->HPmodifier == 0){
 
 		float growth = 1.0575;
