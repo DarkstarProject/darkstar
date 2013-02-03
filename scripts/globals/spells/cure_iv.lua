@@ -56,7 +56,7 @@ function onSpellCast(caster,target,spell)
 		end
 	end
 
-	if(target:getRank() ~= nil) then
+	if(target:getObjType() == TYPE_PC) then
 		if(USE_OLD_CURE_FORMULA == true) then
 			basecure = getBaseCure(power,divisor,constant);
 		else

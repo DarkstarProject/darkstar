@@ -65,7 +65,7 @@ function onSpellCast(caster,target,spell)
 		end
 	end
 
-	if(target:getRank() ~= nil) then -- e.g. is a PC and not a monster (?)
+	if(target:getObjType() == TYPE_PC) then -- e.g. is a PC and not a monster (?)
 		if(USE_OLD_CURE_FORMULA == true) then
 			basecure = getBaseCureOld(power,divisor,constant);
 		else

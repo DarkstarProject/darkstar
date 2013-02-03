@@ -536,7 +536,10 @@ function getSkillLvl(rank,level)
 
     target:delHP(dmg);
     target:updateEnmityFromDamage(caster,dmg);
-    target:addTP(10);
+    -- Only add TP if the target is a mob
+    if (target:getObjType() ~= TYPE_PC) then
+        target:addTP(10);
+    end
     return dmg;
  end;
 
