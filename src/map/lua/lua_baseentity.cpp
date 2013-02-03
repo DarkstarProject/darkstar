@@ -5707,7 +5707,14 @@ inline int32 CLuaBaseEntity::petStay(lua_State *L)
 	return 0;
 }
 
-
+inline int32 CLuaBaseEntity::getObjType(lua_State *L)
+{
+	if ( m_PBaseEntity != NULL )
+	{
+		lua_pushinteger( L, m_PBaseEntity->objtype );
+	}
+	return 0;
+}
 
 //==========================================================//
 
@@ -5941,6 +5948,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkinID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,createWornItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasWornItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getObjType),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
 	{NULL,NULL}
 };

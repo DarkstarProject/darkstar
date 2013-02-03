@@ -800,3 +800,13 @@ SLOT_EAR2		= 12
 SLOT_RING1		= 13
 SLOT_RING2		= 14
 SLOT_BACK		= 15
+
+----------------------------------
+-- Objtype Definitions
+----------------------------------
+
+TYPE_PC		= 0x01
+TYPE_NPC	= 0x02
+TYPE_MOB	= 0x04
+TYPE_PET	= 0x08
+TYPE_SHIP   = 0x10

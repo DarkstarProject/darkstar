@@ -362,6 +362,8 @@ public:
 	int32 checkExpPoints(lua_State*);		// Exp points penalty for Player vs Max High Player Gap in party
 	int32 checkFovAllianceAllowed(lua_State*);	// checks the map config, 1 if alliance is allowed to farm Fov pages
 
+	int32 getObjType(lua_State*);
+
 	int32 injectActionPacket(lua_State*);	// ONLY FOR DEBUGGING. Injects an action packet with the specified params.
 };
 
