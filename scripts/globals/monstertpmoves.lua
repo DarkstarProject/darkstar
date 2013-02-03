@@ -407,19 +407,19 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
     -- Determine final resist based on which thresholds have been crossed.
     if(resvar <= sixteenth) then
         resist = 0.0625;
-        printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
+        --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
     elseif(resvar <= eighth) then
         resist = 0.125;
-        printf("Spell resisted to 1/8!  Threshold = %u",eighth);
+        --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
     elseif(resvar <= quart) then
         resist = 0.25;
-        printf("Spell resisted to 1/4.  Threshold = %u",quart);
+        --printf("Spell resisted to 1/4.  Threshold = %u",quart);
     elseif(resvar <= half) then
         resist = 0.5;
-        printf("Spell resisted to 1/2.  Threshold = %u",half);
+        --printf("Spell resisted to 1/2.  Threshold = %u",half);
     else
         resist = 1.0;
-        printf("Not resisted: 1.0");
+        --printf("Not resisted: 1.0");
     end
     return resist;
 
