@@ -1816,16 +1816,29 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 {
 	int32 rank = 0;
-
+	int32 fstr = 0;
 	float dif = PAttacker->STR() - PDefender->VIT();
-
-	int32 fstr = 1.95 + 0.195 * dif;
-
+	if (dif >= 12) {
+		fstr = (dif+4)/2;
+	} else if (dif >= 6){
+		fstr = (dif+6)/2;
+	} else if (dif >= 1){
+		fstr = (dif+7)/2;
+	} else if (dif >= -2){
+		fstr = (dif+8)/2;
+	} else if (dif >= -7){
+		fstr = (dif+9)/2;
+	} else if (dif >= -15){
+		fstr = (dif+10)/2;
+	} else if (dif >= -21){
+		fstr = (dif+12)/2;
+	} else {
+		fstr = (dif+13)/2;
+	}
 	if(SlotID==SLOT_RANGED)
 	{
 		rank = PAttacker->GetRangedWeaponRank();
 		//different caps than melee weapons
-		fstr /= 2; //fSTR2
 		if(fstr <= (-rank*2))
 			return (-rank*2);
 
@@ -1837,6 +1850,7 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 	}
 	else
 	{
+		fstr /= 2;
 		if( SlotID == SLOT_MAIN)
 		{
 			rank = PAttacker->GetMainWeaponRank();

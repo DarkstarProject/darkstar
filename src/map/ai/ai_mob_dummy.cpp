@@ -1322,6 +1322,8 @@ void CAIMobDummy::ActionAttack()
 		if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS,0))
 		{
 			WeaponDelay = 600;
+		} else {
+			WeaponDelay += ((m_PMob->getMod(MOD_HASTE) * WeaponDelay) / 100);
 		}
 
 		if ((m_Tick - m_LastActionTime) > WeaponDelay)
