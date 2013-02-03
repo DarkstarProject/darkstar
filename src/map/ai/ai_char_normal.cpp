@@ -65,6 +65,7 @@
 CAICharNormal::CAICharNormal(CCharEntity* PChar)
 {
 	m_PChar = PChar;
+	m_AttackMessageTime = 0;
 }
 
 /************************************************************************
@@ -2765,17 +2766,25 @@ void CAICharNormal::ActionAttack()
 
 	if ((m_Tick - m_LastMeleeTime) > WeaponDelay)
 	{
-		m_LastMeleeTime = m_Tick;
 		if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_UNABLE_TO_SEE_TARG));
+			if ((m_Tick - m_AttackMessageTime) > WeaponDelay)
+			{
+				m_AttackMessageTime = m_Tick;
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_UNABLE_TO_SEE_TARG));
+			}
 			return;
 		}
 		if (Distance > m_PBattleTarget->m_ModelSize)
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_TARG_OUT_OF_RANGE));
+			if ((m_Tick - m_AttackMessageTime) > WeaponDelay)
+			{
+				m_AttackMessageTime = m_Tick;
+				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_TARG_OUT_OF_RANGE));
+			}
 			return;
 		}
+		m_LastMeleeTime = m_Tick;
 		if (battleutils::IsParalised(m_PChar))
 		{
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_IS_PARALYZED));

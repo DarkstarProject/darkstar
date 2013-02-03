@@ -49,6 +49,8 @@ protected:
 
 	CCharEntity* m_PChar;	
 
+	uint32 m_AttackMessageTime;
+
 	void ActionEngage();
 	void ActionDisengage();
 	void ActionFall();	
