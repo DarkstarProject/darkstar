@@ -1,14 +1,14 @@
 -----------------------------------
---  Area: Bastok Markets
+--  Area: Dangruf Wadi
 --   NPC: ??? (QM2)
 --  Type: Item Giver
 -- @zone: 191
 --  @pos: -120.041 2.621 415.989
 --
--- Starts and Finishes: Breaking Stones
+-- Starts and Finishes: Breaking Stones, An Empty Vessel
 --
 -- 
--- Only spawns if the weather is SUNNY
+-- Only spawns if the weather is SUNNY or CLEAR
 -----------------------------------
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuestStatus(BASTOK,BREAKING_STONES) ~= QUEST_ACCEPTED) then
+	if (player:getQuestStatus(BASTOK,BREAKING_STONES) == QUEST_ACCEPTED || player:getQuestStatus(AHT_URHGAN, AN_EMPTY_VESSEL) == QUEST_ACCEPTED) then
 		player:startEvent(0x006E);
 	end
 end;
