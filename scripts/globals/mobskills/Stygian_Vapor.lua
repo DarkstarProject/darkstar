@@ -18,7 +18,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_PLAGUE;
     if(target:hasStatusEffect(typeEffect) == false) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
         if(resist > 0.1) then
             skill:setMsg(MSG_ENFEEB_IS);
             target:addStatusEffect(typeEffect,5,0,math.random(30,60));--power=1;tic=0;duration=300;

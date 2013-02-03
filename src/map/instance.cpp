@@ -42,7 +42,7 @@ CInstance::CInstance(CInstanceHandler* hand, uint16 id){
 	m_FastestTime = 3600;
 	treasureChestSpawned = false;
 }
-	
+
 uint16 CInstance::getID(){
 	return m_BcnmID;
 }
@@ -128,6 +128,14 @@ uint8 CInstance::getPlayerMainJob(){
 		return 1;
 	}
 	return m_PlayerList.at(0)->GetMJob();
+}
+
+uint8 CInstance::getPlayerMainLevel(){
+	if(m_PlayerList.size()==0){
+		ShowWarning("instance:getPlayerMainJob - No players in battlefield!\n");
+		return 1;
+	}
+	return m_PlayerList.at(0)->GetMLevel();
 }
 
 bool CInstance::isPlayerInBcnm(CCharEntity* PChar){
@@ -291,7 +299,7 @@ void CInstance::cleanup(){
 	delete this;
 }
 
-bool CInstance::winBcnm(){ 
+bool CInstance::winBcnm(){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		luautils::OnBcnmLeave(m_PlayerList.at(i),this,LEAVE_WIN);
 		if(this->delPlayerFromBcnm(m_PlayerList.at(i))){i--;}
@@ -300,7 +308,7 @@ bool CInstance::winBcnm(){
 	return true;
 }
 
-bool CInstance::spawnTreasureChest(){ 
+bool CInstance::spawnTreasureChest(){
 	instanceutils::spawnTreasureForBcnm(this);
 	return true;
 }
@@ -386,7 +394,7 @@ void CInstance::cleanupDynamis(){
 						    FROM mob_spawn_points msp \
 							LEFT JOIN mob_groups mg ON mg.groupid = msp.groupid \
 							WHERE zoneid = %u";
-					  
+
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, this->getZoneId());
 
 	if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0) {

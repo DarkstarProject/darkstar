@@ -1152,7 +1152,7 @@ INSERT INTO `mob_skill` VALUES (697,263,655,'Dragon_Breath', 4, 40.0, 2000, 2000
 INSERT INTO `mob_skill` VALUES (772,149,729,'Tackle', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (777,149,734,'Dragon_Kick', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (778,149,735,'Asuran_Fists', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (0,149,432,'Two_Hour', 1, 15.0, 2000, 10, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,149,432,'Two_Hour', 1, 15.0, 2000, 10, 4, 0);
 
 -- --------------------------------------
 -- AVATAR

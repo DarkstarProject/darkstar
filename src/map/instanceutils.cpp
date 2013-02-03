@@ -44,16 +44,16 @@ namespace instanceutils{
 		const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId \
 						    FROM bcnm_info \
 							WHERE bcnmId = %u";
-					  
+
 		int32 ret = Sql_Query(SqlHandle, fmtQuery, bcnmid);
 
-		if (ret == SQL_ERROR || 
+		if (ret == SQL_ERROR ||
 		Sql_NumRows(SqlHandle) == 0 ||
-		Sql_NextRow(SqlHandle) != SQL_SUCCESS) 
+		Sql_NextRow(SqlHandle) != SQL_SUCCESS)
 		{
 			ShowError("Cannot load instance BCNM:%i \n",bcnmid);
-		} 
-		else 
+		}
+		else
 		{
 				CInstance* PInstance = new CInstance(hand,Sql_GetUIntData(SqlHandle,1));
 				int8* tmpName;
@@ -83,11 +83,11 @@ namespace instanceutils{
 		const int8* fmtQuery = "SELECT monsterId \
 						    FROM bcnm_instance \
 							WHERE bcnmId = %u AND instanceNumber = %u";
-					  
+
 		int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getID(), instance->getInstanceNumber());
 
-		if (ret == SQL_ERROR || 
-			Sql_NumRows(SqlHandle) == 0) 
+		if (ret == SQL_ERROR ||
+			Sql_NumRows(SqlHandle) == 0)
 		{
 			ShowError("spawnMonstersForBcnm : SQL error - Cannot find any monster IDs for BCNMID %i Instance %i \n",
 				instance->getID(), instance->getInstanceNumber());
@@ -109,9 +109,14 @@ namespace instanceutils{
 				        PMob->PBattleAI->SetLastActionTime(0);
 				        PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 
-						if(strcmp(PMob->GetName(),"Maat")==0){//set job based on poppng char job
-						//	PMob->
-						//	ShowDebug("Change maat job to %i \n",instance->getPlayerMainJob());
+						if(strcmp(PMob->GetName(),"Maat")==0){
+						//set job based on poppng char job
+						PMob->SetMJob(instance->getPlayerMainJob());
+						PMob->SetMLevel(instance->getPlayerMainLevel());
+
+						//TODO: add spells for job
+
+							// ShowDebug("Change maat job to %i \n",instance->getPlayerMainJob());
 						}
 				        PMob->SetDespawnTimer(0); //never despawn
 						//ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,instance->getID(),instance->getInstanceNumber());
@@ -140,10 +145,10 @@ namespace instanceutils{
 		const int8* fmtQuery = "SELECT npcId \
 						    FROM bcnm_treasure_chests \
 							WHERE bcnmId = %u AND instanceNumber = %u";
-					  
+
 		int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getID(), instance->getInstanceNumber());
 
-		if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0) 
+		if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0)
 		{
 			ShowError("spawnTreasureForBcnm : SQL error - Cannot find any npc IDs for BCNMID %i Instance %i \n",
 				instance->getID(), instance->getInstanceNumber());
@@ -155,7 +160,7 @@ namespace instanceutils{
 				uint32 npcid = Sql_GetUIntData(SqlHandle,0);
 				CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcid, TYPE_NPC);
 					if (PNpc != NULL)
-					{						
+					{
 						PNpc->status = STATUS_NORMAL;
 						PNpc->animation = 0;
 						PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_SPAWN));
@@ -237,7 +242,7 @@ namespace instanceutils{
 	****************************************************************/
 	int* getLosePosition(CInstance* instance){
 		if(instance==NULL){return NULL;}
-		int position [4] = {0,0,0,0}; 
+		int position [4] = {0,0,0,0};
 
 		switch(instance->getZoneId()){
 		case 139: //Horlais Peak
@@ -274,7 +279,7 @@ namespace instanceutils{
 	****************************************************************/
 	int* getWinPosition(CInstance* instance){
 		if(instance==NULL){return NULL;}
-		int position [4] = {0,0,0,0}; 
+		int position [4] = {0,0,0,0};
 
 		switch(instance->getZoneId()){
 		case 139: //Horlais Peak
@@ -289,17 +294,17 @@ namespace instanceutils{
 						FROM bcnm_loot \
 						JOIN bcnm_info ON bcnm_info.LootDropId = bcnm_loot.LootDropId \
 						WHERE bcnm_info.LootDropId = %u LIMIT 1";
-				  
+
 		int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getLootId());
 		if (ret == SQL_ERROR ||	Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS){
 				ShowError("SQL error occured \n");
 				return 0;
-			} 
+			}
 			else {
 				return (uint8)Sql_GetUIntData(SqlHandle,0);
 			}
 	}
-	
+
 	uint16 getRollsPerGroup(CInstance* instance, uint8 groupID){
 		const int8* fmtQuery = "SELECT SUM(CASE \
 			WHEN LootDropID = %u \
@@ -307,12 +312,12 @@ namespace instanceutils{
 			THEN rolls  \
 			ELSE 0 END) \
 			FROM bcnm_loot;";
-	  
+
 		int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getLootId(), groupID);
 		if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS){
 			ShowError("SQL error occured \n");
 			return 0;
-		} 
+		}
 		else {
 			return (uint16)Sql_GetUIntData(SqlHandle,0);
 		}
@@ -331,7 +336,7 @@ namespace instanceutils{
 			instance->winBcnm();
 			return;
 		}
-		
+
 		for (uint8 group = 0; group <= getMaxLootGroups(instance); ++group)
 		{
 			uint16 maxRolls = getRollsPerGroup(instance,group);
@@ -358,7 +363,7 @@ namespace instanceutils{
 
 
 
-	
+
 	bool spawnSecondPartDynamis(CInstance* instance){
 		DSP_DEBUG_BREAK_IF(instance==NULL);
 
@@ -366,11 +371,11 @@ namespace instanceutils{
 		const int8* fmtQuery = "SELECT monsterId \
 								FROM bcnm_instance \
 								WHERE bcnmId = %u AND instanceNumber = 2";
-					  
+
 		int32 ret = Sql_Query(SqlHandle, fmtQuery, instance->getID());
 
-		if (ret == SQL_ERROR || 
-			Sql_NumRows(SqlHandle) == 0) 
+		if (ret == SQL_ERROR ||
+			Sql_NumRows(SqlHandle) == 0)
 		{
 			ShowError("spawnSecondPartDynamis : SQL error - Cannot find any monster IDs for Dynamis %i \n",
 				instance->getID(), instance->getInstanceNumber());

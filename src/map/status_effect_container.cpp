@@ -642,9 +642,11 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     StatusEffect->SetName(name);
     StatusEffect->SetFlag(effects::EffectsParams[StatusEffect->GetStatusID()].Flag);
 
+    // Calculate resist rates
+
 	//todo: find a better place to put this?
 	if(StatusEffect->GetStatusID() == EFFECT_SLEEP || StatusEffect->GetStatusID() == EFFECT_SLEEP_II ||
-		StatusEffect->GetStatusID() == EFFECT_STUN || StatusEffect->GetStatusID() == EFFECT_PETRIFICATION)
+		StatusEffect->GetStatusID() == EFFECT_STUN || StatusEffect->GetStatusID() == EFFECT_PETRIFICATION || StatusEffect->GetStatusID() == EFFECT_LULLABY)
     {
 		if(m_POwner->objtype == TYPE_PC || m_POwner->objtype == TYPE_MOB)
         {

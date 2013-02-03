@@ -20,7 +20,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
 		if(resist > 0.2) then
 			local poison = mob:getMainLvl() / 2;
-			target:addStatusEffect(typeEffect,1,poison,180);
+			target:addStatusEffect(typeEffect,1,poison,120);
 		end
 	end
 

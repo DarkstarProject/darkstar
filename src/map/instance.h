@@ -53,7 +53,7 @@ class CInstance
 public:
 
 	CInstance(CInstanceHandler* hand, uint16 bcnmid);
-    
+
 	//bcnm related functions
 	uint16		getID();
 	uint32		getTimeLimit();
@@ -76,7 +76,7 @@ public:
 	void		setLevelCap(uint8 cap);
 	void		setLootId(uint16 id);
 	void		setDeadTime(uint32 time);
-	
+
 	//player related functions
 	bool		isValidPlayerForBcnm(CCharEntity* PChar);
 	bool		isPlayerInBcnm(CCharEntity* PChar);
@@ -84,16 +84,17 @@ public:
 	bool		addPlayerToBcnm(CCharEntity* PChar); //true if added
 	bool		delPlayerFromBcnm(CCharEntity* PChar); //true if deleted
 	bool		allPlayersDead(); //true if all players in the bcnm are dead.
-	uint8		getPlayerMainJob(); //used for Maat fights 
+	uint8		getPlayerMainJob(); //used for Maat fights
+	uint8		getPlayerMainLevel(); //used for Maat fights
 	void		pushMessageToAllInBcnm(uint16 msg, uint16 param);
-	
+
 	//spawning chests + loot
 	void		addNpc(CBaseEntity* PNpc);
 	bool		spawnTreasureChest();
-	bool		treasureChestSpawned;  
+	bool		treasureChestSpawned;
 	void		getHighestTHforBcnm();
 	void		OpenChestinBcnm();
-		
+
 	//mob related functions
 	//bool		spawnAllEnemies();
 	//bool		resetAllEnemySpawnPositions();
@@ -101,7 +102,7 @@ public:
 	bool		allEnemiesDefeated();
 	bool		isEnemyBelowHPP(uint8 hpp);
 
-	
+
 	//handler functions (time/multiple rounds/etc)
 	void		lockBcnm(); //removes valid players if they arent inside the BCNM. Called when fighting.
 	void		init(); //prepares new BCNM

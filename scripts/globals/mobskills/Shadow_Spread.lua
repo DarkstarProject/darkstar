@@ -23,7 +23,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     typeEffect = EFFECT_CURSE_I;
     if(target:hasStatusEffect(typeEffect) == false) then
-        resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
+        resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_DARK);
         if(resist > 0.2) then
             skill:setMsg(MSG_ENFEEB_IS);
             target:addStatusEffect(typeEffect,25,0,300);--power=18;tic=0;duration=60;
@@ -32,7 +32,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     typeEffect = EFFECT_SLEEP_I;
     if(target:hasStatusEffect(typeEffect) == false) then
-        resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
+        resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_DARK);
         if(resist > 0.2) then
             target:addStatusEffect(typeEffect,1,0,math.random(25,30));--power=1;tic=0;duration=30;
         end
@@ -40,7 +40,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     typeEffect = EFFECT_BLINDNESS;
     if(target:hasStatusEffect(typeEffect) == false) then
-        resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+        resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_DARK);
         if(resist > 0.2) then
             target:addStatusEffect(typeEffect,20,0,180);--power=15;tic=0;duration=60;
         end

@@ -19,7 +19,7 @@ require("scripts/globals/common");
 --require("scripts/globals/chocoprice");
 
 -- Enable Extension (1= yes 0= no)
-ENABLE_COP  = 0;
+ENABLE_COP  = 1;
 ENABLE_TOAU = 0;
 ENABLE_WOTG = 0;
 

@@ -59,7 +59,7 @@ public:
 	EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
     uint8 EraseAllStatusEffect(); // erases all status effects
 	EFFECT DispelStatusEffect();                                // удаляем первый положительный эффект
-    uint8 DispelAllStatusEffect(); // dispels all staus effects
+    uint8 DispelAllStatusEffect(); // dispels all status effects
     CStatusEffect* StealStatusEffect(); // dispels one effect and returns it
 
     CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);

@@ -546,16 +546,33 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 	end
 
 	-- elemental resistence
-	if(element ~= nil) then
+	if(element ~= nil and element >= 0) then
 		-- no skill available, pass nil
 		local resist = applyPlayerResistance(mob,nil,target,mob:getMod(MOD_INT)-target:getMod(MOD_INT),0,element);
-		damage = damage * resist;
+		-- get elemental damage reduction
+		local defense = 1;
+		if(element >= 0) then
+			defense = 1 - (target:getMod(resistMod[element]) + target:getMod(defenseMod[element])) / 256;
+
+			-- max defense is 50%
+			if(defense > 0.5) then
+				defense = 0.5;
+			end
+		end
+		damage = damage * resist * defense;
 	end
 
 	-- add breath resistence and magic resistence
-	local dmgMod = target:getMod(MOD_DMG) / 100;
+	local dmgTaken = target:getMod(MOD_DMG);
+	local dmgMod = 1;
+	if (dmgTaken > 0) then
+		dmgMod = dmgMod+(math.floor((dmgTaken/100)*256)/256);
+	else
+		dmgMod = dmgMod+(math.ceil((dmgTaken/100)*256)/256);
+	end
+
 	local dmgBreath = target:getMod(MOD_DMGBREATH) / 100;
-	local dmgMagic = target:getMod(MOD_DMGMAGIC) / 100;
+	local dmgMagic = ((256 + target:getMod(MOD_DMGMAGIC))/256);
 
 	-- cap breath reduction at 50%
 	if(dmgBreath > 0.5) then
@@ -569,9 +586,9 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 		dmgMagic = 0.5;
 	end
 
-	damage = damage * (1 + dmgMod);
+	damage = damage * dmgMod;
 	damage = damage * (1 + dmgBreath);
-	damage = damage * (1 + dmgMagic);
+	damage = damage * dmgMagic;
 
 	return damage;
 end;

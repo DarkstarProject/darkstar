@@ -301,6 +301,10 @@ end;
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
 function applyResistance(player,spell,target,diff,skill,staff)
+    -- resist everything if magic shield is active
+    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
+        return 0;
+    end
 
     local resist = 1.0;
     local magicaccbonus = 0;

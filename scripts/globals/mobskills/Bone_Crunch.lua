@@ -16,18 +16,18 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_PLAGUE;
-    if(target:hasStatusEffect(typeEffect) == false) then
+    if(target:hasStatusEffect(typeEffect) == false) then --Let's first see if it's worth the time to do this math, since there's no messages to handle
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
-        if(resist > 0.1) then
-            skill:setMsg(MSG_ENFEEB_IS);
-            target:addStatusEffect(typeEffect,5,0,math.random(30,45));--power=1;tic=0;duration=300;
-        else
-            skill:setMsg(MSG_MISS); -- resist !
+        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
+        if(resist > 0.2) then
+            target:addStatusEffect(typeEffect,5,0,30);--power=1;tic=0;duration=60;
         end
-    else
-        skill:setMsg(MSG_NO_EFFECT); -- no effect
     end
-
-    return typeEffect;
+    local numhits = 1;
+    local accmod = 1;
+    local dmgmod = 2.5;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
+    target:delHP(dmg);
+    return dmg;
 end;

@@ -17,7 +17,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_SLOW;
 	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
+	local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
 	if(target:hasStatusEffect(typeEffect) == false) then
 		if(resist > 0.2) then
             target:delStatusEffect(EFFECT_HASTE);
@@ -27,7 +27,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	typeEffect = EFFECT_POISON;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
+		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,1,3,60*resist);--power=(moblvl/10)+10;tic=3;duration=60;
 		end
@@ -35,7 +35,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	typeEffect = EFFECT_SILENCE;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,2);
+		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,1,0,60*resist);--power=1;tic=0;duration=60;
 		end
@@ -43,16 +43,15 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	typeEffect = EFFECT_PARALYSIS;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
+		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
 		if(resist > 0.2) then
-			skill:setMsg(MSG_ENFEEB_IS);
 			target:addStatusEffect(typeEffect,10,0,60*resist);--power=18;tic=0;duration=60;
 		end
 	end
 
 	typeEffect = EFFECT_BIND;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
+		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,1,0,30*resist);--power=1;tic=0;duration=30;
 		end
@@ -60,7 +59,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	typeEffect = EFFECT_BLINDNESS;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,15,0,60*resist);--power=15;tic=0;duration=60;
 		end
@@ -68,7 +67,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	typeEffect = EFFECT_WEIGHT;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
+		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,50,0,60*resist);--power=30;tic=0;duration=60;
 		end
