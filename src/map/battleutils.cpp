@@ -3363,7 +3363,7 @@ TARGET_PARTY_TYPE getAvailableAoeTargets(CBattleEntity* PTarget)
 
 bool handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apAction_t* Action, CMobSkill* PMobSkill, position_t* radiusAround)
 {
-	if (!PTarget->isDead() && PTarget != PTarget && PTarget->getZone() == PAttacker->getZone())
+	if (PTarget->isDead() || PTarget == PAttacker || PTarget->getZone() != PAttacker->getZone())
 	{
 		return false;
 	}
