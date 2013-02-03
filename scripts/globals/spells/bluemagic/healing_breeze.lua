@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Pollen
+-- Spell: Healing Breeze
 -- Restores target's HP.
 -- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------
@@ -13,17 +13,17 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	local minCure = 14;
+	local minCure = 60;
 
-	local divisor = 1;
-	local constant = -6;
+	local divisor = 0.6666;
+	local constant = -45;
 	local power = getCurePowerOld(caster);
-	if(power > 99) then
-		divisor = 57;
-		constant = 33.125;
-	elseif(power > 59) then
+	if(power > 459) then
+		divisor = 6.5;
+		constant = 144.6666;
+	elseif(power > 219) then
 		divisor =  2;
-		constant = 9;
+		constant = 65;
 	end
 
 	local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
@@ -33,6 +33,10 @@ function onSpellCast(caster,target,spell)
 	if(final > diff) then
 		final = diff;
 	end
+	target:addHP(final);
+	target:delStatusEffect(EFFECT_SLEEP_I);
+	target:delStatusEffect(EFFECT_SLEEP_II);
 	caster:updateEnmityFromCure(target,final);
+	spell:setMsg(7);
 	return final;
 end;

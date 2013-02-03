@@ -162,15 +162,15 @@ end;
  --   Source: http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
  ---------------------------------
  function getCurePower(caster,isBlueMagic)
-	local MND = caster:getMod(MOD_MND);
-	local VIT = caster:getMod(MOD_VIT);
+	local MND = caster:getStat(MOD_MND);
+	local VIT = caster:getStat(MOD_VIT);
 	local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL) + caster:getMod(MOD_HEALING);
 	local power = math.floor(MND/2) + math.floor(VIT/4) + skill;
 	return power;
 end;
 function getCurePowerOld(caster)
-	local MND = caster:getMod(MOD_MND);
-	local VIT = caster:getMod(MOD_VIT);
+	local MND = caster:getStat(MOD_MND);
+	local VIT = caster:getStat(MOD_VIT);
 	local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL) + caster:getMod(MOD_HEALING);--it's healing magic skill for the BLU cures as well
 	local power = ((3 * MND) + VIT + (3 * math.floor(skill/5)));
 	return power;
