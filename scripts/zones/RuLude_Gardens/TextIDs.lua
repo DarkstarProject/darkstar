@@ -5,7 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6515; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6518; -- Obtained: <item>
            GIL_OBTAINED = 6519; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6521; -- Obtained key item: <keyitem>
-          HOMEPOINT_SET = 10184; -- Home point set!
+          HOMEPOINT_SET = 10191; -- Home point set!
 
 -- Conquest system
 CONQUEST = 10459; -- You've earned conquest points!

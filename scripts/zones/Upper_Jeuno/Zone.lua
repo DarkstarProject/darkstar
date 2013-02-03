@@ -16,53 +16,53 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 function onInitialize(zone)
 end;
 
------------------------------------			
--- onZoneIn			
------------------------------------			
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)			
+function onZoneIn(player,prevZone)
 cs = -1;
-	
+
 	-- COP mission 1-1
 	if(player:getCurrentMission(COP) == THE_RITES_OF_LIFE and player:getVar("PromathiaStatus") == 0) then
-		cs = 0x0002;	
-	-- MOG HOUSE EXIT		
-	elseif((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then		
-		player:setPos(46.2,-5,-78,172);	
+		cs = 0x0002;
+	-- MOG HOUSE EXIT
+	elseif((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+		player:setPos(46.2,-5,-78,172);
 		if(player:getMainJob() ~= player:getVar("PlayerMainJob")) then	
 			cs = 0x7534;
 		end	
-		player:setVar("PlayerMainJob",0);	
-	end	
+		player:setVar("PlayerMainJob",0);
+	end
 	
-	return cs;		
-end;			
+	return cs;
+end;
 
------------------------------------	
--- onRegionEnter	
------------------------------------	
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
-function onRegionEnter(player,region)	
-end;	
+function onRegionEnter(player,region)
+end;
 
------------------------------------	
--- onEventUpdate	
------------------------------------	
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)	
+function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-end;	
+end;
 
------------------------------------		
--- onEventFinish		
------------------------------------		
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)		
---printf("CSID: %u",csid);	
---printf("RESULT: %u",option);	
+function onEventFinish(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 	
-	if(csid == 0x7534 and option == 0) then	
+	if(csid == 0x7534 and option == 0) then
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
 	elseif(csid == 0x0002) then
