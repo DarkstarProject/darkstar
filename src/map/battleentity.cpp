@@ -162,7 +162,7 @@ int32 CBattleEntity::GetMaxMP()
     return health.modmp;
 }
 
-int16 CBattleEntity::GetWeaponDelay(bool haste)
+int16 CBattleEntity::GetWeaponDelay(bool tp)
 {
 	if (StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
 	{
@@ -179,7 +179,8 @@ int16 CBattleEntity::GetWeaponDelay(bool haste)
 		//apply dual wield delay reduction
 		WeaponDelay = WeaponDelay * ((100.0f - (float)getMod(MOD_DUAL_WIELD))/100.0f);
 	}
-	if( haste )
+	//apply haste and delay reductions that don't affect tp
+	if (!tp)
 	{
 		WeaponDelay = (WeaponDelay * (100 - getMod(MOD_HASTE))) / 100;
 	}
@@ -187,7 +188,7 @@ int16 CBattleEntity::GetWeaponDelay(bool haste)
 	return WeaponDelay;
 }
 
-int16 CBattleEntity::GetRangedWeaponDelay()
+int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
 {
 	CItemWeapon* PRange = (CItemWeapon*)m_Weapons[SLOT_RANGED];
 	CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
@@ -196,7 +197,11 @@ int16 CBattleEntity::GetRangedWeaponDelay()
 	if(PRange != NULL && PRange->getDamage() != 0) { delay += (((PRange->getDelay()*60)/1000)+240); }
 	if(PAmmo != NULL && PAmmo->getDamage() != 0) { delay += (((PAmmo->getDelay()*60)/1000)+240); }
 	delay = (((delay-getMod(MOD_RANGED_DELAY))*1000)/110);
-	delay = delay * ((float)(100 + getMod(MOD_RANGED_DELAYP))/100);
+	//apply haste and delay reductions that don't affect tp
+	if (!tp)
+	{
+		delay = delay * ((float)(100 + getMod(MOD_RANGED_DELAYP))/100);
+	}
 	return delay;
 }
 

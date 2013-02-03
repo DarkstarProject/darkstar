@@ -13,7 +13,7 @@ function onEffectGain(target,effect)
         effect:setPower(50);
     end
     target:addMod(MOD_MOVE,-effect:getPower());
-    target:addMod(MOD_EVAP,-effect:getPower()/5);
+    target:addMod(MOD_EVA,-effect:getPower()/5);
 end;
 
 -----------------------------------
@@ -29,5 +29,5 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_MOVE,-effect:getPower());
-    target:delMod(MOD_EVAP,-effect:getPower()/5);
+    target:delMod(MOD_EVA,-effect:getPower()/5);
 end;

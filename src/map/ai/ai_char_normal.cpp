@@ -649,7 +649,7 @@ void CAICharNormal::ActionRangedStart()
 		uint8 SkillType = PItem->getSkillType();
 		//ranged weapon delay is stored in the db as offset from 240 for some reason. 
 
-		m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay();
+		m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
 
 
 		// apply snapshot reduction
@@ -2762,7 +2762,7 @@ void CAICharNormal::ActionAttack()
 	}
 
 
-	uint16 WeaponDelay = m_PChar->GetWeaponDelay(true);
+	uint16 WeaponDelay = m_PChar->GetWeaponDelay(false);
 
 	if ((m_Tick - m_LastMeleeTime) > WeaponDelay)
 	{

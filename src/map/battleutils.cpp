@@ -1182,8 +1182,7 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	}
 
 	//return random number between the two
-	float pdif = ((maxPdif-minPdif) * ((float)rand()/RAND_MAX)) + minPdif;
-	return pdif * (1+((0.05f) * ((float)rand()/RAND_MAX)));
+	return ((maxPdif-minPdif) * ((float)rand()/RAND_MAX)) + minPdif;
 }
 
 float CalculateBaseTP(int delay){
@@ -1510,7 +1509,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 			int delay = 0; uint16 offset = 240;
 
-			delay = PAttacker->GetRangedWeaponDelay();
+			delay = PAttacker->GetRangedWeaponDelay(true);
 
 			baseTp = CalculateBaseTP((delay * 110) / 1000);
 		}
@@ -1520,7 +1519,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		}
 		else
         {
-			int16 delay = PAttacker->GetWeaponDelay(false);
+			int16 delay = PAttacker->GetWeaponDelay(true);
 
 			if (PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
 				PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
