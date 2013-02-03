@@ -386,21 +386,30 @@ uint16 CBattleEntity::RATT(uint8 skill)
         dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
 }
 
-uint16 CBattleEntity::ACC(uint8 slot, uint8 offsetAccuracy)
+uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 {
 	if (this->objtype & TYPE_PC){
-		uint8 skill = m_Weapons[slot]->getSkillType();
-		if (skill == SKILL_NON && slot == SLOT_SUB && m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
+		uint8 skill = 0;
+		if (attackNumber == 0)
 		{
-			skill = SKILL_H2H;
+			skill = m_Weapons[SLOT_MAIN]->getSkillType();
+			if(skill == SKILL_NON && GetSkill(SKILL_H2H) > 0)
+				skill = SKILL_H2H;
 		}
-		else if (skill == SKILL_NON && slot == SLOT_MAIN && GetSkill(SKILL_H2H) > 0)
+		else if (attackNumber == 1)
+		{
+			skill = m_Weapons[SLOT_SUB]->getSkillType();
+			if(skill == SKILL_NON && GetSkill(SKILL_H2H) > 0 && 
+				(m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_NON || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H))
+				skill = SKILL_H2H;
+		}
+		else if (attackNumber == 2)
 		{
 			skill = SKILL_H2H;
 		}
 		int16 ACC = GetSkill(skill);
 		ACC = (ACC > 200 ? (((ACC - 200)*0.9)+200) : ACC);
-		if(slot == SLOT_MAIN && m_Weapons[SLOT_MAIN]->isTwoHanded() == true)
+		if(m_Weapons[SLOT_MAIN]->isTwoHanded() == true)
 		{
 			ACC += DEX() * 0.75;
 		}
@@ -410,7 +419,7 @@ uint16 CBattleEntity::ACC(uint8 slot, uint8 offsetAccuracy)
 		}
 		ACC = (ACC + m_modStat[MOD_ACC] + offsetAccuracy);
 		ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) + 
-			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]); // + DEX() / 2; -- Disabled for now, see bug 431
+			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]);
 		return dsp_max(0, ACC);
 	}
 	else{

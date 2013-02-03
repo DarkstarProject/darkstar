@@ -1638,10 +1638,11 @@ uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 /************************************************************************
 *																		*
 *  Calculate Probability attack will hit (20% min cap - 95% max cap)	*
+*  attackNumber: 0=main, 1=sub, 2=kick									*
 *																		*
 ************************************************************************/
 
-uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subWeaponAttack, uint8 offsetAccuracy) //subWeaponAttack is for calculating acc of dual wielded sub weapon
+uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, uint8 offsetAccuracy) //subWeaponAttack is for calculating acc of dual wielded sub weapon
 {
     int32 hitrate = 75;
 
@@ -1651,8 +1652,7 @@ uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subW
 	}
     else
     {
-		int8 slot = (subWeaponAttack ? SLOT_SUB : SLOT_MAIN);
-		hitrate = hitrate + (PAttacker->ACC(slot,offsetAccuracy) - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
+		hitrate = hitrate + (PAttacker->ACC(attackNumber,offsetAccuracy) - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
 		hitrate = dsp_cap(hitrate, 20, 95);
     }
@@ -1660,19 +1660,15 @@ uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subW
 }
 uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
-	return GetHitRateEx(PAttacker, PDefender, false, 0);
+	return GetHitRateEx(PAttacker, PDefender, 0, 0); //assume attack 0(main)
 }
-uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subWeaponAttack)
+uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber)
 {
-	return GetHitRateEx(PAttacker, PDefender, subWeaponAttack, 0);
+	return GetHitRateEx(PAttacker, PDefender, attackNumber, 0);
 }
-uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 offsetAccuracy)
+uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, uint8 offsetAccuracy)
 {
-	return GetHitRateEx(PAttacker, PDefender, false, offsetAccuracy);
-}
-uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool subWeaponAttack, uint8 offsetAccuracy)
-{
-	return GetHitRateEx(PAttacker, PDefender, subWeaponAttack, offsetAccuracy);
+	return GetHitRateEx(PAttacker, PDefender, attackNumber, offsetAccuracy);
 }
 
 /************************************************************************
