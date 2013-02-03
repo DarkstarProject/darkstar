@@ -1318,12 +1318,12 @@ void CAIMobDummy::ActionAttack()
 
 	if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
-		uint32 WeaponDelay = m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
+		int32 WeaponDelay = m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
 		if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS,0))
 		{
 			WeaponDelay = 600;
 		} else {
-			WeaponDelay += ((m_PMob->getMod(MOD_HASTE) * WeaponDelay) / 100);
+			WeaponDelay -= ((m_PMob->getMod(MOD_HASTE) * WeaponDelay) / 100);
 		}
 
 		if ((m_Tick - m_LastActionTime) > WeaponDelay)

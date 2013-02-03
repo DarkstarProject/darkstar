@@ -22,7 +22,6 @@ function onSpellCast(caster,target,spell)
 	if(power > 30) then
 		power = 30;
 	end
-	power = power * -1;
 	
 	--Duration, including resistance.
 	duration = 120 * applyResistance(caster,spell,target,dMND,35,bonus);
@@ -63,8 +62,8 @@ function onSpellCast(caster,target,spell)
 --					spell:setMsg(267);
 --				end
 			end
-			print(power);
-			print(target:getMod(MOD_HASTE));
+			--print(power);
+			--print(target:getMod(MOD_HASTE));
 		else
 --			if(spell:isAOE() == false) then
 				spell:setMsg(85);
