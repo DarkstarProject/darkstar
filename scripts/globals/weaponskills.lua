@@ -85,7 +85,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 	if(params.acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
-		hr = accVariesWithTP(getHitRate(attacker,target,false),attacker:getMod(MOD_ACC),attacker:getTP(),params.acc100,params.acc200,params.acc300);
+		hr = accVariesWithTP(getHitRate(attacker,target,false),attacker:getACC(),attacker:getTP(),params.acc100,params.acc200,params.acc300);
 		hitrate = hr;
 	end
 	
@@ -243,7 +243,7 @@ end;
 
 function getRangedHitRate(attacker,target,capHitRate)
 	local int acc = attacker:getRACC();
-	local int eva = target:getMod(MOD_EVA);
+	local int eva = target:getEVA();
 	
 	if(attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
 		acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);

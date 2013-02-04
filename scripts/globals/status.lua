@@ -508,6 +508,7 @@ EFFECT_SKILLCHAINMASK           = 0x7C00
 -- Even if the particular mod is not completely (or at all) implemented yet, you can still script the effects using these codes.
 --
 -- Example: target:getMod(MOD_STR) will get the sum of STR bonuses/penalties from gear, food, STR Etude, Absorb-STR, and any other STR-related buff/debuff.
+-- Note that the above will ignore base statistics, and that getStat() should be used for stats, Attack, and Defense, while getACC(), getRACC(), and getEVA() also exist.
 -----------------------------------
 
 MOD_NONE			= 0x00

@@ -11,6 +11,6 @@ require("scripts/globals/bluemagic");
 -----------------------------------
 
 function onSpellCast(caster, target, spell)
-	local currentDef = caster:getMod(MOD_DEF) * 0.5;
+	local currentDef = caster:getStat(MOD_DEF) * 0.5;
 	caster:addStatusEffect(EFFECT_DEFENSE_BOOST,currentDef,0,90);
 end;

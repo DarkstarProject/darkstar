@@ -102,8 +102,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	end
 	lvluser = mob:getMainLvl();
 	lvltarget = target:getMainLvl();
-	acc = mob:getMod(MOD_ACC);
-	eva = target:getMod(MOD_EVA);
+	acc = mob:getACC();
+	eva = target:getEVA();
 	--apply WSC
 	local base = mob:getWeaponDmg() + dstr; --todo: change to include WSC
 	if(base < 1) then
@@ -272,7 +272,7 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	finaldmg = damage * mab * dmgmod;
 
 	-- get resistence, give small boost to mobs
-	resist = applyPlayerResistance(mob,-1,target,mob:getMod(MOD_INT)-target:getMod(MOD_INT),0,element);
+	resist = applyPlayerResistance(mob,-1,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
 
 	-- get elemental damage reduction
 	local defense = 1;
@@ -595,7 +595,7 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 	-- elemental resistence
 	if(element ~= nil and element >= 0) then
 		-- no skill available, pass nil
-		local resist = applyPlayerResistance(mob,nil,target,mob:getMod(MOD_INT)-target:getMod(MOD_INT),0,element);
+		local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
 		-- get elemental damage reduction
 		local defense = 1;
 		if(element >= 0) then
