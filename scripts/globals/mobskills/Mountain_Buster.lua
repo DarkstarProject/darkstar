@@ -17,9 +17,12 @@ function OnMobWeaponSkill(target, mob, skill)
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
-	if(applyPlayerResistance(mob,skill,target,true,EFFECT_BIND,MOD_INT) > 0.5 and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		if(target:hasStatusEffect(EFFECT_BIND) == false) then
-			target:addStatusEffect(EFFECT_BIND,1,0,120);
+	local typeEffect = EFFECT_BIND;
+	local statmod = MOD_INT;
+	local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
+	if(resist > 0.2 and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
+		if(target:hasStatusEffect(typeEffect) == false) then
+			target:addStatusEffect(typeEffect,1,0,120*resist);
 		end
 	end
 

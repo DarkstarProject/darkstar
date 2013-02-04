@@ -11,12 +11,12 @@ require("scripts/globals/status");
 function onSpellCast(caster,target,spell)
     enchanceSkill = caster:getSkillLevel(34);
 
-    power = 40 + 0.2 * enchanceSkill;
+    power = 1 + 0.02 * enchanceSkill;
 
     duration = 150;
 
     if(enchanceSkill >180)then
-        duration = 150 + 0.8 * (enchanceSkill - 180);
+        duration = 2 + 0.8 * (enchanceSkill - 180);
     end
 
     if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then

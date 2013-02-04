@@ -2,6 +2,8 @@
 -- Spell: Erase
 --
 -----------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/magic");
 
 -----------------------------------------
 -- OnSpellCast

@@ -34,7 +34,7 @@ function OnMobWeaponSkill(target, mob, skill)
         end
 
         if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
-            target:addStatusEffect(EFFECT_PLAGUE,5,3,math.random(30,60));
+            target:addStatusEffect(EFFECT_PLAGUE,5,3,45);
         end
     end
 

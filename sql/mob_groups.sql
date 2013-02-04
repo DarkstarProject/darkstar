@@ -2,7 +2,7 @@
 --
 -- Host: 10.0.0.10    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.5.28
+-- Server version 5.5.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;

@@ -19,18 +19,18 @@ function OnMobWeaponSkill(target, mob, skill)
 	local statmod = MOD_INT;
 	local resist = 1;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_LIGHT);
+		resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_LIGHT);
 		if(resist > 0.2) then
             target:delStatusEffect(EFFECT_HASTE);
-			target:addStatusEffect(typeEffect,20,0,90);--power=12;tic=0;duration=60;
+			target:addStatusEffect(typeEffect,20,0,90*resist);--power=12;tic=0;duration=60;
 		end
 	end
 
 	typeEffect = EFFECT_SILENCE;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
+		resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,12,0,90);--power=12;tic=0;duration=60;
+			target:addStatusEffect(typeEffect,12,0,90*resist);--power=12;tic=0;duration=60;
 		end
 	end
 

@@ -22,18 +22,18 @@ function OnMobWeaponSkill(target, mob, skill)
 	local resist = 1;
 	local typeEffect = EFFECT_BLINDNESS;
 	if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
-		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_DARK);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,40,0,60);--power=40;tic=0;duration=60;
+			target:addStatusEffect(typeEffect,40,0,60*resist);--power=40;tic=0;duration=60;
 		end
 	end
 
 	typeEffect = EFFECT_BIND;
 	if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
 		--statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,5);
+		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_ICE);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,1,0,30);--power=1;tic=0;duration=60;
+			target:addStatusEffect(typeEffect,1,0,30*resist);--power=1;tic=0;duration=60;
 		end
 	end
 

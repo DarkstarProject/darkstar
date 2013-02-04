@@ -18,9 +18,9 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_PLAGUE;
     if(target:hasStatusEffect(typeEffect) == false) then --Let's first see if it's worth the time to do this math, since there's no messages to handle
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
         if(resist > 0.2) then
-            target:addStatusEffect(typeEffect,5,0,30);--power=1;tic=0;duration=60;
+            target:addStatusEffect(typeEffect,5,0,30*resist);--power=1;tic=0;duration=60;
         end
     end
     local numhits = 1;

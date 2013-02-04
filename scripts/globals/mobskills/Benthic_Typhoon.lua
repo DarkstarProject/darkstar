@@ -29,18 +29,18 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_MAGIC_DEF_DOWN;
 	local resist;
 	if(target:hasStatusEffect(typeEffect) == false and hit) then
-		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
+		resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_THUNDER);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,30,0,60);--power=30;tic=0;duration=60;
+			target:addStatusEffect(typeEffect,30,0,60*resist);--power=30;tic=0;duration=60;
 		end
 	end
 
 	typeEffect = EFFECT_DEFENSE_DOWN;
 	if(target:hasStatusEffect(typeEffect) == false and hit) then
 
-		resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,4);
+		resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WIND);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,30,0,60);--power=30;tic=0;duration=60;
+			target:addStatusEffect(typeEffect,30,0,60*resist);--power=30;tic=0;duration=60;
 		end
 	end
 

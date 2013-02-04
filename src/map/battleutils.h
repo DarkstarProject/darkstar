@@ -36,7 +36,7 @@ class CItemWeapon;
 class CMobSkill;
 class CSpell;
 class CTrait;
-class CWeaponSkill; 
+class CWeaponSkill;
 
 enum ENSPELL
 {
@@ -78,7 +78,7 @@ enum TARGET_PARTY_TYPE
 namespace battleutils
 {
 	void			LoadSkillTable();
-	void			LoadWeaponSkillsList(); 
+	void			LoadWeaponSkillsList();
 	void			LoadMobSkillsList();
 	void			LoadEnmityTable();
     void			LoadSkillChainDamageModifiers();
@@ -117,13 +117,13 @@ namespace battleutils
 	uint8				GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8				GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8				GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	float				GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent); 
-    
+	float				GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent);
+
 	uint16				TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	uint16				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim); 
+	uint16				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim);
     uint16				TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint16 lastSkillDamage);
 	uint32				MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
-	
+
 	bool				SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
 	bool				IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     bool				IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender);
@@ -132,8 +132,8 @@ namespace battleutils
 	float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
 	void				HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 damage);
-	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender); 
-	uint16				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element); 
+	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+	uint16				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
 
     uint8				GetEnmityMod(uint8 level, uint8 modType);
 	bool				Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);

@@ -24,9 +24,9 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_BLINDNESS;
     if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_DARK);
         if(resist > 0.1) then
-            target:addStatusEffect(typeEffect,20,0,120);--tic=3;duration=30;
+            target:addStatusEffect(typeEffect,20,0,120*resist);--tic=3;duration=30;
         end
     end
 

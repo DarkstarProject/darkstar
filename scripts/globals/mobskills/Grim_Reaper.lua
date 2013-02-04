@@ -19,22 +19,6 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
---[[
-	local power = 1;
-	local tic = 0;
-	local duration = 60;
-
-	isEnfeeble = true;
-	typeEffect = EFFECT_POISON;
-	statmod = MOD_INT;
-
-	resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
-	if(resist > 0.2) then
-		if(target:hasStatusEffect(typeEffect) == false) then
-			target:addStatusEffect(typeEffect,power,tic,duration);
-		end
-	end
-	]]
 	local numhits = math.random(2,3);
 	local accmod = 1;
 	local dmgmod = 1.2;

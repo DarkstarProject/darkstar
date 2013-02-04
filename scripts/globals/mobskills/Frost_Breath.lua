@@ -23,9 +23,9 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PARALYSIS;
 	if(target:hasStatusEffect(typeEffect) == false) then --Let's first see if it's worth the time to do this math, since there's no messages to handle
 		local statmod = MOD_MND;
-		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_ICE);
+		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_ICE);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,15,0,90);--power=25;tic=0;duration=30;
+			target:addStatusEffect(typeEffect,15,0,90*resist);--power=25;tic=0;duration=30;
 		end
 	end
 

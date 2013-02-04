@@ -30,7 +30,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_POISON;
 	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
 		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,3);
+		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
 		if(resist > 0.2) then
 			local mobTP = mob:getTP();
 			local poisontime;
@@ -41,7 +41,7 @@ function OnMobWeaponSkill(target, mob, skill)
 			else
 				poisontime = 180;
 			end
-			target:addStatusEffect(typeEffect,3,3,poisontime);
+			target:addStatusEffect(typeEffect,3,3,poisontime*resist);
 		end
 	end
 

@@ -11,9 +11,9 @@ require("scripts/globals/status");
 function onSpellCast(caster,target,spell)
     enchanceSkill = caster:getSkillLevel(34);
 
-    power = 40 + 0.2 * enchanceSkill;
-
     duration = 150;
+
+    power = 1 + 0.02 * enchanceSkill;
 
     if(enchanceSkill >180)then
         duration = 150 + 0.8 * (enchanceSkill - 180);

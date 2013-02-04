@@ -28,7 +28,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local typeEffect = EFFECT_DEFENSE_DOWN;
 	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		target:addStatusEffect(typeEffect,75,0,30);
+		target:addStatusEffect(typeEffect,75,0,30*resist);
 	end
 
 	target:delHP(dmg);

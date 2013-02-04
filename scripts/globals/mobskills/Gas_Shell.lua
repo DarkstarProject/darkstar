@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local message = MSG_MISS;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
+		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
 		if(resist > 0.2) then
 			local power = math.random(23,24);
 			message = MSG_ENFEEB_IS;

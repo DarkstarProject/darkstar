@@ -22,7 +22,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local duration = 180;
 
 	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,8);
+	local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
 	if(resist > 0.2) then
 		if(target:hasStatusEffect(EFFECT_POISON) == false) then
 			target:addStatusEffect(EFFECT_POISON,1,10,duration);
@@ -32,7 +32,7 @@ function OnMobWeaponSkill(target, mob, skill)
 			target:addStatusEffect(EFFECT_SLOW,20,0,duration);
 		end
 		if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
-			target:addStatusEffect(EFFECT_PLAGUE,5,0,math.random(30,60));
+			target:addStatusEffect(EFFECT_PLAGUE,5,0,45);
 		end
 	end
 

@@ -11,10 +11,10 @@ require("/scripts/globals/monstertpmoves");
 
 function OnMobWeaponSkill(target, mob, skill)
 
-	if(applyPlayerResistance(mob,skill,target,true,EFFECT_TERROR,MOD_INT, ELE_DARK) > 0.5) then
+	if(applyPlayerResistance(mob,EFFECT_TERROR,target,0,0, ELE_DARK) > 0.5) then
 		if(target:hasStatusEffect(EFFECT_TERROR) == false) then
 			skill:setMsg(MSG_ENFEEB_IS);
-			target:addStatusEffect(EFFECT_TERROR,30,0,180); -- 30% ?
+			target:addStatusEffect(EFFECT_TERROR,30,0,180*resist); -- 30% ?
 		else
 			skill:setMsg(MSG_NO_EFFECT); -- no effect
 		end

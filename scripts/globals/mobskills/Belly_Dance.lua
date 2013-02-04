@@ -24,7 +24,7 @@ function OnMobWeaponSkill(target, mob, skill)
     typeEffect = EFFECT_NAME;
     statmod = MOD_INT;
 
-    resist = applyPlayerResistance(mob,skill,target,isEnfeeble,typeEffect,statmod);
+    resist = applyPlayerResistance(mob,typeEffect,target,isEnfeeble,typeEffect,statmod);
     if(resist > 0.2) then
         if(target:getStatusEffect(typeEffect) == nil) then
             skill:setMsg(MSG_ENFEEB_IS);

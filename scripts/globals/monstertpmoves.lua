@@ -73,7 +73,7 @@ MSG_MISS = 188;
 MSG_RESIST = 85;
 MSG_EFFECT_DRAINED = 370; -- <num> status effects are drained from <target>.
 MSG_TP_REDUCED = 362; -- tp reduced to
-MSG_DISAPPEAR = 159; -- <target>'s stun effect disappears!
+MSG_DISAPPEAR = 343; -- <target>'s stun effect disappears!
 MSG_DISAPPEAR_NUM = 400; -- <num> of <target>'s effects disappear!
 
 BOMB_TOSS_HPP = 1;
@@ -272,7 +272,7 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	finaldmg = damage * mab * dmgmod;
 
 	-- get resistence, give small boost to mobs
-	resist = applyPlayerResistance(mob,skill,target,mob:getMod(MOD_INT)-target:getMod(MOD_INT),0,element);
+	resist = applyPlayerResistance(mob,-1,target,mob:getMod(MOD_INT)-target:getMod(MOD_INT),0,element);
 
 	-- get elemental damage reduction
 	local defense = 1;
@@ -316,7 +316,7 @@ end
 --statmod = the stat to account for resist (INT,MND,etc) e.g. MOD_INT
 --This determines how much the monsters ability resists on the player.
 --TODO: update all mob moves to use the new function
-function applyPlayerResistance(mob,spell,target,diff,skill,element)
+function applyPlayerResistance(mob,effect,target,diff,skill,element)
     resist = 1.0;
     magicaccbonus = 0;
 	--get the base acc (just skill plus magic acc mod)
@@ -401,6 +401,53 @@ function applyPlayerResistance(mob,spell,target,diff,skill,element)
     -- print("QUART:"..quart);
     -- print("EIGHTH:"..eighth);
     -- print("SIXTEENTH:"..sixteenth);
+
+
+	-- add effect resistence
+	-- this only increases chances for half / quarter resist
+	-- this eventually needs to be fixed
+	-- traits should be able to fully resist
+	if(effect >= 0) then
+		local effectres = 0;
+		if(effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
+			effectres = MOD_SLEEPRES;
+		elseif(effect == EFFECT_POISON) then
+			effectres = MOD_POISONRES;
+		elseif(effect == EFFECT_PARALYZE) then
+			effectres = MOD_PARALYZERES;
+		elseif(effect == EFFECT_BLIND) then
+			effectres = MOD_BLINDRES
+		elseif(effect == EFFECT_SILENCE) then
+			effectres = MOD_SILENCERES;
+		elseif(effect == EFFECT_PLAGUE or effect == EFECT_DISEASE) then
+			effectres = MOD_VIRUSRES;
+		elseif(effect == EFFECT_PETRIFICATION) then
+			effectres = MOD_PETRIFYRES;
+		elseif(effect == EFFECT_BIND) then
+			effectres = MOD_BINDRES;
+		elseif(effect == EFFECT_CURSE_I or effect == EFFECT_CURSE_II or effect == EFFECT_BANE) then
+			effectres = MOD_CURSERES;
+		elseif(effect == EFFECT_WEIGHT) then
+			effectres = MOD_GRAVITYRES;
+		elseif(effect == EFFECT_SLOW) then
+			effectres = MOD_SLOWRES;
+		elseif(effect == EFFECT_STUN) then
+			effectres = MOD_STUNRES;
+		elseif(effect == EFFECT_CHARM) then
+			effectres = MOD_CHARMRES;
+		end
+
+
+		local resrate = 1+(target:getMod(effectres)/20);
+		if(resrate > 1.5) then
+			resrate = 1.5;
+		end
+
+		-- printf("Resist percentage: %f", resrate);
+		-- increase resistance based on effect
+		quart = quart * resrate;
+		half = half * resrate;
+	end
 
     resvar = math.random();
 

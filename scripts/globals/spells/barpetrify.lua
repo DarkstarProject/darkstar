@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Barvira
+-- Spell: Barpetrify
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -23,12 +23,12 @@ function onSpellCast(caster,target,spell)
         duration = duration * 3;
     end
 
-    if(target:hasStatusEffect(EFFECT_BARVIRUS) == true) then
-        effect = target:getStatusEffect(EFFECT_BARVIRUS);
+    if(target:hasStatusEffect(EFFECT_BARPETRIFY) == true) then
+        effect = target:getStatusEffect(EFFECT_BARPETRIFY);
         effect:setPower(power);
         effect:setDuration(duration * 1000);
 
         else
-        target:addStatusEffect(EFFECT_BARVIRUS,power,0,duration,0,1);
+        target:addStatusEffect(EFFECT_BARPETRIFY,power,0,duration,0,1);
     end
 end;

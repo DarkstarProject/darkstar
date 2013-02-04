@@ -19,7 +19,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_POISON;
     if(target:hasStatusEffect(typeEffect) == false) then
-            target:addStatusEffect(typeEffect,5,3,180);
+            target:addStatusEffect(typeEffect,5,3,180*resist);
     end
 
     local dmgmod = 1;

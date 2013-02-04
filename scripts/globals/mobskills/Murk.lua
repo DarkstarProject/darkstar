@@ -23,12 +23,12 @@ function OnMobWeaponSkill(target, mob, skill)
     if(target:hasStatusEffect(EFFECT_SLOW) == false) then
         slowed = true;
         target:delStatusEffect(EFFECT_HASTE);
-        target:addStatusEffect(EFFECT_SLOW,50,0,math.random(30,60));
+        target:addStatusEffect(EFFECT_SLOW,50,0,60);
     end
 
     if(target:hasStatusEffect(EFFECT_WEIGHT) == false) then
         weighted = true;
-        target:addStatusEffect(EFFECT_WEIGHT,40,0,math.random(30,60));
+        target:addStatusEffect(EFFECT_WEIGHT,40,0,60);
     end
 
     skill:setMsg(MSG_ENFEEB_IS);

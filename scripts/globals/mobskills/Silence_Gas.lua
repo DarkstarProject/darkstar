@@ -19,9 +19,9 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SILENCE;
     if(target:hasStatusEffect(typeEffect) == false) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,skill,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WIND);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WIND);
         if(resist > 0.1) then
-            target:addStatusEffect(typeEffect,1,0,math.random(25,45));--tic=3;duration=30;
+            target:addStatusEffect(typeEffect,1,0,45*resist);--tic=3;duration=30;
         end
     end
 
