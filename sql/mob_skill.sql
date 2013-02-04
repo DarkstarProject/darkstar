@@ -626,12 +626,13 @@ INSERT INTO `mob_skill` VALUES (374,51,374,'Kick_Out', 4, 10.0, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (375,51,375,'Shock_Wave', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (376,51,376,'Flame_Armor', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (377,51,377,'Howl', 0, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (378,51,378,'Meteor', 2, 30.0, 2000, 2000, 4, 0);
 -- Warmachine
-INSERT INTO `mob_skill` VALUES (389,190,389,'Burst', 0, 15.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (390,190,390,'Fire_Arrow', 0, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (391,190,390,'Firebomb', 4, 9.5, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (392,190,390,'Blastbomb', 2, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (393,190,390,'Fountain', 4, 9.5, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (379,190,379,'Burst', 0, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (380,190,380,'Flame_Arrow', 0, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (381,190,381,'Firebomb', 4, 9.5, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (382,190,382,'Blastbomb', 2, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (383,190,383,'Fountain', 4, 9.5, 2000, 1500, 4, 0);
 -- Dragon - 4 foot kind
 INSERT INTO `mob_skill` VALUES (386,87,386,'Flame_Breath', 4, 7.0, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (387,87,387,'Poison_Breath', 4, 7.0, 2000, 2000, 4, 0);

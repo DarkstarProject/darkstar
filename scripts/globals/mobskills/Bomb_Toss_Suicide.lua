@@ -5,10 +5,10 @@ require("/scripts/globals/monstertpmoves");
 
 function OnMobSkillCheck(target,mob,skill)
 	-- notorious monsters shouldn't explode, nor dynamis
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if(mob:isMobType(MOBTYPE_NOTORIOUS) or mob:isInDynamis()) then
     	return 1;
     end
-	return math.random(0,1);
+	return 0;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
@@ -20,7 +20,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local power = math.random(16,20);
 
 	-- did I drop it in my face?
-	if(math.random() < 0.1) then
+	if(math.random() < 0.2) then
 		power = 3;
 	end
 
