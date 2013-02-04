@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Esuna
+-- Spell: Sacrifice
 --
 -----------------------------------------
 require("scripts/globals/status");
@@ -14,22 +14,21 @@ function onSpellCast(caster,target,spell)
 
     local removables = {EFFECT_FLASH, EFFECT_BLINDNESS, EFFECT_PARALYSIS, EFFECT_POISON, EFFECT_CURSE_I, EFFECT_CURSE_II, EFFECT_DISEASE, EFFECT_PLAGUE};
 
-    local has = {};
-
-    -- collect a list of what caster currently has
-    for i, effect in ipairs(removables) do
-        if(caster:hasStatusEffect(effect)) then
-            has[i] = true;
-        end
-    end
-
-    -- remove effects only if cast has it as well
+    -- remove one effect and add it to me
     for i, effect in ipairs(removables) do
 
-        if(has[i] and target:hasStatusEffect(effect)) then
-            spell:setMsg(83);
+        if(target:hasStatusEffect(effect)) then
+            spell:setMsg(572);
+
+            local statusEffect = target:getStatusEffect(effect);
+
+            -- only add it to me if I don't have it
+            if(caster:hasStatusEffect(effect) == false) then
+                caster:addStatusEffect(effect, statusEffect:getPower(), statusEffect:getTickCount(), statusEffect:getDuration());
+            end
+
             target:delStatusEffect(effect);
-            return effect;
+            return 1;
         end
     end
 
