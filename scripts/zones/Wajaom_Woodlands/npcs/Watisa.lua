@@ -25,9 +25,9 @@ function onTrigger(player,npc)
 	gil = player:getGil();
 
 	if(player:hasKeyItem(CHOCOBO_LICENSE) and player:getMainLvl() >= 20) then
-		player:startEvent(0x000a,price,gil);
-	else
 		player:startEvent(0x0009,price,gil);
+	else
+		player:startEvent(0x000a,price,gil);
 	end
 	
 end;
