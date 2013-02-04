@@ -28,7 +28,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuestStatus(BASTOK,BREAKING_STONES) == QUEST_ACCEPTED || player:getQuestStatus(AHT_URHGAN, AN_EMPTY_VESSEL) == QUEST_ACCEPTED) then
+	if (player:getQuestStatus(BASTOK,BREAKING_STONES) == QUEST_ACCEPTED or player:getQuestStatus(AHT_URHGAN, AN_EMPTY_VESSEL) == QUEST_ACCEPTED) then
 		player:startEvent(0x006E);
 	end
 end;
