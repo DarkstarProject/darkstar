@@ -21,11 +21,11 @@ function onTrade(player,npc,trade)
 
 local AnEmptyVessel = player:getQuestStatus(AHT_URHGAN,AN_EMPTY_VESSEL);
 local AnEmptyVesselProgress = player:getVar("AnEmptyVesselProgress");
-local Stone = player:getVar("EmptyVesselStone");
+local StoneID = player:getVar("EmptyVesselStone");
 
-	if ((AnEmptyVesselProgress == 3 or AnEmptyVesselProgress == 4) and AnEmptyVessel == 1) then
-		if (trade:hasItemQty(Stone,1) and trade:getGil() == 0 and trade:getItemCount() == 1) then
-			player:startEvent(0x0043); -- get the stone to Aydeewa
+	if (AnEmptyVesselProgress == 3 and AnEmptyVessel == 1) then
+		if (trade:hasItemQty(StoneID,1) and trade:getGil() == 0 and trade:getItemCount() == 1) then
+			player:startEvent(0x0043,StoneID); -- get the stone to Aydeewa
 		end;
 	end;
 end; 
@@ -43,7 +43,7 @@ local currentDay = VanadielDayOfTheYear();
 local divinationReady = ((divinationDay < currentDay) or (divinationDay > currentDay and player:getVar("LastDivinationYear") < VanadielYear()));
 local needsZone = player:needToZone();
 local playerGil = player:getGil();
-local Stone = player:getVar("StoneYouNeed");
+local StoneID = player:getVar("EmptyVesselStone");
 
 	if (player:getMainLvl() >= 30 and AnEmptyVessel == 0 and AnEmptyVesselProgress <= 1 and divinationReady == true) then
 		player:startEvent(0x003c,playerGil); -- initial cutscene where you get what stone you are gonne give to him if you answer all 10 questions correctly
@@ -51,15 +51,15 @@ local Stone = player:getVar("StoneYouNeed");
 		player:startEvent(0x003f); -- reminder to come back next day, cause you failed
 	elseif (AnEmptyVesselProgress == 2 and AnEmptyVessel == 1) then
 		if (needsZone == false and divinationReady == true) then -- Have zoned and waited a day
-			player:startEvent(0x0041,playerGil,0,0,0,0,0,Stone); -- shortened version to which stone you need to get, after this you can trade the requested stone to him.
+			player:startEvent(0x0041); -- shortened version to which stone you need to get, after this you can trade the requested stone to him.
 		else -- Have not zoned, or have not waited, or both.
 			player:startEvent(0x0040); -- you have successed before but you still need to wait a gameday and zone
 		end
 	elseif (AnEmptyVesselProgress == 3) then
-		player:startEvent(0x0042,playerGil,0,0,0,0,0,Stone); -- reminder of the shortened version, you can trade the stone.
-	elseif (AnEmptyVesselProgress == 5) then 
+		player:startEvent(0x0042); -- reminder of the shortened version, you can trade the stone.
+	elseif (AnEmptyVesselProgress == 4) then 
 		player:startEvent(0x0044); -- reminder to get the stone to Aydeewa
-	elseif (AnEmptyVesselProgress == 6 and AnEmptyVessel == 2 and player:hasKeyItem(771) == true) then
+	elseif (AnEmptyVessel == 2 and player:hasKeyItem(771) == true and player:getVar("BluAFBeginnings_Optional") == 0) then
 		player:startEvent(0x0045); -- optional CS for AF
 	else
 		player:startEvent(0x003D);
@@ -128,32 +128,22 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 
-	if (csid == 0x003c and option == 50) then
+	if (csid == 0x003c and option == 50) then -- Begin BLU quest
 		player:needToZone(true);
 		player:setVar("LastDivinationDay",VanadielDayOfTheYear());
 		player:setVar("LastDivinationYear",VanadielYear());
 		player:setVar("AnEmptyVesselProgress",2);
 		player:setVar("SuccessfullyAnswered",0);
 		player:addQuest(AHT_URHGAN,AN_EMPTY_VESSEL);
-	elseif (csid == 0x0040) then
-		player:setVar("AnEmptyVesselProgress",2);
-	elseif (csid == 0x0041 and option == 1) then
+	elseif (csid == 0x0041 and option == 1) then -- Continue BLU quest
 		player:setVar("AnEmptyVesselProgress",3);
-	elseif (csid == 0x0042 and option == 2) then
-		player:setVar("AnEmptyVesselProgress",4);
-	elseif (csid == 0x0043 or csid == 0x0044) then
-		player:setVar("AnEmptyVesselProgress",5);
 		player:setVar("LastDivinationDay",0);
 		player:setVar("LastDivinationYear",0);
-	elseif (csid == 0x004e and option == 0) then
-		player:setVar("AnEmptyVessel",1);
-	elseif (csid == 0x0045 and option == 1) then
-		player:setVar("AnEmptyVesselProgress",0);
-	elseif (csid == 0x003f) then
-		player:setVar("AnEmptyVesselProgress",1);
-	elseif (csid == 0x003d) then
-		player:setVar("AnEmptyVesselProgress",0);
-	else
+	elseif (csid == 0x0043) then -- Turn in stone, go to Aydeewa
+		player:setVar("AnEmptyVesselProgress",4);
+	elseif (csid == 0x0045 and option == 1) then -- Optional (?) cutscene for AF quest.
+		player:setVar("BluAFBeginnings_Waoud",1);
+	elseif (csid ==0x003c and option ~= 50) then
 		player:setVar("LastDivinationDay",VanadielDayOfTheYear());
 		player:setVar("LastDivinationYear",VanadielYear());
 		player:setVar("AnEmptyVesselProgress",1);
