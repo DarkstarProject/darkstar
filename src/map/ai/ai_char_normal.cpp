@@ -2372,18 +2372,19 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	uint16 tpHitsLanded = 0;
 	uint16 extraHitsLanded = 0;
 	uint16 damage = 0;
+	m_PChar->PLatentEffectContainer->CheckLatentsTP(0);
 	damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
-	m_PChar->addTP(-bonusTp);
-
 
 	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 	{
-		m_PChar->addTP(-100);
+		m_PChar->addTP(-100 - bonusTp);
+		m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
 	}
 	else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
 	{
-		m_PChar->addTP(-100);
+		m_PChar->addTP(-100 - bonusTp);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
+		m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
 	}
 	else
 	{
@@ -2424,7 +2425,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 			if (m_PChar->addWsPoints(1,PWeapon->getUnlockId()-1))
 			{
 				// weapon is now broken
-				m_PChar->LatentEffectContainer->CheckLatentsWeaponBreak(damslot);
+				m_PChar->PLatentEffectContainer->CheckLatentsWeaponBreak(damslot);
 			}
 		}
 

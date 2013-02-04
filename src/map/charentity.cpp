@@ -31,6 +31,7 @@
 #include "charentity.h"
 #include "spell.h"
 #include "charutils.h"
+#include "battleutils.h"
 
 
 CCharEntity::CCharEntity()
@@ -113,7 +114,7 @@ CCharEntity::CCharEntity()
 	PWideScanTarget = NULL;
 
     PRecastContainer = new CRecastContainer(this);
-	LatentEffectContainer = new CLatentEffectContainer(this);
+	PLatentEffectContainer = new CLatentEffectContainer(this);
 
 	petZoningInfo.respawnPet = false;
 	petZoningInfo.petID = 0;
@@ -255,4 +256,47 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 void CCharEntity::SetName(int8* name)
 {
 	this->name.insert(0, name, dsp_cap(strlen((const int8*)name), 0, 15));
+}
+
+uint16 CCharEntity::addTP(float tp)
+{
+	float TPMulti = 1.0;
+
+	if(objtype == TYPE_PC)
+	{
+		TPMulti = map_config.player_tp_multiplier;
+	}
+	else if(objtype == TYPE_MOB)
+	{
+		TPMulti = map_config.mob_tp_multiplier;
+	}
+	else if(objtype == TYPE_PET)
+	{
+		TPMulti = map_config.mob_tp_multiplier * 3;
+	}
+	float oldtp = health.tp;
+	float cap = dsp_cap(health.tp + (tp * TPMulti), 0, 300);
+	tp = health.tp - cap;
+	health.tp = cap;
+	if ((oldtp < 100 && health.tp >= 100 ) || (oldtp >= 100 && health.tp < 100))
+	{
+		PLatentEffectContainer->CheckLatentsTP(health.tp);
+	}
+	return abs(tp);
+}
+
+int32 CCharEntity::addHP(int32 hp)
+{
+	hp = CBattleEntity::addHP(hp);
+	PLatentEffectContainer->CheckLatentsHP(health.hp);
+
+	return abs(hp);
+}
+
+int32 CCharEntity::addMP(int32 mp)
+{
+	mp = CBattleEntity::addMP(mp);
+	//PLatentEffectContainer->CheckLatentsHP(health.mp);
+
+	return abs(mp);
 }

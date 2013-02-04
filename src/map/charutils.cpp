@@ -1209,7 +1209,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		} else {
 			PChar->delModifiers(&((CItemArmor*)PItem)->modList);
 		}
-		PChar->LatentEffectContainer->DelLatentEffects(equipSlotID);
+		PChar->PLatentEffectContainer->DelLatentEffects(equipSlotID);
 
 		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
 		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
@@ -1560,8 +1560,8 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				} else {
 					PChar->addModifiers(&PItem->modList);
 				}
-				PChar->LatentEffectContainer->AddLatentEffects(&PItem->latentList, equipSlotID);
-				PChar->LatentEffectContainer->CheckLatentsEquip();
+				PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, equipSlotID);
+				PChar->PLatentEffectContainer->CheckLatentsEquip(equipSlotID);
 				
 				PChar->status = STATUS_UPDATE;
 				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));

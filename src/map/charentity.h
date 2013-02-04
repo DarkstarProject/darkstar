@@ -217,7 +217,7 @@ public:
 
     CRecastContainer* PRecastContainer;             // 
 
-	CLatentEffectContainer* LatentEffectContainer;
+	CLatentEffectContainer* PLatentEffectContainer;
 
 	CItemContainer*   PGuildShop;					// текущий магазин гильдии, в котором персонаж производит закупки
 	CItemContainer*	  getStorage(uint8 LocationID);	// получение указателя на соответствующее хранилище
@@ -258,7 +258,9 @@ public:
 	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken
 	UnlockedWeapons_t unlockedWeapons[MAX_UNLOCKABLE_WEAPONS];			// chars unlocked weapon status
 
-
+	uint16 addTP(float tp);
+	int32 addHP(int32 hp);
+	int32 addMP(int32 mp);
 
     std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)
 

@@ -102,13 +102,13 @@ void CLatentEffectContainer::DelLatentEffects(uint8 slot)
 
 void CLatentEffectContainer::CheckLatentsHP(int32 hp)
 {
-	//TODO: hook into this from anywhere MP changes
+	//TODO: hook into this from anywhere HP changes
 	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
 	{
 		switch(m_LatentEffectList.at(i)->GetConditionsID())
 		{
 			case LATENT_HP_UNDER_PERCENT:
-				if ((float)(hp / m_POwner->health.hp ) <= m_LatentEffectList.at(i)->GetConditionsValue())
+				if (((float)hp / m_POwner->health.maxhp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue())
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -118,7 +118,7 @@ void CLatentEffectContainer::CheckLatentsHP(int32 hp)
 				}
 				break;
 			case LATENT_HP_OVER_PERCENT:
-				if ((float)(hp / m_POwner->health.hp ) >= m_LatentEffectList.at(i)->GetConditionsValue())
+				if (((float)hp / m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue())
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -127,25 +127,8 @@ void CLatentEffectContainer::CheckLatentsHP(int32 hp)
 					m_LatentEffectList.at(i)->Deactivate();
 				}
 				break;
-			case LATENT_HP_OVER_VISIBLE_GEAR:
-				{
-				//TODO: figure out if this is actually right
-				CItemArmor* head = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HEAD]));
-				CItemArmor* body = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_BODY]));
-				CItemArmor* hands = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HANDS]));
-				CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
-				CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
-
-				int32 visibleHp = 0;
-				visibleHp += (head ? head->getModifier(MOD_HP) : 0);
-				visibleHp += (body ? body->getModifier(MOD_HP) : 0);
-				visibleHp += (hands ? hands->getModifier(MOD_HP) : 0);
-				visibleHp += (legs ? legs->getModifier(MOD_HP) : 0);
-				visibleHp += (feet ? feet->getModifier(MOD_HP) : 0);
-
-				//TODO: add mp percent too
-				if ((float)( hp / ((m_POwner->health.hp - m_POwner->health.modhp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_HP)->count * 10 ) + 
-					visibleHp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
+			case LATENT_HP_UNDER_TP_UNDER_100:
+				if (((float)hp / m_POwner->health.maxhp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -153,8 +136,45 @@ void CLatentEffectContainer::CheckLatentsHP(int32 hp)
 				{
 					m_LatentEffectList.at(i)->Deactivate();
 				}
+				break;
+			case LATENT_HP_OVER_TP_UNDER_100:
+				if (((float)hp / m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
 				}
 				break;
+			//case LATENT_HP_OVER_VISIBLE_GEAR:
+			//	{
+			//	//TODO: figure out if this is actually right
+			//	CItemArmor* head = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HEAD]));
+			//	CItemArmor* body = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_BODY]));
+			//	CItemArmor* hands = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HANDS]));
+			//	CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
+			//	CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
+
+			//	int32 visibleHp = 0;
+			//	visibleHp += (head ? head->getModifier(MOD_HP) : 0);
+			//	visibleHp += (body ? body->getModifier(MOD_HP) : 0);
+			//	visibleHp += (hands ? hands->getModifier(MOD_HP) : 0);
+			//	visibleHp += (legs ? legs->getModifier(MOD_HP) : 0);
+			//	visibleHp += (feet ? feet->getModifier(MOD_HP) : 0);
+
+			//	//TODO: add mp percent too
+			//	if ((float)( hp / ((m_POwner->health.hp - m_POwner->health.modhp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_HP)->count * 10 ) + 
+			//		visibleHp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
+			//	{
+			//		m_LatentEffectList.at(i)->Activate();
+			//	}
+			//	else
+			//	{
+			//		m_LatentEffectList.at(i)->Deactivate();
+			//	}
+			//	}
+			//	break;
 			default:
 				break;
 		}
@@ -170,7 +190,54 @@ void CLatentEffectContainer::CheckLatentsHP(int32 hp)
 
 void CLatentEffectContainer::CheckLatentsTP(float tp)
 {
-	//TODO: hook into this from anywhere TP changes
+	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
+	{
+		switch(m_LatentEffectList.at(i)->GetConditionsID())
+		{
+			case LATENT_TP_UNDER_100:
+				if (tp < 100)
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+				break;
+			case LATENT_TP_OVER_100:
+				if (tp >= 100)
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+				break;
+			case LATENT_HP_UNDER_TP_UNDER_100:
+				if ((float)(m_POwner->health.hp / m_POwner->health.hp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+				break;
+			case LATENT_HP_OVER_TP_UNDER_100:
+				if ((float)(m_POwner->health.hp / m_POwner->health.hp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+				break;
+			default:
+				break;
+		}
+	}
 }
 
 /************************************************************************
@@ -188,7 +255,7 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
 		switch(m_LatentEffectList.at(i)->GetConditionsID())
 		{
 			case LATENT_MP_UNDER_PERCENT:
-				if ((float)(mp / m_POwner->health.mp ) <= m_LatentEffectList.at(i)->GetConditionsValue())
+				if ((float)(mp / m_POwner->health.maxmp ) <= m_LatentEffectList.at(i)->GetConditionsValue())
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -207,34 +274,34 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
 					m_LatentEffectList.at(i)->Deactivate();
 				}
 				break;
-			case LATENT_MP_UNDER_VISIBLE_GEAR:
-				{
-				//TODO: figure out if this is actually right
-				CItemArmor* head = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HEAD]));
-				CItemArmor* body = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_BODY]));
-				CItemArmor* hands = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HANDS]));
-				CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
-				CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
+			//case LATENT_MP_UNDER_VISIBLE_GEAR:
+			//	{
+			//	//TODO: figure out if this is actually right
+			//	CItemArmor* head = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HEAD]));
+			//	CItemArmor* body = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_BODY]));
+			//	CItemArmor* hands = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_HANDS]));
+			//	CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
+			//	CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
-				int32 visibleMp = 0;
-				visibleMp += (head ? head->getModifier(MOD_MP) : 0);
-				visibleMp += (body ? body->getModifier(MOD_MP) : 0);
-				visibleMp += (hands ? hands->getModifier(MOD_MP) : 0);
-				visibleMp += (legs ? legs->getModifier(MOD_MP) : 0);
-				visibleMp += (feet ? feet->getModifier(MOD_MP) : 0);
+			//	int32 visibleMp = 0;
+			//	visibleMp += (head ? head->getModifier(MOD_MP) : 0);
+			//	visibleMp += (body ? body->getModifier(MOD_MP) : 0);
+			//	visibleMp += (hands ? hands->getModifier(MOD_MP) : 0);
+			//	visibleMp += (legs ? legs->getModifier(MOD_MP) : 0);
+			//	visibleMp += (feet ? feet->getModifier(MOD_MP) : 0);
 
-				//TODO: add mp percent too
-				if ((float)( mp / ((m_POwner->health.mp - m_POwner->health.modmp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_MP)->count * 10 ) + 
-					visibleMp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
-				{
-					m_LatentEffectList.at(i)->Activate();
-				}
-				else
-				{
-					m_LatentEffectList.at(i)->Deactivate();
-				}
-				}
-				break;
+			//	//TODO: add mp percent too
+			//	if ((float)( mp / ((m_POwner->health.mp - m_POwner->health.modmp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_MP)->count * 10 ) + 
+			//		visibleMp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
+			//	{
+			//		m_LatentEffectList.at(i)->Activate();
+			//	}
+			//	else
+			//	{
+			//		m_LatentEffectList.at(i)->Deactivate();
+			//	}
+			//	}
+			//	break;
 			default:
 				break;
 		}
@@ -243,41 +310,104 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
 
 /************************************************************************
 *																		*
-*  Checks all latents that are affected by anything that only changes	*
-*  on equip																*
+*  Checks all latents for a given slot (ie. on equip)					*
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsEquip()
+void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 {
 	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
 	{
-		switch(m_LatentEffectList.at(i)->GetConditionsID())
+		if (m_LatentEffectList.at(i)->GetSlot() == slot)
 		{
-			case LATENT_SUBJOB:
-				if( m_POwner->GetSJob() == m_LatentEffectList.at(i)->GetConditionsValue())
-				{
-					m_LatentEffectList.at(i)->Activate();
-				}
-				break;
-			case LATENT_WEAPON_BROKEN:
+			switch(m_LatentEffectList.at(i)->GetConditionsID())
 			{
-				CItemWeapon* PWeaponMain = (m_POwner->equip[SLOT_MAIN] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_MAIN])) : NULL;
-				CItemWeapon* PWeaponSub = (m_POwner->equip[SLOT_SUB] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_SUB])) : NULL;
-				CItemWeapon* PWeaponRanged = (m_POwner->equip[SLOT_RANGED] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_RANGED])) : NULL;
-				if( PWeaponMain && m_POwner->unlockedWeapons[PWeaponMain->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_MAIN )
+				case LATENT_HP_UNDER_PERCENT:
+					if (((float)m_POwner->health.hp / m_POwner->health.maxhp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue())
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					else
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+					break;
+				case LATENT_HP_OVER_PERCENT:
+					if (((float)m_POwner->health.hp / m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue())
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					else
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+					break;
+				case LATENT_HP_UNDER_TP_UNDER_100:
+					if (((float)m_POwner->health.hp / m_POwner->health.maxhp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					else
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+					break;
+				case LATENT_HP_OVER_TP_UNDER_100:
+					if (((float)m_POwner->health.hp / m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+					{
+						m_POwner->addHP(4);
+						m_LatentEffectList.at(i)->Activate();
+					}
+					else
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+					break;
+				case LATENT_TP_UNDER_100:
+					if (m_POwner->health.tp < 100)
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					else
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+					break;
+				case LATENT_TP_OVER_100:
+					if (m_POwner->health.tp >= 100)
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					else
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+					break;
+				case LATENT_SUBJOB:
+					if( m_POwner->GetSJob() == m_LatentEffectList.at(i)->GetConditionsValue())
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					break;
+				case LATENT_WEAPON_BROKEN:
 				{
-					m_LatentEffectList.at(i)->Activate();
+					CItemWeapon* PWeaponMain = (m_POwner->equip[SLOT_MAIN] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_MAIN])) : NULL;
+					CItemWeapon* PWeaponSub = (m_POwner->equip[SLOT_SUB] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_SUB])) : NULL;
+					CItemWeapon* PWeaponRanged = (m_POwner->equip[SLOT_RANGED] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_RANGED])) : NULL;
+					if( PWeaponMain && m_POwner->unlockedWeapons[PWeaponMain->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_MAIN )
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					if( PWeaponSub && m_POwner->unlockedWeapons[PWeaponSub->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_SUB)
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					if( PWeaponRanged && m_POwner->unlockedWeapons[PWeaponRanged->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_RANGED)
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					break;
 				}
-				if( PWeaponSub && m_POwner->unlockedWeapons[PWeaponSub->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_SUB)
-				{
-					m_LatentEffectList.at(i)->Activate();
-				}
-				if( PWeaponRanged && m_POwner->unlockedWeapons[PWeaponRanged->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_RANGED)
-				{
-					m_LatentEffectList.at(i)->Activate();
-				}
-				break;
 			}
 		}
 	}

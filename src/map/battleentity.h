@@ -419,9 +419,9 @@ public:
 
 	uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
 
-	uint16		    addTP(float tp);			// увеличиваем/уменьшаем количество tp
-	int32	        addHP(int32 hp);			// увеличиваем/уменьшаем количество hp
-	int32   	    addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
+	virtual uint16	addTP(float tp);			// увеличиваем/уменьшаем количество tp
+	virtual int32	addHP(int32 hp);			// увеличиваем/уменьшаем количество hp
+	virtual int32   addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
 
 	int16		    getMod(uint16 modID);		// величина модификатора
 	

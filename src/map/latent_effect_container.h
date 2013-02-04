@@ -45,7 +45,7 @@ public:
 	void CheckLatentsHP(int32 hp);
 	void CheckLatentsTP(float tp);
 	void CheckLatentsMP(int32 mp);
-	void CheckLatentsEquip();
+	void CheckLatentsEquip(uint8 slot);
 	void CheckLatentsWeaponDraw(bool drawn);
 	void CheckLatentsStatusEffect();
 	void CheckLatentsRollSong(bool active);
