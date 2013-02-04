@@ -9,7 +9,7 @@ package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/keyItems");
+require("scripts/globals/keyitems");
 require("scripts/zones/Ordelles_Caves/TextIDs");
 
 ----------------------------------- 
