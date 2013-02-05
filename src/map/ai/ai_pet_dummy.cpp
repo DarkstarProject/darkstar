@@ -81,6 +81,7 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_FALL:		ActionFall();		break;
 		case ACTION_ENGAGE:		ActionEngage();		break;
 		case ACTION_ATTACK:		ActionAttack();		break;
+		case ACTION_SLEEP:		ActionSleep();		break;
 		case ACTION_DISENGAGE:	ActionDisengage();	break;
 		case ACTION_MOBABILITY_START:	ActionAbilityStart();	break;
 		case ACTION_MOBABILITY_USING: ActionAbilityUsing(); break;
@@ -710,6 +711,21 @@ void CAIPetDummy::ActionAttack()
 		}
 	}
 
+}
+
+void CAIPetDummy::ActionSleep()
+{
+    if (!m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && 
+        !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II))
+    {
+		//put it in combat if it isn't
+		if( m_PPet->animation == ANIMATION_NONE ){ 
+			m_PPet->animation = ANIMATION_ATTACK;
+		}
+		m_ActionType = (m_PPet->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+    }
+	//TODO: possibly change this so have ActionBeforeSleep then ActionSleep (send ENTITY_UPDATE once only rather than spam)
+	m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 }
 
 void CAIPetDummy::ActionDisengage()

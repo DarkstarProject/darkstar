@@ -55,6 +55,7 @@ protected:
 	void ActionDisengage();
 	void ActionEngage();
 	void ActionAttack();
+	void ActionSleep();
 	void ActionFall();
 	void ActionDeath();
 	void ActionSpawn();
