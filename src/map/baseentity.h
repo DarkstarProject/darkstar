@@ -121,14 +121,14 @@ public:
 	uint8			speed;				// скорость передвижения
 	uint8			speedsub;			// подолнительный параметр скорости передвижения
 
-	const int8*		GetName();			// имя сущности
+	virtual const int8*		GetName();			// имя сущности
 	uint8			getZone();			// текущая зона
 	float			GetXPos();			// позиция по координате X
 	float			GetYPos();			// позиция по координате Y
 	float			GetZPos();			// позиция по координате Z
 
     CBaseEntity();						// конструктор
-   ~CBaseEntity();						// деструктор
+    virtual ~CBaseEntity();						// деструктор
 private:
 };
 

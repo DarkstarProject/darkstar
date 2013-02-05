@@ -260,24 +260,8 @@ void CCharEntity::SetName(int8* name)
 
 uint16 CCharEntity::addTP(float tp)
 {
-	float TPMulti = 1.0;
-
-	if(objtype == TYPE_PC)
-	{
-		TPMulti = map_config.player_tp_multiplier;
-	}
-	else if(objtype == TYPE_MOB)
-	{
-		TPMulti = map_config.mob_tp_multiplier;
-	}
-	else if(objtype == TYPE_PET)
-	{
-		TPMulti = map_config.mob_tp_multiplier * 3;
-	}
 	float oldtp = health.tp;
-	float cap = dsp_cap(health.tp + (tp * TPMulti), 0, 300);
-	tp = health.tp - cap;
-	health.tp = cap;
+	tp = CBattleEntity::addTP(tp);
 	if ((oldtp < 100 && health.tp >= 100 ) || (oldtp >= 100 && health.tp < 100))
 	{
 		PLatentEffectContainer->CheckLatentsTP(health.tp);
