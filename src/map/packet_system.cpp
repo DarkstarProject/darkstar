@@ -1814,18 +1814,17 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         break;
         case 0x0C: //removing item from ah
         {
-			
-			/*
 			//check user has invent space
 			if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
             {
-                PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, 0, 0)); //invent full, unable to remove msg
+                PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, PChar, slotid, true)); //invent full, unable to remove msg
+				return;
             }
             else
             {
-				const int8* delQuery = "DELETE FROM auction_house WHERE seller = %u AND itemid = %u AND sale = 0 LIMIT 1;";
+				const int8* delQuery = "DELETE FROM auction_house WHERE seller = %u AND id = %u AND sale = 0 LIMIT 1;";
 
-				const int8* fmtQuery = "SELECT itemid, stack FROM auction_house WHERE seller = %u and sale=0;";
+				const int8* fmtQuery = "SELECT itemid, stack, id FROM auction_house WHERE seller = %u and sale=0;";
 				int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 				if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 				{
@@ -1835,21 +1834,23 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						if(count == slotid){
 							uint16 delitemid = (uint16)Sql_GetUIntData(SqlHandle,0); 
 							uint16 delitemstack = (uint16)Sql_GetUIntData(SqlHandle,1); 
-							const int8* fmtQuery = "SELECT itemid FROM auction_house WHERE seller = %u and sale=0;";
-							int32 delret = Sql_Query(SqlHandle, delQuery, PChar->id,delitemid);
+							uint32 ahid = (uint32)Sql_GetUIntData(SqlHandle,2); 
+							int32 delret = Sql_Query(SqlHandle, delQuery, PChar->id, ahid);
 							if(delret != SQL_ERROR){
 								//add the item back to the users invent
 								CItem* PDelItem = itemutils::GetItemPointer(delitemid);
 								if(PDelItem != NULL){
 									uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, delitemid, 
-										(delitemstack == 0 ? PDelItem->getStackSize() : 1));
+										(delitemstack != 0 ? PDelItem->getStackSize() : 1));
 
 									if (SlotID != ERROR_SLOTID)
 									{
-		                                PChar->pushPacket(new CAuctionHousePacket(action, 0x02, delitemid, 0));
-										PChar->pushPacket(new CAuctionHousePacket(action, 0, 0, 0)); //remove from history
+										PChar->pushPacket(new CAuctionHousePacket(action, 0, PChar, slotid, false));
 						                PChar->pushPacket(new CInventoryFinishPacket());
 			                        }
+									else {
+										ShowError("Failed to return item id %u stack %u to char... \n",delitemid,delitemstack);
+									}
 				                    return;
 								}
 							}
@@ -1859,8 +1860,8 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					}
 				}
 				//let client know something went wrong
-				PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, 0, 0)); //invent full, unable to remove msg
-			}*/
+				PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, PChar, slotid, true)); //invent full, unable to remove msg
+			}
 		}
         break;
 		case 0x0D: 

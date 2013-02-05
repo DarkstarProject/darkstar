@@ -49,6 +49,7 @@ public:
     CAuctionHousePacket(uint8 action);                                  // отправляем персонажу меню аукциона
     CAuctionHousePacket(uint8 action, uint8 slot, CCharEntity* PChar);                      // отправляем список продаваемых персонажем предметов
     CAuctionHousePacket(uint8 action, uint8 message, uint16 itemid, uint32 price);
+	CAuctionHousePacket(uint8 action, uint8 message, CCharEntity* PChar, uint8 slot, bool keepItem);
     CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quantity);
 };
 

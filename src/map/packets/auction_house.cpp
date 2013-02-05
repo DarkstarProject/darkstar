@@ -102,3 +102,30 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, uint16 ite
     WBUFL(data,(0x08)-4) = price;
     WBUFW(data,(0x0C)-4) = itemid;
 }
+
+CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, CCharEntity* PChar, uint8 slot, bool keepItem)
+{
+    this->type = 0x4C;
+    this->size = 0x1E;
+
+    WBUFB(data,(0x04)-4) = action;  
+	WBUFB(data,(0x05)-4) = slot;
+    WBUFB(data,(0x06)-4) = message;
+
+	// we need all this guff so the item stays in the history.
+	if (keepItem && slot < 7 && slot < PChar->m_ah_history.size())
+    {
+		WBUFB(data,(0x14)-4) = 0x03;
+        WBUFB(data,(0x16)-4) = 0x01;	            // значение меняется, назначение неизвестно UNKNOWN
+
+		memcpy(data+(0x18)-4, PChar->GetName(), dsp_cap(strlen(PChar->GetName()), 0, 16));
+
+		WBUFW(data,(0x28)-4) = PChar->m_ah_history.at(slot).itemid;             // id продаваемого предмета  item id
+		WBUFB(data,(0x2A)-4) = 1 - PChar->m_ah_history.at(slot).stack;          // количество предметов stack size
+		WBUFB(data,(0x2B)-4) = 0x02;											// количество предметов stack size?            
+		WBUFL(data,(0x2C)-4) = PChar->m_ah_history.at(slot).price;				// цена продажи price
+
+		WBUFB(data,(0x30)-4) = AUCTION_ID;
+	}
+
+}
