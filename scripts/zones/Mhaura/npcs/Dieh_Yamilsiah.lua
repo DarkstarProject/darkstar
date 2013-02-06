@@ -21,7 +21,7 @@ end;
 function onTrigger(player,npc)
 	
 	-- The boat comes every 1152 seconds.
-	timer = 1152 - ((os.time() - 1009810584)%1152);
+	local timer = 1152 - ((os.time() - 1009810584)%1152);
 	player:startEvent(0x00e7,timer);
 	
 end;

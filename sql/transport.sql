@@ -59,7 +59,12 @@ INSERT INTO `transport` VALUES(5, 'Jeuno-Bastok_Airship', 17784932, 17784929, -7
 INSERT INTO `transport` VALUES(6, 'Sandoria-Jeuno_Airship', 17727594, 17727591, 20.000, -2.000, 44.000, 64, 369, 18, 19, 180, 360, 12, 60, 16, 223);
 INSERT INTO `transport` VALUES(7, 'Windurst-Jeuno_Airship', 17760416, 17760415, 242.281, -3.522, 61.994, 96, 416, 18, 19, 270, 360, 18, 60, 14, 225);
 INSERT INTO `transport` VALUES(8, 'Bastok-Jeuno_Airship', 17743967, 17743961, -36.458, 6.365, -77.322, 128, 315, 18, 19, 0, 360, 14, 60, 16, 224);
-INSERT INTO `transport` VALUES(9, 'Selbina-Mhaura_Boat', 17793084, 17793083, 9.294, 0.000, -69.775, 0, 485, 18, 19, 382, 480, 18, 80, 16, 220);
-INSERT INTO `transport` VALUES(10, 'Mhaura-Selbina_Boat', 17797178, 17797177, -0.516, 0.003, -8.409, 0, 493, 18, 19, 382, 480, 18, 80, 16, 221);
-INSERT INTO `transport` VALUES(11, 'Mhaura-Whitegate_Boat', 17797178, 17797177, -0.516, 0.003, -8.409, 0, 493, 18, 19, 142, 480, 18, 80, 16, 47);
-INSERT INTO `transport` VALUES(12, 'Whitegate-Mhaura_Boat', 16982041, 16982039, -20.726, 3.389, -154.231, 0, 569, 18, 19, 142, 480, 18, 80, 16, 46);
+INSERT INTO `transport` VALUES(9, 'Selbina-Mhaura_Boat', 17793084, 17793083, 9.294, 0.000, -69.775, 0, 485, 18, 19, 0, 434, 18, 83, 18, 220);
+INSERT INTO `transport` VALUES(10, 'Mhaura-Selbina_Boat', 17797178, 17797177, -0.516, 0.003, -8.409, 0, 493, 18, 19, 0, 434, 18, 83, 18, 221);
+INSERT INTO `transport` VALUES(11, 'Mhaura-Whitegate_Boat', 17797178, 17797177, -0.516, 0.003, -8.409, 0, 493, 18, 19, 300, 434, 18, 83, 18, 46);
+INSERT INTO `transport` VALUES(12, 'Whitegate-Mhaura_Boat', 16982041, 16982039, -20.726, 3.389, -154.231, 0, 569, 18, 19, 300, 434, 18, 83, 18, 47);
+INSERT INTO `transport` VALUES(13, 'Whitegate-Nashmau_Boat', 16982041, 16982040, 20.726, 3.389, 154.231, 128, 570, 20, 21, 0, 434, 18, 83, 18, 58);
+INSERT INTO `transport` VALUES(14, 'Nashmau-Whitegate_Boat', 16994322, 16994321, 3.24, 3.389, -114.221, 0, 571, 22, 23, 0, 434, 18, 83, 18, 59);
+INSERT INTO `transport` VALUES(15, 'Manaclip_PUR_BIBI', 16793907, 16793908, 491.5, 0, 687.4, 128, 0, 18, 19, 0, 434, 20, 80, 20, 3);
+INSERT INTO `transport` VALUES(16, 'MANA_BIBI_PUR', 16793907, 16793909, -392, 0, -364, 128, 0, 20, 21, 300, 434, 20, 80, 20, 3);
+

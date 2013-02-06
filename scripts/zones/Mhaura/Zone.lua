@@ -37,7 +37,7 @@ end;
 -----------------------------------		
 
 function onTransportEvent(player,transport)
-	if (transport == 47) then 
+	if ((transport == 47) or (transport == 46)) then 
 		if (not(player:hasKeyItem(BOARDING_PERMIT))) then
 			player:setPos(8.200,-1.363,3.445,192);
 			player:messageSpecial(DO_NOT_PROSSESS, BOARDING_PERMIT);
