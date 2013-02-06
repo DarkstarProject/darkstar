@@ -909,8 +909,9 @@ void CAICharNormal::ActionRangedFinish()
 
 					if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
 					{
-						charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+						uint8 slot = m_PChar->equip[SLOT_AMMO];
 						charutils::UnequipItem(m_PChar,SLOT_AMMO);
+						charutils::UpdateItem(m_PChar, LOC_INVENTORY, slot, -1);
 						i = hitCount; // end loop (if barrage), player is out of ammo
 					}
 					else
@@ -1984,8 +1985,9 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 			if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
 			{
-				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+				uint8 slot = m_PChar->equip[SLOT_AMMO];
 				charutils::UnequipItem(m_PChar,SLOT_AMMO);
+				charutils::UpdateItem(m_PChar, LOC_INVENTORY, slot, -1);
 			}
 			else
 			{
@@ -2485,8 +2487,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		{
 			if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
 			{
-				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+				uint8 slot = m_PChar->equip[SLOT_AMMO];
 				charutils::UnequipItem(m_PChar,SLOT_AMMO);
+				charutils::UpdateItem(m_PChar, LOC_INVENTORY, slot, -1);
 			}
 			else
 			{
