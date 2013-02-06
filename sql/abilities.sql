@@ -93,7 +93,7 @@ INSERT INTO `abilities` VALUES ('60', 'trick_attack', '6', '30', '1', '60', '66'
 INSERT INTO `abilities` VALUES ('61', 'weapon_bash', '8', '20', '4', '300', '88', '0', '0', '201', '20', '0', '1', '900', '0');
 INSERT INTO `abilities` VALUES ('62', 'reward', '9', '12', '1', '90', '103', '0', '0', '84', '18', '0', '0', '0', '90');
 INSERT INTO `abilities` VALUES ('63', 'cover', '7', '35', '2', '180', '76', '0', '0', '86', '20', '0', '0', '35', '0');
-INSERT INTO `abilities` VALUES ('64', 'spirit_link', '14', '25', '1', '90', '162', '0', '0', '196', '20', '0', '0', '0', '120');
+INSERT INTO `abilities` VALUES ('64', 'spirit_link', '14', '25', '1', '90', '162', '0', '0', '94', '20', '0', '0', '0', '120');
 INSERT INTO `abilities` VALUES ('66', 'chi_blast', '2', '41', '4', '180', '18', '110', '0', '92', '20', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('67', 'convert', '5', '40', '1', '600', '49', '0', '0', '88', '20', '0', '1', '80', '67');
 INSERT INTO `abilities` VALUES ('68', 'accomplice', '6', '65', '2', '300', '69', '526', '0', '220', '20', '0', '0', '0', '0');

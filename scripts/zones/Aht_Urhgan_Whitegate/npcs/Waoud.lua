@@ -143,7 +143,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("AnEmptyVesselProgress",4);
 	elseif (csid == 0x0045 and option == 1) then -- Optional (?) cutscene for AF quest.
 		player:setVar("BluAFBeginnings_Waoud",1);
-	elseif (csid ==0x003c and option ~= 50) then
+	elseif (csid ==0x003c and option ~= 50 and option ~= 0) then
 		player:setVar("LastDivinationDay",VanadielDayOfTheYear());
 		player:setVar("LastDivinationYear",VanadielYear());
 		player:setVar("AnEmptyVesselProgress",1);

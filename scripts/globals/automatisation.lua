@@ -68,5 +68,7 @@ function OnGameDayAutomatisation()
 
 	-- Can spawn Xolotl?
 	local ToD = GetServerVariable("[POP]Xolotl");
-	DeterMob(16806215, false);
+	if (ToD <= os.time(t)) then
+		DeterMob(16806215, false);
+	end
 end;

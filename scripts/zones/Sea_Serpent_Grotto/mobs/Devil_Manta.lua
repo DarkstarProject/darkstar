@@ -16,7 +16,7 @@ function onMobDeath(mob,killer)
   if (Charybdis_PH[mob] ~= nil) then
 
     Charybdis_ToD = GetServerVariable("[POP]Charybdis");
-    if (Charybdis_ToD <= os.time(t) and GetMobAction(Charybdis) == 0 and math.random((10),(10)) == 10) then
+    if (Charybdis_ToD <= os.time(t) and GetMobAction(Charybdis) == 0 and math.random((1),(10)) == 10) then
       UpdateNMSpawnPoint(Charybdis);
       SpawnMob(Charybdis, "", GetMobRespawnTime(mob));
       SetServerVariable("[PH]Charybdis", mob);
