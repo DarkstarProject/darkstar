@@ -107,6 +107,7 @@ public:
 	void			SetCurrentSpell(uint16 SpellID);
 	void			SetCurrentWeaponSkill(uint16 WSkillID);
 	void			SetCurrentJobAbility(uint16 JobAbilityID);
+	void			SetCurrentMobSkill(CMobSkill* skill); // DEBUG
 	void			SetLastActionTime(uint32 time);
 	void			SetCurrentAction(ACTIONTYPE Action, uint16 TargetID = 0);
 

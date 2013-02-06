@@ -352,3 +352,14 @@ CMobSkill* CAIGeneral::GetCurrentMobSkill()
 {
 	return m_PMobSkill;
 }
+
+/************************************************************************
+*                                                                       *
+*	Sets Mob Skill														*
+*                                                                       *
+************************************************************************/
+
+void CAIGeneral::SetCurrentMobSkill(CMobSkill* skill)
+{
+	m_PMobSkill = skill;
+}

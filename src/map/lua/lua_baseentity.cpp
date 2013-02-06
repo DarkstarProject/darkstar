@@ -76,6 +76,7 @@
 #include "../map.h"
 #include "../alliance.h"
 #include "../mobentity.h"
+#include "../mobskill.h"
 #include "../npcentity.h"
 #include "../petentity.h"
 #include "../petutils.h"
@@ -5282,7 +5283,7 @@ inline int32 CLuaBaseEntity::openDoor(lua_State *L)
 inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-/*
+	/*
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
 	uint16 action = (uint16)lua_tointeger(L,1);
@@ -5307,14 +5308,47 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 	Action.messageID  = 0;
 	Action.flag		  = 0;
 
+	// If you use ACTION_MOBABILITY_FINISH, the first param = anim, the second param = skill id.
+	if (actiontype == ACTION_MOBABILITY_FINISH) {
+		CBattleEntity* PTarget = PChar->PBattleAI->GetBattleTarget();
+		if (PTarget == NULL) {
+			ShowError("Cannot use MOBABILITY_FINISH on a null battle target! Engage a mob! \n");
+			return 0;
+		}
+		else if(PTarget->objtype != TYPE_MOB) {
+			ShowError("Battle target must be a monster for MOBABILITY_FINISH \n");
+			return 0;
+		}
+		CMobEntity* PMob = (CMobEntity*)PTarget;
+		PMob->m_ActionList.clear();
+
+		ACTIONTYPE oldAction = PMob->PBattleAI->GetCurrentAction();
+		PMob->PBattleAI->SetCurrentAction(actiontype);
+		// we have to make a fake mob skill for this to work.
+		CMobSkill* skill = new CMobSkill(anim);
+		skill->setAnimationID(anim);
+		Action.animation = anim;
+		Action.subparam = (uint16)lua_tointeger(L,3) + 256;
+		skill->setMsg(185); // takes damage default msg
+		Action.messageID = 185;
+		PMob->PBattleAI->SetCurrentMobSkill(skill);
+		PMob->m_ActionList.push_back(Action);
+		PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CActionPacket(PMob));
+		PMob->PBattleAI->SetCurrentAction(oldAction);
+		PMob->PBattleAI->SetCurrentMobSkill(NULL);
+		delete skill;
+		skill = NULL;
+		return 0;
+	}
+
 	ACTIONTYPE oldAction = PChar->PBattleAI->GetCurrentAction();
 	PChar->PBattleAI->SetCurrentSpell(1);
 	PChar->PBattleAI->SetCurrentAction(actiontype);
     PChar->m_ActionList.push_back(Action);
 	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CActionPacket(PChar));
-	PChar->PBattleAI->SetCurrentAction(oldAction);
-*/
-	return 0;
+	PChar->PBattleAI->SetCurrentAction(oldAction); */
+
+	return 0; 
 }
 
 /************************************************************************
