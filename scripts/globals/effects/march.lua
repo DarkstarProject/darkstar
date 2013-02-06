@@ -1,8 +1,8 @@
 -----------------------------------
---	
+--
 --	EFFECT_MARCH
 -- getPower returns the TIER (e.g. 1,2,3,4)
--- DO NOT ALTER ANY OF THE EFFECT VALUES! DO NOT ALTER EFFECT POWER! 
+-- DO NOT ALTER ANY OF THE EFFECT VALUES! DO NOT ALTER EFFECT POWER!
 -- Todo: Find a better way of doing this. Need to account for varying modifiers + CASTER's skill (not target)
 -----------------------------------
 require("scripts/globals/status");
@@ -11,11 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	if(effect:getPower()==1) then
-		target:addMod(MOD_HASTE, 7);
-	elseif(effect:getPower()==2) then
-		target:addMod(MOD_HASTE, 10);
-	end
+   target:addMod(MOD_HASTE,effect:getPower());
 end;
 
 -----------------------------------
@@ -30,9 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	if(effect:getPower()==1) then
-		target:delMod(MOD_HASTE, 7);
-	elseif(effect:getPower()==2) then
-		target:delMod(MOD_HASTE, 10);
-	end
+   target:delMod(MOD_HASTE,effect:getPower());
 end;

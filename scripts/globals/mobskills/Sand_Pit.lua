@@ -30,7 +30,7 @@ function OnMobWeaponSkill(target, mob, skill)
                 duration = 20 + duration;
             end
             message = MSG_ENFEEB_IS;
-            target:addStatusEffect(typeEffect,1,0,duration);
+            target:addStatusEffect(typeEffect,1,0,duration*resist);
         end
     else
         message = MSG_NO_EFFECT;

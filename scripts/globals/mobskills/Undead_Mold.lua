@@ -22,13 +22,14 @@ function OnMobWeaponSkill(target, mob, skill)
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_DARK);
 		if(resist > 0.2) then
-			skill:setMsg(MSG_ENFEEB_IS);
 			target:addStatusEffect(typeEffect,1,0,120*resist);--power=1;tic=0;duration=120;
-		else
-			skill:setMsg(MSG_MISS);
 		end
-	else
-		skill:setMsg(MSG_NO_EFFECT);
 	end
-	return typeEffect;
+
+
+	local dmgmod = 1.3;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_DARK,dmgmod,TP_NO_EFFECT);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+	target:delHP(dmg);
+	return dmg;
 end;

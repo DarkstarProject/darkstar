@@ -22,16 +22,16 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local numhits = 3;
 	local accmod = 1;
-	local dmgmod = 0.5 + math.random();
+	local dmgmod = 1.3;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
 
 	local typeEffect = EFFECT_DEX_DOWN;
-	if(MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
+	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,50,0,120*resist);--power=50;tic=0;duration=120;
+			target:addStatusEffect(typeEffect,10,0,120*resist);--power=50;tic=0;duration=120;
 		end
 	end
 

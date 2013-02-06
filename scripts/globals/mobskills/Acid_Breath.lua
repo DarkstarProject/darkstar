@@ -24,11 +24,11 @@ function OnMobWeaponSkill(target, mob, skill)
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,EFFECT_STR_DOWN,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,50,0,120*resist);--power=50;tic=0;duration=120;
+			target:addStatusEffect(typeEffect,10,0,120*resist);--power=50;tic=0;duration=120;
 		end
 	end
 
-    local dmgmod = MobBreathMove(mob, target, 0.1, 1.25, ELE_WATER);
+    local dmgmod = MobBreathMove(mob, target, 0.1, 1, ELE_WATER);
 
 	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);

@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
         if(resist > 0.2) then
             target:delStatusEffect(typeEffect);
             skill:setMsg(MSG_ENFEEB_IS);
-            target:addStatusEffect(typeEffect,50,0,120*resist);
+            target:addStatusEffect(typeEffect,10,0,120*resist);
         else
             skill:setMsg(MSG_MISS); -- resist !
         end

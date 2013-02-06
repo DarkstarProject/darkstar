@@ -12,7 +12,7 @@ require("scripts/globals/settings");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
+
 	--calculate raw damage (unknown function  -> only dark skill though) - using http://www.bluegartr.com/threads/44518-Drain-Calculations
 	-- also have small constant to account for 0 dark skill
 	dmg = 10 + (1.035 * (caster:getSkillLevel(DARK_MAGIC_SKILL)) + caster:getMod(79 + DARK_MAGIC_SKILL));
@@ -28,17 +28,18 @@ function onSpellCast(caster,target,spell)
 	if (dmg > (caster:getSkillLevel(DARK_MAGIC_SKILL) + 20)) then
 		dmg = (caster:getSkillLevel(DARK_MAGIC_SKILL) + 20);
 	end
-	
+
 	if(target:isUndead()) then
 		spell:setMsg(75); -- No effect
 		return;
 	end
-	
+
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
-	
+
 	dmg = (dmg * DRAIN_POWER);
-	
+
+	spell:setMsg(227);
 	caster:addHP(dmg);
 	return dmg;
-	
+
 end;

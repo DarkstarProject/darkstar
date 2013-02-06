@@ -14,7 +14,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	
+
 	numhits = 1;
 	accmod = 2;
 	dmgmod = 2;
@@ -22,5 +22,5 @@ function OnMobWeaponSkill(target, mob, skill)
 	dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 	target:delHP(dmg);
 	return dmg;
-	
+
 end

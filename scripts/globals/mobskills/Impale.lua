@@ -22,7 +22,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local numhits = 1;
 	local accmod = 1;
-	local dmgmod = 2 + math.random();
+	local dmgmod = 2.2;
 
 	local shadows = info.hitslanded;
 

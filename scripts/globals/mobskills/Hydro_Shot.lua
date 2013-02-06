@@ -15,27 +15,16 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-	local numhits = 1;
-	local accmod = 1;
-	local dmgmod = math.random(2.5,3.5);
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_H2H,info.hitslanded);
+	local dmgmod = 1.8;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 3,ELE_WATER,dmgmod,TP_MAB_BONUS,1);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
 
 	local typeEffect = EFFECT_ENMITY_DOWN;
 	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
 		local statmod = MOD_MND;
 		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
 		if(resist > 0.2) then
-			local duration;
-			local mobTP = mob:getTP();
-			if(mobTP <= 100) then
-				duration = 15;
-			elseif(mobTP <= 200) then
-				duration = 30;
-			else
-				duration = 45;
-			end
-			target:addStatusEffect(typeEffect,30,0,duration*resist);
+			target:addStatusEffect(typeEffect,10,0,60*resist);
 		end
 	end
 

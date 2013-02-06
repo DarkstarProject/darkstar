@@ -23,12 +23,12 @@ function onSpellCast(caster,target,spell)
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments
-	
+
 	if(target:isUndead()) then
 		spell:setMsg(75); -- No effect
 		return;
 	end
-	
+
 	if(target:getMP() > dmg) then
 		caster:addMP(dmg);
 		target:delMP(dmg);
@@ -37,6 +37,7 @@ function onSpellCast(caster,target,spell)
 		caster:addMP(dmg);
 		target:delMP(dmg);
 	end
+
 	spell:setMsg(228); --change msg to 'xxx mp drained from the yyyy.'
 	return dmg;
 end;

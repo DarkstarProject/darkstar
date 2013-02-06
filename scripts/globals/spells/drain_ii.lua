@@ -27,16 +27,16 @@ function onSpellCast(caster,target,spell)
 	if (dmg > (caster:getSkillLevel(DARK_MAGIC_SKILL) + 85)) then
 		dmg = (caster:getSkillLevel(DARK_MAGIC_SKILL) + 85);
 	end
-	
+
 	if(target:isUndead()) then
 		spell:setMsg(75); -- No effect
 		return;
 	end
-	
+
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
-		
+
 	dmg = (dmg * DRAIN_POWER);
-	
+
 	caster:addHP(dmg);
 	spell:setMsg(227); --change msg to 'xxx hp drained from the yyyy.'
 	return dmg;

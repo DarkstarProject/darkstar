@@ -23,7 +23,7 @@ function OnMobWeaponSkill(target, mob, skill)
         local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
         if(resist > 0.2) then
             local power = mob:getMainLvl()/8 + 10;
-            target:addStatusEffect(typeEffect,power,3,60);--tic=3;duration=60;
+            target:addStatusEffect(typeEffect,power,3,60*resist);--tic=3;duration=60;
         end
     end
 

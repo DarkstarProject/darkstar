@@ -18,14 +18,14 @@ function OnMobWeaponSkill(target, mob, skill)
 
     local numhits = 1;
     local accmod = 1;
-    local dmgmod = 2 + math.random();
+    local dmgmod = 2.5;
 
     local shadows = info.hitslanded;
 
     if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
         -- wipe shadows
         shadows = MOBPARAM_WIPE_SHADOWS;
-        dmgmod = dmgmod + 0.5;
+        dmgmod = dmgmod + math.random();
     end
 
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);

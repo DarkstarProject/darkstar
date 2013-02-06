@@ -637,6 +637,10 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 	damage = damage * (1 + dmgBreath);
 	damage = damage * dmgMagic;
 
+	if(damage <= 0) then
+		damage = 1;
+	end
+
 	return damage;
 end;
 

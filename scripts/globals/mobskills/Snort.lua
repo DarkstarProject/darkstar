@@ -17,7 +17,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
     -- add knockback
 
-    local dmgmod = math.random(2,3) + math.random();
+    local dmgmod = 2.5;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,ELE_WIND,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
