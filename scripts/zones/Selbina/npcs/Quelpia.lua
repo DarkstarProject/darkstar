@@ -11,14 +11,14 @@ require("scripts/globals/shop");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 player:showText(npc,TextID_Selbina.QUELPIA_SHOP_DIALOG);
 
 stock = {0x1202,585,		-- Scroll of Cure II
@@ -29,7 +29,7 @@ stock = {0x1202,585,		-- Scroll of Cure II
 	 0x1218,10080,		-- Scroll of Dia II
 	 0x121D,8100,		-- Scroll of Banish II
 	 0x122C,6366,		-- Scroll of Protect II
-	 0x1230,15840,		-- Scroll of Shell II
+	 0x1231,15840,		-- Scroll of Shell II
 	 0x1239,18000,		-- Scroll of Haste
 	 0x1264,4644,		-- Scroll of Enfire
 	 0x1265,3688,		-- Scroll of Enblizzard
@@ -39,7 +39,7 @@ stock = {0x1202,585,		-- Scroll of Cure II
 	 0x1269,6366}		-- Scroll of Enwater
 
 showShop(player, STATIC, stock);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
