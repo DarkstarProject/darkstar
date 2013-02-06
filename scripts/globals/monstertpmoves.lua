@@ -407,7 +407,7 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 	-- this only increases chances for half / quarter resist
 	-- this eventually needs to be fixed
 	-- traits should be able to fully resist
-	if(effect >= 0) then
+	if(effect ~= nil and effect >= 0) then
 		local effectres = 0;
 		if(effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
 			effectres = MOD_SLEEPRES;
@@ -578,8 +578,8 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 
 	if(cap == nil) then
 		-- super cap for high health mobs
-		if(damage > 1000) then
-			damage = 700 + math.random(500);
+		if(damage > 700) then
+			damage = 700 + math.random(200);
 		end
 
 		-- cap max damage
@@ -596,16 +596,15 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 	if(element ~= nil and element >= 0) then
 		-- no skill available, pass nil
 		local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
-		-- get elemental damage reduction
-		local defense = 1;
-		if(element >= 0) then
-			defense = 1 - (target:getMod(resistMod[element]) + target:getMod(defenseMod[element])) / 256;
 
-			-- max defense is 50%
-			if(defense > 0.5) then
-				defense = 0.5;
-			end
+		-- get elemental damage reduction
+		local defense = 1 - (target:getMod(resistMod[element]) + target:getMod(defenseMod[element])) / 256;
+
+		-- max defense is 50%
+		if(defense < 0.5) then
+			defense = 0.5;
 		end
+
 		damage = damage * resist * defense;
 	end
 
@@ -618,23 +617,24 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 		dmgMod = dmgMod+(math.ceil((dmgTaken/100)*256)/256);
 	end
 
-	local dmgBreath = target:getMod(MOD_DMGBREATH) / 100;
+	local dmgBreath = 1+((target:getMod(MOD_DMGBREATH) / 100)*256)/256;
 	local dmgMagic = ((256 + target:getMod(MOD_DMGMAGIC))/256);
 
 	-- cap breath reduction at 50%
-	if(dmgBreath > 0.5) then
+	if(dmgBreath < 0.5) then
 		dmgBreath = 0.5;
 	end
-	if(dmgMod > 0.5) then
+
+	if(dmgMod < 0.5) then
 		dmgMod = 0.5;
 	end
 
-	if(dmgMagic > 0.5) then
+	if(dmgMagic < 0.5) then
 		dmgMagic = 0.5;
 	end
 
 	damage = damage * dmgMod;
-	damage = damage * (1 + dmgBreath);
+	damage = damage * dmgBreath;
 	damage = damage * dmgMagic;
 
 	if(damage <= 0) then

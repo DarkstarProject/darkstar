@@ -29,7 +29,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(target:hasStatusEffect(typeEffect) == false) then
 		resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,1,3,60*resist);--power=(moblvl/10)+10;tic=3;duration=60;
+			target:addStatusEffect(typeEffect,(mob:getMainLvl()/10),3,60*resist);--power=(moblvl/10)+10;tic=3;duration=60;
 		end
 	end
 
@@ -73,7 +73,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 	end
 
-	local dmgmod = MobBreathMove(mob, target, 0.125, 3, ELE_EARTH, 600);
+	local dmgmod = MobBreathMove(mob, target, 0.3, 1.25, ELE_EARTH, 500);
 
 	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);

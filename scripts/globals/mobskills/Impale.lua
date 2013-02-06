@@ -22,15 +22,16 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local numhits = 1;
 	local accmod = 1;
-	local dmgmod = 2.2;
+	local dmgmod = 2.3;
+
+	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 
 	local shadows = info.hitslanded;
 
 	if(isNM) then
-		shadows = 0;
+		shadows = MOBPARAM_IGNORE_SHADOWS;
 	end
 
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,shadows);
 
 	local typeEffect = EFFECT_PARALYSIS;
@@ -44,7 +45,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_ICE);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,power,0,60*resist);--power=15;tic=0;duration=60;
+			target:addStatusEffect(typeEffect,power,0,120*resist);--power=15;tic=0;duration=60;
 		end
 
 		if(isNM) then
