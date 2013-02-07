@@ -119,6 +119,16 @@ uint8 CAbility::getValidTarget()
 	return m_validTarget;
 }
 
+ADDTYPE CAbility::getAddType()
+{
+    return m_addType;
+}
+
+void CAbility::setAddType(ADDTYPE addType)
+{
+    m_addType = addType;
+}
+
 const int8* CAbility::getName()
 {
 	return m_name.c_str();
@@ -215,7 +225,8 @@ namespace ability
               "recastId,"
               "CE,"
               "VE, "
-              "meritModID "
+              "meritModID, "
+			  "addType "
             "FROM abilities  "
             "WHERE job > 0 AND job < %u AND abilityId < %u "
             "ORDER BY job, level ASC";
@@ -242,6 +253,7 @@ namespace ability
 			    PAbility->setCE(Sql_GetIntData(SqlHandle,12));
 			    PAbility->setVE(Sql_GetIntData(SqlHandle,13));
 			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,14));
+				PAbility->setAddType((ADDTYPE)Sql_GetIntData(SqlHandle,15));
 
 			    PAbilityList[PAbility->getID()] = PAbility;
 			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);

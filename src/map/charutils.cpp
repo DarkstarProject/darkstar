@@ -1759,7 +1759,7 @@ void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 Pe
 		{
 			CAbility* PAbility = AbilitiesList.at(i);
 
-			if (PPet->GetMLevel() >= PAbility->getLevel() && PetID>=8 && PetID<=15) //carby/fen/ele avatars NOT diabolos
+			if (PPet->GetMLevel() >= PAbility->getLevel() && PetID>=8 && PetID<=15 && PAbility->getAddType() == ADDTYPE_NORMAL) //carby/fen/ele avatars NOT diabolos
 			{
 				//16 IDs per avatar starting from 496
 				if(PAbility->getID()>= (496+((PetID-8)*16)) && PAbility->getID() < (496+((PetID-7)*16))){ //pet ability
@@ -1790,7 +1790,7 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 	{
 		CAbility* PAbility = AbilitiesList.at(i);
 
-		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496)
+		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496  && PAbility->getAddType() == ADDTYPE_NORMAL)
 		{
 			if (PAbility->getID() != ABILITY_PET_COMMANDS){
 				addAbility(PChar, PAbility->getID());
@@ -1817,7 +1817,7 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 			break;
 		}
 
-		if (PChar->GetSLevel() >= PAbility->getLevel())
+		if (PChar->GetSLevel() >= PAbility->getLevel() && PAbility->getAddType() == ADDTYPE_NORMAL)
 		{
 			if (PAbility->getLevel() != 0)
 			{

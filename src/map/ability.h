@@ -29,6 +29,13 @@
 
 #include "battleentity.h"
 
+enum ADDTYPE
+{
+	ADDTYPE_NORMAL		= 0,
+	ADDTYPE_MERIT		= 1,
+	ADDTYPE_ASTRAL_FLOW	= 2
+};
+
 enum ABILITY
 {
 	ABILITY_MIGHTY_STRIKES     = 0,
@@ -348,6 +355,7 @@ public:
 	uint8		getRange();
 	uint8		getAOE();
 	uint8		getValidTarget();
+	ADDTYPE		getAddType();
     uint16      getMessage();
 	uint16		getRecastTime();
 	uint16		getRecastId();
@@ -363,6 +371,7 @@ public:
 	void		setRange(uint8 range);
 	void		setAOE(uint8 aoe);
 	void		setValidTarget(uint8 validTarget);
+	void		setAddType(ADDTYPE addtype);
     void        setMessage(uint16 message);
 	void		setRecastTime(uint16 recastTime);
 	void		setRecastId(uint16 recastId); 
@@ -382,6 +391,7 @@ private:
 	uint8		m_range;
 	uint8		m_aoe;
 	uint8		m_validTarget;
+	ADDTYPE		m_addType;
     uint16      m_message;
 	uint16		m_recastTime;
 	uint16		m_recastId;
