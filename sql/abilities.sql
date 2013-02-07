@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: dspdb
 Target Host: localhost
 Target Database: dspdb
-Date: 2/7/2013 12:49:24 PM
+Date: 2/7/2013 1:44:22 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,7 +80,7 @@ INSERT INTO `abilities` VALUES ('41', 'shadowbind', '11', '40', '4', '300', '122
 INSERT INTO `abilities` VALUES ('42', 'camouflage', '11', '20', '1', '300', '123', '0', '0', '10', '20', '0', '1', '80', '100', '0');
 INSERT INTO `abilities` VALUES ('43', 'sharpshot', '11', '1', '1', '300', '124', '0', '0', '22', '20', '0', '1', '600', '101', '0');
 INSERT INTO `abilities` VALUES ('44', 'barrage', '11', '30', '1', '300', '125', '0', '0', '23', '20', '0', '1', '600', '0', '0');
-INSERT INTO `abilities` VALUES ('45', 'call_wyvern', '14', '1', '1', '1200', '163', '0', '0', '94', '20', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('45', 'call_wyvern', '14', '1', '1', '1200', '163', '0', '0', '94', '20', '0', '1', '300', '0', '3');
 INSERT INTO `abilities` VALUES ('46', 'third_eye', '12', '15', '1', '60', '133', '0', '0', '24', '20', '0', '1', '0', '104', '0');
 INSERT INTO `abilities` VALUES ('47', 'meditate', '12', '30', '1', '180', '134', '0', '0', '25', '20', '0', '320', '0', '107', '0');
 INSERT INTO `abilities` VALUES ('48', 'warding_circle', '12', '5', '1', '600', '135', '0', '0', '31', '20', '1', '1', '20', '105', '0');
@@ -99,13 +99,13 @@ INSERT INTO `abilities` VALUES ('60', 'trick_attack', '6', '30', '1', '60', '66'
 INSERT INTO `abilities` VALUES ('61', 'weapon_bash', '8', '20', '4', '300', '88', '0', '0', '201', '20', '0', '1', '900', '0', '0');
 INSERT INTO `abilities` VALUES ('62', 'reward', '9', '12', '1', '90', '103', '0', '0', '84', '18', '0', '0', '0', '90', '0');
 INSERT INTO `abilities` VALUES ('63', 'cover', '7', '35', '2', '180', '76', '0', '0', '86', '20', '0', '0', '35', '0', '0');
-INSERT INTO `abilities` VALUES ('64', 'spirit_link', '14', '25', '1', '90', '162', '0', '0', '94', '20', '0', '0', '0', '120', '0');
+INSERT INTO `abilities` VALUES ('64', 'spirit_link', '14', '25', '1', '90', '162', '0', '0', '94', '20', '0', '0', '0', '120', '3');
 INSERT INTO `abilities` VALUES ('66', 'chi_blast', '2', '41', '4', '180', '18', '110', '0', '92', '20', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('67', 'convert', '5', '40', '1', '600', '49', '0', '0', '88', '20', '0', '1', '80', '67', '0');
 INSERT INTO `abilities` VALUES ('68', 'accomplice', '6', '65', '2', '300', '69', '526', '0', '220', '20', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('69', 'call_beast', '9', '23', '1', '300', '104', '0', '0', '83', '18', '0', '0', '0', '91', '0');
 INSERT INTO `abilities` VALUES ('70', 'unlimited_shot', '11', '51', '1', '180', '126', '0', '0', '90', '20', '0', '1', '300', '102', '0');
-INSERT INTO `abilities` VALUES ('71', 'dismiss', '14', '1', '1', '300', '161', '0', '0', '94', '20', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('71', 'dismiss', '14', '1', '1', '300', '161', '0', '0', '94', '20', '0', '0', '0', '0', '3');
 INSERT INTO `abilities` VALUES ('72', 'assault', '15', '1', '4', '10', '170', '0', '0', '94', '20', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('73', 'retreat', '15', '1', '1', '10', '171', '0', '0', '94', '20', '0', '-10', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('74', 'release', '15', '1', '1', '10', '172', '0', '0', '94', '20', '0', '-10', '0', '0', '0');

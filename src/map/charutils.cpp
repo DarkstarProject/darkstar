@@ -1790,7 +1790,7 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 	{
 		CAbility* PAbility = AbilitiesList.at(i);
 
-		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496  && PAbility->getAddType() == ADDTYPE_NORMAL)
+		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496  && (PAbility->getAddType() == ADDTYPE_NORMAL || PAbility->getAddType() == ADDTYPE_MAIN_ONLY))
 		{
 			if (PAbility->getID() != ABILITY_PET_COMMANDS){
 				addAbility(PChar, PAbility->getID());
@@ -1811,15 +1811,9 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 	{
 		CAbility* PAbility = AbilitiesList.at(i);
 
-		if(PAbility->getID() == ABILITY_CALL_WYVERN && PChar->GetSJob() == JOB_DRG)
-        {
-			//DRG Call Wyvern isn't available to /DRG, which is unique among JAs.
-			break;
-		}
-
-		if (PChar->GetSLevel() >= PAbility->getLevel() && PAbility->getAddType() == ADDTYPE_NORMAL)
+		if (PChar->GetSLevel() >= PAbility->getLevel() )
 		{
-			if (PAbility->getLevel() != 0)
+			if (PAbility->getLevel() != 0 && PAbility->getAddType() == ADDTYPE_NORMAL)
 			{
 				addAbility(PChar, PAbility->getID());
 			}
