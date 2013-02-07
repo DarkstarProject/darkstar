@@ -251,7 +251,7 @@ void LoadMOBList(CZone* PZone)
 			STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-			mob_pools.familyid, name_prefix, unknown, \
+			mob_pools.familyid, name_prefix, unknown, animationsub, \
             (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, castSpellTypes \
 			FROM mob_groups, mob_pools, mob_spawn_points, mob_family_system \
 			WHERE mob_groups.poolid = mob_pools.poolid \
@@ -343,9 +343,14 @@ void LoadMOBList(CZone* PZone)
 			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle,48);
 			PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle,49);
 
+			//Special sub animation for Mob (yovra, jailer of love, phuabo)
+			// yovra 1: en hauteur, 2: en bas, 3: en haut
+			// phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
+			PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle,50);
+
             // Setup HP / MP Stat Percentage Boost
-            PMob->HPstat = Sql_GetFloatData(SqlHandle,50);
-            PMob->MPstat = Sql_GetFloatData(SqlHandle,51);
+            PMob->HPstat = Sql_GetFloatData(SqlHandle,51);
+            PMob->MPstat = Sql_GetFloatData(SqlHandle,52);
 
 			PMob->PBattleAI = new CAIMobDummy(PMob);
 
@@ -355,7 +360,7 @@ void LoadMOBList(CZone* PZone)
             }
 
 			// Check if we should be looking up scripts for this mob
-			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle,52);
+			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle,53);
 
 			// Store the spell bitmask. 8 elements with 8 bits per element = 64 bits.
 			// This mask is as follows: (following the "FEW WILL Die" Mnemonic for days of the week)
@@ -378,7 +383,7 @@ void LoadMOBList(CZone* PZone)
 			// See mobentity.h for Struct information
 
 			// Dump 8 bytes worth of bitmask in
-			PMob->m_SpellTypesBitmask.insert(0,Sql_GetData(SqlHandle,53), 8);
+			PMob->m_SpellTypesBitmask.insert(0,Sql_GetData(SqlHandle,54), 8);
 
 			if (PMob->GetMJob() == JOB_BLM) {
 				PMob->m_MagicRecastTime = 15000;
@@ -392,8 +397,6 @@ void LoadMOBList(CZone* PZone)
 			else {
 				PMob->m_MagicRecastTime = 30000;
 			}
-
-
 
             // Killer Effect
             switch (PMob->m_EcoSystem)

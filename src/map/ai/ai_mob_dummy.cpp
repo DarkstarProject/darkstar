@@ -157,6 +157,8 @@ void CAIMobDummy::ActionEngage()
 	m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
 	m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime - 1; // Monster always cast on engage if they can.
 
+	if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;
+
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 	
 	//Start luautils::OnMobEngaged
@@ -186,6 +188,9 @@ void CAIMobDummy::ActionDisengage()
     m_PMob->m_OwnerID.clean();
 	m_PMob->m_CallForHelp = 0;
 	m_PMob->animation = ANIMATION_NONE;
+
+	if (m_PMob->animationsub == 2) m_PMob->animationsub = 3;
+
     m_PMob->health.tp = 0;
     m_PMob->health.hp = m_PMob->GetMaxHP();
     m_PMob->health.mp = m_PMob->GetMaxMP();
@@ -333,6 +338,7 @@ void CAIMobDummy::ActionDeath()
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
 		m_PMob->StatusEffectContainer->KillAllStatusEffect();
+		if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
 	}
     else if (!m_PMob->isDead())
     {
