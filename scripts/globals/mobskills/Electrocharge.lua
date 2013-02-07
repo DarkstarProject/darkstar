@@ -1,7 +1,8 @@
 ---------------------------------------------
---  Flailing Trunk
+--  Electrocharge
 --
---  Description: Smacks around frontward targets with its trunk.
+--  Description: Deals thunder damage.
+--  Type: Magical (Water)
 --
 --
 ---------------------------------------------
@@ -14,13 +15,10 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    -- add knockback
 
-    local numhits = 1;
-    local accmod = 1;
     local dmgmod = 2;
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,1.5,2);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,math.random(2,3)*info.hitslanded);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_THUNDER,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_THUNDER,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
     return dmg;
 end;

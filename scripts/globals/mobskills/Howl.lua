@@ -14,6 +14,9 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
+	if(target:isInDynamis()) then
+		return 1;
+	end
 	return 0;
 end;
 

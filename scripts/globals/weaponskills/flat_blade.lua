@@ -31,7 +31,7 @@ function OnUseWeaponSkill(player, target, wsID)
 
 	local chance = player:getTP()-100 > math.random()*150;
 	if(damage > 0 and target:hasStatusEffect(EFFECT_STUN) == false and chance) then
-		target:addStatusEffect(EFFECT_STUN, 1, 0, 3);
+		target:addStatusEffect(EFFECT_STUN, 1, 0, 4);
 	end
 	return tpHits, extraHits, damage;
 
