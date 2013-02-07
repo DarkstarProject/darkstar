@@ -562,13 +562,14 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
     if (!dispelableList.empty())
     {
         uint16 rndIdx = rand() % dispelableList.size();
+	uint16 effectIndex = dispelableList.at(rndIdx);
 
-        CStatusEffect* oldEffect = m_StatusEffectList.at(dispelableList.at(rndIdx));
+        CStatusEffect* oldEffect = m_StatusEffectList.at(effectIndex);
 
         //make a copy
-        CStatusEffect* EffectCopy = new CStatusEffect(oldEffect->GetStatusID(), oldEffect->GetIcon(), oldEffect->GetPower(), oldEffect->GetTickTime(), oldEffect->GetDuration());
+        CStatusEffect* EffectCopy = new CStatusEffect(oldEffect->GetStatusID(), oldEffect->GetIcon(), oldEffect->GetPower(), oldEffect->GetTickTime()/1000, oldEffect->GetDuration()/1000);
 
-        RemoveStatusEffect(dispelableList.at(rndIdx));
+        RemoveStatusEffect(effectIndex);
 
         return EffectCopy;
     }
