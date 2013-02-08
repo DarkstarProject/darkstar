@@ -25,7 +25,8 @@ end;
 
 function onTrigger(player,npc)
 	
-	aCraftsmansWork = player:getQuestStatus(SANDORIA,A_CRAFTSMAN_S_WORK);
+	local aCraftsmansWork = player:getQuestStatus(SANDORIA,A_CRAFTSMAN_S_WORK);
+	local Quotas_Status = player:getVar("ChasingQuotas_Progress");
 	
 	if(player:getMainJob() == 14 and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
 		if(player:getVar("has_seen_drgaf1_quest_already") == 0) then
@@ -37,6 +38,12 @@ function onTrigger(player,npc)
 		player:startEvent(0x0045);
 	elseif(aCraftsmansWork == QUEST_ACCEPTED) then
 			player:startEvent(0x0046);
+	elseif(Quotas_Status == 2) then
+		player:startEvent(67); -- I found this earring.
+	elseif(Quotas_Status == 3 or Quotas_Status == 4) then
+		player:startEvent(68); -- Post-earring, move along.
+	elseif(Quotas_Status >= 5) then
+		player:startEvent(66); -- The earring was helpful?
 	else
 		player:startEvent(0x000b);
 	end
@@ -77,7 +84,11 @@ function onEventFinish(player,csid,option)
 			player:addFame(SANDORIA,SAN_FAME*AF1_FAME);
 			player:completeQuest(SANDORIA,A_CRAFTSMAN_S_WORK);
 		end
-	end	
+	elseif(csid == 67) then
+		player:addKeyItem(SHINY_EARRING);
+		player:messageSpecial(KEYITEM_OBTAINED,SHINY_EARRING);
+		player:setVar("ChasingQuotas_Progress",3);
+	end
 	
 end;
 -- 0x000b Miaux : "<Sigh> Why must all craftsmen be so uptight?"

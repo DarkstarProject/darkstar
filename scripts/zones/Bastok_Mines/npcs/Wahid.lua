@@ -66,8 +66,8 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:completeQuest(BASTOK,THE_SIREN_S_TEAR);
 		player:addFame(BASTOK,BAS_FAME*120);
-		player:addGil(150);
-		player:messageSpecial(GIL_OBTAINED,150);
+		player:addGil(150*GIL_RATE);
+		player:messageSpecial(GIL_OBTAINED,150*GIL_RATE);
 		player:addTitle(TEARJERKER);
 		player:setVar("SirensTear",0);
 	end

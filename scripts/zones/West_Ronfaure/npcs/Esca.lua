@@ -2,6 +2,7 @@
 -- Area: Port San d'Oria
 -- NPC: Esca
 -- NPC for Quest "The Pickpocket"
+-- @pos 100
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -19,13 +20,13 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 
 	-- "The Pickpocket" Quest status
-	thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
+	local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
 	
 	-- "The Pickpocket" Trading Esca for Gilt Glasses
-	count = trade:getItemCount();
-	freeSlot = player:getFreeSlotsCount();
-	eagleButton = trade:hasItemQty(578, 1);
-	hasGiltGlasses = player:hasItem(579);
+	local count = trade:getItemCount();
+	local freeSlot = player:getFreeSlotsCount();
+	local eagleButton = trade:hasItemQty(578, 1);
+	local hasGiltGlasses = player:hasItem(579);
 	if (count == 1 and freeSlot > 0 and eagleButton == true and hasGiltGlasses == false) then
 		player:tradeComplete();
 		player:startEvent(0x0079);
@@ -42,7 +43,8 @@ end;
 function onTrigger(player,npc)
 
 	-- "The Pickpocket" Quest status
-	thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
+	local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
+	local Quotas_Status = player:getVar("ChasingQuotas_Progress");
 	
 	-- "The Pickpocket" Quest Dialog
 	if (thePickpocket == 1 and player:getVar("thePickpocketGiltGlasses") == 1)  then
@@ -51,6 +53,10 @@ function onTrigger(player,npc)
 		player:startEvent(0x0078);
 	elseif (thePickpocket == 2) then
 		player:startEvent(0x007b);
+	elseif (Quotas_Status == 4) then
+		player:startEvent(137); -- My earring!  I stole the last dragoon's armor.  Chosen option does not matter.
+	elseif (Quotas_Status == 5) then
+		player:startEvent(138); -- Reminder for finding the armor.
 	else
 		player:startEvent(0x0077);
 	end;
@@ -77,6 +83,9 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x0079) then
 		player:addItem(579);
 		player:messageSpecial(6381, 579);
+	elseif (csid == 137) then
+		player:setVar("ChasingQuotas_Progress",5);
+		player:delKeyItem(SHINY_EARRING);
 	end;
 end;
 

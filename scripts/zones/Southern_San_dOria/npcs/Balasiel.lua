@@ -34,12 +34,14 @@ end;
 
 function onTrigger(player,npc)
 
-	LvL = player:getMainLvl();
-	ASquiresTest = player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST);
-	ASquiresTestII = player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II);
-	AKnightsTest = player:getQuestStatus(SANDORIA, A_KNIGHT_S_TEST);
+	local LvL = player:getMainLvl();
+	local ASquiresTest = player:getQuestStatus(SANDORIA, A_SQUIRE_S_TEST);
+	local ASquiresTestII = player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II);
+	local AKnightsTest = player:getQuestStatus(SANDORIA, A_KNIGHT_S_TEST);
 
-	if(LvL < 7) then
+	if (player:getQuestStatus(SANDORIA,KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 2) then
+		player:startEvent(63); -- DRG AF3 cutscene, doesn't appear to have a follow up.
+	elseif(LvL < 7) then
 		player:startEvent(0x029c);
 	elseif(LvL >= 7 and ASquiresTest ~= QUEST_COMPLETED) then
 		if(ASquiresTest == 0) then
@@ -54,7 +56,7 @@ function onTrigger(player,npc)
 	elseif(LvL >= 7 and LvL < 15) then
 		player:startEvent(0x029f);
 	elseif(LvL >= 15 and ASquiresTestII ~= QUEST_COMPLETED) then
-		StalactiteDew = player:hasKeyItem(STALACTITE_DEW)
+		local StalactiteDew = player:hasKeyItem(STALACTITE_DEW)
 		
 		if(ASquiresTestII == QUEST_AVAILABLE) then
 			player:startEvent(0x0271);
@@ -161,6 +163,8 @@ function onEventFinish(player,csid,option)
 		else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 12306); -- Kite Shield
 	    end
+	elseif (csid == 63) then
+		player:setVar("KnightStalker_Progress",3);
 	end
 	
 end;
@@ -170,5 +174,4 @@ end;
 --	player:startEvent(0x000b)  	-- methods create nadness menu
 --	player:startEvent(0x0009)  	-- methods create madness map 
 --	player:startEvent(0x000c) 	-- methods create madness map reminder  
---	player:startEvent(0x000d) 	-- methods create madness end 
---	player:startEvent(0x003f) 	-- knight stalker	
+--	player:startEvent(0x000d) 	-- methods create madness end

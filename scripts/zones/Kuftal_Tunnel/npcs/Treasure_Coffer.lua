@@ -42,6 +42,8 @@ function onTrade(player,npc,trade)
 			questItemNeeded = 2;
 		elseif(player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2) then
 			questItemNeeded = 3;
+		elseif(player:getQuestStatus(SANDORIA,KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 1) then
+			questItemNeeded = 4;
 		end
 		--------------------------------------
 		
@@ -70,6 +72,9 @@ function onTrade(player,npc,trade)
 				elseif(questItemNeeded == 3) then
 					player:addKeyItem(LARGE_TRICK_BOX);
 					player:messageSpecial(KEYITEM_OBTAINED,LARGE_TRICK_BOX);
+				elseif(questItemNeeded == 4) then
+					player:addKeyItem(CHALLENGE_TO_THE_ROYAL_KNIGHTS); -- DRG AF3
+					player:messageSpecial(KEYITEM_OBTAINED,CHALLENGE_TO_THE_ROYAL_KNIGHTS);
 				else
 					player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
 					

@@ -105,8 +105,8 @@ Gourmet = player:getQuestStatus(BASTOK,GOURMET);
 			fame=60;
 		end
 		
-		player:addGil(gil);
-		player:messageSpecial(GIL_OBTAINED,gil);
+		player:addGil(gil*GIL_RATE);
+		player:messageSpecial(GIL_OBTAINED,gil*GIL_RATE);
 		player:addFame(BASTOK,BAS_FAME*fame);
 		player:addTitle(MOMMYS_HELPER);
 		player:needToZone(true);
