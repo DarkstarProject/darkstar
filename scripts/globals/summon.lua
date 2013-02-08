@@ -4,28 +4,35 @@ require("scripts/globals/status");
 
 SUMMONING_MAGIC_SKILL = 38
 
+MSG_NONE = 0; -- display nothing
+MSG_NO_EFFECT = 189;
+MSG_DAMAGE = 185; -- player uses, target takes 10 damage. DEFAULT
+MSG_MISS = 188;
+MSG_RESIST = 85;
+
 function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgmodsubsequent,tpeffect,mtp100,mtp200,mtp300)
 	returninfo = {};
-	
+
 	--Damage = (D+fSTR) * dmgmod * PDIF
+	printf("str: %f, vit: %f", avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
 	fstr = avatarFSTR(avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
-	
+
 	lvluser = avatar:getMainLvl();
 	lvltarget = target:getMainLvl();
 	acc = avatar:getACC();
 	eva = target:getEVA();
-	
+
 	local base = avatar:getWeaponDmg() + fstr;
 	local ratio = avatar:getStat(MOD_ATT)/target:getStat(MOD_DEF);
-	
+
 	lvldiff = lvluser - lvltarget;
 
 	--work out hit rate for mobs (bias towards them)
 	hitrate = (acc*accmod) - eva;
-	if (lvluser > lvltarget) then 
+	if (lvluser > lvltarget) then
 		hitrate = hitrate + ((lvluser-lvltarget)*5);
 	end
-	if (lvltarget > lvluser) then 
+	if (lvltarget > lvluser) then
 		hitrate = hitrate + ((lvltarget-lvluser)*3);
 	end
 	if (hitrate > 95) then
@@ -34,7 +41,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 	if (hitrate < 20) then
 		hitrate = 20;
 	end
-	
+
 	if(base < 1) then
 		base = 1;
 	end
@@ -56,28 +63,28 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 		maxRatio = 4.2;
 		minRatio = 4;
 	end
-	
+
 	if(tpeffect==TP_DMG_BONUS) then
 		hitdamage = hitdamage * avatarFTP(skill:getTP(), mtp100, mtp200, mtp300);
 	end
 	--Applying pDIF
-	local double pdif = 0; 
+	local double pdif = 0;
 
 	-- start the hits
 	local double hitchance = math.random();
 	finaldmg = 0;
 	hitsdone = 1; hitslanded = 0;
-	
+
 	--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
 	nativecrit = (avatar:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
 	nativecrit = nativecrit + (avatar:getMod(MOD_CRITHITRATE)/100);
-	
+
 	if(nativecrit > 0.2) then --caps!
 		nativecrit = 0.2;
 	elseif(nativecrit < 0.05) then
 		nativecrit = 0.05;
 	end
-	
+
 	local double critchance = math.random();
 	local double hitchance = 0;
 	local crit = false;
@@ -86,7 +93,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 	else
 		hitchance = math.random();
 	end
-	
+
 	if crit == true or hitchance*100 <= 95 then
 		pdif = math.random((minRatio * 1000), (maxRatio * 1000));
 		pdif = pdif/1000;
@@ -109,10 +116,17 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 		end
 		hitsdone = hitsdone + 1;
 	end
-	
+
+	-- all hits missed
+	if(hitslanded == 0 or finaldmg == 0) then
+		finaldmg = 0;
+		hitslanded = 0;
+		skill:setMsg(MSG_MISS);
+	end
+
 	returninfo.dmg = finaldmg;
 	returninfo.hitslanded = hitslanded;
-	
+
 	return returninfo;
 end;
 
@@ -141,20 +155,30 @@ function avatarFSTR(atk_str,def_vit)
 		fSTR2 = -1;
 	elseif (fSTR2>8) then
 		fSTR2 = 8;
-	end 
+	end
 	return fSTR2;
 end;
 
 function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
+
+	-- physical attack missed, skip rest
+	if(skilltype == MOBSKILL_PHYSICAL and dmg == 0) then
+		return 0;
+	end
+
+	-- set message to damage
+	-- this is for AoE because its only set once
+	skill:setMsg(MSG_DAMAGE);
+
 	--Handle shadows depending on shadow behaviour / skilltype
-	if(shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows. 
+	if(shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
 		targShadows = target:getMod(MOD_UTSUSEMI);
 		shadowType = MOD_UTSUSEMI;
 		if(targShadows==0)then --try blink, as utsusemi always overwrites blink this is okay
 			targShadows = target:getMod(MOD_BLINK);
 			shadowType = MOD_BLINK;
 		end
-		
+
 		if(targShadows>0)then
 		--Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
 			if(targShadows >= shadowbehav) then --no damage, just suck the shadows
@@ -190,7 +214,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 		target:delStatusEffect(EFFECT_COPY_IMAGE);
 		target:delStatusEffect(EFFECT_BLINK);
 	end
-	
+
 	--handle Third Eye using shadowbehav as a guide
 	teye = target:getStatusEffect(EFFECT_THIRD_EYE);
 	if(teye ~= nil and skilltype==MOBSKILL_PHYSICAL) then --T.Eye only procs when active with PHYSICAL stuff
@@ -215,16 +239,30 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 			target:delStatusEffect(EFFECT_THIRD_EYE);
 		end
 	end
-	
-	
+
+
 	--TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
-	
+
+
+	if(skilltype == MOBSKILL_PHYSICAL and target:hasStatusEffect(EFFECT_PHYSICAL_SHIELD)) then
+		return 0;
+	end
+
+	if(skilltype == MOBSKILL_RANGED and target:hasStatusEffect(EFFECT_ARROW_SHIELD)) then
+		return 0;
+	end
+
+	-- handle elemental resistence
+	if(skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
+		return 0;
+	end
+
 	--handling phalanx
 	dmg = dmg - target:getMod(MOD_PHALANX);
 	if(dmg<0) then
 		return 0;
 	end
-	
+
 	--handle invincible
 	if(target:hasStatusEffect(EFFECT_INVINCIBLE) and skilltype==MOBSKILL_PHYSICAL)then
 		return 0;
@@ -233,7 +271,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 	if(target:hasStatusEffect(EFFECT_PERFECT_DODGE) and skilltype==MOBSKILL_PHYSICAL)then
 		return 0;
 	end
-	
+
 	--handling stoneskin
 	skin = target:getMod(MOD_STONESKIN);
 	if(skin>0) then
@@ -249,8 +287,15 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 			return dmg - skin;
 		end
 	end
-	
+
 	return dmg;
+end;
+
+-- returns true if mob attack hit
+-- used to stop tp move status effects
+function AvatarPhysicalHit(skill, dmg)
+	-- if message is not the default. Then there was a miss, shadow taken etc
+	return skill:getMsg() == MSG_DAMAGE;
 end;
 
 function avatarFTP(tp,ftp1,ftp2,ftp3)

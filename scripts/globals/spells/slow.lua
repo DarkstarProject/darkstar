@@ -2,7 +2,7 @@
 -- Spell: Slow
 -- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and MND.
 -- Slow's potency is calculated with the formula (150 + dMND*2)/1024, and caps at 300/1024 (~29.3%).
--- And MND of 75 is neccessary to reach the hardcap of Slow. 
+-- And MND of 75 is neccessary to reach the hardcap of Slow.
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -13,16 +13,16 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
+
 	dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
 	bonus = AffinityBonus(caster,spell);
-	
+
 	--Power.
 	power = math.floor((100 / 1024) * (150 + dMND * 2))
-	if(power > 30) then
-		power = 30;
+	if(power > 29.3) then
+		power = 29.3;
 	end
-	
+
 	--Duration, including resistance.
 	duration = 120 * applyResistance(caster,spell,target,dMND,35,bonus);
 	if(100 * math.random() >= target:getMod(MOD_SLOWRES)) then
@@ -32,7 +32,7 @@ function onSpellCast(caster,target,spell)
 			haste = target:getStatusEffect(EFFECT_HASTE);
 			if(slow ~= nil) then
 				if(slow:getPower() > power) then
-					target:delStatusEffect(EFFECT_SLOW);	
+					target:delStatusEffect(EFFECT_SLOW);
 					target:addStatusEffect(EFFECT_SLOW,power,0,duration);
 --					if(spell:isAOE() == false) then
 						spell:setMsg(237);
@@ -44,7 +44,7 @@ function onSpellCast(caster,target,spell)
 				end
 			elseif(haste ~= nil) then
 				if(haste:getPower() < (-1 * power)) then
-					target:delStatusEffect(EFFECT_HASTE);	
+					target:delStatusEffect(EFFECT_HASTE);
 					target:addStatusEffect(EFFECT_SLOW,power,0,duration);
 --					if(spell:isAOE() == false) then
 						spell:setMsg(237);
