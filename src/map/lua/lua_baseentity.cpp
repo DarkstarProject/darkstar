@@ -614,13 +614,15 @@ inline int32 CLuaBaseEntity::wakeUp(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
     CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
-    if(PEntity->isAsleep())
-    {
+
+    // is asleep is not working!
+    // if(PEntity->isAsleep())
+    // {
         //wake them up!
         PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP);
         PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP_II);
         PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_LULLABY);
-    }
+    // }
 	return 0;
 }
 

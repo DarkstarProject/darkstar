@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
         local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_THUNDER);
         if(resist > 0.2) then
             skill:setMsg(MSG_ENFEEB_IS);
-            target:addStatusEffect(typeEffect,1,0,6*resist);--power=20;tic=0;duration=120;
+            target:addStatusEffect(typeEffect,1,0,10*resist);--power=20;tic=0;duration=120;
         end
     else
         skill:setMsg(MSG_NO_EFFECT); -- no effect

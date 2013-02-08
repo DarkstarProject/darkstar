@@ -13,7 +13,7 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
 	local minCure = 130;
-	
+
 	local divisor = 1;
 	local constant = 70;
 	local power = getCurePowerOld(caster);
@@ -24,7 +24,7 @@ function onSpellCast(caster,target,spell)
 		divisor =  2;
 		constant = 115;
 	end
-	
+
 	local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,false);
 
 	final = final + (final * target:getMod(MOD_CURE_POTENCY_RCVD));
@@ -33,8 +33,8 @@ function onSpellCast(caster,target,spell)
 		final = diff;
 	end
 	target:addHP(final);
-	target:delStatusEffect(EFFECT_SLEEP_I);
-	target:delStatusEffect(EFFECT_SLEEP_II);
+
+	target:wakeUp();
 	caster:updateEnmityFromCure(target,final);
 	return final;
 end;

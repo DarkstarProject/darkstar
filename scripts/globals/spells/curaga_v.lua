@@ -13,7 +13,7 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
 	local minCure = 600;
-	
+
 	local divisor = 1;
 	local constant = 570;
 	local power = getCurePowerOld(caster);
@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
 		divisor = 2.667;
 		constant = 814;--this is too powerful and needs to be fixed when the rest of the curaga 5 numbers are determined
 	end
-	
+
 	local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,false);
 
 	final = final + (final * target:getMod(MOD_CURE_POTENCY_RCVD));
@@ -30,8 +30,8 @@ function onSpellCast(caster,target,spell)
 		final = diff;
 	end
 	target:restoreHP(final);
-	target:delStatusEffect(EFFECT_SLEEP_I);
-	target:delStatusEffect(EFFECT_SLEEP_II);
+	target:wakeUp();
+
 	caster:updateEnmityFromCure(target,final);
 	return final;
 end;

@@ -319,8 +319,10 @@ end
 function applyPlayerResistance(mob,effect,target,diff,skill,element)
     resist = 1.0;
     magicaccbonus = 0;
+
 	--get the base acc (just skill plus magic acc mod)
-	magicacc = getSkillLvl(1, mob:getMainLvl());
+	-- give a slight bonus because mob effects are hard to resist
+	magicacc = getSkillLvl(1, mob:getMainLvl()) * 1.2;
 
 	--difference in int/mnd
 	if diff > 10 then
@@ -437,16 +439,17 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 			effectres = MOD_CHARMRES;
 		end
 
+		if(effectres > 0) then
+			local resrate = 1+(target:getMod(effectres)/20);
+			if(resrate > 1.5) then
+				resrate = 1.5;
+			end
 
-		local resrate = 1+(target:getMod(effectres)/20);
-		if(resrate > 1.5) then
-			resrate = 1.5;
+			-- printf("Resist percentage: %f", resrate);
+			-- increase resistance based on effect
+			quart = quart * resrate;
+			half = half * resrate;
 		end
-
-		-- printf("Resist percentage: %f", resrate);
-		-- increase resistance based on effect
-		quart = quart * resrate;
-		half = half * resrate;
 	end
 
     resvar = math.random();

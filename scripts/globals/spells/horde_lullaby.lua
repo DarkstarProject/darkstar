@@ -16,10 +16,10 @@ function onSpellCast(caster,target,spell)
 	resm = applyResistance(caster,spell,target,dCHR,40,bonus);
 	if(resm < 0.5) then
 		spell:setMsg(85);--resist message
-		return EFFECT_SLEEP_I;
+		return EFFECT_LULLABY;
 	end
 
-	if(target:hasImmunity(1) or target:hasStatusEffect(EFFECT_SLEEP_II) or target:hasStatusEffect(EFFECT_SLEEP_I) or 100 * math.random() < target:getMod(MOD_SLEEPRES)) then
+	if(target:hasImmunity(1) or 100 * math.random() < target:getMod(MOD_SLEEPRES)) then
 		--No effect
 		spell:setMsg(75);
 	else
@@ -36,8 +36,8 @@ function onSpellCast(caster,target,spell)
 		end
 
 		spell:setMsg(237);
-		target:addStatusEffect(EFFECT_SLEEP_I,1,0,duration);
+		target:addStatusEffect(EFFECT_LULLABY,1,0,duration);
 	end
 
-	return EFFECT_SLEEP_I;
+	return EFFECT_LULLABY;
 end;

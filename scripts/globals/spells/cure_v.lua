@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
 	local power = 0;
 	local basecure = 0;
 	local final = 0;
-	
+
 	local minCure = 450;
 	if(USE_OLD_CURE_FORMULA == true) then
 		power = getCurePowerOld(caster);
@@ -90,8 +90,8 @@ function onSpellCast(caster,target,spell)
 			final = diff;
 		end
 		target:addHP(final);
-		target:delStatusEffect(EFFECT_SLEEP_I);
-		target:delStatusEffect(EFFECT_SLEEP_II);
+
+		target:wakeUp();
 		caster:updateEnmityFromCure(target,final);
 	else
 		if(target:isUndead()) then -- e.g. PCs healing skeles for damage (?)

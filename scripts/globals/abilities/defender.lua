@@ -1,7 +1,7 @@
 -----------------------------------
 -- Ability: Defender
 -----------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 

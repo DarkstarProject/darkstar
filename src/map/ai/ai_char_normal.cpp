@@ -647,7 +647,7 @@ void CAICharNormal::ActionRangedStart()
 	   (PItem->getType() & ITEM_WEAPON))
 	{
 		uint8 SkillType = PItem->getSkillType();
-		//ranged weapon delay is stored in the db as offset from 240 for some reason. 
+		//ranged weapon delay is stored in the db as offset from 240 for some reason.
 
 		m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
 
@@ -1653,7 +1653,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
 				return;
-			}else if(m_PChar->PPet->health.hp == m_PChar->PPet->health.maxhp && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II)){
+			}else if(m_PChar->PPet->health.hp == m_PChar->PPet->health.maxhp && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION)){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
@@ -1792,7 +1792,7 @@ void CAICharNormal::ActionJobAbilityStart()
 			m_PBattleSubTarget = NULL;
 			return;
 		}
-		
+
         m_ActionType = ACTION_JOBABILITY_FINISH;
         ActionJobAbilityFinish();
         return;
@@ -2627,10 +2627,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 void CAICharNormal::ActionSleep()
 {
-    if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && 
+    if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
         !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
 		!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) &&
-		!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION))
+		!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION)&&
+        !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY))
     {
 		m_PBattleSubTarget = NULL;
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -2734,7 +2735,7 @@ void CAICharNormal::ActionAttack()
 						// lock on to the new, if its not charmed
 						if (!m_PBattleTarget->isCharmed)
 							m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-                        
+
 						return;
                     }
                 }
@@ -2960,11 +2961,11 @@ void CAICharNormal::ActionAttack()
 					{
 						if( fstrslot == SLOT_MAIN )
 						{
-							damage = (uint16)(((m_PChar->GetMainWeaponDmg() + bonusDMG + 
+							damage = (uint16)(((m_PChar->GetMainWeaponDmg() + bonusDMG +
 								battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 						} else if( fstrslot == SLOT_SUB )
 						{
-							damage = (uint16)(((m_PChar->GetSubWeaponDmg() + bonusDMG + 
+							damage = (uint16)(((m_PChar->GetSubWeaponDmg() + bonusDMG +
 								battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 						}
 					}

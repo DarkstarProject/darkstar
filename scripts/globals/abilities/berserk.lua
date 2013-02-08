@@ -1,7 +1,7 @@
 -----------------------------------
 -- Ability: Berserk
 -----------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 

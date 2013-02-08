@@ -162,7 +162,7 @@ void CAIPetDummy::ActionAbilityStart()
 			//TODO: CHECK FOR STATUS EFFECTS FOR REMOVE- BREATH (higher priority than healing breaths)
 
 		//	if(m_PPet->PMaster->PParty==NULL){//solo with master-kun
-				if(m_PPet->PMaster->GetHPP() <= 33 && m_PPet->GetMJob()==JOB_WHM){//healer wyvern 
+				if(m_PPet->PMaster->GetHPP() <= 33 && m_PPet->GetMJob()==JOB_WHM){//healer wyvern
 					m_PBattleSubTarget = m_PPet->PMaster;
 				}
 				else if(m_PPet->PMaster->GetHPP() <= 25 && m_PPet->GetMJob()==JOB_RDM){//hybrid wyvern
@@ -177,7 +177,7 @@ void CAIPetDummy::ActionAbilityStart()
 				m_PMobSkill = NULL;
 				for(int i=0; i<m_PPet->PetSkills.size(); i++){
 					if(m_PPet->PetSkills[i]->getValidTargets() == TARGET_PLAYER_PARTY){
-						if(m_PPet->PetSkills[i]->getID()==638 && 
+						if(m_PPet->PetSkills[i]->getID()==638 &&
 							m_PPet->PMaster->GetMLevel() < 20){ //can only using hb1
 								m_PMobSkill = m_PPet->PetSkills[i];
 								break;
@@ -270,8 +270,8 @@ void CAIPetDummy::ActionAbilityUsing()
     {
 		//Range check
 		if (m_PPet->objtype == TYPE_MOB)
-		{	
-			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget!=m_PPet && 
+		{
+			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget!=m_PPet &&
 				distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
 				// Pet's target is too far away (and isn't itself)
@@ -281,25 +281,25 @@ void CAIPetDummy::ActionAbilityUsing()
 		}
 		else
 		{
-			if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
-				m_PBattleTarget!=m_PPet && 
+			if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY &&
+				m_PBattleTarget!=m_PPet &&
 				distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
 				// Avatar's target is too far away (and isn't the avatar itself)
 				SendTooFarInterruptMessage(m_PBattleTarget);
 				return;
 			}
-			else if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && 
-				m_PBattleSubTarget!=m_PPet && 
+			else if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY &&
+				m_PBattleSubTarget!=m_PPet &&
 				distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
 				// Avatar's sub target is too far away (and isn't the avatar itself)
 				SendTooFarInterruptMessage(m_PBattleSubTarget);
 				return;
 			}
-			else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY && 
+			else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY &&
 				distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
-				
+
 				// Player in the pet's party is too far away
 				SendTooFarInterruptMessage(m_PBattleSubTarget);
 				return;
@@ -315,7 +315,7 @@ void CAIPetDummy::ActionAbilityUsing()
 void CAIPetDummy::ActionAbilityFinish(){
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
     m_PPet->m_ActionList.clear();
-	
+
 	apAction_t Action;
 
 	if (m_PPet->objtype == TYPE_MOB)
@@ -360,14 +360,14 @@ void CAIPetDummy::ActionAbilityFinish(){
 	Action.subparam   = m_PMobSkill->getID() + 256;
 	Action.messageID  = m_PMobSkill->getMsg();
 	Action.flag       = 0;
-	
+
 	m_PPet->m_ActionList.push_back(Action);
 
 	//check for aoe moves (buffs)
 	if (m_PMobSkill->getAoe()==1 && m_PPet->getPetType()==PETTYPE_AVATAR || m_PPet->objtype == TYPE_MOB){ //aoe
 		if(m_PMobSkill->getValidTargets() == TARGET_SELF){//on the masters pt
 			//add effect on master (solo play)
-			if (m_PPet->PMaster->PParty==NULL && !m_PPet->PMaster->isDead() 
+			if (m_PPet->PMaster->PParty==NULL && !m_PPet->PMaster->isDead()
 				&& distance(m_PPet->loc.p, m_PPet->PMaster->loc.p) <= m_PMobSkill->getDistance()){
 			    Action.ActionTarget = m_PPet->PMaster;
 			    m_PPet->m_ActionList.push_back(Action);
@@ -378,11 +378,11 @@ void CAIPetDummy::ActionAbilityFinish(){
 			    {
 				    CBattleEntity* PTarget = m_PPet->PMaster->PParty->members[i];
 
-				    if (!PTarget->isDead() && 
+				    if (!PTarget->isDead() &&
 					   distance(m_PPet->loc.p, PTarget->loc.p) <= m_PMobSkill->getDistance())
 				    {
 					    Action.ActionTarget = PTarget;
-					    m_PPet->m_ActionList.push_back(Action);	
+					    m_PPet->m_ActionList.push_back(Action);
 				    }
 				}
 			}
@@ -401,8 +401,8 @@ void CAIPetDummy::ActionAbilityFinish(){
 			for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin();  it != PChar->SpawnMOBList.end() && m_PPet->m_ActionList.size() < 16; ++it)
 		    {
 			    CBattleEntity* PTarget = (CBattleEntity*)it->second;
-            
-				if (m_PBattleSubTarget != PTarget && !PTarget->isDead() && 
+
+				if (m_PBattleSubTarget != PTarget && !PTarget->isDead() &&
 					distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= m_PMobSkill->getDistance()){
 					bool petOwnsMob = false;
 					if (m_PPet->PMaster->PParty != NULL) {
@@ -432,10 +432,10 @@ void CAIPetDummy::ActionAbilityFinish(){
 			}
 		}
 	}
-	
+
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
-	
-	m_PPet->health.tp = 0; 
+
+	m_PPet->health.tp = 0;
 	m_PBattleSubTarget = NULL;
 	m_ActionType = ACTION_ATTACK;
 	if(Action.ActionTarget!=NULL && m_PPet->getPetType()==PETTYPE_AVATAR){ //todo: remove pet type avatar maybe
@@ -457,11 +457,11 @@ void CAIPetDummy::ActionAbilityInterrupt(){
 	    Action.param	  = 0;
 		Action.messageID  = 0;
         Action.flag       = 0;
-	
+
 	m_PPet->m_ActionList.push_back(Action);
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
-	m_PPet->health.tp = 0; 
+	m_PPet->health.tp = 0;
     m_PMobSkill = NULL;
     m_ActionType = ACTION_ATTACK;
 }
@@ -589,7 +589,7 @@ void CAIPetDummy::ActionEngage()
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CMessageBasicPacket(((CCharEntity*)m_PPet->PMaster),
 				((CCharEntity*)m_PPet->PMaster),0,0,12));
 			m_ActionType = ACTION_DISENGAGE;
-			return; 
+			return;
 		}
 	}
 
@@ -616,13 +616,13 @@ void CAIPetDummy::ActionAttack()
 	if(m_PPet->getPetType()==PETTYPE_WYVERN && m_PPet->PMaster->PBattleAI->GetBattleTarget()==NULL){
 		m_PBattleTarget = NULL;
 	}
-	
+
 	//handle death of target
-    if (m_PBattleTarget == NULL || m_PBattleTarget->isDead() || 
+    if (m_PBattleTarget == NULL || m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO)
 	{
         m_ActionType = ACTION_DISENGAGE;
-		return; 
+		return;
 	}
 
 	m_PPet->loc.p.rotation = getangle(m_PPet->loc.p, m_PBattleTarget->loc.p);
@@ -636,11 +636,11 @@ void CAIPetDummy::ActionAttack()
 	else{
 		//try to attack
 		if((m_Tick - m_LastActionTime) > m_PPet->m_Weapons[SLOT_MAIN]->getDelay()){
-			if (battleutils::IsParalised(m_PPet)) 
+			if (battleutils::IsParalised(m_PPet))
 			{
 				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CMessageBasicPacket(m_PPet,m_PBattleTarget,0,0,29));
 			}
-			else if (battleutils::IsIntimidated(m_PPet, m_PBattleTarget)) 
+			else if (battleutils::IsIntimidated(m_PPet, m_PBattleTarget))
 			{
 				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CMessageBasicPacket(m_PPet,m_PBattleTarget,0,0,106));
 			}
@@ -661,11 +661,11 @@ void CAIPetDummy::ActionAttack()
 
 				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
 				{
-					Action.messageID = 32; 
+					Action.messageID = 32;
 				}
 				else if ( rand()%100 < battleutils::GetHitRate(m_PPet, m_PBattleTarget) )
 				{
-                    if (battleutils::IsAbsorbByShadow(m_PBattleTarget)) 
+                    if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
 					{
                         Action.messageID = 0;
                         m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
@@ -677,7 +677,7 @@ void CAIPetDummy::ActionAttack()
 						Action.messageID  = 1;
 
 						bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false) );
-						float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget,isCritical, 0); 
+						float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget,isCritical, 0);
 
 						if(isCritical)
 						{
@@ -687,7 +687,7 @@ void CAIPetDummy::ActionAttack()
 							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 							Action.messageID  = 67;
 						}
-						damage = (uint16)((m_PPet->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);	
+						damage = (uint16)((m_PPet->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 					}
 				}
 				if (m_PBattleTarget->objtype == TYPE_PC)
@@ -715,11 +715,13 @@ void CAIPetDummy::ActionAttack()
 
 void CAIPetDummy::ActionSleep()
 {
-    if (!m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && 
-        !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II))
+    if (!m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
+        !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
+        !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) &&
+        !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY))
     {
 		//put it in combat if it isn't
-		if( m_PPet->animation == ANIMATION_NONE ){ 
+		if( m_PPet->animation == ANIMATION_NONE ){
 			m_PPet->animation = ANIMATION_ATTACK;
 		}
 		m_ActionType = (m_PPet->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);

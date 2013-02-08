@@ -1,7 +1,7 @@
 -----------------------------------
 -- Ability: Trick Attack
 -----------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
