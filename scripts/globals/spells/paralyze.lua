@@ -37,7 +37,6 @@ function onSpellCast(caster,target,spell)
 	elseif(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
 		bonus = AffinityBonus(caster, spell);
 		resist = applyResistance(caster,spell,target,dMND,35,bonus);
-		printf("resist : %u",resist);
 		if(resist == 1) then -- Full hit, no duration penalty
 			target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration);
 	--				if(spell:isAOE() == false) then

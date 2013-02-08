@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
     --Duration Calculation
     local duration = 300 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
     --Paralyze base power is 19.5 and is not affected by resistaces.
-    local power = 19.5;
+    local power = 30;
 
     --Calculates resist chanve from Reist Blind
     if(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
