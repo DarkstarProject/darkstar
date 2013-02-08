@@ -30,13 +30,13 @@
 #include "battleentity.h"
 #include "battleutils.h"
 
-CBattleEntity::CBattleEntity() 
+CBattleEntity::CBattleEntity()
 {
     m_OwnerID.clean();
 	m_ModelSize	= 3; // неправильная инициализация, она приведет к тому, что заклинания станут читаться на 3 дальше
 	m_mlvl = 0;
 	m_slvl = 0;
-	
+
 	m_mjob = JOB_WAR;
 	m_sjob = JOB_WAR;
 
@@ -281,7 +281,7 @@ uint16 CBattleEntity::addTP(float tp)
 	{
 		TPMulti = map_config.mob_tp_multiplier * 3;
 	}
-	
+
 	float cap = dsp_cap(health.tp + (tp * TPMulti), 0, 300);
 	tp = health.tp - cap;
 	health.tp = cap;
@@ -301,7 +301,7 @@ int32 CBattleEntity::addHP(int32 hp)
 	if (health.hp == 0 && hp < 0){
 		return 0; //if the entity is already dead, skip the rest to prevent killing it again
 	}
-	
+
     int32 cap = dsp_cap(health.hp + hp, 0, GetMaxHP());
 	hp = health.hp - cap;
 	health.hp = cap;
@@ -338,8 +338,8 @@ int32 CBattleEntity::addMP(int32 mp)
 *                                                                       *
 ************************************************************************/
 
-uint16 CBattleEntity::STR() 
-{ 
+uint16 CBattleEntity::STR()
+{
     return dsp_max(0, stats.STR + m_modStat[MOD_STR]);
 }
 
@@ -379,7 +379,7 @@ uint16 CBattleEntity::ATT()
 	if (this->objtype & TYPE_PC){
 		ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType());
 	}
-    return ATT + (ATT * m_modStat[MOD_ATTP] / 100) + 
+    return ATT + (ATT * m_modStat[MOD_ATTP] / 100) +
         dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
 }
 
@@ -387,7 +387,7 @@ uint16 CBattleEntity::RATT(uint8 skill)
 {
     int32 ATT = 8 + GetSkill(skill) + m_modStat[MOD_RATT] + STR() / 2;
 
-    return ATT + (ATT * m_modStat[MOD_RATTP] / 100) + 
+    return ATT + (ATT * m_modStat[MOD_RATTP] / 100) +
         dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
 }
 
@@ -404,7 +404,7 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 		else if (attackNumber == 1)
 		{
 			skill = m_Weapons[SLOT_SUB]->getSkillType();
-			if(skill == SKILL_NON && GetSkill(SKILL_H2H) > 0 && 
+			if(skill == SKILL_NON && GetSkill(SKILL_H2H) > 0 &&
 				(m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_NON || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H))
 				skill = SKILL_H2H;
 		}
@@ -423,13 +423,13 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 			ACC += DEX() * 0.5;
 		}
 		ACC = (ACC + m_modStat[MOD_ACC] + offsetAccuracy);
-		ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) + 
+		ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) +
 			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]);
 		return dsp_max(0, ACC);
 	}
 	else{
 		int16 ACC = m_modStat[MOD_ACC];
-		ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) + 
+		ACC = ACC + (ACC * m_modStat[MOD_ACCP] / 100) +
 			dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]) + DEX() / 2; //food mods here for Snatch Morsel
 		return dsp_max(0, ACC);
 	}
@@ -438,7 +438,7 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 uint16 CBattleEntity::DEF()
 {
 	if(this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE,0)){
-		return VIT()/2;
+		return VIT()/2 + 1;
 	}
     int32 DEF = 8 + m_modStat[MOD_DEF] + VIT() / 2;
 
@@ -511,7 +511,7 @@ void CBattleEntity::SetSLevel(uint8 slvl)
 
 void CBattleEntity::addModifier(uint16 type, int16 amount)
 {
-	m_modStat[(type < MAX_MODIFIER ? type : MOD_NONE)] += amount; 
+	m_modStat[(type < MAX_MODIFIER ? type : MOD_NONE)] += amount;
 }
 
 /************************************************************************
@@ -536,7 +536,7 @@ void CBattleEntity::addModifiers(std::vector<CModifier*> *modList)
 
 void CBattleEntity::setModifier(uint16 type, int16 amount)
 {
-	m_modStat[(type < MAX_MODIFIER ? type : MOD_NONE)] = amount; 
+	m_modStat[(type < MAX_MODIFIER ? type : MOD_NONE)] = amount;
 }
 
 /************************************************************************
