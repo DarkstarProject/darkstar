@@ -24,7 +24,7 @@ function OnMobWeaponSkill(target, mob, skill)
     -- Increase damage as health drops
 	local dmgmod = (1 - (mob:getHP() / mob:getMaxHP())) * 6;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 	target:delHP(dmg);
 	return dmg;
 end;

@@ -30,7 +30,7 @@ function OnMobWeaponSkill(target, mob, skill)
     -- remove all by 5%
     local stab = currentHP * .95;
 
-    local dmg = MobFinalAdjustments(stab,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
+    local dmg = MobFinalAdjustments(stab,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_IGNORE_SHADOWS);
 
     target:delHP(dmg);
 

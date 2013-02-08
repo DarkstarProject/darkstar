@@ -33,7 +33,7 @@ function OnMobWeaponSkill(target, mob, skill)
         shadows = MOBPARAM_WIPE_SHADOWS;
     end
 
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,shadows);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,shadows);
 
     local typeEffect = EFFECT_STUN;
     if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then

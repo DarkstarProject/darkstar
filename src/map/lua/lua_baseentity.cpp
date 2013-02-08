@@ -3710,12 +3710,9 @@ inline int32 CLuaBaseEntity::stealStatusEffect(lua_State *L)
         lua_gettable(L,-2);
         lua_insert(L,-2);
         lua_pushlightuserdata(L,(void*)PStatusEffect);
+		lua_pcall(L,2,1,0);
 
         delete PStatusEffect;
-    }
-    if( lua_pcall(L,2,1,0) )
-    {
-        return 0;
     }
     return 1;
 }

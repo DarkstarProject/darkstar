@@ -31,7 +31,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		-- else you die
 		damage = currentHP;
 	end
-	local dmg = MobFinalAdjustments(damage,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
+	local dmg = MobFinalAdjustments(damage,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_IGNORE_SHADOWS);
 
 	target:delHP(dmg);
 	mob:resetEnmity(target);

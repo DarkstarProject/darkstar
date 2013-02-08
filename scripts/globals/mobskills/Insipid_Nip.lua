@@ -23,7 +23,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local accmod = 2;
 	local dmgmod = 3;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
 
     if(MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
         target:dispelStatusEffect();

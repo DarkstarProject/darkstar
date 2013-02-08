@@ -25,7 +25,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local dmgmod = 1;
 
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,info.hitslanded);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
 	target:delHP(dmg);
 
 	local typeEffect = EFFECT_PETRIFICATION;
