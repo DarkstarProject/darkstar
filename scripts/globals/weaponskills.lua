@@ -43,7 +43,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 	end
 	
 	--get cratio min and max
-	local cratio = cRatio(((attacker:getStat(MOD_ATT) * params.atkmulti) / (target:getStat(MOD_DEF) - ignoredDef)), attacker:getMainLvl(), target:getMainLvl());
+	local cratio, ccritratio = cMeleeRatio(attacker, target, params, ignoredDef);
 	local ccmin = 0;
 	local ccmax = 0;
 	local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
@@ -53,9 +53,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 	end
 	attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
 	
-	local ccritratio = 0;
 	local critrate = 0;
-	ccritratio = cCritRatio(((attacker:getStat(MOD_ATT) * params.atkmulti) / (target:getStat(MOD_DEF) - ignoredDef)) + 1, attacker:getMainLvl(), target:getMainLvl());
 
 	if(params.canCrit) then --work out critical hit ratios, by +1ing 
 		critrate = fTP(attacker:getTP(),params.crit100,params.crit200,params.crit300);
@@ -75,8 +73,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 	local dmg = base * ftp;  
 	
 	--Applying pDIF
-	local double pdif = math.random((cratio[1]*1000),(cratio[2]*1000)); 
-	pdif = pdif/1000; --multiplier set.
+	local double pdif = generatePdif(cratio[1], cratio[2], true);
 	
 	--First hit has 95% acc always. Second hit + affected by hit rate.
 	local double firsthit = math.random();
@@ -95,17 +92,16 @@ function doPhysicalWeaponskill(attacker, target, params)
 		if(params.canCrit or isSneakValid) then
 			local double critchance = math.random();
 			if(critchance <= critrate or hasMightyStrikes or isSneakValid) then --crit hit!
-				local double cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
-				cpdif = cpdif/1000; 
+				local double cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
 				finaldmg = dmg * cpdif;
 				if(isSneakValid and attacker:getMainJob()==6) then --have to add on DEX bonus if on THF main
-					finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif) + souleaterBonus(attacker);
+					finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif);
 				end
 			else
 				finaldmg = dmg * pdif;
 			end
 		else
-			finaldmg = dmg * pdif + souleaterBonus(attacker);
+			finaldmg = dmg * pdif;
 		end
 		tpHitsLanded = 1;
 	end
@@ -114,19 +110,17 @@ function doPhysicalWeaponskill(attacker, target, params)
 
 		local chance = math.random();
 		if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid) then --it hit
-			pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
-			pdif = pdif/1000; --multiplier set.
+			pdif = generatePdif(cratio[1], cratio[2], true);
 			if(params.canCrit) then
 				critchance = math.random();
 				if(critchance <= critrate or hasMightyStrikes) then --crit hit!
-					cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
-					cpdif = cpdif/1000; 
-					finaldmg = finaldmg + base * cpdif + souleaterBonus(attacker);
+					cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
+					finaldmg = finaldmg + base * cpdif;
 				else
-					finaldmg = finaldmg + base * pdif + souleaterBonus(attacker);
+					finaldmg = finaldmg + base * pdif;
 				end
 			else
-				finaldmg = finaldmg + base * pdif + souleaterBonus(attacker); --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+				finaldmg = finaldmg + base * pdif; --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
 			end
 			tpHitsLanded = tpHitsLanded + 1;
 		end
@@ -143,49 +137,48 @@ function doPhysicalWeaponskill(attacker, target, params)
 		while (hitsdone < numHits) do 
 			local chance = math.random();
 			if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then --it hit
-				pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
-				pdif = pdif/1000; --multiplier set.
+				pdif = generatePdif(cratio[1], cratio[2], true);
 				if(params.canCrit) then
 					critchance = math.random();
 					if(critchance <= critrate or hasMightyStrikes) then --crit hit!
-						cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
-						cpdif = cpdif/1000; 
-						finaldmg = finaldmg + base * cpdif + souleaterBonus(attacker);
+						cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
+						finaldmg = finaldmg + base * cpdif;
 					else
-						finaldmg = finaldmg + base * pdif + souleaterBonus(attacker);
+						finaldmg = finaldmg + base * pdif;
 					end
 				else
-					finaldmg = finaldmg + base * pdif + souleaterBonus(attacker); --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+					finaldmg = finaldmg + base * pdif; --NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
 				end
 				extraHitsLanded = extraHitsLanded + 1;
 			end
 			hitsdone = hitsdone + 1;
 		end
 	end
+	finaldmg = finaldmg + souleaterBonus(attacker, (tpHitsLanded+extraHitsLanded));
 	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
-	if attacker:hasStatusEffect(EFFECT_SOULEATER) and attacker:getHP() > 10 then
-		local percent = 0.1;
-		if attacker:getEquipID(SLOT_HEAD) == 12516 or attacker:getEquipID(SLOT_HEAD) == 15232 or attacker:getEquipID(SLOT_BODY) == 14409 or attacker:getEquipID(SLOT_LEGS) == 15370 then
-			percent = 0.12;
-		end
-		attacker:delHP((tpHitsLanded+extraHitsLanded)*percent*attacker:getHP());
-	end
 	return finaldmg, tpHitsLanded, extraHitsLanded;
 end;
 
-function souleaterBonus(attacker)
+function souleaterBonus(attacker, numhits)
 	if attacker:hasStatusEffect(EFFECT_SOULEATER) then
-		local health = attacker:getHP();
-		if health > 10 then
-			local percent = 0.1;
-			if attacker:getMainJob() ~= 8 then
-				percent = percent / 2;
-			end
-			if attacker:getEquipID(SLOT_HEAD) == 12516 or attacker:getEquipID(SLOT_HEAD) == 15232 or attacker:getEquipID(SLOT_BODY) == 14409 or attacker:getEquipID(SLOT_LEGS) == 15370 then
-				percent = percent + 0.02;
-			end
-			return health*percent;
+		local damage = 0;
+		local percent = 0.1;
+		if attacker:getMainJob() ~= 8 then
+			percent = percent / 2;
 		end
+		if attacker:getEquipID(SLOT_HEAD) == 12516 or attacker:getEquipID(SLOT_HEAD) == 15232 or attacker:getEquipID(SLOT_BODY) == 14409 or attacker:getEquipID(SLOT_LEGS) == 15370 then
+			percent = percent + 0.02;
+		end
+		local hitscounted = 0;
+		while (hitscounted < numhits) do
+			local health = attacker:getHP();
+			if health > 10 then
+				damage = damage + health*percent;
+			end
+			hitscounted = hitscounted + 1;
+		end
+		attacker:delHP(numhits*0.10*attacker:getHP());
+		return damage;
 	else
 		return 0;
 	end
@@ -297,97 +290,159 @@ function calculatedIgnoredDef(tp, def, ignore1, ignore2, ignore3)
 	return 1; --no def ignore mod
 end
 --Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
-function cRatio(ratio,atk_lvl,def_lvl)
-	--Level penalty...
-	local double levelcor = 0;
-	if (atk_lvl < def_lvl) then
-		levelcor = 0.05 * (def_lvl - atk_lvl);
-	end
-	ratio = ratio - levelcor;
+function cMeleeRatio(attacker, defender, params, ignoredDef)
+
+	local cratio = (attacker:getStat(MOD_ATT)*params.atkmulti) / (defender:getStat(MOD_DEF) - ignoredDef);
 	
-	--apply caps
-	if(ratio<0) then
-		ratio = 0;
-	elseif(ratio>2) then
-		ratio = 2;
-	end
-	
-	--Obtaining cRatio_MIN
-	local double cratiomin = 0;
-	if (ratio<1.25) then
-		cratiomin = 1.2 * ratio - 0.5;
-	elseif (ratio>=1.25 and ratio<=1.5) then
-		cratiomin = 1;
-	elseif (ratio>1.5 and ratio<=2) then
-		cratiomin = 1.2 * ratio - 0.8;
+	if(attacker:isWeaponTwoHanded() == 1) then
+		if (cratio > 2.25) then
+			cratio = 2.25;
+		end
+	else
+		if (cratio > 2) then
+			cratio = 2;
+		end
 	end
 	
-	--Obtaining cRatio_MAX
-	local double cratiomax = 0;
-	if (ratio<0.5) then
-		cratiomax = 0.4 + 1.2 * ratio;
-	elseif (ratio<=0.833 and ratio>=0.5) then
-		cratiomax = 1;
-	elseif (ratio<=2 and ratio>0.833) then
-		cratiomax = 1.2 * ratio;
+	local levelcor = 0;
+	if (attacker:getMainLvl() < defender:getMainLvl()) then
+		levelcor = 0.05 * (defender:getMainLvl() - attacker:getMainLvl());
 	end
-	cratio = {};
-	if(cratiomin < 0) then 
-		cratiomin = 0;
+
+	cratio = cratio - levelcor;
+	
+	if(cratio<0) then
+		cratio = 0;
 	end
-	cratio[1] = cratiomin;
-	cratio[2] = cratiomax;
-	return cratio;
+	local pdifmin = 0;
+	local pdifmax = 0;
+	if(attacker:isWeaponTwoHanded()) then
+
+		--max
+	
+		if (cratio < 0.5) then
+			pdifmax = (cratio * 1.2) + 0.4;
+		elseif (cratio < (5/6)) then
+			pdifmax = 1;
+		elseif (cratio < (10/6)) then
+			pdifmax = cratio * 1.25;
+		else
+			pdifmax = cratio * 1.2;
+		end
+		
+		--min
+
+		if (cratio < (5/12)) then
+			pdifmin = 0;
+		elseif (cratio < 1.25) then
+			pdifmin = (cratio * 1.2) - 0.5;
+		elseif (cratio < 1.5) then
+			pdifmin = 1;
+		else
+			pdifmin = (1.2 * cratio) - 0.8;
+		end
+		
+	else
+	
+		--max
+
+		if (cratio < 0.5) then
+			pdifmax = 1 + ((10/9)*(cratio-0.5));
+		elseif (cratio < 0.75) then
+			pdifmax = 1;
+		else
+			pdifmax = 1 + ((10/9)*(cratio-0.75));
+		end
+		
+		--min
+
+		if (cratio < 0.5) then
+			pdifmin = (1/6);
+		elseif (cratio < 1.25) then
+			pdifmin = 1 + ((10/9)*(cratio - 1.25));
+		elseif (cratio < 1.5) then
+			pdifmin = 1;
+		else
+			pdifmin = 1 + ((10/9)*(cratio - 1.5));
+		end
+	end
+	pdif = {};
+	pdif[1] = pdifmin;
+	pdif[2] = pdifmax;
+	
+	pdifcrit = {};
+	
+	--printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
+	
+	pdifmin = pdifmin + 1;
+	pdifmax = pdifmax + 1;
+	if (pdifmin > 3) then
+		pdifmin = 3;
+	end
+	if (pdifmax > 3) then
+		pdifmax = 3;
+	end
+	
+	pdifcrit[1] = pdifmin;
+	pdifcrit[2] = pdifmax;
+	
+	return pdif, pdifcrit;
 end;
 
---Given the raw ratio value (atk/def) and levels, returns the critical cRatio (min then max)
-function cCritRatio(rratio,atk_lvl,def_lvl)
-	--Level penalty...
-	local double levelcor = 0;
-	if (atk_lvl < def_lvl) then
-		levelcor = 0.05 * (def_lvl - atk_lvl);
-	end
-	rratio = rratio - levelcor;
+function cRangedRatio(attacker, defender, params, ignoredDef)
 	
-	--apply caps
-	if(rratio<0) then
-		rratio = 0;
-	elseif(rratio>3) then
-		rratio = 3;
+	local cratio = attacker:getRATT() / (defender:getStat(MOD_DEF) - ignoredDef);
+	
+	if(cratio > 3) then
+		cratio = 3;
 	end
 	
-	--Obtaining cRatio_MIN
-	local double cratiomin = 0;
-	if (rratio<1.25) then
-	cratiomin = 1.2 * rratio - 0.5;
+	local levelcor = 0;
+	if (attacker:getMainLvl() < defender:getMainLvl()) then
+		levelcor = 0.025 * (defender:getMainLvl() - attacker:getMainLvl());
 	end
-	if (rratio>=1.25 and rratio<=1.5) then
-	cratiomin = 1;
+
+	cratio = cratio - levelcor;
+	
+	if(cratio<0) then
+		cratio = 0;
 	end
-	if (rratio>1.5 and rratio<=3) then
-	cratiomin = 1.2 * rratio - 0.8;
+
+	--max
+	local pdifmax = 0;
+	if (cratio < 0.9) then
+		pdifmax = cratio * (10/9);
+	elseif (cratio < 1.1) then
+		pdifmax = 1;
+	else
+		pdifmax = cratio;
 	end
 	
-	--Obtaining cRatio_MAX
-	local double cratiomax = 0;
-	if (rratio<0.5) then
-	cratiomax = 0.4 + 1.2 * rratio;
-	end
-	if (rratio<=0.833 and rratio>=0.5) then
-	cratiomax = 1;
-	end
-	if (rratio<=3 and rratio>0.833) then
-	cratiomax = 1.2 * rratio;
+	--min
+	local pdifmin = 0;
+	if (cratio < 0.9) then
+		pdifmin = cratio;
+	elseif (cratio < 1.1) then
+		pdifmin = 1;
+	else
+		pdifmin = (cratio * (20/19))-(3/19);
 	end
 	
-	critratio = {};
-	if(cratiomin < 0) then 
-		cratiomin = 0;
-	end
-	critratio[1] = cratiomin;
-	critratio[2] = cratiomax;
-	return critratio;
-end;
+	pdif = {};
+	pdif[1] = pdifmin;
+	pdif[2] = pdifmax;
+	--printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
+	pdifcrit = {};
+	
+	pdifmin = pdifmin * 1.25;
+	pdifmax = pdifmax * 1.25;
+	
+	pdifcrit[1] = pdifmin;
+	pdifcrit[2] = pdifmax;
+	
+	return pdif, pdifcrit;
+	
+end
 
 --Given the attacker's str and the mob's vit, fSTR is calculated
 function fSTR(atk_str,def_vit,base_dmg)
@@ -478,20 +533,18 @@ return alpha;
 	--Applying fTP multiplier
 	local ftp = fTP(attacker:getTP(),params.ftp100,params.ftp200,params.ftp300);
 	
-		local ignoredDef = 0;
+	local ignoredDef = 0;
 	if (params.ignoresDef == not nil and params.ignoresDef == true) then
 		ignoredDef = calculatedIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
 	end
 	
 	--get cratio min and max
-	local cratio = cRatio(((attacker:getRATT() * params.atkmulti) / (target:getStat(MOD_DEF) - ignoredDef)), attacker:getMainLvl(), target:getMainLvl());
+	local cratio, ccritratio = cRangedRatio( attacker, target, params, ignoredDef);
 	local ccmin = 0;
 	local ccmax = 0;
 	local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
-	local ccritratio = 0;
 	local critrate = 0;
 	if(params.canCrit) then --work out critical hit ratios, by +1ing 
-		ccritratio = cCritRatio( ((attacker:getRATT()*params.atkmulti)/target:getStat(MOD_DEF))+1,attacker:getMainLvl(),target:getMainLvl());
 		critrate = fTP(attacker:getTP(),params.crit100,params.crit200,params.crit300);
 		--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
 		local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
@@ -507,8 +560,7 @@ return alpha;
 	local dmg = base * ftp;  
 	
 	--Applying pDIF
-	local double pdif = math.random((cratio[1]*1000),(cratio[2]*1000)); 
-	pdif = pdif/1000; --multiplier set.
+	local double pdif = generatePdif(cratio[1],cratio[2], false);
 	
 	--First hit has 95% acc always. Second hit + affected by hit rate.
 	local double firsthit = math.random();
@@ -526,8 +578,7 @@ return alpha;
 		if(params.canCrit) then
 			local double critchance = math.random();
 			if(critchance <= critrate or hasMightyStrikes) then --crit hit!
-				local double cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
-				cpdif = cpdif/1000; 
+				local double cpdif = generatePdif(ccritratio[1], ccritratio[2], false);
 				finaldmg = dmg * cpdif;
 			else
 				finaldmg = dmg * pdif;
@@ -551,13 +602,11 @@ return alpha;
 		while (hitsdone < numHits) do 
 			chance = math.random();
 			if (chance<=hitrate) then --it hit
-				pdif = math.random((cratio[1]*1000),(cratio[2]*1000));  --generate random PDIF
-				pdif = pdif/1000; --multiplier set.
+				pdif = generatePdif(cratio[1],cratio[2], false);
 				if(canCrit) then
 					critchance = math.random();
 					if(critchance <= critrate or hasMightyStrikes) then --crit hit!
-						cpdif = math.random((ccritratio[1]*1000),(ccritratio[2]*1000)); 
-						cpdif = cpdif/1000; 
+						cpdif = generatePdif(ccritratio[1], ccritratio[2], false);
 						finaldmg = finaldmg + base * cpdif;
 					else
 						finaldmg = finaldmg + base * pdif;
@@ -609,3 +658,11 @@ function getMultiAttacks(attacker, numHits)
 	end
 	return numHits + bonusHits;
 end;
+
+function generatePdif(cratiomin, cratiomax, melee)
+	local pdif = math.random(cratiomin*1000, cratiomax*1000) / 1000;
+	if (melee) then
+		pdif = pdif * (math.random(100,105)/100);
+	end
+	return pdif;
+end
