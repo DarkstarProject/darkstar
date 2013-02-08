@@ -47,18 +47,16 @@ function onSpellCast(caster,target,spell)
             duration = duration * 1.3;
         end
 
-        -- Try to overwrite weaker slow / haste
-        if(canOverwrite(target, EFFECT_SLOW, power) and canOverwrite(target, EFFECT_HASTE, -1)) then
+        -- Try to overwrite weaker elegy
+        if(canOverwrite(target, EFFECT_ELEGY, power)) then
             -- overwrite them
-            target:delStatusEffect(EFFECT_HASTE);
-            target:delStatusEffect(EFFECT_SLOW);
-            target:addStatusEffect(EFFECT_SLOW,power,0,duration);
+            target:delStatusEffect(EFFECT_ELEGY);
+            target:addStatusEffect(EFFECT_ELEGY,power,0,duration);
             spell:setMsg(237);
         else
             spell:setMsg(75); -- no effect
         end
-
     end
 
-    return EFFECT_SLOW;
+    return EFFECT_ELEGY;
 end;
