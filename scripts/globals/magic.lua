@@ -283,6 +283,15 @@ function AffinityBonus(caster,spell)
     local ele = spell:getElement();
 
     local affinity = caster:getMod(strongAffinity[ele]) - caster:getMod(weakAffinity[ele]);
+	
+	-- Iridal and Chatoyant will return affinity for strong and weak, cancelling their bonus out, so they need to be specifically checked.
+	-- Could do an if strong == weak, but that would cause problems once/if augments or magian gear is added.
+	local equippedMain = caster:getEquipID(SLOT_MAIN);
+	if (equippedMain == 18632) then
+		affinity = affinity + 1;
+	elseif (equippedMain == 18633) then
+		affinity = affinity + 2;
+	end
 
 	if(affinity > 0) then
 		bonus = bonus + 0.05 + 0.05 * affinity;
