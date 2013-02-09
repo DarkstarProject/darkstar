@@ -34,6 +34,7 @@
 #include "../weapon_skill.h"
 #include "../ability.h"
 #include "../mobskill.h"
+#include "../battleutils.h"
 
 /************************************************************************
 *																		*
@@ -109,8 +110,9 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			break;
 		case ACTION_MOBABILITY_FINISH:
 		{	
+			uint16 id = battleutils::GetMobSkillMessage(PEntity->PBattleAI->GetCurrentMobSkill()->getID());
 			//higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
-			packBitsBE(data, 256 + PEntity->PBattleAI->GetCurrentMobSkill()->getID(), 54, 12);
+			packBitsBE(data, id, 54, 12);
 		}
 			break;
 		case ACTION_ITEM_START:
@@ -339,6 +341,26 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 				break;
 
 			default: 
+				ActionTypeNumber = ActionType;
+				break;
+		}
+	} 
+	else if (ActionType == ACTION_MOBABILITY_FINISH)
+	{
+		switch (PEntity->PBattleAI->GetCurrentMobSkill()->getID())
+		{
+			case 190:  //dimensional death
+			case 246:  //shackled fists
+			case 247:  //foxfire
+			case 248:  //grim halo
+			case 249:  //netherspikes
+			case 250:  //carnal nightmare
+			case 251:  //dancing chains
+			case 252:  //barbed crescent
+			case 253:  //aegis schism
+				ActionTypeNumber -= 8;
+				break;
+			default:
 				ActionTypeNumber = ActionType;
 				break;
 		}

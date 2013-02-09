@@ -509,7 +509,7 @@ void CAIMobDummy::ActionAbilityStart()
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = 0;
-    Action.param	  = m_PMobSkill->getID() + 256;//m_PMobSkill->getAnimationID();
+    Action.param	  = battleutils::GetMobSkillMessage(m_PMobSkill->getID());//m_PMobSkill->getAnimationID();
 	Action.messageID  = 43; //readies message
 	Action.flag		  = 0;
 
