@@ -537,7 +537,7 @@ function checkRegime(killer,mob,rid,index)
                         tabs = killer:getVar("tabs");
                         tabs = tabs+(math.floor((reward/10))*TABS_RATE);
                         killer:setVar("tabs",tabs);
-                        killer:messageBasic(FOV_MSG_GET_TABS,math.floor((reward/10))*EXP_RATE,tabs*TABS_RATE);
+                        killer:messageBasic(FOV_MSG_GET_TABS,math.floor((reward/10))*TABS_RATE,tabs);
                         killer:addGil(reward);
                         --TODO: display msgs (based on zone annoyingly, so will need killer:getZone() then a lookup)
                         killer:addExp(reward*EXP_RATE);
