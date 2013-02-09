@@ -162,12 +162,22 @@ void CAIPetDummy::ActionAbilityStart()
 			//TODO: CHECK FOR STATUS EFFECTS FOR REMOVE- BREATH (higher priority than healing breaths)
 
 		//	if(m_PPet->PMaster->PParty==NULL){//solo with master-kun
+			uint16 masterHead = ((CCharEntity*)(m_PPet->PMaster))->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)(m_PPet->PMaster))->equip[SLOT_HEAD])->getID();
+			if(((CCharEntity*)(m_PPet->PMaster))->objtype == TYPE_PC && (masterHead == 12519 || masterHead == 15238)) { //Check for player & AF head, or +1
+				if(m_PPet->PMaster->GetHPP() <= 50 && m_PPet->GetMJob()==JOB_WHM){//healer wyvern
+					m_PBattleSubTarget = m_PPet->PMaster;
+				}
+				else if(m_PPet->PMaster->GetHPP() <= 33 && m_PPet->GetMJob()==JOB_RDM){//hybrid wyvern
+					m_PBattleSubTarget = m_PPet->PMaster;
+				}
+			} else {
 				if(m_PPet->PMaster->GetHPP() <= 33 && m_PPet->GetMJob()==JOB_WHM){//healer wyvern
 					m_PBattleSubTarget = m_PPet->PMaster;
 				}
 				else if(m_PPet->PMaster->GetHPP() <= 25 && m_PPet->GetMJob()==JOB_RDM){//hybrid wyvern
 					m_PBattleSubTarget = m_PPet->PMaster;
 				}
+			}
 		//	}
 		//	else{ //group play
 		//		//for( int i=0; i<

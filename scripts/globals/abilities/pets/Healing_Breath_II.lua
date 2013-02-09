@@ -9,7 +9,9 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	base = 0.1757*(42+pet:getMaxHP())*(1+(skill:getTP()/100));
+	-- TODO: Correct formula.  See Healing Breath III for details.
+
+	local base = math.floor((45/256)*(1+(pet:getTP()/1024))*(pet:getHP())+42);
 	if(target:getHP()+base > target:getMaxHP()) then
 		base = target:getMaxHP() - target:getHP(); --cap it
 	end

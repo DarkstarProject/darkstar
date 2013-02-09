@@ -254,6 +254,20 @@ inline int32 CLuaBaseEntity::getPet(lua_State* L)
 
 //======================================================//
 
+inline int32 CLuaBaseEntity::getPetID(lua_State* L)
+{
+	if ( m_PBaseEntity != NULL )
+	{
+		if(((CBattleEntity*)m_PBaseEntity)->PPet) {
+			lua_pushinteger( L, ((CPetEntity*)(((CBattleEntity*)m_PBaseEntity)->PPet))->m_PetID );
+			return 1;
+		}
+	}
+	return 0;
+}
+
+//======================================================//
+
 inline int32 CLuaBaseEntity::getMP(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -5909,6 +5923,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petStay),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAbility),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPet),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),

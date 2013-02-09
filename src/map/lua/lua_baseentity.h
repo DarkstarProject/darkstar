@@ -313,6 +313,7 @@ public:
 	int32 petStay(lua_State*);
 	int32 petAbility(lua_State*);
 	int32 getPet(lua_State*);				// Creates an LUA reference to a pet entity
+	int32 getPetID(lua_State*);				// If the entity has a pet, returns the PetID to identify pet type.
 
 	int32 wakeUp(lua_State*);				//wakes target if necessary
 	int32 needToZone(lua_State*);			// Check if player has zoned since the flag has been raised
