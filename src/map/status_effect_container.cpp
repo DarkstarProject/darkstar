@@ -812,9 +812,12 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
 			m_POwner->addMP(m_POwner->getMod(MOD_REFRESH) - perpetuation);
 
-			if( m_POwner->health.mp == 0 )
+			if( m_POwner->health.mp == 0 && m_POwner->PPet != NULL && m_POwner->PPet->objtype == TYPE_PET)
 			{
-				petutils::DespawnPet(m_POwner);
+				CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
+				if (PPet->getPetType() == PETTYPE_AVATAR) {
+					petutils::DespawnPet(m_POwner);
+				}
 			}
 
 		}
