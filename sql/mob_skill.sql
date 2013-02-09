@@ -409,9 +409,9 @@ INSERT INTO `mob_skill` VALUES (192,77,192,'Metallic_Body', 0, 7.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (189,77,189,'Scissor_Guard', 0, 7.0, 2000, 1500, 1, 0); -- +100% defense boost
 
 -- Shadow
-INSERT INTO `mob_skill` VALUES (190,221,190,'Dimensional_Death', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (190,222,190,'Dimensional_Death', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (190,223,190,'Dimensional_Death', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (190,221,190,'Dimensional_Death', 0, 7.0, 2000, 0, 4, 0);
+INSERT INTO `mob_skill` VALUES (190,222,190,'Dimensional_Death', 0, 7.0, 2000, 0, 4, 0);
+INSERT INTO `mob_skill` VALUES (190,223,190,'Dimensional_Death', 0, 7.0, 2000, 0, 4, 0);
 
 -- Pugil
 INSERT INTO `mob_skill` VALUES (195,197,195,'Splash_Breath', 4, 12.0, 2000, 1800, 4, 0);
