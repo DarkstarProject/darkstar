@@ -246,6 +246,12 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			session->client_port,
 			PChar->id);
 
+		const int8* deathTsQuery = "SELECT death FROM char_stats where charid = %u;";
+		int32 ret = Sql_Query(SqlHandle,deathTsQuery, PChar->id);
+		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
+			PChar->m_DeathTimestamp = (uint32)Sql_GetUIntData(SqlHandle,0);
+		}
+
 
 		// set new characters merits to zero on char creation
 		if (firstlogin)

@@ -358,6 +358,7 @@ void CAICharNormal::ActionFall()
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
 	charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
+	charutils::SaveDeathTime(m_PChar);
 }
 
 /************************************************************************

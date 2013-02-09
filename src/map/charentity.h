@@ -245,6 +245,7 @@ public:
 	uint8			  m_LevelRestriction;			// ограничение уровня персонажа
     uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
 	uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
+	uint32			  m_DeathTimestamp;				// Timestamp when you last died. This is set when you first login.
 
     uint8             m_PVPFlag;                    // pvp
 	uint8			  m_hasTractor;					// checks if player has tractor already

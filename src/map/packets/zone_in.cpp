@@ -28,6 +28,7 @@
 #include "zone_in.h"
 
 #include "../charentity.h"
+#include "../../common/timer.h"
 #include "../vana_time.h"
 #include "../zoneutils.h"
 
@@ -181,7 +182,18 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	}
 
 	WBUFL(data,(0xA0)-4) = 0x00000000;							// время, проведенное персонажем в игре с момента создания
-	WBUFL(data,(0xA4)-4) = 0x00000000;							// оставшееся время до возрождения после смерти (формат времени неизвестен)
+
+	// current death timestamp is less than an hour ago and the player is dead.
+	if (PChar->m_DeathTimestamp > 0 && ((time(NULL)-PChar->m_DeathTimestamp) < (60*60)) && PChar->isDead()) {
+		WBUFL(data,(0xA0)-4) = 0x01FFFFFF;
+
+		// 60min starts at 0x3A080 and ventures down to 0x54C0. Occasionally it fails to stick and it resets to 60min, so something is wrong.
+		WBUFL(data,(0xA4)-4) = (uint32) (0x03A080 - (60*(time(NULL) - PChar->m_DeathTimestamp)));
+
+		WBUFL(data,(0xAA)-4) = 0x01;
+		WBUFL(data,(0xAB)-4) = 0x01;
+		WBUFL(data,(0xAE)-4) = 0x01;
+	}
 
 	memcpy(data+(0xCC)-4, &PChar->stats, 14);
 

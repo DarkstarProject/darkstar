@@ -3666,7 +3666,17 @@ void saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points)
 	Sql_Query(SqlHandle,fmtQuery, indexid+1, PChar->id, points);
 }
 
+/************************************************************************
+*																		*
+*  Record now as when the character has died and save it to the db.		*
+*																		*
+************************************************************************/
 
+void SaveDeathTime(CCharEntity* PChar)
+{
+	const int8* fmtQuery = "UPDATE char_stats SET death = %u WHERE charid = %u LIMIT 1;";
+	Sql_Query(SqlHandle, fmtQuery, (uint32)time(NULL), PChar->id);
+}
 
 
 } // namespace charutils
