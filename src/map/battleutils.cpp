@@ -514,7 +514,7 @@ uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
 }
 
 int count = 5;
-bool HandleSpikes(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damage)
+bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damage)
 {
     uint16 spikes = PDefender->getMod(MOD_SPIKES);
     if(spikes)
@@ -535,19 +535,11 @@ bool HandleSpikes(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t
             Action->subeffect = SUBEFFECT_ICE_SPIKES;
             PAttacker->addHP(-Action->subparam);
 
-            // random chance to paralyze
-            if(rand()%100 <= 25+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false){
-                PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 30, 0, 30));
-            }
             break;
             case SPIKE_SHOCK:
             Action->subeffect = SUBEFFECT_SHOCK_SPIKES;
             PAttacker->addHP(-Action->subparam);
 
-            // random chance to stun
-            if(rand()%100 <= 25+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false){
-                PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_STUN, EFFECT_STUN, 1, 0, 3));
-            }
             break;
             case SPIKE_DREAD:
             if(PAttacker->m_EcoSystem == SYSTEM_UNDEAD){
@@ -577,6 +569,30 @@ bool HandleSpikes(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t
     }
 
     return true;
+}
+
+void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t Action)
+{
+	int lvlDiff = dsp_cap((Action.ActionTarget->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
+	switch(Action.subeffect)
+	{
+		case SUBEFFECT_ICE_SPIKES:
+		{
+			if(rand()%100 <= 25+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false){
+				PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 30, 0, 30));
+			}
+			break;
+		}
+		case SUBEFFECT_SHOCK_SPIKES:
+		{
+            if(rand()%100 <= 25+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false){
+                PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_STUN, EFFECT_STUN, 1, 0, 3));
+            }
+			break;
+		}
+		default:
+			break;
+	}
 }
 
 /************************************************************************

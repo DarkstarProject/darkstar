@@ -140,8 +140,9 @@ namespace battleutils
 
 	float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
-    uint16                CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType);
-    bool                HandleSpikes(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint16 damage);
+    uint16              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType);
+    bool                HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint16 damage);
+	void				HandleSpikesStatusEffect(CBattleEntity* Pattacker, apAction_t Action);
 	void				HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 damage);
 	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint16				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
