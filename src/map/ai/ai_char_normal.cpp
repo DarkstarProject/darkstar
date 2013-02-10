@@ -3029,9 +3029,14 @@ void CAICharNormal::ActionAttack()
 					((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmity(m_PChar, 0, 0);
 				}
 
-				if (Action.reaction != REACTION_EVADE)
+				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 				{
-					battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
+
+                    // spikes take priority over enspells
+					if(!battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage)){
+                        // no spikes, handle enspell
+                       battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
+                   }
 				}
 				m_PChar->m_ActionList.push_back(Action);
 

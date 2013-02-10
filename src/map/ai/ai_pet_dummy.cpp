@@ -710,6 +710,12 @@ void CAIPetDummy::ActionAttack()
 
                 Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
 
+                // spike effect
+				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
+				{
+					battleutils::HandleSpikesDamage(m_PPet, m_PBattleTarget, &Action, damage);
+				}
+
 				m_PPet->m_ActionList.push_back(Action);
 
 				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
