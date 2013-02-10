@@ -393,7 +393,8 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			int subparamOffset = 16;
 
 			// flag 2 subeffect 10 bit
-			if(Action.flag == 2){
+			// only change for spikes
+			if(Action.flag == 2 && Action.subeffect >= 1 && Action.subeffect <= 6){
 				subeffectOffset = 10;
 				subparamOffset = 13;
 			}
