@@ -17,5 +17,9 @@ function onSpellCast(caster,target,spell)
    target:delStatusEffect(EFFECT_ICE_SPIKES);
    target:delStatusEffect(EFFECT_SHOCK_SPIKES);
    target:delStatusEffect(EFFECT_DREAD_SPIKES);
-    target:addStatusEffect(EFFECT_SHOCK_SPIKES,0,0,duration);
+
+    local int = caster:getStat(MOD_INT);
+    local magicAtk = caster:getMod(MOD_MATT);
+    local power = ((int + 10) / 20 + 2) * (1 + (magicAtk / 100));
+    target:addStatusEffect(EFFECT_SHOCK_SPIKES,power,0,duration);
 end;

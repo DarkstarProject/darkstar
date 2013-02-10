@@ -18,5 +18,12 @@ function onSpellCast(caster,target,spell)
    target:delStatusEffect(EFFECT_SHOCK_SPIKES);
    target:delStatusEffect(EFFECT_DREAD_SPIKES);
    target:delStatusEffect(EFFECT_REPRISAL);
-    target:addStatusEffect(EFFECT_REPRISAL,0,0,duration);
+
+    local int = caster:getStat(MOD_MND);
+    local magicAtk = caster:getMod(MOD_MATT);
+
+    -- totally guessing
+    local power = ((int + 10) / 20 + 2) * (1 + (magicAtk / 100));
+
+    target:addStatusEffect(EFFECT_REPRISAL,power,0,duration);
 end;

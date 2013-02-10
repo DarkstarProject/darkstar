@@ -13,9 +13,15 @@ function onSpellCast(caster,target,spell)
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;
 	end
+
+    local int = caster:getStat(MOD_INT);
+    local magicAtk = caster:getMod(MOD_MATT);
+    local power = ((int + 2) / 12 + 4) * (1 + (magicAtk / 100));
+
    target:delStatusEffect(EFFECT_BLAZE_SPIKES);
    target:delStatusEffect(EFFECT_ICE_SPIKES);
    target:delStatusEffect(EFFECT_SHOCK_SPIKES);
    target:delStatusEffect(EFFECT_DREAD_SPIKES);
-   target:addStatusEffect(EFFECT_BLAZE_SPIKES,0,0,duration);
+
+   target:addStatusEffect(EFFECT_BLAZE_SPIKES,power,0,duration);
 end;

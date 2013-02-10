@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SPIKES,3);
+    target:addMod(MOD_SPIKES,5);
     target:addMod(MOD_SPIKES_DMG, effect:getPower());
 end;
 
@@ -25,6 +25,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_SPIKES,3);
+    target:delMod(MOD_SPIKES,5);
     target:delMod(MOD_SPIKES_DMG, effect:getPower());
 end;

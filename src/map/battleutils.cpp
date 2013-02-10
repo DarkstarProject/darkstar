@@ -494,72 +494,85 @@ uint32 HandleSpecialPhysicalDamageReduction(CCharEntity* PChar, uint32 damage, a
 
 }
 
-uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType)
+uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType, uint16 damageTaken)
 {
     uint16 damage = PDefender->getMod(MOD_SPIKES_DMG);
     int16 intStat = PDefender->INT();
     int16 mattStat = PDefender->getMod(MOD_MATT);
 
     switch(spikesType){
-        case SPIKE_BLAZE:
-            damage += ((((float)intStat + 2.0) / 12.0) + 4.0 ) * (1.0 + ((float)mattStat / 100.0));
+        case SPIKE_DREAD:
+            // drain same as damage taken
+            damage = damageTaken;
         break;
-        case SPIKE_ICE:
-        case SPIKE_SHOCK:
-            damage += ((((float)intStat + 10.0) / 20) + 2.0 ) * (1.0 + ((float)mattStat / 100.0));
+        case SPIKE_REPRISAL:
+            damage += (float)damageTaken*0.3;
+            if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SENTINEL)){
+                // bonus
+                damage *= rand()%2+1;
+            }
+        break;
+        default:
         break;
     }
 
     return damage;
 }
 
-int count = 5;
 bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damage)
 {
     uint16 spikes = PDefender->getMod(MOD_SPIKES);
     if(spikes)
     {
-        Action->subparam = CalculateSpikeDamage(PAttacker, PDefender, spikes);
-        Action->flag = 2;
+        Action->subparam = CalculateSpikeDamage(PAttacker, PDefender, spikes, damage);
         Action->submessageID = 44;
 
         // handle level diff
         int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
 
         switch(spikes){
+
             case SPIKE_BLAZE:
             Action->subeffect = SUBEFFECT_BLAZE_SPIKES;
             PAttacker->addHP(-Action->subparam);
             break;
+
             case SPIKE_ICE:
             Action->subeffect = SUBEFFECT_ICE_SPIKES;
             PAttacker->addHP(-Action->subparam);
-
             break;
+
             case SPIKE_SHOCK:
             Action->subeffect = SUBEFFECT_SHOCK_SPIKES;
             PAttacker->addHP(-Action->subparam);
-
             break;
+
             case SPIKE_DREAD:
-            if(PAttacker->m_EcoSystem == SYSTEM_UNDEAD){
-                // is undead no effect
-                Action->flag = 0;
-                return false;
-            } else {
-                Action->submessageID = 132;
-                // drain same as damage taken
-                Action->subparam = damage;
+                if(PAttacker->m_EcoSystem == SYSTEM_UNDEAD){
+                    // is undead no effect
+                    return false;
+                } else {
+                    Action->submessageID = 132;
 
-                PAttacker->addHP(-Action->subparam);
-                PDefender->addHP(Action->subparam);
+                    PAttacker->addHP(-Action->subparam);
+                    PDefender->addHP(Action->subparam);
 
-                if(PDefender->objtype == TYPE_PC){
-                    charutils::UpdateHealth((CCharEntity*)PDefender);
+                    if(PDefender->objtype == TYPE_PC){
+                        charutils::UpdateHealth((CCharEntity*)PDefender);
+                    }
+
+                    Action->subeffect = SUBEFFECT_DREAD_SPIKES;
                 }
+            break;
 
-                Action->subeffect = SUBEFFECT_DREAD_SPIKES;
-            }
+            case SPIKE_REPRISAL:
+                if(Action->reaction == REACTION_BLOCK){
+                    Action->subeffect = SUBEFFECT_REPRISAL;
+                    PAttacker->addHP(-Action->subparam);
+                } else {
+                    // only works on shield blocks
+                    return false;
+                }
             break;
         }
 
@@ -568,6 +581,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         // deal with spikes effect gear
     }
 
+    Action->flag = 2;
     return true;
 }
 

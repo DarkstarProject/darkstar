@@ -69,8 +69,10 @@ enum SPIKES
     SPIKE_NONE            = 0,
     SPIKE_BLAZE           = 1,
     SPIKE_ICE           = 2,
-    SPIKE_SHOCK             = 3,
-    SPIKE_DREAD           = 4
+    SPIKE_DREAD           = 3,
+    SPIKE_CURSE           = 4,
+    SPIKE_SHOCK             = 5,
+    SPIKE_REPRISAL             = 6
 };
 
 enum TARGET_PARTY_TYPE
