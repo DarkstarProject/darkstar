@@ -375,7 +375,13 @@ uint16 CBattleEntity::CHR()
 
 uint16 CBattleEntity::ATT()
 {
-    int32 ATT = 8 + m_modStat[MOD_ATT] + STR() / 2;
+    int32 ATT = 8 + m_modStat[MOD_ATT];
+	if (m_Weapons[SLOT_MAIN]->isTwoHanded())
+	{
+		ATT += (STR() * 3) / 4;
+	} else {
+		ATT += (STR()) / 2;
+	}
 	if (this->objtype & TYPE_PC){
 		ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType());
 	}
