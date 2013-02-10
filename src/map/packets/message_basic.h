@@ -87,7 +87,18 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_MIGHT_BE_ABLE_CHARM	= 213, /* The <player> might be able to charm <target>. */
 	MSGBASIC_SHOULD_BE_ABLE_CHARM	= 214, /* The <player> should be able to charm <target>. */
 	/* BLU */
-	MSGBASIC_LEARNS_SPELL			= 419 /* <target> learns (NULL)! */
+	MSGBASIC_LEARNS_SPELL			= 419, /* <target> learns (NULL)! */
+	/* COR */
+	MSGBASIC_ROLL_MAIN				= 420, /* The <player> uses .. The total comes to ..! <target> receives the effect of .. */
+	MSGBASIC_ROLL_SUB				= 421, /* <target> receives the effect of .. */
+	MSGBASIC_ROLL_MAIN_FAIL			= 422, /* The <player> uses .. The total comes to ..! No effect on <target>. */
+	MSGBASIC_ROLL_SUB_FAIL			= 423, /* No effect on <target>. */
+	MSGBASIC_DOUBLEUP				= 424, /* The <player> uses Double-Up. The total for . increases to ..! <target> receives the effect of .. */
+	MSGBASIC_DOUBLEUP_FAIL			= 425, /* The <player> uses Double-Up. The total for . increases to ..! No effect on <target>. */
+	MSGBASIC_DOUBLEUP_BUST			= 426, /* The <player> uses Double-Up. Bust! <target> loses the effect of .. */
+	MSGBASIC_DOUBLEUP_BUST_SUB		= 427, /* <target> loses the effect of .. */
+	MSGBASIC_NO_ELIGIBLE_ROLL		= 428, /* There are no rolls eligible for Double-Up. Unable to use ability. */
+	MSGBASIC_ROLL_ALREADY_ACTIVE	= 429  /* The same roll is already active on the <player>. */
 };
 
 /************************************************************************

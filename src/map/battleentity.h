@@ -342,7 +342,7 @@ struct apAction_t
 	CBattleEntity*	ActionTarget;		// 32 bits
 	REACTION		reaction;			//  5 bits
 	uint16			animation;			// 10 bits
-	SPECEFFECT		speceffect;			// 10 bits
+	SPECEFFECT		speceffect;			//  9 bits
 	uint16			param;				// 16 bits
 	uint16			messageID;			// 10 bits
   //...

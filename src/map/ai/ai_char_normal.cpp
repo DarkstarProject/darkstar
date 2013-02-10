@@ -1785,6 +1785,24 @@ void CAICharNormal::ActionJobAbilityStart()
 			}
 		}
 
+		if (m_PJobAbility->getID() == ABILITY_DOUBLE_UP && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_UP_CHANCE)) {
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_NO_ELIGIBLE_ROLL));
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PJobAbility = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+
+		if (m_PJobAbility->getID() >= ABILITY_FIGHTERS_ROLL && m_PJobAbility->getID() <= ABILITY_SCHOLARS_ROLL &&
+			m_PChar->StatusEffectContainer->HasStatusEffect(battleutils::getCorsairRollEffect(m_PJobAbility->getID()))) 
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ROLL_ALREADY_ACTIVE));
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PJobAbility = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+
 		// If there's not enough TP for a move, then reject it. If the JA isn't a dance, then this will fail
 		if (battleutils::HasNotEnoughTpForDance(m_PChar, m_PJobAbility, false)) {
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
@@ -1867,9 +1885,133 @@ void CAICharNormal::ActionJobAbilityFinish()
     apAction_t Action;
 	m_PChar->m_ActionList.clear();
 
-    // TODO: бардак. тоже выкинуть отсюда
+	if (m_PJobAbility->getID() >= ABILITY_FIGHTERS_ROLL && m_PJobAbility->getID() <= ABILITY_SCHOLARS_ROLL)
+	{
+		m_PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
+		uint8 roll = (rand() % 6) + 1;
+		m_PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
+			EFFECT_DOUBLE_UP_CHANCE, 
+			EFFECT_DOUBLE_UP_CHANCE,
+			roll, 
+			0, 
+			45, 
+			m_PJobAbility->getID(), 
+			m_PJobAbility->getAnimationID(), 
+			battleutils::getCorsairRollEffect(m_PJobAbility->getID())
+		), true);
 
-	if (m_PJobAbility->getID() >= ABILITY_HEALING_RUBY)
+		Action.reaction   = REACTION_NONE;
+		Action.speceffect = (SPECEFFECT)roll;
+		Action.animation  = m_PJobAbility->getAnimationID();
+		Action.param	  = roll;
+		Action.flag		  = 0;
+
+		if (m_PChar->PParty != NULL)
+		{
+			for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
+			{
+				CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+
+				if(!PTarget->isDead() &&
+					PTarget->getZone() == m_PChar->getZone() &&
+					distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
+				{
+					Action.ActionTarget = PTarget;
+
+					if (PTarget->id == m_PChar->id){
+						Action.messageID = m_PJobAbility->getMessage();
+					} else {
+						Action.messageID  = MSGBASIC_ROLL_SUB;
+					}
+
+					m_PChar->m_ActionList.push_back(Action);
+				}
+			}
+		} else {
+			Action.ActionTarget = m_PBattleSubTarget;
+			Action.messageID	= m_PJobAbility->getMessage();
+
+			m_PChar->m_ActionList.push_back(Action);
+		}
+	}
+
+	else if (m_PJobAbility->getID() == ABILITY_DOUBLE_UP )
+	{
+		uint8 roll = (rand() % 6) + 1;
+		CStatusEffect* doubleUpEffect = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DOUBLE_UP_CHANCE);
+		uint8 total = doubleUpEffect->GetPower() + roll;
+		if (total > 12)
+		{
+			total = 12;
+		}
+		doubleUpEffect->SetPower(total);
+
+		Action.animation	= doubleUpEffect->GetSubPower();
+		Action.reaction		= REACTION_NONE;
+		Action.speceffect	= (SPECEFFECT)roll;
+		Action.param		= total;
+		Action.flag			= 0;
+
+		if (total == 12) //bust!
+		{
+			if (m_PChar->PParty != NULL)
+			{
+				for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
+				{
+					CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+
+					if(!PTarget->isDead() &&
+						PTarget->getZone() == m_PChar->getZone() &&
+						distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
+					{
+						Action.ActionTarget = PTarget;
+						if (PTarget->id == m_PChar->id){
+							Action.messageID = MSGBASIC_DOUBLEUP_BUST;
+						} else {
+							Action.messageID  = MSGBASIC_DOUBLEUP_BUST_SUB;
+						}
+						m_PChar->m_ActionList.push_back(Action);
+					}
+				}
+			} else {
+				Action.ActionTarget = m_PBattleSubTarget;
+				Action.messageID	= MSGBASIC_DOUBLEUP_BUST;
+
+				m_PChar->m_ActionList.push_back(Action);
+			}
+			m_PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
+		} else {
+			if (m_PChar->PParty != NULL)
+			{
+				for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
+				{
+					CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+
+					if(!PTarget->isDead() &&
+						PTarget->getZone() == m_PChar->getZone() &&
+						distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
+					{
+						Action.ActionTarget = PTarget;
+						if (PTarget->id == m_PChar->id){
+							Action.messageID = m_PJobAbility->getMessage();
+						} else {
+							Action.messageID  = MSGBASIC_ROLL_SUB;
+						}
+
+						m_PChar->m_ActionList.push_back(Action);
+					}
+				}
+			} else {
+				Action.ActionTarget = m_PBattleSubTarget;
+				Action.messageID	= m_PJobAbility->getMessage();
+
+				m_PChar->m_ActionList.push_back(Action);
+			}
+		}
+	}
+
+    // TODO: бардак. тоже выкинуть отсюда
+	else if (m_PJobAbility->getID() >= ABILITY_HEALING_RUBY)
     {
 		if (m_PChar->PPet!=NULL) //is a bp - dont display msg and notify pet
         {

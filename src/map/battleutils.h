@@ -183,6 +183,7 @@ namespace battleutils
 	TARGET_PARTY_TYPE	getAvailableAoeTargets(CBattleEntity* PTarget);
 	bool				handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apAction_t* Action, CMobSkill* PMobSkill, position_t* radiusAround);
 	uint16				GetMobSkillMessage(CMobSkill* skill);
+	EFFECT				getCorsairRollEffect(uint16 id);
 
 };
 

@@ -45,8 +45,10 @@ public:
 	uint8	m_StatusIcons[32];									// иконки статус-эффектов
 
 	bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
-	void AddStatusEffect(CStatusEffect* StatusEffect);
+	//bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls);
+	void AddStatusEffect(CStatusEffect* StatusEffect, bool silent = false);
 	bool DelStatusEffect(EFFECT StatusID);
+	bool DelStatusEffectSilent(EFFECT StatusID);
 	bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
     void DelStatusEffectsByFlag(uint16 flag);                   // удаляем все эффекты с указанным типом
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
@@ -57,11 +59,12 @@ public:
 	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
 
 	EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
-    uint8 EraseAllStatusEffect(); // erases all status effects
+    uint8 EraseAllStatusEffect();								// erases all status effects
 	EFFECT DispelStatusEffect();                                // удаляем первый положительный эффект
-    uint8 DispelAllStatusEffect(); // dispels all status effects
-    CStatusEffect* StealStatusEffect(); // dispels one effect and returns it
+    uint8 DispelAllStatusEffect();								// dispels all status effects
+    CStatusEffect* StealStatusEffect();							// dispels one effect and returns it
 
+	CStatusEffect* GetStatusEffect(EFFECT StatusID);
     CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);
 
     void UpdateStatusIcons();                                   // пересчитываем иконки эффектов
@@ -80,7 +83,7 @@ private:
 
 	CBattleEntity* m_POwner;
 
-	void RemoveStatusEffect(uint32 id);							// удаляем эффект по его номеру в контейнере
+	void RemoveStatusEffect(uint32 id, bool silent = false);	// удаляем эффект по его номеру в контейнере
 	void SetEffectParams(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
 
 	uint32 m_EffectCheckTime;

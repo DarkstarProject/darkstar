@@ -145,7 +145,7 @@ uint8 CStatusEffectContainer::GetEffectsCount(uint16 SubID)
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect)
+void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool silent)
 {
 	if(PStatusEffect != NULL)
 	{
@@ -171,7 +171,9 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect)
             if (PStatusEffect->GetIcon() != 0)
             {
                 UpdateStatusIcons();
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
+				if (silent == false){
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
+				}
             }
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
@@ -191,7 +193,7 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect)
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
+void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 {
     CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
 
@@ -209,7 +211,10 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id)
         if (PStatusEffect->GetIcon() != 0)
         {
             UpdateStatusIcons();
-            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 206));
+			if (silent == false)
+			{
+				PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 206));
+			}
         }
         if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
@@ -240,6 +245,19 @@ bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID)
 		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
 		{
 			RemoveStatusEffect(i);
+			return true;
+		}
+	}
+	return false;
+}
+
+bool CStatusEffectContainer::DelStatusEffectSilent(EFFECT StatusID)
+{
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+	{
+		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
+		{
+			RemoveStatusEffect(i, true);
 			return true;
 		}
 	}
@@ -504,6 +522,58 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
 	return false;
 }
 
+/*bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls)
+{
+	//break if not a COR roll.
+	DSP_DEBUG_BREAK_IF(!(PStatusEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+		PStatusEffect->GetStatusID() <= EFFECT_SCHOLARS_ROLL));
+
+	//if all match tier/id/effect then overwrite
+
+	//if tier/effect match then overwrite //but id doesn't, NO EFFECT
+	//if targ has <2 of your rolls on, then just apply
+	//if targ has 2 of your rolls, remove oldest one and apply this one.
+
+	uint8 numOfEffects = 0;
+	CStatusEffect* oldestSong = NULL;
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+	{
+		if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+			m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) //is a cor effect
+		{
+			if(m_StatusEffectList.at(i)->GetStatusID()==PStatusEffect->GetStatusID()){//same tier/type, overwrite
+					//OVERWRITE
+					DelStatusEffectWithPower(PStatusEffect->GetStatusID(),PStatusEffect->GetPower());
+					AddStatusEffect(PStatusEffect);
+					return true;
+			}
+			if(m_StatusEffectList.at(i)->GetSubID() == PStatusEffect->GetSubID()){//YOUR BRD effect
+				numOfEffects++;
+				if(oldestSong==NULL){
+					oldestSong = m_StatusEffectList.at(i);
+				}
+				else if(m_StatusEffectList.at(i)->GetDuration() + m_StatusEffectList.at(i)->GetStartTime() <
+					oldestSong->GetDuration() + oldestSong->GetStartTime()){
+						oldestSong = m_StatusEffectList.at(i);
+				}
+			}
+		}
+	}
+
+	if(numOfEffects<maxRolls){
+		AddStatusEffect(PStatusEffect);
+		return true;
+	}
+	else{
+		//overwrite oldest
+		DelStatusEffectWithPower(oldestSong->GetStatusID(),oldestSong->GetPower());
+		AddStatusEffect(PStatusEffect);
+		return true;
+	}
+
+	return false;
+}*/
+
 /************************************************************************
 *                                                                       *
 *  Проверяем наличие статус-эффекта	в контейнере с уникальным subid     *
@@ -521,6 +591,19 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID, uint16 SubID)
 		}
 	}
 	return false;
+}
+
+
+CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID)
+{
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+	{
+		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
+		{
+			return m_StatusEffectList[i];
+		}
+	}
+	return 0;
 }
 
 /************************************************************************
