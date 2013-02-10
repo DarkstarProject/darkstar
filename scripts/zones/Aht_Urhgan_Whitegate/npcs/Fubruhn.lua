@@ -27,6 +27,22 @@
 require("scripts/globals/status")
 require("scripts/globals/moglocker")
 
+function getNumberOfCoinsToUpgradeSize(size)
+    if (size == 30) then
+        return 4;
+    elseif (size == 40) then
+        return 2;
+    elseif (size == 50) then
+        return 3;
+    elseif (size == 60) then
+        return 5;
+    elseif (size == 70) then
+        return 10;
+    elseif (size == 80) then
+        return 0;
+    end
+end
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -36,15 +52,38 @@ function onTrade(player,npc,trade)
     local numMythril = trade:getItemQty(2186);
     local numGold = trade:getItemQty(2187);
     
-    if (numBronze > 0) then
-    print("Expand lease with "..numBronze.." bronze.");
+    if (numBronze > 0 and numMythril == 0 and numGold == 0) then
         if (addMogLockerExpiryTime(player, numBronze)) then
             -- remove bronze
+            player:tradeComplete();
             -- send event
-            print("Expanded lease with "..numBronze.." bronze.");
+            player:startEvent(0x0259, getMogLockerExpiryTimestamp(player));
+            -- print("Expanded lease with "..numBronze.." bronze.");
         end
     elseif (numGold > 0 or numMythril > 0) then
         -- see if we can expand the size
+        local slotSize = player:getContainerSize(LOC_MOGLOCKER);
+        if (slotSize == 30 and numMythril == 4 and numGold == 0) then
+            player:changeContainerSize(LOC_MOGLOCKER, 10);
+            player:tradeComplete();
+            player:startEvent(0x025A,0,0,0,40);
+        elseif (slotSize == 40 and numMythril == 0 and numGold == 2) then
+            player:changeContainerSize(LOC_MOGLOCKER, 10);
+            player:tradeComplete();
+            player:startEvent(0x025A,0,0,0,50);
+        elseif (slotSize == 50 and numMythril == 0 and numGold == 3) then
+            player:changeContainerSize(LOC_MOGLOCKER, 10);
+            player:tradeComplete();
+            player:startEvent(0x025A,0,0,0,60);
+        elseif (slotSize == 60 and numMythril == 0 and numGold == 5) then
+            player:changeContainerSize(LOC_MOGLOCKER, 10);
+            player:tradeComplete();
+            player:startEvent(0x025A,0,0,0,70);
+        elseif (slotSize == 70 and numMythril == 0 and numGold == 10) then
+            player:changeContainerSize(LOC_MOGLOCKER, 10);
+            player:tradeComplete();
+            player:startEvent(0x025A,0,0,0,80);
+        end
     end
     
     
@@ -72,7 +111,7 @@ function onTrigger(player,npc)
     
     player:startEvent(0x0258,mogLockerExpiryTimestamp,accessType,
     MOGLOCKER_ALZAHBI_VALID_DAYS,player:getContainerSize(LOC_MOGLOCKER),
-    0,0,0,
+    getNumberOfCoinsToUpgradeSize(player:getContainerSize(LOC_MOGLOCKER)),2,3,
     MOGLOCKER_ALLAREAS_VALID_DAYS,0);
 end; 
 
