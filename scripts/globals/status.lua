@@ -811,3 +811,15 @@ TYPE_NPC	= 0x02
 TYPE_MOB	= 0x04
 TYPE_PET	= 0x08
 TYPE_SHIP   = 0x10
+
+-----------------------------------
+-- Inventory enum
+-----------------------------------
+
+LOC_INVENTORY   = 0
+LOC_MOGSAFE     = 1
+LOC_STORAGE     = 2
+LOC_TEMPITEMS   = 3
+LOC_MOGLOCKER   = 4
+LOC_MOGSATCHEL  = 5
+LOC_MOGSACK     = 6
