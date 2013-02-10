@@ -344,7 +344,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 				ActionTypeNumber = ActionType;
 				break;
 		}
-	} 
+	}
 	else if (ActionType == ACTION_MOBABILITY_FINISH)
 	{
 		if (PEntity->PBattleAI->GetCurrentMobSkill()->getFlag() == 1)

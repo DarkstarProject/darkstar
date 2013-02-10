@@ -2816,7 +2816,11 @@ void CAICharNormal::ActionAttack()
 			{
 				numattacksLeftHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_SUB]);
 			}
-			if(m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH){ //h2h equipped!
+
+            bool isHTH = m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH;
+
+			if(isHTH){ //h2h equipped!
+
 				numattacksLeftHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]);
 				if(m_PChar->GetMJob() == JOB_MNK)
 				{
@@ -2842,7 +2846,7 @@ void CAICharNormal::ActionAttack()
 					}
 					Action.ActionTarget = NULL;
 
-					if (m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() != DAMAGE_HTH && i>=numattacksRightHand)
+					if (!isHTH && i>=numattacksRightHand)
 					{
 						PWeapon = m_PChar->m_Weapons[SLOT_SUB];
 						fstrslot = SLOT_SUB;
@@ -2948,7 +2952,7 @@ void CAICharNormal::ActionAttack()
 						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
 
 
-					if (PWeapon->getDmgType() == DAMAGE_HTH)
+					if (isHTH)
 					{
 						// (ffxiclopedia h2h) remove 3 dmg from weapon, DB has an extra 3 for weapon rank
 

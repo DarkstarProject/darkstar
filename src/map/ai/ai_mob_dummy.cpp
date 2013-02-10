@@ -1510,7 +1510,7 @@ void CAIMobDummy::ActionAttack()
 
 
 	                    // spike effect
-						if (Action.reaction != REACTION_EVADE)
+						if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 						{
 							battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage);
 						}

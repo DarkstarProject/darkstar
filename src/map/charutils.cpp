@@ -313,7 +313,7 @@ void LoadChar(CCharEntity* PChar)
 
 	LoadCharUnlockedWeapons(PChar);
 
-	const int8* fmtQuery = 
+	const int8* fmtQuery =
         "SELECT "
           "charname,"       //  0
           "pos_zone,"       //  1
@@ -1343,6 +1343,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HASSO);
 						PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEIGAN);
 					}
+
 				}
 				PChar->look.main = PItem->getModelId();
 			}
@@ -1402,7 +1403,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 					CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
 					if ((weapon != NULL) && (weapon->getType() & ITEM_WEAPON))
 					{
-						if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType() || 
+						if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType() ||
 							((CItemWeapon*)PItem)->getSubSkillType() != weapon->getSubSkillType())
 						{
 							UnequipItem(PChar,SLOT_AMMO);
@@ -1562,7 +1563,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				}
 				PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, equipSlotID);
 				PChar->PLatentEffectContainer->CheckLatentsEquip(equipSlotID);
-				
+
 				PChar->status = STATUS_UPDATE;
 				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
 				PChar->pushPacket(new CCharAppearancePacket(PChar));
@@ -1574,6 +1575,14 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
     if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED)
     {
         PChar->health.tp = 0;
+        // fixes logging in with no h2h
+        if(PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_NONE && PChar->GetMJob() == JOB_MNK){
+            PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();
+        } else if(PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem() && PChar->GetMJob() != JOB_MNK) {
+            // return back to normal if changed jobs
+            PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedItem();
+        }
+
         BuildingCharWeaponSkills(PChar);
     }
 
@@ -2872,7 +2881,7 @@ uint8 GetHighestTreasureHunter(CCharEntity* PChar, CMobEntity* PMob)
 	bool thf_in_party = true;
 	uint8 highestTH = PMob->m_THLvl;
 	if (map_config.thf_in_party_for_drops == 1) {
-		if(PChar->PParty != NULL) { // There's a party	
+		if(PChar->PParty != NULL) { // There's a party
 			if(PChar->PParty->m_PAlliance == NULL) { // but no alliance
 				thf_in_party = false;
 				for(uint8 i = 0; i < PChar->PParty->members.size(); i++) {
@@ -3069,7 +3078,7 @@ void SaveCharUnlockedWeapons(CCharEntity* PChar)
 
     for (uint16 i = 0; i < MAX_UNLOCKABLE_WEAPONS; ++i)
     {
-		UnlockedWeapons[i] = PChar->unlockedWeapons[i].unlocked; 
+		UnlockedWeapons[i] = PChar->unlockedWeapons[i].unlocked;
     }
 
 	Sql_EscapeStringLen(SqlHandle, points, (const int8*)UnlockedWeapons, MAX_UNLOCKABLE_WEAPONS);
@@ -3100,7 +3109,7 @@ void LoadCharUnlockedWeapons(CCharEntity* PChar)
         if (length == MAX_UNLOCKABLE_WEAPONS)
         {
 			for (uint16 i = 0; i < MAX_UNLOCKABLE_WEAPONS; ++i)
-		    {   
+		    {
 				PChar->unlockedWeapons[i].unlocked = unlocked[i];
             }
         }
@@ -3630,8 +3639,8 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 
 void loadCharWsPoints(CCharEntity* PChar)
 {
-	int8* fmtQuery = "SELECT itemindex, points " 
-					 "FROM char_weapon_skill_points " 
+	int8* fmtQuery = "SELECT itemindex, points "
+					 "FROM char_weapon_skill_points "
 					 "WHERE charid = %u "
 					 "ORDER BY itemindex ASC;";
 
@@ -3639,12 +3648,12 @@ void loadCharWsPoints(CCharEntity* PChar)
 
 	uint8 index = 0;
 
-	while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+	while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
 		index  = (uint16)Sql_GetUIntData(SqlHandle,0);
 		PChar->unlockedWeapons[index-1].points = (uint16)Sql_GetUIntData(SqlHandle,1);
 	}
-	
+
 }
 
 /************************************************************************
