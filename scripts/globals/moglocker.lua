@@ -67,7 +67,6 @@ function getMogLockerExpiryTimestamp(player)
     
     local now = os.time() - MOGLOCKER_START_TS;
     if (now > expiryTime) then
-        print("Locker expired: now "..now.." exptime "..expiryTime);
         player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1);
         return -1;
     end

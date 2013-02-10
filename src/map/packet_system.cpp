@@ -1153,6 +1153,18 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	CBaseEntity* PNpc = PChar->loc.zone->GetEntity(targid, TYPE_NPC);
 
+	// Moogles are zone dependent, and zoneid = 0 is for all residential areas, so if a char trades to a moogle
+	// then you won't find the right NPC if you used zoneid=0. Thankfully, the prevzone is the real zone we want
+	// so this should return an NPC.
+	if (PNpc == NULL && PChar->loc.prevzone != NULL) {
+		PNpc = zoneutils::GetZone(PChar->loc.prevzone)->GetEntity(targid, TYPE_NPC);
+		if (strcmp(PNpc->GetName(),"Moogle") != 0) {
+			// we must restrict this check only for Moogles else other NPCs could be interpreted
+			// incorrectly as targetted.
+			return;
+		}
+	}
+
 	if ((PNpc != NULL) && (PNpc->id == npcid))
 	{
         uint8 numItems = RBUFB(data,(0x3C));
@@ -1172,7 +1184,7 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		    }
 	    }
 		luautils::OnTrade(PChar, PNpc);
-	}				
+	}	
 	return;
 }
 
