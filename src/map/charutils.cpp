@@ -3589,6 +3589,20 @@ void ResetAllTwoHours()
     Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = 0");
 }
 
+bool hasMogLockerAccess(CCharEntity* PChar) {
+	int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' ";
+	int32 ret = Sql_Query(SqlHandle,fmtQuery, PChar->id, "mog-locker-expiry-timestamp");
+
+	if(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		int32 tstamp  = (int32)Sql_GetIntData(SqlHandle,0);
+		uint32 now = time(NULL) - 1009810800;
+		if (now < tstamp) {
+			return true;
+		}
+	}
+	return false;
+}
 
 
 uint8 AvatarPerpetuationReduction(CCharEntity* PChar)

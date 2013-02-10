@@ -54,6 +54,8 @@ function addMogLockerExpiryTime(player, numBronze)
     local newTs = currentTs + timeIncrease;
     
     player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, newTs);
+    -- send an invent size packet to enable the items if they weren't
+    player:changeContainerSize(LOC_MOGLOCKER,0);
     return true;
 end
 

@@ -23,6 +23,7 @@
 
 #include "../../common/socket.h"
 
+#include "../charutils.h"
 #include "inventory_size.h"
 #include "../charentity.h"
 
@@ -50,7 +51,12 @@ CInventorySizePacket::CInventorySizePacket(CCharEntity* PChar)
 	WBUFW(data,(0x16)-4) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetBuff();
     WBUFW(data,(0x18)-4) = 1 + PChar->getStorage(LOC_STORAGE)->GetBuff();
 	WBUFW(data,(0x1A)-4) = 1 + PChar->getStorage(LOC_TEMPITEMS)->GetBuff();
-	WBUFW(data,(0x1C)-4) = 1 + PChar->getStorage(LOC_MOGLOCKER)->GetBuff();
+	if (charutils::hasMogLockerAccess(PChar)) {
+		WBUFW(data,(0x1C)-4) = 1 + PChar->getStorage(LOC_MOGLOCKER)->GetBuff();
+	}
+	else {
+		WBUFW(data,(0x1C)-4) = 0x00;
+	}
 	WBUFW(data,(0x1E)-4) = 1 + PChar->getStorage(LOC_MOGSATCHEL)->GetBuff();
 	WBUFW(data,(0x20)-4) = 1 + PChar->getStorage(LOC_MOGSACK)->GetBuff();
 }
