@@ -1507,6 +1507,13 @@ void CAIMobDummy::ActionAttack()
                                 charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_SHL, m_PMob->GetMLevel());
                             }
                         } // Block skill up
+
+
+	                    // spike effect
+						if (Action.reaction != REACTION_EVADE)
+						{
+							battleutils::HandleSpikes(m_PMob, m_PBattleTarget, &Action, damage);
+						}
 					}
 					else
                     {

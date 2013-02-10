@@ -17,6 +17,10 @@ Creates by Lautan.
 
 709-717 - All mob two hour animations for dynamis
 
+800+ - CoP animations
+
 1036 - ninja ws
+
+1200+ - TOAU tp moves
 
 1304 - puppet ws

@@ -107,7 +107,7 @@ enum SKILLTYPE
 	SKILL_GKT			= 10,
 	SKILL_CLB			= 11,
 	SKILL_STF			= 12,
-	
+
 	SKILL_GUN			= 24,
 	SKILL_ARC			= 25,
 	SKILL_MRK			= 26,
@@ -128,7 +128,7 @@ enum SKILLTYPE
 	SKILL_STR			= 41,
 	SKILL_WND			= 42,
 	SKILL_BLU			= 43,
-	
+
 	SKILL_FSH			= 48,
 	SKILL_WDW			= 49,
 	SKILL_SMT			= 50,
@@ -175,9 +175,9 @@ enum SLOTTYPE
 	SLOT_LINK	= 0x10
 };
 
-// CROSSBOW и GUN - это Piercing, разделение сделано из-за одинакового skilltype 
+// CROSSBOW и GUN - это Piercing, разделение сделано из-за одинакового skilltype
 // для возможности различить эти орудия при экипировке и избавиться от ошибки
-// использования пуль с арбалетом и арбалетных стрел с огнестрельным оружием (только персонажи) 
+// использования пуль с арбалетом и арбалетных стрел с огнестрельным оружием (только персонажи)
 
 enum DAMAGETYPE
 {
@@ -222,16 +222,19 @@ enum SUBEFFECT
 	SUBEFFECT_DARKNESS_DAMAGE	 = 4,	// 100010	17
 	SUBEFFECT_POISON			 = 5,	// 101010	21
 	SUBEFFECT_BLIND				 = 6,	// 100110	25
-	SUBEFFECT_DEFENS_DOWN		 = 9,	// 101001	37
+	SUBEFFECT_PETRIFY			 = 7,
+	//8 paralyze? stun?
+	SUBEFFECT_DEFENSE_DOWN		 = 9,	// 101001	37
+	SUBEFFECT_SHIELD			 = 10,
 	SUBEFFECT_BLOOD_WEAPON		 = 11,
 
 	//flag 2
 	SUBEFFECT_BLAZE_SPIKES		= 1,	// 011000	 6
 	SUBEFFECT_ICE_SPIKES		= 2,	// 010100	10
 	SUBEFFECT_DREAD_SPIKES		= 3,	// 011100	14
-	SUBEFFECT_UNK_1_SPIKES		= 4,	// 010010	18
+	SUBEFFECT_DARK_SPIKES		= 4,	// 010010	18
 	SUBEFFECT_SHOCK_SPIKES		= 5, 	// 011010	22
-	SUBEFFECT_UNK_2_SPIKES		= 6,	// 010110	26
+	SUBEFFECT_REPRISAL		 	= 6,	// 010110	26
 
 	//flag 3
 	SUBEFFECT_FIRE_DAMAGE		= 0,	// 110000	 3
@@ -239,18 +242,24 @@ enum SUBEFFECT
 	SUBEFFECT_LIGHTNING_DAMAGE	= 2,	// 110100	11
 	SUBEFFECT_LIGHT_DAMAGE		= 3,	// 111100	15
 	SUBEFFECT_SLEEP				= 4,	// 110010	19
+	// 5 curse?
+	// 6 shock, thunder stuff
+	// 7 curse
+	// 8 weight? or evasion down?
+	// 9 weight? or evasion down?
 	SUBEFFECT_HP_DRAIN			= 10,	// 110101	43
+	// 11 drain tp or attribute drain
 
 	//SKILLCHAINS
 
-	//flag 1                            
-	SUBEFFECT_DARKNESS          = 1,   
-	SUBEFFECT_FRAGMENTATION     = 2,	  
-	SUBEFFECT_FUSION            = 3,     
-	SUBEFFECT_LIQUEFACATION     = 4,       
-	SUBEFFECT_REVERBERATION     = 5,		
-	SUBEFFECT_SCISSION			= 6,	   
-	SUBEFFECT_IMPACTION			= 7,	   
+	//flag 1
+	SUBEFFECT_DARKNESS          = 1,
+	SUBEFFECT_FRAGMENTATION     = 2,
+	SUBEFFECT_FUSION            = 3,
+	SUBEFFECT_LIQUEFACATION     = 4,
+	SUBEFFECT_REVERBERATION     = 5,
+	SUBEFFECT_SCISSION			= 6,
+	SUBEFFECT_IMPACTION			= 7,
 
 	//flag 3
 	SUBEFFECT_LIGHT				= 10,   // 0
@@ -266,7 +275,7 @@ enum SUBEFFECT
     //UNKNOWN
 
 	SUBEFFECT_MP_DRAIN,
-	SUBEFFECT_TP_DRAIN,
+	SUBEFFECT_TP_DRAIN, //100
 	SUBEFFECT_SILENCE,
 	SUBEFFECT_PARALYSIS,
 	SUBEFFECT_BIND,
@@ -275,7 +284,7 @@ enum SUBEFFECT
 	SUBEFFECT_CURSE,
 	SUBEFFECT_IMPAIRS_EVASION,
 	SUBEFFECT_WEAKENS_ATTACKS,
-	SUBEFFECT_AUDPICE,
+	SUBEFFECT_AUSPICE,
 };
 
 enum TARGETTYPE
@@ -292,7 +301,7 @@ enum TARGETTYPE
 enum SKILLCHAIN_ELEMENT
 {
     SC_NONE          =  0, // Lv0 None
-    
+
     SC_TRANSFIXION   =  1, // Lv1 Light
     SC_COMPRESSION   =  2, // Lv1 Dark
     SC_LIQUEFACTION  =  3, // Lv1 Fire
@@ -303,10 +312,10 @@ enum SKILLCHAIN_ELEMENT
     SC_IMPACTION     =  8, // Lv1 Thunder
 
     SC_GRAVITATION   =  9, // Lv2 Dark & Earth
-    SC_DISTORTION    = 10, // Lv2 Water & Ice 
+    SC_DISTORTION    = 10, // Lv2 Water & Ice
     SC_FUSION        = 11, // Lv2 Fire & Light
     SC_FRAGMENTATION = 12, // Lv2 Wind & Thunder
-    
+
     SC_LIGHT         = 13, // Lv3 Fire, Light, Wind, Thunder
     SC_DARKNESS      = 14, // Lv3 Dark, Earth, Water, Ice
     SC_LIGHT_II      = 15, // Lv4 Light
@@ -336,7 +345,7 @@ struct apAction_t
 	CBattleEntity*	ActionTarget;		// 32 bits
 	REACTION		reaction;			//  5 bits
 	uint16			animation;			// 10 bits
-	SPECEFFECT		speceffect;			// 10 bits 
+	SPECEFFECT		speceffect;			// 10 bits
 	uint16			param;				// 16 bits
 	uint16			messageID;			// 10 bits
   //...
@@ -352,7 +361,7 @@ struct apAction_t
 *																		*
 ************************************************************************/
 
-struct health_t 
+struct health_t
 {
     float   tp;                 // текущее значение
     int32   hp, mp;             // текущие значения
@@ -362,7 +371,7 @@ struct health_t
 
 typedef std::vector<apAction_t> ActionList_t;
 
-class CBattleEntity : public CBaseEntity 
+class CBattleEntity : public CBaseEntity
 {
 public:
 
@@ -372,8 +381,8 @@ public:
 	IMMUNITY		m_Immunity;					// Mob immunity
 
     uint16          STR();
-    uint16          DEX();                      
-    uint16          VIT();                      
+    uint16          DEX();
+    uint16          VIT();
     uint16          AGI();
     uint16          INT();
     uint16          MND();
@@ -424,7 +433,7 @@ public:
 	virtual int32 	addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
 
 	int16		    getMod(uint16 modID);		// величина модификатора
-	
+
 	void		    addModifier(uint16 type, int16 amount);
 	void		    setModifier(uint16 type, int16 amount);
 	void		    delModifier(uint16 type, int16 amount);
@@ -437,7 +446,7 @@ public:
 	CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
 
 	EntityID_t	    m_OwnerID;				    // ID атакующей сущности (после смерти будет хранить ID сущности, нанесщей последний удар)
-	
+
 	ActionList_t	m_ActionList;			    // список совершенных действий за одну атаку (нужно будет написать структуру, включающую ActionList в которой будут категории анимации и т.д.)
 
 	CAIGeneral*		PBattleAI;				    // интеллект боевой сущности

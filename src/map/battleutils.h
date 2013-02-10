@@ -64,6 +64,15 @@ enum ENSPELL
 	ENSPELL_HASTE_SAMBA		= 21
 };
 
+enum SPIKES
+{
+    SPIKE_NONE            = 0,
+    SPIKE_BLAZE           = 1,
+    SPIKE_ICE           = 2,
+    SPIKE_SHOCK             = 3,
+    SPIKE_DREAD           = 4
+};
+
 enum TARGET_PARTY_TYPE
 {
 	SOLO_TARGET			= 0,
@@ -131,6 +140,8 @@ namespace battleutils
 
 	float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
+    uint16                CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType);
+    bool                HandleSpikes(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint16 damage);
 	void				HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 damage);
 	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint16				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);

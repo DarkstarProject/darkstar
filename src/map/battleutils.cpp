@@ -494,6 +494,90 @@ uint32 HandleSpecialPhysicalDamageReduction(CCharEntity* PChar, uint32 damage, a
 
 }
 
+uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType)
+{
+    uint16 damage = PDefender->getMod(MOD_SPIKES_DMG);
+    int16 intStat = PDefender->INT();
+    int16 mattStat = PDefender->getMod(MOD_MATT);
+
+    switch(spikesType){
+        case SPIKE_BLAZE:
+            damage += ((((float)intStat + 2.0) / 12.0) + 4.0 ) * (1.0 + ((float)mattStat / 100.0));
+        break;
+        case SPIKE_ICE:
+        case SPIKE_SHOCK:
+            damage += ((((float)intStat + 10.0) / 20) + 2.0 ) * (1.0 + ((float)mattStat / 100.0));
+        break;
+    }
+
+    return damage;
+}
+
+int count = 5;
+bool HandleSpikes(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damage)
+{
+    uint16 spikes = PDefender->getMod(MOD_SPIKES);
+    if(spikes)
+    {
+        Action->subparam = CalculateSpikeDamage(PAttacker, PDefender, spikes);
+        Action->flag = 2;
+        Action->submessageID = 44;
+
+        // handle level diff
+        int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
+
+        switch(spikes){
+            case SPIKE_BLAZE:
+            Action->subeffect = SUBEFFECT_BLAZE_SPIKES;
+            PAttacker->addHP(-Action->subparam);
+            break;
+            case SPIKE_ICE:
+            Action->subeffect = SUBEFFECT_ICE_SPIKES;
+            PAttacker->addHP(-Action->subparam);
+
+            // random chance to paralyze
+            if(rand()%100 <= 25+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false){
+                PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 30, 0, 30));
+            }
+            break;
+            case SPIKE_SHOCK:
+            Action->subeffect = SUBEFFECT_SHOCK_SPIKES;
+            PAttacker->addHP(-Action->subparam);
+
+            // random chance to stun
+            if(rand()%100 <= 25+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false){
+                PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_STUN, EFFECT_STUN, 1, 0, 3));
+            }
+            break;
+            case SPIKE_DREAD:
+            if(PAttacker->m_EcoSystem == SYSTEM_UNDEAD){
+                // is undead no effect
+                Action->flag = 0;
+                return false;
+            } else {
+                Action->submessageID = 132;
+                // drain same as damage taken
+                Action->subparam = damage;
+
+                PAttacker->addHP(-Action->subparam);
+                PDefender->addHP(Action->subparam);
+
+                if(PDefender->objtype == TYPE_PC){
+                    charutils::UpdateHealth((CCharEntity*)PDefender);
+                }
+
+                Action->subeffect = SUBEFFECT_DREAD_SPIKES;
+            }
+            break;
+        }
+
+    } else {
+
+        // deal with spikes effect gear
+    }
+
+    return true;
+}
 
 /************************************************************************
 *                                                                       *
@@ -690,6 +774,8 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 				}
 		}
 	}
+
+    // Sambas should be done last, enspells and additional effects take priority
 	// Generic drain for anyone able to do melee damage to a dazed target
 	delay = delay / 10;
 
@@ -734,6 +820,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 	return;
 	}
 
+    // elemental damage equation = (weapDmg / 2) +- (weapDmg / 4)
 
 	// no enspells active, check weapon additional effects
 	CItemWeapon* PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_MAIN]);
@@ -742,6 +829,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 		PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_SUB]);
 	if(PWeapon != NULL)
 	{
+        EFFECT dispelled;
 		switch(PWeapon->getID())
 		{
 			//Additional Effect: HP drain Weapons
@@ -782,9 +870,14 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 			case 16951:
 			case 18330:
 				if (rand()%100 > 10) return;
-				PDefender->StatusEffectContainer->DispelStatusEffect();
+				dispelled = PDefender->StatusEffectContainer->DispelStatusEffect();
+                // if(dispelled > 0){
+                //     Action->submessageID = 42;
+                //     Action->flag = 2;
+                //     Action->subeffect = SUBEFFECT_LIGHT;
+                //     Action->subparam = dispelled;
+                // }
 				return;
-
 			default:
 				return;
 		}
@@ -1016,7 +1109,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
             //remove defense down
             PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DEFENSE_DOWN);
 
-		Action->subeffect = SUBEFFECT_DEFENS_DOWN;
+		Action->subeffect = SUBEFFECT_DEFENSE_DOWN;
 		Action->subparam  = EFFECT_DEFENSE_DOWN;
 		Action->submessageID = 160;
 		Action->flag = 1;

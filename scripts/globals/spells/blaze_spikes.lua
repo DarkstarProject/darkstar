@@ -14,5 +14,8 @@ function onSpellCast(caster,target,spell)
 		duration = duration * 3;
 	end
    target:delStatusEffect(EFFECT_BLAZE_SPIKES);
+   target:delStatusEffect(EFFECT_ICE_SPIKES);
+   target:delStatusEffect(EFFECT_SHOCK_SPIKES);
+   target:delStatusEffect(EFFECT_DREAD_SPIKES);
    target:addStatusEffect(EFFECT_BLAZE_SPIKES,0,0,duration);
 end;

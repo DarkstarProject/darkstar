@@ -45,7 +45,7 @@
 *																		*
 ************************************************************************/
 
-CActionPacket::CActionPacket(CBattleEntity * PEntity) 
+CActionPacket::CActionPacket(CBattleEntity * PEntity)
 {
 	this->type = 0x28;
 	this->size = 0x12;
@@ -83,7 +83,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		}
 			break;
 		case ACTION_JOBABILITY_FINISH:
-		{	
+		{
 			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getID() + 16, 54, 10);
 			packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getRecastTime(), 86, 10);
 		}
@@ -109,14 +109,14 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		}
 			break;
 		case ACTION_MOBABILITY_FINISH:
-		{	
+		{
 			uint16 id = battleutils::GetMobSkillMessage(PEntity->PBattleAI->GetCurrentMobSkill()->getID());
 			//higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
 			packBitsBE(data, id, 54, 12);
 		}
 			break;
 		case ACTION_ITEM_START:
-		{	
+		{
 			WBUFB(data,(0x0A)-4) = 0xE4;
 			WBUFB(data,(0x0B)-4) = 0x58;
 			WBUFB(data,(0x0C)-4) = 0x58;
@@ -127,7 +127,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		case ACTION_ITEM_INTERRUPT:
 		{
 			WBUFB(data,(0x0A)-4) = 0xE4;
-			WBUFB(data,(0x0B)-4) = 0x1C; 
+			WBUFB(data,(0x0B)-4) = 0x1C;
 			WBUFB(data,(0x0C)-4) = 0x5C;
 			WBUFB(data,(0x0D)-4) = 0x1A;
 			WBUFB(data,(0x0E)-4) = 0x1D;
@@ -160,14 +160,14 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			WBUFB(data,(0x0C)-4) = 0x1C;
 			WBUFB(data,(0x0D)-4) = 0xDB;
 			WBUFB(data,(0x0E)-4) = 0x19;
-			
+
 			ActionType = ACTION_RANGED_START;
 		}
 			break;
 		case ACTION_RAISE_MENU_SELECTION:
 		{
 			WBUFB(data,(0x0A)-4) = 0x10;
-			
+
 			ActionType = ACTION_MAGIC_FINISH;
 		}
 			break;
@@ -294,8 +294,8 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 
 
 	//will probably move this to database, new column, animationtype?
-	
-	//override ability animations, 
+
+	//override ability animations,
 	if (ActionType == ACTION_JOBABILITY_FINISH)
 	{
 		switch (PEntity->PBattleAI->GetCurrentJobAbility()->getID())
@@ -340,7 +340,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 				ActionTypeNumber += 8;
 				break;
 
-			default: 
+			default:
 				ActionTypeNumber = ActionType;
 				break;
 		}
@@ -372,16 +372,16 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 
 
 	bitOffset = packBitsBE(data, ActionTypeNumber, bitOffset, 4);
-	bitOffset += 64; 
+	bitOffset += 64;
 
 	for (uint32 i = 0; i < PEntity->m_ActionList.size(); ++i)
-	{   
+	{
 		apAction_t Action = PEntity->m_ActionList.at(i);
 
 		if (Action.ActionTarget != NULL)
 		{
 			TargetNum++;
-			
+
 			bitOffset = packBitsBE(data, Action.ActionTarget->id, bitOffset, 32);	// тип совершаемого действия
 			bitOffset = packBitsBE(data, 1, bitOffset, 4);							// количество действий над целью, в данном случае одно
 
@@ -390,7 +390,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 
 		bitOffset = packBitsBE(data, Action.reaction,   bitOffset,  5);				// физическая реакция на урон
 		bitOffset = packBitsBE(data, Action.animation+animOffset,  bitOffset, 11);				// анимация специальных эффектов (monster TP animations are 1800+)
-		bitOffset = packBitsBE(data, Action.speceffect, bitOffset, 10);				// specialEffect					
+		bitOffset = packBitsBE(data, Action.speceffect, bitOffset, 10);				// specialEffect
 		bitOffset = packBitsBE(data, Action.param,	    bitOffset, 16);				// параметр сообщения (урон)
 		bitOffset += 1;
 		bitOffset = packBitsBE(data, Action.messageID,  bitOffset, 10);				// сообщение
@@ -400,22 +400,32 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		if (Action.flag != 0)
 		{
 			// all subeffect 9 bit
+			int subeffectOffset = 9;
+			int subparamOffset = 16;
+
 			// flag 2 subeffect 10 bit
-			bitOffset = packBitsBE(data, Action.subeffect,		bitOffset, 9);		// анимация эффекта, точный размер не известен (эффектов не так уж и много, около десяти)
-			bitOffset = packBitsBE(data, Action.subparam,		bitOffset, 16);		// параметр сообщения (урон)
+			if(Action.flag == 2){
+				subeffectOffset = 10;
+				subparamOffset = 13;
+			}
+
+			bitOffset = packBitsBE(data, Action.subeffect,		bitOffset, subeffectOffset);
+			// анимация эффекта, точный размер не известен (эффектов не так уж и много, около десяти)
+			bitOffset = packBitsBE(data, Action.subparam,		bitOffset, subparamOffset);		// параметр сообщения (урон)
 			bitOffset += 1;
 			bitOffset = packBitsBE(data, Action.submessageID,	bitOffset, 10);		// сообщение
-			bitOffset += 1;															// extra off set needed for multi hit enspells ect
+			bitOffset += 1;
+					// extra off set needed for multi hit enspells ect
 		}
 		ActionNum++;
 	}
     packBitsBE(data, ActionNum, 150, 4);
 
-	uint8 WorkSize = ((bitOffset >> 3) + (bitOffset%8 != 0));				
+	uint8 WorkSize = ((bitOffset >> 3) + (bitOffset%8 != 0));
 
 	this->size = ((((WorkSize + 7) >> 1) + 1) & -2);
 
-	WBUFB(data,(0x04)-4) = WorkSize; 												// Workload Size - 0x23 с дополнительным эффектом - 0x29 два удара монаха 
+	WBUFB(data,(0x04)-4) = WorkSize; 												// Workload Size - 0x23 с дополнительным эффектом - 0x29 два удара монаха
 	WBUFB(data,(0x09)-4) = TargetNum;												// количество атакуемых целей
 }
 
