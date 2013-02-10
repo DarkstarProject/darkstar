@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_VIT_DOWN;
     if(target:hasStatusEffect(typeEffect) == false) then
 		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WIND);
+		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WIND);
 		if(resist > 0.2) then
 			message = MSG_ENFEEB_IS;
 			target:addStatusEffect(typeEffect,10,0,120*resist);--power=50;tic=0;duration=120;

@@ -26,7 +26,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_ACCURACY_DOWN;
 	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
 		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_THUNDER);
+		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_THUNDER);
 		if(resist > 0.2) then
 			local mobTP = mob:getTP();
 			if(mobTP <= 100) then

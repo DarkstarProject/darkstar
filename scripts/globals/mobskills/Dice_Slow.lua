@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SLOW;
     if(target:hasStatusEffect(typeEffect) == false) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_ICE);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_ICE);
         if(resist > 0.1) then
             slowed = true;
             skill:setMsg(MSG_ENFEEB_IS);
@@ -36,7 +36,7 @@ function OnMobWeaponSkill(target, mob, skill)
     if(target:hasStatusEffect(typeEffect) == false) then
 
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_DARK);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_DARK);
         if(resist > 0.1) then
             sleeped = true;
             target:addStatusEffect(typeEffect,1,0,30*resist);--power=20;tic=0;duration=120;

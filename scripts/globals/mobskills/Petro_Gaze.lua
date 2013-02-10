@@ -25,7 +25,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_PETRIFICATION;
     if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_EARTH);
         if(resist > 0.2) then
             skill:setMsg(MSG_ENFEEB_IS);
             local power = math.random(10, 18) + mob:getMainLvl()/3;

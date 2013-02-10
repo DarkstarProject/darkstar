@@ -15,6 +15,7 @@ TPMOD_NONE = 0;
 TPMOD_CRITICAL = 1;
 TPMOD_DAMAGE = 2;
 TPMOD_ACC = 3;
+TPMOD_ATTACK = 4;
 
 -- The damage type for the spell
 DMGTYPE_BLUNT = 0;

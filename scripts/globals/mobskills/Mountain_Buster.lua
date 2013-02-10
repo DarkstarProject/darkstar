@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local typeEffect = EFFECT_BIND;
 	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
+	local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_EARTH);
 	if(resist > 0.2 and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
 		if(target:hasStatusEffect(typeEffect) == false) then
 			target:addStatusEffect(typeEffect,1,0,120*resist);

@@ -2325,7 +2325,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	}
 
 	//if ranged WS, remove TP bonus from mainhand weapon
-	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 218)
+	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 221)
 	{
 		if(m_PChar->equip[SLOT_MAIN] != 0)
 		{

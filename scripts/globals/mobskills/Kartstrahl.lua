@@ -26,7 +26,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SLEEP_I;
     if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_LIGHTNING);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_LIGHTNING);
         if(resist > 0.1) then
             target:addStatusEffect(typeEffect,1,0,30*resist);--tic=3;duration=30;
             mob:resetEnmity(target);

@@ -23,7 +23,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local resist = 1;
 	local statmod = MOD_INT;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_ICE);
+		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_ICE);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,1,0,120*resist);--power=1;tic=0;duration=120;
 		end
@@ -32,7 +32,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_AMNESIA;
 	if(target:hasStatusEffect(typeEffect) == false) then
 		--statmod = MOD_INT;
-		resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
+		resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_EARTH);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,1,0,120*resist);--power=1;tic=0;duration=120;
 		end

@@ -17,7 +17,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_POISON;
     if(target:hasStatusEffect(typeEffect) == false) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WATER);
         if(resist > 0.2) then
             target:addStatusEffect(typeEffect,1,1,180*resist);
         end

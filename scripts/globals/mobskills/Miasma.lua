@@ -22,7 +22,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local duration = 180;
 
 	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
+	local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WATER);
 	if(resist > 0.2) then
 		if(target:hasStatusEffect(EFFECT_POISON) == false) then
 			target:addStatusEffect(EFFECT_POISON,1,10,duration);

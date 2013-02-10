@@ -23,7 +23,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_DISEASE;
     if(target:hasStatusEffect(typeEffect) == false) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_FIRE);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_FIRE);
         if(resist > 0.1) then
             target:addStatusEffect(typeEffect,1,0,300*resist);--power=1;tic=0;duration=120;
         end

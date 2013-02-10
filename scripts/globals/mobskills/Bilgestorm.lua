@@ -23,7 +23,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_ACCURACY_DOWN;
 	local resist = 1;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_EARTH);
+		resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_EARTH);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,power,0,60*resist);--tic=0;duration=60;
 		end
@@ -31,7 +31,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	typeEffect = EFFECT_ATTACK_DOWN;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WATER);
+		resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WATER);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,power,0,60*resist);--tic=0;duration=60;
 		end
@@ -39,7 +39,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	typeEffect = EFFECT_DEFENSE_DOWN;
 	if(target:hasStatusEffect(typeEffect) == false) then
-		resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WIND);
+		resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WIND);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,power,0,60*resist);--tic=0;duration=60;
 		end

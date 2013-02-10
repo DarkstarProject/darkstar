@@ -25,7 +25,7 @@ function OnMobWeaponSkill(target, mob, skill)
         if(mob:hasStatusEffect(effect) == true and target:hasStatusEffect(effect) == false) then
             effectCount = true;
             local statmod = MOD_INT;
-            local resist = applyPlayerResistance(mob,effect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_ICE);
+            local resist = applyPlayerResistance(mob,effect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_ICE);
             if(resist > 0.2) then
                 lastEffect = effect;
                 local currentEffect = mob:getStatusEffect(effect);

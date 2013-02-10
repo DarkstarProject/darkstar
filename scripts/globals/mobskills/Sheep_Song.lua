@@ -17,7 +17,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SLEEP_I;
     if(target:hasStatusEffect(typeEffect) == false and target:isUndead() == false) then
         local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_LIGHT);
+        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_LIGHT);
         if(resist > 0.1) then
             skill:setMsg(MSG_ENFEEB_IS);
             target:addStatusEffect(typeEffect,1,0,20*resist);

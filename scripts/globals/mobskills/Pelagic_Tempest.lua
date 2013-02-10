@@ -31,7 +31,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local statmod = MOD_INT;
 	local resist = 1;
 	if(target:hasStatusEffect(typeEffect) == false and hit) then
-	resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_THUNDER);
+	resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_THUNDER);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,28,3,180*resist);
 		end
@@ -40,7 +40,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	typeEffect = EFFECT_TERROR;
 	if(target:hasStatusEffect(typeEffect) == false and hit) then
 		statmod = MOD_INT;
-		resist = applyPlayerResistance(mob,typeEffect,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_THUNDER);
+		resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_THUNDER);
 		if(resist > 0.2) then
 			target:addStatusEffect(typeEffect,1,0,180*resist);
 		end
