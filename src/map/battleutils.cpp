@@ -867,7 +867,10 @@ bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAct
 
 void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t Action)
 {
-	int lvlDiff = dsp_cap((Action.ActionTarget->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
+	int lvlDiff = 0;
+	if( Action.ActionTarget ){
+		lvlDiff = dsp_cap((Action.ActionTarget->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
+	}
 	switch(Action.subeffect)
 	{
         case SUBEFFECT_CURSE_SPIKES:
