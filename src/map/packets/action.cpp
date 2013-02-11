@@ -86,7 +86,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		{
 			if (PEntity->PBattleAI->GetCurrentJobAbility()->getID() == ABILITY_DOUBLE_UP)
 			{
-				packBitsBE(data, PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_DOUBLE_UP_CHANCE)->GetSubID() + 16, 54, 10);
+				packBitsBE(data, PEntity->PBattleAI->GetLastCorsairRoll() + 16, 54, 10);
 			} else {
 				packBitsBE(data, PEntity->PBattleAI->GetCurrentJobAbility()->getID() + 16, 54, 10);
 			}

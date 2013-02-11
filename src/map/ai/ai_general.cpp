@@ -363,3 +363,13 @@ void CAIGeneral::SetCurrentMobSkill(CMobSkill* skill)
 {
 	m_PMobSkill = skill;
 }
+
+uint16 CAIGeneral::GetLastCorsairRoll()
+{
+	return m_CorsairDoubleUp;
+}
+
+void CAIGeneral::SetLastCorsairRoll(uint16 ability)
+{
+	m_CorsairDoubleUp = ability;
+}

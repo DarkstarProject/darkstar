@@ -1900,6 +1900,8 @@ void CAICharNormal::ActionJobAbilityFinish()
 			battleutils::getCorsairRollEffect(m_PJobAbility->getID())
 		), true);
 
+		m_CorsairDoubleUp = m_PJobAbility->getID();
+
 		Action.reaction   = REACTION_NONE;
 		Action.speceffect = (SPECEFFECT)roll;
 		Action.animation  = m_PJobAbility->getAnimationID();

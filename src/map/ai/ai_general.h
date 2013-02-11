@@ -99,6 +99,7 @@ public:
 	CAbility*		GetCurrentJobAbility();
 	CWeaponSkill*	GetCurrentWeaponSkill();
 	CMobSkill*		GetCurrentMobSkill();
+	uint16			GetLastCorsairRoll();
 
     uint32          GetBattleTime();
 
@@ -110,6 +111,7 @@ public:
 	void			SetCurrentMobSkill(CMobSkill* skill); // DEBUG
 	void			SetLastActionTime(uint32 time);
 	void			SetCurrentAction(ACTIONTYPE Action, uint16 TargetID = 0);
+	void			SetLastCorsairRoll(uint16 ability);
 
 	virtual void	CheckCurrentAction(uint32 tick) = 0;
 
@@ -128,6 +130,7 @@ protected:
 	uint32			m_LastMagicTime;		// Last time magic spell was -attempted-
     uint32			m_Tick;					// текущее значение времени
     uint32			m_StartBattle;			// Battle start time
+	uint16			m_CorsairDoubleUp;		// Last used corsair roll eligible for DU
 
 	CSpell*			m_PSpell;				// читаемое заклинание
 	CItemUsable*	m_PItemUsable;			// используемый предмет
