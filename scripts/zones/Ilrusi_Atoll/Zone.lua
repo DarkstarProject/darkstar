@@ -1,13 +1,13 @@
 -----------------------------------
 -- 
 -- Zone: Ilrusi_Atoll
--- 
+--  zone 55
 -----------------------------------
 
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Ilrusi_Atoll/TextIDs"] = nil;
 require("scripts/zones/Ilrusi_Atoll/TextIDs");
-
+require("scripts/globals/settings");
 -----------------------------------
 --  onInitialize
 -----------------------------------
@@ -22,6 +22,15 @@ end;
 function onZoneIn(player,prevZone)
 cs = -1;
 
+   --------------RANDOMIZE COFFER------------------------
+  local correctcoffer = math.random(17002505,17002516);
+  SetServerVariable("correctcoffer",correctcoffer);
+  printf("corect_golden_salvage_coffer: %u",correctcoffer);
+  ---------------------------------------------------
+
+
+  
+ 
 return cs;
 end;
 

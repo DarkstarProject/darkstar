@@ -25,7 +25,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	hasAssault = hasAssaultOrders(player);
+	local hasAssault = hasAssaultOrders(player);
+	
+	
 	if(hasAssault > 0) then
 		player:startEvent(hasAssault);
 	else
@@ -69,7 +71,18 @@ function onEventFinish(player,csid,option)
 			IlrusiAtollStagingPoint(player);
 		elseif(option == 106) then
 			NzyulIsleStagingPoint(player);
-		end
-	end
-	
+		end		
+	elseif(csid == 0x0078 and option == 1 )then--LEUJAOAM_ASSUALT_ORDERS
+	   AzouphIsleStagingPoint(player)
+	elseif(csid == 0x0079 and option == 1 ) then--MAMMOOL_JA_ASSAULT_ORDERS
+	   MamoolJaStagingPoint(player);
+	elseif(csid == 0x007A and option == 1 )then--LEBROS_ASSUALT_ORDERS
+	   HalvungStagingPoint(player);
+	elseif(csid == 0x007B and option == 1 )then--PERIQIA_ASSUALT_ORDERS
+       DvuccaIsleStagingPoint(player);
+    elseif(csid == 0x007C and option == 1 )then--ILRUSI_ASSUALT_ORDERS
+	   IlrusiAtollStagingPoint(player);
+    elseif(csid == 0x007D and option == 1 )then--NYZUL_ISLE_ASSAULT_ORDERS	
+	   NzyulIsleStagingPoint(player);
+	end	
 end;
