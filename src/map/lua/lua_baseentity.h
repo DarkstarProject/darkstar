@@ -202,6 +202,7 @@ public:
 	int32 messageSpecial(lua_State*);		// Sends Special Message
 	int32 messageSystem(lua_State*);		// Sends System Message
     int32 messageBasic(lua_State*);         // Sends Basic Message
+    int32 messageTarget(lua_State*);         // Sends Basic Message With Target
 
 	int32 release(lua_State*);				// Stops event
 	int32 startEvent(lua_State*);			// Begins Event

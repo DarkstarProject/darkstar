@@ -2716,6 +2716,42 @@ inline int32 CLuaBaseEntity::messageBasic(lua_State* L)
 	return 0;
 }
 
+/*
+	Similar to message basic except you can send a target entity.
+	Example:
+		player:messageTarget(125, mob, 41, stolen);
+*/
+inline int32 CLuaBaseEntity::messageTarget(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    uint16 messageID = (uint16)lua_tointeger(L,1);
+
+	uint32 param0 = 0;
+	uint32 param1 = 0;
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,2);
+
+    if (PEntity != NULL &&
+        PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+    {
+	    if( !lua_isnil(L,2) && lua_isnumber(L,3) )
+	        param0 = (uint32)lua_tointeger(L,3);
+	    if( !lua_isnil(L,3) && lua_isnumber(L,4) )
+	        param1 = (uint32)lua_tointeger(L,4);
+
+		if(m_PBaseEntity->objtype == TYPE_PC){
+			((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageBasicPacket(m_PBaseEntity, PEntity->GetBaseEntity(), param0, param1, messageID));
+		}
+		else{//broadcast in range
+			m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE,new CMessageBasicPacket(m_PBaseEntity, PEntity->GetBaseEntity(), param0, param1, messageID));
+		}
+    }
+	return 0;
+}
+
 //========================================================//
 
 inline int32 CLuaBaseEntity::capSkill(lua_State* L)
@@ -5855,6 +5891,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEventTarget),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showText),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageBasic),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageTarget),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSpecial),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendMenu),

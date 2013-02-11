@@ -36,19 +36,19 @@ function OnUseAbility(player, target, ability)
 		thfLevel = player:getSubLvl()
 	end
 	local stealMod = player:getMod(MOD_STEAL);
-	
+
 	if((player:getEquipID(SLOT_RING1) == 13291 or player:getEquipID(SLOT_RING2) == 13291) and ((player:getHP() / player:getMaxHP() * 100) < 75) and player:getTP() < 100) then stealMod = stealMod +3 end; --Rogue's Ring
 
 	if(math.random(100) < (50 + stealMod + thfLevel - target:getMainLvl())) then
 		local stolen = target:getStealItem();
-	
+
 		if (checkThfAfQuest(player, target) == true) then
-			stolen = 4569;		
+			stolen = 4569;
 		end
 		player:addItem(stolen);
-		player:messageBasic(125,41,stolen);
+		player:messageTarget(125, target, 41, stolen);
 	else
-		player:messageBasic(153,41);
+		player:messageTarget(153, target, 41);
 	end
 end;
 
@@ -61,11 +61,11 @@ function checkThfAfQuest(player, target)
 
 	if(player:getVar("theTenshodoShowdownCS") == 3) then
     		for key, value in pairs(validThfQuestMobs) do
-        		if value == targid then 
+        		if value == targid then
 				return true
 				end
 	end
-	return false	
+	return false
 	end
 end;
 
