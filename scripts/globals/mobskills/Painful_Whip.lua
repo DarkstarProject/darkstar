@@ -15,7 +15,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local numhits = 1;
-    local dmgmod = 2 + math.random();
+    local dmgmod = 2.5;
     local accmod = 1;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 
