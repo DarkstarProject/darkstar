@@ -29,6 +29,5 @@ function OnMobWeaponSkill(target, mob, skill)
         skill:setMsg(MSG_NO_EFFECT); -- no effect
     end
 
-    target:delHP(dmg);
-    return dmg;
+    return typeEffect;
 end;

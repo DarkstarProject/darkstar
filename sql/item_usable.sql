@@ -2011,3 +2011,4 @@ INSERT INTO `item_usable` VALUES (18945, 0, 'jet_sickle', 1, 3, 0, 0, 100, 30, 6
 INSERT INTO `item_usable` VALUES (19181, 0, 'moogles_largesse', 1, 12, 0, 0, 9, 10, 259200, 0);
 INSERT INTO `item_usable` VALUES (19204, 0, 'fiendtrapper', 20, 0, 0, 0, 12, 10, 30, 0);
 INSERT INTO `item_usable` VALUES (19246, 0, 'moggiebag', 1, 3, 0, 0, 8, 10, 259200, 0);
+INSERT INTO `item_usable` VALUES (11788, 0, 'jesters_hat', 1, 3, 0, 0, 1, 10, 600000, 0);
