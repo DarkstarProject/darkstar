@@ -24,6 +24,9 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-        target:addHP(700*ITEM_POWER);
-        target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
+    local heal = 700*ITEM_POWER
+    target:addHP(heal);
+    target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
+
+    target:messageBasic(24,0,heal);
 end;

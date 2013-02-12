@@ -578,7 +578,7 @@ end;
 -- Equation: (HP * percent) + (LVL / base)
 -- cap is optional, defines a maxiumum damage
 function MobBreathMove(mob, target, percent, base, element, cap)
-	damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
+	local damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
 
 	if(cap == nil) then
 		-- super cap for high health mobs

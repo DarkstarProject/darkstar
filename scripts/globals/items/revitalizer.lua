@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4157
--- Item: Poison Potion
+-- Item: Revitalizer
 -- Item Effect: Removes 60 HP over 180 seconds
 -----------------------------------------
 
@@ -20,5 +20,6 @@ end;
 
 function onItemUse(target)
     target:resetRecasts();
+    target:messageBasic(361,0);
 end;
 
