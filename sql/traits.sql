@@ -24,10 +24,10 @@ CREATE TABLE `traits` (
 -- ----------------------------
 -- Records
 -- ----------------------------
-INSERT INTO `traits` VALUES ('55', 'resist curse', '100', '0', '248', '2');
-INSERT INTO `traits` VALUES ('56', 'resist stun', '100', '0', '251', '2');
-INSERT INTO `traits` VALUES ('60', 'resist charm', '100', '0', '252', '2');
-INSERT INTO `traits` VALUES ('65', 'gilfinder ii', '100', '0', '0', '0');
+-- INSERT INTO `traits` VALUES ('55', 'resist curse', '0', '0', '248', '2');
+-- INSERT INTO `traits` VALUES ('56', 'resist stun', '0', '0', '251', '2');
+-- INSERT INTO `traits` VALUES ('60', 'resist charm', '0', '0', '252', '2');
+-- INSERT INTO `traits` VALUES ('65', 'gilfinder ii', '0', '0', '0', '0');
 INSERT INTO `traits` VALUES ('4', 'defense bonus', '1', '10', '1', '10');
 INSERT INTO `traits` VALUES ('54', 'resist virus', '1', '15', '245', '2');
 INSERT INTO `traits` VALUES ('15', 'double attack', '1', '25', '288', '10');
