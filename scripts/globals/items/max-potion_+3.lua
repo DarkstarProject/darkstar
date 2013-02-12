@@ -13,9 +13,9 @@ require("scripts/globals/settings");
 
 function onItemCheck(target)
 result = 0;
-        if (target:hasStatusEffect(EFFECT_MEDICINE)) then
-                result = 111;
-        end
+    if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+        result = 111;
+    end
 return result;
 end;
 
@@ -24,9 +24,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    local heal = 700*ITEM_POWER
-    target:addHP(heal);
     target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
-
-    target:messageBasic(24,0,heal);
+    target:messageBasic(24,0,target:addHP(700*ITEM_POWER));
 end;
