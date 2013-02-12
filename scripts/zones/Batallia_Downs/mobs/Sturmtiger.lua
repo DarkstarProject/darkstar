@@ -16,10 +16,8 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, player)	
-	
-	if(player:getVar("ChasingQuotas") == 5) then
+function onMobDeath(mob, player)
+	if(player:getVar("ChasingQuotas_Progress") == 5) then
 		player:setVar("SturmtigerKilled",1);
-	end	
-	
+	end
 end;
