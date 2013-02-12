@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 	local Quotas_Status = player:getQuestStatus(SANDORIA,CHASING_QUOTAS);
 	local Quotas_Progress = player:getVar("ChasingQuotas_Progress");
 	local Quotas_No = player:getVar("ChasingQuotas_No");
-	local Stalker_Status = player:getQuestStatus(SANDORUA,KNIGHT_STALKER);
+	local Stalker_Status = player:getQuestStatus(SANDORIA,KNIGHT_STALKER);
 	local Stalker_Progress = player:getVar("KnightStalker_Progress");
 
 	if(player:getMainLvl() >= 30 and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_AVAILABLE) then
