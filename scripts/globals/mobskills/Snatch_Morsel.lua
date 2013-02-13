@@ -22,7 +22,9 @@ function OnMobWeaponSkill(target, mob, skill)
             skill:setMsg(MSG_ENFEEB_IS);
 
             local food = target:getStatusEffect(EFFECT_FOOD);
-            mob:addStatusEffect(EFFECT_FOOD, food:getPower(), 0, food:getDuration());
+			if (food ~= nil) then
+				mob:addStatusEffect(EFFECT_FOOD, food:getPower(), 0, food:getDuration());
+			end
 
             target:delStatusEffect(EFFECT_FOOD);
         else
