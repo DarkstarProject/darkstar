@@ -20,11 +20,9 @@ end;
 
 function onItemUse(target)
 
-    if(target:hasStatusEffect(EFFECT_SLEEP_I)) then
+    if(hasSleepEffects(target)) then
         target:messageBasic(423);
     else
-        -- delete old
-        target:delStatusEffect(EFFECT_SLEEP_I);
         target:addStatusEffect(EFFECT_SLEEP_I, 0, 0, 30);
     end
 end;

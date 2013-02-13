@@ -17,7 +17,7 @@ function OnPetAbility(target, pet, skill)
 		return EFFECT_SLEEP_I;
 	end
 	duration = duration * resm;
-	if(target:hasImmunity(1) or target:hasStatusEffect(EFFECT_SLEEP_II) or target:hasStatusEffect(EFFECT_SLEEP_I)) then
+	if(target:hasImmunity(1) or hasSleepEffects(target) then
 		--No effect
 		skill:setMsg(MSG_NO_EFFECT);
 	else

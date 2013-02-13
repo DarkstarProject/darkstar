@@ -47,8 +47,7 @@ function OnUseAbility(player, target, ability)
 	pet:delTP(petTP/2); -- remove half tp from pet
 
     pet:delStatusEffect(EFFECT_POISON);
-    pet:delStatusEffect(EFFECT_SLEEP_I);
-    pet:delStatusEffect(EFFECT_SLEEP_II);
+    removeSleepEffects(pet);
 	pet:delStatusEffect(EFFECT_PARALYSIS);
 	
 	if(math.random(1,2) == 1) then

@@ -33,7 +33,7 @@ function OnUseWeaponSkill(player, target, wsID)
 		local tp = player:getTP();
 		local duration = (tp/100 * 60);
 		duration = math.random(0.5, 1) * duration;
-		if(target:hasStatusEffect(EFFECT_SLEEP_I) == false) then
+		if not(hasSleepEffects(target)) then
 			target:addStatusEffect(EFFECT_SLEEP_I, 1, 0, duration);
 		end
 	end	

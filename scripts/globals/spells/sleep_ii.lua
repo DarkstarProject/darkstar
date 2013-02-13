@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
 		spell:setMsg(75);
 	else
 		spell:setMsg(237);
-		target:delStatusEffect(EFFECT_SLEEP_I);
+		removeSleepEffects(target);
 		target:addStatusEffect(EFFECT_SLEEP_II,1,0,duration);
 	end
 	

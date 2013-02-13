@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
 	
 	duration = duration * resm;
 	
-	if(target:hasImmunity(1) or target:hasStatusEffect(EFFECT_SLEEP_II) or target:hasStatusEffect(EFFECT_SLEEP_I)) then
+	if(target:hasImmunity(1) or hasSleepEffects(target)) then
 		--No effect
 		spell:setMsg(75);
 	else

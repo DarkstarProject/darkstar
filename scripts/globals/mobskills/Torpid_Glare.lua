@@ -19,7 +19,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SLEEP_I;
-    if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
+    if(hasSleepEffects(target) == false and target:isFacing(mob)) then
         local statmod = MOD_INT;
         local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_DARK);
         if(resist > 0.2) then

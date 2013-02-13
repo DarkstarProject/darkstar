@@ -31,7 +31,7 @@ function OnMobWeaponSkill(target, mob, skill)
     end
 
     typeEffect = EFFECT_SLEEP_I;
-    if(target:hasStatusEffect(typeEffect) == false) then
+    if not(hasSleepEffects(target)) then
         resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_DARK);
         if(resist > 0.2) then
             target:addStatusEffect(typeEffect,1,0,30*resist);--power=1;tic=0;duration=30;

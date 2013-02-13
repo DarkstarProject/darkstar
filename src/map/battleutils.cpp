@@ -1282,6 +1282,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	case 18158:{//Sleep Arrow
 			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
 				!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
+				!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) &&
 				!PDefender->isDead() && PDefender->hasImmunity(1) == false){
 			Action->subeffect = SUBEFFECT_SLEEP;
 			Action->subparam  = EFFECT_SLEEP;
@@ -1399,6 +1400,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	case 18149:{//Sleep Bolt
 			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
 				!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
+				!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) &&
 				!PDefender->isDead() && PDefender->hasImmunity(1) == false){
 			Action->subeffect = SUBEFFECT_SLEEP;
 			Action->subparam  = EFFECT_SLEEP;

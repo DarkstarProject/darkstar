@@ -16,18 +16,18 @@ function onSpellCast(caster,target,spell)
 	
 	if(applyResistance(caster,spell,target,dINT,37,bonus) < 0.5) then
 		spell:setMsg(75); -- Resist
-		return;
+		return EFFECT_SLEEP_II;
 	end
 	
-	if(target:hasImmunity(1) or target:hasStatusEffect(EFFECT_SLEEP_II) or target:hasStatusEffect(EFFECT_SLEEP_I)) then
+	if(target:hasImmunity(1) or target:hasStatusEffect(EFFECT_SLEEP_II)) then
 		spell:setMsg(85); -- No effect
-		return;
 	else
 		spell:setMsg(237);
-		target:addStatusEffect(EFFECT_SLEEP_I,1,0,60);
+		removeSleepEffects(target);
+		target:addStatusEffect(EFFECT_SLEEP_II,1,0,90);
 	end
 	
 	target:updateEnmity(caster,320,1);
-	return EFFECT_SLEEP_I;
+	return EFFECT_SLEEP_II;
 	
 end;

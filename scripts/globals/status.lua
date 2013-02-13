@@ -500,6 +500,21 @@ EFFECT_SKILLCHAIN4              = 0x2000
 EFFECT_SKILLCHAIN5              = 0x4000
 EFFECT_SKILLCHAINMASK           = 0x7C00
 
+function removeSleepEffects(target)
+	target:delStatusEffect(EFFECT_SLEEP_I);
+	target:delStatusEffect(EFFECT_SLEEP_II);
+	target:delStatusEffect(EFFECT_LULLABY);
+end;
+
+function hasSleepEffects(target)
+	if(target:hasStatusEffect(EFFECT_SLEEP_I) or
+	target:hasStatusEffect(EFFECT_SLEEP_II) or
+	target:hasStatusEffect(EFFECT_LULLABY) ) then
+		return true;
+	end
+	return false;
+end;
+
 -----------------------------------
 -- These codes are the gateway to directly interacting with the pXI core program with status effects.
 -- These are NOT the actual status effects such as weakness or silence,

@@ -211,7 +211,7 @@ INSERT INTO `status_effects` VALUES ('189', 'max_tp_down', '34');
 INSERT INTO `status_effects` VALUES ('190', 'magic_atk_boost', '33');
 INSERT INTO `status_effects` VALUES ('191', 'magic_def_boost', '33');
 INSERT INTO `status_effects` VALUES ('192', 'requiem', '32');
-INSERT INTO `status_effects` VALUES ('193', 'lullaby', '32');
+INSERT INTO `status_effects` VALUES ('193', 'lullaby', '48');
 INSERT INTO `status_effects` VALUES ('194', 'elegy', '32');
 INSERT INTO `status_effects` VALUES ('195', 'paeon', '33');
 INSERT INTO `status_effects` VALUES ('196', 'ballad', '33');
