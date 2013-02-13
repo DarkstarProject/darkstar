@@ -5,7 +5,7 @@
 -- @zone 26
 -- @pos -20.814 -22 8.399
 -----------------------------------
-package.loaded["scripts\zones\Tavnazian_Safehold\TextIDs"] = nil;
+package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Tavnazian_Safehold/TextIDs");
 require("scripts/globals/quests");
