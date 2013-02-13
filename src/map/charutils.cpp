@@ -1920,7 +1920,7 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
     for (uint8 i = 0; i <  PTraitsList->size(); ++i)
 	{
 		CTrait* PTrait = PTraitsList->at(i);
-		if (PChar->GetMLevel() >= PTrait->getLevel())
+		if (PChar->GetMLevel() >= PTrait->getLevel() && PTrait->getLevel() > 0)
 		{
             addTrait(PChar, PTrait->getID());
 
@@ -1933,7 +1933,7 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 	for (uint8 i = 0; i <  PTraitsList->size(); ++i)
 	{
 		CTrait* PTrait = PTraitsList->at(i);
-		if (PChar->GetSLevel() >= PTrait->getLevel())
+		if (PChar->GetSLevel() >= PTrait->getLevel() && PTrait->getLevel() > 0)
 		{
 			addTrait(PChar, PTrait->getID());
 

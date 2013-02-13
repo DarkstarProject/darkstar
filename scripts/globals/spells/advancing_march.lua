@@ -27,7 +27,7 @@ function onSpellCast(caster,target,spell)
 
     -- half is subjob is brd
     if(caster:getSubJob() == JOB_BRD) then
-        haste = haste / 2;
+        haste = math.ceil(haste / 2);
     end
 
 	-- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.

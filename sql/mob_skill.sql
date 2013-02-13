@@ -173,7 +173,7 @@ INSERT INTO `mob_skill` VALUES (88,79,88,'Sticky_Thread', 4, 10.0, 2000, 1000, 4
 
 -- Scorpion
 INSERT INTO `mob_skill` VALUES (94,217,94,'Mandible_Bite', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (97,217,97,'Death_Scissors', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (97,217,97,'Death_Scissors', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (98,217,98,'Wild_Rage', 1, 15.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (99,217,99,'Earth_Pounder', 1, 15.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (95,217,95,'Poison_Sting', 0, 7.0, 2000, 1000, 4, 0); -- 1hp/tick
