@@ -113,7 +113,7 @@ local itemtarget = player:getVar("NAME_OF_SCIENCE_target");
 local reward = false;
 -- printf("count: %u",count);
 -----------------------------------------trade the chip and the base item---------------------------------------------------------------------
-   if(NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED and count == 2 and itemtarget == 0)then  
+   if((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and count == 2 and itemtarget == 0)then  
        if(trade:hasItemQty(SILVER_EARRING,1))then 
 	       if(trade:hasItemQty(BLACK_CHIP,1) and player:hasItem(RELAXING_EARRING)==false)then 
 		      player:setVar("NAME_OF_SCIENCE_target",RELAXING_EARRING); player:tradeComplete(); player:startEvent(0x020E,SILVER_EARRING,BLACK_CHIP);
@@ -170,10 +170,10 @@ local reward = false;
 		   end  
 	   end
 ----------------------------------------------------------------------------------------------------------------------------------------------	      
-  elseif(NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED and count == 1 and itemtarget > 0 and trade:hasItemQty(APPLE_PIE,1) )then 
+  elseif((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and count == 1 and itemtarget > 0 and trade:hasItemQty(APPLE_PIE,1) )then 
 		     player:startEvent(0x0213,APPLE_PIE); player:tradeComplete();
 --------------------------------------------------trade  organe-----------------------------------------------------------------------------------------------	
-  elseif(NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED and itemtarget > 0  )then	
+  elseif((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and itemtarget > 0  )then	
              if(itemtarget == RELAXING_EARRING and count == 10)then	 
 			  if(trade:hasItemQty(LUMINIAN_TISSUE,5)and trade:hasItemQty(EUVHI_ORGAN,5))then
 			  reward = true;
@@ -250,7 +250,7 @@ local reward = false;
 	end	   
    --------------------------------------------------------------------------------------------------------------------
    if (reward == true) then
-     player:startEvent(0x0211);
+     player:startEvent(0x0211, GORGET, SILVER_EARRING, SILVER_OBI);
    end
 end; 
 
