@@ -62,10 +62,18 @@ function onTrigger(player,npc)
 	local waking_dreams = player:getQuestStatus(WINDURST,WAKING_DREAMS)
 	
 	if(player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getVar("Darkness_Named_date"))))then
-	      player:addQuest(WINDURST,WAKING_DREAMS);
-	      player:startEvent(0x0396);
+	    player:addQuest(WINDURST,WAKING_DREAMS);
+	    player:startEvent(0x0396);
     elseif(player:hasKeyItem(WHISPER_OF_DREAMS)==true)then
-		 player:startEvent(0x0398,17599,14814,15557,15516); 
+		local availRewards = 0
+		if(player:hasItem(17599)) then availRewards = availRewards + 1; end -- Diabolos's Pole
+		if(player:hasItem(14814)) then availRewards = availRewards + 2; end -- Diabolos's Earring
+		if(player:hasItem(15557)) then availRewards = availRewards + 4; end -- Diabolos's Ring
+		if(player:hasItem(15516)) then availRewards = availRewards + 8; end -- Diabolos's Torque
+		if(player:hasSpell(304)) then availRewards = availRewards + 32; -- Pact
+		else availRewards = availRewards + 16 -- Gil
+		end	
+		player:startEvent(0x0398,17599,14814,15557,15516,0,0,0,availRewards);
 	elseif(BlueRibbonBlues == QUEST_COMPLETED and needZone) then
 		player:startEvent(0x016b);
 	elseif(BlueRibbonBlues == QUEST_ACCEPTED) then
