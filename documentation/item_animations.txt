@@ -1,6 +1,6 @@
 This contians a list of animation ids for usable items.
 
-
+6 - remove disease
 7 - remove curse
 
 10 - chr up
@@ -17,16 +17,25 @@ This contians a list of animation ids for usable items.
 34 - elixir
 55 - item pop, like toolbag
 
+64 - erase
+65 - erase with purple
+66 - high erase
+67 - tp remove
 68 - poison
 69 - paralyze
 70 - blind
 71 - silence
 72 - sleep
 73 - petrify
-74 - curse
+74 - diseased
+75 - curse
+76 - exp ring
+77 - exp ring purple?
+78 - sparkles
 
+79 - teleport
 80 - warp
-81 - mp up thing?
+81 - reraise
 82 - round circle thing
 91 - healing / remedy
 92 - remove effect

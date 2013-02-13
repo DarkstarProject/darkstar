@@ -23,8 +23,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (not target:hasStatusEffect(EFFECT_INVISIBLE)) then
-		target:addStatusEffect(EFFECT_INVISIBLE,0,10,180);
-	end
+    target:delStatusEffect(EFFECT_INVISIBLE);
+	target:addStatusEffect(EFFECT_INVISIBLE,0,10,180);
 	target:addStatusEffect(EFFECT_MEDICINE,0,0,180);
 end;
