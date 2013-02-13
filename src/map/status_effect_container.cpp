@@ -522,7 +522,7 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
 	return false;
 }
 
-/*bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls)
+bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration)
 {
 	//break if not a COR roll.
 	DSP_DEBUG_BREAK_IF(!(PStatusEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
@@ -535,44 +535,57 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
 	//if targ has 2 of your rolls, remove oldest one and apply this one.
 
 	uint8 numOfEffects = 0;
-	CStatusEffect* oldestSong = NULL;
+	CStatusEffect* oldestRoll = NULL;
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
-		if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-			m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) //is a cor effect
+		if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+			m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
+			m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)//is a cor effect
 		{
-			if(m_StatusEffectList.at(i)->GetStatusID()==PStatusEffect->GetStatusID()){//same tier/type, overwrite
-					//OVERWRITE
-					DelStatusEffectWithPower(PStatusEffect->GetStatusID(),PStatusEffect->GetPower());
-					AddStatusEffect(PStatusEffect);
-					return true;
+			if(m_StatusEffectList.at(i)->GetStatusID() == PStatusEffect->GetStatusID() &&
+				m_StatusEffectList.at(i)->GetSubID() == PStatusEffect->GetSubID() &&
+				m_StatusEffectList.at(i)->GetSubPower() < PStatusEffect->GetSubPower()){//same type, double up
+					if( PStatusEffect->GetSubPower() < 12)
+					{
+						PStatusEffect->SetDuration(m_StatusEffectList.at(i)->GetDuration());
+						DelStatusEffectSilent(PStatusEffect->GetStatusID());
+						AddStatusEffect(PStatusEffect, true);
+						return true;
+					} else {
+						uint16 duration = m_StatusEffectList.at(i)->GetDuration();
+						duration -= bustDuration;
+						CStatusEffect* bustEffect = new CStatusEffect(EFFECT_BUST, EFFECT_BUST, PStatusEffect->GetPower(),
+							0, duration, PStatusEffect->GetTier(), PStatusEffect->GetStatusID());
+						DelStatusEffectSilent(PStatusEffect->GetStatusID());
+						AddStatusEffect(bustEffect, true);
+						return true;
+					}
 			}
-			if(m_StatusEffectList.at(i)->GetSubID() == PStatusEffect->GetSubID()){//YOUR BRD effect
+			if(m_StatusEffectList.at(i)->GetSubID() == PStatusEffect->GetSubID() ||
+				m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST){//YOUR cor effect
 				numOfEffects++;
-				if(oldestSong==NULL){
-					oldestSong = m_StatusEffectList.at(i);
+				if(oldestRoll==NULL){
+					oldestRoll = m_StatusEffectList.at(i);
 				}
 				else if(m_StatusEffectList.at(i)->GetDuration() + m_StatusEffectList.at(i)->GetStartTime() <
-					oldestSong->GetDuration() + oldestSong->GetStartTime()){
-						oldestSong = m_StatusEffectList.at(i);
+					oldestRoll->GetDuration() + oldestRoll->GetStartTime()){
+						oldestRoll = m_StatusEffectList.at(i);
 				}
 			}
 		}
 	}
 
 	if(numOfEffects<maxRolls){
-		AddStatusEffect(PStatusEffect);
+		AddStatusEffect(PStatusEffect, true);
 		return true;
 	}
 	else{
-		//overwrite oldest
-		DelStatusEffectWithPower(oldestSong->GetStatusID(),oldestSong->GetPower());
-		AddStatusEffect(PStatusEffect);
-		return true;
+		//can't overwrite rolls
+		return false;
 	}
 
 	return false;
-}*/
+}
 
 /************************************************************************
 *                                                                       *
@@ -711,7 +724,8 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     string_t name;
 
 	if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000 ||
-		StatusEffect->GetStatusID()>=EFFECT_REQUIEM && StatusEffect->GetStatusID() <= EFFECT_NOCTURNE)
+		(StatusEffect->GetStatusID()>=EFFECT_REQUIEM && StatusEffect->GetStatusID() <= EFFECT_NOCTURNE) ||
+		(StatusEffect->GetStatusID() == EFFECT_DOUBLE_UP_CHANCE) || StatusEffect->GetStatusID() == EFFECT_BUST)
 	{
 		name.insert(0, "globals/effects/");
         name.insert(name.size(), effects::EffectsParams[StatusEffect->GetStatusID()].Name);
@@ -918,4 +932,31 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
     }
 
 
+}
+
+bool CStatusEffectContainer::CheckForElevenRoll()
+{
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+	{
+        if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL &&
+			m_StatusEffectList.at(i)->GetPower() == 11)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool CStatusEffectContainer::HasBustEffect(uint16 id)
+{
+	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+	{
+        if (m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST &&
+			m_StatusEffectList.at(i)->GetSubPower() == id)
+		{
+			return true;
+		}
+	}
+	return false;
 }

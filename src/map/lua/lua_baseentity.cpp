@@ -69,6 +69,7 @@
 #include "../packets/conquest_map.h"
 #include "../packets/weather.h"
 
+#include "../ability.h"
 #include "../battleutils.h"
 #include "../charutils.h"
 #include "../itemutils.h"
@@ -1540,7 +1541,6 @@ inline int32 CLuaBaseEntity::addSpell(lua_State *L)
     return 0;
 }
 
-
 /************************************************************************
 *                                                                       *
 *  @addallspells GM command - Adds all Valid spells only                *
@@ -1636,6 +1636,109 @@ inline int32 CLuaBaseEntity::delSpell(lua_State *L)
 				{
 					charutils::SaveSpells(PChar);
 					PChar->pushPacket(new CCharSpellsPacket(PChar));
+				}
+				return 0;
+			}
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*  Add learned ability (corsair roll)						            *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addLearnedAbility(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint16 AbilityID = (uint16)lua_tointeger(L,-1);
+
+    if (charutils::addLearnedAbility(PChar, AbilityID))
+    {
+		charutils::addAbility(PChar, AbilityID);
+        charutils::SaveLearnedAbilities(PChar);
+        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 442));
+    }
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  has learned ability (corsair roll)							        *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::hasLearnedAbility(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+    uint16 AbilityID = (uint16)lua_tointeger(L,-1);
+
+    lua_pushboolean(L, (charutils::hasLearnedAbility((CCharEntity*)m_PBaseEntity, AbilityID) != 0));
+    return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::canLearnAbility(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype == TYPE_PC )
+		{
+			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+			{
+				uint32 Message = 0;
+				uint16 AbilityID = (uint16)lua_tointeger(L,-1);
+
+				if (charutils::hasLearnedAbility((CCharEntity*)m_PBaseEntity,AbilityID))
+				{
+					Message = 444;
+				}
+				else if (!ability::CanLearnAbility((CCharEntity*)m_PBaseEntity, AbilityID))
+				{
+					Message = 443;
+				}
+				lua_pushinteger( L, Message );
+				return 1;
+			}
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delLearnedAbility(lua_State *L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype == TYPE_PC )
+		{
+			if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+			{
+				CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+				uint16 AbilityID = (uint16)lua_tointeger(L,-1);
+
+				if (charutils::delLearnedAbility(PChar,AbilityID))
+				{
+					charutils::SaveLearnedAbilities(PChar);
+					PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 				}
 				return 0;
 			}
@@ -3694,6 +3797,70 @@ inline int32 CLuaBaseEntity::hasPartyEffect(lua_State *L)
 	lua_pushnil(L);
 	return 1;
 }
+
+/************************************************************************
+*                                                                       *
+*  Adds corsair roll effect				                                *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addCorsairRoll(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,3) || !lua_isnumber(L,3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,4) || !lua_isnumber(L,4));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,5) || !lua_isnumber(L,5));
+
+    int32 n = lua_gettop(L);
+
+	uint8 casterJob = lua_tointeger(L, 1);
+	uint8 bustDuration = lua_tointeger(L, 2);
+
+    CStatusEffect * PEffect = new CStatusEffect(
+        (EFFECT)lua_tointeger(L,3),
+        (uint16)lua_tointeger(L,3),
+        (uint16)lua_tointeger(L,4),
+        (uint16)lua_tointeger(L,5),
+        (uint16)lua_tointeger(L,6),
+        (n >= 7 ? (uint16)lua_tointeger(L,7) : 0),
+        (n >= 8 ? (uint16)lua_tointeger(L,8) : 0),
+        (n >= 9 ? (uint16)lua_tointeger(L,9) : 0));
+	uint8 maxRolls = 2;
+	if (casterJob != JOB_COR)
+	{
+		maxRolls = 1;
+	}
+    lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->ApplyCorsairEffect(PEffect, maxRolls, bustDuration));
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::hasPartyJob(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	uint8 job = lua_tointeger(L, 1);
+	if (((CCharEntity*)m_PBaseEntity)->PParty != NULL)
+	{
+		for (uint32 i = 0; i < ((CCharEntity*)m_PBaseEntity)->PParty->members.size(); i++)
+		{
+			CCharEntity* PTarget = (CCharEntity*)((CCharEntity*)m_PBaseEntity)->PParty->members[i];
+			if (PTarget->GetMJob() == job)
+			{
+				lua_pushboolean(L, true);
+				return 1;
+			}
+		}
+	}
+	lua_pushboolean(L, false);
+	return 1;
+}
+
+
 /************************************************************************
 *                                                                       *
 *  Удаляем первый отрицательный эффект                                  *
@@ -4073,6 +4240,26 @@ inline int32 CLuaBaseEntity::setMerits(lua_State *L)
 
     charutils::SaveCharExp(PChar, PChar->GetMJob());
 	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  gets Merit levels for merit type				                        *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getMerit(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	lua_pushinteger(L, PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)lua_tointeger(L,1), PChar->GetMLevel()));
+
+	return 1;
 }
 
 //==========================================================//
@@ -5871,6 +6058,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delSpell),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addLearnedAbility),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasLearnedAbility),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnAbility),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delLearnedAbility),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMainJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMainLvl),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSubJob),
@@ -5936,6 +6127,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelAllStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseAllStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,stealStatusEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCorsairRoll),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMod),
@@ -5976,6 +6169,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changesJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMerits),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMerit),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmgRank),

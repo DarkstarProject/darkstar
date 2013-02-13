@@ -93,6 +93,10 @@ namespace charutils
 	int32	addSpell(CCharEntity* PChar, uint16 SpellID);		        // добавляем заклинание
 	int32	delSpell(CCharEntity* PChar, uint16 SpellID);		        // улаляем заклинание
 
+	int32	hasLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// проверяем наличие заклинания
+	int32	addLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// добавляем заклинание
+	int32	delLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// улаляем заклинание
+
 	int32	hasAbility(CCharEntity* PChar, uint16 AbilityID);	        // проверяем наличие ключевого предмета
 	int32	addAbility(CCharEntity* PChar, uint16 AbilityID);	        // добавляем ключевой предмет
 	int32	delAbility(CCharEntity* PChar, uint16 AbilityID);	        // улаляем ключевой предмет
@@ -123,6 +127,7 @@ namespace charutils
 	void	SaveKeyItems(CCharEntity* PChar);					        // сохраняем ключевые предметы
 	void	SaveCharInventoryCapacity(CCharEntity* PChar);              // Save Character inventory capacity
 	void	SaveSpells(CCharEntity* PChar);						        // сохраняем выученные заклинания
+	void	SaveLearnedAbilities(CCharEntity* PChar);					// saved learned abilities (corsair rolls)
     void    SaveTitles(CCharEntity* PChar);						        // сохраняем заслуженные звания
 	void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
 	void	SaveCharNation(CCharEntity* PChar);							// Sace the character's nation of allegiance.

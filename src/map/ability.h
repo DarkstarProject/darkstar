@@ -34,7 +34,8 @@ enum ADDTYPE
 	ADDTYPE_NORMAL		= 0,
 	ADDTYPE_MERIT		= 1,
 	ADDTYPE_ASTRAL_FLOW	= 2,
-	ADDTYPE_MAIN_ONLY	= 3
+	ADDTYPE_MAIN_ONLY	= 3,
+	ADDTYPE_LEARNED		= 4
 };
 
 enum ABILITY
@@ -358,6 +359,7 @@ public:
 	uint8		getValidTarget();
 	ADDTYPE		getAddType();
     uint16      getMessage();
+    uint16      getDefaultMessage();
 	uint16		getRecastTime();
 	uint16		getRecastId();
 	uint16		getCE();
@@ -374,6 +376,7 @@ public:
 	void		setValidTarget(uint8 validTarget);
 	void		setAddType(ADDTYPE addtype);
     void        setMessage(uint16 message);
+    void        setDefaultMessage(uint16 message);
 	void		setRecastTime(uint16 recastTime);
 	void		setRecastId(uint16 recastId); 
 	void		setCE(uint16 CE);
@@ -394,6 +397,7 @@ private:
 	uint8		m_validTarget;
 	ADDTYPE		m_addType;
     uint16      m_message;
+	uint16		m_DefaultMessage;
 	uint16		m_recastTime;
 	uint16		m_recastId;
 	uint16		m_CE;
@@ -414,7 +418,7 @@ namespace ability
 
     CAbility* GetAbility(uint16 AbilityID);
     CAbility* GetTwoHourAbility(JOBTYPE JobID);
-
+	bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID);
     std::vector<CAbility*> GetAbilities(JOBTYPE JobID);
 };
 

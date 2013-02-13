@@ -2074,6 +2074,56 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
 *                                                                       *
 ************************************************************************/
 
+int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total) 
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnUseAbilityRoll");
+
+	snprintf(File, sizeof(File), "scripts/globals/abilities/%s.lua", PAbility->getName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnUseAbilityRoll: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnUseAbilityRoll");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnUseAbilityRoll: undefined procedure OnUseAbilityRoll\n");
+		return 0;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+	
+	CLuaBaseEntity LuaMobEntity(PTarget);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+
+    CLuaAbility LuaAbility(PAbility);
+	Lunar<CLuaAbility>::push(LuaHandle,&LuaAbility);
+
+	lua_pushinteger(LuaHandle, total);
+
+	if( lua_pcall(LuaHandle,4,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnUseAbilityRoll: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 0;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 int32 StartElevator(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));

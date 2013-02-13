@@ -1,32 +1,18 @@
--- phpMyAdmin SQL Dump
--- version 3.3.8
--- http://www.phpmyadmin.net
---
--- Serveur: localhost
--- Généré le : Dim 21 Octobre 2012 à 13:32
--- Version du serveur: 6.0.0
--- Version de PHP: 5.2.9-2
+/*
+MySQL Data Transfer
+Source Host: localhost
+Source Database: dspdb
+Target Host: localhost
+Target Database: dspdb
+Date: 2/11/2013 11:16:49 PM
+*/
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données: `dspdb`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `chars`
---
-
+SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for chars
+-- ----------------------------
 DROP TABLE IF EXISTS `chars`;
-CREATE TABLE IF NOT EXISTS `chars` (
+CREATE TABLE `chars` (
   `charid` int(10) unsigned NOT NULL,
   `accid` int(10) unsigned NOT NULL,
   `charname` varchar(15) NOT NULL,
@@ -48,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `chars` (
   `quests` blob,
   `keyitems` blob,
   `spells` blob,
+  `abilities` blob,
   `titles` blob,
   `zones` blob,
   `playtime` int(10) unsigned NOT NULL DEFAULT '0',

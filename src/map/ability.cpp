@@ -186,6 +186,16 @@ void CAbility::setMessage(uint16 message)
     m_message = message;
 }
 
+uint16 CAbility::getDefaultMessage()
+{
+    return m_DefaultMessage;
+}
+
+void CAbility::setDefaultMessage(uint16 message)
+{
+    m_DefaultMessage = message;
+}
+
 /************************************************************************
 *                                                                       *
 *  Реализация namespase для работы со способностями                     *
@@ -245,6 +255,7 @@ namespace ability
 			    PAbility->setValidTarget(Sql_GetIntData(SqlHandle,4));
 			    PAbility->setRecastTime(Sql_GetIntData(SqlHandle,5));
                 PAbility->setMessage(Sql_GetIntData(SqlHandle,6));
+				PAbility->setDefaultMessage(Sql_GetIntData(SqlHandle,6));
               //PAbility->setMessage(Sql_GetIntData(SqlHandle,7));
 			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,8));
 			    PAbility->setRange(Sql_GetIntData(SqlHandle,9));
@@ -312,6 +323,19 @@ namespace ability
         }
         return NULL;
     }
+
+	bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID)
+	{
+	    if (GetAbility(AbilityID) != NULL)
+	    {
+		    uint8 Job = PAbilityList[AbilityID]->getJob();
+		    uint8 JobLvl = PAbilityList[AbilityID]->getLevel();
+
+			return ((PUser->GetMJob() == Job && PUser->GetMLevel() >= JobLvl) ||
+				(PUser->GetSJob() == Job && PUser->GetSLevel() >= JobLvl));
+	    }
+	    return false;
+	}
 
     /************************************************************************
     *                                                                       *

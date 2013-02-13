@@ -45,7 +45,7 @@ public:
 	uint8	m_StatusIcons[32];									// иконки статус-эффектов
 
 	bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
-	//bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls);
+	bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration);
 	void AddStatusEffect(CStatusEffect* StatusEffect, bool silent = false);
 	bool DelStatusEffect(EFFECT StatusID);
 	bool DelStatusEffectSilent(EFFECT StatusID);
@@ -75,6 +75,9 @@ public:
 	void SaveStatusEffects();									// сохраняем эффекты персонажа
 
     uint8 GetEffectsCount(uint16 SubID);                        // получаем количество эффектов с указанным subid
+
+	bool CheckForElevenRoll();
+	bool HasBustEffect(uint16 id);
 
 	 CStatusEffectContainer(CBattleEntity* PEntity);
 	~CStatusEffectContainer();

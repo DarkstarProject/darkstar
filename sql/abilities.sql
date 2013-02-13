@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: dspdb
 Target Host: localhost
 Target Database: dspdb
-Date: 2/10/2013 4:34:49 PM
+Date: 2/12/2013 5:51:37 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -85,9 +85,9 @@ INSERT INTO `abilities` VALUES ('46', 'third_eye', '12', '15', '1', '60', '133',
 INSERT INTO `abilities` VALUES ('47', 'meditate', '12', '30', '1', '180', '134', '0', '0', '25', '20', '0', '320', '0', '107', '0');
 INSERT INTO `abilities` VALUES ('48', 'warding_circle', '12', '5', '1', '600', '135', '0', '0', '31', '20', '1', '1', '20', '105', '0');
 INSERT INTO `abilities` VALUES ('49', 'ancient_circle', '14', '5', '1', '600', '157', '0', '0', '32', '20', '1', '1', '20', '116', '0');
-INSERT INTO `abilities` VALUES ('50', 'jump', '14', '10', '4', '60', '158', '110', '0', '204', '10', '0', '1000', '1000', '117', '0');
-INSERT INTO `abilities` VALUES ('51', 'high_jump', '14', '35', '4', '120', '159', '110', '0', '209', '12', '0', '0', '0', '118', '0');
-INSERT INTO `abilities` VALUES ('52', 'super_jump', '14', '50', '4', '180', '160', '110', '0', '214', '13', '0', '1000', '1000', '119', '0');
+INSERT INTO `abilities` VALUES ('50', 'jump', '14', '10', '4', '60', '158', '110', '0', '204', '20', '0', '1000', '1000', '117', '0');
+INSERT INTO `abilities` VALUES ('51', 'high_jump', '14', '35', '4', '120', '159', '110', '0', '209', '20', '0', '0', '0', '118', '0');
+INSERT INTO `abilities` VALUES ('52', 'super_jump', '14', '50', '4', '180', '160', '110', '0', '214', '20', '0', '1000', '1000', '119', '0');
 INSERT INTO `abilities` VALUES ('53', 'fight', '9', '1', '4', '10', '100', '0', '0', '83', '18', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('54', 'heel', '9', '10', '1', '5', '101', '0', '0', '83', '18', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('55', 'leave', '9', '35', '1', '10', '101', '0', '0', '83', '18', '0', '0', '0', '0', '0');
@@ -116,27 +116,27 @@ INSERT INTO `abilities` VALUES ('78', 'chain_affinity', '16', '25', '1', '120', 
 INSERT INTO `abilities` VALUES ('79', 'burst_affinity', '16', '40', '1', '120', '182', '0', '0', '141', '20', '0', '1', '300', '127', '0');
 INSERT INTO `abilities` VALUES ('80', 'wild_card', '17', '0', '1', '7200', '0', '0', '0', '132', '20', '1', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('81', 'phantom_roll', '17', '5', '1', '0', '193', '0', '0', '0', '18', '0', '1', '80', '131', '0');
-INSERT INTO `abilities` VALUES ('82', 'fighters_roll', '17', '49', '1', '60', '193', '420', '0', '98', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('83', 'monks_roll', '17', '31', '1', '60', '193', '420', '0', '99', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('84', 'healers_roll', '17', '20', '1', '60', '193', '420', '0', '100', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('85', 'wizards_roll', '17', '58', '1', '60', '193', '420', '0', '111', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('86', 'warlocks_roll', '17', '46', '1', '60', '193', '420', '0', '102', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('87', 'rogues_roll', '17', '43', '1', '60', '193', '420', '0', '103', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('88', 'gallants_roll', '17', '55', '1', '60', '193', '420', '0', '101', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('89', 'chaos_roll', '17', '14', '1', '60', '193', '420', '0', '105', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('90', 'beast_roll', '17', '34', '1', '60', '193', '420', '0', '106', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('91', 'choral_roll', '17', '26', '1', '60', '193', '420', '0', '107', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('92', 'hunters_roll', '17', '11', '1', '60', '193', '420', '0', '108', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('93', 'samurai_roll', '17', '34', '1', '60', '193', '420', '0', '109', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('94', 'ninja_roll', '17', '8', '1', '60', '193', '420', '0', '110', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('95', 'drachen_roll', '17', '52', '1', '60', '193', '420', '0', '104', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('96', 'evokers_roll', '17', '40', '1', '60', '193', '420', '0', '112', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('97', 'maguss_roll', '17', '17', '1', '60', '193', '420', '0', '113', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('98', 'corsairs_roll', '17', '5', '1', '60', '193', '420', '0', '114', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('99', 'puppet_roll', '17', '23', '1', '60', '193', '420', '0', '115', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('100', 'dancers_roll', '17', '61', '1', '60', '193', '420', '0', '167', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('101', 'scholars_roll', '17', '64', '1', '60', '193', '420', '0', '168', '20', '1', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('107', 'double-up', '17', '5', '1', '8', '194', '424', '0', '116', '20', '0', '1', '80', '0', '0');
+INSERT INTO `abilities` VALUES ('82', 'fighters_roll', '17', '49', '1', '60', '193', '420', '0', '98', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('83', 'monks_roll', '17', '31', '1', '60', '193', '420', '0', '99', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('84', 'healers_roll', '17', '20', '1', '60', '193', '420', '0', '100', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('85', 'wizards_roll', '17', '58', '1', '60', '193', '420', '0', '111', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('86', 'warlocks_roll', '17', '46', '1', '60', '193', '420', '0', '102', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('87', 'rogues_roll', '17', '43', '1', '60', '193', '420', '0', '103', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('88', 'gallants_roll', '17', '55', '1', '60', '193', '420', '0', '101', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('89', 'chaos_roll', '17', '14', '1', '60', '193', '420', '0', '105', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('90', 'beast_roll', '17', '34', '1', '60', '193', '420', '0', '106', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('91', 'choral_roll', '17', '26', '1', '60', '193', '420', '0', '107', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('92', 'hunters_roll', '17', '11', '1', '60', '193', '420', '0', '108', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('93', 'samurai_roll', '17', '34', '1', '60', '193', '420', '0', '109', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('94', 'ninja_roll', '17', '8', '1', '60', '193', '420', '0', '110', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('95', 'drachen_roll', '17', '52', '1', '60', '193', '420', '0', '104', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('96', 'evokers_roll', '17', '40', '1', '60', '193', '420', '0', '112', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('97', 'maguss_roll', '17', '17', '1', '60', '193', '420', '0', '113', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('98', 'corsairs_roll', '17', '5', '1', '60', '193', '420', '0', '114', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('99', 'puppet_roll', '17', '23', '1', '60', '193', '420', '0', '115', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('100', 'dancers_roll', '17', '61', '1', '60', '193', '420', '0', '167', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('101', 'scholars_roll', '17', '64', '1', '60', '193', '420', '0', '168', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('107', 'double-up', '17', '5', '1', '8', '194', '424', '0', '116', '8', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('108', 'quick_draw', '17', '40', '1', '0', '0', '0', '0', '0', '18', '0', '0', '0', '132', '0');
 INSERT INTO `abilities` VALUES ('109', 'fire_shot', '17', '40', '4', '60', '195', '0', '0', '125', '18', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('110', 'ice_shot', '17', '40', '4', '60', '195', '0', '0', '126', '18', '0', '0', '0', '0', '0');

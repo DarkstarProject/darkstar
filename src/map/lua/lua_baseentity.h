@@ -187,6 +187,11 @@ public:
 	int32 canLearnSpell(lua_State*);		// Check to see if character can learn spell, 0 if so
 	int32 delSpell(lua_State*);				// Remove spell from Entity spell list
 
+	int32 addLearnedAbility(lua_State*);				// Add spell to Entity spell list
+    int32 hasLearnedAbility(lua_State*);				// Check to see if character has item in spell list
+	int32 canLearnAbility(lua_State*);		// Check to see if character can learn spell, 0 if so
+	int32 delLearnedAbility(lua_State*);				// Remove spell from Entity spell list
+
     int32 addWeaponSkill(lua_State*);       //
     int32 delWeaponSkill(lua_State*);       //
 
@@ -296,6 +301,8 @@ public:
 	int32 addPartyEffect(lua_State*);		// Adds Effect to all party members
 	int32 removePartyEffect(lua_State*);	// Removes Effect from all party members
 	int32 hasPartyEffect(lua_State*);		// Has Effect from all party members
+	int32 addCorsairRoll(lua_State*);		// Adds corsair roll effect
+	int32 hasPartyJob(lua_State*);
 
 	int32 addMod(lua_State*);				// Adds Modifier Value
 	int32 getMod(lua_State*);				// Retrieves Modifier Value
@@ -331,6 +338,7 @@ public:
 	int32 setsLevel(lua_State*);			// sets the character's level
 	int32 changeJob(lua_State*);			// changes the job of a char (testing only!)
 	int32 setMerits(lua_State*);			// set merits (testing only!)
+	int32 getMerit(lua_State*);
 	int32 changesJob(lua_State*);			// changes the sub job of a char (testing only!)
 	int32 getWeaponDmg(lua_State*);			// gets the current equipped weapons' DMG rating
 	int32 getOffhandDmg(lua_State*);		// gets the current equipped offhand's DMG rating (used in WS calcs)

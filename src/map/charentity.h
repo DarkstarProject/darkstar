@@ -175,6 +175,7 @@ public:
 	uint8			  m_SpellList[128];				// список изученных заклинаний
     uint8             m_TitleList[94];              // список заслуженных завний
 	uint8			  m_Abilities[46];				// список текущих способностей
+	uint8			  m_LearnedAbilities[46];		// learnable abilities (corsair rolls)
 	uint8			  m_TraitList[16];				// список постянно активных способностей в виде битовой маски
     uint8             m_PetCommands[32];            // список доступных команд питомцу
 	uint8             m_WeaponSkills[32];  

@@ -334,12 +334,13 @@ enum MODIFIER
 // Corsair
 	MOD_DEDICATION			= 0x136,			// % exp gain
 	MOD_DEDICATION_CAP		= 0x137,			// Cap of dedicaiton effect
+	MOD_EXP_BONUS			= 0x17E,
 
-	MOD_ROLL_FIGHTERS		= 0x138,			// Tracks totals
-	MOD_ROLL_MONKS			= 0x139,			// Tracks totals
-	MOD_ROLL_HEALERS		= 0x13A,			// Tracks totals
-	MOD_ROLL_WIZARDS		= 0x13B,			// Tracks totals
-	MOD_ROLL_WARLOCKS		= 0x13C,			// Tracks totals
+	MOD_PET_MABB			= 0x138,			// Tracks totals
+	MOD_PET_MACC			= 0x139,			// Tracks totals
+	MOD_PET_ATTP			= 0x13A,			// Tracks totals
+	MOD_PET_ACC				= 0x13B,			// Tracks totals
+	MOD_DMG_REFLECT			= 0x13C,			// Tracks totals
 	MOD_ROLL_ROGUES			= 0x13D,			// Tracks totals
 	MOD_ROLL_GALLANTS		= 0x13E,			// Tracks totals
 	MOD_ROLL_CHAOS			= 0x13F,			// Tracks totals
@@ -411,13 +412,12 @@ enum MODIFIER
 //  Use these for new modifiers. 
 	
 
-	//SPARE_MOD				 = 0x17E
 	//SPARE_MOD				 = 0x17F
 	//SPARE_MOD				 = 0x180
 	//SPARE_MOD				 = 0x181
 };
 
-#define MAX_MODIFIER	       0x17E
+#define MAX_MODIFIER	       0x17F
 
 
 

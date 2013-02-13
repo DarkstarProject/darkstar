@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: dspdb
 Target Host: localhost
 Target Database: dspdb
-Date: 9/18/2012 4:12:01 AM
+Date: 2/12/2013 7:19:37 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -12,8 +12,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- Table structure for status_effects
 -- ----------------------------
 DROP TABLE IF EXISTS `status_effects`;
-CREATE TABLE IF NOT EXISTS `status_effects` ( 
-`id` smallint(5) unsigned NOT NULL,
+CREATE TABLE `status_effects` (
+  `id` smallint(5) unsigned NOT NULL,
   `name` varchar(50) NOT NULL,
   `flags` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -321,37 +321,37 @@ INSERT INTO `status_effects` VALUES ('304', 'thunder_maneuver', '32');
 INSERT INTO `status_effects` VALUES ('305', 'water_maneuver', '32');
 INSERT INTO `status_effects` VALUES ('306', 'light_maneuver', '32');
 INSERT INTO `status_effects` VALUES ('307', 'dark_maneuver', '32');
-INSERT INTO `status_effects` VALUES ('308', 'double-up_chance', '32');
-INSERT INTO `status_effects` VALUES ('309', 'bust', '32');
-INSERT INTO `status_effects` VALUES ('310', 'fighters_roll', '32');
-INSERT INTO `status_effects` VALUES ('311', 'monks_roll', '32');
-INSERT INTO `status_effects` VALUES ('312', 'healers_roll', '32');
-INSERT INTO `status_effects` VALUES ('313', 'wizards_roll', '32');
-INSERT INTO `status_effects` VALUES ('314', 'warlocks_roll', '32');
-INSERT INTO `status_effects` VALUES ('315', 'rogues_roll', '32');
-INSERT INTO `status_effects` VALUES ('316', 'gallants_roll', '32');
-INSERT INTO `status_effects` VALUES ('317', 'chaos_roll', '32');
-INSERT INTO `status_effects` VALUES ('318', 'beast_roll', '32');
-INSERT INTO `status_effects` VALUES ('319', 'choral_roll', '32');
-INSERT INTO `status_effects` VALUES ('320', 'hunters_roll', '32');
-INSERT INTO `status_effects` VALUES ('321', 'samurai_roll', '32');
-INSERT INTO `status_effects` VALUES ('322', 'ninja_roll', '32');
-INSERT INTO `status_effects` VALUES ('323', 'drachen_roll', '32');
-INSERT INTO `status_effects` VALUES ('324', 'evokers_roll', '32');
-INSERT INTO `status_effects` VALUES ('325', 'maguss_roll', '32');
-INSERT INTO `status_effects` VALUES ('326', 'corsairs_roll', '32');
-INSERT INTO `status_effects` VALUES ('327', 'puppet_roll', '32');
-INSERT INTO `status_effects` VALUES ('328', 'dancers_roll', '32');
-INSERT INTO `status_effects` VALUES ('329', 'scholars_roll', '32');
-INSERT INTO `status_effects` VALUES ('330', 'bolters_roll', '32');
-INSERT INTO `status_effects` VALUES ('331', 'casters_roll', '32');
-INSERT INTO `status_effects` VALUES ('332', 'coursers_roll', '32');
-INSERT INTO `status_effects` VALUES ('333', 'blitzers_roll', '32');
-INSERT INTO `status_effects` VALUES ('334', 'tacticians_roll', '32');
-INSERT INTO `status_effects` VALUES ('335', 'allies_roll', '32');
-INSERT INTO `status_effects` VALUES ('336', 'misers_roll', '32');
-INSERT INTO `status_effects` VALUES ('337', 'companions_roll', '32');
-INSERT INTO `status_effects` VALUES ('338', 'avengers_roll', '32');
+INSERT INTO `status_effects` VALUES ('308', 'double-up_chance', '288');
+INSERT INTO `status_effects` VALUES ('309', 'bust', '288');
+INSERT INTO `status_effects` VALUES ('310', 'fighters_roll', '288');
+INSERT INTO `status_effects` VALUES ('311', 'monks_roll', '288');
+INSERT INTO `status_effects` VALUES ('312', 'healers_roll', '288');
+INSERT INTO `status_effects` VALUES ('313', 'wizards_roll', '288');
+INSERT INTO `status_effects` VALUES ('314', 'warlocks_roll', '288');
+INSERT INTO `status_effects` VALUES ('315', 'rogues_roll', '288');
+INSERT INTO `status_effects` VALUES ('316', 'gallants_roll', '288');
+INSERT INTO `status_effects` VALUES ('317', 'chaos_roll', '288');
+INSERT INTO `status_effects` VALUES ('318', 'beast_roll', '288');
+INSERT INTO `status_effects` VALUES ('319', 'choral_roll', '288');
+INSERT INTO `status_effects` VALUES ('320', 'hunters_roll', '288');
+INSERT INTO `status_effects` VALUES ('321', 'samurai_roll', '288');
+INSERT INTO `status_effects` VALUES ('322', 'ninja_roll', '288');
+INSERT INTO `status_effects` VALUES ('323', 'drachen_roll', '288');
+INSERT INTO `status_effects` VALUES ('324', 'evokers_roll', '288');
+INSERT INTO `status_effects` VALUES ('325', 'maguss_roll', '288');
+INSERT INTO `status_effects` VALUES ('326', 'corsairs_roll', '288');
+INSERT INTO `status_effects` VALUES ('327', 'puppet_roll', '288');
+INSERT INTO `status_effects` VALUES ('328', 'dancers_roll', '288');
+INSERT INTO `status_effects` VALUES ('329', 'scholars_roll', '288');
+INSERT INTO `status_effects` VALUES ('330', 'bolters_roll', '288');
+INSERT INTO `status_effects` VALUES ('331', 'casters_roll', '288');
+INSERT INTO `status_effects` VALUES ('332', 'coursers_roll', '288');
+INSERT INTO `status_effects` VALUES ('333', 'blitzers_roll', '288');
+INSERT INTO `status_effects` VALUES ('334', 'tacticians_roll', '288');
+INSERT INTO `status_effects` VALUES ('335', 'allies_roll', '288');
+INSERT INTO `status_effects` VALUES ('336', 'misers_roll', '288');
+INSERT INTO `status_effects` VALUES ('337', 'companions_roll', '288');
+INSERT INTO `status_effects` VALUES ('338', 'avengers_roll', '288');
 INSERT INTO `status_effects` VALUES ('340', 'warriors_charge', '32');
 INSERT INTO `status_effects` VALUES ('341', 'formless_strikes', '32');
 INSERT INTO `status_effects` VALUES ('342', 'assassins_charge', '32');

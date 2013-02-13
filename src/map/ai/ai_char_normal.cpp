@@ -1794,7 +1794,8 @@ void CAICharNormal::ActionJobAbilityStart()
 		}
 
 		if (m_PJobAbility->getID() >= ABILITY_FIGHTERS_ROLL && m_PJobAbility->getID() <= ABILITY_SCHOLARS_ROLL &&
-			m_PChar->StatusEffectContainer->HasStatusEffect(battleutils::getCorsairRollEffect(m_PJobAbility->getID()))) 
+			(m_PChar->StatusEffectContainer->HasStatusEffect(battleutils::getCorsairRollEffect(m_PJobAbility->getID())) ||
+			m_PChar->StatusEffectContainer->HasBustEffect(battleutils::getCorsairRollEffect(m_PJobAbility->getID())))) 
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ROLL_ALREADY_ACTIVE));
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1847,7 +1848,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 		Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", m_Tick, m_PChar->id);
     }
 
-
+	m_PJobAbility->setMessage(m_PJobAbility->getDefaultMessage());
 	// get any available merit recast reduction
 	uint8 meritRecastReduction = 0;
 
@@ -1879,9 +1880,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 		}
 	}
 
-    m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime);
-    m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
-
     apAction_t Action;
 	m_PChar->m_ActionList.clear();
 
@@ -1902,6 +1900,11 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 		m_CorsairDoubleUp = m_PJobAbility->getID();
 
+		if (m_PChar->StatusEffectContainer->CheckForElevenRoll())
+		{
+			RecastTime /= 2;
+		}
+
 		Action.reaction   = REACTION_NONE;
 		Action.speceffect = (SPECEFFECT)roll;
 		Action.animation  = m_PJobAbility->getAnimationID();
@@ -1919,22 +1922,33 @@ void CAICharNormal::ActionJobAbilityFinish()
 					distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
 				{
 					Action.ActionTarget = PTarget;
-
+					luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, m_PJobAbility, roll);
 					if (PTarget->id == m_PChar->id){
-						Action.messageID = m_PJobAbility->getMessage();
+						if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
+							Action.messageID = MSGBASIC_ROLL_MAIN_FAIL;
+						} else {
+							Action.messageID = m_PJobAbility->getMessage();
+						}
+					} else if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
+						Action.messageID  = MSGBASIC_ROLL_SUB_FAIL;
 					} else {
 						Action.messageID  = MSGBASIC_ROLL_SUB;
 					}
-
 					m_PChar->m_ActionList.push_back(Action);
 				}
 			}
 		} else {
 			Action.ActionTarget = m_PBattleSubTarget;
-			Action.messageID	= m_PJobAbility->getMessage();
+			luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, m_PJobAbility, roll);
+			if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
+				Action.messageID = MSGBASIC_ROLL_MAIN_FAIL;
+			} else {
+				Action.messageID = m_PJobAbility->getMessage();
+			}
 
 			m_PChar->m_ActionList.push_back(Action);
 		}
+		m_PChar->PRecastContainer->Add(RECAST_ABILITY, 194, 8000); //double up
 	}
 
 	else if (m_PJobAbility->getID() == ABILITY_DOUBLE_UP )
@@ -1947,6 +1961,8 @@ void CAICharNormal::ActionJobAbilityFinish()
 			total = 12;
 		}
 		doubleUpEffect->SetPower(total);
+
+		CAbility* rollAbility =  ability::GetAbility(m_CorsairDoubleUp);
 
 		Action.animation	= doubleUpEffect->GetSubPower();
 		Action.reaction		= REACTION_NONE;
@@ -1969,20 +1985,27 @@ void CAICharNormal::ActionJobAbilityFinish()
 						Action.ActionTarget = PTarget;
 						if (PTarget->id == m_PChar->id){
 							Action.messageID = MSGBASIC_DOUBLEUP_BUST;
+							luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, rollAbility, total);
 						} else {
-							Action.messageID  = MSGBASIC_DOUBLEUP_BUST_SUB;
+							Action.messageID = MSGBASIC_DOUBLEUP_BUST_SUB;
 						}
+						PTarget->StatusEffectContainer->DelStatusEffectSilent(battleutils::getCorsairRollEffect(m_CorsairDoubleUp));
 						m_PChar->m_ActionList.push_back(Action);
 					}
 				}
 			} else {
 				Action.ActionTarget = m_PBattleSubTarget;
+				luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, rollAbility, total);
 				Action.messageID	= MSGBASIC_DOUBLEUP_BUST;
-
+				m_PChar->StatusEffectContainer->DelStatusEffectSilent(battleutils::getCorsairRollEffect(m_CorsairDoubleUp));
 				m_PChar->m_ActionList.push_back(Action);
 			}
 			m_PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
 		} else {
+			if (total == 11)
+			{
+				m_PChar->PRecastContainer->Del(RECAST_ABILITY, 193); //phantom roll
+			}
 			if (m_PChar->PParty != NULL)
 			{
 				for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
@@ -1994,19 +2017,29 @@ void CAICharNormal::ActionJobAbilityFinish()
 						distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
 					{
 						Action.ActionTarget = PTarget;
-						if (PTarget->id == m_PChar->id){
-							Action.messageID = m_PJobAbility->getMessage();
+						luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, rollAbility, total);
+					if (PTarget->id == m_PChar->id){
+						if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
+							Action.messageID = MSGBASIC_DOUBLEUP_FAIL;
 						} else {
-							Action.messageID  = MSGBASIC_ROLL_SUB;
+							Action.messageID = m_PJobAbility->getMessage();
 						}
-
+					} else if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
+						Action.messageID  = MSGBASIC_ROLL_SUB_FAIL;
+					} else {
+						Action.messageID  = MSGBASIC_ROLL_SUB;
+					}
 						m_PChar->m_ActionList.push_back(Action);
 					}
 				}
 			} else {
 				Action.ActionTarget = m_PBattleSubTarget;
-				Action.messageID	= m_PJobAbility->getMessage();
-
+				luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, rollAbility, total);
+				if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
+					Action.messageID = MSGBASIC_DOUBLEUP_FAIL;
+				} else {
+					Action.messageID = m_PJobAbility->getMessage();
+				}
 				m_PChar->m_ActionList.push_back(Action);
 			}
 		}
@@ -2324,6 +2357,9 @@ void CAICharNormal::ActionJobAbilityFinish()
 		if (m_PJobAbility->getMessage() == 0)
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_JA));
 	}
+
+    m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime);
+    m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 
 	m_PJobAbility = NULL;
     m_PBattleSubTarget = NULL;

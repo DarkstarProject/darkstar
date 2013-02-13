@@ -120,7 +120,7 @@ namespace luautils
 	int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PPetMaster);// triggers when pet uses an ability
 	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded);				// triggers when weapon skill is used
 	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAblility);				// triggers when job ability is used
-
+	int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total); // triggers on corsair roll
 
     int32 GetMobRespawnTime(lua_State* L);                                      // get the respawn time of a mob
 	int32 DeterMob(lua_State* L);                                               // Allow or prevent a mob from spawning

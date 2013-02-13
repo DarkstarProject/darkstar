@@ -332,10 +332,11 @@ void LoadChar(CCharEntity* PChar)
           "quests,"         // 14
           "keyitems,"       // 15
           "spells,"         // 16
-          "titles,"         // 17
-          "zones,"          // 18
-          "missions,"       // 19
-		  "playtime "		// 20
+		  "abilities,"		// 17
+          "titles,"         // 18
+          "zones,"          // 19
+          "missions,"       // 20
+		  "playtime "		// 21
         "FROM chars "
         "WHERE charid = %u";
 
@@ -379,19 +380,24 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,16,&spells,&length);
 		memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
 
+		length = 0;
+		int8* abilities = NULL;
+		Sql_GetData(SqlHandle,17,&abilities,&length);
+		memcpy(PChar->m_LearnedAbilities, abilities, (length > sizeof(PChar->m_LearnedAbilities) ? sizeof(PChar->m_LearnedAbilities) : length));
+
         length = 0;
 		int8* titles = NULL;
-		Sql_GetData(SqlHandle,17,&titles,&length);
+		Sql_GetData(SqlHandle,18,&titles,&length);
 		memcpy(PChar->m_TitleList, titles, (length > sizeof(PChar->m_TitleList) ? sizeof(PChar->m_TitleList) : length));
 
 		length = 0;
 		int8* zones = NULL;
-		Sql_GetData(SqlHandle,18,&zones,&length);
+		Sql_GetData(SqlHandle,19,&zones,&length);
 		memcpy(PChar->m_ZonesList, zones, (length > sizeof(PChar->m_ZonesList) ? sizeof(PChar->m_ZonesList) : length));
 
         length = 0;
 		int8* missions = NULL;
-		Sql_GetData(SqlHandle,19,&missions,&length);
+		Sql_GetData(SqlHandle,20,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
 	}
@@ -1799,9 +1805,10 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 	{
 		CAbility* PAbility = AbilitiesList.at(i);
 
-		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496  && (PAbility->getAddType() == ADDTYPE_NORMAL || PAbility->getAddType() == ADDTYPE_MAIN_ONLY))
+		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496 )
 		{
-			if (PAbility->getID() != ABILITY_PET_COMMANDS){
+			if (PAbility->getID() != ABILITY_PET_COMMANDS && (PAbility->getAddType() == ADDTYPE_NORMAL || PAbility->getAddType() == ADDTYPE_MAIN_ONLY ||
+				(PAbility->getAddType() == ADDTYPE_LEARNED && hasLearnedAbility(PChar, PAbility->getID())))){
 				addAbility(PChar, PAbility->getID());
 			}
 		}else{
@@ -1822,9 +1829,12 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
 		if (PChar->GetSLevel() >= PAbility->getLevel() )
 		{
-			if (PAbility->getLevel() != 0 && PAbility->getAddType() == ADDTYPE_NORMAL)
+			if (PAbility->getLevel() != 0 )
 			{
-				addAbility(PChar, PAbility->getID());
+				if (PAbility->getAddType() == ADDTYPE_NORMAL || (PAbility->getAddType() == ADDTYPE_LEARNED && hasLearnedAbility(PChar, PAbility->getID())))
+				{
+					addAbility(PChar, PAbility->getID());
+				}
 			}
 		}else{
 			break;
@@ -2092,6 +2102,27 @@ int32 addSpell(CCharEntity* PChar, uint16 SpellID)
 int32 delSpell(CCharEntity* PChar, uint16 SpellID)
 {
 	return delBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+}
+
+/************************************************************************
+*																		*
+*  Learned abilities (corsair rolls)									*
+*																		*
+************************************************************************/
+
+int32 hasLearnedAbility(CCharEntity* PChar, uint16 AbilityID)
+{
+	return hasBit(AbilityID, PChar->m_LearnedAbilities, sizeof(PChar->m_LearnedAbilities));
+}
+
+int32 addLearnedAbility(CCharEntity* PChar, uint16 AbilityID)
+{
+	return addBit(AbilityID, PChar->m_LearnedAbilities, sizeof(PChar->m_LearnedAbilities));
+}
+
+int32 delLearnedAbility(CCharEntity* PChar, uint16 AbilityID)
+{
+	return delBit(AbilityID, PChar->m_LearnedAbilities, sizeof(PChar->m_LearnedAbilities));
 }
 
 /************************************************************************
@@ -3278,6 +3309,28 @@ void SaveSpells(CCharEntity* PChar)
         PChar->id);
 }
 
+
+/************************************************************************
+*																		*
+*  Сохраняем список выученных заклинаний								*
+*																		*
+************************************************************************/
+
+void SaveLearnedAbilities(CCharEntity* PChar)
+{
+	const int8* Query =
+        "UPDATE chars SET "
+          "abilities = '%s' "
+        "WHERE charid = %u;";
+
+	int8 abilities[sizeof(PChar->m_LearnedAbilities)*2+1];
+	Sql_EscapeStringLen(SqlHandle,abilities,(const int8*)PChar->m_LearnedAbilities,sizeof(PChar->m_LearnedAbilities));
+
+	Sql_Query(SqlHandle,Query,
+        abilities,
+        PChar->id);
+}
+
 /************************************************************************
 *                                                                       *
 *  Сохраняем список званий                                              *
@@ -3564,9 +3617,9 @@ void SaveCharPoints(CCharEntity* PChar)
 
 uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
 {
-    if (PChar->getMod(MOD_DEDICATION) != 0)
+    if (PChar->getMod(MOD_DEDICATION) != 0 || PChar->getMod(MOD_EXP_BONUS) != 0)
     {
-        int16 percentage = PChar->getMod(MOD_DEDICATION);
+        int16 percentage = PChar->getMod(MOD_DEDICATION) + PChar->getMod(MOD_EXP_BONUS);
         int16 cap = PChar->getMod(MOD_DEDICATION_CAP);
 
         int16 dedication = dsp_cap(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getMod(MOD_DEDICATION_CAP));
