@@ -416,6 +416,7 @@ public:
 
 	int16			GetWeaponDelay(bool tp);		//returns delay of combined weapons
 	int16			GetRangedWeaponDelay(bool tp);	//returns delay of ranged weapon + ammo where applicable
+	int16			GetAmmoDelay(bool tp);			//returns delay of ammo (for cooldown between shots)
 	uint16			GetMainWeaponDmg();				//returns total main hand DMG
 	uint16			GetSubWeaponDmg();				//returns total sub weapon DMG
 	uint16			GetRangedWeaponDmg();			//returns total ranged weapon DMG

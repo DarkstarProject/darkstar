@@ -634,7 +634,7 @@ void CAICharNormal::ActionRangedStart()
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
-	if( (m_Tick - m_PChar->m_rangedDelay) < 2400){ //cooldown between shots
+	if( (m_Tick - m_PChar->m_rangedDelay) < m_PChar->GetAmmoDelay(false)){ //cooldown between shots
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_WAIT_LONGER));
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_ActionTargetID = 0;
