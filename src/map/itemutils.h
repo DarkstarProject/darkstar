@@ -36,6 +36,10 @@
 #include "items/item_usable.h"
 #include "items/item_weapon.h"
 
+#define MAX_ITEMID  21503
+#define MAX_DROPID  4500
+#define MAX_LOOTID  1300
+
 struct DropItem_t
 {
 	uint16 ItemID;

@@ -27,10 +27,6 @@
 #include "map.h"
 #include "itemutils.h"
 
-#define MAX_ITEMID  21503
-#define MAX_DROPID  4500
-#define MAX_LOOTID  1300
-
 CItem *		g_pItemList[MAX_ITEMID];    // глобальный массив указателей на игровые предметы
 DropList_t* g_pDropList[MAX_DROPID];    // глобальный массив списков выпадающих предметов
 LootList_t* g_pLootList[MAX_LOOTID];
