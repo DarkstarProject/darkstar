@@ -176,21 +176,21 @@ WHERE_MESSENGERS_GATHER         = 57
 FLAMES_FOR_THE_DEAD             = 58
 -- ECHOES_OF_TIME                  = -- Category
 FOR_WHOM_THE_VERSE_IS_SUNG      = 60
--- A_PLACE_TO_RETURN               = 
--- MORE_QUESTIONS_THAN_ANSWERS     = 
--- ONE_TO_BE_FEARED                = 
+A_PLACE_TO_RETURN               = 65 -- It's necessary to increase MAX_MISSIONID in charentity.h to reach values > 63
+MORE_QUESTIONS_THAN_ANSWERS     = 66
+ONE_TO_BE_FEARED                = 67
 -- IN_THE_LIGHT_OF_THE_CRYSTAL     = -- Category
--- CHAINS_AND_BONDS                = 
--- FLAMES_IN_THE_DARKNESS          = 
--- FIRE_IN_THE_EYES_OF_MEN         = 
--- CALM_BEFORE_THE_STORM           = 
--- THE_WARRIOR_S_PATH              = 
--- EMPTINESS_BLEEDS                = -- Category
--- GARDEN_OF_ANTIQUITY             = 
--- A_FATE_DECIDED                  = 
--- WHEN_ANGELS_FALL                = 
--- DAWN                            = 
--- THE_LAST_VERSE                  = 
+CHAINS_AND_BONDS                = 68
+FLAMES_IN_THE_DARKNESS          = 77
+FIRE_IN_THE_EYES_OF_MEN         = 78
+CALM_BEFORE_THE_STORM           = 80
+THE_WARRIOR_S_PATH              = 81
+EMPTINESS_BLEEDS                = 82 -- Category
+GARDEN_OF_ANTIQUITY             = 87
+A_FATE_DECIDED                  = 90
+WHEN_ANGELS_FALL                = 91
+DAWN                            = 92
+THE_LAST_VERSE                  = 94
 
 -----------------------------------
 --  Aht Urhgan Missions (4)
