@@ -169,6 +169,7 @@ void CalculateStats(CMobEntity * PMob)
 	PMob->setModifier(MOD_EVA, GetBase(PMob,PMob->evaRank));
 
 	uint16 BaseAttack = 0;
+	uint16 BaseAccuracy = 0;
 
 	if(PMob->GetMLevel() <= 30) {
 		BaseAttack = (uint16)(PMob->GetMLevel() * 31 / 10);
@@ -178,16 +179,17 @@ void CalculateStats(CMobEntity * PMob)
 		BaseAttack = (uint16)(PMob->GetMLevel() * 37 / 10);
 	}
 
-	BaseAttack = GetBase(PMob,PMob->attRank);
+	BaseAccuracy = BaseAttack;
 
 	//MNK attack rate should be lower
 	if(PMob->GetMJob() == JOB_MNK){
 		BaseAttack = (float)BaseAttack*0.6;
 	}
+
 	// Note: acc and att ranks are not taken into account
 	PMob->setModifier(MOD_ATT, BaseAttack);
 
-	PMob->setModifier(MOD_ACC, BaseAttack);
+	PMob->setModifier(MOD_ACC, BaseAccuracy);
 
 	PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
 
