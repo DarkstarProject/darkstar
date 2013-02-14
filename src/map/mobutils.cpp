@@ -165,25 +165,27 @@ void CalculateStats(CMobEntity * PMob)
     PMob->health.hp = PMob->GetMaxHP();
     PMob->health.mp = PMob->GetMaxMP();
 
-	PMob->setModifier(MOD_DEF, GetBase(PMob,3));
-	PMob->setModifier(MOD_EVA, GetBase(PMob,3));
+	PMob->setModifier(MOD_DEF, GetBase(PMob,PMob->defRank));
+	PMob->setModifier(MOD_EVA, GetBase(PMob,PMob->evaRank));
 
 	uint16 BaseAttack = 0;
 
 	if(PMob->GetMLevel() <= 30) {
 		BaseAttack = (uint16)(PMob->GetMLevel() * 31 / 10);
 	} else if(PMob->GetMLevel() <= 50) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 30 / 10);
+		BaseAttack = (uint16)(PMob->GetMLevel() * 33 / 10);
 	} else if(PMob->GetMLevel() > 50) {
 		BaseAttack = (uint16)(PMob->GetMLevel() * 37 / 10);
 	}
 
-	PMob->setModifier(MOD_ATT, BaseAttack);
+	BaseAttack = GetBase(PMob,PMob->attRank);
 
 	//MNK attack rate should be lower
 	if(PMob->GetMJob() == JOB_MNK){
-		BaseAttack = (float)BaseAttack*0.4;
+		BaseAttack = (float)BaseAttack*0.6;
 	}
+	// Note: acc and att ranks are not taken into account
+	PMob->setModifier(MOD_ATT, BaseAttack);
 
 	PMob->setModifier(MOD_ACC, BaseAttack);
 
@@ -202,13 +204,13 @@ void CalculateStats(CMobEntity * PMob)
     }
 
 
-	uint16 fSTR = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fDEX = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fAGI = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fINT = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fMND = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fCHR = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fVIT = GetBaseToRank(3, PMob->GetMLevel());
+	uint16 fSTR = GetBaseToRank(PMob->strRank, PMob->GetMLevel());
+	uint16 fDEX = GetBaseToRank(PMob->dexRank, PMob->GetMLevel());
+	uint16 fVIT = GetBaseToRank(PMob->vitRank, PMob->GetMLevel());
+	uint16 fAGI = GetBaseToRank(PMob->agiRank, PMob->GetMLevel());
+	uint16 fINT = GetBaseToRank(PMob->intRank, PMob->GetMLevel());
+	uint16 fMND = GetBaseToRank(PMob->mndRank, PMob->GetMLevel());
+	uint16 fCHR = GetBaseToRank(PMob->chrRank, PMob->GetMLevel());
 
 	uint16 mSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),2), PMob->GetMLevel());
 	uint16 mDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),3), PMob->GetMLevel());

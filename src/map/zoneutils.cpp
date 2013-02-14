@@ -252,7 +252,7 @@ void LoadMOBList(CZone* PZone)
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 			mob_pools.familyid, name_prefix, unknown, animationsub, \
-            (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, castSpellTypes \
+            (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, castSpellTypes, ATT, ACC \
 			FROM mob_groups, mob_pools, mob_spawn_points, mob_family_system \
 			WHERE mob_groups.poolid = mob_pools.poolid \
 			AND mob_groups.groupid = mob_spawn_points.groupid \
@@ -314,6 +314,18 @@ void LoadMOBList(CZone* PZone)
 				//PMob->speed += map_config.speed_mod;
 				//PMob->speedsub += map_config.speed_mod;
 			}
+
+            PMob->strRank = (uint8)Sql_GetIntData(SqlHandle,25);
+            PMob->dexRank = (uint8)Sql_GetIntData(SqlHandle,26);
+            PMob->vitRank = (uint8)Sql_GetIntData(SqlHandle,27);
+            PMob->agiRank = (uint8)Sql_GetIntData(SqlHandle,28);
+            PMob->intRank = (uint8)Sql_GetIntData(SqlHandle,29);
+            PMob->mndRank = (uint8)Sql_GetIntData(SqlHandle,30);
+            PMob->chrRank = (uint8)Sql_GetIntData(SqlHandle,31);
+            PMob->evaRank = (uint8)Sql_GetIntData(SqlHandle,32);
+            PMob->defRank = (uint8)Sql_GetIntData(SqlHandle,33);
+            PMob->attRank = (uint8)Sql_GetIntData(SqlHandle,55);
+            PMob->accRank = (uint8)Sql_GetIntData(SqlHandle,56);
 
 			PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
 			PMob->setModifier(MOD_PIERCERES,(uint16)(Sql_GetFloatData(SqlHandle,35) * 1000));

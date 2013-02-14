@@ -114,6 +114,19 @@ public:
     float       HPstat;								// HP boost percentage
     float       MPstat;								// MP boost percentage
 
+    // stat ranks
+    uint8        strRank;
+    uint8        dexRank;
+    uint8        vitRank;
+    uint8        agiRank;
+    uint8        intRank;
+    uint8        mndRank;
+    uint8        chrRank;
+    uint8        attRank;
+    uint8        defRank;
+    uint8        accRank;
+    uint8        evaRank;
+
 	uint8		m_Type;								// тип монстра
     uint8       m_Link;								// взаимопомощь монстрам своего семейства
 	uint16		m_Behaviour;						// поведение монстра в различных ситуациях
@@ -126,7 +139,7 @@ public:
 	uint8       m_HiPCLvl;							// Highest Level of Player Character that hit the Monster
 	uint8       m_THLvl;							// Highest Level of Treasure Hunter that apply to drops
 	uint32		m_THPCID;							// ID of last PC that hit the NPC and apply TH onto the NPC
-	uint16		m_Family;	
+	uint16		m_Family;
 	uint8		m_SkillStatus;						// status of skills (used 2h/used epic tp move/etc)
 	std::vector<uint16> m_AvailableSpells;			// the spell IDs that this monster can cast.
 	string_t      m_SpellTypesBitmask;				// The spells types bitmask from the mob_pools table, 1 byte per element, 8 elements

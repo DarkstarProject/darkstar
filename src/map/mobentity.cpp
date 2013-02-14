@@ -55,6 +55,17 @@ CMobEntity::CMobEntity()
     m_RageMode = 0;
 	m_NewSkin = 0;
 	m_SkinID = 0;
+    strRank = 3;
+    defRank = 3;
+    vitRank = 3;
+    agiRank = 3;
+    intRank = 3;
+    mndRank = 3;
+    chrRank = 3;
+    attRank = 3;
+    defRank = 3;
+    accRank = 3;
+    evaRank = 3;
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
@@ -149,9 +160,9 @@ void CMobEntity::SetMainSkin(uint32 mobid)
 							 WHERE mob_spawn_points.mobid = %u \
 							 AND mob_groups.groupid = mob_spawn_points.groupid \
 							 AND mob_groups.poolid = mob_pools.poolid";
-		
+
 		int32 ret = Sql_Query(SqlHandle, Query, mobid);
-	
+
 		if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			memcpy(&look,Sql_GetData(SqlHandle,0),23);
@@ -164,9 +175,9 @@ void CMobEntity::SetMainSkin(uint32 mobid)
 void CMobEntity::SetNewSkin(uint8 skinid)
 {
 	const int8* Query = "SELECT skin_model FROM mob_change_skin WHERE skinid = %u";
-    
+
 	int32 ret = Sql_Query(SqlHandle, Query, skinid);
-	
+
 	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
 		memcpy(&look,Sql_GetData(SqlHandle,0),23);
