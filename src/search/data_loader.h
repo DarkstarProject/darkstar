@@ -59,6 +59,7 @@ struct SearchEntity
 	uint8  rank;
 	uint8  race;
 	uint8  zone;
+	uint8  prevzone;
 	uint16 flags1;
 	uint32 flags2;
 	uint32 comment;

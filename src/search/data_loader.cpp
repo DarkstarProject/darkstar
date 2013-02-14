@@ -218,7 +218,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 
 	}
 	else{
-		const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
+		const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
                             war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
                             FROM accounts_sessions \
                             LEFT JOIN chars USING (charid) \
@@ -242,20 +242,22 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
-            PPlayer->id     = (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone   = (uint8) Sql_GetIntData(SqlHandle,  3);
-            PPlayer->nation = (uint8) Sql_GetIntData(SqlHandle,  4);
-            PPlayer->mjob   = (uint8) Sql_GetIntData(SqlHandle, 10);
-            PPlayer->sjob   = (uint8) Sql_GetIntData(SqlHandle, 11);
-            PPlayer->mlvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->mjob);
-            PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->sjob);
-            PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
-            PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
+            PPlayer->id			= (uint32)Sql_GetUIntData(SqlHandle, 0);
+            PPlayer->zone		= (uint8) Sql_GetIntData(SqlHandle,  3);
+			PPlayer->prevzone   = (uint8) Sql_GetIntData(SqlHandle,  4);
+            PPlayer->nation		= (uint8) Sql_GetIntData(SqlHandle,  5);
+            PPlayer->mjob		= (uint8) Sql_GetIntData(SqlHandle, 11);
+            PPlayer->sjob		= (uint8) Sql_GetIntData(SqlHandle, 12);
+            PPlayer->mlvl		= (uint8) Sql_GetIntData(SqlHandle, 12 + PPlayer->mjob);
+            PPlayer->slvl		= (uint8) Sql_GetIntData(SqlHandle, 12 + PPlayer->sjob);
+            PPlayer->race		= (uint8) Sql_GetIntData(SqlHandle,  9);
+            PPlayer->rank		= (uint8) Sql_GetIntData(SqlHandle,  6 + PPlayer->nation);
 
             PPlayer->slvl = (PPlayer->slvl > (PPlayer->mlvl >> 1) ? (PPlayer->mlvl == 1 ? 1 : (PPlayer->mlvl >> 1)) : PPlayer->slvl);
+			PPlayer->zone = PPlayer->zone == 0 ? PPlayer->prevzone : PPlayer->zone;
 
             uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);
-            uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
+            uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 10);
 
             if (partyid == PPlayer->id) PPlayer->flags1 |= 0x0008;
             if (nameflag & FLAG_AWAY)   PPlayer->flags1 |= 0x0100;
