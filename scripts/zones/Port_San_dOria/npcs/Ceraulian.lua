@@ -124,6 +124,7 @@ function onEventFinish(player,csid,option)
 		player:addItem(14227);
 		player:messageSpecial(ITEM_OBTAINED,14227); -- Drachen Brais
 		player:addFame(SANDORIA,AF2_FAME*SAN_FAME);
+		player:completeQuest(SANDORIA,CHASING_QUOTAS);
 
 		-- Knight Stalker (DRG AF3)
 	elseif (csid == 19) then
