@@ -120,6 +120,19 @@ void CAIMobDummy::ActionRoaming()
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
 	}
+	else if (m_PMob->m_Type & MOBTYPE_NOTORIOUS && distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 2)
+	{
+		position_t ReturnPoint;
+
+		ReturnPoint.x = m_PMob->m_SpawnPoint.x;
+		ReturnPoint.y = m_PMob->m_SpawnPoint.y;
+		ReturnPoint.z = m_PMob->m_SpawnPoint.z;
+		
+		m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PMob->m_SpawnPoint);
+		battleutils::MoveTo(m_PMob, ReturnPoint, 1);
+
+		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+	}
 	else if ((m_Tick - m_LastActionTime) > 45000 && m_PMob->m_Type != MOBTYPE_EVENT)
 	{
 		m_LastActionTime = m_Tick - rand()%30000;
@@ -179,7 +192,15 @@ void CAIMobDummy::ActionEngage()
 void CAIMobDummy::ActionDisengage()
 {
 	// Despawn if we're >20 yalms from our spawn point
-	m_ActionType = (distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 20 ? ACTION_DEATH : ACTION_ROAMING);
+	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS)
+	{
+		m_ActionType = ACTION_ROAMING;
+	}
+	else
+	{
+		m_ActionType = (distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 20 ? ACTION_DEATH : ACTION_ROAMING);
+	}
+
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
 
@@ -1632,7 +1653,7 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
     //    {
     //        results.push_back(PAlliance->members[i]);
     //        // TODO: Add entity's pet
-    //    }
+    //    } 
     //}
     /*else*/ if(((AoeRange & AOE_PARTY) > 0) && PParty != NULL)
     {

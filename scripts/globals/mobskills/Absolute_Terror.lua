@@ -9,6 +9,10 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
+function OnMobSkillCheck(target,mob,skill)
+    return 0;
+end;
+
 function OnMobWeaponSkill(target, mob, skill)
 
 	if(applyPlayerResistance(mob,EFFECT_TERROR,target,0,0, ELE_DARK) > 0.5) then

@@ -279,6 +279,15 @@ void CalculateStats(CMobEntity * PMob)
 		if (maxSkill != 0) {
 			PMob->WorkingSkills.skill[i] = maxSkill;
 		}
+		else //if the mob is WAR/BLM and can cast spell
+		{
+			uint16 maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetSJob(),PMob->GetSLevel());
+
+			if (maxSubSkill != 0)
+			{
+				PMob->WorkingSkills.skill[i] = maxSubSkill;
+			}
+		}
 	}
 }
 

@@ -46,7 +46,7 @@ function OnMobWeaponSkill(target, mob, skill)
     skill:setMsg(MSG_ENFEEB_IS);
     if(sleeped) then
         return EFFECT_SLEEP_I;
-    else if(slowed) then
+    elseif(slowed) then
         return EFFECT_SLOW;
     else
         skill:setMsg(MSG_MISS); -- no effect
