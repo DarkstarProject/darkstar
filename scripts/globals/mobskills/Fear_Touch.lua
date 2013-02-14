@@ -36,7 +36,7 @@ function OnMobWeaponSkill(target, mob, skill)
 				duration = 120;
 			end
             target:delStatusEffect(EFFECT_HASTE);
-			target:addStatusEffect(typeEffect,30,0,duration);
+			target:addStatusEffect(typeEffect,300,0,duration);
 		end
 	end
 

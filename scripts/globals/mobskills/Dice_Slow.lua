@@ -26,7 +26,7 @@ function OnMobWeaponSkill(target, mob, skill)
             slowed = true;
             skill:setMsg(MSG_ENFEEB_IS);
             target:delStatusEffect(EFFECT_HASTE);
-            target:addStatusEffect(typeEffect,25,0,120*resist);--power=20;tic=0;duration=120;
+            target:addStatusEffect(typeEffect,256,0,120*resist);--power=20;tic=0;duration=120;
         end
     else
         skill:setMsg(MSG_NO_EFFECT); -- no effect

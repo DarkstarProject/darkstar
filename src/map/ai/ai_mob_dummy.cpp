@@ -1352,7 +1352,9 @@ void CAIMobDummy::ActionAttack()
 		{
 			WeaponDelay = 600;
 		} else {
-			WeaponDelay -= ((m_PMob->getMod(MOD_HASTE) * WeaponDelay) / 100);
+			int16 hasteMagic = (m_PMob->getMod(MOD_HASTE_MAGIC) > 448) ? 448 : m_PMob->getMod(MOD_HASTE_MAGIC);
+			int16 hasteAbility = (m_PMob->getMod(MOD_HASTE_ABILITY) > 256) ? 256 : m_PMob->getMod(MOD_HASTE_ABILITY);
+			WeaponDelay -= (((float)(hasteMagic + hasteAbility) * WeaponDelay) / 1024);
 		}
 
 		if ((m_Tick - m_LastActionTime) > WeaponDelay)

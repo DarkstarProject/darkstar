@@ -1087,7 +1087,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE);
 				PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE_DAZE,EFFECT_HASTE_DAZE,10,0,10));
 			if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE)){break;}
-				PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE, EFFECT_HASTE, 5, 0, 10));
+				PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE, EFFECT_HASTE, 50, 0, 10));
 				return;
 				}
 		}
@@ -1134,7 +1134,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE))
 	{
 	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE)){return;}
-	PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE, EFFECT_HASTE, 5, 0, 10));
+	PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE, EFFECT_HASTE, 50, 0, 10));
 	return;
 	}
 

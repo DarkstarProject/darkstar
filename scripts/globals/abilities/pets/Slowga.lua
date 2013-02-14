@@ -15,7 +15,7 @@ function OnPetAbility(target, pet, skill)
 	end;
 	target:delStatusEffect(EFFECT_SLOW);
 	target:delStatusEffect(EFFECT_HASTE);
-	target:addStatusEffect(EFFECT_SLOW,30,0,duration);
+	target:addStatusEffect(EFFECT_SLOW,300,0,duration);
 	skill:setMsg(MSG_BUFF);
 	return EFFECT_HASTE;
 end

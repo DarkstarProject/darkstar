@@ -16,7 +16,7 @@ function onSpellCast(caster,target,spell)
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 	   duration = duration * 3;
 	end
-	power = 15;
+	power = 150;
 	slow = target:getStatusEffect(EFFECT_SLOW);
 	haste = target:getStatusEffect(EFFECT_HASTE);
 	if(haste ~= nil) then
@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
 		end
 	elseif(slow ~= nil) then
 		if(slow:getPower() > (-1 * power)) then
-			target:delStatusEffect(EFFECT_SLOW);	
+			target:delStatusEffect(EFFECT_SLOW);
 			target:addStatusEffect(EFFECT_HASTE,power,0,duration);
 		else
 			spell:setMsg(75);

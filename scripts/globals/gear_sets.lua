@@ -15,7 +15,7 @@ require("scripts/globals/status");
 
 item_set = {16084,{14546,14961,15625,15711,MOD_DOUBLE_ATTACK,5}, 	-- 	Ares's set (5% DA)
 			16088,{14550,14965,15629,15715,MOD_CRITHITRATE,5}, 		--  Skadi's set (5% critrate is guess) 
-			16092,{14554,14969,15633,15719,MOD_HASTE,5},			--	Usukane's set (5% Haste)
+			16092,{14554,14969,15633,15719,MOD_HASTE_GEAR,50},			--	Usukane's set (5% Haste)
 			16107,{14569,14984,15648,15734,MOD_ACC,20}, 			--	Denali Jacket Set (Increases Accuracy +20)
 			16106,{14568,14983,15647,15733,MOD_HPP,10}, 			--	Askar Korazin Set (Max HP Boost %10)	
 			16069,{14530,14940,15609,15695,MOD_SUBTLE_BLOW,8}, 		-- 	Pahluwan Khazagand Set (8% is guess) 
@@ -23,10 +23,10 @@ item_set = {16084,{14546,14961,15625,15711,MOD_DOUBLE_ATTACK,5}, 	-- 	Ares's set
 			16096,{14558,14973,15637,15723,MOD_FASTCAST,5}, 		--	Marduk's Jubbah Set (5% fastcast) 						
 			16108,{14570,14985,15649,15735,MOD_MDEF,10},			--  Goliard Saio Set - Total Set Bonus +10% Magic Def. Bonus
 			16064,{14527,14935,15606,15690,MOD_REFRESH,1}, 			--  Yigit Gomlek Set (1mp per tick) Adds "Refresh" effect
-			11503,{13759,12745,14210,11413,MOD_HASTE,5}, 			--  Perle Hauberk Set 5% haste
+			11503,{13759,12745,14210,11413,MOD_HASTE_GEAR,50}, 			--  Perle Hauberk Set 5% haste
 			11504,{13760,12746,14257,11414,MOD_STORETP,8}, 			--  Aurore Doublet Set  store tp +8			
 			11505,{13778,12747,14258,11415,MOD_FASTCAST,10}, 		--  Teal Saio Set  fastcast 10%			
-			10890,{10462,10512,11980,10610,MOD_HASTE,6}, 			--  Calma Armor Set haste%6	
+			10890,{10462,10512,11980,10610,MOD_HASTE_GEAR,61}, 			--  Calma Armor Set haste%6	
 			10892,{10464,10514,11982,10612,MOD_MACC,5}, 			--  Magavan Armor Set  magic accuracy +5
 			10891,{10463,10513,11981,10611,MOD_CRITHITRATE,5}}; 	--  Mustela Harness Set  crit rate 5%
 

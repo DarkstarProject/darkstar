@@ -9,7 +9,7 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
     duration = 180;
-    power = 50;
+    power = 512;
 
     bonus = AffinityBonus(caster, spell);
     pCHR = caster:getStat(MOD_CHR);
@@ -28,22 +28,22 @@ function onSpellCast(caster,target,spell)
 
         -- horn +1
         if(sItem == 17371) then
-            power = power + 2;
+            power = power + 20;
             duration = duration * 1.2;
         end
 
         if(sItem == 17352) then
-            power = power + 1;
+            power = power + 11;
             duration = duration * 1.1;
         end
 
         if(sItem == 18342) then
-            power = power + 2;
+            power = power + 20;
             duration = duration * 1.2;
         end
 
         if(sItem == 17856) then
-            power = power + 3;
+            power = power + 30;
             duration = duration * 1.3;
         end
 

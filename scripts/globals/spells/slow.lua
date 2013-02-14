@@ -18,9 +18,9 @@ function onSpellCast(caster,target,spell)
 	bonus = AffinityBonus(caster,spell);
 
 	--Power.
-	power = math.floor((100 / 1024) * (150 + dMND * 2))
-	if(power > 29.3) then
-		power = 29.3;
+	power = 150 + dMND * 2;
+	if(power > 300) then
+		power = 300;
 	end
 
 	--Duration, including resistance.
@@ -63,7 +63,7 @@ function onSpellCast(caster,target,spell)
 --				end
 			end
 			--print(power);
-			--print(target:getMod(MOD_HASTE));
+			--print(target:getMod(MOD_HASTE_MAGIC));
 		else
 --			if(spell:isAOE() == false) then
 				spell:setMsg(85);

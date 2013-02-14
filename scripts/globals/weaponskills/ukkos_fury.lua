@@ -35,7 +35,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);        
 		
 	if damage > 0 and (target:hasStatusEffect(EFFECT_SLOW) == false) then
-		target:addStatusEffect(EFFECT_SLOW, 15, 0, 60);
+		target:addStatusEffect(EFFECT_SLOW, 150, 0, 60);
 	end			
 		
 	return tpHits, extraHits, damage;

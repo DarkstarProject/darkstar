@@ -1299,7 +1299,10 @@ void CAICharNormal::ActionMagicFinish()
     if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
     {
 	    uint32 RecastTime = (float)m_PSpell->getRecastTime() * ((100.0f-dsp_cap((float)m_PChar->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
-		RecastTime = RecastTime * ((100.0f-dsp_cap((float)m_PChar->getMod(MOD_HASTE),0.0f,25.0f))/100.0f);
+		// Only haste from spells or equipment is counted; ignore MOD_HASTE_ABILITY and cap at 25% (256/1024)
+		int16 Haste = m_PChar->getMod(MOD_HASTE_MAGIC) + m_PChar->getMod(MOD_HASTE_GEAR);
+		RecastTime = RecastTime * ((float)(1024-dsp_cap(Haste,-1024,256))/1024);
+
 		//needed so the client knows of the reduced recast time!
 		m_PSpell->setModifiedRecast(RecastTime);
 

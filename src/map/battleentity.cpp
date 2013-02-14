@@ -168,6 +168,7 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
 	{
 		return 1700;
 	}
+	uint16 MinimumDelay = m_Weapons[SLOT_MAIN]->getDelay(); // Track base delay.  We will need this later.  MOD_DELAY is ignored for now.
 	uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(MOD_DELAY);
 	if (m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH)
 	{
@@ -175,6 +176,7 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
 	} else if (m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
 		m_Weapons[SLOT_SUB]->getDmgType() < 4 )
 	{
+		MinimumDelay += m_Weapons[SLOT_SUB]->getDelay();
 		WeaponDelay += m_Weapons[SLOT_SUB]->getDelay();
 		//apply dual wield delay reduction
 		WeaponDelay = WeaponDelay * ((100.0f - (float)getMod(MOD_DUAL_WIELD))/100.0f);
@@ -182,9 +184,19 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
 	//apply haste and delay reductions that don't affect tp
 	if (!tp)
 	{
-		WeaponDelay = (WeaponDelay * (100 - getMod(MOD_HASTE))) / 100;
+		// Cap haste at appropriate levels.
+		int16 hasteMagic = (getMod(MOD_HASTE_MAGIC) > 448) ? 448 : getMod(MOD_HASTE_MAGIC);
+		int16 hasteAbility = (getMod(MOD_HASTE_ABILITY) > 256) ? 256 : getMod(MOD_HASTE_ABILITY);
+		int16 hasteGear = (getMod(MOD_HASTE_GEAR) > 256) ? 256 : getMod(MOD_HASTE_GEAR);
+		WeaponDelay = WeaponDelay * ((float)(1024 - hasteMagic - hasteAbility - hasteGear) / 1024);
 	}
 	WeaponDelay = WeaponDelay * ((float)(100 + getMod(MOD_DELAYP))/100);
+
+	// Global delay reduction cap of "about 80%" being enforced.
+	// This should be enforced on -delay equipment, martial arts, dual wield, and haste, hence MinimumDelay * 0.2.
+	// TODO: Could be converted to value/1024 if the exact cap is ever determined.
+	MinimumDelay -= (MinimumDelay * 0.8);
+	WeaponDelay = (WeaponDelay < MinimumDelay) ? MinimumDelay : WeaponDelay;
 	return WeaponDelay;
 }
 

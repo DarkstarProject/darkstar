@@ -29,7 +29,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		end
 		if(target:hasStatusEffect(EFFECT_SLOW) == false) then
             target:delStatusEffect(EFFECT_HASTE);
-			target:addStatusEffect(EFFECT_SLOW,20,0,duration);
+			target:addStatusEffect(EFFECT_SLOW,200,0,duration);
 		end
 		if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
 			target:addStatusEffect(EFFECT_PLAGUE,5,0,45);

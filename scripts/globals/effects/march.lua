@@ -11,7 +11,11 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_HASTE,effect:getPower());
+	if(effect:getPower()==1) then
+		target:addMod(MOD_HASTE_MAGIC, 64);
+	elseif(effect:getPower()==2) then
+		target:addMod(MOD_HASTE_MAGIC, 96);
+	end
 end;
 
 -----------------------------------
@@ -26,5 +30,9 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_HASTE,effect:getPower());
+	if(effect:getPower()==1) then
+		target:delMod(MOD_HASTE_MAGIC, 64);
+	elseif(effect:getPower()==2) then
+		target:delMod(MOD_HASTE_MAGIC, 96);
+	end
 end;

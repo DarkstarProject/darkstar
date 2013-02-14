@@ -17,6 +17,6 @@ function OnMobWeaponSkill(target, mob, skill)
 	skill:setMsg(MSG_BUFF);
 	local typeEffect = EFFECT_HASTE;
 	mob:delStatusEffect(typeEffect);
-	mob:addStatusEffect(typeEffect,10,0,300);
+	mob:addStatusEffect(typeEffect,102,0,300);
 	return typeEffect;
 end

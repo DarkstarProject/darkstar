@@ -15,7 +15,7 @@ function onSpellCast(caster,target,spell)
 	local slow = target:getStatusEffect(EFFECT_SLOW);
 	local haste = target:getStatusEffect(EFFECT_HASTE);
 	if(haste == nil and slow == nil) then
-		target:addStatusEffect(EFFECT_HASTE,10,0,300);
+		target:addStatusEffect(EFFECT_HASTE,102,0,300);
 	else
 		spell:setMsg(75);
 	end

@@ -201,7 +201,9 @@ enum MODIFIER
 	MOD_CRITHITRATE			= 0xA5,				// Raises chance to crit
 	MOD_ENEMYCRITRATE		= 0xA6,				// Raises chance enemy will crit
 
-	MOD_HASTE				= 0xA7,				// % Percent Haste (and Slow)
+	MOD_HASTE_MAGIC			= 0xA7,				// Haste (and Slow) from magic - 1024 base! (448 cap)
+	MOD_HASTE_ABILITY		= 0x17F,			// Haste (and Slow) from abilities - 1024 base! (256 cap?)
+	MOD_HASTE_GEAR			= 0x180,			// Haste (and Slow) from equipment - 1024 base! (256 cap)
 	MOD_SPELLINTERRUPT		= 0xA8,				// % Spell Interruption Rate
 	MOD_MOVE				= 0xA9,				// % Movement Speed
 	MOD_FASTCAST			= 0xAA,				// Increases Spell Cast Time (TRAIT) 
@@ -411,13 +413,12 @@ enum MODIFIER
 
 //  Use these for new modifiers. 
 	
-
-	//SPARE_MOD				 = 0x17F
-	//SPARE_MOD				 = 0x180
 	//SPARE_MOD				 = 0x181
+	//SPARE_MOD				 = 0x182
+	//SPARE_MOD				 = 0x183
 };
 
-#define MAX_MODIFIER	       0x17F
+#define MAX_MODIFIER	       0x181
 
 
 
