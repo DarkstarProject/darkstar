@@ -39,7 +39,7 @@ enum RECASTTYPE
 
 struct Recast_t 
 {
-    uint8      ID;
+    uint16      ID;
     uint32     TimeStamp;
     uint32     RecastTime;
 };
@@ -61,9 +61,9 @@ class CRecastContainer
     void Check(uint32 tick);
 
     void Del(RECASTTYPE type);
-    void Del(RECASTTYPE type, uint8 id);
-    bool Has(RECASTTYPE type, uint8 id);
-    void Add(RECASTTYPE type, uint8 id, uint32 duration);
+    void Del(RECASTTYPE type, uint16 id);
+    bool Has(RECASTTYPE type, uint16 id);
+    void Add(RECASTTYPE type, uint16 id, uint32 duration);
 
     RecastList_t* GetRecastList(RECASTTYPE type);
 

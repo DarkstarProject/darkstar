@@ -78,7 +78,7 @@ std::vector<Recast_t*>* CRecastContainer::GetRecastList(RECASTTYPE type)
 *                                                                       *
 ************************************************************************/
 
-void CRecastContainer::Add(RECASTTYPE type, uint8 id, uint32 duration)
+void CRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration)
 {
     Recast_t* recast = new Recast_t;
 
@@ -112,7 +112,7 @@ void CRecastContainer::Del(RECASTTYPE type)
 *                                                                       *
 ************************************************************************/
 
-void CRecastContainer::Del(RECASTTYPE type, uint8 id)
+void CRecastContainer::Del(RECASTTYPE type, uint16 id)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
@@ -133,7 +133,7 @@ void CRecastContainer::Del(RECASTTYPE type, uint8 id)
 *                                                                       *
 ************************************************************************/
 
-bool CRecastContainer::Has(RECASTTYPE type, uint8 id)
+bool CRecastContainer::Has(RECASTTYPE type, uint16 id)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
