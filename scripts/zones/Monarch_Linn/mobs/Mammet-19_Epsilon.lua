@@ -17,15 +17,17 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-	if (mob >= 16904193 and mob =< 16904195) then -- first instance
+	local engaged = mob:getID();
+
+	if (engaged >= 16904193 and engaged <= 16904195) then -- first instance
 		GetMobByID(16904193):updateEnmity(target);
 		GetMobByID(16904194):updateEnmity(target);
 		GetMobByID(16904195):updateEnmity(target);
-	elseif (mob >= 16904196 and mob =< 16904198) then -- second instance
+	elseif (engaged >= 16904196 and engaged <= 16904198) then -- second instance
 		GetMobByID(16904196):updateEnmity(target);
 		GetMobByID(16904197):updateEnmity(target);
 		GetMobByID(16904198):updateEnmity(target);
-	elseif (mob >= 16904199 and mob =< 16904201) then -- third instance
+	elseif (engaged >= 16904199 and engaged <= 16904201) then -- third instance
 		GetMobByID(16904199):updateEnmity(target);
 		GetMobByID(16904200):updateEnmity(target);
 		GetMobByID(16904201):updateEnmity(target);
