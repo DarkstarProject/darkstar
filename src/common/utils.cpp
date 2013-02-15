@@ -105,7 +105,7 @@ void getMSB(uint32* result,uint32 value)
 	if(value == 0)
 		return;
 #ifdef __GNUC__
-	*result = (unsigned) __builtin_clz (value)
+	*result = 31 - (unsigned) __builtin_clz (value);
 #elif defined _MSC_VER
 	_BitScanReverse((unsigned long*)result,value);
 #else
