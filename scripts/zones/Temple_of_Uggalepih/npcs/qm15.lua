@@ -53,13 +53,19 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if(csid == 67) then
-		player:addItem(12519);
-		player:messageSpecial(ITEM_OBTAINED,12519); -- Drachen Armet
-		player:addFame(SANDORIA,AF3_FAME*SAN_FAME);
-		player:addTitle(PARAGON_OF_DRAGOON_EXCELLENCE);
-		player:delKeyItem(CHALLENGE_TO_THE_ROYAL_KNIGHTS);
-		player:setVar("KnightStalker_Option1",1); -- Optional post-quest cutscenes.
-		player:setVar("KnightStalker_Option2",1);
-		player:completeQuest(SANDORIA,KNIGHT_STALKER);
+		if(player:getFreeSlotsCount() < 1) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12519);
+		else
+			player:addItem(12519);
+			player:messageSpecial(ITEM_OBTAINED,12519); -- Drachen Armet
+			player:addFame(SANDORIA,AF3_FAME*SAN_FAME);
+			player:addTitle(PARAGON_OF_DRAGOON_EXCELLENCE);
+			player:delKeyItem(CHALLENGE_TO_THE_ROYAL_KNIGHTS);
+			player:setVar("KnightStalker_Option1",1); -- Optional post-quest cutscenes.
+			player:setVar("KnightStalker_Option2",1);
+			player:setVar("KnightStalker_Kill",0);
+			player:setVar("KnightStalker_Progress",0);
+			player:completeQuest(SANDORIA,KNIGHT_STALKER);
+		end
 	end
 end;

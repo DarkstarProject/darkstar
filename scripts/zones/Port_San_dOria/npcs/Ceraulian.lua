@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 	local Stalker_Status = player:getQuestStatus(SANDORIA,KNIGHT_STALKER);
 	local Stalker_Progress = player:getVar("KnightStalker_Progress");
 
-	if(player:getMainLvl() >= 30 and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_AVAILABLE) then
+	if(player:getMainLvl() >= ADVANCED_JOB_LEVEL and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_AVAILABLE) then
 		player:startEvent(0x0018);
 
 	-- Chasing Quotas (DRG AF2)
@@ -120,11 +120,16 @@ function onEventFinish(player,csid,option)
 		player:setVar("ChasingQuotas_Progress",2);
 		player:setVar("ChasingQuotas_date",0);
 	elseif (csid == 15) then
-		player:delKeyItem(RANCHURIOMES_LEGACY);
-		player:addItem(14227);
-		player:messageSpecial(ITEM_OBTAINED,14227); -- Drachen Brais
-		player:addFame(SANDORIA,AF2_FAME*SAN_FAME);
-		player:completeQuest(SANDORIA,CHASING_QUOTAS);
+		if(player:getFreeSlotsCount() < 1) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14227);
+		else
+			player:delKeyItem(RANCHURIOMES_LEGACY);
+			player:addItem(14227);
+			player:messageSpecial(ITEM_OBTAINED,14227); -- Drachen Brais
+			player:addFame(SANDORIA,AF2_FAME*SAN_FAME);
+			player:completeQuest(SANDORIA,CHASING_QUOTAS);
+			player:setVar("ChasingQuotas_Progress",0);
+		end
 
 		-- Knight Stalker (DRG AF3)
 	elseif (csid == 19) then
