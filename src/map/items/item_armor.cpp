@@ -105,7 +105,9 @@ void CItemArmor::setRemoveSlotId(uint8 removSlot)
 
 uint8 CItemArmor::getSlotType()
 {
-    return log( m_equipSlotID ) / log( 2 );
+	uint32 result = 0;
+	getMSB(&result,(uint32)m_equipSlotID);
+	return result;
 }
 
 /************************************************************************

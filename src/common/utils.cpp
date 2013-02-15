@@ -30,6 +30,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef _MSC_VER
+#	include <intrin.h>
+#endif
+
 /************************************************************************
 *																		*
 *																		*
@@ -87,6 +91,28 @@ int32 intpow32(int32 base, int32 exponent)
 		base *= base;
 	}
 	return power;
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+void getMSB(uint32* result,uint32 value)
+{
+	*result = 0;
+	if(value == 0)
+		return;
+#ifdef __GNUC__
+	*result = (unsigned) __builtin_clz (value)
+#elif defined _MSC_VER
+	_BitScanReverse((unsigned long*)result,value);
+#else
+	while (value >>= 1)
+		*result++;
+#endif
+
 }
 
 /************************************************************************

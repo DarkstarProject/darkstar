@@ -4413,6 +4413,7 @@ inline int32 CLuaBaseEntity::equipItem(lua_State *L)
     if(SLOT != ERROR_SLOTID){
 	    PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(SLOT);
 	    charutils::EquipItem(PChar, SLOT, PItem->getSlotType());
+		charutils::SaveCharEquip(PChar);
 	}
     return 0;
 }

@@ -24,7 +24,7 @@
 #ifndef _CITEMARMOR_H
 #define _CITEMARMOR_H
 
-#include "../../common/cbasetypes.h"
+#include "../../common/utils.h"
 
 #include <vector>
 
