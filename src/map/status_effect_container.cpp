@@ -552,7 +552,7 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
 						AddStatusEffect(PStatusEffect, true);
 						return true;
 					} else {
-						uint16 duration = m_StatusEffectList.at(i)->GetDuration();
+						uint16 duration = 300;
 						duration -= bustDuration;
 						CStatusEffect* bustEffect = new CStatusEffect(EFFECT_BUST, EFFECT_BUST, PStatusEffect->GetPower(),
 							0, duration, PStatusEffect->GetTier(), PStatusEffect->GetStatusID());
