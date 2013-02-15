@@ -102,8 +102,10 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
     if( PEnmity != m_EnmityList.end() && 
        !m_EnmityList.key_comp()(PEntity->id, PEnmity->first))
 	{
-        PEnmity->second->CE += CE; 
-        PEnmity->second->VE += VE;
+		float bonus = (100.0f + dsp_cap(PEntity->getMod(MOD_ENMITY), -50, 100)) / 100.0f;
+
+        PEnmity->second->CE += CE * bonus; 
+        PEnmity->second->VE += VE * bonus;
 
         //Check for cap limit 
         PEnmity->second->CE = dsp_cap(PEnmity->second->CE, 1, 10000);
@@ -113,8 +115,10 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
     {
         EnmityObject_t* PEnmityObject = new EnmityObject_t;
 
-        PEnmityObject->CE = CE;
-        PEnmityObject->VE = VE;
+		float bonus = (100.0f + dsp_cap(PEntity->getMod(MOD_ENMITY), -50, 100)) / 100.0f;
+
+        PEnmityObject->CE = CE * bonus;
+        PEnmityObject->VE = VE * bonus;
         PEnmityObject->PEnmityOwner = PEntity;
 
         m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEntity->id, PEnmityObject));
@@ -301,7 +305,6 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 
 		//Should lose 60/sec, and this is called twice a sec, hence 30.
 		PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;
-
 		uint32 Enmity = PEnmityObject->CE + PEnmityObject->VE;
 		
 		if (Enmity >= HighestEnmity)
