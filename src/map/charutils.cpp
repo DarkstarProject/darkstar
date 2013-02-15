@@ -1231,6 +1231,8 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
             {
 				PChar->look.sub = 0;
 				PChar->m_Weapons[SLOT_SUB] = itemutils::GetUnarmedItem();			// << equips "nothing" in the sub slot to prevent multi attack exploit
+				PChar->health.tp = 0;
+				BuildingCharWeaponSkills(PChar);
             }
 			break;
 			case SLOT_AMMO:
@@ -1241,6 +1243,8 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 					PChar->look.ranged = 0;
 				}
 				PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
+				PChar->health.tp = 0;
+				BuildingCharWeaponSkills(PChar);
 			}
 		    break;
 			case SLOT_MAIN:
@@ -1269,6 +1273,9 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
                 PChar->m_Weapons[SLOT_MAIN] = (PChar->GetMJob() == JOB_MNK ?
                     itemutils::GetUnarmedH2HItem() :
                     itemutils::GetUnarmedItem());
+
+				PChar->health.tp = 0;
+				BuildingCharWeaponSkills(PChar);
 			}
 			break;
 
