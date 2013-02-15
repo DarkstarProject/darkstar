@@ -1036,7 +1036,7 @@ INSERT INTO `item_armor` VALUES(11284, 'enkidus_harness', 72, 498722, 56, 0, 0, 
 INSERT INTO `item_armor` VALUES(11285, 'morganas_cotehardie', 75, 705052, 48, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES(11286, 'avalon_breastplate', 71, 397154, 114, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES(11287, 'antares_harness', 71, 496307, 34, 0, 0, 32, 0);
-INSERT INTO `item_armor` VALUES(11288, 'zahaks_mail', 71, 8641, 52, 0, 0, 32, 0);
+INSERT INTO `item_armor` VALUES(11288, 'zahaks_mail', 71, 8641, 60, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES(11289, 'ixion_cloak', 74, 705052, 46, 0, 0, 32, 4);
 INSERT INTO `item_armor` VALUES(11290, 'tidal_talisman', 1, 1048575, 228, 0, 0, 32, 0);
 INSERT INTO `item_armor` VALUES(11291, 'magus_jubbah_+1', 74, 32768, 165, 0, 0, 32, 0);
