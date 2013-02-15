@@ -183,14 +183,15 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 	}
 	if(sr.zoneid > 0) { 
 		if(filters==1){
-			filterQry.append("AND pos_zone = %u ");
+			filterQry.append("AND (pos_zone = %u OR (pos_zone = 0 AND pos_prevzone = %u)) ");
 		}
 		else{
-			filterQry.append("pos_zone = %u ");
+			filterQry.append("(pos_zone = %u OR (pos_zone = 0 AND pos_prevzone = %u)) ");
 		}
 		filters |= 0x02;
 		shouldFilter = true;
 	}
+
 	int32 ret = SQL_ERROR;
 
 	if(shouldFilter){
@@ -210,10 +211,10 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.jobid);
 		}
 		else if(filters==2){ //just zone
-			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.zoneid);	
+			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.zoneid,sr.zoneid);
 		}
 		else if(filters==3){ //zone and job
-			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.jobid,sr.zoneid);
+			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.jobid,sr.zoneid,sr.zoneid);
 		}
 
 	}
@@ -254,7 +255,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
             PPlayer->rank		= (uint8) Sql_GetIntData(SqlHandle,  6 + PPlayer->nation);
 
             PPlayer->slvl = (PPlayer->slvl > (PPlayer->mlvl >> 1) ? (PPlayer->mlvl == 1 ? 1 : (PPlayer->mlvl >> 1)) : PPlayer->slvl);
-			PPlayer->zone = PPlayer->zone == 0 ? PPlayer->prevzone : PPlayer->zone;
+			PPlayer->zone = (PPlayer->zone == 0 ? PPlayer->prevzone : PPlayer->zone);
 
             uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);
             uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 10);
