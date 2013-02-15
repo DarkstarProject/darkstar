@@ -43,7 +43,7 @@ CItemArmor::~CItemArmor()
 	// ни в коем случае не освобождать здесь указатели на модификатоты и спецеффекты. они глобальны.
 }
 
-uint16 CItemArmor::getModelId() 
+uint16 CItemArmor::getModelId()
 {
 	return m_modelID;
 }
@@ -53,17 +53,17 @@ uint8 CItemArmor::getShieldSize()
 	return m_shieldSize;
 }
 
-uint16 CItemArmor::getEquipSlotId() 
+uint16 CItemArmor::getEquipSlotId()
 {
 	return m_equipSlotID;
 }
 
-uint8 CItemArmor::getRemoveSlotId() 
+uint8 CItemArmor::getRemoveSlotId()
 {
 	return m_removeSlotID;
 }
 
-uint8 CItemArmor::getReqLvl() 
+uint8 CItemArmor::getReqLvl()
 {
 	return m_reqLvl;
 }
@@ -103,6 +103,11 @@ void CItemArmor::setRemoveSlotId(uint8 removSlot)
 	m_removeSlotID = removSlot;
 }
 
+uint8 CItemArmor::getSlotType()
+{
+    return log2(m_equipSlotID);
+}
+
 /************************************************************************
 *																		*
 *  Процент урона, блокируемого щитом                                    *
@@ -130,7 +135,7 @@ bool CItemArmor::IsShield()
 *  Проверяем необходимость выполнения скрипта для экипировки при		*
 *  возникновении какого-либо из событий (экипировка, смена зоны и т.п.)	*
 *																		*
-*  Функция возвращает типы событий на которые предмет реагирует, что	* 
+*  Функция возвращает типы событий на которые предмет реагирует, что	*
 *  избавляет нас от необходимости проверять	предмет во всех событиях	*
 *																		*
 ************************************************************************/

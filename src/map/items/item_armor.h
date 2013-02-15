@@ -65,6 +65,7 @@ public:
 	uint8	getRemoveSlotId();
     uint8   getShieldAbsorption();
 	int16	getModifier(uint16 mod);
+    uint8   getSlotType();
 
     bool    IsShield();
 
@@ -80,7 +81,7 @@ public:
 	void	addLatent(CLatentEffect* latent);
 	std::vector<CModifier*> modList;			// список модификаторов
 	std::vector<CLatentEffect*> latentList;  // contains latents
-	
+
 private:
 
 	uint8	m_reqLvl;

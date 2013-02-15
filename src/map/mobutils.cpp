@@ -179,6 +179,7 @@ void CalculateStats(CMobEntity * PMob)
 		BaseAttack = (uint16)(PMob->GetMLevel() * 37 / 10);
 	}
 
+	BaseAttack++;
 	BaseAccuracy = BaseAttack;
 
 	//MNK attack rate should be lower

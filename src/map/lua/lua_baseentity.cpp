@@ -4391,6 +4391,33 @@ inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 	return 1;
 }
 
+/*
+Pass in an item id and it will search and equip it.
+
+Example:
+	player:equipItem(itemId)
+*/
+inline int32 CLuaBaseEntity::equipItem(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint16 itemID = (uint16)lua_tointeger(L,1);
+    uint8 SLOT = PChar->getStorage(LOC_INVENTORY)->SearchItem(itemID);
+    CItemArmor* PItem;
+
+    if(SLOT != ERROR_SLOTID){
+	    PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(SLOT);
+	    DSP_DEBUG_BREAK_IF(item == NULL);
+	    charutils::EquipItem(PChar, SLOT, PItem->getSlotType());
+	}
+    return 0;
+}
+
 /************************************************************************
 *                                                                       *
 *  блокируем ячейку экипировки                                          *
@@ -4458,7 +4485,7 @@ inline int32 CLuaBaseEntity::canEquipItem(lua_State *L)
 
     uint16 itemID = (uint16)lua_tointeger(L,1);
 	DSP_DEBUG_BREAK_IF(itemID > MAX_ITEMID);
-	
+
 	bool checkLevel = false;
     if(!lua_isnil(L,2) && lua_isboolean(L,2))
 		checkLevel = lua_toboolean(L,2);
@@ -6178,6 +6205,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lockEquipSlot),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockEquipSlot),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,canEquipItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,equipItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetElement),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,charmPet),

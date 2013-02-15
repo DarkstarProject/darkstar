@@ -77,14 +77,14 @@ int32 zone_server(uint32 tick, CTaskMgr::CTask* PTask)
 /************************************************************************
 *																		*
 *  Cервер для обработки активности сущностей (по серверу на зону) c		*
-*  активными областями													*	 
+*  активными областями													*
 *																		*
 ************************************************************************/
 
 int32 zone_server_region(uint32 tick, CTaskMgr::CTask* PTask)
 {
 	CZone* PZone = (CZone*)PTask->m_data;
-	
+
 	if ((tick - PZone->m_RegionCheckTime) < 2000)
 	{
 		PZone->ZoneServer(tick);
@@ -97,7 +97,7 @@ int32 zone_server_region(uint32 tick, CTaskMgr::CTask* PTask)
 
 /************************************************************************
 *																		*
-*  Класс CZone															*	 
+*  Класс CZone															*
 *																		*
 ************************************************************************/
 
@@ -123,7 +123,7 @@ CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
 
 /************************************************************************
 *                                                                       *
-*  Функции доступа к полям класса                                       *	 
+*  Функции доступа к полям класса                                       *
 *                                                                       *
 ************************************************************************/
 
@@ -198,12 +198,12 @@ bool CZone::IsWeatherStatic()
 }
 
 zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
-{	
+{
 	for(zoneLineList_t::const_iterator  i = m_zoneLineList.begin();
-		i != m_zoneLineList.end(); 
-		i++ ) 
+		i != m_zoneLineList.end();
+		i++ )
 	{
-		if(	(*i)->m_zoneLineID == zoneLineID ) 
+		if(	(*i)->m_zoneLineID == zoneLineID )
 		{
 			return (*i);
 		}
@@ -214,19 +214,19 @@ zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
 /************************************************************************
 *																		*
 *  Загружаем ZoneLines, необходимые для правильного перемещения	между	*
-*  зонами.																*	 
+*  зонами.																*
 *																		*
 ************************************************************************/
 
-void CZone::LoadZoneLines() 
-{	
+void CZone::LoadZoneLines()
+{
 	const int8* fmtQuery = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
-					  
+
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			zoneLine_t* zl = new zoneLine_t;
 
@@ -244,13 +244,13 @@ void CZone::LoadZoneLines()
 
 /************************************************************************
 *                                                                       *
-*  Загружаем параметры погоды                                           *	 
+*  Загружаем параметры погоды                                           *
 *                                                                       *
 ************************************************************************/
 
-void CZone::LoadZoneWeather() 
-{	
-    const int8* Query = 
+void CZone::LoadZoneWeather()
+{
+    const int8* Query =
         "SELECT "
           "weather.none,"
           "weather.sunshine,"
@@ -273,11 +273,11 @@ void CZone::LoadZoneWeather()
           "weather.gloom,"
           "weather.darkness "
         "FROM zone_weather as weather "
-        "WHERE zoneid = %u "           
+        "WHERE zoneid = %u "
         "LIMIT 1";
 
-    if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR && 
-        Sql_NumRows(SqlHandle) != 0 && 
+    if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         uint16 Frequency = 0;
@@ -311,9 +311,9 @@ void CZone::LoadZoneWeather()
 *																		*
 ************************************************************************/
 
-void CZone::LoadZoneSettings() 
+void CZone::LoadZoneSettings()
 {
-    const int8* Query = 
+    const int8* Query =
         "SELECT "
           "zone.name,"
           "zone.zoneip,"
@@ -330,8 +330,8 @@ void CZone::LoadZoneSettings()
         "WHERE zoneid = %u "
         "LIMIT 1";
 
-    if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR && 
-        Sql_NumRows(SqlHandle) != 0 && 
+    if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         m_zoneName.insert(0, Sql_GetData(SqlHandle,0));
@@ -345,7 +345,7 @@ void CZone::LoadZoneSettings()
 		m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
 
         if (Sql_GetData(SqlHandle,8) != NULL) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
-        { 
+        {
             m_InstanceHandler = new CInstanceHandler(m_zoneID);
 	    }
         if (m_miscMask & MISC_TREASURE)
@@ -378,7 +378,7 @@ void CZone::InsertMOB(CBaseEntity* PMob)
 
 /************************************************************************
 *																		*
-*  Добавляем в зону NPC													*	 
+*  Добавляем в зону NPC													*
 *																		*
 ************************************************************************/
 
@@ -407,7 +407,7 @@ void CZone::DeletePET(CBaseEntity* PPet)
 
 /************************************************************************
 *                                                                       *
-*  Добавляем в зону PET (свободные targid 0x700-0x7FF)                  *	 
+*  Добавляем в зону PET (свободные targid 0x700-0x7FF)                  *
 *                                                                       *
 ************************************************************************/
 
@@ -439,7 +439,7 @@ void CZone::InsertPET(CBaseEntity* PPet)
 		{
 			CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 
-			if(distance(PPet->loc.p, PCurrentChar->loc.p) < 50) 
+			if(distance(PPet->loc.p, PCurrentChar->loc.p) < 50)
 			{
 				PCurrentChar->SpawnPETList[PPet->id] = PPet;
 				PCurrentChar->pushPacket(new CEntityUpdatePacket(PPet, ENTITY_SPAWN));
@@ -452,7 +452,7 @@ void CZone::InsertPET(CBaseEntity* PPet)
 
 /************************************************************************
 *																		*
-*  Добавляем в зону активную область									*	 
+*  Добавляем в зону активную область									*
 *																		*
 ************************************************************************/
 
@@ -467,7 +467,7 @@ void CZone::InsertRegion(CRegion* Region)
 /************************************************************************
 *                                                                       *
 *  Ищем группу для монстра. Для монстров, объединенных в группу         *
-*  работает система взаимопомощи (link)                                 * 
+*  работает система взаимопомощи (link)                                 *
 *                                                                       *
 ************************************************************************/
 
@@ -483,8 +483,8 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
         for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
         {
             CMobEntity* PCurrentMob = (CMobEntity*)it->second;
-            
-            if (PCurrentMob->m_Link && 
+
+            if (PCurrentMob->m_Link &&
                 PCurrentMob->PMaster == NULL &&
                 PCurrentMob->m_Family == PMob->m_Family)
             {
@@ -519,7 +519,7 @@ void CZone::TransportDepart(CBaseEntity* PTransportNPC)
 *                                                                       *
 *                                                                       *
 *                                                                       *
-************************************************************************/					
+************************************************************************/
 
 void CZone::SetWeather(WEATHER weather)
 {
@@ -528,7 +528,7 @@ void CZone::SetWeather(WEATHER weather)
 	if (m_Weather == weather)
 		return;
 
-    static uint8 Element[] = 
+    static uint8 Element[] =
     {
         0,  //WEATHER_NONE
 	    0,  //WEATHER_SUNSHINE
@@ -565,7 +565,7 @@ void CZone::SetWeather(WEATHER weather)
                 PCurrentMob->PBattleAI->SetLastActionTime(0);
 				PCurrentMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 			}
-			else 
+			else
 			{
 				PCurrentMob->SetDespawnTimer(1);
                 PCurrentMob->m_AllowRespawn = false;
@@ -604,7 +604,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 		if(PChar->PPet != NULL) {
 			PChar->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
 			DeletePET(PChar->PPet);//remove the TID for this pet
-		
+
 			for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
 			{
 				//inform other players of the pets removal
@@ -683,8 +683,8 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	{
 		ZoneTimer->m_type = CTaskMgr::TASK_REMOVE;
 		ZoneTimer = NULL;
-	} 
-	else 
+	}
+	else
 	{
 		for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
 		{
@@ -715,7 +715,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
             break;
         }
     }
-	
+
     PChar->loc.zone = NULL;
     PChar->loc.prevzone = m_zoneID;
 
@@ -775,7 +775,7 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 			m_regionList.empty() ? zone_server : zone_server_region,
 			500);
 	}
-	
+
 	//remove status effects that wear on zone
 	PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
 
@@ -798,11 +798,11 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 	{
 		PChar->PParty->ReloadTreasurePool(PChar);
 	}
-	else 
+	else
 	{
 		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
 		PChar->PTreasurePool->AddMember(PChar);
-	}	
+	}
 }
 
 /************************************************************************
@@ -825,7 +825,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 		float VerticalDistance = abs(PCurrentMob->loc.p.y - PChar->loc.p.y);
 
 		if (PCurrentMob->status == STATUS_UPDATE &&
-			CurrentDistance < 50) 
+			CurrentDistance < 50)
 		{
 			if( MOB == PChar->SpawnMOBList.end() ||
 				PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first))
@@ -835,8 +835,8 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 			}
 
 			if (PChar->isDead() ||
-                PChar->nameflags.flags & FLAG_GM) 
-				continue; 
+                PChar->nameflags.flags & FLAG_GM)
+				continue;
 
             // проверка ночного/дневного сна монстров уже учтена в проверке CurrentAction, т.к. во сне монстры не ходят ^^
 
@@ -852,9 +852,9 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 				   (int8)(PChar->GetMLevel() - PCurrentMob->GetMLevel()) < 10) &&
 				   (VerticalDistance < 8))
 				{
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT && 
-                      !(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
-                        PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT &&
+                      !(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) ||
+                        PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) ||
                         PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE)))
 					{
                         if (CurrentDistance < 15 && isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
@@ -863,16 +863,16 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 							continue;
 						}
 					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING && 
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING &&
                        !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
 					{
 						if (CurrentDistance < 8)
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
-						} 
+						}
 					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_LOWHP && 
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_LOWHP &&
                        !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
 					{
 						if (PChar->GetHPP() < 66)
@@ -901,8 +901,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					{
 						if (PChar->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
 						{
-							if (PChar->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG &&
-								PChar->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_NINJUTSU)
+							if (PChar->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG && PChar->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_NINJUTSU)
                             {
 								PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 								continue;
@@ -955,7 +954,7 @@ void CZone::SpawnPETs(CCharEntity* PChar)
 		SpawnIDList_t::iterator PET = PChar->SpawnPETList.lower_bound(PCurrentPet->id);
 
 		if ((PCurrentPet->status == STATUS_NORMAL || PCurrentPet->status == STATUS_UPDATE) &&
-			distance(PChar->loc.p, PCurrentPet->loc.p) < 50) 
+			distance(PChar->loc.p, PCurrentPet->loc.p) < 50)
 		{
 			if( PET == PChar->SpawnPETList.end() ||
 				PChar->SpawnPETList.key_comp()(PCurrentPet->id, PET->first))
@@ -986,10 +985,10 @@ void CZone::SpawnNPCs(CCharEntity* PChar)
 	{
 		CNpcEntity* PCurrentNpc = (CNpcEntity*)it->second;
 		SpawnIDList_t::iterator NPC = PChar->SpawnNPCList.lower_bound(PCurrentNpc->id);
-		
+
 		if (PCurrentNpc->status == STATUS_NORMAL)
 		{
-			if(distance(PChar->loc.p, PCurrentNpc->loc.p) < 50) 
+			if(distance(PChar->loc.p, PCurrentNpc->loc.p) < 50)
 			{
 				if( NPC == PChar->SpawnNPCList.end() ||
 					PChar->SpawnNPCList.key_comp()(PCurrentNpc->id, NPC->first))
@@ -1027,7 +1026,7 @@ void CZone::SpawnPCs(CCharEntity* PChar)
 
 		if (PChar != PCurrentChar)
 		{
-			if(distance(PChar->loc.p, PCurrentChar->loc.p) < 50) 
+			if(distance(PChar->loc.p, PCurrentChar->loc.p) < 50)
 			{
 				if( PC == PChar->SpawnPCList.end() )
 				{
@@ -1064,7 +1063,7 @@ void CZone::SpawnMoogle(CCharEntity* PChar)
 	for (EntityList_t::const_iterator it = m_npcList.begin() ; it != m_npcList.end() ; ++it)
 	{
 		CNpcEntity* PCurrentNpc = (CNpcEntity*)it->second;
-		
+
 		if( PCurrentNpc->loc.p.z == 1.5 &&
 			PCurrentNpc->look.face == 0x52)
 		{
@@ -1105,7 +1104,7 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 	{
 		if (filter & TYPE_MOB)
 		{
-			EntityList_t::const_iterator it = m_mobList.find(targid); 
+			EntityList_t::const_iterator it = m_mobList.find(targid);
 			if (it != m_mobList.end())
 			{
 				PEntity = it->second;
@@ -1113,7 +1112,7 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 		}
 		if (filter & TYPE_NPC)
 		{
-			EntityList_t::const_iterator it = m_npcList.find(targid); 
+			EntityList_t::const_iterator it = m_npcList.find(targid);
 			if (it != m_npcList.end())
 			{
 				PEntity = it->second;
@@ -1131,7 +1130,7 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 	{
 		if (filter & TYPE_PC)
 		{
-			EntityList_t::const_iterator it = m_charList.find(targid); 
+			EntityList_t::const_iterator it = m_charList.find(targid);
 			if (it != m_charList.end())
 			{
 				PEntity = it->second;
@@ -1142,11 +1141,11 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 	{
 		if (filter & TYPE_PET)
 		{
-			EntityList_t::const_iterator it = m_petList.find(targid); 
+			EntityList_t::const_iterator it = m_petList.find(targid);
 			if (it != m_petList.end())
 			{
 				PEntity = it->second;
-			}	
+			}
 		}
 	}
 	return PEntity;
@@ -1196,7 +1195,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 		case TIME_DAWN:
 		{
 			ScriptType = SCRIPT_TIME_DAWN;
-			
+
 			for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 			{
 				CMobEntity* PMob = (CMobEntity*)it->second;
@@ -1233,7 +1232,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 		case TIME_EVENING:
 		{
 			ScriptType = SCRIPT_TIME_EVENING;
-			
+
 			for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 			{
 				CMobEntity* PMob = (CMobEntity*)it->second;
@@ -1320,7 +1319,7 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 					CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 					if (PEntity != PCurrentChar)
 					{
-						if(distance(PEntity->loc.p, PCurrentChar->loc.p) < 50) 
+						if(distance(PEntity->loc.p, PCurrentChar->loc.p) < 50)
 						{
 							PCurrentChar->pushPacket(new CBasicPacket(*packet));
 						}
@@ -1335,7 +1334,7 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 					CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 					if (PEntity != PCurrentChar)
 					{
-						if(distance(PEntity->loc.p, PCurrentChar->loc.p) < 180) 
+						if(distance(PEntity->loc.p, PCurrentChar->loc.p) < 180)
 						{
 							PCurrentChar->pushPacket(new CBasicPacket(*packet));
 						}
@@ -1374,7 +1373,7 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
         CNpcEntity* PNpc = (CNpcEntity*)it->second;
         if(PNpc->status == STATUS_NORMAL && PNpc->namevis == 0)
         {
-		    if(distance(PChar->loc.p, PNpc->loc.p) < radius) 
+		    if(distance(PChar->loc.p, PNpc->loc.p) < radius)
 		    {
 			    PChar->pushPacket(new CWideScanPacket(PChar, PNpc));
 		    }
@@ -1385,7 +1384,7 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
         CMobEntity* PMob = (CMobEntity*)it->second;
         if(PMob->status != STATUS_DISAPPEAR)
         {
-		    if(distance(PChar->loc.p, PMob->loc.p) < radius) 
+		    if(distance(PChar->loc.p, PMob->loc.p) < radius)
 		    {
 			    PChar->pushPacket(new CWideScanPacket(PChar, PMob));
 		    }
@@ -1512,7 +1511,7 @@ void CZone::ZoneServerRegion(uint32 tick)
 
 /*
 id				CBaseEntity
-name			CBaseEntity		
+name			CBaseEntity
 pos_rot			CBaseEntity
 pos_x			CBaseEntity
 pos_y			CBaseEntity

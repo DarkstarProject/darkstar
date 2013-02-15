@@ -127,7 +127,7 @@ void CAIMobDummy::ActionRoaming()
 		ReturnPoint.x = m_PMob->m_SpawnPoint.x;
 		ReturnPoint.y = m_PMob->m_SpawnPoint.y;
 		ReturnPoint.z = m_PMob->m_SpawnPoint.z;
-		
+
 		m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PMob->m_SpawnPoint);
 		battleutils::MoveTo(m_PMob, ReturnPoint, 1);
 
@@ -1302,7 +1302,7 @@ void CAIMobDummy::ActionAttack()
             CMobEntity* PPartyMember = (CMobEntity*)m_PMob->PParty->members[i];
 
             if (PPartyMember->PBattleAI->GetCurrentAction() == ACTION_ROAMING &&
-                distance(m_PMob->loc.p, PPartyMember->loc.p) < 10)
+                distance(m_PMob->loc.p, PPartyMember->loc.p) < m_PMob->linkRadius)
             {
                 PPartyMember->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
             }
@@ -1655,7 +1655,7 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
     //    {
     //        results.push_back(PAlliance->members[i]);
     //        // TODO: Add entity's pet
-    //    } 
+    //    }
     //}
     /*else*/ if(((AoeRange & AOE_PARTY) > 0) && PParty != NULL)
     {

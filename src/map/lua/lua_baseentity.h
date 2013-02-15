@@ -254,6 +254,7 @@ public:
 	int32 delGil(lua_State*);				// removes gil from character
 	int32 setGil(lua_State*);				// sets gil to value
 
+	int32 equipItem(lua_State*);
 	int32 getEquipID(lua_State*);			// Gets the Item Id of the item in specified slot
     int32 lockEquipSlot(lua_State*);        // блокируем ячейку экипировки
     int32 unlockEquipSlot(lua_State*);      // снимаем блокировку с ячейки экипировки

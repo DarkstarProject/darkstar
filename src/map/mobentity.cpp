@@ -66,6 +66,7 @@ CMobEntity::CMobEntity()
     defRank = 3;
     accRank = 3;
     evaRank = 3;
+    linkRadius = 10;
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 

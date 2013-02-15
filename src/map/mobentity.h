@@ -113,6 +113,7 @@ public:
 
     float       HPstat;								// HP boost percentage
     float       MPstat;								// MP boost percentage
+    uint8       linkRadius;                         // mobs have different link radiuses
 
     // stat ranks
     uint8        strRank;
