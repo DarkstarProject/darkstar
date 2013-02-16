@@ -69,6 +69,8 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 {
 	m_Tick = tick;
 
+	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity(); //needs to be guaranteed to run, as VE decay is in here
+
 	switch(m_ActionType)
 	{
 		case ACTION_NONE:                                           break;
@@ -179,6 +181,7 @@ void CAIMobDummy::ActionEngage()
 		luautils::OnMobEngaged(m_PMob,m_PBattleTarget);
 	}
 
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 	ActionAttack();
 }
 
@@ -579,6 +582,7 @@ void CAIMobDummy::ActionAbilityUsing()
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
 	}
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE)); //need to keep HP updating
 
 }
 
@@ -1072,6 +1076,7 @@ void CAIMobDummy::ActionMagicCasting()
 		ActionMagicFinish();
 
 	}
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE)); //need to keep HP updating
 }
 
 void CAIMobDummy::ActionMagicInterrupt()
@@ -1251,8 +1256,7 @@ void CAIMobDummy::ActionMagicFinish()
 
 void CAIMobDummy::ActionAttack()
 {
-	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
-
+	
 	if(m_PBattleTarget == NULL) // we have no target, so disengage
     {
 		m_ActionType = ACTION_DISENGAGE;
