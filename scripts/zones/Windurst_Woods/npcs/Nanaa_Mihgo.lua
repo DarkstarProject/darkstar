@@ -27,7 +27,7 @@ function onTrade(player,npc,trade)
 		
 		local MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
 		
-		if(MihgosAmigo == QUEST_ACCEPTED) then	
+		if(MihgosAmigo == QUEST_ACCEPTED) then
 			player:startEvent(0x0058,GIL_RATE*200);
 		elseif(MihgosAmigo == QUEST_COMPLETED) then
 			player:startEvent(0x01ee,GIL_RATE*200);
@@ -56,26 +56,26 @@ function onTrigger(player,npc)
 		end
 	else
 		
-		CryingOverOnionsVar = player:getVar("CryingOverOnions");
-		MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
+		local CryingOverOnionsVar = player:getVar("CryingOverOnions");
+		local MihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO);
 		
-		theTenshodoShowdown = player:getQuestStatus(WINDURST,THE_TENSHODO_SHOWDOWN); -- THF af quest
-		theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS");
-		RockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETTER);
-		RRvar = player:getVar("rockracketeer_sold");
+		local theTenshodoShowdown = player:getQuestStatus(WINDURST,THE_TENSHODO_SHOWDOWN); -- THF af quest
+		local theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS");
+		local RockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETTER);
+		local RRvar = player:getVar("rockracketeer_sold");
 		
-		thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES); -- THF af quest
-		thickAsThievesCS = player:getVar("thickAsThievesCS");
-		thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
-		thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
+		local thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES); -- THF af quest
+		local thickAsThievesCS = player:getVar("thickAsThievesCS");
+		local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
+		local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
 		
-		hittingTheMarquisate = player:getQuestStatus(WINDURST,HITTING_THE_MARQUISATE); -- THF af quest
-		hittingTheMarquisateYatnielCS = player:getVar("hittingTheMarquisateYatnielCS");
-		hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
-		hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS");				
+		local hittingTheMarquisate = player:getQuestStatus(WINDURST,HITTING_THE_MARQUISATE); -- THF af quest
+		local hittingTheMarquisateYatnielCS = player:getVar("hittingTheMarquisateYatnielCS");
+		local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
+		local hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS");
 		
-		LvL = player:getMainLvl();
-		Job = player:getMainJob();
+		local LvL = player:getMainLvl();
+		local Job = player:getMainJob();
 		
 		
 		-- Optional CS of the quest "Crying Over Onions"
@@ -106,9 +106,9 @@ function onTrigger(player,npc)
 		elseif(Job == 6 and LvL >= 50 and thickAsThieves == QUEST_COMPLETED and hittingTheMarquisate == QUEST_AVAILABLE) then 
 			player:startEvent(0x0200); -- Start Quest "Hitting The Marquisate"	
 		elseif(hittingTheMarquisateYatnielCS == 3 and hittingTheMarquisateHagainCS == 9) then
-			player:startEvent(0x0204); -- finish first part of "Hitting The Marquisate"	
+			player:startEvent(0x0204); -- finish first part of "Hitting The Marquisate"
 		elseif(hittingTheMarquisateNanaaCS == 1) then
-			player:startEvent(0x0205); -- during second part of "Hitting The Marquisate"				
+			player:startEvent(0x0205); -- during second part of "Hitting The Marquisate"
 
 			
 		-- Standard dialog
@@ -132,16 +132,16 @@ function onTrigger(player,npc)
 		elseif(RockRacketeer == QUEST_ACCEPTED and RRvar == 1) then
 			player:startEvent(0x0062); -- advance quest talk to Varun
 		elseif(RockRacketeer == QUEST_ACCEPTED) then
-			player:startEvent(0x005E); -- quest reminder	
+			player:startEvent(0x005E); -- quest reminder
 		
 		
 		-- Quest "Mihgo's Amigo"
 		elseif(MihgosAmigo == QUEST_AVAILABLE) then
-			CryingOverOnions = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
+			local CryingOverOnions = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
 			 
 			if(CryingOverOnions == QUEST_AVAILABLE) then
 				player:startEvent(0x0051); -- Start Quest "Mihgo's Amigo" with quest "Crying Over Onions" Activated
-			else	
+			else
 				player:startEvent(0x0050); -- Start Quest "Mihgo's Amigo"
 			end
 		elseif(MihgosAmigo == QUEST_ACCEPTED) then
@@ -199,9 +199,9 @@ function onEventFinish(player,csid,option)
 		player:setVar("thickAsThievesCS",1);
 		player:addKeyItem(GANG_WHEREABOUTS_NOTE);
 		player:addKeyItem(FIRST_FORGED_ENVELOPE);
-		player:addKeyItem(SECOND_FORGED_ENVELOPE);		
-		player:messageSpecial(KEYITEM_OBTAINED,GANG_WHEREABOUTS_NOTE);	
-		player:messageSpecial(KEYITEM_OBTAINED,FIRST_FORGED_ENVELOPE);	
+		player:addKeyItem(SECOND_FORGED_ENVELOPE);
+		player:messageSpecial(KEYITEM_OBTAINED,GANG_WHEREABOUTS_NOTE);
+		player:messageSpecial(KEYITEM_OBTAINED,FIRST_FORGED_ENVELOPE);
 		player:messageSpecial(KEYITEM_OBTAINED,SECOND_FORGED_ENVELOPE);
 	elseif(csid == 0x01fc) then	-- complete quest "as thick as thieves"
 		if (player:getFreeSlotsCount() == 0) then 
@@ -209,10 +209,10 @@ function onEventFinish(player,csid,option)
 		else 
 		player:addItem(12514);
 		player:messageSpecial(ITEM_OBTAINED,12514);
-		player:completeQuest(WINDURST,AS_THICK_AS_THIEVES);		
-		player:setVar("thickAsThievesCS",0);		
-		player:setVar("thickAsThievesGrapplingCS",0);	
-		player:setVar("thickAsThievesGamblingCS",0);			
+		player:completeQuest(WINDURST,AS_THICK_AS_THIEVES);
+		player:setVar("thickAsThievesCS",0);
+		player:setVar("thickAsThievesGrapplingCS",0);
+		player:setVar("thickAsThievesGamblingCS",0);
 		player:delKeyItem(GANG_WHEREABOUTS_NOTE);
 		player:delKeyItem(FIRST_SIGNED_FORGED_ENVELOPE);
 		player:delKeyItem(SECOND_SIGNED_FORGED_ENVELOPE);
@@ -221,18 +221,18 @@ function onEventFinish(player,csid,option)
 		player:addQuest(WINDURST,HITTING_THE_MARQUISATE);
 		player:setVar("hittingTheMarquisateYatnielCS",1);
 		player:setVar("hittingTheMarquisateHagainCS",1);
-		player:addKeyItem(CAT_BURGLARS_NOTE);		
-		player:messageSpecial(KEYITEM_OBTAINED,CAT_BURGLARS_NOTE);	
-	elseif(csid == 0x0204) then  -- end first part of "hitting The Marquisate "		
-		player:setVar("hittingTheMarquisateNanaaCS",1);			
-		player:setVar("hittingTheMarquisateYatnielCS",0);	
-		player:setVar("hittingTheMarquisateHagainCS",0);	
+		player:addKeyItem(CAT_BURGLARS_NOTE);
+		player:messageSpecial(KEYITEM_OBTAINED,CAT_BURGLARS_NOTE);
+	elseif(csid == 0x0204) then  -- end first part of "hitting The Marquisate "
+		player:setVar("hittingTheMarquisateNanaaCS",1);
+		player:setVar("hittingTheMarquisateYatnielCS",0);
+		player:setVar("hittingTheMarquisateHagainCS",0);
 	elseif(csid == 0x00a5 and option == 1) then -- Windurst Mission 2-1 continuation
 		-- Add the key item for the mission
 		player:addKeyItem(LAPIS_MONOCLE);
 		player:messageSpecial(KEYITEM_OBTAINED,LAPIS_MONOCLE);
 		-- Grab a random value to mark the correct fossil with
-		selections = {17588734,17588736,17588737,17588738,17588739,17588740} -- Id's of the fossils that we have to examine
+		local selections = {17588734,17588736,17588737,17588738,17588739,17588740} -- Id's of the fossils that we have to examine
 		random_value = math.random(1,6);
 		player:setVar("MissionStatus_randfoss",selections[random_value]);
 		-- Mark the progress
