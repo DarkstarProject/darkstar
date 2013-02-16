@@ -29,6 +29,8 @@
 #include <math.h>
 
 #include "packets/message_basic.h"
+#include "packets/char_update.h"
+#include "packets/char_health.h"
 
 #include "battleutils.h"
 #include "charutils.h"
@@ -49,12 +51,19 @@ void SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addi
 		if (PSpell != NULL && PSpell->getID() > 0x200) {
 			if (addingSpell) {
 				// Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
-				PChar->m_SetBlueSpells[slotIndex] = PSpell->getID() - 0x200; 
+				PChar->m_SetBlueSpells[slotIndex] = PSpell->getID() - 0x200;
+				PChar->addModifiers(&PSpell->modList);
 			}
 			else {
 				PChar->m_SetBlueSpells[slotIndex] = 0x00;
+				PChar->delModifiers(&PSpell->modList);
 			}
+			PChar->status = STATUS_UPDATE;
 			PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
+			PChar->pushPacket(new CCharUpdatePacket(PChar));
+			charutils::CalculateStats(PChar);
+			PChar->UpdateHealth();
+			PChar->pushPacket(new CCharHealthPacket(PChar));
 		}
 	}
 }

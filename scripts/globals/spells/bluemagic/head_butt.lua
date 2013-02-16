@@ -16,5 +16,11 @@ function onSpellCast(caster,target,spell)
     damage = BluePhysicalSpell(caster, target, spell, params);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
     
+if(target:hasStatusEffect(EFFECT_STUN)) then
+	spell:setMsg(75); -- no effect
+	    else	
+target:addStatusEffect(EFFECT_STUN,0,0,math.random(1,5));
+		   end
+
     return damage;
 end;

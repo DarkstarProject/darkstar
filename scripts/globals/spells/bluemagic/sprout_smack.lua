@@ -15,7 +15,13 @@ function onSpellCast(caster,target,spell)
         params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.3; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
     damage = BluePhysicalSpell(caster, target, spell, params);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
-    -- Missing Slow
+   
+if(target:hasStatusEffect(EFFECT_SLOW)) then
+	spell:setMsg(75); -- no effect
+	    else	
+		target:addStatusEffect(EFFECT_SLOW,15,0,20);
+		   end
+
     return damage;
 
 end;

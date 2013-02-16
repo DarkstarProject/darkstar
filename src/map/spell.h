@@ -24,6 +24,8 @@
 #ifndef _CSPELL_H
 #define _CSPELL_H
 
+#include <vector>
+
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
@@ -94,9 +96,12 @@ public:
 	void		setVE(uint16 ve);
 	void		setModifiedRecast(uint16 mrec);
 	void		setMonsterSkillId(uint16 skillid);
+    void		addModifier(CModifier* modifier);
 
 	const int8* getName();
 	void		setName(int8* name);
+
+	std::vector<CModifier*> modList;					// modifiers added when blue spell is equipped
 	
 private:
 
@@ -121,7 +126,7 @@ private:
 	uint16		m_CE;									// cumulative enmity of spell
 	uint16		m_VE;									// volatile enmity of spell
 	string_t	m_name;									// spell name
-	uint16		m_modifiedRecastTime;					//recast time after modifications
+	uint16		m_modifiedRecastTime;					// recast time after modifications
 	uint16		m_monsterSkillId;						// matching skill for a blue spell
 };
 

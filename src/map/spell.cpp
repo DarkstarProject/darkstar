@@ -278,6 +278,11 @@ void CSpell::setMonsterSkillId(uint16 skillid)
 	m_monsterSkillId = skillid;
 }
 
+void CSpell::addModifier(CModifier* modifier)
+{
+    modList.push_back(modifier);
+}
+
 /************************************************************************
 *                                                                       *
 *  Реализация namespase для работы с заклинаниями                       *
@@ -357,6 +362,22 @@ namespace spell
 				PMobSkillToBlueSpell->insert(std::make_pair(Sql_GetIntData(SqlHandle,1), spellId));
 			}
 		}
+	    ret = Sql_Query(SqlHandle,"SELECT spellId, modId, value FROM blue_spell_mods WHERE spellId IN (SELECT spellId FROM spell_list LEFT JOIN blue_spell_list USING (spellId))");
+	    
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    {
+			    uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
+			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
+			    int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
+
+			    if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != NULL))
+			    {
+                    PSpellList[spellId]->addModifier(new CModifier(modID,value));
+			    }
+		    }
+	    }
     }
 
 	CSpell* GetSpellByMonsterSkillId(uint16 SkillID) {
