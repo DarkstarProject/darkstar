@@ -1236,6 +1236,14 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
             }
 			break;
 			case SLOT_AMMO:
+			{
+				if (PChar->equip[SLOT_RANGED] == 0)
+				{
+					PChar->look.ranged = 0;
+				}
+				PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
+			}
+			break;
 			case SLOT_RANGED:
 			{
 				if (PChar->equip[SLOT_RANGED] == 0)
