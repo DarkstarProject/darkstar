@@ -17,7 +17,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		BOMB_TOSS_HPP = mob:getHP()/mob:getMaxHP();
 	end
 
-	local power = math.random(16,20);
+	local power = math.random(12,18);
 
 	-- did I drop it in my face?
 	if(math.random() < 0.2) then

@@ -101,6 +101,11 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	if(dstr < -10) then
 		dstr = -10;
 	end
+
+	if(dstr > 10) then
+		dstr = 10;
+	end
+
 	lvluser = mob:getMainLvl();
 	lvltarget = target:getMainLvl();
 	acc = mob:getACC();
@@ -113,23 +118,20 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	--work out and cap ratio
 	ratio = mob:getStat(MOD_ATT)/target:getStat(MOD_DEF);
-	if (ratio>5) then
-		ratio = 5;
+	if (ratio > 1.5) then
+		ratio = 1.5;
 	end
-	if (ratio < 0) then
-		ratio = 0;
+	if (ratio < 0.5) then
+		ratio = 0.5;
 	end
+
 
 	lvldiff = lvluser - lvltarget;
 
 	--work out hit rate for mobs (bias towards them)
-	hitrate = (acc*accmod) - eva;
-	if (lvluser > lvltarget) then
-		hitrate = hitrate + ((lvluser-lvltarget)*5);
-	end
-	if (lvltarget > lvluser) then
-		hitrate = hitrate + ((lvltarget-lvluser)*3);
-	end
+	hitrate = (acc*accmod) - eva + (lvldiff*3) + 75;
+
+	-- printf("acc: %f, eva: %f, hitrate: %f", acc, eva, hitrate);
 	if (hitrate > 95) then
 		hitrate = 95;
 	end
@@ -145,14 +147,9 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	hitdamage = hitdamage * dmgmod;
 
 	--work out min and max cRatio
-	if(ratio<1) then
-		maxRatio = 1.5 * ratio;
-		minRatio = ratio + 0.1 ;
-	end
-	if(ratio>1) then
-		maxRatio = 1.5 * ratio;
-		minRatio = ratio ;
-	end
+	maxRatio = ratio * 1.2;
+	minRatio = ratio * 0.8;
+
 	--apply ftp (assumes 1~3 scalar linear mod)
 	if(tpeffect==TP_DMG_BONUS) then
 		hitdamage = hitdamage * fTP(skill:getTP(), mtp100, mtp200, mtp300);
@@ -161,11 +158,11 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	--Applying pDIF
 	local double pdif = 0;
 
-
 	-- start the hits
 	local double hitchance = math.random();
 	finaldmg = 0;
-	hitsdone = 1; hitslanded = 0;
+	hitsdone = 1;
+	hitslanded = 0;
 
 	--first hit is 95%
 	local double chance = math.random();
@@ -185,6 +182,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		end
 		hitsdone = hitsdone + 1;
 	end
+
+	-- printf("final: %f, hits: %f, acc: %f", finaldmg, hitslanded, hitrate);
 
 	-- if an attack landed it must do at least 1 damage
 	if(hitslanded >= 1 and finaldmg < 1) then
@@ -249,18 +248,24 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	returninfo = {};
 	--get all the stuff we need
 	local resist = 1;
-	dint = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
-	mab = (100+mob:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF)) ;
-	macc = mob:getMod(MOD_MACC);
-	meva = target:getMod(MOD_MEVA);
+
+	-- plus 100 forces it to be a number
+	mab = (100+mob:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF));
+
+	if (mab > 1.5) then
+		mab = 1.5;
+	end
+
+	if (mab < 0.5) then
+		mab = 0.5;
+	end
+
 	lvluser = mob:getMainLvl();
 	lvltarget = target:getMainLvl();
 
-	if(dint < -10) then
-		dint = -10;
-	end
+	lvldiff = lvltarget - lvluser;
 
-	damage = dmg + dint;
+	damage = dmg + lvldiff;
 	if(damage<1) then
 		damage = 1;
 	end
@@ -269,10 +274,11 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 		damage = damage * ((skill:getTP()*tpvalue)/100);
 	end
 
+	-- printf("power: %f, bonus: %f", damage, mab);
 	-- resistence is added last
 	finaldmg = damage * mab * dmgmod;
 
-	-- get resistence, give small boost to mobs
+	-- get resistence
 	resist = applyPlayerResistance(mob,-1,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
 
 	-- get elemental damage reduction
@@ -281,7 +287,7 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 		defense = 1 - (target:getMod(resistMod[element]) + target:getMod(defenseMod[element])) / 256;
 
 		-- max defense is 50%
-		if(defense > 0.5) then
+		if(defense < 0.5) then
 			defense = 0.5;
 		end
 	end
@@ -299,9 +305,9 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	end
 	local magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
 
-	finaldmg = finaldmg * dmgMod;
-	finaldmg = finaldmg * magicDmgMod;
+	finaldmg = finaldmg * dmgMod * magicDmgMod;
 
+	-- printf("dmgmod: %f, magicdmgmod: %f, resist: %f, def: %f", dmgMod, magicDmgMod, resist, defense);
 	if(finaldmg < 1) then
 		finaldmg = 1;
 	end
@@ -323,7 +329,7 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 
 	--get the base acc (just skill plus magic acc mod)
 	-- give a slight bonus because mob effects are hard to resist
-	magicacc = getSkillLvl(1, mob:getMainLvl()) * 1.2;
+	magicacc = getSkillLvl(1, mob:getMainLvl());
 
 	--difference in int/mnd
 	if diff > 10 then
@@ -331,19 +337,6 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 	else
 		magicacc = magicacc + diff;
 	end
-
-	--add acc for ele/dark seal
-    if(mob:hasStatusEffect(EFFECT_ELEMENTAL_SEAL) == true and skill ~= 0) then
-        magicaccbonus = magicaccbonus + 256;
-    elseif(mob:hasStatusEffect(EFFECT_DARK_SEAL) == true and skill == DARK_MAGIC_SKILL) then
-        magicaccbonus = magicaccbonus + 256;
-    end
-
-    local skillchainTier, skillchainCount = MobFormMagicBurst(element, target);
-    --add acc for skillchains
-    if(skillchainTier > 0) then
-		magicaccbonus = magicaccbonus + 25;
-    end
 
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
 	local magiceva = target:getMod(MOD_MEVA);
@@ -364,10 +357,7 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 	-- printf("magicevasion: %f * %f = %f", magiceva, 0.5, magiceva*0.5);
 	-- printf("magicacc: %f * %f = %f", magicacc, mulitplier, magicacc*mulitplier);
 
-	p = (magicacc * multiplier) - (magiceva * 0.5);
-
-	--add magicacc bonus
-	p = p + magicaccbonus / 2;
+	p = (magicacc * multiplier) - (magiceva * 0.45);
 
 	--double any acc over 50 if it's over 50
 	if(p > 5) then
@@ -380,9 +370,9 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 	--add a scaling bonus or penalty based on difference of targets level from caster
 	leveldiff = mob:getMainLvl() - target:getMainLvl();
 	if leveldiff < 0 then
-		p = p - (leveldiff * 25 * ( (mob:getMainLvl()) / 75 ));
+		p = p - (25 * ( (mob:getMainLvl()) / 75 )) + leveldiff;
 	else
-		p = p + (leveldiff * 25 * ( (mob:getMainLvl()) / 75 ));
+		p = p + (25 * ( (mob:getMainLvl()) / 75 )) + leveldiff;
 	end
 
 	-- printf("power: %f", p);
@@ -400,10 +390,10 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
     quart = ((1 - p)^2);
     eighth = ((1 - p)^3);
     sixteenth = ((1 - p)^4);
-    -- print("HALF:"..half);
-    -- print("QUART:"..quart);
-    -- print("EIGHTH:"..eighth);
-    -- print("SIXTEENTH:"..sixteenth);
+    -- printf("HALF: %f", half);
+    -- printf("QUART: %f", quart);
+    -- printf("EIGHTH: %f", eighth);
+    -- printf("SIXTEENTH: %f", sixteenth);
 
 
 	-- add effect resistence
@@ -637,9 +627,7 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 		dmgMagic = 0.5;
 	end
 
-	damage = damage * dmgMod;
-	damage = damage * dmgBreath;
-	damage = damage * dmgMagic;
+	damage = damage * dmgMod * dmgBreath * dmgMagic;
 
 	if(damage <= 0) then
 		damage = 1;

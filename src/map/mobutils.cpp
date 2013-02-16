@@ -182,9 +182,9 @@ void CalculateStats(CMobEntity * PMob)
 	BaseAttack++;
 	BaseAccuracy = BaseAttack;
 
-	//MNK attack rate should be lower
+	//MNK attack power should be lower
 	if(PMob->GetMJob() == JOB_MNK){
-		BaseAttack = (float)BaseAttack*0.6;
+		BaseAttack = (float)BaseAttack*0.8;
 	}
 
 	// Note: acc and att ranks are not taken into account

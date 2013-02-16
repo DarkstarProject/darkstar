@@ -357,10 +357,10 @@ INSERT INTO `mob_skill` VALUES (164,172,164,'TP_Drainkiss', 0, 7.0, 2000, 1000, 
 -- Worm
 INSERT INTO `mob_skill` VALUES (168,258,168,'Full-Force_Blow', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (169,258,169,'Gastric_Bomb', 0, 20.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (170,258,170,'Sandspin', 1, 16.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (171,258,171,'Tremors', 1, 18.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (170,258,170,'Sandspin', 1, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (171,258,171,'Tremors', 1, 15.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (173,258,173,'Sound_Vacuum', 0, 16.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (172,258,172,'MP_Absorption', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (172,258,172,'MP_Absorption', 0, 13.0, 2000, 1000, 4, 0);
 
 -- Slime
 INSERT INTO `mob_skill` VALUES (175,228,175,'Fluid_Spread', 1, 10.0, 2000, 1000, 4, 0);

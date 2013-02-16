@@ -1,7 +1,7 @@
 -----------------------------------
 --	[Command name]: hp
---	[Author      ]: 
---	[Description ]: 
+--	[Author      ]:
+--	[Description ]:
 -----------------------------------
 
 -----------------------------------
@@ -9,5 +9,7 @@
 -----------------------------------
 
 function onTrigger(player,hp)
-	player:setHP(hp);
+    if(player:getHP() > 0) then
+    	player:setHP(hp);
+    end
 end;

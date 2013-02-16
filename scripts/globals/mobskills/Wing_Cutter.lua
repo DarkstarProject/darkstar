@@ -14,7 +14,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local dmgmod = 1.5;
+	local dmgmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 3,ELE_WIND,dmgmod,TP_MAB_BONUS,1);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
