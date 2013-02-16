@@ -4,85 +4,66 @@
 --
 -----------------------------------
 
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+package.loaded[ "scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
+
+require( "scripts/zones/Buburimu_Peninsula/TextIDs");
+require( "scripts/globals/icanheararainbow");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize(zone)		
-end;		
+function onInitialize(zone)
+end;
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)		
+function onZoneIn( player, prevZone)
+
 	cs = -1;
-   wc = player:getWeather();
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(-276.529,16.403,-324.519,14);
-	end	
-	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125,0)) then	
-		colors = player:getVar("ICanHearARainbow");
-		o = (tonumber(colors) % 4 >= 2);
-		g = (tonumber(colors) % 16 >= 8);
-		b = (tonumber(colors) % 32 >= 16);	
-		cs = 0x0003;	
-		if (o == false and wc < 4) then
-			player:setVar("ICanHearARainbow_Weather",1);
-			player:setVar("ICanHearARainbow",colors+2);
-		elseif (g == false and (wc == 10 or wc == 11)) then
-			player:setVar("ICanHearARainbow_Weather",10);
-			player:setVar("ICanHearARainbow",colors+8);
-		elseif (b == false and (wc == 6 or wc == 7)) then
-			player:setVar("ICanHearARainbow_Weather",6);
-			player:setVar("ICanHearARainbow",colors+16);
-		else	
-			cs = -1;
-		end	
-	end		
-	return cs;		
-end;	
 
------------------------------------	
--- onRegionEnter	
------------------------------------	
+	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+		player:setPos( -276.529, 16.403, -324.519, 14);
+	end
 
-function onRegionEnter(player,region)	
-end;	
+	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
+		cs = 0x0003;
+	end
 
------------------------------------	
--- onEventUpdate	
------------------------------------	
+	return cs;
+end;
 
-function onEventUpdate(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-	if (csid == 0x0003) then		
-		weather = player:getVar("ICanHearARainbow_Weather");	
-		if (weather == 1) then	
-			weather = 0;
-		end	
-		if (player:getVar("ICanHearARainbow") < 127) then	
-			player:updateEvent(0,0,weather);
-		else	
-			player:updateEvent(0,0,weather,6);
-		end	
-	end		
-end;			
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
------------------------------------			
--- onEventFinish			
------------------------------------			
+function onRegionEnter(player,region)
+end;
 
-function onEventFinish(player,csid,option)		
-	--printf("CSID: %u",csid);	
-	--printf("RESULT: %u",option);	
-	if (csid == 0x0003) then	
-		player:setVar("ICanHearARainbow_Weather",0);
-	end	
-end;		
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate( player, csid, option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+
+	if (csid == 0x0003) then
+		lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
+	end
+end;
+
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
+function onEventFinish( player, csid, option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+
+	if (csid == 0x0003) then
+		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
+	end
+end;
