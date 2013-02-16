@@ -3,10 +3,10 @@
 -- NPC:  Maat
 -- Genkai 5 Fight
 -----------------------------------
-package.loaded["scripts/zones/Waughroom_Shrine/TextIDs"] = nil;
+package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Waughroom_Shrine/TextIDs");
+require("scripts/zones/Waughroon_Shrine/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

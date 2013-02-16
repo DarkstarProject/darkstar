@@ -13,7 +13,7 @@ function onMobEngaged(mob,target)
 
 	-- Select the mobs from this specific BCNM
 	self = mob:getID()
-	if(self == 17620994 || self == 17621001 || self == 17621008) then
+	if(self == 17620994 or self == 17621001 or self == 17621008) then
 		Lich = self-1
 		Sorc = self+1
 	else

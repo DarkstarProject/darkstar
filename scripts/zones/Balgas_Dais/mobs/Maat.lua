@@ -3,10 +3,10 @@
 -- NPC:  Maat
 -- Genkai 5 Fight
 -----------------------------------
-package.loaded["scripts/zones/Balga_Dais/TextIDs"] = nil;
+package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Balga_Dais/TextIDs");
+require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
