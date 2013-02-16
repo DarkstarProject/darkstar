@@ -129,11 +129,11 @@ INSERT INTO `abilities` VALUES ('91', 'choral_roll', '17', '26', '1', '60', '193
 INSERT INTO `abilities` VALUES ('92', 'hunters_roll', '17', '11', '1', '60', '193', '420', '0', '108', '8', '1', '1', '80', '0', '4');
 INSERT INTO `abilities` VALUES ('93', 'samurai_roll', '17', '34', '1', '60', '193', '420', '0', '109', '8', '1', '1', '80', '0', '4');
 INSERT INTO `abilities` VALUES ('94', 'ninja_roll', '17', '8', '1', '60', '193', '420', '0', '110', '8', '1', '1', '80', '0', '4');
-INSERT INTO `abilities` VALUES ('95', 'drachen_roll', '17', '52', '1', '60', '193', '420', '0', '104', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('95', 'drachen_roll', '17', '23', '1', '60', '193', '420', '0', '104', '8', '1', '1', '80', '0', '4');
 INSERT INTO `abilities` VALUES ('96', 'evokers_roll', '17', '40', '1', '60', '193', '420', '0', '112', '8', '1', '1', '80', '0', '4');
 INSERT INTO `abilities` VALUES ('97', 'maguss_roll', '17', '17', '1', '60', '193', '420', '0', '113', '8', '1', '1', '80', '0', '4');
 INSERT INTO `abilities` VALUES ('98', 'corsairs_roll', '17', '5', '1', '60', '193', '420', '0', '114', '8', '1', '1', '80', '0', '4');
-INSERT INTO `abilities` VALUES ('99', 'puppet_roll', '17', '23', '1', '60', '193', '420', '0', '115', '8', '1', '1', '80', '0', '4');
+INSERT INTO `abilities` VALUES ('99', 'puppet_roll', '17', '52', '1', '60', '193', '420', '0', '115', '8', '1', '1', '80', '0', '4');
 INSERT INTO `abilities` VALUES ('100', 'dancers_roll', '17', '61', '1', '60', '193', '420', '0', '167', '8', '1', '1', '80', '0', '4');
 INSERT INTO `abilities` VALUES ('101', 'scholars_roll', '17', '64', '1', '60', '193', '420', '0', '168', '8', '1', '1', '80', '0', '4');
 INSERT INTO `abilities` VALUES ('107', 'double-up', '17', '5', '1', '8', '194', '424', '0', '116', '8', '0', '1', '80', '0', '0');
