@@ -169,7 +169,6 @@ INSERT INTO `mob_skill` VALUES (85,49,85,'Rhino_Guard', 0, 7.0, 2000, 1000, 1, 0
 INSERT INTO `mob_skill` VALUES (90,79,90,'Cocoon', 0, 7.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (89,79,89,'Poison_Breath', 4, 10.0, 2000, 1000, 4, 0); --  Not used by Eruca
 INSERT INTO `mob_skill` VALUES (88,79,88,'Sticky_Thread', 4, 10.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Incinerate', 4, 10.0, 2000, 1000, 4, 0); -- only used by Eruca
 
 -- Scorpion
 INSERT INTO `mob_skill` VALUES (94,217,94,'Mandible_Bite', 0, 7.0, 2000, 1000, 4, 0);
@@ -990,6 +989,21 @@ INSERT INTO `mob_skill` VALUES (1524,204,1207,'Leaping_Cleave', 0, 7.0, 2000, 10
 INSERT INTO `mob_skill` VALUES (1522,205,1205,'Spinal_Cleave', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1523,205,1206,'Mangle', 4, 16.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1524,205,1207,'Leaping_Cleave', 0, 7.0, 2000, 1000, 4, 0);
+
+-- Eruca
+INSERT INTO `mob_skill` VALUES (90,107,90,'Cocoon', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (88,107,88,'Sticky_Thread', 4, 10.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,107,0,'Incinerate', 4, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (90,108,90,'Cocoon', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (88,108,88,'Sticky_Thread', 4, 10.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,108,0,'Incinerate', 4, 10.0, 2000, 1000, 4, 0);
+
+-- Flan
+-- INSERT INTO `mob_skill` VALUES (0,108,0,'Incinerate', 4, 10.0, 2000, 1000, 4, 0);
+
+-- Wamouracampa
+
+-- Wamoura
 
 -- Wivre
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Demoralizing_Roar', 1, 16.0, 2000, 1000, 4, 0);

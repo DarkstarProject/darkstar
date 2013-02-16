@@ -28,12 +28,12 @@ function OnMobWeaponSkill(target, mob, skill)
 				resist = .9;
 			end
 			local power = ((resist * 10) - 5) * math.random(1,2) + 19; -- makes dot damage between 20 - 28, based off resistance and random variable.
-			target:addStatusEffect(typeEffect,power,3,60);--tic=3;duration=60;
+			target:addStatusEffect(typeEffect,power,3,60*resist);--tic=3;duration=60;
 		end
 	end
 
 	local dmgmod = 1.5;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_FIRE,dmgmod,TP_NO_EFFECT);
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,ELE_FIRE,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;
