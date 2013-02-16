@@ -1563,7 +1563,6 @@ void CAIMobDummy::ActionAttack()
             m_PMob->m_OwnerID.clean();
         }
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
-		ActionAttack();
 	}
 	else
     {
