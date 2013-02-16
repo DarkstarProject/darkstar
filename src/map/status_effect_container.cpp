@@ -898,8 +898,14 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 				perpetuation = 0;
 			else
 			{
-				if (m_POwner->PPet != NULL)
+				if (m_POwner->PPet != NULL && m_POwner->objtype & TYPE_PC)
 				{
+					CItemArmor* hands = (CItemArmor*)((CCharEntity*)(CItemArmor*)m_POwner)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_POwner)->equip[SLOT_HANDS]);
+
+					if (hands && hands->getID() == 14062){
+						perpetuation /= 2;
+					}
+
 					perpetuation -= charutils::AvatarPerpetuationReduction((CCharEntity*)m_POwner);
 
 					if( perpetuation < 1 )
