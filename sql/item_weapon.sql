@@ -3373,3 +3373,4 @@ INSERT INTO `item_weapon` VALUES ('19964', 'death_penalty', '24', '0', '1', '480
 INSERT INTO `item_weapon` VALUES ('19965', 'kenkonken', '1', '0', '1', '289', '44', '0');
 INSERT INTO `item_weapon` VALUES ('19966', 'terpsichore', '2', '0', '1', '205', '53', '0');
 INSERT INTO `item_weapon` VALUES ('19967', 'tupsimati', '12', '0', '1', '402', '104', '0');
+INSERT INTO `item_weapon` VALUES ('18786', 'girru', '1', '4', '1', '531', '38', '0');

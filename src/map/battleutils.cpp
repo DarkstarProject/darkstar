@@ -668,10 +668,12 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 break;
                 case 14420: // igqira_weskit
                 spikesEffect = SUBEFFECT_CURSE_SPIKES;
+				damage = 0;
                 chance = 30;
                 break;
                 case 14421: // genie_weskit
                 spikesEffect = SUBEFFECT_CURSE_SPIKES;
+				damage = 0;
                 chance = 35;
                 break;
             }
@@ -721,10 +723,12 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 break;
                 case 14321: // igqira_lappas
                 spikesEffect = SUBEFFECT_CURSE_SPIKES;
+				damage = 0;
                 chance = 25;
                 break;
                 case 14322: // genie_lappas
                 spikesEffect = SUBEFFECT_CURSE_SPIKES;
+				damage = 0;
                 chance = 30;
                 break;
             }
@@ -768,10 +772,12 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 break;
                 case 15159: //igqira_tiara
                 spikesEffect = SUBEFFECT_CURSE_SPIKES;
+				damage = 0;
                 chance = 20;
                 break;
                 case 15160: //genie_tiara
                 spikesEffect = SUBEFFECT_CURSE_SPIKES;
+				damage = 0;
                 chance = 25;
                 break;
             }
@@ -796,10 +802,12 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 break;
                 case 14852: // igqira_manillas
                 spikesEffect = SUBEFFECT_CURSE_SPIKES;
+				damage = 0;
                 chance = 20;
                 break;
                 case 14853: // genie_manillas
                 spikesEffect = SUBEFFECT_CURSE_SPIKES;
+				damage = 0;
                 chance = 25;
                 break;
             }
@@ -828,6 +836,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 break;
                 case 11392: // koschei crackows
                 spikesEffect = SUBEFFECT_CURSE_SPIKES;
+				damage = 0;
                 chance = 20;
                 break;
             }
