@@ -26,35 +26,35 @@ function onTrigger(player,npc)
 	local xPos = player:getXPos();
 	local yPos = player:getYPos();
 	local zPos = player:getZPos();
-	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
-		MissionStatus = player:getVar("MissionStatus");
-		if(MissionStatus >= 2 and player:checkDistance(npc) <=2) then
-			-- Get the value of the randomly selected fossil
-			local random_value = player:getVar("MissionStatus_randfoss");
-			local npc_id = npc:getID();
+	local npc_id = npc:getID();
+	local LostForWords_Status = player:getVar("MissionStatus");
 
-			if(npc_id == random_value) then
-				if(MissionStatus == 2) then
-					player:setVar("MissionStatus",3);
-					player:setVar("MissionStatus_randfoss",0);
-					player:addKeyItem(LAPIS_CORAL);
-					player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
-				else
-					-- Already removed the fossil
-					player:messageSpecial(FOSSIL_EXTRACTED);
-				end
+	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS and npc_id ~= 17588742 and LostForWords_Status >= 2) then
+		-- Get the value of the randomly selected fossil
+		local random_value = player:getVar("MissionStatus_randfoss");
+
+		if(npc_id == random_value) then
+			if(LostForWords_Status == 2) then
+				player:setVar("MissionStatus",3);
+				player:setVar("MissionStatus_randfoss",0);
+				player:addKeyItem(LAPIS_CORAL);
+				player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
 			else
-				player:messageSpecial(NOTHING_FOSSIL);
+				-- Already removed the fossil
+				player:messageSpecial(FOSSIL_EXTRACTED);
 			end
+		else
+			player:messageSpecial(NOTHING_FOSSIL);
 		end
-	
-	elseif(player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and GetMobAction(17588225) == 0 and player:hasItem(16511) == false) then
-	--May need player:checkDistance() here too! -- Whasf
-		if(xPos <= -88 and xPos >= -94 and yPos <= 17 and yPos >= 14 and zPos <= -99 and zPos >= -109) then
+
+	elseif(npc_id == 17588742) then
+		if(player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and GetMobAction(17588225) == 0 and player:hasItem(16511) == false) then
 			SpawnMob(17588225);
 		else
 			player:messageSpecial(FOSSIL_EXTRACTED + 2); -- NM spawn point message.
 		end
+	else -- Player has no reason to examine them at this point, but still should receive feedback.
+		player:messageSpecial(NOTHING_FOSSIL);
 	end
 	
 end;
