@@ -1,6 +1,6 @@
 -----------------------------------
 --
---
+-- 	EFFECT_BERSERK
 --
 -----------------------------------
 
@@ -9,6 +9,8 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_ACC,15 + effect:getPower());
+	target:addMod(MOD_HPP,-15);
 end;
 
 -----------------------------------
@@ -23,4 +25,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_ACC,15 + effect:getPower());
+	target:delMod(MOD_HPP,-15);
 end;

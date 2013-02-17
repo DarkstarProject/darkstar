@@ -10,5 +10,5 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_LAST_RESORT,1,0,180);
+	player:addStatusEffect(EFFECT_LAST_RESORT,player:getMerit(MERIT_DESPERATE_BLOWS),0,180);
 end;
