@@ -562,7 +562,7 @@ INSERT INTO `mob_skill` VALUES (331,136,331,'Antiphase', 1, 15.0, 2000, 1000, 4,
 -- Goblin
 INSERT INTO `mob_skill` VALUES(334, 133, 334, 'Goblin_Rush', 0, 6.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES(335, 133, 335, 'Bomb_Toss', 2, 8.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES(336, 133, 336, 'Bomb_Toss_Suicide', 1, 8.0, 2000, 500, 4, 0);
+INSERT INTO `mob_skill` VALUES(336, 133, 336, 'Bomb_Toss_Suicide', 1, 8.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES(0, 0, 0, 'Saucepan', 4, 7.0, 2000, 1000, 4, 0); -- Only by NM
 -- Dynamis Goblin
 INSERT INTO `mob_skill` VALUES(334, 327, 334, 'Goblin_Rush', 0, 6.0, 2000, 1000, 4, 0);

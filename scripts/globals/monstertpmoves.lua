@@ -328,7 +328,6 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
     magicaccbonus = 0;
 
 	--get the base acc (just skill plus magic acc mod)
-	-- give a slight bonus because mob effects are hard to resist
 	magicacc = getSkillLvl(1, mob:getMainLvl());
 
 	--difference in int/mnd
@@ -346,18 +345,7 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 		magiceva = magiceva + target:getMod(resistMod[element]) + target:getMod(defenseMod[element]);
 	end
 
-	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
-	multiplier = 0;
-	if mob:getMainLvl() < 40 then
-		multiplier = 100 / 120;
-	else
-		multiplier = 100 / (mob:getMainLvl() * 3);
-	end;
-
-	-- printf("magicevasion: %f * %f = %f", magiceva, 0.5, magiceva*0.5);
-	-- printf("magicacc: %f * %f = %f", magicacc, mulitplier, magicacc*mulitplier);
-
-	p = (magicacc * multiplier) - (magiceva * 0.45);
+	p = magicacc - (magiceva * 0.85);
 
 	--double any acc over 50 if it's over 50
 	if(p > 5) then
@@ -369,13 +357,13 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 
 	--add a scaling bonus or penalty based on difference of targets level from caster
 	leveldiff = mob:getMainLvl() - target:getMainLvl();
-	if leveldiff < 0 then
+	if leveldiff > 0 then
 		p = p - (25 * ( (mob:getMainLvl()) / 75 )) + leveldiff;
 	else
 		p = p + (25 * ( (mob:getMainLvl()) / 75 )) + leveldiff;
 	end
 
-	-- printf("power: %f", p);
+	-- printf("final power: %f", p);
 	--cap accuracy
     if(p > 95) then
         p = 95;
