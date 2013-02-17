@@ -1823,7 +1823,8 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496 )
 		{
 			if (PAbility->getID() != ABILITY_PET_COMMANDS && (PAbility->getAddType() == ADDTYPE_NORMAL || PAbility->getAddType() == ADDTYPE_MAIN_ONLY ||
-				(PAbility->getAddType() == ADDTYPE_LEARNED && hasLearnedAbility(PChar, PAbility->getID())))){
+				(PAbility->getAddType() == ADDTYPE_LEARNED && hasLearnedAbility(PChar, PAbility->getID())) ||
+				PAbility->getAddType() == ADDTYPE_MERIT && PChar->PMeritPoints->GetMerit((MERIT_TYPE)PAbility->getMeritModID())->count > 0)){
 				addAbility(PChar, PAbility->getID());
 			}
 		}else{

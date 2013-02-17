@@ -1857,7 +1857,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 	if (((CAbility*)m_PJobAbility)->getMeritModID() > 0)
 	{
-		meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((Merit_t*)m_PChar->PMeritPoints->GetMeritByIndex(m_PJobAbility->getMeritModID()), m_PChar->GetMLevel());
+		meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((Merit_t*)m_PChar->PMeritPoints->GetMerit((MERIT_TYPE)m_PJobAbility->getMeritModID()), m_PChar->GetMLevel());
 	}
 
     uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction) * 1000;
