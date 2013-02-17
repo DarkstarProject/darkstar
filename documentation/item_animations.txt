@@ -39,3 +39,5 @@ This contians a list of animation ids for usable items.
 82 - round circle thing
 91 - healing / remedy
 92 - remove effect
+
+105 - corsair
