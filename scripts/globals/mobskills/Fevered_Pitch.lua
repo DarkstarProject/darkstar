@@ -26,18 +26,20 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_DEFENSE_DOWN;
 	local statmod = MOD_INT;
 	local resist = 1;
-	if(hit and target:hasStatusEffect(typeEffect) == false) then
+	if(hit) then
 		resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WIND);
 		if(resist > 0.2) then
+			target:delStatusEffect(typeEffect);
 			target:addStatusEffect(typeEffect,30,0,90*resist);--power=30;tic=0;duration=90;
 		end
 	end
 
 	typeEffect = EFFECT_STUN;
-	if(hit and target:hasStatusEffect(typeEffect) == false) then
+	if(hit) then
 		--statmod = MOD_INT;
 		resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_THUNDER);
 		if(resist > 0.2) then
+			target:delStatusEffect(typeEffect);
 			target:addStatusEffect(typeEffect,1,0,7*resist);--power=1;tic=0;duration=7;
 		end
 	end

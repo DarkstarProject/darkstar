@@ -17,7 +17,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local moon = 50;--VanadielMoonPhase();
 	local buffvalue = 1;
-	
+
 	if(moon > 90) then
 		buffvalue = 31;
 	elseif(moon > 75) then
@@ -31,13 +31,11 @@ function OnMobWeaponSkill(target, mob, skill)
 	elseif(moon > 10) then
 		buffvalue = 6;
 	end
-	
-	if(target:hasStatusEffect(EFFECT_ACCURACY_DOWN) == false) then
-		target:addStatusEffect(EFFECT_ACCURACY_DOWN,buffvalue,0,180);
-	end
-	if(target:hasStatusEffect(EFFECT_EVASION_DOWN) == false) then
-		target:addStatusEffect(EFFECT_EVASION_DOWN,32-buffvalue,0,180);
-	end
+
+	target:delStatusEffect(EFFECT_ACCURACY_DOWN);
+	target:addStatusEffect(EFFECT_ACCURACY_DOWN,buffvalue,0,180);
+	target:delStatusEffect(EFFECT_EVASION_DOWN);
+	target:addStatusEffect(EFFECT_EVASION_DOWN,32-buffvalue,0,180);
 	return 0;
 
 end
