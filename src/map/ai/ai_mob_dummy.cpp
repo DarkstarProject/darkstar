@@ -1321,30 +1321,36 @@ void CAIMobDummy::ActionAttack()
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
 	if (CurrentDistance <= 25) { // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
 		if ( (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && m_PMob->m_AvailableSpells.size() > 0) {
-			// Randomly select a spell from m_PMob->availableSpells and do it.
-			uint8 num = rand()%m_PMob->m_AvailableSpells.size();
-			uint16 spellid = m_PMob->m_AvailableSpells[num];
 
 			// check for spell blockers e.g. silence
 			if(!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)) {
 
-				if (spellid == 0) { // prod the script to give us a spell to cast
-					int chosenSpellId = luautils::OnMonsterMagicPrepare(m_PMob, m_PBattleTarget);
-					if (chosenSpellId > 0) { // covers returning 0 or -1
-						spellid = chosenSpellId;
-					}
-				}
+				// Randomly select a spell from m_PMob->availableSpells and do it.
+				uint8 num = rand()%m_PMob->m_AvailableSpells.size();
+				uint16 spellid = m_PMob->m_AvailableSpells[num];
 
-				if (spellid > 0) { // if a spell was chosen, do it.
-					// change to ActionMagicStarting
-					m_ActionType = ACTION_MAGIC_START;
-					m_PSpell = spell::GetSpell(spellid);
-					ActionMagicStart();
-					return;
-				}
-				else {
-					// the script doesn't want to cast a spell at the moment, but it should still be treated as a magic attempt
-					m_LastMagicTime = m_Tick;
+				// only cast defensive spells, like cure, buffs when lower than 75% HP
+				bool isDefensive = spell::IsDefensiveSpell(spellid);
+				if(isDefensive && m_PMob->GetHPP() <= 75 || !isDefensive){
+
+					if (spellid == 0) { // prod the script to give us a spell to cast
+						int chosenSpellId = luautils::OnMonsterMagicPrepare(m_PMob, m_PBattleTarget);
+						if (chosenSpellId > 0) { // covers returning 0 or -1
+							spellid = chosenSpellId;
+						}
+					}
+
+					if (spellid > 0) { // if a spell was chosen, do it.
+						// change to ActionMagicStarting
+						m_ActionType = ACTION_MAGIC_START;
+						m_PSpell = spell::GetSpell(spellid);
+						ActionMagicStart();
+						return;
+					}
+					else {
+						// the script doesn't want to cast a spell at the moment, but it should still be treated as a magic attempt
+						m_LastMagicTime = m_Tick;
+					}
 				}
 			}
 		}

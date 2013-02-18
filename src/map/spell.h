@@ -52,7 +52,7 @@ public:
 	CSpell(uint16 id);
 
 	uint16		getID();
-	uint8		getJob(JOBTYPE JobID);					
+	uint8		getJob(JOBTYPE JobID);
 	uint16		getMPCost();
 	uint32		getCastTime();
 	uint32		getRecastTime();
@@ -75,7 +75,7 @@ public:
 	uint16		getMonsterSkillId();
 
 	void		setID(uint16 id);
-	void		setJob(int8* jobs);						
+	void		setJob(int8* jobs);
 	void		setMPCost(uint16 MP);
 	void		setCastTime(uint32 CastTime);
 	void		setRecastTime(uint32 RecastTime);
@@ -87,7 +87,7 @@ public:
     void        setZoneMisc(uint16 Misc);
 	void		setAOE(uint8 AOE);
 	void		setBase(uint16 base);
-	void		setElement(uint16 element); 
+	void		setElement(uint16 element);
 	void		setMultiplier(float multiplier);
     void        setMessage(uint16 message);
     void        setDefaultMessage(uint16 message);
@@ -102,19 +102,19 @@ public:
 	void		setName(int8* name);
 
 	std::vector<CModifier*> modList;					// modifiers added when blue spell is equipped
-	
+
 private:
 
 	uint16		m_ID;									// spell id
 	uint32		m_castTime;								// time to cast spell
 	uint32		m_recastTime;							// recast time
 	uint16		m_animation;							// animation for spell
-    uint16      m_animationTime;                        
-    uint8	    m_skillType;                            
+    uint16      m_animationTime;
+    uint8	    m_skillType;
 	uint16		m_mpCost;								// mpCost/itemId for ninjitsu tool
 	uint8		m_job[MAX_JOBTYPE];						// job
 	uint8		m_ValidTarget;							// target pc/npc/both
-	SPELLGROUP  m_spellGroup;							// spellgroup 
+	SPELLGROUP  m_spellGroup;							// spellgroup
     uint16      m_zoneMisc;                             // условия чтения заклинаний в зонах
 	bool		m_isAOE;								// aoe or single target spell
 	uint16		m_base;									// spell base damage
@@ -144,6 +144,7 @@ namespace spell
     CSpell* GetSpell(uint16 SpellID);
     bool    CanUseSpell(CBattleEntity* PCaster, uint16 SpellID);
 	bool	CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level);
+    bool    IsDefensiveSpell(uint16 spellId);
 };
 
 #endif

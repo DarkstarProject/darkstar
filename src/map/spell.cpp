@@ -43,10 +43,10 @@ CSpell::CSpell(uint16 id)
     m_MagicBurstMessage = 0;
     m_element           = 0;
 	m_spellGroup        = SPELLGROUP_NONE;
-	
+
 	memset(m_job, 0, sizeof(m_job));
 }
-	
+
 void CSpell::setID(uint16 id)
 {
 	m_ID = id;
@@ -313,7 +313,7 @@ namespace spell
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 			    CSpell* PSpell = new CSpell(Sql_GetIntData(SqlHandle,0));
 
@@ -328,11 +328,11 @@ namespace spell
                 PSpell->setAnimationTime(Sql_GetIntData(SqlHandle,9));
 			    PSpell->setMPCost(Sql_GetIntData(SqlHandle,10));
 			    PSpell->setAOE(Sql_GetIntData(SqlHandle,11));
-			    PSpell->setBase(Sql_GetIntData(SqlHandle,12)); 
+			    PSpell->setBase(Sql_GetIntData(SqlHandle,12));
 			    PSpell->setElement(Sql_GetIntData(SqlHandle,13));
                 PSpell->setZoneMisc(Sql_GetIntData(SqlHandle,14));
-			    PSpell->setMultiplier(Sql_GetIntData(SqlHandle,15)); 
-                PSpell->setMessage(Sql_GetIntData(SqlHandle,16)); 
+			    PSpell->setMultiplier(Sql_GetIntData(SqlHandle,15));
+                PSpell->setMessage(Sql_GetIntData(SqlHandle,16));
                 PSpell->setDefaultMessage(Sql_GetIntData(SqlHandle,16));
                 PSpell->setMagicBurstMessage(Sql_GetIntData(SqlHandle,17));
 			    PSpell->setCE(Sql_GetIntData(SqlHandle,18));
@@ -349,7 +349,7 @@ namespace spell
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 				// Sanity check the spell ID
 				uint16 spellId = Sql_GetIntData(SqlHandle,0);
@@ -363,10 +363,10 @@ namespace spell
 			}
 		}
 	    ret = Sql_Query(SqlHandle,"SELECT spellId, modId, value FROM blue_spell_mods WHERE spellId IN (SELECT spellId FROM spell_list LEFT JOIN blue_spell_list USING (spellId))");
-	    
+
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 			    uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
 			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
@@ -441,4 +441,15 @@ namespace spell
 	    }
 	    return false;
 	}
+
+    // returns true if the spell is defensive
+    // example: cures, buffs etc
+    bool IsDefensiveSpell(uint16 spellId){
+        if (GetSpell(spellId) != NULL)
+        {
+            // anything that isn't a 4 is defensive
+            return PSpellList[spellId]->getValidTarget() != 4;
+        }
+        return false;
+    }
 };
