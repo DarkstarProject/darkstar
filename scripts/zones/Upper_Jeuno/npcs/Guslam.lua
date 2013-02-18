@@ -98,7 +98,7 @@ function onTrigger(player,npc)
 			   player:getQuestStatus(JEUNO,BORGHERTZ_S_LURKING_HANDS) == QUEST_AVAILABLE) then 
 			player:startEvent(0x009b); -- Start Quest for NIN
 		elseif(player:getMainJob() == 14 and 
-			   player:getQuestStatus(SANDORIA,CHASING_QUATAS) ~= QUEST_AVAILABLE and 
+			   player:getQuestStatus(SANDORIA,CHASING_QUOTAS) ~= QUEST_AVAILABLE and 
 			   player:getQuestStatus(JEUNO,BORGHERTZ_S_DRAGON_HANDS) == QUEST_AVAILABLE) then 
 			player:startEvent(0x009b); -- Start Quest for DRG
 		elseif(player:getMainJob() == 15 and 
