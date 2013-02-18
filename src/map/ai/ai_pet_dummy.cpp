@@ -678,6 +678,7 @@ void CAIPetDummy::ActionAttack()
                     if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
 					{
                         Action.messageID = 0;
+                        Action.reaction = REACTION_EVADE;
                         m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
 					}
 					else

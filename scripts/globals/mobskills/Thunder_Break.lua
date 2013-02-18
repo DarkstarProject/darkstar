@@ -20,12 +20,12 @@ function OnMobWeaponSkill(target, mob, skill)
 		local statmod = MOD_INT;
 		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_THUNDER);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,1,0,6*resist);--power=1;tic=0;duration=5;
+			target:addStatusEffect(typeEffect,1,0,4*resist);--power=1;tic=0;duration=5;
 		end
 	end
 
 	local dmgmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.3,ELE_THUNDER,dmgmod,TP_MAB_BONUS,1);
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,ELE_THUNDER,dmgmod,TP_MAB_BONUS,1);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_THUNDER,MOBPARAM_WIPE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;

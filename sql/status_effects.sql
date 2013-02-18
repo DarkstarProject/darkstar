@@ -20,7 +20,7 @@ CREATE TABLE `status_effects` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records 
+-- Records
 -- ----------------------------
 INSERT INTO `status_effects` VALUES ('0', 'ko', '0');
 INSERT INTO `status_effects` VALUES ('1', 'weakness', '0');
@@ -498,7 +498,7 @@ INSERT INTO `status_effects` VALUES ('486', 'counter_boost', '32');
 INSERT INTO `status_effects` VALUES ('487', 'endrain', '32');
 INSERT INTO `status_effects` VALUES ('488', 'enaspir', '32');
 INSERT INTO `status_effects` VALUES ('489', 'afterglow', '32');
-INSERT INTO `status_effects` VALUES ('490', 'ninjutsu_ele_debuff', '544');
+INSERT INTO `status_effects` VALUES ('490', 'ninjutsu_ele_debuff', '32');
 INSERT INTO `status_effects` VALUES ('511', 'dynamis', '0');
 INSERT INTO `status_effects` VALUES ('512', 'healing', '48');
 INSERT INTO `status_effects` VALUES ('513', 'leavegame', '48');

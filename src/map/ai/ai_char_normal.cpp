@@ -3118,79 +3118,90 @@ void CAICharNormal::ActionAttack()
 				}
 				else if ( rand()%100 < hitRate)
 				{
-                    bool ignoreSneakAttack = (i != 0); // Sneak attack critical effect should only be given on the first swing.
-					bool ignoreTrickAttack = (i != 0);
-					bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, ignoreSneakAttack));
 
-					float DamageRatio = battleutils::GetDamageRatio(m_PChar, m_PBattleTarget, isCritical, 0);
-
-					if (isCritical)
-					{
-						Action.reaction   = REACTION_HIT;
-						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-						Action.messageID  = 67;
-						Action.flag = 0;
-					}
+                    // attack hit, try to be absorbed by shadow
+                    if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
+                    {
+                        Action.messageID = 0;
+                        Action.reaction = REACTION_EVADE;
+                        m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
+                    }
                     else
                     {
-						Action.reaction   = REACTION_HIT;
-						Action.speceffect = SPECEFFECT_HIT;
-						Action.messageID  = 1;
-					}
+                        bool ignoreSneakAttack = (i != 0); // Sneak attack critical effect should only be given on the first swing.
+    					bool ignoreTrickAttack = (i != 0);
+    					bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, ignoreSneakAttack));
 
-					uint16 bonusDMG = 0;
+    					float DamageRatio = battleutils::GetDamageRatio(m_PChar, m_PBattleTarget, isCritical, 0);
 
-					if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakAttack) &&
-						m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
-						abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23)
-						{
-							bonusDMG = m_PChar->DEX();
-							if(rand()%100 < 4) Monster->m_THLvl +=1;
-						}
+    					if (isCritical)
+    					{
+    						Action.reaction   = REACTION_HIT;
+    						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+    						Action.messageID  = 67;
+    						Action.flag = 0;
+    					}
+                        else
+                        {
+    						Action.reaction   = REACTION_HIT;
+    						Action.speceffect = SPECEFFECT_HIT;
+    						Action.messageID  = 1;
+    					}
 
+    					uint16 bonusDMG = 0;
 
-
-					//trick attack agi bonus for thf main job
-					if(m_PChar->GetMJob() == JOB_THF && (!ignoreTrickAttack) &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
-					{
-						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-						if(taChar != NULL) bonusDMG += m_PChar->AGI();
-					}
-
-					//check if other jobs have trick attack active to change enmity lateron
-					if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && (!ignoreTrickAttack))
-						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-
-
-					if (isHTH)
-					{
-						// (ffxiclopedia h2h) remove 3 dmg from weapon, DB has an extra 3 for weapon rank
-
-						// get natural h2h damage (h2hSkill*0.11+3)
-						uint16 naturalH2hDmg = (float)(m_PChar->GetSkill(1) * 0.11f)+3;
-
-						damage = (uint16)((( (m_PChar->GetMainWeaponDmg()-3) + naturalH2hDmg + bonusDMG +
-								 battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
-					}
-					else
-					{
-						if( fstrslot == SLOT_MAIN )
-						{
-							damage = (uint16)(((m_PChar->GetMainWeaponDmg() + bonusDMG +
-								battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
-						} else if( fstrslot == SLOT_SUB )
-						{
-							damage = (uint16)(((m_PChar->GetSubWeaponDmg() + bonusDMG +
-								battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
-						}
-					}
+    					if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakAttack) &&
+    						m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
+    						abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23)
+    						{
+    							bonusDMG = m_PChar->DEX();
+    							if(rand()%100 < 4) Monster->m_THLvl +=1;
+    						}
 
 
-					// do soul eater effect
-					damage = battleutils::doSoulEaterEffect(m_PChar, damage);
 
-					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
-					zanshin = false;
+    					//trick attack agi bonus for thf main job
+    					if(m_PChar->GetMJob() == JOB_THF && (!ignoreTrickAttack) &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+    					{
+    						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
+    						if(taChar != NULL) bonusDMG += m_PChar->AGI();
+    					}
+
+    					//check if other jobs have trick attack active to change enmity lateron
+    					if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && (!ignoreTrickAttack))
+    						taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
+
+
+    					if (isHTH)
+    					{
+    						// (ffxiclopedia h2h) remove 3 dmg from weapon, DB has an extra 3 for weapon rank
+
+    						// get natural h2h damage (h2hSkill*0.11+3)
+    						uint16 naturalH2hDmg = (float)(m_PChar->GetSkill(1) * 0.11f)+3;
+
+    						damage = (uint16)((( (m_PChar->GetMainWeaponDmg()-3) + naturalH2hDmg + bonusDMG +
+    								 battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+    					}
+    					else
+    					{
+    						if( fstrslot == SLOT_MAIN )
+    						{
+    							damage = (uint16)(((m_PChar->GetMainWeaponDmg() + bonusDMG +
+    								battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+    						} else if( fstrslot == SLOT_SUB )
+    						{
+    							damage = (uint16)(((m_PChar->GetSubWeaponDmg() + bonusDMG +
+    								battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
+    						}
+    					}
+
+
+    					// do soul eater effect
+    					damage = battleutils::doSoulEaterEffect(m_PChar, damage);
+
+    					charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
+    					zanshin = false;
+                    }
 				}
 				else
 				{

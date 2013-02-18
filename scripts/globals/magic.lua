@@ -263,7 +263,7 @@ function AffinityBonus(caster,spell)
     local ele = spell:getElement();
 
     local affinity = caster:getMod(strongAffinity[ele]) - caster:getMod(weakAffinity[ele]);
-	
+
 	-- Iridal and Chatoyant will return affinity for strong and weak, cancelling their bonus out, so they need to be specifically checked.
 	-- Could do an if strong == weak, but that would cause problems once/if augments or magian gear is added.
 	local equippedMain = caster:getEquipID(SLOT_MAIN);
@@ -760,14 +760,14 @@ end;
 function handleThrenody(caster, target, spell, basePower, baseDuration, modifier)
 	-- Process resitances
 	local staff = AffinityBonus(caster, spell);
-	print("staff=" .. staff);
+	-- print("staff=" .. staff);
 	local dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
-	print("dCHR=" .. dCHR);
+	-- print("dCHR=" .. dCHR);
 	local resm = applyResistance(caster, spell, target, dCHR, SINGING_SKILL, staff);
-	print("rsem=" .. resm);
+	-- print("rsem=" .. resm);
 
 	if(resm < 0.5) then
-		print("resm resist");
+		-- print("resm resist");
 		spell:setMsg(85);
 		return EFFECT_THRENODY;
 	end
@@ -787,10 +787,9 @@ end;
 
 function handleNinjutsuDebuff(caster, target, spell, basePower, baseDuration, modifier)
 	-- Remove previous
-	target:delStatusEffect(EFFECT_NINJUTSU_ELE_DEBUFF);
-	-- Add new
-	target:addStatusEffect(EFFECT_NINJUTSU_ELE_DEBUFF, basePower, 0, baseDuration, 0, modifier, 0);
-
+    target:delStatusEffect(EFFECT_NINJUTSU_ELE_DEBUFF);
+    -- Add new
+    target:addStatusEffect(EFFECT_NINJUTSU_ELE_DEBUFF, basePower, 0, baseDuration, 0, modifier, 0);
 	return EFFECT_NINJUTSU_ELE_DEBUFF;
 end;
 

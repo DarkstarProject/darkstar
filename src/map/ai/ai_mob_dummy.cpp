@@ -1326,8 +1326,19 @@ void CAIMobDummy::ActionAttack()
 			if(!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)) {
 
 				// Randomly select a spell from m_PMob->availableSpells and do it.
-				uint8 num = rand()%m_PMob->m_AvailableSpells.size();
-				uint16 spellid = m_PMob->m_AvailableSpells[num];
+				uint8 num = 0;
+				uint16 spellid = 0;
+
+				// higher chance to cast defensive spell if below 50% HP
+				if(m_PMob->GetHPP() <= 50 && rand()%100 < 50){
+					// cast my "keep me alive" spell, which is at index zero
+					spellid = m_PMob->m_AvailableSpells[0];
+				} else {
+					num = rand()%m_PMob->m_AvailableSpells.size();
+					spellid = m_PMob->m_AvailableSpells[num];
+				}
+
+
 
 				// only cast defensive spells, like cure, buffs when lower than 75% HP
 				bool isDefensive = spell::IsDefensiveSpell(spellid);
@@ -1546,7 +1557,12 @@ void CAIMobDummy::ActionAttack()
 	                    // spike effect
 						if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 						{
-							battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage);
+							// spikes take priority
+							if(!battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage)){
+		                    	// no spikes, handle enspell
+		                    	// TODO: enspell method needs to be refactored to accept just battleentity
+		                    	// battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, i, WeaponDelay, damage);
+							}
 						}
 					}
 					else

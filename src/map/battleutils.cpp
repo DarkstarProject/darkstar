@@ -1058,7 +1058,9 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 						Action->flag = 3;
 						Action->subparam = Samba;
 						PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
-						charutils::UpdateHealth(PAttacker);
+                        if(PAttacker->objtype == TYPE_PC){
+    						charutils::UpdateHealth(PAttacker);
+                        }
 				return;
 				}
 			case ENSPELL_ASPIR_SAMBA:
@@ -1082,7 +1084,9 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 					Action->flag = 3;
 					Action->subparam = Samba;
 					PAttacker->addMP(Samba);
-					charutils::UpdateHealth(PAttacker);
+                    if(PAttacker->objtype == TYPE_PC){
+    					charutils::UpdateHealth(PAttacker);
+                    }
 				return;
 				}
 			case ENSPELL_HASTE_SAMBA:
@@ -1122,7 +1126,9 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 		Action->flag = 3;
 		Action->subparam = Samba;
 		PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
-		charutils::UpdateHealth(PAttacker);
+        if(PAttacker->objtype == TYPE_PC){
+    		charutils::UpdateHealth(PAttacker);
+        }
 		return;
  	}
 
@@ -1137,7 +1143,9 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 		Action->flag = 3;
 		Action->subparam = Samba;
 		PAttacker->addMP(Samba);
-		charutils::UpdateHealth(PAttacker);
+        if(PAttacker->objtype == TYPE_PC){
+    		charutils::UpdateHealth(PAttacker);
+        }
 		return;
 	}
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE))
@@ -1186,7 +1194,10 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 				Action->flag = 3;
 				Action->subparam  = (float)(Action->param * 0.3f);
 				PAttacker->addHP(Action->subparam);
-				charutils::UpdateHealth(PAttacker);
+
+                if(PAttacker->objtype == TYPE_PC){
+    				charutils::UpdateHealth(PAttacker);
+                }
 				return;
 
 

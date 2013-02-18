@@ -37,7 +37,7 @@ enum EFFECTFLAG
     EFFECTFLAG_DISPELABLE       = 0x0001,
     EFFECTFLAG_ERASABLE         = 0x0002,
     EFFECTFLAG_ATTACK           = 0x0004,     // исчезает при нанесении урона
-    
+
     EFFECTFLAG_DAMAGE           = 0x0010,     // исчезает при получении урона
     EFFECTFLAG_DEATH            = 0x0020,     // исчезает при смерти
     EFFECTFLAG_MAGIC_BEGIN      = 0x0040,     // исчезает перед началом чтения заклинания
@@ -273,7 +273,7 @@ enum EFFECT
     EFFECT_EMBRAVA                  = 228,
     EFFECT_MANAWELL                 = 229,
     EFFECT_SPONTANEITY              = 230,
-    EFFECT_MARCATO                  = 231,   
+    EFFECT_MARCATO                  = 231,
     EFFECT_NA						= 232,
 	EFFECT_AUTO_REGEN				= 233,
 	EFFECT_AUTO_REFRESH				= 234,
@@ -574,8 +574,8 @@ public:
 	CStatusEffect(
 		 EFFECT id,
          uint16 icon,
-		 uint16 power, 
-		 uint32 tick, 
+		 uint16 power,
+		 uint32 tick,
 		 uint32 duration,
 		 uint16 subid = 0,
          uint16 subPower = 0,

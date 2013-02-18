@@ -18,7 +18,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_STUN;
 	if(applyPlayerResistance(mob,typeEffect,target,true,EFFECT_STUN,MOD_INT, ELE_EARTH) > 0.5) then
 		if(target:hasStatusEffect(typeEffect) == false) then
-			target:addStatusEffect(typeEffect,1,0,7);
+			target:addStatusEffect(typeEffect,1,0,6);
 		end
 	end
 

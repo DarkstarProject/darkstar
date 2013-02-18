@@ -40,7 +40,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_THUNDER);
 		if(resist > 0.2) then
 			target:delStatusEffect(typeEffect);
-			target:addStatusEffect(typeEffect,1,0,7*resist);--power=1;tic=0;duration=7;
+			target:addStatusEffect(typeEffect,1,0,4*resist);--power=1;tic=0;duration=7;
 		end
 	end
 

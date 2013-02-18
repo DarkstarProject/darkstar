@@ -33,10 +33,11 @@
 namespace mobutils
 {
 	void	CalculateStats(CMobEntity* PMob);
-	uint16	GetWeaponDamage(CMobEntity* PMob); 
+	uint16	GetWeaponDamage(CMobEntity* PMob);
 	uint8   checkMultiHits(CMobEntity * PMob,uint32 mobid);
 	void    GetAvailableSpells(CMobEntity* PMob);
 	void	AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestId, bool ignoreJob);
+  void AddNinjaSpells(CMobEntity* PMob);
 };
 
 #endif

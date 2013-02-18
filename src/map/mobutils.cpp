@@ -301,11 +301,27 @@ void CalculateStats(CMobEntity * PMob)
 void GetAvailableSpells(CMobEntity* PMob) {
 	if (PMob->m_HasSpellScript == 1) {
 		PMob->m_AvailableSpells.push_back(0); // we use spell id = 0 to indicate that its scripted
+		return;
 	}
 
 	// TODO: Use enums rather than hardcode the spell ids...
+	if(PMob->m_EcoSystem == SYSTEM_BEASTMEN){
+		// Beastmen get all spells from their main job
+		if(PMob->GetMJob() == JOB_NIN){
+			AddNinjaSpells(PMob);
+		}
+	}
 
 	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells
+	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_HEAL) {
+		for (int i=6; i>=1; i--) {
+			if (spell::CanUseSpell(PMob, i)) { // Cure VI -> I
+				PMob->m_AvailableSpells.push_back(i);
+				break; // we've got the highest level we can use, so stop looking for lower ones
+			}
+		}
+	}
+
 	// Single targe tier spells
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_FIRE] & SPELLTYPE_DAMAGE) {
 		AddHighestAvailableSpell(PMob, 148, 144, true);  // Fire V -> I
@@ -351,14 +367,6 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		AddHighestAvailableSpell(PMob, 42, 38, true); // Banishga V -> I
 	}
 
-	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_HEAL) {
-		for (int i=6; i>=1; i--) {
-			if (spell::CanUseSpell(PMob, i)) { // Cure VI -> I
-				PMob->m_AvailableSpells.push_back(i);
-				break; // we've got the highest level we can use, so stop looking for lower ones
-			}
-		}
-	}
 }
 
 void AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestId, bool ignoreJob)
@@ -377,6 +385,49 @@ void AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestI
 			}
 		}
 	}
+}
+
+/*
+Adds all available ninja spells to the mob.
+*/
+void AddNinjaSpells(CMobEntity* PMob) {
+
+	//add utsusemi first for priority spell
+	AddHighestAvailableSpell(PMob, 340, 338, true);
+
+	// add two more times to increase chance
+	AddHighestAvailableSpell(PMob, 340, 338, true);
+	AddHighestAvailableSpell(PMob, 340, 338, true);
+
+	// katon
+	AddHighestAvailableSpell(PMob, 322, 320, true);
+
+	// hyoton
+	AddHighestAvailableSpell(PMob, 325, 323, true);
+
+	// huton
+	AddHighestAvailableSpell(PMob, 328, 326, true);
+
+	// doton
+	AddHighestAvailableSpell(PMob, 331, 329, true);
+
+	// raiton
+	AddHighestAvailableSpell(PMob, 334, 332, true);
+
+	// suiton
+	AddHighestAvailableSpell(PMob, 337, 335, true);
+
+	// jubaku
+	AddHighestAvailableSpell(PMob, 343, 342, true);
+
+	// hojo
+	AddHighestAvailableSpell(PMob, 346, 344, true);
+
+	// kurayami
+	AddHighestAvailableSpell(PMob, 349, 347, true);
+
+	// dokumori
+	AddHighestAvailableSpell(PMob, 352, 350, true);
 }
 
 }; // namespace mobutils

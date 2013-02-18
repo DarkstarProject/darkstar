@@ -26,7 +26,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local typeEffect = EFFECT_STUN;
 	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		target:addStatusEffect(typeEffect,1,0,math.random(2,6));--power=1;tic=0;duration=4;
+		target:addStatusEffect(typeEffect,1,0,6);--power=1;tic=0;duration=4;
 	end
 
 	target:delHP(dmg);
