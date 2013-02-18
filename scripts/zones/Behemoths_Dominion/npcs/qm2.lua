@@ -22,10 +22,12 @@ function onTrade(player,npc,trade)
 	if((KingBehemoth == 0 or KingBehemoth == 24) and trade:hasItemQty(3342,1) and trade:getItemCount() == 1) then -- Check trade, and if mob is ACTION_NONE (0) or waiting to spawn (24)
 		player:tradeComplete();
 		SpawnMob(17297441,180):updateEnmity(player);
+		SetServerVariable("KingBehemoth_Engaged", os.time(t));
 	-- Trade Beastly Shank
 	elseif((Behemoth == 0 or Behemoth == 24) and trade:hasItemQty(3341,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17297440,180):updateEnmity(player);
+		SetServerVariable("Behemoth_Engaged", os.time(t));
 	end
 	
 

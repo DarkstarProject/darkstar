@@ -6,10 +6,11 @@
 require("scripts/globals/titles");
 
 -----------------------------------
--- onMobSpawn Action
+-- onMobEngaged Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobEngaged(mob,target)
+	SetServerVariable("Behemoth_Engaged", os.time(t));
 end;
 
 -----------------------------------
@@ -17,11 +18,16 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-	
-	if(mob:getBattleTime() == 1800) then
-		mob:rageMode();
+
+	-- Regain
+	mob:addTP(15);
+
+	if (mob:getBattleTime() % 60 == 0) then -- Check every minute to reduce load
+		if(os.time(t) >= (GetServerVariable("Behemoth_Engaged") + 1800)) then
+			mob:rageMode(); -- Stats = Stats * 10
+		end
 	end
-	
+
 end;
 
 -----------------------------------

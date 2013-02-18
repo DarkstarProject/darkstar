@@ -19,11 +19,13 @@ function onTrade(player,npc,trade)
 	-- Trade Cup of Sweet Tea
 	if((Nidhogg == 0 or Nidhogg == 24) and trade:hasItemQty(3340,1) and trade:getItemCount() == 1) then -- Check trade, and if mob is ACTION_NONE (0) or waiting to spawn (24)
 		player:tradeComplete();
-		SpawnMob(17408019,180):updateEnmity(player);
+		SpawnMob(17408019,180):updateEnmity(player); -- onMobEngaged does not run for scripted spawns.
+		SetServerVariable("Nidhogg_Engaged", os.time(t));
 	-- Trade Cup of Honey Wine
 	elseif((Fafnir == 0 or Fafnir == 24) and trade:hasItemQty(3339,1) and trade:getItemCount() == 1) then
 		player:tradeComplete();
 		SpawnMob(17408018,180):updateEnmity(player);
+		SetServerVariable("Fafnir_Engaged", os.time(t)); -- onMobEngaged does not run for scripted spawns.
 	end
 	
 end;
