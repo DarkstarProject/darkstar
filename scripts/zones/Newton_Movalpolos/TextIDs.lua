@@ -18,3 +18,9 @@ CHEST_ILLUSION = 7203; -- The chest was but an illusion...
 
 -- Mining
 MINING_IS_POSSIBLE_HERE = 7183; -- Mining is possible here if you have <item>
+
+-- Moblin Showman
+SHOWMAN_TRIGGER = 07209; -- Hey, you there! Muscles nice. You want fight strong one? It cost you. Give me nice item.
+SHOWMAN_DECLINE = 07208; -- ...Me no want that. Thing me want not here! It not being here!!!
+ SHOWMAN_ACCEPT = 07210; -- Fhungaaa!!! The freshyness, the flavoryness! This very nice item! Good luck, then. Try not die.One...two...four...FIIIIIIGHT!!!
+
