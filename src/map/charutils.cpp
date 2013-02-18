@@ -1286,10 +1286,8 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				BuildingCharWeaponSkills(PChar);
 			}
 			break;
-
-		BuildingCharSkillsTable(PChar);
-		CalculateStats(PChar);
 		}
+		PChar->m_EquipSwap = true;
 	}
 }
 
@@ -1398,7 +1396,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						{
 							if (PItem->getType() & ITEM_WEAPON && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
 							{
-								PChar->pushPacket(new CCharAppearancePacket(PChar));
+								PChar->m_EquipSwap = true;
 								return false;
 							}
 							PChar->m_Weapons[SLOT_SUB] = (CItemWeapon*)PItem;
@@ -1539,7 +1537,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 		UnequipItem(PChar,equipSlotID);
 
 		PChar->status = STATUS_UPDATE;
-		PChar->pushPacket(new CCharAppearancePacket(PChar));
+		PChar->m_EquipSwap = true;
 		PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
 	}
 	else
@@ -1587,9 +1585,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 
 				PChar->status = STATUS_UPDATE;
 				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
-				PChar->pushPacket(new CCharAppearancePacket(PChar));
 				PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NODROP));
-				PChar->pushPacket(new CCharUpdatePacket(PChar));
 			}
         }
 	}
@@ -1607,11 +1603,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
         BuildingCharWeaponSkills(PChar);
     }
 
-	BuildingCharSkillsTable(PChar);
-	CalculateStats(PChar);
-
-    PChar->UpdateHealth();
-	PChar->pushPacket(new CCharHealthPacket(PChar));
+	PChar->m_EquipSwap = true;
 }
 
 /************************************************************************

@@ -169,6 +169,7 @@ public:
 	bazaar_t		  bazaar;						// все данные, необходимые для таботы bazaar
 	uint16			  m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
     uint16            m_EquipBlock;                 // заблокированные ячейки экипировки
+	bool			  m_EquipSwap;					// true if equipment was recently changed
 	uint8			  equip[17];                    // экипировка персонажа
 
 	uint8			  m_ZonesList[32];				// список посещенных персонажем зон

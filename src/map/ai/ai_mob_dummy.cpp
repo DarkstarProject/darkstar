@@ -69,7 +69,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 {
 	m_Tick = tick;
 
-	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity(); //needs to be guaranteed to run, as VE decay is in here
+	m_PMob->PEnmityContainer->DecayEnmity();
 
 	switch(m_ActionType)
 	{
@@ -1256,7 +1256,8 @@ void CAIMobDummy::ActionMagicFinish()
 
 void CAIMobDummy::ActionAttack()
 {
-	
+	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+
 	if(m_PBattleTarget == NULL) // we have no target, so disengage
     {
 		m_ActionType = ACTION_DISENGAGE;
@@ -1280,6 +1281,7 @@ void CAIMobDummy::ActionAttack()
             m_PMob->m_OwnerID.clean();
         }
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
+		ActionAttack();
 		return;
 	}
 
@@ -1563,6 +1565,7 @@ void CAIMobDummy::ActionAttack()
             m_PMob->m_OwnerID.clean();
         }
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
+		ActionAttack();
 	}
 	else
     {

@@ -58,6 +58,7 @@ public:
 	void	AddPartyEnmity(CCharEntity* PChar);
 	bool    HasTargetID(uint16 TargetID); //true if ID is in the container
 	void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
+	void	DecayEnmity();
 
 private:
 	

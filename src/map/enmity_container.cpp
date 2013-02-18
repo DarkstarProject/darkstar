@@ -302,9 +302,6 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 	for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
 	{
 		EnmityObject_t* PEnmityObject = it->second;
-
-		//Should lose 60/sec, and this is called twice a sec, hence 30.
-		PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;
 		uint32 Enmity = PEnmityObject->CE + PEnmityObject->VE;
 		
 		if (Enmity >= HighestEnmity)
@@ -314,4 +311,17 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 		}
 	}
     return PEntity;
+}
+
+void CEnmityContainer::DecayEnmity()
+{
+	CBattleEntity* PEntity = NULL;
+
+	for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
+	{
+		EnmityObject_t* PEnmityObject = it->second;
+
+		//Should lose 60/sec, and this is called twice a sec, hence 30.
+		PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;
+	}
 }
