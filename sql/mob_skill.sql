@@ -382,9 +382,9 @@ INSERT INTO `mob_skill` VALUES (177,230,177,'Digest', 0, 7.0, 2000, 1000, 4, 0);
 
 -- Hecteyes
 INSERT INTO `mob_skill` VALUES (181,139,181,'Death_Ray', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (182,139,182,'Hex_Eye', 4, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (182,139,182,'Hex_Eye', 4, 7.0, 2000, 500, 4, 0);
 INSERT INTO `mob_skill` VALUES (184,139,184,'Catharsis', 0, 7.0, 2000, 1000, 1, 0);
-INSERT INTO `mob_skill` VALUES (183,139,183,'Petro_Gaze', 4, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (183,139,183,'Petro_Gaze', 4, 7.0, 2000, 1500, 4, 0);
 
 -- Crab
 INSERT INTO `mob_skill` VALUES (188,75,188,'Big_Scissors', 0, 7.0, 2000, 1000, 4, 0);
