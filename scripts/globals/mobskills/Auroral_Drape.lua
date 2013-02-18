@@ -22,12 +22,12 @@ function OnMobWeaponSkill(target, mob, skill)
 
     if(target:hasStatusEffect(EFFECT_SILENCE) == false) then
         silenced = true;
-        target:addStatusEffect(EFFECT_SILENCE,1,0,45);
+        target:addStatusEffect(EFFECT_SILENCE,1,0,60);
     end
 
     if(target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
         blinded = true;
-        target:addStatusEffect(EFFECT_BLINDNESS,60,0,45);
+        target:addStatusEffect(EFFECT_BLINDNESS,20,0,120);
     end
 
     skill:setMsg(MSG_ENFEEB_IS);

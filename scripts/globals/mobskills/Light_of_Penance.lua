@@ -24,7 +24,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
 		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_DARK);
 		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,40,0,60*resist);--power=40;tic=0;duration=60;
+			target:addStatusEffect(typeEffect,20,0,120*resist);--power=40;tic=0;duration=60;
 		end
 	end
 
