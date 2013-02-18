@@ -11,7 +11,8 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+	-- Disabled due to client crashes
+	return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)

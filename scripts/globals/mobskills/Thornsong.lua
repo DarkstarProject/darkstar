@@ -17,7 +17,8 @@ require("/scripts/globals/monstertpmoves");
 function OnMobSkillCheck(target,mob,skill)
     -- can only used if not silenced
     if(mob:hasStatusEffect(EFFECT_SILENCE) == false) then
-        return 0;
+        -- Disabled due to client crashes
+        return 1;
     end
     return 1;
 end;
