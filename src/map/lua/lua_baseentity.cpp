@@ -3446,6 +3446,7 @@ inline int32 CLuaBaseEntity::sendRaise(lua_State *L)
     else if(PChar->m_hasRaise == 0)
     {
         PChar->m_hasRaise = RaiseLevel;
+        PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_RAISE));
     }
     return 0;
 }
