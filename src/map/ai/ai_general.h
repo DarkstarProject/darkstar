@@ -52,7 +52,7 @@ enum ACTIONTYPE
 	ACTION_RAISE_MENU_SELECTION	= 13,
 	ACTION_DANCE				= 14,
 	ACTION_UNKNOWN_15			= 15,
-	ACTION_ROAMING,	
+	ACTION_ROAMING,
 	ACTION_ENGAGE,
 	ACTION_DISENGAGE,
 	ACTION_CHANGE_TARGET,
@@ -109,7 +109,7 @@ public:
 	void			SetCurrentWeaponSkill(uint16 WSkillID);
 	void			SetCurrentJobAbility(uint16 JobAbilityID);
 	void			SetCurrentMobSkill(CMobSkill* skill); // DEBUG
-	void			SetLastActionTime(uint32 time);
+    void            SetLastActionTime(uint32 time);
 	void			SetCurrentAction(ACTIONTYPE Action, uint16 TargetID = 0);
 	void			SetLastCorsairRoll(uint16 ability);
 

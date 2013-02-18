@@ -19,7 +19,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local power = 1;
+	local power = 25;
 	local duration = 180;
 
 	local typeEffect = EFFECT_REGEN;

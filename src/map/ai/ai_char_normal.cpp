@@ -372,6 +372,7 @@ void CAICharNormal::ActionFall()
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
 	charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
 	charutils::SaveDeathTime(m_PChar);
+
 }
 
 /************************************************************************
@@ -385,10 +386,23 @@ void CAICharNormal::ActionDeath()
     // без задержки удаление эффектов не всегда правильно обрабатывается клиентом
     if ((m_Tick - m_LastActionTime) >= 1000)
     {
-        m_ActionType = ACTION_NONE;
-	    m_LastActionTime = m_Tick;
-
         m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+
+        // has reraise, don't stop timer
+        // this must be after deleting status effects
+        if(m_PChar->m_hasRaise == 0){
+            m_LastActionTime = m_Tick;
+            m_ActionType = ACTION_NONE;
+        }
+    }
+
+    // show reraise menu after sometime
+    // this also prevents the menu from appearing before you're totally dead
+    if (m_PChar->m_hasRaise && (m_Tick - m_LastActionTime) >= 7000)
+    {
+        m_LastActionTime = m_Tick;
+        m_ActionType = ACTION_NONE;
+        m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar, TYPE_RAISE));
     }
 }
 
@@ -1811,7 +1825,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 		if (m_PJobAbility->getID() >= ABILITY_FIGHTERS_ROLL && m_PJobAbility->getID() <= ABILITY_SCHOLARS_ROLL &&
 			(m_PChar->StatusEffectContainer->HasStatusEffect(battleutils::getCorsairRollEffect(m_PJobAbility->getID())) ||
-			m_PChar->StatusEffectContainer->HasBustEffect(battleutils::getCorsairRollEffect(m_PJobAbility->getID())))) 
+			m_PChar->StatusEffectContainer->HasBustEffect(battleutils::getCorsairRollEffect(m_PJobAbility->getID()))))
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ROLL_ALREADY_ACTIVE));
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1904,13 +1918,13 @@ void CAICharNormal::ActionJobAbilityFinish()
 		m_PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
 		uint8 roll = (rand() % 6) + 1;
 		m_PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
-			EFFECT_DOUBLE_UP_CHANCE, 
 			EFFECT_DOUBLE_UP_CHANCE,
-			roll, 
-			0, 
-			45, 
-			m_PJobAbility->getID(), 
-			m_PJobAbility->getAnimationID(), 
+			EFFECT_DOUBLE_UP_CHANCE,
+			roll,
+			0,
+			45,
+			m_PJobAbility->getID(),
+			m_PJobAbility->getAnimationID(),
 			battleutils::getCorsairRollEffect(m_PJobAbility->getID())
 		), true);
 

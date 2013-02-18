@@ -23,7 +23,7 @@
 
 #include "../spell.h"
 #include "../weapon_skill.h"
-#include "../ability.h" 
+#include "../ability.h"
 #include "../mobskill.h"
 #include "../battleutils.h"
 
@@ -92,7 +92,7 @@ uint32 CAIGeneral::GetBattleTime()
 *  Принудительно переводим интеллект в какое-либо состояние				*
 *																		*
 ************************************************************************/
-	
+
 void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 {
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID != 0);
@@ -285,7 +285,7 @@ void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
 CWeaponSkill* CAIGeneral::GetCurrentWeaponSkill()
 {
 	DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
-	
+
 	return m_PWeaponSkill;
 }
 
@@ -313,7 +313,7 @@ void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
 CAbility* CAIGeneral::GetCurrentJobAbility()
 {
 	DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
-	
+
 	return m_PJobAbility;
 }
 
