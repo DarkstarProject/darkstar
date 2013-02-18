@@ -38,6 +38,7 @@ namespace mobutils
 	void    GetAvailableSpells(CMobEntity* PMob);
 	void	AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestId, bool ignoreJob);
   void AddNinjaSpells(CMobEntity* PMob);
+  void AddBardSpells(CMobEntity* PMob);
 };
 
 #endif

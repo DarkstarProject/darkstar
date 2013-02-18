@@ -32,4 +32,5 @@ function onSpellCast(caster,target,spell)
     -- Since all the tiers use the same effect buff it is hard to delete a specific one.
     target:delStatusEffect(EFFECT_MADRIGAL);
     target:addStatusEffect(EFFECT_MADRIGAL,acc,0,duration);
+    return EFFECT_MADRIGAL;
 end;

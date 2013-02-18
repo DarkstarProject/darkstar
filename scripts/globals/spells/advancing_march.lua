@@ -36,4 +36,5 @@ function onSpellCast(caster,target,spell)
 	-- Since all the tiers use the same effect buff it is hard to delete a specific one.
 	target:delStatusEffect(EFFECT_MARCH);
 	target:addStatusEffect(EFFECT_MARCH,haste,0,duration);
+    return EFFECT_MARCH;
 end;

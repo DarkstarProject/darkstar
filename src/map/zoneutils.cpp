@@ -401,10 +401,10 @@ void LoadMOBList(CZone* PZone)
 			if (PMob->GetMJob() == JOB_BLM) {
 				PMob->m_MagicRecastTime = 15000;
 			}
-			else if (PMob->GetMJob() == JOB_RDM) {
+			else if (PMob->GetMJob() == JOB_RDM || PMob->GetMJob() == JOB_BLU) {
 				PMob->m_MagicRecastTime = 25000;
 			}
-			else if (PMob->GetMJob() == JOB_WHM) {
+			else if (PMob->GetMJob() == JOB_WHM || PMob->GetMJob() == JOB_BRD) {
 				PMob->m_MagicRecastTime = 20000;
 			}
 			else {

@@ -307,8 +307,15 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	// TODO: Use enums rather than hardcode the spell ids...
 	if(PMob->m_EcoSystem == SYSTEM_BEASTMEN){
 		// Beastmen get all spells from their main job
-		if(PMob->GetMJob() == JOB_NIN){
+		switch(PMob->GetMJob()){
+			case JOB_NIN:
 			AddNinjaSpells(PMob);
+			break;
+			case JOB_BRD:
+			AddBardSpells(PMob);
+			break;
+			default:
+			break;
 		}
 	}
 
@@ -428,6 +435,38 @@ void AddNinjaSpells(CMobEntity* PMob) {
 
 	// dokumori
 	AddHighestAvailableSpell(PMob, 352, 350, true);
+}
+
+void AddBardSpells(CMobEntity* PMob) {
+
+	// armys paeon
+	AddHighestAvailableSpell(PMob, 385, 378, true);
+
+	// minne
+	AddHighestAvailableSpell(PMob, 393, 389, true);
+
+	// minuet
+	AddHighestAvailableSpell(PMob, 398, 394, true);
+
+	// elegy
+	AddHighestAvailableSpell(PMob, 423, 421, true);
+	AddHighestAvailableSpell(PMob, 423, 421, true);
+
+	// mambo
+	AddHighestAvailableSpell(PMob, 404, 403, true);
+
+	// madrigal
+	AddHighestAvailableSpell(PMob, 400, 399, true);
+
+	// horde lullaby
+	AddHighestAvailableSpell(PMob, 377, 376, true);
+
+	// magic finale
+	AddHighestAvailableSpell(PMob, 462, 462, true);
+	AddHighestAvailableSpell(PMob, 462, 462, true);
+
+	// foe requirem
+	AddHighestAvailableSpell(PMob, 375, 369, true);
 }
 
 }; // namespace mobutils
