@@ -292,17 +292,7 @@ end
 --Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function cMeleeRatio(attacker, defender, params, ignoredDef)
 
-	local cratio = (attacker:getStat(MOD_ATT)*params.atkmulti) / (defender:getStat(MOD_DEF) - ignoredDef);
-	
-	if(attacker:isWeaponTwoHanded() == 1) then
-		if (cratio > 2.25) then
-			cratio = 2.25;
-		end
-	else
-		if (cratio > 2) then
-			cratio = 2;
-		end
-	end
+	local cratio = (attacker:getStat(MOD_ATT)) / (defender:getStat(MOD_DEF) - ignoredDef);
 	
 	local levelcor = 0;
 	if (attacker:getMainLvl() < defender:getMainLvl()) then
@@ -310,8 +300,19 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
 	end
 
 	cratio = cratio - levelcor;
+	cratio = cratio * params.atkmulti;
 	
-	if(cratio<0) then
+	if(attacker:isWeaponTwoHanded() == 1) then
+		if (cratio > 2.25 - levelcor) then
+			cratio = 2.25;
+		end
+	else
+		if (cratio > 2 - levelcor) then
+			cratio = 2;
+		end
+	end
+	
+	if(cratio < 0) then
 		cratio = 0;
 	end
 	local pdifmin = 0;
@@ -393,18 +394,20 @@ function cRangedRatio(attacker, defender, params, ignoredDef)
 	
 	local cratio = attacker:getRATT() / (defender:getStat(MOD_DEF) - ignoredDef);
 	
-	if(cratio > 3) then
-		cratio = 3;
-	end
-	
 	local levelcor = 0;
 	if (attacker:getMainLvl() < defender:getMainLvl()) then
 		levelcor = 0.025 * (defender:getMainLvl() - attacker:getMainLvl());
 	end
-
+	
 	cratio = cratio - levelcor;
 	
-	if(cratio<0) then
+	cratio = cratio * params.atkmulti;
+	
+	if(cratio > 3 - levelcor) then
+		cratio = 3;
+	end
+	
+	if(cratio < 0) then
 		cratio = 0;
 	end
 
