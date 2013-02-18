@@ -261,7 +261,7 @@ INSERT INTO `mob_skill` VALUES (976,78,922,'Murk', 1, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (977,78,923,'Material_Fend', 0, 10.0, 2000, 1000, 1, 0);
 -- NM Craver
 INSERT INTO `mob_skill` VALUES (978,78,924,'Carousel', 1, 10.0, 2000, 1000, 4, 0); -- NM only
-INSERT INTO `mob_skill` VALUES (979,78,925,'Impalement', 1, 10.0, 2000, 1000, 4, 0); -- NM only
+INSERT INTO `mob_skill` VALUES (979,78,919,'Impalement', 1, 10.0, 2000, 1000, 4, 0); -- NM only
 -- Thinker
 INSERT INTO `mob_skill` VALUES (986,241,933,'Empty_Cutter', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (987,241,934,'Negative_Whirl', 1, 10.0, 2000, 1000, 4, 0);
@@ -315,7 +315,7 @@ INSERT INTO `mob_skill` VALUES (138,46,138,'Blood_Drain', 0, 7.0, 2000, 1000, 4,
 INSERT INTO `mob_skill` VALUES (136,46,136,'Ultrasonics', 1, 16.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (900,46,338,'Marrow_Drain', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (899,46,339,'Subsonics', 1, 16.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Supersonics', 1, 16.0, 2000, 1000, 4, 0); -- Aht Urhgan only
+-- INSERT INTO `mob_skill` VALUES (0,46,986,'Supersonics', 1, 16.0, 2000, 1000, 4, 0); -- Aht Urhgan only
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Soul_Accretion', 0, 7.0, 2000, 1000, 4, 0); -- Only by Upyri. Used frequently during nighttime hours
 
 -- Bats
@@ -502,7 +502,7 @@ INSERT INTO `mob_skill` VALUES (258,110,258,'Whirl_of_Rage', 1, 10.0, 2000, 1000
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Smite_of_Fury', 0, 7.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Furious_Flurry', 0, 7.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Whispers_of_Ire', 1, 10.0, 2000, 1000, 4, 0); -- Only used by certain NM
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Flurry_of_Rage', 0, 7.0, 2000, 1000, 4, 0); -- Only used by certain NM
+-- INSERT INTO `mob_skill` VALUES (0,110,259,'Flurry_of_Rage', 0, 7.0, 2000, 1000, 4, 0); -- Only used by certain NM
 
 INSERT INTO `mob_skill` VALUES (257,111,257,'Smite_of_Rage', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (258,111,258,'Whirl_of_Rage', 1, 7.0, 2000, 1000, 4, 0);
@@ -891,9 +891,9 @@ INSERT INTO `mob_skill` VALUES (245,240,854,'Frightful_Roar', 1, 7.0, 2000, 1000
 INSERT INTO `mob_skill` VALUES (246,240,855,'Mortal_Ray', 4, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (247,240,856,'Unblessed_Armor', 0, 7.0, 2000, 1000, 1, 0);
 -- cluster
-INSERT INTO `mob_skill` VALUES (313,68,868,'Refueling', 0, 7.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (311,68,866,'Sling_Bomb', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (312,68,867,'Formation_Attack', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (313,68,868,'Refueling', 0, 7.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (314,68,869,'Circle_of_Flames', 1, 10.0, 2000, 1000, 4, 0);
 
 INSERT INTO `mob_skill` VALUES (313,69,868,'Refueling', 0, 7.0, 2000, 1000, 1, 0);
@@ -1072,10 +1072,12 @@ INSERT INTO `mob_skill` VALUES (1487,246,1232,'Rock_Smash', 0, 7.0, 2000, 1000, 
 INSERT INTO `mob_skill` VALUES (1488,246,1233,'Diamondhide', 1, 16.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (1489,246,1234,'Enervation', 1, 18.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1490,246,1235,'Quake_Stomp', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (1490,246,1247,'Healing_Stomp', 1, 16.0, 2000, 1000, 1, 0); -- NM only
 -- Lamia = 171 Merrow = 182
 INSERT INTO `mob_skill` VALUES (1510,171,1253,'Hysteric_Barrage', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1515,182,1258,'Tail_Slap', 4, 16.0, 2000, 1000, 4, 0);
 -- Poroggo
+INSERT INTO `mob_skill` VALUES (1704,196,1362,'Frog_Cheer', 0, 7.0, 2000, 1000, 2, 0);
 INSERT INTO `mob_skill` VALUES (1703,196,1361,'Water_Bomb', 1, 16.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1702,196,1360,'Magic_Hammer', 0, 16.0, 2000, 1000, 4, 0);
 -- Vampyr

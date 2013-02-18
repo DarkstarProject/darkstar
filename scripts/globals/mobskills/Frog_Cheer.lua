@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Whirl Claws
--- Deals damage in an area of effect.
+-- Memento Mori
+-- Enhances Magic Attack.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -14,11 +14,10 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = 1.5;
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,1.5,2);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded*math.random(2,3));
-    target:delHP(dmg);
-    return dmg;
+    skill:setMsg(MSG_BUFF);
+    local typeEffect = EFFECT_MAGIC_ATK_BOOST;
+    mob:delStatusEffect(EFFECT_MAGIC_ATK_DOWN);
+    mob:delStatusEffect(typeEffect);
+    mob:addStatusEffect(typeEffect,25,0,300); -- 50%
+    return typeEffect;
 end;

@@ -18,11 +18,11 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-    local numhits = math.random(2,3);
+    local numhits = 1;
     local accmod = 1;
-    local dmgmod = .7;
+    local dmgmod = 1.6;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded*math.random(2,3));
 
     local typeEffect = EFFECT_STUN;
     if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then

@@ -1,6 +1,8 @@
 Contains a list of mob animation ids for future use.
 Creates by Lautan.
 
+86 - super sonic thing
+
 125 - chalmeleon skin
 
 239 - some weird dark sword bind effect
@@ -17,10 +19,35 @@ Creates by Lautan.
 
 709-717 - All mob two hour animations for dynamis
 
-800+ - CoP animations
+806+ - CoP animations
 
+931 - breakga
+
+979 - flash
+
+981 - gas released from head
+
+984 - red eyes and gaze hit
+987 - charm
+986 - supersonics?
+
+1003 - weird defensive ball thing
+1009 - crazy strong effect, probably CoP boss
+1015 - CoP boss stuff
+1030 - chr up or defense boost?
 1036 - ninja ws
 
-1200+ - TOAU tp moves
+1045 - poison gas thing
+1046 - goblin dice, probably for goblin in movopolis
+1056 - crash jump effect
+1065 - flash effect
+1072 - strong gas with silence
+1074 - ice shield
+1086 - lazers
+1089 - from castle mob?
+1097 - angle effect lots of light
+1163 - some cute AoE paralyze effect
+1165 - AoE silence
+1170+ - TOAU tp moves
 
 1304 - puppet ws
