@@ -8,9 +8,9 @@
 
 --	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0); -- Hume
 --	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0); -- taru
---	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,2,0); -- mithra	
---	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0); -- elvan	
---	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0); -- galka	
+--	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,2,0); -- mithra
+--	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0); -- elvan
+--	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0); -- galka
 --	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,5,0); -- divine might
 --	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,6,0); -- skip ending cs
 
@@ -21,7 +21,7 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function OnBcnmEnter(player,instance)
-				player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,1);
+	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,1);
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -33,14 +33,14 @@ end;
 -- from the core when a player disconnects or the time limit is up, etc
 
 function OnBcnmLeave(player,instance,leavecode)
--- print("leave code "..leavecode);
+print("leave code "..leavecode);
 		
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
 	
 		if(player:hasCompletedMission(ZILART,ARK_ANGELS)) then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,6,1);		-- winning CS
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,5,1);		-- winning CS
 		else
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,6,0);		-- winning CS (allow player to skip)
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,5,0);		-- winning CS (allow player to skip)
 		end
 		
 	elseif(leavecode == 4) then
@@ -51,12 +51,9 @@ end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
-	
-	if(csid == 0x7d01) then
-		-- need to make door open
-	end
+
 end;
-	
+
 function onEventFinish(player,csid,option)
  -- print("bc finish csid "..csid.." and option "..option);
  

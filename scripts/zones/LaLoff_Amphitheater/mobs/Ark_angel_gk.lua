@@ -3,7 +3,7 @@
 -- NPC:  Ark Angel GK
 --
 -----------------------------------
-
+require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -18,7 +18,7 @@ end;
 
 function onMobEngaged(mob,target)
 
-	mobid = mob:getID()
+	local mobid = mob:getID()
 
 	if (mobid == 17514515) then
 		GetMobByID(17514497):updateEnmity(target);
@@ -59,4 +59,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
+	killer:showText(mob,ARK_ANGEL_GK);
 end;
