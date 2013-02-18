@@ -402,7 +402,8 @@ void AddNinjaSpells(CMobEntity* PMob) {
 	//add utsusemi first for priority spell
 	AddHighestAvailableSpell(PMob, 340, 338, true);
 
-	// add two more times to increase chance
+	// add three more times to increase chance
+	AddHighestAvailableSpell(PMob, 340, 338, true);
 	AddHighestAvailableSpell(PMob, 340, 338, true);
 	AddHighestAvailableSpell(PMob, 340, 338, true);
 
