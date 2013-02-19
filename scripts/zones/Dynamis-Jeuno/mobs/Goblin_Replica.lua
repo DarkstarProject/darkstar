@@ -76,17 +76,21 @@ function onMobDeath(mob,killer)
 	mobID = mob:getID();
 	
 	-- Time Bonus (30min): 002
-	if(mobID == 17547531) then
+	if(mobID == 17547531 and alreadyReceived(killer,1) == false) then
 		killer:addTimeToDynamis(30);
+		addDynamisList(killer,1);
 	-- Time Bonus (30min): 004
-	elseif(mobID == 17547533) then
+	elseif(mobID == 17547533 and alreadyReceived(killer,2) == false) then
 		killer:addTimeToDynamis(30);
+		addDynamisList(killer,2);
 	-- Time Bonus (30min): 029
-	elseif(mobID == 17547558) then
+	elseif(mobID == 17547558 and alreadyReceived(killer,3) == false) then
 		killer:addTimeToDynamis(30);
+		addDynamisList(killer,4);
 	-- Time Bonus (30min): 045
-	elseif(mobID == 17547574) then
+	elseif(mobID == 17547574 and alreadyReceived(killer,4) == false) then
 		killer:addTimeToDynamis(30);
+		addDynamisList(killer,8);
 	end
-	
+
 end;
