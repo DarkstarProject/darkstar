@@ -36,7 +36,7 @@ end;
 
 function onEffectGain(target,effect)
 	target:addMod(MOD_FOOD_MPP, 13);
-	target:addMod(MOD_MOOD_MP_CAP, 85);
+	target:addMod(MOD_FOOD_MP_CAP, 85);
 	target:addMod(MOD_MPHEAL, 1);
 end;
 
