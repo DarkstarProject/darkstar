@@ -1187,8 +1187,8 @@ void CAIMobDummy::ActionMagicFinish()
 		}
 	}
 
-
-	for (uint32 i = 0; i < m_PMob->m_ActionList.size(); ++i)
+    uint16 actionsLength = m_PMob->m_ActionList.size();
+	for (uint32 i = 0; i < actionsLength; ++i)
 	{
         CBattleEntity* PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
 
@@ -1214,6 +1214,17 @@ void CAIMobDummy::ActionMagicFinish()
 			if(m_PSpell->getMessage()==2 || m_PSpell->getMessage()==227){//damage or drain hp
 				PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 			}
+
+            // if(m_PSpell->isAOE()){
+            //     // reduce damage from -ga spell
+            //     if(actionsLength > 9){
+            //         // ga spells on 10+ targets = 0.4
+            //         m_PMob->m_ActionList.at(i).param *= (float)0.4;
+            //     } else if(actionsLength > 1){
+            //         // -ga spells on 2 to 9 targets = 0.9 - 0.05T where T = number of targets
+            //         m_PMob->m_ActionList.at(i).param *= (float)0.9 - 0.05*actionsLength;
+            //     }
+            // }
 		}
 
 		if(i>0 && m_PSpell->getMessage() == 2){ //if its a damage spell msg and is hitting the 2nd+ target
@@ -1338,11 +1349,9 @@ void CAIMobDummy::ActionAttack()
 					spellid = m_PMob->m_AvailableSpells[num];
 				}
 
-
-
-				// only cast defensive spells, like cure, buffs when lower than 75% HP
+				// only cast defensive spells, like cure, buffs when lower than 95% HP
 				bool isDefensive = spell::IsDefensiveSpell(spellid);
-				if(isDefensive && m_PMob->GetHPP() <= 75 || !isDefensive){
+				if(isDefensive && m_PMob->GetHPP() <= 95 || !isDefensive){
 
 					if (spellid == 0) { // prod the script to give us a spell to cast
 						int chosenSpellId = luautils::OnMonsterMagicPrepare(m_PMob, m_PBattleTarget);

@@ -880,32 +880,40 @@ void CAICharNormal::ActionRangedFinish()
 				}
 				else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)) // hit!
 				{
-					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
+                    // absorbed by shadow
+                    if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
+                    {
+                        Action.messageID = 0;
+                        Action.reaction   = REACTION_EVADE;
+                        m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleSubTarget,m_PBattleSubTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+                    } else {
+    					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 
-					if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
-					{
-						pdif *= 1.25; //uncapped
-						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-						Action.messageID = 353;
-					}
+    					if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
+    					{
+    						pdif *= 1.25; //uncapped
+    						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+    						Action.messageID = 353;
+    					}
 
-					CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
-					CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-
-
-					// at least 1 hit occured
-					hitOccured = true;
-					realHits ++;
-
-					damage = (m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
-
-					damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+    					CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+    					CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
 
-					if(PItem != NULL)
-					{
-						charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
-					}
+    					// at least 1 hit occured
+    					hitOccured = true;
+    					realHits ++;
+
+    					damage = (m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
+
+    					damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+
+
+    					if(PItem != NULL)
+    					{
+    						charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
+    					}
+                    }
 
 				}
 				else //miss
@@ -1354,6 +1362,7 @@ void CAICharNormal::ActionMagicFinish()
 
     m_PChar->m_ActionList.push_back(Action);
 
+
 	if (m_PSpell->isAOE())
     {
 	    if (m_PBattleSubTarget->objtype == TYPE_PC)
@@ -1391,9 +1400,25 @@ void CAICharNormal::ActionMagicFinish()
 		    }
 	    }
     }
-    for (uint32 i = 0; i < m_PChar->m_ActionList.size(); ++i)
+
+    uint16 actionsLength = m_PChar->m_ActionList.size();
+    for (uint32 i = 0; i < actionsLength; ++i)
 	{
         CBattleEntity* PTarget = m_PChar->m_ActionList.at(i).ActionTarget;
+
+        if (m_PSpell->getValidTarget() & TARGET_ENEMY) {
+            // wipe shadows if needed
+            if (m_PSpell->isAOE()) {
+                PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+                PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
+            }
+            else if (battleutils::IsAbsorbByShadow(PTarget)) {
+                m_PChar->m_ActionList.at(i).messageID = 0;
+                m_PChar->m_ActionList.at(i).param = 1;
+                PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+                continue; // continue to next pt member
+            }
+        }
 
         m_PSpell->setMessage(m_PSpell->getDefaultMessage());
         m_PChar->m_ActionList.at(i).param = luautils::OnSpellCast(m_PChar, PTarget);
@@ -1403,6 +1428,17 @@ void CAICharNormal::ActionMagicFinish()
 			if(m_PSpell->getMessage()==2 || m_PSpell->getMessage()==227){//damage or drain hp
 				PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 			}
+
+            if(m_PSpell->isAOE()){
+                // reduce damage from -ga spell
+                if(actionsLength > 9){
+                    // ga spells on 10+ targets = 0.4
+                    m_PChar->m_ActionList.at(i).param *= (float)0.4;
+                } else if(actionsLength > 1){
+                    // -ga spells on 2 to 9 targets = 0.9 - 0.05T where T = number of targets
+                    m_PChar->m_ActionList.at(i).param *= (float)0.9 - 0.05*actionsLength;
+                }
+            }
 		}
 
 		if(i>0 && m_PSpell->getMessage() == 2){ //if its a damage spell msg and is hitting the 2nd+ target
@@ -2148,23 +2184,33 @@ void CAICharNormal::ActionJobAbilityFinish()
 		}
 		else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)) // hit!
 		{
-			float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 
-			if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
-			{
-				pdif *= 1.25; //uncapped
-				Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-			}
+            //check for shadow absorb
+            if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget)) {
+                Action.messageID = 0;
+                Action.param = 1;
+                Action.reaction   = REACTION_EVADE;
+                m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget,CHAR_INRANGE, new CMessageBasicPacket(m_PBattleSubTarget,m_PBattleSubTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+            } else {
 
-			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
-			CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+    			float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
+
+    			if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
+    			{
+    				pdif *= 1.25; //uncapped
+    				Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+    			}
+
+    			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+    			CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
 
-			// at least 1 hit occured
-			hitOccured = true;
+    			// at least 1 hit occured
+    			hitOccured = true;
 
-			damage = (damage + m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif * 5;
-			damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+    			damage = (damage + m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif * 5;
+    			damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+            }
 		}
 		else //miss
 		{
@@ -2587,6 +2633,34 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	uint16 damage = 0;
 	m_PChar->PLatentEffectContainer->CheckLatentsTP(0);
 	damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
+
+    // handle shadows
+    uint8 shadowsTaken = 0;
+    uint8 totalHits = tpHitsLanded + extraHitsLanded;
+    //count number of shadows taken
+    while(totalHits && battleutils::IsAbsorbByShadow(m_PBattleSubTarget)){
+        if(extraHitsLanded){
+            extraHitsLanded--;
+        } else if(tpHitsLanded){
+            tpHitsLanded--;
+
+            // no more hits to absorb
+            if(tpHitsLanded == 0){
+                break;
+            }
+        }
+        shadowsTaken++;
+    }
+
+    if(shadowsTaken){
+        // if no hits landed, deal no damage
+        if(tpHitsLanded == 0){
+            damage = 0;
+        } else {
+            //divide damage by amount of shadows taken
+            damage *= (float)(1 - (shadowsTaken / totalHits));
+        }
+    }
 
 	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 	{

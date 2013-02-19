@@ -3463,32 +3463,38 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 
 			if(rand()%100 < hitrate)
 			{
-				// successful hit, add damage
-				uint8 AttMultiplerPercent = 0;
 
-				// get jump attack bonus from gear
-				if (PAttacker->objtype == TYPE_PC)
-					AttMultiplerPercent = PAttacker->getMod(MOD_JUMP_ATT_BONUS);
+                // attack hit, try to be absorbed by shadow
+                if (!battleutils::IsAbsorbByShadow(PVictim))
+                {
+    				// successful hit, add damage
+    				uint8 AttMultiplerPercent = 0;
 
-				float DamageRatio = battleutils::GetDamageRatio(PAttacker, PVictim, false, AttMultiplerPercent);
-				damageForRound = (uint16)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker,PVictim,SLOT_MAIN)) * DamageRatio);
+    				// get jump attack bonus from gear
+    				if (PAttacker->objtype == TYPE_PC)
+    					AttMultiplerPercent = PAttacker->getMod(MOD_JUMP_ATT_BONUS);
 
-				// bonus applies to jump only, not high jump
-				if (tier == 1)
-				{
-					float jumpBonus = ( (PAttacker->VIT() / (float)256)+1 );
-					damageForRound = damageForRound * jumpBonus;
-				}
+    				float DamageRatio = battleutils::GetDamageRatio(PAttacker, PVictim, false, AttMultiplerPercent);
+    				damageForRound = (uint16)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker,PVictim,SLOT_MAIN)) * DamageRatio);
 
-				hitTarget = true;
-				realHits++;
-			}
+    				// bonus applies to jump only, not high jump
+    				if (tier == 1)
+    				{
+    					float jumpBonus = ( (PAttacker->VIT() / (float)256)+1 );
+    					damageForRound = damageForRound * jumpBonus;
+    				}
 
-			// incase player has gungnir^^ (or any other damage increases weapons)
-			damageForRound = battleutils::CheckForDamageMultiplier(PWeapon,damageForRound,i);
+    				hitTarget = true;
+    				realHits++;
+
+        			// incase player has gungnir^^ (or any other damage increases weapons)
+        			damageForRound = battleutils::CheckForDamageMultiplier(PWeapon,damageForRound,i);
 
 
-			totalDamage += damageForRound;
+        			totalDamage += damageForRound;
+
+                }
+            }
 		}
 
 
