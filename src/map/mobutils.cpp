@@ -319,6 +319,11 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		}
 	}
 
+	if(PMob->m_Family == 258){
+		// WORM
+		AddWormSpells(PMob);
+	}
+
 	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells
 	if (PMob->m_SpellTypesBitmask[SPELLTYPE_ELEMENT_LIGHT] & SPELLTYPE_HEAL) {
 		for (int i=6; i>=1; i--) {
@@ -468,6 +473,40 @@ void AddBardSpells(CMobEntity* PMob) {
 
 	// foe requirem
 	AddHighestAvailableSpell(PMob, 375, 369, true);
+}
+
+
+void AddWormSpells(CMobEntity* PMob) {
+
+	// Stoneskin
+	if (spell::CanUseSpellWith(54, JOB_WHM, PMob->GetMLevel())) {
+		PMob->m_AvailableSpells.push_back(54);
+	}
+
+	// already added
+	// Stonega
+	// AddHighestAvailableSpell(PMob, 193, 189, true);
+	// Stones
+	// AddHighestAvailableSpell(PMob, 163, 159, true);
+
+	// Bind
+	if (spell::CanUseSpell(PMob, 258)) {
+		PMob->m_AvailableSpells.push_back(258);
+		PMob->m_AvailableSpells.push_back(258);
+		PMob->m_AvailableSpells.push_back(258);
+	}
+
+	// Rasp
+	if (spell::CanUseSpell(PMob, 238)) {
+		PMob->m_AvailableSpells.push_back(238);
+	}
+
+	// Quake
+	if (spell::CanUseSpell(PMob, 210)) {
+		PMob->m_AvailableSpells.push_back(210);
+	}
+
+
 }
 
 }; // namespace mobutils

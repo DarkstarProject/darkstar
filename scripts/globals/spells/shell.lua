@@ -20,9 +20,11 @@ function onSpellCast(caster,target,spell)
 			spell:setMsg(75); -- no effect
 		else
 			target:delStatusEffect(typeEffect);
-			target:addStatusEffect(typeEffect,power,0,duration);	
+			target:addStatusEffect(typeEffect,power,0,duration);
 		end
     else
 		target:addStatusEffect(typeEffect,power,0,duration);
 	end
+
+	return typeEffect;
 end;
