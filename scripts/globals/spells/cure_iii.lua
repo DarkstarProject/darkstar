@@ -89,7 +89,7 @@ function onSpellCast(caster,target,spell)
 		if(target:isUndead()) then
 			spell:setMsg(2);
 			local dmg = calculateMagicDamage(130,1,caster,spell,target,HEALING_MAGIC_SKILL,MOD_MND,false);
-			local resist = applyResistance(caster,spell,target,caster:getMod(MOD_MND)-target:getMod(MOD_MND),HEALING_MAGIC_SKILL,1.0);
+			local resist = applyResistance(caster,spell,target,caster:getStat(MOD_MND)-target:getStat(MOD_MND),HEALING_MAGIC_SKILL,1.0);
 			dmg = dmg*resist;
 			dmg = addBonuses(caster,spell,target,dmg);
 			dmg = adjustForTarget(target,dmg);

@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
 	end
 	
 	--get resist multiplier (1x if no resist)
-	resist = applyResistance(caster,spell,target,caster:getMod(MOD_INT)-target:getMod(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);
+	resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
