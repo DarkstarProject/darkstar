@@ -52,6 +52,15 @@ function doPhysicalWeaponskill(attacker, target, params)
 		isSneakValid = false;
 	end
 	attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
+	local isTrickValid = attacker:hasStatusEffect(EFFECT_TRICK_ATTACK);
+	if(isTrickValid and not attacker:isTrickAttackAvailable(target)) then
+		isTrickValid = false;
+	end
+
+	local isAssassinValid = isTrickValid;
+	if(isAssassinValid and not attacker:hasTrait(68)) then
+		isAssassinValid = false;
+	end
 	
 	local critrate = 0;
 
@@ -75,7 +84,6 @@ function doPhysicalWeaponskill(attacker, target, params)
 	--Applying pDIF
 	local double pdif = generatePdif(cratio[1], cratio[2], true);
 	
-	--First hit has 95% acc always. Second hit + affected by hit rate.
 	local double firsthit = math.random();
 	local finaldmg = 0;
 	local hitrate = getHitRate(attacker,target,true);
@@ -88,14 +96,17 @@ function doPhysicalWeaponskill(attacker, target, params)
 	
 	local tpHitsLanded = 0;
 	local tpHits = 0;
-	if (firsthit <= hitrate or isSneakValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then
-		if(params.canCrit or isSneakValid) then
+	if (firsthit <= hitrate or isSneakValid or isTrickValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then
+		if(params.canCrit or isSneakValid or isAssassinValid) then
 			local double critchance = math.random();
-			if(critchance <= critrate or hasMightyStrikes or isSneakValid) then --crit hit!
+			if(critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then --crit hit!
 				local double cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
 				finaldmg = dmg * cpdif;
 				if(isSneakValid and attacker:getMainJob()==6) then --have to add on DEX bonus if on THF main
 					finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif);
+				end
+				if(isTrickValid and attacker:getMainJob()==6) then
+					finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * ftp * cpdif);
 				end
 			else
 				finaldmg = dmg * pdif;
@@ -106,7 +117,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 		tpHitsLanded = 1;
 	end
 	tpHits = 1;
-	if((attacker: getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1)) then
+	if((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1)) then
 
 		local chance = math.random();
 		if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid) then --it hit

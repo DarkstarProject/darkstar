@@ -6049,6 +6049,38 @@ inline int32 CLuaBaseEntity::getObjType(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::hasTrait(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	if ( m_PBaseEntity != NULL )
+	{
+		lua_pushboolean( L, charutils::hasTrait((CCharEntity*)m_PBaseEntity, lua_tointeger(L, 1)));
+		return 1;
+	}
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::isTrickAttackAvailable(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+	if (m_PBaseEntity != NULL)
+	{
+		CBattleEntity* PMob = (CBattleEntity*)Lunar<CLuaBaseEntity>::check(L,1);
+		if (PMob != NULL)
+		{
+			CBattleEntity* taTarget = battleutils::getAvailableTrickAttackChar((CBattleEntity*)m_PBaseEntity, PMob);
+			lua_pushboolean( L, (taTarget != NULL ? true : false));
+			return 1;
+		}
+	}
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -6294,5 +6326,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasWornItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getObjType),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTrait),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isTrickAttackAvailable),
 	{NULL,NULL}
 };

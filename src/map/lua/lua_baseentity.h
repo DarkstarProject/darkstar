@@ -311,6 +311,8 @@ public:
 	int32 delMod(lua_State*);				// Subtracts Modifier Value
 	int32 setMod(lua_State*);				// Sets Modifier Value
 
+	int32 hasTrait(lua_State*);
+
 	int32 addExp(lua_State*);				// Add to Character Experience
 
 	int32 getPetElement(lua_State*);
@@ -351,6 +353,7 @@ public:
 	int32 getWeaponSkillType(lua_State*);   // gets the type of weapon equipped
 	int32 isBehind(lua_State*);				// true if you're behind the input target
 	int32 isFacing(lua_State*);				// true if you are facing the target
+	int32 isTrickAttackAvailable(lua_State*);//true if TA target is available
 	int32 getStealItem(lua_State*);			// gets ItemID of droplist steal item from mob
 
     int32 openDoor(lua_State*);             // открываем дверь

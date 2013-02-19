@@ -123,7 +123,7 @@ namespace battleutils
 	uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber);
 	uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, uint8 offsetAccuracy);
-	uint8				GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakAttack);
+	uint8				GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakTrickAttack);
     uint8				CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon);
 	uint8				GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8				GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
