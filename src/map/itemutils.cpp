@@ -348,10 +348,14 @@ namespace itemutils
 				    }
 				    if (PItem->getType() & ITEM_WEAPON)
 				    {
-						if(Sql_GetUIntData(SqlHandle,22) == 24)
+						if(Sql_GetUIntData(SqlHandle,22) == 20)
 						{
 							((CItemWeapon*)PItem)->setSkillType(26);
 							((CItemWeapon*)PItem)->setSubSkillType(SUBSKILL_GUN);
+						} else if(Sql_GetUIntData(SqlHandle,22) == 21)
+						{
+							((CItemWeapon*)PItem)->setSkillType(26);
+							((CItemWeapon*)PItem)->setSubSkillType(SUBSKILL_CNN);
 						} else {
 							((CItemWeapon*)PItem)->setSkillType(Sql_GetUIntData(SqlHandle,22));
 						}
