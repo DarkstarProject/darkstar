@@ -2078,8 +2078,8 @@ uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 att
 {
     int32 hitrate = 75;
 
-	if (PAttacker->objtype == TYPE_PC && (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK)) || 
-		(charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK)))
+	if (PAttacker->objtype == TYPE_PC && ((PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK)) || 
+		(charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))))
     {
 		hitrate = 100; //attack with SA active or TA/Assassin cannot miss
 	}
@@ -3173,6 +3173,22 @@ bool HasNotEnoughTpForDance(CBattleEntity* PEntity, CAbility* PAbility, bool tak
 	return false;
 }
 
+/*
+ * Find if any party members are in position for trick attack.  Do this by making a narrow triangle:
+ *  one endpoint at the mob, and the other two endpoints being equidistant from the TA user, perpendicular to
+ *  the line between the mob and the TA user.  Find the slope of the line between the TA user and the mob, and
+ *  decide whether to use x or z as the dependent variable (to avoid big numbers and divide by 0 errors on 
+ *  vertical slopes).  Using this slope, we can find the angle of the perpendicular line to the x or z line 
+ *  (depending on what the dependent var is), and using that angle, the disassembled x and z components to that
+ *  line.  Divide those by 2 for a half yalm length line for each side of the base of the triangle, and we get
+ *  the min and max values for x/z around the TA user.  Now it's simply a matter of first: making sure the 
+ *  TA target is closer than the TA user, and that the TA targets x and z coordinates fall within the triangle
+ *  we made.  Using the min/max points and the mobs coordinate, we can construct min and max slopes, check that
+ *  the x or z coordinates are between the mob and player, and finally calculate where the z coordinate should 
+ *  be based on the users x coordinate (or the other way around in a z dependent scenario) and check if the 
+ *  actual z coordinate is between those two values.
+ */
+
 CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob)
 {
 	float taUserX = taUser->loc.p.x;
@@ -3185,7 +3201,7 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 	float slope = 0;
 	float maxSlope = 0;
 	float minSlope = 0;
-	bool yDependent = true; //using a slope where y is dependent var
+	bool zDependent = true; //using a slope where z is dependent var
 	if (abs(xdif) <= abs(zdif))
 	{
 		slope = xdif / zdif;
@@ -3194,13 +3210,13 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 
 		float zoffset = cos(angle) / 2;
 		float xoffset = sin(angle) / 2;
-		float maxXpoint = taUser->loc.p.x + xoffset;
-		float maxZpoint = taUser->loc.p.z - zoffset;
-		float minXpoint = taUser->loc.p.x - xoffset;
-		float minZpoint = taUser->loc.p.z + zoffset;
+		float maxXpoint = taUserX + xoffset;
+		float maxZpoint = taUserZ - zoffset;
+		float minXpoint = taUserX - xoffset;
+		float minZpoint = taUserZ + zoffset;
 		maxSlope = ((maxXpoint - mobX) / (maxZpoint - mobZ));
 		minSlope = ((minXpoint - mobX) / (minZpoint - mobZ));
-		yDependent = false;
+		zDependent = false;
 	} else {
 		slope = zdif / xdif;
 
@@ -3208,10 +3224,10 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 
 		float xoffset = cos(angle) / 2;
 		float zoffset = sin(angle) / 2;
-		float maxXpoint = taUser->loc.p.x + xoffset;
-		float maxZpoint = taUser->loc.p.z + zoffset;
-		float minXpoint = taUser->loc.p.x - xoffset;
-		float minZpoint = taUser->loc.p.z - zoffset;
+		float maxXpoint = taUserX + xoffset;
+		float maxZpoint = taUserZ + zoffset;
+		float minXpoint = taUserX - xoffset;
+		float minZpoint = taUserZ - zoffset;
 		maxSlope = (maxZpoint - mobZ) / (maxXpoint - mobX);
 		minSlope = (minZpoint - mobZ) / (minXpoint - mobX);
 	}
@@ -3226,18 +3242,18 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 					if(taUser->id != taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->id && 
 						distance(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p,PMob->loc.p) <= distance(taUser->loc.p,PMob->loc.p))
                     {
-						if(yDependent)
+						if(zDependent)
 						{
 							//is member between taUser and PMob on x line?
-							if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x <= taUser->loc.p.x && 
-								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x >= PMob->loc.p.x) ||
-								(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x >= taUser->loc.p.x && 
-								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x <= PMob->loc.p.x)) 
+							if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x <= taUserX && 
+								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x >= mobX) ||
+								(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x >= taUserX && 
+								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x <= mobX)) 
 							{
-								if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - PMob->loc.p.z <= 
-									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - PMob->loc.p.x)*maxSlope) &&
-									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - PMob->loc.p.z >= 
-									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - PMob->loc.p.x)*minSlope))
+								if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - mobZ <= 
+									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - mobX)*maxSlope) &&
+									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - mobZ >= 
+									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - mobX)*minSlope))
 								{
 									//finally found a TA partner
 									return taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i);
@@ -3245,15 +3261,15 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 							}
 						} else {
 							//is member between taUser and PMob on z line?
-							if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z <= taUser->loc.p.z && 
-								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z >= PMob->loc.p.z) ||
-								(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z >= taUser->loc.p.z && 
-								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z <= PMob->loc.p.z)) 
+							if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z <= taUserZ && 
+								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z >= mobZ) ||
+								(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z >= taUserZ && 
+								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z <= mobZ)) 
 							{
-								if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - PMob->loc.p.x <= 
-									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - PMob->loc.p.z)*maxSlope) &&
-									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - PMob->loc.p.x >= 
-									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - PMob->loc.p.z)*minSlope))
+								if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - mobX <= 
+									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - mobZ)*maxSlope) &&
+									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - mobX >= 
+									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - mobZ)*minSlope))
 								{
 									//finally found a TA partner
 									return taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i);
@@ -3269,18 +3285,18 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 				if(taUser->PParty->members.at(i)->id != taUser->id && 
 					distance(taUser->PParty->members.at(i)->loc.p,PMob->loc.p) <= distance(taUser->loc.p,PMob->loc.p))
                 {
-					if(yDependent)
+					if(zDependent)
 					{
 						//is member between taUser and PMob on x line?
-						if((taUser->PParty->members.at(i)->loc.p.x <= taUser->loc.p.x && 
-							taUser->PParty->members.at(i)->loc.p.x >= PMob->loc.p.x) ||
-							(taUser->PParty->members.at(i)->loc.p.x >= taUser->loc.p.x && 
-							taUser->PParty->members.at(i)->loc.p.x <= PMob->loc.p.x)) 
+						if((taUser->PParty->members.at(i)->loc.p.x <= taUserX && 
+							taUser->PParty->members.at(i)->loc.p.x >= mobX) ||
+							(taUser->PParty->members.at(i)->loc.p.x >= taUserX && 
+							taUser->PParty->members.at(i)->loc.p.x <= mobX)) 
 						{
-							if((taUser->PParty->members.at(i)->loc.p.z - PMob->loc.p.z <= 
-								(taUser->PParty->members.at(i)->loc.p.x - PMob->loc.p.x)*maxSlope) &&
-								(taUser->PParty->members.at(i)->loc.p.z - PMob->loc.p.z >= 
-								(taUser->PParty->members.at(i)->loc.p.x - PMob->loc.p.x)*minSlope))
+							if((taUser->PParty->members.at(i)->loc.p.z - mobZ <= 
+								(taUser->PParty->members.at(i)->loc.p.x - mobX)*maxSlope) &&
+								(taUser->PParty->members.at(i)->loc.p.z - mobZ >= 
+								(taUser->PParty->members.at(i)->loc.p.x - mobX)*minSlope))
 							{
 								//finally found a TA partner
 								return taUser->PParty->members.at(i);
@@ -3288,15 +3304,15 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 						}
 					} else {
 						//is member between taUser and PMob on z line?
-						if((taUser->PParty->members.at(i)->loc.p.z <= taUser->loc.p.z && 
-							taUser->PParty->members.at(i)->loc.p.z >= PMob->loc.p.z) ||
-							(taUser->PParty->members.at(i)->loc.p.z >= taUser->loc.p.z && 
-							taUser->PParty->members.at(i)->loc.p.z <= PMob->loc.p.z)) 
+						if((taUser->PParty->members.at(i)->loc.p.z <= taUserZ && 
+							taUser->PParty->members.at(i)->loc.p.z >= mobZ) ||
+							(taUser->PParty->members.at(i)->loc.p.z >= taUserZ && 
+							taUser->PParty->members.at(i)->loc.p.z <= mobZ)) 
 						{
-							if((taUser->PParty->members.at(i)->loc.p.x - PMob->loc.p.x <= 
-								(taUser->PParty->members.at(i)->loc.p.z - PMob->loc.p.z)*maxSlope) &&
-								(taUser->PParty->members.at(i)->loc.p.x - PMob->loc.p.x >= 
-								(taUser->PParty->members.at(i)->loc.p.z - PMob->loc.p.z)*minSlope))
+							if((taUser->PParty->members.at(i)->loc.p.x - mobX <= 
+								(taUser->PParty->members.at(i)->loc.p.z - mobZ)*maxSlope) &&
+								(taUser->PParty->members.at(i)->loc.p.x - mobX >= 
+								(taUser->PParty->members.at(i)->loc.p.z - mobZ)*minSlope))
 							{
 								//finally found a TA partner
 								return taUser->PParty->members.at(i);
