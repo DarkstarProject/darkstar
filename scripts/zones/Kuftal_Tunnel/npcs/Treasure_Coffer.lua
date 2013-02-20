@@ -40,7 +40,7 @@ function onTrade(player,npc,trade)
 			questItemNeeded = 1;
 		elseif(player:hasKeyItem(MAP_OF_THE_KUFTAL_TUNNEL) == false) then
 			questItemNeeded = 2;
-		elseif(player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2) then
+		elseif(player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2 and player:hasKeyItem(LARGE_TRICK_BOX) == false) then
 			questItemNeeded = 3;
 		elseif(player:getQuestStatus(SANDORIA,KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 1) then
 			questItemNeeded = 4;
