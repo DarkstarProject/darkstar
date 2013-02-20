@@ -2,12 +2,14 @@
 --  Area: Selbina
 --  NPC: Abelard
 --  An Explorer's Footsteps
---
+-- @zone 248
+-- @pos -52 -11 -13
 --  This quest was changed to require a minimum amount of fame to combat RMTs POS-Hacking around to
 --  quickly earn gil. However, as this is not a legitimate concern on private servers players may
 --  complete this quest even with no fame.
 -----------------------------------
-
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
@@ -42,7 +44,7 @@ ZoneID =
 function onTrade(player,npc,trade)
 
     local explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
-
+-- AN EXPLORERS FOOTSTEPS QUEST --
     if (explorer == QUEST_ACCEPTED) then
         local clay = trade:hasItemQty(570,1);
         local count = trade:getItemCount();
@@ -65,8 +67,6 @@ function onTrade(player,npc,trade)
                         break;
                     end
                 end
-            else
-                player:startEvent(0x002d);  -- i'm sorry, but i've already got this one
             end
         end
     end
@@ -77,10 +77,25 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
 local explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
+local keyitem = player:hasKeyItem(TORN_OUT_PAGES);
+local blood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
+local SignedBldProg = player:getVar("SIGNED_IN_BLOOD_Prog");
+-- SIGNED IN BLOOD QUEST -- (WILL ONLY ACTIVATE IF EXPLORERS
+-- FOOTSTEPS IS NOT ACTIVE OR IF IT IS COMPLETED)	
+if (blood == QUEST_ACCEPTED and keyitem == true and explorer ~= QUEST_ACCEPTED and SignedBldProg == 2) then
+	player:startEvent(0x0452);
+elseif (blood == QUEST_ACCEPTED and SignedBldProg == 1 and explorer ~= QUEST_ACCEPTED) then
+	player:startEvent(0x0450);
+elseif (blood == QUEST_ACCEPTED and SignedBldProg == 2 and explorer ~= QUEST_ACCEPTED) then
+	player:startEvent(0x0451);
+elseif (blood == QUEST_ACCEPTED and SignedBldProg == 3) then
+	player:startEvent(0x0030); -- after quest
 
-if (explorer == QUEST_AVAILABLE) then
+			
+
+-- AN EXPLORERS FOOTSTEP QUEST --
+elseif (explorer == QUEST_AVAILABLE and blood == QUEST_COMPLETED) then
 	player:startEvent(0x0028);
 elseif (explorer == QUEST_ACCEPTED) then
 	local tab = player:hasItem(570);
@@ -106,8 +121,6 @@ elseif (explorer == QUEST_ACCEPTED) then
 			end
 		end
 	end
-else
-	player:startEvent(0x046a);
 end
 end;
 
@@ -127,8 +140,11 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
+	if (csid == 0x0452) then 
+		player:setVar("SIGNED_IN_BLOOD_Prog",3);
 
-	if (csid == 0x0028 and option ~= 0) then
+	elseif (csid == 0x0028 and option ~= 0)	then
 		if (player:getFreeSlotsCount() > 0) then
 			player:addQuest(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
 			player:addItem(571);
@@ -180,5 +196,7 @@ function onEventFinish(player,csid,option)
 			player:addKeyItem(MAP_OF_THE_CRAWLERS_NEST);
 			player:messageSpecial(TextID_Selbina.KEYITEM_OBTAINED,MAP_OF_THE_CRAWLERS_NEST);
 		end
+	elseif(csid == 0x0450) then
+		player:setVar("SIGNED_IN_BLOOD_Prog",2);
 	end
 end;

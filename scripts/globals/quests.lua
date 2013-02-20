@@ -106,7 +106,7 @@ A_DISCERNING_EYE_SAN_D_ORIA     = 104;
 A_TIMELY_VISIT                  = 105;
 FIT_FOR_A_PRINCE                = 106;
 TRIAL_SIZE_TRIAL_BY_ICE         = 107;
-SIGNED_IN_BLOOD                 = 108;
+SIGNED_IN_BLOOD                 = 108; -- + --
 TEA_WITH_A_TONBERRY             = 109;
 SPICE_GALS                      = 110;
 
