@@ -35,9 +35,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
-	params.atkmulti = 1;
-
-	-- needs ignore defense. param
+	params.atkmulti = 2;
 
 	damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 
