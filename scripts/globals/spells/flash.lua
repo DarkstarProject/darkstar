@@ -23,12 +23,12 @@ function onSpellCast(caster,target,spell)
     if(resist > 0.0625) then
         if(target:hasStatusEffect(EFFECT_FLASH) == false) then
             spell:setMsg(236);
-            target:addStatusEffect(EFFECT_FLASH,100,0,duration); -- Guess at power for now.
+            target:addStatusEffect(EFFECT_FLASH,100,0,duration);
         else
             spell:setMsg(75);
         end
     else
         spell:setMsg(85);
     end
-	return 156;
+	return EFFECT_FLASH;
 end;

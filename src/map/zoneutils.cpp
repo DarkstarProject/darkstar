@@ -398,19 +398,6 @@ void LoadMOBList(CZone* PZone)
 			// Dump 8 bytes worth of bitmask in
 			PMob->m_SpellTypesBitmask.insert(0,Sql_GetData(SqlHandle,54), 8);
 
-			if (PMob->GetMJob() == JOB_BLM) {
-				PMob->m_MagicRecastTime = 15000;
-			}
-			else if (PMob->GetMJob() == JOB_RDM || PMob->GetMJob() == JOB_BLU) {
-				PMob->m_MagicRecastTime = 25000;
-			}
-			else if (PMob->GetMJob() == JOB_WHM || PMob->GetMJob() == JOB_BRD) {
-				PMob->m_MagicRecastTime = 20000;
-			}
-			else {
-				PMob->m_MagicRecastTime = 30000;
-			}
-
             // Killer Effect
             switch (PMob->m_EcoSystem)
 	        {

@@ -37,8 +37,10 @@ namespace mobutils
 	uint8   checkMultiHits(CMobEntity * PMob,uint32 mobid);
 	void    GetAvailableSpells(CMobEntity* PMob);
 	void	AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestId, bool ignoreJob);
-  void AddNinjaSpells(CMobEntity* PMob);
-  void AddBardSpells(CMobEntity* PMob);
+  void AddNinSpells(CMobEntity* PMob);
+  void AddBrdSpells(CMobEntity* PMob);
+  void AddPldSpells(CMobEntity* PMob);
+  void AddDrkSpells(CMobEntity* PMob);
   void AddWormSpells(CMobEntity* PMob);
 };
 

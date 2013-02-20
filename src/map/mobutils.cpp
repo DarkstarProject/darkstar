@@ -304,16 +304,54 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		return;
 	}
 
+	// setup recast times
+	if (PMob->GetMJob() == JOB_BLM) {
+		PMob->m_MagicRecastTime = 15000;
+	}
+	else if (PMob->GetMJob() == JOB_RDM || PMob->GetMJob() == JOB_BLU) {
+		PMob->m_MagicRecastTime = 25000;
+	}
+	else if (PMob->GetMJob() == JOB_WHM || PMob->GetMJob() == JOB_BRD) {
+		PMob->m_MagicRecastTime = 20000;
+	}
+	else {
+		PMob->m_MagicRecastTime = 30000;
+	}
+
+
+	// clear spell list
+	PMob->m_AvailableSpells.clear();
+
 	// TODO: Use enums rather than hardcode the spell ids...
 	if(PMob->m_EcoSystem == SYSTEM_BEASTMEN){
 		// Beastmen get all spells from their main job
 		switch(PMob->GetMJob()){
 			case JOB_NIN:
-			AddNinjaSpells(PMob);
+			AddNinSpells(PMob);
 			break;
 			case JOB_BRD:
-			AddBardSpells(PMob);
+			AddBrdSpells(PMob);
 			break;
+			case JOB_WHM:
+			break;
+			case JOB_RDM:
+			break;
+			case JOB_BLM:
+			break;
+			case JOB_DRK:
+			AddDrkSpells(PMob);
+			break;
+			case JOB_BLU:
+			break;
+			case JOB_PLD:
+			AddPldSpells(PMob);
+			break;
+			// case JOB_SMN:
+			// break;
+			// case JOB_COR:
+			// break;
+			// case JOB_SCH:
+			// break;
 			default:
 			break;
 		}
@@ -322,6 +360,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	if(PMob->m_Family == 258){
 		// WORM
 		AddWormSpells(PMob);
+		return;
 	}
 
 	// map from PMob->m_SpellsBitmask to PMob->m_AvailableSpells
@@ -400,9 +439,12 @@ void AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestI
 }
 
 /*
+Note for Add job spells. All the spells are added in order from highest priority.
+As the mob gets weaker it will prioritize spells nearest to zero.
+
 Adds all available ninja spells to the mob.
 */
-void AddNinjaSpells(CMobEntity* PMob) {
+void AddNinSpells(CMobEntity* PMob) {
 
 	//add utsusemi first for priority spell
 	AddHighestAvailableSpell(PMob, 340, 338, true);
@@ -411,6 +453,18 @@ void AddNinjaSpells(CMobEntity* PMob) {
 	AddHighestAvailableSpell(PMob, 340, 338, true);
 	AddHighestAvailableSpell(PMob, 340, 338, true);
 	AddHighestAvailableSpell(PMob, 340, 338, true);
+
+	// jubaku
+	AddHighestAvailableSpell(PMob, 343, 342, true);
+
+	// hojo
+	AddHighestAvailableSpell(PMob, 346, 344, true);
+
+	// kurayami
+	AddHighestAvailableSpell(PMob, 349, 347, true);
+
+	// dokumori
+	AddHighestAvailableSpell(PMob, 352, 350, true);
 
 	// katon
 	AddHighestAvailableSpell(PMob, 322, 320, true);
@@ -429,24 +483,25 @@ void AddNinjaSpells(CMobEntity* PMob) {
 
 	// suiton
 	AddHighestAvailableSpell(PMob, 337, 335, true);
-
-	// jubaku
-	AddHighestAvailableSpell(PMob, 343, 342, true);
-
-	// hojo
-	AddHighestAvailableSpell(PMob, 346, 344, true);
-
-	// kurayami
-	AddHighestAvailableSpell(PMob, 349, 347, true);
-
-	// dokumori
-	AddHighestAvailableSpell(PMob, 352, 350, true);
 }
 
-void AddBardSpells(CMobEntity* PMob) {
+void AddBrdSpells(CMobEntity* PMob) {
 
 	// armys paeon
 	AddHighestAvailableSpell(PMob, 385, 378, true);
+
+	// horde lullaby
+	AddHighestAvailableSpell(PMob, 377, 376, true);
+
+	// foe lullaby
+	AddHighestAvailableSpell(PMob, 463, 463, true);
+
+	// magic finale
+	AddHighestAvailableSpell(PMob, 462, 462, true);
+	AddHighestAvailableSpell(PMob, 462, 462, true);
+
+	// foe requirem
+	AddHighestAvailableSpell(PMob, 375, 369, true);
 
 	// minne
 	AddHighestAvailableSpell(PMob, 393, 389, true);
@@ -464,17 +519,7 @@ void AddBardSpells(CMobEntity* PMob) {
 	// madrigal
 	AddHighestAvailableSpell(PMob, 400, 399, true);
 
-	// horde lullaby
-	AddHighestAvailableSpell(PMob, 377, 376, true);
-
-	// magic finale
-	AddHighestAvailableSpell(PMob, 462, 462, true);
-	AddHighestAvailableSpell(PMob, 462, 462, true);
-
-	// foe requirem
-	AddHighestAvailableSpell(PMob, 375, 369, true);
 }
-
 
 void AddWormSpells(CMobEntity* PMob) {
 
@@ -485,9 +530,9 @@ void AddWormSpells(CMobEntity* PMob) {
 
 	// already added
 	// Stonega
-	// AddHighestAvailableSpell(PMob, 193, 189, true);
+	AddHighestAvailableSpell(PMob, 193, 189, true);
 	// Stones
-	// AddHighestAvailableSpell(PMob, 163, 159, true);
+	AddHighestAvailableSpell(PMob, 163, 159, true);
 
 	// Bind
 	if (spell::CanUseSpell(PMob, 258)) {
@@ -506,7 +551,69 @@ void AddWormSpells(CMobEntity* PMob) {
 		PMob->m_AvailableSpells.push_back(210);
 	}
 
+}
 
+void AddPldSpells(CMobEntity* PMob) {
+
+	// Cures
+	AddHighestAvailableSpell(PMob, 4, 1, true);
+
+	// Flash
+	AddHighestAvailableSpell(PMob, 112, 112, true);
+	AddHighestAvailableSpell(PMob, 112, 112, true);
+
+	// Holy
+	AddHighestAvailableSpell(PMob, 22, 21, true);
+	AddHighestAvailableSpell(PMob, 22, 21, true);
+
+	// Protect
+	AddHighestAvailableSpell(PMob, 47, 43, true);
+
+	// Banish
+	AddHighestAvailableSpell(PMob, 32, 28, true);
+
+	// Shell
+	AddHighestAvailableSpell(PMob, 52, 48, true);
+
+}
+
+void AddDrkSpells(CMobEntity* PMob) {
+	// Drain
+	AddHighestAvailableSpell(PMob, 245, 245, true);
+
+	// Stun
+	AddHighestAvailableSpell(PMob, 252, 252, true);
+
+	// Absorb-TP
+	AddHighestAvailableSpell(PMob, 275, 275, true);
+
+	// Absorb-Stats
+	AddHighestAvailableSpell(PMob, 266, 272, true);
+
+	// Bio
+	if(PMob->GetMLevel() >= 68){
+		// Bio III
+		PMob->m_AvailableSpells.push_back(232);
+	} else {
+		AddHighestAvailableSpell(PMob, 231, 230, true);
+	}
+
+	// Poisonga
+	AddHighestAvailableSpell(PMob, 226, 225, true);
+
+	if (spell::CanUseSpell(PMob, 258)) {
+		PMob->m_AvailableSpells.push_back(258);
+	}
+
+	// Poison
+	AddHighestAvailableSpell(PMob, 224, 220, true);
+
+	// Thunder
+	AddHighestAvailableSpell(PMob, 168, 164, true);
+	// Blizzard
+	AddHighestAvailableSpell(PMob, 153, 149, true);
+	// Water
+	AddHighestAvailableSpell(PMob, 173, 169, true);
 }
 
 }; // namespace mobutils

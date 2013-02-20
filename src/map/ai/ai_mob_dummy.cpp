@@ -1339,9 +1339,10 @@ void CAIMobDummy::ActionAttack()
 				// Randomly select a spell from m_PMob->availableSpells and do it.
 				uint8 num = 0;
 				uint16 spellid = 0;
+				int32 hpp = m_PMob->GetHPP();
 
-				// higher chance to cast defensive spell if below 50% HP
-				if(m_PMob->GetHPP() <= 50 && rand()%100 < 50){
+				// higher chance to cast defensive spell if below 25% HP
+				if(hpp <= 25 && rand()%100 < 50){
 					// cast my "keep me alive" spell, which is at index zero
 					spellid = m_PMob->m_AvailableSpells[0];
 				} else {
@@ -1351,7 +1352,7 @@ void CAIMobDummy::ActionAttack()
 
 				// only cast defensive spells, like cure, buffs when lower than 95% HP
 				bool isDefensive = spell::IsDefensiveSpell(spellid);
-				if(isDefensive && m_PMob->GetHPP() <= 95 || !isDefensive){
+				if(isDefensive && hpp <= 95 || !isDefensive){
 
 					if (spellid == 0) { // prod the script to give us a spell to cast
 						int chosenSpellId = luautils::OnMonsterMagicPrepare(m_PMob, m_PBattleTarget);

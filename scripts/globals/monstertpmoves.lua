@@ -650,12 +650,10 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 				skill:setMsg(MSG_SHADOW);
 				local shadowsLeft = targShadows-shadowbehav;
 				target:setMod(shadowType, shadowsLeft);
-				if(shadowType == MOD_UTSUSEMI) then --update icon
+				if(shadowsLeft > 0 and shadowType == MOD_UTSUSEMI) then --update icon
 					effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
 					if(effect ~= nil) then
-						if(shadowsLeft == 0) then
-							target:delStatusEffect(EFFECT_COPY_IMAGE);
-						elseif(shadowsLeft == 1) then
+						if(shadowsLeft == 1) then
 							effect:setIcon(EFFECT_COPY_IMAGE);
 						elseif(shadowsLeft == 2) then
 							effect:setIcon(EFFECT_COPY_IMAGE_2);
@@ -663,6 +661,11 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 							effect:setIcon(EFFECT_COPY_IMAGE_3);
 						end
 					end
+				end
+				-- remove icon
+				if(shadowsLeft <= 0) then
+					target:delStatusEffect(EFFECT_COPY_IMAGE);
+					target:delStatusEffect(EFFECT_BLINK);
 				end
 				return shadowbehav;
 			else --less shadows than this move will take, remove all and factor damage down
