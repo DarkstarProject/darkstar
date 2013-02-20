@@ -20,12 +20,12 @@ function onTrade(player,npc,trade)
 	if((Aspidochelone == 0 or Aspidochelone == 24) and trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then -- Check trade, and if mob is ACTION_NONE (0) or waiting to spawn (24)
 		player:tradeComplete();
 		SpawnMob(17301538,180):updateEnmity(player);
-		SetServerVariable("Aspid_Engaged", os.time(t));
+		Aspid_Engaged = os.time(t);
 	-- Trade Clump of Red Pondweed
 	elseif((Adamantoise == 0 or Adamantoise == 24) and trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17301537,180):updateEnmity(player);
-		SetServerVariable("Adamantoise_Engaged", os.time(t));
+		Adamantoise_Engaged = os.time(t);
 	end
 	
 end;

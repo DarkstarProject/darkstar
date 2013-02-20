@@ -22,8 +22,8 @@ function onMobEngaged(mob,target)
 	end
 
 	-- Link other Sorcerer and Archlich when attacked
-	GetMobByID(Sorc):updateEnmity(attacker);
-	GetMobByID(Lich):updateEnmity(attacker);
+	GetMobByID(Sorc):updateEnmity(target);
+	GetMobByID(Lich):updateEnmity(target);
 end;
 
 -----------------------------------

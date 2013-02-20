@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobEngaged(mob,target)
-	SetServerVariable("Adamantoise_Engaged", os.time(t));
+	Adamantoise_Engaged = os.time(t);
 end;
 
 -----------------------------------
@@ -24,7 +24,7 @@ function onMobFight(mob,target)
 	mob:addTP(15);
 
 	if (mob:getBattleTime() % 60 == 0) then -- Check every minute to reduce load
-		if(os.time(t) >= (GetServerVariable("Adamantoise_Engaged") + 1800)) then
+		if(os.time(t) >= (Adamantoise_Engaged + 1800)) then
 			mob:rageMode(); -- Stats = Stats * 10
 		end
 	end

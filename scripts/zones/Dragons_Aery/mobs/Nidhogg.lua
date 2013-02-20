@@ -10,7 +10,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobEngaged(mob,target)
-	SetServerVariable("Nidhogg_Engaged", os.time(t));
+	Nidhogg_Engaged = os.time(t);
 end;
 
 -----------------------------------
@@ -28,7 +28,7 @@ function onMobFight(mob,target)
 	end
 
 	if (mob:getBattleTime() % 60 == 0) then -- Check every minute to reduce load
-		if(os.time(t) >= (GetServerVariable("Nidhogg_Engaged") + 3600)) then
+		if(os.time(t) >= (Nidhogg_Engaged + 3600)) then
 			mob:rageMode(); -- Stats = Stats * 10
 		end
 	end
