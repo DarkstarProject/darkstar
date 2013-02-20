@@ -256,6 +256,7 @@ public:
 
 	int32 equipItem(lua_State*);
 	int32 getEquipID(lua_State*);			// Gets the Item Id of the item in specified slot
+	int32 getShieldSize(lua_State*);		// Gets shield size of character
     int32 lockEquipSlot(lua_State*);        // блокируем ячейку экипировки
     int32 unlockEquipSlot(lua_State*);      // снимаем блокировку с ячейки экипировки
 	int32 canEquipItem(lua_State*);			// returns true if the player is able to equip the item

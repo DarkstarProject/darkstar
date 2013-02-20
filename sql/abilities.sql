@@ -33,7 +33,7 @@ CREATE TABLE `abilities` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
 -- ----------------------------
--- Records 
+-- Records
 -- ----------------------------
 INSERT INTO `abilities` VALUES ('0', 'mighty_strikes', '1', '0', '1', '7200', '0', '0', '0', '33', '20', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('1', 'hundred_fists', '2', '0', '1', '7200', '0', '0', '0', '34', '20', '0', '1', '300', '0', '0');
@@ -65,7 +65,7 @@ INSERT INTO `abilities` VALUES ('26', 'flee', '6', '25', '1', '300', '62', '126'
 INSERT INTO `abilities` VALUES ('27', 'hide', '6', '45', '1', '300', '63', '0', '0', '10', '20', '0', '0', '0', '706', '0');
 INSERT INTO `abilities` VALUES ('28', 'sneak_attack', '6', '15', '1', '60', '64', '0', '0', '17', '20', '0', '1', '0', '708', '0');
 INSERT INTO `abilities` VALUES ('29', 'mug', '6', '35', '4', '900', '65', '129', '0', '183', '20', '0', '1', '300', '0', '0');
-INSERT INTO `abilities` VALUES ('30', 'shield_bash', '7', '15', '4', '300', '73', '0', '0', '185', '20', '0', '1', '900', '768', '0');
+INSERT INTO `abilities` VALUES ('30', 'shield_bash', '7', '15', '4', '180', '73', '0', '0', '185', '20', '0', '1', '900', '768', '0');
 INSERT INTO `abilities` VALUES ('31', 'holy_circle', '7', '5', '1', '600', '74', '0', '0', '29', '20', '1', '1', '20', '770', '0');
 INSERT INTO `abilities` VALUES ('32', 'sentinel', '7', '30', '1', '300', '75', '0', '0', '11', '20', '0', '1', '1800', '772', '0');
 INSERT INTO `abilities` VALUES ('33', 'souleater', '8', '30', '1', '360', '85', '0', '0', '20', '20', '0', '1', '1300', '832', '0');

@@ -4391,6 +4391,26 @@ inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::getShieldSize(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET);
+
+	if(m_PBaseEntity->objtype == TYPE_PC)
+	{
+		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+		CItemArmor* PItem = (CItemArmor*)(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]));
+
+		if((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+		{
+			lua_pushinteger(L,PItem->getShieldSize());
+			return 1;
+		}
+	}
+	lua_pushinteger(L,0);
+	return 1;
+}
+
 /*
 Pass in an item id and it will search and equip it.
 
@@ -6234,6 +6254,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetEnmity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShieldSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lockEquipSlot),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockEquipSlot),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,canEquipItem),

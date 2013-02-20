@@ -67,7 +67,7 @@ CCharEntity::CCharEntity()
 	memset(& m_ZonesList, 0, sizeof(m_ZonesList));
 	memset(& m_Abilities, 0, sizeof(m_Abilities));
 	memset(& m_TraitList, 0, sizeof(m_TraitList));
-    memset(& m_PetCommands,  0, sizeof(m_PetCommands)); 
+    memset(& m_PetCommands,  0, sizeof(m_PetCommands));
 	memset(& m_WeaponSkills, 0, sizeof(m_WeaponSkills));
 	memset(& m_SetBlueSpells, 0, sizeof(m_SetBlueSpells));
 
@@ -76,7 +76,7 @@ CCharEntity::CCharEntity()
 	memset(& m_assaultLog,  0, sizeof(m_assaultLog));
 	memset(& m_campaignLog, 0, sizeof(m_campaignLog));
 
-	for(uint8 i = 0; i <= 3; ++i) 
+	for(uint8 i = 0; i <= 3; ++i)
 	{
 		m_missionLog[i].current = 0xFFFF;
 	}
@@ -159,7 +159,7 @@ bool CCharEntity::isPacketListEmpty()
 	return PacketList.empty();
 }
 
-void CCharEntity::clearPacketList() 
+void CCharEntity::clearPacketList()
 {
 	while(!PacketList.empty())
 	{
@@ -176,12 +176,12 @@ void CCharEntity::resetPetZoningInfo()
 	petZoningInfo.petType = PETTYPE_AVATAR;
 }
 
-void CCharEntity::pushPacket(CBasicPacket* packet) 
+void CCharEntity::pushPacket(CBasicPacket* packet)
 {
 	PacketList.push_back(packet);
 }
 
-CBasicPacket* CCharEntity::popPacket() 
+CBasicPacket* CCharEntity::popPacket()
 {
 	CBasicPacket* PPacket = PacketList.front();
 	PacketList.pop_front();
@@ -215,7 +215,7 @@ bool CCharEntity::addWsPoints(uint8 points, uint16 WeaponIndex)
 		unlockedWeapons[WeaponIndex].unlocked = true;					// unlock the weapon
 
 		charutils::saveCharWsPoints(this, WeaponIndex, 0);				// remove the temp points count, we are done with it
-		charutils::SaveCharUnlockedWeapons(this);						// save chars unlocked status's 
+		charutils::SaveCharUnlockedWeapons(this);						// save chars unlocked status's
 		this->unlockedWeapons[WeaponIndex].points = 0;
 		return true;
 	}
@@ -234,14 +234,14 @@ bool CCharEntity::addWsPoints(uint8 points, uint16 WeaponIndex)
 *  Возвращаем контейнер с указанным ID. Если ID выходит за рамки, то	*
 *  защищаем сервер от падения использованием контейнера временных		*
 *  предметов в качестве заглушки (из этого контейнера предметы нельзя	*
-*  перемещать, надевать, передавать, продавать и т.д.). Отображаем		* 
+*  перемещать, надевать, передавать, продавать и т.д.). Отображаем		*
 *  сообщение о фатальной ошибке.										*
 *																		*
 ************************************************************************/
 
-CItemContainer* CCharEntity::getStorage(uint8 LocationID) 
+CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 {
-	switch(LocationID) 
+	switch(LocationID)
 	{
 		case LOC_INVENTORY:	 return m_Inventory;
 		case LOC_MOGSAFE:	 return m_Mogsafe;
@@ -254,6 +254,13 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 
 	DSP_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID);	// неразрешенный ID хранилища
 	return 0;
+}
+
+bool CCharEntity::HasShieldEquipped()
+{
+	CItemArmor* PItem = (CItemArmor*)(getStorage(LOC_INVENTORY)->GetItem(equip[SLOT_SUB]));
+
+    return PItem != NULL && (PItem->getType() & ITEM_ARMOR);
 }
 
 void CCharEntity::SetName(int8* name)

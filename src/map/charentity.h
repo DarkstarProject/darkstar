@@ -60,12 +60,12 @@ enum QUESTAREA
 	QUESTS_ABYSSEA		= 8
 };
 
-#define MAX_QUESTAREA	  9      
+#define MAX_QUESTAREA	  9
 #define MAX_QUESTID     256
 #define MAX_MISSIONAREA	  9
 #define MAX_MISSIONID    64
 
-struct jobs_t 
+struct jobs_t
 {
 	uint32 unlocked;				// битовая маска профессий, доступных персонажу (первый бит - дополнительная профессия)
 	uint8  job[MAX_JOBTYPE];		// текущий уровень для каждой из профессий
@@ -84,7 +84,7 @@ struct event_t
 	string_t Script;                // путь к файлу, отвечающему за обработку события
 	string_t Function;              // не используется
 
-	void reset() 
+	void reset()
     {
 		EventID = -1;
         Option  =  0;
@@ -94,7 +94,7 @@ struct event_t
 	}
 };
 
-struct profile_t 
+struct profile_t
 {
 	uint8	   nation;			// принадлежность к государству
 	uint8	   mhflag;			// флаг выхода из MogHouse
@@ -128,7 +128,7 @@ struct NationTP_t
 struct PetInfo_t
 {
 	bool		respawnPet;		// used for spawning pet on zone
-	uint8		petID;			// id as in wyvern(48) , carbuncle(8) ect..	
+	uint8		petID;			// id as in wyvern(48) , carbuncle(8) ect..
 	PETTYPE		petType;		// type of pet being transfered
 	int32		petHP;			// pets hp
 	float		petTP;			// pets tp
@@ -154,7 +154,7 @@ typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32,CBaseEntity*> SpawnIDList_t;
 typedef std::vector<EntityID_t> BazaarList_t;
 
-class CCharEntity : public CBattleEntity 
+class CCharEntity : public CBattleEntity
 {
 public:
 
@@ -164,7 +164,7 @@ public:
 	skills_t		  RealSkills;					// структура всех реальных умений персонажа, с точностью до 0.1 и не ограниченных уровнем
 	nameflags_t		  nameflags;                    // флаги перед именем персонажа
 	profile_t		  profile;						// профиль персонажа (все, что связывает города и персонажа)
-	expChain_t		  expChain;						// Exp Chains 
+	expChain_t		  expChain;						// Exp Chains
 	search_t		  search;						// данные и комментарий, отображаемые в окне поиска
 	bazaar_t		  bazaar;						// все данные, необходимые для таботы bazaar
 	uint16			  m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
@@ -179,7 +179,7 @@ public:
 	uint8			  m_LearnedAbilities[46];		// learnable abilities (corsair rolls)
 	uint8			  m_TraitList[16];				// список постянно активных способностей в виде битовой маски
     uint8             m_PetCommands[32];            // список доступных команд питомцу
-	uint8             m_WeaponSkills[32];  
+	uint8             m_WeaponSkills[32];
 	questlog_t		  m_questLog[MAX_QUESTAREA];    // список всех квестов
 	missionlog_t	  m_missionLog[MAX_MISSIONAREA];// список миссий
 	assaultlog_t	  m_assaultLog;					// список assault миссий
@@ -187,7 +187,7 @@ public:
 	uint32			  m_rangedDelay;                // ranged attack delay (with timestamp for repeat attacks, hence 32bit)
 	bool			  m_insideBCNM;					// true if user is inside a bcnm
 	uint32			  m_lastBcnmTimePrompt;			// the last message prompt in seconds
-	PetInfo_t		  petZoningInfo;				// used to repawn dragoons pets ect on zone		
+	PetInfo_t		  petZoningInfo;				// used to repawn dragoons pets ect on zone
 	void			  resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
 	uint8			  m_SetBlueSpells[20];			// The 0x200 offsetted blue magic spell IDs which the user has set. (1 byte per spell)
 
@@ -214,10 +214,10 @@ public:
 
     CLinkshell*       PLinkshell;                   // linkshell, в которой общается персонаж
 	CTreasurePool*	  PTreasurePool;                // сокровища, добытые с монстров
-    CMeritPoints*     PMeritPoints;                 // 
+    CMeritPoints*     PMeritPoints;                 //
 	bool			  MeritMode;					//If true then player is meriting
 
-    CRecastContainer* PRecastContainer;             // 
+    CRecastContainer* PRecastContainer;             //
 
 	CLatentEffectContainer* PLatentEffectContainer;
 
@@ -226,7 +226,7 @@ public:
 
 	CTradeContainer*  Container;                    // универсальный контейнер для обмена, синтеза, магазина и т.д.
 	CUContainer*	  UContainer;					// новый универсальный контейнер для обмена, синтеза, магазина и т.д.
-	
+
 	CBaseEntity*	  PWideScanTarget;				// wide scane цель
 
 	SpawnIDList_t	  SpawnPCList;					// список видимых персонажей
@@ -256,6 +256,8 @@ public:
 	position_t		  m_StartActionPos;				// позиция начала действия (использование предмета, начало стрельбы, позиция tractor)
 
 
+
+    bool            HasShieldEquipped();
 
 	bool			  isWeaponUnlocked(uint16 indexid);					// return if weapon is broken
 	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken

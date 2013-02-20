@@ -1870,6 +1870,20 @@ void CAICharNormal::ActionJobAbilityStart()
 			return;
 		}
 
+        // bail out if no shield for shield bash
+        if(m_PJobAbility->getID() == ABILITY_SHIELD_BASH && !m_PChar->HasShieldEquipped()){
+            m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 199));
+            m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+            m_PJobAbility = NULL;
+            m_PBattleSubTarget = NULL;
+            return;
+        }
+
+        // bail if no two handed weapon equiped
+        if(m_PJobAbility->getID() == ABILITY_WEAPON_BASH){
+
+        }
+
 		// If there's not enough TP for a move, then reject it. If the JA isn't a dance, then this will fail
 		if (battleutils::HasNotEnoughTpForDance(m_PChar, m_PJobAbility, false)) {
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
