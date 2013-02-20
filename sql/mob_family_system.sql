@@ -392,6 +392,7 @@ INSERT INTO `mob_family_system` VALUES (324,'Avatar-Garuda',5,'Avatar',1,10,40,1
 INSERT INTO `mob_family_system` VALUES (325,'Avatar-Fenrir',5,'Avatar',1,10,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,0.875,0.875,0.875,0.875,0.875,0.875,1,0.875,0);
 INSERT INTO `mob_family_system` VALUES (326,'TrollGurfurlur',7,'Beastmen',2,10,40,120,120,1,2,1,3,3,3,3,3,3,3,3,1,1,1,1,0.875,1,1,1,1,1.125,1,1,1);
 INSERT INTO `mob_family_system` VALUES (327,'Goblin',7,'Beastmen',0,10,40,91,120,1,1,4,1,3,3,1,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1.25,1,1);
+INSERT INTO `mob_family_system` VALUES (328,'Gigas',7,'Beastmen',1,10,40,125,100,1,2,1,1,5,4,1,3,3,3,3,1,1,1,1,1,0.875,1,1.125,0.5,1,1,1,2);
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
