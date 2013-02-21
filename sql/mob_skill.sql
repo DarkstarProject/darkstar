@@ -678,16 +678,11 @@ INSERT INTO `mob_skill` VALUES (409,130,409,'Grand_Slam', 1, 15.0, 2000, 1000, 4
 INSERT INTO `mob_skill` VALUES (410,130,410,'Power_Attack', 0, 7.0, 2000, 1000, 4, 0);
 -- Shadow Lord
 INSERT INTO `mob_skill` VALUES (412,224,412,'Kick_Back', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (413,224,413,'Implosion', 1, 16.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (415,224,415,'Umbra_Smash', 1, 12.0, 3000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (416,224,416,'Giga_Slash', 1, 12.0, 3000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (417,224,417,'Dark_Nova', 1, 12.0, 3000, 1000, 4, 0);
 
-INSERT INTO `mob_skill` VALUES (412,225,412,'Kick_Back', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (413,225,413,'Implosion', 1, 16.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (415,225,415,'Umbra_Smash', 1, 12.0, 3000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (416,225,416,'Giga_Slash', 1, 12.0, 3000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (417,225,417,'Dark_Nova', 1, 12.0, 3000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (413,225,413,'Implosion', 1, 60, 2000, 0, 4, 0);
 
 -- Golem
 INSERT INTO `mob_skill` VALUES (418,135,418,'Crystal_Shield', 0, 7.0, 2000, 1000, 1, 0);

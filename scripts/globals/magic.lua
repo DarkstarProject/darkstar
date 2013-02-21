@@ -296,7 +296,7 @@ end;
 
 function applyResistance(player,spell,target,diff,skill,staff)
     -- resist everything if magic shield is active
-    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
+    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
         return 0;
     end
 

@@ -14,6 +14,16 @@ require("scripts/zones/Throne_Room/TextIDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)
+
+	--[[initialize the HP table.  need to check so we don't overwrite
+		someone else who's in the fight!]]
+	if(ShadowLordHPTable == nil) then
+		ShadowLordHPTable = {};
+		ShadowLordHPTable[17453059] = {};
+		ShadowLordHPTable[17453058] = {};
+		ShadowLordHPTable[17453057] = {};
+	end
+
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)

@@ -63,6 +63,9 @@ void CAIGeneral::Reset()
 	m_PBattleSubTarget = NULL;
 	m_PJobAbility = NULL;
 	m_PMobSkill = NULL;
+	m_AutoAttackEnabled = true;
+	m_MagicCastingEnabled = true;
+	m_MobAbilityEnabled = true;
 }
 
 /************************************************************************
@@ -369,6 +372,12 @@ void CAIGeneral::SetCurrentMobSkill(CMobSkill* skill)
 	m_PMobSkill = skill;
 }
 
+/************************************************************************
+*                                                                       *
+*	Gets/sets last used corsair roll									*
+*                                                                       *
+************************************************************************/
+
 uint16 CAIGeneral::GetLastCorsairRoll()
 {
 	return m_CorsairDoubleUp;
@@ -377,4 +386,23 @@ uint16 CAIGeneral::GetLastCorsairRoll()
 void CAIGeneral::SetLastCorsairRoll(uint16 ability)
 {
 	m_CorsairDoubleUp = ability;
+}
+
+/************************************************************************
+*                                                                       *
+*	Gets/sets ability/attack behaviour									*
+*                                                                       *
+************************************************************************/
+
+void CAIGeneral::SetAutoAttackEnabled(bool enabled)
+{
+	m_AutoAttackEnabled = enabled;
+}
+void CAIGeneral::SetMagicCastingEnabled(bool enabled)
+{
+	m_MagicCastingEnabled = enabled;
+}
+void CAIGeneral::SetMobAbilityEnabled(bool enabled)
+{
+	m_MobAbilityEnabled = enabled;
 }

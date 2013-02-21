@@ -9,7 +9,11 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    return 0;
+    if(mob:AnimationSub() == 1) then
+		return 1;
+	else
+		return 0;
+	end
 end;
 
 function OnMobWeaponSkill(target, mob, skill)

@@ -36,6 +36,11 @@ enum BCRULES{
 	RULES_SPAWN_TREASURE_ON_WIN = 0x08,
 };
 
+enum BCMOBCONDITIONS{
+	CONDITION_SPAWNED_AT_START = 0x01,
+	CONDITION_WIN_REQUIREMENT = 0x02
+};
+
 enum LEAVE_CODE{
 	LEAVE_EXIT = 1,
 	LEAVE_WIN = 2,
@@ -47,6 +52,13 @@ class CMobEntity;
 class CCharEntity;
 class CBaseEntity;
 class CInstanceHandler;
+
+typedef struct
+{
+	CMobEntity* MobEntity;	// BCNM Target
+	bool killed;			// whether it has died or not
+} MobVictoryCondition_t;
+
 
 class CInstance
 {
@@ -98,7 +110,7 @@ public:
 	//mob related functions
 	//bool		spawnAllEnemies();
 	//bool		resetAllEnemySpawnPositions();
-	void		addEnemy(CMobEntity* PMob);
+	void		addEnemy(CMobEntity* PMob, uint8 condition);
 	bool		allEnemiesDefeated();
 	bool		isEnemyBelowHPP(uint8 hpp);
 
@@ -145,6 +157,8 @@ private:
 	uint16		m_DynaUniqueID; // create unique ID for dynamis
 	CCharEntity* m_CurrentInstanceLeader;
 	std::vector<CMobEntity*> m_EnemyList;
+	std::vector<MobVictoryCondition_t> m_EnemyVictoryList;
+	
 	// std::vector<CCharEntity*> m_PlayerList;
 
 };

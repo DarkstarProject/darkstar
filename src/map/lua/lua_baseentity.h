@@ -382,10 +382,15 @@ public:
 
 	int32 injectActionPacket(lua_State*);	// ONLY FOR DEBUGGING. Injects an action packet with the specified params.
 
-	int32 setDelay(lua_State*);
-	int32 setDamage(lua_State*);
-	int32 castSpell(lua_State*);
-	int32 useMobAbility(lua_State*);
+	int32 setDelay(lua_State*);				// sets a mobs weapon delay
+	int32 setDamage(lua_State*);			// sets a mobs weapon damage
+	int32 castSpell(lua_State*);			// forces a mob to cast a spell (parameter = spellid, otherwise picks a spell from its list)
+	int32 useMobAbility(lua_State*);		// forces a mob to use a mobability (parameter = mobid, otherwise picks a spell from its list)
+
+	int32 setSpellCooldown(lua_State*);		 // sets the spell cooldown time on mobs
+	int32 SetAutoAttackEnabled(lua_State*);	 // halts/resumes auto attack of entity
+	int32 SetMagicCastingEnabled(lua_State*);// halt/resumes casting magic
+	int32 SetMobAbilityEnabled(lua_State*);	 // halt/resumes mob skills
 };
 
 #endif

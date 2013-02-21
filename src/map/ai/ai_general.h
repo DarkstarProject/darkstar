@@ -100,6 +100,9 @@ public:
 	CWeaponSkill*	GetCurrentWeaponSkill();
 	CMobSkill*		GetCurrentMobSkill();
 	uint16			GetLastCorsairRoll();
+	bool			GetAutoAttackEnabled();
+	bool			GetMagicCastingEnabled();
+	bool			GetMobAbilityEnabled();
 
     uint32          GetBattleTime();
 
@@ -113,6 +116,9 @@ public:
 	void			SetLastMagicTime(uint32 time);
 	void			SetCurrentAction(ACTIONTYPE Action, uint16 TargetID = 0);
 	void			SetLastCorsairRoll(uint16 ability);
+	void			SetAutoAttackEnabled(bool enabled);
+	void			SetMagicCastingEnabled(bool enabled);
+	void			SetMobAbilityEnabled(bool enabled);
 
 	virtual void	CheckCurrentAction(uint32 tick) = 0;
 
@@ -132,6 +138,9 @@ protected:
     uint32			m_Tick;					// текущее значение времени
     uint32			m_StartBattle;			// Battle start time
 	uint16			m_CorsairDoubleUp;		// Last used corsair roll eligible for DU
+	bool			m_AutoAttackEnabled;    // Flag to enable/disable auto attack
+	bool			m_MagicCastingEnabled;	// Flag to enable/disable casting magic
+	bool			m_MobAbilityEnabled;		// Flag to enable/disable mob skills
 
 	CSpell*			m_PSpell;				// читаемое заклинание
 	CItemUsable*	m_PItemUsable;			// используемый предмет

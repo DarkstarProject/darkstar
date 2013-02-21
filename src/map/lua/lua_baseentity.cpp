@@ -6154,6 +6154,47 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::setSpellCooldown(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+	DSP_DEBUG_BREAK_IF(!lua_isnumber(L, 1));
+
+	((CMobEntity*)m_PBaseEntity)->m_MagicRecastTime = lua_tointeger(L, 1);
+
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::SetAutoAttackEnabled(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!lua_isboolean(L, 1));
+
+	((CBattleEntity*)m_PBaseEntity)->PBattleAI->SetAutoAttackEnabled(lua_toboolean(L, 1));
+
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::SetMagicCastingEnabled(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!lua_isboolean(L, 1));
+
+	((CBattleEntity*)m_PBaseEntity)->PBattleAI->SetMagicCastingEnabled(lua_toboolean(L, 1));
+
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::SetMobAbilityEnabled(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!lua_isboolean(L, 1));
+
+	((CBattleEntity*)m_PBaseEntity)->PBattleAI->SetMobAbilityEnabled(lua_toboolean(L, 1));
+
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -6406,5 +6447,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,useMobAbility),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpellCooldown),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetAutoAttackEnabled),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMagicCastingEnabled),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobAbilityEnabled),
 	{NULL,NULL}
 };

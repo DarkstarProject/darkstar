@@ -239,8 +239,13 @@ void CInstance::init(){
 	m_AllDeadTime = 0;
 }
 
-void CInstance::addEnemy(CMobEntity* PMob){
+void CInstance::addEnemy(CMobEntity* PMob, uint8 condition){
 	m_EnemyList.push_back(PMob);
+	if (condition & CONDITION_WIN_REQUIREMENT)
+	{
+		MobVictoryCondition_t mobCondition = {PMob, false};
+		m_EnemyVictoryList.push_back(mobCondition);
+	}
 }
 
 void CInstance::addNpc(CBaseEntity* PNpc){
@@ -248,8 +253,11 @@ void CInstance::addNpc(CBaseEntity* PNpc){
 }
 
 bool CInstance::allEnemiesDefeated(){
-	for(int i=0; i<m_EnemyList.size(); i++){
-		if(!m_EnemyList.at(i)->isDead()){
+	for(int i=0; i<m_EnemyVictoryList.size(); i++){
+		if(m_EnemyVictoryList.at(i).MobEntity->PBattleAI->GetCurrentAction() >= 20 && m_EnemyVictoryList.at(i).MobEntity->PBattleAI->GetCurrentAction() <= 23){
+			m_EnemyVictoryList.at(i).killed = true;
+		}
+		if(m_EnemyVictoryList.at(i).killed == false){
 			return false;
 		}
 	}

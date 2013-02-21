@@ -80,7 +80,7 @@ namespace instanceutils{
 		DSP_DEBUG_BREAK_IF(instance==NULL);
 
 		//get ids from DB
-		const int8* fmtQuery = "SELECT monsterId \
+		const int8* fmtQuery = "SELECT monsterId, conditions \
 						    FROM bcnm_instance \
 							WHERE bcnmId = %u AND instanceNumber = %u";
 
@@ -95,35 +95,41 @@ namespace instanceutils{
 		else{
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS){
 				uint32 mobid = Sql_GetUIntData(SqlHandle,0);
+				uint8 condition = Sql_GetUIntData(SqlHandle,1);
 				CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 				if (PMob != NULL)
 				{
-				    // This condition is needed for some mob at dynamis, else he don't pop
-					if(PMob->PBattleAI->GetCurrentAction() == ACTION_FADE_OUT){
-						PMob->PBattleAI->SetLastActionTime(0);
-				        PMob->PBattleAI->SetCurrentAction(ACTION_NONE);
-					}
-					if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
-				        PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
-				    {
-				        PMob->PBattleAI->SetLastActionTime(0);
-				        PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-
-						if(strcmp(PMob->GetName(),"Maat")==0){
-						//set job based on poppng char job
-						PMob->SetMJob(instance->getPlayerMainJob());
-						PMob->SetMLevel(instance->getPlayerMainLevel());
-
-						//TODO: add spells for job
-
-							// ShowDebug("Change maat job to %i \n",instance->getPlayerMainJob());
+					if (condition & CONDITION_SPAWNED_AT_START)
+					{
+						// This condition is needed for some mob at dynamis, else he don't pop
+						if(PMob->PBattleAI->GetCurrentAction() == ACTION_FADE_OUT){
+							PMob->PBattleAI->SetLastActionTime(0);
+							PMob->PBattleAI->SetCurrentAction(ACTION_NONE);
 						}
-				        PMob->SetDespawnTimer(0); //never despawn
-						//ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,instance->getID(),instance->getInstanceNumber());
-						instance->addEnemy(PMob);
-				    } else {
-				        ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> (%u) is alredy spawned\n" CL_RESET, PMob->GetName(), PMob->id);
-				    }
+						if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
+							PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
+						{
+							PMob->PBattleAI->SetLastActionTime(0);
+							PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+
+							if(strcmp(PMob->GetName(),"Maat")==0){
+							//set job based on poppng char job
+							PMob->SetMJob(instance->getPlayerMainJob());
+							PMob->SetMLevel(instance->getPlayerMainLevel());
+
+							//TODO: add spells for job
+
+								// ShowDebug("Change maat job to %i \n",instance->getPlayerMainJob());
+							}
+							PMob->SetDespawnTimer(0); //never despawn
+							//ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,instance->getID(),instance->getInstanceNumber());
+							instance->addEnemy(PMob, condition);
+						} else {
+							ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> (%u) is alredy spawned\n" CL_RESET, PMob->GetName(), PMob->id);
+						}
+					} else {
+						instance->addEnemy(PMob, condition);
+					}
 				} else {
 				    ShowDebug("SpawnMobForBcnm: mob %u not found\n", mobid);
 				}
@@ -394,7 +400,7 @@ namespace instanceutils{
 
 				        PMob->SetDespawnTimer(0); //never despawn
 						ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,instance->getID(),instance->getInstanceNumber());
-						instance->addEnemy(PMob);
+						instance->addEnemy(PMob, CONDITION_SPAWNED_AT_START & CONDITION_WIN_REQUIREMENT);
 				    } else {
 				        ShowDebug(CL_CYAN"spawnSecondPartDynamis: <%s> (%u) is alredy spawned\n" CL_RESET, PMob->GetName(), PMob->id);
 				    }

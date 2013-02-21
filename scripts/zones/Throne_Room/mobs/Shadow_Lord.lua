@@ -11,20 +11,64 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function OnMobSpawn(mob)
+
 end;
 
 -----------------------------------
 -- onMobEngaged
 -----------------------------------
 
+-----------------------------------
+-- onMobFight
+-----------------------------------
+
 function onMobFight(mob,target)
-	
 	-- 1st form
-	-- 100% -> 50% immune to magic
 	-- after change magic or physical immunity every 5min or 1k dmg
 	-- 2nd form
 	-- the Shadow Lord will do nothing but his Implosion attack. This attack hits everyone in the battlefield, but he only has 4000 HP
-	
+	print("derp");
+	if(mob:getID() < 17453060) then -- first phase AI
+		if(mob:getHP() / mob:getMaxHP() <= 0.5) then
+			if(mob:AnimationSub() == 0) then
+				mob:AnimationSub(1);
+				mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
+				mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
+				mob:SetAutoAttackEnabled(false);
+				mob:SetMagicCastingEnabled(true);
+				mob:setSpellCooldown(2000);
+				ShadowLordHPTable[mob:getID()].hp = mob:getHP();
+				ShadowLordHPTable[mob:getID()].changetime = mob:getBattleTime();
+			elseif(mob:AnimationSub() == 2 and (mob:getHP() <= ShadowLordHPTable[mob:getID()].hp - 1000 or 
+					mob:getBattleTime() - ShadowLordHPTable[mob:getID()].changetime >= 300)) then
+				mob:AnimationSub(1);
+				mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
+				mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
+				mob:SetAutoAttackEnabled(false);
+				mob:SetMagicCastingEnabled(true);
+				mob:setSpellCooldown(2000);
+				ShadowLordHPTable[mob:getID()].hp = mob:getHP();
+				ShadowLordHPTable[mob:getID()].changetime = mob:getBattleTime();
+			elseif(mob:AnimationSub() == 1 and (mob:getHP() <= ShadowLordHPTable[mob:getID()].hp - 1000 or 
+					mob:getBattleTime() - ShadowLordHPTable[mob:getID()].changetime >= 300)) then
+				mob:useMobAbility(417);
+				mob:AnimationSub(2);
+				mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
+				mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD, 0, 1, 0, 0);
+				mob:SetAutoAttackEnabled(true);
+				mob:SetMagicCastingEnabled(false);
+				mob:setSpellCooldown(10000);
+				ShadowLordHPTable[mob:getID()].hp = mob:getHP();
+				ShadowLordHPTable[mob:getID()].changetime = mob:getBattleTime();
+			end
+		else
+
+		end
+	else --second phase AI
+		if( mob:getBattleTime() % 9 < 2 ) then
+			mob:useMobAbility(413);
+		end
+	end
 end;
 
 -----------------------------------
@@ -39,6 +83,10 @@ function onMobDeath(mob,killer)
 	else
 		killer:addTitle(SHADOW_BANISHER);
 	end
+	mob:AnimationSub(0);
+	mob:SetAutoAttackEnabled(true);
+	mob:SetMagicCastingEnabled(true);
+	mob:setSpellCooldown(10000);
 	
 end;
 
@@ -64,16 +112,11 @@ function onEventFinish(player,csid,option)
 		DespawnMob(mobid);
 		player:setVar("mobid",0);
 		
-		if(mobid == 17453057) then
-			player:setPos(-441.596,-167.000,-240.182,122);
-			GetMobByID(mobid+3):setPos(-461.975,-167.7, -239.981, 59);
-		elseif(mobid == 17453058) then
-			player:setPos(-759.148,-407.100,-479.957,128);
-			GetMobByID(mobid+3):setPos(-781.000,-407.000,-477.000,59);
-		else
-			player:setPos(-1079.065,-647.100,-720.023,128);
-			GetMobByID(mobid+3):setPos(-1101.000,-647.000,-716.000,59);
-		end
+		mob = SpawnMob(mobid+3);
+		mob:updateEnmity(player);
+		mob:SetMagicCastingEnabled(false);
+		mob:SetAutoAttackEnabled(false);
+		mob:SetMobAbilityEnabled(false);
 	end
 	
 end;
