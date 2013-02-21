@@ -4401,14 +4401,8 @@ inline int32 CLuaBaseEntity::getShieldSize(lua_State *L)
 
 	if(m_PBaseEntity->objtype == TYPE_PC)
 	{
-		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-		CItemArmor* PItem = (CItemArmor*)(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]));
-
-		if((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
-		{
-			lua_pushinteger(L,PItem->getShieldSize());
-			return 1;
-		}
+		lua_pushinteger(L,((CCharEntity*)m_PBaseEntity)->getShieldSize());
+		return 1;
 	}
 	lua_pushinteger(L,0);
 	return 1;
@@ -4711,7 +4705,6 @@ inline int32 CLuaBaseEntity::resetEnmity(lua_State *L)
 inline int32 CLuaBaseEntity::hasImmunity(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->hasImmunity((uint32)lua_tointeger(L,1)));

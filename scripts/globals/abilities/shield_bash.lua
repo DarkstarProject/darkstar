@@ -52,6 +52,7 @@ function OnUseAbility(player, target, ability)
 	local pdif = (math.random(ratio*0.8*1000, ratio*1.2*1000));
 
 	--printf("damge %d, ratio: %f, pdif: %d\n", damage, ratio, pdif);
+
 	damage = damage * (pdif / 1000);
 
 	target:delHP(damage);

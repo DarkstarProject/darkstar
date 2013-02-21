@@ -257,7 +257,7 @@ public:
 
 
 
-    bool            HasShieldEquipped();
+    int8            getShieldSize();
 
 	bool			  isWeaponUnlocked(uint16 indexid);					// return if weapon is broken
 	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken

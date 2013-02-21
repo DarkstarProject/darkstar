@@ -305,13 +305,13 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	}
 
 	// setup recast times
-	if (PMob->GetMJob() == JOB_BLM) {
+	if (PMob->GetMJob() == JOB_BLM || PMob->GetMJob() == JOB_BRD) {
 		PMob->m_MagicRecastTime = 15000;
 	}
 	else if (PMob->GetMJob() == JOB_RDM || PMob->GetMJob() == JOB_BLU) {
 		PMob->m_MagicRecastTime = 25000;
 	}
-	else if (PMob->GetMJob() == JOB_WHM || PMob->GetMJob() == JOB_BRD) {
+	else if (PMob->GetMJob() == JOB_WHM) {
 		PMob->m_MagicRecastTime = 20000;
 	}
 	else {

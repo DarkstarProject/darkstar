@@ -256,11 +256,19 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 	return 0;
 }
 
-bool CCharEntity::HasShieldEquipped()
+int8 CCharEntity::getShieldSize()
 {
 	CItemArmor* PItem = (CItemArmor*)(getStorage(LOC_INVENTORY)->GetItem(equip[SLOT_SUB]));
 
-    return PItem != NULL && (PItem->getType() & ITEM_ARMOR);
+    if(PItem == NULL){
+        return 0;
+    }
+
+    if(!PItem->IsShield()){
+        return 0;
+    }
+
+    return PItem->getShieldSize();
 }
 
 void CCharEntity::SetName(int8* name)

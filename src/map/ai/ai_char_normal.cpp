@@ -1871,7 +1871,7 @@ void CAICharNormal::ActionJobAbilityStart()
 		}
 
         // bail out if no shield for shield bash
-        if(m_PJobAbility->getID() == ABILITY_SHIELD_BASH && !m_PChar->HasShieldEquipped()){
+        if(m_PJobAbility->getID() == ABILITY_SHIELD_BASH && m_PChar->getShieldSize() == 0){
             m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 199));
             m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
             m_PJobAbility = NULL;
