@@ -27,7 +27,7 @@ function onMobFight(mob,target)
 	-- after change magic or physical immunity every 5min or 1k dmg
 	-- 2nd form
 	-- the Shadow Lord will do nothing but his Implosion attack. This attack hits everyone in the battlefield, but he only has 4000 HP
-	print("derp");
+
 	if(mob:getID() < 17453060) then -- first phase AI
 		if(mob:getHP() / mob:getMaxHP() <= 0.5) then
 			if(mob:AnimationSub() == 0) then

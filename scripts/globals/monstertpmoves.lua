@@ -307,7 +307,7 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 
 	finaldmg = finaldmg * dmgMod * magicDmgMod;
 
-	printf("dmgmod: %f, magicdmgmod: %f, resist: %f, def: %f", dmgMod, magicDmgMod, resist, defense);
+	-- printf("dmgmod: %f, magicdmgmod: %f, resist: %f, def: %f", dmgMod, magicDmgMod, resist, defense);
 	if(finaldmg < 1) then
 		finaldmg = 1;
 	end
