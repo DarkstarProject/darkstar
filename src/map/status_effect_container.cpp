@@ -792,6 +792,13 @@ void CStatusEffectContainer::LoadStatusEffects()
                 (uint16)Sql_GetUIntData(SqlHandle,7));
 
 			AddStatusEffect(PStatusEffect);
+
+            // load shadows left
+            if(PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE){
+                m_POwner->setModifier(MOD_UTSUSEMI, PStatusEffect->GetPower());
+            } else if(PStatusEffect->GetStatusID() == EFFECT_BLINK){
+                m_POwner->setModifier(MOD_BLINK, PStatusEffect->GetPower());
+            }
 		}
 	}
     m_POwner->UpdateHealth(); // после загрузки эффектов пересчитываем максимальное количество HP/MP
@@ -811,20 +818,28 @@ void CStatusEffectContainer::SaveStatusEffects()
 
 	for (uint32 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
-		if (m_StatusEffectList.at(i)->GetDuration() != 0)
-		{
-			const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
+        CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
+        if (PStatusEffect->GetDuration() != 0)
+        {
+            const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
+
+            // save power of utsusemi and blink
+            if(PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE){
+                PStatusEffect->SetPower(m_POwner->getMod(MOD_UTSUSEMI));
+            } else if(PStatusEffect->GetStatusID() == EFFECT_BLINK){
+                PStatusEffect->SetPower(m_POwner->getMod(MOD_BLINK));
+            }
 
 			Sql_Query(SqlHandle, Query,
 				m_POwner->id,
-				m_StatusEffectList.at(i)->GetStatusID(),
-                m_StatusEffectList.at(i)->GetIcon(),
-				m_StatusEffectList.at(i)->GetPower(),
-				m_StatusEffectList.at(i)->GetTickTime() / 1000,
-			   (m_StatusEffectList.at(i)->GetDuration() + m_StatusEffectList.at(i)->GetStartTime() - gettick()) / 1000,
-				m_StatusEffectList.at(i)->GetSubID(),
-                m_StatusEffectList.at(i)->GetSubPower(),
-                m_StatusEffectList.at(i)->GetTier());
+				PStatusEffect->GetStatusID(),
+                PStatusEffect->GetIcon(),
+				PStatusEffect->GetPower(),
+				PStatusEffect->GetTickTime() / 1000,
+			   (PStatusEffect->GetDuration() + PStatusEffect->GetStartTime() - gettick()) / 1000,
+				PStatusEffect->GetSubID(),
+                PStatusEffect->GetSubPower(),
+                PStatusEffect->GetTier());
 		}
 	}
 }
