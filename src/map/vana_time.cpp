@@ -44,7 +44,7 @@ CVanaTime::CVanaTime()
 	setCustomOffset(0);
 }
 
-CVanaTime* CVanaTime::getInstance() 
+CVanaTime* CVanaTime::getInstance()
 {
 	if(_instance == NULL) {
 		_instance = new CVanaTime();
@@ -108,7 +108,7 @@ uint32 CVanaTime::getSysMinute()
 	return ltm->tm_min;
 }
 
-uint32 CVanaTime::getSysSeconde()
+uint32 CVanaTime::getSysSecond()
 {
 	time_t now = time(0);
 	tm *ltm = localtime(&now);
@@ -168,15 +168,15 @@ uint32 CVanaTime::getMoonPhase()
 	int32  phase = 0;
 	uint32 rawtime = this->getSysTime();
 
-	int32  game_days = (int32)(rawtime - VTIME_BASEDATE) / 3456;	
-	double daysmod   = (int32)(game_days - 22) % 84;				
-	
-	if (daysmod >= 42){ 
+	int32  game_days = (int32)(rawtime - VTIME_BASEDATE) / 3456;
+	double daysmod   = (int32)(game_days - 22) % 84;
+
+	if (daysmod >= 42){
 		phase = (int32)(100*(1 - (daysmod - 42)/42) + 0.5);
 	}else{
-		phase = (int32)(100*daysmod/42 + 0.5);	
+		phase = (int32)(100*daysmod/42 + 0.5);
 	}
-	
+
 	return phase;
 }
 
@@ -185,10 +185,10 @@ uint8 CVanaTime::getMoonDirection()
 	int32  phase = 0;
 	uint32 rawtime = this->getSysTime();
 
-	int32  game_days = (int32)(rawtime - VTIME_BASEDATE) / 3456;	
-	double daysmod   = (int32)(game_days - 22) % 84;				
-	
-	if (daysmod == 42 || daysmod == 0){ 
+	int32  game_days = (int32)(rawtime - VTIME_BASEDATE) / 3456;
+	double daysmod   = (int32)(game_days - 22) % 84;
+
+	if (daysmod == 42 || daysmod == 0){
 		return 0; //neither waxing nor waning
 	}else if (daysmod > 42){
 		return 1;	//waning
@@ -197,7 +197,7 @@ uint8 CVanaTime::getMoonDirection()
 	}
 }
 
-TIMETYPE CVanaTime::SyncTime() 
+TIMETYPE CVanaTime::SyncTime()
 {
 	timeb SysTime;
 	ftime(&SysTime);

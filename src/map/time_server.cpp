@@ -35,7 +35,7 @@
 int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 {
 	TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
-	
+
 	if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
 	{
 		zoneutils::UpdateWeather();
@@ -51,11 +51,11 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 			luautils::OnGameDayAutomatisation();
         }
 	}
-	
-	if(CVanaTime::getInstance()->getSysWeekDay() == 1 && 
-	   CVanaTime::getInstance()->getSysHour() == 0 && 
-	   CVanaTime::getInstance()->getSysMinute() == 0 && 
-	   CVanaTime::getInstance()->getSysSeconde == 0) //Monday 0:00
+
+	if(CVanaTime::getInstance()->getSysWeekDay() == 1 &&
+	   CVanaTime::getInstance()->getSysHour() == 0 &&
+	   CVanaTime::getInstance()->getSysMinute() == 0 &&
+	   CVanaTime::getInstance()->getSysSecond() == 0) //Monday 0:00
 	{
 		conquest::UpdateConquestSystem();
 	}

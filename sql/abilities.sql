@@ -37,7 +37,7 @@ CREATE TABLE `abilities` (
 -- ----------------------------
 INSERT INTO `abilities` VALUES ('0', 'mighty_strikes', '1', '0', '1', '7200', '0', '0', '0', '33', '20', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('1', 'hundred_fists', '2', '0', '1', '7200', '0', '0', '0', '34', '20', '0', '1', '300', '0', '0');
-INSERT INTO `abilities` VALUES ('2', 'benediction', '3', '0', '1', '7200', '0', '102', '0', '35', '20', '1', '0', '3000', '0', '0');
+INSERT INTO `abilities` VALUES ('2', 'benediction', '3', '0', '1', '7200', '0', '102', '0', '35', '20', '1', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('3', 'manafont', '4', '0', '1', '7200', '0', '0', '0', '36', '20', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('4', 'chainspell', '5', '0', '1', '7200', '0', '0', '0', '37', '20', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('5', 'perfect_dodge', '6', '0', '1', '7200', '0', '0', '0', '38', '20', '0', '1', '0', '0', '0');
