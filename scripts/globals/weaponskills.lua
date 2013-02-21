@@ -110,6 +110,9 @@ function doPhysicalWeaponskill(attacker, target, params)
 				end
 			else
 				finaldmg = dmg * pdif;
+				if(isTrickValid and attacker:getMainJob()==6) then
+					finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * ftp * pdif);
+				end
 			end
 		else
 			finaldmg = dmg * pdif;
