@@ -1406,13 +1406,12 @@ void CAICharNormal::ActionMagicFinish()
 	{
         CBattleEntity* PTarget = m_PChar->m_ActionList.at(i).ActionTarget;
 
-        if (m_PSpell->getValidTarget() & TARGET_ENEMY) {
+        if (m_PSpell->getValidTarget() & TARGET_ENEMY && !(m_PSpell->getValidTarget() & TARGET_SELF)) {
             // wipe shadows if needed
             if (m_PSpell->isAOE()) {
                 PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
                 PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
-            }
-            else if (battleutils::IsAbsorbByShadow(PTarget)) {
+            } else if (battleutils::IsAbsorbByShadow(PTarget)) {
                 m_PChar->m_ActionList.at(i).messageID = 0;
                 m_PChar->m_ActionList.at(i).param = 1;
                 PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));

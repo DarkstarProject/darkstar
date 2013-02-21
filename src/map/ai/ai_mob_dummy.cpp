@@ -1192,7 +1192,7 @@ void CAIMobDummy::ActionMagicFinish()
 	{
         CBattleEntity* PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
 
-		if (m_PSpell->getValidTarget() & TARGET_ENEMY) {
+		if (m_PSpell->getValidTarget() & TARGET_ENEMY && !(m_PSpell->getValidTarget() & TARGET_SELF)) {
 			// wipe shadows if needed
 			if (m_PSpell->isAOE()) {
 				PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
