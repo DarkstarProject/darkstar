@@ -333,10 +333,13 @@ void GetAvailableSpells(CMobEntity* PMob) {
 			AddBrdSpells(PMob);
 			break;
 			case JOB_WHM:
+			AddWhmSpells(PMob);
 			break;
 			case JOB_RDM:
+			AddRdmSpells(PMob);
 			break;
 			case JOB_BLM:
+			AddBlmSpells(PMob);
 			break;
 			case JOB_DRK:
 			AddDrkSpells(PMob);
@@ -347,15 +350,12 @@ void GetAvailableSpells(CMobEntity* PMob) {
 			case JOB_PLD:
 			AddPldSpells(PMob);
 			break;
-			// case JOB_SMN:
-			// break;
-			// case JOB_COR:
-			// break;
 			// case JOB_SCH:
 			// break;
 			default:
 			break;
 		}
+		return;
 	}
 
 	if(PMob->m_Family == 258){
@@ -557,7 +557,7 @@ void AddWormSpells(CMobEntity* PMob) {
 void AddPldSpells(CMobEntity* PMob) {
 
 	// Cures
-	AddHighestAvailableSpell(PMob, 4, 1, true);
+	AddHighestAvailableSpell(PMob, 6, 1, true);
 
 	// Flash
 	AddHighestAvailableSpell(PMob, 112, 112, true);
@@ -592,7 +592,7 @@ void AddDrkSpells(CMobEntity* PMob) {
 	AddHighestAvailableSpell(PMob, 266, 272, true);
 
 	// Bio
-	if(PMob->GetMLevel() >= 68){
+	if(PMob->GetMLevel() >= 65){
 		// Bio III
 		PMob->m_AvailableSpells.push_back(232);
 	} else {
@@ -617,6 +617,279 @@ void AddDrkSpells(CMobEntity* PMob) {
 	AddHighestAvailableSpell(PMob, 173, 169, true);
 }
 
+void AddWhmSpells(CMobEntity* PMob) {
+	// cure
+	AddHighestAvailableSpell(PMob, 6, 1, true);
+
+	// dia
+	if(PMob->GetMLevel() >= 65){
+		// Dia III
+		PMob->m_AvailableSpells.push_back(25);
+	} else {
+		AddHighestAvailableSpell(PMob, 24, 23, true);
+	}
+
+	// diaga
+	if(PMob->GetMLevel() >= 73){
+		// Diaga III
+		PMob->m_AvailableSpells.push_back(35);
+	} else {
+		AddHighestAvailableSpell(PMob, 34, 33, true);
+	}
+
+	// regen
+	AddHighestAvailableSpell(PMob, 111, 108, true);
+
+	// -nas, TODO: no logic to know when to cast it
+
+	// haste
+	if (spell::CanUseSpell(PMob, 57)) {
+		PMob->m_AvailableSpells.push_back(57);
+	}
+
+	// flash
+	if (spell::CanUseSpell(PMob, 112)) {
+		PMob->m_AvailableSpells.push_back(112);
+	}
+
+	// holy
+	AddHighestAvailableSpell(PMob, 22, 21, true);
+
+	// aquaviel
+	if (spell::CanUseSpell(PMob, 55)) {
+		PMob->m_AvailableSpells.push_back(55);
+	}
+
+	// stoneskin
+	if (spell::CanUseSpell(PMob, 54)) {
+		PMob->m_AvailableSpells.push_back(54);
+	}
+
+	// blink
+	if (spell::CanUseSpell(PMob, 53)) {
+		PMob->m_AvailableSpells.push_back(53);
+	}
+
+	// paralyze
+	if (spell::CanUseSpell(PMob, 58)) {
+		PMob->m_AvailableSpells.push_back(58);
+	}
+
+	// silence
+	if (spell::CanUseSpell(PMob, 59)) {
+		PMob->m_AvailableSpells.push_back(59);
+		PMob->m_AvailableSpells.push_back(59);
+	}
+
+	// slow
+	if (spell::CanUseSpell(PMob, 56)) {
+		PMob->m_AvailableSpells.push_back(56);
+	}
+
+	// protect
+	AddHighestAvailableSpell(PMob, 47, 43, true);
+
+	// shell
+	AddHighestAvailableSpell(PMob, 52, 48, true);
+
+	// banish
+	if(PMob->GetMLevel() >= 73){
+		PMob->m_AvailableSpells.push_back(31);
+	} else {
+		AddHighestAvailableSpell(PMob, 32, 28, true);
+	}
+
+	// banishga
+	if(PMob->GetMLevel() >= 75){
+		PMob->m_AvailableSpells.push_back(40);
+	} else {
+		AddHighestAvailableSpell(PMob, 42, 38, true);
+	}
+}
+
+void AddRdmSpells(CMobEntity* PMob) {
+	// cure
+	AddHighestAvailableSpell(PMob, 6, 1, true);
+
+	// dia
+	if(PMob->GetMLevel() >= 60){
+		// Dia III
+		PMob->m_AvailableSpells.push_back(25);
+	} else {
+		AddHighestAvailableSpell(PMob, 24, 23, true);
+	}
+
+	// TODO: enspells
+
+	// TODO: add spikes
+
+	// dispel
+	if (spell::CanUseSpell(PMob, 260)) {
+		PMob->m_AvailableSpells.push_back(260);
+		PMob->m_AvailableSpells.push_back(260);
+	}
+
+	// gravity
+	if (spell::CanUseSpell(PMob, 216)) {
+		PMob->m_AvailableSpells.push_back(216);
+	}
+
+	// phalanx
+	if (spell::CanUseSpell(PMob, 106)) {
+		PMob->m_AvailableSpells.push_back(106);
+	}
+
+	// haste
+	if (spell::CanUseSpell(PMob, 57)) {
+		PMob->m_AvailableSpells.push_back(57);
+	}
+
+	// aquaviel
+	if (spell::CanUseSpell(PMob, 55)) {
+		PMob->m_AvailableSpells.push_back(55);
+	}
+
+	// stoneskin
+	if (spell::CanUseSpell(PMob, 54)) {
+		PMob->m_AvailableSpells.push_back(54);
+	}
+
+	// blink
+	if (spell::CanUseSpell(PMob, 53)) {
+		PMob->m_AvailableSpells.push_back(53);
+	}
+
+	// poison
+	if(PMob->GetMLevel() >= 65){
+		// poison III
+		PMob->m_AvailableSpells.push_back(222);
+	} else {
+		AddHighestAvailableSpell(PMob, 222, 220, true);
+	}
+
+	// blind
+	if (spell::CanUseSpell(PMob, 58)) {
+		PMob->m_AvailableSpells.push_back(58);
+		PMob->m_AvailableSpells.push_back(58);
+	}
+
+	// paralyze
+	if (spell::CanUseSpell(PMob, 58)) {
+		PMob->m_AvailableSpells.push_back(58);
+		PMob->m_AvailableSpells.push_back(58);
+	}
+
+	// silence
+	if (spell::CanUseSpell(PMob, 59)) {
+		PMob->m_AvailableSpells.push_back(59);
+		PMob->m_AvailableSpells.push_back(59);
+	}
+
+	// slow
+	if (spell::CanUseSpell(PMob, 56)) {
+		PMob->m_AvailableSpells.push_back(56);
+		PMob->m_AvailableSpells.push_back(56);
+	}
+
+	// protect
+	AddHighestAvailableSpell(PMob, 47, 43, true);
+
+	// shell
+	AddHighestAvailableSpell(PMob, 52, 48, true);
+
+	// Fire
+	AddHighestAvailableSpell(PMob, 148, 144, true);
+
+	// Thunder
+	AddHighestAvailableSpell(PMob, 168, 164, true);
+
+	// Blizzard
+	AddHighestAvailableSpell(PMob, 153, 149, true);
+
+}
+
+void AddBlmSpells(CMobEntity* PMob) {
+
+	// Drain
+	AddHighestAvailableSpell(PMob, 246, 245, true);
+
+	// TODO Blaze Spikes
+
+	// Bio
+	if(PMob->GetMLevel() >= 60){
+		// Bio III
+		PMob->m_AvailableSpells.push_back(232);
+	} else {
+		AddHighestAvailableSpell(PMob, 231, 230, true);
+	}
+
+	// Bind
+	if (spell::CanUseSpell(PMob, 258)) {
+		PMob->m_AvailableSpells.push_back(258);
+	}
+
+	// Blind
+	if (spell::CanUseSpell(PMob, 254)) {
+		PMob->m_AvailableSpells.push_back(254);
+	}
+
+	// frost
+	if (PMob->GetMLevel() <= 50 && spell::CanUseSpell(PMob, 236)) {
+		PMob->m_AvailableSpells.push_back(236);
+	}
+
+	// Sleepga
+	AddHighestAvailableSpell(PMob, 274, 273, true);
+
+	// poisonga
+	if(PMob->GetMLevel() >= 70){
+		// Bio III
+		PMob->m_AvailableSpells.push_back(227);
+	} else if(PMob->GetMLevel() >= 45){
+		PMob->m_AvailableSpells.push_back(226);
+	} else {
+		AddHighestAvailableSpell(PMob, 229, 225, true);
+	}
+
+	// stone
+	AddHighestAvailableSpell(PMob, 163, 159, true);
+
+	// fire
+	AddHighestAvailableSpell(PMob, 148, 144, true);
+
+	// aero
+	AddHighestAvailableSpell(PMob, 158, 154, true);
+
+	// thunder
+	AddHighestAvailableSpell(PMob, 168, 164, true);
+
+	// waterga
+	AddHighestAvailableSpell(PMob, 203, 199, true);
+
+	// blizzaga
+	AddHighestAvailableSpell(PMob, 183, 179, true);
+
+	// aero
+	AddHighestAvailableSpell(PMob, 188, 184, true);
+
+	// thunderga
+	AddHighestAvailableSpell(PMob, 198, 194, true);
+
+	// stun
+	if (spell::CanUseSpell(PMob, 252)) {
+		PMob->m_AvailableSpells.push_back(252);
+	}
+
+	// freeze
+	if (spell::CanUseSpell(PMob, 206)) {
+		PMob->m_AvailableSpells.push_back(206);
+	}
+
+	// flare
+	if (spell::CanUseSpell(PMob, 204)) {
+		PMob->m_AvailableSpells.push_back(204);
+	}
+}
 
 void AddBluSpells(CMobEntity* PMob) {
 /*

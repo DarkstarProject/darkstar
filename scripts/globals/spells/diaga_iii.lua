@@ -12,9 +12,9 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
+
 	--calculate raw damage
-	basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
+	basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 3;
 	dmg = calculateMagicDamage(basedmg,5,caster,spell,target,ENFEEBLING_MAGIC_SKILL,MOD_INT,false);
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);
@@ -26,28 +26,28 @@ function onSpellCast(caster,target,spell)
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
-	
+
 	-- Calculate duration.
-	duration = 30;
-	
+	duration = 60;
+
 	-- Check for Bio.
 	bio = target:getStatusEffect(EFFECT_BIO);
-	
+
 	-- Do it!
 	if(bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 3) or (DIA_OVERWRITE == 1 and bio:getPower() < 3)) then
-		target:addStatusEffect(EFFECT_DIA,3,3,duration);
+		target:addStatusEffect(EFFECT_DIA,3,3,duration,FLAG_ERASABLE);
 		spell:setMsg(2);
 	else
 		spell:setMsg(75);
 	end
-	
+
 	-- Try to kill same tier Bio
 	if(BIO_OVERWRITE == 1 and bio ~= nil) then
 		if(bio:getPower() <= 3) then
 			target:delStatusEffect(EFFECT_BIO);
 		end
 	end
-	
+
 	return final;
-	
+
 end;

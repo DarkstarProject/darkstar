@@ -41,6 +41,9 @@ namespace mobutils
   void AddBrdSpells(CMobEntity* PMob);
   void AddPldSpells(CMobEntity* PMob);
   void AddDrkSpells(CMobEntity* PMob);
+  void AddWhmSpells(CMobEntity* PMob);
+  void AddBlmSpells(CMobEntity* PMob);
+  void AddRdmSpells(CMobEntity* PMob);
   void AddBluSpells(CMobEntity* PMob);
   void AddWormSpells(CMobEntity* PMob);
 };
