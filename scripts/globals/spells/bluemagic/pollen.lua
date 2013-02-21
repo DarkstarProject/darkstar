@@ -35,8 +35,9 @@ function onSpellCast(caster,target,spell)
 	end
 	target:addHP(final);
 
-	target:wakeUp();
-	caster:updateEnmityFromCure(target,final);
+	if(target:getObjType() == TYPE_PC) then
+		caster:updateEnmityFromCure(target,final);
+	end
 	spell:setMsg(7);
 	return final;
 end;

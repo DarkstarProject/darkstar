@@ -342,6 +342,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 			AddDrkSpells(PMob);
 			break;
 			case JOB_BLU:
+			AddBluSpells(PMob);
 			break;
 			case JOB_PLD:
 			AddPldSpells(PMob);
@@ -614,6 +615,68 @@ void AddDrkSpells(CMobEntity* PMob) {
 	AddHighestAvailableSpell(PMob, 153, 149, true);
 	// Water
 	AddHighestAvailableSpell(PMob, 173, 169, true);
+}
+
+
+void AddBluSpells(CMobEntity* PMob) {
+/*
+1000 Needles	Awful Eye	Bad Breath	Claw Cyclone	Cocoon
+Digest	Feather Tickle	Filamented Hold	Hydro Shot	Infrasonics
+Jet Stream	MP Drainkiss	Metallic Body	Pinecone Bomb	Pollen
+Radiant Breath	Sandspin	Sandspray	Screwdriver	Sickle Slash
+Soporific	Sound Blast	Sprout Smack	Terror Touch	Voracious Trunk
+Wild Oats	Yawn
+*/
+
+	// Claw Cyclone
+	if (spell::CanUseSpell(PMob, 587)) {
+		PMob->m_AvailableSpells.push_back(587);
+	}
+
+	// Cocoon
+	if (spell::CanUseSpell(PMob, 547)) {
+		PMob->m_AvailableSpells.push_back(547);
+	}
+
+	// hydro shot
+	if (spell::CanUseSpell(PMob, 631)) {
+		PMob->m_AvailableSpells.push_back(631);
+	}
+
+	// jet stream
+	if (spell::CanUseSpell(PMob, 559)) {
+		PMob->m_AvailableSpells.push_back(559);
+	}
+
+	// pollen
+	if (spell::CanUseSpell(PMob, 549)) {
+		PMob->m_AvailableSpells.push_back(549);
+	}
+
+	// screwdriver
+	if (spell::CanUseSpell(PMob, 519)) {
+		PMob->m_AvailableSpells.push_back(519);
+	}
+
+	// sickle slash
+	if (spell::CanUseSpell(PMob, 545)) {
+		PMob->m_AvailableSpells.push_back(545);
+	}
+
+	// Sprout Smack
+	if (spell::CanUseSpell(PMob, 597)) {
+		PMob->m_AvailableSpells.push_back(597);
+	}
+
+	// Terror touch
+	if (spell::CanUseSpell(PMob, 539)) {
+		PMob->m_AvailableSpells.push_back(539);
+	}
+
+	// Wild oats
+	if (spell::CanUseSpell(PMob, 603)) {
+		PMob->m_AvailableSpells.push_back(603);
+	}
 }
 
 }; // namespace mobutils
