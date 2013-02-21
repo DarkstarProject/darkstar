@@ -37,6 +37,8 @@ namespace mobutils
 	uint8   checkMultiHits(CMobEntity * PMob,uint32 mobid);
 	void    GetAvailableSpells(CMobEntity* PMob);
 	void	AddHighestAvailableSpell(CMobEntity* PMob, uint16 highestId, uint16 lowestId, bool ignoreJob);
+
+  // spells for beastmen jobs
   void AddNinSpells(CMobEntity* PMob);
   void AddBrdSpells(CMobEntity* PMob);
   void AddPldSpells(CMobEntity* PMob);
@@ -45,7 +47,13 @@ namespace mobutils
   void AddBlmSpells(CMobEntity* PMob);
   void AddRdmSpells(CMobEntity* PMob);
   void AddBluSpells(CMobEntity* PMob);
+
+  // spells for families
   void AddWormSpells(CMobEntity* PMob);
+  void AddAhrimanSpells(CMobEntity* PMob);
+  void AddHecteyesSpells(CMobEntity* PMob);
+  void AddUndeadSpells(CMobEntity* PMob);
+  void AddFlanSpells(CMobEntity* PMob);
 };
 
 #endif

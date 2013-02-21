@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
     if(target:getMainLvl()%5 == 0 and target:hasStatusEffect(typeEffect) == false) then
         skill:setMsg(MSG_ENFEEB_IS);
 
-        local power = math.random(10, 20) + mob:getMainLvl()/5;
+        local power = math.random(0, 25) + 5;
         target:addStatusEffect(typeEffect,1,0,power);--power=1;tic=0;duration=5;
     else
         skill:setMsg(MSG_NO_EFFECT); -- no effect

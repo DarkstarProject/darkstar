@@ -358,9 +358,16 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		return;
 	}
 
-	if(PMob->m_Family == 258){
-		// WORM
+	// add spells for families
+	switch(PMob->m_Family){
+		case 258:
 		AddWormSpells(PMob);
+		return;
+		case 139:
+		AddHecteyesSpells(PMob);
+		return;
+		case 4:
+		AddAhrimanSpells(PMob);
 		return;
 	}
 
@@ -949,6 +956,117 @@ Wild Oats	Yawn
 	// Wild oats
 	if (spell::CanUseSpell(PMob, 603)) {
 		PMob->m_AvailableSpells.push_back(603);
+	}
+}
+
+void AddAhrimanSpells(CMobEntity* PMob){
+
+	// Drain
+	AddHighestAvailableSpell(PMob, 246, 245, true);
+
+	// TODO Blaze Spikes
+
+	// Bio
+	if(PMob->GetMLevel() >= 60){
+		// Bio III
+		PMob->m_AvailableSpells.push_back(232);
+	} else {
+		AddHighestAvailableSpell(PMob, 231, 230, true);
+	}
+
+	// Bind
+	if (spell::CanUseSpell(PMob, 258)) {
+		PMob->m_AvailableSpells.push_back(258);
+	}
+
+	// Sleepga
+	// lets be as annoying as possible
+	AddHighestAvailableSpell(PMob, 274, 273, true);
+	AddHighestAvailableSpell(PMob, 274, 273, true);
+	AddHighestAvailableSpell(PMob, 274, 273, true);
+
+	// aero
+	AddHighestAvailableSpell(PMob, 158, 154, true);
+
+	// thunder
+	AddHighestAvailableSpell(PMob, 168, 164, true);
+
+	// waterga
+	AddHighestAvailableSpell(PMob, 203, 199, true);
+
+	// blizzaga
+	AddHighestAvailableSpell(PMob, 183, 179, true);
+
+	// aeroga
+	AddHighestAvailableSpell(PMob, 188, 184, true);
+
+	// thunderga
+	AddHighestAvailableSpell(PMob, 198, 194, true);
+}
+
+void AddHecteyesSpells(CMobEntity* PMob){
+
+	// Drain
+	AddHighestAvailableSpell(PMob, 246, 245, true);
+
+	// aspir
+	AddHighestAvailableSpell(PMob, 248, 247, true);
+
+	// TODO Blaze Spikes
+
+	// Bind
+	if (spell::CanUseSpell(PMob, 258)) {
+		PMob->m_AvailableSpells.push_back(258);
+	}
+
+	// Blind
+	if (spell::CanUseSpell(PMob, 254)) {
+		PMob->m_AvailableSpells.push_back(254);
+	}
+
+	// burn
+	if (spell::CanUseSpell(PMob, 235)) {
+		PMob->m_AvailableSpells.push_back(235);
+	}
+
+	// choke
+	if (spell::CanUseSpell(PMob, 237)) {
+		PMob->m_AvailableSpells.push_back(237);
+	}
+
+	// Sleepga
+	// lets be as annoying as possible
+	AddHighestAvailableSpell(PMob, 274, 273, true);
+
+	// aero
+	AddHighestAvailableSpell(PMob, 158, 154, true);
+
+	// thunder
+	AddHighestAvailableSpell(PMob, 168, 164, true);
+
+	// fire
+	AddHighestAvailableSpell(PMob, 148, 144, true);
+
+	// water
+	AddHighestAvailableSpell(PMob, 173, 170, true);
+
+	// firga
+	AddHighestAvailableSpell(PMob, 178, 174, true);
+
+	// aeroga
+	AddHighestAvailableSpell(PMob, 188, 184, true);
+
+	// thunderga
+	AddHighestAvailableSpell(PMob, 198, 194, true);
+
+	// stun
+	if (spell::CanUseSpell(PMob, 252)) {
+		PMob->m_AvailableSpells.push_back(252);
+	}
+
+	// flare
+	if (spell::CanUseSpell(PMob, 204)) {
+		PMob->m_AvailableSpells.push_back(204);
 	}
 }
 
