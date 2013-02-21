@@ -6097,6 +6097,63 @@ inline int32 CLuaBaseEntity::isTrickAttackAvailable(lua_State *L)
 	return 0;
 }
 
+
+inline int32 CLuaBaseEntity::setDelay(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	if (m_PBaseEntity != NULL)
+	{
+		((CMobEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN]->setBaseDelay(lua_tonumber(L, 1));
+	}
+
+	return 0;
+}
+inline int32 CLuaBaseEntity::setDamage(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	if (m_PBaseEntity != NULL)
+	{
+		((CMobEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN]->setDamage(lua_tonumber(L, 1));
+	}
+
+	return 0;
+}
+
+//cast spell in parameter - if no parameter, cast any spell in the spell list
+inline int32 CLuaBaseEntity::castSpell(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	if (lua_isnumber(L,1))
+	{
+		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentSpell(lua_tointeger(L, 1));
+		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MAGIC_START);
+	} else {
+		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetLastMagicTime(0);
+	}
+	return 0;
+}
+inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+
+	if (lua_isnumber(L,1))
+	{
+		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentMobSkill(battleutils::GetMobSkill(lua_tointeger(L, 1)));
+		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_USING);
+	} else {
+		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+	}
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -6345,5 +6402,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTrait),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isTrickAttackAvailable),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDelay),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDamage),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,useMobAbility),
 	{NULL,NULL}
 };

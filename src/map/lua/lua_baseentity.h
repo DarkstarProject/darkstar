@@ -278,7 +278,7 @@ public:
 	int32 updateEnmity(lua_State*);			// Adds Enmity to player for specified mob
 	int32 updateEnmityFromDamage(lua_State*);// Adds Enmity to player for specified mob for the damage specified
 	int32 updateEnmityFromCure(lua_State*);
-	int32 resetEnmity(lua_State*); //resets enmity to player for specificed mob
+	int32 resetEnmity(lua_State*);			//resets enmity to player for specificed mob
 
 	int32 hasImmunity(lua_State*);			// Check if the mob has immunity for a type of spell (list at mobentity.h)
 	int32 getBattleTime(lua_State*);		// Get the time in second of the battle
@@ -381,6 +381,11 @@ public:
 	int32 getObjType(lua_State*);
 
 	int32 injectActionPacket(lua_State*);	// ONLY FOR DEBUGGING. Injects an action packet with the specified params.
+
+	int32 setDelay(lua_State*);
+	int32 setDamage(lua_State*);
+	int32 castSpell(lua_State*);
+	int32 useMobAbility(lua_State*);
 };
 
 #endif
