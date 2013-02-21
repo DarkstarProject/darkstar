@@ -28,6 +28,7 @@
 #include "transport.h"
 #include "vana_time.h"
 #include "zoneutils.h"
+#include "conquest_system.h"
 #include "lua/luautils.h"
 
 
@@ -49,6 +50,14 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
             guildutils::UpdateGuildsStock();
 			luautils::OnGameDayAutomatisation();
         }
+	}
+	
+	if(CVanaTime::getInstance()->getSysWeekDay() == 1 && 
+	   CVanaTime::getInstance()->getSysHour() == 0 && 
+	   CVanaTime::getInstance()->getSysMinute() == 0 && 
+	   CVanaTime::getInstance()->getSysSeconde == 0) //Monday 0:00
+	{
+		conquest::UpdateConquestSystem();
 	}
 
 	CTransportHandler::getInstance()->TransportTimer();

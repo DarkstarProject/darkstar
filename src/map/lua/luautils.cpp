@@ -237,7 +237,7 @@ int32 GetMobByID(lua_State* L)
 
 int32 WeekUpdateConquest(lua_State* L)
 {
-    conquest::UpdateWeekConquest();
+    conquest::UpdateConquestGM();
 
     return 0;
 }

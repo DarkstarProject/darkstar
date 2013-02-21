@@ -92,6 +92,48 @@ uint32 CVanaTime::getSysTime()
 	return (uint32)(time(NULL) + m_customOffset * 2.4f);
 }
 
+uint32 CVanaTime::getSysHour()
+{
+	time_t now = time(0);
+	tm *ltm = localtime(&now);
+
+	return ltm->tm_hour;
+}
+
+uint32 CVanaTime::getSysMinute()
+{
+	time_t now = time(0);
+	tm *ltm = localtime(&now);
+
+	return ltm->tm_min;
+}
+
+uint32 CVanaTime::getSysSeconde()
+{
+	time_t now = time(0);
+	tm *ltm = localtime(&now);
+
+	return ltm->tm_sec;
+}
+
+uint32 CVanaTime::getSysWeekDay()
+{
+	time_t now = time(0);
+	tm *ltm = localtime(&now);
+
+	return ltm->tm_wday;
+}
+
+uint32 CVanaTime::getSysYearDay()
+{
+	time_t now = time(0);
+	tm *ltm = localtime(&now);
+
+	return ltm->tm_yday;
+}
+
+
+
 uint32 CVanaTime::getVanaTime()
 {
     return getSysTime() - 1009810800;

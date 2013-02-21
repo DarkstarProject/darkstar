@@ -44,14 +44,25 @@ class CCharEntity;
 
 namespace conquest
 {
-	void   LoadConquestSystem();
-	void   UpdateWeekConquest();
+	void	LoadConquestSystem();										// Load conquest information with the DB
+	void	UpdateConquestSystem();										// Update conquest information in the DB
 
-	uint8  GetBalance();
-	uint8  GetNexTally();
-    uint8  GetRegionOwner(REGIONTYPE RegionID);
+	void	GainInfluencePoints(CCharEntity* PChar);					// Gain influence for player's nation (+1)
+	void	LoseInfluencePoints(CCharEntity* PChar);					// Lose influence for player's nation and gain for beastmen influence
+	
+	uint32	GetInfluencePoints(REGIONTYPE RegionID, uint8 nation);
 
-    uint32 AddConquestPoints(CCharEntity* PChar, uint32 exp);
+	uint8	CreateInfluenceGraphics(uint8 RegionID);					// Create number for graphic with the arrows in the conquest menu
+	uint8	GetInfluenceGraphics(REGIONTYPE RegionID);					// Get number for graphics in conquest menu (arrows)
+
+	void	UpdateConquestGM();											// Upate conquest system by GM (modify in the DB and use @updateconquest)
+	void	UpdateWeekConquest();										// Update conquest system every sunday
+
+	uint8	GetBalance();												// Ranking for 3 nations
+	uint8	GetNexTally();												// Next tally (weekly or every hour ?)
+    uint8	GetRegionOwner(REGIONTYPE RegionID);						// Get owner of the region
+
+    uint32	AddConquestPoints(CCharEntity* PChar, uint32 exp);			// Add conquest points
 };
 
 #endif

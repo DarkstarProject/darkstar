@@ -69,7 +69,13 @@ public:
 	uint32	 getWeekday();
 	uint32	 getMoonPhase();
 	uint8	 getMoonDirection();
-	uint32	 getSysTime();
+	uint32	 getSysTime();							// Timestamp of the system time
+	uint32	 getSysHour();
+	uint32	 getSysMinute();
+	uint32	 getSysSeconde();
+	uint32	 getSysWeekDay();						// Number of day since sunday
+	uint32	 getSysYearDay();						// Number of day since 1st january
+
     uint32   getVanaTime();
 	int32	 getCustomOffset();
 

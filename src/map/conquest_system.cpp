@@ -27,7 +27,7 @@
 
 #include "lua/luautils.h"
 
-uint32 g_Conquest[19][6];
+int32 g_Conquest[19][6];
 
 /************************************************************************
 *                                                                       *
@@ -47,7 +47,7 @@ namespace conquest
 	{
 		int8 regNum = 0;
 		const int8* Query =  
-        "SELECT region_id, region_control, sandoria_influence, bastok_influence, windurst_influence, beastmen_influence FROM conquest_system";
+        "SELECT region_id, region_control, sandoria_influence, bastok_influence, windurst_influence, beastmen_influence, graphics_arrows FROM conquest_system";
 
 		int32 ret = Sql_Query(SqlHandle, Query);
 
@@ -61,28 +61,202 @@ namespace conquest
 				g_Conquest[regNum][3] = (uint32)Sql_GetIntData(SqlHandle,3); // Influence of bastok
 				g_Conquest[regNum][4] = (uint32)Sql_GetIntData(SqlHandle,4); // Influence of windurst
 				g_Conquest[regNum][5] = (uint32)Sql_GetIntData(SqlHandle,5); // Influence of beastmen
+				g_Conquest[regNum][6] = (uint32)Sql_GetIntData(SqlHandle,6); // Number for graphics with arrows
 				regNum++;
 			}
 		}
 	}
 
 	/************************************************************************
+    *                                                                       *
+    *	UpdateConquestSystem		                                        *
+    *                                                                       *
+    ************************************************************************/
+
+	void UpdateConquestSystem()
+	{
+		for (uint8 i=0; i <= 18; i++)
+		{
+			g_Conquest[i][6] = CreateInfluenceGraphics(i);
+			
+			const int8* Query =  "UPDATE conquest_system "
+								 "SET region_control = %u, sandoria_influence = %u, bastok_influence = %u, windurst_influence = %u, beastmen_influence = %u, graphics_arrows = %u "
+								 "WHERE region_id = %u";
+
+			Sql_Query(SqlHandle, Query, g_Conquest[i][1], g_Conquest[i][2], g_Conquest[i][3], g_Conquest[i][4], g_Conquest[i][5], g_Conquest[i][6], i);
+		}
+	}
+
+	/************************************************************************
+    *    GainInfluencePoints                                                *
+    *    +1 point for nation							                    *
+    *						                                                *
+    ************************************************************************/
+
+	void GainInfluencePoints(CCharEntity* PChar)
+	{
+		REGIONTYPE region = PChar->loc.zone->GetRegionID();
+
+		g_Conquest[region][PChar->profile.nation + 2] += 1;
+	}
+
+	/************************************************************************
+    *    LoseInfluencePoints                                                *
+    *    -10 point for nation							                    *
+    *    +20 point for beastmen                                              *
+    ************************************************************************/
+
+	void LoseInfluencePoints(CCharEntity* PChar)
+	{
+		REGIONTYPE region = PChar->loc.zone->GetRegionID();
+
+		if(g_Conquest[region][PChar->profile.nation + 2] > 10)
+		{
+			g_Conquest[region][PChar->profile.nation + 2] -= 10;
+		}
+		
+		g_Conquest[region][5] += 20;
+	}
+
+	/************************************************************************
+    *                                                                       *
+    *	GetInfluencePoints			                                        *
+    *                                                                       *
+    ************************************************************************/
+
+	uint32 GetInfluencePoints(REGIONTYPE RegionID, uint8 nation)
+	{
+		return g_Conquest[RegionID][nation + 2];
+	}
+
+	/************************************************************************
+    *                                                                       *
+    *	CreateInfluenceGraphics		                                        *
+    *   Graphic with the arrows in the conquest menu                        *
+    ************************************************************************/
+
+	uint8 CreateInfluenceGraphics(uint8 RegionID)
+	{
+		//if all nations and beastmen == 0 
+		if(g_Conquest[RegionID][2] == 0 && g_Conquest[RegionID][3] == 0 && g_Conquest[RegionID][4] == 0 && g_Conquest[RegionID][5] == 0)
+		{
+			return 0;
+		}
+		//if all nations and beastmen, has same number
+		else if(g_Conquest[RegionID][2] == g_Conquest[RegionID][3] && 
+				g_Conquest[RegionID][2] == g_Conquest[RegionID][4] && 
+				g_Conquest[RegionID][2] == g_Conquest[RegionID][5] && 
+				g_Conquest[RegionID][3] == g_Conquest[RegionID][4] && 
+				g_Conquest[RegionID][3] == g_Conquest[RegionID][5] && 
+				g_Conquest[RegionID][4] == g_Conquest[RegionID][5])
+		{
+			return 0;
+		}
+		//if Beast influence > all nations
+		else if(g_Conquest[RegionID][5] > g_Conquest[RegionID][2] && 
+				g_Conquest[RegionID][5] > g_Conquest[RegionID][3] && 
+				g_Conquest[RegionID][5] > g_Conquest[RegionID][4])
+		{
+			return 64;
+		}
+		else
+		{
+			uint8 offset = 0; 
+			int32 maxP = 0;
+
+			if(g_Conquest[RegionID][2] > g_Conquest[RegionID][3] && g_Conquest[RegionID][2] > g_Conquest[RegionID][4]) maxP = g_Conquest[RegionID][2];
+			else if(g_Conquest[RegionID][3] > g_Conquest[RegionID][2] && g_Conquest[RegionID][3] > g_Conquest[RegionID][4]) maxP = g_Conquest[RegionID][3];
+			else maxP = g_Conquest[RegionID][4];
+
+			int32 lev = maxP / 4;
+			
+			//Sandoria
+			if(g_Conquest[RegionID][2] >= maxP)			offset = 3;
+			else if(g_Conquest[RegionID][2] >= lev * 3) offset = 2;
+			else if(g_Conquest[RegionID][2] >= lev * 2)	offset = 1;
+			else										offset = 0;
+
+			//Bastok
+			if(g_Conquest[RegionID][3] >= maxP)			offset += 12;
+			else if(g_Conquest[RegionID][3] >= lev * 3) offset += 8;
+			else if(g_Conquest[RegionID][3] >= lev * 2)	offset += 4;
+			else										offset += 0;
+
+			//Windurst
+			if(g_Conquest[RegionID][4] >= maxP)			offset += 48;
+			else if(g_Conquest[RegionID][4] >= lev * 3) offset += 32;
+			else if(g_Conquest[RegionID][4] >= lev * 2)	offset += 16;
+			else										offset += 0;
+
+			return offset;
+		}
+	}
+
+	/************************************************************************
+    *                                                                       *
+    *	GetInfluenceGraphics		                                        *
+    *												                        *
+    ************************************************************************/
+
+	uint8 GetInfluenceGraphics(REGIONTYPE RegionID)
+	{
+		return g_Conquest[RegionID][6];
+	}
+
+	/************************************************************************
+    *   UpdateConquestGM                                                    *
+    *	Update region control		                                        *
+    *   just used by GM command			                                    *
+    ************************************************************************/
+
+	void UpdateConquestGM()
+	{
+		LoadConquestSystem();
+		luautils::SetRegionalConquestOverseers();
+	}
+
+	/************************************************************************
     *   UpdateWeekConquest                                                  *
     *	Update region control		                                        *
-    *   just used by GM command for now                                     *
+    *   update 1 time per week			                                    *
     ************************************************************************/
 
 	void UpdateWeekConquest()
 	{
-		LoadConquestSystem();
-		luautils::SetRegionalConquestOverseers();
 		//TODO: 
 		//launch conquest message in all zone (sunday server midnight)
-		//LoadConquestSystem()
+
 		//change region control with the best influence
-		//reset all influence
-		//luautils::SetRegionalConquestOverseers();
+		for (uint8 i=0; i <= 18; i++)
+		{
+			if(g_Conquest[i][2] > g_Conquest[i][3] && g_Conquest[i][2] > g_Conquest[i][4] && g_Conquest[i][2] > g_Conquest[i][5]) 
+				g_Conquest[i][1] = 0;
+			else if(g_Conquest[i][3] > g_Conquest[i][2] && g_Conquest[i][3] > g_Conquest[i][4] && g_Conquest[i][3] > g_Conquest[i][5]) 
+				g_Conquest[i][1] = 1;
+			else if(g_Conquest[i][4] > g_Conquest[i][2] && g_Conquest[i][4] > g_Conquest[i][3] && g_Conquest[i][4] > g_Conquest[i][5]) 
+				g_Conquest[i][1] = 2;
+			else if(g_Conquest[i][5] > g_Conquest[i][2] && g_Conquest[i][5] > g_Conquest[i][3] && g_Conquest[i][5] > g_Conquest[i][4]) 
+				g_Conquest[i][1] = 3;
+			else
+				g_Conquest[i][1] = rand() % 3; //random 0,1,2
+
+			//reset all influence points
+			g_Conquest[i][2] = 0;
+			g_Conquest[i][3] = 0;
+			g_Conquest[i][4] = 0;
+			g_Conquest[i][5] = 0;
+			g_Conquest[i][6] = 0;
+
+			//change last conquest tally
+			g_Conquest[i][7] = CVanaTime::getInstance()->getSysYearDay();
+		}
+		
+		luautils::SetRegionalConquestOverseers();
+
 		//launch end message ?
+		//Update packet ?
+
+		UpdateConquestSystem();
 	}
 	
 	/************************************************************************
@@ -106,31 +280,6 @@ namespace conquest
     {
 	    uint32 currData = CVanaTime::getInstance()->getDate() / 1440;
 	    return (uint8)(175 - ((currData - 85)%175));
-    }
-
-    /************************************************************************
-    *                                                                       *
-    *  Добавляем персонажу conquest points, основываясь на полученном опыте *
-    *                                                                       *
-    ************************************************************************/
-
-    // TODO: необходимо учитывать добавленные очки для еженедельного подсчета conquest
-
-    uint32 AddConquestPoints(CCharEntity* PChar, uint32 exp)
-    {
-        // ВНИМЕНИЕ: не нужно отправлять персонажу CConquestPacket, 
-        // т.к. клиент сам запрашивает этот пакет через фиксированный промежуток времени
-
-        REGIONTYPE region = PChar->loc.zone->GetRegionID();
-
-        if(region != REGION_UNKNOWN)
-        {
-            // 10% if region control is player's nation 
-            // 15% otherwise
-            
-            PChar->RegionPoints[PChar->profile.nation] += exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
-        }
-        return 0; // added conquest points (пока не вижу в этом определенного смысла)
     }
 
     /************************************************************************
@@ -164,6 +313,31 @@ namespace conquest
             case REGION_TAVNAZIA:        return g_Conquest[REGION_TAVNAZIA][1];
         }
         return NEUTRAL;
+    }
+
+	/************************************************************************
+    *                                                                       *
+    *  Добавляем персонажу conquest points, основываясь на полученном опыте *
+    *                                                                       *
+    ************************************************************************/
+
+    // TODO: необходимо учитывать добавленные очки для еженедельного подсчета conquest
+
+    uint32 AddConquestPoints(CCharEntity* PChar, uint32 exp)
+    {
+        // ВНИМЕНИЕ: не нужно отправлять персонажу CConquestPacket, 
+        // т.к. клиент сам запрашивает этот пакет через фиксированный промежуток времени
+
+        REGIONTYPE region = PChar->loc.zone->GetRegionID();
+
+        if(region != REGION_UNKNOWN)
+        {
+            // 10% if region control is player's nation 
+            // 15% otherwise
+            
+            PChar->RegionPoints[PChar->profile.nation] += exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
+        }
+        return 0; // added conquest points (пока не вижу в этом определенного смысла)
     }
 
 	

@@ -370,6 +370,10 @@ void CAICharNormal::ActionFall()
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
+	
+	//influence for conquest system
+	conquest::LoseInfluencePoints(m_PChar);
+
 	charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
 	charutils::SaveDeathTime(m_PChar);
 

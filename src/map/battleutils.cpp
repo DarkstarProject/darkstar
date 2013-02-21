@@ -2333,6 +2333,12 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 
 	else if (PEntity->objtype == TYPE_MOB)
 	{
+		//Monk
+		if(PEntity->GetMJob() == JOB_MNK)
+		{
+			num = 2;
+		}
+		
 		//check for unique mobs
 		switch (PEntity->id)
 		{

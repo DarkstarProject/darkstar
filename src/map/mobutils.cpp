@@ -198,10 +198,10 @@ void CalculateStats(CMobEntity * PMob)
     //reduce weapon delay of MNK
     if(PMob->GetMJob()==JOB_MNK){
         uint16 delay = PMob->m_Weapons[SLOT_MAIN]->getBaseDelay();
-
 	    //reduce delay based on level
 	    //this will remove about 78 delay at level 75
-	    delay -= (((float)PMob->GetMLevel() * 1.05) * 1000) / 60;
+		//delay -= (((float)PMob->GetMLevel() * 1.05) * 1000) / 60; don't need
+		//printf(" delay: %u \n",delay);
 
 		PMob->m_Weapons[SLOT_MAIN]->setDelay(delay);
     }

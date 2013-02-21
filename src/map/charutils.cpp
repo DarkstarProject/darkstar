@@ -3017,7 +3017,7 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 		PChar->jobs.exp[PChar->GetMJob()] += exp;
 	}
 
-
+	conquest::GainInfluencePoints(PChar);
     conquest::AddConquestPoints(PChar, exp);
 
 	//Add IS + ZENI when you kill a monster in TOAU Zone (10%) NEED TO CHANGE THAT
