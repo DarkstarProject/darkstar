@@ -2,7 +2,7 @@
 -- Area: Windurst Walls
 -- Door: House of the Hero
 -- Involved in Mission 2-1
--- Involved In Quest: Know One's Onions, Onion Rings
+-- Involved In Quest: Know One's Onions, Onion Rings, The Puppet Master, Class Reunion
 -- @pos -26 -13 260 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
@@ -26,12 +26,25 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+	
+	local ThePuppetMaster = player:getQuestStatus(WINDURST,THE_PUPPET_MASTER);
+	local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
 	-- Check for Missions first (priority?)
 	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS and player:getVar("MissionStatus") == 5) then
 		player:startEvent(0x0151);
 	else
-		if(player:hasKeyItem(JOKER_CARD)) then
+		----------------------------------------------------
+		-- Class Reunion
+		if(player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == 15 and ThePuppetMaster == QUEST_COMPLETED and ClassReunion == QUEST_AVAILABLE and player:needToZone() == false) then
+			player:startEvent(0x019d); -- Carby asks for your help again.
+		----------------------------------------------------
+		-- The Puppet Master
+		elseif(player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == 15 and ThePuppetMaster ~= QUEST_ACCEPTED and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
+			player:startEvent(0x0192); -- Carby asks for your help, visit Juroro
+		elseif(player:getQuestStatus(WINDURST,THE_PUPPET_MASTER) == 1 and player:getVar("ThePuppetMasterProgress") == 1) then
+			player:startEvent(0x0193); -- reminder to visit Juroro
+		----------------------------------------------------
+		elseif(player:hasKeyItem(JOKER_CARD)) then
 			player:startEvent(0x0183,0,264);
 		elseif(player:getVar("WildCard") == 1) then
 			player:startEvent(0x0182);
@@ -39,14 +52,14 @@ function onTrigger(player,npc)
 			player:startEvent(0x0121);
 		elseif(player:getVar("KnowOnesOnions") == 1) then
 			player:startEvent(0x0120,0,4387);
-		elseif(player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 0) then
-			if(player:getMainLvl() >= 30 and player:hasItem(1125)) then
-				player:startEvent(0x0180,1125,1125,1125,1125,1125,1125,1125,1125);
-			end
-		elseif(player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1) then
+		elseif(player:getQuestStatus(WINDURST,I_CAN_HEAR_A_RAINBOW) == QUEST_AVAILABLE and player:getMainLvl() >= 30 and player:hasItem(1125)) then
+			player:startEvent(0x0180,1125,1125,1125,1125,1125,1125,1125,1125);
+		elseif(player:getQuestStatus(WINDURST,I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
 			player:startEvent(0x0181,1125,1125,1125,1125,1125,1125,1125,1125);
-		end
-	end
+		else
+			player:messageSpecial(7532); -- "The doors are firmly sealed shut."
+		end;
+	end;
 
 	return 1;
 
@@ -90,6 +103,18 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0151) then
 		-- Mark the progress
 		player:setVar("MissionStatus",6);
-	end
+	elseif(csid == 0x0192) then
+		if (player:getQuestStatus(WINDURST,THE_PUPPET_MASTER) == 2) then
+			player:delQuest(WINDURST,THE_PUPPET_MASTER);
+			player:addQuest(WINDURST,THE_PUPPET_MASTER); -- this needs only if you repeat this quest
+		end;
+		player:setVar("ThePuppetMasterProgress",1);
+		player:addQuest(WINDURST,THE_PUPPET_MASTER);
+	elseif(csid == 0x019d) then
+		player:setVar("ClassReunionProgress",1);
+		player:addQuest(WINDURST,CLASS_REUNION);
+		player:addKeyItem(450);
+		player:messageSpecial(KEYITEM_OBTAINED,450);
+	end;
 
 end;

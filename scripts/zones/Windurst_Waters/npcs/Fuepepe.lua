@@ -2,6 +2,7 @@
 --	Area: Windurst Waters
 --	NPC:  Fuepepe
 --	Starts and Finishes Quest: Teacher's Pet
+-- Involved in Quest: Making the grade, Class Reunion
 --  @zone = 238
 --  @pos = 161 -2 161
 -----------------------------------
@@ -45,6 +46,11 @@ function onTrigger(player,npc)
 		end
 	elseif (gradestatus == QUEST_COMPLETED and player:needToZone() == true) then
 		player:startEvent(0x01cb); -- After Quest
+	-------------------------------------------------------
+	-- Class Reunion
+	elseif (player:getQuestStatus(WINDURST,CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") >= 3 and player:getVar("ClassReunion_TalkedToFupepe") ~= 1) then
+		player:startEvent(0x0331); -- he tells you about Uran-Mafran
+	-------------------------------------------------------
 	else
 		player:startEvent(0x1a7); -- Standard Conversation
 	end
@@ -81,5 +87,7 @@ function onEventFinish(player,csid,option)
 			player:setVar("QuestMakingTheGrade_prog",0);
 			player:needToZone(true);
 		end
+	elseif (csid == 0x0331) then
+		player:setVar("ClassReunion_TalkedToFupepe",1);
 	end	
 end;

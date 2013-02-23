@@ -49,9 +49,14 @@ function onTrigger(player,npc)
 	local CFAtimer = player:getVar("Curses,FoiledAgain!?");
 	local FoiledAGolem = player:getQuestStatus(WINDURST,CURSES_FOILED_A_GOLEM);
 	local golemdelivery = player:getVar("foiledagolemdeliverycomplete");
-	
+
+	-------------------------------------------------------
+	-- Class Reunion (note: added this to top cause not a lot of ppl will want AF for smn)
+	if (player:getQuestStatus(WINDURST,CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
+		player:startEvent(0x0199); -- she mentions that Sunny-Pabonny left for San d'Oria
+	-------------------------------------------------------
 	-- Curses Foiled Again!
-	if(foiledAgain == QUEST_AVAILABLE) then
+	elseif(foiledAgain == QUEST_AVAILABLE) then
 		player:startEvent(0xab,0,0,0,0,0,0,928,880);
 	elseif(foiledAgain == QUEST_ACCEPTED) then
 		player:startEvent(0xac,0,0,0,0,0,0,928,880);
@@ -91,7 +96,6 @@ function onTrigger(player,npc)
 	
 	elseif (CFA2 == QUEST_COMPLETED) then
 		player:startEvent(0x00B8); 	-- New standard dialog after CFA2
-	
 	else
 		player:startEvent(0xa4);
 	end
@@ -176,5 +180,7 @@ function onEventFinish(player,csid,option)
 			player:setTitle(DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH);
 			player:addFame(WINDURST,WIN_FAME*120);
 		end
+	elseif(csid == 0x0199) then
+		player:setVar("ClassReunionProgress",4);
 	end		
 end;

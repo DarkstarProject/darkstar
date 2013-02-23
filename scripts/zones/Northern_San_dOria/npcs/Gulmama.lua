@@ -2,6 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Gulmama
 -- Starts and Finishes Quest: Trial by Ice
+-- Involved in Quest: Class Reunion
 -- @pos -186 0 107 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
@@ -26,19 +27,27 @@ end;
 
 function onTrigger(player,npc)
 	
-	TrialByIce = player:getQuestStatus(SANDORIA,TRIAL_BY_ICE);
-	Fame = player:getFameLevel(SANDORIA)
-	WhisperOfFrost = player:hasKeyItem(WHISPER_OF_FROST);
-	realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-	
-	if((TrialByIce == QUEST_AVAILABLE and Fame >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= player:getVar("TrialByIce_date"))) then 
+	local TrialByIce = player:getQuestStatus(SANDORIA,TRIAL_BY_ICE);
+	local WhisperOfFrost = player:hasKeyItem(WHISPER_OF_FROST);
+	local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
+	local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
+	local ClassReunionProgress = player:getVar("ClassReunionProgress");
+
+	------------------------------------------------------------
+	-- Class Reunion
+	if(ClassReunion == 1 and ClassReunionProgress == 4) then
+		player:startEvent(0x02c9,0,1171,0,0,0,0,0,0); -- he gives you an ice pendulum and wants you to go to Cloister of Frost
+	elseif(ClassReunion == 1 and ClassReunionProgress == 5 and player:hasItem() == false) then
+		player:startEvent(0x02c8,0,1171,0,0,0,0,0,0); -- lost the ice pendulum need another one
+	------------------------------------------------------------
+	elseif((TrialByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= player:getVar("TrialByIce_date"))) then 
 		player:startEvent(0x02c2,0,TUNING_FORK_OF_ICE); -- Start and restart quest "Trial by ice"
 	elseif(TrialByIce == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_ICE) == false and WhisperOfFrost == false) then 
 		player:startEvent(0x02ce,0,TUNING_FORK_OF_ICE); -- Defeat against Shiva : Need new Fork
 	elseif(TrialByIce == QUEST_ACCEPTED and WhisperOfFrost == false) then 
 		player:startEvent(0x02c3,0,TUNING_FORK_OF_ICE,4);
 	elseif(TrialByIce == QUEST_ACCEPTED and WhisperOfFrost) then 
-		numitem = 0;
+		local numitem = 0;
 		
 		if(player:hasItem(17492)) then numitem = numitem + 1; end  -- Shiva's Claws
 		if(player:hasItem(13242)) then numitem = numitem + 2; end  -- Ice Belt
@@ -82,7 +91,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(TUNING_FORK_OF_ICE);
 		player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_ICE);
 	elseif(csid == 0x02c5) then
-		item = 0;
+		local item = 0;
 		if(option == 1) then item = 17492; 		-- Shiva's Claws
 		elseif(option == 2) then item = 13242;  -- Ice Belt
 		elseif(option == 3) then item = 13561;  -- Ice Ring
@@ -108,6 +117,14 @@ function onEventFinish(player,csid,option)
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA,TRIAL_BY_ICE);
 		end
-	end
+	elseif(csid == 0x02c9 or csid == 0x02c8) then
+		if (player:getFreeSlotsCount() ~= 0) then
+			player:addItem(1171);
+			player:messageSpecial(ITEM_OBTAINED,1171);
+			player:setVar("ClassReunionProgress",5);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1171);
+		end;
+	end;
 	
 end;

@@ -22,10 +22,10 @@ itemid_bcnmid_map = {10,{0,0},--The_Shrouded_Maw
 					 180,{1550,293}, -- LaLoff Amphitheater
 					 201,{1546,418}, -- Cloister of Gales
 					 202,{1548,450}, -- Cloister of Storms
-					 203,{1545,482}, -- Cloister of Frost
+					 203,{1545,482,1171,481}, -- Cloister of Frost
 					 206,{0,0}, -- Qu'Bia Arena
 					 207,{1544,545}, -- Cloister of Flames
-					 209,{1547,578}, -- Cloister of Tremors
+					 209,{1547,578,1169,577}, -- Cloister of Tremors
 					 211,{1549,609}}; -- Cloister of Tides
 					 
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
@@ -52,10 +52,10 @@ bcnmid_param_map = {10,{704,0,706,2},
 					180,{293,5},
 					201,{416,0,418,2},
 					202,{448,0,450,2},
-					203,{480,0,482,2},
+					203,{480,0,481,1,482,2},
 					206,{512,0,517,5,518,6,519,7}, 
 					207,{544,0,545,1},
-					209,{576,0,578,2},
+					209,{576,0,577,1,578,2},
 					211,{608,0,609,1}};
 
 -- Call this onTrade for burning circles
@@ -317,7 +317,13 @@ function ItemToBCNMID(player,zone,trade)
 					-- KSNM99
 					elseif(item == 1550) then
 						questTimelineOK = 1;
-					-- Divine Might						
+					-- Divine Might	
+					elseif(item == 1169 and player:getVar("ThePuppetMasterProgress") == 2) then
+						questTimelineOK = 1;
+					-- The Puppet Master
+					elseif(item == 1171 and player:getVar("ClassReunionProgress") == 5) then
+						questTimelineOK = 1;
+					-- Class Reunion
 					end
 					
 					if(questTimelineOK == 1) then

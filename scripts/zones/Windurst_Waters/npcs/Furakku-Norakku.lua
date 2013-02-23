@@ -1,6 +1,7 @@
 -----------------------------------
 --	Area: Windurst Waters
 --	NPC:  Furakku-Norakku
+-- Involved in Quest: Early bird catches the bookworm, Chasing tales, Class Reunion
 --	@pos -19 -5 101 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
@@ -25,10 +26,13 @@ end;
 
 function onTrigger(player,npc)
 
-	bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
-	chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
-	bookNotifications = player:hasKeyItem(OVERDUE_BOOK_NOTIFICATIONS);
-	
+	local bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
+	local chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
+	local bookNotifications = player:hasKeyItem(OVERDUE_BOOK_NOTIFICATIONS);
+	local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
+	local ClassReunionProgress = player:getVar("ClassReunionProgress");
+	local talk2 = player:getVar("ClassReunion_TalkedToFurakku");
+
 	if(bookwormStatus == QUEST_ACCEPTED and bookNotifications == false) then
 		player:startEvent(0x0185); -- During Quest "Early Bird Catches the Bookworm" 1
 	elseif(bookwormStatus == QUEST_ACCEPTED and bookNotifications and player:getVar("EARLY_BIRD_TRACK_BOOK") == 0) then
@@ -49,6 +53,11 @@ function onTrigger(player,npc)
 		player:startEvent(0x019a);
 	elseif(chasingStatus == QUEST_COMPLETED and player:needToZone() == true) then
 		player:startEvent(0x019b);
+	-----------------------------------------------------------------
+	-- Class Reunion
+	elseif(ClassReunion == 1 and ClassReunionProgress >= 3 and talk2 ~= 1) then
+		player:startEvent(0x0330); -- he tells you about Uran-Mafran
+	-----------------------------------------------------------------
 	else
 		player:startEvent(0x0173);
 	end
@@ -96,6 +105,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("CHASING_TALES_TRACK_BOOK",0);
 		player:addFame(WINDURST,WIN_FAME*120);
 		player:completeQuest(WINDURST,CHASING_TALES);
+	elseif(csid == 0x0330) then
+		player:setVar("ClassReunion_TalkedToFurakku",1);
 	end
 	
 end;
