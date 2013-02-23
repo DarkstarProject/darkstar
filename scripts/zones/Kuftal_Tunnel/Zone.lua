@@ -19,7 +19,8 @@ end;
 -- onZoneIn		
 -----------------------------------		
 
-function onZoneIn(player,prevZone)		
+function onZoneIn(player,prevZone)
+	GetNPCByID(17490274):startElevator(26);
 	cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(20.37,-21.104,275.782,46);
