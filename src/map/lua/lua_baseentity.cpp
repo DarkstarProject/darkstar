@@ -3479,8 +3479,9 @@ inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
         (n >= 6 ? (uint16)lua_tointeger(L,6) : 0),
         (n >= 7 ? (uint16)lua_tointeger(L,7) : 0));
 
-    ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
-	return 0;
+    lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect));
+
+	return 1;
 }
 
 /************************************************************************
@@ -3512,8 +3513,8 @@ inline int32 CLuaBaseEntity::addStatusEffectEx(lua_State *L)
         (n >= 7 ? (uint16)lua_tointeger(L,7) : 0),
         (n >= 8 ? (uint16)lua_tointeger(L,8) : 0));
 
-    ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
-	return 0;
+    lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect));
+	return 1;
 }
 
 /************************************************************************

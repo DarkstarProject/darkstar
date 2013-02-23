@@ -10,12 +10,15 @@ require("scripts/globals/status");
 
 function onSpellCast(caster,target,spell)
     duration = 60;
+  local typeEffect = EFFECT_DREAD_SPIKES;
     if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
-   target:delStatusEffect(EFFECT_BLAZE_SPIKES);
-   target:delStatusEffect(EFFECT_ICE_SPIKES);
-   target:delStatusEffect(EFFECT_SHOCK_SPIKES);
-   target:delStatusEffect(EFFECT_DREAD_SPIKES);
-   target:addStatusEffect(EFFECT_DREAD_SPIKES,0,0,duration);
+   if(target:addStatusEffect(typeEffect,power,0,duration)) then
+     spell:setMsg(230);
+   else
+     spell:setMsg(75);
+   end
+
+   return typeEffect;
 end;

@@ -23,12 +23,7 @@ function onSpellCast(caster,target,spell)
 		duration = duration * 3;
 	end
 
-	if(target:hasStatusEffect(EFFECT_BARPETRIFY) == true) then
-		effect = target:getStatusEffect(EFFECT_BARPETRIFY);
-		effect:setPower(power);
-		effect:setDuration(duration * 1000);
+	target:addStatusEffect(EFFECT_BARPETRIFY,power,0,duration,0,1);
 
-        else
-		target:addStatusEffect(EFFECT_BARPETRIFY,power,0,duration,0,1);
-	end
+    return EFFECT_BARPETRIFY;
 end;

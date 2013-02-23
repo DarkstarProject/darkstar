@@ -54,7 +54,7 @@ Regime ID   ª	Area   «	Listing   «
 38 	Meriphataud Mountains 	Beetles/Lizards
 39 	Meriphataud Mountains 	Raptors/Beetles
 40 	Sauromugue Champaign 	Lizards/Beetles
-41 	Qufim Island 	Clippers/Worms 
+41 	Qufim Island 	Clippers/Worms
 42 	Qufim Island 	Clippers/Seeker Bats
 43 	Qufim Island 	Pugils/Clippers
 44 	Qufim Island 	Gigas/Pugils
@@ -385,13 +385,13 @@ elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
         --values taken from Shell scripts by Tenjou.
         local def = 0;
         if (player:getMainLvl()<37) then --before shell 2, give shell 1
-            def=-24;
+            def=24;
         elseif (player:getMainLvl()<57) then --after s2, before s3
-            def=-36;
+            def=36;
         elseif (player:getMainLvl()<68) then --after s3, before s4
-            def=-48;
+            def=48;
         else --after s4
-            def=-56;
+            def=56;
         end
         --Add shell
         player:addStatusEffect(EFFECT_SHELL,def,0,1800);
@@ -413,7 +413,7 @@ elseif (option==FOV_MENU_HOME_NATION) then --Return to home nation.
         player:setVar("tabs",tabs-50);
         toHomeNation(player);
     end
-elseif(option==149) then --chose Hard Cookie, INT +4, MP +30 for 30 minutes 
+elseif(option==149) then --chose Hard Cookie, INT +4, MP +30 for 30 minutes
 --effect = player:getStatusEffect(EFFECT_FOOD);
 --end
 elseif(option==FOV_MENU_CANCEL_REGIME) then --Cancelled Regime.
@@ -516,19 +516,19 @@ function checkRegime(killer,mob,rid,index)
             --get the number of mobs needed/killed
             local needed = killer:getVar("fov_numneeded"..index);
             local killed = killer:getVar("fov_numkilled"..index);
-            
+
 			if(killed < needed) then --increment killed number and save.
 				killed = killed+1;
 				killer:messageBasic(FOV_MSG_KILLED_TARGET,killed,needed);
                 killer:setVar("fov_numkilled"..index,killed);
-                
+
                 if(killed == needed) then
                     local fov_info = getRegimeInfo(rid);
-                    local k1 = killer:getVar("fov_numkilled1"); 
-                    local k2 = killer:getVar("fov_numkilled2"); 
-                    local k3 = killer:getVar("fov_numkilled3"); 
+                    local k1 = killer:getVar("fov_numkilled1");
+                    local k2 = killer:getVar("fov_numkilled2");
+                    local k3 = killer:getVar("fov_numkilled3");
                     local k4 = killer:getVar("fov_numkilled4");
-                    
+
                     if(k1==fov_info.n1 and k2==fov_info.n2 and k3==fov_info.n3 and k4==fov_info.n4) then
                         --complete regime
                         killer:messageBasic(FOV_MSG_COMPLETED_REGIME);
@@ -571,7 +571,7 @@ end
 --This has been done for efficiency, please do not remove.
 
 function getRegimeReward(regimeid)
-if (regimeid<=50) then 
+if (regimeid<=50) then
 	if(regimeid<=10) then
 		if (regimeid==1) then
 			return 270;
@@ -1052,7 +1052,7 @@ end
 -------------------
 function getRegimeInfo(regimeid)
 a = {};
-if (regimeid<=50) then 
+if (regimeid<=50) then
 	if(regimeid<=10) then
 		if (regimeid==1) then
 			a.n1=6;

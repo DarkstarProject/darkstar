@@ -36,8 +36,11 @@ function onSpellCast(caster,target,spell)
             duration = duration * 1.2;
         end
 
-        spell:setMsg(237);
-        target:addStatusEffect(EFFECT_LULLABY,1,0,duration);
+        if(target:addStatusEffect(EFFECT_LULLABY,1,0,duration)) then
+            spell:setMsg(237);
+        else
+            spell:setMsg(75);
+        end
     end
 
     return EFFECT_LULLABY;

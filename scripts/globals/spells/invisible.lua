@@ -13,13 +13,13 @@ require("scripts/globals/status");
 
 function onSpellCast(caster,target,spell)
 	if (target:hasStatusEffect(EFFECT_INVISIBLE) == false) then
-		
+
 		local duration = math.random(30, 300);
 
 		if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 			duration = duration * 3;
 		end
-		
+
 		if (target:getMainLvl() < 20) then
 			duration = duration * target:getMainLvl() / 20; -- level adjustment
 		end
@@ -32,4 +32,6 @@ function onSpellCast(caster,target,spell)
 	else
 		spell:setMsg(75); -- no effect.
 	end
+
+	return EFFECT_INVISIBLE;
 end;

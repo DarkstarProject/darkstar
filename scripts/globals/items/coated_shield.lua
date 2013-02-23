@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 15838
--- Item: Protect Earring
--- Item Effect: Protect
+-- Item: Coated Shield
+-- Item Effect: Shell
 -----------------------------------------
 
 require("scripts/globals/settings");
@@ -20,14 +20,11 @@ end;
 
 function onItemUse(target)
 
-    local effect = target:getStatusEffect(EFFECT_SHELL);
-    local power = -24;
+    local power = 24;
 
-    if(effect ~= nil and effect:getPower() > power) then
-        target:messageBasic(423);
+    if(target:addStatusEffect(EFFECT_SHELL, power, 0, 1800)) then
+        target:messageBasic(205);
     else
-        -- add effect
-        target:delStatusEffect(EFFECT_SHELL);
-        target:addStatusEffect(EFFECT_SHELL, power, 0, 1800);
+        target:messageBasic(423); -- no effect
     end
 end;

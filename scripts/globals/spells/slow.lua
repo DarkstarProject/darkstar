@@ -27,56 +27,18 @@ function onSpellCast(caster,target,spell)
 	duration = 120 * applyResistance(caster,spell,target,dMND,35,bonus);
 	if(100 * math.random() >= target:getMod(MOD_SLOWRES)) then
 		if(duration >= 60) then --Do it!
-			--Try to erase a weaker slow or haste.
-			slow = target:getStatusEffect(EFFECT_SLOW);
-			haste = target:getStatusEffect(EFFECT_HASTE);
-			if(slow ~= nil) then
-				if(slow:getPower() > power) then
-					target:delStatusEffect(EFFECT_SLOW);
-					target:addStatusEffect(EFFECT_SLOW,power,0,duration);
---					if(spell:isAOE() == false) then
-						spell:setMsg(237);
---					else
---						spell:setMsg(267);
---					end
-				else
-					spell:setMsg(75);
-				end
-			elseif(haste ~= nil) then
-				if(haste:getPower() < (-1 * power)) then
-					target:delStatusEffect(EFFECT_HASTE);
-					target:addStatusEffect(EFFECT_SLOW,power,0,duration);
---					if(spell:isAOE() == false) then
-						spell:setMsg(237);
---					else
---						spell:setMsg(267);
---					end
-				else
-					spell:setMsg(75);
-				end
+
+			if(target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then
+				spell:setMsg(237);
 			else
-				target:addStatusEffect(EFFECT_SLOW,power,0,duration);
---				if(spell:isAOE() == false) then
-					spell:setMsg(237);
---				else
---					spell:setMsg(267);
---				end
+				spell:setMsg(75);
 			end
-			--print(power);
-			--print(target:getMod(MOD_HASTE_MAGIC));
+
 		else
---			if(spell:isAOE() == false) then
-				spell:setMsg(85);
---			else
---				spell:setMsg(284);
---			end
+			spell:setMsg(85);
 		end
 	else
---		if(spell:isAOE() == false) then
-			spell:setMsg(85);
---		else
---			spell:setMsg(284);
---		end
+		spell:setMsg(85);
 	end
 
 	return EFFECT_SLOW;

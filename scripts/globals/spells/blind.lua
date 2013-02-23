@@ -29,41 +29,15 @@ function onSpellCast(caster,target,spell)
 
 	if(100 * math.random() >= target:getMod(MOD_BLINDRES)) then
 		if(duration >= 90) then --Do it!
-			-- Try to erase a weaker blind.
-			blind = target:getStatusEffect(EFFECT_BLINDNESS)
-			if(blind ~= nil) then
-				if(blind:getPower() < power) then
-					target:delStatusEffect(EFFECT_BLINDNESS);
-					target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration);
---					if(spell:isAOE() == false) then
---						spell:setMsg(237);
---					else
-						spell:setMsg(267);
---					end
-				else
-					spell:setMsg(75);
-				end
-			else
-				target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration);
---				if(spell:isAOE() == false) then
---					spell:setMsg(237);
---				else
-					spell:setMsg(267);
---				end
+
+			if(target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
+						spell:setMsg(237);
+					else
+
+						spell:setMsg(75);
 			end
-		else
---			if(spell:isAOE() == false) then
---				spell:setMsg(85);
---			else
-				spell:setMsg(284);
---			end
-		end
 	else
---		if(spell:isAOE() == false) then
---			spell:setMsg(85);
---		else
-			spell:setMsg(284);
---		end
+		spell:setMsg(284);
 	end
 	return EFFECT_BLINDNESS;
 end;

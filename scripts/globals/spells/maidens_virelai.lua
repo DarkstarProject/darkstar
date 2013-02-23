@@ -13,4 +13,5 @@ function onSpellCast(caster,target,spell)
 
     spell:setMsg(137);
 
+    return EFFECT_CHARM;
 end;

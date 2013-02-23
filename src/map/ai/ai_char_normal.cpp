@@ -370,7 +370,7 @@ void CAICharNormal::ActionFall()
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
-	
+
 	//influence for conquest system
 	conquest::LoseInfluencePoints(m_PChar);
 
@@ -1410,7 +1410,7 @@ void CAICharNormal::ActionMagicFinish()
 	{
         CBattleEntity* PTarget = m_PChar->m_ActionList.at(i).ActionTarget;
 
-        if (m_PSpell->getValidTarget() & TARGET_ENEMY && !(m_PSpell->getValidTarget() & TARGET_SELF)) {
+        if (m_PSpell->canTargetEnemy()) {
             // wipe shadows if needed
             if (m_PSpell->isAOE()) {
                 PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
@@ -1427,7 +1427,7 @@ void CAICharNormal::ActionMagicFinish()
         m_PChar->m_ActionList.at(i).param = luautils::OnSpellCast(m_PChar, PTarget);
         m_PChar->m_ActionList.at(i).messageID = m_PSpell->getMessage();
 
-		if(m_PChar->m_ActionList.at(i).param>0){ //damage spell which dealt damage, TODO: use a better identifier!
+		if(m_PChar->m_ActionList.at(i).param>0 && m_PSpell->canTargetEnemy()){ //damage spell which dealt damage, TODO: use a better identifier!
 			if(m_PSpell->getMessage()==2 || m_PSpell->getMessage()==227){//damage or drain hp
 				PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 			}
@@ -1444,12 +1444,9 @@ void CAICharNormal::ActionMagicFinish()
             }
 		}
 
-		if(i>0 && m_PSpell->getMessage() == 2){ //if its a damage spell msg and is hitting the 2nd+ target
-			m_PChar->m_ActionList.at(i).messageID = 264; //change the id to "xxx takes ### damage." only
-		}
-		if(i>0 && m_PSpell->getMessage() == 237){ //if its a damage spell msg and is hitting the 2nd+ target
-			m_PChar->m_ActionList.at(i).messageID = 278; //change the id to "xxx receives the effect of xxx." only
-		}
+        if(i > 0){
+            m_PChar->m_ActionList.at(i).messageID = m_PSpell->getAoEMessage();
+        }
 
         if (PTarget->objtype == TYPE_MOB)
         {

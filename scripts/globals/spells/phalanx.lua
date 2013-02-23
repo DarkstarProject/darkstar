@@ -32,18 +32,10 @@ function onSpellCast(caster,target,spell)
 		final = 35;
 	end
 
-	if(target:hasStatusEffect(EFFECT_PHALANX)) then
-		oldeffect = target:getStatusEffect(EFFECT_PHALANX);
-		if(oldeffect:getPower()<=final) then --overwrite
-			target:delStatusEffect(EFFECT_PHALANX);
-			target:addStatusEffect(EFFECT_PHALANX,final,0,180);
-			spell:setMsg(0);
-		else --no effect
-			spell:setMsg(75);
-		end
+	if(target:addStatusEffect(EFFECT_PHALANX,final,0,duration)) then
+		spell:setMsg(230);
 	else
-		target:addStatusEffect(EFFECT_PHALANX,final,0,duration);
-		spell:setMsg(0);
+		spell:setMsg(75);
 	end
 
 	return EFFECT_PHALANX;

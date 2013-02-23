@@ -48,7 +48,6 @@ function onSpellCast(caster,target,spell)
 
 	-- Do it!
 	if(BIO_OVERWRITE == 0 or (BIO_OVERWRITE == 1 and dia == nil)) then
-		target:delStatusEffect(EFFECT_BIO); -- delete old bio
 		target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE);
 	end
 

@@ -23,12 +23,7 @@ function onSpellCast(caster,target,spell)
         duration = duration * 3;
     end
 
-    if(target:hasStatusEffect(EFFECT_BARSLEEP) == true) then
-        effect = target:getStatusEffect(EFFECT_BARSLEEP);
-        effect:setPower(power);
-        effect:setDuration(duration * 1000);
 
-        else
-        target:addStatusEffect(EFFECT_BARSLEEP,power,0,duration,0,1);
-    end
+    target:addStatusEffect(EFFECT_BARSLEEP,power,0,duration,0,1);
+    return EFFECT_BARSLEEP;
 end;

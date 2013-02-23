@@ -63,6 +63,7 @@ public:
     uint8       getSkillType();
     uint16      getZoneMisc();
 	bool		isAOE();
+    bool        canTargetEnemy();
 	uint16		getBase();
 	uint16		getElement();
 	float		getMultiplier();
@@ -73,6 +74,7 @@ public:
 	uint16		getVE();
 	uint16		getModifiedRecast();
 	uint16		getMonsterSkillId();
+    uint16      getAoEMessage(); // returns the shorter message for AoE moves
 
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);

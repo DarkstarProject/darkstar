@@ -31,6 +31,15 @@
 
 #include "modifier.h"
 
+enum EFFECTOVERWRITE
+{
+	EFFECTOVERWRITE_EQUAL_HIGHER = 0, // only overwrite if equal or higher
+	EFFECTOVERWRITE_HIGHER = 1, // only overwrite if higher
+	EFFECTOVERWRITE_NEVER = 2, // never overwrite
+	EFFECTOVERWRITE_ALWAYS = 3, // always overwrite no matter
+	EFFECTOVERWRITE_IGNORE = 4 // ignore dupes
+};
+
 enum EFFECTFLAG
 {
     EFFECTFLAG_NONE             = 0x0000,
@@ -544,6 +553,7 @@ public:
     uint16  GetSubPower();
     uint16  GetTier();
 	uint16	GetFlag();
+	uint16	GetType();
 
 	uint32	GetTickTime();
 	uint32	GetDuration();
@@ -552,6 +562,7 @@ public:
 	CBattleEntity* GetOwner();
 
     void    SetFlag(uint16 Flag);
+    void    SetType(uint16 Type);
     void    SetIcon(uint16 Icon);
 	void	SetPower(uint16 Power);
     void    SetSubPower(uint16 subPower);
@@ -594,6 +605,7 @@ private:
     uint16		m_SubPower;				// Secondary power of the effect
     uint16      m_Tier;                 // Tier of the effect
 	uint16		m_Flag;					// флаг эффекта (условия его исчезновения)
+	uint16		m_Type; // used to enforce only one
 
 	uint32		m_TickTime;				// время повторения эффекта (млс)
 	uint32		m_Duration;				// продолжительность эффекта (млс)

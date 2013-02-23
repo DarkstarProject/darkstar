@@ -14,10 +14,9 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local base = mob:getMainLvl() + 0.05*mob:getMaxHP()*(skill:getTP()/100); --base is around 5~150 level depending
 	skill:setMsg(MSG_BUFF);
-	local typeEffect = EFFECT_PROTECT; --This should actually be Defense Boost. Shell Guard stacks with Protect.
-	mob:delStatusEffect(typeEffect);
+    local base = 100;
+	local typeEffect = EFFECT_DEFENSE_BOOST;
 	mob:addStatusEffect(typeEffect,base,0,180);
 	return typeEffect;
 end

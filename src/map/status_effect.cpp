@@ -30,6 +30,7 @@
 CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint16 subid, uint16 subPower, uint16 tier)
 {
 	m_StatusID = id;
+    m_Type     = 0;
 	m_SubID	   = subid;
     m_Icon     = icon;
 	m_Power	   = power;
@@ -62,7 +63,7 @@ EFFECT CStatusEffect::GetStatusID()
 {
 	return m_StatusID;
 }
- 
+
 CBattleEntity* CStatusEffect::GetOwner()
 {
 	return m_POwner;
@@ -71,6 +72,11 @@ CBattleEntity* CStatusEffect::GetOwner()
 uint16 CStatusEffect::GetSubID()
 {
 	return m_SubID;
+}
+
+uint16 CStatusEffect::GetType()
+{
+    return m_Type;
 }
 
 uint16 CStatusEffect::GetIcon()
@@ -131,6 +137,11 @@ void CStatusEffect::SetIcon(uint16 Icon)
     m_POwner->StatusEffectContainer->UpdateStatusIcons();
 }
 
+void CStatusEffect::SetType(uint16 Type)
+{
+    m_Type = Type;
+}
+
 void CStatusEffect::SetPower(uint16 Power)
 {
 	m_Power = Power;
@@ -175,9 +186,9 @@ void CStatusEffect::SetName(string_t name)
 
 void CStatusEffect::addMod(uint16 modType, int16 amount)
 {
-	for (uint32 i = 0; i < modList.size(); ++i) 
+	for (uint32 i = 0; i < modList.size(); ++i)
 	{
-		if (modList.at(i)->getModID() == modType) 
+		if (modList.at(i)->getModID() == modType)
 		{
 			modList.at(i)->setModAmount(modList.at(i)->getModAmount() + amount);
 			return;

@@ -308,10 +308,10 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	if (PMob->GetMJob() == JOB_BLM || PMob->GetMJob() == JOB_BRD) {
 		PMob->m_MagicRecastTime = 15000;
 	}
-	else if (PMob->GetMJob() == JOB_RDM || PMob->GetMJob() == JOB_BLU) {
+	else if (PMob->GetMJob() == JOB_NIN || PMob->GetMJob() == JOB_BLU) {
 		PMob->m_MagicRecastTime = 25000;
 	}
-	else if (PMob->GetMJob() == JOB_WHM) {
+	else if (PMob->GetMJob() == JOB_WHM || PMob->GetMJob() == JOB_RDM) {
 		PMob->m_MagicRecastTime = 20000;
 	}
 	else {
@@ -544,8 +544,6 @@ void AddWormSpells(CMobEntity* PMob) {
 
 	// Bind
 	if (spell::CanUseSpell(PMob, 258)) {
-		PMob->m_AvailableSpells.push_back(258);
-		PMob->m_AvailableSpells.push_back(258);
 		PMob->m_AvailableSpells.push_back(258);
 	}
 

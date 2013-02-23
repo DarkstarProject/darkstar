@@ -158,6 +158,11 @@ void CSpell::setMPCost(uint16 MP)
 	m_mpCost = MP;
 }
 
+bool CSpell::canTargetEnemy()
+{
+    return getValidTarget() & TARGET_ENEMY && !(getValidTarget() & TARGET_SELF);
+}
+
 bool CSpell::isAOE()
 {
 	return m_isAOE;
@@ -203,6 +208,20 @@ uint16 CSpell::getMessage()
     return m_message;
 }
 
+uint16 CSpell::getAoEMessage()
+{
+    switch(m_message){
+        case 230: //casts gain the effect of
+            return 205; // only gains the effect of
+        case 237: //if its a damage spell msg and is hitting the 2nd+ target
+        return 278;
+        case 2: //if its a damage spell msg and is hitting the 2nd+ target
+            return 264;
+        default:
+            return m_message;
+    }
+}
+
 void CSpell::setMessage(uint16 message)
 {
     m_message = message;
@@ -210,6 +229,10 @@ void CSpell::setMessage(uint16 message)
 
 uint16 CSpell::getDefaultMessage()
 {
+    switch(m_skillType){
+        case 34: //enhancing
+            return 230;
+    }
     return m_DefaultMessage;
 }
 

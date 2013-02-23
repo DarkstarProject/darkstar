@@ -19,6 +19,16 @@
   This file is part of DarkStar-server source code.
 
 ===========================================================================
+
+The StatusEffeectContainer manages status effects on battleentities.
+
+When a status effect is gained twice on a player. It can do one or more of the following:
+
+1 Overwrite if equal or higher (protect)
+2 Overwrite if higher (blind)
+3 Can only have one of type (physical shield, magic shield)
+4 Overwrite if equal or stronger than negative (defense boost, defense down)
+
 */
 
 #include "../common/showmsg.h"
@@ -56,10 +66,25 @@ namespace effects
     *                                                                       *
     ************************************************************************/
 
+    // Default effect of statuses are overwrite if equal or higher
     struct EffectParams_t
     {
         uint16   Flag;
         string_t Name;
+        // type means only one of the ids can be on the target at once
+        // example: en- spells, spikes
+        uint16   Type;
+        // Negative means can only land if the negative effect is weaker
+        // example: haste, slow
+        EFFECT   NegativeId;
+        // only overwrite its self if the new effect is equal or higher / higher than current
+        // example: protect, blind
+        EFFECTOVERWRITE   Overwrite;
+        // This will prevent an other status effect from taking effect
+        // example: lullaby will prevent sleep from taking effect
+        EFFECT   BlockId;
+        // Will always remove the effect when landing
+        EFFECT   RemoveId;
     };
 
     EffectParams_t EffectsParams[MAX_EFFECTID];
@@ -77,7 +102,7 @@ namespace effects
             EffectsParams[i].Flag = 0;
         }
 
-        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags FROM status_effects WHERE id < %u", MAX_EFFECTID);
+        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id FROM status_effects WHERE id < %u", MAX_EFFECTID);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
@@ -87,6 +112,11 @@ namespace effects
 
                 EffectsParams[EffectID].Name = Sql_GetData(SqlHandle,1);
                 EffectsParams[EffectID].Flag = Sql_GetIntData(SqlHandle,2);
+                EffectsParams[EffectID].Type = Sql_GetIntData(SqlHandle,3);
+                EffectsParams[EffectID].NegativeId = (EFFECT)Sql_GetIntData(SqlHandle,4);
+                EffectsParams[EffectID].Overwrite = (EFFECTOVERWRITE)Sql_GetIntData(SqlHandle,5);
+                EffectsParams[EffectID].BlockId = (EFFECT)Sql_GetIntData(SqlHandle,6);
+                EffectsParams[EffectID].RemoveId = (EFFECT)Sql_GetIntData(SqlHandle,7);
             }
         }
     }
@@ -138,6 +168,83 @@ uint8 CStatusEffectContainer::GetEffectsCount(uint16 SubID)
     return count;
 }
 
+bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 power)
+{
+    CStatusEffect* PStatusEffect;
+
+    // check if a status effect blocks this
+    EFFECT blockId = effects::EffectsParams[statusEffect].BlockId;
+    if(blockId > EFFECT_KO && HasStatusEffect(blockId)){
+        return false;
+    }
+
+    // check if negative is strong enough to stop this
+    EFFECT negativeId = effects::EffectsParams[statusEffect].NegativeId;
+    if(negativeId > EFFECT_KO){
+        PStatusEffect = GetStatusEffect(statusEffect);
+        if(PStatusEffect != NULL){
+            // new status effect must be stronger or equal
+            if(power >= PStatusEffect->GetPower()){
+                return true;
+            }
+        }
+    }
+
+
+    PStatusEffect = GetStatusEffect(statusEffect);
+
+    // check overwrite
+    if(PStatusEffect != NULL){
+        uint16 currentPower = PStatusEffect->GetPower();
+        EFFECTOVERWRITE overwrite = effects::EffectsParams[statusEffect].Overwrite;
+
+        if(overwrite == EFFECTOVERWRITE_ALWAYS || overwrite == EFFECTOVERWRITE_IGNORE){
+            return true;
+        }
+
+        if(overwrite == EFFECTOVERWRITE_NEVER){
+            return false;
+        }
+
+        if(overwrite == EFFECTOVERWRITE_EQUAL_HIGHER){
+            if(power >= currentPower){
+                return true;
+            }
+        } else if(overwrite == EFFECTOVERWRITE_HIGHER){
+            // overwrite only if higher
+            if(power > currentPower){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    return true;
+}
+
+void CStatusEffectContainer::OverwriteStatusEffect(CStatusEffect* StatusEffect)
+{
+    uint16 statusEffect = (uint16)StatusEffect->GetStatusID();
+    // remove effect
+    EFFECTOVERWRITE overwrite = effects::EffectsParams[statusEffect].Overwrite;
+    if(overwrite != EFFECTOVERWRITE_IGNORE){
+        DelStatusEffectSilent((EFFECT)statusEffect);
+    }
+
+    // remove effect by id
+    EFFECT removeId = effects::EffectsParams[statusEffect].RemoveId;
+    if(removeId > EFFECT_KO){
+        DelStatusEffectSilent(removeId);
+    }
+
+    // remove negative effect
+    EFFECT negativeId = effects::EffectsParams[statusEffect].NegativeId;
+    if(negativeId > EFFECT_KO){
+        DelStatusEffectSilent(negativeId);
+    }
+}
+
 /************************************************************************
 *																		*
 *  Добавляем статус-эффект в контейнер									*
@@ -145,11 +252,17 @@ uint8 CStatusEffectContainer::GetEffectsCount(uint16 SubID)
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool silent)
+bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool silent)
 {
-	if(PStatusEffect != NULL)
+	if(PStatusEffect != NULL && CanGainStatusEffect(PStatusEffect->GetStatusID(), PStatusEffect->GetPower()))
 	{
-		SetEffectParams(PStatusEffect);
+        // remove effect from overwriteId
+        OverwriteStatusEffect(PStatusEffect);
+
+        SetEffectParams(PStatusEffect);
+
+        // remove effects with same type
+        DelStatusEffectsByType(PStatusEffect->GetType());
 
         PStatusEffect->SetOwner(m_POwner);
 		PStatusEffect->SetStartTime(gettick());
@@ -172,7 +285,9 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
             {
                 UpdateStatusIcons();
 				if (silent == false){
-					PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
+                    // No need to display this.
+                    // should be the job of spells, items etc
+					// PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
 				}
             }
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
@@ -183,7 +298,11 @@ void CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 			}
             PChar->pushPacket(new CCharSyncPacket(PChar));
         }
+
+        return true;
 	}
+
+    return false;
 }
 
 /************************************************************************
@@ -223,7 +342,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
     }
 	else
 	{
-		if (PStatusEffect->GetIcon() != 0 && ((PStatusEffect->GetFlag() & EFFECTFLAG_NO_LOSS_MESSAGE) == 0))
+		if (PStatusEffect->GetIcon() != 0 && ((PStatusEffect->GetFlag() & EFFECTFLAG_NO_LOSS_MESSAGE) == 0) && !m_POwner->isDead())
 		{
 			m_POwner->loc.zone->PushPacket(m_POwner, CHAR_INRANGE, new CMessageBasicPacket(m_POwner, m_POwner, PStatusEffect->GetIcon(), 0, 206));
 		}
@@ -332,6 +451,19 @@ void CStatusEffectContainer::DelStatusEffectsByIcon(uint16 IconID)
 			RemoveStatusEffect(i--);
 		}
 	}
+}
+
+void CStatusEffectContainer::DelStatusEffectsByType(uint16 Type)
+{
+    if(Type <= 0) return;
+
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetType() == Type)
+        {
+            RemoveStatusEffect(i--, true);
+        }
+    }
 }
 
 /************************************************************************
@@ -722,13 +854,14 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     DSP_DEBUG_BREAK_IF(StatusEffect->GetStatusID() == EFFECT_NONE && StatusEffect->GetSubID() == 0);
 
     string_t name;
+    EFFECT effect = StatusEffect->GetStatusID();
 
 	if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000 ||
-		(StatusEffect->GetStatusID()>=EFFECT_REQUIEM && StatusEffect->GetStatusID() <= EFFECT_NOCTURNE) ||
-		(StatusEffect->GetStatusID() == EFFECT_DOUBLE_UP_CHANCE) || StatusEffect->GetStatusID() == EFFECT_BUST)
+		(effect>=EFFECT_REQUIEM && effect <= EFFECT_NOCTURNE) ||
+		(effect == EFFECT_DOUBLE_UP_CHANCE) || effect == EFFECT_BUST)
 	{
 		name.insert(0, "globals/effects/");
-        name.insert(name.size(), effects::EffectsParams[StatusEffect->GetStatusID()].Name);
+        name.insert(name.size(), effects::EffectsParams[effect].Name);
 	} else {
 		CItem* Ptem = itemutils::GetItemPointer(StatusEffect->GetSubID());
 		if (Ptem != NULL)
@@ -738,9 +871,9 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 		}
 	}
     StatusEffect->SetName(name);
-    StatusEffect->SetFlag(effects::EffectsParams[StatusEffect->GetStatusID()].Flag);
+    StatusEffect->SetFlag(effects::EffectsParams[effect].Flag);
+    StatusEffect->SetType(effects::EffectsParams[effect].Type);
 
-    EFFECT effect = StatusEffect->GetStatusID();
 	//todo: find a better place to put this?
 	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
 		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY)

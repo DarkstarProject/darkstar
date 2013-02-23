@@ -1300,14 +1300,8 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 		}
 		break;
 	case 18158:{//Sleep Arrow
-			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
-				!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
-				!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) &&
-				!PDefender->isDead() && PDefender->hasImmunity(1) == false){
-			Action->subeffect = SUBEFFECT_SLEEP;
-			Action->subparam  = EFFECT_SLEEP;
-			Action->submessageID = 160;
-			Action->flag = 3;
+			if(!PDefender->isDead() && PDefender->hasImmunity(1) == false){
+
             int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
 
             if(duration <= 1){
@@ -1318,8 +1312,13 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
             }
 
 			duration = dsp_cap(duration,1,25);
-			PDefender->StatusEffectContainer->AddStatusEffect(
-					new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration));
+			if(PDefender->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration))){
+                Action->subeffect = SUBEFFECT_SLEEP;
+                Action->subparam  = EFFECT_SLEEP;
+                Action->submessageID = 160;
+                Action->flag = 3;
+            }
 			}
 		}
 		break;
@@ -1328,16 +1327,15 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
             if(PDefender->hasImmunity(256) == false){
                 //check water resistance
                 if(rand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
-                //remove old poison
-                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_POISON);
 
-				Action->subeffect = SUBEFFECT_POISON;
-				Action->subparam  = EFFECT_POISON;
-				Action->submessageID = 160;
-				Action->flag = 1;
 				//4hp/tick for 30secs
-				PDefender->StatusEffectContainer->AddStatusEffect(
-					new CStatusEffect(EFFECT_POISON,EFFECT_POISON,4,3,30));
+				if(PDefender->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_POISON,EFFECT_POISON,4,3,30))){
+                    Action->subeffect = SUBEFFECT_POISON;
+                    Action->subparam  = EFFECT_POISON;
+                    Action->submessageID = 160;
+                    Action->flag = 1;
+                }
 			}
 		}
 		break;
@@ -1388,16 +1386,15 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			if(PDefender->hasImmunity(256) == false){
                 //check water resistance
                 if(rand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
-                //remove old poison
-                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_POISON);
 
-				Action->subeffect = SUBEFFECT_POISON;
-				Action->subparam  = EFFECT_POISON;
-				Action->submessageID = 160;
-				Action->flag = 1;
 				//4hp/tick for 30secs
-				PDefender->StatusEffectContainer->AddStatusEffect(
-					new CStatusEffect(EFFECT_POISON,EFFECT_POISON,4,3,30));
+				if(PDefender->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_POISON,EFFECT_POISON,4,3,30))){
+                    Action->subeffect = SUBEFFECT_POISON;
+                    Action->subparam  = EFFECT_POISON;
+                    Action->submessageID = 160;
+                    Action->flag = 1;
+                }
 			}
 		}
 		break;
@@ -1405,27 +1402,20 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			if(PDefender->hasImmunity(64) == false){
                 //check dark resistance
                 if(rand()%100 <= PDefender->getMod(MOD_DARKRES)){return;}
-                //remove old blind
-                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BLINDNESS);
 
-				Action->subeffect = SUBEFFECT_BLIND;
-				Action->subparam  = EFFECT_BLINDNESS;
-				Action->submessageID = 160;
-				Action->flag = 1;
-				PDefender->StatusEffectContainer->AddStatusEffect(
-					new CStatusEffect(EFFECT_BLINDNESS,EFFECT_BLINDNESS,10,0,30));
+                if(PDefender->StatusEffectContainer->AddStatusEffect(
+                    new CStatusEffect(EFFECT_BLINDNESS,EFFECT_BLINDNESS,10,0,30))){
+    				Action->subeffect = SUBEFFECT_BLIND;
+    				Action->subparam  = EFFECT_BLINDNESS;
+    				Action->submessageID = 160;
+    				Action->flag = 1;
+                }
 			}
 		}
 		break;
 	case 18149:{//Sleep Bolt
-			if(!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
-				!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
-				!PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) &&
-				!PDefender->isDead() && PDefender->hasImmunity(1) == false){
-			Action->subeffect = SUBEFFECT_SLEEP;
-			Action->subparam  = EFFECT_SLEEP;
-			Action->submessageID = 160;
-			Action->flag = 3;
+			if(!PDefender->isDead() && PDefender->hasImmunity(1) == false){
+
 			int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
 
             if(duration <= 1){
@@ -1437,8 +1427,14 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
             duration = dsp_cap(duration,1,25);
 
-			PDefender->StatusEffectContainer->AddStatusEffect(
-					new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration));
+			if(PDefender->StatusEffectContainer->AddStatusEffect(
+					new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration))){
+
+                Action->subeffect = SUBEFFECT_SLEEP;
+                Action->subparam  = EFFECT_SLEEP;
+                Action->submessageID = 160;
+                Action->flag = 3;
+            }
 			}
 		}
 		break;
@@ -2078,7 +2074,7 @@ uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 att
 {
     int32 hitrate = 75;
 
-	if (PAttacker->objtype == TYPE_PC && ((PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK)) || 
+	if (PAttacker->objtype == TYPE_PC && ((PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK)) ||
 		(charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))))
     {
 		hitrate = 100; //attack with SA active or TA/Assassin cannot miss
@@ -2125,7 +2121,7 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ig
 			crithitrate = 100;
 		}
 	}
-	else if(PAttacker->GetMJob() == JOB_THF && charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && (!ignoreSneakTrickAttack) &&	
+	else if(PAttacker->GetMJob() == JOB_THF && charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && (!ignoreSneakTrickAttack) &&
 		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
 	{
 		CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(PAttacker,PDefender);
@@ -2338,7 +2334,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 		{
 			num = 2;
 		}
-		
+
 		//check for unique mobs
 		switch (PEntity->id)
 		{
@@ -3183,15 +3179,15 @@ bool HasNotEnoughTpForDance(CBattleEntity* PEntity, CAbility* PAbility, bool tak
  * Find if any party members are in position for trick attack.  Do this by making a narrow triangle:
  *  one endpoint at the mob, and the other two endpoints being equidistant from the TA user, perpendicular to
  *  the line between the mob and the TA user.  Find the slope of the line between the TA user and the mob, and
- *  decide whether to use x or z as the dependent variable (to avoid big numbers and divide by 0 errors on 
- *  vertical slopes).  Using this slope, we can find the angle of the perpendicular line to the x or z line 
+ *  decide whether to use x or z as the dependent variable (to avoid big numbers and divide by 0 errors on
+ *  vertical slopes).  Using this slope, we can find the angle of the perpendicular line to the x or z line
  *  (depending on what the dependent var is), and using that angle, the disassembled x and z components to that
  *  line.  Divide those by 2 for a half yalm length line for each side of the base of the triangle, and we get
- *  the min and max values for x/z around the TA user.  Now it's simply a matter of first: making sure the 
+ *  the min and max values for x/z around the TA user.  Now it's simply a matter of first: making sure the
  *  TA target is closer than the TA user, and that the TA targets x and z coordinates fall within the triangle
  *  we made.  Using the min/max points and the mobs coordinate, we can construct min and max slopes, check that
- *  the x or z coordinates are between the mob and player, and finally calculate where the z coordinate should 
- *  be based on the users x coordinate (or the other way around in a z dependent scenario) and check if the 
+ *  the x or z coordinates are between the mob and player, and finally calculate where the z coordinate should
+ *  be based on the users x coordinate (or the other way around in a z dependent scenario) and check if the
  *  actual z coordinate is between those two values.
  */
 
@@ -3245,20 +3241,20 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
             {
 				for(uint8 i = 0; i < taUser->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
                 {
-					if(taUser->id != taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->id && 
+					if(taUser->id != taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->id &&
 						distance(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p,PMob->loc.p) <= distance(taUser->loc.p,PMob->loc.p))
                     {
 						if(zDependent)
 						{
 							//is member between taUser and PMob on x line?
-							if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x <= taUserX && 
+							if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x <= taUserX &&
 								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x >= mobX) ||
-								(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x >= taUserX && 
-								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x <= mobX)) 
+								(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x >= taUserX &&
+								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x <= mobX))
 							{
-								if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - mobZ <= 
+								if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - mobZ <=
 									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - mobX)*maxSlope) &&
-									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - mobZ >= 
+									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - mobZ >=
 									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - mobX)*minSlope))
 								{
 									//finally found a TA partner
@@ -3267,14 +3263,14 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 							}
 						} else {
 							//is member between taUser and PMob on z line?
-							if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z <= taUserZ && 
+							if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z <= taUserZ &&
 								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z >= mobZ) ||
-								(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z >= taUserZ && 
-								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z <= mobZ)) 
+								(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z >= taUserZ &&
+								taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z <= mobZ))
 							{
-								if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - mobX <= 
+								if((taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - mobX <=
 									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - mobZ)*maxSlope) &&
-									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - mobX >= 
+									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.x - mobX >=
 									(taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i)->loc.p.z - mobZ)*minSlope))
 								{
 									//finally found a TA partner
@@ -3288,20 +3284,20 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 		}else{//no alliance
 			for(uint8 i = 0; i < taUser->PParty->members.size(); ++i)
             {
-				if(taUser->PParty->members.at(i)->id != taUser->id && 
+				if(taUser->PParty->members.at(i)->id != taUser->id &&
 					distance(taUser->PParty->members.at(i)->loc.p,PMob->loc.p) <= distance(taUser->loc.p,PMob->loc.p))
                 {
 					if(zDependent)
 					{
 						//is member between taUser and PMob on x line?
-						if((taUser->PParty->members.at(i)->loc.p.x <= taUserX && 
+						if((taUser->PParty->members.at(i)->loc.p.x <= taUserX &&
 							taUser->PParty->members.at(i)->loc.p.x >= mobX) ||
-							(taUser->PParty->members.at(i)->loc.p.x >= taUserX && 
-							taUser->PParty->members.at(i)->loc.p.x <= mobX)) 
+							(taUser->PParty->members.at(i)->loc.p.x >= taUserX &&
+							taUser->PParty->members.at(i)->loc.p.x <= mobX))
 						{
-							if((taUser->PParty->members.at(i)->loc.p.z - mobZ <= 
+							if((taUser->PParty->members.at(i)->loc.p.z - mobZ <=
 								(taUser->PParty->members.at(i)->loc.p.x - mobX)*maxSlope) &&
-								(taUser->PParty->members.at(i)->loc.p.z - mobZ >= 
+								(taUser->PParty->members.at(i)->loc.p.z - mobZ >=
 								(taUser->PParty->members.at(i)->loc.p.x - mobX)*minSlope))
 							{
 								//finally found a TA partner
@@ -3310,14 +3306,14 @@ CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity*
 						}
 					} else {
 						//is member between taUser and PMob on z line?
-						if((taUser->PParty->members.at(i)->loc.p.z <= taUserZ && 
+						if((taUser->PParty->members.at(i)->loc.p.z <= taUserZ &&
 							taUser->PParty->members.at(i)->loc.p.z >= mobZ) ||
-							(taUser->PParty->members.at(i)->loc.p.z >= taUserZ && 
-							taUser->PParty->members.at(i)->loc.p.z <= mobZ)) 
+							(taUser->PParty->members.at(i)->loc.p.z >= taUserZ &&
+							taUser->PParty->members.at(i)->loc.p.z <= mobZ))
 						{
-							if((taUser->PParty->members.at(i)->loc.p.x - mobX <= 
+							if((taUser->PParty->members.at(i)->loc.p.x - mobX <=
 								(taUser->PParty->members.at(i)->loc.p.z - mobZ)*maxSlope) &&
-								(taUser->PParty->members.at(i)->loc.p.x - mobX >= 
+								(taUser->PParty->members.at(i)->loc.p.x - mobX >=
 								(taUser->PParty->members.at(i)->loc.p.z - mobZ)*minSlope))
 							{
 								//finally found a TA partner

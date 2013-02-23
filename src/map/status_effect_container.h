@@ -46,12 +46,14 @@ public:
 
 	bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
 	bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration);
-	void AddStatusEffect(CStatusEffect* StatusEffect, bool silent = false);
+    bool CanGainStatusEffect(EFFECT statusEffect, uint16 power); // returns true if the status effect will take effect
+	bool AddStatusEffect(CStatusEffect* StatusEffect, bool silent = false);
 	bool DelStatusEffect(EFFECT StatusID);
 	bool DelStatusEffectSilent(EFFECT StatusID);
 	bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
     void DelStatusEffectsByFlag(uint16 flag);                   // удаляем все эффекты с указанным типом
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
+    void DelStatusEffectsByType(uint16 Type);
 	bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);
 	void KillAllStatusEffect();
 
@@ -86,8 +88,11 @@ private:
 
 	CBattleEntity* m_POwner;
 
+    // void ReplaceStatusEffect(EFFECT effect); //this needs to be implemented
 	void RemoveStatusEffect(uint32 id, bool silent = false);	// удаляем эффект по его номеру в контейнере
 	void SetEffectParams(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
+
+    void OverwriteStatusEffect(CStatusEffect* StatusEffect);
 
 	uint32 m_EffectCheckTime;
 	uint32 m_RegenCheckTime;

@@ -406,7 +406,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			bitOffset = packBitsBE(data, Action.submessageID,	bitOffset, 10);		// сообщение
 			bitOffset += 1;
 					// extra off set needed for multi hit enspells ect
-			if (Action.flag == 2){
+			if (Action.flag == 2 && Action.subeffect >= 1 && Action.subeffect <= 6){
 				battleutils::HandleSpikesStatusEffect(PEntity, Action);
 			}
 		}

@@ -10,6 +10,7 @@ require("scripts/globals/status");
 
 function onSpellCast(caster,target,spell)
 	duration = 180;
+  local typeEffect = EFFECT_BLAZE_SPIKES;
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;
 	end
@@ -18,10 +19,11 @@ function onSpellCast(caster,target,spell)
     local magicAtk = caster:getMod(MOD_MATT);
     local power = ((int + 2) / 12 + 4) * (1 + (magicAtk / 100));
 
-   target:delStatusEffect(EFFECT_BLAZE_SPIKES);
-   target:delStatusEffect(EFFECT_ICE_SPIKES);
-   target:delStatusEffect(EFFECT_SHOCK_SPIKES);
-   target:delStatusEffect(EFFECT_DREAD_SPIKES);
+   if(target:addStatusEffect(typeEffect,power,0,duration)) then
+     spell:setMsg(230);
+   else
+     spell:setMsg(75);
+   end
 
-   target:addStatusEffect(EFFECT_BLAZE_SPIKES,power,0,duration);
+   return typeEffect;
 end;

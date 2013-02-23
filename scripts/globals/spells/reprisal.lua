@@ -10,14 +10,10 @@ require("scripts/globals/status");
 
 function onSpellCast(caster,target,spell)
     duration = 60;
+  local typeEffect = EFFECT_REPRISAL;
     if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
-   target:delStatusEffect(EFFECT_BLAZE_SPIKES);
-   target:delStatusEffect(EFFECT_ICE_SPIKES);
-   target:delStatusEffect(EFFECT_SHOCK_SPIKES);
-   target:delStatusEffect(EFFECT_DREAD_SPIKES);
-   target:delStatusEffect(EFFECT_REPRISAL);
 
     local int = caster:getStat(MOD_MND);
     local magicAtk = caster:getMod(MOD_MATT);
@@ -25,5 +21,11 @@ function onSpellCast(caster,target,spell)
     -- totally guessing
     local power = ((int + 10) / 20 + 2) * (1 + (magicAtk / 100));
 
-    target:addStatusEffect(EFFECT_REPRISAL,power,0,duration);
+   if(target:addStatusEffect(typeEffect,power,0,duration)) then
+     spell:setMsg(230);
+   else
+     spell:setMsg(75);
+   end
+
+    return typeEffect;
 end;

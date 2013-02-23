@@ -19,19 +19,12 @@ function OnMobWeaponSkill(target, mob, skill)
     local duration = 300;
 
     local typeEffect = EFFECT_PROTECT;
-    if(mob:hasStatusEffect(typeEffect) == true) then
-        local effect = target:getStatusEffect(typeEffect);
-        local cPower = effect:getPower();
-        if(cPower > power) then
-            spell:setMsg(75); -- no effect
-        else
-            mob:delStatusEffect(typeEffect);
-            mob:addStatusEffect(typeEffect,power,0,duration);
-        end
+
+    if(mob:addStatusEffect(typeEffect, power, 0, duration)) then
+        skill:setMsg(MSG_BUFF);
     else
-        mob:addStatusEffect(typeEffect,power,0,duration);
+        spell:setMsg(MSG_NO_EFFECT); -- no effect
     end
-    skill:setMsg(MSG_BUFF);
 
     return typeEffect;
 end;

@@ -48,10 +48,7 @@ function onSpellCast(caster,target,spell)
         end
 
         -- Try to overwrite weaker elegy
-        if(canOverwrite(target, EFFECT_ELEGY, power)) then
-            -- overwrite them
-            target:delStatusEffect(EFFECT_ELEGY);
-            target:addStatusEffect(EFFECT_ELEGY,power,0,duration);
+        if(target:addStatusEffect(EFFECT_ELEGY,power,0,duration)) then
             spell:setMsg(237);
         else
             spell:setMsg(75); -- no effect

@@ -66,14 +66,14 @@ void Initialize()
 	{
 		g_PGuildList.reserve(Sql_NumRows(SqlHandle));
 
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			g_PGuildList.push_back(new CItemContainer(Sql_GetIntData(SqlHandle,0)));
 		}
 	}
-	for (uint32 i = 0; i < g_PGuildList.size(); ++i)
-	{
-		CItemContainer* PGuild = g_PGuildList.at(i);
+	for (std::vector<CItemContainer*>::iterator iter = g_PGuildList.begin(); iter == g_PGuildList.end(); iter++)
+    {
+		CItemContainer* PGuild = *iter;
 
 		fmtQuery = "SELECT itemid, min_price, max_price, quantity, daily_increase \
 				    FROM guild_shops \
@@ -113,9 +113,9 @@ void Initialize()
 
 void UpdateGuildsStock()
 {
-    for (uint16 i = 0; i < g_PGuildList.size(); ++i)
+    for (std::vector<CItemContainer*>::iterator iter = g_PGuildList.begin(); iter == g_PGuildList.end(); iter++)
 	{
-		CItemContainer* PGuild = g_PGuildList.at(i);
+		CItemContainer* PGuild = *iter;
         for(uint8 slotid = 1; slotid <= PGuild->GetSize(); ++slotid)
         {
             CItemShop* PItem = (CItemShop*)PGuild->GetItem(slotid);

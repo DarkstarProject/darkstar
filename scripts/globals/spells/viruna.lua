@@ -19,4 +19,6 @@ function onSpellCast(caster,target,spell)
 	else
         spell:setMsg(75);
     end
+
+    return 0;
 end;

@@ -10,4 +10,7 @@ require("scripts/globals/status");
 
 function onSpellCast(caster,target,spell)
 	target:sendRaise(3);
+    spell:setMsg(309);
+
+    return 3;
 end;

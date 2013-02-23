@@ -20,14 +20,11 @@ end;
 
 function onItemUse(target)
 
-    local effect = target:getStatusEffect(EFFECT_PROTECT);
     local power = 40;
 
-    if(effect ~= nil and effect:getPower() > power) then
-        target:messageBasic(423);
+    if(target:addStatusEffect(EFFECT_PROTECT, power, 0, 1800)) then
+        target:messageBasic(205);
     else
-        -- add effect
-        target:delStatusEffect(EFFECT_PROTECT);
-        target:addStatusEffect(EFFECT_PROTECT, power, 0, 1800);
+        target:messageBasic(423); -- no effect
     end
 end;

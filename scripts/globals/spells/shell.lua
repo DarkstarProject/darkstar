@@ -9,21 +9,14 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	local power = -24;
+	local power = 24;
 	local duration = 1800;
 
-	local typeEffect = EFFECT_SHELL;
-	if(target:hasStatusEffect(typeEffect) == true) then
-		local effect = target:getStatusEffect(typeEffect);
-		local cPower = effect:getPower() - 65536;
-		if(cPower < power) then
-			spell:setMsg(75); -- no effect
-		else
-			target:delStatusEffect(typeEffect);
-			target:addStatusEffect(typeEffect,power,0,duration);
-		end
+    local typeEffect = EFFECT_SHELL;
+	if(target:addStatusEffect(typeEffect, power, 0, duration)) then
+        spell:setMsg(230);
     else
-		target:addStatusEffect(typeEffect,power,0,duration);
+		spell:setMsg(75); -- no effect
 	end
 
 	return typeEffect;

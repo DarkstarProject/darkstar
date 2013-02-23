@@ -7,6 +7,7 @@
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
+	spell:setMsg(93);
 	Escape(target, target:getZone());
 end;
 
@@ -120,4 +121,5 @@ function Escape(player, zone)
 	elseif(zone == 34 or zone == 35 or zone == 36) then						-- From Grand Palace of HuXzoi or The Garden of RuHmet or Empyreal Paradox
 		player:setPos(0,-8,-490,63,33);										-- To Al'Taieu (H-12)
 	end;
+
 end;

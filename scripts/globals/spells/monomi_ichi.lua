@@ -17,4 +17,6 @@ function onSpellCast(caster,target,spell)
 	else
 		spell:setMsg(75); -- no effect.
 	end
+
+    return EFFECT_SNEAK;
 end;
