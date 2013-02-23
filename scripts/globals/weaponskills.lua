@@ -94,7 +94,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 	
 	local tpHitsLanded = 0;
 	local tpHits = 0;
-	if (firsthit <= hitrate or isSneakValid or isTrickValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then
+	if (firsthit <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then
 		if(params.canCrit or isSneakValid or isAssassinValid) then
 			local double critchance = math.random();
 			if(critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then --crit hit!
