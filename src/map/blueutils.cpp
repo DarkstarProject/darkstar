@@ -52,11 +52,11 @@ void SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addi
 			if (addingSpell) {
 				// Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
 				PChar->m_SetBlueSpells[slotIndex] = PSpell->getID() - 0x200;
-				PChar->addModifiers(&PSpell->modList);
+				//PChar->addModifiers(&PSpell->modList);
 			}
 			else {
 				PChar->m_SetBlueSpells[slotIndex] = 0x00;
-				PChar->delModifiers(&PSpell->modList);
+				//PChar->delModifiers(&PSpell->modList);
 			}
 			PChar->status = STATUS_UPDATE;
 			PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
