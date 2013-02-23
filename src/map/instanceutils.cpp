@@ -115,7 +115,6 @@ namespace instanceutils{
 							if(strcmp(PMob->GetName(),"Maat")==0){
 							//set job based on poppng char job
 							PMob->SetMJob(instance->getPlayerMainJob());
-							PMob->SetMLevel(instance->getPlayerMainLevel());
 
 							//TODO: add spells for job
 
