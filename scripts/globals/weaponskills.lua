@@ -20,8 +20,6 @@ function doPhysicalWeaponskill(attacker, target, params)
 
 	if (attacker:getWeaponSkillType(0) == 1) then
 		weaponDamage = (attacker:getWeaponDmg()-3) + ((attacker:getSkillLevel(1) * 0.11) + 3);
-	else
-		weaponDamage = attacker:getWeaponDmg();
 	end
 	
 	local base = weaponDamage + fstr + 
@@ -39,7 +37,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 	
 	local ignoredDef = 0;
 	if (params.ignoresDef == not nil and params.ignoresDef == true) then
-		ignoredDef = calculatedIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
+		ignoredDef = calculatedIgnoredDef(attacker:getTP(), target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
 	end
 	
 	--get cratio min and max
@@ -116,6 +114,9 @@ function doPhysicalWeaponskill(attacker, target, params)
 			end
 		else
 			finaldmg = dmg * pdif;
+			if(isTrickValid and attacker:getMainJob()==6) then
+				finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * ftp * pdif);
+			end
 		end
 		tpHitsLanded = 1;
 	end
@@ -318,11 +319,11 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
 	
 	if(attacker:isWeaponTwoHanded() == 1) then
 		if (cratio > 2.25 - levelcor) then
-			cratio = 2.25;
+			cratio = 2.25 - levelcor;
 		end
 	else
 		if (cratio > 2 - levelcor) then
-			cratio = 2;
+			cratio = 2 - levelcor;
 		end
 	end
 	
@@ -418,7 +419,7 @@ function cRangedRatio(attacker, defender, params, ignoredDef)
 	cratio = cratio * params.atkmulti;
 	
 	if(cratio > 3 - levelcor) then
-		cratio = 3;
+		cratio = 3 - levelcor;
 	end
 	
 	if(cratio < 0) then
@@ -552,7 +553,7 @@ return alpha;
 	
 	local ignoredDef = 0;
 	if (params.ignoresDef == not nil and params.ignoresDef == true) then
-		ignoredDef = calculatedIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
+		ignoredDef = calculatedIgnoredDef(attacker:getTP(), target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
 	end
 	
 	--get cratio min and max
@@ -582,7 +583,7 @@ return alpha;
 	--First hit has 95% acc always. Second hit + affected by hit rate.
 	local double firsthit = math.random();
 	local finaldmg = 0;
-	local hitrate = 0.95; --first hit only
+	local hitrate = getHitRate(attacker,target,true);
 	if(params.acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
