@@ -33,6 +33,8 @@ function onServerStart()
   -- Timed Spawns
   SetTimedSpawns();
   
+  -- Spawns Silk Caterpillar (temporary until someone implements a way to make it spawn properly)
+  SpawnMob(17227782,300,660);
 end;
 
 -----------------------------------
