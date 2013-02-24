@@ -1,11 +1,9 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 -- NPC:  Endracion
--- @zone 230
--- @pos -110 1 -34
+-- @pos -110 1 -34 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -70,6 +68,14 @@ function onTrigger(player,npc)
 			end
 		elseif(pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
 			player:startEvent(0x03e8); -- Start First Mission "Smash the Orcish scouts"
+		elseif(player:hasKeyItem(ANCIENT_SANDORIAN_BOOK)) then
+	        player:startEvent(0x040b);
+	    elseif(player:getCurrentMission(0,17) and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then
+	        player:startEvent(0x040d);
+		elseif(player:getCurrentMission(0,17) and player:getVar("MissionStatus") == 6) then
+		    player:startEvent(0x040f);
+		elseif(player:getCurrentMission(0,17) and player:getVar("MissionStatus") == 9) then
+		    player:startEvent(0x0409);
 		elseif((CurrentMission ~= 255) and not (player:getVar("MissionStatus") == 8)) then
 			player:startEvent(0x03e9); -- Have mission already activated
 		else
@@ -98,5 +104,17 @@ function onEventFinish(player,csid,option)
 --printf("onFinishOPTION: %u",option);
 	
 	finishMissionTimeline(player,1,csid,option);
+	if(csid == 0x040b) then
+	   player:setVar("MissionStatus",4);
+	   player:delKeyItem(ANCIENT_SANDORIAN_BOOK);
+	   player:setVar("Wait1DayForRanperre_date", os.date("%j"));
+	elseif(csid == 0x040d) then
+	   player:setVar("MissionStatus",6);
+	elseif(csid == 0x040f) then
+	   player:setVar("MissionStatus",7);
+	   player:setVar("Wait1DayForRanperre_date",0);
+	elseif(csid == 0x0409) then
+	   finishMissionTimeline(player,2,csid,option);
+	end
 
 end;

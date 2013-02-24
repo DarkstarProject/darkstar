@@ -39,6 +39,10 @@ function onTrigger(player,npc)
 		player:startEvent(0x022a,0,ROYAL_KNIGHTS_DAVOI_REPORT);
 	elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 1) then
 		player:startEvent(0x0223);
+	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 0) then
+	    player:startEvent(0x0051);
+	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 7) then
+	    player:startEvent(0x0015);
 	else
 		player:startEvent(0x020a);
 	end
@@ -84,6 +88,10 @@ function onEventFinish(player,csid,option)
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA,A_BOY_S_DREAM);
 		end
+	elseif(csid == 0x0051) then
+	    player:setVar("MissionStatus",1);
+	elseif(csid == 0x0015) then
+	    player:setVar("MissionStatus",8);
 	end
 	
 end;

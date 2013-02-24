@@ -33,9 +33,9 @@ APPOINTMENT_TO_JEUNO    = 12; -- ± --
 MAGICITE_SAN_D_ORIA     = 13; -- ± --
 THE_RUINS_OF_FEI_YIN    = 14; -- ± --
 THE_SHADOW_LORD         = 15; -- ± --
-LEAUTE_S_LAST_WISHES    = 16;
-RANPERRE_S_FINAL_REST   = 17;
-PRESTIGE_OF_THE_PAPSQUE = 18;
+LEAUTE_S_LAST_WISHES    = 16; -- ± --
+RANPERRE_S_FINAL_REST   = 17; -- ± --
+PRESTIGE_OF_THE_PAPSQUE = 18; 
 THE_SECRET_WEAPON       = 19;
 COMING_OF_AGE           = 20;
 LIGHTBRINGER            = 21;
@@ -117,7 +117,7 @@ THE_TEMPLE_OF_DESOLATION	= 20; -- ± --
 THE_HALL_OF_THE_GODS		= 22; -- ± --
 THE_MITHRA_AND_THE_CRYSTAL	= 23; -- ± --
 THE_GATE_OF_THE_GODS		= 24; -- ± --
-ARK_ANGELS					= 26;
+ARK_ANGELS					= 26; -- ± --
 THE_SEALED_SHRINE			= 27;
 THE_CELESTIAL_NEXUS			= 28;
 AWAKENING					= 30;
@@ -844,7 +844,9 @@ function finishMissionTimeline(player,guard,csid,option)
 				14,{0,0},	  {0,0},	 {0x0215,0},{0,0},{{10,72},{14,10}}, 											-- MISSION 5-1 (Finish (Halver))
 				14,{0,0},	  {0,0},	 {0x0216,0},{0,0},{{9,73},{5,400},{14,0},{13,10},{12}}, 						-- MISSION 5-1 (Finish (Halver))
 				15,{0,0},	  {0,0},	 {0x0224,0},{0,0},{{11,6},{14,4}}, 												-- MISSION 5-2 (Finish 1st Part (Halver))
-				15,{0,0},	  {0,0},	 {0x003D,0},{0,0},{{14,0},{9,74},{8,20000},{6},{12}} 							-- MISSION 5-2 (Finish 2nd Part (Trion in Great Hall))
+				15,{0,0},	  {0,0},	 {0x003D,0},{0,0},{{14,0},{9,74},{8,20000},{6},{12}}, 							-- MISSION 5-2 (Finish 2nd Part (Trion in Great Hall))
+				16,{0,0},	  {0,0},	 {0x006f,0},{0,0},{{14,0},{9,268},{10,270},{12}}, 							    -- MISSION 6-1 (Finish (Chalvatot))
+				17,{0x040a,0},{0x0409,0},{0,0},{0,0},{{14,0},{11,7},{8,40000},{6},{12}}      							-- MISSION 6-2 (Finish (Guard))
 				--[[0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, 
 				0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, ]]--
 						};
@@ -872,7 +874,8 @@ function finishMissionTimeline(player,guard,csid,option)
 				16,{0x00b6,0},{0,0},{0,0},{0,0},{{14,0},{9,266},{5,650},{12}}, 											-- MISSION 6-1 (Finish (Tall Mountain))
 				17,{0x02fa,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,7},{8,40000},{12}}, 									-- MISSION 6-2 (Finish (Naji))
 				18,{0x02fc,0},{0,0},{0,0},{0,0},{{14,0},{9,289},{5,700},{12}}, 											-- MISSION 7-1 (Finish (Cid))
-				19,{0x0000,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,8},{8,60000},{3,"OptionalCSforOMW",1},{12}} 			-- MISSION 7-2 (Finish (Naji))
+				19,{0x0000,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,8},{8,60000},{3,"OptionalCSforOMW",1},{12}}, 			-- MISSION 7-2 (Finish (Naji))
+				20,{0x0300,0},{0,0},{0,0},{0,0},{{14,0},{5,1133},{12}}                                                  -- MISSION 8-1 (Finish (Iron Eater))
 						};
 		end
 	elseif(nation == WINDURST) then

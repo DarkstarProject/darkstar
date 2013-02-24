@@ -18,13 +18,12 @@ require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-	if(player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(567,1) and trade:getItemCount() == 1) then -- Trade Well Water
+    
+	    if(player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
+		    if(trade:hasItemQty(567,1) and trade:getItemCount() == 1) then -- Trade Well Water
 			player:startEvent(0x0003);
-		end
-	end
-
+		    end
+	    end
 end;
 
 -----------------------------------
@@ -32,7 +31,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc) 
-	
+local currentMission = player:getCurrentMission(SANDORIA);
+	  MissionStatus = player:getVar("MissionStatus");	
 	X = npc:getXPos();
 	Z = npc:getZPos();
 	
@@ -42,6 +42,10 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x0002);
 		end
+	elseif(npc:getID() == 17555927) then
+	    if(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then	
+	        player:startEvent(0x0008);
+	    end
 	end
 	
 end; 
@@ -81,6 +85,10 @@ function onEventFinish(player,csid,option)
 		player:setVar("OfferingWaterOK",1);
 		player:addItem(547);
 		player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
+	elseif(csid == 0x0008) then
+	    player:setVar("MissionStatus",3);
+		player:addKeyItem(ANCIENT_SANDORIAN_BOOK);
+		player:messageSpecial(KEYITEM_OBTAINED,ANCIENT_SANDORIAN_BOOK);
 	end
 	
 end;

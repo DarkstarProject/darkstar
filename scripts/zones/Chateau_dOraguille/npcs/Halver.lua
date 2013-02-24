@@ -39,15 +39,17 @@ function onTrigger(player,npc)
 	local currentMission = player:getCurrentMission(pNation);
 	local MissionStatus = player:getVar("MissionStatus");
 	wildcatSandy_var = player:getVar("wildcatSandy_var");
+	-- Mission San D'Oria 6-1 Leaute's last wishes
+	if(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 0) then
+	    player:startEvent(0x0019);
+	elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 1) then
+	    player:startEvent(0x0017);
+	elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
+	    player:startEvent(0x0018);		
+	elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 3) then
+        player:startEvent(0x0016);
+	end
 	
-	-- TEMP -------------------
-	if(player:getCurrentMission(SANDORIA) == 255 and player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
-		player:addMission(0,14);
-	elseif(pNation == 0 and player:getRank() == 5 and player:getCurrentMission(SANDORIA) == 255 and player:hasCompletedMission(0,14) == false) then
-		player:addMission(0,14);
-		player:setVar("MissionStatus",9);
-	end	
-	---------------------------
 	-- Blackmail quest
 	if(player:getQuestStatus(SANDORIA, BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE)) then
 		player:startEvent(0x0225 );
@@ -79,6 +81,14 @@ function onTrigger(player,npc)
 			player:showText(npc,HALVER_OFFSET+471);
 		elseif(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) and currentMission == 255) then
 			player:showText(npc,HALVER_OFFSET+500);
+	    elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 0) then
+	        player:startEvent(0x0019);
+	    elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 1) then
+	        player:startEvent(0x0017);
+	    elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
+	        player:startEvent(0x0018);		
+	    elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 3) then
+            player:startEvent(0x0016);
 		end
 	elseif(pNation == BASTOK) then
 		if(currentMission == THE_EMISSARY) then
@@ -154,6 +164,11 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",1);
 	elseif(csid == 0x01fb or csid == 0x0224 or csid == 0x0215 or csid == 0x0216) then
 		finishMissionTimeline(player,3,csid,option);
+	elseif(csid == 0x0019) then
+		player:setVar("MissionStatus",1);
+	elseif(csid == 0x0016) then
+		player:setVar("MissionStatus",4);
+		
 	end
 	
 end;

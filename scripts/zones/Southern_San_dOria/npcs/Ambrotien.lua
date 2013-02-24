@@ -1,11 +1,9 @@
 -----------------------------------
 -- Area: Southern San d'Oria
 -- NPC:  Ambrotien
--- @zone 230
--- @pos 93.419 -0.001 -57.347
+-- @pos 93.419 -0.001 -57.347 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -61,20 +59,31 @@ function onTrigger(player,npc)
 		pRank = player:getRank();
 		cs, p, offset = getMissionOffset(player,2,CurrentMission,MissionStatus);
 		
+		
 		if(CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
 			if(cs == 0) then
 				player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
 			else
 				player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
 			end
-		elseif(pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
+		end
+		
+		if(pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
 			player:startEvent(0x07d0); -- Start First Mission "Smash the Orcish scouts"
+		elseif(player:hasKeyItem(ANCIENT_SANDORIAN_BOOK)) then
+	        player:startEvent(0x040c);
+	    elseif(player:getCurrentMission(0,17) and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then
+	        player:startEvent(0x040e);
+		elseif(player:getCurrentMission(0,17) and player:getVar("MissionStatus") == 6) then
+		    player:startEvent(0x0410);
+		elseif(player:getCurrentMission(0,17) and player:getVar("MissionStatus") == 9) then
+		    player:startEvent(0x040a);
 		elseif(CurrentMission ~= 255) then
 			player:startEvent(0x07d1); -- Have mission already activated
 		else
 			mission_mask, repeat_mask = getMissionMask(player);
-			player:startEvent(0x07d9,mission_mask, 0, 0 ,0 ,0 ,repeat_mask); -- Mission List
-		end
+			player:startEvent(0x07d9,mission_mask, 0, 0 ,0 ,0 ,repeat_mask); -- Mission List	
+		end	    
 	end
 	
 end;
@@ -97,5 +106,17 @@ function onEventFinish(player,csid,option)
 --printf("onFinishOPTION: %u",option);
 	
 	finishMissionTimeline(player,2,csid,option);
+	if(csid == 0x040c) then
+	   player:setVar("MissionStatus",4);
+	   player:delKeyItem(ANCIENT_SANDORIAN_BOOK);
+	   player:setVar("Wait1DayForRanperre_date", os.date("%j"));
+	elseif(csid == 0x040e) then
+	   player:setVar("MissionStatus",6);
+	elseif(csid == 0x0410) then
+	   player:setVar("MissionStatus",7);
+	   player:setVar("Wait1DayForRanperre_date",0);
+	elseif(csid == 0x040a) then
+	   finishMissionTimeline(player,1,csid,option);
+	end
 
 end;

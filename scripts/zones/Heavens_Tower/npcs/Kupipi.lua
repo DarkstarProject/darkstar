@@ -6,7 +6,6 @@
 -- @pos 2 0 30 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -106,7 +105,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x0067,0,0,STARWAY_STAIRWAY_BAUBLE);
 		elseif(currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
 			player:startEvent(0x0068);
-		elseif(player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1 ) then
+		elseif(player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
 			player:startEvent(0x0125); -- Kupipi repays your favor
 		else
 			player:startEvent(0x00fb);
@@ -161,19 +160,17 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,STARWAY_STAIRWAY_BAUBLE);
 	elseif(csid == 0x0065) then
 		finishMissionTimeline(player,1,csid,option);
-	
-	elseif(csid ==0x0123) then -- All condition met, grant Portal Charm
+	elseif(csid == 0x0123) then -- All condition met, grant Portal Charm
 		player:tradeComplete();
 		player:addKeyItem(PORTAL_CHARM);
 		player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
-	elseif(csid ==0x0124) then -- Traded rolanberry, but not all conditions met
+	elseif(csid == 0x0124) then -- Traded rolanberry, but not all conditions met
 		player:tradeComplete();
 		player:setVar("OwesPortalCharm",1);
-	elseif(csid ==0x0125) then -- Traded rolanberry before, and all conditions are now met
+	elseif(csid == 0x0125) then -- Traded rolanberry before, and all conditions are now met
 		player:setVar("OwesPortalCharm",0);
 		player:addKeyItem(PORTAL_CHARM);
 		player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
 	end
-	
 	
 end;
