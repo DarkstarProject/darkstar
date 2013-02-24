@@ -2356,6 +2356,9 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 		num +=1;
 	}
 
+	
+	// hasso occasionally triggers Zanshin after landing a normal attack, 
+	// only active while Samurai is set as Main Job
 	if(PEntity->GetMJob() == JOB_SAM)
 	{
 		if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
@@ -2363,6 +2366,8 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 			if(rand()%100 < PEntity->getMod(MOD_ZANSHIN)/4) num++;
 		}
 	}
+
+
 	return dsp_min(num, 8);
 }
 

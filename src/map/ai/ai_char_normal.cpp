@@ -3250,7 +3250,6 @@ void CAICharNormal::ActionAttack()
 							}
 
 
-
 						//trick attack agi bonus for thf main job
 						if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakTrickAttack) &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
 						{
@@ -3303,23 +3302,14 @@ void CAICharNormal::ActionAttack()
 
 					uint8 zanshinChance = 0;
 
-					if (!zanshin && charutils::hasTrait(m_PChar, TRAIT_ZANSHIN))
-					{
-						zanshinChance = (m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar->GetMLevel()));
-					}
+					// Zanshin effects from gear, food or buffs do not require the job trait to be enabled. 
+					if (!zanshin)
+						zanshinChance += m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar->GetMLevel());
 
 					if (!zanshin && rand()%100 < zanshinChance && (( i == 0 && numattacksRightHand == 1 ) || (i == numattacksRightHand && numattacksLeftHand == 1)) )
 					{
 						zanshin = true;
-
-						if (i > numattacksRightHand)
-						{
-							numattacksLeftHand++;
-						}
-						else
-						{
-							numattacksRightHand++;
-						}
+						i > numattacksRightHand ? numattacksLeftHand++ : numattacksRightHand++;
 					}
 					else
 					{
