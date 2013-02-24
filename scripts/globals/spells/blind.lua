@@ -36,6 +36,7 @@ function onSpellCast(caster,target,spell)
 
 						spell:setMsg(75);
 			end
+		end
 	else
 		spell:setMsg(284);
 	end

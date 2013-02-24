@@ -22,10 +22,11 @@ function onSpellCast(caster,target,spell)
 	if(100 * math.random() >= target:getMod(MOD_BINDRES)) then
 		if(resist >= 0.5) then --Do it!
 			--Try to erase a weaker bind.
-		if(target:addStatusEffect(EFFECT_BIND,target:speed(),0,duration)) then
-					spell:setMsg(237);
-				else
-					spell:setMsg(75);
+			if(target:addStatusEffect(EFFECT_BIND,target:speed(),0,duration)) then
+						spell:setMsg(237);
+					else
+						spell:setMsg(75);
+			end
 		end
 	else
 		spell:setMsg(85);
