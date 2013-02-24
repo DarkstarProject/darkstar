@@ -23,7 +23,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     local typeEffect = EFFECT_INT_DOWN;
 
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 10, 0, 120);
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 10, 3, 120);
 
     target:delHP(dmg);
 

@@ -27,10 +27,8 @@ function OnMobWeaponSkill(target, mob, skill)
     local dmg = 0;
 
     if(effect ~= nil) then
-        if(mob:hasStatusEffect(effect:getType()) == false) then
             -- add to myself
             mob:addStatusEffect(effect:getType(), effect:getPower(), effect:getTickCount(), effect:getDuration());
-        end
         -- add buff to myself
         skill:setMsg(MSG_EFFECT_DRAINED);
 

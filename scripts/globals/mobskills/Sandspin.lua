@@ -18,12 +18,8 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_ACCURACY_DOWN;
-	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_EARTH);
-	if(resist > 0.2) then
-		target:delStatusEffect(typeEffect);
-		target:addStatusEffect(typeEffect,50,0,120*resist);--power=50;tic=0;duration=120;
-	end
+
+	MobStatusEffectMove(mob, target, typeEffect, 50, 0, 120);
 
 	local dmgmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,ELE_EARTH,dmgmod,TP_MAB_BONUS,1);

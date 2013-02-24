@@ -16,6 +16,6 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_STR_DOWN;
 
-    skill:setMsg(MobGazeMove(mob, target, typeEffect, 33, 0, 120));
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 33, 3, 120));
     return typeEffect;
 end;

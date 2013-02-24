@@ -15,13 +15,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_WEIGHT;
-	if(target:hasStatusEffect(typeEffect) == false) then
-		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_EARTH);
-		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,50,0,90*resist); -- Not sure if it works correctly
-		end
-	end
+    MobStatusEffectMove(mob, target, typeEffect, 50, 0, 120);
 
 
 	local dmgmod = MobBreathMove(mob, target, 0.167, 1.875, ELE_EARTH);

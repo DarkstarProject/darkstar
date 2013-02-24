@@ -19,39 +19,18 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local power = 1;
-	local tic = 0;
 	local duration = 120;
 
-	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_LIGHT);
-	if(resist > 0.2) then
-		if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-			target:addStatusEffect(EFFECT_PARALYSIS,40,tic,duration);
-		end
-		if(target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
-			target:addStatusEffect(EFFECT_BLINDNESS,40,tic,duration);
-		end
-		if(target:hasStatusEffect(EFFECT_POISON) == false) then
-			target:addStatusEffect(EFFECT_POISON,power,10,duration);
-		end
-		if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
-			target:addStatusEffect(EFFECT_PLAGUE,10,tic,duration);
-		end
-		if(target:hasStatusEffect(EFFECT_BIND) == false) then
-			target:addStatusEffect(EFFECT_BIND,power,tic,duration);
-		end
-		if(target:hasStatusEffect(EFFECT_SILENCE) == false) then
-			target:addStatusEffect(EFFECT_SILENCE,power,tic,duration);
-		end
-		if(target:hasStatusEffect(EFFECT_SLOW) == false) then
-            target:delStatusEffect(EFFECT_HASTE);
-			target:addStatusEffect(EFFECT_SLOW,400,tic,duration);
-		end
-	end
+	MobStatusEffectMove(mob, target, EFFECT_PARALYSIS, 40, 3, duration);
+	MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 40, 3, duration);
+	MobStatusEffectMove(mob, target, EFFECT_POISON, 10, 3, duration);
+	MobStatusEffectMove(mob, target, EFFECT_PLAGUE, 5, 3, duration);
+	MobStatusEffectMove(mob, target, EFFECT_BIND, 1, 0, duration);
+	MobStatusEffectMove(mob, target, EFFECT_SILENCE, 1, 0, duration);
+	MobStatusEffectMove(mob, target, EFFECT_SLOW, 400, 0, duration);
 
-	local dmgmod = 2.5;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_FIRE,dmgmod,TP_NO_EFFECT);
+	local dmgmod = 1;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*7,ELE_FIRE,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;

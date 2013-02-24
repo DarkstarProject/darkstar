@@ -28,17 +28,13 @@ function OnMobWeaponSkill(target, mob, skill)
 
         local count = 1;
 
-        if(mob:hasStatusEffect(effectFirst:getType()) == false) then
             -- add to myself
-            mob:addStatusEffect(effectFirst:getType(), effectFirst:getPower(), effectFirst:getTickCount(), effectFirst:getDuration());
-        end
+        mob:addStatusEffect(effectFirst:getType(), effectFirst:getPower(), effectFirst:getTickCount(), effectFirst:getDuration());
 
         if(effectSecond ~= nil) then
             count = count + 1;
-            if(mob:hasStatusEffect(effectSecond:getType()) == false) then
                 -- add to myself
-                mob:addStatusEffect(effectSecond:getType(), effectSecond:getPower(), effectSecond:getTickCount(), effectSecond:getDuration());
-            end
+            mob:addStatusEffect(effectSecond:getType(), effectSecond:getPower(), effectSecond:getTickCount(), effectSecond:getDuration());
 
         end
 

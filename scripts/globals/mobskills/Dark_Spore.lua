@@ -17,13 +17,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_BLINDNESS;
-    if(target:hasStatusEffect(typeEffect) == false) then
-        local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_DARK);
-        if(resist > 0.1) then
-            target:addStatusEffect(typeEffect,15,0,120*resist);--tic=3;duration=30;
-        end
-    end
+    MobStatusEffectMove(mob, target, typeEffect, 15, 3, 120);
 
     local dmgmod = MobBreathMove(mob, target, 0.25, 3, ELE_DARK, 600);
 

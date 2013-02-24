@@ -16,7 +16,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_STR_DOWN;
 
-	MobStatusEffectMove(mob, target, typeEffect, 10, 0, 120);
+	MobStatusEffectMove(mob, target, typeEffect, 10, 3, 120);
 
     local dmgmod = MobBreathMove(mob, target, 0.04, 5, ELE_WATER, 200);
 

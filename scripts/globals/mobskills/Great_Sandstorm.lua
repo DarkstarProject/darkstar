@@ -18,13 +18,8 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_BLINDNESS;
-	if(target:hasStatusEffect(typeEffect) == false) then
-		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_EARTH);
-		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,15,0,120*resist);--tic=0;duration=60;
-		end
-	end
+
+	MobStatusEffectMove(mob, target, typeEffect, 15, 0, 120);
 
 	local dmgmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,ELE_EARTH,dmgmod,TP_NO_EFFECT);

@@ -20,17 +20,10 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_BURN;
-	if(target:hasStatusEffect(typeEffect) == false) then
-		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_FIRE);
-		if(resist > 0.2) then
-			if(resist >= 1) then  -- Added just incase resist number retuns a value higher then .9.
-				resist = .9;
-			end
-			local power = ((resist * 10) - 5) * math.random(1,2) + 19; -- makes dot damage between 20 - 28, based off resistance and random variable.
-			target:addStatusEffect(typeEffect,power,3,60*resist);--tic=3;duration=60;
-		end
-	end
+	local power = ((resist * 10) - 5) * math.random(1,2) + 19; -- makes dot damage between 20 - 28, based off resistance and random variable.
+
+
+	MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
 
 	local dmgmod = 1.5;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,ELE_FIRE,dmgmod,TP_NO_EFFECT);

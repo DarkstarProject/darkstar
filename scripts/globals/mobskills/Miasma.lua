@@ -21,23 +21,13 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local duration = 180;
 
-	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WATER);
-	if(resist > 0.2) then
-		if(target:hasStatusEffect(EFFECT_POISON) == false) then
-			target:addStatusEffect(EFFECT_POISON,1,10,duration);
-		end
-		if(target:hasStatusEffect(EFFECT_SLOW) == false) then
-            target:delStatusEffect(EFFECT_HASTE);
-			target:addStatusEffect(EFFECT_SLOW,200,0,duration);
-		end
-		if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
-			target:addStatusEffect(EFFECT_PLAGUE,5,0,45);
-		end
-	end
+
+	MobStatusEffectMove(mob, target, EFFECT_POISON, mob:getMainLvl()/3, 3, 60);
+	MobStatusEffectMove(mob, target, EFFECT_SLOW, 200, 3, 60);
+	MobStatusEffectMove(mob, target, EFFECT_PLAGUE, 5, 3, 60);
 
 	local dmgmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_EARTH,dmgmod,TP_NO_EFFECT);
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,ELE_EARTH,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;

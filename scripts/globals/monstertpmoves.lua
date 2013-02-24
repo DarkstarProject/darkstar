@@ -760,7 +760,7 @@ end;
 -- used to stop tp move status effects
 function MobPhysicalHit(skill, dmg, target, hits)
 	-- if message is not the default. Then there was a miss, shadow taken etc
-	return skill:getMsg() == MSG_DAMAGE;
+	return skill:getMsg() == MSG_DAMAGE or skill:getMsg() == MSG_DRAIN_HP;
 end;
 
 -- function MobHit()
