@@ -387,25 +387,25 @@ INSERT INTO `mob_skill` VALUES (184,139,184,'Catharsis', 0, 7.0, 2000, 1000, 1, 
 INSERT INTO `mob_skill` VALUES (183,139,183,'Petro_Gaze', 4, 7.0, 2000, 1500, 4, 0);
 
 -- Crab
--- INSERT INTO `mob_skill` VALUES (188,75,188,'Big_Scissors', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (187,75,187,'Bubble_Curtain', 0, 7.0, 2000, 1000, 1, 0); -- Shell -50% magic damage taken
--- INSERT INTO `mob_skill` VALUES (186,75,186,'Bubble_Shower', 1, 12.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (188,75,188,'Big_Scissors', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (187,75,187,'Bubble_Curtain', 0, 7.0, 2000, 1000, 1, 0); -- Shell -50% magic damage taken
+INSERT INTO `mob_skill` VALUES (186,75,186,'Bubble_Shower', 1, 12.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (192,75,192,'Metallic_Body', 0, 7.0, 2000, 1000, 1, 0); -- 25HP Stoneskin
--- INSERT INTO `mob_skill` VALUES (189,75,189,'Scissor_Guard', 0, 7.0, 2000, 1000, 1, 0); -- +100% defense boost
+INSERT INTO `mob_skill` VALUES (189,75,189,'Scissor_Guard', 0, 7.0, 2000, 1000, 1, 0); -- +100% defense boost
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Mega_Scissors', 4, 10.0, 2000, 1000, 4, 0); -- Only used by certain NM
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Venom_Shower', 1, 20.0, 2000, 1000, 4, 0); -- Only used by certain NM
 
--- INSERT INTO `mob_skill` VALUES (188,76,188,'Big_Scissors', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (187,76,187,'Bubble_Curtain', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (186,76,186,'Bubble_Shower', 1, 14.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (188,76,188,'Big_Scissors', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (187,76,187,'Bubble_Curtain', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (186,76,186,'Bubble_Shower', 1, 14.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (192,76,192,'Metallic_Body', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (189,76,189,'Scissor_Guard', 0, 7.0, 2000, 1000, 1, 0); -- +100% defense boost
+INSERT INTO `mob_skill` VALUES (189,76,189,'Scissor_Guard', 0, 7.0, 2000, 1000, 1, 0); -- +100% defense boost
 
--- INSERT INTO `mob_skill` VALUES (188,77,188,'Big_Scissors', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (187,77,187,'Bubble_Curtain', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (186,77,186,'Bubble_Shower', 1, 14.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (188,77,188,'Big_Scissors', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (187,77,187,'Bubble_Curtain', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (186,77,186,'Bubble_Shower', 1, 14.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (192,77,192,'Metallic_Body', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (189,77,189,'Scissor_Guard', 0, 7.0, 2000, 1000, 1, 0); -- +100% defense boost
+INSERT INTO `mob_skill` VALUES (189,77,189,'Scissor_Guard', 0, 7.0, 2000, 1000, 1, 0); -- +100% defense boost
 
 -- Shadow
 INSERT INTO `mob_skill` VALUES (190,221,190,'Dimensional_Death', 0, 7.0, 2000, 0, 4, 1);
