@@ -224,7 +224,7 @@ INSERT INTO `mob_skill` VALUES (286,181,841,'Empty_Seed', 1, 20.0, 2000, 1000, 4
 INSERT INTO `mob_skill` VALUES (961,256,834,'Empty_Cutter', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (962,256,835,'Vacuous_Osculation', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (963,256,836,'Hexagon_Belt', 0, 7.0, 2000, 1000, 1, 0);
-INSERT INTO `mob_skill` VALUES (964,256,837,'Auroral_Drape', 1, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (964,256,837,'Auroral_Drape', 1, 13.7, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (965,256,838,'Memory_Of_Fire', 1, 10.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (966,256,839,'Memory_Of_Ice', 1, 10.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (967,256,840,'Memory_Of_Wind', 1, 10.0, 2000, 1000, 4, 0);

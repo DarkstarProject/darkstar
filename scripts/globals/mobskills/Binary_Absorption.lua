@@ -22,7 +22,6 @@ function OnMobWeaponSkill(target, mob, skill)
 		shadowEnty = target:getStatusEffect(EFFECT_COPY_IMAGE);
 		local shadowCnt = shadowEnty:getPower();
 		if(shadowCnt == nil) then
-			target:delStatusEffect(absEffect);
 			mob:addStatusEffect(absEffect);
 		else
 			shadowEnty:setPower(shadowCnt - 1);

@@ -14,13 +14,9 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	
-	local base = (mob:getMainLvl() * 2) + 50;
-	skill:setMsg(MSG_BUFF);
-	if(mob:hasStatusEffect(EFFECT_STONESKIN) ~= false) then
-		mob:delStatusEffect(EFFECT_STONESKIN);
-	end
-	mob:addStatusEffect(EFFECT_STONESKIN,base,0,180);
+
+    skill:setMsg(MobBuffMove(target, typeEffect, base, 0, 180));
+
 	return EFFECT_STONESKIN;
-	
+
 end

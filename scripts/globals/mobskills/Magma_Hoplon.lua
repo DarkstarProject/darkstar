@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Magma_Hoplon
--- Covers the user in fiery spikes and absorbs damage. Enemies that hit it take fire damage. 
+-- Covers the user in fiery spikes and absorbs damage. Enemies that hit it take fire damage.
 --
 ---------------------------------------------
 
@@ -16,10 +16,8 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	skill:setMsg(MSG_BUFF);
 	local typeEffect = EFFECT_BLAZE_SPIKES;
-	mob:delStatusEffect(typeEffect);
-	local randy = math.random(40,60);
-	mob:addStatusEffect(typeEffect,randy,0,180);
+    skill:setMsg(MobBuffMove(target, typeEffect, randy, 0, 180));
+
 	return typeEffect;
 end;

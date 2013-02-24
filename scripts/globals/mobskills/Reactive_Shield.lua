@@ -23,13 +23,6 @@ function OnMobWeaponSkill(target, mob, skill)
     local power = 20;
     local duration = 180;
     local typeEffect = EFFECT_SHOCK_SPIKES;
-    skill:setMsg(MSG_BUFF);
-    if(mob:hasStatusEffect(typeEffect) == true) then
-        local oldEffect = mob:getStatusEffect(typeEffect);
-        oldEffect:setPower(power);
-        oldEffect:setDuration(duration);
-    else
-        mob:addStatusEffect(typeEffect,power,0,duration);
-    end
+    skill:setMsg(MobBuffMove(target, typeEffect, power, 0, 180));
     return typeEffect;
 end;

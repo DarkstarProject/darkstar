@@ -19,28 +19,9 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local power = math.random(20,25);
 
-	local statmod = MOD_INT;
-	local typeEffect = EFFECT_ACCURACY_DOWN;
-	local resist = 1;
-	resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_EARTH);
-	if(resist > 0.2) then
-		target:delStatusEffect(typeEffect);
-		target:addStatusEffect(typeEffect,power,0,60*resist);--tic=0;duration=60;
-	end
-
-	typeEffect = EFFECT_ATTACK_DOWN;
-	resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WATER);
-	if(resist > 0.2) then
-		target:delStatusEffect(typeEffect);
-		target:addStatusEffect(typeEffect,power,0,60*resist);--tic=0;duration=60;
-	end
-
-	typeEffect = EFFECT_DEFENSE_DOWN;
-	resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WIND);
-	if(resist > 0.2) then
-		target:delStatusEffect(typeEffect);
-		target:addStatusEffect(typeEffect,power,0,60*resist);--tic=0;duration=60;
-	end
+	MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_ACCURACY_DOWN, power, 0, 60);
+	MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_ATTACK_DOWN, power, 0, 60);
+	MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_DEFENSE_DOWN, power, 0, 60);
 
 	local numhits = 1;
 	local accmod = 1;

@@ -18,16 +18,10 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local power = 50;
-    local duration = 255;
+    local duration = 180;
 
     local typeEffect = EFFECT_ATTACK_BOOST;
-    skill:setMsg(MSG_BUFF);
-    if(mob:hasStatusEffect(typeEffect) == true) then
-        local oldEffect = mob:getStatusEffect(typeEffect);
-        oldEffect:setPower(power);
-        oldEffect:setDuration(duration);
-    else
-        mob:addStatusEffect(typeEffect,power,0,duration);--tic=0;
-    end
+
+    skill:setMsg(MobBuffMove(target, typeEffect, power, 0, duration));
     return typeEffect;
 end;

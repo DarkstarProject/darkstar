@@ -1463,7 +1463,11 @@ void CAICharNormal::ActionMagicFinish()
     m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END | ((m_PSpell->getValidTarget() & TARGET_ENEMY) ? EFFECTFLAG_ATTACK : EFFECTFLAG_NONE));
 
 	charutils::UpdateHealth(m_PChar);
-    charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PBattleSubTarget->GetMLevel());
+
+    // only skill up if the effect landed
+    if(m_PSpell->tookEffect()){
+        charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PBattleSubTarget->GetMLevel());
+    }
 
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));

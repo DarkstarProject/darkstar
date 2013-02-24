@@ -763,6 +763,58 @@ function MobPhysicalHit(skill, dmg, target, hits)
 	return skill:getMsg() == MSG_DAMAGE;
 end;
 
+-- function MobHit()
+-- end;
+
+-- function MobAoEHit()
+-- end;
+
+-- function MobMagicHit()
+-- end;
+
+-- function MobMagicAoEHit()
+-- end;
+
+-- Adds a status effect to a target
+function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
+	if(target:canGainStatusEffect(typeEffect, power)) then
+		local statmod = MOD_INT;
+		local element = mob:getStatusEffectElement(typeEffect);
+
+		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,element);
+		if(resist >= 0.5) then
+			target:addStatusEffect(typeEffect,power,tick,duration*resist);
+			return MSG_ENFEEB_IS;
+		else
+			return MSG_MISS; -- resist !
+		end
+	end
+	return MSG_NO_EFFECT; -- no effect
+end;
+
+-- similar to status effect move except, this will not land if the attack missed
+function MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, tick, duration)
+
+    if(MobPhysicalHit(skill, 0, 0, 0)) then
+        MobStatusEffectMove(mob, target, typeEffect, 50, 0, 120);
+    end
+end;
+
+-- similar to statuseffect move except it will only take effect if facing
+function MobGazeMove(mob, target, typeEffect, power, tick, duration)
+	if(target:isFacing(mob)) then
+		return MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
+	end
+	return MSG_NO_EFFECT;
+end;
+
+function MobBuffMove(mob, typeEffect, power, tick, duration)
+    if(mob:addStatusEffect(typeEffect,power,tick,duration)) then
+	    return MSG_BUFF;
+    end
+	return MSG_NO_EFFECT;
+end;
+
 function fTP(tp,ftp1,ftp2,ftp3)
 	if(tp<100) then
 		tp=100;

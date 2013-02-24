@@ -14,9 +14,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	skill:setMsg(MSG_BUFF);
-	local typeEffect = EFFECT_BERSERK;
-	mob:delStatusEffect(typeEffect);
-	mob:addStatusEffect(typeEffect,1,0,180);
+    local typeEffect = EFFECT_BERSERK;
+    skill:setMsg(MobBuffMove(target, typeEffect, 1, 0, 180));
 	return typeEffect;
 end;

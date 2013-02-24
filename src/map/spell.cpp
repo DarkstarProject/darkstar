@@ -118,6 +118,14 @@ void CSpell::setSkillType(uint8 SkillType)
     m_skillType = SkillType;
 }
 
+bool CSpell::tookEffect()
+{
+    if(m_message != 75 && m_message != 284){
+        return false;
+    }
+    return true;
+}
+
 uint16 CSpell::getZoneMisc()
 {
     return m_zoneMisc;

@@ -18,11 +18,8 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_EVASION_BOOST;
-    if(mob:hasStatusEffect(typeEffect) == true) then
-        skill:setMsg(MSG_NO_EFFECT);
-    else
-        mob:addStatusEffect(typeEffect,25,0,60);--power=25;tic=0;duration=60;
-        skill:setMsg(MSG_BUFF);
-    end
+
+    skill:setMsg(MobBuffMove(target, typeEffect, 25, 0, 60));
+
     return typeEffect;
 end;

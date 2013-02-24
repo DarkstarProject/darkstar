@@ -22,14 +22,8 @@ function OnMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,info.hitslanded);
 
     local typeEffect = EFFECT_INT_DOWN;
-    if(MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-        local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_FIRE);
-        if(resist > 0.1) then
-            target:delStatusEffect(typeEffect);
-            target:addStatusEffect(typeEffect,10,0,120*resist);
-        end
-    end
+
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 10, 0, 120);
 
     target:delHP(dmg);
 

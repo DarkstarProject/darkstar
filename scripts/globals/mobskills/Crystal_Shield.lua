@@ -20,11 +20,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     local typeEffect = EFFECT_PROTECT;
 
-    if(mob:addStatusEffect(typeEffect, power, 0, duration)) then
-        skill:setMsg(MSG_BUFF);
-    else
-        spell:setMsg(MSG_NO_EFFECT); -- no effect
-    end
+    skill:setMsg(MobBuffMove(target, typeEffect, power, 0, duration));
 
     return typeEffect;
 end;

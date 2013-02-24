@@ -19,15 +19,9 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SLEEP_I;
-    if(hasSleepEffects(target) == false and target:isFacing(mob)) then
-        local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_DARK);
-        if(resist > 0.2) then
-            skill:setMsg(MSG_ENFEEB_IS);
-            target:addStatusEffect(typeEffect,1,0,45*resist);--power=1;tic=0;duration=180;
-        end
-    else
-        skill:setMsg(MSG_NO_EFFECT); -- no effect
-    end
+
+
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, 30));
+
     return typeEffect;
 end;

@@ -24,13 +24,7 @@ function OnMobWeaponSkill(target, mob, skill)
     target:delHP(dmg);
 
     local typeEffect = EFFECT_STUN;
-    if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-        local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_THUNDER);
-        if(resist > 0.2) then
-            target:addStatusEffect(typeEffect,1,0,4*resist);--power=1;tic=0;duration=5;
-        end
-    end
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);
 
     return dmg;
 end;

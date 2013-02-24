@@ -29,8 +29,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	target:delHP(dmg);
 
 	local typeEffect = EFFECT_PETRIFICATION;
-	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		target:addStatusEffect(typeEffect,1,0,120*resist);--power=1;tic=0;duration=120;
-	end
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 120);
+
 	return dmg;
 end;

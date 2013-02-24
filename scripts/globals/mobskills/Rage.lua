@@ -20,12 +20,6 @@ function OnMobWeaponSkill(target, mob, skill)
 	local duration = 60;
 
 	local typeEffect = EFFECT_BERSERK;
-	skill:setMsg(MSG_BUFF);
-	if(mob:hasStatusEffect(typeEffect) == true) then
-		local oldEffect = mob:getStatusEffect(typeEffect);
-		oldEffect:setDuration(duration);
-	else
-		mob:addStatusEffect(typeEffect,1,0,duration);--tic=0;
-	end
+    skill:setMsg(MobBuffMove(target, typeEffect, 1, 0, duration));
 	return typeEffect;
 end;

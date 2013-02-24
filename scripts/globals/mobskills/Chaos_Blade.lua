@@ -27,10 +27,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     -- curse LAST so you don't die
     local typeEffect = EFFECT_CURSE_I;
-    if(target:hasStatusEffect(typeEffect) == false) then
-        local duration = math.random(1,2)*30 + 420;
-        target:addStatusEffect(typeEffect,25,0,duration);--power=1;tic=0;
-    end
+    MobStatusEffectMove(mob, target, typeEffect, 25, 0, 420);
 
     return dmg;
 end;

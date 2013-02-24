@@ -12,11 +12,11 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
+
 	--calculate raw damage
 	basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
 	dmg = calculateMagicDamage(basedmg,1,caster,spell,target,ENFEEBLING_MAGIC_SKILL,MOD_INT,false);
-	
+
 	-- Softcaps at 2, should always do at least 1
 	if(dmg > 2) then
 		dmg = 2;
@@ -24,7 +24,7 @@ function onSpellCast(caster,target,spell)
 	if(dmg < 1) then
 		dmg = 1;
 	end
-	
+
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);
 	--get the resisted damage
@@ -35,28 +35,27 @@ function onSpellCast(caster,target,spell)
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
-	
+
 	duration = 60;
-	
+
 	-- Check for Bio.
 	bio = target:getStatusEffect(EFFECT_BIO);
-	
+
 	-- Do it!
 	if(DIA_OVERWRITE == 0 or (DIA_OVERWRITE == 1 and bio == nil)) then
-		target:delStatusEffect(EFFECT_DIA);
 		target:addStatusEffect(EFFECT_DIA,1,3,duration);
 		spell:setMsg(2);
 	else
 		spell:setMsg(75);
 	end
-	
+
 	-- Try to kill same tier Bio
 	if(BIO_OVERWRITE == 1 and bio ~= nil) then
 		if(bio:getPower() == 1) then
 			target:delStatusEffect(EFFECT_BIO);
 		end
 	end
-	
+
 	return final;
-	
+
 end;

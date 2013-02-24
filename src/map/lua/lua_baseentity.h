@@ -291,6 +291,7 @@ public:
 	int32 addStatusEffect(lua_State*);		// Adds status effect to character
     int32 addStatusEffectEx(lua_State*);	// Adds status effect to character
 	int32 hasStatusEffect(lua_State*);		// Checks to see if character has specified effect
+	int32 canGainStatusEffect(lua_State*);		// Returns true if the effect can be added
     int32 getStatusEffect(lua_State*);		//
 	int32 delStatusEffect(lua_State*);		// Removes Status Effect
 	int32 eraseStatusEffect(lua_State*);	// Used with "Erase" spell
@@ -298,6 +299,7 @@ public:
 	int32 stealStatusEffect(lua_State*);    // Used in mob skills to steal effects
 	int32 dispelAllStatusEffect(lua_State*);    // Dispels all effects and returns number erased
 	int32 eraseAllStatusEffect(lua_State*);    // Erases all effects and returns number erased
+	int32 getStatusEffectElement(lua_State*); // returns the element of the status effect
 	int32 getPartyMember(lua_State* L);		// Get a character entity from another entity's party or alliance
 	int32 getPartySize(lua_State* L);		// Get the size of a party in an entity's alliance
 	int32 getAllianceSize(lua_State* L);	// Get the size of an entity's alliance

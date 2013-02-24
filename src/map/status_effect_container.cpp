@@ -70,6 +70,7 @@ namespace effects
     struct EffectParams_t
     {
         uint16   Flag;
+        uint8    Element;
         string_t Name;
         // type means only one of the ids can be on the target at once
         // example: en- spells, spikes
@@ -102,7 +103,7 @@ namespace effects
             EffectsParams[i].Flag = 0;
         }
 
-        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id FROM status_effects WHERE id < %u", MAX_EFFECTID);
+        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id, element FROM status_effects WHERE id < %u", MAX_EFFECTID);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
@@ -117,8 +118,16 @@ namespace effects
                 EffectsParams[EffectID].Overwrite = (EFFECTOVERWRITE)Sql_GetIntData(SqlHandle,5);
                 EffectsParams[EffectID].BlockId = (EFFECT)Sql_GetIntData(SqlHandle,6);
                 EffectsParams[EffectID].RemoveId = (EFFECT)Sql_GetIntData(SqlHandle,7);
+
+                EffectsParams[EffectID].Element = Sql_GetIntData(SqlHandle,8);
             }
         }
+    }
+
+    // hacky way to get element from status effect
+    uint16 GetEffectElement(uint16 effect)
+    {
+        return EffectsParams[effect].Element;
     }
 }
 
@@ -170,6 +179,8 @@ uint8 CStatusEffectContainer::GetEffectsCount(uint16 SubID)
 
 bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 power)
 {
+    // TODO: check for immunities first
+
     CStatusEffect* PStatusEffect;
 
     // check if a status effect blocks this

@@ -15,7 +15,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    -- can only used if not silenced
+    -- can only use if not silenced
     if(mob:hasStatusEffect(EFFECT_SILENCE) == false) then
         -- Disabled due to client crashes
         return 1;
@@ -27,13 +27,6 @@ function OnMobWeaponSkill(target, mob, skill)
     local power = mob:getMainLvl();
     local duration = 180;
     local typeEffect = EFFECT_BLAZE_SPIKES;
-    skill:setMsg(MSG_BUFF);
-    if(mob:hasStatusEffect(typeEffect) == true) then
-        local oldEffect = mob:getStatusEffect(typeEffect);
-        oldEffect:setPower(power);
-        oldEffect:setDuration(duration);
-    else
-        mob:addStatusEffect(typeEffect,power,0,duration);
-    end
+    skill:setMsg(MobBuffMove(target, typeEffect, power, 0, duration));
     return typeEffect;
 end;

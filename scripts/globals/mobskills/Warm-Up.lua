@@ -17,15 +17,9 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local base = mob:getMainLvl() + 0.05*mob:getMaxHP()*(skill:getTP()/100); --base is around 5~150 level depending
-	local typeEffect_Acc = EFFECT_ACCURACY_BOOST;
-	local typeEffect_Eva = EFFECT_EVASION_BOOST;
-	skill:setMsg(MSG_BUFF);
 
-	mob:delStatusEffect(typeEffect_Acc);
-	mob:delStatusEffect(typeEffect_Eva);
+    skill:setMsg(MobBuffMove(target, EFFECT_EVASION_BOOST, base, 0, 180));
+    skill:setMsg(MobBuffMove(target, EFFECT_ACCURACY_BOOST, base, 0, 180));
 
-	mob:addStatusEffect(typeEffect_Acc,base,0,180);
-	mob:addStatusEffect(typeEffect_Eva,base,0,180);
-
-	return typeEffect_Acc;
+	return EFFECT_ACCURACY_BOOST;
 end;

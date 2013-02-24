@@ -15,9 +15,9 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	skill:setMsg(MSG_BUFF);
-	local typeEffect = EFFECT_REFRESH
-	mob:delStatusEffect(typeEffect);
-	mob:addStatusEffect(typeEffect,3,3,300);
+	local typeEffect = EFFECT_REFRESH;
+
+    skill:setMsg(MobBuffMove(target, typeEffect, 3, 3, 300));
+
 	return typeEffect;
 end;

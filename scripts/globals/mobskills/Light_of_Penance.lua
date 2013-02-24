@@ -18,25 +18,9 @@ function OnMobWeaponSkill(target, mob, skill)
 	local tpReduced = 0;
 	target:setTP(tpReduced);
 
-	local statmod = MOD_INT;
-	local resist = 1;
-	local typeEffect = EFFECT_BLINDNESS;
-	if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_DARK);
-		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,20,0,120*resist);--power=40;tic=0;duration=60;
-		end
-	end
+	MobGazeMove(mob, target, EFFECT_BLINDNESS, 20, 0, 120);
 
-	typeEffect = EFFECT_BIND;
-	if(target:hasStatusEffect(typeEffect) == false and target:isFacing(mob)) then
-		--statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_ICE);
-		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,1,0,30*resist);--power=1;tic=0;duration=60;
-		end
-	end
-
+	MobGazeMove(mob, target, EFFECT_BIND, 1, 0, 30);
 
 	skill:setMsg(MSG_TP_REDUCED);
 

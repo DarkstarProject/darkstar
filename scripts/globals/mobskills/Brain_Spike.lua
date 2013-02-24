@@ -26,9 +26,7 @@ function OnMobWeaponSkill(target, mob, skill)
     target:delHP(dmg);
 
     local typeEffect = EFFECT_PARALYSIS;
-    if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then --Let's first see if it's worth the time to do this math, since there's no messages to handle
-            target:addStatusEffect(typeEffect,30,0,180*resist);
-    end
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 30, 0, 180);
 
     return dmg;
 end;

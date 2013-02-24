@@ -16,9 +16,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_DEFENSE_BOOST;
-    mob:delStatusEffect(typeEffect);
-    mob:delStatusEffect(EFFECT_DEFENSE_DOWN);
-	mob:addStatusEffect(typeEffect,100,0,60);--power=100;tic=0;duration=60;
-	skill:setMsg(MSG_BUFF);
+
+    skill:setMsg(MobBuffMove(target, typeEffect, 100, 0, 60));
 	return typeEffect;
 end;

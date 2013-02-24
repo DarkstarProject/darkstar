@@ -3711,6 +3711,23 @@ inline int32 CLuaBaseEntity::hasStatusEffect(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::canGainStatusEffect(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    bool hasEffect = false;
+
+    hasEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->CanGainStatusEffect(
+            (EFFECT)lua_tointeger(L,1),
+            (uint16)lua_tointeger(L,2));
+
+    lua_pushboolean(L, hasEffect);
+    return 1;
+}
+
 /************************************************************************
 *																		*
 *  Удаляем статус-эффект по его основному и дополнительному типам.		*
@@ -3908,6 +3925,23 @@ inline int32 CLuaBaseEntity::eraseAllStatusEffect(lua_State *L)
 
     lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->EraseAllStatusEffect());
     return 1;
+}
+
+
+inline int32 CLuaBaseEntity::getStatusEffectElement(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+
+    if( !lua_isnil(L,1) && lua_isnumber(L,1) ) {
+	    uint16 statusId = lua_tointeger(L,1);
+
+	    lua_pushinteger( L, effects::GetEffectElement(statusId));
+	    return 1;
+	}
+
+    return 0;
 }
 
 /************************************************************************
@@ -6328,7 +6362,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffectEx),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canGainStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffectElement),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelStatusEffect),

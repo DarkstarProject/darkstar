@@ -109,6 +109,7 @@ private:
 namespace effects
 {
     void LoadEffectsParameters();
+    uint16 GetEffectElement(uint16 effect);
 };
 
 #endif

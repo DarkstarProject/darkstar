@@ -25,7 +25,7 @@ CREATE TABLE `item_weapon` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=54 PACK_KEYS=1 CHECKSUM=1;
 
 -- ----------------------------
--- Records 
+-- Records
 -- ----------------------------
 INSERT INTO `item_weapon` VALUES ('16971', 'yukitsugu', '0', '0', '1', '450', '84', '0');
 INSERT INTO `item_weapon` VALUES ('16977', 'yukitsugu_+1', '0', '0', '1', '437', '85', '0');
@@ -3402,4 +3402,25 @@ INSERT INTO `item_weapon` VALUES ('19299', 'Aisa', '9', '2', '1', '227', '53', '
 INSERT INTO `item_weapon` VALUES ('19300', 'Aisa_+1', '9', '2', '1', '222', '54', '0');
 INSERT INTO `item_weapon` VALUES ('19298', 'ikarigiri', '9', '2', '1', '222', '58', '0');
 INSERT INTO `item_weapon` VALUES ('18462', 'sasanuki', '10', '0', '1', '420', '95', '0');
-INSERT INTO `item_weapon` VALUES ('18463', 'sasanuki_+1', '10', '0', '1', '407', '96', '0');
+INSERT INTO `item_weapon` VALUES ('18463', 'sasanuki_+1', '10', '0', '1', '407', '96', '0');+INSERT INTO `item_weapon` VALUES ('18463', 'sasanuki_+1', '10', '0', '1', '407', '96', '0');
+INSERT INTO `item_weapon` VALUES ('18791', 'buzbaz_sainti_+1', '1', '4', '1', '531', '36', '0');
+INSERT INTO `item_weapon` VALUES ('18792', 'buzbaz_sainti_+1', '1', '4', '1', '529', '37', '0');
+INSERT INTO `item_weapon` VALUES ('18787', 'sharas_fists', '1', '4', '1', '540', '37', '0');
+INSERT INTO `item_weapon` VALUES ('18788', 'brawny_adargas', '1', '4', '1', '534', '38', '0');
+INSERT INTO `item_weapon` VALUES ('18789', 'marath_baghnakhs', '1', '4', '1', '540', '30', '0');
+INSERT INTO `item_weapon` VALUES ('18790', 'shivaji_baghnakhs', '1', '4', '1', '537', '31', '0');
+INSERT INTO `item_weapon` VALUES ('19149', 'strategema_knife', '2', '1', '1', '201', '45', '0');
+INSERT INTO `item_weapon` VALUES ('19788', 'gorkhali_kukri', '2', '1', '1', '200', '44', '0');
+INSERT INTO `item_weapon` VALUES ('19789', 'mahakalis_kukri', '2', '1', '1', '194', '45', '0');
+INSERT INTO `item_weapon` VALUES ('18910', 'apaisante', '3', '2', '1', '228', '59', '0');
+INSERT INTO `item_weapon` VALUES ('18911', 'apaisante_+1', '3', '2', '1', '222', '60', '0');
+INSERT INTO `item_weapon` VALUES ('19176', 'irasya', '4', '0', '1', '480', '132', '0');
+INSERT INTO `item_weapon` VALUES ('19177', 'etourdissante', '4', '0', '1', '456', '120', '0');
+INSERT INTO `item_weapon` VALUES ('19178', 'etourdissante_+1', '4', '0', '1', '443', '121', '0');
+INSERT INTO `item_weapon` VALUES ('19179', 'dervish_sword', '4', '0', '1', '504', '130', '0');
+INSERT INTO `item_weapon` VALUES ('18522', 'firnaxe', '6', '2', '1', '504', '118', '0');
+INSERT INTO `item_weapon` VALUES ('18523', 'firnaxe_+1', '6', '2', '1', '489', '119', '0');
+INSERT INTO `item_weapon` VALUES ('19301', 'kawasemi', '9', '2', '1', '227', '56', '0');
+INSERT INTO `item_weapon` VALUES ('19302', 'uguisu', '9', '2', '1', '190', '54', '0');
+INSERT INTO `item_weapon` VALUES ('19796', 'rosschinder', '8', '1', '1', '396', '95', '0');
+INSERT INTO `item_weapon` VALUES ('19797', 'rosschinder_+1', '8', '1', '1', '385', '96', '0');

@@ -19,19 +19,9 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local message = MSG_MISS;
 	local typeEffect = EFFECT_AMNESIA;
-	if(target:hasStatusEffect(typeEffect) == false) then
+	local power = 1;
+	local duration = 60;
 
-		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,EFFECT_AMNESIA,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WIND);
-		if(resist > 0.2) then
-			message = MSG_ENFEEB_IS;
-			target:addStatusEffect(typeEffect,1,0,30*resist); --power=1;tic=0;duration=30;
-		else
-			message = MSG_MISS;
-		end
-	else
-		message = MSG_NO_EFFECT;
-	end
-	skill:setMsg(message);
+	skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
 	return typeEffect;
 end;

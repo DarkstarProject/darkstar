@@ -23,20 +23,8 @@ function OnMobWeaponSkill(target, mob, skill)
 	target:delHP(dmg);
 
 	local typeEffect = EFFECT_SILENCE;
-	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then --Let's first see if it's worth the time to do this math, since there's no messages to handle
-		local statmod = MOD_INT;
-		local mobTP = mob:getTP();
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WIND);
-		if(resist > 0.2) then
-			local silenceTime = 60;
-			if(mobTP <= 100) then
-				silenceTime = 30;
-			elseif(mobTP <= 200) then
-				silenceTime = 40;
-			end
-			target:addStatusEffect(typeEffect,1,0,silenceTime*resist);
-		end
-	end
+
+	MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 60);
 
 	return dmg;
 end;

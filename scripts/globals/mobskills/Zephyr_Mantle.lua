@@ -17,9 +17,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local base = math.random(4,10);
-	skill:setMsg(MSG_BUFF);
 	local typeEffect = EFFECT_BLINK;
-	mob:delStatusEffect(typeEffect);
-	mob:addStatusEffect(typeEffect,base,0,180);
+    skill:setMsg(MobBuffMove(target, typeEffect, base, 0, 180));
 	return typeEffect;
 end;
