@@ -23,7 +23,7 @@ function onSpellCast(caster,target,spell)
 		if(resist >= 0.5) then --Do it!
 			--Try to erase a weaker bind.
 			if(target:addStatusEffect(EFFECT_BIND,target:speed(),0,duration)) then
-						spell:setMsg(237);
+						spell:setMsg(236);
 					else
 						spell:setMsg(75);
 			end

@@ -15,17 +15,9 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local message = MSG_MISS;
 	local typeEffect = EFFECT_MAX_MP_DOWN;
-	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WIND);
-	if(resist > 0.2) then
-		message = MSG_ENFEEB_IS;
-		target:delStatusEffect(typeEffect);
-		target:addStatusEffect(typeEffect,42,0,120*resist);--power=30;tic=0;duration=120;
-	else
-		message = MSG_MISS;
-	end
-	skill:setMsg(message);
+
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 42, 0, 120));
+
 	return typeEffect;
 end;

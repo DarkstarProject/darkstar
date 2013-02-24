@@ -24,6 +24,7 @@ function onSpellCast(caster,target,spell)
 		spell:setMsg(75);
 	else
 		target:addStatusEffect(EFFECT_STUN,1,0,duration);
+		spell:setMsg(236);
 	end
 
 	return 0;

@@ -179,7 +179,40 @@ uint8 CStatusEffectContainer::GetEffectsCount(uint16 SubID)
 
 bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 power)
 {
-    // TODO: check for immunities first
+    // check for immunities first
+    switch(statusEffect){
+        case EFFECT_SLEEP:
+        case EFFECT_SLEEP_II:
+            if(m_POwner->hasImmunity(IMMUNITY_SLEEP) || m_POwner->m_EcoSystem == SYSTEM_UNDEAD) return false;
+        break;
+        case EFFECT_WEIGHT:
+            if(m_POwner->hasImmunity(IMMUNITY_GRAVITY)) return false;
+        break;
+        case EFFECT_BIND:
+            if(m_POwner->hasImmunity(IMMUNITY_BIND)) return false;
+        break;
+        case EFFECT_STUN:
+            if(m_POwner->hasImmunity(IMMUNITY_STUN)) return false;
+        break;
+        case EFFECT_SILENCE:
+            if(m_POwner->hasImmunity(IMMUNITY_SILENCE)) return false;
+        break;
+        case EFFECT_PARALYSIS:
+            if(m_POwner->hasImmunity(IMMUNITY_PARALYZE)) return false;
+        break;
+        case EFFECT_BLINDNESS:
+            if(m_POwner->hasImmunity(IMMUNITY_BLIND)) return false;
+        break;
+        case EFFECT_SLOW:
+            if(m_POwner->hasImmunity(IMMUNITY_SLOW)) return false;
+        break;
+        case EFFECT_POISON:
+            if(m_POwner->hasImmunity(IMMUNITY_POISON)) return false;
+        break;
+        case EFFECT_ELEGY:
+            if(m_POwner->hasImmunity(IMMUNITY_ELEGY)) return false;
+        break;
+    }
 
     CStatusEffect* PStatusEffect;
 

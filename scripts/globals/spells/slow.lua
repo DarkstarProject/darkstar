@@ -29,7 +29,7 @@ function onSpellCast(caster,target,spell)
 		if(duration >= 60) then --Do it!
 
 			if(target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then
-				spell:setMsg(237);
+				spell:setMsg(236);
 			else
 				spell:setMsg(75);
 			end

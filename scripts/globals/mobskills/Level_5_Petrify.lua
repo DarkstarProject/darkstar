@@ -18,11 +18,13 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_PETRIFICATION;
-    if(target:getMainLvl()%5 == 0 and target:hasStatusEffect(typeEffect) == false) then
-        skill:setMsg(MSG_ENFEEB_IS);
+    if(target:getMainLvl()%5 == 0) then
+
 
         local power = math.random(0, 25) + 5;
-        target:addStatusEffect(typeEffect,1,0,power);--power=1;tic=0;duration=5;
+
+        skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, power));
+
     else
         skill:setMsg(MSG_NO_EFFECT); -- no effect
     end

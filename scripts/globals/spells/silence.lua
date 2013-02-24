@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
     if(100 * math.random() >= target:getMod(MOD_SILENCERES)) then
         if(resist >= 0.5) then --Do it!
             target:addStatusEffect(effectType,1,0,duration * resist);
-            spell:setMsg(237);
+            spell:setMsg(236);
         else
             spell:setMsg(85);
         end

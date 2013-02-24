@@ -16,7 +16,7 @@ function onSpellCast(caster,target,spell)
     if(effect == EFFECT_NONE) then
         spell:setMsg(75); -- no effect
     else
-        spell:setMsg(83);
+        spell:setMsg(341);
     end
 
     return effect;

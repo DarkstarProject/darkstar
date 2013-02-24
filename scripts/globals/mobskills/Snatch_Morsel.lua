@@ -15,6 +15,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_FOOD;
+
     if(target:hasStatusEffect(typeEffect) == false) then
         local statmod = MOD_INT;
         local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WIND);
@@ -23,7 +24,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
             local food = target:getStatusEffect(EFFECT_FOOD);
 			if (food ~= nil) then
-				mob:addStatusEffect(EFFECT_FOOD, food:getPower(), 0, food:getDuration());
+				mob:addStatusEffect(EFFECT_FOOD, food:getPower(), 0, food:getDuration()/1000);
 			end
 
             target:delStatusEffect(EFFECT_FOOD);

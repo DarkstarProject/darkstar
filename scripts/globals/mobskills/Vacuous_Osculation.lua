@@ -23,20 +23,8 @@ function OnMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
 
 
-    if(MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-        local typeEffect = EFFECT_POISON;
-        if(target:hasStatusEffect(typeEffect) == false) then
-            local power = (mob:getMainLvl()/8);
-            if (power < 1 ) then
-                power = 1;
-            end
-            target:addStatusEffect(typeEffect,power,3,120);
-        end
-
-        if(target:hasStatusEffect(EFFECT_PLAGUE) == false) then
-            target:addStatusEffect(EFFECT_PLAGUE,5,3,45);
-        end
-    end
+    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_PLAGUE, 5, 3, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_POISON, mob:getMainLvl() / 6, 3, 60);
 
     target:delHP(dmg);
     return dmg;

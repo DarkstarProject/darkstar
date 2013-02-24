@@ -24,24 +24,8 @@ function OnMobWeaponSkill(target, mob, skill)
 	-- Large Knockdown ----------------------------
 
 	local typeEffect = EFFECT_ACCURACY_DOWN;
-	if(MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		local statmod = MOD_INT;
-		local mobTP = mob:getTP();
 
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_THUNDER);
-		if(resist > 0.2) then
-			local duration;
-			if(mobTP <= 100) then
-				duration = 60;
-			elseif(mobTP <= 200) then
-				duration = 90;
-			else
-				duration = 120;
-			end
-			target:delStatusEffect(typeEffect);
-			target:addStatusEffect(typeEffect,50,0,duration*resist);
-		end
-	end
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 120);
 
 	target:delHP(dmg);
 	return dmg;

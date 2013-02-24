@@ -17,16 +17,24 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_DEFENSE_DOWN;
-		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_DARK);
-		if(resist > 0.2) then
-			skill:setMsg(MSG_ENFEEB_IS);
-			target:delStatusEffect(typeEffect);
-			target:addStatusEffect(typeEffect,20,0,120*resist);--power=20;tic=0;duration=120;
-			target:delStatusEffect(EFFECT_MAGIC_DEF_DOWN);
-			target:addStatusEffect(EFFECT_MAGIC_DEF_DOWN,20,0,120*resist);--
-		else
-			skill:setMsg(MSG_MISS);
-		end
+
+    local silenced = false;
+    local blinded = false;
+
+    silenced = MobStatusEffectMove(mob, target, EFFECT_DEFENSE_DOWN, 20, 0, 120);
+
+    blinded = MobStatusEffectMove(mob, target, EFFECT_MAGIC_DEF_DOWN, 20, 0, 120);
+
+    skill:setMsg(MSG_ENFEEB_IS);
+
+    -- display silenced first, else blind
+    if(silenced == MSG_ENFEEB_IS) then
+        typeEffect = EFFECT_SILENCE;
+    elseif(blinded == MSG_ENFEEB_IS) then
+        typeEffect = EFFECT_BLINDNESS;
+    else
+        skill:setMsg(MSG_MISS);
+    end
+
 	return typeEffect;
 end;

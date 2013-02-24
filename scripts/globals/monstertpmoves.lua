@@ -796,7 +796,7 @@ end;
 function MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, tick, duration)
 
     if(MobPhysicalHit(skill, 0, 0, 0)) then
-        MobStatusEffectMove(mob, target, typeEffect, 50, 0, 120);
+        MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
     end
 end;
 

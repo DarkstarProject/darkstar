@@ -23,7 +23,7 @@ function onSpellCast(caster,target,spell)
         if(duration >= 30) then --Do it!
             target:delStatusEffect(EFFECT_WEIGHT);
             target:addStatusEffect(EFFECT_WEIGHT,power,0,duration);
-                    spell:setMsg(267);
+                    spell:setMsg(236);
         else
 --          if(spell:isAOE() == false) then
 --              spell:setMsg(85);

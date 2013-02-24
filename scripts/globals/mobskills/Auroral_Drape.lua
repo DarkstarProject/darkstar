@@ -15,8 +15,6 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local message = MSG_MISS;
-    local typeEffect = EFFECT_SILENCE;
     local silenced = false;
     local blinded = false;
 

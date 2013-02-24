@@ -25,13 +25,8 @@ function OnMobWeaponSkill(target, mob, skill)
 	target:delHP(dmg);
 
 	local typeEffect = EFFECT_PLAGUE;
-	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_ICE);
-		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,1,0,60*resist);--power=1;tic=0;duration=300;
-		end
-	end
+
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 5, 3, 60);
 
 	return dmg;
 end;

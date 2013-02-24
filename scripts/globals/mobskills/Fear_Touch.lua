@@ -22,23 +22,8 @@ function OnMobWeaponSkill(target, mob, skill)
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
 	local typeEffect = EFFECT_SLOW;
-	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		local statmod = MOD_INT;
-		local mobTP = mob:getTP();
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_ICE);
-		if(resist > 0.2) then
-			local duration;
-			if(mobTP <= 100) then
-				duration = 60;
-			elseif(mobTP <= 200) then
-				duration = 90;
-			else
-				duration = 120;
-			end
-            target:delStatusEffect(EFFECT_HASTE);
-			target:addStatusEffect(typeEffect,300,0,duration);
-		end
-	end
+
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 300, 0, 120);
 
 	target:delHP(dmg);
 	return dmg;

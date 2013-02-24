@@ -25,10 +25,8 @@ function OnMobWeaponSkill(target, mob, skill)
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
 	local typeEffect = EFFECT_CURSE_I;
-	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		local duration = math.random(1,2)*30 + 420;
-		target:addStatusEffect(typeEffect,25,0,duration);--power=1;tic=0;
-	end
+
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 25, 0, 420);
 
 	target:delHP(dmg);
 	return dmg;

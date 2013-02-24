@@ -40,7 +40,7 @@ function onSpellCast(caster,target,spell)
 		if(resist == 1) then -- Full hit, no duration penalty
 			target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration);
 	--				if(spell:isAOE() == false) then
-				spell:setMsg(237);
+				spell:setMsg(236);
 	--				else
 	--					spell:setMsg(267);
 	--				end
@@ -48,7 +48,7 @@ function onSpellCast(caster,target,spell)
 			duration = duration / 2;
 			target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration);
 	--				if(spell:isAOE() == false) then
-				spell:setMsg(237);
+				spell:setMsg(236);
 	--				else
 	--					spell:setMsg(267);
 	--				end

@@ -18,16 +18,16 @@ function onSpellCast(caster,target,spell)
 		spell:setMsg(85);--resist message
 		return EFFECT_SLEEP_I;
 	end
-	
+
 	duration = duration * resm;
-	
+
 	if(target:hasImmunity(1) or hasSleepEffects(target)) then
 		--No effect
 		spell:setMsg(75);
 	else
-		spell:setMsg(237);
+		spell:setMsg(236);
 		target:addStatusEffect(EFFECT_SLEEP_I,1,0,duration);
 	end
-	
+
 	return EFFECT_SLEEP_I;
 end;

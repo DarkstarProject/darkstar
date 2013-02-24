@@ -25,9 +25,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_DEFENSE_DOWN;
     local power = 75;
     local duration = 120;
-    if(MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-        MobStatusEffectMove(mob, target, typeEffect, power, 0, duration);
-    end
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, duration);
 
     target:delHP(dmg);
     return dmg;

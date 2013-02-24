@@ -16,18 +16,8 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_BLINDNESS;
-    local message = MSG_MISS;
-    if(target:hasStatusEffect(typeEffect) == false) then --Let's first see if it's worth the time to do this math, since there's no messages to handle
-        local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_EARTH);
-        if(resist > 0.1) then
-            message = MSG_ENFEEB_IS;
-            target:addStatusEffect(typeEffect,20,0,120*resist);--power=1;tic=0;duration=60;
-        end
-    else
-        message = MSG_NO_EFFECT;
-    end
-    skill:setMsg(message);
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 20, 0, 120));
+
 
     return typeEffect;
 end;

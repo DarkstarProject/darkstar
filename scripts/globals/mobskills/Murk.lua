@@ -15,31 +15,22 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local message = MSG_MISS;
-    local typeEffect = EFFECT_SLOW;
-    local slowed = false;
-    local weighted = false;
+    local silenced = false;
+    local blinded = false;
 
-    if(target:hasStatusEffect(EFFECT_SLOW) == false) then
-        slowed = true;
-        target:delStatusEffect(EFFECT_HASTE);
-        target:addStatusEffect(EFFECT_SLOW,512,0,60);
-    end
+    silenced = MobStatusEffectMove(mob, target, EFFECT_SLOW, 512, 0, math.random(30, 60));
 
-    if(target:hasStatusEffect(EFFECT_WEIGHT) == false) then
-        weighted = true;
-        target:addStatusEffect(EFFECT_WEIGHT,40,0,60);
-    end
+    blinded = MobStatusEffectMove(mob, target, EFFECT_WEIGHT, 40, 0, math.random(30, 60));
 
     skill:setMsg(MSG_ENFEEB_IS);
 
-    -- display slowed first, else blind
-    if(slowed == true) then
-        typeEffect = EFFECT_SLOW;
-    elseif(weighted == true) then
-        typeEffect = EFFECT_WEIGHT;
+    -- display silenced first, else blind
+    if(silenced == MSG_ENFEEB_IS) then
+        typeEffect = EFFECT_SILENCE;
+    elseif(blinded == MSG_ENFEEB_IS) then
+        typeEffect = EFFECT_BLINDNESS;
     else
-        skill:setMsg(MSG_NO_EFFECT);
+        skill:setMsg(MSG_MISS);
     end
 
     return typeEffect;

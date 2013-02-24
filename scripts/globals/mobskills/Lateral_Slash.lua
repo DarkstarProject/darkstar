@@ -22,15 +22,12 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local numhits = 1;
 	local accmod = 2;
-	local dmgmod = math.random(2,2.5);
+	local dmgmod = 2.7;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
 	local typeEffect = EFFECT_DEFENSE_DOWN;
-	if(MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		target:delStatusEffect(typeEffect);
-		target:addStatusEffect(typeEffect,75,0,60*resist);
-	end
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 75, 0, 60);
 
 	target:delHP(dmg);
 	return dmg;

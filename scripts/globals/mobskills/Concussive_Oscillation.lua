@@ -26,13 +26,8 @@ function OnMobWeaponSkill(target, mob, skill)
 	-- KNOCKBACK
 
 	local typeEffect = EFFECT_WEIGHT;
-	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WIND);
-		if(resist > 0.2) then
-			target:addStatusEffect(typeEffect,50,0,300*resist);
-		end
-	end
+
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 300);
 
 	return dmg;
 end;

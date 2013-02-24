@@ -28,22 +28,9 @@ function OnMobWeaponSkill(target, mob, skill)
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_WIPE_SHADOWS);
 
 	local typeEffect = EFFECT_POISON;
-	if(target:hasStatusEffect(typeEffect) == false and MobPhysicalHit(skill, dmg, target, info.hitslanded)) then
-		local statmod = MOD_INT;
-		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WATER);
-		if(resist > 0.2) then
-			local mobTP = mob:getTP();
-			local poisontime;
-			if(mobTP <= 100) then
-				poisontime = 60;
-			elseif(mobTP <= 200) then
-				poisontime = 120;
-			else
-				poisontime = 180;
-			end
-			target:addStatusEffect(typeEffect,3,3,poisontime*resist);
-		end
-	end
+	local power = mob:getMainLvl() / 4 + 1;
+
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 3, 60);
 
 	target:delHP(dmg);
 	return dmg;

@@ -33,16 +33,15 @@ function onSpellCast(caster,target,spell)
             if(poison ~= nil) then
                 if(poison:getPower() < power) then
                     -- remove weaker poison
-                    target:delStatusEffect(effect);
                     target:addStatusEffect(effect,power,3,duration);
-                    spell:setMsg(267);
+                    spell:setMsg(236);
                 else
                     -- no effect
                     spell:setMsg(75);
                 end
             else
                 target:addStatusEffect(effect,power,3,duration);
-                spell:setMsg(267);
+                spell:setMsg(236);
             end
 
         else -- resist entirely.
