@@ -135,7 +135,7 @@ void CAIMobDummy::ActionRoaming()
 
 		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 	}
-	else if ((m_Tick - m_LastActionTime) > 45000 && m_PMob->m_Type != MOBTYPE_EVENT)
+	else if ((m_Tick - m_LastActionTime) > 45000 && !m_PMob->m_Type & MOBTYPE_EVENT)
 	{
 		m_LastActionTime = m_Tick - rand()%30000;
 
