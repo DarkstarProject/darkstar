@@ -255,7 +255,6 @@ void CInstance::addNpc(CBaseEntity* PNpc){
 bool CInstance::allEnemiesDefeated(){
 	bool allDefeated = true;
 	for(int i=0; i<m_EnemyVictoryList.size(); i++){
-		printf("Action: %d\n", m_EnemyVictoryList.at(i).MobEntity->PBattleAI->GetCurrentAction());
 		if(m_EnemyVictoryList.at(i).MobEntity->PBattleAI->GetCurrentAction() >= 20 && m_EnemyVictoryList.at(i).MobEntity->PBattleAI->GetCurrentAction() <= 23){
 			m_EnemyVictoryList.at(i).killed = true;
 		}
