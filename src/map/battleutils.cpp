@@ -2363,7 +2363,12 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 	{
 		if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
 		{
-			if(rand()%100 < PEntity->getMod(MOD_ZANSHIN)/4) num++;
+			uint8 zanshin = PEntity->getMod(MOD_ZANSHIN);
+			if (PEntity->objtype == TYPE_PC) 
+				zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, PEntity->GetMLevel());
+
+			if(rand()%100 < zanshin)
+				num++;
 		}
 	}
 
