@@ -846,7 +846,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				15,{0,0},	  {0,0},	 {0x0224,0},{0,0},{{11,6},{14,4}}, 												-- MISSION 5-2 (Finish 1st Part (Halver))
 				15,{0,0},	  {0,0},	 {0x003D,0},{0,0},{{14,0},{9,74},{8,20000},{6},{12}}, 							-- MISSION 5-2 (Finish 2nd Part (Trion in Great Hall))
 				16,{0,0},	  {0,0},	 {0x006f,0},{0,0},{{14,0},{9,268},{10,270},{12}}, 								-- MISSION 6-1 (Finish (Chalvatot))
-				17,{0x040a,0},{0x0409,0},{0,0},{0,0},{{14,0},{11,7},{8,40000},{6},{12}}									-- MISSION 6-2 (Finish (Guard))
+				17,{0x040a,0},{0x0409,0},{0,0},{0,0},{{14,0},{11,7},{8,40000},{6},{12}},									-- MISSION 6-2 (Finish (Guard))
 				18,{0,0},	  {0,0},	 {0x0007,0},{0,0},{{14,1}}, 													-- MISSION 7-1 (setVar("MissionStatus",1) (Door: Papal Chambers))
 				18,{0,0},	  {0,0},	 {0x0008,0},{0,0},{{14,0},{9,283},{5,1000},{12}} 								-- MISSION 7-1 (Finish (Door: Papal Chambers))
 				--[[0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0},
