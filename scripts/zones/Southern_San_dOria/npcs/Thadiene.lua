@@ -38,7 +38,7 @@ function onTrigger(player,npc)
 
 	stock = {0x4380,1575,1,	 --Boomerang
 			 0x430a,19630,1, --Great Bow
-			 0x43a9,16,1,	 --Silver Arrow
+			 --0x43a9,16,1,	 --Silver Arrow
 			 0x4302,7128,1,	 --Wrapped Bow
 
 			 0x43b8,5,2,	 --Crossbow Bolt

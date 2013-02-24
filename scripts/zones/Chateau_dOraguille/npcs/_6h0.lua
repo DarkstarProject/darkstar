@@ -27,9 +27,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	currentMission = player:getCurrentMission(SANDORIA);
-	MissionStatus = player:getVar("MissionStatus");
-	infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
+	local currentMission = player:getCurrentMission(SANDORIA);
+	local MissionStatus = player:getVar("MissionStatus");
+	local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
 	
 	if(player:getVar("aBoysDreamCS") == 8) then 
 		player:startEvent(0x0058);

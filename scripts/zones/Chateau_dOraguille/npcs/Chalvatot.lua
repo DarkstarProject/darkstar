@@ -43,7 +43,7 @@ function onTrigger(player,npc)
 	      currentMission = player:getCurrentMission(SANDORIA);
 	      MissionStatus = player:getVar("MissionStatus");
 		  
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),19) == false) then
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),20) == false) then
 		player:startEvent(0x0231);
 	elseif(player:getCurrentMission(SANDORIA) == THE_CRYSTAL_SPRING and player:getVar("MissionStatus") == 3) then
 		player:startEvent(0x022c);
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x022c or csid == 0x006f) then
 		finishMissionTimeline(player,3,csid,option);
 	elseif(csid == 0x0231) then
-		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",19,true);
+		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",20,true);
 	elseif(csid == 0x0054 and option == 1) then
 		player:addQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
 	elseif(csid == 0x0053) then

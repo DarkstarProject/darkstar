@@ -1,16 +1,14 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
 -- NPC:  Curilla
--- Starts and Finishes Quest: The General's Secret, Enveloped in Darkness, Peace for the Spirit
--- @zone 233
--- @pos 27 0 0
+-- Starts and Finishes Quest: The General's Secret, Enveloped in Darkness, Peace for the Spirit, Lure of the Wildcat (San d'Oria)
+-- @pos 27 0 0 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_Doraguille/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Chateau_Doraguille/TextIDs");
 
@@ -19,6 +17,13 @@ require("scripts/zones/Chateau_Doraguille/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
+			player:messageSpecial(FLYER_REFUSED);
+		end
+	end
+	
 end;
 
 -----------------------------------
@@ -27,14 +32,15 @@ end;
 
 function onTrigger(player,npc)
 	
-	sanFame = player:getFameLevel(SANDORIA);
 	mLvL = player:getMainLvl();
 	mJob = player:getMainJob();
 	theGeneralSecret = player:getQuestStatus(SANDORIA,THE_GENERAL_S_SECRET);
 	envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS);
 	peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT);
 	
-	if(theGeneralSecret == QUEST_AVAILABLE and sanFame >= 2) then
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),16) == false) then
+		player:startEvent(0x0232);
+	elseif(theGeneralSecret == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then
 		player:startEvent(0x0037); -- Start Quest "The General's Secret"
 	elseif(mJob == 5 and mLvL >= AF2_QUEST_LEVEL and player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_COMPLETED and envelopedInDarkness == QUEST_AVAILABLE) then
 		player:startEvent(0x005E); -- Start Quest "Enveloped in Darkness"
@@ -61,7 +67,7 @@ function onTrigger(player,npc)
 	elseif(peaceForTheSpirit == QUEST_COMPLETED) then
 		player:startEvent(0x0034); -- Standard dialog after Peace of the spirit
 	else
-		player:startEvent(0x00212); -- Standard dialog
+		player:startEvent(0x0212); -- Standard dialog
 	end
 	
 end; 
@@ -105,6 +111,8 @@ function onEventFinish(player,csid,option)
 		player:addQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);
 	elseif(csid == 0x0065) then 
 		player:setVar("needs_crawler_blood",1);
+	elseif(csid == 0x0232) then
+		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",16,true);
 	end
 
 end;

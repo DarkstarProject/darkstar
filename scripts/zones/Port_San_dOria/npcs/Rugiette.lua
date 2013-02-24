@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Port San d'Oria
 -- NPC:  Rugiette
--- Involved in Quests: Riding on the Clouds
--- @zone 232
--- @pos 71.360 -9.102 -73.724
+-- Involved in Quests: Riding on the Clouds, Lure of the Wildcat (San d'Oria)
+-- @pos 71 -9 -73 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -40,7 +39,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0259);
+	
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),15) == false) then
+		player:startEvent(0x02ea);
+	else
+		player:startEvent(0x0259);
+	end
+	
 end;
 
 -----------------------------------
@@ -59,4 +64,9 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
+	
+	if(csid == 0x02ea) then
+		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",15,true);
+	end
+	
 end;

@@ -38,16 +38,14 @@ function onTrigger(player,npc)
     local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
 	local MissionStatus = player:getVar("MissionStatus");
-	wildcatSandy_var = player:getVar("wildcatSandy_var");
 	
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),17) == false) then
+		player:startEvent(0x022e);
 	-- Blackmail quest
-	if(player:getQuestStatus(SANDORIA, BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE)) then
-		player:startEvent(0x0225 );
+	elseif(player:getQuestStatus(SANDORIA, BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE)) then
+		player:startEvent(0x0225);
 		player:setVar("BlackMailQuest",1);
 		player:delKeyItem(SUSPICIOUS_ENVELOPE);
-    ------------------------------		
-	elseif(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(wildcatSandy_var,17) == false) then
-		player:startEvent(0x022e);
 	elseif(pNation == SANDORIA) then
 		if(currentMission == JOURNEY_ABROAD and MissionStatus == 0) then
 			player:startEvent(0x01f9);
@@ -156,7 +154,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x01F6) then
 		player:setVar("MissionStatus",4);
 	elseif(csid == 0x022e) then
-		wildcatSandy_var = player:setMaskBit(wildcatSandy_var,"wildcatSandy_var",17,true);
+		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",17,true);
 	elseif(csid == 0x01F8) then
 		player:setVar("MissionStatus",9);
 	elseif(csid == 0x0222) then

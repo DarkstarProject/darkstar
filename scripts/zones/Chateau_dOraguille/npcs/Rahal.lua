@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
 -- NPC:  Rahal
--- Involved in Quests: The Holy Crest
--- @zone 233
--- @pos -28 0 -6
+-- Involved in Quests: The Holy Crest, Lure of the Wildcat (San d'Oria)
+-- @pos -28 0 -6 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
@@ -17,6 +16,13 @@ require("scripts/zones/Chateau_dOraguille/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
+			player:messageSpecial(FLYER_REFUSED);
+		end
+	end
+	
 end;
 
 -----------------------------------
@@ -30,8 +36,10 @@ function onTrigger(player,npc)
 	local Stalker_Quest = player:getQuestStatus(SANDORIA,KNIGHT_STALKER);
 	local StalkerProgress = player:getVar("KnightStalker_Progress");
 
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),18) == false) then
+		player:startEvent(0x022f);
 	-- Need to speak with Rahal to get Dragon Curse Remedy
-	if (CrestProgress == 5 and RemedyKI == false) then
+	elseif (CrestProgress == 5 and RemedyKI == false) then
 		player:startEvent(0x003c); -- Gives key item
 	elseif(CrestProgress == 5 and RemedyKI == true) then
 		player:startEvent(122); -- Reminder to go to Gelsba
@@ -77,9 +85,11 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x003c) then
+	if(csid == 0x003c) then
 		player:addKeyItem(DRAGON_CURSE_REMEDY);
 		player:messageSpecial(KEYITEM_OBTAINED, DRAGON_CURSE_REMEDY);
+	elseif(csid == 0x022f) then
+		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",18,true);
 	elseif (csid == 121) then
 		if (option == 1) then
 			player:addQuest(SANDORIA,KNIGHT_STALKER);

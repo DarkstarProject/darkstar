@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Cherlodeau
--- Standard Info NPC
+-- NPC:  Cherlodeau
+-- Involved in Quest: Lure of the Wildcat (San d'Oria)
+-- @pos -20 -4 -69 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -14,16 +15,13 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
+	
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
+	
 end; 
 
 -----------------------------------
@@ -31,7 +29,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x24e);
+	
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),13) == false) then
+		player:startEvent(0x02ec);
+	else
+		player:startEvent(0x024e);
+	end
+	
 end;
 
 -----------------------------------
@@ -50,8 +54,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
+	if(csid == 0x02ec) then
+		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",13,true);
+	end
+	
 end;
-
-
-
-
