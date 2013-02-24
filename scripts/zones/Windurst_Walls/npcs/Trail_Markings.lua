@@ -43,7 +43,7 @@ function onTrigger(player,npc)
 		elseif((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaWindurst]UniqueID")) then
 			player:startEvent(0x01c4,3,firstDyna,0,BETWEEN_2DYNA_WAIT_TIME,64,VIAL_OF_SHROUDED_SAND,4236,4237,0);
 		else
-			dayRemaining = (BETWEEN_2DYNA_WAIT_TIME * 24) - tonumber(os.date("%H"));
+			dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) - realDay)/3456);
 			player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,3);
 		end
 	else
