@@ -39,16 +39,6 @@ function onTrigger(player,npc)
 	local currentMission = player:getCurrentMission(pNation);
 	local MissionStatus = player:getVar("MissionStatus");
 	wildcatSandy_var = player:getVar("wildcatSandy_var");
-	-- Mission San D'Oria 6-1 Leaute's last wishes
-	if(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 0) then
-	    player:startEvent(0x0019);
-	elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 1) then
-	    player:startEvent(0x0017);
-	elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
-	    player:startEvent(0x0018);		
-	elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 3) then
-        player:startEvent(0x0016);
-	end
 	
 	-- Blackmail quest
 	if(player:getQuestStatus(SANDORIA, BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE)) then
@@ -89,6 +79,15 @@ function onTrigger(player,npc)
 	        player:startEvent(0x0018);		
 	    elseif(currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 3) then
             player:startEvent(0x0016);
+		-- Mission San D'Oria 6-1 Leaute's last wishes
+		elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 0) then
+			player:startEvent(0x0019);
+		elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 1) then
+			player:startEvent(0x0017);
+		elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
+			player:startEvent(0x0018);		
+		elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 3) then
+			player:startEvent(0x0016);
 		end
 	elseif(pNation == BASTOK) then
 		if(currentMission == THE_EMISSARY) then
