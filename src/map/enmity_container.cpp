@@ -270,8 +270,8 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
 		mod = battleutils::GetEnmityMod(m_EnmityHolder->GetMLevel(), 1);
 	}
 
-	uint16 CE =  (80 / mod) * Damage;
-	uint16 VE = (240 / mod) * Damage;
+	uint16 CE =  (80.0f / mod) * Damage;
+	uint16 VE = (240.0f / mod) * Damage;
 
 	UpdateEnmity(PEntity, CE, VE); 
 }

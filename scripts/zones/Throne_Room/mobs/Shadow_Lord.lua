@@ -87,6 +87,8 @@ function onMobDeath(mob,killer)
 	mob:SetAutoAttackEnabled(true);
 	mob:SetMagicCastingEnabled(true);
 	mob:setSpellCooldown(10000);
+	mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
+	mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
 	
 end;
 
