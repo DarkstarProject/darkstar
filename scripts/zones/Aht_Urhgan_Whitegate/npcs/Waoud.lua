@@ -19,11 +19,9 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 function onTrade(player,npc,trade)
 
-local AnEmptyVessel = player:getQuestStatus(AHT_URHGAN,AN_EMPTY_VESSEL);
-local AnEmptyVesselProgress = player:getVar("AnEmptyVesselProgress");
 local StoneID = player:getVar("EmptyVesselStone");
 
-	if (AnEmptyVesselProgress == 3 and AnEmptyVessel == 1) then
+	if (player:getVar("AnEmptyVesselProgress") == 3 and player:getQuestStatus(AHT_URHGAN,AN_EMPTY_VESSEL) == QUEST_ACCEPTED) then
 		if (trade:hasItemQty(StoneID,1) and trade:getGil() == 0 and trade:getItemCount() == 1) then
 			player:startEvent(0x0043,StoneID); -- get the stone to Aydeewa
 		end;
@@ -41,16 +39,13 @@ local AnEmptyVesselProgress = player:getVar("AnEmptyVesselProgress");
 local divinationDay = player:getVar("LastDivinationDay");
 local currentDay = VanadielDayOfTheYear();
 local divinationReady = ((divinationDay < currentDay) or (divinationDay > currentDay and player:getVar("LastDivinationYear") < VanadielYear()));
-local needsZone = player:needToZone();
-local playerGil = player:getGil();
-local StoneID = player:getVar("EmptyVesselStone");
 
-	if (player:getMainLvl() >= 30 and AnEmptyVessel == 0 and AnEmptyVesselProgress <= 1 and divinationReady == true) then
-		player:startEvent(0x003c,playerGil); -- initial cutscene where you get what stone you are gonne give to him if you answer all 10 questions correctly
-	elseif (AnEmptyVesselProgress == 1 and AnEmptyVessel == 0 and divinationReady == false) then -- on the same day
+	if (player:getMainLvl() >= 30 and AnEmptyVessel == QUEST_AVAILABLE and AnEmptyVesselProgress <= 1 and divinationReady == true) then
+		player:startEvent(0x003c,player:getGil()); -- initial cutscene where you get what stone you are gonne give to him if you answer all 10 questions correctly
+	elseif (AnEmptyVesselProgress == 1 and AnEmptyVessel == QUEST_AVAILABLE and divinationReady == false) then -- on the same day
 		player:startEvent(0x003f); -- reminder to come back next day, cause you failed
-	elseif (AnEmptyVesselProgress == 2 and AnEmptyVessel == 1) then
-		if (needsZone == false and divinationReady == true) then -- Have zoned and waited a day
+	elseif (AnEmptyVesselProgress == 2 and AnEmptyVessel == QUEST_ACCEPTED) then
+		if (player:needToZone() == false and divinationReady == true) then -- Have zoned and waited a day
 			player:startEvent(0x0041); -- shortened version to which stone you need to get, after this you can trade the requested stone to him.
 		else -- Have not zoned, or have not waited, or both.
 			player:startEvent(0x0040); -- you have successed before but you still need to wait a gameday and zone
@@ -59,7 +54,7 @@ local StoneID = player:getVar("EmptyVesselStone");
 		player:startEvent(0x0042); -- reminder of the shortened version, you can trade the stone.
 	elseif (AnEmptyVesselProgress == 4) then 
 		player:startEvent(0x0044); -- reminder to get the stone to Aydeewa
-	elseif (AnEmptyVessel == 2 and player:hasKeyItem(771) == true and player:getVar("BluAFBeginnings_Optional") == 0) then
+	elseif (AnEmptyVessel == QUEST_COMPLETED and player:hasKeyItem(771) == true and player:getVar("BluAFBeginnings_Optional") == 0) then
 		player:startEvent(0x0045); -- optional CS for AF
 	else
 		player:startEvent(0x003D);
@@ -99,6 +94,7 @@ local success = player:getVar("SuccessfullyAnswered"); -- number of questions an
 			player:setVar("SuccessfullyAnswered",success+1);
 		elseif (success == 10) then
 			local rand = math.random(1,3); -- which stone you will need to get.
+			player:setVar("StoneYouNeed",rand);
 			player:updateEvent(player:getGil(),0,0,0,0,0,rand,70); -- all 5 serpents / success!
 			switch (rand): caseof -- 1 == Siren's Tear (576), 2 == Valkurm Sunsand(503), 3 == Dangurf Stone(553)
 			{
@@ -117,6 +113,8 @@ local success = player:getVar("SuccessfullyAnswered"); -- number of questions an
 		elseif (success < 2 and success >=0 ) then
 			player:updateEvent(player:getGil(),0,0,0,0,0,0,10); -- Springserpent
 		end;
+	elseif (csid == 0x0041 and option == 2) then
+		player:setVar("AnEmptyVesselProgress",3);
 	end;
 end;
 
