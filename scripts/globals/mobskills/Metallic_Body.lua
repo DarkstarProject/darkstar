@@ -10,6 +10,6 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local base = mob:getMainLvl() + 0.05*mob:getMaxHP()*(skill:getTP()/100); --base is around 5~150 level depending
 	local typeEffect = EFFECT_STONESKIN;
-    skill:setMsg(MobBuffMove(target, typeEffect, base, 0, 300));
+    skill:setMsg(MobBuffMove(mob, typeEffect, base, 0, 300));
 	return typeEffect;
 end;

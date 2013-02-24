@@ -17,7 +17,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_BLAZE_SPIKES;
-    skill:setMsg(MobBuffMove(target, typeEffect, randy, 0, 180));
+    skill:setMsg(MobBuffMove(mob, typeEffect, randy, 0, 180));
 
 	return typeEffect;
 end;

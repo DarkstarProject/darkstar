@@ -3403,7 +3403,6 @@ INSERT INTO `item_weapon` VALUES ('19300', 'Aisa_+1', '9', '2', '1', '222', '54'
 INSERT INTO `item_weapon` VALUES ('19298', 'ikarigiri', '9', '2', '1', '222', '58', '0');
 INSERT INTO `item_weapon` VALUES ('18462', 'sasanuki', '10', '0', '1', '420', '95', '0');
 INSERT INTO `item_weapon` VALUES ('18463', 'sasanuki_+1', '10', '0', '1', '407', '96', '0');
-INSERT INTO `item_weapon` VALUES ('18463', 'sasanuki_+1', '10', '0', '1', '407', '96', '0');
 INSERT INTO `item_weapon` VALUES ('18791', 'buzbaz_sainti_+1', '1', '4', '1', '531', '36', '0');
 INSERT INTO `item_weapon` VALUES ('18792', 'buzbaz_sainti_+1', '1', '4', '1', '529', '37', '0');
 INSERT INTO `item_weapon` VALUES ('18787', 'sharas_fists', '1', '4', '1', '540', '37', '0');

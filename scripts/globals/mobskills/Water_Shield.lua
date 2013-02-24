@@ -18,6 +18,6 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_EVASION_BOOST;
-    skill:setMsg(MobBuffMove(target, typeEffect, 20, 0, 30));
+    skill:setMsg(MobBuffMove(mob, typeEffect, 20, 0, 30));
     return typeEffect;
 end;

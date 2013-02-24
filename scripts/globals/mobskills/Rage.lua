@@ -20,6 +20,6 @@ function OnMobWeaponSkill(target, mob, skill)
 	local duration = 60;
 
 	local typeEffect = EFFECT_BERSERK;
-    skill:setMsg(MobBuffMove(target, typeEffect, 1, 0, duration));
+    skill:setMsg(MobBuffMove(mob, typeEffect, 1, 0, duration));
 	return typeEffect;
 end;

@@ -15,6 +15,6 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_HASTE;
-    skill:setMsg(MobBuffMove(target, typeEffect, 102, 0, 300));
+    skill:setMsg(MobBuffMove(mob, typeEffect, 102, 0, 300));
 	return typeEffect;
 end

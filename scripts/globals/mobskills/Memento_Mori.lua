@@ -15,6 +15,6 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_MAGIC_ATK_BOOST;
-    skill:setMsg(MobBuffMove(target, typeEffect, 20, 0, 300));
+    skill:setMsg(MobBuffMove(mob, typeEffect, 20, 0, 300));
     return typeEffect;
 end;

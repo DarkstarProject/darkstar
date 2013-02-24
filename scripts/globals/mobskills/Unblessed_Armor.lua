@@ -22,7 +22,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SHELL;
     local power = 128;
 
-    skill:setMsg(MobBuffMove(target, typeEffect, power, 0, 180));
+    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, 180));
 
     return typeEffect;
 end;

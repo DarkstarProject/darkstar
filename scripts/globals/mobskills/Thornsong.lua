@@ -27,6 +27,6 @@ function OnMobWeaponSkill(target, mob, skill)
     local power = mob:getMainLvl();
     local duration = 180;
     local typeEffect = EFFECT_BLAZE_SPIKES;
-    skill:setMsg(MobBuffMove(target, typeEffect, power, 0, duration));
+    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
     return typeEffect;
 end;

@@ -20,7 +20,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     local typeEffect = EFFECT_PROTECT;
 
-    skill:setMsg(MobBuffMove(target, typeEffect, power, 0, duration));
+    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
 
     return typeEffect;
 end;
