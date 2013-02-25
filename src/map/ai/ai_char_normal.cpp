@@ -402,7 +402,7 @@ void CAICharNormal::ActionDeath()
 
     // show reraise menu after sometime
     // this also prevents the menu from appearing before you're totally dead
-    if (m_PChar->m_hasRaise && (m_Tick - m_LastActionTime) >= 7000)
+    if (m_PChar->m_hasRaise && (m_Tick - m_LastActionTime) >= 8000)
     {
         m_LastActionTime = m_Tick;
         m_ActionType = ACTION_NONE;
@@ -3402,14 +3402,14 @@ void CAICharNormal::ActionRaiseMenuSelection()
     m_PChar->m_ActionList.push_back(Action);
     m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
+    uint8 weaknessLvl = 1;
 	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS))
     {
 		//double weakness! Calculate stuff here
-	    ShowDebug("ActionRaiseMenuSelection : todo: handle double-weakness.\n");
-		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_WEAKNESS);
+        weaknessLvl = 2;
 	}
 	//add weakness effect (75% reduction in HP/MP)
-	CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,75,0,300);
+	CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,weaknessLvl,0,300);
 	m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
 
 	charutils::UpdateHealth(m_PChar);

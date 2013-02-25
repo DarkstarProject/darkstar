@@ -273,6 +273,7 @@ public:
     int32 setPVPFlag(lua_State*);           // Allow to attack this player
 
 	int32 sendRaise(lua_State*);			// send raise request to char
+	int32 sendReraise(lua_State*);			// send raise request to char
 	int32 sendTractor(lua_State*);			// send tractor request to char
 
 	int32 updateEnmity(lua_State*);			// Adds Enmity to player for specified mob

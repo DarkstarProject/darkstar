@@ -788,12 +788,13 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
 		local element = mob:getStatusEffectElement(typeEffect);
 
 		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,element);
+
 		if(resist >= 0.5) then
 			target:addStatusEffect(typeEffect,power,tick,duration*resist);
 			return MSG_ENFEEB_IS;
-		else
-			return MSG_MISS; -- resist !
 		end
+
+		return MSG_MISS; -- resist !
 	end
 	return MSG_NO_EFFECT; -- no effect
 end;

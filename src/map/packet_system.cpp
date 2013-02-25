@@ -672,6 +672,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			PChar->health.hp = PChar->GetMaxHP();
             PChar->health.mp = PChar->GetMaxMP();
 
+            // remove weakness on homepoint
+            PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);
+
 			PChar->loc.boundary = 0;
 			PChar->loc.p = PChar->profile.home_point.p;
             PChar->loc.destination = PChar->profile.home_point.destination;

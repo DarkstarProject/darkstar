@@ -16,6 +16,13 @@ function onEffectGain(target,effect)
     target:addMod(MOD_HPP,-75);
     target:addMod(MOD_MPP,-75);
     target:addMod(MOD_HASTE_MAGIC,-1024);
+
+    if(effect:getPower() == 2) then
+        -- handle double weakness
+        target:addMod(MOD_ATT,-999);
+        target:addMod(MOD_RATT,-999);
+        target:addMod(MOD_MATT,-999);
+    end
 end;
 
 -----------------------------------
@@ -34,4 +41,11 @@ function onEffectLose(target,effect)
     target:delMod(MOD_HPP,-75);
     target:delMod(MOD_MPP,-75);
     target:delMod(MOD_HASTE_MAGIC,-1024);
+
+    if(effect:getPower() == 2) then
+        -- handle double weakness
+        target:delMod(MOD_ATT,-999);
+        target:delMod(MOD_RATT,-999);
+        target:delMod(MOD_MATT,-999);
+    end
 end;

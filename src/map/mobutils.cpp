@@ -276,17 +276,6 @@ void CalculateStats(CMobEntity * PMob)
 	AddTraits(PMob, PMob->GetMJob(), PMob->GetMLevel());
 	AddTraits(PMob, PMob->GetSJob(), PMob->GetSLevel());
 
-
-	//MNK has 100% double attack
-    if(PMob->GetMJob()==JOB_MNK){
-        PMob->addModifier(MOD_DOUBLE_ATTACK,100);
-    }
-
-	//MNK has 15% kick attacks
-	if(PMob->GetMJob()==JOB_MNK && PMob->m_minLevel >= 55){
-        PMob->addModifier(MOD_TRIPLE_ATTACK,15);
-    }
-
 	PMob->delModifier(MOD_MEVA, PMob->m_magicEvasion);
 	//natural magic evasion
 	if(PMob->GetMLevel()<=83){

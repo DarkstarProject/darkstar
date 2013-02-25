@@ -29,9 +29,9 @@ function OnMobWeaponSkill(target, mob, skill)
 
     -- display silenced first, else blind
     if(silenced == MSG_ENFEEB_IS) then
-        typeEffect = EFFECT_SILENCE;
+        typeEffect = EFFECT_DEFENSE_DOWN;
     elseif(blinded == MSG_ENFEEB_IS) then
-        typeEffect = EFFECT_BLINDNESS;
+        typeEffect = EFFECT_MAGIC_DEF_DOWN;
     else
         skill:setMsg(MSG_MISS);
     end

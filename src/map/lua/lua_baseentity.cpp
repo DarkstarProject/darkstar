@@ -3427,6 +3427,27 @@ inline int32 CLuaBaseEntity::sendTractor(lua_State *L)
 *  Отправляем персонажу Raise меню                                      *
 *                                                                       *
 ************************************************************************/
+inline int32 CLuaBaseEntity::sendReraise(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint8 RaiseLevel = (uint8)lua_tonumber(L,1);
+
+    if (RaiseLevel == 0 || RaiseLevel > 3)
+    {
+        ShowDebug(CL_CYAN"lua::sendRaise raise value is not valide!\n" CL_RESET);
+    }
+    else if(PChar->m_hasRaise == 0)
+    {
+        PChar->m_hasRaise = RaiseLevel;
+    }
+    return 0;
+}
 
 inline int32 CLuaBaseEntity::sendRaise(lua_State *L)
 {
@@ -6358,6 +6379,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatus),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPVPFlag),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendRaise),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendReraise),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendTractor),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffectEx),

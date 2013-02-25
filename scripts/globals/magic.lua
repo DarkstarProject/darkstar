@@ -666,6 +666,10 @@ function addBonuses(caster, spell, target, dmg)
 
     local mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
 
+    if(mab < 0) then
+        mab = 0;
+    end
+
 	dmg = math.floor(dmg * mab);
 
 	-- Applies "Damage Taken" and "Magic Damage Taken" mods.
