@@ -2367,7 +2367,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 			if (PEntity->objtype == TYPE_PC) 
 				zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, PEntity->GetMLevel());
 
-			if(rand()%100 < zanshin)
+			if(rand()%100 < (zanshin / 4) )
 				num++;
 		}
 	}
