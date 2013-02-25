@@ -38,8 +38,7 @@ function onMonsterMagicPrepare(mob,target)
 		elseif (rnd < 0.9) then
 			return 208; -- tornado
 		else
-			return 157; -- aero 4
-			-- TODO: when enfeebs work: return 237; -- choke
+			return 237; -- choke
 		end
 	end
 

@@ -28,8 +28,7 @@ function onMonsterMagicPrepare(mob, target)
     elseif (rnd < 0.9) then
         return 204; -- flare
     else
-        return 147; -- fire 4
-        -- TODO: when enfeebs work: return 235; -- burn
+        return 235; -- burn
     end
     
 end;
