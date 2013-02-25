@@ -11,6 +11,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
+require("scripts/globals/settings");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
@@ -41,7 +42,7 @@ function onTrigger(player,npc)
 	
 	local lureWildcatSandy = player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
 	
-	if(lureWildcatSandy == QUEST_AVAILABLE) then
+	if(lureWildcatSandy == QUEST_AVAILABLE and ENABLE_TOAU == 1) then
 		player:startEvent(0x032c);
 	elseif(lureWildcatSandy == QUEST_ACCEPTED) then
 		local wildcatSandy = player:getVar("wildcatSandy_var");
