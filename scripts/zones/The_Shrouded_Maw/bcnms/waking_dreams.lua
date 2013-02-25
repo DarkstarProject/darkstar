@@ -104,10 +104,10 @@ function OnBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		if(player:hasKeyItem(335)==true) then
+		if(player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==true) then
 		    player:addKeyItem(WHISPER_OF_DREAMS);
 			player:delKeyItem(VIAL_OF_DREAM_INCENSE);
-			player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_DREAMS);			 
+			player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_DREAMS);
 		end
 		player:addTitle(HEIR_TO_THE_REALM_OF_DREAMS);
 		player:startEvent(0x7d02);

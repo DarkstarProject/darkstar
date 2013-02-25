@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 	
 	if(csid == 0x7d01) then
-		if(player:getCurrentMission(player:getNation()) == 15) then
+		if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 2) then
 			player:addMission(ZILART,THE_NEW_FRONTIER);
 			player:addKeyItem(SHADOW_FRAGMENT);
 			player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);

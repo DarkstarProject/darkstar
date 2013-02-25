@@ -43,7 +43,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
-	if (csid == 0x7d01) then
+	if (csid == 0x7d01 and player:getVar("ClassReunionProgress") == 5) then
 		player:setVar("ClassReunionProgress",6);
 	end;
 end;

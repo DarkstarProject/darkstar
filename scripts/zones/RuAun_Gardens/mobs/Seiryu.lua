@@ -32,7 +32,7 @@ function onMonsterMagicPrepare(mob,target)
 	-- For some reason, this returns false even when Hundred Fists is active, so... yeah.
 	-- Core does this:
 	-- m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HUNDRED_FISTS,0,1,0,45));
-	if (mob:hasStatusEffect(EFFECT_HUNDRED_FISTS) == false) then
+	if (mob:hasStatusEffect(EFFECT_HUNDRED_FISTS,0) == false) then
 		local rnd = math.random();
 		if (rnd < 0.5) then
 			return 186; -- aeroga 3

@@ -51,7 +51,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print(bc finish csid ..csid.. and option ..option);
 	
-	if(csid == 0x7d01 and option ~= 0) then -->= 2147483648 and option <= 2147483679) then
+	if(csid == 0x7d01 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then -->= 2147483648 and option <= 2147483679) then
 		player:addTitle(HEIR_TO_THE_HOLY_CREST);
 		player:delKeyItem(DRAGON_CURSE_REMEDY);
 		player:unlockJob(14);

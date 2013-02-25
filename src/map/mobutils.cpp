@@ -324,11 +324,6 @@ void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
  * then stored in PMob->m_AvailableSpells
  */
 void GetAvailableSpells(CMobEntity* PMob) {
-	if (PMob->m_HasSpellScript == 1) {
-		PMob->m_AvailableSpells.push_back(0); // we use spell id = 0 to indicate that its scripted
-		return;
-	}
-
 	// setup recast times
 	if (PMob->GetMJob() == JOB_BLM || PMob->GetMJob() == JOB_BRD) {
 		PMob->m_MagicRecastTime = 15000;
@@ -343,6 +338,10 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		PMob->m_MagicRecastTime = 30000;
 	}
 
+	if (PMob->m_HasSpellScript == 1) {
+		PMob->m_AvailableSpells.push_back(0); // we use spell id = 0 to indicate that its scripted
+		return;
+	}
 
 	// clear spell list
 	PMob->m_AvailableSpells.clear();
