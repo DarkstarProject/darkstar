@@ -22,19 +22,11 @@ function onSpellCast(caster,target,spell)
 	--Calculates resist chanve from Reist Blind
 	if(math.random(0,100) >= target:getMod(MOD_BLINDRES)) then
 		if(duration >= 150) then
-			-- Erases a weaker blind and applies the stronger one
-			local blindness = target:getStatusEffect(EFFECT_BLINDNESS);
-			if(blindness ~= nil) then
-				if(blindness:getPower() < power) then
-					target:delStatusEffect(EFFECT_BLINDNESS);
-					target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration);
-					spell:setMsg(237);
-				else
-					spell:setMsg(75);
-				end
+
+			if(target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
+				spell:setMsg(236);
 			else
-				target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration);
-				spell:setMsg(237);
+				spell:setMsg(75);
 			end
 		else
 			spell:setMsg(85);

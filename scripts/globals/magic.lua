@@ -327,9 +327,7 @@ function applyResistance(player,spell,target,diff,skill,staff)
 	magicaccbonus = magicaccbonus / 2;
 	--add magicacc bonus
 	p = p + magicaccbonus;
-	-- print(magicacc);
-	-- print(magiceva);
-	-- print(magicaccbonus);
+    -- printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
 
 
 	--double any acc over 50 if it's over 50

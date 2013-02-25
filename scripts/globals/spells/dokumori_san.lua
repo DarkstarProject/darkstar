@@ -27,7 +27,7 @@ function onSpellCast(caster,target,spell)
     if(math.random(0,100) >= target:getMod(MOD_POISONRES)) then
         if(duration >= 120) then
             if(target:addStatusEffect(effect,power,3,duration)) then
-                spell:setMsg(237);
+                spell:setMsg(236);
             else
                 spell:setMsg(75);
             end

@@ -129,14 +129,20 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	lvldiff = lvluser - lvltarget;
 
 	--work out hit rate for mobs (bias towards them)
-	hitrate = (acc*accmod) - eva + (lvldiff*3) + 75;
+	hitrate = (acc*accmod) - eva + (lvldiff*4) + 75;
 
 	-- printf("acc: %f, eva: %f, hitrate: %f", acc, eva, hitrate);
 	if (hitrate > 95) then
 		hitrate = 95;
-	end
-	if (hitrate < 20) then
+	elseif (hitrate < 20) then
 		hitrate = 20;
+	end
+
+	-- increase damage based on tp
+	if(mob:getTP() >= 200) then
+		dmg = dmg + 1.5;
+	elseif(mob:getTP() == 300) then
+		dmg = dmg + 2;
 	end
 
 	--work out the base damage for a single hit

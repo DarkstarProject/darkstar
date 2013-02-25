@@ -378,6 +378,7 @@ public:
 	stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
 	skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
 	IMMUNITY		m_Immunity;					// Mob immunity
+	uint16			m_magicEvasion;		// store this so it can be removed easily
 
     uint16          STR();
     uint16          DEX();

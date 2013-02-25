@@ -94,6 +94,20 @@ void CMobEntity::SetDespawnTimer(uint32 duration)
 	m_DespawnTimer = (duration > 0 ? (duration * 1000) + gettick() : duration);
 }
 
+uint32 CMobEntity::GetRandomGil()
+{
+    float multiplier = 1 + (float)GetMLevel() / 75.0;
+
+    uint16 base = GetMLevel() * ((m_Type & MOBTYPE_NOTORIOUS) ? 10 : multiplier);
+
+    uint16 highBase = (float)(base*(multiplier*1.4))/2;
+
+    // randomize it
+    base += rand()%highBase;
+
+    return base;
+}
+
 /************************************************************************
 *                                                                       *
 *                                                                       *

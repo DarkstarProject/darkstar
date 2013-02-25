@@ -20,7 +20,7 @@ function OnUseAbility(player, target, ability)
         -- is notorious
         -- all notorious monsters can be mugged
         if(target:isMobType(2) and gil <= 0) then
-            gil = target:getMainLvl() * 30;
+            gil = target:getMainLvl() * 20;
         end
 
         if(gil <= 0) then

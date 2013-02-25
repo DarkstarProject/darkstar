@@ -2643,7 +2643,7 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 			CMobEntity * PMob = (CMobEntity*)m_PBaseEntity;
 			if(PMob->m_EcoSystem == SYSTEM_BEASTMEN || PMob->m_Type & MOBTYPE_NOTORIOUS)
 			{
-				lua_pushinteger(L, ((float)PMob->GetMLevel() * ((PMob->m_Type & MOBTYPE_NOTORIOUS) ? 10 : 1.6)));
+				lua_pushinteger(L, PMob->GetRandomGil());
 				return 1;
 			}
 		}

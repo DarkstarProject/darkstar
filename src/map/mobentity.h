@@ -162,6 +162,7 @@ public:
     bool        CanDeaggro();
     uint32      GetDespawnTimer();
     void        SetDespawnTimer(uint32 duration);
+    uint32      GetRandomGil(); // returns a random amount of gil
 
 	uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.
 

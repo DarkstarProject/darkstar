@@ -1949,7 +1949,10 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
             PChar->addModifier(PTrait->getMod(), PTrait->getValue());
 		}
 	}
-	PChar->addModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PChar->GetMLevel()));
+    PChar->delModifier(MOD_MEVA, PChar->m_magicEvasion);
+
+    PChar->m_magicEvasion = battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PChar->GetMLevel());
+	PChar->addModifier(MOD_MEVA, PChar->m_magicEvasion);
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 
@@ -2355,7 +2358,7 @@ uint32 GetExpNEXTLevel(uint8 charlvl)
 void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
 {
     //work out the amount of gil to give (guessed; replace with testing)
-    uint32 gil = (float)PMob->GetMLevel() * ((PMob->m_Type & MOBTYPE_NOTORIOUS) ? 10 : 1.6);
+    uint32 gil = PMob->GetRandomGil();
 
 
 	//distribute to said members (perhaps store pointers to each member in first loop?)

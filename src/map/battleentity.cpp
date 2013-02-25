@@ -40,6 +40,8 @@ CBattleEntity::CBattleEntity()
 	m_mjob = JOB_WAR;
 	m_sjob = JOB_WAR;
 
+	m_magicEvasion = 0;
+
 	m_Weapons[SLOT_MAIN]   = new CItemWeapon(0);
 	m_Weapons[SLOT_SUB]    = new CItemWeapon(0);
 	m_Weapons[SLOT_RANGED] = new CItemWeapon(0);

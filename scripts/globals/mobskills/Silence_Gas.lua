@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 60);
 
 
-    local dmgmod = MobBreathMove(mob, target, 0.2, 2, ELE_WIND, 550);
+    local dmgmod = MobBreathMove(mob, target, 0.25, 2, ELE_WIND, 800);
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
 

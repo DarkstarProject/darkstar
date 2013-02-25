@@ -27,6 +27,7 @@
 
 #include "battleutils.h"
 #include "grades.h"
+#include "trait.h"
 #include "mobutils.h"
 #include "modifier.h"
 #include "spell.h"
@@ -78,16 +79,42 @@ uint16 GetBaseToRank(uint8 rank, uint16 lvl)
 
 uint16 GetBase(CMobEntity * PMob, uint8 rank)
  {
-	switch (rank)
-	{
-		case 1: return (PMob->GetMLevel() > 50 ? 153+((PMob->GetMLevel()-50)*50)/10 : 6+((PMob->GetMLevel()-1)*30)/10);
-		case 2: return (PMob->GetMLevel() > 50 ? 147+((PMob->GetMLevel()-50)*49)/10 : 5+((PMob->GetMLevel()-1)*29)/10);
-		case 3: return (PMob->GetMLevel() > 50 ? 142+((PMob->GetMLevel()-50)*48)/10 : 5+((PMob->GetMLevel()-1)*28)/10);
-		case 4: return (PMob->GetMLevel() > 50 ? 136+((PMob->GetMLevel()-50)*47)/10 : 4+((PMob->GetMLevel()-1)*27)/10);
-		case 5: return (PMob->GetMLevel() > 50 ? 131+((PMob->GetMLevel()-50)*46)/10 : 4+((PMob->GetMLevel()-1)*26)/10);
-		case 6: return (PMob->GetMLevel() > 50 ? 126+((PMob->GetMLevel()-50)*45)/10 : 3+((PMob->GetMLevel()-1)*25)/10);
-		case 7: return (PMob->GetMLevel() > 50 ? 120+((PMob->GetMLevel()-50)*44)/10 : 3+((PMob->GetMLevel()-1)*24)/10);
-	}
+ 	uint8 lvl = PMob->GetMLevel();
+ 	if(lvl > 50){
+ 		switch(rank){
+ 			case 1:
+ 				return (float)153+(lvl-50)*5.0;
+ 			case 2:
+ 				return (float)147+(lvl-50)*4.9;
+ 			case 3:
+ 				return (float)136+(lvl-50)*4.8;
+ 			case 4:
+ 				return (float)126+(lvl-50)*4.7;
+ 			case 5:
+ 				return (float)116+(lvl-50)*4.5;
+ 			case 6:
+ 				return (float)106+(lvl-50)*4.4;
+ 			case 7:
+ 				return (float)96+(lvl-50)*4.3;
+ 		}
+ 	} else {
+ 		switch(rank){
+ 			case 1:
+ 				return (float)6+(lvl-1)*3.0;
+ 			case 2:
+ 				return (float)5+(lvl-1)*2.9;
+ 			case 3:
+ 				return (float)5+(lvl-1)*2.8;
+ 			case 4:
+ 				return (float)4+(lvl-1)*2.7;
+ 			case 5:
+ 				return (float)4+(lvl-1)*2.5;
+ 			case 6:
+ 				return (float)3+(lvl-1)*2.4;
+ 			case 7:
+ 				return (float)3+(lvl-1)*2.3;
+ 		}
+ 	}
 	return 0;
 }
 
@@ -102,25 +129,25 @@ void CalculateStats(CMobEntity * PMob)
 	bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS;
 	if(PMob->HPmodifier == 0){
 
-		float growth = 1.0575;
+		float growth = 1.06;
 		uint8 lvl = PMob->GetMLevel();
 
 		//give hp boost every 10 levels after 25
 		//special boosts at 25 and 50
 		if(lvl > 75){
-			growth = 1.2675;
+			growth = 1.28;
 		}else if(lvl > 65){
-			growth = 1.2475;
+			growth = 1.27;
 		} else if(lvl > 55){
-			growth = 1.2375;
+			growth = 1.25;
 		} else if(lvl > 50){
-			growth = 1.2075;
+			growth = 1.21;
 		} else if(lvl > 45){
-			growth = 1.1675;
+			growth = 1.17;
 		} else if(lvl > 35){
-			growth = 1.1375;
+			growth = 1.14;
 		} else if(lvl > 25){
-			growth = 1.0975;
+			growth = 1.1;
 		}
 
 		PMob->health.maxhp = (int16)(18.0 * pow(PMob->GetMLevel(), growth) * PMob->HPstat);
@@ -165,47 +192,24 @@ void CalculateStats(CMobEntity * PMob)
     PMob->health.hp = PMob->GetMaxHP();
     PMob->health.mp = PMob->GetMaxMP();
 
+	uint16 evaRank = PMob->evaRank;
+	if(PMob->m_EcoSystem == SYSTEM_BEASTMEN){
+		// evasion from a beastmen's job is taken into account
+		evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
+	}
+
 	PMob->setModifier(MOD_DEF, GetBase(PMob,PMob->defRank));
-	PMob->setModifier(MOD_EVA, GetBase(PMob,PMob->evaRank));
-
-	uint16 BaseAttack = 0;
-	uint16 BaseAccuracy = 0;
-
-	if(PMob->GetMLevel() <= 30) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 31 / 10);
-	} else if(PMob->GetMLevel() <= 50) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 33 / 10);
-	} else if(PMob->GetMLevel() > 50) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 37 / 10);
-	}
-
-	BaseAttack++;
-	BaseAccuracy = BaseAttack;
-
-	//MNK attack power should be lower
-	if(PMob->GetMJob() == JOB_MNK){
-		BaseAttack = (float)BaseAttack*0.8;
-	}
-
-	// Note: acc and att ranks are not taken into account
-	PMob->setModifier(MOD_ATT, BaseAttack);
-
-	PMob->setModifier(MOD_ACC, BaseAccuracy);
+	PMob->setModifier(MOD_EVA, GetBase(PMob,evaRank));
+	PMob->setModifier(MOD_ATT, GetBase(PMob,PMob->attRank));
+	PMob->setModifier(MOD_ACC, GetBase(PMob,PMob->accRank));
 
 	PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
-
 
     //reduce weapon delay of MNK
     if(PMob->GetMJob()==JOB_MNK){
         uint16 delay = PMob->m_Weapons[SLOT_MAIN]->getBaseDelay();
-	    //reduce delay based on level
-	    //this will remove about 78 delay at level 75
-		//delay -= (((float)PMob->GetMLevel() * 1.05) * 1000) / 60; don't need
-		//printf(" delay: %u \n",delay);
-
 		PMob->m_Weapons[SLOT_MAIN]->setDelay(delay);
     }
-
 
 	uint16 fSTR = GetBaseToRank(PMob->strRank, PMob->GetMLevel());
 	uint16 fDEX = GetBaseToRank(PMob->dexRank, PMob->GetMLevel());
@@ -267,11 +271,30 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->stats.MND *= 1.5;
 		PMob->stats.CHR *= 1.5;
 	}
+
+	// add traits for sub and main
+	AddTraits(PMob, PMob->GetMJob(), PMob->GetMLevel());
+	AddTraits(PMob, PMob->GetSJob(), PMob->GetSLevel());
+
+
+	//MNK has 100% double attack
+    if(PMob->GetMJob()==JOB_MNK){
+        PMob->addModifier(MOD_DOUBLE_ATTACK,100);
+    }
+
+	//MNK has 15% kick attacks
+	if(PMob->GetMJob()==JOB_MNK && PMob->m_minLevel >= 55){
+        PMob->addModifier(MOD_TRIPLE_ATTACK,15);
+    }
+
+	PMob->delModifier(MOD_MEVA, PMob->m_magicEvasion);
 	//natural magic evasion
 	if(PMob->GetMLevel()<=83){
-		PMob->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PMob->GetMLevel()));
+	    PMob->m_magicEvasion = battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PMob->GetMLevel());
+		PMob->setModifier(MOD_MEVA, PMob->m_magicEvasion);
 	} else {
-		PMob->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_SWD, JOB_WAR, PMob->GetMLevel()));
+	    PMob->m_magicEvasion = battleutils::GetMaxSkill(SKILL_SWD, JOB_RDM, PMob->GetMLevel());
+		PMob->setModifier(MOD_MEVA, PMob->m_magicEvasion);
 	}
 
 	// cap all magic skills so they play nice with spell scripts
@@ -288,6 +311,19 @@ void CalculateStats(CMobEntity * PMob)
 			{
 				PMob->WorkingSkills.skill[i] = maxSubSkill;
 			}
+		}
+	}
+}
+
+void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
+{
+	TraitList_t* PTraitsList = traits::GetTraits(jobID);
+    for (uint8 i = 0; i <  PTraitsList->size(); ++i)
+	{
+		CTrait* PTrait = PTraitsList->at(i);
+		if (lvl >= PTrait->getLevel() && PTrait->getLevel() > 0)
+		{
+            PMob->addModifier(PTrait->getMod(), PTrait->getValue());
 		}
 	}
 }

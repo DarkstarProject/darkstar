@@ -16,7 +16,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-    local dmgmod = MobBreathMove(mob, target, 0.5, 1, ELE_DARK, 500);
+    local dmgmod = MobBreathMove(mob, target, 0.5, 1, ELE_DARK, 700);
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
 

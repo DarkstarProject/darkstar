@@ -27,5 +27,5 @@ function onSpellCast(caster,target,spell)
 		spell:setMsg(236);
 	end
 
-	return 0;
+	return EFFECT_STUN;
 end;

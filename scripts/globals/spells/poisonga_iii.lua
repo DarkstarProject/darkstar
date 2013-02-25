@@ -28,21 +28,10 @@ function onSpellCast(caster,target,spell)
         if(resist == 1 or resist == 0.5) then -- effect taken
             duration = duration / resist;
 
-            -- Try to erase a weaker poison.
-            poison = target:getStatusEffect(effect)
-            if(poison ~= nil) then
-                if(poison:getPower() < power) then
-                    -- remove weaker poison
-                    target:delStatusEffect(effect);
-                    target:addStatusEffect(effect,power,3,duration);
-                    spell:setMsg(236);
-                else
-                    -- no effect
-                    spell:setMsg(75);
-                end
-            else
-                target:addStatusEffect(effect,power,3,duration);
+            if(target:addStatusEffect(effect,power,3,duration)) then
                 spell:setMsg(236);
+            else
+                spell:setMsg(75);
             end
 
         else -- resist entirely.

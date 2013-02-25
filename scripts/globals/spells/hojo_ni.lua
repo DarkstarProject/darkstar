@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Hojo:Ni
--- Description: Inflicts Slow on target. 
+-- Description: Inflicts Slow on target.
 -- Edited from slow.lua
 -----------------------------------------
 
@@ -12,7 +12,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	
+
 	dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
 	bonus = AffinityBonus(caster,spell);
 	--Power for Hojo is a flat 19.5% reduction
@@ -23,28 +23,11 @@ function onSpellCast(caster,target,spell)
 	if(math.random(0,100) >= target:getMod(MOD_SLOWRES)) then
 		-- Spell succeeds if a 1 or 1/2 resist check is achieved
 		if(duration >= 150) then
-			--Looks for another Slow or Haste effect and replaces it if stronger
-			slow = target:getStatusEffect(EFFECT_SLOW);
-			haste = target:getStatusEffect(EFFECT_HASTE);
-			if(slow ~= nil) then
-				if(slow:getPower() > power) then
-					target:delStatusEffect(EFFECT_SLOW);	
-					target:addStatusEffect(EFFECT_SLOW,power,0,duration);
-					spell:setMsg(237);
-				else
-					spell:setMsg(75);
-				end
-			elseif(haste ~= nil) then
-				if(haste:getPower() < (-1 * power)) then
-					target:delStatusEffect(EFFECT_HASTE);	
-					target:addStatusEffect(EFFECT_SLOW,power,0,duration);
-					spell:setMsg(237);
-				else
-					spell:setMsg(75);
-				end
+
+			if(target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then
+				spell:setMsg(236);
 			else
-				target:addStatusEffect(EFFECT_SLOW,power,0,duration);
-				spell:setMsg(237);
+				spell:setMsg(75);
 			end
 		else
 			spell:setMsg(85);
