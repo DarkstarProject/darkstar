@@ -44,6 +44,7 @@
 #include "itemutils.h"
 #include "linkshell.h"
 #include "map.h"
+#include "mob_spell_list.h"
 #include "packet_system.h"
 #include "party.h"
 #include "petutils.h"
@@ -169,6 +170,7 @@ int32 do_init(int32 argc, int8** argv)
     
 	ShowStatus("do_init: loading spells");
 	spell::LoadSpellList();
+	mobSpellList::LoadMobSpellList();
 	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
     charutils::ResetAllTwoHours();

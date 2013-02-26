@@ -34,6 +34,7 @@
 #include "mobentity.h"
 #include "npcentity.h"
 #include "zoneutils.h"
+#include "mob_spell_list.h"
 
 
 CZone* g_PZoneList[256];	// глобальный массив указателей на игровые зоны
@@ -252,7 +253,7 @@ void LoadMOBList(CZone* PZone)
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 			mob_pools.familyid, name_prefix, unknown, animationsub, \
-            (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, castSpellTypes, ATT, ACC, link_radius \
+			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, link_radius \
 			FROM mob_groups, mob_pools, mob_spawn_points, mob_family_system \
 			WHERE mob_groups.poolid = mob_pools.poolid \
 			AND mob_groups.groupid = mob_spawn_points.groupid \
@@ -375,28 +376,7 @@ void LoadMOBList(CZone* PZone)
 			// Check if we should be looking up scripts for this mob
 			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle,53);
 
-			// Store the spell bitmask. 8 elements with 8 bits per element = 64 bits.
-			// This mask is as follows: (following the "FEW WILL Die" Mnemonic for days of the week)
-			//  FIRE        EARTH       WATER  WIND  ICE LIGHTNING LIGHT DARK
-			// 00101010     01010101  00101011  .........
-			//
-			// Each element has 8 bits which correspond to:
-			// 0			0				0			0			0			0			0			0
-			// Reserved		DMGTiers		EnfeebBLM	EnfeebWHM	BuffBLM		BuffWHM		Heal		AoE
-			//
-			// Reserved = Not used currently.
-			// DMGTiers = Tier I-V spells, e.g. Aero I-V, Fire I-V, Banish I-V, etc
-			// EnfeebBLM = BLM enfeebles e.g. Choke, Drown, etc
-			// EnfeebWHM = WHM enfeebs e.g. Paralyze, Slow
-			// BuffBLM = BLM buffs e.g. Ice Spikes, Klimaform
-			// BuffWHM = WHM buffs e.g. Stoneskin, Blink
-			// Heal = Should use healing spells or not (Cures, Regens, Drains, etc)
-			// AoE = Should use AoE forms if possible e.g. Thundaga III, Curaga IV
-			//
-			// See mobentity.h for Struct information
-
-			// Dump 8 bytes worth of bitmask in
-			PMob->m_SpellTypesBitmask.insert(0,Sql_GetData(SqlHandle,54), 8);
+			PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle,54));
 
             // Killer Effect
             switch (PMob->m_EcoSystem)

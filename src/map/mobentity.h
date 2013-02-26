@@ -26,6 +26,7 @@
 
 #include "battleentity.h"
 #include "enmity_container.h"
+#include "mob_spell_list.h"
 
 
 enum SPAWNTYPE
@@ -143,7 +144,7 @@ public:
 	uint16		m_Family;
 	uint8		m_SkillStatus;						// status of skills (used 2h/used epic tp move/etc)
 	std::vector<uint16> m_AvailableSpells;			// the spell IDs that this monster can cast.
-	string_t      m_SpellTypesBitmask;				// The spells types bitmask from the mob_pools table, 1 byte per element, 8 elements
+	CMobSpellList*      m_SpellListContainer;				// The spells list container for this mob
 	std::map<uint16, uint16>	m_UsedSkillIds;		// mob skill ids used (key) along with mob level (value)
 
     uint32      m_unknown;							// includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)

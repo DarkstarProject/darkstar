@@ -617,6 +617,9 @@
     <ClInclude Include="..\..\src\map\latent_effect_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\mob_spell_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1157,6 +1160,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\latent_effect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\mob_spell_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
