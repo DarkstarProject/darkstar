@@ -1353,11 +1353,15 @@ void CAIMobDummy::ActionAttack()
 				bool isDefensive = spell::IsDefensiveSpell(spellid);
 				if(isDefensive && hpp <= 95 || !isDefensive){
 
-					if (spellid == 0) { // prod the script to give us a spell to cast
+					if (m_PMob->m_HasSpellScript) { // prod the script to give us a spell to cast
 						int chosenSpellId = luautils::OnMonsterMagicPrepare(m_PMob, m_PBattleTarget);
 						if (chosenSpellId > 0) { // covers returning 0 or -1
 							spellid = chosenSpellId;
+							//we don't want to cast a spell right now then
+						} else if (chosenSpellId == -1){
+							spellid = 0;
 						}
+						//otherwise if the script returned 0, we'll go ahead with the randomly selected spell
 					}
 
 					if (spellid > 0) { // if a spell was chosen, do it.

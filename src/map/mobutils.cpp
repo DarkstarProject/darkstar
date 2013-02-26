@@ -352,11 +352,6 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		PMob->m_MagicRecastTime = 30000;
 	}
 
-	if (PMob->m_HasSpellScript == 1) {
-		PMob->m_AvailableSpells.push_back(0); // we use spell id = 0 to indicate that its scripted
-		return;
-	}
-
 	// clear spell list
 	PMob->m_AvailableSpells.clear();
 
