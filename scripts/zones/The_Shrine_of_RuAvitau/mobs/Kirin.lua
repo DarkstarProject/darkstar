@@ -8,6 +8,14 @@ package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 require("scripts/globals/titles");
 
+
+function onMobInitialize(mob)
+
+	mob:addMod(MOD_REGEN, 50);
+	mob:addMod(MOD_REGAIN, 15);
+
+end;
+
 -----------------------------------
 -- onMobFight Action
 -----------------------------------
@@ -16,14 +24,6 @@ function onMobFight(mob,target)
 	local ChosenPet;
 	local RandomMod;
 	local pets;
-
-	-- Regain
-	mob:addTP(15);
-
-	-- Auto-regen
-	if (mob:getHP() < mob:getMaxHP()) then
-		mob:addHP(50);
-	end
 
 	if(mob:getBattleTime() % 180 == 0) then -- Every 3 minutes ...
 		local KirinCalledPets = GetServerVariable("Kirin_PetsCalled");

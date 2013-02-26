@@ -1408,6 +1408,7 @@ void CZone::ZoneServer(uint32 tick)
 
 		PMob->StatusEffectContainer->CheckEffects(tick);
 		PMob->PBattleAI->CheckCurrentAction(tick);
+		PMob->StatusEffectContainer->CheckRegen(tick);
 	}
 
 
@@ -1417,6 +1418,7 @@ void CZone::ZoneServer(uint32 tick)
 		CPetEntity* PPet = (CPetEntity*)pit->second;
 		PPet->StatusEffectContainer->CheckEffects(tick);
 		PPet->PBattleAI->CheckCurrentAction(tick);
+		PPet->StatusEffectContainer->CheckRegen(tick);
 		if(PPet->status==STATUS_DISAPPEAR){
 			m_petList.erase(pit++);
 		}
