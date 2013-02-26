@@ -7,6 +7,14 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 
 -----------------------------------
+-- onMobInitialize Action
+-----------------------------------
+
+function onMobInitialize(mob)
+	mob:addStatusEffect(EFFECT_REGAIN,3,15,0);
+end;
+
+-----------------------------------
 -- onMobEngaged Action
 -----------------------------------
 
@@ -19,8 +27,6 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-
-	mob:addTP(15); -- Regain
 
 	if (mob:getBattleTime() % 60 == 0) then -- Check every minute to reduce load
 		if(os.time(t) >= (Fafnir_Engaged + 3600)) then

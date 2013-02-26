@@ -7,13 +7,15 @@ package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 
 require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 require("scripts/globals/titles");
+require("scripts/globals/status");
 
+-----------------------------------
+-- onMobInitialize Action
+-----------------------------------
 
 function onMobInitialize(mob)
-
-	mob:addMod(MOD_REGEN, 50);
-	mob:addMod(MOD_REGAIN, 15);
-
+	mob:addStatusEffect(EFFECT_REGEN,3,50,0);
+	mob:addStatusEffect(EFFECT_REGAIN,3,15,0);
 end;
 
 -----------------------------------

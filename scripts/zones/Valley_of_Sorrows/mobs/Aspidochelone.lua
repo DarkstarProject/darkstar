@@ -7,6 +7,15 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 
 -----------------------------------
+-- onMobInitialize Action
+-----------------------------------
+
+function onMobInitialize(mob)
+	mob:addStatusEffect(EFFECT_REGEN,3,50,0);
+	mob:addStatusEffect(EFFECT_REGAIN,3,15,0);
+end;
+
+-----------------------------------
 -- onMobEngaged Action
 -----------------------------------
 
@@ -19,14 +28,6 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-
-	-- Regain
-	mob:addTP(15);
-
-	-- Auto-regen
-	if (mob:getHP() < mob:getMaxHP()) then
-		mob:addHP(50);
-	end
 
 	if (mob:getBattleTime() % 60 == 0) then -- Check every minute to reduce load
 		if(os.time(t) >= (Aspid_Engaged + 3600)) then

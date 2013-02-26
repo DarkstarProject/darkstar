@@ -7,6 +7,14 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 
 -----------------------------------
+-- onMobInitialize Action
+-----------------------------------
+
+function onMobInitialize(mob)
+	mob:addStatusEffect(EFFECT_REGAIN,3,15,0);
+end;
+
+-----------------------------------
 -- onMobEngaged Action
 -----------------------------------
 
@@ -19,9 +27,6 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-
-	-- Regain
-	mob:addTP(15);
 
 	if (mob:getBattleTime() % 60 == 0) then -- Check every minute to reduce load
 		if(os.time(t) >= (Adamantoise_Engaged + 1800)) then

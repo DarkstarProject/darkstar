@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
--- NPC:  ??? (Spawn Chigre(ZNM T1))
+-- NPC:  ??? (Spawn Pandemonium Warden)
 -- @pos -217 35 12 68
 -----------------------------------
 package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
@@ -14,9 +14,16 @@ require("scripts/zones/Aydeewa_Subterrane/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(2572,1) and trade:getItemCount() == 1) then --pandemonium key
+	if(trade:hasItemQty(2572,1) and trade:getItemCount() == 1 and GetMobAction(17056168) == 0) then --pandemonium key
 		player:tradeComplete();
-		SpawnMob(17056168,180):updateEnmity(player); 		
+		-- Pandemonium Warden
+		SpawnMob(17056168,180):updateEnmity(player);
+		-- Pets
+		for i = 17056170, 17056177, 1 do 
+			SpawnMob(i,180):updateEnmity(target);
+		end
+		PWardenDespawnTime = os.time(t) + 7200; -- Two hours to forcible depop, if PWarden is engaged.
+		PWardenAstralFlows = 0;
 	end
 	
 end;
@@ -27,6 +34,9 @@ end;
 
 function onTrigger(player,npc)
 	player:messageSpecial(NOTHING_HAPPENS);
+	SpawnMob(17056168,180):updateEnmity(player);
+		PWardenDespawnTime = os.time(t) + 7200; -- Two hours to forcible depop, if PWarden is engaged.
+		PWardenAstralFlows = 0;
 end;
 
 -----------------------------------
