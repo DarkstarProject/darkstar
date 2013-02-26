@@ -1,0 +1,99 @@
+﻿/*
+===========================================================================
+
+  Copyright (c) 2010-2012 Darkstar Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+  This file is part of DarkStar-server source code.
+
+===========================================================================
+*/
+
+#include <string.h>
+
+#include "map.h"
+#include "mob_spell_list.h"
+
+
+CMobSpellList::CMobSpellList()
+{
+
+}
+
+
+
+/************************************************************************
+*                                                                       *
+*  Реализация namespase для работы с заклинаниями                       *
+*                                                                       *
+************************************************************************/
+
+namespace mobSpellList
+{
+    CMobSpellList* PMobSpellList[MAX_MOBSPELLLIST_ID]; 
+
+    /************************************************************************
+    *                                                                       *
+    *  Загружаем список заклинаний                                          *
+    *                                                                       *
+    ************************************************************************/
+
+    void LoadMobSpellList()
+    {
+	    memset(PMobSpellList, 0, sizeof(PMobSpellList));
+		PMobSpellList[0] = new CMobSpellList();
+
+	    const int8* Query = "SELECT spell_list_id, \
+							spell_id, \
+							min_level, \
+							max_level \
+							FROM mob_spell_lists \
+							WHERE spell_list_id < %u;";
+
+	    int32 ret = Sql_Query(SqlHandle, Query, MAX_MOBSPELLLIST_ID);
+
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		    {
+				MobSpell_t Mob_Spell = {Sql_GetIntData(SqlHandle,1), Sql_GetIntData(SqlHandle,2), Sql_GetIntData(SqlHandle,3)};
+				uint16 pos = Sql_GetIntData(SqlHandle,0);
+				if (!PMobSpellList[pos])
+				{
+					PMobSpellList[pos] = new CMobSpellList();
+				}
+				PMobSpellList[pos]->m_spellList.push_back(Mob_Spell);
+		    }
+	    }
+    }
+
+
+    /************************************************************************
+    *                                                                       *
+    *  Get Spell By ID                                                      *
+    *                                                                       *
+    ************************************************************************/
+
+    CMobSpellList* GetMobSpellList(uint16 MobSpellListID)
+    {
+	    if (MobSpellListID < MAX_MOBSPELLLIST_ID)
+	    {
+			return PMobSpellList[MobSpellListID];
+	    }
+	    ShowFatalError(CL_RED"MobSpellListID <%u> out of range\n" CL_RESET, MobSpellListID);
+	    return NULL;
+    }
+
+};
