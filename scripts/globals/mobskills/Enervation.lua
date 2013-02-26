@@ -21,9 +21,9 @@ function OnMobWeaponSkill(target, mob, skill)
     local silenced = false;
     local blinded = false;
 
-    silenced = MobStatusEffectMove(mob, target, EFFECT_DEFENSE_DOWN, 20, 0, 120);
+    silenced = MobStatusEffectMove(mob, target, EFFECT_DEFENSE_DOWN, 10, 0, 120);
 
-    blinded = MobStatusEffectMove(mob, target, EFFECT_MAGIC_DEF_DOWN, 20, 0, 120);
+    blinded = MobStatusEffectMove(mob, target, EFFECT_MAGIC_DEF_DOWN, 8, 0, 120);
 
     skill:setMsg(MSG_ENFEEB_IS);
 

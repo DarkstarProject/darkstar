@@ -3137,8 +3137,9 @@ void CAICharNormal::ActionAttack()
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			uint8 fstrslot = SLOT_MAIN;
 			bool zanshin = false;
+            uint8 totalHits = numattacksLeftHand + numattacksRightHand + numKickAttacks;
 
-			for (uint8 i = 0; i < (numattacksLeftHand + numattacksRightHand + numKickAttacks); ++i)
+			for (uint8 i = 0; i < totalHits; ++i)
 			{
 				if (i != 0)
 				{
@@ -3302,7 +3303,7 @@ void CAICharNormal::ActionAttack()
 
 					uint8 zanshinChance = 0;
 
-					// Zanshin effects from gear, food or buffs do not require the job trait to be enabled. 
+					// Zanshin effects from gear, food or buffs do not require the job trait to be enabled.
 					if (!zanshin)
 						zanshinChance += m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar->GetMLevel());
 
@@ -3331,7 +3332,8 @@ void CAICharNormal::ActionAttack()
 					((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmity(m_PChar, 0, 0);
 				}
 
-				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
+                // only trigger on first hit for now
+				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY && totalHits == 1)
 				{
 
                     // spikes take priority over enspells

@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
 
 	if(target:isUndead()) then
 		spell:setMsg(75); -- No effect
-		return;
+		return dmg;
 	end
 
 	if(target:getMP() > dmg) then

@@ -12,4 +12,5 @@ function onSpellCast(caster,target,spell)
    		if (target:hasKeyItem(354) == true) then
    				toMea(target);
    		end;
+        return 0;
 end;

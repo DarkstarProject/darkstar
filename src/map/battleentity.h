@@ -31,6 +31,7 @@
 #include "items/item_weapon.h"
 
 #include "baseentity.h"
+#include "trait.h"
 #include "modifier.h"
 #include "party.h"
 #include "status_effect_container.h"
@@ -445,6 +446,8 @@ public:
 	uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
 	ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
 	CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
+
+    TraitList_t       TraitList;                    // список постянно активных способностей в виде указателей
 
 	EntityID_t	    m_OwnerID;				    // ID атакующей сущности (после смерти будет хранить ID сущности, нанесщей последний удар)
 

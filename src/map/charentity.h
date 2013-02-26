@@ -39,7 +39,6 @@
 #include "recast_container.h"
 #include "latent_effect_container.h"
 #include "trade_container.h"
-#include "trait.h"
 #include "treasure_pool.h"
 #include "merit.h"
 #include "universal_container.h"
@@ -233,8 +232,6 @@ public:
 	SpawnIDList_t	  SpawnMOBList;					// список видимых монстров
 	SpawnIDList_t	  SpawnPETList;					// список видимых питомцев
 	SpawnIDList_t	  SpawnNPCList;					// список видимых npc
-
-    TraitList_t       TraitList;                    // список постянно активных способностей в виде указателей
 
 	void			  SetName(int8* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
 

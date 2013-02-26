@@ -272,6 +272,14 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->stats.CHR *= 1.5;
 	}
 
+	// clear current traits first
+    for (uint8 i = 0; i < PMob->TraitList.size(); ++i)
+    {
+        CTrait* PTrait = PMob->TraitList.at(i);
+        PMob->delModifier(PTrait->getMod(), PTrait->getValue());
+    }
+    PMob->TraitList.clear();
+
 	// add traits for sub and main
 	AddTraits(PMob, PMob->GetMJob(), PMob->GetMLevel());
 	AddTraits(PMob, PMob->GetSJob(), PMob->GetSLevel());

@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
 
 	if(target:isUndead()) then
 		spell:setMsg(75); -- No effect
-		return;
+		return dmg;
 	end
 
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);

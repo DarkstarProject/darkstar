@@ -11,12 +11,12 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-	-- Disabled due to client crashes
-	return 1;
+	return 0;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_BLAZE_SPIKES;
+    local randy = math.random(40,70);
     skill:setMsg(MobBuffMove(mob, typeEffect, randy, 0, 180));
 
 	return typeEffect;

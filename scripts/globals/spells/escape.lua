@@ -9,6 +9,8 @@
 function onSpellCast(caster,target,spell)
 	spell:setMsg(93);
 	Escape(target, target:getZone());
+
+	return 0;
 end;
 
 -----------------------------------------

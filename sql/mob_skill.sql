@@ -1067,7 +1067,7 @@ INSERT INTO `mob_skill` VALUES (1487,246,1232,'Rock_Smash', 0, 7.0, 2000, 1000, 
 INSERT INTO `mob_skill` VALUES (1488,246,1233,'Diamondhide', 1, 16.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (1489,246,1234,'Enervation', 1, 18.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1490,246,1235,'Quake_Stomp', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (1490,246,1247,'Healing_Stomp', 1, 16.0, 2000, 1000, 1, 0); -- NM only
+-- INSERT INTO `mob_skill` VALUES (1493,246,1247,'Healing_Stomp', 1, 16.0, 2000, 1000, 1, 0); -- NM only
 -- Lamia = 171 Merrow = 182
 INSERT INTO `mob_skill` VALUES (1510,171,1253,'Hysteric_Barrage', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1515,182,1258,'Tail_Slap', 4, 16.0, 2000, 1000, 4, 0);
