@@ -66,29 +66,6 @@ enum BEHAVIOUR
 	BEHAVIOUR_AGGRO_JOBABILITY	= 0x80,
 };
 
-enum SPELLTYPE // in-element offset for the spell type bitmask
-{
-	SPELLTYPE_AOE				= 0x01,
-	SPELLTYPE_HEAL				= 0x02,
-	SPELLTYPE_BUFF_WHM			= 0x04,
-	SPELLTYPE_BUFF_BLM			= 0x08,
-	SPELLTYPE_DEBUFF_WHM		= 0x10,
-	SPELLTYPE_DEBUFF_BLM		= 0x20,
-	SPELLTYPE_DAMAGE			= 0x40,
-	SPELLTYPE_RESERVED			= 0x80
-};
-
-enum SPELLTYPE_ELEMENT // Which index in the bitmask for which element
-{
-	SPELLTYPE_ELEMENT_FIRE		= 0,
-	SPELLTYPE_ELEMENT_EARTH		= 1,
-	SPELLTYPE_ELEMENT_WATER		= 2,
-	SPELLTYPE_ELEMENT_WIND		= 3,
-	SPELLTYPE_ELEMENT_ICE		= 4,
-	SPELLTYPE_ELEMENT_LIGHTNING	= 5,
-	SPELLTYPE_ELEMENT_LIGHT		= 6,
-	SPELLTYPE_ELEMENT_DARK		= 7
-};
 
 /************************************************************************
 *                                                                       *
