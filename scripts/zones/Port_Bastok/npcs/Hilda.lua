@@ -11,6 +11,7 @@ package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/missions");
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -44,7 +45,9 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:getQuestStatus(BASTOK,THE_USUAL) ~= QUEST_COMPLETED) then
+	if(player:getCurrentMission(BASTOK) == ON_MY_WAY) and (player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x00ff);
+	elseif(player:getQuestStatus(BASTOK,THE_USUAL) ~= QUEST_COMPLETED) then
 		if(player:getQuestStatus(BASTOK,CID_S_SECRET) == QUEST_ACCEPTED) then
 			player:startEvent(0x0084);
 			if(player:getVar("CidsSecret_Event") ~= 1) then
@@ -110,6 +113,8 @@ function onEventFinish(player,csid,option)
 			player:addFame(BASTOK,BAS_FAME*30);
 			player:completeQuest(BASTOK,THE_USUAL);
 		end
+	elseif(csid == 0x00ff) then
+		player:setVar("MissionStatus",2);
     end
 	 
 end;

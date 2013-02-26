@@ -876,7 +876,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				16,{0x00b6,0},{0,0},{0,0},{0,0},{{14,0},{9,266},{5,650},{12}}, 											-- MISSION 6-1 (Finish (Tall Mountain))
 				17,{0x02fa,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,7},{8,40000},{12}}, 									-- MISSION 6-2 (Finish (Naji))
 				18,{0x02fc,0},{0,0},{0,0},{0,0},{{14,0},{9,289},{5,700},{12}}, 											-- MISSION 7-1 (Finish (Cid))
-				19,{0x0000,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,8},{8,60000},{3,"OptionalCSforOMW",1},{12}}, 			-- MISSION 7-2 (Finish (Naji))
+				19,{0x02fe,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,8},{8,60000},{3,"OptionalCSforOMW",1},{12}}, 			-- MISSION 7-2 (Finish (Karst))
 				20,{0x0300,0},{0,0},{0,0},{0,0},{{14,0},{5,1133},{12}}                                                  -- MISSION 8-1 (Finish (Iron Eater))
 						};
 		end

@@ -499,15 +499,22 @@ int32 SpawnMob(lua_State* L)
 
 int32 DespawnMob(lua_State* L)
 {
-	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 	{
-		uint32 mobid = (uint32)lua_tointeger(L, -1);
+		uint32 mobid = (uint32)lua_tointeger(L, 1);
 
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 		if (PMob != NULL)
 		{
+			if(!lua_isnil(L,2) && lua_isnumber(L,2))
+			{
+				PMob->SetDespawnTimer((uint32)lua_tointeger(L,2));
+			}
+			else
+			{
 			PMob->PBattleAI->SetLastActionTime(gettick() - 12500);
 			PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
+		}
 		}
 		return 0;
 	}
@@ -1559,6 +1566,49 @@ int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
 
 /************************************************************************
 *																		*
+*  Calls a lua script when a mob has disengaged from a target	*		*
+*																		*
+************************************************************************/
+
+int32 OnMobDisengage(CBaseEntity* PMob) 
+{	
+	DSP_DEBUG_BREAK_IF(PMob == NULL);
+
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "onMobDisengage");
+
+	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDisengage");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		return -1;
+	}
+
+	CLuaBaseEntity LuaMobEntity(PMob);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+
+	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::onMobDisengage: %s\n",lua_tostring(LuaHandle,-1));
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/************************************************************************
+*																		*
 *  Сalled every 3 sec when a player fight monster						*
 *																		*
 ************************************************************************/
@@ -1780,6 +1830,49 @@ int32 OnMobSpawn(CBaseEntity* PMob)
         return -1;
     }
     return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+int32 OnMobDespawn(CBaseEntity* PMob)
+{
+	DSP_DEBUG_BREAK_IF(PMob == NULL);
+
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "onMobDespawn");
+
+	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDespawn");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		return -1;
+	}
+
+	CLuaBaseEntity LuaMobEntity(PMob);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+
+	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::onMobDespawn: %s\n",lua_tostring(LuaHandle,-1));
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************

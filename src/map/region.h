@@ -37,7 +37,7 @@ class CRegion
 {
 public:
 
-	CRegion(uint32 RegionID);
+	CRegion(uint32 RegionID, bool isCircle);
 
 	uint32	GetRegionID();
 
@@ -57,6 +57,8 @@ private:
 
 	float x1, y1, z1;									// верхний левый угол
 	float x2, y2, z2;									// лижний правый угол
+
+	bool circle;
 };
 
 #endif

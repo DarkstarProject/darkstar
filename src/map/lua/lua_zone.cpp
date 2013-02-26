@@ -75,8 +75,13 @@ inline int32 CLuaZone::registerRegion(lua_State *L)
 			!lua_isnil(L,6) && lua_isnumber(L,6) &&
 			!lua_isnil(L,7) && lua_isnumber(L,7))
 		{
-			CRegion* Region = new CRegion(lua_tointeger(L,1));
+			bool circleRegion = false;
+			if (lua_tointeger(L,5) == 0 && lua_tointeger(L,6) == 0 && lua_tointeger(L,7) == 0)
+				circleRegion = true; // Parameters were 0, we must be a circle.
 
+			CRegion* Region = new CRegion(lua_tointeger(L,1), circleRegion);
+
+			// If this is a circle, parameter 4 will be the radius.
 			Region->SetULCorner(lua_tointeger(L,2),lua_tointeger(L,3),lua_tointeger(L,4));
 			Region->SetLRCorner(lua_tointeger(L,5),lua_tointeger(L,6),lua_tointeger(L,7));
 

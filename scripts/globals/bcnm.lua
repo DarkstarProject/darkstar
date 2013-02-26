@@ -42,7 +42,7 @@ bcnmid_param_map = {10,{704,0,706,2},
 					31,{960,0,961,1},
 					139,{0,0,5,5,6,6,7,7,11,11,15,15,17,17},
 					140,{32,0,33,1,34,2,35,3,36,4},
-					144,{64,0,68,4,70,6,71,7,72,8,81,17,76,12,82,18,79,15},
+					144,{64,0,67,3,68,4,70,6,71,7,72,8,81,17,76,12,82,18,79,15},
 					146,{96,0,101,5,102,6,103,7,107,11,105,9},
 					163,{128,0},
 					165,{160,0},
@@ -403,6 +403,9 @@ function checkNonTradeBCNM(player,npc)
 			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") == 10) then -- Mission 2-3
 			mask = GetBattleBitmask(64,Zone,1);
 			player:setVar("trade_bcnmid",64);
+		elseif(player:getCurrentMission(BASTOK) == ON_MY_WAY) and (player:getVar("MissionStatus") == 2) then
+			mask = GetBattleBitmask(67,Zone,1);
+			player:setVar("trade_bcnmid",67);
 		end
 	elseif(Zone == 146) then -- Balga's Dais
 		if(player:hasKeyItem(DARK_KEY)) then -- Mission 2-3

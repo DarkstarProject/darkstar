@@ -21,3 +21,10 @@ CHEST_ILLUSION = 7258; -- The chest was but an illusion...
       POOL_OF_WATER = 7292; -- It is a pool of water.
    YOU_FIND_NOTHING = 7295; -- You find nothing.
 SOMETHING_IS_BURIED = 7300; -- Something is buried in this fallen pillar.
+NOTHING_OUT_OF_ORDINARY = 6392;	-- There is nothing out of the ordinary.
+	SENSE_OF_FOREBODING = 6393; -- You are suddenly overcome with a sense of foreboding...
+
+-- Mob Ids
+		CENTURIO_BASTOK	= 17629187; -- Centurio IV-VII (Bastok 8-1)
+		TRIARIUS_BASTOK = 17629188; -- Triarius IV-XIV (Bastok 8-1)
+		PRINCEPS_BASTOK = 17629189; -- Princeps IV-XLV (Bastok 8-1)

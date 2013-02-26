@@ -13,3 +13,6 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
  TEACH_YOU_TO_RESPECT_ELDERS = 7613; -- I'll teach you to respect your elders!
 TAKE_THAT_YOU_WHIPPERSNAPPER = 7614; -- Take that, you whippersnapper!
  THAT_LL_HURT_IN_THE_MORNING = 7616; -- Ungh... That'll hurt in the morning...
+
+-- For Bastok 7-2
+	LETTER_FROM_WEREI = 290;

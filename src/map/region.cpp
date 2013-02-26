@@ -33,9 +33,9 @@
 *																		*
 ************************************************************************/
 
-CRegion::CRegion(uint32 RegionID) : 
+CRegion::CRegion(uint32 RegionID, bool isCircle) : 
     m_Count(0),
-    m_RegionID(RegionID)
+	m_RegionID(RegionID), circle(isCircle)
 {
 	if (m_RegionID == 0)
 	{
@@ -123,6 +123,24 @@ void CRegion::SetLRCorner(float x, float y, float z)
 
 bool CRegion::isPointInside(position_t pos)
 {
+	if(circle == true)
+	{
+		// Get the distance between their X coordinate and ours.
+		float dX = pos.x - x1;
+
+		// Get the distance between their Z coordinate and ours.
+		float dZ = pos.z - z1;
+
+		float distance = sqrt( (dX * dX ) + ( dZ * dZ ) );
+
+		// Check if were within range of the target.
+		// In this case of a circle, 'y' is the radius.
+		if (distance <= y1)
+			return true;
+
+		return false;
+	}
+
 	return (x1 <= pos.x && 
 			y1 <= pos.y && 
 			z1 <= pos.z && 

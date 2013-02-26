@@ -29,6 +29,10 @@ function onTrigger(player,npc)
 	
 	if(currentMission == XARCABARD_LAND_OF_TRUTHS and player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x025a);
+	elseif(currentMission == ON_MY_WAY) and (player:getVar("MissionStatus") == 0) then
+		player:startEvent(0x02fd);
+	elseif(currentMission == ON_MY_WAY) and (player:getVar("MissionStatus") == 3) then
+		player:startEvent(0x02fe);
 	else
 		player:startEvent(0x0259);
 	end
@@ -54,6 +58,10 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x025a) then
 		player:setVar("MissionStatus",2);
+	elseif(csid == 0x02fd) then
+		player:setVar("MissionStatus",1);
+	elseif(csid == 0x02fe) then
+		finishMissionTimeline(player, 1, csid, option);
 	end
 	
 end;

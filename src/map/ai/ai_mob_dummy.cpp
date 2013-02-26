@@ -204,6 +204,8 @@ void CAIMobDummy::ActionDisengage()
 		m_ActionType = (distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 20 ? ACTION_DEATH : ACTION_ROAMING);
 	}
 
+	luautils::OnMobDisengage(m_PMob);
+
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
 
@@ -363,6 +365,8 @@ void CAIMobDummy::ActionDeath()
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
 		m_PMob->StatusEffectContainer->KillAllStatusEffect();
 		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
+
+		luautils::OnMobDespawn(m_PMob);
 	}
     else if (!m_PMob->isDead())
     {
