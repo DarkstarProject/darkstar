@@ -22,7 +22,7 @@ CREATE TABLE `mob_spell_lists` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records 
+-- Records
 -- ----------------------------
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_WHM', '1', '1', '1', '10');
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_WHM', '1', '2', '11', '20');

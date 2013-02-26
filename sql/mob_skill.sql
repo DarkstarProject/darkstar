@@ -750,6 +750,14 @@ INSERT INTO `mob_skill` VALUES (544,179,472,'Heat_Breath', 4, 7.0, 2000, 1000, 4
 INSERT INTO `mob_skill` VALUES (545,179,473,'Riddle', 1, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (546,179,474,'Great_Sandstorm', 4, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (547,179,475,'Great_Whirlwind', 4, 7.0, 2000, 1000, 4, 0);
+-- Kirin
+INSERT INTO `mob_skill` VALUES (541,281,469,'Deadly_Hold', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (542,281,470,'Tail_Swing', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (543,281,471,'Tail_Smash', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (544,281,472,'Heat_Breath', 4, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (545,281,473,'Riddle', 1, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (546,281,474,'Great_Sandstorm', 4, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (547,281,475,'Great_Whirlwind', 4, 7.0, 2000, 1000, 4, 0);
 -- Adamantoise
 INSERT INTO `mob_skill` VALUES (548,2,476,'Tortoise_Song', 1, 20.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (549,2,477,'Head_Butt_Turtle', 0, 7.0, 2000, 1000, 4, 0);

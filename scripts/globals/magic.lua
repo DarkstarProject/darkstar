@@ -86,18 +86,13 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
         dmg = dmg * 1.5;
     end
 
+    -- printf("dmg: %d dint: %d\n", dmg, dint);
+
     return dmg;
 
 end;
 
 function doEnspell(caster,target,spell,effect)
-    if(target:getStatusEffect(EFFECT_BLOOD_WEAPON) ~= nil) then
-        --no effect!
-        if(spell ~= nil) then
-            spell:setMsg(75);
-        end
-        return;
-    end
 
     if(effect==EFFECT_BLOOD_WEAPON) then
         target:addStatusEffect(EFFECT_BLOOD_WEAPON,1,0,30);
@@ -121,8 +116,11 @@ function doEnspell(caster,target,spell,effect)
         potency = potency + 5;
     end
 
-    target:addStatusEffect(effect,potency,0,duration);
-    spell:setMsg(230);
+    if(target:addStatusEffect(effect,potency,0,duration)) then
+        spell:setMsg(230);
+    else
+        spell:setMsg(75);
+    end
 end;
 
 

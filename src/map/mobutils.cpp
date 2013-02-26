@@ -192,11 +192,7 @@ void CalculateStats(CMobEntity * PMob)
     PMob->health.hp = PMob->GetMaxHP();
     PMob->health.mp = PMob->GetMaxMP();
 
-	uint16 evaRank = PMob->evaRank;
-	if(PMob->m_EcoSystem == SYSTEM_BEASTMEN){
-		// evasion from a beastmen's job is taken into account
-		evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
-	}
+	uint16 evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
 
 	PMob->setModifier(MOD_DEF, GetBase(PMob,PMob->defRank));
 	PMob->setModifier(MOD_EVA, GetBase(PMob,evaRank));
@@ -302,7 +298,8 @@ void CalculateStats(CMobEntity * PMob)
 		}
 		else //if the mob is WAR/BLM and can cast spell
 		{
-			uint16 maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetSJob(),PMob->GetSLevel());
+			// set skill as high as main level, so their spells won't get resisted
+			uint16 maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetSJob(),PMob->GetMLevel());
 
 			if (maxSubSkill != 0)
 			{
@@ -354,7 +351,6 @@ void GetAvailableSpells(CMobEntity* PMob) {
 
 	// clear spell list
 	PMob->m_AvailableSpells.clear();
-
 
 	// grab cure spells to insert first
 	for (std::vector<MobSpell_t>::iterator it = PMob->m_SpellListContainer->m_spellList.begin(); it != PMob->m_SpellListContainer->m_spellList.end() ; ++it)

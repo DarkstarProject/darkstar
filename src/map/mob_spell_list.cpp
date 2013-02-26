@@ -42,7 +42,7 @@ CMobSpellList::CMobSpellList()
 
 namespace mobSpellList
 {
-    CMobSpellList* PMobSpellList[MAX_MOBSPELLLIST_ID]; 
+    CMobSpellList* PMobSpellList[MAX_MOBSPELLLIST_ID];
 
     /************************************************************************
     *                                                                       *
@@ -68,13 +68,14 @@ namespace mobSpellList
 	    {
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
-				MobSpell_t Mob_Spell = {Sql_GetIntData(SqlHandle,1), Sql_GetIntData(SqlHandle,2), Sql_GetIntData(SqlHandle,3)};
-				uint16 pos = Sql_GetIntData(SqlHandle,0);
-				if (!PMobSpellList[pos])
-				{
-					PMobSpellList[pos] = new CMobSpellList();
-				}
-				PMobSpellList[pos]->m_spellList.push_back(Mob_Spell);
+  				MobSpell_t Mob_Spell = {(uint16)Sql_GetIntData(SqlHandle,1), (uint16)Sql_GetIntData(SqlHandle,2), (uint16)Sql_GetIntData(SqlHandle,3)};
+
+  				uint16 pos = Sql_GetIntData(SqlHandle,0);
+  				if (!PMobSpellList[pos])
+  				{
+  					PMobSpellList[pos] = new CMobSpellList();
+  				}
+  				PMobSpellList[pos]->m_spellList.push_back(Mob_Spell);
 		    }
 	    }
     }

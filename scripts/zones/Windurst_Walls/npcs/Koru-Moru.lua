@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
 	if(player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
 
 		if(trade:hasItemQty(544,1) and count == 1) then
-			if(player:getVar("QuestMakingTheGrade_prog") == 1) then 
+			if(player:getVar("QuestMakingTheGrade_prog") == 1) then
 				player:startEvent(0x011d); -- MAKING THE GRADE: Turn in Test Answer & Told to go back to Fuepepe & Chomoro
 			else
 				player:startEvent(0x011f); -- MAKING THE GRADE: Have test answers but not talked/given to Fuepepe
@@ -45,7 +45,7 @@ function onTrade(player,npc,trade)
 				player:startEvent(0x00d3);
 			end
 		end
-		
+
 	elseif(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 4) then
 		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_4",0);
@@ -53,7 +53,7 @@ function onTrade(player,npc,trade)
 			player:addKeyItem(SPIRITED_STONE);
 			player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
 		end
-		
+
 	elseif(player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED) then
 		if(count == 1 and trade:hasItemQty(16511,1)) then
 			player:startEvent(0x00e0); -- Complete quest!
@@ -61,12 +61,19 @@ function onTrade(player,npc,trade)
 			player:startEvent(0x00e1); -- not the shell
 		end
 
+	elseif(player:getQuestStatus(WINDURST,THE_ROOT_OF_THE_PROBLEM) == QUEST_ACCEPTED) then
+		if (count == 1 and trade:hasItemQty(829,1)) then
+			player:startEvent(0x15D);
+			player:tradeComplete();
+			player:setVar("rootProblem",2);
+		end
+
 	elseif(ClassReunion == 1 and ClassReunionProgress == 2) then
 		if(count == 4 and trade:hasItemQty(17299,4) and trade:getGil() == 0) then
 			player:startEvent(0x0197); -- now Koru remembers something that you need to inquire his former students.
 		end;
 	end;
-	
+
 end;
 
 -----------------------------------
@@ -78,6 +85,7 @@ function onTrigger(player,npc)
 	local qStarStruck = player:getQuestStatus(WINDURST,STAR_STRUCK);
 	local blastFromPast = player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST);
 	local blastProg = player:getVar("BlastFromThePast_Prog");
+	local rootProblem = player:getQuestStatus(WINDURST,THE_ROOT_OF_THE_PROBLEM);
 	local ThePuppetMaster = player:getQuestStatus(WINDURST,THE_PUPPET_MASTER);
 	local ThePuppetMasterProgress = player:getVar("ThePuppetMasterProgress");
 	local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
@@ -91,7 +99,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x00d7);
 	elseif(blastFromPast == QUEST_ACCEPTED) then
 		player:startEvent(0x00d8);
-		
+
 	elseif(player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
 		local makingGradeProg = player:getVar("QuestMakingTheGrade_prog");
 		if(makingGradeProg == 0 and player:hasItem(544)) then
@@ -105,7 +113,7 @@ function onTrigger(player,npc)
 		end
 	elseif(qStarStruck == QUEST_ACCEPTED) then
 		player:startEvent(0x00c6);
-	elseif(player:hasItem(584) and player:getQuestStatus(WINDURST,CLASS_REUNION) ~= QUEST_ACCEPTED) then 
+	elseif(player:hasItem(584) and player:getQuestStatus(WINDURST,CLASS_REUNION) ~= QUEST_ACCEPTED) then
 		player:startEvent(0x00c5);
 	elseif(qStarStruck == QUEST_COMPLETED) then
 		player:startEvent(0x00d5);
@@ -128,11 +136,13 @@ function onTrigger(player,npc)
 	elseif (ThePuppetMaster == QUEST_COMPLETED and ClassReunion ~= 2) then
 		player:startEvent(0x0195); -- new cs after completed AF1
 	----------------------------------------------------------
+	elseif(rootProblem == QUEST_ACCEPTED and player:getVar("rootProblem") == 1) then
+		player:startEvent(0x015C,0,829);
 	else
 		player:startEvent(0x00c1);
 	end
-	
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -150,7 +160,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
+
 	if(csid == 0x011d) then  -- Giving him KI from Principle
 		player:tradeComplete();
 		player:addKeyItem(TATTERED_TEST_SHEET);
@@ -211,5 +221,5 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14228);
 		end;
 	end;
-	
+
 end;

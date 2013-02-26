@@ -89,7 +89,7 @@ INSERT INTO `status_effects` VALUES (47,'manafont',32,0,0,0,0,0,3);
 INSERT INTO `status_effects` VALUES (48,'chainspell',32,0,0,0,0,0,6);
 INSERT INTO `status_effects` VALUES (49,'perfect_dodge',32,0,0,0,0,0,4);
 INSERT INTO `status_effects` VALUES (50,'invincible',32,0,0,0,0,0,2);
-INSERT INTO `status_effects` VALUES (51,'blood_weapon',32,94,0,0,0,0,8);
+INSERT INTO `status_effects` VALUES (51,'blood_weapon',32,94,0,2,0,0,8);
 INSERT INTO `status_effects` VALUES (52,'soul_voice',32,0,0,0,0,0,7);
 INSERT INTO `status_effects` VALUES (53,'eagle_eye_shot',32,0,0,0,0,0,6);
 INSERT INTO `status_effects` VALUES (54,'meikyo_shisui',32,0,0,0,0,0,6);

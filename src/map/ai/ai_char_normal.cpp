@@ -3333,11 +3333,11 @@ void CAICharNormal::ActionAttack()
 				}
 
                 // only trigger on first hit for now
-				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY && totalHits == 1)
+				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 				{
 
                     // spikes take priority over enspells
-					if(!battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage)){
+					if(totalHits == 1 || !battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage)){
                         // no spikes, handle enspell
                        battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
                    }
