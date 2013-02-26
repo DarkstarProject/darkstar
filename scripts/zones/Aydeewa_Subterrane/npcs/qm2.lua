@@ -34,9 +34,6 @@ end;
 
 function onTrigger(player,npc)
 	player:messageSpecial(NOTHING_HAPPENS);
-	SpawnMob(17056168,180):updateEnmity(player);
-		PWardenDespawnTime = os.time(t) + 7200; -- Two hours to forcible depop, if PWarden is engaged.
-		PWardenAstralFlows = 0;
 end;
 
 -----------------------------------
