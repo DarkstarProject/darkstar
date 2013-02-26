@@ -532,8 +532,7 @@ function checkRegime(killer,mob,rid,index)
                     if(k1==fov_info.n1 and k2==fov_info.n2 and k3==fov_info.n3 and k4==fov_info.n4) then
                         --complete regime
                         killer:messageBasic(FOV_MSG_COMPLETED_REGIME);
-                        newreward = getRegimeReward(rid);
-                        reward = killer:checkExpPoints(mob, newreward);
+                        reward = getRegimeReward(rid);
                         tabs = killer:getVar("tabs");
                         tabs = tabs+(math.floor((reward/10))*TABS_RATE);
                         killer:setVar("tabs",tabs);
