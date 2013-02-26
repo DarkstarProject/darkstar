@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 		SpawnMob(17056168,180):updateEnmity(player);
 		-- Pets
 		for i = 17056170, 17056177, 1 do 
-			SpawnMob(i,180):updateEnmity(target);
+			SpawnMob(i,180):updateEnmity(player);
 		end
 		PWardenDespawnTime = os.time(t) + 7200; -- Two hours to forcible depop, if PWarden is engaged.
 		PWardenAstralFlows = 0;
