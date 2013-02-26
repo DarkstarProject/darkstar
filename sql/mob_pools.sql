@@ -11,6 +11,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for mob_pools
 -- ----------------------------
+DROP TABLE IF EXISTS `mob_pools`;
 CREATE TABLE `mob_pools` (
   `poolid` int(10) unsigned NOT NULL,
   `name` varchar(24) DEFAULT NULL,

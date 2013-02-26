@@ -11,6 +11,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for mob_spell_lists
 -- ----------------------------
+DROP TABLE IF EXISTS `mob_spell_lists`;
 CREATE TABLE `mob_spell_lists` (
   `spell_list_name` char(20) DEFAULT NULL,
   `spell_list_id` smallint(5) unsigned NOT NULL,
