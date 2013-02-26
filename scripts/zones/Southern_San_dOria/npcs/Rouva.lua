@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 -- NPC:  Rouva
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- @pos  230
+-- @pos -17 2 10 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -31,9 +31,9 @@ end;
 function onTrigger(player,npc) 
 	
 	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),3) == false) then
-		player:startEvent(0x0000);
+		player:startEvent(0x0328);
 	else
-		player:startEvent(0x298);
+		player:startEvent(0x0298);
 	end
 	
 end; 
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(csid == 0x0000) then
+	if(csid == 0x0328) then
 		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",3,true);
 	end
 	
