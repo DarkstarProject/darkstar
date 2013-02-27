@@ -6116,9 +6116,51 @@ inline int32 CLuaBaseEntity::getObjType(lua_State *L)
 {
 	if ( m_PBaseEntity != NULL )
 	{
-		lua_pushinteger( L, m_PBaseEntity->objtype );
+		if (m_PBaseEntity->objtype & TYPE_PC) lua_pushinteger( L, TYPE_PC);
+		else if (m_PBaseEntity->objtype & TYPE_PET) lua_pushinteger( L, TYPE_PET);
+		else if (m_PBaseEntity->objtype & TYPE_MOB) lua_pushinteger( L, TYPE_MOB);
+		else if (m_PBaseEntity->objtype & TYPE_NPC) lua_pushinteger( L, TYPE_NPC);
+		else lua_pushinteger( L, TYPE_SHIP);
+		return 1;
 	}
+	lua_pushnil( L );
 	return 0;
+}
+
+inline int32 CLuaBaseEntity::isPC(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	if (m_PBaseEntity->objtype & TYPE_PC) lua_pushboolean( L, true);
+	else lua_pushboolean( L, false);
+		
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::isNPC(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	if (m_PBaseEntity->objtype & TYPE_NPC) lua_pushboolean( L, true);
+	else lua_pushboolean( L, false);
+		
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::isMob(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	if (m_PBaseEntity->objtype & TYPE_MOB) lua_pushboolean( L, true);
+	else lua_pushboolean( L, false);
+		
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::isPet(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	if (m_PBaseEntity->objtype & TYPE_PET) lua_pushboolean( L, true);
+	else lua_pushboolean( L, false);
+		
+	return 1;
 }
 
 inline int32 CLuaBaseEntity::hasTrait(lua_State *L)
@@ -6499,6 +6541,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,createWornItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasWornItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getObjType),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isPC),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isNPC),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMob),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTrait),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isTrickAttackAvailable),

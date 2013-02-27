@@ -383,6 +383,11 @@ public:
 
 	int32 getObjType(lua_State*);
 
+	int32 isPC(lua_State*);
+	int32 isNPC(lua_State*);
+	int32 isMob(lua_State*);
+	int32 isPet(lua_State*);
+
 	int32 injectActionPacket(lua_State*);	// ONLY FOR DEBUGGING. Injects an action packet with the specified params.
 
 	int32 setDelay(lua_State*);				// sets a mobs weapon delay

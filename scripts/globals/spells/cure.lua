@@ -81,6 +81,10 @@ function onSpellCast(caster,target,spell)
 			target:addStatusEffect(EFFECT_STONESKIN,solaceStoneskin,0,25);
 		end;
 		final = final + (final * target:getMod(MOD_CURE_POTENCY_RCVD));
+		
+		--Applying server mods....
+		final = final * CURE_POWER;
+		
 		local diff = (target:getMaxHP() - target:getHP());
 		if(final > diff) then
 			final = diff;
