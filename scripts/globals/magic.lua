@@ -2,6 +2,8 @@ require("scripts/globals/magicburst")
 require("scripts/globals/status")
 require("scripts/globals/weather")
 
+    MMSG_BUFF_FAIL = 75;
+
 	DIVINE_MAGIC_SKILL	 	= 32;
     HEALING_MAGIC_SKILL 	= 33;
 	ENHANCING_MAGIC_SKILL 	= 34;

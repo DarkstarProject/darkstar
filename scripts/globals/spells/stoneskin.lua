@@ -48,7 +48,7 @@ function onSpellCast(caster,target,spell)
 	if(target:addStatusEffect(EFFECT_STONESKIN,final,0,duration)) then
 		spell:setMsg(230);
 	else
-		spell:setMsg(75);
+		spell:setMsg(MMSG_BUFF_FAIL);
 	end
 
 	return EFFECT_STONESKIN;

@@ -20,7 +20,7 @@ end;
 
 function onItemUse(target)
 	if(target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
-		target:addStatusEffect(EFFECT_BLINDNESS,1,3,180);
+		target:addStatusEffect(EFFECT_BLINDNESS,25,0,180);
 	else
 		target:messageBasic(423);
 	end

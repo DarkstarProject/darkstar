@@ -9,6 +9,7 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
 	duration = 90;
+	local typeEffect = EFFECT_SLEEP_II;
 	bonus = AffinityBonus(caster, spell);
 	pINT = caster:getStat(MOD_INT);
 	mINT = target:getStat(MOD_INT);
@@ -16,19 +17,16 @@ function onSpellCast(caster,target,spell)
 	resm = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
 	if(resm < 0.5) then
 		spell:setMsg(85);--resist message
-		return EFFECT_SLEEP_I;
+		return typeEffect;
 	end
 
 	duration = duration * resm;
 
-	if(target:hasImmunity(1) or target:hasStatusEffect(EFFECT_SLEEP_I)) then
-		--No effect
-		spell:setMsg(75);
-	else
+	if(target:addStatusEffect(typeEffect,2,0,duration)) then
 		spell:setMsg(236);
-		removeSleepEffects(target);
-		target:addStatusEffect(EFFECT_SLEEP_I,1,0,duration);
+	else
+		spell:setMsg(75);
 	end
 
-	return EFFECT_SLEEP_I;
+	return typeEffect;
 end;

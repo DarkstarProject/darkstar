@@ -70,22 +70,23 @@ namespace effects
     struct EffectParams_t
     {
         uint16   Flag;
-        uint8    Element;
         string_t Name;
-        // type means only one of the ids can be on the target at once
+        // type will erase all other effects that match
         // example: en- spells, spikes
         uint16   Type;
-        // Negative means can only land if the negative effect is weaker
+        // Negative means the new effect can only land if the negative id is weaker
         // example: haste, slow
         EFFECT   NegativeId;
         // only overwrite its self if the new effect is equal or higher / higher than current
         // example: protect, blind
         EFFECTOVERWRITE   Overwrite;
-        // This will prevent an other status effect from taking effect
-        // example: lullaby will prevent sleep from taking effect
+        // If this status effect is on the user, it will not take effect
+        // example: lullaby will not take effect with sleep I
         EFFECT   BlockId;
-        // Will always remove the effect when landing
+        // Will always remove this effect when landing
         EFFECT   RemoveId;
+        // status effect element, used in resistances
+        uint8    Element;
     };
 
     EffectParams_t EffectsParams[MAX_EFFECTID];
@@ -185,6 +186,9 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
         case EFFECT_SLEEP_II:
             if(m_POwner->hasImmunity(IMMUNITY_SLEEP) || m_POwner->m_EcoSystem == SYSTEM_UNDEAD) return false;
         break;
+        case EFFECT_LULLABY:
+            if(m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;
+        break;
         case EFFECT_WEIGHT:
             if(m_POwner->hasImmunity(IMMUNITY_GRAVITY)) return false;
         break;
@@ -218,22 +222,19 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
 
     // check if a status effect blocks this
     EFFECT blockId = effects::EffectsParams[statusEffect].BlockId;
-    if(blockId > EFFECT_KO && HasStatusEffect(blockId)){
+    if(blockId != 0 && HasStatusEffect(blockId)){
         return false;
     }
 
     // check if negative is strong enough to stop this
     EFFECT negativeId = effects::EffectsParams[statusEffect].NegativeId;
-    if(negativeId > EFFECT_KO){
-        PStatusEffect = GetStatusEffect(statusEffect);
+    if(negativeId != 0){
+        PStatusEffect = GetStatusEffect(negativeId);
         if(PStatusEffect != NULL){
-            // new status effect must be stronger or equal
-            if(power >= PStatusEffect->GetPower()){
-                return true;
-            }
+            // new status effect must be stronger
+            return power >= PStatusEffect->GetPower();
         }
     }
-
 
     PStatusEffect = GetStatusEffect(statusEffect);
 
@@ -300,7 +301,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 {
 	if(PStatusEffect != NULL && CanGainStatusEffect(PStatusEffect->GetStatusID(), PStatusEffect->GetPower()))
 	{
-        // remove effect from overwriteId
+        // remove clean up other effects
         OverwriteStatusEffect(PStatusEffect);
 
         SetEffectParams(PStatusEffect);
@@ -308,31 +309,32 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         // remove effects with same type
         DelStatusEffectsByType(PStatusEffect->GetType());
 
+
         PStatusEffect->SetOwner(m_POwner);
-		PStatusEffect->SetStartTime(gettick());
+        PStatusEffect->SetStartTime(gettick());
 
         luautils::OnEffectGain(m_POwner, PStatusEffect);
 
         m_POwner->addModifiers(&PStatusEffect->modList);
-		if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
-		{
-			m_POwner->UpdateHealth();
-		}
+        if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
+        {
+            m_POwner->UpdateHealth();
+        }
 
-		m_StatusEffectList.push_back(PStatusEffect);
+        m_StatusEffectList.push_back(PStatusEffect);
 
-		if (m_POwner->objtype == TYPE_PC)
+        if (m_POwner->objtype == TYPE_PC)
         {
             CCharEntity* PChar = (CCharEntity*)m_POwner;
 
             if (PStatusEffect->GetIcon() != 0)
             {
                 UpdateStatusIcons();
-				if (silent == false){
+                // if (silent == false){
                     // No need to display this.
                     // should be the job of spells, items etc
 					// PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
-				}
+				// }
             }
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
@@ -386,7 +388,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
     }
 	else
 	{
-		if (PStatusEffect->GetIcon() != 0 && ((PStatusEffect->GetFlag() & EFFECTFLAG_NO_LOSS_MESSAGE) == 0) && !m_POwner->isDead())
+		if (silent == false && PStatusEffect->GetIcon() != 0 && ((PStatusEffect->GetFlag() & EFFECTFLAG_NO_LOSS_MESSAGE) == 0) && !m_POwner->isDead())
 		{
 			m_POwner->loc.zone->PushPacket(m_POwner, CHAR_INRANGE, new CMessageBasicPacket(m_POwner, m_POwner, PStatusEffect->GetIcon(), 0, 206));
 		}
