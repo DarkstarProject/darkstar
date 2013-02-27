@@ -6184,7 +6184,8 @@ inline int32 CLuaBaseEntity::isTrickAttackAvailable(lua_State *L)
 
 	if (m_PBaseEntity != NULL)
 	{
-		CBattleEntity* PMob = (CBattleEntity*)Lunar<CLuaBaseEntity>::check(L,1);
+		CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
+		CBattleEntity* PMob = (CBattleEntity*)PLuaBaseEntity->GetBaseEntity();
 		if (PMob != NULL)
 		{
 			CBattleEntity* taTarget = battleutils::getAvailableTrickAttackChar((CBattleEntity*)m_PBaseEntity, PMob);
