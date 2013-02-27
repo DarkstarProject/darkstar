@@ -70,11 +70,11 @@ function onTrigger(player,npc)
 			player:startEvent(0x03e8); -- Start First Mission "Smash the Orcish scouts"
 		elseif(player:hasKeyItem(ANCIENT_SANDORIAN_BOOK)) then
 	        player:startEvent(0x040b);
-	    elseif(player:getCurrentMission(0,17) and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then
+	    elseif(player:getCurrentMission(SANDORIA) == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then
 	        player:startEvent(0x040d);
-		elseif(player:getCurrentMission(0,17) and player:getVar("MissionStatus") == 6) then
+		elseif(player:getCurrentMission(SANDORIA) == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 6) then
 		    player:startEvent(0x040f);
-		elseif(player:getCurrentMission(0,17) and player:getVar("MissionStatus") == 9) then
+		elseif(player:getCurrentMission(SANDORIA) == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 9) then
 		    player:startEvent(0x0409);
 		elseif((CurrentMission ~= 255) and not (player:getVar("MissionStatus") == 8)) then
 			player:startEvent(0x03e9); -- Have mission already activated
