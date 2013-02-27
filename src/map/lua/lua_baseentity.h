@@ -399,6 +399,7 @@ public:
 	int32 SetAutoAttackEnabled(lua_State*);	 // halts/resumes auto attack of entity
 	int32 SetMagicCastingEnabled(lua_State*);// halt/resumes casting magic
 	int32 SetMobAbilityEnabled(lua_State*);	 // halt/resumes mob skills
+	int32 updateTarget(lua_State*);					 // Force mob to update target from enmity container (ie after updateEnmity)
 };
 
 #endif

@@ -6244,7 +6244,21 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 
 	if (lua_isnumber(L,1))
 	{
-		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentMobSkill(battleutils::GetMobSkill(lua_tointeger(L, 1)));
+		CMobSkill* mobskill = battleutils::GetMobSkill(lua_tointeger(L, 1));
+		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentMobSkill(mobskill);
+		if( mobskill->getActivationTime() != 0)
+		{
+			apAction_t Action;
+			Action.reaction   = REACTION_HIT;
+			Action.speceffect = SPECEFFECT_HIT;
+			Action.animation  = 0;
+			Action.param	  = battleutils::GetMobSkillMessage(mobskill);//m_PMobSkill->getAnimationID();
+			Action.messageID  = 43; //readies message
+			Action.flag		  = 0;
+
+			((CMobEntity*)m_PBaseEntity)->m_ActionList.push_back(Action);
+			((CMobEntity*)m_PBaseEntity)->loc.zone->PushPacket(((CMobEntity*)m_PBaseEntity), CHAR_INRANGE, new CActionPacket((CMobEntity*)m_PBaseEntity));
+		}
 		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_USING);
 	} else {
 		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
@@ -6289,6 +6303,16 @@ inline int32 CLuaBaseEntity::SetMobAbilityEnabled(lua_State* L)
 	DSP_DEBUG_BREAK_IF(!lua_isboolean(L, 1));
 
 	((CBattleEntity*)m_PBaseEntity)->PBattleAI->SetMobAbilityEnabled(lua_toboolean(L, 1));
+
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+
+	((CMobEntity*)m_PBaseEntity)->PBattleAI->SetBattleTarget(((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetHighestEnmity());
 
 	return 0;
 }
@@ -6556,5 +6580,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetAutoAttackEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMagicCastingEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobAbilityEnabled),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateTarget),
 	{NULL,NULL}
 };
