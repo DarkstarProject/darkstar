@@ -49,6 +49,7 @@ public:
 	int32 getID(lua_State*);
   int32 setMsg(lua_State*);
   int32 getMsg(lua_State*);
+  int32 getTotalTargets(lua_State*);
 };
 
 #endif

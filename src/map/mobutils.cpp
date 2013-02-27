@@ -276,6 +276,12 @@ void CalculateStats(CMobEntity * PMob)
     }
     PMob->TraitList.clear();
 
+    // add double attack bonus 50+
+    if(PMob->GetMLevel() >= 50 && PMob->GetMJob() == JOB_WAR){
+    	PMob->delModifier(MOD_DOUBLE_ATTACK, 10);
+    	PMob->addModifier(MOD_DOUBLE_ATTACK, 10);
+    }
+
 	// add traits for sub and main
 	AddTraits(PMob, PMob->GetMJob(), PMob->GetMLevel());
 	AddTraits(PMob, PMob->GetSJob(), PMob->GetSLevel());

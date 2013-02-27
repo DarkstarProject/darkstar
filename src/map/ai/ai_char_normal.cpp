@@ -1724,7 +1724,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				m_PJobAbility = NULL;
 				m_PBattleSubTarget = NULL;
 				return;
-			}else if(m_PChar->PPet->health.hp == m_PChar->PPet->health.maxhp && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION)){
+			}else if(m_PChar->PPet->health.hp == m_PChar->PPet->health.maxhp && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_STUN)){
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
 				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
@@ -3337,7 +3337,7 @@ void CAICharNormal::ActionAttack()
 				{
 
                     // spikes take priority over enspells
-					if(true || !battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage)){
+					if(!battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage)){
                         // no spikes, handle enspell
                        battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
                    }

@@ -30,14 +30,15 @@ CMobSkill::CMobSkill(uint16 id)
 	m_FamilyID= 0;
 	m_AnimID = 0;
 	m_Aoe = 0;
-	m_Distance = 0;
+    m_Distance = 0;
+	m_TotalTargets = 0;
 	m_Flag = 0;
     m_ValidTarget = 0;
     m_AnimationTime = 0;
     m_ActivationTime = 0;
 	m_Message = 0;
 }
-	
+
 void CMobSkill::setID(uint16 id)
 {
 	m_ID = id;
@@ -46,6 +47,11 @@ void CMobSkill::setID(uint16 id)
 void CMobSkill::setMsg(uint16 msg)
 {
 	m_Message = msg;
+}
+
+void CMobSkill::setTotalTargets(uint16 targets)
+{
+    m_TotalTargets = targets;
 }
 
 void CMobSkill::setfamilyID(uint16 familyID)
@@ -125,14 +131,56 @@ uint16 CMobSkill::getTP()
 	return m_TP;
 }
 
+uint16 CMobSkill::getTotalTargets()
+{
+    return m_TotalTargets;
+}
+
 uint16 CMobSkill::getMsg()
 {
 	return m_Message;
 }
 
+uint16 CMobSkill::getAoEMsg()
+{
+
+    switch(m_Message){
+        case 185:
+            return 264;
+        case 186:
+            return 266;
+        case 187:
+            return 281;
+        case 188:
+            return 63;
+        case 189:
+            return 283;
+        case 225:
+            return 366;
+        case 226:
+            return 226; //no message for this... I guess there is no aoe TP drain move
+        case 238:
+            return 24;
+        case 242:
+            return 277;
+        case 243:
+            return 278;
+        case 284:
+            return 284; //already the aoe message
+        case 370:
+            return 404;
+        case 362:
+            return 363;
+        case 378:
+            return 343;
+        default:
+            return m_Message;
+    }
+}
+
 uint8 CMobSkill::getFlag()
 {
-	return m_Flag; 
+	return m_Flag;
 }
 
 uint8 CMobSkill::getAoe()

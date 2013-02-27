@@ -47,7 +47,7 @@ class CMobSkill
 public:
 
 	CMobSkill(uint16 id);
-    
+
 	uint16		getID();
 	uint16		getAnimationID();
 	uint16		getfamilyID();
@@ -57,8 +57,10 @@ public:
     uint16      getAnimationTime();
     uint16      getActivationTime();
 	uint16		getMsg();
+    uint16      getAoEMsg();
 	uint16		getValidTargets();
 	uint16		getTP();
+    uint16      getTotalTargets();
 
 	void		setID(uint16 id);
 	void		setAnimationID(uint16 aid);
@@ -71,7 +73,8 @@ public:
 	void		setMsg(uint16 msg);
 	void		setValidTargets(uint16 targ);
 	void		setTP(uint16 tp);
-	
+    void        setTotalTargets(uint16 targets);
+
 	const int8* getName();
 	void		setName(int8* name);
 
@@ -81,12 +84,13 @@ public:
 private:
 
 	uint16		m_ID;
+    uint16      m_TotalTargets;
 	uint16      m_FamilyID;
 	uint16		m_AnimID;			//animation id
-	uint8       m_Aoe;              // не используется 
+	uint8       m_Aoe;              // не используется
 	float		m_Distance;         // не используется
 	uint8		m_Flag;             // не используется
-    uint8       m_ValidTarget;		//same as 
+    uint8       m_ValidTarget;		//same as
     uint16      m_AnimationTime;	//how long the tp animation lasts for in ms
     uint16      m_ActivationTime;	//how long the mob prepares the tp move for
 	uint16		m_Message;			//message param, scripters can edit this depending on self/resist/etc.

@@ -634,6 +634,8 @@ void CAIMobDummy::ActionAbilityFinish()
 		//todo: have a separate msg field from this for shadow absorb?
 		m_PMobSkill->setMsg(185); //need this as some skills may be set to "shadows absorb"
 
+	    m_PMobSkill->setTotalTargets(1);
+
 		//handle aoe stuff (self/mob)
 		//AOE=1 means the circle is around the MONSTER
 		//AOE=2 means the circle is around the BATTLE TARGET
@@ -666,7 +668,6 @@ void CAIMobDummy::ActionAbilityFinish()
 					case SOLO_TARGET: // single char & maybe a pet
 						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround))
 						{
-							Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 							m_PMob->m_ActionList.push_back(Action);
 						}
 
@@ -674,7 +675,6 @@ void CAIMobDummy::ActionAbilityFinish()
 						{
 							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PPet, &Action, m_PMobSkill, &radiusAround))
 							{
-								Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 								m_PMob->m_ActionList.push_back(Action);
 							}
 						}
@@ -684,9 +684,6 @@ void CAIMobDummy::ActionAbilityFinish()
 						{
 							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround))
 							{
-								Action.messageID  = m_PMobSkill->getMsg();
-								Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
-
 								m_PMob->m_ActionList.push_back(Action);
 							}
 
@@ -694,8 +691,6 @@ void CAIMobDummy::ActionAbilityFinish()
 							{
 								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 								{
-									Action.messageID  = m_PMobSkill->getMsg();
-									Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 									m_PMob->m_ActionList.push_back(Action);
 								}
 							}
@@ -708,9 +703,6 @@ void CAIMobDummy::ActionAbilityFinish()
 							{
 								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, m_PMobSkill, &radiusAround))
 								{
-									Action.messageID  = m_PMobSkill->getMsg();
-									Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
-
 									m_PMob->m_ActionList.push_back(Action);
 								}
 
@@ -718,8 +710,6 @@ void CAIMobDummy::ActionAbilityFinish()
 								{
 									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 									{
-										Action.messageID  = m_PMobSkill->getMsg();
-										Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 										m_PMob->m_ActionList.push_back(Action);
 									}
 								}
@@ -731,8 +721,6 @@ void CAIMobDummy::ActionAbilityFinish()
 						{
 							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i), &Action, m_PMobSkill, &radiusAround))
 							{
-								Action.messageID  = m_PMobSkill->getMsg();
-								Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 								m_PMob->m_ActionList.push_back(Action);
 							}
 
@@ -740,9 +728,6 @@ void CAIMobDummy::ActionAbilityFinish()
 							{
 								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 								{
-									Action.messageID  = m_PMobSkill->getMsg();
-									Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
-
 									m_PMob->m_ActionList.push_back(Action);
 								}
 							}
@@ -756,8 +741,6 @@ void CAIMobDummy::ActionAbilityFinish()
 							{
 								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, m_PMobSkill, &radiusAround))
 								{
-									Action.messageID  = m_PMobSkill->getMsg();
-									Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 									m_PMob->m_ActionList.push_back(Action);
 								}
 
@@ -765,9 +748,6 @@ void CAIMobDummy::ActionAbilityFinish()
 								{
 									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, m_PMobSkill, &radiusAround))
 									{
-										Action.messageID  = m_PMobSkill->getMsg();
-										Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
-
 										m_PMob->m_ActionList.push_back(Action);
 									}
 								}
@@ -777,7 +757,6 @@ void CAIMobDummy::ActionAbilityFinish()
 					case PET_AND_MASTER:  // pet with a master
 						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround))
 						{
-							Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 							m_PMob->m_ActionList.push_back(Action);
 						}
 
@@ -785,13 +764,39 @@ void CAIMobDummy::ActionAbilityFinish()
 						{
 							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster, &Action, m_PMobSkill, &radiusAround))
 							{
-								Action.messageID  = m_PMobSkill->getMsg();
-								Action.messageID  = aoeMessageID(m_PMobSkill->getMsg());
 								m_PMob->m_ActionList.push_back(Action);
 							}
 						}
 						break;
 				}
+
+				// handle AoE logic
+				// loop through all targets
+
+			    uint16 actionsLength = m_PMob->m_ActionList.size();
+			    m_PMobSkill->setTotalTargets(actionsLength);
+			    apAction_t* currentAction;
+			    for (uint32 i = 0; i < actionsLength; ++i)
+				{
+			        currentAction = &m_PMob->m_ActionList.at(i);
+
+			        CBattleEntity* PTarget = currentAction->ActionTarget;
+
+			        // set default message
+			        m_PMobSkill->setMsg(185);
+
+					currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PMob, m_PMobSkill);
+
+					uint16 msg = m_PMobSkill->getAoEMsg();
+
+					if(i == 0){
+						msg = m_PMobSkill->getMsg();
+					}
+
+					currentAction->messageID = msg;
+
+				}
+
 
 			}
 			else if (m_PMobSkill->getValidTargets() == TARGET_SELF)
@@ -980,7 +985,8 @@ void CAIMobDummy::ActionSleep()
     if (!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
         !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
         !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) &&
-        !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY))
+        !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY)
+        && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_STUN))
     {
 		//put it in combat if it isn't
 		if( m_PMob->animation == ANIMATION_NONE ){
@@ -1221,16 +1227,16 @@ void CAIMobDummy::ActionMagicFinish()
 				PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 			}
 
-            // if(m_PSpell->isAOE()){
-            //     // reduce damage from -ga spell
-            //     if(actionsLength > 9){
-            //         // ga spells on 10+ targets = 0.4
-            //         m_PMob->m_ActionList.at(i).param *= (float)0.4;
-            //     } else if(actionsLength > 1){
-            //         // -ga spells on 2 to 9 targets = 0.9 - 0.05T where T = number of targets
-            //         m_PMob->m_ActionList.at(i).param *= (float)0.9 - 0.05*actionsLength;
-            //     }
-            // }
+            if(m_PSpell->isAOE()){
+                // reduce damage from -ga spell
+                if(actionsLength > 9){
+                    // ga spells on 10+ targets = 0.4
+                    m_PMob->m_ActionList.at(i).param *= (float)0.4;
+                } else if(actionsLength > 1){
+                    // -ga spells on 2 to 9 targets = 0.9 - 0.05T where T = number of targets
+                    m_PMob->m_ActionList.at(i).param *= (float)0.9 - 0.05*actionsLength;
+                }
+            }
 		}
 
 		if(i>0){
@@ -1755,49 +1761,6 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
     }
 
     return results;
-}
-
-uint16 CAIMobDummy::aoeMessageID(uint16 id)
-{
-	switch(id){
-		case 85:
-			return 284;
-			break;
-		case 185:
-			return 264;
-			break;
-		case 186:
-			return 266;
-			break;
-		case 187:
-			return 281;
-			break;
-		case 188:
-			return 63;
-			break;
-		case 189:
-			return 283;
-			break;
-		case 225:
-			return 366;
-			break;
-		case 226:
-			return 226; //no message for this... I guess there is no aoe TP drain move
-			break;
-		case 238:
-			return 24;
-			break;
-		case 242:
-			return 277;
-			break;
-		case 243:
-			return 278;
-			break;
-		case 284:
-			return 284; //already the aoe message
-			break;
-	}
-
 }
 
 void CAIMobDummy::AddEntityForAoe(CBattleEntity* entityToAdd, apAction_t Action) {

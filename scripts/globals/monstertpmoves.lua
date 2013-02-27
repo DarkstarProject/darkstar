@@ -74,8 +74,8 @@ MSG_MISS = 188;
 MSG_RESIST = 85;
 MSG_EFFECT_DRAINED = 370; -- <num> status effects are drained from <target>.
 MSG_TP_REDUCED = 362; -- tp reduced to
-MSG_DISAPPEAR = 343; -- <target>'s stun effect disappears!
-MSG_DISAPPEAR_NUM = 400; -- <num> of <target>'s effects disappear!
+MSG_DISAPPEAR = 378; -- <target>'s stun effect disappears!
+MSG_DISAPPEAR_NUM = 401; -- <num> of <target>'s effects disappear!
 
 BOMB_TOSS_HPP = 1;
 

@@ -890,7 +890,7 @@ void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t Action)
 		case SUBEFFECT_ICE_SPIKES:
 		{
 			if(rand()%100 <= 25+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false){
-				PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 25, 0, 30));
+				PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 20, 0, 30));
 			}
 			break;
 		}
@@ -2356,15 +2356,15 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 		num +=1;
 	}
 
-	
-	// hasso occasionally triggers Zanshin after landing a normal attack, 
+
+	// hasso occasionally triggers Zanshin after landing a normal attack,
 	// only active while Samurai is set as Main Job
 	if(PEntity->GetMJob() == JOB_SAM)
 	{
 		if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
 		{
 			uint8 zanshin = PEntity->getMod(MOD_ZANSHIN);
-			if (PEntity->objtype == TYPE_PC) 
+			if (PEntity->objtype == TYPE_PC)
 				zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, PEntity->GetMLevel());
 
 			if(rand()%100 < (zanshin / 4) )
@@ -3934,7 +3934,6 @@ bool handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apActi
 	if (distance(*radiusAround, PTarget->loc.p) <= PMobSkill->getDistance())
 	{
 		Action->ActionTarget = PTarget;
-		Action->param	     = luautils::OnMobWeaponSkill(PTarget, PAttacker, PMobSkill);
 		return true;
 	}
 	return false;

@@ -735,7 +735,7 @@ void CAIPetDummy::ActionSleep()
     if (!m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
         !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
         !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) &&
-        !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY))
+        !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) && !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_STUN))
     {
 		//put it in combat if it isn't
 		if( m_PPet->animation == ANIMATION_NONE ){

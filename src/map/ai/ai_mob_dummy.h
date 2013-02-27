@@ -55,11 +55,11 @@ public:
 	virtual void CheckCurrentAction(uint32 tick);
 
 	CAIMobDummy(CMobEntity* PMob);
-	
+
 protected:
 
-	CMobEntity* m_PMob;	
-	
+	CMobEntity* m_PMob;
+
 	void ActionRoaming();
 	void ActionEngage();
 	void ActionDisengage();
@@ -84,8 +84,6 @@ protected:
 
 private:
 
-
-	uint16 aoeMessageID(uint16 id);
 	void AddEntityForAoe(CBattleEntity* entityToAdd, apAction_t Action);
 
 };
