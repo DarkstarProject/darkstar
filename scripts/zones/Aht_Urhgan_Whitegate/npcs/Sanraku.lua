@@ -18,6 +18,7 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 function onTrade(player,npc,trade)
 	
+	--[[
 	if(trade:getItemCount() == 1) then
 		if(trade:hasItemQty(2477,1)) then -- Trade Soul Plate
 			zeni = math.random(1,200); -- random value since soul plates aren't implemented yet.
@@ -46,6 +47,7 @@ function onTrade(player,npc,trade)
 			end
 		end
 	end
+	]]
 	
 end;
 
@@ -55,6 +57,7 @@ end;
 
 function onTrigger(player,npc)
 	
+	--[[
 	if(player:getVar("ZeniStatus") == 0) then
 		player:startEvent(0x038c);
 	else
@@ -97,6 +100,7 @@ function onTrigger(player,npc)
 		
 		player:startEvent(0x038D,param);
 	end
+	]]
 	
 end;
 
@@ -107,7 +111,7 @@ end;
 function onEventUpdate(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("updateRESULT: %u",option);
-	
+	--[[
 	if(csid == 0x038D) then
 		zeni = player:getPoint(ZENI);
 		
@@ -194,7 +198,7 @@ function onEventUpdate(player,csid,option)
 			end
 		end
 	end
-	
+	]]
 end;
 
 -----------------------------------
@@ -204,10 +208,10 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("finishRESULT: %u",option);
-	
+	--[[
 	if(csid == 0x038c) then
 		player:setVar("ZeniStatus",1);
 		player:addPoint(ZENI,2000);
 	end
-	
+	]]
 end;

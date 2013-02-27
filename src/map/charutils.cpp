@@ -3029,7 +3029,7 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 	if(PChar->getZone() >= 48 && PChar->getZone() <= 79)
 	{
 		PChar->RegionPoints[3] += ((exp/100)*10); // 10%
-		PChar->RegionPoints[10] += ((exp/100)*10); // 10%
+	//	PChar->RegionPoints[10] += ((exp/100)*10); // 10%
 		PChar->pushPacket(new CConquestPacket(PChar));
 	}
 
