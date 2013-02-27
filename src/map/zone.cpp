@@ -44,6 +44,7 @@
 #include "treasure_pool.h"
 #include "vana_time.h"
 #include "zone.h"
+#include "zoneutils.h"
 
 #include "lua/luautils.h"
 
@@ -588,7 +589,6 @@ void CZone::SetWeather(WEATHER weather)
 void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 {
     DSP_DEBUG_BREAK_IF(PChar == NULL);
-    DSP_DEBUG_BREAK_IF(PChar->loc.zone != this);
 
 	//remove pets
 	if(PChar->PPet != NULL)
@@ -676,28 +676,53 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
 
-	m_charList.erase(PChar->targid);
-	ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u> %s\n" CL_RESET, GetName(), m_charList.size(),PChar->GetName());
-
-	if (ZoneTimer && m_charList.empty())
+	//
+	if (m_zoneID != 0)
 	{
-		ZoneTimer->m_type = CTaskMgr::TASK_REMOVE;
-		ZoneTimer = NULL;
-	}
-	else
-	{
-		for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+		if (!(PChar->loc.destination == 0 && PChar->status != STATUS_SHUTDOWN))
 		{
-			CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-			SpawnIDList_t::iterator PC = PCurrentChar->SpawnPCList.find(PChar->id);
+			m_charList.erase(PChar->targid);
+			ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u> %s\n" CL_RESET, GetName(), m_charList.size(),PChar->GetName());
 
-			if( PC != PCurrentChar->SpawnPCList.end() )
+			if (ZoneTimer && m_charList.empty())
 			{
-				PCurrentChar->SpawnPCList.erase(PC);
-				PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_DESPAWN));
+				ZoneTimer->m_type = CTaskMgr::TASK_REMOVE;
+				ZoneTimer = NULL;
 			}
+			else
+			{
+				for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+				{
+					CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+					SpawnIDList_t::iterator PC = PCurrentChar->SpawnPCList.find(PChar->id);
+
+					if( PC != PCurrentChar->SpawnPCList.end() )
+					{
+						PCurrentChar->SpawnPCList.erase(PC);
+						PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_DESPAWN));
+					}
+				}
+			}
+		} else {
+			for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+			{
+				CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+				SpawnIDList_t::iterator PC = PCurrentChar->SpawnPCList.find(PChar->id);
+
+				if( PC != PCurrentChar->SpawnPCList.end() )
+				{
+					PCurrentChar->SpawnPCList.erase(PC);
+					PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_DESPAWN));
+				}
+			}
+			PChar->loc.moghousezone = m_zoneID;
 		}
+	} else if (PChar->loc.prevzone != PChar->loc.destination){
+		zoneutils::GetZone(PChar->loc.prevzone)->DecreaseZoneCounter(PChar);
+		PChar->loc.prevzone = m_zoneID;
+		return;
 	}
+
 	if (PChar->m_LevelRestriction != 0)
 	{
 		PChar->StatusEffectContainer->DelStatusEffect(EFFECT_LEVEL_SYNC);
@@ -743,27 +768,34 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 
     PChar->targid = 0x400;
 
-    for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+	if (((PChar->loc.destination != 0) && ((PChar->loc.prevzone == 0 && (PChar->loc.destination != PChar->loc.moghousezone)) || PChar->loc.login )) || PChar->loc.destination == 0 && m_zoneID == PChar->loc.prevzone)
 	{
-        if (PChar->targid != it->first)
-        {
-            break;
-        }
-        PChar->targid++;
-    }
-    if (PChar->targid >= 0x700)
-    {
-        ShowError(CL_RED"CZone::InsertChar : targid is high (03hX)\n" CL_RESET, PChar->targid);
-        return;
-    }
+		for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+		{
+			if (PChar->targid != it->first)
+			{
+				break;
+			}
+			PChar->targid++;
+		}
+		if (PChar->targid >= 0x700)
+		{
+			ShowError(CL_RED"CZone::InsertChar : targid is high (03hX)\n" CL_RESET, PChar->targid);
+			return;
+		}
+		m_charList[PChar->targid] = PChar;
+		ShowDebug(CL_CYAN"CZone:: %s IncreaseZoneCounter <%u> %s \n" CL_RESET, GetName(), m_charList.size(),PChar->GetName());
+	} else if (PChar->loc.destination == 0 && PChar->loc.login == true)
+	{
+		PChar->loc.moghousezone = PChar->loc.prevzone;
+		PChar->loc.login = false;
+		zoneutils::GetZone(PChar->loc.prevzone)->IncreaseZoneCounter(PChar);
+	}
     PChar->loc.zone = this;
     PChar->loc.zoning = false;
     PChar->loc.destination = 0;
     PChar->m_InsideRegionID = 0;
     PChar->m_PVPFlag = 0;
-
-	m_charList[PChar->targid] = PChar;
-	ShowDebug(CL_CYAN"CZone:: %s IncreaseZoneCounter <%u> %s \n" CL_RESET, GetName(), m_charList.size(),PChar->GetName());
 
 	if (!ZoneTimer && !m_charList.empty())
 	{
@@ -1441,7 +1473,10 @@ void CZone::ZoneServer(uint32 tick)
             PChar->PRecastContainer->Check(tick);
             PChar->StatusEffectContainer->CheckEffects(tick);
             PChar->PBattleAI->CheckCurrentAction(tick);
-            PChar->PTreasurePool->CheckItems(tick);
+			if (PChar->PTreasurePool != NULL)
+			{
+				PChar->PTreasurePool->CheckItems(tick);
+			}
 			PChar->StatusEffectContainer->CheckRegen(tick);
         }
     }
@@ -1483,7 +1518,10 @@ void CZone::ZoneServerRegion(uint32 tick)
             PChar->PRecastContainer->Check(tick);
             PChar->StatusEffectContainer->CheckEffects(tick);
             PChar->PBattleAI->CheckCurrentAction(tick);
-            PChar->PTreasurePool->CheckItems(tick);
+			if (PChar->PTreasurePool != NULL)
+			{
+				PChar->PTreasurePool->CheckItems(tick);
+			}
 
             uint32 RegionID = 0;
 

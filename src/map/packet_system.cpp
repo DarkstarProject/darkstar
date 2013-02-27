@@ -221,8 +221,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		int8 session_key[20*2+1];
 		bin2hex(session_key,(uint8*)session->blowfish.key,20);
 
-        if (PChar->loc.destination != 0 &&
-            PChar->loc.destination != 214)
+        if (PChar->loc.destination != 214)
 		{
             zoneutils::GetZone(PChar->loc.destination)->IncreaseZoneCounter(PChar);
 		} else {
@@ -258,7 +257,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		{
 			PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
 		}
-
+		PChar->loc.login = false;
 		PChar->status = STATUS_NORMAL;
 	}
 	else
