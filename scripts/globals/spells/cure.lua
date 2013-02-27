@@ -81,10 +81,10 @@ function onSpellCast(caster,target,spell)
 			target:addStatusEffect(EFFECT_STONESKIN,solaceStoneskin,0,25);
 		end;
 		final = final + (final * target:getMod(MOD_CURE_POTENCY_RCVD));
-		
+
 		--Applying server mods....
 		final = final * CURE_POWER;
-		
+
 		local diff = (target:getMaxHP() - target:getHP());
 		if(final > diff) then
 			final = diff;
@@ -94,6 +94,8 @@ function onSpellCast(caster,target,spell)
 		target:wakeUp();
 		caster:updateEnmityFromCure(target,final);
 	else
+		-- no effect if player casted on mob
+
 		if(target:isUndead()) then
 			spell:setMsg(2);
 			local dmg = calculateMagicDamage(10,1,caster,spell,target,HEALING_MAGIC_SKILL,MOD_MND,false);
@@ -105,6 +107,8 @@ function onSpellCast(caster,target,spell)
 			final = dmg;
 			target:delHP(final);
 			target:updateEnmityFromDamage(caster,final);
+		elseif(caster:getObjType() == TYPE_PC) then
+			spell:setMsg(75);
 		else
 			-- e.g. monsters healing themselves.
 			if(USE_OLD_CURE_FORMULA == true) then
