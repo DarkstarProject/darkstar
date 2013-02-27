@@ -2417,6 +2417,8 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
             CBattleEntity* PBattle = PChar->PParty->members[i];
             if (PBattle->getZone() == PMob->getZone() && distance(PBattle->loc.p, PMob->loc.p) < 100)
             {
+
+                if (PBattle->PPet != NULL && PBattle->PPet->GetMLevel() > maxlevel) maxlevel = PBattle->PPet->GetMLevel();
                 if (PBattle->GetMLevel() > maxlevel) maxlevel = PBattle->GetMLevel();
                 else if (PBattle->GetMLevel() < minlevel) minlevel = PBattle->GetMLevel();
                 pcinzone++;
@@ -2634,6 +2636,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
     }
     else
     {
+        if (PChar->PPet != NULL && PChar->PPet->GetMLevel() > maxlevel) maxlevel = PChar->PPet->GetMLevel();
         baseexp  = GetRealExp(maxlevel, PMob->GetMLevel());
         exp = baseexp;
         permonstercap = 1.15f;
