@@ -3337,7 +3337,7 @@ void CAICharNormal::ActionAttack()
 				{
 
                     // spikes take priority over enspells
-					if(totalHits == 1 || !battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage)){
+					if(true || !battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage)){
                         // no spikes, handle enspell
                        battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
                    }
