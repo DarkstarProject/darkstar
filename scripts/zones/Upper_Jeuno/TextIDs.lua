@@ -25,3 +25,6 @@ DEADLYMINNOW_SHOP_DIALOG = 6852; -- Welcome to Durable Shields.
      AREEBAH_SHOP_DIALOG = 6853; -- Welcome to M & P's Market.
  CHAMPALPIEU_SHOP_DIALOG = 6853; -- Welcome to M & P's Market.
    LEILLAINE_SHOP_DIALOG = 6879; -- Hello. Are you feeling all right?
+  
+-- Lakeside Minuet - DNC flag quest text
+	UNLOCK_DANCER        = 11698; -- You have unlocked Dancer!
