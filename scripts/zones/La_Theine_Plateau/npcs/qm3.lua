@@ -17,11 +17,8 @@ require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == 1) then
-		count = trade:getItemCount();
-		gil = trade:getGil();
-
-		if (trade:hasItemQty(1125,1) and count == 1 and gil == 0 and player:getVar("ICanHearARainbow") == 127) then
+	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
+		if (trade:hasItemQty(1125,1) and trade:getItemCount() == 1 and trade:getGil() == 0 and player:getVar("I_CAN_HEAR_A_RAINBOW") == 127) then
 			player:startEvent(0x007c);
 		end
 	end
