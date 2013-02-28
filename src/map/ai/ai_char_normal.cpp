@@ -3137,7 +3137,11 @@ void CAICharNormal::ActionAttack()
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			uint8 fstrslot = SLOT_MAIN;
 			bool zanshin = false;
+			bool SATAhit = false; //SA/TA+Assassin guarantee every hit in a round to connect
             uint8 totalHits = numattacksLeftHand + numattacksRightHand + numKickAttacks;
+
+			if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+				taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
 
 			for (uint8 i = 0; i < totalHits; ++i)
 			{
@@ -3196,6 +3200,11 @@ void CAICharNormal::ActionAttack()
 					else{
 						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,1);
 					}
+					//deciding this here because SA/TA wears on attack, before the 2nd+ hits go off
+					if (hitRate = 100)
+					{
+						SATAhit = true;
+					}
 				}
 				else if ( i >= numattacksLeftHand + numattacksRightHand )
 				{
@@ -3209,7 +3218,7 @@ void CAICharNormal::ActionAttack()
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 				}
-				else if ( rand()%100 < hitRate)
+				else if ( rand()%100 < hitRate || SATAhit)
 				{
 
                     // attack hit, try to be absorbed by shadow
@@ -3252,16 +3261,10 @@ void CAICharNormal::ActionAttack()
 
 
 						//trick attack agi bonus for thf main job
-						if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakTrickAttack) &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+						if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakTrickAttack) && taChar != NULL)
 						{
-							taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-							if(taChar != NULL) bonusDMG += m_PChar->AGI();
+							bonusDMG += m_PChar->AGI();
 						}
-
-						//check if other jobs have trick attack active to change enmity lateron
-						if(taChar == NULL && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK) && (!ignoreSneakTrickAttack))
-							taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-
 
 						if (isHTH)
 						{
