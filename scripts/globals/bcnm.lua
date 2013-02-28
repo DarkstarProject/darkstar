@@ -403,7 +403,7 @@ function checkNonTradeBCNM(player,npc)
 			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") == 10) then -- Mission 2-3
 			mask = GetBattleBitmask(64,Zone,1);
 			player:setVar("trade_bcnmid",64);
-		elseif(player:getCurrentMission(BASTOK) == ON_MY_WAY) and (player:getVar("MissionStatus") == 2) then
+		elseif((player:getCurrentMission(BASTOK) == ON_MY_WAY) and (player:getVar("MissionStatus") == 2)) then
 			mask = GetBattleBitmask(67,Zone,1);
 			player:setVar("trade_bcnmid",67);
 		end
