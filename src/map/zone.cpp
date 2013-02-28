@@ -768,7 +768,7 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 
     PChar->targid = 0x400;
 
-	if (((PChar->loc.destination != 0) && ((PChar->loc.prevzone == 0 && (PChar->loc.destination != PChar->loc.moghousezone)) || PChar->loc.login )) || PChar->loc.destination == 0 && m_zoneID == PChar->loc.prevzone)
+	if (((PChar->loc.destination != 0) && ((PChar->loc.prevzone == 0 && (PChar->loc.destination != PChar->loc.moghousezone)) || PChar->loc.login || PChar->loc.prevzone != 0 )) || PChar->loc.destination == 0 && m_zoneID == PChar->loc.prevzone)
 	{
 		for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
 		{
