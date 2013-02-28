@@ -356,8 +356,6 @@ void LoadChar(CCharEntity* PChar)
 		PChar->loc.p.y = Sql_GetFloatData(SqlHandle,5);
 		PChar->loc.p.z = Sql_GetFloatData(SqlHandle,6);
 		PChar->loc.boundary = (uint16)Sql_GetIntData(SqlHandle,7);
-		PChar->loc.login = true;
-		PChar->loc.moghousezone = PChar->loc.prevzone;
 
         PChar->profile.home_point.destination = (uint8)Sql_GetIntData(SqlHandle,8);
 		PChar->profile.home_point.p.rotation  = (uint8)Sql_GetIntData(SqlHandle,9);
