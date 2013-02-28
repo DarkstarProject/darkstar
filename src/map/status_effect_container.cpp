@@ -730,12 +730,16 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
 						AddStatusEffect(PStatusEffect, true);
 						return true;
 					} else {
-						uint16 duration = 300;
-						duration -= bustDuration;
-						CStatusEffect* bustEffect = new CStatusEffect(EFFECT_BUST, EFFECT_BUST, PStatusEffect->GetPower(),
-							0, duration, PStatusEffect->GetTier(), PStatusEffect->GetStatusID());
+						if (!CheckForElevenRoll())
+						{
+							uint16 duration = 300;
+							duration -= bustDuration;
+							CStatusEffect* bustEffect = new CStatusEffect(EFFECT_BUST, EFFECT_BUST, PStatusEffect->GetPower(),
+								0, duration, PStatusEffect->GetTier(), PStatusEffect->GetStatusID());
+							AddStatusEffect(bustEffect, true);
+						}
 						DelStatusEffectSilent(PStatusEffect->GetStatusID());
-						AddStatusEffect(bustEffect, true);
+
 						return true;
 					}
 			}
@@ -1142,7 +1146,7 @@ bool CStatusEffectContainer::CheckForElevenRoll()
 	{
         if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
             m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL &&
-			m_StatusEffectList.at(i)->GetPower() == 11)
+			m_StatusEffectList.at(i)->GetSubPower() == 11)
 		{
 			return true;
 		}
