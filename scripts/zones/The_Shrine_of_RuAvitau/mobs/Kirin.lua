@@ -28,14 +28,13 @@ function onMobFight(mob,target)
 	local pets;
 
 	if(mob:getBattleTime() % 180 == 0) then -- Every 3 minutes ...
-		local KirinCalledPets = GetServerVariable("Kirin_PetsCalled");
-		if (KirinCalledPets < 15) then -- ... if you haven't called all four pets already ...
+		if (Kirin_PetsCalled < 15) then -- ... if you haven't called all four pets already ...
 			repeat
 				RandomMod = math.random(0,3);
 				ChosenPet = 17506671 + RandomMod;  -- ... pick a random pet...
 
 				-- ... unless you've already called that pet ...
-				if (target:getMaskBit(KirinCalledPets,RandomMod) == true) then
+				if (target:getMaskBit(Kirin_PetsCalled,RandomMod) == true) then
 					ChosenPet = 0;
 				end
 			until(ChosenPet ~= 0 and ChosenPet ~= nil)
@@ -46,13 +45,14 @@ function onMobFight(mob,target)
 
 			-- ... and set a bit so you can't resummon that pet.
 			switch (ChosenPet): caseof {
-				[17506671] = function (x) SetServerVariable("Kirin_PetsCalled", KirinCalledPets + 1); end, -- Genbu
-				[17506672] = function (x) SetServerVariable("Kirin_PetsCalled", KirinCalledPets + 2); end, -- Seiryu
-				[17506673] = function (x) SetServerVariable("Kirin_PetsCalled", KirinCalledPets + 4); end, -- Byakko
-				[17506674] = function (x) SetServerVariable("Kirin_PetsCalled", KirinCalledPets + 8); end, -- Suzaku
+				[17506671] = function (x) Kirin_PetsCalled = Kirin_PetsCalled + 1; end, -- Genbu
+				[17506672] = function (x) Kirin_PetsCalled = Kirin_PetsCalled + 2; end, -- Seiryu
+				[17506673] = function (x) Kirin_PetsCalled = Kirin_PetsCalled + 4; end, -- Byakko
+				[17506674] = function (x) Kirin_PetsCalled = Kirin_PetsCalled + 8; end, -- Suzaku
 			}
 		end
 	end
+
 
 	-- If any pets are idle ...
 	for pets = 17506671,17506674 do

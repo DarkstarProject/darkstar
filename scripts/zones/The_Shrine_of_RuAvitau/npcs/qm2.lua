@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 		player:tradeComplete();
 		SpawnMob(17506670,180):updateEnmity(player);
 		player:showText(npc,KIRIN_OFFSET);
-		SetServerVariable("Kirin_PetsCalled", 0);
+		Kirin_PetsCalled = 0;
 	end
 	
 end;
