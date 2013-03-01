@@ -10,7 +10,7 @@
 	//#include <stdarg.h>// va_list
 
 #ifdef WIN32
-	#include <winsock.h>
+	#include <winsock2.h>
 	#include <mysql/mysql.h>
 #else
  	#include <mysql/mysql.h>
