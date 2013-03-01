@@ -16,34 +16,37 @@ require("scripts/globals/settings");
 
 function onTrade(player,npc,trade)
 
-Gourmet = player:getQuestStatus(BASTOK,GOURMET);
+	local Gourmet = player:getQuestStatus(BASTOK,GOURMET);
 
 	if (Gourmet ~= QUEST_AVAILABLE and player:needToZone() == false) then
-		count = trade:getItemCount();
-		hasSleepshroom = trade:hasItemQty(4374,1);
-		hasTreantBulb = trade:hasItemQty(953,1);
-		hasWildOnion = trade:hasItemQty(4387,1);
+		local count = trade:getItemCount();
+		local hasSleepshroom = trade:hasItemQty(4374,1);
+		local hasTreantBulb = trade:hasItemQty(953,1);
+		local hasWildOnion = trade:hasItemQty(4387,1);
 				
 		if (hasSleepshroom or hasTreantBulb or hasWildOnion) then
-			vanatime = VanadielHour();
-			event = "0x00cb";
-			item = "4387";
+			if(count == 1) then
+				local vanatime = VanadielHour();
+				local item = "0";
+				if (hasSleepshroom) then
+					item = "4374";
+					if (vanatime>=18 or vanatime<6) then
+						event = "0x00ca";
+					end
+				elseif (hasTreantBulb) then
+					item = "953";
+					if (vanatime>=6 and vanatime<12) then
+						event = "0x00ca";
+					end
+				elseif (hasWildOnion) then
+					item = "4387";
+					if (vanatime>=12 and vanatime<18) then
+						event = "0x00ca";
+					end
+				end
 
-			if (hasSleepshroom) then
-				item = "4374";
-				if (vanatime>=18 or vanatime<6) then
-					event = "0x00ca";
-				end
-			elseif (hasTreantBulb) then
-				item = "953";
-				if (vanatime>=6 and vanatime<12) then
-					event = "0x00ca";
-				end
-			elseif (vanatime>=12 and vanatime<18) then
-				event = "0x00c9";
+				player:startEvent(event,item);
 			end
-
-			player:startEvent(event,item);
 		end
 	end
 end; 
@@ -55,9 +58,7 @@ end;
 
 function onTrigger(player,npc)
 
-Gourmet = player:getQuestStatus(BASTOK,GOURMET);
-
-	if (Gourmet ~= QUEST_AVAILABLE and player:needToZone()) then
+	if (player:getQuestStatus(BASTOK,GOURMET) ~= QUEST_AVAILABLE and player:needToZone()) then
 		player:startEvent(0x0079);
 	else
 		player:startEvent(0x00c8);
@@ -84,7 +85,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-Gourmet = player:getQuestStatus(BASTOK,GOURMET);
+	local Gourmet = player:getQuestStatus(BASTOK,GOURMET);
 
 	if (csid == 0x00c8) then
 		if (Gourmet == QUEST_AVAILABLE) then
@@ -96,8 +97,8 @@ Gourmet = player:getQuestStatus(BASTOK,GOURMET);
 			player:completeQuest(BASTOK,GOURMET);
 		end
 
-		gil=350;
-		fame=120;
+		local gil=350;
+		local fame=120;
 		if (csid == 0x00ca) then
 			gil=200;
 		elseif (csid == 0x00cb) then
