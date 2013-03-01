@@ -69,6 +69,18 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	
 	if(csid == 0x2712 and option == 1) then
+		local new_nation = WINDURST;
+		local rank = getNationRank(new_nation);
+		local cost = 0;
+		
+		if(rank == 1) then
+			cost = 40000;
+		elseif(rank == 2) then
+			cost = 12000; 
+		elseif(rank == 3) then
+			cost = 4000;
+		end
+		
 		player:setNation(new_nation)
 		player:setGil(player:getGil() - cost);
 		player:setRankPoints(0);
