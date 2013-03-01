@@ -323,6 +323,7 @@ void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
 		if (lvl >= PTrait->getLevel() && PTrait->getLevel() > 0)
 		{
             PMob->addModifier(PTrait->getMod(), PTrait->getValue());
+		PMob->TraitList.push_back(PTrait);
 		}
 	}
 }
