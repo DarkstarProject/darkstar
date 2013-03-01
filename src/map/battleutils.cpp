@@ -1876,45 +1876,45 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     }
 
     float TP = 0;
-
-    if (damage > 0)
+    switch (PDefender->objtype)
     {
-        switch (PDefender->objtype)
+        case TYPE_PC:
         {
-            case TYPE_PC:
+            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+            battleutils::MakeEntityStandUp(PDefender);
+            charutils::UpdateHealth((CCharEntity*)PDefender);
+        }
+        break;
+        case TYPE_MOB:
+        {
+            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+            if (PDefender->PMaster == NULL)
             {
-                PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-                battleutils::MakeEntityStandUp(PDefender);
-                charutils::UpdateHealth((CCharEntity*)PDefender);
+                PDefender->addTP(TP);
             }
-            break;
-            case TYPE_MOB:
-            {
-                PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-                if (PDefender->PMaster == NULL)
-                {
-                    PDefender->addTP(TP);
-                }
-				if(taChar == NULL){
-					((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
-				}else{
-					((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
-				}
-
-				//if the mob is charmed by player
-				if(PDefender->PMaster != NULL && PDefender->PMaster->objtype == TYPE_PC)
-				{
-					((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
-				}
-
+            if(taChar == NULL){
+                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
+            }else{
+                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
             }
-            break;
-            case TYPE_PET:
+
+            //if the mob is charmed by player
+            if(PDefender->PMaster != NULL && PDefender->PMaster->objtype == TYPE_PC)
             {
                 ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
             }
-            break;
+
         }
+        break;
+        case TYPE_PET:
+        {
+            ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
+        }
+        break;
+    }
+
+    if (damage > 0)
+    {
 
         if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING &&
             PDefender->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG)

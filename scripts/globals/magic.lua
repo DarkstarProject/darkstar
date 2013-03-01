@@ -487,7 +487,7 @@ function getSkillLvl(rank,level)
 
  function finalMagicAdjustments(caster,target,spell,dmg)
     if(dmg<0) then
-        dmg = 0;
+        dmg = 1;
     end
 
     dmg = dmg - target:getMod(MOD_PHALANX);

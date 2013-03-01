@@ -59,6 +59,7 @@ public:
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
 	bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
+    bool HasStatusEffectByFlag(uint16 flag);
 
 	EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
     uint8 EraseAllStatusEffect();								// erases all status effects

@@ -35,6 +35,7 @@ CSpell::CSpell(uint16 id)
 	m_castTime          = 0;
 	m_recastTime        = 0;
 	m_animation         = 0;
+    m_isAOE             = 0;
     m_animationTime     = 0;
     m_skillType         = 0;
     m_zoneMisc          = 0;
@@ -473,14 +474,4 @@ namespace spell
 	    return false;
 	}
 
-    // returns true if the spell is defensive
-    // example: cures, buffs etc
-    bool IsDefensiveSpell(uint16 spellId){
-        if (GetSpell(spellId) != NULL)
-        {
-            // anything that isn't a 4 is defensive
-            return PSpellList[spellId]->getValidTarget() != 4;
-        }
-        return false;
-    }
 };

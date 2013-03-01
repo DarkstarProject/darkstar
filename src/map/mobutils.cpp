@@ -32,7 +32,6 @@
 #include "modifier.h"
 #include "spell.h"
 
-
 namespace mobutils
 {
 
@@ -332,7 +331,7 @@ void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
  * can cast based on the bitmask in mob_pools (which has been preloaded into memory). It then resolves
  * the list of actual spell IDs based on the bits set. This mapping from bitmask > spellids is based
  * on numerous factors including the type of mob, the level of the mob, etc. The list of spells are
- * then stored in PMob->m_AvailableSpells
+ * then stored in PMob->PSpellContainer
  */
 void GetAvailableSpells(CMobEntity* PMob) {
 	//make sure the mob actually has a spell list
@@ -342,38 +341,60 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	}
 
 	// setup recast times
-	if (PMob->GetMJob() == JOB_BLM || PMob->GetMJob() == JOB_BRD) {
-		PMob->m_MagicRecastTime = 15000;
+	switch(PMob->GetMJob())
+	{
+		case JOB_BLM:
+		case JOB_BRD:
+			PMob->m_MagicRecastTime = 15000;
+		break;
+		case JOB_NIN:
+		case JOB_BLU:
+			PMob->m_MagicRecastTime = 25000;
+		break;
+		case JOB_WHM:
+		case JOB_RDM:
+			PMob->m_MagicRecastTime = 20000;
+		break;
+		default:
+			PMob->m_MagicRecastTime = 30000;
+		break;
+
 	}
-	else if (PMob->GetMJob() == JOB_NIN || PMob->GetMJob() == JOB_BLU) {
-		PMob->m_MagicRecastTime = 25000;
+
+	uint16 gaChance = 45;
+	uint16 buffChance = 35;
+	// change spell chances
+	switch(PMob->GetMJob())
+	{
+		case JOB_BLM:
+			gaChance = 60;
+			buffChance = 30;
+		break;
+		case JOB_RDM:
+			gaChance = 20;
+			buffChance = 40;
+		break;
+		case JOB_NIN:
+			buffChance = 50;
+		break;
+		case JOB_BRD:
+			gaChance = 30;
+			buffChance = 40;
+		break;
 	}
-	else if (PMob->GetMJob() == JOB_WHM || PMob->GetMJob() == JOB_RDM) {
-		PMob->m_MagicRecastTime = 20000;
-	}
-	else {
-		PMob->m_MagicRecastTime = 30000;
-	}
+
+	PMob->SpellContainer->m_gaChance = gaChance;
+	PMob->SpellContainer->m_buffChance = buffChance;
 
 	// clear spell list
-	PMob->m_AvailableSpells.clear();
-
-	// grab cure spells to insert first
-	for (std::vector<MobSpell_t>::iterator it = PMob->m_SpellListContainer->m_spellList.begin(); it != PMob->m_SpellListContainer->m_spellList.end() ; ++it)
-	{
-		if (PMob->GetMLevel() >= (*it).min_level && PMob->GetMLevel() <= (*it).max_level && (*it).spellId >= 1 && (*it).spellId <= 6)
-		{
-			PMob->m_AvailableSpells.push_back((*it).spellId);
-			break;
-		}
-	}
+	PMob->SpellContainer->ClearSpells();
 
 	//insert the rest of the spells
 	for (std::vector<MobSpell_t>::iterator it = PMob->m_SpellListContainer->m_spellList.begin(); it != PMob->m_SpellListContainer->m_spellList.end() ; ++it)
 	{
 		if (PMob->GetMLevel() >= (*it).min_level && PMob->GetMLevel() <= (*it).max_level)
 		{
-			PMob->m_AvailableSpells.push_back((*it).spellId);
+			PMob->SpellContainer->AddSpell((*it).spellId);
 		}
 	}
 }

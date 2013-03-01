@@ -75,7 +75,7 @@ public:
 	uint16		getModifiedRecast();
 	uint16		getMonsterSkillId();
     uint16      getAoEMessage(); // returns the shorter message for AoE moves
-    bool      tookEffect(); // returns true if the spell landed, not resisted or missed
+    bool        tookEffect(); // returns true if the spell landed, not resisted or missed
 
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);
@@ -147,7 +147,6 @@ namespace spell
     CSpell* GetSpell(uint16 SpellID);
     bool    CanUseSpell(CBattleEntity* PCaster, uint16 SpellID);
 	bool	CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level);
-    bool    IsDefensiveSpell(uint16 spellId);
 };
 
 #endif

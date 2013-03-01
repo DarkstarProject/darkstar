@@ -57,6 +57,7 @@
 CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 {
 	m_PMob = PMob;
+	m_firstSpell = true;
 }
 
 /************************************************************************
@@ -106,6 +107,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 
 void CAIMobDummy::ActionRoaming()
 {
+
 	// If there's someone on our enmity list, go from roaming -> engaging
 	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL)
 	{
@@ -122,7 +124,7 @@ void CAIMobDummy::ActionRoaming()
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
 	}
-	else if (m_PMob->m_Type & MOBTYPE_NOTORIOUS && distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 2)
+	else if ((m_PMob->m_Type & MOBTYPE_NOTORIOUS) && distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 2)
 	{
 		position_t ReturnPoint;
 
@@ -135,21 +137,29 @@ void CAIMobDummy::ActionRoaming()
 
 		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 	}
-	else if ((m_Tick - m_LastActionTime) > 45000 && !m_PMob->m_Type & MOBTYPE_EVENT)
+	else if ((m_Tick - m_LastActionTime) > 45000)
 	{
+		// lets buff up or move around
 		m_LastActionTime = m_Tick - rand()%30000;
 
-		position_t RoamingPoint;
+		if(m_PMob->SpellContainer->HasBuffSpells() && rand()%2 == 1)
+		{
+			// cast buff
+			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
+		} else if(!(m_PMob->m_Type & MOBTYPE_EVENT)){
+			// roam
+			position_t RoamingPoint;
 
-		RoamingPoint.x = m_PMob->m_SpawnPoint.x - 1 + rand()%2;
-		RoamingPoint.y = m_PMob->m_SpawnPoint.y;
-		RoamingPoint.z = m_PMob->m_SpawnPoint.z - 1 + rand()%2;
+			RoamingPoint.x = m_PMob->m_SpawnPoint.x - 1 + rand()%2;
+			RoamingPoint.y = m_PMob->m_SpawnPoint.y;
+			RoamingPoint.z = m_PMob->m_SpawnPoint.z - 1 + rand()%2;
 
-		m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, RoamingPoint);
+			m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, RoamingPoint);
 
-		battleutils::MoveTo(m_PMob, RoamingPoint, 1);
+			battleutils::MoveTo(m_PMob, RoamingPoint, 1);
 
-		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+		}
 	}
 	if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
 	{
@@ -170,6 +180,7 @@ void CAIMobDummy::ActionEngage()
 
 	m_ActionType = ACTION_ATTACK;
 	m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
+	m_firstSpell = true;
 	m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime - 1; // Monster always cast on engage if they can.
 
 	//if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;  //need a better way to do this: it only applies to some mobs!
@@ -220,6 +231,8 @@ void CAIMobDummy::ActionDisengage()
     m_PMob->health.tp = 0;
     m_PMob->health.hp = m_PMob->GetMaxHP();
     m_PMob->health.mp = m_PMob->GetMaxMP();
+
+    m_firstSpell = true;
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
@@ -410,6 +423,7 @@ void CAIMobDummy::ActionSpawn()
 {
 	if ((m_Tick - m_LastActionTime) > m_PMob->m_RespawnTime)
 	{
+		m_firstSpell = true;
 		m_ActionType = ACTION_ROAMING;
 		m_PBattleTarget = NULL;
 		m_PMob->m_SkillStatus = 0;
@@ -982,6 +996,7 @@ void CAIMobDummy::processTwoHour(){
 
 void CAIMobDummy::ActionSleep()
 {
+	m_firstSpell = true;
     if (!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
         !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
         !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) &&
@@ -1219,7 +1234,13 @@ void CAIMobDummy::ActionMagicFinish()
 		}
 
         m_PSpell->setMessage(m_PSpell->getDefaultMessage());
-        m_PMob->m_ActionList.at(i).param = luautils::OnSpellCast(m_PMob, PTarget);
+        uint16 result = luautils::OnSpellCast(m_PMob, PTarget);
+        m_PMob->m_ActionList.at(i).param = result;
+
+        if(result >= 2000){
+        	ShowDebug("Super high magic damage warning: %d\n", result);
+        }
+
         m_PMob->m_ActionList.at(i).messageID = m_PSpell->getMessage();
 
 		if(m_PMob->m_ActionList.at(i).param>0 && m_PSpell->canTargetEnemy()){ //damage spell which dealt damage, TODO: use a better identifier!
@@ -1259,9 +1280,19 @@ void CAIMobDummy::ActionMagicFinish()
 
 	m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 
-	// let's make CSing monsters actually use lots of spells.
-	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0)) {
-		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + m_PSpell->getAnimationTime(); // so the animations look correct.
+	if(m_PMob->PEnmityContainer->GetHighestEnmity() == NULL){
+		// just buffing, lets go back to roaming
+		m_ActionType = ACTION_ROAMING;
+	} else if(m_ActionType == ACTION_NONE){
+		// attack something
+		m_ActionType = ACTION_ENGAGE;
+		ActionEngage();
+		return;
+	} else {
+		if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0) ) {
+			// let's make CSing monsters actually use lots of spells.
+			m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + m_PSpell->getAnimationTime(); // so the animations look correct.
+		}
 	}
 
 	m_PSpell = NULL;
@@ -1339,55 +1370,8 @@ void CAIMobDummy::ActionAttack()
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (CurrentDistance <= 25) { // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
-		if ( m_MagicCastingEnabled && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && m_PMob->m_AvailableSpells.size() > 0) {
-
-			// check for spell blockers e.g. silence
-			if(!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)) {
-
-				// Randomly select a spell from m_PMob->availableSpells and do it.
-				uint8 num = 0;
-				uint16 spellid = 0;
-				int32 hpp = m_PMob->GetHPP();
-
-				// higher chance to cast defensive spell if below 25% HP
-				if(hpp <= 25 && rand()%100 < 50){
-					// cast my "keep me alive" spell, which is at index zero
-					spellid = m_PMob->m_AvailableSpells[0];
-				} else {
-					num = rand()%m_PMob->m_AvailableSpells.size();
-					spellid = m_PMob->m_AvailableSpells[num];
-				}
-
-				// only cast defensive spells, like cure, buffs when lower than 95% HP
-				bool isDefensive = spell::IsDefensiveSpell(spellid);
-				if(isDefensive && hpp <= 95 || !isDefensive){
-
-					if (m_PMob->m_HasSpellScript) { // prod the script to give us a spell to cast
-						int chosenSpellId = luautils::OnMonsterMagicPrepare(m_PMob, m_PBattleTarget);
-						if (chosenSpellId > 0) { // covers returning 0 or -1
-							spellid = chosenSpellId;
-							//we don't want to cast a spell right now then
-						} else if (chosenSpellId == -1){
-							spellid = 0;
-						}
-						//otherwise if the script returned 0, we'll go ahead with the randomly selected spell
-					}
-
-					if (spellid > 0) { // if a spell was chosen, do it.
-						// change to ActionMagicStarting
-						m_ActionType = ACTION_MAGIC_START;
-						m_PSpell = spell::GetSpell(spellid);
-						ActionMagicStart();
-						return;
-					}
-					else {
-						// the script doesn't want to cast a spell at the moment, but it should still be treated as a magic attempt
-						m_LastMagicTime = m_Tick;
-					}
-				}
-			}
-		}
+	if (CurrentDistance <= 25 && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) { // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
+		return;
 	}
 
 	if (CurrentDistance <= m_PMob->m_ModelSize)
@@ -1761,6 +1745,58 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
     }
 
     return results;
+}
+
+bool CAIMobDummy::TryCastSpell()
+{
+	if ( !m_MagicCastingEnabled || !m_PMob->SpellContainer->HasSpells()) return false;
+
+	// check for spell blockers e.g. silence
+	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)) {
+		return false;
+	}
+
+	int chosenSpellId = -1;
+	if (m_PMob->m_HasSpellScript) {
+		// skip logic and follow script
+		chosenSpellId = luautils::OnMonsterMagicPrepare(m_PMob, m_PBattleTarget);
+		if(chosenSpellId > -1){
+			CastSpell(chosenSpellId);
+			return true;
+		}
+	} else {
+		// find random spell
+
+		if(m_firstSpell){
+			// mobs first spell, should be aggro spell
+			chosenSpellId = m_PMob->SpellContainer->GetAggroSpell();
+			m_firstSpell = false;
+		} else {
+			chosenSpellId = m_PMob->SpellContainer->GetSpell();
+		}
+
+		if(chosenSpellId > -1){
+			CastSpell(chosenSpellId);
+			return true;
+		}
+
+	}
+
+	// the script doesn't want to cast a spell at the moment, but it should still be treated as a magic attempt
+	m_LastMagicTime = m_Tick;
+	return false;
+}
+
+void CAIMobDummy::CastSpell(uint16 spellId)
+{
+	m_PSpell = spell::GetSpell(spellId);
+
+	if(m_PSpell == NULL){
+		ShowWarning(CL_YELLOW"ai_mob_dummy::CastSpell: SpellId <%i> is not found\n" CL_RESET, spellId);
+	} else {
+		m_ActionType = ACTION_MAGIC_START;
+		ActionMagicStart();
+	}
 }
 
 void CAIMobDummy::AddEntityForAoe(CBattleEntity* entityToAdd, apAction_t Action) {

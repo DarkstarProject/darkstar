@@ -71,11 +71,13 @@ CMobEntity::CMobEntity()
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
     PEnmityContainer = new CEnmityContainer(this);
+    SpellContainer = new CMobSpellContainer(this);
 }
 
 CMobEntity::~CMobEntity()
 {
-	delete PEnmityContainer;
+    delete PEnmityContainer;
+	delete SpellContainer;
 }
 
 /************************************************************************

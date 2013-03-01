@@ -46,7 +46,10 @@ public:
 
 	CMobSpellList();
 
-	std::vector<MobSpell_t> m_spellList;
+  void AddSpell(uint16 spellId, uint16 minLvl, uint16 maxLvl);
+
+  // main spell list
+  std::vector<MobSpell_t> m_spellList;
 
 private:
 

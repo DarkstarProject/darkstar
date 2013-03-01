@@ -54,7 +54,7 @@ INSERT INTO `status_effects` VALUES (8,'disease',32,8,0,2,0,0,1);
 INSERT INTO `status_effects` VALUES (9,'curse',32,9,0,2,0,0,8);
 INSERT INTO `status_effects` VALUES (10,'stun',34,0,0,2,0,0,6);
 INSERT INTO `status_effects` VALUES (11,'bind',34,0,0,2,0,0,5);
-INSERT INTO `status_effects` VALUES (12,'weight',34,0,0,2,0,0,4);
+INSERT INTO `status_effects` VALUES (12,'weight',34,0,0,1,0,0,4);
 INSERT INTO `status_effects` VALUES (13,'slow',34,0,33,1,0,0,2);
 INSERT INTO `status_effects` VALUES (14,'charm',32,0,0,2,0,0,7);
 INSERT INTO `status_effects` VALUES (15,'doom',32,0,0,2,0,0,8);

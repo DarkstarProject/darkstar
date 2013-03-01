@@ -59,6 +59,7 @@ public:
 protected:
 
 	CMobEntity* m_PMob;
+    bool m_firstSpell;
 
 	void ActionRoaming();
 	void ActionEngage();
@@ -79,6 +80,8 @@ protected:
 	void ActionMagicInterrupt();
 	void ActionMagicFinish();
 	void processTwoHour();
+    bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
+    void CastSpell(uint16 spellId);
 
     std::vector<CBattleEntity*> GetAdditionalTargets(AOERANGE AoeRange, position_t radiusAround, float radius);
 

@@ -390,7 +390,13 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 	{
 		if (silent == false && PStatusEffect->GetIcon() != 0 && ((PStatusEffect->GetFlag() & EFFECTFLAG_NO_LOSS_MESSAGE) == 0) && !m_POwner->isDead())
 		{
-			m_POwner->loc.zone->PushPacket(m_POwner, CHAR_INRANGE, new CMessageBasicPacket(m_POwner, m_POwner, PStatusEffect->GetIcon(), 0, 206));
+            // only display removal if I took damage
+            // this is a hack to prevent buff status effects from displaying wear offs
+            if(m_POwner->objtype != TYPE_MOB || m_POwner->GetHPP() < 100)
+            {
+
+    			m_POwner->loc.zone->PushPacket(m_POwner, CHAR_INRANGE, new CMessageBasicPacket(m_POwner, m_POwner, PStatusEffect->GetIcon(), 0, 206));
+            }
 		}
 	}
     delete PStatusEffect;
@@ -631,15 +637,28 @@ uint8 CStatusEffectContainer::DispelAllStatusEffect()
 
 bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
 {
-	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
-	{
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
         if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
             m_StatusEffectList.at(i)->GetIcon() != 0)
-		{
-			return true;
-		}
-	}
-	return false;
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool CStatusEffectContainer::HasStatusEffectByFlag(uint16 flag)
+{
+
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetFlag() & flag)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 /************************************************************************

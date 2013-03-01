@@ -27,6 +27,14 @@ function onSpellCast(caster,target,spell)
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
 
+	if(final > 60) then
+		final =  60;
+	end
+
+	if(final < 1) then
+		final = 1;
+	end
+
 	-- Calculate duration.
 	duration = 60;
 

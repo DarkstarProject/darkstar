@@ -26,8 +26,12 @@
 
 #include "battleentity.h"
 #include "enmity_container.h"
+
+#include "mob_spell_container.h"
 #include "mob_spell_list.h"
 
+// forward declaration
+class CMobSpellContainer;
 
 enum SPAWNTYPE
 {
@@ -120,7 +124,6 @@ public:
 	uint32		m_THPCID;							// ID of last PC that hit the NPC and apply TH onto the NPC
 	uint16		m_Family;
 	uint8		m_SkillStatus;						// status of skills (used 2h/used epic tp move/etc)
-	std::vector<uint16> m_AvailableSpells;			// the spell IDs that this monster can cast.
 	CMobSpellList*      m_SpellListContainer;				// The spells list container for this mob
 	std::map<uint16, uint16>	m_UsedSkillIds;		// mob skill ids used (key) along with mob level (value)
 
@@ -142,6 +145,7 @@ public:
     void        SetDespawnTimer(uint32 duration);
     uint32      GetRandomGil(); // returns a random amount of gil
 
+    CMobSpellContainer* SpellContainer;   // retrieves spells for the mob
 	uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.
 
     CMobEntity();

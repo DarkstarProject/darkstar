@@ -1,4 +1,4 @@
-﻿/*
+﻿ /*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -32,7 +32,12 @@ CMobSpellList::CMobSpellList()
 
 }
 
+void CMobSpellList::AddSpell(uint16 spellId, uint16 minLvl, uint16 maxLvl)
+{
+  MobSpell_t Mob_Spell = {spellId, minLvl, maxLvl};
 
+  m_spellList.push_back(Mob_Spell);
+}
 
 /************************************************************************
 *                                                                       *
@@ -68,14 +73,17 @@ namespace mobSpellList
 	    {
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
-  				MobSpell_t Mob_Spell = {(uint16)Sql_GetIntData(SqlHandle,1), (uint16)Sql_GetIntData(SqlHandle,2), (uint16)Sql_GetIntData(SqlHandle,3)};
+          uint16 spellId = (uint16)Sql_GetIntData(SqlHandle,1);
+          uint16 minLvl = (uint16)Sql_GetIntData(SqlHandle,2);
+          uint16 maxLvl = (uint16)Sql_GetIntData(SqlHandle,3);
 
   				uint16 pos = Sql_GetIntData(SqlHandle,0);
   				if (!PMobSpellList[pos])
   				{
   					PMobSpellList[pos] = new CMobSpellList();
   				}
-  				PMobSpellList[pos]->m_spellList.push_back(Mob_Spell);
+
+          PMobSpellList[pos]->AddSpell(spellId, minLvl, maxLvl);
 		    }
 	    }
     }
