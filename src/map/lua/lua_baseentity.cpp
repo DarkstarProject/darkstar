@@ -6250,6 +6250,13 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 		if( mobskill->getActivationTime() != 0)
 		{
 			apAction_t Action;
+			((CMobEntity*)m_PBaseEntity)->m_ActionList.clear();
+			if(mobskill->getValidTargets() == TARGET_ENEMY){ //enemy
+				Action.ActionTarget = ((CMobEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget();
+			}
+			else if(mobskill->getValidTargets() == TARGET_SELF){ //self
+				Action.ActionTarget = ((CMobEntity*)m_PBaseEntity);
+			}
 			Action.reaction   = REACTION_HIT;
 			Action.speceffect = SPECEFFECT_HIT;
 			Action.animation  = 0;
