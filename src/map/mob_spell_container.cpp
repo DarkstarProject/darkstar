@@ -149,7 +149,7 @@ int16 CMobSpellContainer::GetBuffSpell()
 
 int16 CMobSpellContainer::GetHealSpell()
 {
-  if(m_healList.empty()) return -1;
+  if(m_PMob->m_EcoSystem == SYSTEM_UNDEAD || m_healList.empty()) return -1;
 
   return m_healList[rand()%m_healList.size()];
 }
