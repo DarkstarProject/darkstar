@@ -162,6 +162,8 @@ Regime ID   ª	Area   «	Listing   «
 146 	Ru'Aun Gardens 	Ice/Earth/Water Elementals
 147+ 	Values higher than 147 are Hunt Registries.]]--
 
+TABS = 12;
+
 --key item IDs
 ELITE_TRAINING_INTRODUCTION     = 1116;
 ELITE_TRAINING_CHAPTER_1        = 1117;
@@ -284,7 +286,7 @@ FOV_EVENT_SORROWS =0x003d;
 
 function startFov(eventid,player)
 	local hasRegime = player:getVar("fov_regimeid");
-	local tabs = player:getVar("tabs");
+	local tabs = player:getPoint(TABS);
 	player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
 end
 
@@ -332,12 +334,12 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
 local msg_accept = msg_offset;
 local msg_jobs = msg_offset+1;
 local msg_cancel = msg_offset+2;
+local tabs = player:getPoint(TABS);
 -- ================= FIELD SUPPORT ===============================================
 if(option==FOV_MENU_REGEN) then --Chose Regen. Regen from FoV removes all forms of regen.
 	--Decrease tabs
-	local tabs = player:getVar("tabs");
     if (tabs >= 20) then
-        player:setVar("tabs",tabs-20);
+        player:delPoint(TABS,20);
         --Removes regen if on player
         player:delStatusEffect(EFFECT_REGEN);
         --Adds regen
@@ -345,9 +347,8 @@ if(option==FOV_MENU_REGEN) then --Chose Regen. Regen from FoV removes all forms 
     end
 elseif(option==FOV_MENU_REFRESH) then --Chose Refresh, removes all other refresh.
 	--Decrease tabs
-	local tabs = player:getVar("tabs");
     if (tabs >= 20) then
-        player:setVar("tabs",tabs-20);
+        player:delPoint(TABS,20);
         --Removes refresh if on player
         player:delStatusEffect(EFFECT_REFRESH);
         --Add refresh
@@ -355,9 +356,8 @@ elseif(option==FOV_MENU_REFRESH) then --Chose Refresh, removes all other refresh
     end
 elseif(option==FOV_MENU_PROTECT) then --Chose Protect, removes all other protect.
 	--Decrease tabs
-	local tabs = player:getVar("tabs");
     if (tabs >= 15) then
-        player:setVar("tabs",tabs-15);
+        player:delPoint(TABS,15);
         --Removes protect if on player
         player:delStatusEffect(EFFECT_PROTECT);
         --Work out how much def to give (highest tier dependant on level)
@@ -376,9 +376,8 @@ elseif(option==FOV_MENU_PROTECT) then --Chose Protect, removes all other protect
     end
 elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
 	--Decrease tabs
-	local tabs = player:getVar("tabs");
     if (tabs >= 15) then
-        player:setVar("tabs",tabs-15);
+        player:delPoint(TABS,15);
         --Removes shell if on player
         player:delStatusEffect(EFFECT_SHELL);
         --Work out how much mdef to give (highest tier dependant on level)
@@ -398,9 +397,8 @@ elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
     end
 elseif (option==FOV_MENU_RERAISE) then --Reraise chosen.
 	--Decrease tabs
-	local tabs = player:getVar("tabs");
     if (tabs >= 10) then
-        player:setVar("tabs",tabs-10);
+        player:delPoint(TABS,10);
         --Remove any other RR
         player:delStatusEffect(EFFECT_RERAISE);
         --apply RR1, 2 hour duration.
@@ -408,9 +406,8 @@ elseif (option==FOV_MENU_RERAISE) then --Reraise chosen.
     end
 elseif (option==FOV_MENU_HOME_NATION) then --Return to home nation.
 	--Decrease tabs
-	local tabs = player:getVar("tabs");
     if (tabs >= 50) then
-        player:setVar("tabs",tabs-50);
+        player:delPoint(TABS,50);
         toHomeNation(player);
     end
 elseif(option==149) then --chose Hard Cookie, INT +4, MP +30 for 30 minutes
@@ -470,9 +467,7 @@ function giveEliteRegime(player,keyitem,cost)
 		--print("has");
 		--player:messageBasic(98,keyitem);
 	else
-		local tabs = player:getVar("tabs");
-		local newtabs = tabs-cost;
-		player:setVar("tabs",newtabs);
+		player:delPoint(TABS,cost);
 		player:addKeyItem(keyitem);
 	end
 end
@@ -512,7 +507,10 @@ function checkRegime(killer,mob,rid,index)
 
 
 	if(killer:getVar("fov_regimeid") == rid) then --player is doing this regime
-		if ((partyType < 2) and (mob:checkBaseExp()) and (killer:checkDistance(mob) < 100)) then
+		-- Need to add difference because a lvl1 can xp with a level 75 at ro'maeve
+		local difference = math.abs(mob:getMainLvl() - killer:getMainLvl());
+		
+		if(partyType < 2 and mob:checkBaseExp() and killer:checkDistance(mob) < 100 and difference <= 15) then
             --get the number of mobs needed/killed
             local needed = killer:getVar("fov_numneeded"..index);
             local killed = killer:getVar("fov_numkilled"..index);
@@ -532,14 +530,15 @@ function checkRegime(killer,mob,rid,index)
                     if(k1==fov_info.n1 and k2==fov_info.n2 and k3==fov_info.n3 and k4==fov_info.n4) then
                         --complete regime
                         killer:messageBasic(FOV_MSG_COMPLETED_REGIME);
-                        reward = getRegimeReward(rid);
-                        tabs = killer:getVar("tabs");
-                        tabs = tabs+(math.floor((reward/10))*TABS_RATE);
-                        killer:setVar("tabs",tabs);
+                        local reward = getRegimeReward(rid);
+                        local tabs = (math.floor((reward/10))*TABS_RATE);
+						
+                        killer:addPoint(TABS,tabs);
                         killer:messageBasic(FOV_MSG_GET_TABS,math.floor((reward/10))*TABS_RATE,tabs);
                         killer:addGil(reward);
+						
                         --TODO: display msgs (based on zone annoyingly, so will need killer:getZone() then a lookup)
-                        killer:addExp(reward*EXP_RATE);
+                        killer:addExp(reward);
                         if (k1 ~= 0) then killer:setVar("fov_numkilled1",0); end
                         if (k2 ~= 0) then killer:setVar("fov_numkilled2",0); end
                         if (k3 ~= 0) then killer:setVar("fov_numkilled3",0); end

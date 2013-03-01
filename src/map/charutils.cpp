@@ -621,7 +621,7 @@ void LoadChar(CCharEntity* PChar)
 	fmtQuery = "SELECT sandoria_cp, bastok_cp, windurst_cp, sandoria_supply, bastok_supply, windurst_supply, \
 					   imperial_standing, runic_portal, leujaoam_assault_point, mamool_assault_point, \
 					   lebros_assault_point, periqia_assault_point, ilrusi_assault_point, nyzul_isle_assault_point, \
-					   zeni_point, maw, past_sandoria_tp, past_bastok_tp, past_windurst_tp, allied_notes \
+					   zeni_point, maw, past_sandoria_tp, past_bastok_tp, past_windurst_tp, allied_notes, tabs \
 				FROM char_points \
 				WHERE charid = %u;";
 
@@ -654,6 +654,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->nationtp.pastbastok   = (uint32)Sql_GetUIntData(SqlHandle, 17);	// Bastok Past teleport
 		PChar->nationtp.pastwindurst = (uint32)Sql_GetUIntData(SqlHandle, 18);	// Windurst Past teleport
 		PChar->RegionPoints[11] = (uint32)Sql_GetIntData(SqlHandle, 19);		// Allied notes
+		PChar->RegionPoints[12] = (uint32)Sql_GetIntData(SqlHandle, 20);		// Tabs
 		//TODO: abyssea, bcnm, kcnm, ...
 	}
 
@@ -3601,7 +3602,7 @@ void SaveCharPoints(CCharEntity* PChar)
 							imperial_standing = %u, runic_portal = %u, leujaoam_assault_point = %u, mamool_assault_point = %u, \
 							lebros_assault_point = %u, periqia_assault_point = %u, ilrusi_assault_point = %u, \
 							nyzul_isle_assault_point = %u, zeni_point = %u, maw = %u, past_sandoria_tp = %u, \
-							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u \
+							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u, tabs = %u \
 						WHERE charid = %u;";
 
 	Sql_Query(SqlHandle,
@@ -3626,6 +3627,7 @@ void SaveCharPoints(CCharEntity* PChar)
 		PChar->nationtp.pastbastok,
 		PChar->nationtp.pastwindurst,
 		PChar->RegionPoints[11],
+		PChar->RegionPoints[12],
 		PChar->id);
 }
 
