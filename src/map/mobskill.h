@@ -70,6 +70,7 @@ public:
 	void		setFlag(uint8 flag);
     void        setAnimationTime(uint16 AnimationTime);
     void        setActivationTime(uint16 ActivationTime);
+    void        resetMsg();
 	void		setMsg(uint16 msg);
 	void		setValidTargets(uint16 targ);
 	void		setTP(uint16 tp);

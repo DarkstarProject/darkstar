@@ -31,7 +31,7 @@ CMobSkill::CMobSkill(uint16 id)
 	m_AnimID = 0;
 	m_Aoe = 0;
     m_Distance = 0;
-	m_TotalTargets = 0;
+	m_TotalTargets = 1;
 	m_Flag = 0;
     m_ValidTarget = 0;
     m_AnimationTime = 0;
@@ -42,6 +42,11 @@ CMobSkill::CMobSkill(uint16 id)
 void CMobSkill::setID(uint16 id)
 {
 	m_ID = id;
+}
+
+void CMobSkill::resetMsg()
+{
+  m_Message = 185;
 }
 
 void CMobSkill::setMsg(uint16 msg)

@@ -361,14 +361,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
 
-	if(m_PPet->getPetType()==PETTYPE_JUGPET || m_PPet->objtype == TYPE_MOB){
-		Action.param = luautils::OnMobWeaponSkill(Action.ActionTarget, m_PPet,m_PMobSkill);
-	}
-	else{
-		Action.param = luautils::OnPetAbility(Action.ActionTarget, m_PPet,m_PMobSkill, m_PPet->PMaster);
-	}
 	Action.subparam   = m_PMobSkill->getID() + 256;
-	Action.messageID  = m_PMobSkill->getMsg();
 	Action.flag       = 0;
 
 	m_PPet->m_ActionList.push_back(Action);
@@ -396,14 +389,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 				    }
 				}
 			}
-			//call the script for each member hit
-			for (uint32 i = 1; i < m_PPet->m_ActionList.size(); ++i){
-				CBattleEntity* PTarget = m_PPet->m_ActionList.at(i).ActionTarget;
-				m_PPet->m_ActionList.at(i).param = luautils::OnPetAbility(PTarget, m_PPet,m_PMobSkill, m_PPet->PMaster);
-				m_PPet->m_ActionList.at(i).messageID = m_PMobSkill->getMsg();
-				if(m_PMobSkill->getMsg()==186){m_PPet->m_ActionList.at(i).messageID=280;} //gains effect of
-				if(m_PMobSkill->getMsg()==238){m_PPet->m_ActionList.at(i).messageID=263;} //recovers xx HP
-			}
+
 		}
 		else if(m_PMobSkill->getValidTargets()==TARGET_ENEMY && m_PBattleSubTarget!=NULL &&
 			m_PBattleSubTarget->objtype == TYPE_MOB && m_PPet->PMaster->objtype==TYPE_PC){//aoe -ga move
@@ -432,15 +418,33 @@ void CAIPetDummy::ActionAbilityFinish(){
 					}
 			    }
 		    }
-			//call the script for each monster hit
-			for (uint32 i = 1; i < m_PPet->m_ActionList.size(); ++i){
-				CBattleEntity* PTarget = m_PPet->m_ActionList.at(i).ActionTarget;
-				m_PPet->m_ActionList.at(i).param = luautils::OnPetAbility(PTarget, m_PPet,m_PMobSkill, m_PPet->PMaster);
-				m_PPet->m_ActionList.at(i).messageID = m_PMobSkill->getMsg();
-				if(m_PMobSkill->getMsg()==2){m_PPet->m_ActionList.at(i).messageID=264;} //takes xxx damage
-				if(m_PMobSkill->getMsg()==243){m_PPet->m_ActionList.at(i).messageID=278;} //gains effect of
-			}
 		}
+	}
+
+
+	//call the script for each monster hit
+	uint16 totalTargets = m_PPet->m_ActionList.size();
+	m_PMobSkill->setTotalTargets(totalTargets);
+    apAction_t* currentAction;
+	for (uint32 i = 0; i < totalTargets; ++i){
+        currentAction = &m_PPet->m_ActionList.at(i);
+
+		CBattleEntity* PTarget = currentAction->ActionTarget;
+
+		m_PMobSkill->resetMsg();
+
+		if(m_PPet->getPetType()==PETTYPE_JUGPET || m_PPet->objtype == TYPE_MOB){
+			currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PPet, m_PMobSkill);
+		} else{
+			currentAction->param = luautils::OnPetAbility(PTarget, m_PPet, m_PMobSkill, m_PPet->PMaster);
+		}
+
+		if(i == 0){
+			currentAction->messageID = m_PMobSkill->getMsg();
+		} else {
+			currentAction->messageID = m_PMobSkill->getAoEMsg();
+		}
+
 	}
 
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));

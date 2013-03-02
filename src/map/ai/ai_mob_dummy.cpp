@@ -790,6 +790,7 @@ void CAIMobDummy::ActionAbilityFinish()
 			    uint16 actionsLength = m_PMob->m_ActionList.size();
 			    m_PMobSkill->setTotalTargets(actionsLength);
 			    apAction_t* currentAction;
+			    uint16 msg = 0;
 			    for (uint32 i = 0; i < actionsLength; ++i)
 				{
 			        currentAction = &m_PMob->m_ActionList.at(i);
@@ -797,14 +798,14 @@ void CAIMobDummy::ActionAbilityFinish()
 			        CBattleEntity* PTarget = currentAction->ActionTarget;
 
 			        // set default message
-			        m_PMobSkill->setMsg(185);
+			        m_PMobSkill->resetMsg();
 
 					currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PMob, m_PMobSkill);
 
-					uint16 msg = m_PMobSkill->getAoEMsg();
-
 					if(i == 0){
 						msg = m_PMobSkill->getMsg();
+					} else {
+						msg = m_PMobSkill->getAoEMsg();
 					}
 
 					currentAction->messageID = msg;
@@ -997,6 +998,13 @@ void CAIMobDummy::processTwoHour(){
 void CAIMobDummy::ActionSleep()
 {
 	m_firstSpell = true;
+
+	if (m_PMob->isDead()) {
+		m_ActionType = ACTION_FALL;
+		ActionFall();
+		return;
+	}
+
     if (!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
         !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
         !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) &&
@@ -1011,6 +1019,7 @@ void CAIMobDummy::ActionSleep()
     }
 	//TODO: possibly change this so have ActionBeforeSleep then ActionSleep (send ENTITY_UPDATE once only rather than spam)
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+
 }
 
 void CAIMobDummy::ActionMagicStart()

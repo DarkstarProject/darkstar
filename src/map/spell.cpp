@@ -220,6 +220,8 @@ uint16 CSpell::getMessage()
 uint16 CSpell::getAoEMessage()
 {
     switch(m_message){
+        case 85: // resists
+            return 284;
         case 230: //casts gain the effect of
             return 266; // gains the effect of
         case 236: // is blind
