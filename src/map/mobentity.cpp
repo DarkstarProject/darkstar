@@ -105,7 +105,10 @@ uint32 CMobEntity::GetRandomGil()
     uint16 highBase = (float)(base*(multiplier*1.4))/2;
 
     // randomize it
-    base += rand()%highBase;
+    if (highBase != 0)
+	{
+		base += rand()%highBase;
+	}
 
     return base;
 }
