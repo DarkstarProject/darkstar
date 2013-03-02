@@ -1744,6 +1744,10 @@ std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange,
         }
     }
 
+	// Trim excess entities (no more than 16 valid targets!)
+	if(results.size() > 16)
+		results.erase(results.end() - (results.size() - 16), results.end());
+
     return results;
 }
 
