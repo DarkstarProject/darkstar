@@ -20,7 +20,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local accmod = 1;
 	local dmgmod = 1.5;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
+	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded*math.random(2,3));
 	target:delHP(dmg);
 
 	local typeEffect = EFFECT_DEX_DOWN;

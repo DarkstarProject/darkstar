@@ -221,7 +221,9 @@ uint16 CSpell::getAoEMessage()
 {
     switch(m_message){
         case 230: //casts gain the effect of
-            return 266; // only gains the effect of
+            return 266; // gains the effect of
+        case 236: // is blind
+            return 203;
         case 237: //if its a damage spell msg and is hitting the 2nd+ target
         return 278;
         case 2: //if its a damage spell msg and is hitting the 2nd+ target
