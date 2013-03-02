@@ -29,3 +29,7 @@ YOUR_LEVEL_LIMIT_IS_NOW_75 = 10398; -- Your level limit is now 75.
 
 -- Shop Texts
 DABIHJAJALIOH_SHOP_DIALOG = 10796; -- Hello therrre. I worrrk for the M & P Market. I'm still new, so I don't know much about selling stuff...
+MACCHI_GAZLITAH_SHOP_DIALOG1 = 10802 -- [Inital] Hello therrre. I work for the Buffalo Bonanza Ranch. I'm still new, so I don't know much about selling stuff
+MACCHI_GAZLITAH_SHOP_DIALOG2 = 10803 -- [Tier 2] Hello therrre, ! The Buffalo Bonanza Ranch has a lot of useful items, just for you!
+MACCHI_GAZLITAH_SHOP_DIALOG3 = 10804 -- [Tier 3] Hello therrre, ! Business is booming! The Buffalo Bonanza Ranch even made me managerrr of this local shop!
+MACCHI_GAZLITAH_SHOP_DIALOG4 = 10805 -- [If you buy from her and that makes her stock change, she says this] My new shipment has finally come in. Talk to me, and I can show you what we have!
