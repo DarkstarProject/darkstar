@@ -389,26 +389,26 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		if (Action.flag != 0)
 		{
 			// all subeffect 9 bit
-			int subeffectOffset = 9;
-			int subparamOffset = 16;
+			uint8 subeffectLength = 9;
+			uint8 subparamLength = 16;
+			uint8 subOffset = 1;
 
 			// flag 2 subeffect 10 bit
 			// only change for spikes
 			if(Action.flag == 2 && Action.subeffect >= 1 && Action.subeffect <= 6){
-				subeffectOffset = 10;
-				subparamOffset = 13;
-			}
-
-			bitOffset = packBitsBE(data, Action.subeffect,		bitOffset, subeffectOffset);
-			// анимация эффекта, точный размер не известен (эффектов не так уж и много, около десяти)
-			bitOffset = packBitsBE(data, Action.subparam,		bitOffset, subparamOffset);		// параметр сообщения (урон)
-			bitOffset += 1;
-			bitOffset = packBitsBE(data, Action.submessageID,	bitOffset, 10);		// сообщение
-			bitOffset += 1;
-					// extra off set needed for multi hit enspells ect
-			if (Action.flag == 2 && Action.subeffect >= 1 && Action.subeffect <= 6){
+				subeffectLength = 10;
+				subparamLength = 13;
+				subOffset = 0;
 				battleutils::HandleSpikesStatusEffect(PEntity, Action);
 			}
+
+			bitOffset = packBitsBE(data, Action.subeffect,		bitOffset, subeffectLength);
+			// анимация эффекта, точный размер не известен (эффектов не так уж и много, около десяти)
+			bitOffset = packBitsBE(data, Action.subparam,		bitOffset, subparamLength);		// параметр сообщения (урон)
+			bitOffset += 1;
+			bitOffset = packBitsBE(data, Action.submessageID,	bitOffset, 10);		// сообщение
+			bitOffset += subOffset;	// extra off set needed for multiple hits
+
 		}
 		ActionNum++;
 	}
