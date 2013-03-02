@@ -874,13 +874,13 @@ bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAct
     return false;
 }
 
-void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t Action)
+void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
 {
-	int lvlDiff = 0;
-	if( Action.ActionTarget ){
-		lvlDiff = dsp_cap((Action.ActionTarget->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
-	}
-	switch(Action.subeffect)
+    int lvlDiff = 0;
+    if( Action->ActionTarget ){
+        lvlDiff = dsp_cap((Action->ActionTarget->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
+    }
+    switch(Action->subeffect)
 	{
         case SUBEFFECT_CURSE_SPIKES:
             if(PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE) == false){
@@ -889,14 +889,14 @@ void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t Action)
         break;
 		case SUBEFFECT_ICE_SPIKES:
 		{
-			if(rand()%100 <= 25+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false){
+			if(rand()%100 <= 30+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false){
 				PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 20, 0, 30));
 			}
 			break;
 		}
 		case SUBEFFECT_SHOCK_SPIKES:
 		{
-            if(rand()%100 <= 25+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false){
+            if(rand()%100 <= 30+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false){
                 PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_STUN, EFFECT_STUN, 1, 0, 3));
             }
 			break;

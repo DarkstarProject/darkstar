@@ -15,11 +15,11 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-	return 1;
+	return 0;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local power = 20;
+    local power = math.random(20, 30);
     local duration = 180;
     local typeEffect = EFFECT_SHOCK_SPIKES;
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, 180));

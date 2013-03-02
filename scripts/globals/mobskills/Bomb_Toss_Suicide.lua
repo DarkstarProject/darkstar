@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	end
 
     local job = mob:getMainJob();
-	local power = math.random(15,20);
+	local power = math.random(15,18);
 
 	-- did I drop it in my face?
 	if(job ~= JOB_THF and math.random() < 0.2) then

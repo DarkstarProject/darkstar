@@ -399,7 +399,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 				subeffectLength = 10;
 				subparamLength = 13;
 				subOffset = 0;
-				battleutils::HandleSpikesStatusEffect(PEntity, Action);
+				battleutils::HandleSpikesStatusEffect(PEntity, &Action);
 			}
 
 			bitOffset = packBitsBE(data, Action.subeffect,		bitOffset, subeffectLength);

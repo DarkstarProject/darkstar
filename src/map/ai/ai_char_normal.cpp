@@ -3147,7 +3147,8 @@ void CAICharNormal::ActionAttack()
 			{
 				if (i != 0)
 				{
-					if (m_PBattleTarget->isDead())
+
+					if (m_PBattleTarget->isDead() || m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_STUN))
 					{
 						break;
 					}
@@ -3344,9 +3345,8 @@ void CAICharNormal::ActionAttack()
                         // no spikes, handle enspell
                        battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
                    }
-				}
-				m_PChar->m_ActionList.push_back(Action);
-
+                }
+                m_PChar->m_ActionList.push_back(Action);
 
 				// to catch high damage bugs
 				if (damage > 8000)
