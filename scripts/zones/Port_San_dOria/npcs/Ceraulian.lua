@@ -46,7 +46,7 @@ function onTrigger(player,npc)
 	elseif (Quotas_Status == QUEST_ACCEPTED and Quotas_Progress == 0) then
 		players:startEvent(13); -- Reminder to bring Gold Hairpin
 	elseif (Quotas_Progress == 1) then
-		if (tonumber(os.date("%j")) == player:getVar("ChasingQuotas_date")) then
+		if (player:getVar("ChasingQuotas_date") > os.time()) then
 			player:startEvent(3); -- Fluff cutscene because you haven't waited a day
 		else
 			player:startEvent(7); -- Boss got mugged
@@ -115,7 +115,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(SANDORIA,CHASING_QUOTAS);
 	elseif (csid == 17) then
 		player:setVar("ChasingQuotas_Progress",1);
-		player:setVar("ChasingQuotas_date", os.date("%j"));
+		player:setVar("ChasingQuotas_date", getMidnight());
 	elseif (csid == 7) then
 		player:setVar("ChasingQuotas_Progress",2);
 		player:setVar("ChasingQuotas_date",0);

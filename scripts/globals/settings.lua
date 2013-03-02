@@ -82,9 +82,8 @@ CHEST_MIN_ILLUSION_TIME  = 1800;  -- 30 minutes
              DYNA_LEVEL_MIN = 65;       -- level min for entering in dynamis
     TIMELESS_HOURGLASS_COST = 500000;   -- cost of the timeless hourglass for Dynamis.
      CURRENCY_EXCHANGE_RATE = 100;      -- X Tier 1 ancient currency -> 1 Tier 2, and so on.  Certain values may conflict with shop items.  Not designed to exceed 198.
-RELIC_1ST_UPGRADE_WAIT_TIME = 100;      -- wait time for 1st relic upgrade (stage 1 -> stage 2) in seconds. 86400s = 1 RL day.
-RELIC_2ND_UPGRADE_WAIT_TIME = 100;      -- wait time for 2nd relic upgrade (stage 2 -> stage 3) in seconds. 604800s = 1 RL week.
-RELIC_3RD_UPGRADE_WAIT_TIME = 100;      -- wait time for 3rd relic upgrade (stage 3 -> stage 4) in seconds. 295200s = 82 hours.
+RELIC_2ND_UPGRADE_WAIT_TIME = 604800;      -- wait time for 2nd relic upgrade (stage 2 -> stage 3) in seconds. 604800s = 1 RL week.
+RELIC_3RD_UPGRADE_WAIT_TIME = 295200;      -- wait time for 3rd relic upgrade (stage 3 -> stage 4) in seconds. 295200s = 82 hours.
 
 -- QUEST/MISSION SPECIFIC SETTINGS
 WSNM_LEVEL = 70; -- Min Level to get WSNM Quests
@@ -149,3 +148,4 @@ HOMEPOINT_HEAL = 0; --Set to 1 if you want Home Points to heal you like in singl
 RIVERNE_PORTERS = 120; -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
 LANTERNS_STAY_LIT = 1200; -- time in seconds that lanterns in the Den of Rancor stay lit.
 ENABLE_COP_ZONE_CAP=1; -- enable or disable lvl cap
+TIMEZONE_OFFSET = 9.0; -- Offset from UTC used to determine when "JP Midnight" is for the server.  Default is JST (+9.0).
