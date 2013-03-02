@@ -764,12 +764,14 @@ INSERT INTO `mob_skill` VALUES (144,333,144,'Triple_Attack', 0, 7.0, 2000, 1000,
 INSERT INTO `mob_skill` VALUES (145,333,145,'Gliding_Spike', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (146,333,146,'Feather_Barrier', 0, 7.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (147,333,147,'Stormwind', 1, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (0,333,432,'Two_Hour', 1, 15.0, 2000, 1000, 4, 0);
 -- Pet Genbu
 INSERT INTO `mob_skill` VALUES (549,330,477,'Head_Butt_Turtle', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (550,330,478,'Tortoise_Stomp', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (551,330,479,'Harden_Shell', 0, 7.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (552,330,480,'Earth_Breath', 4, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (553,330,481,'Aqua_Breath', 4, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (0,330,432,'Two_Hour', 1, 15.0, 2000, 1000, 4, 0);
 -- Pet Seiryu
 INSERT INTO `mob_skill` VALUES (558,331,486,'Deadly_Drive', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (559,331,487,'Wind_Wall', 0, 7.0, 2000, 1000, 1, 0);
@@ -777,10 +779,12 @@ INSERT INTO `mob_skill` VALUES (560,331,488,'Fang_Rush', 0, 7.0, 2000, 1000, 4, 
 INSERT INTO `mob_skill` VALUES (561,331,489,'Dread_Shriek', 1, 15.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (562,331,490,'Tail_Crush', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (565,331,493,'Radiant_Breath', 4, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (0,331,432,'Two_Hour', 1, 15.0, 2000, 1000, 4, 0);
 -- Pet Byakko
 INSERT INTO `mob_skill` VALUES (14,332,14,'Roar', 1, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (15,332,15,'Razor_Fang', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (17,332,17,'Claw_Cyclone', 4, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (0,332,432,'Two_Hour', 1, 15.0, 2000, 1000, 4, 0);
 -- Adamantoise
 INSERT INTO `mob_skill` VALUES (548,2,476,'Tortoise_Song', 1, 20.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (549,2,477,'Head_Butt_Turtle', 0, 7.0, 2000, 1000, 4, 0);
