@@ -1418,7 +1418,7 @@ void CAICharNormal::ActionMagicFinish()
             } else if (battleutils::IsAbsorbByShadow(PTarget)) {
                 m_PChar->m_ActionList.at(i).messageID = 0;
                 m_PChar->m_ActionList.at(i).param = 1;
-                PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+                PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
                 continue; // continue to next pt member
             }
         }
@@ -2208,7 +2208,7 @@ void CAICharNormal::ActionJobAbilityFinish()
                 Action.messageID = 0;
                 Action.param = 1;
                 Action.reaction   = REACTION_EVADE;
-                m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget,CHAR_INRANGE, new CMessageBasicPacket(m_PBattleSubTarget,m_PBattleSubTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+                m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleSubTarget,m_PBattleSubTarget,0,1, MSGBASIC_SHADOW_ABSORB));
             } else {
 
     			float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);

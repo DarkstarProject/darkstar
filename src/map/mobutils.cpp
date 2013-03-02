@@ -372,14 +372,14 @@ void GetAvailableSpells(CMobEntity* PMob) {
 			buffChance = 30;
 		break;
 		case JOB_RDM:
-			gaChance = 20;
+			gaChance = 15;
 			buffChance = 40;
 		break;
 		case JOB_NIN:
-			buffChance = 50;
+			buffChance = 40;
 		break;
 		case JOB_BRD:
-			gaChance = 30;
+			gaChance = 20;
 			buffChance = 40;
 		break;
 	}

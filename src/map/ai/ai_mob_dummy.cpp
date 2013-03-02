@@ -1228,7 +1228,7 @@ void CAIMobDummy::ActionMagicFinish()
 			else if (battleutils::IsAbsorbByShadow(PTarget)) {
 				m_PMob->m_ActionList.at(i).messageID = 0;
 				m_PMob->m_ActionList.at(i).param = 1;
-				PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+				PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
 				continue; // continue to next pt member
 			}
 		}
