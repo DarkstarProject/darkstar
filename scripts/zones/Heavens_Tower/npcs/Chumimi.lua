@@ -144,6 +144,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
 		else
 			player:completeQuest(WINDURST,THE_ROOT_OF_THE_PROBLEM);
+			player:addItem(13856);
 			player:messageSpecial(ITEM_OBTAINED,13856);
 			player:addTitle(PARAGON_OF_BLACK_MAGE_EXCELLENCE);
 			player:delKeyItem(SLUICE_SURVEYOR_MK_I);
