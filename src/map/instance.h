@@ -33,7 +33,7 @@ enum BCRULES{
 	RULES_ALLOW_SUBJOBS = 0x01,
 	RULES_LOSE_EXP = 0x02,
 	RULES_REMOVE_3MIN = 0x04,
-	RULES_SPAWN_TREASURE_ON_WIN = 0x08,
+	RULES_SPAWN_TREASURE_ON_WIN = 0x08
 };
 
 enum BCMOBCONDITIONS{
@@ -98,6 +98,8 @@ public:
 	bool		allPlayersDead(); //true if all players in the bcnm are dead.
 	uint8		getPlayerMainJob(); //used for Maat fights
 	uint8		getPlayerMainLevel(); //used for Maat fights
+	uint8		disableSubJob(); // disable all players subjobs
+	uint8		enableSubJob(); // enable all players subjobs
 	void		pushMessageToAllInBcnm(uint16 msg, uint16 param);
 
 	//spawning chests + loot
@@ -118,6 +120,7 @@ public:
 	//handler functions (time/multiple rounds/etc)
 	void		lockBcnm(); //removes valid players if they arent inside the BCNM. Called when fighting.
 	void		init(); //prepares new BCNM
+	void 		beforeCleanup(); // called before players are removed
 	void		cleanup(); //cleans up the existing active BCNM
 	bool		isPlayersFighting(); //true if mob has aggression, used for locking the BCNM
 	bool		winBcnm();
@@ -158,7 +161,7 @@ private:
 	CCharEntity* m_CurrentInstanceLeader;
 	std::vector<CMobEntity*> m_EnemyList;
 	std::vector<MobVictoryCondition_t> m_EnemyVictoryList;
-	
+
 	// std::vector<CCharEntity*> m_PlayerList;
 
 };

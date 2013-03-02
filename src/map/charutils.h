@@ -35,16 +35,17 @@ class CMeritPoints;
 
 namespace charutils
 {
-	
+
 	void	LoadExpTable();
 	void	LoadChar(CCharEntity* PChar);
 	void	LoadInventory(CCharEntity* PChar);
 
 	void	SendQuestMissionLog(CCharEntity* PChar);
 	void	SendKeyItems(CCharEntity* PChar);
-	void	SendInventory(CCharEntity* PChar); 
-	
+	void	SendInventory(CCharEntity* PChar);
+
 	void	CalculateStats(CCharEntity* PChar);
+    void    UpdateSubJob(CCharEntity* PChar);
 
 	void	SetLevelRestriction(CCharEntity* PChar, uint8 lvl);
 
@@ -62,11 +63,11 @@ namespace charutils
 	void	BuildingCharSkillsTable(CCharEntity* PChar);
 	void    BuildingCharWeaponSkills(CCharEntity* PChar);
 	void	BuildingCharAbilityTable(CCharEntity* PChar);
-	void	BuildingCharTraitsTable(CCharEntity* PChar); 
+	void	BuildingCharTraitsTable(CCharEntity* PChar);
 	void    BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID);
 
 	bool	hasInvalidJugPetAmmo(CCharEntity* PChar);
-    
+
     void    DoTrade(CCharEntity* PChar, CCharEntity* PTarget);
     bool    CanTrade(CCharEntity* PChar, CCharEntity* PTarget);
 
@@ -106,13 +107,13 @@ namespace charutils
     int32   delTitle(CCharEntity* PChar, uint16 Title);
 
 	int32	hasPetAbility(CCharEntity* PChar, uint16 AbilityID);	        //same as Ability but for pet commands (e.g. Healing Ruby)
-	int32	addPetAbility(CCharEntity* PChar, uint16 AbilityID);	        
+	int32	addPetAbility(CCharEntity* PChar, uint16 AbilityID);
 	int32	delPetAbility(CCharEntity* PChar, uint16 AbilityID);
 
 	int32	hasTrait(CCharEntity* PChar, uint8 TraitID);	            // check if pchar has trait by traitid and jobid
 	int32	addTrait(CCharEntity* PChar, uint8 TraitID);	            // add trait by traitid and jobid
 	int32	delTrait(CCharEntity* PChar, uint8 TraitID);	            // delete trait by traitid and jobid
-	
+
 	int32	addWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to add weapon skill
 	int32	hasWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to check for weapon skill
 	int32	delWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to delete weapon skill
@@ -121,7 +122,7 @@ namespace charutils
 	void	SaveCharExp(CCharEntity* PChar, JOBTYPE job);		        // сохраняем опыт для выбранной профессии персонажа
 	void	SaveCharEquip(CCharEntity* PChar);					        // сохраняем экипировку и внешний вид персонажа
 	void	SaveCharPosition(CCharEntity* PChar);				        // сохраняем позицию персонажа
-	void	SaveMissionsList(CCharEntity* PChar);                       // Save the missions list 
+	void	SaveMissionsList(CCharEntity* PChar);                       // Save the missions list
 	void	SaveQuestsList(CCharEntity* PChar);					        // сохраняем список ксевтов
 	void	SaveZonesVisited(CCharEntity* PChar);				        // сохраняем посещенные зоны
 	void	SaveKeyItems(CCharEntity* PChar);					        // сохраняем ключевые предметы

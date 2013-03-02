@@ -584,13 +584,23 @@ INSERT INTO `mob_skill` VALUES (853,327,760,'Dice_Reset', 1, 10.0, 2000, 1000, 4
 INSERT INTO `mob_skill` VALUES (0,327,432,'Two_Hour', 0, 7.0, 2000, 1000, 4, 0);
 
 -- Orc
-INSERT INTO `mob_skill` VALUES (353,189,353,'Battle_Dance', 1, 8.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (377,189,354,'Howl', 1, 20.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (353,189,353,'Battle_Dance', 1, 8.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (352,189,352,'Arm_Block', 0, 7.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (351,189,351,'Slam_Dunk', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (349,189,349,'Aerial_Wheel', 0, 12.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (350,189,350,'Shoulder_Attack', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (808,189,440,'Jump', 0, 9.5, 2000, 1000, 4, 0);
+
+-- Orcish NM
+INSERT INTO `mob_skill` VALUES (0,334,432,'Two_Hour', 0, 8.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (353,334,353,'Battle_Dance', 1, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (352,334,352,'Arm_Block', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (351,334,351,'Slam_Dunk', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (349,334,349,'Aerial_Wheel', 0, 12.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (350,334,350,'Shoulder_Attack', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (808,334,440,'Jump', 0, 9.5, 2000, 1000, 4, 0);
+
 -- Quadav
 INSERT INTO `mob_skill` VALUES (355,200,355,'Ore_Toss', 0, 10.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (377,200,354,'Howl', 1, 20.0, 2000, 1000, 1, 0);
@@ -1237,7 +1247,7 @@ INSERT INTO `mob_skill` VALUES (697,263,655,'Dragon_Breath', 4, 40.0, 2000, 1000
 INSERT INTO `mob_skill` VALUES (772,149,729,'Tackle', 0, 7.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (777,149,734,'Dragon_Kick', 0, 7.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (778,149,735,'Asuran_Fists', 0, 7.0, 2000, 0, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,149,432,'Two_Hour', 1, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (0,149,432,'Two_Hour', 0, 15.0, 2000, 1000, 4, 0);
 
 -- --------------------------------------
 -- AVATAR

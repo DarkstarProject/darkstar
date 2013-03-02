@@ -214,7 +214,7 @@ INSERT INTO `mob_family_system` VALUES (145,'Humanoid-Elvaan',13,'Humanoid',0,10
 INSERT INTO `mob_family_system` VALUES (146,'Humanoid-Galka',13,'Humanoid',0,10,40,120,100,3,4,1,5,5,4,6,3,3,3,3,1,1,1,1,1.125,1.125,1.125,1.125,1.125,1.125,1.125,1.125,0);
 INSERT INTO `mob_family_system` VALUES (147,'Humanoid-Galka',13,'Humanoid',0,10,40,120,100,3,4,1,5,5,4,6,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (148,'Humanoid-Galka',13,'Humanoid',0,10,40,120,100,3,4,1,5,5,4,6,3,3,3,3,1,1,1,1,1.125,1,1,1,1,1,1.126,0.875,0);
-INSERT INTO `mob_family_system` VALUES (149,'Humanoid-Hume',13,'Humanoid',0,10,40,90,110,1,3,2,3,2,2,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (149,'Humanoid-Hume',13,'Humanoid',0,10,40,90,110,3,3,2,3,2,2,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (150,'Humanoid-Hume',13,'Humanoid',0,10,40,90,110,4,4,4,4,4,4,4,3,3,3,3,1,1,1,1,0.875,0.875,0.875,0.875,0.875,0.875,0.875,0.875,0);
 INSERT INTO `mob_family_system` VALUES (151,'Humanoid-Mithra',13,'Humanoid',0,10,40,80,110,5,1,5,2,4,5,6,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (152,'Humanoid-Mithra',13,'Humanoid',0,10,40,80,110,5,1,5,2,4,5,6,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
@@ -310,8 +310,8 @@ INSERT INTO `mob_family_system` VALUES (239,'Structure',18,'Unclassified',2,10,4
 INSERT INTO `mob_family_system` VALUES (240,'Tauri',9,'Demon',1,10,40,123,130,1,3,3,3,3,6,5,3,3,3,3,1,1,1.25,1.5,1,1,1,1,1,1,1.25,1,8);
 INSERT INTO `mob_family_system` VALUES (241,'Thinker',12,'Empty',1,10,50,132,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (242,'Tiger',6,'Beast',1,10,80,111,120,1,1,4,2,3,6,5,3,3,3,3,1,1,1,1,1.25,0.875,1,1,1.25,1,1,1,5);
-INSERT INTO `mob_family_system` VALUES (243,'Tonberry',7,'Beastmen',0,10,40,100,140,3,1,3,2,1,5,2,3,3,3,3,1,1,1,1,1,1.25,1,1,1,1,0.5,1,7);
-INSERT INTO `mob_family_system` VALUES (244,'Tonberry',7,'Beastmen',0,10,40,100,140,3,1,3,2,1,5,2,3,3,3,3,1,1,1,1,0.66,0.825,0.66,0.66,0.66,0.66,0.33,0.66,7);
+INSERT INTO `mob_family_system` VALUES (243,'Tonberry',7,'Beastmen',0,10,40,87,140,3,1,3,2,1,5,2,3,3,4,3,1,1,1,1,1,1.25,1,1,1,1,0.5,1,7);
+INSERT INTO `mob_family_system` VALUES (244,'Tonberry',7,'Beastmen',0,10,40,87,140,3,1,3,2,1,5,2,3,3,4,3,1,1,1,1,0.66,0.825,0.66,0.66,0.66,0.66,0.33,0.66,7);
 INSERT INTO `mob_family_system` VALUES (245,'Treant',17,'Plantoid',2,10,40,120,120,1,2,1,2,3,1,3,3,3,3,3,1,1,1,1,1.25,1,1,1,1,1,1,1.25,4);
 INSERT INTO `mob_family_system` VALUES (246,'Troll',7,'Beastmen',1,10,40,120,120,1,2,1,3,3,3,3,3,3,3,3,1,1,1,1,0.875,1,1,1,1,1.125,1,1,1);
 INSERT INTO `mob_family_system` VALUES (247,'Tubes',18,'Unclassified',0,10,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
@@ -398,6 +398,7 @@ INSERT INTO `mob_family_system` VALUES (330,'PetGenbu',14,'Lizard',5,10,30,120,9
 INSERT INTO `mob_family_system` VALUES (331,'PetSeiryu',10,'Dragon',3,10,60,109,90,1,2,1,3,6,3,3,3,3,3,3,1,1,1,1,0.5,1,0.875,1,1,1,1.25,0.375,7);
 INSERT INTO `mob_family_system` VALUES (332,'PetByakko',6,'Beast',3,10,60,111,120,1,1,4,2,3,6,5,3,3,3,3,1,1,1,1,1.25,0.875,1,1,1.25,1,1,1,5);
 INSERT INTO `mob_family_system` VALUES (333,'PetSuzaku',8,'Bird',3,10,60,130,120,1,3,4,3,4,4,5,3,3,3,2,0.75,1.25,1,0.75,1,1.25,0.5,1,1,1,1,1,7);
+INSERT INTO `mob_family_system` VALUES (334,'Orc',7,'Beastmen',1,10,40,108,100,1,3,3,6,4,5,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1.25,1,1,1);
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -105,7 +105,7 @@ uint32 CMobEntity::GetRandomGil()
     uint16 highBase = (float)(base*(multiplier*1.4))/2;
 
     // randomize it
-    if (highBase != 0)
+    if (highBase > 1)
 	{
 		base += rand()%highBase;
 	}
@@ -154,16 +154,63 @@ void CMobEntity::delRageMode()
 {
     if (m_RageMode)
     {
-	    stats.AGI /= 10;
-	    stats.CHR /= 10;
-	    stats.DEX /= 10;
-	    stats.INT /= 10;
-	    stats.MND /= 10;
-	    stats.STR /= 10;
-	    stats.VIT /= 10;
+        stats.AGI /= 10;
+        stats.CHR /= 10;
+        stats.DEX /= 10;
+        stats.INT /= 10;
+        stats.MND /= 10;
+        stats.STR /= 10;
+        stats.VIT /= 10;
     }
-	m_RageMode = false;
+    m_RageMode = false;
 }
+
+void CMobEntity::ChangeMJob(uint16 job)
+{
+    this->SetMJob(job);
+
+    // give him a spell list based on job
+    if(m_EcoSystem == SYSTEM_BEASTMEN || m_EcoSystem == SYSTEM_UNDEAD || m_EcoSystem == SYSTEM_HUMANOID){
+        uint16 spellList = 0;
+
+        switch(job){
+            case JOB_WHM:
+                spellList = 1;
+            break;
+            case JOB_BLM:
+                spellList = 2;
+            break;
+            case JOB_RDM:
+                spellList = 3;
+            break;
+            case JOB_PLD:
+                spellList = 4;
+            break;
+            case JOB_DRK:
+                spellList = 5;
+            break;
+            case JOB_BRD:
+                spellList = 6;
+            break;
+            case JOB_NIN:
+                spellList = 7;
+            break;
+            case JOB_BLU:
+                spellList = 8;
+            break;
+        }
+
+        if(spellList > 0){
+            m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
+        } else {
+            m_SpellListContainer = NULL;
+        }
+    }
+
+    // give spells and proper traits
+    mobutils::CalculateStats(this);
+}
+
 
 /************************************************************************
 *                                                                       *

@@ -45,6 +45,7 @@ public:
     uint8   getAdditionalEffect();
     uint8   getHitCount(uint8 checkMobHits);
 	uint16  getUnlockId();
+    void    resetDelay();
 
     bool    isRanged();
     bool    isTwoHanded();

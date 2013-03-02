@@ -4152,33 +4152,11 @@ inline int32 CLuaBaseEntity::changesJob(lua_State *L)
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L,1));
-	PChar->SetSJob((uint8)lua_tointeger(L,1));
+    PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L,1));
+    PChar->SetSJob((uint8)lua_tointeger(L,1));
 
+	charutils::UpdateSubJob(PChar);
 
-    charutils::BuildingCharSkillsTable(PChar);
-	charutils::CalculateStats(PChar);
-    charutils::CheckValidEquipment(PChar);
-    charutils::BuildingCharAbilityTable(PChar);
-    charutils::BuildingCharTraitsTable(PChar);
-    charutils::BuildingCharWeaponSkills(PChar);
-
-	PChar->UpdateHealth();
-    PChar->health.hp = PChar->GetMaxHP();
-    PChar->health.mp = PChar->GetMaxMP();
-
-    charutils::SaveCharStats(PChar);
-    charutils::SaveCharJob(PChar, PChar->GetMJob());
-    charutils::SaveCharExp(PChar, PChar->GetMJob());
-	charutils::UpdateHealth(PChar);
-
-    PChar->pushPacket(new CCharJobsPacket(PChar));
-    PChar->pushPacket(new CCharStatsPacket(PChar));
-    PChar->pushPacket(new CCharSkillsPacket(PChar));
-    PChar->pushPacket(new CCharAbilitiesPacket(PChar));
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
-    PChar->pushPacket(new CMenuMeritPacket(PChar));
-    PChar->pushPacket(new CCharSyncPacket(PChar));
 	return 0;
 }
 
@@ -6132,7 +6110,7 @@ inline int32 CLuaBaseEntity::isPC(lua_State *L){
 
 	if (m_PBaseEntity->objtype & TYPE_PC) lua_pushboolean( L, true);
 	else lua_pushboolean( L, false);
-		
+
 	return 1;
 }
 
@@ -6141,7 +6119,7 @@ inline int32 CLuaBaseEntity::isNPC(lua_State *L){
 
 	if (m_PBaseEntity->objtype & TYPE_NPC) lua_pushboolean( L, true);
 	else lua_pushboolean( L, false);
-		
+
 	return 1;
 }
 
@@ -6150,7 +6128,7 @@ inline int32 CLuaBaseEntity::isMob(lua_State *L){
 
 	if (m_PBaseEntity->objtype & TYPE_MOB) lua_pushboolean( L, true);
 	else lua_pushboolean( L, false);
-		
+
 	return 1;
 }
 
@@ -6159,7 +6137,7 @@ inline int32 CLuaBaseEntity::isPet(lua_State *L){
 
 	if (m_PBaseEntity->objtype & TYPE_PET) lua_pushboolean( L, true);
 	else lua_pushboolean( L, false);
-		
+
 	return 1;
 }
 

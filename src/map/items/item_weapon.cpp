@@ -52,6 +52,11 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
 
 CItemWeapon::~CItemWeapon() {}
 
+void CItemWeapon::resetDelay()
+{
+    setDelay(getBaseDelay());
+}
+
 /************************************************************************
 *                                                                       *
 *  Оружие для атаки с дистанции (Range)                                 *
@@ -83,7 +88,7 @@ bool CItemWeapon::isTwoHanded()
 
 bool CItemWeapon::isUnlockable()
 {
-	return ( m_unlockId > 0 ? true : false ); 
+	return ( m_unlockId > 0 ? true : false );
 }
 
 
@@ -93,12 +98,12 @@ bool CItemWeapon::isUnlockable()
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setSkillType(uint8 skillType) 
+void CItemWeapon::setSkillType(uint8 skillType)
 {
     switch (skillType)
     {
-	    case SKILL_GSD:	
-	    case SKILL_GAX:	
+	    case SKILL_GSD:
+	    case SKILL_GAX:
 	    case SKILL_SYH:
 	    case SKILL_POL:
 	    case SKILL_GKT:
@@ -114,7 +119,7 @@ void CItemWeapon::setSkillType(uint8 skillType)
 	m_skillType = skillType;
 }
 
-uint8 CItemWeapon::getSkillType() 
+uint8 CItemWeapon::getSkillType()
 {
 	return m_skillType;
 }
@@ -126,12 +131,12 @@ uint8 CItemWeapon::getSkillType()
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setSubSkillType(uint8 subSkillType) 
+void CItemWeapon::setSubSkillType(uint8 subSkillType)
 {
 	m_subSkillType = subSkillType;
 }
 
-uint8 CItemWeapon::getSubSkillType() 
+uint8 CItemWeapon::getSubSkillType()
 {
 	return m_subSkillType;
 }
@@ -140,16 +145,16 @@ uint8 CItemWeapon::getSubSkillType()
 *																		*
 *  Устанавливаем время задержки оружия. Сразу переводим значение в млс.	*
 *  Все математические операции происходят с целыми числами, именно по	*
-*  этому порядок действий очень важен, чтобы не потерять часть данных.	* 
+*  этому порядок действий очень важен, чтобы не потерять часть данных.	*
 *																		*
 ************************************************************************/
 
-void CItemWeapon::setDelay(uint16 delay) 
+void CItemWeapon::setDelay(uint16 delay)
 {
 	m_delay = delay;
 }
 
-int16 CItemWeapon::getDelay() 
+int16 CItemWeapon::getDelay()
 {
 	return m_delay;
 }
@@ -158,7 +163,7 @@ int16 CItemWeapon::getDelay()
 *																		*
 *  Set/get the un-adjusted delay of the weapon							*
 *  This is to fix delay adjustments of mobs and is not intended for		*
-*  use outside of zoneutils/mobutils									* 
+*  use outside of zoneutils/mobutils									*
 *																		*
 ************************************************************************/
 
@@ -188,12 +193,12 @@ uint16 CItemWeapon::getUnlockId()
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setDamage(uint16 damage) 
+void CItemWeapon::setDamage(uint16 damage)
 {
 	m_damage = damage;
 }
 
-uint16 CItemWeapon::getDamage() 
+uint16 CItemWeapon::getDamage()
 {
 	return m_damage;
 }
@@ -204,12 +209,12 @@ uint16 CItemWeapon::getDamage()
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setDmgType(uint16 dmgType) 
+void CItemWeapon::setDmgType(uint16 dmgType)
 {
 	m_dmgType = dmgType;
 }
 
-uint16 CItemWeapon::getDmgType() 
+uint16 CItemWeapon::getDmgType()
 {
 	return m_dmgType;
 }
@@ -329,6 +334,6 @@ uint8 CItemWeapon::getHitCount(uint8 checkMobHits)
 //Slashing = MOD_AXE, MOD_GREATAXE, MOD_GREATSWORD, MOD_SWORD, MOD_SCYTHE, MOD_KATANA, MOD_GREATKATANA
 //Piercing = MOD_DAGGER, MOD_POLEARM, MOD_ARCHERY, MOD_MARKSMANSHIP
 
-//Hand-to-Hand est un type de Blunt, qui est pourquoi MNK est efficace contre les Undead (Corse et Skeleton). 
-//Je ne sais pas ce que vous entendez par Impact et Range? MOD_THROWING pourrait aller dans aucun d'eux parce qu'il ya différents types d'armes. 
+//Hand-to-Hand est un type de Blunt, qui est pourquoi MNK est efficace contre les Undead (Corse et Skeleton).
+//Je ne sais pas ce que vous entendez par Impact et Range? MOD_THROWING pourrait aller dans aucun d'eux parce qu'il ya différents types d'armes.
 //Par exemple, Boomerangs sont Blunt, Chakrams sont Slashing, et Shurikens sont Piercing.

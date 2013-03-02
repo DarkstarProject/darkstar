@@ -26,6 +26,7 @@
 
 #include "battleentity.h"
 #include "enmity_container.h"
+#include "mobutils.h"
 
 #include "mob_spell_container.h"
 #include "mob_spell_list.h"
@@ -140,6 +141,7 @@ public:
 	void		SetNewSkin(uint8 skinid);			// Set new skin for the mob
 	uint32		GetSkinID();						// Get the last skinid (0 for base skin)
 
+    void        ChangeMJob(uint16 job); // this will change jobs and update traits, stats, spells
     bool        CanDeaggro();
     uint32      GetDespawnTimer();
     void        SetDespawnTimer(uint32 duration);

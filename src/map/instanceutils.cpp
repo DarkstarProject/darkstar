@@ -99,6 +99,7 @@ namespace instanceutils{
 				CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 				if (PMob != NULL)
 				{
+
 					if (condition & CONDITION_SPAWNED_AT_START)
 					{
 						// This condition is needed for some mob at dynamis, else he don't pop
@@ -113,12 +114,29 @@ namespace instanceutils{
 							PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 
 							if(strcmp(PMob->GetName(),"Maat")==0){
-							//set job based on poppng char job
-							PMob->SetMJob(instance->getPlayerMainJob());
 
-							//TODO: add spells for job
+								// reset just incase
+								PMob->setModifier(MOD_DOUBLE_ATTACK, 0);
+								PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
 
-								// ShowDebug("Change maat job to %i \n",instance->getPlayerMainJob());
+								//set job based on characters job
+								PMob->ChangeMJob(instance->getPlayerMainJob());
+
+								// this is kind a hacky but make nin and mnk maat always double attack
+								switch(PMob->GetMJob()){
+									case JOB_NIN:
+									case JOB_MNK:
+										PMob->setModifier(MOD_DOUBLE_ATTACK, 100);
+										PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+									break;
+								}
+
+								// disable players subjob
+								instance->disableSubJob();
+
+								// disallow subjob, this will enable for later
+								instance->m_RuleMask &= ~(1 << RULES_ALLOW_SUBJOBS);
+
 							}
 							PMob->SetDespawnTimer(0); //never despawn
 							//ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,instance->getID(),instance->getInstanceNumber());

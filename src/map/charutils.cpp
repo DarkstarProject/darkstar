@@ -1006,6 +1006,34 @@ bool HasItem(CCharEntity* PChar, uint16 ItemID)
     return false;
 }
 
+void UpdateSubJob(CCharEntity* PChar)
+{
+
+    charutils::BuildingCharSkillsTable(PChar);
+    charutils::CalculateStats(PChar);
+    charutils::CheckValidEquipment(PChar);
+    charutils::BuildingCharAbilityTable(PChar);
+    charutils::BuildingCharTraitsTable(PChar);
+    charutils::BuildingCharWeaponSkills(PChar);
+
+    PChar->UpdateHealth();
+    PChar->health.hp = PChar->GetMaxHP();
+    PChar->health.mp = PChar->GetMaxMP();
+
+    charutils::SaveCharStats(PChar);
+    charutils::SaveCharJob(PChar, PChar->GetMJob());
+    charutils::SaveCharExp(PChar, PChar->GetMJob());
+    charutils::UpdateHealth(PChar);
+
+    PChar->pushPacket(new CCharJobsPacket(PChar));
+    PChar->pushPacket(new CCharStatsPacket(PChar));
+    PChar->pushPacket(new CCharSkillsPacket(PChar));
+    PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+    PChar->pushPacket(new CMenuMeritPacket(PChar));
+    PChar->pushPacket(new CCharSyncPacket(PChar));
+}
+
 /************************************************************************
 *                                                                       *
 *  Перемещаем предмет в указанную ячейки или первую пустую              *

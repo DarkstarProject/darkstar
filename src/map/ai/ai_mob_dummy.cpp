@@ -142,11 +142,7 @@ void CAIMobDummy::ActionRoaming()
 		// lets buff up or move around
 		m_LastActionTime = m_Tick - rand()%30000;
 
-		if(m_PMob->SpellContainer->HasBuffSpells() && rand()%2 == 1)
-		{
-			// cast buff
-			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
-		} else if(!(m_PMob->m_Type & MOBTYPE_EVENT)){
+		if(!(m_PMob->m_Type & MOBTYPE_EVENT) && rand()%2 == 1){
 			// roam
 			position_t RoamingPoint;
 
@@ -159,6 +155,10 @@ void CAIMobDummy::ActionRoaming()
 			battleutils::MoveTo(m_PMob, RoamingPoint, 1);
 
 			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+		} else if(m_PMob->SpellContainer->HasBuffSpells())
+		{
+			// cast buff
+			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
 		}
 	}
 	if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
@@ -913,6 +913,9 @@ void CAIMobDummy::processTwoHour(){
     m_PMob->m_ActionList.clear();
 	Action.param = 0;
 
+	// animation can be overrided
+	uint16 animationId = 0;
+
 	//determine the 2h based on mjob and set the correct target and do the right stuff
 	uint16 id = 0; // this is just the main job - 1
 	switch(m_PMob->GetMJob()){
@@ -959,6 +962,12 @@ void CAIMobDummy::processTwoHour(){
 		m_PMob->health.tp = 0;
 		m_ActionType = ACTION_ATTACK;
 		return;
+	}
+
+	// TODO: setup proper animations for dynamis and BCNM
+	// if animation been set
+	if(m_PMobSkill->getAnimationID() > 0){
+		animationId = m_PMobSkill->getAnimationID();
 	}
 
 	m_PMobSkill->setID(1986+id);

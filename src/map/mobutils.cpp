@@ -202,8 +202,7 @@ void CalculateStats(CMobEntity * PMob)
 
     //reduce weapon delay of MNK
     if(PMob->GetMJob()==JOB_MNK){
-        uint16 delay = PMob->m_Weapons[SLOT_MAIN]->getBaseDelay();
-		PMob->m_Weapons[SLOT_MAIN]->setDelay(delay);
+		PMob->m_Weapons[SLOT_MAIN]->resetDelay();
     }
 
 	uint16 fSTR = GetBaseToRank(PMob->strRank, PMob->GetMLevel());
@@ -348,10 +347,10 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		case JOB_BRD:
 			PMob->m_MagicRecastTime = 15000;
 		break;
-		case JOB_NIN:
 		case JOB_BLU:
 			PMob->m_MagicRecastTime = 25000;
 		break;
+		case JOB_NIN:
 		case JOB_WHM:
 		case JOB_RDM:
 			PMob->m_MagicRecastTime = 20000;
@@ -376,7 +375,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 			buffChance = 40;
 		break;
 		case JOB_NIN:
-			buffChance = 40;
+			buffChance = 30;
 		break;
 		case JOB_BRD:
 			gaChance = 20;

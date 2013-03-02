@@ -47,7 +47,7 @@ MOBPARAM_1_SHADOW = 1;
 MOBPARAM_2_SHADOW = 2;
 MOBPARAM_3_SHADOW = 3;
 MOBPARAM_4_SHADOW = 4;
-MOBPARAM_WIPE_SHADOWS = 5;
+MOBPARAM_WIPE_SHADOWS = 999;
 
 TP_ACC_VARIES = 0;
 TP_ATK_VARIES = 1;
@@ -642,7 +642,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	skill:setMsg(MSG_DAMAGE);
 
 	--Handle shadows depending on shadow behaviour / skilltype
-	if(shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
+	if(shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
 		targShadows = target:getMod(MOD_UTSUSEMI);
 		shadowType = MOD_UTSUSEMI;
 		if(targShadows==0)then --try blink, as utsusemi always overwrites blink this is okay

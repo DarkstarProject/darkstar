@@ -122,6 +122,29 @@ void CInstance::setLootId(uint16 id){
 
 //========================PLAYER FUNCTIONS=============================================//
 
+uint8 CInstance::disableSubJob(){
+	if(m_PlayerList.size()==0){
+		ShowWarning("instance:disableSubjob - No players in battlefield!\n");
+		return 1;
+	}
+	for(int i=0; i<m_PlayerList.size(); i++){
+		m_PlayerList.at(i)->disableSubJob();
+	}
+
+	return 1;
+}
+
+uint8 CInstance::enableSubJob(){
+	if(m_PlayerList.size()==0){
+		ShowWarning("instance:enbleSubjob - No players in battlefield!\n");
+		return 1;
+	}
+	for(int i=0; i<m_PlayerList.size(); i++){
+		m_PlayerList.at(i)->enableSubJob();
+	}
+	return 1;
+}
+
 uint8 CInstance::getPlayerMainJob(){
 	if(m_PlayerList.size()==0){
 		ShowWarning("instance:getPlayerMainJob - No players in battlefield!\n");
@@ -132,7 +155,7 @@ uint8 CInstance::getPlayerMainJob(){
 
 uint8 CInstance::getPlayerMainLevel(){
 	if(m_PlayerList.size()==0){
-		ShowWarning("instance:getPlayerMainJob - No players in battlefield!\n");
+		ShowWarning("instance:getPlayerMainLevel - No players in battlefield!\n");
 		return 1;
 	}
 	return m_PlayerList.at(0)->GetMLevel();
@@ -177,6 +200,7 @@ bool CInstance::delPlayerFromBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
 			PChar->m_insideBCNM = false;
+			PChar->enableSubJob();
 			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BATTLEFIELD);
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 			m_PlayerList.erase(m_PlayerList.begin()+i);
@@ -304,11 +328,20 @@ void CInstance::cleanup(){
 	if(m_Handler==NULL){
 		ShowError("Instance handler is NULL from Instance BCNM %i Inst %i \n",m_BcnmID,m_InstanceNumber);
 	}
+
 	m_Handler->wipeInstance(this);
 	delete this;
 }
 
+void CInstance::beforeCleanup(){
+	if(!(m_RuleMask & RULES_ALLOW_SUBJOBS)){
+		// enable subjob
+		enableSubJob();
+	}
+}
+
 bool CInstance::winBcnm(){
+	beforeCleanup();
 	for(int i=0; i<m_PlayerList.size(); i++){
 		luautils::OnBcnmLeave(m_PlayerList.at(i),this,LEAVE_WIN);
 		if(this->delPlayerFromBcnm(m_PlayerList.at(i))){i--;}
@@ -332,6 +365,7 @@ void CInstance::getHighestTHforBcnm(){
 }*/
 
 bool CInstance::loseBcnm(){
+	beforeCleanup();
 	for(int i=0; i<m_PlayerList.size(); i++){
 		luautils::OnBcnmLeave(m_PlayerList.at(i),this,LEAVE_LOSE);
 		if(this->delPlayerFromBcnm(m_PlayerList.at(i))){i--;}
