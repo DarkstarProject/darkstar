@@ -262,6 +262,7 @@ void CCharEntity::enableSubJob()
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         SetSJob((int32)Sql_GetIntData(SqlHandle,0));
+        charutils::UpdateSubJob(this);
     } else {
         ShowDebug("CCharEntity::enableSubJob Could not find saved subjob\n");
         return;
