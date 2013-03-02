@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
--- NPC:  Ark Angel MR
+-- NPC:  Ark Angel HM
 --
 -----------------------------------
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
@@ -20,8 +20,8 @@ function onMobEngaged(mob,target)
 
 	local mobid = mob:getID()
 
-	if (mobid == 17514500) then
-		GetMobByID(17514497):updateEnmity(target);
+	if (mobid == 17514497) then
+		GetMobByID(17514500):updateEnmity(target);
 		GetMobByID(17514509):updateEnmity(target);
 		GetMobByID(17514512):updateEnmity(target);
 		GetMobByID(17514515):updateEnmity(target);
@@ -29,8 +29,9 @@ function onMobEngaged(mob,target)
 		GetMobByID(17514503):updateEnmity(target);
 		return;
 
-	elseif (mobid == 17514501) then
-		GetMobByID(17514498):updateEnmity(target);
+
+	elseif (mobid == 17514498) then
+		GetMobByID(17514501):updateEnmity(target);
 		GetMobByID(17514504):updateEnmity(target);
 		GetMobByID(17514510):updateEnmity(target);
 		GetMobByID(17514513):updateEnmity(target);
@@ -39,8 +40,8 @@ function onMobEngaged(mob,target)
 		return;
 
 
-	elseif (mobid == 17514502) then
-		GetMobByID(17514499):updateEnmity(target);
+	elseif (mobid == 17514499) then
+		GetMobByID(17514502):updateEnmity(target);
 		GetMobByID(17514505):updateEnmity(target);
 		GetMobByID(17514511):updateEnmity(target);
 		GetMobByID(17514514):updateEnmity(target);
@@ -59,5 +60,4 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	killer:showText(mob,ARK_ANGEL_MR);
 end;

@@ -14,7 +14,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 	returninfo = {};
 
 	--Damage = (D+fSTR) * dmgmod * PDIF
-	printf("str: %f, vit: %f", avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
+	-- printf("str: %f, vit: %f", avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
 	fstr = avatarFSTR(avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
 
 	lvluser = avatar:getMainLvl();
