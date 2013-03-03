@@ -399,6 +399,7 @@ INSERT INTO `mob_family_system` VALUES (331,'PetSeiryu',10,'Dragon',3,10,60,109,
 INSERT INTO `mob_family_system` VALUES (332,'PetByakko',6,'Beast',3,10,60,111,120,1,1,4,2,3,6,5,3,3,3,3,1,1,1,1,1.25,0.875,1,1,1.25,1,1,1,5);
 INSERT INTO `mob_family_system` VALUES (333,'PetSuzaku',8,'Bird',3,10,60,130,120,1,3,4,3,4,4,5,3,3,3,2,0.75,1.25,1,0.75,1,1.25,0.5,1,1,1,1,1,7);
 INSERT INTO `mob_family_system` VALUES (334,'Orc',7,'Beastmen',1,10,40,108,100,1,3,3,6,4,5,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1.25,1,1,1);
+INSERT INTO `mob_family_system` VALUES (335,'Maat',13,'Humanoid',0,10,40,90,110,3,3,2,3,2,2,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

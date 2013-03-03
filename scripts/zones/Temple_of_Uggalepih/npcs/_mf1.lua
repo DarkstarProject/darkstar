@@ -22,8 +22,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
-	return 1;
+	if player:getXPos() >= -59 then
+		return -1;
+	else
+		player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
+		return 1;
+	end
 end; 
 
 -----------------------------------
