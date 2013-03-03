@@ -1,6 +1,6 @@
 -----------------------------------------
---  ID: 17040
---  Warp Cudgel
+--  ID: 17588
+--  Treat staff II
 --  Transports the user to their Home Point
 -----------------------------------------
 

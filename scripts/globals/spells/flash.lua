@@ -12,7 +12,7 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
     -- Pull base stats.
-    dINT = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    dINT = (caster:getStat(MOD_MND)*2 - target:getStat(MOD_MND));
 
     -- apply bonus, flash is hard to fully resist
     bonus = AffinityBonus(caster,spell);

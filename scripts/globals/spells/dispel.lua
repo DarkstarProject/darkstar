@@ -10,7 +10,7 @@
 function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
-    dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    dINT = (caster:getStat(MOD_INT)*2 - target:getStat(MOD_INT));
 
     -- apply bonus, flash is hard to fully resist
     bonus = AffinityBonus(caster,spell);

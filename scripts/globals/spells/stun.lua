@@ -11,7 +11,7 @@ function onSpellCast(caster,target,spell)
 	duration = 5;
 
 	taff = AffinityBonus(caster,spell);
-	dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+	dINT = caster:getStat(MOD_INT)*2 - target:getStat(MOD_INT);
 	resist = applyResistance(caster,spell,target,dINT,37,bonus);
 	if(resist <= (1/16)) then
 		-- resisted!
@@ -23,7 +23,7 @@ function onSpellCast(caster,target,spell)
 		-- no effect
 		spell:setMsg(75);
 	else
-		target:addStatusEffect(EFFECT_STUN,1,0,duration);
+		target:addStatusEffect(EFFECT_STUN,1,0,duration*resist);
 		spell:setMsg(236);
 	end
 
