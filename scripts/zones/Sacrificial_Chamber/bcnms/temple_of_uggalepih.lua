@@ -46,8 +46,17 @@ end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
-end;
+
+	--[[TODO: This simply fixes the cutscene leaving you at a black screen.
+	It does not address @cs 7 and @cs 8 not playing after the victory cutscene.
+	Loading those cutscenes onEventFinish also does not work, because of the "walk out" scene at the end.
 	
+	This is not a proper fix, this is not correct, but players are getting stuck, and it fixes that.]]
+	if (csid = 32001 and option == 6) then 
+		player:eventUpdate(0);
+	end
+end;
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 	
