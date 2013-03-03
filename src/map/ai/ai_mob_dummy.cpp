@@ -142,7 +142,7 @@ void CAIMobDummy::ActionRoaming()
 		// lets buff up or move around
 		m_LastActionTime = m_Tick - rand()%30000;
 
-		if(!(m_PMob->m_Type & MOBTYPE_EVENT) && rand()%2 == 1){
+		if(!(m_PMob->m_Type & MOBTYPE_EVENT) && rand()%10 < 7){
 			// roam
 			position_t RoamingPoint;
 

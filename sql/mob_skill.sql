@@ -57,10 +57,10 @@ INSERT INTO `mob_skill` VALUES (3,206,3,'Whirl_Claws', 1, 5.0, 2000, 1000, 4, 0)
 INSERT INTO `mob_skill` VALUES (1,317,1,'Foot_Kick', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (2,317,2,'Dust_Cloud', 4, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (3,317,3,'Whirl_Claws', 1, 5.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES(67, 317, 67, 'Wild_Carrot', 1, 20.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES(67, 317, 1, 'Wild_Carrot', 1, 20.0, 2000, 1000, 1, 0); -- animation needs to be found
 -- Snowy Area (318)
 INSERT INTO `mob_skill` VALUES (3,318, 3,'Whirl_Claws', 1, 5.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES(67, 318, 67, 'Wild_Carrot', 1, 20.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES(67, 318, 1, 'Wild_Carrot', 1, 20.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES(405, 318, 970, 'Snow_Cloud', 4, 10.0, 2000, 1000, 4, 0);
 
 -- Sheep
@@ -97,7 +97,7 @@ INSERT INTO `mob_skill` VALUES (25,80,25,'Stomping', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (28,80,28,'Cold_Stare', 4, 16.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (29,80,29,'Whistle', 1, 20.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (30,80,30,'Berserk', 0, 7.0, 2000, 1000, 1, 0);
-INSERT INTO `mob_skill` VALUES (31,80,31,'Healing_Breeze', 1, 15.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (31,80,31,'Healing_Breeze', 0, 15.0, 2000, 1000, 1, 0); -- make single target for now
 
 -- Opo-opo
 INSERT INTO `mob_skill` VALUES (38,188,38,'Eye_Scratch', 0, 7.0, 2000, 1000, 4, 0);

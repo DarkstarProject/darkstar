@@ -23,8 +23,8 @@ function onSpellCast(caster,target,spell)
 	elseif (pMod > 130) then
 		pAbs = 3*pMod - 190;
 	end
-	if (pAbs > 350) then -- hard cap of 350 from natural power
-		pAbs = 350;
+	if (pAbs > STONESKIN_CAP) then -- hard cap of 350 from natural power
+		pAbs = STONESKIN_CAP;
 	end
 	-- equipment mods
 	if (caster:getEquipID(SLOT_NECK) == 13177) then -- stone gorget
@@ -43,6 +43,7 @@ function onSpellCast(caster,target,spell)
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;
 	end
+
 
 	final = pAbs + pEquipMods;
 	if(target:addStatusEffect(EFFECT_STONESKIN,final,0,duration)) then

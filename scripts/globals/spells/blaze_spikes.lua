@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-	duration = 180;
+	duration = SPIKE_EFFECT_DURATION;
   local typeEffect = EFFECT_BLAZE_SPIKES;
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;

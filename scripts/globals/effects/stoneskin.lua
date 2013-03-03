@@ -1,6 +1,6 @@
 -----------------------------------
 --  Stoneskin
---  
+--
 --  Absorbs a certain amount of damage from physical and magical attacks.
 -----------------------------------
 
@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_STONESKIN, effect:getPower());
+	target:setMod(MOD_STONESKIN, effect:getPower());
 end;
 
 -----------------------------------
