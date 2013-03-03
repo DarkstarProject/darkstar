@@ -23,33 +23,40 @@ function onTrade(player,npc,trade)
 			player:startEvent(0x0065);
 		end
 	end
-	
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
 	local painfulMemory = player:getQuestStatus(JEUNO,PAINFUL_MEMORY);
+	local circleOfTime = player:getQuestStatus(JEUNO,THE_CIRCLE_OF_TIME);
 	local job = player:getMainJob()
 	local level = player:getMainLvl()
-	
+
 	if(job ~= 10 and level >= ADVANCED_JOB_LEVEL) then
 		if(player:getVar("TheOldMonument_Event") == 0 and player:getQuestStatus(JEUNO,THE_OLD_MONUMENT) == QUEST_AVAILABLE) then
 			player:startEvent(0x0066);
 		end
-	elseif(job == 10 and level >= AF1_QUEST_LEVEL and painfulMemory == QUEST_AVAILABLE) then 
-		if(player:getVar("PainfulMemoryCS") == 0) then 
+	elseif(job == 10 and level >= AF1_QUEST_LEVEL and painfulMemory == QUEST_AVAILABLE) then
+		if(player:getVar("PainfulMemoryCS") == 0) then
 			player:startEvent(0x008a); -- Long dialog for "Painful Memory"
 		else
 			player:startEvent(0x0089); -- Short dialog for "Painful Memory"
 		end
-	elseif(painfulMemory == QUEST_ACCEPTED) then 
+	elseif(painfulMemory == QUEST_ACCEPTED) then
 		player:startEvent(0x0088); -- During Quest "Painful Memory"
-	elseif(painfulMemory == QUEST_COMPLETED) then 
+	elseif(painfulMemory == QUEST_COMPLETED) then
 		player:startEvent(0x0087); -- Standard dialog after completed "Painful Memory"
+
+		if(circleOfTime == QUEST_AVAILABLE and level >= 50 and job == 10 ) then
+			player:startEvent(0x8B); -- Start "The Circle of Time"
+			player:addQuest(JEUNO,THE_CIRCLE_OF_TIME);
+			player:setVar("circleTime",1);
+		end
+
 	end
 end;
 
@@ -78,12 +85,12 @@ function onEventFinish(player,csid,option)
 		player:addFame(JEUNO,30);
 		player:tradeComplete();
 		player:completeQuest(JEUNO,A_MINSTREL_IN_DESPAIR);
-	elseif(csid == 0x008a and option == 1 or csid == 0x0089 and option == 1) then 
+	elseif(csid == 0x008a and option == 1 or csid == 0x0089 and option == 1) then
 		player:addQuest(JEUNO,PAINFUL_MEMORY);
 		player:setVar("PainfulMemoryCS",0);
 		player:addKeyItem(MERTAIRES_BRACELET);
 		player:messageSpecial(KEYITEM_OBTAINED,MERTAIRES_BRACELET); -- Mertaire's Bracelet (key item).
-	elseif(csid == 0x008a and option == 0) then 
+	elseif(csid == 0x008a and option == 0) then
 		player:setVar("PainfulMemoryCS",1);
 	end
 end;
