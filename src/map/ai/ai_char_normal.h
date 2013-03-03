@@ -29,6 +29,8 @@
 #include "ai_general.h"
 #include <math.h>
 
+#define COOL_DOWN_TIME 4000
+
 /************************************************************************
 *																		*
 *  AI поведения обычного персонажа										*
@@ -47,13 +49,14 @@ public:
 
 protected:
 
-	CCharEntity* m_PChar;	
+	CCharEntity* m_PChar;
 
 	uint32 m_AttackMessageTime;
+    uint32 m_LastCoolDown;
 
 	void ActionEngage();
 	void ActionDisengage();
-	void ActionFall();	
+	void ActionFall();
 	void ActionDeath();
 	void ActionItemStart();
 	void ActionItemUsing();
@@ -78,6 +81,7 @@ protected:
     void MagicStartError(uint16 error);
     void WeaponSkillStartError(uint16 error);
 
+    bool WaitingForCoolDown();
 	bool IsMobOwner(CBattleEntity* PBattleTarget);
 	bool GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget);
 };

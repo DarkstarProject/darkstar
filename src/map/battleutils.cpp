@@ -212,6 +212,8 @@ void LoadMobSkillsList()
 			PMobSkill->setName(Sql_GetData(SqlHandle,3));
 			PMobSkill->setAoe(Sql_GetIntData(SqlHandle,4));
 			PMobSkill->setDistance(Sql_GetFloatData(SqlHandle,5));
+
+            // don't think this is ever set in db
 			PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle,6));
 			PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle,7));
 			PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle,8));

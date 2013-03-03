@@ -645,7 +645,8 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	if(shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
 		targShadows = target:getMod(MOD_UTSUSEMI);
 		shadowType = MOD_UTSUSEMI;
-		if(targShadows==0)then --try blink, as utsusemi always overwrites blink this is okay
+
+		if(targShadows==0) then --try blink, as utsusemi always overwrites blink this is okay
 			targShadows = target:getMod(MOD_BLINK);
 			shadowType = MOD_BLINK;
 		end
@@ -654,6 +655,12 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 		--Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
 			if(targShadows >= shadowbehav) then --no damage, just suck the shadows
 				skill:setMsg(MSG_SHADOW);
+
+				if(shadowbehav > 1 and math.random() < 0.5 and shadowType == MOD_UTSUSEMI and target:getMainJob() == JOB_NIN) then
+					-- ninjas can sometimes take one less shadow if 1+
+					shadowbehav = shadowbehav - 1;
+				end
+
 				local shadowsLeft = targShadows-shadowbehav;
 				target:setMod(shadowType, shadowsLeft);
 				if(shadowsLeft > 0 and shadowType == MOD_UTSUSEMI) then --update icon
