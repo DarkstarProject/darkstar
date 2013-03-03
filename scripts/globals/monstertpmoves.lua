@@ -653,13 +653,13 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 
 		if(targShadows>0) then
 		--Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
+
+			if(shadowType == MOD_UTSUSEMI and skill:isAoE()) then
+				shadowbehav = MobTakeAoEShadow(mob, target, shadowbehav);
+			end
+
 			if(targShadows >= shadowbehav) then --no damage, just suck the shadows
 				skill:setMsg(MSG_SHADOW);
-
-				if(shadowbehav > 1 and math.random() < 0.5 and shadowType == MOD_UTSUSEMI and target:getMainJob() == JOB_NIN) then
-					-- ninjas can sometimes take one less shadow if 1+
-					shadowbehav = shadowbehav - 1;
-				end
 
 				local shadowsLeft = targShadows-shadowbehav;
 				target:setMod(shadowType, shadowsLeft);
@@ -733,7 +733,6 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	if(skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
 		return 0;
 	end
-
 
 	--handling phalanx
 	dmg = dmg - target:getMod(MOD_PHALANX);
@@ -827,6 +826,25 @@ function MobBuffMove(mob, typeEffect, power, tick, duration)
 	    return MSG_BUFF;
     end
 	return MSG_NO_EFFECT;
+end;
+
+function MobTakeAoEShadow(mob, target, max)
+
+	-- local chance = 75;
+
+	-- local targetSkill = target:getSkillLevel(NINJUTSU_SKILL);
+	-- local mobSkill = getSkillLvl(3, mob:getMainLvl());
+
+	-- this is completely crap and should be using actual nin skill
+	-- TODO fix this
+	if(target:getMainJob() == JOB_NIN and math.random() < 0.6) then
+		max = max - 1;
+		if(max < 1) then
+			max = 1;
+		end
+	end
+
+	return math.random(1, max);
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)

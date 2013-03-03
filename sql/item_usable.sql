@@ -1429,8 +1429,8 @@ INSERT INTO `item_usable` VALUES (5672, 0, 'dried_berry', 1, 1, 26, 0, 0, 0, 0, 
 INSERT INTO `item_usable` VALUES (5673, 0, 'rolsin', 1, 1, 26, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5674, 0, 'aileens_delight', 1, 1, 25, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5675, 0, 'withered_rolanberry', 1, 1, 26, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (5676, 0, 'serving_of_mushroom_sautee', 1, 1, 0, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (5677, 0, 'serving_of_patriarch_sautee', 1, 1, 0, 0, 0, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (5676, 0, 'serving_of_mushroom_sautee', 1, 1, 27, 0, 0, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (5677, 0, 'serving_of_patriarch_sautee', 1, 1, 27, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5678, 0, 'mushroom_salad', 1, 1, 24, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5679, 0, 'cathedral_salad', 1, 1, 24, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (5680, 0, 'agaricus_mushroom', 1, 1, 27, 0, 0, 0, 0, 0);

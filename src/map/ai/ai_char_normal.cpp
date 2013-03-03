@@ -2588,10 +2588,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
         return;
 	}
 
-
-
-
-
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
 
@@ -2665,19 +2661,10 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
     // handle shadows
     uint8 shadowsTaken = 0;
-    uint8 totalHits = tpHitsLanded + extraHitsLanded;
+    uint8 totalHits = tpHitsLanded;
     //count number of shadows taken
-    while(totalHits && battleutils::IsAbsorbByShadow(m_PBattleSubTarget)){
-        if(extraHitsLanded){
-            extraHitsLanded--;
-        } else if(tpHitsLanded){
-            tpHitsLanded--;
-
-            // no more hits to absorb
-            if(tpHitsLanded == 0){
-                break;
-            }
-        }
+    while(totalHits && tpHitsLanded && battleutils::IsAbsorbByShadow(m_PBattleSubTarget)){
+        tpHitsLanded--;
         shadowsTaken++;
     }
 

@@ -69,6 +69,13 @@ inline int32 CLuaMobSkill::setMsg(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaMobSkill::isAoE(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+
+    lua_pushboolean( L, m_PLuaMobSkill->getAoe() > 0 );
+    return 1;
+}
 
 inline int32 CLuaMobSkill::getTotalTargets(lua_State *L)
 {
@@ -119,6 +126,7 @@ Lunar<CLuaMobSkill>::Register_t CLuaMobSkill::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaMobSkill,setMsg),
     LUNAR_DECLARE_METHOD(CLuaMobSkill,getMsg),
+    LUNAR_DECLARE_METHOD(CLuaMobSkill,isAoE),
   LUNAR_DECLARE_METHOD(CLuaMobSkill,getID),
 	LUNAR_DECLARE_METHOD(CLuaMobSkill,getTotalTargets),
 	LUNAR_DECLARE_METHOD(CLuaMobSkill,getTP),
