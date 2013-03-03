@@ -567,11 +567,12 @@ INSERT INTO `mob_spell_lists` VALUES ('Elemental_Dark', '18', '272', '33', '255'
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Dark', '18', '273', '31', '55');
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Dark', '18', '274', '56', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Dark', '18', '275', '45', '255');
--- INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '7', '16', '30');
--- INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '8', '31', '50');
--- INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '9', '51', '70');
-INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '10', '71', '90');
-INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '11', '91', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '1', '1', '10');
+INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '2', '11', '20');
+INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '3', '21', '40');
+INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '4', '41', '60');
+INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '5', '61', '79');
+INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '6', '80', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '21', '50', '94');
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '22', '95', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '23', '1', '30');
@@ -593,10 +594,6 @@ INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '49', '37', '56')
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '50', '57', '67');
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '51', '68', '75');
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '52', '76', '255');
-INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '53', '19', '255');
-INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '54', '28', '255');
-INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '55', '10', '255');
-INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '57', '40', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '108', '21', '43');
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '110', '44', '65');
 INSERT INTO `mob_spell_lists` VALUES ('Elemental_Light', '19', '111', '66', '85');
