@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
         else
             spell:setMsg(454);
 
-            tp = math.floor(math.random(40, 80) * resist);
+            tp = math.floor(math.random(20, 80) * resist);
 
             if(target:getTP() < tp) then
                 tp = target:getTP();

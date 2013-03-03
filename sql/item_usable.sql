@@ -317,7 +317,7 @@ INSERT INTO `item_usable` VALUES (4374, 0, 'sleepshroom', 1, 1, 27, 0, 0, 0, 0, 
 INSERT INTO `item_usable` VALUES (4375, 0, 'danceshroom', 1, 1, 27, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4376, 0, 'strip_of_meat_jerky', 1, 1, 28, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4377, 0, 'slice_of_coeurl_meat', 1, 1, 28, 0, 0, 0, 0, 0);
-INSERT INTO `item_usable` VALUES (4378, 0, 'jug_of_selbina_milk', 1, 1, 26, 0, 0, 0, 0, 0);
+INSERT INTO `item_usable` VALUES (4378, 0, 'jug_of_selbina_milk', 1, 1, 28, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4379, 0, 'cheval_salmon', 1, 1, 25, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4380, 0, 'smoked_salmon', 1, 1, 25, 0, 0, 0, 0, 0);
 INSERT INTO `item_usable` VALUES (4381, 0, 'meat_mithkabob', 1, 1, 28, 0, 0, 0, 0, 0);

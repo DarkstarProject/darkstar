@@ -1155,6 +1155,7 @@ void CAIMobDummy::ActionMagicFinish()
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL || m_PSpell == NULL);
 
 	apAction_t Action;
+	CBattleEntity* PTarget;
     m_PMob->m_ActionList.clear();
 
 	Action.ActionTarget = m_PBattleSubTarget;
@@ -1205,20 +1206,20 @@ void CAIMobDummy::ActionMagicFinish()
 		case PET_PARTY_TARGET:
 			for (uint8 i = 0; i < m_PBattleSubTarget->PMaster->PParty->members.size(); ++i) {
 				AddEntityForAoe(m_PBattleSubTarget->PMaster->PParty->members.at(i), Action);
+				PTarget = m_PBattleSubTarget->PMaster->PParty->members.at(i);
 
-				if (m_PBattleSubTarget->PMaster->PParty->members.at(i)->PPet != NULL) {
-					// TODO: Won't this double-hit pets if they're the target?
-					AddEntityForAoe(m_PBattleSubTarget->PMaster->PParty->members.at(i)->PPet, Action);
+				if (PTarget->PPet != NULL && m_PBattleSubTarget != PTarget->PPet) {
+					AddEntityForAoe(PTarget->PPet, Action);
 				}
 			}
 			break;
 		case PET_ALLIANCE_TARGET:
 			for (uint8 a = 0; a < m_PBattleSubTarget->PMaster->PParty->m_PAlliance->partyList.size(); ++a) {
 				for (uint8 i = 0; i < m_PBattleSubTarget->PMaster->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) {
-					CBattleEntity* PTarget = m_PBattleSubTarget->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i);
+					PTarget = m_PBattleSubTarget->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 					AddEntityForAoe(PTarget, Action);
 
-					if (PTarget->PPet != NULL) {
+					if (PTarget->PPet != NULL && m_PBattleSubTarget != PTarget->PPet) {
 						AddEntityForAoe(PTarget->PPet, Action);
 					}
 				}
@@ -1235,7 +1236,7 @@ void CAIMobDummy::ActionMagicFinish()
     uint16 actionsLength = m_PMob->m_ActionList.size();
 	for (uint32 i = 0; i < actionsLength; ++i)
 	{
-        CBattleEntity* PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
+        PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
 
 		if (m_PSpell->canTargetEnemy()) {
 			// wipe shadows if needed

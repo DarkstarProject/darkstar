@@ -71,7 +71,9 @@ std::vector<Recast_t*>* CRecastContainer::GetRecastList(RECASTTYPE type)
     }
     //Unhandled Scenario
 	DSP_DEBUG_BREAK_IF(true);
-	return &std::vector<Recast_t*>::vector();
+    return NULL;
+    // not working on linux
+	// return &std::vector<Recast_t*>::vector();
 }
 
 /************************************************************************
@@ -101,7 +103,7 @@ void CRecastContainer::Del(RECASTTYPE type)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
-    for (uint16 i = 0; i < PRecastList->size(); ++i) 
+    for (uint16 i = 0; i < PRecastList->size(); ++i)
 	{
         delete PRecastList->at(i);
 	}
@@ -118,7 +120,7 @@ void CRecastContainer::Del(RECASTTYPE type, uint16 id)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
-    for (uint16 i = 0; i < PRecastList->size(); ++i) 
+    for (uint16 i = 0; i < PRecastList->size(); ++i)
 	{
         if (PRecastList->at(i)->ID == id)
         {
@@ -139,7 +141,7 @@ bool CRecastContainer::Has(RECASTTYPE type, uint16 id)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
-    for (uint16 i = 0; i < PRecastList->size(); ++i) 
+    for (uint16 i = 0; i < PRecastList->size(); ++i)
 	{
         if (PRecastList->at(i)->ID == id)
         {

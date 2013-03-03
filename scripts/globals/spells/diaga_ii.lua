@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
 		final = 1;
 	end
 	-- Calculate duration.
-	duration = 30;
+	duration = 120;
 
 	-- Check for Bio.
 	bio = target:getStatusEffect(EFFECT_BIO);

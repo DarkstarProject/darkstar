@@ -157,7 +157,7 @@ uint16 CMobSkill::getAoEMsg()
         case 187:
             return 281;
         case 188:
-            return 63;
+            return 282;
         case 189:
             return 283;
         case 225:
