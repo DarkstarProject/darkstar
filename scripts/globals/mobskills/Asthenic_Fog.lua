@@ -19,7 +19,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_DROWN;
 
-	skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 15, 3, 120));
+	skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 25, 3, 120));
 
 	return typeEffect;
 end;
