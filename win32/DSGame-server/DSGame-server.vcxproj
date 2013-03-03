@@ -59,8 +59,8 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmysql.lib;lua5.1.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\$(ProjectName).exe</OutputFile>
+      <AdditionalDependencies>libmysql.lib;lua51-d.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -82,8 +82,8 @@
       <AdditionalIncludeDirectories>$(VCInstallDir)mysql</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmysql.lib;lua5.1.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\$(ProjectName).exe</OutputFile>
+      <AdditionalDependencies>libmysql.lib;lua51.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
