@@ -4495,7 +4495,7 @@ inline int32 CLuaBaseEntity::lockEquipSlot(lua_State *L)
     PChar->pushPacket(new CEquipPacket(0, SLOT));
     PChar->pushPacket(new CCharJobsPacket(PChar));
 
-    if (PChar->status == STATUS_NORMAL) PChar->status == STATUS_UPDATE;
+    if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
     return 0;
 }
 
@@ -4521,7 +4521,7 @@ inline int32 CLuaBaseEntity::unlockEquipSlot(lua_State *L)
     PChar->m_EquipBlock &= ~(1 << SLOT);
     PChar->pushPacket(new CCharJobsPacket(PChar));
 
-    if (PChar->status == STATUS_NORMAL) PChar->status == STATUS_UPDATE;
+    if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
     return 0;
 }
 
@@ -4806,7 +4806,7 @@ inline int32 CLuaBaseEntity::isMobType(lua_State *L)
 {
    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
-   DSP_DEBUG_BREAK_IF(!m_PBaseEntity->objtype & TYPE_NPC);
+   DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_PC || m_PBaseEntity->objtype == TYPE_SHIP);
 
    CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
    if (PMob->m_Type & lua_tointeger(L,1))
@@ -5136,6 +5136,8 @@ inline int32 CLuaBaseEntity::getWeaponSkillType(lua_State *L)
 		lua_pushinteger( L, weapon->getSkillType() );
 		return 1;
 	}
+	ShowError(CL_RED"lua::getWeaponSkillType :: Invalid slot specified!" CL_RESET);
+	return 0;
 }
 
 //==========================================================//

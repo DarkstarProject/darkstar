@@ -189,7 +189,7 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
             charutils::SaveCharStats(PMember);
             charutils::SaveCharEquip(PMember);
 
-            if (PMember->status == STATUS_NORMAL) PMember->status == STATUS_UPDATE;
+            if (PMember->status == STATUS_NORMAL) PMember->status = STATUS_UPDATE;
 
             PMember->pushPacket(new CInventoryFinishPacket());
             PMember->pushPacket(new CCharUpdatePacket(PMember));
@@ -248,7 +248,7 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
             charutils::SaveCharStats(PMember);
             charutils::SaveCharEquip(PMember);
 
-            if (PMember->status == STATUS_NORMAL) PMember->status == STATUS_UPDATE;
+            if (PMember->status == STATUS_NORMAL) PMember->status = STATUS_UPDATE;
 
             PMember->pushPacket(new CInventoryFinishPacket());
             PMember->pushPacket(new CCharUpdatePacket(PMember));

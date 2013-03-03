@@ -559,7 +559,11 @@ int32 setMobPos(lua_State *L)
 				return 1;
 			} 
 		}
+		lua_pushnil(L);
+		return 0;
 	}
+	ShowError(CL_RED"setMobPos :: Mob ID is not valid." CL_RESET);
+	return 1;
 }
 
 

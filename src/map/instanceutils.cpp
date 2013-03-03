@@ -263,52 +263,62 @@ namespace instanceutils{
 	/*************************************************************
 	Returns the losing exit position for this BCNM.
 	****************************************************************/
-	int* getLosePosition(CInstance* instance){
-		if(instance==NULL){return NULL;}
+	void getLosePosition(CInstance* instance, int** pPosition){
+		if(instance==NULL)
+		{
+			pPosition = NULL;
+			return;
+		}
 		int position [4] = {0,0,0,0};
 
 		switch(instance->getZoneId()){
 		case 139: //Horlais Peak
 			position[0]=-503; position[1]=158; position[2]=-212; position[3]=131;
-			return position;
+			break;
 		}
+		*pPosition = position;
 	}
 
-	int* getStartPosition(uint8 zoneid){
+	void getStartPosition(uint8 zoneid, int** pPosition){
 		int position[4] = {0,0,0,0};
 
 		switch(zoneid){
 		case 139: //Horlais Peak
 			position[0]=-503; position[1]=158; position[2]=-212; position[3]=131;
-			return position;
+			break;
 		case 144: //Waug. Shrine
 			position[0]=-361; position[1]=100; position[2]=-260; position[3]=131;
-			return position;
+			break;
 		case 146: //Balgas Dias
 			position[0]=317; position[1]=-126; position[2]=380; position[3]=131;
-			return position;
+			break;
 		case 165: //Throne Room
 			position[0]=114; position[1]=-8; position[2]=0; position[3]=131;
-			return position;
+			break;
 		case 206: //QuBia Arena
 			position[0]=-241; position[1]=-26; position[2]=20; position[3]=131;
-			return position;
+			break;
 		}
-		return NULL;
+		*pPosition = position;
 	}
 
 	/*************************************************************
 	Returns the winning exit position for this BCNM.
 	****************************************************************/
-	int* getWinPosition(CInstance* instance){
-		if(instance==NULL){return NULL;}
+	void getWinPosition(CInstance* instance, int** pPosition){
+		if(instance==NULL)
+		{
+			pPosition = NULL;
+			return;
+		}
 		int position [4] = {0,0,0,0};
 
 		switch(instance->getZoneId()){
 		case 139: //Horlais Peak
 			position[0]=445; position[1]=-38; position[2]=-19; position[3]=200;
-			return position;
+			break;
 		}
+		*pPosition = position;
 	}
 
 

@@ -188,6 +188,7 @@ int16 CItemArmor::getModifier(uint16 mod)
 			return modList.at(i)->getModAmount();
 		}
 	}
+	return 0;
 }
 
 void CItemArmor::addLatent(CLatentEffect* latent)

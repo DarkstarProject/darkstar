@@ -241,6 +241,9 @@ uint16 CBattleEntity::GetMainWeaponDmg()
 	{
 		return m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RATING);
 	}
+	//Unhandled Scenario
+	DSP_DEBUG_BREAK_IF(true);
+	return 0;
 }
 
 uint16 CBattleEntity::GetSubWeaponDmg()
@@ -249,6 +252,9 @@ uint16 CBattleEntity::GetSubWeaponDmg()
 	{
 		return m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RATING);
 	}
+	//Unhandled Scenario
+	DSP_DEBUG_BREAK_IF(true);
+	return 0;
 }
 
 uint16 CBattleEntity::GetRangedWeaponDmg()
@@ -256,13 +262,13 @@ uint16 CBattleEntity::GetRangedWeaponDmg()
 	uint8 dmg = 0;
 	if( m_Weapons[SLOT_RANGED] )
 	{
-		dmg += m_Weapons[SLOT_RANGED]->getDamage() + getMod(MOD_RANGED_DMG_RATING);
+		dmg += m_Weapons[SLOT_RANGED]->getDamage();
 	}
 	if( m_Weapons[SLOT_AMMO] )
 	{
 		dmg += m_Weapons[SLOT_AMMO]->getDamage();
 	}
-	return dmg;
+	return dmg + getMod(MOD_RANGED_DMG_RATING);
 }
 
 uint16 CBattleEntity::GetMainWeaponRank()
@@ -271,6 +277,9 @@ uint16 CBattleEntity::GetMainWeaponRank()
 	{
 		return (m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RANK)) / 9;
 	}
+	//Unhandled Scenario
+	DSP_DEBUG_BREAK_IF(true);
+	return 0;
 }
 
 uint16 CBattleEntity::GetSubWeaponRank()
@@ -279,6 +288,9 @@ uint16 CBattleEntity::GetSubWeaponRank()
 	{
 		return (m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RANK)) / 9;
 	}
+	//Unhandled Scenario
+	DSP_DEBUG_BREAK_IF(true);
+	return 0;
 }
 
 uint16 CBattleEntity::GetRangedWeaponRank()
@@ -287,6 +299,9 @@ uint16 CBattleEntity::GetRangedWeaponRank()
 	{
 		return (m_Weapons[SLOT_RANGED]->getDamage() + getMod(MOD_RANGED_DMG_RANK)) / 9;
 	}
+	//Unhandled Scenario
+	DSP_DEBUG_BREAK_IF(true);
+	return 0;
 }
 
 /************************************************************************

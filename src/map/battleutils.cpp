@@ -393,6 +393,9 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
 		PAttacker->addModifier(MOD_ENSPELL_DMG,1);
 		return PAttacker->getMod(MOD_ENSPELL_DMG)-1;
 	}
+	//Unhandled Scenario
+	DSP_DEBUG_BREAK_IF(true);
+	return 0;
 }
 
 
@@ -3915,6 +3918,9 @@ TARGET_PARTY_TYPE getAvailableAoeTargets(CBattleEntity* PTarget)
 
 			break;
 	}
+	//Unhandled Scenario
+	DSP_DEBUG_BREAK_IF(true);
+	return SOLO_TARGET;
 }
 
 
@@ -4017,6 +4023,9 @@ EFFECT getCorsairRollEffect(uint16 id)
 	case ABILITY_SCHOLARS_ROLL:
 		return EFFECT_SCHOLARS_ROLL;
 	}
+	//Unhandled Scenario
+	DSP_DEBUG_BREAK_IF(true);
+	return EFFECT_BUST;
 }
 
 

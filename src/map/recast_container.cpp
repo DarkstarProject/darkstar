@@ -69,7 +69,9 @@ std::vector<Recast_t*>* CRecastContainer::GetRecastList(RECASTTYPE type)
         case RECAST_ABILITY: return &RecastAbilityList;
         case RECAST_ITEM:    return &RecastItemList;
     }
-    DSP_DEBUG_BREAK_IF(true);
+    //Unhandled Scenario
+	DSP_DEBUG_BREAK_IF(true);
+	return &std::vector<Recast_t*>::vector();
 }
 
 /************************************************************************
