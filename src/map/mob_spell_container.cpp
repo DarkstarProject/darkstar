@@ -100,7 +100,7 @@ int16 CMobSpellContainer::GetSpell()
 {
   int16 spellId = -1;
   // prioritize curing if health low enough
-  if(HasHealSpells() && m_PMob->GetHPP() <= 25 && rand()%100 < 75){
+  if(HasHealSpells() && m_PMob->GetHPP() <= 25 && rand()%100 < 40){
     return GetHealSpell();
   }
 
