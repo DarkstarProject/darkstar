@@ -12915,7 +12915,7 @@ INSERT INTO `mob_droplist` VALUES(2035, 0, 19102, 2);
 INSERT INTO `mob_droplist` VALUES(2036, 0, 852, 38);
 INSERT INTO `mob_droplist` VALUES(2036, 0, 926, 58);
 INSERT INTO `mob_droplist` VALUES(2036, 2, 4362, 0);
-INSERT INTO `mob_droplist` VALUES(2036, 0, 15351, 6);
+INSERT INTO `mob_droplist` VALUES(2036, 0, 15351, 7);
 INSERT INTO `mob_droplist` VALUES(2037, 0, 560, 15);
 INSERT INTO `mob_droplist` VALUES(2038, 0, 17742, 2);
 INSERT INTO `mob_droplist` VALUES(2038, 0, 17743, 2);

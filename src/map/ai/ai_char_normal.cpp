@@ -427,8 +427,6 @@ void CAICharNormal::ActionItemStart()
 	DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetType() != UCONTAINER_USEITEM);
 	DSP_DEBUG_BREAK_IF(m_PChar->UContainer->GetItem(0) == NULL);
 
-    if(WaitingForCoolDown()) return;
-
 	m_PItemUsable = (CItemUsable*)m_PChar->UContainer->GetItem(0);
 	m_PChar->UContainer->Clean();
 
@@ -614,7 +612,6 @@ void CAICharNormal::ActionItemFinish()
 		m_PItemUsable = NULL;
 		m_PBattleSubTarget = NULL;
 
-        m_LastCoolDown = m_Tick;
 	}
 }
 
@@ -1078,7 +1075,10 @@ void CAICharNormal::ActionMagicStart()
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
-    if(WaitingForCoolDown()) return;
+    if(m_Tick - m_LastCoolDown < COOL_DOWN_TIME){
+        MagicStartError(94);
+        return;
+    }
 
     // mute 049
 	if (!charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
@@ -3358,15 +3358,6 @@ void CAICharNormal::ActionAttack()
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 		}
 	}
-}
-
-bool CAICharNormal::WaitingForCoolDown()
-{
-    if( m_Tick - m_LastCoolDown < COOL_DOWN_TIME){
-        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 94));
-        return true;
-    }
-    return false;
 }
 
 /************************************************************************

@@ -81,7 +81,6 @@ protected:
     void MagicStartError(uint16 error);
     void WeaponSkillStartError(uint16 error);
 
-    bool WaitingForCoolDown();
 	bool IsMobOwner(CBattleEntity* PBattleTarget);
 	bool GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget);
 };
