@@ -853,7 +853,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 			{
 				if (PChar->animation != ANIMATION_CHOCOBO &&
 				   (PChar->animation == ANIMATION_HEALING ||
-				   (int8)(PChar->GetMLevel() - PCurrentMob->GetMLevel()) < 10) &&
+				   (uint16)(charutils::GetRealExp(PChar->GetMLevel(),PCurrentMob->GetMLevel())) > 50) &&
 				   (VerticalDistance < 8))
 				{
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT &&

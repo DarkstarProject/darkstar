@@ -59,7 +59,7 @@ function onTrigger(player,npc)
   end
 
   local loadintro = player:getVar("MoghouseExplication");
-    if (loadintro ==0) then
+    if (loadintro == 1) then
       player:startEvent(0x7530);
     else
       player:sendMenu(1);
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 0x7530) then
-		player:setVar("MoghouseExplication",1);
+		player:setVar("MoghouseExplication",0);
 	end
 end;
 

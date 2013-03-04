@@ -222,4 +222,7 @@ function CharCreate(player)
 	--SET TITLE
 	player:addTitle(NEW_ADVENTURER);
 
+	-- Needs Moghouse Intro
+	player:setVar("MoghouseExplication",1);
+
 end;
