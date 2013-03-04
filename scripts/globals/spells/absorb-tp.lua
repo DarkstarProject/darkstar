@@ -13,25 +13,35 @@ require("scripts/globals/magic");
 
 function onSpellCast(caster,target,spell)
 
-    local tp = 0;
-        bonus = AffinityBonus(caster,spell);
-        dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-        resist = applyResistance(caster,spell,target,dINT,37,bonus);
-        if(resist <= 0.125) then
-            spell:setMsg(85);
-        else
-            spell:setMsg(454);
+    dmg = math.random(10, 80);
+    --get resist multiplier (1x if no resist)
+    resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),DARK_MAGIC_SKILL,1.0);
+    --get the resisted damage
+    dmg = dmg*resist;
+    --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
+    dmg = addBonuses(caster,spell,target,dmg);
+    --add in target adjustment
+    dmg = adjustForTarget(target,dmg);
+    --add in final adjustments
 
-            tp = math.floor(math.random(20, 80) * resist);
+    local cap = 120;
+    if (dmg > cap) then
+        dmg = cap;
+    end
 
-            if(target:getTP() < tp) then
-                tp = target:getTP();
-            end
+    if(resist <= 0.125) then
+        spell:setMsg(85);
+    else
+        spell:setMsg(454);
 
-            -- drain
-            caster:addTP(tp);
-            target:addTP(-tp);
-
+        if(target:getTP() < dmg) then
+            dmg = target:getTP();
         end
-    return tp;
+
+        -- drain
+        caster:addTP(dmg);
+        target:addTP(-dmg);
+
+    end
+    return dmg;
 end;
