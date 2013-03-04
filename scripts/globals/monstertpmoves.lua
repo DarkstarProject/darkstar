@@ -289,7 +289,7 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 
 	-- get elemental damage reduction
 	local defense = 1;
-	if(element >= 0) then
+	if(element > 0) then
 		defense = 1 - (target:getMod(resistMod[element]) + target:getMod(defenseMod[element])) / 256;
 
 		-- max defense is 50%
@@ -347,7 +347,7 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 	local magiceva = target:getMod(MOD_MEVA);
 
 	-- add elemental resistence
-	if(element >= 0) then
+	if(element > 0) then
 		magiceva = magiceva + target:getMod(resistMod[element]) + target:getMod(defenseMod[element]);
 	end
 
