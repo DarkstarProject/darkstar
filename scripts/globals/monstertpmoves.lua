@@ -394,7 +394,7 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 	-- this only increases chances for half / quarter resist
 	-- this eventually needs to be fixed
 	-- traits should be able to fully resist
-	if(effect ~= nil and effect >= 0) then
+	if(effect ~= nil and effect > 0) then
 		local effectres = 0;
 		if(effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
 			effectres = MOD_SLEEPRES;
@@ -581,7 +581,7 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 	end
 
 	-- elemental resistence
-	if(element ~= nil and element >= 0) then
+	if(element ~= nil and element > 0) then
 		-- no skill available, pass nil
 		local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
 
