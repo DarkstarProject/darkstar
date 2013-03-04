@@ -263,62 +263,50 @@ namespace instanceutils{
 	/*************************************************************
 	Returns the losing exit position for this BCNM.
 	****************************************************************/
-	void getLosePosition(CInstance* instance, int** pPosition){
+	void getLosePosition(CInstance* instance, int (&pPosition)[4]){
 		if(instance==NULL)
-		{
-			pPosition = NULL;
 			return;
-		}
-		int position [4] = {0,0,0,0};
 
 		switch(instance->getZoneId()){
 		case 139: //Horlais Peak
-			position[0]=-503; position[1]=158; position[2]=-212; position[3]=131;
+			pPosition[0]=-503; pPosition[1]=158; pPosition[2]=-212; pPosition[3]=131;
 			break;
 		}
-		*pPosition = position;
 	}
 
-	void getStartPosition(uint8 zoneid, int** pPosition){
-		int position[4] = {0,0,0,0};
+	void getStartPosition(uint8 zoneid, int (&pPosition)[4]){
 
 		switch(zoneid){
 		case 139: //Horlais Peak
-			position[0]=-503; position[1]=158; position[2]=-212; position[3]=131;
+			pPosition[0]=-503; pPosition[1]=158; pPosition[2]=-212; pPosition[3]=131;
 			break;
 		case 144: //Waug. Shrine
-			position[0]=-361; position[1]=100; position[2]=-260; position[3]=131;
+			pPosition[0]=-361; pPosition[1]=100; pPosition[2]=-260; pPosition[3]=131;
 			break;
 		case 146: //Balgas Dias
-			position[0]=317; position[1]=-126; position[2]=380; position[3]=131;
+			pPosition[0]=317; pPosition[1]=-126; pPosition[2]=380; pPosition[3]=131;
 			break;
 		case 165: //Throne Room
-			position[0]=114; position[1]=-8; position[2]=0; position[3]=131;
+			pPosition[0]=114; pPosition[1]=-8; pPosition[2]=0; pPosition[3]=131;
 			break;
 		case 206: //QuBia Arena
-			position[0]=-241; position[1]=-26; position[2]=20; position[3]=131;
+			pPosition[0]=-241; pPosition[1]=-26; pPosition[2]=20; pPosition[3]=131;
 			break;
 		}
-		*pPosition = position;
 	}
 
 	/*************************************************************
 	Returns the winning exit position for this BCNM.
 	****************************************************************/
-	void getWinPosition(CInstance* instance, int** pPosition){
+	void getWinPosition(CInstance* instance, int (&pPosition)[4]){
 		if(instance==NULL)
-		{
-			pPosition = NULL;
 			return;
-		}
-		int position [4] = {0,0,0,0};
 
 		switch(instance->getZoneId()){
 		case 139: //Horlais Peak
-			position[0]=445; position[1]=-38; position[2]=-19; position[3]=200;
+			pPosition[0]=445; pPosition[1]=-38; pPosition[2]=-19; pPosition[3]=200;
 			break;
 		}
-		*pPosition = position;
 	}
 
 

@@ -630,8 +630,8 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 
 		if(PChar->loc.destination==0){ //this player is disconnecting/logged out, so move them to the entrance
 			//move depending on zone
-			int* pos = new int[4];
-			instanceutils::getStartPosition(m_zoneID,&pos);
+			int pos[4] = {0,0,0,0};
+			instanceutils::getStartPosition(m_zoneID,pos);
 			if(pos!=NULL){
 				PChar->loc.p.x = pos[0];
 				PChar->loc.p.y = pos[1];
@@ -642,7 +642,6 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 			else{
 				ShowWarning("%s has disconnected from the BCNM but cannot move them to the lobby as the lobby position is unknown!\n",PChar->GetName());
 			}
-			delete[] pos;
 		}
 	}
 	else if(m_InstanceHandler != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS))
@@ -653,8 +652,8 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 
 		if(PChar->loc.destination==0){ //this player is disconnecting/logged out, so move them to the entrance
 			//move depending on zone
-			int* pos = new int[4];
-			instanceutils::getStartPosition(m_zoneID,&pos);
+			int pos[4] = {0,0,0,0};
+			instanceutils::getStartPosition(m_zoneID,pos);
 			if(pos!=NULL){
 				PChar->loc.p.x = pos[0];
 				PChar->loc.p.y = pos[1];
@@ -665,7 +664,6 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 			else{
 				ShowWarning("%s has disconnected from the BCNM but cannot move them to the lobby as the lobby position is unknown!\n",PChar->GetName());
 			}
-			delete[] pos;
 		}
 	}
 

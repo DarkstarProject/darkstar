@@ -31,9 +31,9 @@ class CInstance;
 class CInstanceHandler;
 
 namespace instanceutils{
-	void getLosePosition(CInstance* instance, int** pPosition); //returns x y z rot in that order
-	void getWinPosition(CInstance* instance, int** pPosition); //returns x y z rot in that order
-	void getStartPosition(uint8 zoneid, int** pPosition); //returns lobby position
+	void getLosePosition(CInstance* instance, int (&pPosition)[4]); //returns x y z rot in that order
+	void getWinPosition(CInstance* instance, int (&pPosition)[4]); //returns x y z rot in that order
+	void getStartPosition(uint8 zoneid, int (&pPosition)[4]); //returns lobby position
 	bool meetsWinningConditions(CInstance* instance, uint32 tick);
 	bool meetsLosingConditions(CInstance* instance, uint32 tick);
 	bool spawnMonstersForBcnm(CInstance* instance);
