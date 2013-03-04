@@ -307,7 +307,6 @@ void CInstance::cleanup(){
 	ShowDebug("bcnm cleanup id:%i inst:%i \n",this->getID(),this->getInstanceNumber());
 	//wipe enmity from all mobs in list if needed
 	for(int i=0; i<m_EnemyList.size(); i++){
-		m_EnemyList.at(i)->PEnmityContainer->Clear(0);
 		m_EnemyList.at(i)->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
 	}
 	//wipe mob list
@@ -447,8 +446,8 @@ void CInstance::cleanupDynamis(){
 		{
 			uint32 mobid = Sql_GetUIntData(SqlHandle,0);
 			CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-			PMob->PEnmityContainer->Clear(0);
 			PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
+			
 		}
 	}
 
