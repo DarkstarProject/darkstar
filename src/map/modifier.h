@@ -31,16 +31,16 @@ enum MODIFIER
 	MOD_NONE				= 0x00,
 
 	MOD_DEF					= 0x01,		// Target's Defense
-	MOD_HP					= 0x02,		// Target's HP 
+	MOD_HP					= 0x02,		// Target's HP
 	MOD_HPP					= 0x03,		// HP Percentage
 	MOD_CONVMPTOHP			= 0x04,		// MP -> HP (Cassie Earring)
 	MOD_MP					= 0x05,		// MP +/-
 	MOD_MPP					= 0x06,		// MP Percentage
-	MOD_CONVHPTOMP			= 0x07,		// HP -> MP 
+	MOD_CONVHPTOMP			= 0x07,		// HP -> MP
 
 	MOD_STR					= 0x08,		// Strength
 	MOD_DEX					= 0x09,		// Dexterity
-	MOD_VIT					= 0x0A,		// Vitality	
+	MOD_VIT					= 0x0A,		// Vitality
 	MOD_AGI					= 0x0B,		// Agility
 	MOD_INT					= 0x0C,		// Intelligence
 	MOD_MND					= 0x0D,		// Mind
@@ -89,9 +89,9 @@ enum MODIFIER
 	MOD_LIGHTACC			= 0x2E,		// Light Accuracy
 	MOD_DARKACC				= 0x2F,		// Dark Accuracy
 
-	MOD_WSACC				= 0x30,		// Weaponskill Accuracy 
+	MOD_WSACC				= 0x30,		// Weaponskill Accuracy
 
-// Resistance to damage type 
+// Resistance to damage type
 // Value is stored as a percentage of damage reduction (to within 1000)
 // Example: 1000 = 100%, 875 = 87.5%
 
@@ -179,7 +179,7 @@ enum MODIFIER
 	MOD_SYNERGY				= 0x88,
 	MOD_RIDING				= 0x89,
 
-// Chance you will not make an hq synth (Impossibility of HQ synth)	
+// Chance you will not make an hq synth (Impossibility of HQ synth)
 
 	MOD_ANTIHQ_WOOD			= 0x90,
 	MOD_ANTIHQ_SMITH		= 0x91,
@@ -192,7 +192,7 @@ enum MODIFIER
 
 // Damage / Crit Damage / Delay
 
-	MOD_DMG					= 0xA0,				// Damage Multiplier 
+	MOD_DMG					= 0xA0,				// Damage Multiplier
 	MOD_DMGPHYS				= 0xA1,				// Physical Damage Multiplier
 	MOD_DMGBREATH			= 0xA2,				// Breath Damage Multiplier
 	MOD_DMGMAGIC			= 0xA3,				// Magic Damage Multiplier - 256 base! (value of -24 means -24/256 magic damage taken)
@@ -206,7 +206,7 @@ enum MODIFIER
 	MOD_HASTE_GEAR			= 0x180,			// Haste (and Slow) from equipment - 1024 base! (256 cap)
 	MOD_SPELLINTERRUPT		= 0xA8,				// % Spell Interruption Rate
 	MOD_MOVE				= 0xA9,				// % Movement Speed
-	MOD_FASTCAST			= 0xAA,				// Increases Spell Cast Time (TRAIT) 
+	MOD_FASTCAST			= 0xAA,				// Increases Spell Cast Time (TRAIT)
 	MOD_DELAY				= 0xAB,				// Increase/Decrease Delay
 	MOD_RANGED_DELAY		= 0xAC,				// Increase/Decrease Ranged Delay
 	MOD_MARTIAL_ARTS		= 0xAD,				// The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT)
@@ -280,7 +280,7 @@ enum MODIFIER
 
 // White Mage
 	MOD_AFFLATUS_SOLACE		= 0x125,			// Pool of HP accumulated during Afflatus Solace
-	MOD_AFFLATUS_MISERY		= 0x126,			// Pool of HP accumulated during Afflatus Misery 
+	MOD_AFFLATUS_MISERY		= 0x126,			// Pool of HP accumulated during Afflatus Misery
 
 // Black Mage
 	MOD_CLEAR_MIND			= 0x127,			// Used in conjunction with MOD_HEALMP to increase amount between tics
@@ -300,7 +300,7 @@ enum MODIFIER
 // Dark Knight
 // Beastmaster
 	MOD_TAME				= 0x130,			// Additional percent chance to charm
-	MOD_CHARM				= 0x168,			// extends the charm time only, no effect of charm chance	
+	MOD_CHARM				= 0x168,			// extends the charm time only, no effect of charm chance
 	MOD_REWARD_HP_BONUS		 = 0x16C,			// Percent to add to reward HP healed. (364)
 
 // Bard
@@ -378,7 +378,7 @@ enum MODIFIER
 	MOD_ENSPELL_DMG			= 0x157,			//stores the base damage of the enspell before reductions
 	MOD_SPIKES_DMG			= 0x158,			//stores the base damage of the spikes before reductions
 
-	MOD_TP_BONUS			= 0x159, 
+	MOD_TP_BONUS			= 0x159,
 
 
 	MOD_FIRE_AFFINITY		= 0x15B,			//stores the amount of elemental affinity (elemental staves mostly)
@@ -409,16 +409,17 @@ enum MODIFIER
 	MOD_SUB_DMG_RANK		 = 0x17A,			//adds weapon rank to sub weapon
 	MOD_RANGED_DMG_RANK		 = 0x17B,			//adds weapon rank to ranged weapon
 	MOD_DELAYP				 = 0x17C,			//delay addition percent (does not affect tp gain)
-	MOD_RANGED_DELAYP		 = 0x17D			//ranged delay addition percent (does not affect tp gain)
+	MOD_RANGED_DELAYP		 = 0x17D,			//ranged delay addition percent (does not affect tp gain)
 
-//  Use these for new modifiers. 
-	
-	//SPARE_MOD				 = 0x181
-	//SPARE_MOD				 = 0x182
+	MOD_SHIELD_BASH			= 0x181,
+	MOD_KICK_DMG			= 0x182 			// increases kick attack damage
+
+//  Use these for new modifiers.
+
 	//SPARE_MOD				 = 0x183
 };
 
-#define MAX_MODIFIER	       0x181
+#define MAX_MODIFIER	       0x183
 
 
 
@@ -426,7 +427,7 @@ enum MODIFIER
 *  Modifier Class														*
 ************************************************************************/
 
-class CModifier 
+class CModifier
 {
 public:
 

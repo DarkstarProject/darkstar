@@ -53,7 +53,7 @@ INSERT INTO `traits` VALUES ('7', 'max hp boost', '2', '55', '2', '60');
 INSERT INTO `traits` VALUES ('23', 'martial arts', '2', '61', '173', '20');
 INSERT INTO `traits` VALUES ('67', 'subtle blow', '2', '65', '289', '5');
 INSERT INTO `traits` VALUES ('7', 'max hp boost', '2', '70', '2', '60');
-INSERT INTO `traits` VALUES ('66', 'kick attacks', '2', '71', '292', '13');
+INSERT INTO `traits` VALUES ('66', 'kick attacks', '2', '71', '292', '3');
 INSERT INTO `traits` VALUES ('23', 'martial arts', '2', '75', '173', '20');
 INSERT INTO `traits` VALUES ('73', 'invigorate', '2', '75', '0', '0');
 INSERT INTO `traits` VALUES ('74', 'penance', '2', '75', '0', '0');

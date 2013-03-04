@@ -3146,7 +3146,7 @@ void CAICharNormal::ActionAttack()
 				if (i != 0)
 				{
 
-					if (m_PBattleTarget->isDead() || m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_STUN))
+					if (m_PBattleTarget->isDead())
 					{
 						break;
 					}
@@ -3272,7 +3272,14 @@ void CAICharNormal::ActionAttack()
 							// get natural h2h damage (h2hSkill*0.11+3)
 							uint16 naturalH2hDmg = (float)(m_PChar->GetSkill(1) * 0.11f)+3;
 
-							damage = (uint16)((( (m_PChar->GetMainWeaponDmg()-3) + naturalH2hDmg + bonusDMG +
+                            int16 baseDamage = m_PChar->GetMainWeaponDmg()-3;
+
+                            if(Action.animation == 2 || Action.animation == 3){
+                                // this is a kick attack
+                                baseDamage = m_PChar->getMod(MOD_KICK_DMG);
+                            }
+
+							damage = (uint16)((( baseDamage + naturalH2hDmg + bonusDMG +
 									 battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 						}
 						else

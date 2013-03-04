@@ -799,6 +799,7 @@ MOD_EXP_BONUS			= 0x17E
 MOD_HASTE_ABILITY		= 0x17F
 MOD_HASTE_GEAR			= 0x180
 MOD_SHIELD_BASH     = 0x181
+MOD_KICK_DMG        = 0x182
 
 -----------------------------------
 -- Merit Definitions
