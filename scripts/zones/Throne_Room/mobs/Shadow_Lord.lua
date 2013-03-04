@@ -33,10 +33,6 @@ function onMobFight(mob,target)
 		
 			local changeTime, changeHP = mob:getExtraVar(2);
 		
-			print("HP:"..changeHP);
-			print("time:"..changeTime);
-			print("time2:"..mob:getBattleTime());
-		
 			if(mob:AnimationSub() == 0) then
 				mob:AnimationSub(1);
 				mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
