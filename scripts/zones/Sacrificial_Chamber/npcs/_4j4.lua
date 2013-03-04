@@ -3,14 +3,24 @@
 -- NPC:  Mahogany Door
 -- @pos 300 30 -324 163
 -------------------------------------
+package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
+package.loaded["scripts/globals/bcnm"] = nil;
+-------------------------------------
 
-require("scripts/globals/status");
+require("scripts/globals/bcnm");
+require("scripts/globals/missions");
+require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	
+	if(TradeBCNM(player,player:getZone(),trade,npc))then
+		return;
+	end
+	
 end;
 
 -----------------------------------
@@ -18,8 +28,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x7d03);
-	return 1;
+	
+	if(EventTriggerBCNM(player,npc))then
+		return 1;
+	end
+	
 end;
 
 -----------------------------------
@@ -29,6 +42,11 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
+	
+	if(EventUpdateBCNM(player,csid,option))then
+		return;
+	end
+	
 end;
 
 -----------------------------------
@@ -38,17 +56,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
-
-	pZone = player:getZone();
-
-	if(csid == 0x7d03 and option == 4) then
-		if(player:getVar(tostring(pZone) .. "_Fight") == 100) then
-			player:setVar("BCNM_Killed",0);
-			player:setVar("BCNM_Timer",0);
-		end
-		player:setVar(tostring(pZone) .. "_Runaway",1);
-		player:delStatusEffect(EFFECT_BATTLEFIELD);
-		player:setVar(tostring(pZone) .. "_Runaway",0)
+	
+	if(EventFinishBCNM(player,csid,option))then
+		return;
 	end
 	
 end;
