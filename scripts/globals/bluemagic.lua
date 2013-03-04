@@ -1,4 +1,5 @@
 require("scripts/globals/status")
+require("scripts/globals/magic")
 
 BLUE_SKILL = 43;
 
@@ -40,6 +41,10 @@ SC_GRAVITATION = 11;
 
 SC_DARK = 12;
 SC_LIGHT = 13;
+
+INT_BASED = 1;
+CHR_BASED = 2;
+MND_BASED = 3;
 
 -- Get the damage for a blue magic physical spell.
 -- caster - The entity casting the spell.
@@ -146,6 +151,56 @@ function BluePhysicalSpell(caster, target, spell, params)
     --print("Hits landed "..hitslanded.."/"..hitsdone.." for total damage: "..finaldmg);
     
     return finaldmg;
+end;
+
+-- Blue Magical type spells
+
+function BlueMagicalSpell(caster, target, spell, params, statMod)
+	local D = caster:getMainLvl() + 2;
+	
+    if (D > params.duppercap) then
+        D = params.duppercap;
+    end
+	
+	local ST = BlueGetWsc(caster, params); -- According to Wiki ST is the same as WSC, essentially Blue mage spells that are magical use the dmg formula of Magical type Weapon skills
+	
+	if(caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
+		ST = ST * 2;
+	end
+	
+	local convergenceBonus = 1.0;
+	if(caster:hasStatusEffect(EFFECT_CONVERGENCE)) then
+		convergenceEffect = getStatusEffect(EFFECT_CONVERGENCE);
+		local convLvl = convergenceEffect:getPower();
+		if(convLvl == 1) then
+			convergenceBonus = 1.05;
+		elseif(convLvl == 2) then
+			convergenceBonus = 1.1;
+		elseif(convLvl == 3) then
+			convergenceBonus = 1.15;
+		end
+	end
+	
+	local statBonus = 0;
+	if(statMod == INT_BASED) then -- Stat mod is INT
+		statBonus = (caster:getStat(MOD_INT) - target:getStat(MOD_INT))* params.tMultiplier;
+	elseif(statMod == CHR_BASED) then -- Stat mod is CHR
+		statBonus = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR))* params.tMultiplier;
+	elseif(statMod == MND_BASED) then -- Stat mod is MND
+		statBonus = (caster:getStat(MOD_MND) - target:getStat(MOD_MND))* params.tMultiplier;
+	end
+	
+	D =(((D + ST) * params.multiplier * convergenceBonus) + statBonus);
+	
+	-- At this point according to wiki we apply standard magic attack calculations
+
+	local magicAttack = 1.0;
+	local multTargetReduction = 1.0; -- TODO: Make this dynamically change, temp static till implemented.
+	magicAttack = math.floor(D * multTargetReduction);
+	magicAttack = math.floor(magicAttack * applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0));
+	dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
+
+	return dmg;
 end;
 
 function BlueFinalAdjustments(caster, target, spell, dmg, params)
@@ -308,6 +363,35 @@ function BlueGetHitRate(attacker,target,capHitRate)
 		end
 	end
 	return hitrate;
+end;
+
+-- Function to stagger duration of effects by using the resistance to change the value
+
+function getBlueEffectDuration(caster,resist,effect)
+
+	local duration = 0;
+	
+	if(resist == 0.125) then
+		resist = 1;
+	elseif(resist == 0.25) then
+		resist = 2;
+	elseif(resist == 0.5) then
+		resist = 3;
+	else
+		resist = 4;
+	end
+	
+	if(effect == EFFECT_BIND) then
+		duration = math.random(0,5) + resist * 5;
+	elseif(effect == EFFECT_STUN) then
+		duration = math.random(2,3) + resist; 
+	elseif(effect == EFFECT_WEIGHT) then
+		duration = math.random(20,24) + resist * 9; -- 30-60
+	elseif(effect == EFFECT_PARALYSIS) then
+		duration = math.random(50,60) + resist * 15; --60- 120
+	end
+	printf("Duration of stun is %i",duration);
+	return duration;
 end;
 
 --obtains alpha, used for working out WSC
