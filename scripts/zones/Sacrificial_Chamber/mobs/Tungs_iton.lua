@@ -16,15 +16,11 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
+	local mobid = mob:getID();
 
-	rand = math.random(1,2);
-	
-	if(rand == 1) then
-		SpawnMob(17444868); -- elemental
-	else
-		SpawnMob(17444869); -- avatar
+	for i=mobid-1,mobid+2 do
+		GetMobByID(i):updateEnmity(target);
 	end
-	
 end;
 
 -----------------------------------
@@ -32,11 +28,10 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
-	if(GetMobAction(17444868) ~= 0) then
-		DespawnMob(17444868);
-	elseif(GetMobAction(17444869) ~= 0) then
-		DespawnMob(17444869);
+	local elemental = mob:getID()+1;
+
+	if(GetMobAction(elemental) ~= 0) then
+		DespawnMob(elemental);
 	end
-	
+
 end;

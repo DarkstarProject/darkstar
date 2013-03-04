@@ -733,8 +733,9 @@ INSERT INTO `mob_skill` VALUES (530,243,458,'Lateral_Slash', 0, 7.0, 2000, 1000,
 INSERT INTO `mob_skill` VALUES (531,243,459,'Vertical_Slash', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (532,243,460,'Throat_Stab', 0, 3.4, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (664,243,503,'Everyones_Grudge', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (665,243,504,'Everyones_Rancor', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (665,243,504,'Everyones_Rancor', 0, 7.0, 2000, 1000, 4, 0); -- Certain NMs only
 
+-- Golden-Tongued Culberry (Different mag resists)
 INSERT INTO `mob_skill` VALUES (527,244,455,'Words_of_Bane', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (528,244,456,'Sigh', 0, 7.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (529,244,457,'Light_of_Penance', 0, 7.0, 2000, 1500, 4, 0);
@@ -742,7 +743,29 @@ INSERT INTO `mob_skill` VALUES (530,244,458,'Lateral_Slash', 0, 7.0, 2000, 1000,
 INSERT INTO `mob_skill` VALUES (531,244,459,'Vertical_Slash', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (532,244,460,'Throat_Stab', 0, 3.4, 2000, 2000, 4, 0);
 INSERT INTO `mob_skill` VALUES (664,244,503,'Everyones_Grudge', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (665,244,504,'Everyones_Rancor', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (665,244,504,'Everyones_Rancor', 0, 7.0, 2000, 1000, 4, 0); -- Certain NMs only
+
+-- Grav'iton
+INSERT INTO `mob_skill` VALUES (527,282,455,'Words_of_Bane', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (528,282,456,'Sigh', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (529,282,457,'Light_of_Penance', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (530,282,458,'Lateral_Slash', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (531,282,459,'Vertical_Slash', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (532,282,460,'Throat_Stab', 0, 3.4, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (664,282,503,'Everyones_Grudge', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (665,282,504,'Everyones_Rancor', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (0,282,432,'Two_Hour', 1, 15.0, 2000, 1000, 4, 0);
+
+-- ZM4 Tonberries
+INSERT INTO `mob_skill` VALUES (527,336,455,'Words_of_Bane', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (528,336,456,'Sigh', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (529,336,457,'Light_of_Penance', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (530,336,458,'Lateral_Slash', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (531,336,459,'Vertical_Slash', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (532,336,460,'Throat_Stab', 0, 3.4, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (664,336,503,'Everyones_Grudge', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (0,336,432,'Two_Hour', 1, 15.0, 2000, 1000, 4, 0);
+
 -- Antica
 INSERT INTO `mob_skill` VALUES (535,25,463,'Magnetite_Cloud', 4, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (536,25,464,'Sandstorm', 1, 10.0, 2000, 1000, 4, 0);

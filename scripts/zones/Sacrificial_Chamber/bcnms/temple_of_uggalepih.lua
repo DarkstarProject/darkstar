@@ -15,6 +15,20 @@ require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)
+	local randnum = math.random(1,3);
+	local elemental = GetMobByID(17444868 + ((instance:getInstanceNumber() - 1) * 5));
+
+	-- TODO: Pet's magic resistance should probably change.
+	if (randnum == 1) then -- Fire
+		elemental:changeSkin(32);
+		elemental:setSpellList(17);
+	elseif (randnum == 2) then -- Water
+		elemental:changeSkin(34);
+		elemental:setSpellList(15);
+	elseif (randnum == 3) then -- Light
+		elemental:changeSkin(38);
+		elemental:setSpellList(19);
+	end
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
@@ -52,8 +66,8 @@ function onEventUpdate(player,csid,option)
 	Loading those cutscenes onEventFinish also does not work, because of the "walk out" scene at the end.
 	
 	This is not a proper fix, this is not correct, but players are getting stuck, and it fixes that.]]
-	if (csid = 32001 and option == 6) then 
-		player:eventUpdate(0);
+	if (csid == 32001 and option == 6) then 
+		player:updateEvent(0);
 	end
 end;
 

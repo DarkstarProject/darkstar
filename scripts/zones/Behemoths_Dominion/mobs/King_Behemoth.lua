@@ -11,8 +11,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:addStatusEffect(EFFECT_REGEN,3,50,0);
-	mob:addStatusEffect(EFFECT_REGAIN,3,15,0);
+	mob:addStatusEffect(EFFECT_REGEN,50,3,0);
+	mob:addStatusEffect(EFFECT_REGAIN,15,3,0);
 end;
 
 -----------------------------------

@@ -12,6 +12,18 @@ function OnMobSpawn(mob)
 end;
 
 -----------------------------------
+-- onMobEngaged
+-----------------------------------
+
+function onMobEngaged(mob,target)
+	local mobid = mob:getID();
+
+	for i=mobid-1,mobid+2 do
+		GetMobByID(i):updateEnmity(target);
+	end
+end;
+
+-----------------------------------
 -- onMobDeath Action
 -----------------------------------
 

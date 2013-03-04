@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
--- NPC:  Grav'Iton
+-- NPC:  Tonberry's Elemental
 -- Zilart Mission 4 BCNM Fight
 -----------------------------------
 
@@ -18,7 +18,7 @@ end;
 function onMobEngaged(mob,target)
 	local mobid = mob:getID();
 
-	for i=mobid+1,mobid+3 do
+	for i=mobid-3,mobid-1 do
 		GetMobByID(i):updateEnmity(target);
 	end
 end;
