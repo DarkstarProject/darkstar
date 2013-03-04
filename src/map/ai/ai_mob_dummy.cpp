@@ -177,7 +177,7 @@ void CAIMobDummy::ActionRoaming()
 void CAIMobDummy::ActionEngage()
 {
 	m_PMob->animation = ANIMATION_ATTACK;
-
+	m_StartBattle = m_Tick;
 	m_ActionType = ACTION_ATTACK;
 	m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
 	m_firstSpell = true;

@@ -400,6 +400,10 @@ public:
 	int32 SetMagicCastingEnabled(lua_State*);// halt/resumes casting magic
 	int32 SetMobAbilityEnabled(lua_State*);	 // halt/resumes mob skills
 	int32 updateTarget(lua_State*);					 // Force mob to update target from enmity container (ie after updateEnmity)
+
+	int32 getExtraVar(lua_State*);
+	int32 setExtraVar(lua_State*);
+	int32 setSpellList(lua_State*);
 };
 
 #endif

@@ -30,6 +30,13 @@ function onMobFight(mob,target)
 
 	if(mob:getID() < 17453060) then -- first phase AI
 		if(mob:getHP() / mob:getMaxHP() <= 0.5) then
+		
+			local changeTime, changeHP = mob:getExtraVar(2);
+		
+			print("HP:"..changeHP);
+			print("time:"..changeTime);
+			print("time2:"..mob:getBattleTime());
+		
 			if(mob:AnimationSub() == 0) then
 				mob:AnimationSub(1);
 				mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
@@ -37,20 +44,18 @@ function onMobFight(mob,target)
 				mob:SetAutoAttackEnabled(false);
 				mob:SetMagicCastingEnabled(true);
 				mob:setSpellCooldown(2000);
-				ShadowLordHPTable[mob:getID()].hp = mob:getHP();
-				ShadowLordHPTable[mob:getID()].changetime = mob:getBattleTime();
-			elseif(mob:AnimationSub() == 2 and (mob:getHP() <= ShadowLordHPTable[mob:getID()].hp - 1000 or 
-					mob:getBattleTime() - ShadowLordHPTable[mob:getID()].changetime >= 300)) then
+				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
+			elseif(mob:AnimationSub() == 2 and (mob:getHP() <= changeHP - 1000 or 
+					mob:getBattleTime() - changeTime > 300)) then
 				mob:AnimationSub(1);
 				mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
 				mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
 				mob:SetAutoAttackEnabled(false);
 				mob:SetMagicCastingEnabled(true);
 				mob:setSpellCooldown(2000);
-				ShadowLordHPTable[mob:getID()].hp = mob:getHP();
-				ShadowLordHPTable[mob:getID()].changetime = mob:getBattleTime();
-			elseif(mob:AnimationSub() == 1 and (mob:getHP() <= ShadowLordHPTable[mob:getID()].hp - 1000 or 
-					mob:getBattleTime() - ShadowLordHPTable[mob:getID()].changetime >= 300)) then
+				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
+			elseif(mob:AnimationSub() == 1 and (mob:getHP() <= changeHP - 1000 or 
+					mob:getBattleTime() - changeTime > 300)) then
 				mob:useMobAbility(417);
 				mob:AnimationSub(2);
 				mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
@@ -58,11 +63,8 @@ function onMobFight(mob,target)
 				mob:SetAutoAttackEnabled(true);
 				mob:SetMagicCastingEnabled(false);
 				mob:setSpellCooldown(10000);
-				ShadowLordHPTable[mob:getID()].hp = mob:getHP();
-				ShadowLordHPTable[mob:getID()].changetime = mob:getBattleTime();
+				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
 			end
-		else
-
 		end
 	else --second phase AI
 		if( mob:getBattleTime() % 9 < 2 ) then
@@ -89,6 +91,7 @@ function onMobDeath(mob,killer)
 	mob:setSpellCooldown(10000);
 	mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
 	mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
+	mob:setExtraVar(0);
 	
 end;
 

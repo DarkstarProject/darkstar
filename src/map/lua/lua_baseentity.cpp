@@ -6305,6 +6305,111 @@ inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
 	return 0;
 }
 
+
+/************************************************************************
+*                                                                       *
+*  Gets the extra var stored in the mob entity.  Number parameter       *
+*  determines the number of results returned and their size:			*
+*  1 - returns one uint32												*
+*  2 - returns two uint16s												*
+*  3 - returns a uint16, then two uint8s								*
+*  4 - returns 4 uint8s													*
+*                                                                       *
+************************************************************************/
+inline int32 CLuaBaseEntity::getExtraVar(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+
+	int32 n = lua_tointeger(L,1);
+
+	if (n == 1)
+	{
+		lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->m_extraVar);
+	} else if (n == 2) {
+		uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
+		uint16 var1 = var & 0x0000FFFF;
+		uint16 var2 = var >>= 16;
+		lua_pushinteger(L, var1);
+		lua_pushinteger(L, var2);
+	} else if (n == 3) {
+		uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
+		uint16 var1 = var >>= 16;
+		uint8 var2 = var & 0x0000FF00;
+		var2 >>= 8;
+		uint8 var3 = var & 0x000000FF;
+		lua_pushinteger(L, var1);
+		lua_pushinteger(L, var2);
+		lua_pushinteger(L, var3);
+	} else {
+		uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
+		uint8 var1 = var & 0x000000FF;
+		uint8 var2 = var & 0x0000FF00;
+		var2 >>= 8;
+		uint8 var3 = var & 0x00FF0000;
+		var3 >>= 16;
+		uint8 var4 = var >>= 24;
+		lua_pushinteger(L, var1);
+		lua_pushinteger(L, var2);
+		lua_pushinteger(L, var3);
+		lua_pushinteger(L, var4);
+	}
+
+	return n;
+}
+
+/************************************************************************
+*                                                                       *
+*  Gets the extra var stored in the mob entity.  Number of parameters   *
+*  value sizes:															*
+*  1 - stores one uint32												*
+*  2 - stores two uint16s												*
+*  3 - stores a uint16, then two uint8s									*
+*  4 - stores 4 uint8s													*
+*                                                                       *
+************************************************************************/
+inline int32 CLuaBaseEntity::setExtraVar(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+
+	((CMobEntity*)m_PBaseEntity)->m_extraVar = lua_tonumber(L, 1);
+
+	int32 n = lua_gettop(L);
+
+	if (n == 1)
+	{
+		((CMobEntity*)m_PBaseEntity)->m_extraVar = lua_tointeger(L, 1);
+	} else if (n == 2) {
+		uint32 var1 = lua_tointeger(L, 1) & 0x0000FFFF;
+		uint32 var2 = lua_tointeger(L, 2) << 16;
+		((CMobEntity*)m_PBaseEntity)->m_extraVar = var1 + var2;
+	} else if (n == 3) {
+		uint32 var1 = lua_tointeger(L, 1) << 16;
+		uint32 var2 = (lua_tointeger(L, 2) & 0x000000FF) << 8;
+		uint32 var3 = (lua_tointeger(L, 3) & 0x000000FF);
+		((CMobEntity*)m_PBaseEntity)->m_extraVar = var1 + var2 + var3;
+	} else {
+		uint32 var1 = lua_tointeger(L, 1) << 24;
+		uint32 var2 = (lua_tointeger(L, 2) & 0x000000FF) << 16;
+		uint32 var3 = (lua_tointeger(L, 3) & 0x000000FF) << 8;
+		uint32 var4 = (lua_tointeger(L, 4) & 0x000000FF);
+		((CMobEntity*)m_PBaseEntity)->m_extraVar = var1 + var2 + var3 + var4;
+	}
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+	((CMobEntity*)m_PBaseEntity)->m_SpellListContainer = mobSpellList::GetMobSpellList(lua_tonumber(L,1));
+
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -6569,5 +6674,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMagicCastingEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobAbilityEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateTarget),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getExtraVar),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setExtraVar),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpellList),
 	{NULL,NULL}
 };

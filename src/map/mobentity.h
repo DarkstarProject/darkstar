@@ -115,6 +115,7 @@ public:
     uint8       m_Link;								// взаимопомощь монстрам своего семейства
 	uint16		m_Behaviour;						// поведение монстра в различных ситуациях
 	SPAWNTYPE	m_SpawnType;						// условие появления монстра
+	uint32		m_extraVar;							// extra variable to store combat related variables from scripts
 
 	uint8		m_CallForHelp;						// в перспективе желательно объединить эту переменную с CNpc->unknown
 
