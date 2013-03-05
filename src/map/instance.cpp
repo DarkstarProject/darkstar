@@ -161,6 +161,22 @@ uint8 CInstance::getPlayerMainLevel(){
 	return m_PlayerList.at(0)->GetMLevel();
 }
 
+void CInstance::capPlayerToBCNM(){ //adjust player's level to the appropriate cap and remove buffs
+	if(m_PlayerList.size()==0){
+		ShowWarning("instance:getPlayerMainLevel - No players in battlefield!\n");
+		return;
+	}
+	uint8 cap = getLevelCap();
+	if(cap != 0)
+	{
+		m_PlayerList.at(0)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+		m_PlayerList.at(0)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+		m_PlayerList.at(0)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
+		m_PlayerList.at(0)->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION,0,cap,0,0),true);
+	}
+}
+
+
 bool CInstance::isPlayerInBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(PChar->id == m_PlayerList.at(i)->id){
@@ -193,6 +209,7 @@ bool CInstance::addPlayerToBcnm(CCharEntity* PChar){
 
 	m_PlayerList.push_back(PChar);
 	PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BATTLEFIELD,EFFECT_BATTLEFIELD,this->m_BcnmID,0,0),true);
+	this->capPlayerToBCNM();
 	return true;
 }
 
@@ -202,6 +219,7 @@ bool CInstance::delPlayerFromBcnm(CCharEntity* PChar){
 			PChar->m_insideBCNM = false;
 			PChar->enableSubJob();
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
+			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 			m_PlayerList.erase(m_PlayerList.begin()+i);
 			return true;

@@ -98,6 +98,7 @@ public:
 	bool		allPlayersDead(); //true if all players in the bcnm are dead.
 	uint8		getPlayerMainJob(); //used for Maat fights
 	uint8		getPlayerMainLevel(); //used for Maat fights
+	void		capPlayerToBCNM(); //adjust player's level to the appropriate cap and remove buffs
 	uint8		disableSubJob(); // disable all players subjobs
 	uint8		enableSubJob(); // enable all players subjobs
 	void		pushMessageToAllInBcnm(uint16 msg, uint16 param);
