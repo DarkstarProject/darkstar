@@ -35,10 +35,11 @@ enum KEYS_TABLE
 	KEYS_TABLE_0,
 	KEYS_TABLE_1,
 	KEYS_TABLE_2,
-	KEYS_TABLE_3 
+	KEYS_TABLE_3,
+    KEYS_TABLE_4
 };
 
-#define MAX_KEYS_TABLE 4
+#define MAX_KEYS_TABLE 5
 
 /************************************************************************
 *																		*

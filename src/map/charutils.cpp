@@ -856,10 +856,10 @@ void SendQuestMissionLog(CCharEntity* PChar)
 
 void SendKeyItems(CCharEntity* PChar)
 {
-	PChar->pushPacket(new CKeyItemsPacket(PChar,KEYS_TABLE_0));
-	PChar->pushPacket(new CKeyItemsPacket(PChar,KEYS_TABLE_1));
-	PChar->pushPacket(new CKeyItemsPacket(PChar,KEYS_TABLE_2));
-	PChar->pushPacket(new CKeyItemsPacket(PChar,KEYS_TABLE_3));
+    for (uint8 table = 0; table < MAX_KEYS_TABLE; table++)
+    {
+        PChar->pushPacket(new CKeyItemsPacket(PChar,(KEYS_TABLE)table));
+    }
 }
 
 /************************************************************************
