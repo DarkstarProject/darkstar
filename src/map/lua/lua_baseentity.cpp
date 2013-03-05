@@ -3523,6 +3523,12 @@ inline int32 CLuaBaseEntity::addStatusEffectEx(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,5) || !lua_isnumber(L,5));
 
     int32 n = lua_gettop(L);
+	bool silent = false;
+	if(lua_isboolean(L,-1))
+	{
+		silent = lua_toboolean(L,-1);
+		n--;
+	}
 
     CStatusEffect * PEffect = new CStatusEffect(
         (EFFECT)lua_tointeger(L,1),
@@ -3534,7 +3540,7 @@ inline int32 CLuaBaseEntity::addStatusEffectEx(lua_State *L)
         (n >= 7 ? (uint16)lua_tointeger(L,7) : 0),
         (n >= 8 ? (uint16)lua_tointeger(L,8) : 0));
 
-    lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect));
+    lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect,silent));
 	return 1;
 }
 

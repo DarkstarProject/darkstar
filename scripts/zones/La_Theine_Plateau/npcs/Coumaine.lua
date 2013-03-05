@@ -49,9 +49,9 @@ level = player:getMainLvl();
 	if (csid == 0x0078 and option == 0) then
         if (player:delGil(price)) then
             if (level >= 20) then
-                player:addStatusEffect(EFFECT_CHOCOBO,1,0,1800);
+                player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,1800,true);
             else
-                player:addStatusEffect(EFFECT_CHOCOBO,1,0,900);
+                player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,900,true);
             end
         end
 	end

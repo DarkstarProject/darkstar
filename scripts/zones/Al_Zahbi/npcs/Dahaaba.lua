@@ -56,9 +56,9 @@ function onEventFinish(player,csid,option)
 
 	if(csid == 0x010e and option == 0) then
 		if(level >= 20) then
-			player:addStatusEffect(EFFECT_CHOCOBO,1,0,1800);
+			player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,1800,true);
 		else
-			player:addStatusEffect(EFFECT_CHOCOBO,1,0,900);
+			player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,900,true);
 		end
 		player:delGil(price);
 		player:setPos(610,-24,356,0x80,0x33);

@@ -362,7 +362,7 @@ int32 CBattleEntity::addHP(int32 hp)
 	{
 		if (animation == ANIMATION_CHOCOBO)
 		{
-			StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
+			StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
 		}
 		PBattleAI->SetCurrentAction(ACTION_FALL);
 	}

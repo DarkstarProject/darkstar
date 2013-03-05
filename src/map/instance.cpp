@@ -409,7 +409,7 @@ bool CInstance::addPlayerToDynamis(CCharEntity* PChar){
 	}
 
 	m_PlayerList.push_back(PChar);
-	PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_DYNAMIS,EFFECT_DYNAMIS,this->m_BcnmID,0,0));
+	PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_DYNAMIS,EFFECT_DYNAMIS,this->m_BcnmID,0,0),true);
 	return true;
 }
 
@@ -466,7 +466,7 @@ bool CInstance::delPlayerFromDynamis(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
 			PChar->m_insideBCNM = false;
-			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_DYNAMIS);
+			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DYNAMIS);
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 			m_PlayerList.erase(m_PlayerList.begin()+i);
 			return true;

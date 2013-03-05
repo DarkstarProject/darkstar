@@ -613,7 +613,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             {
                 if (PChar->animation == ANIMATION_CHOCOBO)
                 {
-                    PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
+                    PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
                 }
                 PChar->PBattleAI->CheckCurrentAction(gettick());
             }
@@ -735,7 +735,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             PChar->status = STATUS_UPDATE;
 			PChar->animation = ANIMATION_NONE;
-			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
+			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
 			PChar->pushPacket(new CCharUpdatePacket(PChar));
         }
         break;

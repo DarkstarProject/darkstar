@@ -704,8 +704,8 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	}
 	if (PChar->m_LevelRestriction != 0)
 	{
-		PChar->StatusEffectContainer->DelStatusEffect(EFFECT_LEVEL_SYNC);
-		PChar->StatusEffectContainer->DelStatusEffect(EFFECT_LEVEL_RESTRICTION);
+		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
+		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 	}
 	if (PChar->PTreasurePool != NULL) // TODO: условие для устранения проблем с MobHouse, надо блин решить ее раз и навсегда
 	{
@@ -786,7 +786,7 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
     if (PChar->animation == ANIMATION_CHOCOBO && !CanUseMisc(MISC_CHOCOBO))
     {
         PChar->animation = ANIMATION_NONE;
-        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
     }
     if (PChar->m_Costum != 0)
     {

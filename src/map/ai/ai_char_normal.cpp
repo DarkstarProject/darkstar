@@ -248,7 +248,7 @@ void CAICharNormal::ActionEngage()
 				{
                     if (m_PChar->animation == ANIMATION_CHOCOBO)
                     {
-                        m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CHOCOBO);
+                        m_PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
                     }
                     else if (m_PChar->animation == ANIMATION_HEALING)
                     {
