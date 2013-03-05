@@ -29,7 +29,8 @@
 #include "ai_general.h"
 #include <math.h>
 
-#define COOL_DOWN_TIME 4000
+// delay for casting next spell
+#define COOL_DOWN_TIME 3000
 
 /************************************************************************
 *																		*

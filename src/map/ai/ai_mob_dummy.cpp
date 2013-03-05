@@ -92,7 +92,10 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_MAGIC_START:		  ActionMagicStart();		break;
 		case ACTION_MAGIC_CASTING:		  ActionMagicCasting();		break;
 		case ACTION_MAGIC_INTERRUPT:	  ActionMagicInterrupt();	break;
-		case ACTION_MAGIC_FINISH:		  ActionMagicFinish();		break;
+		case ACTION_RANGED_START:		  ActionRangedStart();		break;
+		case ACTION_RANGED_FINISH:		  ActionRangedFinish();		break;
+		case ACTION_RANGED_USING:		  ActionRangedUsing();		break;
+		case ACTION_RANGED_INTERRUPT:	  ActionRangedInterrupt();		break;
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
@@ -591,8 +594,6 @@ void CAIMobDummy::ActionAbilityUsing()
 			distance(m_PBattleTarget->loc.p,m_PMob->loc.p) > m_PMobSkill->getDistance()){
 
 			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
-			//too far away message
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE,new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
 			ActionAbilityInterrupt();
 			return;
 		}
@@ -1391,7 +1392,11 @@ void CAIMobDummy::ActionAttack()
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
 	if (CurrentDistance <= 25 && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) { // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
 		return;
-	}
+	}/* else if(CurrentDistance <= 20 && m_PMob->HasRanged() && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime){
+		m_ActionType = ACTION_RANGED_START;
+		ActionRangedStart();
+		return;
+	}*/
 
 	if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
@@ -1638,8 +1643,6 @@ void CAIMobDummy::ActionAttack()
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
-
-
 std::vector<CBattleEntity*> CAIMobDummy::GetAdditionalTargets(AOERANGE AoeRange, position_t radiusAround, float radius)
 {
     DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
@@ -1808,6 +1811,115 @@ bool CAIMobDummy::TryCastSpell()
 	// the script doesn't want to cast a spell at the moment, but it should still be treated as a magic attempt
 	m_LastMagicTime = m_Tick;
 	return false;
+}
+
+void CAIMobDummy::ActionRangedStart()
+{
+    m_LastActionTime = m_Tick;
+
+	m_PBattleSubTarget = m_PBattleTarget;
+
+    apAction_t Action;
+    m_PMob->m_ActionList.clear();
+
+	Action.ActionTarget = m_PBattleSubTarget;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = ANIMATION_RANGED;
+	Action.param	  = 0;
+	Action.messageID  = 0;
+	Action.flag		  = 0;
+
+	m_PMob->m_ActionList.push_back(Action);
+
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
+	m_ActionType = ACTION_RANGED_USING;
+}
+
+void CAIMobDummy::ActionRangedUsing()
+{
+	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+
+	// If our target dies or zones whilst readying, then interrupt the TP move.
+	if(m_PBattleTarget->isDead() || m_PBattleTarget->getZone() != m_PMob->getZone()){
+		m_ActionType = ACTION_RANGED_INTERRUPT;
+		ActionRangedInterrupt();
+		return;
+	}
+
+	ShowDebug("Using ranged attack\n");
+	if ((m_Tick - m_LastActionTime) > 2000)
+    {
+		//Range check
+		if(distance(m_PBattleTarget->loc.p,m_PMob->loc.p) > 20){
+
+			m_ActionType = ACTION_RANGED_INTERRUPT;
+			ActionRangedInterrupt();
+			return;
+		}
+
+		m_LastActionTime = m_Tick;
+		m_ActionType = ACTION_RANGED_FINISH;
+	}
+
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE)); //need to keep HP updating
+}
+
+void CAIMobDummy::ActionRangedFinish()
+{
+	m_LastActionTime = m_Tick;
+
+	// crash fix, a null target made it into CActionPacket
+	if (m_PBattleSubTarget == NULL)
+	{
+		m_ActionType = ACTION_ATTACK;
+		return;
+	}
+
+	ShowDebug("Finish ranged attack\n");
+
+	apAction_t Action;
+    m_PMob->m_ActionList.clear();
+	uint16 damage = 20;
+
+	Action.ActionTarget = m_PBattleSubTarget;
+	Action.reaction   = REACTION_HIT;		//0x10
+	Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
+	Action.animation  = 0;
+	Action.messageID  = 352;
+	Action.param = damage;
+	Action.flag = 0;
+
+    m_PMob->m_ActionList.push_back(Action);
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
+	// m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	m_ActionType = ACTION_RANGED_START;
+	m_PBattleSubTarget = NULL;
+}
+
+void CAIMobDummy::ActionRangedInterrupt()
+{
+    m_LastActionTime = m_Tick;
+	//cancel the whole animation
+	apAction_t Action;
+    m_PMob->m_ActionList.clear();
+
+	// Action.ActionTarget = m_PMob;
+	// Action.reaction   = REACTION_NONE;
+	// Action.speceffect = SPECEFFECT_NONE;
+	// Action.animation  = m_PMobSkill->getID();
+ //    Action.param	  = 0;
+	// Action.messageID  = 0;
+ //    Action.flag       = 0;
+
+	m_PMob->m_ActionList.push_back(Action);
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
+	m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+
+    m_PBattleSubTarget = NULL;
 }
 
 void CAIMobDummy::CastSpell(uint16 spellId)

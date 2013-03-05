@@ -212,6 +212,11 @@ void CMobEntity::ChangeMJob(uint16 job)
     mobutils::CalculateStats(this);
 }
 
+bool CMobEntity::HasRanged()
+{
+    return GetMJob() == JOB_RNG;
+}
+
 
 /************************************************************************
 *                                                                       *

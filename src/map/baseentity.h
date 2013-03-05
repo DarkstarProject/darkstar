@@ -27,7 +27,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
-enum ENTITYTYPE 
+enum ENTITYTYPE
 {
 	TYPE_PC		= 0x01,
 	TYPE_NPC	= 0x02,
@@ -67,7 +67,7 @@ enum ANIMATIONTYPE
 	ANIMATION_FISHING_STOP			= 43,
 	ANIMATION_SYNTH					= 44,
 	ANIMATION_SIT					= 47,
-	ANIMATION_UNKNOWN				= 48,
+	ANIMATION_RANGED				= 48,
 	ANIMATION_FISHING_START			= 50
 };
 
@@ -87,7 +87,7 @@ struct EntityID_t
 
 class CZone;
 
-struct location_t 
+struct location_t
 {
 	position_t	p;              // позиция сущности
     uint8		destination;    // текущая зона
@@ -107,7 +107,7 @@ class CBaseEntity
 {
 public:
 
-	uint32			id;					// глобальный идентификатор, уникальный на сервере		
+	uint32			id;					// глобальный идентификатор, уникальный на сервере
 	uint16			targid;				// локалный идентификатор, уникальный в зоне
 	ENTITYTYPE		objtype;			// тип сущности
 	STATUSTYPE		status;				// статус сущности (разные сущности - разные статусы)

@@ -805,7 +805,7 @@ void CAICharNormal::ActionRangedStart()
 	Action.ActionTarget = m_PChar;
 	Action.reaction   = REACTION_NONE;
 	Action.speceffect = SPECEFFECT_NONE;
-	Action.animation  = 48;
+	Action.animation  = ANIMATION_RANGED;
 	Action.param	  = 0;
 	Action.messageID  = 0;
 	Action.flag		  = 0;

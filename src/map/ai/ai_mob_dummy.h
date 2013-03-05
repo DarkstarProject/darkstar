@@ -64,21 +64,31 @@ protected:
 	void ActionRoaming();
 	void ActionEngage();
 	void ActionDisengage();
+
 	void ActionFall();
 	void ActionDropItems();
 	void ActionDeath();
 	void ActionFadeOut();
 	void ActionSpawn();
+
 	void ActionAbilityStart();
 	void ActionAbilityUsing();
 	void ActionAbilityFinish();
     void ActionAbilityInterrupt();
+
 	void ActionAttack();
     void ActionSleep();
+
 	void ActionMagicStart();
 	void ActionMagicCasting();
 	void ActionMagicInterrupt();
-	void ActionMagicFinish();
+    void ActionMagicFinish();
+
+    void ActionRangedStart();
+    void ActionRangedUsing();
+    void ActionRangedFinish();
+	void ActionRangedInterrupt();
+
 	void processTwoHour();
     bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
     void CastSpell(uint16 spellId);

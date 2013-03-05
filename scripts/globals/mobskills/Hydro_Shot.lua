@@ -15,13 +15,16 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-	local dmgmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 3.5,ELE_WATER,dmgmod,TP_MAB_BONUS,1);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_WIPE_SHADOWS);
 
-	local typeEffect = EFFECT_ENMITY_DOWN;
+    local numhits = 1;
+    local accmod = 1;
+    local dmgmod = 2.8;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_H2H,info.hitslanded);
 
-    MobStatusEffectMove(mob, target, typeEffect, 10, 3, 120);
+    local typeEffect = EFFECT_ENMITY_DOWN;
+
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 10, 3, 120);
 
 	target:delHP(dmg);
 	return dmg;
