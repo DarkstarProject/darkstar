@@ -192,7 +192,7 @@ bool CInstance::addPlayerToBcnm(CCharEntity* PChar){
 	}
 
 	m_PlayerList.push_back(PChar);
-	PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BATTLEFIELD,EFFECT_BATTLEFIELD,this->m_BcnmID,0,0));
+	PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BATTLEFIELD,EFFECT_BATTLEFIELD,this->m_BcnmID,0,0),true);
 	return true;
 }
 
@@ -201,7 +201,7 @@ bool CInstance::delPlayerFromBcnm(CCharEntity* PChar){
 		if(m_PlayerList.at(i)->id == PChar->id){
 			PChar->m_insideBCNM = false;
 			PChar->enableSubJob();
-			PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BATTLEFIELD);
+			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 			m_PlayerList.erase(m_PlayerList.begin()+i);
 			return true;

@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/titles");
 require("scripts/zones/Cloister_of_Frost/TextIDs");
 
 -----------------------------------
@@ -53,6 +54,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x7d01) then
 		player:delKeyItem(TUNING_FORK_OF_ICE);
 		player:addKeyItem(WHISPER_OF_FROST);
+		player:addTitle(HEIR_OF_THE_GREAT_ICE);
 		player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_FROST);
 	end
 	
