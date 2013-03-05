@@ -5,6 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6378; -- Obtained: <item>
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
+         ITEMS_OBTAINED = 6384; -- You obtain <param2 number> <param1 item>
 
 -- Treasure Coffer/Chest Dialog
     CHEST_UNLOCKED = 7304; -- You unlock the chest!
