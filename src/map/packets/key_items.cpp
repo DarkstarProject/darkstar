@@ -34,6 +34,8 @@ CKeyItemsPacket::CKeyItemsPacket(CCharEntity * PChar, KEYS_TABLE KeyTable)
 	this->type = 0x55;
 	this->size = 0x44;
 
+    DSP_DEBUG_BREAK_IF(KeyTable >= MAX_KEYS_TABLE);
+
 	memcpy(data+(0x04)-4, (PChar->keys.keysList+0x40*KeyTable), 0x40);
 	memcpy(data+(0x44)-4, (PChar->keys.seenList+0x40*KeyTable), 0x40);
 
