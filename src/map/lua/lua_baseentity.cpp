@@ -34,6 +34,7 @@
 
 #include "../packets/action.h"
 #include "../packets/auction_house.h"
+#include "../packets/automaton_update.h"
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
 #include "../packets/char_jobs.h"
@@ -1906,6 +1907,58 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 			}
 			lua_pushinteger( L, PChar->m_LevelRestriction );
 			return 1;
+		}
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+/************************************************************************
+*																		*
+*  Restricts a player's subjob temporarily                              *
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::sjRestriction(lua_State* L)
+{
+	if( m_PBaseEntity != NULL )
+	{
+		if( m_PBaseEntity->objtype == TYPE_PC )
+		{
+			CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+			uint8 job = (uint8)lua_tonumber(L,1);
+			bool state = lua_toboolean(L,2);
+			
+			if(state)
+				PChar->SetSJob(JOB_NON);
+			else if(!state && job != JOB_NON)
+			{
+				PChar->SetSJob(job);
+				PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+			}
+			
+			charutils::BuildingCharSkillsTable(PChar);
+			charutils::CalculateStats(PChar);
+		    charutils::CheckValidEquipment(PChar);
+			charutils::BuildingCharAbilityTable(PChar);
+			charutils::BuildingCharTraitsTable(PChar);
+			charutils::BuildingCharWeaponSkills(PChar);
+
+			PChar->UpdateHealth();
+			PChar->health.hp = PChar->GetMaxHP();
+			PChar->health.mp = PChar->GetMaxMP();
+
+			PChar->pushPacket(new CCharJobsPacket(PChar));
+			PChar->pushPacket(new CCharUpdatePacket(PChar));
+			PChar->pushPacket(new CCharHealthPacket(PChar));
+			PChar->pushPacket(new CCharStatsPacket(PChar));
+			PChar->pushPacket(new CCharSkillsPacket(PChar));
+			PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+			PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
+			PChar->pushPacket(new CMenuMeritPacket(PChar));
+			PChar->pushPacket(new CCharSyncPacket(PChar));
+			return 0;
 		}
 	}
 	lua_pushnil(L);
@@ -6497,6 +6550,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,levelCap),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,levelRestriction),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sjRestriction),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVar),

@@ -227,51 +227,6 @@ bool CCharEntity::addWsPoints(uint8 points, uint16 WeaponIndex)
 	}
 }
 
-void CCharEntity::disableSubJob()
-{
-    // ignore if no subjob
-    if(GetSJob() == 0) return;
-    //FIX: this should be refactored to use a global setvar
-
-    const int8* varname = "disableSubJob";
-    int32 value = (int32)GetSJob();
-
-    const int8* fmtQuery = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
-
-    Sql_Query(SqlHandle,fmtQuery, id, varname, value, value);
-    ShowDebug("CCharEntity::disableSubJob saved job\n");
-
-    SetSJob(0);
-    charutils::UpdateSubJob(this);
-}
-
-
-void CCharEntity::enableSubJob()
-{
-    //FIX: refactor this into something cleaner
-
-    // get current subjob
-    const int8* varname  = "disableSubJob";
-    ;
-    const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
-
-    int32 ret = Sql_Query(SqlHandle,fmtQuery, id, varname);
-
-    if (ret != SQL_ERROR &&
-        Sql_NumRows(SqlHandle) != 0 &&
-        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-    {
-        SetSJob((int32)Sql_GetIntData(SqlHandle,0));
-        charutils::UpdateSubJob(this);
-    } else {
-        ShowDebug("CCharEntity::enableSubJob Could not find saved subjob\n");
-        return;
-    }
-
-    // now delete it
-    Sql_Query(SqlHandle,"DELETE FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;", id, varname);
-}
-
 /************************************************************************
 *																		*
 *  Возвращаем контейнер с указанным ID. Если ID выходит за рамки, то	*

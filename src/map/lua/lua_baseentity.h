@@ -202,6 +202,7 @@ public:
 	int32 unlockJob(lua_State*);			// Unlocks a job for the entity, sets job level to 1
     int32 levelCap(lua_State*);             // genkai
 	int32 levelRestriction(lua_State*);		// Establish/return current level restriction
+	int32 sjRestriction(lua_State*);		// Establish/return subjob restriction
 
 	int32 showText(lua_State*);				// Displays Dialog for npc
 	int32 messageSpecial(lua_State*);		// Sends Special Message

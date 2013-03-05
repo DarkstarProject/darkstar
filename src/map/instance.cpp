@@ -122,27 +122,24 @@ void CInstance::setLootId(uint16 id){
 
 //========================PLAYER FUNCTIONS=============================================//
 
-uint8 CInstance::disableSubJob(){
+void CInstance::enableSubJob(){
 	if(m_PlayerList.size()==0){
-		ShowWarning("instance:disableSubjob - No players in battlefield!\n");
-		return 1;
+		ShowWarning("instance:enableSubjob - No players in battlefield!\n");
+		return;
 	}
 	for(int i=0; i<m_PlayerList.size(); i++){
-		m_PlayerList.at(i)->disableSubJob();
+		m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECT_SJ_RESTRICTION);
 	}
-
-	return 1;
 }
 
-uint8 CInstance::enableSubJob(){
+void CInstance::disableSubJob(){
 	if(m_PlayerList.size()==0){
-		ShowWarning("instance:enbleSubjob - No players in battlefield!\n");
-		return 1;
+		ShowWarning("instance:disableSubjob - No players in battlefield!\n");
+		return;
 	}
 	for(int i=0; i<m_PlayerList.size(); i++){
-		m_PlayerList.at(i)->enableSubJob();
+		m_PlayerList.at(i)->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SJ_RESTRICTION,0,m_PlayerList.at(i)->GetSJob(),0,0),true);
 	}
-	return 1;
 }
 
 uint8 CInstance::getPlayerMainJob(){
@@ -169,10 +166,13 @@ void CInstance::capPlayerToBCNM(){ //adjust player's level to the appropriate ca
 	uint8 cap = getLevelCap();
 	if(cap != 0)
 	{
-		m_PlayerList.at(0)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
-		m_PlayerList.at(0)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
-		m_PlayerList.at(0)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
-		m_PlayerList.at(0)->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION,0,cap,0,0),true);
+		for(int i=0; i<m_PlayerList.size(); i++)
+		{
+			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
+			m_PlayerList.at(i)->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION,0,cap,0,0),true);
+		}
 	}
 }
 
@@ -217,7 +217,7 @@ bool CInstance::delPlayerFromBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
 			PChar->m_insideBCNM = false;
-			PChar->enableSubJob();
+			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_SJ_RESTRICTION);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
