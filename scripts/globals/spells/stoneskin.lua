@@ -11,6 +11,10 @@ require("scripts/globals/magic");
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
 	pMod = (caster:getSkillLevel(ENHANCING_MAGIC_SKILL)/3)+caster:getStat(MOD_MND);
 	pAbs = 0;

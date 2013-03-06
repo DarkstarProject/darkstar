@@ -2071,6 +2071,55 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
 *																		*
 ************************************************************************/
 
+int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell)
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnMagicCastingCheck");
+
+	snprintf(File, sizeof(File), "scripts/globals/spells/%s.lua", PSpell->getName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnMagicCastingCheck (%s): %s\n",PSpell->getName(),lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 56;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMagicCastingCheck");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnMagicCastingCheck (%s): undefined procedure OnMobSkillCheck\n", PSpell->getName());
+		return 56;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PTarget);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+	
+	CLuaBaseEntity LuaCharEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaCharEntity);
+
+	CLuaSpell LuaSpell(PSpell);
+	Lunar<CLuaSpell>::push(LuaHandle,&LuaSpell);
+	
+	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnMagicCastingCheck (%s): %s\n",PSpell->getName(), lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 56;
+	}
+
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -5);
+}
+
+/***********************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
 int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster) 
 {
 	int8 File[255];

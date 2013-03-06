@@ -9,6 +9,10 @@ require("scripts/globals/status");
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
 
 	-- If your skill level is below 65 your stuck at the minimum

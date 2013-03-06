@@ -11,6 +11,10 @@ require("scripts/globals/magic");
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
 
 	dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));

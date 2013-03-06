@@ -33,6 +33,7 @@
 ************************************************************************/
 
 class CAbility;
+class CSpell;
 class CBaseEntity;
 class CBattleEntity;
 class CCharEntity;
@@ -102,7 +103,7 @@ namespace luautils
 	int32 CheckForGearSet(CBaseEntity* PTarget);								// check for gear sets
 
 	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget);			// triggered when casting a spell
-	int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);		// triggered when monster wants to use a spell on target
+	int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);// triggered when monster wants to use a spell on target
 
     int32 OnMobInitialise(CBaseEntity* PMob);									// Used for passive trait
 	int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
@@ -112,17 +113,18 @@ namespace luautils
 	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// triggers on mob death
 	int32 OnMobDespawn(CBaseEntity* PMob);										// triggers on mob despawn (death not assured)
 
-	int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance);				//triggers when enter a bcnm
+	int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance);					//triggers when enter a bcnm
 	int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode);	//triggers when leaving a bcnm
-																//Code 1=via Circle 2=warp/dc 3=win 4=lose
-	int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance);				//triggers when successfully registered a bcnm
+																					//Code 1=via Circle 2=warp/dc 3=win 4=lose
+	int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance);					//triggers when successfully registered a bcnm
 	
-	int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);// triggers when mob weapon skill is used
-	int32 OnMobSkillCheck(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);// triggers before mob weapon skill is used, returns 0 if the move is valid
-	int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PPetMaster);// triggers when pet uses an ability
-	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded);				// triggers when weapon skill is used
-	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAblility);				// triggers when job ability is used
-	int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total); // triggers on corsair roll
+	int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);							// triggers when mob weapon skill is used
+	int32 OnMobSkillCheck(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);								// triggers before mob weapon skill is used, returns 0 if the move is valid
+	int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell);							// triggers when a player attempts to cast a spell
+	int32 OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PPetMaster);		// triggers when pet uses an ability
+	int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded);	// triggers when weapon skill is used
+	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAblility);							// triggers when job ability is used
+	int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total);			// triggers on corsair roll
 
     int32 GetMobRespawnTime(lua_State* L);                                      // get the respawn time of a mob
 	int32 DeterMob(lua_State* L);                                               // Allow or prevent a mob from spawning

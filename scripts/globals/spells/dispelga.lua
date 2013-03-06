@@ -7,6 +7,10 @@
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
     -- Pull base stats.
     dINT = (caster:getStat(MOD_INT)*1.3 - target:getStat(MOD_INT));

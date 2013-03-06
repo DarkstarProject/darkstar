@@ -11,6 +11,10 @@ require("scripts/globals/magic");
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
 
 	if(caster:hasStatusEffect(EFFECT_ACCURACY_BOOST)) then

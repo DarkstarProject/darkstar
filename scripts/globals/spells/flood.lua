@@ -10,6 +10,10 @@ require("scripts/globals/status");
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
 	--calculate raw damage
 	dmg = calculateMagicDamage(630,2,caster,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);

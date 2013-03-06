@@ -10,6 +10,10 @@ require("scripts/globals/magic");
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
 
 	dmg = calculateMagicDamage(10,1,caster,spell,target,NINJUTSU_SKILL,MOD_INT,false);

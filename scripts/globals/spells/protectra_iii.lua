@@ -8,6 +8,10 @@ require("scripts/globals/status");
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
 	local power = 75;
 	local duration = 1800;

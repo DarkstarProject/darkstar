@@ -1106,6 +1106,7 @@ void CAICharNormal::ActionMagicStart()
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		return;
 	}
+	// TODO: Sift through these core checks and see what can be moved to scripts
     if (!m_PChar->loc.zone->CanUseMisc(m_PSpell->getZoneMisc()))
     {
         MagicStartError(40);
@@ -1173,6 +1174,13 @@ void CAICharNormal::ActionMagicStart()
             MagicStartError(313);
 			return;
 		}
+	}
+	// End of core checks, so pass it along to the script checking function
+	int32 errNo = luautils::OnMagicCastingCheck(m_PBattleTarget, m_PChar, m_PSpell);
+	if(errNo != 0)
+	{
+		MagicStartError(errNo);
+		return;
 	}
 
 	m_PChar->m_StartActionPos = m_PChar->loc.p;

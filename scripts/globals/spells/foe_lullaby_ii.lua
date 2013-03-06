@@ -7,6 +7,10 @@ require("scripts/globals/magic");
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
     duration = 60;
     bonus = AffinityBonus(caster, spell);

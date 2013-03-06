@@ -9,6 +9,10 @@ require("scripts/globals/status");
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
 
     -- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
