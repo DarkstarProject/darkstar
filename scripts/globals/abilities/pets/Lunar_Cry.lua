@@ -10,6 +10,7 @@ require("/scripts/globals/monstertpmoves");
 
 function OnPetAbility(target, pet, skill)
 	local moon = VanadielMoonPhase();
+	local buffvalue = 0;
 	if moon > 90 then
 		buffvalue = 31;
 	elseif moon > 75 then

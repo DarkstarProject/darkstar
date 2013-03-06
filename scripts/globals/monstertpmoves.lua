@@ -290,7 +290,7 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	-- get elemental damage reduction
 	local defense = 1;
 	if(element > 0) then
-		defense = 1 - (target:getMod(resistMod[element]) + target:getMod(defenseMod[element])) / 256;
+		defense = 1 + (target:getMod(defenseMod[element]) * -1000);
 
 		-- max defense is 50%
 		if(defense < 0.5) then
@@ -324,7 +324,6 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 end
 
 --mob version
---isEnfeeble = true if enfeeble
 --effect = EFFECT_WHATEVER if enfeeble
 --statmod = the stat to account for resist (INT,MND,etc) e.g. MOD_INT
 --This determines how much the monsters ability resists on the player.
@@ -348,11 +347,16 @@ function applyPlayerResistance(mob,effect,target,diff,skill,element)
 
 	-- add elemental resistence
 	if(element > 0) then
-		magiceva = magiceva + target:getMod(resistMod[element]) + target:getMod(defenseMod[element]);
+		if(target:isPC()) then
+			magiceva = magiceva + target:getMod(resistMod[element]);
+		else
+			magicacc = magicacc * (1 + (target:getMod(resistMod[element]*-100)));
+		end
 	end
 
 	p = magicacc - (magiceva * 0.85);
 
+	--printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
 	--double any acc over 50 if it's over 50
 	if(p > 5) then
 		p = 5 + (p - 5) * 2;

@@ -11,11 +11,11 @@ require("/scripts/globals/magic");
 
 function OnPetAbility(target, pet, skill)
 		--calculate raw damage
-	dmg = calculateMagicDamage(512,1.5,pet,skill,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
+	local dmg = calculateMagicDamage(512,1.5,pet,skill,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
 	dmg = dmg + (1+skill:getTP())*1.72;
 	--get resist multiplier (1x if no resist)
 	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(pet,-1,target,mob:getMod(statmod)-target:getMod(statmod),0,ELE_WIND);
+	local resist = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL,ELE_WIND);
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add in final adjustments

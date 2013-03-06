@@ -10,8 +10,8 @@ require("/scripts/globals/monstertpmoves");
 
 function OnPetAbility(target, pet, skill)
 	--randomly give str/dex/vit/agi/int/mnd/chr (+12)
-	effect = math.random();
-	effectid = EFFECT_STR_BOOST;
+	local effect = math.random();
+	local effectid = EFFECT_STR_BOOST;
 	if(effect<=0.14)then --STR
 		effectid = EFFECT_STR_BOOST;
 	elseif(effect<=0.28)then --DEX

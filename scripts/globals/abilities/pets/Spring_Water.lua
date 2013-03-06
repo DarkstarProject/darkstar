@@ -9,7 +9,8 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	base = 47 + pet:getMainLvl()*3;
+	local base = 47 + pet:getMainLvl()*3;
+	local tp = pet:getTP();
 	if tp < 100 then
 		tp = 100;
 	end

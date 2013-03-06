@@ -11,20 +11,20 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	numhits = 1;
-	accmod = 1;
-	dmgmod = 2;
-	dmgmodsubsequent = 1; -- ??
+	local numhits = 1;
+	local accmod = 1;
+	local dmgmod = 2;
+	local dmgmodsubsequent = 1; -- ??
 
-	totaldamage = 0;
-	damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,dmgmodsubsequent,TP_NO_EFFECT,1,2,3);
+	local totaldamage = 0;
+	local damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,dmgmodsubsequent,TP_NO_EFFECT,1,2,3);
 	--get resist multiplier (1x if no resist)
-	resist = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL, ELE_THUNDER);
+	local resist = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL, ELE_THUNDER);
 	--get the resisted damage
 	damage.dmg = damage.dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	damage.dmg = mobAddBonuses(pet,spell,target,damage.dmg,1);
-	tp = pet:getTP();
+	local tp = pet:getTP();
 	if tp < 100 then
 		tp = 100;
 	end

@@ -9,7 +9,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	duration = 60 + 2 * summoner:getMod(MOD_SUMMONING);
+	local duration = 60 + 2 * summoner:getMod(MOD_SUMMONING);
     target:delStatusEffect(EFFECT_ENFIRE);
     target:delStatusEffect(EFFECT_ENSTONE);
     target:delStatusEffect(EFFECT_ENWATER);
@@ -25,9 +25,9 @@ function OnPetAbility(target, pet, skill)
     target:delStatusEffect(EFFECT_ENLIGHT);
     target:delStatusEffect(EFFECT_ENDARK);
 	
-    magicskill = getSkillLvl(1, target:getMainLvl()); 
+    local magicskill = getSkillLvl(1, target:getMainLvl()); 
 
-    potency = 3 + ((6*magicskill)/100);
+    local potency = 3 + ((6*magicskill)/100);
     if(magicskill>200) then
         potency = 5 + ((5*magicskill)/100);
     end

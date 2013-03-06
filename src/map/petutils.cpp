@@ -263,7 +263,7 @@ void LoadAvatarStats(CPetEntity* PChar)
 
 	uint8 mlvl = PChar->GetMLevel();
 	JOBTYPE mjob = PChar->GetMJob();
-	uint8 race = 0;					//Human
+	uint8 race = 3;					//Tarutaru
 
 	// Расчет прироста HP от main job
 	int32 mainLevelOver30 = dsp_cap(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
@@ -370,6 +370,8 @@ void LoadAvatarStats(CPetEntity* PChar)
 			}
 		}
 
+		jobStat = jobStat * 1.5; //stats from subjob (assuming BLM/BLM for avatars)
+
 		// Вывод значения
 		WBUFW(&PChar->stats,counter) = (uint16)(raceStat + jobStat);
 		counter += 2;
@@ -446,6 +448,24 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		//Set E evasion and def
 		PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_THR,JOB_WHM,PPet->GetMLevel()));
 		PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_THR,JOB_WHM,PPet->GetMLevel()));
+		// cap all magic skills so they play nice with spell scripts
+		for (int i=SKILL_DIV; i <=SKILL_BLU; i++) {
+			uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PPet->GetMJob(),PPet->GetMLevel());
+			if (maxSkill != 0) {
+				PPet->WorkingSkills.skill[i] = maxSkill;
+			}
+			else //if the mob is WAR/BLM and can cast spell
+			{
+				// set skill as high as main level, so their spells won't get resisted
+				uint16 maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PPet->GetSJob(),PPet->GetMLevel());
+
+				if (maxSubSkill != 0)
+				{
+					PPet->WorkingSkills.skill[i] = maxSubSkill;
+				}
+			}
+		}
+
 		PMaster->addModifier(MOD_AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
 	}
 	else if(PPet->getPetType()==PETTYPE_JUGPET){

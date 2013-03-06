@@ -9,12 +9,12 @@ require("/scripts/globals/summon");
 ---------------------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	numhits = 1;
-	accmod = 1;
-	dmgmod = 2.5;
+	local numhits = 1;
+	local accmod = 1;
+	local dmgmod = 2.5;
 
-	totaldamage = 0;
-	damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,0,TP_NO_EFFECT,1,2,3);
+	local totaldamage = 0;
+	local damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,0,TP_NO_EFFECT,1,2,3);
 
 	totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,numhits);
 

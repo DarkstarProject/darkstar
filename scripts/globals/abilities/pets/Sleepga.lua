@@ -10,8 +10,8 @@ require("scripts/globals/monstertpmoves");
 -----------------------------------------
 
 function OnPetAbility(target, pet, skill)
-	duration = 60;
-	resm = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL, 5);
+	local duration = 60;
+	local resm = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL, 5);
 	if(resm < 0.5) then
 		skill:setMsg(MSG_RESIST);--resist message
 		return EFFECT_SLEEP_I;
