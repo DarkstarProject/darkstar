@@ -1087,16 +1087,6 @@ INSERT INTO `mob_skill` VALUES (88,108,88,'Sticky_Thread', 4, 10.0, 2000, 1000, 
 -- INSERT INTO `mob_skill` VALUES (1579,164,1311,'Serpentine_Tail', 0, 7.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (1580,164,1312,'Nerve_Gas', 1, 10.0, 2000, 1000, 4, 0);
 
--- Tinnin hydra
--- INSERT INTO `mob_skill` VALUES (1572,313,1308,'Pyric_Blast', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1573,313,1307,'Polar_Bulwark', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (1574,313,1309,'Polar_Blast', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1575,313,0,'Pyric_Bulwark', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (1576,313,1313,'Barofield', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1578,313,1310,'Trembling', 1, 5.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1579,313,1311,'Serpentine_Tail', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1580,313,1312,'Nerve_Gas', 1, 10.0, 2000, 1000, 4, 0);
-
 -- Ladybug
 INSERT INTO `mob_skill` VALUES (1925,170,1579,'Spiral_Spin', 0, 7.0, 2000, 1000, 4, 0);
 -- Pixie
@@ -1413,9 +1403,9 @@ INSERT INTO `mob_skill` VALUES (1464,286,1195,'Wind_Shear', 1, 10.0, 2000, 1000,
 INSERT INTO `mob_skill` VALUES (1462,286,1194,'Crosswind', 4, 18.0, 2000, 1000, 4, 0);
 
 -- Chamrosh (287)
--- INSERT INTO `mob_skill` VALUES (0,287,0,'Feather_Tickle', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,287,0,'Snatch_Morsel', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,287,0,'Pecking_Flurry', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1445,287,1178,'Feather_Tickle', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1444,287,1177,'Snatch_Morsel', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1443,287,1176,'Pecking_Flurry', 0, 7.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (0,287,0,'Wisecrack', 1, 10.0, 2000, 1000, 4, 0);
 
 -- Cheese Hoarder Gigiroon (288)
@@ -1442,7 +1432,13 @@ INSERT INTO `mob_skill` VALUES (175,290,175,'Fluid_Spread', 1, 10.0, 2000, 1000,
 
 -- Ob (291)
 -- Velionis (292)
--- INSERT INTO `mob_skill` VALUES (0,292,0,'Malediction', 1, 18.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (222,292,222,'Hell_Slash', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (223,292,223,'Horror_Cloud', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (228,292,228,'Black_Cloud', 1, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (229,292,229,'Blood_Saber', 1, 15.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,0,0,'Malediction', 1, 15.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,0,0,'Marrow Drain', 0, 7.0, 2000, 1000, 4, 0); -- Yes?  No?
+-- INSERT INTO `mob_skill` VALUES (0,0,0,'Dereliction', 1, 20.0, 2000, 1000, 4, 0); -- Yes?  No?
 
 -- Lil'Apkallu (294)
 -- INSERT INTO `mob_skill` VALUES (0,294,0,'Frigid_Shuffle', 1, 18.0, 2000, 1000, 4, 0);
@@ -1451,12 +1447,12 @@ INSERT INTO `mob_skill` VALUES (1457,294,1159,'Yawn', 1, 18.0, 2000, 1000, 4, 0)
 INSERT INTO `mob_skill` VALUES (1458,294,1160,'Wing_Slap', 0, 7.0, 2000, 1000, 4, 0);
 
 -- Iriz Ima (295)
--- INSERT INTO `mob_skill` VALUES (0,295,0,'Barrier_Tusk', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (0,295,0,'Voracious_Trunk', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,295,0,'Flailing_Trunk', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,295,0,'Stampede', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,295,0,'Onrush', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,295,0,'Proboscis_Shower', 0, 7.0, 2000, 1500, 2, 0);
+INSERT INTO `mob_skill` VALUES (1447,295,1170,'Barrier_Tusk', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (1451,295,1174,'Voracious_Trunk', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1450,295,1173,'Flailing_Trunk', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1449,295,1172,'Stampede', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1448,295,1171,'Onrush', 0, 7.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (1452,295,1175,'Proboscis_Shower', 0, 7.0, 2000, 1500, 2, 0);
 
 -- Lividroot Amooshah (296)
 INSERT INTO `mob_skill` VALUES (60,296,60,'Impale', 0, 7.0, 2000, 1000, 4, 0);
@@ -1596,13 +1592,11 @@ INSERT INTO `mob_skill` VALUES (1534,314,1228,'Gates_of_Hades', 1, 20.0, 2000, 1
 -- Pandemonium Warden  (316)
 
 -- Absoulute Virtue   (329)
-INSERT INTO `mob_skill` VALUES (1128,329,1019,'Disseverment', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1128,329,1019,'Disseverment', 0, 7.0, 2000, 1000, 4, 0); -- Should not have it.  Leaving in for variety, for now.
 INSERT INTO `mob_skill` VALUES (1127,329,1018,'Glacier_Splitter', 0, 7.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (1126,329,1014,'Crystaline_Cocoon',0,6.0,2000,1500,1,0);
 -- INSERT INTO `mob_skill` VALUES (1125,329,1013,'Depuration',0,6.0,2000,1500,1,0);
--- INSERT INTO `mob_skill` VALUES (1129,329,1012,'Biotic_Boomerang',1,10.0,2000,1500,12,0);
 -- INSERT INTO `mob_skill` VALUES (1130,329,1021,'Medusa_Javelin',0,6.0,2000,1500,1,0);
--- INSERT INTO `mob_skill` VALUES (1131,329,1017,'Sideswipe',0,6.0,2000,1500,1,0);
 -- INSERT INTO `mob_skill` VALUES (1124,329,1016,'Impact_Stream',1,10.0,2000,1500,12,0);
 -- INSERT INTO `mob_skill` VALUES (1123,329,1011,'Auroral_Wind',1,10.0,2000,1500,12,0);
 -- INSERT INTO `mob_skill` VALUES (1122,329,1020,'Wing_Thrust',1,10.0,2000,1500,12,0);
