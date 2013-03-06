@@ -9,10 +9,11 @@ ITEM_CANNOT_BE_OBTAINED = 6610; -- You cannot obtain the item <item> come back a
           HOMEPOINT_SET = 6439; -- Home point set!
     INVENTORU_INCREASED = 7645; -- Your inventory capacity has increased.
              ITS_LOCKED = 7453; -- It's locked.
-			GUIDE_STONE = 7006; -- Up: Upper Jeuno, Down: Port Jeuno
+            GUIDE_STONE = 7006; -- Up: Upper Jeuno, Down: Port Jeuno
+
 
 -- Conquest system
-CONQUEST = 7912; -- You've earned conquest points!
+CONQUEST = 7919; -- You've earned conquest points!
 
 -- Shop Texts
  CREEPSTIX_SHOP_DIALOG = 6997; -- Hey, how ya doin'? We got the best junk in town.

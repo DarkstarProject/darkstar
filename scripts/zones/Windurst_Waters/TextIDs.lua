@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
           HOMEPOINT_SET = 6583; -- Home point set!
 
 -- Conquest System
-CONQUEST = 9002; -- You've earned conquest points!
+CONQUEST = 9009; -- You've earned conquest points!
 
 -- Mission Dialogs
 YOU_ACCEPT_THE_MISSION = 6657; -- You have accepted the mission.

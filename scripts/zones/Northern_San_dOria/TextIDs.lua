@@ -9,8 +9,8 @@ ITEM_CANNOT_BE_OBTAINED = 6564; -- You cannot obtain the item <item> come back a
     NOT_HAVE_ENOUGH_GIL = 0; -- You do not have enough gil
           MOGHOUSE_EXIT = 12210; -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
 
--- Conquest System
-CONQUEST = 11564; -- You've earned conquest points!
+          -- Conquest System
+CONQUEST = 11571; -- You've earned conquest points!
       
 -- Mission Dialogs
 ORIGINAL_MISSION_OFFSET = 16; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!

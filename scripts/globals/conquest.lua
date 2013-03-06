@@ -183,12 +183,14 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 			end
 		end
 		if(item >= 15761 and item <= 15763) then -- All guard can recharge ring - I can't read number of charge atm
-			if(trade:hasItemQty(item,1) and trade:getItemCount() == 1) then
+			if(trade:hasItemQty(item,1) and trade:getItemCount() == 1 and player:getVar("CONQUEST_RING_RECHARGE") < os.time() and
+            (ALLOW_MULTIPLE_EXP_RINGS == 1 or checkConquestRing(player) < 2)) then
 				if(myCP >= XpRing[item - 15760]) then
 					
 					player:delCP(XpRing[item - 15760]);
 					player:tradeComplete();
 					player:addItem(item);
+               player:setVar("CONQUEST_RING_RECHARGE",getConquestTally());
 					player:showText(npc,CONQUEST + 58,item,XpRing[item - 15760],RingCharg[(item - 15760)]);
 				else
 					player:showText(npc,CONQUEST + 55,item,XpRing[item - 15760]);
@@ -1148,4 +1150,28 @@ function SetRegionalConquestOverseers()
 		end;	
 	end;
 	
+end;
+
+-----------------------------------
+-- checkConquestRing
+-----------------------------------
+
+function checkConquestRing(player)
+   local count = 0;
+
+   -- If not enabled by admin, do a count on Chariot, Empress, and Emperor Band
+   if (ALLOW_MULTIPLE_EXP_RINGS ~= 1) then
+      for i=15761,15763 do
+         if (player:hasItem(i) == true) then
+            count = count + 1;
+         end
+      end
+   end
+
+   -- One exp ring purchasable per conquest tally
+   if (player:getVar("CONQUEST_RING_TIMER") > os.time()) then
+      count = 3;
+   end
+
+   return count;
 end;

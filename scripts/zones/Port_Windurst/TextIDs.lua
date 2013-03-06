@@ -10,7 +10,7 @@ FULL_INVENTORY_AFTER_TRADE = 10960; -- You cannot obtain the <item>. Try trading
              HOMEPOINT_SET = 11007; -- Home point set!
 
 -- Conquest System
-CONQUEST = 11659; -- You've earned conquest points!
+CONQUEST = 11666; -- You've earned conquest points!
 
 -- Mission Dialogs
 YOU_ACCEPT_THE_MISSION = 11081; -- You have accepted the mission.

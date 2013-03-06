@@ -95,6 +95,15 @@ function onEventFinish(player,csid,option)
 		for Item = 1,size,3 do
 			if(option == inventory[Item]) then
 				if(player:getFreeSlotsCount() >= 1) then
+               -- Logic to impose limits on exp bands
+               if (option >= 32933 and option <= 32935) then
+                  if (checkConquestRing(player) > 0) then
+                     player:messageSpecial(CONQUEST+60,0,0,inventory[Item+2]);
+                     break;
+                  else
+                     player:setVar("CONQUEST_RING_TIMER",getConquestTally());
+                  end
+               end
 					if(player:getNation() == guardnation) then
 						itemCP = inventory[Item + 1];
 					else
