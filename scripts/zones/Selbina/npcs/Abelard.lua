@@ -95,7 +95,7 @@ elseif (blood == QUEST_ACCEPTED and SignedBldProg == 3) then
 			
 
 -- AN EXPLORERS FOOTSTEP QUEST --
-elseif (explorer == QUEST_AVAILABLE and blood == QUEST_COMPLETED) then
+elseif (explorer == QUEST_AVAILABLE and math.floor((player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK)) / 2) >= 1) then
 	player:startEvent(0x0028);
 elseif (explorer == QUEST_ACCEPTED) then
 	local tab = player:hasItem(570);
