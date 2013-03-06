@@ -9,6 +9,10 @@ require("scripts/globals/status");
 -- OnUseAbility
 -----------------------------------
 
+function OnAbilityCheck(player,target,ability)
+	return 0,0;
+end;
+
 function OnUseAbility(player, target, ability)
 	local strboost = target:getMainLvl()/7;
 	if(target:getMainJob()~=12) then --sjob sam, use sub level

@@ -8,6 +8,10 @@ require("scripts/globals/status");
 -- OnUseAbility
 -----------------------------------
 
+function OnAbilityCheck(player,target,ability)
+	return 0,0;
+end;
+
 function OnUseAbility(player, target, ability)
 	local power = 0;
 	local duration = 30;

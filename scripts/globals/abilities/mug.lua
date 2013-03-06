@@ -9,6 +9,10 @@ require("scripts/globals/status");
 -- OnUseAbility
 -----------------------------------
 
+function OnAbilityCheck(player,target,ability)
+	return 0,0;
+end;
+
 function OnUseAbility(player, target, ability)
     if(math.random()<0.9) then
     	local gil = target:getGil();
@@ -37,6 +41,4 @@ function OnUseAbility(player, target, ability)
     else
         player:messageTarget(244, target);
     end
-
-    return 0;
 end;

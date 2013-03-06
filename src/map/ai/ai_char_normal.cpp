@@ -1584,6 +1584,9 @@ void CAICharNormal::ActionJobAbilityStart()
 				return;
 			}
 		}
+
+		//TODO: Remove all these ability-specific checks and put them into their appropriate scripts
+
 		if (m_PJobAbility->getID() == ABILITY_CALL_BEAST)//Call Beast, check ammo slot
 		{
 			if(charutils::hasInvalidJugPetAmmo(m_PChar)){
@@ -1903,6 +1906,18 @@ void CAICharNormal::ActionJobAbilityStart()
 		// If there's not enough TP for a move, then reject it. If the JA isn't a dance, then this will fail
 		if (battleutils::HasNotEnoughTpForDance(m_PChar, m_PJobAbility, false)) {
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_PJobAbility = NULL;
+			m_PBattleSubTarget = NULL;
+			return;
+		}
+
+		// End of core checks, so call script checks
+		CBaseEntity* PMsgTarget = (CBaseEntity*)m_PChar;
+		int32 errNo = luautils::OnAbilityCheck(m_PChar, m_PBattleSubTarget, m_PJobAbility, &PMsgTarget);
+		if(errNo != 0)
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, PMsgTarget, 0, 0, errNo));
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 			m_PJobAbility = NULL;
 			m_PBattleSubTarget = NULL;

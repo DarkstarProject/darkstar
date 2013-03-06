@@ -8,6 +8,10 @@ require("scripts/globals/status");
 -- OnUseAbility
 -----------------------------------
 
+function OnAbilityCheck(player,target,ability)
+	return 0,0;
+end;
+
 function OnUseAbility(player, target, ability)
 	local sLegs = player:getEquipID(SLOT_LEGS);
 	local power = 20

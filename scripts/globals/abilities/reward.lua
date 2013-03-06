@@ -10,6 +10,10 @@ require("scripts/globals/pets");
 -- OnUseAbility
 -----------------------------------
 
+function OnAbilityCheck(player,target,ability)
+	return 0,0;
+end;
+
 function OnUseAbility(player, target, ability)
 
 	-- 1st need to get the pet food is equipped in the range slot.

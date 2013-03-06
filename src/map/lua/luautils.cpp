@@ -2036,14 +2036,14 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
 	{
 		ShowError("luautils::OnMobSkillCheck (%s): %s\n",PMobSkill->getName(),lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
-		return 56;
+		return 1;
 	}
 
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMobSkillCheck");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnMobSkillCheck (%s): undefined procedure OnMobSkillCheck\n", PMobSkill->getName());
-		return 56;
+		return 1;
 	}
 
 	CLuaBaseEntity LuaBaseEntity(PTarget);
@@ -2059,7 +2059,7 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
 	{
 		ShowError("luautils::OnMobSkillCheck (%s): %s\n",PMobSkill->getName(), lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
-		return 56;
+		return 1;
 	}
 
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -5);
@@ -2085,14 +2085,14 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 	{
 		ShowError("luautils::OnMagicCastingCheck (%s): %s\n",PSpell->getName(),lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
-		return 56;
+		return 47;
 	}
 
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMagicCastingCheck");
 	if( lua_isnil(LuaHandle,-1) )
 	{
-		ShowError("luautils::OnMagicCastingCheck (%s): undefined procedure OnMobSkillCheck\n", PSpell->getName());
-		return 56;
+		ShowError("luautils::OnMagicCastingCheck (%s): undefined procedure OnMagicCastingCheck\n", PSpell->getName());
+		return 47;
 	}
 
 	CLuaBaseEntity LuaBaseEntity(PTarget);
@@ -2108,10 +2108,61 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 	{
 		ShowError("luautils::OnMagicCastingCheck (%s): %s\n",PSpell->getName(), lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
-		return 56;
+		return 47;
 	}
 
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : -5);
+}
+
+/***********************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget)
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnAbilityCheck");
+
+	snprintf(File, sizeof(File), "scripts/globals/abilities/%s.lua", PAbility->getName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnAbilityCheck (%s): %s\n",PAbility->getName(),lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 87;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnAbilityCheck");
+	if( lua_isnil(LuaHandle,-1) || lua_isnil(LuaHandle,-2))
+	{
+		ShowError("luautils::OnAbilityCheck (%s): undefined procedure OnAbilityCheck\n", PAbility->getName());
+		return 87;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PTarget);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+	
+	CLuaBaseEntity LuaCharEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaCharEntity);
+
+	CLuaAbility LuaAbility(PAbility);
+	Lunar<CLuaAbility>::push(LuaHandle,&LuaAbility);
+	
+	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnAbilityCheck (%s): %s\n",PAbility->getName(), lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return 87;
+	}
+	if((!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0) != 0)
+		*PMsgTarget = (CBaseEntity*)PTarget;
+
+	return (!lua_isnil(LuaHandle,-2) && lua_isnumber(LuaHandle,-2) ? (int32)lua_tonumber(LuaHandle,-2) : -5);
 }
 
 /***********************************************************************

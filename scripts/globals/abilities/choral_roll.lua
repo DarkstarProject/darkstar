@@ -9,6 +9,10 @@ require("scripts/globals/status");
 -- OnUseAbility
 -----------------------------------
 
+function OnAbilityCheck(player,target,ability)
+	return 0,0;
+end;
+
 function OnUseAbilityRoll(caster, target, ability, total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {13, 55, 17, 20, 25, 8, 30, 35, 40, 45, 65, 25}

@@ -28,6 +28,10 @@ validThfQuestMobs = {17379367,17379368,17379459,17379470,17379477,17379489,17379
 -- OnUseAbility
 -----------------------------------
 
+function OnAbilityCheck(player,target,ability)
+	return 0,0;
+end;
+
 function OnUseAbility(player, target, ability)
 	local thfLevel;
 	if(player:getMainJob()==5) then

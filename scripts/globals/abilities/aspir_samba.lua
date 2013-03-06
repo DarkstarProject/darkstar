@@ -2,6 +2,10 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
  
+function OnAbilityCheck(player,target,ability)
+	return 0,0;
+end;
+
 function OnUseAbility(player, target, ability)
 	player:delStatusEffect(EFFECT_HASTE_SAMBA);
 	player:delStatusEffect(EFFECT_DRAIN_SAMBA);

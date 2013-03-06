@@ -9,6 +9,10 @@ require("scripts/globals/status");
 -- OnUseAbility
 -----------------------------------
 
+function OnAbilityCheck(player,target,ability)
+	return 0,0;
+end;
+
 function OnUseAbility(player, target, ability)
 	--TODO: Look at ammo slot for jug pet type etc
 	switch(player:getEquipID(SLOT_AMMO)) : caseof{
