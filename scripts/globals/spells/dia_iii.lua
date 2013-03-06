@@ -39,7 +39,7 @@ function onSpellCast(caster,target,spell)
 	-- Calculate duration.
 	duration = 30;
 
-	if(target:getObjType() == TYPE_PC) then
+	if(target:isMob()) then
 		-- duration is higher for mobs
 		duration = 180;
 	end
