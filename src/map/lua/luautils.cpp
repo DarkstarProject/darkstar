@@ -2085,7 +2085,7 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 	{
 		ShowError("luautils::OnMagicCastingCheck (%s): %s\n",PSpell->getName(),lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
-		return 47;
+		return 0;
 	}
 
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMagicCastingCheck");
@@ -2134,7 +2134,7 @@ int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbilit
 	{
 		ShowError("luautils::OnAbilityCheck (%s): %s\n",PAbility->getName(),lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
-		return 87;
+		return 0;
 	}
 
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnAbilityCheck");
