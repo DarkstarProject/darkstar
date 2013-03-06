@@ -2078,9 +2078,9 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "OnMagicCastingCheck");
-
-	snprintf(File, sizeof(File), "scripts/globals/spells/%s.lua", PSpell->getName());
-
+	
+	snprintf(File, sizeof(File), (PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua"), PSpell->getName());
+	
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
 		ShowError("luautils::OnMagicCastingCheck (%s): %s\n",PSpell->getName(),lua_tostring(LuaHandle,-1));

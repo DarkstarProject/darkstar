@@ -11,6 +11,10 @@ require("scripts/globals/status");
 -- OnSpellCast
 -----------------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster,target,spell)
 
     if(target:addStatusEffect(EFFECT_HASTE,102,0,300) == false) then

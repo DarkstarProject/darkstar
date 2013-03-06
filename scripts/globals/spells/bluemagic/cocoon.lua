@@ -10,6 +10,10 @@ require("scripts/globals/bluemagic");
 -- onSpellcast
 -----------------------------------
 
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
 function onSpellCast(caster, target, spell)
 	local power = 50; -- Percentage, not amount.
 
