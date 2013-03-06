@@ -51,6 +51,12 @@ public:
 
 	CSpell(uint16 id);
 
+    bool        isAOE();
+    bool        canTargetEnemy();
+    bool        dealsDamage(); // checks if the spell deals hp damage to target
+    void        resetMessage(); // resets spell to normal state
+
+    uint16      getTotalTargets();
 	uint16		getID();
 	uint8		getJob(JOBTYPE JobID);
 	uint16		getMPCost();
@@ -62,8 +68,6 @@ public:
 	SPELLGROUP	getSpellGroup();
     uint8       getSkillType();
     uint16      getZoneMisc();
-	bool		isAOE();
-    bool        canTargetEnemy();
 	uint16		getBase();
 	uint16		getElement();
 	float		getMultiplier();
@@ -77,6 +81,7 @@ public:
     uint16      getAoEMessage(); // returns the shorter message for AoE moves
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
 
+    void        setTotalTargets(uint16 total);
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);
 	void		setMPCost(uint16 MP);
@@ -113,7 +118,8 @@ private:
 	uint32		m_recastTime;							// recast time
 	uint16		m_animation;							// animation for spell
     uint16      m_animationTime;
-    uint8	    m_skillType;
+    uint8       m_skillType;
+    uint8	    m_totalTargets;
 	uint16		m_mpCost;								// mpCost/itemId for ninjitsu tool
 	uint8		m_job[MAX_JOBTYPE];						// job
 	uint8		m_ValidTarget;							// target pc/npc/both

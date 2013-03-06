@@ -48,6 +48,21 @@ CSpell::CSpell(uint16 id)
 	memset(m_job, 0, sizeof(m_job));
 }
 
+void CSpell::resetMessage()
+{
+    setMessage(getDefaultMessage());
+}
+
+void CSpell::setTotalTargets(uint16 total)
+{
+    m_totalTargets = total;
+}
+
+uint16 CSpell::getTotalTargets()
+{
+    return m_totalTargets;
+}
+
 void CSpell::setID(uint16 id)
 {
 	m_ID = id;
@@ -125,6 +140,12 @@ bool CSpell::tookEffect()
         return false;
     }
     return true;
+}
+
+bool CSpell::dealsDamage()
+{
+    //damage or drain hp
+    return m_message==2 || m_message==227;
 }
 
 uint16 CSpell::getZoneMisc()

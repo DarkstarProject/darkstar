@@ -39,6 +39,11 @@ function onSpellCast(caster,target,spell)
 	-- Calculate duration.
 	duration = 30; -- +30 sec by merit
 
+	if(target:getObjType() == TYPE_PC) then
+		-- duration is higher for mobs
+		duration = 180;
+	end
+
 	-- Check for Dia.
 	dia = target:getStatusEffect(EFFECT_DIA);
 

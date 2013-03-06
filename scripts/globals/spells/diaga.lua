@@ -16,6 +16,9 @@ function onSpellCast(caster,target,spell)
 	--calculate raw damage
 	basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
 	dmg = calculateMagicDamage(basedmg,1,caster,spell,target,ENFEEBLING_MAGIC_SKILL,MOD_INT,false);
+
+	dmg = math.clamp(dmg, 1, 12);
+
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);
 	--get the resisted damage
@@ -24,16 +27,9 @@ function onSpellCast(caster,target,spell)
 	dmg = addBonuses(caster,spell,target,dmg);
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
+
 	--add in final adjustments including the actual damage dealt
 	final = finalMagicAdjustments(caster,target,spell,dmg);
-
-	if(final > 12) then
-		final = 12;
-	end
-
-	if(final < 1) then
-		final = 1;
-	end
 
 	-- Calculate duration.
 	duration = 60;

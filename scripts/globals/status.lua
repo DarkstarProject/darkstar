@@ -1264,3 +1264,12 @@ LOC_TEMPITEMS   = 3
 LOC_MOGLOCKER   = 4
 LOC_MOGSATCHEL  = 5
 LOC_MOGSACK     = 6
+
+function math.clamp(input, min_val, max_val)
+    if input < min_val then
+        input = min_val
+    elseif input > max_val then
+        input = max_val
+    end
+    return input
+end;

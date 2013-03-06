@@ -489,6 +489,20 @@ function getSkillLvl(rank,level)
         dmg = 1;
     end
 
+    -- handle multiple targets
+    if(spell:isAoE()) then
+        local total = spell:getTotalTargets();
+
+        -- ga spells on 10+ targets = 0.4
+        if(total > 9) then
+            dmg = dmg * 0.4;
+        elseif(total > 1) then
+        -- -ga spells on 2 to 9 targets = 0.9 - 0.05T where T = number of targets
+            dmg = dmg * (0.9 - 0.05 * total);
+        end
+
+    end
+
     dmg = dmg - target:getMod(MOD_PHALANX);
     if(dmg<0) then
         dmg = 0;
@@ -496,7 +510,7 @@ function getSkillLvl(rank,level)
 
     -- handle magic shield
     if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
-        return 0;
+        dmg = 0;
     end
 
     --handling stoneskin

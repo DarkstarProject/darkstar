@@ -1414,6 +1414,7 @@ void CAICharNormal::ActionMagicFinish()
     }
 
     uint16 actionsLength = m_PChar->m_ActionList.size();
+    m_PSpell->setTotalTargets(actionsLength);
     for (uint32 i = 0; i < actionsLength; ++i)
 	{
         CBattleEntity* PTarget = m_PChar->m_ActionList.at(i).ActionTarget;
@@ -1431,26 +1432,18 @@ void CAICharNormal::ActionMagicFinish()
             }
         }
 
-        m_PSpell->setMessage(m_PSpell->getDefaultMessage());
+        m_PSpell->resetMessage();
+
         m_PChar->m_ActionList.at(i).param = luautils::OnSpellCast(m_PChar, PTarget);
+
         m_PChar->m_ActionList.at(i).messageID = m_PSpell->getMessage();
 
-		if(m_PChar->m_ActionList.at(i).param>0 && m_PSpell->canTargetEnemy()){ //damage spell which dealt damage, TODO: use a better identifier!
-			if(m_PSpell->getMessage()==2 || m_PSpell->getMessage()==227){//damage or drain hp
-				PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-			}
-
-            if(m_PSpell->isAOE()){
-                // reduce damage from -ga spell
-                if(actionsLength > 9){
-                    // ga spells on 10+ targets = 0.4
-                    m_PChar->m_ActionList.at(i).param *= (float)0.4;
-                } else if(actionsLength > 1){
-                    // -ga spells on 2 to 9 targets = 0.9 - 0.05T where T = number of targets
-                    m_PChar->m_ActionList.at(i).param *= (float)0.9 - 0.05*actionsLength;
-                }
+        if(m_PChar->m_ActionList.at(i).param>0 && m_PSpell->canTargetEnemy()){ //damage spell which dealt damage, TODO: use a better identifier!
+            if(m_PSpell->dealsDamage()){//damage or drain hp
+                PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
             }
-		}
+        }
+
 
         if(i > 0){
             m_PChar->m_ActionList.at(i).messageID = m_PSpell->getAoEMessage();
