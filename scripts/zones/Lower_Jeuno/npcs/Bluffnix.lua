@@ -66,7 +66,7 @@ function onTrigger(player,npc)
 
 	local WildcatJeuno = player:getVar("WildcatJeuno");
 
-	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == 1 and player:getMaskBit(WildcatJeuno,12) == false) then
+	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_AVAILABLE and player:getMaskBit(WildcatJeuno,12) == false) then
 		player:startEvent(10056);
 	elseif (player:getContainerSize(0) < 80) then
 		pFame = player:getFameLevel(JEUNO);

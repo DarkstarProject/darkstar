@@ -18,7 +18,7 @@ require("scripts/zones/Port_Bastok/TextIDs");
 function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(13096,1) and trade:getItemCount() == 1) then
-		if(player:getQuestStatus(BASTOK,A_FOREMAN_S_BEST_FRIEND) == 1) then
+		if(player:getQuestStatus(BASTOK,A_FOREMAN_S_BEST_FRIEND) == QUEST_AVAILABLE) then
 			player:tradeComplete();
 			player:startEvent(0x0070);
 		end

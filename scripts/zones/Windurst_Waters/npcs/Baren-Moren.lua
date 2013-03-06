@@ -169,11 +169,11 @@ printf("RESULT: %u",option);
 	elseif (csid == 0x004b and option == 1) then
 		if (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == 0) then
 			player:addQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);
-		elseif (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == 2) then
+		elseif (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == QUEST_ACCEPTED) then
 			player:setVar("QuestFeatherInOnesCap_var",1);
 		end
 	elseif (csid == 0x004f) then
-		if (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == 1) then
+		if (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == QUEST_AVAILABLE) then
 			player:completeQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);	
 			player:addFame(WINDURST,WIN_FAME*75);
 		else

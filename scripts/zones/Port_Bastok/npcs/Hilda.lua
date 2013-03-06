@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
     if(trade:getGil() == 0 and trade:getItemCount() == 1) then
         if(trade:hasItemQty(4530,1) and player:getVar("CidsSecret_Event") == 1 and player:hasKeyItem(UNFINISHED_LETTER) == false) then -- Trade Rollanberry
             player:startEvent(0x0085);
-        elseif(trade:hasItemQty(4386,1) and player:getQuestStatus(BASTOK,THE_USUAL) == 1) then -- Trade King Truffle
+        elseif(trade:hasItemQty(4386,1) and player:getQuestStatus(BASTOK,THE_USUAL) == QUEST_AVAILABLE) then -- Trade King Truffle
             player:startEvent(0x0087);
         end
     end

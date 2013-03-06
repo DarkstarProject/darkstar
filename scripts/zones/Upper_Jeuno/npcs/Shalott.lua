@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getQuestStatus(JEUNO, SAVE_MY_SON) == 1) then
+	if (player:getQuestStatus(JEUNO,SAVE_MY_SON) == QUEST_AVAILABLE) then
 		player:startEvent(0x0065);
 	else
 		player:startEvent(0x0068);

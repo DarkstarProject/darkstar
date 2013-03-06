@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 	local TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
 	local WildcatJeuno = player:getVar("WildcatJeuno");
 
-	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == 1 and player:getMaskBit(WildcatJeuno,13) == false) then
+	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_AVAILABLE and player:getMaskBit(WildcatJeuno,13) == false) then
 		player:startEvent(10053);
 	elseif(TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then 
 		if(player:getVar("CooksPrideVar") == 0) then

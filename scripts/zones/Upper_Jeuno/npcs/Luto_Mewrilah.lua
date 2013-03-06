@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 	local WildcatJeuno = player:getVar("WildcatJeuno");
-	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == 1 and player:getMaskBit(WildcatJeuno,7) == false) then
+	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_AVAILABLE and player:getMaskBit(WildcatJeuno,7) == false) then
 		player:startEvent(10085);
 	else
 		player:startEvent(0x2732); -- Standard dialog
