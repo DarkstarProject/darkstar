@@ -104,7 +104,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x0144); -- Reminds player to check on friends if he has been given his food.
 	elseif(FoodForThought == QUEST_COMPLETED and needToZone == true) then
 		player:startEvent(0x0158); -- Post Food for Thought Dialogue	
-	elseif(overnightDelivery == QUEST_COMPLETED) then
+	elseif(overnightDelivery == QUEST_COMPLETED and pfame < 6) then
 		player:startEvent(0x015f); -- Post Overnight Delivery Dialogue
 	--
 	-- Begin Toraimarai Turmoil Section	
