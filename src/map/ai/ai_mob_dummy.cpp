@@ -1834,7 +1834,7 @@ void CAIMobDummy::ActionRangedStart()
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
-	m_ActionType = ACTION_RANGED_USING;
+	m_ActionType = ACTION_RANGED_FINISH;
 }
 
 void CAIMobDummy::ActionRangedUsing()
@@ -1868,35 +1868,40 @@ void CAIMobDummy::ActionRangedUsing()
 
 void CAIMobDummy::ActionRangedFinish()
 {
-	m_LastActionTime = m_Tick;
 
-	// crash fix, a null target made it into CActionPacket
-	if (m_PBattleSubTarget == NULL)
-	{
-		m_ActionType = ACTION_ATTACK;
-		return;
+	if ((m_Tick - m_LastActionTime) > 2000)
+    {
+
+		m_LastActionTime = m_Tick;
+
+		// crash fix, a null target made it into CActionPacket
+		if (m_PBattleSubTarget == NULL)
+		{
+			m_ActionType = ACTION_ATTACK;
+			return;
+		}
+
+		ShowDebug("Finish ranged attack\n");
+
+		apAction_t Action;
+	    m_PMob->m_ActionList.clear();
+		uint16 damage = 20;
+
+		Action.ActionTarget = m_PBattleSubTarget;
+		Action.reaction   = REACTION_HIT;		//0x10
+		Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
+		Action.animation  = 0;
+		Action.messageID  = 352;
+		Action.param = damage;
+		Action.flag = 0;
+
+	    m_PMob->m_ActionList.push_back(Action);
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
+		// m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_ActionType = ACTION_RANGED_START;
+		m_PBattleSubTarget = NULL;
 	}
-
-	ShowDebug("Finish ranged attack\n");
-
-	apAction_t Action;
-    m_PMob->m_ActionList.clear();
-	uint16 damage = 20;
-
-	Action.ActionTarget = m_PBattleSubTarget;
-	Action.reaction   = REACTION_HIT;		//0x10
-	Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
-	Action.animation  = 0;
-	Action.messageID  = 352;
-	Action.param = damage;
-	Action.flag = 0;
-
-    m_PMob->m_ActionList.push_back(Action);
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-
-	// m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	m_ActionType = ACTION_RANGED_START;
-	m_PBattleSubTarget = NULL;
 }
 
 void CAIMobDummy::ActionRangedInterrupt()

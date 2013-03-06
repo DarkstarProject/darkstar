@@ -81,7 +81,6 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
         dmg = dmg + HARD_CAP*M;
     end
 
-    --TODO: Handle multiple target reduction (no LUA methods exist for this yet)
 
     if(skilltype == DIVINE_MAGIC_SKILL and target:isUndead()) then
         -- 150% bonus damage
