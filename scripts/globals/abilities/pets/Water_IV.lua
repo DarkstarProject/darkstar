@@ -23,7 +23,7 @@ function OnPetAbility(target, pet, skill)
 	if tp < 100 then
 		tp = 100;
 	end
-	print("int"..pet:getStat(MOD_INT));
+
 	dmg = dmg * tp / 100;
 	--add in final adjustments
 	dmg = finalMagicAdjustments(pet,target,skill,dmg);
