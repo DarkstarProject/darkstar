@@ -26,7 +26,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 		end
 	end
 	
-	if (player:getQuestStatus(SANDORIA,LUFET_S_LAKE_SALT) == QUEST_AVAILABLE) then
+	if (player:getQuestStatus(SANDORIA,LUFET_S_LAKE_SALT) == QUEST_ACCEPTED) then
 		count = trade:getItemCount();
 		LufetSalt = trade:hasItemQty(1019,3);
 		if (LufetSalt == true and count == 3) then

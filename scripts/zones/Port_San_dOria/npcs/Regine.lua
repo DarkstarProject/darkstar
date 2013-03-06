@@ -19,11 +19,11 @@ function onTrade(player,npc,trade)
 	local count = trade:getItemCount();
 
 	if (trade:hasItemQty(532,1) == true and count == 1) then
-		if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_AVAILABLE) then
+		if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	elseif (trade:hasItemQty(593,1) == true and count == 1) then
-		if (player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM) == QUEST_AVAILABLE) then
+		if (player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED) then
 			player:tradeComplete();
 			player:startEvent(0x0217);
 			player:setVar("TheBrugaireConsortium-Parcels", 11);

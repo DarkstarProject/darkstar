@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 		-- The Puppet Master
 		elseif(player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == 15 and ThePuppetMaster ~= QUEST_ACCEPTED and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
 			player:startEvent(0x0192); -- Carby asks for your help, visit Juroro
-		elseif(player:getQuestStatus(WINDURST,THE_PUPPET_MASTER) == QUEST_AVAILABLE and player:getVar("ThePuppetMasterProgress") == 1) then
+		elseif(player:getQuestStatus(WINDURST,THE_PUPPET_MASTER) == QUEST_ACCEPTED and player:getVar("ThePuppetMasterProgress") == 1) then
 			player:startEvent(0x0193); -- reminder to visit Juroro
 		----------------------------------------------------
 		elseif(player:hasKeyItem(JOKER_CARD)) then
@@ -104,7 +104,7 @@ function onEventFinish(player,csid,option)
 		-- Mark the progress
 		player:setVar("MissionStatus",6);
 	elseif(csid == 0x0192) then
-		if (player:getQuestStatus(WINDURST,THE_PUPPET_MASTER) == QUEST_ACCEPTED) then
+		if (player:getQuestStatus(WINDURST,THE_PUPPET_MASTER) == QUEST_COMPLETED) then
 			player:delQuest(WINDURST,THE_PUPPET_MASTER);
 			player:addQuest(WINDURST,THE_PUPPET_MASTER); -- this needs only if you repeat this quest
 		end;

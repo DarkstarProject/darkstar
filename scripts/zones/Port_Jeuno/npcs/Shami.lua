@@ -127,7 +127,7 @@ function onTrigger(player,npc)
 	local HighKindredsCrest = player:getVar("ShamiHighKindredsCrest");
 	local WildcatJeuno = player:getVar("WildcatJeuno");
 	-- TODO: player:startEvent(0x0142,0,0,0,0,1,0,1) -- First time talking to him WITH  beastmen seal in inventory
-	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_AVAILABLE and player:getMaskBit(WildcatJeuno,17) == false) then
+	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,17) == false) then
 		player:startEvent(317);
 	elseif(BeastmensSeal + KindredsSeal + KindredsCrest + HighKindredsCrest == 0) then 
 		player:startEvent(0x0017); -- Standard dialog ?
