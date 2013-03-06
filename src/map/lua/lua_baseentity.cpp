@@ -1929,7 +1929,7 @@ inline int32 CLuaBaseEntity::sjRestriction(lua_State* L)
 
 			uint8 job = (uint8)lua_tonumber(L,1);
 			bool state = lua_toboolean(L,2);
-			
+
 			if(state)
 				PChar->SetSJob(JOB_NON);
 			else if(!state && job != JOB_NON)
@@ -1937,7 +1937,7 @@ inline int32 CLuaBaseEntity::sjRestriction(lua_State* L)
 				PChar->SetSJob(job);
 				PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 			}
-			
+
 			charutils::BuildingCharSkillsTable(PChar);
 			charutils::CalculateStats(PChar);
 		    charutils::CheckValidEquipment(PChar);

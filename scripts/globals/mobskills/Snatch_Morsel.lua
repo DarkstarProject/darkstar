@@ -16,23 +16,17 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_FOOD;
 
-    if(target:hasStatusEffect(typeEffect) == false) then
-        local statmod = MOD_INT;
-        local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,ELE_WIND);
-        if(resist > 0.1) then
+        skill:setMsg(MSG_MISS); -- no effect
+
+        local food = target:getStatusEffect(typeEffect);
+        if (food ~= nil) then
+            target:delStatusEffect(typeEffect);
             skill:setMsg(MSG_ENFEEB_IS);
 
-            local food = target:getStatusEffect(EFFECT_FOOD);
-			if (food ~= nil) then
-				mob:addStatusEffect(EFFECT_FOOD, food:getPower(), 0, food:getDuration()/1000);
-			end
+            -- no way to add food to mobs yet
+            -- if(mob:addStatusEffect(typeEffect, food:getPower(), 0, food:getDuration()/1000)) then
+            -- end
+		end
 
-            target:delStatusEffect(EFFECT_FOOD);
-        else
-            skill:setMsg(MSG_MISS); -- resist !
-        end
-    else
-        skill:setMsg(MSG_NO_EFFECT); -- no effect
-    end
     return typeEffect;
 end;

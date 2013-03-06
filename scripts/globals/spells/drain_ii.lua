@@ -41,6 +41,12 @@ function onSpellCast(caster,target,spell)
 
 	dmg = (dmg * DRAIN_POWER);
 
+	local leftOver = (caster:getHP() + dmg) - caster:getMaxHP();
+
+	if(leftOver > 0) then
+		caster:addStatusEffect(EFFECT_MAX_HP_BOOST, (leftOver/caster:getMaxHP())*100, 0, 60);
+	end
+
 	caster:addHP(dmg);
 	spell:setMsg(227); --change msg to 'xxx hp drained from the yyyy.'
 	return dmg;

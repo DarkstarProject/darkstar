@@ -1003,6 +1003,7 @@ INSERT INTO `mob_skill` VALUES (1478,176,1268,'Warm-Up', 0, 7.0, 2000, 1000, 1, 
 -- INSERT INTO `mob_skill` VALUES (1544,176,1227,'Miasma', 1, 16.0, 2000, 1000, 4, 0); Gulool Jaja only
 -- INSERT INTO `mob_skill` VALUES (1543,176,1226,'Tyranic_Blare', 1, 16.0, 2000, 1000, 4, 0); Gulool Jaja only
 -- INSERT INTO `mob_skill` VALUES (1542,176,1225,'Decussate', 1, 16.0, 2000, 1000, 4, 0); Gulool Jaja only
+-- INSERT INTO `mob_skill` VALUES (1542,176,1155,'Vorpal_Blade', 1, 16.0, 2000, 1000, 4, 0); Gulool Jaja only
 
 -- Apkallu
 INSERT INTO `mob_skill` VALUES (1457,27,1159,'Yawn', 1, 7.0, 2000, 1000, 4, 0);
@@ -1069,12 +1070,12 @@ INSERT INTO `mob_skill` VALUES (88,108,88,'Sticky_Thread', 4, 10.0, 2000, 1000, 
 -- Wamoura
 
 -- Wivre
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Demoralizing_Roar', 1, 16.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Clobber', 4, 16.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Batterhorn', 4, 16.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Granite_Hide', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Boiling_Blood', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (0,0,0,'Crippling_Slam', 4, 16.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,257,0,'Batterhorn', 4, 16.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,257,0,'Clobber', 4, 16.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,257,1226,'Demoralizing_Roar', 1, 16.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (0,257,0,'Boiling_Blood', 0, 7.0, 2000, 1000, 1, 0);
+-- INSERT INTO `mob_skill` VALUES (0,257,1227,'Granite_Skin', 0, 7.0, 2000, 1000, 1, 0);
+-- INSERT INTO `mob_skill` VALUES (0,257,0,'Crippling_Slam', 4, 16.0, 2000, 1000, 4, 0);
 
 -- Hydra
 -- INSERT INTO `mob_skill` VALUES (1572,164,1308,'Pyric_Blast', 4, 15.0, 2000, 1000, 4, 0);
