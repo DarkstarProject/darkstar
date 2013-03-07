@@ -3292,7 +3292,7 @@ void CAICharNormal::ActionAttack()
 
                             if(Action.animation == 2 || Action.animation == 3){
                                 // this is a kick attack
-                                baseDamage = m_PChar->getMod(MOD_KICK_DMG);
+                                baseDamage = (float)m_PChar->getMod(MOD_KICK_DMG)*0.5;
                             }
 
 							damage = (uint16)((( baseDamage + naturalH2hDmg + bonusDMG +

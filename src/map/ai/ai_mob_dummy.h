@@ -84,10 +84,7 @@ protected:
 	void ActionMagicInterrupt();
     void ActionMagicFinish();
 
-    void ActionRangedStart();
-    void ActionRangedUsing();
-    void ActionRangedFinish();
-	void ActionRangedInterrupt();
+    void ActionRangedAttack();
 
 	void processTwoHour();
     bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
