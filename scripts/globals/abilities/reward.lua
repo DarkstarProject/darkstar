@@ -11,7 +11,17 @@ require("scripts/globals/pets");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	return 0,0;
+	if (player:getPet() == nil) then
+		return MSGBASIC_REQUIRES_A_PET,0;
+	else
+		local id = player:getEquipID(SLOT_AMMO);
+		if(id >= 17016 and id <= 17023) then
+			player:setBattleSubTarget(player:getPet());
+			return 0,0;
+		else
+			return MSGBASIC_MUST_HAVE_FOOD,0;
+		end
+	end
 end;
 
 function OnUseAbility(player, target, ability)

@@ -10,11 +10,14 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	return 0,0;
+	if (player:getTP() < 20) then
+		return MSGBASIC_UNABLE_TO_USE_JA2,0;
+	else
+		return 0,0;
+	end
 end;
 
 function OnUseAbility(player, target, ability)
-
-		target:eraseStatusEffect();
-	
+	player:delTP(20);
+	target:eraseStatusEffect();	
 end;

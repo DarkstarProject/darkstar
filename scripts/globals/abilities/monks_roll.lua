@@ -10,7 +10,12 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	return 0,0;
+	local effectID = getCorsairRollEffect(ability:getID());
+	if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
+		return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
+	else
+		return 0,0;
+	end
 end;
 
 function OnUseAbilityRoll(caster, target, ability, total)

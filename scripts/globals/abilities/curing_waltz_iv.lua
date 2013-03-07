@@ -10,7 +10,11 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	return 0,0;
+	if (player:getTP() < 65) then
+		return MSGBASIC_UNABLE_TO_USE_JA2,0;
+	else
+		return 0,0;
+	end
 end;
 
 function OnUseAbility(player, target, ability)
@@ -21,6 +25,8 @@ function OnUseAbility(player, target, ability)
 	local mjob = player:getMainJob(); --19 for DNC main.
 	local cure = 0;
 
+	player:delTP(65);
+	
 	--Performing mj check.
 	if(mjob == 19) then
 		cure = (vit+chr)+450;

@@ -1,7 +1,7 @@
 -----------------------------------
--- Ability: Gauge
+-- Ability: Quickstep
 -----------------------------------
-
+ 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
@@ -9,15 +9,15 @@ require("scripts/globals/status");
 -- OnUseAbility
 -----------------------------------
 
+--Uncomment these when implemented
 function OnAbilityCheck(player,target,ability)
-	if (player:getPet() ~= nil ) then
-		return MSGBASIC_ALREADY_HAS_A_PET,0;
-	else
-		return 0,0;
-	end
+	--if (player:getTP() < 10) then
+		return MSGBASIC_UNABLE_TO_USE_JA2,0;
+	--else
+	--	return 0,0;
+	--end
 end;
 
 function OnUseAbility(player, target, ability)
-	-- Nothing, all is handled in the core.
-	return 0,0;
+	--player:delTP(10);
 end;

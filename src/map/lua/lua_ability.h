@@ -49,6 +49,7 @@ public:
 
     int32 setMsg(lua_State*);
     int32 setAnimation(lua_State*);
+	int32 getID(lua_State*);
 };
 
 #endif

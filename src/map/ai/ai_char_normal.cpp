@@ -1551,18 +1551,6 @@ void CAICharNormal::ActionJobAbilityStart()
     }
     if (GetValidTarget(&m_PBattleSubTarget, m_PJobAbility->getValidTarget()))
 	{
-	    if (m_PJobAbility->getValidTarget() == TARGET_ENEMY)
-	    {
-            if (!IsMobOwner(m_PBattleSubTarget))
-            {
-                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_CLAIMED));
-
-                m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-                m_PJobAbility = NULL;
-			    m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
         if (m_PBattleSubTarget != m_PChar)
         {
             if (distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p) > m_PJobAbility->getRange())
@@ -1586,240 +1574,6 @@ void CAICharNormal::ActionJobAbilityStart()
 		}
 
 		//TODO: Remove all these ability-specific checks and put them into their appropriate scripts
-
-		if (m_PJobAbility->getID() == ABILITY_CALL_BEAST)//Call Beast, check ammo slot
-		{
-			if(charutils::hasInvalidJugPetAmmo(m_PChar)){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_NO_JUG_PET_ITEM));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-			if(m_PChar->PPet!=NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_HAS_A_PET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
-		if (m_PJobAbility->getID() == ABILITY_GAUGE){//Gauge
-			if (m_PChar->PPet != NULL)
-			{
-				// player has a pet, cancel
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_HAS_A_PET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
-		if (m_PJobAbility->getID() == ABILITY_FIGHT){//Pet: Fight
-			if (m_PChar->PPet == NULL)
-			{
-				// player has no pet, cancel
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_REQUIRES_A_PET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
-		if (m_PJobAbility->getID() == ABILITY_REWARD)//Reward
-		{
-			CItem* PItem = m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-
-			// check player has a pet
-			if (m_PChar->PPet != NULL)
-			{
-				// check player has a buscuit!
-				if (PItem != NULL && (PItem->getID() >= 17016 && PItem->getID() <= 17023))
-				{
-					m_PBattleSubTarget = m_PChar->PPet;
-				}
-				else
-				{
-					//unable to use that item
-					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_MUST_HAVE_FOOD));
-					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-					m_PJobAbility = NULL;
-					m_PBattleSubTarget = NULL;
-					return;
-				}
-			}
-			else
-			{
-				// player has no pet, cancel
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_REQUIRES_A_PET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-       	}
-		if (m_PJobAbility->getID() == ABILITY_SNARL)//Snarl
-		{
-			if (m_PChar->PPet != NULL)
-			{
-				if (m_PChar->PPet->PBattleAI->GetBattleTarget() != NULL)
-				{
-					//Has to have a target at the very least.
-					m_PBattleSubTarget = m_PChar->PPet;
-				}
-				else
-				{
-					//574 - <player>'s pet is currently unable to perform that action.
-					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_PET_CANNOT_DO_ACTION));
-					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-					m_PJobAbility = NULL;
-					m_PBattleSubTarget = NULL;
-					return;
-				}
-			}
-			else
-			{
-				// player has no pet, cancel
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_REQUIRES_A_PET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
-
-		if (m_PJobAbility->getID() == ABILITY_SIC)
-		{
-			//Sic, check pet TP
-			if(m_PChar->PPet!=NULL && m_PChar->PPet->health.tp<100){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_PET_NOT_ENOUGH_TP));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-			else if(m_PChar->PPet==NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_REQUIRES_A_PET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-			else if(m_PChar->PPet->GetHPP() == 0){//prevent player having an undead pet
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
-			    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-			else if(m_PChar->PPet->PBattleAI->GetBattleTarget() == NULL){//Crash fix, prevent pet using ability with no target
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_PET_CANNOT_DO_ACTION));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-
-			else if(m_PChar->PPet->objtype == TYPE_MOB){//crash fix, dont use sic if pet(charmed) has no tp moves
-				std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(((CMobEntity*)m_PChar->PPet)->m_Family);
-				if(MobSkills.size() == 0){
-					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_NO_EFFECT_ON_PET));
-					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-					m_PJobAbility = NULL;
-					m_PBattleSubTarget = NULL;
-					return;
-				}
-			}
-		}
-
-		if(m_PJobAbility->getID() == ABILITY_SPIRIT_LINK){
-			if(m_PChar->PPet == NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_REQUIRES_A_PET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}else if(m_PChar->PPet->health.hp == m_PChar->PPet->health.maxhp && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) && !m_PChar->PPet->StatusEffectContainer->HasStatusEffect(EFFECT_STUN)){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
-		if(m_PJobAbility->getID() == ABILITY_CALL_WYVERN){
-			if(m_PChar->PPet!=NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_HAS_A_PET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
-
-		if(m_PJobAbility->getID() == ABILITY_CHARM){
-
-			// player already has a pet
-			if(m_PChar->PPet!=NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_HAS_A_PET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-			// Pet already has a master
-			if(m_PBattleSubTarget->PMaster != NULL){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_THAT_SOMEONES_PET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
-
-		if(m_PJobAbility->getID() == ABILITY_FIGHT){
-			//cannot use fight on your own or pet or another players pet
-			if(m_PBattleSubTarget == m_PChar->PPet || (m_PBattleSubTarget->PMaster != NULL && m_PBattleSubTarget->PMaster->objtype == TYPE_PC) ){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_CANNOT_ATTACK_TARGET));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
-
-		// enmity transfer abilities
-		if (m_PJobAbility->getID() == ABILITY_ACCOMPLICE || m_PJobAbility->getID() == ABILITY_COLLABORATOR){
-			if(m_PBattleSubTarget == m_PChar ||							// if target is self
-				m_PBattleSubTarget->objtype != TYPE_PC ||				// if target is not a player)
-				m_PBattleSubTarget == NULL)								// if target is null
-			{
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_CANNOT_ON_THAT_TARG)); // must specify valid target to use.....
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-			if(m_PBattleSubTarget->PBattleAI->GetBattleTarget() == NULL)	// if party member is not engaged to any mob
-			{
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2)); // unable to use ability
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
-
-
-		if (m_PJobAbility->getID() == ABILITY_HASSO || m_PJobAbility->getID() == ABILITY_SEIGAN){
-			if(!m_PChar->m_Weapons[SLOT_MAIN]->isTwoHanded()){
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_NEEDS_2H_WEAPON));
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
-				return;
-			}
-		}
 
 		if (m_PJobAbility->getID() == ABILITY_EAGLE_EYE_SHOT || m_PJobAbility->getID() == ABILITY_SHADOWBIND){
 			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
@@ -1870,48 +1624,6 @@ void CAICharNormal::ActionJobAbilityStart()
 			}
 		}
 
-		if (m_PJobAbility->getID() == ABILITY_DOUBLE_UP && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_UP_CHANCE)) {
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_NO_ELIGIBLE_ROLL));
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PJobAbility = NULL;
-			m_PBattleSubTarget = NULL;
-			return;
-		}
-
-		if (m_PJobAbility->getID() >= ABILITY_FIGHTERS_ROLL && m_PJobAbility->getID() <= ABILITY_SCHOLARS_ROLL &&
-			(m_PChar->StatusEffectContainer->HasStatusEffect(battleutils::getCorsairRollEffect(m_PJobAbility->getID())) ||
-			m_PChar->StatusEffectContainer->HasBustEffect(battleutils::getCorsairRollEffect(m_PJobAbility->getID()))))
-		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ROLL_ALREADY_ACTIVE));
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PJobAbility = NULL;
-			m_PBattleSubTarget = NULL;
-			return;
-		}
-
-        // bail out if no shield for shield bash
-        if(m_PJobAbility->getID() == ABILITY_SHIELD_BASH && m_PChar->getShieldSize() == 0){
-            m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 199));
-            m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-            m_PJobAbility = NULL;
-            m_PBattleSubTarget = NULL;
-            return;
-        }
-
-        // bail if no two handed weapon equiped
-        if(m_PJobAbility->getID() == ABILITY_WEAPON_BASH){
-
-        }
-
-		// If there's not enough TP for a move, then reject it. If the JA isn't a dance, then this will fail
-		if (battleutils::HasNotEnoughTpForDance(m_PChar, m_PJobAbility, false)) {
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PJobAbility = NULL;
-			m_PBattleSubTarget = NULL;
-			return;
-		}
-
 		// End of core checks, so call script checks
 		CBaseEntity* PMsgTarget = (CBaseEntity*)m_PChar;
 		int32 errNo = luautils::OnAbilityCheck(m_PChar, m_PBattleSubTarget, m_PJobAbility, &PMsgTarget);
@@ -1922,6 +1634,20 @@ void CAICharNormal::ActionJobAbilityStart()
 			m_PJobAbility = NULL;
 			m_PBattleSubTarget = NULL;
 			return;
+		}
+
+		// After script check, because some scripts overwrite this check (Charm)
+		if (m_PJobAbility->getValidTarget() == TARGET_ENEMY)
+	    {
+            if (!IsMobOwner(m_PBattleSubTarget))
+            {
+                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_CLAIMED));
+
+                m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+                m_PJobAbility = NULL;
+			    m_PBattleSubTarget = NULL;
+				return;
+			}
 		}
 
         m_ActionType = ACTION_JOBABILITY_FINISH;
@@ -2439,14 +2165,6 @@ void CAICharNormal::ActionJobAbilityFinish()
             }
         }
 	}
-
-
-	// remove TP from player: Dancer Abilities
-	if (battleutils::HasNotEnoughTpForDance(m_PChar, m_PJobAbility, true)) {
-		// something went wrong if we're here, because the TP is taken away AFTER the check. This indicates they
-		// has enough TP to trigger the move, but now don't, so we should reject it. TODO
-	}
-
 
     // TODO: все перенести в скрипты, т.к. система позволяет получать указатель на питомца
 

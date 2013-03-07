@@ -10,7 +10,11 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	return 0,0;
+	if (not target:isWeaponTwoHanded()) then
+		return MSGBASIC_NEEDS_2H_WEAPON,0;
+	else
+		return 0,0;
+	end
 end;
 
 function OnUseAbility(player, target, ability)

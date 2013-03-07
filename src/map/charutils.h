@@ -66,8 +66,6 @@ namespace charutils
 	void	BuildingCharTraitsTable(CCharEntity* PChar);
 	void    BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID);
 
-	bool	hasInvalidJugPetAmmo(CCharEntity* PChar);
-
     void    DoTrade(CCharEntity* PChar, CCharEntity* PTarget);
     bool    CanTrade(CCharEntity* PChar, CCharEntity* PTarget);
 

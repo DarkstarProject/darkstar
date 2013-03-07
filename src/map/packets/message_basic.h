@@ -56,6 +56,7 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_NEEDS_2H_WEAPON		= 307, /* That action requires a two-handed weapon. */
 	MSGBASIC_USES_BUT_MISSES		= 324, /* The <player> uses .. but misses <target>. */
 	MSGBASIC_CANT_BE_USED_IN_AREA	= 316, /* That action cannot be used in this area. */		
+	MSGBASIC_REQUIRES_SHIELD		= 199, /* That action requires a shield. */
 	/* Distance */
 	MSGBASIC_TARG_OUT_OF_RANGE		= 4, /* <target> is out of range. */
 	MSGBASIC_UNABLE_TO_SEE_TARG		= 5, /* Unable to see <target>. */

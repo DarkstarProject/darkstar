@@ -2887,64 +2887,6 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 }
 
-bool hasInvalidJugPetAmmo(CCharEntity* PChar){
-	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
-	if(PItem==NULL){
-		return true;
-	}
-
-	switch(PItem->getID()){
-	case 17860: // Hare Familiar
-	case 17861: // Keeneared Steffi
-	case 17862: // Mayfly Familiar
-	case 17863: // Shellbuster Orob
-	case 17864: // Sheep Familiar
-	case 17865: // Lullaby Melodia
-	case 17866: // Lizard Familiar
-	case 17867: // Coldblood Como
-	case 17868: // Flowerpot Bill
-	case 17869: // Flowerpot Ben
-	case 17870: // Tiger Familiar
-	case 17871: // Saber Siravarde
-	case 17872: // Beetle Familiar
-	case 17873: // Panzer Galahad
-	case 17874: // Crafty Clyvonne
-	case 17875: // Bloodclaw Shasra
-	case 17876: // Crab Familiar
-	case 17877: // Courier Carrie
-	case 17878: // Lucky Lulush
-	case 17879: // Fatso Fargann
-	case 17880: // Funguar Familiar
-	case 17881: // Discreet Louise
-	case 17882: // Homunculus
-	case 17883: // Swift Sieghard
-	case 17884: // Amigo Sabotender
-	case 17885: // Flytrap Familiar
-	case 17886: // Voracious Audrey
-	case 17887: // Eft Familiar
-	case 17888: // Ambusher Allie
-	case 17889: // Mite Familiar
-	case 17890: // Lifedrinker Lars
-	case 17891: // Antlion Familiar
-	case 17892: // Chopsuey Chucky
-	case 17893: // Dipper Yuly
-	case 17894: // Flowerpot Merle
-	case 17895: // Nursery Nazuna
-	case 17896: // Mailbuster Cetas
-	case 17897: // Audacious Anna
-	case 17898: // Presto Julio
-	case 17899: // Bugeyed Broncha
-	case 17900: // Gooey Gerard
-	case 17901: // Gorefang Hobs
-	case 17902: // Faithful Falcorr
-	case 17903: // Crude Raphie
-	case 17904: // Dapper Mac
-	case 17905: // Slippery Silas
-	case 17906: // Turbid Toloi
-		return false;
-	}
-	return true;
-}
 
 /*
  * Gets the highest Treasure Hunter for the monster PMob being killed by the character PChar. This function

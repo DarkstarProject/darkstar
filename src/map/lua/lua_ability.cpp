@@ -82,6 +82,14 @@ inline int32 CLuaAbility::setAnimation(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaAbility::getID(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == NULL); 
+
+	lua_pushinteger(L, m_PLuaAbility->getID());
+	return 1;
+}
+
 /************************************************************************
 *																		*
 *  Инициализация методов в lua											*
@@ -94,5 +102,6 @@ Lunar<CLuaAbility>::Register_t CLuaAbility::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaAbility,setMsg),
     LUNAR_DECLARE_METHOD(CLuaAbility,setAnimation),
+	LUNAR_DECLARE_METHOD(CLuaAbility,getID),
 	{NULL,NULL}
 }; 

@@ -324,7 +324,7 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
 	cratio = cratio - levelcor;
 	cratio = cratio * params.atkmulti;
 
-	if(attacker:isWeaponTwoHanded() == 1) then
+	if(attacker:isWeaponTwoHanded()) then
 		if (cratio > 2.25 - levelcor) then
 			cratio = 2.25 - levelcor;
 		end

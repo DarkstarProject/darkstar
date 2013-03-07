@@ -106,6 +106,8 @@ int32 init()
 	lua_register(LuaHandle,"DeterMob",luautils::DeterMob);
 	lua_register(LuaHandle,"UpdateNMSpawnPoint",luautils::UpdateNMSpawnPoint);
 
+	lua_register(LuaHandle,"getCorsairRollEffect",luautils::getCorsairRollEffect);
+
     Lunar<CLuaAbility>::Register(LuaHandle);
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
     Lunar<CLuaInstance>::Register(LuaHandle);
@@ -2144,11 +2146,11 @@ int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbilit
 		return 87;
 	}
 
-	CLuaBaseEntity LuaBaseEntity(PTarget);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
 	CLuaBaseEntity LuaCharEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaCharEntity);
+
+	CLuaBaseEntity LuaBaseEntity(PTarget);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
 
 	CLuaAbility LuaAbility(PAbility);
 	Lunar<CLuaAbility>::push(LuaHandle,&LuaAbility);
@@ -2644,6 +2646,17 @@ int32 GetMobRespawnTime(lua_State* L)
     ShowError(CL_RED"luautils::GetMobAction: mob <%u> was not found\n" CL_RESET, mobid);
     lua_pushnil(L);
     return 1;
+}
+
+
+int32 getCorsairRollEffect(lua_State* L)
+{
+    if(!lua_isnil(L,1) && lua_isnumber(L,1))
+	{
+		lua_pushinteger(L, battleutils::getCorsairRollEffect(lua_tointeger(L,1)));
+		return 1;
+	}
+	return 0;
 }
 
 }; // namespace luautils

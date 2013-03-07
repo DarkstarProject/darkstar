@@ -5,13 +5,17 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
+function OnAbilityCheck(player,target,ability)
+	if (player:getShieldSize() == 0) then
+		return MSGBASIC_REQUIRES_SHIELD,0;
+	else
+		return 0,0;
+	end
+end;
+
 -----------------------------------
 -- OnUseAbility
 -----------------------------------
-
-function OnAbilityCheck(player,target,ability)
-	return 0,0;
-end;
 
 function OnUseAbility(player, target, ability)
 

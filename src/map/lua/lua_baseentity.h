@@ -293,6 +293,7 @@ public:
 	int32 addStatusEffect(lua_State*);		// Adds status effect to character
     int32 addStatusEffectEx(lua_State*);	// Adds status effect to character
 	int32 hasStatusEffect(lua_State*);		// Checks to see if character has specified effect
+	int32 hasBustEffect(lua_State*);		// Checks to see if a character has a specified busted corsair roll
 	int32 canGainStatusEffect(lua_State*);		// Returns true if the effect can be added
     int32 getStatusEffect(lua_State*);		//
 	int32 delStatusEffect(lua_State*);		// Removes Status Effect
@@ -356,6 +357,7 @@ public:
 	int32 isWeaponTwoHanded(lua_State*);
 	int32 getMeleeHitDamage(lua_State*);    // gets the damage of a single hit vs the specified mob
 	int32 getWeaponSkillType(lua_State*);   // gets the type of weapon equipped
+	int32 getWeaponSubSkillType(lua_State*);// gets the subskill of weapon equipped
 	int32 isBehind(lua_State*);				// true if you're behind the input target
 	int32 isFacing(lua_State*);				// true if you are facing the target
 	int32 isTrickAttackAvailable(lua_State*);//true if TA target is available
@@ -400,11 +402,17 @@ public:
 	int32 SetAutoAttackEnabled(lua_State*);	 // halts/resumes auto attack of entity
 	int32 SetMagicCastingEnabled(lua_State*);// halt/resumes casting magic
 	int32 SetMobAbilityEnabled(lua_State*);	 // halt/resumes mob skills
-	int32 updateTarget(lua_State*);					 // Force mob to update target from enmity container (ie after updateEnmity)
+	int32 updateTarget(lua_State*);			 // Force mob to update target from enmity container (ie after updateEnmity)
 
 	int32 getExtraVar(lua_State*);
 	int32 setExtraVar(lua_State*);
 	int32 setSpellList(lua_State*);
+
+	int32 hasValidJugPetItem(lua_State*);
+	int32 hasTarget(lua_State*);
+	int32 setBattleSubTarget(lua_State*);
+	int32 hasTPMoves(lua_State*);
+	int32 getMaster(lua_State*);
 };
 
 #endif

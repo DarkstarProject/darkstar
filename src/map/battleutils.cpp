@@ -3130,64 +3130,6 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
 }
 
 
-/* This will return true if you do not have enough TP to do a dance, if PAbility is a dance. If PAbility is not
- * a dance, this will return false.
- */
-bool HasNotEnoughTpForDance(CBattleEntity* PEntity, CAbility* PAbility, bool takeTpIfHaveEnough)
-{
-	// TODO: Minor optimisation by doing a range check before switching since the IDs are all grouped together
-
-	switch (PAbility->getID()) {
-	case ABILITY_DRAIN_SAMBA:
-		if (PEntity->health.tp < 10) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-10); }
-		break;
-	case ABILITY_DRAIN_SAMBA_II:
-		if (PEntity->health.tp < 25) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-25); }
-		break;
-	case ABILITY_DRAIN_SAMBA_III:
-		if (PEntity->health.tp < 40) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-40); }
-		break;
-	case ABILITY_ASPIR_SAMBA:
-		if (PEntity->health.tp < 10) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-10); }
-		break;
-	case ABILITY_ASPIR_SAMBA_II:
-		if (PEntity->health.tp < 25) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-25); }
-		break;
-	case ABILITY_HASTE_SAMBA:
-		if (PEntity->health.tp < 35) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-35); }
-		break;
-	case ABILITY_CURING_WALTZ:
-		if (PEntity->health.tp < 20) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-20); }
-		break;
-	case ABILITY_CURING_WALTZ_II:
-		if (PEntity->health.tp < 35) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-35); }
-		break;
-	case ABILITY_CURING_WALTZ_III:
-		if (PEntity->health.tp < 50) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-50); }
-		break;
-	case ABILITY_CURING_WALTZ_IV:
-		if (PEntity->health.tp < 65) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-65); }
-		break;
-	case ABILITY_HEALING_WALTZ:
-		if (PEntity->health.tp < 20) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-20); }
-		break;
-	case ABILITY_DIVINE_WALTZ:
-		if (PEntity->health.tp < 40) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-40); }
-		break;
-	case ABILITY_QUICKSTEP:
-		if (PEntity->health.tp < 10) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-10); }
-		break;
-	case ABILITY_BOX_STEP:
-		if (PEntity->health.tp < 10) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-10); }
-		break;
-	case ABILITY_STUTTER_STEP:
-		if (PEntity->health.tp < 20) { return true; } else if (takeTpIfHaveEnough) { PEntity->addTP(-20); }
-		break;
-	}
-
-	return false;
-}
-
 /*
  * Find if any party members are in position for trick attack.  Do this by making a narrow triangle:
  *  one endpoint at the mob, and the other two endpoints being equidistant from the TA user, perpendicular to

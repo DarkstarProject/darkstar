@@ -3791,6 +3791,22 @@ inline int32 CLuaBaseEntity::hasStatusEffect(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::hasBustEffect(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    bool hasEffect = false;
+
+    hasEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->HasBustEffect(
+        (EFFECT)lua_tointeger(L,1));
+
+    lua_pushboolean(L, hasEffect);
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::canGainStatusEffect(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -5199,6 +5215,37 @@ inline int32 CLuaBaseEntity::getWeaponSkillType(lua_State *L)
 	return 0;
 }
 
+/************************************************************************
+*                                                                       *
+*  Gets the subskill type of weapon in slot								*
+*                                                                       *
+************************************************************************/
+inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	if( !lua_isnil(L,1) && lua_isstring(L,1) )
+	{
+		uint8 SLOT = (uint8)lua_tointeger(L,1);
+		if (SLOT > 1)
+		{
+			lua_pushinteger(L,0);
+			return 1;
+		}
+		CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT];
+		if(weapon == NULL)
+		{
+		    ShowDebug(CL_CYAN"lua::getWeaponSubskillType weapon in main slot is null!\n" CL_RESET);
+			return 0;
+		}
+		lua_pushinteger( L, weapon->getSubSkillType() );
+		return 1;
+	}
+	ShowError(CL_RED"lua::getWeaponSubskillType :: Invalid slot specified!" CL_RESET);
+	return 0;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
@@ -5337,7 +5384,7 @@ inline int32 CLuaBaseEntity::isWeaponTwoHanded(lua_State *L)
 	    ShowDebug(CL_CYAN"lua::getWeaponDmg weapon in main slot is null!\n" CL_RESET);
 		return 0;
     }
-	lua_pushinteger( L, weapon->isTwoHanded() );
+	lua_pushboolean( L, weapon->isTwoHanded() );
 	return 1;
 }
 
@@ -6469,6 +6516,78 @@ inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::hasValidJugPetItem(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC));
+
+	CItemWeapon* PItem = (CItemWeapon*)((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PBaseEntity)->equip[SLOT_AMMO]);
+
+	if (PItem != NULL && PItem->getSubSkillType() >= SUBSKILL_SHEEP && PItem->getSubSkillType() <= SUBSKILL_TOLOI)
+	{
+		lua_pushboolean(L, true);
+		return 1;
+	}
+	else
+	{
+		lua_pushboolean(L, false);
+		return 1;
+	}
+}
+
+inline int32 CLuaBaseEntity::hasTarget(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	lua_pushboolean(L,((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget() != NULL);
+
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::setBattleSubTarget(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1));
+
+	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
+	CBattleEntity* PTarget = (CBattleEntity*)PLuaBaseEntity->GetBaseEntity();
+
+	((CBattleEntity*)m_PBaseEntity)->PBattleAI->SetBattleSubTarget(PTarget);
+
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::hasTPMoves(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+
+	std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(((CMobEntity*)m_PBaseEntity)->m_Family);
+	lua_pushboolean(L,MobSkills.size() == 0);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getMaster(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	if(((CBattleEntity*)m_PBaseEntity)->PMaster != NULL)
+	{
+		//uint32 petid = (uint32);
+
+		CBaseEntity* PMaster = ((CBattleEntity*)m_PBaseEntity)->PMaster;
+
+		lua_pushstring(L,CLuaBaseEntity::className);
+		lua_gettable(L,LUA_GLOBALSINDEX);
+		lua_pushstring(L,"new");
+		lua_gettable(L,-2);
+		lua_insert(L,-2);
+		lua_pushlightuserdata(L,(void*)PMaster);
+		lua_pcall(L,2,1,0);
+		return 1;
+	}
+	lua_pushnil(L);
+	return 1;
+}
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -6605,6 +6724,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canGainStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasBustEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffectElement),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseStatusEffect),
@@ -6667,6 +6787,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromCure),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isWeaponTwoHanded),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillType),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSubSkillType),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmgForRank),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),
@@ -6737,5 +6858,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getExtraVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setExtraVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpellList),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasValidJugPetItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTarget),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setBattleSubTarget),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTPMoves),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaster),
 	{NULL,NULL}
 };

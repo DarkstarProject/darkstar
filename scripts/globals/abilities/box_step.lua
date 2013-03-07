@@ -1,25 +1,23 @@
 -----------------------------------
--- Ability: Charm a monster
+-- Ability: Box Step
 -----------------------------------
-
+ 
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/pets");
 
 -----------------------------------
 -- OnUseAbility
 -----------------------------------
 
+--Uncomment these when implemented
 function OnAbilityCheck(player,target,ability)
-	if (player:getPet() ~= nil) then
-		return MSGBASIC_ALREADY_HAS_A_PET,0;
-	elseif (target:getMaster() ~= nil) then
-		return MSGBASIC_THAT_SOMEONES_PET,0;
-	else
-		return 0,0;
-	end
+	--if (player:getTP() < 10) then
+		return MSGBASIC_UNABLE_TO_USE_JA2,0;
+	--else
+	--	return 0,0;
+	--end
 end;
 
 function OnUseAbility(player, target, ability)
-	player:charmPet(target);
+	--player:delTP(10);
 end;
