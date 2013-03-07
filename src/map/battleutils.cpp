@@ -2648,6 +2648,23 @@ void MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode)
 	}
 }
 
+/************************************************************************
+*                                                                       *
+*  Moves mob into melee range and turns to face with a given            *
+*  angle threshold                                                      *
+*                                                                       *
+************************************************************************/
+
+
+void MoveIntoRange(CBattleEntity* PPursuer, CBattleEntity* PTarget, uint8 angleThreshold)
+{
+	uint8 angle = getangle(PPursuer->loc.p, PTarget->loc.p);
+	if(angle > angleThreshold)
+		PPursuer->loc.p.rotation = angle;
+	if (distance(PPursuer->loc.p, PTarget->loc.p) > PPursuer->m_ModelSize)
+			MoveTo(PPursuer, PTarget->loc.p, 2);
+}
+
 /****************************************************************
 *	Determine if an enfeeble spell will land - untested			*
 ****************************************************************/

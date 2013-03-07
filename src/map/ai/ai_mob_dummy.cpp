@@ -500,11 +500,9 @@ void CAIMobDummy::ActionAbilityStart()
 			ActionAttack();
 			return;
 		}
-		else //mob is outside of melee range, so pursue
-		{
-			battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
-			return;
-		}
+		battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
+		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+		return;
 	}
 
 	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS){
@@ -547,6 +545,10 @@ void CAIMobDummy::ActionAbilityStart()
 		ActionAttack();
 		return;
 	}
+	
+	battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+	
 	if( m_PMobSkill->getActivationTime() != 0)
 	{
 		Action.reaction   = REACTION_HIT;
@@ -1369,20 +1371,17 @@ void CAIMobDummy::ActionAttack()
         }
     }
 
-    m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
-
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (CurrentDistance <= 28 && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) { // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
-		return;
-	}/* else if(CurrentDistance <= 20 && m_PMob->HasRanged() && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime){
+	if (CurrentDistance <= 28 && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) {} // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
+	/* else if(CurrentDistance <= 20 && m_PMob->HasRanged() && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime){
 		m_ActionType = ACTION_RANGED_START;
 		ActionRangedStart();
 		return;
 	}*/
 
-	if (CurrentDistance <= m_PMob->m_ModelSize)
+	else if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
 		int32 WeaponDelay = m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
 		if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS,0))
@@ -1588,6 +1587,7 @@ void CAIMobDummy::ActionAttack()
 
 						m_PMob->m_ActionList.push_back(Action);
 					}
+					battleutils::MoveIntoRange(m_PMob,m_PBattleTarget,25);
 					m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 				} //end attack for
 			}
@@ -1614,9 +1614,8 @@ void CAIMobDummy::ActionAttack()
 		{
 			m_ActionType = ACTION_MOBABILITY_START;
 			ActionAbilityStart();
-			return;
 		}
-		battleutils::MoveTo(m_PMob, m_PBattleTarget->loc.p, 2);
+		battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
 	}
 
 	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS && (m_Tick - m_StartBattle) % 3000 <= 400) // launch OnMobFight every 3 sec (not everytime at 0 but 0~400)
