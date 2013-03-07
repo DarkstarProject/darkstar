@@ -5,14 +5,14 @@
 --  Starts and Finishes: Making Amens!
 --	Working 100%
 -----------------------------------
-
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-require("scripts/zones/Port_Windurst/TextIDs");
 require("scripts/globals/keyitems");
+require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -83,13 +83,13 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x0118) then
 		player:addQuest(WINDURST,MAKING_AMENS);
 	elseif (csid == 0x011c) then
+        player:needToZone(true);
 		player:delKeyItem(BROKEN_WAND);
 		player:addTitle(HAKKURURINKURUS_BENEFACTOR);
 		player:addGil(GIL_RATE*6000);
-		player:messageSpecial(GIL_OBTAINED, 6000);
-		player:completeQuest(WINDURST,MAKING_AMENS);
-		player:needToZone(true);
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*6000);
 		player:addFame(WINDURST,WIN_FAME*150);
+        player:completeQuest(WINDURST,MAKING_AMENS);
 	end
 end;
 
