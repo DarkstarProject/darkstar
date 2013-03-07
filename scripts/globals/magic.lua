@@ -490,18 +490,18 @@ function getSkillLvl(rank,level)
     end
 
     -- handle multiple targets
-    --[[if(spell:isAoE()) then
+    if(spell:isAoE()) then
         local total = spell:getTotalTargets();
 
-        -- ga spells on 10+ targets = 0.4
         if(total > 9) then
+            -- ga spells on 10+ targets = 0.4
             dmg = dmg * 0.4;
         elseif(total > 1) then
-        -- -ga spells on 2 to 9 targets = 0.9 - 0.05T where T = number of targets
+            -- -ga spells on 2 to 9 targets = 0.9 - 0.05T where T = number of targets
             dmg = dmg * (0.9 - 0.05 * total);
         end
 
-    end]]
+    end
 
     dmg = dmg - target:getMod(MOD_PHALANX);
     if(dmg<0) then

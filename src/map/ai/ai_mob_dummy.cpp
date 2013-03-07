@@ -1015,11 +1015,7 @@ void CAIMobDummy::ActionSleep()
 		return;
 	}
 
-    if (!m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
-        !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
-        !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) &&
-        !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY)
-        && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_STUN))
+    if (!m_PMob->StatusEffectContainer->HasPreventActionEffect())
     {
 		//put it in combat if it isn't
 		if( m_PMob->animation == ANIMATION_NONE ){
@@ -1089,7 +1085,7 @@ void CAIMobDummy::ActionMagicCasting()
 	if ( ((m_Tick - m_LastMagicTime) >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50))/100.0f)) ||
         m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0))
 	{
-		if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
+		if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) || m_PMob->StatusEffectContainer->HasPreventActionEffect())
         {
 			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0,MSGBASIC_UNABLE_TO_CAST));
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
@@ -1112,7 +1108,7 @@ void CAIMobDummy::ActionMagicCasting()
 		}
 
 		float CurrentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
-		if (CurrentDistance > 25) {
+		if (CurrentDistance > 28) {
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
 			return;
@@ -1382,7 +1378,7 @@ void CAIMobDummy::ActionAttack()
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (CurrentDistance <= 25 && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) { // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
+	if (CurrentDistance <= 28 && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) { // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
 		return;
 	}/* else if(CurrentDistance <= 20 && m_PMob->HasRanged() && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime){
 		m_ActionType = ACTION_RANGED_START;
@@ -1807,6 +1803,10 @@ bool CAIMobDummy::TryCastSpell()
 
 void CAIMobDummy::ActionRangedStart()
 {
+
+	// ranged attack
+	// bitOffset = packBitsBE(data, 16,  bitOffset, 11);
+	// message ID = 272, animation ID = 16
     m_LastActionTime = m_Tick;
 
 	m_PBattleSubTarget = m_PBattleTarget;

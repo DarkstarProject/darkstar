@@ -5691,7 +5691,7 @@ inline int32 CLuaBaseEntity::openDoor(lua_State *L)
 inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-/*
+
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
 	uint16 action = (uint16)lua_tointeger(L,1);
@@ -5755,7 +5755,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
     PChar->m_ActionList.push_back(Action);
 	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CActionPacket(PChar));
 	PChar->PBattleAI->SetCurrentAction(oldAction);
-*/
+
 	return 0;
 }
 

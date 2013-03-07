@@ -1159,6 +1159,15 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
 }
 
+bool CStatusEffectContainer::HasPreventActionEffect()
+{
+    return HasStatusEffect(EFFECT_SLEEP) ||
+        HasStatusEffect(EFFECT_SLEEP_II) ||
+        HasStatusEffect(EFFECT_PETRIFICATION) ||
+        HasStatusEffect(EFFECT_LULLABY) ||
+        HasStatusEffect(EFFECT_STUN);
+}
+
 bool CStatusEffectContainer::CheckForElevenRoll()
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)

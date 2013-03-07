@@ -81,6 +81,7 @@ public:
 
 	bool CheckForElevenRoll();
 	bool HasBustEffect(uint16 id);
+  bool HasPreventActionEffect(); // checks if owner has an effect that prevents actions, like stun, petrify, sleep etc
 
 	 CStatusEffectContainer(CBattleEntity* PEntity);
 	~CStatusEffectContainer();
