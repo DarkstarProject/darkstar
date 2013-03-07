@@ -175,6 +175,7 @@ function onMobFight(mob,target)
 		for i=17056170, 17056186 do
 			DespawnMob(i);
 		end
+      printf("Timer expired at %i.  Despawning Pandemonium Warden.",PWardenDespawnTime);
 	end
 
 	-- Very much early code.  Couldn't find a way to depop the mob after AF pacts had executed.  As such, doesn't work.
