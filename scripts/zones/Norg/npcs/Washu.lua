@@ -46,9 +46,9 @@ function onTrigger(player,npc)
 		end
 	elseif(Whining == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 4 and mLvl >= 10) then
 		player:startEvent(0x0015); --Start Quest
-	elseif(Whining == QUEST_ACCEPTED and player:hasKeyItem(260) == true) then
+	elseif(Whining == QUEST_ACCEPTED and player:hasKeyItem(EMPTY_BARREL) == true) then
 		player:startEvent(0x0016); --Reminder Dialogue
-	elseif(Whining == QUEST_ACCEPTED and player:hasKeyItem(261) == true) then
+	elseif(Whining == QUEST_ACCEPTED and player:hasKeyItem(BARREL_OF_OPOOPO_BREW) == true) then
 		player:startEvent(0x0017); --Finish Quest
 	elseif(Whining == QUEST_COMPLETED) then
 		player:startEvent(0x0018); 
@@ -84,14 +84,14 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,WASHSUS_TASTY_WURST);
 		player:setVar("yomiOkuriCS",3);
 	elseif(csid == 0x0015 and option == 1) then
-		player:addKeyItem(260); --Empty Barrel
+		player:addKeyItem(EMPTY_BARREL); --Empty Barrel
 		player:addQuest(OUTLANDS,STOP_YOUR_WHINING);
-		player:messageSpecial(KEYITEM_OBTAINED,260);
+		player:messageSpecial(KEYITEM_OBTAINED,EMPTY_BARREL);
 	elseif(csid == 0x0017) then
 		if(player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4952); 
 		else
-			player:delKeyItem(261); --Filled Barrel
+			player:delKeyItem(BARREL_OF_OPOOPO_BREW); --Filled Barrel
 			player:addItem(4952); -- Scroll of Hojo: Ichi
 			player:messageSpecial(ITEM_OBTAINED,4952); -- Scroll of Hojo: Ichi
 			player:addFame(OUTLANDS,NORG_FAME*75);

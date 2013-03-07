@@ -103,7 +103,7 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item
 			end
 			player:addTitle(HEIR_OF_THE_GREAT_LIGHTNING);
-			player:delKeyItem(325); --Whisper of Storms, as a trade for the above rewards
+			player:delKeyItem(WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
 			player:setVar("TrialByLightning_date", os.date("%j")); -- %M for next minute, %j for next day
 			player:addFame(OTHER_AREAS,WIN_FAME*30);
 			player:completeQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);

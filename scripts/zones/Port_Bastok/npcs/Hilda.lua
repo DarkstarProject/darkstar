@@ -99,14 +99,14 @@ function onEventFinish(player,csid,option)
 		end
     elseif(csid == 0x0087) then
         player:tradeComplete();
-		player:addKeyItem(127);
-        player:messageSpecial(KEYITEM_OBTAINED,127);
+		player:addKeyItem(STEAMING_SHIP_INVITATION);
+        player:messageSpecial(KEYITEM_OBTAINED,STEAMING_SHIP_INVITATION);
     elseif(csid == 0x0088) then
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17170);
 		else
 			player:addTitle(STEAMING_SHEEP_REGULAR);
-			player:delKeyItem(127);
+			player:delKeyItem(STEAMING_SHIP_INVITATION);
 			player:setVar("TheUsual_Event",0);
 			player:addItem(17170);
 			player:messageSpecial(ITEM_OBTAINED,17170); -- Speed Bow

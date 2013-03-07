@@ -14,6 +14,7 @@ package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
+require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/zones/Port_Windurst/TextIDs");
 
@@ -64,7 +65,7 @@ Fame       = player:getFameLevel(WINDURST);
 	if (ThePromise == QUEST_COMPLETED) then
 		player:startEvent(0x0220);
 	elseif (ThePromise == QUEST_ACCEPTED) then
-		InvisibleManSticker = player:hasKeyItem(271);
+		InvisibleManSticker = player:hasKeyItem(INVISIBLE_MAN_STICKER);
 		
 		if (InvisibleManSticker == true) then
 			ThePromiseCS_Seen = player:getVar("ThePromiseCS_Seen");
@@ -75,22 +76,22 @@ Fame       = player:getFameLevel(WINDURST);
 				if (FreeSlots >= 1) then
 					player:completeQuest(WINDURST,THE_PROMISE);
 					player:addFame(WINDURST,WIN_FAME*150);
-					player:delKeyItem(271);
+					player:delKeyItem(INVISIBLE_MAN_STICKER);
 					player:addItem(13135);
-					player:messageSpecial(ITEM_OBTAINED,13135);	
-					player:setVar("ThePromise",0);						
-					player:setVar("ThePromiseCS_Seen",0);					
+					player:messageSpecial(ITEM_OBTAINED,13135);
+					player:setVar("ThePromise",0);
+					player:setVar("ThePromiseCS_Seen",0);
 				else
 					player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13135);
 				end
 			else
-				player:startEvent(0x020a,0,271);
+				player:startEvent(0x020a,0,INVISIBLE_MAN_STICKER);
 			end
 		else
 			player:startEvent(0x0202);
 		end
 	elseif (WildCard == QUEST_COMPLETED) then
-		player:startEvent(0x0201,0,271);
+		player:startEvent(0x0201,0,INVISIBLE_MAN_STICKER);
 	elseif (WildCard == QUEST_ACCEPTED) then
 		WildCardVar = player:getVar("WildCard");
 		
@@ -118,7 +119,7 @@ Fame       = player:getFameLevel(WINDURST);
 			player:startEvent(0x01b8);
 		end
 	elseif (OnionRings == QUEST_ACCEPTED) then
-		OldRing = player:hasKeyItem(130);
+		OldRing = player:hasKeyItem(OLD_RING);
 		
 		if (OldRing == true) then
 			OnionRingsTime = player:getVar("OnionRingsTime");
@@ -132,15 +133,15 @@ Fame       = player:getFameLevel(WINDURST);
 		end
 	elseif (InspectorsGadget == QUEST_COMPLETED) then
 		if (NeedToZone == false and Fame >= 3) then
-			OldRing = player:hasKeyItem(130);
+			OldRing = player:hasKeyItem(OLD_RING);
 			
 			if (OldRing == true) then
 				OnionRingsVar = player:getVar("OnionRings");
 				
 				if (OnionRingsVar == 1) then
-					player:startEvent(0x01ae,0,130);
+					player:startEvent(0x01ae,0,OLD_RING);
 				else
-					player:startEvent(0x01b0,0,130);
+					player:startEvent(0x01b0,0,OLD_RING);
 				end
 			else
 				player:startEvent(0x01ad);
@@ -149,7 +150,7 @@ Fame       = player:getFameLevel(WINDURST);
 			player:startEvent(0x01a6);
 		end		
 	elseif (InspectorsGadget == QUEST_ACCEPTED) then
-		FakeMoustache = player:hasKeyItem(95);
+		FakeMoustache = player:hasKeyItem(FAKE_MOUSTACHE);
 		
 		if (FakeMoustache == true) then
 			player:startEvent(0x01a5);
@@ -278,8 +279,8 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x01b0 or csid == 0x01b1) then
 		player:completeQuest(WINDURST,ONION_RINGS);
 		player:addFame(WINDURST,WIN_FAME*100);
-		player:addTitle(STAR_ONION_BRIGADIER);	
-		player:delKeyItem(130);		
+		player:addTitle(STAR_ONION_BRIGADIER);
+		player:delKeyItem(OLD_RING);
 		player:setVar("OnionRingsTime",0);
 		player:needToZone(true);
 	elseif (csid == 0x01b8) then
@@ -309,18 +310,13 @@ function onEventFinish(player,csid,option)
 		if (FreeSlots >= 1) then
 			player:completeQuest(WINDURST,THE_PROMISE);
 			player:addFame(WINDURST,WIN_FAME*150);
-			player:delKeyItem(271);
+			player:delKeyItem(INVISIBLE_MAN_STICKER);
 			player:addItem(13135);
-			player:messageSpecial(ITEM_OBTAINED,13135);		
-			player:setVar("ThePromise",0);									
+			player:messageSpecial(ITEM_OBTAINED,13135);
+			player:setVar("ThePromise",0);
 		else
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13135);
 			player:setVar("ThePromiseCS_Seen",1);
 		end
 	end
-
 end;
-
-
-
-

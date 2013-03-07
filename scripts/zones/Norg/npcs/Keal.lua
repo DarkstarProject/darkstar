@@ -26,15 +26,15 @@ function onTrigger(player,npc)
 	
 	Vault = player:getQuestStatus(OUTLANDS,ITS_NOT_YOUR_VAULT);
 	mLvl = player:getMainLvl();
-	IronBox = player:hasKeyItem(295);
+	IronBox = player:hasKeyItem(SEALED_IRON_BOX);
 	
 	if(Vault == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 3 and mLvl >= 5) then
-		player:startEvent(0x0024,295); -- Start quest
+		player:startEvent(0x0024,SEALED_IRON_BOX); -- Start quest
 	elseif(Vault == QUEST_ACCEPTED) then
 		if(IronBox == true) then
 			player:startEvent(0x0026); -- Finish quest
 		else
-			player:startEvent(0x0025,426); -- Reminder/Directions Dialogue
+			player:startEvent(0x0025,MAP_OF_THE_SEA_SERPENT_GROTTO); -- Reminder/Directions Dialogue
 		end
 	elseif(Vault == QUEST_COMPLETED) then
 		player:startEvent(0x0027); -- New Standard Dialogue for everyone who has completed the quest
@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4961); 
 		else
-			player:delKeyItem(295);
+			player:delKeyItem(SEALED_IRON_BOX);
 			player:addItem(4961); -- Scroll of Tonko: Ichi
 			player:messageSpecial(ITEM_OBTAINED, 4961); 
 			player:addFame(OUTLANDS,NORG_FAME*50);

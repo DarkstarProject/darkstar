@@ -115,7 +115,7 @@ function onEventFinish(player,csid,option)
 		player:addGil(GIL_RATE*400);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);		
 		player:setVar("QuestCrisisMaking_var",0);
-		player:delKeyItem(39,OFF_OFFERING);	
+		player:delKeyItem(OFF_OFFERING);	
 		player:addFame(WINDURST,WIN_FAME*75);
 		player:completeQuest(WINDURST,A_CRISIS_IN_THE_MAKING);
 		player:needToZone(true);		
@@ -123,7 +123,7 @@ function onEventFinish(player,csid,option)
 		player:addGil(GIL_RATE*400);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);		
 		player:setVar("QuestCrisisMaking_var",0);
-		player:delKeyItem(39,OFF_OFFERING);
+		player:delKeyItem(OFF_OFFERING);
 		player:addFame(WINDURST,WIN_FAME*8);
 		player:needToZone(true);
 	

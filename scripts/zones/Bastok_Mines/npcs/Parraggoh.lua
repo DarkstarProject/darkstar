@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
@@ -73,7 +74,7 @@ function onEventFinish(player,csid,option)
 		if (FreeSlots >= 1) then
 			player:completeQuest(BASTOK,BEAUTY_AND_THE_GALKA);
 			player:setVar("BeautyAndTheGalkaDenied",0);
-			player:delKeyItem(2);
+			player:delKeyItem(PALBOROUGH_MINES_LOGS);
 			player:addFame(BASTOK,BAS_FAME*75); 
 			player:addItem(16465);
 			player:messageSpecial(ITEM_OBTAINED,16465);

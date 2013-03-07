@@ -126,7 +126,7 @@ function onEventFinish(player,csid,option)
 	  player:setVar("MEMORIES_OF_A_MAIDEN_Status",4);
 	elseif(csid == 0x01D6)then
 		player:setVar("MEMORIES_OF_A_MAIDEN_Status",7);
-		player:delKeyItem(581);
+		player:delKeyItem(FIGURE_OF_LEVIATHAN);
 	elseif(csid == 0x01D7)then
 		player:delKeyItem(MIMEO_FEATHER);
  		player:delKeyItem(SECOND_MIMEO_FEATHER);

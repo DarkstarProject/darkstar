@@ -8,6 +8,7 @@ package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/zones/North_Gustaberg/TextIDs");
 
 -----------------------------------
@@ -50,7 +51,7 @@ function onEventFinish(player,csid,option)
 
 	if (csid == 0x000b and option == 0) then
 		player:setVar("HeartsOfMythril",1);
-		player:delKeyItem(0x17);
+		player:delKeyItem(BOUQUETS_FOR_THE_PIONEERS);
 	end
 	
 end;

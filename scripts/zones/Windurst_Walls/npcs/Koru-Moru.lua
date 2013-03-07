@@ -202,7 +202,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17532);
 		end;
 	elseif(csid == 0x019c) then
-		player:delKeyItem(450);
+		player:delKeyItem(CARBUNCLES_TEAR);
 		player:setVar("ClassReunionProgress",2);
 	elseif(csid == 0x0197) then
 		player:tradeComplete();

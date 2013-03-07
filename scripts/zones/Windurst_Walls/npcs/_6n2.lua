@@ -89,7 +89,7 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(WINDURST,ONION_RINGS);
 		player:addFame(WINDURST,WIN_FAME*100);
 		player:addTitle(STAR_ONION_BRIGADIER);
-		player:delKeyItem(130);
+		player:delKeyItem(OLD_RING);
 		player:setVar("OnionRingsTime",0);
 		player:setVar("OnionRings",2);
 	elseif(csid == 0x0180) then
@@ -113,8 +113,8 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x019d) then
 		player:setVar("ClassReunionProgress",1);
 		player:addQuest(WINDURST,CLASS_REUNION);
-		player:addKeyItem(450);
-		player:messageSpecial(KEYITEM_OBTAINED,450);
+		player:addKeyItem(CARBUNCLES_TEAR);
+		player:messageSpecial(KEYITEM_OBTAINED,CARBUNCLES_TEAR);
 	end;
 
 end;

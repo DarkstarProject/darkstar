@@ -27,10 +27,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuestStatus(0,60) == 1) and (player:hasKeyItem(164) == true) then
-		player:addKeyItem(165)
-		player:messageSpecial(KEYITEM_OBTAINED,165);
-		player:delKeyItem(164);
+	if (player:getQuestStatus(SANDORIA,THE_GENERAL_S_SECRET) == 1) and (player:hasKeyItem(CURILLAS_BOTTLE_EMPTY) == true) then
+		player:addKeyItem(CURILLAS_BOTTLE_FULL)
+		player:messageSpecial(KEYITEM_OBTAINED,CURILLAS_BOTTLE_FULL);
+		player:delKeyItem(CURILLAS_BOTTLE_EMPTY);
 	else
 		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
 		player:addItem(4949); -- Scroll of Jubaku: Ichi
 		player:messageSpecial(ITEM_OBTAINED, 4949); 
 		player:addFame(OUTLANDS,NORG_FAME*75);
-		player:addTitle(270);
+		player:addTitle(CRACKER_OF_THE_SECRET_CODE);
 		player:completeQuest(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
 	end
 end;

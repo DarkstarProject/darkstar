@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/zones/Zeruhn_Mines/TextIDs");
 
 -----------------------------------
@@ -24,13 +25,13 @@ end;
 
 function onTrigger(player,npc)
 
-GroceriesVar = player:getVar("Groceries");	
-GroceriesViewedNote = player:getVar("GroceriesViewedNote");	
+GroceriesVar = player:getVar("Groceries");
+GroceriesViewedNote = player:getVar("GroceriesViewedNote");
 
 	if (GroceriesVar == 2) then
 		player:showText(npc,7279);
 	elseif (GroceriesVar == 1) then
-		ViewedNote = player:seenKeyItem(0x98);
+		ViewedNote = player:seenKeyItem(TAMIS_NOTE);
 		if (ViewedNote == true) then
 			player:startEvent(0x00a2);
 		else
@@ -61,10 +62,10 @@ function onEventFinish(player,csid,option)
 
 	if (csid == 0x00a1) then
 		player:setVar("Groceries",2);
-		player:delKeyItem(0x98);
+		player:delKeyItem(TAMIS_NOTE);
 	elseif (csid == 0x00a2) then
 		player:setVar("GroceriesViewedNote",1);
-		player:delKeyItem(0x98);	
+		player:delKeyItem(TAMIS_NOTE);
 	end
 	
 end;
