@@ -6,12 +6,12 @@ function OnAbilityCheck(player,target,ability)
 	if (player:getTP() < 10) then
 		return MSGBASIC_UNABLE_TO_USE_JA2,0;
 	else
+		player:delTP(10);
 		return 0,0;
 	end
 end;
 
 function OnUseAbility(player, target, ability)
-	player:delTP(10);
 	player:delStatusEffect(EFFECT_HASTE_SAMBA);
 	player:delStatusEffect(EFFECT_ASPIR_SAMBA);
 	player:addStatusEffect(EFFECT_DRAIN_SAMBA,1,0,120);

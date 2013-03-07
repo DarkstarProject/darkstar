@@ -13,6 +13,7 @@ function OnAbilityCheck(player,target,ability)
 	if (player:getTP() < 65) then
 		return MSGBASIC_UNABLE_TO_USE_JA2,0;
 	else
+		player:delTP(65);
 		return 0,0;
 	end
 end;
@@ -25,7 +26,7 @@ function OnUseAbility(player, target, ability)
 	local mjob = player:getMainJob(); --19 for DNC main.
 	local cure = 0;
 
-	player:delTP(65);
+
 	
 	--Performing mj check.
 	if(mjob == 19) then
