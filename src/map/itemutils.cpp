@@ -277,7 +277,7 @@ namespace itemutils
                 "a.rslot,"          // 21
 
 			    "w.skill,"          // 22
-				"w.subskill,        // 23
+				"w.subskill,"       // 23
                 "w.delay,"          // 24
                 "w.dmg,"            // 25
                 "w.dmgType,"        // 26
