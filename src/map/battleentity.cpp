@@ -183,6 +183,12 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
 		//apply dual wield delay reduction
 		WeaponDelay = WeaponDelay * ((100.0f - (float)getMod(MOD_DUAL_WIELD))/100.0f);
 	}
+
+	if(StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
+	{
+		WeaponDelay = (500)*1000 / 60;
+	}
+
 	//apply haste and delay reductions that don't affect tp
 	if (!tp)
 	{

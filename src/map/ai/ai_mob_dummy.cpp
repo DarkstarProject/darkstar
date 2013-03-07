@@ -92,7 +92,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_MAGIC_START:		  ActionMagicStart();		break;
 		case ACTION_MAGIC_CASTING:		  ActionMagicCasting();		break;
 		case ACTION_MAGIC_INTERRUPT:	  ActionMagicInterrupt();	break;
-
+		case ACTION_MOBABILITY_RANGED:	  ActionRangedAttack();		break;
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
 }

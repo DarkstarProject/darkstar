@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_KICK_DMG,18);
+    target:addMod(MOD_KICK_DMG,21);
     target:addMod(MOD_ATTP,10);
 end;
 
@@ -25,6 +25,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_KICK_DMG,18);
+    target:delMod(MOD_KICK_DMG,21);
     target:delMod(MOD_ATTP,10);
 end;

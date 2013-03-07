@@ -120,6 +120,12 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			packBitsBE(data, id, 54, 12);
 		}
 			break;
+		case ACTION_MOBABILITY_RANGED:
+		{
+			uint16 id = battleutils::GetMobSkillMessage(PEntity->PBattleAI->GetCurrentMobSkill());
+			packBitsBE(data, id,  54, 11);
+		}
+			break;
 		case ACTION_ITEM_START:
 		{
 			WBUFB(data,(0x0A)-4) = 0xE4;
