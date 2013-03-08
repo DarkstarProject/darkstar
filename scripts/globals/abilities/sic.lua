@@ -19,8 +19,8 @@ function OnAbilityCheck(player,target,ability)
 			return MSGBASIC_UNABLE_TO_USE_JA,0;
 		elseif (not player:getPet():hasTarget()) then
 			return MSGBASIC_PET_CANNOT_DO_ACTION,0;
-		elseif (not player:getPet():hasTPMoves())
-		
+		elseif (not player:getPet():hasTPMoves()) then
+			return MSGBASIC_UNABLE_TO_USE_JA,0;
 		else
 			return 0,0;
 		end
