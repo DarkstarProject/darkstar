@@ -17,7 +17,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SLOW;
 
-    MobStatusEffectMove(mob, target, typeEffect, 300, 0, 120);
+    MobStatusEffectMove(mob, target, typeEffect, 128, 0, 120);
 
     local dmgmod = 1;
 

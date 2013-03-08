@@ -23,7 +23,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 
 	MobStatusEffectMove(mob, target, EFFECT_POISON, mob:getMainLvl()/3, 3, 60);
-	MobStatusEffectMove(mob, target, EFFECT_SLOW, 200, 3, 60);
+	MobStatusEffectMove(mob, target, EFFECT_SLOW, 128, 3, 120);
 	MobStatusEffectMove(mob, target, EFFECT_PLAGUE, 5, 3, 60);
 
 	local dmgmod = 1;

@@ -27,7 +27,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	MobStatusEffectMove(mob, target, EFFECT_PLAGUE, 5, 3, duration);
 	MobStatusEffectMove(mob, target, EFFECT_BIND, 1, 0, duration);
 	MobStatusEffectMove(mob, target, EFFECT_SILENCE, 1, 0, duration);
-	MobStatusEffectMove(mob, target, EFFECT_SLOW, 400, 0, duration);
+	MobStatusEffectMove(mob, target, EFFECT_SLOW, 128, 0, duration);
 
 	local dmgmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*7,ELE_FIRE,dmgmod,TP_NO_EFFECT);

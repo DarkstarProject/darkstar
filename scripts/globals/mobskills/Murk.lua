@@ -18,7 +18,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local silenced = false;
     local blinded = false;
 
-    silenced = MobStatusEffectMove(mob, target, EFFECT_SLOW, 512, 0, math.random(30, 60));
+    silenced = MobStatusEffectMove(mob, target, EFFECT_SLOW, 128, 0, math.random(30, 60));
 
     blinded = MobStatusEffectMove(mob, target, EFFECT_WEIGHT, 40, 0, math.random(30, 60));
 

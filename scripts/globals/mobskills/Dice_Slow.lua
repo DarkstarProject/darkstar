@@ -18,7 +18,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local slowed = false;
     local sleeped = false;
 
-    slowed = MobStatusEffectMove(mob, target, EFFECT_SLOW, 256, 0, 120));
+    slowed = MobStatusEffectMove(mob, target, EFFECT_SLOW, 128, 0, 120));
     sleeped = MobStatusEffectMove(mob, target, EFFECT_SLEEP_I, 1, 0, 30));
 
     skill:setMsg(MSG_ENFEEB_IS);
