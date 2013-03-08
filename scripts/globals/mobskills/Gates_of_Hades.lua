@@ -25,8 +25,8 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
 
-	local dmgmod = 1.5;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,ELE_FIRE,dmgmod,TP_NO_EFFECT);
+	local dmgmod = 1;
+	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*6,ELE_FIRE,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;
