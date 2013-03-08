@@ -1125,7 +1125,7 @@ void CAIMobDummy::ActionMagicCasting()
 		}
 
 		float CurrentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
-		if (CurrentDistance > 28) {
+		if (CurrentDistance > 28.5) {
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
 			return;
@@ -1393,7 +1393,7 @@ void CAIMobDummy::ActionAttack()
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (CurrentDistance <= 25 && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) {
+	if (CurrentDistance <= 26.8 && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) {
 		// 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
 	} else if(CurrentDistance <= 25 && m_PMob->HasRanged() && (m_Tick - m_LastRangedTime) > m_PMob->m_RangedCoolDown){
 		m_ActionType = ACTION_MOBABILITY_FINISH;

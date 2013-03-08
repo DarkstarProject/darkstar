@@ -643,7 +643,7 @@ INSERT INTO `mob_skill` VALUES (377,51,377,'Howl', 0, 7.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (379,190,379,'Burst', 0, 15.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (380,190,380,'Flame_Arrow', 0, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (381,190,381,'Firebomb', 4, 9.5, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (382,190,382,'Blastbomb', 2, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (382,190,382,'Blastbomb', 2, 13.5, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (383,190,383,'Fountain', 4, 9.5, 2000, 1000, 4, 0);
 -- Dragon - 4 foot kind
 INSERT INTO `mob_skill` VALUES (386,87,386,'Flame_Breath', 4, 7.0, 2000, 1000, 4, 0);
