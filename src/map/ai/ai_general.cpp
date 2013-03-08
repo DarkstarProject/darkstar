@@ -55,6 +55,7 @@ void CAIGeneral::Reset()
 	m_ActionTargetID = 0;
 	m_LastActionTime = 0;
     m_LastMeleeTime = 0;
+    m_LastMagicTime = 0;
 
 	m_PSpell = NULL;
 	m_PWeaponSkill = NULL;

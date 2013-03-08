@@ -39,6 +39,11 @@ CMobSkill::CMobSkill(uint16 id)
 	m_Message = 0;
 }
 
+bool CMobSkill::isMissMsg()
+{
+  return m_Message == 158 || m_Message == 188;
+}
+
 void CMobSkill::setID(uint16 id)
 {
 	m_ID = id;

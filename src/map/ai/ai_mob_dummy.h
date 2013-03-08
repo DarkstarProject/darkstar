@@ -59,7 +59,10 @@ public:
 protected:
 
 	CMobEntity* m_PMob;
-    bool m_firstSpell;
+  bool m_firstSpell;
+  uint32 m_LastRangedTime;
+  uint32 m_LastWaitTime;
+  uint32 m_WaitTime;
 
 	void ActionRoaming();
 	void ActionEngage();
@@ -78,6 +81,7 @@ protected:
 
 	void ActionAttack();
     void ActionSleep();
+    void ActionWait();
 
 	void ActionMagicStart();
 	void ActionMagicCasting();

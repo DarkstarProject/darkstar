@@ -85,7 +85,8 @@ public:
     bool        m_AllowRespawn;						// монстру разрешено возрождаться
 	uint32		m_RespawnTime;						// отрезок времени, через который монстр возрождается после смерти
     uint32      m_DropItemTime;						// время анимации смерти монстра
-	uint32		m_MagicRecastTime;					// Amount of time between casts.
+    uint32      m_MagicRecastTime;                  // Amount of time between casts.
+	uint32		m_RangedCoolDown;					// Amount of time between ranged attacks.
 
 	uint32		m_DropID;							// номер группы оставляемых монстром предметов после смерти
 

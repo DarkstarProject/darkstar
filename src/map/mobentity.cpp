@@ -69,6 +69,8 @@ CMobEntity::CMobEntity()
     evaRank = 3;
     linkRadius = 10;
 
+    m_RangedCoolDown = 0;
+
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
     PEnmityContainer = new CEnmityContainer(this);
@@ -214,7 +216,7 @@ void CMobEntity::ChangeMJob(uint16 job)
 
 bool CMobEntity::HasRanged()
 {
-    return GetMJob() == JOB_RNG;
+    return GetMJob() == JOB_RNG || GetMJob() == JOB_NIN;
 }
 
 

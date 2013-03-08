@@ -58,6 +58,9 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 {
 	m_PMob = PMob;
 	m_firstSpell = true;
+	m_LastRangedTime = 0;
+	m_WaitTime = 0;
+	m_LastWaitTime = 0;
 }
 
 /************************************************************************
@@ -87,12 +90,12 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
         case ACTION_SLEEP:                ActionSleep();            break;
 		case ACTION_MOBABILITY_START:     ActionAbilityStart();     break;
 		case ACTION_MOBABILITY_USING:	  ActionAbilityUsing();     break;
-		case ACTION_MOBABILITY_FINISH:	  ActionAbilityFinish();    break;
+		case ACTION_MOBABILITY_FINISH:	  ActionAbilityFinish();  	break;
         case ACTION_MOBABILITY_INTERRUPT: ActionAbilityInterrupt(); break;
+        case ACTION_WAIT: 				  ActionWait();			    break;
 		case ACTION_MAGIC_START:		  ActionMagicStart();		break;
 		case ACTION_MAGIC_CASTING:		  ActionMagicCasting();		break;
 		case ACTION_MAGIC_INTERRUPT:	  ActionMagicInterrupt();	break;
-		case ACTION_MOBABILITY_RANGED:	  ActionRangedAttack();		break;
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
 }
@@ -545,10 +548,10 @@ void CAIMobDummy::ActionAbilityStart()
 		ActionAttack();
 		return;
 	}
-	
+
 	battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
-	
+
 	if( m_PMobSkill->getActivationTime() != 0)
 	{
 		Action.reaction   = REACTION_HIT;
@@ -643,9 +646,6 @@ void CAIMobDummy::ActionAbilityFinish()
 		//   4. Pet Alliance
 		TARGET_PARTY_TYPE targetPartyType = SOLO_TARGET; // solo by default
 
-
-		//todo: have a separate msg field from this for shadow absorb?
-		m_PMobSkill->setMsg(185); //need this as some skills may be set to "shadows absorb"
 
 	    m_PMobSkill->setTotalTargets(1);
 
@@ -849,6 +849,14 @@ void CAIMobDummy::ActionAbilityFinish()
 			Action.messageID  = m_PMobSkill->getMsg();
 			Action.flag       = 0;
 
+
+			if(m_PMobSkill->isMissMsg())
+			{
+			    Action.reaction   = REACTION_MISS;
+			} else {
+			    Action.reaction   = REACTION_HIT;
+			}
+
 			m_PMob->m_ActionList.push_back(Action);
 
 			if (m_ActionType == ACTION_FALL)
@@ -1024,6 +1032,17 @@ void CAIMobDummy::ActionSleep()
 	//TODO: possibly change this so have ActionBeforeSleep then ActionSleep (send ENTITY_UPDATE once only rather than spam)
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 
+}
+
+
+void CAIMobDummy::ActionWait()
+{
+	// lets just chill here for a bit
+	if(m_Tick - m_LastWaitTime >= m_WaitTime){
+		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	}
+
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
 void CAIMobDummy::ActionMagicStart()
@@ -1374,12 +1393,13 @@ void CAIMobDummy::ActionAttack()
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (CurrentDistance <= 28 && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) {} // 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
-	/* else if(CurrentDistance <= 20 && m_PMob->HasRanged() && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime){
-		m_ActionType = ACTION_RANGED_START;
-		ActionRangedStart();
+	if (CurrentDistance <= 25 && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) {
+		// 25 yalms is roughly spellcasting range. This also pairs with deaggro range which is 25.
+	} else if(CurrentDistance <= 25 && m_PMob->HasRanged() && (m_Tick - m_LastRangedTime) > m_PMob->m_RangedCoolDown){
+		m_ActionType = ACTION_MOBABILITY_FINISH;
+		ActionRangedAttack();
 		return;
-	}*/
+	}
 
 	else if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
@@ -1780,6 +1800,12 @@ bool CAIMobDummy::TryCastSpell()
 			// mobs first spell, should be aggro spell
 			chosenSpellId = m_PMob->SpellContainer->GetAggroSpell();
 			m_firstSpell = false;
+
+			// this is a hacky fix for ninja mobs
+			// prevent them from using ranged right after
+			if(m_PMob->HasRanged()){
+				m_LastRangedTime = m_Tick - rand()%m_PMob->m_RangedCoolDown;
+			}
 		} else {
 			chosenSpellId = m_PMob->SpellContainer->GetSpell();
 		}
@@ -1798,30 +1824,46 @@ bool CAIMobDummy::TryCastSpell()
 
 void CAIMobDummy::ActionRangedAttack()
 {
+    DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
-	// ranged attack
-	// bitOffset = packBitsBE(data, 16,  bitOffset, 11);
-	// message ID = 272, animation ID = 16
     m_LastActionTime = m_Tick;
+    m_LastRangedTime = m_Tick;
+    m_LastWaitTime = m_Tick;
 
-	m_PBattleSubTarget = m_PBattleTarget;
+    // grab ranged attack skill
+    m_PMobSkill = battleutils::GetMobSkill(16);
+
+    m_WaitTime = m_PMobSkill->getAnimationTime();
 
     apAction_t Action;
     m_PMob->m_ActionList.clear();
 
-	Action.ActionTarget = m_PBattleSubTarget;
-	Action.reaction   = REACTION_NONE;
-	Action.speceffect = SPECEFFECT_NONE;
-	Action.animation  = ANIMATION_RANGED;
-	Action.param	  = 0;
-	Action.messageID  = 0;
-	Action.flag		  = 0;
+    m_PMobSkill->resetMsg();
+
+	Action.speceffect = SPECEFFECT_HIT;
+    Action.ActionTarget = m_PBattleTarget;
+	Action.animation  = m_PMobSkill->getAnimationID();
+	Action.subparam   = m_PMobSkill->getID() + 256;
+	Action.param	  = luautils::OnMobWeaponSkill(m_PBattleTarget, m_PMob, m_PMobSkill);
+	Action.messageID  = m_PMobSkill->getMsg();
+	Action.flag       = 0;
+
+	// display hit or miss
+	if(m_PMobSkill->isMissMsg())
+	{
+	    Action.reaction   = REACTION_MISS;
+	} else {
+	    Action.reaction   = REACTION_HIT;
+	}
 
 	m_PMob->m_ActionList.push_back(Action);
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
-	m_ActionType = ACTION_RANGED_FINISH;
+	m_PMobSkill = NULL;
+
+	// this stops the mob from chasing
+	m_ActionType = ACTION_WAIT;
 }
 
 void CAIMobDummy::CastSpell(uint16 spellId)

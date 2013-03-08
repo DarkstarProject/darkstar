@@ -174,7 +174,10 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
 	uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(MOD_DELAY);
 	if (m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH)
 	{
-		WeaponDelay -= getMod(MOD_MARTIAL_ARTS) * 1000 / 60;
+		if(!StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
+		{
+			WeaponDelay -= getMod(MOD_MARTIAL_ARTS) * 1000 / 60;
+		}
 	} else if (m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
 		m_Weapons[SLOT_SUB]->getDmgType() < 4 )
 	{
@@ -182,11 +185,6 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
 		WeaponDelay += m_Weapons[SLOT_SUB]->getDelay();
 		//apply dual wield delay reduction
 		WeaponDelay = WeaponDelay * ((100.0f - (float)getMod(MOD_DUAL_WIELD))/100.0f);
-	}
-
-	if(StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
-	{
-		WeaponDelay = (500)*1000 / 60;
 	}
 
 	//apply haste and delay reductions that don't affect tp

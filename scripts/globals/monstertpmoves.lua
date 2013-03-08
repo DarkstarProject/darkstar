@@ -79,6 +79,11 @@ MSG_DISAPPEAR_NUM = 401; -- <num> of <target>'s effects disappear!
 
 BOMB_TOSS_HPP = 1;
 
+function MobRangedMove(mob,target,skill,numberofhits,accmod,dmgmod, tpeffect)
+	-- this will eventually contian ranged attack code
+	return MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod, tpeffect)
+end;
+
 -- PHYSICAL MOVE FUNCTION
 -- Call this on every physical move!
 -- accmod is a linear multiplier for accuracy (1 default)
@@ -170,15 +175,15 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	hitsdone = 1;
 	hitslanded = 0;
 
-	--first hit is 95%
 	local double chance = math.random();
-	if ((chance*100)<=95) then
-		pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
-		pdif = pdif/1000; --multiplier set.
-		finaldmg = finaldmg + hitdamage * pdif;
-		hitslanded = hitslanded + 1;
-	end
-	while (hitsdone < numberofhits) do
+	--first hit is 95%
+	-- if ((chance*100)<=95) then
+	-- 	pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
+	-- 	pdif = pdif/1000; --multiplier set.
+	-- 	finaldmg = finaldmg + hitdamage * pdif;
+	-- 	hitslanded = hitslanded + 1;
+	-- end
+	while (hitsdone <= numberofhits) do
 		chance = math.random();
 		if ((chance*100)<=hitrate) then --it hit
 			pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
@@ -637,7 +642,7 @@ end;
 function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
 
 	-- physical attack missed, skip rest
-	if(skilltype == MOBSKILL_PHYSICAL and dmg == 0) then
+	if(skilltype == MOBSKILL_PHYSICAL and dmg == 0 or skill:isMissMsg()) then
 		return 0;
 	end
 

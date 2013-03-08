@@ -48,6 +48,9 @@ CREATE TABLE IF NOT EXISTS `mob_skill` (
 -- Normal Monster
 -- ------------------------------------------
 
+-- ranged attack
+INSERT INTO `mob_skill` VALUES (16,1,16,'Ranged_Attack', 0, 25.0, 2000, 0, 4, 0);
+
 -- Rabbits
 -- Base (206)
 INSERT INTO `mob_skill` VALUES (1,206,1,'Foot_Kick', 0, 7.0, 2000, 1000, 4, 0);

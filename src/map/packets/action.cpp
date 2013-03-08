@@ -116,14 +116,9 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		case ACTION_MOBABILITY_FINISH:
 		{
 			uint16 id = battleutils::GetMobSkillMessage(PEntity->PBattleAI->GetCurrentMobSkill());
+
 			//higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
 			packBitsBE(data, id, 54, 12);
-		}
-			break;
-		case ACTION_MOBABILITY_RANGED:
-		{
-			uint16 id = battleutils::GetMobSkillMessage(PEntity->PBattleAI->GetCurrentMobSkill());
-			packBitsBE(data, id,  54, 11);
 		}
 			break;
 		case ACTION_ITEM_START:

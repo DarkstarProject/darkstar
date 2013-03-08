@@ -266,6 +266,16 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->stats.CHR *= 1.5;
 	}
 
+	// setup ranged attacks
+	if(PMob->GetMJob() == JOB_RNG)
+	{
+		PMob->m_RangedCoolDown = 15000;
+	}
+	else if(PMob->HasRanged()) //ninja
+	{
+		PMob->m_RangedCoolDown = 30000;
+	}
+
 	// clear current traits first
     for (uint8 i = 0; i < PMob->TraitList.size(); ++i)
     {
@@ -361,13 +371,13 @@ void GetAvailableSpells(CMobEntity* PMob) {
 
 	}
 
-	uint16 gaChance = 45;
-	uint16 buffChance = 35;
+	uint16 gaChance = 40;
+	uint16 buffChance = 30;
 	// change spell chances
 	switch(PMob->GetMJob())
 	{
 		case JOB_BLM:
-			gaChance = 60;
+			gaChance = 50;
 			buffChance = 15;
 		break;
 		case JOB_RDM:
