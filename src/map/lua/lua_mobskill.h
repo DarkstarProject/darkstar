@@ -48,7 +48,7 @@ public:
 	int32 getTP(lua_State*);
   int32 getID(lua_State*);
   int32 isAoE(lua_State*);
-	int32 isMissMsg(lua_State*);
+	int32 hasMissMsg(lua_State*);
   int32 setMsg(lua_State*);
   int32 getMsg(lua_State*);
   int32 getTotalTargets(lua_State*);

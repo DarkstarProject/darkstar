@@ -850,7 +850,7 @@ void CAIMobDummy::ActionAbilityFinish()
 			Action.flag       = 0;
 
 
-			if(m_PMobSkill->isMissMsg())
+			if(m_PMobSkill->hasMissMsg())
 			{
 			    Action.reaction   = REACTION_MISS;
 			} else {
@@ -1849,7 +1849,7 @@ void CAIMobDummy::ActionRangedAttack()
 	Action.flag       = 0;
 
 	// display hit or miss
-	if(m_PMobSkill->isMissMsg())
+	if(m_PMobSkill->hasMissMsg())
 	{
 	    Action.reaction   = REACTION_MISS;
 	} else {

@@ -642,7 +642,7 @@ end;
 function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
 
 	-- physical attack missed, skip rest
-	if(skilltype == MOBSKILL_PHYSICAL and dmg == 0 or skill:isMissMsg()) then
+	if(skill:hasMissMsg()) then
 		return 0;
 	end
 

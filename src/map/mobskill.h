@@ -48,7 +48,7 @@ public:
 
 	CMobSkill(uint16 id);
 
-    bool        isMissMsg();
+    bool        hasMissMsg();
 
 	uint16		getID();
 	uint16		getAnimationID();

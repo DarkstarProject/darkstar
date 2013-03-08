@@ -39,7 +39,7 @@ CMobSkill::CMobSkill(uint16 id)
 	m_Message = 0;
 }
 
-bool CMobSkill::isMissMsg()
+bool CMobSkill::hasMissMsg()
 {
   return m_Message == 158 || m_Message == 188;
 }
