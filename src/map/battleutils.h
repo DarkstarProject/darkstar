@@ -83,7 +83,8 @@ enum TARGET_PARTY_TYPE
 	PET_PARTY_TARGET	= 3,
 	PET_ALLIANCE_TARGET	= 4,
 	PET_AND_MASTER		= 5,
-	INVALID_MOB_TARGET	= 6
+	INVALID_MOB_TARGET	= 6,
+    MOB_FAMILY          = 7
 };
 
 namespace battleutils

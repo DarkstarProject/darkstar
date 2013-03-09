@@ -656,9 +656,16 @@ void CAIMobDummy::ActionAbilityFinish()
 
 		if (m_PMobSkill->getAoe() == 1 || m_PMobSkill->getAoe() == 2) // to handle both types of aoe
 		{
-			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY) // aoe on the players
+			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY || m_PMobSkill->getValidTargets() == TARGET_SELF) // aoe on the players
 			{
-				targetPartyType = battleutils::getAvailableAoeTargets(m_PBattleTarget);
+				CBattleEntity* PVictim = NULL;
+				if(m_PMobSkill->getValidTargets() == TARGET_SELF){
+					targetPartyType = MOB_FAMILY;
+					PVictim = m_PMob;
+				} else {
+					targetPartyType = battleutils::getAvailableAoeTargets(m_PBattleTarget);
+					PVictim = m_PBattleTarget;
+				}
 
 				apAction_t Action;
 				Action.reaction   = REACTION_HIT;
@@ -674,10 +681,15 @@ void CAIMobDummy::ActionAbilityFinish()
 				if(m_PMobSkill->getAoe() == 2) //radius around TARGET not the monster using the ability
 					radiusAround = m_PBattleTarget->loc.p;
 
-				CBattleEntity* PVictim = m_PBattleTarget;
 
 				switch (targetPartyType)
 				{
+					case MOB_FAMILY:
+						// currently can't find mobs by family
+						// so just target myself ATM
+						Action.ActionTarget = PVictim;
+						m_PMob->m_ActionList.push_back(Action);
+					break;
 					case SOLO_TARGET: // single char & maybe a pet
 						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, m_PMobSkill, &radiusAround))
 						{
@@ -812,11 +824,6 @@ void CAIMobDummy::ActionAbilityFinish()
 				}
 
 
-			}
-			else if (m_PMobSkill->getValidTargets() == TARGET_SELF)
-			{
-				//aoe on the enemy (e.g. aoe cure)
-				//TODO: hit self and all targets of the same family? pt?
 			}
 
 			if (m_ActionType == ACTION_FALL)
@@ -1832,6 +1839,12 @@ void CAIMobDummy::ActionRangedAttack()
 
     // grab ranged attack skill
     m_PMobSkill = battleutils::GetMobSkill(16);
+
+    // change ranged attack if giga
+    if(m_PMob->m_Family >= 126 && m_PMob->m_Family <= 130)
+    {
+    	m_PMobSkill = battleutils::GetMobSkill(402);
+    }
 
     m_WaitTime = m_PMobSkill->getAnimationTime();
 

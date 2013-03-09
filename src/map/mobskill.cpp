@@ -169,7 +169,11 @@ uint16 CMobSkill::getAoEMsg()
             return 366;
         case 226:
             return 226; //no message for this... I guess there is no aoe TP drain move
-        case 238:
+        case 103: //recover hp
+        case 102: //recover hp
+        case 238: //recover hp
+        case 306: //recover hp
+        case 318: //recover hp
             return 24;
         case 242:
             return 277;
@@ -183,6 +187,8 @@ uint16 CMobSkill::getAoEMsg()
             return 363;
         case 378:
             return 343;
+        case 224: //recovers mp
+          return 276;
         default:
             return m_Message;
     }

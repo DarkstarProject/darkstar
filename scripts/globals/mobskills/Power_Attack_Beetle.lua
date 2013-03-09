@@ -1,6 +1,7 @@
 ---------------------------------------------------
--- Ranged Attack
--- Deals a ranged attack to a single target.
+-- Power Attack
+-- Deals damage based off TP.
+-- 100% TP: ??? / 250% TP: ??? / 300% TP: ???
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -16,17 +17,9 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
     local numhits = 1;
     local accmod = 1;
-    local dmgmod = 1.2;
-
-    local info = MobRangedMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,info.hitslanded);
-
-    if(dmg > 0) then
-       target:addTP(2);
-       mob:addTP(8);
-    end
-
+    local dmgmod = 2.8;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_H2H,info.hitslanded);
     target:delHP(dmg);
     return dmg;
 end;

@@ -11,7 +11,9 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+    if(mob:getMainJob() ~= JOB_WAR) then
+    	return 0;
+    end
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
