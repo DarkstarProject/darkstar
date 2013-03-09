@@ -2,7 +2,9 @@
 
 -- General Texts
 ITEM_CANNOT_BE_OBTAINED = 212; -- You cannot obtain the item <item> come back again after sorting your inventory
+ITEM_CANNOT_BE_OBTAINEDX = 214;
           ITEM_OBTAINED = 215; -- Obtained: <item>
+		 ITEM_OBTAINEDX = 224;
            GIL_OBTAINED = 216; -- Obtained <number> gil
        KEYITEM_OBTAINED = 218; -- Obtained key item: <keyitem>
     NOT_HAVE_ENOUGH_GIL = 0; -- You do not have enough gil

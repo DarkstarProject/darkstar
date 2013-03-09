@@ -595,22 +595,22 @@ INDOMITABLE_SPIRIT              = 201; -- ± --
 
 KEEPING_NOTES                   = 0;
 ARTS_AND_CRAFTS                 = 1;
-OLDUUM                          = 2;
-GOT_IT_ALL                      = 3;
-GET_THE_PICTURE                 = 4;
-AN_EMPTY_VESSEL                 = 5;
-LUCK_OF_THE_DRAW                = 6;  -- ± --
+OLDUUM							= 2;
+GOT_IT_ALL						= 3;  -- ± --
+GET_THE_PICTURE					= 4;
+AN_EMPTY_VESSEL					= 5;
+LUCK_OF_THE_DRAW				= 6;  -- ± --
 NO_STRINGS_ATTACHED             = 7;
 FINDING_FAULTS                  = 8;
 GIVE_PEACE_A_CHANCE             = 9;
 THE_ART_OF_WAR                  = 10;
-na                              = 11;
-A_TASTE_OF_HONEY                = 12;
-SUCH_SWEET_SORROW               = 13;
-FEAR_OF_THE_DARK_II             = 14;
-COOK_A_ROON                     = 15;
-THE_DIE_IS_CAST                 = 16;
-TWO_HORN_THE_SAVAGE             = 17;
+na								= 11;
+A_TASTE_OF_HONEY				= 12;
+SUCH_SWEET_SORROW				= 13;
+FEAR_OF_THE_DARK_II				= 14; -- ± --
+COOK_A_ROON						= 15;
+THE_DIE_IS_CAST					= 16;
+TWO_HORN_THE_SAVAGE				= 17;
 TOTOROONS_TREASURE_HUNT         = 18;
 WHAT_FRIENDS_ARE_FOR            = 19;
 ROCK_BOTTOM                     = 20;
@@ -626,6 +626,8 @@ PUPPETMASTER_BLUES              = 29;
 MOMENT_OF_TRUTH                 = 30;
 THREE_MEN_AND_A_CLOSET          = 31;
 FIVE_SECONDS_OF_FAME            = 32;
+
+RAT_RACE                        = 66; -- + --
 
 -----------------------------------
 --  Crystal War
