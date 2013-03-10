@@ -67,8 +67,6 @@ function pickaxeBreak(player,trade)
 	
 	local broke = 0;
 	pickaxebreak = math.random();
-	pickaxebreak = math.random();
-	pickaxebreak = math.random();
 	
 	if(pickaxebreak < EXCAVATION_BREAK_CHANCE) then
 		broke = 1;
@@ -85,8 +83,6 @@ end
 
 function getItem(player,zone)	
 	
-	Rate = math.random();
-	Rate = math.random();
 	Rate = math.random();
 	
 	for zon = 1, table.getn(drop), 2 do
@@ -115,8 +111,6 @@ function getItem(player,zone)
 	-- Default rate is 50%
 	--------------------
 	
-	Rate = math.random();
-	Rate = math.random();
 	Rate = math.random();
 	
 	if(Rate <= (1 - EXCAVATION_RATE)) then

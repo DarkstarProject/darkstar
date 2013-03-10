@@ -72,8 +72,6 @@ function sickleBreak(player,trade)
 	
 	local broke = 0;
 	sicklebreak = math.random();
-	sicklebreak = math.random();
-	sicklebreak = math.random();
 	
 	--------------------
 	-- Begin Gear Bonus
@@ -108,8 +106,6 @@ end
 function getItem(player,zone)	
 	
 	Rate = math.random();
-	Rate = math.random();
-	Rate = math.random();
 	
 	for zon = 1, table.getn(drop), 2 do
 		if(drop[zon] == zone) then
@@ -128,8 +124,6 @@ function getItem(player,zone)
 	-- Default rate is 50%
 	--------------------
 	
-	Rate = math.random();
-	Rate = math.random();
 	Rate = math.random();
 	
 	if(Rate <= (1 - HARVESTING_RATE)) then

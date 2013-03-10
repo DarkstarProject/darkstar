@@ -76,8 +76,6 @@ function pickaxeBreak(player,trade)
 	
 	local broke = 0;
 	pickaxebreak = math.random();
-	pickaxebreak = math.random();
-	pickaxebreak = math.random();
 	
 	--------------------
 	-- Begin Gear Bonus
@@ -113,8 +111,6 @@ end
 function getItem(player,zone)	
 	
 	Rate = math.random();
-	Rate = math.random();
-	Rate = math.random();
 	
 	for zon = 1, table.getn(drop), 2 do
 		if(drop[zon] == zone) then
@@ -143,9 +139,7 @@ function getItem(player,zone)
 	--------------------
 	
 	Rate = math.random();
-	Rate = math.random();
-	Rate = math.random();
-	
+
 	if(Rate <= (1 - MINING_RATE)) then
 		item = 0;
 	end
