@@ -1910,6 +1910,8 @@ void CAIMobDummy::ActionRangedAttack()
     	m_PMobSkill = battleutils::GetMobSkill(402);
     }
 
+    DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+
     m_WaitTime = m_PMobSkill->getAnimationTime();
 
     apAction_t Action;
