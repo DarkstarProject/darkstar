@@ -1218,6 +1218,68 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	if(rand()%100 >= chance || PAmmo==NULL || PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ARROW_SHIELD, 0)){return;}
 
 	switch(PAmmo->getID()){
+    case 17325:{ // kabura_arrow
+
+        //check wind resistance
+        if(rand()%100 <= PDefender->getMod(MOD_WINDRES)){return;}
+
+        if(PDefender->StatusEffectContainer->AddStatusEffect(
+                new CStatusEffect(EFFECT_SILENCE,EFFECT_SILENCE,1,0,60))){
+            Action->subeffect = SUBEFFECT_SILENCE;
+            Action->subparam  = EFFECT_SILENCE;
+            Action->submessageID = 160;
+            Action->flag = 3;
+        }
+    }
+    break;
+    case 18159:{ // Demon Arrow
+
+        //check water resistance
+        if(rand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
+
+        if(PDefender->StatusEffectContainer->AddStatusEffect(
+                new CStatusEffect(EFFECT_ATTACK_DOWN,EFFECT_ATTACK_DOWN,12,0,60))){
+            Action->subeffect = SUBEFFECT_DEFENSE_DOWN;
+            Action->subparam  = EFFECT_ATTACK_DOWN;
+            Action->submessageID = 160;
+            Action->flag = 1;
+        }
+
+    }
+    break;
+    case 18160:{ // Spartan Bullet
+        //check thunder resistance
+        if(rand()%100 <= PDefender->getMod(MOD_THUNDERRES) && rand()%50 < 100){return;}
+
+        if(PDefender->StatusEffectContainer->AddStatusEffect(
+            new CStatusEffect(EFFECT_STUN,EFFECT_STUN,1,0,4))){
+            Action->subeffect = SUBEFFECT_STUN;
+            Action->subparam  = EFFECT_STUN;
+            Action->submessageID = 160;
+            Action->flag = 3;
+        }
+    }
+    break;
+    case 17329: // patriarch_protectors_arrow
+    case 18696:{ // Paralysis Arrow
+            //check ice resistance
+            if(rand()%100 <= PDefender->getMod(MOD_ICERES)){return;}
+
+            uint8 power = 20;
+
+            if(PAmmo->getID() == 17329){
+                power = 30;
+            }
+
+            if(PDefender->StatusEffectContainer->AddStatusEffect(
+                new CStatusEffect(EFFECT_PARALYSIS,EFFECT_PARALYSIS,power,0,30))){
+                Action->subeffect = SUBEFFECT_PARALYSIS;
+                Action->subparam  = EFFECT_PARALYSIS;
+                Action->submessageID = 160;
+                Action->flag = 1;
+            }
+    }
+    break;
 	case 18700:{ //Wind Arrow
 	//damage doesn't exceed ~67 unless wearing wind staff/iceday/weather
 	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
@@ -1419,15 +1481,15 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
             //check wind resistance
             if(rand()%100 <= PDefender->getMod(MOD_WINDRES)){return;}
-            //remove defense down
-            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DEFENSE_DOWN);
 
-		Action->subeffect = SUBEFFECT_DEFENSE_DOWN;
-		Action->subparam  = EFFECT_DEFENSE_DOWN;
-		Action->submessageID = 160;
-		Action->flag = 1;
-		PDefender->StatusEffectContainer->AddStatusEffect(
-				new CStatusEffect(EFFECT_DEFENSE_DOWN,EFFECT_DEFENSE_DOWN,12,0,60));
+            if(PDefender->StatusEffectContainer->AddStatusEffect(
+                    new CStatusEffect(EFFECT_DEFENSE_DOWN,EFFECT_DEFENSE_DOWN,12,0,60))){
+        		Action->subeffect = SUBEFFECT_DEFENSE_DOWN;
+        		Action->subparam  = EFFECT_DEFENSE_DOWN;
+        		Action->submessageID = 160;
+        		Action->flag = 1;
+            }
+
 		}
 		break;
 	case 17324:{ //Lightning Arrow
@@ -1468,6 +1530,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			PDefender->addHP(-damage);
 		}
 		break;
+    case 17327: // Grand knights Arrow
 	case 17322:{ //Fire Arrow
 	//damage doesn't exceed ~67 unless wearing ice staff/iceday/weather
 	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
@@ -1479,10 +1542,16 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			//calculate damage
 			uint8 damage = (PAttacker->INT() - PDefender->INT())/2;
 			damage = dsp_cap(damage,0,50);
-			damage += 10; //10~60
-			damage += rand()%8; //10~67 randomised
-			//set damage TODO: handle resist/staff/day
+
+            damage += 10; //10~60
+            damage += rand()%8; //10~67 randomised
+            //set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_FIRERES)/-100);
+
+            if(PAmmo->getID() == 17327){
+                damage *= 2;
+            }
+
 			Action->subparam  = damage;
 			PDefender->addHP(-damage);
 		}
