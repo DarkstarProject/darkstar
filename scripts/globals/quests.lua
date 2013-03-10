@@ -627,6 +627,9 @@ MOMENT_OF_TRUTH                 = 30;
 THREE_MEN_AND_A_CLOSET          = 31; -- + --
 FIVE_SECONDS_OF_FAME            = 32;
 
+DELIVERING_THE_GOODS            = 61; -- + --
+VANISHING_ACT                   = 62; -- + --
+
 RAT_RACE                        = 66; -- + --
 
 -----------------------------------

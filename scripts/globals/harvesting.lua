@@ -5,6 +5,7 @@
 --      http://wiki.ffxiclopedia.org/wiki/Harvesting
 -------------------------------------------------
 
+require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
@@ -58,10 +59,14 @@ function startHarvesting(player,zone,npc,trade,csid)
 		if(GetServerVariable("[HARVESTING]Zone "..zone) >= 3) then
 			getNewPositionNPC(player,npc,zone);
 		end
+		if(player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(RAINBOW_BERRY) == false and broke ~= 1 and zone == 51)then
+	       player:addKeyItem(RAINBOW_BERRY);
+		   player:messageSpecial(KEYITEM_OBTAINED,RAINBOW_BERRY);
+		end
 	else
 		player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
-	end
 	
+    end
 end
 
 -----------------------------------
@@ -106,7 +111,7 @@ end
 function getItem(player,zone)	
 	
 	Rate = math.random();
-	
+
 	for zon = 1, table.getn(drop), 2 do
 		if(drop[zon] == zone) then
 			for itemlist = 1, table.getn(drop[zon + 1]), 2 do

@@ -14,6 +14,7 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 function onInitialize(zone)
 	zone:registerRegion(1,57,-1,-70,62,1,-65); -- Sets Mark for "Got It All" Quest cutscene.
+	zone:registerRegion(2,-96,-7,121,-64,-5,137); -- Sets Mark for "Vanishing Act" Quest cutscene.
 end;
 
 -----------------------------------		
@@ -35,8 +36,6 @@ function onZoneIn(player,prevZone)
 			local position = math.random(1,5) - 83;
 			player:setPos(-100,0,position,0);
 		end
-	--[[elseif(player:getVar("vanishingactCS") == 3) then
-	    cs = 0x002c;]]
 	end
 return cs;	
 
@@ -52,6 +51,11 @@ function onRegionEnter(player,region)
 	[1] = function (x)  -- Cutscene for Got It All quest.
 	if(player:getVar("gotitallCS") == 5)then
 		player:startEvent(0x020e);
+	end
+	end,
+	[2] = function (x) -- CS for Vanishing Act Quest
+	if(player:getVar("vanishingactCS") == 3) then
+	    player:startEvent(0x002c);
 	end
 	end,
 	}
