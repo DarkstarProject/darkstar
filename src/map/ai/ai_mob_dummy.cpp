@@ -1447,14 +1447,15 @@ void CAIMobDummy::ActionAttack()
             if (PPartyMember->PBattleAI->GetCurrentAction() == ACTION_ROAMING){
 
             	// link only if I see him
-            	if(!(PPartyMember->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT) || PPartyMember->m_Behaviour == BEHAVIOUR_NONE ||
-            	   isFaceing(PPartyMember->loc.p, m_PMob->loc.p, 40)){
+            	if((PPartyMember->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT) || (PPartyMember->m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT)){
 
-	            	if(distance(m_PMob->loc.p, PPartyMember->loc.p) < m_PMob->linkRadius){
+            	   if(!isFaceing(PPartyMember->loc.p, m_PMob->loc.p, 40)) continue;
+            	}
 
-		                PPartyMember->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
-			        }
-			    }
+            	if(distance(m_PMob->loc.p, PPartyMember->loc.p) < m_PMob->linkRadius){
+
+	                PPartyMember->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
+		        }
             }
         }
     }
