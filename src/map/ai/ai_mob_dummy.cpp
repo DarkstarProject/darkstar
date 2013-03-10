@@ -1882,9 +1882,9 @@ bool CAIMobDummy::TryCastSpell()
 			m_firstSpell = false;
 
 			// this is a hacky fix for ninja mobs
-			// prevent them from using ranged right after
+			// prevent them from using ranged right after magic
 			if(m_PMob->HasRanged()){
-				m_LastRangedTime = m_Tick - rand()%m_PMob->m_RangedCoolDown;
+				m_LastRangedTime = m_Tick - rand()%m_PMob->m_RangedCoolDown + 2000;
 			}
 		} else {
 			chosenSpellId = m_PMob->SpellContainer->GetSpell();
