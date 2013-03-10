@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:addStatusEffect(EFFECT_REGAIN,15,3,0);
+	mob:addStatusEffect(EFFECT_REGAIN,7,3,0);
 end;
 
 -----------------------------------
@@ -44,7 +44,7 @@ function onMobDeath(mob, killer)
 	killer:addTitle(FAFNIR_SLAYER);
 
 	Fafnir  = mob:getID();
-	Nidhogg = 17408019; 
+	Nidhogg = 17408019;
 	ToD     = GetServerVariable("[POP]Nidhogg");
 	kills   = GetServerVariable("[PH]Nidhogg");
 	if (ToD <= os.time(t) and GetMobAction(Nidhogg) == 0) then
@@ -58,5 +58,5 @@ function onMobDeath(mob, killer)
 		SpawnMob(Fafnir, '', math.random((75600),(86400)));
 		SetServerVariable("[PH]Nidhogg", kills + 1);
 	end
-  
+
 end;

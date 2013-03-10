@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:addStatusEffect(EFFECT_REGAIN,15,3,0);
+
 end;
 
 -----------------------------------
@@ -43,9 +43,9 @@ end;
 function onMobDeath(mob, killer)
 
 	killer:addTitle(BEHEMOTHS_BANE);
-  
+
   Behemoth      = mob:getID();
-  King_Behemoth = 17297441; 
+  King_Behemoth = 17297441;
   ToD     = GetServerVariable("[POP]King_Behemoth");
   kills   = GetServerVariable("[PH]King_Behemoth");
   if (ToD <= os.time(t) and GetMobAction(King_Behemoth) == 0) then
@@ -59,5 +59,5 @@ function onMobDeath(mob, killer)
     SpawnMob(Behemoth, '', math.random((75600),(86400)));
     SetServerVariable("[PH]King_Behemoth", kills + 1);
   end
-  
+
 end;

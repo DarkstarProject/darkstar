@@ -41,7 +41,10 @@ function onSpellCast(caster,target,spell)
 	final = finalMagicAdjustments(caster,target,spell,dmg);
 
 	-- Calculate duration.
-	duration = 30; -- +30 sec by merit
+
+	local merits = 1;
+
+	duration = 30 * merits;
 
 	if(target:isMob()) then
 		-- duration is higher for mobs

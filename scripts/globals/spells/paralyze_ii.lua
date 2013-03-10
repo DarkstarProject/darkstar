@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Paralyze II
+-- Spell: Paralyze
 -- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and MND.
 -- Slow's potency is calculated with the formula (150 + dMND*2)/1024, and caps at 300/1024 (~29.3%).
 -- And MND of 75 is neccessary to reach the hardcap of Slow.
@@ -13,26 +13,29 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function OnMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
 
     -- Calculate duration.
-    local double duration = math.random(30, 120);
+    local double duration = 180;
 
     -- Grabbing variables for paralyze potency
     mLVL = caster:getMainLvl();
     pMND = caster:getStat(MOD_MND);
     mMND = target:getStat(MOD_MND);
 
+    local merits = 1;
+
     dMND = (pMND - mMND);
-    multiplier = 150 / mLVL;
+    multiplier = (150 + (merits * 10)) / mLVL;
 
     -- Calculate potency.
-    potency = (multiplier * (pMND + dMND)) / 8;
-    if potency > 33 then
-        potency = 33;
+    potency = (multiplier * dMND) / 10;
+
+    if potency > 30 then
+        potency = 30;
     end
     --printf("Duration : %u",duration);
     --printf("Potency : %u",potency);
@@ -41,38 +44,24 @@ function onSpellCast(caster,target,spell)
     elseif(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
         bonus = AffinityBonus(caster, spell);
         resist = applyResistance(caster,spell,target,dMND,35,bonus);
-        -- printf("resist : %u",resist);
-        if(resist == 1) then -- Full hit, no duration penalty
-            target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration);
-    --              if(spell:isAOE() == false) then
-                spell:setMsg(237);
-    --              else
-    --                  spell:setMsg(267);
-    --              end
-        elseif(resist == 0.5) then -- Half duration
-            duration = duration / 2;
-            target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration);
-    --              if(spell:isAOE() == false) then
-                spell:setMsg(237);
-    --              else
-    --                  spell:setMsg(267);
-    --              end
-        else -- resist entirely.
-    --              if(spell:isAOE() == false) then
-                spell:setMsg(85);
-    --              else
-    --                  spell:setMsg(284);
-    --              end
+
+        if(resist >= 0.25) then
+            if(target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration*resist)) then
+                spell:setMsg(236);
+            else
+                -- no effect
+                spell:setMsg(75);
+            end
+        else
+            -- resist
+            spell:setMsg(85);
         end
 
 
     else -- resist entirely.
---      if(spell:isAOE() == false) then
-            spell:setMsg(85);
---      else
---          spell:setMsg(284);
---      end
-    end
-    return EFFECT_PARALYSIS;
 
+            spell:setMsg(85);
+    end
+
+    return EFFECT_PARALYSIS;
 end;

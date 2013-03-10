@@ -12,7 +12,7 @@ require("scripts/globals/status");
 
 function onMobInitialize(mob)
 	mob:addStatusEffect(EFFECT_REGEN,50,3,0);
-	mob:addStatusEffect(EFFECT_REGAIN,15,3,0);
+	mob:addStatusEffect(EFFECT_REGAIN,7,3,0);
 end;
 
 -----------------------------------
@@ -44,15 +44,15 @@ end;
 function onMobDeath(mob, killer)
 
 	killer:addTitle(BEHEMOTH_DETHRONER);
-  
+
   -- Set King_Behemoth's Window Open Time
   wait = 72 * 3600
   SetServerVariable("[POP]King_Behemoth", os.time(t) + wait); -- 3 days
-  
+
   -- Set Behemoth's spawnpoint and respawn time (21-24 hours)
   SetServerVariable("[PH]King_Behemoth", 0);
   DeterMob(17297440, false);
   UpdateNMSpawnPoint(17297440);
   SpawnMob(17297440, '', math.random((75600),(86400)));
-  
+
 end;

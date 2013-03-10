@@ -4363,13 +4363,17 @@ inline int32 CLuaBaseEntity::setMerits(lua_State *L)
 inline int32 CLuaBaseEntity::getMerit(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    if(m_PBaseEntity->objtype != TYPE_PC){
+    	// not PC just give em max merits
+    	lua_pushinteger(L, 5);
+    } else {
+		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	lua_pushinteger(L, PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)lua_tointeger(L,1), PChar->GetMLevel()));
+		lua_pushinteger(L, PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)lua_tointeger(L,1), PChar->GetMLevel()));
+	}
 
 	return 1;
 }

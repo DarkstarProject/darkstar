@@ -1,5 +1,5 @@
 ---------------------------------------------------
--- 
+--
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -13,9 +13,11 @@ function OnPetAbility(target, pet, skill)
 	if duration > 350 then
 		duration = 350;
 	end;
-	target:delStatusEffect(EFFECT_SLOW);
-	target:delStatusEffect(EFFECT_HASTE);
-	target:addStatusEffect(EFFECT_SLOW,300,0,duration);
-	skill:setMsg(MSG_BUFF);
-	return EFFECT_HASTE;
+
+	if(target:addStatusEffect(EFFECT_SLOW,300,0,duration)) then
+        skill:setMsg(MSG_ENFEEB_IS);
+    else
+    	skill:setMsg(MSG_NO_EFFECT);
+    end
+	return EFFECT_SLOW;
 end
