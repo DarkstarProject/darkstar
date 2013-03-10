@@ -116,7 +116,7 @@ void LoadPetList()
           mob_family_system.CHR,\
           mob_family_system.DEF,\
           mob_family_system.ATT,\
-          mob_family_system.ACC,\
+          mob_family_system.ACC\
         FROM pet_list, mob_pools, mob_family_system \
         WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 

@@ -2396,16 +2396,18 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
     // handle shadows
     uint8 shadowsTaken = 0;
-    uint8 totalHits = tpHitsLanded;
+    uint8 landedHits = tpHitsLanded + extraHitsLanded;
+    uint8 totalHits = landedHits;
+
     //count number of shadows taken
-    while(totalHits && tpHitsLanded && battleutils::IsAbsorbByShadow(m_PBattleSubTarget)){
-        tpHitsLanded--;
+    while(totalHits && landedHits && battleutils::IsAbsorbByShadow(m_PBattleSubTarget)){
+        landedHits--;
         shadowsTaken++;
     }
 
     if(shadowsTaken){
         // if no hits landed, deal no damage
-        if(tpHitsLanded == 0){
+        if(landedHits == 0){
             damage = 0;
         } else {
             //divide damage by amount of shadows taken
@@ -2496,23 +2498,22 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.flag = 0;
 
 
-	if(damage == 0)
-	{
-		Action.reaction = REACTION_EVADE;
-		Action.messageID = 188; //but misses
-	}
-	else
-	{
-		Action.messageID = 185; //damage ws
-	}
+    if(damage == 0)
+    {
+        Action.reaction = REACTION_EVADE;
+        Action.messageID = 188; //but misses
+    }
+    else
+    {
+        Action.messageID = 185; //damage ws
+    }
 
-	if (battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
+	if (damage > 0 && battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
 	{
 		Action.speceffect = SPECEFFECT_NONE;
 		Action.messageID = 224; //restores mp msg
 		m_PChar->addMP(damage);
 	}
-
 
 	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 218)
 	{
