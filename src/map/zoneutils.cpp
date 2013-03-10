@@ -310,10 +310,9 @@ void LoadMOBList(CZone* PZone)
 
 			if(PMob->speed != 0)
 			{
-				// This needs correction as mobs run speed is gaining way to much
-
-				//PMob->speed += map_config.speed_mod;
-				//PMob->speedsub += map_config.speed_mod;
+        // PMob->speed += map_config.speed_mod;
+                // whats this for?
+				// PMob->speedsub += map_config.speed_mod;
 			}
 
             PMob->strRank = (uint8)Sql_GetIntData(SqlHandle,25);

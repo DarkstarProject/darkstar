@@ -2637,9 +2637,11 @@ void MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode)
 	{
 		float angle = (1 - (float)PEntity->loc.p.rotation / 255) * 6.28318f;
 
-		PEntity->loc.p.x += (cosf(angle) * ((float)PEntity->speed/0x28) * (mode) * 1.08);
+        PEntity->loc.p.x += (cosf(angle) * ((float)(PEntity->speed * (1+(PEntity->getMod(MOD_MOVE) / 100.0f))) / 0x28) * (mode) * 1.08);
+
 		PEntity->loc.p.y = pos.y;
-		PEntity->loc.p.z += (sinf(angle) * ((float)PEntity->speed/0x28) * (mode) * 1.08);
+
+        PEntity->loc.p.z += (sinf(angle) * ((float)(PEntity->speed * (1+(PEntity->getMod(MOD_MOVE) / 100.0f))) / 0x28) * (mode) * 1.08);
 
 		PEntity->loc.p.moving += ((0x36*((float)PEntity->speed/0x28)) - (0x14*(mode - 1)));
 
