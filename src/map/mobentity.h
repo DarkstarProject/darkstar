@@ -110,6 +110,8 @@ public:
     uint8        attRank;
     uint8        defRank;
     uint8        accRank;
+
+    // not used
     uint8        evaRank;
 
 	uint8		m_Type;								// тип монстра

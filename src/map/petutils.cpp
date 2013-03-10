@@ -60,6 +60,21 @@ struct Pet_t
 
 	uint8		mJob;
 	uint8		m_Element;
+  float       HPstat;                             // HP boost percentage
+    float       MPstat;                             // MP boost percentage
+
+    uint8 		speed;
+    // stat ranks
+     uint8        strRank;
+    uint8        dexRank;
+    uint8        vitRank;
+    uint8        agiRank;
+    uint8        intRank;
+    uint8        mndRank;
+    uint8        chrRank;
+    uint8        attRank;
+    uint8        defRank;
+    uint8        accRank;
 };
 
 std::vector<Pet_t*> g_PPetList;
@@ -89,8 +104,19 @@ void LoadPetList()
           mob_pools.familyid,\
           mob_pools.mJob,\
           pet_list.element,\
-          mob_family_system.HP,\
-          mob_family_system.MP\
+          (mob_family_system.HP / 100),\
+          (mob_family_system.MP / 100),\
+          mob_family_system.speed,\
+          mob_family_system.STR,\
+          mob_family_system.DEX,\
+          mob_family_system.VIT,\
+          mob_family_system.AGI,\
+          mob_family_system.INT,\
+          mob_family_system.MND,\
+          mob_family_system.CHR,\
+          mob_family_system.DEF,\
+          mob_family_system.ATT,\
+          mob_family_system.ACC,\
         FROM pet_list, mob_pools, mob_family_system \
         WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
@@ -111,6 +137,22 @@ void LoadPetList()
 			Pet->m_Family = (uint16)Sql_GetIntData(SqlHandle,7);
 			Pet->mJob = (uint8)Sql_GetIntData(SqlHandle,8);
 			Pet->m_Element = (uint8)Sql_GetIntData(SqlHandle, 9);
+
+			Pet->HPstat = Sql_GetFloatData(SqlHandle, 10);
+			Pet->MPstat = Sql_GetFloatData(SqlHandle, 11);
+
+			Pet->speed = (uint8)Sql_GetIntData(SqlHandle,12);
+
+			Pet->strRank = (uint8)Sql_GetIntData(SqlHandle,13);
+			Pet->dexRank = (uint8)Sql_GetIntData(SqlHandle,14);
+			Pet->vitRank = (uint8)Sql_GetIntData(SqlHandle,15);
+			Pet->agiRank = (uint8)Sql_GetIntData(SqlHandle,16);
+			Pet->intRank = (uint8)Sql_GetIntData(SqlHandle,17);
+			Pet->mndRank = (uint8)Sql_GetIntData(SqlHandle,18);
+			Pet->chrRank = (uint8)Sql_GetIntData(SqlHandle,19);
+			Pet->defRank = (uint8)Sql_GetIntData(SqlHandle,20);
+			Pet->attRank = (uint8)Sql_GetIntData(SqlHandle,21);
+			Pet->accRank = (uint8)Sql_GetIntData(SqlHandle,22);
 
 			g_PPetList.push_back(Pet);
 		}
@@ -154,16 +196,43 @@ uint16 GetJugWeaponDamage(CPetEntity* PPet)
 }
 uint16 GetJugBase(CPetEntity * PMob, uint8 rank)
  {
-	switch (rank)
-	{
-		case 1: return (PMob->GetMLevel() > 50 ? 153+((PMob->GetMLevel()-50)*50)/10 : 6+((PMob->GetMLevel()-1)*30)/10);
-		case 2: return (PMob->GetMLevel() > 50 ? 147+((PMob->GetMLevel()-50)*49)/10 : 5+((PMob->GetMLevel()-1)*29)/10);
-		case 3: return (PMob->GetMLevel() > 50 ? 142+((PMob->GetMLevel()-50)*48)/10 : 5+((PMob->GetMLevel()-1)*28)/10);
-		case 4: return (PMob->GetMLevel() > 50 ? 136+((PMob->GetMLevel()-50)*47)/10 : 4+((PMob->GetMLevel()-1)*27)/10);
-		case 5: return (PMob->GetMLevel() > 50 ? 131+((PMob->GetMLevel()-50)*46)/10 : 4+((PMob->GetMLevel()-1)*26)/10);
-		case 6: return (PMob->GetMLevel() > 50 ? 126+((PMob->GetMLevel()-50)*45)/10 : 3+((PMob->GetMLevel()-1)*25)/10);
-		case 7: return (PMob->GetMLevel() > 50 ? 120+((PMob->GetMLevel()-50)*44)/10 : 3+((PMob->GetMLevel()-1)*24)/10);
-	}
+
+ 	uint8 lvl = PMob->GetMLevel();
+ 	if(lvl > 50){
+ 		switch(rank){
+ 			case 1:
+ 				return (float)153+(lvl-50)*5.0;
+ 			case 2:
+ 				return (float)147+(lvl-50)*4.9;
+ 			case 3:
+ 				return (float)136+(lvl-50)*4.8;
+ 			case 4:
+ 				return (float)126+(lvl-50)*4.7;
+ 			case 5:
+ 				return (float)116+(lvl-50)*4.5;
+ 			case 6:
+ 				return (float)106+(lvl-50)*4.4;
+ 			case 7:
+ 				return (float)96+(lvl-50)*4.3;
+ 		}
+ 	} else {
+ 		switch(rank){
+ 			case 1:
+ 				return (float)6+(lvl-1)*3.0;
+ 			case 2:
+ 				return (float)5+(lvl-1)*2.9;
+ 			case 3:
+ 				return (float)5+(lvl-1)*2.8;
+ 			case 4:
+ 				return (float)4+(lvl-1)*2.7;
+ 			case 5:
+ 				return (float)4+(lvl-1)*2.5;
+ 			case 6:
+ 				return (float)3+(lvl-1)*2.4;
+ 			case 7:
+ 				return (float)3+(lvl-1)*2.3;
+ 		}
+ 	}
 	return 0;
 }
 uint16 GetBaseToRank(uint8 rank, uint16 lvl)
@@ -181,10 +250,31 @@ uint16 GetBaseToRank(uint8 rank, uint16 lvl)
 	return 0;
 }
 
-void LoadJugStats(CPetEntity* PMob){
+void LoadJugStats(CPetEntity* PMob, Pet_t* petStats){
 	//follows monster formulas but jugs have no subjob
 
-	PMob->health.maxhp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
+	float growth = 1.0;
+	uint8 lvl = PMob->GetMLevel();
+
+	//give hp boost every 10 levels after 25
+	//special boosts at 25 and 50
+	if(lvl > 75){
+		growth = 1.25;
+	}else if(lvl > 65){
+		growth = 1.24;
+	} else if(lvl > 55){
+		growth = 1.22;
+	} else if(lvl > 50){
+		growth = 1.18;
+	} else if(lvl > 45){
+		growth = 1.14;
+	} else if(lvl > 35){
+		growth = 1.11;
+	} else if(lvl > 25){
+		growth = 1.07;
+	}
+
+	PMob->health.maxhp = (int16)(18.0 * pow(lvl, growth) * petStats->HPstat);
 
 	switch(PMob->GetMJob()){
 	case JOB_PLD:
@@ -194,38 +284,39 @@ void LoadJugStats(CPetEntity* PMob){
 	case JOB_DRK:
 	case JOB_BLU:
 	case JOB_SCH:
-		PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.2675));
+		PMob->health.maxmp = (int16)(18.2 * pow(lvl,1.1075) * petStats->MPstat);
 		break;
 	}
+
+	PMob->speed = petStats->speed;
+	PMob->speedsub = petStats->speed;
 
     PMob->UpdateHealth();
 	PMob->health.tp = 0;
     PMob->health.hp = PMob->GetMaxHP();
     PMob->health.mp = PMob->GetMaxMP();
-	PMob->setModifier(MOD_DEF, GetJugBase(PMob,3));
-	PMob->setModifier(MOD_EVA, GetJugBase(PMob,3));
-	uint16 BaseAttack = 0;
 
-	if(PMob->GetMLevel() <= 30) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 31 / 10);
-	} else if(PMob->GetMLevel() <= 50) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 30 / 10);
-	} else if(PMob->GetMLevel() > 50) {
-		BaseAttack = (uint16)(PMob->GetMLevel() * 37 / 10);
-	}
+    uint16 evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
 
-	PMob->setModifier(MOD_ATT, BaseAttack);
-	PMob->setModifier(MOD_ACC, BaseAttack);
+	PMob->setModifier(MOD_DEF, GetJugBase(PMob, petStats->defRank));
+	PMob->setModifier(MOD_EVA, GetJugBase(PMob, evaRank));
+	PMob->setModifier(MOD_ATT, GetJugBase(PMob, petStats->attRank));
+	PMob->setModifier(MOD_ACC, GetJugBase(PMob, petStats->accRank));
 
 	PMob->m_Weapons[SLOT_MAIN]->setDamage(GetJugWeaponDamage(PMob));
 
-	uint16 fSTR = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fDEX = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fAGI = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fINT = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fMND = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fCHR = GetBaseToRank(3, PMob->GetMLevel());
-	uint16 fVIT = GetBaseToRank(3, PMob->GetMLevel());
+    //reduce weapon delay of MNK
+    if(PMob->GetMJob()==JOB_MNK){
+		PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+    }
+
+	uint16 fSTR = GetBaseToRank(petStats->strRank, PMob->GetMLevel());
+	uint16 fDEX = GetBaseToRank(petStats->dexRank, PMob->GetMLevel());
+	uint16 fAGI = GetBaseToRank(petStats->vitRank, PMob->GetMLevel());
+	uint16 fINT = GetBaseToRank(petStats->agiRank, PMob->GetMLevel());
+	uint16 fMND = GetBaseToRank(petStats->intRank, PMob->GetMLevel());
+	uint16 fCHR = GetBaseToRank(petStats->mndRank, PMob->GetMLevel());
+	uint16 fVIT = GetBaseToRank(petStats->chrRank, PMob->GetMLevel());
 
 	uint16 mSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),2), PMob->GetMLevel());
 	uint16 mDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),3), PMob->GetMLevel());
@@ -242,6 +333,8 @@ void LoadJugStats(CPetEntity* PMob){
 	PMob->stats.INT = fINT + mINT;
 	PMob->stats.MND = fMND + mMND;
 	PMob->stats.CHR = fCHR + mCHR;
+
+	//TODO: add traits?
 }
 
 void LoadAvatarStats(CPetEntity* PChar)
@@ -472,7 +565,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(240.0f/60.0f)));
 		//TODO: Base off the caps + merits depending on jug type
 		PPet->SetMLevel(PMaster->GetMLevel());
-		LoadJugStats(PPet); //follow monster calcs (w/o SJ)
+		LoadJugStats(PPet, g_PPetList.at(PetID)); //follow monster calcs (w/o SJ)
 	}
 	else if(PPet->getPetType()==PETTYPE_WYVERN){
 		//set the wyvern job based on master's SJ
@@ -564,7 +657,7 @@ void DespawnPet(CBattleEntity* PMaster)
 		PPet->PBattleAI = NULL;
 		PPet->PBattleAI = new CAIMobDummy((CMobEntity*)PMaster);
 		PPet->PBattleAI->SetLastActionTime(gettick());
-		PPet->PBattleAI->SetCurrentAction(ACTION_FALL);			
+		PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
 
 		ShowDebug("An ex charmed mob was not reset properly, Manually resetting it.\n");
 		return;

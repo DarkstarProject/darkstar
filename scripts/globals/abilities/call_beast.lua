@@ -20,5 +20,10 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	player:spawnPet(player:getWeaponSubSkillType(SLOT_AMMO));
+    local id = player:getWeaponSubSkillType(SLOT_AMMO);
+    if(id == 0) then
+        printf("WARNING: jugpet id is ZERO\n");
+    end
+
+	player:spawnPet(id);
 end;

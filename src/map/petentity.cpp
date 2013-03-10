@@ -26,7 +26,7 @@
 #include "petentity.h"
 
 
-CPetEntity::CPetEntity(PETTYPE petType) 
+CPetEntity::CPetEntity(PETTYPE petType)
 {
 	objtype = TYPE_PET;
 	m_PetType = petType;
