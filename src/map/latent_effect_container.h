@@ -56,6 +56,7 @@ public:
 	void CheckLatentsPetType(PETTYPE petID);
 	void CheckLatentsTime();
 	void CheckLatentsWeaponBreak(uint8 slot);
+	void CheckLatentsZone();
 
 	void AddLatentEffect(CLatentEffect* LatentEffect);
 	void AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 slot);

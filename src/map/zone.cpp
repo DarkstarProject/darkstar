@@ -812,6 +812,7 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
 		PChar->PTreasurePool->AddMember(PChar);
 	}
+	PChar->PLatentEffectContainer->CheckLatentsZone();
 }
 
 /************************************************************************

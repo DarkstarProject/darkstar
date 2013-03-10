@@ -45,7 +45,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x0193); -- reminder to visit Juroro
 		----------------------------------------------------
 		elseif(player:hasKeyItem(JOKER_CARD)) then
-			player:startEvent(0x0183,0,264);
+			player:startEvent(0x0183,0,JOKER_CARD);
 		elseif(player:getVar("WildCard") == 1) then
 			player:startEvent(0x0182);
 		elseif(player:getVar("OnionRings") == 1) then
@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0182) then
 		player:setVar("WildCard",2);
 	elseif(csid == 0x0183) then
-		player:delKeyItem(264);
+		player:delKeyItem(JOKER_CARD);
 		player:addGil(GIL_RATE*8000);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*8000);
 	elseif(csid == 0x0151) then

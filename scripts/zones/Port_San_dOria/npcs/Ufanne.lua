@@ -9,6 +9,8 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
+require("scripts/zones/Port_San_dOria/TestIDs");
+require("scripts/globals/quests");
 
 -----------------------------------
 -- onTrade Action
@@ -22,6 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+   local fishCountVar = 0;
 	if(player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_ACCEPTED) then
 		fishCountVar = player:getVar("fishCountVar");
 		player:startEvent(0x0135,0,0,fishCountVar);

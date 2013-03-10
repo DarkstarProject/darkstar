@@ -1783,7 +1783,7 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 			CWeaponSkill* PSkill = *it;
 			if (PChar->GetSkill(skill) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob (curSubJob) > 0)
 				|| PSkill->getID() == wsIDs[SLOT_RANGED]
-				|| isInDynamis && (PSkill->getID() == wsDynIDs[SLOT_MAIN] || PSkill->getID() == wsDynIDs[SLOT_SUB]))
+				|| isInDynamis && (PSkill->getID() == wsDynIDs[SLOT_RANGED]))
 			{
 				addWeaponSkill(PChar, PSkill->getID());
 			}

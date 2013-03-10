@@ -98,8 +98,8 @@ local CurrentAssault = player:getCurrentMission(ASSAULT);
 	       player:delKeyItem(PERIQIA_ASSUALT_ORDERS);
 	   elseif(player:hasKeyItem(ILRUSI_ASSUALT_ORDERS ))then
 	       player:delKeyItem(ILRUSI_ASSUALT_ORDERS);
-	   elseif(player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERSDERS))then
-	       player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERSDERS);
+	   elseif(player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS))then
+	       player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
 	   end
           player:addKeyItem(IMPERIAL_ARMY_ID_TAG);
 		  player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);

@@ -408,6 +408,26 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 					}
 					break;
 				}
+				case LATENT_ZONE:
+					if( m_LatentEffectList.at(i)->GetConditionsValue() == m_POwner->getZone())
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					else
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+					break;
+				case LATENT_IN_DYNAMIS:
+					if (m_POwner->isInDynamis())
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					else
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+					break;
 			}
 		}
 	}

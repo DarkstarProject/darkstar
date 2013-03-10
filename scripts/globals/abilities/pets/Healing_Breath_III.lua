@@ -15,12 +15,12 @@ function OnPetAbility(target, pet, skill)
 	-- http://images2.wikia.nocookie.net/__cb20080714061150/ffxi/images/3/32/Healingbreathgraph.jpg
 
 	-- TODO:
-	-- Wyvern stats are wrong.  Should be main job DRG, complete with traits.  Current method uses job to track wyvern type.  Healing wyvern ends up with 901 HP @ 75 instead of 991.
+	-- Wyvern stats are wrong.  Should be main job DRG, complete with traits.  Current method uses subjob to track wyvern type.  Healing wyvern ends up with 901 HP @ 75 instead of 991.
 		-- 991 HP is pre-2010 DRG buff
 	-- Healing Breath I and II should have lower multipliers.  They'll need to be corrected if the multipliers are ever found.  Don't want to over-correct right now.
 	-- Drachen Brais provide a 10% increase to HP.  0.1 on that slot provides the correct increase, or 0.15 for HQs.
 		-- Per Source 2 below, +HP% gear is applied to Base + non% HP gear.  (991+50)*1.10  If you do that, the formula seems to output the same either way.
-	-- Wyvern Exp Bonus is +6% HP per 200 exp gailed until 1,000 exp cap, granting a max 30% (0.3 works in the formula)
+	-- Wyvern Exp Bonus is +6% HP per 200 exp gained until 1,000 exp cap, granting a max 30% (0.3 works in the formula)
 		-- This might be handled the same way Drachen Brais are above.  Did not check.
 		-- Exp bonus wears off at zone, dismiss, etc, and shouldn't be handled here, as it also adds to other stats.
 	-- Helm Bonus is provided by assorted gear.  Wyrm Armet = 66.7%, Saurian = 57.75%, Lancer's Torque = 11.1%
