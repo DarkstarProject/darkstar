@@ -290,7 +290,7 @@ void CAIMobDummy::ActionDropItems()
 
                 DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
 
-			    if (DropList != NULL && DropList->size())
+			    if (DropList != NULL && PChar != NULL && DropList->size())
 			    {
 					uint8 highestTH = charutils::GetHighestTreasureHunter(PChar, m_PMob);
 
