@@ -1913,7 +1913,7 @@ void CAIMobDummy::ActionRangedAttack()
 	Action.animation  = m_PMobSkill->getAnimationID();
 	Action.subparam   = m_PMobSkill->getID() + 256;
 	Action.param	  = luautils::OnMobWeaponSkill(m_PBattleTarget, m_PMob, m_PMobSkill);
-	Action.messageID  = m_PMobSkill->getMsgForAction();
+	Action.messageID  = m_PMobSkill->getMsg();
 	Action.flag       = 0;
 
 	// display hit or miss

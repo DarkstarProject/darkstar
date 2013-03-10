@@ -82,7 +82,7 @@ BOMB_TOSS_HPP = 1;
 
 function MobRangedMove(mob,target,skill,numberofhits,accmod,dmgmod, tpeffect)
 	-- this will eventually contian ranged attack code
-	return MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod, TP_RANGED)
+	return MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod, TP_RANGED);
 end;
 
 -- PHYSICAL MOVE FUNCTION
