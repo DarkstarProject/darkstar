@@ -144,6 +144,18 @@ void CAIMobDummy::ActionRoaming()
 		// lets buff up or move around
 		m_LastActionTime = m_Tick - rand()%30000;
 
+		// recover health if i'm below 100%
+		if(m_PMob->GetHPP() < 100){
+			// recover 20% HP
+			uint32 recoverHP = (float)m_PMob->GetMaxHP()*0.2;
+			uint32 recoverMP = (float)m_PMob->GetMaxMP()*0.2;
+			m_PMob->addHP(recoverHP);
+			m_PMob->addMP(recoverMP);
+
+			// lower TP
+			m_PMob->addTP(-10);
+		}
+
 		if(!(m_PMob->m_Type & MOBTYPE_EVENT) && rand()%10 < 7){
 			// roam
 			position_t RoamingPoint;
@@ -162,6 +174,7 @@ void CAIMobDummy::ActionRoaming()
 			// cast buff
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
 		}
+
 	}
 	if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
 	{
@@ -229,10 +242,6 @@ void CAIMobDummy::ActionDisengage()
 	m_PMob->animation = ANIMATION_NONE;
 
 	//if (m_PMob->animationsub == 2) m_PMob->animationsub = 3;
-
-    m_PMob->health.tp = 0;
-    m_PMob->health.hp = m_PMob->GetMaxHP();
-    m_PMob->health.mp = m_PMob->GetMaxMP();
 
     m_firstSpell = true;
 
@@ -1066,19 +1075,19 @@ void CAIMobDummy::ActionMagicStart()
 {
 	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 
-	m_PBattleSubTarget = m_PBattleTarget;
-
 	// check valid targets
 	if (m_PSpell->getValidTarget() & TARGET_SELF) {
 		m_PBattleSubTarget = m_PMob;
+	} else {
+		m_PBattleSubTarget = m_PBattleTarget;
 	}
-	else if ( (m_PSpell->getValidTarget() & TARGET_ENEMY) && m_PBattleSubTarget->objtype == TYPE_MOB) {
+
+	if ( (m_PSpell->getValidTarget() & TARGET_ENEMY) && m_PBattleSubTarget->objtype == TYPE_MOB) {
 		m_ActionType = ACTION_ATTACK;
 		m_LastMagicTime = m_Tick;
 		ShowDebug("Monster Magic Cast on self but spell is enemy... spellId: %d \n", m_PSpell->getID());
 		return;
 	}
-
 
 	m_LastActionTime = m_Tick;
 	m_LastMagicTime = m_Tick;
