@@ -630,6 +630,8 @@ FIVE_SECONDS_OF_FAME            = 32;
 DELIVERING_THE_GOODS            = 61; -- + --
 VANISHING_ACT                   = 62; -- + --
 
+NOT_MEANT_TO_BE                 = 64; -- + --
+
 RAT_RACE                        = 66; -- + --
 
 -----------------------------------
