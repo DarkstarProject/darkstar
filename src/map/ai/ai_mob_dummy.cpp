@@ -376,9 +376,10 @@ void CAIMobDummy::ActionDeath()
 {
 	if ((m_Tick - m_LastActionTime) > 12000)
 	{
+		m_PMob->StatusEffectContainer->KillAllStatusEffect();
+
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
-		m_PMob->StatusEffectContainer->KillAllStatusEffect();
 		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
 
 		luautils::OnMobDespawn(m_PMob);

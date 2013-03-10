@@ -892,6 +892,12 @@ void CAICharNormal::ActionRangedFinish()
                         Action.messageID = 0;
                         Action.reaction   = REACTION_EVADE;
                         m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleSubTarget,m_PBattleSubTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+
+                        if(m_PBattleSubTarget->objtype == TYPE_MOB)
+                        {
+                            ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
+                        }
+
                     } else {
     					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 
@@ -1437,6 +1443,11 @@ void CAICharNormal::ActionMagicFinish()
                 m_PChar->m_ActionList.at(i).messageID = 0;
                 m_PChar->m_ActionList.at(i).param = 1;
                 PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+
+                if(PTarget->objtype == TYPE_MOB){
+                    // create hate for shadows
+                    ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
+                }
                 continue; // continue to next pt member
             }
         }
@@ -1963,6 +1974,10 @@ void CAICharNormal::ActionJobAbilityFinish()
                 Action.param = 1;
                 Action.reaction   = REACTION_EVADE;
                 m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleSubTarget,m_PBattleSubTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+
+                if(m_PBattleSubTarget->objtype == TYPE_MOB){
+                    ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
+                }
             } else {
 
     			float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
@@ -2498,7 +2513,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.flag = 0;
 
 
-    if(damage == 0)
+    // TODO: need better way to handle misses
+    if(damage == 0 && !m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STONESKIN))
     {
         Action.reaction = REACTION_EVADE;
         Action.messageID = 188; //but misses
@@ -2664,11 +2680,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 void CAICharNormal::ActionSleep()
 {
-    if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
-        !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
-		!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) &&
-		!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION)&&
-        !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY))
+    if (!m_PChar->StatusEffectContainer->HasPreventActionEffect())
     {
 		m_PBattleSubTarget = NULL;
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
