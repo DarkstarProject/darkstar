@@ -5228,9 +5228,9 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
 	if( !lua_isnil(L,1) && lua_isstring(L,1) )
 	{
 		uint8 SLOT = (uint8)lua_tointeger(L,1);
-		if (SLOT < 1)
+		if (SLOT > 3)
 		{
-			ShowDebug(CL_CYAN"lua::getWeaponSubskillType Bad slot given\n" CL_RESET);
+			ShowDebug(CL_CYAN"lua::getWeaponSubskillType slot not a weapon\n" CL_RESET);
 			lua_pushinteger(L,0);
 			return 1;
 		}
@@ -5238,7 +5238,7 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
 
 		if(weapon == NULL)
 		{
-		    ShowDebug(CL_CYAN"lua::getWeaponSubskillType weapon in main slot is null!\n" CL_RESET);
+		    ShowDebug(CL_CYAN"lua::getWeaponSubskillType weapon in specified slot is null!\n" CL_RESET);
 			return 0;
 		}
 
