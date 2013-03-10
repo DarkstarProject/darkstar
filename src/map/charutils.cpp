@@ -2075,7 +2075,7 @@ void CheckWeaponSkill(CCharEntity* PChar, uint8 skill)
 	}
 	std::list<CWeaponSkill*> WeaponSkillList;
 	WeaponSkillList = battleutils::GetWeaponSkills(skill);
-	uint8 curSkill = PChar->RealSkills.skill[skill]/10;
+	uint16 curSkill = PChar->RealSkills.skill[skill]/10;
 	JOBTYPE curMainJob = PChar->GetMJob();
 	JOBTYPE curSubJob = PChar->GetSJob();
 
