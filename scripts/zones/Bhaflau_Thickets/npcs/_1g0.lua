@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if (csid == 0x01F6 and option == 1) then
-		player:setPos(-37,1,56,0,50);
+		player:setPos(-37,1,-56,0,50);
 	end
 	
 end;

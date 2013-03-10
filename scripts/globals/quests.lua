@@ -624,7 +624,7 @@ THE_WAYWARD_AUTOMATION          = 27;
 OPERATION_TEATIME               = 28;
 PUPPETMASTER_BLUES              = 29;
 MOMENT_OF_TRUTH                 = 30;
-THREE_MEN_AND_A_CLOSET          = 31;
+THREE_MEN_AND_A_CLOSET          = 31; -- + --
 FIVE_SECONDS_OF_FAME            = 32;
 
 RAT_RACE                        = 66; -- + --
