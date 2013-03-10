@@ -1186,6 +1186,8 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			    PChar->Container->setItem(slotID, PItem->getID(), invSlotID, Quantity);
 		    }
 	    }
+
+        PChar->StatusEffectContainer->DelDetectStatusEffects();
 		luautils::OnTrade(PChar, PNpc);
 	}
 	return;

@@ -27,7 +27,7 @@ function onSpellCast(caster,target,spell)
             duration = duration * target:getMainLvl() / 15; -- level adjustment
         end
 
-        spell:setMsg(0);
+        spell:setMsg(230);
         target:addStatusEffect(EFFECT_DEODORIZE,0,10,(math.floor(duration) * SNEAK_INVIS_DURATION_MULTIPLIER));
     else
         spell:setMsg(75); -- no effect.

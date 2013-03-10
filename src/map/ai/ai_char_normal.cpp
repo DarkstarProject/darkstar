@@ -1687,10 +1687,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     if (m_PChar->animation == ANIMATION_ATTACK) m_LastActionTime = m_Tick;
 
-    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-	m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
+    m_PChar->StatusEffectContainer->DelDetectStatusEffects();
 
     if (m_PJobAbility->getLevel() == 0)
     {

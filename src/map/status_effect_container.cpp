@@ -396,6 +396,15 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
     delete PStatusEffect;
 }
 
+void CStatusEffectContainer::DelDetectStatusEffects()
+{
+    DelStatusEffect(EFFECT_INVISIBLE);
+    DelStatusEffect(EFFECT_HIDE);
+    DelStatusEffect(EFFECT_CAMOUFLAGE);
+    DelStatusEffect(EFFECT_SNEAK);
+    DelStatusEffect(EFFECT_DEODORIZE);
+}
+
 /************************************************************************
 *																		*
 *  Удаляем статус-эффект по его основному и дополнительному типам.		*
