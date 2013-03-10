@@ -711,3 +711,41 @@ void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
 		}
 	}
 }
+
+/************************************************************************
+*																		*
+*  Checks all latents regarding current zone							*
+*																		*
+************************************************************************/
+
+void CLatentEffectContainer::CheckLatentsZone()
+{
+	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
+	{
+		switch(m_LatentEffectList.at(i)->GetConditionsID())
+		{
+			case LATENT_ZONE:
+				if( m_LatentEffectList.at(i)->GetConditionsValue() == m_POwner->getZone())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+				break;
+			case LATENT_IN_DYNAMIS:
+				if (m_POwner->isInDynamis())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+				break;
+			default:
+				break;
+		}
+	}
+}
