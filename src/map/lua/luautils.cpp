@@ -118,7 +118,7 @@ int32 init()
 	Lunar<CLuaTradeContainer>::Register(LuaHandle);
 	Lunar<CLuaZone>::Register(LuaHandle);
 
-	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n"); 
+	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 	return 0;
 }
 
@@ -147,7 +147,7 @@ int32 print(lua_State* LuaHandle)
 	if( !lua_isnil(LuaHandle,-1) && lua_isstring(LuaHandle,-1) )
 	{
 		ShowScript("%s\n",lua_tostring(LuaHandle,-1));
-	} 
+	}
 	return 0;
 }
 
@@ -169,7 +169,7 @@ int32 SendUncnown0x39Packet(lua_State* L)
 
         if (PNpc != NULL)
         {
-            PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CUncnown0x39Packet(PNpc, param));   
+            PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CUncnown0x39Packet(PNpc, param));
         }
 		return 0;
 	}
@@ -287,7 +287,7 @@ int32 SetRegionalConquestOverseers()
 		ShowError("luautils::SetRegionalConquestOverseers: undefined procedure onServerStart\n");
 		return -1;
 	}
-  
+
 	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::SetRegionalConquestOverseers: %s\n",lua_tostring(LuaHandle,-1));
@@ -345,10 +345,10 @@ int32 VanadielDayOfTheYear(lua_State* L)
 {
 	int32 day;
 	int32 month;
-	
+
 	day = CVanaTime::getInstance()->getDayOfTheMonth();
 	month = CVanaTime::getInstance()->getMonth();
-	
+
 	lua_pushinteger(L, (month * 30 - 30) + day);
 	return 1;
 }
@@ -451,7 +451,7 @@ int32 SpawnMob(lua_State* L)
 	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 	{
 		uint32 mobid = (uint32)lua_tointeger(L,1);
-		
+
         CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
         if (PMob != NULL)
         {
@@ -460,7 +460,7 @@ int32 SpawnMob(lua_State* L)
             {
                 if( !lua_isnil(L,2) && lua_isnumber(L,2))
                 {
-                    PMob->SetDespawnTimer((uint32)lua_tointeger(L,2)); 
+                    PMob->SetDespawnTimer((uint32)lua_tointeger(L,2));
                 }
 
                 if( !lua_isnil(L,3) && lua_isnumber(L,3))
@@ -536,7 +536,7 @@ int32 setMobPos(lua_State *L)
 	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 	{
 		uint32 mobid = (uint32)lua_tointeger(L,1);
-		
+
         CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
         if (PMob != NULL)
         {
@@ -554,12 +554,12 @@ int32 setMobPos(lua_State *L)
 
 				if( !lua_isnil(L,5) && lua_isnumber(L,5) )
 					PMob->loc.p.rotation = (uint8) lua_tointeger(L,5);
-            } 
-			else 
+            }
+			else
 			{
                 ShowDebug(CL_CYAN"setMobPos: <%s> is currently in battle, will not warp it!\n" CL_RESET, PMob->GetName());
 				return 1;
-			} 
+			}
 		}
 		lua_pushnil(L);
 		return 0;
@@ -575,7 +575,7 @@ int32 setMobPos(lua_State *L)
 *                                                                       *
 ************************************************************************/
 
-int32 GetPlayerByName(lua_State* L) 
+int32 GetPlayerByName(lua_State* L)
 {
 	if( !lua_isnil(L,-1) && lua_isstring(L,-1))
 	{
@@ -615,7 +615,7 @@ int32 GetMobAction(lua_State* L)
     CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
     if (PMob != NULL)
     {
-        int32 CurrentAction = (int32)PMob->PBattleAI->GetCurrentAction(); 
+        int32 CurrentAction = (int32)PMob->PBattleAI->GetCurrentAction();
         lua_pushinteger(L, CurrentAction);
         return 1;
     }
@@ -653,7 +653,7 @@ int32 OnServerStart()
 		ShowError("luautils::OnServerStart: undefined procedure onServerStart\n");
 		return -1;
 	}
-  
+
 	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnServerStart: %s\n",lua_tostring(LuaHandle,-1));
@@ -670,7 +670,7 @@ int32 OnServerStart()
 *  При разделенных lua стеках необходимо создавать их здесь				*
 *																		*
 ************************************************************************/
-										
+
 int32 OnZoneInitialise(uint8 ZoneID)
 {
 	CZone* PZone = zoneutils::GetZone(ZoneID);
@@ -689,7 +689,7 @@ int32 OnZoneInitialise(uint8 ZoneID)
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
-   
+
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onInitialize");
 	if( lua_isnil(LuaHandle,-1) )
 	{
@@ -699,7 +699,7 @@ int32 OnZoneInitialise(uint8 ZoneID)
 
 	CLuaZone LuaZone(PZone);
 	Lunar<CLuaZone>::push(LuaHandle,&LuaZone);
-  
+
 	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnZoneInitialize: %s\n",lua_tostring(LuaHandle,-1));
@@ -732,7 +732,7 @@ int32 OnGameIn(CCharEntity* PChar)
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
-   
+
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onGameIn");
 	if( lua_isnil(LuaHandle,-1) )
 	{
@@ -742,9 +742,9 @@ int32 OnGameIn(CCharEntity* PChar)
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-  
+
 	lua_pushboolean(LuaHandle, PChar->loc.prevzone == 0); // first login
-  
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnGameIn: %s\n",lua_tostring(LuaHandle,-1));
@@ -780,7 +780,7 @@ int32 OnZoneIn(CCharEntity* PChar)
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
-   
+
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onZoneIn");
 	if( lua_isnil(LuaHandle,-1) )
 	{
@@ -790,9 +790,9 @@ int32 OnZoneIn(CCharEntity* PChar)
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-  
+
 	lua_pushinteger(LuaHandle,PChar->loc.prevzone);
-  
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnZoneIn: %s\n",lua_tostring(LuaHandle,-1));
@@ -839,7 +839,7 @@ int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion)
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
     CLuaRegion LuaRegion(PRegion);
 	Lunar<CLuaRegion>::push(LuaHandle,&LuaRegion);
-  
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnRegionEnter: %s\n",lua_tostring(LuaHandle,-1));
@@ -886,7 +886,7 @@ int32 OnRegionLeave(CCharEntity* PChar, CRegion* PRegion)
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
     CLuaRegion LuaRegion(PRegion);
 	Lunar<CLuaRegion>::push(LuaHandle,&LuaRegion);
-  
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnRegionLeave: %s\n",lua_tostring(LuaHandle,-1));
@@ -903,7 +903,7 @@ int32 OnRegionLeave(CCharEntity* PChar, CRegion* PRegion)
 *																		*
 ************************************************************************/
 
-int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc) 
+int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -912,7 +912,7 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
     lua_setglobal(LuaHandle, "onTrigger");
 
 	snprintf( File, sizeof(File), "scripts/zones/%s/npcs/%s.lua", PChar->loc.zone->GetName(),PNpc->GetName());
-	
+
 	PChar->m_event.reset();
     PChar->m_event.Target = PNpc;
 	PChar->m_event.Script.insert(0,File);
@@ -937,7 +937,7 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 
 	CLuaBaseEntity LuaBaseEntityTarg(PNpc);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntityTarg);
-	
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnTrigger: %s\n",lua_tostring(LuaHandle,-1));
@@ -958,18 +958,18 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "onEventUpdate");
 
-	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0)) 
-	{  
+	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
 		int8 File[255];
 		memset(File,0,sizeof(File));
 		snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
-		
+
 		if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-		{  
+		{
 			ShowError("luautils::OnEventUpdate %s\n", lua_tostring(LuaHandle, -1));
 			ShowError("luautils::OnEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
 			lua_pop(LuaHandle, 1);
-			return -1; 
+			return -1;
 		}
 	}
 
@@ -982,10 +982,10 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	lua_pushinteger(LuaHandle,eventID);
 	lua_pushinteger(LuaHandle,result);
-	
+
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
@@ -1006,17 +1006,17 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "onEventFinish");
 
-	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0)) 
-	{  
+	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
 		int8 File[255];
 		memset(File,0,sizeof(File));
 		snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
-		
+
 		if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 		{
 			ShowError("luautils::OnEventFinish %s\n", lua_tostring(LuaHandle, -1));
 			lua_pop(LuaHandle, 1);
-			return -1; 
+			return -1;
 		}
 	}
 
@@ -1029,10 +1029,10 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	lua_pushinteger(LuaHandle,eventID);
 	lua_pushinteger(LuaHandle,result);
-	
+
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnEventFinish %s\n", lua_tostring(LuaHandle, -1));
@@ -1092,7 +1092,7 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 
 	CLuaTradeContainer LuaTradeContainer(PChar->Container);
 	Lunar<CLuaTradeContainer>::push(LuaHandle,&LuaTradeContainer);
-	
+
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnTrade: %s\n",lua_tostring(LuaHandle,-1));
@@ -1135,9 +1135,9 @@ int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 
 	CLuaBaseEntity LuaBaseEntity(PEntity);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaStatusEffect LuaStatusEffect(PStatusEffect);
-	Lunar<CLuaStatusEffect>::push(LuaHandle,&LuaStatusEffect);	
+	Lunar<CLuaStatusEffect>::push(LuaHandle,&LuaStatusEffect);
 
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
@@ -1180,9 +1180,9 @@ int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 
 	CLuaBaseEntity LuaBaseEntity(PEntity);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaStatusEffect LuaStatusEffect(PStatusEffect);
-	Lunar<CLuaStatusEffect>::push(LuaHandle,&LuaStatusEffect);	
+	Lunar<CLuaStatusEffect>::push(LuaHandle,&LuaStatusEffect);
 
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
@@ -1226,9 +1226,9 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 
 	CLuaBaseEntity LuaBaseEntity(PEntity);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaStatusEffect LuaStatusEffect(PStatusEffect);
-	Lunar<CLuaStatusEffect>::push(LuaHandle,&LuaStatusEffect);	
+	Lunar<CLuaStatusEffect>::push(LuaHandle,&LuaStatusEffect);
 
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
@@ -1246,7 +1246,7 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 *																		*
 ************************************************************************/
 
-int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param) 
+int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -1274,7 +1274,7 @@ int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param)
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
 
 	lua_pushinteger(LuaHandle,param);
-	
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnItemCheck: %s\n",lua_tostring(LuaHandle,-1));
@@ -1293,7 +1293,7 @@ int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param)
 *																		*
 ************************************************************************/
 
-int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem) 
+int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -1319,7 +1319,7 @@ int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem)
 
 	CLuaBaseEntity LuaBaseEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnItemUse: %s\n",lua_tostring(LuaHandle,-1));
@@ -1336,7 +1336,7 @@ int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem)
 *																		*
 ************************************************************************/
 
-int32 CheckForGearSet(CBaseEntity* PTarget) 
+int32 CheckForGearSet(CBaseEntity* PTarget)
 {
 
 	int8 File[255];
@@ -1365,7 +1365,7 @@ int32 CheckForGearSet(CBaseEntity* PTarget)
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
 
 	lua_pushinteger(LuaHandle,0);
-	
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::CheckForGearSet: %s\n",lua_tostring(LuaHandle,-1));
@@ -1382,12 +1382,13 @@ int32 CheckForGearSet(CBaseEntity* PTarget)
 *																		*
 ************************************************************************/
 
-int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget) 
-{	
+int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
+{
 	if(PCaster->PBattleAI->GetCurrentSpell()->getSpellGroup() == SPELLGROUP_SONG){
-		if(battleutils::SingSong(PCaster,PTarget,PCaster->PBattleAI->GetCurrentSpell())){
-			return 0;
-		}
+		EFFECT effectId = (EFFECT)battleutils::SingSong(PCaster,PTarget,PCaster->PBattleAI->GetCurrentSpell());
+        if(effectId != EFFECT_NONE){
+            return effectId;
+        }
 	}
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -1415,7 +1416,7 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 
 	CLuaBaseEntity LuaCasterEntity(PCaster);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaCasterEntity);
-	
+
 	CLuaBaseEntity LuaTargetEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaTargetEntity);
 
@@ -1431,8 +1432,8 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
-int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget) 
-{	
+int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
+{
 	DSP_DEBUG_BREAK_IF(PCaster == NULL || PTarget == NULL);
 
 	int8 File[255];
@@ -1477,8 +1478,8 @@ int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
 *                                                                       *
 ************************************************************************/
 
-int32 OnMobInitialise(CBaseEntity* PMob) 
-{       
+int32 OnMobInitialise(CBaseEntity* PMob)
+{
     DSP_DEBUG_BREAK_IF(PMob == NULL);
 
     int8 File[255];
@@ -1520,8 +1521,8 @@ int32 OnMobInitialise(CBaseEntity* PMob)
 *		Added by request (for doing stuff when mobs first engage)		*
 ************************************************************************/
 
-int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget) 
-{	
+int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
+{
 	DSP_DEBUG_BREAK_IF(PTarget == NULL || PMob == NULL);
 
 
@@ -1576,8 +1577,8 @@ int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
 *																		*
 ************************************************************************/
 
-int32 OnMobDisengage(CBaseEntity* PMob) 
-{	
+int32 OnMobDisengage(CBaseEntity* PMob)
+{
 	DSP_DEBUG_BREAK_IF(PMob == NULL);
 
 	int8 File[255];
@@ -1620,7 +1621,7 @@ int32 OnMobDisengage(CBaseEntity* PMob)
 ************************************************************************/
 
 int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
-{	
+{
     DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
     DSP_DEBUG_BREAK_IF(PTarget == NULL || PTarget->objtype == TYPE_NPC);
 
@@ -1666,15 +1667,15 @@ int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
 *																		*
 ************************************************************************/
 
-int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller) 
-{	
+int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
+{
 	DSP_DEBUG_BREAK_IF(PKiller == NULL || PMob == NULL);
 
     CCharEntity* PChar = (CCharEntity*)PKiller;
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 	CLuaBaseEntity LuaKillerEntity(PKiller);
-	
+
     if (((CMobEntity*)PMob)->m_OwnerID.id == PKiller->id)
     {
         lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeathEx");
@@ -1733,7 +1734,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 			{
 				for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
 				{
-					if (PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i) == PChar || PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getZone() != PChar->getZone()) 
+					if (PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i) == PChar || PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getZone() != PChar->getZone())
 						continue;
 
 					((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.reset();
@@ -1765,7 +1766,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 			for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
 			{
 				if (PChar->PParty->members[i] == PChar ||
-					PChar->PParty->members[i]->getZone() != PChar->getZone()) 
+					PChar->PParty->members[i]->getZone() != PChar->getZone())
 					continue;
 
 				((CCharEntity*)PChar->PParty->members[i])->m_event.reset();
@@ -1801,8 +1802,8 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 *                                                                       *
 ************************************************************************/
 
-int32 OnMobSpawn(CBaseEntity* PMob) 
-{       
+int32 OnMobSpawn(CBaseEntity* PMob)
+{
     DSP_DEBUG_BREAK_IF(PMob == NULL);
 
     int8 File[255];
@@ -1910,7 +1911,7 @@ int32 OnGameDayAutomatisation()
 		ShowError("luautils::OnGameDayAutomatisation: undefined procedure OnGameDayAutomatisation\n");
 		return -1;
 	}
-  
+
 	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnGameDayAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
@@ -1926,7 +1927,7 @@ int32 OnGameDayAutomatisation()
 *                                                                       *
 ************************************************************************/
 
-int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded) 
+int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLanded, uint16* extraHitsLanded)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -1954,10 +1955,10 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLand
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaBaseEntity LuaMobEntity(PMob);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-	
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnUseWeaponSkill: %s\n",lua_tostring(LuaHandle,-1));
@@ -1975,7 +1976,7 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLand
 *																		*
 ************************************************************************/
 
-int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill) 
+int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -2001,13 +2002,13 @@ int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobS
 
 	CLuaBaseEntity LuaBaseEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaBaseEntity LuaMobEntity(PMob);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
 	CLuaMobSkill LuaMobSkill(PMobSkill);
 	Lunar<CLuaMobSkill>::push(LuaHandle,&LuaMobSkill);
-	
+
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnMobWeaponSkill: %s\n",lua_tostring(LuaHandle,-1));
@@ -2024,7 +2025,7 @@ int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobS
 *																		*
 ************************************************************************/
 
-int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill) 
+int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -2050,13 +2051,13 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
 
 	CLuaBaseEntity LuaBaseEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaBaseEntity LuaMobEntity(PMob);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
 	CLuaMobSkill LuaMobSkill(PMobSkill);
 	Lunar<CLuaMobSkill>::push(LuaHandle,&LuaMobSkill);
-	
+
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnMobSkillCheck (%s): %s\n",PMobSkill->getName(), lua_tostring(LuaHandle,-1));
@@ -2080,9 +2081,9 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "OnMagicCastingCheck");
-	
+
 	snprintf(File, sizeof(File), (PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua"), PSpell->getName());
-	
+
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
 		ShowError("luautils::OnMagicCastingCheck (%s): %s\n",PSpell->getName(),lua_tostring(LuaHandle,-1));
@@ -2099,13 +2100,13 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 
 	CLuaBaseEntity LuaBaseEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaBaseEntity LuaCharEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaCharEntity);
 
 	CLuaSpell LuaSpell(PSpell);
 	Lunar<CLuaSpell>::push(LuaHandle,&LuaSpell);
-	
+
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnMagicCastingCheck (%s): %s\n",PSpell->getName(), lua_tostring(LuaHandle,-1));
@@ -2154,7 +2155,7 @@ int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbilit
 
 	CLuaAbility LuaAbility(PAbility);
 	Lunar<CLuaAbility>::push(LuaHandle,&LuaAbility);
-	
+
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnAbilityCheck (%s): %s\n",PAbility->getName(), lua_tostring(LuaHandle,-1));
@@ -2173,7 +2174,7 @@ int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbilit
 *																		*
 ************************************************************************/
 
-int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster) 
+int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -2199,7 +2200,7 @@ int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill
 
 	CLuaBaseEntity LuaBaseEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaBaseEntity LuaMobEntity(PMob);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
@@ -2208,7 +2209,7 @@ int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill
 
 	CLuaBaseEntity LuaMasterEntity(PMobMaster);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMasterEntity);
-	
+
 	if( lua_pcall(LuaHandle,4,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnPetAbility: %s\n",lua_tostring(LuaHandle,-1));
@@ -2225,7 +2226,7 @@ int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill
 *                                                                       *
 ************************************************************************/
 
-int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility) 
+int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -2251,7 +2252,7 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaBaseEntity LuaMobEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
@@ -2273,7 +2274,7 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
 *                                                                       *
 ************************************************************************/
 
-int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total) 
+int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -2299,7 +2300,7 @@ int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAb
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaBaseEntity LuaMobEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
@@ -2347,11 +2348,11 @@ int32 GetServerVariable(lua_State *L)
 
 	int32 ret = Sql_Query(SqlHandle,"SELECT value FROM server_variables WHERE name = '%s' LIMIT 1;", lua_tostring(L,-1));
 
-	if (ret != SQL_ERROR && 
+	if (ret != SQL_ERROR &&
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-		value = (int32)Sql_GetIntData(SqlHandle,0); 
+		value = (int32)Sql_GetIntData(SqlHandle,0);
 	}
 	lua_pushinteger(L, value);
 	return 1;
@@ -2368,7 +2369,7 @@ int32 SetServerVariable(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
 
-	int32 value = (int32)lua_tointeger(L,-1); 
+	int32 value = (int32)lua_tointeger(L,-1);
 
 	Sql_Query(SqlHandle,"INSERT INTO server_variables VALUES ('%s', %i) ON DUPLICATE KEY UPDATE value = %i;", lua_tostring(L,-2), value, value);
 	return 0;
@@ -2380,7 +2381,7 @@ int32 SetServerVariable(lua_State *L)
 *                                                                       *
 ************************************************************************/
 
-int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID) 
+int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -2409,9 +2410,9 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-  
+
 	lua_pushinteger(LuaHandle,TransportID);
-  
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnTransportEvent: %s\n",lua_tostring(LuaHandle,-1));
@@ -2449,10 +2450,10 @@ int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance){
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaInstance LuaInstanceEntity(PInstance);
 	Lunar<CLuaInstance>::push(LuaHandle,&LuaInstanceEntity);
-	
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnBcnmEnter: %s\n",lua_tostring(LuaHandle,-1));
@@ -2497,7 +2498,7 @@ int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode){
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaInstance LuaInstanceEntity(PInstance);
 	Lunar<CLuaInstance>::push(LuaHandle,&LuaInstanceEntity);
 
@@ -2506,7 +2507,7 @@ int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode){
 	PChar->m_event.reset();
     PChar->m_event.Target = PChar;
 	PChar->m_event.Script.insert(0,File);
-	
+
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnBcnmLeave: %s\n",lua_tostring(LuaHandle,-1));
@@ -2548,10 +2549,10 @@ int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance){
 
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-	
+
 	CLuaInstance LuaInstanceEntity(PInstance);
 	Lunar<CLuaInstance>::push(LuaHandle,&LuaInstanceEntity);
-	
+
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnBcnmRegister: %s\n",lua_tostring(LuaHandle,-1));
@@ -2571,7 +2572,7 @@ int32 DeterMob(lua_State* L)
 		uint32 mobid = (uint32)lua_tointeger(L,1);
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
-		if (PMob != NULL) {	
+		if (PMob != NULL) {
 			if( !lua_isnil(L,2) && lua_isboolean(L,2) ) {
 				if ( lua_toboolean(L,2) == 0 ) {
 				  PMob->m_AllowRespawn = true; // Do not deter the mob, allow mob to respawn
@@ -2603,11 +2604,11 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 		uint32 mobid = (uint32)lua_tointeger(L,1);
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
-		if (PMob != NULL) {	
+		if (PMob != NULL) {
 		  int32 r = rand()%50;
 		  int32 ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
 
-		  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {	
+		  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
 			PMob->m_SpawnPoint.rotation = rand() % 360;
 			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,0);
 			PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,1);
@@ -2634,12 +2635,12 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 int32 GetMobRespawnTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-    
+
     uint32 mobid = (uint32)lua_tointeger(L,-1);
     CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-    
+
     if (PMob != NULL) {
-        uint32 RespawnTime = (uint32)PMob->m_RespawnTime / 1000; 
+        uint32 RespawnTime = (uint32)PMob->m_RespawnTime / 1000;
         lua_pushinteger(L, RespawnTime);
         return 1;
     }

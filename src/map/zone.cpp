@@ -211,6 +211,11 @@ zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
 	return NULL;
 }
 
+EntityList_t* CZone::GetMobs()
+{
+  return &m_mobList;
+}
+
 /************************************************************************
 *																		*
 *  Загружаем ZoneLines, необходимые для правильного перемещения	между	*

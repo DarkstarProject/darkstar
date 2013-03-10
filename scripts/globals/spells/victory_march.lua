@@ -38,5 +38,6 @@ function onSpellCast(caster,target,spell)
     haste = power / 2;
     target:delStatusEffect(EFFECT_MARCH);
     target:addStatusEffect(EFFECT_MARCH,haste,0,duration);
+    spell:setMsg(230);
     return EFFECT_MARCH;
 end;

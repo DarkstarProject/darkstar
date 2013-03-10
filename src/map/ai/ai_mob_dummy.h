@@ -98,8 +98,6 @@ protected:
 
 private:
 
-	void AddEntityForAoe(CBattleEntity* entityToAdd, apAction_t Action);
-
 };
 
 #endif

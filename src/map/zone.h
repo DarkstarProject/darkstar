@@ -335,7 +335,7 @@ enum CONTINENTTYPE : uint8
     OTHER_AREAS             = 4
 };
 
-enum GLOBAL_MESSAGE_TYPE 
+enum GLOBAL_MESSAGE_TYPE
 {
 	CHAR_INRANGE,
 	CHAR_INRANGE_SELF,
@@ -363,7 +363,7 @@ enum ZONEMISC
 *																		*
 ************************************************************************/
 
-struct zoneMusic_t 
+struct zoneMusic_t
 {
 	uint8 m_song;		// фоновая музыка
 	uint8 m_bSongS;		// музыка в одиночном бою
@@ -379,7 +379,7 @@ struct zoneMusic_t
 *																		*
 ************************************************************************/
 
-struct zoneLine_t 
+struct zoneLine_t
 {
 	uint32	   m_zoneLineID;
 	uint8	   m_toZone;
@@ -421,6 +421,8 @@ public:
 	uint8			GetPartyBattleMusic();
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
+
+	EntityList_t*	GetMobs();
 
     CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
@@ -472,12 +474,12 @@ private:
 	string_t		m_zoneName;				// имя зоны
 	uint16			m_zonePort;				// порт зоны
 	uint32			m_zoneIP;               // IP зоны
-      
+
 	WEATHER			m_Weather;              // текущая погода
     uint32          m_WeatherChangeTime;    // время начала текущей погоды
     bool            m_IsWeatherStatic;      // погода в зоне никогда не меняется
 
-	uint16			m_tax;					// налог в bazaar 
+	uint16			m_tax;					// налог в bazaar
 	uint16			m_miscMask;				// битовое поле, описывающее возможности использования в зоне определенных умений
 
 	zoneMusic_t		m_zoneMusic;			// информация о мелодиях, используемых в зоне

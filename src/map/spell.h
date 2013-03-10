@@ -53,7 +53,8 @@ public:
 
     bool        isAOE();
     bool        canTargetEnemy();
-    bool        dealsDamage(); // checks if the spell deals hp damage to target
+    bool        isBuff();
+    bool        dealsDamage(); // checks if the spell deals hp damage to target, this is relative to message
     void        resetMessage(); // resets spell to normal state
 
     uint16      getTotalTargets();
@@ -78,9 +79,11 @@ public:
 	uint16		getVE();
 	uint16		getModifiedRecast();
 	uint16		getMonsterSkillId();
-    uint16      getAoEMessage(); // returns the shorter message for AoE moves
+    uint8       getRadius();
+    uint16      getAoEMessage(); // returns the single target message for AoE moves
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
 
+    void        setRadius(uint8 radius);
     void        setTotalTargets(uint16 total);
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);
@@ -119,6 +122,7 @@ private:
 	uint16		m_animation;							// animation for spell
     uint16      m_animationTime;
     uint8       m_skillType;
+    uint8       m_radius;
     uint8	    m_totalTargets;
 	uint16		m_mpCost;								// mpCost/itemId for ninjitsu tool
 	uint8		m_job[MAX_JOBTYPE];						// job
@@ -152,7 +156,8 @@ namespace spell
 	CSpell* GetSpellByMonsterSkillId(uint16 SkillID);
     CSpell* GetSpell(uint16 SpellID);
     bool    CanUseSpell(CBattleEntity* PCaster, uint16 SpellID);
-	bool	CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level);
+    bool    CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level);
+	float	GetSpellRadius(CSpell* spellId, CBattleEntity* PCaster);
 };
 
 #endif

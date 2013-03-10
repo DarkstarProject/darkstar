@@ -31,6 +31,7 @@ CSpell::CSpell(uint16 id)
 {
 	m_ID = id;
 
+    m_radius          = 0;
 	m_mpCost            = 0;
 	m_castTime          = 0;
 	m_recastTime        = 0;
@@ -134,6 +135,11 @@ void CSpell::setSkillType(uint8 SkillType)
     m_skillType = SkillType;
 }
 
+bool CSpell::isBuff()
+{
+    return (getValidTarget() & TARGET_SELF) && !(getValidTarget() & TARGET_ENEMY);
+}
+
 bool CSpell::tookEffect()
 {
     if(m_message == 75 || m_message == 284){
@@ -146,6 +152,11 @@ bool CSpell::dealsDamage()
 {
     //damage or drain hp
     return m_message==2 || m_message==227;
+}
+
+uint8 CSpell::getRadius()
+{
+    return m_radius;
 }
 
 uint16 CSpell::getZoneMisc()
@@ -265,6 +276,7 @@ void CSpell::setMessage(uint16 message)
 
 uint16 CSpell::getDefaultMessage()
 {
+    // this can eventually get removed
     switch(m_skillType){
         case 34: //enhancing
             return 230;
@@ -305,6 +317,11 @@ void CSpell::setCE(uint16 ce)
 uint16 CSpell::getCE()
 {
 	return m_CE;
+}
+
+void CSpell::setRadius(uint8 radius)
+{
+    m_radius = radius;
 }
 
 void CSpell::setVE(uint16 ve)
@@ -396,6 +413,12 @@ namespace spell
                 PSpell->setMagicBurstMessage(Sql_GetIntData(SqlHandle,17));
 			    PSpell->setCE(Sql_GetIntData(SqlHandle,18));
 			    PSpell->setVE(Sql_GetIntData(SqlHandle,19));
+
+                if(PSpell->isAOE())
+                {
+                    // default radius
+                    PSpell->setRadius(10);
+                }
 
 			    PSpellList[PSpell->getID()] = PSpell;
 		    }
@@ -500,5 +523,24 @@ namespace spell
 	    }
 	    return false;
 	}
+
+    float GetSpellRadius(CSpell* spell, CBattleEntity* entity)
+    {
+        uint8 total = spell->getRadius();
+
+        // brd gets bonus radius from string skill
+        if(spell->getSpellGroup() == SPELLGROUP_SONG && (spell->getValidTarget() & TARGET_SELF)){
+            // TODO: make sure you have string intru equiped for player
+            if(entity->objtype == TYPE_MOB || entity->GetMJob() == JOB_BRD){
+                total += (entity->GetSkill(SKILL_STR) / 276) * 10;
+            }
+        }
+
+        if(total > 20){
+            total = 20;
+        }
+
+        return total;
+    }
 
 };

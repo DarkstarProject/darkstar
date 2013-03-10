@@ -21,5 +21,6 @@ function onSpellCast(caster,target,spell)
     -- Since all the tiers use the same effect buff it is hard to delete a specific one.
     target:addStatusEffect(EFFECT_BALLAD,mp,3,120);
 
+    spell:setMsg(230);
     return EFFECT_BALLAD;
 end;

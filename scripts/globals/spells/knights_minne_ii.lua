@@ -40,6 +40,7 @@ function onSpellCast(caster,target,spell)
 	-- Since all the tiers use the same effect buff it is hard to delete a specific one.
 	target:delStatusEffect(EFFECT_MINNE);
 	target:addStatusEffect(EFFECT_MINNE,power,0,120);
+	spell:setMsg(230);
 
 	return EFFECT_MINNE;
 end;

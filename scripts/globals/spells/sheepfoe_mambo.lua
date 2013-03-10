@@ -24,5 +24,6 @@ function onSpellCast(caster,target,spell)
     -- Since all the tiers use the same effect buff it is hard to delete a specific one.
     target:delStatusEffect(EFFECT_MAMBO);
     target:addStatusEffect(EFFECT_MAMBO,1,0,120);
+    spell:setMsg(230);
     return EFFECT_MAMBO;
 end;

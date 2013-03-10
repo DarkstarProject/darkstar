@@ -2385,7 +2385,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 	or false if the song effect has not been implemented. This is used in
 	luautils to check if it needs to load a spell script or not.
 ******************************************************************************/
-bool SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
+uint16 SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
 	uint8 tier = 1;
 	EFFECT effect = EFFECT_NONE;
 	uint8 tick = 0;
@@ -2423,7 +2423,7 @@ bool SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
 	}
 
 	if(effect==EFFECT_NONE){
-		return false;
+		return effect;
 	}
 	//TODO: Handle instruments!
 
@@ -2451,8 +2451,9 @@ bool SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
 
 	if(PTarget->StatusEffectContainer->ApplyBardEffect(PStatus,maxSongs)){
 		//ShowDebug("Applied %s! \n",PSpell->getName());
+        PSpell->setMessage(230);
 	}
-	return true;
+	return effect;
 }
 
 
@@ -3895,52 +3896,15 @@ TARGET_PARTY_TYPE getAvailableAoeTargets(CBattleEntity* PTarget)
 *                                                                       *
 ************************************************************************/
 
-bool handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apAction_t* Action, CMobSkill* PMobSkill, position_t* radiusAround)
+bool handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apAction_t* Action, float radius, position_t* radiusAround)
 {
-	if (PTarget->isDead() || PTarget == PAttacker || PTarget->getZone() != PAttacker->getZone())
+	if (distance(*radiusAround, PTarget->loc.p) > radius || PTarget->isDead() || PTarget->getZone() != PAttacker->getZone())
 	{
 		return false;
 	}
 
-	if (distance(*radiusAround, PTarget->loc.p) <= PMobSkill->getDistance())
-	{
-		Action->ActionTarget = PTarget;
-		return true;
-	}
-	return false;
-}
-
-uint16 GetMobSkillMessage(CMobSkill* skill)
-{
-	uint16 id = skill->getID();
-	uint16 messageid = 256 + id;
-	uint8 flag = skill->getFlag();
-	if (flag == 1)
-	{
-		switch (id)
-		{
-			case 190:  //dimensional death
-				messageid = 255;
-				break;
-			case 246:  //shackled fists
-			case 247:  //foxfire
-			case 248:  //grim halo
-			case 249:  //netherspikes
-			case 250:  //carnal nightmare
-				messageid = id;
-				break;
-			case 251:  //dancing chains
-			case 252:  //barbed crescent
-				messageid = id+1;
-				break;
-			case 253:  //aegis schism
-				messageid = 251;
-				break;
-			default:
-				break;
-		}
-	}
-	return messageid;
+	Action->ActionTarget = PTarget;
+	return true;
 }
 
 EFFECT getCorsairRollEffect(uint16 id)
@@ -3992,6 +3956,5 @@ EFFECT getCorsairRollEffect(uint16 id)
 	DSP_DEBUG_BREAK_IF(true);
 	return EFFECT_BUST;
 }
-
 
 };

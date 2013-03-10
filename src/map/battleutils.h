@@ -136,7 +136,7 @@ namespace battleutils
     uint16				TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint16 lastSkillDamage);
 	uint32				MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 
-	bool				SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
+	uint16				SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
 	bool				IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     bool				IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     bool				IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender);
@@ -182,8 +182,7 @@ namespace battleutils
 	uint8				getStoreTPbonusFromMerit(CBattleEntity* PEntity);
 
 	TARGET_PARTY_TYPE	getAvailableAoeTargets(CBattleEntity* PTarget);
-	bool				handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apAction_t* Action, CMobSkill* PMobSkill, position_t* radiusAround);
-	uint16				GetMobSkillMessage(CMobSkill* skill);
+	bool				handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apAction_t* Action, float radius, position_t* radiusAround);
 	EFFECT				getCorsairRollEffect(uint16 id);
 
 };

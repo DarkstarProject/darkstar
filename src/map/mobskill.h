@@ -63,6 +63,7 @@ public:
 	uint16		getValidTargets();
 	uint16		getTP();
     uint16      getTotalTargets();
+    uint16      getMsgForAction();
 
 	void		setID(uint16 id);
 	void		setAnimationID(uint16 aid);

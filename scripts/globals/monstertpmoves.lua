@@ -57,6 +57,7 @@ TP_NO_EFFECT = 0;
 TP_MACC_BONUS = 1;
 TP_MAB_BONUS = 2;
 TP_DMG_BONUS = 3;
+TP_RANGED = 4;
 
 MSG_NONE = 0; -- display nothing
 MSG_SELF_HEAL = 238;
@@ -81,7 +82,7 @@ BOMB_TOSS_HPP = 1;
 
 function MobRangedMove(mob,target,skill,numberofhits,accmod,dmgmod, tpeffect)
 	-- this will eventually contian ranged attack code
-	return MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod, tpeffect)
+	return MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod, TP_RANGED)
 end;
 
 -- PHYSICAL MOVE FUNCTION
@@ -134,13 +135,13 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	lvldiff = lvluser - lvltarget;
 
 	--work out hit rate for mobs (bias towards them)
-	hitrate = (acc*accmod) - eva + (lvldiff*4) + 75;
+	hitrate = (acc*accmod) - eva + (lvldiff*3) + 85;
 
 	-- printf("acc: %f, eva: %f, hitrate: %f", acc, eva, hitrate);
 	if (hitrate > 95) then
 		hitrate = 95;
-	elseif (hitrate < 20) then
-		hitrate = 20;
+	elseif (hitrate < 30) then
+		hitrate = 30;
 	end
 
 	-- increase damage based on tp
@@ -176,14 +177,23 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	hitslanded = 0;
 
 	local double chance = math.random();
-	--first hit is 95%
-	-- if ((chance*100)<=95) then
-	-- 	pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
-	-- 	pdif = pdif/1000; --multiplier set.
-	-- 	finaldmg = finaldmg + hitdamage * pdif;
-	-- 	hitslanded = hitslanded + 1;
-	-- end
-	while (hitsdone <= numberofhits) do
+
+	-- first hit has a higher chance to land
+	local firstHitChance = hitrate * 1.5;
+	firstHitChance = math.clamp(firstHitChance, 20, 95);
+
+	-- range attacks have a normal hit rate
+	if(tpeffect == TP_RANGED) then
+		firstHitChance = hitrate;
+	end
+
+	if ((chance*100) <= firstHitChance) then
+		pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
+		pdif = pdif/1000; --multiplier set.
+		finaldmg = finaldmg + hitdamage * pdif;
+		hitslanded = hitslanded + 1;
+	end
+	while (hitsdone < numberofhits) do
 		chance = math.random();
 		if ((chance*100)<=hitrate) then --it hit
 			pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF

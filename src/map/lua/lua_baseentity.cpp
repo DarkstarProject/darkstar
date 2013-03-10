@@ -6346,7 +6346,7 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 			Action.reaction   = REACTION_HIT;
 			Action.speceffect = SPECEFFECT_HIT;
 			Action.animation  = 0;
-			Action.param	  = battleutils::GetMobSkillMessage(mobskill);//m_PMobSkill->getAnimationID();
+			Action.param	  = mobskill->getMsgForAction();//m_PMobSkill->getAnimationID();
 			Action.messageID  = 43; //readies message
 			Action.flag		  = 0;
 

@@ -64,14 +64,14 @@ void CMobSpellContainer::AddSpell(int16 spellId)
     m_damageList.push_back(spellId);
 
   } else if(spellId >= 14 && spellId <= 20 || spellId == 143){
-    // na spell and erases
+    // na spell and erase
     m_naList.push_back(spellId);
 
   } else if((spell->getValidTarget() & TARGET_SELF) && spell->getSkillType() == SKILL_HEA){
     // add to healing
     m_healList.push_back(spellId);
 
-  } else if(spell->getValidTarget() & TARGET_SELF){
+  } else if(spell->isBuff()){
     // buff
     m_buffList.push_back(spellId);
 

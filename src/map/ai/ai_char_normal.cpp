@@ -1381,6 +1381,7 @@ void CAICharNormal::ActionMagicFinish()
 	Action.flag		  = 0;
 
     m_PChar->m_ActionList.push_back(Action);
+    float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
 
 
 	if (m_PSpell->isAOE())
@@ -1395,7 +1396,7 @@ void CAICharNormal::ActionMagicFinish()
 
 				    if (m_PBattleSubTarget != PTarget &&
                        !PTarget->isDead() &&
-                       distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
+                       distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= radius)
 				    {
 					    Action.ActionTarget = PTarget;
 					    m_PChar->m_ActionList.push_back(Action);
@@ -1412,7 +1413,7 @@ void CAICharNormal::ActionMagicFinish()
 			    if (m_PBattleSubTarget != PTarget &&
                     !PTarget->isDead()  &&
                     IsMobOwner(PTarget) &&
-				    distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
+				    distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= radius)
 			    {
 				    Action.ActionTarget = PTarget;
 			        m_PChar->m_ActionList.push_back(Action);
@@ -2896,7 +2897,6 @@ void CAICharNormal::ActionAttack()
 				uint16 damage = 0;
 
 				if(m_PChar->GetMJob() == JOB_MNK && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK)){
-					//TODO: footwork changes dmg and weapoin delay - for now just change animation
 						if(i < numattacksRightHand){
 							Action.animation = 2;//kick right leg
 						}else if(i >= numattacksLeftHand + numattacksRightHand){

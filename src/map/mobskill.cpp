@@ -151,6 +151,39 @@ uint16 CMobSkill::getMsg()
 	return m_Message;
 }
 
+uint16 CMobSkill::getMsgForAction()
+{
+  uint16 id = getID();
+    uint16 messageid = 256 + id;
+    uint8 flag = getFlag();
+    if (flag == 1)
+    {
+      switch (id)
+      {
+        case 190:  //dimensional death
+          messageid = 255;
+          break;
+        case 246:  //shackled fists
+        case 247:  //foxfire
+        case 248:  //grim halo
+        case 249:  //netherspikes
+        case 250:  //carnal nightmare
+          messageid = id;
+          break;
+        case 251:  //dancing chains
+        case 252:  //barbed crescent
+          messageid = id+1;
+          break;
+        case 253:  //aegis schism
+          messageid = 251;
+          break;
+        default:
+          break;
+      }
+    }
+    return messageid;
+}
+
 uint16 CMobSkill::getAoEMsg()
 {
 
