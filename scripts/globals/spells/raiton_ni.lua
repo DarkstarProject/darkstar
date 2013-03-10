@@ -16,7 +16,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	dmg = calculateMagicDamage(80,1,caster,spell,target,NINJUTSU_SKILL,MOD_INT,false);
+	dmg = calculateMagicDamage(68,1,caster,spell,target,NINJUTSU_SKILL,MOD_INT,false);
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),NINJUTSU_SKILL,1.0);
 	--get the resisted damage

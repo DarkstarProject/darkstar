@@ -24,7 +24,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     if(dmg > 0) then
        target:addTP(2);
-       mob:addTP(10);
+       mob:addTP(8);
     end
 
     target:delHP(dmg);
