@@ -1039,72 +1039,35 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 				PDefender->addHP(-Action->subparam);
 				return;
 			case ENSPELL_DRAIN_SAMBA:
-				if(hitNumber>2){break;}
-				if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE)){break;}
-				else if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
+				if (hitNumber <= 2 &&
+                         PDefender->m_EcoSystem != SYSTEM_UNDEAD &&
+                         !PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE) &&
+                         PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
 				{
-					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE))
-						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE);
-					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE))
-						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE);
+					PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE);
+					PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE);
 				PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_DRAIN_DAZE,EFFECT_DRAIN_DAZE,10,0,10));
-					uint8 Samba = 1;
-					delay = delay / 10;
-					if (PAttacker->GetMLevel() <= 34) { Samba = rand()%(delay * 3 / 100) + 1; }
-					if (PAttacker->GetMLevel() >=35 || PAttacker->GetMLevel() <= 64) { Samba = rand()%(delay * 8 / 100) + 10; }
-					if (PAttacker->GetMLevel() >= 65) { Samba = rand()%(delay * 14 / 100) + 15; }
-					if (Samba >= (finaldamage / 2))
-						Samba = finaldamage / 2;
-
-						Action->subeffect = SUBEFFECT_HP_DRAIN;
-						Action->submessageID = 161;
-						Action->flag = 3;
-						Action->subparam = Samba;
-						PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
-                        if(PAttacker->objtype == TYPE_PC){
-    						charutils::UpdateHealth(PAttacker);
-                        }
-				return;
 				}
+                break;
 			case ENSPELL_ASPIR_SAMBA:
-				if(hitNumber>2){break;}
-				if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE)){break;}
-				else if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_SAMBA))
+				if (hitNumber <= 2 &&
+                    PDefender->m_EcoSystem != SYSTEM_UNDEAD &&
+                    !PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_SAMBA))
 				{
-					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE))
-						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE);
-					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE))
-						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE);
+					PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE);
+					PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE);
 				PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_ASPIR_DAZE,EFFECT_ASPIR_DAZE,10,0,10));
-					uint8 Samba = 1;
-					delay = delay / 10;
-					if (PAttacker->GetMLevel() <= 59) { Samba = rand()%(delay * 1 / 100) + 1; }
-					if (PAttacker->GetMLevel() >= 60) { Samba = rand()%(delay * 3 / 100) + 1; }
-					if (Samba >= (finaldamage / 4)) { Samba = finaldamage / 4; }
-
-					Action->subeffect = SUBEFFECT_HP_DRAIN;
-					Action->submessageID = 162;
-					Action->flag = 3;
-					Action->subparam = Samba;
-					PAttacker->addMP(Samba);
-                    if(PAttacker->objtype == TYPE_PC){
-    					charutils::UpdateHealth(PAttacker);
-                    }
-				return;
 				}
 			case ENSPELL_HASTE_SAMBA:
-				if(hitNumber>2){break;}
-				if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE)){break;}
-				else if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_SAMBA))
+				if (hitNumber <= 2 &&
+                    !PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE) &&
+                    PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_SAMBA))
 				{
 					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE))
 						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE);
 					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE))
 						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE);
 				PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE_DAZE,EFFECT_HASTE_DAZE,10,0,10));
-			if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE)){break;}
-				PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE, EFFECT_HASTE, 50, 0, 10));
-				return;
 				}
 		}
 	}
@@ -1116,13 +1079,24 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE))
 	{
-		uint8 Samba = 1;
+		uint8 Samba = rand()%((delay * 3) / 100) + 1;
 
-		if (PAttacker->GetMLevel() <= 34) { Samba = rand()%(delay * 3 / 100) + 1; }
-		if (PAttacker->GetMLevel() >=35 || PAttacker->GetMLevel() <= 64) { Samba = rand()%(delay * 8 / 100) + 10; }
-		if (PAttacker->GetMLevel() >= 65) { Samba = rand()%(delay * 14 / 100) + 15; }
-		if (Samba >= (finaldamage / 2))
-			Samba = finaldamage / 2;
+        // vary damage based on lvl diff
+        int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel())/2;
+
+        if(lvlDiff < -5){
+            lvlDiff = -5;
+        }
+
+        Samba -= lvlDiff;
+
+        if (Samba > (finaldamage / 2)){
+            Samba = finaldamage / 2;
+        }
+
+        if(finaldamage <= 2){
+            Samba = 0;
+        }
 
 		Action->subeffect = SUBEFFECT_HP_DRAIN;
 		Action->submessageID = 161;
@@ -1137,10 +1111,10 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE))
 	{
-		uint8 Samba = 1;
-		if (PAttacker->GetMLevel() <= 59) { Samba = rand()%(delay * 1 / 100) + 1; }
-		if (PAttacker->GetMLevel() >= 60) { Samba = rand()%(delay * 3 / 100) + 10; }
+		uint8 Samba = Samba = rand()%(delay * 1 / 100) + 1;
+
 		if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
+
 		Action->subeffect = SUBEFFECT_HP_DRAIN;
 		Action->submessageID = 162;
 		Action->flag = 3;
