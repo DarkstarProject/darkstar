@@ -1978,7 +1978,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 		float baseTp = 0;
 
-		if(slot==SLOT_RANGED && PAttacker->objtype == TYPE_PC)
+		if((slot==SLOT_RANGED || slot==SLOT_AMMO) && PAttacker->objtype == TYPE_PC)
 		{
 			CCharEntity* PChar = (CCharEntity*)PAttacker;
 			CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
@@ -1988,10 +1988,6 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			delay = PAttacker->GetRangedWeaponDelay(true);
 
 			baseTp = CalculateBaseTP((delay * 110) / 1000);
-		}
-		else if (slot==SLOT_AMMO && PAttacker->objtype == TYPE_PC)
-		{
-			//todo: e.g. pebbles
 		}
 		else
         {
@@ -4006,6 +4002,18 @@ EFFECT getCorsairRollEffect(uint16 id)
 	//Unhandled Scenario
 	DSP_DEBUG_BREAK_IF(true);
 	return EFFECT_BUST;
+}
+
+void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
+{
+    if(PDefender->objtype == TYPE_MOB){
+
+        CMobEntity* mob = (CMobEntity*)PDefender;
+
+        mob->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, 0);
+        mob->m_OwnerID.id = PAttacker->id;
+        mob->m_OwnerID.targid = PAttacker->targid;
+    }
 }
 
 };

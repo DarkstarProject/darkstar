@@ -63,6 +63,11 @@ void CItemWeapon::resetDelay()
 *                                                                       *
 ************************************************************************/
 
+bool CItemWeapon::isThrowing()
+{
+    return m_ranged && getSkillType() == SKILL_THR;
+}
+
 bool CItemWeapon::isRanged()
 {
     return m_ranged;

@@ -689,7 +689,6 @@ void CAICharNormal::ActionRangedStart()
 
 		m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
 
-
 		// apply snapshot reduction
 		uint32 SnapShotReductionPercent = 0;
 
@@ -715,15 +714,15 @@ void CAICharNormal::ActionRangedStart()
 		}
 
 
-
 		switch (SkillType)
 		{
-			case SKILL_THR: break;
+			case SKILL_THR:
+            break;
 			case SKILL_ARC:
 			case SKILL_MRK:
 			{
-				PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
+                PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 				if (PItem != NULL &&
 				   (PItem->getType() & ITEM_WEAPON))
 				{
@@ -738,24 +737,49 @@ void CAICharNormal::ActionRangedStart()
 				return;
 			}
 		}
+
 	}else{
 		PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
-		if (PItem == NULL ||
-		  !(PItem->getType() & ITEM_WEAPON) ||
-		   (PItem->getSkillType() != SKILL_THR))
+		if (PItem != NULL && PItem->isThrowing())
 		{
+            m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
+
+            // apply snapshot reduction
+            uint32 SnapShotReductionPercent = 0;
+
+            if (charutils::hasTrait(m_PChar, TRAIT_SNAPSHOT))
+            {
+                // reduction from merits should only apply if the user has the trait
+                SnapShotReductionPercent = m_PChar->PMeritPoints->GetMeritValue(MERIT_SNAPSHOT, m_PChar->GetMLevel());
+            }
+
+            // get any snapshotreduction from gear
+            SnapShotReductionPercent += m_PChar->getMod(MOD_SNAP_SHOT);
+
+            if (SnapShotReductionPercent > 0)
+                m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ( (float)SnapShotReductionPercent / 100));
+
+
+            // do chance for rapid shot
+            if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
+            {
+                uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar->GetMLevel()));
+                if (rand()%100 < chance)
+                    m_PChar->m_rangedDelay = 0;
+            }
+
+            // remove barrage, doesn't work here
+            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE);
+        }
+        else
+        {
 			m_ActionTargetID = 0;
 			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
 			return;
 		}
 
-		//todo: remove this and actually handle ammo thrown items (e.g. pebbles)
-		m_ActionTargetID = 0;
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
-			return;
 	}
 
 	if (GetValidTarget(&m_PBattleSubTarget, TARGET_ENEMY))
@@ -873,10 +897,20 @@ void CAICharNormal::ActionRangedFinish()
 		uint8 realHits = 0;			// to store the real number of hit for tp multipler
 		bool hitOccured = false;	// track if player hit mob at all
 
+        // if barrage is detected, getBarrageShotCount also checks for ammo count
+        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0))
+            hitCount += battleutils::getBarrageShotCount(m_PChar);
 
-		// if barrage is detected, getBarrageShotCount also checks for ammo count
-		if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0))
-			hitCount += battleutils::getBarrageShotCount(m_PChar);
+        CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+        CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+
+        bool isThrowing = PAmmo->isThrowing();
+        uint8 slot = SLOT_RANGED;
+
+        if(isThrowing)
+        {
+            slot = SLOT_AMMO;
+        }
 
 		// loop for barrage hits, if a miss occurs, the loop will end
 		for (uint8 i = 0; i < hitCount; ++i)
@@ -905,18 +939,15 @@ void CAICharNormal::ActionRangedFinish()
     						Action.messageID = 353;
     					}
 
-    					CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
-    					CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-
-
     					// at least 1 hit occured
     					hitOccured = true;
     					realHits ++;
 
-    					damage = (m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif;
+    					damage = (m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,slot)) * pdif;
 
-    					damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
-
+                        if(slot == SLOT_RANGED){
+        					damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+                        }
 
     					if(PItem != NULL)
     					{
@@ -931,23 +962,25 @@ void CAICharNormal::ActionRangedFinish()
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 354;
 
-					if(m_PBattleSubTarget->objtype == TYPE_MOB)
-					{
-						((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
-						((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
-						((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
-					}
+                    battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
 
 					i = hitCount; // end barrage, shot missed
 				}
 
 
 				// check for recycle chance
-				CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+
 				uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
 
 				if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
 					recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
+
+                // only remove on hit
+                if(hitOccured && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
+                {
+                    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
+                    recycleChance = 100;
+                }
 
 				if(PAmmo != NULL && rand()%100 > recycleChance)
 				{
@@ -981,7 +1014,7 @@ void CAICharNormal::ActionRangedFinish()
 				Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 			}
 
-			Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, SLOT_RANGED, realHits, NULL, true);
+			Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, slot, realHits, NULL, true);
 
             // lower damage based on shadows taken
             if(shadowsTaken){
@@ -1002,10 +1035,7 @@ void CAICharNormal::ActionRangedFinish()
             Action.reaction   = REACTION_EVADE;
             m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleSubTarget,m_PBattleSubTarget,0,shadowsTaken, MSGBASIC_SHADOW_ABSORB));
 
-            if(m_PBattleSubTarget->objtype == TYPE_MOB)
-            {
-                ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, shadowsTaken);
-            }
+            battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
         }
 
         m_PChar->m_ActionList.push_back(Action);
@@ -1458,10 +1488,7 @@ void CAICharNormal::ActionMagicFinish()
                 m_PChar->m_ActionList.at(i).param = 1;
                 PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
 
-                if(PTarget->objtype == TYPE_MOB){
-                    // create hate for shadows
-                    ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
-                }
+                battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
                 continue; // continue to next pt member
             }
         }
@@ -1489,6 +1516,7 @@ void CAICharNormal::ActionMagicFinish()
             {
                 ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
             }
+
             ((CMobEntity*)PTarget)->m_OwnerID.id = m_PChar->id;
             ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PChar->targid;
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
@@ -2002,9 +2030,7 @@ void CAICharNormal::ActionJobAbilityFinish()
                     Action.reaction   = REACTION_EVADE;
                     m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleSubTarget,m_PBattleSubTarget,0,1, MSGBASIC_SHADOW_ABSORB));
 
-                    if(m_PBattleSubTarget->objtype == TYPE_MOB){
-                        ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
-                    }
+                    battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
                 } else {
 
         			float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
@@ -2032,12 +2058,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     			Action.speceffect = SPECEFFECT_NONE;
     			Action.messageID  = MSGBASIC_USES_BUT_MISSES;
 
-    			if(m_PBattleSubTarget->objtype == TYPE_MOB)
-    			{
-    				((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
-    				((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
-    				((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
-    			}
+                battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
     		}
 
 
@@ -2684,15 +2705,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
 					{
 						AoEAction.messageID = 264; // "xxx takes ### damage." only
 					}
-
-					((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
+                    battleutils::ClaimMob(PTarget, m_PChar);
 					AoEAction.ActionTarget = PTarget;
 					m_PChar->m_ActionList.push_back(AoEAction);
 				}
 			}
 		}
 	}
-
 
 	// to catch high damage bugs
 	if (damage > 8000)
@@ -3120,7 +3139,8 @@ void CAICharNormal::ActionAttack()
 				else
 				{
 					Action.param = 0;
-					((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmity(m_PChar, 0, 0);
+
+                    battleutils::ClaimMob(m_PBattleTarget, m_PChar);
 				}
 
 				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)

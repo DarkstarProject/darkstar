@@ -211,15 +211,30 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
 	CItemWeapon* PRange = (CItemWeapon*)m_Weapons[SLOT_RANGED];
 	CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
 
-	int delay = 0;
-	if(PRange != NULL && PRange->getDamage() != 0) { delay += (((PRange->getDelay()*60)/1000)+240); }
+	// base delay
+	int delay = 240;
+
+	if(PRange != NULL && PRange->getDamage() != 0) {
+		delay += ((PRange->getDelay()*60)/1000);
+	}
+
+	if(PAmmo != NULL && PAmmo->isThrowing())
+	{
+		// this is a throwing weapon
+		delay += ((PAmmo->getDelay()*60)/1000);
+	}
+
 	delay = (((delay-getMod(MOD_RANGED_DELAY))*1000)/110);
+
 	//apply haste and delay reductions that don't affect tp
 	if (!tp)
 	{
 		delay = delay * ((float)(100 + getMod(MOD_RANGED_DELAYP))/100);
 	} else {
-		if(PAmmo != NULL && PAmmo->getDamage() != 0) { delay += (((PAmmo->getDelay()*60)/1000)+240); }
+
+		if(PAmmo != NULL && PAmmo->getDamage() != 0) {
+		 delay += ((PAmmo->getDelay()*60)/1000);
+		}
 	}
 	return delay;
 }
@@ -228,8 +243,11 @@ int16 CBattleEntity::GetAmmoDelay(bool tp)
 {
 	CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
 
-	int delay = 0;
-	if(PAmmo != NULL && PAmmo->getDamage() != 0) { delay += (((PAmmo->getDelay()*60)/1000)+240); }
+	int delay = 240;
+	if(PAmmo != NULL && PAmmo->getDamage() != 0) {
+		delay += ((PAmmo->getDelay()*60)/1000);
+	}
+
 	delay = (((delay-getMod(MOD_RANGED_DELAY))*1000)/110);
 	//don't think delay reduction affects cooldown time
 	//if (!tp)

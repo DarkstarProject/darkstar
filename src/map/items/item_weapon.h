@@ -48,6 +48,7 @@ public:
     void    resetDelay();
 
     bool    isRanged();
+    bool    isThrowing();
     bool    isTwoHanded();
 	bool    isUnlockable();
 

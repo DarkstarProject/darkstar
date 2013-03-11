@@ -184,7 +184,7 @@ namespace battleutils
 	TARGET_PARTY_TYPE	getAvailableAoeTargets(CBattleEntity* PTarget);
 	bool				handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apAction_t* Action, float radius, position_t* radiusAround);
 	EFFECT				getCorsairRollEffect(uint16 id);
-
+    void                ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker);
 };
 
 #endif
