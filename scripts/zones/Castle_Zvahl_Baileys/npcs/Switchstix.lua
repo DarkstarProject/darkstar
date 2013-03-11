@@ -191,7 +191,7 @@ function onTrade(player,npc,trade)
 
          -- Stage 1->2, wait until next game day
          if (eventParams[7] == 1) then
-            player:setVar("RELIC_DUE_AT",getMidnight() - 86400);
+            player:setVar("RELIC_DUE_AT",getMidnight());
 
          -- Stage 2->3, wait RELIC_2ND_UPGRADE_WAIT_TIME (604800s / 1 week default)
          elseif (eventParams[7] == 2) then
