@@ -1,11 +1,12 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6560; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6563; -- Obtained: <item>
-           GIL_OBTAINED = 6564; -- Obtained <number> gil
-       KEYITEM_OBTAINED = 6566; -- Obtained key item: <keyitem>
-         ITEMS_OBTAINED = 6569; -- You obtain <param2 number> <param1 item>
+   ITEM_CANNOT_BE_OBTAINED = 6560; -- You cannot obtain the item <item> come back again after sorting your inventory
+FULL_INVENTORY_AFTER_TRADE = 6562; -- You cannot obtain the <item>. Try trading again after sorting your inventory
+             ITEM_OBTAINED = 6563; -- Obtained: <item>
+              GIL_OBTAINED = 6564; -- Obtained <number> gil
+          KEYITEM_OBTAINED = 6566; -- Obtained key item: <keyitem>
+            ITEMS_OBTAINED = 6569; -- You obtain <param2 number> <param1 item>
 
 -- Other dialog
                SENSE_OF_FOREBODING = 6578; -- You are suddenly overcome with a sense of foreboding...
@@ -22,4 +23,3 @@ CHEST_UNLOCKED = 7360; -- You unlock the chest!
   CHEST_MOOGLE = 7365; -- You cannot open the chest while participating in the moogle event.
 CHEST_ILLUSION = 7366; -- The chest was but an illusion...
   CHEST_LOCKED = 7367; -- The chest appears to be locked.
-
