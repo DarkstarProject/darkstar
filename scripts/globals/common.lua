@@ -53,8 +53,8 @@ function getMidnight()
    -- And determine the timezone in seconds, because we'll need that to get UTC and LUA doesn't make it easy.
    local timezone = os.difftime(os.time(), os.time(os.date("!*t")));
 
-   -- Midnight adjusted for timezone (subtract, not add), plus timezone offset * 3600 to get us where we want to be.
-   return (midnight - timezone + (TIMEZONE_OFFSET * 3600));
+   -- Midnight adjusted for timezone, then timezone offset * 3600 to get us where we want to be.
+   return (midnight + timezone - (TIMEZONE_OFFSET * 3600));
 end;
 
 -----------------------------------
