@@ -1983,11 +1983,12 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			CCharEntity* PChar = (CCharEntity*)PAttacker;
 			CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
 
-			int delay = 0; uint16 offset = 240;
+			int delay = 0;
 
 			delay = PAttacker->GetRangedWeaponDelay(true);
 
 			baseTp = CalculateBaseTP((delay * 110) / 1000);
+
 		}
 		else
         {

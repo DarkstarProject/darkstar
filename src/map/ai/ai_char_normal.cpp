@@ -679,12 +679,22 @@ void CAICharNormal::ActionRangedStart()
 		return;
 	}
 
-	CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+	CItemWeapon* PRanged = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
 
-	if (PItem != NULL &&
-	   (PItem->getType() & ITEM_WEAPON))
+
+    CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+
+	if (PRanged != NULL &&
+	   (PRanged->getType() & ITEM_WEAPON) || PAmmo != NULL && PAmmo->isThrowing())
 	{
-		uint8 SkillType = PItem->getSkillType();
+		uint8 SkillType = 0;
+
+        if(PAmmo->isThrowing()){
+            SkillType = PAmmo->getSkillType();
+        } else {
+            SkillType = PRanged->getSkillType();
+        }
+
 		//ranged weapon delay is stored in the db as offset from 240 for some reason.
 
 		m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
@@ -713,18 +723,27 @@ void CAICharNormal::ActionRangedStart()
 				m_PChar->m_rangedDelay = 0;
 		}
 
+        if(m_PChar->m_rangedDelay <= 0){
+            ShowError("ai_char_normal::ActionRangedStart ranged delay is lower than 1!\n");
+            m_PChar->m_rangedDelay = 1;
+        }
 
 		switch (SkillType)
 		{
 			case SKILL_THR:
+            {
+
+                // remove barrage, doesn't work here
+                m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE);
+            }
             break;
 			case SKILL_ARC:
 			case SKILL_MRK:
 			{
 
-                PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-				if (PItem != NULL &&
-				   (PItem->getType() & ITEM_WEAPON))
+                PRanged = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+				if (PRanged != NULL &&
+				   (PRanged->getType() & ITEM_WEAPON))
 				{
 					break;
 				}
@@ -739,46 +758,11 @@ void CAICharNormal::ActionRangedStart()
 		}
 
 	}else{
-		PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
-		if (PItem != NULL && PItem->isThrowing())
-		{
-            m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
-
-            // apply snapshot reduction
-            uint32 SnapShotReductionPercent = 0;
-
-            if (charutils::hasTrait(m_PChar, TRAIT_SNAPSHOT))
-            {
-                // reduction from merits should only apply if the user has the trait
-                SnapShotReductionPercent = m_PChar->PMeritPoints->GetMeritValue(MERIT_SNAPSHOT, m_PChar->GetMLevel());
-            }
-
-            // get any snapshotreduction from gear
-            SnapShotReductionPercent += m_PChar->getMod(MOD_SNAP_SHOT);
-
-            if (SnapShotReductionPercent > 0)
-                m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ( (float)SnapShotReductionPercent / 100));
-
-
-            // do chance for rapid shot
-            if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
-            {
-                uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar->GetMLevel()));
-                if (rand()%100 < chance)
-                    m_PChar->m_rangedDelay = 0;
-            }
-
-            // remove barrage, doesn't work here
-            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE);
-        }
-        else
-        {
-			m_ActionTargetID = 0;
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
-			return;
-		}
+		m_ActionTargetID = 0;
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
+		return;
 
 	}
 
@@ -1048,6 +1032,7 @@ void CAICharNormal::ActionRangedFinish()
         // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
 
 		CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
+
 		if (Monster->m_HiPCLvl < m_PChar->GetMLevel())
 		{
 			Monster->m_HiPCLvl = m_PChar->GetMLevel();
