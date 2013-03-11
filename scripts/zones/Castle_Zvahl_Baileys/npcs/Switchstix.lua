@@ -351,6 +351,7 @@ function onEventFinish(player,csid,option)
 
    -- Stage 4 cutscenes
    elseif ((csid >= 68 and csid <= 82) or csid == 86) then
+      player:setVar("RELIC_CONQUEST_WAIT",0);
       switch (csid): caseof
       {
          [68] = function (x) player:setVar("RELIC_IN_PROGRESS",18263); end, -- Spharai
