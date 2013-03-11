@@ -745,6 +745,7 @@ void CAICharNormal::ActionRangedStart()
 				if (PRanged != NULL &&
 				   (PRanged->getType() & ITEM_WEAPON))
 				{
+
 					break;
 				}
 			}
@@ -875,16 +876,6 @@ void CAICharNormal::ActionRangedFinish()
 		Action.messageID  = 352;
 		Action.flag = 0;
 
-
-        uint8 shadowsTaken = 0;
-		uint8 hitCount = 1;			// 1 hit by default
-		uint8 realHits = 0;			// to store the real number of hit for tp multipler
-		bool hitOccured = false;	// track if player hit mob at all
-
-        // if barrage is detected, getBarrageShotCount also checks for ammo count
-        if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0))
-            hitCount += battleutils::getBarrageShotCount(m_PChar);
-
         CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
         CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
@@ -894,6 +885,24 @@ void CAICharNormal::ActionRangedFinish()
         if(isThrowing)
         {
             slot = SLOT_AMMO;
+        }
+
+        uint8 shadowsTaken = 0;
+		uint8 hitCount = 1;			// 1 hit by default
+		uint8 realHits = 0;			// to store the real number of hit for tp multipler
+		bool hitOccured = false;	// track if player hit mob at all
+        bool isSange = false;
+
+
+        // if barrage is detected, getBarrageShotCount also checks for ammo count
+        if (!isThrowing && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0))
+        {
+            hitCount += battleutils::getBarrageShotCount(m_PChar);
+        }
+        else if(isThrowing && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANGE))
+        {
+            isSange = true;
+            hitCount += m_PChar->getMod(MOD_UTSUSEMI);
         }
 
 		// loop for barrage hits, if a miss occurs, the loop will end
@@ -926,6 +935,11 @@ void CAICharNormal::ActionRangedFinish()
     					// at least 1 hit occured
     					hitOccured = true;
     					realHits ++;
+
+                        if(isSange){
+                            // change message to sange
+                            Action.messageID = 77;
+                        }
 
     					damage = (m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,slot)) * pdif;
 
@@ -991,7 +1005,7 @@ void CAICharNormal::ActionRangedFinish()
 		if (hitOccured == true)
 		{
 			// any misses with barrage cause remaing shots to miss, meaning we must check Action.reaction
-			if (Action.reaction == REACTION_EVADE && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE))
+			if (Action.reaction == REACTION_EVADE && (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE) || isSange))
 			{
 				Action.messageID  = 352;
 				Action.reaction   = REACTION_HIT;
@@ -1062,8 +1076,14 @@ void CAICharNormal::ActionRangedFinish()
 
 
 		// remove barrage effect if present
-		if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0))
+		if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0)){
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE,0);
+        }
+        else if(isSange)
+        {
+            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
+            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+        }
 	}
 }
 
@@ -1289,7 +1309,8 @@ void CAICharNormal::ActionMagicCasting()
 	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
-		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
+		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)
+           || m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
         {
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_UNABLE_TO_CAST));
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
