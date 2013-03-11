@@ -46,11 +46,15 @@ end;
 -----------------------------------
 
 function getMidnight()
-	-- Get time in UTC
-	local utc = os.date("!*t");
+   -- Get time, because this is going to get ugly.  Using ! for UTC won't work where we're going.
+   local hometime = os.date("*t");
+   -- Set to 24:00 to get end of the day.
+   local midnight = os.time{year=hometime.year, month=hometime.month, day=hometime.day, hour=24};
+   -- And determine the timezone in seconds, because we'll need that to get UTC and LUA doesn't make it easy.
+   local timezone = os.difftime(os.time(), os.time(os.date("!*t")));
 
-	-- Format it into epoch and return it.  Find upcoming midnight, then adjust with TIMEZONE_OFFSET
-	return (os.time{year=utc.year, month=utc.month, day=utc.day, hour=24} + (TIMEZONE_OFFSET * 3600));
+   -- Midnight adjusted for timezone (subtract, not add), plus timezone offset * 3600 to get us where we want to be.
+   return (midnight - timezone + (TIMEZONE_OFFSET * 3600));
 end;
 
 -----------------------------------
@@ -59,9 +63,17 @@ end;
 -----------------------------------
 
 function getConquestTally()
-	-- Get time in UTC
-	local utc = os.date("!*t");
+   -- Get time into a handy dandy table
+   local weekDayNumber = os.date("%w");
+   local daysToTally = 0;
 
-	-- Format it into epoch and return it.  Find end of "today" + (number of full days until end of Saturday * 24 hours) + TIMEZONE_OFFSET
-	return (os.time{year=utc.year, month=utc.month, day=utc.day, hour=24} + ((7 - utc.wday) * 86400) + (TIMEZONE_OFFSET * 3600));
+   -- LUA is Sun -> Sat, conquest is Mon -> Sun, so adjustments via conditional are needed.
+   -- If today is Sunday (0), no additional days are necessary, so keep the 0.
+   -- Ex: Friday = 5, 7 - 5 = 2 days to add, all of Saturday and Sunday.
+   if (weekDayNumber > 0) then
+      daysToTally = 7 - weekDayNumber;
+   end
+
+   -- Midnight + daysToTally * a day worth of seconds.
+   return (getMidnight() + (daysToTally * 86400));
 end;
