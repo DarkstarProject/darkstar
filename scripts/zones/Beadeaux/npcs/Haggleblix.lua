@@ -4,12 +4,13 @@
 --  Type: Dynamis NPC
 --  @pos -255.847 0.595 106.485 147
 -----------------------------------
-
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
-require("scripts/zones/Beadeaux/TextIDs");
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
+require("scripts/zones/Beadeaux/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -21,7 +22,7 @@ function onTrade(player,npc,trade)
    local exchange;
    local gil = trade:getGil();
 
-   if (player:hasKeyItem(VIAL_OF_SHROUDED_SAND) == true) then
+   if (player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
       if (count == 1 and gil == TIMELESS_HOURGLASS_COST) then -- Hourglass purchase
          player:startEvent(134);
       elseif (gil == 0) then
@@ -29,7 +30,7 @@ function onTrade(player,npc,trade)
             player:startEvent(153);
 
          -- Currency Exchanges
-         elseif (count == CURRENCY_EXCHANGE_RATE and trade:hasItemQty(1445,CURRENCY_EXCHANGE_RATE)) then -- Single -> Hundred
+         elseif (count == CURRENCY_EXCHANGE_RATE and trade:hasItemQty(1455,CURRENCY_EXCHANGE_RATE)) then -- Single -> Hundred
             player:startEvent(135,CURRENCY_EXCHANGE_RATE);
          elseif (count == CURRENCY_EXCHANGE_RATE and trade:hasItemQty(1456,CURRENCY_EXCHANGE_RATE)) then -- Hundred -> Ten thousand
             player:startEvent(136,CURRENCY_EXCHANGE_RATE);

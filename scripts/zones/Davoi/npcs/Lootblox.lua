@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
             player:startEvent(153);
 
          -- Currency Exchanges
-         elseif (count == CURRENCY_EXCHANGE_RATE and trade:hasItemQty(1445,CURRENCY_EXCHANGE_RATE)) then -- Single -> Hundred
+         elseif (count == CURRENCY_EXCHANGE_RATE and trade:hasItemQty(1452,CURRENCY_EXCHANGE_RATE)) then -- Single -> Hundred
             player:startEvent(135,CURRENCY_EXCHANGE_RATE);
          elseif (count == CURRENCY_EXCHANGE_RATE and trade:hasItemQty(1453,CURRENCY_EXCHANGE_RATE)) then -- Hundred -> Ten thousand
             player:startEvent(136,CURRENCY_EXCHANGE_RATE);

@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/missions");
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -20,12 +21,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:hasCompleteMission(BASTOK, ON_MY_WAY) == true) and
-	(player:getVar("[B7-2]Cornelia") == 0) then
+	
+	if(player:hasCompletedMission(BASTOK,ON_MY_WAY) and player:getVar("[B7-2]Cornelia") == 0) then
 		player:startEvent(0x026e);
 	else
-	player:messageSpecial(ITS_LOCKED);
+		player:messageSpecial(ITS_LOCKED);
 	end
+	
 	return 1;
 end; 
 
@@ -45,7 +47,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	
 	if(csid == 0x026e) then
 		player:setVar("[B7-2]Cornelia", 1);
 	end
+	
 end;
