@@ -623,6 +623,9 @@
     <ClInclude Include="..\..\src\map\mob_spell_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\items\item_fish.h">
+      <Filter>Header Files\items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1170,6 +1173,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\mob_spell_container.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\items\item_fish.cpp">
+      <Filter>Source Files\items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

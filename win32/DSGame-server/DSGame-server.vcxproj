@@ -140,6 +140,7 @@
     <ClInclude Include="..\..\src\map\items\item.h" />
     <ClInclude Include="..\..\src\map\items\item_armor.h" />
     <ClInclude Include="..\..\src\map\items\item_currency.h" />
+    <ClInclude Include="..\..\src\map\items\item_fish.h" />
     <ClInclude Include="..\..\src\map\items\item_furnishing.h" />
     <ClInclude Include="..\..\src\map\items\item_general.h" />
     <ClInclude Include="..\..\src\map\items\item_linkshell.h" />
@@ -325,6 +326,7 @@
     <ClCompile Include="..\..\src\map\items\item.cpp" />
     <ClCompile Include="..\..\src\map\items\item_armor.cpp" />
     <ClCompile Include="..\..\src\map\items\item_currency.cpp" />
+    <ClCompile Include="..\..\src\map\items\item_fish.cpp" />
     <ClCompile Include="..\..\src\map\items\item_furnishing.cpp" />
     <ClCompile Include="..\..\src\map\items\item_general.cpp" />
     <ClCompile Include="..\..\src\map\items\item_linkshell.cpp" />

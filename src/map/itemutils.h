@@ -29,6 +29,7 @@
 #include "items/item.h"
 #include "items/item_armor.h"
 #include "items/item_currency.h"
+#include "items/item_fish.h"
 #include "items/item_furnishing.h"
 #include "items/item_general.h"
 #include "items/item_linkshell.h"

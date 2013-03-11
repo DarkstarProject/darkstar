@@ -418,31 +418,67 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	if (FishingChance <= 20)
 	{
-		const int8* fmtQuery = "SELECT fish.fishid, fish.max, fish.watertype, fish.size, fish.stamina, lure.luck, rod.flag \
-								FROM fishing_zone AS zone \
-								INNER JOIN fishing_rod  AS rod  USING (fishid) \
-								INNER JOIN fishing_lure AS lure USING (fishid) \
-								INNER JOIN fishing_fish AS fish USING (fishid) \
-								WHERE zone.zoneid = %u AND rod.rodid = %u AND lure.lureid = %u AND lure.luck = 0";
+		const int8* Query = 
+            "SELECT "
+                "fish.fishid,"      // 0
+                "fish.max,"         // 1
+                "fish.watertype,"   // 2
+                "fish.size,"        // 3
+                "fish.stamina,"     // 4
+                "fish.log,"         // 5
+                "fish.quest,"       // 6
+                "rod.flag "         // 7
+            "FROM fishing_zone AS zone "
+			"INNER JOIN fishing_rod  AS rod  USING (fishid) "
+			"INNER JOIN fishing_lure AS lure USING (fishid) "
+			"INNER JOIN fishing_fish AS fish USING (fishid) "
+			"WHERE zone.zoneid = %u AND rod.rodid = %u AND lure.lureid = %u AND lure.luck = 0";
 
-		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->getZone(), RodID, LureID);
+		int32 ret = Sql_Query(SqlHandle, Query, PChar->getZone(), RodID, LureID);
 
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
-			// результат ловли предмета
+            while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+			{
+                // ловля предметов, необходимых для поисков
+
+                uint8 logid = Sql_GetIntData(SqlHandle,5);
+                uint8 quest = Sql_GetIntData(SqlHandle,6);
+
+                if(logid < MAX_QUESTAREA && quest < MAX_QUESTID)
+	            {
+		            uint8 current  = PChar->m_questLog[logid].current [quest/8] & (1 << (quest % 8));
+		            uint8 complete = PChar->m_questLog[logid].complete[quest/8] & (1 << (quest % 8));
+
+                    if (complete == 0 && current != 0)
+                    {
+		                PFish = new CItemFish(*itemutils::GetItemPointer(Sql_GetIntData(SqlHandle,0)));
+
+					    PChar->UContainer->SetType(UCONTAINER_FISHING);
+					    PChar->UContainer->SetItem(0, PFish);
+					    break;
+                    }
+	            }
+
+                // TODO: ловля простых предметов
+            }
 		}						
 	}
 	else
 	{
-		const int8* fmtQuery = "SELECT fish.fishid, lure.luck, rod.flag \
-								FROM fishing_zone AS zone \
-								INNER JOIN fishing_rod  AS rod  USING (fishid) \
-								INNER JOIN fishing_lure AS lure USING (fishid) \
-								INNER JOIN fishing_fish AS fish USING (fishid) \
-								WHERE zone.zoneid = %u AND rod.rodid = %u AND lure.lureid = %u AND lure.luck != 0 \
-								ORDER BY luck"; 
+		const int8* Query = 
+            "SELECT "
+                "fish.fishid,"  // 0
+                "lure.luck,"    // 1
+                "rod.flag "     // 2
+            "FROM fishing_zone AS zone "
+            "INNER JOIN fishing_rod  AS rod  USING (fishid) "
+			"INNER JOIN fishing_lure AS lure USING (fishid) "
+			"INNER JOIN fishing_fish AS fish USING (fishid) "
+			"WHERE zone.zoneid = %u AND rod.rodid = %u AND lure.lureid = %u AND lure.luck != 0 "
+			"ORDER BY luck"; 
 		
-		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->getZone(), RodID, LureID);
+		int32 ret = Sql_Query(SqlHandle, Query, PChar->getZone(), RodID, LureID);
 
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
@@ -455,7 +491,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 				if (FishingChance <= FisherLuck)
 				{
-					PFish = itemutils::GetItemPointer(Sql_GetIntData(SqlHandle,0));
+					PFish = new CItemFish(*itemutils::GetItemPointer(Sql_GetIntData(SqlHandle,0)));
 
 					PChar->UContainer->SetType(UCONTAINER_FISHING);
 					PChar->UContainer->SetItem(0, PFish);
@@ -588,6 +624,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				{
 					LureLoss(PChar, false);
 				}
+                delete PFish;
 			}
 			else if (stamina <= 0x64)
 			{
