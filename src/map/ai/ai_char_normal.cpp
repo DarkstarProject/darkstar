@@ -868,7 +868,7 @@ void CAICharNormal::ActionRangedFinish()
 		Action.flag = 0;
 
 
-
+        uint8 shadowsTaken = 0;
 		uint8 hitCount = 1;			// 1 hit by default
 		uint8 realHits = 0;			// to store the real number of hit for tp multipler
 		bool hitOccured = false;	// track if player hit mob at all
@@ -893,14 +893,7 @@ void CAICharNormal::ActionRangedFinish()
                     // absorbed by shadow
                     if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
                     {
-                        Action.messageID = 0;
-                        Action.reaction   = REACTION_EVADE;
-                        m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleSubTarget,m_PBattleSubTarget,0,1, MSGBASIC_SHADOW_ABSORB));
-
-                        if(m_PBattleSubTarget->objtype == TYPE_MOB)
-                        {
-                            ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, 0);
-                        }
+                        shadowsTaken++;
 
                     } else {
     					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
@@ -990,13 +983,30 @@ void CAICharNormal::ActionRangedFinish()
 
 			Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleSubTarget, totalDamage, false, SLOT_RANGED, realHits, NULL, true);
 
+            // lower damage based on shadows taken
+            if(shadowsTaken){
+                Action.param = Action.param * (1 - ((float)shadowsTaken / realHits));
+            }
+
             //add additional effects
             //this should go AFTER damage taken
-            //or else sleep effect doesn't work
+            //or else sleep effect won't work
             for(uint8 i=0; i<realHits; i++){
                 battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
             }
 		}
+        else if(shadowsTaken > 0)
+        {
+            // shadows took damage
+            Action.messageID  = 0;
+            Action.reaction   = REACTION_EVADE;
+            m_PBattleSubTarget->loc.zone->PushPacket(m_PBattleSubTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleSubTarget,m_PBattleSubTarget,0,shadowsTaken, MSGBASIC_SHADOW_ABSORB));
+
+            if(m_PBattleSubTarget->objtype == TYPE_MOB)
+            {
+                ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, shadowsTaken);
+            }
+        }
 
         m_PChar->m_ActionList.push_back(Action);
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
@@ -2451,7 +2461,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
             damage = 0;
         } else {
             //divide damage by amount of shadows taken
-            damage *= (float)(1 - (shadowsTaken / totalHits));
+            damage *= 1 - ((float)shadowsTaken / totalHits);
         }
     }
 
@@ -3113,7 +3123,6 @@ void CAICharNormal::ActionAttack()
 					((CMobEntity*)m_PBattleTarget)->PEnmityContainer->UpdateEnmity(m_PChar, 0, 0);
 				}
 
-                // only trigger on first hit for now
 				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 				{
 
