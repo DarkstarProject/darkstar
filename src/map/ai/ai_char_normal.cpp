@@ -693,7 +693,7 @@ void CAICharNormal::ActionRangedStart()
 	{
 		uint8 SkillType = 0;
 
-        if(PAmmo->isThrowing()){
+        if(PAmmo != NULL && PAmmo->isThrowing()){
             SkillType = PAmmo->getSkillType();
         } else {
             SkillType = PRanged->getSkillType();
