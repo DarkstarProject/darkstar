@@ -5442,7 +5442,7 @@ inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
 	    PChar->PRecastContainer->Del(RECAST_ABILITY);
 
 		PChar->pushPacket(new CCharSkillsPacket(PChar));
-		return 1;
+		return 0;
 	}
 
 	return 0;
