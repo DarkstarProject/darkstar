@@ -64,9 +64,8 @@ end;
 
 function getConquestTally()
    -- Get time into a handy dandy table
-   local weekDayNumber = os.date("%w");
+   local weekDayNumber = tonumber(os.date("%w"));
    local daysToTally = 0;
-
    -- LUA is Sun -> Sat, conquest is Mon -> Sun, so adjustments via conditional are needed.
    -- If today is Sunday (0), no additional days are necessary, so keep the 0.
    -- Ex: Friday = 5, 7 - 5 = 2 days to add, all of Saturday and Sunday.
