@@ -553,6 +553,7 @@ void CAICharNormal::ActionItemUsing()
 		}
 		m_PChar->pushPacket(new CInventoryFinishPacket());
 
+		// TODO: use status effect method
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
