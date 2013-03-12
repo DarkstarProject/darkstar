@@ -146,35 +146,56 @@ function CharCreate(player)
 	{
 		-- WARRIOR JOB
 		[0x01]= function (x)
-			player:addItem(0x4096);
+			if not(player:hasItem(0x4096)) then
+				player:addItem(0x4096);
+			end
 		end,
 
 		-- MONK JOB
 		[0x02]= function (x)
- 			player:addItem(0x3380);
+			if not(player:hasItem(0x3380)) then
+	 			player:addItem(0x3380);
+	 		end
 		end,
 
 		-- WHITE MAGE
 		[0x03]= function(x)
-			player:addItem(0x42AC);
+			if not(player:hasItem(0x42AC)) then
+				player:addItem(0x42AC);
+			end
+
+			if not(player:hasItem(0x1200)) then
 			player:addItem(0x1200);
+			end
 		end,
 
  		-- BLACK MAGE
 		[0x04] = function(x)
-			player:addItem(0x42D0);
-			player:addItem(0x11FF);
+
+			if not(player:hasItem(0x42D0)) then
+				player:addItem(0x42D0);
+			end
+
+			if not(player:hasItem(0x11FF)) then
+				player:addItem(0x11FF);
+			end
 		end,
 
  		-- RED MAGE
 	 	[0x05]= function (x)
-			player:addItem(0x4062);
-			player:addItem(0x11FE);
+			if not(player:hasItem(0x4062)) then
+				player:addItem(0x4062);
+			end
+			if not(player:hasItem(0x11FE)) then
+				player:addItem(0x11FE);
+			end
  		end,
 
  		-- THIEF
 		[0x06]= function (x)
-			player:addItem(0x4063);
+			if not(player:hasItem(0x4063)) then
+				player:addItem(0x4063);
+			end
  		end,
 
  		default = function (x) end,
