@@ -500,7 +500,8 @@ void CAICharNormal::ActionItemUsing()
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x ||
-		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
+		m_PChar->m_StartActionPos.z != m_PChar->loc.p.z ||
+        m_PChar->StatusEffectContainer->HasPreventActionEffect())
 	{
 		m_ActionType = ACTION_ITEM_INTERRUPT;
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, m_PItemUsable->getID(), 0, MSGBASIC_ITEM_FAILS_TO_ACTIVATE));
@@ -594,6 +595,8 @@ void CAICharNormal::ActionItemFinish()
         if(battleutils::IsParalised(m_PChar)){
             m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_IS_PARALYZED));
         } else {
+            m_PChar->StatusEffectContainer->DelInvisibleStatusEffects();
+
             luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
 
             // party AoE effect
@@ -1349,7 +1352,8 @@ void CAICharNormal::ActionMagicCasting()
 		//the check for player position only occurs AFTER the cast time is up, you can move so long as x/z is the same on finish.
 		//furthermore, it's actually quite lenient, hence the rounding to 1 dp
 		if (floorf(m_PChar->m_StartActionPos.x * 10 + 0.5) / 10 != floorf(m_PChar->loc.p.x * 10 + 0.5) / 10 ||
-		floorf(m_PChar->m_StartActionPos.z * 10 + 0.5) / 10 != floorf(m_PChar->loc.p.z * 10 + 0.5) / 10)
+		floorf(m_PChar->m_StartActionPos.z * 10 + 0.5) / 10 != floorf(m_PChar->loc.p.z * 10 + 0.5) / 10 ||
+        m_PChar->StatusEffectContainer->HasPreventActionEffect())
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_IS_INTERRUPTED));
 
@@ -1757,7 +1761,6 @@ void CAICharNormal::ActionJobAbilityFinish()
         Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", m_Tick, m_PChar->id);
     }
 
-    m_PChar->StatusEffectContainer->DelDetectStatusEffects();
 	m_PJobAbility->setMessage(m_PJobAbility->getDefaultMessage());
 	// get any available merit recast reduction
 	uint8 meritRecastReduction = 0;
@@ -2272,6 +2275,12 @@ void CAICharNormal::ActionJobAbilityFinish()
     		if (m_PJobAbility->getMessage() == 0)
     			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_JA));
     	}
+
+        // remove invisible if aggresive
+        if(m_PBattleSubTarget != NULL && m_PBattleSubTarget->objtype == TYPE_MOB){
+            // aggresive action
+            m_PChar->StatusEffectContainer->DelDetectStatusEffects();
+        }
     } // end paralysis if
 
     m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime);

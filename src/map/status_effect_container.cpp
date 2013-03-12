@@ -405,6 +405,14 @@ void CStatusEffectContainer::DelDetectStatusEffects()
     DelStatusEffect(EFFECT_DEODORIZE);
 }
 
+
+void CStatusEffectContainer::DelInvisibleStatusEffects()
+{
+    DelStatusEffect(EFFECT_INVISIBLE);
+    DelStatusEffect(EFFECT_HIDE);
+    DelStatusEffect(EFFECT_CAMOUFLAGE);
+}
+
 /************************************************************************
 *																		*
 *  Удаляем статус-эффект по его основному и дополнительному типам.		*

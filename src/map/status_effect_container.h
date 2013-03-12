@@ -56,6 +56,7 @@ public:
     void DelStatusEffectsByType(uint16 Type);
   bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);
   void  DelDetectStatusEffects(); // remove invisible, sneak etc
+  void  DelInvisibleStatusEffects(); // remove invisible, sneak etc
   void KillAllStatusEffect();
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
