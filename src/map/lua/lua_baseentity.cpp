@@ -5433,15 +5433,19 @@ inline int32 CLuaBaseEntity::getMeleeHitDamage(lua_State *L)
 inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    // only reset for players
+    if(m_PBaseEntity->objtype == TYPE_PC){
+		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    PChar->PRecastContainer->Del(RECAST_MAGIC);
-    PChar->PRecastContainer->Del(RECAST_ABILITY);
+	    PChar->PRecastContainer->Del(RECAST_MAGIC);
+	    PChar->PRecastContainer->Del(RECAST_ABILITY);
 
-	PChar->pushPacket(new CCharSkillsPacket(PChar));
-	return 1;
+		PChar->pushPacket(new CCharSkillsPacket(PChar));
+		return 1;
+	}
+
+	return 0;
 }
 
 /***************************************************************
