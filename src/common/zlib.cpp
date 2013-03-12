@@ -90,7 +90,7 @@ ppuint32 zlib_decompress(char *in,ppuint32 inSize, char *out, ppuint32 outSize, 
 		if(follow[0] == 0){
 			if(follow[1]==0){
 				void* ptr = follow[3];
-				out[j] = (unsigned int)(ptr) & 255;
+				out[j] = (uintptr_t)(ptr) & 255;
 				if(++j >= outSize)
 					return -1;
 				follow = (unsigned int **)table[0];
