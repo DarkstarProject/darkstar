@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
     pMND = caster:getStat(MOD_MND);
     mMND = target:getStat(MOD_MND);
 
-    local merits = 1;
+    local merits = caster:getMerit(MERIT_PARALYZE_II);
 
     dMND = (pMND - mMND);
     multiplier = (150 + (merits * 10)) / mLVL;

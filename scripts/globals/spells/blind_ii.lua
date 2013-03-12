@@ -15,7 +15,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local merits = 1;
+    local merits = caster:getMerit(MERIT_BLIND_II);
 
     -- Pull base stats.
     dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));

@@ -42,14 +42,9 @@ function onSpellCast(caster,target,spell)
 
 	-- Calculate duration.
 
-	local merits = 1;
+	local merits = caster:getMerit(MERIT_BIO_III);
 
 	duration = 30 * merits;
-
-	if(target:isMob()) then
-		-- duration is higher for mobs
-		duration = 180;
-	end
 
 	-- Check for Dia.
 	dia = target:getStatusEffect(EFFECT_DIA);

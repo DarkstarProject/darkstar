@@ -29,7 +29,7 @@ function onSpellCast(caster,target,spell)
         potency = 350;
      end
 
-    local merits = 1;
+    local merits = caster:getMerit(MERIT_SLOW_II);
     --Power.
     power = (potency  + (merits * 10)) / 1024;
 

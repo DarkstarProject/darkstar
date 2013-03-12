@@ -37,14 +37,9 @@ function onSpellCast(caster,target,spell)
 	final = finalMagicAdjustments(caster,target,spell,dmg);
 
 	-- Calculate duration.
-	local merits = 1;
+	local merits = caster:getMerit(MERIT_DIA_III);
 
 	duration = 30 * merits;
-
-	if(target:isMob()) then
-		-- duration is higher for mobs
-		duration = 180;
-	end
 
 	-- Check for Bio.
 	bio = target:getStatusEffect(EFFECT_BIO);

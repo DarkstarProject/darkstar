@@ -16,7 +16,7 @@ end;
 function onSpellCast(caster,target,spell)
     enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
     final = 0;
-    local merits = 1;
+    local merits = caster:getMerit(MERIT_PHALANX_II);
 
     duration = 90 + (30 * merits);
 
