@@ -1,7 +1,7 @@
 -----------------------------------
 -- Ability: Formless Strikes
 -----------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 

@@ -14,7 +14,6 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-    local power = player:getMerit(MERIT_FEALTY);
-
-    player:addStatusEffect(EFFECT_FEALTY,power,0,60 + (power * 5));
+    -- local merits = player:getMerit(MERIT_DIABOLIC_EYE);
+    -- player:addStatusEffect(EFFECT_,1,0,60);
 end;

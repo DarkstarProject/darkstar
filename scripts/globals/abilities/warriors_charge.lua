@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability: Elemental Seal
+-- Ability: Assassin's Charge
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -14,7 +14,6 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-    local power = player:getMerit(MERIT_FEALTY);
-
-    player:addStatusEffect(EFFECT_FEALTY,power,0,60 + (power * 5));
+    local merits = player:getMerit(MERIT_WARRIORS_CHARGE);
+    player:addStatusEffect(EFFECT_ASSASSIN_S_CHARGE,merits,0,60);
 end;
