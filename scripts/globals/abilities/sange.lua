@@ -14,5 +14,7 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-    player:addStatusEffect(EFFECT_SANGE,1,0,60);
+    local potency = player:getMerit(MERIT_SANGE)-1;
+
+    player:addStatusEffect(EFFECT_SANGE,potency * 25,0,60);
 end;

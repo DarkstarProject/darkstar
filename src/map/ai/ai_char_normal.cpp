@@ -1081,8 +1081,13 @@ void CAICharNormal::ActionRangedFinish()
         }
         else if(isSange)
         {
+
+            uint16 power = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
+
+            // remove shadows
+            while(realHits-- && rand()%100 <= power && battleutils::IsAbsorbByShadow(m_PChar));
+
             m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
-            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
         }
 	}
 }
