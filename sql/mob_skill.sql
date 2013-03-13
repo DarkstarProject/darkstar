@@ -1227,7 +1227,7 @@ INSERT INTO `mob_skill` VALUES (1534,62,1228,'Gates_of_Hades', 1, 20.0, 2000, 10
 -- Ouryu
 -- INSERT INTO `mob_skill` VALUES (384,259,656,'Touchdown',0,6.0,2000,1500,4,0);
 INSERT INTO `mob_skill` VALUES (695,259,653,'Hurricane_Wing', 1, 30.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (696,259,654,'Spike_Flail', 1, 23.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (696,259,654,'Spike_Flail', 4, 23.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (697,259,655,'Dragon_Breath', 4, 18.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (701,259,651,'Absolute_Terror', 0, 18.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (702,259,652,'Horrid_Roar', 0, 18.0, 2000, 1000, 4, 0);
@@ -1235,7 +1235,7 @@ INSERT INTO `mob_skill` VALUES (697,259,655,'Dragon_Breath', 4, 18.0, 2000, 1000
 -- Fafnir
 -- INSERT INTO `mob_skill` VALUES (384,260,656,'Touchdown',0,6.0,2000,1500,4,0);
 INSERT INTO `mob_skill` VALUES (695,260,653,'Hurricane_Wing', 1, 30.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (696,260,654,'Spike_Flail', 1, 23.0, 2000, 1500, 4, 0); -- only if a player is behind fafnir
+INSERT INTO `mob_skill` VALUES (696,260,654,'Spike_Flail', 4, 23.0, 2000, 1500, 4, 0); -- only if a player is behind fafnir
 INSERT INTO `mob_skill` VALUES (697,260,655,'Dragon_Breath', 4, 18.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (701,260,651,'Absolute_Terror', 0, 18.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (702,260,652,'Horrid_Roar', 0, 18.0, 2000, 1000, 4, 0);
@@ -1243,20 +1243,20 @@ INSERT INTO `mob_skill` VALUES (697,260,655,'Dragon_Breath', 4, 18.0, 2000, 1000
 -- Cynoprosopi
 -- INSERT INTO `mob_skill` VALUES (384,261,656,'Touchdown',0,6.0,2000,1500,4,0);
 INSERT INTO `mob_skill` VALUES (695,261,653,'Hurricane_Wing', 1, 30.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (696,261,654,'Spike_Flail', 1, 23.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (696,261,654,'Spike_Flail', 4, 23.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (697,261,655,'Dragon_Breath', 4, 18.0, 2000, 1000, 4, 0);
 
 -- Wyrm
 -- INSERT INTO `mob_skill` VALUES (384,262,656,'Touchdown',0,6.0,2000,1500,4,0);
 INSERT INTO `mob_skill` VALUES (695,262,653,'Hurricane_Wing', 1, 30.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (696,262,654,'Spike_Flail', 1, 23.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (696,262,654,'Spike_Flail', 4, 23.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (697,262,655,'Dragon_Breath', 4, 18.0, 2000, 1000, 4, 0);
 
 -- Nidhogg
 -- INSERT INTO `mob_skill` VALUES (384,262,656,'Touchdown',0,6.0,2000,1500,4,0);
-INSERT INTO `mob_skill` VALUES (695,263,653,'Hurricane_Wing', 1, 40.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (696,263,654,'Spike_Flail', 1, 40.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (697,263,655,'Dragon_Breath', 4, 40.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (695,263,653,'Hurricane_Wing', 1, 30.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (696,263,654,'Spike_Flail', 4, 23.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (697,263,655,'Dragon_Breath', 4, 18.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (701,263,651,'Absolute_Terror', 0, 18.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (702,263,651,'Horrid_Roar', 0, 18.0, 2000, 1000, 4, 0);
 

@@ -845,16 +845,6 @@ void CAIMobDummy::ActionAbilityFinish()
 
 			}
 
-			if (m_ActionType == ACTION_FALL)
-			{
-				//  set when you kill the mob in a script, but need
-				//  it to be ACTION_MOBABILITY_FINISH for pushing the packet.
-				m_ActionType = ACTION_MOBABILITY_FINISH;
-			}
-
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob, m_PMob, m_PMobSkill->getID() + 256, 0, MSGBASIC_USES_JA2));
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-			m_PMob->health.tp = 0;
 		}
 		else
 		{
@@ -885,17 +875,17 @@ void CAIMobDummy::ActionAbilityFinish()
 
 			m_PMob->m_ActionList.push_back(Action);
 
-			if (m_ActionType == ACTION_FALL)
-			{
-				//  set when you kill the mob in a script, but need
-				//  it to be ACTION_MOBABILITY_FINISH for pushing the packet.
-				m_ActionType = ACTION_MOBABILITY_FINISH;
-			}
-
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-			m_PMob->health.tp = 0;
-
 		}
+
+		if (m_ActionType == ACTION_FALL)
+		{
+			//  set when you kill the mob in a script, but need
+			//  it to be ACTION_MOBABILITY_FINISH for pushing the packet.
+			m_ActionType = ACTION_MOBABILITY_FINISH;
+		}
+
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+		m_PMob->health.tp = 0;
 
 	if (m_PMob->isDead()) //e.g. self-destruct. Needed here AFTER sending the action packets.
 	{
