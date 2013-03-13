@@ -6574,7 +6574,7 @@ inline int32 CLuaBaseEntity::hasTPMoves(lua_State* L)
 	DSP_DEBUG_BREAK_IF((m_PBaseEntity->objtype & TYPE_NPC) || (m_PBaseEntity->objtype & TYPE_PC));
 
 	std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(((CMobEntity*)m_PBaseEntity)->m_Family);
-	lua_pushboolean(L,MobSkills.size() == 0);
+	lua_pushboolean(L,MobSkills.size() != 0);
 	return 1;
 }
 
