@@ -29,17 +29,22 @@ function onTrigger(player,npc)
 	
 	local ThePuppetMaster = player:getQuestStatus(WINDURST,THE_PUPPET_MASTER);
 	local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
+	local CarbuncleDebacle = player:getQuestStatus(WINDURST,CARBUNCLE_DEBACLE);
 	-- Check for Missions first (priority?)
 	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS and player:getVar("MissionStatus") == 5) then
 		player:startEvent(0x0151);
 	else
 		----------------------------------------------------
+		-- Carbuncle Debacle
+		if(player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == 15 and ClassReunion == QUEST_COMPLETED and CarbuncleDebacle == QUEST_AVAILABLE and player:needToZone() == false) then
+			player:startEvent(0x019f); -- Carby begs for your help
+		----------------------------------------------------
 		-- Class Reunion
-		if(player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == 15 and ThePuppetMaster == QUEST_COMPLETED and ClassReunion == QUEST_AVAILABLE and player:needToZone() == false) then
+		elseif(player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == 15 and ThePuppetMaster == QUEST_COMPLETED and ClassReunion == QUEST_AVAILABLE and player:needToZone() == false) then
 			player:startEvent(0x019d); -- Carby asks for your help again.
 		----------------------------------------------------
 		-- The Puppet Master
-		elseif(player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == 15 and ThePuppetMaster ~= QUEST_ACCEPTED and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
+		elseif(player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == 15 and ThePuppetMaster ~= QUEST_ACCEPTED and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED and CarbuncleDebacle ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
 			player:startEvent(0x0192); -- Carby asks for your help, visit Juroro
 		elseif(player:getQuestStatus(WINDURST,THE_PUPPET_MASTER) == QUEST_ACCEPTED and player:getVar("ThePuppetMasterProgress") == 1) then
 			player:startEvent(0x0193); -- reminder to visit Juroro
@@ -115,6 +120,9 @@ function onEventFinish(player,csid,option)
 		player:addQuest(WINDURST,CLASS_REUNION);
 		player:addKeyItem(CARBUNCLES_TEAR);
 		player:messageSpecial(KEYITEM_OBTAINED,CARBUNCLES_TEAR);
+	elseif(csid == 0x019f) then
+		player:addQuest(WINDURST,CARBUNCLE_DEBACLE);
+		player:setVar("CarbuncleDebacleProgress",1);
 	end;
 
 end;

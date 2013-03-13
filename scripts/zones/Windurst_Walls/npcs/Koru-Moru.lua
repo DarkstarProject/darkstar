@@ -23,8 +23,6 @@ function onTrade(player,npc,trade)
 
 	local qStarStruck = player:getQuestStatus(WINDURST,STAR_STRUCK);
 	local count = trade:getItemCount();
-	local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
-	local ClassReunionProgress = player:getVar("ClassReunionProgress");
 
 	if(player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
 
@@ -68,7 +66,7 @@ function onTrade(player,npc,trade)
 			player:setVar("rootProblem",2);
 		end
 
-	elseif(ClassReunion == 1 and ClassReunionProgress == 2) then
+	elseif(player:getQuestStatus(WINDURST,CLASS_REUNION) == 1 and player:getVar("ClassReunionProgress") == 2) then
 		if(count == 4 and trade:hasItemQty(17299,4) and trade:getGil() == 0) then
 			player:startEvent(0x0197); -- now Koru remembers something that you need to inquire his former students.
 		end;
@@ -92,6 +90,8 @@ function onTrigger(player,npc)
 	local ClassReunionProgress = player:getVar("ClassReunionProgress");
 	local talk1 = player:getVar("ClassReunion_TalkedToFupepe");
 	local talk2 = player:getVar("ClassReunion_TalkedToFurakku");
+	local CarbuncleDebacle = player:getQuestStatus(WINDURST,CARBUNCLE_DEBACLE);
+	local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
 
 	if(blastFromPast == QUEST_AVAILABLE and qStarStruck == QUEST_COMPLETED and player:getQuestStatus(WINDURST,CLASS_REUNION) ~= QUEST_ACCEPTED and player:getFameLevel(WINDURST) >= 3 and player:needToZone() == false) then
 		player:startEvent(0x00d6);
@@ -117,6 +117,18 @@ function onTrigger(player,npc)
 		player:startEvent(0x00c5);
 	elseif(qStarStruck == QUEST_COMPLETED) then
 		player:startEvent(0x00d5);
+	----------------------------------------------------------
+	-- Carbuncle Debacle
+	elseif (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 1 or CarbuncleDebacleProgress == 2) then
+		player:startEvent(0x01a0); -- go and see Ripapa
+	elseif (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 4) then
+		player:startEvent(0x01a1); -- now go and see Agado-Pugado
+	elseif (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 5) then
+		player:startEvent(0x01a2); -- Uran-Mafran must be stopped
+	elseif (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 7) then
+		player:startEvent(0x01a3); -- ending cs
+	elseif (ThePuppetMaster == QUEST_COMPLETED and ClassReunion == QUEST_COMPLETED and CarbuncleDebacle == QUEST_COMPLETED) then
+		player:startEvent(0x01a4); -- new cs after all 3 SMN AFs done
 	----------------------------------------------------------
 	-- Class Reunion
 	elseif (ClassReunion == QUEST_ACCEPTED and ClassReunionProgress == 1) then
@@ -158,7 +170,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
+printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
 	if(csid == 0x011d) then  -- Giving him KI from Principle
@@ -220,6 +232,24 @@ function onEventFinish(player,csid,option)
 		else
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14228);
 		end;
+	elseif(csid == 0x01a0) then
+		player:setVar("CarbuncleDebacleProgress",2);
+	elseif(csid == 0x01a1) then
+		player:setVar("CarbuncleDebacleProgress",5);
+		player:addKeyItem(DAZEBREAKER_CHARM);
+		player:messageSpecial(KEYITEM_OBTAINED,DAZEBREAKER_CHARM);
+	elseif(csid == 0x01a3) then
+		if (player:getFreeSlotsCount() ~= 0) then
+			player:addItem(12520); -- Evoker's Horn
+			player:messageSpecial(ITEM_OBTAINED,12520);
+			player:addTitle(PARAGON_OF_SUMMONER_EXCELLENCE);
+			player:completeQuest(WINDURST,CARBUNCLE_DEBACLE);
+			player:addFame(WINDURST,WIN_FAME*AF3_FAME);
+			player:setVar("CarbuncleDebacleProgress",0);
+			player:needToZone(true);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12520);
+		end;
 	end;
-
+	
 end;

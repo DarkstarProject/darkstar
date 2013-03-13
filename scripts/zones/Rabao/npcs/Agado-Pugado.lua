@@ -26,11 +26,25 @@ end;
 
 function onTrigger(player,npc)
 
-	TrialByWind = player:getQuestStatus(OUTLANDS,TRIAL_BY_WIND);
-	WhisperOfGales = player:hasKeyItem(323);
-	realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
+	local TrialByWind = player:getQuestStatus(OUTLANDS,TRIAL_BY_WIND);
+	local WhisperOfGales = player:hasKeyItem(323);
+	local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
+	local CarbuncleDebacle = player:getQuestStatus(WINDURST,CARBUNCLE_DEBACLE);
+	local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
 	
-	if((TrialByWind == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 5) or (TrialByWind == QUEST_COMPLETED and realday ~= player:getVar("TrialByWind_date"))) then 
+	---------------------------------------------------------------------
+	-- Carbuncle Debacle
+	if(CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 5 and player:hasKeyItem(DAZEBREAKER_CHARM) == true) then
+		player:startEvent(0x0056); -- get the wind pendulum, lets go to Cloister of Gales
+	elseif(CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 6) then
+		if (player:hasItem(1174) == false) then
+			player:startEvent(0x0057,0,1174,0,0,0,0,0,0); -- "lost the pendulum?" This one too~???
+		else
+			player:startEvent(0x0058); -- reminder to go to Cloister of Gales
+		end;
+	---------------------------------------------------------------------
+	-- Trial by Wind
+	elseif((TrialByWind == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 5) or (TrialByWind == QUEST_COMPLETED and realday ~= player:getVar("TrialByWind_date"))) then 
 		player:startEvent(0x0042,0,331); -- Start and restart quest "Trial by Wind"
 	elseif(TrialByWind == QUEST_ACCEPTED and player:hasKeyItem(331) == false and WhisperOfGales == false) then 
 		player:startEvent(0x006b,0,331); -- Defeat against Avatar : Need new Fork
@@ -105,6 +119,14 @@ function onEventFinish(player,csid,option)
 			player:addFame(RABAO,30);
 			player:completeQuest(OUTLANDS,TRIAL_BY_WIND);
 		end
+	elseif(csid == 0x0056 or csid == 0x0057) then
+		if(player:getFreeSlotsCount() ~= 0) then
+			player:addItem(1174);
+			player:messageSpecial(ITEM_OBTAINED,1174);
+			player:setVar("CarbuncleDebacleProgress",6);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1174);
+		end;
 	end
 end;
 

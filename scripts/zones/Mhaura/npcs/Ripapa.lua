@@ -27,11 +27,21 @@ end;
 
 function onTrigger(player,npc)
 	
-	TrialByLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING);
-	WhisperOfStorms = player:hasKeyItem(WHISPER_OF_STORMS);
-	realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
+	local TrialByLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING);
+	local WhisperOfStorms = player:hasKeyItem(WHISPER_OF_STORMS);
+	local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
+	local CarbuncleDebacle = player:getQuestStatus(WINDURST,CARBUNCLE_DEBACLE);
+	local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
 	
-	if((TrialByLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 6) or (TrialByLightning == QUEST_COMPLETED and realday ~= player:getVar("TrialByLightning_date"))) then 
+	---------------------------------------------------------------------
+	-- Carbunlce Debacle
+	if(CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 2) then
+		player:startEvent(0x2726); -- get the lighning pendulum lets go to Cloister of Storms
+	elseif(CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 3 and player:hasItem(1172) == false) then
+		player:startEvent(0x2727,0,1172,0,0,0,0,0,0); -- "lost the pendulum?"
+	---------------------------------------------------------------------
+	-- Trial by Lightning
+	elseif((TrialByLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 6) or (TrialByLightning == QUEST_COMPLETED and realday ~= player:getVar("TrialByLightning_date"))) then 
 		player:startEvent(0x2720,0,TUNING_FORK_OF_LIGHTNING); -- Start and restart quest "Trial by Lightning"
 	elseif(TrialByLightning == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_LIGHTNING) == false and WhisperOfStorms == false) then 
 		player:startEvent(0x2728,0,TUNING_FORK_OF_LIGHTNING); -- Defeat against Ramuh : Need new Fork
@@ -108,6 +118,14 @@ function onEventFinish(player,csid,option)
 			player:addFame(OTHER_AREAS,WIN_FAME*30);
 			player:completeQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
 		end
+	elseif(csid == 0x2726 or csid == 0x2727) then
+		if(player:getFreeSlotsCount() ~= 0) then
+			player:addItem(1172);
+			player:messageSpecial(ITEM_OBTAINED,1172);
+			player:setVar("CarbuncleDebacleProgress",3);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1172);
+		end;
 	end
 	
 end;

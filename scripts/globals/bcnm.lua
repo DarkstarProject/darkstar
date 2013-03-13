@@ -20,8 +20,8 @@ itemid_bcnmid_map = {10,{0,0},--The_Shrouded_Maw
 					 168,{0,0}, -- Chamber of Oracles
 					 170,{0,0}, -- Full Moon Fountain
 					 180,{1550,293}, -- LaLoff Amphitheater
-					 201,{1546,418}, -- Cloister of Gales
-					 202,{1548,450}, -- Cloister of Storms
+					 201,{1546,418,1174,417}, -- Cloister of Gales
+					 202,{1548,450,1172,449}, -- Cloister of Storms
 					 203,{1545,482,1171,481}, -- Cloister of Frost
 					 206,{0,0}, -- Qu'Bia Arena
 					 207,{1544,545}, -- Cloister of Flames
@@ -50,8 +50,8 @@ bcnmid_param_map = {10,{704,0,706,2},
 					170,{224,0},
 					179,{256,0},
 					180,{293,5},
-					201,{416,0,418,2},
-					202,{448,0,450,2},
+					201,{416,0,417,1,418,2},
+					202,{448,0,449,1,450,2},
 					203,{480,0,481,1,482,2},
 					206,{512,0,517,5,518,6,519,7}, 
 					207,{544,0,545,1},
@@ -204,7 +204,7 @@ function EventFinishBCNM(player,csid,option)
 		local id = player:getVar("trade_bcnmid");
 		local item = player:getVar("trade_itemid");
 		
-		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 293) then
+		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 293 or id == 1172 or id == 1174) then
 			player:tradeComplete(); -- Removes the item
 		elseif((item >= 1426 and item <= 1440) or item == 1130 or item == 1131 or item == 1175 or item == 1177 or item == 1180 or item == 1178 or item == 1551 or item == 1552 or item == 1553) then -- Orb and Testimony (one time item)
 			player:createWornItem(item);
@@ -324,6 +324,12 @@ function ItemToBCNMID(player,zone,trade)
 					elseif(item == 1171 and player:getVar("ClassReunionProgress") == 5) then
 						questTimelineOK = 1;
 					-- Class Reunion
+					elseif(item == 1172 and player:getVar("CarbuncleDebacleProgress") == 3) then
+						questTimelineOK = 1;
+					-- Carbuncle Debacle (Gremlims)
+					elseif(item == 1174 and player:getVar("CarbuncleDebacleProgress") == 6) then
+						questTimelineOK = 1;
+					-- Carbuncle Debacle (Ogmios)
 					end
 					
 					if(questTimelineOK == 1) then
