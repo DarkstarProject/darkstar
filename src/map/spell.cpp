@@ -359,6 +359,16 @@ void CSpell::addModifier(CModifier* modifier)
     modList.push_back(modifier);
 }
 
+void CSpell::setScriptType(uint8 scriptType)
+{
+	m_scriptType = scriptType;
+}
+
+uint8 CSpell::getScriptType()
+{
+	return m_scriptType;
+}
+
 /************************************************************************
 *                                                                       *
 *  Реализация namespase для работы с заклинаниями                       *
@@ -381,7 +391,7 @@ namespace spell
 	    memset(PSpellList, 0, sizeof(PSpellList));
 
 	    const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
-					         isAOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE \
+					         isAOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, scriptType \
 							 FROM spell_list \
 							 WHERE spellid < %u;";
 
@@ -413,6 +423,7 @@ namespace spell
                 PSpell->setMagicBurstMessage(Sql_GetIntData(SqlHandle,17));
 			    PSpell->setCE(Sql_GetIntData(SqlHandle,18));
 			    PSpell->setVE(Sql_GetIntData(SqlHandle,19));
+				PSpell->setScriptType(Sql_GetIntData(SqlHandle,20));
 
                 if(PSpell->isAOE())
                 {

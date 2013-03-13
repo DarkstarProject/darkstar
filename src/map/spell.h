@@ -45,6 +45,14 @@ enum SPELLGROUP
 	SPELLGROUP_WHITE	 = 6
 };
 
+enum SPELL_SCRIPTTYPE
+{
+	SPELLSCRIPT_NONE		= 0x00,
+	SPELLSCRIPT_NORMAL		= 0x01,
+	SPELLSCRIPT_CASTCHECK	= 0x02,
+	SPELLSCRIPT_ANIMFINISH	= 0x04
+};
+
 class CSpell
 {
 public:
@@ -81,6 +89,7 @@ public:
 	uint16		getMonsterSkillId();
     uint8       getRadius();
     uint16      getAoEMessage(); // returns the single target message for AoE moves
+	uint8		getScriptType();
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
 
     void        setRadius(uint8 radius);
@@ -108,6 +117,7 @@ public:
 	void		setModifiedRecast(uint16 mrec);
 	void		setMonsterSkillId(uint16 skillid);
     void		addModifier(CModifier* modifier);
+	void		setScriptType(uint8 scriptType);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -141,6 +151,7 @@ private:
 	string_t	m_name;									// spell name
 	uint16		m_modifiedRecastTime;					// recast time after modifications
 	uint16		m_monsterSkillId;						// matching skill for a blue spell
+	uint8		m_scriptType;
 };
 
 /************************************************************************
