@@ -595,7 +595,8 @@ void CAICharNormal::ActionItemFinish()
         if(battleutils::IsParalised(m_PChar)){
             m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_IS_PARALYZED));
         } else {
-            m_PChar->StatusEffectContainer->DelInvisibleStatusEffects();
+
+            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_INVISIBLE);
 
             luautils::OnItemUse(m_PBattleSubTarget, m_PItemUsable);
 
@@ -2279,7 +2280,10 @@ void CAICharNormal::ActionJobAbilityFinish()
         // remove invisible if aggresive
         if(m_PBattleSubTarget != NULL && m_PBattleSubTarget->objtype == TYPE_MOB){
             // aggresive action
-            m_PChar->StatusEffectContainer->DelDetectStatusEffects();
+            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+        } else {
+            // remove invisible only
+            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_INVISIBLE);
         }
     } // end paralysis if
 

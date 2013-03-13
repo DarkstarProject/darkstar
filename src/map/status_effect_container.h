@@ -55,8 +55,6 @@ public:
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
     void DelStatusEffectsByType(uint16 Type);
   bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);
-  void  DelDetectStatusEffects(); // remove invisible, sneak etc
-  void  DelInvisibleStatusEffects(); // remove invisible, sneak etc
   void KillAllStatusEffect();
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта

@@ -1187,7 +1187,7 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		    }
 	    }
 
-        PChar->StatusEffectContainer->DelDetectStatusEffects();
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 		luautils::OnTrade(PChar, PNpc);
 	}
 	return;
