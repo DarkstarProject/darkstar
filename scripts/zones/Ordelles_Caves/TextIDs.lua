@@ -5,6 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6537; -- Obtained: <item>
            GIL_OBTAINED = 6538; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
+ FISHING_MESSAGE_OFFSET = 7153; -- !!!fishing message!!!
 
 -- Quest Dialog
   A_SQUIRE_S_TEST_II_DIALOG_I = 7293; -- You place your hands into the pool.

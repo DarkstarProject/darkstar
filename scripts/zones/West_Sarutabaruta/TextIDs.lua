@@ -5,6 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6378; -- Obtained: <item>
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
+ FISHING_MESSAGE_OFFSET = 6994; -- !!!fishing message!!!
 
 -- Fields of Valor Texts
 REGIME_ACCEPTED = 10079; -- New training regime registered!
@@ -25,4 +26,4 @@ KOLAPO_OILAPO_DIALOG = 7325; -- Hi-diddly-diddly! This is the gateway to Windurs
         IPUPU_DIALOG = 7329; -- I decided to take a little strolly-wolly, but before I realized it, I found myself way out here! Now I am sorta stuck... Woe is me!
 
 -- Other Dialog
-		NOTHING_HAPPENS = 7245; -- Nothing happens...
+NOTHING_HAPPENS = 7245; -- Nothing happens...

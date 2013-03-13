@@ -1,12 +1,13 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6564; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6567; -- Obtained: <item>
-           GIL_OBTAINED = 6568; -- Obtained <number> gil
-       KEYITEM_OBTAINED = 6570; -- Obtained key item: <keyitem>
-          HOMEPOINT_SET = 188; -- Home point set!
-    NOT_HAVE_ENOUGH_GIL = 0; -- You do not have enough gil
+ITEM_CANNOT_BE_OBTAINED = 6564;  -- You cannot obtain the item <item> come back again after sorting your inventory
+          ITEM_OBTAINED = 6567;  -- Obtained: <item>
+           GIL_OBTAINED = 6568;  -- Obtained <number> gil
+       KEYITEM_OBTAINED = 6570;  -- Obtained key item: <keyitem>
+          HOMEPOINT_SET = 188;   -- Home point set!
+    NOT_HAVE_ENOUGH_GIL = 0;     -- You do not have enough gil
+ FISHING_MESSAGE_OFFSET = 7294;  -- !!!fishing message!!!
           MOGHOUSE_EXIT = 12210; -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
 
           -- Conquest System
@@ -73,7 +74,7 @@ GUILBERDRIER_MESSAGE = 13219; -- Guilberdrier looks over curiously for a moment.
     CHAUPIRE_SHOP_DIALOG = 11498; -- San d'Orian woodcraft is the finest in the land!
    DOGGOMEHR_SHOP_DIALOG = 11399; -- Welcome to the Blacksmiths' Guild shop.
     LUCRETIA_SHOP_DIALOG = 11400; -- Blacksmiths' Guild shop, at your service!
-    GAUDYLOX_SHOP_DIALOG = 12470; -- &lt;Phssshooooowoooo&gt; You never see Goblinshhh from underworld? Me no bad. Me sell chipshhh. You buy. Use with shhhtone heart. You get lucky!
+    GAUDYLOX_SHOP_DIALOG = 12470; -- Phssshooooowoooo You never see Goblinshhh from underworld? Me no bad. Me sell chipshhh. You buy. Use with shhhtone heart. You get lucky!
 
     ANTONIAN_OPEN_DIALOG = 11482; -- Interested in goods from Aragoneu?
   ANTONIAN_CLOSED_DIALOG = 11492; -- The Kingdom's influence is waning in Aragoneu. I cannot import goods from that region, though I long to.

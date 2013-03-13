@@ -7,6 +7,7 @@ FULL_INVENTORY_AFTER_TRADE = 6562; -- You cannot obtain the <item>. Try trading 
               GIL_OBTAINED = 6564; -- Obtained <number> gil
           KEYITEM_OBTAINED = 6566; -- Obtained key item: <keyitem>
             ITEMS_OBTAINED = 6569; -- You obtain <param2 number> <param1 item>
+    FISHING_MESSAGE_OFFSET = 7198; -- !!!fishing message!!!
 
 -- Other dialog
                SENSE_OF_FOREBODING = 6578; -- You are suddenly overcome with a sense of foreboding...

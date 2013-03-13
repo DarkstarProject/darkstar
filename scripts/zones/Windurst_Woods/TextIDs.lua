@@ -5,8 +5,9 @@ ITEM_CANNOT_BE_OBTAINED = 6682; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6537; -- Obtained: <item>
            GIL_OBTAINED = 6538; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
-    NOT_HAVE_ENOUGH_GIL = 0; -- You do not have enough gil.
+    NOT_HAVE_ENOUGH_GIL = 0;    -- You do not have enough gil.
           HOMEPOINT_SET = 6583; -- Home point set!
+ FISHING_MESSAGE_OFFSET = 6879; -- !!!fishing message!!!
 
 -- Conquest System
 CONQUEST = 8695; -- You've earned conquest points!

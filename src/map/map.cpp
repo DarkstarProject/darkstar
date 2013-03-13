@@ -40,6 +40,7 @@
 #include "ability.h"
 #include "battleutils.h"
 #include "charutils.h"
+#include "fishingutils.h"
 #include "guildutils.h"
 #include "itemutils.h"
 #include "linkshell.h"
@@ -195,6 +196,7 @@ int32 do_init(int32 argc, int8** argv)
 	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
 	luautils::OnServerStart();
+    fishingutils::LoadFishingMessages();
 
 	ShowStatus("do_init: server is binding with port %u",map_config.usMapPort);
 	map_fd = makeBind_udp(map_config.uiMapIp,map_config.usMapPort);

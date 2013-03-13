@@ -80,6 +80,9 @@ namespace luautils
 	int32 StartElevator(lua_State*); 
 	int32 GetServerVariable(lua_State*);
 	int32 SetServerVariable(lua_State *);
+
+    int32 GetTextIDVariable(uint32 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
+
 	int32 OnServerStart();														// triggers when game server starts up
 
 	int32 OnGameDayAutomatisation();											// Automatic action of NPC every game day

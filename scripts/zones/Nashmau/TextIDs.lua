@@ -7,6 +7,7 @@ ITEM_CANNOT_BE_OBTAINEDX = 6377;
 		 ITEM_OBTAINEDX = 6387; -- Obtained: <item>
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
+ FISHING_MESSAGE_OFFSET = 6994; -- !!!fishing message!!!
           HOMEPOINT_SET = 7247; -- Home point set!
      
 -- Quest Dialog

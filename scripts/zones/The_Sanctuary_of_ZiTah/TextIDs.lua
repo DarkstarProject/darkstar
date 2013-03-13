@@ -7,6 +7,7 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
               GIL_OBTAINED = 6379; -- Obtained <number> gil
           KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
             ITEMS_OBTAINED = 6384; -- You obtain <param2 number> <param1 item>.
+    FISHING_MESSAGE_OFFSET = 7494; -- !!!fishing message!!!
 
 -- Conquest
 CONQUEST = 7162; -- You've earned conquest points!

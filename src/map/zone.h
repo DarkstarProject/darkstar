@@ -297,6 +297,8 @@ enum ZONEID : uint8
 	ZONE_ABYSSEA_EMPYREAL_PARADOX     = 255
 };
 
+#define MAX_ZONEID 256
+
 enum REGIONTYPE : uint8
 {
 	REGION_RONFAURE			= 0,

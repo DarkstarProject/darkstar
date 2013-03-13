@@ -625,6 +625,40 @@ int32 GetMobAction(lua_State* L)
 }
 
 /************************************************************************
+*                                                                       *
+*  Загружаем значение переменной TextID указанной зоны                  *
+*                                                                       *
+************************************************************************/
+
+int32 GetTextIDVariable(uint32 ZoneID, const char* variable)
+{
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, variable);
+
+    int8 File[255];
+	memset(File,0,sizeof(File));
+    snprintf(File, sizeof(File), "scripts/zones/%s/TextIDs.lua", zoneutils::GetZone(ZoneID)->GetName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	lua_pushstring(LuaHandle,variable);
+	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+
+	if( lua_isnil(LuaHandle,-1) || !lua_isnumber(LuaHandle,-1) )
+	{
+		return 0;
+	}
+
+    int32 value = lua_tonumber(LuaHandle, -1);
+    lua_pop(LuaHandle, -1);
+    return value;
+}
+
+/************************************************************************
 *																		*
 *  Выполняем скрипт при старте сервера (все монстры, npc уже загружены) *
 *																		*

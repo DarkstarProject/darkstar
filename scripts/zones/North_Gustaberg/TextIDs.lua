@@ -8,6 +8,7 @@ ITEM_CANNOT_BE_OBTAINED_TWICE = 6536; -- You cannot obtain the item <item>
                  GIL_OBTAINED = 6541; -- Obtained <number> gil
              KEYITEM_OBTAINED = 6543; -- Obtained key item: <keyitem>
                ITEMS_OBTAINED = 6549; -- You obtain <param2 number> <param1 item>
+       FISHING_MESSAGE_OFFSET = 7156; -- !!!fishing message!!!
     SHINING_OBJECT_SLIPS_AWAY = 7355; -- The shining object slips through your fingers and is washed further down the stream.
   
 -- Conquest

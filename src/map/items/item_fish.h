@@ -53,9 +53,6 @@ public:
     void    SetSize(uint8);
     void    SetStamina(uint8);
     void    SetRodFlag(uint8);
-    
-    void    SetLog(uint8);
-    void    SetQuest(uint8);
 
     virtual ~CItemFish();
 
@@ -66,10 +63,7 @@ private:
     uint8   m_watertype;
     uint8   m_size;
     uint8   m_stamina;
-    uint8   m_rodflag;      // возможные реакции удочки
-    
-    uint8   m_log;
-    uint8   m_quest;
+    uint8   m_rodflag;
 };
 
 #endif

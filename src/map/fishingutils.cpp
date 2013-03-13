@@ -25,6 +25,8 @@
 
 #include <string.h> 
 
+#include "lua/luautils.h"
+
 #include "packets/caught_fish.h"
 #include "packets/char_update.h"
 #include "packets/char_sync.h"
@@ -51,265 +53,15 @@ namespace fishingutils
 *																		*
 ************************************************************************/
 
-uint16 MessageOffset[] =
+uint16 MessageOffset[MAX_ZONEID];
+
+void LoadFishingMessages()
 {
-	0,		// Residential_Area
-	7163,	// Phanauet_Channel
-	7215,	// Carpenters_Landing
-	7164,	// Manaclipper
-	7209,	// Bibiki_Bay
-	0,		// Uleguerand_Range
-	0,		// Bearclaw_Pinnacle
-	0,		// Attohwa_Chasm
-	0,		// Boneyard_Gully
-	0,		// PsoXja
-	0,		// The_Shrouded_Maw
-	7512,	// Oldton_Movalpolos
-	0,		// Newton_Movalpolos
-	0,		// MineShaft_#2716
-	0,		// Hall_of_Transference
-	0,		// none
-	0,		// Promyvion_Holla
-	0,		// Spire_of_Holla
-	0,		// Promyvion_Dem
-	0,		// Spire_of_Dem
-	0,		// Promyvion_Mea
-	0,		// Spire_of_Mea
-	0,		// Promyvion_Vahzl
-	0,		// Spire_of_Vahzl
-	7495,	// Lufaise_Meadows
-	7016,	// Misareaux_Coast
-	10202,	// Tavnazian_Safehold
-	7177,	// Phomiuna_Aqueducts
-	0,		// Sacrarium
-	0,		// Riverne_Site_#B01
-	0,		// Riverne_Site_#A01
-	0,		// Monarch_Linn
-	0,		// Sealions_Den
-	0,		// AlTaieu
-	0,		// Grand_Palace_of_HuXzoi
-	0,		// The_Garden_of_RuHmet
-	0,		// Empyreal_Paradox
-	0,		// Temenos
-	0,		// Apollyon
-	0,		// Dynamis_Valkurm
-	0,		// Dynamis_Buburimu
-	0,		// Dynamis_Qufim
-	0,		// Dynamis_Tavnazia
-	0,		// Diorama_Abdhaljs_Ghelsba
-	0,		// Abdhaljs_Isle_Purgonorgo
-	0,		// Abyssea-Tahrongi
-	6994,	// Open_sea_route_to_Al_Zahbi
-	6994,	// Open_sea_route_to_Mhaura
-	6994,	// Al_Zahbi
-	0,		// none
-	831,	// Aht_Urhgan_Whitegate
-	6994,	// Wajaom_Woodlands
-	6994,	// Bhaflau_Thickets
-	6994,	// Nashmau
-	6994,	// Arrapago_Reef
-	0,		// Ilrusi_Atoll
-	0,		// Periqia
-	6994,	// Talacca_Cove
-	6994,	// Silver_Sea_route_to_Nashmau
-	6994,	// Silver_Sea_route_to_Al_Zahbi
-	0,		// The_Ashu_Talif
-	6994,	// Mount_Zhayolm
-	0,		// Halvung
-	0,		// Lebros_Cavern
-	0,		// Navukgo_Execution_Chamber
-	6994,	// Mamook
-	0,		// Mamool_Ja_Training_Grounds
-	0,		// Jade_Sepulcher
-	6994,	// Aydeewa_Subterrane
-	0,		// Leujaoam_Sanctum
-	0,		// Chocobo_Circuit
-	0,		// The_Colosseum
-	0,		// Alzadaal_Undersea_Ruins
-	0,		// Zhayolm_Remnants
-	0,		// Arrapago_Remnants
-	0,		// Bhaflau_Remnants
-	0,		// Silver_Sea_Remnants
-	0,		// Nyzul_Isle
-	0,		// Hazhalm_Testing_Grounds
-	6994,	// Caedarva_Mire
-	0,		// Southern_San_d'Oria_[S]
-	7674,	// East_Ronfaure_[S]
-	7306,	// Jugner_Forest_[S]
-	6994,	// Vunkerl_Inlet_[S]
-	7013,	// Batallia_Downs_[S]
-	0,		// La_Vaule_[S]
-	0,		// Everbloom_Hollow
-	6994,	// Bastok_Markets_[S]
-	7299,	// North_Gustaberg_[S]
-	6994,	// Grauberg_[S]
-	7090,	// Pashhow_Marshlands_[S]
-	7013,	// Rolanberry_Fields_[S]
-	0,		// Beadeaux_[S]
-	0,		// Ruhotz_Silvermines
-	6994,	// Windurst_Waters_[S]
-	7020,	// West_Sarutabaruta_[S]
-	0,		// Fort_Karugo-Narugo_[S]
-	0,		// Meriphataud_Mountains_[S]
-	0,		// Sauromugue_Champaign_[S]
-	6994,	// Castle_Oztroja_[S]
-	7156,	// West_Ronfaure
-	7156,	// East_Ronfaure
-	7156,	// La_Theine_Plateau
-	7156,	// Valkurm_Dunes
-	7628,	// Jugner_Forest
-	7156,	// Batallia_Downs
-	7156,	// North_Gustaberg
-	7156,	// South_Gustaberg
-	0,		// Konschtat_Highlands
-	7156,	// Pashhow_Marshlands
-	7156,	// Rolanberry_Fields
-	7156,	// Beaucedine_Glacier
-	0,		// Xarcabard
-	7494,	// Cape_Teriggan
-	7494,	// Eastern_Altepa_Desert
-	6994,	// West_Sarutabaruta
-	7153,	// East_Sarutabaruta
-	7156,	// Tahrongi_Canyon
-	7162,	// Buburimu_Peninsula
-	7156,	// Meriphataud_Mountains
-	7164,	// Sauromugue_Champaign
-	7494,	// The_Sanctuary_of_ZiTah
-	7153,	// RoMaeve
-	7494,	// Yuhtunga_Jungle
-	7494,	// Yhoator_Jungle
-	7153,	// Western_Altepa_Desert
-	7153,	// Qufim_Island
-	0,		// Behemoths_Dominion
-	0,		// Valley_of_Sorrows
-	0,		// Ghoyu's_Reverie
-	0,		// RuAun_Gardens
-	0,		// Mordion_Gaol
-	6994,	// Abyssea-La_Theine
-	0,		// unknown
-	0,		// Dynamis_Beaucedine
-	0,		// Dynamis_Xarcabard
-	0,		// Beaucedine_Glacier_[S]
-	0,		// Xarcabard_[S]
-	0,		// Castle_Zvahl_Baileys_[S]
-	0,		// Horlais_Peak
-	7512,	// Ghelsba_Outpost
-	0,		// Fort_Ghelsba
-	7153,	// Yughott_Grotto
-	7153,	// Palborough_Mines
-	0,		// Waughroon_Shrine
-	7153,	// Giddeus
-	0,		// Balgas_Dais
-	0,		// Beadeaux
-	0,		// Qulun_Dome
-	7153,	// Davoi
-	0,		// Monastic_Cavern
-	7198,	// Castle_Oztroja
-	0,		// Altar_Room
-	6994,	// The_Boyahda_Tree
-	6994,	// Dragons_Aery
-	0,		// Castle_Zvahl_Keep_[S]
-	0,		// Throne_Room_[S]
-	0,		// Middle_Delkfutts_Tower
-	0,		// Upper_Delkfutts_Tower
-	7153,	// Temple_of_Uggalepih
-	7181,	// Den_of_Rancor
-	0,		// Castle_Zvahl_Baileys
-	0,		// Castle_Zvahl_Keep
-	0,		// Sacrificial_Chamber
-	0,		// Garlaige_Citadel_[S]
-	0,		// Throne_Room
-	7153,	// Ranguemont_Pass
-	7153,	// Bostaunieux_Oubliette
-	0,		// Chamber_of_Oracles
-	7199,	// Toraimarai_Canal
-	0,		// Full_Moon_Fountain
-	0,		// Crawlers'_Nest_[S]
-	7153,	// Zeruhn_Mines
-	6994,	// Korroloka_Tunnel
-	7153,	// Kuftal_Tunnel
-	0,		// The_Eldieme_Necropolis_[S]
-	7153,	// Sea_Serpent_Grotto
-	0,		// VeLugannon_Palace
-	0,		// The_Shrine_of_RuAvitau
-	0,		// Stellar_Fulcrum
-	0,		// LaLoff_Amphitheater
-	0,		// The_Celestial_Nexus
-	0,		// Walk_of_Echos
-	0,		// The_Last_Stand
-	0,		// Lower_Delkfutts_Tower
-	0,		// Dynamis_San_dOria
-	0,		// Dynamis_Bastok
-	0,		// Dynamis_Windurst
-	0,		// Dynamis_Jeuno
-	0,		// unknown
-	0,		// King_Ranperres_Tomb
-	7153,	// Dangruf_Wadi
-	0,		// Inner_Horutoto_Ruins
-	7153,	// Ordelles_Caves
-	0,		// Outer_Horutoto_Ruins
-	0,		// The_Eldieme_Necropolis
-	7153,	// Gusgen_Mines
-	0,		// Crawlers_Nest
-	0,		// Maze_of_Shakhrami
-	0,		// unknown
-	0,		// Garlaige_Citadel
-	0,		// Cloister_of_Gales
-	0,		// Cloister_of_Storms
-	0,		// Cloister_of_Frost
-	7173,	// FeiYin
-	0,		// Ifrits_Cauldron
-	0,		// QuBia_Arena
-	0,		// Cloister_of_Flames
-	7153,	// Quicksand_Caves
-	0,		// Cloister_of_Tremors
-	0,		// unknown
-	0,		// Cloister_of_Tides
-	0,		// Gustav_Tunnel
-	7153,	// Labyrinth_of_Onzozo
-	0,		// Al_Zahbi_Residential_Area
-	0,		// Abyssea-Attohwa
-	6994,	// Abyssea-Misareaux
-	6994,	// Abyssea-Vunkerl
-	0,		// Abyssea-Altepa
-	0,		// unknown
-	7156,	// Ship_bound_for_Selbina
-	7156,	// Ship_bound_for_Mhaura
-	0,		// test_zone
-	0,		// San_dOria_Jeuno_Airship
-	0,		// Bastok_Jeuno_Airship
-	0,		// Windurst_Jeuno_Airship
-	0,		// Kazham_Jeuno_Airship
-	7156,	// Ship_bound_for_Selbina_Pirate
-	7156,	// Ship_bound_for_Mhaura_Pirate
-	0,		// unknown
-	0,		// Southern_San_dOria
-	7199,	// Northern_San_dOria
-	6744,	// Port_San_dOria
-	0,		// Chateau_dOraguille
-	10525,	// Bastok_Mines
-	6923,	// Bastok_Markets
-	6831,	// Port_Bastok
-	0,		// Bastok_Metalworks
-	6813,	// Windurst_Waters
-	6824,	// Windurst_Walls
-	11299,	// Port_Windurst
-	6838,	// Windurst_Woods
-	7292,	// Heavens_Tower
-	0,		// RuLude_Gardens
-	0,		// Upper_Jeuno
-	6757,	// Lower_Jeuno
-	6756,	// Port_Jeuno
-	6584,	// Rabao
-	6452,	// Selbina
-	6613,	// Mhaura
-	6584,	// Kazham
-	0,		// Hall_of_the_Gods
-	6584,	// Norg
-	0,		// Abyssea-Uleguerand
-	0,		// Abyssea-Grauberg
-	0		// Abyssea-Empyreal_Paradox
-};
+    for (uint16 ZoneID = 0; ZoneID < sizeof(MessageOffset); ZoneID++)
+    {
+        MessageOffset[ZoneID] = luautils::GetTextIDVariable(ZoneID, "FISHING_MESSAGE_OFFSET");
+    }
+}
 
 /************************************************************************
 *																		*
@@ -395,7 +147,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 		return false;
 	}
 
-	CItem* PFish = NULL;
+	CItemFish* PFish = NULL;
 	CItemWeapon* WeaponItem = NULL;
 
 	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);	
@@ -442,8 +194,8 @@ bool CheckFisherLuck(CCharEntity* PChar)
 			{
                 // ловля предметов, необходимых для поисков
 
-                uint8 logid = Sql_GetIntData(SqlHandle,5);
-                uint8 quest = Sql_GetIntData(SqlHandle,6);
+                uint8 logid = (uint8)Sql_GetIntData(SqlHandle,5);
+                uint8 quest = (uint8)Sql_GetIntData(SqlHandle,6);
 
                 if(logid < MAX_QUESTAREA && quest < MAX_QUESTID)
 	            {
@@ -459,7 +211,6 @@ bool CheckFisherLuck(CCharEntity* PChar)
 					    break;
                     }
 	            }
-
                 // TODO: ловля простых предметов
             }
 		}						
@@ -468,9 +219,14 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	{
 		const int8* Query = 
             "SELECT "
-                "fish.fishid,"  // 0
-                "lure.luck,"    // 1
-                "rod.flag "     // 2
+                "fish.fishid,"      // 0
+                "fish.min,"         // 1
+                "fish.max,"         // 2
+                "fish.size,"        // 3
+                "fish.stamina,"     // 4
+                "fish.watertype,"   // 5
+                "rod.flag "         // 6
+                "lure.luck,"        // 7
             "FROM fishing_zone AS zone "
             "INNER JOIN fishing_rod  AS rod  USING (fishid) "
 			"INNER JOIN fishing_lure AS lure USING (fishid) "
@@ -487,7 +243,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 			{
-				FisherLuck += Sql_GetIntData(SqlHandle,1);
+				FisherLuck += Sql_GetIntData(SqlHandle,7);
 
 				if (FishingChance <= FisherLuck)
 				{
@@ -616,6 +372,8 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				PChar->animation = ANIMATION_FISHING_CAUGHT;
 
 				CItem* PFish = PChar->UContainer->GetItem(0);
+
+                // TODO: анализируем RodFlag
 
 				charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));

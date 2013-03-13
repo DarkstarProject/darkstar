@@ -1,12 +1,13 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6692; -- You cannot obtain the item <item> come back again after sorting your inventory
-FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading again after sorting your inventory
-             ITEM_OBTAINED = 6378; -- Obtained: <item>
-              GIL_OBTAINED = 6379; -- Obtained <number> gil
-          KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
-             HOMEPOINT_SET = 6424; -- Home point set!
+   ITEM_CANNOT_BE_OBTAINED = 6692;  -- You cannot obtain the item <item> come back again after sorting your inventory
+FULL_INVENTORY_AFTER_TRADE = 6377;  -- You cannot obtain the <item>. Try trading again after sorting your inventory
+             ITEM_OBTAINED = 6378;  -- Obtained: <item>
+              GIL_OBTAINED = 6379;  -- Obtained <number> gil
+          KEYITEM_OBTAINED = 6381;  -- Obtained key item: <keyitem>
+             HOMEPOINT_SET = 6424;  -- Home point set!
+    FISHING_MESSAGE_OFFSET = 10611; -- !!!fishing message!!!
 
 -- Conquest System
 CONQUEST = 10908; -- You've earned conquest points!

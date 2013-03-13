@@ -44,6 +44,8 @@ class CCharEntity;
 
 namespace fishingutils
 {
+    void LoadFishingMessages();
+
 	void StartFishing(CCharEntity* PChar);
 	void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina);
 };

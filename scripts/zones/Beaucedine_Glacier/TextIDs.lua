@@ -7,12 +7,13 @@ FULL_INVENTORY_AFTER_TRADE = 6539; -- You cannot obtain the <item>. Try trading 
               GIL_OBTAINED = 6541; -- Obtained <number> gil
           KEYITEM_OBTAINED = 6543; -- Obtained key item: <keyitem>
             ITEMS_OBTAINED = 6549; -- You obtain <param2 number> <param1 item>
+    FISHING_MESSAGE_OFFSET = 7156; -- !!!fishing message!!!
 
 -- Conquest
 CONQUEST = 7400; -- You've earned conquest points!
 
 -- Other dialog
-   NOTHING_OUT_OF_ORDINARY = 6554; -- There is nothing out of the ordinary here.
+NOTHING_OUT_OF_ORDINARY = 6554; -- There is nothing out of the ordinary here.
 
 -- Dynamis dialogs
 	   YOU_CANNOT_ENTER_DYNAMIS = 7780; -- You cannot enter Dynamis - Bastok for x day (Vana'diel time)

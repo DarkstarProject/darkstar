@@ -37,8 +37,6 @@ CItemFish::CItemFish(const CItem &PItem) : CItem(PItem)
     m_size      = 0;
     m_stamina   = 0;
     m_rodflag   = 0;
-    m_log       = 0;
-    m_quest     = 0;
 }
 
 CItemFish::~CItemFish()

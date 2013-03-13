@@ -5,6 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6893; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6896; -- Obtained: <item>
            GIL_OBTAINED = 6897; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6899; -- Obtained key item: <keyitem>
+ FISHING_MESSAGE_OFFSET = 7512; -- !!!fishing message!!!
 
 -- Logging
 LOGGING_IS_POSSIBLE_HERE = 7665; -- Logging is possible here if you have <item>

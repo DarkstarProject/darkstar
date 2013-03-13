@@ -6,8 +6,9 @@ ITEM_CANNOT_BE_OBTAINED = 6375, -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6378, -- Obtained: <item>
            GIL_OBTAINED = 6379, -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381, -- Obtained key item: <keyitem>
-    NOT_HAVE_ENOUGH_GIL = 0, -- You do not have enough gil.
+    NOT_HAVE_ENOUGH_GIL = 0,    -- You do not have enough gil.
           HOMEPOINT_SET = 6424, -- Home point set!
+ FISHING_MESSAGE_OFFSET = 6452, -- !!!fishing message!!!
         SUBJOB_UNLOCKED = 6746, -- You can now designate a support job.
     
 -- NPC texts

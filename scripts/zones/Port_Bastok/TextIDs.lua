@@ -8,7 +8,7 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
           KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
              HOMEPOINT_SET = 6451; -- Home point set!
        NOT_HAVE_ENOUGH_GIL = 6624; -- You don't have enough money.
-                  CONQUEST = 7783; -- You've earned conquest points!
+    FISHING_MESSAGE_OFFSET = 6872; -- !!!fishing message!!!
              MOGHOUSE_EXIT = 7727; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 
 -- Conquest System
