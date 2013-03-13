@@ -72,7 +72,7 @@ CParty::CParty(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::DisbandParty() 
+void CParty::DisbandParty()
 {
 	SetSyncTarget(NULL);
 	SetQuaterMaster(NULL);
@@ -84,7 +84,7 @@ void CParty::DisbandParty()
     {
         PushPacket(NULL, 0, new CPartyDefinePacket(NULL));
 
-	    for (uint8 i = 0; i < members.size(); ++i) 
+	    for (uint8 i = 0; i < members.size(); ++i)
 	    {
 		    CCharEntity* PChar = (CCharEntity*)members.at(i);
 
@@ -93,7 +93,7 @@ void CParty::DisbandParty()
 
 		    // TODO: TreasurePool должен оставаться у последнего персонажа, но сейчас это не критично
 
-            if (PChar->PTreasurePool != NULL && 
+            if (PChar->PTreasurePool != NULL &&
                 PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
 		    {
 			    PChar->PTreasurePool->DelMember(PChar);
@@ -114,16 +114,16 @@ void CParty::DisbandParty()
 ************************************************************************/
 
 void CParty::AssignPartyRole(int8* MemberName, uint8 role)
-{	
+{
     DSP_DEBUG_BREAK_IF (m_PartyType != PARTY_PCS);
 
-	for (uint32 i = 0; i < members.size(); ++i) 
+	for (uint32 i = 0; i < members.size(); ++i)
 	{
 		CCharEntity* PChar = (CCharEntity*)members.at(i);
 
 		if (strcmp(MemberName, PChar->GetName()) == 0)
 		{
-			switch(role) 
+			switch(role)
 			{
 				case 0: SetLeader(PChar);		break;
 				case 4: SetQuaterMaster(PChar); break;
@@ -143,11 +143,11 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 *																		*
 ************************************************************************/
 
-uint8 CParty::MemberCount(uint8 ZoneID) 
-{	
+uint8 CParty::MemberCount(uint8 ZoneID)
+{
 	uint8 count = 0;
 
-	for (uint32 i = 0; i < members.size(); ++i) 
+	for (uint32 i = 0; i < members.size(); ++i)
 	{
 		if (members.at(i)->getZone() == ZoneID)
 		{
@@ -167,13 +167,13 @@ void CParty::RemoveMemberByName(int8* MemberName)
 {
     DSP_DEBUG_BREAK_IF(m_PartyType != PARTY_PCS);
 
-	for (uint32 i = 0; i < members.size(); ++i) 
+	for (uint32 i = 0; i < members.size(); ++i)
 	{
 		if (strcmp(MemberName, members.at(i)->GetName()) == 0)
 		{
 			RemoveMember(members.at(i));
 			return;
-		} 
+		}
 	}
 	ShowError(CL_RED"The character with name <%s> isn't found in party\n" CL_RESET, MemberName);
 }
@@ -184,32 +184,32 @@ void CParty::RemoveMemberByName(int8* MemberName)
 *																		*
 ************************************************************************/
 
-void CParty::RemoveMember(CBattleEntity* PEntity) 
+void CParty::RemoveMember(CBattleEntity* PEntity)
 {
 	DSP_DEBUG_BREAK_IF(PEntity == NULL);
 	DSP_DEBUG_BREAK_IF(PEntity->PParty != this);
 
-	if (m_PLeader == PEntity) 
+	if (m_PLeader == PEntity)
 	{
 		RemovePartyLeader(PEntity);
 	}
 	else
 	{
-		for (uint32 i = 0; i < members.size(); ++i) 
+		for (uint32 i = 0; i < members.size(); ++i)
 		{
-			if (PEntity == members.at(i)) 
+			if (PEntity == members.at(i))
 			{
 				members.erase(members.begin()+i);
-				
+
                 if (m_PartyType == PARTY_PCS)
                 {
                     CCharEntity* PChar = (CCharEntity*)PEntity;
 
-				    if (m_PQuaterMaster == PChar) 
+				    if (m_PQuaterMaster == PChar)
 				    {
 					    SetQuaterMaster(NULL);
 				    }
-				    if (m_PSyncTarget == PChar) 
+				    if (m_PSyncTarget == PChar)
 				    {
 					    SetSyncTarget(NULL);
 				    }
@@ -235,7 +235,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 				break;
 			}
 		}
-	} 
+	}
 }
 
 /************************************************************************
@@ -244,7 +244,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::RemovePartyLeader(CBattleEntity* PEntity) 
+void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 {
 	DSP_DEBUG_BREAK_IF(members.empty());
 	DSP_DEBUG_BREAK_IF(m_PLeader != PEntity);
@@ -253,12 +253,12 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 	if (members.size() == 1)
 	{
 		DisbandParty();
-	} 
-    else 
+	}
+    else
     {
-		for (uint32 i = 0; i < members.size(); ++i) 
+		for (uint32 i = 0; i < members.size(); ++i)
 		{
-			if (PEntity != members.at(i)) 
+			if (PEntity != members.at(i))
 			{
 				SetLeader(members.at(i));
 				break;
@@ -274,7 +274,7 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::AddMember(CBattleEntity* PEntity) 
+void CParty::AddMember(CBattleEntity* PEntity)
 {
 	DSP_DEBUG_BREAK_IF(PEntity == NULL);
 	DSP_DEBUG_BREAK_IF(PEntity->PParty != NULL);
@@ -286,12 +286,12 @@ void CParty::AddMember(CBattleEntity* PEntity)
     {
         DSP_DEBUG_BREAK_IF(PEntity->objtype != TYPE_PC);
 
-        CCharEntity* PChar = (CCharEntity*)PEntity; 
+        CCharEntity* PChar = (CCharEntity*)PEntity;
 
 	    ReloadParty();
 	    ReloadTreasurePool(PChar);
 
-	    if (PChar->nameflags.flags & FLAG_INVITE) 				
+	    if (PChar->nameflags.flags & FLAG_INVITE)
 	    {
             PChar->nameflags.flags ^= FLAG_INVITE;
 
@@ -314,7 +314,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-uint32 CParty::GetPartyID() 
+uint32 CParty::GetPartyID()
 {
 	return m_PartyID;
 }
@@ -325,7 +325,7 @@ uint32 CParty::GetPartyID()
 *																		*
 ************************************************************************/
 
-CBattleEntity* CParty::GetLeader() 
+CBattleEntity* CParty::GetLeader()
 {
 	return m_PLeader;
 }
@@ -336,7 +336,7 @@ CBattleEntity* CParty::GetLeader()
 *																		*
 ************************************************************************/
 
-CBattleEntity* CParty::GetSyncTarget() 
+CBattleEntity* CParty::GetSyncTarget()
 {
 	return m_PSyncTarget;
 }
@@ -347,7 +347,7 @@ CBattleEntity* CParty::GetSyncTarget()
 *																		*
 ************************************************************************/
 
-CBattleEntity* CParty::GetQuaterMaster() 
+CBattleEntity* CParty::GetQuaterMaster()
 {
 	return m_PQuaterMaster;
 }
@@ -369,7 +369,7 @@ uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 
 	if (PEntity->PParty->m_PAlliance != NULL)
 	{
-		if (PEntity == m_PLeader && PEntity->PParty->m_PAlliance->getMainParty() == PEntity->PParty)    
+		if (PEntity == m_PLeader && PEntity->PParty->m_PAlliance->getMainParty() == PEntity->PParty)
 			Flags |= ALLIANCE_LEADER;
 
 		if (PEntity->PParty->m_PAlliance->partyList.size() > 1)
@@ -380,7 +380,7 @@ uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 			if (PEntity->PParty->m_PAlliance->partyList.at(2) == PEntity->PParty)
 				Flags += PARTY_THIRD;
 	}
-    
+
     if (PEntity == m_PLeader)       Flags |= PARTY_LEADER;
 	if (PEntity == m_PQuaterMaster) Flags |= PARTY_QM;
     if (PEntity == m_PSyncTarget)   Flags |= PARTY_SYNC;
@@ -394,7 +394,7 @@ uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 *                                                                       *
 ************************************************************************/
 
-void CParty::ReloadParty() 
+void CParty::ReloadParty()
 {
 
 	//alliance
@@ -404,7 +404,7 @@ void CParty::ReloadParty()
 
 		for (uint8 a = 0; a < ourAlliance->partyList.size(); ++a)
 		{
-				for (uint8 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i) 
+				for (uint8 i = 0; i < ourAlliance->partyList.at(a)->members.size(); ++i)
 				{
 					CCharEntity* PChar = (CCharEntity*)ourAlliance->partyList.at(a)->members.at(i);
 
@@ -420,7 +420,7 @@ void CParty::ReloadParty()
 
 
 	//regular party
-	for (uint8 i = 0; i < members.size(); ++i) 
+	for (uint8 i = 0; i < members.size(); ++i)
 	{
 		CCharEntity* PChar = (CCharEntity*)members.at(i);
 
@@ -441,7 +441,7 @@ void CParty::ReloadParty()
 *																		*
 ************************************************************************/
 
-void CParty::ReloadPartyMembers(CCharEntity* PChar) 
+void CParty::ReloadPartyMembers(CCharEntity* PChar)
 {
 
 	if(PChar->PParty != NULL)
@@ -461,11 +461,11 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
 		}
 	}
 
-	//normal party - no alliance	
+	//normal party - no alliance
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PParty != this);
 
-    for (uint8 i = 0; i < members.size(); ++i) 
+    for (uint8 i = 0; i < members.size(); ++i)
 	{
         PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)members.at(i), i, PChar->getZone()));
     }
@@ -493,12 +493,12 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 		{
 			for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
 			{
-				for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
+				for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
 				{
 					CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 
 					if (PPartyMember != PChar && PPartyMember->PTreasurePool != NULL &&	PPartyMember->getZone() == PChar->getZone())
-					{			
+					{
 						if (PChar->PTreasurePool != NULL)
 						{
 							PChar->PTreasurePool->DelMember(PChar);
@@ -508,7 +508,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 						return;
 					}
 				}
-	
+
 			}//regular party
 		}else if (PChar->PParty->m_PAlliance == NULL){
 					for (uint8 i = 0; i < members.size(); ++i){
@@ -517,7 +517,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 						if (PPartyMember != PChar &&
 							PPartyMember->PTreasurePool != NULL &&
 							PPartyMember->getZone() == PChar->getZone())
-						{			
+						{
 							if (PChar->PTreasurePool != NULL)
 							{
 								PChar->PTreasurePool->DelMember(PChar);
@@ -527,7 +527,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 							return;
 						}
 					}
-				}						
+				}
 	}
 
 	if (PChar->PTreasurePool == NULL)
@@ -543,7 +543,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void CParty::SetLeader(CBattleEntity* PEntity) 
+void CParty::SetLeader(CBattleEntity* PEntity)
 {
 	DSP_DEBUG_BREAK_IF(PEntity == NULL);
 	DSP_DEBUG_BREAK_IF(PEntity->PParty != this);
@@ -563,7 +563,7 @@ void CParty::SetLeader(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::SetSyncTarget(CBattleEntity* PEntity) 
+void CParty::SetSyncTarget(CBattleEntity* PEntity)
 {
     m_PSyncTarget = PEntity;
 }
@@ -574,7 +574,7 @@ void CParty::SetSyncTarget(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::SetQuaterMaster(CBattleEntity* PEntity) 
+void CParty::SetQuaterMaster(CBattleEntity* PEntity)
 {
 	m_PQuaterMaster = PEntity;
 }
@@ -591,14 +591,17 @@ void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* p
 {
 	for (uint32 i = 0; i < members.size(); ++i)
 	{
-        if (members.at(i) != PPartyMember && 
-            members.at(i)->status != STATUS_DISAPPEAR &&
-            (members.at(i)->objtype == TYPE_PC && 
-             !jailutils::InPrison((CCharEntity*)members.at(i))))
+		if(members.at(i)->objtype != TYPE_PC) continue;
+
+		CCharEntity* member = (CCharEntity*)members.at(i);
+
+        if (member != PPartyMember &&
+            member->status != STATUS_DISAPPEAR &&
+             !jailutils::InPrison(member) )
 		{
-			if (ZoneID == 0 || members.at(i)->getZone() == ZoneID)
+			if (ZoneID == 0 || member->getZone() == ZoneID)
 			{
-				((CCharEntity*)members.at(i))->pushPacket(new CBasicPacket(*packet));
+				member->pushPacket(new CBasicPacket(*packet));
 			}
 		}
 	}

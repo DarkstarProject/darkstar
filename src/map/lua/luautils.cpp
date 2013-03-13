@@ -1398,6 +1398,8 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 
 	CSpell* PSpell = PCaster->PBattleAI->GetCurrentSpell();
 
+    DSP_DEBUG_BREAK_IF(PSpell == NULL);
+
 	snprintf(File, sizeof(File), (PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua"), PSpell->getName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
