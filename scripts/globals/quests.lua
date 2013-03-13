@@ -595,11 +595,11 @@ INDOMITABLE_SPIRIT              = 201; -- ± --
 
 KEEPING_NOTES                   = 0;
 ARTS_AND_CRAFTS                 = 1;
-OLDUUM							= 2;
-GOT_IT_ALL						= 3;  -- + --
+OLDUUM							= 2; -- + --
+GOT_IT_ALL						= 3; -- + --
 GET_THE_PICTURE					= 4;
 AN_EMPTY_VESSEL					= 5; -- + --
-LUCK_OF_THE_DRAW				= 6;  -- ± --
+LUCK_OF_THE_DRAW				= 6; -- ± --
 NO_STRINGS_ATTACHED             = 7;
 FINDING_FAULTS                  = 8;
 GIVE_PEACE_A_CHANCE             = 9;

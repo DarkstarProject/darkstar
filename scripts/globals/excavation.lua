@@ -5,6 +5,8 @@
 --      http://wiki.ffxiclopedia.org/wiki/Excavation
 -------------------------------------------------
 
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/globals/settings");
 
 -------------------------------------------------
@@ -50,6 +52,22 @@ function startExcavation(player,zone,npc,trade,csid)
 		
 		if(GetServerVariable("[EXCAVATION]Zone "..zone) >= 3) then
 			getNewPositionNPC(player,npc,zone);
+		end
+	
+		if(broke ~= 1 and player:getQuestStatus(AHT_URHGAN,OLDUUM) == QUEST_ACCEPTED and player:hasKeyItem(ELECTROCELL) == false and player:hasKeyItem(ELECTROPOT) == false and player:hasKeyItem(ELECTROLOCOMOTIVE) == false and zone == 68) then
+			local randPick = math.random(0,2);
+			
+			if randPick == 1 then
+				player:addKeyItem(ELECTROCELL);
+				player:messageSpecial(KEYITEM_OBTAINED,ELECTROCELL);
+			elseif randPick == 2 then
+				player:addKeyItem(ELECTROPOT);
+				player:messageSpecial(KEYITEM_OBTAINED,ELECTROPOT);
+			else
+				player:addKeyItem(ELECTROLOCOMOTIVE);
+				player:messageSpecial(KEYITEM_OBTAINED,ELECTROLOCOMOTIVE);
+
+			end
 		end
 	else
 		player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);

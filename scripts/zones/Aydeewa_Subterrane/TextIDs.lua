@@ -8,3 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 
 -- Other Texts
 NOTHING_HAPPENS = 7347; -- Nothing happens...
+MINING_IS_POSSIBLE_HERE = 7257; -- Mining is possible here if you have <item>.
