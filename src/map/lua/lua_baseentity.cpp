@@ -6573,7 +6573,17 @@ inline int32 CLuaBaseEntity::hasTPMoves(lua_State* L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF((m_PBaseEntity->objtype & TYPE_NPC) || (m_PBaseEntity->objtype & TYPE_PC));
 
-	std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(((CMobEntity*)m_PBaseEntity)->m_Family);
+	uint16 familyID = 0;
+
+	if (m_PBaseEntity->objtype & TYPE_MOB)
+	{
+		familyID = ((CMobEntity*)m_PBaseEntity)->m_Family;
+	}
+	else if (m_PBaseEntity->objtype & TYPE_PET)
+	{
+		familyID = ((CPetEntity*)m_PBaseEntity)->m_Family;
+	}
+	std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(familyID);
 	lua_pushboolean(L,MobSkills.size() != 0);
 	return 1;
 }
