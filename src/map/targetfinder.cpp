@@ -38,6 +38,7 @@ CTargetFinder::CTargetFinder(CBattleEntity* PBattleEntity)
   m_zone = 0;
   m_PRadiusAround = NULL;
   m_PTarget = NULL;
+  m_PMasterTarget = NULL;
   m_PAction = NULL;
 }
 
@@ -45,6 +46,11 @@ void CTargetFinder::reset(apAction_t* PAction)
 {
   m_PAction = PAction;
   m_PBattleEntity->m_ActionList.clear();
+  m_radius = 0.0f;
+  m_zone = 0;
+  m_PRadiusAround = NULL;
+  m_PTarget = NULL;
+  m_PMasterTarget = NULL;
 }
 
 void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius)
@@ -53,57 +59,60 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
   m_zone = m_PBattleEntity->getZone();
 
   if(radiusType == AOERADIUS_ATTACKER){
-    m_PRadiusAround = &m_PBattleEntity->loc.p;
+    m_PRadiusAround = m_PBattleEntity->loc.p;
   } else {
     // radius around target
-    m_PRadiusAround = &PTarget->loc.p;
+    m_PRadiusAround = PTarget->loc.p;
   }
 
+
   // get master to properly handle loops
-  m_PTarget = findMaster(PTarget);
+  m_PMasterTarget = findMaster(PTarget);
 
   // no not include pets if this AoE is a buff spell
   // this is a buff because i'm targetting my self
-  bool withPet = PETS_CAN_AOE_BUFF || (m_PTarget->objtype != m_PBattleEntity->objtype);
+  bool withPet = PETS_CAN_AOE_BUFF || (m_PMasterTarget->objtype != m_PBattleEntity->objtype);
+
+  // always add original target first
+  addEntity(PTarget, false); // pet will be added later
+
+  m_PTarget = PTarget;
 
   if(isPlayer()){
     // handle this as a player
 
-    if(m_PTarget->objtype == TYPE_MOB)
+    if(m_PMasterTarget->objtype == TYPE_MOB)
     {
       // special case to add all mobs in range
-      addAllInMobList(m_PTarget, withPet);
+      addAllInMobList(m_PMasterTarget, withPet);
 
     } else {
 
       // players will never need to add whole alliance
 
-      if(m_PTarget->PParty != NULL)
+      if(m_PMasterTarget->PParty != NULL)
       {
         // add party members
-        addAllInParty(m_PTarget, withPet);
+        addAllInParty(m_PMasterTarget, withPet);
       } else {
         // just add myself
-        addEntity(m_PTarget, withPet);
+        addEntity(m_PMasterTarget, withPet);
       }
     }
 
   } else {
 
     // handle this as a mob
-    if(m_PTarget->PParty != NULL)
+    if(m_PMasterTarget->PParty != NULL)
     {
-      if(m_PTarget->PParty->m_PAlliance != NULL)
+      if(m_PMasterTarget->PParty->m_PAlliance != NULL)
       {
-        addAllInAlliance(m_PTarget, withPet);
+        addAllInAlliance(m_PMasterTarget, withPet);
       } else {
         // all party instead
-        addAllInParty(m_PTarget, withPet);
+        addAllInParty(m_PMasterTarget, withPet);
       }
     }
-
-    // still have to add myself because i'm not in party
-    addEntity(m_PTarget, withPet);
 
   }
 
@@ -154,6 +163,8 @@ void CTargetFinder::addAllInParty(CBattleEntity* PTarget, bool withPet)
 
   uint8 partySize = party->members.size();
 
+  ShowDebug("Adding all in party size: %d\n", partySize);
+
   for(uint8 p = 0; p < partySize; p++)
   {
 
@@ -194,6 +205,9 @@ CBattleEntity* CTargetFinder::findMaster(CBattleEntity* PTarget)
 
 bool CTargetFinder::validEntity(CBattleEntity* PTarget)
 {
+  // I was already added first
+  if(PTarget == m_PTarget) return false;
+
   // make sure i'm not over limit
   if(m_PBattleEntity->m_ActionList.size() > MAX_AOE_TARGETS) return false;
 

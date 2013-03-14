@@ -65,6 +65,7 @@ protected:
   CBattleEntity* m_PBattleEntity;
   float m_radius;
   position_t* m_PRadiusAround;
+  CBattleEntity* m_PMasterTarget;
   CBattleEntity* m_PTarget;
   uint16 m_zone;
   apAction_t* m_PAction;

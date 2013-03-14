@@ -1454,6 +1454,7 @@ void CAICharNormal::ActionMagicFinish()
     if (m_PSpell->isAOE())
     {
         float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
+
         m_PTargetFinder->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
     }
     else

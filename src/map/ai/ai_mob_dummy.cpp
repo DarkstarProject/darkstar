@@ -668,12 +668,12 @@ void CAIMobDummy::ActionAbilityFinish()
 		Action.messageID  = m_PMobSkill->getMsg();
 		Action.flag		  = 0;
 
-	    m_PTargetFinder->reset(&Action);
 
 		if(m_PMobSkill->isAoE())
 		{
 			float radius = m_PMobSkill->getDistance();
 
+		    m_PTargetFinder->reset(&Action);
 	        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), radius);
 		}
 		else
@@ -684,6 +684,7 @@ void CAIMobDummy::ActionAbilityFinish()
 	    uint16 actionsLength = m_PMob->m_ActionList.size();
 	    m_PMobSkill->setTotalTargets(actionsLength);
 	    apAction_t* currentAction;
+
 	    uint16 msg = 0;
 	    for (uint32 i = 0; i < actionsLength; ++i)
 		{

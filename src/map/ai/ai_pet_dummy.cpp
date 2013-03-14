@@ -367,10 +367,11 @@ void CAIPetDummy::ActionAbilityFinish(){
 
 	// reset AoE finder
     m_PTargetFinder->reset(&Action);
-    uint8 radius = m_PMobSkill->getDistance();
 
     if(m_PMobSkill->isAoE())
     {
+	    float radius = m_PMobSkill->getDistance();
+
     	m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), radius);
     }
     else
