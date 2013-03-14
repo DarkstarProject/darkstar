@@ -5,7 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6381; -- Obtained: <item>
            GIL_OBTAINED = 6382; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
- FISHING_MESSAGE_OFFSET = 7156; -- !!!fishing message!!!
+ FISHING_MESSAGE_OFFSET = 7156; -- You can't fish here
 
 -- Standard Text
   FIRE_GOOD = 7321; -- The fire seems to be good enough for cooking.

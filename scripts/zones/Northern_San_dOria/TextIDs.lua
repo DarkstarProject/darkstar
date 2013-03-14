@@ -7,7 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 6564;  -- You cannot obtain the item <item> come back 
        KEYITEM_OBTAINED = 6570;  -- Obtained key item: <keyitem>
           HOMEPOINT_SET = 188;   -- Home point set!
     NOT_HAVE_ENOUGH_GIL = 0;     -- You do not have enough gil
- FISHING_MESSAGE_OFFSET = 7294;  -- !!!fishing message!!!
+ FISHING_MESSAGE_OFFSET = 7294;  -- You can't fish here
           MOGHOUSE_EXIT = 12210; -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
 
           -- Conquest System

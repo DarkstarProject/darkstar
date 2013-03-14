@@ -9,7 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 6402; -- You cannot obtain the <item>. Try trading 
               GIL_OBTAINED = 6404; -- Obtained <number> gil
           KEYITEM_OBTAINED = 6406; -- Obtained key item: <keyitem>
              HOMEPOINT_SET = 24;   -- Home point set!
-    FISHING_MESSAGE_OFFSET = 6785; -- !!!fishing message!!!
+    FISHING_MESSAGE_OFFSET = 6785; -- You can't fish here
 
 -- Dialogs
    FLYER_REFUSED = 7102; -- This person isn't interested.

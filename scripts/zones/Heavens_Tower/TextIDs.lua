@@ -5,7 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 7116; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 7119; -- Obtained: <item>
            GIL_OBTAINED = 7120; -- Obtained <number> gil
        KEYITEM_OBTAINED = 7122; -- Obtained key item: <keyitem>
- FISHING_MESSAGE_OFFSET = 7292; -- !!!fishing message!!!
+ FISHING_MESSAGE_OFFSET = 7292; -- You can't fish here
 
 -- Other dialog
        STAIRWAY_LOCKED = 554; -- The door to the Starway Stairway is locked tight.

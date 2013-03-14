@@ -9,7 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
        NOT_HAVE_ENOUGH_GIL = 0;    -- You do not have enough gil
             ITEMS_OBTAINED = 6384; -- You obtain <number> <item>!
              HOMEPOINT_SET = 6424; -- Home point set!
-    FISHING_MESSAGE_OFFSET = 6994; -- !!!fishing message!!!
+    FISHING_MESSAGE_OFFSET = 6994; -- You can't fish here
 
 -- Conquest System
 CONQUEST = 7558; -- You've earned conquest points!

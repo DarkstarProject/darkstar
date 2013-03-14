@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINEDX = 214;
            GIL_OBTAINED = 216; -- Obtained <number> gil
        KEYITEM_OBTAINED = 218; -- Obtained key item: <keyitem>
     NOT_HAVE_ENOUGH_GIL = 0; -- You do not have enough gil
- FISHING_MESSAGE_OFFSET = 831; -- !!!fishing message!!!
+ FISHING_MESSAGE_OFFSET = 831; -- You can't fish here
           HOMEPOINT_SET = 1272; -- Home point set!
 
 -- Conquest system

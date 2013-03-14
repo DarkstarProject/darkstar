@@ -5,7 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 10498; -- You cannot obtain the item <item> come back 
           ITEM_OBTAINED = 6381;  -- Obtained: <item>
            GIL_OBTAINED = 6382;  -- Obtained <number> gil
        KEYITEM_OBTAINED = 6384;  -- Obtained key item: <keyitem>
- FISHING_MESSAGE_OFFSET = 6584;  -- !!!fishing message!!!
+ FISHING_MESSAGE_OFFSET = 6584;  -- You can't fish here
           HOMEPOINT_SET = 2;     -- Home point set!
          DOOR_IS_LOCKED = 10271; -- The door is locked tight.
 

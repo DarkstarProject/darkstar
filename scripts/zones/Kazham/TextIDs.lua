@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 10517; -- You cannot obtain the item <item> come back 
            GIL_OBTAINED = 6379;  -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381;  -- Obtained key item: <keyitem>
           HOMEPOINT_SET = 6424;  -- Home point set!
- FISHING_MESSAGE_OFFSET = 6584;  -- !!!fishing message!!!
+ FISHING_MESSAGE_OFFSET = 6584;  -- You can't fish here
      
 -- Quest Dialog
 NOMAD_MOOGLE_DIALOG = 10499; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.

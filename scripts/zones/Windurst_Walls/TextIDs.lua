@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6538; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
          ITEMS_OBTAINED = 6543; -- You obtain <number> <item>!
- FISHING_MESSAGE_OFFSET = 6865; -- !!!fishing message!!!
+ FISHING_MESSAGE_OFFSET = 6865; -- You can't fish here
           MOGHOUSE_EXIT = 7989; -- You have learned your way through the back alleys of Windurst! Now you can exit to any area from your residence.
 
 -- Dynamis dialogs
