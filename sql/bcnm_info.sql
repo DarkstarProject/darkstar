@@ -34,7 +34,7 @@ CREATE TABLE `bcnm_info` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
 -- ----------------------------
--- Records of bcnm_info
+-- Records 
 -- ----------------------------
 INSERT INTO `bcnm_info` VALUES ('0', '139', 'rank_2_mission', null, null, '1800', '25', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('1', '139', 'tails_of_woe', null, null, '1800', '40', '6', '0', '15');
@@ -149,12 +149,12 @@ INSERT INTO `bcnm_info` VALUES ('353', '156', 'darkness_descends', null, null, '
 INSERT INTO `bcnm_info` VALUES ('354', '156', 'bonds_of_mythril', null, null, '1800', '0', '18', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('385', '182', 'maiden_of_the_dusk', null, null, '1800', '99', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('416', '201', 'trial_by_wind', null, null, '1800', '0', '6', '0', '5');
-INSERT INTO `bcnm_info` VALUES ('417', '201', 'carbuncle_debacle', null, null, '1800', '0', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('417', '201', 'carbuncle_debacle', null, null, '1800', '99', '18', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('418', '201', 'trial-size_trial_by_wind', null, null, '900', '20', '1', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('419', '201', 'waking_the_beast', null, null, '1800', '0', '18', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('420', '201', 'sugar-coated_directive', null, null, '1800', '80', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('448', '202', 'trial_by_lightning', null, null, '1800', '0', '6', '0', '5');
-INSERT INTO `bcnm_info` VALUES ('449', '202', 'carbuncle_debacle', null, null, '1800', '0', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('449', '202', 'carbuncle_debacle', null, null, '1800', '99', '18', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('450', '202', 'trial-size_trial_by_lightning', null, null, '900', '20', '1', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('451', '202', 'waking_the_beast', null, null, '1800', '0', '18', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('452', '202', 'sugar-coated_directive', null, null, '1800', '80', '6', '0', '5');
