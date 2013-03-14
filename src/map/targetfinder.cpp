@@ -59,10 +59,10 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
   m_zone = m_PBattleEntity->getZone();
 
   if(radiusType == AOERADIUS_ATTACKER){
-    m_PRadiusAround = m_PBattleEntity->loc.p;
+    m_PRadiusAround = &m_PBattleEntity->loc.p;
   } else {
     // radius around target
-    m_PRadiusAround = PTarget->loc.p;
+    m_PRadiusAround = &PTarget->loc.p;
   }
 
 
@@ -141,13 +141,13 @@ void CTargetFinder::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
   uint8 partySize = 0;
   CParty* party = NULL;
 
-  for(uint8 i = 0; i < parties; i++)
+  for(uint16 i = 0; i < parties; i++)
   {
     party = PTarget->PParty->m_PAlliance->partyList.at(i);
 
     partySize = party->members.size();
 
-    for(uint8 p = 0; p < partySize; p++)
+    for(uint16 p = 0; p < partySize; p++)
     {
 
       addEntity(party->members.at(p), withPet);
@@ -165,7 +165,7 @@ void CTargetFinder::addAllInParty(CBattleEntity* PTarget, bool withPet)
 
   ShowDebug("Adding all in party size: %d\n", partySize);
 
-  for(uint8 p = 0; p < partySize; p++)
+  for(uint16 p = 0; p < partySize; p++)
   {
 
     addEntity(party->members.at(p), withPet);
@@ -211,6 +211,14 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
   // make sure i'm not over limit
   if(m_PBattleEntity->m_ActionList.size() > MAX_AOE_TARGETS) return false;
 
+  /*float dis = distance(*m_PRadiusAround, PTarget->loc.p);
+
+  if(dis <= m_radius)
+  {
+    ShowDebug("Target is within range\n");
+  }
+     ShowDebug("Target is distanced %f, radius %f\n", dis, m_radius);
+*/
   if (PTarget->isDead() || PTarget->getZone() != m_zone || distance(*m_PRadiusAround, PTarget->loc.p) > m_radius)
   {
     return false;

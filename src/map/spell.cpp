@@ -537,7 +537,7 @@ namespace spell
 
     float GetSpellRadius(CSpell* spell, CBattleEntity* entity)
     {
-        uint8 total = spell->getRadius();
+        float total = spell->getRadius();
 
         // brd gets bonus radius from string skill
         if(spell->getSpellGroup() == SPELLGROUP_SONG && (spell->getValidTarget() & TARGET_SELF)){
