@@ -36,7 +36,7 @@ function onTrade(player,npc,trade)
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:addGil((GIL_RATE*10*MoatCarp) + (GIL_RATE*15*ForestCarp));
 			totalFish = MoatCarp + ForestCarp + fishCountVar
-			player:setVar("theCompetitionFishCountVar",totalfish);
+			player:setVar("theCompetitionFishCountVar",totalFish);
 			player:startEvent(0x0131);
 		else
 			player:startEvent(0x0132);
