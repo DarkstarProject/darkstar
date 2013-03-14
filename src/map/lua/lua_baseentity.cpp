@@ -6575,13 +6575,13 @@ inline int32 CLuaBaseEntity::hasTPMoves(lua_State* L)
 
 	uint16 familyID = 0;
 
-	if (m_PBaseEntity->objtype & TYPE_MOB)
-	{
-		familyID = ((CMobEntity*)m_PBaseEntity)->m_Family;
-	}
-	else if (m_PBaseEntity->objtype & TYPE_PET)
+	if (m_PBaseEntity->objtype & TYPE_PET)
 	{
 		familyID = ((CPetEntity*)m_PBaseEntity)->m_Family;
+	}
+	else if (m_PBaseEntity->objtype & TYPE_MOB)
+	{
+		familyID = ((CMobEntity*)m_PBaseEntity)->m_Family;
 	}
 	std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(familyID);
 	lua_pushboolean(L,MobSkills.size() != 0);
